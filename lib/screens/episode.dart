@@ -16,7 +16,7 @@ class EpisodeScreen extends StatelessWidget {
         children: [
           const Padding(
             padding: EdgeInsets.all(8.0),
-            child: SizedBox(width: double.infinity, height: 250, child: BccmPlayer()),
+            child: BccmPlayer(),
           ),
           Center(
             child: ElevatedButton(

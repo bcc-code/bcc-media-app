@@ -1,9 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:my_app/player_state.dart';
 import 'package:my_app/screens/episode.dart';
 import 'package:my_app/sections.dart';
+import 'package:provider/provider.dart';
+import 'package:video_player/video_player.dart';
 
 void main() {
-  runApp(MaterialApp(
+  runApp(ChangeNotifierProvider(
+    create: (context) => PlayerState(),
+    child: MaterialApp(
     title: 'Flutter Demo',
     theme: ThemeData(
       primarySwatch: Colors.blue,
@@ -15,7 +20,7 @@ void main() {
       // When navigating to the "/second" route, build the SecondScreen widget.
       '/episode': (context) => const EpisodeScreen(),
     },
-  ));
+  )));
 }
 
 class MyHomePage extends StatefulWidget {
@@ -29,6 +34,11 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   String something = 'cool';
+
+  @override
+  void initState() {
+    super.initState();
+  }
 
   void _incrementCounter() {
     setState(() {
