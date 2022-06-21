@@ -7,7 +7,7 @@ class PlayerState extends ChangeNotifier {
   
   PlayerState() {
     _controller = VideoPlayerController.network(
-        'https://d2zihajmogu5jn.cloudfront.net/bipbop-advanced/bipbop_16x9_variant.m3u8', videoPlayerOptions: VideoPlayerOptions(allowBackgroundPlayback: true));
+        'put-url-here', formatHint: VideoFormat.hls,videoPlayerOptions: VideoPlayerOptions(allowBackgroundPlayback: true));
     _initializeVideoPlayerFuture = _controller.initialize().then((value) => 
     _controller.play(),);
   }

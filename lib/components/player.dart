@@ -1,3 +1,4 @@
+import 'package:chewie/chewie.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
@@ -19,7 +20,13 @@ class BccmPlayer extends StatelessWidget {
                 if (snapshot.connectionState == ConnectionState.done) {
                   return AspectRatio(
                       aspectRatio: value.controller.value.aspectRatio,
-                      child: VideoPlayer(value.controller));
+                      child: Chewie(
+                          controller: ChewieController(
+                        videoPlayerController: value.controller,
+                        autoPlay: true,
+                        //isLive: true,
+                        looping: true,
+                      )));
                 } else {
                   return Row(children: [
                     const Center(child: CircularProgressIndicator()),
