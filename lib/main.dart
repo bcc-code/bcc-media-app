@@ -3,7 +3,6 @@ import 'package:my_app/player_state.dart';
 import 'package:my_app/screens/episode.dart';
 import 'package:my_app/sections.dart';
 import 'package:provider/provider.dart';
-import 'package:video_player/video_player.dart';
 
 void main() {
   runApp(ChangeNotifierProvider(
