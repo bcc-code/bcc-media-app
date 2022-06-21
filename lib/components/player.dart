@@ -13,9 +13,6 @@ class BccmPlayer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Consumer<PlayerState>(
-        builder: ((context, value, child) => AspectRatio(
-                      aspectRatio: value
-                          .controller.videoPlayerController!.value.aspectRatio,
-                      child: BetterPlayer(controller: value.controller))));
+        builder: ((context, value, child) => BetterPlayer(controller: value.controller.betterPlayerController!)));
   }
 }
