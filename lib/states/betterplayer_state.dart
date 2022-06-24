@@ -3,11 +3,11 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 
-class PlayerState extends ChangeNotifier {
+class BetterPlayerState extends ChangeNotifier {
   late BetterPlayerPlaylistController _controller;
   //late Future<void> _initializeVideoPlayerFuture;
 
-  PlayerState() {
+  BetterPlayerState() {
     BetterPlayerDataSource betterPlayerDataSource = BetterPlayerDataSource(
         BetterPlayerDataSourceType.network,
         liveStream: false,

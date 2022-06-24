@@ -1,9 +1,12 @@
 
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:my_app/components/player.dart';
 
-class EpisodeScreen extends StatelessWidget {
-  const EpisodeScreen({super.key});
+class EpisodePage extends StatelessWidget {
+  final PlayerType playerType;
+  const EpisodePage({super.key, required this.playerType});
 
   @override
   Widget build(BuildContext context) {
@@ -14,9 +17,9 @@ class EpisodeScreen extends StatelessWidget {
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Padding(
-            padding: EdgeInsets.all(8.0),
-            child: BccmPlayer(),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: BccmPlayer(type: playerType),
           ),
           Center(
             child: ElevatedButton(
