@@ -1,24 +1,65 @@
 import 'package:better_player/better_player.dart';
 import 'package:chewie/chewie.dart';
 import 'package:flutter/foundation.dart';
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
-import 'package:flutter/services.dart';
+import 'package:js/js.dart';
 import 'package:provider/provider.dart';
 
 import '../states/betterplayer_state.dart';
 import '../states/videoplayer_state.dart';
+import 'dart:html' as html;
 
 enum PlayerType { betterPlayer, videoPlayer }
+
+@JS()
+external void createVideoJsPlayer(String elementId, Options options);
+
+@JS()
+@anonymous
+class Options {
+  external factory Options({SrcOptions src});
+}
+
+@JS()
+@anonymous
+class SrcOptions {
+  external factory SrcOptions({String type, String src});
+}
 
 class BccmPlayer extends StatelessWidget {
   final PlayerType type;
 
   const BccmPlayer({super.key, required this.type});
 
+  void playVideoWeb(BuildContext context) {
+    
+    final v = html.window.document.getElementById('videoab');
+    if(v != null) {
+      v.style.display='block';
+      createVideoJsPlayer('videoab', Options(
+        src: SrcOptions(
+          src: 'https://proxy.brunstad.tv/api/vod/toplevelmanifest?playbackUrl=https%3a%2f%2fvod.brunstad.tv%2fa97a0f51-3866-46ff-8171-29d53004aeb5%2fMAGA_S01_E04_BIEX_SEQ.ism%2fmanifest(format%3dm3u8-aapl%2caudio-only%3dfalse)&token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cm46bWljcm9zb2Z0OmF6dXJlOm1lZGlhc2VydmljZXM6Y29udGVudGtleWlkZW50aWZpZXIiOiJmMjhhOTE3Ni1mMTU5LTQ3MWItYmVkZi1jYzczZDQ3NDZkYzUiLCJuYmYiOjE2NTYwNTgyMDYsImV4cCI6MTY1NjA2OTMwNiwiaXNzIjoiaHR0cHM6Ly9icnVuc3RhZC50diIsImF1ZCI6InVybjpicnVuc3RhZHR2In0.RInjNF9ZQV4Yl4lAhIv0ROS7EI7RX-rQMS3nNXPU9Vo&subs=false',
+          type: 'application/x-mpegURL'
+        )
+      ));
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
+    if (kIsWeb) {
+      return Container(
+          color: Colors.blueAccent,
+          child: SizedBox(
+            width: 100,
+            height: 100,
+            child: ElevatedButton(
+                onPressed: () {
+                  playVideoWeb(context);
+                },
+                child: const Text('Play')),
+          ));
+    }
     if (type == PlayerType.betterPlayer) {
       return Consumer<BetterPlayerState>(
           builder: ((context, value, child) => BetterPlayer(
