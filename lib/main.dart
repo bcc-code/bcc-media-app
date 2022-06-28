@@ -29,6 +29,7 @@ void main() {
       }),
       '/betterplayer': (context) => const EpisodePage(playerType: PlayerType.betterPlayer),
       '/videoplayer': (context) => const EpisodePage(playerType: PlayerType.videoPlayer),
+      '/native': (context) => const EpisodePage(playerType: PlayerType.native),
     },
   )));
 }
@@ -79,7 +80,7 @@ class _MyHomePageState extends State<MyHomePage> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             ItemSection(title: 'Videoplayer', items: [
-              Item(title: 'Hei1', url: '/videoplayer'),
+              Item(title: 'Hei1', url: '/native'),
               Item(title: 'Hei1', url: '/videoplayer'),
               Item(title: 'Hei1', url: '/videoplayer'),
               Item(title: 'Hei1', url: '/videoplayer'),

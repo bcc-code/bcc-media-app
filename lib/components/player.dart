@@ -2,37 +2,22 @@ import 'package:better_player/better_player.dart';
 import 'package:chewie/chewie.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:js/js.dart';
+import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 
 import '../states/betterplayer_state.dart';
 import '../states/videoplayer_state.dart';
-import 'dart:html' as html;
 
-enum PlayerType { betterPlayer, videoPlayer }
-
-@JS()
-external void createVideoJsPlayer(String elementId, Options options);
-
-@JS()
-@anonymous
-class Options {
-  external factory Options({SrcOptions src});
-}
-
-@JS()
-@anonymous
-class SrcOptions {
-  external factory SrcOptions({String type, String src});
-}
+enum PlayerType { betterPlayer, videoPlayer, native }
 
 class BccmPlayer extends StatelessWidget {
+  static const modalPlayer = MethodChannel('app.bcc.media/modal-player');
   final PlayerType type;
 
   const BccmPlayer({super.key, required this.type});
 
   void playVideoWeb(BuildContext context) {
-    
+    /* 
     final v = html.window.document.getElementById('videoab');
     if(v != null) {
       v.style.display='block';
@@ -42,7 +27,11 @@ class BccmPlayer extends StatelessWidget {
           type: 'application/x-mpegURL'
         )
       ));
-    }
+    } */
+  }
+
+  void playVideoNative(BuildContext context) {
+    modalPlayer.invokeMethod('open');
   }
 
   @override
@@ -64,6 +53,18 @@ class BccmPlayer extends StatelessWidget {
       return Consumer<BetterPlayerState>(
           builder: ((context, value, child) => BetterPlayer(
               controller: value.controller.betterPlayerController!)));
+    } else if (type == PlayerType.native) {
+      return Container(
+          color: Colors.blueAccent,
+          child: SizedBox(
+            width: 100,
+            height: 100,
+            child: ElevatedButton(
+                onPressed: () {
+                  playVideoNative(context);
+                },
+                child: const Text('Play')),
+          ));
     } else {
       return Consumer<VideoPlayerState>(
           builder: ((context, value, child) => FutureBuilder(

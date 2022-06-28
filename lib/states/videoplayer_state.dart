@@ -7,7 +7,8 @@ class VideoPlayerState extends ChangeNotifier {
   
   VideoPlayerState() {
     _controller = VideoPlayerController.network(
-        'https://vod2.stream.brunstad.tv/out/v1/244ef7496e274a299f64e353756190e7/ab9e7540a3e34bee86ec6af8c7cdc342/1467e3c2761c4947ae7dc7a6c162747f/index.m3u8?EncodedPolicy=Policy%3deyJTdGF0ZW1lbnQiOiBbeyJSZXNvdXJjZSI6Imh0dHBzOi8vdm9kMi5zdHJlYW0uYnJ1bnN0YWQudHYvKiIsIkNvbmRpdGlvbiI6eyJEYXRlTGVzc1RoYW4iOnsiQVdTOkVwb2NoVGltZSI6MTY1NTk5MjI2M319fV19%26Signature%3dg7yp82Lvf6ot3v7WPI0LoSKsfav4lO%7e9VWDDPZZbBeDXK2Krl3K3HYkzoHmvDlV2hTAjSdRGyNa1c3ZyO3EBLhwfdvRurLzVvQpbCqPJPOgNDDTtGpdolHHx-omJ8GZURn%7efg6gS-dKGLm1MxxnZHWJ4rl8J%7eJaIQr2quOBtjjxgrCOn%7epxwudQEaQ7g19ayTyb2mi0Q5py2im8nJ7HLhYYWTLZpgkKeGyharsvSZ3X6a0NqSiEIS-7nYmHw5cOgVTp94nCYKh7lXtnjIJjyNAOkd0SSVwV5Rs6YsWbJRtEgyKz9rGrn8VpA5aLUGuuuj4vrVt6dvUz-zEE1FUBJMQ__%26Key-Pair-Id%3dK2ONPB9SDZ4ZMH', videoPlayerOptions: VideoPlayerOptions(allowBackgroundPlayback: true));
+      formatHint: VideoFormat.hls,
+        'https://proxy.brunstad.tv/api/vod/toplevelmanifest?playbackUrl=https%3a%2f%2fvod.brunstad.tv%2fddfa071a-1ec2-4d4d-a094-566e53451122%2fMAGA_20220605_SEQ.ism%2fmanifest(format%3dm3u8-aapl%2caudio-only%3dfalse)&token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cm46bWljcm9zb2Z0OmF6dXJlOm1lZGlhc2VydmljZXM6Y29udGVudGtleWlkZW50aWZpZXIiOiI0MTI4MGI3ZS1lMGJhLTQzNGQtOTc5My02NTY0ZjhmNTc1YTYiLCJuYmYiOjE2NTYwNzE0ODMsImV4cCI6MTY1NjA4MjU4MywiaXNzIjoiaHR0cHM6Ly9icnVuc3RhZC50diIsImF1ZCI6InVybjpicnVuc3RhZHR2In0.CmszfWGUa7UKevdVAqnJ4tvFJ5un3V38RG4nrbJl-W8&subs=true', videoPlayerOptions: VideoPlayerOptions(allowBackgroundPlayback: true));
     _initializeVideoPlayerFuture = _controller.initialize().then((value) => 
     _controller.play(),);
   }
