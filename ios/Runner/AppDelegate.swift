@@ -30,7 +30,9 @@ import Flutter
               result(FlutterMethodNotImplemented)
               return
             }
-            let c = PlayerViewController()
+            let arg = call.arguments as! Dictionary<String, Any>
+            let url = arg["url"] as! String
+            let c = PlayerViewController(url: url)
             let navigation = UINavigationController .init(rootViewController: c)
             let viewController : UIViewController? = UIApplication.shared.delegate?.window??.rootViewController
             viewController?.present(navigation, animated:true, completion: nil)

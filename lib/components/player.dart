@@ -31,7 +31,9 @@ class BccmPlayer extends StatelessWidget {
   }
 
   void playVideoNative(BuildContext context) {
-    modalPlayer.invokeMethod('open');
+    modalPlayer.invokeMethod('open', <String, dynamic>{
+        'url': 'https://proxy.brunstad.tv/api/vod/toplevelmanifest?playbackUrl=https%3a%2f%2fvod.brunstad.tv%2f51284609-2605-4da0-8895-95fe908b23fb%2fINTR_S04_E04_MAS_NOR.ism%2fmanifest(format%3dm3u8-aapl%2caudio-only%3dfalse)&token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cm46bWljcm9zb2Z0OmF6dXJlOm1lZGlhc2VydmljZXM6Y29udGVudGtleWlkZW50aWZpZXIiOiIwYTYzMjI4Yi0yNjRjLTQxNmUtODliOS00NzRhMWQ2MmJjMTYiLCJuYmYiOjE2NTY0MTExMDksImV4cCI6MTY1NjQyMjIwOSwiaXNzIjoiaHR0cHM6Ly9icnVuc3RhZC50diIsImF1ZCI6InVybjpicnVuc3RhZHR2In0.-QyoIR1bZIej6MKnUZ5R12m2Luy-a89_mE7EXgp69xM&subs=false',
+      });
   }
 
   @override
