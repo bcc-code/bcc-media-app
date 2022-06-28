@@ -135,6 +135,9 @@ public class PlayerViewController: UIViewController {
     }
     
     @objc func exitButtonClicked(_ sender: UIButton) {
+        
+        let value = UIInterfaceOrientation.portrait.rawValue
+        UIDevice.current.setValue(value, forKey: "orientation")
         self.dismiss(animated: true)
     }
     

@@ -21,7 +21,7 @@ import Flutter
         print(self)
         
         let controller : FlutterViewController = window?.rootViewController as! FlutterViewController
-        let playerChannel = FlutterMethodChannel(name: "app.bcc.media/modal-player",
+        let playerChannel = FlutterMethodChannel(name: "app.bcc.media/player",
                                                   binaryMessenger: controller.binaryMessenger)
         playerChannel.setMethodCallHandler({
             (call: FlutterMethodCall, result: @escaping FlutterResult) -> Void in
@@ -30,6 +30,10 @@ import Flutter
               result(FlutterMethodNotImplemented)
               return
             }
+            
+            let value = UIInterfaceOrientation.landscapeLeft.rawValue
+            UIDevice.current.setValue(value, forKey: "orientation")
+            
             let arg = call.arguments as! Dictionary<String, Any>
             let url = arg["url"] as! String
             let c = PlayerViewController(url: url)

@@ -11,7 +11,7 @@ import '../states/videoplayer_state.dart';
 enum PlayerType { betterPlayer, videoPlayer, native }
 
 class BccmPlayer extends StatelessWidget {
-  static const modalPlayer = MethodChannel('app.bcc.media/modal-player');
+  static const modalPlayer = MethodChannel('app.bcc.media/player');
   final PlayerType type;
 
   const BccmPlayer({super.key, required this.type});
