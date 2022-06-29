@@ -1,4 +1,4 @@
-import 'package:better_player/better_player.dart';
+/* import 'package:better_player/better_player.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
@@ -39,3 +39,4 @@ class BetterPlayerState extends ChangeNotifier {
   BetterPlayerPlaylistController get controller => _controller;
   // Future<void> get initializeVideoPlayerFuture => _initializeVideoPlayerFuture;
 }
+ */

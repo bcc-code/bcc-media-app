@@ -38,7 +38,7 @@ dependencies:
   video_player: ^2.4.5
   provider: ^6.0.3
   js: ^0.6.4
-  better_player: ^0.0.83
+  #better_player: ^0.0.83
 dependency_overrides:
   #better_player:
    # path: external-projects/betterplayer

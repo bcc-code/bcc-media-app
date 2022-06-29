@@ -1,13 +1,11 @@
 import 'dart:io';
 
-import 'package:better_player/better_player.dart';
 import 'package:chewie/chewie.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 
-import '../states/betterplayer_state.dart';
 import '../states/videoplayer_state.dart';
 
 enum PlayerType { betterPlayer, videoPlayer, native }
@@ -61,11 +59,7 @@ class _BccmPlayerState extends State<BccmPlayer> {
                 child: const Text('Play')),
           ));
     }
-    if (widget.type == PlayerType.betterPlayer) {
-      return Consumer<BetterPlayerState>(
-          builder: ((context, value, child) => BetterPlayer(
-              controller: value.controller.betterPlayerController!)));
-    } else if (widget.type == PlayerType.native) {
+    if (widget.type == PlayerType.native) {
       return Column(
         children: [
           Container(
@@ -79,11 +73,9 @@ class _BccmPlayerState extends State<BccmPlayer> {
                     },
                     child: const Text('Play')),
               )),
-          if (!_hidePlayer && Platform.isIOS) const SizedBox(
-              height: 100,
-              child: AspectRatio(
-                  aspectRatio: 16 / 9,
-                  child: UiKitView(viewType: 'bccm-player'))),
+          if (!_hidePlayer && Platform.isIOS) const AspectRatio(
+              aspectRatio: 16 / 9,
+              child: UiKitView(viewType: 'bccm-player')),
           if (!_hidePlayer && Platform.isAndroid) SizedBox(
             height: 450,
             child: AspectRatio(

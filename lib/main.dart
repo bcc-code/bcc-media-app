@@ -11,7 +11,6 @@ import 'package:provider/provider.dart';
 void main() {
   runApp(MultiProvider(
     providers: [
-      ChangeNotifierProvider(create: (context) => BetterPlayerState()),
       ChangeNotifierProvider(create: (context) => VideoPlayerState()),
       ChangeNotifierProvider(create: (context) => AuthState()),
     ],

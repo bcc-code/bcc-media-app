@@ -122,7 +122,7 @@ public class PlayerViewController: UIViewController {
     
     private func createExitButton() -> UIButton {
         let btn = UIButton()
-        btn.frame = CGRect(x: self.view.layer.bounds.width - 100, y: 10, width: 100, height: 30)
+        btn.frame = CGRect(x: self.view.layer.bounds.width - 200, y: 75, width: 200, height: 100)
         btn.backgroundColor = UIColor.red
         btn.layer.masksToBounds = true
         btn.setTitle("Exit", for: .normal)
