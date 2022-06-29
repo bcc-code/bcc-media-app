@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:better_player/better_player.dart';
 import 'package:chewie/chewie.dart';
 import 'package:flutter/foundation.dart';
@@ -10,12 +12,18 @@ import '../states/videoplayer_state.dart';
 
 enum PlayerType { betterPlayer, videoPlayer, native }
 
-class BccmPlayer extends StatelessWidget {
+class BccmPlayer extends StatefulWidget {
   static const modalPlayer = MethodChannel('app.bcc.media/player');
   final PlayerType type;
 
   const BccmPlayer({super.key, required this.type});
 
+  @override
+  State<BccmPlayer> createState() => _BccmPlayerState();
+}
+
+class _BccmPlayerState extends State<BccmPlayer> {
+  bool _hidePlayer = false;
   void playVideoWeb(BuildContext context) {
     /* 
     final v = html.window.document.getElementById('videoab');
@@ -31,9 +39,11 @@ class BccmPlayer extends StatelessWidget {
   }
 
   void playVideoNative(BuildContext context) {
-    modalPlayer.invokeMethod('open', <String, dynamic>{
-        'url': 'https://proxy.brunstad.tv/api/vod/toplevelmanifest?playbackUrl=https%3a%2f%2fvod.brunstad.tv%2f51284609-2605-4da0-8895-95fe908b23fb%2fINTR_S04_E04_MAS_NOR.ism%2fmanifest(format%3dm3u8-aapl%2caudio-only%3dfalse)&token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cm46bWljcm9zb2Z0OmF6dXJlOm1lZGlhc2VydmljZXM6Y29udGVudGtleWlkZW50aWZpZXIiOiIwYTYzMjI4Yi0yNjRjLTQxNmUtODliOS00NzRhMWQ2MmJjMTYiLCJuYmYiOjE2NTY0MTExMDksImV4cCI6MTY1NjQyMjIwOSwiaXNzIjoiaHR0cHM6Ly9icnVuc3RhZC50diIsImF1ZCI6InVybjpicnVuc3RhZHR2In0.-QyoIR1bZIej6MKnUZ5R12m2Luy-a89_mE7EXgp69xM&subs=false',
-      });
+    setState(() { _hidePlayer = true; });
+    BccmPlayer.modalPlayer.invokeMethod('open', <String, dynamic>{
+      'url':
+          'https://proxy.brunstad.tv/api/vod/toplevelmanifest?playbackUrl=https%3a%2f%2fvod.brunstad.tv%2fddfa071a-1ec2-4d4d-a094-566e53451122%2fMAGA_20220605_SEQ.ism%2fmanifest(format%3dm3u8-aapl%2caudio-only%3dfalse)&token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cm46bWljcm9zb2Z0OmF6dXJlOm1lZGlhc2VydmljZXM6Y29udGVudGtleWlkZW50aWZpZXIiOiI0MTI4MGI3ZS1lMGJhLTQzNGQtOTc5My02NTY0ZjhmNTc1YTYiLCJuYmYiOjE2NTY1MDEyNTYsImV4cCI6MTY1NjUxMjM1NiwiaXNzIjoiaHR0cHM6Ly9icnVuc3RhZC50diIsImF1ZCI6InVybjpicnVuc3RhZHR2In0.dA5w3ATbJ5cZmgcYMsrLztWStxG8A3k6WzKOD3TXRD0&subs=false',
+    });
   }
 
   @override
@@ -51,37 +61,66 @@ class BccmPlayer extends StatelessWidget {
                 child: const Text('Play')),
           ));
     }
-    if (type == PlayerType.betterPlayer) {
+    if (widget.type == PlayerType.betterPlayer) {
       return Consumer<BetterPlayerState>(
           builder: ((context, value, child) => BetterPlayer(
               controller: value.controller.betterPlayerController!)));
-    } else if (type == PlayerType.native) {
-      return Container(
-          color: Colors.blueAccent,
-          child: SizedBox(
-            width: 100,
-            height: 100,
-            child: ElevatedButton(
-                onPressed: () {
-                  playVideoNative(context);
-                },
-                child: const Text('Play')),
-          ));
+    } else if (widget.type == PlayerType.native) {
+      return Column(
+        children: [
+          Container(
+              color: Colors.blueAccent,
+              child: SizedBox(
+                width: 100,
+                height: 100,
+                child: ElevatedButton(
+                    onPressed: () {
+                      playVideoNative(context);
+                    },
+                    child: const Text('Play')),
+              )),
+          if (!_hidePlayer && Platform.isIOS) const SizedBox(
+              height: 100,
+              child: AspectRatio(
+                  aspectRatio: 16 / 9,
+                  child: UiKitView(viewType: 'bccm-player'))),
+          if (!_hidePlayer && Platform.isAndroid) const SizedBox(
+              height: 100,
+              child: AspectRatio(
+                  aspectRatio: 16 / 9,
+                  child: AndroidView(viewType: 'bccm-player')))
+        ],
+      );
     } else {
       return Consumer<VideoPlayerState>(
           builder: ((context, value, child) => FutureBuilder(
                 future: value.initializeVideoPlayerFuture,
                 builder: (context, snapshot) {
                   if (snapshot.connectionState == ConnectionState.done) {
-                    return AspectRatio(
-                        aspectRatio: value.controller.value.aspectRatio,
-                        child: Chewie(
-                            controller: ChewieController(
-                          videoPlayerController: value.controller,
-                          autoPlay: true,
-                          //isLive: true,
-                          looping: true,
-                        )));
+                    return Column(
+                      children: [
+                        Container(
+                            color: Colors.blueAccent,
+                            child: SizedBox(
+                              width: 100,
+                              height: 100,
+                              child: ElevatedButton(
+                                  onPressed: () {
+                                    playVideoNative(context);
+                                  },
+                                  child: const Text('Play')),
+                            )),
+                        AspectRatio(
+                            aspectRatio: value.controller.value.aspectRatio,
+                            child: Chewie(
+                                controller: ChewieController(
+                              videoPlayerController: value.controller,
+                              autoPlay: true,
+                              //isLive: true,
+                              looping: true,
+                            ))),
+                      ],
+                    );
                   } else {
                     return Row(children: [
                       const Center(child: CircularProgressIndicator()),

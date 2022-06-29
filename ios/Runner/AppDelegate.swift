@@ -3,6 +3,9 @@ import Flutter
 
 @UIApplicationMain
 @objc class AppDelegate: FlutterAppDelegate {
+    
+    var playerViewController: PlayerViewController?
+    
     override func application(
         _ application: UIApplication,
         didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?
@@ -36,8 +39,10 @@ import Flutter
             
             let arg = call.arguments as! Dictionary<String, Any>
             let url = arg["url"] as! String
-            let c = PlayerViewController(url: url)
-            let navigation = UINavigationController .init(rootViewController: c)
+            
+            self.playerViewController = PlayerViewController(url: url)
+            
+            let navigation = UINavigationController .init(rootViewController: self.playerViewController!)
             let viewController : UIViewController? = UIApplication.shared.delegate?.window??.rootViewController
             viewController?.present(navigation, animated:true, completion: nil)
         })
