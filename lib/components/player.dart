@@ -15,8 +15,9 @@ enum PlayerType { betterPlayer, videoPlayer, native }
 class BccmPlayer extends StatefulWidget {
   static const modalPlayer = MethodChannel('app.bcc.media/player');
   final PlayerType type;
+  final String url;
 
-  const BccmPlayer({super.key, required this.type});
+  const BccmPlayer({super.key, required this.type, this.url = 'https://proxy.brunstad.tv/api/vod/toplevelmanifest?playbackUrl=https%3a%2f%2fvod.brunstad.tv%2fddfa071a-1ec2-4d4d-a094-566e53451122%2fMAGA_20220605_SEQ.ism%2fmanifest(format%3dm3u8-aapl%2caudio-only%3dfalse)&token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cm46bWljcm9zb2Z0OmF6dXJlOm1lZGlhc2VydmljZXM6Y29udGVudGtleWlkZW50aWZpZXIiOiI0MTI4MGI3ZS1lMGJhLTQzNGQtOTc5My02NTY0ZjhmNTc1YTYiLCJuYmYiOjE2NTY1MDEyNTYsImV4cCI6MTY1NjUxMjM1NiwiaXNzIjoiaHR0cHM6Ly9icnVuc3RhZC50diIsImF1ZCI6InVybjpicnVuc3RhZHR2In0.dA5w3ATbJ5cZmgcYMsrLztWStxG8A3k6WzKOD3TXRD0&subs=false'});
 
   @override
   State<BccmPlayer> createState() => _BccmPlayerState();
@@ -41,8 +42,7 @@ class _BccmPlayerState extends State<BccmPlayer> {
   void playVideoNative(BuildContext context) {
     setState(() { _hidePlayer = true; });
     BccmPlayer.modalPlayer.invokeMethod('open', <String, dynamic>{
-      'url':
-          'https://proxy.brunstad.tv/api/vod/toplevelmanifest?playbackUrl=https%3a%2f%2fvod.brunstad.tv%2fddfa071a-1ec2-4d4d-a094-566e53451122%2fMAGA_20220605_SEQ.ism%2fmanifest(format%3dm3u8-aapl%2caudio-only%3dfalse)&token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cm46bWljcm9zb2Z0OmF6dXJlOm1lZGlhc2VydmljZXM6Y29udGVudGtleWlkZW50aWZpZXIiOiI0MTI4MGI3ZS1lMGJhLTQzNGQtOTc5My02NTY0ZjhmNTc1YTYiLCJuYmYiOjE2NTY1MDEyNTYsImV4cCI6MTY1NjUxMjM1NiwiaXNzIjoiaHR0cHM6Ly9icnVuc3RhZC50diIsImF1ZCI6InVybjpicnVuc3RhZHR2In0.dA5w3ATbJ5cZmgcYMsrLztWStxG8A3k6WzKOD3TXRD0&subs=false',
+      'url': widget.url,
     });
   }
 
@@ -84,11 +84,15 @@ class _BccmPlayerState extends State<BccmPlayer> {
               child: AspectRatio(
                   aspectRatio: 16 / 9,
                   child: UiKitView(viewType: 'bccm-player'))),
-          if (!_hidePlayer && Platform.isAndroid) const SizedBox(
-              height: 100,
-              child: AspectRatio(
-                  aspectRatio: 16 / 9,
-                  child: AndroidView(viewType: 'bccm-player')))
+          if (!_hidePlayer && Platform.isAndroid) SizedBox(
+            height: 450,
+            child: AspectRatio(
+                aspectRatio: 16 / 9,
+                child: AndroidView(viewType: 'bccm-player', creationParams: <String, dynamic>{
+                  'url': widget.url,
+                },
+                creationParamsCodec: const StandardMessageCodec(),)),
+          )
         ],
       );
     } else {

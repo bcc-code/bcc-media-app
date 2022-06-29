@@ -31,32 +31,20 @@ class MainActivity: FlutterActivity() {
 
                 requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE
                 val args = call.arguments as HashMap<String, String>
-                val player: ExoPlayer = io.flutter.plugins.videoplayer.VideoPlayerPlugin.videoPlayers[0].exoPlayer
-                if (player == null) {
-                    ExoPlayer.Builder(context).build()
-                    val url = args["url"]!!;
-                    val mediaItem: MediaItem = MediaItem.Builder()
-                            .setUri(url)
-                            .setMimeType(MimeTypes.APPLICATION_M3U8)
-                            .build()
-                    player.setMediaItem(mediaItem)
-                    player.prepare()
-                    player.play()
-                }
+                val url = args["url"]!!;
 
                 val rootLayout: FrameLayout = this.window.decorView.findViewById<View>(R.id.content) as FrameLayout
-                var playerView = StyledPlayerView(context)
-                playerView.player = player
-                rootLayout.addView(playerView)
+                val bccmPlayer = BccmPlayer(context, url)
+                rootLayout.addView(bccmPlayer.view)
+
                 val exitBtn = Button(this)
                 exitBtn.text = "Exit"
-
                 exitBtn.layoutParams = ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT)
                 exitBtn.setOnClickListener {
                     requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
-                    rootLayout.removeView(playerView)
+                    rootLayout.removeView(bccmPlayer.view)
                 }
-                playerView.addView(exitBtn)
+                rootLayout.addView(exitBtn)
             } else {
                 result.notImplemented()
             }
