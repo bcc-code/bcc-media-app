@@ -14,23 +14,25 @@ class EpisodePage extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Episode'),
       ),
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: BccmPlayer(type: playerType),
-          ),
-          Center(
-            child: ElevatedButton(
-              onPressed: () {
-                // Navigate back to first screen when tapped.
-                Navigator.of(context).pop();
-              },
-              child: const Text('Go back!'),
+      body: ListView(
+        children: [Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: BccmPlayer(type: playerType),
             ),
-          ),
-        ],
+            Center(
+              child: ElevatedButton(
+                onPressed: () {
+                  // Navigate back to first screen when tapped.
+                  Navigator.of(context).pop();
+                },
+                child: const Text('Go back!'),
+              ),
+            ),
+          ],
+        ),]
       ),
     );
   }

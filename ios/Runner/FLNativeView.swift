@@ -9,6 +9,10 @@ class BccmPlayerFactory: NSObject, FlutterPlatformViewFactory {
         self.messenger = messenger
         super.init()
     }
+    
+    public func createArgsCodec() -> FlutterMessageCodec & NSObjectProtocol {
+          return FlutterStandardMessageCodec.sharedInstance()
+    }
 
     func create(
         withFrame frame: CGRect,
@@ -18,7 +22,7 @@ class BccmPlayerFactory: NSObject, FlutterPlatformViewFactory {
         return BccmPlayerView(
             frame: frame,
             viewIdentifier: viewId,
-            arguments: args,
+            arguments: args! as! Dictionary<String, String>,
             binaryMessenger: messenger)
     }
 }
@@ -26,17 +30,21 @@ class BccmPlayerFactory: NSObject, FlutterPlatformViewFactory {
 class BccmPlayerView: NSObject, FlutterPlatformView {
     private var _view: UIView
     private var _playerController: AVPlayerViewController?
-
+    private var _url: String
+    
     init(
         frame: CGRect,
         viewIdentifier viewId: Int64,
-        arguments args: Any?,
+        arguments args: Dictionary<String, String>?,
         binaryMessenger messenger: FlutterBinaryMessenger?
     ) {
         _view = UIView()
         _view.frame = frame
+        _url = args!["url"] ?? "https://devstreaming-cdn.apple.com/videos/streaming/examples/img_bipbop_adv_example_fmp4/master.m3u8"
+        
         super.init()
         // iOS views can be created here
+        
         createNativeView(frame: frame, view: _view)
     }
 
@@ -58,7 +66,7 @@ class BccmPlayerView: NSObject, FlutterPlatformView {
         
         let playerView = UIView()
         
-        let player = AVPlayer(url: URL(string: "https://devstreaming-cdn.apple.com/videos/streaming/examples/img_bipbop_adv_example_fmp4/master.m3u8")!)
+        let player = AVPlayer(url: URL(string: _url)!)
         
         let playerController = AVPlayerViewController()
         playerController.player = player
