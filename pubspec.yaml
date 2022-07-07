@@ -43,6 +43,7 @@ dependencies:
   flutter_secure_storage: ^5.0.2
   json_annotation: ^4.5.0
   json_serializable: ^6.2.0
+  mockito: ^5.2.0
   #better_player: ^0.0.83
 dependency_overrides:
   #better_player:
