@@ -38,6 +38,11 @@ dependencies:
   video_player: ^2.4.5
   provider: ^6.0.3
   js: ^0.6.4
+  http: ^0.13.4
+  flutter_appauth: ^4.0.1
+  flutter_secure_storage: ^5.0.2
+  json_annotation: ^4.5.0
+  json_serializable: ^6.2.0
   #better_player: ^0.0.83
 dependency_overrides:
   #better_player:
@@ -55,6 +60,7 @@ dev_dependencies:
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
   flutter_lints: ^2.0.0
+  build_runner: ^2.1.11
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

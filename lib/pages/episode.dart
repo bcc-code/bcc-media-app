@@ -4,9 +4,25 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:my_app/components/player.dart';
 
-class EpisodePage extends StatelessWidget {
+import '../api/episodes.dart';
+
+class EpisodePage extends StatefulWidget {
   final PlayerType playerType;
-  const EpisodePage({super.key, required this.playerType});
+  final int episodeId;
+  const EpisodePage({super.key, required this.playerType, this.episodeId = 1789});
+
+  @override
+  State<EpisodePage> createState() => _EpisodePageState();
+}
+
+class _EpisodePageState extends State<EpisodePage> {
+  late Future<Episode> episode;
+
+  @override
+  void initState() {
+    super.initState();
+    episode = fetchEpisode(widget.episodeId);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +36,15 @@ class EpisodePage extends StatelessWidget {
           children: [
             Padding(
               padding: const EdgeInsets.all(8.0),
-              child: BccmPlayer(type: playerType),
+              child: FutureBuilder<Episode>(future: episode, builder: (context, snapshot) {
+                if (snapshot.hasData) {
+                  return BccmPlayer(type: widget.playerType, url: snapshot.data!.streamUrl);
+                } else if (snapshot.hasError) {
+                  return Text(snapshot.error.toString());
+                }
+                // By default, show a loading spinner.
+                return const CircularProgressIndicator();
+              }),
             ),
             Center(
               child: ElevatedButton(
