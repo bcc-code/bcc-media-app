@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:my_app/components/a.dart';
+import 'package:my_app/components/featured.dart';
 import 'package:my_app/sections.dart';
 
+import '../components/b.dart';
 import '../services/auth_service.dart';
 
 
@@ -48,11 +51,14 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       body: ListView(
         children: [
+
+          Featured(),
           Text('Hi $name'),
           TextFormField(controller: _idTokenDisplayController, readOnly: true,),
           Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            MyWidget(),
             ItemSection(title: 'Videoplayer', items: [
               Item(title: 'Hei1', url: '/native'),
               Item(title: 'Hei1', url: '/videoplayer'),

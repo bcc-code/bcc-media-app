@@ -2,7 +2,9 @@ import 'dart:io';
 
 import 'package:chewie/chewie.dart';
 import 'package:flutter/foundation.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 
@@ -23,6 +25,7 @@ class BccmPlayer extends StatefulWidget {
 
   @override
   State<BccmPlayer> createState() => _BccmPlayerState();
+  
 }
 
 class _BccmPlayerState extends State<BccmPlayer> {
@@ -89,17 +92,17 @@ class _BccmPlayerState extends State<BccmPlayer> {
                     },
                     creationParamsCodec: const StandardMessageCodec())),
           if (!_hidePlayer && Platform.isAndroid)
-            SizedBox(
-              height: 450,
-              child: AspectRatio(
-                  aspectRatio: 16 / 9,
-                  child: AndroidView(
-                    viewType: 'bccm-player',
-                    creationParams: <String, dynamic>{
-                      'url': widget.url,
-                    },
-                    creationParamsCodec: const StandardMessageCodec(),
-                  )),
+            Column(
+              children: [
+                const Text('test'),
+                SizedBox(height: 100, child: AndroidNativeText(widget: widget)),
+                SizedBox(
+                  height: 450,
+                  child: AspectRatio(
+                      aspectRatio: 16 / 9,
+                      child: AndroidPlayer(widget: widget)),
+                ),
+              ],
             )
         ],
       );
@@ -142,5 +145,86 @@ class _BccmPlayerState extends State<BccmPlayer> {
                 },
               )));
     }
+  }
+}
+
+class AndroidPlayer extends StatelessWidget {
+  const AndroidPlayer({
+    Key? key,
+    required this.widget,
+  }) : super(key: key);
+
+  final BccmPlayer widget;
+
+  @override
+  Widget build(BuildContext context) {
+    return PlatformViewLink(
+    viewType: 'bccm-player',
+    surfaceFactory:
+        (context, controller) {
+      return AndroidViewSurface(
+        controller: controller as AndroidViewController,
+        gestureRecognizers: const <Factory<OneSequenceGestureRecognizer>>{},
+        hitTestBehavior: PlatformViewHitTestBehavior.opaque,
+      );
+    },
+    onCreatePlatformView: (params) {
+      return PlatformViewsService.initExpensiveAndroidView(
+        id: params.id,
+        viewType: 'bccm-player',
+        layoutDirection: TextDirection.ltr,
+        creationParams: <String, dynamic>{
+          'url': widget.url,
+        },
+        creationParamsCodec: const StandardMessageCodec(),
+        onFocus: () {
+          params.onFocusChanged(true);
+        },
+      )
+        ..addOnPlatformViewCreatedListener(params.onPlatformViewCreated)
+        ..create();
+    },
+  );
+  }
+}
+
+
+class AndroidNativeText extends StatelessWidget {
+  const AndroidNativeText({
+    Key? key,
+    required this.widget,
+  }) : super(key: key);
+
+  final BccmPlayer widget;
+
+  @override
+  Widget build(BuildContext context) {
+    return PlatformViewLink(
+    viewType: 'bccm-test',
+    surfaceFactory:
+        (context, controller) {
+      return AndroidViewSurface(
+        controller: controller as AndroidViewController,
+        gestureRecognizers: const <Factory<OneSequenceGestureRecognizer>>{},
+        hitTestBehavior: PlatformViewHitTestBehavior.opaque,
+      );
+    },
+    onCreatePlatformView: (params) {
+      return PlatformViewsService.initSurfaceAndroidView(
+        id: params.id,
+        viewType: 'bccm-test',
+        layoutDirection: TextDirection.ltr,
+        creationParams: <String, dynamic>{
+          'text': widget.url,
+        },
+        creationParamsCodec: const StandardMessageCodec(),
+        onFocus: () {
+          params.onFocusChanged(true);
+        },
+      )
+        ..addOnPlatformViewCreatedListener(params.onPlatformViewCreated)
+        ..create();
+    },
+  );
   }
 }

@@ -25,6 +25,12 @@ class MainActivity: FlutterActivity() {
                 .platformViewsController
                 .registry
                 .registerViewFactory("bccm-player", NativeViewFactory())
+
+        flutterEngine
+                .platformViewsController
+                .registry
+                .registerViewFactory("bccm-test", TestViewFactory())
+
         MethodChannel(flutterEngine.dartExecutor.binaryMessenger, _channel).setMethodCallHandler {
             call, result ->
             if (call.method == "open") {

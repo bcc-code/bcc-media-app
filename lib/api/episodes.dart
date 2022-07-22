@@ -12,9 +12,12 @@ class Episode {
   factory Episode.fromJson(Map<String, dynamic> json) {
     var videosRaw = json['video']['videos'] as List<dynamic>;
     var stream = videosRaw.firstWhere((element) => element['encodingType'] == 'application/vnd.apple.mpegurl');
-    var encoded = Uri.encodeComponent(stream['url']);
-    var token = json['video']['token'];
-    var streamUrl = 'https://proxy.brunstad.tv/api/vod/toplevelmanifest?playbackUrl=$encoded&token=$token&subs=true';
+    String streamUrl = stream['url'];
+    if (!streamUrl.contains('vod2')) {
+      var encoded = Uri.encodeComponent(streamUrl);
+      var token = json['video']['token'];
+      streamUrl = 'https://proxy.brunstad.tv/api/vod/toplevelmanifest?playbackUrl=$encoded&token=$token&subs=true';
+    }
     return Episode(
       streamUrl: streamUrl,
     );

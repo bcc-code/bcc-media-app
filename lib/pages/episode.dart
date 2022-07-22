@@ -3,6 +3,8 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:my_app/components/player.dart';
+import 'package:my_app/states/videoplayer_state.dart';
+import 'package:provider/provider.dart';
 
 import '../api/episodes.dart';
 
@@ -22,6 +24,11 @@ class _EpisodePageState extends State<EpisodePage> {
   void initState() {
     super.initState();
     episode = fetchEpisode(widget.episodeId);
+    if (widget.playerType == PlayerType.videoPlayer) {
+      episode.then((value) => {
+        Provider.of<VideoPlayerState>(context, listen: false).play(value.streamUrl)
+      });
+    }
   }
 
   @override
@@ -30,7 +37,7 @@ class _EpisodePageState extends State<EpisodePage> {
       appBar: AppBar(
         title: const Text('Episode'),
       ),
-      body: ListView(
+      body: Column(
         children: [Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
