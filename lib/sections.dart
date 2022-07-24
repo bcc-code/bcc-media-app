@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:my_app/pages/episode.dart';
+
+import 'api/sliders.dart';
 
 class ItemSection extends StatelessWidget {
   final String title;
@@ -20,6 +23,16 @@ class ItemSection extends StatelessWidget {
       ),
     );
   }
+
+  factory ItemSection.fromSection(BuildContext context, Section section) {
+    var items = section.items.map((si) {
+      var item = Item.fromSectionItem(si);
+      return ItemWidget(item: item, onTap: () {
+        Navigator.pushNamed(context, item.url, arguments: item.params);
+      },);
+    }).toList();
+    return ItemSection(title: section.title, items: items);
+  }
 }
 
 class Slider extends StatelessWidget {
@@ -40,7 +53,16 @@ class Item {
   String title;
   String? description;
   String url;
-  Item({required this.title, required this.url, this.description});
+  dynamic params;
+  Item({required this.title, required this.url, this.description, this.params});
+
+  factory Item.fromSectionItem(SectionItem sectionItem) {
+    return Item(
+      title: sectionItem.title,
+      url: '/native',
+      params: EpisodePageArguments(sectionItem.id)
+    );
+  }
 }
 
 class ItemWidget extends StatelessWidget {

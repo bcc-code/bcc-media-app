@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:my_app/api/sliders.dart';
 import 'package:my_app/components/a.dart';
 import 'package:my_app/components/featured.dart';
+import 'package:my_app/pages/episode.dart';
 import 'package:my_app/sections.dart';
 
 import '../components/b.dart';
@@ -19,10 +21,12 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   String name = AuthService.instance.parsedIdToken!.name;
   final TextEditingController _idTokenDisplayController = TextEditingController(text: AuthService.instance.idToken);
+  late Future<List<Section>> sectionFuture;
 
   @override
   void initState() {
     super.initState();
+    sectionFuture = fetchSections();
   }
 
   void _incrementCounter() {
@@ -33,7 +37,7 @@ class _MyHomePageState extends State<MyHomePage> {
   void Function() _onItemTap(Item i) {
     return () {
       print('test ${i.url}');
-      Navigator.pushNamed(context, i.url);
+      Navigator.pushNamed(context, i.url, arguments: i.params);
     };
   }
 
@@ -59,26 +63,47 @@ class _MyHomePageState extends State<MyHomePage> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             MyWidget(),
-            ItemSection(title: 'Videoplayer', items: [
-              Item(title: 'Hei1', url: '/native'),
-              Item(title: 'Hei1', url: '/videoplayer'),
-              Item(title: 'Hei1', url: '/videoplayer'),
-              Item(title: 'Hei1', url: '/videoplayer'),
-              Item(title: 'Hei1', url: '/videoplayer'),
+            ItemSection(title: 'Native', items: [
+              Item(title: 'BibleExplorers', url: '/native', params: EpisodePageArguments(1789)),
+              Item(title: 'Magasinet', url: '/native', params: EpisodePageArguments(1788))
             ].map((i) => ItemWidget(item: i, onTap: _onItemTap(i),)).toList()
             ),
+
+            ItemSection(title: 'Videoplayer', items: [
+              Item(title: 'Hei1', url: '/videoplayer'),
+              Item(title: 'Hei1', url: '/videoplayer'),
+              Item(title: 'Hei1', url: '/videoplayer'),
+              Item(title: 'Hei1', url: '/videoplayer'),
+              Item(title: 'Hei1', url: '/videoplayer'),
+            ].map((i) => ItemWidget(item: i, onTap: _onItemTap(i))).toList()),
+
             ItemSection(title: 'Betterplayer', items: [
               Item(title: 'Hei1', url: '/betterplayer'),
               Item(title: 'Hei1', url: '/betterplayer'),
               Item(title: 'Hei1', url: '/betterplayer'),
               Item(title: 'Hei1', url: '/betterplayer'),
             ].map((i) => ItemWidget(item: i, onTap: _onItemTap(i))).toList()),
-            ItemSection(title: 'Third thing', items: [
-              Item(title: 'Hei1', url: '/betterplayer'),
-            ].map((i) => ItemWidget(item: i, onTap: _onItemTap(i))).toList()),
+            
             ItemSection(title: 'Another one', items: [
               Item(title: 'Hei1', url: '/videoplayer'),
             ].map((i) => ItemWidget(item: i, onTap: _onItemTap(i))).toList()),
+            
+            ItemSection(title: 'Another one', items: [
+              Item(title: 'Hei1', url: '/videoplayer'),
+            ].map((i) => ItemWidget(item: i, onTap: _onItemTap(i))).toList()),
+
+            FutureBuilder<List<Section>>(future: sectionFuture, builder: (context, snapshot) {
+              if (snapshot.hasData) {
+                  return Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: snapshot.data!.map((s) => ItemSection.fromSection(context, s)).toList()
+                  );
+                } else if (snapshot.hasError) {
+                  return Text(snapshot.error.toString());
+                }
+                // By default, show a loading spinner.
+                return const CircularProgressIndicator();
+            },)
           ],
         ),]
       ),

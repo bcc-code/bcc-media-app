@@ -51,6 +51,16 @@ class _BccmPlayerState extends State<BccmPlayer> {
     BccmPlayer.modalPlayer.invokeMethod('open', <String, dynamic>{
       'url': widget.url,
     });
+
+    BccmPlayer.modalPlayer.setMethodCallHandler((MethodCall mc) {
+      switch (mc.method) {
+        case 'closingFullscreen':
+          setState(() {
+            _hidePlayer = false;
+          });
+      }
+      return Future.value();
+    });
   }
 
   @override
@@ -95,7 +105,7 @@ class _BccmPlayerState extends State<BccmPlayer> {
             Column(
               children: [
                 const Text('test'),
-                SizedBox(height: 100, child: AndroidNativeText(widget: widget)),
+                //SizedBox(height: 100, child: AndroidNativeText(widget: widget)),
                 SizedBox(
                   height: 450,
                   child: AspectRatio(

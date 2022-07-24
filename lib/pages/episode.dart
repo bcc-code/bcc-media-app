@@ -2,11 +2,17 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:my_app/components/player.dart';
 import 'package:my_app/states/videoplayer_state.dart';
 import 'package:provider/provider.dart';
 
 import '../api/episodes.dart';
+
+class EpisodePageArguments {
+  int episodeId;
+  EpisodePageArguments(this.episodeId);
+}
 
 class EpisodePage extends StatefulWidget {
   final PlayerType playerType;
@@ -23,12 +29,26 @@ class _EpisodePageState extends State<EpisodePage> {
   @override
   void initState() {
     super.initState();
-    episode = fetchEpisode(widget.episodeId);
+
+    SystemChrome.setPreferredOrientations([
+        DeviceOrientation.portraitUp,
+        DeviceOrientation.landscapeRight,
+        DeviceOrientation.landscapeLeft,
+    ]);
+  }
+
+
+  @override
+  void didChangeDependencies() {
+    EpisodePageArguments args = ModalRoute.of(context)!.settings.arguments as EpisodePageArguments;
+    int episodeId = args.episodeId;
+    episode = fetchEpisode(episodeId);
     if (widget.playerType == PlayerType.videoPlayer) {
       episode.then((value) => {
         Provider.of<VideoPlayerState>(context, listen: false).play(value.streamUrl)
       });
     }
+    super.didChangeDependencies();
   }
 
   @override
@@ -37,8 +57,8 @@ class _EpisodePageState extends State<EpisodePage> {
       appBar: AppBar(
         title: const Text('Episode'),
       ),
-      body: Column(
-        children: [Column(
+      body: SingleChildScrollView(
+        child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Padding(
@@ -62,8 +82,12 @@ class _EpisodePageState extends State<EpisodePage> {
                 child: const Text('Go back!'),
               ),
             ),
+            SizedBox(
+              width: 100,
+              height: 2000
+            )
           ],
-        ),]
+        ),
       ),
     );
   }

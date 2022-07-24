@@ -38,7 +38,8 @@ internal class BccmPlayer(context: Context, var url: String?) : PlatformView {
         if (url == null) {
             url = "https://devstreaming-cdn.apple.com/videos/streaming/examples/img_bipbop_adv_example_fmp4/master.m3u8"
         }
-        if (player == null) {
+        if (player == null || player!!.currentMediaItem?.localConfiguration?.uri.toString() != url) {
+            player?.release()
             player = ExoPlayer.Builder(context).build()
             val mediaItem: MediaItem = MediaItem.Builder()
                     .setUri(url)

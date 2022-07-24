@@ -47,6 +47,7 @@ class MainActivity: FlutterActivity() {
                 exitBtn.text = "Exit"
                 exitBtn.layoutParams = ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT)
                 exitBtn.setOnClickListener {
+                    MethodChannel(flutterEngine.dartExecutor.binaryMessenger, _channel).invokeMethod("closingFullscreen", null);
                     requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
                     rootLayout.removeView(bccmPlayer.view)
                 }
