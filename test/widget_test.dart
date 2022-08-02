@@ -8,8 +8,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-import 'package:my_app/main.dart';
-import 'package:my_app/pages/home.dart';
+import 'package:my_app/screens/home.dart';
 import 'package:my_app/sections.dart';
 import 'package:mockito/mockito.dart';
 
@@ -21,7 +20,7 @@ void main() {
     final mockObserver = MockNavigatorObserver();
     await tester.pumpWidget(
       MaterialApp(
-        home: const MyHomePage(title: 'Test'),
+        home: const HomeScreen(),
         navigatorObservers: [mockObserver],
       ),
     );

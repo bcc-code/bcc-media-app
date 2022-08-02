@@ -4,7 +4,7 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:my_app/components/player.dart';
-import 'package:my_app/states/videoplayer_state.dart';
+import 'package:my_app/providers/videoplayer_state.dart';
 import 'package:provider/provider.dart';
 
 import '../api/episodes.dart';
@@ -14,16 +14,16 @@ class EpisodePageArguments {
   EpisodePageArguments(this.episodeId);
 }
 
-class EpisodePage extends StatefulWidget {
+class EpisodeScreen extends StatefulWidget {
   final PlayerType playerType;
   final int episodeId;
-  const EpisodePage({super.key, required this.playerType, this.episodeId = 1789});
+  const EpisodeScreen({super.key, required this.playerType, this.episodeId = 1789});
 
   @override
-  State<EpisodePage> createState() => _EpisodePageState();
+  State<EpisodeScreen> createState() => _EpisodeScreenState();
 }
 
-class _EpisodePageState extends State<EpisodePage> {
+class _EpisodeScreenState extends State<EpisodeScreen> {
   late Future<Episode> episode;
 
   @override

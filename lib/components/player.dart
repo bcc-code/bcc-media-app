@@ -8,7 +8,7 @@ import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 
-import '../states/videoplayer_state.dart';
+import '../providers/videoplayer_state.dart';
 
 enum PlayerType { betterPlayer, videoPlayer, native }
 

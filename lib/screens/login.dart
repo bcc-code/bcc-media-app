@@ -2,16 +2,16 @@
 import 'package:flutter/material.dart';
 import '../services/auth_service.dart';
 
-class LoginPage extends StatefulWidget {
+class LoginScreen extends StatefulWidget {
   final String? loginError;
 
-  const LoginPage({super.key, this.loginError});
+  const LoginScreen({super.key, this.loginError});
 
   @override
-  State<LoginPage> createState() => _LoginPageState();
+  State<LoginScreen> createState() => _LoginScreenState();
 }
 
-class _LoginPageState extends State<LoginPage> {
+class _LoginScreenState extends State<LoginScreen> {
 
   bool isProgressing = false;
   bool isLoggedIn = false;

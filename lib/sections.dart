@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:my_app/pages/episode.dart';
+import 'package:my_app/screens/episode.dart';
 
 import 'api/sliders.dart';
 

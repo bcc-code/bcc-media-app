@@ -2,23 +2,21 @@ import 'package:flutter/material.dart';
 import 'package:my_app/api/sliders.dart';
 import 'package:my_app/components/a.dart';
 import 'package:my_app/components/featured.dart';
-import 'package:my_app/pages/episode.dart';
+import 'package:my_app/screens/episode.dart';
 import 'package:my_app/sections.dart';
 
 import '../components/b.dart';
 import '../services/auth_service.dart';
 
 
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({Key? key, required this.title}) : super(key: key);
-
-  final String title;
+class HomeScreen extends StatefulWidget {
+  const HomeScreen({Key? key}) : super(key: key);
 
   @override
-  State<MyHomePage> createState() => _MyHomePageState();
+  State<HomeScreen> createState() => _HomeScreenState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
+class _HomeScreenState extends State<HomeScreen> {
   String name = AuthService.instance.parsedIdToken!.name;
   final TextEditingController _idTokenDisplayController = TextEditingController(text: AuthService.instance.idToken);
   late Future<List<Section>> sectionFuture;
@@ -45,7 +43,7 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.title),
+        title: const Text('Video app'),
         actions: [
           ElevatedButton(
               onPressed: () => Navigator.of(context).pushNamedAndRemoveUntil('/login', (route) => false),
