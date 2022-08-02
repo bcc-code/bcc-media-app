@@ -17,7 +17,10 @@ class ItemSection extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(style: Theme.of(context).textTheme.headlineMedium, title),
+          Padding(
+            padding: const EdgeInsets.only(bottom:10),
+            child: Text(style: Theme.of(context).textTheme.headlineMedium, title,),
+          ),
           Slider(items: items),
         ],
       ),
@@ -82,7 +85,9 @@ class ItemWidget extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Container(
-                color: Colors.cyan,
+                decoration: BoxDecoration(
+                  color: Color.fromRGBO(29, 40, 56, 1),
+                  borderRadius: BorderRadius.circular(10)),
                 width: 200,
                 height: 120,
                 padding: const EdgeInsets.all(10)),

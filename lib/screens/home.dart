@@ -61,6 +61,11 @@ class _HomeScreenState extends State<HomeScreen> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             MyWidget(),
+            ItemSection(title: 'Recently published', items: [
+              Item(title: 'BibleExplorers', url: '/native', params: EpisodePageArguments(1789)),
+              Item(title: 'Magasinet', url: '/native', params: EpisodePageArguments(1788))
+            ].map((i) => ItemWidget(item: i, onTap: _onItemTap(i),)).toList()
+            ),
             ItemSection(title: 'Native', items: [
               Item(title: 'BibleExplorers', url: '/native', params: EpisodePageArguments(1789)),
               Item(title: 'Magasinet', url: '/native', params: EpisodePageArguments(1788))

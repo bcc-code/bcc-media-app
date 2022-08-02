@@ -1,7 +1,7 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
+import 'package:my_app/router/router.gr.dart';
 
-import '../providers/navigation_provider.dart';
 
 class RootScreen extends StatelessWidget {
   static const route = '/';
@@ -10,40 +10,46 @@ class RootScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Consumer<NavigationProvider>(
-      builder: (context, provider, child) {
-        final bottomNavigationBarItems = provider.screens
-            .map((screen) => BottomNavigationBarItem(
-                icon: const Icon(Icons.home), label: screen.title))
-            .toList();
+    return AutoTabsRouter(          
+    // list of your tab routes          
+    // routes used here must be declaraed as children          
+    // routes of /dashboard           
+      routes: const [     
+        HomeScreenRoute(),   
+        SearchScreenRoute(),   
+        HomeScreenRoute(),         
+        HomeScreenRoute(),         
+      ],        
 
-        final screens = provider.screens
-            .map(
-              (screen) => Offstage(
-                offstage: screen != provider.currentScreen,
-                child: Navigator(
-                  key: screen.navigatorState,
-                  onGenerateRoute: screen.onGenerateRoute,
-                ),
+      builder: (context, child, animation) {          
+        // obtain the scoped TabsRouter controller using context          
+        final tabsRouter = AutoTabsRouter.of(context);          
+        // Here we're building our Scaffold inside of AutoTabsRouter          
+        // to access the tabsRouter controller provided in this context          
+        //           
+        //alterntivly you could use a global key          
+        return Scaffold(          
+            body: child,
+            bottomNavigationBar: Container(
+              decoration: BoxDecoration(
+                border: Border(top: BorderSide(width: 1, color: Theme.of(context).dividerColor))
               ),
-            )
-            .toList();
-
-        return WillPopScope(
-          onWillPop: () => provider.onWillPop(context),
-          child: Scaffold(
-            body: IndexedStack(
-              index: provider.currentTabIndex,
-              children: screens,
-            ),
-            bottomNavigationBar: BottomNavigationBar(
-              items: bottomNavigationBarItems,
-              currentIndex: provider.currentTabIndex,
-              onTap: provider.setTab,
-            ),
-          ),
-        );
-      },
+              child: BottomNavigationBar(
+                type: BottomNavigationBarType.fixed,
+                currentIndex: tabsRouter.activeIndex,          
+                onTap: (index) {          
+                  // here we switch between tabs          
+                  tabsRouter.setActiveIndex(index);          
+                },          
+                items: const [          
+                  BottomNavigationBarItem(label: 'Home', icon: Icon(Icons.home)),    
+                  BottomNavigationBarItem(label: 'Search', icon: Icon(Icons.search)),  
+                  BottomNavigationBarItem(label: 'Live', icon: Icon(Icons.play_circle_outlined)),  
+                  BottomNavigationBarItem(label: 'Calendar', icon: Icon(Icons.calendar_today_outlined)),  
+                ],          
+              ),
+            ));
+      }
     );
   }
 }

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:my_app/components/player.dart';
 import 'package:my_app/providers/navigation_provider.dart';
+import 'package:my_app/router/router.gr.dart';
 import 'package:my_app/screens/episode.dart';
 import 'package:my_app/screens/home.dart';
 import 'package:my_app/screens/login.dart';
@@ -12,31 +13,28 @@ import 'package:provider/provider.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await AuthService.instance.init();
+  final appRouter = AppRouter();
   runApp(MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (context) => VideoPlayerState()),
         ChangeNotifierProvider(create: (context) => AuthState()),
         ChangeNotifierProvider(create: (context) => NavigationProvider()),
       ],
-      child: Builder(builder: (context) => MaterialApp(
-        
-        title: 'Flutter Demo',
-        theme: ThemeData(
-          primarySwatch: Colors.blue,
+      child: Builder(builder: (context) => MaterialApp.router(
+        theme: ThemeData(),
+        darkTheme: ThemeData(
+          brightness: Brightness.dark,
+          colorScheme: ColorScheme.fromSeed(brightness: Brightness.dark, seedColor: Color.fromARGB(255, 110, 176, 230)),
+          fontFamily: 'Barlow',
+          canvasColor: Color.fromARGB(255, 13, 22, 35),
+          textTheme: TextTheme(
+            headlineMedium: TextStyle(fontFamily: 'Barlow', fontSize: 28, fontWeight: FontWeight.w800, color: Colors.white)
+          ),
+          scaffoldBackgroundColor: Color.fromARGB(255, 13, 22, 35),
         ),
-        onGenerateRoute: NavigationProvider.of(context).onGenerateRoute,
-        /* initialRoute: '/',
-        routes: {
-          '/': (context) => AuthService.instance.idToken != null
-              ? const HomeScreen()
-              : const LoginScreen(),
-          '/login': (context) => const LoginScreen(),
-          '/betterplayer': (context) =>
-              const EpisodeScreen(playerType: PlayerType.betterPlayer),
-          '/videoplayer': (context) =>
-              const EpisodeScreen(playerType: PlayerType.videoPlayer),
-          '/native': (context) =>
-              const EpisodeScreen(playerType: PlayerType.native),
-        }, */
+        themeMode: ThemeMode.dark,
+        title: 'BCC Media',
+        routerDelegate: appRouter.delegate(),      
+        routeInformationParser: appRouter.defaultRouteParser(),
       ))));
 }
