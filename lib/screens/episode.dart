@@ -1,6 +1,7 @@
 
 import 'dart:math';
 
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:my_app/components/player.dart';
@@ -15,9 +16,9 @@ class EpisodePageArguments {
 }
 
 class EpisodeScreen extends StatefulWidget {
-  final PlayerType playerType;
+  final PlayerType playerType = PlayerType.native;
   final int episodeId;
-  const EpisodeScreen({super.key, required this.playerType, this.episodeId = 1789});
+  const EpisodeScreen({super.key, @PathParam() this.episodeId = 1789});
 
   @override
   State<EpisodeScreen> createState() => _EpisodeScreenState();

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:my_app/components/player.dart';
 import 'package:my_app/providers/navigation_provider.dart';
+import 'package:my_app/router/auth_guard.dart';
 import 'package:my_app/router/router.gr.dart';
 import 'package:my_app/screens/episode.dart';
 import 'package:my_app/screens/home.dart';
@@ -13,7 +14,7 @@ import 'package:provider/provider.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await AuthService.instance.init();
-  final appRouter = AppRouter();
+  final appRouter = AppRouter(authGuard: AuthGuard());
   runApp(MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (context) => VideoPlayerState()),

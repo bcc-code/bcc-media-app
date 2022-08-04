@@ -17,7 +17,7 @@ class RootScreen extends StatelessWidget {
       routes: const [     
         HomeScreenRoute(),   
         SearchScreenRoute(),   
-        HomeScreenRoute(),         
+        LiveScreenRoute(),         
         HomeScreenRoute(),         
       ],        
 

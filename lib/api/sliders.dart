@@ -28,11 +28,13 @@ class Section {
 class SectionItem {
   final String title;
   final String type;
+  final String imageUrl;
   final int id;
 
   const SectionItem({
     required this.title,
     required this.type,
+    required this.imageUrl,
     required this.id
   });
 
@@ -41,6 +43,7 @@ class SectionItem {
       title: json['title'],
       type: json['type'],
       id: json['id'],
+      imageUrl: json['image']
     );
   }
 }

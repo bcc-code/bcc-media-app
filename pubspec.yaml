@@ -47,6 +47,8 @@ dependencies:
   flutter_svg: ^1.1.1+1
   auto_route: ^4.2.1
   build_runner: ^2.2.0
+  cached_network_image: ^3.2.1
+  transparent_image: ^2.0.0
   #better_player: ^0.0.83
 dependency_overrides:
   #better_player:

@@ -56,7 +56,7 @@ class NavigationProvider extends ChangeNotifier {
         print('Generating route: ${settings.name}');
         switch (settings.name) {
           default:
-            return MaterialPageRoute(builder: (_) => const EpisodeScreen(playerType: PlayerType.native,));
+            return MaterialPageRoute(builder: (_) => const EpisodeScreen());
         }
       },
       scrollController: ScrollController(),
