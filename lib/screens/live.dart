@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:my_app/api/livestream.dart';
 import 'package:my_app/api/sliders.dart';
 import 'package:my_app/components/a.dart';
 import 'package:my_app/components/featured.dart';
+import 'package:my_app/components/player.dart';
 import 'package:my_app/screens/episode.dart';
 import 'package:my_app/sections.dart';
 
@@ -19,24 +21,13 @@ class LiveScreen extends StatefulWidget {
 class _LiveScreenState extends State<LiveScreen> {
   String name = AuthService.instance.parsedIdToken!.name;
   final TextEditingController _idTokenDisplayController = TextEditingController(text: AuthService.instance.idToken);
-  late Future<List<Section>> sectionFuture;
+  late Future<LivestreamUrl> liveUrlFuture;
+  bool audioOnly = false;
 
   @override
   void initState() {
     super.initState();
-    sectionFuture = fetchSections();
-  }
-
-  void _incrementCounter() {
-    setState(() {
-    });
-  }
-
-  void Function() _onItemTap(Item i) {
-    return () {
-      print('test ${i.url}');
-      Navigator.pushNamed(context, i.url, arguments: i.params);
-    };
+    liveUrlFuture = fetchLiveUrl();
   }
 
   @override
@@ -46,26 +37,29 @@ class _LiveScreenState extends State<LiveScreen> {
         title: const Text('Video app'),
         actions: [
           ElevatedButton(
-              onPressed: () => Navigator.of(context).pushNamedAndRemoveUntil('/login', (route) => false),
-              child: const Text('Login page'),
+              onPressed: () => setState(() {
+                audioOnly = true;
+              }),
+              child: const Text('Audio only'),
             ),
         ],
       ),
       body: ListView(
         children: [
-
-          Featured(),
-            MyWidget(),
+          const ContactSupport(),
           Text('Hi $name'),
           TextFormField(controller: _idTokenDisplayController, readOnly: true,),
+          FutureBuilder<LivestreamUrl>(future: liveUrlFuture, builder: (context, snapshot) {
+            if (snapshot.hasData) {
+              return BccmPlayer(type: PlayerType.native, url: snapshot.data!.streamUrl,);
+            } else if (snapshot.hasError) {
+              return Text(snapshot.error.toString());
+            }
+            return const CircularProgressIndicator();
+          })
+          //
         ]
       ),
-
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
 }

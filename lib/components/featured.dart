@@ -9,8 +9,9 @@ class Featured extends StatelessWidget {
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       scrollDirection: Axis.horizontal,
+      physics: const BouncingScrollPhysics(),
       controller: ScrollController(initialScrollOffset: 320),
-      child: Container(
+      child: SizedBox(
       height: 380,
       child: Row(
           mainAxisSize: MainAxisSize.min,
@@ -26,7 +27,7 @@ class Featured extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children:[
-                          Container(
+                          SizedBox(
                               width: 342,
                               height: 380,
                               child: Row(
@@ -34,12 +35,12 @@ class Featured extends StatelessWidget {
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   crossAxisAlignment: CrossAxisAlignment.center,
                                   children:[
-                                      Container(
+                                      SizedBox(
                                           width: 342,
                                           height: 380,
                                           child: Stack(
                                               children: [
-                                                  Positioned.fill(
+                                                  const Positioned.fill(
                                                       child: FlutterLogo(size: 342),
                                                   ),
                                                   Positioned.fill(
@@ -48,7 +49,7 @@ class Featured extends StatelessWidget {
                                                               Container(
                                                                   width: 342,
                                                                   height: 380,
-                                                                  decoration: BoxDecoration(gradient: LinearGradient(begin: Alignment.topCenter, end: Alignment.bottomCenter, colors: [Color(0x001d2838), Color(0xff1d2838)], )),
+                                                                  decoration: const BoxDecoration(gradient: LinearGradient(begin: Alignment.topCenter, end: Alignment.bottomCenter, colors: [Color(0x001d2838), Color(0xff1d2838)], )),
                                                               ),
                                                               Positioned(
                                                                   left: 16,
@@ -63,7 +64,7 @@ class Featured extends StatelessWidget {
                                                                               mainAxisAlignment: MainAxisAlignment.start,
                                                                               crossAxisAlignment: CrossAxisAlignment.center,
                                                                               children:[
-                                                                                  SizedBox(
+                                                                                  const SizedBox(
                                                                                       width: 310,
                                                                                       child: Text(
                                                                                           "VERDT AT SE",
@@ -77,8 +78,8 @@ class Featured extends StatelessWidget {
                                                                                           ),
                                                                                       ),
                                                                                   ),
-                                                                                  SizedBox(height: 4),
-                                                                                  SizedBox(
+                                                                                  const SizedBox(height: 4),
+                                                                                  const SizedBox(
                                                                                       width: 310,
                                                                                       child: Text(
                                                                                           "Animationsserie fra bibelskolen",
@@ -93,14 +94,14 @@ class Featured extends StatelessWidget {
                                                                                   ),
                                                                               ],
                                                                           ),
-                                                                          SizedBox(height: 16),
+                                                                          const SizedBox(height: 16),
                                                                           SizedBox(
                                                                             height: 33,
                                                                             child: Container(
                                                                                 decoration: BoxDecoration(
                                                                                     borderRadius: BorderRadius.circular(20),
-                                                                                    border: Border.all(color: Color(0x33ffffff), width: 1, ),
-                                                                                    color: Color(0xff6eb0e6),
+                                                                                    border: Border.all(color: const Color(0x33ffffff), width: 1, ),
+                                                                                    color: const Color(0xff6eb0e6),
                                                                                 ),
                                                                                 padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 4, ),
                                                                                 child: Row(
@@ -116,7 +117,7 @@ class Featured extends StatelessWidget {
                                                                                                 mainAxisAlignment: MainAxisAlignment.center,
                                                                                                 crossAxisAlignment: CrossAxisAlignment.center,
                                                                                                 children:[
-                                                                                                    Text(
+                                                                                                    const Text(
                                                                                                         "See more",
                                                                                                         style: TextStyle(
                                                                                                             color: Colors.white,
@@ -156,7 +157,7 @@ class Featured extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children:[
-                          Container(
+                          SizedBox(
                               width: 342,
                               height: 380,
                               child: Row(
@@ -164,12 +165,12 @@ class Featured extends StatelessWidget {
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   crossAxisAlignment: CrossAxisAlignment.center,
                                   children:[
-                                      Container(
+                                      SizedBox(
                                           width: 342,
                                           height: 380,
                                           child: Stack(
                                               children: [
-                                                  Positioned.fill(
+                                                  const Positioned.fill(
                                                       child: FlutterLogo(size: 342),
                                                   ),
                                                   Positioned.fill(
@@ -178,7 +179,7 @@ class Featured extends StatelessWidget {
                                                               Container(
                                                                   width: 342,
                                                                   height: 380,
-                                                                  decoration: BoxDecoration(gradient: LinearGradient(begin: Alignment.topCenter, end: Alignment.bottomCenter, colors: [Color(0x001d2838), Color(0xff1d2838)], )),
+                                                                  decoration: const BoxDecoration(gradient: LinearGradient(begin: Alignment.topCenter, end: Alignment.bottomCenter, colors: [Color(0x001d2838), Color(0xff1d2838)], )),
                                                               ),
                                                               Positioned(
                                                                   left: 16,
@@ -193,7 +194,7 @@ class Featured extends StatelessWidget {
                                                                               mainAxisAlignment: MainAxisAlignment.start,
                                                                               crossAxisAlignment: CrossAxisAlignment.center,
                                                                               children:[
-                                                                                  SizedBox(
+                                                                                  const SizedBox(
                                                                                       width: 310,
                                                                                       child: Text(
                                                                                           "KL. 20:00",
@@ -207,8 +208,8 @@ class Featured extends StatelessWidget {
                                                                                           ),
                                                                                       ),
                                                                                   ),
-                                                                                  SizedBox(height: 4),
-                                                                                  SizedBox(
+                                                                                  const SizedBox(height: 4),
+                                                                                  const SizedBox(
                                                                                       width: 310,
                                                                                       child: Text(
                                                                                           "Festkveld",
@@ -223,12 +224,12 @@ class Featured extends StatelessWidget {
                                                                                   ),
                                                                               ],
                                                                           ),
-                                                                          SizedBox(height: 16),
+                                                                          const SizedBox(height: 16),
                                                                           Container(
                                                                               decoration: BoxDecoration(
                                                                                   borderRadius: BorderRadius.circular(20),
-                                                                                  border: Border.all(color: Color(0x33ffffff), width: 1, ),
-                                                                                  color: Color(0xffe63c62),
+                                                                                  border: Border.all(color: const Color(0x33ffffff), width: 1, ),
+                                                                                  color: const Color(0xffe63c62),
                                                                               ),
                                                                               padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4, ),
                                                                               child: Row(
@@ -242,9 +243,9 @@ class Featured extends StatelessWidget {
                                                                                           decoration: BoxDecoration(
                                                                                               borderRadius: BorderRadius.circular(8),
                                                                                           ),
-                                                                                          child: FlutterLogo(size: 24),
+                                                                                          child: const FlutterLogo(size: 24),
                                                                                       ),
-                                                                                      SizedBox(width: 4),
+                                                                                      const SizedBox(width: 4),
                                                                                       SizedBox(
                                                                                         height: 25,
                                                                                         child: Container(
@@ -254,7 +255,7 @@ class Featured extends StatelessWidget {
                                                                                                 mainAxisAlignment: MainAxisAlignment.start,
                                                                                                 crossAxisAlignment: CrossAxisAlignment.center,
                                                                                                 children:[
-                                                                                                    Text(
+                                                                                                    const Text(
                                                                                                         "Live",
                                                                                                         style: TextStyle(
                                                                                                             color: Colors.white,
@@ -294,7 +295,7 @@ class Featured extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children:[
-                          Container(
+                          SizedBox(
                               width: 342,
                               height: 380,
                               child: Row(
@@ -302,12 +303,12 @@ class Featured extends StatelessWidget {
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   crossAxisAlignment: CrossAxisAlignment.center,
                                   children:[
-                                      Container(
+                                      SizedBox(
                                           width: 342,
                                           height: 380,
                                           child: Stack(
                                               children: [
-                                                  Positioned.fill(
+                                                  const Positioned.fill(
                                                       child: FlutterLogo(size: 342),
                                                   ),
                                                   Positioned.fill(
@@ -316,7 +317,7 @@ class Featured extends StatelessWidget {
                                                               Container(
                                                                   width: 342,
                                                                   height: 380,
-                                                                  decoration: BoxDecoration(gradient: LinearGradient(begin: Alignment.topCenter, end: Alignment.bottomCenter, colors: [Color(0x001d2838), Color(0xff1d2838)], )),
+                                                                  decoration: const BoxDecoration(gradient: LinearGradient(begin: Alignment.topCenter, end: Alignment.bottomCenter, colors: [Color(0x001d2838), Color(0xff1d2838)], )),
                                                               ),
                                                               Positioned(
                                                                   left: 16,
@@ -331,7 +332,7 @@ class Featured extends StatelessWidget {
                                                                               mainAxisAlignment: MainAxisAlignment.start,
                                                                               crossAxisAlignment: CrossAxisAlignment.center,
                                                                               children:[
-                                                                                  SizedBox(
+                                                                                  const SizedBox(
                                                                                       width: 310,
                                                                                       child: Text(
                                                                                           "FEATURED",
@@ -345,8 +346,8 @@ class Featured extends StatelessWidget {
                                                                                           ),
                                                                                       ),
                                                                                   ),
-                                                                                  SizedBox(height: 4),
-                                                                                  SizedBox(
+                                                                                  const SizedBox(height: 4),
+                                                                                  const SizedBox(
                                                                                       width: 310,
                                                                                       child: Text(
                                                                                           "Animationsserie fra bibelskolen",
@@ -361,13 +362,13 @@ class Featured extends StatelessWidget {
                                                                                   ),
                                                                               ],
                                                                           ),
-                                                                          SizedBox(height: 16),
+                                                                          const SizedBox(height: 16),
                                                                           Container(
                                                                             height: 35,
                                                                               decoration: BoxDecoration(
                                                                                   borderRadius: BorderRadius.circular(20),
-                                                                                  border: Border.all(color: Color(0x33ffffff), width: 1, ),
-                                                                                  color: Color(0xff6eb0e6),
+                                                                                  border: Border.all(color: const Color(0x33ffffff), width: 1, ),
+                                                                                  color: const Color(0xff6eb0e6),
                                                                               ),
                                                                               padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 4, ),
                                                                               child: Row(
@@ -383,7 +384,7 @@ class Featured extends StatelessWidget {
                                                                                               mainAxisAlignment: MainAxisAlignment.center,
                                                                                               crossAxisAlignment: CrossAxisAlignment.center,
                                                                                               children:[
-                                                                                                  Text(
+                                                                                                  const Text(
                                                                                                       "See more",
                                                                                                       style: TextStyle(
                                                                                                           color: Colors.white,

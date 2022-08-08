@@ -1,5 +1,7 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:my_app/router/router.gr.dart';
 import 'package:my_app/screens/episode.dart';
 import 'package:transparent_image/transparent_image.dart';
 
@@ -38,7 +40,7 @@ class ItemSection extends StatelessWidget {
       return ItemWidget(
         item: item,
         onTap: () {
-          Navigator.pushNamed(context, item.url, arguments: item.params);
+          context.router.push(item.route);
         },
       );
     }).toList();
@@ -69,10 +71,12 @@ class Item {
   String? imageUrl;
   String? description;
   String url;
+  PageRouteInfo route;
   dynamic params;
   Item(
       {required this.title,
       required this.url,
+      required this.route,
       this.description,
       this.imageUrl,
       this.params});
@@ -81,6 +85,7 @@ class Item {
     return Item(
         title: sectionItem.title,
         imageUrl: sectionItem.imageUrl,
+        route: EpisodeScreenRoute(episodeId: sectionItem.id),
         url: '/episode/${sectionItem.id}',
         params: EpisodePageArguments(sectionItem.id));
   }

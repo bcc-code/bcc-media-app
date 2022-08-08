@@ -1,11 +1,17 @@
 # my_app
 
+Note for M1 users: You need to `cd ios` and `arch -x86_64 pod install`
+
 Install flutter, make env file, and you should be ready to go:
 
 ```
 cp lib/env/.env.dart.example lib/env/.env.dart
 flutter run
 ```
+
+## Dev
+
+codegen stuff: `flutter pub run build_runner watch`
 
 
 # App architecture details

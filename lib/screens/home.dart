@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:my_app/api/sliders.dart';
 import 'package:my_app/components/a.dart';
 import 'package:my_app/components/featured.dart';
+import 'package:my_app/router/router.gr.dart';
 import 'package:my_app/screens/episode.dart';
 import 'package:my_app/sections.dart';
 
@@ -31,13 +32,6 @@ class _HomeScreenState extends State<HomeScreen> {
   void _incrementCounter() {
     setState(() {
     });
-  }
-
-  void Function() _onItemTap(Item i) {
-    return () {
-      print('test ${i.url}');
-      context.router.pushNamed(i.url);
-    };
   }
 
   @override

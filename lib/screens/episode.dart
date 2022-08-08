@@ -41,8 +41,8 @@ class _EpisodeScreenState extends State<EpisodeScreen> {
 
   @override
   void didChangeDependencies() {
-    EpisodePageArguments args = ModalRoute.of(context)!.settings.arguments as EpisodePageArguments;
-    int episodeId = args.episodeId;
+    //EpisodePageArguments args = ModalRoute.of(context)!.settings.arguments as EpisodePageArguments;
+    int episodeId = widget.episodeId;
     episode = fetchEpisode(episodeId);
     if (widget.playerType == PlayerType.videoPlayer) {
       episode.then((value) => {
@@ -58,7 +58,8 @@ class _EpisodeScreenState extends State<EpisodeScreen> {
       appBar: AppBar(
         title: const Text('Episode'),
       ),
-      body: SingleChildScrollView(
+      body: Container(
+        
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [

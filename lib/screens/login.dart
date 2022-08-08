@@ -4,7 +4,7 @@ import '../services/auth_service.dart';
 
 class LoginScreen extends StatefulWidget {
   final String? loginError;
-  final Function? onResult;
+  final void Function(bool)? onResult;
 
   const LoginScreen({super.key, this.loginError, this.onResult});
 
@@ -24,7 +24,7 @@ class _LoginScreenState extends State<LoginScreen> {
       isLoggedIn = true;
     });
     if(widget.onResult != null) {
-      widget.onResult!();
+      widget.onResult!(true);
     }
 
     Navigator.of(context).pushNamedAndRemoveUntil('/', (route) => false);

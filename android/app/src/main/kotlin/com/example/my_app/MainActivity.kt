@@ -24,7 +24,7 @@ class MainActivity: FlutterActivity() {
         flutterEngine
                 .platformViewsController
                 .registry
-                .registerViewFactory("bccm-player", NativeViewFactory())
+                .registerViewFactory("bccm-player", NativeViewFactory(this))
 
         flutterEngine
                 .platformViewsController
@@ -40,7 +40,7 @@ class MainActivity: FlutterActivity() {
                 val url = args["url"]!!;
 
                 val rootLayout: FrameLayout = this.window.decorView.findViewById<View>(R.id.content) as FrameLayout
-                val bccmPlayer = BccmPlayer(context, url)
+                val bccmPlayer = BccmPlayer(this, context, url)
                 rootLayout.addView(bccmPlayer.view)
 
                 val exitBtn = Button(this)

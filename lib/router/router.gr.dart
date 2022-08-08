@@ -14,11 +14,11 @@
 import 'package:auto_route/auto_route.dart' as _i7;
 import 'package:flutter/material.dart' as _i8;
 
-import '../screens/episode.dart' as _i5;
-import '../screens/home.dart' as _i3;
-import '../screens/live.dart' as _i4;
+import '../screens/episode.dart' as _i2;
+import '../screens/home.dart' as _i4;
+import '../screens/live.dart' as _i5;
 import '../screens/login.dart' as _i1;
-import '../screens/root.dart' as _i2;
+import '../screens/root.dart' as _i3;
 import '../screens/search.dart' as _i6;
 import 'auth_guard.dart' as _i9;
 
@@ -42,18 +42,6 @@ class AppRouter extends _i7.RootStackRouter {
               loginError: args.loginError,
               onResult: args.onResult));
     },
-    RootScreenRoute.name: (routeData) {
-      return _i7.MaterialPageX<void>(
-          routeData: routeData, child: const _i2.RootScreen());
-    },
-    HomeScreenRoute.name: (routeData) {
-      return _i7.MaterialPageX<void>(
-          routeData: routeData, child: const _i3.HomeScreen());
-    },
-    LiveScreenRoute.name: (routeData) {
-      return _i7.MaterialPageX<void>(
-          routeData: routeData, child: const _i4.LiveScreen());
-    },
     EpisodeScreenRoute.name: (routeData) {
       final pathParams = routeData.inheritedPathParams;
       final args = routeData.argsAs<EpisodeScreenRouteArgs>(
@@ -61,7 +49,19 @@ class AppRouter extends _i7.RootStackRouter {
               episodeId: pathParams.getInt('episodeId', 1789)));
       return _i7.MaterialPageX<void>(
           routeData: routeData,
-          child: _i5.EpisodeScreen(key: args.key, episodeId: args.episodeId));
+          child: _i2.EpisodeScreen(key: args.key, episodeId: args.episodeId));
+    },
+    RootScreenRoute.name: (routeData) {
+      return _i7.MaterialPageX<void>(
+          routeData: routeData, child: const _i3.RootScreen());
+    },
+    HomeScreenRoute.name: (routeData) {
+      return _i7.MaterialPageX<void>(
+          routeData: routeData, child: const _i4.HomeScreen());
+    },
+    LiveScreenRoute.name: (routeData) {
+      return _i7.MaterialPageX<void>(
+          routeData: routeData, child: const _i5.LiveScreen());
     },
     SearchScreenRoute.name: (routeData) {
       return _i7.MaterialPageX<void>(
@@ -72,6 +72,7 @@ class AppRouter extends _i7.RootStackRouter {
   @override
   List<_i7.RouteConfig> get routes => [
         _i7.RouteConfig(LoginScreenRoute.name, path: '/login'),
+        _i7.RouteConfig(EpisodeScreenRoute.name, path: 'episode/:episodeId'),
         _i7.RouteConfig(RootScreenRoute.name, path: '/', guards: [
           authGuard
         ], children: [
@@ -79,8 +80,6 @@ class AppRouter extends _i7.RootStackRouter {
               path: 'home', parent: RootScreenRoute.name),
           _i7.RouteConfig(LiveScreenRoute.name,
               path: 'live', parent: RootScreenRoute.name),
-          _i7.RouteConfig(EpisodeScreenRoute.name,
-              path: 'episode/:episodeId', parent: RootScreenRoute.name),
           _i7.RouteConfig(SearchScreenRoute.name,
               path: 'search', parent: RootScreenRoute.name)
         ])
@@ -90,7 +89,8 @@ class AppRouter extends _i7.RootStackRouter {
 /// generated route for
 /// [_i1.LoginScreen]
 class LoginScreenRoute extends _i7.PageRouteInfo<LoginScreenRouteArgs> {
-  LoginScreenRoute({_i8.Key? key, String? loginError, Function? onResult})
+  LoginScreenRoute(
+      {_i8.Key? key, String? loginError, void Function(bool)? onResult})
       : super(LoginScreenRoute.name,
             path: '/login',
             args: LoginScreenRouteArgs(
@@ -106,7 +106,7 @@ class LoginScreenRouteArgs {
 
   final String? loginError;
 
-  final Function? onResult;
+  final void Function(bool)? onResult;
 
   @override
   String toString() {
@@ -115,32 +115,7 @@ class LoginScreenRouteArgs {
 }
 
 /// generated route for
-/// [_i2.RootScreen]
-class RootScreenRoute extends _i7.PageRouteInfo<void> {
-  const RootScreenRoute({List<_i7.PageRouteInfo>? children})
-      : super(RootScreenRoute.name, path: '/', initialChildren: children);
-
-  static const String name = 'RootScreenRoute';
-}
-
-/// generated route for
-/// [_i3.HomeScreen]
-class HomeScreenRoute extends _i7.PageRouteInfo<void> {
-  const HomeScreenRoute() : super(HomeScreenRoute.name, path: 'home');
-
-  static const String name = 'HomeScreenRoute';
-}
-
-/// generated route for
-/// [_i4.LiveScreen]
-class LiveScreenRoute extends _i7.PageRouteInfo<void> {
-  const LiveScreenRoute() : super(LiveScreenRoute.name, path: 'live');
-
-  static const String name = 'LiveScreenRoute';
-}
-
-/// generated route for
-/// [_i5.EpisodeScreen]
+/// [_i2.EpisodeScreen]
 class EpisodeScreenRoute extends _i7.PageRouteInfo<EpisodeScreenRouteArgs> {
   EpisodeScreenRoute({_i8.Key? key, int episodeId = 1789})
       : super(EpisodeScreenRoute.name,
@@ -162,6 +137,31 @@ class EpisodeScreenRouteArgs {
   String toString() {
     return 'EpisodeScreenRouteArgs{key: $key, episodeId: $episodeId}';
   }
+}
+
+/// generated route for
+/// [_i3.RootScreen]
+class RootScreenRoute extends _i7.PageRouteInfo<void> {
+  const RootScreenRoute({List<_i7.PageRouteInfo>? children})
+      : super(RootScreenRoute.name, path: '/', initialChildren: children);
+
+  static const String name = 'RootScreenRoute';
+}
+
+/// generated route for
+/// [_i4.HomeScreen]
+class HomeScreenRoute extends _i7.PageRouteInfo<void> {
+  const HomeScreenRoute() : super(HomeScreenRoute.name, path: 'home');
+
+  static const String name = 'HomeScreenRoute';
+}
+
+/// generated route for
+/// [_i5.LiveScreen]
+class LiveScreenRoute extends _i7.PageRouteInfo<void> {
+  const LiveScreenRoute() : super(LiveScreenRoute.name, path: 'live');
+
+  static const String name = 'LiveScreenRoute';
 }
 
 /// generated route for
