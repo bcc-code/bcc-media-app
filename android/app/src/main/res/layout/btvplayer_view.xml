@@ -7,12 +7,11 @@
     android:clickable="false"
     android:background="#000000" >
 
-    <com.google.android.exoplayer2.ui.StyledPlayerView
+    <androidx.media3.ui.PlayerView
         android:id="@+id/brunstad_player"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:visibility="visible"
-        app:controller_layout_id="@layout/btvplayer_controls"
         app:show_buffering="when_playing"
         app:show_subtitle_button="true" />
    <ImageButton
