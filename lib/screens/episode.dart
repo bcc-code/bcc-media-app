@@ -1,4 +1,5 @@
 
+//import 'dart:html';
 import 'dart:math';
 
 import 'package:auto_route/auto_route.dart';
@@ -44,9 +45,20 @@ class _EpisodeScreenState extends State<EpisodeScreen> {
     //EpisodePageArguments args = ModalRoute.of(context)!.settings.arguments as EpisodePageArguments;
     int episodeId = widget.episodeId;
     episode = fetchEpisode(episodeId);
+    if (widget.playerType == PlayerType.native) {
+      episode.then((value) {
+        BccmPlayer.modalPlayer.invokeMethod('new_player', <String, dynamic>{
+          'url': value.streamUrl,
+        }).then(
+          (v2) {
+            print(v2);
+          }
+        );
+      });
+    }
     if (widget.playerType == PlayerType.videoPlayer) {
-      episode.then((value) => {
-        Provider.of<VideoPlayerState>(context, listen: false).play(value.streamUrl)
+      episode.then((value) {
+        Provider.of<VideoPlayerState>(context, listen: false).play(value.streamUrl);
       });
     }
     super.didChangeDependencies();
