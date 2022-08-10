@@ -12,10 +12,9 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.FrameLayout
 import androidx.annotation.NonNull
-import androidx.media3.session.IMediaSessionService
 import androidx.media3.session.MediaController
-import androidx.media3.session.MediaSessionService
 import androidx.media3.session.SessionToken
+import com.google.common.util.concurrent.ListenableFuture
 import com.google.common.util.concurrent.MoreExecutors
 import io.flutter.embedding.android.FlutterActivity
 import io.flutter.embedding.engine.FlutterEngine
@@ -26,6 +25,7 @@ class MainActivity: FlutterActivity() {
     private val _channel = "app.bcc.media/player"
 
     lateinit var playbackService: PlaybackService
+    private lateinit var controllerFuture: ListenableFuture<MediaController>
     private var mBound: Boolean = false
 
     private val connection = object : ServiceConnection {
@@ -48,7 +48,7 @@ class MainActivity: FlutterActivity() {
         }
 
         val sessionToken = SessionToken(this, ComponentName(this, PlaybackService::class.java))
-        val controllerFuture = MediaController.Builder(this, sessionToken).buildAsync()
+        controllerFuture = MediaController.Builder(this, sessionToken).buildAsync()
         controllerFuture.addListener(
                 { },
                 MoreExecutors.directExecutor()
@@ -58,7 +58,15 @@ class MainActivity: FlutterActivity() {
     override fun onStop() {
         super.onStop()
         unbindService(connection)
+        MediaController.releaseFuture(controllerFuture)
         mBound = false
+    }
+
+    override fun onDestroy() {
+        Intent(this, PlaybackService::class.java).also { intent ->
+            stopService(intent)
+        }
+        super.onDestroy()
     }
 
     override fun configureFlutterEngine(@NonNull flutterEngine: FlutterEngine) {
@@ -66,7 +74,7 @@ class MainActivity: FlutterActivity() {
         flutterEngine
                 .platformViewsController
                 .registry
-                .registerViewFactory("bccm-player", NativeViewFactory(this))
+                .registerViewFactory("bccm-player", PlayerPlatformViewFactory(this))
 
         MethodChannel(flutterEngine.dartExecutor.binaryMessenger, _channel).setMethodCallHandler {
             call, result ->
