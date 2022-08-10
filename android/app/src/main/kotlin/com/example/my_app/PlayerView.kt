@@ -22,11 +22,11 @@ internal class NativeViewFactory(private val activity: MainActivity) : PlatformV
     @NonNull
     override fun create(@NonNull context: Context?, id: Int, @Nullable args: Any?): PlatformView {
         val creationParams = args as Map<String?, Any?>?
-        return BccmPlayerView(activity, context!!, creationParams?.get("url") as String?)
+        return BccmPlayerView(activity, context!!, creationParams?.get("player_id") as String)
     }
 }
 
-internal class BccmPlayerView(private val activity: MainActivity, context: Context, var url: String?, val fullscreen: Boolean = false, var originalView: PlayerView? = null) : PlatformView {
+internal class BccmPlayerView(private val activity: MainActivity, context: Context, var playerId: String, val fullscreen: Boolean = false, var originalView: PlayerView? = null) : PlatformView {
     companion object {
         var player: ExoPlayer? = null
     }
@@ -39,11 +39,11 @@ internal class BccmPlayerView(private val activity: MainActivity, context: Conte
     }
 
     init {
-        if (url == null) {
+       /* if (url == null) {
             url = "https://devstreaming-cdn.apple.com/videos/streaming/examples/img_bipbop_adv_example_fmp4/master.m3u8"
-        }
+        }*/
 
-        val playerIsReusable = player != null && player!!.currentMediaItem?.localConfiguration?.uri.toString() == url;
+        /*val playerIsReusable = player != null && player!!.currentMediaItem?.localConfiguration?.uri.toString() == url;
 
         if (!playerIsReusable) {
             player?.release()
@@ -55,7 +55,12 @@ internal class BccmPlayerView(private val activity: MainActivity, context: Conte
             player!!.setMediaItem(mediaItem)
             player!!.prepare()
             player!!.play()
-        }
+        }*/
+
+        player = activity.playbackService.playerControllers.find {
+            it.id == playerId
+        }!!.exoPlayer
+
         //_v = PlayerView(context);
         _v = LayoutInflater.from(context).inflate(R.layout.btvplayer_view, null);
         val playerView = _v.findViewById<PlayerView>(R.id.brunstad_player);
@@ -83,7 +88,7 @@ internal class BccmPlayerView(private val activity: MainActivity, context: Conte
         playerView.setFullscreenButtonClickListener {
             if (!fullscreen) {
                 activity.requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE
-                val fullScreenPlayer = BccmPlayerView(activity, context, url, true, playerView)
+                val fullScreenPlayer = BccmPlayerView(activity, context, playerId, true, playerView)
                 rootLayout.addView(fullScreenPlayer.view)
                 PlayerView.switchTargetView(player!!, playerView, fullScreenPlayer.view.findViewById(R.id.brunstad_player))
             } else {

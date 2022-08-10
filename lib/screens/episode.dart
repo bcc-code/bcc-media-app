@@ -27,6 +27,7 @@ class EpisodeScreen extends StatefulWidget {
 
 class _EpisodeScreenState extends State<EpisodeScreen> {
   late Future<Episode> episode;
+  late Future<String> playerIdFuture;
 
   @override
   void initState() {
@@ -46,15 +47,15 @@ class _EpisodeScreenState extends State<EpisodeScreen> {
     int episodeId = widget.episodeId;
     episode = fetchEpisode(episodeId);
     if (widget.playerType == PlayerType.native) {
-      episode.then((value) {
-        BccmPlayer.modalPlayer.invokeMethod('new_player', <String, dynamic>{
+      playerIdFuture = Future<String>((() async {
+        var value = await episode;
+        var playerId = await BccmPlayer.modalPlayer.invokeMethod('new_player', <String, dynamic>{
           'url': value.streamUrl,
-        }).then(
-          (v2) {
-            print(v2);
-          }
-        );
-      });
+        });
+        
+        return playerId;
+      }));
+      
     }
     if (widget.playerType == PlayerType.videoPlayer) {
       episode.then((value) {
@@ -77,9 +78,18 @@ class _EpisodeScreenState extends State<EpisodeScreen> {
           children: [
             Padding(
               padding: const EdgeInsets.all(8.0),
-              child: FutureBuilder<Episode>(future: episode, builder: (context, snapshot) {
+              child: FutureBuilder<String>(future: playerIdFuture, builder: (context, snapshot) {
                 if (snapshot.hasData) {
-                  return BccmPlayer(type: widget.playerType, url: snapshot.data!.streamUrl);
+                  return Column(
+                    children: [
+                      BccmPlayer(type: widget.playerType, id: snapshot.data!),
+                      ElevatedButton(onPressed: () {
+                        BccmPlayer.modalPlayer.invokeMethod('set_primary', <String, dynamic>{
+                          'player_id': snapshot.data!,
+                        });
+                      }, child: Text("set primary"))
+                    ],
+                  );
                 } else if (snapshot.hasError) {
                   return Text(snapshot.error.toString());
                 }

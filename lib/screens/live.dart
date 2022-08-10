@@ -51,7 +51,7 @@ class _LiveScreenState extends State<LiveScreen> {
           TextFormField(controller: _idTokenDisplayController, readOnly: true,),
           FutureBuilder<LivestreamUrl>(future: liveUrlFuture, builder: (context, snapshot) {
             if (snapshot.hasData) {
-              return BccmPlayer(type: PlayerType.native, url: snapshot.data!.streamUrl,);
+              /* return BccmPlayer(type: PlayerType.native, url: snapshot.data!.streamUrl,); */
             } else if (snapshot.hasError) {
               return Text(snapshot.error.toString());
             }
