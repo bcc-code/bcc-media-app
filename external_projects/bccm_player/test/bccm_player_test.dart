@@ -1,6 +1,7 @@
+import 'package:bccm_player/playback_service.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:bccm_player/bccm_player.dart';
-import 'package:bccm_player/bccm_player_platform_interface.dart';
+import 'package:bccm_player/platform_interface.dart';
 import 'package:bccm_player/bccm_player_method_channel.dart';
 import 'package:plugin_platform_interface/plugin_platform_interface.dart';
 
@@ -20,7 +21,7 @@ void main() {
   });
 
   test('getPlatformVersion', () async {
-    BccmPlayer bccmPlayerPlugin = BccmPlayer();
+    PlaybackService bccmPlayerPlugin = PlaybackService();
     MockBccmPlayerPlatform fakePlatform = MockBccmPlayerPlatform();
     BccmPlayerPlatform.instance = fakePlatform;
 

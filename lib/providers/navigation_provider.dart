@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:my_app/components/player.dart';
 import 'package:my_app/screens/episode.dart';
 import 'package:my_app/screens/home.dart';
 import 'package:provider/provider.dart';

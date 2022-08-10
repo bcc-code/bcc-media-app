@@ -1,14 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:my_app/components/player.dart';
 import 'package:my_app/providers/navigation_provider.dart';
 import 'package:my_app/router/auth_guard.dart';
 import 'package:my_app/router/router.gr.dart';
-import 'package:my_app/screens/episode.dart';
-import 'package:my_app/screens/home.dart';
-import 'package:my_app/screens/login.dart';
 import 'package:my_app/services/auth_service.dart';
 import 'package:my_app/providers/auth_state.dart';
-import 'package:my_app/providers/videoplayer_state.dart';
 import 'package:provider/provider.dart';
 
 void main() async {
@@ -17,7 +12,6 @@ void main() async {
   final appRouter = AppRouter(authGuard: AuthGuard());
   runApp(MultiProvider(
       providers: [
-        ChangeNotifierProvider(create: (context) => VideoPlayerState()),
         ChangeNotifierProvider(create: (context) => AuthState()),
         ChangeNotifierProvider(create: (context) => NavigationProvider()),
       ],
@@ -25,13 +19,13 @@ void main() async {
         theme: ThemeData(),
         darkTheme: ThemeData(
           brightness: Brightness.dark,
-          colorScheme: ColorScheme.fromSeed(brightness: Brightness.dark, seedColor: Color.fromARGB(255, 110, 176, 230)),
+          colorScheme: ColorScheme.fromSeed(brightness: Brightness.dark, seedColor: const Color.fromARGB(255, 110, 176, 230)),
           fontFamily: 'Barlow',
-          canvasColor: Color.fromARGB(255, 13, 22, 35),
-          textTheme: TextTheme(
+          canvasColor: const Color.fromARGB(255, 13, 22, 35),
+          textTheme: const TextTheme(
             headlineMedium: TextStyle(fontFamily: 'Barlow', fontSize: 28, fontWeight: FontWeight.w800, color: Colors.white)
           ),
-          scaffoldBackgroundColor: Color.fromARGB(255, 13, 22, 35),
+          scaffoldBackgroundColor: const Color.fromARGB(255, 13, 22, 35),
         ),
         themeMode: ThemeMode.dark,
         title: 'BCC Media',

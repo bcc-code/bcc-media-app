@@ -49,12 +49,10 @@ dependencies:
   build_runner: ^2.2.0
   cached_network_image: ^3.2.1
   transparent_image: ^2.0.0
-  #better_player: ^0.0.83
+  bccm_player: any
 dependency_overrides:
-  #better_player:
-   # path: external-projects/betterplayer
-#   video_player:
-#     path: ../flutter_plugins/packages/video_player/video_player
+  bccm_player:
+    path: external_projects/bccm_player
 
 dev_dependencies:
   flutter_test:

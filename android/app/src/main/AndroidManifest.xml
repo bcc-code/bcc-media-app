@@ -28,7 +28,7 @@
         </activity>
 
        <service
-           android:name=".PlaybackService"
+           android:name="media.bcc.bccm_player.PlaybackService"
            android:foregroundServiceType="mediaPlayback"
            android:exported="true">
            <intent-filter>

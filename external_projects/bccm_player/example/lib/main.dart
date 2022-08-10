@@ -1,8 +1,8 @@
+import 'package:bccm_player/playback_service.dart';
 import 'package:flutter/material.dart';
 import 'dart:async';
 
 import 'package:flutter/services.dart';
-import 'package:bccm_player/bccm_player.dart';
 
 void main() {
   runApp(const MyApp());
@@ -17,7 +17,7 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   String _platformVersion = 'Unknown';
-  final _bccmPlayerPlugin = BccmPlayer();
+  final _bccmPlayerPlugin = PlaybackService();
 
   @override
   void initState() {

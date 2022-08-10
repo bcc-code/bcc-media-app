@@ -71,9 +71,9 @@ flutter {
 }
 
 dependencies {
-    def media3_version = "1.0.0-beta02"
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     /*implementation 'com.google.android.exoplayer:exoplayer:2.18.1'*/
+    def media3_version = "1.0.0-beta02"
     implementation "androidx.media3:media3-exoplayer:$media3_version"
     implementation "androidx.media3:media3-exoplayer-hls:$media3_version"
     implementation "androidx.media3:media3-cast:$media3_version"

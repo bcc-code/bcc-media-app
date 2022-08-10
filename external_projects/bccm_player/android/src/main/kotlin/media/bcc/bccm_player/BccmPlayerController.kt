@@ -1,4 +1,4 @@
-package com.example.my_app
+package media.bcc.bccm_player
 
 import android.content.Context
 import androidx.media3.common.AudioAttributes

@@ -1,5 +1,5 @@
 
-package com.example.my_app
+package media.bcc.bccm_player
 
 import android.content.Intent
 import android.os.Binder

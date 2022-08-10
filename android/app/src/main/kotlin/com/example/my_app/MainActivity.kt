@@ -19,6 +19,9 @@ import com.google.common.util.concurrent.MoreExecutors
 import io.flutter.embedding.android.FlutterActivity
 import io.flutter.embedding.engine.FlutterEngine
 import io.flutter.plugin.common.MethodChannel
+import media.bcc.bccm_player.BccmPlayerView
+import media.bcc.bccm_player.PlaybackService
+import media.bcc.bccm_player.PlayerPlatformViewFactory
 
 
 class MainActivity: FlutterActivity() {

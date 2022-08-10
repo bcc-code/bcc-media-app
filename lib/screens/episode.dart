@@ -5,8 +5,7 @@ import 'dart:math';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:my_app/components/player.dart';
-import 'package:my_app/providers/videoplayer_state.dart';
+import 'package:bccm_player/bccm_player.dart';
 import 'package:provider/provider.dart';
 
 import '../api/episodes.dart';
@@ -55,12 +54,6 @@ class _EpisodeScreenState extends State<EpisodeScreen> {
         
         return playerId;
       }));
-      
-    }
-    if (widget.playerType == PlayerType.videoPlayer) {
-      episode.then((value) {
-        Provider.of<VideoPlayerState>(context, listen: false).play(value.streamUrl);
-      });
     }
     super.didChangeDependencies();
   }
