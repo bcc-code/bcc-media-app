@@ -9,14 +9,11 @@ import android.widget.FrameLayout
 import android.widget.ProgressBar
 import androidx.annotation.NonNull
 import androidx.annotation.Nullable
-import androidx.media3.exoplayer.*
 import androidx.media3.common.*
 import androidx.media3.ui.PlayerView
 import io.flutter.plugin.common.StandardMessageCodec
 import io.flutter.plugin.platform.PlatformView
 import io.flutter.plugin.platform.PlatformViewFactory
-import java.lang.Long.max
-import java.lang.Long.min
 
 
 class PlayerPlatformViewFactory(private val activity: Activity, private val playbackService: PlaybackService?) : PlatformViewFactory(StandardMessageCodec.INSTANCE) {
@@ -27,47 +24,69 @@ class PlayerPlatformViewFactory(private val activity: Activity, private val play
         }
 
         val creationParams = args as Map<String?, Any?>?
-        return BccmPlayerView(activity, playbackService, context!!, creationParams?.get("player_id") as String)
+        return BccmPlayerViewWrapper(activity, playbackService, context!!, creationParams?.get("player_id") as String)
     }
 }
 
-class BccmPlayerView(private val activity: Activity, private val playbackService: PlaybackService, context: Context, var playerId: String, val fullscreen: Boolean = false, var originalView: PlayerView? = null) : PlatformView {
-    companion object {
-        var player: ExoPlayer? = null
+class BccmPlayerViewWrapper(
+        private val activity: Activity,
+        private val playbackService: PlaybackService,
+        private val context: Context,
+        private var playerId: String,
+        private val fullscreen: Boolean = false) : PlatformView {
+    private var playerController: BccmPlayerController? = null
+    private val _v: View = LayoutInflater.from(context).inflate(R.layout.btvplayer_view, null)
+    private var _playerView: PlayerView? = null
+    internal var onDispose: () -> Unit = {}
+
+    init {
+        setupPlayerView()
     }
-    private val _v: View
+
     override fun getView(): View {
         return _v
     }
 
     override fun dispose() {
+        onDispose()
+        playerController = null
     }
 
-    init {
-        player = playbackService.playerControllers.find {
-            it.id == playerId
-        }!!.exoPlayer
+    fun isFullscreenPlayer(): Boolean {
+        return fullscreen
+    }
 
-        _v = LayoutInflater.from(context).inflate(R.layout.btvplayer_view, null);
-        val playerView = _v.findViewById<PlayerView>(R.id.brunstad_player);
+    fun getPlayerView(): PlayerView? {
+        return _playerView;
+    }
+
+    private fun setupPlayerView() {
+        playerController = playbackService.playerControllers.find {
+            it.id == playerId
+        }
+
+        if (playerController == null) {
+            throw Error("Player $playerId does not exist. Create it with PlaybackService.newPlayer()")
+        }
+
+        val playerView = _v.findViewById<PlayerView>(R.id.brunstad_player)
+                .also { _playerView = it };
         val rootLayout: FrameLayout = activity.window.decorView.findViewById<View>(android.R.id.content) as FrameLayout
 
         playerView.setFullscreenButtonClickListener {
             if (!fullscreen) {
                 activity.requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE
-                val fullScreenPlayer = BccmPlayerView(activity, playbackService, context, playerId, true, playerView)
+                val fullScreenPlayer = BccmPlayerViewWrapper(activity, playbackService, context, playerId, true)
                 rootLayout.addView(fullScreenPlayer.view)
-                PlayerView.switchTargetView(player!!, playerView, fullScreenPlayer.view.findViewById(R.id.brunstad_player))
             } else {
-                activity.requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
+                activity.requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED
                 rootLayout.removeView(view)
-                PlayerView.switchTargetView(player!!, playerView, originalView)
                 dispose()
             }
         }
 
         val busyIndicator = _v.findViewById<ProgressBar>(R.id.busyIndicator);
-        player!!.addListener(object : Player.Listener {
+        playerController!!.getExoPlayer().addListener(object : Player.Listener {
             override fun onPlaybackStateChanged(playbackState: Int) {
                 /*if(player!!.isCurrentMediaItemLive) {
                     playerView.findViewById<LinearLayout>(R.id.progress).visibility = View.GONE;
@@ -86,48 +105,7 @@ class BccmPlayerView(private val activity: Activity, private val playbackService
                 }
             }
         })
-/*
 
-        val settingsButton = playerView.findViewById<ImageButton>(R.id.exo_settings);
-        settingsButton.setOnClickListener {
-
-        }
-*/
-
-
-        val forwardingPlayer: ForwardingPlayer = object : ForwardingPlayer(player!!) {
-
-
-            private var seekBackIncrement: Long = 15000
-
-            private var seekForwardIncrement: Long = 15000
-
-            override fun getSeekBackIncrement(): Long {
-                return seekBackIncrement
-            }
-
-            override fun seekBack() {
-                seekToOffset(-seekBackIncrement)
-            }
-
-            override fun getSeekForwardIncrement(): Long {
-                return seekForwardIncrement
-            }
-
-            override fun seekForward() {
-                seekToOffset(seekForwardIncrement)
-            }
-
-            private fun seekToOffset(offsetMs: Long) {
-                var positionMs = currentPosition + offsetMs
-                val durationMs = duration
-                if (durationMs != C.TIME_UNSET) {
-                    positionMs = min(positionMs, durationMs)
-                }
-                positionMs = max(positionMs, 0)
-                seekTo(positionMs)
-            }
-        }
-        playerView.player = forwardingPlayer
+        playerController!!.takeOwnership(this)
     }
 }

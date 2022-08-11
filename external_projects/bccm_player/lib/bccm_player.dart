@@ -11,7 +11,6 @@ import 'package:flutter/services.dart';
 enum PlayerType { betterPlayer, videoPlayer, native }
 
 class BccmPlayer extends StatefulWidget {
-  static const modalPlayer = MethodChannel('app.bcc.media/player');
   final PlayerType type;
   final String id;
 
@@ -44,19 +43,6 @@ class _BccmPlayerState extends State<BccmPlayer> {
   void playVideoNative(BuildContext context) {
     setState(() {
       _hidePlayer = true;
-    });
-    BccmPlayer.modalPlayer.invokeMethod('open', <String, dynamic>{
-      'player_id': widget.id,
-    });
-
-    BccmPlayer.modalPlayer.setMethodCallHandler((MethodCall mc) {
-      switch (mc.method) {
-        case 'closingFullscreen':
-          setState(() {
-            _hidePlayer = false;
-          });
-      }
-      return Future.value();
     });
   }
 

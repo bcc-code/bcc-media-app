@@ -42,7 +42,7 @@ class BccmPlayerPlugin: FlutterPlugin, MethodCallHandler, ActivityAware {
   private var mBound: Boolean = false
   private var activity: Activity? = null
 
-  private val connection = object : ServiceConnection {
+  private val playbackServiceConnection = object : ServiceConnection {
     override fun onServiceConnected(className: ComponentName, binder: IBinder) {
       // We've bound to LocalService, cast the IBinder and get LocalService instance
       playbackService = (binder as PlaybackService.LocalBinder).getService()
@@ -58,6 +58,50 @@ class BccmPlayerPlugin: FlutterPlugin, MethodCallHandler, ActivityAware {
 
   override fun onAttachedToEngine(@NonNull flutterPluginBinding: FlutterPlugin.FlutterPluginBinding) {
     pluginBinding = flutterPluginBinding
+  }
+
+
+  override fun onDetachedFromEngine(@NonNull binding: FlutterPlugin.FlutterPluginBinding) {
+    Intent(binding.applicationContext, PlaybackService::class.java).also { intent ->
+      binding.applicationContext.stopService(intent)
+    }
+    pluginBinding = null
+  }
+
+  override fun onAttachedToActivity(binding: ActivityPluginBinding) {
+    activity = binding.activity
+
+    channel = MethodChannel(pluginBinding!!.binaryMessenger, "bccm_player")
+    channel.setMethodCallHandler(this)
+
+    // Bind to LocalService
+    Intent(binding.activity, PlaybackService::class.java).also { intent ->
+      binding.activity.bindService(intent, playbackServiceConnection, Context.BIND_AUTO_CREATE)
+    }
+
+    val sessionToken = SessionToken(binding.activity, ComponentName(binding.activity, PlaybackService::class.java))
+    controllerFuture = MediaController.Builder(binding.activity, sessionToken).buildAsync()
+    controllerFuture.addListener({
+      1;
+    },
+            MoreExecutors.directExecutor()
+    )
+  }
+
+  override fun onDetachedFromActivityForConfigChanges() {
+    TODO("Not yet implemented")
+  }
+
+  override fun onReattachedToActivityForConfigChanges(binding: ActivityPluginBinding) {
+    TODO("Not yet implemented")
+  }
+
+  override fun onDetachedFromActivity() {
+    channel.setMethodCallHandler(null)
+
+    pluginBinding!!.applicationContext.unbindService(playbackServiceConnection)
+    MediaController.releaseFuture(controllerFuture)
+    mBound = false
   }
 
   override fun onMethodCall(@NonNull call: MethodCall, @NonNull result: Result) {
@@ -87,7 +131,7 @@ class BccmPlayerPlugin: FlutterPlugin, MethodCallHandler, ActivityAware {
         val url = args["url"]!!;
 
         val rootLayout: FrameLayout = activity!!.window.decorView.findViewById<View>(R.id.content) as FrameLayout
-        val bccmPlayerView = BccmPlayerView(activity!!, playbackService!!, activity!!, url)
+        val bccmPlayerView = BccmPlayerViewWrapper(activity!!, playbackService!!, activity!!, url)
         rootLayout.addView(bccmPlayerView.view)
 
         val exitBtn = Button(activity)
@@ -95,7 +139,7 @@ class BccmPlayerPlugin: FlutterPlugin, MethodCallHandler, ActivityAware {
         exitBtn.layoutParams = ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT)
         exitBtn.setOnClickListener {
           channel.invokeMethod("closingFullscreen", null);
-          activity!!.requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
+          activity!!.requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED
           rootLayout.removeView(bccmPlayerView.view)
         }
         rootLayout.addView(exitBtn)
@@ -104,48 +148,5 @@ class BccmPlayerPlugin: FlutterPlugin, MethodCallHandler, ActivityAware {
         result.notImplemented()
       }
     }
-  }
-
-  override fun onDetachedFromEngine(@NonNull binding: FlutterPlugin.FlutterPluginBinding) {
-    Intent(binding.applicationContext, PlaybackService::class.java).also { intent ->
-      binding.applicationContext.stopService(intent)
-    }
-    pluginBinding = null
-  }
-
-  override fun onAttachedToActivity(binding: ActivityPluginBinding) {
-    activity = binding.activity
-
-    channel = MethodChannel(pluginBinding!!.binaryMessenger, "bccm_player")
-    channel.setMethodCallHandler(this)
-
-    // Bind to LocalService
-    Intent(binding.activity, PlaybackService::class.java).also { intent ->
-      binding.activity.bindService(intent, connection, Context.BIND_AUTO_CREATE)
-    }
-
-    val sessionToken = SessionToken(binding.activity, ComponentName(binding.activity, PlaybackService::class.java))
-    controllerFuture = MediaController.Builder(binding.activity, sessionToken).buildAsync()
-    controllerFuture.addListener({
-       1;
-      },
-      MoreExecutors.directExecutor()
-    )
-  }
-
-  override fun onDetachedFromActivityForConfigChanges() {
-    TODO("Not yet implemented")
-  }
-
-  override fun onReattachedToActivityForConfigChanges(binding: ActivityPluginBinding) {
-    TODO("Not yet implemented")
-  }
-
-  override fun onDetachedFromActivity() {
-    channel.setMethodCallHandler(null)
-
-    pluginBinding!!.applicationContext.unbindService(connection)
-    MediaController.releaseFuture(controllerFuture)
-    mBound = false
   }
 }
