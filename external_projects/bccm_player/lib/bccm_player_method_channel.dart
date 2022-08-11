@@ -1,7 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 
-import 'bccm_player_platform_interface.dart';
+import 'platform_interface.dart';
 
 /// An implementation of [BccmPlayerPlatform] that uses method channels.
 class MethodChannelBccmPlayer extends BccmPlayerPlatform {
@@ -14,4 +14,21 @@ class MethodChannelBccmPlayer extends BccmPlayerPlatform {
     final version = await methodChannel.invokeMethod<String>('getPlatformVersion');
     return version;
   }
+
+  @override
+  Future<String?> newPlayer(String url) async {
+    final playerId = await methodChannel.invokeMethod('new_player', <String, dynamic>{
+      'url': url,
+    });
+    return playerId;
+  }
+
+  @override
+  Future<String?> setPrimary(String id) async {
+    final playerId = await methodChannel.invokeMethod('set_primary', <String, dynamic>{
+      'player_id': id,
+    });
+    return playerId;
+  }
+  
 }

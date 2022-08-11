@@ -1,5 +1,6 @@
 package media.bcc.bccm_player
 
+import android.app.Activity
 import android.content.Context
 import android.content.pm.ActivityInfo
 import android.view.LayoutInflater
@@ -18,15 +19,19 @@ import java.lang.Long.max
 import java.lang.Long.min
 
 
-class PlayerPlatformViewFactory(private val activity: MainActivity) : PlatformViewFactory(StandardMessageCodec.INSTANCE) {
+class PlayerPlatformViewFactory(private val activity: Activity, private val playbackService: PlaybackService?) : PlatformViewFactory(StandardMessageCodec.INSTANCE) {
     @NonNull
     override fun create(@NonNull context: Context?, id: Int, @Nullable args: Any?): PlatformView {
+        if (playbackService == null) {
+            throw Error("PlaybackService is null, but you tried making a platformview.");
+        }
+
         val creationParams = args as Map<String?, Any?>?
-        return BccmPlayerView(activity, context!!, creationParams?.get("player_id") as String)
+        return BccmPlayerView(activity, playbackService, context!!, creationParams?.get("player_id") as String)
     }
 }
 
-class BccmPlayerView(private val activity: MainActivity, context: Context, var playerId: String, val fullscreen: Boolean = false, var originalView: PlayerView? = null) : PlatformView {
+class BccmPlayerView(private val activity: Activity, private val playbackService: PlaybackService, context: Context, var playerId: String, val fullscreen: Boolean = false, var originalView: PlayerView? = null) : PlatformView {
     companion object {
         var player: ExoPlayer? = null
     }
@@ -39,7 +44,7 @@ class BccmPlayerView(private val activity: MainActivity, context: Context, var p
     }
 
     init {
-        player = activity.playbackService.playerControllers.find {
+        player = playbackService.playerControllers.find {
             it.id == playerId
         }!!.exoPlayer
 
@@ -50,7 +55,7 @@ class BccmPlayerView(private val activity: MainActivity, context: Context, var p
         playerView.setFullscreenButtonClickListener {
             if (!fullscreen) {
                 activity.requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE
-                val fullScreenPlayer = BccmPlayerView(activity, context, playerId, true, playerView)
+                val fullScreenPlayer = BccmPlayerView(activity, playbackService, context, playerId, true, playerView)
                 rootLayout.addView(fullScreenPlayer.view)
                 PlayerView.switchTargetView(player!!, playerView, fullScreenPlayer.view.findViewById(R.id.brunstad_player))
             } else {

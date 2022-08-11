@@ -1,6 +1,5 @@
 import 'package:bccm_player/playback_service.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:bccm_player/bccm_player.dart';
 import 'package:bccm_player/platform_interface.dart';
 import 'package:bccm_player/bccm_player_method_channel.dart';
 import 'package:plugin_platform_interface/plugin_platform_interface.dart';
@@ -11,6 +10,18 @@ class MockBccmPlayerPlatform
 
   @override
   Future<String?> getPlatformVersion() => Future.value('42');
+  
+  @override
+  Future<String?> newPlayer(String url) {
+    // TODO: implement newPlayer
+    throw UnimplementedError();
+  }
+  
+  @override
+  Future<String?> setPrimary(String id) {
+    // TODO: implement setPrimary
+    throw UnimplementedError();
+  }
 }
 
 void main() {

@@ -3,12 +3,16 @@
 import 'dart:math';
 
 import 'package:auto_route/auto_route.dart';
+import 'package:bccm_player/platform_interface.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:bccm_player/bccm_player.dart';
+import 'package:bccm_player/playback_service.dart';
 import 'package:provider/provider.dart';
 
 import '../api/episodes.dart';
+
+final playbackService = PlaybackService();
 
 class EpisodePageArguments {
   int episodeId;
@@ -25,7 +29,7 @@ class EpisodeScreen extends StatefulWidget {
 }
 
 class _EpisodeScreenState extends State<EpisodeScreen> {
-  late Future<Episode> episode;
+  late Future<Episode> episodeFuture;
   late Future<String> playerIdFuture;
 
   @override
@@ -44,15 +48,13 @@ class _EpisodeScreenState extends State<EpisodeScreen> {
   void didChangeDependencies() {
     //EpisodePageArguments args = ModalRoute.of(context)!.settings.arguments as EpisodePageArguments;
     int episodeId = widget.episodeId;
-    episode = fetchEpisode(episodeId);
+    episodeFuture = fetchEpisode(episodeId);
     if (widget.playerType == PlayerType.native) {
       playerIdFuture = Future<String>((() async {
-        var value = await episode;
-        var playerId = await BccmPlayer.modalPlayer.invokeMethod('new_player', <String, dynamic>{
-          'url': value.streamUrl,
-        });
+        var episode = await episodeFuture;
+        var playerId = await BccmPlayerPlatform.instance.newPlayer(episode.streamUrl);
         
-        return playerId;
+        return playerId!;
       }));
     }
     super.didChangeDependencies();
@@ -77,9 +79,7 @@ class _EpisodeScreenState extends State<EpisodeScreen> {
                     children: [
                       BccmPlayer(type: widget.playerType, id: snapshot.data!),
                       ElevatedButton(onPressed: () {
-                        BccmPlayer.modalPlayer.invokeMethod('set_primary', <String, dynamic>{
-                          'player_id': snapshot.data!,
-                        });
+                        BccmPlayerPlatform.instance.setPrimary(snapshot.data!);
                       }, child: Text("set primary"))
                     ],
                   );

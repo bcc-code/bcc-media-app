@@ -6,7 +6,7 @@ import 'dart:html' as html show window;
 
 import 'package:flutter_web_plugins/flutter_web_plugins.dart';
 
-import 'bccm_player_platform_interface.dart';
+import 'platform_interface.dart';
 
 /// A web implementation of the BccmPlayerPlatform of the BccmPlayer plugin.
 class BccmPlayerWeb extends BccmPlayerPlatform {
