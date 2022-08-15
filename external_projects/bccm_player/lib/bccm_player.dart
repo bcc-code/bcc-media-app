@@ -63,17 +63,6 @@ class _BccmPlayerState extends State<BccmPlayer> {
     }
     return Column(
       children: [
-        Container(
-            color: Colors.blueAccent,
-            child: SizedBox(
-              width: 100,
-              height: 100,
-              child: ElevatedButton(
-                  onPressed: () {
-                    playVideoNative(context);
-                  },
-                  child: const Text('Play')),
-            )),
         if (!_hidePlayer && Platform.isIOS)
           AspectRatio(
               aspectRatio: 16 / 9,
@@ -88,12 +77,9 @@ class _BccmPlayerState extends State<BccmPlayer> {
             children: [
               const Text('test'),
               //SizedBox(height: 100, child: AndroidNativeText(widget: widget)),
-              SizedBox(
-                height: 450,
-                child: AspectRatio(
+              AspectRatio(
                     aspectRatio: 16 / 9,
                     child: AndroidPlayer(widget: widget)),
-              ),
             ],
           )
       ],

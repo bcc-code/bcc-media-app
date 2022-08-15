@@ -16,7 +16,7 @@ class MethodChannelBccmPlayer extends BccmPlayerPlatform {
   }
 
   @override
-  Future<String?> newPlayer(String url) async {
+  Future<String> newPlayer({String? url}) async {
     final playerId = await methodChannel.invokeMethod('new_player', <String, dynamic>{
       'url': url,
     });
@@ -24,7 +24,16 @@ class MethodChannelBccmPlayer extends BccmPlayerPlatform {
   }
 
   @override
-  Future<String?> setPrimary(String id) async {
+  Future<void> setUrl({required String playerId, required String url, bool isLive = false}) async {
+    await methodChannel.invokeMethod('set_url', <String, dynamic>{
+      'player_id': playerId,
+      'url': url,
+      'is_live': isLive,
+    });
+  }
+
+  @override
+  Future<bool> setPrimary(String id) async {
     final playerId = await methodChannel.invokeMethod('set_primary', <String, dynamic>{
       'player_id': id,
     });

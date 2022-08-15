@@ -6,6 +6,33 @@
     android:id="@+id/playerRoot"
     android:clickable="false"
     android:background="#000000" >
+    <LinearLayout
+        android:id="@+id/live_indicator"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="5dp"
+        android:gravity="center_vertical"
+        android:background="@drawable/live_gradient"
+        android:layout_marginTop="15dp"
+        android:layout_marginLeft="8dp">
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_marginLeft="5dp"
+            android:layout_width="15dp"
+            android:layout_height="15dp"
+            android:src="@drawable/icon_play" />
+
+        <TextView
+            android:id="@+id/live_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="5dp"
+            android:layout_marginLeft="5dp"
+            android:text="live"
+            android:textColor="#FFFFFF"
+            android:textSize="13dp"/>
+    </LinearLayout>
 
     <androidx.media3.ui.PlayerView
         android:id="@+id/brunstad_player"
@@ -14,7 +41,7 @@
         android:visibility="visible"
         app:show_buffering="when_playing"
         app:show_subtitle_button="true" />
-   <ImageButton
+  <!-- <ImageButton
         android:id="@+id/playButton"
         android:layout_width="45dp"
         android:layout_height="45dp"
@@ -22,7 +49,7 @@
         android:background="@drawable/circle_button"
         android:visibility="gone"
         android:src="@drawable/icon_play"
-        android:scaleType="centerInside" />
+        android:scaleType="centerInside" />-->
 
     <ProgressBar
         android:id="@+id/busyIndicator"

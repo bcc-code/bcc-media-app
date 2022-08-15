@@ -89,11 +89,11 @@ class BccmPlayerPlugin: FlutterPlugin, MethodCallHandler, ActivityAware {
   }
 
   override fun onDetachedFromActivityForConfigChanges() {
-    TODO("Not yet implemented")
+    onDetachedFromActivity()
   }
 
   override fun onReattachedToActivityForConfigChanges(binding: ActivityPluginBinding) {
-    TODO("Not yet implemented")
+    onAttachedToActivity(binding)
   }
 
   override fun onDetachedFromActivity() {
@@ -105,27 +105,36 @@ class BccmPlayerPlugin: FlutterPlugin, MethodCallHandler, ActivityAware {
   }
 
   override fun onMethodCall(@NonNull call: MethodCall, @NonNull result: Result) {
-    if (playbackService == null) {
-      return result.error("playbackServiceIsNull", "playbackService is null", "playbackService is null");
-    }
+    val pbService = playbackService
+            ?: return result.error("playbackServiceIsNull", "playbackService is null", "playbackService is null");
     when (call.method) {
       "new_player" -> {
         val args = call.arguments as HashMap<*, *>
-        val url = args["url"] as String;
+        val url = args["url"] as String?;
 
-        val playerController = playbackService!!.newPlayer()
-        playerController.playWithUrl(url)
+        val playerController = pbService.newPlayer()
+        if (url != null) {
+          playerController.playWithUrl(url)
+        }
         result.success(playerController.id)
+      }
+      "set_url" -> {
+        val args = call.arguments as HashMap<*, *>
+        val playerId = args["player_id"] as String;
+        val url = args["url"] as String? ?: throw Error("Url cannot be empty");
+        val isLive = args["is_live"] as Boolean?;
+        val playerController = pbService.getController(playerId) ?: throw Error("Player with id $playerId does not exist.")
+
+        playerController.playWithUrl(url, isLive ?: false)
       }
       "set_primary" -> {
         val args = call.arguments as HashMap<*, *>
         val playerId = args["player_id"] as String;
 
-        playbackService!!.setPrimary(playerId)
+        pbService.setPrimary(playerId)
         result.success(true)
       }
       "open" -> {
-
         activity!!.requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE
         val args = call.arguments as HashMap<String, String>
         val url = args["url"]!!;

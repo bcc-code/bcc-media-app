@@ -27,10 +27,13 @@ abstract class BccmPlayerPlatform extends PlatformInterface {
     throw UnimplementedError('platformVersion() has not been implemented.');
   }
 
-  Future<String?> newPlayer(String url) {
+  Future<String> newPlayer({String? url}) {
     throw UnimplementedError('newPlayer() has not been implemented.');
   }
-  Future<String?> setPrimary(String id) {
+  Future<bool> setPrimary(String id) {
     throw UnimplementedError('setPrimary() has not been implemented.');
+  }
+  Future<void> setUrl({required String playerId, required String url, bool isLive = false}) {
+    throw UnimplementedError('setUrl() has not been implemented.');
   }
 }

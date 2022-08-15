@@ -12,8 +12,6 @@ import 'package:provider/provider.dart';
 
 import '../api/episodes.dart';
 
-final playbackService = PlaybackService();
-
 class EpisodePageArguments {
   int episodeId;
   EpisodePageArguments(this.episodeId);
@@ -52,9 +50,9 @@ class _EpisodeScreenState extends State<EpisodeScreen> {
     if (widget.playerType == PlayerType.native) {
       playerIdFuture = Future<String>((() async {
         var episode = await episodeFuture;
-        var playerId = await BccmPlayerPlatform.instance.newPlayer(episode.streamUrl);
+        var playerId = await BccmPlayerPlatform.instance.newPlayer(url: episode.streamUrl);
         
-        return playerId!;
+        return playerId;
       }));
     }
     super.didChangeDependencies();

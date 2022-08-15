@@ -1,4 +1,5 @@
 
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import '../services/auth_service.dart';
 
@@ -27,7 +28,8 @@ class _LoginScreenState extends State<LoginScreen> {
       widget.onResult!(true);
     }
 
-    Navigator.of(context).pushNamedAndRemoveUntil('/', (route) => false);
+    context.router.popUntil((route) => false);
+    context.router.pushNamed('/');
   }
 
   handleError(String message) {

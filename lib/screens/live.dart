@@ -1,3 +1,6 @@
+import 'package:bccm_player/bccm_player.dart';
+import 'package:bccm_player/platform_interface.dart';
+import 'package:bccm_player/playback_service.dart';
 import 'package:flutter/material.dart';
 import 'package:my_app/api/livestream.dart';
 
@@ -15,13 +18,24 @@ class LiveScreen extends StatefulWidget {
 class _LiveScreenState extends State<LiveScreen> {
   String name = AuthService.instance.parsedIdToken!.name;
   final TextEditingController _idTokenDisplayController = TextEditingController(text: AuthService.instance.idToken);
-  late Future<LivestreamUrl> liveUrlFuture;
+  late Future<String> playerFuture;
   bool audioOnly = false;
 
   @override
   void initState() {
     super.initState();
-    liveUrlFuture = fetchLiveUrl();
+    playerFuture = setupPlayer();
+  }
+
+  Future<String> setupPlayer() async {
+    var playerFuture = BccmPlayerPlatform.instance.newPlayer();
+    var liveUrl = await fetchLiveUrl();
+    playerFuture.then((playerId) {
+      BccmPlayerPlatform.instance.setUrl(playerId: playerId, url: liveUrl.streamUrl, isLive: true);
+      BccmPlayerPlatform.instance.setPrimary(playerId);
+      return playerId;
+    });
+    return playerFuture;
   }
 
   @override
@@ -43,9 +57,9 @@ class _LiveScreenState extends State<LiveScreen> {
           const ContactSupport(),
           Text('Hi $name'),
           TextFormField(controller: _idTokenDisplayController, readOnly: true,),
-          FutureBuilder<LivestreamUrl>(future: liveUrlFuture, builder: (context, snapshot) {
+          FutureBuilder<String>(future: playerFuture, builder: (context, snapshot) {
             if (snapshot.hasData) {
-              /* return BccmPlayer(type: PlayerType.native, url: snapshot.data!.streamUrl,); */
+              return BccmPlayer(type: PlayerType.native, id: snapshot.data!);
             } else if (snapshot.hasError) {
               return Text(snapshot.error.toString());
             }

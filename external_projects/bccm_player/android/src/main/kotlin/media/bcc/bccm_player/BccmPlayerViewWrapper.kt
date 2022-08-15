@@ -5,15 +5,20 @@ import android.content.Context
 import android.content.pm.ActivityInfo
 import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import android.widget.FrameLayout
+import android.widget.LinearLayout
 import android.widget.ProgressBar
+import android.widget.RelativeLayout
 import androidx.annotation.NonNull
 import androidx.annotation.Nullable
 import androidx.media3.common.*
+import androidx.media3.ui.DefaultTimeBar
 import androidx.media3.ui.PlayerView
 import io.flutter.plugin.common.StandardMessageCodec
 import io.flutter.plugin.platform.PlatformView
 import io.flutter.plugin.platform.PlatformViewFactory
+import java.util.*
 
 
 class PlayerPlatformViewFactory(private val activity: Activity, private val playbackService: PlaybackService?) : PlatformViewFactory(StandardMessageCodec.INSTANCE) {
@@ -35,12 +40,12 @@ class BccmPlayerViewWrapper(
         private var playerId: String,
         private val fullscreen: Boolean = false) : PlatformView {
     private var playerController: BccmPlayerController? = null
-    private val _v: View = LayoutInflater.from(context).inflate(R.layout.btvplayer_view, null)
+    private val _v: LinearLayout = LinearLayout(context)
     private var _playerView: PlayerView? = null
     internal var onDispose: () -> Unit = {}
 
     init {
-        setupPlayerView()
+        setup()
     }
 
     override fun getView(): View {
@@ -60,10 +65,9 @@ class BccmPlayerViewWrapper(
         return _playerView;
     }
 
-    private fun setupPlayerView() {
-        playerController = playbackService.playerControllers.find {
-            it.id == playerId
-        }
+    fun setup() {
+        LayoutInflater.from(context).inflate(R.layout.btvplayer_view, _v, true)
+        playerController = playbackService.getController(playerId)
 
         if (playerController == null) {
             throw Error("Player $playerId does not exist. Create it with PlaybackService.newPlayer()")
@@ -76,6 +80,7 @@ class BccmPlayerViewWrapper(
         playerView.setFullscreenButtonClickListener {
             if (!fullscreen) {
                 activity.requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE
+                _v.removeAllViews()
                 val fullScreenPlayer = BccmPlayerViewWrapper(activity, playbackService, context, playerId, true)
                 rootLayout.addView(fullScreenPlayer.view)
             } else {
@@ -87,18 +92,15 @@ class BccmPlayerViewWrapper(
 
         val busyIndicator = _v.findViewById<ProgressBar>(R.id.busyIndicator);
         playerController!!.getExoPlayer().addListener(object : Player.Listener {
+            private lateinit var player: Player;
+            override fun onEvents(player: Player, events: Player.Events) {
+                this.player = player;
+            }
+
             override fun onPlaybackStateChanged(playbackState: Int) {
-                /*if(player!!.isCurrentMediaItemLive) {
-                    playerView.findViewById<LinearLayout>(R.id.progress).visibility = View.GONE;
-                    playerView.findViewById<LinearLayout>(R.id.forward_panel).visibility = View.GONE;
-                    playerView.findViewById<LinearLayout>(R.id.rewind_panel).visibility = View.GONE;
-                    playerView.findViewById<LinearLayout>(R.id.live_indicator).visibility = View.VISIBLE;
-                } else {
-                    playerView.findViewById<LinearLayout>(R.id.progress).visibility = View.VISIBLE;
-                    playerView.findViewById<LinearLayout>(R.id.forward_panel).visibility = View.VISIBLE;
-                    playerView.findViewById<LinearLayout>(R.id.rewind_panel).visibility = View.VISIBLE;
-                    playerView.findViewById<LinearLayout>(R.id.live_indicator).visibility = View.GONE;
-                }*/
+                setLiveUIEnabled(playerController?.isLive == true)
+                playerView.setShowNextButton(false)
+                playerView.setShowPreviousButton(false)
 
                 if (playbackState == Player.STATE_READY) {
                     busyIndicator?.visibility = View.GONE;
@@ -107,5 +109,25 @@ class BccmPlayerViewWrapper(
         })
 
         playerController!!.takeOwnership(this)
+        setLiveUIEnabled(playerController?.isLive == true);
+    }
+
+    fun setLiveUIEnabled(enabled: Boolean) {
+        val playerView = _v.findViewById<PlayerView>(R.id.brunstad_player) ?: return
+        if(playerController?.isLive == true) {
+            playerView.setShowFastForwardButton(false)
+            playerView.setShowRewindButton(false)
+            playerView.setShowMultiWindowTimeBar(false)
+            playerView.findViewById<View?>(R.id.exo_progress)?.visibility = View.GONE;
+            playerView.findViewById<View?>(R.id.exo_time)?.visibility = View.GONE;
+            _v.findViewById<View?>(R.id.live_indicator)?.visibility = View.VISIBLE;
+        } else {
+            playerView.setShowFastForwardButton(true)
+            playerView.setShowRewindButton(true)
+            playerView.setShowMultiWindowTimeBar(true)
+            playerView.findViewById<View?>(R.id.exo_progress)?.visibility = View.VISIBLE;
+            playerView.findViewById<View?>(R.id.exo_time)?.visibility = View.VISIBLE;
+            _v.findViewById<View?>(R.id.live_indicator)?.visibility = View.GONE;
+        }
     }
 }
