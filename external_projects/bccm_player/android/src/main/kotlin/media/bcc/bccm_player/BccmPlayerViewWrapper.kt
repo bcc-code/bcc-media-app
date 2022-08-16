@@ -6,13 +6,12 @@ import android.content.pm.ActivityInfo
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.FrameLayout
-import android.widget.LinearLayout
-import android.widget.ProgressBar
-import android.widget.RelativeLayout
+import android.widget.*
 import androidx.annotation.NonNull
 import androidx.annotation.Nullable
 import androidx.media3.common.*
+import androidx.media3.exoplayer.ExoPlayer
+import androidx.media3.exoplayer.util.DebugTextViewHelper
 import androidx.media3.ui.DefaultTimeBar
 import androidx.media3.ui.PlayerView
 import io.flutter.plugin.common.StandardMessageCodec
@@ -107,6 +106,10 @@ class BccmPlayerViewWrapper(
                 }
             }
         })
+
+        val debugTextView = _v.findViewById<TextView>(R.id.debug_text_view);
+        val debugHelper = DebugTextViewHelper((playerController!!.getExoPlayer() as ForwardingPlayer).wrappedPlayer as ExoPlayer, debugTextView);
+        debugHelper.start();
 
         playerController!!.takeOwnership(this)
         setLiveUIEnabled(playerController?.isLive == true);

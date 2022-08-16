@@ -1,9 +1,9 @@
+import 'package:bccm_player/playback_service_pigeon.g.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:bccm_player/bccm_player_method_channel.dart';
 
 void main() {
-  MethodChannelBccmPlayer platform = MethodChannelBccmPlayer();
+  PlaybackServicePigeon platform = PlaybackServicePigeon();
   const MethodChannel channel = MethodChannel('bccm_player');
 
   TestWidgetsFlutterBinding.ensureInitialized();
@@ -18,7 +18,7 @@ void main() {
     channel.setMockMethodCallHandler(null);
   });
 
-  test('getPlatformVersion', () async {
-    expect(await platform.getPlatformVersion(), '42');
+  test('newPlayer', () async {
+    expect(await platform.newPlayer(""), '42');
   });
 }

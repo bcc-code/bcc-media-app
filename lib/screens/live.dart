@@ -1,6 +1,5 @@
 import 'package:bccm_player/bccm_player.dart';
-import 'package:bccm_player/platform_interface.dart';
-import 'package:bccm_player/playback_service.dart';
+import 'package:bccm_player/playback_service_interface.dart';
 import 'package:flutter/material.dart';
 import 'package:my_app/api/livestream.dart';
 
@@ -28,11 +27,11 @@ class _LiveScreenState extends State<LiveScreen> {
   }
 
   Future<String> setupPlayer() async {
-    var playerFuture = BccmPlayerPlatform.instance.newPlayer();
+    var playerFuture = PlaybackServiceInterface.instance.newPlayer();
     var liveUrl = await fetchLiveUrl();
     playerFuture.then((playerId) {
-      BccmPlayerPlatform.instance.setUrl(playerId: playerId, url: liveUrl.streamUrl, isLive: true);
-      BccmPlayerPlatform.instance.setPrimary(playerId);
+      PlaybackServiceInterface.instance.setUrl(playerId: playerId, url: liveUrl.streamUrl, isLive: true);
+      PlaybackServiceInterface.instance.setPrimary(playerId);
       return playerId;
     });
     return playerFuture;

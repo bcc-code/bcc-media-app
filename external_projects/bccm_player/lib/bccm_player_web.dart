@@ -4,17 +4,16 @@
 // ignore: avoid_web_libraries_in_flutter
 import 'dart:html' as html show window;
 
+import 'package:bccm_player/playback_service_interface.dart';
 import 'package:flutter_web_plugins/flutter_web_plugins.dart';
 
-import 'platform_interface.dart';
-
 /// A web implementation of the BccmPlayerPlatform of the BccmPlayer plugin.
-class BccmPlayerWeb extends BccmPlayerPlatform {
+class BccmPlayerWeb extends PlaybackServiceInterface {
   /// Constructs a BccmPlayerWeb
   BccmPlayerWeb();
 
   static void registerWith(Registrar registrar) {
-    BccmPlayerPlatform.instance = BccmPlayerWeb();
+    PlaybackServiceInterface.instance = BccmPlayerWeb();
   }
 
   /// Returns a [String] containing the version of the platform.

@@ -1,14 +1,11 @@
 
 //import 'dart:html';
-import 'dart:math';
 
 import 'package:auto_route/auto_route.dart';
-import 'package:bccm_player/platform_interface.dart';
+import 'package:bccm_player/playback_service_interface.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:bccm_player/bccm_player.dart';
-import 'package:bccm_player/playback_service.dart';
-import 'package:provider/provider.dart';
 
 import '../api/episodes.dart';
 
@@ -50,7 +47,7 @@ class _EpisodeScreenState extends State<EpisodeScreen> {
     if (widget.playerType == PlayerType.native) {
       playerIdFuture = Future<String>((() async {
         var episode = await episodeFuture;
-        var playerId = await BccmPlayerPlatform.instance.newPlayer(url: episode.streamUrl);
+        var playerId = await PlaybackServiceInterface.instance.newPlayer(url: episode.streamUrl);
         
         return playerId;
       }));
@@ -77,7 +74,7 @@ class _EpisodeScreenState extends State<EpisodeScreen> {
                     children: [
                       BccmPlayer(type: widget.playerType, id: snapshot.data!),
                       ElevatedButton(onPressed: () {
-                        BccmPlayerPlatform.instance.setPrimary(snapshot.data!);
+                        PlaybackServiceInterface.instance.setPrimary(snapshot.data!);
                       }, child: Text("set primary"))
                     ],
                   );

@@ -34,6 +34,18 @@
             android:textSize="13dp"/>
     </LinearLayout>
 
+    <TextView
+        android:id="@+id/debug_text_view"
+        android:layout_width="365dp"
+        android:layout_height="177dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:text="asdasdasdas"
+        android:elevation="100dp"
+        android:textColor="#FFFFFF"
+        android:textSize="13dp"
+        android:visibility="visible" />
+
     <androidx.media3.ui.PlayerView
         android:id="@+id/brunstad_player"
         android:layout_width="match_parent"

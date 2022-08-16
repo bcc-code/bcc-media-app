@@ -576,6 +576,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "5.0.0"
+  pigeon:
+    dependency: "direct dev"
+    description:
+      name: pigeon
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "3.2.6"
   platform:
     dependency: transitive
     description:

@@ -1,24 +1,23 @@
+import 'package:bccm_player/playback_service.dart';
 import 'package:plugin_platform_interface/plugin_platform_interface.dart';
 
-import 'bccm_player_method_channel.dart';
-
-abstract class BccmPlayerPlatform extends PlatformInterface {
-  /// Constructs a BccmPlayerPlatform.
-  BccmPlayerPlatform() : super(token: _token);
+abstract class PlaybackServiceInterface extends PlatformInterface {
+  /// Constructs a PlaybackServiceInterface.
+  PlaybackServiceInterface() : super(token: _token);
 
   static final Object _token = Object();
 
-  static BccmPlayerPlatform _instance = MethodChannelBccmPlayer();
+  static PlaybackServiceInterface _instance = PlaybackService();
 
-  /// The default instance of [BccmPlayerPlatform] to use.
+  /// The default instance of [PlaybackServiceInterface] to use.
   ///
   /// Defaults to [MethodChannelBccmPlayer].
-  static BccmPlayerPlatform get instance => _instance;
+  static PlaybackServiceInterface get instance => _instance;
 
   /// Platform-specific implementations should set this with their own
-  /// platform-specific class that extends [BccmPlayerPlatform] when
+  /// platform-specific class that extends [PlaybackServiceInterface] when
   /// they register themselves.
-  static set instance(BccmPlayerPlatform instance) {
+  static set instance(PlaybackServiceInterface instance) {
     PlatformInterface.verifyToken(instance, _token);
     _instance = instance;
   }
