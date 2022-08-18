@@ -1,8 +1,11 @@
 package media.bcc.bccm_player
 
 import android.app.Activity
+import android.app.PictureInPictureParams
 import android.content.Context
 import android.content.pm.ActivityInfo
+import android.os.Build
+import android.util.Rational
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.*
@@ -61,6 +64,14 @@ class BccmPlayerViewWrapper(
         return _playerView;
     }
 
+    private fun goFullscreen() {
+        val rootLayout: FrameLayout = activity.window.decorView.findViewById<View>(android.R.id.content) as FrameLayout
+        activity.requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE
+        _v.removeAllViews()
+        val fullScreenPlayer = BccmPlayerViewWrapper(activity, playbackService, context, playerId, true)
+        rootLayout.addView(fullScreenPlayer.view)
+    }
+
     fun setup() {
         LayoutInflater.from(context).inflate(R.layout.btvplayer_view, _v, true)
         playerController = playbackService.getController(playerId)
@@ -71,18 +82,30 @@ class BccmPlayerViewWrapper(
 
         val playerView = _v.findViewById<PlayerView>(R.id.brunstad_player)
                 .also { _playerView = it };
-        val rootLayout: FrameLayout = activity.window.decorView.findViewById<View>(android.R.id.content) as FrameLayout
 
         playerView.setFullscreenButtonClickListener {
             if (!fullscreen) {
-                activity.requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE
-                _v.removeAllViews()
-                val fullScreenPlayer = BccmPlayerViewWrapper(activity, playbackService, context, playerId, true)
-                rootLayout.addView(fullScreenPlayer.view)
+                goFullscreen()
             } else {
+                val rootLayout: FrameLayout = activity.window.decorView.findViewById<View>(android.R.id.content) as FrameLayout
                 activity.requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED
                 rootLayout.removeView(view)
                 dispose()
+            }
+        }
+
+        val pipButton = _v.findViewById<ImageButton>(R.id.pip_button);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            pipButton.visibility = View.VISIBLE;
+        }
+        pipButton.setOnClickListener {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                if (!fullscreen) {
+                    goFullscreen();
+                }
+                activity.enterPictureInPictureMode(PictureInPictureParams.Builder()
+                        .setAspectRatio(Rational(16, 9))
+                        .build())
             }
         }
 

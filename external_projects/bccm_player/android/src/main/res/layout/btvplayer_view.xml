@@ -1,59 +1,93 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/playerRoot"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/playerRoot"
-    android:clickable="false"
-    android:background="#000000" >
+    android:background="#000000"
+    android:clickable="false">
+
+    <ImageButton
+        android:id="@+id/pip_button"
+        android:translationZ="1dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginRight="24dp"
+        android:background="@android:color/transparent"
+        android:src="@drawable/pip_icon"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_conversion_absoluteHeight="48dp"
+        tools:layout_conversion_absoluteWidth="48dp" />
+
     <LinearLayout
         android:id="@+id/live_indicator"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="15dp"
+        android:background="@drawable/live_gradient"
+        android:gravity="center_vertical"
         android:orientation="horizontal"
         android:padding="5dp"
-        android:gravity="center_vertical"
-        android:background="@drawable/live_gradient"
-        android:layout_marginTop="15dp"
-        android:layout_marginLeft="8dp">
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_conversion_absoluteHeight="27dp"
+        tools:layout_conversion_absoluteWidth="59dp">
+
         <ImageView
             android:id="@+id/imageView"
-            android:layout_marginLeft="5dp"
             android:layout_width="15dp"
             android:layout_height="15dp"
+            android:layout_marginLeft="5dp"
             android:src="@drawable/icon_play" />
 
         <TextView
             android:id="@+id/live_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginRight="5dp"
             android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
             android:text="live"
             android:textColor="#FFFFFF"
-            android:textSize="13dp"/>
+            android:textSize="13dp" />
     </LinearLayout>
 
     <TextView
         android:id="@+id/debug_text_view"
-        android:layout_width="365dp"
-        android:layout_height="177dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
         android:layout_marginLeft="5dp"
-        android:layout_marginRight="5dp"
-        android:text="asdasdasdas"
         android:elevation="100dp"
+        android:text="asdasdasdas"
         android:textColor="#FFFFFF"
         android:textSize="13dp"
-        android:visibility="visible" />
+        android:visibility="visible"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_conversion_absoluteHeight="177dp"
+        tools:layout_conversion_absoluteWidth="365dp" />
 
     <androidx.media3.ui.PlayerView
         android:id="@+id/brunstad_player"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:visibility="visible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:show_buffering="when_playing"
-        app:show_subtitle_button="true" />
-  <!-- <ImageButton
+        app:show_subtitle_button="true"
+        tools:layout_conversion_absoluteHeight="0dp"
+        tools:layout_conversion_absoluteWidth="0dp"
+        tools:layout_editor_absoluteY="1dp"
+        tools:visibility="gone">
+
+    </androidx.media3.ui.PlayerView>
+    <!-- <ImageButton
         android:id="@+id/playButton"
         android:layout_width="45dp"
         android:layout_height="45dp"
@@ -67,8 +101,10 @@
         android:id="@+id/busyIndicator"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:layout_gravity="center"
         android:indeterminateTint="@android:color/white"
-        android:visibility="gone" />
-</RelativeLayout>
+        android:visibility="gone"
+        tools:layout_conversion_absoluteHeight="0dp"
+        tools:layout_conversion_absoluteWidth="0dp"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="0dp" />
+</androidx.constraintlayout.widget.ConstraintLayout>
