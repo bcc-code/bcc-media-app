@@ -1,6 +1,5 @@
 package media.bcc.bccm_player
 
-import android.R
 import android.app.Activity
 import android.content.ComponentName
 import android.content.Context
@@ -26,6 +25,7 @@ import io.flutter.plugin.common.MethodCall
 import io.flutter.plugin.common.MethodChannel
 import io.flutter.plugin.common.MethodChannel.MethodCallHandler
 import io.flutter.plugin.common.MethodChannel.Result
+import media.bcc.player.PlaybackPlatformApi.PlaybackPlatformPigeon
 
 /** BccmPlayerPlugin */
 class BccmPlayerPlugin: FlutterPlugin, MethodCallHandler, ActivityAware {
@@ -36,7 +36,6 @@ class BccmPlayerPlugin: FlutterPlugin, MethodCallHandler, ActivityAware {
   private lateinit var channel : MethodChannel
   private var pluginBinding: FlutterPlugin.FlutterPluginBinding? = null
   private lateinit var controllerFuture: ListenableFuture<MediaController>
-  private var binaryMessenger: BinaryMessenger? = null
   private var playbackService: PlaybackService? = null
   private var playbackServiceFuture: ListenableFuture<PlaybackService>? = null
   private var mBound: Boolean = false
@@ -71,6 +70,7 @@ class BccmPlayerPlugin: FlutterPlugin, MethodCallHandler, ActivityAware {
   override fun onAttachedToActivity(binding: ActivityPluginBinding) {
     activity = binding.activity
 
+    PlaybackPlatformPigeon.setup(pluginBinding!!.binaryMessenger, PlaybackApiImpl(this))
     channel = MethodChannel(pluginBinding!!.binaryMessenger, "bccm_player")
     channel.setMethodCallHandler(this)
 
@@ -82,9 +82,8 @@ class BccmPlayerPlugin: FlutterPlugin, MethodCallHandler, ActivityAware {
     val sessionToken = SessionToken(binding.activity, ComponentName(binding.activity, PlaybackService::class.java))
     controllerFuture = MediaController.Builder(binding.activity, sessionToken).buildAsync()
     controllerFuture.addListener({
-      1;
-    },
-            MoreExecutors.directExecutor()
+        1;
+      }, MoreExecutors.directExecutor()
     )
   }
 
@@ -97,27 +96,21 @@ class BccmPlayerPlugin: FlutterPlugin, MethodCallHandler, ActivityAware {
   }
 
   override fun onDetachedFromActivity() {
-    channel.setMethodCallHandler(null)
 
+    channel.setMethodCallHandler(null)
     pluginBinding!!.applicationContext.unbindService(playbackServiceConnection)
     MediaController.releaseFuture(controllerFuture)
     mBound = false
+  }
+
+  fun getPlaybackService(): PlaybackService? {
+    return playbackService;
   }
 
   override fun onMethodCall(@NonNull call: MethodCall, @NonNull result: Result) {
     val pbService = playbackService
             ?: return result.error("playbackServiceIsNull", "playbackService is null", "playbackService is null");
     when (call.method) {
-      "new_player" -> {
-        val args = call.arguments as HashMap<*, *>
-        val url = args["url"] as String?;
-
-        val playerController = pbService.newPlayer()
-        if (url != null) {
-          playerController.playWithUrl(url)
-        }
-        result.success(playerController.id)
-      }
       "set_url" -> {
         val args = call.arguments as HashMap<*, *>
         val playerId = args["player_id"] as String;

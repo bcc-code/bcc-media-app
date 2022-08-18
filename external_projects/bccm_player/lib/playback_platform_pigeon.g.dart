@@ -7,23 +7,23 @@ import 'dart:typed_data' show Uint8List, Int32List, Int64List, Float64List;
 import 'package:flutter/foundation.dart' show WriteBuffer, ReadBuffer;
 import 'package:flutter/services.dart';
 
-class _PlaybackServicePigeonCodec extends StandardMessageCodec {
-  const _PlaybackServicePigeonCodec();
+class _PlaybackPlatformPigeonCodec extends StandardMessageCodec {
+  const _PlaybackPlatformPigeonCodec();
 }
 
-class PlaybackServicePigeon {
-  /// Constructor for [PlaybackServicePigeon].  The [binaryMessenger] named argument is
+class PlaybackPlatformPigeon {
+  /// Constructor for [PlaybackPlatformPigeon].  The [binaryMessenger] named argument is
   /// available for dependency injection.  If it is left null, the default
   /// BinaryMessenger will be used which routes to the host platform.
-  PlaybackServicePigeon({BinaryMessenger? binaryMessenger}) : _binaryMessenger = binaryMessenger;
+  PlaybackPlatformPigeon({BinaryMessenger? binaryMessenger}) : _binaryMessenger = binaryMessenger;
 
   final BinaryMessenger? _binaryMessenger;
 
-  static const MessageCodec<Object?> codec = _PlaybackServicePigeonCodec();
+  static const MessageCodec<Object?> codec = _PlaybackPlatformPigeonCodec();
 
   Future<String> newPlayer(String? arg_url) async {
     final BasicMessageChannel<Object?> channel = BasicMessageChannel<Object?>(
-        'dev.flutter.pigeon.PlaybackServicePigeon.newPlayer', codec, binaryMessenger: _binaryMessenger);
+        'dev.flutter.pigeon.PlaybackPlatformPigeon.newPlayer', codec, binaryMessenger: _binaryMessenger);
     final Map<Object?, Object?>? replyMap =
         await channel.send(<Object?>[arg_url]) as Map<Object?, Object?>?;
     if (replyMap == null) {

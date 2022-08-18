@@ -2,7 +2,6 @@ package media.bcc.bccm_player
 
 import android.content.Context
 import androidx.media3.common.*
-import androidx.media3.exoplayer.DefaultRenderersFactory
 import androidx.media3.exoplayer.ExoPlayer
 import androidx.media3.ui.PlayerView
 import java.util.*
@@ -27,7 +26,11 @@ class BccmPlayerController(context: Context) {
         forwardingPlayer = BccmForwardingPlayer(this)
     }
 
-    fun getExoPlayer(): Player {
+    fun getExoPlayer(): ExoPlayer {
+        return exoPlayer;
+    }
+
+    fun getPlayer(): Player {
         return forwardingPlayer;
     }
 
@@ -37,9 +40,9 @@ class BccmPlayerController(context: Context) {
         val playerView = pvWrapper.getPlayerView() ?: throw Error("pvWrapper.getPlayerView() was null");
         val currentPlayerView = previousPvWrapper?.getPlayerView();
         if (currentPlayerView != null) {
-            PlayerView.switchTargetView(getExoPlayer(), currentPlayerView, playerView)
+            PlayerView.switchTargetView(getPlayer(), currentPlayerView, playerView)
         } else {
-            playerView.player = getExoPlayer()
+            playerView.player = getPlayer()
         }
         //previousPvWrapper?.dispose()
         /*if (previousPvWrapper?.isFullscreenPlayer() == true) {

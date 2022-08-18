@@ -9,13 +9,13 @@
 NS_ASSUME_NONNULL_BEGIN
 
 
-/// The codec used by PlaybackServicePigeon.
-NSObject<FlutterMessageCodec> *PlaybackServicePigeonGetCodec(void);
+/// The codec used by PlaybackPlatformPigeon.
+NSObject<FlutterMessageCodec> *PlaybackPlatformPigeonGetCodec(void);
 
-@protocol PlaybackServicePigeon
+@protocol PlaybackPlatformPigeon
 - (void)newPlayerUrl:(nullable NSString *)url completion:(void(^)(NSString *_Nullable, FlutterError *_Nullable))completion;
 @end
 
-extern void PlaybackServicePigeonSetup(id<FlutterBinaryMessenger> binaryMessenger, NSObject<PlaybackServicePigeon> *_Nullable api);
+extern void PlaybackPlatformPigeonSetup(id<FlutterBinaryMessenger> binaryMessenger, NSObject<PlaybackPlatformPigeon> *_Nullable api);
 
 NS_ASSUME_NONNULL_END

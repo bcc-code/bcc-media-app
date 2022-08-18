@@ -8,12 +8,12 @@ import 'package:bccm_player/playback_service_interface.dart';
 import 'package:flutter_web_plugins/flutter_web_plugins.dart';
 
 /// A web implementation of the BccmPlayerPlatform of the BccmPlayer plugin.
-class BccmPlayerWeb extends PlaybackServiceInterface {
+class BccmPlayerWeb extends PlaybackPlatformInterface {
   /// Constructs a BccmPlayerWeb
   BccmPlayerWeb();
 
   static void registerWith(Registrar registrar) {
-    PlaybackServiceInterface.instance = BccmPlayerWeb();
+    PlaybackPlatformInterface.instance = BccmPlayerWeb();
   }
 
   /// Returns a [String] containing the version of the platform.

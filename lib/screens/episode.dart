@@ -47,7 +47,7 @@ class _EpisodeScreenState extends State<EpisodeScreen> {
     if (widget.playerType == PlayerType.native) {
       playerIdFuture = Future<String>((() async {
         var episode = await episodeFuture;
-        var playerId = await PlaybackServiceInterface.instance.newPlayer(url: episode.streamUrl);
+        var playerId = await PlaybackPlatformInterface.instance.newPlayer(url: episode.streamUrl);
         
         return playerId;
       }));
@@ -74,7 +74,7 @@ class _EpisodeScreenState extends State<EpisodeScreen> {
                     children: [
                       BccmPlayer(type: widget.playerType, id: snapshot.data!),
                       ElevatedButton(onPressed: () {
-                        PlaybackServiceInterface.instance.setPrimary(snapshot.data!);
+                        PlaybackPlatformInterface.instance.setPrimary(snapshot.data!);
                       }, child: Text("set primary"))
                     ],
                   );

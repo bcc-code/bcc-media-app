@@ -27,11 +27,11 @@ class _LiveScreenState extends State<LiveScreen> {
   }
 
   Future<String> setupPlayer() async {
-    var playerFuture = PlaybackServiceInterface.instance.newPlayer();
+    var playerFuture = PlaybackPlatformInterface.instance.newPlayer();
     var liveUrl = await fetchLiveUrl();
     playerFuture.then((playerId) {
-      PlaybackServiceInterface.instance.setUrl(playerId: playerId, url: liveUrl.streamUrl, isLive: true);
-      PlaybackServiceInterface.instance.setPrimary(playerId);
+      PlaybackPlatformInterface.instance.setUrl(playerId: playerId, url: liveUrl.streamUrl, isLive: true);
+      PlaybackPlatformInterface.instance.setPrimary(playerId);
       return playerId;
     });
     return playerFuture;

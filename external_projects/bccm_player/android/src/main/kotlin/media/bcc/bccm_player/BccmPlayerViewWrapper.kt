@@ -5,19 +5,16 @@ import android.content.Context
 import android.content.pm.ActivityInfo
 import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import android.widget.*
 import androidx.annotation.NonNull
 import androidx.annotation.Nullable
 import androidx.media3.common.*
 import androidx.media3.exoplayer.ExoPlayer
 import androidx.media3.exoplayer.util.DebugTextViewHelper
-import androidx.media3.ui.DefaultTimeBar
 import androidx.media3.ui.PlayerView
 import io.flutter.plugin.common.StandardMessageCodec
 import io.flutter.plugin.platform.PlatformView
 import io.flutter.plugin.platform.PlatformViewFactory
-import java.util.*
 
 
 class PlayerPlatformViewFactory(private val activity: Activity, private val playbackService: PlaybackService?) : PlatformViewFactory(StandardMessageCodec.INSTANCE) {
@@ -90,7 +87,7 @@ class BccmPlayerViewWrapper(
         }
 
         val busyIndicator = _v.findViewById<ProgressBar>(R.id.busyIndicator);
-        playerController!!.getExoPlayer().addListener(object : Player.Listener {
+        playerController!!.getPlayer().addListener(object : Player.Listener {
             private lateinit var player: Player;
             override fun onEvents(player: Player, events: Player.Events) {
                 this.player = player;
@@ -108,7 +105,7 @@ class BccmPlayerViewWrapper(
         })
 
         val debugTextView = _v.findViewById<TextView>(R.id.debug_text_view);
-        val debugHelper = DebugTextViewHelper((playerController!!.getExoPlayer() as ForwardingPlayer).wrappedPlayer as ExoPlayer, debugTextView);
+        val debugHelper = DebugTextViewHelper((playerController!!.getPlayer() as ForwardingPlayer).wrappedPlayer as ExoPlayer, debugTextView);
         debugHelper.start();
 
         playerController!!.takeOwnership(this)

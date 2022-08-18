@@ -5,7 +5,7 @@ import 'package:plugin_platform_interface/plugin_platform_interface.dart';
 
 class MockBccmPlayerPlatform
     with MockPlatformInterfaceMixin
-    implements PlaybackServiceInterface {
+    implements PlaybackPlatformInterface {
       @override
       Future<String?> getPlatformVersion() {
     // TODO: implement getPlatformVersion
@@ -32,7 +32,7 @@ class MockBccmPlayerPlatform
 }
 
 void main() {
-  final PlaybackServiceInterface initialPlatform = PlaybackServiceInterface.instance;
+  final PlaybackPlatformInterface initialPlatform = PlaybackPlatformInterface.instance;
 
   test('$PlaybackService is the default instance', () {
     expect(initialPlatform, isInstanceOf<PlaybackService>());
@@ -41,7 +41,7 @@ void main() {
   test('getPlatformVersion', () async {
     PlaybackService bccmPlayerPlugin = PlaybackService();
     MockBccmPlayerPlatform fakePlatform = MockBccmPlayerPlatform();
-    PlaybackServiceInterface.instance = fakePlatform;
+    PlaybackPlatformInterface.instance = fakePlatform;
 
     expect(await bccmPlayerPlugin.getPlatformVersion(), '42');
   });

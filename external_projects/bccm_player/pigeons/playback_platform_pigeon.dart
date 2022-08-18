@@ -6,7 +6,7 @@ class Book {
 }
 
 @HostApi()
-abstract class PlaybackServicePigeon {
+abstract class PlaybackPlatformPigeon {
   @async
   String newPlayer(String? url);
 }

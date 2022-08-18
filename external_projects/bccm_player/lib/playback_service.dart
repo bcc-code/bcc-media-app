@@ -1,15 +1,15 @@
+import 'package:bccm_player/playback_platform_pigeon.g.dart';
 import 'package:bccm_player/playback_service_interface.dart';
-import 'package:bccm_player/playback_service_pigeon.g.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 
 /// An implementation of [BccmPlayerPlatform] that uses method channels.
-class PlaybackService extends PlaybackServiceInterface {
+class PlaybackService extends PlaybackPlatformInterface {
   /// The method channel used to interact with the native platform.
   @visibleForTesting
   final methodChannel = const MethodChannel('bccm_player');
 
-  final PlaybackServicePigeon _pigeon = PlaybackServicePigeon();
+  final PlaybackPlatformPigeon _pigeon = PlaybackPlatformPigeon();
 
   @override
   Future<String?> getPlatformVersion() async {

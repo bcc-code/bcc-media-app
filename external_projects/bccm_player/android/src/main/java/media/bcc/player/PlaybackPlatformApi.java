@@ -20,31 +20,31 @@ import java.util.HashMap;
 
 /** Generated class from Pigeon. */
 @SuppressWarnings({"unused", "unchecked", "CodeBlock2Expr", "RedundantSuppression"})
-public class PlaybackServiceApi {
+public class PlaybackPlatformApi {
 
   public interface Result<T> {
     void success(T result);
     void error(Throwable error);
   }
-  private static class PlaybackServicePigeonCodec extends StandardMessageCodec {
-    public static final PlaybackServicePigeonCodec INSTANCE = new PlaybackServicePigeonCodec();
-    private PlaybackServicePigeonCodec() {}
+  private static class PlaybackPlatformPigeonCodec extends StandardMessageCodec {
+    public static final PlaybackPlatformPigeonCodec INSTANCE = new PlaybackPlatformPigeonCodec();
+    private PlaybackPlatformPigeonCodec() {}
   }
 
   /** Generated interface from Pigeon that represents a handler of messages from Flutter.*/
-  public interface PlaybackServicePigeon {
+  public interface PlaybackPlatformPigeon {
     void newPlayer(@Nullable String url, Result<String> result);
 
-    /** The codec used by PlaybackServicePigeon. */
+    /** The codec used by PlaybackPlatformPigeon. */
     static MessageCodec<Object> getCodec() {
-      return PlaybackServicePigeonCodec.INSTANCE;
+      return PlaybackPlatformPigeonCodec.INSTANCE;
     }
 
-    /** Sets up an instance of `PlaybackServicePigeon` to handle messages through the `binaryMessenger`. */
-    static void setup(BinaryMessenger binaryMessenger, PlaybackServicePigeon api) {
+    /** Sets up an instance of `PlaybackPlatformPigeon` to handle messages through the `binaryMessenger`. */
+    static void setup(BinaryMessenger binaryMessenger, PlaybackPlatformPigeon api) {
       {
         BasicMessageChannel<Object> channel =
-            new BasicMessageChannel<>(binaryMessenger, "dev.flutter.pigeon.PlaybackServicePigeon.newPlayer", getCodec());
+            new BasicMessageChannel<>(binaryMessenger, "dev.flutter.pigeon.PlaybackPlatformPigeon.newPlayer", getCodec());
         if (api != null) {
           channel.setMessageHandler((message, reply) -> {
             Map<String, Object> wrapped = new HashMap<>();

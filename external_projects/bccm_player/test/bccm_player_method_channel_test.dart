@@ -1,9 +1,9 @@
-import 'package:bccm_player/playback_service_pigeon.g.dart';
+import 'package:bccm_player/playback_platform_pigeon.g.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
-  PlaybackServicePigeon platform = PlaybackServicePigeon();
+  PlaybackPlatformPigeon platform = PlaybackPlatformPigeon();
   const MethodChannel channel = MethodChannel('bccm_player');
 
   TestWidgetsFlutterBinding.ensureInitialized();
