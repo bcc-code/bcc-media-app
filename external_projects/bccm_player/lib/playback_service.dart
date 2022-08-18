@@ -24,19 +24,13 @@ class PlaybackService extends PlaybackPlatformInterface {
 
   @override
   Future<void> setUrl({required String playerId, required String url, bool isLive = false}) async {
-    await methodChannel.invokeMethod('set_url', <String, dynamic>{
-      'player_id': playerId,
-      'url': url,
-      'is_live': isLive,
-    });
+    await _pigeon.setUrl(SetUrlArgs(playerId: playerId, url: url, isLive: isLive));
   }
 
   @override
   Future<bool> setPrimary(String id) async {
-    final playerId = await methodChannel.invokeMethod('set_primary', <String, dynamic>{
-      'player_id': id,
-    });
-    return playerId;
+    await _pigeon.setPrimary(id);
+    return true;
   }
   
 }

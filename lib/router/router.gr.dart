@@ -47,9 +47,13 @@ class AppRouter extends _i7.RootStackRouter {
       final args = routeData.argsAs<EpisodeScreenRouteArgs>(
           orElse: () => EpisodeScreenRouteArgs(
               episodeId: pathParams.getInt('episodeId', 1789)));
-      return _i7.MaterialPageX<void>(
+      return _i7.CustomPage<void>(
           routeData: routeData,
-          child: _i2.EpisodeScreen(key: args.key, episodeId: args.episodeId));
+          child: _i2.EpisodeScreen(key: args.key, episodeId: args.episodeId),
+          transitionsBuilder: _i7.TransitionsBuilders.zoomIn,
+          durationInMilliseconds: 200,
+          opaque: true,
+          barrierDismissible: false);
     },
     RootScreenRoute.name: (routeData) {
       return _i7.MaterialPageX<void>(

@@ -8,12 +8,26 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+@class SetUrlArgs;
+
+@interface SetUrlArgs : NSObject
+/// `init` unavailable to enforce nonnull fields, see the `make` class method.
+- (instancetype)init NS_UNAVAILABLE;
++ (instancetype)makeWithPlayerId:(NSString *)playerId
+    url:(NSString *)url
+    isLive:(nullable NSNumber *)isLive;
+@property(nonatomic, copy) NSString * playerId;
+@property(nonatomic, copy) NSString * url;
+@property(nonatomic, strong, nullable) NSNumber * isLive;
+@end
 
 /// The codec used by PlaybackPlatformPigeon.
 NSObject<FlutterMessageCodec> *PlaybackPlatformPigeonGetCodec(void);
 
 @protocol PlaybackPlatformPigeon
 - (void)newPlayerUrl:(nullable NSString *)url completion:(void(^)(NSString *_Nullable, FlutterError *_Nullable))completion;
+- (void)setUrlSetUrlArgs:(SetUrlArgs *)setUrlArgs completion:(void(^)(FlutterError *_Nullable))completion;
+- (void)setPrimaryId:(NSString *)id completion:(void(^)(FlutterError *_Nullable))completion;
 @end
 
 extern void PlaybackPlatformPigeonSetup(id<FlutterBinaryMessenger> binaryMessenger, NSObject<PlaybackPlatformPigeon> *_Nullable api);

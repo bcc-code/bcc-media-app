@@ -51,6 +51,9 @@ class _EpisodeScreenState extends State<EpisodeScreen> {
         
         return playerId;
       }));
+      playerIdFuture.then((playerId) {
+        PlaybackPlatformInterface.instance.setPrimary(playerId);
+      });
     }
     super.didChangeDependencies();
   }
@@ -89,7 +92,7 @@ class _EpisodeScreenState extends State<EpisodeScreen> {
               child: ElevatedButton(
                 onPressed: () {
                   // Navigate back to first screen when tapped.
-                  Navigator.of(context).pop();
+                  context.router.pop();
                 },
                 child: const Text('Go back!'),
               ),

@@ -22,6 +22,77 @@ import java.util.HashMap;
 @SuppressWarnings({"unused", "unchecked", "CodeBlock2Expr", "RedundantSuppression"})
 public class PlaybackPlatformApi {
 
+  /** Generated class from Pigeon that represents data sent in messages. */
+  public static class SetUrlArgs {
+    private @NonNull String playerId;
+    public @NonNull String getPlayerId() { return playerId; }
+    public void setPlayerId(@NonNull String setterArg) {
+      if (setterArg == null) {
+        throw new IllegalStateException("Nonnull field \"playerId\" is null.");
+      }
+      this.playerId = setterArg;
+    }
+
+    private @NonNull String url;
+    public @NonNull String getUrl() { return url; }
+    public void setUrl(@NonNull String setterArg) {
+      if (setterArg == null) {
+        throw new IllegalStateException("Nonnull field \"url\" is null.");
+      }
+      this.url = setterArg;
+    }
+
+    private @Nullable Boolean isLive;
+    public @Nullable Boolean getIsLive() { return isLive; }
+    public void setIsLive(@Nullable Boolean setterArg) {
+      this.isLive = setterArg;
+    }
+
+    /** Constructor is private to enforce null safety; use Builder. */
+    private SetUrlArgs() {}
+    public static final class Builder {
+      private @Nullable String playerId;
+      public @NonNull Builder setPlayerId(@NonNull String setterArg) {
+        this.playerId = setterArg;
+        return this;
+      }
+      private @Nullable String url;
+      public @NonNull Builder setUrl(@NonNull String setterArg) {
+        this.url = setterArg;
+        return this;
+      }
+      private @Nullable Boolean isLive;
+      public @NonNull Builder setIsLive(@Nullable Boolean setterArg) {
+        this.isLive = setterArg;
+        return this;
+      }
+      public @NonNull SetUrlArgs build() {
+        SetUrlArgs pigeonReturn = new SetUrlArgs();
+        pigeonReturn.setPlayerId(playerId);
+        pigeonReturn.setUrl(url);
+        pigeonReturn.setIsLive(isLive);
+        return pigeonReturn;
+      }
+    }
+    @NonNull Map<String, Object> toMap() {
+      Map<String, Object> toMapResult = new HashMap<>();
+      toMapResult.put("playerId", playerId);
+      toMapResult.put("url", url);
+      toMapResult.put("isLive", isLive);
+      return toMapResult;
+    }
+    static @NonNull SetUrlArgs fromMap(@NonNull Map<String, Object> map) {
+      SetUrlArgs pigeonResult = new SetUrlArgs();
+      Object playerId = map.get("playerId");
+      pigeonResult.setPlayerId((String)playerId);
+      Object url = map.get("url");
+      pigeonResult.setUrl((String)url);
+      Object isLive = map.get("isLive");
+      pigeonResult.setIsLive((Boolean)isLive);
+      return pigeonResult;
+    }
+  }
+
   public interface Result<T> {
     void success(T result);
     void error(Throwable error);
@@ -29,11 +100,34 @@ public class PlaybackPlatformApi {
   private static class PlaybackPlatformPigeonCodec extends StandardMessageCodec {
     public static final PlaybackPlatformPigeonCodec INSTANCE = new PlaybackPlatformPigeonCodec();
     private PlaybackPlatformPigeonCodec() {}
+    @Override
+    protected Object readValueOfType(byte type, ByteBuffer buffer) {
+      switch (type) {
+        case (byte)128:         
+          return SetUrlArgs.fromMap((Map<String, Object>) readValue(buffer));
+        
+        default:        
+          return super.readValueOfType(type, buffer);
+        
+      }
+    }
+    @Override
+    protected void writeValue(ByteArrayOutputStream stream, Object value)     {
+      if (value instanceof SetUrlArgs) {
+        stream.write(128);
+        writeValue(stream, ((SetUrlArgs) value).toMap());
+      } else 
+{
+        super.writeValue(stream, value);
+      }
+    }
   }
 
   /** Generated interface from Pigeon that represents a handler of messages from Flutter.*/
   public interface PlaybackPlatformPigeon {
     void newPlayer(@Nullable String url, Result<String> result);
+    void setUrl(@NonNull SetUrlArgs setUrlArgs, Result<Void> result);
+    void setPrimary(@NonNull String id, Result<Void> result);
 
     /** The codec used by PlaybackPlatformPigeon. */
     static MessageCodec<Object> getCodec() {
@@ -63,6 +157,74 @@ public class PlaybackPlatformApi {
               };
 
               api.newPlayer(urlArg, resultCallback);
+            }
+            catch (Error | RuntimeException exception) {
+              wrapped.put("error", wrapError(exception));
+              reply.reply(wrapped);
+            }
+          });
+        } else {
+          channel.setMessageHandler(null);
+        }
+      }
+      {
+        BasicMessageChannel<Object> channel =
+            new BasicMessageChannel<>(binaryMessenger, "dev.flutter.pigeon.PlaybackPlatformPigeon.setUrl", getCodec());
+        if (api != null) {
+          channel.setMessageHandler((message, reply) -> {
+            Map<String, Object> wrapped = new HashMap<>();
+            try {
+              ArrayList<Object> args = (ArrayList<Object>)message;
+              SetUrlArgs setUrlArgsArg = (SetUrlArgs)args.get(0);
+              if (setUrlArgsArg == null) {
+                throw new NullPointerException("setUrlArgsArg unexpectedly null.");
+              }
+              Result<Void> resultCallback = new Result<Void>() {
+                public void success(Void result) {
+                  wrapped.put("result", null);
+                  reply.reply(wrapped);
+                }
+                public void error(Throwable error) {
+                  wrapped.put("error", wrapError(error));
+                  reply.reply(wrapped);
+                }
+              };
+
+              api.setUrl(setUrlArgsArg, resultCallback);
+            }
+            catch (Error | RuntimeException exception) {
+              wrapped.put("error", wrapError(exception));
+              reply.reply(wrapped);
+            }
+          });
+        } else {
+          channel.setMessageHandler(null);
+        }
+      }
+      {
+        BasicMessageChannel<Object> channel =
+            new BasicMessageChannel<>(binaryMessenger, "dev.flutter.pigeon.PlaybackPlatformPigeon.setPrimary", getCodec());
+        if (api != null) {
+          channel.setMessageHandler((message, reply) -> {
+            Map<String, Object> wrapped = new HashMap<>();
+            try {
+              ArrayList<Object> args = (ArrayList<Object>)message;
+              String idArg = (String)args.get(0);
+              if (idArg == null) {
+                throw new NullPointerException("idArg unexpectedly null.");
+              }
+              Result<Void> resultCallback = new Result<Void>() {
+                public void success(Void result) {
+                  wrapped.put("result", null);
+                  reply.reply(wrapped);
+                }
+                public void error(Throwable error) {
+                  wrapped.put("error", wrapError(error));
+                  reply.reply(wrapped);
+                }
+              };
+
+              api.setPrimary(idArg, resultCallback);
             }
             catch (Error | RuntimeException exception) {
               wrapped.put("error", wrapError(exception));

@@ -8,10 +8,6 @@ abstract class PlaybackPlatformInterface extends PlatformInterface {
   static final Object _token = Object();
 
   static PlaybackPlatformInterface _instance = PlaybackService();
-
-  /// The default instance of [PlaybackPlatformInterface] to use.
-  ///
-  /// Defaults to [MethodChannelBccmPlayer].
   static PlaybackPlatformInterface get instance => _instance;
 
   /// Platform-specific implementations should set this with their own
