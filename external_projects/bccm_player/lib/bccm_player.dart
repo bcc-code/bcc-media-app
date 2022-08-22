@@ -69,7 +69,7 @@ class _BccmPlayerState extends State<BccmPlayer> {
               child: UiKitView(
                   viewType: 'bccm-player',
                   creationParams: <String, dynamic>{
-                    'url': widget.id,
+                    'player_id': widget.id,
                   },
                   creationParamsCodec: const StandardMessageCodec())),
         if (!_hidePlayer && Platform.isAndroid)

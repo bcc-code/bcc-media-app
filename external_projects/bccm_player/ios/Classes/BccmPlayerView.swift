@@ -2,11 +2,17 @@ import Flutter
 import UIKit
 import AVKit
 
+enum BccmPlayerError: Error {
+    case runtimeError(String)
+}
+
 class BccmPlayerFactory: NSObject, FlutterPlatformViewFactory {
     private var messenger: FlutterBinaryMessenger
-
-    init(messenger: FlutterBinaryMessenger) {
+    private var playbackApi: PlaybackApiImpl
+    
+    init(messenger: FlutterBinaryMessenger, playbackApi: PlaybackApiImpl) {
         self.messenger = messenger
+        self.playbackApi = playbackApi
         super.init()
     }
     
@@ -19,30 +25,33 @@ class BccmPlayerFactory: NSObject, FlutterPlatformViewFactory {
         viewIdentifier viewId: Int64,
         arguments args: Any?
     ) -> FlutterPlatformView {
+        let argDictionary = args as! [String: Any]?
+        let playerId = argDictionary?["player_id"] as? String
+        guard playerId != nil else {
+            fatalError("argument 'player_id' cannot be null")
+        }
+        let playerController = playbackApi.getPlayer(id: playerId!)
+        if (playerController == nil) {
+            fatalError("player with id " + playerId! + "does not exist")
+        }
         return BccmPlayerView(
             frame: frame,
-            viewIdentifier: viewId,
-            arguments: args! as! Dictionary<String, String>,
-            binaryMessenger: messenger)
+            playerController: playerController!)
     }
 }
 
 class BccmPlayerView: NSObject, FlutterPlatformView {
-    private var _view: UIView
-    private var _playerController: AVPlayerViewController?
-    private var _url: String
+    private var _view: UIView = UIView()
+    private var _playerController: PlayerController
     
     init(
         frame: CGRect,
-        viewIdentifier viewId: Int64,
-        arguments args: Dictionary<String, String>?,
-        binaryMessenger messenger: FlutterBinaryMessenger?
+        playerController: PlayerController
     ) {
-        _view = UIView()
         _view.frame = frame
-        _url = args!["url"] ?? "https://devstreaming-cdn.apple.com/videos/streaming/examples/img_bipbop_adv_example_fmp4/master.m3u8"
-        
+        _playerController = playerController
         super.init()
+        
         // iOS views can be created here
         
         createNativeView(frame: frame, view: _view)
@@ -54,7 +63,7 @@ class BccmPlayerView: NSObject, FlutterPlatformView {
     
     deinit {
         
-        _playerController?.player?.pause()
+        //_playerController?.player?.pause()
     }
 
     func createNativeView(frame: CGRect, view _view: UIView){
@@ -66,20 +75,17 @@ class BccmPlayerView: NSObject, FlutterPlatformView {
         
         let playerView = UIView()
         
-        let player = AVPlayer(url: URL(string: _url)!)
-        
-        let playerController = AVPlayerViewController()
-        playerController.player = player
-        playerController.view.frame = frame
-        playerController.showsPlaybackControls = true
+        let playerViewController = AVPlayerViewController()
+        //let player = AVPlayer(url: URL(string: _url)!)
+        playerViewController.view.frame = frame
+        playerViewController.showsPlaybackControls = true
         
         
-        _view.addSubview(playerController.view)
+        _view.addSubview(playerViewController.view)
         //_view.addSubview(nativeLabel)
         
         let viewController = (UIApplication.shared.delegate?.window??.rootViewController)!
-        viewController.addChild(playerController)
-        
-        player.play()
+        viewController.addChild(playerViewController)
+        _playerController.takeOwnership(playerViewController)
     }
 }
