@@ -2,12 +2,16 @@
 
 Note for M1 users: You need to `cd ios` and `arch -x86_64 pod install`
 
-Install flutter, make env file, and you should be ready to go:
+Install flutter, then do these things:
 
 ```
 cp lib/env/.env.dart.example lib/env/.env.dart
-flutter run
+flutter pub get
+flutter pub run build_runner watch´
 ```
+
+I recommend using the "Flutter" VSCode extension to enable debugging etc.
+But you can also run from cli: `flutter run`
 
 ## Dev
 
@@ -18,9 +22,4 @@ codegen stuff: `flutter pub run build_runner watch`
 
 ## Navigation architecture
 
-Based on https://www.vojtech.net/posts/flutter-bottom-navigation
-
-- RootScreen creates the bottom navigation bar, alongside a "IndexedStack" which holds all the tab-screens.
-- NavigationProvider holds which tab we are on
-- Each tab is wrapped in a Navigator, and what it shows is determined by the screens OnGenerateRoute().
-
+Auto_route  
