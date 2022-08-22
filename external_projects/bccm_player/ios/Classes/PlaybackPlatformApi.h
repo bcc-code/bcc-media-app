@@ -25,9 +25,9 @@ NS_ASSUME_NONNULL_BEGIN
 NSObject<FlutterMessageCodec> *PlaybackPlatformPigeonGetCodec(void);
 
 @protocol PlaybackPlatformPigeon
-- (void)newPlayerUrl:(nullable NSString *)url completion:(void(^)(NSString *_Nullable, FlutterError *_Nullable))completion;
-- (void)setUrlSetUrlArgs:(SetUrlArgs *)setUrlArgs completion:(void(^)(FlutterError *_Nullable))completion;
-- (void)setPrimaryId:(NSString *)id completion:(void(^)(FlutterError *_Nullable))completion;
+- (void)newPlayer:(nullable NSString *)url completion:(void(^)(NSString *_Nullable, FlutterError *_Nullable))completion;
+- (void)setUrl:(SetUrlArgs *)setUrlArgs completion:(void(^)(FlutterError *_Nullable))completion;
+- (void)setPrimary:(NSString *)id completion:(void(^)(FlutterError *_Nullable))completion;
 @end
 
 extern void PlaybackPlatformPigeonSetup(id<FlutterBinaryMessenger> binaryMessenger, NSObject<PlaybackPlatformPigeon> *_Nullable api);

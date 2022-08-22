@@ -8,12 +8,15 @@ class Book {
 @HostApi()
 abstract class PlaybackPlatformPigeon {
   @async
+  @ObjCSelector("newPlayer:")
   String newPlayer(String? url); 
 
   @async
+  @ObjCSelector("setUrl:")
   void setUrl(SetUrlArgs setUrlArgs);
 
   @async
+  @ObjCSelector("setPrimary:")
   void setPrimary(String id);
 }
 

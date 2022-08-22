@@ -127,11 +127,11 @@ void PlaybackPlatformPigeonSetup(id<FlutterBinaryMessenger> binaryMessenger, NSO
         binaryMessenger:binaryMessenger
         codec:PlaybackPlatformPigeonGetCodec()        ];
     if (api) {
-      NSCAssert([api respondsToSelector:@selector(newPlayerUrl:completion:)], @"PlaybackPlatformPigeon api (%@) doesn't respond to @selector(newPlayerUrl:completion:)", api);
+      NSCAssert([api respondsToSelector:@selector(newPlayer:completion:)], @"PlaybackPlatformPigeon api (%@) doesn't respond to @selector(newPlayer:completion:)", api);
       [channel setMessageHandler:^(id _Nullable message, FlutterReply callback) {
         NSArray *args = message;
         NSString *arg_url = GetNullableObjectAtIndex(args, 0);
-        [api newPlayerUrl:arg_url completion:^(NSString *_Nullable output, FlutterError *_Nullable error) {
+        [api newPlayer:arg_url completion:^(NSString *_Nullable output, FlutterError *_Nullable error) {
           callback(wrapResult(output, error));
         }];
       }];
@@ -147,11 +147,11 @@ void PlaybackPlatformPigeonSetup(id<FlutterBinaryMessenger> binaryMessenger, NSO
         binaryMessenger:binaryMessenger
         codec:PlaybackPlatformPigeonGetCodec()        ];
     if (api) {
-      NSCAssert([api respondsToSelector:@selector(setUrlSetUrlArgs:completion:)], @"PlaybackPlatformPigeon api (%@) doesn't respond to @selector(setUrlSetUrlArgs:completion:)", api);
+      NSCAssert([api respondsToSelector:@selector(setUrl:completion:)], @"PlaybackPlatformPigeon api (%@) doesn't respond to @selector(setUrl:completion:)", api);
       [channel setMessageHandler:^(id _Nullable message, FlutterReply callback) {
         NSArray *args = message;
         SetUrlArgs *arg_setUrlArgs = GetNullableObjectAtIndex(args, 0);
-        [api setUrlSetUrlArgs:arg_setUrlArgs completion:^(FlutterError *_Nullable error) {
+        [api setUrl:arg_setUrlArgs completion:^(FlutterError *_Nullable error) {
           callback(wrapResult(nil, error));
         }];
       }];
@@ -167,11 +167,11 @@ void PlaybackPlatformPigeonSetup(id<FlutterBinaryMessenger> binaryMessenger, NSO
         binaryMessenger:binaryMessenger
         codec:PlaybackPlatformPigeonGetCodec()        ];
     if (api) {
-      NSCAssert([api respondsToSelector:@selector(setPrimaryId:completion:)], @"PlaybackPlatformPigeon api (%@) doesn't respond to @selector(setPrimaryId:completion:)", api);
+      NSCAssert([api respondsToSelector:@selector(setPrimary:completion:)], @"PlaybackPlatformPigeon api (%@) doesn't respond to @selector(setPrimary:completion:)", api);
       [channel setMessageHandler:^(id _Nullable message, FlutterReply callback) {
         NSArray *args = message;
         NSString *arg_id = GetNullableObjectAtIndex(args, 0);
-        [api setPrimaryId:arg_id completion:^(FlutterError *_Nullable error) {
+        [api setPrimary:arg_id completion:^(FlutterError *_Nullable error) {
           callback(wrapResult(nil, error));
         }];
       }];
