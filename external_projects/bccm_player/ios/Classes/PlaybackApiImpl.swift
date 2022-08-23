@@ -11,6 +11,13 @@ public class PlayerController {
     
     func takeOwnership(_ playerViewController: AVPlayerViewController) {
         playerViewController.player = player
+        
+        let audioSession = AVAudioSession.sharedInstance()
+        do {
+            try audioSession.setActive(true)
+        } catch {
+            print("Setting category to AVAudioSessionCategoryPlayback failed.")
+        }
     }
     
     func setPlayerItem(_ playerItem: AVPlayerItem, _ isLive: Bool = false) {

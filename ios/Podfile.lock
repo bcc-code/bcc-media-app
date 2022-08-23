@@ -61,7 +61,7 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   AppAuth: 80317d99ac7ff2801a2f18ff86b48cd315ed465d
-  bccm_player: e39a710a67c03ed3dab59acf86e1a5352d7ac75c
+  bccm_player: 5c99af1b5fe900f2eb239f752a3cf17cb4855d6c
   Flutter: f04841e97a9d0b0a8025694d0796dd46242b2854
   flutter_appauth: 2c4a407e6d649df3f2308375fb891822dcff291b
   flutter_secure_storage: 7953c38a04c3fdbb00571bcd87d8e3b5ceb9daec
@@ -71,6 +71,6 @@ SPEC CHECKSUMS:
   video_player_avfoundation: e489aac24ef5cf7af82702979ed16f2a5ef84cff
   wakelock: d0fc7c864128eac40eba1617cb5264d9c940b46f
 
-PODFILE CHECKSUM: 7368163408c647b7eb699d0d788ba6718e18fb8d
+PODFILE CHECKSUM: 4e8f8b2be68aeea4c0d5beb6ff1e79fface1d048
 
 COCOAPODS: 1.11.3

@@ -25,7 +25,7 @@ class EpisodeScreen extends StatefulWidget {
 
 class _EpisodeScreenState extends State<EpisodeScreen> {
   late Future<Episode> episodeFuture;
-  late Future<String> playerIdFuture;
+  late Future<List<String>> playerIdFuture;
 
   @override
   void initState() {
@@ -45,15 +45,16 @@ class _EpisodeScreenState extends State<EpisodeScreen> {
     int episodeId = widget.episodeId;
     episodeFuture = fetchEpisode(episodeId);
     if (widget.playerType == PlayerType.native) {
-      playerIdFuture = Future<String>((() async {
+      playerIdFuture = Future<List<String>>((() async {
         var episode = await episodeFuture;
         var playerId = await PlaybackPlatformInterface.instance.newPlayer(url: episode.streamUrl);
+        var playerId2 = await PlaybackPlatformInterface.instance.newPlayer(url: episode.streamUrl);
         
-        return playerId;
+        return [playerId, playerId2];
       }));
-      playerIdFuture.then((playerId) {
+      /* playerIdFuture.then((playerId) {
         PlaybackPlatformInterface.instance.setPrimary(playerId);
-      });
+      }); */
     }
     super.didChangeDependencies();
   }
@@ -71,13 +72,13 @@ class _EpisodeScreenState extends State<EpisodeScreen> {
           children: [
             Padding(
               padding: const EdgeInsets.all(8.0),
-              child: FutureBuilder<String>(future: playerIdFuture, builder: (context, snapshot) {
+              child: FutureBuilder<List<String>>(future: playerIdFuture, builder: (context, snapshot) {
                 if (snapshot.hasData) {
                   return Column(
                     children: [
-                      BccmPlayer(type: widget.playerType, id: snapshot.data!),
+                      ...snapshot.data!.map((element) => BccmPlayer(type: widget.playerType, id: element),),
                       ElevatedButton(onPressed: () {
-                        PlaybackPlatformInterface.instance.setPrimary(snapshot.data!);
+                        //PlaybackPlatformInterface.instance.setPrimary(snapshot.data!);
                       }, child: Text("set primary"))
                     ],
                   );
