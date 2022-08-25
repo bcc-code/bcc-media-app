@@ -15,6 +15,7 @@ import androidx.media3.common.*
 import androidx.media3.exoplayer.ExoPlayer
 import androidx.media3.exoplayer.util.DebugTextViewHelper
 import androidx.media3.ui.PlayerView
+import com.google.android.gms.cast.framework.CastContext
 import io.flutter.plugin.common.StandardMessageCodec
 import io.flutter.plugin.platform.PlatformView
 import io.flutter.plugin.platform.PlatformViewFactory
@@ -37,7 +38,7 @@ class BccmPlayerViewWrapper(
         private val playbackService: PlaybackService,
         private val context: Context,
         private var playerId: String,
-        private val fullscreen: Boolean = false) : PlatformView {
+        private val fullscreen: Boolean = false) : PlatformView, PlayerManager.Listener {
     private var playerController: BccmPlayerController? = null
     private val _v: LinearLayout = LinearLayout(context)
     private var _playerView: PlayerView? = null
@@ -131,6 +132,8 @@ class BccmPlayerViewWrapper(
         val debugHelper = DebugTextViewHelper((playerController!!.getPlayer() as ForwardingPlayer).wrappedPlayer as ExoPlayer, debugTextView);
         debugHelper.start();
 
+        //val castContext = CastContext.getSharedInstance(context);
+        //PlayerManager(context, this, playerController!!, this, castContext)
         playerController!!.takeOwnership(this)
         setLiveUIEnabled(playerController?.isLive == true);
     }
@@ -151,6 +154,23 @@ class BccmPlayerViewWrapper(
             playerView.findViewById<View?>(R.id.exo_progress)?.visibility = View.VISIBLE;
             playerView.findViewById<View?>(R.id.exo_time)?.visibility = View.VISIBLE;
             _v.findViewById<View?>(R.id.live_indicator)?.visibility = View.GONE;
+        }
+    }
+
+    override fun onQueuePositionChanged(previousIndex: Int, newIndex: Int) {
+        if (previousIndex != C.INDEX_UNSET) {
+
+        }
+        if (newIndex != C.INDEX_UNSET) {
+
+        }
+    }
+
+    override fun onUnsupportedTrack(trackType: Int) {
+        if (trackType == C.TRACK_TYPE_AUDIO) {
+
+        } else if (trackType == C.TRACK_TYPE_VIDEO) {
+
         }
     }
 }
