@@ -21,14 +21,24 @@ class _RootScreenState extends State<RootScreen> {
   void initState() {
     super.initState();
     icons = {
-      'home_default': Image.asset('assets/icons/Home_Default.png', gaplessPlayback: true,),
-      'home_selected': Image.asset('assets/icons/Home_Selected.png', gaplessPlayback: true),
-      'search_default': Image.asset('assets/icons/Search_Default.png', gaplessPlayback: true),
-      'search_selected': Image.asset('assets/icons/Search_Selected.png', gaplessPlayback: true),
-      'live_default': Image.asset('assets/icons/Live_Default.png', gaplessPlayback: true),
-      'live_selected': Image.asset('assets/icons/Live_Selected.png', gaplessPlayback: true),
-      'calendar_default': Image.asset('assets/icons/Calendar_Default.png', gaplessPlayback: true),
-      'calendar_selected': Image.asset('assets/icons/Calendar_Selected.png', gaplessPlayback: true),
+      'home_default': Image.asset(
+        'assets/icons/Home_Default.png',
+        gaplessPlayback: true,
+      ),
+      'home_selected':
+          Image.asset('assets/icons/Home_Selected.png', gaplessPlayback: true),
+      'search_default':
+          Image.asset('assets/icons/Search_Default.png', gaplessPlayback: true),
+      'search_selected': Image.asset('assets/icons/Search_Selected.png',
+          gaplessPlayback: true),
+      'live_default':
+          Image.asset('assets/icons/Live_Default.png', gaplessPlayback: true),
+      'live_selected':
+          Image.asset('assets/icons/Live_Selected.png', gaplessPlayback: true),
+      'calendar_default': Image.asset('assets/icons/Calendar_Default.png',
+          gaplessPlayback: true),
+      'calendar_selected': Image.asset('assets/icons/Calendar_Selected.png',
+          gaplessPlayback: true),
     };
   }
 
@@ -67,10 +77,12 @@ class _RootScreenState extends State<RootScreen> {
                         top: BorderSide(
                             width: 1, color: Theme.of(context).dividerColor))),
                 child: Theme(
-                  data: Platform.isIOS ? Theme.of(context).copyWith(
-                    splashColor: Colors.transparent,
-                    highlightColor: Colors.transparent,
-                  ): Theme.of(context),
+                  data: Platform.isIOS
+                      ? Theme.of(context).copyWith(
+                          splashColor: Colors.transparent,
+                          highlightColor: Colors.transparent,
+                        )
+                      : Theme.of(context),
                   child: BottomNavigationBar(
                     selectedFontSize: 12,
                     unselectedFontSize: 12,
@@ -86,26 +98,20 @@ class _RootScreenState extends State<RootScreen> {
                           icon: SizedBox(
                               height: iconSize, child: icons['home_default']),
                           activeIcon: SizedBox(
-                              height: iconSize,
-                              child:
-                                  icons['home_selected'])),
+                              height: iconSize, child: icons['home_selected'])),
                       BottomNavigationBarItem(
                           label: 'Search',
                           icon: SizedBox(
-                              height: iconSize,
-                              child:
-                                  icons['search_default']),
+                              height: iconSize, child: icons['search_default']),
                           activeIcon: SizedBox(
                               height: iconSize,
                               child: icons['search_selected'])),
                       BottomNavigationBarItem(
                           label: 'Live',
                           icon: SizedBox(
-                              height: iconSize,
-                              child: icons['live_default']),
+                              height: iconSize, child: icons['live_default']),
                           activeIcon: SizedBox(
-                              height: iconSize,
-                              child: icons['live_selected'])),
+                              height: iconSize, child: icons['live_selected'])),
                       BottomNavigationBarItem(
                           label: 'Calendar',
                           icon: SizedBox(

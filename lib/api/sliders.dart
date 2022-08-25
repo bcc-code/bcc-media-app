@@ -16,7 +16,8 @@ class Section {
   factory Section.fromJson(Map<String, dynamic> json) {
     var itemsRaw = json['items'] as List<dynamic>;
 
-    List<SectionItem> items = itemsRaw.map((i) => SectionItem.fromJson(i)).toList();
+    List<SectionItem> items =
+        itemsRaw.map((i) => SectionItem.fromJson(i)).toList();
 
     return Section(
       title: json['title'],
@@ -31,33 +32,33 @@ class SectionItem {
   final String imageUrl;
   final int id;
 
-  const SectionItem({
-    required this.title,
-    required this.type,
-    required this.imageUrl,
-    required this.id
-  });
+  const SectionItem(
+      {required this.title,
+      required this.type,
+      required this.imageUrl,
+      required this.id});
 
   factory SectionItem.fromJson(Map<String, dynamic> json) {
     return SectionItem(
-      title: json['title'],
-      type: json['type'],
-      id: json['id'],
-      imageUrl: json['image']
-    );
+        title: json['title'],
+        type: json['type'],
+        id: json['id'],
+        imageUrl: json['image']);
   }
 }
 
-
 Future<List<Section>> fetchSections() async {
   var url = 'https://brunstad.tv/api/sliders';
-  final response = await http.get(Uri.parse(url), headers: {
-    'Authorization': 'Bearer ${AuthService.instance.idToken}'
-  });
+  final response = await http.get(Uri.parse(url),
+      headers: {'Authorization': 'Bearer ${AuthService.instance.idToken}'});
   if (response.statusCode != 200) {
     return Future.error('statuscode ${response.statusCode}');
   }
   List body = jsonDecode(response.body);
 
-  return body.map((s) => Section.fromJson(s),).toList();
+  return body
+      .map(
+        (s) => Section.fromJson(s),
+      )
+      .toList();
 }

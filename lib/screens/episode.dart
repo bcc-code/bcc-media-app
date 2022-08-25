@@ -1,4 +1,3 @@
-
 //import 'dart:html';
 
 import 'package:auto_route/auto_route.dart';
@@ -32,12 +31,11 @@ class _EpisodeScreenState extends State<EpisodeScreen> {
     super.initState();
 
     SystemChrome.setPreferredOrientations([
-        DeviceOrientation.portraitUp,
-        DeviceOrientation.landscapeRight,
-        DeviceOrientation.landscapeLeft,
+      DeviceOrientation.portraitUp,
+      DeviceOrientation.landscapeRight,
+      DeviceOrientation.landscapeLeft,
     ]);
   }
-
 
   @override
   void didChangeDependencies() {
@@ -47,9 +45,11 @@ class _EpisodeScreenState extends State<EpisodeScreen> {
     if (widget.playerType == PlayerType.native) {
       playerIdFuture = Future<List<String>>((() async {
         var episode = await episodeFuture;
-        var playerId = await PlaybackPlatformInterface.instance.newPlayer(url: episode.streamUrl);
-        var playerId2 = await PlaybackPlatformInterface.instance.newPlayer(url: episode.streamUrl);
-        
+        var playerId = await PlaybackPlatformInterface.instance
+            .newPlayer(url: episode.streamUrl);
+        var playerId2 = await PlaybackPlatformInterface.instance
+            .newPlayer(url: episode.streamUrl);
+
         return [playerId, playerId2];
       }));
       /* playerIdFuture.then((playerId) {
@@ -65,45 +65,46 @@ class _EpisodeScreenState extends State<EpisodeScreen> {
       appBar: AppBar(
         title: const Text('Episode'),
       ),
-      body: Container(
-        
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: FutureBuilder<List<String>>(future: playerIdFuture, builder: (context, snapshot) {
-                if (snapshot.hasData) {
-                  return Column(
-                    children: [
-                      ...snapshot.data!.map((element) => BccmPlayer(type: widget.playerType, id: element),),
-                      ElevatedButton(onPressed: () {
-                        //PlaybackPlatformInterface.instance.setPrimary(snapshot.data!);
-                      }, child: Text("set primary"))
-                    ],
-                  );
-                } else if (snapshot.hasError) {
-                  return Text(snapshot.error.toString());
-                }
-                // By default, show a loading spinner.
-                return const CircularProgressIndicator();
-              }),
+      body: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: FutureBuilder<List<String>>(
+                future: playerIdFuture,
+                builder: (context, snapshot) {
+                  if (snapshot.hasData) {
+                    return Column(
+                      children: [
+                        ...snapshot.data!.map(
+                          (element) =>
+                              BccmPlayer(type: widget.playerType, id: element),
+                        ),
+                        ElevatedButton(
+                            onPressed: () {
+                              //PlaybackPlatformInterface.instance.setPrimary(snapshot.data!);
+                            },
+                            child: Text("set primary"))
+                      ],
+                    );
+                  } else if (snapshot.hasError) {
+                    return Text(snapshot.error.toString());
+                  }
+                  // By default, show a loading spinner.
+                  return const CircularProgressIndicator();
+                }),
+          ),
+          Center(
+            child: ElevatedButton(
+              onPressed: () {
+                // Navigate back to first screen when tapped.
+                context.router.pop();
+              },
+              child: const Text('Go back!'),
             ),
-            Center(
-              child: ElevatedButton(
-                onPressed: () {
-                  // Navigate back to first screen when tapped.
-                  context.router.pop();
-                },
-                child: const Text('Go back!'),
-              ),
-            ),
-            SizedBox(
-              width: 100,
-              height: 2000
-            )
-          ],
-        ),
+          ),
+          SizedBox(width: 100, height: 2000)
+        ],
       ),
     );
   }

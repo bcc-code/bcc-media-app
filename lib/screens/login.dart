@@ -1,4 +1,3 @@
-
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import '../services/auth_service.dart';
@@ -14,7 +13,6 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
-
   bool isProgressing = false;
   bool isLoggedIn = false;
   String errorMessage = '';
@@ -24,7 +22,7 @@ class _LoginScreenState extends State<LoginScreen> {
       isProgressing = false;
       isLoggedIn = true;
     });
-    if(widget.onResult != null) {
+    if (widget.onResult != null) {
       widget.onResult!(true);
     }
 
@@ -33,12 +31,12 @@ class _LoginScreenState extends State<LoginScreen> {
   }
 
   handleError(String message) {
-      setState(() {
-        isProgressing = false;
-        errorMessage = message;
-      });
+    setState(() {
+      isProgressing = false;
+      errorMessage = message;
+    });
   }
-  
+
   Future<void> loginAction() async {
     setState(() {
       isProgressing = true;
@@ -57,7 +55,7 @@ class _LoginScreenState extends State<LoginScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-       // automaticallyImplyLeading: false,
+        // automaticallyImplyLeading: false,
         title: const Text('Login'),
       ),
       body: Column(

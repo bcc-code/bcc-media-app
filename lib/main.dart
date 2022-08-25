@@ -15,21 +15,28 @@ void main() async {
         ChangeNotifierProvider(create: (context) => AuthState()),
         ChangeNotifierProvider(create: (context) => NavigationProvider()),
       ],
-      child: Builder(builder: (context) => MaterialApp.router(
-        theme: ThemeData(),
-        darkTheme: ThemeData(
-          brightness: Brightness.dark,
-          colorScheme: ColorScheme.fromSeed(brightness: Brightness.dark, seedColor: const Color.fromARGB(255, 110, 176, 230)),
-          fontFamily: 'Barlow',
-          canvasColor: const Color.fromARGB(255, 13, 22, 35),
-          textTheme: const TextTheme(
-            headlineMedium: TextStyle(fontFamily: 'Barlow', fontSize: 28, fontWeight: FontWeight.w800, color: Colors.white)
-          ),
-          scaffoldBackgroundColor: const Color.fromARGB(255, 13, 22, 35),
-        ),
-        themeMode: ThemeMode.dark,
-        title: 'BCC Media',
-        routerDelegate: appRouter.delegate(),      
-        routeInformationParser: appRouter.defaultRouteParser(),
-      ))));
+      child: Builder(
+          builder: (context) => MaterialApp.router(
+                theme: ThemeData(),
+                darkTheme: ThemeData(
+                  brightness: Brightness.dark,
+                  colorScheme: ColorScheme.fromSeed(
+                      brightness: Brightness.dark,
+                      seedColor: const Color.fromARGB(255, 110, 176, 230)),
+                  fontFamily: 'Barlow',
+                  canvasColor: const Color.fromARGB(255, 13, 22, 35),
+                  textTheme: const TextTheme(
+                      headlineMedium: TextStyle(
+                          fontFamily: 'Barlow',
+                          fontSize: 28,
+                          fontWeight: FontWeight.w800,
+                          color: Colors.white)),
+                  scaffoldBackgroundColor:
+                      const Color.fromARGB(255, 13, 22, 35),
+                ),
+                themeMode: ThemeMode.dark,
+                title: 'BCC Media',
+                routerDelegate: appRouter.delegate(),
+                routeInformationParser: appRouter.defaultRouteParser(),
+              ))));
 }

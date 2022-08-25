@@ -1,4 +1,3 @@
-
 import 'dart:convert';
 
 import 'package:flutter/services.dart';
@@ -9,7 +8,6 @@ import '../helpers/constants.dart';
 import '../models/auth0_id_token.dart';
 
 class AuthService {
-
   static final AuthService instance = AuthService._internal();
   factory AuthService() => instance;
   AuthService._internal();
@@ -21,7 +19,8 @@ class AuthService {
   String? idToken;
 
   Future<bool> init() async {
-    final storedRefreshToken = await secureStorage.read(key: SecureStorageKeys.REFRESH_TOKEN);
+    final storedRefreshToken =
+        await secureStorage.read(key: SecureStorageKeys.REFRESH_TOKEN);
 
     if (storedRefreshToken == null) {
       return false;
@@ -64,7 +63,6 @@ class AuthService {
       return 'Unkown Error!';
     }
   }
-
 
   Auth0IdToken parseIdToken(String idToken) {
     final parts = idToken.split(r'.');

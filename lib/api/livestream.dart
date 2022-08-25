@@ -7,9 +7,7 @@ import '../services/auth_service.dart';
 class LivestreamUrl {
   final String streamUrl;
 
-  const LivestreamUrl({
-    required this.streamUrl
-  });
+  const LivestreamUrl({required this.streamUrl});
 
   factory LivestreamUrl.fromJson(Map<String, dynamic> json) {
     String streamUrl = json['url'];
@@ -19,12 +17,10 @@ class LivestreamUrl {
   }
 }
 
-
 Future<LivestreamUrl> fetchLiveUrl() async {
   var url = 'https://livestreamfunctions.brunstad.tv/api/urls/live';
-  final response = await http.get(Uri.parse(url), headers: {
-    'Authorization': 'Bearer ${AuthService.instance.idToken}'
-  });
+  final response = await http.get(Uri.parse(url),
+      headers: {'Authorization': 'Bearer ${AuthService.instance.idToken}'});
   if (response.statusCode != 200) {
     return Future.error('statuscode ${response.statusCode}');
   }
