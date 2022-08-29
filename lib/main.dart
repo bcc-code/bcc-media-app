@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:my_app/providers/navigation_provider.dart';
+import 'package:flutter/services.dart';
 import 'package:my_app/router/auth_guard.dart';
 import 'package:my_app/router/router.gr.dart';
 import 'package:my_app/services/auth_service.dart';
@@ -8,12 +8,16 @@ import 'package:provider/provider.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  SystemChrome.setPreferredOrientations([
+    DeviceOrientation.portraitUp,
+    DeviceOrientation.landscapeRight,
+    DeviceOrientation.landscapeLeft,
+  ]);
   await AuthService.instance.init();
   final appRouter = AppRouter(authGuard: AuthGuard());
   runApp(MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (context) => AuthState()),
-        ChangeNotifierProvider(create: (context) => NavigationProvider()),
       ],
       child: Builder(
           builder: (context) => MaterialApp.router(

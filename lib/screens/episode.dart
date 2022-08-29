@@ -29,12 +29,6 @@ class _EpisodeScreenState extends State<EpisodeScreen> {
   @override
   void initState() {
     super.initState();
-
-    SystemChrome.setPreferredOrientations([
-      DeviceOrientation.portraitUp,
-      DeviceOrientation.landscapeRight,
-      DeviceOrientation.landscapeLeft,
-    ]);
   }
 
   @override

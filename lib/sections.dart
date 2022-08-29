@@ -1,5 +1,4 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:my_app/router/router.gr.dart';
 import 'package:my_app/screens/episode.dart';
@@ -55,7 +54,7 @@ class Slider extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       height: 175,
       child: ListView(
         physics: const BouncingScrollPhysics(),
@@ -113,7 +112,7 @@ class ItemWidget extends StatelessWidget {
               item.imageUrl == null
                   ? Container(
                       decoration: BoxDecoration(
-                          color: Color.fromRGBO(29, 40, 56, 1),
+                          color: const Color.fromRGBO(29, 40, 56, 1),
                           borderRadius: BorderRadius.circular(10)),
                       width: 200,
                       height: 120,
@@ -123,7 +122,7 @@ class ItemWidget extends StatelessWidget {
                       child: FadeInImage.memoryNetwork(
                         width: 200,
                         height: 120,
-                        fadeInDuration: Duration(milliseconds: 50),
+                        fadeInDuration: const Duration(milliseconds: 50),
                         image: item.imageUrl!,
                         placeholder: kTransparentImage,
                       )),

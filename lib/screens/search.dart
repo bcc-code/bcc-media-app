@@ -23,10 +23,6 @@ class _SearchScreenState extends State<SearchScreen> {
     sectionFuture = fetchSections();
   }
 
-  void _incrementCounter() {
-    setState(() {});
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -74,12 +70,6 @@ class _SearchScreenState extends State<SearchScreen> {
           ],
         ),
       ]),
-
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
 }
