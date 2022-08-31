@@ -4,9 +4,12 @@ import android.content.Context
 import androidx.media3.common.*
 import androidx.media3.exoplayer.ExoPlayer
 import androidx.media3.ui.PlayerView
+import com.google.android.gms.cast.framework.CastContext
 import java.util.*
 
-class BccmPlayerController(context: Context) {
+class BccmPlayerController(private val context: Context): PlayerManager.Listener {
+    private var playerManager: PlayerManager? = null
+    private var castContext: CastContext? = null
     val id: String = UUID.randomUUID().toString()
     private val exoPlayer: ExoPlayer
     private val forwardingPlayer: ForwardingPlayer
@@ -24,6 +27,10 @@ class BccmPlayerController(context: Context) {
                 .build()
 
         forwardingPlayer = BccmForwardingPlayer(this)
+        try {
+            castContext = CastContext.getSharedInstance(context);
+        } catch (e: Exception) { }
+        playerManager = PlayerManager(context, this, getPlayer(), castContext)
     }
 
     fun getExoPlayer(): ExoPlayer {
@@ -39,15 +46,13 @@ class BccmPlayerController(context: Context) {
         currentPlayerViewWrapper = pvWrapper;
         val playerView = pvWrapper.getPlayerView() ?: throw Error("pvWrapper.getPlayerView() was null");
         val currentPlayerView = previousPvWrapper?.getPlayerView();
-        if (currentPlayerView != null) {
+
+        playerManager?.setPlayerView(playerView);
+        /*if (currentPlayerView != null) {
             PlayerView.switchTargetView(getPlayer(), currentPlayerView, playerView)
         } else {
             playerView.player = getPlayer()
         }
-        //previousPvWrapper?.dispose()
-        /*if (previousPvWrapper?.isFullscreenPlayer() == true) {
-            previousPvWrapper.dispose()
-        }*/
 
         pvWrapper.onDispose = {
             if (pvWrapper.isFullscreenPlayer()) {
@@ -58,7 +63,8 @@ class BccmPlayerController(context: Context) {
             } else {
                 currentPlayerViewWrapper = null
             }
-        }
+        }*/
+
     }
 
     fun playWithUrl(url: String, isLive: Boolean = false) {
@@ -67,12 +73,33 @@ class BccmPlayerController(context: Context) {
                 .setUri(url)
                 .setMimeType(MimeTypes.APPLICATION_M3U8)
                 .build()
-        exoPlayer.setMediaItem(mediaItem)
+
+        playerManager?.addItem(mediaItem);
+        /*exoPlayer.setMediaItem(mediaItem)
         exoPlayer.prepare()
-        exoPlayer.play()
+        exoPlayer.play()*/
     }
 
     fun release() {
         exoPlayer.release()
+    }
+
+
+
+    override fun onQueuePositionChanged(previousIndex: Int, newIndex: Int) {
+        if (previousIndex != C.INDEX_UNSET) {
+
+        }
+        if (newIndex != C.INDEX_UNSET) {
+
+        }
+    }
+
+    override fun onUnsupportedTrack(trackType: Int) {
+        if (trackType == C.TRACK_TYPE_AUDIO) {
+
+        } else if (trackType == C.TRACK_TYPE_VIDEO) {
+
+        }
     }
 }

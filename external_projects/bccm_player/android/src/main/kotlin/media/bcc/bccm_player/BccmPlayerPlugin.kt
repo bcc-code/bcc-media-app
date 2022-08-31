@@ -11,9 +11,13 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.FrameLayout
+import android.widget.LinearLayout
 import androidx.annotation.NonNull
 import androidx.media3.session.MediaController
 import androidx.media3.session.SessionToken
+import androidx.mediarouter.app.MediaRouteButton
+import com.google.android.gms.cast.framework.CastButtonFactory
+import com.google.android.gms.cast.framework.CastContext
 import com.google.common.util.concurrent.ListenableFuture
 import com.google.common.util.concurrent.MoreExecutors
 
@@ -57,6 +61,10 @@ class BccmPlayerPlugin: FlutterPlugin, MethodCallHandler, ActivityAware {
 
   override fun onAttachedToEngine(@NonNull flutterPluginBinding: FlutterPlugin.FlutterPluginBinding) {
     pluginBinding = flutterPluginBinding
+    flutterPluginBinding
+            .platformViewRegistry
+            .registerViewFactory("bccm_player/cast_button", FLCastButtonFactory())
+    val castContext = CastContext.getSharedInstance(flutterPluginBinding.applicationContext);
   }
 
 

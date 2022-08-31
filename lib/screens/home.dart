@@ -3,6 +3,7 @@ import 'package:my_app/api/sliders.dart';
 import 'package:my_app/components/featured.dart';
 import 'package:my_app/sections.dart';
 
+import '../components/cast_button.dart';
 import '../services/auth_service.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -38,6 +39,7 @@ class _HomeScreenState extends State<HomeScreen> {
               shrinkWrap: true,
               children: [
                 const Featured(),
+                SizedBox(width: 10, height: 30, child: CastButton()),
                 Column(
                   children: [...sections],
                 )

@@ -7,6 +7,7 @@ import 'package:flutter/services.dart';
 import 'package:bccm_player/bccm_player.dart';
 
 import '../api/episodes.dart';
+import '../components/cast_button.dart';
 
 class EpisodePageArguments {
   int episodeId;
@@ -44,7 +45,7 @@ class _EpisodeScreenState extends State<EpisodeScreen> {
         var playerId2 = await PlaybackPlatformInterface.instance
             .newPlayer(url: episode.streamUrl);
 
-        return [playerId, playerId2];
+        return [playerId];
       }));
       /* playerIdFuture.then((playerId) {
         PlaybackPlatformInterface.instance.setPrimary(playerId);
@@ -62,6 +63,9 @@ class _EpisodeScreenState extends State<EpisodeScreen> {
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
+          Center(
+              child:
+                  const SizedBox(width: 50, height: 50, child: CastButton())),
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: FutureBuilder<List<String>>(
@@ -78,7 +82,7 @@ class _EpisodeScreenState extends State<EpisodeScreen> {
                             onPressed: () {
                               //PlaybackPlatformInterface.instance.setPrimary(snapshot.data!);
                             },
-                            child: Text("set primary"))
+                            child: const Text("set primary"))
                       ],
                     );
                   } else if (snapshot.hasError) {
@@ -97,7 +101,7 @@ class _EpisodeScreenState extends State<EpisodeScreen> {
               child: const Text('Go back!'),
             ),
           ),
-          SizedBox(width: 100, height: 2000)
+          const SizedBox(width: 100, height: 2000)
         ],
       ),
     );
