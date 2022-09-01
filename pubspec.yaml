@@ -50,6 +50,8 @@ dependencies:
   cached_network_image: ^3.2.1
   transparent_image: ^2.0.0
   bccm_player: any
+  riverpod: ^1.0.3
+  flutter_riverpod: ^1.0.4
 dependency_overrides:
   bccm_player:
     path: external_projects/bccm_player

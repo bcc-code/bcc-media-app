@@ -1,44 +1,48 @@
 package media.bcc.bccm_player
 
+import androidx.media3.cast.CastPlayer
+import com.google.android.gms.cast.framework.CastContext
 import com.google.android.gms.cast.framework.Session
 import com.google.android.gms.cast.framework.SessionManagerListener
+import media.bcc.player.ChromecastControllerPigeon
 
-class CastController(val plugin: BccmPlayerPlugin): SessionManagerListener<Session> {
+class CastController(castContext: CastContext, private val pigeon: ChromecastControllerPigeon.ChromecastPigeon): SessionManagerListener<Session> {
+    val castPlayer = CastPlayer(castContext)
+
     override fun onSessionEnded(p0: Session, p1: Int) {
-        plugin.
-        TODO("Not yet implemented")
+        pigeon.onSessionEnded {}
     }
 
     override fun onSessionEnding(p0: Session) {
-        TODO("Not yet implemented")
+        pigeon.onSessionEnding {}
     }
 
     override fun onSessionResumeFailed(p0: Session, p1: Int) {
-        TODO("Not yet implemented")
+        pigeon.onSessionResumeFailed {}
     }
 
     override fun onSessionResumed(p0: Session, p1: Boolean) {
-        TODO("Not yet implemented")
+        pigeon.onSessionResumed {}
     }
 
     override fun onSessionResuming(p0: Session, p1: String) {
-        TODO("Not yet implemented")
+        pigeon.onSessionResuming {}
     }
 
     override fun onSessionStartFailed(p0: Session, p1: Int) {
-        TODO("Not yet implemented")
+        pigeon.onSessionStartFailed {}
     }
 
     override fun onSessionStarted(p0: Session, p1: String) {
-        TODO("Not yet implemented")
+        pigeon.onSessionStarted {}
     }
 
     override fun onSessionStarting(p0: Session) {
-        TODO("Not yet implemented")
+        pigeon.onSessionStarting {}
     }
 
     override fun onSessionSuspended(p0: Session, p1: Int) {
-        TODO("Not yet implemented")
+        pigeon.onSessionSuspended {}
     }
 
 }

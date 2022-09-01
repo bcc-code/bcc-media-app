@@ -16,19 +16,7 @@ class PlaybackApiImpl(private val plugin: BccmPlayerPlugin) : PlaybackPlatformAp
         }
         result?.success(playerController.id)
     }
-    
-    override fun newPlayer(url: String?, result: PlaybackPlatformApi.Result<String>?) {
-        val playbackService = plugin.getPlaybackService()
-        if (playbackService == null) {
-            result?.error(Error())
-            return
-        }
-        val playerController = playbackService.newPlayer()
-        if (url != null) {
-            playerController.playWithUrl(url)
-        }
-        result?.success(playerController.id)
-    }
+
 
     override fun setUrl(setUrlArgs: PlaybackPlatformApi.SetUrlArgs, result: PlaybackPlatformApi.Result<Void>?) {
         val playbackService = plugin.getPlaybackService()

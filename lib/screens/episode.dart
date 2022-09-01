@@ -5,6 +5,8 @@ import 'package:bccm_player/playback_service_interface.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:bccm_player/bccm_player.dart';
+import 'package:bccm_player/bccm_castplayer.dart';
+import 'package:my_app/providers/cast.dart';
 
 import '../api/episodes.dart';
 import '../components/cast_button.dart';
@@ -26,10 +28,21 @@ class EpisodeScreen extends StatefulWidget {
 class _EpisodeScreenState extends State<EpisodeScreen> {
   late Future<Episode> episodeFuture;
   late Future<List<String>> playerIdFuture;
+  bool casting = false;
 
   @override
   void initState() {
     super.initState();
+    ChromecastListener.instance.on<SessionStarted>().listen((event) {
+      setState(() {
+        casting = true;
+      });
+    });
+    ChromecastListener.instance.on<SessionEnded>().listen((event) {
+      setState(() {
+        casting = false;
+      });
+    });
   }
 
   @override
@@ -64,8 +77,12 @@ class _EpisodeScreenState extends State<EpisodeScreen> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Center(
-              child:
-                  const SizedBox(width: 50, height: 50, child: CastButton())),
+              child: Column(
+            children: [
+              Text('Casting: $casting'),
+              const SizedBox(width: 50, height: 50, child: CastButton()),
+            ],
+          )),
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: FutureBuilder<List<String>>(
@@ -75,8 +92,10 @@ class _EpisodeScreenState extends State<EpisodeScreen> {
                     return Column(
                       children: [
                         ...snapshot.data!.map(
-                          (element) =>
-                              BccmPlayer(type: widget.playerType, id: element),
+                          (element) => casting
+                              ? const BccmCastPlayer()
+                              : BccmPlayer(
+                                  type: widget.playerType, id: element),
                         ),
                         ElevatedButton(
                             onPressed: () {

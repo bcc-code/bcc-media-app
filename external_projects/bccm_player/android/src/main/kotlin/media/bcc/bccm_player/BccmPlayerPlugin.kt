@@ -29,6 +29,7 @@ import io.flutter.plugin.common.MethodCall
 import io.flutter.plugin.common.MethodChannel
 import io.flutter.plugin.common.MethodChannel.MethodCallHandler
 import io.flutter.plugin.common.MethodChannel.Result
+import media.bcc.player.ChromecastControllerPigeon
 import media.bcc.player.PlaybackPlatformApi.PlaybackPlatformPigeon
 
 /** BccmPlayerPlugin */
@@ -64,7 +65,14 @@ class BccmPlayerPlugin: FlutterPlugin, MethodCallHandler, ActivityAware {
     flutterPluginBinding
             .platformViewRegistry
             .registerViewFactory("bccm_player/cast_button", FLCastButtonFactory())
+
     val castContext = CastContext.getSharedInstance(flutterPluginBinding.applicationContext);
+    val pigeon = ChromecastControllerPigeon.ChromecastPigeon(flutterPluginBinding.binaryMessenger)
+    val castController = CastController(castContext, pigeon)
+    castContext.sessionManager.addSessionManagerListener(castController)
+    pluginBinding!!
+            .platformViewRegistry
+            .registerViewFactory("bccm-cast-player", BccmCastPlayerViewFactory(castController))
   }
 
 
