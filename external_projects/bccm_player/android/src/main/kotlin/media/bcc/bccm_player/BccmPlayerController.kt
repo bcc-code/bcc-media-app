@@ -1,10 +1,12 @@
 package media.bcc.bccm_player
 
 import android.content.Context
+import android.net.Uri
 import androidx.media3.common.*
 import androidx.media3.exoplayer.ExoPlayer
 import androidx.media3.ui.PlayerView
 import com.google.android.gms.cast.framework.CastContext
+import media.bcc.player.PlaybackPlatformApi
 import java.util.*
 
 class BccmPlayerController(private val context: Context): PlayerManager.Listener {
@@ -65,6 +67,21 @@ class BccmPlayerController(private val context: Context): PlayerManager.Listener
             }
         }*/
 
+    }
+
+    fun playWithMediaItem(mediaItem: PlaybackPlatformApi.MediaItem) {
+        this.isLive = mediaItem.isLive ?: false;
+        val mediaMetadata = MediaMetadata.Builder()
+                .setArtworkUri(Uri.parse(mediaItem.metadata?.artworkUri))
+                .setTitle(mediaItem.metadata?.title)
+                .setArtist(mediaItem.metadata?.artist)
+                .build()
+        val androidMediaItem = MediaItem.Builder()
+                .setUri(mediaItem.url)
+                .setMediaMetadata(mediaMetadata)
+                .setMimeType(mediaItem.mimeType)
+                .build();
+        playerManager?.addItem(androidMediaItem);
     }
 
     fun playWithUrl(url: String, isLive: Boolean = false) {

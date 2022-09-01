@@ -25,7 +25,7 @@ class PlayerPlatformViewFactory(private val activity: Activity, private val play
     @NonNull
     override fun create(@NonNull context: Context?, id: Int, @Nullable args: Any?): PlatformView {
         if (playbackService == null) {
-            throw Error("PlaybackService is null, but you tried making a platformview.");
+            throw Error("PlaybackService is null, but you tried making a platformview.")
         }
 
         val creationParams = args as Map<String?, Any?>?
@@ -62,7 +62,7 @@ class BccmPlayerViewWrapper(
     }
 
     fun getPlayerView(): PlayerView? {
-        return _playerView;
+        return _playerView
     }
 
     private fun goFullscreen() {
@@ -82,7 +82,7 @@ class BccmPlayerViewWrapper(
         }
 
         val playerView = _v.findViewById<PlayerView>(R.id.brunstad_player)
-                .also { _playerView = it };
+                .also { _playerView = it }
 
         playerView.setFullscreenButtonClickListener {
             if (!fullscreen) {
@@ -95,14 +95,14 @@ class BccmPlayerViewWrapper(
             }
         }
 
-        val pipButton = _v.findViewById<ImageButton>(R.id.pip_button);
+        val pipButton = _v.findViewById<ImageButton>(R.id.pip_button)
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-            pipButton.visibility = View.VISIBLE;
+            pipButton.visibility = View.VISIBLE
         }
         pipButton.setOnClickListener {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                 if (!fullscreen) {
-                    goFullscreen();
+                    goFullscreen()
                 }
                 activity.enterPictureInPictureMode(PictureInPictureParams.Builder()
                         .setAspectRatio(Rational(16, 9))
@@ -110,11 +110,11 @@ class BccmPlayerViewWrapper(
             }
         }
 
-        val busyIndicator = _v.findViewById<ProgressBar>(R.id.busyIndicator);
+        val busyIndicator = _v.findViewById<ProgressBar>(R.id.busyIndicator)
         playerController!!.getPlayer().addListener(object : Player.Listener {
-            private lateinit var player: Player;
+            private lateinit var player: Player
             override fun onEvents(player: Player, events: Player.Events) {
-                this.player = player;
+                this.player = player
             }
 
             override fun onPlaybackStateChanged(playbackState: Int) {
@@ -123,17 +123,17 @@ class BccmPlayerViewWrapper(
                 playerView.setShowPreviousButton(false)
 
                 if (playbackState == Player.STATE_READY) {
-                    busyIndicator?.visibility = View.GONE;
+                    busyIndicator?.visibility = View.GONE
                 }
             }
         })
 
-        val debugTextView = _v.findViewById<TextView>(R.id.debug_text_view);
-        val debugHelper = DebugTextViewHelper((playerController!!.getPlayer() as ForwardingPlayer).wrappedPlayer as ExoPlayer, debugTextView);
-        debugHelper.start();
+        val debugTextView = _v.findViewById<TextView>(R.id.debug_text_view)
+        val debugHelper = DebugTextViewHelper((playerController!!.getPlayer() as ForwardingPlayer).wrappedPlayer as ExoPlayer, debugTextView)
+        debugHelper.start()
 
         playerController!!.takeOwnership(this)
-        setLiveUIEnabled(playerController?.isLive == true);
+        setLiveUIEnabled(playerController?.isLive == true)
     }
 
     fun setLiveUIEnabled(enabled: Boolean) {
@@ -142,16 +142,16 @@ class BccmPlayerViewWrapper(
             playerView.setShowFastForwardButton(false)
             playerView.setShowRewindButton(false)
             playerView.setShowMultiWindowTimeBar(false)
-            playerView.findViewById<View?>(R.id.exo_progress)?.visibility = View.GONE;
-            playerView.findViewById<View?>(R.id.exo_time)?.visibility = View.GONE;
-            _v.findViewById<View?>(R.id.live_indicator)?.visibility = View.VISIBLE;
+            playerView.findViewById<View?>(R.id.exo_progress)?.visibility = View.GONE
+            playerView.findViewById<View?>(R.id.exo_time)?.visibility = View.GONE
+            _v.findViewById<View?>(R.id.live_indicator)?.visibility = View.VISIBLE
         } else {
             playerView.setShowFastForwardButton(true)
             playerView.setShowRewindButton(true)
             playerView.setShowMultiWindowTimeBar(true)
-            playerView.findViewById<View?>(R.id.exo_progress)?.visibility = View.VISIBLE;
-            playerView.findViewById<View?>(R.id.exo_time)?.visibility = View.VISIBLE;
-            _v.findViewById<View?>(R.id.live_indicator)?.visibility = View.GONE;
+            playerView.findViewById<View?>(R.id.exo_progress)?.visibility = View.VISIBLE
+            playerView.findViewById<View?>(R.id.exo_time)?.visibility = View.VISIBLE
+            _v.findViewById<View?>(R.id.live_indicator)?.visibility = View.GONE
         }
     }
 }

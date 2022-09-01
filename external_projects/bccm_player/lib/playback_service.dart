@@ -13,7 +13,8 @@ class PlaybackService extends PlaybackPlatformInterface {
 
   @override
   Future<String?> getPlatformVersion() async {
-    final version = await methodChannel.invokeMethod<String>('getPlatformVersion');
+    final version =
+        await methodChannel.invokeMethod<String>('getPlatformVersion');
     return version;
   }
 
@@ -23,8 +24,12 @@ class PlaybackService extends PlaybackPlatformInterface {
   }
 
   @override
-  Future<void> setUrl({required String playerId, required String url, bool isLive = false}) async {
-    await _pigeon.setUrl(SetUrlArgs(playerId: playerId, url: url, isLive: isLive));
+  Future<void> setUrl(
+      {required String playerId,
+      required String url,
+      bool isLive = false}) async {
+    await _pigeon
+        .setUrl(SetUrlArgs(playerId: playerId, url: url, isLive: isLive));
   }
 
   @override
@@ -32,5 +37,9 @@ class PlaybackService extends PlaybackPlatformInterface {
     await _pigeon.setPrimary(id);
     return true;
   }
-  
+
+  @override
+  Future<void> addMediaItem(String playerId, MediaItem mediaItem) {
+    return _pigeon.addMediaItem(playerId, mediaItem);
+  }
 }

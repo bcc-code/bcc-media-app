@@ -1,6 +1,8 @@
 import 'package:bccm_player/playback_service.dart';
 import 'package:plugin_platform_interface/plugin_platform_interface.dart';
 
+import 'playback_platform_pigeon.g.dart';
+
 abstract class PlaybackPlatformInterface extends PlatformInterface {
   /// Constructs a PlaybackServiceInterface.
   PlaybackPlatformInterface() : super(token: _token);
@@ -25,10 +27,17 @@ abstract class PlaybackPlatformInterface extends PlatformInterface {
   Future<String> newPlayer({String? url}) {
     throw UnimplementedError('newPlayer() has not been implemented.');
   }
+
   Future<bool> setPrimary(String id) {
     throw UnimplementedError('setPrimary() has not been implemented.');
   }
-  Future<void> setUrl({required String playerId, required String url, bool isLive = false}) {
+
+  Future<void> setUrl(
+      {required String playerId, required String url, bool isLive = false}) {
     throw UnimplementedError('setUrl() has not been implemented.');
+  }
+
+  Future<void> addMediaItem(String playerId, MediaItem mediaItem) async {
+    throw UnimplementedError('addMediaItem() has not been implemented.');
   }
 }

@@ -9,6 +9,8 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @class SetUrlArgs;
+@class MediaItem;
+@class MediaMetadata;
 
 @interface SetUrlArgs : NSObject
 /// `init` unavailable to enforce nonnull fields, see the `make` class method.
@@ -21,12 +23,35 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic, strong, nullable) NSNumber * isLive;
 @end
 
+@interface MediaItem : NSObject
+/// `init` unavailable to enforce nonnull fields, see the `make` class method.
+- (instancetype)init NS_UNAVAILABLE;
++ (instancetype)makeWithUrl:(NSString *)url
+    mimeType:(nullable NSString *)mimeType
+    metadata:(nullable MediaMetadata *)metadata
+    isLive:(nullable NSNumber *)isLive;
+@property(nonatomic, copy) NSString * url;
+@property(nonatomic, copy, nullable) NSString * mimeType;
+@property(nonatomic, strong, nullable) MediaMetadata * metadata;
+@property(nonatomic, strong, nullable) NSNumber * isLive;
+@end
+
+@interface MediaMetadata : NSObject
++ (instancetype)makeWithArtworkUri:(nullable NSString *)artworkUri
+    title:(nullable NSString *)title
+    artist:(nullable NSString *)artist;
+@property(nonatomic, copy, nullable) NSString * artworkUri;
+@property(nonatomic, copy, nullable) NSString * title;
+@property(nonatomic, copy, nullable) NSString * artist;
+@end
+
 /// The codec used by PlaybackPlatformPigeon.
 NSObject<FlutterMessageCodec> *PlaybackPlatformPigeonGetCodec(void);
 
 @protocol PlaybackPlatformPigeon
 - (void)newPlayer:(nullable NSString *)url completion:(void(^)(NSString *_Nullable, FlutterError *_Nullable))completion;
 - (void)setUrl:(SetUrlArgs *)setUrlArgs completion:(void(^)(FlutterError *_Nullable))completion;
+- (void)addMediaItem:(NSString *)playerId mediaItem:(MediaItem *)mediaItem completion:(void(^)(FlutterError *_Nullable))completion;
 - (void)setPrimary:(NSString *)id completion:(void(^)(FlutterError *_Nullable))completion;
 @end
 

@@ -36,12 +36,84 @@ class SetUrlArgs {
   }
 }
 
+class MediaItem {
+  MediaItem({
+    required this.url,
+    this.mimeType,
+    this.metadata,
+    this.isLive,
+  });
+
+  String url;
+  String? mimeType;
+  MediaMetadata? metadata;
+  bool? isLive;
+
+  Object encode() {
+    final Map<Object?, Object?> pigeonMap = <Object?, Object?>{};
+    pigeonMap['url'] = url;
+    pigeonMap['mimeType'] = mimeType;
+    pigeonMap['metadata'] = metadata?.encode();
+    pigeonMap['isLive'] = isLive;
+    return pigeonMap;
+  }
+
+  static MediaItem decode(Object message) {
+    final Map<Object?, Object?> pigeonMap = message as Map<Object?, Object?>;
+    return MediaItem(
+      url: pigeonMap['url']! as String,
+      mimeType: pigeonMap['mimeType'] as String?,
+      metadata: pigeonMap['metadata'] != null
+          ? MediaMetadata.decode(pigeonMap['metadata']!)
+          : null,
+      isLive: pigeonMap['isLive'] as bool?,
+    );
+  }
+}
+
+class MediaMetadata {
+  MediaMetadata({
+    this.artworkUri,
+    this.title,
+    this.artist,
+  });
+
+  String? artworkUri;
+  String? title;
+  String? artist;
+
+  Object encode() {
+    final Map<Object?, Object?> pigeonMap = <Object?, Object?>{};
+    pigeonMap['artworkUri'] = artworkUri;
+    pigeonMap['title'] = title;
+    pigeonMap['artist'] = artist;
+    return pigeonMap;
+  }
+
+  static MediaMetadata decode(Object message) {
+    final Map<Object?, Object?> pigeonMap = message as Map<Object?, Object?>;
+    return MediaMetadata(
+      artworkUri: pigeonMap['artworkUri'] as String?,
+      title: pigeonMap['title'] as String?,
+      artist: pigeonMap['artist'] as String?,
+    );
+  }
+}
+
 class _PlaybackPlatformPigeonCodec extends StandardMessageCodec {
   const _PlaybackPlatformPigeonCodec();
   @override
   void writeValue(WriteBuffer buffer, Object? value) {
-    if (value is SetUrlArgs) {
+    if (value is MediaItem) {
       buffer.putUint8(128);
+      writeValue(buffer, value.encode());
+    } else 
+    if (value is MediaMetadata) {
+      buffer.putUint8(129);
+      writeValue(buffer, value.encode());
+    } else 
+    if (value is SetUrlArgs) {
+      buffer.putUint8(130);
       writeValue(buffer, value.encode());
     } else 
 {
@@ -52,6 +124,12 @@ class _PlaybackPlatformPigeonCodec extends StandardMessageCodec {
   Object? readValueOfType(int type, ReadBuffer buffer) {
     switch (type) {
       case 128:       
+        return MediaItem.decode(readValue(buffer)!);
+      
+      case 129:       
+        return MediaMetadata.decode(readValue(buffer)!);
+      
+      case 130:       
         return SetUrlArgs.decode(readValue(buffer)!);
       
       default:      
@@ -103,6 +181,28 @@ class PlaybackPlatformPigeon {
         'dev.flutter.pigeon.PlaybackPlatformPigeon.setUrl', codec, binaryMessenger: _binaryMessenger);
     final Map<Object?, Object?>? replyMap =
         await channel.send(<Object?>[arg_setUrlArgs]) as Map<Object?, Object?>?;
+    if (replyMap == null) {
+      throw PlatformException(
+        code: 'channel-error',
+        message: 'Unable to establish connection on channel.',
+      );
+    } else if (replyMap['error'] != null) {
+      final Map<Object?, Object?> error = (replyMap['error'] as Map<Object?, Object?>?)!;
+      throw PlatformException(
+        code: (error['code'] as String?)!,
+        message: error['message'] as String?,
+        details: error['details'],
+      );
+    } else {
+      return;
+    }
+  }
+
+  Future<void> addMediaItem(String arg_playerId, MediaItem arg_mediaItem) async {
+    final BasicMessageChannel<Object?> channel = BasicMessageChannel<Object?>(
+        'dev.flutter.pigeon.PlaybackPlatformPigeon.addMediaItem', codec, binaryMessenger: _binaryMessenger);
+    final Map<Object?, Object?>? replyMap =
+        await channel.send(<Object?>[arg_playerId, arg_mediaItem]) as Map<Object?, Object?>?;
     if (replyMap == null) {
       throw PlatformException(
         code: 'channel-error',

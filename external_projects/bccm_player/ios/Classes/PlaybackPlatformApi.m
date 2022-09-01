@@ -36,6 +36,16 @@ static id GetNullableObjectAtIndex(NSArray* array, NSInteger key) {
 + (nullable SetUrlArgs *)nullableFromMap:(NSDictionary *)dict;
 - (NSDictionary *)toMap;
 @end
+@interface MediaItem ()
++ (MediaItem *)fromMap:(NSDictionary *)dict;
++ (nullable MediaItem *)nullableFromMap:(NSDictionary *)dict;
+- (NSDictionary *)toMap;
+@end
+@interface MediaMetadata ()
++ (MediaMetadata *)fromMap:(NSDictionary *)dict;
++ (nullable MediaMetadata *)nullableFromMap:(NSDictionary *)dict;
+- (NSDictionary *)toMap;
+@end
 
 @implementation SetUrlArgs
 + (instancetype)makeWithPlayerId:(NSString *)playerId
@@ -66,6 +76,65 @@ static id GetNullableObjectAtIndex(NSArray* array, NSInteger key) {
 }
 @end
 
+@implementation MediaItem
++ (instancetype)makeWithUrl:(NSString *)url
+    mimeType:(nullable NSString *)mimeType
+    metadata:(nullable MediaMetadata *)metadata
+    isLive:(nullable NSNumber *)isLive {
+  MediaItem* pigeonResult = [[MediaItem alloc] init];
+  pigeonResult.url = url;
+  pigeonResult.mimeType = mimeType;
+  pigeonResult.metadata = metadata;
+  pigeonResult.isLive = isLive;
+  return pigeonResult;
+}
++ (MediaItem *)fromMap:(NSDictionary *)dict {
+  MediaItem *pigeonResult = [[MediaItem alloc] init];
+  pigeonResult.url = GetNullableObject(dict, @"url");
+  NSAssert(pigeonResult.url != nil, @"");
+  pigeonResult.mimeType = GetNullableObject(dict, @"mimeType");
+  pigeonResult.metadata = [MediaMetadata nullableFromMap:GetNullableObject(dict, @"metadata")];
+  pigeonResult.isLive = GetNullableObject(dict, @"isLive");
+  return pigeonResult;
+}
++ (nullable MediaItem *)nullableFromMap:(NSDictionary *)dict { return (dict) ? [MediaItem fromMap:dict] : nil; }
+- (NSDictionary *)toMap {
+  return @{
+    @"url" : (self.url ?: [NSNull null]),
+    @"mimeType" : (self.mimeType ?: [NSNull null]),
+    @"metadata" : (self.metadata ? [self.metadata toMap] : [NSNull null]),
+    @"isLive" : (self.isLive ?: [NSNull null]),
+  };
+}
+@end
+
+@implementation MediaMetadata
++ (instancetype)makeWithArtworkUri:(nullable NSString *)artworkUri
+    title:(nullable NSString *)title
+    artist:(nullable NSString *)artist {
+  MediaMetadata* pigeonResult = [[MediaMetadata alloc] init];
+  pigeonResult.artworkUri = artworkUri;
+  pigeonResult.title = title;
+  pigeonResult.artist = artist;
+  return pigeonResult;
+}
++ (MediaMetadata *)fromMap:(NSDictionary *)dict {
+  MediaMetadata *pigeonResult = [[MediaMetadata alloc] init];
+  pigeonResult.artworkUri = GetNullableObject(dict, @"artworkUri");
+  pigeonResult.title = GetNullableObject(dict, @"title");
+  pigeonResult.artist = GetNullableObject(dict, @"artist");
+  return pigeonResult;
+}
++ (nullable MediaMetadata *)nullableFromMap:(NSDictionary *)dict { return (dict) ? [MediaMetadata fromMap:dict] : nil; }
+- (NSDictionary *)toMap {
+  return @{
+    @"artworkUri" : (self.artworkUri ?: [NSNull null]),
+    @"title" : (self.title ?: [NSNull null]),
+    @"artist" : (self.artist ?: [NSNull null]),
+  };
+}
+@end
+
 @interface PlaybackPlatformPigeonCodecReader : FlutterStandardReader
 @end
 @implementation PlaybackPlatformPigeonCodecReader
@@ -73,6 +142,12 @@ static id GetNullableObjectAtIndex(NSArray* array, NSInteger key) {
 {
   switch (type) {
     case 128:     
+      return [MediaItem fromMap:[self readValue]];
+    
+    case 129:     
+      return [MediaMetadata fromMap:[self readValue]];
+    
+    case 130:     
       return [SetUrlArgs fromMap:[self readValue]];
     
     default:    
@@ -87,8 +162,16 @@ static id GetNullableObjectAtIndex(NSArray* array, NSInteger key) {
 @implementation PlaybackPlatformPigeonCodecWriter
 - (void)writeValue:(id)value 
 {
-  if ([value isKindOfClass:[SetUrlArgs class]]) {
+  if ([value isKindOfClass:[MediaItem class]]) {
     [self writeByte:128];
+    [self writeValue:[value toMap]];
+  } else 
+  if ([value isKindOfClass:[MediaMetadata class]]) {
+    [self writeByte:129];
+    [self writeValue:[value toMap]];
+  } else 
+  if ([value isKindOfClass:[SetUrlArgs class]]) {
+    [self writeByte:130];
     [self writeValue:[value toMap]];
   } else 
 {
@@ -152,6 +235,27 @@ void PlaybackPlatformPigeonSetup(id<FlutterBinaryMessenger> binaryMessenger, NSO
         NSArray *args = message;
         SetUrlArgs *arg_setUrlArgs = GetNullableObjectAtIndex(args, 0);
         [api setUrl:arg_setUrlArgs completion:^(FlutterError *_Nullable error) {
+          callback(wrapResult(nil, error));
+        }];
+      }];
+    }
+    else {
+      [channel setMessageHandler:nil];
+    }
+  }
+  {
+    FlutterBasicMessageChannel *channel =
+      [[FlutterBasicMessageChannel alloc]
+        initWithName:@"dev.flutter.pigeon.PlaybackPlatformPigeon.addMediaItem"
+        binaryMessenger:binaryMessenger
+        codec:PlaybackPlatformPigeonGetCodec()        ];
+    if (api) {
+      NSCAssert([api respondsToSelector:@selector(addMediaItem:mediaItem:completion:)], @"PlaybackPlatformPigeon api (%@) doesn't respond to @selector(addMediaItem:mediaItem:completion:)", api);
+      [channel setMessageHandler:^(id _Nullable message, FlutterReply callback) {
+        NSArray *args = message;
+        NSString *arg_playerId = GetNullableObjectAtIndex(args, 0);
+        MediaItem *arg_mediaItem = GetNullableObjectAtIndex(args, 1);
+        [api addMediaItem:arg_playerId mediaItem:arg_mediaItem completion:^(FlutterError *_Nullable error) {
           callback(wrapResult(nil, error));
         }];
       }];

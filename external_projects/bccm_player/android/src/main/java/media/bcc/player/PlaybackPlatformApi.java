@@ -93,6 +93,152 @@ public class PlaybackPlatformApi {
     }
   }
 
+  /** Generated class from Pigeon that represents data sent in messages. */
+  public static class MediaItem {
+    private @NonNull String url;
+    public @NonNull String getUrl() { return url; }
+    public void setUrl(@NonNull String setterArg) {
+      if (setterArg == null) {
+        throw new IllegalStateException("Nonnull field \"url\" is null.");
+      }
+      this.url = setterArg;
+    }
+
+    private @Nullable String mimeType;
+    public @Nullable String getMimeType() { return mimeType; }
+    public void setMimeType(@Nullable String setterArg) {
+      this.mimeType = setterArg;
+    }
+
+    private @Nullable MediaMetadata metadata;
+    public @Nullable MediaMetadata getMetadata() { return metadata; }
+    public void setMetadata(@Nullable MediaMetadata setterArg) {
+      this.metadata = setterArg;
+    }
+
+    private @Nullable Boolean isLive;
+    public @Nullable Boolean getIsLive() { return isLive; }
+    public void setIsLive(@Nullable Boolean setterArg) {
+      this.isLive = setterArg;
+    }
+
+    /** Constructor is private to enforce null safety; use Builder. */
+    private MediaItem() {}
+    public static final class Builder {
+      private @Nullable String url;
+      public @NonNull Builder setUrl(@NonNull String setterArg) {
+        this.url = setterArg;
+        return this;
+      }
+      private @Nullable String mimeType;
+      public @NonNull Builder setMimeType(@Nullable String setterArg) {
+        this.mimeType = setterArg;
+        return this;
+      }
+      private @Nullable MediaMetadata metadata;
+      public @NonNull Builder setMetadata(@Nullable MediaMetadata setterArg) {
+        this.metadata = setterArg;
+        return this;
+      }
+      private @Nullable Boolean isLive;
+      public @NonNull Builder setIsLive(@Nullable Boolean setterArg) {
+        this.isLive = setterArg;
+        return this;
+      }
+      public @NonNull MediaItem build() {
+        MediaItem pigeonReturn = new MediaItem();
+        pigeonReturn.setUrl(url);
+        pigeonReturn.setMimeType(mimeType);
+        pigeonReturn.setMetadata(metadata);
+        pigeonReturn.setIsLive(isLive);
+        return pigeonReturn;
+      }
+    }
+    @NonNull Map<String, Object> toMap() {
+      Map<String, Object> toMapResult = new HashMap<>();
+      toMapResult.put("url", url);
+      toMapResult.put("mimeType", mimeType);
+      toMapResult.put("metadata", (metadata == null) ? null : metadata.toMap());
+      toMapResult.put("isLive", isLive);
+      return toMapResult;
+    }
+    static @NonNull MediaItem fromMap(@NonNull Map<String, Object> map) {
+      MediaItem pigeonResult = new MediaItem();
+      Object url = map.get("url");
+      pigeonResult.setUrl((String)url);
+      Object mimeType = map.get("mimeType");
+      pigeonResult.setMimeType((String)mimeType);
+      Object metadata = map.get("metadata");
+      pigeonResult.setMetadata((metadata == null) ? null : MediaMetadata.fromMap((Map)metadata));
+      Object isLive = map.get("isLive");
+      pigeonResult.setIsLive((Boolean)isLive);
+      return pigeonResult;
+    }
+  }
+
+  /** Generated class from Pigeon that represents data sent in messages. */
+  public static class MediaMetadata {
+    private @Nullable String artworkUri;
+    public @Nullable String getArtworkUri() { return artworkUri; }
+    public void setArtworkUri(@Nullable String setterArg) {
+      this.artworkUri = setterArg;
+    }
+
+    private @Nullable String title;
+    public @Nullable String getTitle() { return title; }
+    public void setTitle(@Nullable String setterArg) {
+      this.title = setterArg;
+    }
+
+    private @Nullable String artist;
+    public @Nullable String getArtist() { return artist; }
+    public void setArtist(@Nullable String setterArg) {
+      this.artist = setterArg;
+    }
+
+    public static final class Builder {
+      private @Nullable String artworkUri;
+      public @NonNull Builder setArtworkUri(@Nullable String setterArg) {
+        this.artworkUri = setterArg;
+        return this;
+      }
+      private @Nullable String title;
+      public @NonNull Builder setTitle(@Nullable String setterArg) {
+        this.title = setterArg;
+        return this;
+      }
+      private @Nullable String artist;
+      public @NonNull Builder setArtist(@Nullable String setterArg) {
+        this.artist = setterArg;
+        return this;
+      }
+      public @NonNull MediaMetadata build() {
+        MediaMetadata pigeonReturn = new MediaMetadata();
+        pigeonReturn.setArtworkUri(artworkUri);
+        pigeonReturn.setTitle(title);
+        pigeonReturn.setArtist(artist);
+        return pigeonReturn;
+      }
+    }
+    @NonNull Map<String, Object> toMap() {
+      Map<String, Object> toMapResult = new HashMap<>();
+      toMapResult.put("artworkUri", artworkUri);
+      toMapResult.put("title", title);
+      toMapResult.put("artist", artist);
+      return toMapResult;
+    }
+    static @NonNull MediaMetadata fromMap(@NonNull Map<String, Object> map) {
+      MediaMetadata pigeonResult = new MediaMetadata();
+      Object artworkUri = map.get("artworkUri");
+      pigeonResult.setArtworkUri((String)artworkUri);
+      Object title = map.get("title");
+      pigeonResult.setTitle((String)title);
+      Object artist = map.get("artist");
+      pigeonResult.setArtist((String)artist);
+      return pigeonResult;
+    }
+  }
+
   public interface Result<T> {
     void success(T result);
     void error(Throwable error);
@@ -104,6 +250,12 @@ public class PlaybackPlatformApi {
     protected Object readValueOfType(byte type, ByteBuffer buffer) {
       switch (type) {
         case (byte)128:         
+          return MediaItem.fromMap((Map<String, Object>) readValue(buffer));
+        
+        case (byte)129:         
+          return MediaMetadata.fromMap((Map<String, Object>) readValue(buffer));
+        
+        case (byte)130:         
           return SetUrlArgs.fromMap((Map<String, Object>) readValue(buffer));
         
         default:        
@@ -113,8 +265,16 @@ public class PlaybackPlatformApi {
     }
     @Override
     protected void writeValue(ByteArrayOutputStream stream, Object value)     {
-      if (value instanceof SetUrlArgs) {
+      if (value instanceof MediaItem) {
         stream.write(128);
+        writeValue(stream, ((MediaItem) value).toMap());
+      } else 
+      if (value instanceof MediaMetadata) {
+        stream.write(129);
+        writeValue(stream, ((MediaMetadata) value).toMap());
+      } else 
+      if (value instanceof SetUrlArgs) {
+        stream.write(130);
         writeValue(stream, ((SetUrlArgs) value).toMap());
       } else 
 {
@@ -127,6 +287,7 @@ public class PlaybackPlatformApi {
   public interface PlaybackPlatformPigeon {
     void newPlayer(@Nullable String url, Result<String> result);
     void setUrl(@NonNull SetUrlArgs setUrlArgs, Result<Void> result);
+    void addMediaItem(@NonNull String playerId, @NonNull MediaItem mediaItem, Result<Void> result);
     void setPrimary(@NonNull String id, Result<Void> result);
 
     /** The codec used by PlaybackPlatformPigeon. */
@@ -191,6 +352,44 @@ public class PlaybackPlatformApi {
               };
 
               api.setUrl(setUrlArgsArg, resultCallback);
+            }
+            catch (Error | RuntimeException exception) {
+              wrapped.put("error", wrapError(exception));
+              reply.reply(wrapped);
+            }
+          });
+        } else {
+          channel.setMessageHandler(null);
+        }
+      }
+      {
+        BasicMessageChannel<Object> channel =
+            new BasicMessageChannel<>(binaryMessenger, "dev.flutter.pigeon.PlaybackPlatformPigeon.addMediaItem", getCodec());
+        if (api != null) {
+          channel.setMessageHandler((message, reply) -> {
+            Map<String, Object> wrapped = new HashMap<>();
+            try {
+              ArrayList<Object> args = (ArrayList<Object>)message;
+              String playerIdArg = (String)args.get(0);
+              if (playerIdArg == null) {
+                throw new NullPointerException("playerIdArg unexpectedly null.");
+              }
+              MediaItem mediaItemArg = (MediaItem)args.get(1);
+              if (mediaItemArg == null) {
+                throw new NullPointerException("mediaItemArg unexpectedly null.");
+              }
+              Result<Void> resultCallback = new Result<Void>() {
+                public void success(Void result) {
+                  wrapped.put("result", null);
+                  reply.reply(wrapped);
+                }
+                public void error(Throwable error) {
+                  wrapped.put("error", wrapError(error));
+                  reply.reply(wrapped);
+                }
+              };
+
+              api.addMediaItem(playerIdArg, mediaItemArg, resultCallback);
             }
             catch (Error | RuntimeException exception) {
               wrapped.put("error", wrapError(exception));
