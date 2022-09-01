@@ -3,6 +3,7 @@ import 'package:my_app/router/auth_guard.dart';
 import 'package:my_app/screens/home.dart';
 import 'package:my_app/screens/live.dart';
 import 'package:my_app/screens/login.dart';
+import 'package:my_app/screens/profile.dart';
 import 'package:my_app/screens/search.dart';
 
 import '../screens/episode.dart';
@@ -11,6 +12,7 @@ import '../screens/root.dart';
 @MaterialAutoRouter(
   routes: [
     MaterialRoute<void>(page: LoginScreen, path: '/login'),
+    MaterialRoute<void>(page: Profile, path: 'profile'),
     CustomRoute<void>(
         page: EpisodeScreen,
         path: 'episode/:episodeId',
