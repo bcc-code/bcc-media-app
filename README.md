@@ -21,7 +21,7 @@ Some code is generated based on other files, e.g. routing.
 To ensure your code is updated, run this watcher while developing: 
 
 ```
-flutter pub run build_runner watch
+flutter pub run build_runner watch --delete-conflicting-outputs
 ```
 
 # App architecture details
