@@ -1,4 +1,6 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import '../router/router.gr.dart';
 import 'list_frame.dart';
 
 class Profile extends StatefulWidget {
@@ -25,20 +27,20 @@ class _ProfileState extends State<Profile> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: Text('Language Setting List'),
-        ),
-        body: Container(
-            decoration: BoxDecoration(borderRadius: BorderRadius.circular(15)),
-            child: Column(
-              children: languageList
-                  .map((e) => GestureDetector(
-                      onTap: () {
-                        print(e['langCode']);
-                      },
-                      child: ListFrame(e['lang']!)))
-                  .toList(),
-            )));
+      appBar: AppBar(
+        title: const Text('Profile'),
+      ),
+      body: ListView(children: [
+        SizedBox(
+          height: 20,
+          child: ElevatedButton(
+              onPressed: () {
+                context.router.push(const AppLanguageScreenRoute());
+              },
+              child: const Text('App language')),
+        )
+      ]),
+    );
   }
 }
 //GestureDetector(onTap: () {}, child: ListFrame(eng)),
