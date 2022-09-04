@@ -1,5 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:my_app/api/sliders.dart';
 import 'package:my_app/components/featured.dart';
 import 'package:my_app/router/router.gr.dart';
@@ -8,14 +9,14 @@ import 'package:my_app/sections.dart';
 import '../components/cast_button.dart';
 import '../services/auth_service.dart';
 
-class HomeScreen extends StatefulWidget {
+class HomeScreen extends ConsumerStatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
 
   @override
-  State<HomeScreen> createState() => _HomeScreenState();
+  ConsumerState<HomeScreen> createState() => _HomeScreenState();
 }
 
-class _HomeScreenState extends State<HomeScreen> {
+class _HomeScreenState extends ConsumerState<HomeScreen> {
   String name = AuthService.instance.parsedIdToken!.name;
   late Future<List<Section>> sectionFuture;
 
@@ -34,7 +35,7 @@ class _HomeScreenState extends State<HomeScreen> {
         builder: (context, snapshot) {
           if (snapshot.hasData) {
             var sections = snapshot.data!
-                .map((s) => ItemSection.fromSection(context, s))
+                .map((s) => ItemSection.fromSection(context, s, ref))
                 .toList();
             return ListView(
               physics: const AlwaysScrollableScrollPhysics(),

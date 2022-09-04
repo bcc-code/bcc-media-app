@@ -1,12 +1,16 @@
 //import 'dart:html';
 
 import 'package:auto_route/auto_route.dart';
+import 'package:bccm_player/playback_platform_pigeon.g.dart';
 import 'package:bccm_player/playback_service_interface.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:bccm_player/bccm_player.dart';
 import 'package:bccm_player/bccm_castplayer.dart';
-import 'package:my_app/providers/cast.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:my_app/providers/chromecast.dart';
+import 'package:my_app/providers/playback_api.dart';
+import 'package:my_app/providers/video_state.dart';
 
 import '../api/episodes.dart';
 import '../components/cast_button.dart';
@@ -16,50 +20,37 @@ class EpisodePageArguments {
   EpisodePageArguments(this.episodeId);
 }
 
-class EpisodeScreen extends StatefulWidget {
+class EpisodeScreen extends ConsumerStatefulWidget {
   final PlayerType playerType = PlayerType.native;
   final int episodeId;
   const EpisodeScreen({super.key, @PathParam() this.episodeId = 1789});
 
   @override
-  State<EpisodeScreen> createState() => _EpisodeScreenState();
+  ConsumerState<EpisodeScreen> createState() => _EpisodeScreenState();
 }
 
-class _EpisodeScreenState extends State<EpisodeScreen> {
+class _EpisodeScreenState extends ConsumerState<EpisodeScreen> {
   late Future<Episode> episodeFuture;
   late Future<List<String>> playerIdFuture;
-  bool casting = false;
 
   @override
   void initState() {
     super.initState();
-    ChromecastListener.instance.on<SessionStarted>().listen((event) {
-      setState(() {
-        casting = true;
-      });
-    });
-    ChromecastListener.instance.on<SessionEnded>().listen((event) {
-      setState(() {
-        casting = false;
-      });
-    });
   }
 
   @override
   void didChangeDependencies() {
     //EpisodePageArguments args = ModalRoute.of(context)!.settings.arguments as EpisodePageArguments;
+    final casting = ref.watch(isCasting);
     int episodeId = widget.episodeId;
     episodeFuture = fetchEpisode(episodeId);
     if (widget.playerType == PlayerType.native) {
-      playerIdFuture = Future<List<String>>((() async {
-        var episode = await episodeFuture;
-        var playerId = await PlaybackPlatformInterface.instance
-            .newPlayer(url: episode.streamUrl);
-        var playerId2 = await PlaybackPlatformInterface.instance
-            .newPlayer(url: episode.streamUrl);
-
-        return [playerId];
-      }));
+      if (!casting) {
+        playerIdFuture =
+            Future.value([ref.read(playerStateProvider).primaryPlayerId!]);
+      } else {
+        playChromecast();
+      }
       /* playerIdFuture.then((playerId) {
         PlaybackPlatformInterface.instance.setPrimary(playerId);
       }); */
@@ -67,8 +58,15 @@ class _EpisodeScreenState extends State<EpisodeScreen> {
     super.didChangeDependencies();
   }
 
+  Future playChromecast() async {
+    var episode = await episodeFuture;
+    ref.read(playbackApiProvider).addMediaItem('chromecast',
+        MediaItem(url: episode.streamUrl, mimeType: 'application/x-mpegURL'));
+  }
+
   @override
   Widget build(BuildContext context) {
+    final casting = ref.watch(isCasting);
     return Scaffold(
       appBar: AppBar(
         title: const Text('Episode'),
@@ -85,31 +83,31 @@ class _EpisodeScreenState extends State<EpisodeScreen> {
           )),
           Padding(
             padding: const EdgeInsets.all(8.0),
-            child: FutureBuilder<List<String>>(
-                future: playerIdFuture,
-                builder: (context, snapshot) {
-                  if (snapshot.hasData) {
-                    return Column(
-                      children: [
-                        ...snapshot.data!.map(
-                          (element) => casting
-                              ? const BccmCastPlayer()
-                              : BccmPlayer(
+            child: casting
+                ? const BccmCastPlayer()
+                : FutureBuilder<List<String>>(
+                    future: playerIdFuture,
+                    builder: (context, snapshot) {
+                      if (snapshot.hasData) {
+                        return Column(
+                          children: [
+                            ...snapshot.data!.map(
+                              (element) => BccmPlayer(
                                   type: widget.playerType, id: element),
-                        ),
-                        ElevatedButton(
-                            onPressed: () {
-                              //PlaybackPlatformInterface.instance.setPrimary(snapshot.data!);
-                            },
-                            child: const Text("set primary"))
-                      ],
-                    );
-                  } else if (snapshot.hasError) {
-                    return Text(snapshot.error.toString());
-                  }
-                  // By default, show a loading spinner.
-                  return const CircularProgressIndicator();
-                }),
+                            ),
+                            ElevatedButton(
+                                onPressed: () {
+                                  //PlaybackPlatformInterface.instance.setPrimary(snapshot.data!);
+                                },
+                                child: const Text("set primary"))
+                          ],
+                        );
+                      } else if (snapshot.hasError) {
+                        return Text(snapshot.error.toString());
+                      }
+                      // By default, show a loading spinner.
+                      return const CircularProgressIndicator();
+                    }),
           ),
           Center(
             child: ElevatedButton(

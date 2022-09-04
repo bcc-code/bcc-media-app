@@ -8,9 +8,18 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+typedef NS_ENUM(NSUInteger, CastConnectionState) {
+  CastConnectionState_ = 0,
+  CastConnectionStateNoDevicesAvailable = 1,
+  CastConnectionStateNotConnected = 2,
+  CastConnectionStateConnecting = 3,
+  CastConnectionStateConnected = 4,
+};
+
 @class SetUrlArgs;
 @class MediaItem;
 @class MediaMetadata;
+@class ChromecastState;
 
 @interface SetUrlArgs : NSObject
 /// `init` unavailable to enforce nonnull fields, see the `make` class method.
@@ -45,6 +54,13 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic, copy, nullable) NSString * artist;
 @end
 
+@interface ChromecastState : NSObject
+/// `init` unavailable to enforce nonnull fields, see the `make` class method.
+- (instancetype)init NS_UNAVAILABLE;
++ (instancetype)makeWithConnectionState:(CastConnectionState)connectionState;
+@property(nonatomic, assign) CastConnectionState connectionState;
+@end
+
 /// The codec used by PlaybackPlatformPigeon.
 NSObject<FlutterMessageCodec> *PlaybackPlatformPigeonGetCodec(void);
 
@@ -53,6 +69,7 @@ NSObject<FlutterMessageCodec> *PlaybackPlatformPigeonGetCodec(void);
 - (void)setUrl:(SetUrlArgs *)setUrlArgs completion:(void(^)(FlutterError *_Nullable))completion;
 - (void)addMediaItem:(NSString *)playerId mediaItem:(MediaItem *)mediaItem completion:(void(^)(FlutterError *_Nullable))completion;
 - (void)setPrimary:(NSString *)id completion:(void(^)(FlutterError *_Nullable))completion;
+- (void)getChromecastState:(void(^)(ChromecastState *_Nullable, FlutterError *_Nullable))completion;
 @end
 
 extern void PlaybackPlatformPigeonSetup(id<FlutterBinaryMessenger> binaryMessenger, NSObject<PlaybackPlatformPigeon> *_Nullable api);

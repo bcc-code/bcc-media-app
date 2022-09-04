@@ -42,4 +42,9 @@ class PlaybackService extends PlaybackPlatformInterface {
   Future<void> addMediaItem(String playerId, MediaItem mediaItem) {
     return _pigeon.addMediaItem(playerId, mediaItem);
   }
+
+  @override
+  Future<ChromecastState> getChromecastState() {
+    return _pigeon.getChromecastState();
+  }
 }

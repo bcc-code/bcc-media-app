@@ -22,6 +22,19 @@ import java.util.HashMap;
 @SuppressWarnings({"unused", "unchecked", "CodeBlock2Expr", "RedundantSuppression"})
 public class PlaybackPlatformApi {
 
+  public enum CastConnectionState {
+    _(0),
+    noDevicesAvailable(1),
+    notConnected(2),
+    connecting(3),
+    connected(4);
+
+    private int index;
+    private CastConnectionState(final int index) {
+      this.index = index;
+    }
+  }
+
   /** Generated class from Pigeon that represents data sent in messages. */
   public static class SetUrlArgs {
     private @NonNull String playerId;
@@ -239,6 +252,44 @@ public class PlaybackPlatformApi {
     }
   }
 
+  /** Generated class from Pigeon that represents data sent in messages. */
+  public static class ChromecastState {
+    private @NonNull CastConnectionState connectionState;
+    public @NonNull CastConnectionState getConnectionState() { return connectionState; }
+    public void setConnectionState(@NonNull CastConnectionState setterArg) {
+      if (setterArg == null) {
+        throw new IllegalStateException("Nonnull field \"connectionState\" is null.");
+      }
+      this.connectionState = setterArg;
+    }
+
+    /** Constructor is private to enforce null safety; use Builder. */
+    private ChromecastState() {}
+    public static final class Builder {
+      private @Nullable CastConnectionState connectionState;
+      public @NonNull Builder setConnectionState(@NonNull CastConnectionState setterArg) {
+        this.connectionState = setterArg;
+        return this;
+      }
+      public @NonNull ChromecastState build() {
+        ChromecastState pigeonReturn = new ChromecastState();
+        pigeonReturn.setConnectionState(connectionState);
+        return pigeonReturn;
+      }
+    }
+    @NonNull Map<String, Object> toMap() {
+      Map<String, Object> toMapResult = new HashMap<>();
+      toMapResult.put("connectionState", connectionState == null ? null : connectionState.index);
+      return toMapResult;
+    }
+    static @NonNull ChromecastState fromMap(@NonNull Map<String, Object> map) {
+      ChromecastState pigeonResult = new ChromecastState();
+      Object connectionState = map.get("connectionState");
+      pigeonResult.setConnectionState(connectionState == null ? null : CastConnectionState.values()[(int)connectionState]);
+      return pigeonResult;
+    }
+  }
+
   public interface Result<T> {
     void success(T result);
     void error(Throwable error);
@@ -250,12 +301,15 @@ public class PlaybackPlatformApi {
     protected Object readValueOfType(byte type, ByteBuffer buffer) {
       switch (type) {
         case (byte)128:         
-          return MediaItem.fromMap((Map<String, Object>) readValue(buffer));
+          return ChromecastState.fromMap((Map<String, Object>) readValue(buffer));
         
         case (byte)129:         
-          return MediaMetadata.fromMap((Map<String, Object>) readValue(buffer));
+          return MediaItem.fromMap((Map<String, Object>) readValue(buffer));
         
         case (byte)130:         
+          return MediaMetadata.fromMap((Map<String, Object>) readValue(buffer));
+        
+        case (byte)131:         
           return SetUrlArgs.fromMap((Map<String, Object>) readValue(buffer));
         
         default:        
@@ -265,16 +319,20 @@ public class PlaybackPlatformApi {
     }
     @Override
     protected void writeValue(ByteArrayOutputStream stream, Object value)     {
-      if (value instanceof MediaItem) {
+      if (value instanceof ChromecastState) {
         stream.write(128);
+        writeValue(stream, ((ChromecastState) value).toMap());
+      } else 
+      if (value instanceof MediaItem) {
+        stream.write(129);
         writeValue(stream, ((MediaItem) value).toMap());
       } else 
       if (value instanceof MediaMetadata) {
-        stream.write(129);
+        stream.write(130);
         writeValue(stream, ((MediaMetadata) value).toMap());
       } else 
       if (value instanceof SetUrlArgs) {
-        stream.write(130);
+        stream.write(131);
         writeValue(stream, ((SetUrlArgs) value).toMap());
       } else 
 {
@@ -289,6 +347,7 @@ public class PlaybackPlatformApi {
     void setUrl(@NonNull SetUrlArgs setUrlArgs, Result<Void> result);
     void addMediaItem(@NonNull String playerId, @NonNull MediaItem mediaItem, Result<Void> result);
     void setPrimary(@NonNull String id, Result<Void> result);
+    void getChromecastState(Result<ChromecastState> result);
 
     /** The codec used by PlaybackPlatformPigeon. */
     static MessageCodec<Object> getCodec() {
@@ -424,6 +483,35 @@ public class PlaybackPlatformApi {
               };
 
               api.setPrimary(idArg, resultCallback);
+            }
+            catch (Error | RuntimeException exception) {
+              wrapped.put("error", wrapError(exception));
+              reply.reply(wrapped);
+            }
+          });
+        } else {
+          channel.setMessageHandler(null);
+        }
+      }
+      {
+        BasicMessageChannel<Object> channel =
+            new BasicMessageChannel<>(binaryMessenger, "dev.flutter.pigeon.PlaybackPlatformPigeon.getChromecastState", getCodec());
+        if (api != null) {
+          channel.setMessageHandler((message, reply) -> {
+            Map<String, Object> wrapped = new HashMap<>();
+            try {
+              Result<ChromecastState> resultCallback = new Result<ChromecastState>() {
+                public void success(ChromecastState result) {
+                  wrapped.put("result", result);
+                  reply.reply(wrapped);
+                }
+                public void error(Throwable error) {
+                  wrapped.put("error", wrapError(error));
+                  reply.reply(wrapped);
+                }
+              };
+
+              api.getChromecastState(resultCallback);
             }
             catch (Error | RuntimeException exception) {
               wrapped.put("error", wrapError(exception));

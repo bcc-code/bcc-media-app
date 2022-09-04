@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:my_app/api/sliders.dart';
 import 'package:my_app/components/category_button.dart';
 import 'package:my_app/sections.dart';
@@ -6,14 +7,14 @@ import 'package:my_app/sections.dart';
 import '../components/search_bar.dart';
 import '../services/auth_service.dart';
 
-class SearchScreen extends StatefulWidget {
+class SearchScreen extends ConsumerStatefulWidget {
   const SearchScreen({Key? key}) : super(key: key);
 
   @override
-  State<SearchScreen> createState() => _SearchScreenState();
+  ConsumerState<SearchScreen> createState() => _SearchScreenState();
 }
 
-class _SearchScreenState extends State<SearchScreen> {
+class _SearchScreenState extends ConsumerState<SearchScreen> {
   String name = AuthService.instance.parsedIdToken!.name;
   late Future<List<Section>> sectionFuture;
 
@@ -58,7 +59,7 @@ class _SearchScreenState extends State<SearchScreen> {
                   return Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: snapshot.data!
-                          .map((s) => ItemSection.fromSection(context, s))
+                          .map((s) => ItemSection.fromSection(context, s, ref))
                           .toList());
                 } else if (snapshot.hasError) {
                   return Text(snapshot.error.toString());

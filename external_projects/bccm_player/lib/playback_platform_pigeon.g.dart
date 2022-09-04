@@ -7,6 +7,14 @@ import 'dart:typed_data' show Uint8List, Int32List, Int64List, Float64List;
 import 'package:flutter/foundation.dart' show WriteBuffer, ReadBuffer;
 import 'package:flutter/services.dart';
 
+enum CastConnectionState {
+  _,
+  noDevicesAvailable,
+  notConnected,
+  connecting,
+  connected,
+}
+
 class SetUrlArgs {
   SetUrlArgs({
     required this.playerId,
@@ -100,20 +108,46 @@ class MediaMetadata {
   }
 }
 
+class ChromecastState {
+  ChromecastState({
+    required this.connectionState,
+  });
+
+  CastConnectionState connectionState;
+
+  Object encode() {
+    final Map<Object?, Object?> pigeonMap = <Object?, Object?>{};
+    pigeonMap['connectionState'] = connectionState.index;
+    return pigeonMap;
+  }
+
+  static ChromecastState decode(Object message) {
+    final Map<Object?, Object?> pigeonMap = message as Map<Object?, Object?>;
+    return ChromecastState(
+      connectionState: CastConnectionState.values[pigeonMap['connectionState']! as int]
+,
+    );
+  }
+}
+
 class _PlaybackPlatformPigeonCodec extends StandardMessageCodec {
   const _PlaybackPlatformPigeonCodec();
   @override
   void writeValue(WriteBuffer buffer, Object? value) {
-    if (value is MediaItem) {
+    if (value is ChromecastState) {
       buffer.putUint8(128);
       writeValue(buffer, value.encode());
     } else 
-    if (value is MediaMetadata) {
+    if (value is MediaItem) {
       buffer.putUint8(129);
       writeValue(buffer, value.encode());
     } else 
-    if (value is SetUrlArgs) {
+    if (value is MediaMetadata) {
       buffer.putUint8(130);
+      writeValue(buffer, value.encode());
+    } else 
+    if (value is SetUrlArgs) {
+      buffer.putUint8(131);
       writeValue(buffer, value.encode());
     } else 
 {
@@ -124,12 +158,15 @@ class _PlaybackPlatformPigeonCodec extends StandardMessageCodec {
   Object? readValueOfType(int type, ReadBuffer buffer) {
     switch (type) {
       case 128:       
-        return MediaItem.decode(readValue(buffer)!);
+        return ChromecastState.decode(readValue(buffer)!);
       
       case 129:       
-        return MediaMetadata.decode(readValue(buffer)!);
+        return MediaItem.decode(readValue(buffer)!);
       
       case 130:       
+        return MediaMetadata.decode(readValue(buffer)!);
+      
+      case 131:       
         return SetUrlArgs.decode(readValue(buffer)!);
       
       default:      
@@ -239,6 +276,33 @@ class PlaybackPlatformPigeon {
       );
     } else {
       return;
+    }
+  }
+
+  Future<ChromecastState> getChromecastState() async {
+    final BasicMessageChannel<Object?> channel = BasicMessageChannel<Object?>(
+        'dev.flutter.pigeon.PlaybackPlatformPigeon.getChromecastState', codec, binaryMessenger: _binaryMessenger);
+    final Map<Object?, Object?>? replyMap =
+        await channel.send(null) as Map<Object?, Object?>?;
+    if (replyMap == null) {
+      throw PlatformException(
+        code: 'channel-error',
+        message: 'Unable to establish connection on channel.',
+      );
+    } else if (replyMap['error'] != null) {
+      final Map<Object?, Object?> error = (replyMap['error'] as Map<Object?, Object?>?)!;
+      throw PlatformException(
+        code: (error['code'] as String?)!,
+        message: error['message'] as String?,
+        details: error['details'],
+      );
+    } else if (replyMap['result'] == null) {
+      throw PlatformException(
+        code: 'null-error',
+        message: 'Host platform returned null value for non-null return value.',
+      );
+    } else {
+      return (replyMap['result'] as ChromecastState?)!;
     }
   }
 }

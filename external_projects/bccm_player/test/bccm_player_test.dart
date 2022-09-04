@@ -1,3 +1,4 @@
+import 'package:bccm_player/playback_platform_pigeon.g.dart';
 import 'package:bccm_player/playback_service.dart';
 import 'package:bccm_player/playback_service_interface.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -6,33 +7,46 @@ import 'package:plugin_platform_interface/plugin_platform_interface.dart';
 class MockBccmPlayerPlatform
     with MockPlatformInterfaceMixin
     implements PlaybackPlatformInterface {
-      @override
-      Future<String?> getPlatformVersion() {
+  @override
+  Future<String?> getPlatformVersion() {
     // TODO: implement getPlatformVersion
     throw UnimplementedError();
-      }
-    
-      @override
-      Future<String> newPlayer({String? url}) {
+  }
+
+  @override
+  Future<String> newPlayer({String? url}) {
     // TODO: implement newPlayer
     throw UnimplementedError();
-      }
-    
-      @override
-      Future<bool> setPrimary(String id) {
+  }
+
+  @override
+  Future<bool> setPrimary(String id) {
     // TODO: implement setPrimary
     throw UnimplementedError();
-      }
-    
-      @override
-      Future<void> setUrl({required String playerId, required String url, bool isLive = false}) {
+  }
+
+  @override
+  Future<void> setUrl(
+      {required String playerId, required String url, bool isLive = false}) {
     // TODO: implement setUrl
     throw UnimplementedError();
-      }
+  }
+
+  @override
+  Future<void> addMediaItem(String playerId, MediaItem mediaItem) {
+    // TODO: implement addMediaItem
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<ChromecastState> getChromecastState() {
+    // TODO: implement getChromecastState
+    throw UnimplementedError();
+  }
 }
 
 void main() {
-  final PlaybackPlatformInterface initialPlatform = PlaybackPlatformInterface.instance;
+  final PlaybackPlatformInterface initialPlatform = PlaybackService();
 
   test('$PlaybackService is the default instance', () {
     expect(initialPlatform, isInstanceOf<PlaybackService>());

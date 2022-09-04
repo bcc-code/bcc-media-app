@@ -4,9 +4,15 @@ import 'package:bccm_player/chromecast_pigeon.g.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+final chromecastListenerProvider =
+    Provider<ChromecastListener>((_) => throw UnimplementedError());
+final isCasting = StateProvider<bool>((ref) => false);
+
 class ChromecastListener implements ChromecastPigeon {
-  static ChromecastListener instance = ChromecastListener._internal();
-  ChromecastListener._internal();
+  ProviderRef<ChromecastListener>? providerRef;
+
+  ChromecastListener({this.providerRef});
+
   StreamController<ChromecastEvent> streamController =
       StreamController.broadcast();
 
@@ -21,6 +27,7 @@ class ChromecastListener implements ChromecastPigeon {
   @override
   void onSessionEnded() {
     streamController.add(SessionEnded());
+    providerRef?.read(isCasting.notifier).state = false;
   }
 
   @override
@@ -51,6 +58,7 @@ class ChromecastListener implements ChromecastPigeon {
   @override
   void onSessionStarted() {
     streamController.add(SessionStarted());
+    providerRef?.read(isCasting.notifier).state = true;
   }
 
   @override

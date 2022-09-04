@@ -22,13 +22,16 @@ abstract class PlaybackPlatformPigeon {
   @async
   @ObjCSelector("setPrimary:")
   void setPrimary(String id);
+
+  @async
+  @ObjCSelector("getChromecastState")
+  ChromecastState getChromecastState();
 }
 
 class SetUrlArgs {
-  String playerId;
-  String url;
+  late String playerId;
+  late String url;
   bool? isLive;
-  SetUrlArgs({required this.playerId, required this.url, this.isLive});
 }
 
 class MediaItem {
@@ -42,4 +45,16 @@ class MediaMetadata {
   String? artworkUri;
   String? title;
   String? artist;
+}
+
+class ChromecastState {
+  late CastConnectionState connectionState;
+}
+
+enum CastConnectionState {
+  _,
+  noDevicesAvailable,
+  notConnected,
+  connecting,
+  connected,
 }

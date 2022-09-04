@@ -31,6 +31,11 @@ class PlaybackApiImpl(private val plugin: BccmPlayerPlugin) : PlaybackPlatformAp
     }
 
     override fun addMediaItem(playerId: String, mediaItem: PlaybackPlatformApi.MediaItem, result: PlaybackPlatformApi.Result<Void>?) {
+        if (playerId == "chromecast") {
+            plugin.getCastController()?.addMediaItem(mediaItem)
+            return
+        }
+
         val playbackService = plugin.getPlaybackService()
         if (playbackService == null) {
             result?.error(Error())
@@ -49,5 +54,9 @@ class PlaybackApiImpl(private val plugin: BccmPlayerPlugin) : PlaybackPlatformAp
 
         playbackService.setPrimary(id)
         result?.success(null)
+    }
+
+    override fun getChromecastState(result: PlaybackPlatformApi.Result<PlaybackPlatformApi.ChromecastState>?) {
+        result?.success(plugin.getCastController()?.getState());
     }
 }

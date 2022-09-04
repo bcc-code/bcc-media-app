@@ -71,17 +71,20 @@ class BccmPlayerController(private val context: Context): PlayerManager.Listener
 
     fun playWithMediaItem(mediaItem: PlaybackPlatformApi.MediaItem) {
         this.isLive = mediaItem.isLive ?: false;
-        val mediaMetadata = MediaMetadata.Builder()
-                .setArtworkUri(Uri.parse(mediaItem.metadata?.artworkUri))
-                .setTitle(mediaItem.metadata?.title)
+        val metaBuilder = MediaMetadata.Builder();
+        if (mediaItem.metadata?.artworkUri != null) {
+            metaBuilder.setArtworkUri(Uri.parse(mediaItem.metadata?.artworkUri))
+        }
+        metaBuilder.setTitle(mediaItem.metadata?.title)
                 .setArtist(mediaItem.metadata?.artist)
                 .build()
-        val androidMediaItem = MediaItem.Builder()
+        val miBuilder = MediaItem.Builder()
                 .setUri(mediaItem.url)
-                .setMediaMetadata(mediaMetadata)
-                .setMimeType(mediaItem.mimeType)
-                .build();
-        playerManager?.addItem(androidMediaItem);
+                .setMediaMetadata(metaBuilder.build());
+        if (mediaItem.mimeType != null) {
+            miBuilder.setMimeType(mediaItem.mimeType);
+        }
+        playerManager?.addItem(miBuilder.build());
     }
 
     fun playWithUrl(url: String, isLive: Boolean = false) {

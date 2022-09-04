@@ -45,6 +45,7 @@ class BccmPlayerPlugin: FlutterPlugin, MethodCallHandler, ActivityAware {
   private var playbackServiceFuture: ListenableFuture<PlaybackService>? = null
   private var mBound: Boolean = false
   private var activity: Activity? = null
+  private var castController: CastController? = null
 
   private val playbackServiceConnection = object : ServiceConnection {
     override fun onServiceConnected(className: ComponentName, binder: IBinder) {
@@ -68,11 +69,11 @@ class BccmPlayerPlugin: FlutterPlugin, MethodCallHandler, ActivityAware {
 
     val castContext = CastContext.getSharedInstance(flutterPluginBinding.applicationContext);
     val pigeon = ChromecastControllerPigeon.ChromecastPigeon(flutterPluginBinding.binaryMessenger)
-    val castController = CastController(castContext, pigeon)
-    castContext.sessionManager.addSessionManagerListener(castController)
+    castController = CastController(castContext, pigeon)
+    castContext.sessionManager.addSessionManagerListener(castController!!)
     pluginBinding!!
             .platformViewRegistry
-            .registerViewFactory("bccm-cast-player", BccmCastPlayerViewFactory(castController))
+            .registerViewFactory("bccm-cast-player", BccmCastPlayerViewFactory(castController!!))
   }
 
 
@@ -121,6 +122,10 @@ class BccmPlayerPlugin: FlutterPlugin, MethodCallHandler, ActivityAware {
 
   fun getPlaybackService(): PlaybackService? {
     return playbackService;
+  }
+
+  fun getCastController(): CastController? {
+    return castController;
   }
 
   override fun onMethodCall(@NonNull call: MethodCall, @NonNull result: Result) {

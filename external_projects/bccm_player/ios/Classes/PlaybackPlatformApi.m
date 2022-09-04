@@ -46,6 +46,11 @@ static id GetNullableObjectAtIndex(NSArray* array, NSInteger key) {
 + (nullable MediaMetadata *)nullableFromMap:(NSDictionary *)dict;
 - (NSDictionary *)toMap;
 @end
+@interface ChromecastState ()
++ (ChromecastState *)fromMap:(NSDictionary *)dict;
++ (nullable ChromecastState *)nullableFromMap:(NSDictionary *)dict;
+- (NSDictionary *)toMap;
+@end
 
 @implementation SetUrlArgs
 + (instancetype)makeWithPlayerId:(NSString *)playerId
@@ -135,6 +140,25 @@ static id GetNullableObjectAtIndex(NSArray* array, NSInteger key) {
 }
 @end
 
+@implementation ChromecastState
++ (instancetype)makeWithConnectionState:(CastConnectionState)connectionState {
+  ChromecastState* pigeonResult = [[ChromecastState alloc] init];
+  pigeonResult.connectionState = connectionState;
+  return pigeonResult;
+}
++ (ChromecastState *)fromMap:(NSDictionary *)dict {
+  ChromecastState *pigeonResult = [[ChromecastState alloc] init];
+  pigeonResult.connectionState = [GetNullableObject(dict, @"connectionState") integerValue];
+  return pigeonResult;
+}
++ (nullable ChromecastState *)nullableFromMap:(NSDictionary *)dict { return (dict) ? [ChromecastState fromMap:dict] : nil; }
+- (NSDictionary *)toMap {
+  return @{
+    @"connectionState" : @(self.connectionState),
+  };
+}
+@end
+
 @interface PlaybackPlatformPigeonCodecReader : FlutterStandardReader
 @end
 @implementation PlaybackPlatformPigeonCodecReader
@@ -142,12 +166,15 @@ static id GetNullableObjectAtIndex(NSArray* array, NSInteger key) {
 {
   switch (type) {
     case 128:     
-      return [MediaItem fromMap:[self readValue]];
+      return [ChromecastState fromMap:[self readValue]];
     
     case 129:     
-      return [MediaMetadata fromMap:[self readValue]];
+      return [MediaItem fromMap:[self readValue]];
     
     case 130:     
+      return [MediaMetadata fromMap:[self readValue]];
+    
+    case 131:     
       return [SetUrlArgs fromMap:[self readValue]];
     
     default:    
@@ -162,16 +189,20 @@ static id GetNullableObjectAtIndex(NSArray* array, NSInteger key) {
 @implementation PlaybackPlatformPigeonCodecWriter
 - (void)writeValue:(id)value 
 {
-  if ([value isKindOfClass:[MediaItem class]]) {
+  if ([value isKindOfClass:[ChromecastState class]]) {
     [self writeByte:128];
     [self writeValue:[value toMap]];
   } else 
-  if ([value isKindOfClass:[MediaMetadata class]]) {
+  if ([value isKindOfClass:[MediaItem class]]) {
     [self writeByte:129];
     [self writeValue:[value toMap]];
   } else 
-  if ([value isKindOfClass:[SetUrlArgs class]]) {
+  if ([value isKindOfClass:[MediaMetadata class]]) {
     [self writeByte:130];
+    [self writeValue:[value toMap]];
+  } else 
+  if ([value isKindOfClass:[SetUrlArgs class]]) {
+    [self writeByte:131];
     [self writeValue:[value toMap]];
   } else 
 {
@@ -277,6 +308,24 @@ void PlaybackPlatformPigeonSetup(id<FlutterBinaryMessenger> binaryMessenger, NSO
         NSString *arg_id = GetNullableObjectAtIndex(args, 0);
         [api setPrimary:arg_id completion:^(FlutterError *_Nullable error) {
           callback(wrapResult(nil, error));
+        }];
+      }];
+    }
+    else {
+      [channel setMessageHandler:nil];
+    }
+  }
+  {
+    FlutterBasicMessageChannel *channel =
+      [[FlutterBasicMessageChannel alloc]
+        initWithName:@"dev.flutter.pigeon.PlaybackPlatformPigeon.getChromecastState"
+        binaryMessenger:binaryMessenger
+        codec:PlaybackPlatformPigeonGetCodec()        ];
+    if (api) {
+      NSCAssert([api respondsToSelector:@selector(getChromecastState:)], @"PlaybackPlatformPigeon api (%@) doesn't respond to @selector(getChromecastState:)", api);
+      [channel setMessageHandler:^(id _Nullable message, FlutterReply callback) {
+        [api getChromecastState:^(ChromecastState *_Nullable output, FlutterError *_Nullable error) {
+          callback(wrapResult(output, error));
         }];
       }];
     }
