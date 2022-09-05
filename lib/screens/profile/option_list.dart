@@ -25,7 +25,7 @@ class OptionList extends StatelessWidget {
           final currentSelection =
               _optionData[index]['currentSelection'] as String?;
           final onPressed = _optionData[index]['onPressed'] as VoidCallback;
-          return OptionButton(
+          return _OptionButton(
             optionName: optionName,
             onPressed: onPressed,
             currentSelection: currentSelection,
@@ -43,12 +43,12 @@ class OptionList extends StatelessWidget {
   }
 }
 
-class OptionButton extends StatelessWidget {
+class _OptionButton extends StatelessWidget {
   final String optionName;
   final String? currentSelection;
   final VoidCallback onPressed;
 
-  const OptionButton({
+  const _OptionButton({
     required this.optionName,
     required this.onPressed,
     this.currentSelection,
