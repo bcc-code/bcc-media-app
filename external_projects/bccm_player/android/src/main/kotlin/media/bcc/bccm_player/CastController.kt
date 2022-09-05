@@ -2,8 +2,10 @@ package media.bcc.bccm_player
 
 import android.net.Uri
 import androidx.media3.cast.CastPlayer
+import androidx.media3.common.C
 import androidx.media3.common.MediaItem
 import androidx.media3.common.MediaMetadata
+import androidx.media3.common.Player
 import com.google.android.gms.cast.framework.CastContext
 import com.google.android.gms.cast.framework.CastState
 import com.google.android.gms.cast.framework.Session
@@ -11,7 +13,7 @@ import com.google.android.gms.cast.framework.SessionManagerListener
 import media.bcc.player.ChromecastControllerPigeon
 import media.bcc.player.PlaybackPlatformApi
 
-class CastController(private val castContext: CastContext, private val pigeon: ChromecastControllerPigeon.ChromecastPigeon): SessionManagerListener<Session> {
+class CastController(private val castContext: CastContext, private val pigeon: ChromecastControllerPigeon.ChromecastPigeon, private val plugin: BccmPlayerPlugin): SessionManagerListener<Session> {
     val castPlayer = CastPlayer(castContext)
 
     init {
@@ -67,6 +69,35 @@ class CastController(private val castContext: CastContext, private val pigeon: C
 
     override fun onSessionStarted(p0: Session, p1: String) {
         pigeon.onSessionStarted {}
+        // Copy state from primary player
+        val primaryPlayer = plugin.getPlaybackService()?.getPrimaryController()?.getPlayer() ?: throw Error("PlaybackService not active");
+
+        var playbackPositionMs = C.TIME_UNSET
+        var currentItemIndex = C.INDEX_UNSET
+        var playWhenReady = false
+
+        val queue = mutableListOf<MediaItem>()
+        for (x in 0..primaryPlayer.mediaItemCount) {
+            queue.add(primaryPlayer.getMediaItemAt(x));
+        }
+
+        if (primaryPlayer.playbackState != Player.STATE_ENDED) {
+            playbackPositionMs = primaryPlayer.currentPosition
+            playWhenReady = primaryPlayer.playWhenReady
+            currentItemIndex = primaryPlayer.currentMediaItemIndex
+            /*if (currentItemIndex != this.currentItemIndex) {
+                playbackPositionMs = C.TIME_UNSET
+                currentItemIndex = this.currentItemIndex
+            }*/
+        }
+        primaryPlayer.stop()
+        primaryPlayer.clearMediaItems()
+
+        castPlayer.setMediaItems(queue, currentItemIndex, playbackPositionMs)
+        castPlayer.playWhenReady = playWhenReady
+        castPlayer.prepare()
+
+        // Set castplayer as primary??
     }
 
     override fun onSessionStarting(p0: Session) {

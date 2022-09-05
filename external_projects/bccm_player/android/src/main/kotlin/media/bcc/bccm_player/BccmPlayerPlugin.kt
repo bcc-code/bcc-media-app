@@ -69,7 +69,7 @@ class BccmPlayerPlugin: FlutterPlugin, MethodCallHandler, ActivityAware {
 
     val castContext = CastContext.getSharedInstance(flutterPluginBinding.applicationContext);
     val pigeon = ChromecastControllerPigeon.ChromecastPigeon(flutterPluginBinding.binaryMessenger)
-    castController = CastController(castContext, pigeon)
+    castController = CastController(castContext, pigeon, this)
     castContext.sessionManager.addSessionManagerListener(castController!!)
     pluginBinding!!
             .platformViewRegistry

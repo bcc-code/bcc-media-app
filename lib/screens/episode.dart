@@ -46,8 +46,15 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen> {
     episodeFuture = fetchEpisode(episodeId);
     if (widget.playerType == PlayerType.native) {
       if (!casting) {
-        playerIdFuture =
-            Future.value([ref.read(playerStateProvider).primaryPlayerId!]);
+        var playerId = ref.read(playerStateProvider).primaryPlayerId!;
+        playerIdFuture = Future.value([playerId]);
+
+        episodeFuture.then((episode) {
+          ref.read(playbackApiProvider).addMediaItem(
+              playerId,
+              MediaItem(
+                  url: episode.streamUrl, mimeType: 'application/x-mpegURL'));
+        });
       } else {
         playChromecast();
       }

@@ -32,7 +32,7 @@ class BccmPlayerController(private val context: Context): PlayerManager.Listener
         try {
             castContext = CastContext.getSharedInstance(context);
         } catch (e: Exception) { }
-        playerManager = PlayerManager(context, this, getPlayer(), castContext)
+        //playerManager = PlayerManager(context, this, getPlayer(), castContext)
     }
 
     fun getExoPlayer(): ExoPlayer {
@@ -49,7 +49,10 @@ class BccmPlayerController(private val context: Context): PlayerManager.Listener
         val playerView = pvWrapper.getPlayerView() ?: throw Error("pvWrapper.getPlayerView() was null");
         val currentPlayerView = previousPvWrapper?.getPlayerView();
 
-        playerManager?.setPlayerView(playerView);
+
+        playerView.player = getPlayer()
+
+        //playerManager?.setPlayerView(playerView);
         /*if (currentPlayerView != null) {
             PlayerView.switchTargetView(getPlayer(), currentPlayerView, playerView)
         } else {
@@ -84,7 +87,8 @@ class BccmPlayerController(private val context: Context): PlayerManager.Listener
         if (mediaItem.mimeType != null) {
             miBuilder.setMimeType(mediaItem.mimeType);
         }
-        playerManager?.addItem(miBuilder.build());
+        //playerManager?.addItem(miBuilder.build());
+        exoPlayer.addMediaItem(miBuilder.build())
     }
 
     fun playWithUrl(url: String, isLive: Boolean = false) {
@@ -94,10 +98,10 @@ class BccmPlayerController(private val context: Context): PlayerManager.Listener
                 .setMimeType(MimeTypes.APPLICATION_M3U8)
                 .build()
 
-        playerManager?.addItem(mediaItem);
-        /*exoPlayer.setMediaItem(mediaItem)
+        //playerManager?.addItem(mediaItem);
+        exoPlayer.setMediaItem(mediaItem)
         exoPlayer.prepare()
-        exoPlayer.play()*/
+        exoPlayer.play()
     }
 
     fun release() {

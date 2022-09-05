@@ -34,6 +34,9 @@ class PlaybackService : MediaSessionService() {
     fun getController(playerId: String): BccmPlayerController? {
         return playerControllers.find { it.id == playerId }
     }
+    fun getPrimaryController(): BccmPlayerController {
+        return primaryPlayerController
+    }
 
     // Create your Player and MediaSession in the onCreate lifecycle event
     override fun onCreate() {
