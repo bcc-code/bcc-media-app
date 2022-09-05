@@ -36,7 +36,7 @@ void main() async {
 
   providerContainer.read(playbackApiProvider).getChromecastState().then(
       (value) => providerContainer.read(isCasting.notifier).state =
-          value.connectionState == CastConnectionState.connected);
+          value?.connectionState == CastConnectionState.connected);
 
   runApp(UncontrolledProviderScope(
     container: providerContainer,

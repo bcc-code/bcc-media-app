@@ -25,7 +25,7 @@ abstract class PlaybackPlatformPigeon {
 
   @async
   @ObjCSelector("getChromecastState")
-  ChromecastState getChromecastState();
+  ChromecastState? getChromecastState();
 }
 
 class SetUrlArgs {

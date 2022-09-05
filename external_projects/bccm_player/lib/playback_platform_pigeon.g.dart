@@ -243,7 +243,7 @@ class PlaybackPlatformPigeon {
     }
   }
 
-  Future<ChromecastState> getChromecastState() async {
+  Future<ChromecastState?> getChromecastState() async {
     final BasicMessageChannel<Object?> channel = BasicMessageChannel<Object?>(
         'dev.flutter.pigeon.PlaybackPlatformPigeon.getChromecastState', codec, binaryMessenger: _binaryMessenger);
     final Map<Object?, Object?>? replyMap =
@@ -260,13 +260,8 @@ class PlaybackPlatformPigeon {
         message: error['message'] as String?,
         details: error['details'],
       );
-    } else if (replyMap['result'] == null) {
-      throw PlatformException(
-        code: 'null-error',
-        message: 'Host platform returned null value for non-null return value.',
-      );
     } else {
-      return (replyMap['result'] as ChromecastState?)!;
+      return (replyMap['result'] as ChromecastState?);
     }
   }
 }

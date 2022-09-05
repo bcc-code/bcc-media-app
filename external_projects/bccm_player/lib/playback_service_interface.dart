@@ -40,7 +40,7 @@ abstract class PlaybackPlatformInterface extends PlatformInterface {
     throw UnimplementedError('addMediaItem() has not been implemented.');
   }
 
-  Future<ChromecastState> getChromecastState() async {
+  Future<ChromecastState?> getChromecastState() async {
     throw UnimplementedError('addMediaItem() has not been implemented.');
   }
 }

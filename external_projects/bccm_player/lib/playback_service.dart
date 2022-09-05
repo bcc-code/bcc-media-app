@@ -41,7 +41,7 @@ class PlaybackService extends PlaybackPlatformInterface {
   }
 
   @override
-  Future<ChromecastState> getChromecastState() {
+  Future<ChromecastState?> getChromecastState() {
     return _pigeon.getChromecastState();
   }
 }

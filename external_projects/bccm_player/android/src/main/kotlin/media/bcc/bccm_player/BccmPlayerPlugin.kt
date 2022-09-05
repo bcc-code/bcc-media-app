@@ -16,6 +16,7 @@ import androidx.annotation.NonNull
 import androidx.media3.session.MediaController
 import androidx.media3.session.SessionToken
 import androidx.mediarouter.app.MediaRouteButton
+import com.google.android.gms.cast.Cast
 import com.google.android.gms.cast.framework.CastButtonFactory
 import com.google.android.gms.cast.framework.CastContext
 import com.google.common.util.concurrent.ListenableFuture
@@ -31,6 +32,7 @@ import io.flutter.plugin.common.MethodChannel.MethodCallHandler
 import io.flutter.plugin.common.MethodChannel.Result
 import media.bcc.player.ChromecastControllerPigeon
 import media.bcc.player.PlaybackPlatformApi.PlaybackPlatformPigeon
+import java.lang.IllegalStateException
 
 /** BccmPlayerPlugin */
 class BccmPlayerPlugin: FlutterPlugin, MethodCallHandler, ActivityAware {
@@ -63,17 +65,25 @@ class BccmPlayerPlugin: FlutterPlugin, MethodCallHandler, ActivityAware {
 
   override fun onAttachedToEngine(@NonNull flutterPluginBinding: FlutterPlugin.FlutterPluginBinding) {
     pluginBinding = flutterPluginBinding
+    var castContext: CastContext? = null
+    try {
+      castContext = CastContext.getSharedInstance(flutterPluginBinding.applicationContext);
+      val ccPigeon = ChromecastControllerPigeon.ChromecastPigeon(flutterPluginBinding.binaryMessenger)
+      castController = CastController(castContext, ccPigeon, this)
+      castContext.sessionManager.addSessionManagerListener(castController!!)
+      flutterPluginBinding
+              .platformViewRegistry
+              .registerViewFactory("bccm-cast-player", BccmCastPlayerViewFactory(castController!!))
+    } catch (e: Exception) {
+      //TODO: log exception
+
+      flutterPluginBinding
+              .platformViewRegistry
+              .registerViewFactory("bccm-cast-player", EmptyViewFactory())
+    }
     flutterPluginBinding
             .platformViewRegistry
             .registerViewFactory("bccm_player/cast_button", FLCastButtonFactory())
-
-    val castContext = CastContext.getSharedInstance(flutterPluginBinding.applicationContext);
-    val pigeon = ChromecastControllerPigeon.ChromecastPigeon(flutterPluginBinding.binaryMessenger)
-    castController = CastController(castContext, pigeon, this)
-    castContext.sessionManager.addSessionManagerListener(castController!!)
-    pluginBinding!!
-            .platformViewRegistry
-            .registerViewFactory("bccm-cast-player", BccmCastPlayerViewFactory(castController!!))
   }
 
 

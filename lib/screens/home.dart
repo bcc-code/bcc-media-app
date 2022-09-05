@@ -6,7 +6,7 @@ import 'package:my_app/components/featured.dart';
 import 'package:my_app/router/router.gr.dart';
 import 'package:my_app/sections.dart';
 
-import '../components/cast_button.dart';
+import 'package:bccm_player/cast_button.dart';
 import '../services/auth_service.dart';
 
 class HomeScreen extends ConsumerStatefulWidget {
