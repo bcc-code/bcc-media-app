@@ -4,7 +4,7 @@ import 'package:my_app/screens/app_language.dart';
 import 'package:my_app/screens/home.dart';
 import 'package:my_app/screens/live.dart';
 import 'package:my_app/screens/login.dart';
-import 'package:my_app/screens/profile.dart';
+import 'package:my_app/screens/profile/profile.dart';
 import 'package:my_app/screens/search.dart';
 
 import '../screens/episode.dart';
