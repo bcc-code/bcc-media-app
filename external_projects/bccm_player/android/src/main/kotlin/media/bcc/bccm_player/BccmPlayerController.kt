@@ -72,8 +72,7 @@ class BccmPlayerController(private val context: Context): PlayerManager.Listener
 
     }
 
-    fun playWithMediaItem(mediaItem: PlaybackPlatformApi.MediaItem) {
-        this.isLive = mediaItem.isLive ?: false;
+    fun mapMediaItem(mediaItem: PlaybackPlatformApi.MediaItem): MediaItem {
         val metaBuilder = MediaMetadata.Builder();
         if (mediaItem.metadata?.artworkUri != null) {
             metaBuilder.setArtworkUri(Uri.parse(mediaItem.metadata?.artworkUri))
@@ -87,21 +86,20 @@ class BccmPlayerController(private val context: Context): PlayerManager.Listener
         if (mediaItem.mimeType != null) {
             miBuilder.setMimeType(mediaItem.mimeType);
         }
-        //playerManager?.addItem(miBuilder.build());
-        exoPlayer.addMediaItem(miBuilder.build())
+        return miBuilder.build()
     }
 
-    fun playWithUrl(url: String, isLive: Boolean = false) {
-        this.isLive = isLive;
-        val mediaItem: MediaItem = MediaItem.Builder()
-                .setUri(url)
-                .setMimeType(MimeTypes.APPLICATION_M3U8)
-                .build()
-
-        //playerManager?.addItem(mediaItem);
-        exoPlayer.setMediaItem(mediaItem)
+    fun replaceCurrentMediaItem(mediaItem: PlaybackPlatformApi.MediaItem) {
+        this.isLive = mediaItem.isLive ?: false;
+        val androidMi = mapMediaItem(mediaItem);
+        exoPlayer.setMediaItem(androidMi)
         exoPlayer.prepare()
         exoPlayer.play()
+    }
+
+    fun queueMediaItem(mediaItem: PlaybackPlatformApi.MediaItem) {
+        val androidMi = mapMediaItem(mediaItem);
+        exoPlayer.addMediaItem(androidMi)
     }
 
     fun release() {

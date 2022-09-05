@@ -65,9 +65,8 @@ class ItemSection extends StatelessWidget {
                               onPressed: () {
                                 fetchEpisode(si.id).then(
                                   (value) {
-                                    1;
                                     PlaybackPlatformInterface.instance
-                                        .addMediaItem(
+                                        .queueMediaItem(
                                             'chromecast',
                                             MediaItem(
                                                 url: value.streamUrl,

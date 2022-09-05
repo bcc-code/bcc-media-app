@@ -50,7 +50,8 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen> {
         playerIdFuture = Future.value([playerId]);
 
         episodeFuture.then((episode) {
-          ref.read(playbackApiProvider).addMediaItem(
+          var playbackApi = ref.read(playbackApiProvider);
+          playbackApi.replaceCurrentMediaItem(
               playerId,
               MediaItem(
                   url: episode.streamUrl, mimeType: 'application/x-mpegURL'));
@@ -67,7 +68,7 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen> {
 
   Future playChromecast() async {
     var episode = await episodeFuture;
-    ref.read(playbackApiProvider).addMediaItem('chromecast',
+    ref.read(playbackApiProvider).replaceCurrentMediaItem('chromecast',
         MediaItem(url: episode.streamUrl, mimeType: 'application/x-mpegURL'));
   }
 

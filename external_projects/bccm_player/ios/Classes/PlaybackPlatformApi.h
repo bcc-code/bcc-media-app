@@ -16,21 +16,9 @@ typedef NS_ENUM(NSUInteger, CastConnectionState) {
   CastConnectionStateConnected = 4,
 };
 
-@class SetUrlArgs;
 @class MediaItem;
 @class MediaMetadata;
 @class ChromecastState;
-
-@interface SetUrlArgs : NSObject
-/// `init` unavailable to enforce nonnull fields, see the `make` class method.
-- (instancetype)init NS_UNAVAILABLE;
-+ (instancetype)makeWithPlayerId:(NSString *)playerId
-    url:(NSString *)url
-    isLive:(nullable NSNumber *)isLive;
-@property(nonatomic, copy) NSString * playerId;
-@property(nonatomic, copy) NSString * url;
-@property(nonatomic, strong, nullable) NSNumber * isLive;
-@end
 
 @interface MediaItem : NSObject
 /// `init` unavailable to enforce nonnull fields, see the `make` class method.
@@ -66,8 +54,8 @@ NSObject<FlutterMessageCodec> *PlaybackPlatformPigeonGetCodec(void);
 
 @protocol PlaybackPlatformPigeon
 - (void)newPlayer:(nullable NSString *)url completion:(void(^)(NSString *_Nullable, FlutterError *_Nullable))completion;
-- (void)setUrl:(SetUrlArgs *)setUrlArgs completion:(void(^)(FlutterError *_Nullable))completion;
-- (void)addMediaItem:(NSString *)playerId mediaItem:(MediaItem *)mediaItem completion:(void(^)(FlutterError *_Nullable))completion;
+- (void)queueMediaItem:(NSString *)playerId mediaItem:(MediaItem *)mediaItem completion:(void(^)(FlutterError *_Nullable))completion;
+- (void)replaceCurrentMediaItem:(NSString *)playerId mediaItem:(MediaItem *)mediaItem completion:(void(^)(FlutterError *_Nullable))completion;
 - (void)setPrimary:(NSString *)id completion:(void(^)(FlutterError *_Nullable))completion;
 - (void)getChromecastState:(void(^)(ChromecastState *_Nullable, FlutterError *_Nullable))completion;
 @end

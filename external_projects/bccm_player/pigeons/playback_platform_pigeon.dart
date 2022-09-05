@@ -12,12 +12,12 @@ abstract class PlaybackPlatformPigeon {
   String newPlayer(String? url);
 
   @async
-  @ObjCSelector("setUrl:")
-  void setUrl(SetUrlArgs setUrlArgs);
+  @ObjCSelector("queueMediaItem:mediaItem:")
+  void queueMediaItem(String playerId, MediaItem mediaItem);
 
   @async
-  @ObjCSelector("addMediaItem:mediaItem:")
-  void addMediaItem(String playerId, MediaItem mediaItem);
+  @ObjCSelector("replaceCurrentMediaItem:mediaItem:")
+  void replaceCurrentMediaItem(String playerId, MediaItem mediaItem);
 
   @async
   @ObjCSelector("setPrimary:")

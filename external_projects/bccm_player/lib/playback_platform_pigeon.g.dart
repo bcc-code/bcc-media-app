@@ -15,35 +15,6 @@ enum CastConnectionState {
   connected,
 }
 
-class SetUrlArgs {
-  SetUrlArgs({
-    required this.playerId,
-    required this.url,
-    this.isLive,
-  });
-
-  String playerId;
-  String url;
-  bool? isLive;
-
-  Object encode() {
-    final Map<Object?, Object?> pigeonMap = <Object?, Object?>{};
-    pigeonMap['playerId'] = playerId;
-    pigeonMap['url'] = url;
-    pigeonMap['isLive'] = isLive;
-    return pigeonMap;
-  }
-
-  static SetUrlArgs decode(Object message) {
-    final Map<Object?, Object?> pigeonMap = message as Map<Object?, Object?>;
-    return SetUrlArgs(
-      playerId: pigeonMap['playerId']! as String,
-      url: pigeonMap['url']! as String,
-      isLive: pigeonMap['isLive'] as bool?,
-    );
-  }
-}
-
 class MediaItem {
   MediaItem({
     required this.url,
@@ -146,10 +117,6 @@ class _PlaybackPlatformPigeonCodec extends StandardMessageCodec {
       buffer.putUint8(130);
       writeValue(buffer, value.encode());
     } else 
-    if (value is SetUrlArgs) {
-      buffer.putUint8(131);
-      writeValue(buffer, value.encode());
-    } else 
 {
       super.writeValue(buffer, value);
     }
@@ -165,9 +132,6 @@ class _PlaybackPlatformPigeonCodec extends StandardMessageCodec {
       
       case 130:       
         return MediaMetadata.decode(readValue(buffer)!);
-      
-      case 131:       
-        return SetUrlArgs.decode(readValue(buffer)!);
       
       default:      
         return super.readValueOfType(type, buffer);
@@ -213,11 +177,11 @@ class PlaybackPlatformPigeon {
     }
   }
 
-  Future<void> setUrl(SetUrlArgs arg_setUrlArgs) async {
+  Future<void> queueMediaItem(String arg_playerId, MediaItem arg_mediaItem) async {
     final BasicMessageChannel<Object?> channel = BasicMessageChannel<Object?>(
-        'dev.flutter.pigeon.PlaybackPlatformPigeon.setUrl', codec, binaryMessenger: _binaryMessenger);
+        'dev.flutter.pigeon.PlaybackPlatformPigeon.queueMediaItem', codec, binaryMessenger: _binaryMessenger);
     final Map<Object?, Object?>? replyMap =
-        await channel.send(<Object?>[arg_setUrlArgs]) as Map<Object?, Object?>?;
+        await channel.send(<Object?>[arg_playerId, arg_mediaItem]) as Map<Object?, Object?>?;
     if (replyMap == null) {
       throw PlatformException(
         code: 'channel-error',
@@ -235,9 +199,9 @@ class PlaybackPlatformPigeon {
     }
   }
 
-  Future<void> addMediaItem(String arg_playerId, MediaItem arg_mediaItem) async {
+  Future<void> replaceCurrentMediaItem(String arg_playerId, MediaItem arg_mediaItem) async {
     final BasicMessageChannel<Object?> channel = BasicMessageChannel<Object?>(
-        'dev.flutter.pigeon.PlaybackPlatformPigeon.addMediaItem', codec, binaryMessenger: _binaryMessenger);
+        'dev.flutter.pigeon.PlaybackPlatformPigeon.replaceCurrentMediaItem', codec, binaryMessenger: _binaryMessenger);
     final Map<Object?, Object?>? replyMap =
         await channel.send(<Object?>[arg_playerId, arg_mediaItem]) as Map<Object?, Object?>?;
     if (replyMap == null) {

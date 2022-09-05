@@ -8,6 +8,12 @@ class MockBccmPlayerPlatform
     with MockPlatformInterfaceMixin
     implements PlaybackPlatformInterface {
   @override
+  Future<ChromecastState> getChromecastState() {
+    // TODO: implement getChromecastState
+    throw UnimplementedError();
+  }
+
+  @override
   Future<String?> getPlatformVersion() {
     // TODO: implement getPlatformVersion
     throw UnimplementedError();
@@ -20,27 +26,20 @@ class MockBccmPlayerPlatform
   }
 
   @override
+  Future<void> queueMediaItem(String playerId, MediaItem mediaItem) {
+    // TODO: implement queueMediaItem
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<void> replaceCurrentMediaItem(String playerId, MediaItem mediaItem) {
+    // TODO: implement replaceCurrentMediaItem
+    throw UnimplementedError();
+  }
+
+  @override
   Future<bool> setPrimary(String id) {
     // TODO: implement setPrimary
-    throw UnimplementedError();
-  }
-
-  @override
-  Future<void> setUrl(
-      {required String playerId, required String url, bool isLive = false}) {
-    // TODO: implement setUrl
-    throw UnimplementedError();
-  }
-
-  @override
-  Future<void> addMediaItem(String playerId, MediaItem mediaItem) {
-    // TODO: implement addMediaItem
-    throw UnimplementedError();
-  }
-
-  @override
-  Future<ChromecastState> getChromecastState() {
-    // TODO: implement getChromecastState
     throw UnimplementedError();
   }
 }

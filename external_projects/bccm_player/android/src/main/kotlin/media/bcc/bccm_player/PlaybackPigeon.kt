@@ -12,25 +12,24 @@ class PlaybackApiImpl(private val plugin: BccmPlayerPlugin) : PlaybackPlatformAp
         }
         val playerController = playbackService.newPlayer()
         if (url != null) {
-            playerController.playWithUrl(url)
+            playerController.replaceCurrentMediaItem(PlaybackPlatformApi.MediaItem.Builder().setUrl(url).build())
         }
         result?.success(playerController.id)
     }
 
-
-    override fun setUrl(setUrlArgs: PlaybackPlatformApi.SetUrlArgs, result: PlaybackPlatformApi.Result<Void>?) {
+    override fun replaceCurrentMediaItem(playerId: String, mediaItem: PlaybackPlatformApi.MediaItem, result: PlaybackPlatformApi.Result<Void>?) {
         val playbackService = plugin.getPlaybackService()
         if (playbackService == null) {
             result?.error(Error())
             return
         }
 
-        val playerController = playbackService.getController(setUrlArgs.playerId) ?: throw Error("Player with id ${setUrlArgs.playerId} does not exist.")
+        val playerController = playbackService.getController(playerId) ?: throw Error("Player with id ${playerId} does not exist.")
 
-        playerController.playWithUrl(setUrlArgs.url, setUrlArgs.isLive ?: false)
+        playerController.replaceCurrentMediaItem(mediaItem)
     }
 
-    override fun addMediaItem(playerId: String, mediaItem: PlaybackPlatformApi.MediaItem, result: PlaybackPlatformApi.Result<Void>?) {
+    override fun queueMediaItem(playerId: String, mediaItem: PlaybackPlatformApi.MediaItem, result: PlaybackPlatformApi.Result<Void>?) {
         if (playerId == "chromecast") {
             plugin.getCastController()?.addMediaItem(mediaItem)
             return
@@ -42,7 +41,7 @@ class PlaybackApiImpl(private val plugin: BccmPlayerPlugin) : PlaybackPlatformAp
             return
         }
         val playerController = playbackService.getController(playerId) ?: throw Error("Player with id $playerId does not exist.")
-        playerController.playWithMediaItem(mediaItem)
+        playerController.replaceCurrentMediaItem(mediaItem)
     }
 
     override fun setPrimary(id: String, result: PlaybackPlatformApi.Result<Void>?) {

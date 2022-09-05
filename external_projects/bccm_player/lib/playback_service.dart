@@ -24,23 +24,20 @@ class PlaybackService extends PlaybackPlatformInterface {
   }
 
   @override
-  Future<void> setUrl(
-      {required String playerId,
-      required String url,
-      bool isLive = false}) async {
-    await _pigeon
-        .setUrl(SetUrlArgs(playerId: playerId, url: url, isLive: isLive));
-  }
-
-  @override
   Future<bool> setPrimary(String id) async {
     await _pigeon.setPrimary(id);
     return true;
   }
 
   @override
-  Future<void> addMediaItem(String playerId, MediaItem mediaItem) {
-    return _pigeon.addMediaItem(playerId, mediaItem);
+  Future<void> replaceCurrentMediaItem(
+      String playerId, MediaItem mediaItem) async {
+    await _pigeon.replaceCurrentMediaItem(playerId, mediaItem);
+  }
+
+  @override
+  Future<void> queueMediaItem(String playerId, MediaItem mediaItem) {
+    return _pigeon.queueMediaItem(playerId, mediaItem);
   }
 
   @override

@@ -77,7 +77,7 @@ class CastController(private val castContext: CastContext, private val pigeon: C
         var playWhenReady = false
 
         val queue = mutableListOf<MediaItem>()
-        for (x in 0..primaryPlayer.mediaItemCount) {
+        for (x in 0 until primaryPlayer.mediaItemCount) {
             queue.add(primaryPlayer.getMediaItemAt(x));
         }
 
@@ -90,12 +90,13 @@ class CastController(private val castContext: CastContext, private val pigeon: C
                 currentItemIndex = this.currentItemIndex
             }*/
         }
-        primaryPlayer.stop()
-        primaryPlayer.clearMediaItems()
+        //primaryPlayer.stop()
+        //primaryPlayer.clearMediaItems()
 
         castPlayer.setMediaItems(queue, currentItemIndex, playbackPositionMs)
-        castPlayer.playWhenReady = playWhenReady
+        castPlayer.playWhenReady = true
         castPlayer.prepare()
+        castPlayer.play()
 
         // Set castplayer as primary??
     }

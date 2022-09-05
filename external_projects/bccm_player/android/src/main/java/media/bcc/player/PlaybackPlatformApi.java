@@ -36,77 +36,6 @@ public class PlaybackPlatformApi {
   }
 
   /** Generated class from Pigeon that represents data sent in messages. */
-  public static class SetUrlArgs {
-    private @NonNull String playerId;
-    public @NonNull String getPlayerId() { return playerId; }
-    public void setPlayerId(@NonNull String setterArg) {
-      if (setterArg == null) {
-        throw new IllegalStateException("Nonnull field \"playerId\" is null.");
-      }
-      this.playerId = setterArg;
-    }
-
-    private @NonNull String url;
-    public @NonNull String getUrl() { return url; }
-    public void setUrl(@NonNull String setterArg) {
-      if (setterArg == null) {
-        throw new IllegalStateException("Nonnull field \"url\" is null.");
-      }
-      this.url = setterArg;
-    }
-
-    private @Nullable Boolean isLive;
-    public @Nullable Boolean getIsLive() { return isLive; }
-    public void setIsLive(@Nullable Boolean setterArg) {
-      this.isLive = setterArg;
-    }
-
-    /** Constructor is private to enforce null safety; use Builder. */
-    private SetUrlArgs() {}
-    public static final class Builder {
-      private @Nullable String playerId;
-      public @NonNull Builder setPlayerId(@NonNull String setterArg) {
-        this.playerId = setterArg;
-        return this;
-      }
-      private @Nullable String url;
-      public @NonNull Builder setUrl(@NonNull String setterArg) {
-        this.url = setterArg;
-        return this;
-      }
-      private @Nullable Boolean isLive;
-      public @NonNull Builder setIsLive(@Nullable Boolean setterArg) {
-        this.isLive = setterArg;
-        return this;
-      }
-      public @NonNull SetUrlArgs build() {
-        SetUrlArgs pigeonReturn = new SetUrlArgs();
-        pigeonReturn.setPlayerId(playerId);
-        pigeonReturn.setUrl(url);
-        pigeonReturn.setIsLive(isLive);
-        return pigeonReturn;
-      }
-    }
-    @NonNull Map<String, Object> toMap() {
-      Map<String, Object> toMapResult = new HashMap<>();
-      toMapResult.put("playerId", playerId);
-      toMapResult.put("url", url);
-      toMapResult.put("isLive", isLive);
-      return toMapResult;
-    }
-    static @NonNull SetUrlArgs fromMap(@NonNull Map<String, Object> map) {
-      SetUrlArgs pigeonResult = new SetUrlArgs();
-      Object playerId = map.get("playerId");
-      pigeonResult.setPlayerId((String)playerId);
-      Object url = map.get("url");
-      pigeonResult.setUrl((String)url);
-      Object isLive = map.get("isLive");
-      pigeonResult.setIsLive((Boolean)isLive);
-      return pigeonResult;
-    }
-  }
-
-  /** Generated class from Pigeon that represents data sent in messages. */
   public static class MediaItem {
     private @NonNull String url;
     public @NonNull String getUrl() { return url; }
@@ -309,9 +238,6 @@ public class PlaybackPlatformApi {
         case (byte)130:         
           return MediaMetadata.fromMap((Map<String, Object>) readValue(buffer));
         
-        case (byte)131:         
-          return SetUrlArgs.fromMap((Map<String, Object>) readValue(buffer));
-        
         default:        
           return super.readValueOfType(type, buffer);
         
@@ -331,10 +257,6 @@ public class PlaybackPlatformApi {
         stream.write(130);
         writeValue(stream, ((MediaMetadata) value).toMap());
       } else 
-      if (value instanceof SetUrlArgs) {
-        stream.write(131);
-        writeValue(stream, ((SetUrlArgs) value).toMap());
-      } else 
 {
         super.writeValue(stream, value);
       }
@@ -344,8 +266,8 @@ public class PlaybackPlatformApi {
   /** Generated interface from Pigeon that represents a handler of messages from Flutter.*/
   public interface PlaybackPlatformPigeon {
     void newPlayer(@Nullable String url, Result<String> result);
-    void setUrl(@NonNull SetUrlArgs setUrlArgs, Result<Void> result);
-    void addMediaItem(@NonNull String playerId, @NonNull MediaItem mediaItem, Result<Void> result);
+    void queueMediaItem(@NonNull String playerId, @NonNull MediaItem mediaItem, Result<Void> result);
+    void replaceCurrentMediaItem(@NonNull String playerId, @NonNull MediaItem mediaItem, Result<Void> result);
     void setPrimary(@NonNull String id, Result<Void> result);
     void getChromecastState(Result<ChromecastState> result);
 
@@ -389,41 +311,7 @@ public class PlaybackPlatformApi {
       }
       {
         BasicMessageChannel<Object> channel =
-            new BasicMessageChannel<>(binaryMessenger, "dev.flutter.pigeon.PlaybackPlatformPigeon.setUrl", getCodec());
-        if (api != null) {
-          channel.setMessageHandler((message, reply) -> {
-            Map<String, Object> wrapped = new HashMap<>();
-            try {
-              ArrayList<Object> args = (ArrayList<Object>)message;
-              SetUrlArgs setUrlArgsArg = (SetUrlArgs)args.get(0);
-              if (setUrlArgsArg == null) {
-                throw new NullPointerException("setUrlArgsArg unexpectedly null.");
-              }
-              Result<Void> resultCallback = new Result<Void>() {
-                public void success(Void result) {
-                  wrapped.put("result", null);
-                  reply.reply(wrapped);
-                }
-                public void error(Throwable error) {
-                  wrapped.put("error", wrapError(error));
-                  reply.reply(wrapped);
-                }
-              };
-
-              api.setUrl(setUrlArgsArg, resultCallback);
-            }
-            catch (Error | RuntimeException exception) {
-              wrapped.put("error", wrapError(exception));
-              reply.reply(wrapped);
-            }
-          });
-        } else {
-          channel.setMessageHandler(null);
-        }
-      }
-      {
-        BasicMessageChannel<Object> channel =
-            new BasicMessageChannel<>(binaryMessenger, "dev.flutter.pigeon.PlaybackPlatformPigeon.addMediaItem", getCodec());
+            new BasicMessageChannel<>(binaryMessenger, "dev.flutter.pigeon.PlaybackPlatformPigeon.queueMediaItem", getCodec());
         if (api != null) {
           channel.setMessageHandler((message, reply) -> {
             Map<String, Object> wrapped = new HashMap<>();
@@ -448,7 +336,45 @@ public class PlaybackPlatformApi {
                 }
               };
 
-              api.addMediaItem(playerIdArg, mediaItemArg, resultCallback);
+              api.queueMediaItem(playerIdArg, mediaItemArg, resultCallback);
+            }
+            catch (Error | RuntimeException exception) {
+              wrapped.put("error", wrapError(exception));
+              reply.reply(wrapped);
+            }
+          });
+        } else {
+          channel.setMessageHandler(null);
+        }
+      }
+      {
+        BasicMessageChannel<Object> channel =
+            new BasicMessageChannel<>(binaryMessenger, "dev.flutter.pigeon.PlaybackPlatformPigeon.replaceCurrentMediaItem", getCodec());
+        if (api != null) {
+          channel.setMessageHandler((message, reply) -> {
+            Map<String, Object> wrapped = new HashMap<>();
+            try {
+              ArrayList<Object> args = (ArrayList<Object>)message;
+              String playerIdArg = (String)args.get(0);
+              if (playerIdArg == null) {
+                throw new NullPointerException("playerIdArg unexpectedly null.");
+              }
+              MediaItem mediaItemArg = (MediaItem)args.get(1);
+              if (mediaItemArg == null) {
+                throw new NullPointerException("mediaItemArg unexpectedly null.");
+              }
+              Result<Void> resultCallback = new Result<Void>() {
+                public void success(Void result) {
+                  wrapped.put("result", null);
+                  reply.reply(wrapped);
+                }
+                public void error(Throwable error) {
+                  wrapped.put("error", wrapError(error));
+                  reply.reply(wrapped);
+                }
+              };
+
+              api.replaceCurrentMediaItem(playerIdArg, mediaItemArg, resultCallback);
             }
             catch (Error | RuntimeException exception) {
               wrapped.put("error", wrapError(exception));

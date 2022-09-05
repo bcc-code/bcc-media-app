@@ -44,6 +44,7 @@ class _RootScreenState extends ConsumerState<RootScreen> {
           gaplessPlayback: true),
     };
     ref.read(playbackApiProvider).newPlayer().then((value) {
+      ref.read(playbackApiProvider).setPrimary(value);
       ref.read(playerStateProvider.notifier).setPrimary(value);
     });
   }

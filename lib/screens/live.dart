@@ -1,4 +1,5 @@
 import 'package:bccm_player/bccm_player.dart';
+import 'package:bccm_player/playback_platform_pigeon.g.dart';
 import 'package:bccm_player/playback_service_interface.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -33,8 +34,8 @@ class _LiveScreenState extends ConsumerState<LiveScreen> {
     var playerFuture = playbackApi.newPlayer();
     var liveUrl = await fetchLiveUrl();
     playerFuture.then((playerId) {
-      playbackApi.setUrl(
-          playerId: playerId, url: liveUrl.streamUrl, isLive: true);
+      playbackApi.replaceCurrentMediaItem(
+          playerId, MediaItem(url: liveUrl.streamUrl, isLive: true));
       playbackApi.setPrimary(playerId);
       return playerId;
     });

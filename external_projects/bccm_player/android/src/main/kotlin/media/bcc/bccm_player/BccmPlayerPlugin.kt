@@ -132,22 +132,6 @@ class BccmPlayerPlugin: FlutterPlugin, MethodCallHandler, ActivityAware {
     val pbService = playbackService
             ?: return result.error("playbackServiceIsNull", "playbackService is null", "playbackService is null");
     when (call.method) {
-      "set_url" -> {
-        val args = call.arguments as HashMap<*, *>
-        val playerId = args["player_id"] as String;
-        val url = args["url"] as String? ?: throw Error("Url cannot be empty");
-        val isLive = args["is_live"] as Boolean?;
-        val playerController = pbService.getController(playerId) ?: throw Error("Player with id $playerId does not exist.")
-
-        playerController.playWithUrl(url, isLive ?: false)
-      }
-      "set_primary" -> {
-        val args = call.arguments as HashMap<*, *>
-        val playerId = args["player_id"] as String;
-
-        pbService.setPrimary(playerId)
-        result.success(true)
-      }
       "open" -> {
         activity!!.requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE
         val args = call.arguments as HashMap<String, String>

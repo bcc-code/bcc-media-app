@@ -32,12 +32,11 @@ abstract class PlaybackPlatformInterface extends PlatformInterface {
     throw UnimplementedError('setPrimary() has not been implemented.');
   }
 
-  Future<void> setUrl(
-      {required String playerId, required String url, bool isLive = false}) {
+  Future<void> replaceCurrentMediaItem(String playerId, MediaItem mediaItem) {
     throw UnimplementedError('setUrl() has not been implemented.');
   }
 
-  Future<void> addMediaItem(String playerId, MediaItem mediaItem) async {
+  Future<void> queueMediaItem(String playerId, MediaItem mediaItem) async {
     throw UnimplementedError('addMediaItem() has not been implemented.');
   }
 

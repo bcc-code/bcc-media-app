@@ -27,6 +27,7 @@ class PlaybackService : MediaSessionService() {
             it.id == playerId
         }
         if (pc?.getPlayer() != null) {
+            primaryPlayerController = pc
             mediaSession.player = pc.getPlayer()
         }
     }
