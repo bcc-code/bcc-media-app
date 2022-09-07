@@ -21,9 +21,63 @@ import java.util.HashMap;
 /** Generated class from Pigeon. */
 @SuppressWarnings({"unused", "unchecked", "CodeBlock2Expr", "RedundantSuppression"})
 public class ChromecastControllerPigeon {
+
+  /** Generated class from Pigeon that represents data sent in messages. */
+  public static class CastSessionUnavailableEvent {
+    private @Nullable Long playbackPositionMs;
+    public @Nullable Long getPlaybackPositionMs() { return playbackPositionMs; }
+    public void setPlaybackPositionMs(@Nullable Long setterArg) {
+      this.playbackPositionMs = setterArg;
+    }
+
+    public static final class Builder {
+      private @Nullable Long playbackPositionMs;
+      public @NonNull Builder setPlaybackPositionMs(@Nullable Long setterArg) {
+        this.playbackPositionMs = setterArg;
+        return this;
+      }
+      public @NonNull CastSessionUnavailableEvent build() {
+        CastSessionUnavailableEvent pigeonReturn = new CastSessionUnavailableEvent();
+        pigeonReturn.setPlaybackPositionMs(playbackPositionMs);
+        return pigeonReturn;
+      }
+    }
+    @NonNull Map<String, Object> toMap() {
+      Map<String, Object> toMapResult = new HashMap<>();
+      toMapResult.put("playbackPositionMs", playbackPositionMs);
+      return toMapResult;
+    }
+    static @NonNull CastSessionUnavailableEvent fromMap(@NonNull Map<String, Object> map) {
+      CastSessionUnavailableEvent pigeonResult = new CastSessionUnavailableEvent();
+      Object playbackPositionMs = map.get("playbackPositionMs");
+      pigeonResult.setPlaybackPositionMs((playbackPositionMs == null) ? null : ((playbackPositionMs instanceof Integer) ? (Integer)playbackPositionMs : (Long)playbackPositionMs));
+      return pigeonResult;
+    }
+  }
   private static class ChromecastPigeonCodec extends StandardMessageCodec {
     public static final ChromecastPigeonCodec INSTANCE = new ChromecastPigeonCodec();
     private ChromecastPigeonCodec() {}
+    @Override
+    protected Object readValueOfType(byte type, ByteBuffer buffer) {
+      switch (type) {
+        case (byte)128:         
+          return CastSessionUnavailableEvent.fromMap((Map<String, Object>) readValue(buffer));
+        
+        default:        
+          return super.readValueOfType(type, buffer);
+        
+      }
+    }
+    @Override
+    protected void writeValue(ByteArrayOutputStream stream, Object value)     {
+      if (value instanceof CastSessionUnavailableEvent) {
+        stream.write(128);
+        writeValue(stream, ((CastSessionUnavailableEvent) value).toMap());
+      } else 
+{
+        super.writeValue(stream, value);
+      }
+    }
   }
 
   /** Generated class from Pigeon that represents Flutter messages that can be called from Java.*/
@@ -99,6 +153,20 @@ public class ChromecastControllerPigeon {
       BasicMessageChannel<Object> channel =
           new BasicMessageChannel<>(binaryMessenger, "dev.flutter.pigeon.ChromecastPigeon.onSessionSuspended", getCodec());
       channel.send(null, channelReply -> {
+        callback.reply(null);
+      });
+    }
+    public void onCastSessionAvailable(Reply<Void> callback) {
+      BasicMessageChannel<Object> channel =
+          new BasicMessageChannel<>(binaryMessenger, "dev.flutter.pigeon.ChromecastPigeon.onCastSessionAvailable", getCodec());
+      channel.send(null, channelReply -> {
+        callback.reply(null);
+      });
+    }
+    public void onCastSessionUnavailable(@NonNull CastSessionUnavailableEvent eventArg, Reply<Void> callback) {
+      BasicMessageChannel<Object> channel =
+          new BasicMessageChannel<>(binaryMessenger, "dev.flutter.pigeon.ChromecastPigeon.onCastSessionUnavailable", getCodec());
+      channel.send(new ArrayList<Object>(Arrays.asList(eventArg)), channelReply -> {
         callback.reply(null);
       });
     }

@@ -21,12 +21,14 @@ class MediaItem {
     this.mimeType,
     this.metadata,
     this.isLive,
+    this.playbackStartPositionMs,
   });
 
   String url;
   String? mimeType;
   MediaMetadata? metadata;
   bool? isLive;
+  int? playbackStartPositionMs;
 
   Object encode() {
     final Map<Object?, Object?> pigeonMap = <Object?, Object?>{};
@@ -34,6 +36,7 @@ class MediaItem {
     pigeonMap['mimeType'] = mimeType;
     pigeonMap['metadata'] = metadata?.encode();
     pigeonMap['isLive'] = isLive;
+    pigeonMap['playbackStartPositionMs'] = playbackStartPositionMs;
     return pigeonMap;
   }
 
@@ -46,6 +49,7 @@ class MediaItem {
           ? MediaMetadata.decode(pigeonMap['metadata']!)
           : null,
       isLive: pigeonMap['isLive'] as bool?,
+      playbackStartPositionMs: pigeonMap['playbackStartPositionMs'] as int?,
     );
   }
 }

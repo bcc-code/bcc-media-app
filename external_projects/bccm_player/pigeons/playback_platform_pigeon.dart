@@ -39,6 +39,7 @@ class MediaItem {
   String? mimeType;
   MediaMetadata? metadata;
   bool? isLive;
+  int? playbackStartPositionMs;
 }
 
 class MediaMetadata {

@@ -31,104 +31,137 @@ class EpisodeScreen extends ConsumerStatefulWidget {
 
 class _EpisodeScreenState extends ConsumerState<EpisodeScreen> {
   late Future<Episode> episodeFuture;
-  late Future<List<String>> playerIdFuture;
+  AnimationStatus? animationStatus;
+  Animation? animation;
 
   @override
   void initState() {
     super.initState();
+    episodeFuture = fetchEpisode(widget.episodeId);
+
+    ref
+        .read(chromecastListenerProvider)
+        .on<CastSessionUnavailable>()
+        .listen((event) {
+      playLocal(playbackPositionMs: event.playbackPositionMs);
+    });
+    ref
+        .read(chromecastListenerProvider)
+        .on<CastSessionAvailable>()
+        .listen((event) {
+      playChromecast(playbackPositionFromPrimary: true);
+    });
+
+    setup();
   }
 
-  @override
-  void didChangeDependencies() {
-    //EpisodePageArguments args = ModalRoute.of(context)!.settings.arguments as EpisodePageArguments;
-    final casting = ref.watch(isCasting);
-    int episodeId = widget.episodeId;
-    episodeFuture = fetchEpisode(episodeId);
-    if (widget.playerType == PlayerType.native) {
-      if (!casting) {
-        var playerId = ref.read(playerStateProvider).primaryPlayerId!;
-        playerIdFuture = Future.value([playerId]);
+  Future setup() async {
+    /* var currentlyPlaying = await ref.read(playbackApiProvider).getPlatformVersion();
+    if (currentlyPlaying.metadata.episodeId == widget.episodeId) {
+      return;
+    } */
 
-        episodeFuture.then((episode) {
-          var playbackApi = ref.read(playbackApiProvider);
-          playbackApi.replaceCurrentMediaItem(
-              playerId,
-              MediaItem(
-                  url: episode.streamUrl, mimeType: 'application/x-mpegURL'));
-        });
-      } else {
-        playChromecast();
-      }
-      /* playerIdFuture.then((playerId) {
-        PlaybackPlatformInterface.instance.setPrimary(playerId);
-      }); */
+    var castingNow = ref.read(isCasting);
+    if (!castingNow) {
+      playLocal();
+    } else {
+      playChromecast();
     }
-    super.didChangeDependencies();
   }
 
-  Future playChromecast() async {
+  Future playLocal({int? playbackPositionMs}) async {
+    var playerId = ref.read(playerStateProvider).primaryPlayerId!;
+    var playbackApi = ref.read(playbackApiProvider);
+    var episode = await episodeFuture;
+    playbackApi.replaceCurrentMediaItem(
+        playerId,
+        MediaItem(
+            url: episode.streamUrl,
+            mimeType: 'application/x-mpegURL',
+            playbackStartPositionMs: playbackPositionMs));
+  }
+
+  Future playChromecast({bool playbackPositionFromPrimary = false}) async {
     var episode = await episodeFuture;
     ref.read(playbackApiProvider).replaceCurrentMediaItem('chromecast',
         MediaItem(url: episode.streamUrl, mimeType: 'application/x-mpegURL'));
   }
 
   @override
+  void dispose() {
+    //animation?.removeStatusListener(onAnimationStatus); // trying without it, possibly disposed automatically
+    super.dispose();
+  }
+
+  void onAnimationStatus(AnimationStatus status) {
+    setState(() {
+      animationStatus = status;
+    });
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    animation = ModalRoute.of(context)?.animation;
+    animation?.addStatusListener(onAnimationStatus);
+  }
+
+  @override
   Widget build(BuildContext context) {
     final casting = ref.watch(isCasting);
+    final primaryPlayerId = ref.watch(playerStateProvider).primaryPlayerId!;
     return Scaffold(
       appBar: AppBar(
         title: const Text('Episode'),
       ),
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Center(
-              child: Column(
-            children: [
-              Text('Casting: $casting'),
-              const SizedBox(width: 50, height: 50, child: CastButton()),
-            ],
-          )),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: casting
-                ? const BccmCastPlayer()
-                : FutureBuilder<List<String>>(
-                    future: playerIdFuture,
-                    builder: (context, snapshot) {
-                      if (snapshot.hasData) {
-                        return Column(
-                          children: [
-                            ...snapshot.data!.map(
-                              (element) => BccmPlayer(
-                                  type: widget.playerType, id: element),
-                            ),
-                            ElevatedButton(
-                                onPressed: () {
-                                  //PlaybackPlatformInterface.instance.setPrimary(snapshot.data!);
-                                },
-                                child: const Text("set primary"))
-                          ],
-                        );
-                      } else if (snapshot.hasError) {
-                        return Text(snapshot.error.toString());
-                      }
-                      // By default, show a loading spinner.
-                      return const CircularProgressIndicator();
-                    }),
-          ),
-          Center(
-            child: ElevatedButton(
-              onPressed: () {
-                // Navigate back to first screen when tapped.
-                context.router.pop();
-              },
-              child: const Text('Go back!'),
+      body: animationStatus != AnimationStatus.completed
+          ? const Center(
+              child: CircularProgressIndicator(),
+            )
+          : Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Center(
+                    child: Column(
+                  children: [
+                    Text('Casting: $casting'),
+                    const SizedBox(width: 50, height: 50, child: CastButton()),
+                  ],
+                )),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: casting
+                      ? const BccmCastPlayer()
+                      : FutureBuilder<Episode>(
+                          future: episodeFuture,
+                          builder: (context, snapshot) {
+                            if (snapshot.hasData) {
+                              return Column(
+                                children: [
+                                  BccmPlayer(
+                                      type: widget.playerType,
+                                      id: primaryPlayerId)
+                                ],
+                              );
+                            } else if (snapshot.hasError) {
+                              return Text(snapshot.error.toString());
+                            }
+                            // By default, show a loading spinner.
+                            return const CircularProgressIndicator();
+                          }),
+                ),
+                Center(
+                  child: ElevatedButton(
+                    onPressed: () {
+                      // Navigate back to first screen when tapped.
+                      context.router.pop();
+                    },
+                    child: const Text('Go back!'),
+                  ),
+                ),
+                const SizedBox(width: 100, height: 2000)
+              ],
             ),
-          ),
-          const SizedBox(width: 100, height: 2000)
-        ],
-      ),
     );
   }
 }

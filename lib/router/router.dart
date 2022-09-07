@@ -16,10 +16,11 @@ import '../screens/root.dart';
     MaterialRoute<void>(page: Profile, path: 'profile'),
     MaterialRoute<void>(page: AppLanguageScreen, path: 'app-language'),
     CustomRoute<void>(
-        page: EpisodeScreen,
-        path: 'episode/:episodeId',
-        transitionsBuilder: TransitionsBuilders.zoomIn,
-        durationInMilliseconds: 200),
+      page: EpisodeScreen,
+      path: 'episode/:episodeId',
+      transitionsBuilder:
+          TransitionsBuilders.slideBottom, /* durationInMilliseconds: 200 */
+    ),
     MaterialRoute<void>(page: RootScreen, path: '/', initial: true, guards: [
       AuthGuard
     ], children: [

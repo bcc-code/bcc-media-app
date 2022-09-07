@@ -8,6 +8,12 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+@class CastSessionUnavailableEvent;
+
+@interface CastSessionUnavailableEvent : NSObject
++ (instancetype)makeWithPlaybackPositionMs:(nullable NSNumber *)playbackPositionMs;
+@property(nonatomic, strong, nullable) NSNumber * playbackPositionMs;
+@end
 
 /// The codec used by ChromecastPigeon.
 NSObject<FlutterMessageCodec> *ChromecastPigeonGetCodec(void);
@@ -23,5 +29,7 @@ NSObject<FlutterMessageCodec> *ChromecastPigeonGetCodec(void);
 - (void)onSessionStarted:(void(^)(NSError *_Nullable))completion;
 - (void)onSessionStarting:(void(^)(NSError *_Nullable))completion;
 - (void)onSessionSuspended:(void(^)(NSError *_Nullable))completion;
+- (void)onCastSessionAvailable:(void(^)(NSError *_Nullable))completion;
+- (void)onCastSessionUnavailable:(CastSessionUnavailableEvent *)event completion:(void(^)(NSError *_Nullable))completion;
 @end
 NS_ASSUME_NONNULL_END

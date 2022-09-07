@@ -4,13 +4,11 @@ package media.bcc.bccm_player
 import android.content.Intent
 import android.os.Binder
 import android.os.IBinder
-import androidx.media3.cast.CastPlayer
 import androidx.media3.session.MediaSession
 import androidx.media3.session.MediaSessionService
 
 class PlaybackService : MediaSessionService() {
     private val playerControllers = mutableListOf<BccmPlayerController>()
-    private val castPlayer: CastPlayer? = null
     private lateinit var primaryPlayerController: BccmPlayerController
     private lateinit var mediaSession: MediaSession
 

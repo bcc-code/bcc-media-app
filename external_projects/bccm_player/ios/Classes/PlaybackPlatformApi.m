@@ -51,12 +51,14 @@ static id GetNullableObjectAtIndex(NSArray* array, NSInteger key) {
 + (instancetype)makeWithUrl:(NSString *)url
     mimeType:(nullable NSString *)mimeType
     metadata:(nullable MediaMetadata *)metadata
-    isLive:(nullable NSNumber *)isLive {
+    isLive:(nullable NSNumber *)isLive
+    playbackStartPositionMs:(nullable NSNumber *)playbackStartPositionMs {
   MediaItem* pigeonResult = [[MediaItem alloc] init];
   pigeonResult.url = url;
   pigeonResult.mimeType = mimeType;
   pigeonResult.metadata = metadata;
   pigeonResult.isLive = isLive;
+  pigeonResult.playbackStartPositionMs = playbackStartPositionMs;
   return pigeonResult;
 }
 + (MediaItem *)fromMap:(NSDictionary *)dict {
@@ -66,6 +68,7 @@ static id GetNullableObjectAtIndex(NSArray* array, NSInteger key) {
   pigeonResult.mimeType = GetNullableObject(dict, @"mimeType");
   pigeonResult.metadata = [MediaMetadata nullableFromMap:GetNullableObject(dict, @"metadata")];
   pigeonResult.isLive = GetNullableObject(dict, @"isLive");
+  pigeonResult.playbackStartPositionMs = GetNullableObject(dict, @"playbackStartPositionMs");
   return pigeonResult;
 }
 + (nullable MediaItem *)nullableFromMap:(NSDictionary *)dict { return (dict) ? [MediaItem fromMap:dict] : nil; }
@@ -75,6 +78,7 @@ static id GetNullableObjectAtIndex(NSArray* array, NSInteger key) {
     @"mimeType" : (self.mimeType ?: [NSNull null]),
     @"metadata" : (self.metadata ? [self.metadata toMap] : [NSNull null]),
     @"isLive" : (self.isLive ?: [NSNull null]),
+    @"playbackStartPositionMs" : (self.playbackStartPositionMs ?: [NSNull null]),
   };
 }
 @end

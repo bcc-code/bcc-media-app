@@ -32,4 +32,14 @@ abstract class ChromecastPigeon {
 
   @ObjCSelector("onSessionSuspended")
   void onSessionSuspended();
+
+  @ObjCSelector("onCastSessionAvailable")
+  void onCastSessionAvailable();
+
+  @ObjCSelector("onCastSessionUnavailable:")
+  void onCastSessionUnavailable(CastSessionUnavailableEvent event);
+}
+
+class CastSessionUnavailableEvent {
+  int? playbackPositionMs;
 }

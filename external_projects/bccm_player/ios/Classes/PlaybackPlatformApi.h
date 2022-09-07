@@ -26,11 +26,13 @@ typedef NS_ENUM(NSUInteger, CastConnectionState) {
 + (instancetype)makeWithUrl:(NSString *)url
     mimeType:(nullable NSString *)mimeType
     metadata:(nullable MediaMetadata *)metadata
-    isLive:(nullable NSNumber *)isLive;
+    isLive:(nullable NSNumber *)isLive
+    playbackStartPositionMs:(nullable NSNumber *)playbackStartPositionMs;
 @property(nonatomic, copy) NSString * url;
 @property(nonatomic, copy, nullable) NSString * mimeType;
 @property(nonatomic, strong, nullable) MediaMetadata * metadata;
 @property(nonatomic, strong, nullable) NSNumber * isLive;
+@property(nonatomic, strong, nullable) NSNumber * playbackStartPositionMs;
 @end
 
 @interface MediaMetadata : NSObject

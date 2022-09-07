@@ -64,6 +64,12 @@ public class PlaybackPlatformApi {
       this.isLive = setterArg;
     }
 
+    private @Nullable Long playbackStartPositionMs;
+    public @Nullable Long getPlaybackStartPositionMs() { return playbackStartPositionMs; }
+    public void setPlaybackStartPositionMs(@Nullable Long setterArg) {
+      this.playbackStartPositionMs = setterArg;
+    }
+
     /** Constructor is private to enforce null safety; use Builder. */
     private MediaItem() {}
     public static final class Builder {
@@ -87,12 +93,18 @@ public class PlaybackPlatformApi {
         this.isLive = setterArg;
         return this;
       }
+      private @Nullable Long playbackStartPositionMs;
+      public @NonNull Builder setPlaybackStartPositionMs(@Nullable Long setterArg) {
+        this.playbackStartPositionMs = setterArg;
+        return this;
+      }
       public @NonNull MediaItem build() {
         MediaItem pigeonReturn = new MediaItem();
         pigeonReturn.setUrl(url);
         pigeonReturn.setMimeType(mimeType);
         pigeonReturn.setMetadata(metadata);
         pigeonReturn.setIsLive(isLive);
+        pigeonReturn.setPlaybackStartPositionMs(playbackStartPositionMs);
         return pigeonReturn;
       }
     }
@@ -102,6 +114,7 @@ public class PlaybackPlatformApi {
       toMapResult.put("mimeType", mimeType);
       toMapResult.put("metadata", (metadata == null) ? null : metadata.toMap());
       toMapResult.put("isLive", isLive);
+      toMapResult.put("playbackStartPositionMs", playbackStartPositionMs);
       return toMapResult;
     }
     static @NonNull MediaItem fromMap(@NonNull Map<String, Object> map) {
@@ -114,6 +127,8 @@ public class PlaybackPlatformApi {
       pigeonResult.setMetadata((metadata == null) ? null : MediaMetadata.fromMap((Map)metadata));
       Object isLive = map.get("isLive");
       pigeonResult.setIsLive((Boolean)isLive);
+      Object playbackStartPositionMs = map.get("playbackStartPositionMs");
+      pigeonResult.setPlaybackStartPositionMs((playbackStartPositionMs == null) ? null : ((playbackStartPositionMs instanceof Integer) ? (Integer)playbackStartPositionMs : (Long)playbackStartPositionMs));
       return pigeonResult;
     }
   }

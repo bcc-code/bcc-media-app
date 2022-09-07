@@ -4,12 +4,11 @@ import android.content.Context
 import android.net.Uri
 import androidx.media3.common.*
 import androidx.media3.exoplayer.ExoPlayer
-import androidx.media3.ui.PlayerView
 import com.google.android.gms.cast.framework.CastContext
 import media.bcc.player.PlaybackPlatformApi
 import java.util.*
 
-class BccmPlayerController(private val context: Context): PlayerManager.Listener {
+class BccmPlayerController(private val context: Context) : PlayerManager.Listener {
     private var playerManager: PlayerManager? = null
     private var castContext: CastContext? = null
     val id: String = UUID.randomUUID().toString()
@@ -31,7 +30,8 @@ class BccmPlayerController(private val context: Context): PlayerManager.Listener
         forwardingPlayer = BccmForwardingPlayer(this)
         try {
             castContext = CastContext.getSharedInstance(context);
-        } catch (e: Exception) { }
+        } catch (e: Exception) {
+        }
         //playerManager = PlayerManager(context, this, getPlayer(), castContext)
     }
 
@@ -46,7 +46,8 @@ class BccmPlayerController(private val context: Context): PlayerManager.Listener
     fun takeOwnership(pvWrapper: BccmPlayerViewWrapper) {
         val previousPvWrapper = currentPlayerViewWrapper;
         currentPlayerViewWrapper = pvWrapper;
-        val playerView = pvWrapper.getPlayerView() ?: throw Error("pvWrapper.getPlayerView() was null");
+        val playerView = pvWrapper.getPlayerView()
+                ?: throw Error("pvWrapper.getPlayerView() was null");
         val currentPlayerView = previousPvWrapper?.getPlayerView();
 
 
@@ -92,7 +93,7 @@ class BccmPlayerController(private val context: Context): PlayerManager.Listener
     fun replaceCurrentMediaItem(mediaItem: PlaybackPlatformApi.MediaItem) {
         this.isLive = mediaItem.isLive ?: false;
         val androidMi = mapMediaItem(mediaItem);
-        exoPlayer.setMediaItem(androidMi)
+        exoPlayer.setMediaItem(androidMi, mediaItem.playbackStartPositionMs ?: 0)
         exoPlayer.prepare()
         exoPlayer.play()
     }
@@ -105,7 +106,6 @@ class BccmPlayerController(private val context: Context): PlayerManager.Listener
     fun release() {
         exoPlayer.release()
     }
-
 
 
     override fun onQueuePositionChanged(previousIndex: Int, newIndex: Int) {

@@ -70,9 +70,19 @@ class ChromecastListener implements ChromecastPigeon {
   void onSessionSuspended() {
     streamController.add(SessionSuspended());
   }
+
+  @override
+  void onCastSessionAvailable() {
+    streamController.add(CastSessionAvailable());
+  }
+
+  @override
+  void onCastSessionUnavailable(CastSessionUnavailableEvent event) {
+    streamController.add(CastSessionUnavailable.from(event));
+  }
 }
 
-class ChromecastEvent {}
+abstract class ChromecastEvent {}
 
 class SessionEnded extends ChromecastEvent {}
 
@@ -91,3 +101,14 @@ class SessionStarted extends ChromecastEvent {}
 class SessionStarting extends ChromecastEvent {}
 
 class SessionSuspended extends ChromecastEvent {}
+
+class CastSessionAvailable extends ChromecastEvent {}
+
+class CastSessionUnavailable extends ChromecastEvent {
+  int? playbackPositionMs;
+  CastSessionUnavailable({this.playbackPositionMs});
+
+  factory CastSessionUnavailable.from(CastSessionUnavailableEvent event) {
+    return CastSessionUnavailable(playbackPositionMs: event.playbackPositionMs);
+  }
+}

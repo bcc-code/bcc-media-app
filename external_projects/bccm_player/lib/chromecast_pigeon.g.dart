@@ -7,8 +7,50 @@ import 'dart:typed_data' show Uint8List, Int32List, Int64List, Float64List;
 import 'package:flutter/foundation.dart' show WriteBuffer, ReadBuffer;
 import 'package:flutter/services.dart';
 
+class CastSessionUnavailableEvent {
+  CastSessionUnavailableEvent({
+    this.playbackPositionMs,
+  });
+
+  int? playbackPositionMs;
+
+  Object encode() {
+    final Map<Object?, Object?> pigeonMap = <Object?, Object?>{};
+    pigeonMap['playbackPositionMs'] = playbackPositionMs;
+    return pigeonMap;
+  }
+
+  static CastSessionUnavailableEvent decode(Object message) {
+    final Map<Object?, Object?> pigeonMap = message as Map<Object?, Object?>;
+    return CastSessionUnavailableEvent(
+      playbackPositionMs: pigeonMap['playbackPositionMs'] as int?,
+    );
+  }
+}
+
 class _ChromecastPigeonCodec extends StandardMessageCodec {
   const _ChromecastPigeonCodec();
+  @override
+  void writeValue(WriteBuffer buffer, Object? value) {
+    if (value is CastSessionUnavailableEvent) {
+      buffer.putUint8(128);
+      writeValue(buffer, value.encode());
+    } else 
+{
+      super.writeValue(buffer, value);
+    }
+  }
+  @override
+  Object? readValueOfType(int type, ReadBuffer buffer) {
+    switch (type) {
+      case 128:       
+        return CastSessionUnavailableEvent.decode(readValue(buffer)!);
+      
+      default:      
+        return super.readValueOfType(type, buffer);
+      
+    }
+  }
 }
 abstract class ChromecastPigeon {
   static const MessageCodec<Object?> codec = _ChromecastPigeonCodec();
@@ -22,6 +64,8 @@ abstract class ChromecastPigeon {
   void onSessionStarted();
   void onSessionStarting();
   void onSessionSuspended();
+  void onCastSessionAvailable();
+  void onCastSessionUnavailable(CastSessionUnavailableEvent event);
   static void setup(ChromecastPigeon? api, {BinaryMessenger? binaryMessenger}) {
     {
       final BasicMessageChannel<Object?> channel = BasicMessageChannel<Object?>(
@@ -136,6 +180,35 @@ abstract class ChromecastPigeon {
         channel.setMessageHandler((Object? message) async {
           // ignore message
           api.onSessionSuspended();
+          return;
+        });
+      }
+    }
+    {
+      final BasicMessageChannel<Object?> channel = BasicMessageChannel<Object?>(
+          'dev.flutter.pigeon.ChromecastPigeon.onCastSessionAvailable', codec, binaryMessenger: binaryMessenger);
+      if (api == null) {
+        channel.setMessageHandler(null);
+      } else {
+        channel.setMessageHandler((Object? message) async {
+          // ignore message
+          api.onCastSessionAvailable();
+          return;
+        });
+      }
+    }
+    {
+      final BasicMessageChannel<Object?> channel = BasicMessageChannel<Object?>(
+          'dev.flutter.pigeon.ChromecastPigeon.onCastSessionUnavailable', codec, binaryMessenger: binaryMessenger);
+      if (api == null) {
+        channel.setMessageHandler(null);
+      } else {
+        channel.setMessageHandler((Object? message) async {
+          assert(message != null, 'Argument for dev.flutter.pigeon.ChromecastPigeon.onCastSessionUnavailable was null.');
+          final List<Object?> args = (message as List<Object?>?)!;
+          final CastSessionUnavailableEvent? arg_event = (args[0] as CastSessionUnavailableEvent?);
+          assert(arg_event != null, 'Argument for dev.flutter.pigeon.ChromecastPigeon.onCastSessionUnavailable was null, expected non-null CastSessionUnavailableEvent.');
+          api.onCastSessionUnavailable(arg_event!);
           return;
         });
       }

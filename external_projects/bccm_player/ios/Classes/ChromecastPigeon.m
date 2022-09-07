@@ -31,15 +31,60 @@ static id GetNullableObjectAtIndex(NSArray* array, NSInteger key) {
 }
 
 
+@interface CastSessionUnavailableEvent ()
++ (CastSessionUnavailableEvent *)fromMap:(NSDictionary *)dict;
++ (nullable CastSessionUnavailableEvent *)nullableFromMap:(NSDictionary *)dict;
+- (NSDictionary *)toMap;
+@end
+
+@implementation CastSessionUnavailableEvent
++ (instancetype)makeWithPlaybackPositionMs:(nullable NSNumber *)playbackPositionMs {
+  CastSessionUnavailableEvent* pigeonResult = [[CastSessionUnavailableEvent alloc] init];
+  pigeonResult.playbackPositionMs = playbackPositionMs;
+  return pigeonResult;
+}
++ (CastSessionUnavailableEvent *)fromMap:(NSDictionary *)dict {
+  CastSessionUnavailableEvent *pigeonResult = [[CastSessionUnavailableEvent alloc] init];
+  pigeonResult.playbackPositionMs = GetNullableObject(dict, @"playbackPositionMs");
+  return pigeonResult;
+}
++ (nullable CastSessionUnavailableEvent *)nullableFromMap:(NSDictionary *)dict { return (dict) ? [CastSessionUnavailableEvent fromMap:dict] : nil; }
+- (NSDictionary *)toMap {
+  return @{
+    @"playbackPositionMs" : (self.playbackPositionMs ?: [NSNull null]),
+  };
+}
+@end
 
 @interface ChromecastPigeonCodecReader : FlutterStandardReader
 @end
 @implementation ChromecastPigeonCodecReader
+- (nullable id)readValueOfType:(UInt8)type 
+{
+  switch (type) {
+    case 128:     
+      return [CastSessionUnavailableEvent fromMap:[self readValue]];
+    
+    default:    
+      return [super readValueOfType:type];
+    
+  }
+}
 @end
 
 @interface ChromecastPigeonCodecWriter : FlutterStandardWriter
 @end
 @implementation ChromecastPigeonCodecWriter
+- (void)writeValue:(id)value 
+{
+  if ([value isKindOfClass:[CastSessionUnavailableEvent class]]) {
+    [self writeByte:128];
+    [self writeValue:[value toMap]];
+  } else 
+{
+    [super writeValue:value];
+  }
+}
 @end
 
 @interface ChromecastPigeonCodecReaderWriter : FlutterStandardReaderWriter
@@ -164,6 +209,26 @@ NSObject<FlutterMessageCodec> *ChromecastPigeonGetCodec() {
       binaryMessenger:self.binaryMessenger
       codec:ChromecastPigeonGetCodec()];
   [channel sendMessage:nil reply:^(id reply) {
+    completion(nil);
+  }];
+}
+- (void)onCastSessionAvailable:(void(^)(NSError *_Nullable))completion {
+  FlutterBasicMessageChannel *channel =
+    [FlutterBasicMessageChannel
+      messageChannelWithName:@"dev.flutter.pigeon.ChromecastPigeon.onCastSessionAvailable"
+      binaryMessenger:self.binaryMessenger
+      codec:ChromecastPigeonGetCodec()];
+  [channel sendMessage:nil reply:^(id reply) {
+    completion(nil);
+  }];
+}
+- (void)onCastSessionUnavailable:(CastSessionUnavailableEvent *)arg_event completion:(void(^)(NSError *_Nullable))completion {
+  FlutterBasicMessageChannel *channel =
+    [FlutterBasicMessageChannel
+      messageChannelWithName:@"dev.flutter.pigeon.ChromecastPigeon.onCastSessionUnavailable"
+      binaryMessenger:self.binaryMessenger
+      codec:ChromecastPigeonGetCodec()];
+  [channel sendMessage:@[arg_event ?: [NSNull null]] reply:^(id reply) {
     completion(nil);
   }];
 }

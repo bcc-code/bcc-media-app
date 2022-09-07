@@ -18,6 +18,10 @@ class PlaybackApiImpl(private val plugin: BccmPlayerPlugin) : PlaybackPlatformAp
     }
 
     override fun replaceCurrentMediaItem(playerId: String, mediaItem: PlaybackPlatformApi.MediaItem, result: PlaybackPlatformApi.Result<Void>?) {
+        if (playerId == "chromecast") {
+            plugin.getCastController()?.addMediaItem(mediaItem)
+            return
+        }
         val playbackService = plugin.getPlaybackService()
         if (playbackService == null) {
             result?.error(Error())
