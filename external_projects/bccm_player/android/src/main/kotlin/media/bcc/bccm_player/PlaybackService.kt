@@ -1,4 +1,3 @@
-
 package media.bcc.bccm_player
 
 import android.content.Intent
@@ -8,14 +7,14 @@ import androidx.media3.session.MediaSession
 import androidx.media3.session.MediaSessionService
 
 class PlaybackService : MediaSessionService() {
-    private val playerControllers = mutableListOf<BccmPlayerController>()
-    private lateinit var primaryPlayerController: BccmPlayerController
+    private val playerControllers = mutableListOf<ExoPlayerController>()
+    private lateinit var primaryPlayerController: ExoPlayerController
     private lateinit var mediaSession: MediaSession
 
     private var binder: LocalBinder = LocalBinder();
 
-    fun newPlayer(): BccmPlayerController {
-        val pc = BccmPlayerController(this)
+    fun newPlayer(): ExoPlayerController {
+        val pc = ExoPlayerController(this)
         playerControllers.add(pc)
         return pc
     }
@@ -30,10 +29,11 @@ class PlaybackService : MediaSessionService() {
         }
     }
 
-    fun getController(playerId: String): BccmPlayerController? {
+    fun getController(playerId: String): ExoPlayerController? {
         return playerControllers.find { it.id == playerId }
     }
-    fun getPrimaryController(): BccmPlayerController {
+
+    fun getPrimaryController(): ExoPlayerController {
         return primaryPlayerController
     }
 

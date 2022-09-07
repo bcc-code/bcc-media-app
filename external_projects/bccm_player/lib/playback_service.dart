@@ -30,9 +30,10 @@ class PlaybackService extends PlaybackPlatformInterface {
   }
 
   @override
-  Future<void> replaceCurrentMediaItem(
-      String playerId, MediaItem mediaItem) async {
-    await _pigeon.replaceCurrentMediaItem(playerId, mediaItem);
+  Future<void> replaceCurrentMediaItem(String playerId, MediaItem mediaItem,
+      {bool? playbackPositionFromPrimary}) async {
+    await _pigeon.replaceCurrentMediaItem(
+        playerId, mediaItem, playbackPositionFromPrimary);
   }
 
   @override

@@ -32,7 +32,8 @@ class MockBccmPlayerPlatform
   }
 
   @override
-  Future<void> replaceCurrentMediaItem(String playerId, MediaItem mediaItem) {
+  Future<void> replaceCurrentMediaItem(String playerId, MediaItem mediaItem,
+      {bool? playbackPositionFromPrimary}) {
     // TODO: implement replaceCurrentMediaItem
     throw UnimplementedError();
   }

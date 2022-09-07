@@ -17,18 +17,22 @@ class PlaybackApiImpl(private val plugin: BccmPlayerPlugin) : PlaybackPlatformAp
         result?.success(playerController.id)
     }
 
-    override fun replaceCurrentMediaItem(playerId: String, mediaItem: PlaybackPlatformApi.MediaItem, result: PlaybackPlatformApi.Result<Void>?) {
-        if (playerId == "chromecast") {
-            plugin.getCastController()?.addMediaItem(mediaItem)
-            return
-        }
+    override fun replaceCurrentMediaItem(playerId: String, mediaItem: PlaybackPlatformApi.MediaItem, playbackPositionFromPrimary: Boolean?, result: PlaybackPlatformApi.Result<Void>?) {
         val playbackService = plugin.getPlaybackService()
         if (playbackService == null) {
             result?.error(Error())
             return
         }
+        if (playbackPositionFromPrimary == true) {
+            mediaItem.playbackStartPositionMs = playbackService.getPrimaryController().getPlayer().currentPosition
+        }
+        if (playerId == "chromecast") {
+            plugin.getCastController()?.replaceCurrentMediaItem(mediaItem)
+            return
+        }
 
-        val playerController = playbackService.getController(playerId) ?: throw Error("Player with id ${playerId} does not exist.")
+        val playerController = playbackService.getController(playerId)
+                ?: throw Error("Player with id ${playerId} does not exist.")
 
         playerController.replaceCurrentMediaItem(mediaItem)
     }
@@ -44,7 +48,8 @@ class PlaybackApiImpl(private val plugin: BccmPlayerPlugin) : PlaybackPlatformAp
             result?.error(Error())
             return
         }
-        val playerController = playbackService.getController(playerId) ?: throw Error("Player with id $playerId does not exist.")
+        val playerController = playbackService.getController(playerId)
+                ?: throw Error("Player with id $playerId does not exist.")
         playerController.replaceCurrentMediaItem(mediaItem)
     }
 

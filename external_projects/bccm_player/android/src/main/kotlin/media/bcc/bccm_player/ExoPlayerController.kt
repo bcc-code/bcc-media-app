@@ -1,14 +1,16 @@
 package media.bcc.bccm_player
 
 import android.content.Context
-import android.net.Uri
-import androidx.media3.common.*
+import androidx.media3.common.AudioAttributes
+import androidx.media3.common.C
+import androidx.media3.common.ForwardingPlayer
+import androidx.media3.common.Player
 import androidx.media3.exoplayer.ExoPlayer
 import com.google.android.gms.cast.framework.CastContext
 import media.bcc.player.PlaybackPlatformApi
 import java.util.*
 
-class BccmPlayerController(private val context: Context) : PlayerManager.Listener {
+class ExoPlayerController(private val context: Context) : PlayerController(), PlayerManager.Listener {
     private var playerManager: PlayerManager? = null
     private var castContext: CastContext? = null
     val id: String = UUID.randomUUID().toString()
@@ -71,23 +73,6 @@ class BccmPlayerController(private val context: Context) : PlayerManager.Listene
             }
         }*/
 
-    }
-
-    fun mapMediaItem(mediaItem: PlaybackPlatformApi.MediaItem): MediaItem {
-        val metaBuilder = MediaMetadata.Builder();
-        if (mediaItem.metadata?.artworkUri != null) {
-            metaBuilder.setArtworkUri(Uri.parse(mediaItem.metadata?.artworkUri))
-        }
-        metaBuilder.setTitle(mediaItem.metadata?.title)
-                .setArtist(mediaItem.metadata?.artist)
-                .build()
-        val miBuilder = MediaItem.Builder()
-                .setUri(mediaItem.url)
-                .setMediaMetadata(metaBuilder.build());
-        if (mediaItem.mimeType != null) {
-            miBuilder.setMimeType(mediaItem.mimeType);
-        }
-        return miBuilder.build()
     }
 
     fun replaceCurrentMediaItem(mediaItem: PlaybackPlatformApi.MediaItem) {

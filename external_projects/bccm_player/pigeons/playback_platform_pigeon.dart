@@ -16,8 +16,10 @@ abstract class PlaybackPlatformPigeon {
   void queueMediaItem(String playerId, MediaItem mediaItem);
 
   @async
-  @ObjCSelector("replaceCurrentMediaItem:mediaItem:")
-  void replaceCurrentMediaItem(String playerId, MediaItem mediaItem);
+  @ObjCSelector(
+      "replaceCurrentMediaItem:mediaItem:playbackPositionFromPrimary:")
+  void replaceCurrentMediaItem(
+      String playerId, MediaItem mediaItem, bool? playbackPositionFromPrimary);
 
   @async
   @ObjCSelector("setPrimary:")

@@ -282,7 +282,7 @@ public class PlaybackPlatformApi {
   public interface PlaybackPlatformPigeon {
     void newPlayer(@Nullable String url, Result<String> result);
     void queueMediaItem(@NonNull String playerId, @NonNull MediaItem mediaItem, Result<Void> result);
-    void replaceCurrentMediaItem(@NonNull String playerId, @NonNull MediaItem mediaItem, Result<Void> result);
+    void replaceCurrentMediaItem(@NonNull String playerId, @NonNull MediaItem mediaItem, @Nullable Boolean playbackPositionFromPrimary, Result<Void> result);
     void setPrimary(@NonNull String id, Result<Void> result);
     void getChromecastState(Result<ChromecastState> result);
 
@@ -378,6 +378,7 @@ public class PlaybackPlatformApi {
               if (mediaItemArg == null) {
                 throw new NullPointerException("mediaItemArg unexpectedly null.");
               }
+              Boolean playbackPositionFromPrimaryArg = (Boolean)args.get(2);
               Result<Void> resultCallback = new Result<Void>() {
                 public void success(Void result) {
                   wrapped.put("result", null);
@@ -389,7 +390,7 @@ public class PlaybackPlatformApi {
                 }
               };
 
-              api.replaceCurrentMediaItem(playerIdArg, mediaItemArg, resultCallback);
+              api.replaceCurrentMediaItem(playerIdArg, mediaItemArg, playbackPositionFromPrimaryArg, resultCallback);
             }
             catch (Error | RuntimeException exception) {
               wrapped.put("error", wrapError(exception));

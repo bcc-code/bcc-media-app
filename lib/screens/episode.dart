@@ -45,12 +45,6 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen> {
         .listen((event) {
       playLocal(playbackPositionMs: event.playbackPositionMs);
     });
-    ref
-        .read(chromecastListenerProvider)
-        .on<CastSessionAvailable>()
-        .listen((event) {
-      playChromecast(playbackPositionFromPrimary: true);
-    });
 
     setup();
   }
@@ -70,10 +64,11 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen> {
   }
 
   Future playLocal({int? playbackPositionMs}) async {
+    if (!mounted) return;
     var playerId = ref.read(playerStateProvider).primaryPlayerId!;
-    var playbackApi = ref.read(playbackApiProvider);
     var episode = await episodeFuture;
-    playbackApi.replaceCurrentMediaItem(
+    if (!mounted) return;
+    ref.read(playbackApiProvider).replaceCurrentMediaItem(
         playerId,
         MediaItem(
             url: episode.streamUrl,
@@ -83,8 +78,10 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen> {
 
   Future playChromecast({bool playbackPositionFromPrimary = false}) async {
     var episode = await episodeFuture;
+    if (!mounted) return;
     ref.read(playbackApiProvider).replaceCurrentMediaItem('chromecast',
-        MediaItem(url: episode.streamUrl, mimeType: 'application/x-mpegURL'));
+        MediaItem(url: episode.streamUrl, mimeType: 'application/x-mpegURL'),
+        playbackPositionFromPrimary: playbackPositionFromPrimary);
   }
 
   @override
