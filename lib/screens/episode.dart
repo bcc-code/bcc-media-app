@@ -65,7 +65,7 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen> {
 
   Future playLocal({int? playbackPositionMs}) async {
     if (!mounted) return;
-    var playerId = ref.read(playerStateProvider).primaryPlayerId!;
+    var playerId = ref.read(playerListProvider).primaryPlayerId!;
     var episode = await episodeFuture;
     if (!mounted) return;
     ref.read(playbackApiProvider).replaceCurrentMediaItem(
@@ -106,7 +106,7 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen> {
   @override
   Widget build(BuildContext context) {
     final casting = ref.watch(isCasting);
-    final primaryPlayerId = ref.watch(playerStateProvider).primaryPlayerId!;
+    final primaryPlayerId = ref.watch(playerListProvider).primaryPlayerId!;
     return Scaffold(
       appBar: AppBar(
         title: const Text('Episode'),

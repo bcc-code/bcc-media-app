@@ -15,30 +15,32 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
-mixin _$PlayerState {
-  List<Player> get players => throw _privateConstructorUsedError;
+mixin _$PlayerListState {
+  Map<String, Provider<Player>> get players =>
+      throw _privateConstructorUsedError;
   String? get primaryPlayerId => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
-  $PlayerStateCopyWith<PlayerState> get copyWith =>
+  $PlayerListStateCopyWith<PlayerListState> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $PlayerStateCopyWith<$Res> {
-  factory $PlayerStateCopyWith(
-          PlayerState value, $Res Function(PlayerState) then) =
-      _$PlayerStateCopyWithImpl<$Res>;
-  $Res call({List<Player> players, String? primaryPlayerId});
+abstract class $PlayerListStateCopyWith<$Res> {
+  factory $PlayerListStateCopyWith(
+          PlayerListState value, $Res Function(PlayerListState) then) =
+      _$PlayerListStateCopyWithImpl<$Res>;
+  $Res call({Map<String, Provider<Player>> players, String? primaryPlayerId});
 }
 
 /// @nodoc
-class _$PlayerStateCopyWithImpl<$Res> implements $PlayerStateCopyWith<$Res> {
-  _$PlayerStateCopyWithImpl(this._value, this._then);
+class _$PlayerListStateCopyWithImpl<$Res>
+    implements $PlayerListStateCopyWith<$Res> {
+  _$PlayerListStateCopyWithImpl(this._value, this._then);
 
-  final PlayerState _value;
+  final PlayerListState _value;
   // ignore: unused_field
-  final $Res Function(PlayerState) _then;
+  final $Res Function(PlayerListState) _then;
 
   @override
   $Res call({
@@ -49,7 +51,7 @@ class _$PlayerStateCopyWithImpl<$Res> implements $PlayerStateCopyWith<$Res> {
       players: players == freezed
           ? _value.players
           : players // ignore: cast_nullable_to_non_nullable
-              as List<Player>,
+              as Map<String, Provider<Player>>,
       primaryPlayerId: primaryPlayerId == freezed
           ? _value.primaryPlayerId
           : primaryPlayerId // ignore: cast_nullable_to_non_nullable
@@ -60,16 +62,17 @@ class _$PlayerStateCopyWithImpl<$Res> implements $PlayerStateCopyWith<$Res> {
 
 /// @nodoc
 abstract class _$$_PlayerStateCopyWith<$Res>
-    implements $PlayerStateCopyWith<$Res> {
+    implements $PlayerListStateCopyWith<$Res> {
   factory _$$_PlayerStateCopyWith(
           _$_PlayerState value, $Res Function(_$_PlayerState) then) =
       __$$_PlayerStateCopyWithImpl<$Res>;
   @override
-  $Res call({List<Player> players, String? primaryPlayerId});
+  $Res call({Map<String, Provider<Player>> players, String? primaryPlayerId});
 }
 
 /// @nodoc
-class __$$_PlayerStateCopyWithImpl<$Res> extends _$PlayerStateCopyWithImpl<$Res>
+class __$$_PlayerStateCopyWithImpl<$Res>
+    extends _$PlayerListStateCopyWithImpl<$Res>
     implements _$$_PlayerStateCopyWith<$Res> {
   __$$_PlayerStateCopyWithImpl(
       _$_PlayerState _value, $Res Function(_$_PlayerState) _then)
@@ -87,7 +90,7 @@ class __$$_PlayerStateCopyWithImpl<$Res> extends _$PlayerStateCopyWithImpl<$Res>
       players: players == freezed
           ? _value._players
           : players // ignore: cast_nullable_to_non_nullable
-              as List<Player>,
+              as Map<String, Provider<Player>>,
       primaryPlayerId: primaryPlayerId == freezed
           ? _value.primaryPlayerId
           : primaryPlayerId // ignore: cast_nullable_to_non_nullable
@@ -98,16 +101,18 @@ class __$$_PlayerStateCopyWithImpl<$Res> extends _$PlayerStateCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_PlayerState implements _PlayerState {
+class _$_PlayerState extends _PlayerState {
   const _$_PlayerState(
-      {required final List<Player> players, this.primaryPlayerId})
-      : _players = players;
+      {required final Map<String, Provider<Player>> players,
+      this.primaryPlayerId})
+      : _players = players,
+        super._();
 
-  final List<Player> _players;
+  final Map<String, Provider<Player>> _players;
   @override
-  List<Player> get players {
+  Map<String, Provider<Player>> get players {
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_players);
+    return EqualUnmodifiableMapView(_players);
   }
 
   @override
@@ -115,7 +120,7 @@ class _$_PlayerState implements _PlayerState {
 
   @override
   String toString() {
-    return 'PlayerState(players: $players, primaryPlayerId: $primaryPlayerId)';
+    return 'PlayerListState(players: $players, primaryPlayerId: $primaryPlayerId)';
   }
 
   @override
@@ -140,13 +145,14 @@ class _$_PlayerState implements _PlayerState {
       __$$_PlayerStateCopyWithImpl<_$_PlayerState>(this, _$identity);
 }
 
-abstract class _PlayerState implements PlayerState {
+abstract class _PlayerState extends PlayerListState {
   const factory _PlayerState(
-      {required final List<Player> players,
+      {required final Map<String, Provider<Player>> players,
       final String? primaryPlayerId}) = _$_PlayerState;
+  const _PlayerState._() : super._();
 
   @override
-  List<Player> get players;
+  Map<String, Provider<Player>> get players;
   @override
   String? get primaryPlayerId;
   @override

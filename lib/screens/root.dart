@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:my_app/components/mini_player.dart';
 import 'package:my_app/providers/playback_api.dart';
 import 'package:my_app/providers/video_state.dart';
 import 'package:my_app/router/router.gr.dart';
@@ -43,9 +44,9 @@ class _RootScreenState extends ConsumerState<RootScreen> {
       'calendar_selected': Image.asset('assets/icons/Calendar_Selected.png',
           gaplessPlayback: true),
     };
-    ref.read(playbackApiProvider).newPlayer().then((value) {
+    ref.read(playerListProvider.notifier).newPlayer().then((value) {
       ref.read(playbackApiProvider).setPrimary(value);
-      ref.read(playerStateProvider.notifier).setPrimary(value);
+      ref.read(playerListProvider.notifier).setPrimary(value);
     });
   }
 
@@ -78,6 +79,7 @@ class _RootScreenState extends ConsumerState<RootScreen> {
           //alterntivly you could use a global key
           return Scaffold(
               body: child,
+              bottomSheet: MiniPlayer(),
               bottomNavigationBar: Container(
                 decoration: BoxDecoration(
                     border: Border(
