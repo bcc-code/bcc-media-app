@@ -15,148 +15,152 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
-mixin _$PlayerListState {
-  Map<String, Provider<Player>> get players =>
-      throw _privateConstructorUsedError;
-  String? get primaryPlayerId => throw _privateConstructorUsedError;
+mixin _$Player {
+  String get playerId => throw _privateConstructorUsedError;
+  MediaItem? get currentMediaItem => throw _privateConstructorUsedError;
+  int? get playbackPositionMs => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
-  $PlayerListStateCopyWith<PlayerListState> get copyWith =>
-      throw _privateConstructorUsedError;
+  $PlayerCopyWith<Player> get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $PlayerListStateCopyWith<$Res> {
-  factory $PlayerListStateCopyWith(
-          PlayerListState value, $Res Function(PlayerListState) then) =
-      _$PlayerListStateCopyWithImpl<$Res>;
-  $Res call({Map<String, Provider<Player>> players, String? primaryPlayerId});
+abstract class $PlayerCopyWith<$Res> {
+  factory $PlayerCopyWith(Player value, $Res Function(Player) then) =
+      _$PlayerCopyWithImpl<$Res>;
+  $Res call(
+      {String playerId, MediaItem? currentMediaItem, int? playbackPositionMs});
 }
 
 /// @nodoc
-class _$PlayerListStateCopyWithImpl<$Res>
-    implements $PlayerListStateCopyWith<$Res> {
-  _$PlayerListStateCopyWithImpl(this._value, this._then);
+class _$PlayerCopyWithImpl<$Res> implements $PlayerCopyWith<$Res> {
+  _$PlayerCopyWithImpl(this._value, this._then);
 
-  final PlayerListState _value;
+  final Player _value;
   // ignore: unused_field
-  final $Res Function(PlayerListState) _then;
+  final $Res Function(Player) _then;
 
   @override
   $Res call({
-    Object? players = freezed,
-    Object? primaryPlayerId = freezed,
+    Object? playerId = freezed,
+    Object? currentMediaItem = freezed,
+    Object? playbackPositionMs = freezed,
   }) {
     return _then(_value.copyWith(
-      players: players == freezed
-          ? _value.players
-          : players // ignore: cast_nullable_to_non_nullable
-              as Map<String, Provider<Player>>,
-      primaryPlayerId: primaryPlayerId == freezed
-          ? _value.primaryPlayerId
-          : primaryPlayerId // ignore: cast_nullable_to_non_nullable
-              as String?,
+      playerId: playerId == freezed
+          ? _value.playerId
+          : playerId // ignore: cast_nullable_to_non_nullable
+              as String,
+      currentMediaItem: currentMediaItem == freezed
+          ? _value.currentMediaItem
+          : currentMediaItem // ignore: cast_nullable_to_non_nullable
+              as MediaItem?,
+      playbackPositionMs: playbackPositionMs == freezed
+          ? _value.playbackPositionMs
+          : playbackPositionMs // ignore: cast_nullable_to_non_nullable
+              as int?,
     ));
   }
 }
 
 /// @nodoc
-abstract class _$$_PlayerStateCopyWith<$Res>
-    implements $PlayerListStateCopyWith<$Res> {
-  factory _$$_PlayerStateCopyWith(
-          _$_PlayerState value, $Res Function(_$_PlayerState) then) =
-      __$$_PlayerStateCopyWithImpl<$Res>;
+abstract class _$$_PlayerCopyWith<$Res> implements $PlayerCopyWith<$Res> {
+  factory _$$_PlayerCopyWith(_$_Player value, $Res Function(_$_Player) then) =
+      __$$_PlayerCopyWithImpl<$Res>;
   @override
-  $Res call({Map<String, Provider<Player>> players, String? primaryPlayerId});
+  $Res call(
+      {String playerId, MediaItem? currentMediaItem, int? playbackPositionMs});
 }
 
 /// @nodoc
-class __$$_PlayerStateCopyWithImpl<$Res>
-    extends _$PlayerListStateCopyWithImpl<$Res>
-    implements _$$_PlayerStateCopyWith<$Res> {
-  __$$_PlayerStateCopyWithImpl(
-      _$_PlayerState _value, $Res Function(_$_PlayerState) _then)
-      : super(_value, (v) => _then(v as _$_PlayerState));
+class __$$_PlayerCopyWithImpl<$Res> extends _$PlayerCopyWithImpl<$Res>
+    implements _$$_PlayerCopyWith<$Res> {
+  __$$_PlayerCopyWithImpl(_$_Player _value, $Res Function(_$_Player) _then)
+      : super(_value, (v) => _then(v as _$_Player));
 
   @override
-  _$_PlayerState get _value => super._value as _$_PlayerState;
+  _$_Player get _value => super._value as _$_Player;
 
   @override
   $Res call({
-    Object? players = freezed,
-    Object? primaryPlayerId = freezed,
+    Object? playerId = freezed,
+    Object? currentMediaItem = freezed,
+    Object? playbackPositionMs = freezed,
   }) {
-    return _then(_$_PlayerState(
-      players: players == freezed
-          ? _value._players
-          : players // ignore: cast_nullable_to_non_nullable
-              as Map<String, Provider<Player>>,
-      primaryPlayerId: primaryPlayerId == freezed
-          ? _value.primaryPlayerId
-          : primaryPlayerId // ignore: cast_nullable_to_non_nullable
-              as String?,
+    return _then(_$_Player(
+      playerId: playerId == freezed
+          ? _value.playerId
+          : playerId // ignore: cast_nullable_to_non_nullable
+              as String,
+      currentMediaItem: currentMediaItem == freezed
+          ? _value.currentMediaItem
+          : currentMediaItem // ignore: cast_nullable_to_non_nullable
+              as MediaItem?,
+      playbackPositionMs: playbackPositionMs == freezed
+          ? _value.playbackPositionMs
+          : playbackPositionMs // ignore: cast_nullable_to_non_nullable
+              as int?,
     ));
   }
 }
 
 /// @nodoc
 
-class _$_PlayerState extends _PlayerState {
-  const _$_PlayerState(
-      {required final Map<String, Provider<Player>> players,
-      this.primaryPlayerId})
-      : _players = players,
-        super._();
-
-  final Map<String, Provider<Player>> _players;
-  @override
-  Map<String, Provider<Player>> get players {
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableMapView(_players);
-  }
+class _$_Player implements _Player {
+  const _$_Player(
+      {required this.playerId, this.currentMediaItem, this.playbackPositionMs});
 
   @override
-  final String? primaryPlayerId;
+  final String playerId;
+  @override
+  final MediaItem? currentMediaItem;
+  @override
+  final int? playbackPositionMs;
 
   @override
   String toString() {
-    return 'PlayerListState(players: $players, primaryPlayerId: $primaryPlayerId)';
+    return 'Player(playerId: $playerId, currentMediaItem: $currentMediaItem, playbackPositionMs: $playbackPositionMs)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_PlayerState &&
-            const DeepCollectionEquality().equals(other._players, _players) &&
+            other is _$_Player &&
+            const DeepCollectionEquality().equals(other.playerId, playerId) &&
             const DeepCollectionEquality()
-                .equals(other.primaryPlayerId, primaryPlayerId));
+                .equals(other.currentMediaItem, currentMediaItem) &&
+            const DeepCollectionEquality()
+                .equals(other.playbackPositionMs, playbackPositionMs));
   }
 
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      const DeepCollectionEquality().hash(_players),
-      const DeepCollectionEquality().hash(primaryPlayerId));
+      const DeepCollectionEquality().hash(playerId),
+      const DeepCollectionEquality().hash(currentMediaItem),
+      const DeepCollectionEquality().hash(playbackPositionMs));
 
   @JsonKey(ignore: true)
   @override
-  _$$_PlayerStateCopyWith<_$_PlayerState> get copyWith =>
-      __$$_PlayerStateCopyWithImpl<_$_PlayerState>(this, _$identity);
+  _$$_PlayerCopyWith<_$_Player> get copyWith =>
+      __$$_PlayerCopyWithImpl<_$_Player>(this, _$identity);
 }
 
-abstract class _PlayerState extends PlayerListState {
-  const factory _PlayerState(
-      {required final Map<String, Provider<Player>> players,
-      final String? primaryPlayerId}) = _$_PlayerState;
-  const _PlayerState._() : super._();
+abstract class _Player implements Player {
+  const factory _Player(
+      {required final String playerId,
+      final MediaItem? currentMediaItem,
+      final int? playbackPositionMs}) = _$_Player;
 
   @override
-  Map<String, Provider<Player>> get players;
+  String get playerId;
   @override
-  String? get primaryPlayerId;
+  MediaItem? get currentMediaItem;
+  @override
+  int? get playbackPositionMs;
   @override
   @JsonKey(ignore: true)
-  _$$_PlayerStateCopyWith<_$_PlayerState> get copyWith =>
+  _$$_PlayerCopyWith<_$_Player> get copyWith =>
       throw _privateConstructorUsedError;
 }

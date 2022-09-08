@@ -1,3 +1,4 @@
+import 'package:bccm_player/playback_listener_pigeon.g.dart';
 import 'package:bccm_player/playback_platform_pigeon.g.dart';
 import 'package:bccm_player/playback_service_interface.dart';
 import 'package:flutter/foundation.dart';
@@ -10,6 +11,7 @@ class PlaybackService extends PlaybackPlatformInterface {
   final methodChannel = const MethodChannel('bccm_player');
 
   final PlaybackPlatformPigeon _pigeon = PlaybackPlatformPigeon();
+  final List<PlaybackListenerPigeon> listeners = [];
 
   @override
   Future<String?> getPlatformVersion() async {
@@ -44,5 +46,10 @@ class PlaybackService extends PlaybackPlatformInterface {
   @override
   Future<ChromecastState?> getChromecastState() {
     return _pigeon.getChromecastState();
+  }
+
+  @override
+  Future<void> setPlaybackListener(PlaybackListenerPigeon listener) async {
+    PlaybackListenerPigeon.setup(listener);
   }
 }

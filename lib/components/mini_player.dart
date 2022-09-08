@@ -1,7 +1,9 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:my_app/providers/video_state.dart';
+import 'package:my_app/router/router.gr.dart';
 import 'package:transparent_image/transparent_image.dart';
 
 class MiniPlayer extends ConsumerStatefulWidget {
@@ -14,17 +16,25 @@ class MiniPlayer extends ConsumerStatefulWidget {
 class _MiniPlayerState extends ConsumerState<MiniPlayer> {
   @override
   Widget build(BuildContext context) {
-    var playerProvider = ref
-        .watch(playerListProvider.select((value) => value.getPrimaryPlayer()));
-    Player? player = playerProvider != null ? ref.read(playerProvider) : null;
+    Player? player = ref.watch(primaryPlayerProvider);
 
     var artist = player?.currentMediaItem?.metadata?.artist;
+    var title = player?.currentMediaItem?.metadata?.title;
 
-    return _MiniPlayer(
-      artist: artist ?? 'Artist missing',
-      title: 'Fem minutter hver dag' ?? 'Title missing',
-      artworkUri: 'https://source.unsplash.com/random/1600x900/?fruit',
-      isPlaying: true,
+    return GestureDetector(
+      onTap: () {
+        var episodeId = player?.currentMediaItem?.metadata?.episodeId;
+        if (episodeId != null) {
+          context.router
+              .push(EpisodeScreenRoute(episodeId: int.parse(episodeId)));
+        }
+      },
+      child: _MiniPlayer(
+        artist: artist ?? 'Artist missing',
+        title: title ?? 'Title missing',
+        artworkUri: 'https://source.unsplash.com/random/1600x900/?fruit',
+        isPlaying: true,
+      ),
     );
   }
 }
@@ -103,6 +113,7 @@ class _MiniPlayer extends StatelessWidget {
                   padding: const EdgeInsets.only(top: 4.0),
                   child: Text(
                     title,
+                    overflow: TextOverflow.ellipsis,
                     style: TextStyle(
                       color: Color(0xfffefefe),
                       fontSize: 14,

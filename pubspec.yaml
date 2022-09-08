@@ -53,6 +53,7 @@ dependencies:
   riverpod: ^1.0.3
   flutter_riverpod: ^1.0.4
   freezed_annotation: ^2.1.0
+  collection: ^1.16.0
 dependency_overrides:
   bccm_player:
     path: external_projects/bccm_player

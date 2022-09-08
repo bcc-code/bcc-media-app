@@ -44,9 +44,10 @@ class _RootScreenState extends ConsumerState<RootScreen> {
       'calendar_selected': Image.asset('assets/icons/Calendar_Selected.png',
           gaplessPlayback: true),
     };
-    ref.read(playerListProvider.notifier).newPlayer().then((value) {
-      ref.read(playbackApiProvider).setPrimary(value);
-      ref.read(playerListProvider.notifier).setPrimary(value);
+    ref.read(playbackApiProvider).newPlayer().then((playerId) {
+      var player = Player(playerId: playerId);
+      ref.read(playbackApiProvider).setPrimary(playerId);
+      ref.read(primaryPlayerProvider.notifier).setPrimaryPlayer(player);
     });
   }
 

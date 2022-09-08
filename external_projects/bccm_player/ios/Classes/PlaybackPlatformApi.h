@@ -38,10 +38,12 @@ typedef NS_ENUM(NSUInteger, CastConnectionState) {
 @interface MediaMetadata : NSObject
 + (instancetype)makeWithArtworkUri:(nullable NSString *)artworkUri
     title:(nullable NSString *)title
-    artist:(nullable NSString *)artist;
+    artist:(nullable NSString *)artist
+    episodeId:(nullable NSString *)episodeId;
 @property(nonatomic, copy, nullable) NSString * artworkUri;
 @property(nonatomic, copy, nullable) NSString * title;
 @property(nonatomic, copy, nullable) NSString * artist;
+@property(nonatomic, copy, nullable) NSString * episodeId;
 @end
 
 @interface ChromecastState : NSObject

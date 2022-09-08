@@ -65,15 +65,25 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen> {
 
   Future playLocal({int? playbackPositionMs}) async {
     if (!mounted) return;
-    var playerId = ref.read(playerListProvider).primaryPlayerId!;
+    var player = ref.read(primaryPlayerProvider);
+    if (player.currentMediaItem?.metadata?.episodeId ==
+        widget.episodeId.toString()) {
+      return;
+    }
     var episode = await episodeFuture;
     if (!mounted) return;
-    ref.read(playbackApiProvider).replaceCurrentMediaItem(
-        playerId,
-        MediaItem(
-            url: episode.streamUrl,
-            mimeType: 'application/x-mpegURL',
-            playbackStartPositionMs: playbackPositionMs));
+
+    var mediaItem = MediaItem(
+        url: episode.streamUrl,
+        mimeType: 'application/x-mpegURL',
+        metadata: MediaMetadata(
+            title: episode.title, episodeId: widget.episodeId.toString()),
+        playbackStartPositionMs: playbackPositionMs);
+
+    ref.read(primaryPlayerProvider.notifier).setMediaItem(mediaItem);
+    ref
+        .read(playbackApiProvider)
+        .replaceCurrentMediaItem(player.playerId, mediaItem);
   }
 
   Future playChromecast({bool playbackPositionFromPrimary = false}) async {
@@ -106,7 +116,7 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen> {
   @override
   Widget build(BuildContext context) {
     final casting = ref.watch(isCasting);
-    final primaryPlayerId = ref.watch(playerListProvider).primaryPlayerId!;
+    final primaryPlayerId = ref.watch(primaryPlayerProvider).playerId;
     return Scaffold(
       appBar: AppBar(
         title: const Text('Episode'),

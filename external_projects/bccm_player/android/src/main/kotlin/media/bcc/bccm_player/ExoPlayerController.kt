@@ -10,7 +10,7 @@ import com.google.android.gms.cast.framework.CastContext
 import media.bcc.player.PlaybackPlatformApi
 import java.util.*
 
-class ExoPlayerController(private val context: Context) : PlayerController(), PlayerManager.Listener {
+class ExoPlayerController(private val context: Context) : PlayerController(), Player.Listener, PlayerManager.Listener {
     private var playerManager: PlayerManager? = null
     private var castContext: CastContext? = null
     val id: String = UUID.randomUUID().toString()
@@ -92,6 +92,9 @@ class ExoPlayerController(private val context: Context) : PlayerController(), Pl
         exoPlayer.release()
     }
 
+    override fun onPositionDiscontinuity(oldPosition: Player.PositionInfo, newPosition: Player.PositionInfo, reason: Int) {
+        
+    }
 
     override fun onQueuePositionChanged(previousIndex: Int, newIndex: Int) {
         if (previousIndex != C.INDEX_UNSET) {

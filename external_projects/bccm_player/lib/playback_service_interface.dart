@@ -1,3 +1,4 @@
+import 'package:bccm_player/playback_listener_pigeon.g.dart';
 import 'package:bccm_player/playback_service.dart';
 import 'package:plugin_platform_interface/plugin_platform_interface.dart';
 
@@ -43,5 +44,9 @@ abstract class PlaybackPlatformInterface extends PlatformInterface {
 
   Future<ChromecastState?> getChromecastState() async {
     throw UnimplementedError('addMediaItem() has not been implemented.');
+  }
+
+  Future<void> setPlaybackListener(PlaybackListenerPigeon listener) async {
+    throw UnimplementedError('addPlaybackListener() has not been implemented.');
   }
 }

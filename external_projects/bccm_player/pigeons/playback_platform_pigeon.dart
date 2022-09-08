@@ -48,6 +48,7 @@ class MediaMetadata {
   String? artworkUri;
   String? title;
   String? artist;
+  String? episodeId;
 }
 
 class ChromecastState {
