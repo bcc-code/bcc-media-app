@@ -137,25 +137,22 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen> {
                 )),
                 Padding(
                   padding: const EdgeInsets.all(8.0),
-                  child: casting
-                      ? const BccmCastPlayer()
-                      : FutureBuilder<Episode>(
-                          future: episodeFuture,
-                          builder: (context, snapshot) {
-                            if (snapshot.hasData) {
-                              return Column(
-                                children: [
-                                  BccmPlayer(
-                                      type: widget.playerType,
-                                      id: primaryPlayerId)
-                                ],
-                              );
-                            } else if (snapshot.hasError) {
-                              return Text(snapshot.error.toString());
-                            }
-                            // By default, show a loading spinner.
-                            return const CircularProgressIndicator();
-                          }),
+                  child: FutureBuilder<Episode>(
+                      future: episodeFuture,
+                      builder: (context, snapshot) {
+                        if (snapshot.hasData) {
+                          return Column(
+                            children: [
+                              BccmPlayer(
+                                  type: widget.playerType, id: primaryPlayerId)
+                            ],
+                          );
+                        } else if (snapshot.hasError) {
+                          return Text(snapshot.error.toString());
+                        }
+                        // By default, show a loading spinner.
+                        return const CircularProgressIndicator();
+                      }),
                 ),
                 Center(
                   child: ElevatedButton(
