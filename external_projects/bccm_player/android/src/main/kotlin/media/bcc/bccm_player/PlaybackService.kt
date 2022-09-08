@@ -23,9 +23,9 @@ class PlaybackService : MediaSessionService() {
         val pc = playerControllers.find {
             it.id == playerId
         }
-        if (pc?.getPlayer() != null) {
+        if (pc?.player != null) {
             primaryPlayerController = pc
-            mediaSession.player = pc.getPlayer()
+            mediaSession.player = pc.player
         }
     }
 
@@ -41,7 +41,7 @@ class PlaybackService : MediaSessionService() {
     override fun onCreate() {
         super.onCreate()
         primaryPlayerController = newPlayer()
-        mediaSession = MediaSession.Builder(this, primaryPlayerController.getPlayer()).build()
+        mediaSession = MediaSession.Builder(this, primaryPlayerController.player).build()
     }
 
     // Return a MediaSession to link with the MediaController that is making

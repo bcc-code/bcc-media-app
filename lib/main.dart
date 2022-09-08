@@ -1,9 +1,11 @@
+import 'package:bccm_player/playback_listener_pigeon.g.dart';
 import 'package:bccm_player/playback_platform_pigeon.g.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:my_app/providers/chromecast.dart';
 import 'package:my_app/providers/playback_api.dart';
+import 'package:my_app/providers/playback_listener.dart';
 import 'package:my_app/router/auth_guard.dart';
 import 'package:my_app/router/router.gr.dart';
 import 'package:my_app/services/auth_service.dart';
@@ -31,6 +33,9 @@ void main() async {
 
   var providerContainer =
       ProviderContainer(overrides: [chromecastListenerOverride]);
+
+  PlaybackListenerPigeon.setup(
+      PlaybackListener(providerReader: providerContainer.read));
 
   providerContainer.read(chromecastListenerProvider);
 

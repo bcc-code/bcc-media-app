@@ -111,7 +111,7 @@ class BccmPlayerViewWrapper(
         }
 
         val busyIndicator = _v.findViewById<ProgressBar>(R.id.busyIndicator)
-        playerController!!.getPlayer().addListener(object : Player.Listener {
+        playerController!!.player.addListener(object : Player.Listener {
             private lateinit var player: Player
             override fun onEvents(player: Player, events: Player.Events) {
                 this.player = player
@@ -129,7 +129,7 @@ class BccmPlayerViewWrapper(
         })
 
         val debugTextView = _v.findViewById<TextView>(R.id.debug_text_view)
-        val debugHelper = DebugTextViewHelper((playerController!!.getPlayer() as ForwardingPlayer).wrappedPlayer as ExoPlayer, debugTextView)
+        val debugHelper = DebugTextViewHelper((playerController!!.player as ForwardingPlayer).wrappedPlayer as ExoPlayer, debugTextView)
         debugHelper.start()
 
         playerController!!.takeOwnership(this)

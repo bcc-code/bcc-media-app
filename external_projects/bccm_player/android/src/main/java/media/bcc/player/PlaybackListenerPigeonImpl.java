@@ -24,13 +24,29 @@ public class PlaybackListenerPigeonImpl {
 
   /** Generated class from Pigeon that represents data sent in messages. */
   public static class PositionUpdateEvent {
+    private @NonNull String playerId;
+    public @NonNull String getPlayerId() { return playerId; }
+    public void setPlayerId(@NonNull String setterArg) {
+      if (setterArg == null) {
+        throw new IllegalStateException("Nonnull field \"playerId\" is null.");
+      }
+      this.playerId = setterArg;
+    }
+
     private @Nullable Long playbackPositionMs;
     public @Nullable Long getPlaybackPositionMs() { return playbackPositionMs; }
     public void setPlaybackPositionMs(@Nullable Long setterArg) {
       this.playbackPositionMs = setterArg;
     }
 
+    /** Constructor is private to enforce null safety; use Builder. */
+    private PositionUpdateEvent() {}
     public static final class Builder {
+      private @Nullable String playerId;
+      public @NonNull Builder setPlayerId(@NonNull String setterArg) {
+        this.playerId = setterArg;
+        return this;
+      }
       private @Nullable Long playbackPositionMs;
       public @NonNull Builder setPlaybackPositionMs(@Nullable Long setterArg) {
         this.playbackPositionMs = setterArg;
@@ -38,19 +54,79 @@ public class PlaybackListenerPigeonImpl {
       }
       public @NonNull PositionUpdateEvent build() {
         PositionUpdateEvent pigeonReturn = new PositionUpdateEvent();
+        pigeonReturn.setPlayerId(playerId);
         pigeonReturn.setPlaybackPositionMs(playbackPositionMs);
         return pigeonReturn;
       }
     }
     @NonNull Map<String, Object> toMap() {
       Map<String, Object> toMapResult = new HashMap<>();
+      toMapResult.put("playerId", playerId);
       toMapResult.put("playbackPositionMs", playbackPositionMs);
       return toMapResult;
     }
     static @NonNull PositionUpdateEvent fromMap(@NonNull Map<String, Object> map) {
       PositionUpdateEvent pigeonResult = new PositionUpdateEvent();
+      Object playerId = map.get("playerId");
+      pigeonResult.setPlayerId((String)playerId);
       Object playbackPositionMs = map.get("playbackPositionMs");
       pigeonResult.setPlaybackPositionMs((playbackPositionMs == null) ? null : ((playbackPositionMs instanceof Integer) ? (Integer)playbackPositionMs : (Long)playbackPositionMs));
+      return pigeonResult;
+    }
+  }
+
+  /** Generated class from Pigeon that represents data sent in messages. */
+  public static class IsPlayingChangedEvent {
+    private @NonNull String playerId;
+    public @NonNull String getPlayerId() { return playerId; }
+    public void setPlayerId(@NonNull String setterArg) {
+      if (setterArg == null) {
+        throw new IllegalStateException("Nonnull field \"playerId\" is null.");
+      }
+      this.playerId = setterArg;
+    }
+
+    private @NonNull Boolean isPlaying;
+    public @NonNull Boolean getIsPlaying() { return isPlaying; }
+    public void setIsPlaying(@NonNull Boolean setterArg) {
+      if (setterArg == null) {
+        throw new IllegalStateException("Nonnull field \"isPlaying\" is null.");
+      }
+      this.isPlaying = setterArg;
+    }
+
+    /** Constructor is private to enforce null safety; use Builder. */
+    private IsPlayingChangedEvent() {}
+    public static final class Builder {
+      private @Nullable String playerId;
+      public @NonNull Builder setPlayerId(@NonNull String setterArg) {
+        this.playerId = setterArg;
+        return this;
+      }
+      private @Nullable Boolean isPlaying;
+      public @NonNull Builder setIsPlaying(@NonNull Boolean setterArg) {
+        this.isPlaying = setterArg;
+        return this;
+      }
+      public @NonNull IsPlayingChangedEvent build() {
+        IsPlayingChangedEvent pigeonReturn = new IsPlayingChangedEvent();
+        pigeonReturn.setPlayerId(playerId);
+        pigeonReturn.setIsPlaying(isPlaying);
+        return pigeonReturn;
+      }
+    }
+    @NonNull Map<String, Object> toMap() {
+      Map<String, Object> toMapResult = new HashMap<>();
+      toMapResult.put("playerId", playerId);
+      toMapResult.put("isPlaying", isPlaying);
+      return toMapResult;
+    }
+    static @NonNull IsPlayingChangedEvent fromMap(@NonNull Map<String, Object> map) {
+      IsPlayingChangedEvent pigeonResult = new IsPlayingChangedEvent();
+      Object playerId = map.get("playerId");
+      pigeonResult.setPlayerId((String)playerId);
+      Object isPlaying = map.get("isPlaying");
+      pigeonResult.setIsPlaying((Boolean)isPlaying);
       return pigeonResult;
     }
   }
@@ -61,6 +137,9 @@ public class PlaybackListenerPigeonImpl {
     protected Object readValueOfType(byte type, ByteBuffer buffer) {
       switch (type) {
         case (byte)128:         
+          return IsPlayingChangedEvent.fromMap((Map<String, Object>) readValue(buffer));
+        
+        case (byte)129:         
           return PositionUpdateEvent.fromMap((Map<String, Object>) readValue(buffer));
         
         default:        
@@ -70,8 +149,12 @@ public class PlaybackListenerPigeonImpl {
     }
     @Override
     protected void writeValue(ByteArrayOutputStream stream, Object value)     {
-      if (value instanceof PositionUpdateEvent) {
+      if (value instanceof IsPlayingChangedEvent) {
         stream.write(128);
+        writeValue(stream, ((IsPlayingChangedEvent) value).toMap());
+      } else 
+      if (value instanceof PositionUpdateEvent) {
+        stream.write(129);
         writeValue(stream, ((PositionUpdateEvent) value).toMap());
       } else 
 {
@@ -96,6 +179,13 @@ public class PlaybackListenerPigeonImpl {
     public void onPositionUpdate(@NonNull PositionUpdateEvent eventArg, Reply<Void> callback) {
       BasicMessageChannel<Object> channel =
           new BasicMessageChannel<>(binaryMessenger, "dev.flutter.pigeon.PlaybackListenerPigeon.onPositionUpdate", getCodec());
+      channel.send(new ArrayList<Object>(Arrays.asList(eventArg)), channelReply -> {
+        callback.reply(null);
+      });
+    }
+    public void onIsPlayingChanged(@NonNull IsPlayingChangedEvent eventArg, Reply<Void> callback) {
+      BasicMessageChannel<Object> channel =
+          new BasicMessageChannel<>(binaryMessenger, "dev.flutter.pigeon.PlaybackListenerPigeon.onIsPlayingChanged", getCodec());
       channel.send(new ArrayList<Object>(Arrays.asList(eventArg)), channelReply -> {
         callback.reply(null);
       });

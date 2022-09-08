@@ -19,6 +19,7 @@ mixin _$Player {
   String get playerId => throw _privateConstructorUsedError;
   MediaItem? get currentMediaItem => throw _privateConstructorUsedError;
   int? get playbackPositionMs => throw _privateConstructorUsedError;
+  PlaybackState get playbackState => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $PlayerCopyWith<Player> get copyWith => throw _privateConstructorUsedError;
@@ -29,7 +30,10 @@ abstract class $PlayerCopyWith<$Res> {
   factory $PlayerCopyWith(Player value, $Res Function(Player) then) =
       _$PlayerCopyWithImpl<$Res>;
   $Res call(
-      {String playerId, MediaItem? currentMediaItem, int? playbackPositionMs});
+      {String playerId,
+      MediaItem? currentMediaItem,
+      int? playbackPositionMs,
+      PlaybackState playbackState});
 }
 
 /// @nodoc
@@ -45,6 +49,7 @@ class _$PlayerCopyWithImpl<$Res> implements $PlayerCopyWith<$Res> {
     Object? playerId = freezed,
     Object? currentMediaItem = freezed,
     Object? playbackPositionMs = freezed,
+    Object? playbackState = freezed,
   }) {
     return _then(_value.copyWith(
       playerId: playerId == freezed
@@ -59,6 +64,10 @@ class _$PlayerCopyWithImpl<$Res> implements $PlayerCopyWith<$Res> {
           ? _value.playbackPositionMs
           : playbackPositionMs // ignore: cast_nullable_to_non_nullable
               as int?,
+      playbackState: playbackState == freezed
+          ? _value.playbackState
+          : playbackState // ignore: cast_nullable_to_non_nullable
+              as PlaybackState,
     ));
   }
 }
@@ -69,7 +78,10 @@ abstract class _$$_PlayerCopyWith<$Res> implements $PlayerCopyWith<$Res> {
       __$$_PlayerCopyWithImpl<$Res>;
   @override
   $Res call(
-      {String playerId, MediaItem? currentMediaItem, int? playbackPositionMs});
+      {String playerId,
+      MediaItem? currentMediaItem,
+      int? playbackPositionMs,
+      PlaybackState playbackState});
 }
 
 /// @nodoc
@@ -86,6 +98,7 @@ class __$$_PlayerCopyWithImpl<$Res> extends _$PlayerCopyWithImpl<$Res>
     Object? playerId = freezed,
     Object? currentMediaItem = freezed,
     Object? playbackPositionMs = freezed,
+    Object? playbackState = freezed,
   }) {
     return _then(_$_Player(
       playerId: playerId == freezed
@@ -100,6 +113,10 @@ class __$$_PlayerCopyWithImpl<$Res> extends _$PlayerCopyWithImpl<$Res>
           ? _value.playbackPositionMs
           : playbackPositionMs // ignore: cast_nullable_to_non_nullable
               as int?,
+      playbackState: playbackState == freezed
+          ? _value.playbackState
+          : playbackState // ignore: cast_nullable_to_non_nullable
+              as PlaybackState,
     ));
   }
 }
@@ -108,7 +125,10 @@ class __$$_PlayerCopyWithImpl<$Res> extends _$PlayerCopyWithImpl<$Res>
 
 class _$_Player implements _Player {
   const _$_Player(
-      {required this.playerId, this.currentMediaItem, this.playbackPositionMs});
+      {required this.playerId,
+      this.currentMediaItem,
+      this.playbackPositionMs,
+      this.playbackState = PlaybackState.stopped});
 
   @override
   final String playerId;
@@ -116,10 +136,13 @@ class _$_Player implements _Player {
   final MediaItem? currentMediaItem;
   @override
   final int? playbackPositionMs;
+  @override
+  @JsonKey()
+  final PlaybackState playbackState;
 
   @override
   String toString() {
-    return 'Player(playerId: $playerId, currentMediaItem: $currentMediaItem, playbackPositionMs: $playbackPositionMs)';
+    return 'Player(playerId: $playerId, currentMediaItem: $currentMediaItem, playbackPositionMs: $playbackPositionMs, playbackState: $playbackState)';
   }
 
   @override
@@ -131,7 +154,9 @@ class _$_Player implements _Player {
             const DeepCollectionEquality()
                 .equals(other.currentMediaItem, currentMediaItem) &&
             const DeepCollectionEquality()
-                .equals(other.playbackPositionMs, playbackPositionMs));
+                .equals(other.playbackPositionMs, playbackPositionMs) &&
+            const DeepCollectionEquality()
+                .equals(other.playbackState, playbackState));
   }
 
   @override
@@ -139,7 +164,8 @@ class _$_Player implements _Player {
       runtimeType,
       const DeepCollectionEquality().hash(playerId),
       const DeepCollectionEquality().hash(currentMediaItem),
-      const DeepCollectionEquality().hash(playbackPositionMs));
+      const DeepCollectionEquality().hash(playbackPositionMs),
+      const DeepCollectionEquality().hash(playbackState));
 
   @JsonKey(ignore: true)
   @override
@@ -151,7 +177,8 @@ abstract class _Player implements Player {
   const factory _Player(
       {required final String playerId,
       final MediaItem? currentMediaItem,
-      final int? playbackPositionMs}) = _$_Player;
+      final int? playbackPositionMs,
+      final PlaybackState playbackState}) = _$_Player;
 
   @override
   String get playerId;
@@ -159,6 +186,8 @@ abstract class _Player implements Player {
   MediaItem? get currentMediaItem;
   @override
   int? get playbackPositionMs;
+  @override
+  PlaybackState get playbackState;
   @override
   @JsonKey(ignore: true)
   _$$_PlayerCopyWith<_$_Player> get copyWith =>

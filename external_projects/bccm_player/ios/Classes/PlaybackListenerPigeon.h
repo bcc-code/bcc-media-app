@@ -9,10 +9,24 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @class PositionUpdateEvent;
+@class IsPlayingChangedEvent;
 
 @interface PositionUpdateEvent : NSObject
-+ (instancetype)makeWithPlaybackPositionMs:(nullable NSNumber *)playbackPositionMs;
+/// `init` unavailable to enforce nonnull fields, see the `make` class method.
+- (instancetype)init NS_UNAVAILABLE;
++ (instancetype)makeWithPlayerId:(NSString *)playerId
+    playbackPositionMs:(nullable NSNumber *)playbackPositionMs;
+@property(nonatomic, copy) NSString * playerId;
 @property(nonatomic, strong, nullable) NSNumber * playbackPositionMs;
+@end
+
+@interface IsPlayingChangedEvent : NSObject
+/// `init` unavailable to enforce nonnull fields, see the `make` class method.
+- (instancetype)init NS_UNAVAILABLE;
++ (instancetype)makeWithPlayerId:(NSString *)playerId
+    isPlaying:(NSNumber *)isPlaying;
+@property(nonatomic, copy) NSString * playerId;
+@property(nonatomic, strong) NSNumber * isPlaying;
 @end
 
 /// The codec used by PlaybackListenerPigeon.
@@ -21,5 +35,6 @@ NSObject<FlutterMessageCodec> *PlaybackListenerPigeonGetCodec(void);
 @interface PlaybackListenerPigeon : NSObject
 - (instancetype)initWithBinaryMessenger:(id<FlutterBinaryMessenger>)binaryMessenger;
 - (void)onPositionUpdate:(PositionUpdateEvent *)event completion:(void(^)(NSError *_Nullable))completion;
+- (void)onIsPlayingChanged:(IsPlayingChangedEvent *)event completion:(void(^)(NSError *_Nullable))completion;
 @end
 NS_ASSUME_NONNULL_END

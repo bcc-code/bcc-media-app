@@ -57,6 +57,10 @@ class PlayerNotifier extends StateNotifier<Player> {
   void setMediaItem(MediaItem mediaItem) {
     state = state.copyWith(currentMediaItem: mediaItem);
   }
+
+  void setPlaybackState(PlaybackState playbackState) {
+    state = state.copyWith(playbackState: playbackState);
+  }
 }
 
 @freezed
@@ -64,5 +68,8 @@ class Player with _$Player {
   const factory Player(
       {required String playerId,
       MediaItem? currentMediaItem,
-      int? playbackPositionMs}) = _Player;
+      int? playbackPositionMs,
+      @Default(PlaybackState.stopped) PlaybackState playbackState}) = _Player;
 }
+
+enum PlaybackState { stopped, paused, playing }

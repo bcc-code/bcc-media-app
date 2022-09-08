@@ -10,27 +10,32 @@ import com.google.android.gms.cast.framework.CastContext
 import com.google.android.gms.cast.framework.Session
 import com.google.android.gms.cast.framework.SessionManagerListener
 import media.bcc.player.ChromecastControllerPigeon
+import media.bcc.player.PlaybackListenerPigeonImpl
 import media.bcc.player.PlaybackPlatformApi
 
-class CastPlayerController(private val castContext: CastContext, private val pigeon: ChromecastControllerPigeon.ChromecastPigeon, private val plugin: BccmPlayerPlugin) : PlayerController(), SessionManagerListener<Session>, SessionAvailabilityListener {
-    val castPlayer = CastPlayer(castContext)
+class CastPlayerController(
+        private val castContext: CastContext,
+        private val chromecastListenerPigeon: ChromecastControllerPigeon.ChromecastPigeon,
+        private val plugin: BccmPlayerPlugin)
+    : PlayerController(), SessionManagerListener<Session>, SessionAvailabilityListener {
+    override val player = CastPlayer(castContext)
 
     init {
-        castPlayer.playWhenReady = true
+        player.playWhenReady = true
 
-        castPlayer.setSessionAvailabilityListener(this)
+        player.setSessionAvailabilityListener(this)
     }
 
     fun replaceCurrentMediaItem(mediaItem: PlaybackPlatformApi.MediaItem) {
         val androidMi = mapMediaItem(mediaItem);
-        castPlayer.setMediaItem(androidMi, mediaItem.playbackStartPositionMs ?: 0)
-        castPlayer.prepare()
-        castPlayer.play()
+        player.setMediaItem(androidMi, mediaItem.playbackStartPositionMs ?: 0)
+        player.prepare()
+        player.play()
     }
 
     fun addMediaItem(mediaItem: PlaybackPlatformApi.MediaItem) {
         val androidMi = mapMediaItem(mediaItem);
-        castPlayer.addMediaItem(androidMi)
+        player.addMediaItem(androidMi)
     }
 
     fun getState(): PlaybackPlatformApi.ChromecastState {
@@ -40,58 +45,58 @@ class CastPlayerController(private val castContext: CastContext, private val pig
     // SessionManagerListener
 
     override fun onSessionEnded(p0: Session, p1: Int) {
-        pigeon.onSessionEnded {}
+        chromecastListenerPigeon.onSessionEnded {}
     }
 
     override fun onSessionEnding(p0: Session) {
-        pigeon.onSessionEnding {}
+        chromecastListenerPigeon.onSessionEnding {}
     }
 
     override fun onSessionResumeFailed(p0: Session, p1: Int) {
-        pigeon.onSessionResumeFailed {}
+        chromecastListenerPigeon.onSessionResumeFailed {}
     }
 
     override fun onSessionResumed(p0: Session, p1: Boolean) {
-        pigeon.onSessionResumed {}
+        chromecastListenerPigeon.onSessionResumed {}
     }
 
     override fun onSessionResuming(p0: Session, p1: String) {
-        pigeon.onSessionResuming {}
+        chromecastListenerPigeon.onSessionResuming {}
     }
 
     override fun onSessionStartFailed(p0: Session, p1: Int) {
-        pigeon.onSessionStartFailed {}
+        chromecastListenerPigeon.onSessionStartFailed {}
     }
 
     override fun onSessionStarted(p0: Session, p1: String) {
-        pigeon.onSessionStarted {}
+        chromecastListenerPigeon.onSessionStarted {}
     }
 
     override fun onSessionStarting(p0: Session) {
-        pigeon.onSessionStarting {}
+        chromecastListenerPigeon.onSessionStarting {}
     }
 
     override fun onSessionSuspended(p0: Session, p1: Int) {
-        pigeon.onSessionSuspended {}
+        chromecastListenerPigeon.onSessionSuspended {}
     }
 
     // SessionAvailabilityListener
 
     override fun onCastSessionAvailable() {
-        pigeon.onCastSessionAvailable {}
+        chromecastListenerPigeon.onCastSessionAvailable {}
         Log.d("Bccm", "Session available. Transferring state from primaryPlayer to castPlayer");
-        val primaryPlayer = plugin.getPlaybackService()?.getPrimaryController()?.getPlayer()
+        val primaryPlayer = plugin.getPlaybackService()?.getPrimaryController()?.player
                 ?: throw Error("PlaybackService not active");
-        transferState(primaryPlayer, castPlayer);
+        transferState(primaryPlayer, player);
     }
 
     override fun onCastSessionUnavailable() {
         val event = ChromecastControllerPigeon.CastSessionUnavailableEvent.Builder();
-        val currentPosition = castPlayer.currentPosition;
+        val currentPosition = player.currentPosition;
         if (currentPosition > 0) {
             event.setPlaybackPositionMs(currentPosition);
         }
-        pigeon.onCastSessionUnavailable(event.build()) {};
+        chromecastListenerPigeon.onCastSessionUnavailable(event.build()) {};
         /* Log.d("Bccm", "Session unavailable. Transferring state from castPlayer to primaryPlayer");
          val primaryPlayer = plugin.getPlaybackService()?.getPrimaryController()?.getPlayer() ?: throw Error("PlaybackService not active");
          transferState(castPlayer, primaryPlayer);*/

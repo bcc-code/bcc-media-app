@@ -9,13 +9,16 @@ import 'package:flutter/services.dart';
 
 class PositionUpdateEvent {
   PositionUpdateEvent({
+    required this.playerId,
     this.playbackPositionMs,
   });
 
+  String playerId;
   int? playbackPositionMs;
 
   Object encode() {
     final Map<Object?, Object?> pigeonMap = <Object?, Object?>{};
+    pigeonMap['playerId'] = playerId;
     pigeonMap['playbackPositionMs'] = playbackPositionMs;
     return pigeonMap;
   }
@@ -23,7 +26,33 @@ class PositionUpdateEvent {
   static PositionUpdateEvent decode(Object message) {
     final Map<Object?, Object?> pigeonMap = message as Map<Object?, Object?>;
     return PositionUpdateEvent(
+      playerId: pigeonMap['playerId']! as String,
       playbackPositionMs: pigeonMap['playbackPositionMs'] as int?,
+    );
+  }
+}
+
+class IsPlayingChangedEvent {
+  IsPlayingChangedEvent({
+    required this.playerId,
+    required this.isPlaying,
+  });
+
+  String playerId;
+  bool isPlaying;
+
+  Object encode() {
+    final Map<Object?, Object?> pigeonMap = <Object?, Object?>{};
+    pigeonMap['playerId'] = playerId;
+    pigeonMap['isPlaying'] = isPlaying;
+    return pigeonMap;
+  }
+
+  static IsPlayingChangedEvent decode(Object message) {
+    final Map<Object?, Object?> pigeonMap = message as Map<Object?, Object?>;
+    return IsPlayingChangedEvent(
+      playerId: pigeonMap['playerId']! as String,
+      isPlaying: pigeonMap['isPlaying']! as bool,
     );
   }
 }
@@ -32,8 +61,12 @@ class _PlaybackListenerPigeonCodec extends StandardMessageCodec {
   const _PlaybackListenerPigeonCodec();
   @override
   void writeValue(WriteBuffer buffer, Object? value) {
-    if (value is PositionUpdateEvent) {
+    if (value is IsPlayingChangedEvent) {
       buffer.putUint8(128);
+      writeValue(buffer, value.encode());
+    } else 
+    if (value is PositionUpdateEvent) {
+      buffer.putUint8(129);
       writeValue(buffer, value.encode());
     } else 
 {
@@ -44,6 +77,9 @@ class _PlaybackListenerPigeonCodec extends StandardMessageCodec {
   Object? readValueOfType(int type, ReadBuffer buffer) {
     switch (type) {
       case 128:       
+        return IsPlayingChangedEvent.decode(readValue(buffer)!);
+      
+      case 129:       
         return PositionUpdateEvent.decode(readValue(buffer)!);
       
       default:      
@@ -56,6 +92,7 @@ abstract class PlaybackListenerPigeon {
   static const MessageCodec<Object?> codec = _PlaybackListenerPigeonCodec();
 
   void onPositionUpdate(PositionUpdateEvent event);
+  void onIsPlayingChanged(IsPlayingChangedEvent event);
   static void setup(PlaybackListenerPigeon? api, {BinaryMessenger? binaryMessenger}) {
     {
       final BasicMessageChannel<Object?> channel = BasicMessageChannel<Object?>(
@@ -69,6 +106,22 @@ abstract class PlaybackListenerPigeon {
           final PositionUpdateEvent? arg_event = (args[0] as PositionUpdateEvent?);
           assert(arg_event != null, 'Argument for dev.flutter.pigeon.PlaybackListenerPigeon.onPositionUpdate was null, expected non-null PositionUpdateEvent.');
           api.onPositionUpdate(arg_event!);
+          return;
+        });
+      }
+    }
+    {
+      final BasicMessageChannel<Object?> channel = BasicMessageChannel<Object?>(
+          'dev.flutter.pigeon.PlaybackListenerPigeon.onIsPlayingChanged', codec, binaryMessenger: binaryMessenger);
+      if (api == null) {
+        channel.setMessageHandler(null);
+      } else {
+        channel.setMessageHandler((Object? message) async {
+          assert(message != null, 'Argument for dev.flutter.pigeon.PlaybackListenerPigeon.onIsPlayingChanged was null.');
+          final List<Object?> args = (message as List<Object?>?)!;
+          final IsPlayingChangedEvent? arg_event = (args[0] as IsPlayingChangedEvent?);
+          assert(arg_event != null, 'Argument for dev.flutter.pigeon.PlaybackListenerPigeon.onIsPlayingChanged was null, expected non-null IsPlayingChangedEvent.');
+          api.onIsPlayingChanged(arg_event!);
           return;
         });
       }

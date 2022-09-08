@@ -14,8 +14,10 @@ class ExoPlayerController(private val context: Context) : PlayerController(), Pl
     private var playerManager: PlayerManager? = null
     private var castContext: CastContext? = null
     val id: String = UUID.randomUUID().toString()
-    private val exoPlayer: ExoPlayer
-    private val forwardingPlayer: ForwardingPlayer
+    private val exoPlayer: ExoPlayer = ExoPlayer.Builder(context)
+            .setAudioAttributes(AudioAttributes.DEFAULT, true)
+            .build()
+    override val player: ForwardingPlayer
     private var currentPlayerViewWrapper: BccmPlayerViewWrapper? = null
     var isLive: Boolean = false
         private set
@@ -25,11 +27,8 @@ class ExoPlayerController(private val context: Context) : PlayerController(), Pl
             it.experimentalSetSynchronizeCodecInteractionsWithQueueingEnabled(true);
             it.forceEnableMediaCodecAsynchronousQueueing();
         };*/
-        exoPlayer = ExoPlayer.Builder(context)
-                .setAudioAttributes(AudioAttributes.DEFAULT, /* handleAudioFocus= */ true)
-                .build()
 
-        forwardingPlayer = BccmForwardingPlayer(this)
+        player = BccmForwardingPlayer(this)
         try {
             castContext = CastContext.getSharedInstance(context);
         } catch (e: Exception) {
@@ -41,10 +40,6 @@ class ExoPlayerController(private val context: Context) : PlayerController(), Pl
         return exoPlayer;
     }
 
-    fun getPlayer(): Player {
-        return forwardingPlayer;
-    }
-
     fun takeOwnership(pvWrapper: BccmPlayerViewWrapper) {
         val previousPvWrapper = currentPlayerViewWrapper;
         currentPlayerViewWrapper = pvWrapper;
@@ -53,7 +48,7 @@ class ExoPlayerController(private val context: Context) : PlayerController(), Pl
         val currentPlayerView = previousPvWrapper?.getPlayerView();
 
 
-        playerView.player = getPlayer()
+        playerView.player = player
 
         //playerManager?.setPlayerView(playerView);
         /*if (currentPlayerView != null) {
@@ -93,7 +88,11 @@ class ExoPlayerController(private val context: Context) : PlayerController(), Pl
     }
 
     override fun onPositionDiscontinuity(oldPosition: Player.PositionInfo, newPosition: Player.PositionInfo, reason: Int) {
-        
+
+    }
+
+    override fun onIsPlayingChanged(isPlaying: Boolean) {
+
     }
 
     override fun onQueuePositionChanged(previousIndex: Int, newIndex: Int) {

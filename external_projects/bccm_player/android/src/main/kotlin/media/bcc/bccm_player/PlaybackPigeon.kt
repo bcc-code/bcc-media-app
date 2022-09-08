@@ -11,6 +11,7 @@ class PlaybackApiImpl(private val plugin: BccmPlayerPlugin) : PlaybackPlatformAp
             return
         }
         val playerController = playbackService.newPlayer()
+        playerController.player.addListener(PlayerListener(plugin))
         if (url != null) {
             playerController.replaceCurrentMediaItem(PlaybackPlatformApi.MediaItem.Builder().setUrl(url).build())
         }
@@ -24,7 +25,7 @@ class PlaybackApiImpl(private val plugin: BccmPlayerPlugin) : PlaybackPlatformAp
             return
         }
         if (playbackPositionFromPrimary == true) {
-            mediaItem.playbackStartPositionMs = playbackService.getPrimaryController().getPlayer().currentPosition
+            mediaItem.playbackStartPositionMs = playbackService.getPrimaryController().player.currentPosition
         }
         if (playerId == "chromecast") {
             plugin.getCastController()?.replaceCurrentMediaItem(mediaItem)

@@ -36,22 +36,57 @@ static id GetNullableObjectAtIndex(NSArray* array, NSInteger key) {
 + (nullable PositionUpdateEvent *)nullableFromMap:(NSDictionary *)dict;
 - (NSDictionary *)toMap;
 @end
+@interface IsPlayingChangedEvent ()
++ (IsPlayingChangedEvent *)fromMap:(NSDictionary *)dict;
++ (nullable IsPlayingChangedEvent *)nullableFromMap:(NSDictionary *)dict;
+- (NSDictionary *)toMap;
+@end
 
 @implementation PositionUpdateEvent
-+ (instancetype)makeWithPlaybackPositionMs:(nullable NSNumber *)playbackPositionMs {
++ (instancetype)makeWithPlayerId:(NSString *)playerId
+    playbackPositionMs:(nullable NSNumber *)playbackPositionMs {
   PositionUpdateEvent* pigeonResult = [[PositionUpdateEvent alloc] init];
+  pigeonResult.playerId = playerId;
   pigeonResult.playbackPositionMs = playbackPositionMs;
   return pigeonResult;
 }
 + (PositionUpdateEvent *)fromMap:(NSDictionary *)dict {
   PositionUpdateEvent *pigeonResult = [[PositionUpdateEvent alloc] init];
+  pigeonResult.playerId = GetNullableObject(dict, @"playerId");
+  NSAssert(pigeonResult.playerId != nil, @"");
   pigeonResult.playbackPositionMs = GetNullableObject(dict, @"playbackPositionMs");
   return pigeonResult;
 }
 + (nullable PositionUpdateEvent *)nullableFromMap:(NSDictionary *)dict { return (dict) ? [PositionUpdateEvent fromMap:dict] : nil; }
 - (NSDictionary *)toMap {
   return @{
+    @"playerId" : (self.playerId ?: [NSNull null]),
     @"playbackPositionMs" : (self.playbackPositionMs ?: [NSNull null]),
+  };
+}
+@end
+
+@implementation IsPlayingChangedEvent
++ (instancetype)makeWithPlayerId:(NSString *)playerId
+    isPlaying:(NSNumber *)isPlaying {
+  IsPlayingChangedEvent* pigeonResult = [[IsPlayingChangedEvent alloc] init];
+  pigeonResult.playerId = playerId;
+  pigeonResult.isPlaying = isPlaying;
+  return pigeonResult;
+}
++ (IsPlayingChangedEvent *)fromMap:(NSDictionary *)dict {
+  IsPlayingChangedEvent *pigeonResult = [[IsPlayingChangedEvent alloc] init];
+  pigeonResult.playerId = GetNullableObject(dict, @"playerId");
+  NSAssert(pigeonResult.playerId != nil, @"");
+  pigeonResult.isPlaying = GetNullableObject(dict, @"isPlaying");
+  NSAssert(pigeonResult.isPlaying != nil, @"");
+  return pigeonResult;
+}
++ (nullable IsPlayingChangedEvent *)nullableFromMap:(NSDictionary *)dict { return (dict) ? [IsPlayingChangedEvent fromMap:dict] : nil; }
+- (NSDictionary *)toMap {
+  return @{
+    @"playerId" : (self.playerId ?: [NSNull null]),
+    @"isPlaying" : (self.isPlaying ?: [NSNull null]),
   };
 }
 @end
@@ -63,6 +98,9 @@ static id GetNullableObjectAtIndex(NSArray* array, NSInteger key) {
 {
   switch (type) {
     case 128:     
+      return [IsPlayingChangedEvent fromMap:[self readValue]];
+    
+    case 129:     
       return [PositionUpdateEvent fromMap:[self readValue]];
     
     default:    
@@ -77,8 +115,12 @@ static id GetNullableObjectAtIndex(NSArray* array, NSInteger key) {
 @implementation PlaybackListenerPigeonCodecWriter
 - (void)writeValue:(id)value 
 {
-  if ([value isKindOfClass:[PositionUpdateEvent class]]) {
+  if ([value isKindOfClass:[IsPlayingChangedEvent class]]) {
     [self writeByte:128];
+    [self writeValue:[value toMap]];
+  } else 
+  if ([value isKindOfClass:[PositionUpdateEvent class]]) {
+    [self writeByte:129];
     [self writeValue:[value toMap]];
   } else 
 {
@@ -126,6 +168,16 @@ NSObject<FlutterMessageCodec> *PlaybackListenerPigeonGetCodec() {
   FlutterBasicMessageChannel *channel =
     [FlutterBasicMessageChannel
       messageChannelWithName:@"dev.flutter.pigeon.PlaybackListenerPigeon.onPositionUpdate"
+      binaryMessenger:self.binaryMessenger
+      codec:PlaybackListenerPigeonGetCodec()];
+  [channel sendMessage:@[arg_event ?: [NSNull null]] reply:^(id reply) {
+    completion(nil);
+  }];
+}
+- (void)onIsPlayingChanged:(IsPlayingChangedEvent *)arg_event completion:(void(^)(NSError *_Nullable))completion {
+  FlutterBasicMessageChannel *channel =
+    [FlutterBasicMessageChannel
+      messageChannelWithName:@"dev.flutter.pigeon.PlaybackListenerPigeon.onIsPlayingChanged"
       binaryMessenger:self.binaryMessenger
       codec:PlaybackListenerPigeonGetCodec()];
   [channel sendMessage:@[arg_event ?: [NSNull null]] reply:^(id reply) {

@@ -11,15 +11,21 @@ final playbackListenerProvider =
     Provider<PlaybackListener>((_) => throw UnimplementedError());
 
 class PlaybackListener implements PlaybackListenerPigeon {
-  ProviderRef<PlaybackListener>? providerRef;
+  Reader? providerReader;
 
-  PlaybackListener({this.providerRef});
+  PlaybackListener({required this.providerReader});
 
   @override
   void onPositionUpdate(PositionUpdateEvent event) {
-    var player = providerRef?.read(primaryPlayerProvider);
+    var player = providerReader?.call(primaryPlayerProvider);
     if (player != null && player.currentMediaItem != null) {
       //providerRef?.read(primaryPlayerProvider.notifier).
     }
+  }
+
+  @override
+  void onIsPlayingChanged(IsPlayingChangedEvent event) {
+    providerReader?.call(primaryPlayerProvider.notifier).setPlaybackState(
+        event.isPlaying ? PlaybackState.playing : PlaybackState.paused);
   }
 }

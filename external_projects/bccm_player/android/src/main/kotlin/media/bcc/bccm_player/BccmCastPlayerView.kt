@@ -17,7 +17,7 @@ class BccmCastPlayerViewFactory(private val castController: CastPlayerController
     @NonNull
     override fun create(@NonNull context: Context?, id: Int, @Nullable args: Any?): PlatformView {
         val creationParams = args as Map<String?, Any?>?
-        return BccmCastPlayerView(context!!, castController.castPlayer)
+        return BccmCastPlayerView(context!!, castController.player)
     }
 }
 

@@ -15,11 +15,17 @@ class MiniPlayer extends ConsumerStatefulWidget {
 
 class _MiniPlayerState extends ConsumerState<MiniPlayer> {
   @override
+  void initState() {
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     Player? player = ref.watch(primaryPlayerProvider);
 
     var artist = player?.currentMediaItem?.metadata?.artist;
     var title = player?.currentMediaItem?.metadata?.title;
+    var playbackState = player?.playbackState;
 
     return GestureDetector(
       onTap: () {
@@ -33,7 +39,7 @@ class _MiniPlayerState extends ConsumerState<MiniPlayer> {
         artist: artist ?? 'Artist missing',
         title: title ?? 'Title missing',
         artworkUri: 'https://source.unsplash.com/random/1600x900/?fruit',
-        isPlaying: true,
+        isPlaying: playbackState == PlaybackState.playing,
       ),
     );
   }
@@ -128,8 +134,11 @@ class _MiniPlayer extends StatelessWidget {
           Container(
             margin: EdgeInsets.only(left: 16),
             height: 36,
-            child: Image.asset(
-                height: 24, 'assets/icons/Pause.png', gaplessPlayback: true),
+            child: isPlaying
+                ? Image.asset(
+                    height: 24, 'assets/icons/Pause.png', gaplessPlayback: true)
+                : Image.asset(
+                    height: 24, 'assets/icons/Play.png', gaplessPlayback: true),
           ),
           Container(
             margin: EdgeInsets.only(left: 7),
