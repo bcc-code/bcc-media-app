@@ -26,7 +26,7 @@ import io.flutter.plugin.common.MethodChannel
 import io.flutter.plugin.common.MethodChannel.MethodCallHandler
 import io.flutter.plugin.common.MethodChannel.Result
 import media.bcc.player.ChromecastControllerPigeon
-import media.bcc.player.PlaybackListenerPigeonImpl
+import media.bcc.player.PlaybackPlatformApi
 import media.bcc.player.PlaybackPlatformApi.PlaybackPlatformPigeon
 
 /** BccmPlayerPlugin */
@@ -43,7 +43,7 @@ class BccmPlayerPlugin : FlutterPlugin, MethodCallHandler, ActivityAware {
     private var mBound: Boolean = false
     private var activity: Activity? = null
     private var castController: CastPlayerController? = null
-    var playbackPigeon: PlaybackListenerPigeonImpl.PlaybackListenerPigeon? = null
+    var playbackPigeon: PlaybackPlatformApi.PlaybackListenerPigeon? = null
         private set
 
     private val playbackServiceConnection = object : ServiceConnection {
@@ -63,7 +63,7 @@ class BccmPlayerPlugin : FlutterPlugin, MethodCallHandler, ActivityAware {
 
     override fun onAttachedToEngine(@NonNull flutterPluginBinding: FlutterPlugin.FlutterPluginBinding) {
         pluginBinding = flutterPluginBinding
-        playbackPigeon = PlaybackListenerPigeonImpl.PlaybackListenerPigeon(flutterPluginBinding.binaryMessenger)
+        playbackPigeon = PlaybackPlatformApi.PlaybackListenerPigeon(flutterPluginBinding.binaryMessenger)
 
         var castContext: CastContext? = null
         try {

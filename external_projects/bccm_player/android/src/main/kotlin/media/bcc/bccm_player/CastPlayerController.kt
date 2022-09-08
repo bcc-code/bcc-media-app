@@ -10,8 +10,8 @@ import com.google.android.gms.cast.framework.CastContext
 import com.google.android.gms.cast.framework.Session
 import com.google.android.gms.cast.framework.SessionManagerListener
 import media.bcc.player.ChromecastControllerPigeon
-import media.bcc.player.PlaybackListenerPigeonImpl
 import media.bcc.player.PlaybackPlatformApi
+import java.util.*
 
 class CastPlayerController(
         private val castContext: CastContext,
@@ -19,6 +19,7 @@ class CastPlayerController(
         private val plugin: BccmPlayerPlugin)
     : PlayerController(), SessionManagerListener<Session>, SessionAvailabilityListener {
     override val player = CastPlayer(castContext)
+    override val id: String = "chromecast"
 
     init {
         player.playWhenReady = true

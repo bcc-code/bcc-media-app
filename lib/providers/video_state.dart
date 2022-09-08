@@ -54,7 +54,7 @@ class PlayerNotifier extends StateNotifier<Player> {
     state = player;
   }
 
-  void setMediaItem(MediaItem mediaItem) {
+  void setMediaItem(MediaItem? mediaItem) {
     state = state.copyWith(currentMediaItem: mediaItem);
   }
 

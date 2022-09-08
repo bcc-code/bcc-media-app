@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:bccm_player/chromecast_pigeon.g.dart';
-import 'package:bccm_player/playback_listener_pigeon.g.dart';
+
 import 'package:bccm_player/playback_platform_pigeon.g.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -27,5 +27,12 @@ class PlaybackListener implements PlaybackListenerPigeon {
   void onIsPlayingChanged(IsPlayingChangedEvent event) {
     providerReader?.call(primaryPlayerProvider.notifier).setPlaybackState(
         event.isPlaying ? PlaybackState.playing : PlaybackState.paused);
+  }
+
+  @override
+  void onMediaItemTransition(MediaItemTransitionEvent event) {
+    providerReader
+        ?.call(primaryPlayerProvider.notifier)
+        .setMediaItem(event.mediaItem);
   }
 }

@@ -1,4 +1,3 @@
-import 'package:bccm_player/playback_listener_pigeon.g.dart';
 import 'package:bccm_player/playback_platform_pigeon.g.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';

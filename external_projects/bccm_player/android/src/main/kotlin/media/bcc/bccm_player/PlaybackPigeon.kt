@@ -11,7 +11,7 @@ class PlaybackApiImpl(private val plugin: BccmPlayerPlugin) : PlaybackPlatformAp
             return
         }
         val playerController = playbackService.newPlayer()
-        playerController.player.addListener(PlayerListener(plugin))
+        playerController.player.addListener(PlayerListener(playerController, plugin))
         if (url != null) {
             playerController.replaceCurrentMediaItem(PlaybackPlatformApi.MediaItem.Builder().setUrl(url).build())
         }

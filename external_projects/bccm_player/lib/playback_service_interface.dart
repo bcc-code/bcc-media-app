@@ -1,4 +1,3 @@
-import 'package:bccm_player/playback_listener_pigeon.g.dart';
 import 'package:bccm_player/playback_service.dart';
 import 'package:plugin_platform_interface/plugin_platform_interface.dart';
 

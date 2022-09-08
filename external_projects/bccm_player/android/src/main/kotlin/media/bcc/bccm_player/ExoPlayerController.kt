@@ -10,10 +10,10 @@ import com.google.android.gms.cast.framework.CastContext
 import media.bcc.player.PlaybackPlatformApi
 import java.util.*
 
-class ExoPlayerController(private val context: Context) : PlayerController(), Player.Listener, PlayerManager.Listener {
+class ExoPlayerController(private val context: Context) : PlayerController(), PlayerManager.Listener {
     private var playerManager: PlayerManager? = null
     private var castContext: CastContext? = null
-    val id: String = UUID.randomUUID().toString()
+    override val id: String = UUID.randomUUID().toString()
     private val exoPlayer: ExoPlayer = ExoPlayer.Builder(context)
             .setAudioAttributes(AudioAttributes.DEFAULT, true)
             .build()
