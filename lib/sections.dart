@@ -1,5 +1,11 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:bccm_player/playback_platform_pigeon.g.dart';
+import 'package:bccm_player/playback_service_interface.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:my_app/api/episodes.dart';
+import 'package:my_app/providers/chromecast.dart';
+import 'package:my_app/providers/playback_api.dart';
 import 'package:my_app/router/router.gr.dart';
 import 'package:my_app/screens/episode.dart';
 import 'package:transparent_image/transparent_image.dart';
@@ -16,7 +22,7 @@ class ItemSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(20.0),
+      padding: const EdgeInsets.all(16.0),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -33,13 +39,45 @@ class ItemSection extends StatelessWidget {
     );
   }
 
-  factory ItemSection.fromSection(BuildContext context, Section section) {
+  factory ItemSection.fromSection(
+      BuildContext context, Section section, WidgetRef ref) {
     var items = section.items.map((si) {
       var item = Item.fromSectionItem(si);
       return ItemWidget(
         item: item,
         onTap: () {
-          context.router.push(item.route);
+          var casting = ref.watch(isCasting);
+          if (!casting) {
+            context.router.push(item.route);
+          } else {
+            showDialog(
+                context: context,
+                builder: (context) => Container(
+                        child: Center(
+                      child: Column(
+                        children: [
+                          ElevatedButton(
+                              onPressed: () {
+                                context.router.push(item.route);
+                                Navigator.of(context).pop();
+                              },
+                              child: Text('Play now')),
+                          ElevatedButton(
+                              onPressed: () {
+                                fetchEpisode(si.id).then(
+                                  (episode) {
+                                    queueEpisode(
+                                        playerId: 'chromecast',
+                                        episode: episode);
+                                  },
+                                );
+                                Navigator.of(context).pop();
+                              },
+                              child: Text('Add to queue'))
+                        ],
+                      ),
+                    )));
+          }
         },
       );
     }).toList();

@@ -1,4 +1,3 @@
-
 package media.bcc.bccm_player
 
 import android.content.Intent
@@ -8,14 +7,14 @@ import androidx.media3.session.MediaSession
 import androidx.media3.session.MediaSessionService
 
 class PlaybackService : MediaSessionService() {
-    private val playerControllers = mutableListOf<BccmPlayerController>()
-    private lateinit var primaryPlayerController: BccmPlayerController
+    private val playerControllers = mutableListOf<PlayerController>()
+    private lateinit var primaryPlayerController: PlayerController
     private lateinit var mediaSession: MediaSession
 
     private var binder: LocalBinder = LocalBinder();
 
-    fun newPlayer(): BccmPlayerController {
-        val pc = BccmPlayerController(this)
+    fun newPlayer(): PlayerController {
+        val pc = ExoPlayerController(this)
         playerControllers.add(pc)
         return pc
     }
@@ -24,20 +23,29 @@ class PlaybackService : MediaSessionService() {
         val pc = playerControllers.find {
             it.id == playerId
         }
-        if (pc?.getPlayer() != null) {
-            mediaSession.player = pc.getPlayer()
+        if (pc?.player != null) {
+            primaryPlayerController = pc
+            mediaSession.player = pc.player
         }
     }
 
-    fun getController(playerId: String): BccmPlayerController? {
+    fun getController(playerId: String): PlayerController? {
         return playerControllers.find { it.id == playerId }
+    }
+
+    fun getPrimaryController(): PlayerController {
+        return primaryPlayerController
+    }
+
+    fun addController(pc: PlayerController) {
+        playerControllers.add(pc);
     }
 
     // Create your Player and MediaSession in the onCreate lifecycle event
     override fun onCreate() {
         super.onCreate()
         primaryPlayerController = newPlayer()
-        mediaSession = MediaSession.Builder(this, primaryPlayerController.getPlayer()).build()
+        mediaSession = MediaSession.Builder(this, primaryPlayerController.player).build()
     }
 
     // Return a MediaSession to link with the MediaController that is making

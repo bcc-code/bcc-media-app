@@ -7,31 +7,181 @@ import 'dart:typed_data' show Uint8List, Int32List, Int64List, Float64List;
 import 'package:flutter/foundation.dart' show WriteBuffer, ReadBuffer;
 import 'package:flutter/services.dart';
 
-class SetUrlArgs {
-  SetUrlArgs({
-    required this.playerId,
+enum CastConnectionState {
+  _,
+  noDevicesAvailable,
+  notConnected,
+  connecting,
+  connected,
+}
+
+class MediaItem {
+  MediaItem({
     required this.url,
+    this.mimeType,
+    this.metadata,
     this.isLive,
+    this.playbackStartPositionMs,
+  });
+
+  String url;
+  String? mimeType;
+  MediaMetadata? metadata;
+  bool? isLive;
+  int? playbackStartPositionMs;
+
+  Object encode() {
+    final Map<Object?, Object?> pigeonMap = <Object?, Object?>{};
+    pigeonMap['url'] = url;
+    pigeonMap['mimeType'] = mimeType;
+    pigeonMap['metadata'] = metadata?.encode();
+    pigeonMap['isLive'] = isLive;
+    pigeonMap['playbackStartPositionMs'] = playbackStartPositionMs;
+    return pigeonMap;
+  }
+
+  static MediaItem decode(Object message) {
+    final Map<Object?, Object?> pigeonMap = message as Map<Object?, Object?>;
+    return MediaItem(
+      url: pigeonMap['url']! as String,
+      mimeType: pigeonMap['mimeType'] as String?,
+      metadata: pigeonMap['metadata'] != null
+          ? MediaMetadata.decode(pigeonMap['metadata']!)
+          : null,
+      isLive: pigeonMap['isLive'] as bool?,
+      playbackStartPositionMs: pigeonMap['playbackStartPositionMs'] as int?,
+    );
+  }
+}
+
+class MediaMetadata {
+  MediaMetadata({
+    this.artworkUri,
+    this.title,
+    this.artist,
+    this.episodeId,
+  });
+
+  String? artworkUri;
+  String? title;
+  String? artist;
+  String? episodeId;
+
+  Object encode() {
+    final Map<Object?, Object?> pigeonMap = <Object?, Object?>{};
+    pigeonMap['artworkUri'] = artworkUri;
+    pigeonMap['title'] = title;
+    pigeonMap['artist'] = artist;
+    pigeonMap['episodeId'] = episodeId;
+    return pigeonMap;
+  }
+
+  static MediaMetadata decode(Object message) {
+    final Map<Object?, Object?> pigeonMap = message as Map<Object?, Object?>;
+    return MediaMetadata(
+      artworkUri: pigeonMap['artworkUri'] as String?,
+      title: pigeonMap['title'] as String?,
+      artist: pigeonMap['artist'] as String?,
+      episodeId: pigeonMap['episodeId'] as String?,
+    );
+  }
+}
+
+class ChromecastState {
+  ChromecastState({
+    required this.connectionState,
+  });
+
+  CastConnectionState connectionState;
+
+  Object encode() {
+    final Map<Object?, Object?> pigeonMap = <Object?, Object?>{};
+    pigeonMap['connectionState'] = connectionState.index;
+    return pigeonMap;
+  }
+
+  static ChromecastState decode(Object message) {
+    final Map<Object?, Object?> pigeonMap = message as Map<Object?, Object?>;
+    return ChromecastState(
+      connectionState: CastConnectionState.values[pigeonMap['connectionState']! as int]
+,
+    );
+  }
+}
+
+class PositionUpdateEvent {
+  PositionUpdateEvent({
+    required this.playerId,
+    this.playbackPositionMs,
   });
 
   String playerId;
-  String url;
-  bool? isLive;
+  int? playbackPositionMs;
 
   Object encode() {
     final Map<Object?, Object?> pigeonMap = <Object?, Object?>{};
     pigeonMap['playerId'] = playerId;
-    pigeonMap['url'] = url;
-    pigeonMap['isLive'] = isLive;
+    pigeonMap['playbackPositionMs'] = playbackPositionMs;
     return pigeonMap;
   }
 
-  static SetUrlArgs decode(Object message) {
+  static PositionUpdateEvent decode(Object message) {
     final Map<Object?, Object?> pigeonMap = message as Map<Object?, Object?>;
-    return SetUrlArgs(
+    return PositionUpdateEvent(
       playerId: pigeonMap['playerId']! as String,
-      url: pigeonMap['url']! as String,
-      isLive: pigeonMap['isLive'] as bool?,
+      playbackPositionMs: pigeonMap['playbackPositionMs'] as int?,
+    );
+  }
+}
+
+class IsPlayingChangedEvent {
+  IsPlayingChangedEvent({
+    required this.playerId,
+    required this.isPlaying,
+  });
+
+  String playerId;
+  bool isPlaying;
+
+  Object encode() {
+    final Map<Object?, Object?> pigeonMap = <Object?, Object?>{};
+    pigeonMap['playerId'] = playerId;
+    pigeonMap['isPlaying'] = isPlaying;
+    return pigeonMap;
+  }
+
+  static IsPlayingChangedEvent decode(Object message) {
+    final Map<Object?, Object?> pigeonMap = message as Map<Object?, Object?>;
+    return IsPlayingChangedEvent(
+      playerId: pigeonMap['playerId']! as String,
+      isPlaying: pigeonMap['isPlaying']! as bool,
+    );
+  }
+}
+
+class MediaItemTransitionEvent {
+  MediaItemTransitionEvent({
+    required this.playerId,
+    this.mediaItem,
+  });
+
+  String playerId;
+  MediaItem? mediaItem;
+
+  Object encode() {
+    final Map<Object?, Object?> pigeonMap = <Object?, Object?>{};
+    pigeonMap['playerId'] = playerId;
+    pigeonMap['mediaItem'] = mediaItem?.encode();
+    return pigeonMap;
+  }
+
+  static MediaItemTransitionEvent decode(Object message) {
+    final Map<Object?, Object?> pigeonMap = message as Map<Object?, Object?>;
+    return MediaItemTransitionEvent(
+      playerId: pigeonMap['playerId']! as String,
+      mediaItem: pigeonMap['mediaItem'] != null
+          ? MediaItem.decode(pigeonMap['mediaItem']!)
+          : null,
     );
   }
 }
@@ -40,8 +190,16 @@ class _PlaybackPlatformPigeonCodec extends StandardMessageCodec {
   const _PlaybackPlatformPigeonCodec();
   @override
   void writeValue(WriteBuffer buffer, Object? value) {
-    if (value is SetUrlArgs) {
+    if (value is ChromecastState) {
       buffer.putUint8(128);
+      writeValue(buffer, value.encode());
+    } else 
+    if (value is MediaItem) {
+      buffer.putUint8(129);
+      writeValue(buffer, value.encode());
+    } else 
+    if (value is MediaMetadata) {
+      buffer.putUint8(130);
       writeValue(buffer, value.encode());
     } else 
 {
@@ -52,7 +210,13 @@ class _PlaybackPlatformPigeonCodec extends StandardMessageCodec {
   Object? readValueOfType(int type, ReadBuffer buffer) {
     switch (type) {
       case 128:       
-        return SetUrlArgs.decode(readValue(buffer)!);
+        return ChromecastState.decode(readValue(buffer)!);
+      
+      case 129:       
+        return MediaItem.decode(readValue(buffer)!);
+      
+      case 130:       
+        return MediaMetadata.decode(readValue(buffer)!);
       
       default:      
         return super.readValueOfType(type, buffer);
@@ -98,11 +262,33 @@ class PlaybackPlatformPigeon {
     }
   }
 
-  Future<void> setUrl(SetUrlArgs arg_setUrlArgs) async {
+  Future<void> queueMediaItem(String arg_playerId, MediaItem arg_mediaItem) async {
     final BasicMessageChannel<Object?> channel = BasicMessageChannel<Object?>(
-        'dev.flutter.pigeon.PlaybackPlatformPigeon.setUrl', codec, binaryMessenger: _binaryMessenger);
+        'dev.flutter.pigeon.PlaybackPlatformPigeon.queueMediaItem', codec, binaryMessenger: _binaryMessenger);
     final Map<Object?, Object?>? replyMap =
-        await channel.send(<Object?>[arg_setUrlArgs]) as Map<Object?, Object?>?;
+        await channel.send(<Object?>[arg_playerId, arg_mediaItem]) as Map<Object?, Object?>?;
+    if (replyMap == null) {
+      throw PlatformException(
+        code: 'channel-error',
+        message: 'Unable to establish connection on channel.',
+      );
+    } else if (replyMap['error'] != null) {
+      final Map<Object?, Object?> error = (replyMap['error'] as Map<Object?, Object?>?)!;
+      throw PlatformException(
+        code: (error['code'] as String?)!,
+        message: error['message'] as String?,
+        details: error['details'],
+      );
+    } else {
+      return;
+    }
+  }
+
+  Future<void> replaceCurrentMediaItem(String arg_playerId, MediaItem arg_mediaItem, bool? arg_playbackPositionFromPrimary) async {
+    final BasicMessageChannel<Object?> channel = BasicMessageChannel<Object?>(
+        'dev.flutter.pigeon.PlaybackPlatformPigeon.replaceCurrentMediaItem', codec, binaryMessenger: _binaryMessenger);
+    final Map<Object?, Object?>? replyMap =
+        await channel.send(<Object?>[arg_playerId, arg_mediaItem, arg_playbackPositionFromPrimary]) as Map<Object?, Object?>?;
     if (replyMap == null) {
       throw PlatformException(
         code: 'channel-error',
@@ -139,6 +325,204 @@ class PlaybackPlatformPigeon {
       );
     } else {
       return;
+    }
+  }
+
+  Future<void> play(String arg_playerId) async {
+    final BasicMessageChannel<Object?> channel = BasicMessageChannel<Object?>(
+        'dev.flutter.pigeon.PlaybackPlatformPigeon.play', codec, binaryMessenger: _binaryMessenger);
+    final Map<Object?, Object?>? replyMap =
+        await channel.send(<Object?>[arg_playerId]) as Map<Object?, Object?>?;
+    if (replyMap == null) {
+      throw PlatformException(
+        code: 'channel-error',
+        message: 'Unable to establish connection on channel.',
+      );
+    } else if (replyMap['error'] != null) {
+      final Map<Object?, Object?> error = (replyMap['error'] as Map<Object?, Object?>?)!;
+      throw PlatformException(
+        code: (error['code'] as String?)!,
+        message: error['message'] as String?,
+        details: error['details'],
+      );
+    } else {
+      return;
+    }
+  }
+
+  Future<void> pause(String arg_playerId) async {
+    final BasicMessageChannel<Object?> channel = BasicMessageChannel<Object?>(
+        'dev.flutter.pigeon.PlaybackPlatformPigeon.pause', codec, binaryMessenger: _binaryMessenger);
+    final Map<Object?, Object?>? replyMap =
+        await channel.send(<Object?>[arg_playerId]) as Map<Object?, Object?>?;
+    if (replyMap == null) {
+      throw PlatformException(
+        code: 'channel-error',
+        message: 'Unable to establish connection on channel.',
+      );
+    } else if (replyMap['error'] != null) {
+      final Map<Object?, Object?> error = (replyMap['error'] as Map<Object?, Object?>?)!;
+      throw PlatformException(
+        code: (error['code'] as String?)!,
+        message: error['message'] as String?,
+        details: error['details'],
+      );
+    } else {
+      return;
+    }
+  }
+
+  Future<void> stop(String arg_playerId, bool arg_reset) async {
+    final BasicMessageChannel<Object?> channel = BasicMessageChannel<Object?>(
+        'dev.flutter.pigeon.PlaybackPlatformPigeon.stop', codec, binaryMessenger: _binaryMessenger);
+    final Map<Object?, Object?>? replyMap =
+        await channel.send(<Object?>[arg_playerId, arg_reset]) as Map<Object?, Object?>?;
+    if (replyMap == null) {
+      throw PlatformException(
+        code: 'channel-error',
+        message: 'Unable to establish connection on channel.',
+      );
+    } else if (replyMap['error'] != null) {
+      final Map<Object?, Object?> error = (replyMap['error'] as Map<Object?, Object?>?)!;
+      throw PlatformException(
+        code: (error['code'] as String?)!,
+        message: error['message'] as String?,
+        details: error['details'],
+      );
+    } else {
+      return;
+    }
+  }
+
+  Future<ChromecastState?> getChromecastState() async {
+    final BasicMessageChannel<Object?> channel = BasicMessageChannel<Object?>(
+        'dev.flutter.pigeon.PlaybackPlatformPigeon.getChromecastState', codec, binaryMessenger: _binaryMessenger);
+    final Map<Object?, Object?>? replyMap =
+        await channel.send(null) as Map<Object?, Object?>?;
+    if (replyMap == null) {
+      throw PlatformException(
+        code: 'channel-error',
+        message: 'Unable to establish connection on channel.',
+      );
+    } else if (replyMap['error'] != null) {
+      final Map<Object?, Object?> error = (replyMap['error'] as Map<Object?, Object?>?)!;
+      throw PlatformException(
+        code: (error['code'] as String?)!,
+        message: error['message'] as String?,
+        details: error['details'],
+      );
+    } else {
+      return (replyMap['result'] as ChromecastState?);
+    }
+  }
+}
+
+class _PlaybackListenerPigeonCodec extends StandardMessageCodec {
+  const _PlaybackListenerPigeonCodec();
+  @override
+  void writeValue(WriteBuffer buffer, Object? value) {
+    if (value is IsPlayingChangedEvent) {
+      buffer.putUint8(128);
+      writeValue(buffer, value.encode());
+    } else 
+    if (value is MediaItem) {
+      buffer.putUint8(129);
+      writeValue(buffer, value.encode());
+    } else 
+    if (value is MediaItemTransitionEvent) {
+      buffer.putUint8(130);
+      writeValue(buffer, value.encode());
+    } else 
+    if (value is MediaMetadata) {
+      buffer.putUint8(131);
+      writeValue(buffer, value.encode());
+    } else 
+    if (value is PositionUpdateEvent) {
+      buffer.putUint8(132);
+      writeValue(buffer, value.encode());
+    } else 
+{
+      super.writeValue(buffer, value);
+    }
+  }
+  @override
+  Object? readValueOfType(int type, ReadBuffer buffer) {
+    switch (type) {
+      case 128:       
+        return IsPlayingChangedEvent.decode(readValue(buffer)!);
+      
+      case 129:       
+        return MediaItem.decode(readValue(buffer)!);
+      
+      case 130:       
+        return MediaItemTransitionEvent.decode(readValue(buffer)!);
+      
+      case 131:       
+        return MediaMetadata.decode(readValue(buffer)!);
+      
+      case 132:       
+        return PositionUpdateEvent.decode(readValue(buffer)!);
+      
+      default:      
+        return super.readValueOfType(type, buffer);
+      
+    }
+  }
+}
+abstract class PlaybackListenerPigeon {
+  static const MessageCodec<Object?> codec = _PlaybackListenerPigeonCodec();
+
+  void onPositionUpdate(PositionUpdateEvent event);
+  void onIsPlayingChanged(IsPlayingChangedEvent event);
+  void onMediaItemTransition(MediaItemTransitionEvent event);
+  static void setup(PlaybackListenerPigeon? api, {BinaryMessenger? binaryMessenger}) {
+    {
+      final BasicMessageChannel<Object?> channel = BasicMessageChannel<Object?>(
+          'dev.flutter.pigeon.PlaybackListenerPigeon.onPositionUpdate', codec, binaryMessenger: binaryMessenger);
+      if (api == null) {
+        channel.setMessageHandler(null);
+      } else {
+        channel.setMessageHandler((Object? message) async {
+          assert(message != null, 'Argument for dev.flutter.pigeon.PlaybackListenerPigeon.onPositionUpdate was null.');
+          final List<Object?> args = (message as List<Object?>?)!;
+          final PositionUpdateEvent? arg_event = (args[0] as PositionUpdateEvent?);
+          assert(arg_event != null, 'Argument for dev.flutter.pigeon.PlaybackListenerPigeon.onPositionUpdate was null, expected non-null PositionUpdateEvent.');
+          api.onPositionUpdate(arg_event!);
+          return;
+        });
+      }
+    }
+    {
+      final BasicMessageChannel<Object?> channel = BasicMessageChannel<Object?>(
+          'dev.flutter.pigeon.PlaybackListenerPigeon.onIsPlayingChanged', codec, binaryMessenger: binaryMessenger);
+      if (api == null) {
+        channel.setMessageHandler(null);
+      } else {
+        channel.setMessageHandler((Object? message) async {
+          assert(message != null, 'Argument for dev.flutter.pigeon.PlaybackListenerPigeon.onIsPlayingChanged was null.');
+          final List<Object?> args = (message as List<Object?>?)!;
+          final IsPlayingChangedEvent? arg_event = (args[0] as IsPlayingChangedEvent?);
+          assert(arg_event != null, 'Argument for dev.flutter.pigeon.PlaybackListenerPigeon.onIsPlayingChanged was null, expected non-null IsPlayingChangedEvent.');
+          api.onIsPlayingChanged(arg_event!);
+          return;
+        });
+      }
+    }
+    {
+      final BasicMessageChannel<Object?> channel = BasicMessageChannel<Object?>(
+          'dev.flutter.pigeon.PlaybackListenerPigeon.onMediaItemTransition', codec, binaryMessenger: binaryMessenger);
+      if (api == null) {
+        channel.setMessageHandler(null);
+      } else {
+        channel.setMessageHandler((Object? message) async {
+          assert(message != null, 'Argument for dev.flutter.pigeon.PlaybackListenerPigeon.onMediaItemTransition was null.');
+          final List<Object?> args = (message as List<Object?>?)!;
+          final MediaItemTransitionEvent? arg_event = (args[0] as MediaItemTransitionEvent?);
+          assert(arg_event != null, 'Argument for dev.flutter.pigeon.PlaybackListenerPigeon.onMediaItemTransition was null, expected non-null MediaItemTransitionEvent.');
+          api.onMediaItemTransition(arg_event!);
+          return;
+        });
+      }
     }
   }
 }

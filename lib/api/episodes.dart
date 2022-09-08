@@ -5,9 +5,16 @@ import 'package:http/http.dart' as http;
 import '../services/auth_service.dart';
 
 class Episode {
+  final int id;
   final String streamUrl;
+  final String title;
+  final String imageUrl;
 
-  const Episode({required this.streamUrl});
+  const Episode(
+      {required this.id,
+      required this.streamUrl,
+      required this.title,
+      required this.imageUrl});
 
   factory Episode.fromJson(Map<String, dynamic> json) {
     var videosRaw = json['video']['videos'] as List<dynamic>;
@@ -23,8 +30,10 @@ class Episode {
           'https://proxy.brunstad.tv/api/vod/toplevelmanifest?playbackUrl=$encoded&token=$token&subs=true';
     }
     return Episode(
-      streamUrl: streamUrl,
-    );
+        id: json['id'],
+        streamUrl: streamUrl,
+        title: json['title'],
+        imageUrl: json['image']);
   }
 }
 
