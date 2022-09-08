@@ -25,6 +25,15 @@ abstract class PlaybackPlatformPigeon {
   @ObjCSelector("setPrimary:")
   void setPrimary(String id);
 
+  @ObjCSelector("play:")
+  void play(String playerId);
+
+  @ObjCSelector("pause:")
+  void pause(String playerId);
+
+  @ObjCSelector("stop:reset:")
+  void stop(String playerId, bool reset);
+
   @async
   @ObjCSelector("getChromecastState")
   ChromecastState? getChromecastState();

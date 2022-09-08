@@ -299,6 +299,9 @@ public class PlaybackPlatformApi {
     void queueMediaItem(@NonNull String playerId, @NonNull MediaItem mediaItem, Result<Void> result);
     void replaceCurrentMediaItem(@NonNull String playerId, @NonNull MediaItem mediaItem, @Nullable Boolean playbackPositionFromPrimary, Result<Void> result);
     void setPrimary(@NonNull String id, Result<Void> result);
+    void play(@NonNull String playerId);
+    void pause(@NonNull String playerId);
+    void stop(@NonNull String playerId, @NonNull Boolean reset);
     void getChromecastState(Result<ChromecastState> result);
 
     /** The codec used by PlaybackPlatformPigeon. */
@@ -445,6 +448,82 @@ public class PlaybackPlatformApi {
               wrapped.put("error", wrapError(exception));
               reply.reply(wrapped);
             }
+          });
+        } else {
+          channel.setMessageHandler(null);
+        }
+      }
+      {
+        BasicMessageChannel<Object> channel =
+            new BasicMessageChannel<>(binaryMessenger, "dev.flutter.pigeon.PlaybackPlatformPigeon.play", getCodec());
+        if (api != null) {
+          channel.setMessageHandler((message, reply) -> {
+            Map<String, Object> wrapped = new HashMap<>();
+            try {
+              ArrayList<Object> args = (ArrayList<Object>)message;
+              String playerIdArg = (String)args.get(0);
+              if (playerIdArg == null) {
+                throw new NullPointerException("playerIdArg unexpectedly null.");
+              }
+              api.play(playerIdArg);
+              wrapped.put("result", null);
+            }
+            catch (Error | RuntimeException exception) {
+              wrapped.put("error", wrapError(exception));
+            }
+            reply.reply(wrapped);
+          });
+        } else {
+          channel.setMessageHandler(null);
+        }
+      }
+      {
+        BasicMessageChannel<Object> channel =
+            new BasicMessageChannel<>(binaryMessenger, "dev.flutter.pigeon.PlaybackPlatformPigeon.pause", getCodec());
+        if (api != null) {
+          channel.setMessageHandler((message, reply) -> {
+            Map<String, Object> wrapped = new HashMap<>();
+            try {
+              ArrayList<Object> args = (ArrayList<Object>)message;
+              String playerIdArg = (String)args.get(0);
+              if (playerIdArg == null) {
+                throw new NullPointerException("playerIdArg unexpectedly null.");
+              }
+              api.pause(playerIdArg);
+              wrapped.put("result", null);
+            }
+            catch (Error | RuntimeException exception) {
+              wrapped.put("error", wrapError(exception));
+            }
+            reply.reply(wrapped);
+          });
+        } else {
+          channel.setMessageHandler(null);
+        }
+      }
+      {
+        BasicMessageChannel<Object> channel =
+            new BasicMessageChannel<>(binaryMessenger, "dev.flutter.pigeon.PlaybackPlatformPigeon.stop", getCodec());
+        if (api != null) {
+          channel.setMessageHandler((message, reply) -> {
+            Map<String, Object> wrapped = new HashMap<>();
+            try {
+              ArrayList<Object> args = (ArrayList<Object>)message;
+              String playerIdArg = (String)args.get(0);
+              if (playerIdArg == null) {
+                throw new NullPointerException("playerIdArg unexpectedly null.");
+              }
+              Boolean resetArg = (Boolean)args.get(1);
+              if (resetArg == null) {
+                throw new NullPointerException("resetArg unexpectedly null.");
+              }
+              api.stop(playerIdArg, resetArg);
+              wrapped.put("result", null);
+            }
+            catch (Error | RuntimeException exception) {
+              wrapped.put("error", wrapError(exception));
+            }
+            reply.reply(wrapped);
           });
         } else {
           channel.setMessageHandler(null);

@@ -2,6 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:my_app/providers/playback_api.dart';
 import 'package:my_app/providers/video_state.dart';
 import 'package:my_app/router/router.gr.dart';
 import 'package:transparent_image/transparent_image.dart';
@@ -23,13 +24,17 @@ class _MiniPlayerState extends ConsumerState<MiniPlayer> {
   Widget build(BuildContext context) {
     Player? player = ref.watch(primaryPlayerProvider);
 
-    var artist = player?.currentMediaItem?.metadata?.artist;
-    var title = player?.currentMediaItem?.metadata?.title;
-    var playbackState = player?.playbackState;
+    if (player == null || player.currentMediaItem == null) {
+      return SizedBox.shrink();
+    }
+
+    var artist = player.currentMediaItem?.metadata?.artist;
+    var title = player.currentMediaItem?.metadata?.title;
+    var playbackState = player.playbackState;
 
     return GestureDetector(
       onTap: () {
-        var episodeId = player?.currentMediaItem?.metadata?.episodeId;
+        var episodeId = player.currentMediaItem?.metadata?.episodeId;
         if (episodeId != null) {
           context.router
               .push(EpisodeScreenRoute(episodeId: int.parse(episodeId)));
@@ -40,6 +45,15 @@ class _MiniPlayerState extends ConsumerState<MiniPlayer> {
         title: title ?? 'Title missing',
         artworkUri: 'https://source.unsplash.com/random/1600x900/?fruit',
         isPlaying: playbackState == PlaybackState.playing,
+        onPlayTap: () {
+          ref.read(playbackApiProvider).play(player.playerId);
+        },
+        onPauseTap: () {
+          ref.read(playbackApiProvider).pause(player.playerId);
+        },
+        onCloseTap: () {
+          ref.read(playbackApiProvider).stop(player.playerId, true);
+        },
       ),
     );
   }
@@ -52,7 +66,7 @@ class _MiniPlayer extends StatelessWidget {
   final bool isPlaying;
   final void Function()? onPauseTap;
   final void Function()? onPlayTap;
-  final void Function()? onStopTap;
+  final void Function()? onCloseTap;
 
   const _MiniPlayer({
     Key? key,
@@ -62,7 +76,7 @@ class _MiniPlayer extends StatelessWidget {
     required this.isPlaying,
     this.onPauseTap,
     this.onPlayTap,
-    this.onStopTap,
+    this.onCloseTap,
   }) : super(key: key);
 
   @override
@@ -131,23 +145,33 @@ class _MiniPlayer extends StatelessWidget {
               ],
             ),
           ),
-          Container(
-            margin: EdgeInsets.only(left: 16),
-            height: 36,
-            child: isPlaying
-                ? Image.asset(
-                    height: 24, 'assets/icons/Pause.png', gaplessPlayback: true)
-                : Image.asset(
-                    height: 24, 'assets/icons/Play.png', gaplessPlayback: true),
+          GestureDetector(
+            onTap: () => isPlaying ? onPauseTap?.call() : onPlayTap?.call(),
+            child: Container(
+              margin: EdgeInsets.only(left: 16),
+              height: 36,
+              child: isPlaying
+                  ? Image.asset(
+                      height: 24,
+                      'assets/icons/Pause.png',
+                      gaplessPlayback: true)
+                  : Image.asset(
+                      height: 24,
+                      'assets/icons/Play.png',
+                      gaplessPlayback: true),
+            ),
           ),
-          Container(
-            margin: EdgeInsets.only(left: 7),
-            height: 36,
-            child: Image.asset(
-                width: 32,
-                height: 16,
-                'assets/icons/Close.png',
-                gaplessPlayback: true),
+          GestureDetector(
+            onTap: () => onCloseTap?.call(),
+            child: Container(
+              margin: EdgeInsets.only(left: 7),
+              height: 36,
+              child: Image.asset(
+                  width: 32,
+                  height: 16,
+                  'assets/icons/Close.png',
+                  gaplessPlayback: true),
+            ),
           ),
         ],
       ),

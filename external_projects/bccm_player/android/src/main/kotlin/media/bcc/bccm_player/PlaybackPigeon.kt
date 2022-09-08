@@ -65,6 +65,33 @@ class PlaybackApiImpl(private val plugin: BccmPlayerPlugin) : PlaybackPlatformAp
         result?.success(null)
     }
 
+    override fun play(playerId: String) {
+        val playbackService = plugin.getPlaybackService() ?: return
+        val playerController = playbackService.getController(playerId)
+                ?: throw Error("Player with id $playerId does not exist.")
+
+        playerController.player.play()
+    }
+
+    override fun pause(playerId: String) {
+        val playbackService = plugin.getPlaybackService() ?: return
+        val playerController = playbackService.getController(playerId)
+                ?: throw Error("Player with id $playerId does not exist.")
+
+        playerController.player.pause()
+    }
+
+    override fun stop(playerId: String, reset: Boolean) {
+        val playbackService = plugin.getPlaybackService() ?: return
+        val playerController = playbackService.getController(playerId)
+                ?: throw Error("Player with id $playerId does not exist.")
+
+        playerController.player.stop()
+        if (reset) {
+            playerController.player.clearMediaItems()
+        }
+    }
+
     override fun getChromecastState(result: PlaybackPlatformApi.Result<PlaybackPlatformApi.ChromecastState>?) {
         result?.success(plugin.getCastController()?.getState());
     }

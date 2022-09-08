@@ -49,4 +49,16 @@ abstract class PlaybackPlatformInterface extends PlatformInterface {
   Future<void> setPlaybackListener(PlaybackListenerPigeon listener) async {
     throw UnimplementedError('addPlaybackListener() has not been implemented.');
   }
+
+  void play(String playerId) {
+    throw UnimplementedError('play() has not been implemented.');
+  }
+
+  void pause(String playerId) {
+    throw UnimplementedError('pause() has not been implemented.');
+  }
+
+  void stop(String playerId, bool reset) {
+    throw UnimplementedError('stop() has not been implemented.');
+  }
 }

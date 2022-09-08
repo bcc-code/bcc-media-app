@@ -52,4 +52,19 @@ class PlaybackService extends PlaybackPlatformInterface {
   Future<void> setPlaybackListener(PlaybackListenerPigeon listener) async {
     PlaybackListenerPigeon.setup(listener);
   }
+
+  @override
+  void play(String playerId) {
+    _pigeon.play(playerId);
+  }
+
+  @override
+  void pause(String playerId) {
+    _pigeon.pause(playerId);
+  }
+
+  @override
+  void stop(String playerId, bool reset) {
+    _pigeon.stop(playerId, reset);
+  }
 }
