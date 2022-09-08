@@ -10,8 +10,6 @@ class CastButton extends StatelessWidget {
   Widget build(BuildContext context) {
     if (Platform.isAndroid) {
       return Container(
-        height: 100,
-        color: Colors.green,
         child: const AndroidView(
           viewType: 'bccm_player/cast_button',
           layoutDirection: TextDirection.ltr,

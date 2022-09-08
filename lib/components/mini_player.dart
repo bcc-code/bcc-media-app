@@ -91,7 +91,6 @@ class _MiniPlayer extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       height: 60,
-      width: 375,
       color: Color(0xff1d2838),
       padding: const EdgeInsets.symmetric(
         horizontal: 16,

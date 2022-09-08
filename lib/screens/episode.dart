@@ -98,6 +98,12 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Episode'),
+        actions: const [
+          Padding(
+            padding: EdgeInsets.only(right: 16.0),
+            child: SizedBox(width: 40, child: CastButton()),
+          ),
+        ],
       ),
       body: animationStatus != AnimationStatus.completed
           ? const Center(
@@ -106,24 +112,22 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen> {
           : Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Center(
-                    child: Column(
-                  children: [
-                    Text('Casting: $casting'),
-                    const SizedBox(width: 50, height: 50, child: CastButton()),
-                  ],
-                )),
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: FutureBuilder<Episode>(
                       future: episodeFuture,
                       builder: (context, snapshot) {
                         if (snapshot.hasData) {
+                          var episode = snapshot.data!;
                           return Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               BccmPlayer(
                                   type: widget.playerType,
-                                  id: casting ? 'chromecast' : primaryPlayerId)
+                                  id: casting ? 'chromecast' : primaryPlayerId),
+                              Text(episode.title,
+                                  style:
+                                      Theme.of(context).textTheme.titleMedium)
                             ],
                           );
                         } else if (snapshot.hasError) {
@@ -132,15 +136,6 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen> {
                         // By default, show a loading spinner.
                         return const CircularProgressIndicator();
                       }),
-                ),
-                Center(
-                  child: ElevatedButton(
-                    onPressed: () {
-                      // Navigate back to first screen when tapped.
-                      context.router.pop();
-                    },
-                    child: const Text('Go back!'),
-                  ),
                 ),
                 const SizedBox(width: 100, height: 2000)
               ],

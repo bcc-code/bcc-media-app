@@ -90,6 +90,10 @@ class PlaybackApiImpl(private val plugin: BccmPlayerPlugin) : PlaybackPlatformAp
             result?.error(Error())
             return;
         }
-        result?.success((playbackService.getController("chromecast") as CastPlayerController).getState());
+        val cc = playbackService.getController("chromecast")
+        if (cc == null || cc !is CastPlayerController) {
+            return;
+        }
+        result?.success(cc.getState())
     }
 }

@@ -29,7 +29,32 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: null,
+      appBar: PreferredSize(
+          preferredSize:
+              Size.fromHeight(30.0 + MediaQuery.of(context).padding.top),
+          child: SafeArea(
+            child: Stack(children: [
+              Align(
+                alignment: Alignment.centerLeft,
+                child: Padding(
+                  padding: const EdgeInsets.only(left: 16.0),
+                  child: ElevatedButton(
+                      onPressed: () {
+                        context.router.push(const ProfileRoute());
+                      },
+                      child: const Text('Profile')),
+                ),
+              ),
+              const Center(child: Text('BrunstadTV')),
+              const Align(
+                alignment: Alignment.topRight,
+                child: Padding(
+                  padding: EdgeInsets.only(right: 16.0),
+                  child: SizedBox(width: 40, child: CastButton()),
+                ),
+              ),
+            ]),
+          )),
       body: FutureBuilder<List<Section>>(
         future: sectionFuture,
         builder: (context, snapshot) {
@@ -42,12 +67,6 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
               shrinkWrap: true,
               children: [
                 const Featured(),
-                ElevatedButton(
-                    onPressed: () {
-                      context.router.push(ProfileRoute());
-                    },
-                    child: Text('Profile')),
-                SizedBox(width: 10, height: 30, child: CastButton()),
                 Column(
                   children: [...sections],
                 )

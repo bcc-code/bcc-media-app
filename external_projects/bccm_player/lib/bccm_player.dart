@@ -73,7 +73,6 @@ class _BccmPlayerState extends State<BccmPlayer> {
         if (!_hidePlayer && Platform.isAndroid)
           Column(
             children: [
-              const Text('test'),
               //SizedBox(height: 100, child: AndroidNativeText(widget: widget)),
               AspectRatio(
                   aspectRatio: 16 / 9, child: AndroidPlayer(widget: widget)),
