@@ -12,6 +12,21 @@ abstract class PlayerController() : Player.Listener {
     abstract val id: String;
     abstract val player: Player;
 
+    abstract fun release();
+
+    fun replaceCurrentMediaItem(mediaItem: PlaybackPlatformApi.MediaItem) {
+        //this.isLive = mediaItem.isLive ?: false;
+        val androidMi = mapMediaItem(mediaItem);
+        player.setMediaItem(androidMi, mediaItem.playbackStartPositionMs ?: 0)
+        player.prepare()
+        player.play()
+    }
+
+    fun queueMediaItem(mediaItem: PlaybackPlatformApi.MediaItem) {
+        val androidMi = mapMediaItem(mediaItem);
+        player.addMediaItem(androidMi)
+    }
+
     fun mapMediaItem(mediaItem: PlaybackPlatformApi.MediaItem): MediaItem {
         val metaBuilder = MediaMetadata.Builder();
         val extraMeta = Bundle();
@@ -49,7 +64,7 @@ abstract class PlayerController() : Player.Listener {
         }
         metaBuilder.setTitle(mediaItem.mediaMetadata.title.toString());
         metaBuilder.setArtist(mediaItem.mediaMetadata.artist.toString());
-        
+
         val miBuilder = PlaybackPlatformApi.MediaItem.Builder()
                 .setUrl(mediaItem.localConfiguration?.uri.toString())
                 .setMetadata(metaBuilder.build())

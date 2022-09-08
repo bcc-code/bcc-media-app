@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:my_app/api/episodes.dart';
 import 'package:my_app/providers/chromecast.dart';
+import 'package:my_app/providers/playback_api.dart';
 import 'package:my_app/router/router.gr.dart';
 import 'package:my_app/screens/episode.dart';
 import 'package:transparent_image/transparent_image.dart';
@@ -64,14 +65,10 @@ class ItemSection extends StatelessWidget {
                           ElevatedButton(
                               onPressed: () {
                                 fetchEpisode(si.id).then(
-                                  (value) {
-                                    PlaybackPlatformInterface.instance
-                                        .queueMediaItem(
-                                            'chromecast',
-                                            MediaItem(
-                                                url: value.streamUrl,
-                                                mimeType:
-                                                    'application/x-mpegURL'));
+                                  (episode) {
+                                    queueEpisode(
+                                        playerId: 'chromecast',
+                                        episode: episode);
                                   },
                                 );
                                 Navigator.of(context).pop();

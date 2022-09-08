@@ -4,10 +4,10 @@ import androidx.media3.common.MediaItem
 import androidx.media3.common.Player
 import media.bcc.player.PlaybackPlatformApi
 
-class PlayerListener(val playerController: PlayerController, val plugin: BccmPlayerPlugin) : Player.Listener {
+class PlayerListener(private val playerController: PlayerController, val plugin: BccmPlayerPlugin) : Player.Listener {
     override fun onIsPlayingChanged(isPlaying: Boolean) {
         val event = PlaybackPlatformApi.IsPlayingChangedEvent.Builder()
-                .setPlayerId("chromecast")
+                .setPlayerId(playerController.id)
                 .setIsPlaying(isPlaying);
         plugin.playbackPigeon?.onIsPlayingChanged(event.build()) {};
     }

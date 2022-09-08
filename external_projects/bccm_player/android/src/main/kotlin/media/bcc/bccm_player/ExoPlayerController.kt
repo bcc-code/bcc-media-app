@@ -7,7 +7,6 @@ import androidx.media3.common.ForwardingPlayer
 import androidx.media3.common.Player
 import androidx.media3.exoplayer.ExoPlayer
 import com.google.android.gms.cast.framework.CastContext
-import media.bcc.player.PlaybackPlatformApi
 import java.util.*
 
 class ExoPlayerController(private val context: Context) : PlayerController(), PlayerManager.Listener {
@@ -70,20 +69,7 @@ class ExoPlayerController(private val context: Context) : PlayerController(), Pl
 
     }
 
-    fun replaceCurrentMediaItem(mediaItem: PlaybackPlatformApi.MediaItem) {
-        this.isLive = mediaItem.isLive ?: false;
-        val androidMi = mapMediaItem(mediaItem);
-        exoPlayer.setMediaItem(androidMi, mediaItem.playbackStartPositionMs ?: 0)
-        exoPlayer.prepare()
-        exoPlayer.play()
-    }
-
-    fun queueMediaItem(mediaItem: PlaybackPlatformApi.MediaItem) {
-        val androidMi = mapMediaItem(mediaItem);
-        exoPlayer.addMediaItem(androidMi)
-    }
-
-    fun release() {
+    override fun release() {
         exoPlayer.release()
     }
 

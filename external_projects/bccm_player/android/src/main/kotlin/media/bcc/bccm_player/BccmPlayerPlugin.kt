@@ -50,6 +50,7 @@ class BccmPlayerPlugin : FlutterPlugin, MethodCallHandler, ActivityAware {
         override fun onServiceConnected(className: ComponentName, binder: IBinder) {
             // We've bound to LocalService, cast the IBinder and get LocalService instance
             playbackService = (binder as PlaybackService.LocalBinder).getService()
+            playbackService?.addController(castController!!)
             pluginBinding!!
                     .platformViewRegistry
                     .registerViewFactory("bccm-player", PlayerPlatformViewFactory(activity!!, playbackService))
@@ -132,10 +133,6 @@ class BccmPlayerPlugin : FlutterPlugin, MethodCallHandler, ActivityAware {
 
     fun getPlaybackService(): PlaybackService? {
         return playbackService;
-    }
-
-    fun getCastController(): CastPlayerController? {
-        return castController;
     }
 
     override fun onMethodCall(@NonNull call: MethodCall, @NonNull result: Result) {

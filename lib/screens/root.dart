@@ -47,7 +47,7 @@ class _RootScreenState extends ConsumerState<RootScreen> {
     ref.read(playbackApiProvider).newPlayer().then((playerId) {
       var player = Player(playerId: playerId);
       ref.read(playbackApiProvider).setPrimary(playerId);
-      ref.read(primaryPlayerProvider.notifier).setPrimaryPlayer(player);
+      ref.read(primaryPlayerProvider.notifier).setState(player);
     });
   }
 

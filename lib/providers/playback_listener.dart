@@ -25,14 +25,18 @@ class PlaybackListener implements PlaybackListenerPigeon {
 
   @override
   void onIsPlayingChanged(IsPlayingChangedEvent event) {
-    providerReader?.call(primaryPlayerProvider.notifier).setPlaybackState(
+    var playerProvider = event.playerId == 'chromecast'
+        ? castPlayerProvider
+        : primaryPlayerProvider;
+    providerReader?.call(playerProvider.notifier).setPlaybackState(
         event.isPlaying ? PlaybackState.playing : PlaybackState.paused);
   }
 
   @override
   void onMediaItemTransition(MediaItemTransitionEvent event) {
-    providerReader
-        ?.call(primaryPlayerProvider.notifier)
-        .setMediaItem(event.mediaItem);
+    var playerProvider = event.playerId == 'chromecast'
+        ? castPlayerProvider
+        : primaryPlayerProvider;
+    providerReader?.call(playerProvider.notifier).setMediaItem(event.mediaItem);
   }
 }

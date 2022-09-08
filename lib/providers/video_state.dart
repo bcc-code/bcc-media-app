@@ -42,24 +42,29 @@ class PlayerListState with _$PlayerListState {
       String? primaryPlayerId}) = _PlayerState;
 } */
 
+final castPlayerProvider =
+    StateNotifierProvider<PlayerNotifier, Player?>((ref) {
+  return PlayerNotifier(player: const Player(playerId: 'chromecast'));
+});
+
 final primaryPlayerProvider =
-    StateNotifierProvider<PlayerNotifier, Player>((ref) {
+    StateNotifierProvider<PlayerNotifier, Player?>((ref) {
   return PlayerNotifier();
 });
 
-class PlayerNotifier extends StateNotifier<Player> {
-  PlayerNotifier() : super(const Player(playerId: ''));
+class PlayerNotifier extends StateNotifier<Player?> {
+  PlayerNotifier({Player? player}) : super(player);
 
-  void setPrimaryPlayer(Player player) {
+  void setState(Player? player) {
     state = player;
   }
 
   void setMediaItem(MediaItem? mediaItem) {
-    state = state.copyWith(currentMediaItem: mediaItem);
+    state = state?.copyWith(currentMediaItem: mediaItem);
   }
 
   void setPlaybackState(PlaybackState playbackState) {
-    state = state.copyWith(playbackState: playbackState);
+    state = state?.copyWith(playbackState: playbackState);
   }
 }
 

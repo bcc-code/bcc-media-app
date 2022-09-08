@@ -1,5 +1,6 @@
 package media.bcc.bccm_player
 
+import androidx.media3.cast.CastPlayer
 import media.bcc.player.PlaybackPlatformApi
 
 
@@ -27,10 +28,6 @@ class PlaybackApiImpl(private val plugin: BccmPlayerPlugin) : PlaybackPlatformAp
         if (playbackPositionFromPrimary == true) {
             mediaItem.playbackStartPositionMs = playbackService.getPrimaryController().player.currentPosition
         }
-        if (playerId == "chromecast") {
-            plugin.getCastController()?.replaceCurrentMediaItem(mediaItem)
-            return
-        }
 
         val playerController = playbackService.getController(playerId)
                 ?: throw Error("Player with id ${playerId} does not exist.")
@@ -39,11 +36,6 @@ class PlaybackApiImpl(private val plugin: BccmPlayerPlugin) : PlaybackPlatformAp
     }
 
     override fun queueMediaItem(playerId: String, mediaItem: PlaybackPlatformApi.MediaItem, result: PlaybackPlatformApi.Result<Void>?) {
-        if (playerId == "chromecast") {
-            plugin.getCastController()?.addMediaItem(mediaItem)
-            return
-        }
-
         val playbackService = plugin.getPlaybackService()
         if (playbackService == null) {
             result?.error(Error())
@@ -51,7 +43,7 @@ class PlaybackApiImpl(private val plugin: BccmPlayerPlugin) : PlaybackPlatformAp
         }
         val playerController = playbackService.getController(playerId)
                 ?: throw Error("Player with id $playerId does not exist.")
-        playerController.replaceCurrentMediaItem(mediaItem)
+        playerController.queueMediaItem(mediaItem)
     }
 
     override fun setPrimary(id: String, result: PlaybackPlatformApi.Result<Void>?) {
@@ -93,6 +85,11 @@ class PlaybackApiImpl(private val plugin: BccmPlayerPlugin) : PlaybackPlatformAp
     }
 
     override fun getChromecastState(result: PlaybackPlatformApi.Result<PlaybackPlatformApi.ChromecastState>?) {
-        result?.success(plugin.getCastController()?.getState());
+        val playbackService = plugin.getPlaybackService()
+        if (playbackService == null) {
+            result?.error(Error())
+            return;
+        }
+        result?.success((playbackService.getController("chromecast") as CastPlayerController).getState());
     }
 }

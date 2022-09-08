@@ -19,24 +19,18 @@ class CastPlayerController(
         private val plugin: BccmPlayerPlugin)
     : PlayerController(), SessionManagerListener<Session>, SessionAvailabilityListener {
     override val player = CastPlayer(castContext)
+
+    override fun release() {
+        player.release()
+    }
+
     override val id: String = "chromecast"
 
     init {
         player.playWhenReady = true
 
         player.setSessionAvailabilityListener(this)
-    }
-
-    fun replaceCurrentMediaItem(mediaItem: PlaybackPlatformApi.MediaItem) {
-        val androidMi = mapMediaItem(mediaItem);
-        player.setMediaItem(androidMi, mediaItem.playbackStartPositionMs ?: 0)
-        player.prepare()
-        player.play()
-    }
-
-    fun addMediaItem(mediaItem: PlaybackPlatformApi.MediaItem) {
-        val androidMi = mapMediaItem(mediaItem);
-        player.addMediaItem(androidMi)
+        player.addListener(PlayerListener(this, plugin))
     }
 
     fun getState(): PlaybackPlatformApi.ChromecastState {

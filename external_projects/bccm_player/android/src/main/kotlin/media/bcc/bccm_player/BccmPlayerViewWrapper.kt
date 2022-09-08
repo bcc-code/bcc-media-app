@@ -75,7 +75,7 @@ class BccmPlayerViewWrapper(
 
     fun setup() {
         LayoutInflater.from(context).inflate(R.layout.btvplayer_view, _v, true)
-        playerController = playbackService.getController(playerId)
+        playerController = playbackService.getController(playerId) as ExoPlayerController
 
         if (playerController == null) {
             throw Error("Player $playerId does not exist. Create it with PlaybackService.newPlayer()")

@@ -7,13 +7,13 @@ import androidx.media3.session.MediaSession
 import androidx.media3.session.MediaSessionService
 
 class PlaybackService : MediaSessionService() {
-    private val playerControllers = mutableListOf<ExoPlayerController>()
-    private lateinit var primaryPlayerController: ExoPlayerController
+    private val playerControllers = mutableListOf<PlayerController>()
+    private lateinit var primaryPlayerController: PlayerController
     private lateinit var mediaSession: MediaSession
 
     private var binder: LocalBinder = LocalBinder();
 
-    fun newPlayer(): ExoPlayerController {
+    fun newPlayer(): PlayerController {
         val pc = ExoPlayerController(this)
         playerControllers.add(pc)
         return pc
@@ -29,12 +29,16 @@ class PlaybackService : MediaSessionService() {
         }
     }
 
-    fun getController(playerId: String): ExoPlayerController? {
+    fun getController(playerId: String): PlayerController? {
         return playerControllers.find { it.id == playerId }
     }
 
-    fun getPrimaryController(): ExoPlayerController {
+    fun getPrimaryController(): PlayerController {
         return primaryPlayerController
+    }
+
+    fun addController(pc: PlayerController) {
+        playerControllers.add(pc);
     }
 
     // Create your Player and MediaSession in the onCreate lifecycle event

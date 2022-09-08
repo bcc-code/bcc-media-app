@@ -2,6 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:my_app/providers/chromecast.dart';
 import 'package:my_app/providers/playback_api.dart';
 import 'package:my_app/providers/video_state.dart';
 import 'package:my_app/router/router.gr.dart';
@@ -22,7 +23,12 @@ class _MiniPlayerState extends ConsumerState<MiniPlayer> {
 
   @override
   Widget build(BuildContext context) {
-    Player? player = ref.watch(primaryPlayerProvider);
+    Player? player;
+    if (ref.watch(isCasting)) {
+      player = ref.watch(castPlayerProvider);
+    } else {
+      player = ref.watch(primaryPlayerProvider);
+    }
 
     if (player == null || player.currentMediaItem == null) {
       return SizedBox.shrink();
@@ -30,11 +36,12 @@ class _MiniPlayerState extends ConsumerState<MiniPlayer> {
 
     var artist = player.currentMediaItem?.metadata?.artist;
     var title = player.currentMediaItem?.metadata?.title;
+    var artworkUri = player.currentMediaItem?.metadata?.artworkUri;
     var playbackState = player.playbackState;
 
     return GestureDetector(
       onTap: () {
-        var episodeId = player.currentMediaItem?.metadata?.episodeId;
+        var episodeId = player!.currentMediaItem?.metadata?.episodeId;
         if (episodeId != null) {
           context.router
               .push(EpisodeScreenRoute(episodeId: int.parse(episodeId)));
@@ -43,16 +50,17 @@ class _MiniPlayerState extends ConsumerState<MiniPlayer> {
       child: _MiniPlayer(
         artist: artist ?? 'Artist missing',
         title: title ?? 'Title missing',
-        artworkUri: 'https://source.unsplash.com/random/1600x900/?fruit',
+        artworkUri:
+            artworkUri ?? 'https://source.unsplash.com/random/1600x900/?fruit',
         isPlaying: playbackState == PlaybackState.playing,
         onPlayTap: () {
-          ref.read(playbackApiProvider).play(player.playerId);
+          ref.read(playbackApiProvider).play(player!.playerId);
         },
         onPauseTap: () {
-          ref.read(playbackApiProvider).pause(player.playerId);
+          ref.read(playbackApiProvider).pause(player!.playerId);
         },
         onCloseTap: () {
-          ref.read(playbackApiProvider).stop(player.playerId, true);
+          ref.read(playbackApiProvider).stop(player!.playerId, true);
         },
       ),
     );
