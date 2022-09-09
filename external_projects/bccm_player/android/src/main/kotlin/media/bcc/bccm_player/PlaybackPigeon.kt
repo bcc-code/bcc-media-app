@@ -5,6 +5,7 @@ import media.bcc.player.PlaybackPlatformApi
 
 
 class PlaybackApiImpl(private val plugin: BccmPlayerPlugin) : PlaybackPlatformApi.PlaybackPlatformPigeon {
+
     override fun newPlayer(url: String?, result: PlaybackPlatformApi.Result<String>?) {
         val playbackService = plugin.getPlaybackService()
         if (playbackService == null) {

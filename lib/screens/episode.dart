@@ -6,6 +6,8 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:bccm_player/bccm_player.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:my_app/graphql/client.dart';
+import 'package:my_app/graphql/queries/search.graphql.dart';
 import 'package:my_app/providers/chromecast.dart';
 import 'package:my_app/providers/playback_api.dart';
 import 'package:my_app/providers/video_state.dart';
@@ -20,15 +22,15 @@ class EpisodePageArguments {
 
 class EpisodeScreen extends ConsumerStatefulWidget {
   final PlayerType playerType = PlayerType.native;
-  final int episodeId;
-  const EpisodeScreen({super.key, @PathParam() this.episodeId = 1789});
+  final String episodeId;
+  const EpisodeScreen({super.key, @PathParam() required this.episodeId});
 
   @override
   ConsumerState<EpisodeScreen> createState() => _EpisodeScreenState();
 }
 
 class _EpisodeScreenState extends ConsumerState<EpisodeScreen> {
-  late Future<Episode> episodeFuture;
+  late Future<Episode?> episodeFuture;
   AnimationStatus? animationStatus;
   Animation? animation;
   StreamSubscription? chromecastSubscription;
@@ -36,7 +38,8 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen> {
   @override
   void initState() {
     super.initState();
-    episodeFuture = fetchEpisode(widget.episodeId);
+    episodeFuture =
+        ref.watch(apiProvider).fetchEpisode(widget.episodeId.toString());
 
     chromecastSubscription = ref
         .read(chromecastListenerProvider)
@@ -44,7 +47,7 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen> {
         .listen((event) async {
       var player = ref.read(primaryPlayerProvider);
       var episode = await episodeFuture;
-      if (!mounted) return;
+      if (!mounted || episode == null) return;
       playEpisode(
           playerId: player!.playerId,
           episode: episode,
@@ -66,7 +69,7 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen> {
     }
 
     var episode = await episodeFuture;
-    if (!mounted) return;
+    if (!mounted || episode == null) return;
 
     playEpisode(playerId: player.playerId, episode: episode);
   }
@@ -114,7 +117,7 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen> {
               children: [
                 Padding(
                   padding: const EdgeInsets.all(8.0),
-                  child: FutureBuilder<Episode>(
+                  child: FutureBuilder<Episode?>(
                       future: episodeFuture,
                       builder: (context, snapshot) {
                         if (snapshot.hasData) {
