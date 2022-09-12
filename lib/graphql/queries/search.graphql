@@ -1,14 +1,18 @@
+fragment SearchResultItem on SearchResultItem {
+  collection
+  id
+  legacyID
+  title
+  description
+  image
+}
+
 query Search($queryString: String!, $first: Int, $offset: Int) {
   search(queryString: $queryString, first: $first, offset: $offset) {
     hits
     page
     result {
-      collection
-      id
-      legacyID
-      title
-      description
-      image
+      ...SearchResultItem
     }
   }
 }
