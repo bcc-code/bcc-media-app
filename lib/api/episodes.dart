@@ -4,7 +4,7 @@ import 'package:collection/collection.dart';
 import 'package:graphql/client.dart';
 import 'package:http/http.dart' as http;
 import 'package:my_app/graphql/client.dart';
-import 'package:my_app/graphql/queries/search.graphql.dart';
+import 'package:my_app/graphql/queries/episode.graphql.dart';
 import 'package:my_app/graphql/schema/schema.graphql.dart';
 import 'package:riverpod/riverpod.dart';
 

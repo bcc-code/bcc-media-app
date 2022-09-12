@@ -7,7 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:bccm_player/bccm_player.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:my_app/graphql/client.dart';
-import 'package:my_app/graphql/queries/search.graphql.dart';
+import 'package:my_app/graphql/queries/episode.graphql.dart';
 import 'package:my_app/providers/chromecast.dart';
 import 'package:my_app/providers/playback_api.dart';
 import 'package:my_app/providers/video_state.dart';
