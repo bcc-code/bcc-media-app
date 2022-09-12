@@ -4,7 +4,7 @@ import '../../router/router.gr.dart';
 
 import './avatar.dart';
 import './action_buttons.dart';
-import './option_list.dart';
+import '../../components/setting_list.dart';
 
 class Profile extends StatefulWidget {
   @override
@@ -28,17 +28,23 @@ class _ProfileState extends State<Profile> {
       {
         'optionName': 'Lydspråk',
         'currentSelection': 'English',
-        'onPressed': () {},
+        'onPressed': () {
+          context.router.push(const AppAudioLanguageRoute());
+        },
       },
       {
         'optionName': 'Språk for undertekster',
         'currentSelection': 'English',
-        'onPressed': () {},
+        'onPressed': () {
+          context.router.push(const AppSubtitleLanguageRoute());
+        },
       },
       {
         'optionName': 'Video kvalitet',
         'currentSelection': 'Auto',
-        'onPressed': () {},
+        'onPressed': () {
+          context.router.push(const VideoQualityRoute());
+        },
       },
       {
         'optionName': 'Notifikationer',
@@ -95,11 +101,11 @@ class _ProfileState extends State<Profile> {
               ActionButtons(),
               Column(
                 children: [
-                  OptionList(_settingsOptions),
+                  SettingList(_settingsOptions),
                   const SizedBox(height: 24),
-                  OptionList(_supportOptions),
+                  SettingList(_supportOptions),
                   const SizedBox(height: 24),
-                  OptionList(_termsaAndPrivacyOptions),
+                  SettingList(_termsaAndPrivacyOptions),
                   const SizedBox(height: 24),
                 ],
               ),
