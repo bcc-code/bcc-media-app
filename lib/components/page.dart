@@ -30,7 +30,12 @@ class _PageState extends ConsumerState<BccmPage> {
         .onError((error, stackTrace) {
       1;
       throw Error();
-    }).then((value) => value.parsedData?.page);
+    }).then((value) {
+      if (value.hasException) {
+        throw ErrorDescription(value.exception.toString());
+      }
+      return value.parsedData?.page;
+    });
   }
 
   @override
@@ -58,6 +63,8 @@ class _PageState extends ConsumerState<BccmPage> {
           );
         } else if (snapshot.hasError) {
           return Text(snapshot.error.toString());
+        } else if (snapshot.connectionState == ConnectionState.done) {
+          return Text("other error");
         }
         // By default, show a loading spinner.
         return const CircularProgressIndicator();

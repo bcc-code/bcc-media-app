@@ -39,23 +39,6 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen> {
   @override
   void initState() {
     super.initState();
-    episodeFuture =
-        ref.watch(apiProvider).fetchEpisode(widget.episodeId.toString());
-
-    chromecastSubscription = ref
-        .read(chromecastListenerProvider)
-        .on<CastSessionUnavailable>()
-        .listen((event) async {
-      var player = ref.read(primaryPlayerProvider);
-      var episode = await episodeFuture;
-      if (!mounted || episode == null) return;
-      playEpisode(
-          playerId: player!.playerId,
-          episode: episode,
-          playbackPositionMs: event.playbackPositionMs);
-    });
-
-    setup();
   }
 
   Future setup() async {
@@ -93,6 +76,24 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen> {
     super.didChangeDependencies();
     animation = ModalRoute.of(context)?.animation;
     animation?.addStatusListener(onAnimationStatus);
+
+    episodeFuture =
+        ref.watch(apiProvider).fetchEpisode(widget.episodeId.toString());
+
+    chromecastSubscription = ref
+        .read(chromecastListenerProvider)
+        .on<CastSessionUnavailable>()
+        .listen((event) async {
+      var player = ref.read(primaryPlayerProvider);
+      var episode = await episodeFuture;
+      if (!mounted || episode == null) return;
+      playEpisode(
+          playerId: player!.playerId,
+          episode: episode,
+          playbackPositionMs: event.playbackPositionMs);
+    });
+
+    setup();
   }
 
   @override

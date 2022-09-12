@@ -42,7 +42,9 @@ class ItemSection extends StatelessWidget {
 
   factory ItemSection.fromSection(
       BuildContext context, Fragment$ItemSection section, WidgetRef ref) {
-    var items = section.items.items.map((si) {
+    var items = section.items.items
+        .whereType<Fragment$ItemSectionItem$$EpisodeItem>()
+        .map((si) {
       var item = Item.fromSectionItem(si);
       return ItemWidget(
         item: item,
@@ -118,12 +120,15 @@ class Item {
       this.imageUrl});
 
   factory Item.fromSectionItem(Fragment$ItemSectionItem sectionItem) {
+    PageRouteInfo<dynamic> route;
+    if (sectionItem is Fragment$ItemSectionItem$$EpisodeItem) {
+      route = EpisodeScreenRoute(episodeId: sectionItem.id);
+    } else {
+      route = const HomeScreenRoute();
+    }
     return Item(
         title: sectionItem.title,
-        imageUrl: sectionItem.imageUrl,
-        route: sectionItem is Fragment$ItemSectionItem$$EpisodeItem
-            ? EpisodeScreenRoute(episodeId: sectionItem.id)
-            : throw UnimplementedError(),
+        route: route,
         url: '/episode/${sectionItem.id}');
   }
 }

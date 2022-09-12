@@ -251,12 +251,6 @@ const documentNodeQueryFetchEpisode = DocumentNode(definitions: [
                   directives: [],
                   selectionSet: null),
               FieldNode(
-                  name: NameNode(value: 'imageUrl'),
-                  alias: null,
-                  arguments: [],
-                  directives: [],
-                  selectionSet: null),
-              FieldNode(
                   name: NameNode(value: 'streams'),
                   alias: null,
                   arguments: [],
@@ -428,7 +422,6 @@ class Query$FetchEpisode$episode {
       required this.title,
       required this.description,
       required this.extraDescription,
-      this.imageUrl,
       required this.streams,
       required this.$__typename});
 
@@ -437,7 +430,6 @@ class Query$FetchEpisode$episode {
     final l$title = json['title'];
     final l$description = json['description'];
     final l$extraDescription = json['extraDescription'];
-    final l$imageUrl = json['imageUrl'];
     final l$streams = json['streams'];
     final l$$__typename = json['__typename'];
     return Query$FetchEpisode$episode(
@@ -445,7 +437,6 @@ class Query$FetchEpisode$episode {
         title: (l$title as String),
         description: (l$description as String),
         extraDescription: (l$extraDescription as String),
-        imageUrl: (l$imageUrl as String?),
         streams: (l$streams as List<dynamic>)
             .map((e) => Query$FetchEpisode$episode$streams.fromJson(
                 (e as Map<String, dynamic>)))
@@ -461,8 +452,6 @@ class Query$FetchEpisode$episode {
 
   final String extraDescription;
 
-  final String? imageUrl;
-
   final List<Query$FetchEpisode$episode$streams> streams;
 
   final String $__typename;
@@ -477,8 +466,6 @@ class Query$FetchEpisode$episode {
     _resultData['description'] = l$description;
     final l$extraDescription = extraDescription;
     _resultData['extraDescription'] = l$extraDescription;
-    final l$imageUrl = imageUrl;
-    _resultData['imageUrl'] = l$imageUrl;
     final l$streams = streams;
     _resultData['streams'] = l$streams.map((e) => e.toJson()).toList();
     final l$$__typename = $__typename;
@@ -492,7 +479,6 @@ class Query$FetchEpisode$episode {
     final l$title = title;
     final l$description = description;
     final l$extraDescription = extraDescription;
-    final l$imageUrl = imageUrl;
     final l$streams = streams;
     final l$$__typename = $__typename;
     return Object.hashAll([
@@ -500,7 +486,6 @@ class Query$FetchEpisode$episode {
       l$title,
       l$description,
       l$extraDescription,
-      l$imageUrl,
       Object.hashAll(l$streams.map((v) => v)),
       l$$__typename
     ]);
@@ -533,11 +518,6 @@ class Query$FetchEpisode$episode {
     final l$extraDescription = extraDescription;
     final lOther$extraDescription = other.extraDescription;
     if (l$extraDescription != lOther$extraDescription) {
-      return false;
-    }
-    final l$imageUrl = imageUrl;
-    final lOther$imageUrl = other.imageUrl;
-    if (l$imageUrl != lOther$imageUrl) {
       return false;
     }
     final l$streams = streams;
@@ -581,7 +561,6 @@ abstract class CopyWith$Query$FetchEpisode$episode<TRes> {
       String? title,
       String? description,
       String? extraDescription,
-      String? imageUrl,
       List<Query$FetchEpisode$episode$streams>? streams,
       String? $__typename});
   TRes streams(
@@ -607,7 +586,6 @@ class _CopyWithImpl$Query$FetchEpisode$episode<TRes>
           Object? title = _undefined,
           Object? description = _undefined,
           Object? extraDescription = _undefined,
-          Object? imageUrl = _undefined,
           Object? streams = _undefined,
           Object? $__typename = _undefined}) =>
       _then(Query$FetchEpisode$episode(
@@ -622,9 +600,6 @@ class _CopyWithImpl$Query$FetchEpisode$episode<TRes>
               extraDescription == _undefined || extraDescription == null
                   ? _instance.extraDescription
                   : (extraDescription as String),
-          imageUrl: imageUrl == _undefined
-              ? _instance.imageUrl
-              : (imageUrl as String?),
           streams: streams == _undefined || streams == null
               ? _instance.streams
               : (streams as List<Query$FetchEpisode$episode$streams>),
@@ -654,7 +629,6 @@ class _CopyWithStubImpl$Query$FetchEpisode$episode<TRes>
           String? title,
           String? description,
           String? extraDescription,
-          String? imageUrl,
           List<Query$FetchEpisode$episode$streams>? streams,
           String? $__typename}) =>
       _res;
