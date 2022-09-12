@@ -1,6 +1,9 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:my_app/router/auth_guard.dart';
-import 'package:my_app/screens/app_language.dart';
+import 'package:my_app/screens/profile/app_language.dart';
+import 'package:my_app/screens/profile/audio_language.dart';
+import 'package:my_app/screens/profile/subtitle_language.dart';
+import 'package:my_app/screens/profile/video_quality.dart';
 import 'package:my_app/screens/home.dart';
 import 'package:my_app/screens/live.dart';
 import 'package:my_app/screens/login.dart';
@@ -15,6 +18,9 @@ import '../screens/root.dart';
     MaterialRoute<void>(page: LoginScreen, path: '/login'),
     MaterialRoute<void>(page: Profile, path: 'profile'),
     MaterialRoute<void>(page: AppLanguageScreen, path: 'app-language'),
+    MaterialRoute<void>(page: AppAudioLanguage, path: 'audio-languga'),
+    MaterialRoute<void>(page: AppSubtitleLanguage, path: 'subtitle-language'),
+    MaterialRoute<void>(page: VideoQuality, path: 'video-quality'),
     CustomRoute<void>(
       page: EpisodeScreen,
       path: 'episode/:episodeId',

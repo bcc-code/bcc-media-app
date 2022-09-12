@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+//listFrame.dart
 
-class OptionList extends StatelessWidget {
+class SettingList extends StatelessWidget {
   final List<Map<String, Object?>> _optionData;
 
-  const OptionList(this._optionData);
+  const SettingList(this._optionData);
 
   @override
   Widget build(BuildContext context) {
