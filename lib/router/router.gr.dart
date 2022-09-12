@@ -75,8 +75,7 @@ class AppRouter extends _i12.RootStackRouter {
       return _i12.CustomPage<void>(
           routeData: routeData,
           child: _i7.EpisodeScreen(key: args.key, episodeId: args.episodeId),
-          transitionsBuilder: _i12.TransitionsBuilders.zoomIn,
-          durationInMilliseconds: 200,
+          transitionsBuilder: _i12.TransitionsBuilders.slideBottom,
           opaque: true,
           barrierDismissible: false);
     },

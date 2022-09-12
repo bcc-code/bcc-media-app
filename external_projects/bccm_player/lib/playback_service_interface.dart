@@ -1,6 +1,8 @@
 import 'package:bccm_player/playback_service.dart';
 import 'package:plugin_platform_interface/plugin_platform_interface.dart';
 
+import 'playback_platform_pigeon.g.dart';
+
 abstract class PlaybackPlatformInterface extends PlatformInterface {
   /// Constructs a PlaybackServiceInterface.
   PlaybackPlatformInterface() : super(token: _token);
@@ -25,10 +27,37 @@ abstract class PlaybackPlatformInterface extends PlatformInterface {
   Future<String> newPlayer({String? url}) {
     throw UnimplementedError('newPlayer() has not been implemented.');
   }
+
   Future<bool> setPrimary(String id) {
     throw UnimplementedError('setPrimary() has not been implemented.');
   }
-  Future<void> setUrl({required String playerId, required String url, bool isLive = false}) {
+
+  Future<void> replaceCurrentMediaItem(String playerId, MediaItem mediaItem,
+      {bool? playbackPositionFromPrimary}) {
     throw UnimplementedError('setUrl() has not been implemented.');
+  }
+
+  Future<void> queueMediaItem(String playerId, MediaItem mediaItem) async {
+    throw UnimplementedError('addMediaItem() has not been implemented.');
+  }
+
+  Future<ChromecastState?> getChromecastState() async {
+    throw UnimplementedError('addMediaItem() has not been implemented.');
+  }
+
+  Future<void> setPlaybackListener(PlaybackListenerPigeon listener) async {
+    throw UnimplementedError('addPlaybackListener() has not been implemented.');
+  }
+
+  void play(String playerId) {
+    throw UnimplementedError('play() has not been implemented.');
+  }
+
+  void pause(String playerId) {
+    throw UnimplementedError('pause() has not been implemented.');
+  }
+
+  void stop(String playerId, bool reset) {
+    throw UnimplementedError('stop() has not been implemented.');
   }
 }

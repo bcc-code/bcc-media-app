@@ -27,7 +27,7 @@ import androidx.media3.ui.PlayerView
 import com.google.android.gms.cast.framework.CastContext
 
 internal class PlayerManager(
-        private val context: Context, private val listener: Listener, private val playerController: BccmPlayerController, private val pvWrapper: BccmPlayerViewWrapper, castContext: CastContext?) : Player.Listener, SessionAvailabilityListener {
+        private val context: Context, private val listener: Listener, private val localPlayer: Player, castContext: CastContext?) : Player.Listener, SessionAvailabilityListener {
   /** Listener for events.  */
   internal interface Listener {
     /** Called when the currently played item of the media queue changes.  */
@@ -41,11 +41,11 @@ internal class PlayerManager(
     fun onUnsupportedTrack(trackType: Int)
   }
 
-  private val localPlayer: Player
+  //private val localPlayer: Player
   private val castPlayer: CastPlayer
   private val mediaQueue: ArrayList<MediaItem>
   private var lastSeenTracks: Tracks? = null
-  private val playerView: PlayerView = pvWrapper.getPlayerView()!!
+  private var playerView: PlayerView? = null
 
   /** Returns the index of the currently played item.  */
   var currentItemIndex: Int
@@ -141,7 +141,7 @@ internal class PlayerManager(
    * @return Whether the event was handled by the target view.
    */
   fun dispatchKeyEvent(event: KeyEvent?): Boolean {
-    return playerView.dispatchKeyEvent(event!!)
+    return playerView?.dispatchKeyEvent(event!!) ?: false
   }
 
   /** Releases the manager and the players that it holds.  */
@@ -150,7 +150,7 @@ internal class PlayerManager(
     mediaQueue.clear()
     castPlayer.setSessionAvailabilityListener(null)
     castPlayer.release()
-    playerView.player = null
+    playerView?.player = null
     localPlayer.release()
   }
 
@@ -201,24 +201,35 @@ internal class PlayerManager(
             if (playbackState != Player.STATE_IDLE && playbackState != Player.STATE_ENDED) currentPlayer!!.currentMediaItemIndex else C.INDEX_UNSET)
   }
 
-  private fun setCurrentPlayer(currentPlayer: Player) {
-    if (this.currentPlayer === currentPlayer) {
-      return
+  private fun updatePlayerView() {
+    if (playerView?.player == currentPlayer) {
+      return;
     }
+    playerView?.player = currentPlayer;
+
     if (currentPlayer === localPlayer) {
-      playerController.takeOwnership(pvWrapper)
-      playerView.controllerHideOnTouch = true
+      playerView?.controllerHideOnTouch = true
     }
     if (currentPlayer === castPlayer) {
-      playerView.controllerShowTimeoutMs = 0
-      playerView.showController()
-      playerView.defaultArtwork = ResourcesCompat.getDrawable(
+      playerView?.controllerShowTimeoutMs = 0
+      playerView?.showController()
+      playerView?.defaultArtwork = ResourcesCompat.getDrawable(
               context.resources,
               R.drawable.cast_album_art_placeholder,  /* theme= */
               null)
     } else { // currentPlayer == localPlayer
-      playerView.controllerShowTimeoutMs = PlayerControlView.DEFAULT_SHOW_TIMEOUT_MS
-      playerView.defaultArtwork = null
+      playerView?.controllerShowTimeoutMs = PlayerControlView.DEFAULT_SHOW_TIMEOUT_MS
+      playerView?.defaultArtwork = null
+    }
+  }
+
+  private fun setCurrentPlayer(currentPlayer: Player) {
+    /*if (playerView == null) {
+      return;
+    }
+    val playerView = playerView!!;*/
+    if (this.currentPlayer === currentPlayer) {
+      return
     }
 
     // Player state management.
@@ -244,9 +255,11 @@ internal class PlayerManager(
     this.currentPlayer = currentPlayer
 
     // Media queue management.
-    /*currentPlayer.setMediaItems(mediaQueue, currentItemIndex, playbackPositionMs)
+    currentPlayer.setMediaItems(mediaQueue, currentItemIndex, playbackPositionMs)
     currentPlayer.playWhenReady = playWhenReady
-    currentPlayer.prepare()*/
+    currentPlayer.prepare()
+
+    updatePlayerView();
   }
 
   /**
@@ -274,6 +287,12 @@ internal class PlayerManager(
     }
   }
 
+  fun setPlayerView(pv: PlayerView) {
+    playerView = pv;
+    setCurrentPlayer(if (castPlayer.isCastSessionAvailable) castPlayer else localPlayer)
+    updatePlayerView();
+  }
+
   /**
    * Creates a new manager for [ExoPlayer] and [CastPlayer].
    *
@@ -286,7 +305,6 @@ internal class PlayerManager(
     mediaQueue = ArrayList()
     currentItemIndex = C.INDEX_UNSET
     //localPlayer = ExoPlayer.Builder(context).build()
-    localPlayer = playerController.getPlayer()
     localPlayer.addListener(this)
     castPlayer = CastPlayer(castContext!!)
     castPlayer.addListener(this)

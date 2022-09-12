@@ -10,7 +10,7 @@ class Featured extends StatelessWidget {
     return SingleChildScrollView(
       scrollDirection: Axis.horizontal,
       physics: const BouncingScrollPhysics(),
-      controller: ScrollController(initialScrollOffset: 320),
+      controller: ScrollController(),
       child: SizedBox(
         height: 380,
         child: Row(
