@@ -339,18 +339,6 @@ const documentNodeQuerySearch = DocumentNode(definitions: [
                         directives: [],
                         selectionSet: null),
                     FieldNode(
-                        name: NameNode(value: 'highlight'),
-                        alias: null,
-                        arguments: [],
-                        directives: [],
-                        selectionSet: null),
-                    FieldNode(
-                        name: NameNode(value: 'header'),
-                        alias: null,
-                        arguments: [],
-                        directives: [],
-                        selectionSet: null),
-                    FieldNode(
                         name: NameNode(value: '__typename'),
                         alias: null,
                         arguments: [],
@@ -666,8 +654,6 @@ class Query$Search$search$result {
       required this.title,
       this.description,
       this.image,
-      this.highlight,
-      this.header,
       required this.$__typename});
 
   factory Query$Search$search$result.fromJson(Map<String, dynamic> json) {
@@ -677,8 +663,6 @@ class Query$Search$search$result {
     final l$title = json['title'];
     final l$description = json['description'];
     final l$image = json['image'];
-    final l$highlight = json['highlight'];
-    final l$header = json['header'];
     final l$$__typename = json['__typename'];
     return Query$Search$search$result(
         collection: (l$collection as String),
@@ -687,8 +671,6 @@ class Query$Search$search$result {
         title: (l$title as String),
         description: (l$description as String?),
         image: (l$image as String?),
-        highlight: (l$highlight as String?),
-        header: (l$header as String?),
         $__typename: (l$$__typename as String));
   }
 
@@ -703,10 +685,6 @@ class Query$Search$search$result {
   final String? description;
 
   final String? image;
-
-  final String? highlight;
-
-  final String? header;
 
   final String $__typename;
 
@@ -724,10 +702,6 @@ class Query$Search$search$result {
     _resultData['description'] = l$description;
     final l$image = image;
     _resultData['image'] = l$image;
-    final l$highlight = highlight;
-    _resultData['highlight'] = l$highlight;
-    final l$header = header;
-    _resultData['header'] = l$header;
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -741,8 +715,6 @@ class Query$Search$search$result {
     final l$title = title;
     final l$description = description;
     final l$image = image;
-    final l$highlight = highlight;
-    final l$header = header;
     final l$$__typename = $__typename;
     return Object.hashAll([
       l$collection,
@@ -751,8 +723,6 @@ class Query$Search$search$result {
       l$title,
       l$description,
       l$image,
-      l$highlight,
-      l$header,
       l$$__typename
     ]);
   }
@@ -796,16 +766,6 @@ class Query$Search$search$result {
     if (l$image != lOther$image) {
       return false;
     }
-    final l$highlight = highlight;
-    final lOther$highlight = other.highlight;
-    if (l$highlight != lOther$highlight) {
-      return false;
-    }
-    final l$header = header;
-    final lOther$header = other.header;
-    if (l$header != lOther$header) {
-      return false;
-    }
     final l$$__typename = $__typename;
     final lOther$$__typename = other.$__typename;
     if (l$$__typename != lOther$$__typename) {
@@ -837,8 +797,6 @@ abstract class CopyWith$Query$Search$search$result<TRes> {
       String? title,
       String? description,
       String? image,
-      String? highlight,
-      String? header,
       String? $__typename});
 }
 
@@ -859,8 +817,6 @@ class _CopyWithImpl$Query$Search$search$result<TRes>
           Object? title = _undefined,
           Object? description = _undefined,
           Object? image = _undefined,
-          Object? highlight = _undefined,
-          Object? header = _undefined,
           Object? $__typename = _undefined}) =>
       _then(Query$Search$search$result(
           collection: collection == _undefined || collection == null
@@ -877,10 +833,6 @@ class _CopyWithImpl$Query$Search$search$result<TRes>
               ? _instance.description
               : (description as String?),
           image: image == _undefined ? _instance.image : (image as String?),
-          highlight: highlight == _undefined
-              ? _instance.highlight
-              : (highlight as String?),
-          header: header == _undefined ? _instance.header : (header as String?),
           $__typename: $__typename == _undefined || $__typename == null
               ? _instance.$__typename
               : ($__typename as String)));
@@ -899,8 +851,6 @@ class _CopyWithStubImpl$Query$Search$search$result<TRes>
           String? title,
           String? description,
           String? image,
-          String? highlight,
-          String? header,
           String? $__typename}) =>
       _res;
 }

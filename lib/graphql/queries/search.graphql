@@ -9,8 +9,6 @@ query Search($queryString: String!, $first: Int, $offset: Int) {
       title
       description
       image
-      highlight
-      header
     }
   }
 }
