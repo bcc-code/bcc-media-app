@@ -1,0 +1,54 @@
+import 'package:flutter/material.dart';
+
+import './search_home_page.dart';
+import './search_results_page.dart';
+
+import './search_bar.dart';
+import '../../services/auth_service.dart';
+
+class SearchScreen extends StatefulWidget {
+  const SearchScreen({Key? key}) : super(key: key);
+
+  @override
+  State<SearchScreen> createState() => _SearchScreenState();
+}
+
+class _SearchScreenState extends State<SearchScreen> {
+  String name = AuthService.instance.parsedIdToken!.name;
+  var _inSearchMode = false;
+  var _curSearchValue = '';
+
+  onSearchModeChanged(bool mode) {
+    setState(() {
+      _inSearchMode = mode;
+    });
+  }
+
+  onSearchInputChanged(String input) {
+    setState(() {
+      _curSearchValue = input;
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    print("viewInsets.bottom: ${MediaQuery.of(context).viewInsets.bottom}");
+
+    return Scaffold(
+      body: Column(
+        children: [
+          SearchBar(
+            onModeChange: onSearchModeChanged,
+            onInputChange: onSearchInputChanged,
+          ),
+          const Divider(height: 1, color: Color.fromRGBO(204, 221, 255, 0.1)),
+          Expanded(
+            child: _inSearchMode
+                ? SearchResultsPage(_curSearchValue)
+                : SearchHomePage(),
+          ),
+        ],
+      ),
+    );
+  }
+}

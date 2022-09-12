@@ -70,7 +70,7 @@ class _RootScreenState extends State<RootScreen> {
           //
           //alterntivly you could use a global key
           return Scaffold(
-              body: child,
+              body: SafeArea(child: child),
               bottomNavigationBar: Container(
                 decoration: BoxDecoration(
                     border: Border(

@@ -21,7 +21,7 @@ import '../screens/live.dart' as _i7;
 import '../screens/login.dart' as _i1;
 import '../screens/profile/profile.dart' as _i2;
 import '../screens/root.dart' as _i5;
-import '../screens/search.dart' as _i8;
+import '../screens/search/search.dart' as _i8;
 import 'auth_guard.dart' as _i11;
 
 class AppRouter extends _i9.RootStackRouter {
