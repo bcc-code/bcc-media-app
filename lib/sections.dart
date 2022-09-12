@@ -65,7 +65,7 @@ class ItemSection extends StatelessWidget {
                               child: Text('Play now')),
                           ElevatedButton(
                               onPressed: () {
-                                fetchEpisode(si.id).then(
+                                fetchLegacyEpisode(si.id).then(
                                   (episode) {
                                     queueEpisode(
                                         playerId: 'chromecast',

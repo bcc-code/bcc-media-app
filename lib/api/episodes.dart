@@ -23,7 +23,7 @@ class Episode {
       required this.title,
       this.imageUrl});
 
-  factory Episode.fromJson(Map<String, dynamic> json) {
+  factory Episode.fromLegacyJson(Map<String, dynamic> json) {
     var videosRaw = json['video']['videos'] as List<dynamic>;
     var stream = videosRaw.firstWhere(
         (element) => element['encodingType'] == 'application/vnd.apple.mpegurl',
@@ -44,7 +44,7 @@ class Episode {
   }
 }
 
-Future<Episode> fetchEpisode(String id) async {
+Future<Episode> fetchLegacyEpisode(String id) async {
   var url = 'https://brunstad.tv/api/series/$id';
   final response = await http.get(Uri.parse(url),
       headers: {'Authorization': 'Bearer ${AuthService.instance.idToken}'});
@@ -52,57 +52,5 @@ Future<Episode> fetchEpisode(String id) async {
     return Future.error('statuscode ${response.statusCode}');
   }
   var body = jsonDecode(response.body);
-  return Episode.fromJson(body);
+  return Episode.fromLegacyJson(body);
 }
-/* 
-class Page {
-  
-} */
-
-class Api {
-  final Reader refRead;
-
-  Api(this.refRead);
-
-  Future<Episode?> fetchEpisode(String id) async {
-    final client = refRead(gqlClientProvider);
-    final result = await client.query$FetchEpisode(
-      Options$Query$FetchEpisode(
-        variables: Variables$Query$FetchEpisode(id: '1'),
-      ),
-    );
-    var episode = result.parsedData?.episode;
-    var streamUrl = episode?.streams
-        .firstWhereOrNull((element) =>
-            element.type == Enum$StreamType.cmaf ||
-            element.type == Enum$StreamType.hls)
-        ?.url;
-    if (episode == null || streamUrl == null) return null;
-    return Episode(
-        id: episode.id,
-        streamUrl: streamUrl,
-        title: episode.title,
-        imageUrl: episode.imageUrl);
-  }
-
-  Future<Query$Page$page?> fetchPage(String code) async {
-    final client = refRead(gqlClientProvider);
-    final result = await client.query$Page(
-      Options$Query$Page(
-        variables: Variables$Query$Page(code: code),
-      ),
-    );
-    var sections = result.parsedData?.page?.sections.items;
-    if (sections == null) {
-      return null;
-    }
-    for (var section in sections) {
-      if (section is Query$Page$page$sections$items$$ItemSection) {}
-    }
-    return result.parsedData?.page;
-  }
-}
-
-final apiProvider = Provider<Api>((ref) {
-  return Api(ref.read);
-});

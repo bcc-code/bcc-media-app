@@ -13,6 +13,7 @@ import 'package:my_app/providers/playback_api.dart';
 import 'package:my_app/providers/video_state.dart';
 import 'package:bccm_player/cast_button.dart';
 
+import '../api/brunstadtv.dart';
 import '../api/episodes.dart';
 
 class EpisodePageArguments {
