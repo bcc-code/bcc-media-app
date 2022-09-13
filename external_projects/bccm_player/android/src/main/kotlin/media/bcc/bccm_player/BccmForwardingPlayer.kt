@@ -4,7 +4,7 @@ import androidx.media3.common.C
 import androidx.media3.common.ForwardingPlayer
 import androidx.media3.common.Player
 
-class BccmForwardingPlayer(private val playerController: BccmPlayerController) : ForwardingPlayer(playerController.getExoPlayer()) {
+class BccmForwardingPlayer(private val playerController: ExoPlayerController) : ForwardingPlayer(playerController.getExoPlayer()) {
     private var seekBackIncrement: Long = 15000
 
     private var seekForwardIncrement: Long = 15000

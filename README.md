@@ -37,7 +37,7 @@ It's located at /external_projects/bccm_player which will be converted to a git 
 
 You need to create a new "Player" before displaying it, i.e.
 ```dart
-let playerId = await PlaybackApi.instance.newPlayer(mediaItem);
+let playerId = await ref.read(playbackApiProvider).newPlayer(mediaItem);
 let playerViewWidget = BccmPlayer(id: playerId)
 ```
 

@@ -1,0 +1,35 @@
+fragment ItemSection on ItemSection {
+  title
+  items {
+    items {
+      ...ItemSectionItem
+    }
+  }
+}
+
+fragment ItemSectionItem on Item {
+  id
+  sort
+  title
+  imageUrl
+  ... on EpisodeItem {
+    episode {
+      number
+    }
+  }
+  ... on ShowItem {
+    show {
+      episodeCount
+    }
+  }
+}
+
+query Page($code: String!) {
+  page(code: $code) {
+    sections {
+      items {
+        ...ItemSection
+      }
+    }
+  }
+}

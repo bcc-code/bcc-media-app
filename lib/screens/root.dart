@@ -2,18 +2,22 @@ import 'dart:io';
 
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:my_app/components/mini_player.dart';
+import 'package:my_app/providers/playback_api.dart';
+import 'package:my_app/providers/video_state.dart';
 import 'package:my_app/router/router.gr.dart';
 
-class RootScreen extends StatefulWidget {
+class RootScreen extends ConsumerStatefulWidget {
   static const route = '/';
 
   const RootScreen({super.key});
 
   @override
-  State<RootScreen> createState() => _RootScreenState();
+  ConsumerState<RootScreen> createState() => _RootScreenState();
 }
 
-class _RootScreenState extends State<RootScreen> {
+class _RootScreenState extends ConsumerState<RootScreen> with AutoRouteAware {
   final double iconSize = 30;
   late final Map<String, Image> icons;
 
@@ -40,6 +44,11 @@ class _RootScreenState extends State<RootScreen> {
       'calendar_selected': Image.asset('assets/icons/Calendar_Selected.png',
           gaplessPlayback: true),
     };
+    ref.read(playbackApiProvider).newPlayer().then((playerId) {
+      var player = Player(playerId: playerId);
+      ref.read(playbackApiProvider).setPrimary(playerId);
+      ref.read(primaryPlayerProvider.notifier).setState(player);
+    });
   }
 
   @override
@@ -48,6 +57,11 @@ class _RootScreenState extends State<RootScreen> {
       precacheImage(icon.value.image, context, size: Size(iconSize, iconSize));
     }
     super.didChangeDependencies();
+  }
+
+  @override
+  void didChangeTabRoute(TabPageRoute previousRoute) {
+    print('Changed to settings tab from ${previousRoute.name}');
   }
 
   @override
@@ -69,8 +83,12 @@ class _RootScreenState extends State<RootScreen> {
           // to access the tabsRouter controller provided in this context
           //
           //alterntivly you could use a global key
+          final hideMiniPlayer =
+              tabsRouter.current.meta['hide_mini_player'] == true;
           return Scaffold(
               body: SafeArea(child: child),
+              bottomSheet:
+                  hideMiniPlayer ? const SizedBox.shrink() : const MiniPlayer(),
               bottomNavigationBar: Container(
                 decoration: BoxDecoration(
                     border: Border(

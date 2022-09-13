@@ -50,6 +50,12 @@ dependencies:
   cached_network_image: ^3.2.1
   transparent_image: ^2.0.0
   bccm_player: any
+  riverpod: ^1.0.3
+  flutter_riverpod: ^1.0.4
+  freezed_annotation: ^2.1.0
+  collection: ^1.16.0
+  graphql: ^5.1.1
+  graphql_flutter: ^5.1.0
 dependency_overrides:
   bccm_player:
     path: external_projects/bccm_player
@@ -66,6 +72,8 @@ dev_dependencies:
   flutter_lints: ^2.0.0
   auto_route_generator: ^4.2.0
   pigeon: ^3.2.6
+  freezed: ^2.1.0+1
+  graphql_codegen: ^0.11.0
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
