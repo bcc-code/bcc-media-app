@@ -9,6 +9,7 @@ import 'package:my_app/screens/search/search.dart';
 
 import '../screens/episode.dart';
 import '../screens/root.dart';
+import '../screens/search/explore_category_page.dart';
 
 @MaterialAutoRouter(
   routes: [
@@ -25,7 +26,15 @@ import '../screens/root.dart';
     ], children: [
       MaterialRoute<void>(page: HomeScreen, path: 'home'),
       MaterialRoute<void>(page: LiveScreen, path: 'live'),
-      MaterialRoute<void>(page: SearchScreen, path: 'search'),
+      MaterialRoute<void>(
+          page: EmptyRouterPage,
+          path: 'search',
+          initial: true,
+          children: [
+            MaterialRoute<void>(page: SearchScreen, path: ''),
+            MaterialRoute<void>(
+                page: ExploreCategoryScreen, path: 'explore-category'),
+          ]),
     ]),
   ],
 )

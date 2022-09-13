@@ -58,7 +58,7 @@ class _RootScreenState extends State<RootScreen> {
         // routes of /dashboard
         routes: const [
           HomeScreenRoute(),
-          SearchScreenRoute(),
+          EmptyRouterPageRoute(),
           LiveScreenRoute(),
           HomeScreenRoute(),
         ],

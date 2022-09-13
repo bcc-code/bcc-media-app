@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:auto_route/auto_route.dart';
+import '../../router/router.gr.dart';
+
 import 'package:my_app/components/category_button.dart';
 import 'episode_list.dart';
 
@@ -66,12 +69,17 @@ class SearchHomePage extends StatelessWidget {
                 alignment: WrapAlignment.center,
                 children: _categories.map((category) {
                   return CategoryButton(
-                    label: category['label'] as String,
-                    icon: Image.asset("assets/icons/${category['image']}",
-                        width: 64, height: 64),
-                    width: 163.5,
-                    padding: 14,
-                  );
+                      label: category['label'] as String,
+                      icon: Image.asset("assets/icons/${category['image']}",
+                          width: 64, height: 64),
+                      width: 163.5,
+                      padding: 14,
+                      onTap: () {
+                        context.router.navigate(
+                          ExploreCategoryScreenRoute(
+                              category: category['label']!),
+                        );
+                      });
                 }).toList(),
               ),
             ),
