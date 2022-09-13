@@ -1,0 +1,14 @@
+query FetchEpisode($id: ID!) {
+  episode(id: $id) {
+    id
+    title
+    description
+    extraDescription
+    streams {
+      type
+      url
+      audioLanguages
+      subtitleLanguages
+    }
+  }
+}

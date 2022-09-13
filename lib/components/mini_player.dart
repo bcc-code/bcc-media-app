@@ -43,8 +43,7 @@ class _MiniPlayerState extends ConsumerState<MiniPlayer> {
       onTap: () {
         var episodeId = player!.currentMediaItem?.metadata?.episodeId;
         if (episodeId != null) {
-          context.router
-              .push(EpisodeScreenRoute(episodeId: int.parse(episodeId)));
+          context.router.push(EpisodeScreenRoute(episodeId: episodeId));
         }
       },
       child: _MiniPlayer(
