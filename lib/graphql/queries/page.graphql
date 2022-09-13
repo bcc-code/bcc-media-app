@@ -11,6 +11,7 @@ fragment ItemSectionItem on Item {
   id
   sort
   title
+  imageUrl
   ... on EpisodeItem {
     episode {
       number

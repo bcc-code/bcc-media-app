@@ -346,6 +346,7 @@ class Fragment$ItemSectionItem {
       {required this.id,
       required this.sort,
       required this.title,
+      this.imageUrl,
       required this.$__typename});
 
   factory Fragment$ItemSectionItem.fromJson(Map<String, dynamic> json) {
@@ -360,11 +361,13 @@ class Fragment$ItemSectionItem {
         final l$id = json['id'];
         final l$sort = json['sort'];
         final l$title = json['title'];
+        final l$imageUrl = json['imageUrl'];
         final l$$__typename = json['__typename'];
         return Fragment$ItemSectionItem(
             id: (l$id as String),
             sort: (l$sort as int),
             title: (l$title as String),
+            imageUrl: (l$imageUrl as String?),
             $__typename: (l$$__typename as String));
     }
   }
@@ -374,6 +377,8 @@ class Fragment$ItemSectionItem {
   final int sort;
 
   final String title;
+
+  final String? imageUrl;
 
   final String $__typename;
 
@@ -385,6 +390,8 @@ class Fragment$ItemSectionItem {
     _resultData['sort'] = l$sort;
     final l$title = title;
     _resultData['title'] = l$title;
+    final l$imageUrl = imageUrl;
+    _resultData['imageUrl'] = l$imageUrl;
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -395,8 +402,9 @@ class Fragment$ItemSectionItem {
     final l$id = id;
     final l$sort = sort;
     final l$title = title;
+    final l$imageUrl = imageUrl;
     final l$$__typename = $__typename;
-    return Object.hashAll([l$id, l$sort, l$title, l$$__typename]);
+    return Object.hashAll([l$id, l$sort, l$title, l$imageUrl, l$$__typename]);
   }
 
   @override
@@ -423,6 +431,11 @@ class Fragment$ItemSectionItem {
     if (l$title != lOther$title) {
       return false;
     }
+    final l$imageUrl = imageUrl;
+    final lOther$imageUrl = other.imageUrl;
+    if (l$imageUrl != lOther$imageUrl) {
+      return false;
+    }
     final l$$__typename = $__typename;
     final lOther$$__typename = other.$__typename;
     if (l$$__typename != lOther$$__typename) {
@@ -446,7 +459,12 @@ abstract class CopyWith$Fragment$ItemSectionItem<TRes> {
   factory CopyWith$Fragment$ItemSectionItem.stub(TRes res) =
       _CopyWithStubImpl$Fragment$ItemSectionItem;
 
-  TRes call({String? id, int? sort, String? title, String? $__typename});
+  TRes call(
+      {String? id,
+      int? sort,
+      String? title,
+      String? imageUrl,
+      String? $__typename});
 }
 
 class _CopyWithImpl$Fragment$ItemSectionItem<TRes>
@@ -463,6 +481,7 @@ class _CopyWithImpl$Fragment$ItemSectionItem<TRes>
           {Object? id = _undefined,
           Object? sort = _undefined,
           Object? title = _undefined,
+          Object? imageUrl = _undefined,
           Object? $__typename = _undefined}) =>
       _then(Fragment$ItemSectionItem(
           id: id == _undefined || id == null ? _instance.id : (id as String),
@@ -472,6 +491,9 @@ class _CopyWithImpl$Fragment$ItemSectionItem<TRes>
           title: title == _undefined || title == null
               ? _instance.title
               : (title as String),
+          imageUrl: imageUrl == _undefined
+              ? _instance.imageUrl
+              : (imageUrl as String?),
           $__typename: $__typename == _undefined || $__typename == null
               ? _instance.$__typename
               : ($__typename as String)));
@@ -483,7 +505,13 @@ class _CopyWithStubImpl$Fragment$ItemSectionItem<TRes>
 
   TRes _res;
 
-  call({String? id, int? sort, String? title, String? $__typename}) => _res;
+  call(
+          {String? id,
+          int? sort,
+          String? title,
+          String? imageUrl,
+          String? $__typename}) =>
+      _res;
 }
 
 const fragmentDefinitionItemSectionItem = FragmentDefinitionNode(
@@ -506,6 +534,12 @@ const fragmentDefinitionItemSectionItem = FragmentDefinitionNode(
           selectionSet: null),
       FieldNode(
           name: NameNode(value: 'title'),
+          alias: null,
+          arguments: [],
+          directives: [],
+          selectionSet: null),
+      FieldNode(
+          name: NameNode(value: 'imageUrl'),
           alias: null,
           arguments: [],
           directives: [],
@@ -617,6 +651,7 @@ class Fragment$ItemSectionItem$$EpisodeItem
       {required this.id,
       required this.sort,
       required this.title,
+      this.imageUrl,
       required this.$__typename,
       required this.episode});
 
@@ -625,12 +660,14 @@ class Fragment$ItemSectionItem$$EpisodeItem
     final l$id = json['id'];
     final l$sort = json['sort'];
     final l$title = json['title'];
+    final l$imageUrl = json['imageUrl'];
     final l$$__typename = json['__typename'];
     final l$episode = json['episode'];
     return Fragment$ItemSectionItem$$EpisodeItem(
         id: (l$id as String),
         sort: (l$sort as int),
         title: (l$title as String),
+        imageUrl: (l$imageUrl as String?),
         $__typename: (l$$__typename as String),
         episode: Fragment$ItemSectionItem$$EpisodeItem$episode.fromJson(
             (l$episode as Map<String, dynamic>)));
@@ -641,6 +678,8 @@ class Fragment$ItemSectionItem$$EpisodeItem
   final int sort;
 
   final String title;
+
+  final String? imageUrl;
 
   final String $__typename;
 
@@ -660,9 +699,11 @@ class Fragment$ItemSectionItem$$EpisodeItem
     final l$id = id;
     final l$sort = sort;
     final l$title = title;
+    final l$imageUrl = imageUrl;
     final l$$__typename = $__typename;
     final l$episode = episode;
-    return Object.hashAll([l$id, l$sort, l$title, l$$__typename, l$episode]);
+    return Object.hashAll(
+        [l$id, l$sort, l$title, l$imageUrl, l$$__typename, l$episode]);
   }
 
   @override
@@ -687,6 +728,11 @@ class Fragment$ItemSectionItem$$EpisodeItem
     final l$title = title;
     final lOther$title = other.title;
     if (l$title != lOther$title) {
+      return false;
+    }
+    final l$imageUrl = imageUrl;
+    final lOther$imageUrl = other.imageUrl;
+    if (l$imageUrl != lOther$imageUrl) {
       return false;
     }
     final l$$__typename = $__typename;
@@ -724,6 +770,7 @@ abstract class CopyWith$Fragment$ItemSectionItem$$EpisodeItem<TRes> {
       {String? id,
       int? sort,
       String? title,
+      String? imageUrl,
       String? $__typename,
       Fragment$ItemSectionItem$$EpisodeItem$episode? episode});
   CopyWith$Fragment$ItemSectionItem$$EpisodeItem$episode<TRes> get episode;
@@ -744,6 +791,7 @@ class _CopyWithImpl$Fragment$ItemSectionItem$$EpisodeItem<TRes>
           {Object? id = _undefined,
           Object? sort = _undefined,
           Object? title = _undefined,
+          Object? imageUrl = _undefined,
           Object? $__typename = _undefined,
           Object? episode = _undefined}) =>
       _then(Fragment$ItemSectionItem$$EpisodeItem(
@@ -754,6 +802,9 @@ class _CopyWithImpl$Fragment$ItemSectionItem$$EpisodeItem<TRes>
           title: title == _undefined || title == null
               ? _instance.title
               : (title as String),
+          imageUrl: imageUrl == _undefined
+              ? _instance.imageUrl
+              : (imageUrl as String?),
           $__typename: $__typename == _undefined || $__typename == null
               ? _instance.$__typename
               : ($__typename as String),
@@ -777,6 +828,7 @@ class _CopyWithStubImpl$Fragment$ItemSectionItem$$EpisodeItem<TRes>
           {String? id,
           int? sort,
           String? title,
+          String? imageUrl,
           String? $__typename,
           Fragment$ItemSectionItem$$EpisodeItem$episode? episode}) =>
       _res;
@@ -893,6 +945,7 @@ class Fragment$ItemSectionItem$$ShowItem implements Fragment$ItemSectionItem {
       {required this.id,
       required this.sort,
       required this.title,
+      this.imageUrl,
       required this.$__typename,
       required this.$show});
 
@@ -901,12 +954,14 @@ class Fragment$ItemSectionItem$$ShowItem implements Fragment$ItemSectionItem {
     final l$id = json['id'];
     final l$sort = json['sort'];
     final l$title = json['title'];
+    final l$imageUrl = json['imageUrl'];
     final l$$__typename = json['__typename'];
     final l$$show = json['show'];
     return Fragment$ItemSectionItem$$ShowItem(
         id: (l$id as String),
         sort: (l$sort as int),
         title: (l$title as String),
+        imageUrl: (l$imageUrl as String?),
         $__typename: (l$$__typename as String),
         $show: Fragment$ItemSectionItem$$ShowItem$show.fromJson(
             (l$$show as Map<String, dynamic>)));
@@ -917,6 +972,8 @@ class Fragment$ItemSectionItem$$ShowItem implements Fragment$ItemSectionItem {
   final int sort;
 
   final String title;
+
+  final String? imageUrl;
 
   final String $__typename;
 
@@ -936,9 +993,11 @@ class Fragment$ItemSectionItem$$ShowItem implements Fragment$ItemSectionItem {
     final l$id = id;
     final l$sort = sort;
     final l$title = title;
+    final l$imageUrl = imageUrl;
     final l$$__typename = $__typename;
     final l$$show = $show;
-    return Object.hashAll([l$id, l$sort, l$title, l$$__typename, l$$show]);
+    return Object.hashAll(
+        [l$id, l$sort, l$title, l$imageUrl, l$$__typename, l$$show]);
   }
 
   @override
@@ -963,6 +1022,11 @@ class Fragment$ItemSectionItem$$ShowItem implements Fragment$ItemSectionItem {
     final l$title = title;
     final lOther$title = other.title;
     if (l$title != lOther$title) {
+      return false;
+    }
+    final l$imageUrl = imageUrl;
+    final lOther$imageUrl = other.imageUrl;
+    if (l$imageUrl != lOther$imageUrl) {
       return false;
     }
     final l$$__typename = $__typename;
@@ -1000,6 +1064,7 @@ abstract class CopyWith$Fragment$ItemSectionItem$$ShowItem<TRes> {
       {String? id,
       int? sort,
       String? title,
+      String? imageUrl,
       String? $__typename,
       Fragment$ItemSectionItem$$ShowItem$show? $show});
   CopyWith$Fragment$ItemSectionItem$$ShowItem$show<TRes> get $show;
@@ -1019,6 +1084,7 @@ class _CopyWithImpl$Fragment$ItemSectionItem$$ShowItem<TRes>
           {Object? id = _undefined,
           Object? sort = _undefined,
           Object? title = _undefined,
+          Object? imageUrl = _undefined,
           Object? $__typename = _undefined,
           Object? $show = _undefined}) =>
       _then(Fragment$ItemSectionItem$$ShowItem(
@@ -1029,6 +1095,9 @@ class _CopyWithImpl$Fragment$ItemSectionItem$$ShowItem<TRes>
           title: title == _undefined || title == null
               ? _instance.title
               : (title as String),
+          imageUrl: imageUrl == _undefined
+              ? _instance.imageUrl
+              : (imageUrl as String?),
           $__typename: $__typename == _undefined || $__typename == null
               ? _instance.$__typename
               : ($__typename as String),
@@ -1052,6 +1121,7 @@ class _CopyWithStubImpl$Fragment$ItemSectionItem$$ShowItem<TRes>
           {String? id,
           int? sort,
           String? title,
+          String? imageUrl,
           String? $__typename,
           Fragment$ItemSectionItem$$ShowItem$show? $show}) =>
       _res;

@@ -129,6 +129,7 @@ class Item {
     return Item(
         title: sectionItem.title,
         route: route,
+        imageUrl: sectionItem.imageUrl,
         url: '/episode/${sectionItem.id}');
   }
 }
