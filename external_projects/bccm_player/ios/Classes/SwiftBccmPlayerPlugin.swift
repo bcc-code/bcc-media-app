@@ -8,14 +8,14 @@ public class SwiftBccmPlayerPlugin: NSObject, FlutterPlugin {
         let channel = FlutterMethodChannel(name: "bccm_player", binaryMessenger: messenger)
         let instance = SwiftBccmPlayerPlugin()
         registrar.addMethodCallDelegate(instance, channel: channel)
-
-        let playbackApi = PlaybackApiImpl();
+        let playbackListener = PlaybackListenerPigeon(binaryMessenger: messenger)
+        let playbackApi = PlaybackApiImpl(playbackListener: playbackListener);
 
         let factory = BccmPlayerFactory(messenger: messenger, playbackApi: playbackApi)
         registrar.register(factory, withId: "bccm-player")
 
         PlaybackPlatformPigeonSetup(registrar.messenger(), playbackApi)
-        
+
         let audioSession = AVAudioSession.sharedInstance()
         do {
             try audioSession.setCategory(.playback)
