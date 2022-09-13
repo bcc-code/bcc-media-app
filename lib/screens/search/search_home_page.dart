@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:my_app/components/category_button.dart';
-import 'episode_list_vertical.dart';
+import 'episode_list.dart';
 
 class SearchHomePage extends StatelessWidget {
   final List<Map<String, String>> _categories = [
@@ -30,12 +30,20 @@ class SearchHomePage extends StatelessWidget {
     },
   ];
 
+  final _episodeList = List.filled(10, {
+    'programName': 'Fra Kåre til BUK',
+    'episodeName': '25. august - PROMO: Høstcamp og Romjulscamp',
+    'imageUrl':
+        'https://brunstadtv.imgix.net/c7b34d9c-d961-4326-9686-d480d461b54c.jpg',
+    'ageGroup': '12+',
+    'duration': '43 min',
+  });
+
   @override
   Widget build(BuildContext context) {
     return ListView(children: [
       Container(
-        width: double.infinity,
-        padding: const EdgeInsets.only(top: 20, left: 16, right: 16),
+        padding: const EdgeInsets.only(top: 12, left: 16, right: 16),
         margin: const EdgeInsets.only(bottom: 24),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -70,7 +78,7 @@ class SearchHomePage extends StatelessWidget {
           ],
         ),
       ),
-      EpisodeListVertical('Suggested'),
+      EpisodeList(title: 'Suggested', items: _episodeList),
     ]);
   }
 }

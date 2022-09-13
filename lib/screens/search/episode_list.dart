@@ -1,17 +1,10 @@
 import 'package:flutter/material.dart';
 
-class EpisodeListVertical extends StatelessWidget {
-  final String listTitle;
-  final List<Map<String, String>> _episodes = List.filled(10, {
-    'series': 'Fra Kåre til BUK',
-    'episodeName': '25. august - PROMO: Høstcamp og Romjulscamp',
-    'imageUrl':
-        'https://brunstadtv.imgix.net/c7b34d9c-d961-4326-9686-d480d461b54c.jpg',
-    'ageGroup': '12+',
-    'duration': '43 min',
-  });
+class EpisodeList extends StatelessWidget {
+  final String title;
+  final List<Map<String, String>> items;
 
-  EpisodeListVertical(this.listTitle);
+  const EpisodeList({required this.title, required this.items});
 
   @override
   Widget build(BuildContext context) {
@@ -23,25 +16,25 @@ class EpisodeListVertical extends StatelessWidget {
               const EdgeInsets.only(top: 12, right: 16, bottom: 8, left: 16),
           margin: const EdgeInsets.only(bottom: 8),
           child: Text(
-            listTitle,
+            title,
             style: const TextStyle(
               fontSize: 24,
               fontWeight: FontWeight.w800,
             ),
           ),
         ),
-        ..._episodes.map((episode) {
-          return _EpisodeVertical(episode);
+        ...items.map((episode) {
+          return _Episode(episode);
         }).toList()
       ],
     );
   }
 }
 
-class _EpisodeVertical extends StatelessWidget {
-  final Map<String, String> _episode;
+class _Episode extends StatelessWidget {
+  final Map<String, String> episode;
 
-  const _EpisodeVertical(this._episode);
+  const _Episode(this.episode);
 
   @override
   Widget build(BuildContext context) {
@@ -56,7 +49,7 @@ class _EpisodeVertical extends StatelessWidget {
             margin: const EdgeInsets.only(right: 16),
             child: ClipRRect(
               borderRadius: BorderRadius.circular(4),
-              child: Image.network(_episode['imageUrl'] as String, height: 72),
+              child: Image.network(episode['imageUrl'] as String, height: 72),
             ),
           ),
           Expanded(
@@ -66,7 +59,7 @@ class _EpisodeVertical extends StatelessWidget {
                 Container(
                   margin: const EdgeInsets.only(bottom: 5),
                   child: Text(
-                    _episode['series'] as String,
+                    episode['programName'] as String,
                     style: const TextStyle(
                       fontSize: 12,
                       fontWeight: FontWeight.w500,
@@ -78,7 +71,7 @@ class _EpisodeVertical extends StatelessWidget {
                   child: Container(
                     margin: const EdgeInsets.only(bottom: 6),
                     child: Text(
-                      _episode['episodeName'] as String,
+                      episode['episodeName'] as String,
                       style: const TextStyle(
                           fontWeight: FontWeight.w500, fontSize: 14),
                     ),
@@ -102,7 +95,7 @@ class _EpisodeVertical extends StatelessWidget {
                             const BorderRadius.all(Radius.circular(8)),
                       ),
                       child: Text(
-                        _episode['ageGroup'] as String,
+                        episode['ageGroup'] as String,
                         style: const TextStyle(
                           fontSize: 12,
                           fontWeight: FontWeight.w500,
@@ -111,7 +104,7 @@ class _EpisodeVertical extends StatelessWidget {
                       ),
                     ),
                     Text(
-                      _episode['duration'] as String,
+                      episode['duration'] as String,
                       style: const TextStyle(
                         color: Color.fromRGBO(180, 192, 210, 1),
                         fontSize: 12,

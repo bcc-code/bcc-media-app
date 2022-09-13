@@ -5,6 +5,7 @@ import 'package:my_app/screens/episode.dart';
 import 'package:transparent_image/transparent_image.dart';
 
 import 'api/sliders.dart';
+import 'components/horizontal_slider.dart';
 
 class ItemSection extends StatelessWidget {
   final String title;
@@ -27,7 +28,7 @@ class ItemSection extends StatelessWidget {
               title,
             ),
           ),
-          Slider(items: items),
+          HorizontalSlider(items: items),
         ],
       ),
     );
@@ -44,24 +45,6 @@ class ItemSection extends StatelessWidget {
       );
     }).toList();
     return ItemSection(title: section.title, items: items);
-  }
-}
-
-class Slider extends StatelessWidget {
-  final List<Widget> items;
-
-  const Slider({Key? key, required this.items}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return SizedBox(
-      height: 175,
-      child: ListView(
-        physics: const BouncingScrollPhysics(),
-        scrollDirection: Axis.horizontal,
-        children: items,
-      ),
-    );
   }
 }
 
@@ -101,7 +84,7 @@ class ItemWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 120,
+      // height: 120,
       child: GestureDetector(
         onTap: onTap,
         child: Padding(

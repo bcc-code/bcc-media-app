@@ -32,8 +32,6 @@ class _SearchScreenState extends State<SearchScreen> {
 
   @override
   Widget build(BuildContext context) {
-    print("viewInsets.bottom: ${MediaQuery.of(context).viewInsets.bottom}");
-
     return Scaffold(
       body: Column(
         children: [
@@ -41,7 +39,11 @@ class _SearchScreenState extends State<SearchScreen> {
             onModeChange: onSearchModeChanged,
             onInputChange: onSearchInputChanged,
           ),
-          const Divider(height: 1, color: Color.fromRGBO(204, 221, 255, 0.1)),
+          Container(
+            margin: const EdgeInsets.only(bottom: 8),
+            child: const Divider(
+                height: 1, color: Color.fromRGBO(204, 221, 255, 0.1)),
+          ),
           Expanded(
             child: _inSearchMode
                 ? SearchResultsPage(_curSearchValue)
