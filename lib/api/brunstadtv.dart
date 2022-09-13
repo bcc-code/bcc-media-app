@@ -32,7 +32,11 @@ class Api {
             element.type == Enum$StreamType.hls)
         ?.url;
     streamUrl ??= episode.streams.first.url;
-    return Episode(id: episode.id, streamUrl: streamUrl, title: episode.title);
+    return Episode(
+        id: episode.id,
+        streamUrl:
+            "https://devstreaming-cdn.apple.com/videos/streaming/examples/img_bipbop_adv_example_fmp4/master.m3u8",
+        title: episode.title);
   }
 }
 
