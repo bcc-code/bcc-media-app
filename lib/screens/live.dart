@@ -1,5 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:bccm_player/bccm_player.dart';
+import 'package:bccm_player/cast_button.dart';
 import 'package:bccm_player/playback_platform_pigeon.g.dart';
 import 'package:bccm_player/playback_service_interface.dart';
 import 'package:flutter/material.dart';
@@ -68,17 +69,26 @@ class _LiveScreenState extends ConsumerState<LiveScreen> with AutoRouteAware {
     var player = ref.watch(primaryPlayerProvider);
     if (player == null) return const SizedBox.shrink();
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Video app'),
-        actions: [
-          ElevatedButton(
-            onPressed: () => setState(() {
-              audioOnly = !audioOnly;
-            }),
-            child: const Text('Audio only'),
-          ),
-        ],
-      ),
+      appBar: PreferredSize(
+          preferredSize:
+              Size.fromHeight(30.0 + MediaQuery.of(context).padding.top),
+          child: SafeArea(
+            child: Stack(children: [
+              const Center(child: Text('Live')),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  SizedBox(width: 100, child: ElevatedButton(
+                    onPressed: () => setState(() {
+                      audioOnly = !audioOnly;
+                    }),
+                    child: const Text('Audio only'),
+                  )),
+                  const SizedBox(width: 40, child: CastButton()),
+                ],
+              ),
+            ]),
+          )),
       body: ListView(children: [
         audioOnly
             ? const MiniPlayer()
@@ -91,14 +101,10 @@ class _LiveScreenState extends ConsumerState<LiveScreen> with AutoRouteAware {
                   } else if (snapshot.hasError) {
                     return Text(snapshot.error.toString());
                   }
-                  return const CircularProgressIndicator();
+                  return const AspectRatio(aspectRatio: 16/9, child: Center(child: CircularProgressIndicator()));
                 }),
-        const ContactSupport(),
-        Text('Hi $name'),
-        TextFormField(
-          controller: _idTokenDisplayController,
-          readOnly: true,
-        ),
+        const SizedBox(height: 20),
+        const SizedBox(height: 20000, child: Align(alignment: Alignment.topCenter, child: Text('Calendar here'))),
         //
       ]),
     );
