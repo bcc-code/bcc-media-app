@@ -159,6 +159,12 @@ public class PlaybackPlatformApi {
       this.episodeId = setterArg;
     }
 
+    private @Nullable Map<String, String> extras;
+    public @Nullable Map<String, String> getExtras() { return extras; }
+    public void setExtras(@Nullable Map<String, String> setterArg) {
+      this.extras = setterArg;
+    }
+
     public static final class Builder {
       private @Nullable String artworkUri;
       public @NonNull Builder setArtworkUri(@Nullable String setterArg) {
@@ -180,12 +186,18 @@ public class PlaybackPlatformApi {
         this.episodeId = setterArg;
         return this;
       }
+      private @Nullable Map<String, String> extras;
+      public @NonNull Builder setExtras(@Nullable Map<String, String> setterArg) {
+        this.extras = setterArg;
+        return this;
+      }
       public @NonNull MediaMetadata build() {
         MediaMetadata pigeonReturn = new MediaMetadata();
         pigeonReturn.setArtworkUri(artworkUri);
         pigeonReturn.setTitle(title);
         pigeonReturn.setArtist(artist);
         pigeonReturn.setEpisodeId(episodeId);
+        pigeonReturn.setExtras(extras);
         return pigeonReturn;
       }
     }
@@ -195,6 +207,7 @@ public class PlaybackPlatformApi {
       toMapResult.put("title", title);
       toMapResult.put("artist", artist);
       toMapResult.put("episodeId", episodeId);
+      toMapResult.put("extras", extras);
       return toMapResult;
     }
     static @NonNull MediaMetadata fromMap(@NonNull Map<String, Object> map) {
@@ -207,6 +220,8 @@ public class PlaybackPlatformApi {
       pigeonResult.setArtist((String)artist);
       Object episodeId = map.get("episodeId");
       pigeonResult.setEpisodeId((String)episodeId);
+      Object extras = map.get("extras");
+      pigeonResult.setExtras((Map<String, String>)extras);
       return pigeonResult;
     }
   }

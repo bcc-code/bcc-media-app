@@ -42,8 +42,11 @@ class _MiniPlayerState extends ConsumerState<MiniPlayer> {
     return GestureDetector(
       onTap: () {
         var episodeId = player!.currentMediaItem?.metadata?.episodeId;
+        var isLivestream = player!.currentMediaItem?.metadata?.extras?['id'] == 'livestream';
         if (episodeId != null) {
           context.router.push(EpisodeScreenRoute(episodeId: episodeId));
+        } else if (isLivestream) {
+          context.router.navigate(const LiveScreenRoute());
         }
       },
       child: _MiniPlayer(

@@ -1,9 +1,11 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:bccm_player/bccm_player.dart';
 import 'package:bccm_player/playback_platform_pigeon.g.dart';
 import 'package:bccm_player/playback_service_interface.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:my_app/api/livestream.dart';
+import 'package:my_app/components/mini_player.dart';
 import 'package:my_app/providers/playback_api.dart';
 import 'package:my_app/providers/video_state.dart';
 
@@ -18,7 +20,7 @@ class LiveScreen extends ConsumerStatefulWidget {
   ConsumerState<LiveScreen> createState() => _LiveScreenState();
 }
 
-class _LiveScreenState extends ConsumerState<LiveScreen> {
+class _LiveScreenState extends ConsumerState<LiveScreen> with AutoRouteAware {
   String name = AuthService.instance.parsedIdToken!.name;
   final TextEditingController _idTokenDisplayController =
       TextEditingController(text: AuthService.instance.idToken);
@@ -44,6 +46,10 @@ class _LiveScreenState extends ConsumerState<LiveScreen> {
     var playbackApi = ref.read(playbackApiProvider);
     var liveUrl = await fetchLiveUrl();
 
+    if (player.currentMediaItem?.metadata?.extras?['id'] == 'livestream') {
+      return;
+    }
+
     playbackApi.replaceCurrentMediaItem(
         player.playerId,
         MediaItem(
@@ -52,6 +58,7 @@ class _LiveScreenState extends ConsumerState<LiveScreen> {
             metadata: MediaMetadata(
                 artist: 'BrunstadTV',
                 title: 'Live',
+                extras: {'id': 'livestream'},
                 artworkUri:
                     'https://brunstad.tv/static/images/poster_placeholder.jpg')));
   }
@@ -66,29 +73,32 @@ class _LiveScreenState extends ConsumerState<LiveScreen> {
         actions: [
           ElevatedButton(
             onPressed: () => setState(() {
-              audioOnly = true;
+              audioOnly = !audioOnly;
             }),
             child: const Text('Audio only'),
           ),
         ],
       ),
       body: ListView(children: [
+        audioOnly
+            ? const MiniPlayer()
+            : FutureBuilder(
+                future: playerFuture,
+                builder: (context, snapshot) {
+                  if (snapshot.connectionState == ConnectionState.done) {
+                    return BccmPlayer(
+                        type: PlayerType.native, id: player.playerId);
+                  } else if (snapshot.hasError) {
+                    return Text(snapshot.error.toString());
+                  }
+                  return const CircularProgressIndicator();
+                }),
         const ContactSupport(),
         Text('Hi $name'),
         TextFormField(
           controller: _idTokenDisplayController,
           readOnly: true,
         ),
-        FutureBuilder(
-            future: playerFuture,
-            builder: (context, snapshot) {
-              if (snapshot.connectionState == ConnectionState.done) {
-                return BccmPlayer(type: PlayerType.native, id: player.playerId);
-              } else if (snapshot.hasError) {
-                return Text(snapshot.error.toString());
-              }
-              return const CircularProgressIndicator();
-            })
         //
       ]),
     );

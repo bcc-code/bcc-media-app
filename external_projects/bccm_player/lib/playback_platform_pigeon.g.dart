@@ -60,12 +60,14 @@ class MediaMetadata {
     this.title,
     this.artist,
     this.episodeId,
+    this.extras,
   });
 
   String? artworkUri;
   String? title;
   String? artist;
   String? episodeId;
+  Map<String?, String?>? extras;
 
   Object encode() {
     final Map<Object?, Object?> pigeonMap = <Object?, Object?>{};
@@ -73,6 +75,7 @@ class MediaMetadata {
     pigeonMap['title'] = title;
     pigeonMap['artist'] = artist;
     pigeonMap['episodeId'] = episodeId;
+    pigeonMap['extras'] = extras;
     return pigeonMap;
   }
 
@@ -83,6 +86,7 @@ class MediaMetadata {
       title: pigeonMap['title'] as String?,
       artist: pigeonMap['artist'] as String?,
       episodeId: pigeonMap['episodeId'] as String?,
+      extras: (pigeonMap['extras'] as Map<Object?, Object?>?)?.cast<String?, String?>(),
     );
   }
 }

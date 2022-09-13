@@ -26,11 +26,33 @@ public class PlayerController {
             }
             var metadata: MediaMetadata? = nil
             if #available(iOS 12.2, *) {
+
+                let extras = player.currentItem?.externalMetadata.filter({
+                            (value) in
+                            let containsExtraPrefix = value.identifier?.rawValue.contains(MetadataConstants.ExtraPrefix) ?? false;
+                            if (!containsExtraPrefix) {
+                                return false;
+                            }
+                            return true;
+                        })
+                        .reduce(into: [String: String]()) {
+                            (dict, val) in
+                            if (val.identifier?.rawValue == nil || (val.value as? String) == nil) {
+                                return
+                            }
+                            guard let range = val.identifier!.rawValue.range(of: MetadataConstants.ExtraPrefix) else {
+                                return
+                            }
+                            let key = val.identifier!.rawValue[range.upperBound...];
+                            dict[String(key)] = (val.value as! String)
+                        };
+
                 metadata = MediaMetadata.make(
                         withArtworkUri: player.currentItem?.externalMetadata.first(where: { $0.identifier == AVMetadataIdentifier.commonIdentifierArtwork })?.stringValue,
                         title: player.currentItem?.externalMetadata.first(where: { $0.identifier == AVMetadataIdentifier.commonIdentifierTitle })?.stringValue,
                         artist: player.currentItem?.externalMetadata.first(where: { $0.identifier == AVMetadataIdentifier.commonIdentifierArtist })?.stringValue,
-                        episodeId: player.currentItem?.externalMetadata.first(where: { $0.identifier == AVMetadataIdentifier("episode_id") })?.stringValue
+                        episodeId: player.currentItem?.externalMetadata.first(where: { $0.identifier == AVMetadataIdentifier(MetadataConstants.EpisodeId) })?.stringValue,
+                        extras: extras
                 )
             }
             let mediaItem = MediaItem.make(withUrl: url, mimeType: "application/x-mpegURL", metadata: metadata, isLive: false, playbackStartPositionMs: nil)
@@ -41,7 +63,12 @@ public class PlayerController {
         observers.append(player.observe(\.timeControlStatus, options: [.old, .new]) {
             (player, change) in
             debugPrint("BTV DEBUG: player status changed...")
-            let isPlaying = player.timeControlStatus == AVPlayer.TimeControlStatus.playing;
+            // We don't want "isPlaying" to be affected by stuttering
+            // So we only check if the player is paused or doesnt have an item to play.
+            let paused = player.timeControlStatus == AVPlayer.TimeControlStatus.paused;
+            let waitingBecauseNoItemToPlay = player.timeControlStatus == AVPlayer.TimeControlStatus.waitingToPlayAtSpecifiedRate
+                    && player.reasonForWaitingToPlay == AVPlayer.WaitingReason.noItemToPlay
+            let isPlaying = !paused && !waitingBecauseNoItemToPlay;
             let event = IsPlayingChangedEvent.make(withPlayerId: self.id, isPlaying: isPlaying as NSNumber)
             self.playbackListener.onIsPlayingChanged(event, completion: { _ in })
         })
@@ -58,7 +85,47 @@ public class PlayerController {
         }
     }
 
-    func setPlayerItem(_ playerItem: AVPlayerItem) {
+    func setMediaItem(_ mediaItem: MediaItem) {
+        var playerItem = AVPlayerItem(url: URL(string: mediaItem.url)!);
+
+        var allItems: [AVMetadataItem] = []
+        if let metadataItem = MetadataUtils.metadataItem(identifier: AVMetadataIdentifier.commonIdentifierTitle.rawValue, value: mediaItem.metadata?.title as (NSCopying & NSObjectProtocol)?) {
+            allItems.append(metadataItem)
+        }
+        if let artist = mediaItem.metadata?.artist {
+            if let metadataItem = MetadataUtils.metadataItem(identifier: AVMetadataIdentifier.commonIdentifierArtist.rawValue, value: artist as (NSCopying & NSObjectProtocol)?) {
+                allItems.append(metadataItem)
+            }
+        }
+        if let artworkUri = mediaItem.metadata?.artworkUri {
+            if let url = URL(string: artworkUri) {
+                if let data = try? Data(contentsOf: url) {
+                    if let image = UIImage(data: data) {
+                        if let artworkItem = MetadataUtils.metadataArtworkItem(image: image) {
+                            allItems.append(artworkItem)
+                        }
+                    }
+                }
+            }
+        }
+        if let episodeId = mediaItem.metadata?.episodeId {
+            if let metadataItem = MetadataUtils.metadataItem(identifier: MetadataConstants.EpisodeId, value: episodeId as (NSCopying & NSObjectProtocol)?) {
+                allItems.append(metadataItem)
+            }
+        }
+        if let extras = mediaItem.metadata?.extras {
+            for item in extras {
+                if let metadataItem = MetadataUtils.metadataItem(identifier: item.key, value: item.value as (NSCopying & NSObjectProtocol)?, isExtra: true) {
+                    allItems.append(metadataItem)
+                }
+            }
+        }
+
+        if #available(iOS 12.2, *) {
+            playerItem.externalMetadata.append(contentsOf: allItems)
+        } else {
+            // Fallback on earlier versions
+        }
         player.replaceCurrentItem(with: playerItem)
     }
 
@@ -90,7 +157,7 @@ public class PlaybackApiImpl: NSObject, PlaybackPlatformPigeon {
         let player = PlayerController(playbackListener: playbackListener);
         players.append(player)
         if (url != nil) {
-            player.setPlayerItem(AVPlayerItem(url: URL(string: url!)!))
+            player.setMediaItem(MediaItem.make(withUrl: url!, mimeType: "application/x-mpegURL", metadata: nil, isLive: false, playbackStartPositionMs: nil))
         }
         completion(player.id, nil)
     }
@@ -107,37 +174,8 @@ public class PlaybackApiImpl: NSObject, PlaybackPlatformPigeon {
 
     public func replaceCurrentMediaItem(_ playerId: String, mediaItem: MediaItem, playbackPositionFromPrimary: NSNumber?, completion: (FlutterError?) -> ()) {
         let player = getPlayer(playerId);
-        var playerItem = AVPlayerItem(url: URL(string: mediaItem.url)!);
 
-        var allItems: [AVMetadataItem] = []
-        if let metadataItem = metadataItem(identifier: AVMetadataIdentifier.commonIdentifierTitle.rawValue, value: mediaItem.metadata?.title as (NSCopying & NSObjectProtocol)?) {
-            allItems.append(metadataItem)
-        }
-        if let artist = mediaItem.metadata?.artist {
-            if let metadataItem = metadataItem(identifier: AVMetadataIdentifier.commonIdentifierArtist.rawValue, value: artist as (NSCopying & NSObjectProtocol)?) {
-                allItems.append(metadataItem)
-            }
-        }
-        if let artworkUri = mediaItem.metadata?.artworkUri {
-            if let url = URL(string: artworkUri) {
-                if let data = try? Data(contentsOf: url) {
-                    if let image = UIImage(data: data) {
-                        if let artworkItem = metadataArtworkItem(image: image) {
-                            allItems.append(artworkItem)
-                        }
-                    }
-                }
-            }
-        }
-
-        if #available(iOS 12.2, *) {
-            playerItem.externalMetadata.append(contentsOf: allItems)
-        } else {
-            // Fallback on earlier versions
-        }
-
-
-        player?.setPlayerItem(playerItem)
+        player?.setMediaItem(mediaItem)
         completion(nil)
     }
 
@@ -159,25 +197,5 @@ public class PlaybackApiImpl: NSObject, PlaybackPlatformPigeon {
         } else {
             player?.player.pause();
         }
-    }
-
-    func metadataItem(identifier: String, value: (NSCopying & NSObjectProtocol)?) -> AVMetadataItem? {
-        if let actualValue = value {
-            let item = AVMutableMetadataItem()
-            item.value = actualValue
-            item.setValue(identifier, forKey: "identifier")
-            item.extendedLanguageTag = "und"
-            return item.copy() as? AVMetadataItem
-        }
-        return nil
-    }
-
-    func metadataArtworkItem(image: UIImage) -> AVMetadataItem? {
-        let item = AVMutableMetadataItem()
-        item.value = image.pngData() as (NSCopying & NSObjectProtocol)?
-        item.dataType = kCMMetadataBaseDataType_PNG as String
-        item.identifier = AVMetadataIdentifier.commonIdentifierArtwork
-        item.extendedLanguageTag = "und"
-        return item.copy() as? AVMetadataItem
     }
 }

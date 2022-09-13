@@ -38,6 +38,12 @@ abstract class PlayerController() : Player.Listener {
         if (episodeId != null) {
             extraMeta.putString("episode_id", episodeId);
         }
+        val sourceExtra = mediaItem.metadata?.extras;
+        if (sourceExtra != null) {
+            for (extra in sourceExtra) {
+                extraMeta.putString("media.bcc.extras." + extra.key, extra.value);
+            }
+        }
 
         metaBuilder.setTitle(mediaItem.metadata?.title)
                 .setArtist(mediaItem.metadata?.artist)
@@ -64,6 +70,17 @@ abstract class PlayerController() : Player.Listener {
         }
         metaBuilder.setTitle(mediaItem.mediaMetadata.title.toString());
         metaBuilder.setArtist(mediaItem.mediaMetadata.artist.toString());
+        val extraMeta = mutableMapOf<String, String>()
+        val sourceExtras = mediaItem.mediaMetadata.extras;
+        if (sourceExtras != null) {
+            for (sourceKey in sourceExtras.keySet()) {
+                val value = sourceExtras[sourceKey]
+                if (!sourceKey.contains("media.bcc.extras.") || value !is String) continue
+                val newKey = sourceKey.substring(sourceKey.indexOf("media.bcc.extras.")+"media.bcc.extras.".length)
+                extraMeta[newKey] = sourceExtras[sourceKey].toString();
+            }
+        }
+        metaBuilder.setExtras(extraMeta)
 
         val miBuilder = PlaybackPlatformApi.MediaItem.Builder()
                 .setUrl(mediaItem.localConfiguration?.uri.toString())

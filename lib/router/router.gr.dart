@@ -89,7 +89,9 @@ class AppRouter extends _i12.RootStackRouter {
     },
     LiveScreenRoute.name: (routeData) {
       return _i12.MaterialPageX<void>(
-          routeData: routeData, child: const _i10.LiveScreen());
+          routeData: routeData,
+          child: const _i10.LiveScreen(),
+          maintainState: false);
     },
     SearchScreenRoute.name: (routeData) {
       return _i12.MaterialPageX<void>(
@@ -113,7 +115,9 @@ class AppRouter extends _i12.RootStackRouter {
           _i12.RouteConfig(HomeScreenRoute.name,
               path: 'home', parent: RootScreenRoute.name),
           _i12.RouteConfig(LiveScreenRoute.name,
-              path: 'live', parent: RootScreenRoute.name),
+              path: 'live',
+              parent: RootScreenRoute.name,
+              meta: <String, dynamic>{'hide_mini_player': true}),
           _i12.RouteConfig(SearchScreenRoute.name,
               path: 'search', parent: RootScreenRoute.name)
         ])
