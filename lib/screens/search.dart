@@ -49,6 +49,27 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
                     CategoryButton(label: 'Kids', icon: FlutterLogo(size: 39))),
           ],
         ),
+        Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            FutureBuilder<List<Section>>(
+              future: sectionFuture,
+              builder: (context, snapshot) {
+                if (snapshot.hasData) {
+                  return Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: snapshot.data!
+                          .map((s) => ItemSection.fromSection(context, s, ref))
+                          .toList());
+                } else if (snapshot.hasError) {
+                  return Text(snapshot.error.toString());
+                }
+                // By default, show a loading spinner.
+                return const CircularProgressIndicator();
+              },
+            )
+          ],
+        ),
       ]),
     );
   }

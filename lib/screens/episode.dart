@@ -6,14 +6,11 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:bccm_player/bccm_player.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:my_app/graphql/client.dart';
-import 'package:my_app/graphql/queries/episode.graphql.dart';
 import 'package:my_app/providers/chromecast.dart';
 import 'package:my_app/providers/playback_api.dart';
 import 'package:my_app/providers/video_state.dart';
 import 'package:bccm_player/cast_button.dart';
 
-import '../api/brunstadtv.dart';
 import '../api/episodes.dart';
 
 class EpisodePageArguments {
@@ -23,15 +20,15 @@ class EpisodePageArguments {
 
 class EpisodeScreen extends ConsumerStatefulWidget {
   final PlayerType playerType = PlayerType.native;
-  final String episodeId;
-  const EpisodeScreen({super.key, @PathParam() required this.episodeId});
+  final int episodeId;
+  const EpisodeScreen({super.key, @PathParam() this.episodeId = 1789});
 
   @override
   ConsumerState<EpisodeScreen> createState() => _EpisodeScreenState();
 }
 
 class _EpisodeScreenState extends ConsumerState<EpisodeScreen> {
-  late Future<Episode?> episodeFuture;
+  late Future<Episode> episodeFuture;
   AnimationStatus? animationStatus;
   Animation? animation;
   StreamSubscription? chromecastSubscription;
@@ -39,6 +36,22 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen> {
   @override
   void initState() {
     super.initState();
+    episodeFuture = fetchEpisode(widget.episodeId);
+
+    chromecastSubscription = ref
+        .read(chromecastListenerProvider)
+        .on<CastSessionUnavailable>()
+        .listen((event) async {
+      var player = ref.read(primaryPlayerProvider);
+      var episode = await episodeFuture;
+      if (!mounted) return;
+      playEpisode(
+          playerId: player!.playerId,
+          episode: episode,
+          playbackPositionMs: event.playbackPositionMs);
+    });
+
+    setup();
   }
 
   Future setup() async {
@@ -53,7 +66,7 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen> {
     }
 
     var episode = await episodeFuture;
-    if (!mounted || episode == null) return;
+    if (!mounted) return;
 
     playEpisode(playerId: player.playerId, episode: episode);
   }
@@ -76,24 +89,6 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen> {
     super.didChangeDependencies();
     animation = ModalRoute.of(context)?.animation;
     animation?.addStatusListener(onAnimationStatus);
-
-    episodeFuture =
-        ref.watch(apiProvider).fetchEpisode(widget.episodeId.toString());
-
-    chromecastSubscription = ref
-        .read(chromecastListenerProvider)
-        .on<CastSessionUnavailable>()
-        .listen((event) async {
-      var player = ref.read(primaryPlayerProvider);
-      var episode = await episodeFuture;
-      if (!mounted || episode == null) return;
-      playEpisode(
-          playerId: player!.playerId,
-          episode: episode,
-          playbackPositionMs: event.playbackPositionMs);
-    });
-
-    setup();
   }
 
   @override
@@ -119,7 +114,7 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen> {
               children: [
                 Padding(
                   padding: const EdgeInsets.all(8.0),
-                  child: FutureBuilder<Episode?>(
+                  child: FutureBuilder<Episode>(
                       future: episodeFuture,
                       builder: (context, snapshot) {
                         if (snapshot.hasData) {

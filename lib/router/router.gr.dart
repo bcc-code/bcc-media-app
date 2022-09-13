@@ -71,7 +71,7 @@ class AppRouter extends _i12.RootStackRouter {
       final pathParams = routeData.inheritedPathParams;
       final args = routeData.argsAs<EpisodeScreenRouteArgs>(
           orElse: () => EpisodeScreenRouteArgs(
-              episodeId: pathParams.getString('episodeId')));
+              episodeId: pathParams.getInt('episodeId', 1789)));
       return _i12.CustomPage<void>(
           routeData: routeData,
           child: _i7.EpisodeScreen(key: args.key, episodeId: args.episodeId),
@@ -195,7 +195,7 @@ class VideoQualityRoute extends _i12.PageRouteInfo<void> {
 /// generated route for
 /// [_i7.EpisodeScreen]
 class EpisodeScreenRoute extends _i12.PageRouteInfo<EpisodeScreenRouteArgs> {
-  EpisodeScreenRoute({_i13.Key? key, required String episodeId})
+  EpisodeScreenRoute({_i13.Key? key, int episodeId = 1789})
       : super(EpisodeScreenRoute.name,
             path: 'episode/:episodeId',
             args: EpisodeScreenRouteArgs(key: key, episodeId: episodeId),
@@ -205,11 +205,11 @@ class EpisodeScreenRoute extends _i12.PageRouteInfo<EpisodeScreenRouteArgs> {
 }
 
 class EpisodeScreenRouteArgs {
-  const EpisodeScreenRouteArgs({this.key, required this.episodeId});
+  const EpisodeScreenRouteArgs({this.key, this.episodeId = 1789});
 
   final _i13.Key? key;
 
-  final String episodeId;
+  final int episodeId;
 
   @override
   String toString() {
