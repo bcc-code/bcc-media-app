@@ -13,6 +13,10 @@ buildscript {
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
     }
 }
+/*
+repositories {
+    maven { url  "https://npaw.jfrog.io/artifactory/youbora/" }
+}*/
 
 allprojects {
     repositories {
@@ -55,4 +59,6 @@ dependencies {
     implementation "androidx.media3:media3-test-utils:$media3_version"
     implementation "androidx.media3:media3-session:$media3_version"
     implementation "androidx.media3:media3-ui:$media3_version"
+    implementation fileTree(include: ['*.jar', '*.aar'], dir: '/Users/andreasgangso/dev/code/my_app/external_projects/exoplayer2-adapter-android/exoplayer2-adapter/buildout/outputs/aar')
+
 }
