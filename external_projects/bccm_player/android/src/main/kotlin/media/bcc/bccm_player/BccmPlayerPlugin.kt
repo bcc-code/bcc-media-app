@@ -7,6 +7,7 @@ import android.content.Intent
 import android.content.ServiceConnection
 import android.content.pm.ActivityInfo
 import android.os.IBinder
+import android.util.Log
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
@@ -17,7 +18,6 @@ import androidx.media3.session.SessionToken
 import com.google.android.gms.cast.framework.CastContext
 import com.google.common.util.concurrent.ListenableFuture
 import com.google.common.util.concurrent.MoreExecutors
-
 import io.flutter.embedding.engine.plugins.FlutterPlugin
 import io.flutter.embedding.engine.plugins.activity.ActivityAware
 import io.flutter.embedding.engine.plugins.activity.ActivityPluginBinding
@@ -25,9 +25,36 @@ import io.flutter.plugin.common.MethodCall
 import io.flutter.plugin.common.MethodChannel
 import io.flutter.plugin.common.MethodChannel.MethodCallHandler
 import io.flutter.plugin.common.MethodChannel.Result
+import kotlinx.coroutines.*
+import kotlinx.coroutines.flow.*
 import media.bcc.player.ChromecastControllerPigeon
 import media.bcc.player.PlaybackPlatformApi
 import media.bcc.player.PlaybackPlatformApi.PlaybackPlatformPigeon
+
+
+interface BccmPlayerPluginEvent {
+
+}
+
+class AttachedToActivityEvent(val activity: Activity) : BccmPlayerPluginEvent {}
+class DetachedFromActivityEvent() : BccmPlayerPluginEvent {}
+
+object BccmPlayerPluginSingleton {
+    val activityState = MutableStateFlow<Activity?>(null);
+    val eventBus = MutableSharedFlow<BccmPlayerPluginEvent>();
+    private val mainScope = CoroutineScope(Dispatchers.Main + Job())
+
+    init {
+        Log.d("bccm","bccmdebug: created BccmPlayerPluginSingleton")
+        mainScope.launch { keepTrackOfActivity() }
+    }
+
+    private suspend fun keepTrackOfActivity() {
+        eventBus.filter { event -> event is AttachedToActivityEvent}.collect {
+            event -> activityState.update { (event as AttachedToActivityEvent).activity }
+        }
+    }
+}
 
 /** BccmPlayerPlugin */
 class BccmPlayerPlugin : FlutterPlugin, MethodCallHandler, ActivityAware {
@@ -43,6 +70,7 @@ class BccmPlayerPlugin : FlutterPlugin, MethodCallHandler, ActivityAware {
     private var mBound: Boolean = false
     private var activity: Activity? = null
     private var castController: CastPlayerController? = null
+    private val mainScope = CoroutineScope(Dispatchers.Main)
     var playbackPigeon: PlaybackPlatformApi.PlaybackListenerPigeon? = null
         private set
 
@@ -115,6 +143,11 @@ class BccmPlayerPlugin : FlutterPlugin, MethodCallHandler, ActivityAware {
             1;
         }, MoreExecutors.directExecutor()
         )
+
+        mainScope.launch {
+            Log.d("bccm","OnAttachedToActivity")
+            BccmPlayerPluginSingleton.eventBus.emit(AttachedToActivityEvent(binding.activity))
+        }
     }
 
     override fun onDetachedFromActivityForConfigChanges() {
@@ -126,7 +159,10 @@ class BccmPlayerPlugin : FlutterPlugin, MethodCallHandler, ActivityAware {
     }
 
     override fun onDetachedFromActivity() {
-
+        mainScope.launch {
+            Log.d("bccm","OnDetachedFromActivity")
+            BccmPlayerPluginSingleton.eventBus.emit(DetachedFromActivityEvent())
+        }
         channel.setMethodCallHandler(null)
         pluginBinding!!.applicationContext.unbindService(playbackServiceConnection)
         MediaController.releaseFuture(controllerFuture)

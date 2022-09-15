@@ -1,6 +1,7 @@
 package media.bcc.bccm_player
 
 import android.content.Context
+import android.util.Log
 import androidx.media3.common.AudioAttributes
 import androidx.media3.common.C
 import androidx.media3.common.ForwardingPlayer
@@ -10,6 +11,8 @@ import com.google.android.gms.cast.framework.CastContext
 import com.npaw.youbora.lib6.exoplayer2.Exoplayer2Adapter
 import com.npaw.youbora.lib6.plugin.Options
 import com.npaw.youbora.lib6.plugin.Plugin
+import kotlinx.coroutines.*
+import kotlinx.coroutines.flow.*
 import java.util.*
 
 class ExoPlayerController(private val context: Context) : PlayerController(), PlayerManager.Listener {
@@ -23,6 +26,7 @@ class ExoPlayerController(private val context: Context) : PlayerController(), Pl
     private var currentPlayerViewWrapper: BccmPlayerViewWrapper? = null
     var isLive: Boolean = false
         private set
+    private val ioScope = CoroutineScope(Dispatchers.IO + SupervisorJob())
 
     init {/*
         val df = DefaultRenderersFactory(context).also {
@@ -38,10 +42,19 @@ class ExoPlayerController(private val context: Context) : PlayerController(), Pl
 
         val youboraOptions = Options()
         youboraOptions.accountCode = ""
+        youboraOptions.isAutoDetectBackground = false
         val youboraPlugin = Plugin(youboraOptions, context)
         val adapter = Exoplayer2Adapter(exoPlayer);
         // Here you would set the BandwidthMeter & CustomEventLogger
         youboraPlugin.adapter = adapter;
+/*
+        val something = UUID.randomUUID().toString();
+        ioScope.launch {
+            BccmPlayerPluginSingleton.activityState.collect() {
+                activity ->
+                Log.d("bccm", "exoplayercontroller.. $something")
+            }
+        }*/
 
         //playerManager = PlayerManager(context, this, getPlayer(), castContext)
     }
