@@ -27,7 +27,7 @@ class PlaybackApiImpl(private val plugin: BccmPlayerPlugin) : PlaybackPlatformAp
             return
         }
         if (playbackPositionFromPrimary == true) {
-            mediaItem.playbackStartPositionMs = playbackService.getPrimaryController().player.currentPosition
+            mediaItem.playbackStartPositionMs = playbackService.getPrimaryController()?.player?.currentPosition
         }
 
         val playerController = playbackService.getController(playerId)
