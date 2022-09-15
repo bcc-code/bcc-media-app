@@ -5,6 +5,7 @@ import android.os.Bundle
 import androidx.media3.common.MediaItem
 import androidx.media3.common.MediaMetadata
 import androidx.media3.common.Player
+import com.npaw.youbora.lib6.exoplayer2.Exoplayer2Adapter
 import media.bcc.player.PlaybackPlatformApi
 
 
@@ -45,6 +46,7 @@ abstract class PlayerController() : Player.Listener {
             }
         }
 
+
         metaBuilder.setTitle(mediaItem.metadata?.title)
                 .setArtist(mediaItem.metadata?.artist)
                 .setExtras(extraMeta)
@@ -76,7 +78,7 @@ abstract class PlayerController() : Player.Listener {
             for (sourceKey in sourceExtras.keySet()) {
                 val value = sourceExtras[sourceKey]
                 if (!sourceKey.contains("media.bcc.extras.") || value !is String) continue
-                val newKey = sourceKey.substring(sourceKey.indexOf("media.bcc.extras.")+"media.bcc.extras.".length)
+                val newKey = sourceKey.substring(sourceKey.indexOf("media.bcc.extras.") + "media.bcc.extras.".length)
                 extraMeta[newKey] = sourceExtras[sourceKey].toString();
             }
         }

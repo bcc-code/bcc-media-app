@@ -7,6 +7,9 @@ import androidx.media3.common.ForwardingPlayer
 import androidx.media3.common.Player
 import androidx.media3.exoplayer.ExoPlayer
 import com.google.android.gms.cast.framework.CastContext
+import com.npaw.youbora.lib6.exoplayer2.Exoplayer2Adapter
+import com.npaw.youbora.lib6.plugin.Options
+import com.npaw.youbora.lib6.plugin.Plugin
 import java.util.*
 
 class ExoPlayerController(private val context: Context) : PlayerController(), PlayerManager.Listener {
@@ -32,6 +35,14 @@ class ExoPlayerController(private val context: Context) : PlayerController(), Pl
             castContext = CastContext.getSharedInstance(context);
         } catch (e: Exception) {
         }
+
+        val youboraOptions = Options()
+        youboraOptions.accountCode = ""
+        val youboraPlugin = Plugin(youboraOptions, context)
+        val adapter = Exoplayer2Adapter(exoPlayer);
+        // Here you would set the BandwidthMeter & CustomEventLogger
+        youboraPlugin.adapter = adapter;
+
         //playerManager = PlayerManager(context, this, getPlayer(), castContext)
     }
 

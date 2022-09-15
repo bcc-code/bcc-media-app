@@ -6,6 +6,7 @@ buildscript {
     repositories {
         google()
         mavenCentral()
+        maven { url  "https://npaw.jfrog.io/artifactory/youbora/" }
     }
 
     dependencies {
@@ -13,15 +14,13 @@ buildscript {
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
     }
 }
-/*
-repositories {
-    maven { url  "https://npaw.jfrog.io/artifactory/youbora/" }
-}*/
+
 
 allprojects {
     repositories {
         google()
         mavenCentral()
+        maven { url  "https://npaw.jfrog.io/artifactory/youbora/" }
     }
 }
 
@@ -51,6 +50,8 @@ android {
 }
 
 dependencies {
+    def youboraVersion = "6.8.0"
+    implementation "com.nicepeopleatwork:youboralib:$youboraVersion"
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
     def media3_version = "1.0.0-beta02"
     implementation "androidx.media3:media3-exoplayer:$media3_version"
