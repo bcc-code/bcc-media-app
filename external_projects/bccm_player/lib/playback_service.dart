@@ -66,4 +66,9 @@ class PlaybackService extends PlaybackPlatformInterface {
   void stop(String playerId, bool reset) {
     _pigeon.stop(playerId, reset);
   }
+
+  @override
+  void setNpawConfig(NpawConfig? config) {
+    _pigeon.setNpawConfig(config);
+  }
 }

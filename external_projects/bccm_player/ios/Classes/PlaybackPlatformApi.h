@@ -16,12 +16,28 @@ typedef NS_ENUM(NSUInteger, CastConnectionState) {
   CastConnectionStateConnected = 4,
 };
 
+@class NpawConfig;
+@class User;
 @class MediaItem;
 @class MediaMetadata;
 @class ChromecastState;
 @class PositionUpdateEvent;
 @class IsPlayingChangedEvent;
 @class MediaItemTransitionEvent;
+
+@interface NpawConfig : NSObject
++ (instancetype)makeWithAppName:(nullable NSString *)appName
+    appReleaseVersion:(nullable NSString *)appReleaseVersion
+    accountCode:(nullable NSString *)accountCode;
+@property(nonatomic, copy, nullable) NSString * appName;
+@property(nonatomic, copy, nullable) NSString * appReleaseVersion;
+@property(nonatomic, copy, nullable) NSString * accountCode;
+@end
+
+@interface User : NSObject
++ (instancetype)makeWithId:(nullable NSString *)id;
+@property(nonatomic, copy, nullable) NSString * id;
+@end
 
 @interface MediaItem : NSObject
 /// `init` unavailable to enforce nonnull fields, see the `make` class method.
@@ -96,6 +112,8 @@ NSObject<FlutterMessageCodec> *PlaybackPlatformPigeonGetCodec(void);
 - (void)play:(NSString *)playerId error:(FlutterError *_Nullable *_Nonnull)error;
 - (void)pause:(NSString *)playerId error:(FlutterError *_Nullable *_Nonnull)error;
 - (void)stop:(NSString *)playerId reset:(NSNumber *)reset error:(FlutterError *_Nullable *_Nonnull)error;
+- (void)setUser:(User *)user error:(FlutterError *_Nullable *_Nonnull)error;
+- (void)setNpawConfig:(nullable NpawConfig *)config error:(FlutterError *_Nullable *_Nonnull)error;
 - (void)getChromecastState:(void(^)(ChromecastState *_Nullable, FlutterError *_Nullable))completion;
 @end
 

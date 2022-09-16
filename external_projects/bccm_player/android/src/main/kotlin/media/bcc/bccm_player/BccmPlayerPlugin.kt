@@ -38,9 +38,13 @@ interface BccmPlayerPluginEvent {
 
 class AttachedToActivityEvent(val activity: Activity) : BccmPlayerPluginEvent {}
 class DetachedFromActivityEvent() : BccmPlayerPluginEvent {}
+class User(val id: String?);
 
 object BccmPlayerPluginSingleton {
+
     val activityState = MutableStateFlow<Activity?>(null);
+    val npawConfigState = MutableStateFlow<PlaybackPlatformApi.NpawConfig?>(null);
+    val userState = MutableStateFlow<User?>(null);
     val eventBus = MutableSharedFlow<BccmPlayerPluginEvent>();
     private val mainScope = CoroutineScope(Dispatchers.Main + Job())
 

@@ -1324,26 +1324,24 @@ class _CopyWithStubImpl$Variables$Query$Page<TRes>
 }
 
 class Query$Page {
-  Query$Page({this.page, required this.$__typename});
+  Query$Page({required this.page, required this.$__typename});
 
   factory Query$Page.fromJson(Map<String, dynamic> json) {
     final l$page = json['page'];
     final l$$__typename = json['__typename'];
     return Query$Page(
-        page: l$page == null
-            ? null
-            : Query$Page$page.fromJson((l$page as Map<String, dynamic>)),
+        page: Query$Page$page.fromJson((l$page as Map<String, dynamic>)),
         $__typename: (l$$__typename as String));
   }
 
-  final Query$Page$page? page;
+  final Query$Page$page page;
 
   final String $__typename;
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
     final l$page = page;
-    _resultData['page'] = l$page?.toJson();
+    _resultData['page'] = l$page.toJson();
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -1405,16 +1403,15 @@ class _CopyWithImpl$Query$Page<TRes> implements CopyWith$Query$Page<TRes> {
 
   TRes call({Object? page = _undefined, Object? $__typename = _undefined}) =>
       _then(Query$Page(
-          page:
-              page == _undefined ? _instance.page : (page as Query$Page$page?),
+          page: page == _undefined || page == null
+              ? _instance.page
+              : (page as Query$Page$page),
           $__typename: $__typename == _undefined || $__typename == null
               ? _instance.$__typename
               : ($__typename as String)));
   CopyWith$Query$Page$page<TRes> get page {
     final local$page = _instance.page;
-    return local$page == null
-        ? CopyWith$Query$Page$page.stub(_then(_instance))
-        : CopyWith$Query$Page$page(local$page, (e) => call(page: e));
+    return CopyWith$Query$Page$page(local$page, (e) => call(page: e));
   }
 }
 

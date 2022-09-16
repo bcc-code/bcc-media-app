@@ -1,12 +1,32 @@
 package media.bcc.bccm_player
 
+import android.util.Log
 import androidx.media3.cast.CastPlayer
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.flow.update
+import kotlinx.coroutines.launch
 import media.bcc.player.PlaybackPlatformApi
 
-
 class PlaybackApiImpl(private val plugin: BccmPlayerPlugin) : PlaybackPlatformApi.PlaybackPlatformPigeon {
+    private val mainScope = CoroutineScope(Dispatchers.Main + Job())
+
+    override fun setUser(user: PlaybackPlatformApi.User) {
+        mainScope.launch {
+            BccmPlayerPluginSingleton.userState.update { User(user.id) }
+        }
+    }
+
+    override fun setNpawConfig(config: PlaybackPlatformApi.NpawConfig?) {
+        Log.d("bccm", "PlaybackPigeon: Setting npawConfig");
+        mainScope.launch {
+            BccmPlayerPluginSingleton.npawConfigState.update { config }
+        }
+    }
 
     override fun newPlayer(url: String?, result: PlaybackPlatformApi.Result<String>?) {
+        Log.d("bccm", "PlaybackPigeon: newPlayer()")
         val playbackService = plugin.getPlaybackService()
         if (playbackService == null) {
             result?.error(Error())

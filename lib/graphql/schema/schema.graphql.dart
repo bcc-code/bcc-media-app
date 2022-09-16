@@ -50,14 +50,14 @@ Enum$ItemSectionType fromJson$Enum$ItemSectionType(String value) {
   }
 }
 
-enum Enum$StreamType { hls, cmaf, dash, $unknown }
+enum Enum$StreamType { hls_ts, hls_cmaf, dash, $unknown }
 
 String toJson$Enum$StreamType(Enum$StreamType e) {
   switch (e) {
-    case Enum$StreamType.hls:
-      return r'hls';
-    case Enum$StreamType.cmaf:
-      return r'cmaf';
+    case Enum$StreamType.hls_ts:
+      return r'hls_ts';
+    case Enum$StreamType.hls_cmaf:
+      return r'hls_cmaf';
     case Enum$StreamType.dash:
       return r'dash';
     case Enum$StreamType.$unknown:
@@ -67,10 +67,10 @@ String toJson$Enum$StreamType(Enum$StreamType e) {
 
 Enum$StreamType fromJson$Enum$StreamType(String value) {
   switch (value) {
-    case r'hls':
-      return Enum$StreamType.hls;
-    case r'cmaf':
-      return Enum$StreamType.cmaf;
+    case r'hls_ts':
+      return Enum$StreamType.hls_ts;
+    case r'hls_cmaf':
+      return Enum$StreamType.hls_cmaf;
     case r'dash':
       return Enum$StreamType.dash;
     default:

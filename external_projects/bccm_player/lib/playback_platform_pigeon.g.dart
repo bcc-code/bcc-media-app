@@ -15,6 +15,56 @@ enum CastConnectionState {
   connected,
 }
 
+class NpawConfig {
+  NpawConfig({
+    this.appName,
+    this.appReleaseVersion,
+    this.accountCode,
+  });
+
+  String? appName;
+  String? appReleaseVersion;
+  String? accountCode;
+
+  Object encode() {
+    final Map<Object?, Object?> pigeonMap = <Object?, Object?>{};
+    pigeonMap['appName'] = appName;
+    pigeonMap['appReleaseVersion'] = appReleaseVersion;
+    pigeonMap['accountCode'] = accountCode;
+    return pigeonMap;
+  }
+
+  static NpawConfig decode(Object message) {
+    final Map<Object?, Object?> pigeonMap = message as Map<Object?, Object?>;
+    return NpawConfig(
+      appName: pigeonMap['appName'] as String?,
+      appReleaseVersion: pigeonMap['appReleaseVersion'] as String?,
+      accountCode: pigeonMap['accountCode'] as String?,
+    );
+  }
+}
+
+class User {
+  User({
+    this.id,
+  });
+
+  String? id;
+
+  Object encode() {
+    final Map<Object?, Object?> pigeonMap = <Object?, Object?>{};
+    pigeonMap['id'] = id;
+    return pigeonMap;
+  }
+
+  static User decode(Object message) {
+    final Map<Object?, Object?> pigeonMap = message as Map<Object?, Object?>;
+    return User(
+      id: pigeonMap['id'] as String?,
+    );
+  }
+}
+
 class MediaItem {
   MediaItem({
     required this.url,
@@ -206,6 +256,14 @@ class _PlaybackPlatformPigeonCodec extends StandardMessageCodec {
       buffer.putUint8(130);
       writeValue(buffer, value.encode());
     } else 
+    if (value is NpawConfig) {
+      buffer.putUint8(131);
+      writeValue(buffer, value.encode());
+    } else 
+    if (value is User) {
+      buffer.putUint8(132);
+      writeValue(buffer, value.encode());
+    } else 
 {
       super.writeValue(buffer, value);
     }
@@ -221,6 +279,12 @@ class _PlaybackPlatformPigeonCodec extends StandardMessageCodec {
       
       case 130:       
         return MediaMetadata.decode(readValue(buffer)!);
+      
+      case 131:       
+        return NpawConfig.decode(readValue(buffer)!);
+      
+      case 132:       
+        return User.decode(readValue(buffer)!);
       
       default:      
         return super.readValueOfType(type, buffer);
@@ -381,6 +445,50 @@ class PlaybackPlatformPigeon {
         'dev.flutter.pigeon.PlaybackPlatformPigeon.stop', codec, binaryMessenger: _binaryMessenger);
     final Map<Object?, Object?>? replyMap =
         await channel.send(<Object?>[arg_playerId, arg_reset]) as Map<Object?, Object?>?;
+    if (replyMap == null) {
+      throw PlatformException(
+        code: 'channel-error',
+        message: 'Unable to establish connection on channel.',
+      );
+    } else if (replyMap['error'] != null) {
+      final Map<Object?, Object?> error = (replyMap['error'] as Map<Object?, Object?>?)!;
+      throw PlatformException(
+        code: (error['code'] as String?)!,
+        message: error['message'] as String?,
+        details: error['details'],
+      );
+    } else {
+      return;
+    }
+  }
+
+  Future<void> setUser(User arg_user) async {
+    final BasicMessageChannel<Object?> channel = BasicMessageChannel<Object?>(
+        'dev.flutter.pigeon.PlaybackPlatformPigeon.setUser', codec, binaryMessenger: _binaryMessenger);
+    final Map<Object?, Object?>? replyMap =
+        await channel.send(<Object?>[arg_user]) as Map<Object?, Object?>?;
+    if (replyMap == null) {
+      throw PlatformException(
+        code: 'channel-error',
+        message: 'Unable to establish connection on channel.',
+      );
+    } else if (replyMap['error'] != null) {
+      final Map<Object?, Object?> error = (replyMap['error'] as Map<Object?, Object?>?)!;
+      throw PlatformException(
+        code: (error['code'] as String?)!,
+        message: error['message'] as String?,
+        details: error['details'],
+      );
+    } else {
+      return;
+    }
+  }
+
+  Future<void> setNpawConfig(NpawConfig? arg_config) async {
+    final BasicMessageChannel<Object?> channel = BasicMessageChannel<Object?>(
+        'dev.flutter.pigeon.PlaybackPlatformPigeon.setNpawConfig', codec, binaryMessenger: _binaryMessenger);
+    final Map<Object?, Object?>? replyMap =
+        await channel.send(<Object?>[arg_config]) as Map<Object?, Object?>?;
     if (replyMap == null) {
       throw PlatformException(
         code: 'channel-error',

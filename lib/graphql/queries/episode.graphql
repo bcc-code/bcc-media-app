@@ -10,5 +10,11 @@ query FetchEpisode($id: ID!) {
       audioLanguages
       subtitleLanguages
     }
+    season {
+      title
+      show {
+        title
+      }
+    }
   }
 }

@@ -19,7 +19,13 @@ Future playEpisode(
       metadata: MediaMetadata(
           title: episode.title,
           episodeId: episode.id.toString(),
-          artworkUri: episode.imageUrl),
+          artworkUri: episode.imageUrl,
+          extras: {
+            'npaw.content.id': episode.id,
+            'npaw.content.tvShow': episode.showTitle,
+            'npaw.content.season': episode.seasonTitle,
+            'npaw.content.episodeTitle': episode.title,
+          }),
       playbackStartPositionMs: playbackPositionMs);
 
   PlaybackPlatformInterface.instance
@@ -34,7 +40,13 @@ Future queueEpisode(
       metadata: MediaMetadata(
           title: episode.title,
           episodeId: episode.id.toString(),
-          artworkUri: episode.imageUrl));
+          artworkUri: episode.imageUrl,
+          extras: {
+            'npaw.content.id': episode.id,
+            'npaw.content.tvShow': episode.showTitle,
+            'npaw.content.season': episode.seasonTitle,
+            'npaw.content.episodeTitle': episode.title,
+          }));
 
   PlaybackPlatformInterface.instance.queueMediaItem(playerId, mediaItem);
 }

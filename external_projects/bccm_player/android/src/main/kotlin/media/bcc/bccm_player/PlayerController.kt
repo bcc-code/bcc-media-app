@@ -28,6 +28,17 @@ abstract class PlayerController() : Player.Listener {
         player.addMediaItem(androidMi)
     }
 
+    fun extractExtrasFromAndroid(source: Bundle) : Map<String, String> {
+        val extraMeta = mutableMapOf<String, String>()
+        for (sourceKey in source.keySet()) {
+            val value = source[sourceKey]
+            if (!sourceKey.contains("media.bcc.extras.") || value !is String) continue
+            val newKey = sourceKey.substring(sourceKey.indexOf("media.bcc.extras.") + "media.bcc.extras.".length)
+            extraMeta[newKey] = source[sourceKey].toString();
+        }
+        return extraMeta;
+    }
+
     fun mapMediaItem(mediaItem: PlaybackPlatformApi.MediaItem): MediaItem {
         val metaBuilder = MediaMetadata.Builder();
         val extraMeta = Bundle();
@@ -72,15 +83,10 @@ abstract class PlayerController() : Player.Listener {
         }
         metaBuilder.setTitle(mediaItem.mediaMetadata.title.toString());
         metaBuilder.setArtist(mediaItem.mediaMetadata.artist.toString());
-        val extraMeta = mutableMapOf<String, String>()
+        var extraMeta: Map<String, String> = mutableMapOf()
         val sourceExtras = mediaItem.mediaMetadata.extras;
         if (sourceExtras != null) {
-            for (sourceKey in sourceExtras.keySet()) {
-                val value = sourceExtras[sourceKey]
-                if (!sourceKey.contains("media.bcc.extras.") || value !is String) continue
-                val newKey = sourceKey.substring(sourceKey.indexOf("media.bcc.extras.") + "media.bcc.extras.".length)
-                extraMeta[newKey] = sourceExtras[sourceKey].toString();
-            }
+            extraMeta = extractExtrasFromAndroid(sourceExtras)
         }
         metaBuilder.setExtras(extraMeta)
 

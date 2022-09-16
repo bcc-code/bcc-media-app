@@ -44,3 +44,12 @@ let playerViewWidget = BccmPlayer(id: playerId)
 ## Navigation architecture
 
 We are using auto_route.
+
+
+# Other
+
+## "Unknown error" on login, issues with ssl, etc.
+Sometimes the android emulator's clock goes out of sync. You can run this adb command to update the clock
+```
+adb shell "su 0 date `date +%m%d%H%M%Y.%S`"       
+```

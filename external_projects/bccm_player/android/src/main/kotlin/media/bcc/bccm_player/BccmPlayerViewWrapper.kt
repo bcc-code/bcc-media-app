@@ -5,6 +5,7 @@ import android.app.PictureInPictureParams
 import android.content.Context
 import android.content.pm.ActivityInfo
 import android.os.Build
+import android.util.Log
 import android.util.Rational
 import android.view.LayoutInflater
 import android.view.View
@@ -53,7 +54,9 @@ class BccmPlayerViewWrapper(
     }
 
     override fun dispose() {
+        Log.d("bccm", "Disposing a playerview for playerId: $playerId")
         onDispose()
+        playerController?.releasePlayerView(this)
         playerController = null
     }
 
