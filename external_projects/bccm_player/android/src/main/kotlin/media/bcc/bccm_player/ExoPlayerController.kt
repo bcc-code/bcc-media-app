@@ -154,7 +154,7 @@ class ExoPlayerController(private val context: Context) : PlayerController(), Pl
     override fun onMediaMetadataChanged(mediaMetadata: MediaMetadata) {
         val extras = mediaMetadata.extras?.let { extractExtrasFromAndroid(it) }
         youboraPlugin.options.contentIsLive = extras?.get("npaw.content.isLive")?.toBoolean() ?: player.isCurrentMediaItemLive
-        youboraPlugin.options.contentId = extras?.get("npaw.content.id") ?: mediaMetadata.extras?.getString("identifier")
+        youboraPlugin.options.contentId = extras?.get("npaw.content.id") ?: mediaMetadata.extras?.getString("id")
         youboraPlugin.options.contentTitle = extras?.get("npaw.content.title") ?: mediaMetadata.title?.toString() ?: mediaMetadata.displayTitle?.toString()
         youboraPlugin.options.contentTvShow = extras?.get("npaw.content.tvShow")
         youboraPlugin.options.contentSeason = extras?.get("npaw.content.season");

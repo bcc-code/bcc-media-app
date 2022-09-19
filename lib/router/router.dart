@@ -31,7 +31,11 @@ import '../screens/root.dart';
       AuthGuard
     ], children: [
       MaterialRoute<void>(page: HomeScreen, path: 'home'),
-      MaterialRoute<void>(page: LiveScreen, path: 'live', meta: {'hide_mini_player': true}, maintainState: false),
+      MaterialRoute<void>(
+          page: LiveScreen,
+          path: 'live',
+          meta: {'hide_mini_player': true},
+          maintainState: true),
       MaterialRoute<void>(page: SearchScreen, path: 'search'),
     ]),
   ],

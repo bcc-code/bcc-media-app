@@ -13,15 +13,19 @@ public class PlayerController {
     public final let id: String
     final let playbackListener: PlaybackListenerPigeon
     final var observers = [NSKeyValueObservation]()
-    let youboraOptions: YBOptions
     var youboraPlugin: YBPlugin
 
-    init(id: String? = nil, playbackListener: PlaybackListenerPigeon) {
+    init(id: String? = nil, playbackListener: PlaybackListenerPigeon, npawConfig: NpawConfig?) {
         self.id = id ?? UUID().uuidString;
         self.playbackListener = playbackListener
-        youboraOptions = YBOptions();
+        let youboraOptions = YBOptions();
+        youboraOptions.enabled = npawConfig != nil;
+        youboraOptions.accountCode = npawConfig?.accountCode;
+        youboraOptions.appName = npawConfig?.appName;
+        youboraOptions.appReleaseVersion = npawConfig?.appReleaseVersion;
         youboraPlugin = YBPlugin(options: youboraOptions)
         youboraPlugin.adapter = YBAVPlayerAdapterSwiftTranformer.transform(from: YBAVPlayerAdapter(player: player))
+        youboraPlugin.firePreloadBegin()
         addObservers();
         print("BTV DEBUG: end of init playerController")
     }
@@ -33,10 +37,9 @@ public class PlayerController {
             return;
         }
         let duration = player.currentItem?.duration
-        let isLive = (extras["npaw.content.isLive"] as NSString?)?.boolValue ?? (duration != nil ? CMTIME_IS_INDEFINITE(duration!) : false);
-
-        youboraPlugin.options.contentIsLive = isLive as NSValue;
-        youboraPlugin.options.contentId = extras["npaw.content.id"] ?? extras["identifier"];
+        let isLive = (extras["npaw.content.isLive"] as NSString?)?.boolValue ?? (player.currentItem?.status == AVPlayerItem.Status.readyToPlay && duration != nil ? CMTIME_IS_INDEFINITE(duration!) : nil);
+        youboraPlugin.options.contentIsLive = isLive as NSValue?;
+        youboraPlugin.options.contentId = extras["npaw.content.id"] ?? extras["id"];
         youboraPlugin.options.contentTitle = extras["npaw.content.title"] ?? playerItem?.externalMetadata.first(where: { $0.identifier == AVMetadataIdentifier.commonIdentifierTitle })?.stringValue
         youboraPlugin.options.contentTvShow = extras["npaw.content.tvShow"];
         youboraPlugin.options.contentSeason = extras["npaw.content.season"];
@@ -63,6 +66,13 @@ public class PlayerController {
                     let key = val.identifier!.rawValue[range.upperBound...];
                     dict[String(key)] = (val.value as! String)
                 };
+    }
+
+    func updateNpawConfig(npawConfig: NpawConfig?) {
+        youboraPlugin.options.enabled = npawConfig != nil;
+        youboraPlugin.options.accountCode = npawConfig?.accountCode;
+        youboraPlugin.options.appName = npawConfig?.appName;
+        youboraPlugin.options.appReleaseVersion = npawConfig?.appReleaseVersion;
     }
 
     func addObservers() {
@@ -145,11 +155,6 @@ public class PlayerController {
                         }
                     }
                 }
-            }
-        }
-        if let episodeId = mediaItem.metadata?.episodeId {
-            if let metadataItem = MetadataUtils.metadataItem(identifier: MetadataConstants.EpisodeId, value: episodeId as (NSCopying & NSObjectProtocol)?) {
-                allItems.append(metadataItem)
             }
         }
         if let extras = mediaItem.metadata?.extras {

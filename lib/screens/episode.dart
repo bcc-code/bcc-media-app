@@ -47,7 +47,7 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen> {
         ? ref.read(castPlayerProvider)
         : ref.read(primaryPlayerProvider);
 
-    if (player!.currentMediaItem?.metadata?.episodeId ==
+    if (player!.currentMediaItem?.metadata?.extras?['id'] ==
         widget.episodeId.toString()) {
       return;
     }

@@ -89,9 +89,7 @@ class AppRouter extends _i12.RootStackRouter {
     },
     LiveScreenRoute.name: (routeData) {
       return _i12.MaterialPageX<void>(
-          routeData: routeData,
-          child: const _i10.LiveScreen(),
-          maintainState: false);
+          routeData: routeData, child: const _i10.LiveScreen());
     },
     SearchScreenRoute.name: (routeData) {
       return _i12.MaterialPageX<void>(

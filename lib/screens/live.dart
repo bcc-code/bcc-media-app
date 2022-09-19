@@ -59,10 +59,7 @@ class _LiveScreenState extends ConsumerState<LiveScreen> with AutoRouteAware {
             metadata: MediaMetadata(
                 artist: 'BrunstadTV',
                 title: 'Live',
-                extras: {
-                  'identifier': 'livestream',
-                  'npaw.content.isLive': 'true'
-                },
+                extras: {'id': 'livestream', 'npaw.content.isLive': 'true'},
                 artworkUri:
                     'https://brunstad.tv/static/images/poster_placeholder.jpg')));
   }

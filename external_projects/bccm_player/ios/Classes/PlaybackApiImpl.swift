@@ -5,11 +5,12 @@ public class PlaybackApiImpl: NSObject, PlaybackPlatformPigeon {
     var players = [PlayerController]()
     let playbackListener: PlaybackListenerPigeon
     var user: User? = nil
+    var npawConfig: NpawConfig? = nil
 
     init(playbackListener: PlaybackListenerPigeon) {
         self.playbackListener = playbackListener
         super.init()
-        let castPlayer = PlayerController(id: "chromecast", playbackListener: playbackListener);
+        let castPlayer = PlayerController(id: "chromecast", playbackListener: playbackListener, npawConfig: npawConfig);
         players.append(castPlayer);
     }
 
@@ -18,7 +19,7 @@ public class PlaybackApiImpl: NSObject, PlaybackPlatformPigeon {
     }
 
     public func setNpawConfig(_ config: NpawConfig?, error: AutoreleasingUnsafeMutablePointer<FlutterError?>) {
-        // TODO: implement
+        npawConfig = config;
     }
 
     public func getPlayer(_ id: String) -> PlayerController? {
@@ -30,7 +31,7 @@ public class PlaybackApiImpl: NSObject, PlaybackPlatformPigeon {
     }
 
     public func newPlayer(_ url: String?, completion: @escaping (String?, FlutterError?) -> Void) {
-        let player = PlayerController(playbackListener: playbackListener);
+        let player = PlayerController(playbackListener: playbackListener, npawConfig: npawConfig);
         players.append(player)
         if (url != nil) {
             player.setMediaItem(MediaItem.make(withUrl: url!, mimeType: "application/x-mpegURL", metadata: nil, isLive: false, playbackStartPositionMs: nil))
