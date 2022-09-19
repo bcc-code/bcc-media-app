@@ -18,7 +18,13 @@ class CastButton extends StatelessWidget {
         ),
       );
     } else if (Platform.isIOS) {
-      return Container();
+      return SizedBox(
+        width: 40,
+        height: 40,
+        child: UiKitView(
+          viewType: 'bccm_player/cast_button',
+        ),
+      );
     }
     return Container();
   }

@@ -73,8 +73,6 @@ class BccmPlayerView: NSObject, FlutterPlatformView {
         nativeLabel.textAlignment = .center
         nativeLabel.frame = CGRect(x: 0, y: 0, width: 180, height: 48.0)
 
-        let playerView = UIView()
-
         let playerViewController = AVPlayerViewController()
         //let player = AVPlayer(url: URL(string: _url)!)
         playerViewController.view.frame = frame

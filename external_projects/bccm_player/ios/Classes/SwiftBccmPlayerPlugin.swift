@@ -1,6 +1,7 @@
 import Flutter
 import UIKit
 import AVKit
+import GoogleCast
 
 public class SwiftBccmPlayerPlugin: NSObject, FlutterPlugin {
     public static func register(with registrar: FlutterPluginRegistrar) {
@@ -11,8 +12,12 @@ public class SwiftBccmPlayerPlugin: NSObject, FlutterPlugin {
         let playbackListener = PlaybackListenerPigeon(binaryMessenger: messenger)
         let playbackApi = PlaybackApiImpl(playbackListener: playbackListener);
 
-        let factory = BccmPlayerFactory(messenger: messenger, playbackApi: playbackApi)
-        registrar.register(factory, withId: "bccm-player")
+        registrar.register(
+            BccmPlayerFactory(messenger: messenger, playbackApi: playbackApi),
+            withId: "bccm-player")
+        registrar.register(
+            CastButtonFactory(messenger: messenger, playbackApi: playbackApi),
+            withId: "bccm_player/cast_button")
 
         PlaybackPlatformPigeonSetup(registrar.messenger(), playbackApi)
 
@@ -22,6 +27,11 @@ public class SwiftBccmPlayerPlugin: NSObject, FlutterPlugin {
         } catch {
             print("Setting category to AVAudioSessionCategoryPlayback failed.")
         }
+        
+        
+        let criteria = GCKDiscoveryCriteria(applicationID: "BC91FA3B")
+        let options = GCKCastOptions(discoveryCriteria: criteria)
+        GCKCastContext.setSharedInstanceWith(options)
 
     }
 
