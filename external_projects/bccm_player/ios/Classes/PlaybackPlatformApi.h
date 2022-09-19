@@ -112,7 +112,7 @@ NSObject<FlutterMessageCodec> *PlaybackPlatformPigeonGetCodec(void);
 - (void)play:(NSString *)playerId error:(FlutterError *_Nullable *_Nonnull)error;
 - (void)pause:(NSString *)playerId error:(FlutterError *_Nullable *_Nonnull)error;
 - (void)stop:(NSString *)playerId reset:(NSNumber *)reset error:(FlutterError *_Nullable *_Nonnull)error;
-- (void)setUser:(User *)user error:(FlutterError *_Nullable *_Nonnull)error;
+- (void)setUser:(nullable User *)user error:(FlutterError *_Nullable *_Nonnull)error;
 - (void)setNpawConfig:(nullable NpawConfig *)config error:(FlutterError *_Nullable *_Nonnull)error;
 - (void)getChromecastState:(void(^)(ChromecastState *_Nullable, FlutterError *_Nullable))completion;
 @end

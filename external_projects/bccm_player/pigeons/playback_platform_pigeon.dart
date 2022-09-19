@@ -33,9 +33,9 @@ abstract class PlaybackPlatformPigeon {
 
   @ObjCSelector("stop:reset:")
   void stop(String playerId, bool reset);
-  
+
   @ObjCSelector("setUser:")
-  void setUser(User user);
+  void setUser(User? user);
 
   @ObjCSelector("setNpawConfig:")
   void setNpawConfig(NpawConfig? config);

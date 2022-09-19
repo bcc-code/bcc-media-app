@@ -59,7 +59,10 @@ class _LiveScreenState extends ConsumerState<LiveScreen> with AutoRouteAware {
             metadata: MediaMetadata(
                 artist: 'BrunstadTV',
                 title: 'Live',
-                extras: {'id': 'livestream'},
+                extras: {
+                  'identifier': 'livestream',
+                  'npaw.content.isLive': 'true'
+                },
                 artworkUri:
                     'https://brunstad.tv/static/images/poster_placeholder.jpg')));
   }
@@ -78,12 +81,14 @@ class _LiveScreenState extends ConsumerState<LiveScreen> with AutoRouteAware {
               Row(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
-                  SizedBox(width: 100, child: ElevatedButton(
-                    onPressed: () => setState(() {
-                      audioOnly = !audioOnly;
-                    }),
-                    child: const Text('Audio only'),
-                  )),
+                  SizedBox(
+                      width: 100,
+                      child: ElevatedButton(
+                        onPressed: () => setState(() {
+                          audioOnly = !audioOnly;
+                        }),
+                        child: const Text('Audio only'),
+                      )),
                   const SizedBox(width: 40, child: CastButton()),
                 ],
               ),
@@ -101,10 +106,15 @@ class _LiveScreenState extends ConsumerState<LiveScreen> with AutoRouteAware {
                   } else if (snapshot.hasError) {
                     return Text(snapshot.error.toString());
                   }
-                  return const AspectRatio(aspectRatio: 16/9, child: Center(child: CircularProgressIndicator()));
+                  return const AspectRatio(
+                      aspectRatio: 16 / 9,
+                      child: Center(child: CircularProgressIndicator()));
                 }),
         const SizedBox(height: 20),
-        const SizedBox(height: 20000, child: Align(alignment: Alignment.topCenter, child: Text('Calendar here'))),
+        const SizedBox(
+            height: 20000,
+            child: Align(
+                alignment: Alignment.topCenter, child: Text('Calendar here'))),
         //
       ]),
     );

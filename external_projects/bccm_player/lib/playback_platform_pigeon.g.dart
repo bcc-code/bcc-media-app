@@ -462,7 +462,7 @@ class PlaybackPlatformPigeon {
     }
   }
 
-  Future<void> setUser(User arg_user) async {
+  Future<void> setUser(User? arg_user) async {
     final BasicMessageChannel<Object?> channel = BasicMessageChannel<Object?>(
         'dev.flutter.pigeon.PlaybackPlatformPigeon.setUser', codec, binaryMessenger: _binaryMessenger);
     final Map<Object?, Object?>? replyMap =

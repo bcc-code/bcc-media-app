@@ -589,7 +589,7 @@ public class PlaybackPlatformApi {
     void play(@NonNull String playerId);
     void pause(@NonNull String playerId);
     void stop(@NonNull String playerId, @NonNull Boolean reset);
-    void setUser(@NonNull User user);
+    void setUser(@Nullable User user);
     void setNpawConfig(@Nullable NpawConfig config);
     void getChromecastState(Result<ChromecastState> result);
 
@@ -827,9 +827,6 @@ public class PlaybackPlatformApi {
             try {
               ArrayList<Object> args = (ArrayList<Object>)message;
               User userArg = (User)args.get(0);
-              if (userArg == null) {
-                throw new NullPointerException("userArg unexpectedly null.");
-              }
               api.setUser(userArg);
               wrapped.put("result", null);
             }

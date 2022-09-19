@@ -12,9 +12,9 @@ import media.bcc.player.PlaybackPlatformApi
 class PlaybackApiImpl(private val plugin: BccmPlayerPlugin) : PlaybackPlatformApi.PlaybackPlatformPigeon {
     private val mainScope = CoroutineScope(Dispatchers.Main + Job())
 
-    override fun setUser(user: PlaybackPlatformApi.User) {
+    override fun setUser(user: PlaybackPlatformApi.User?) {
         mainScope.launch {
-            BccmPlayerPluginSingleton.userState.update { User(user.id) }
+            BccmPlayerPluginSingleton.userState.update { User(user?.id) }
         }
     }
 
