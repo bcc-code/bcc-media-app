@@ -4,6 +4,8 @@ import 'package:my_app/screens/profile/app_language.dart';
 import 'package:my_app/screens/profile/audio_language.dart';
 import 'package:my_app/screens/profile/subtitle_language.dart';
 import 'package:my_app/screens/profile/video_quality.dart';
+import 'package:my_app/screens/profile/contact_support.dart';
+import 'package:my_app/screens/profile/faq.dart';
 import 'package:my_app/screens/home.dart';
 import 'package:my_app/screens/live.dart';
 import 'package:my_app/screens/login.dart';
@@ -21,6 +23,8 @@ import '../screens/root.dart';
     MaterialRoute<void>(page: AppAudioLanguage, path: 'audio-languga'),
     MaterialRoute<void>(page: AppSubtitleLanguage, path: 'subtitle-language'),
     MaterialRoute<void>(page: VideoQuality, path: 'video-quality'),
+    MaterialRoute<void>(page: ContactSupport, path: 'contact-support'),
+    MaterialRoute<void>(page: FAQ, path: 'faq'),
     CustomRoute<void>(
       page: EpisodeScreen,
       path: 'episode/:episodeId',
