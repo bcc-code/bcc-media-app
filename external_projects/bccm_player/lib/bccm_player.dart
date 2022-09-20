@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:bccm_player/bccm_castplayer.dart';
+import 'package:bccm_player/playback_service_interface.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
@@ -64,12 +65,18 @@ class _BccmPlayerState extends State<BccmPlayer> {
         if (!_hidePlayer && Platform.isIOS)
           AspectRatio(
               aspectRatio: 16 / 9,
-              child: UiKitView(
-                  viewType: 'bccm-player',
-                  creationParams: <String, dynamic>{
-                    'player_id': widget.id,
-                  },
-                  creationParamsCodec: const StandardMessageCodec())),
+              child: InkWell(
+                onTap: () {
+                  PlaybackPlatformInterface.instance.play(widget.id);
+                },
+                child: UiKitView(
+                    viewType: 'bccm-player',
+                    hitTestBehavior: PlatformViewHitTestBehavior.translucent,
+                    creationParams: <String, dynamic>{
+                      'player_id': widget.id,
+                    },
+                    creationParamsCodec: const StandardMessageCodec()),
+              )),
         if (!_hidePlayer && Platform.isAndroid)
           Column(
             children: [

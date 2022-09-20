@@ -43,6 +43,12 @@ abstract class PlaybackPlatformPigeon {
   @async
   @ObjCSelector("getChromecastState")
   ChromecastState? getChromecastState();
+
+  @ObjCSelector("openExpandedCastController")
+  void openExpandedCastController();
+
+  @ObjCSelector("openCastDialog")
+  void openCastDialog();
 }
 
 class NpawConfig {

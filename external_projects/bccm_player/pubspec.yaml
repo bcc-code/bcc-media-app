@@ -4,12 +4,13 @@ version: 0.0.1
 homepage:
 
 environment:
-  sdk: '>=2.17.0 <3.0.0'
+  sdk: ">=2.17.0 <3.0.0"
   flutter: ">=2.5.0"
 
 dependencies:
   flutter:
     sdk: flutter
+  flutter_svg: ^1.1.5
   flutter_web_plugins:
     sdk: flutter
   plugin_platform_interface: ^2.0.2
@@ -45,6 +46,10 @@ flutter:
       web:
         pluginClass: BccmPlayerWeb
         fileName: bccm_player_web.dart
+
+  assets:
+    - assets/icons/
+    - assets/images/chromecast_bg.svg
 
   # To add assets to your plugin package, add an assets section, like this:
   # assets:

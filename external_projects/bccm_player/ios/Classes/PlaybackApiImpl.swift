@@ -1,17 +1,20 @@
 import Foundation
 import AVKit
+import GoogleCast
 
 public class PlaybackApiImpl: NSObject, PlaybackPlatformPigeon {
     var players = [PlayerController]()
+    private var primaryPlayerId: String? = nil
     let playbackListener: PlaybackListenerPigeon
+    let chromecastPigeon: ChromecastPigeon
     var user: User? = nil
     var npawConfig: NpawConfig? = nil
 
-    init(playbackListener: PlaybackListenerPigeon) {
+    init(chromecastPigeon: ChromecastPigeon, castPlayerController: CastPlayerController, playbackListener: PlaybackListenerPigeon) {
         self.playbackListener = playbackListener
+        self.chromecastPigeon = chromecastPigeon
         super.init()
-        let castPlayer = PlayerController(id: "chromecast", playbackListener: playbackListener, npawConfig: npawConfig);
-        players.append(castPlayer);
+        players.append(castPlayerController);
     }
 
     public func setUser(_ user: User?, error: AutoreleasingUnsafeMutablePointer<FlutterError?>) {
@@ -25,13 +28,16 @@ public class PlaybackApiImpl: NSObject, PlaybackPlatformPigeon {
     public func getPlayer(_ id: String) -> PlayerController? {
         players.first(where: { $0.id == id })
     }
+    public func getPrimaryPlayer() -> PlayerController? {
+        players.first(where: { $0.id == primaryPlayerId })
+    }
 
     public func setPrimary(_ id: String, completion: @escaping (FlutterError?) -> Void) {
-        completion(nil)
+        primaryPlayerId = id;
     }
 
     public func newPlayer(_ url: String?, completion: @escaping (String?, FlutterError?) -> Void) {
-        let player = PlayerController(playbackListener: playbackListener, npawConfig: npawConfig);
+        let player = AVQueuePlayerController(playbackListener: playbackListener, npawConfig: npawConfig);
         players.append(player)
         if (url != nil) {
             player.setMediaItem(MediaItem.make(withUrl: url!, mimeType: "application/x-mpegURL", metadata: nil, isLive: false, playbackStartPositionMs: nil))
@@ -40,12 +46,26 @@ public class PlaybackApiImpl: NSObject, PlaybackPlatformPigeon {
     }
 
     public func getChromecastState(_ completion: @escaping (ChromecastState?, FlutterError?) -> Void) {
-        completion(ChromecastState.make(with: CastConnectionState.noDevicesAvailable), nil);
+        let connectionStateRaw = GCKCastContext.sharedInstance().castState.rawValue+1
+        let connectionState = CastConnectionState.init(rawValue: UInt(connectionStateRaw))
+        if (connectionState != nil) {
+            completion(ChromecastState.make(with: connectionState!), nil);
+        } else {
+            completion(ChromecastState.make(with: CastConnectionState.noDevicesAvailable), nil);
+        }
+    }
+    
+    public func openExpandedCastController(_ error: AutoreleasingUnsafeMutablePointer<FlutterError?>) {
+        GCKCastContext.sharedInstance().presentDefaultExpandedMediaControls();
+    }
+    
+    public func openCastDialog(_ error: AutoreleasingUnsafeMutablePointer<FlutterError?>) {
+        GCKCastContext.sharedInstance().presentCastDialog();
     }
 
     public func queueMediaItem(_ playerId: String, mediaItem: MediaItem, completion: (FlutterError?) -> ()) {
         let player = getPlayer(playerId);
-        player?.queueItem(AVPlayerItem(url: URL(string: mediaItem.url)!))
+        player?.queueItem(mediaItem)
         completion(nil)
     }
 
@@ -59,20 +79,16 @@ public class PlaybackApiImpl: NSObject, PlaybackPlatformPigeon {
 
     public func play(_ playerId: String, error: AutoreleasingUnsafeMutablePointer<FlutterError?>) {
         let player = getPlayer(playerId);
-        player?.player.play();
+        player?.play();
     }
 
     public func pause(_ playerId: String, error: AutoreleasingUnsafeMutablePointer<FlutterError?>) {
         let player = getPlayer(playerId);
-        player?.player.pause();
+        player?.pause();
     }
 
     public func stop(_ playerId: String, reset: NSNumber, error: AutoreleasingUnsafeMutablePointer<FlutterError?>) {
         let player = getPlayer(playerId);
-        if (reset.boolValue) {
-            player?.player.removeAllItems();
-        } else {
-            player?.player.pause();
-        }
+        player?.stop(reset: reset.boolValue)
     }
 }

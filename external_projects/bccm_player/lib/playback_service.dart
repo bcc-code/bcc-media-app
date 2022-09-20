@@ -48,6 +48,16 @@ class PlaybackService extends PlaybackPlatformInterface {
   }
 
   @override
+  void openExpandedCastController() {
+    _pigeon.openExpandedCastController();
+  }
+
+  @override
+  void openCastDialog() {
+    _pigeon.openCastDialog();
+  }
+
+  @override
   Future<void> setPlaybackListener(PlaybackListenerPigeon listener) async {
     PlaybackListenerPigeon.setup(listener);
   }

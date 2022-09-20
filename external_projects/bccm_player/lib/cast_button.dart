@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:bccm_player/playback_service_interface.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -18,14 +19,23 @@ class CastButton extends StatelessWidget {
         ),
       );
     } else if (Platform.isIOS) {
-      return SizedBox(
-        width: 40,
-        height: 40,
-        child: UiKitView(
-          viewType: 'bccm_player/cast_button',
-        ),
-      );
+      return const UiKitView(viewType: 'bccm_player/cast_button');
     }
     return Container();
+  }
+
+  InkWell localButton() {
+    return InkWell(
+      onTap: () {
+        PlaybackPlatformInterface.instance.openCastDialog();
+      },
+      splashColor: Colors.transparent,
+      child: SizedBox(
+        width: 40,
+        height: 40,
+        child: Image.asset('assets/icons/castbutton_default.png',
+            package: 'bccm_player'),
+      ),
+    );
   }
 }

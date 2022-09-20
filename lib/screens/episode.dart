@@ -117,31 +117,34 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen> {
           : Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: FutureBuilder<Episode?>(
-                      future: episodeFuture,
-                      builder: (context, snapshot) {
-                        if (snapshot.hasData) {
-                          var episode = snapshot.data!;
-                          return Column(
+                FutureBuilder<Episode?>(
+                    future: episodeFuture,
+                    builder: (context, snapshot) {
+                      if (snapshot.hasData) {
+                        var episode = snapshot.data!;
+                        return Container(
+                          color: const Color.fromARGB(255, 29, 40, 56),
+                          child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               BccmPlayer(
                                   type: widget.playerType,
                                   id: casting ? 'chromecast' : primaryPlayerId),
-                              Text(episode.title,
-                                  style:
-                                      Theme.of(context).textTheme.titleMedium)
+                              Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Text(episode.title,
+                                    style:
+                                        Theme.of(context).textTheme.titleLarge),
+                              )
                             ],
-                          );
-                        } else if (snapshot.hasError) {
-                          return Text(snapshot.error.toString());
-                        }
-                        // By default, show a loading spinner.
-                        return const CircularProgressIndicator();
-                      }),
-                ),
+                          ),
+                        );
+                      } else if (snapshot.hasError) {
+                        return Text(snapshot.error.toString());
+                      }
+                      // By default, show a loading spinner.
+                      return const CircularProgressIndicator();
+                    }),
                 const SizedBox(width: 100, height: 2000)
               ],
             ),

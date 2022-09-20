@@ -4,6 +4,7 @@ query FetchEpisode($id: ID!) {
     title
     description
     extraDescription
+    imageUrl
     streams {
       type
       url

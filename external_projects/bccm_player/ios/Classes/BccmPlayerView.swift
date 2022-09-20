@@ -34,19 +34,26 @@ class BccmPlayerFactory: NSObject, FlutterPlatformViewFactory {
         if (playerController == nil) {
             fatalError("player with id " + playerId! + "does not exist")
         }
-        return BccmPlayerView(
-                frame: frame,
-                playerController: playerController!)
+        if let pc = playerController as? AVQueuePlayerController {
+            return AVPlayerBccmPlayerView(
+                    frame: frame,
+                    playerController: pc);
+        }
+        else if let pc = playerController as? CastPlayerController {
+            return CastPlayerView(frame: frame, playerController: pc);
+        } else {
+            fatalError("Playercontroller is of unknown type.");
+        }
     }
 }
 
-class BccmPlayerView: NSObject, FlutterPlatformView {
+class AVPlayerBccmPlayerView: NSObject, FlutterPlatformView {
     private var _view: UIView = UIView()
-    private var _playerController: PlayerController
+    private var _playerController: AVQueuePlayerController
 
     init(
             frame: CGRect,
-            playerController: PlayerController
+            playerController: AVQueuePlayerController
     ) {
         _view.frame = frame
         _playerController = playerController

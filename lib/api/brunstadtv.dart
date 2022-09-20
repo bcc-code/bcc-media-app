@@ -36,6 +36,7 @@ class Api {
         id: episode.id,
         streamUrl: streamUrl,
         title: episode.title,
+        imageUrl: episode.imageUrl,
         showTitle: episode.season?.$show.title,
         seasonTitle: episode.season?.title);
   }
