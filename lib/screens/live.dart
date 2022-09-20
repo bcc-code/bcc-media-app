@@ -1,9 +1,12 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:bccm_player/bccm_player.dart';
+import 'package:bccm_player/cast_button.dart';
 import 'package:bccm_player/playback_platform_pigeon.g.dart';
 import 'package:bccm_player/playback_service_interface.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:my_app/api/livestream.dart';
+import 'package:my_app/components/mini_player.dart';
 import 'package:my_app/providers/playback_api.dart';
 import 'package:my_app/providers/video_state.dart';
 
@@ -18,7 +21,7 @@ class LiveScreen extends ConsumerStatefulWidget {
   ConsumerState<LiveScreen> createState() => _LiveScreenState();
 }
 
-class _LiveScreenState extends ConsumerState<LiveScreen> {
+class _LiveScreenState extends ConsumerState<LiveScreen> with AutoRouteAware {
   String name = AuthService.instance.parsedIdToken!.name;
   final TextEditingController _idTokenDisplayController =
       TextEditingController(text: AuthService.instance.idToken);
@@ -44,6 +47,10 @@ class _LiveScreenState extends ConsumerState<LiveScreen> {
     var playbackApi = ref.read(playbackApiProvider);
     var liveUrl = await fetchLiveUrl();
 
+    if (player.currentMediaItem?.metadata?.extras?['id'] == 'livestream') {
+      return;
+    }
+
     playbackApi.replaceCurrentMediaItem(
         player.playerId,
         MediaItem(
@@ -52,6 +59,7 @@ class _LiveScreenState extends ConsumerState<LiveScreen> {
             metadata: MediaMetadata(
                 artist: 'BrunstadTV',
                 title: 'Live',
+                extras: {'id': 'livestream'},
                 artworkUri:
                     'https://brunstad.tv/static/images/poster_placeholder.jpg')));
   }
@@ -61,34 +69,42 @@ class _LiveScreenState extends ConsumerState<LiveScreen> {
     var player = ref.watch(primaryPlayerProvider);
     if (player == null) return const SizedBox.shrink();
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Video app'),
-        actions: [
-          ElevatedButton(
-            onPressed: () => setState(() {
-              audioOnly = true;
-            }),
-            child: const Text('Audio only'),
-          ),
-        ],
-      ),
+      appBar: PreferredSize(
+          preferredSize:
+              Size.fromHeight(30.0 + MediaQuery.of(context).padding.top),
+          child: SafeArea(
+            child: Stack(children: [
+              const Center(child: Text('Live')),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  SizedBox(width: 100, child: ElevatedButton(
+                    onPressed: () => setState(() {
+                      audioOnly = !audioOnly;
+                    }),
+                    child: const Text('Audio only'),
+                  )),
+                  const SizedBox(width: 40, child: CastButton()),
+                ],
+              ),
+            ]),
+          )),
       body: ListView(children: [
-        const ContactSupport(),
-        Text('Hi $name'),
-        TextFormField(
-          controller: _idTokenDisplayController,
-          readOnly: true,
-        ),
-        FutureBuilder(
-            future: playerFuture,
-            builder: (context, snapshot) {
-              if (snapshot.connectionState == ConnectionState.done) {
-                return BccmPlayer(type: PlayerType.native, id: player.playerId);
-              } else if (snapshot.hasError) {
-                return Text(snapshot.error.toString());
-              }
-              return const CircularProgressIndicator();
-            })
+        audioOnly
+            ? const MiniPlayer()
+            : FutureBuilder(
+                future: playerFuture,
+                builder: (context, snapshot) {
+                  if (snapshot.connectionState == ConnectionState.done) {
+                    return BccmPlayer(
+                        type: PlayerType.native, id: player.playerId);
+                  } else if (snapshot.hasError) {
+                    return Text(snapshot.error.toString());
+                  }
+                  return const AspectRatio(aspectRatio: 16/9, child: Center(child: CircularProgressIndicator()));
+                }),
+        const SizedBox(height: 20),
+        const SizedBox(height: 20000, child: Align(alignment: Alignment.topCenter, child: Text('Calendar here'))),
         //
       ]),
     );

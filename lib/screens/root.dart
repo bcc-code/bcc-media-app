@@ -17,7 +17,7 @@ class RootScreen extends ConsumerStatefulWidget {
   ConsumerState<RootScreen> createState() => _RootScreenState();
 }
 
-class _RootScreenState extends ConsumerState<RootScreen> {
+class _RootScreenState extends ConsumerState<RootScreen> with AutoRouteAware {
   final double iconSize = 30;
   late final Map<String, Image> icons;
 
@@ -60,6 +60,11 @@ class _RootScreenState extends ConsumerState<RootScreen> {
   }
 
   @override
+  void didChangeTabRoute(TabPageRoute previousRoute) {
+    print('Changed to settings tab from ${previousRoute.name}');
+  }
+
+  @override
   Widget build(BuildContext context) {
     return AutoTabsRouter(
         // list of your tab routes
@@ -78,9 +83,10 @@ class _RootScreenState extends ConsumerState<RootScreen> {
           // to access the tabsRouter controller provided in this context
           //
           //alterntivly you could use a global key
+          final hideMiniPlayer = tabsRouter.current.meta['hide_mini_player'] == true;
           return Scaffold(
               body: child,
-              bottomSheet: MiniPlayer(),
+              bottomSheet: hideMiniPlayer ? const SizedBox.shrink() : const MiniPlayer(),
               bottomNavigationBar: Container(
                 decoration: BoxDecoration(
                     border: Border(

@@ -81,7 +81,7 @@ class AppRouter extends _i14.RootStackRouter {
       final pathParams = routeData.inheritedPathParams;
       final args = routeData.argsAs<EpisodeScreenRouteArgs>(
           orElse: () => EpisodeScreenRouteArgs(
-              episodeId: pathParams.getInt('episodeId', 1789)));
+              episodeId: pathParams.getString('episodeId')));
       return _i14.CustomPage<void>(
           routeData: routeData,
           child: _i9.EpisodeScreen(key: args.key, episodeId: args.episodeId),
@@ -99,7 +99,9 @@ class AppRouter extends _i14.RootStackRouter {
     },
     LiveScreenRoute.name: (routeData) {
       return _i14.MaterialPageX<void>(
-          routeData: routeData, child: const _i12.LiveScreen());
+          routeData: routeData,
+          child: const _i12.LiveScreen(),
+          maintainState: false);
     },
     SearchScreenRoute.name: (routeData) {
       return _i14.MaterialPageX<void>(
@@ -125,7 +127,9 @@ class AppRouter extends _i14.RootStackRouter {
           _i14.RouteConfig(HomeScreenRoute.name,
               path: 'home', parent: RootScreenRoute.name),
           _i14.RouteConfig(LiveScreenRoute.name,
-              path: 'live', parent: RootScreenRoute.name),
+              path: 'live',
+              parent: RootScreenRoute.name,
+              meta: <String, dynamic>{'hide_mini_player': true}),
           _i14.RouteConfig(SearchScreenRoute.name,
               path: 'search', parent: RootScreenRoute.name)
         ])
@@ -224,7 +228,7 @@ class FAQRoute extends _i14.PageRouteInfo<void> {
 /// generated route for
 /// [_i9.EpisodeScreen]
 class EpisodeScreenRoute extends _i14.PageRouteInfo<EpisodeScreenRouteArgs> {
-  EpisodeScreenRoute({_i15.Key? key, int episodeId = 1789})
+  EpisodeScreenRoute({_i15.Key? key, required String episodeId})
       : super(EpisodeScreenRoute.name,
             path: 'episode/:episodeId',
             args: EpisodeScreenRouteArgs(key: key, episodeId: episodeId),
@@ -234,11 +238,11 @@ class EpisodeScreenRoute extends _i14.PageRouteInfo<EpisodeScreenRouteArgs> {
 }
 
 class EpisodeScreenRouteArgs {
-  const EpisodeScreenRouteArgs({this.key, this.episodeId = 1789});
+  const EpisodeScreenRouteArgs({this.key, required this.episodeId});
 
   final _i15.Key? key;
 
-  final int episodeId;
+  final String episodeId;
 
   @override
   String toString() {

@@ -56,6 +56,8 @@ dependencies:
   # package to fetch device info
   device_info_plus: ^4.1.2
   package_info: ^2.0.2
+  graphql: ^5.1.1
+  graphql_flutter: ^5.1.0
 dependency_overrides:
   bccm_player:
     path: external_projects/bccm_player
@@ -73,6 +75,7 @@ dev_dependencies:
   auto_route_generator: ^4.2.0
   pigeon: ^3.2.6
   freezed: ^2.1.0+1
+  graphql_codegen: ^0.11.0
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

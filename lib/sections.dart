@@ -4,6 +4,7 @@ import 'package:bccm_player/playback_service_interface.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:my_app/api/episodes.dart';
+import 'package:my_app/graphql/queries/page.graphql.dart';
 import 'package:my_app/providers/chromecast.dart';
 import 'package:my_app/providers/playback_api.dart';
 import 'package:my_app/router/router.gr.dart';
@@ -40,8 +41,10 @@ class ItemSection extends StatelessWidget {
   }
 
   factory ItemSection.fromSection(
-      BuildContext context, Section section, WidgetRef ref) {
-    var items = section.items.map((si) {
+      BuildContext context, Fragment$ItemSection section, WidgetRef ref) {
+    var items = section.items.items
+        .whereType<Fragment$ItemSectionItem$$EpisodeItem>()
+        .map((si) {
       var item = Item.fromSectionItem(si);
       return ItemWidget(
         item: item,
@@ -64,7 +67,7 @@ class ItemSection extends StatelessWidget {
                               child: Text('Play now')),
                           ElevatedButton(
                               onPressed: () {
-                                fetchEpisode(si.id).then(
+                                fetchLegacyEpisode(si.id).then(
                                   (episode) {
                                     queueEpisode(
                                         playerId: 'chromecast',
@@ -109,22 +112,25 @@ class Item {
   String? description;
   String url;
   PageRouteInfo route;
-  dynamic params;
   Item(
       {required this.title,
       required this.url,
       required this.route,
       this.description,
-      this.imageUrl,
-      this.params});
+      this.imageUrl});
 
-  factory Item.fromSectionItem(SectionItem sectionItem) {
+  factory Item.fromSectionItem(Fragment$ItemSectionItem sectionItem) {
+    PageRouteInfo<dynamic> route;
+    if (sectionItem is Fragment$ItemSectionItem$$EpisodeItem) {
+      route = EpisodeScreenRoute(episodeId: sectionItem.id);
+    } else {
+      route = const HomeScreenRoute();
+    }
     return Item(
         title: sectionItem.title,
+        route: route,
         imageUrl: sectionItem.imageUrl,
-        route: EpisodeScreenRoute(episodeId: sectionItem.id),
-        url: '/episode/${sectionItem.id}',
-        params: EpisodePageArguments(sectionItem.id));
+        url: '/episode/${sectionItem.id}');
   }
 }
 
