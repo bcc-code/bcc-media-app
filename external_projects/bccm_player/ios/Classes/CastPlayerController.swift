@@ -14,6 +14,7 @@ class CastPlayerController: NSObject, PlayerController  {
     var id: String
     var chromecastPigeon: ChromecastPigeon
     var castState: GCKCastState?
+    var positionUponEndingSession: TimeInterval?
     final var observers = [NSKeyValueObservation]()
     
     init(chromecastPigeon: ChromecastPigeon) {
@@ -50,7 +51,12 @@ class CastPlayerController: NSObject, PlayerController  {
     }
     
     func queueItem(_ mediaItem: MediaItem) {
-        
+        guard let mediaInfo = mapMediaItem(mediaItem) else {
+            fatalError("invalid url passed to setMediaItem");
+        };
+        let queueItemBuilder = GCKMediaQueueItemBuilder()
+        queueItemBuilder.mediaInformation = mediaInfo;
+        GCKCastContext.sharedInstance().sessionManager.currentCastSession?.remoteMediaClient?.queueInsert(queueItemBuilder.build(), beforeItemWithID: kGCKMediaQueueInvalidItemID);
     }
     
     func play() {
@@ -141,19 +147,13 @@ extension CastPlayerController: GCKSessionManagerListener {
 //    }
 //  }
 
-    func sessionManager(_: GCKSessionManager, didFailToStart _: GCKSession, withError error: Error) {
-
+    func sessionManager(_: GCKSessionManager, willEnd session: GCKSession) {
+        positionUponEndingSession = session.remoteMediaClient?.approximateStreamPosition()
     }
     
     func sessionManager(_ sessionManager: GCKSessionManager, didSuspend session: GCKSession,
                         with reason: GCKConnectionSuspendReason) {
         chromecastPigeon.onSessionSuspended() { _ in }
-        let position = session.remoteMediaClient?.approximateStreamPosition()
-        var positionMs: NSNumber? = nil
-        if position != nil {
-            positionMs = Int(position!*1000) as NSNumber
-        }
-        chromecastPigeon.onCastSessionUnavailable(CastSessionUnavailableEvent.make(withPlaybackPositionMs: positionMs)) { _ in }
     }
     
     func sessionManager(_ sessionManager: GCKSessionManager, didResumeSession session: GCKSession) {
@@ -174,10 +174,9 @@ extension CastPlayerController: GCKSessionManagerListener {
         withError error: Error?
     ) {
         chromecastPigeon.onSessionEnded { _ in }
-        let position = session.remoteMediaClient?.approximateStreamPosition()
         var positionMs: NSNumber? = nil
-        if position != nil {
-            positionMs = Int(position!*1000) as NSNumber
+        if positionUponEndingSession != nil {
+            positionMs = Int(positionUponEndingSession!*1000) as NSNumber
         }
         chromecastPigeon.onCastSessionUnavailable(CastSessionUnavailableEvent.make(withPlaybackPositionMs: positionMs)) { _ in }
     }
