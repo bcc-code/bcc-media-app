@@ -17,7 +17,7 @@ buildscript {
 }
 
 
-allprojects {
+rootProject.allprojects {
     repositories {
         google()
         mavenCentral()
@@ -61,6 +61,6 @@ dependencies {
     implementation "androidx.media3:media3-test-utils:$media3_version"
     implementation "androidx.media3:media3-session:$media3_version"
     implementation "androidx.media3:media3-ui:$media3_version"
-    implementation fileTree(include: ['exoplayer2-adapter-debug.aar'], dir: '../../../external_projects')
+    implementation fileTree(include: ['exoplayer2-adapter-debug.jar'], dir: '../../../external_projects')
 
 }
