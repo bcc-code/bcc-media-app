@@ -3,13 +3,9 @@ import 'package:riverpod/riverpod.dart';
 
 class CategoryEpisode extends StatelessWidget {
   final double itemWidth;
-  double? imageHeight;
   Map<String, String> episode;
-  // EdgeInsetsGeometry margin;
 
-  CategoryEpisode({required this.episode, required this.itemWidth}) {
-    imageHeight = itemWidth * (9 / 16);
-  }
+  CategoryEpisode({required this.episode, required this.itemWidth});
 
   @override
   Widget build(BuildContext context) {

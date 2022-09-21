@@ -14,38 +14,38 @@ class _SearchBarState extends State<SearchBar> {
   final _fieldController = TextEditingController();
   var _showClearButton = false;
   var _showCancelButton = false;
-  var prevValue = '';
+  var _prevValue = '';
 
   @override
   void initState() {
     super.initState();
-    _fieldController.addListener(onValueChange);
+    _fieldController.addListener(_onValueChange);
   }
 
-  void onValueChange() {
+  void _onValueChange() {
     /* Ignore event caused when focussing text field */
-    if (_fieldController.text != prevValue) {
+    if (_fieldController.text != _prevValue) {
       widget.onInputChange(_fieldController.text);
     }
-    prevValue = _fieldController.text;
+    _prevValue = _fieldController.text;
     setState(() {
       _showClearButton = _fieldController.text == '' ? false : true;
     });
   }
 
-  void onCleared() {
+  void _onCleared() {
     _fieldController.clear();
   }
 
-  void onFocusChanged(focus) {
+  void _onFocusChanged(focus) {
     if (focus) {
       widget.onModeChange(true);
       _showCancelButton = true;
     }
   }
 
-  void onCancelled() {
-    onCleared();
+  void _onCancelled() {
+    _onCleared();
     FocusScope.of(context).unfocus();
     _showCancelButton = false;
     widget.onModeChange(false);
@@ -73,7 +73,7 @@ class _SearchBarState extends State<SearchBar> {
               ),
               child: FocusScope(
                 child: Focus(
-                  onFocusChange: onFocusChanged,
+                  onFocusChange: _onFocusChanged,
                   child: TextField(
                     controller: _fieldController,
                     decoration: InputDecoration(
@@ -93,7 +93,7 @@ class _SearchBarState extends State<SearchBar> {
                                   const EdgeInsets.only(right: 12, left: 10),
                               child: InkWell(
                                 onTap: () {
-                                  onCleared();
+                                  _onCleared();
                                 },
                                 child: const ImageIcon(
                                     AssetImage(
@@ -127,7 +127,7 @@ class _SearchBarState extends State<SearchBar> {
                           borderRadius: BorderRadius.circular(50)),
                       padding: const EdgeInsets.symmetric(horizontal: 8),
                     ),
-                    onPressed: onCancelled,
+                    onPressed: _onCancelled,
                     child: const Text(
                       'Cancel',
                       style:

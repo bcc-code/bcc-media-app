@@ -6,7 +6,7 @@ class CategoryButton extends StatelessWidget {
   final double width;
   final VoidCallback? onTap;
   double? height;
-  double? imageWidth;
+  double? _imageWidth;
 
   CategoryButton({
     super.key,
@@ -17,7 +17,7 @@ class CategoryButton extends StatelessWidget {
     this.onTap,
   }) {
     height = height ?? width * (9 / 16);
-    imageWidth = width * 0.39;
+    _imageWidth = width * 0.39;
   }
 
   @override
@@ -37,7 +37,7 @@ class CategoryButton extends StatelessWidget {
             ),
             child: Center(
                 child: Image.asset(imagePath,
-                    width: imageWidth, height: imageWidth, fit: BoxFit.fill)),
+                    width: _imageWidth, height: _imageWidth, fit: BoxFit.fill)),
           ),
           SizedBox(
             width: width,

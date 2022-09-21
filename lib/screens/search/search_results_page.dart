@@ -8,17 +8,16 @@ import 'episode_list.dart';
 import 'result_programs_list.dart';
 
 class SearchResultsPage extends ConsumerStatefulWidget {
-  final String searchInput;
+  final String _searchInput;
 
-  const SearchResultsPage(this.searchInput);
+  const SearchResultsPage(this._searchInput);
 
   @override
   ConsumerState<SearchResultsPage> createState() => _SearchResultsPageState();
 }
 
 class _SearchResultsPageState extends ConsumerState<SearchResultsPage> {
-  var results = true;
-  late Future<Query$Search$search?> resultFuture;
+  late Future<Query$Search$search?> _resultFuture;
 
   @override
   void didUpdateWidget(SearchResultsPage oldWidget) {
@@ -26,11 +25,11 @@ class _SearchResultsPageState extends ConsumerState<SearchResultsPage> {
 
     final client = ref.read(gqlClientProvider);
 
-    if (widget.searchInput != '') {
-      resultFuture = client
+    if (widget._searchInput != '') {
+      _resultFuture = client
           .query$Search(
         Options$Query$Search(
-          variables: Variables$Query$Search(queryString: widget.searchInput),
+          variables: Variables$Query$Search(queryString: widget._searchInput),
         ),
       )
           .onError((error, stackTrace) {
@@ -49,11 +48,11 @@ class _SearchResultsPageState extends ConsumerState<SearchResultsPage> {
 
   @override
   Widget build(BuildContext context) {
-    if (widget.searchInput == '') {
-      return noInputInfoWidget;
+    if (widget._searchInput == '') {
+      return _noInputInfoWidget;
     } else {
       return FutureBuilder<Query$Search$search?>(
-        future: resultFuture,
+        future: _resultFuture,
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return const Center(
@@ -66,9 +65,9 @@ class _SearchResultsPageState extends ConsumerState<SearchResultsPage> {
           if (snapshot.hasData) {
             var searchResults = snapshot.data!.result;
             if (searchResults.isEmpty) {
-              return noResultsInfoWidget;
+              return _noResultsInfoWidget;
             } else {
-              var results = getResultProgramsEpisodes(searchResults);
+              var results = _getResultProgramsEpisodes(searchResults);
               List<SearchResultItem> programs =
                   results['programs'] as List<SearchResultItem>;
               List<SearchResultItem> episodes =
@@ -96,7 +95,7 @@ class _SearchResultsPageState extends ConsumerState<SearchResultsPage> {
     }
   }
 
-  final noResultsInfoWidget = Center(
+  final _noResultsInfoWidget = Center(
     child: Column(
       mainAxisSize: MainAxisSize.min,
       children: [
@@ -115,7 +114,7 @@ class _SearchResultsPageState extends ConsumerState<SearchResultsPage> {
     ),
   );
 
-  final noInputInfoWidget = Center(
+  final _noInputInfoWidget = Center(
     child: Container(
       margin: const EdgeInsets.symmetric(horizontal: 24),
       child: const Text(
@@ -130,7 +129,7 @@ class _SearchResultsPageState extends ConsumerState<SearchResultsPage> {
     ),
   );
 
-  Map<String, List<SearchResultItem>> getResultProgramsEpisodes(
+  Map<String, List<SearchResultItem>> _getResultProgramsEpisodes(
       List<Fragment$SearchResultItem> results) {
     List<SearchResultItem> programs = [];
     List<SearchResultItem> episodes = [];

@@ -18,13 +18,13 @@ class _SearchScreenState extends State<SearchScreen> {
   var _inSearchMode = false;
   var _curSearchValue = '';
 
-  onSearchModeChanged(bool mode) {
+  _onSearchModeChanged(bool mode) {
     setState(() {
       _inSearchMode = mode;
     });
   }
 
-  onSearchInputChanged(String input) {
+  _onSearchInputChanged(String input) {
     setState(() {
       _curSearchValue = input;
     });
@@ -36,8 +36,8 @@ class _SearchScreenState extends State<SearchScreen> {
       body: Column(
         children: [
           SearchBar(
-            onModeChange: onSearchModeChanged,
-            onInputChange: onSearchInputChanged,
+            onModeChange: _onSearchModeChanged,
+            onInputChange: _onSearchInputChanged,
           ),
           Container(
             margin: const EdgeInsets.only(bottom: 8),

@@ -34,11 +34,11 @@ class EpisodeList extends StatelessWidget {
 }
 
 class _Episode extends StatelessWidget {
-  final SearchResultItem episode;
-  final ageGroup = '12+';
-  final duration = '40 min';
+  final SearchResultItem _episode;
+  final _ageGroup = '12+';
+  final _duration = '40 min';
 
-  const _Episode(this.episode);
+  const _Episode(this._episode);
 
   @override
   Widget build(BuildContext context) {
@@ -54,8 +54,8 @@ class _Episode extends StatelessWidget {
             margin: const EdgeInsets.only(right: 16),
             child: ClipRRect(
               borderRadius: BorderRadius.circular(4),
-              child: episode.image != null
-                  ? Image.network(episode.image as String)
+              child: _episode.image != null
+                  ? Image.network(_episode.image as String)
                   : Container(),
             ),
           ),
@@ -63,11 +63,11 @@ class _Episode extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                if (episode.showTitle != null)
+                if (_episode.showTitle != null)
                   Container(
                     margin: const EdgeInsets.only(bottom: 5),
                     child: Text(
-                      episode.showTitle!,
+                      _episode.showTitle!,
                       style: const TextStyle(
                         fontSize: 12,
                         fontWeight: FontWeight.w500,
@@ -79,7 +79,7 @@ class _Episode extends StatelessWidget {
                   child: Container(
                     margin: const EdgeInsets.only(bottom: 6),
                     child: Text(
-                      episode.title,
+                      _episode.title,
                       style: const TextStyle(
                           fontWeight: FontWeight.w500, fontSize: 14),
                     ),
@@ -103,7 +103,7 @@ class _Episode extends StatelessWidget {
                             const BorderRadius.all(Radius.circular(8)),
                       ),
                       child: Text(
-                        ageGroup,
+                        _ageGroup,
                         style: const TextStyle(
                           fontSize: 12,
                           fontWeight: FontWeight.w500,
@@ -112,7 +112,7 @@ class _Episode extends StatelessWidget {
                       ),
                     ),
                     Text(
-                      duration,
+                      _duration,
                       style: const TextStyle(
                         color: Color.fromRGBO(180, 192, 210, 1),
                         fontSize: 12,

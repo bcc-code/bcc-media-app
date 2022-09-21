@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import '../../components/option_list.dart';
 
@@ -8,16 +7,16 @@ class ExploreCategorySort extends StatefulWidget {
 }
 
 class _ExploreCategorySortState extends State<ExploreCategorySort> {
-  final optionData = [
+  final _optionData = [
     Option(id: 'recently_published', title: 'Recently published'),
     Option(id: 'a-z', title: 'A - Z'),
   ];
 
-  String selectedOption = 'recently_published';
+  String _selectedOption = 'recently_published';
 
-  void onSelectionChanged(String id) {
+  void _onSelectionChanged(String id) {
     setState(() {
-      selectedOption = id;
+      _selectedOption = id;
     });
   }
 
@@ -56,9 +55,9 @@ class _ExploreCategorySortState extends State<ExploreCategorySort> {
         Container(
           margin: const EdgeInsets.only(bottom: 16),
           child: OptionList(
-            optionData: optionData,
-            currentSelection: selectedOption,
-            onSelectionChange: onSelectionChanged,
+            optionData: _optionData,
+            currentSelection: _selectedOption,
+            onSelectionChange: _onSelectionChanged,
             margin: const EdgeInsets.all(0),
             enableDivider: false,
           ),

@@ -20,7 +20,7 @@ class ExploreCategoryScreen extends StatelessWidget {
     },
   );
 
-  openSortOptions(context) {
+  _openSortOptions(context) {
     showModalBottomSheet(
       context: context,
       useRootNavigator: true,
@@ -42,7 +42,7 @@ class ExploreCategoryScreen extends StatelessWidget {
 
     List<Widget> rightAppBarButtons = [
       GestureDetector(
-        onTap: () => openSortOptions(context),
+        onTap: () => _openSortOptions(context),
         child: Image.asset(
           'assets/icons/ExploreCategorySort.png',
           width: 24,

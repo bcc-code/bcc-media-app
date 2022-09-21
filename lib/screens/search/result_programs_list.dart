@@ -36,10 +36,10 @@ class ResultProgramsList extends StatelessWidget {
 }
 
 class _Program extends StatelessWidget {
-  final SearchResultItem item;
-  final slideWidth = 140.0;
+  final SearchResultItem _item;
+  final _slideWidth = 140.0;
 
-  const _Program(this.item);
+  const _Program(this._item);
 
   @override
   Widget build(BuildContext context) {
@@ -48,18 +48,18 @@ class _Program extends StatelessWidget {
       children: [
         Container(
           height: 80,
-          width: slideWidth,
+          width: _slideWidth,
           margin: const EdgeInsets.only(right: 16, bottom: 7),
           child: ClipRRect(
             borderRadius: BorderRadius.circular(4),
-            child: item.image != null
-                ? Image.network(item.image as String)
+            child: _item.image != null
+                ? Image.network(_item.image as String)
                 : Container(),
           ),
         ),
         SizedBox(
-          width: slideWidth,
-          child: Text(item.title),
+          width: _slideWidth,
+          child: Text(_item.title),
         ),
       ],
     );
