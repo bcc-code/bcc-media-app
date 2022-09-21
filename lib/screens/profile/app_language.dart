@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import '../../components/option_list.dart';
-import './contact_support.dart';
-import './faq.dart';
 
 class Option {
   final String id;
@@ -81,9 +79,6 @@ class _AppLanguageScreenState extends State<AppLanguageScreen> {
 
   @override
   Widget build(BuildContext context) {
-    // return LoadingPage();
-    // return const ContactSupport();
-    // return FAQ();
     return Scaffold(
       appBar: AppBar(
         backgroundColor: const Color.fromRGBO(13, 22, 35, 1),

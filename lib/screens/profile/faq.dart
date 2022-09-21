@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:auto_route/auto_route.dart';
 
-class FAQQuestionList {
+class FAQItem {
   final int id;
   final String question;
   final String answer;
 
-  FAQQuestionList({
+  FAQItem({
     required this.id,
     required this.question,
     required this.answer,
@@ -22,34 +22,34 @@ class FAQ extends StatefulWidget {
 
 class _FAQState extends State<FAQ> {
   var listOfList = [
-    FAQQuestionList(
+    FAQItem(
       id: 1,
       question: 'Title 1 Title 1 Title 1 Title 1 Title 1 Title1',
       answer: 'title 2',
       // question: 'Hvorfor funker dette ikke som jeg forventer?',
       // answer: 'Fordi lorem ipsum dolor sit amet consectur osv.',
     ),
-    FAQQuestionList(
+    FAQItem(
       id: 2,
       question: 'Hvorfor funker dette ikke som jeg forventer?',
       answer: 'Fordi lorem ipsum dolor sit amet consectur osv.',
     ),
-    FAQQuestionList(
+    FAQItem(
       id: 3,
       question: 'Hvorfor funker dette ikke som jeg forventer?',
       answer: 'Fordi lorem ipsum dolor sit amet consectur osv.',
     ),
-    FAQQuestionList(
+    FAQItem(
       id: 4,
       question: 'Hvorfor funker dette ikke som jeg forventer?',
       answer: 'Fordi lorem ipsum dolor sit amet consectur osv.',
     ),
-    FAQQuestionList(
+    FAQItem(
       id: 5,
       question: 'Hvorfor funker dette ikke som jeg forventer?',
       answer: 'Fordi lorem ipsum dolor sit amet consectur osv.',
     ),
-    FAQQuestionList(
+    FAQItem(
       id: 6,
       question: 'Hvorfor funker dette ikke som jeg forventer?',
       answer: 'Fordi lorem ipsum dolor sit amet consectur osv.',
@@ -68,13 +68,12 @@ class _FAQState extends State<FAQ> {
           },
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
-            // ignore: prefer_const_literals_to_create_immutables
-            children: [
-              const Icon(
+            children: const [
+              Icon(
                 Icons.arrow_back_ios_new,
                 color: Color.fromRGBO(110, 176, 230, 1),
               ),
-              const Text(
+              Text(
                 'Profil',
                 overflow: TextOverflow.ellipsis,
                 style: TextStyle(
@@ -109,7 +108,7 @@ class _FAQState extends State<FAQ> {
 }
 
 class ExpansionTileDropDown extends StatefulWidget {
-  final FAQQuestionList questionList;
+  final FAQItem questionList;
   final int index;
 
   const ExpansionTileDropDown(this.questionList, this.index, {super.key});
@@ -130,7 +129,7 @@ class _ExpansionTileDropDownState extends State<ExpansionTileDropDown> {
         right: 19,
         bottom: 16,
       ),
-      margin: EdgeInsets.symmetric(
+      margin: const EdgeInsets.symmetric(
         // vertical: MediaQuery.of(context).size.height * 0.006,
         vertical: 8,
       ),
@@ -163,7 +162,7 @@ class _ExpansionTileDropDownState extends State<ExpansionTileDropDown> {
                     Icons.keyboard_arrow_up,
                     color: Color.fromRGBO(255, 15, 15, 1),
                   ),
-            childrenPadding: EdgeInsets.only(
+            childrenPadding: const EdgeInsets.only(
               top: 12,
             ),
             expandedAlignment: Alignment.centerLeft,

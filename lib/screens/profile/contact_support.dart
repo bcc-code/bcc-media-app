@@ -149,7 +149,8 @@ class _ContactSupportState extends State<ContactSupport> {
                         backgroundColor: const Color.fromRGBO(110, 176, 230, 1),
                         padding: const EdgeInsets.only(
                             left: 12, right: 12, top: 3.5, bottom: 4.5),
-                        textStyle: const TextStyle(fontSize: 20),
+                        textStyle: const TextStyle(
+                            fontSize: 18, fontWeight: FontWeight.w700),
                         shape: const RoundedRectangleBorder(
                           side: BorderSide.none,
                           borderRadius: BorderRadius.all(Radius.circular(30)),
@@ -159,10 +160,6 @@ class _ContactSupportState extends State<ContactSupport> {
                         fit: BoxFit.contain,
                         child: Text(
                           'Send',
-                          style: TextStyle(
-                            fontSize: 18,
-                            fontWeight: FontWeight.w700,
-                          ),
                         ),
                       ),
                     ),
@@ -187,7 +184,7 @@ class _ContactSupportState extends State<ContactSupport> {
                 ),
               ),
               if (!_loading) ...[
-                textFieldInput(
+                _textFieldInput(
                     textController: _textController,
                     textFldOnChange: textFieldOnChange),
                 const Text(
@@ -197,23 +194,23 @@ class _ContactSupportState extends State<ContactSupport> {
                     fontSize: 16,
                   ),
                 ),
-                DeviceSpecList(deviceInfos: deviceInfos),
+                _DeviceInfo(deviceInfos: deviceInfos),
               ] else
                 FutureBuilder<String>(
                   future: ajaxCall,
                   builder:
                       (BuildContext context, AsyncSnapshot<String> snapshot) {
-                    Widget returnWidget;
+                    // Widget returnWidget;
                     if (snapshot.hasData) {
-                      returnWidget = SendingResultPage(
-                        sendingResult: false,
+                      return SendingResultPage(
+                        sendingResult: true,
                       );
                     } else if (snapshot.hasError) {
-                      returnWidget = SendingResultPage(
+                      return SendingResultPage(
                         sendingResult: false,
                       );
                     } else {
-                      returnWidget = Expanded(
+                      return Expanded(
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
@@ -239,7 +236,7 @@ class _ContactSupportState extends State<ContactSupport> {
                         ),
                       );
                     }
-                    return returnWidget;
+                    // return returnWidget;
                   },
                 ),
             ],
@@ -250,12 +247,12 @@ class _ContactSupportState extends State<ContactSupport> {
   }
 }
 
-class textFieldInput extends StatelessWidget {
+class _textFieldInput extends StatelessWidget {
   final TextEditingController textController;
   final VoidCallback textFldOnChange;
 
-  const textFieldInput(
-      {super.key, required this.textController, required this.textFldOnChange});
+  const _textFieldInput(
+      {required this.textController, required this.textFldOnChange});
 
   @override
   Widget build(BuildContext context) {
@@ -303,8 +300,8 @@ class textFieldInput extends StatelessWidget {
   }
 }
 
-class DeviceSpecList extends StatelessWidget {
-  const DeviceSpecList({
+class _DeviceInfo extends StatelessWidget {
+  const _DeviceInfo({
     Key? key,
     required this.deviceInfos,
   }) : super(key: key);
@@ -324,7 +321,7 @@ class DeviceSpecList extends StatelessWidget {
           final data = snapshot.data!;
           return SizedBox(
             height: MediaQuery.of(context).size.height * 0.38,
-            child: DeviceSpecListLoop(data: data),
+            child: _DeviceInfoList(data: data),
           );
         }
         return const Text('Loading.....');
@@ -333,8 +330,8 @@ class DeviceSpecList extends StatelessWidget {
   }
 }
 
-class DeviceSpecListLoop extends StatelessWidget {
-  const DeviceSpecListLoop({
+class _DeviceInfoList extends StatelessWidget {
+  const _DeviceInfoList({
     Key? key,
     required this.data,
   }) : super(key: key);
@@ -417,7 +414,8 @@ class SendingResultPage extends StatelessWidget {
           Expanded(
             child: Padding(
               padding: EdgeInsets.only(
-                  top: MediaQuery.of(context).size.height * 0.3),
+                top: 260,
+              ),
               child: Column(
                 key: _widgetKey,
                 children: <Widget>[
