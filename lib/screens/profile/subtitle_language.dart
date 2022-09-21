@@ -60,7 +60,6 @@ class _AppSubtitleLanguageState extends State<AppSubtitleLanguage> {
   String selected = 'Medium';
 
   void onSelectionChanged(String id) {
-    print('onSelectionChanged');
     setState(() {
       selected = id;
     });

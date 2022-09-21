@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'dart:io';
 import 'package:auto_route/auto_route.dart';
 import 'package:device_info_plus/device_info_plus.dart';
-import 'package:package_info/package_info.dart';
+import 'package:package_info_plus/package_info_plus.dart';
 
 class ContactSupport extends StatefulWidget {
   const ContactSupport({super.key});
@@ -25,7 +25,7 @@ class _ContactSupportState extends State<ContactSupport> {
 
   final _textController = TextEditingController();
 
-  Future<List<ListItem>> get deviceInfos async {
+  Future<List<ListItem>> deviceInfos() async {
     String? device, manufacturer, os, screenSize, appVer, userId;
 
     PackageInfo packageInfo = await PackageInfo.fromPlatform();
@@ -78,24 +78,19 @@ class _ContactSupportState extends State<ContactSupport> {
   }
 
   textFieldOnChange() {
-    print('textFieldOnChange triggered');
-    print(_textController.text);
     setState(() {
       _isTextFieldEnter = _textController.text.isNotEmpty;
       _isSendBtnShown = true;
     });
-    print('isTextFieldEnter: $_isTextFieldEnter');
   }
 
   trigger_onLoading() {
-    print('_onLoading_loading State b4: $_loading');
     setState(() {
       _loading = true;
       Future.delayed(const Duration(seconds: 3), () {
         _loading = false;
       });
     });
-    print('_onLoading _loading State after : $_loading');
   }
 
   final Future<String> ajaxCall = Future<String>.delayed(
@@ -194,7 +189,7 @@ class _ContactSupportState extends State<ContactSupport> {
                     fontSize: 16,
                   ),
                 ),
-                _DeviceInfo(deviceInfos: deviceInfos),
+                _DeviceInfo(deviceInfos: deviceInfos()),
               ] else
                 FutureBuilder<String>(
                   future: ajaxCall,

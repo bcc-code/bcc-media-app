@@ -55,7 +55,7 @@ dependencies:
   collection: ^1.16.0
   # package to fetch device info
   device_info_plus: ^4.1.2
-  package_info: ^2.0.2
+  package_info_plus: ^1.4.3+1
   graphql: ^5.1.1
   graphql_flutter: ^5.1.0
 dependency_overrides:

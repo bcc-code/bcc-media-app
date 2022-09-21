@@ -98,7 +98,7 @@ class _FAQState extends State<FAQ> {
           child: Column(
             children: <Widget>[
               for (var i in listOfList)
-                ExpansionTileDropDown(i, listOfList.indexOf(i))
+                _ExpansionTileDropDown(i, listOfList.indexOf(i))
             ],
           ),
         ),
@@ -107,17 +107,17 @@ class _FAQState extends State<FAQ> {
   }
 }
 
-class ExpansionTileDropDown extends StatefulWidget {
+class _ExpansionTileDropDown extends StatefulWidget {
   final FAQItem questionList;
   final int index;
 
-  const ExpansionTileDropDown(this.questionList, this.index, {super.key});
+  const _ExpansionTileDropDown(this.questionList, this.index, {super.key});
 
   @override
-  State<ExpansionTileDropDown> createState() => _ExpansionTileDropDownState();
+  State<_ExpansionTileDropDown> createState() => _ExpansionTileDropDownState();
 }
 
-class _ExpansionTileDropDownState extends State<ExpansionTileDropDown> {
+class _ExpansionTileDropDownState extends State<_ExpansionTileDropDown> {
   bool _customTileExpanded = false;
 
   @override

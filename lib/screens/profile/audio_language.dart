@@ -60,7 +60,6 @@ class _AppAudioLanguageState extends State<AppAudioLanguage> {
   String selected = 'nok';
 
   void onSelectionChanged(String id) {
-    print('onSelectionChanged');
     setState(() {
       selected = id;
     });

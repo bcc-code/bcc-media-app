@@ -71,7 +71,6 @@ class _AppLanguageScreenState extends State<AppLanguageScreen> {
   String selected = 'nok';
 
   void onSelectionChanged(String id) {
-    print('onSelectionChanged');
     setState(() {
       selected = id;
     });
