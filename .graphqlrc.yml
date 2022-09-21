@@ -1,2 +1,2 @@
-schema: 'lib/graphql/schema/*.graphqls'
-documents: 'lib/**/*.graphql'
+schema: 'lib/graphql/schema/*.graphql'
+documents: 'lib/graphql/queries/*.graphql'

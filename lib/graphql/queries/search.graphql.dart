@@ -14,21 +14,27 @@ class Fragment$SearchResultItem {
       required this.$__typename});
 
   factory Fragment$SearchResultItem.fromJson(Map<String, dynamic> json) {
-    final l$collection = json['collection'];
-    final l$id = json['id'];
-    final l$legacyID = json['legacyID'];
-    final l$title = json['title'];
-    final l$description = json['description'];
-    final l$image = json['image'];
-    final l$$__typename = json['__typename'];
-    return Fragment$SearchResultItem(
-        collection: (l$collection as String),
-        id: (l$id as String),
-        legacyID: (l$legacyID as String?),
-        title: (l$title as String),
-        description: (l$description as String?),
-        image: (l$image as String?),
-        $__typename: (l$$__typename as String));
+    switch (json["__typename"] as String) {
+      case "EpisodeSearchItem":
+        return Fragment$SearchResultItem$$EpisodeSearchItem.fromJson(json);
+
+      default:
+        final l$collection = json['collection'];
+        final l$id = json['id'];
+        final l$legacyID = json['legacyID'];
+        final l$title = json['title'];
+        final l$description = json['description'];
+        final l$image = json['image'];
+        final l$$__typename = json['__typename'];
+        return Fragment$SearchResultItem(
+            collection: (l$collection as String),
+            id: (l$id as String),
+            legacyID: (l$legacyID as String?),
+            title: (l$title as String),
+            description: (l$description as String?),
+            image: (l$image as String?),
+            $__typename: (l$$__typename as String));
+    }
   }
 
   final String collection;
@@ -254,6 +260,26 @@ const fragmentDefinitionSearchResultItem = FragmentDefinitionNode(
           arguments: [],
           directives: [],
           selectionSet: null),
+      InlineFragmentNode(
+          typeCondition: TypeConditionNode(
+              on: NamedTypeNode(
+                  name: NameNode(value: 'EpisodeSearchItem'),
+                  isNonNull: false)),
+          directives: [],
+          selectionSet: SelectionSetNode(selections: [
+            FieldNode(
+                name: NameNode(value: 'showTitle'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null),
+            FieldNode(
+                name: NameNode(value: '__typename'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null)
+          ])),
       FieldNode(
           name: NameNode(value: '__typename'),
           alias: null,
@@ -289,6 +315,228 @@ extension ClientExtension$Fragment$SearchResultItem on graphql.GraphQLClient {
         optimistic: optimistic);
     return result == null ? null : Fragment$SearchResultItem.fromJson(result);
   }
+}
+
+class Fragment$SearchResultItem$$EpisodeSearchItem
+    implements Fragment$SearchResultItem {
+  Fragment$SearchResultItem$$EpisodeSearchItem(
+      {required this.collection,
+      required this.id,
+      this.legacyID,
+      required this.title,
+      this.description,
+      this.image,
+      required this.$__typename,
+      this.showTitle});
+
+  factory Fragment$SearchResultItem$$EpisodeSearchItem.fromJson(
+      Map<String, dynamic> json) {
+    final l$collection = json['collection'];
+    final l$id = json['id'];
+    final l$legacyID = json['legacyID'];
+    final l$title = json['title'];
+    final l$description = json['description'];
+    final l$image = json['image'];
+    final l$$__typename = json['__typename'];
+    final l$showTitle = json['showTitle'];
+    return Fragment$SearchResultItem$$EpisodeSearchItem(
+        collection: (l$collection as String),
+        id: (l$id as String),
+        legacyID: (l$legacyID as String?),
+        title: (l$title as String),
+        description: (l$description as String?),
+        image: (l$image as String?),
+        $__typename: (l$$__typename as String),
+        showTitle: (l$showTitle as String?));
+  }
+
+  final String collection;
+
+  final String id;
+
+  final String? legacyID;
+
+  final String title;
+
+  final String? description;
+
+  final String? image;
+
+  final String $__typename;
+
+  final String? showTitle;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$showTitle = showTitle;
+    _resultData['showTitle'] = l$showTitle;
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$collection = collection;
+    final l$id = id;
+    final l$legacyID = legacyID;
+    final l$title = title;
+    final l$description = description;
+    final l$image = image;
+    final l$$__typename = $__typename;
+    final l$showTitle = showTitle;
+    return Object.hashAll([
+      l$collection,
+      l$id,
+      l$legacyID,
+      l$title,
+      l$description,
+      l$image,
+      l$$__typename,
+      l$showTitle
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (!(other is Fragment$SearchResultItem$$EpisodeSearchItem) ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$collection = collection;
+    final lOther$collection = other.collection;
+    if (l$collection != lOther$collection) {
+      return false;
+    }
+    final l$id = id;
+    final lOther$id = other.id;
+    if (l$id != lOther$id) {
+      return false;
+    }
+    final l$legacyID = legacyID;
+    final lOther$legacyID = other.legacyID;
+    if (l$legacyID != lOther$legacyID) {
+      return false;
+    }
+    final l$title = title;
+    final lOther$title = other.title;
+    if (l$title != lOther$title) {
+      return false;
+    }
+    final l$description = description;
+    final lOther$description = other.description;
+    if (l$description != lOther$description) {
+      return false;
+    }
+    final l$image = image;
+    final lOther$image = other.image;
+    if (l$image != lOther$image) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    final l$showTitle = showTitle;
+    final lOther$showTitle = other.showTitle;
+    if (l$showTitle != lOther$showTitle) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Fragment$SearchResultItem$$EpisodeSearchItem
+    on Fragment$SearchResultItem$$EpisodeSearchItem {
+  CopyWith$Fragment$SearchResultItem$$EpisodeSearchItem<
+          Fragment$SearchResultItem$$EpisodeSearchItem>
+      get copyWith =>
+          CopyWith$Fragment$SearchResultItem$$EpisodeSearchItem(this, (i) => i);
+}
+
+abstract class CopyWith$Fragment$SearchResultItem$$EpisodeSearchItem<TRes> {
+  factory CopyWith$Fragment$SearchResultItem$$EpisodeSearchItem(
+          Fragment$SearchResultItem$$EpisodeSearchItem instance,
+          TRes Function(Fragment$SearchResultItem$$EpisodeSearchItem) then) =
+      _CopyWithImpl$Fragment$SearchResultItem$$EpisodeSearchItem;
+
+  factory CopyWith$Fragment$SearchResultItem$$EpisodeSearchItem.stub(TRes res) =
+      _CopyWithStubImpl$Fragment$SearchResultItem$$EpisodeSearchItem;
+
+  TRes call(
+      {String? collection,
+      String? id,
+      String? legacyID,
+      String? title,
+      String? description,
+      String? image,
+      String? $__typename,
+      String? showTitle});
+}
+
+class _CopyWithImpl$Fragment$SearchResultItem$$EpisodeSearchItem<TRes>
+    implements CopyWith$Fragment$SearchResultItem$$EpisodeSearchItem<TRes> {
+  _CopyWithImpl$Fragment$SearchResultItem$$EpisodeSearchItem(
+      this._instance, this._then);
+
+  final Fragment$SearchResultItem$$EpisodeSearchItem _instance;
+
+  final TRes Function(Fragment$SearchResultItem$$EpisodeSearchItem) _then;
+
+  static const _undefined = {};
+
+  TRes call(
+          {Object? collection = _undefined,
+          Object? id = _undefined,
+          Object? legacyID = _undefined,
+          Object? title = _undefined,
+          Object? description = _undefined,
+          Object? image = _undefined,
+          Object? $__typename = _undefined,
+          Object? showTitle = _undefined}) =>
+      _then(Fragment$SearchResultItem$$EpisodeSearchItem(
+          collection: collection == _undefined || collection == null
+              ? _instance.collection
+              : (collection as String),
+          id: id == _undefined || id == null ? _instance.id : (id as String),
+          legacyID: legacyID == _undefined
+              ? _instance.legacyID
+              : (legacyID as String?),
+          title: title == _undefined || title == null
+              ? _instance.title
+              : (title as String),
+          description: description == _undefined
+              ? _instance.description
+              : (description as String?),
+          image: image == _undefined ? _instance.image : (image as String?),
+          $__typename: $__typename == _undefined || $__typename == null
+              ? _instance.$__typename
+              : ($__typename as String),
+          showTitle: showTitle == _undefined
+              ? _instance.showTitle
+              : (showTitle as String?)));
+}
+
+class _CopyWithStubImpl$Fragment$SearchResultItem$$EpisodeSearchItem<TRes>
+    implements CopyWith$Fragment$SearchResultItem$$EpisodeSearchItem<TRes> {
+  _CopyWithStubImpl$Fragment$SearchResultItem$$EpisodeSearchItem(this._res);
+
+  TRes _res;
+
+  call(
+          {String? collection,
+          String? id,
+          String? legacyID,
+          String? title,
+          String? description,
+          String? image,
+          String? $__typename,
+          String? showTitle}) =>
+      _res;
 }
 
 class Variables$Query$Search {

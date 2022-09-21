@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import '../../components/option_list.dart';
-import './app_language.dart';
 
 class AppSubtitleLanguage extends StatefulWidget {
   const AppSubtitleLanguage({super.key});

@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 
+import 'models/search_result_item.dart';
+
 class EpisodeList extends StatelessWidget {
   final String title;
-  final List<Map<String, String>> items;
+  final List<SearchResultItem> items;
 
   const EpisodeList({required this.title, required this.items});
 
@@ -32,7 +34,9 @@ class EpisodeList extends StatelessWidget {
 }
 
 class _Episode extends StatelessWidget {
-  final Map<String, String> episode;
+  final SearchResultItem episode;
+  final ageGroup = '12+';
+  final duration = '40 min';
 
   const _Episode(this.episode);
 
@@ -46,32 +50,36 @@ class _Episode extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Container(
+            width: 128,
             margin: const EdgeInsets.only(right: 16),
             child: ClipRRect(
               borderRadius: BorderRadius.circular(4),
-              child: Image.network(episode['imageUrl'] as String, height: 72),
+              child: episode.image != null
+                  ? Image.network(episode.image as String)
+                  : Container(),
             ),
           ),
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Container(
-                  margin: const EdgeInsets.only(bottom: 5),
-                  child: Text(
-                    episode['programName'] as String,
-                    style: const TextStyle(
-                      fontSize: 12,
-                      fontWeight: FontWeight.w500,
-                      color: Color.fromRGBO(110, 176, 230, 1),
+                if (episode.showTitle != null)
+                  Container(
+                    margin: const EdgeInsets.only(bottom: 5),
+                    child: Text(
+                      episode.showTitle!,
+                      style: const TextStyle(
+                        fontSize: 12,
+                        fontWeight: FontWeight.w500,
+                        color: Color.fromRGBO(110, 176, 230, 1),
+                      ),
                     ),
                   ),
-                ),
                 Flexible(
                   child: Container(
                     margin: const EdgeInsets.only(bottom: 6),
                     child: Text(
-                      episode['episodeName'] as String,
+                      episode.title,
                       style: const TextStyle(
                           fontWeight: FontWeight.w500, fontSize: 14),
                     ),
@@ -95,7 +103,7 @@ class _Episode extends StatelessWidget {
                             const BorderRadius.all(Radius.circular(8)),
                       ),
                       child: Text(
-                        episode['ageGroup'] as String,
+                        ageGroup,
                         style: const TextStyle(
                           fontSize: 12,
                           fontWeight: FontWeight.w500,
@@ -104,7 +112,7 @@ class _Episode extends StatelessWidget {
                       ),
                     ),
                     Text(
-                      episode['duration'] as String,
+                      duration,
                       style: const TextStyle(
                         color: Color.fromRGBO(180, 192, 210, 1),
                         fontSize: 12,

@@ -13,7 +13,8 @@ class HorizontalSlider extends StatelessWidget {
       child: SingleChildScrollView(
         physics: const BouncingScrollPhysics(),
         scrollDirection: Axis.horizontal,
-        child: Row(children: items),
+        child:
+            Row(crossAxisAlignment: CrossAxisAlignment.start, children: items),
       ),
     );
   }

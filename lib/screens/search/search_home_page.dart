@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:auto_route/auto_route.dart';
+import 'package:my_app/screens/search/models/search_result_item.dart';
 import '../../router/router.gr.dart';
 
 import 'package:my_app/components/category_button.dart';
@@ -33,14 +34,19 @@ class SearchHomePage extends StatelessWidget {
     },
   ];
 
-  final _episodeList = List.filled(10, {
-    'programName': 'Fra Kåre til BUK',
-    'episodeName': '25. august - PROMO: Høstcamp og Romjulscamp',
-    'imageUrl':
-        'https://brunstadtv.imgix.net/c7b34d9c-d961-4326-9686-d480d461b54c.jpg',
-    'ageGroup': '12+',
-    'duration': '43 min',
-  });
+  final _episodeList = List.filled(
+      10,
+      SearchResultItem(
+        collection: 'episode',
+        id: '1',
+        title: '25. august - PROMO: Høstcamp og Romjulscamp',
+        legacyID: '1',
+        description: 'Test Description',
+        image:
+            'https://brunstadtv.imgix.net/c7b34d9c-d961-4326-9686-d480d461b54c.jpg',
+        showTitle: 'Fra Kåre til BUK',
+        type: ResultType.episode,
+      ));
 
   @override
   Widget build(BuildContext context) {
@@ -62,26 +68,27 @@ class SearchHomePage extends StatelessWidget {
                 ),
               ),
             ),
-            Center(
-              child: Wrap(
-                spacing: 16,
-                runSpacing: 12,
-                alignment: WrapAlignment.center,
-                children: _categories.map((category) {
-                  return CategoryButton(
-                      label: category['label'] as String,
-                      icon: Image.asset("assets/icons/${category['image']}",
-                          width: 64, height: 64),
-                      width: 163.5,
-                      padding: 14,
-                      onTap: () {
-                        context.router.navigate(
-                          ExploreCategoryScreenRoute(
-                              category: category['label']!),
-                        );
-                      });
-                }).toList(),
-              ),
+            LayoutBuilder(
+              builder: (context, constraints) {
+                final buttonWidth = (constraints.maxWidth - 16) / 2;
+
+                return Wrap(
+                  spacing: 16,
+                  runSpacing: 12,
+                  children: _categories.map((category) {
+                    return CategoryButton(
+                        width: buttonWidth,
+                        label: category['label'] as String,
+                        imagePath: "assets/icons/${category['image']}",
+                        onTap: () {
+                          context.router.navigate(
+                            ExploreCategoryScreenRoute(
+                                category: category['label']!),
+                          );
+                        });
+                  }).toList(),
+                );
+              },
             ),
           ],
         ),

@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 
 import '../../components/horizontal_slider.dart';
+import 'models/search_result_item.dart';
 
 class ResultProgramsList extends StatelessWidget {
   final String title;
-  final List<Map<String, String>> items;
+  final List<SearchResultItem> items;
 
   const ResultProgramsList({required this.title, required this.items});
 
@@ -35,10 +36,10 @@ class ResultProgramsList extends StatelessWidget {
 }
 
 class _Program extends StatelessWidget {
-  final Map<String, String>? itemDetails;
+  final SearchResultItem item;
   final slideWidth = 140.0;
 
-  const _Program(this.itemDetails);
+  const _Program(this.item);
 
   @override
   Widget build(BuildContext context) {
@@ -46,16 +47,19 @@ class _Program extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Container(
+          height: 80,
+          width: slideWidth,
           margin: const EdgeInsets.only(right: 16, bottom: 7),
           child: ClipRRect(
             borderRadius: BorderRadius.circular(4),
-            child: Image.network(itemDetails!['imageUrl'] as String,
-                width: slideWidth),
+            child: item.image != null
+                ? Image.network(item.image as String)
+                : Container(),
           ),
         ),
         SizedBox(
           width: slideWidth,
-          child: Text(itemDetails!['programName']!),
+          child: Text(item.title),
         ),
       ],
     );

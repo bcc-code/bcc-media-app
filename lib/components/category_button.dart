@@ -2,40 +2,46 @@ import 'package:flutter/material.dart';
 
 class CategoryButton extends StatelessWidget {
   final String label;
-  final Widget icon;
+  final String imagePath;
   final double width;
-  final double padding;
   final VoidCallback? onTap;
+  double? height;
+  double? imageWidth;
 
-  const CategoryButton({
+  CategoryButton({
     super.key,
     required this.label,
-    required this.icon,
+    required this.imagePath,
     this.width = 82,
-    this.padding = 8,
+    this.height,
     this.onTap,
-  });
+  }) {
+    height = height ?? width * (9 / 16);
+    imageWidth = width * 0.39;
+  }
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: onTap,
-      child: SizedBox(
-        width: width,
-        child: Column(
-          children: [
-            Container(
-              width: double.infinity,
-              margin: const EdgeInsets.only(bottom: 4),
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(12),
-                border: Border.all(width: 1, color: const Color(0x19ccddff)),
-                color: const Color(0xff1d2838),
-              ),
-              padding: EdgeInsets.all(padding),
-              child: icon,
+      child: Column(
+        children: [
+          Container(
+            width: width,
+            height: height,
+            margin: const EdgeInsets.only(bottom: 4),
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(12),
+              border: Border.all(width: 1, color: const Color(0x19ccddff)),
+              color: const Color(0xff1d2838),
             ),
-            Text(
+            child: Center(
+                child: Image.asset(imagePath,
+                    width: imageWidth, height: imageWidth, fit: BoxFit.fill)),
+          ),
+          SizedBox(
+            width: width,
+            child: Text(
               label,
               textAlign: TextAlign.center,
               style: const TextStyle(
@@ -44,9 +50,9 @@ class CategoryButton extends StatelessWidget {
                 fontFamily: 'Barlow',
                 fontWeight: FontWeight.w500,
               ),
-            )
-          ],
-        ),
+            ),
+          )
+        ],
       ),
     );
   }

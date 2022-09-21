@@ -5,6 +5,10 @@ fragment SearchResultItem on SearchResultItem {
   title
   description
   image
+  ... on EpisodeSearchItem {
+    showTitle
+  }
+  __typename
 }
 
 query Search($queryString: String!, $first: Int, $offset: Int) {

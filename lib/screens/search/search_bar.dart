@@ -14,6 +14,7 @@ class _SearchBarState extends State<SearchBar> {
   final _fieldController = TextEditingController();
   var _showClearButton = false;
   var _showCancelButton = false;
+  var prevValue = '';
 
   @override
   void initState() {
@@ -22,8 +23,12 @@ class _SearchBarState extends State<SearchBar> {
   }
 
   void onValueChange() {
-    setState(() {
+    /* Ignore event caused when focussing text field */
+    if (_fieldController.text != prevValue) {
       widget.onInputChange(_fieldController.text);
+    }
+    prevValue = _fieldController.text;
+    setState(() {
       _showClearButton = _fieldController.text == '' ? false : true;
     });
   }
