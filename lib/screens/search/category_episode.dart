@@ -14,18 +14,23 @@ class CategoryEpisode extends StatelessWidget {
       child: Column(
         children: [
           Container(
+            height: itemWidth * (9 / 16),
             margin: const EdgeInsets.only(bottom: 4),
-            child: ClipRRect(
+            decoration: BoxDecoration(
+              image: DecorationImage(
+                image: NetworkImage(episode['image']!),
+                fit: BoxFit.cover,
+              ),
               borderRadius: BorderRadius.circular(3.86),
-              child: Image.network(episode['image']!),
+              border: Border.all(
+                width: 1,
+                color: const Color.fromRGBO(255, 255, 255, 0.1),
+              ),
             ),
           ),
-          Container(
-            // color: Colors.lightBlue,
-            child: Text(
-              episode['title']!,
-              style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w500),
-            ),
+          Text(
+            episode['title']!,
+            style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w500),
           ),
         ],
       ),

@@ -47,14 +47,21 @@ class _Program extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Container(
-          height: 80,
           width: _slideWidth,
+          height: _slideWidth * (9 / 16),
           margin: const EdgeInsets.only(right: 16, bottom: 7),
-          child: ClipRRect(
+          decoration: BoxDecoration(
+            image: _item.image != null
+                ? DecorationImage(
+                    image: NetworkImage(_item.image!),
+                    fit: BoxFit.cover,
+                  )
+                : null,
             borderRadius: BorderRadius.circular(4),
-            child: _item.image != null
-                ? Image.network(_item.image as String)
-                : Container(),
+            border: Border.all(
+              width: 1,
+              color: const Color.fromRGBO(255, 255, 255, 0.1),
+            ),
           ),
         ),
         SizedBox(

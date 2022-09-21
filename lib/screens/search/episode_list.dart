@@ -51,12 +51,18 @@ class _Episode extends StatelessWidget {
         children: [
           Container(
             width: 128,
+            height: 128 * (9 / 16),
             margin: const EdgeInsets.only(right: 16),
-            child: ClipRRect(
+            decoration: BoxDecoration(
+              image: DecorationImage(
+                image: NetworkImage(_episode.image!),
+                fit: BoxFit.cover,
+              ),
               borderRadius: BorderRadius.circular(4),
-              child: _episode.image != null
-                  ? Image.network(_episode.image as String)
-                  : Container(),
+              border: Border.all(
+                width: 1,
+                color: const Color.fromRGBO(255, 255, 255, 0.1),
+              ),
             ),
           ),
           Expanded(
