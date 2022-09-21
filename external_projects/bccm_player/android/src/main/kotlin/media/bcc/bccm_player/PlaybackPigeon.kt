@@ -117,4 +117,12 @@ class PlaybackApiImpl(private val plugin: BccmPlayerPlugin) : PlaybackPlatformAp
         }
         result?.success(cc.getState())
     }
+
+    override fun openExpandedCastController() {
+
+    }
+
+    override fun openCastDialog() {
+
+    }
 }

@@ -13,6 +13,7 @@ buildscript {
         classpath 'com.android.tools.build:gradle:7.2.0'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
     }
+
 }
 
 
@@ -60,6 +61,6 @@ dependencies {
     implementation "androidx.media3:media3-test-utils:$media3_version"
     implementation "androidx.media3:media3-session:$media3_version"
     implementation "androidx.media3:media3-ui:$media3_version"
-    implementation fileTree(include: ['*.jar', '*.aar'], dir: '/Users/andreasgangso/dev/code/my_app/external_projects/exoplayer2-adapter-android/exoplayer2-adapter/buildout/outputs/aar')
+    implementation fileTree(include: ['exoplayer2-adapter-debug.aar'], dir: '../../../external_projects')
 
 }
