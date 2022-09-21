@@ -214,21 +214,26 @@ class _ContactSupportState extends State<ContactSupport> {
                       );
                     } else {
                       returnWidget = Expanded(
-                        child: Column(
-                          mainAxisSize: MainAxisSize.max,
+                        child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,
-                          children: const <Widget>[
-                            CircularProgressIndicator(),
-                            SizedBox(
-                              height: 12,
-                            ),
-                            Text(
-                              'Sending',
-                              style: TextStyle(
-                                color: Color.fromRGBO(122, 124, 142, 1),
-                                fontWeight: FontWeight.w400,
-                                fontSize: 19,
-                              ),
+                          children: [
+                            Column(
+                              mainAxisSize: MainAxisSize.max,
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: const <Widget>[
+                                CircularProgressIndicator(),
+                                SizedBox(
+                                  height: 12,
+                                ),
+                                Text(
+                                  'Sending',
+                                  style: TextStyle(
+                                    color: Color.fromRGBO(122, 124, 142, 1),
+                                    fontWeight: FontWeight.w400,
+                                    fontSize: 19,
+                                  ),
+                                ),
+                              ],
                             ),
                           ],
                         ),
