@@ -59,8 +59,7 @@ class _AppSubtitleLanguageState extends State<AppSubtitleLanguage> {
 
   String selected = 'Medium';
 
-  void onSelectionChanged(String id) {
-    print('onSelectionChanged');
+  void _onSelectionChanged(String id) {
     setState(() {
       selected = id;
     });
@@ -70,11 +69,11 @@ class _AppSubtitleLanguageState extends State<AppSubtitleLanguage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Color.fromRGBO(13, 22, 35, 1),
-        title: Text('Språk for undertekster'),
+        backgroundColor: const Color.fromRGBO(13, 22, 35, 1),
+        title: const Text('Språk for undertekster'),
         centerTitle: true,
-        bottom: PreferredSize(
-          preferredSize: const Size.fromHeight(6),
+        bottom: const PreferredSize(
+          preferredSize: Size.fromHeight(6),
           child: Divider(
             color: Color.fromRGBO(204, 221, 255, 0.3),
             height: 1,
@@ -88,7 +87,7 @@ class _AppSubtitleLanguageState extends State<AppSubtitleLanguage> {
         child: OptionList(
           optionData: languageList,
           currentSelection: selected,
-          onSelectionChange: onSelectionChanged,
+          onSelectionChange: _onSelectionChanged,
         ),
       ),
     );
