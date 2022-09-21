@@ -30,8 +30,11 @@ class _ContactSupportState extends State<ContactSupport> {
 
     PackageInfo packageInfo = await PackageInfo.fromPlatform();
     os = Platform.operatingSystemVersion;
-    String screenWidth = MediaQuery.of(context).size.width.toInt().toString();
-    String screenHeight = MediaQuery.of(context).size.height.toInt().toString();
+    String screenWidth = '360', screenHeight = '360';
+    if (mounted) {
+      screenWidth = MediaQuery.of(context).size.width.toInt().toString();
+      screenHeight = MediaQuery.of(context).size.height.toInt().toString();
+    }
     screenSize = '${screenHeight}x$screenWidth';
     appVer = packageInfo.buildNumber;
 
@@ -77,19 +80,10 @@ class _ContactSupportState extends State<ContactSupport> {
     ];
   }
 
-  textFieldOnChange() {
+  _textFieldHandler() {
     setState(() {
       _isTextFieldEnter = _textController.text.isNotEmpty;
       _isSendBtnShown = true;
-    });
-  }
-
-  trigger_onLoading() {
-    setState(() {
-      _loading = true;
-      Future.delayed(const Duration(seconds: 3), () {
-        _loading = false;
-      });
     });
   }
 
@@ -153,9 +147,7 @@ class _ContactSupportState extends State<ContactSupport> {
                       ),
                       child: const FittedBox(
                         fit: BoxFit.contain,
-                        child: Text(
-                          'Send',
-                        ),
+                        child: Text('Send'),
                       ),
                     ),
                   )
@@ -169,7 +161,7 @@ class _ContactSupportState extends State<ContactSupport> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              Text(
+              const Text(
                 'Contact Support',
                 style: TextStyle(
                   color: Colors.white,
@@ -179,9 +171,9 @@ class _ContactSupportState extends State<ContactSupport> {
                 ),
               ),
               if (!_loading) ...[
-                _textFieldInput(
+                _TextFieldInput(
                     textController: _textController,
-                    textFldOnChange: textFieldOnChange),
+                    textFldOnChange: _textFieldHandler),
                 const Text(
                   'Your message will include this information, to help us better fix the issues.',
                   style: TextStyle(
@@ -195,13 +187,12 @@ class _ContactSupportState extends State<ContactSupport> {
                   future: ajaxCall,
                   builder:
                       (BuildContext context, AsyncSnapshot<String> snapshot) {
-                    // Widget returnWidget;
                     if (snapshot.hasData) {
-                      return SendingResultPage(
+                      return _SendingResultPage(
                         sendingResult: true,
                       );
                     } else if (snapshot.hasError) {
-                      return SendingResultPage(
+                      return _SendingResultPage(
                         sendingResult: false,
                       );
                     } else {
@@ -231,7 +222,6 @@ class _ContactSupportState extends State<ContactSupport> {
                         ),
                       );
                     }
-                    // return returnWidget;
                   },
                 ),
             ],
@@ -242,11 +232,11 @@ class _ContactSupportState extends State<ContactSupport> {
   }
 }
 
-class _textFieldInput extends StatelessWidget {
+class _TextFieldInput extends StatelessWidget {
   final TextEditingController textController;
   final VoidCallback textFldOnChange;
 
-  const _textFieldInput(
+  const _TextFieldInput(
       {required this.textController, required this.textFldOnChange});
 
   @override
@@ -384,7 +374,7 @@ class _DeviceInfoList extends StatelessWidget {
   }
 }
 
-class SendingResultPage extends StatelessWidget {
+class _SendingResultPage extends StatelessWidget {
   final GlobalKey _widgetKey = GlobalKey();
   final String sendErrorMsgTitle = 'Couldn’t send you message';
   final String sendErrorMsgContent =
@@ -396,8 +386,7 @@ class SendingResultPage extends StatelessWidget {
   final String errorBtnMsg = 'Send again';
   final bool sendingResult;
 
-  SendingResultPage({
-    super.key,
+  _SendingResultPage({
     this.sendingResult = true,
   });
 
@@ -408,9 +397,7 @@ class SendingResultPage extends StatelessWidget {
         children: <Widget>[
           Expanded(
             child: Padding(
-              padding: EdgeInsets.only(
-                top: 260,
-              ),
+              padding: const EdgeInsets.only(top: 260),
               child: Column(
                 key: _widgetKey,
                 children: <Widget>[
@@ -424,9 +411,7 @@ class SendingResultPage extends StatelessWidget {
                       fontWeight: FontWeight.w700,
                     ),
                   ),
-                  const SizedBox(
-                    height: 12,
-                  ),
+                  const SizedBox(height: 12),
                   Text(
                     sendingResult ? sendSuccessMsgContent : sendErrorMsgContent,
                     textAlign: TextAlign.center,

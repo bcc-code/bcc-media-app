@@ -111,7 +111,7 @@ class _ExpansionTileDropDown extends StatefulWidget {
   final FAQItem questionList;
   final int index;
 
-  const _ExpansionTileDropDown(this.questionList, this.index, {super.key});
+  const _ExpansionTileDropDown(this.questionList, this.index);
 
   @override
   State<_ExpansionTileDropDown> createState() => _ExpansionTileDropDownState();
