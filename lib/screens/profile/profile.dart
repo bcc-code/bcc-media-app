@@ -1,7 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import '../../router/router.gr.dart';
-
 import './avatar.dart';
 import './action_buttons.dart';
 import '../../components/setting_list.dart';
@@ -62,12 +61,16 @@ class _ProfileState extends State<Profile> {
       {
         'optionName': 'Ofte stillede spørsmål',
         'currentSelection': null,
-        'onPressed': () {},
+        'onPressed': () {
+          context.router.push(const FAQRoute());
+        },
       },
       {
         'optionName': 'Kontakt Support',
         'currentSelection': null,
-        'onPressed': () {},
+        'onPressed': () {
+          context.router.push(const ContactSupportRoute());
+        },
       },
     ];
 

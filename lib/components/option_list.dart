@@ -44,7 +44,6 @@ class OptionList extends StatelessWidget {
     return SizedBox(
       child: InkWell(
         onTapDown: (e) {
-          print('on Tap triggered');
           onSelectionChange(option.id);
         },
         child: Container(

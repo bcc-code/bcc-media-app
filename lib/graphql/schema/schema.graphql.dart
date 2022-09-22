@@ -87,19 +87,25 @@ const possibleTypesMap = {
     'SeasonPagination',
     'EpisodePagination',
     'QuestionPagination',
-    'FAQCategoryPagination'
+    'FAQCategoryPagination',
   },
   'Section': {'ItemSection'},
-  'Item': {'URLItem', 'ShowItem', 'SeasonItem', 'EpisodeItem', 'PageItem'},
+  'Item': {
+    'URLItem',
+    'ShowItem',
+    'SeasonItem',
+    'EpisodeItem',
+    'PageItem',
+  },
   'SearchResultItem': {
     'EpisodeSearchItem',
     'SeasonSearchItem',
-    'ShowSearchItem'
+    'ShowSearchItem',
   },
   'CalendarEntry': {
     'SimpleCalendarEntry',
     'EpisodeCalendarEntry',
     'SeasonCalendarEntry',
-    'ShowCalendarEntry'
-  }
+    'ShowCalendarEntry',
+  },
 };

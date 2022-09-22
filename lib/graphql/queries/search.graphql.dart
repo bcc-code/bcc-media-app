@@ -4,14 +4,15 @@ import 'package:graphql/client.dart' as graphql;
 import 'package:graphql_flutter/graphql_flutter.dart' as graphql_flutter;
 
 class Fragment$SearchResultItem {
-  Fragment$SearchResultItem(
-      {required this.collection,
-      required this.id,
-      this.legacyID,
-      required this.title,
-      this.description,
-      this.image,
-      required this.$__typename});
+  Fragment$SearchResultItem({
+    required this.collection,
+    required this.id,
+    this.legacyID,
+    required this.title,
+    this.description,
+    this.image,
+    required this.$__typename,
+  });
 
   factory Fragment$SearchResultItem.fromJson(Map<String, dynamic> json) {
     final l$collection = json['collection'];
@@ -22,13 +23,14 @@ class Fragment$SearchResultItem {
     final l$image = json['image'];
     final l$$__typename = json['__typename'];
     return Fragment$SearchResultItem(
-        collection: (l$collection as String),
-        id: (l$id as String),
-        legacyID: (l$legacyID as String?),
-        title: (l$title as String),
-        description: (l$description as String?),
-        image: (l$image as String?),
-        $__typename: (l$$__typename as String));
+      collection: (l$collection as String),
+      id: (l$id as String),
+      legacyID: (l$legacyID as String?),
+      title: (l$title as String),
+      description: (l$description as String?),
+      image: (l$image as String?),
+      $__typename: (l$$__typename as String),
+    );
   }
 
   final String collection;
@@ -80,7 +82,7 @@ class Fragment$SearchResultItem {
       l$title,
       l$description,
       l$image,
-      l$$__typename
+      l$$__typename,
     ]);
   }
 
@@ -135,30 +137,38 @@ class Fragment$SearchResultItem {
 extension UtilityExtension$Fragment$SearchResultItem
     on Fragment$SearchResultItem {
   CopyWith$Fragment$SearchResultItem<Fragment$SearchResultItem> get copyWith =>
-      CopyWith$Fragment$SearchResultItem(this, (i) => i);
+      CopyWith$Fragment$SearchResultItem(
+        this,
+        (i) => i,
+      );
 }
 
 abstract class CopyWith$Fragment$SearchResultItem<TRes> {
-  factory CopyWith$Fragment$SearchResultItem(Fragment$SearchResultItem instance,
-          TRes Function(Fragment$SearchResultItem) then) =
-      _CopyWithImpl$Fragment$SearchResultItem;
+  factory CopyWith$Fragment$SearchResultItem(
+    Fragment$SearchResultItem instance,
+    TRes Function(Fragment$SearchResultItem) then,
+  ) = _CopyWithImpl$Fragment$SearchResultItem;
 
   factory CopyWith$Fragment$SearchResultItem.stub(TRes res) =
       _CopyWithStubImpl$Fragment$SearchResultItem;
 
-  TRes call(
-      {String? collection,
-      String? id,
-      String? legacyID,
-      String? title,
-      String? description,
-      String? image,
-      String? $__typename});
+  TRes call({
+    String? collection,
+    String? id,
+    String? legacyID,
+    String? title,
+    String? description,
+    String? image,
+    String? $__typename,
+  });
 }
 
 class _CopyWithImpl$Fragment$SearchResultItem<TRes>
     implements CopyWith$Fragment$SearchResultItem<TRes> {
-  _CopyWithImpl$Fragment$SearchResultItem(this._instance, this._then);
+  _CopyWithImpl$Fragment$SearchResultItem(
+    this._instance,
+    this._then,
+  );
 
   final Fragment$SearchResultItem _instance;
 
@@ -166,32 +176,33 @@ class _CopyWithImpl$Fragment$SearchResultItem<TRes>
 
   static const _undefined = {};
 
-  TRes call(
-          {Object? collection = _undefined,
-          Object? id = _undefined,
-          Object? legacyID = _undefined,
-          Object? title = _undefined,
-          Object? description = _undefined,
-          Object? image = _undefined,
-          Object? $__typename = _undefined}) =>
+  TRes call({
+    Object? collection = _undefined,
+    Object? id = _undefined,
+    Object? legacyID = _undefined,
+    Object? title = _undefined,
+    Object? description = _undefined,
+    Object? image = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
       _then(Fragment$SearchResultItem(
-          collection: collection == _undefined || collection == null
-              ? _instance.collection
-              : (collection as String),
-          id: id == _undefined || id == null ? _instance.id : (id as String),
-          legacyID: legacyID == _undefined
-              ? _instance.legacyID
-              : (legacyID as String?),
-          title: title == _undefined || title == null
-              ? _instance.title
-              : (title as String),
-          description: description == _undefined
-              ? _instance.description
-              : (description as String?),
-          image: image == _undefined ? _instance.image : (image as String?),
-          $__typename: $__typename == _undefined || $__typename == null
-              ? _instance.$__typename
-              : ($__typename as String)));
+        collection: collection == _undefined || collection == null
+            ? _instance.collection
+            : (collection as String),
+        id: id == _undefined || id == null ? _instance.id : (id as String),
+        legacyID:
+            legacyID == _undefined ? _instance.legacyID : (legacyID as String?),
+        title: title == _undefined || title == null
+            ? _instance.title
+            : (title as String),
+        description: description == _undefined
+            ? _instance.description
+            : (description as String?),
+        image: image == _undefined ? _instance.image : (image as String?),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
 }
 
 class _CopyWithStubImpl$Fragment$SearchResultItem<TRes>
@@ -200,100 +211,123 @@ class _CopyWithStubImpl$Fragment$SearchResultItem<TRes>
 
   TRes _res;
 
-  call(
-          {String? collection,
-          String? id,
-          String? legacyID,
-          String? title,
-          String? description,
-          String? image,
-          String? $__typename}) =>
+  call({
+    String? collection,
+    String? id,
+    String? legacyID,
+    String? title,
+    String? description,
+    String? image,
+    String? $__typename,
+  }) =>
       _res;
 }
 
 const fragmentDefinitionSearchResultItem = FragmentDefinitionNode(
+  name: NameNode(value: 'SearchResultItem'),
+  typeCondition: TypeConditionNode(
+      on: NamedTypeNode(
     name: NameNode(value: 'SearchResultItem'),
-    typeCondition: TypeConditionNode(
-        on: NamedTypeNode(
-            name: NameNode(value: 'SearchResultItem'), isNonNull: false)),
-    directives: [],
-    selectionSet: SelectionSetNode(selections: [
-      FieldNode(
-          name: NameNode(value: 'collection'),
-          alias: null,
-          arguments: [],
-          directives: [],
-          selectionSet: null),
-      FieldNode(
-          name: NameNode(value: 'id'),
-          alias: null,
-          arguments: [],
-          directives: [],
-          selectionSet: null),
-      FieldNode(
-          name: NameNode(value: 'legacyID'),
-          alias: null,
-          arguments: [],
-          directives: [],
-          selectionSet: null),
-      FieldNode(
-          name: NameNode(value: 'title'),
-          alias: null,
-          arguments: [],
-          directives: [],
-          selectionSet: null),
-      FieldNode(
-          name: NameNode(value: 'description'),
-          alias: null,
-          arguments: [],
-          directives: [],
-          selectionSet: null),
-      FieldNode(
-          name: NameNode(value: 'image'),
-          alias: null,
-          arguments: [],
-          directives: [],
-          selectionSet: null),
-      FieldNode(
-          name: NameNode(value: '__typename'),
-          alias: null,
-          arguments: [],
-          directives: [],
-          selectionSet: null)
-    ]));
+    isNonNull: false,
+  )),
+  directives: [],
+  selectionSet: SelectionSetNode(selections: [
+    FieldNode(
+      name: NameNode(value: 'collection'),
+      alias: null,
+      arguments: [],
+      directives: [],
+      selectionSet: null,
+    ),
+    FieldNode(
+      name: NameNode(value: 'id'),
+      alias: null,
+      arguments: [],
+      directives: [],
+      selectionSet: null,
+    ),
+    FieldNode(
+      name: NameNode(value: 'legacyID'),
+      alias: null,
+      arguments: [],
+      directives: [],
+      selectionSet: null,
+    ),
+    FieldNode(
+      name: NameNode(value: 'title'),
+      alias: null,
+      arguments: [],
+      directives: [],
+      selectionSet: null,
+    ),
+    FieldNode(
+      name: NameNode(value: 'description'),
+      alias: null,
+      arguments: [],
+      directives: [],
+      selectionSet: null,
+    ),
+    FieldNode(
+      name: NameNode(value: 'image'),
+      alias: null,
+      arguments: [],
+      directives: [],
+      selectionSet: null,
+    ),
+    FieldNode(
+      name: NameNode(value: '__typename'),
+      alias: null,
+      arguments: [],
+      directives: [],
+      selectionSet: null,
+    ),
+  ]),
+);
 const documentNodeFragmentSearchResultItem = DocumentNode(definitions: [
   fragmentDefinitionSearchResultItem,
 ]);
 
 extension ClientExtension$Fragment$SearchResultItem on graphql.GraphQLClient {
-  void writeFragment$SearchResultItem(
-          {required Fragment$SearchResultItem data,
-          required Map<String, dynamic> idFields,
-          bool broadcast = true}) =>
+  void writeFragment$SearchResultItem({
+    required Fragment$SearchResultItem data,
+    required Map<String, dynamic> idFields,
+    bool broadcast = true,
+  }) =>
       this.writeFragment(
-          graphql.FragmentRequest(
-              idFields: idFields,
-              fragment: const graphql.Fragment(
-                  fragmentName: 'SearchResultItem',
-                  document: documentNodeFragmentSearchResultItem)),
-          data: data.toJson(),
-          broadcast: broadcast);
-  Fragment$SearchResultItem? readFragment$SearchResultItem(
-      {required Map<String, dynamic> idFields, bool optimistic = true}) {
-    final result = this.readFragment(
         graphql.FragmentRequest(
-            idFields: idFields,
-            fragment: const graphql.Fragment(
-                fragmentName: 'SearchResultItem',
-                document: documentNodeFragmentSearchResultItem)),
-        optimistic: optimistic);
+          idFields: idFields,
+          fragment: const graphql.Fragment(
+            fragmentName: 'SearchResultItem',
+            document: documentNodeFragmentSearchResultItem,
+          ),
+        ),
+        data: data.toJson(),
+        broadcast: broadcast,
+      );
+  Fragment$SearchResultItem? readFragment$SearchResultItem({
+    required Map<String, dynamic> idFields,
+    bool optimistic = true,
+  }) {
+    final result = this.readFragment(
+      graphql.FragmentRequest(
+        idFields: idFields,
+        fragment: const graphql.Fragment(
+          fragmentName: 'SearchResultItem',
+          document: documentNodeFragmentSearchResultItem,
+        ),
+      ),
+      optimistic: optimistic,
+    );
     return result == null ? null : Fragment$SearchResultItem.fromJson(result);
   }
 }
 
 class Variables$Query$Search {
-  factory Variables$Query$Search(
-          {required String queryString, int? first, int? offset}) =>
+  factory Variables$Query$Search({
+    required String queryString,
+    int? first,
+    int? offset,
+  }) =>
       Variables$Query$Search._({
         r'queryString': queryString,
         if (first != null) r'first': first,
@@ -338,7 +372,10 @@ class Variables$Query$Search {
   }
 
   CopyWith$Variables$Query$Search<Variables$Query$Search> get copyWith =>
-      CopyWith$Variables$Query$Search(this, (i) => i);
+      CopyWith$Variables$Query$Search(
+        this,
+        (i) => i,
+      );
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) {
@@ -380,25 +417,33 @@ class Variables$Query$Search {
     return Object.hashAll([
       l$queryString,
       _$data.containsKey('first') ? l$first : const {},
-      _$data.containsKey('offset') ? l$offset : const {}
+      _$data.containsKey('offset') ? l$offset : const {},
     ]);
   }
 }
 
 abstract class CopyWith$Variables$Query$Search<TRes> {
-  factory CopyWith$Variables$Query$Search(Variables$Query$Search instance,
-          TRes Function(Variables$Query$Search) then) =
-      _CopyWithImpl$Variables$Query$Search;
+  factory CopyWith$Variables$Query$Search(
+    Variables$Query$Search instance,
+    TRes Function(Variables$Query$Search) then,
+  ) = _CopyWithImpl$Variables$Query$Search;
 
   factory CopyWith$Variables$Query$Search.stub(TRes res) =
       _CopyWithStubImpl$Variables$Query$Search;
 
-  TRes call({String? queryString, int? first, int? offset});
+  TRes call({
+    String? queryString,
+    int? first,
+    int? offset,
+  });
 }
 
 class _CopyWithImpl$Variables$Query$Search<TRes>
     implements CopyWith$Variables$Query$Search<TRes> {
-  _CopyWithImpl$Variables$Query$Search(this._instance, this._then);
+  _CopyWithImpl$Variables$Query$Search(
+    this._instance,
+    this._then,
+  );
 
   final Variables$Query$Search _instance;
 
@@ -406,10 +451,11 @@ class _CopyWithImpl$Variables$Query$Search<TRes>
 
   static const _undefined = {};
 
-  TRes call(
-          {Object? queryString = _undefined,
-          Object? first = _undefined,
-          Object? offset = _undefined}) =>
+  TRes call({
+    Object? queryString = _undefined,
+    Object? first = _undefined,
+    Object? offset = _undefined,
+  }) =>
       _then(Variables$Query$Search._({
         ..._instance._$data,
         if (queryString != _undefined && queryString != null)
@@ -425,19 +471,27 @@ class _CopyWithStubImpl$Variables$Query$Search<TRes>
 
   TRes _res;
 
-  call({String? queryString, int? first, int? offset}) => _res;
+  call({
+    String? queryString,
+    int? first,
+    int? offset,
+  }) =>
+      _res;
 }
 
 class Query$Search {
-  Query$Search({required this.search, required this.$__typename});
+  Query$Search({
+    required this.search,
+    required this.$__typename,
+  });
 
   factory Query$Search.fromJson(Map<String, dynamic> json) {
     final l$search = json['search'];
     final l$$__typename = json['__typename'];
     return Query$Search(
-        search:
-            Query$Search$search.fromJson((l$search as Map<String, dynamic>)),
-        $__typename: (l$$__typename as String));
+      search: Query$Search$search.fromJson((l$search as Map<String, dynamic>)),
+      $__typename: (l$$__typename as String),
+    );
   }
 
   final Query$Search$search search;
@@ -457,7 +511,10 @@ class Query$Search {
   int get hashCode {
     final l$search = search;
     final l$$__typename = $__typename;
-    return Object.hashAll([l$search, l$$__typename]);
+    return Object.hashAll([
+      l$search,
+      l$$__typename,
+    ]);
   }
 
   @override
@@ -483,23 +540,32 @@ class Query$Search {
 }
 
 extension UtilityExtension$Query$Search on Query$Search {
-  CopyWith$Query$Search<Query$Search> get copyWith =>
-      CopyWith$Query$Search(this, (i) => i);
+  CopyWith$Query$Search<Query$Search> get copyWith => CopyWith$Query$Search(
+        this,
+        (i) => i,
+      );
 }
 
 abstract class CopyWith$Query$Search<TRes> {
   factory CopyWith$Query$Search(
-          Query$Search instance, TRes Function(Query$Search) then) =
-      _CopyWithImpl$Query$Search;
+    Query$Search instance,
+    TRes Function(Query$Search) then,
+  ) = _CopyWithImpl$Query$Search;
 
   factory CopyWith$Query$Search.stub(TRes res) = _CopyWithStubImpl$Query$Search;
 
-  TRes call({Query$Search$search? search, String? $__typename});
+  TRes call({
+    Query$Search$search? search,
+    String? $__typename,
+  });
   CopyWith$Query$Search$search<TRes> get search;
 }
 
 class _CopyWithImpl$Query$Search<TRes> implements CopyWith$Query$Search<TRes> {
-  _CopyWithImpl$Query$Search(this._instance, this._then);
+  _CopyWithImpl$Query$Search(
+    this._instance,
+    this._then,
+  );
 
   final Query$Search _instance;
 
@@ -507,14 +573,18 @@ class _CopyWithImpl$Query$Search<TRes> implements CopyWith$Query$Search<TRes> {
 
   static const _undefined = {};
 
-  TRes call({Object? search = _undefined, Object? $__typename = _undefined}) =>
+  TRes call({
+    Object? search = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
       _then(Query$Search(
-          search: search == _undefined || search == null
-              ? _instance.search
-              : (search as Query$Search$search),
-          $__typename: $__typename == _undefined || $__typename == null
-              ? _instance.$__typename
-              : ($__typename as String)));
+        search: search == _undefined || search == null
+            ? _instance.search
+            : (search as Query$Search$search),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
   CopyWith$Query$Search$search<TRes> get search {
     final local$search = _instance.search;
     return CopyWith$Query$Search$search(local$search, (e) => call(search: e));
@@ -527,159 +597,189 @@ class _CopyWithStubImpl$Query$Search<TRes>
 
   TRes _res;
 
-  call({Query$Search$search? search, String? $__typename}) => _res;
+  call({
+    Query$Search$search? search,
+    String? $__typename,
+  }) =>
+      _res;
   CopyWith$Query$Search$search<TRes> get search =>
       CopyWith$Query$Search$search.stub(_res);
 }
 
 const documentNodeQuerySearch = DocumentNode(definitions: [
   OperationDefinitionNode(
-      type: OperationType.query,
-      name: NameNode(value: 'Search'),
-      variableDefinitions: [
-        VariableDefinitionNode(
-            variable: VariableNode(name: NameNode(value: 'queryString')),
-            type:
-                NamedTypeNode(name: NameNode(value: 'String'), isNonNull: true),
-            defaultValue: DefaultValueNode(value: null),
-            directives: []),
-        VariableDefinitionNode(
-            variable: VariableNode(name: NameNode(value: 'first')),
-            type: NamedTypeNode(name: NameNode(value: 'Int'), isNonNull: false),
-            defaultValue: DefaultValueNode(value: null),
-            directives: []),
-        VariableDefinitionNode(
-            variable: VariableNode(name: NameNode(value: 'offset')),
-            type: NamedTypeNode(name: NameNode(value: 'Int'), isNonNull: false),
-            defaultValue: DefaultValueNode(value: null),
-            directives: [])
-      ],
-      directives: [],
-      selectionSet: SelectionSetNode(selections: [
-        FieldNode(
-            name: NameNode(value: 'search'),
+    type: OperationType.query,
+    name: NameNode(value: 'Search'),
+    variableDefinitions: [
+      VariableDefinitionNode(
+        variable: VariableNode(name: NameNode(value: 'queryString')),
+        type: NamedTypeNode(
+          name: NameNode(value: 'String'),
+          isNonNull: true,
+        ),
+        defaultValue: DefaultValueNode(value: null),
+        directives: [],
+      ),
+      VariableDefinitionNode(
+        variable: VariableNode(name: NameNode(value: 'first')),
+        type: NamedTypeNode(
+          name: NameNode(value: 'Int'),
+          isNonNull: false,
+        ),
+        defaultValue: DefaultValueNode(value: null),
+        directives: [],
+      ),
+      VariableDefinitionNode(
+        variable: VariableNode(name: NameNode(value: 'offset')),
+        type: NamedTypeNode(
+          name: NameNode(value: 'Int'),
+          isNonNull: false,
+        ),
+        defaultValue: DefaultValueNode(value: null),
+        directives: [],
+      ),
+    ],
+    directives: [],
+    selectionSet: SelectionSetNode(selections: [
+      FieldNode(
+        name: NameNode(value: 'search'),
+        alias: null,
+        arguments: [
+          ArgumentNode(
+            name: NameNode(value: 'queryString'),
+            value: VariableNode(name: NameNode(value: 'queryString')),
+          ),
+          ArgumentNode(
+            name: NameNode(value: 'first'),
+            value: VariableNode(name: NameNode(value: 'first')),
+          ),
+          ArgumentNode(
+            name: NameNode(value: 'offset'),
+            value: VariableNode(name: NameNode(value: 'offset')),
+          ),
+        ],
+        directives: [],
+        selectionSet: SelectionSetNode(selections: [
+          FieldNode(
+            name: NameNode(value: 'hits'),
             alias: null,
-            arguments: [
-              ArgumentNode(
-                  name: NameNode(value: 'queryString'),
-                  value: VariableNode(name: NameNode(value: 'queryString'))),
-              ArgumentNode(
-                  name: NameNode(value: 'first'),
-                  value: VariableNode(name: NameNode(value: 'first'))),
-              ArgumentNode(
-                  name: NameNode(value: 'offset'),
-                  value: VariableNode(name: NameNode(value: 'offset')))
-            ],
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
+            name: NameNode(value: 'page'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
+            name: NameNode(value: 'result'),
+            alias: null,
+            arguments: [],
             directives: [],
             selectionSet: SelectionSetNode(selections: [
+              FragmentSpreadNode(
+                name: NameNode(value: 'SearchResultItem'),
+                directives: [],
+              ),
               FieldNode(
-                  name: NameNode(value: 'hits'),
-                  alias: null,
-                  arguments: [],
-                  directives: [],
-                  selectionSet: null),
-              FieldNode(
-                  name: NameNode(value: 'page'),
-                  alias: null,
-                  arguments: [],
-                  directives: [],
-                  selectionSet: null),
-              FieldNode(
-                  name: NameNode(value: 'result'),
-                  alias: null,
-                  arguments: [],
-                  directives: [],
-                  selectionSet: SelectionSetNode(selections: [
-                    FragmentSpreadNode(
-                        name: NameNode(value: 'SearchResultItem'),
-                        directives: []),
-                    FieldNode(
-                        name: NameNode(value: '__typename'),
-                        alias: null,
-                        arguments: [],
-                        directives: [],
-                        selectionSet: null)
-                  ])),
-              FieldNode(
-                  name: NameNode(value: '__typename'),
-                  alias: null,
-                  arguments: [],
-                  directives: [],
-                  selectionSet: null)
-            ])),
-        FieldNode(
+                name: NameNode(value: '__typename'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null,
+              ),
+            ]),
+          ),
+          FieldNode(
             name: NameNode(value: '__typename'),
             alias: null,
             arguments: [],
             directives: [],
-            selectionSet: null)
-      ])),
+            selectionSet: null,
+          ),
+        ]),
+      ),
+      FieldNode(
+        name: NameNode(value: '__typename'),
+        alias: null,
+        arguments: [],
+        directives: [],
+        selectionSet: null,
+      ),
+    ]),
+  ),
   fragmentDefinitionSearchResultItem,
 ]);
 Query$Search _parserFn$Query$Search(Map<String, dynamic> data) =>
     Query$Search.fromJson(data);
 
 class Options$Query$Search extends graphql.QueryOptions<Query$Search> {
-  Options$Query$Search(
-      {String? operationName,
-      required Variables$Query$Search variables,
-      graphql.FetchPolicy? fetchPolicy,
-      graphql.ErrorPolicy? errorPolicy,
-      graphql.CacheRereadPolicy? cacheRereadPolicy,
-      Object? optimisticResult,
-      Duration? pollInterval,
-      graphql.Context? context})
-      : super(
-            variables: variables.toJson(),
-            operationName: operationName,
-            fetchPolicy: fetchPolicy,
-            errorPolicy: errorPolicy,
-            cacheRereadPolicy: cacheRereadPolicy,
-            optimisticResult: optimisticResult,
-            pollInterval: pollInterval,
-            context: context,
-            document: documentNodeQuerySearch,
-            parserFn: _parserFn$Query$Search);
+  Options$Query$Search({
+    String? operationName,
+    required Variables$Query$Search variables,
+    graphql.FetchPolicy? fetchPolicy,
+    graphql.ErrorPolicy? errorPolicy,
+    graphql.CacheRereadPolicy? cacheRereadPolicy,
+    Object? optimisticResult,
+    Duration? pollInterval,
+    graphql.Context? context,
+  }) : super(
+          variables: variables.toJson(),
+          operationName: operationName,
+          fetchPolicy: fetchPolicy,
+          errorPolicy: errorPolicy,
+          cacheRereadPolicy: cacheRereadPolicy,
+          optimisticResult: optimisticResult,
+          pollInterval: pollInterval,
+          context: context,
+          document: documentNodeQuerySearch,
+          parserFn: _parserFn$Query$Search,
+        );
 }
 
 class WatchOptions$Query$Search
     extends graphql.WatchQueryOptions<Query$Search> {
-  WatchOptions$Query$Search(
-      {String? operationName,
-      required Variables$Query$Search variables,
-      graphql.FetchPolicy? fetchPolicy,
-      graphql.ErrorPolicy? errorPolicy,
-      graphql.CacheRereadPolicy? cacheRereadPolicy,
-      Object? optimisticResult,
-      graphql.Context? context,
-      Duration? pollInterval,
-      bool? eagerlyFetchResults,
-      bool carryForwardDataOnException = true,
-      bool fetchResults = false})
-      : super(
-            variables: variables.toJson(),
-            operationName: operationName,
-            fetchPolicy: fetchPolicy,
-            errorPolicy: errorPolicy,
-            cacheRereadPolicy: cacheRereadPolicy,
-            optimisticResult: optimisticResult,
-            context: context,
-            document: documentNodeQuerySearch,
-            pollInterval: pollInterval,
-            eagerlyFetchResults: eagerlyFetchResults,
-            carryForwardDataOnException: carryForwardDataOnException,
-            fetchResults: fetchResults,
-            parserFn: _parserFn$Query$Search);
+  WatchOptions$Query$Search({
+    String? operationName,
+    required Variables$Query$Search variables,
+    graphql.FetchPolicy? fetchPolicy,
+    graphql.ErrorPolicy? errorPolicy,
+    graphql.CacheRereadPolicy? cacheRereadPolicy,
+    Object? optimisticResult,
+    graphql.Context? context,
+    Duration? pollInterval,
+    bool? eagerlyFetchResults,
+    bool carryForwardDataOnException = true,
+    bool fetchResults = false,
+  }) : super(
+          variables: variables.toJson(),
+          operationName: operationName,
+          fetchPolicy: fetchPolicy,
+          errorPolicy: errorPolicy,
+          cacheRereadPolicy: cacheRereadPolicy,
+          optimisticResult: optimisticResult,
+          context: context,
+          document: documentNodeQuerySearch,
+          pollInterval: pollInterval,
+          eagerlyFetchResults: eagerlyFetchResults,
+          carryForwardDataOnException: carryForwardDataOnException,
+          fetchResults: fetchResults,
+          parserFn: _parserFn$Query$Search,
+        );
 }
 
 class FetchMoreOptions$Query$Search extends graphql.FetchMoreOptions {
-  FetchMoreOptions$Query$Search(
-      {required graphql.UpdateQuery updateQuery,
-      required Variables$Query$Search variables})
-      : super(
-            updateQuery: updateQuery,
-            variables: variables.toJson(),
-            document: documentNodeQuerySearch);
+  FetchMoreOptions$Query$Search({
+    required graphql.UpdateQuery updateQuery,
+    required Variables$Query$Search variables,
+  }) : super(
+          updateQuery: updateQuery,
+          variables: variables.toJson(),
+          document: documentNodeQuerySearch,
+        );
 }
 
 extension ClientExtension$Query$Search on graphql.GraphQLClient {
@@ -689,23 +789,30 @@ extension ClientExtension$Query$Search on graphql.GraphQLClient {
   graphql.ObservableQuery<Query$Search> watchQuery$Search(
           WatchOptions$Query$Search options) =>
       this.watchQuery(options);
-  void writeQuery$Search(
-          {required Query$Search data,
-          required Variables$Query$Search variables,
-          bool broadcast = true}) =>
+  void writeQuery$Search({
+    required Query$Search data,
+    required Variables$Query$Search variables,
+    bool broadcast = true,
+  }) =>
       this.writeQuery(
-          graphql.Request(
-              operation: graphql.Operation(document: documentNodeQuerySearch),
-              variables: variables.toJson()),
-          data: data.toJson(),
-          broadcast: broadcast);
-  Query$Search? readQuery$Search(
-      {required Variables$Query$Search variables, bool optimistic = true}) {
-    final result = this.readQuery(
         graphql.Request(
-            operation: graphql.Operation(document: documentNodeQuerySearch),
-            variables: variables.toJson()),
-        optimistic: optimistic);
+          operation: graphql.Operation(document: documentNodeQuerySearch),
+          variables: variables.toJson(),
+        ),
+        data: data.toJson(),
+        broadcast: broadcast,
+      );
+  Query$Search? readQuery$Search({
+    required Variables$Query$Search variables,
+    bool optimistic = true,
+  }) {
+    final result = this.readQuery(
+      graphql.Request(
+        operation: graphql.Operation(document: documentNodeQuerySearch),
+        variables: variables.toJson(),
+      ),
+      optimistic: optimistic,
+    );
     return result == null ? null : Query$Search.fromJson(result);
   }
 }
@@ -718,19 +825,24 @@ graphql.ObservableQuery<Query$Search> useWatchQuery$Search(
     graphql_flutter.useWatchQuery(options);
 
 class Query$Search$Widget extends graphql_flutter.Query<Query$Search> {
-  Query$Search$Widget(
-      {widgets.Key? key,
-      required Options$Query$Search options,
-      required graphql_flutter.QueryBuilder<Query$Search> builder})
-      : super(key: key, options: options, builder: builder);
+  Query$Search$Widget({
+    widgets.Key? key,
+    required Options$Query$Search options,
+    required graphql_flutter.QueryBuilder<Query$Search> builder,
+  }) : super(
+          key: key,
+          options: options,
+          builder: builder,
+        );
 }
 
 class Query$Search$search {
-  Query$Search$search(
-      {required this.hits,
-      required this.page,
-      required this.result,
-      required this.$__typename});
+  Query$Search$search({
+    required this.hits,
+    required this.page,
+    required this.result,
+    required this.$__typename,
+  });
 
   factory Query$Search$search.fromJson(Map<String, dynamic> json) {
     final l$hits = json['hits'];
@@ -738,13 +850,14 @@ class Query$Search$search {
     final l$result = json['result'];
     final l$$__typename = json['__typename'];
     return Query$Search$search(
-        hits: (l$hits as int),
-        page: (l$page as int),
-        result: (l$result as List<dynamic>)
-            .map((e) =>
-                Fragment$SearchResultItem.fromJson((e as Map<String, dynamic>)))
-            .toList(),
-        $__typename: (l$$__typename as String));
+      hits: (l$hits as int),
+      page: (l$page as int),
+      result: (l$result as List<dynamic>)
+          .map((e) =>
+              Fragment$SearchResultItem.fromJson((e as Map<String, dynamic>)))
+          .toList(),
+      $__typename: (l$$__typename as String),
+    );
   }
 
   final int hits;
@@ -778,7 +891,7 @@ class Query$Search$search {
       l$hits,
       l$page,
       Object.hashAll(l$result.map((v) => v)),
-      l$$__typename
+      l$$__typename,
     ]);
   }
 
@@ -823,22 +936,27 @@ class Query$Search$search {
 
 extension UtilityExtension$Query$Search$search on Query$Search$search {
   CopyWith$Query$Search$search<Query$Search$search> get copyWith =>
-      CopyWith$Query$Search$search(this, (i) => i);
+      CopyWith$Query$Search$search(
+        this,
+        (i) => i,
+      );
 }
 
 abstract class CopyWith$Query$Search$search<TRes> {
-  factory CopyWith$Query$Search$search(Query$Search$search instance,
-          TRes Function(Query$Search$search) then) =
-      _CopyWithImpl$Query$Search$search;
+  factory CopyWith$Query$Search$search(
+    Query$Search$search instance,
+    TRes Function(Query$Search$search) then,
+  ) = _CopyWithImpl$Query$Search$search;
 
   factory CopyWith$Query$Search$search.stub(TRes res) =
       _CopyWithStubImpl$Query$Search$search;
 
-  TRes call(
-      {int? hits,
-      int? page,
-      List<Fragment$SearchResultItem>? result,
-      String? $__typename});
+  TRes call({
+    int? hits,
+    int? page,
+    List<Fragment$SearchResultItem>? result,
+    String? $__typename,
+  });
   TRes result(
       Iterable<Fragment$SearchResultItem> Function(
               Iterable<
@@ -849,7 +967,10 @@ abstract class CopyWith$Query$Search$search<TRes> {
 
 class _CopyWithImpl$Query$Search$search<TRes>
     implements CopyWith$Query$Search$search<TRes> {
-  _CopyWithImpl$Query$Search$search(this._instance, this._then);
+  _CopyWithImpl$Query$Search$search(
+    this._instance,
+    this._then,
+  );
 
   final Query$Search$search _instance;
 
@@ -857,24 +978,24 @@ class _CopyWithImpl$Query$Search$search<TRes>
 
   static const _undefined = {};
 
-  TRes call(
-          {Object? hits = _undefined,
-          Object? page = _undefined,
-          Object? result = _undefined,
-          Object? $__typename = _undefined}) =>
+  TRes call({
+    Object? hits = _undefined,
+    Object? page = _undefined,
+    Object? result = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
       _then(Query$Search$search(
-          hits: hits == _undefined || hits == null
-              ? _instance.hits
-              : (hits as int),
-          page: page == _undefined || page == null
-              ? _instance.page
-              : (page as int),
-          result: result == _undefined || result == null
-              ? _instance.result
-              : (result as List<Fragment$SearchResultItem>),
-          $__typename: $__typename == _undefined || $__typename == null
-              ? _instance.$__typename
-              : ($__typename as String)));
+        hits:
+            hits == _undefined || hits == null ? _instance.hits : (hits as int),
+        page:
+            page == _undefined || page == null ? _instance.page : (page as int),
+        result: result == _undefined || result == null
+            ? _instance.result
+            : (result as List<Fragment$SearchResultItem>),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
   TRes result(
           Iterable<Fragment$SearchResultItem> Function(
                   Iterable<
@@ -882,9 +1003,11 @@ class _CopyWithImpl$Query$Search$search<TRes>
                           Fragment$SearchResultItem>>)
               _fn) =>
       call(
-          result: _fn(_instance.result
-                  .map((e) => CopyWith$Fragment$SearchResultItem(e, (i) => i)))
-              .toList());
+          result: _fn(
+              _instance.result.map((e) => CopyWith$Fragment$SearchResultItem(
+                    e,
+                    (i) => i,
+                  ))).toList());
 }
 
 class _CopyWithStubImpl$Query$Search$search<TRes>
@@ -893,11 +1016,12 @@ class _CopyWithStubImpl$Query$Search$search<TRes>
 
   TRes _res;
 
-  call(
-          {int? hits,
-          int? page,
-          List<Fragment$SearchResultItem>? result,
-          String? $__typename}) =>
+  call({
+    int? hits,
+    int? page,
+    List<Fragment$SearchResultItem>? result,
+    String? $__typename,
+  }) =>
       _res;
   result(_fn) => _res;
 }

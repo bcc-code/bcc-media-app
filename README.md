@@ -18,7 +18,7 @@ You can also run the app via the cli: `flutter run`.
 ## Code generation
 
 Some code is generated based on other files, e.g. routing.
-To ensure your code is updated, run this watcher while developing: 
+To ensure your code is updated, run this watcher while developing:
 
 ```
 flutter pub run build_runner watch --delete-conflicting-outputs
@@ -36,6 +36,7 @@ We are developing a standalone playback library to manage the player and chromec
 It's located at /external_projects/bccm_player which will be converted to a git submodule at a later date.
 
 You need to create a new "Player" before displaying it, i.e.
+
 ```dart
 let playerId = await ref.read(playbackApiProvider).newPlayer(mediaItem);
 let playerViewWidget = BccmPlayer(id: playerId)
@@ -45,11 +46,17 @@ let playerViewWidget = BccmPlayer(id: playerId)
 
 We are using auto_route.
 
+## GraphQL
+
+Schema files are copied from [the brunstadtv repo](https://github.com/bcc-code/brunstadtv).
+For a local workflow where the brunstadtv repo is side-by-side with this repo, see the [Makefile](Makefile).
 
 # Other
 
 ## "Unknown error" on login, issues with ssl, etc.
+
 Sometimes the android emulator's clock goes out of sync. You can run this adb command to update the clock
+
 ```
-adb shell "su 0 date `date +%m%d%H%M%Y.%S`"       
+adb shell "su 0 date `date +%m%d%H%M%Y.%S`"
 ```
