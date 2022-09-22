@@ -1,18 +1,6 @@
 import 'package:flutter/material.dart';
 import '../../components/option_list.dart';
 
-class Option {
-  final String id;
-  final String title;
-  String? subTitle;
-
-  Option({
-    required this.id,
-    required this.title,
-    this.subTitle,
-  });
-}
-
 class AppLanguageScreen extends StatefulWidget {
   const AppLanguageScreen({super.key});
 

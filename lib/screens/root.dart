@@ -72,7 +72,7 @@ class _RootScreenState extends ConsumerState<RootScreen> with AutoRouteAware {
         // routes of /dashboard
         routes: const [
           HomeScreenRoute(),
-          SearchScreenRoute(),
+          EmptyRouterPageRoute(),
           LiveScreenRoute(),
           HomeScreenRoute(),
         ],
@@ -83,10 +83,12 @@ class _RootScreenState extends ConsumerState<RootScreen> with AutoRouteAware {
           // to access the tabsRouter controller provided in this context
           //
           //alterntivly you could use a global key
-          final hideMiniPlayer = tabsRouter.current.meta['hide_mini_player'] == true;
+          final hideMiniPlayer =
+              tabsRouter.current.meta['hide_mini_player'] == true;
           return Scaffold(
-              body: child,
-              bottomSheet: hideMiniPlayer ? const SizedBox.shrink() : const MiniPlayer(),
+              body: SafeArea(child: child),
+              bottomSheet:
+                  hideMiniPlayer ? const SizedBox.shrink() : const MiniPlayer(),
               bottomNavigationBar: Container(
                 decoration: BoxDecoration(
                     border: Border(
