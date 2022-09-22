@@ -4,11 +4,18 @@ query FetchEpisode($id: ID!) {
     title
     description
     extraDescription
+    imageUrl
     streams {
       type
       url
       audioLanguages
       subtitleLanguages
+    }
+    season {
+      title
+      show {
+        title
+      }
     }
   }
 }

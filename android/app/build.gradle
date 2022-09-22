@@ -70,7 +70,13 @@ flutter {
     source '../..'
 }
 
+repositories {
+    maven { url  "https://npaw.jfrog.io/artifactory/youbora/" }
+}
+
 dependencies {
+    def youboraVersion = "6.8.0"
+    implementation "com.nicepeopleatwork:youboralib:$youboraVersion"
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     /*implementation 'com.google.android.exoplayer:exoplayer:2.18.1'*/
     def media3_version = "1.0.0-beta02"

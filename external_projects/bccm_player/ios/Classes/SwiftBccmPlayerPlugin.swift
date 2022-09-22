@@ -1,18 +1,43 @@
 import Flutter
 import UIKit
 import AVKit
+import GoogleCast
 
 public class SwiftBccmPlayerPlugin: NSObject, FlutterPlugin {
     public static func register(with registrar: FlutterPluginRegistrar) {
+        
+        let criteria = GCKDiscoveryCriteria(applicationID: "BC91FA3B")
+        let options = GCKCastOptions(discoveryCriteria: criteria)
+        GCKCastContext.setSharedInstanceWith(options)
+        let styler = GCKUIStyle.sharedInstance()
+        styler.castViews.mediaControl.expandedController.backgroundImageContentMode = UIImageView.ContentMode.scaleAspectFit.rawValue as NSNumber
+        styler.castViews.mediaControl.expandedController.backgroundColor = UIColor.init(red: CGFloat(13/255.0), green: CGFloat(22/255.0), blue: CGFloat(55/255.0), alpha: CGFloat(1.0));
+        
+        GCKCastContext.sharedInstance().useDefaultExpandedMediaControls = false
+        
         let messenger = registrar.messenger()
         let channel = FlutterMethodChannel(name: "bccm_player", binaryMessenger: messenger)
         let instance = SwiftBccmPlayerPlugin()
         registrar.addMethodCallDelegate(instance, channel: channel)
         let playbackListener = PlaybackListenerPigeon(binaryMessenger: messenger)
-        let playbackApi = PlaybackApiImpl(playbackListener: playbackListener);
+        
+        let chromecastPigeon = ChromecastPigeon(binaryMessenger: messenger);
+        
+        let castPlayerController = CastPlayerController(chromecastPigeon: chromecastPigeon);
+        GCKCastContext.sharedInstance().sessionManager.add(castPlayerController)
+        
+        let playbackApi = PlaybackApiImpl(chromecastPigeon: chromecastPigeon, castPlayerController: castPlayerController, playbackListener: playbackListener);
+        castPlayerController.setPlaybackApi(playbackApi)
 
-        let factory = BccmPlayerFactory(messenger: messenger, playbackApi: playbackApi)
-        registrar.register(factory, withId: "bccm-player")
+        registrar.register(
+            BccmPlayerFactory(messenger: messenger, playbackApi: playbackApi),
+            withId: "bccm-player")
+        registrar.register(
+            CastPlayerViewFactory(messenger: messenger, playbackApi: playbackApi),
+            withId: "bccm-cast-player")
+        registrar.register(
+            CastButtonFactory(messenger: messenger, playbackApi: playbackApi),
+            withId: "bccm_player/cast_button")
 
         PlaybackPlatformPigeonSetup(registrar.messenger(), playbackApi)
 
@@ -22,7 +47,6 @@ public class SwiftBccmPlayerPlugin: NSObject, FlutterPlugin {
         } catch {
             print("Setting category to AVAudioSessionCategoryPlayback failed.")
         }
-
     }
 
     public func handle(_ call: FlutterMethodCall, result: @escaping FlutterResult) {

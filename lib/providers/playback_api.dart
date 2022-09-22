@@ -18,8 +18,14 @@ Future playEpisode(
       mimeType: 'application/x-mpegURL',
       metadata: MediaMetadata(
           title: episode.title,
-          episodeId: episode.id.toString(),
-          artworkUri: episode.imageUrl),
+          artworkUri: episode.imageUrl,
+          extras: {
+            'id': episode.id.toString(),
+            'npaw.content.id': episode.id,
+            'npaw.content.tvShow': episode.showTitle,
+            'npaw.content.season': episode.seasonTitle,
+            'npaw.content.episodeTitle': episode.title,
+          }),
       playbackStartPositionMs: playbackPositionMs);
 
   PlaybackPlatformInterface.instance
@@ -33,8 +39,14 @@ Future queueEpisode(
       mimeType: 'application/x-mpegURL',
       metadata: MediaMetadata(
           title: episode.title,
-          episodeId: episode.id.toString(),
-          artworkUri: episode.imageUrl));
+          artworkUri: episode.imageUrl,
+          extras: {
+            'id': episode.id.toString(),
+            'npaw.content.id': episode.id,
+            'npaw.content.tvShow': episode.showTitle,
+            'npaw.content.season': episode.seasonTitle,
+            'npaw.content.episodeTitle': episode.title,
+          }));
 
   PlaybackPlatformInterface.instance.queueMediaItem(playerId, mediaItem);
 }

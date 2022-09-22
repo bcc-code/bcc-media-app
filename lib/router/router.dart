@@ -12,6 +12,7 @@ import 'package:my_app/screens/login.dart';
 import 'package:my_app/screens/profile/profile.dart';
 import 'package:my_app/screens/search/search.dart';
 
+import '../providers/fun.dart';
 import '../screens/episode.dart';
 import '../screens/root.dart';
 import '../screens/search/explore_category_page.dart';
@@ -29,8 +30,8 @@ import '../screens/search/explore_category_page.dart';
     CustomRoute<void>(
       page: EpisodeScreen,
       path: 'episode/:episodeId',
-      transitionsBuilder:
-          TransitionsBuilders.slideBottom, /* durationInMilliseconds: 200 */
+      durationInMilliseconds: 500,
+      transitionsBuilder: slideBottom, /* durationInMilliseconds: 200 */
     ),
     MaterialRoute<void>(page: RootScreen, path: '/', initial: true, guards: [
       AuthGuard
@@ -40,7 +41,7 @@ import '../screens/search/explore_category_page.dart';
           page: LiveScreen,
           path: 'live',
           meta: {'hide_mini_player': true},
-          maintainState: false),
+          maintainState: true),
       MaterialRoute<void>(
           page: EmptyRouterPage,
           path: 'search',

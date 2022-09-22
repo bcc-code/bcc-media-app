@@ -13,6 +13,7 @@ import 'package:transparent_image/transparent_image.dart';
 
 import 'api/sliders.dart';
 import 'components/horizontal_slider.dart';
+import 'api/brunstadtv.dart';
 
 class ItemSection extends StatelessWidget {
   final String title;
@@ -68,8 +69,11 @@ class ItemSection extends StatelessWidget {
                               child: Text('Play now')),
                           ElevatedButton(
                               onPressed: () {
-                                fetchLegacyEpisode(si.id).then(
+                                ref.read(apiProvider).fetchEpisode(si.id).then(
                                   (episode) {
+                                    if (episode == null) {
+                                      return;
+                                    }
                                     queueEpisode(
                                         playerId: 'chromecast',
                                         episode: episode);

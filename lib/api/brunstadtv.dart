@@ -28,15 +28,17 @@ class Api {
 
     var streamUrl = episode.streams
         .firstWhereOrNull((element) =>
-            element.type == Enum$StreamType.cmaf ||
-            element.type == Enum$StreamType.hls)
+            element.type == Enum$StreamType.hls_cmaf ||
+            element.type == Enum$StreamType.hls_ts)
         ?.url;
     streamUrl ??= episode.streams.first.url;
     return Episode(
         id: episode.id,
-        streamUrl:
-            "https://devstreaming-cdn.apple.com/videos/streaming/examples/img_bipbop_adv_example_fmp4/master.m3u8",
-        title: episode.title);
+        streamUrl: streamUrl,
+        title: episode.title,
+        imageUrl: episode.imageUrl,
+        showTitle: episode.season?.$show.title,
+        seasonTitle: episode.season?.title);
   }
 }
 
