@@ -54,10 +54,12 @@ class _Episode extends StatelessWidget {
             height: 128 * (9 / 16),
             margin: const EdgeInsets.only(right: 16),
             decoration: BoxDecoration(
-              image: DecorationImage(
-                image: NetworkImage(_episode.image!),
-                fit: BoxFit.cover,
-              ),
+              image: _episode.image != null
+                  ? DecorationImage(
+                      image: NetworkImage(_episode.image!),
+                      fit: BoxFit.cover,
+                    )
+                  : null,
               borderRadius: BorderRadius.circular(4),
               border: Border.all(
                 width: 1,
