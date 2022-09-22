@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
-import 'models/search_result_item.dart';
+import '../graphql/queries/search.graphql.dart';
 
 class EpisodeList extends StatelessWidget {
   final String title;
-  final List<SearchResultItem> items;
+  final List<Fragment$SearchResultItem$$EpisodeSearchItem> items;
 
   const EpisodeList({required this.title, required this.items});
 
@@ -34,7 +34,7 @@ class EpisodeList extends StatelessWidget {
 }
 
 class _Episode extends StatelessWidget {
-  final SearchResultItem _episode;
+  final Fragment$SearchResultItem$$EpisodeSearchItem _episode;
   final _ageGroup = '12+';
   final _duration = '40 min';
 

@@ -116,26 +116,24 @@ class _SearchBarState extends State<SearchBar> {
               ),
             ),
           ),
-          _showCancelButton
-              ? Container(
-                  margin: const EdgeInsets.only(
-                      left: 8, top: 0, right: 0, bottom: 0),
-                  child: TextButton(
-                    style: TextButton.styleFrom(
-                      // splashFactory: NoSplash.splashFactory,
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(50)),
-                      padding: const EdgeInsets.symmetric(horizontal: 8),
-                    ),
-                    onPressed: _onCancelled,
-                    child: const Text(
-                      'Cancel',
-                      style:
-                          TextStyle(fontWeight: FontWeight.w700, fontSize: 15),
-                    ),
-                  ),
-                )
-              : const SizedBox.shrink(),
+          if (_showCancelButton)
+            Container(
+              margin:
+                  const EdgeInsets.only(left: 8, top: 0, right: 0, bottom: 0),
+              child: TextButton(
+                style: TextButton.styleFrom(
+                  // splashFactory: NoSplash.splashFactory,
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(50)),
+                  padding: const EdgeInsets.symmetric(horizontal: 8),
+                ),
+                onPressed: _onCancelled,
+                child: const Text(
+                  'Cancel',
+                  style: TextStyle(fontWeight: FontWeight.w700, fontSize: 15),
+                ),
+              ),
+            )
         ],
       ),
     );

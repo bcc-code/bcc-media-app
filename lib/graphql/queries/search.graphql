@@ -8,6 +8,9 @@ fragment SearchResultItem on SearchResultItem {
   ... on EpisodeSearchItem {
     showTitle
   }
+  ... on ShowSearchItem {
+    __typename
+  }
   __typename
 }
 

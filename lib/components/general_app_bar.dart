@@ -1,7 +1,4 @@
-import 'package:flutter/cupertino.dart';
-
 import 'package:flutter/material.dart';
-import 'package:my_app/components/icon_label_button.dart';
 
 class GeneralAppBar extends StatelessWidget implements PreferredSizeWidget {
   final Widget title;
@@ -13,8 +10,6 @@ class GeneralAppBar extends StatelessWidget implements PreferredSizeWidget {
     this.leftActions = const [],
     this.rightActions = const [],
   });
-
-  openSortOptionsPane() {}
 
   @override
   Widget build(BuildContext context) {

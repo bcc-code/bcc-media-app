@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:my_app/graphql/client.dart';
-import 'package:my_app/graphql/queries/search.graphql.dart';
-import 'package:my_app/screens/search/models/search_result_item.dart';
 
-import 'episode_list.dart';
-import 'result_programs_list.dart';
+import '../../graphql/client.dart';
+import '../../graphql/queries/search.graphql.dart';
+import '../../components/episode_list.dart';
+import '../../components/result_programs_list.dart';
 
 class SearchResultsPage extends ConsumerStatefulWidget {
   final String _searchInput;
@@ -67,11 +66,12 @@ class _SearchResultsPageState extends ConsumerState<SearchResultsPage> {
             if (searchResults.isEmpty) {
               return _noResultsInfoWidget;
             } else {
-              var results = _getResultProgramsEpisodes(searchResults);
-              List<SearchResultItem> programs =
-                  results['programs'] as List<SearchResultItem>;
-              List<SearchResultItem> episodes =
-                  results['episodes'] as List<SearchResultItem>;
+              final programs = searchResults
+                  .whereType<Fragment$SearchResultItem$$ShowSearchItem>()
+                  .toList();
+              final episodes = searchResults
+                  .whereType<Fragment$SearchResultItem$$EpisodeSearchItem>()
+                  .toList();
               return ListView(
                 children: [
                   if (programs.isNotEmpty)
@@ -128,24 +128,4 @@ class _SearchResultsPageState extends ConsumerState<SearchResultsPage> {
       ),
     ),
   );
-
-  Map<String, List<SearchResultItem>> _getResultProgramsEpisodes(
-      List<Fragment$SearchResultItem> results) {
-    List<SearchResultItem> programs = [];
-    List<SearchResultItem> episodes = [];
-
-    for (var result in results) {
-      var resultItem = SearchResultItem.fromResult(result);
-      if (resultItem.type == ResultType.show) {
-        programs.add(resultItem);
-      } else if (resultItem.type == ResultType.episode) {
-        episodes.add(resultItem);
-      }
-    }
-
-    return {
-      'programs': programs,
-      'episodes': episodes,
-    };
-  }
 }

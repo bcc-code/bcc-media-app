@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:my_app/screens/search/category_episode.dart';
-import 'package:my_app/screens/search/explore_category_sort.dart';
 
+import '../../components/category_episode.dart';
+import '../../components/explore_category_sort.dart';
 import '../../components/icon_label_button.dart';
 import '../../components/general_app_bar.dart';
-import 'models/search_result_item.dart';
 
 class ExploreCategoryScreen extends StatelessWidget {
   final String category;
@@ -64,32 +63,32 @@ class ExploreCategoryScreen extends StatelessWidget {
         leftActions: leftAppBarButtons,
         rightActions: rightAppBarButtons,
       ),
-      body: LayoutBuilder(
-        builder: (context, constraints) {
-          final itemWidth = (constraints.maxWidth - 16 * 3) / 2;
-          return ListView.builder(
-            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-            itemCount: (_episodeList.length / 2).ceil(),
-            itemBuilder: (context, rowIndex) {
-              final itemIndex = rowIndex * 2;
-              return Container(
-                margin: const EdgeInsets.only(bottom: 24),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    CategoryEpisode(
-                      episode: _episodeList[itemIndex],
-                      itemWidth: itemWidth,
-                    ),
-                    if (itemIndex + 1 < _episodeList.length)
-                      CategoryEpisode(
-                        episode: _episodeList[itemIndex + 1],
-                        itemWidth: itemWidth,
-                      )
-                  ],
+      body: ListView.builder(
+        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+        itemCount: (_episodeList.length / 2).ceil(),
+        itemBuilder: (context, rowIndex) {
+          final itemIndex = rowIndex * 2;
+          return Container(
+            margin: const EdgeInsets.only(bottom: 24),
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Expanded(
+                  child: CategoryEpisode(
+                    episode: _episodeList[itemIndex],
+                    margin: const EdgeInsets.only(right: 8),
+                  ),
                 ),
-              );
-            },
+                Expanded(
+                  child: itemIndex + 1 < _episodeList.length
+                      ? CategoryEpisode(
+                          episode: _episodeList[itemIndex + 1],
+                          margin: const EdgeInsets.only(left: 8),
+                        )
+                      : Container(),
+                )
+              ],
+            ),
           );
         },
       ),

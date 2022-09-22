@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import './search_home_page.dart';
 import './search_results_page.dart';
 
-import './search_bar.dart';
+import '../../components/search_bar.dart';
 import '../../services/auth_service.dart';
 
 class SearchScreen extends StatefulWidget {

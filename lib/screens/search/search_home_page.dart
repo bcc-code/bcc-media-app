@@ -1,42 +1,43 @@
 import 'package:flutter/material.dart';
 import 'package:auto_route/auto_route.dart';
-import 'package:my_app/screens/search/models/search_result_item.dart';
+import '../../graphql/queries/search.graphql.dart';
+import '../../models/explore_category.dart';
 import '../../router/router.gr.dart';
 
 import 'package:my_app/components/category_button.dart';
-import 'episode_list.dart';
+import '../../components/episode_list.dart';
 
 class SearchHomePage extends StatelessWidget {
-  final List<Map<String, String>> _categories = [
-    {
-      'label': 'Series',
-      'image': 'CollectionSeries.png',
-    },
-    {
-      'label': 'Kids',
-      'image': 'CollectionKids.png',
-    },
-    {
-      'label': 'Films',
-      'image': 'CollectionFilms.png',
-    },
-    {
-      'label': 'Events',
-      'image': 'CollectionEvents.png',
-    },
-    {
-      'label': 'Music',
-      'image': 'CollectionMusic.png',
-    },
-    {
-      'label': 'Worth watching',
-      'image': 'CollectionWorthWatching.png',
-    },
+  final List<ExploreCategory> _categories = [
+    ExploreCategory(
+      label: 'Series',
+      image: 'CollectionSeries.png',
+    ),
+    ExploreCategory(
+      label: 'Kids',
+      image: 'CollectionKids.png',
+    ),
+    ExploreCategory(
+      label: 'Films',
+      image: 'CollectionFilms.png',
+    ),
+    ExploreCategory(
+      label: 'Events',
+      image: 'CollectionEvents.png',
+    ),
+    ExploreCategory(
+      label: 'Music',
+      image: 'CollectionMusic.png',
+    ),
+    ExploreCategory(
+      label: 'Worth watching',
+      image: 'CollectionWorthWatching.png',
+    ),
   ];
 
   final _episodeList = List.filled(
       10,
-      SearchResultItem(
+      Fragment$SearchResultItem$$EpisodeSearchItem(
         collection: 'episode',
         id: '1',
         title: '25. august - PROMO: Høstcamp og Romjulscamp',
@@ -45,11 +46,13 @@ class SearchHomePage extends StatelessWidget {
         image:
             'https://brunstadtv.imgix.net/c7b34d9c-d961-4326-9686-d480d461b54c.jpg',
         showTitle: 'Fra Kåre til BUK',
-        type: ResultType.episode,
+        $__typename: 'EpisodeSearchItem',
       ));
 
   @override
   Widget build(BuildContext context) {
+    var numCategoryRows = (_categories.length / 2).ceil();
+
     return ListView(children: [
       Container(
         padding: const EdgeInsets.only(top: 12, left: 16, right: 16),
@@ -68,27 +71,49 @@ class SearchHomePage extends StatelessWidget {
                 ),
               ),
             ),
-            LayoutBuilder(
-              builder: (context, constraints) {
-                final buttonWidth = (constraints.maxWidth - 16) / 2;
-
-                return Wrap(
-                  spacing: 16,
-                  runSpacing: 12,
-                  children: _categories.map((category) {
-                    return CategoryButton(
-                        width: buttonWidth,
-                        label: category['label'] as String,
-                        imagePath: "assets/icons/${category['image']}",
-                        onTap: () {
-                          context.router.navigate(
-                            ExploreCategoryScreenRoute(
-                                category: category['label']!),
-                          );
-                        });
-                  }).toList(),
+            Column(
+              mainAxisSize: MainAxisSize.min,
+              children: List.generate(numCategoryRows, (index) {
+                var itemIndex = index * 2;
+                return Container(
+                  margin: index + 1 == numCategoryRows
+                      ? null
+                      : const EdgeInsets.only(bottom: 12),
+                  child: Row(
+                    children: [
+                      Expanded(
+                        child: CategoryButton(
+                          label: _categories[itemIndex].label,
+                          imagePath: _categories[itemIndex].image,
+                          margin: const EdgeInsets.only(right: 8),
+                          onTap: () {
+                            context.router.navigate(
+                              ExploreCategoryScreenRoute(
+                                  category: _categories[itemIndex].label),
+                            );
+                          },
+                        ),
+                      ),
+                      Expanded(
+                        child: itemIndex + 1 < _categories.length
+                            ? CategoryButton(
+                                label: _categories[itemIndex + 1].label,
+                                imagePath: _categories[itemIndex + 1].image,
+                                margin: const EdgeInsets.only(left: 8),
+                                onTap: () {
+                                  context.router.navigate(
+                                    ExploreCategoryScreenRoute(
+                                        category:
+                                            _categories[itemIndex + 1].label),
+                                  );
+                                },
+                              )
+                            : Container(),
+                      ),
+                    ],
+                  ),
                 );
-              },
+              }),
             ),
           ],
         ),
