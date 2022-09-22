@@ -21,7 +21,9 @@ final gqlClientProvider = Provider<GraphQLClient>((ref) {
     /// **NOTE** The default store is the InMemoryStore, which does NOT persist to disk
     cache: GraphQLCache(),
     defaultPolicies: DefaultPolicies(
-        query: Policies(cacheReread: CacheRereadPolicy.ignoreAll)),
+        query: Policies(
+            cacheReread: CacheRereadPolicy.ignoreAll,
+            fetch: FetchPolicy.networkOnly)),
     link: link,
   );
 
