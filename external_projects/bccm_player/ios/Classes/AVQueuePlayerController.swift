@@ -42,11 +42,10 @@ public class AVQueuePlayerController: PlayerController {
         youboraOptions.appReleaseVersion = npawConfig?.appReleaseVersion;
         youboraPlugin = YBPlugin(options: youboraOptions)
         youboraPlugin.adapter = YBAVPlayerAdapterSwiftTranformer.transform(from: YBAVPlayerAdapter(player: player))
-        youboraPlugin.firePreloadBegin()
         addObservers();
         print("BTV DEBUG: end of init playerController")
     }
-
+    
     func npawHandleMediaItemUpdate(playerItem: AVPlayerItem?, extras: [String: String]) {
         guard #available(iOS 12.2, *) else {
             // AVPlayerItem.externalMetadata isn't available < 12.2
