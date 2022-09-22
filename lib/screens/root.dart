@@ -67,6 +67,7 @@ class _RootScreenState extends ConsumerState<RootScreen> with AutoRouteAware {
   @override
   Widget build(BuildContext context) {
     return AutoTabsRouter(
+        navigatorObservers: () => [HeroController()],
         // list of your tab routes
         // routes used here must be declaraed as children
         // routes of /dashboard
@@ -83,10 +84,12 @@ class _RootScreenState extends ConsumerState<RootScreen> with AutoRouteAware {
           // to access the tabsRouter controller provided in this context
           //
           //alterntivly you could use a global key
-          final hideMiniPlayer = tabsRouter.current.meta['hide_mini_player'] == true;
+          final hideMiniPlayer =
+              tabsRouter.current.meta['hide_mini_player'] == true;
           return Scaffold(
               body: child,
-              bottomSheet: hideMiniPlayer ? const SizedBox.shrink() : const MiniPlayer(),
+              bottomSheet:
+                  hideMiniPlayer ? const SizedBox.shrink() : const MiniPlayer(),
               bottomNavigationBar: Container(
                 decoration: BoxDecoration(
                     border: Border(

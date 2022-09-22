@@ -14,6 +14,7 @@
 import 'package:auto_route/auto_route.dart' as _i12;
 import 'package:flutter/material.dart' as _i13;
 
+import '../providers/fun.dart' as _i15;
 import '../screens/episode.dart' as _i7;
 import '../screens/home.dart' as _i9;
 import '../screens/live.dart' as _i10;
@@ -75,7 +76,8 @@ class AppRouter extends _i12.RootStackRouter {
       return _i12.CustomPage<void>(
           routeData: routeData,
           child: _i7.EpisodeScreen(key: args.key, episodeId: args.episodeId),
-          transitionsBuilder: _i12.TransitionsBuilders.slideBottom,
+          transitionsBuilder: _i15.slideBottom,
+          durationInMilliseconds: 500,
           opaque: true,
           barrierDismissible: false);
     },

@@ -110,7 +110,7 @@ class AndroidPlayer extends StatelessWidget {
         );
       },
       onCreatePlatformView: (params) {
-        return PlatformViewsService.initExpensiveAndroidView(
+        return PlatformViewsService.initAndroidView(
           id: params.id,
           viewType: 'bccm-player',
           layoutDirection: TextDirection.ltr,
