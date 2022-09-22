@@ -1,22 +1,25 @@
 import 'package:flutter/material.dart';
-import 'package:my_app/screens/profile/app_language.dart';
 
 class OptionList extends StatelessWidget {
   final List<Option> optionData;
   final String currentSelection;
   final void Function(String) onSelectionChange;
+  final EdgeInsetsGeometry margin;
+  final bool enableDivider;
 
   const OptionList({
     super.key,
     required this.optionData,
     required this.currentSelection,
     required this.onSelectionChange,
+    this.enableDivider = true,
+    this.margin = const EdgeInsets.all(16),
   });
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.all(15),
+      margin: margin,
       decoration: BoxDecoration(
         color: const Color.fromRGBO(29, 40, 56, 1),
         borderRadius: BorderRadius.circular(12),
@@ -30,10 +33,13 @@ class OptionList extends StatelessWidget {
           return _option(option, currentSelection);
         },
         separatorBuilder: (context, index) {
-          return const Divider(
-            height: 1,
-            thickness: 1,
-            indent: 16,
+          return Visibility(
+            visible: enableDivider,
+            child: const Divider(
+              height: 1,
+              thickness: 1,
+              indent: 16,
+            ),
           );
         },
       ),
@@ -49,6 +55,7 @@ class OptionList extends StatelessWidget {
         child: Container(
           padding:
               const EdgeInsets.only(left: 16, right: 16, top: 16, bottom: 16),
+          constraints: const BoxConstraints(minHeight: 56),
           child: Row(
             children: [
               Flexible(
@@ -90,4 +97,16 @@ class OptionList extends StatelessWidget {
       ),
     );
   }
+}
+
+class Option {
+  final String id;
+  final String title;
+  String? subTitle;
+
+  Option({
+    required this.id,
+    required this.title,
+    this.subTitle,
+  });
 }

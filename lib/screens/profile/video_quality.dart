@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import '../../components/option_list.dart';
-import './app_language.dart';
 
 class VideoQuality extends StatefulWidget {
   const VideoQuality({super.key});
