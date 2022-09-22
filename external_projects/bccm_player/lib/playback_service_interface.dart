@@ -42,7 +42,16 @@ abstract class PlaybackPlatformInterface extends PlatformInterface {
   }
 
   Future<ChromecastState?> getChromecastState() async {
-    throw UnimplementedError('addMediaItem() has not been implemented.');
+    throw UnimplementedError('getChromecastState() has not been implemented.');
+  }
+
+  void openExpandedCastController() {
+    throw UnimplementedError(
+        'openExpandedCastController() has not been implemented.');
+  }
+
+  void openCastDialog() {
+    throw UnimplementedError('openCastDialog() has not been implemented.');
   }
 
   Future<void> setPlaybackListener(PlaybackListenerPigeon listener) async {
@@ -59,5 +68,9 @@ abstract class PlaybackPlatformInterface extends PlatformInterface {
 
   void stop(String playerId, bool reset) {
     throw UnimplementedError('stop() has not been implemented.');
+  }
+
+  void setNpawConfig(NpawConfig? config) {
+    throw UnimplementedError('setNpawConfig() has not been implemented.');
   }
 }

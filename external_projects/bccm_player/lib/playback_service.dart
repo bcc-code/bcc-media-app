@@ -48,6 +48,16 @@ class PlaybackService extends PlaybackPlatformInterface {
   }
 
   @override
+  void openExpandedCastController() {
+    _pigeon.openExpandedCastController();
+  }
+
+  @override
+  void openCastDialog() {
+    _pigeon.openCastDialog();
+  }
+
+  @override
   Future<void> setPlaybackListener(PlaybackListenerPigeon listener) async {
     PlaybackListenerPigeon.setup(listener);
   }
@@ -65,5 +75,10 @@ class PlaybackService extends PlaybackPlatformInterface {
   @override
   void stop(String playerId, bool reset) {
     _pigeon.stop(playerId, reset);
+  }
+
+  @override
+  void setNpawConfig(NpawConfig? config) {
+    _pigeon.setNpawConfig(config);
   }
 }

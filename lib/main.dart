@@ -13,6 +13,8 @@ import 'package:bccm_player/chromecast_pigeon.g.dart';
 import 'package:riverpod/riverpod.dart';
 import 'package:bccm_player/playback_service_interface.dart';
 
+import 'env/.env.dart';
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   SystemChrome.setPreferredOrientations([
@@ -41,6 +43,14 @@ void main() async {
   providerContainer.read(playbackApiProvider).getChromecastState().then(
       (value) => providerContainer.read(isCasting.notifier).state =
           value?.connectionState == CastConnectionState.connected);
+
+  if (Env.NPAW_ACCOUNT_CODE != '') {
+    providerContainer.read(playbackApiProvider).setNpawConfig(NpawConfig(
+      accountCode: Env.NPAW_ACCOUNT_CODE,
+      appName: 'mobile',
+      appReleaseVersion: '4.0.0-alpha'
+    ));
+  }
 
   runApp(UncontrolledProviderScope(
     container: providerContainer,

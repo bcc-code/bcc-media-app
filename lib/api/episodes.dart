@@ -15,13 +15,17 @@ class Episode {
   final String id;
   final String streamUrl;
   final String title;
+  final String? showTitle;
+  final String? seasonTitle;
   final String? imageUrl;
 
   const Episode(
       {required this.id,
       required this.streamUrl,
       required this.title,
-      this.imageUrl});
+      this.imageUrl,
+      this.showTitle,
+      this.seasonTitle});
 
   factory Episode.fromLegacyJson(Map<String, dynamic> json) {
     var videosRaw = json['video']['videos'] as List<dynamic>;

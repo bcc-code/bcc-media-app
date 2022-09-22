@@ -7,6 +7,8 @@ PODS:
     - AppAuth/Core
   - bccm_player (0.0.1):
     - Flutter
+    - YouboraAVPlayerAdapter (= 6.6.8)
+    - YouboraLib (= 6.6.22)
   - connectivity_plus (0.0.1):
     - Flutter
     - ReachabilitySwift
@@ -29,6 +31,12 @@ PODS:
     - Flutter
   - wakelock (0.0.1):
     - Flutter
+  - YouboraAVPlayerAdapter (6.6.8):
+    - YouboraAVPlayerAdapter/Default (= 6.6.8)
+    - YouboraLib (~> 6.5)
+  - YouboraAVPlayerAdapter/Default (6.6.8):
+    - YouboraLib (~> 6.5)
+  - YouboraLib (6.6.22)
 
 DEPENDENCIES:
   - bccm_player (from `.symlinks/plugins/bccm_player/ios`)
@@ -46,6 +54,8 @@ SPEC REPOS:
     - AppAuth
     - FMDB
     - ReachabilitySwift
+    - YouboraAVPlayerAdapter
+    - YouboraLib
 
 EXTERNAL SOURCES:
   bccm_player:
@@ -69,7 +79,7 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   AppAuth: 80317d99ac7ff2801a2f18ff86b48cd315ed465d
-  bccm_player: 5c99af1b5fe900f2eb239f752a3cf17cb4855d6c
+  bccm_player: 0629994846024330859f6b7752d712e32cb05041
   connectivity_plus: 413a8857dd5d9f1c399a39130850d02fe0feaf7e
   Flutter: f04841e97a9d0b0a8025694d0796dd46242b2854
   flutter_appauth: 2c4a407e6d649df3f2308375fb891822dcff291b
@@ -80,6 +90,8 @@ SPEC CHECKSUMS:
   sqflite: 6d358c025f5b867b29ed92fc697fd34924e11904
   video_player_avfoundation: e489aac24ef5cf7af82702979ed16f2a5ef84cff
   wakelock: d0fc7c864128eac40eba1617cb5264d9c940b46f
+  YouboraAVPlayerAdapter: bc898a61e09c667202a77491b677a42dfa0adc04
+  YouboraLib: fc65b030ac93499f8beb3f5daa10deb3879fb2d2
 
 PODFILE CHECKSUM: 4e8f8b2be68aeea4c0d5beb6ff1e79fface1d048
 

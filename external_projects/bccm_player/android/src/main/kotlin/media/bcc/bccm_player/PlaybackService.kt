@@ -3,13 +3,15 @@ package media.bcc.bccm_player
 import android.content.Intent
 import android.os.Binder
 import android.os.IBinder
+import androidx.media3.exoplayer.ExoPlayer
 import androidx.media3.session.MediaSession
 import androidx.media3.session.MediaSessionService
 
 class PlaybackService : MediaSessionService() {
     private val playerControllers = mutableListOf<PlayerController>()
-    private lateinit var primaryPlayerController: PlayerController
+    private var primaryPlayerController: PlayerController? = null
     private lateinit var mediaSession: MediaSession
+    private var dummyPlayer: ExoPlayer? = null
 
     private var binder: LocalBinder = LocalBinder();
 
@@ -26,6 +28,7 @@ class PlaybackService : MediaSessionService() {
         if (pc?.player != null) {
             primaryPlayerController = pc
             mediaSession.player = pc.player
+            dummyPlayer = null // we don't need it anymore
         }
     }
 
@@ -33,7 +36,7 @@ class PlaybackService : MediaSessionService() {
         return playerControllers.find { it.id == playerId }
     }
 
-    fun getPrimaryController(): PlayerController {
+    fun getPrimaryController(): PlayerController? {
         return primaryPlayerController
     }
 
@@ -44,8 +47,9 @@ class PlaybackService : MediaSessionService() {
     // Create your Player and MediaSession in the onCreate lifecycle event
     override fun onCreate() {
         super.onCreate()
-        primaryPlayerController = newPlayer()
-        mediaSession = MediaSession.Builder(this, primaryPlayerController.player).build()
+        dummyPlayer = ExoPlayer.Builder(this).build().also {
+            mediaSession = MediaSession.Builder(this, it).build()
+        }
     }
 
     // Return a MediaSession to link with the MediaController that is making

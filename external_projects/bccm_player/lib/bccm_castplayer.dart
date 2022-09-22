@@ -1,10 +1,12 @@
 import 'dart:io';
 
+import 'package:bccm_player/playback_service_interface.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_svg/svg.dart';
 
 class BccmCastPlayer extends StatefulWidget {
   const BccmCastPlayer({super.key});
@@ -19,11 +21,24 @@ class _BccmPlayerState extends State<BccmCastPlayer> {
     return Column(
       children: [
         if (Platform.isIOS)
-          AspectRatio(
-              aspectRatio: 16 / 9,
-              child: UiKitView(
-                  viewType: 'bccm-cast-player',
-                  creationParamsCodec: const StandardMessageCodec())),
+          InkWell(
+            onTap: () {
+              PlaybackPlatformInterface.instance.openExpandedCastController();
+            },
+            splashColor: Colors.transparent,
+            child: ClipRect(
+              child: AspectRatio(
+                  aspectRatio: 16 / 9,
+                  child: Container(
+                    decoration: const BoxDecoration(
+                        color: Color.fromARGB(255, 29, 40, 56)),
+                    child: SvgPicture.asset('assets/images/chromecast_bg.svg',
+                        fit: BoxFit.cover,
+                        package: 'bccm_player',
+                        semanticsLabel: 'Casting'),
+                  )),
+            ),
+          ),
         if (Platform.isAndroid)
           Column(
             children: [

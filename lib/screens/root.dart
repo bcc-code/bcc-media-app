@@ -67,6 +67,7 @@ class _RootScreenState extends ConsumerState<RootScreen> with AutoRouteAware {
   @override
   Widget build(BuildContext context) {
     return AutoTabsRouter(
+        navigatorObservers: () => [HeroController()],
         // list of your tab routes
         // routes used here must be declaraed as children
         // routes of /dashboard
