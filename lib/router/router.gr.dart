@@ -11,37 +11,39 @@
 // ignore_for_file: type=lint
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'package:auto_route/auto_route.dart' as _i11;
-import 'package:flutter/material.dart' as _i14;
+import 'package:auto_route/auto_route.dart' as _i13;
+import 'package:flutter/material.dart' as _i16;
 
-import '../screens/episode.dart' as _i7;
-import '../screens/home.dart' as _i9;
-import '../screens/live.dart' as _i10;
+import '../screens/episode.dart' as _i9;
+import '../screens/home.dart' as _i11;
+import '../screens/live.dart' as _i12;
 import '../screens/login.dart' as _i1;
 import '../screens/profile/app_language.dart' as _i3;
 import '../screens/profile/audio_language.dart' as _i4;
+import '../screens/profile/contact_support.dart' as _i7;
+import '../screens/profile/faq.dart' as _i8;
 import '../screens/profile/profile.dart' as _i2;
 import '../screens/profile/subtitle_language.dart' as _i5;
 import '../screens/profile/video_quality.dart' as _i6;
-import '../screens/root.dart' as _i8;
-import '../screens/search/explore_category_page.dart' as _i13;
-import '../screens/search/search.dart' as _i12;
-import 'auth_guard.dart' as _i15;
+import '../screens/root.dart' as _i10;
+import '../screens/search/explore_category_page.dart' as _i15;
+import '../screens/search/search.dart' as _i14;
+import 'auth_guard.dart' as _i17;
 
-class AppRouter extends _i11.RootStackRouter {
+class AppRouter extends _i13.RootStackRouter {
   AppRouter(
-      {_i14.GlobalKey<_i14.NavigatorState>? navigatorKey,
+      {_i16.GlobalKey<_i16.NavigatorState>? navigatorKey,
       required this.authGuard})
       : super(navigatorKey);
 
-  final _i15.AuthGuard authGuard;
+  final _i17.AuthGuard authGuard;
 
   @override
-  final Map<String, _i11.PageFactory> pagesMap = {
+  final Map<String, _i13.PageFactory> pagesMap = {
     LoginScreenRoute.name: (routeData) {
       final args = routeData.argsAs<LoginScreenRouteArgs>(
           orElse: () => const LoginScreenRouteArgs());
-      return _i11.MaterialPageX<void>(
+      return _i13.MaterialPageX<void>(
           routeData: routeData,
           child: _i1.LoginScreen(
               key: args.key,
@@ -49,98 +51,108 @@ class AppRouter extends _i11.RootStackRouter {
               onResult: args.onResult));
     },
     ProfileRoute.name: (routeData) {
-      return _i11.MaterialPageX<void>(
+      return _i13.MaterialPageX<void>(
           routeData: routeData, child: _i2.Profile());
     },
     AppLanguageScreenRoute.name: (routeData) {
-      return _i11.MaterialPageX<void>(
+      return _i13.MaterialPageX<void>(
           routeData: routeData, child: const _i3.AppLanguageScreen());
     },
     AppAudioLanguageRoute.name: (routeData) {
-      return _i11.MaterialPageX<void>(
+      return _i13.MaterialPageX<void>(
           routeData: routeData, child: const _i4.AppAudioLanguage());
     },
     AppSubtitleLanguageRoute.name: (routeData) {
-      return _i11.MaterialPageX<void>(
+      return _i13.MaterialPageX<void>(
           routeData: routeData, child: const _i5.AppSubtitleLanguage());
     },
     VideoQualityRoute.name: (routeData) {
-      return _i11.MaterialPageX<void>(
+      return _i13.MaterialPageX<void>(
           routeData: routeData, child: const _i6.VideoQuality());
+    },
+    ContactSupportRoute.name: (routeData) {
+      return _i13.MaterialPageX<void>(
+          routeData: routeData, child: const _i7.ContactSupport());
+    },
+    FAQRoute.name: (routeData) {
+      return _i13.MaterialPageX<void>(
+          routeData: routeData, child: const _i8.FAQ());
     },
     EpisodeScreenRoute.name: (routeData) {
       final pathParams = routeData.inheritedPathParams;
       final args = routeData.argsAs<EpisodeScreenRouteArgs>(
           orElse: () => EpisodeScreenRouteArgs(
               episodeId: pathParams.getString('episodeId')));
-      return _i11.CustomPage<void>(
+      return _i13.CustomPage<void>(
           routeData: routeData,
-          child: _i7.EpisodeScreen(key: args.key, episodeId: args.episodeId),
-          transitionsBuilder: _i11.TransitionsBuilders.slideBottom,
+          child: _i9.EpisodeScreen(key: args.key, episodeId: args.episodeId),
+          transitionsBuilder: _i13.TransitionsBuilders.slideBottom,
           opaque: true,
           barrierDismissible: false);
     },
     RootScreenRoute.name: (routeData) {
-      return _i11.MaterialPageX<void>(
-          routeData: routeData, child: const _i8.RootScreen());
+      return _i13.MaterialPageX<void>(
+          routeData: routeData, child: const _i10.RootScreen());
     },
     HomeScreenRoute.name: (routeData) {
-      return _i11.MaterialPageX<void>(
-          routeData: routeData, child: const _i9.HomeScreen());
+      return _i13.MaterialPageX<void>(
+          routeData: routeData, child: const _i11.HomeScreen());
     },
     LiveScreenRoute.name: (routeData) {
-      return _i11.MaterialPageX<void>(
+      return _i13.MaterialPageX<void>(
           routeData: routeData,
-          child: const _i10.LiveScreen(),
+          child: const _i12.LiveScreen(),
           maintainState: false);
     },
     EmptyRouterPageRoute.name: (routeData) {
-      return _i11.MaterialPageX<void>(
-          routeData: routeData, child: const _i11.EmptyRouterPage());
+      return _i13.MaterialPageX<void>(
+          routeData: routeData, child: const _i13.EmptyRouterPage());
     },
     SearchScreenRoute.name: (routeData) {
-      return _i11.MaterialPageX<void>(
-          routeData: routeData, child: const _i12.SearchScreen());
+      return _i13.MaterialPageX<void>(
+          routeData: routeData, child: const _i14.SearchScreen());
     },
     ExploreCategoryScreenRoute.name: (routeData) {
       final args = routeData.argsAs<ExploreCategoryScreenRouteArgs>();
-      return _i11.MaterialPageX<void>(
+      return _i13.MaterialPageX<void>(
           routeData: routeData,
-          child: _i13.ExploreCategoryScreen(category: args.category));
+          child: _i15.ExploreCategoryScreen(category: args.category));
     }
   };
 
   @override
-  List<_i11.RouteConfig> get routes => [
-        _i11.RouteConfig(LoginScreenRoute.name, path: '/login'),
-        _i11.RouteConfig(ProfileRoute.name, path: 'profile'),
-        _i11.RouteConfig(AppLanguageScreenRoute.name, path: 'app-language'),
-        _i11.RouteConfig(AppAudioLanguageRoute.name, path: 'audio-languga'),
-        _i11.RouteConfig(AppSubtitleLanguageRoute.name,
+  List<_i13.RouteConfig> get routes => [
+        _i13.RouteConfig(LoginScreenRoute.name, path: '/login'),
+        _i13.RouteConfig(ProfileRoute.name, path: 'profile'),
+        _i13.RouteConfig(AppLanguageScreenRoute.name, path: 'app-language'),
+        _i13.RouteConfig(AppAudioLanguageRoute.name, path: 'audio-languga'),
+        _i13.RouteConfig(AppSubtitleLanguageRoute.name,
             path: 'subtitle-language'),
-        _i11.RouteConfig(VideoQualityRoute.name, path: 'video-quality'),
-        _i11.RouteConfig(EpisodeScreenRoute.name, path: 'episode/:episodeId'),
-        _i11.RouteConfig(RootScreenRoute.name, path: '/', guards: [
+        _i13.RouteConfig(VideoQualityRoute.name, path: 'video-quality'),
+        _i13.RouteConfig(ContactSupportRoute.name, path: 'contact-support'),
+        _i13.RouteConfig(FAQRoute.name, path: 'faq'),
+        _i13.RouteConfig(EpisodeScreenRoute.name, path: 'episode/:episodeId'),
+        _i13.RouteConfig(RootScreenRoute.name, path: '/', guards: [
           authGuard
         ], children: [
-          _i11.RouteConfig('#redirect',
+          _i13.RouteConfig('#redirect',
               path: '',
               parent: RootScreenRoute.name,
               redirectTo: 'search',
               fullMatch: true),
-          _i11.RouteConfig(HomeScreenRoute.name,
+          _i13.RouteConfig(HomeScreenRoute.name,
               path: 'home', parent: RootScreenRoute.name),
-          _i11.RouteConfig(LiveScreenRoute.name,
+          _i13.RouteConfig(LiveScreenRoute.name,
               path: 'live',
               parent: RootScreenRoute.name,
               meta: <String, dynamic>{'hide_mini_player': true}),
-          _i11.RouteConfig(EmptyRouterPageRoute.name,
+          _i13.RouteConfig(EmptyRouterPageRoute.name,
               path: 'search',
               parent: RootScreenRoute.name,
               children: [
-                _i11.RouteConfig(SearchScreenRoute.name,
+                _i13.RouteConfig(SearchScreenRoute.name,
                     path: '', parent: EmptyRouterPageRoute.name),
-                _i11.RouteConfig(ExploreCategoryScreenRoute.name,
+                _i13.RouteConfig(ExploreCategoryScreenRoute.name,
                     path: 'explore-category', parent: EmptyRouterPageRoute.name)
               ])
         ])
@@ -149,9 +161,9 @@ class AppRouter extends _i11.RootStackRouter {
 
 /// generated route for
 /// [_i1.LoginScreen]
-class LoginScreenRoute extends _i11.PageRouteInfo<LoginScreenRouteArgs> {
+class LoginScreenRoute extends _i13.PageRouteInfo<LoginScreenRouteArgs> {
   LoginScreenRoute(
-      {_i14.Key? key, String? loginError, void Function(bool)? onResult})
+      {_i16.Key? key, String? loginError, void Function(bool)? onResult})
       : super(LoginScreenRoute.name,
             path: '/login',
             args: LoginScreenRouteArgs(
@@ -163,7 +175,7 @@ class LoginScreenRoute extends _i11.PageRouteInfo<LoginScreenRouteArgs> {
 class LoginScreenRouteArgs {
   const LoginScreenRouteArgs({this.key, this.loginError, this.onResult});
 
-  final _i14.Key? key;
+  final _i16.Key? key;
 
   final String? loginError;
 
@@ -177,7 +189,7 @@ class LoginScreenRouteArgs {
 
 /// generated route for
 /// [_i2.Profile]
-class ProfileRoute extends _i11.PageRouteInfo<void> {
+class ProfileRoute extends _i13.PageRouteInfo<void> {
   const ProfileRoute() : super(ProfileRoute.name, path: 'profile');
 
   static const String name = 'ProfileRoute';
@@ -185,7 +197,7 @@ class ProfileRoute extends _i11.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i3.AppLanguageScreen]
-class AppLanguageScreenRoute extends _i11.PageRouteInfo<void> {
+class AppLanguageScreenRoute extends _i13.PageRouteInfo<void> {
   const AppLanguageScreenRoute()
       : super(AppLanguageScreenRoute.name, path: 'app-language');
 
@@ -194,7 +206,7 @@ class AppLanguageScreenRoute extends _i11.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i4.AppAudioLanguage]
-class AppAudioLanguageRoute extends _i11.PageRouteInfo<void> {
+class AppAudioLanguageRoute extends _i13.PageRouteInfo<void> {
   const AppAudioLanguageRoute()
       : super(AppAudioLanguageRoute.name, path: 'audio-languga');
 
@@ -203,7 +215,7 @@ class AppAudioLanguageRoute extends _i11.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i5.AppSubtitleLanguage]
-class AppSubtitleLanguageRoute extends _i11.PageRouteInfo<void> {
+class AppSubtitleLanguageRoute extends _i13.PageRouteInfo<void> {
   const AppSubtitleLanguageRoute()
       : super(AppSubtitleLanguageRoute.name, path: 'subtitle-language');
 
@@ -212,7 +224,7 @@ class AppSubtitleLanguageRoute extends _i11.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i6.VideoQuality]
-class VideoQualityRoute extends _i11.PageRouteInfo<void> {
+class VideoQualityRoute extends _i13.PageRouteInfo<void> {
   const VideoQualityRoute()
       : super(VideoQualityRoute.name, path: 'video-quality');
 
@@ -220,9 +232,26 @@ class VideoQualityRoute extends _i11.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i7.EpisodeScreen]
-class EpisodeScreenRoute extends _i11.PageRouteInfo<EpisodeScreenRouteArgs> {
-  EpisodeScreenRoute({_i14.Key? key, required String episodeId})
+/// [_i7.ContactSupport]
+class ContactSupportRoute extends _i13.PageRouteInfo<void> {
+  const ContactSupportRoute()
+      : super(ContactSupportRoute.name, path: 'contact-support');
+
+  static const String name = 'ContactSupportRoute';
+}
+
+/// generated route for
+/// [_i8.FAQ]
+class FAQRoute extends _i13.PageRouteInfo<void> {
+  const FAQRoute() : super(FAQRoute.name, path: 'faq');
+
+  static const String name = 'FAQRoute';
+}
+
+/// generated route for
+/// [_i9.EpisodeScreen]
+class EpisodeScreenRoute extends _i13.PageRouteInfo<EpisodeScreenRouteArgs> {
+  EpisodeScreenRoute({_i16.Key? key, required String episodeId})
       : super(EpisodeScreenRoute.name,
             path: 'episode/:episodeId',
             args: EpisodeScreenRouteArgs(key: key, episodeId: episodeId),
@@ -234,7 +263,7 @@ class EpisodeScreenRoute extends _i11.PageRouteInfo<EpisodeScreenRouteArgs> {
 class EpisodeScreenRouteArgs {
   const EpisodeScreenRouteArgs({this.key, required this.episodeId});
 
-  final _i14.Key? key;
+  final _i16.Key? key;
 
   final String episodeId;
 
@@ -245,34 +274,34 @@ class EpisodeScreenRouteArgs {
 }
 
 /// generated route for
-/// [_i8.RootScreen]
-class RootScreenRoute extends _i11.PageRouteInfo<void> {
-  const RootScreenRoute({List<_i11.PageRouteInfo>? children})
+/// [_i10.RootScreen]
+class RootScreenRoute extends _i13.PageRouteInfo<void> {
+  const RootScreenRoute({List<_i13.PageRouteInfo>? children})
       : super(RootScreenRoute.name, path: '/', initialChildren: children);
 
   static const String name = 'RootScreenRoute';
 }
 
 /// generated route for
-/// [_i9.HomeScreen]
-class HomeScreenRoute extends _i11.PageRouteInfo<void> {
+/// [_i11.HomeScreen]
+class HomeScreenRoute extends _i13.PageRouteInfo<void> {
   const HomeScreenRoute() : super(HomeScreenRoute.name, path: 'home');
 
   static const String name = 'HomeScreenRoute';
 }
 
 /// generated route for
-/// [_i10.LiveScreen]
-class LiveScreenRoute extends _i11.PageRouteInfo<void> {
+/// [_i12.LiveScreen]
+class LiveScreenRoute extends _i13.PageRouteInfo<void> {
   const LiveScreenRoute() : super(LiveScreenRoute.name, path: 'live');
 
   static const String name = 'LiveScreenRoute';
 }
 
 /// generated route for
-/// [_i11.EmptyRouterPage]
-class EmptyRouterPageRoute extends _i11.PageRouteInfo<void> {
-  const EmptyRouterPageRoute({List<_i11.PageRouteInfo>? children})
+/// [_i13.EmptyRouterPage]
+class EmptyRouterPageRoute extends _i13.PageRouteInfo<void> {
+  const EmptyRouterPageRoute({List<_i13.PageRouteInfo>? children})
       : super(EmptyRouterPageRoute.name,
             path: 'search', initialChildren: children);
 
@@ -280,17 +309,17 @@ class EmptyRouterPageRoute extends _i11.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i12.SearchScreen]
-class SearchScreenRoute extends _i11.PageRouteInfo<void> {
+/// [_i14.SearchScreen]
+class SearchScreenRoute extends _i13.PageRouteInfo<void> {
   const SearchScreenRoute() : super(SearchScreenRoute.name, path: '');
 
   static const String name = 'SearchScreenRoute';
 }
 
 /// generated route for
-/// [_i13.ExploreCategoryScreen]
+/// [_i15.ExploreCategoryScreen]
 class ExploreCategoryScreenRoute
-    extends _i11.PageRouteInfo<ExploreCategoryScreenRouteArgs> {
+    extends _i13.PageRouteInfo<ExploreCategoryScreenRouteArgs> {
   ExploreCategoryScreenRoute({required String category})
       : super(ExploreCategoryScreenRoute.name,
             path: 'explore-category',

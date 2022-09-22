@@ -58,8 +58,7 @@ class _AppAudioLanguageState extends State<AppAudioLanguage> {
 
   String selected = 'nok';
 
-  void onSelectionChanged(String id) {
-    print('onSelectionChanged');
+  void _onSelectionChanged(String id) {
     setState(() {
       selected = id;
     });
@@ -69,11 +68,11 @@ class _AppAudioLanguageState extends State<AppAudioLanguage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Color.fromRGBO(13, 22, 35, 1),
-        title: Text('Lydspråk'),
+        backgroundColor: const Color.fromRGBO(13, 22, 35, 1),
+        title: const Text('Lydspråk'),
         centerTitle: true,
-        bottom: PreferredSize(
-          preferredSize: const Size.fromHeight(6),
+        bottom: const PreferredSize(
+          preferredSize: Size.fromHeight(6),
           child: Divider(
             color: Color.fromRGBO(204, 221, 255, 0.3),
             height: 1,
@@ -87,7 +86,7 @@ class _AppAudioLanguageState extends State<AppAudioLanguage> {
         child: OptionList(
           optionData: languageList,
           currentSelection: selected,
-          onSelectionChange: onSelectionChanged,
+          onSelectionChange: _onSelectionChanged,
         ),
       ),
     );

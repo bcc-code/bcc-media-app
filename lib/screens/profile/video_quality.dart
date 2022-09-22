@@ -34,8 +34,7 @@ class _VideoQualityState extends State<VideoQuality> {
 
   String selected = 'Medium';
 
-  void onSelectionChanged(String id) {
-    print('onSelectionChanged');
+  void _onSelectionChanged(String id) {
     setState(() {
       selected = id;
     });
@@ -45,12 +44,11 @@ class _VideoQualityState extends State<VideoQuality> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Color.fromRGBO(13, 22, 35, 1),
-        // title: Text('Appspråk'),
-        title: Text('Video kvalitet'),
+        backgroundColor: const Color.fromRGBO(13, 22, 35, 1),
+        title: const Text('Video kvalitet'),
         centerTitle: true,
-        bottom: PreferredSize(
-          preferredSize: const Size.fromHeight(6),
+        bottom: const PreferredSize(
+          preferredSize: Size.fromHeight(6),
           child: Divider(
             color: Color.fromRGBO(204, 221, 255, 0.3),
             height: 1,
@@ -64,7 +62,7 @@ class _VideoQualityState extends State<VideoQuality> {
         child: OptionList(
           optionData: qualityList,
           currentSelection: selected,
-          onSelectionChange: onSelectionChanged,
+          onSelectionChange: _onSelectionChanged,
         ),
       ),
     );

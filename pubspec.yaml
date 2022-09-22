@@ -3,7 +3,7 @@ description: A new Flutter project.
 
 # The following line prevents the package from being accidentally published to
 # pub.dev using `flutter pub publish`. This is preferred for private packages.
-publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+publish_to: "none" # Remove this line if you wish to publish to pub.dev
 
 # The following defines the version and build number for your application.
 # A version number is three numbers separated by dots, like 1.2.43
@@ -30,7 +30,6 @@ dependencies:
   flutter:
     sdk: flutter
 
-
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
@@ -54,6 +53,9 @@ dependencies:
   flutter_riverpod: ^1.0.4
   freezed_annotation: ^2.1.0
   collection: ^1.16.0
+  # package to fetch device info
+  device_info_plus: ^4.1.2
+  package_info_plus: ^1.4.3+1
   graphql: ^5.1.1
   graphql_flutter: ^5.1.0
 dependency_overrides:
@@ -80,22 +82,21 @@ dev_dependencies:
 
 # The following section is specific to Flutter packages.
 flutter:
-
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
   # the material Icons class.
   uses-material-design: true
 
   fonts:
-  - family: Barlow
-    fonts:
-      - asset: assets/fonts/Barlow/Barlow-ExtraBold.ttf
-        weight: 800
-      - asset: assets/fonts/Barlow/Barlow-Bold.ttf
-        weight: 700
-      - asset: assets/fonts/Barlow/Barlow-Medium.ttf
-        weight: 400
-      
+    - family: Barlow
+      fonts:
+        - asset: assets/fonts/Barlow/Barlow-ExtraBold.ttf
+          weight: 800
+        - asset: assets/fonts/Barlow/Barlow-Bold.ttf
+          weight: 700
+        - asset: assets/fonts/Barlow/Barlow-Medium.ttf
+          weight: 400
+
   # To add assets to your application, add an assets section, like this:
   assets:
     - assets/images/background.svg

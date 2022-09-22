@@ -58,8 +58,7 @@ class _AppLanguageScreenState extends State<AppLanguageScreen> {
 
   String selected = 'nok';
 
-  void onSelectionChanged(String id) {
-    print('onSelectionChanged');
+  void _onSelectionChanged(String id) {
     setState(() {
       selected = id;
     });
@@ -87,7 +86,7 @@ class _AppLanguageScreenState extends State<AppLanguageScreen> {
         child: OptionList(
           optionData: languageList,
           currentSelection: selected,
-          onSelectionChange: onSelectionChanged,
+          onSelectionChange: _onSelectionChanged,
         ),
       ),
     );
