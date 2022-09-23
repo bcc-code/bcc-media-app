@@ -105,6 +105,8 @@ abstract class PlaybackListenerPigeon {
   void onIsPlayingChanged(IsPlayingChangedEvent event);
   @ObjCSelector("onMediaItemTransition:")
   void onMediaItemTransition(MediaItemTransitionEvent event);
+  @ObjCSelector("onPictureInPictureModeChanged:")
+  void onPictureInPictureModeChanged(PictureInPictureModeChangedEvent event);
 }
 
 class PositionUpdateEvent {
@@ -116,6 +118,13 @@ class IsPlayingChangedEvent {
   String playerId;
   bool isPlaying;
   IsPlayingChangedEvent({required this.playerId, required this.isPlaying});
+}
+
+class PictureInPictureModeChangedEvent {
+  String playerId;
+  bool isInPipMode;
+  PictureInPictureModeChangedEvent(
+      {required this.playerId, required this.isInPipMode});
 }
 
 class MediaItemTransitionEvent {

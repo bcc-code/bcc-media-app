@@ -33,7 +33,11 @@ class _MiniPlayerState extends ConsumerState<MiniPlayer> {
     }
 
     if (player == null || player.currentMediaItem == null) {
-      return SizedBox.shrink();
+      return const SizedBox.shrink();
+    }
+
+    if (player.isInPipMode) {
+      return const SizedBox.shrink();
     }
 
     var artist = player.currentMediaItem?.metadata?.artist;
@@ -95,7 +99,7 @@ class _MiniPlayer extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       height: 60,
-      color: Color(0xff1d2838),
+      color: const Color(0xff1d2838),
       padding: const EdgeInsets.symmetric(
         horizontal: 16,
         vertical: 12,
@@ -112,7 +116,7 @@ class _MiniPlayer extends StatelessWidget {
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(4),
               border: Border.all(
-                color: Color(0x19ffffff),
+                color: const Color(0x19ffffff),
                 width: 1,
               ),
             ),
@@ -136,7 +140,7 @@ class _MiniPlayer extends StatelessWidget {
               children: [
                 Text(
                   artist,
-                  style: TextStyle(
+                  style: const TextStyle(
                     color: Color(0xff6eb0e6),
                     fontSize: 12,
                     fontFamily: 'Barlow',
@@ -152,7 +156,7 @@ class _MiniPlayer extends StatelessWidget {
                     child: Text(
                       title,
                       overflow: TextOverflow.ellipsis,
-                      style: TextStyle(
+                      style: const TextStyle(
                         color: Color(0xfffefefe),
                         fontSize: 14,
                         fontFamily: 'Barlow',
@@ -167,7 +171,7 @@ class _MiniPlayer extends StatelessWidget {
           GestureDetector(
             onTap: () => isPlaying ? onPauseTap?.call() : onPlayTap?.call(),
             child: Container(
-              margin: EdgeInsets.only(left: 16),
+              margin: const EdgeInsets.only(left: 16),
               height: 36,
               child: isPlaying
                   ? Image.asset(
@@ -183,7 +187,7 @@ class _MiniPlayer extends StatelessWidget {
           GestureDetector(
             onTap: () => onCloseTap?.call(),
             child: Container(
-              margin: EdgeInsets.only(left: 7),
+              margin: const EdgeInsets.only(left: 7),
               height: 36,
               child: Image.asset(
                   width: 32,

@@ -66,6 +66,10 @@ class PlayerNotifier extends StateNotifier<Player?> {
   void setPlaybackState(PlaybackState playbackState) {
     state = state?.copyWith(playbackState: playbackState);
   }
+
+  void setIsInPipMode(bool isInPipMode) {
+    state = state?.copyWith(isInPipMode: isInPipMode);
+  }
 }
 
 @freezed
@@ -74,7 +78,8 @@ class Player with _$Player {
       {required String playerId,
       MediaItem? currentMediaItem,
       int? playbackPositionMs,
-      @Default(PlaybackState.stopped) PlaybackState playbackState}) = _Player;
+      @Default(PlaybackState.stopped) PlaybackState playbackState,
+      @Default(false) bool isInPipMode}) = _Player;
 }
 
 enum PlaybackState { stopped, paused, playing }

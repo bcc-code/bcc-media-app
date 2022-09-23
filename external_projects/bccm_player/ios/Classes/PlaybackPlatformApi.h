@@ -23,6 +23,7 @@ typedef NS_ENUM(NSUInteger, CastConnectionState) {
 @class ChromecastState;
 @class PositionUpdateEvent;
 @class IsPlayingChangedEvent;
+@class PictureInPictureModeChangedEvent;
 @class MediaItemTransitionEvent;
 
 @interface NpawConfig : NSObject
@@ -92,6 +93,15 @@ typedef NS_ENUM(NSUInteger, CastConnectionState) {
 @property(nonatomic, strong) NSNumber * isPlaying;
 @end
 
+@interface PictureInPictureModeChangedEvent : NSObject
+/// `init` unavailable to enforce nonnull fields, see the `make` class method.
+- (instancetype)init NS_UNAVAILABLE;
++ (instancetype)makeWithPlayerId:(NSString *)playerId
+    isInPipMode:(NSNumber *)isInPipMode;
+@property(nonatomic, copy) NSString * playerId;
+@property(nonatomic, strong) NSNumber * isInPipMode;
+@end
+
 @interface MediaItemTransitionEvent : NSObject
 /// `init` unavailable to enforce nonnull fields, see the `make` class method.
 - (instancetype)init NS_UNAVAILABLE;
@@ -129,5 +139,6 @@ NSObject<FlutterMessageCodec> *PlaybackListenerPigeonGetCodec(void);
 - (void)onPositionUpdate:(PositionUpdateEvent *)event completion:(void(^)(NSError *_Nullable))completion;
 - (void)onIsPlayingChanged:(IsPlayingChangedEvent *)event completion:(void(^)(NSError *_Nullable))completion;
 - (void)onMediaItemTransition:(MediaItemTransitionEvent *)event completion:(void(^)(NSError *_Nullable))completion;
+- (void)onPictureInPictureModeChanged:(PictureInPictureModeChangedEvent *)event completion:(void(^)(NSError *_Nullable))completion;
 @end
 NS_ASSUME_NONNULL_END

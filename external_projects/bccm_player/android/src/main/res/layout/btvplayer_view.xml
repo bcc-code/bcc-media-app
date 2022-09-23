@@ -10,34 +10,39 @@
 
     <ImageButton
         android:id="@+id/pip_button"
-        android:translationZ="1dp"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
-        android:layout_marginEnd="24dp"
-        android:layout_marginRight="24dp"
+        android:layout_marginEnd="16dp"
         android:background="@android:color/transparent"
+        android:contentDescription="Picture in picture"
+        android:scaleX="0.8"
+        android:scaleY="0.8"
         android:src="@drawable/pip_icon"
+        android:translationZ="1dp"
+        android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:layout_conversion_absoluteHeight="48dp"
-        tools:layout_conversion_absoluteWidth="48dp" />
+        tools:layout_conversion_absoluteWidth="48dp"
+        tools:visibility="visible" />
 
     <LinearLayout
         android:id="@+id/live_indicator"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
         android:layout_marginTop="15dp"
         android:background="@drawable/live_gradient"
         android:gravity="center_vertical"
         android:orientation="horizontal"
         android:padding="5dp"
+        android:visibility="gone"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:layout_conversion_absoluteHeight="27dp"
-        tools:layout_conversion_absoluteWidth="59dp">
+        tools:layout_conversion_absoluteWidth="59dp"
+        tools:visibility="visible">
 
         <ImageView
             android:id="@+id/imageView"
@@ -52,7 +57,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="5dp"
             android:layout_marginRight="5dp"
-            android:text="live"
+            android:text="Live"
             android:textColor="#FFFFFF"
             android:textSize="13dp" />
     </LinearLayout>
@@ -62,20 +67,21 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="5dp"
-        android:layout_marginLeft="5dp"
         android:elevation="100dp"
-        android:text="asdasdasdas"
         android:textColor="#FFFFFF"
         android:textSize="13dp"
-        android:visibility="visible"
+        android:visibility="gone"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:layout_conversion_absoluteHeight="177dp"
-        tools:layout_conversion_absoluteWidth="365dp" />
+        tools:layout_conversion_absoluteWidth="365dp"
+        tools:text="Debug text"
+        tools:visibility="visible" />
 
     <androidx.media3.ui.PlayerView
         android:id="@+id/brunstad_player"
         android:layout_width="match_parent"
+        app:resize_mode="fit"
         android:layout_height="match_parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

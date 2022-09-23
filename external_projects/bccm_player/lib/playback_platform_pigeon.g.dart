@@ -213,6 +213,31 @@ class IsPlayingChangedEvent {
   }
 }
 
+class PictureInPictureModeChangedEvent {
+  PictureInPictureModeChangedEvent({
+    required this.playerId,
+    required this.isInPipMode,
+  });
+
+  String playerId;
+  bool isInPipMode;
+
+  Object encode() {
+    final Map<Object?, Object?> pigeonMap = <Object?, Object?>{};
+    pigeonMap['playerId'] = playerId;
+    pigeonMap['isInPipMode'] = isInPipMode;
+    return pigeonMap;
+  }
+
+  static PictureInPictureModeChangedEvent decode(Object message) {
+    final Map<Object?, Object?> pigeonMap = message as Map<Object?, Object?>;
+    return PictureInPictureModeChangedEvent(
+      playerId: pigeonMap['playerId']! as String,
+      isInPipMode: pigeonMap['isInPipMode']! as bool,
+    );
+  }
+}
+
 class MediaItemTransitionEvent {
   MediaItemTransitionEvent({
     required this.playerId,
@@ -593,8 +618,12 @@ class _PlaybackListenerPigeonCodec extends StandardMessageCodec {
       buffer.putUint8(131);
       writeValue(buffer, value.encode());
     } else 
-    if (value is PositionUpdateEvent) {
+    if (value is PictureInPictureModeChangedEvent) {
       buffer.putUint8(132);
+      writeValue(buffer, value.encode());
+    } else 
+    if (value is PositionUpdateEvent) {
+      buffer.putUint8(133);
       writeValue(buffer, value.encode());
     } else 
 {
@@ -617,6 +646,9 @@ class _PlaybackListenerPigeonCodec extends StandardMessageCodec {
         return MediaMetadata.decode(readValue(buffer)!);
       
       case 132:       
+        return PictureInPictureModeChangedEvent.decode(readValue(buffer)!);
+      
+      case 133:       
         return PositionUpdateEvent.decode(readValue(buffer)!);
       
       default:      
@@ -631,6 +663,7 @@ abstract class PlaybackListenerPigeon {
   void onPositionUpdate(PositionUpdateEvent event);
   void onIsPlayingChanged(IsPlayingChangedEvent event);
   void onMediaItemTransition(MediaItemTransitionEvent event);
+  void onPictureInPictureModeChanged(PictureInPictureModeChangedEvent event);
   static void setup(PlaybackListenerPigeon? api, {BinaryMessenger? binaryMessenger}) {
     {
       final BasicMessageChannel<Object?> channel = BasicMessageChannel<Object?>(
@@ -676,6 +709,22 @@ abstract class PlaybackListenerPigeon {
           final MediaItemTransitionEvent? arg_event = (args[0] as MediaItemTransitionEvent?);
           assert(arg_event != null, 'Argument for dev.flutter.pigeon.PlaybackListenerPigeon.onMediaItemTransition was null, expected non-null MediaItemTransitionEvent.');
           api.onMediaItemTransition(arg_event!);
+          return;
+        });
+      }
+    }
+    {
+      final BasicMessageChannel<Object?> channel = BasicMessageChannel<Object?>(
+          'dev.flutter.pigeon.PlaybackListenerPigeon.onPictureInPictureModeChanged', codec, binaryMessenger: binaryMessenger);
+      if (api == null) {
+        channel.setMessageHandler(null);
+      } else {
+        channel.setMessageHandler((Object? message) async {
+          assert(message != null, 'Argument for dev.flutter.pigeon.PlaybackListenerPigeon.onPictureInPictureModeChanged was null.');
+          final List<Object?> args = (message as List<Object?>?)!;
+          final PictureInPictureModeChangedEvent? arg_event = (args[0] as PictureInPictureModeChangedEvent?);
+          assert(arg_event != null, 'Argument for dev.flutter.pigeon.PlaybackListenerPigeon.onPictureInPictureModeChanged was null, expected non-null PictureInPictureModeChangedEvent.');
+          api.onPictureInPictureModeChanged(arg_event!);
           return;
         });
       }

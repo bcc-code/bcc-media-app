@@ -3,8 +3,10 @@ package media.bcc.bccm_player
 import android.content.Context
 import android.util.Log
 import androidx.media3.common.*
+import androidx.media3.common.C.VIDEO_SCALING_MODE_SCALE_TO_FIT
 import androidx.media3.exoplayer.ExoPlayer
 import androidx.media3.exoplayer.trackselection.DefaultTrackSelector
+import androidx.media3.ui.PlayerView
 import com.google.android.gms.cast.framework.CastContext
 import com.npaw.youbora.lib6.exoplayer2.Exoplayer2Adapter
 import com.npaw.youbora.lib6.plugin.Options
@@ -14,6 +16,7 @@ import kotlinx.coroutines.flow.*
 import media.bcc.player.PlaybackPlatformApi
 import java.util.*
 
+
 class ExoPlayerController(private val context: Context) : PlayerController(), PlayerManager.Listener {
     private var playerManager: PlayerManager? = null
     private var castContext: CastContext? = null
@@ -22,9 +25,11 @@ class ExoPlayerController(private val context: Context) : PlayerController(), Pl
     private val exoPlayer: ExoPlayer = ExoPlayer.Builder(context)
             .setTrackSelector(trackSelector)
             .setAudioAttributes(AudioAttributes.DEFAULT, true)
+            .setVideoScalingMode(VIDEO_SCALING_MODE_SCALE_TO_FIT)
             .build()
     override val player: ForwardingPlayer
     private var currentPlayerViewWrapper: BccmPlayerViewWrapper? = null
+    private var currentPlayerView: PlayerView? = null
     var isLive: Boolean = false
         private set
     private val ioScope = CoroutineScope(Dispatchers.IO + SupervisorJob())
@@ -84,6 +89,7 @@ class ExoPlayerController(private val context: Context) : PlayerController(), Pl
 
         exoPlayer?.let {
             for (i in 0 until it.rendererCount) {
+                it.getRenderer(i).state
                 if (it.getRendererType(i) == C.TRACK_TYPE_VIDEO) {
                     indexOfVideoRenderer = i
                     break
@@ -94,6 +100,16 @@ class ExoPlayerController(private val context: Context) : PlayerController(), Pl
         val parametersBuilder = trackSelector.buildUponParameters()
         parametersBuilder.setRendererDisabled(indexOfVideoRenderer, isDisabled)
         trackSelector.setParameters(parametersBuilder)
+    }
+
+    fun takeOwnership(playerView: PlayerView) {
+        if (currentPlayerView != null) {
+            PlayerView.switchTargetView(player, currentPlayerView, playerView)
+        } else {
+            playerView.player = player
+        }
+        currentPlayerView = playerView;
+        setRendererDisabled(false)
     }
 
     fun takeOwnership(pvWrapper: BccmPlayerViewWrapper) {
@@ -127,10 +143,10 @@ class ExoPlayerController(private val context: Context) : PlayerController(), Pl
 
     }
 
-    fun releasePlayerView(pvWrapper: BccmPlayerViewWrapper) {
-        if (currentPlayerViewWrapper == pvWrapper) {
+    fun releasePlayerView(playerView: PlayerView) {
+        if (currentPlayerView == playerView) {
             setRendererDisabled(true)
-            currentPlayerViewWrapper = null;
+            currentPlayerView = null;
         }
     }
 
@@ -170,11 +186,27 @@ class ExoPlayerController(private val context: Context) : PlayerController(), Pl
         }
     }
 
+    override fun onPlaybackStateChanged(playbackState: Int) {
+        super.onPlaybackStateChanged(playbackState)
+    }
+
     override fun onUnsupportedTrack(trackType: Int) {
         if (trackType == C.TRACK_TYPE_AUDIO) {
 
         } else if (trackType == C.TRACK_TYPE_VIDEO) {
 
         }
+    }
+
+    val emitter = object : Emitter {
+        override fun onPictureInPictureModeChanged(isInPictureInPictureMode: Boolean) {
+            ioScope.launch {
+                BccmPlayerPluginSingleton.eventBus.emit(PictureInPictureModeChangedEvent(id, isInPictureInPictureMode))
+            }
+        }
+    }
+
+    interface Emitter {
+        fun onPictureInPictureModeChanged(isInPictureInPictureMode: Boolean);
     }
 }

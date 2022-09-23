@@ -1,12 +1,10 @@
 package media.bcc.bccm_player
 
 import android.app.Activity
-import android.app.PictureInPictureParams
 import android.content.Context
-import android.content.pm.ActivityInfo
+import android.content.Intent
 import android.os.Build
 import android.util.Log
-import android.util.Rational
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.*
@@ -56,7 +54,7 @@ class BccmPlayerViewWrapper(
     override fun dispose() {
         Log.d("bccm", "Disposing a playerview for playerId: $playerId")
         onDispose()
-        playerController?.releasePlayerView(this)
+        this._playerView?.let {playerController?.releasePlayerView(it)}
         playerController = null
     }
 
@@ -68,12 +66,21 @@ class BccmPlayerViewWrapper(
         return _playerView
     }
 
+
     private fun goFullscreen() {
         val rootLayout: FrameLayout = activity.window.decorView.findViewById<View>(android.R.id.content) as FrameLayout
-        activity.requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE
+        //activity.requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE
+        playerController?.let { playerController ->
+            val fullScreenPlayer = FullscreenPlayerView(context, playerController)
+            fullScreenPlayer.setFullscreenButtonClickListener {
+                //activity.requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED
+                playerController.releasePlayerView(fullScreenPlayer.playerView)
+                rootLayout.removeView(fullScreenPlayer)
+                setup();
+            }
+            rootLayout.addView(fullScreenPlayer)
+        }
         _v.removeAllViews()
-        val fullScreenPlayer = BccmPlayerViewWrapper(activity, playbackService, context, playerId, true)
-        rootLayout.addView(fullScreenPlayer.view)
     }
 
     fun setup() {
@@ -88,28 +95,30 @@ class BccmPlayerViewWrapper(
                 .also { _playerView = it }
 
         playerView.setFullscreenButtonClickListener {
-            if (!fullscreen) {
-                goFullscreen()
-            } else {
-                val rootLayout: FrameLayout = activity.window.decorView.findViewById<View>(android.R.id.content) as FrameLayout
-                activity.requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED
-                rootLayout.removeView(view)
-                dispose()
-            }
+
+
+            val newIntent = Intent(activity, FullscreenPlayer::class.java)
+            newIntent.putExtra("options", FullscreenPlayer.Options(startInPictureInPicture = false))
+            activity.startActivityForResult(newIntent, 1)
+
+            activity.overridePendingTransition(R.anim.dev2,
+                    R.anim.dev2);
+
+            //_v.removeAllViews()
         }
 
-        val pipButton = _v.findViewById<ImageButton>(R.id.pip_button)
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            val pipButton = _v.findViewById<ImageButton>(R.id.pip_button)
             pipButton.visibility = View.VISIBLE
-        }
-        pipButton.setOnClickListener {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                if (!fullscreen) {
-                    goFullscreen()
-                }
-                activity.enterPictureInPictureMode(PictureInPictureParams.Builder()
-                        .setAspectRatio(Rational(16, 9))
-                        .build())
+            pipButton.setOnClickListener {
+                val newIntent = Intent(activity, FullscreenPlayer::class.java)
+                newIntent.putExtra("options", FullscreenPlayer.Options(startInPictureInPicture = true))
+                activity.startActivityForResult(newIntent, 1)
+
+                activity.overridePendingTransition(R.anim.dev2,
+                        R.anim.dev2);
+
+                _v.removeAllViews()
             }
         }
 
@@ -135,7 +144,7 @@ class BccmPlayerViewWrapper(
         val debugHelper = DebugTextViewHelper((playerController!!.player as ForwardingPlayer).wrappedPlayer as ExoPlayer, debugTextView)
         debugHelper.start()
 
-        playerController!!.takeOwnership(this)
+        playerController!!.takeOwnership(playerView)
         setLiveUIEnabled(playerController?.isLive == true)
     }
 
