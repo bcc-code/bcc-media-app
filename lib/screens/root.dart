@@ -3,10 +3,10 @@ import 'dart:io';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:my_app/components/mini_player.dart';
-import 'package:my_app/providers/playback_api.dart';
-import 'package:my_app/providers/video_state.dart';
-import 'package:my_app/router/router.gr.dart';
+import 'package:brunstadtv_app/components/mini_player.dart';
+import 'package:brunstadtv_app/providers/playback_api.dart';
+import 'package:brunstadtv_app/providers/video_state.dart';
+import 'package:brunstadtv_app/router/router.gr.dart';
 
 class RootScreen extends ConsumerStatefulWidget {
   static const route = '/';

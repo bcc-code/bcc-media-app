@@ -43,11 +43,11 @@ class _LoginScreenState extends State<LoginScreen> {
       errorMessage = '';
     });
 
-    final message = await AuthService.instance.login();
-    if (message == 'Success') {
+    final error = await AuthService.instance.login();
+    if (error == null) {
       handleSuccess();
     } else {
-      handleError(message);
+      handleError(error.toString());
     }
   }
 

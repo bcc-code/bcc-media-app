@@ -3,9 +3,9 @@ import 'dart:convert';
 import 'package:collection/collection.dart';
 import 'package:graphql/client.dart';
 import 'package:http/http.dart' as http;
-import 'package:my_app/graphql/client.dart';
-import 'package:my_app/graphql/queries/episode.graphql.dart';
-import 'package:my_app/graphql/schema/schema.graphql.dart';
+import 'package:brunstadtv_app/graphql/client.dart';
+import 'package:brunstadtv_app/graphql/queries/episode.graphql.dart';
+import 'package:brunstadtv_app/graphql/schema/schema.graphql.dart';
 import 'package:riverpod/riverpod.dart';
 
 import '../graphql/queries/page.graphql.dart';
@@ -50,8 +50,9 @@ class Episode {
 
 Future<Episode> fetchLegacyEpisode(String id) async {
   var url = 'https://brunstad.tv/api/series/$id';
-  final response = await http.get(Uri.parse(url),
-      headers: {'Authorization': 'Bearer ${AuthService.instance.idToken}'});
+  final response = await http.get(Uri.parse(url), headers: {
+    'Authorization': 'Bearer ${AuthService.instance.auth0AccessToken}'
+  });
   if (response.statusCode != 200) {
     return Future.error('statuscode ${response.statusCode}');
   }

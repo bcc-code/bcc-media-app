@@ -1,7 +1,7 @@
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:graphql/client.dart';
-import 'package:my_app/graphql/queries/episode.graphql.dart';
+import 'package:brunstadtv_app/graphql/queries/episode.graphql.dart';
 import 'package:riverpod/riverpod.dart';
 
 import '../graphql/client.dart';
