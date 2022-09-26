@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:my_app/graphql/queries/search.graphql.dart';
+import 'package:brunstadtv_app/graphql/queries/search.graphql.dart';
 
 import 'horizontal_slider.dart';
 

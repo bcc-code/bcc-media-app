@@ -80,8 +80,8 @@ class CastPlayerController(
     override fun onCastSessionAvailable() {
         chromecastListenerPigeon.onCastSessionAvailable {}
         Log.d("Bccm", "Session available. Transferring state from primaryPlayer to castPlayer");
-        val primaryPlayer = plugin.getPlaybackService()?.getPrimaryController()?.player
-                ?: throw Error("PlaybackService not active");
+        val primaryPlayer =
+                plugin.getPlaybackService()?.getPrimaryController()?.player ?: return
         transferState(primaryPlayer, player);
     }
 

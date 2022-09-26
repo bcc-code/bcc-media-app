@@ -1,6 +1,6 @@
 import '../env/.env.dart';
 
-const BUNDLE_IDENTIFIER = 'media.bcc.app';
+const BUNDLE_IDENTIFIER = 'tv.brunstad.app';
 const AUTH0_REDIRECT_URI = '$BUNDLE_IDENTIFIER://login-callback';
 const AUTH0_DOMAIN = Env.AUTH0_DOMAIN;
 const AUTH0_CLIENT_ID = Env.AUTH0_CLIENT_ID;

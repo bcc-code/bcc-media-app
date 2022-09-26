@@ -31,6 +31,16 @@ static id GetNullableObjectAtIndex(NSArray* array, NSInteger key) {
 }
 
 
+@interface NpawConfig ()
++ (NpawConfig *)fromMap:(NSDictionary *)dict;
++ (nullable NpawConfig *)nullableFromMap:(NSDictionary *)dict;
+- (NSDictionary *)toMap;
+@end
+@interface User ()
++ (User *)fromMap:(NSDictionary *)dict;
++ (nullable User *)nullableFromMap:(NSDictionary *)dict;
+- (NSDictionary *)toMap;
+@end
 @interface MediaItem ()
 + (MediaItem *)fromMap:(NSDictionary *)dict;
 + (nullable MediaItem *)nullableFromMap:(NSDictionary *)dict;
@@ -60,6 +70,52 @@ static id GetNullableObjectAtIndex(NSArray* array, NSInteger key) {
 + (MediaItemTransitionEvent *)fromMap:(NSDictionary *)dict;
 + (nullable MediaItemTransitionEvent *)nullableFromMap:(NSDictionary *)dict;
 - (NSDictionary *)toMap;
+@end
+
+@implementation NpawConfig
++ (instancetype)makeWithAppName:(nullable NSString *)appName
+    appReleaseVersion:(nullable NSString *)appReleaseVersion
+    accountCode:(nullable NSString *)accountCode {
+  NpawConfig* pigeonResult = [[NpawConfig alloc] init];
+  pigeonResult.appName = appName;
+  pigeonResult.appReleaseVersion = appReleaseVersion;
+  pigeonResult.accountCode = accountCode;
+  return pigeonResult;
+}
++ (NpawConfig *)fromMap:(NSDictionary *)dict {
+  NpawConfig *pigeonResult = [[NpawConfig alloc] init];
+  pigeonResult.appName = GetNullableObject(dict, @"appName");
+  pigeonResult.appReleaseVersion = GetNullableObject(dict, @"appReleaseVersion");
+  pigeonResult.accountCode = GetNullableObject(dict, @"accountCode");
+  return pigeonResult;
+}
++ (nullable NpawConfig *)nullableFromMap:(NSDictionary *)dict { return (dict) ? [NpawConfig fromMap:dict] : nil; }
+- (NSDictionary *)toMap {
+  return @{
+    @"appName" : (self.appName ?: [NSNull null]),
+    @"appReleaseVersion" : (self.appReleaseVersion ?: [NSNull null]),
+    @"accountCode" : (self.accountCode ?: [NSNull null]),
+  };
+}
+@end
+
+@implementation User
++ (instancetype)makeWithId:(nullable NSString *)id {
+  User* pigeonResult = [[User alloc] init];
+  pigeonResult.id = id;
+  return pigeonResult;
+}
++ (User *)fromMap:(NSDictionary *)dict {
+  User *pigeonResult = [[User alloc] init];
+  pigeonResult.id = GetNullableObject(dict, @"id");
+  return pigeonResult;
+}
++ (nullable User *)nullableFromMap:(NSDictionary *)dict { return (dict) ? [User fromMap:dict] : nil; }
+- (NSDictionary *)toMap {
+  return @{
+    @"id" : (self.id ?: [NSNull null]),
+  };
+}
 @end
 
 @implementation MediaItem
@@ -240,6 +296,12 @@ static id GetNullableObjectAtIndex(NSArray* array, NSInteger key) {
     case 130:     
       return [MediaMetadata fromMap:[self readValue]];
     
+    case 131:     
+      return [NpawConfig fromMap:[self readValue]];
+    
+    case 132:     
+      return [User fromMap:[self readValue]];
+    
     default:    
       return [super readValueOfType:type];
     
@@ -262,6 +324,14 @@ static id GetNullableObjectAtIndex(NSArray* array, NSInteger key) {
   } else 
   if ([value isKindOfClass:[MediaMetadata class]]) {
     [self writeByte:130];
+    [self writeValue:[value toMap]];
+  } else 
+  if ([value isKindOfClass:[NpawConfig class]]) {
+    [self writeByte:131];
+    [self writeValue:[value toMap]];
+  } else 
+  if ([value isKindOfClass:[User class]]) {
+    [self writeByte:132];
     [self writeValue:[value toMap]];
   } else 
 {
@@ -440,6 +510,46 @@ void PlaybackPlatformPigeonSetup(id<FlutterBinaryMessenger> binaryMessenger, NSO
   {
     FlutterBasicMessageChannel *channel =
       [[FlutterBasicMessageChannel alloc]
+        initWithName:@"dev.flutter.pigeon.PlaybackPlatformPigeon.setUser"
+        binaryMessenger:binaryMessenger
+        codec:PlaybackPlatformPigeonGetCodec()        ];
+    if (api) {
+      NSCAssert([api respondsToSelector:@selector(setUser:error:)], @"PlaybackPlatformPigeon api (%@) doesn't respond to @selector(setUser:error:)", api);
+      [channel setMessageHandler:^(id _Nullable message, FlutterReply callback) {
+        NSArray *args = message;
+        User *arg_user = GetNullableObjectAtIndex(args, 0);
+        FlutterError *error;
+        [api setUser:arg_user error:&error];
+        callback(wrapResult(nil, error));
+      }];
+    }
+    else {
+      [channel setMessageHandler:nil];
+    }
+  }
+  {
+    FlutterBasicMessageChannel *channel =
+      [[FlutterBasicMessageChannel alloc]
+        initWithName:@"dev.flutter.pigeon.PlaybackPlatformPigeon.setNpawConfig"
+        binaryMessenger:binaryMessenger
+        codec:PlaybackPlatformPigeonGetCodec()        ];
+    if (api) {
+      NSCAssert([api respondsToSelector:@selector(setNpawConfig:error:)], @"PlaybackPlatformPigeon api (%@) doesn't respond to @selector(setNpawConfig:error:)", api);
+      [channel setMessageHandler:^(id _Nullable message, FlutterReply callback) {
+        NSArray *args = message;
+        NpawConfig *arg_config = GetNullableObjectAtIndex(args, 0);
+        FlutterError *error;
+        [api setNpawConfig:arg_config error:&error];
+        callback(wrapResult(nil, error));
+      }];
+    }
+    else {
+      [channel setMessageHandler:nil];
+    }
+  }
+  {
+    FlutterBasicMessageChannel *channel =
+      [[FlutterBasicMessageChannel alloc]
         initWithName:@"dev.flutter.pigeon.PlaybackPlatformPigeon.getChromecastState"
         binaryMessenger:binaryMessenger
         codec:PlaybackPlatformPigeonGetCodec()        ];
@@ -449,6 +559,42 @@ void PlaybackPlatformPigeonSetup(id<FlutterBinaryMessenger> binaryMessenger, NSO
         [api getChromecastState:^(ChromecastState *_Nullable output, FlutterError *_Nullable error) {
           callback(wrapResult(output, error));
         }];
+      }];
+    }
+    else {
+      [channel setMessageHandler:nil];
+    }
+  }
+  {
+    FlutterBasicMessageChannel *channel =
+      [[FlutterBasicMessageChannel alloc]
+        initWithName:@"dev.flutter.pigeon.PlaybackPlatformPigeon.openExpandedCastController"
+        binaryMessenger:binaryMessenger
+        codec:PlaybackPlatformPigeonGetCodec()        ];
+    if (api) {
+      NSCAssert([api respondsToSelector:@selector(openExpandedCastController:)], @"PlaybackPlatformPigeon api (%@) doesn't respond to @selector(openExpandedCastController:)", api);
+      [channel setMessageHandler:^(id _Nullable message, FlutterReply callback) {
+        FlutterError *error;
+        [api openExpandedCastController:&error];
+        callback(wrapResult(nil, error));
+      }];
+    }
+    else {
+      [channel setMessageHandler:nil];
+    }
+  }
+  {
+    FlutterBasicMessageChannel *channel =
+      [[FlutterBasicMessageChannel alloc]
+        initWithName:@"dev.flutter.pigeon.PlaybackPlatformPigeon.openCastDialog"
+        binaryMessenger:binaryMessenger
+        codec:PlaybackPlatformPigeonGetCodec()        ];
+    if (api) {
+      NSCAssert([api respondsToSelector:@selector(openCastDialog:)], @"PlaybackPlatformPigeon api (%@) doesn't respond to @selector(openCastDialog:)", api);
+      [channel setMessageHandler:^(id _Nullable message, FlutterReply callback) {
+        FlutterError *error;
+        [api openCastDialog:&error];
+        callback(wrapResult(nil, error));
       }];
     }
     else {

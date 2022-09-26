@@ -1,4 +1,4 @@
-package com.example.my_app
+package tv.brunstad.app
 
 import androidx.annotation.NonNull
 import io.flutter.embedding.android.FlutterActivity
@@ -8,7 +8,7 @@ import io.flutter.plugin.common.MethodChannel
 
 
 class MainActivity: FlutterFragmentActivity() {
-    private val _channel = "media.bcc.app"
+    private val _channel = "tv.brunstad.app"
 
 
     override fun configureFlutterEngine(@NonNull flutterEngine: FlutterEngine) {

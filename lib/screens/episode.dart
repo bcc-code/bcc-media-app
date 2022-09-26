@@ -6,11 +6,12 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:bccm_player/bccm_player.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:my_app/graphql/client.dart';
-import 'package:my_app/graphql/queries/episode.graphql.dart';
-import 'package:my_app/providers/chromecast.dart';
-import 'package:my_app/providers/playback_api.dart';
-import 'package:my_app/providers/video_state.dart';
+import 'package:brunstadtv_app/graphql/client.dart';
+import 'package:brunstadtv_app/graphql/queries/episode.graphql.dart';
+import 'package:brunstadtv_app/providers/chromecast.dart';
+import 'package:brunstadtv_app/providers/fun.dart';
+import 'package:brunstadtv_app/providers/playback_api.dart';
+import 'package:brunstadtv_app/providers/video_state.dart';
 import 'package:bccm_player/cast_button.dart';
 
 import '../api/brunstadtv.dart';
@@ -39,6 +40,24 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen> {
   @override
   void initState() {
     super.initState();
+
+    episodeFuture =
+        ref.read(apiProvider).fetchEpisode(widget.episodeId.toString());
+
+    chromecastSubscription = ref
+        .read(chromecastListenerProvider)
+        .on<CastSessionUnavailable>()
+        .listen((event) async {
+      var player = ref.read(primaryPlayerProvider);
+      var episode = await episodeFuture;
+      if (!mounted || episode == null) return;
+      playEpisode(
+          playerId: player!.playerId,
+          episode: episode,
+          playbackPositionMs: event.playbackPositionMs);
+    });
+
+    setup();
   }
 
   Future setup() async {
@@ -47,7 +66,7 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen> {
         ? ref.read(castPlayerProvider)
         : ref.read(primaryPlayerProvider);
 
-    if (player!.currentMediaItem?.metadata?.episodeId ==
+    if (player!.currentMediaItem?.metadata?.extras?['id'] ==
         widget.episodeId.toString()) {
       return;
     }
@@ -76,24 +95,6 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen> {
     super.didChangeDependencies();
     animation = ModalRoute.of(context)?.animation;
     animation?.addStatusListener(onAnimationStatus);
-
-    episodeFuture =
-        ref.watch(apiProvider).fetchEpisode(widget.episodeId.toString());
-
-    chromecastSubscription = ref
-        .read(chromecastListenerProvider)
-        .on<CastSessionUnavailable>()
-        .listen((event) async {
-      var player = ref.read(primaryPlayerProvider);
-      var episode = await episodeFuture;
-      if (!mounted || episode == null) return;
-      playEpisode(
-          playerId: player!.playerId,
-          episode: episode,
-          playbackPositionMs: event.playbackPositionMs);
-    });
-
-    setup();
   }
 
   @override
@@ -110,41 +111,60 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen> {
           ),
         ],
       ),
-      body: animationStatus != AnimationStatus.completed
-          ? const Center(
-              child: CircularProgressIndicator(),
-            )
-          : Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: FutureBuilder<Episode?>(
-                      future: episodeFuture,
-                      builder: (context, snapshot) {
-                        if (snapshot.hasData) {
-                          var episode = snapshot.data!;
-                          return Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              BccmPlayer(
+      body: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          FutureBuilder<Episode?>(
+              future: episodeFuture,
+              builder: (context, snapshot) {
+                var displayPlayer =
+                    animationStatus == AnimationStatus.completed &&
+                        snapshot.hasData;
+
+                var episode = snapshot.data;
+
+                var tempTitle = ref.watch(tempTitleProvider) ?? '';
+
+                if (snapshot.hasError) {
+                  return Text(snapshot.error.toString());
+                }
+
+                return Container(
+                  color: const Color.fromARGB(255, 29, 40, 56),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      displayPlayer
+                          ? Hero(
+                              tag: "player",
+                              child: BccmPlayer(
                                   type: widget.playerType,
                                   id: casting ? 'chromecast' : primaryPlayerId),
-                              Text(episode.title,
-                                  style:
-                                      Theme.of(context).textTheme.titleMedium)
-                            ],
-                          );
-                        } else if (snapshot.hasError) {
-                          return Text(snapshot.error.toString());
-                        }
-                        // By default, show a loading spinner.
-                        return const CircularProgressIndicator();
-                      }),
-                ),
-                const SizedBox(width: 100, height: 2000)
-              ],
-            ),
+                            )
+                          : const AspectRatio(
+                              aspectRatio: 16 / 9,
+                              child:
+                                  Center(child: CircularProgressIndicator())),
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Hero(
+                          createRectTween: ((begin, end) =>
+                              EaseOutRectTween(begin: begin, end: end)),
+                          tag: 'title',
+                          child: Text(
+                              episode?.title != null
+                                  ? episode!.title
+                                  : tempTitle,
+                              style: Theme.of(context).textTheme.titleLarge),
+                        ),
+                      )
+                    ],
+                  ),
+                );
+              }),
+          const SizedBox(width: 100, height: 2000)
+        ],
+      ),
     );
   }
 }

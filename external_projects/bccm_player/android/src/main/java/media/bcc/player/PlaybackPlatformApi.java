@@ -36,6 +36,102 @@ public class PlaybackPlatformApi {
   }
 
   /** Generated class from Pigeon that represents data sent in messages. */
+  public static class NpawConfig {
+    private @Nullable String appName;
+    public @Nullable String getAppName() { return appName; }
+    public void setAppName(@Nullable String setterArg) {
+      this.appName = setterArg;
+    }
+
+    private @Nullable String appReleaseVersion;
+    public @Nullable String getAppReleaseVersion() { return appReleaseVersion; }
+    public void setAppReleaseVersion(@Nullable String setterArg) {
+      this.appReleaseVersion = setterArg;
+    }
+
+    private @Nullable String accountCode;
+    public @Nullable String getAccountCode() { return accountCode; }
+    public void setAccountCode(@Nullable String setterArg) {
+      this.accountCode = setterArg;
+    }
+
+    public static final class Builder {
+      private @Nullable String appName;
+      public @NonNull Builder setAppName(@Nullable String setterArg) {
+        this.appName = setterArg;
+        return this;
+      }
+      private @Nullable String appReleaseVersion;
+      public @NonNull Builder setAppReleaseVersion(@Nullable String setterArg) {
+        this.appReleaseVersion = setterArg;
+        return this;
+      }
+      private @Nullable String accountCode;
+      public @NonNull Builder setAccountCode(@Nullable String setterArg) {
+        this.accountCode = setterArg;
+        return this;
+      }
+      public @NonNull NpawConfig build() {
+        NpawConfig pigeonReturn = new NpawConfig();
+        pigeonReturn.setAppName(appName);
+        pigeonReturn.setAppReleaseVersion(appReleaseVersion);
+        pigeonReturn.setAccountCode(accountCode);
+        return pigeonReturn;
+      }
+    }
+    @NonNull Map<String, Object> toMap() {
+      Map<String, Object> toMapResult = new HashMap<>();
+      toMapResult.put("appName", appName);
+      toMapResult.put("appReleaseVersion", appReleaseVersion);
+      toMapResult.put("accountCode", accountCode);
+      return toMapResult;
+    }
+    static @NonNull NpawConfig fromMap(@NonNull Map<String, Object> map) {
+      NpawConfig pigeonResult = new NpawConfig();
+      Object appName = map.get("appName");
+      pigeonResult.setAppName((String)appName);
+      Object appReleaseVersion = map.get("appReleaseVersion");
+      pigeonResult.setAppReleaseVersion((String)appReleaseVersion);
+      Object accountCode = map.get("accountCode");
+      pigeonResult.setAccountCode((String)accountCode);
+      return pigeonResult;
+    }
+  }
+
+  /** Generated class from Pigeon that represents data sent in messages. */
+  public static class User {
+    private @Nullable String id;
+    public @Nullable String getId() { return id; }
+    public void setId(@Nullable String setterArg) {
+      this.id = setterArg;
+    }
+
+    public static final class Builder {
+      private @Nullable String id;
+      public @NonNull Builder setId(@Nullable String setterArg) {
+        this.id = setterArg;
+        return this;
+      }
+      public @NonNull User build() {
+        User pigeonReturn = new User();
+        pigeonReturn.setId(id);
+        return pigeonReturn;
+      }
+    }
+    @NonNull Map<String, Object> toMap() {
+      Map<String, Object> toMapResult = new HashMap<>();
+      toMapResult.put("id", id);
+      return toMapResult;
+    }
+    static @NonNull User fromMap(@NonNull Map<String, Object> map) {
+      User pigeonResult = new User();
+      Object id = map.get("id");
+      pigeonResult.setId((String)id);
+      return pigeonResult;
+    }
+  }
+
+  /** Generated class from Pigeon that represents data sent in messages. */
   public static class MediaItem {
     private @NonNull String url;
     public @NonNull String getUrl() { return url; }
@@ -445,6 +541,12 @@ public class PlaybackPlatformApi {
         case (byte)130:         
           return MediaMetadata.fromMap((Map<String, Object>) readValue(buffer));
         
+        case (byte)131:         
+          return NpawConfig.fromMap((Map<String, Object>) readValue(buffer));
+        
+        case (byte)132:         
+          return User.fromMap((Map<String, Object>) readValue(buffer));
+        
         default:        
           return super.readValueOfType(type, buffer);
         
@@ -464,6 +566,14 @@ public class PlaybackPlatformApi {
         stream.write(130);
         writeValue(stream, ((MediaMetadata) value).toMap());
       } else 
+      if (value instanceof NpawConfig) {
+        stream.write(131);
+        writeValue(stream, ((NpawConfig) value).toMap());
+      } else 
+      if (value instanceof User) {
+        stream.write(132);
+        writeValue(stream, ((User) value).toMap());
+      } else 
 {
         super.writeValue(stream, value);
       }
@@ -479,7 +589,11 @@ public class PlaybackPlatformApi {
     void play(@NonNull String playerId);
     void pause(@NonNull String playerId);
     void stop(@NonNull String playerId, @NonNull Boolean reset);
+    void setUser(@Nullable User user);
+    void setNpawConfig(@Nullable NpawConfig config);
     void getChromecastState(Result<ChromecastState> result);
+    void openExpandedCastController();
+    void openCastDialog();
 
     /** The codec used by PlaybackPlatformPigeon. */
     static MessageCodec<Object> getCodec() {
@@ -708,6 +822,48 @@ public class PlaybackPlatformApi {
       }
       {
         BasicMessageChannel<Object> channel =
+            new BasicMessageChannel<>(binaryMessenger, "dev.flutter.pigeon.PlaybackPlatformPigeon.setUser", getCodec());
+        if (api != null) {
+          channel.setMessageHandler((message, reply) -> {
+            Map<String, Object> wrapped = new HashMap<>();
+            try {
+              ArrayList<Object> args = (ArrayList<Object>)message;
+              User userArg = (User)args.get(0);
+              api.setUser(userArg);
+              wrapped.put("result", null);
+            }
+            catch (Error | RuntimeException exception) {
+              wrapped.put("error", wrapError(exception));
+            }
+            reply.reply(wrapped);
+          });
+        } else {
+          channel.setMessageHandler(null);
+        }
+      }
+      {
+        BasicMessageChannel<Object> channel =
+            new BasicMessageChannel<>(binaryMessenger, "dev.flutter.pigeon.PlaybackPlatformPigeon.setNpawConfig", getCodec());
+        if (api != null) {
+          channel.setMessageHandler((message, reply) -> {
+            Map<String, Object> wrapped = new HashMap<>();
+            try {
+              ArrayList<Object> args = (ArrayList<Object>)message;
+              NpawConfig configArg = (NpawConfig)args.get(0);
+              api.setNpawConfig(configArg);
+              wrapped.put("result", null);
+            }
+            catch (Error | RuntimeException exception) {
+              wrapped.put("error", wrapError(exception));
+            }
+            reply.reply(wrapped);
+          });
+        } else {
+          channel.setMessageHandler(null);
+        }
+      }
+      {
+        BasicMessageChannel<Object> channel =
             new BasicMessageChannel<>(binaryMessenger, "dev.flutter.pigeon.PlaybackPlatformPigeon.getChromecastState", getCodec());
         if (api != null) {
           channel.setMessageHandler((message, reply) -> {
@@ -730,6 +886,44 @@ public class PlaybackPlatformApi {
               wrapped.put("error", wrapError(exception));
               reply.reply(wrapped);
             }
+          });
+        } else {
+          channel.setMessageHandler(null);
+        }
+      }
+      {
+        BasicMessageChannel<Object> channel =
+            new BasicMessageChannel<>(binaryMessenger, "dev.flutter.pigeon.PlaybackPlatformPigeon.openExpandedCastController", getCodec());
+        if (api != null) {
+          channel.setMessageHandler((message, reply) -> {
+            Map<String, Object> wrapped = new HashMap<>();
+            try {
+              api.openExpandedCastController();
+              wrapped.put("result", null);
+            }
+            catch (Error | RuntimeException exception) {
+              wrapped.put("error", wrapError(exception));
+            }
+            reply.reply(wrapped);
+          });
+        } else {
+          channel.setMessageHandler(null);
+        }
+      }
+      {
+        BasicMessageChannel<Object> channel =
+            new BasicMessageChannel<>(binaryMessenger, "dev.flutter.pigeon.PlaybackPlatformPigeon.openCastDialog", getCodec());
+        if (api != null) {
+          channel.setMessageHandler((message, reply) -> {
+            Map<String, Object> wrapped = new HashMap<>();
+            try {
+              api.openCastDialog();
+              wrapped.put("result", null);
+            }
+            catch (Error | RuntimeException exception) {
+              wrapped.put("error", wrapError(exception));
+            }
+            reply.reply(wrapped);
           });
         } else {
           channel.setMessageHandler(null);

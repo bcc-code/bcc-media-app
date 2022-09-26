@@ -43,6 +43,7 @@ class ChromecastListener implements ChromecastPigeon {
   @override
   void onSessionResumed() {
     streamController.add(SessionResumed());
+    providerRef?.read(isCasting.notifier).state = true;
   }
 
   @override
@@ -69,6 +70,7 @@ class ChromecastListener implements ChromecastPigeon {
   @override
   void onSessionSuspended() {
     streamController.add(SessionSuspended());
+    providerRef?.read(isCasting.notifier).state = false;
   }
 
   @override

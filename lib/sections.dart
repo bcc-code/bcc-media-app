@@ -3,16 +3,17 @@ import 'package:bccm_player/playback_platform_pigeon.g.dart';
 import 'package:bccm_player/playback_service_interface.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:my_app/api/episodes.dart';
-import 'package:my_app/graphql/queries/page.graphql.dart';
-import 'package:my_app/providers/chromecast.dart';
-import 'package:my_app/providers/playback_api.dart';
-import 'package:my_app/router/router.gr.dart';
-import 'package:my_app/screens/episode.dart';
+import 'package:brunstadtv_app/api/episodes.dart';
+import 'package:brunstadtv_app/graphql/queries/page.graphql.dart';
+import 'package:brunstadtv_app/providers/chromecast.dart';
+import 'package:brunstadtv_app/providers/playback_api.dart';
+import 'package:brunstadtv_app/router/router.gr.dart';
+import 'package:brunstadtv_app/screens/episode.dart';
 import 'package:transparent_image/transparent_image.dart';
 
 import 'api/sliders.dart';
 import 'components/horizontal_slider.dart';
+import 'api/brunstadtv.dart';
 
 class ItemSection extends StatelessWidget {
   final String title;
@@ -68,8 +69,11 @@ class ItemSection extends StatelessWidget {
                               child: Text('Play now')),
                           ElevatedButton(
                               onPressed: () {
-                                fetchLegacyEpisode(si.id).then(
+                                ref.read(apiProvider).fetchEpisode(si.id).then(
                                   (episode) {
+                                    if (episode == null) {
+                                      return;
+                                    }
                                     queueEpisode(
                                         playerId: 'chromecast',
                                         episode: episode);

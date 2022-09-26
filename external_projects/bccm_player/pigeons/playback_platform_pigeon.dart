@@ -34,9 +34,31 @@ abstract class PlaybackPlatformPigeon {
   @ObjCSelector("stop:reset:")
   void stop(String playerId, bool reset);
 
+  @ObjCSelector("setUser:")
+  void setUser(User? user);
+
+  @ObjCSelector("setNpawConfig:")
+  void setNpawConfig(NpawConfig? config);
+
   @async
   @ObjCSelector("getChromecastState")
   ChromecastState? getChromecastState();
+
+  @ObjCSelector("openExpandedCastController")
+  void openExpandedCastController();
+
+  @ObjCSelector("openCastDialog")
+  void openCastDialog();
+}
+
+class NpawConfig {
+  late String? appName;
+  late String? appReleaseVersion;
+  late String? accountCode;
+}
+
+class User {
+  late String? id;
 }
 
 class SetUrlArgs {

@@ -2,11 +2,13 @@ import 'package:auto_route/auto_route.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:my_app/providers/chromecast.dart';
-import 'package:my_app/providers/playback_api.dart';
-import 'package:my_app/providers/video_state.dart';
-import 'package:my_app/router/router.gr.dart';
+import 'package:brunstadtv_app/providers/chromecast.dart';
+import 'package:brunstadtv_app/providers/playback_api.dart';
+import 'package:brunstadtv_app/providers/video_state.dart';
+import 'package:brunstadtv_app/router/router.gr.dart';
 import 'package:transparent_image/transparent_image.dart';
+
+import '../providers/fun.dart';
 
 class MiniPlayer extends ConsumerStatefulWidget {
   const MiniPlayer({Key? key}) : super(key: key);
@@ -41,12 +43,12 @@ class _MiniPlayerState extends ConsumerState<MiniPlayer> {
 
     return GestureDetector(
       onTap: () {
-        var episodeId = player!.currentMediaItem?.metadata?.episodeId;
-        var isLivestream = player!.currentMediaItem?.metadata?.extras?['id'] == 'livestream';
-        if (episodeId != null) {
-          context.router.push(EpisodeScreenRoute(episodeId: episodeId));
-        } else if (isLivestream) {
+        var id = player!.currentMediaItem?.metadata?.extras?['id'];
+        if (id == 'livestream') {
           context.router.navigate(const LiveScreenRoute());
+        } else if (id != null) {
+          ref.read(tempTitleProvider.notifier).state = title;
+          context.router.push(EpisodeScreenRoute(episodeId: id));
         }
       },
       child: _MiniPlayer(
@@ -116,11 +118,14 @@ class _MiniPlayer extends StatelessWidget {
             ),
             child: ClipRRect(
                 borderRadius: BorderRadius.circular(4),
-                child: Image.network(
-                  fit: BoxFit.fill,
-                  artworkUri,
-                  width: 64,
-                  height: 36,
+                child: Hero(
+                  tag: "player",
+                  child: Image.network(
+                    fit: BoxFit.fill,
+                    artworkUri,
+                    width: 64,
+                    height: 36,
+                  ),
                 )),
           ),
           Expanded(
@@ -140,14 +145,19 @@ class _MiniPlayer extends StatelessWidget {
                 ),
                 Padding(
                   padding: const EdgeInsets.only(top: 4.0),
-                  child: Text(
-                    title,
-                    overflow: TextOverflow.ellipsis,
-                    style: TextStyle(
-                      color: Color(0xfffefefe),
-                      fontSize: 14,
-                      fontFamily: 'Barlow',
-                      fontWeight: FontWeight.w500,
+                  child: Hero(
+                    createRectTween: ((begin, end) =>
+                        RectTween(begin: begin, end: end)),
+                    tag: "title",
+                    child: Text(
+                      title,
+                      overflow: TextOverflow.ellipsis,
+                      style: TextStyle(
+                        color: Color(0xfffefefe),
+                        fontSize: 14,
+                        fontFamily: 'Barlow',
+                        fontWeight: FontWeight.w500,
+                      ),
                     ),
                   ),
                 ),
