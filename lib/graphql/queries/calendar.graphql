@@ -1,0 +1,25 @@
+query CalendarPeriod($from: Date!, $to: Date!) {
+  calendar {
+    period(from: $from, to: $to) {
+      activeDays
+    }
+  }
+}
+
+fragment CalendarDay on CalendarDay {
+  events {
+    id
+    title
+    start
+    end
+    image
+  }
+}
+
+query CalendarDay($date: Date!) {
+  calendar {
+    day(day: $date) {
+      ...CalendarDay
+    }
+  }
+}
