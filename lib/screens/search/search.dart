@@ -14,7 +14,7 @@ class SearchScreen extends StatefulWidget {
 }
 
 class _SearchScreenState extends State<SearchScreen> {
-  String name = AuthService.instance.parsedIdToken!.name;
+  String name = AuthService.instance.user!.name!;
   var _inSearchMode = false;
   var _curSearchValue = '';
 

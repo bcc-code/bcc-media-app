@@ -16,7 +16,7 @@ class HomeScreen extends ConsumerStatefulWidget {
 }
 
 class _HomeScreenState extends ConsumerState<HomeScreen> {
-  String name = AuthService.instance.parsedIdToken!.name;
+  String name = AuthService.instance.user!.name!;
   late Future<List<Section>> sectionFuture;
 
   @override

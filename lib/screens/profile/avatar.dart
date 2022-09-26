@@ -7,8 +7,8 @@ class Avatar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final imageUrl = AuthService.instance.parsedIdToken?.picture as String;
-    final name = AuthService.instance.parsedIdToken?.name as String;
+    final imageUrl = AuthService.instance.user?.pictureUrl.toString();
+    final name = AuthService.instance.user?.name as String;
     const avatarWidth = 100.0;
 
     return Container(

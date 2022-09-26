@@ -1,8 +1,8 @@
 import 'dart:convert';
 
+import 'package:auth0_flutter/auth0_flutter.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_appauth/flutter_appauth.dart';
-import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:my_app/env/.env.dart';
 
 import '../helpers/constants.dart';
 import '../models/auth0_id_token.dart';
@@ -12,55 +12,25 @@ class AuthService {
   factory AuthService() => instance;
   AuthService._internal();
 
-  final FlutterAppAuth appAuth = const FlutterAppAuth();
-  final FlutterSecureStorage secureStorage = const FlutterSecureStorage();
-  Auth0IdToken? parsedIdToken;
+  final Auth0 auth0 = Auth0(Env.AUTH0_DOMAIN, Env.AUTH0_CLIENT_ID);
+  UserProfile? user;
   String? auth0AccessToken;
   String? idToken;
 
-  Future<bool> init() async {
-    final storedRefreshToken =
-        await secureStorage.read(key: SecureStorageKeys.REFRESH_TOKEN);
-
-    if (storedRefreshToken == null) {
-      return false;
-    }
-
-    try {
-      final TokenResponse? result = await appAuth.token(
-        TokenRequest(
-          AUTH0_CLIENT_ID,
-          AUTH0_REDIRECT_URI,
-          issuer: AUTH0_ISSUER,
-          refreshToken: storedRefreshToken,
-        ),
-      );
-      final String setResult = await _setLocalVariables(result);
-      return setResult == 'Success';
-    } catch (e, s) {
-      print('error on Refresh Token: $e - stack: $s');
-      // logOut() possibly
-      return false;
-    }
-  }
-
   Future<String> login() async {
     try {
-      final authorizationTokenRequest = AuthorizationTokenRequest(
-        AUTH0_CLIENT_ID,
-        AUTH0_REDIRECT_URI,
-        issuer: AUTH0_ISSUER,
-        scopes: ['openid', 'profile', 'offline_access', 'email'],
-      );
+      final result = await auth0.webAuthentication().login(
+          audience: Env.AUTH0_AUDIENCE,
+          scopes: {'openid', 'profile', 'offline_access', 'email'},
+          redirectUrl: 'media.bcc.app://login-callback');
 
-      final AuthorizationTokenResponse? result =
-          await appAuth.authorizeAndExchangeCode(
-        authorizationTokenRequest,
-      );
-
-      return await _setLocalVariables(result);
+      auth0AccessToken = result.accessToken;
+      user = result.user;
+      idToken = result.idToken;
+      return 'success';
+      //return await _storeCredentials(result);
     } catch (e) {
-      return 'Unkown Error!';
+      return 'Unknown error $e';
     }
   }
 
@@ -77,27 +47,5 @@ class AuthService {
     );
 
     return Auth0IdToken.fromJson(json);
-  }
-
-  Future<String> _setLocalVariables(result) async {
-    final bool isValidResult =
-        result != null && result.accessToken != null && result.idToken != null;
-
-    if (isValidResult) {
-      auth0AccessToken = result.accessToken;
-      parsedIdToken = parseIdToken(result.idToken!);
-      idToken = result.idToken;
-
-      if (result.refreshToken != null) {
-        await secureStorage.write(
-          key: SecureStorageKeys.REFRESH_TOKEN,
-          value: result.refreshToken,
-        );
-      }
-
-      return 'Success';
-    } else {
-      return 'Something is Wrong!';
-    }
   }
 }

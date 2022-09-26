@@ -22,7 +22,7 @@ class LiveScreen extends ConsumerStatefulWidget {
 }
 
 class _LiveScreenState extends ConsumerState<LiveScreen> with AutoRouteAware {
-  String name = AuthService.instance.parsedIdToken!.name;
+  String name = AuthService.instance.user!.name!;
   final TextEditingController _idTokenDisplayController =
       TextEditingController(text: AuthService.instance.idToken);
   late Future playerFuture;

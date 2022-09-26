@@ -22,7 +22,7 @@ void main() async {
     DeviceOrientation.landscapeRight,
     DeviceOrientation.landscapeLeft,
   ]);
-  await AuthService.instance.init();
+  //await AuthService.instance.init();
   final appRouter = AppRouter(authGuard: AuthGuard());
 
   var chromecastListenerOverride = chromecastListenerProvider
@@ -46,10 +46,9 @@ void main() async {
 
   if (Env.NPAW_ACCOUNT_CODE != '') {
     providerContainer.read(playbackApiProvider).setNpawConfig(NpawConfig(
-      accountCode: Env.NPAW_ACCOUNT_CODE,
-      appName: 'mobile',
-      appReleaseVersion: '4.0.0-alpha'
-    ));
+        accountCode: Env.NPAW_ACCOUNT_CODE,
+        appName: 'mobile',
+        appReleaseVersion: '4.0.0-alpha'));
   }
 
   runApp(UncontrolledProviderScope(

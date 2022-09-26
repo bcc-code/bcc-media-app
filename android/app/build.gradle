@@ -47,14 +47,15 @@ android {
         applicationId "com.example.my_app"
         // You can update the following values to match your application needs.
         // For more information, see: https://docs.flutter.dev/deployment/android#reviewing-the-build-configuration.
-        minSdkVersion 19
+        minSdkVersion 21
         targetSdkVersion flutter.targetSdkVersion
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
         multiDexEnabled true
-        manifestPlaceholders += [
+        /*manifestPlaceholders += [
             'appAuthRedirectScheme': 'media.bcc.app'
-        ]
+        ]*/
+        manifestPlaceholders += [auth0Domain: "bcc-sso-sandbox.eu.auth0.com", auth0Scheme: "media.bcc.app"]
     }
 
     buildTypes {
