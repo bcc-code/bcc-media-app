@@ -32,7 +32,8 @@ public class PlaybackApiImpl: NSObject, PlaybackPlatformPigeon {
         players.first(where: { $0.id == primaryPlayerId })
     }
 
-    public func setPrimary(_ id: String, completion: @escaping (FlutterError?) -> Void) {
+    public func setPrimary(_
+                           id: String, completion: @escaping (FlutterError?) -> Void) {
         primaryPlayerId = id;
     }
 

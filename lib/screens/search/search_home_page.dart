@@ -4,7 +4,7 @@ import '../../graphql/queries/search.graphql.dart';
 import '../../models/explore_category.dart';
 import '../../router/router.gr.dart';
 
-import 'package:my_app/components/category_button.dart';
+import 'package:brunstadtv_app/components/category_button.dart';
 import '../../components/episode_list.dart';
 
 class SearchHomePage extends StatelessWidget {

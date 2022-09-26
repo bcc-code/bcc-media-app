@@ -49,8 +49,9 @@ class SectionItem {
 
 Future<List<Section>> fetchSections() async {
   var url = 'https://brunstad.tv/api/sliders';
-  final response = await http.get(Uri.parse(url),
-      headers: {'Authorization': 'Bearer ${AuthService.instance.idToken}'});
+  final response = await http.get(Uri.parse(url), headers: {
+    'Authorization': 'Bearer ${AuthService.instance.auth0AccessToken}'
+  });
   if (response.statusCode != 200) {
     return Future.error('statuscode ${response.statusCode}');
   }

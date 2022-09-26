@@ -6,12 +6,12 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:bccm_player/bccm_player.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:my_app/graphql/client.dart';
-import 'package:my_app/graphql/queries/episode.graphql.dart';
-import 'package:my_app/providers/chromecast.dart';
-import 'package:my_app/providers/fun.dart';
-import 'package:my_app/providers/playback_api.dart';
-import 'package:my_app/providers/video_state.dart';
+import 'package:brunstadtv_app/graphql/client.dart';
+import 'package:brunstadtv_app/graphql/queries/episode.graphql.dart';
+import 'package:brunstadtv_app/providers/chromecast.dart';
+import 'package:brunstadtv_app/providers/fun.dart';
+import 'package:brunstadtv_app/providers/playback_api.dart';
+import 'package:brunstadtv_app/providers/video_state.dart';
 import 'package:bccm_player/cast_button.dart';
 
 import '../api/brunstadtv.dart';

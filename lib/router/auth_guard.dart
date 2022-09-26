@@ -1,5 +1,5 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:my_app/router/router.gr.dart';
+import 'package:brunstadtv_app/router/router.gr.dart';
 
 import '../services/auth_service.dart';
 

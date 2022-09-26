@@ -1,8 +1,8 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:my_app/api/sliders.dart';
-import 'package:my_app/router/router.gr.dart';
+import 'package:brunstadtv_app/api/sliders.dart';
+import 'package:brunstadtv_app/router/router.gr.dart';
 
 import 'package:bccm_player/cast_button.dart';
 import '../components/page.dart';
