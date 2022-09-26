@@ -8,8 +8,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-import 'package:my_app/screens/home.dart';
-import 'package:my_app/sections.dart';
+import 'package:brunstadtv_app/screens/home.dart';
+import 'package:brunstadtv_app/sections.dart';
 import 'package:mockito/mockito.dart';
 
 class MockNavigatorObserver extends Mock implements NavigatorObserver {}
@@ -24,7 +24,7 @@ void main() {
         navigatorObservers: [mockObserver],
       ),
     );
-    
+
     // Verify that our counter starts at 0.
     expect(find.text('Hei1'), findsOneWidget);
     expect(find.text('1'), findsNothing);

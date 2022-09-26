@@ -2,8 +2,8 @@ import 'package:bccm_player/playback_platform_pigeon.g.dart';
 import 'package:bccm_player/playback_service.dart';
 import 'package:bccm_player/playback_service_interface.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:my_app/api/episodes.dart';
-import 'package:my_app/providers/video_state.dart';
+import 'package:brunstadtv_app/api/episodes.dart';
+import 'package:brunstadtv_app/providers/video_state.dart';
 
 final playbackApiProvider = Provider<PlaybackPlatformInterface>((ref) {
   return PlaybackService();

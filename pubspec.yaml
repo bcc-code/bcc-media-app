@@ -1,4 +1,4 @@
-name: my_app
+name: brunstadtv_app
 description: A new Flutter project.
 
 # The following line prevents the package from being accidentally published to
@@ -38,8 +38,6 @@ dependencies:
   provider: ^6.0.3
   js: ^0.6.4
   http: ^0.13.4
-  flutter_appauth: ^4.0.1
-  flutter_secure_storage: ^5.0.2
   json_annotation: ^4.5.0
   json_serializable: ^6.2.0
   mockito: ^5.2.0
@@ -58,6 +56,7 @@ dependencies:
   package_info_plus: ^1.4.3+1
   graphql: ^5.1.1
   graphql_flutter: ^5.1.0
+  auth0_flutter: ^1.0.1
 dependency_overrides:
   bccm_player:
     path: external_projects/bccm_player

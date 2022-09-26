@@ -1,6 +1,6 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:graphql/client.dart';
-import 'package:my_app/services/auth_service.dart';
+import 'package:brunstadtv_app/services/auth_service.dart';
 
 import '../env/.env.dart';
 
@@ -11,7 +11,7 @@ final gqlClientProvider = Provider<GraphQLClient>((ref) {
 
   final authLink = AuthLink(
     getToken: () async => AuthService.instance.idToken != null
-        ? 'Bearer ${AuthService.instance.idToken}'
+        ? 'Bearer ${AuthService.instance.auth0AccessToken}'
         : null,
   );
 

@@ -5,10 +5,10 @@ import 'package:bccm_player/playback_platform_pigeon.g.dart';
 import 'package:bccm_player/playback_service_interface.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:my_app/api/livestream.dart';
-import 'package:my_app/components/mini_player.dart';
-import 'package:my_app/providers/playback_api.dart';
-import 'package:my_app/providers/video_state.dart';
+import 'package:brunstadtv_app/api/livestream.dart';
+import 'package:brunstadtv_app/components/mini_player.dart';
+import 'package:brunstadtv_app/providers/playback_api.dart';
+import 'package:brunstadtv_app/providers/video_state.dart';
 
 import '../components/codegen_test_1.dart';
 import '../providers/chromecast.dart';
@@ -22,7 +22,7 @@ class LiveScreen extends ConsumerStatefulWidget {
 }
 
 class _LiveScreenState extends ConsumerState<LiveScreen> with AutoRouteAware {
-  String name = AuthService.instance.parsedIdToken!.name;
+  String name = AuthService.instance.user!.name!;
   final TextEditingController _idTokenDisplayController =
       TextEditingController(text: AuthService.instance.idToken);
   late Future playerFuture;

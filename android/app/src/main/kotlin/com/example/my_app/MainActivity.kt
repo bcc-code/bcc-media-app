@@ -1,4 +1,4 @@
-package com.example.my_app
+package tv.brunstad.app
 
 import android.os.Bundle
 import android.os.PersistableBundle
@@ -10,7 +10,7 @@ import io.flutter.plugin.common.MethodChannel
 
 
 class MainActivity: FlutterFragmentActivity() {
-    private val _channel = "media.bcc.app"
+    private val _channel = "tv.brunstad.app"
 
     override fun onCreate(savedInstanceState: Bundle?, persistentState: PersistableBundle?) {
         super.onCreate(savedInstanceState, persistentState)

@@ -5,7 +5,7 @@ import 'package:bccm_player/chromecast_pigeon.g.dart';
 import 'package:bccm_player/playback_platform_pigeon.g.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:my_app/providers/video_state.dart';
+import 'package:brunstadtv_app/providers/video_state.dart';
 
 final playbackListenerProvider =
     Provider<PlaybackListener>((_) => throw UnimplementedError());

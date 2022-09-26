@@ -24,8 +24,6 @@ A new Flutter plugin project.
   s.dependency 'YouboraLib', '6.6.22'
   s.dependency 'YouboraAVPlayerAdapter', '6.6.8'
   
-  
-  #s.source = { :http => "file:/Users/andreasgangso/dev/code/my_app/external_projects/bccm_player/GoogleCastSDK-ios-no-bluetooth-4.7.1_dynamic_beta.xcframework.zip", :type => "zip"}
   s.ios.vendored_frameworks = 'Frameworks/GoogleCast.xcframework'
 
 end
