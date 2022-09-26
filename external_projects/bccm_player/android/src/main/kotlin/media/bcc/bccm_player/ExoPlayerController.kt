@@ -29,12 +29,29 @@ class ExoPlayerController(private val context: Context) : PlayerController(), Pl
             .build()
     override val player: ForwardingPlayer
     private var currentPlayerViewWrapper: BccmPlayerViewWrapper? = null
-    private var currentPlayerView: PlayerView? = null
+
+    private var _currentPlayerView: PlayerView? = null
+    private var currentPlayerView: PlayerView?
+        get() = _currentPlayerView
+        set(value) {
+            _currentPlayerView = value
+            if (value == null) {
+                mainScope.launch {
+                    delay(3000)
+                    if (_currentPlayerView == null) {
+                        setRendererDisabled(true);
+                    }
+                }
+            } else {
+                Log.d("bccm", "Enabling video, playerView attached")
+                setRendererDisabled(false);
+            }
+        }
+
     var isLive: Boolean = false
         private set
-    private val ioScope = CoroutineScope(Dispatchers.IO + SupervisorJob())
+    private val mainScope = CoroutineScope(Dispatchers.Main + SupervisorJob())
     private val youboraPlugin: Plugin
-    private val flows = mutableListOf<Flow<Any>>()
 
     init {/*
         val df = DefaultRenderersFactory(context).also {
@@ -61,15 +78,20 @@ class ExoPlayerController(private val context: Context) : PlayerController(), Pl
         youboraPlugin.adapter = adapter;
         player.addListener(this)
 
-        ioScope.launch {
+        mainScope.launch {
             BccmPlayerPluginSingleton.userState.collect() {
                 user ->
                 youboraOptions.username = user?.id
                 Log.d("bccm", "ExoPlayerController: Setting user in youbora")
             }
         }
-        ioScope.launch {
+        mainScope.launch {
             BccmPlayerPluginSingleton.npawConfigState.collectLatest { setBasicYouboraOptions(youboraPlugin.options, it) }
+        }
+        mainScope.launch {
+            BccmPlayerPluginSingleton.eventBus.filter { event -> event is AttachedToActivityEvent}.collect {
+                event -> BccmPlayerPluginSingleton.activityState.update { (event as AttachedToActivityEvent).activity }
+            }
         }
     }
 
@@ -100,6 +122,7 @@ class ExoPlayerController(private val context: Context) : PlayerController(), Pl
         val parametersBuilder = trackSelector.buildUponParameters()
         parametersBuilder.setRendererDisabled(indexOfVideoRenderer, isDisabled)
         trackSelector.setParameters(parametersBuilder)
+        Log.d("bccm", if (isDisabled) "Disabled video" else "Enabled video")
     }
 
     fun takeOwnership(playerView: PlayerView) {
@@ -109,7 +132,7 @@ class ExoPlayerController(private val context: Context) : PlayerController(), Pl
             playerView.player = player
         }
         currentPlayerView = playerView;
-        setRendererDisabled(false)
+        //setRendererDisabled(false)
     }
 
     fun takeOwnership(pvWrapper: BccmPlayerViewWrapper) {
@@ -118,7 +141,7 @@ class ExoPlayerController(private val context: Context) : PlayerController(), Pl
         val playerView = pvWrapper.getPlayerView()
                 ?: throw Error("pvWrapper.getPlayerView() was null");
         val currentPlayerView = previousPvWrapper?.getPlayerView();
-        setRendererDisabled(false)
+        //setRendererDisabled(false)
 
 
         playerView.player = player
@@ -145,13 +168,13 @@ class ExoPlayerController(private val context: Context) : PlayerController(), Pl
 
     fun releasePlayerView(playerView: PlayerView) {
         if (currentPlayerView == playerView) {
-            setRendererDisabled(true)
+            //setRendererDisabled(true)
             currentPlayerView = null;
         }
     }
 
     override fun release() {
-        ioScope.cancel()
+        mainScope.cancel()
         exoPlayer.release()
     }
 
@@ -200,7 +223,7 @@ class ExoPlayerController(private val context: Context) : PlayerController(), Pl
 
     val emitter = object : Emitter {
         override fun onPictureInPictureModeChanged(isInPictureInPictureMode: Boolean) {
-            ioScope.launch {
+            mainScope.launch {
                 BccmPlayerPluginSingleton.eventBus.emit(PictureInPictureModeChangedEvent(id, isInPictureInPictureMode))
             }
         }

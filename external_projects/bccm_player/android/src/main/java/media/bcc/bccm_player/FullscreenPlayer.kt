@@ -14,12 +14,17 @@ import android.os.IBinder
 import android.os.Parcelable
 import android.util.Log
 import android.util.Rational
+import android.view.GestureDetector
+import android.view.GestureDetector.SimpleOnGestureListener
+import android.view.MotionEvent
 import android.view.View
 import android.widget.ImageButton
 import androidx.annotation.RequiresApi
 import androidx.media3.ui.PlayerView
+import kotlinx.coroutines.*
 import kotlinx.parcelize.Parcelize
 import media.bcc.bccm_player.databinding.ActivityPictureInPictureBinding
+
 
 /**
  * An dedicated player activity, used for fullscreen and picture-in-picture modes.
@@ -32,9 +37,11 @@ class FullscreenPlayer : Activity(){
     private var _playerView: PlayerView? = null
     private var mBound = false
     private var options: Options? = null
+    private val ioScope = CoroutineScope(Dispatchers.IO + SupervisorJob())
 
     @Parcelize
     data class Options(
+            /** **Note:** Primary if null **/ val playerId: String?,
             val startInPictureInPicture: Boolean = false
     ) : Parcelable
 
@@ -48,9 +55,7 @@ class FullscreenPlayer : Activity(){
 
         Log.d("Bccm", "onCreate fullscreenplayer")
 
-        options = intent.extras?.let {
-            it.getParcelable("options")
-        }
+        options = intent.extras?.getParcelable("options")
 
         binding = ActivityPictureInPictureBinding.inflate(layoutInflater)
         setContentView(binding.root)
@@ -80,6 +85,7 @@ class FullscreenPlayer : Activity(){
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                 navToLauncherTask()
             };
+            setResult(0, intent)
             this@FullscreenPlayer.finish()
         }
 
@@ -131,11 +137,19 @@ class FullscreenPlayer : Activity(){
             unbindService(playbackServiceConnection)
             mBound = false
         }
+
+        _playerController?.emitter?.onPictureInPictureModeChanged(false)
+
+        ioScope.launch {
+            if (options?.playerId == null) {
+                return@launch;
+            }
+            BccmPlayerPluginSingleton.eventBus.emit(FullscreenPlayerResult(options!!.playerId!!))
+            Log.d("bccm", "I'm supposed to be called once")
+        }
         _playerView?.let {
             _playerController?.releasePlayerView(it)
         }
-
-        _playerController?.emitter?.onPictureInPictureModeChanged(false)
 
         super.onStop()
     }
@@ -198,7 +212,9 @@ class FullscreenPlayer : Activity(){
         override fun onServiceConnected(className: ComponentName, binder: IBinder) {
             // We've bound to LocalService, cast the IBinder and get LocalService instance
             _playbackService = (binder as PlaybackService.LocalBinder).getService()
-            _playerController = _playbackService?.getPrimaryController() as? ExoPlayerController
+            _playerController = options?.playerId?.let {
+                _playbackService?.getController(it) as? ExoPlayerController
+            } ?: _playbackService?.getPrimaryController() as? ExoPlayerController
             _playerView?.let {
                 _playerController?.takeOwnership(it)
             }
@@ -209,3 +225,50 @@ class FullscreenPlayer : Activity(){
         }
     }
 }
+/*
+
+abstract class SwipeDismissBaseActivity : AppCompatActivity() {
+    private var gestureDetector: GestureDetector? = null
+    protected fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        gestureDetector = GestureDetector(SwipeDetector())
+    }
+
+    private inner class SwipeDetector : SimpleOnGestureListener() {
+        override fun onFling(e1: MotionEvent, e2: MotionEvent, velocityX: Float, velocityY: Float): Boolean {
+
+            // Check movement along the Y-axis. If it exceeds SWIPE_MAX_OFF_PATH,
+            // then dismiss the swipe.
+            if (Math.abs(e1.y - e2.y) > SWIPE_MAX_OFF_PATH) return false
+
+            // Swipe from left to right.
+            // The swipe needs to exceed a certain distance (SWIPE_MIN_DISTANCE)
+            // and a certain velocity (SWIPE_THRESHOLD_VELOCITY).
+            if (e2.x - e1.x > SWIPE_MIN_DISTANCE && Math.abs(velocityX) > SWIPE_THRESHOLD_VELOCITY) {
+                finish()
+                return true
+            }
+            return false
+        }
+    }
+
+    fun dispatchTouchEvent(ev: MotionEvent?): Boolean {
+        // TouchEvent dispatcher.
+        if (gestureDetector != null) {
+            if (gestureDetector!!.onTouchEvent(ev)) // If the gestureDetector handles the event, a swipe has been
+            // executed and no more needs to be done.
+                return true
+        }
+        return super.dispatchTouchEvent(ev)
+    }
+
+    fun onTouchEvent(event: MotionEvent?): Boolean {
+        return gestureDetector!!.onTouchEvent(event)
+    }
+
+    companion object {
+        private const val SWIPE_MIN_DISTANCE = 120
+        private const val SWIPE_MAX_OFF_PATH = 250
+        private const val SWIPE_THRESHOLD_VELOCITY = 200
+    }
+}*/

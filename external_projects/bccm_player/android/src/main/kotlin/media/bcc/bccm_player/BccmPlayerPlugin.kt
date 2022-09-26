@@ -40,6 +40,7 @@ interface BccmPlayerPluginEvent {
 class AttachedToActivityEvent(val activity: Activity) : BccmPlayerPluginEvent {}
 class DetachedFromActivityEvent() : BccmPlayerPluginEvent {}
 class PictureInPictureModeChangedEvent(val playerId: String, val isInPictureInPictureMode: Boolean) : BccmPlayerPluginEvent {}
+class FullscreenPlayerResult(val playerId: String) : BccmPlayerPluginEvent {}
 class User(val id: String?);
 
 object BccmPlayerPluginSingleton {
@@ -63,7 +64,7 @@ object BccmPlayerPluginSingleton {
 }
 
 /** BccmPlayerPlugin */
-class BccmPlayerPlugin : FlutterPlugin, MethodCallHandler, ActivityAware, PluginRegistry.ActivityResultListener {
+class BccmPlayerPlugin : FlutterPlugin, ActivityAware, PluginRegistry.ActivityResultListener {
     /// The MethodChannel that will the communication between Flutter and native Android
     ///
     /// This local reference serves to register the plugin with the Flutter Engine and unregister it
@@ -138,7 +139,6 @@ class BccmPlayerPlugin : FlutterPlugin, MethodCallHandler, ActivityAware, Plugin
 
         PlaybackPlatformPigeon.setup(pluginBinding!!.binaryMessenger, PlaybackApiImpl(this))
         channel = MethodChannel(pluginBinding!!.binaryMessenger, "bccm_player")
-        channel.setMethodCallHandler(this)
 
         // Bind to LocalService
         Intent(binding.activity, PlaybackService::class.java).also { intent ->
@@ -194,39 +194,22 @@ class BccmPlayerPlugin : FlutterPlugin, MethodCallHandler, ActivityAware, Plugin
         return playbackService;
     }
 
-    override fun onMethodCall(@NonNull call: MethodCall, @NonNull result: Result) {
-        val pbService = playbackService
-                ?: return result.error("playbackServiceIsNull", "playbackService is null", "playbackService is null");
-        when (call.method) {
-            "open" -> {
-                activity!!.requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE
-                val args = call.arguments as HashMap<String, String>
-                val url = args["url"]!!;
-
-                val rootLayout: FrameLayout = activity!!.window.decorView.findViewById<View>(R.id.content) as FrameLayout
-                val bccmPlayerView = BccmPlayerViewWrapper(activity!!, playbackService!!, activity!!, url)
-                rootLayout.addView(bccmPlayerView.view)
-
-                val exitBtn = Button(activity)
-                exitBtn.text = "Exit"
-                exitBtn.layoutParams = ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT)
-                exitBtn.setOnClickListener {
-                    channel.invokeMethod("closingFullscreen", null);
-                    activity!!.requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED
-                    rootLayout.removeView(bccmPlayerView.view)
-                }
-                rootLayout.addView(exitBtn)
-            }
-            else -> {
-                result.notImplemented()
-            }
-        }
-    }
-
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?): Boolean {
         // TODO: broadcast event, and listen from any playerview with same ID??? something like that
         // nahhh it only needs to be that calling one that needs to listen, i think
         // requestCode: 1, resultCode : 0, data : null
+
+
+        val options = data?.extras?.getParcelable<FullscreenPlayer.Options>("options")
+
+        if (options?.playerId != null) {
+           /*mainScope.launch {
+                BccmPlayerPluginSingleton.eventBus.emit(FullscreenPlayerResult(options.playerId))
+            }*/
+            return true;
+        }
+
+
 
         return false;
     }

@@ -56,8 +56,6 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen> {
           episode: episode,
           playbackPositionMs: event.playbackPositionMs);
     });
-
-    setup();
   }
 
   Future setup() async {
@@ -100,7 +98,10 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen> {
   @override
   Widget build(BuildContext context) {
     final casting = ref.watch(isCasting);
-    final primaryPlayerId = ref.watch(primaryPlayerProvider)!.playerId;
+    final player = ref.watch(primaryPlayerProvider);
+    final primaryPlayerId = player!.playerId;
+    final playerCurrentIsThisEpisode =
+        player.currentMediaItem?.metadata?.episodeId == widget.episodeId;
     return Scaffold(
       appBar: AppBar(
         title: const Text('Episode'),
@@ -111,8 +112,7 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen> {
           ),
         ],
       ),
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+      body: ListView(
         children: [
           FutureBuilder<Episode?>(
               future: episodeFuture,
@@ -134,17 +134,34 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      displayPlayer
-                          ? Hero(
-                              tag: "player",
-                              child: BccmPlayer(
-                                  type: widget.playerType,
-                                  id: casting ? 'chromecast' : primaryPlayerId),
-                            )
-                          : const AspectRatio(
+                      player.currentMediaItem?.metadata?.extras?['id'] ==
+                              widget.episodeId
+                          ? _player(displayPlayer, casting, primaryPlayerId)
+                          : AspectRatio(
                               aspectRatio: 16 / 9,
-                              child:
-                                  Center(child: CircularProgressIndicator())),
+                              child: episode == null
+                                  ? CircularProgressIndicator()
+                                  : Stack(
+                                      children: [
+                                        GestureDetector(
+                                          onTap: () {
+                                            setup();
+                                          },
+                                          child: AspectRatio(
+                                            aspectRatio: 16 / 9,
+                                            child: Image.network(
+                                              episode!.imageUrl!,
+                                              fit: BoxFit.fill,
+                                              width: 64,
+                                              height: 36,
+                                            ),
+                                          ),
+                                        ),
+                                        Center(
+                                            child: Image.asset(
+                                                'assets/icons/Play.png')),
+                                      ],
+                                    )),
                       Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: Hero(
@@ -166,5 +183,18 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen> {
         ],
       ),
     );
+  }
+
+  Widget _player(bool displayPlayer, bool casting, String primaryPlayerId) {
+    return displayPlayer
+        ? KeepAlive(
+            keepAlive: true,
+            child: BccmPlayer(
+                type: widget.playerType,
+                id: casting ? 'chromecast' : primaryPlayerId),
+          )
+        : const AspectRatio(
+            aspectRatio: 16 / 9,
+            child: Center(child: CircularProgressIndicator()));
   }
 }

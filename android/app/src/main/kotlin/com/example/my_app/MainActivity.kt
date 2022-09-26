@@ -2,6 +2,7 @@ package tv.brunstad.app
 
 import android.os.Bundle
 import android.os.PersistableBundle
+import android.os.StrictMode
 import androidx.annotation.NonNull
 import io.flutter.embedding.android.FlutterActivity
 import io.flutter.embedding.android.FlutterFragmentActivity
@@ -13,6 +14,8 @@ class MainActivity: FlutterFragmentActivity() {
     private val _channel = "tv.brunstad.app"
 
     override fun onCreate(savedInstanceState: Bundle?, persistentState: PersistableBundle?) {
+        if(BuildConfig.DEBUG)
+            StrictMode.enableDefaults();
         super.onCreate(savedInstanceState, persistentState)
     }
 
