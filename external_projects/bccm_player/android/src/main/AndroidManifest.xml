@@ -8,10 +8,8 @@
             android:configChanges="screenSize|smallestScreenSize|screenLayout|orientation"
             android:label="@string/title_activity_picture_in_picture"
             android:theme="@style/TransparentActivity"
-            android:noHistory="true"
             android:launchMode="singleTask"
             android:excludeFromRecents="true"
-            android:autoRemoveFromRecents="true"
             android:supportsPictureInPicture="true"
             />
     </application>

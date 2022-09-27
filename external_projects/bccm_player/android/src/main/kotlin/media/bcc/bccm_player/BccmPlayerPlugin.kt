@@ -91,7 +91,7 @@ class BccmPlayerPlugin : FlutterPlugin, ActivityAware, PluginRegistry.ActivityRe
             }
             pluginBinding!!
                     .platformViewRegistry
-                    .registerViewFactory("bccm-player", PlayerPlatformViewFactory(activity!!, playbackService))
+                    .registerViewFactory("bccm-player", PlayerPlatformViewFactory(playbackService))
         }
 
         override fun onServiceDisconnected(arg0: ComponentName) {
@@ -102,6 +102,11 @@ class BccmPlayerPlugin : FlutterPlugin, ActivityAware, PluginRegistry.ActivityRe
     override fun onAttachedToEngine(@NonNull flutterPluginBinding: FlutterPlugin.FlutterPluginBinding) {
         pluginBinding = flutterPluginBinding
         playbackPigeon = PlaybackPlatformApi.PlaybackListenerPigeon(flutterPluginBinding.binaryMessenger)
+
+
+        Intent(pluginBinding?.applicationContext, PlaybackService::class.java).also { intent ->
+            mBound = pluginBinding?.applicationContext?.bindService(intent, playbackServiceConnection, Context.BIND_AUTO_CREATE) ?: false
+        }
 
         var castContext: CastContext? = null
         try {
@@ -126,6 +131,12 @@ class BccmPlayerPlugin : FlutterPlugin, ActivityAware, PluginRegistry.ActivityRe
 
 
     override fun onDetachedFromEngine(@NonNull binding: FlutterPlugin.FlutterPluginBinding) {
+        if (mBound) {
+            Log.d("bccm", "detaching. mBound: $mBound")
+            pluginBinding!!.applicationContext.unbindService(playbackServiceConnection)
+            mBound = false
+        }
+
         Intent(binding.applicationContext, PlaybackService::class.java).also { intent ->
             binding.applicationContext.stopService(intent)
         }
@@ -141,9 +152,6 @@ class BccmPlayerPlugin : FlutterPlugin, ActivityAware, PluginRegistry.ActivityRe
         channel = MethodChannel(pluginBinding!!.binaryMessenger, "bccm_player")
 
         // Bind to LocalService
-        Intent(binding.activity, PlaybackService::class.java).also { intent ->
-            mBound = binding.activity.bindService(intent, playbackServiceConnection, Context.BIND_AUTO_CREATE)
-        }
 
         val sessionToken = SessionToken(binding.activity, ComponentName(binding.activity, PlaybackService::class.java))
         controllerFuture = MediaController.Builder(binding.activity, sessionToken).buildAsync()
@@ -183,10 +191,6 @@ class BccmPlayerPlugin : FlutterPlugin, ActivityAware, PluginRegistry.ActivityRe
             BccmPlayerPluginSingleton.eventBus.emit(DetachedFromActivityEvent())
         }
         channel.setMethodCallHandler(null)
-        if (mBound) {
-            pluginBinding!!.applicationContext.unbindService(playbackServiceConnection)
-            mBound = false
-        }
         MediaController.releaseFuture(controllerFuture)
     }
 

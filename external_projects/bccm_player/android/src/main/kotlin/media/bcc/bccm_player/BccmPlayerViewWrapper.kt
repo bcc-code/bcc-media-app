@@ -23,7 +23,7 @@ import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.filter
 
 
-class PlayerPlatformViewFactory(private val activity: Activity, private val playbackService: PlaybackService?) : PlatformViewFactory(StandardMessageCodec.INSTANCE) {
+class PlayerPlatformViewFactory(private val playbackService: PlaybackService?) : PlatformViewFactory(StandardMessageCodec.INSTANCE) {
     @NonNull
     override fun create(@NonNull context: Context?, id: Int, @Nullable args: Any?): PlatformView {
         if (playbackService == null) {
@@ -31,12 +31,11 @@ class PlayerPlatformViewFactory(private val activity: Activity, private val play
         }
 
         val creationParams = args as Map<String?, Any?>?
-        return BccmPlayerViewWrapper(activity, playbackService, context!!, creationParams?.get("player_id") as String, id)
+        return BccmPlayerViewWrapper(playbackService, context!!, creationParams?.get("player_id") as String, id)
     }
 }
 
 class BccmPlayerViewWrapper(
-        private val activity: Activity,
         private val playbackService: PlaybackService,
         private val context: Context,
         private var playerId: String,
@@ -88,14 +87,6 @@ class BccmPlayerViewWrapper(
             //_v.removeAllViews()
         }
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            val pipButton = _v.findViewById<ImageButton>(R.id.pip_button)
-            pipButton.visibility = View.VISIBLE
-            pipButton.setOnClickListener {
-                goFullscreen(true)
-            }
-        }
-
         val busyIndicator = _v.findViewById<ProgressBar>(R.id.busyIndicator)
         playerController!!.player.addListener(object : Player.Listener {
             private lateinit var player: Player
@@ -144,9 +135,10 @@ class BccmPlayerViewWrapper(
     }
 
     private fun goFullscreen(startInPictureInPicture: Boolean) {
+        val activity = context as? Activity ?: return
         val newIntent = Intent(activity, FullscreenPlayer::class.java)
         newIntent.putExtra("options", FullscreenPlayer.Options(playerId, startInPictureInPicture))
-        activity.startActivityForResult(newIntent, 1)
+        activity.startActivity(newIntent)
         activity.overridePendingTransition(R.anim.dev2, R.anim.dev2)
         addFullscreenListener()
         resetPlayerView();
@@ -160,7 +152,7 @@ class BccmPlayerViewWrapper(
             BccmPlayerPluginSingleton.eventBus.filter { event -> event is FullscreenPlayerResult && event.playerId == playerId}.collect {
                 event ->
                 Log.d("bccm", "FullscreenPlayerResult");
-                activity.runOnUiThread {
+                (context as? Activity)?.runOnUiThread {
                     // Stuff that updates the UI
                     Log.d("bccm", "FullscreenPlayerResult ui thread");
                     setup()

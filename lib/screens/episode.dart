@@ -144,6 +144,8 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen> {
                                   : Stack(
                                       children: [
                                         GestureDetector(
+                                          behavior: HitTestBehavior.opaque,
+                                          //excludeFromSemantics: true,
                                           onTap: () {
                                             setup();
                                           },

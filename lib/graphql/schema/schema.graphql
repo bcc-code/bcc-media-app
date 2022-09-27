@@ -1,7 +1,9 @@
-directive @goField(forceResolver: Boolean, name: String) on INPUT_FIELD_DEFINITION
-    | FIELD_DEFINITION
+directive @goField(
+  forceResolver: Boolean
+  name: String
+) on INPUT_FIELD_DEFINITION | FIELD_DEFINITION
 
-schema{
+schema {
   query: QueryRoot
 }
 
@@ -11,15 +13,13 @@ interface Pagination {
   offset: Int!
 }
 
-type Page{
+type Page {
   id: ID!
   code: String!
   title: String!
   description: String
-  sections(
-    first: Int
-    offset: Int
-  ): SectionPagination! @goField(forceResolver: true)
+  sections(first: Int, offset: Int): SectionPagination!
+    @goField(forceResolver: true)
 }
 
 type PagePagination implements Pagination {
@@ -29,13 +29,13 @@ type PagePagination implements Pagination {
   items: [Page!]!
 }
 
-enum Language{
+enum Language {
   en
   no
   de
 }
 
-interface Section{
+interface Section {
   id: ID!
   title: String!
 }
@@ -48,6 +48,7 @@ type SectionPagination implements Pagination {
 }
 
 enum ItemSectionType {
+  featured
   cards
   slider
 }
@@ -58,18 +59,14 @@ type ItemSection implements Section {
   title: String!
   type: ItemSectionType!
   style: String!
-  items(
-    first: Int,
-    offset: Int,
-  ): CollectionItemPagination! @goField(forceResolver: true)
+  items(first: Int, offset: Int): CollectionItemPagination!
+    @goField(forceResolver: true)
 }
 
 type Collection {
   id: ID!
-  items(
-    first: Int,
-    offset: Int,
-  ): CollectionItemPagination @goField(forceResolver: true)
+  items(first: Int, offset: Int): CollectionItemPagination
+    @goField(forceResolver: true)
 }
 
 scalar Cursor
@@ -137,10 +134,8 @@ type Show {
   imageUrl: String @goField(forceResolver: true)
   episodeCount: Int!
   seasonCount: Int!
-  seasons(
-    first: Int
-    offset: Int
-  ): SeasonPagination! @goField(forceResolver: true)
+  seasons(first: Int, offset: Int): SeasonPagination!
+    @goField(forceResolver: true)
 }
 
 type ShowPagination implements Pagination {
@@ -158,10 +153,8 @@ type Season {
   imageUrl: String @goField(forceResolver: true)
   number: Int!
   show: Show! @goField(forceResolver: true)
-  episodes(
-    first: Int
-    offset: Int
-  ): EpisodePagination! @goField(forceResolver: true)
+  episodes(first: Int, offset: Int): EpisodePagination!
+    @goField(forceResolver: true)
 }
 
 type SeasonPagination implements Pagination {
@@ -304,37 +297,20 @@ type SearchResult {
   result: [SearchResultItem!]!
 }
 
-type QueryRoot{
-  page(
-    id: ID
-    code: String
-  ): Page!
+type QueryRoot {
+  page(id: ID, code: String): Page!
 
-  section(
-    id: ID!
-  ): Section!
+  section(id: ID!): Section!
 
-  show(
-    id: ID!
-  ): Show!
+  show(id: ID!): Show!
 
-  season(
-    id: ID!
-  ): Season!
+  season(id: ID!): Season!
 
-  episode(
-    id: ID!
-  ): Episode!
+  episode(id: ID!): Episode!
 
-  collection(
-    id: ID!
-  ): Collection!
+  collection(id: ID!): Collection!
 
-  search(
-    queryString: String!
-    first: Int
-    offset: Int
-  ): SearchResult!
+  search(queryString: String!, first: Int, offset: Int): SearchResult!
 
   messages: Messages!
 

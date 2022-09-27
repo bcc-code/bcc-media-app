@@ -19,10 +19,10 @@ import android.view.GestureDetector.SimpleOnGestureListener
 import android.view.MotionEvent
 import android.view.View
 import android.view.animation.*
-import android.view.animation.Animation.AnimationListener
 import android.widget.ImageButton
 import androidx.annotation.RequiresApi
-import androidx.core.view.animation.PathInterpolatorCompat
+import androidx.media3.common.MediaItem
+import androidx.media3.common.Player
 import androidx.media3.ui.PlayerView
 import kotlinx.coroutines.*
 import kotlinx.parcelize.Parcelize
@@ -32,7 +32,7 @@ import media.bcc.bccm_player.databinding.ActivityPictureInPictureBinding
 /**
  * An dedicated player activity, used for fullscreen and picture-in-picture modes.
  */
-class FullscreenPlayer : SwipeDismissBaseActivity(){
+class FullscreenPlayer : SwipeDismissBaseActivity(), Player.Listener {
 
     private lateinit var binding: ActivityPictureInPictureBinding
     private var _playbackService: PlaybackService? = null
@@ -107,6 +107,7 @@ class FullscreenPlayer : SwipeDismissBaseActivity(){
                 enterPictureInPicture()
             }
         }
+        //removeLauncherTask(this)
     }
 
     override fun onUserLeaveHint() {
@@ -133,6 +134,10 @@ class FullscreenPlayer : SwipeDismissBaseActivity(){
 
     override fun onStop() {
         // your onStop code
+        super.onStop()
+    }
+
+    override fun onDestroy() {
         Log.d("Bccm", "onStop fullscreenplayer")
 
         if (mBound) {
@@ -142,7 +147,7 @@ class FullscreenPlayer : SwipeDismissBaseActivity(){
 
         releasePlayer();
 
-        super.onStop()
+        super.onDestroy()
     }
 
     override fun finish() {
@@ -228,6 +233,32 @@ class FullscreenPlayer : SwipeDismissBaseActivity(){
         enterPictureInPictureMode(PictureInPictureParams.Builder()
                 .setAspectRatio(aspectRatio)
                 .build())
+    }
+
+
+    fun removeLauncherTask(appContext: Context): Boolean {
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
+            return false;
+        }
+        val activityManager = (appContext.getSystemService(ACTIVITY_SERVICE) as ActivityManager)
+        val appTasks = activityManager.appTasks
+        for (task in appTasks) {
+            val baseIntent = task.taskInfo.baseIntent
+            val categories = baseIntent.categories
+            if (categories != null && categories.contains(Intent.CATEGORY_LAUNCHER)) {
+               // this.mBackstackLost = true // to keep track
+                task.setExcludeFromRecents(true)
+                return true
+            }
+        }
+        return false
+    }
+
+
+    override fun onMediaItemTransition(mediaItem: MediaItem?, reason: Int) {
+        if (mediaItem == null) {
+            finish();
+        }
     }
 
     private val playbackServiceConnection = object : ServiceConnection {
