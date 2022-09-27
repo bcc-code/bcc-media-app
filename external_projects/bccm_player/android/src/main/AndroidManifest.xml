@@ -4,7 +4,7 @@
 
     <application>
         <activity
-            android:name=".FullscreenPlayer"
+            android:name=".FullscreenPlayerActivity"
             android:configChanges="screenSize|smallestScreenSize|screenLayout|orientation"
             android:label="@string/title_activity_picture_in_picture"
             android:theme="@style/TransparentActivity"

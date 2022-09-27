@@ -3,7 +3,6 @@ package media.bcc.bccm_player
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
-import android.os.Build
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -136,8 +135,8 @@ class BccmPlayerViewWrapper(
 
     private fun goFullscreen(startInPictureInPicture: Boolean) {
         val activity = context as? Activity ?: return
-        val newIntent = Intent(activity, FullscreenPlayer::class.java)
-        newIntent.putExtra("options", FullscreenPlayer.Options(playerId, startInPictureInPicture))
+        val newIntent = Intent(activity, FullscreenPlayerActivity::class.java)
+        newIntent.putExtra("options", FullscreenPlayerActivity.Options(playerId, startInPictureInPicture))
         activity.startActivity(newIntent)
         activity.overridePendingTransition(R.anim.dev2, R.anim.dev2)
         addFullscreenListener()

@@ -18,7 +18,6 @@ import android.view.GestureDetector
 import android.view.GestureDetector.SimpleOnGestureListener
 import android.view.MotionEvent
 import android.view.View
-import android.view.animation.*
 import android.widget.ImageButton
 import androidx.annotation.RequiresApi
 import androidx.media3.common.MediaItem
@@ -32,7 +31,7 @@ import media.bcc.bccm_player.databinding.ActivityPictureInPictureBinding
 /**
  * An dedicated player activity, used for fullscreen and picture-in-picture modes.
  */
-class FullscreenPlayer : SwipeDismissBaseActivity(), Player.Listener {
+class FullscreenPlayerActivity : SwipeDismissBaseActivity(), Player.Listener {
 
     private lateinit var binding: ActivityPictureInPictureBinding
     private var _playbackService: PlaybackService? = null
@@ -88,7 +87,7 @@ class FullscreenPlayer : SwipeDismissBaseActivity(), Player.Listener {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                 navToLauncherTask()
             };
-            this@FullscreenPlayer.finish()
+            this@FullscreenPlayerActivity.finish()
         }
 
         // Bind to LocalService

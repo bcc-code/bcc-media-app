@@ -5,13 +5,8 @@ import android.content.ComponentName
 import android.content.Context
 import android.content.Intent
 import android.content.ServiceConnection
-import android.content.pm.ActivityInfo
 import android.os.IBinder
 import android.util.Log
-import android.view.View
-import android.view.ViewGroup
-import android.widget.Button
-import android.widget.FrameLayout
 import androidx.annotation.NonNull
 import androidx.media3.session.MediaController
 import androidx.media3.session.SessionToken
@@ -21,10 +16,7 @@ import com.google.common.util.concurrent.MoreExecutors
 import io.flutter.embedding.engine.plugins.FlutterPlugin
 import io.flutter.embedding.engine.plugins.activity.ActivityAware
 import io.flutter.embedding.engine.plugins.activity.ActivityPluginBinding
-import io.flutter.plugin.common.MethodCall
 import io.flutter.plugin.common.MethodChannel
-import io.flutter.plugin.common.MethodChannel.MethodCallHandler
-import io.flutter.plugin.common.MethodChannel.Result
 import io.flutter.plugin.common.PluginRegistry
 import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.*
@@ -204,7 +196,7 @@ class BccmPlayerPlugin : FlutterPlugin, ActivityAware, PluginRegistry.ActivityRe
         // requestCode: 1, resultCode : 0, data : null
 
 
-        val options = data?.extras?.getParcelable<FullscreenPlayer.Options>("options")
+        val options = data?.extras?.getParcelable<FullscreenPlayerActivity.Options>("options")
 
         if (options?.playerId != null) {
            /*mainScope.launch {
