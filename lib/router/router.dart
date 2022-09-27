@@ -33,25 +33,29 @@ import '../screens/search/explore_category_page.dart';
       durationInMilliseconds: 500,
       transitionsBuilder: slideBottom, /* durationInMilliseconds: 200 */
     ),
-    MaterialRoute<void>(page: RootScreen, path: '/', initial: true, guards: [
-      AuthGuard
-    ], children: [
-      MaterialRoute<void>(page: HomeScreen, path: 'home'),
-      MaterialRoute<void>(
-          page: LiveScreen,
-          path: 'live',
-          meta: {'hide_mini_player': true},
-          maintainState: true),
-      MaterialRoute<void>(
-          page: EmptyRouterPage,
-          path: 'search',
-          initial: true,
-          children: [
-            MaterialRoute<void>(page: SearchScreen, path: ''),
-            MaterialRoute<void>(
-                page: ExploreCategoryScreen, path: 'explore-category'),
-          ]),
-    ]),
+    MaterialRoute<void>(
+      page: RootScreen,
+      path: '/',
+      initial: true,
+      guards: [AuthGuard],
+      children: [
+        MaterialRoute<void>(page: HomeScreen, initial: true, path: 'home'),
+        MaterialRoute<void>(
+            page: LiveScreen,
+            path: 'live',
+            meta: {'hide_mini_player': true},
+            maintainState: true),
+        MaterialRoute<void>(
+            name: 'SearchScreenWrapperRoute',
+            page: EmptyRouterPage,
+            path: 'search',
+            children: [
+              MaterialRoute<void>(page: SearchScreen, path: ''),
+              MaterialRoute<void>(
+                  page: ExploreCategoryScreen, path: 'explore-category'),
+            ]),
+      ],
+    ),
   ],
 )
 class $AppRouter {}
