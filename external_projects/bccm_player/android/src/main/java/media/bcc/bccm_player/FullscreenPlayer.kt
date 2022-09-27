@@ -18,8 +18,11 @@ import android.view.GestureDetector
 import android.view.GestureDetector.SimpleOnGestureListener
 import android.view.MotionEvent
 import android.view.View
+import android.view.animation.*
+import android.view.animation.Animation.AnimationListener
 import android.widget.ImageButton
 import androidx.annotation.RequiresApi
+import androidx.core.view.animation.PathInterpolatorCompat
 import androidx.media3.ui.PlayerView
 import kotlinx.coroutines.*
 import kotlinx.parcelize.Parcelize
@@ -29,7 +32,7 @@ import media.bcc.bccm_player.databinding.ActivityPictureInPictureBinding
 /**
  * An dedicated player activity, used for fullscreen and picture-in-picture modes.
  */
-class FullscreenPlayer : Activity(){
+class FullscreenPlayer : SwipeDismissBaseActivity(){
 
     private lateinit var binding: ActivityPictureInPictureBinding
     private var _playbackService: PlaybackService? = null
@@ -85,7 +88,6 @@ class FullscreenPlayer : Activity(){
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                 navToLauncherTask()
             };
-            setResult(0, intent)
             this@FullscreenPlayer.finish()
         }
 
@@ -138,6 +140,21 @@ class FullscreenPlayer : Activity(){
             mBound = false
         }
 
+        releasePlayer();
+
+        super.onStop()
+    }
+
+    override fun finish() {
+        releasePlayer()
+        super.finish()
+    }
+
+    private var playerIsReleased = false;
+    fun releasePlayer() {
+        if (playerIsReleased) {
+            return;
+        }
         _playerController?.emitter?.onPictureInPictureModeChanged(false)
 
         ioScope.launch {
@@ -150,8 +167,13 @@ class FullscreenPlayer : Activity(){
         _playerView?.let {
             _playerController?.releasePlayerView(it)
         }
+        playerIsReleased = true;
+    }
 
-        super.onStop()
+    override fun onTransitionDone() {
+        releasePlayer()
+        finish()
+        overridePendingTransition(R.anim.dev2,R.anim.dev2);
     }
 
 
@@ -225,34 +247,54 @@ class FullscreenPlayer : Activity(){
         }
     }
 }
-/*
 
-abstract class SwipeDismissBaseActivity : AppCompatActivity() {
+abstract class SwipeDismissBaseActivity : Activity() {
     private var gestureDetector: GestureDetector? = null
-    protected fun onCreate(savedInstanceState: Bundle?) {
+
+    override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        gestureDetector = GestureDetector(SwipeDetector())
+        gestureDetector = GestureDetector(this, SwipeDetector())
     }
 
     private inner class SwipeDetector : SimpleOnGestureListener() {
         override fun onFling(e1: MotionEvent, e2: MotionEvent, velocityX: Float, velocityY: Float): Boolean {
 
-            // Check movement along the Y-axis. If it exceeds SWIPE_MAX_OFF_PATH,
+            // Check movement along the X-axis. If it exceeds SWIPE_MAX_OFF_PATH,
             // then dismiss the swipe.
-            if (Math.abs(e1.y - e2.y) > SWIPE_MAX_OFF_PATH) return false
+            if (Math.abs(e1.x - e2.x) > SWIPE_MAX_OFF_PATH) return false
 
             // Swipe from left to right.
             // The swipe needs to exceed a certain distance (SWIPE_MIN_DISTANCE)
             // and a certain velocity (SWIPE_THRESHOLD_VELOCITY).
-            if (e2.x - e1.x > SWIPE_MIN_DISTANCE && Math.abs(velocityX) > SWIPE_THRESHOLD_VELOCITY) {
-                finish()
+            if (e2.y - e1.y > SWIPE_MIN_DISTANCE && Math.abs(velocityY) > SWIPE_THRESHOLD_VELOCITY) {
+                /*overridePendingTransition(R.anim.dev2,R.anim.dev2)
+                //finish()
+                val myAnimation = AnimationSet(true)
+                val animation = TranslateAnimation(0f, 0f, 0f, -100f)
+                val opacityAnimation = AlphaAnimation(1f, 0f)
+                myAnimation.addAnimation(animation)
+                myAnimation.addAnimation(opacityAnimation)
+                myAnimation.addAnimation(ScaleAnimation(1f, 0.9f, 1f, 0.9f, 0.5f, 0.5f))
+                myAnimation.interpolator = PathInterpolatorCompat.create(0.175f, 0.610f, 0.000f, 1.000f)
+                myAnimation.duration = 500
+                myAnimation.setAnimationListener(object : AnimationListener {
+                    override fun onAnimationStart(animation: Animation) {}
+                    override fun onAnimationRepeat(animation: Animation) {}
+                    override fun onAnimationEnd(animation: Animation) {
+                        this@SwipeDismissBaseActivity.onTransitionDone()
+                    }
+                })
+                window.decorView.findViewById<View>(android.R.id.content).startAnimation(myAnimation);
+                overridePendingTransition(R.anim.dev2,R.anim.dev2)*/
+                onTransitionDone()
+                this@SwipeDismissBaseActivity.finish()
                 return true
             }
             return false
         }
     }
 
-    fun dispatchTouchEvent(ev: MotionEvent?): Boolean {
+    override fun dispatchTouchEvent(ev: MotionEvent?): Boolean {
         // TouchEvent dispatcher.
         if (gestureDetector != null) {
             if (gestureDetector!!.onTouchEvent(ev)) // If the gestureDetector handles the event, a swipe has been
@@ -262,13 +304,15 @@ abstract class SwipeDismissBaseActivity : AppCompatActivity() {
         return super.dispatchTouchEvent(ev)
     }
 
-    fun onTouchEvent(event: MotionEvent?): Boolean {
+    override fun onTouchEvent(event: MotionEvent?): Boolean {
         return gestureDetector!!.onTouchEvent(event)
     }
 
     companion object {
-        private const val SWIPE_MIN_DISTANCE = 120
-        private const val SWIPE_MAX_OFF_PATH = 250
-        private const val SWIPE_THRESHOLD_VELOCITY = 200
+        private const val SWIPE_MIN_DISTANCE = 250
+        private const val SWIPE_MAX_OFF_PATH = 350
+        private const val SWIPE_THRESHOLD_VELOCITY = 100
     }
-}*/
+
+    abstract fun onTransitionDone()
+}
