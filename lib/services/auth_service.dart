@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:auth0_flutter/auth0_flutter.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:brunstadtv_app/env/.env.dart';
 
@@ -19,8 +20,10 @@ class AuthService {
 
   Future<Error?> init() async {
     try {
+      if (!await auth0.credentialsManager.hasValidCredentials(minTtl: 60)) {
+        return null;
+      }
       final result = await auth0.credentialsManager.credentials();
-
       auth0AccessToken = result.accessToken;
       user = result.user;
       idToken = result.idToken;
