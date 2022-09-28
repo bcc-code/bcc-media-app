@@ -16,6 +16,7 @@ import androidx.annotation.RequiresApi
 import androidx.core.view.WindowCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.WindowInsetsControllerCompat
+import androidx.media3.common.MediaItem
 import androidx.media3.common.Player
 import androidx.media3.ui.PlayerView
 import kotlinx.coroutines.*
@@ -46,10 +47,15 @@ class FullscreenPlayerView(context: Context, val playerController: ExoPlayerCont
 
 
         // Live ui
+        setLiveUIEnabled(playerController.isLive)
         playerController.player.addListener(object : Player.Listener {
             private lateinit var player: Player
             override fun onEvents(player: Player, events: Player.Events) {
                 this.player = player
+            }
+
+            override fun onMediaItemTransition(mediaItem: MediaItem?, reason: Int) {
+                setLiveUIEnabled(playerController.isLive)
             }
 
             override fun onPlaybackStateChanged(playbackState: Int) {
@@ -127,7 +133,7 @@ class FullscreenPlayerView(context: Context, val playerController: ExoPlayerCont
 
     fun setLiveUIEnabled(enabled: Boolean) {
         val playerView = playerView ?: return;
-        if (playerController.isLive) {
+        if (enabled) {
             playerView.setShowFastForwardButton(false)
             playerView.setShowRewindButton(false)
             playerView.setShowMultiWindowTimeBar(false)

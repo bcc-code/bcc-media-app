@@ -8,60 +8,6 @@
     android:background="#000000"
     android:clickable="false">
 
-    <ImageButton
-        android:id="@+id/pip_button"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
-        android:layout_marginEnd="16dp"
-        android:background="@android:color/transparent"
-        android:contentDescription="Picture in picture"
-        android:scaleX="0.8"
-        android:scaleY="0.8"
-        android:src="@drawable/pip_icon"
-        android:translationZ="1dp"
-        android:visibility="gone"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:layout_conversion_absoluteHeight="48dp"
-        tools:layout_conversion_absoluteWidth="48dp"
-        tools:visibility="visible" />
-
-    <LinearLayout
-        android:id="@+id/live_indicator"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="15dp"
-        android:background="@drawable/live_gradient"
-        android:gravity="center_vertical"
-        android:orientation="horizontal"
-        android:padding="5dp"
-        android:visibility="gone"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:layout_conversion_absoluteHeight="27dp"
-        tools:layout_conversion_absoluteWidth="59dp"
-        tools:visibility="visible">
-
-        <ImageView
-            android:id="@+id/imageView"
-            android:layout_width="15dp"
-            android:layout_height="15dp"
-            android:layout_marginLeft="5dp"
-            android:src="@drawable/icon_play" />
-
-        <TextView
-            android:id="@+id/live_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="5dp"
-            android:layout_marginRight="5dp"
-            android:text="Live"
-            android:textColor="#FFFFFF"
-            android:textSize="13dp" />
-    </LinearLayout>
-
     <TextView
         android:id="@+id/debug_text_view"
         android:layout_width="wrap_content"
@@ -85,6 +31,7 @@
         android:layout_height="match_parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        app:controller_layout_id="@layout/player_controls"
         app:show_buffering="when_playing"
         app:show_subtitle_button="true"
         tools:layout_conversion_absoluteHeight="0dp"

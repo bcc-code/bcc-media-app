@@ -31,7 +31,16 @@ class _LiveScreenState extends ConsumerState<LiveScreen> with AutoRouteAware {
   @override
   void initState() {
     super.initState();
+    print('initState');
     playerFuture = setupPlayer();
+    final tabsRouter = context.tabsRouter;
+    tabsRouter.addListener(() {
+      if (tabsRouter.activeIndex == 2) {
+        setState(() {
+          playerFuture = setupPlayer();
+        });
+      }
+    });
   }
 
   Future setupPlayer() async {

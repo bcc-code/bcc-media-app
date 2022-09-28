@@ -51,13 +51,15 @@ abstract class PlayerController() : Player.Listener {
         if (episodeId != null) {
             extraMeta.putString("episode_id", episodeId);
         }
+        if (mediaItem.isLive == true) {
+            extraMeta.putString("is_live", "true");
+        }
         val sourceExtra = mediaItem.metadata?.extras;
         if (sourceExtra != null) {
             for (extra in sourceExtra) {
                 extraMeta.putString("media.bcc.extras." + extra.key, extra.value);
             }
         }
-
 
         metaBuilder.setTitle(mediaItem.metadata?.title)
                 .setArtist(mediaItem.metadata?.artist)
@@ -93,7 +95,7 @@ abstract class PlayerController() : Player.Listener {
 
         val miBuilder = PlaybackPlatformApi.MediaItem.Builder()
                 .setUrl(mediaItem.localConfiguration?.uri.toString())
-                .setIsLive(extraMeta["isLive"] == "true")
+                .setIsLive(extraMeta["is_live"] == "true")
                 .setMetadata(metaBuilder.build())
         if (mediaItem.localConfiguration?.mimeType != null) {
             miBuilder.setMimeType(mediaItem.localConfiguration?.mimeType);
