@@ -9,6 +9,8 @@ import android.view.View
 import android.widget.*
 import androidx.annotation.NonNull
 import androidx.annotation.Nullable
+import androidx.fragment.app.FragmentActivity
+import androidx.fragment.app.FragmentManager
 import androidx.media3.common.ForwardingPlayer
 import androidx.media3.common.Player
 import androidx.media3.exoplayer.ExoPlayer
@@ -82,7 +84,7 @@ class BccmPlayerViewWrapper(
                 .also { _playerView = it }
 
         playerView.setFullscreenButtonClickListener {
-            goFullscreen(false)
+            goFullscreen()
             //_v.removeAllViews()
         }
 
@@ -116,7 +118,7 @@ class BccmPlayerViewWrapper(
 
     fun setLiveUIEnabled(enabled: Boolean) {
         val playerView = _v.findViewById<PlayerView>(R.id.brunstad_player) ?: return
-        if (playerController?.isLive == true) {
+        if (enabled) {
             playerView.setShowFastForwardButton(false)
             playerView.setShowRewindButton(false)
             playerView.setShowMultiWindowTimeBar(false)
@@ -133,12 +135,30 @@ class BccmPlayerViewWrapper(
         }
     }
 
-    private fun goFullscreen(startInPictureInPicture: Boolean) {
+    private fun goFullscreenUsingActivity(startInPictureInPicture: Boolean) {
         val activity = context as? Activity ?: return
         val newIntent = Intent(activity, FullscreenPlayerActivity::class.java)
         newIntent.putExtra("options", FullscreenPlayerActivity.Options(playerId, startInPictureInPicture))
         activity.startActivity(newIntent)
         activity.overridePendingTransition(R.anim.dev2, R.anim.dev2)
+        addFullscreenListener()
+        resetPlayerView();
+    }
+
+    private fun goFullscreen() {
+        if (context !is FragmentActivity) return
+        val rootLayout: FrameLayout = context.window.decorView.findViewById<View>(android.R.id.content) as FrameLayout
+        //activity.requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE
+        playerController?.let { playerController ->
+            val fullScreenPlayer = FullscreenPlayerView(context, playerController)
+            rootLayout.addView(fullScreenPlayer)
+            fullScreenPlayer.setFullscreenButtonClickListener {
+                setup()
+                fullScreenPlayer.release();
+                rootLayout.removeView(fullScreenPlayer)
+            }
+        }
+
         addFullscreenListener()
         resetPlayerView();
     }

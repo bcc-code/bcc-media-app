@@ -5,6 +5,7 @@ import android.content.ComponentName
 import android.content.Context
 import android.content.Intent
 import android.content.ServiceConnection
+import android.content.res.Configuration
 import android.os.IBinder
 import android.util.Log
 import androidx.annotation.NonNull
@@ -13,6 +14,7 @@ import androidx.media3.session.SessionToken
 import com.google.android.gms.cast.framework.CastContext
 import com.google.common.util.concurrent.ListenableFuture
 import com.google.common.util.concurrent.MoreExecutors
+import com.npaw.youbora.lib6.plugin.Plugin
 import io.flutter.embedding.engine.plugins.FlutterPlugin
 import io.flutter.embedding.engine.plugins.activity.ActivityAware
 import io.flutter.embedding.engine.plugins.activity.ActivityPluginBinding
@@ -31,6 +33,9 @@ interface BccmPlayerPluginEvent {
 
 class AttachedToActivityEvent(val activity: Activity) : BccmPlayerPluginEvent {}
 class DetachedFromActivityEvent() : BccmPlayerPluginEvent {}
+class OnActivityStop() : BccmPlayerPluginEvent {}
+class UserLeaveHintEvent(): BccmPlayerPluginEvent {}
+class PictureInPictureModeChangedEvent2(val isInPictureInPictureMode: Boolean) : BccmPlayerPluginEvent {}
 class PictureInPictureModeChangedEvent(val playerId: String, val isInPictureInPictureMode: Boolean) : BccmPlayerPluginEvent {}
 class FullscreenPlayerResult(val playerId: String) : BccmPlayerPluginEvent {}
 class User(val id: String?);
@@ -56,7 +61,7 @@ object BccmPlayerPluginSingleton {
 }
 
 /** BccmPlayerPlugin */
-class BccmPlayerPlugin : FlutterPlugin, ActivityAware, PluginRegistry.ActivityResultListener {
+class BccmPlayerPlugin : FlutterPlugin, ActivityAware, PluginRegistry.ActivityResultListener, PluginRegistry.UserLeaveHintListener {
     /// The MethodChannel that will the communication between Flutter and native Android
     ///
     /// This local reference serves to register the plugin with the Flutter Engine and unregister it
@@ -139,6 +144,7 @@ class BccmPlayerPlugin : FlutterPlugin, ActivityAware, PluginRegistry.ActivityRe
         activity = binding.activity
         activityBinding = binding
         activityBinding?.addActivityResultListener(this)
+        activityBinding?.addOnUserLeaveHintListener(this)
 
         PlaybackPlatformPigeon.setup(pluginBinding!!.binaryMessenger, PlaybackApiImpl(this))
         channel = MethodChannel(pluginBinding!!.binaryMessenger, "bccm_player")
@@ -151,7 +157,6 @@ class BccmPlayerPlugin : FlutterPlugin, ActivityAware, PluginRegistry.ActivityRe
             1;
         }, MoreExecutors.directExecutor()
         )
-
         mainScope.launch {
             Log.d("bccm","OnAttachedToActivity")
             BccmPlayerPluginSingleton.eventBus.emit(AttachedToActivityEvent(binding.activity))
@@ -168,6 +173,18 @@ class BccmPlayerPlugin : FlutterPlugin, ActivityAware, PluginRegistry.ActivityRe
         }
     }
 
+    fun onStop() {
+        mainScope.launch {
+            BccmPlayerPluginSingleton.eventBus.emit(OnActivityStop())
+        }
+    }
+
+    fun onPictureInPictureModeChanged(isInPictureInPictureMode: Boolean, newConfig: Configuration?) {
+        mainScope.launch {
+            BccmPlayerPluginSingleton.eventBus.emit(PictureInPictureModeChangedEvent2(isInPictureInPictureMode))
+        }
+    }
+
     override fun onDetachedFromActivityForConfigChanges() {
         onDetachedFromActivity()
     }
@@ -178,6 +195,7 @@ class BccmPlayerPlugin : FlutterPlugin, ActivityAware, PluginRegistry.ActivityRe
 
     override fun onDetachedFromActivity() {
         activityBinding?.removeActivityResultListener(this);
+        activityBinding?.removeOnUserLeaveHintListener(this)
         mainScope.launch {
             Log.d("bccm","OnDetachedFromActivity")
             BccmPlayerPluginSingleton.eventBus.emit(DetachedFromActivityEvent())
@@ -208,5 +226,11 @@ class BccmPlayerPlugin : FlutterPlugin, ActivityAware, PluginRegistry.ActivityRe
 
 
         return false;
+    }
+
+    override fun onUserLeaveHint() {
+        mainScope.launch {
+            BccmPlayerPluginSingleton.eventBus.emit(UserLeaveHintEvent())
+        }
     }
 }

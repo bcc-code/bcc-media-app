@@ -37,7 +37,7 @@ class ExoPlayerController(private val context: Context) : PlayerController(), Pl
             _currentPlayerView = value
             if (value == null) {
                 mainScope.launch {
-                    delay(3000)
+                    delay(6000)
                     if (_currentPlayerView == null) {
                         setRendererDisabled(true);
                     }
@@ -48,8 +48,6 @@ class ExoPlayerController(private val context: Context) : PlayerController(), Pl
             }
         }
 
-    var isLive: Boolean = false
-        private set
     private val mainScope = CoroutineScope(Dispatchers.Main + SupervisorJob())
     private val youboraPlugin: Plugin
 

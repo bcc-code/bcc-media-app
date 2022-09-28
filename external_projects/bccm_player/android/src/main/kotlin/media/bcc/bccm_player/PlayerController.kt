@@ -12,11 +12,12 @@ import media.bcc.player.PlaybackPlatformApi
 abstract class PlayerController() : Player.Listener {
     abstract val id: String;
     abstract val player: Player;
+    var isLive: Boolean = false
 
     abstract fun release();
 
     fun replaceCurrentMediaItem(mediaItem: PlaybackPlatformApi.MediaItem) {
-        //this.isLive = mediaItem.isLive ?: false;
+        this.isLive = mediaItem.isLive ?: false;
         val androidMi = mapMediaItem(mediaItem);
         player.setMediaItem(androidMi, mediaItem.playbackStartPositionMs ?: 0)
         player.prepare()
@@ -92,10 +93,18 @@ abstract class PlayerController() : Player.Listener {
 
         val miBuilder = PlaybackPlatformApi.MediaItem.Builder()
                 .setUrl(mediaItem.localConfiguration?.uri.toString())
+                .setIsLive(extraMeta["isLive"] == "true")
                 .setMetadata(metaBuilder.build())
         if (mediaItem.localConfiguration?.mimeType != null) {
             miBuilder.setMimeType(mediaItem.localConfiguration?.mimeType);
         }
         return miBuilder.build()
+    }
+
+    override fun onMediaItemTransition(mediaItem: MediaItem?, reason: Int) {
+        mediaItem?.let {
+            val bccmMediaItem = mapMediaItem(mediaItem);
+            isLive = bccmMediaItem.isLive ?: false
+        }
     }
 }
