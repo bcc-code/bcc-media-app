@@ -114,15 +114,6 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen> {
           ),
         ],
       ),
-      bottomSheet: player.currentMediaItem == null || playerCurrentIsThisEpisode
-          ? null
-          : Container(
-              color: const Color(0xff1d2838),
-              child: Padding(
-                padding: const EdgeInsets.only(bottom: 20.0),
-                child: Hero(tag: 'mini-player', child: const MiniPlayer()),
-              ),
-            ),
       body: ListView(
         children: [
           FutureBuilder<Episode?>(
@@ -151,7 +142,12 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen> {
                           : AspectRatio(
                               aspectRatio: 16 / 9,
                               child: episode == null
-                                  ? CircularProgressIndicator()
+                                  ? Center(
+                                      child: const SizedBox(
+                                          height: 40,
+                                          width: 40,
+                                          child: CircularProgressIndicator()),
+                                    )
                                   : Stack(
                                       children: [
                                         GestureDetector(
@@ -199,15 +195,19 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen> {
   }
 
   Widget _player(bool displayPlayer, bool casting, String primaryPlayerId) {
-    return displayPlayer
-        ? KeepAlive(
-            keepAlive: true,
-            child: BccmPlayer(
-                type: widget.playerType,
-                id: casting ? 'chromecast' : primaryPlayerId),
-          )
-        : const AspectRatio(
-            aspectRatio: 16 / 9,
-            child: Center(child: CircularProgressIndicator()));
+    if (displayPlayer) {
+      return KeepAlive(
+        keepAlive: true,
+        child: BccmPlayer(
+            type: widget.playerType,
+            id: casting ? 'chromecast' : primaryPlayerId),
+      );
+    } else {
+      return const AspectRatio(
+          aspectRatio: 16 / 9,
+          child: Center(
+              child: SizedBox(
+                  width: 40, height: 40, child: CircularProgressIndicator())));
+    }
   }
 }

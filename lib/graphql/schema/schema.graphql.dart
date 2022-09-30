@@ -26,10 +26,12 @@ Enum$Language fromJson$Enum$Language(String value) {
   }
 }
 
-enum Enum$ItemSectionType { cards, slider, $unknown }
+enum Enum$ItemSectionType { featured, cards, slider, $unknown }
 
 String toJson$Enum$ItemSectionType(Enum$ItemSectionType e) {
   switch (e) {
+    case Enum$ItemSectionType.featured:
+      return r'featured';
     case Enum$ItemSectionType.cards:
       return r'cards';
     case Enum$ItemSectionType.slider:
@@ -41,6 +43,8 @@ String toJson$Enum$ItemSectionType(Enum$ItemSectionType e) {
 
 Enum$ItemSectionType fromJson$Enum$ItemSectionType(String value) {
   switch (value) {
+    case r'featured':
+      return Enum$ItemSectionType.featured;
     case r'cards':
       return Enum$ItemSectionType.cards;
     case r'slider':

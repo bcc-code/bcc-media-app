@@ -72,10 +72,10 @@ class _RootScreenState extends ConsumerState<RootScreen> with AutoRouteAware {
         // routes used here must be declaraed as children
         // routes of /dashboard
         routes: const [
-          HomeScreenRoute(),
+          HomeScreenWrapperRoute(),
           SearchScreenWrapperRoute(),
           LiveScreenRoute(),
-          HomeScreenRoute(),
+          HomeScreenWrapperRoute(),
         ],
         builder: (context, child, animation) {
           // obtain the scoped TabsRouter controller using context
