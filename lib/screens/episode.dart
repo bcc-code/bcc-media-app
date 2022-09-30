@@ -173,22 +173,15 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen> {
                                     )),
                       Padding(
                         padding: const EdgeInsets.all(8.0),
-                        child: Hero(
-                          createRectTween: ((begin, end) =>
-                              EaseOutRectTween(begin: begin, end: end)),
-                          tag: 'titlea',
-                          child: Text(
-                              episode?.title != null
-                                  ? episode!.title
-                                  : tempTitle,
-                              style: Theme.of(context).textTheme.titleLarge),
-                        ),
+                        child: Text(
+                            episode?.title != null ? episode!.title : tempTitle,
+                            style: Theme.of(context).textTheme.titleLarge),
                       )
                     ],
                   ),
                 );
               }),
-          const SizedBox(width: 100, height: 2000)
+          //const SizedBox(width: 100, height: 500)
         ],
       ),
     );
@@ -196,12 +189,9 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen> {
 
   Widget _player(bool displayPlayer, bool casting, String primaryPlayerId) {
     if (displayPlayer) {
-      return KeepAlive(
-        keepAlive: true,
-        child: BccmPlayer(
-            type: widget.playerType,
-            id: casting ? 'chromecast' : primaryPlayerId),
-      );
+      return BccmPlayer(
+          type: widget.playerType,
+          id: casting ? 'chromecast' : primaryPlayerId);
     } else {
       return const AspectRatio(
           aspectRatio: 16 / 9,

@@ -8,6 +8,8 @@ import 'package:brunstadtv_app/providers/playback_api.dart';
 import 'package:brunstadtv_app/providers/video_state.dart';
 import 'package:brunstadtv_app/router/router.gr.dart';
 
+import '../helpers/utils.dart';
+
 class RootScreen extends ConsumerStatefulWidget {
   static const route = '/';
 
@@ -88,9 +90,8 @@ class _RootScreenState extends ConsumerState<RootScreen> with AutoRouteAware {
               tabsRouter.current.meta['hide_mini_player'] == true;
           return Scaffold(
               body: SafeArea(child: child),
-              bottomSheet: hideMiniPlayer
-                  ? const SizedBox.shrink()
-                  : const Hero(tag: 'mini-player', child: MiniPlayer()),
+              bottomSheet:
+                  hideMiniPlayer ? const SizedBox.shrink() : MiniPlayer(),
               bottomNavigationBar: Container(
                 decoration: BoxDecoration(
                     border: Border(
@@ -110,6 +111,9 @@ class _RootScreenState extends ConsumerState<RootScreen> with AutoRouteAware {
                     currentIndex: tabsRouter.activeIndex,
                     onTap: (index) {
                       // here we switch between tabs
+                      if (tabsRouter.activeIndex == index) {
+                        tabsRouter.stackRouterOfIndex(index)?.popUntilRoot();
+                      }
                       tabsRouter.setActiveIndex(index);
                     },
                     items: [
