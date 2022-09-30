@@ -377,11 +377,11 @@ class PlaybackPlatformPigeon {
     }
   }
 
-  Future<void> replaceCurrentMediaItem(String arg_playerId, MediaItem arg_mediaItem, bool? arg_playbackPositionFromPrimary) async {
+  Future<void> replaceCurrentMediaItem(String arg_playerId, MediaItem arg_mediaItem, bool? arg_playbackPositionFromPrimary, bool? arg_autoplay) async {
     final BasicMessageChannel<Object?> channel = BasicMessageChannel<Object?>(
         'dev.flutter.pigeon.PlaybackPlatformPigeon.replaceCurrentMediaItem', codec, binaryMessenger: _binaryMessenger);
     final Map<Object?, Object?>? replyMap =
-        await channel.send(<Object?>[arg_playerId, arg_mediaItem, arg_playbackPositionFromPrimary]) as Map<Object?, Object?>?;
+        await channel.send(<Object?>[arg_playerId, arg_mediaItem, arg_playbackPositionFromPrimary, arg_autoplay]) as Map<Object?, Object?>?;
     if (replyMap == null) {
       throw PlatformException(
         code: 'channel-error',

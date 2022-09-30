@@ -88,8 +88,9 @@ class _RootScreenState extends ConsumerState<RootScreen> with AutoRouteAware {
               tabsRouter.current.meta['hide_mini_player'] == true;
           return Scaffold(
               body: SafeArea(child: child),
-              bottomSheet:
-                  hideMiniPlayer ? const SizedBox.shrink() : const MiniPlayer(),
+              bottomSheet: hideMiniPlayer
+                  ? const SizedBox.shrink()
+                  : const Hero(tag: 'mini-player', child: MiniPlayer()),
               bottomNavigationBar: Container(
                 decoration: BoxDecoration(
                     border: Border(

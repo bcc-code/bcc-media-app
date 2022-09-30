@@ -35,12 +35,12 @@ class PlaybackApiImpl(private val plugin: BccmPlayerPlugin) : PlaybackPlatformAp
         val playerController = playbackService.newPlayer(plugin)
         playerController.player.addListener(PlayerListener(playerController, plugin))
         if (url != null) {
-            playerController.replaceCurrentMediaItem(PlaybackPlatformApi.MediaItem.Builder().setUrl(url).build())
+            playerController.replaceCurrentMediaItem(PlaybackPlatformApi.MediaItem.Builder().setUrl(url).build(), false)
         }
         result?.success(playerController.id)
     }
 
-    override fun replaceCurrentMediaItem(playerId: String, mediaItem: PlaybackPlatformApi.MediaItem, playbackPositionFromPrimary: Boolean?, result: PlaybackPlatformApi.Result<Void>?) {
+    override fun replaceCurrentMediaItem(playerId: String, mediaItem: PlaybackPlatformApi.MediaItem, playbackPositionFromPrimary: Boolean?, autoplay: Boolean?, result: PlaybackPlatformApi.Result<Void>?) {
         val playbackService = plugin.getPlaybackService()
         if (playbackService == null) {
             result?.error(Error())
@@ -53,7 +53,7 @@ class PlaybackApiImpl(private val plugin: BccmPlayerPlugin) : PlaybackPlatformAp
         val playerController = playbackService.getController(playerId)
                 ?: throw Error("Player with id ${playerId} does not exist.")
 
-        playerController.replaceCurrentMediaItem(mediaItem)
+        playerController.replaceCurrentMediaItem(mediaItem, autoplay)
     }
 
     override fun queueMediaItem(playerId: String, mediaItem: PlaybackPlatformApi.MediaItem, result: PlaybackPlatformApi.Result<Void>?) {

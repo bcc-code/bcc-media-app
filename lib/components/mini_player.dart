@@ -122,14 +122,11 @@ class _MiniPlayer extends StatelessWidget {
             ),
             child: ClipRRect(
                 borderRadius: BorderRadius.circular(4),
-                child: Hero(
-                  tag: "player",
-                  child: Image.network(
-                    fit: BoxFit.fill,
-                    artworkUri,
-                    width: 64,
-                    height: 36,
-                  ),
+                child: Image.network(
+                  fit: BoxFit.fill,
+                  artworkUri,
+                  width: 64,
+                  height: 36,
                 )),
           ),
           Expanded(
@@ -149,19 +146,14 @@ class _MiniPlayer extends StatelessWidget {
                 ),
                 Padding(
                   padding: const EdgeInsets.only(top: 4.0),
-                  child: Hero(
-                    createRectTween: ((begin, end) =>
-                        RectTween(begin: begin, end: end)),
-                    tag: "title",
-                    child: Text(
-                      title,
-                      overflow: TextOverflow.ellipsis,
-                      style: const TextStyle(
-                        color: Color(0xfffefefe),
-                        fontSize: 14,
-                        fontFamily: 'Barlow',
-                        fontWeight: FontWeight.w500,
-                      ),
+                  child: Text(
+                    title,
+                    overflow: TextOverflow.ellipsis,
+                    style: const TextStyle(
+                      color: Color(0xfffefefe),
+                      fontSize: 14,
+                      fontFamily: 'Barlow',
+                      fontWeight: FontWeight.w500,
                     ),
                   ),
                 ),

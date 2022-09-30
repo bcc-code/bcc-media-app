@@ -43,7 +43,7 @@ class CastPlayerController: NSObject, PlayerController  {
         
     }
     
-    func replaceCurrentMediaItem(_ mediaItem: MediaItem) {
+    func replaceCurrentMediaItem(_ mediaItem: MediaItem, autoplay: NSNumber?) {
         guard let mediaInfo = mapMediaItem(mediaItem) else {
             fatalError("invalid url passed to setMediaItem");
         };

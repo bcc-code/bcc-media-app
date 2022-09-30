@@ -85,22 +85,21 @@ public class AVQueuePlayerController: NSObject, PlayerController, AVPlayerViewCo
         youboraPlugin.options.appReleaseVersion = npawConfig?.appReleaseVersion;
     }
 
-    public func replaceCurrentMediaItem(_ mediaItem: MediaItem) {
+    public func replaceCurrentMediaItem(_ mediaItem: MediaItem, autoplay: NSNumber?) {
         let playerItem = mapMediaItem(mediaItem);
         player.replaceCurrentItem(with: playerItem)
-        guard let playbackStartPositionMs = mediaItem.playbackStartPositionMs else {
-            return;
-        }
-    
+        
         temporaryStatusObserver = playerItem.observe(\.status, options: [.new, .old]) {
-            (player, change) in
-            switch (player.status) {
-                case .readyToPlay:
-                playerItem.seek(to: CMTime(value: Int64(truncating: playbackStartPositionMs), timescale: 1000), completionHandler: nil)
-                case .failed, .unknown:
-                        print("Media Failed to Play")
-                @unknown default:
-                     break
+            (playerItem, change) in
+            if (playerItem.status == .readyToPlay) {
+                if let playbackStartPositionMs = mediaItem.playbackStartPositionMs {
+                    playerItem.seek(to: CMTime(value: Int64(truncating: playbackStartPositionMs), timescale: 1000), completionHandler: nil)
+                }
+                if (autoplay?.boolValue == true) {
+                    self.player.play()
+                }
+            } else if (playerItem.status == .failed || playerItem.status == .unknown) {
+                print("Mediaitem failed to play")
             }
         }
     }

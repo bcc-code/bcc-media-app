@@ -29,7 +29,7 @@ Future playEpisode(
       playbackStartPositionMs: playbackPositionMs);
 
   PlaybackPlatformInterface.instance
-      .replaceCurrentMediaItem(playerId, mediaItem);
+      .replaceCurrentMediaItem(playerId, mediaItem, autoplay: true);
 }
 
 Future queueEpisode(

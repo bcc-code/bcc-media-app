@@ -441,13 +441,14 @@ void PlaybackPlatformPigeonSetup(id<FlutterBinaryMessenger> binaryMessenger, NSO
         binaryMessenger:binaryMessenger
         codec:PlaybackPlatformPigeonGetCodec()        ];
     if (api) {
-      NSCAssert([api respondsToSelector:@selector(replaceCurrentMediaItem:mediaItem:playbackPositionFromPrimary:completion:)], @"PlaybackPlatformPigeon api (%@) doesn't respond to @selector(replaceCurrentMediaItem:mediaItem:playbackPositionFromPrimary:completion:)", api);
+      NSCAssert([api respondsToSelector:@selector(replaceCurrentMediaItem:mediaItem:playbackPositionFromPrimary:autoplay:completion:)], @"PlaybackPlatformPigeon api (%@) doesn't respond to @selector(replaceCurrentMediaItem:mediaItem:playbackPositionFromPrimary:autoplay:completion:)", api);
       [channel setMessageHandler:^(id _Nullable message, FlutterReply callback) {
         NSArray *args = message;
         NSString *arg_playerId = GetNullableObjectAtIndex(args, 0);
         MediaItem *arg_mediaItem = GetNullableObjectAtIndex(args, 1);
         NSNumber *arg_playbackPositionFromPrimary = GetNullableObjectAtIndex(args, 2);
-        [api replaceCurrentMediaItem:arg_playerId mediaItem:arg_mediaItem playbackPositionFromPrimary:arg_playbackPositionFromPrimary completion:^(FlutterError *_Nullable error) {
+        NSNumber *arg_autoplay = GetNullableObjectAtIndex(args, 3);
+        [api replaceCurrentMediaItem:arg_playerId mediaItem:arg_mediaItem playbackPositionFromPrimary:arg_playbackPositionFromPrimary autoplay:arg_autoplay completion:^(FlutterError *_Nullable error) {
           callback(wrapResult(nil, error));
         }];
       }];

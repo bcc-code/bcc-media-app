@@ -11,7 +11,7 @@ import AVFoundation
 public protocol PlayerController {
     var id: String { get }
     func updateNpawConfig(npawConfig: NpawConfig?)
-    func replaceCurrentMediaItem(_ mediaItem: MediaItem)
+    func replaceCurrentMediaItem(_ mediaItem: MediaItem, autoplay: NSNumber?)
     func queueItem(_ mediaItem: MediaItem)
     func play()
     func pause()

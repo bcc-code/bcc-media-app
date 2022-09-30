@@ -33,7 +33,7 @@ abstract class PlaybackPlatformInterface extends PlatformInterface {
   }
 
   Future<void> replaceCurrentMediaItem(String playerId, MediaItem mediaItem,
-      {bool? playbackPositionFromPrimary}) {
+      {bool? playbackPositionFromPrimary, bool? autoplay}) {
     throw UnimplementedError('setUrl() has not been implemented.');
   }
 

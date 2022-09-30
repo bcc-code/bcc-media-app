@@ -16,6 +16,7 @@ import 'package:bccm_player/cast_button.dart';
 
 import '../api/brunstadtv.dart';
 import '../api/episodes.dart';
+import '../components/mini_player.dart';
 
 class EpisodePageArguments {
   int episodeId;
@@ -101,7 +102,8 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen> {
     final player = ref.watch(primaryPlayerProvider);
     final primaryPlayerId = player!.playerId;
     final playerCurrentIsThisEpisode =
-        player.currentMediaItem?.metadata?.episodeId == widget.episodeId;
+        player.currentMediaItem?.metadata?.extras?['id'] == widget.episodeId;
+
     return Scaffold(
       appBar: AppBar(
         title: const Text('Episode'),
@@ -112,6 +114,15 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen> {
           ),
         ],
       ),
+      bottomSheet: player.currentMediaItem == null || playerCurrentIsThisEpisode
+          ? null
+          : Container(
+              color: const Color(0xff1d2838),
+              child: Padding(
+                padding: const EdgeInsets.only(bottom: 20.0),
+                child: Hero(tag: 'mini-player', child: const MiniPlayer()),
+              ),
+            ),
       body: ListView(
         children: [
           FutureBuilder<Episode?>(
@@ -169,7 +180,7 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen> {
                         child: Hero(
                           createRectTween: ((begin, end) =>
                               EaseOutRectTween(begin: begin, end: end)),
-                          tag: 'title',
+                          tag: 'titlea',
                           child: Text(
                               episode?.title != null
                                   ? episode!.title
