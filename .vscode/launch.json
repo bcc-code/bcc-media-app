@@ -7,19 +7,25 @@
         {
             "name": "brunstadtv_app",
             "request": "launch",
-            "type": "dart"
+            "type": "dart",
+            "cwd": "${workspaceFolder}",
+            "program": "lib/main.dart"
         },
         {
             "name": "brunstadtv_app (profile mode)",
             "request": "launch",
             "type": "dart",
-            "flutterMode": "profile"
+            "flutterMode": "profile",
+            "cwd": "${workspaceFolder}",
+            "program": "lib/main.dart"
         },
         {
             "name": "brunstadtv_app (release mode)",
             "request": "launch",
             "type": "dart",
-            "flutterMode": "release"
+            "flutterMode": "release",
+            "cwd": "${workspaceFolder}",
+            "program": "lib/main.dart"
         }
     ]
 }

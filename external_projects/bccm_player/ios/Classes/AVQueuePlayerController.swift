@@ -8,7 +8,7 @@ import AVKit
 import YouboraLib
 import YouboraAVPlayerAdapter
 
-public class AVQueuePlayerController: PlayerController {
+public class AVQueuePlayerController: NSObject, PlayerController, AVPlayerViewControllerDelegate {
     public func play() {
         player.play()
     }
@@ -31,6 +31,7 @@ public class AVQueuePlayerController: PlayerController {
     final var observers = [NSKeyValueObservation]()
     var temporaryStatusObserver: NSKeyValueObservation? = nil
     var youboraPlugin: YBPlugin
+    var pipController: AVPlayerViewController? = nil
 
     init(id: String? = nil, playbackListener: PlaybackListenerPigeon, npawConfig: NpawConfig?) {
         self.id = id ?? UUID().uuidString;
@@ -41,9 +42,24 @@ public class AVQueuePlayerController: PlayerController {
         youboraOptions.appName = npawConfig?.appName;
         youboraOptions.appReleaseVersion = npawConfig?.appReleaseVersion;
         youboraPlugin = YBPlugin(options: youboraOptions)
+        super.init()
         youboraPlugin.adapter = YBAVPlayerAdapterSwiftTranformer.transform(from: YBAVPlayerAdapter(player: player))
         addObservers();
         print("BTV DEBUG: end of init playerController")
+    }
+    
+    func registerPipController(_ playerView: AVPlayerViewController?) {
+        pipController = playerView;
+        let event = PictureInPictureModeChangedEvent.make(withPlayerId: id, isInPipMode: (playerView != nil) as NSNumber)
+        playbackListener.onPicture(inPictureModeChanged: event, completion: { _ in })
+    }
+    
+    public func playerViewControllerWillStartPictureInPicture(_ playerViewController: AVPlayerViewController) {
+        registerPipController(playerViewController)
+    }
+    
+    public func playerViewControllerWillStopPictureInPicture(_ playerViewController: AVPlayerViewController) {
+        registerPipController(nil)
     }
     
     func npawHandleMediaItemUpdate(playerItem: AVPlayerItem?, extras: [String: String]) {
@@ -69,7 +85,7 @@ public class AVQueuePlayerController: PlayerController {
         youboraPlugin.options.appReleaseVersion = npawConfig?.appReleaseVersion;
     }
 
-    public func setMediaItem(_ mediaItem: MediaItem) {
+    public func replaceCurrentMediaItem(_ mediaItem: MediaItem) {
         let playerItem = mapMediaItem(mediaItem);
         player.replaceCurrentItem(with: playerItem)
         guard let playbackStartPositionMs = mediaItem.playbackStartPositionMs else {

@@ -74,23 +74,53 @@ class AVPlayerBccmPlayerView: NSObject, FlutterPlatformView {
     }
 
     func createNativeView(frame: CGRect, view _view: UIView) {
-        let nativeLabel = UILabel()
-        nativeLabel.text = "Native text from iOS"
-        nativeLabel.textColor = UIColor.white
-        nativeLabel.textAlignment = .center
-        nativeLabel.frame = CGRect(x: 0, y: 0, width: 180, height: 48.0)
-
-        let playerViewController = AVPlayerViewController()
-        //let player = AVPlayer(url: URL(string: _url)!)
-        playerViewController.view.frame = frame
-        playerViewController.showsPlaybackControls = true
-
-
+        var playerViewController: AVPlayerViewController
+        if (_playerController.pipController != nil) {
+            playerViewController = _playerController.pipController!
+            playerViewController.view.frame = frame
+            playerViewController.delegate = _playerController
+        }else {
+            playerViewController = AVPlayerViewController()
+            //let player = AVPlayer(url: URL(string: _url)!)
+            playerViewController.view.frame = frame
+            playerViewController.showsPlaybackControls = true
+            
+            playerViewController.delegate = _playerController
+            playerViewController.exitsFullScreenWhenPlaybackEnds = false
+            playerViewController.allowsPictureInPicturePlayback = true
+            if #available(iOS 14.2, *) {
+                playerViewController.canStartPictureInPictureAutomaticallyFromInline = true
+            }
+            let viewController = (UIApplication.shared.delegate?.window??.rootViewController)!
+            viewController.addChild(playerViewController)
+        }
+//
+//        let pipController = AVPictureInPictureController(playerLayer: playerViewController.view.layer as! AVPlayerLayer)
+        
         _view.addSubview(playerViewController.view)
         //_view.addSubview(nativeLabel)
 
-        let viewController = (UIApplication.shared.delegate?.window??.rootViewController)!
-        viewController.addChild(playerViewController)
         _playerController.takeOwnership(playerViewController)
+    }
+    
+    var vc: UIViewController? = nil
+    
+    
+    func asdplayerViewControllerWillStartPictureInPicture(_ playerViewController: AVPlayerViewController) {
+        let viewController = (UIApplication.shared.delegate?.window??.rootViewController)!
+        vc = UIViewController()
+        let nativeLabel = UILabel()
+        nativeLabel.text = "Showing in pip"
+        nativeLabel.textColor = UIColor.white
+        nativeLabel.textAlignment = .center
+        nativeLabel.frame = CGRect(x: 0, y: 0, width: 180, height: 48.0)
+        nativeLabel.center = CGPoint(x: viewController.view.frame.size.width  / 2,
+                                     y: viewController.view.frame.size.height / 2)
+        vc?.view.addSubview(nativeLabel)
+        vc?.modalPresentationStyle = .fullScreen //or .overFullScreen for transparency
+        viewController.present(vc!, animated: true, completion: nil)
+    }
+    func asdplayerViewControllerWillStopPictureInPicture(_ playerViewController: AVPlayerViewController) {
+        vc?.dismiss(animated: false)
     }
 }
