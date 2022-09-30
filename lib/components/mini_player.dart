@@ -10,6 +10,15 @@ import 'package:transparent_image/transparent_image.dart';
 
 import '../providers/fun.dart';
 
+class BottomSheetMiniPlayer extends StatelessWidget {
+  const BottomSheetMiniPlayer({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MiniPlayer();
+  }
+}
+
 class MiniPlayer extends ConsumerStatefulWidget {
   const MiniPlayer({Key? key}) : super(key: key);
 
@@ -52,7 +61,7 @@ class _MiniPlayerState extends ConsumerState<MiniPlayer> {
           context.router.navigate(const LiveScreenRoute());
         } else if (id != null) {
           ref.read(tempTitleProvider.notifier).state = title;
-          context.router.push(EpisodeScreenRoute(episodeId: id));
+          context.router.popAndPush(EpisodeScreenRoute(episodeId: id));
         }
       },
       child: _MiniPlayer(

@@ -5,6 +5,7 @@ import 'dart:async';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:bccm_player/bccm_player.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:brunstadtv_app/graphql/client.dart';
 import 'package:brunstadtv_app/graphql/queries/episode.graphql.dart';
@@ -34,6 +35,7 @@ class EpisodeScreen extends ConsumerStatefulWidget {
 
 class _EpisodeScreenState extends ConsumerState<EpisodeScreen> {
   late Future<Episode?> episodeFuture;
+  bool settingUp = false;
   AnimationStatus? animationStatus;
   Animation? animation;
   StreamSubscription? chromecastSubscription;
@@ -60,6 +62,9 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen> {
   }
 
   Future setup() async {
+    setState(() {
+      settingUp = true;
+    });
     var castingNow = ref.read(isCasting);
     var player = castingNow
         ? ref.read(castPlayerProvider)
@@ -74,6 +79,9 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen> {
     if (!mounted || episode == null) return;
 
     playEpisode(playerId: player.playerId, episode: episode);
+    setState(() {
+      settingUp = false;
+    });
   }
 
   @override
@@ -154,7 +162,16 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen> {
                                           behavior: HitTestBehavior.opaque,
                                           //excludeFromSemantics: true,
                                           onTap: () {
-                                            setup();
+                                            setState(() {
+                                              settingUp = true;
+                                            });
+                                            Future.delayed(
+                                                const Duration(
+                                                    milliseconds: 100), () {
+// Here you can write your code
+
+                                              setup();
+                                            });
                                           },
                                           child: AspectRatio(
                                             aspectRatio: 16 / 9,
@@ -167,8 +184,10 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen> {
                                           ),
                                         ),
                                         Center(
-                                            child: Image.asset(
-                                                'assets/icons/Play.png')),
+                                            child: !settingUp
+                                                ? Image.asset(
+                                                    'assets/icons/Play.png')
+                                                : const CircularProgressIndicator()),
                                       ],
                                     )),
                       Padding(
@@ -181,7 +200,16 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen> {
                   ),
                 );
               }),
-          //const SizedBox(width: 100, height: 500)
+          Column(
+            children: List.generate(
+                100,
+                (index) => SizedBox(
+                    width: 200,
+                    height: 400,
+                    child: Padding(
+                        padding: EdgeInsets.all(10),
+                        child: Container(color: Colors.red)))),
+          )
         ],
       ),
     );

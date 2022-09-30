@@ -85,13 +85,28 @@ class _RootScreenState extends ConsumerState<RootScreen> with AutoRouteAware {
           // Here we're building our Scaffold inside of AutoTabsRouter
           // to access the tabsRouter controller provided in this context
           //
-          //alterntivly you could use a global key
+          //alterntivly you could use a global keyfinal
+
+          final episodeId = ref
+              .watch(primaryPlayerProvider)
+              ?.currentMediaItem
+              ?.metadata
+              ?.extras?['id'];
+
+          final isOnCurrentEpisodePage = episodeId != null &&
+              tabsRouter.currentSegments.any((element) =>
+                  element.stringMatch.contains('episode/$episodeId'));
           final hideMiniPlayer =
-              tabsRouter.current.meta['hide_mini_player'] == true;
+              ref.watch(primaryPlayerProvider)?.currentMediaItem == null ||
+                  tabsRouter.current.meta['hide_mini_player'] == true ||
+                  isOnCurrentEpisodePage;
           return Scaffold(
               body: SafeArea(child: child),
-              bottomSheet:
-                  hideMiniPlayer ? const SizedBox.shrink() : MiniPlayer(),
+              bottomSheet: AnimatedSlide(
+                  offset: hideMiniPlayer ? const Offset(0, 1) : Offset.zero,
+                  duration: Duration(milliseconds: 250),
+                  curve: Curves.easeOutQuad,
+                  child: BottomSheetMiniPlayer()),
               bottomNavigationBar: Container(
                 decoration: BoxDecoration(
                     border: Border(
