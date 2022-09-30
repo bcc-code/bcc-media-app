@@ -73,7 +73,7 @@ class _RootScreenState extends ConsumerState<RootScreen> with AutoRouteAware {
         // routes of /dashboard
         routes: const [
           HomeScreenRoute(),
-          EmptyRouterPageRoute(),
+          SearchScreenWrapperRoute(),
           LiveScreenRoute(),
           HomeScreenRoute(),
         ],

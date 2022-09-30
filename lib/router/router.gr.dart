@@ -130,7 +130,7 @@ class AppRouter extends _i13.RootStackRouter {
         child: const _i12.LiveScreen(),
       );
     },
-    EmptyRouterPageRoute.name: (routeData) {
+    SearchScreenWrapperRoute.name: (routeData) {
       return _i13.MaterialPageX<void>(
         routeData: routeData,
         child: const _i13.EmptyRouterPage(),
@@ -198,7 +198,7 @@ class AppRouter extends _i13.RootStackRouter {
               '#redirect',
               path: '',
               parent: RootScreenRoute.name,
-              redirectTo: 'search',
+              redirectTo: 'home',
               fullMatch: true,
             ),
             _i13.RouteConfig(
@@ -213,19 +213,19 @@ class AppRouter extends _i13.RootStackRouter {
               meta: <String, dynamic>{'hide_mini_player': true},
             ),
             _i13.RouteConfig(
-              EmptyRouterPageRoute.name,
+              SearchScreenWrapperRoute.name,
               path: 'search',
               parent: RootScreenRoute.name,
               children: [
                 _i13.RouteConfig(
                   SearchScreenRoute.name,
                   path: '',
-                  parent: EmptyRouterPageRoute.name,
+                  parent: SearchScreenWrapperRoute.name,
                 ),
                 _i13.RouteConfig(
                   ExploreCategoryScreenRoute.name,
                   path: 'explore-category',
-                  parent: EmptyRouterPageRoute.name,
+                  parent: SearchScreenWrapperRoute.name,
                 ),
               ],
             ),
@@ -431,15 +431,15 @@ class LiveScreenRoute extends _i13.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i13.EmptyRouterPage]
-class EmptyRouterPageRoute extends _i13.PageRouteInfo<void> {
-  const EmptyRouterPageRoute({List<_i13.PageRouteInfo>? children})
+class SearchScreenWrapperRoute extends _i13.PageRouteInfo<void> {
+  const SearchScreenWrapperRoute({List<_i13.PageRouteInfo>? children})
       : super(
-          EmptyRouterPageRoute.name,
+          SearchScreenWrapperRoute.name,
           path: 'search',
           initialChildren: children,
         );
 
-  static const String name = 'EmptyRouterPageRoute';
+  static const String name = 'SearchScreenWrapperRoute';
 }
 
 /// generated route for
