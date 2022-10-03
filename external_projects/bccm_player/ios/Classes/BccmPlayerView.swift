@@ -63,7 +63,7 @@ class AVPlayerBccmPlayerView: NSObject, FlutterPlatformView {
 
         // iOS views can be created here
 
-        createNativeView(frame: frame, view: _view)
+        createNativeView()
         if #available(iOS 13.0, *) {
             NotificationCenter.default.addObserver(self, selector: #selector(willResignActive), name: UIScene.didEnterBackgroundNotification, object: nil)
             NotificationCenter.default.addObserver(self, selector: #selector(willBecomeActive), name: UIScene.willEnterForegroundNotification, object: nil)
@@ -76,21 +76,14 @@ class AVPlayerBccmPlayerView: NSObject, FlutterPlatformView {
     @objc func willResignActive(_ notification: Notification) {
         // code to execute
         print ("willResignActive")
-       if let playerViewController = playerViewController {
-           playerViewController.removeFromParent()
-           
-           let viewController = (UIApplication.shared.delegate?.window??.rootViewController)!
-           print(viewController.children.map({ $0.title }))
-           _playerController.releasePlayerView(playerViewController)
-       }
+        reset()
     }
     
     @objc func willBecomeActive(_ notification: Notification) {
         // code to execute
         print ("willBecomeActive")
-       if let playerViewController = playerViewController {
-           _playerController.takeOwnership(playerViewController)
-       }
+        createNativeView()
+        perform(#selector(pipFix), with: nil, afterDelay: 1)
     }
     
 
@@ -99,6 +92,7 @@ class AVPlayerBccmPlayerView: NSObject, FlutterPlatformView {
     }
 
     deinit {
+        print("deinit playerview")
         playerViewController?.removeFromParent()
         if let playerViewController = playerViewController {
             _playerController.releasePlayerView(playerViewController)
@@ -109,7 +103,7 @@ class AVPlayerBccmPlayerView: NSObject, FlutterPlatformView {
         //_playerController?.player?.pause()
     }
 
-    func createNativeView(frame: CGRect, view _view: UIView) {
+    func createNativeView() {
         let audioSession = AVAudioSession.sharedInstance()
         print("bccm: audiosession category before: " + audioSession.category.rawValue)
         do {
@@ -120,8 +114,12 @@ class AVPlayerBccmPlayerView: NSObject, FlutterPlatformView {
         }
         print("bccm: audiosession category after: " + audioSession.category.rawValue)
         if (_playerController.pipController != nil) {
+            print("starting with existing pipController")
+            let viewController = (UIApplication.shared.delegate?.window??.rootViewController)!
             playerViewController = _playerController.pipController!
+            viewController.addChild(playerViewController!)
         }else {
+            print("starting with new avplayerviewcontroller")
             playerViewController = AVPlayerViewController()
             
             let viewController = (UIApplication.shared.delegate?.window??.rootViewController)!
@@ -130,7 +128,7 @@ class AVPlayerBccmPlayerView: NSObject, FlutterPlatformView {
         
         if let playerViewController = playerViewController {
             //let player = AVPlayer(url: URL(string: _url)!)
-            playerViewController.view.frame = frame
+            playerViewController.view.frame = _view.frame
             playerViewController.showsPlaybackControls = true
             playerViewController.delegate = _playerController
             playerViewController.exitsFullScreenWhenPlaybackEnds = false
@@ -147,6 +145,25 @@ class AVPlayerBccmPlayerView: NSObject, FlutterPlatformView {
 
             _playerController.takeOwnership(playerViewController)
         }
+    }
+    
+    @objc func pipFix() {
+        let rate = _playerController.player.rate;
+        _playerController.player.pause()
+        reset();
+        createNativeView();
+        _playerController.player.playImmediately(atRate: rate)
+    }
+    
+    @objc func reset() {
+        if let playerViewController = playerViewController {
+            _playerController.releasePlayerView(playerViewController)
+        }
+        _view.subviews.forEach {
+            $0.removeFromSuperview()
+        }
+        playerViewController?.removeFromParent()
+        playerViewController = nil
     }
     
     var vc: UIViewController? = nil

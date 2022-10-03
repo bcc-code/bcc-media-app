@@ -74,8 +74,12 @@ public class AVQueuePlayerController: NSObject, PlayerController, AVPlayerViewCo
     
     public func playerViewControllerShouldAutomaticallyDismissAtPictureInPictureStart(_ playerViewController: AVPlayerViewController) -> Bool {
         print("playerViewControllerShouldAutomaticallyDismissAtPictureInPictureStart");
-        return true;
+        return false;
     }
+//    public func playerViewController(_ playerViewController: AVPlayerViewController, restoreUserInterfaceForPictureInPictureStopWithCompletionHandler completionHandler: @escaping (Bool) -> Void) {
+//        print("restoreUserInterfaceForPictureInPictureStopWithCompletionHandler")
+//        completionHandler(true)
+//    }
     
     public func playerViewControllerWillStopPictureInPicture(_ playerViewController: AVPlayerViewController) {
         print("bccm: audiosession category willstop: " + AVAudioSession.sharedInstance().category.rawValue)
@@ -175,6 +179,9 @@ public class AVQueuePlayerController: NSObject, PlayerController, AVPlayerViewCo
     }
     
     func takeOwnership(_ playerViewController: AVPlayerViewController) {
+//        if (playerViewController == pipController) {
+//            pipController = nil
+//        }
         playerViewController.player = player
     }
     
@@ -317,6 +324,7 @@ public class AVQueuePlayerController: NSObject, PlayerController, AVPlayerViewCo
         observers.append(player.observe(\.timeControlStatus, options: [.old, .new]) {
             (player, change) in
             debugPrint("BTV DEBUG: player status changed...")
+            
             print("bccm: audiosession playerstatuschanged outputDataSource: " + String(AVAudioSession.sharedInstance().outputDataSource?.dataSourceName ?? ""))
             print("bccm: audiosession playerstatuschanged sec: " + String(AVAudioSession.sharedInstance().secondaryAudioShouldBeSilencedHint))
             print("bccm: audiosession playerstatuschanged ioBufferDuration: " + String(AVAudioSession.sharedInstance().ioBufferDuration))
