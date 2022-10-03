@@ -16,6 +16,7 @@ public protocol PlayerController {
     func play()
     func pause()
     func stop(reset: Bool)
+    func hasBecomePrimary()
 }
 extension PlayerController {
 }

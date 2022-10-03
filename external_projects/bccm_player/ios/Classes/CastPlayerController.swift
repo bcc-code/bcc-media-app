@@ -30,6 +30,10 @@ class CastPlayerController: NSObject, PlayerController  {
         
     }
     
+    public func hasBecomePrimary() {
+        
+    }
+    
     func setPlaybackApi(_ playbackApi: PlaybackApiImpl) {
         self.playbackApi = playbackApi;
     }

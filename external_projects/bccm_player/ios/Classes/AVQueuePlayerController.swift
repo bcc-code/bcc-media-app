@@ -49,6 +49,11 @@ public class AVQueuePlayerController: NSObject, PlayerController, AVPlayerViewCo
         print("BTV DEBUG: end of init playerController")
     }
     
+    public func hasBecomePrimary() {
+        setupCommandCenter()
+    }
+    
+    
     func registerPipController(_ playerView: AVPlayerViewController?) {
         pipController = playerView;
         let event = PictureInPictureModeChangedEvent.make(withPlayerId: id, isInPipMode: (playerView != nil) as NSNumber)
@@ -90,12 +95,25 @@ public class AVQueuePlayerController: NSObject, PlayerController, AVPlayerViewCo
             print ("releasing")
             playerView.player = nil
             
-            let commandCenter = MPRemoteCommandCenter.shared()
-            
-            let nowPlayingInfo = MPNowPlayingInfoCenter.default()
-
-            commandCenter.playCommand.isEnabled = true
         }
+    }
+    
+    func setupCommandCenter() {
+        let commandCenter = MPRemoteCommandCenter.shared()
+        commandCenter.playCommand.isEnabled = true
+        commandCenter.pauseCommand.isEnabled = true
+        commandCenter.playCommand.addTarget { [weak self] (event) -> MPRemoteCommandHandlerStatus in
+            self?.player.play()
+            return .success
+        }
+        commandCenter.pauseCommand.addTarget { [weak self] (event) -> MPRemoteCommandHandlerStatus in
+            self?.player.pause()
+            return .success
+        }
+        
+        
+        let nowPlayingInfoCenter = MPNowPlayingInfoCenter.default()
+        nowPlayingInfoCenter.nowPlayingInfo = [:]
     }
     
     @objc func playAudio() {
@@ -234,6 +252,8 @@ public class AVQueuePlayerController: NSObject, PlayerController, AVPlayerViewCo
             guard let url = (currentItem.asset as? AVURLAsset)?.url.absoluteString else {
                 return self.playbackListener.onMediaItemTransition(emptyEvent, completion: { _ in })
             }
+            
+            let nowPlayingInfoCenter = MPNowPlayingInfoCenter.default()
             var metadata: MediaMetadata? = nil
             if #available(iOS 12.2, *) {
                 var extras = [String: String]();
@@ -248,6 +268,25 @@ public class AVQueuePlayerController: NSObject, PlayerController, AVPlayerViewCo
                         episodeId: currentItem.externalMetadata.first(where: { $0.identifier == AVMetadataIdentifier(MetadataConstants.EpisodeId) })?.stringValue,
                         extras: extras
                 )
+                
+                nowPlayingInfoCenter.nowPlayingInfo?[MPMediaItemPropertyArtist] = metadata?.artist
+                nowPlayingInfoCenter.nowPlayingInfo?[MPMediaItemPropertyTitle] = metadata?.title
+                print ("image is " + (currentItem.externalMetadata.first(where: { $0.identifier == AVMetadataIdentifier.commonIdentifierArtwork })?.debugDescription ?? ""))
+                if let imageData = currentItem.externalMetadata.first(where: { $0.identifier == AVMetadataIdentifier.commonIdentifierArtwork })?.value as? Data {
+                    guard let image = UIImage(data: imageData) else {
+                        return;
+                    }
+                    print ("image is image")
+                    let nowPlayingArtwork = MPMediaItemArtwork(boundsSize: image.size, requestHandler: { (_ size : CGSize) -> UIImage in
+
+                        return image
+
+                    })
+                    nowPlayingInfoCenter.nowPlayingInfo?[MPMediaItemPropertyArtwork] = nowPlayingArtwork
+                    print ("image is set")
+                    
+                }
+                
 
                 self.npawHandleMediaItemUpdate(playerItem: player.currentItem, extras: extras);
             }
@@ -255,12 +294,25 @@ public class AVQueuePlayerController: NSObject, PlayerController, AVPlayerViewCo
             let event = MediaItemTransitionEvent.make(withPlayerId: self.id, mediaItem: mediaItem)
             self.playbackListener.onMediaItemTransition(event, completion: { _ in })
             
+            //nowPlayingInfoCenter.nowPlayingInfo?[MPNowPlayingInfoPropertyElapsedPlaybackTime] = 0
+            
 
-            self.observers.append(player.observe(\.currentItem?.isPlaybackLikelyToKeepUp, options: [.old, .new]) {
+//            self.observers.append(player.observe(\.currentItem?.isPlaybackLikelyToKeepUp, options: [.old, .new]) {
+//                (player, change) in
+//                debugPrint("BTV DEBUG: isPlaybackLikelyToKeepUp..")
+//                player.play()
+//            })
+            self.observers.append(player.observe(\.currentItem?.duration, options: [.old, .new]) {
                 (player, change) in
-                debugPrint("BTV DEBUG: isPlaybackLikelyToKeepUp..")
-                player.play()
+                debugPrint("BTV DEBUG: duration..")
+                nowPlayingInfoCenter.nowPlayingInfo?[MPMediaItemPropertyPlaybackDuration] = player.currentItem?.duration.seconds
             })
+        })
+        self.observers.append(player.observe(\.rate, options: [.old, .new]) {
+            (player, change) in
+            debugPrint("BTV DEBUG: duration..")
+            let nowPlayingInfoCenter = MPNowPlayingInfoCenter.default()
+            nowPlayingInfoCenter.nowPlayingInfo?[MPNowPlayingInfoPropertyElapsedPlaybackTime] = player.currentTime().seconds
         })
         observers.append(player.observe(\.timeControlStatus, options: [.old, .new]) {
             (player, change) in
