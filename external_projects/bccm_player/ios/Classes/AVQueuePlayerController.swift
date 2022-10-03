@@ -7,6 +7,7 @@ import AVFoundation
 import AVKit
 import YouboraLib
 import YouboraAVPlayerAdapter
+import MediaPlayer
 
 public class AVQueuePlayerController: NSObject, PlayerController, AVPlayerViewControllerDelegate {
     public func play() {
@@ -55,11 +56,53 @@ public class AVQueuePlayerController: NSObject, PlayerController, AVPlayerViewCo
     }
     
     public func playerViewControllerWillStartPictureInPicture(_ playerViewController: AVPlayerViewController) {
+        print("bccm: audiosession category willstart: " + AVAudioSession.sharedInstance().category.rawValue)
         registerPipController(playerViewController)
     }
     
+    public func playerViewControllerDidStartPictureInPicture(_ playerViewController: AVPlayerViewController) {
+        print("playerViewControllerDidStartPictureInPicture")
+    }
+    public func playerViewController(_ playerViewController: AVPlayerViewController, willBeginFullScreenPresentationWithAnimationCoordinator coordinator: UIViewControllerTransitionCoordinator) {
+        print("willBeginFullScreenPresentationWithAnimationCoordinator")
+    }
+    
+    public func playerViewControllerShouldAutomaticallyDismissAtPictureInPictureStart(_ playerViewController: AVPlayerViewController) -> Bool {
+        print("playerViewControllerShouldAutomaticallyDismissAtPictureInPictureStart");
+        return true;
+    }
+    
     public func playerViewControllerWillStopPictureInPicture(_ playerViewController: AVPlayerViewController) {
+        print("bccm: audiosession category willstop: " + AVAudioSession.sharedInstance().category.rawValue)
         registerPipController(nil)
+        let audioSession = AVAudioSession.sharedInstance()
+        print("bccm: audiosession category before: " + audioSession.category.rawValue)
+        do {
+            try audioSession.setCategory(.playback)
+            try audioSession.setActive(true)
+        } catch {
+            print("Setting category to AVAudioSessionCategoryPlayback failed.")
+        }
+    }
+    
+    func releasePlayerView(_ playerView: AVPlayerViewController) {
+        if (playerView != pipController) {
+            print ("releasing")
+            playerView.player = nil
+            
+            let commandCenter = MPRemoteCommandCenter.shared()
+            
+            let nowPlayingInfo = MPNowPlayingInfoCenter.default()
+
+            commandCenter.playCommand.isEnabled = true
+        }
+    }
+    
+    @objc func playAudio() {
+        player.play()
+    }
+    @objc func pauseAudio() {
+        player.pause()
     }
     
     func npawHandleMediaItemUpdate(playerItem: AVPlayerItem?, extras: [String: String]) {
@@ -115,13 +158,6 @@ public class AVQueuePlayerController: NSObject, PlayerController, AVPlayerViewCo
     
     func takeOwnership(_ playerViewController: AVPlayerViewController) {
         playerViewController.player = player
-
-        let audioSession = AVAudioSession.sharedInstance()
-        do {
-            try audioSession.setActive(true)
-        } catch {
-            print("Setting category to AVAudioSessionCategoryPlayback failed.")
-        }
     }
     
     func mapMediaItem(_ mediaItem: MediaItem) -> AVPlayerItem {
@@ -218,11 +254,24 @@ public class AVQueuePlayerController: NSObject, PlayerController, AVPlayerViewCo
             let mediaItem = MediaItem.make(withUrl: url, mimeType: "application/x-mpegURL", metadata: metadata, isLive: false, playbackStartPositionMs: nil)
             let event = MediaItemTransitionEvent.make(withPlayerId: self.id, mediaItem: mediaItem)
             self.playbackListener.onMediaItemTransition(event, completion: { _ in })
-        })
+            
 
+            self.observers.append(player.observe(\.currentItem?.isPlaybackLikelyToKeepUp, options: [.old, .new]) {
+                (player, change) in
+                debugPrint("BTV DEBUG: isPlaybackLikelyToKeepUp..")
+                player.play()
+            })
+        })
         observers.append(player.observe(\.timeControlStatus, options: [.old, .new]) {
             (player, change) in
             debugPrint("BTV DEBUG: player status changed...")
+            print("bccm: audiosession playerstatuschanged outputDataSource: " + String(AVAudioSession.sharedInstance().outputDataSource?.dataSourceName ?? ""))
+            print("bccm: audiosession playerstatuschanged sec: " + String(AVAudioSession.sharedInstance().secondaryAudioShouldBeSilencedHint))
+            print("bccm: audiosession playerstatuschanged ioBufferDuration: " + String(AVAudioSession.sharedInstance().ioBufferDuration))
+            print("bccm: audiosession playerstatuschanged mode: " + AVAudioSession.sharedInstance().mode.rawValue)
+            print("bccm: audiosession playerstatuschanged debugDesc: " + AVAudioSession.sharedInstance().debugDescription)
+            print("bccm: audiosession playerstatuschanged category: " + AVAudioSession.sharedInstance().category.rawValue)
+            print("bccm: audiosession playerstatuschanged categoryoptions: " + String(AVAudioSession.sharedInstance().categoryOptions.rawValue))
             // We don't want "isPlaying" to be affected by stuttering
             // So we only check if the player is paused or doesnt have an item to play.
             let paused = player.timeControlStatus == AVPlayer.TimeControlStatus.paused;
