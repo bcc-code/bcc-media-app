@@ -5,6 +5,7 @@ import 'package:brunstadtv_app/api/sliders.dart';
 import 'package:brunstadtv_app/router/router.gr.dart';
 
 import 'package:bccm_player/cast_button.dart';
+import '../components/page/page.dart';
 import '../components/page.dart';
 import '../services/auth_service.dart';
 
@@ -54,7 +55,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
               ),
             ]),
           )),
-      body: const BccmPage(code: 'frontpage'),
+      body: BccmPage(code: 'frontpage'),
     );
   }
 }

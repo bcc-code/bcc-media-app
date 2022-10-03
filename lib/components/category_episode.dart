@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'inner_bordered_image.dart';
+
 class CategoryEpisode extends StatelessWidget {
   EdgeInsetsGeometry margin;
   Map<String, String> episode;
@@ -17,20 +19,12 @@ class CategoryEpisode extends StatelessWidget {
         children: [
           LayoutBuilder(
             builder: (context, constraints) {
-              return Container(
+              return InnerBorderedImage(
                 height: constraints.maxWidth * (9 / 16),
                 margin: const EdgeInsets.only(bottom: 4),
-                decoration: BoxDecoration(
-                  image: DecorationImage(
-                    image: NetworkImage(episode['image']!),
-                    fit: BoxFit.cover,
-                  ),
-                  borderRadius: BorderRadius.circular(3.86),
-                  border: Border.all(
-                    width: 1,
-                    color: const Color.fromRGBO(255, 255, 255, 0.1),
-                  ),
-                ),
+                image: episode['image'] != null
+                    ? NetworkImage(episode['image']!)
+                    : null,
               );
             },
           ),

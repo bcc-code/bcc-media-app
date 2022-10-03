@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../graphql/queries/search.graphql.dart';
+import 'inner_bordered_image.dart';
 
 class EpisodeList extends StatelessWidget {
   final String title;
@@ -49,23 +50,12 @@ class _Episode extends StatelessWidget {
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Container(
+          InnerBorderedImage(
             width: 128,
             height: 128 * (9 / 16),
             margin: const EdgeInsets.only(right: 16),
-            decoration: BoxDecoration(
-              image: _episode.image != null
-                  ? DecorationImage(
-                      image: NetworkImage(_episode.image!),
-                      fit: BoxFit.cover,
-                    )
-                  : null,
-              borderRadius: BorderRadius.circular(4),
-              border: Border.all(
-                width: 1,
-                color: const Color.fromRGBO(255, 255, 255, 0.1),
-              ),
-            ),
+            image:
+                _episode.image != null ? NetworkImage(_episode.image!) : null,
           ),
           Expanded(
             child: Column(
