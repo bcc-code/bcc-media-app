@@ -54,6 +54,7 @@ class PlaybackApiImpl(private val plugin: BccmPlayerPlugin) : PlaybackPlatformAp
                 ?: throw Error("Player with id ${playerId} does not exist.")
 
         playerController.replaceCurrentMediaItem(mediaItem, autoplay)
+        result?.success(null);
     }
 
     override fun queueMediaItem(playerId: String, mediaItem: PlaybackPlatformApi.MediaItem, result: PlaybackPlatformApi.Result<Void>?) {
@@ -65,6 +66,7 @@ class PlaybackApiImpl(private val plugin: BccmPlayerPlugin) : PlaybackPlatformAp
         val playerController = playbackService.getController(playerId)
                 ?: throw Error("Player with id $playerId does not exist.")
         playerController.queueMediaItem(mediaItem)
+        result?.success(null);
     }
 
     override fun setPrimary(id: String, result: PlaybackPlatformApi.Result<Void>?) {
