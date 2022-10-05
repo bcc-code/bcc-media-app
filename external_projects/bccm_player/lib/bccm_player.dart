@@ -110,12 +110,16 @@ class AndroidPlayer extends StatelessWidget {
       surfaceFactory: (context, controller) {
         return AndroidViewSurface(
           controller: controller as AndroidViewController,
-          gestureRecognizers: const <Factory<OneSequenceGestureRecognizer>>{},
-          hitTestBehavior: PlatformViewHitTestBehavior.opaque,
+          hitTestBehavior: PlatformViewHitTestBehavior.translucent,
+          gestureRecognizers: <Factory<OneSequenceGestureRecognizer>>{
+            Factory<OneSequenceGestureRecognizer>(
+              () => EagerGestureRecognizer(),
+            ),
+          },
         );
       },
       onCreatePlatformView: (params) {
-        return PlatformViewsService.initAndroidView(
+        return PlatformViewsService.initExpensiveAndroidView(
           id: params.id,
           viewType: 'bccm-player',
           layoutDirection: TextDirection.ltr,

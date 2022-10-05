@@ -23,6 +23,7 @@ typedef NS_ENUM(NSUInteger, CastConnectionState) {
 @class ChromecastState;
 @class PositionUpdateEvent;
 @class IsPlayingChangedEvent;
+@class PictureInPictureModeChangedEvent;
 @class MediaItemTransitionEvent;
 
 @interface NpawConfig : NSObject
@@ -92,6 +93,15 @@ typedef NS_ENUM(NSUInteger, CastConnectionState) {
 @property(nonatomic, strong) NSNumber * isPlaying;
 @end
 
+@interface PictureInPictureModeChangedEvent : NSObject
+/// `init` unavailable to enforce nonnull fields, see the `make` class method.
+- (instancetype)init NS_UNAVAILABLE;
++ (instancetype)makeWithPlayerId:(NSString *)playerId
+    isInPipMode:(NSNumber *)isInPipMode;
+@property(nonatomic, copy) NSString * playerId;
+@property(nonatomic, strong) NSNumber * isInPipMode;
+@end
+
 @interface MediaItemTransitionEvent : NSObject
 /// `init` unavailable to enforce nonnull fields, see the `make` class method.
 - (instancetype)init NS_UNAVAILABLE;
@@ -107,7 +117,7 @@ NSObject<FlutterMessageCodec> *PlaybackPlatformPigeonGetCodec(void);
 @protocol PlaybackPlatformPigeon
 - (void)newPlayer:(nullable NSString *)url completion:(void(^)(NSString *_Nullable, FlutterError *_Nullable))completion;
 - (void)queueMediaItem:(NSString *)playerId mediaItem:(MediaItem *)mediaItem completion:(void(^)(FlutterError *_Nullable))completion;
-- (void)replaceCurrentMediaItem:(NSString *)playerId mediaItem:(MediaItem *)mediaItem playbackPositionFromPrimary:(nullable NSNumber *)playbackPositionFromPrimary completion:(void(^)(FlutterError *_Nullable))completion;
+- (void)replaceCurrentMediaItem:(NSString *)playerId mediaItem:(MediaItem *)mediaItem playbackPositionFromPrimary:(nullable NSNumber *)playbackPositionFromPrimary autoplay:(nullable NSNumber *)autoplay completion:(void(^)(FlutterError *_Nullable))completion;
 - (void)setPrimary:(NSString *)id completion:(void(^)(FlutterError *_Nullable))completion;
 - (void)play:(NSString *)playerId error:(FlutterError *_Nullable *_Nonnull)error;
 - (void)pause:(NSString *)playerId error:(FlutterError *_Nullable *_Nonnull)error;
@@ -129,5 +139,6 @@ NSObject<FlutterMessageCodec> *PlaybackListenerPigeonGetCodec(void);
 - (void)onPositionUpdate:(PositionUpdateEvent *)event completion:(void(^)(NSError *_Nullable))completion;
 - (void)onIsPlayingChanged:(IsPlayingChangedEvent *)event completion:(void(^)(NSError *_Nullable))completion;
 - (void)onMediaItemTransition:(MediaItemTransitionEvent *)event completion:(void(^)(NSError *_Nullable))completion;
+- (void)onPictureInPictureModeChanged:(PictureInPictureModeChangedEvent *)event completion:(void(^)(NSError *_Nullable))completion;
 @end
 NS_ASSUME_NONNULL_END

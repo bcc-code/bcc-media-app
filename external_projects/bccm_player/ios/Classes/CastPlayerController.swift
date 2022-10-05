@@ -30,6 +30,10 @@ class CastPlayerController: NSObject, PlayerController  {
         
     }
     
+    public func hasBecomePrimary() {
+        
+    }
+    
     func setPlaybackApi(_ playbackApi: PlaybackApiImpl) {
         self.playbackApi = playbackApi;
     }
@@ -43,7 +47,7 @@ class CastPlayerController: NSObject, PlayerController  {
         
     }
     
-    func setMediaItem(_ mediaItem: MediaItem) {
+    func replaceCurrentMediaItem(_ mediaItem: MediaItem, autoplay: NSNumber?) {
         guard let mediaInfo = mapMediaItem(mediaItem) else {
             fatalError("invalid url passed to setMediaItem");
         };

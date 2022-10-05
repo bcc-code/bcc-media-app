@@ -8,6 +8,8 @@ import 'package:brunstadtv_app/providers/playback_api.dart';
 import 'package:brunstadtv_app/providers/video_state.dart';
 import 'package:brunstadtv_app/router/router.gr.dart';
 
+import '../helpers/utils.dart';
+
 class RootScreen extends ConsumerStatefulWidget {
   static const route = '/';
 
@@ -72,10 +74,10 @@ class _RootScreenState extends ConsumerState<RootScreen> with AutoRouteAware {
         // routes used here must be declaraed as children
         // routes of /dashboard
         routes: const [
-          HomeScreenRoute(),
+          HomeScreenWrapperRoute(),
           SearchScreenWrapperRoute(),
           LiveScreenRoute(),
-          HomeScreenRoute(),
+          HomeScreenWrapperRoute(),
         ],
         builder: (context, child, animation) {
           // obtain the scoped TabsRouter controller using context
@@ -83,13 +85,28 @@ class _RootScreenState extends ConsumerState<RootScreen> with AutoRouteAware {
           // Here we're building our Scaffold inside of AutoTabsRouter
           // to access the tabsRouter controller provided in this context
           //
-          //alterntivly you could use a global key
+          //alterntivly you could use a global keyfinal
+
+          final episodeId = ref
+              .watch(primaryPlayerProvider)
+              ?.currentMediaItem
+              ?.metadata
+              ?.extras?['id'];
+
+          final isOnCurrentEpisodePage = episodeId != null &&
+              tabsRouter.currentSegments.any((element) =>
+                  element.stringMatch.contains('episode/$episodeId'));
           final hideMiniPlayer =
-              tabsRouter.current.meta['hide_mini_player'] == true;
+              ref.watch(primaryPlayerProvider)?.currentMediaItem == null ||
+                  tabsRouter.current.meta['hide_mini_player'] == true ||
+                  isOnCurrentEpisodePage;
           return Scaffold(
               body: SafeArea(child: child),
-              bottomSheet:
-                  hideMiniPlayer ? const SizedBox.shrink() : const MiniPlayer(),
+              bottomSheet: AnimatedSlide(
+                  offset: hideMiniPlayer ? const Offset(0, 1) : Offset.zero,
+                  duration: Duration(milliseconds: 250),
+                  curve: Curves.easeOutQuad,
+                  child: BottomSheetMiniPlayer()),
               bottomNavigationBar: Container(
                 decoration: BoxDecoration(
                     border: Border(
@@ -109,6 +126,9 @@ class _RootScreenState extends ConsumerState<RootScreen> with AutoRouteAware {
                     currentIndex: tabsRouter.activeIndex,
                     onTap: (index) {
                       // here we switch between tabs
+                      if (tabsRouter.activeIndex == index) {
+                        tabsRouter.stackRouterOfIndex(index)?.popUntilRoot();
+                      }
                       tabsRouter.setActiveIndex(index);
                     },
                     items: [

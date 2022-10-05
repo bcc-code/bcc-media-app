@@ -5,6 +5,7 @@ import 'package:brunstadtv_app/api/sliders.dart';
 import 'package:brunstadtv_app/router/router.gr.dart';
 
 import 'package:bccm_player/cast_button.dart';
+import '../components/mini_player.dart';
 import '../components/page.dart';
 import '../services/auth_service.dart';
 

@@ -20,6 +20,7 @@ mixin _$Player {
   MediaItem? get currentMediaItem => throw _privateConstructorUsedError;
   int? get playbackPositionMs => throw _privateConstructorUsedError;
   PlaybackState get playbackState => throw _privateConstructorUsedError;
+  bool get isInPipMode => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $PlayerCopyWith<Player> get copyWith => throw _privateConstructorUsedError;
@@ -33,7 +34,8 @@ abstract class $PlayerCopyWith<$Res> {
       {String playerId,
       MediaItem? currentMediaItem,
       int? playbackPositionMs,
-      PlaybackState playbackState});
+      PlaybackState playbackState,
+      bool isInPipMode});
 }
 
 /// @nodoc
@@ -50,6 +52,7 @@ class _$PlayerCopyWithImpl<$Res> implements $PlayerCopyWith<$Res> {
     Object? currentMediaItem = freezed,
     Object? playbackPositionMs = freezed,
     Object? playbackState = freezed,
+    Object? isInPipMode = freezed,
   }) {
     return _then(_value.copyWith(
       playerId: playerId == freezed
@@ -68,6 +71,10 @@ class _$PlayerCopyWithImpl<$Res> implements $PlayerCopyWith<$Res> {
           ? _value.playbackState
           : playbackState // ignore: cast_nullable_to_non_nullable
               as PlaybackState,
+      isInPipMode: isInPipMode == freezed
+          ? _value.isInPipMode
+          : isInPipMode // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -81,7 +88,8 @@ abstract class _$$_PlayerCopyWith<$Res> implements $PlayerCopyWith<$Res> {
       {String playerId,
       MediaItem? currentMediaItem,
       int? playbackPositionMs,
-      PlaybackState playbackState});
+      PlaybackState playbackState,
+      bool isInPipMode});
 }
 
 /// @nodoc
@@ -99,6 +107,7 @@ class __$$_PlayerCopyWithImpl<$Res> extends _$PlayerCopyWithImpl<$Res>
     Object? currentMediaItem = freezed,
     Object? playbackPositionMs = freezed,
     Object? playbackState = freezed,
+    Object? isInPipMode = freezed,
   }) {
     return _then(_$_Player(
       playerId: playerId == freezed
@@ -117,6 +126,10 @@ class __$$_PlayerCopyWithImpl<$Res> extends _$PlayerCopyWithImpl<$Res>
           ? _value.playbackState
           : playbackState // ignore: cast_nullable_to_non_nullable
               as PlaybackState,
+      isInPipMode: isInPipMode == freezed
+          ? _value.isInPipMode
+          : isInPipMode // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -128,7 +141,8 @@ class _$_Player implements _Player {
       {required this.playerId,
       this.currentMediaItem,
       this.playbackPositionMs,
-      this.playbackState = PlaybackState.stopped});
+      this.playbackState = PlaybackState.stopped,
+      this.isInPipMode = false});
 
   @override
   final String playerId;
@@ -139,10 +153,13 @@ class _$_Player implements _Player {
   @override
   @JsonKey()
   final PlaybackState playbackState;
+  @override
+  @JsonKey()
+  final bool isInPipMode;
 
   @override
   String toString() {
-    return 'Player(playerId: $playerId, currentMediaItem: $currentMediaItem, playbackPositionMs: $playbackPositionMs, playbackState: $playbackState)';
+    return 'Player(playerId: $playerId, currentMediaItem: $currentMediaItem, playbackPositionMs: $playbackPositionMs, playbackState: $playbackState, isInPipMode: $isInPipMode)';
   }
 
   @override
@@ -156,7 +173,9 @@ class _$_Player implements _Player {
             const DeepCollectionEquality()
                 .equals(other.playbackPositionMs, playbackPositionMs) &&
             const DeepCollectionEquality()
-                .equals(other.playbackState, playbackState));
+                .equals(other.playbackState, playbackState) &&
+            const DeepCollectionEquality()
+                .equals(other.isInPipMode, isInPipMode));
   }
 
   @override
@@ -165,7 +184,8 @@ class _$_Player implements _Player {
       const DeepCollectionEquality().hash(playerId),
       const DeepCollectionEquality().hash(currentMediaItem),
       const DeepCollectionEquality().hash(playbackPositionMs),
-      const DeepCollectionEquality().hash(playbackState));
+      const DeepCollectionEquality().hash(playbackState),
+      const DeepCollectionEquality().hash(isInPipMode));
 
   @JsonKey(ignore: true)
   @override
@@ -178,7 +198,8 @@ abstract class _Player implements Player {
       {required final String playerId,
       final MediaItem? currentMediaItem,
       final int? playbackPositionMs,
-      final PlaybackState playbackState}) = _$_Player;
+      final PlaybackState playbackState,
+      final bool isInPipMode}) = _$_Player;
 
   @override
   String get playerId;
@@ -188,6 +209,8 @@ abstract class _Player implements Player {
   int? get playbackPositionMs;
   @override
   PlaybackState get playbackState;
+  @override
+  bool get isInPipMode;
   @override
   @JsonKey(ignore: true)
   _$$_PlayerCopyWith<_$_Player> get copyWith =>
