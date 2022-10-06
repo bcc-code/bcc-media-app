@@ -81,4 +81,9 @@ class PlaybackService extends PlaybackPlatformInterface {
   void setNpawConfig(NpawConfig? config) {
     _pigeon.setNpawConfig(config);
   }
+
+  @override
+  void setAppConfig(AppConfig? config) {
+    _pigeon.setAppConfig(config);
+  }
 }

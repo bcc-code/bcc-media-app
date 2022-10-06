@@ -2,23 +2,83 @@ package media.bcc.bccm_player
 
 import android.util.Log
 import androidx.media3.cast.CastPlayer
+import androidx.media3.cast.DefaultMediaItemConverter
+import androidx.media3.cast.MediaItemConverter
 import androidx.media3.cast.SessionAvailabilityListener
-import androidx.media3.common.C
-import androidx.media3.common.MediaItem
-import androidx.media3.common.Player
+import androidx.media3.common.*
+import androidx.media3.common.util.Assertions
+import com.google.android.gms.cast.MediaInfo
+import com.google.android.gms.cast.MediaQueueItem
 import com.google.android.gms.cast.framework.CastContext
 import com.google.android.gms.cast.framework.Session
 import com.google.android.gms.cast.framework.SessionManagerListener
+import com.google.android.gms.common.images.WebImage
 import media.bcc.player.ChromecastControllerPigeon
 import media.bcc.player.PlaybackPlatformApi
-import java.util.*
+import org.json.JSONObject
+
 
 class CastPlayerController(
         private val castContext: CastContext,
         private val chromecastListenerPigeon: ChromecastControllerPigeon.ChromecastPigeon,
         private val plugin: BccmPlayerPlugin)
     : PlayerController(), SessionManagerListener<Session>, SessionAvailabilityListener {
-    override val player = CastPlayer(castContext)
+    override val player = CastPlayer(castContext, CustomConverter())
+
+    class CustomConverter : MediaItemConverter {
+        override fun toMediaItem(item: MediaQueueItem): MediaItem {
+            // This should give the same as when you build your media item to be passed to ExoPlayer.
+            return MediaItem.Builder()
+                    .setUri(item.media?.contentId ?: item.media?.contentUrl)
+                    .build()
+        }
+
+        override fun toMediaQueueItem(mediaItem: MediaItem): MediaQueueItem {
+            Assertions.checkNotNull(mediaItem.localConfiguration)
+            requireNotNull(mediaItem.localConfiguration!!.mimeType) { "The item must specify its mimeType" }
+            val metadata = com.google.android.gms.cast.MediaMetadata(
+                    if (MimeTypes.isAudio(mediaItem.localConfiguration!!.mimeType)) com.google.android.gms.cast.MediaMetadata.MEDIA_TYPE_MUSIC_TRACK else com.google.android.gms.cast.MediaMetadata.MEDIA_TYPE_MOVIE)
+            if (mediaItem.mediaMetadata.title != null) {
+                metadata.putString(com.google.android.gms.cast.MediaMetadata.KEY_TITLE, mediaItem.mediaMetadata.title.toString())
+            }
+            if (mediaItem.mediaMetadata.subtitle != null) {
+                metadata.putString(com.google.android.gms.cast.MediaMetadata.KEY_SUBTITLE, mediaItem.mediaMetadata.subtitle.toString())
+            }
+            if (mediaItem.mediaMetadata.artist != null) {
+                metadata.putString(com.google.android.gms.cast.MediaMetadata.KEY_ARTIST, mediaItem.mediaMetadata.artist.toString())
+            }
+            if (mediaItem.mediaMetadata.albumArtist != null) {
+                metadata.putString(
+                        com.google.android.gms.cast.MediaMetadata.KEY_ALBUM_ARTIST, mediaItem.mediaMetadata.albumArtist.toString())
+            }
+            if (mediaItem.mediaMetadata.albumTitle != null) {
+                metadata.putString(
+                        com.google.android.gms.cast.MediaMetadata.KEY_ALBUM_TITLE, mediaItem.mediaMetadata.albumTitle.toString())
+            }
+            if (mediaItem.mediaMetadata.artworkUri != null) {
+                metadata.addImage(WebImage(mediaItem.mediaMetadata.artworkUri!!))
+            }
+            if (mediaItem.mediaMetadata.composer != null) {
+                metadata.putString(com.google.android.gms.cast.MediaMetadata.KEY_COMPOSER, mediaItem.mediaMetadata.composer.toString())
+            }
+            if (mediaItem.mediaMetadata.discNumber != null) {
+                metadata.putInt(com.google.android.gms.cast.MediaMetadata.KEY_DISC_NUMBER, mediaItem.mediaMetadata.discNumber!!)
+            }
+            if (mediaItem.mediaMetadata.trackNumber != null) {
+                metadata.putInt(com.google.android.gms.cast.MediaMetadata.KEY_TRACK_NUMBER, mediaItem.mediaMetadata.trackNumber!!)
+            }
+            val contentUrl = mediaItem.localConfiguration!!.uri.toString()
+            val contentId = if (mediaItem.mediaId == MediaItem.DEFAULT_MEDIA_ID) contentUrl else mediaItem.mediaId
+            val mediaInfo = MediaInfo.Builder(contentId)
+                    .setStreamType(MediaInfo.STREAM_TYPE_BUFFERED)
+                    .setContentType(mediaItem.localConfiguration!!.mimeType!!)
+                    .setContentUrl(contentUrl)
+                    .setMetadata(metadata)
+                    .build()
+            return MediaQueueItem.Builder(mediaInfo).build()
+        }
+    }
+
 
     override fun release() {
         player.release()
@@ -35,6 +95,17 @@ class CastPlayerController(
 
     fun getState(): PlaybackPlatformApi.ChromecastState {
         return PlaybackPlatformApi.ChromecastState.Builder().setConnectionState(PlaybackPlatformApi.CastConnectionState.values()[castContext.castState]).build()
+    }
+
+    private fun handleUpdatedAppConfig(appConfigState: PlaybackPlatformApi.AppConfig?) {
+        Log.d("bccm", "setting preferred audio and sub lang to: ${appConfigState?.audioLanguage}, ${appConfigState?.subtitleLanguage}")
+       /* player.trackSelectionParameters = trackSelector.parameters.buildUpon()
+                .setPreferredAudioLanguage(appConfigState?.audioLanguage)
+                .setPreferredTextLanguage(appConfigState?.subtitleLanguage).build()
+*/
+
+/*
+        castContext.sessionManager.currentCastSession.remoteMediaClient.s*/
     }
 
     // SessionManagerListener

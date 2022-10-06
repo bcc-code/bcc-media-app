@@ -57,6 +57,8 @@ dependencies:
   graphql: ^5.1.1
   graphql_flutter: ^5.1.0
   auth0_flutter: ^1.0.1
+  shared_preferences: ^2.0.15
+  hive: ^2.2.3
 dependency_overrides:
   bccm_player:
     path: external_projects/bccm_player

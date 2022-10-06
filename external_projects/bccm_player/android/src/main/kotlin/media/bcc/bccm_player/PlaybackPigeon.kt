@@ -1,13 +1,16 @@
 package media.bcc.bccm_player
 
+import android.content.Intent
 import android.util.Log
-import androidx.media3.cast.CastPlayer
+import androidx.core.content.ContextCompat.startActivity
+import com.google.android.gms.cast.framework.media.widget.ExpandedControllerActivity
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import media.bcc.player.PlaybackPlatformApi
+
 
 class PlaybackApiImpl(private val plugin: BccmPlayerPlugin) : PlaybackPlatformApi.PlaybackPlatformPigeon {
     private val mainScope = CoroutineScope(Dispatchers.Main + Job())
@@ -22,6 +25,13 @@ class PlaybackApiImpl(private val plugin: BccmPlayerPlugin) : PlaybackPlatformAp
         Log.d("bccm", "PlaybackPigeon: Setting npawConfig");
         mainScope.launch {
             BccmPlayerPluginSingleton.npawConfigState.update { config }
+        }
+    }
+
+    override fun setAppConfig(config: PlaybackPlatformApi.AppConfig?) {
+        Log.d("bccm", "PlaybackPigeon: Setting appConfig");
+        mainScope.launch {
+            BccmPlayerPluginSingleton.appConfigState.update { config }
         }
     }
 
@@ -121,7 +131,8 @@ class PlaybackApiImpl(private val plugin: BccmPlayerPlugin) : PlaybackPlatformAp
     }
 
     override fun openExpandedCastController() {
-
+        val intent = Intent(BccmPlayerPluginSingleton.activityState.value, ExpandedControllerActivity::class.java)
+        BccmPlayerPluginSingleton.activityState.value?.startActivity(intent)
     }
 
     override fun openCastDialog() {

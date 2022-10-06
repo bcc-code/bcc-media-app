@@ -107,7 +107,7 @@ class _MiniPlayer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 60,
+      height: 62,
       color: const Color(0xff1d2838),
       padding: const EdgeInsets.symmetric(
         horizontal: 16,
@@ -116,7 +116,7 @@ class _MiniPlayer extends StatelessWidget {
       child: Row(
         mainAxisSize: MainAxisSize.min,
         mainAxisAlignment: MainAxisAlignment.start,
-        crossAxisAlignment: CrossAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Container(
             margin: const EdgeInsets.only(right: 16),

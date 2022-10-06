@@ -73,4 +73,8 @@ abstract class PlaybackPlatformInterface extends PlatformInterface {
   void setNpawConfig(NpawConfig? config) {
     throw UnimplementedError('setNpawConfig() has not been implemented.');
   }
+
+  void setAppConfig(AppConfig? config) {
+    throw UnimplementedError('setAppConfig() has not been implemented.');
+  }
 }

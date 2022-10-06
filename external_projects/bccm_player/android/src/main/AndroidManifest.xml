@@ -12,6 +12,17 @@
             android:excludeFromRecents="true"
             android:supportsPictureInPicture="true"
             />
+        <activity
+            android:name="com.google.android.gms.cast.framework.media.widget.ExpandedControllerActivity"
+            android:label="Cast"
+            android:launchMode="singleTask"
+            android:theme="@style/ThemeOverlay.MediaRouter.Dark"
+            android:exported="true"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>

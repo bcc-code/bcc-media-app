@@ -1,4 +1,5 @@
 import 'package:bccm_player/playback_platform_pigeon.g.dart';
+import 'package:brunstadtv_app/providers/settings_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -50,6 +51,8 @@ void main() async {
         appName: 'mobile',
         appReleaseVersion: '4.0.0-alpha'));
   }
+
+  providerContainer.read(settingsServiceProvider.notifier).load();
 
   runApp(UncontrolledProviderScope(
     container: providerContainer,

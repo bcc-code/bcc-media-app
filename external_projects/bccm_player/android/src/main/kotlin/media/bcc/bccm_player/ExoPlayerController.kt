@@ -76,6 +76,8 @@ class ExoPlayerController(private val context: Context) : PlayerController(), Pl
         youboraPlugin.adapter = adapter;
         player.addListener(this)
 
+        val appConfigState = handleUpdatedAppConfig(BccmPlayerPluginSingleton.appConfigState.value);
+
         mainScope.launch {
             BccmPlayerPluginSingleton.userState.collect() {
                 user ->
@@ -87,10 +89,20 @@ class ExoPlayerController(private val context: Context) : PlayerController(), Pl
             BccmPlayerPluginSingleton.npawConfigState.collectLatest { setBasicYouboraOptions(youboraPlugin.options, it) }
         }
         mainScope.launch {
+            BccmPlayerPluginSingleton.appConfigState.collectLatest { handleUpdatedAppConfig(it) }
+        }
+        mainScope.launch {
             BccmPlayerPluginSingleton.eventBus.filter { event -> event is AttachedToActivityEvent}.collect {
                 event -> BccmPlayerPluginSingleton.activityState.update { (event as AttachedToActivityEvent).activity }
             }
         }
+    }
+
+    private fun handleUpdatedAppConfig(appConfigState: PlaybackPlatformApi.AppConfig?) {
+        Log.d("bccm", "setting preferred audio and sub lang to: ${appConfigState?.audioLanguage}, ${appConfigState?.subtitleLanguage}")
+        player.trackSelectionParameters = trackSelector.parameters.buildUpon()
+                .setPreferredAudioLanguage(appConfigState?.audioLanguage)
+                .setPreferredTextLanguage(appConfigState?.subtitleLanguage).build()
     }
 
     private fun setBasicYouboraOptions(options: Options, config: PlaybackPlatformApi.NpawConfig?) {
@@ -104,7 +116,7 @@ class ExoPlayerController(private val context: Context) : PlayerController(), Pl
         return exoPlayer;
     }
 
-    fun setRendererDisabled(isDisabled: Boolean) {
+    private fun setRendererDisabled(isDisabled: Boolean) {
         var indexOfVideoRenderer = -1
 
         exoPlayer?.let {

@@ -3,6 +3,7 @@
 import 'dart:async';
 
 import 'package:auto_route/auto_route.dart';
+import 'package:bccm_player/playback_service_interface.dart';
 import 'package:flutter/material.dart';
 import 'package:bccm_player/bccm_player.dart';
 import 'package:flutter/scheduler.dart';
@@ -107,7 +108,9 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen> {
   @override
   Widget build(BuildContext context) {
     final casting = ref.watch(isCasting);
-    final player = ref.watch(primaryPlayerProvider);
+    var player = casting
+        ? ref.watch(castPlayerProvider)
+        : ref.watch(primaryPlayerProvider);
     final primaryPlayerId = player!.playerId;
     final playerCurrentIsThisEpisode =
         player.currentMediaItem?.metadata?.extras?['id'] == widget.episodeId;
@@ -150,8 +153,8 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen> {
                           : AspectRatio(
                               aspectRatio: 16 / 9,
                               child: episode == null
-                                  ? Center(
-                                      child: const SizedBox(
+                                  ? const Center(
+                                      child: SizedBox(
                                           height: 40,
                                           width: 40,
                                           child: CircularProgressIndicator()),
@@ -207,7 +210,7 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen> {
                     width: 200,
                     height: 400,
                     child: Padding(
-                        padding: EdgeInsets.all(10),
+                        padding: const EdgeInsets.all(10),
                         child: Container(color: Colors.red)))),
           )
         ],
@@ -217,6 +220,13 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen> {
 
   Widget _player(bool displayPlayer, bool casting, String primaryPlayerId) {
     if (displayPlayer) {
+      if (casting) {
+        return ElevatedButton(
+            onPressed: () {
+              PlaybackPlatformInterface.instance.openExpandedCastController();
+            },
+            child: const Text('open'));
+      }
       return BccmPlayer(
           type: widget.playerType,
           id: casting ? 'chromecast' : primaryPlayerId);

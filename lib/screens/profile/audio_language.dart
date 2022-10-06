@@ -1,14 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../components/option_list.dart';
+import '../../providers/settings_service.dart';
 
-class AppAudioLanguage extends StatefulWidget {
+class AppAudioLanguage extends ConsumerStatefulWidget {
   const AppAudioLanguage({super.key});
 
   @override
-  State<AppAudioLanguage> createState() => _AppAudioLanguageState();
+  ConsumerState<AppAudioLanguage> createState() => _AppAudioLanguageState();
 }
 
-class _AppAudioLanguageState extends State<AppAudioLanguage> {
+class _AppAudioLanguageState extends ConsumerState<AppAudioLanguage> {
   var languageList = [
     Option(
       id: 'afr',
@@ -62,6 +64,13 @@ class _AppAudioLanguageState extends State<AppAudioLanguage> {
     setState(() {
       selected = id;
     });
+    ref.read(settingsServiceProvider.notifier).setAudioLanguage(id);
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    selected = ref.read(settingsServiceProvider).audioLanguage ?? 'no';
   }
 
   @override

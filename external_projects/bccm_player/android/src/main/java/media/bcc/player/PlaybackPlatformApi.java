@@ -99,6 +99,69 @@ public class PlaybackPlatformApi {
   }
 
   /** Generated class from Pigeon that represents data sent in messages. */
+  public static class AppConfig {
+    private @Nullable String appLanguage;
+    public @Nullable String getAppLanguage() { return appLanguage; }
+    public void setAppLanguage(@Nullable String setterArg) {
+      this.appLanguage = setterArg;
+    }
+
+    private @Nullable String audioLanguage;
+    public @Nullable String getAudioLanguage() { return audioLanguage; }
+    public void setAudioLanguage(@Nullable String setterArg) {
+      this.audioLanguage = setterArg;
+    }
+
+    private @Nullable String subtitleLanguage;
+    public @Nullable String getSubtitleLanguage() { return subtitleLanguage; }
+    public void setSubtitleLanguage(@Nullable String setterArg) {
+      this.subtitleLanguage = setterArg;
+    }
+
+    public static final class Builder {
+      private @Nullable String appLanguage;
+      public @NonNull Builder setAppLanguage(@Nullable String setterArg) {
+        this.appLanguage = setterArg;
+        return this;
+      }
+      private @Nullable String audioLanguage;
+      public @NonNull Builder setAudioLanguage(@Nullable String setterArg) {
+        this.audioLanguage = setterArg;
+        return this;
+      }
+      private @Nullable String subtitleLanguage;
+      public @NonNull Builder setSubtitleLanguage(@Nullable String setterArg) {
+        this.subtitleLanguage = setterArg;
+        return this;
+      }
+      public @NonNull AppConfig build() {
+        AppConfig pigeonReturn = new AppConfig();
+        pigeonReturn.setAppLanguage(appLanguage);
+        pigeonReturn.setAudioLanguage(audioLanguage);
+        pigeonReturn.setSubtitleLanguage(subtitleLanguage);
+        return pigeonReturn;
+      }
+    }
+    @NonNull Map<String, Object> toMap() {
+      Map<String, Object> toMapResult = new HashMap<>();
+      toMapResult.put("appLanguage", appLanguage);
+      toMapResult.put("audioLanguage", audioLanguage);
+      toMapResult.put("subtitleLanguage", subtitleLanguage);
+      return toMapResult;
+    }
+    static @NonNull AppConfig fromMap(@NonNull Map<String, Object> map) {
+      AppConfig pigeonResult = new AppConfig();
+      Object appLanguage = map.get("appLanguage");
+      pigeonResult.setAppLanguage((String)appLanguage);
+      Object audioLanguage = map.get("audioLanguage");
+      pigeonResult.setAudioLanguage((String)audioLanguage);
+      Object subtitleLanguage = map.get("subtitleLanguage");
+      pigeonResult.setSubtitleLanguage((String)subtitleLanguage);
+      return pigeonResult;
+    }
+  }
+
+  /** Generated class from Pigeon that represents data sent in messages. */
   public static class User {
     private @Nullable String id;
     public @Nullable String getId() { return id; }
@@ -589,18 +652,21 @@ public class PlaybackPlatformApi {
     protected Object readValueOfType(byte type, ByteBuffer buffer) {
       switch (type) {
         case (byte)128:         
-          return ChromecastState.fromMap((Map<String, Object>) readValue(buffer));
+          return AppConfig.fromMap((Map<String, Object>) readValue(buffer));
         
         case (byte)129:         
-          return MediaItem.fromMap((Map<String, Object>) readValue(buffer));
+          return ChromecastState.fromMap((Map<String, Object>) readValue(buffer));
         
         case (byte)130:         
-          return MediaMetadata.fromMap((Map<String, Object>) readValue(buffer));
+          return MediaItem.fromMap((Map<String, Object>) readValue(buffer));
         
         case (byte)131:         
-          return NpawConfig.fromMap((Map<String, Object>) readValue(buffer));
+          return MediaMetadata.fromMap((Map<String, Object>) readValue(buffer));
         
         case (byte)132:         
+          return NpawConfig.fromMap((Map<String, Object>) readValue(buffer));
+        
+        case (byte)133:         
           return User.fromMap((Map<String, Object>) readValue(buffer));
         
         default:        
@@ -610,24 +676,28 @@ public class PlaybackPlatformApi {
     }
     @Override
     protected void writeValue(ByteArrayOutputStream stream, Object value)     {
-      if (value instanceof ChromecastState) {
+      if (value instanceof AppConfig) {
         stream.write(128);
+        writeValue(stream, ((AppConfig) value).toMap());
+      } else 
+      if (value instanceof ChromecastState) {
+        stream.write(129);
         writeValue(stream, ((ChromecastState) value).toMap());
       } else 
       if (value instanceof MediaItem) {
-        stream.write(129);
+        stream.write(130);
         writeValue(stream, ((MediaItem) value).toMap());
       } else 
       if (value instanceof MediaMetadata) {
-        stream.write(130);
+        stream.write(131);
         writeValue(stream, ((MediaMetadata) value).toMap());
       } else 
       if (value instanceof NpawConfig) {
-        stream.write(131);
+        stream.write(132);
         writeValue(stream, ((NpawConfig) value).toMap());
       } else 
       if (value instanceof User) {
-        stream.write(132);
+        stream.write(133);
         writeValue(stream, ((User) value).toMap());
       } else 
 {
@@ -647,6 +717,7 @@ public class PlaybackPlatformApi {
     void stop(@NonNull String playerId, @NonNull Boolean reset);
     void setUser(@Nullable User user);
     void setNpawConfig(@Nullable NpawConfig config);
+    void setAppConfig(@Nullable AppConfig config);
     void getChromecastState(Result<ChromecastState> result);
     void openExpandedCastController();
     void openCastDialog();
@@ -908,6 +979,27 @@ public class PlaybackPlatformApi {
               ArrayList<Object> args = (ArrayList<Object>)message;
               NpawConfig configArg = (NpawConfig)args.get(0);
               api.setNpawConfig(configArg);
+              wrapped.put("result", null);
+            }
+            catch (Error | RuntimeException exception) {
+              wrapped.put("error", wrapError(exception));
+            }
+            reply.reply(wrapped);
+          });
+        } else {
+          channel.setMessageHandler(null);
+        }
+      }
+      {
+        BasicMessageChannel<Object> channel =
+            new BasicMessageChannel<>(binaryMessenger, "dev.flutter.pigeon.PlaybackPlatformPigeon.setAppConfig", getCodec());
+        if (api != null) {
+          channel.setMessageHandler((message, reply) -> {
+            Map<String, Object> wrapped = new HashMap<>();
+            try {
+              ArrayList<Object> args = (ArrayList<Object>)message;
+              AppConfig configArg = (AppConfig)args.get(0);
+              api.setAppConfig(configArg);
               wrapped.put("result", null);
             }
             catch (Error | RuntimeException exception) {
