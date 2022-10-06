@@ -1,7 +1,9 @@
+import 'package:brunstadtv_app/components/page/episode_duration.dart';
+import 'package:brunstadtv_app/components/page/seen.dart';
 import 'package:flutter/material.dart';
 
 import '../horizontal_slider.dart';
-import '../inner_bordered_image.dart';
+import '../bordered_image_container.dart';
 
 class Favourites extends StatelessWidget {
   final dynamic data;
@@ -25,7 +27,7 @@ class Favourites extends StatelessWidget {
           ),
           HorizontalSlider(
             clipBehaviour: Clip.none,
-            items: (data['items'] as List<Map<String, String>>)
+            items: (data['items'] as List<Map<String, dynamic>>)
                 .map((item) => _Item(data: item))
                 .toList(),
           ),
@@ -36,7 +38,7 @@ class Favourites extends StatelessWidget {
 }
 
 class _Item extends StatelessWidget {
-  final Map<String, String> data;
+  final Map<String, dynamic> data;
 
   const _Item({super.key, required this.data});
 
@@ -48,10 +50,24 @@ class _Item extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          InnerBorderedImage(
+          BorderedImageContainer(
             height: 146,
             margin: const EdgeInsets.only(bottom: 4),
             image: NetworkImage(data['image']!),
+            child: Align(
+              alignment: Alignment.bottomCenter,
+              child: Container(
+                height: 12,
+                margin: const EdgeInsets.only(right: 4, bottom: 4, left: 4),
+                child: Row(
+                  children: [
+                    if (data['watched']) const Seen(),
+                    const Spacer(),
+                    EpisodeDuration(duration: data['duration']),
+                  ],
+                ),
+              ),
+            ),
           ),
           Container(
             margin: const EdgeInsets.only(bottom: 2),

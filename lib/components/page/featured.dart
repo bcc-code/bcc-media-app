@@ -94,35 +94,29 @@ class _GradientImage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Stack(children: [
-      Container(
-        height: height,
-        width: double.infinity,
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(12),
-          color: const Color.fromRGBO(29, 40, 56, 1),
-          image: DecorationImage(
-            fit: BoxFit.cover,
-            image: NetworkImage(image),
-          ),
+    return Container(
+      height: height,
+      width: double.infinity,
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(12),
+        color: const Color.fromRGBO(29, 40, 56, 1),
+        image: DecorationImage(
+          fit: BoxFit.cover,
+          image: NetworkImage(image),
         ),
       ),
-      Container(
-        height: height,
-        width: double.infinity,
-        decoration: const BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
-            colors: [
-              Color.fromRGBO(13, 22, 35, 0.23),
-              Color.fromRGBO(26, 37, 53, 0),
-              Color.fromRGBO(13, 22, 35, 1),
-            ],
-            stops: [0, 0.5, 1],
-          ),
+      foregroundDecoration: const BoxDecoration(
+        gradient: LinearGradient(
+          begin: Alignment.topCenter,
+          end: Alignment.bottomCenter,
+          colors: [
+            Color.fromRGBO(13, 22, 35, 0.23),
+            Color.fromRGBO(26, 37, 53, 0),
+            Color.fromRGBO(13, 22, 35, 1),
+          ],
+          stops: [0, 0.5, 1],
         ),
       ),
-    ]);
+    );
   }
 }

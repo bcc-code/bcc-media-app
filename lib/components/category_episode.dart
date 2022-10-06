@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'inner_bordered_image.dart';
+import 'bordered_image_container.dart';
 
 class CategoryEpisode extends StatelessWidget {
   EdgeInsetsGeometry margin;
@@ -19,7 +19,7 @@ class CategoryEpisode extends StatelessWidget {
         children: [
           LayoutBuilder(
             builder: (context, constraints) {
-              return InnerBorderedImage(
+              return BorderedImageContainer(
                 height: constraints.maxWidth * (9 / 16),
                 margin: const EdgeInsets.only(bottom: 4),
                 image: episode['image'] != null

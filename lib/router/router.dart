@@ -6,7 +6,7 @@ import 'package:brunstadtv_app/screens/profile/subtitle_language.dart';
 import 'package:brunstadtv_app/screens/profile/video_quality.dart';
 import 'package:brunstadtv_app/screens/profile/contact_support.dart';
 import 'package:brunstadtv_app/screens/profile/faq.dart';
-import 'package:brunstadtv_app/screens/home.dart';
+import 'package:brunstadtv_app/screens/home/home.dart';
 import 'package:brunstadtv_app/screens/live.dart';
 import 'package:brunstadtv_app/screens/login.dart';
 import 'package:brunstadtv_app/screens/profile/profile.dart';

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../graphql/queries/search.graphql.dart';
-import 'inner_bordered_image.dart';
+import 'bordered_image_container.dart';
 
 class EpisodeList extends StatelessWidget {
   final String title;
@@ -50,7 +50,7 @@ class _Episode extends StatelessWidget {
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          InnerBorderedImage(
+          BorderedImageContainer(
             width: 128,
             height: 128 * (9 / 16),
             margin: const EdgeInsets.only(right: 16),

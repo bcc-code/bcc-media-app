@@ -1,19 +1,21 @@
 import 'package:flutter/material.dart';
 
-class InnerBorderedImage extends StatelessWidget {
+class BorderedImageContainer extends StatelessWidget {
   final ImageProvider<Object>? image;
   final double height;
   final double width;
   final EdgeInsetsGeometry margin;
   final EdgeInsetsGeometry padding;
+  final Widget? child;
 
-  const InnerBorderedImage({
+  const BorderedImageContainer({
     super.key,
     this.image,
     this.width = double.infinity,
     this.height = double.infinity,
     this.margin = EdgeInsets.zero,
     this.padding = EdgeInsets.zero,
+    this.child,
   });
 
   @override
@@ -36,6 +38,7 @@ class InnerBorderedImage extends StatelessWidget {
           color: const Color.fromRGBO(255, 255, 255, 0.1),
         ),
       ),
+      child: child,
     );
   }
 }

@@ -16,7 +16,7 @@ import 'package:flutter/material.dart' as _i16;
 
 import '../providers/fun.dart' as _i18;
 import '../screens/episode.dart' as _i9;
-import '../screens/home.dart' as _i11;
+import '../screens/home/home.dart' as _i11;
 import '../screens/live.dart' as _i12;
 import '../screens/login.dart' as _i1;
 import '../screens/profile/app_language.dart' as _i3;

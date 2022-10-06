@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../horizontal_slider.dart';
-import '../inner_bordered_image.dart';
+import '../bordered_image_container.dart';
 
 class ContinueWatching extends StatelessWidget {
   final dynamic data;
@@ -51,10 +51,20 @@ class _Item extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          InnerBorderedImage(
-            height: imageHeight,
-            margin: const EdgeInsets.only(bottom: 4),
-            image: NetworkImage(data['image']!),
+          Stack(
+            children: [
+              BorderedImageContainer(
+                height: imageHeight,
+                margin: const EdgeInsets.only(bottom: 4),
+                image: NetworkImage(data['image']!),
+                child: Container(
+                  alignment: Alignment.bottomCenter,
+                  margin: const EdgeInsets.only(right: 4, bottom: 4, left: 4),
+                  child: _WatchProgressIndicator(
+                      totalDuration: 100, watchedDuration: 30),
+                ),
+              ),
+            ],
           ),
           Container(
             margin: const EdgeInsets.only(bottom: 2),
@@ -87,8 +97,75 @@ class _Item extends StatelessWidget {
               ],
             ),
           ),
-          Text(data['episode'],
-              style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w500))
+          Text(
+            data['episode'],
+            overflow: TextOverflow.ellipsis,
+            maxLines: 2,
+            style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w500),
+          )
+        ],
+      ),
+    );
+  }
+}
+
+class _WatchProgressIndicator extends StatelessWidget {
+  final double totalDuration;
+  final double watchedDuration;
+  final double watchedFraction;
+  String watchedTime = '4:32';
+
+  _WatchProgressIndicator({
+    required this.totalDuration,
+    required this.watchedDuration,
+  }) : watchedFraction = watchedDuration / totalDuration;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      height: 12,
+      decoration: BoxDecoration(
+        color: const Color.fromRGBO(13, 22, 35, 0.7),
+        borderRadius: BorderRadius.circular(2),
+      ),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Expanded(
+            child: Container(
+              margin: const EdgeInsets.all(4),
+              child: Stack(
+                children: [
+                  Container(
+                    decoration: BoxDecoration(
+                      color: const Color.fromRGBO(204, 221, 255, 0.1),
+                      borderRadius: BorderRadius.circular(4),
+                    ),
+                  ),
+                  FractionallySizedBox(
+                    widthFactor: watchedFraction,
+                    child: Container(
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(4),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+          Container(
+            margin: const EdgeInsets.only(right: 4),
+            child: const Text(
+              '4:32',
+              style: TextStyle(
+                fontSize: 11,
+                fontWeight: FontWeight.w500,
+                height: 1,
+              ),
+            ),
+          )
         ],
       ),
     );

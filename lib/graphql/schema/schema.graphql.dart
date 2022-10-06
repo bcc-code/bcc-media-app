@@ -79,15 +79,21 @@ Enum$StreamType fromJson$Enum$StreamType(String value) {
 }
 
 const possibleTypesMap = {
+  'CalendarEntry': {
+    'SimpleCalendarEntry',
+    'EpisodeCalendarEntry',
+    'SeasonCalendarEntry',
+    'ShowCalendarEntry',
+  },
   'Pagination': {
+    'QuestionPagination',
+    'FAQCategoryPagination',
     'PagePagination',
     'SectionPagination',
     'CollectionItemPagination',
     'ShowPagination',
     'SeasonPagination',
     'EpisodePagination',
-    'QuestionPagination',
-    'FAQCategoryPagination',
   },
   'Section': {'ItemSection'},
   'Item': {
@@ -101,11 +107,5 @@ const possibleTypesMap = {
     'EpisodeSearchItem',
     'SeasonSearchItem',
     'ShowSearchItem',
-  },
-  'CalendarEntry': {
-    'SimpleCalendarEntry',
-    'EpisodeCalendarEntry',
-    'SeasonCalendarEntry',
-    'ShowCalendarEntry',
   },
 };

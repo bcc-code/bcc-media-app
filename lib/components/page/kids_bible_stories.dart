@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../horizontal_slider.dart';
-import '../inner_bordered_image.dart';
+import '../bordered_image_container.dart';
 
 class KidsBibleStories extends StatelessWidget {
   final dynamic data;
@@ -48,7 +48,7 @@ class _Item extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          InnerBorderedImage(
+          BorderedImageContainer(
             height: 208,
             margin: const EdgeInsets.only(bottom: 4),
             image: NetworkImage(data['image']!),

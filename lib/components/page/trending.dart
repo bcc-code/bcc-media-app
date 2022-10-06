@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 
 import '../horizontal_slider.dart';
-import '../inner_bordered_image.dart';
+import '../bordered_image_container.dart';
+import 'episode_duration.dart';
+import 'seen.dart';
 
 class Trending extends StatelessWidget {
   final dynamic data;
@@ -59,10 +61,24 @@ class _NewItem extends StatelessWidget {
         children: [
           _Chipped(
             chipLabel: 'New',
-            child: InnerBorderedImage(
+            child: BorderedImageContainer(
               height: 80,
               margin: const EdgeInsets.only(bottom: 4),
               image: NetworkImage(data['image']!),
+              child: Align(
+                alignment: Alignment.bottomCenter,
+                child: Container(
+                  height: 12,
+                  margin: const EdgeInsets.only(right: 4, bottom: 4, left: 4),
+                  child: Row(
+                    children: [
+                      if (data['watched']) const Seen(),
+                      const Spacer(),
+                      EpisodeDuration(duration: data['duration']),
+                    ],
+                  ),
+                ),
+              ),
             ),
           ),
           Container(
@@ -121,7 +137,7 @@ class _NewEpisodesItem extends StatelessWidget {
         children: [
           _Chipped(
             chipLabel: 'New Episodes',
-            child: InnerBorderedImage(
+            child: BorderedImageContainer(
               height: 80,
               margin: const EdgeInsets.only(bottom: 4),
               image: NetworkImage(data['image']!),
@@ -161,10 +177,24 @@ class _NormalItem extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          InnerBorderedImage(
+          BorderedImageContainer(
             height: 80,
             margin: const EdgeInsets.only(bottom: 4),
             image: NetworkImage(data['image']!),
+            child: Align(
+              alignment: Alignment.bottomCenter,
+              child: Container(
+                height: 12,
+                margin: const EdgeInsets.only(right: 4, bottom: 4, left: 4),
+                child: Row(
+                  children: [
+                    if (data['watched']) const Seen(),
+                    const Spacer(),
+                    EpisodeDuration(duration: data['duration']),
+                  ],
+                ),
+              ),
+            ),
           ),
           Container(
             margin: const EdgeInsets.only(bottom: 2),

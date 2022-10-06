@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:brunstadtv_app/graphql/queries/search.graphql.dart';
 
 import 'horizontal_slider.dart';
-import 'inner_bordered_image.dart';
+import 'bordered_image_container.dart';
 
 class ResultProgramsList extends StatelessWidget {
   final String title;
@@ -51,7 +51,7 @@ class _Program extends StatelessWidget {
         children: [
           AspectRatio(
             aspectRatio: 16 / 9,
-            child: InnerBorderedImage(
+            child: BorderedImageContainer(
               margin: const EdgeInsets.only(right: 16, bottom: 7),
               image: _item.image != null ? NetworkImage(_item.image!) : null,
             ),
