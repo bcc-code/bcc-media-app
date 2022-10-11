@@ -3,7 +3,6 @@ package media.bcc.bccm_player
 import android.content.Intent
 import android.util.Log
 import androidx.core.content.ContextCompat.startActivity
-import com.google.android.gms.cast.framework.media.widget.ExpandedControllerActivity
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
@@ -131,7 +130,7 @@ class PlaybackApiImpl(private val plugin: BccmPlayerPlugin) : PlaybackPlatformAp
     }
 
     override fun openExpandedCastController() {
-        val intent = Intent(BccmPlayerPluginSingleton.activityState.value, ExpandedControllerActivity::class.java)
+        val intent = Intent(BccmPlayerPluginSingleton.activityState.value, CastExpandedControlsActivity::class.java)
         BccmPlayerPluginSingleton.activityState.value?.startActivity(intent)
     }
 

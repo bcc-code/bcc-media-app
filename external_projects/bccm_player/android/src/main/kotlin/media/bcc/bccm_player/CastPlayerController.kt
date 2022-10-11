@@ -192,9 +192,10 @@ class CastPlayerController(
             event.setPlaybackPositionMs(currentPosition);
         }
         chromecastListenerPigeon.onCastSessionUnavailable(event.build()) {};
-        /* Log.d("Bccm", "Session unavailable. Transferring state from castPlayer to primaryPlayer");
-         val primaryPlayer = plugin.getPlaybackService()?.getPrimaryController()?.getPlayer() ?: throw Error("PlaybackService not active");
-         transferState(castPlayer, primaryPlayer);*/
+/*
+        Log.d("Bccm", "Session unavailable. Transferring state from castPlayer to primaryPlayer");
+         val primaryPlayer = plugin.getPlaybackService()?.getPrimaryController()?.player ?: throw Error("PlaybackService not active");
+         transferState(primaryPlayer, castPlayer);*/
     }
 
     // Extra
