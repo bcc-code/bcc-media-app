@@ -71,9 +71,7 @@ abstract class PlayerController() : Player.Listener {
         val miBuilder = MediaItem.Builder()
                 .setUri(mediaItem.url)
                 .setMediaMetadata(metaBuilder.build());
-        if (mediaItem.mimeType != null) {
-            miBuilder.setMimeType(mediaItem.mimeType);
-        }
+        miBuilder.setMimeType(mediaItem.mimeType ?: "application/x-mpegURL");
         return miBuilder.build()
     }
 

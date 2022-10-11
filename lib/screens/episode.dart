@@ -220,13 +220,13 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen> {
 
   Widget _player(bool displayPlayer, bool casting, String primaryPlayerId) {
     if (displayPlayer) {
-      if (casting) {
+      /* if (casting) {
         return ElevatedButton(
             onPressed: () {
               PlaybackPlatformInterface.instance.openExpandedCastController();
             },
             child: const Text('open'));
-      }
+      } */
       return BccmPlayer(
           type: widget.playerType,
           id: casting ? 'chromecast' : primaryPlayerId);

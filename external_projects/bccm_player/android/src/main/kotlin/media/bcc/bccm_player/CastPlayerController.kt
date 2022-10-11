@@ -13,6 +13,11 @@ import com.google.android.gms.cast.framework.CastContext
 import com.google.android.gms.cast.framework.Session
 import com.google.android.gms.cast.framework.SessionManagerListener
 import com.google.android.gms.common.images.WebImage
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.SupervisorJob
+import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.launch
 import media.bcc.player.ChromecastControllerPigeon
 import media.bcc.player.PlaybackPlatformApi
 import org.json.JSONObject
@@ -24,6 +29,9 @@ class CastPlayerController(
         private val plugin: BccmPlayerPlugin)
     : PlayerController(), SessionManagerListener<Session>, SessionAvailabilityListener {
     override val player = CastPlayer(castContext, CustomConverter())
+    private val mainScope = CoroutineScope(Dispatchers.Main + SupervisorJob())
+
+    data class CastCustomData(val audioTracks: List<String>, val subtitlesTracks: List<String>)
 
     class CustomConverter : MediaItemConverter {
         override fun toMediaItem(item: MediaQueueItem): MediaItem {
@@ -69,10 +77,27 @@ class CastPlayerController(
             }
             val contentUrl = mediaItem.localConfiguration!!.uri.toString()
             val contentId = if (mediaItem.mediaId == MediaItem.DEFAULT_MEDIA_ID) contentUrl else mediaItem.mediaId
+
+            val appConfig = BccmPlayerPluginSingleton.appConfigState.value
+            val audioTracks = mutableListOf<String>()
+            val subtitlesTracks = mutableListOf<String>()
+            appConfig?.audioLanguage?.let {
+                audioTracks.add(it)
+            }
+            appConfig?.subtitleLanguage?.let {
+                subtitlesTracks.add(it)
+            }
+            val customData = mapOf(
+                    "audioTracks" to audioTracks,
+                    "subtitlesTracks" to subtitlesTracks)
+
+            Log.d("bccm", "this is the customdata: $customData")
+
             val mediaInfo = MediaInfo.Builder(contentId)
                     .setStreamType(MediaInfo.STREAM_TYPE_BUFFERED)
                     .setContentType(mediaItem.localConfiguration!!.mimeType!!)
                     .setContentUrl(contentUrl)
+                    .setCustomData(JSONObject(customData))
                     .setMetadata(metadata)
                     .build()
             return MediaQueueItem.Builder(mediaInfo).build()
@@ -91,6 +116,9 @@ class CastPlayerController(
 
         player.setSessionAvailabilityListener(this)
         player.addListener(PlayerListener(this, plugin))
+        mainScope.launch {
+            BccmPlayerPluginSingleton.appConfigState.collectLatest { handleUpdatedAppConfig(it) }
+        }
     }
 
     fun getState(): PlaybackPlatformApi.ChromecastState {
@@ -99,6 +127,7 @@ class CastPlayerController(
 
     private fun handleUpdatedAppConfig(appConfigState: PlaybackPlatformApi.AppConfig?) {
         Log.d("bccm", "setting preferred audio and sub lang to: ${appConfigState?.audioLanguage}, ${appConfigState?.subtitleLanguage}")
+
        /* player.trackSelectionParameters = trackSelector.parameters.buildUpon()
                 .setPreferredAudioLanguage(appConfigState?.audioLanguage)
                 .setPreferredTextLanguage(appConfigState?.subtitleLanguage).build()

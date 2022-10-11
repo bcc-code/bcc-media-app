@@ -13,10 +13,10 @@
             android:supportsPictureInPicture="true"
             />
         <activity
-            android:name="com.google.android.gms.cast.framework.media.widget.ExpandedControllerActivity"
+            android:name=".CastExpandedControlsActivity"
             android:label="Cast"
             android:launchMode="singleTask"
-            android:theme="@style/ThemeOverlay.MediaRouter.Dark"
+            android:theme="@style/Theme.AppCompat.NoActionBar"
             android:exported="true"
             android:screenOrientation="portrait">
             <intent-filter>
