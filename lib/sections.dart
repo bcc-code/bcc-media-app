@@ -16,10 +16,10 @@ import 'components/horizontal_slider.dart';
 import 'api/brunstadtv.dart';
 
 class ItemSection extends StatelessWidget {
-  final String title;
+  final String? title;
   final List<Widget> items;
 
-  const ItemSection({Key? key, required this.title, required this.items})
+  const ItemSection({Key? key, this.title, required this.items})
       : super(key: key);
 
   @override
@@ -29,13 +29,14 @@ class ItemSection extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Padding(
-            padding: const EdgeInsets.only(bottom: 10),
-            child: Text(
-              style: Theme.of(context).textTheme.headlineMedium,
-              title,
+          if (title != null)
+            Padding(
+              padding: const EdgeInsets.only(bottom: 10),
+              child: Text(
+                style: Theme.of(context).textTheme.headlineMedium,
+                title!,
+              ),
             ),
-          ),
           HorizontalSlider(items: items),
         ],
       ),
@@ -45,7 +46,7 @@ class ItemSection extends StatelessWidget {
   factory ItemSection.fromSection(
       BuildContext context, Fragment$ItemSection section, WidgetRef ref) {
     var items = section.items.items
-        .whereType<Fragment$ItemSectionItem$$EpisodeItem>()
+        .where((i) => i.item is Fragment$ItemSectionItem$item$$Episode)
         .map((si) {
       var item = Item.fromSectionItem(si);
       return ItemWidget(
@@ -108,7 +109,7 @@ class Item {
 
   factory Item.fromSectionItem(Fragment$ItemSectionItem sectionItem) {
     PageRouteInfo<dynamic> route;
-    if (sectionItem is Fragment$ItemSectionItem$$EpisodeItem) {
+    if (sectionItem.item is Fragment$ItemSectionItem$item$$Episode) {
       route = EpisodeScreenRoute(episodeId: sectionItem.id);
     } else {
       route = const HomeScreenRoute();
@@ -116,7 +117,7 @@ class Item {
     return Item(
         title: sectionItem.title,
         route: route,
-        imageUrl: sectionItem.imageUrl,
+        imageUrl: sectionItem.image,
         url: '/episode/${sectionItem.id}');
   }
 }

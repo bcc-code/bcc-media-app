@@ -1,12 +1,12 @@
 
 type Config {
     global(timestamp: String): GlobalConfig! @goField(forceResolver: true)
-    app(timestamp: String): AppConfig! @goField(forceResolver: true)
+#    app(timestamp: String): AppConfig! @goField(forceResolver: true)
 }
 
-type AppConfig {
-    minVersion: String!
-}
+#type AppConfig {
+#    minVersion: String!
+#}
 
 type GlobalConfig {
     liveOnline: Boolean!
