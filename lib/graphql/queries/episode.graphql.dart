@@ -1,3 +1,4 @@
+import '../schema/items.graphql.dart';
 import '../schema/schema.graphql.dart';
 import 'package:flutter/widgets.dart' as widgets;
 import 'package:gql/ast.dart';
