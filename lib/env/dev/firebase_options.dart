@@ -14,7 +14,7 @@ import 'package:flutter/foundation.dart'
 ///   options: DefaultFirebaseOptions.currentPlatform,
 /// );
 /// ```
-class DefaultFirebaseOptions {
+class DevFirebaseOptions {
   static FirebaseOptions get currentPlatform {
     if (kIsWeb) {
       throw UnsupportedError(
@@ -54,7 +54,7 @@ class DefaultFirebaseOptions {
 
   static const FirebaseOptions android = FirebaseOptions(
     apiKey: 'AIzaSyCf5FKg_ueLDlX1VxmEk-Y1reSQ-_NnVto',
-    appId: '1:16643555326:android:99169d3c04ae38184f8aaf',
+    appId: '1:16643555326:android:70b4c854c57f9c474f8aaf',
     messagingSenderId: '16643555326',
     projectId: 'btv-platform-dev-2',
     storageBucket: 'btv-platform-dev-2.appspot.com',

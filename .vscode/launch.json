@@ -9,6 +9,7 @@
             "request": "launch",
             "type": "dart",
             "cwd": "${workspaceFolder}",
+            "args": ["--flavor", "dev"],
             "program": "lib/main.dart"
         },
         {

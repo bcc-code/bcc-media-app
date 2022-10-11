@@ -79,7 +79,7 @@ android {
         }
         dev {
             dimension "env"
-            applicationId ".dev"
+            applicationIdSuffix ".dev"
             manifestPlaceholders = [appName: "DEV BrunstadTV v4"]
         }
     }

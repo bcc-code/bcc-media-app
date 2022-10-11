@@ -43,6 +43,42 @@
     },
     {
       "client_info": {
+        "mobilesdk_app_id": "1:16643555326:android:70b4c854c57f9c474f8aaf",
+        "android_client_info": {
+          "package_name": "tv.brunstad.app.dev"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "16643555326-cjl1ot2mrui3o5v5k7svitjbibdo0qlj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCf5FKg_ueLDlX1VxmEk-Y1reSQ-_NnVto"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "16643555326-cjl1ot2mrui3o5v5k7svitjbibdo0qlj.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "16643555326-l9g8700aq67a0j4gip5q0oojlaj7r9g6.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "tv.brunstad.app.v4"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
         "mobilesdk_app_id": "1:16643555326:android:99169d3c04ae38184f8aaf",
         "android_client_info": {
           "package_name": "tv.brunstadtv.app.dev"
