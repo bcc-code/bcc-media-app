@@ -3,6 +3,7 @@ directive @goField(forceResolver: Boolean, name: String) on INPUT_FIELD_DEFINITI
 
 schema{
   query: QueryRoot
+  mutation: MutationRoot
 }
 
 interface Pagination {
@@ -83,4 +84,12 @@ type QueryRoot{
   me: User!
 
   config: Config!
+
+  profiles: [Profile!]!
+  profile: Profile!
+}
+
+type MutationRoot {
+  setDevicePushToken(token: String!): Device
+#  createProfile(name: String!): Profile
 }

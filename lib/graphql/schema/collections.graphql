@@ -1,4 +1,4 @@
-interface Item {
+interface CollectionItem {
     id: ID!
     sort: Int!
     title: String!
@@ -10,10 +10,10 @@ type CollectionItemPagination implements Pagination {
     total: Int!
     first: Int!
     offset: Int!
-    items: [Item!]!
+    items: [CollectionItem!]!
 }
 
-type URLItem implements Item {
+type URLItem implements CollectionItem {
     id: ID!
     sort: Int!
     title: String!
@@ -22,7 +22,7 @@ type URLItem implements Item {
     url: String!
 }
 
-type ShowItem implements Item {
+type ShowItem implements CollectionItem {
     id: ID!
     sort: Int!
     title: String!
@@ -31,7 +31,7 @@ type ShowItem implements Item {
     show: Show!
 }
 
-type SeasonItem implements Item {
+type SeasonItem implements CollectionItem {
     id: ID!
     sort: Int!
     title: String!
@@ -40,7 +40,7 @@ type SeasonItem implements Item {
     season: Season!
 }
 
-type EpisodeItem implements Item {
+type EpisodeItem implements CollectionItem {
     id: ID!
     sort: Int!
     title: String!
@@ -49,7 +49,7 @@ type EpisodeItem implements Item {
     episode: Episode!
 }
 
-type PageItem implements Item {
+type PageItem implements CollectionItem {
     id: ID!
     sort: Int!
     title: String!

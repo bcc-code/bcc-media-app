@@ -126,6 +126,7 @@ type SectionItem {
     id: ID!
     sort: Int!
     title: String!
+    description: String!
     image: String
     item: SectionItemType
 }
