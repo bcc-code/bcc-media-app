@@ -14,6 +14,8 @@ import 'package:brunstadtv_app/screens/search/search.dart';
 
 import '../providers/fun.dart';
 import '../screens/episode.dart';
+import '../screens/home/explore_category_page.dart';
+import '../screens/home/explore_sub_category_page.dart';
 import '../screens/root.dart';
 import '../screens/search/explore_category_page.dart';
 
@@ -39,7 +41,19 @@ import '../screens/search/explore_category_page.dart';
       initial: true,
       guards: [AuthGuard],
       children: [
-        MaterialRoute<void>(page: HomeScreen, initial: true, path: 'home'),
+        MaterialRoute<void>(
+            name: 'HomeScreenWrapperRoute',
+            page: EmptyRouterPage,
+            initial: true,
+            path: 'home',
+            children: [
+              MaterialRoute<void>(page: HomeScreen, path: ''),
+              MaterialRoute<void>(
+                  page: HomeExploreCategoryScreen, path: 'explore-category'),
+              MaterialRoute<void>(
+                  page: HomeExploreSubCategoryScreen,
+                  path: 'explore-sub-category'),
+            ]),
         MaterialRoute<void>(
             page: LiveScreen,
             path: 'live',

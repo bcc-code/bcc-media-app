@@ -5,9 +5,8 @@ import '../bordered_image_container.dart';
 
 class ContinueWatching extends StatelessWidget {
   final dynamic data;
-  final bool small;
 
-  const ContinueWatching({super.key, required this.data, this.small = false});
+  const ContinueWatching({super.key, required this.data});
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +25,7 @@ class ContinueWatching extends StatelessWidget {
           ),
           HorizontalSlider(
             items: (data['items'] as List<Map<String, dynamic>>)
-                .map((item) => _Item(small: small, data: item))
+                .map((item) => _Item(small: data['small'], data: item))
                 .toList(),
           ),
         ],

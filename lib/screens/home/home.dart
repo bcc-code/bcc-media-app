@@ -1,10 +1,12 @@
-import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:brunstadtv_app/api/sliders.dart';
-import 'package:brunstadtv_app/router/router.gr.dart';
 
 import 'package:bccm_player/cast_button.dart';
+import '../../api/sliders.dart';
+import '../../router/router.gr.dart';
+import '../../components/general_app_bar.dart';
+import '../../components/icon_label_button.dart';
 import '../../components/page/page.dart';
 import '../../services/auth_service.dart';
 
@@ -27,34 +29,28 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final appBar = GeneralAppBar(
+      // statusBarHeight: MediaQuery.of(context).padding.top,
+      title: Image.asset('assets/icons/Logo.png'),
+      leftActions: [
+        IconLabelButton(
+          imagePath: 'assets/icons/Profile.png',
+          onPressed: () => context.router.push(const ProfileRoute()),
+        )
+      ],
+      rightActions: const [
+        SizedBox.square(dimension: 24, child: CastButton()),
+      ],
+    );
+
     return Scaffold(
-      appBar: PreferredSize(
-          preferredSize:
-              Size.fromHeight(30.0 + MediaQuery.of(context).padding.top),
-          child: SafeArea(
-            child: Stack(children: [
-              Align(
-                alignment: Alignment.centerLeft,
-                child: Padding(
-                  padding: const EdgeInsets.only(left: 16.0),
-                  child: ElevatedButton(
-                      onPressed: () {
-                        context.router.push(const ProfileRoute());
-                      },
-                      child: const Text('Profile')),
-                ),
-              ),
-              const Center(child: Text('BrunstadTV')),
-              const Align(
-                alignment: Alignment.topRight,
-                child: Padding(
-                  padding: EdgeInsets.only(right: 16.0),
-                  child: SizedBox(width: 40, child: CastButton()),
-                ),
-              ),
-            ]),
-          )),
-      body: BccmPage(code: 'frontpage'),
+      // extendBodyBehindAppBar: true,
+      appBar: appBar,
+      body: BccmPage(
+        code: 'frontpage',
+        // appbarOffset: appBar.preferredSize.height,
+        parentPageName: 'none',
+      ),
     );
   }
 }

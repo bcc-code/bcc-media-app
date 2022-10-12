@@ -1,6 +1,9 @@
-import 'package:brunstadtv_app/components/category_button.dart';
-import 'package:brunstadtv_app/components/horizontal_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:auto_route/auto_route.dart';
+
+import '../category_button.dart';
+import '../horizontal_slider.dart';
+import '../../router/router.gr.dart';
 
 class ExploreCategories extends StatelessWidget {
   final dynamic data;
@@ -26,10 +29,17 @@ class ExploreCategories extends StatelessWidget {
             items: (data['items'] as List<Map<String, String>>)
                 .map(
                   (item) => CategoryButton(
-                      label: item['label']!,
-                      imagePath: "assets/icons/${item['image']!}",
-                      width: 80,
-                      margin: const EdgeInsets.only(right: 16)),
+                    onTap: () {
+                      context.router.navigate(
+                        HomeExploreCategoryScreenRoute(
+                            category: item['label']!),
+                      );
+                    },
+                    label: item['label']!,
+                    imagePath: "assets/icons/${item['image']!}",
+                    width: 80,
+                    margin: const EdgeInsets.only(right: 16),
+                  ),
                 )
                 .toList(),
           ),

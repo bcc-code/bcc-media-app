@@ -3,7 +3,7 @@ import 'package:riverpod/riverpod.dart';
 
 class IconLabelButton extends StatelessWidget {
   final String? imagePath;
-  final String labelText;
+  final String? labelText;
   final VoidCallback onPressed;
   EdgeInsetsGeometry? padding = const EdgeInsets.all(0);
   double? borderRadius = 20;
@@ -16,8 +16,8 @@ class IconLabelButton extends StatelessWidget {
 
   IconLabelButton({
     super.key,
-    required this.labelText,
     required this.onPressed,
+    this.labelText,
     this.imagePath,
     /**
      * TODO: Figure out what the issue is when removing constructor initializers for following fields
@@ -45,6 +45,22 @@ class IconLabelButton extends StatelessWidget {
     labelFontSize = 18;
     border =
         Border.all(color: const Color.fromRGBO(204, 221, 255, 0.1), width: 1);
+    imageDimension = 20;
+  }
+
+  IconLabelButton.redSmall({
+    super.key,
+    required this.labelText,
+    required this.onPressed,
+    this.imagePath,
+  }) {
+    gap = imagePath != null ? 6 : 0;
+    padding = const EdgeInsets.only(top: 4, right: 12, bottom: 4, left: 14);
+    backgroundColor = const Color.fromRGBO(230, 60, 98, 1);
+    labelColor = const Color.fromRGBO(254, 254, 254, 1);
+    labelFontSize = 18;
+    border =
+        Border.all(color: const Color.fromRGBO(255, 255, 255, 0.2), width: 1);
     imageDimension = 20;
   }
 
@@ -86,14 +102,15 @@ class IconLabelButton extends StatelessWidget {
                 child: Image.asset(imagePath!,
                     width: imageDimension, height: imageDimension),
               ),
-            Text(
-              labelText,
-              style: TextStyle(
-                fontWeight: FontWeight.w700,
-                fontSize: labelFontSize,
-                color: labelColor!,
-              ),
-            )
+            if (labelText != null)
+              Text(
+                labelText!,
+                style: TextStyle(
+                  fontWeight: FontWeight.w700,
+                  fontSize: labelFontSize,
+                  color: labelColor!,
+                ),
+              )
           ],
         ),
       ),

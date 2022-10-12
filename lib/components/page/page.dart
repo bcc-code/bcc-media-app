@@ -1,6 +1,6 @@
-import 'package:brunstadtv_app/components/icon_label_button.dart';
 import 'package:flutter/material.dart';
 
+import '../icon_label_button.dart';
 import './featured.dart';
 import './explore_categories.dart';
 import './continue_watching.dart';
@@ -8,15 +8,23 @@ import './trending.dart';
 import './favourites.dart';
 import './error_message.dart';
 import './kids_bible_stories.dart';
+import 'category_chips.dart';
 
 class BccmPage extends StatelessWidget {
   final String code;
   final isLoading = false;
   final hasLoadingError = false;
+  // final double appbarOffset;
+  // TODO: Find a better way instead of passing parentPageName
+  final String parentPageName;
 
-  BccmPage({super.key, required this.code});
+  BccmPage(
+      {super.key,
+      required this.code,
+      // this.appbarOffset = 0,
+      required this.parentPageName});
 
-  final sections = [
+  final frontPageSections = [
     {
       'type': 'featured',
       'items': [
@@ -25,38 +33,43 @@ class BccmPage extends StatelessWidget {
           'title': 'Fem minutter hver dag',
           'subTitle':
               'Hva om du som er ung i dag bruker fem minutter av din tid hver dag, på noe som kan forandre deg som menneske?',
+          'live': true,
         },
         {
           'image': 'https://brunstadtv.imgix.net/nett_tv.jpg',
           'title': 'Hva venter Gud på?',
           'subTitle':
               'Jerusalem er igjen i jødenes hender, så hva venter Gud på? Og hvordan kan vi benytte tiden fram til Jesu gjenkomst?',
+          'live': false,
         },
         {
           'image': 'https://brunstadtv.imgix.net/BUK_SC22_nett.jpg',
           'title': 'Forventningens Ånd',
           'subTitle':
               'En unik kveld hvor vi får et innblikk i hvordan man kan leve i forventningens Ånd.',
+          'live': true,
         },
         {
           'image':
               'https://brunstadtv.imgix.net/poster-VX-423116-20-11-51-08web.jpg',
           'title': 'HEr jeg våken? Er jeg beredt?',
           'subTitle': 'Se tilbakeblikk på en uforglemmelig sommercamp',
+          'live': false,
         },
         {
           'image': 'https://brunstadtv.imgix.net/BIKI_20220805_nett.jpg',
           'title': '«Hør ham»',
           'subTitle':
               'Hvordan kan vi høre Guds stemme i vårt hjerte? En gripende musikal fra barnemøtet i sommer.',
+          'live': false,
         },
       ],
     },
-    {
-      'type': 'error',
-      'errorMessage':
-          'Live is down due to maintenance, please contact redaksjon@brunstad.tv if you have questions',
-    },
+    // {
+    //   'type': 'error',
+    //   'errorMessage':
+    //       'Live is down due to maintenance, please contact redaksjon@brunstad.tv if you have questions',
+    // },
     {
       'type': 'explore_categories',
       'title': 'Explore Categories',
@@ -90,6 +103,136 @@ class BccmPage extends StatelessWidget {
     {
       'type': 'continue_watching',
       'title': 'Continue Watching',
+      'small': false,
+      'items': [
+        {
+          'show': 'Bible Kids Live',
+          'episode': 'Hear Him Musical',
+          'image':
+              'https://brunstadtv.imgix.net/c2731b93-3df6-43a4-984c-4732a7e7ee25.jpg',
+          'watched': 30,
+        },
+        {
+          'show': 'BCC Sommerstevnet',
+          'episode': 'Møte 17. juli kl. 11:00',
+          'image':
+              'https://brunstadtv.imgix.net/1be1dfde-3498-4837-b86e-c92097844a2a.jpg',
+          'date': '05. Aug 2022',
+          'watched': 50,
+        },
+        {
+          'show': 'Magasinet',
+          'episode': 'The Future at Brunstad for the Youth',
+          'image': 'https://brunstadtv.imgix.net/2022-04-16.jpg',
+          'watched': 10,
+        },
+        {
+          'show': 'Intro',
+          'episode': 'HV 276 | Jeg er disippel hos Mesteren',
+          'image':
+              'https://brunstadtv.imgix.net/e14176d5-a533-4da2-a070-8a9b819ccc7f.jpg',
+          'date': '05. Aug 2022',
+          'watched': 90,
+        },
+      ]
+    },
+    {
+      'type': 'trending',
+      'title': 'Trending',
+      'items': [
+        {
+          'type': 'new',
+          'show': 'Fra Kåre',
+          'episode': 'Fem minutter hver dag',
+          'image':
+              'https://brunstadtv.imgix.net/0f8145be-dbe2-4046-b9e5-7fdab91c6e69.png',
+          'date': '12. Sept 2022',
+          'watched': true,
+          'duration': '1:30:30',
+        },
+        {
+          'type': 'new_episodes',
+          'show': 'Battle for the Church',
+          'image': 'https://brunstadtv.imgix.net/PAUL_S01_E04_MAS_NOR_N.jpg',
+          'episodesInfo': '2 Seasons - 12 Episodes'
+        },
+        {
+          'type': 'normal',
+          'show': 'Bibelutforskerne',
+          'episode': 'Noah - Gud gir de ydmyke nåde',
+          'image': 'https://brunstadtv.imgix.net/2022-04-16.jpg',
+          'watched': false,
+          'duration': '1:30:30',
+        },
+        {
+          'type': 'normal',
+          'show': 'Intro',
+          'episode': 'HV 276 | Jeg er disippel hos Mesteren',
+          'image':
+              'https://brunstadtv.imgix.net/e14176d5-a533-4da2-a070-8a9b819ccc7f.jpg',
+          'watched': true,
+          'duration': '1:30:30',
+        },
+      ]
+    },
+  ];
+
+  final exploreCategoriesSections = [
+    {
+      'type': 'categories',
+      'items': [
+        'For the little ones',
+        'Music videos',
+        'Sunday School',
+        'For the little ones',
+        'Music videos',
+        'Sunday School',
+      ]
+    },
+    {
+      'type': 'favourites',
+      'title': 'Favourites',
+      'items': [
+        {
+          'show': 'Intro',
+          'showInfo': '3 Seasons - 8 Episodes',
+          'episode': 'HV 276 | Jeg er disippel hos Mesteren',
+          'image':
+              'https://brunstadtv.imgix.net/e14176d5-a533-4da2-a070-8a9b819ccc7f.jpg',
+          'watched': true,
+          'duration': '1:30:30',
+        },
+        {
+          'show': 'Bibelutforskerne',
+          'showInfo': '3 Seasons - 8 Episodes',
+          'episode': 'Noah - Gud gir de ydmyke nåde',
+          'image': 'https://brunstadtv.imgix.net/2022-04-16.jpg',
+          'watched': false,
+          'duration': '1:30:30',
+        },
+        {
+          'show': 'Fra Kåre',
+          'showInfo': '3 Seasons - 8 Episodes',
+          'episode': 'Fem minutter hver dag',
+          'image':
+              'https://brunstadtv.imgix.net/0f8145be-dbe2-4046-b9e5-7fdab91c6e69.png',
+          'watched': true,
+          'duration': '1:30:30',
+        },
+        {
+          'show': 'Battle for the Church',
+          'showInfo': '2 Seasons - 12 Episodes',
+          'episode': 'Episode 4',
+          'image': 'https://brunstadtv.imgix.net/PAUL_S01_E04_MAS_NOR_N.jpg',
+          'watched': false,
+          'duration': '1:30:30',
+        },
+      ]
+    },
+    {
+      'type': 'continue_watching',
+      'title': 'Continue Watching',
+      'small': true,
       'items': [
         {
           'show': 'Bible Kids Live',
@@ -162,46 +305,6 @@ class BccmPage extends StatelessWidget {
       ]
     },
     {
-      'type': 'favourites',
-      'title': 'Favourites',
-      'items': [
-        {
-          'show': 'Intro',
-          'showInfo': '3 Seasons - 8 Episodes',
-          'episode': 'HV 276 | Jeg er disippel hos Mesteren',
-          'image':
-              'https://brunstadtv.imgix.net/e14176d5-a533-4da2-a070-8a9b819ccc7f.jpg',
-          'watched': true,
-          'duration': '1:30:30',
-        },
-        {
-          'show': 'Bibelutforskerne',
-          'showInfo': '3 Seasons - 8 Episodes',
-          'episode': 'Noah - Gud gir de ydmyke nåde',
-          'image': 'https://brunstadtv.imgix.net/2022-04-16.jpg',
-          'watched': false,
-          'duration': '1:30:30',
-        },
-        {
-          'show': 'Fra Kåre',
-          'showInfo': '3 Seasons - 8 Episodes',
-          'episode': 'Fem minutter hver dag',
-          'image':
-              'https://brunstadtv.imgix.net/0f8145be-dbe2-4046-b9e5-7fdab91c6e69.png',
-          'watched': true,
-          'duration': '1:30:30',
-        },
-        {
-          'show': 'Battle for the Church',
-          'showInfo': '2 Seasons - 12 Episodes',
-          'episode': 'Episode 4',
-          'image': 'https://brunstadtv.imgix.net/PAUL_S01_E04_MAS_NOR_N.jpg',
-          'watched': false,
-          'duration': '1:30:30',
-        },
-      ]
-    },
-    {
       'type': 'kids_bible_stories',
       'title': 'Kids Bible Stories',
       'items': [
@@ -224,7 +327,7 @@ class BccmPage extends StatelessWidget {
           'image': 'https://brunstadtv.imgix.net/PAUL_S01_E04_MAS_NOR_N.jpg',
         },
       ]
-    }
+    },
   ];
 
   @override
@@ -236,11 +339,16 @@ class BccmPage extends StatelessWidget {
     } else {
       return ListView(
         padding: const EdgeInsets.only(top: 12),
-        children: sections.map((section) {
+        children:
+            // SizedBox(height: appbarOffset),
+            (code == 'frontpage'
+                    ? frontPageSections
+                    : exploreCategoriesSections)
+                .map((section) {
           switch (section['type']) {
             case 'featured':
               return Featured(
-                  items: section['items'] as List<Map<String, String>>);
+                  items: section['items'] as List<Map<String, dynamic>>);
             case 'explore_categories':
               return ExploreCategories(data: section);
             case 'continue_watching':
@@ -251,6 +359,11 @@ class BccmPage extends StatelessWidget {
               return Favourites(data: section);
             case 'kids_bible_stories':
               return KidsBibleStories(data: section);
+            case 'categories':
+              return CategoryChips(
+                data: section,
+                parentPageName: parentPageName,
+              );
             case 'error':
               return ErrorMessage(data: section);
             default:
