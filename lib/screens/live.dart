@@ -25,16 +25,21 @@ class _LiveScreenState extends ConsumerState<LiveScreen> with AutoRouteAware {
   String name = AuthService.instance.user!.name!;
   final TextEditingController _idTokenDisplayController =
       TextEditingController(text: AuthService.instance.idToken);
-  late Future playerFuture;
+  Future? playerFuture;
   bool audioOnly = false;
+  bool settingUp = false;
 
   @override
   void initState() {
     super.initState();
-    playerFuture = setupPlayer();
+    print('initState');
+    final tabsRouter = context.tabsRouter;
+    tabsRouter.addListener(() {
+      if (tabsRouter.activeIndex == 2) {}
+    });
   }
 
-  Future setupPlayer() async {
+  Future setup() async {
     var castingNow = ref.read(isCasting);
     var player = castingNow
         ? ref.read(castPlayerProvider)
@@ -51,8 +56,9 @@ class _LiveScreenState extends ConsumerState<LiveScreen> with AutoRouteAware {
       return;
     }
 
-    playbackApi.replaceCurrentMediaItem(
+    await playbackApi.replaceCurrentMediaItem(
         player.playerId,
+        autoplay: true,
         MediaItem(
             url: liveUrl.streamUrl,
             isLive: true,
@@ -62,6 +68,7 @@ class _LiveScreenState extends ConsumerState<LiveScreen> with AutoRouteAware {
                 extras: {'id': 'livestream', 'npaw.content.isLive': 'true'},
                 artworkUri:
                     'https://brunstad.tv/static/images/poster_placeholder.jpg')));
+    settingUp = false;
   }
 
   @override
@@ -92,21 +99,13 @@ class _LiveScreenState extends ConsumerState<LiveScreen> with AutoRouteAware {
             ]),
           )),
       body: ListView(children: [
-        audioOnly
-            ? const MiniPlayer()
-            : FutureBuilder(
-                future: playerFuture,
-                builder: (context, snapshot) {
-                  if (snapshot.connectionState == ConnectionState.done) {
-                    return BccmPlayer(
-                        type: PlayerType.native, id: player.playerId);
-                  } else if (snapshot.hasError) {
-                    return Text(snapshot.error.toString());
-                  }
-                  return const AspectRatio(
-                      aspectRatio: 16 / 9,
-                      child: Center(child: CircularProgressIndicator()));
-                }),
+        if (audioOnly)
+          const MiniPlayer()
+        else if (playerFuture == null ||
+            player.currentMediaItem?.metadata?.extras?['id'] != 'livestream')
+          _playPoster()
+        else
+          _player(player),
         const SizedBox(height: 20),
         const SizedBox(
             height: 20000,
@@ -114,6 +113,54 @@ class _LiveScreenState extends ConsumerState<LiveScreen> with AutoRouteAware {
                 alignment: Alignment.topCenter, child: Text('Calendar here'))),
         //
       ]),
+    );
+  }
+
+  FutureBuilder<dynamic> _player(Player player) {
+    return FutureBuilder(
+        future: playerFuture,
+        builder: (context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.done) {
+            return BccmPlayer(type: PlayerType.native, id: player.playerId);
+          } else if (snapshot.hasError) {
+            return Text(snapshot.error.toString());
+          }
+          return const AspectRatio(
+              aspectRatio: 16 / 9,
+              child: Center(child: CircularProgressIndicator()));
+        });
+  }
+
+  Widget _playPoster() {
+    return Stack(
+      children: [
+        GestureDetector(
+          behavior: HitTestBehavior.opaque,
+          //excludeFromSemantics: true,
+          onTap: () {
+            setState(() {
+              settingUp = true;
+              playerFuture = setup();
+            });
+            Future.delayed(const Duration(milliseconds: 100), () {
+// Here you can write your code
+            });
+          },
+          child: AspectRatio(
+            aspectRatio: 16 / 9,
+            child: Image.network(
+              'https://brunstad.tv/static/images/placeholder.jpg',
+              fit: BoxFit.fill,
+              width: 64,
+              height: 36,
+            ),
+          ),
+        ),
+        Center(
+            child: !settingUp
+                ? Image.asset('assets/icons/Play.png')
+                : const CircularProgressIndicator()),
+      ],
     );
   }
 }

@@ -12,6 +12,7 @@ import 'package:brunstadtv_app/screens/login.dart';
 import 'package:brunstadtv_app/screens/profile/profile.dart';
 import 'package:brunstadtv_app/screens/search/search.dart';
 
+import '../helpers/custom_transitions.dart';
 import '../providers/fun.dart';
 import '../screens/episode.dart';
 import '../screens/home/explore_category_page.dart';
@@ -29,25 +30,28 @@ import '../screens/search/explore_category_page.dart';
     MaterialRoute<void>(page: VideoQuality, path: 'video-quality'),
     MaterialRoute<void>(page: ContactSupport, path: 'contact-support'),
     MaterialRoute<void>(page: FAQ, path: 'faq'),
-    CustomRoute<void>(
-      page: EpisodeScreen,
-      path: 'episode/:episodeId',
-      durationInMilliseconds: 500,
-      transitionsBuilder: slideBottom, /* durationInMilliseconds: 200 */
-    ),
     MaterialRoute<void>(
       page: RootScreen,
       path: '/',
       initial: true,
       guards: [AuthGuard],
       children: [
-        MaterialRoute<void>(
+        CustomRoute<void>(
             name: 'HomeScreenWrapperRoute',
             page: EmptyRouterPage,
+            path: '',
             initial: true,
-            path: 'home',
             children: [
-              MaterialRoute<void>(page: HomeScreen, path: ''),
+              CustomRoute<void>(
+                  page: HomeScreen,
+                  path: '',
+                  durationInMilliseconds: 500,
+                  reverseDurationInMilliseconds: 500,
+                  customRouteBuilder: CustomTransitionsBuilders.slideUpAndDown),
+              CustomRoute<void>(
+                  page: EpisodeScreen,
+                  path: 'episode/:episodeId',
+                  customRouteBuilder: CustomTransitionsBuilders.slideUpAndDown),
               MaterialRoute<void>(
                   page: HomeExploreCategoryScreen, path: 'explore-category'),
               MaterialRoute<void>(

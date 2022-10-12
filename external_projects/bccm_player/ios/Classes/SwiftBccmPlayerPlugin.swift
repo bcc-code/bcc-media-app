@@ -44,6 +44,7 @@ public class SwiftBccmPlayerPlugin: NSObject, FlutterPlugin {
         let audioSession = AVAudioSession.sharedInstance()
         do {
             try audioSession.setCategory(.playback)
+            UIApplication.shared.beginReceivingRemoteControlEvents()
         } catch {
             print("Setting category to AVAudioSessionCategoryPlayback failed.")
         }

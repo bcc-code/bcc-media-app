@@ -470,6 +470,62 @@ public class PlaybackPlatformApi {
   }
 
   /** Generated class from Pigeon that represents data sent in messages. */
+  public static class PictureInPictureModeChangedEvent {
+    private @NonNull String playerId;
+    public @NonNull String getPlayerId() { return playerId; }
+    public void setPlayerId(@NonNull String setterArg) {
+      if (setterArg == null) {
+        throw new IllegalStateException("Nonnull field \"playerId\" is null.");
+      }
+      this.playerId = setterArg;
+    }
+
+    private @NonNull Boolean isInPipMode;
+    public @NonNull Boolean getIsInPipMode() { return isInPipMode; }
+    public void setIsInPipMode(@NonNull Boolean setterArg) {
+      if (setterArg == null) {
+        throw new IllegalStateException("Nonnull field \"isInPipMode\" is null.");
+      }
+      this.isInPipMode = setterArg;
+    }
+
+    /** Constructor is private to enforce null safety; use Builder. */
+    private PictureInPictureModeChangedEvent() {}
+    public static final class Builder {
+      private @Nullable String playerId;
+      public @NonNull Builder setPlayerId(@NonNull String setterArg) {
+        this.playerId = setterArg;
+        return this;
+      }
+      private @Nullable Boolean isInPipMode;
+      public @NonNull Builder setIsInPipMode(@NonNull Boolean setterArg) {
+        this.isInPipMode = setterArg;
+        return this;
+      }
+      public @NonNull PictureInPictureModeChangedEvent build() {
+        PictureInPictureModeChangedEvent pigeonReturn = new PictureInPictureModeChangedEvent();
+        pigeonReturn.setPlayerId(playerId);
+        pigeonReturn.setIsInPipMode(isInPipMode);
+        return pigeonReturn;
+      }
+    }
+    @NonNull Map<String, Object> toMap() {
+      Map<String, Object> toMapResult = new HashMap<>();
+      toMapResult.put("playerId", playerId);
+      toMapResult.put("isInPipMode", isInPipMode);
+      return toMapResult;
+    }
+    static @NonNull PictureInPictureModeChangedEvent fromMap(@NonNull Map<String, Object> map) {
+      PictureInPictureModeChangedEvent pigeonResult = new PictureInPictureModeChangedEvent();
+      Object playerId = map.get("playerId");
+      pigeonResult.setPlayerId((String)playerId);
+      Object isInPipMode = map.get("isInPipMode");
+      pigeonResult.setIsInPipMode((Boolean)isInPipMode);
+      return pigeonResult;
+    }
+  }
+
+  /** Generated class from Pigeon that represents data sent in messages. */
   public static class MediaItemTransitionEvent {
     private @NonNull String playerId;
     public @NonNull String getPlayerId() { return playerId; }
@@ -584,7 +640,7 @@ public class PlaybackPlatformApi {
   public interface PlaybackPlatformPigeon {
     void newPlayer(@Nullable String url, Result<String> result);
     void queueMediaItem(@NonNull String playerId, @NonNull MediaItem mediaItem, Result<Void> result);
-    void replaceCurrentMediaItem(@NonNull String playerId, @NonNull MediaItem mediaItem, @Nullable Boolean playbackPositionFromPrimary, Result<Void> result);
+    void replaceCurrentMediaItem(@NonNull String playerId, @NonNull MediaItem mediaItem, @Nullable Boolean playbackPositionFromPrimary, @Nullable Boolean autoplay, Result<Void> result);
     void setPrimary(@NonNull String id, Result<Void> result);
     void play(@NonNull String playerId);
     void pause(@NonNull String playerId);
@@ -688,6 +744,7 @@ public class PlaybackPlatformApi {
                 throw new NullPointerException("mediaItemArg unexpectedly null.");
               }
               Boolean playbackPositionFromPrimaryArg = (Boolean)args.get(2);
+              Boolean autoplayArg = (Boolean)args.get(3);
               Result<Void> resultCallback = new Result<Void>() {
                 public void success(Void result) {
                   wrapped.put("result", null);
@@ -699,7 +756,7 @@ public class PlaybackPlatformApi {
                 }
               };
 
-              api.replaceCurrentMediaItem(playerIdArg, mediaItemArg, playbackPositionFromPrimaryArg, resultCallback);
+              api.replaceCurrentMediaItem(playerIdArg, mediaItemArg, playbackPositionFromPrimaryArg, autoplayArg, resultCallback);
             }
             catch (Error | RuntimeException exception) {
               wrapped.put("error", wrapError(exception));
@@ -950,6 +1007,9 @@ public class PlaybackPlatformApi {
           return MediaMetadata.fromMap((Map<String, Object>) readValue(buffer));
         
         case (byte)132:         
+          return PictureInPictureModeChangedEvent.fromMap((Map<String, Object>) readValue(buffer));
+        
+        case (byte)133:         
           return PositionUpdateEvent.fromMap((Map<String, Object>) readValue(buffer));
         
         default:        
@@ -975,8 +1035,12 @@ public class PlaybackPlatformApi {
         stream.write(131);
         writeValue(stream, ((MediaMetadata) value).toMap());
       } else 
-      if (value instanceof PositionUpdateEvent) {
+      if (value instanceof PictureInPictureModeChangedEvent) {
         stream.write(132);
+        writeValue(stream, ((PictureInPictureModeChangedEvent) value).toMap());
+      } else 
+      if (value instanceof PositionUpdateEvent) {
+        stream.write(133);
         writeValue(stream, ((PositionUpdateEvent) value).toMap());
       } else 
 {
@@ -1015,6 +1079,13 @@ public class PlaybackPlatformApi {
     public void onMediaItemTransition(@NonNull MediaItemTransitionEvent eventArg, Reply<Void> callback) {
       BasicMessageChannel<Object> channel =
           new BasicMessageChannel<>(binaryMessenger, "dev.flutter.pigeon.PlaybackListenerPigeon.onMediaItemTransition", getCodec());
+      channel.send(new ArrayList<Object>(Arrays.asList(eventArg)), channelReply -> {
+        callback.reply(null);
+      });
+    }
+    public void onPictureInPictureModeChanged(@NonNull PictureInPictureModeChangedEvent eventArg, Reply<Void> callback) {
+      BasicMessageChannel<Object> channel =
+          new BasicMessageChannel<>(binaryMessenger, "dev.flutter.pigeon.PlaybackListenerPigeon.onPictureInPictureModeChanged", getCodec());
       channel.send(new ArrayList<Object>(Arrays.asList(eventArg)), channelReply -> {
         callback.reply(null);
       });

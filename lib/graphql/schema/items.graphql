@@ -1,0 +1,112 @@
+enum ImageStyle {
+    poster
+    featured
+    default
+}
+
+type Show {
+    id: ID!
+    legacyID: ID
+    title: String!
+    description: String!
+    image(style: ImageStyle): String @goField(forceResolver: true)
+    imageUrl: String
+    images: [Image!]!
+    episodeCount: Int!
+    seasonCount: Int!
+    seasons(
+        first: Int
+        offset: Int
+        dir: String
+    ): SeasonPagination! @goField(forceResolver: true)
+    defaultEpisode: Episode @goField(forceResolver: true)
+}
+
+type Season {
+    id: ID!
+    legacyID: ID
+    ageRating: String!
+    title: String!
+    description: String!
+    image(style: ImageStyle): String @goField(forceResolver: true)
+    imageUrl: String
+    images: [Image!]!
+    number: Int!
+    show: Show! @goField(forceResolver: true)
+    episodes(
+        first: Int
+        offset: Int
+        dir: String
+    ): EpisodePagination! @goField(forceResolver: true)
+}
+
+type SeasonPagination implements Pagination {
+    total: Int!
+    first: Int!
+    offset: Int!
+    items: [Season!]!
+}
+
+type Episode {
+    id: ID!
+    legacyID: ID
+    legacyProgramID: ID
+    ageRating: String!
+    title: String!
+    description: String!
+    extraDescription: String!
+    image(style: ImageStyle): String @goField(forceResolver: true)
+    imageUrl: String
+    productionDate: String
+    streams: [Stream!]! @goField(forceResolver: true)
+    files: [File!]! @goField(forceResolver: true)
+    chapters: [Chapter!]!
+    season: Season @goField(forceResolver: true)
+    duration: Int!
+    audioLanguages: [Language!]!
+    subtitleLanguages: [Language!]!
+    images: [Image!]!
+    number: Int
+}
+
+type EpisodePagination implements Pagination {
+    total: Int!
+    first: Int!
+    offset: Int!
+    items: [Episode!]!
+}
+
+type Chapter {
+    id: ID!
+    start: Int!
+    title: String!
+}
+
+type File {
+    id: ID!
+    url: String!
+    audioLanguage: Language!
+    subtitleLanguage: Language
+    size: Int
+    fileName: String!
+    mimeType: String!
+}
+
+type Image {
+    style: String!
+    url: String!
+}
+
+type Stream {
+    id: ID!
+    url: String!
+    audioLanguages: [Language!]!
+    subtitleLanguages: [Language!]!
+    type: StreamType!
+}
+
+enum StreamType {
+    hls_ts
+    hls_cmaf
+    dash
+}

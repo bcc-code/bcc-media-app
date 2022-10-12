@@ -15,7 +15,8 @@ class PlayerListener(private val playerController: PlayerController, val plugin:
     override fun onMediaItemTransition(mediaItem: MediaItem?, reason: Int) {
         val event = PlaybackPlatformApi.MediaItemTransitionEvent.Builder().setPlayerId(playerController.id);
         if (mediaItem != null) {
-            event.setMediaItem(playerController.mapMediaItem(mediaItem));
+            val bccmMediaItem = playerController.mapMediaItem(mediaItem);
+            event.setMediaItem(bccmMediaItem);
         } else {
             event.setMediaItem(null)
         }

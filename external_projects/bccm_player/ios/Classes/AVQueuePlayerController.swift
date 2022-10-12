@@ -7,8 +7,9 @@ import AVFoundation
 import AVKit
 import YouboraLib
 import YouboraAVPlayerAdapter
+import MediaPlayer
 
-public class AVQueuePlayerController: PlayerController {
+public class AVQueuePlayerController: NSObject, PlayerController, AVPlayerViewControllerDelegate {
     public func play() {
         player.play()
     }
@@ -31,6 +32,7 @@ public class AVQueuePlayerController: PlayerController {
     final var observers = [NSKeyValueObservation]()
     var temporaryStatusObserver: NSKeyValueObservation? = nil
     var youboraPlugin: YBPlugin
+    var pipController: AVPlayerViewController? = nil
 
     init(id: String? = nil, playbackListener: PlaybackListenerPigeon, npawConfig: NpawConfig?) {
         self.id = id ?? UUID().uuidString;
@@ -41,9 +43,88 @@ public class AVQueuePlayerController: PlayerController {
         youboraOptions.appName = npawConfig?.appName;
         youboraOptions.appReleaseVersion = npawConfig?.appReleaseVersion;
         youboraPlugin = YBPlugin(options: youboraOptions)
+        super.init()
         youboraPlugin.adapter = YBAVPlayerAdapterSwiftTranformer.transform(from: YBAVPlayerAdapter(player: player))
         addObservers();
         print("BTV DEBUG: end of init playerController")
+    }
+    
+    public func hasBecomePrimary() {
+        setupCommandCenter()
+    }
+    
+    
+    func registerPipController(_ playerView: AVPlayerViewController?) {
+        pipController = playerView;
+        let event = PictureInPictureModeChangedEvent.make(withPlayerId: id, isInPipMode: (playerView != nil) as NSNumber)
+        playbackListener.onPicture(inPictureModeChanged: event, completion: { _ in })
+    }
+    
+    public func playerViewControllerWillStartPictureInPicture(_ playerViewController: AVPlayerViewController) {
+        print("bccm: audiosession category willstart: " + AVAudioSession.sharedInstance().category.rawValue)
+        registerPipController(playerViewController)
+    }
+    
+    public func playerViewControllerDidStartPictureInPicture(_ playerViewController: AVPlayerViewController) {
+        print("playerViewControllerDidStartPictureInPicture")
+    }
+    public func playerViewController(_ playerViewController: AVPlayerViewController, willBeginFullScreenPresentationWithAnimationCoordinator coordinator: UIViewControllerTransitionCoordinator) {
+        print("willBeginFullScreenPresentationWithAnimationCoordinator")
+    }
+    
+    public func playerViewControllerShouldAutomaticallyDismissAtPictureInPictureStart(_ playerViewController: AVPlayerViewController) -> Bool {
+        print("playerViewControllerShouldAutomaticallyDismissAtPictureInPictureStart");
+        return false;
+    }
+//    public func playerViewController(_ playerViewController: AVPlayerViewController, restoreUserInterfaceForPictureInPictureStopWithCompletionHandler completionHandler: @escaping (Bool) -> Void) {
+//        print("restoreUserInterfaceForPictureInPictureStopWithCompletionHandler")
+//        completionHandler(true)
+//    }
+    
+    public func playerViewControllerWillStopPictureInPicture(_ playerViewController: AVPlayerViewController) {
+        print("bccm: audiosession category willstop: " + AVAudioSession.sharedInstance().category.rawValue)
+        registerPipController(nil)
+        let audioSession = AVAudioSession.sharedInstance()
+        print("bccm: audiosession category before: " + audioSession.category.rawValue)
+        do {
+            try audioSession.setCategory(.playback)
+            try audioSession.setActive(true)
+        } catch {
+            print("Setting category to AVAudioSessionCategoryPlayback failed.")
+        }
+    }
+    
+    func releasePlayerView(_ playerView: AVPlayerViewController) {
+        if (playerView != pipController) {
+            print ("releasing")
+            playerView.player = nil
+            
+        }
+    }
+    
+    func setupCommandCenter() {
+        let commandCenter = MPRemoteCommandCenter.shared()
+        commandCenter.playCommand.isEnabled = true
+        commandCenter.pauseCommand.isEnabled = true
+        commandCenter.playCommand.addTarget { [weak self] (event) -> MPRemoteCommandHandlerStatus in
+            self?.player.play()
+            return .success
+        }
+        commandCenter.pauseCommand.addTarget { [weak self] (event) -> MPRemoteCommandHandlerStatus in
+            self?.player.pause()
+            return .success
+        }
+        
+        
+        let nowPlayingInfoCenter = MPNowPlayingInfoCenter.default()
+        nowPlayingInfoCenter.nowPlayingInfo = [:]
+    }
+    
+    @objc func playAudio() {
+        player.play()
+    }
+    @objc func pauseAudio() {
+        player.pause()
     }
     
     func npawHandleMediaItemUpdate(playerItem: AVPlayerItem?, extras: [String: String]) {
@@ -69,22 +150,21 @@ public class AVQueuePlayerController: PlayerController {
         youboraPlugin.options.appReleaseVersion = npawConfig?.appReleaseVersion;
     }
 
-    public func setMediaItem(_ mediaItem: MediaItem) {
+    public func replaceCurrentMediaItem(_ mediaItem: MediaItem, autoplay: NSNumber?) {
         let playerItem = mapMediaItem(mediaItem);
         player.replaceCurrentItem(with: playerItem)
-        guard let playbackStartPositionMs = mediaItem.playbackStartPositionMs else {
-            return;
-        }
-    
+        
         temporaryStatusObserver = playerItem.observe(\.status, options: [.new, .old]) {
-            (player, change) in
-            switch (player.status) {
-                case .readyToPlay:
-                playerItem.seek(to: CMTime(value: Int64(truncating: playbackStartPositionMs), timescale: 1000), completionHandler: nil)
-                case .failed, .unknown:
-                        print("Media Failed to Play")
-                @unknown default:
-                     break
+            (playerItem, change) in
+            if (playerItem.status == .readyToPlay) {
+                if let playbackStartPositionMs = mediaItem.playbackStartPositionMs {
+                    playerItem.seek(to: CMTime(value: Int64(truncating: playbackStartPositionMs), timescale: 1000), completionHandler: nil)
+                }
+                if (autoplay?.boolValue == true) {
+                    self.player.play()
+                }
+            } else if (playerItem.status == .failed || playerItem.status == .unknown) {
+                print("Mediaitem failed to play")
             }
         }
     }
@@ -99,14 +179,10 @@ public class AVQueuePlayerController: PlayerController {
     }
     
     func takeOwnership(_ playerViewController: AVPlayerViewController) {
+//        if (playerViewController == pipController) {
+//            pipController = nil
+//        }
         playerViewController.player = player
-
-        let audioSession = AVAudioSession.sharedInstance()
-        do {
-            try audioSession.setActive(true)
-        } catch {
-            print("Setting category to AVAudioSessionCategoryPlayback failed.")
-        }
     }
     
     func mapMediaItem(_ mediaItem: MediaItem) -> AVPlayerItem {
@@ -183,6 +259,8 @@ public class AVQueuePlayerController: PlayerController {
             guard let url = (currentItem.asset as? AVURLAsset)?.url.absoluteString else {
                 return self.playbackListener.onMediaItemTransition(emptyEvent, completion: { _ in })
             }
+            
+            let nowPlayingInfoCenter = MPNowPlayingInfoCenter.default()
             var metadata: MediaMetadata? = nil
             if #available(iOS 12.2, *) {
                 var extras = [String: String]();
@@ -197,17 +275,63 @@ public class AVQueuePlayerController: PlayerController {
                         episodeId: currentItem.externalMetadata.first(where: { $0.identifier == AVMetadataIdentifier(MetadataConstants.EpisodeId) })?.stringValue,
                         extras: extras
                 )
+                
+                nowPlayingInfoCenter.nowPlayingInfo?[MPMediaItemPropertyArtist] = metadata?.artist
+                nowPlayingInfoCenter.nowPlayingInfo?[MPMediaItemPropertyTitle] = metadata?.title
+                print ("image is " + (currentItem.externalMetadata.first(where: { $0.identifier == AVMetadataIdentifier.commonIdentifierArtwork })?.debugDescription ?? ""))
+                if let imageData = currentItem.externalMetadata.first(where: { $0.identifier == AVMetadataIdentifier.commonIdentifierArtwork })?.value as? Data {
+                    guard let image = UIImage(data: imageData) else {
+                        return;
+                    }
+                    print ("image is image")
+                    let nowPlayingArtwork = MPMediaItemArtwork(boundsSize: image.size, requestHandler: { (_ size : CGSize) -> UIImage in
+
+                        return image
+
+                    })
+                    nowPlayingInfoCenter.nowPlayingInfo?[MPMediaItemPropertyArtwork] = nowPlayingArtwork
+                    print ("image is set")
+                    
+                }
+                
 
                 self.npawHandleMediaItemUpdate(playerItem: player.currentItem, extras: extras);
             }
             let mediaItem = MediaItem.make(withUrl: url, mimeType: "application/x-mpegURL", metadata: metadata, isLive: false, playbackStartPositionMs: nil)
             let event = MediaItemTransitionEvent.make(withPlayerId: self.id, mediaItem: mediaItem)
             self.playbackListener.onMediaItemTransition(event, completion: { _ in })
-        })
+            
+            //nowPlayingInfoCenter.nowPlayingInfo?[MPNowPlayingInfoPropertyElapsedPlaybackTime] = 0
+            
 
+//            self.observers.append(player.observe(\.currentItem?.isPlaybackLikelyToKeepUp, options: [.old, .new]) {
+//                (player, change) in
+//                debugPrint("BTV DEBUG: isPlaybackLikelyToKeepUp..")
+//                player.play()
+//            })
+            self.observers.append(player.observe(\.currentItem?.duration, options: [.old, .new]) {
+                (player, change) in
+                debugPrint("BTV DEBUG: duration..")
+                nowPlayingInfoCenter.nowPlayingInfo?[MPMediaItemPropertyPlaybackDuration] = player.currentItem?.duration.seconds
+            })
+        })
+        self.observers.append(player.observe(\.rate, options: [.old, .new]) {
+            (player, change) in
+            debugPrint("BTV DEBUG: duration..")
+            let nowPlayingInfoCenter = MPNowPlayingInfoCenter.default()
+            nowPlayingInfoCenter.nowPlayingInfo?[MPNowPlayingInfoPropertyElapsedPlaybackTime] = player.currentTime().seconds
+        })
         observers.append(player.observe(\.timeControlStatus, options: [.old, .new]) {
             (player, change) in
             debugPrint("BTV DEBUG: player status changed...")
+            
+            print("bccm: audiosession playerstatuschanged outputDataSource: " + String(AVAudioSession.sharedInstance().outputDataSource?.dataSourceName ?? ""))
+            print("bccm: audiosession playerstatuschanged sec: " + String(AVAudioSession.sharedInstance().secondaryAudioShouldBeSilencedHint))
+            print("bccm: audiosession playerstatuschanged ioBufferDuration: " + String(AVAudioSession.sharedInstance().ioBufferDuration))
+            print("bccm: audiosession playerstatuschanged mode: " + AVAudioSession.sharedInstance().mode.rawValue)
+            print("bccm: audiosession playerstatuschanged debugDesc: " + AVAudioSession.sharedInstance().debugDescription)
+            print("bccm: audiosession playerstatuschanged category: " + AVAudioSession.sharedInstance().category.rawValue)
+            print("bccm: audiosession playerstatuschanged categoryoptions: " + String(AVAudioSession.sharedInstance().categoryOptions.rawValue))
             // We don't want "isPlaying" to be affected by stuttering
             // So we only check if the player is paused or doesnt have an item to play.
             let paused = player.timeControlStatus == AVPlayer.TimeControlStatus.paused;

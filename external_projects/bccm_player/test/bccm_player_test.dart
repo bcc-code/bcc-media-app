@@ -33,7 +33,7 @@ class MockBccmPlayerPlatform
 
   @override
   Future<void> replaceCurrentMediaItem(String playerId, MediaItem mediaItem,
-      {bool? playbackPositionFromPrimary}) {
+      {bool? playbackPositionFromPrimary, bool? autoplay}) {
     // TODO: implement replaceCurrentMediaItem
     throw UnimplementedError();
   }
@@ -42,6 +42,42 @@ class MockBccmPlayerPlatform
   Future<bool> setPrimary(String id) {
     // TODO: implement setPrimary
     throw UnimplementedError();
+  }
+
+  @override
+  void openCastDialog() {
+    // TODO: implement openCastDialog
+  }
+
+  @override
+  void openExpandedCastController() {
+    // TODO: implement openExpandedCastController
+  }
+
+  @override
+  void pause(String playerId) {
+    // TODO: implement pause
+  }
+
+  @override
+  void play(String playerId) {
+    // TODO: implement play
+  }
+
+  @override
+  void setNpawConfig(NpawConfig? config) {
+    // TODO: implement setNpawConfig
+  }
+
+  @override
+  Future<void> setPlaybackListener(PlaybackListenerPigeon listener) {
+    // TODO: implement setPlaybackListener
+    throw UnimplementedError();
+  }
+
+  @override
+  void stop(String playerId, bool reset) {
+    // TODO: implement stop
   }
 }
 
