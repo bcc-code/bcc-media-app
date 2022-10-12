@@ -28,7 +28,7 @@ Future playEpisode(
           }),
       playbackStartPositionMs: playbackPositionMs);
 
-  PlaybackPlatformInterface.instance
+  await PlaybackPlatformInterface.instance
       .replaceCurrentMediaItem(playerId, mediaItem, autoplay: true);
 }
 

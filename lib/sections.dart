@@ -52,41 +52,7 @@ class ItemSection extends StatelessWidget {
       return ItemWidget(
         item: item,
         onTap: () {
-          var casting = ref.watch(isCasting);
-          if (!casting) {
-            context.router.push(item.route);
-          } else {
-            showDialog(
-                context: context,
-                builder: (context) => Container(
-                        child: Center(
-                      child: Column(
-                        children: [
-                          ElevatedButton(
-                              onPressed: () {
-                                context.router.push(item.route);
-                                Navigator.of(context).pop();
-                              },
-                              child: Text('Play now')),
-                          ElevatedButton(
-                              onPressed: () {
-                                ref.read(apiProvider).fetchEpisode(si.id).then(
-                                  (episode) {
-                                    if (episode == null) {
-                                      return;
-                                    }
-                                    queueEpisode(
-                                        playerId: 'chromecast',
-                                        episode: episode);
-                                  },
-                                );
-                                Navigator.of(context).pop();
-                              },
-                              child: Text('Add to queue'))
-                        ],
-                      ),
-                    )));
-          }
+          context.router.push(item.route);
         },
       );
     }).toList();

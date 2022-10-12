@@ -16,10 +16,24 @@ abstract class PlayerController() : Player.Listener {
 
     abstract fun release();
 
+    fun play() {
+        player.play()
+    }
+
+    fun pause() {
+        player.pause()
+    }
+
+    abstract fun stop(reset: Boolean)
+
     fun replaceCurrentMediaItem(mediaItem: PlaybackPlatformApi.MediaItem, autoplay: Boolean?) {
         this.isLive = mediaItem.isLive ?: false;
         val androidMi = mapMediaItem(mediaItem);
-        player.setMediaItem(androidMi, mediaItem.playbackStartPositionMs ?: 0)
+        var playbackStartPositionMs: Long? = null
+        if (!this.isLive && mediaItem.playbackStartPositionMs != null) {
+            playbackStartPositionMs = mediaItem.playbackStartPositionMs
+        }
+        player.setMediaItem(androidMi, playbackStartPositionMs ?: 0)
         if (autoplay == true) {
             player.prepare()
             player.play()

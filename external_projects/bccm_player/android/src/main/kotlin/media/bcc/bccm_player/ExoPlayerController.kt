@@ -98,6 +98,13 @@ class ExoPlayerController(private val context: Context) : PlayerController(), Pl
         }
     }
 
+    override fun stop(reset: Boolean) {
+        player.stop()
+        if (reset) {
+            player.clearMediaItems()
+        }
+    }
+
     private fun handleUpdatedAppConfig(appConfigState: PlaybackPlatformApi.AppConfig?) {
         Log.d("bccm", "setting preferred audio and sub lang to: ${appConfigState?.audioLanguage}, ${appConfigState?.subtitleLanguage}")
         player.trackSelectionParameters = trackSelector.parameters.buildUpon()
