@@ -38,7 +38,6 @@ class CastPlayerController: NSObject, PlayerController  {
     }
     
     public func hasBecomePrimary() {
-        
     }
     
     func setPlaybackApi(_ playbackApi: PlaybackApiImpl) {
@@ -55,55 +54,88 @@ class CastPlayerController: NSObject, PlayerController  {
     }
     
     func replaceCurrentMediaItem(_ mediaItem: MediaItem, autoplay: NSNumber?) {
-        guard let mediaInfo = mapMediaItem(mediaItem) else {
+        guard let mediaInfo = mapMediaItemToMediaInformation(mediaItem) else {
             fatalError("invalid url passed to setMediaItem");
         };
         GCKCastContext.sharedInstance().sessionManager.currentCastSession?.remoteMediaClient?.loadMedia(mediaInfo);
     }
     
     func queueItem(_ mediaItem: MediaItem) {
-        guard let mediaInfo = mapMediaItem(mediaItem) else {
-            fatalError("invalid url passed to setMediaItem");
+        guard let queueItem = mapMediaItemToQueueItem(mediaItem) else {
+            return
         };
+        
+        GCKCastContext.sharedInstance().sessionManager.currentCastSession?.remoteMediaClient?.queueInsert(queueItem, beforeItemWithID: kGCKMediaQueueInvalidItemID);
+    }
+    
+    func mapMediaItemToQueueItem(_ mediaItem: MediaItem) -> GCKMediaQueueItem? {
+        guard let mediaInfo = mapMediaItemToMediaInformation(mediaItem) else {
+            debugPrint("invalid or nil mediaItem passed to createQueueItem")
+            return nil;
+        };
+        let isLive = mediaItem.isLive?.boolValue == true;
         let queueItemBuilder = GCKMediaQueueItemBuilder()
         queueItemBuilder.mediaInformation = mediaInfo;
-        GCKCastContext.sharedInstance().sessionManager.currentCastSession?.remoteMediaClient?.queueInsert(queueItemBuilder.build(), beforeItemWithID: kGCKMediaQueueInvalidItemID);
+        queueItemBuilder.startTime = mediaItem.playbackStartPositionMs == nil || isLive ? kGCKInvalidTimeInterval : (Double(truncating: mediaItem.playbackStartPositionMs!) / 1000)
+        return queueItemBuilder.build()
     }
     
     func play() {
-        
+        GCKCastContext.sharedInstance().sessionManager.currentCastSession?.remoteMediaClient?.play()
     }
     
     func pause() {
-        
+        GCKCastContext.sharedInstance().sessionManager.currentCastSession?.remoteMediaClient?.pause()
     }
     
     func stop(reset: Bool) {
-        
+        if (reset) {
+            GCKCastContext.sharedInstance().sessionManager.currentCastSession?.remoteMediaClient?.mediaQueue.clear()
+            GCKCastContext.sharedInstance().sessionManager.currentCastSession?.remoteMediaClient?.stop()
+        } else {
+            GCKCastContext.sharedInstance().sessionManager.currentCastSession?.remoteMediaClient?.pause()
+        }
     }
     
-    func mapMediaItem(_ mediaItem: MediaItem) -> GCKMediaInformation? {
+    func mapMediaItemToMediaInformation(_ mediaItem: MediaItem) -> GCKMediaInformation? {
         guard let url = URL(string: mediaItem.url) else {
             return nil
         }
         let mediaInfoBuilder = GCKMediaInformationBuilder(contentURL: url);
+        var playerData: [String: String] = [:]
+        if mediaItem.isLive?.boolValue == true {
+            mediaInfoBuilder.streamType = .live
+            playerData[PlayerMetadataConstants.IsLive] = "true"
+        }
+        if let mimeType = mediaItem.mimeType {
+            mediaInfoBuilder.contentType = mimeType
+        }
+        
         let metadata = GCKMediaMetadata()
         if let originalMeta = mediaItem.metadata {
-            if let artworkUriString = originalMeta.artworkUri {
-                if let artworkUri = URL(string: artworkUriString) {
-                    metadata.addImage(GCKImage.init(url: artworkUri, width: 480, height: 720))
-                }
-            }
             if let title = originalMeta.title {
                 metadata.setString(title, forKey: kGCKMetadataKeyTitle)
             }
             if let description = originalMeta.artist {
                 metadata.setString(description, forKey: kGCKMetadataKeyArtist)
             }
+            if let artworkUri = originalMeta.artworkUri {
+                if let uri = URL(string: artworkUri) {
+                    let image = GCKImage.init(url: uri, width: 0, height: 0)
+                    metadata.addImage(image)
+                }
+            }
+            if let extras = originalMeta.extras {
+                if let extrasJson = MetadataUtils.dictToJson(extras) {
+                    playerData[PlayerMetadataConstants.ExtrasJson] = extrasJson
+                }
+            }
+        }
+        for kv in playerData {
+            metadata.setString(kv.value, forKey: MetadataNamespace.BccmPlayer.rawValue + "." + kv.key)
         }
         
         mediaInfoBuilder.metadata = metadata;
-        
         return mediaInfoBuilder.build();
     }
     
@@ -112,67 +144,100 @@ class CastPlayerController: NSObject, PlayerController  {
             debugPrint("No primary player");
             return;
         }
+        guard let currentItem = player.currentItem else {
+            debugPrint("No current item");
+            return;
+        }
+        
+        let currentItemIndex = player.items().firstIndex(of: currentItem) ?? 0
+        
         var queue = [GCKMediaQueueItem]()
-        for playerItem in player.items() {
-            guard let urlString = (playerItem.asset as? AVURLAsset)?.url.absoluteString else {
-                continue;
+        let playerItems = Array(player.items().suffix(from: currentItemIndex))
+        
+        for playerItem in playerItems {
+            guard let mediaItem = MediaItemUtils.mapPlayerItem(playerItem) else {
+                continue
             }
-            guard let url = URL(string: urlString) else {
-                continue;
+            guard let queueItem = mapMediaItemToQueueItem(mediaItem) else {
+                continue
             }
             
-            let infoBuilder = GCKMediaInformationBuilder(contentURL: url);
-            infoBuilder.contentType = "application/x-mpegURL"
-            
-            let queueItemBuilder = GCKMediaQueueItemBuilder()
-            queueItemBuilder.mediaInformation = infoBuilder.build();
-            queueItemBuilder.startTime = playerItem.currentTime().seconds
-            
-            queue.append(queueItemBuilder.build())
+            queue.append(queueItem)
         }
         guard let remoteMediaClient = GCKCastContext.sharedInstance().sessionManager.currentCastSession?.remoteMediaClient else {
             return;
         }
         
         //remoteMediaClient.queueUpdate(queue, customData: nil)
-        let builder = GCKMediaLoadRequestDataBuilder();
         let queueBuilder = GCKMediaQueueDataBuilder(queueType: GCKMediaQueueType.videoPlayList);
         queueBuilder.items = queue;
-        
-        if let currentItem = player.currentItem {
-            if let currentItemIndex = player.items().firstIndex(of: currentItem) {
-                queueBuilder.startIndex = UInt(currentItemIndex)
-                builder.startTime = currentItem.currentTime().seconds
-            }
-        }
-        builder.queueData = queueBuilder.build()
-        remoteMediaClient.loadMedia(with: builder.build())
+        let loadRequestBuilder = GCKMediaLoadRequestDataBuilder();
+        loadRequestBuilder.startTime = currentItem.currentTime().seconds
+        loadRequestBuilder.queueData = queueBuilder.build()
+        remoteMediaClient.loadMedia(with: loadRequestBuilder.build())
+        player.removeAllItems()
+        player.pause()
     }
    
+    var metaTemp: GCKMediaMetadata? = nil
     
 }
 
 extension CastPlayerController : GCKRemoteMediaClientListener {
     func remoteMediaClient(_ client: GCKRemoteMediaClient, didUpdate mediaMetadata: GCKMediaMetadata?) {
         debugPrint("something didUpdate mediaMetadata:" + mediaMetadata.debugDescription)
-        guard mediaMetadata != nil else {
-            self.playbackListener.onMediaItemTransition(MediaItemTransitionEvent.make(withPlayerId: "chromecast", mediaItem: nil), completion: { e in })
+        debugPrint("is metaTemp same?: " + (metaTemp == mediaMetadata).description)
+        guard let mediaMetadata = mediaMetadata else {
+            self.playbackListener.onMediaItemTransition(MediaItemTransitionEvent.make(withPlayerId: self.id, mediaItem: nil), completion: { e in })
             return;
         }
        
         let mappedMetadata = MediaMetadata();
-        mappedMetadata.title = mediaMetadata?.string(forKey: kGCKMetadataKeyTitle)
-        let mediaItem = MediaItem.make(withUrl: "", mimeType: nil, metadata: mappedMetadata, isLive: nil, playbackStartPositionMs: nil)
-        let meta = MediaItemTransitionEvent.make(withPlayerId: "chromecast", mediaItem: mediaItem)
-        playbackListener.onMediaItemTransition(meta, completion: { e in })
+        mappedMetadata.title = mediaMetadata.string(forKey: kGCKMetadataKeyTitle)
+        if let image = mediaMetadata.images().first as? GCKImage {
+            mappedMetadata.artworkUri = image.url.absoluteString
+        }
+        
+        var playerData: [String: String] = [:]
+        for metadataKey in mediaMetadata.allKeys() {
+            guard let namespaceStringRange = metadataKey.range(of: MetadataNamespace.BccmPlayer.rawValue + ".") else {
+                continue
+            }
+            let playerDataKey = String(metadataKey[namespaceStringRange.upperBound...]);
+            playerData[playerDataKey] = mediaMetadata.string(forKey: metadataKey)
+        }
+        
+        if let extrasJson = playerData[PlayerMetadataConstants.ExtrasJson]?.data(using: .utf8) {
+            do {
+                let decoded = try JSONSerialization.jsonObject(with: extrasJson, options: [])
+                if let dictFromJSON = decoded as? [String:String] {
+                    mappedMetadata.extras = dictFromJSON
+                }
+            } catch {
+                print (error.localizedDescription)
+            }
+        }
+        let mimeType = playerData[PlayerMetadataConstants.MimeType]
+        let isLive = playerData[PlayerMetadataConstants.IsLive] == "true"
+        debugPrint(mappedMetadata.extras as Any)
+        debugPrint(playerData)
+        let mediaItem = MediaItem.make(withUrl: "", mimeType: mimeType, metadata: mappedMetadata, isLive: isLive as NSNumber, playbackStartPositionMs: nil)
+        let event = MediaItemTransitionEvent.make(withPlayerId: self.id, mediaItem: mediaItem)
+        playbackListener.onMediaItemTransition(event, completion: { e in })
     }
     func remoteMediaClient(_ client: GCKRemoteMediaClient, didReceive queueItems: [GCKMediaQueueItem]) {
         debugPrint("something didReceive queueItems: " + queueItems.map { a in a.mediaInformation.metadata?.value(forKey: "title")}.debugDescription)
     }
     
     func remoteMediaClient(_ client: GCKRemoteMediaClient, didUpdate mediaStatus: GCKMediaStatus?) {
+        metaTemp = mediaStatus?.currentQueueItem?.mediaInformation.metadata
         debugPrint("something didReceive mediaStatus: " + mediaStatus.debugDescription)
+        debugPrint("mediaStatus meta: " + metaTemp.debugDescription)
+        let isPlaying = (mediaStatus?.playerState != .paused && mediaStatus?.playerState != .unknown)
+        let event = IsPlayingChangedEvent.make(withPlayerId: self.id, isPlaying: isPlaying as NSNumber)
+        self.playbackListener.onIsPlayingChanged(event, completion: { _ in })
     }
+    
 }
 
 extension CastPlayerController : GCKCastDeviceStatusListener {

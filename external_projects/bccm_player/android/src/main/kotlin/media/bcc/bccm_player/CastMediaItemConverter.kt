@@ -69,6 +69,12 @@ class CastMediaItemConverter : MediaItemConverter {
             if (metadata.containsKey(com.google.android.gms.cast.MediaMetadata.KEY_TRACK_NUMBER)) {
                 metadataBuilder.setTrackNumber(metadata.getInt(com.google.android.gms.cast.MediaMetadata.KEY_TRACK_NUMBER))
             }
+            if (metadata.containsKey("media.bcc.extras")) {
+                val rawJson = metadata.getString("media.bcc.extras")
+                Utils.jsonStringToBundle(rawJson)?.let {
+                    metadataBuilder.setExtras(it)
+                }
+            }
         }
 
         mediaQueueItem.media?.customData?.getJSONObject(MEDIA_METADATA_EXTRAS)?.let {
