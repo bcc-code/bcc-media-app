@@ -1,6 +1,5 @@
 package media.bcc.bccm_player
 
-import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import androidx.media3.cast.MediaItemConverter
@@ -13,10 +12,9 @@ import androidx.media3.common.util.UnstableApi
 import com.google.android.gms.cast.MediaInfo
 import com.google.android.gms.cast.MediaQueueItem
 import com.google.android.gms.common.images.WebImage
-import kotlinx.coroutines.processNextEventInCurrentThread
+import com.npaw.youbora.lib6.extensions.toMap
 import org.json.JSONException
 import org.json.JSONObject
-import java.util.*
 
 /*
  * Copyright (C) 2019 The Android Open Source Project
@@ -34,6 +32,10 @@ import java.util.*
  * limitations under the License.
  */ /** Default [MediaItemConverter] implementation.  */
 
+internal class PlayerData {
+    var isLive: Boolean? = null
+    var mimeType: String? = null
+}
 @UnstableApi
 class CastMediaItemConverter : MediaItemConverter {
     override fun toMediaItem(mediaQueueItem: MediaQueueItem): MediaItem {
@@ -69,31 +71,70 @@ class CastMediaItemConverter : MediaItemConverter {
             if (metadata.containsKey(com.google.android.gms.cast.MediaMetadata.KEY_TRACK_NUMBER)) {
                 metadataBuilder.setTrackNumber(metadata.getInt(com.google.android.gms.cast.MediaMetadata.KEY_TRACK_NUMBER))
             }
-            if (metadata.containsKey("media.bcc.extras")) {
-                val rawJson = metadata.getString("media.bcc.extras")
+            if (metadata.containsKey(BCCM_EXTRAS)) {
+                val rawJson = metadata.getString(BCCM_EXTRAS)
                 Utils.jsonStringToBundle(rawJson)?.let {
                     metadataBuilder.setExtras(it)
                 }
             }
         }
 
-        mediaQueueItem.media?.customData?.getJSONObject(MEDIA_METADATA_EXTRAS)?.let {
-            metadataBuilder.setExtras(jsonToBundle(it))
+        var extrasBundle = Bundle()
+        mediaQueueItem.media?.customData?.getJSONObject(MEDIA_METADATA_EXTRAS)?.let { json ->
+            jsonToBundle(json)?.let { bundle ->
+                extrasBundle = bundle
+            }
+        }
+        val playerData = extractPlayerData(metadata)
+        playerData?.isLive?.let { isLive ->
+            extrasBundle.putString(PLAYER_DATA_IS_LIVE, if(isLive) "true" else "false")
+        }
+        playerData?.mimeType?.let { mimeType ->
+            extrasBundle.putString(PLAYER_DATA_MIME_TYPE, mimeType)
         }
 
-        var mediaItemJson: JSONObject? = null
-        try {
-            mediaItemJson = mediaInfo.customData?.getJSONObject(KEY_MEDIA_ITEM)
-        } catch (e: JSONException) { }
+        metadataBuilder.setExtras(extrasBundle)
 
         val mediaItemBuilder = MediaItem.Builder()
-        if (mediaItemJson?.has(KEY_MIME_TYPE) == true) {
-            mediaItemBuilder.setMimeType(mediaItemJson.getString(KEY_MIME_TYPE))
+        playerData?.mimeType?.let {
+            mediaItemBuilder.setMimeType(it)
         }
         return mediaItemBuilder
                 .setMediaMetadata(metadataBuilder.build())
                 .setUri(mediaQueueItem.media?.contentId ?: mediaQueueItem.media!!.contentUrl)
                 .build()
+    }
+
+    private fun extractPlayerData(metadata: com.google.android.gms.cast.MediaMetadata?): PlayerData? {
+        if (metadata == null) return null
+        var playerData: PlayerData? = null
+        // Example: media.bcc.player.is_live
+        for (key in metadata.keySet().filter { it.contains(BCCM_PLAYER_DATA) }) {
+            if (playerData == null) playerData = PlayerData()
+            if (key == PLAYER_DATA_IS_LIVE) {
+                playerData.isLive = metadata.getString(key) == "true"
+            }
+            if (key == PLAYER_DATA_MIME_TYPE) {
+                playerData.mimeType = metadata.getString(key)
+            }
+        }
+        return playerData
+    }
+
+    private fun extractPlayerData(extras: Bundle?): PlayerData? {
+        if (extras == null) return null
+        var playerData: PlayerData? = null
+        // Example: media.bcc.player.is_live
+        for (key in extras.keySet().filter { it.contains(BCCM_PLAYER_DATA) }) {
+            if (playerData == null) playerData = PlayerData()
+            if (key == PLAYER_DATA_IS_LIVE) {
+                playerData.isLive = extras.getString(key) == "true"
+            }
+            if (key == PLAYER_DATA_MIME_TYPE) {
+                playerData.mimeType = extras.getString(key)
+            }
+        }
+        return playerData
     }
 
     override fun toMediaQueueItem(mediaItem: MediaItem): MediaQueueItem {
@@ -130,8 +171,14 @@ class CastMediaItemConverter : MediaItemConverter {
         if (mediaItem.mediaMetadata.trackNumber != null) {
             metadata.putInt(com.google.android.gms.cast.MediaMetadata.KEY_TRACK_NUMBER, mediaItem.mediaMetadata.trackNumber!!)
         }
-        val contentUrl = mediaItem.localConfiguration!!.uri.toString()
-        val contentId = if (mediaItem.mediaId == MediaItem.DEFAULT_MEDIA_ID) contentUrl else mediaItem.mediaId
+
+        val playerData = extractPlayerData(mediaItem.mediaMetadata.extras)
+        playerData?.isLive?.let { isLive ->
+            metadata.putString(PLAYER_DATA_IS_LIVE, if(isLive) "true" else "false")
+        }
+        playerData?.mimeType?.let { mimeType ->
+            metadata.putString(PLAYER_DATA_MIME_TYPE, mimeType)
+        }
 
         val customData = getCustomData(mediaItem)
         val audioTracks = mutableListOf<String>()
@@ -145,16 +192,19 @@ class CastMediaItemConverter : MediaItemConverter {
         }
         customData.put("audioTracks", audioTracks)
         customData.put("subtitlesTracks", subtitlesTracks)
-        mediaItem.mediaMetadata.extras?.apply {
-            customData.put(MEDIA_METADATA_EXTRAS, bundleToJson(this))
+        val normalExtras = mediaItem.mediaMetadata.extras?.toMap()?.filter{ !it.key.contains(BCCM_PLAYER_DATA) };
+        normalExtras?.let {
+            customData.put(MEDIA_METADATA_EXTRAS, mapToJson(it))
         }
 
         Log.d("bccm", "this is the customdata: $customData")
 
-        val isLive = mediaItem.mediaMetadata.extras?.getString("is_live") == "true"
+
+        val contentUrl = mediaItem.localConfiguration?.uri.toString()
+        val contentId = if (mediaItem.mediaId == MediaItem.DEFAULT_MEDIA_ID) contentUrl else mediaItem.mediaId
         val mediaInfo = MediaInfo.Builder(contentId)
-                .setStreamType(if(isLive) MediaInfo.STREAM_TYPE_LIVE else MediaInfo.STREAM_TYPE_BUFFERED)
-                .setContentType(mediaItem.localConfiguration!!.mimeType!!)
+                .setStreamType(if(playerData?.isLive == true) MediaInfo.STREAM_TYPE_LIVE else MediaInfo.STREAM_TYPE_BUFFERED)
+                .setContentType(playerData?.mimeType ?: mediaItem.localConfiguration?.mimeType ?: "application/x-mpegURL")
                 .setContentUrl(contentUrl)
                 .setMetadata(metadata)
                 .setCustomData(customData)
@@ -174,6 +224,10 @@ class CastMediaItemConverter : MediaItemConverter {
         const val KEY_LICENSE_URI = "licenseUri"
         const val KEY_REQUEST_HEADERS = "requestHeaders"
         const val MEDIA_METADATA_EXTRAS = "media_metadata_extras"
+        const val BCCM_PLAYER_DATA = "media.bcc.player"
+        const val BCCM_EXTRAS = "media.bcc.extras"
+        const val PLAYER_DATA_IS_LIVE = "$BCCM_PLAYER_DATA.is_live"
+        const val PLAYER_DATA_MIME_TYPE = "$BCCM_PLAYER_DATA.mime_type"
 
         @Throws(JSONException::class)
         fun jsonToBundle(jsonObject: JSONObject): Bundle? {
@@ -218,11 +272,11 @@ class CastMediaItemConverter : MediaItemConverter {
             return json
         }
 
-        private fun bundleToJson(bundle: Bundle): JSONObject {
+        private fun mapToJson(map: Map<String, Any>): JSONObject {
             val json = JSONObject();
-            for (key in bundle.keySet()) {
+            for (kv in map) {
                 try {
-                    json.put(key, JSONObject.wrap(bundle.get(key)))
+                    json.put(kv.key, JSONObject.wrap(kv.value))
                 } catch (e: JSONException) {
                     //Handle exception here
                 }

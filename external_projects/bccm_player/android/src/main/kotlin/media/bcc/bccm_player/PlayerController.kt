@@ -6,6 +6,7 @@ import androidx.media3.common.MediaItem
 import androidx.media3.common.MediaMetadata
 import androidx.media3.common.Player
 import com.npaw.youbora.lib6.exoplayer2.Exoplayer2Adapter
+import media.bcc.bccm_player.CastMediaItemConverter.Companion.PLAYER_DATA_IS_LIVE
 import media.bcc.player.PlaybackPlatformApi
 
 
@@ -68,7 +69,7 @@ abstract class PlayerController() : Player.Listener {
             extraMeta.putString("episode_id", episodeId);
         }
         if (mediaItem.isLive == true) {
-            extraMeta.putString("is_live", "true");
+            extraMeta.putString(PLAYER_DATA_IS_LIVE, "true");
         }
         val sourceExtra = mediaItem.metadata?.extras;
         if (sourceExtra != null) {

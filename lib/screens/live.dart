@@ -70,11 +70,12 @@ class _LiveScreenState extends ConsumerState<LiveScreen> with AutoRouteAware {
           autoplay: true,
           MediaItem(
               url: liveUrl.streamUrl,
+              mimeType: 'application/x-mpegURL',
               isLive: true,
               metadata: MediaMetadata(
                   artist: 'BrunstadTV',
                   title: 'Live',
-                  extras: {'id': 'livestream', 'npaw.content.isLive': 'true'},
+                  extras: {'id': 'livestream'},
                   artworkUri:
                       'https://brunstad.tv/static/images/poster_placeholder.jpg')));
       await ensurePlayingWithinReasonableTime(

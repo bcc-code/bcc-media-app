@@ -63,6 +63,7 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen> {
       if (!mounted || episode == null) return;
       playEpisode(
           playerId: player!.playerId,
+          autoplay: false,
           episode: episode,
           playbackPositionMs: event.playbackPositionMs);
     });

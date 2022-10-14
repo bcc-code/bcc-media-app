@@ -13,6 +13,7 @@ import com.npaw.youbora.lib6.plugin.Options
 import com.npaw.youbora.lib6.plugin.Plugin
 import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.*
+import media.bcc.bccm_player.CastMediaItemConverter.Companion.PLAYER_DATA_IS_LIVE
 import media.bcc.player.PlaybackPlatformApi
 import java.util.*
 
@@ -209,7 +210,7 @@ class ExoPlayerController(private val context: Context) : PlayerController(), Pl
 
     override fun onMediaMetadataChanged(mediaMetadata: MediaMetadata) {
         val extras = mediaMetadata.extras?.let { extractExtrasFromAndroid(it) }
-        youboraPlugin.options.contentIsLive = extras?.get("npaw.content.isLive")?.toBoolean() ?: player.isCurrentMediaItemLive
+        youboraPlugin.options.contentIsLive = extras?.get("npaw.content.isLive")?.toBoolean() ?: extras?.get(PLAYER_DATA_IS_LIVE)?.toBoolean() ?: player.isCurrentMediaItemLive
         youboraPlugin.options.contentId = extras?.get("npaw.content.id") ?: mediaMetadata.extras?.getString("id")
         youboraPlugin.options.contentTitle = extras?.get("npaw.content.title") ?: mediaMetadata.title?.toString() ?: mediaMetadata.displayTitle?.toString()
         youboraPlugin.options.contentTvShow = extras?.get("npaw.content.tvShow")
