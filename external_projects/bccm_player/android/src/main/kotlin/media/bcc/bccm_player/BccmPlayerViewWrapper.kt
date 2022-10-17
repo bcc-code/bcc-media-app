@@ -106,10 +106,13 @@ class BccmPlayerViewWrapper(
             }
         })
 
-        val debugTextView = _v.findViewById<TextView>(R.id.debug_text_view)
-        val debugHelper = DebugTextViewHelper((playerController!!.player as ForwardingPlayer).wrappedPlayer as ExoPlayer, debugTextView)
-        debugHelper.start()
-        debugTextView.visibility = View.VISIBLE
+        val enableDebugView = false;
+        if (enableDebugView) {
+            val debugTextView = _v.findViewById<TextView>(R.id.debug_text_view)
+            val debugHelper = DebugTextViewHelper(playerController!!.getExoPlayer(), debugTextView)
+            debugHelper.start()
+            debugTextView.visibility = View.VISIBLE
+        }
 
         playerController!!.takeOwnership(playerView)
         setLiveUIEnabled(playerController?.isLive == true)

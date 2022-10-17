@@ -1,0 +1,5 @@
+mutation SetDeviceToken($token: String!) {
+  setDevicePushToken(token: $token) {
+    __typename
+  }
+}

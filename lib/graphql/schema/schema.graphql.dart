@@ -27,12 +27,18 @@ Enum$Language fromJson$Enum$Language(String value) {
 }
 
 const possibleTypesMap = {
+  'CalendarEntry': {
+    'SimpleCalendarEntry',
+    'EpisodeCalendarEntry',
+    'SeasonCalendarEntry',
+    'ShowCalendarEntry',
+  },
   'Pagination': {
-    'SeasonPagination',
-    'EpisodePagination',
-    'CollectionItemPagination',
     'QuestionPagination',
     'FAQCategoryPagination',
+    'CollectionItemPagination',
+    'SeasonPagination',
+    'EpisodePagination',
     'SectionPagination',
     'LinkItemPagination',
     'SectionItemPagination',
@@ -43,17 +49,6 @@ const possibleTypesMap = {
     'SeasonItem',
     'EpisodeItem',
     'PageItem',
-  },
-  'CalendarEntry': {
-    'SimpleCalendarEntry',
-    'EpisodeCalendarEntry',
-    'SeasonCalendarEntry',
-    'ShowCalendarEntry',
-  },
-  'SearchResultItem': {
-    'EpisodeSearchItem',
-    'SeasonSearchItem',
-    'ShowSearchItem',
   },
   'Section': {
     'IconSection',
@@ -82,5 +77,10 @@ const possibleTypesMap = {
     'Season',
     'Episode',
     'Page',
+  },
+  'SearchResultItem': {
+    'EpisodeSearchItem',
+    'SeasonSearchItem',
+    'ShowSearchItem',
   },
 };

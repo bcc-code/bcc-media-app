@@ -18,6 +18,24 @@ class BccmCastPlayer extends StatefulWidget {
 class _BccmPlayerState extends State<BccmCastPlayer> {
   @override
   Widget build(BuildContext context) {
+    return InkWell(
+      onTap: () {
+        PlaybackPlatformInterface.instance.openExpandedCastController();
+      },
+      splashColor: Colors.transparent,
+      child: ClipRect(
+        child: AspectRatio(
+            aspectRatio: 16 / 9,
+            child: Container(
+              decoration:
+                  const BoxDecoration(color: Color.fromARGB(255, 29, 40, 56)),
+              child: SvgPicture.asset('assets/images/chromecast_bg.svg',
+                  fit: BoxFit.cover,
+                  package: 'bccm_player',
+                  semanticsLabel: 'Casting'),
+            )),
+      ),
+    );
     return Column(
       children: [
         if (Platform.isIOS)

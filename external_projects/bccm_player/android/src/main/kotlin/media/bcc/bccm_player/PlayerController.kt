@@ -6,6 +6,7 @@ import androidx.media3.common.MediaItem
 import androidx.media3.common.MediaMetadata
 import androidx.media3.common.Player
 import com.npaw.youbora.lib6.exoplayer2.Exoplayer2Adapter
+import media.bcc.bccm_player.CastMediaItemConverter.Companion.PLAYER_DATA_IS_LIVE
 import media.bcc.player.PlaybackPlatformApi
 
 
@@ -16,10 +17,24 @@ abstract class PlayerController() : Player.Listener {
 
     abstract fun release();
 
+    fun play() {
+        player.play()
+    }
+
+    fun pause() {
+        player.pause()
+    }
+
+    abstract fun stop(reset: Boolean)
+
     fun replaceCurrentMediaItem(mediaItem: PlaybackPlatformApi.MediaItem, autoplay: Boolean?) {
         this.isLive = mediaItem.isLive ?: false;
         val androidMi = mapMediaItem(mediaItem);
-        player.setMediaItem(androidMi, mediaItem.playbackStartPositionMs ?: 0)
+        var playbackStartPositionMs: Long? = null
+        if (!this.isLive && mediaItem.playbackStartPositionMs != null) {
+            playbackStartPositionMs = mediaItem.playbackStartPositionMs
+        }
+        player.setMediaItem(androidMi, playbackStartPositionMs ?: 0)
         if (autoplay == true) {
             player.prepare()
             player.play()
@@ -54,7 +69,7 @@ abstract class PlayerController() : Player.Listener {
             extraMeta.putString("episode_id", episodeId);
         }
         if (mediaItem.isLive == true) {
-            extraMeta.putString("is_live", "true");
+            extraMeta.putString(PLAYER_DATA_IS_LIVE, "true");
         }
         val sourceExtra = mediaItem.metadata?.extras;
         if (sourceExtra != null) {
@@ -71,9 +86,7 @@ abstract class PlayerController() : Player.Listener {
         val miBuilder = MediaItem.Builder()
                 .setUri(mediaItem.url)
                 .setMediaMetadata(metaBuilder.build());
-        if (mediaItem.mimeType != null) {
-            miBuilder.setMimeType(mediaItem.mimeType);
-        }
+        miBuilder.setMimeType(mediaItem.mimeType ?: "application/x-mpegURL");
         return miBuilder.build()
     }
 

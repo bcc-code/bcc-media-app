@@ -32,7 +32,7 @@ class PlaybackService extends PlaybackPlatformInterface {
 
   @override
   Future<void> replaceCurrentMediaItem(String playerId, MediaItem mediaItem,
-      {bool? playbackPositionFromPrimary, bool? autoplay}) async {
+      {bool? playbackPositionFromPrimary, bool? autoplay = true}) async {
     await _pigeon.replaceCurrentMediaItem(
         playerId, mediaItem, playbackPositionFromPrimary, autoplay);
   }
@@ -80,5 +80,10 @@ class PlaybackService extends PlaybackPlatformInterface {
   @override
   void setNpawConfig(NpawConfig? config) {
     _pigeon.setNpawConfig(config);
+  }
+
+  @override
+  void setAppConfig(AppConfig? config) {
+    _pigeon.setAppConfig(config);
   }
 }
