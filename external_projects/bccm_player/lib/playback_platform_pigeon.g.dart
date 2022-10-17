@@ -96,14 +96,14 @@ class User {
 
 class MediaItem {
   MediaItem({
-    required this.url,
+    this.url,
     this.mimeType,
     this.metadata,
     this.isLive,
     this.playbackStartPositionMs,
   });
 
-  String url;
+  String? url;
   String? mimeType;
   MediaMetadata? metadata;
   bool? isLive;
@@ -122,7 +122,7 @@ class MediaItem {
   static MediaItem decode(Object message) {
     final Map<Object?, Object?> pigeonMap = message as Map<Object?, Object?>;
     return MediaItem(
-      url: pigeonMap['url']! as String,
+      url: pigeonMap['url'] as String?,
       mimeType: pigeonMap['mimeType'] as String?,
       metadata: pigeonMap['metadata'] != null
           ? MediaMetadata.decode(pigeonMap['metadata']!)

@@ -52,7 +52,9 @@ abstract class PlayerController() : Player.Listener {
             val value = source[sourceKey]
             if (!sourceKey.contains("media.bcc.extras.") || value !is String) continue
             val newKey = sourceKey.substring(sourceKey.indexOf("media.bcc.extras.") + "media.bcc.extras.".length)
-            extraMeta[newKey] = source[sourceKey].toString();
+            source[sourceKey]?.toString()?.let {
+                extraMeta[newKey] = it;
+            }
         }
         return extraMeta;
     }
@@ -91,25 +93,25 @@ abstract class PlayerController() : Player.Listener {
     }
 
     fun mapMediaItem(mediaItem: MediaItem): PlaybackPlatformApi.MediaItem {
+
         val metaBuilder = PlaybackPlatformApi.MediaMetadata.Builder();
         if (mediaItem.mediaMetadata.artworkUri != null) {
-            metaBuilder.setArtworkUri(mediaItem.mediaMetadata.artworkUri.toString())
+            metaBuilder.setArtworkUri(mediaItem.mediaMetadata.artworkUri?.toString())
         }
         val episodeId = mediaItem.mediaMetadata.extras?.getString("episode_id");
         if (episodeId != null) {
             metaBuilder.setEpisodeId(episodeId);
         }
-        metaBuilder.setTitle(mediaItem.mediaMetadata.title.toString());
-        metaBuilder.setArtist(mediaItem.mediaMetadata.artist.toString());
+        metaBuilder.setTitle(mediaItem.mediaMetadata.title?.toString());
+        metaBuilder.setArtist(mediaItem.mediaMetadata.artist?.toString());
         var extraMeta: Map<String, String> = mutableMapOf()
         val sourceExtras = mediaItem.mediaMetadata.extras;
         if (sourceExtras != null) {
             extraMeta = extractExtrasFromAndroid(sourceExtras)
         }
         metaBuilder.setExtras(extraMeta)
-
         val miBuilder = PlaybackPlatformApi.MediaItem.Builder()
-                .setUrl(mediaItem.localConfiguration?.uri.toString())
+                .setUrl(mediaItem.localConfiguration?.uri?.toString())
                 .setIsLive(extraMeta[PLAYER_DATA_IS_LIVE] == "true")
                 .setMetadata(metaBuilder.build())
         if (extraMeta[PLAYER_DATA_MIME_TYPE] != null) {

@@ -65,7 +65,7 @@ class _MiniPlayerState extends ConsumerState<MiniPlayer> {
         }
       },
       child: _MiniPlayer(
-        artist: artist ?? 'Artist missing',
+        artist: artist,
         title: title ?? 'Title missing',
         artworkUri:
             artworkUri ?? 'https://source.unsplash.com/random/1600x900/?fruit',
@@ -85,7 +85,7 @@ class _MiniPlayerState extends ConsumerState<MiniPlayer> {
 }
 
 class _MiniPlayer extends StatelessWidget {
-  final String artist;
+  final String? artist;
   final String title;
   final String artworkUri;
   final bool isPlaying;
@@ -144,15 +144,16 @@ class _MiniPlayer extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
-                  artist,
-                  style: const TextStyle(
-                    color: Color(0xff6eb0e6),
-                    fontSize: 12,
-                    fontFamily: 'Barlow',
-                    fontWeight: FontWeight.w500,
+                if (artist != null)
+                  Text(
+                    artist!,
+                    style: const TextStyle(
+                      color: Color(0xff6eb0e6),
+                      fontSize: 12,
+                      fontFamily: 'Barlow',
+                      fontWeight: FontWeight.w500,
+                    ),
                   ),
-                ),
                 Padding(
                   padding: const EdgeInsets.only(top: 4.0),
                   child: Text(

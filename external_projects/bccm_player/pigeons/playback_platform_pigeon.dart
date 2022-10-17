@@ -77,7 +77,7 @@ class SetUrlArgs {
 }
 
 class MediaItem {
-  late String url;
+  String? url;
   String? mimeType;
   MediaMetadata? metadata;
   bool? isLive;

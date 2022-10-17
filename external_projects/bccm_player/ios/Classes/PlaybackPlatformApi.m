@@ -156,7 +156,7 @@ static id GetNullableObjectAtIndex(NSArray* array, NSInteger key) {
 @end
 
 @implementation MediaItem
-+ (instancetype)makeWithUrl:(NSString *)url
++ (instancetype)makeWithUrl:(nullable NSString *)url
     mimeType:(nullable NSString *)mimeType
     metadata:(nullable MediaMetadata *)metadata
     isLive:(nullable NSNumber *)isLive
@@ -172,7 +172,6 @@ static id GetNullableObjectAtIndex(NSArray* array, NSInteger key) {
 + (MediaItem *)fromMap:(NSDictionary *)dict {
   MediaItem *pigeonResult = [[MediaItem alloc] init];
   pigeonResult.url = GetNullableObject(dict, @"url");
-  NSAssert(pigeonResult.url != nil, @"");
   pigeonResult.mimeType = GetNullableObject(dict, @"mimeType");
   pigeonResult.metadata = [MediaMetadata nullableFromMap:GetNullableObject(dict, @"metadata")];
   pigeonResult.isLive = GetNullableObject(dict, @"isLive");

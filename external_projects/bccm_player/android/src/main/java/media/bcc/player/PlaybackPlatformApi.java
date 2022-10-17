@@ -196,12 +196,9 @@ public class PlaybackPlatformApi {
 
   /** Generated class from Pigeon that represents data sent in messages. */
   public static class MediaItem {
-    private @NonNull String url;
-    public @NonNull String getUrl() { return url; }
-    public void setUrl(@NonNull String setterArg) {
-      if (setterArg == null) {
-        throw new IllegalStateException("Nonnull field \"url\" is null.");
-      }
+    private @Nullable String url;
+    public @Nullable String getUrl() { return url; }
+    public void setUrl(@Nullable String setterArg) {
       this.url = setterArg;
     }
 
@@ -229,11 +226,9 @@ public class PlaybackPlatformApi {
       this.playbackStartPositionMs = setterArg;
     }
 
-    /** Constructor is private to enforce null safety; use Builder. */
-    private MediaItem() {}
     public static final class Builder {
       private @Nullable String url;
-      public @NonNull Builder setUrl(@NonNull String setterArg) {
+      public @NonNull Builder setUrl(@Nullable String setterArg) {
         this.url = setterArg;
         return this;
       }

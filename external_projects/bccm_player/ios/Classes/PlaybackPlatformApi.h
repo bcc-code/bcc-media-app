@@ -51,14 +51,12 @@ typedef NS_ENUM(NSUInteger, CastConnectionState) {
 @end
 
 @interface MediaItem : NSObject
-/// `init` unavailable to enforce nonnull fields, see the `make` class method.
-- (instancetype)init NS_UNAVAILABLE;
-+ (instancetype)makeWithUrl:(NSString *)url
++ (instancetype)makeWithUrl:(nullable NSString *)url
     mimeType:(nullable NSString *)mimeType
     metadata:(nullable MediaMetadata *)metadata
     isLive:(nullable NSNumber *)isLive
     playbackStartPositionMs:(nullable NSNumber *)playbackStartPositionMs;
-@property(nonatomic, copy) NSString * url;
+@property(nonatomic, copy, nullable) NSString * url;
 @property(nonatomic, copy, nullable) NSString * mimeType;
 @property(nonatomic, strong, nullable) MediaMetadata * metadata;
 @property(nonatomic, strong, nullable) NSNumber * isLive;
