@@ -1,18 +1,25 @@
+enum ImageStyle {
+    poster
+    featured
+    default
+}
 
 type Show {
     id: ID!
     legacyID: ID
     title: String!
     description: String!
+    image(style: ImageStyle): String @goField(forceResolver: true)
     imageUrl: String
     images: [Image!]!
-    episodeCount: Int!
-    seasonCount: Int!
+    episodeCount: Int! @goField(forceResolver: true)
+    seasonCount: Int! @goField(forceResolver: true)
     seasons(
         first: Int
         offset: Int
         dir: String
     ): SeasonPagination! @goField(forceResolver: true)
+    defaultEpisode: Episode @goField(forceResolver: true)
 }
 
 type Season {
@@ -21,6 +28,7 @@ type Season {
     ageRating: String!
     title: String!
     description: String!
+    image(style: ImageStyle): String @goField(forceResolver: true)
     imageUrl: String
     images: [Image!]!
     number: Int!
@@ -47,7 +55,9 @@ type Episode {
     title: String!
     description: String!
     extraDescription: String!
+    image(style: ImageStyle): String @goField(forceResolver: true)
     imageUrl: String
+    productionDate: String
     streams: [Stream!]! @goField(forceResolver: true)
     files: [File!]! @goField(forceResolver: true)
     chapters: [Chapter!]!

@@ -4,6 +4,8 @@ type Page{
     code: String!
     title: String!
     description: String
+    image(style: ImageStyle): String @goField(forceResolver: true)
+    images: [Image!]!
     sections(
         first: Int
         offset: Int
@@ -126,6 +128,7 @@ type SectionItem {
     id: ID!
     sort: Int!
     title: String!
+    description: String!
     image: String
     item: SectionItemType
 }
