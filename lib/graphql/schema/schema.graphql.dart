@@ -37,7 +37,7 @@ const possibleTypesMap = {
     'LinkItemPagination',
     'SectionItemPagination',
   },
-  'Item': {
+  'CollectionItem': {
     'URLItem',
     'ShowItem',
     'SeasonItem',
