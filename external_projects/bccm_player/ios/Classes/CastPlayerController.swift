@@ -142,15 +142,28 @@ class CastPlayerController: NSObject, PlayerController  {
         }
         
         var customData: [String: Any] = [:]
-        if let audioLanguage = appConfig?.audioLanguage {
-            customData["audioTracks"] = [audioLanguage]
+        var audioTracks = [String]()
+        var subtitlesTracks = [String]()
+        if let lang = mediaItem.lastKnownAudioLanguage {
+            audioTracks.append(lang)
         }
-        if let subtitleLanguage = appConfig?.subtitleLanguage {
-            customData["subtitlesTracks"] = [subtitleLanguage]
+        if let lang = mediaItem.lastKnownSubtitleLanguage {
+            subtitlesTracks.append(lang)
         }
+        if let lang = appConfig?.audioLanguage {
+            audioTracks.append(lang)
+        }
+        if let lang = appConfig?.subtitleLanguage {
+            subtitlesTracks.append(lang)
+        }
+        customData["audioTracks"] = audioTracks
+        customData["subtitlesTracks"] = subtitlesTracks
         
         mediaInfoBuilder.customData = customData
-        
+        debugPrint(mediaItem.lastKnownAudioLanguage)
+        debugPrint(mediaItem.lastKnownSubtitleLanguage)
+        debugPrint("customData")
+        debugPrint(customData)
         debugPrint (mediaInfoBuilder.build())
         mediaInfoBuilder.metadata = metadata;
         return mediaInfoBuilder.build();
@@ -238,7 +251,14 @@ extension CastPlayerController : GCKRemoteMediaClientListener {
         let isLive = playerData[PlayerMetadataConstants.IsLive] == "true"
         debugPrint(mappedMetadata.extras as Any)
         debugPrint(playerData)
-        let mediaItem = MediaItem.make(withUrl: "", mimeType: mimeType, metadata: mappedMetadata, isLive: isLive as NSNumber, playbackStartPositionMs: nil)
+        let mediaItem = MediaItem.make(
+            withUrl: "",
+            mimeType: mimeType,
+            metadata: mappedMetadata,
+            isLive: isLive as NSNumber,
+            playbackStartPositionMs: nil,
+            lastKnownAudioLanguage: nil,
+            lastKnownSubtitleLanguage: nil)
         let event = MediaItemTransitionEvent.make(withPlayerId: self.id, mediaItem: mediaItem)
         playbackListener.onMediaItemTransition(event, completion: { e in })
     }

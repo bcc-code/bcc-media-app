@@ -168,7 +168,7 @@ class CastMediaItemConverter : MediaItemConverter {
                 .setMetadata(metadata)
                 .setCustomData(customData)
                 .build()
-        return MediaQueueItem.Builder(mediaInfo).setCustomData(customData).build()
+        return MediaQueueItem.Builder(mediaInfo).build()
     }
 
     companion object {

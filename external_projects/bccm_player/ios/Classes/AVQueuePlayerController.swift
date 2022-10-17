@@ -310,8 +310,7 @@ extension AVPlayerItem {
     func setAudioLanguage(_ audioLanguage: String) -> Bool {
         if let group = self.asset.mediaSelectionGroup(forMediaCharacteristic: AVMediaCharacteristic.audible) {
             let locale = Locale(identifier: audioLanguage)
-            let options =
-                AVMediaSelectionGroup.mediaSelectionOptions(from: group.options, with: locale)
+            let options = AVMediaSelectionGroup.mediaSelectionOptions(from: group.options, with: locale)
             if let option = options.first {
                 self.select(option, in: group)
                 return true;
@@ -322,8 +321,7 @@ extension AVPlayerItem {
     func setSubtitleLanguage(_ subtitleLanguage: String) -> Bool {
         if let group = self.asset.mediaSelectionGroup(forMediaCharacteristic: AVMediaCharacteristic.legible) {
             let locale = Locale(identifier: subtitleLanguage)
-            let options =
-                AVMediaSelectionGroup.mediaSelectionOptions(from: group.options, with: locale)
+            let options = AVMediaSelectionGroup.mediaSelectionOptions(from: group.options, with: locale)
             if let option = options.first {
                 self.select(option, in: group)
                 return true;
@@ -331,4 +329,27 @@ extension AVPlayerItem {
         }
         return false
     }
+    
+    func getSelectedAudioLanguage() -> String? {
+        if let group = self.asset.mediaSelectionGroup(forMediaCharacteristic: .audible),
+        let selectedOption = self.currentMediaSelection.selectedMediaOption(in: group),
+        let languageCode = selectedOption.extendedLanguageTag
+        {
+            return languageCode
+        }
+        
+        return nil
+    }
+    
+    func getSelectedSubtitleLanguage() -> String? {
+        if let group = self.asset.mediaSelectionGroup(forMediaCharacteristic: .legible),
+        let selectedOption = self.currentMediaSelection.selectedMediaOption(in: group),
+        let languageCode = selectedOption.extendedLanguageTag
+        {
+            return languageCode
+        }
+        
+        return nil
+    }
 }
+

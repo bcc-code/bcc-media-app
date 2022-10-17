@@ -55,12 +55,16 @@ typedef NS_ENUM(NSUInteger, CastConnectionState) {
     mimeType:(nullable NSString *)mimeType
     metadata:(nullable MediaMetadata *)metadata
     isLive:(nullable NSNumber *)isLive
-    playbackStartPositionMs:(nullable NSNumber *)playbackStartPositionMs;
+    playbackStartPositionMs:(nullable NSNumber *)playbackStartPositionMs
+    lastKnownAudioLanguage:(nullable NSString *)lastKnownAudioLanguage
+    lastKnownSubtitleLanguage:(nullable NSString *)lastKnownSubtitleLanguage;
 @property(nonatomic, copy, nullable) NSString * url;
 @property(nonatomic, copy, nullable) NSString * mimeType;
 @property(nonatomic, strong, nullable) MediaMetadata * metadata;
 @property(nonatomic, strong, nullable) NSNumber * isLive;
 @property(nonatomic, strong, nullable) NSNumber * playbackStartPositionMs;
+@property(nonatomic, copy, nullable) NSString * lastKnownAudioLanguage;
+@property(nonatomic, copy, nullable) NSString * lastKnownSubtitleLanguage;
 @end
 
 @interface MediaMetadata : NSObject

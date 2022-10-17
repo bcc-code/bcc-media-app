@@ -101,6 +101,8 @@ class MediaItem {
     this.metadata,
     this.isLive,
     this.playbackStartPositionMs,
+    this.lastKnownAudioLanguage,
+    this.lastKnownSubtitleLanguage,
   });
 
   String? url;
@@ -108,6 +110,8 @@ class MediaItem {
   MediaMetadata? metadata;
   bool? isLive;
   int? playbackStartPositionMs;
+  String? lastKnownAudioLanguage;
+  String? lastKnownSubtitleLanguage;
 
   Object encode() {
     final Map<Object?, Object?> pigeonMap = <Object?, Object?>{};
@@ -116,6 +120,8 @@ class MediaItem {
     pigeonMap['metadata'] = metadata?.encode();
     pigeonMap['isLive'] = isLive;
     pigeonMap['playbackStartPositionMs'] = playbackStartPositionMs;
+    pigeonMap['lastKnownAudioLanguage'] = lastKnownAudioLanguage;
+    pigeonMap['lastKnownSubtitleLanguage'] = lastKnownSubtitleLanguage;
     return pigeonMap;
   }
 
@@ -129,6 +135,8 @@ class MediaItem {
           : null,
       isLive: pigeonMap['isLive'] as bool?,
       playbackStartPositionMs: pigeonMap['playbackStartPositionMs'] as int?,
+      lastKnownAudioLanguage: pigeonMap['lastKnownAudioLanguage'] as String?,
+      lastKnownSubtitleLanguage: pigeonMap['lastKnownSubtitleLanguage'] as String?,
     );
   }
 }

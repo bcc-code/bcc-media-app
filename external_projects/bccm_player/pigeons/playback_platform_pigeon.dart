@@ -82,6 +82,8 @@ class MediaItem {
   MediaMetadata? metadata;
   bool? isLive;
   int? playbackStartPositionMs;
+  String? lastKnownAudioLanguage;
+  String? lastKnownSubtitleLanguage;
 }
 
 class MediaMetadata {

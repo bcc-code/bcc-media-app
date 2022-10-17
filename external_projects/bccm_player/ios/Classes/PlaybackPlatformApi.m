@@ -160,13 +160,17 @@ static id GetNullableObjectAtIndex(NSArray* array, NSInteger key) {
     mimeType:(nullable NSString *)mimeType
     metadata:(nullable MediaMetadata *)metadata
     isLive:(nullable NSNumber *)isLive
-    playbackStartPositionMs:(nullable NSNumber *)playbackStartPositionMs {
+    playbackStartPositionMs:(nullable NSNumber *)playbackStartPositionMs
+    lastKnownAudioLanguage:(nullable NSString *)lastKnownAudioLanguage
+    lastKnownSubtitleLanguage:(nullable NSString *)lastKnownSubtitleLanguage {
   MediaItem* pigeonResult = [[MediaItem alloc] init];
   pigeonResult.url = url;
   pigeonResult.mimeType = mimeType;
   pigeonResult.metadata = metadata;
   pigeonResult.isLive = isLive;
   pigeonResult.playbackStartPositionMs = playbackStartPositionMs;
+  pigeonResult.lastKnownAudioLanguage = lastKnownAudioLanguage;
+  pigeonResult.lastKnownSubtitleLanguage = lastKnownSubtitleLanguage;
   return pigeonResult;
 }
 + (MediaItem *)fromMap:(NSDictionary *)dict {
@@ -176,6 +180,8 @@ static id GetNullableObjectAtIndex(NSArray* array, NSInteger key) {
   pigeonResult.metadata = [MediaMetadata nullableFromMap:GetNullableObject(dict, @"metadata")];
   pigeonResult.isLive = GetNullableObject(dict, @"isLive");
   pigeonResult.playbackStartPositionMs = GetNullableObject(dict, @"playbackStartPositionMs");
+  pigeonResult.lastKnownAudioLanguage = GetNullableObject(dict, @"lastKnownAudioLanguage");
+  pigeonResult.lastKnownSubtitleLanguage = GetNullableObject(dict, @"lastKnownSubtitleLanguage");
   return pigeonResult;
 }
 + (nullable MediaItem *)nullableFromMap:(NSDictionary *)dict { return (dict) ? [MediaItem fromMap:dict] : nil; }
@@ -186,6 +192,8 @@ static id GetNullableObjectAtIndex(NSArray* array, NSInteger key) {
     @"metadata" : (self.metadata ? [self.metadata toMap] : [NSNull null]),
     @"isLive" : (self.isLive ?: [NSNull null]),
     @"playbackStartPositionMs" : (self.playbackStartPositionMs ?: [NSNull null]),
+    @"lastKnownAudioLanguage" : (self.lastKnownAudioLanguage ?: [NSNull null]),
+    @"lastKnownSubtitleLanguage" : (self.lastKnownSubtitleLanguage ?: [NSNull null]),
   };
 }
 @end

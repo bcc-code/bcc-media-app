@@ -53,7 +53,14 @@ class MediaItemUtils {
             isLive = isLiveMeta == "true"
         }
         
-        let mediaItem = MediaItem.make(withUrl: asset.url.absoluteString, mimeType: mimeType, metadata: metadata, isLive: isLive as NSNumber, playbackStartPositionMs: nil)
+        let mediaItem = MediaItem.make(
+            withUrl: asset.url.absoluteString,
+            mimeType: mimeType,
+            metadata: metadata,
+            isLive: isLive as NSNumber,
+            playbackStartPositionMs: nil,
+            lastKnownAudioLanguage: playerItem.getSelectedAudioLanguage(),
+            lastKnownSubtitleLanguage: playerItem.getSelectedSubtitleLanguage())
         return mediaItem
     }
     

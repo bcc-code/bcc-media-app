@@ -226,6 +226,18 @@ public class PlaybackPlatformApi {
       this.playbackStartPositionMs = setterArg;
     }
 
+    private @Nullable String lastKnownAudioLanguage;
+    public @Nullable String getLastKnownAudioLanguage() { return lastKnownAudioLanguage; }
+    public void setLastKnownAudioLanguage(@Nullable String setterArg) {
+      this.lastKnownAudioLanguage = setterArg;
+    }
+
+    private @Nullable String lastKnownSubtitleLanguage;
+    public @Nullable String getLastKnownSubtitleLanguage() { return lastKnownSubtitleLanguage; }
+    public void setLastKnownSubtitleLanguage(@Nullable String setterArg) {
+      this.lastKnownSubtitleLanguage = setterArg;
+    }
+
     public static final class Builder {
       private @Nullable String url;
       public @NonNull Builder setUrl(@Nullable String setterArg) {
@@ -252,6 +264,16 @@ public class PlaybackPlatformApi {
         this.playbackStartPositionMs = setterArg;
         return this;
       }
+      private @Nullable String lastKnownAudioLanguage;
+      public @NonNull Builder setLastKnownAudioLanguage(@Nullable String setterArg) {
+        this.lastKnownAudioLanguage = setterArg;
+        return this;
+      }
+      private @Nullable String lastKnownSubtitleLanguage;
+      public @NonNull Builder setLastKnownSubtitleLanguage(@Nullable String setterArg) {
+        this.lastKnownSubtitleLanguage = setterArg;
+        return this;
+      }
       public @NonNull MediaItem build() {
         MediaItem pigeonReturn = new MediaItem();
         pigeonReturn.setUrl(url);
@@ -259,6 +281,8 @@ public class PlaybackPlatformApi {
         pigeonReturn.setMetadata(metadata);
         pigeonReturn.setIsLive(isLive);
         pigeonReturn.setPlaybackStartPositionMs(playbackStartPositionMs);
+        pigeonReturn.setLastKnownAudioLanguage(lastKnownAudioLanguage);
+        pigeonReturn.setLastKnownSubtitleLanguage(lastKnownSubtitleLanguage);
         return pigeonReturn;
       }
     }
@@ -269,6 +293,8 @@ public class PlaybackPlatformApi {
       toMapResult.put("metadata", (metadata == null) ? null : metadata.toMap());
       toMapResult.put("isLive", isLive);
       toMapResult.put("playbackStartPositionMs", playbackStartPositionMs);
+      toMapResult.put("lastKnownAudioLanguage", lastKnownAudioLanguage);
+      toMapResult.put("lastKnownSubtitleLanguage", lastKnownSubtitleLanguage);
       return toMapResult;
     }
     static @NonNull MediaItem fromMap(@NonNull Map<String, Object> map) {
@@ -283,6 +309,10 @@ public class PlaybackPlatformApi {
       pigeonResult.setIsLive((Boolean)isLive);
       Object playbackStartPositionMs = map.get("playbackStartPositionMs");
       pigeonResult.setPlaybackStartPositionMs((playbackStartPositionMs == null) ? null : ((playbackStartPositionMs instanceof Integer) ? (Integer)playbackStartPositionMs : (Long)playbackStartPositionMs));
+      Object lastKnownAudioLanguage = map.get("lastKnownAudioLanguage");
+      pigeonResult.setLastKnownAudioLanguage((String)lastKnownAudioLanguage);
+      Object lastKnownSubtitleLanguage = map.get("lastKnownSubtitleLanguage");
+      pigeonResult.setLastKnownSubtitleLanguage((String)lastKnownSubtitleLanguage);
       return pigeonResult;
     }
   }
