@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:bccm_player/playback_platform_pigeon.g.dart';
 import 'package:brunstadtv_app/providers/settings_service.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -63,7 +65,7 @@ void main() async {
 
   providerContainer.read(settingsServiceProvider.notifier).load();
 
-  if (kDebugMode) {
+  if (kDebugMode && Platform.isAndroid) {
     await Firebase.initializeApp(
       options: DevFirebaseOptions.currentPlatform,
     );

@@ -32,17 +32,13 @@ import org.json.JSONObject
  * limitations under the License.
  */ /** Default [MediaItemConverter] implementation.  */
 
-internal class PlayerData {
-    var isLive: Boolean? = null
-    var mimeType: String? = null
-}
 @UnstableApi
 class CastMediaItemConverter : MediaItemConverter {
     override fun toMediaItem(mediaQueueItem: MediaQueueItem): MediaItem {
         val mediaInfo = mediaQueueItem.media
-        Assertions.checkNotNull(mediaInfo)
+        val metadata = mediaInfo?.metadata
         val metadataBuilder = MediaMetadata.Builder()
-        val metadata = mediaInfo!!.metadata
+        val extrasBundle = Bundle()
         if (metadata != null) {
             if (metadata.containsKey(com.google.android.gms.cast.MediaMetadata.KEY_TITLE)) {
                 metadataBuilder.setTitle(metadata.getString(com.google.android.gms.cast.MediaMetadata.KEY_TITLE))
@@ -71,30 +67,17 @@ class CastMediaItemConverter : MediaItemConverter {
             if (metadata.containsKey(com.google.android.gms.cast.MediaMetadata.KEY_TRACK_NUMBER)) {
                 metadataBuilder.setTrackNumber(metadata.getInt(com.google.android.gms.cast.MediaMetadata.KEY_TRACK_NUMBER))
             }
-            if (metadata.containsKey(BCCM_EXTRAS)) {
-                val rawJson = metadata.getString(BCCM_EXTRAS)
-                Utils.jsonStringToBundle(rawJson)?.let {
-                    metadataBuilder.setExtras(it)
-                }
-            }
-        }
 
-        var extrasBundle = Bundle()
-        mediaQueueItem.media?.customData?.getJSONObject(MEDIA_METADATA_EXTRAS)?.let { json ->
-            jsonToBundle(json)?.let { bundle ->
-                extrasBundle = bundle
+            for (key in metadata.keySet().filter { it.contains(BCCM_EXTRAS) || it.contains(BCCM_PLAYER_DATA) }) {
+                try {
+                    extrasBundle.putString(key, metadata.getString(key))
+                } catch (e: Throwable) {}
             }
-        }
-        val playerData = extractPlayerData(metadata)
-        playerData?.isLive?.let { isLive ->
-            extrasBundle.putString(PLAYER_DATA_IS_LIVE, if(isLive) "true" else "false")
-        }
-        playerData?.mimeType?.let { mimeType ->
-            extrasBundle.putString(PLAYER_DATA_MIME_TYPE, mimeType)
         }
 
         metadataBuilder.setExtras(extrasBundle)
 
+        val playerData = extractPlayerData(metadata)
         val mediaItemBuilder = MediaItem.Builder()
         playerData?.mimeType?.let {
             mediaItemBuilder.setMimeType(it)
@@ -107,34 +90,18 @@ class CastMediaItemConverter : MediaItemConverter {
 
     private fun extractPlayerData(metadata: com.google.android.gms.cast.MediaMetadata?): PlayerData? {
         if (metadata == null) return null
-        var playerData: PlayerData? = null
-        // Example: media.bcc.player.is_live
-        for (key in metadata.keySet().filter { it.contains(BCCM_PLAYER_DATA) }) {
-            if (playerData == null) playerData = PlayerData()
-            if (key == PLAYER_DATA_IS_LIVE) {
-                playerData.isLive = metadata.getString(key) == "true"
-            }
-            if (key == PLAYER_DATA_MIME_TYPE) {
-                playerData.mimeType = metadata.getString(key)
-            }
+        var map = mutableMapOf<String, Any>()
+        for (key in metadata.keySet()) {
+            try {
+                map[key] = metadata.getString(key)!!
+            } catch (e: Throwable) {}
         }
-        return playerData
+        return PlayerData.from(map)
     }
 
-    private fun extractPlayerData(extras: Bundle?): PlayerData? {
+    private fun extractBccmExtra(extras: Bundle?): Map<String, String>? {
         if (extras == null) return null
-        var playerData: PlayerData? = null
-        // Example: media.bcc.player.is_live
-        for (key in extras.keySet().filter { it.contains(BCCM_PLAYER_DATA) }) {
-            if (playerData == null) playerData = PlayerData()
-            if (key == PLAYER_DATA_IS_LIVE) {
-                playerData.isLive = extras.getString(key) == "true"
-            }
-            if (key == PLAYER_DATA_MIME_TYPE) {
-                playerData.mimeType = extras.getString(key)
-            }
-        }
-        return playerData
+        return extras.toMap()?.filter { it.key.contains(BCCM_EXTRAS) }
     }
 
     override fun toMediaQueueItem(mediaItem: MediaItem): MediaQueueItem {
@@ -172,12 +139,8 @@ class CastMediaItemConverter : MediaItemConverter {
             metadata.putInt(com.google.android.gms.cast.MediaMetadata.KEY_TRACK_NUMBER, mediaItem.mediaMetadata.trackNumber!!)
         }
 
-        val playerData = extractPlayerData(mediaItem.mediaMetadata.extras)
-        playerData?.isLive?.let { isLive ->
-            metadata.putString(PLAYER_DATA_IS_LIVE, if(isLive) "true" else "false")
-        }
-        playerData?.mimeType?.let { mimeType ->
-            metadata.putString(PLAYER_DATA_MIME_TYPE, mimeType)
+        mediaItem.mediaMetadata.extras?.toMap()?.filter{ it.key.contains(BCCM_EXTRAS) || it.key.contains(BCCM_PLAYER_DATA) }?.forEach {
+            metadata.putString(it.key, it.value)
         }
 
         val customData = getCustomData(mediaItem)
@@ -192,14 +155,11 @@ class CastMediaItemConverter : MediaItemConverter {
         }
         customData.put("audioTracks", audioTracks)
         customData.put("subtitlesTracks", subtitlesTracks)
-        val normalExtras = mediaItem.mediaMetadata.extras?.toMap()?.filter{ !it.key.contains(BCCM_PLAYER_DATA) };
-        normalExtras?.let {
-            customData.put(MEDIA_METADATA_EXTRAS, mapToJson(it))
-        }
 
         Log.d("bccm", "this is the customdata: $customData")
 
 
+        val playerData = PlayerData.from(mediaItem.mediaMetadata.extras?.toMap())
         val contentUrl = mediaItem.localConfiguration?.uri.toString()
         val contentId = if (mediaItem.mediaId == MediaItem.DEFAULT_MEDIA_ID) contentUrl else mediaItem.mediaId
         val mediaInfo = MediaInfo.Builder(contentId)
@@ -223,23 +183,10 @@ class CastMediaItemConverter : MediaItemConverter {
         const val KEY_UUID = "uuid"
         const val KEY_LICENSE_URI = "licenseUri"
         const val KEY_REQUEST_HEADERS = "requestHeaders"
-        const val MEDIA_METADATA_EXTRAS = "media_metadata_extras"
         const val BCCM_PLAYER_DATA = "media.bcc.player"
         const val BCCM_EXTRAS = "media.bcc.extras"
         const val PLAYER_DATA_IS_LIVE = "$BCCM_PLAYER_DATA.is_live"
         const val PLAYER_DATA_MIME_TYPE = "$BCCM_PLAYER_DATA.mime_type"
-
-        @Throws(JSONException::class)
-        fun jsonToBundle(jsonObject: JSONObject): Bundle? {
-            val bundle = Bundle()
-            val iter: Iterator<*> = jsonObject.keys()
-            while (iter.hasNext()) {
-                val key = iter.next() as String
-                val value = jsonObject.getString(key)
-                bundle.putString(key, value)
-            }
-            return bundle
-        }
 
         // Serialization.
         private fun getCustomData(mediaItem: MediaItem): JSONObject {

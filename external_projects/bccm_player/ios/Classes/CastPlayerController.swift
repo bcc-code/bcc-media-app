@@ -126,8 +126,8 @@ class CastPlayerController: NSObject, PlayerController  {
                 }
             }
             if let extras = originalMeta.extras {
-                if let extrasJson = MetadataUtils.dictToJson(extras) {
-                    playerData[PlayerMetadataConstants.ExtrasJson] = extrasJson
+                for kv in extras {
+                    metadata.setString(kv.value, forKey: MetadataNamespace.BccmExtras.rawValue + "." + kv.key)
                 }
             }
         }
@@ -207,16 +207,16 @@ extension CastPlayerController : GCKRemoteMediaClientListener {
             playerData[playerDataKey] = mediaMetadata.string(forKey: metadataKey)
         }
         
-        if let extrasJson = playerData[PlayerMetadataConstants.ExtrasJson]?.data(using: .utf8) {
-            do {
-                let decoded = try JSONSerialization.jsonObject(with: extrasJson, options: [])
-                if let dictFromJSON = decoded as? [String:String] {
-                    mappedMetadata.extras = dictFromJSON
-                }
-            } catch {
-                print (error.localizedDescription)
+        var extras: [String: String] = [:]
+        for metadataKey in mediaMetadata.allKeys() {
+            guard let namespaceStringRange = metadataKey.range(of: MetadataNamespace.BccmExtras.rawValue + ".") else {
+                continue
             }
+            let extrasKey = String(metadataKey[namespaceStringRange.upperBound...]);
+            extras[extrasKey] = mediaMetadata.string(forKey: metadataKey)
         }
+        mappedMetadata.extras = extras
+        
         let mimeType = playerData[PlayerMetadataConstants.MimeType]
         let isLive = playerData[PlayerMetadataConstants.IsLive] == "true"
         debugPrint(mappedMetadata.extras as Any)

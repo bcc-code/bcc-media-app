@@ -6,7 +6,9 @@ import androidx.media3.common.MediaItem
 import androidx.media3.common.MediaMetadata
 import androidx.media3.common.Player
 import com.npaw.youbora.lib6.exoplayer2.Exoplayer2Adapter
+import media.bcc.bccm_player.CastMediaItemConverter.Companion.BCCM_EXTRAS
 import media.bcc.bccm_player.CastMediaItemConverter.Companion.PLAYER_DATA_IS_LIVE
+import media.bcc.bccm_player.CastMediaItemConverter.Companion.PLAYER_DATA_MIME_TYPE
 import media.bcc.player.PlaybackPlatformApi
 
 
@@ -74,7 +76,7 @@ abstract class PlayerController() : Player.Listener {
         val sourceExtra = mediaItem.metadata?.extras;
         if (sourceExtra != null) {
             for (extra in sourceExtra) {
-                extraMeta.putString("media.bcc.extras." + extra.key, extra.value);
+                extraMeta.putString(BCCM_EXTRAS + "." + extra.key, extra.value);
             }
         }
 
@@ -110,9 +112,11 @@ abstract class PlayerController() : Player.Listener {
 
         val miBuilder = PlaybackPlatformApi.MediaItem.Builder()
                 .setUrl(mediaItem.localConfiguration?.uri.toString())
-                .setIsLive(extraMeta["is_live"] == "true")
+                .setIsLive(extraMeta[PLAYER_DATA_IS_LIVE] == "true")
                 .setMetadata(metaBuilder.build())
-        if (mediaItem.localConfiguration?.mimeType != null) {
+        if (extraMeta[PLAYER_DATA_MIME_TYPE] != null) {
+            miBuilder.setMimeType(extraMeta[PLAYER_DATA_MIME_TYPE]);
+        } else if (mediaItem.localConfiguration?.mimeType != null) {
             miBuilder.setMimeType(mediaItem.localConfiguration?.mimeType);
         }
         return miBuilder.build()
