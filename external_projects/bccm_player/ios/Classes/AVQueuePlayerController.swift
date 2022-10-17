@@ -33,6 +33,7 @@ public class AVQueuePlayerController: NSObject, PlayerController, AVPlayerViewCo
     var temporaryStatusObserver: NSKeyValueObservation? = nil
     var youboraPlugin: YBPlugin
     var pipController: AVPlayerViewController? = nil
+    var appConfig: AppConfig? = nil
 
     init(id: String? = nil, playbackListener: PlaybackListenerPigeon, npawConfig: NpawConfig?) {
         self.id = id ?? UUID().uuidString;
@@ -159,8 +160,15 @@ public class AVQueuePlayerController: NSObject, PlayerController, AVPlayerViewCo
         youboraPlugin.options.appReleaseVersion = npawConfig?.appReleaseVersion;
     }
 
+    public func updateAppConfig(appConfig: AppConfig?) {
+        self.appConfig = appConfig
+    }
+    
     public func replaceCurrentMediaItem(_ mediaItem: MediaItem, autoplay: NSNumber?) {
-        let playerItem = mapMediaItem(mediaItem);
+        guard let playerItem = mapMediaItem(mediaItem) else {
+            return
+        }
+    
         player.replaceCurrentItem(with: playerItem)
         
         temporaryStatusObserver = playerItem.observe(\.status, options: [.new, .old]) {
@@ -172,9 +180,17 @@ public class AVQueuePlayerController: NSObject, PlayerController, AVPlayerViewCo
                 if (autoplay?.boolValue == true) {
                     self.player.play()
                 }
+                if let audioLanguage = self.appConfig?.audioLanguage {
+                    _ = playerItem.setAudioLanguage(audioLanguage)
+                }
+                if let subtitleLanguage = self.appConfig?.subtitleLanguage {
+                    _ = playerItem.setSubtitleLanguage(subtitleLanguage)
+                }
             } else if (playerItem.status == .failed || playerItem.status == .unknown) {
                 print("Mediaitem failed to play")
             }
+            self.temporaryStatusObserver?.invalidate()
+            self.temporaryStatusObserver = nil
         }
     }
     
@@ -183,8 +199,9 @@ public class AVQueuePlayerController: NSObject, PlayerController, AVPlayerViewCo
     }
 
     public func queueItem(_ mediaItem: MediaItem) {
-        let playerItem = mapMediaItem(mediaItem);
-        player.insert(playerItem, after: nil);
+        if let playerItem = mapMediaItem(mediaItem) {
+            player.insert(playerItem, after: nil);
+        }
     }
     
     func takeOwnership(_ playerViewController: AVPlayerViewController) {
@@ -194,8 +211,11 @@ public class AVQueuePlayerController: NSObject, PlayerController, AVPlayerViewCo
         playerViewController.player = player
     }
     
-    func mapMediaItem(_ mediaItem: MediaItem) -> AVPlayerItem {
-        let playerItem = AVPlayerItem(url: URL(string: mediaItem.url)!);
+    func mapMediaItem(_ mediaItem: MediaItem) -> AVPlayerItem? {
+        guard let urlString = mediaItem.url, let url = URL(string: urlString) else {
+            return nil
+        }
+        let playerItem = AVPlayerItem(url: url);
 
         var allItems: [AVMetadataItem] = []
         if let metadataItem = MetadataUtils.metadataItem(identifier: AVMetadataIdentifier.commonIdentifierTitle.rawValue, value: mediaItem.metadata?.title as (NSCopying & NSObjectProtocol)?) {
@@ -282,5 +302,33 @@ public class AVQueuePlayerController: NSObject, PlayerController, AVPlayerViewCo
             let event = IsPlayingChangedEvent.make(withPlayerId: self.id, isPlaying: isPlaying as NSNumber)
             self.playbackListener.onIsPlayingChanged(event, completion: { _ in })
         })
+    }
+}
+
+
+extension AVPlayerItem {
+    func setAudioLanguage(_ audioLanguage: String) -> Bool {
+        if let group = self.asset.mediaSelectionGroup(forMediaCharacteristic: AVMediaCharacteristic.audible) {
+            let locale = Locale(identifier: audioLanguage)
+            let options =
+                AVMediaSelectionGroup.mediaSelectionOptions(from: group.options, with: locale)
+            if let option = options.first {
+                self.select(option, in: group)
+                return true;
+            }
+        }
+        return false
+    }
+    func setSubtitleLanguage(_ subtitleLanguage: String) -> Bool {
+        if let group = self.asset.mediaSelectionGroup(forMediaCharacteristic: AVMediaCharacteristic.legible) {
+            let locale = Locale(identifier: subtitleLanguage)
+            let options =
+                AVMediaSelectionGroup.mediaSelectionOptions(from: group.options, with: locale)
+            if let option = options.first {
+                self.select(option, in: group)
+                return true;
+            }
+        }
+        return false
     }
 }

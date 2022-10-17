@@ -81,9 +81,6 @@ class _LiveScreenState extends ConsumerState<LiveScreen> with AutoRouteAware {
       await ensurePlayingWithinReasonableTime(
           castingNow ? castPlayerProvider : primaryPlayerProvider);
     }();
-    setState(() {
-      settingUp = false;
-    });
   }
 
   void setStateIfMounted(void Function() fn) {
@@ -219,6 +216,8 @@ class _LiveScreenState extends ConsumerState<LiveScreen> with AutoRouteAware {
           ),
         ),
         Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             if (error != null && !isCorrectItem(player.currentMediaItem))
               Text(error ?? ''),

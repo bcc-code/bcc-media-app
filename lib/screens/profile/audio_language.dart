@@ -13,15 +13,11 @@ class AppAudioLanguage extends ConsumerStatefulWidget {
 class _AppAudioLanguageState extends ConsumerState<AppAudioLanguage> {
   var languageList = [
     Option(
-      id: 'afr',
-      title: 'Afrikaans (Afrikaans)',
-    ),
-    Option(
-      id: 'deu',
+      id: 'de',
       title: 'Deutsch (German)',
     ),
     Option(
-      id: 'eng',
+      id: 'en',
       title: 'English (English)',
     ),
     Option(
@@ -29,31 +25,23 @@ class _AppAudioLanguageState extends ConsumerState<AppAudioLanguage> {
       title: 'Nederlands (Dutch)',
     ),
     Option(
-      id: 'tur',
-      title: 'Türkçe (Turkish)',
-    ),
-    Option(
-      id: 'est',
-      title: 'Eesti (Estonian)',
-    ),
-    Option(
-      id: 'spa',
+      id: 'es',
       title: 'Español (Spanish)',
     ),
     Option(
-      id: 'fra',
-      title: 'Español (Spanish)',
+      id: 'fr',
+      title: 'French',
     ),
     Option(
-      id: 'ita',
+      id: 'it',
       title: 'Italiano (Italian)',
     ),
     Option(
-      id: 'hun',
+      id: 'hu',
       title: 'Magyar (Hungarian)',
     ),
     Option(
-      id: 'nok',
+      id: 'no',
       title: 'Norsk bokmål (Norwegian Bokmål)',
     ),
   ];

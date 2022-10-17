@@ -1,57 +1,48 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../components/option_list.dart';
+import '../../providers/settings_service.dart';
 
-class AppSubtitleLanguage extends StatefulWidget {
+class AppSubtitleLanguage extends ConsumerStatefulWidget {
   const AppSubtitleLanguage({super.key});
 
   @override
-  State<AppSubtitleLanguage> createState() => _AppSubtitleLanguageState();
+  ConsumerState<AppSubtitleLanguage> createState() =>
+      _AppSubtitleLanguageState();
 }
 
-class _AppSubtitleLanguageState extends State<AppSubtitleLanguage> {
+class _AppSubtitleLanguageState extends ConsumerState<AppSubtitleLanguage> {
   var languageList = [
     Option(
-      id: 'afr',
-      title: 'Afrikaans (Afrikaans)',
-    ),
-    Option(
-      id: 'deu',
+      id: 'de',
       title: 'Deutsch (German)',
     ),
     Option(
-      id: 'eng',
+      id: 'en',
       title: 'English (English)',
     ),
     Option(
-      id: 'dut',
+      id: 'nl',
       title: 'Nederlands (Dutch)',
     ),
     Option(
-      id: 'tur',
-      title: 'Türkçe (Turkish)',
-    ),
-    Option(
-      id: 'est',
-      title: 'Eesti (Estonian)',
-    ),
-    Option(
-      id: 'spa',
+      id: 'es',
       title: 'Español (Spanish)',
     ),
     Option(
-      id: 'fra',
-      title: 'Español (Spanish)',
+      id: 'fr',
+      title: 'French',
     ),
     Option(
-      id: 'ita',
+      id: 'it',
       title: 'Italiano (Italian)',
     ),
     Option(
-      id: 'hun',
+      id: 'hu',
       title: 'Magyar (Hungarian)',
     ),
     Option(
-      id: 'nok',
+      id: 'no',
       title: 'Norsk bokmål (Norwegian Bokmål)',
     ),
   ];
@@ -62,6 +53,7 @@ class _AppSubtitleLanguageState extends State<AppSubtitleLanguage> {
     setState(() {
       selected = id;
     });
+    ref.read(settingsServiceProvider.notifier).setSubtitleLanguage(id);
   }
 
   @override

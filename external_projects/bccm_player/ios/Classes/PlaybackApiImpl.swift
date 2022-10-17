@@ -25,6 +25,9 @@ public class PlaybackApiImpl: NSObject, PlaybackPlatformPigeon {
     
     public func setAppConfig(_ config: AppConfig?, error: AutoreleasingUnsafeMutablePointer<FlutterError?>) {
         appConfig = config
+        for p in players {
+            p.updateAppConfig(appConfig: appConfig)
+        }
     }
 
     public func setNpawConfig(_ config: NpawConfig?, error: AutoreleasingUnsafeMutablePointer<FlutterError?>) {
@@ -83,7 +86,6 @@ public class PlaybackApiImpl: NSObject, PlaybackPlatformPigeon {
         player?.replaceCurrentMediaItem(mediaItem, autoplay: autoplay)
         completion(nil)
     }
-
 
     public func play(_ playerId: String, error: AutoreleasingUnsafeMutablePointer<FlutterError?>) {
         let player = getPlayer(playerId);

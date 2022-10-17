@@ -13,6 +13,7 @@ import com.google.android.gms.cast.MediaInfo
 import com.google.android.gms.cast.MediaQueueItem
 import com.google.android.gms.common.images.WebImage
 import com.npaw.youbora.lib6.extensions.toMap
+import org.json.JSONArray
 import org.json.JSONException
 import org.json.JSONObject
 
@@ -144,14 +145,14 @@ class CastMediaItemConverter : MediaItemConverter {
         }
 
         val customData = getCustomData(mediaItem)
-        val audioTracks = mutableListOf<String>()
-        val subtitlesTracks = mutableListOf<String>()
+        val audioTracks = JSONArray()
+        val subtitlesTracks = JSONArray()
         val appConfig = BccmPlayerPluginSingleton.appConfigState.value
         appConfig?.audioLanguage?.let {
-            audioTracks.add(it)
+            audioTracks.put(it)
         }
         appConfig?.subtitleLanguage?.let {
-            subtitlesTracks.add(it)
+            subtitlesTracks.put(it)
         }
         customData.put("audioTracks", audioTracks)
         customData.put("subtitlesTracks", subtitlesTracks)
@@ -169,7 +170,7 @@ class CastMediaItemConverter : MediaItemConverter {
                 .setMetadata(metadata)
                 .setCustomData(customData)
                 .build()
-        return MediaQueueItem.Builder(mediaInfo).build()
+        return MediaQueueItem.Builder(mediaInfo).setCustomData(customData).build()
     }
 
     companion object {

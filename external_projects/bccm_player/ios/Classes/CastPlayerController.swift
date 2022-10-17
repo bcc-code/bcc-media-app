@@ -17,6 +17,7 @@ class CastPlayerController: NSObject, PlayerController  {
     var castState: GCKCastState?
     var positionUponEndingSession: TimeInterval?
     var sessionManager: GCKSessionManager?
+    var appConfig: AppConfig? = nil
     final var observers = [NSKeyValueObservation]()
     
     init(chromecastPigeon: ChromecastPigeon, playbackListener: PlaybackListenerPigeon) {
@@ -51,6 +52,10 @@ class CastPlayerController: NSObject, PlayerController  {
     
     func updateNpawConfig(npawConfig: NpawConfig?) {
         
+    }
+    
+    func updateAppConfig(appConfig: AppConfig?) {
+        self.appConfig = appConfig
     }
     
     func replaceCurrentMediaItem(_ mediaItem: MediaItem, autoplay: NSNumber?) {
@@ -98,7 +103,7 @@ class CastPlayerController: NSObject, PlayerController  {
     }
     
     func mapMediaItemToMediaInformation(_ mediaItem: MediaItem) -> GCKMediaInformation? {
-        guard let url = URL(string: mediaItem.url) else {
+        guard let urlString = mediaItem.url, let url = URL(string: urlString) else {
             return nil
         }
         let mediaInfoBuilder = GCKMediaInformationBuilder(contentURL: url);
@@ -107,6 +112,7 @@ class CastPlayerController: NSObject, PlayerController  {
             mediaInfoBuilder.streamType = .live
             playerData[PlayerMetadataConstants.IsLive] = "true"
         }
+        
         if let mimeType = mediaItem.mimeType {
             mediaInfoBuilder.contentType = mimeType
         }
@@ -135,6 +141,17 @@ class CastPlayerController: NSObject, PlayerController  {
             metadata.setString(kv.value, forKey: MetadataNamespace.BccmPlayer.rawValue + "." + kv.key)
         }
         
+        var customData: [String: Any] = [:]
+        if let audioLanguage = appConfig?.audioLanguage {
+            customData["audioTracks"] = [audioLanguage]
+        }
+        if let subtitleLanguage = appConfig?.subtitleLanguage {
+            customData["subtitlesTracks"] = [subtitleLanguage]
+        }
+        
+        mediaInfoBuilder.customData = customData
+        
+        debugPrint (mediaInfoBuilder.build())
         mediaInfoBuilder.metadata = metadata;
         return mediaInfoBuilder.build();
     }
