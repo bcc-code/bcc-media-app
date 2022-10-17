@@ -144,23 +144,21 @@ class CastMediaItemConverter : MediaItemConverter {
             metadata.putString(it.key, it.value)
         }
 
+        val playerData = PlayerData.from(mediaItem.mediaMetadata.extras?.toMap())
         val customData = getCustomData(mediaItem)
         val audioTracks = JSONArray()
         val subtitlesTracks = JSONArray()
         val appConfig = BccmPlayerPluginSingleton.appConfigState.value
-        appConfig?.audioLanguage?.let {
-            audioTracks.put(it)
-        }
-        appConfig?.subtitleLanguage?.let {
-            subtitlesTracks.put(it)
-        }
+        playerData?.lastKnownAudioLanguage?.let { audioTracks.put(it) }
+        appConfig?.audioLanguage?.let { audioTracks.put(it) }
+        playerData?.lastKnownSubtitleLanguage?.let { subtitlesTracks.put(it) }
+        appConfig?.subtitleLanguage?.let { subtitlesTracks.put(it) }
         customData.put("audioTracks", audioTracks)
         customData.put("subtitlesTracks", subtitlesTracks)
 
         Log.d("bccm", "this is the customdata: $customData")
 
 
-        val playerData = PlayerData.from(mediaItem.mediaMetadata.extras?.toMap())
         val contentUrl = mediaItem.localConfiguration?.uri.toString()
         val contentId = if (mediaItem.mediaId == MediaItem.DEFAULT_MEDIA_ID) contentUrl else mediaItem.mediaId
         val mediaInfo = MediaInfo.Builder(contentId)
@@ -188,6 +186,8 @@ class CastMediaItemConverter : MediaItemConverter {
         const val BCCM_EXTRAS = "media.bcc.extras"
         const val PLAYER_DATA_IS_LIVE = "$BCCM_PLAYER_DATA.is_live"
         const val PLAYER_DATA_MIME_TYPE = "$BCCM_PLAYER_DATA.mime_type"
+        const val PLAYER_DATA_LAST_KNOWN_AUDIO_LANGUAGE = "$BCCM_PLAYER_DATA.last_known_audio_language"
+        const val PLAYER_DATA_LAST_KNOWN_SUBTITLE_LANGUAGE = "$BCCM_PLAYER_DATA.last_known_subtitle_language"
 
         // Serialization.
         private fun getCustomData(mediaItem: MediaItem): JSONObject {
