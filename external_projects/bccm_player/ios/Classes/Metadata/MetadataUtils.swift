@@ -4,23 +4,21 @@
 
 import AVFoundation
 
+
 final class MetadataUtils {
     static func metadataItem(identifier: String, value: (NSCopying & NSObjectProtocol)?) -> AVMetadataItem? {
-        metadataItem(identifier: identifier, value: value, isExtra: false);
+        metadataItem(identifier: identifier, value: value, namespace: nil);
     }
 
-    static func metadataItem(identifier: String, value: (NSCopying & NSObjectProtocol)?, isExtra: Bool) -> AVMetadataItem? {
+    static func metadataItem(identifier: String, value: (NSCopying & NSObjectProtocol)?, namespace: MetadataNamespace? = nil) -> AVMetadataItem? {
         if let actualValue = value {
 
             let item = AVMutableMetadataItem()
-            if (isExtra) {
-                item.extraAttributes = [AVMetadataExtraAttributeKey: Any]()
-                item.extraAttributes![AVMetadataExtraAttributeKey(MetadataConstants.IsExtraExtraAttributeKey)] = true
-
+            if let namespace = namespace {
                 // "For custom identifiers, the keySpace AVMetadataKeySpaceQuickTimeMetadata is recommended.
                 // This keySpace defines its key values to be expressed as reverse-DNS strings, which allows
                 // third parties to define their own keys in a well established way that avoids collisions."
-                item.identifier = AVMetadataItem.identifier(forKey: MetadataConstants.ExtraPrefix + identifier, keySpace: AVMetadataKeySpace.quickTimeMetadata)
+                item.identifier = AVMetadataItem.identifier(forKey: namespace.rawValue + "." + identifier, keySpace: AVMetadataKeySpace.quickTimeMetadata)
             } else {
                 item.setValue(identifier, forKey: "identifier")
             }
@@ -38,5 +36,15 @@ final class MetadataUtils {
         item.identifier = AVMetadataIdentifier.commonIdentifierArtwork
         item.extendedLanguageTag = "und"
         return item.copy() as? AVMetadataItem
+    }
+    
+    static func dictToJson(_ dictionary: [String: String]) -> String? {
+        do {
+            let jsonData: Data = try JSONSerialization.data(withJSONObject: dictionary)
+            return String(data: jsonData, encoding: .utf8)
+        } catch {
+            print(error.localizedDescription)
+            return nil;
+        }
     }
 }

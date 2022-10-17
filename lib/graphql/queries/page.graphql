@@ -7,18 +7,16 @@ fragment ItemSection on ItemSection {
   }
 }
 
-fragment ItemSectionItem on Item {
+fragment ItemSectionItem on SectionItem {
   id
   sort
   title
-  imageUrl
-  ... on EpisodeItem {
-    episode {
+  image
+  item {
+    ... on Episode {
       number
     }
-  }
-  ... on ShowItem {
-    show {
+    ... on Show {
       episodeCount
     }
   }

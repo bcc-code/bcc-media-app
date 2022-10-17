@@ -1,0 +1,6 @@
+type Application {
+    id: ID!
+    code: String!
+    clientVersion: String!
+    page: Page @goField(forceResolver: true)
+}

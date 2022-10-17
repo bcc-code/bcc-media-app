@@ -11,10 +11,9 @@ import 'package:flutter/services.dart';
 enum PlayerType { betterPlayer, videoPlayer, native }
 
 class BccmPlayer extends StatefulWidget {
-  final PlayerType type;
   final String id;
 
-  const BccmPlayer({super.key, required this.type, required this.id});
+  const BccmPlayer({super.key, required this.id});
 
   @override
   State<BccmPlayer> createState() => _BccmPlayerState();

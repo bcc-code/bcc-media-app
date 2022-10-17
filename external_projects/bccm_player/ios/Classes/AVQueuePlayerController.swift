@@ -127,10 +127,19 @@ public class AVQueuePlayerController: NSObject, PlayerController, AVPlayerViewCo
         player.pause()
     }
     
-    func npawHandleMediaItemUpdate(playerItem: AVPlayerItem?, extras: [String: String]) {
+    func npawHandleMediaItemUpdate(playerItem: AVPlayerItem?, extras: [String: String]?) {
         guard #available(iOS 12.2, *) else {
             // AVPlayerItem.externalMetadata isn't available < 12.2
             // TODO: check what people did before that
+            return;
+        }
+        guard let extras = extras else {
+            youboraPlugin.options.contentIsLive = nil
+            youboraPlugin.options.contentId = nil
+            youboraPlugin.options.contentTitle = nil
+            youboraPlugin.options.contentTvShow = nil
+            youboraPlugin.options.contentSeason = nil
+            youboraPlugin.options.contentEpisodeTitle = nil
             return;
         }
         let duration = player.currentItem?.duration
@@ -210,9 +219,14 @@ public class AVQueuePlayerController: NSObject, PlayerController, AVPlayerViewCo
         }
         if let extras = mediaItem.metadata?.extras {
             for item in extras {
-                if let metadataItem = MetadataUtils.metadataItem(identifier: item.key, value: item.value as (NSCopying & NSObjectProtocol)?, isExtra: true) {
+                if let metadataItem = MetadataUtils.metadataItem(identifier: item.key, value: item.value as (NSCopying & NSObjectProtocol)?, namespace: .BccmExtras) {
                     allItems.append(metadataItem)
                 }
+            }
+        }
+        if let mimeType = mediaItem.mimeType {
+            if let metadataItem = MetadataUtils.metadataItem(identifier: PlayerMetadataConstants.MimeType, value: mimeType as (NSCopying & NSObjectProtocol)?, namespace: .BccmPlayer) {
+                allItems.append(metadataItem)
             }
         }
 
@@ -225,94 +239,21 @@ public class AVQueuePlayerController: NSObject, PlayerController, AVPlayerViewCo
         return playerItem;
     }
     
-    func mapMetadata(_ items: [AVMetadataItem]) -> [String: String] {
-        items.filter({
-                    (value) in
-                    let containsExtraPrefix = value.identifier?.rawValue.contains(MetadataConstants.ExtraPrefix) ?? false;
-                    if (!containsExtraPrefix) {
-                        return false;
-                    }
-                    return true;
-                })
-                .reduce(into: [String: String]()) {
-                    (dict, val) in
-                    if (val.identifier?.rawValue == nil || (val.value as? String) == nil) {
-                        return
-                    }
-                    guard let range = val.identifier!.rawValue.range(of: MetadataConstants.ExtraPrefix) else {
-                        return
-                    }
-                    let key = val.identifier!.rawValue[range.upperBound...];
-                    dict[String(key)] = (val.value as! String)
-                };
-    }
-    
     func addObservers() {
         // listening for current item change
         observers.append(player.observe(\.currentItem, options: [.old, .new]) {
             (player, _) in
             debugPrint("BTV DEBUG: media item changed...")
-            let emptyEvent = MediaItemTransitionEvent.make(withPlayerId: self.id, mediaItem: nil)
-            guard let currentItem = player.currentItem else {
-                return self.playbackListener.onMediaItemTransition(emptyEvent, completion: { _ in })
-            }
-            guard let url = (currentItem.asset as? AVURLAsset)?.url.absoluteString else {
-                return self.playbackListener.onMediaItemTransition(emptyEvent, completion: { _ in })
-            }
-            
-            let nowPlayingInfoCenter = MPNowPlayingInfoCenter.default()
-            var metadata: MediaMetadata? = nil
-            if #available(iOS 12.2, *) {
-                var extras = [String: String]();
-                if (player.currentItem?.externalMetadata != nil) {
-                    extras = self.mapMetadata(currentItem.externalMetadata)
-                }
-
-                metadata = MediaMetadata.make(
-                        withArtworkUri: currentItem.externalMetadata.first(where: { $0.identifier == AVMetadataIdentifier.commonIdentifierArtwork })?.stringValue,
-                        title: currentItem.externalMetadata.first(where: { $0.identifier == AVMetadataIdentifier.commonIdentifierTitle })?.stringValue,
-                        artist: currentItem.externalMetadata.first(where: { $0.identifier == AVMetadataIdentifier.commonIdentifierArtist })?.stringValue,
-                        episodeId: currentItem.externalMetadata.first(where: { $0.identifier == AVMetadataIdentifier(MetadataConstants.EpisodeId) })?.stringValue,
-                        extras: extras
-                )
-                
-                nowPlayingInfoCenter.nowPlayingInfo?[MPMediaItemPropertyArtist] = metadata?.artist
-                nowPlayingInfoCenter.nowPlayingInfo?[MPMediaItemPropertyTitle] = metadata?.title
-                print ("image is " + (currentItem.externalMetadata.first(where: { $0.identifier == AVMetadataIdentifier.commonIdentifierArtwork })?.debugDescription ?? ""))
-                if let imageData = currentItem.externalMetadata.first(where: { $0.identifier == AVMetadataIdentifier.commonIdentifierArtwork })?.value as? Data {
-                    guard let image = UIImage(data: imageData) else {
-                        return;
-                    }
-                    print ("image is image")
-                    let nowPlayingArtwork = MPMediaItemArtwork(boundsSize: image.size, requestHandler: { (_ size : CGSize) -> UIImage in
-
-                        return image
-
-                    })
-                    nowPlayingInfoCenter.nowPlayingInfo?[MPMediaItemPropertyArtwork] = nowPlayingArtwork
-                    print ("image is set")
-                    
-                }
-                
-
-                self.npawHandleMediaItemUpdate(playerItem: player.currentItem, extras: extras);
-            }
-            let mediaItem = MediaItem.make(withUrl: url, mimeType: "application/x-mpegURL", metadata: metadata, isLive: false, playbackStartPositionMs: nil)
+            let mediaItem = MediaItemUtils.mapPlayerItem(player.currentItem)
             let event = MediaItemTransitionEvent.make(withPlayerId: self.id, mediaItem: mediaItem)
             self.playbackListener.onMediaItemTransition(event, completion: { _ in })
             
-            //nowPlayingInfoCenter.nowPlayingInfo?[MPNowPlayingInfoPropertyElapsedPlaybackTime] = 0
+            self.npawHandleMediaItemUpdate(playerItem: player.currentItem, extras: mediaItem?.metadata?.extras);
             
-
-//            self.observers.append(player.observe(\.currentItem?.isPlaybackLikelyToKeepUp, options: [.old, .new]) {
-//                (player, change) in
-//                debugPrint("BTV DEBUG: isPlaybackLikelyToKeepUp..")
-//                player.play()
-//            })
             self.observers.append(player.observe(\.currentItem?.duration, options: [.old, .new]) {
                 (player, change) in
                 debugPrint("BTV DEBUG: duration..")
-                nowPlayingInfoCenter.nowPlayingInfo?[MPMediaItemPropertyPlaybackDuration] = player.currentItem?.duration.seconds
+                MPNowPlayingInfoCenter.default().nowPlayingInfo?[MPMediaItemPropertyPlaybackDuration] = player.currentItem?.duration.seconds
             })
         })
         self.observers.append(player.observe(\.rate, options: [.old, .new]) {

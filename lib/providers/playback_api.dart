@@ -12,6 +12,7 @@ final playbackApiProvider = Provider<PlaybackPlatformInterface>((ref) {
 Future playEpisode(
     {required String playerId,
     required Episode episode,
+    bool? autoplay,
     int? playbackPositionMs}) async {
   var mediaItem = MediaItem(
       url: episode.streamUrl,
@@ -28,8 +29,8 @@ Future playEpisode(
           }),
       playbackStartPositionMs: playbackPositionMs);
 
-  PlaybackPlatformInterface.instance
-      .replaceCurrentMediaItem(playerId, mediaItem, autoplay: true);
+  await PlaybackPlatformInterface.instance
+      .replaceCurrentMediaItem(playerId, mediaItem, autoplay: autoplay);
 }
 
 Future queueEpisode(

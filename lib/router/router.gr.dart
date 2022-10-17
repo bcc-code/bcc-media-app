@@ -134,14 +134,21 @@ class AppRouter extends _i10.RootStackRouter {
     },
     EpisodeScreenRoute.name: (routeData) {
       final pathParams = routeData.inheritedPathParams;
+      final queryParams = routeData.queryParams;
       final args = routeData.argsAs<EpisodeScreenRouteArgs>(
           orElse: () => EpisodeScreenRouteArgs(
-              episodeId: pathParams.getString('episodeId')));
+                episodeId: pathParams.getString('episodeId'),
+                autoplay: queryParams.getBool(
+                  'autoplay',
+                  false,
+                ),
+              ));
       return _i10.CustomPage<void>(
         routeData: routeData,
         child: _i13.EpisodeScreen(
           key: args.key,
           episodeId: args.episodeId,
+          autoplay: args.autoplay,
         ),
         customRouteBuilder: _i18.CustomTransitionsBuilders.slideUpAndDown,
         opaque: true,
@@ -439,14 +446,17 @@ class EpisodeScreenRoute extends _i10.PageRouteInfo<EpisodeScreenRouteArgs> {
   EpisodeScreenRoute({
     _i16.Key? key,
     required String episodeId,
+    bool autoplay = false,
   }) : super(
           EpisodeScreenRoute.name,
           path: 'episode/:episodeId',
           args: EpisodeScreenRouteArgs(
             key: key,
             episodeId: episodeId,
+            autoplay: autoplay,
           ),
           rawPathParams: {'episodeId': episodeId},
+          rawQueryParams: {'autoplay': autoplay},
         );
 
   static const String name = 'EpisodeScreenRoute';
@@ -456,15 +466,18 @@ class EpisodeScreenRouteArgs {
   const EpisodeScreenRouteArgs({
     this.key,
     required this.episodeId,
+    this.autoplay = false,
   });
 
   final _i16.Key? key;
 
   final String episodeId;
 
+  final bool autoplay;
+
   @override
   String toString() {
-    return 'EpisodeScreenRouteArgs{key: $key, episodeId: $episodeId}';
+    return 'EpisodeScreenRouteArgs{key: $key, episodeId: $episodeId, autoplay: $autoplay}';
   }
 }
 

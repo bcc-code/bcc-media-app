@@ -34,6 +34,7 @@ class SettingsService extends StateNotifier<Settings> {
         appLanguage: prefs.getString('app_language'),
         audioLanguage: prefs.getString('audio_language'),
         subtitleLanguage: prefs.getString('subtitle_language'));
+    PlaybackPlatformInterface.instance.setAppConfig(state.toAppConfig());
   }
 
   Future<void> setAppLanguage(String code) async {

@@ -3,7 +3,6 @@ package media.bcc.bccm_player
 import android.content.Intent
 import android.util.Log
 import androidx.core.content.ContextCompat.startActivity
-import com.google.android.gms.cast.framework.media.widget.ExpandedControllerActivity
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
@@ -95,7 +94,7 @@ class PlaybackApiImpl(private val plugin: BccmPlayerPlugin) : PlaybackPlatformAp
         val playerController = playbackService.getController(playerId)
                 ?: throw Error("Player with id $playerId does not exist.")
 
-        playerController.player.play()
+        playerController.play()
     }
 
     override fun pause(playerId: String) {
@@ -103,7 +102,7 @@ class PlaybackApiImpl(private val plugin: BccmPlayerPlugin) : PlaybackPlatformAp
         val playerController = playbackService.getController(playerId)
                 ?: throw Error("Player with id $playerId does not exist.")
 
-        playerController.player.pause()
+        playerController.pause()
     }
 
     override fun stop(playerId: String, reset: Boolean) {
@@ -111,10 +110,7 @@ class PlaybackApiImpl(private val plugin: BccmPlayerPlugin) : PlaybackPlatformAp
         val playerController = playbackService.getController(playerId)
                 ?: throw Error("Player with id $playerId does not exist.")
 
-        playerController.player.stop()
-        if (reset) {
-            playerController.player.clearMediaItems()
-        }
+        playerController.stop(reset)
     }
 
     override fun getChromecastState(result: PlaybackPlatformApi.Result<PlaybackPlatformApi.ChromecastState>?) {
@@ -131,7 +127,7 @@ class PlaybackApiImpl(private val plugin: BccmPlayerPlugin) : PlaybackPlatformAp
     }
 
     override fun openExpandedCastController() {
-        val intent = Intent(BccmPlayerPluginSingleton.activityState.value, ExpandedControllerActivity::class.java)
+        val intent = Intent(BccmPlayerPluginSingleton.activityState.value, CastExpandedControlsActivity::class.java)
         BccmPlayerPluginSingleton.activityState.value?.startActivity(intent)
     }
 

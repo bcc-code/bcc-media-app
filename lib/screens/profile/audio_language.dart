@@ -25,7 +25,7 @@ class _AppAudioLanguageState extends ConsumerState<AppAudioLanguage> {
       title: 'English (English)',
     ),
     Option(
-      id: 'dut',
+      id: 'nl',
       title: 'Nederlands (Dutch)',
     ),
     Option(
