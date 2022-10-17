@@ -86,7 +86,8 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen> {
       var episode = await episodeFuture;
       if (!mounted || episode == null) return;
 
-      await playEpisode(playerId: player.playerId, episode: episode);
+      await playEpisode(
+          playerId: player.playerId, episode: episode, autoplay: true);
       await ensurePlayingWithinReasonableTime(playerProvider);
     }();
   }

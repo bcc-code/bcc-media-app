@@ -37,10 +37,8 @@ abstract class PlayerController() : Player.Listener {
             playbackStartPositionMs = mediaItem.playbackStartPositionMs
         }
         player.setMediaItem(androidMi, playbackStartPositionMs ?: 0)
-        if (autoplay == true) {
-            player.prepare()
-            player.play()
-        }
+        player.playWhenReady = autoplay == true
+        player.prepare()
     }
 
     fun queueMediaItem(mediaItem: PlaybackPlatformApi.MediaItem) {
