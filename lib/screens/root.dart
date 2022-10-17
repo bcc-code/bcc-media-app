@@ -1,6 +1,8 @@
 import 'dart:io';
 
 import 'package:auto_route/auto_route.dart';
+import 'package:brunstadtv_app/graphql/client.dart';
+import 'package:brunstadtv_app/graphql/queries/devices.graphql.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:brunstadtv_app/providers/chromecast.dart';
 import 'package:flutter/material.dart';
@@ -59,13 +61,24 @@ class _RootScreenState extends ConsumerState<RootScreen> with AutoRouteAware {
   }
 
   Future setupPushNotifications() async {
+    var token = await FirebaseMessaging.instance.getToken();
     print("autoinit: ${FirebaseMessaging.instance.isAutoInitEnabled}");
-    print("token: ${await FirebaseMessaging.instance.getToken()}");
+    print("token: ${token}");
+    if (token != null) {
+      ref.read(gqlClientProvider).mutate$SetDeviceToken(
+          Options$Mutation$SetDeviceToken(
+              variables: Variables$Mutation$SetDeviceToken(token: token)));
+    }
     FirebaseMessaging.instance.onTokenRefresh.listen((fcmToken) {
       // Note: This callback is fired at each app startup and whenever a new
       // token is generated.
 
       // TODO: If necessary send token to application server.
+      ref.read(gqlClientProvider).mutate$SetDeviceToken(
+          Options$Mutation$SetDeviceToken(
+              variables: Variables$Mutation$SetDeviceToken(token: fcmToken)));
+      print('fcm token refreshed: $fcmToken');
+
       const storage = FlutterSecureStorage();
       storage.write(key: 'fcm_token', value: fcmToken);
       print('fcm token refreshed and stored: $fcmToken');
