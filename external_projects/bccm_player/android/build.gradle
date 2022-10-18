@@ -17,6 +17,7 @@ buildscript {
 }
 
 
+
 rootProject.allprojects {
     repositories {
         google()
@@ -27,9 +28,10 @@ rootProject.allprojects {
 
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-parcelize'
 
 android {
-    compileSdkVersion 31
+    compileSdkVersion 33
 
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
@@ -48,6 +50,9 @@ android {
         minSdkVersion 19
         multiDexEnabled true
     }
+    buildFeatures {
+        viewBinding true
+    }
 }
 
 dependencies {
@@ -62,5 +67,6 @@ dependencies {
     implementation "androidx.media3:media3-session:$media3_version"
     implementation "androidx.media3:media3-ui:$media3_version"
     implementation fileTree(include: ['exoplayer2-adapter-debug.jar'], dir: '../../../external_projects')
+    implementation 'androidx.appcompat:appcompat:1.5.1'
 
 }

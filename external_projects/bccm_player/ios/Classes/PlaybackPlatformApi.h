@@ -17,12 +17,14 @@ typedef NS_ENUM(NSUInteger, CastConnectionState) {
 };
 
 @class NpawConfig;
+@class AppConfig;
 @class User;
 @class MediaItem;
 @class MediaMetadata;
 @class ChromecastState;
 @class PositionUpdateEvent;
 @class IsPlayingChangedEvent;
+@class PictureInPictureModeChangedEvent;
 @class MediaItemTransitionEvent;
 
 @interface NpawConfig : NSObject
@@ -32,6 +34,15 @@ typedef NS_ENUM(NSUInteger, CastConnectionState) {
 @property(nonatomic, copy, nullable) NSString * appName;
 @property(nonatomic, copy, nullable) NSString * appReleaseVersion;
 @property(nonatomic, copy, nullable) NSString * accountCode;
+@end
+
+@interface AppConfig : NSObject
++ (instancetype)makeWithAppLanguage:(nullable NSString *)appLanguage
+    audioLanguage:(nullable NSString *)audioLanguage
+    subtitleLanguage:(nullable NSString *)subtitleLanguage;
+@property(nonatomic, copy, nullable) NSString * appLanguage;
+@property(nonatomic, copy, nullable) NSString * audioLanguage;
+@property(nonatomic, copy, nullable) NSString * subtitleLanguage;
 @end
 
 @interface User : NSObject
@@ -92,6 +103,15 @@ typedef NS_ENUM(NSUInteger, CastConnectionState) {
 @property(nonatomic, strong) NSNumber * isPlaying;
 @end
 
+@interface PictureInPictureModeChangedEvent : NSObject
+/// `init` unavailable to enforce nonnull fields, see the `make` class method.
+- (instancetype)init NS_UNAVAILABLE;
++ (instancetype)makeWithPlayerId:(NSString *)playerId
+    isInPipMode:(NSNumber *)isInPipMode;
+@property(nonatomic, copy) NSString * playerId;
+@property(nonatomic, strong) NSNumber * isInPipMode;
+@end
+
 @interface MediaItemTransitionEvent : NSObject
 /// `init` unavailable to enforce nonnull fields, see the `make` class method.
 - (instancetype)init NS_UNAVAILABLE;
@@ -107,13 +127,14 @@ NSObject<FlutterMessageCodec> *PlaybackPlatformPigeonGetCodec(void);
 @protocol PlaybackPlatformPigeon
 - (void)newPlayer:(nullable NSString *)url completion:(void(^)(NSString *_Nullable, FlutterError *_Nullable))completion;
 - (void)queueMediaItem:(NSString *)playerId mediaItem:(MediaItem *)mediaItem completion:(void(^)(FlutterError *_Nullable))completion;
-- (void)replaceCurrentMediaItem:(NSString *)playerId mediaItem:(MediaItem *)mediaItem playbackPositionFromPrimary:(nullable NSNumber *)playbackPositionFromPrimary completion:(void(^)(FlutterError *_Nullable))completion;
+- (void)replaceCurrentMediaItem:(NSString *)playerId mediaItem:(MediaItem *)mediaItem playbackPositionFromPrimary:(nullable NSNumber *)playbackPositionFromPrimary autoplay:(nullable NSNumber *)autoplay completion:(void(^)(FlutterError *_Nullable))completion;
 - (void)setPrimary:(NSString *)id completion:(void(^)(FlutterError *_Nullable))completion;
 - (void)play:(NSString *)playerId error:(FlutterError *_Nullable *_Nonnull)error;
 - (void)pause:(NSString *)playerId error:(FlutterError *_Nullable *_Nonnull)error;
 - (void)stop:(NSString *)playerId reset:(NSNumber *)reset error:(FlutterError *_Nullable *_Nonnull)error;
 - (void)setUser:(nullable User *)user error:(FlutterError *_Nullable *_Nonnull)error;
 - (void)setNpawConfig:(nullable NpawConfig *)config error:(FlutterError *_Nullable *_Nonnull)error;
+- (void)setAppConfig:(nullable AppConfig *)config error:(FlutterError *_Nullable *_Nonnull)error;
 - (void)getChromecastState:(void(^)(ChromecastState *_Nullable, FlutterError *_Nullable))completion;
 - (void)openExpandedCastController:(FlutterError *_Nullable *_Nonnull)error;
 - (void)openCastDialog:(FlutterError *_Nullable *_Nonnull)error;
@@ -129,5 +150,6 @@ NSObject<FlutterMessageCodec> *PlaybackListenerPigeonGetCodec(void);
 - (void)onPositionUpdate:(PositionUpdateEvent *)event completion:(void(^)(NSError *_Nullable))completion;
 - (void)onIsPlayingChanged:(IsPlayingChangedEvent *)event completion:(void(^)(NSError *_Nullable))completion;
 - (void)onMediaItemTransition:(MediaItemTransitionEvent *)event completion:(void(^)(NSError *_Nullable))completion;
+- (void)onPictureInPictureModeChanged:(PictureInPictureModeChangedEvent *)event completion:(void(^)(NSError *_Nullable))completion;
 @end
 NS_ASSUME_NONNULL_END

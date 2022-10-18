@@ -43,6 +43,7 @@
 		8186027E286AFB0300D7DDEE /* PlayerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerViewController.swift; sourceTree = "<group>"; };
 		81A98BCC28DA06C900805290 /* Info-Debug.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Info-Debug.plist"; sourceTree = "<group>"; };
 		81A98BCD28DA06C900805290 /* Info-Release.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Info-Release.plist"; sourceTree = "<group>"; };
+		81CB6AD128E6EDD80095BDB1 /* Info-Profile.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Info-Profile.plist"; sourceTree = "<group>"; };
 		9740EEB21CF90195004384FC /* Debug.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = Debug.xcconfig; path = Flutter/Debug.xcconfig; sourceTree = "<group>"; };
 		9740EEB31CF90195004384FC /* Generated.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = Generated.xcconfig; path = Flutter/Generated.xcconfig; sourceTree = "<group>"; };
 		97C146EE1CF9000F007C117D /* Runner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Runner.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -109,6 +110,7 @@
 			children = (
 				97C146FA1CF9000F007C117D /* Main.storyboard */,
 				81A98BCC28DA06C900805290 /* Info-Debug.plist */,
+				81CB6AD128E6EDD80095BDB1 /* Info-Profile.plist */,
 				81A98BCD28DA06C900805290 /* Info-Release.plist */,
 				97C146FD1CF9000F007C117D /* Assets.xcassets */,
 				97C146FF1CF9000F007C117D /* LaunchScreen.storyboard */,
@@ -373,7 +375,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 4.0.0;
-				PRODUCT_BUNDLE_IDENTIFIER = tv.brunstad.app;
+				PRODUCT_BUNDLE_IDENTIFIER = tv.brunstad.app.v4;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Runner/Runner-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
@@ -505,7 +507,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 4.0.0;
-				PRODUCT_BUNDLE_IDENTIFIER = tv.brunstad.app;
+				PRODUCT_BUNDLE_IDENTIFIER = tv.brunstad.app.v4;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Runner/Runner-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -531,7 +533,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 4.0.0;
-				PRODUCT_BUNDLE_IDENTIFIER = tv.brunstad.app;
+				PRODUCT_BUNDLE_IDENTIFIER = tv.brunstad.app.v4;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Runner/Runner-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;

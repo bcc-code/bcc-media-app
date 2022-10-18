@@ -1,0 +1,10 @@
+type Device {
+    token: String!
+#    name: String!
+    updatedAt: Date!
+}
+
+#input DeviceInput {
+#    token: String!
+#    name: String!
+#}

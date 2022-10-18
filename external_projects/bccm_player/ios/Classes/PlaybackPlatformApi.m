@@ -36,6 +36,11 @@ static id GetNullableObjectAtIndex(NSArray* array, NSInteger key) {
 + (nullable NpawConfig *)nullableFromMap:(NSDictionary *)dict;
 - (NSDictionary *)toMap;
 @end
+@interface AppConfig ()
++ (AppConfig *)fromMap:(NSDictionary *)dict;
++ (nullable AppConfig *)nullableFromMap:(NSDictionary *)dict;
+- (NSDictionary *)toMap;
+@end
 @interface User ()
 + (User *)fromMap:(NSDictionary *)dict;
 + (nullable User *)nullableFromMap:(NSDictionary *)dict;
@@ -64,6 +69,11 @@ static id GetNullableObjectAtIndex(NSArray* array, NSInteger key) {
 @interface IsPlayingChangedEvent ()
 + (IsPlayingChangedEvent *)fromMap:(NSDictionary *)dict;
 + (nullable IsPlayingChangedEvent *)nullableFromMap:(NSDictionary *)dict;
+- (NSDictionary *)toMap;
+@end
+@interface PictureInPictureModeChangedEvent ()
++ (PictureInPictureModeChangedEvent *)fromMap:(NSDictionary *)dict;
++ (nullable PictureInPictureModeChangedEvent *)nullableFromMap:(NSDictionary *)dict;
 - (NSDictionary *)toMap;
 @end
 @interface MediaItemTransitionEvent ()
@@ -95,6 +105,33 @@ static id GetNullableObjectAtIndex(NSArray* array, NSInteger key) {
     @"appName" : (self.appName ?: [NSNull null]),
     @"appReleaseVersion" : (self.appReleaseVersion ?: [NSNull null]),
     @"accountCode" : (self.accountCode ?: [NSNull null]),
+  };
+}
+@end
+
+@implementation AppConfig
++ (instancetype)makeWithAppLanguage:(nullable NSString *)appLanguage
+    audioLanguage:(nullable NSString *)audioLanguage
+    subtitleLanguage:(nullable NSString *)subtitleLanguage {
+  AppConfig* pigeonResult = [[AppConfig alloc] init];
+  pigeonResult.appLanguage = appLanguage;
+  pigeonResult.audioLanguage = audioLanguage;
+  pigeonResult.subtitleLanguage = subtitleLanguage;
+  return pigeonResult;
+}
++ (AppConfig *)fromMap:(NSDictionary *)dict {
+  AppConfig *pigeonResult = [[AppConfig alloc] init];
+  pigeonResult.appLanguage = GetNullableObject(dict, @"appLanguage");
+  pigeonResult.audioLanguage = GetNullableObject(dict, @"audioLanguage");
+  pigeonResult.subtitleLanguage = GetNullableObject(dict, @"subtitleLanguage");
+  return pigeonResult;
+}
++ (nullable AppConfig *)nullableFromMap:(NSDictionary *)dict { return (dict) ? [AppConfig fromMap:dict] : nil; }
+- (NSDictionary *)toMap {
+  return @{
+    @"appLanguage" : (self.appLanguage ?: [NSNull null]),
+    @"audioLanguage" : (self.audioLanguage ?: [NSNull null]),
+    @"subtitleLanguage" : (self.subtitleLanguage ?: [NSNull null]),
   };
 }
 @end
@@ -257,6 +294,31 @@ static id GetNullableObjectAtIndex(NSArray* array, NSInteger key) {
 }
 @end
 
+@implementation PictureInPictureModeChangedEvent
++ (instancetype)makeWithPlayerId:(NSString *)playerId
+    isInPipMode:(NSNumber *)isInPipMode {
+  PictureInPictureModeChangedEvent* pigeonResult = [[PictureInPictureModeChangedEvent alloc] init];
+  pigeonResult.playerId = playerId;
+  pigeonResult.isInPipMode = isInPipMode;
+  return pigeonResult;
+}
++ (PictureInPictureModeChangedEvent *)fromMap:(NSDictionary *)dict {
+  PictureInPictureModeChangedEvent *pigeonResult = [[PictureInPictureModeChangedEvent alloc] init];
+  pigeonResult.playerId = GetNullableObject(dict, @"playerId");
+  NSAssert(pigeonResult.playerId != nil, @"");
+  pigeonResult.isInPipMode = GetNullableObject(dict, @"isInPipMode");
+  NSAssert(pigeonResult.isInPipMode != nil, @"");
+  return pigeonResult;
+}
++ (nullable PictureInPictureModeChangedEvent *)nullableFromMap:(NSDictionary *)dict { return (dict) ? [PictureInPictureModeChangedEvent fromMap:dict] : nil; }
+- (NSDictionary *)toMap {
+  return @{
+    @"playerId" : (self.playerId ?: [NSNull null]),
+    @"isInPipMode" : (self.isInPipMode ?: [NSNull null]),
+  };
+}
+@end
+
 @implementation MediaItemTransitionEvent
 + (instancetype)makeWithPlayerId:(NSString *)playerId
     mediaItem:(nullable MediaItem *)mediaItem {
@@ -288,18 +350,21 @@ static id GetNullableObjectAtIndex(NSArray* array, NSInteger key) {
 {
   switch (type) {
     case 128:     
-      return [ChromecastState fromMap:[self readValue]];
+      return [AppConfig fromMap:[self readValue]];
     
     case 129:     
-      return [MediaItem fromMap:[self readValue]];
+      return [ChromecastState fromMap:[self readValue]];
     
     case 130:     
-      return [MediaMetadata fromMap:[self readValue]];
+      return [MediaItem fromMap:[self readValue]];
     
     case 131:     
-      return [NpawConfig fromMap:[self readValue]];
+      return [MediaMetadata fromMap:[self readValue]];
     
     case 132:     
+      return [NpawConfig fromMap:[self readValue]];
+    
+    case 133:     
       return [User fromMap:[self readValue]];
     
     default:    
@@ -314,24 +379,28 @@ static id GetNullableObjectAtIndex(NSArray* array, NSInteger key) {
 @implementation PlaybackPlatformPigeonCodecWriter
 - (void)writeValue:(id)value 
 {
-  if ([value isKindOfClass:[ChromecastState class]]) {
+  if ([value isKindOfClass:[AppConfig class]]) {
     [self writeByte:128];
     [self writeValue:[value toMap]];
   } else 
-  if ([value isKindOfClass:[MediaItem class]]) {
+  if ([value isKindOfClass:[ChromecastState class]]) {
     [self writeByte:129];
     [self writeValue:[value toMap]];
   } else 
-  if ([value isKindOfClass:[MediaMetadata class]]) {
+  if ([value isKindOfClass:[MediaItem class]]) {
     [self writeByte:130];
     [self writeValue:[value toMap]];
   } else 
-  if ([value isKindOfClass:[NpawConfig class]]) {
+  if ([value isKindOfClass:[MediaMetadata class]]) {
     [self writeByte:131];
     [self writeValue:[value toMap]];
   } else 
-  if ([value isKindOfClass:[User class]]) {
+  if ([value isKindOfClass:[NpawConfig class]]) {
     [self writeByte:132];
+    [self writeValue:[value toMap]];
+  } else 
+  if ([value isKindOfClass:[User class]]) {
+    [self writeByte:133];
     [self writeValue:[value toMap]];
   } else 
 {
@@ -411,13 +480,14 @@ void PlaybackPlatformPigeonSetup(id<FlutterBinaryMessenger> binaryMessenger, NSO
         binaryMessenger:binaryMessenger
         codec:PlaybackPlatformPigeonGetCodec()        ];
     if (api) {
-      NSCAssert([api respondsToSelector:@selector(replaceCurrentMediaItem:mediaItem:playbackPositionFromPrimary:completion:)], @"PlaybackPlatformPigeon api (%@) doesn't respond to @selector(replaceCurrentMediaItem:mediaItem:playbackPositionFromPrimary:completion:)", api);
+      NSCAssert([api respondsToSelector:@selector(replaceCurrentMediaItem:mediaItem:playbackPositionFromPrimary:autoplay:completion:)], @"PlaybackPlatformPigeon api (%@) doesn't respond to @selector(replaceCurrentMediaItem:mediaItem:playbackPositionFromPrimary:autoplay:completion:)", api);
       [channel setMessageHandler:^(id _Nullable message, FlutterReply callback) {
         NSArray *args = message;
         NSString *arg_playerId = GetNullableObjectAtIndex(args, 0);
         MediaItem *arg_mediaItem = GetNullableObjectAtIndex(args, 1);
         NSNumber *arg_playbackPositionFromPrimary = GetNullableObjectAtIndex(args, 2);
-        [api replaceCurrentMediaItem:arg_playerId mediaItem:arg_mediaItem playbackPositionFromPrimary:arg_playbackPositionFromPrimary completion:^(FlutterError *_Nullable error) {
+        NSNumber *arg_autoplay = GetNullableObjectAtIndex(args, 3);
+        [api replaceCurrentMediaItem:arg_playerId mediaItem:arg_mediaItem playbackPositionFromPrimary:arg_playbackPositionFromPrimary autoplay:arg_autoplay completion:^(FlutterError *_Nullable error) {
           callback(wrapResult(nil, error));
         }];
       }];
@@ -550,6 +620,26 @@ void PlaybackPlatformPigeonSetup(id<FlutterBinaryMessenger> binaryMessenger, NSO
   {
     FlutterBasicMessageChannel *channel =
       [[FlutterBasicMessageChannel alloc]
+        initWithName:@"dev.flutter.pigeon.PlaybackPlatformPigeon.setAppConfig"
+        binaryMessenger:binaryMessenger
+        codec:PlaybackPlatformPigeonGetCodec()        ];
+    if (api) {
+      NSCAssert([api respondsToSelector:@selector(setAppConfig:error:)], @"PlaybackPlatformPigeon api (%@) doesn't respond to @selector(setAppConfig:error:)", api);
+      [channel setMessageHandler:^(id _Nullable message, FlutterReply callback) {
+        NSArray *args = message;
+        AppConfig *arg_config = GetNullableObjectAtIndex(args, 0);
+        FlutterError *error;
+        [api setAppConfig:arg_config error:&error];
+        callback(wrapResult(nil, error));
+      }];
+    }
+    else {
+      [channel setMessageHandler:nil];
+    }
+  }
+  {
+    FlutterBasicMessageChannel *channel =
+      [[FlutterBasicMessageChannel alloc]
         initWithName:@"dev.flutter.pigeon.PlaybackPlatformPigeon.getChromecastState"
         binaryMessenger:binaryMessenger
         codec:PlaybackPlatformPigeonGetCodec()        ];
@@ -621,6 +711,9 @@ void PlaybackPlatformPigeonSetup(id<FlutterBinaryMessenger> binaryMessenger, NSO
       return [MediaMetadata fromMap:[self readValue]];
     
     case 132:     
+      return [PictureInPictureModeChangedEvent fromMap:[self readValue]];
+    
+    case 133:     
       return [PositionUpdateEvent fromMap:[self readValue]];
     
     default:    
@@ -651,8 +744,12 @@ void PlaybackPlatformPigeonSetup(id<FlutterBinaryMessenger> binaryMessenger, NSO
     [self writeByte:131];
     [self writeValue:[value toMap]];
   } else 
-  if ([value isKindOfClass:[PositionUpdateEvent class]]) {
+  if ([value isKindOfClass:[PictureInPictureModeChangedEvent class]]) {
     [self writeByte:132];
+    [self writeValue:[value toMap]];
+  } else 
+  if ([value isKindOfClass:[PositionUpdateEvent class]]) {
+    [self writeByte:133];
     [self writeValue:[value toMap]];
   } else 
 {
@@ -720,6 +817,16 @@ NSObject<FlutterMessageCodec> *PlaybackListenerPigeonGetCodec() {
   FlutterBasicMessageChannel *channel =
     [FlutterBasicMessageChannel
       messageChannelWithName:@"dev.flutter.pigeon.PlaybackListenerPigeon.onMediaItemTransition"
+      binaryMessenger:self.binaryMessenger
+      codec:PlaybackListenerPigeonGetCodec()];
+  [channel sendMessage:@[arg_event ?: [NSNull null]] reply:^(id reply) {
+    completion(nil);
+  }];
+}
+- (void)onPictureInPictureModeChanged:(PictureInPictureModeChangedEvent *)arg_event completion:(void(^)(NSError *_Nullable))completion {
+  FlutterBasicMessageChannel *channel =
+    [FlutterBasicMessageChannel
+      messageChannelWithName:@"dev.flutter.pigeon.PlaybackListenerPigeon.onPictureInPictureModeChanged"
       binaryMessenger:self.binaryMessenger
       codec:PlaybackListenerPigeonGetCodec()];
   [channel sendMessage:@[arg_event ?: [NSNull null]] reply:^(id reply) {

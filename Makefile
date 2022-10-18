@@ -1,6 +1,6 @@
 .PHONY: update-schema
 
-BACKEND_SCHEMA_DIR=../brunstadtv/backend/graph/schema
+BACKEND_SCHEMA_DIR=../brunstadtv/backend/graph/api/schema
 APP_SCHEMA_DIR=./lib/graphql/schema
 copy-schema: SHELL:=/bin/bash
 copy-schema:

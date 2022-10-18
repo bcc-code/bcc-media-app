@@ -1,4 +1,8 @@
 import 'package:bccm_player/playback_platform_pigeon.g.dart';
+import 'package:brunstadtv_app/providers/settings_service.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -14,6 +18,12 @@ import 'package:riverpod/riverpod.dart';
 import 'package:bccm_player/playback_service_interface.dart';
 
 import 'env/.env.dart';
+import 'env/dev/firebase_options.dart';
+
+Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
+  print('Handling a background message: ${message.messageId}');
+  print('${message.data}');
+}
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -51,6 +61,15 @@ void main() async {
         appReleaseVersion: '4.0.0-alpha'));
   }
 
+  providerContainer.read(settingsServiceProvider.notifier).load();
+
+  if (kDebugMode) {
+    await Firebase.initializeApp(
+      options: DevFirebaseOptions.currentPlatform,
+    );
+    FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
+  }
+
   runApp(UncontrolledProviderScope(
     container: providerContainer,
     child: Builder(
@@ -72,7 +91,7 @@ void main() async {
                 scaffoldBackgroundColor: const Color.fromARGB(255, 13, 22, 35),
               ),
               themeMode: ThemeMode.dark,
-              title: 'BCC Media',
+              title: 'BrunstadTV',
               routerDelegate: appRouter.delegate(),
               routeInformationParser: appRouter.defaultRouteParser(),
             )),

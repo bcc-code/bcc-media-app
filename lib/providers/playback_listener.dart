@@ -39,4 +39,14 @@ class PlaybackListener implements PlaybackListenerPigeon {
         : primaryPlayerProvider;
     providerReader?.call(playerProvider.notifier).setMediaItem(event.mediaItem);
   }
+
+  @override
+  void onPictureInPictureModeChanged(PictureInPictureModeChangedEvent event) {
+    var playerProvider = event.playerId == 'chromecast'
+        ? castPlayerProvider
+        : primaryPlayerProvider;
+    providerReader
+        ?.call(playerProvider.notifier)
+        .setIsInPipMode(event.isInPipMode);
+  }
 }

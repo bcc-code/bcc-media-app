@@ -3,8 +3,11 @@
 import 'dart:async';
 
 import 'package:auto_route/auto_route.dart';
+import 'package:bccm_player/playback_platform_pigeon.g.dart';
+import 'package:bccm_player/playback_service_interface.dart';
 import 'package:flutter/material.dart';
 import 'package:bccm_player/bccm_player.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:brunstadtv_app/graphql/client.dart';
 import 'package:brunstadtv_app/graphql/queries/episode.graphql.dart';
@@ -16,6 +19,7 @@ import 'package:bccm_player/cast_button.dart';
 
 import '../api/brunstadtv.dart';
 import '../api/episodes.dart';
+import '../components/mini_player.dart';
 
 class EpisodePageArguments {
   int episodeId;
@@ -23,9 +27,12 @@ class EpisodePageArguments {
 }
 
 class EpisodeScreen extends ConsumerStatefulWidget {
-  final PlayerType playerType = PlayerType.native;
   final String episodeId;
-  const EpisodeScreen({super.key, @PathParam() required this.episodeId});
+  bool autoplay;
+  EpisodeScreen(
+      {super.key,
+      @PathParam() required this.episodeId,
+      @QueryParam() this.autoplay = false});
 
   @override
   ConsumerState<EpisodeScreen> createState() => _EpisodeScreenState();
@@ -33,6 +40,9 @@ class EpisodeScreen extends ConsumerStatefulWidget {
 
 class _EpisodeScreenState extends ConsumerState<EpisodeScreen> {
   late Future<Episode?> episodeFuture;
+  bool settingUp = false;
+  String? error;
+  Completer? setupCompleter;
   AnimationStatus? animationStatus;
   Animation? animation;
   StreamSubscription? chromecastSubscription;
@@ -53,28 +63,77 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen> {
       if (!mounted || episode == null) return;
       playEpisode(
           playerId: player!.playerId,
+          autoplay: false,
           episode: episode,
           playbackPositionMs: event.playbackPositionMs);
     });
-
-    setup();
   }
 
   Future setup() async {
     var castingNow = ref.read(isCasting);
-    var player = castingNow
-        ? ref.read(castPlayerProvider)
-        : ref.read(primaryPlayerProvider);
+    var playerProvider =
+        castingNow ? castPlayerProvider : primaryPlayerProvider;
+    setState(() {
+      settingUp = true;
+    });
+    await () async {
+      var player = ref.read(playerProvider);
+      if (player!.currentMediaItem?.metadata?.extras?['id'] ==
+          widget.episodeId.toString()) {
+        return;
+      }
 
-    if (player!.currentMediaItem?.metadata?.extras?['id'] ==
-        widget.episodeId.toString()) {
+      var episode = await episodeFuture;
+      if (!mounted || episode == null) return;
+
+      await playEpisode(playerId: player.playerId, episode: episode);
+      await ensurePlayingWithinReasonableTime(playerProvider);
+    }();
+  }
+
+  void setStateIfMounted(void Function() fn) {
+    if (!mounted) {
       return;
     }
+    setState(fn);
+  }
 
-    var episode = await episodeFuture;
-    if (!mounted || episode == null) return;
+  bool isCorrectItem(MediaItem? mediaItem) {
+    return mediaItem?.metadata?.extras?['id'] == widget.episodeId;
+  }
 
-    playEpisode(playerId: player.playerId, episode: episode);
+  Future ensurePlayingWithinReasonableTime(
+      StateNotifierProvider<PlayerNotifier, Player?> playerProvider) async {
+    setStateIfMounted(() {
+      setupCompleter = Completer();
+    });
+
+    () async {
+      while (true) {
+        await Future.delayed(const Duration(milliseconds: 100));
+        if (!mounted) return;
+        debugPrint('bccm: setupCompleter watch loop ${DateTime.now()}');
+        if (isCorrectItem(ref.read(playerProvider)?.currentMediaItem)) {
+          debugPrint('bccm: isCorrectItem ${DateTime.now()} !!!!!!!!!!!!!!!!!');
+          setupCompleter?.complete();
+          setStateIfMounted(() {
+            error = null;
+            settingUp = false;
+          });
+          return;
+        }
+      }
+    }();
+
+    await setupCompleter?.future.timeout(const Duration(milliseconds: 10000),
+        onTimeout: () {
+      debugPrint("bccm: TIMEOUT ${DateTime.now()}");
+      setStateIfMounted(() {
+        error = 'Something might have gone wrong (timeout).';
+      });
+    }).catchError((err) {
+      error = 'Something went wrong. Technical details: $err.';
+    });
   }
 
   @override
@@ -85,7 +144,7 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen> {
   }
 
   void onAnimationStatus(AnimationStatus status) {
-    setState(() {
+    setStateIfMounted(() {
       animationStatus = status;
     });
   }
@@ -100,7 +159,13 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen> {
   @override
   Widget build(BuildContext context) {
     final casting = ref.watch(isCasting);
-    final primaryPlayerId = ref.watch(primaryPlayerProvider)!.playerId;
+    var playerProvider = casting ? castPlayerProvider : primaryPlayerProvider;
+    var player = ref.watch(playerProvider);
+    final primaryPlayerId = player!.playerId;
+
+    debugPrint(
+        'bccm: ran build method in "live.dart" ${DateTime.now()}. Casting: $casting, currentMediaItem: ${player?.currentMediaItem?.metadata?.extras?["id"]}');
+
     return Scaffold(
       appBar: AppBar(
         title: const Text('Episode'),
@@ -111,9 +176,9 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen> {
           ),
         ],
       ),
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+      body: ListView(
         children: [
+          if (error != null) Text(error ?? ''),
           FutureBuilder<Episode?>(
               future: episodeFuture,
               builder: (context, snapshot) {
@@ -134,37 +199,86 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      displayPlayer
-                          ? Hero(
-                              tag: "player",
-                              child: BccmPlayer(
-                                  type: widget.playerType,
-                                  id: casting ? 'chromecast' : primaryPlayerId),
-                            )
-                          : const AspectRatio(
+                      isCorrectItem(player.currentMediaItem)
+                          ? _player(displayPlayer, casting, primaryPlayerId)
+                          : AspectRatio(
                               aspectRatio: 16 / 9,
-                              child:
-                                  Center(child: CircularProgressIndicator())),
+                              child: episode == null
+                                  ? const Center(
+                                      child: SizedBox(
+                                          height: 40,
+                                          width: 40,
+                                          child: CircularProgressIndicator()),
+                                    )
+                                  : Stack(
+                                      children: [
+                                        GestureDetector(
+                                          behavior: HitTestBehavior.opaque,
+                                          //excludeFromSemantics: true,
+                                          onTap: () {
+                                            setState(() {
+                                              settingUp = true;
+                                            });
+                                            setup();
+                                          },
+                                          child: AspectRatio(
+                                            aspectRatio: 16 / 9,
+                                            child: Image.network(
+                                              episode!.imageUrl!,
+                                              fit: BoxFit.fill,
+                                              width: 64,
+                                              height: 36,
+                                            ),
+                                          ),
+                                        ),
+                                        Center(
+                                            child: !settingUp
+                                                ? Image.asset(
+                                                    'assets/icons/Play.png')
+                                                : const CircularProgressIndicator()),
+                                      ],
+                                    )),
                       Padding(
                         padding: const EdgeInsets.all(8.0),
-                        child: Hero(
-                          createRectTween: ((begin, end) =>
-                              EaseOutRectTween(begin: begin, end: end)),
-                          tag: 'title',
-                          child: Text(
-                              episode?.title != null
-                                  ? episode!.title
-                                  : tempTitle,
-                              style: Theme.of(context).textTheme.titleLarge),
-                        ),
+                        child: Text(
+                            episode?.title != null ? episode!.title : tempTitle,
+                            style: Theme.of(context).textTheme.titleLarge),
                       )
                     ],
                   ),
                 );
               }),
-          const SizedBox(width: 100, height: 2000)
+          Column(
+            children: List.generate(
+                100,
+                (index) => SizedBox(
+                    width: 200,
+                    height: 400,
+                    child: Padding(
+                        padding: const EdgeInsets.all(10),
+                        child: Container(color: Colors.red)))),
+          )
         ],
       ),
     );
+  }
+
+  Widget _player(bool displayPlayer, bool casting, String primaryPlayerId) {
+    if (displayPlayer) {
+      /* if (casting) {
+        return ElevatedButton(
+            onPressed: () {
+              PlaybackPlatformInterface.instance.openExpandedCastController();
+            },
+            child: const Text('open'));
+      } */
+      return BccmPlayer(id: casting ? 'chromecast' : primaryPlayerId);
+    } else {
+      return const AspectRatio(
+          aspectRatio: 16 / 9,
+          child: Center(
+              child: SizedBox(
+                  width: 40, height: 40, child: CircularProgressIndicator())));
+    }
   }
 }

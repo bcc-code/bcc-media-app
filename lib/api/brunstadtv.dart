@@ -5,8 +5,7 @@ import 'package:brunstadtv_app/graphql/queries/episode.graphql.dart';
 import 'package:riverpod/riverpod.dart';
 
 import '../graphql/client.dart';
-import '../graphql/queries/page.graphql.dart';
-import '../graphql/schema/schema.graphql.dart';
+import '../graphql/schema/items.graphql.dart';
 import 'episodes.dart';
 
 class Api {

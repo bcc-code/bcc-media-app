@@ -1,8 +1,10 @@
 import 'dart:convert';
 
 import 'package:auth0_flutter/auth0_flutter.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:brunstadtv_app/env/.env.dart';
+import 'package:package_info_plus/package_info_plus.dart';
 
 import '../helpers/constants.dart';
 import '../models/auth0_id_token.dart';
@@ -19,8 +21,10 @@ class AuthService {
 
   Future<Error?> init() async {
     try {
+      if (!await auth0.credentialsManager.hasValidCredentials(minTtl: 60)) {
+        return null;
+      }
       final result = await auth0.credentialsManager.credentials();
-
       auth0AccessToken = result.accessToken;
       user = result.user;
       idToken = result.idToken;
@@ -33,8 +37,9 @@ class AuthService {
 
   Future<Error?> login() async {
     try {
+      final PackageInfo info = await PackageInfo.fromPlatform();
       final result =
-          await auth0.webAuthentication(scheme: 'tv.brunstad.app').login(
+          await auth0.webAuthentication(scheme: info.packageName).login(
         audience: Env.AUTH0_AUDIENCE,
         scopes: {'openid', 'profile', 'offline_access', 'email'},
       );

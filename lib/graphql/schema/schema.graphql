@@ -3,6 +3,7 @@ directive @goField(forceResolver: Boolean, name: String) on INPUT_FIELD_DEFINITI
 
 schema{
   query: QueryRoot
+  mutation: MutationRoot
 }
 
 interface Pagination {
@@ -11,23 +12,6 @@ interface Pagination {
   offset: Int!
 }
 
-type Page{
-  id: ID!
-  code: String!
-  title: String!
-  description: String
-  sections(
-    first: Int
-    offset: Int
-  ): SectionPagination! @goField(forceResolver: true)
-}
-
-type PagePagination implements Pagination {
-  total: Int!
-  first: Int!
-  offset: Int!
-  items: [Page!]!
-}
 
 enum Language{
   en
@@ -35,196 +19,9 @@ enum Language{
   de
 }
 
-interface Section{
-  id: ID!
-  title: String!
-}
-
-type SectionPagination implements Pagination {
-  total: Int!
-  first: Int!
-  offset: Int!
-  items: [Section!]!
-}
-
-enum ItemSectionType {
-  cards
-  slider
-}
-
-type ItemSection implements Section {
-  id: ID!
-  page: Page! @goField(forceResolver: true)
-  title: String!
-  type: ItemSectionType!
-  style: String!
-  items(
-    first: Int,
-    offset: Int,
-  ): CollectionItemPagination! @goField(forceResolver: true)
-}
-
-type Collection {
-  id: ID!
-  items(
-    first: Int,
-    offset: Int,
-  ): CollectionItemPagination @goField(forceResolver: true)
-}
-
 scalar Cursor
 scalar Date
 
-interface Item {
-  id: ID!
-  sort: Int!
-  title: String!
-  imageUrl: String
-}
-
-type CollectionItemPagination implements Pagination {
-  total: Int!
-  first: Int!
-  offset: Int!
-  items: [Item!]!
-}
-
-type URLItem implements Item {
-  id: ID!
-  sort: Int!
-  title: String!
-  imageUrl: String
-  url: String!
-}
-
-type ShowItem implements Item {
-  id: ID!
-  sort: Int!
-  title: String!
-  imageUrl: String @goField(forceResolver: true)
-  show: Show!
-}
-
-type SeasonItem implements Item {
-  id: ID!
-  sort: Int!
-  title: String!
-  imageUrl: String @goField(forceResolver: true)
-  season: Season!
-}
-
-type EpisodeItem implements Item {
-  id: ID!
-  sort: Int!
-  title: String!
-  imageUrl: String @goField(forceResolver: true)
-  episode: Episode!
-}
-
-type PageItem implements Item {
-  id: ID!
-  sort: Int!
-  title: String!
-  imageUrl: String
-  page: Page!
-}
-
-type Show {
-  id: ID!
-  legacyID: ID
-  title: String!
-  description: String!
-  imageUrl: String @goField(forceResolver: true)
-  episodeCount: Int!
-  seasonCount: Int!
-  seasons(
-    first: Int
-    offset: Int
-  ): SeasonPagination! @goField(forceResolver: true)
-}
-
-type ShowPagination implements Pagination {
-  total: Int!
-  first: Int!
-  offset: Int!
-  items: [Show!]!
-}
-
-type Season {
-  id: ID!
-  legacyID: ID
-  title: String!
-  description: String!
-  imageUrl: String @goField(forceResolver: true)
-  number: Int!
-  show: Show! @goField(forceResolver: true)
-  episodes(
-    first: Int
-    offset: Int
-  ): EpisodePagination! @goField(forceResolver: true)
-}
-
-type SeasonPagination implements Pagination {
-  total: Int!
-  first: Int!
-  offset: Int!
-  items: [Season!]!
-}
-
-type Episode {
-  id: ID!
-  legacyID: ID
-  legacyProgramID: ID
-  title: String!
-  description: String!
-  extraDescription: String!
-  imageUrl: String @goField(forceResolver: true)
-  streams: [Stream!]! @goField(forceResolver: true)
-  files: [File!]! @goField(forceResolver: true)
-  chapters: [Chapter!]!
-  season: Season @goField(forceResolver: true)
-  duration: Int!
-  audioLanguages: [Language!]!
-  subtitleLanguages: [Language!]!
-  number: Int
-}
-
-type EpisodePagination implements Pagination {
-  total: Int!
-  first: Int!
-  offset: Int!
-  items: [Episode!]!
-}
-
-type Chapter {
-  id: ID!
-  start: Int!
-  title: String!
-}
-
-type File {
-  id: ID!
-  url: String!
-  audioLanguage: Language!
-  subtitleLanguage: Language
-  size: Int
-  fileName: String!
-  mimeType: String!
-}
-
-type Stream {
-  id: ID!
-  url: String!
-  audioLanguages: [Language!]!
-  subtitleLanguages: [Language!]!
-  type: StreamType!
-}
-
-enum StreamType {
-  hls_ts
-  hls_cmaf
-  dash
-}
 
 type Settings {
   audioLanguages: [Language!]!
@@ -241,70 +38,9 @@ type User {
   roles: [String!]!
 }
 
-interface SearchResultItem {
-  id: ID!
-  legacyID: ID
-  collection: String!
-  title: String!
-  header: String
-  description: String
-  highlight: String
-  image: String
-  url: String!
-}
-
-type EpisodeSearchItem implements SearchResultItem {
-  id: ID!
-  legacyID: ID
-  collection: String!
-  title: String!
-  header: String
-  description: String
-  highlight: String
-  image: String
-  url: String!
-  showId: ID
-  showTitle: String
-  show: Show @goField(forceResolver: true)
-  seasonId: ID
-  seasonTitle: String
-  season: Season @goField(forceResolver: true)
-}
-
-type SeasonSearchItem implements SearchResultItem {
-  id: ID!
-  legacyID: ID
-  collection: String!
-  title: String!
-  header: String
-  description: String
-  highlight: String
-  image: String
-  url: String!
-  showId: ID!
-  showTitle: String!
-  show: Show! @goField(forceResolver: true)
-}
-
-type ShowSearchItem implements SearchResultItem {
-  id: ID!
-  legacyID: ID
-  collection: String!
-  title: String!
-  header: String
-  description: String
-  highlight: String
-  image: String
-  url: String!
-}
-
-type SearchResult {
-  hits: Int!
-  page: Int!
-  result: [SearchResultItem!]!
-}
-
 type QueryRoot{
+  application: Application!
+
   page(
     id: ID
     code: String
@@ -334,6 +70,8 @@ type QueryRoot{
     queryString: String!
     first: Int
     offset: Int
+    type: String
+    minScore: Int
   ): SearchResult!
 
   messages: Messages!
@@ -346,4 +84,12 @@ type QueryRoot{
   me: User!
 
   config: Config!
+
+  profiles: [Profile!]!
+  profile: Profile!
+}
+
+type MutationRoot {
+  setDevicePushToken(token: String!): Device
+#  createProfile(name: String!): Profile
 }

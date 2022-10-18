@@ -23,8 +23,9 @@ public class SwiftBccmPlayerPlugin: NSObject, FlutterPlugin {
         
         let chromecastPigeon = ChromecastPigeon(binaryMessenger: messenger);
         
-        let castPlayerController = CastPlayerController(chromecastPigeon: chromecastPigeon);
+        let castPlayerController = CastPlayerController(chromecastPigeon: chromecastPigeon, playbackListener: playbackListener);
         GCKCastContext.sharedInstance().sessionManager.add(castPlayerController)
+       
         
         let playbackApi = PlaybackApiImpl(chromecastPigeon: chromecastPigeon, castPlayerController: castPlayerController, playbackListener: playbackListener);
         castPlayerController.setPlaybackApi(playbackApi)
@@ -44,6 +45,7 @@ public class SwiftBccmPlayerPlugin: NSObject, FlutterPlugin {
         let audioSession = AVAudioSession.sharedInstance()
         do {
             try audioSession.setCategory(.playback)
+            UIApplication.shared.beginReceivingRemoteControlEvents()
         } catch {
             print("Setting category to AVAudioSessionCategoryPlayback failed.")
         }

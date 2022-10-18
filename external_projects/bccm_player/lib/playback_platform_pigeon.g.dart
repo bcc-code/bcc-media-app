@@ -44,6 +44,35 @@ class NpawConfig {
   }
 }
 
+class AppConfig {
+  AppConfig({
+    this.appLanguage,
+    this.audioLanguage,
+    this.subtitleLanguage,
+  });
+
+  String? appLanguage;
+  String? audioLanguage;
+  String? subtitleLanguage;
+
+  Object encode() {
+    final Map<Object?, Object?> pigeonMap = <Object?, Object?>{};
+    pigeonMap['appLanguage'] = appLanguage;
+    pigeonMap['audioLanguage'] = audioLanguage;
+    pigeonMap['subtitleLanguage'] = subtitleLanguage;
+    return pigeonMap;
+  }
+
+  static AppConfig decode(Object message) {
+    final Map<Object?, Object?> pigeonMap = message as Map<Object?, Object?>;
+    return AppConfig(
+      appLanguage: pigeonMap['appLanguage'] as String?,
+      audioLanguage: pigeonMap['audioLanguage'] as String?,
+      subtitleLanguage: pigeonMap['subtitleLanguage'] as String?,
+    );
+  }
+}
+
 class User {
   User({
     this.id,
@@ -213,6 +242,31 @@ class IsPlayingChangedEvent {
   }
 }
 
+class PictureInPictureModeChangedEvent {
+  PictureInPictureModeChangedEvent({
+    required this.playerId,
+    required this.isInPipMode,
+  });
+
+  String playerId;
+  bool isInPipMode;
+
+  Object encode() {
+    final Map<Object?, Object?> pigeonMap = <Object?, Object?>{};
+    pigeonMap['playerId'] = playerId;
+    pigeonMap['isInPipMode'] = isInPipMode;
+    return pigeonMap;
+  }
+
+  static PictureInPictureModeChangedEvent decode(Object message) {
+    final Map<Object?, Object?> pigeonMap = message as Map<Object?, Object?>;
+    return PictureInPictureModeChangedEvent(
+      playerId: pigeonMap['playerId']! as String,
+      isInPipMode: pigeonMap['isInPipMode']! as bool,
+    );
+  }
+}
+
 class MediaItemTransitionEvent {
   MediaItemTransitionEvent({
     required this.playerId,
@@ -244,24 +298,28 @@ class _PlaybackPlatformPigeonCodec extends StandardMessageCodec {
   const _PlaybackPlatformPigeonCodec();
   @override
   void writeValue(WriteBuffer buffer, Object? value) {
-    if (value is ChromecastState) {
+    if (value is AppConfig) {
       buffer.putUint8(128);
       writeValue(buffer, value.encode());
     } else 
-    if (value is MediaItem) {
+    if (value is ChromecastState) {
       buffer.putUint8(129);
       writeValue(buffer, value.encode());
     } else 
-    if (value is MediaMetadata) {
+    if (value is MediaItem) {
       buffer.putUint8(130);
       writeValue(buffer, value.encode());
     } else 
-    if (value is NpawConfig) {
+    if (value is MediaMetadata) {
       buffer.putUint8(131);
       writeValue(buffer, value.encode());
     } else 
-    if (value is User) {
+    if (value is NpawConfig) {
       buffer.putUint8(132);
+      writeValue(buffer, value.encode());
+    } else 
+    if (value is User) {
+      buffer.putUint8(133);
       writeValue(buffer, value.encode());
     } else 
 {
@@ -272,18 +330,21 @@ class _PlaybackPlatformPigeonCodec extends StandardMessageCodec {
   Object? readValueOfType(int type, ReadBuffer buffer) {
     switch (type) {
       case 128:       
-        return ChromecastState.decode(readValue(buffer)!);
+        return AppConfig.decode(readValue(buffer)!);
       
       case 129:       
-        return MediaItem.decode(readValue(buffer)!);
+        return ChromecastState.decode(readValue(buffer)!);
       
       case 130:       
-        return MediaMetadata.decode(readValue(buffer)!);
+        return MediaItem.decode(readValue(buffer)!);
       
       case 131:       
-        return NpawConfig.decode(readValue(buffer)!);
+        return MediaMetadata.decode(readValue(buffer)!);
       
       case 132:       
+        return NpawConfig.decode(readValue(buffer)!);
+      
+      case 133:       
         return User.decode(readValue(buffer)!);
       
       default:      
@@ -352,11 +413,11 @@ class PlaybackPlatformPigeon {
     }
   }
 
-  Future<void> replaceCurrentMediaItem(String arg_playerId, MediaItem arg_mediaItem, bool? arg_playbackPositionFromPrimary) async {
+  Future<void> replaceCurrentMediaItem(String arg_playerId, MediaItem arg_mediaItem, bool? arg_playbackPositionFromPrimary, bool? arg_autoplay) async {
     final BasicMessageChannel<Object?> channel = BasicMessageChannel<Object?>(
         'dev.flutter.pigeon.PlaybackPlatformPigeon.replaceCurrentMediaItem', codec, binaryMessenger: _binaryMessenger);
     final Map<Object?, Object?>? replyMap =
-        await channel.send(<Object?>[arg_playerId, arg_mediaItem, arg_playbackPositionFromPrimary]) as Map<Object?, Object?>?;
+        await channel.send(<Object?>[arg_playerId, arg_mediaItem, arg_playbackPositionFromPrimary, arg_autoplay]) as Map<Object?, Object?>?;
     if (replyMap == null) {
       throw PlatformException(
         code: 'channel-error',
@@ -506,6 +567,28 @@ class PlaybackPlatformPigeon {
     }
   }
 
+  Future<void> setAppConfig(AppConfig? arg_config) async {
+    final BasicMessageChannel<Object?> channel = BasicMessageChannel<Object?>(
+        'dev.flutter.pigeon.PlaybackPlatformPigeon.setAppConfig', codec, binaryMessenger: _binaryMessenger);
+    final Map<Object?, Object?>? replyMap =
+        await channel.send(<Object?>[arg_config]) as Map<Object?, Object?>?;
+    if (replyMap == null) {
+      throw PlatformException(
+        code: 'channel-error',
+        message: 'Unable to establish connection on channel.',
+      );
+    } else if (replyMap['error'] != null) {
+      final Map<Object?, Object?> error = (replyMap['error'] as Map<Object?, Object?>?)!;
+      throw PlatformException(
+        code: (error['code'] as String?)!,
+        message: error['message'] as String?,
+        details: error['details'],
+      );
+    } else {
+      return;
+    }
+  }
+
   Future<ChromecastState?> getChromecastState() async {
     final BasicMessageChannel<Object?> channel = BasicMessageChannel<Object?>(
         'dev.flutter.pigeon.PlaybackPlatformPigeon.getChromecastState', codec, binaryMessenger: _binaryMessenger);
@@ -593,8 +676,12 @@ class _PlaybackListenerPigeonCodec extends StandardMessageCodec {
       buffer.putUint8(131);
       writeValue(buffer, value.encode());
     } else 
-    if (value is PositionUpdateEvent) {
+    if (value is PictureInPictureModeChangedEvent) {
       buffer.putUint8(132);
+      writeValue(buffer, value.encode());
+    } else 
+    if (value is PositionUpdateEvent) {
+      buffer.putUint8(133);
       writeValue(buffer, value.encode());
     } else 
 {
@@ -617,6 +704,9 @@ class _PlaybackListenerPigeonCodec extends StandardMessageCodec {
         return MediaMetadata.decode(readValue(buffer)!);
       
       case 132:       
+        return PictureInPictureModeChangedEvent.decode(readValue(buffer)!);
+      
+      case 133:       
         return PositionUpdateEvent.decode(readValue(buffer)!);
       
       default:      
@@ -631,6 +721,7 @@ abstract class PlaybackListenerPigeon {
   void onPositionUpdate(PositionUpdateEvent event);
   void onIsPlayingChanged(IsPlayingChangedEvent event);
   void onMediaItemTransition(MediaItemTransitionEvent event);
+  void onPictureInPictureModeChanged(PictureInPictureModeChangedEvent event);
   static void setup(PlaybackListenerPigeon? api, {BinaryMessenger? binaryMessenger}) {
     {
       final BasicMessageChannel<Object?> channel = BasicMessageChannel<Object?>(
@@ -676,6 +767,22 @@ abstract class PlaybackListenerPigeon {
           final MediaItemTransitionEvent? arg_event = (args[0] as MediaItemTransitionEvent?);
           assert(arg_event != null, 'Argument for dev.flutter.pigeon.PlaybackListenerPigeon.onMediaItemTransition was null, expected non-null MediaItemTransitionEvent.');
           api.onMediaItemTransition(arg_event!);
+          return;
+        });
+      }
+    }
+    {
+      final BasicMessageChannel<Object?> channel = BasicMessageChannel<Object?>(
+          'dev.flutter.pigeon.PlaybackListenerPigeon.onPictureInPictureModeChanged', codec, binaryMessenger: binaryMessenger);
+      if (api == null) {
+        channel.setMessageHandler(null);
+      } else {
+        channel.setMessageHandler((Object? message) async {
+          assert(message != null, 'Argument for dev.flutter.pigeon.PlaybackListenerPigeon.onPictureInPictureModeChanged was null.');
+          final List<Object?> args = (message as List<Object?>?)!;
+          final PictureInPictureModeChangedEvent? arg_event = (args[0] as PictureInPictureModeChangedEvent?);
+          assert(arg_event != null, 'Argument for dev.flutter.pigeon.PlaybackListenerPigeon.onPictureInPictureModeChanged was null, expected non-null PictureInPictureModeChangedEvent.');
+          api.onPictureInPictureModeChanged(arg_event!);
           return;
         });
       }

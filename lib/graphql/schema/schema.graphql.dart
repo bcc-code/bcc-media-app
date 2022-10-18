@@ -26,86 +26,61 @@ Enum$Language fromJson$Enum$Language(String value) {
   }
 }
 
-enum Enum$ItemSectionType { cards, slider, $unknown }
-
-String toJson$Enum$ItemSectionType(Enum$ItemSectionType e) {
-  switch (e) {
-    case Enum$ItemSectionType.cards:
-      return r'cards';
-    case Enum$ItemSectionType.slider:
-      return r'slider';
-    case Enum$ItemSectionType.$unknown:
-      return r'$unknown';
-  }
-}
-
-Enum$ItemSectionType fromJson$Enum$ItemSectionType(String value) {
-  switch (value) {
-    case r'cards':
-      return Enum$ItemSectionType.cards;
-    case r'slider':
-      return Enum$ItemSectionType.slider;
-    default:
-      return Enum$ItemSectionType.$unknown;
-  }
-}
-
-enum Enum$StreamType { hls_ts, hls_cmaf, dash, $unknown }
-
-String toJson$Enum$StreamType(Enum$StreamType e) {
-  switch (e) {
-    case Enum$StreamType.hls_ts:
-      return r'hls_ts';
-    case Enum$StreamType.hls_cmaf:
-      return r'hls_cmaf';
-    case Enum$StreamType.dash:
-      return r'dash';
-    case Enum$StreamType.$unknown:
-      return r'$unknown';
-  }
-}
-
-Enum$StreamType fromJson$Enum$StreamType(String value) {
-  switch (value) {
-    case r'hls_ts':
-      return Enum$StreamType.hls_ts;
-    case r'hls_cmaf':
-      return Enum$StreamType.hls_cmaf;
-    case r'dash':
-      return Enum$StreamType.dash;
-    default:
-      return Enum$StreamType.$unknown;
-  }
-}
-
 const possibleTypesMap = {
+  'CalendarEntry': {
+    'SimpleCalendarEntry',
+    'EpisodeCalendarEntry',
+    'SeasonCalendarEntry',
+    'ShowCalendarEntry',
+  },
   'Pagination': {
-    'PagePagination',
-    'SectionPagination',
-    'CollectionItemPagination',
-    'ShowPagination',
-    'SeasonPagination',
-    'EpisodePagination',
     'QuestionPagination',
     'FAQCategoryPagination',
+    'CollectionItemPagination',
+    'SeasonPagination',
+    'EpisodePagination',
+    'SectionPagination',
+    'LinkItemPagination',
+    'SectionItemPagination',
   },
-  'Section': {'ItemSection'},
-  'Item': {
+  'CollectionItem': {
     'URLItem',
     'ShowItem',
     'SeasonItem',
     'EpisodeItem',
     'PageItem',
   },
+  'Section': {
+    'IconSection',
+    'LabelSection',
+    'PosterSection',
+    'FeaturedSection',
+    'DefaultSection',
+    'GridSection',
+  },
+  'LinkSection': {
+    'IconSection',
+    'LabelSection',
+  },
+  'LinkItem': {
+    'PageLinkItem',
+    'URLLinkItem',
+  },
+  'ItemSection': {
+    'PosterSection',
+    'FeaturedSection',
+    'DefaultSection',
+    'GridSection',
+  },
+  'SectionItemType': {
+    'Show',
+    'Season',
+    'Episode',
+    'Page',
+  },
   'SearchResultItem': {
     'EpisodeSearchItem',
     'SeasonSearchItem',
     'ShowSearchItem',
-  },
-  'CalendarEntry': {
-    'SimpleCalendarEntry',
-    'EpisodeCalendarEntry',
-    'SeasonCalendarEntry',
-    'ShowCalendarEntry',
   },
 };

@@ -6,21 +6,39 @@ import androidx.media3.common.MediaItem
 import androidx.media3.common.MediaMetadata
 import androidx.media3.common.Player
 import com.npaw.youbora.lib6.exoplayer2.Exoplayer2Adapter
+import media.bcc.bccm_player.CastMediaItemConverter.Companion.PLAYER_DATA_IS_LIVE
 import media.bcc.player.PlaybackPlatformApi
 
 
 abstract class PlayerController() : Player.Listener {
     abstract val id: String;
     abstract val player: Player;
+    var isLive: Boolean = false
 
     abstract fun release();
 
-    fun replaceCurrentMediaItem(mediaItem: PlaybackPlatformApi.MediaItem) {
-        //this.isLive = mediaItem.isLive ?: false;
-        val androidMi = mapMediaItem(mediaItem);
-        player.setMediaItem(androidMi, mediaItem.playbackStartPositionMs ?: 0)
-        player.prepare()
+    fun play() {
         player.play()
+    }
+
+    fun pause() {
+        player.pause()
+    }
+
+    abstract fun stop(reset: Boolean)
+
+    fun replaceCurrentMediaItem(mediaItem: PlaybackPlatformApi.MediaItem, autoplay: Boolean?) {
+        this.isLive = mediaItem.isLive ?: false;
+        val androidMi = mapMediaItem(mediaItem);
+        var playbackStartPositionMs: Long? = null
+        if (!this.isLive && mediaItem.playbackStartPositionMs != null) {
+            playbackStartPositionMs = mediaItem.playbackStartPositionMs
+        }
+        player.setMediaItem(androidMi, playbackStartPositionMs ?: 0)
+        if (autoplay == true) {
+            player.prepare()
+            player.play()
+        }
     }
 
     fun queueMediaItem(mediaItem: PlaybackPlatformApi.MediaItem) {
@@ -50,13 +68,15 @@ abstract class PlayerController() : Player.Listener {
         if (episodeId != null) {
             extraMeta.putString("episode_id", episodeId);
         }
+        if (mediaItem.isLive == true) {
+            extraMeta.putString(PLAYER_DATA_IS_LIVE, "true");
+        }
         val sourceExtra = mediaItem.metadata?.extras;
         if (sourceExtra != null) {
             for (extra in sourceExtra) {
                 extraMeta.putString("media.bcc.extras." + extra.key, extra.value);
             }
         }
-
 
         metaBuilder.setTitle(mediaItem.metadata?.title)
                 .setArtist(mediaItem.metadata?.artist)
@@ -66,9 +86,7 @@ abstract class PlayerController() : Player.Listener {
         val miBuilder = MediaItem.Builder()
                 .setUri(mediaItem.url)
                 .setMediaMetadata(metaBuilder.build());
-        if (mediaItem.mimeType != null) {
-            miBuilder.setMimeType(mediaItem.mimeType);
-        }
+        miBuilder.setMimeType(mediaItem.mimeType ?: "application/x-mpegURL");
         return miBuilder.build()
     }
 
@@ -92,10 +110,18 @@ abstract class PlayerController() : Player.Listener {
 
         val miBuilder = PlaybackPlatformApi.MediaItem.Builder()
                 .setUrl(mediaItem.localConfiguration?.uri.toString())
+                .setIsLive(extraMeta["is_live"] == "true")
                 .setMetadata(metaBuilder.build())
         if (mediaItem.localConfiguration?.mimeType != null) {
             miBuilder.setMimeType(mediaItem.localConfiguration?.mimeType);
         }
         return miBuilder.build()
+    }
+
+    override fun onMediaItemTransition(mediaItem: MediaItem?, reason: Int) {
+        mediaItem?.let {
+            val bccmMediaItem = mapMediaItem(mediaItem);
+            isLive = bccmMediaItem.isLive ?: false
+        }
     }
 }

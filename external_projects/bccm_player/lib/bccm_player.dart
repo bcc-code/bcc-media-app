@@ -11,10 +11,9 @@ import 'package:flutter/services.dart';
 enum PlayerType { betterPlayer, videoPlayer, native }
 
 class BccmPlayer extends StatefulWidget {
-  final PlayerType type;
   final String id;
 
-  const BccmPlayer({super.key, required this.type, required this.id});
+  const BccmPlayer({super.key, required this.id});
 
   @override
   State<BccmPlayer> createState() => _BccmPlayerState();
@@ -110,12 +109,16 @@ class AndroidPlayer extends StatelessWidget {
       surfaceFactory: (context, controller) {
         return AndroidViewSurface(
           controller: controller as AndroidViewController,
-          gestureRecognizers: const <Factory<OneSequenceGestureRecognizer>>{},
-          hitTestBehavior: PlatformViewHitTestBehavior.opaque,
+          hitTestBehavior: PlatformViewHitTestBehavior.translucent,
+          gestureRecognizers: <Factory<OneSequenceGestureRecognizer>>{
+            Factory<OneSequenceGestureRecognizer>(
+              () => EagerGestureRecognizer(),
+            ),
+          },
         );
       },
       onCreatePlatformView: (params) {
-        return PlatformViewsService.initAndroidView(
+        return PlatformViewsService.initExpensiveAndroidView(
           id: params.id,
           viewType: 'bccm-player',
           layoutDirection: TextDirection.ltr,
