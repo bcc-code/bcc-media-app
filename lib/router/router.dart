@@ -66,6 +66,8 @@ import '../screens/search/explore_category_page.dart';
               MaterialRoute<void>(
                   page: ExploreCategoryScreen, path: 'explore-category'),
             ]),
+        MaterialRoute<void>(
+            name: 'CalendarPageRoute', page: CalendarPage, path: 'calendar'),
       ],
     ),
   ],
