@@ -48,7 +48,7 @@ public class PlaybackApiImpl: NSObject, PlaybackPlatformPigeon {
     }
 
     public func newPlayer(_ url: String?, completion: @escaping (String?, FlutterError?) -> Void) {
-        let player = AVQueuePlayerController(playbackListener: playbackListener, npawConfig: npawConfig);
+        let player = AVQueuePlayerController(playbackListener: playbackListener, npawConfig: npawConfig, appConfig: appConfig);
         players.append(player)
         if (url != nil) {
             player.replaceCurrentMediaItem(MediaItem.make(withUrl: url!, mimeType: "application/x-mpegURL", metadata: nil, isLive: false, playbackStartPositionMs: nil, lastKnownAudioLanguage: nil, lastKnownSubtitleLanguage: nil), autoplay: false)
@@ -57,12 +57,15 @@ public class PlaybackApiImpl: NSObject, PlaybackPlatformPigeon {
     }
 
     public func getChromecastState(_ completion: @escaping (ChromecastState?, FlutterError?) -> Void) {
+        let castPlayer = players.first(where: { $0.id == CastPlayerController.DEFAULT_ID })
+        let mediaItem = castPlayer?.getCurrentItem();
+        
         let connectionStateRaw = GCKCastContext.sharedInstance().castState.rawValue+1
         let connectionState = CastConnectionState.init(rawValue: UInt(connectionStateRaw))
         if (connectionState != nil) {
-            completion(ChromecastState.make(with: connectionState!), nil);
+            completion(ChromecastState.make(with: connectionState!, mediaItem: mediaItem), nil);
         } else {
-            completion(ChromecastState.make(with: CastConnectionState.noDevicesAvailable), nil);
+            completion(ChromecastState.make(with: CastConnectionState.noDevicesAvailable, mediaItem: mediaItem), nil);
         }
     }
     

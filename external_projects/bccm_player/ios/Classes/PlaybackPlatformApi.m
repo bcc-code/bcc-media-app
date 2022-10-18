@@ -234,20 +234,24 @@ static id GetNullableObjectAtIndex(NSArray* array, NSInteger key) {
 @end
 
 @implementation ChromecastState
-+ (instancetype)makeWithConnectionState:(CastConnectionState)connectionState {
++ (instancetype)makeWithConnectionState:(CastConnectionState)connectionState
+    mediaItem:(nullable MediaItem *)mediaItem {
   ChromecastState* pigeonResult = [[ChromecastState alloc] init];
   pigeonResult.connectionState = connectionState;
+  pigeonResult.mediaItem = mediaItem;
   return pigeonResult;
 }
 + (ChromecastState *)fromMap:(NSDictionary *)dict {
   ChromecastState *pigeonResult = [[ChromecastState alloc] init];
   pigeonResult.connectionState = [GetNullableObject(dict, @"connectionState") integerValue];
+  pigeonResult.mediaItem = [MediaItem nullableFromMap:GetNullableObject(dict, @"mediaItem")];
   return pigeonResult;
 }
 + (nullable ChromecastState *)nullableFromMap:(NSDictionary *)dict { return (dict) ? [ChromecastState fromMap:dict] : nil; }
 - (NSDictionary *)toMap {
   return @{
     @"connectionState" : @(self.connectionState),
+    @"mediaItem" : (self.mediaItem ? [self.mediaItem toMap] : [NSNull null]),
   };
 }
 @end

@@ -164,8 +164,8 @@ class _LiveScreenState extends ConsumerState<LiveScreen> with AutoRouteAware {
       body: ListView(children: [
         if (audioOnly)
           const MiniPlayer()
-        else if (playerFuture == null ||
-            player.currentMediaItem?.metadata?.extras?['id'] != 'livestream')
+        else if (player.currentMediaItem?.metadata?.extras?['id'] !=
+            'livestream')
           _playPoster(player)
         else
           _player(player),
@@ -179,19 +179,8 @@ class _LiveScreenState extends ConsumerState<LiveScreen> with AutoRouteAware {
     );
   }
 
-  FutureBuilder<dynamic> _player(Player player) {
-    return FutureBuilder(
-        future: playerFuture,
-        builder: (context, snapshot) {
-          if (snapshot.connectionState == ConnectionState.done) {
-            return BccmPlayer(id: player.playerId);
-          } else if (snapshot.hasError) {
-            return Text(snapshot.error.toString());
-          }
-          return const AspectRatio(
-              aspectRatio: 16 / 9,
-              child: Center(child: CircularProgressIndicator()));
-        });
+  Widget _player(Player player) {
+    return BccmPlayer(id: player.playerId);
   }
 
   Widget _playPoster(Player player) {
@@ -202,7 +191,7 @@ class _LiveScreenState extends ConsumerState<LiveScreen> with AutoRouteAware {
           //excludeFromSemantics: true,
           onTap: () {
             setState(() {
-              playerFuture = setup();
+              setup();
             });
           },
           child: AspectRatio(

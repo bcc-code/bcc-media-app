@@ -10,6 +10,40 @@ import YouboraAVPlayerAdapter
 import MediaPlayer
 
 public class AVQueuePlayerController: NSObject, PlayerController, AVPlayerViewControllerDelegate {
+    lazy var player: AVQueuePlayer = AVQueuePlayer()
+    public final let id: String
+    final let playbackListener: PlaybackListenerPigeon
+    final var observers = [NSKeyValueObservation]()
+    var temporaryStatusObserver: NSKeyValueObservation? = nil
+    var youboraPlugin: YBPlugin
+    var pipController: AVPlayerViewController? = nil
+    var appConfig: AppConfig? = nil
+
+    init(id: String? = nil, playbackListener: PlaybackListenerPigeon, npawConfig: NpawConfig?, appConfig: AppConfig?) {
+        self.id = id ?? UUID().uuidString;
+        self.playbackListener = playbackListener
+        self.appConfig = appConfig
+        
+        let youboraOptions = YBOptions();
+        youboraOptions.enabled = npawConfig != nil;
+        youboraOptions.accountCode = npawConfig?.accountCode;
+        youboraOptions.appName = npawConfig?.appName;
+        youboraOptions.appReleaseVersion = npawConfig?.appReleaseVersion;
+        youboraPlugin = YBPlugin(options: youboraOptions)
+        super.init()
+        youboraPlugin.adapter = YBAVPlayerAdapterSwiftTranformer.transform(from: YBAVPlayerAdapter(player: player))
+        addObservers();
+        print("BTV DEBUG: end of init playerController")
+    }
+    
+    public func getCurrentItem() -> MediaItem? {
+        return MediaItemUtils.mapPlayerItem(player.currentItem)
+    }
+    
+    public func hasBecomePrimary() {
+        setupCommandCenter()
+    }
+    
     public func play() {
         player.play()
     }
@@ -24,41 +58,6 @@ public class AVQueuePlayerController: NSObject, PlayerController, AVPlayerViewCo
         } else {
             player.pause();
         }
-    }
-    
-    lazy var player: AVQueuePlayer = AVQueuePlayer()
-    public final let id: String
-    final let playbackListener: PlaybackListenerPigeon
-    final var observers = [NSKeyValueObservation]()
-    var temporaryStatusObserver: NSKeyValueObservation? = nil
-    var youboraPlugin: YBPlugin
-    var pipController: AVPlayerViewController? = nil
-    var appConfig: AppConfig? = nil
-
-    init(id: String? = nil, playbackListener: PlaybackListenerPigeon, npawConfig: NpawConfig?) {
-        self.id = id ?? UUID().uuidString;
-        self.playbackListener = playbackListener
-        let youboraOptions = YBOptions();
-        youboraOptions.enabled = npawConfig != nil;
-        youboraOptions.accountCode = npawConfig?.accountCode;
-        youboraOptions.appName = npawConfig?.appName;
-        youboraOptions.appReleaseVersion = npawConfig?.appReleaseVersion;
-        youboraPlugin = YBPlugin(options: youboraOptions)
-        super.init()
-        youboraPlugin.adapter = YBAVPlayerAdapterSwiftTranformer.transform(from: YBAVPlayerAdapter(player: player))
-        addObservers();
-        print("BTV DEBUG: end of init playerController")
-    }
-    
-    public func hasBecomePrimary() {
-        setupCommandCenter()
-    }
-    
-    
-    func registerPipController(_ playerView: AVPlayerViewController?) {
-        pipController = playerView;
-        let event = PictureInPictureModeChangedEvent.make(withPlayerId: id, isInPipMode: (playerView != nil) as NSNumber)
-        playbackListener.onPicture(inPictureModeChanged: event, completion: { _ in })
     }
     
     public func playerViewControllerWillStartPictureInPicture(_ playerViewController: AVPlayerViewController) {
@@ -93,6 +92,12 @@ public class AVQueuePlayerController: NSObject, PlayerController, AVPlayerViewCo
         } catch {
             print("Setting category to AVAudioSessionCategoryPlayback failed.")
         }
+    }
+    
+    func registerPipController(_ playerView: AVPlayerViewController?) {
+        pipController = playerView;
+        let event = PictureInPictureModeChangedEvent.make(withPlayerId: id, isInPipMode: (playerView != nil) as NSNumber)
+        playbackListener.onPicture(inPictureModeChanged: event, completion: { _ in })
     }
     
     func releasePlayerView(_ playerView: AVPlayerViewController) {

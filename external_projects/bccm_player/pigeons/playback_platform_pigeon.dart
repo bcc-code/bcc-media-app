@@ -96,6 +96,7 @@ class MediaMetadata {
 
 class ChromecastState {
   late CastConnectionState connectionState;
+  MediaItem? mediaItem;
 }
 
 enum CastConnectionState {

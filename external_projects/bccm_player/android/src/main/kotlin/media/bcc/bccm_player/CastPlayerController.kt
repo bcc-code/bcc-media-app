@@ -61,7 +61,13 @@ class CastPlayerController(
     }
 
     fun getState(): PlaybackPlatformApi.ChromecastState {
-        return PlaybackPlatformApi.ChromecastState.Builder().setConnectionState(PlaybackPlatformApi.CastConnectionState.values()[castContext.castState]).build()
+        val builder = PlaybackPlatformApi.ChromecastState.Builder();
+        Log.d("bccm", "getState, player currentMediaItem: " + player.currentMediaItem)
+        player.currentMediaItem?.let {
+            builder.setMediaItem(mapMediaItem(it));
+        }
+        builder.setConnectionState(PlaybackPlatformApi.CastConnectionState.values()[castContext.castState]);
+        return builder.build()
     }
 
     private fun handleUpdatedAppConfig(appConfigState: PlaybackPlatformApi.AppConfig?) {
@@ -121,7 +127,13 @@ class CastPlayerController(
         Log.d("Bccm", "Session available. Transferring state from primaryPlayer to castPlayer");
         val primaryPlayer =
                 plugin.getPlaybackService()?.getPrimaryController()?.player ?: return
-        transferState(primaryPlayer, player);
+
+        Log.d("bccm", "oncastsessionavailable + " + player.mediaMetadata.extras?.getString("id"))
+        if (primaryPlayer.isPlaying) {
+            transferState(primaryPlayer, player);
+        } else {
+            primaryPlayer.stop()
+        }
     }
 
     override fun onCastSessionUnavailable() {

@@ -10,6 +10,7 @@ import AVFoundation
 import GoogleCast
 
 class CastPlayerController: NSObject, PlayerController  {
+    static let DEFAULT_ID = "chromecast"
     private var playbackApi: PlaybackApiImpl?
     var id: String
     var chromecastPigeon: ChromecastPigeon
@@ -21,7 +22,7 @@ class CastPlayerController: NSObject, PlayerController  {
     final var observers = [NSKeyValueObservation]()
     
     init(chromecastPigeon: ChromecastPigeon, playbackListener: PlaybackListenerPigeon) {
-        self.id = "chromecast"
+        self.id = CastPlayerController.DEFAULT_ID
         self.chromecastPigeon = chromecastPigeon
         self.playbackListener = playbackListener
         let castContext = GCKCastContext.sharedInstance();
@@ -39,6 +40,13 @@ class CastPlayerController: NSObject, PlayerController  {
     }
     
     public func hasBecomePrimary() {
+    }
+    
+    func getCurrentItem() -> MediaItem? {
+        if let currentItem = GCKCastContext.sharedInstance().sessionManager.currentCastSession?.remoteMediaClient?.mediaStatus?.currentQueueItem {
+            return mapMediaQueueItem(currentItem)
+        }
+        return nil
     }
     
     func setPlaybackApi(_ playbackApi: PlaybackApiImpl) {
@@ -160,11 +168,6 @@ class CastPlayerController: NSObject, PlayerController  {
         customData["subtitlesTracks"] = subtitlesTracks
         
         mediaInfoBuilder.customData = customData
-        debugPrint(mediaItem.lastKnownAudioLanguage)
-        debugPrint(mediaItem.lastKnownSubtitleLanguage)
-        debugPrint("customData")
-        debugPrint(customData)
-        debugPrint (mediaInfoBuilder.build())
         mediaInfoBuilder.metadata = metadata;
         return mediaInfoBuilder.build();
     }
@@ -208,18 +211,21 @@ class CastPlayerController: NSObject, PlayerController  {
         player.removeAllItems()
         player.pause()
     }
-   
-    var metaTemp: GCKMediaMetadata? = nil
     
-}
-
-extension CastPlayerController : GCKRemoteMediaClientListener {
-    func remoteMediaClient(_ client: GCKRemoteMediaClient, didUpdate mediaMetadata: GCKMediaMetadata?) {
-        debugPrint("something didUpdate mediaMetadata:" + mediaMetadata.debugDescription)
-        debugPrint("is metaTemp same?: " + (metaTemp == mediaMetadata).description)
+    func mapMediaQueueItem(_ mediaQueueItem: GCKMediaQueueItem?) -> MediaItem? {
+        guard let mediaQueueItem = mediaQueueItem else {
+            return nil;
+        }
+        guard let mediaItem = mapMediaMetadata(mediaQueueItem.mediaInformation.metadata) else {
+            return nil
+        }
+        mediaItem.url = mediaQueueItem.mediaInformation.contentURL?.absoluteString
+        return mediaItem
+    }
+    
+    func mapMediaMetadata(_ mediaMetadata: GCKMediaMetadata?) -> MediaItem? {
         guard let mediaMetadata = mediaMetadata else {
-            self.playbackListener.onMediaItemTransition(MediaItemTransitionEvent.make(withPlayerId: self.id, mediaItem: nil), completion: { e in })
-            return;
+            return nil;
         }
        
         let mappedMetadata = MediaMetadata();
@@ -259,6 +265,22 @@ extension CastPlayerController : GCKRemoteMediaClientListener {
             playbackStartPositionMs: nil,
             lastKnownAudioLanguage: nil,
             lastKnownSubtitleLanguage: nil)
+        
+        return mediaItem
+    }
+   
+    var metaTemp: GCKMediaMetadata? = nil
+    
+}
+
+extension CastPlayerController : GCKRemoteMediaClientListener {
+    func remoteMediaClient(_ client: GCKRemoteMediaClient, didUpdate mediaMetadata: GCKMediaMetadata?) {
+        debugPrint("something didUpdate mediaMetadata:" + mediaMetadata.debugDescription)
+        debugPrint("is metaTemp same?: " + (metaTemp == mediaMetadata).description)
+        guard let mediaItem = mapMediaMetadata(mediaMetadata) else {
+            self.playbackListener.onMediaItemTransition(MediaItemTransitionEvent.make(withPlayerId: self.id, mediaItem: nil), completion: { e in })
+            return;
+        }
         let event = MediaItemTransitionEvent.make(withPlayerId: self.id, mediaItem: mediaItem)
         playbackListener.onMediaItemTransition(event, completion: { e in })
     }

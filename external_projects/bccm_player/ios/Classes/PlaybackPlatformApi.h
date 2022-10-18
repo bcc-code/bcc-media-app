@@ -83,8 +83,10 @@ typedef NS_ENUM(NSUInteger, CastConnectionState) {
 @interface ChromecastState : NSObject
 /// `init` unavailable to enforce nonnull fields, see the `make` class method.
 - (instancetype)init NS_UNAVAILABLE;
-+ (instancetype)makeWithConnectionState:(CastConnectionState)connectionState;
++ (instancetype)makeWithConnectionState:(CastConnectionState)connectionState
+    mediaItem:(nullable MediaItem *)mediaItem;
 @property(nonatomic, assign) CastConnectionState connectionState;
+@property(nonatomic, strong, nullable) MediaItem * mediaItem;
 @end
 
 @interface PositionUpdateEvent : NSObject

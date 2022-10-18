@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:bccm_player/playback_platform_pigeon.g.dart';
 import 'package:brunstadtv_app/providers/settings_service.dart';
+import 'package:brunstadtv_app/providers/video_state.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/foundation.dart';
@@ -52,9 +53,16 @@ void main() async {
 
   providerContainer.read(chromecastListenerProvider);
 
-  providerContainer.read(playbackApiProvider).getChromecastState().then(
-      (value) => providerContainer.read(isCasting.notifier).state =
-          value?.connectionState == CastConnectionState.connected);
+  providerContainer
+      .read(playbackApiProvider)
+      .getChromecastState()
+      .then((value) {
+    providerContainer.read(isCasting.notifier).state =
+        value?.connectionState == CastConnectionState.connected;
+    providerContainer
+        .read(castPlayerProvider.notifier)
+        .setMediaItem(value?.mediaItem);
+  });
 
   if (Env.NPAW_ACCOUNT_CODE != '') {
     providerContainer.read(playbackApiProvider).setNpawConfig(NpawConfig(

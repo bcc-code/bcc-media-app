@@ -421,6 +421,12 @@ public class PlaybackPlatformApi {
       this.connectionState = setterArg;
     }
 
+    private @Nullable MediaItem mediaItem;
+    public @Nullable MediaItem getMediaItem() { return mediaItem; }
+    public void setMediaItem(@Nullable MediaItem setterArg) {
+      this.mediaItem = setterArg;
+    }
+
     /** Constructor is private to enforce null safety; use Builder. */
     private ChromecastState() {}
     public static final class Builder {
@@ -429,21 +435,30 @@ public class PlaybackPlatformApi {
         this.connectionState = setterArg;
         return this;
       }
+      private @Nullable MediaItem mediaItem;
+      public @NonNull Builder setMediaItem(@Nullable MediaItem setterArg) {
+        this.mediaItem = setterArg;
+        return this;
+      }
       public @NonNull ChromecastState build() {
         ChromecastState pigeonReturn = new ChromecastState();
         pigeonReturn.setConnectionState(connectionState);
+        pigeonReturn.setMediaItem(mediaItem);
         return pigeonReturn;
       }
     }
     @NonNull Map<String, Object> toMap() {
       Map<String, Object> toMapResult = new HashMap<>();
       toMapResult.put("connectionState", connectionState == null ? null : connectionState.index);
+      toMapResult.put("mediaItem", (mediaItem == null) ? null : mediaItem.toMap());
       return toMapResult;
     }
     static @NonNull ChromecastState fromMap(@NonNull Map<String, Object> map) {
       ChromecastState pigeonResult = new ChromecastState();
       Object connectionState = map.get("connectionState");
       pigeonResult.setConnectionState(connectionState == null ? null : CastConnectionState.values()[(int)connectionState]);
+      Object mediaItem = map.get("mediaItem");
+      pigeonResult.setMediaItem((mediaItem == null) ? null : MediaItem.fromMap((Map)mediaItem));
       return pigeonResult;
     }
   }

@@ -181,13 +181,16 @@ class MediaMetadata {
 class ChromecastState {
   ChromecastState({
     required this.connectionState,
+    this.mediaItem,
   });
 
   CastConnectionState connectionState;
+  MediaItem? mediaItem;
 
   Object encode() {
     final Map<Object?, Object?> pigeonMap = <Object?, Object?>{};
     pigeonMap['connectionState'] = connectionState.index;
+    pigeonMap['mediaItem'] = mediaItem?.encode();
     return pigeonMap;
   }
 
@@ -196,6 +199,9 @@ class ChromecastState {
     return ChromecastState(
       connectionState: CastConnectionState.values[pigeonMap['connectionState']! as int]
 ,
+      mediaItem: pigeonMap['mediaItem'] != null
+          ? MediaItem.decode(pigeonMap['mediaItem']!)
+          : null,
     );
   }
 }
