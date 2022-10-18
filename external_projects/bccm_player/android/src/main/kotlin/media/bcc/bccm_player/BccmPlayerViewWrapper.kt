@@ -1,27 +1,24 @@
 package media.bcc.bccm_player
 
-import android.app.Activity
 import android.content.Context
 import android.content.Intent
+import android.graphics.Color
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.*
 import androidx.annotation.NonNull
 import androidx.annotation.Nullable
-import androidx.fragment.app.FragmentActivity
-import androidx.fragment.app.FragmentManager
-import androidx.media3.common.ForwardingPlayer
 import androidx.media3.common.Player
-import androidx.media3.exoplayer.ExoPlayer
 import androidx.media3.exoplayer.util.DebugTextViewHelper
 import androidx.media3.ui.PlayerView
 import io.flutter.plugin.common.StandardMessageCodec
 import io.flutter.plugin.platform.PlatformView
 import io.flutter.plugin.platform.PlatformViewFactory
+import io.flutter.util.ViewUtils.getActivity
 import kotlinx.coroutines.*
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.filter
+import kotlinx.coroutines.flow.filterIsInstance
 
 
 class PlayerPlatformViewFactory(private val playbackService: PlaybackService?) : PlatformViewFactory(StandardMessageCodec.INSTANCE) {
@@ -45,11 +42,20 @@ class BccmPlayerViewWrapper(
     private val _v: LinearLayout = LinearLayout(context)
     private var _playerView: PlayerView? = null
     private val ioScope = CoroutineScope(Dispatchers.IO + SupervisorJob())
+    private val mainScope = CoroutineScope(Dispatchers.Main + SupervisorJob())
     private var fullscreenListener: Job? = null
     private var setupDone = false;
 
     init {
         setup()
+
+        mainScope.launch {
+            BccmPlayerPluginSingleton.eventBus.filterIsInstance<SetPlayerViewVisibilityEvent>().filter { it.viewId == flutterViewId.toLong() }.collect {
+                event ->
+                Log.d("bccm", "TestEvent, playerView?.visibility: ${_playerView?.visibility}")
+                _playerView?.visibility = if(event.visible) View.VISIBLE else View.GONE
+            }
+        }
     }
 
     override fun getView(): View {
@@ -62,6 +68,7 @@ class BccmPlayerViewWrapper(
         playerController = null
         _playerView = null
         ioScope.cancel()
+        mainScope.cancel()
     }
 
     fun getPlayerView(): PlayerView? {
@@ -72,6 +79,7 @@ class BccmPlayerViewWrapper(
         if (_playerView?.player != null) {
             return;
         }
+        _v.setBackgroundColor(Color.RED)
         _v.removeAllViews()
         LayoutInflater.from(context).inflate(R.layout.btvplayer_view, _v, true)
         playerController = playbackService.getController(playerId) as ExoPlayerController
@@ -139,7 +147,7 @@ class BccmPlayerViewWrapper(
     }
 
     private fun goFullscreenUsingActivity(startInPictureInPicture: Boolean) {
-        val activity = context as? Activity ?: return
+        val activity = getActivity(context) ?: return
         val newIntent = Intent(activity, FullscreenPlayerActivity::class.java)
         newIntent.putExtra("options", FullscreenPlayerActivity.Options(playerId, startInPictureInPicture))
         activity.startActivity(newIntent)
@@ -149,11 +157,11 @@ class BccmPlayerViewWrapper(
     }
 
     private fun goFullscreen() {
-        if (context !is FragmentActivity) return
-        val rootLayout: FrameLayout = context.window.decorView.findViewById<View>(android.R.id.content) as FrameLayout
+        val activity = getActivity(context) ?: return
+        val rootLayout: FrameLayout = activity.window.decorView.findViewById<View>(android.R.id.content) as FrameLayout
         //activity.requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE
         playerController?.let { playerController ->
-            val fullScreenPlayer = FullscreenPlayerView(context, playerController)
+            val fullScreenPlayer = FullscreenPlayerView(activity, playerController)
             rootLayout.addView(fullScreenPlayer)
             fullScreenPlayer.setFullscreenButtonClickListener {
                 setup()
@@ -170,11 +178,12 @@ class BccmPlayerViewWrapper(
         if (fullscreenListener != null) {
             return;
         }
+        val activity = getActivity(context) ?: return
         fullscreenListener = ioScope.launch {
             BccmPlayerPluginSingleton.eventBus.filter { event -> event is FullscreenPlayerResult && event.playerId == playerId}.collect {
                 event ->
                 Log.d("bccm", "FullscreenPlayerResult");
-                (context as? Activity)?.runOnUiThread {
+                activity.runOnUiThread {
                     // Stuff that updates the UI
                     Log.d("bccm", "FullscreenPlayerResult ui thread");
                     setup()
@@ -182,6 +191,7 @@ class BccmPlayerViewWrapper(
             }
         }
     }
+
 
     private fun resetPlayerView() {
         _playerView = null

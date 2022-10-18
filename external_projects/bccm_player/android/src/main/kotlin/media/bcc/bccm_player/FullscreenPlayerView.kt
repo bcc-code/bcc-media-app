@@ -26,7 +26,7 @@ import kotlinx.coroutines.flow.filterIsInstance
 import media.bcc.player.PlaybackPlatformApi
 
 
-class FullscreenPlayerView(context: Context, val playerController: ExoPlayerController) : LinearLayout(context) {
+class FullscreenPlayerView(val activity: Activity, val playerController: ExoPlayerController) : LinearLayout(activity) {
     var playerView: PlayerView?
     val mainScope = CoroutineScope(Dispatchers.Main + SupervisorJob())
     var isInPip: Boolean = false;
@@ -94,22 +94,8 @@ class FullscreenPlayerView(context: Context, val playerController: ExoPlayerCont
             }
         }
     }
-/*
-    fun makeActivityFullscreen() {
-        val activity = context as? Activity
-        var flags = SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN or SYSTEM_UI_FLAG_FULLSCREEN
-        flags = flags or (SYSTEM_UI_FLAG_LAYOUT_STABLE or SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION or
-                SYSTEM_UI_FLAG_HIDE_NAVIGATION or SYSTEM_UI_FLAG_IMMERSIVE_STICKY)
-        activity?.window?.decorView?.systemUiVisibility = flags
-    }
 
-    fun exitFullscreen() {
-        val activity = context as? Activity
-        activity?.window?.decorView?.systemUiVisibility = SYSTEM_UI_FLAG_VISIBLE
-    }*/
     private fun makeActivityFullscreen() {
-        if (context !is Activity) return;
-        val activity = context as Activity
         WindowCompat.setDecorFitsSystemWindows(activity.window, false)
         WindowInsetsControllerCompat(activity.window, this@FullscreenPlayerView).let { controller ->
             controller.hide(WindowInsetsCompat.Type.systemBars())
@@ -118,8 +104,6 @@ class FullscreenPlayerView(context: Context, val playerController: ExoPlayerCont
     }
 
     private fun exitFullscreen() {
-        if (context !is Activity) return;
-        val activity = context as Activity
         WindowCompat.setDecorFitsSystemWindows(activity.window, true)
         WindowInsetsControllerCompat(activity.window, this).show(WindowInsetsCompat.Type.systemBars())
     }
@@ -152,8 +136,6 @@ class FullscreenPlayerView(context: Context, val playerController: ExoPlayerCont
 
     @RequiresApi(Build.VERSION_CODES.O)
     fun enterPictureInPicture() {
-        if (context !is Activity) return;
-        val activity = context as Activity
         Log.d("Bccm", "enterPictureInPicture fullscreenplayerView")
 
         val aspectRatio = playerController.player.let {
@@ -175,71 +157,3 @@ class FullscreenPlayerView(context: Context, val playerController: ExoPlayerCont
         playerView = null
     }
 }
-
-// ...
-
-// ...
-/*
-class FullscreenPlayerView() : DialogFragment() {
-    var playerView: PlayerView? = null
-    private val ioScope = CoroutineScope(Dispatchers.IO + SupervisorJob())
-    private val options: Options? = null
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-        setStyle(DialogFragment.STYLE_NORMAL,
-                android.R.style.Theme_Black);
-    }
-
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
-        return inflater.inflate(R.layout.btvplayer_view, container)
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        playerView = view.findViewById<PlayerView>(R.id.brunstad_player)
-        playerView?.let {
-            playerController?.takeOwnership(it)
-        }
-        playerView?.setFullscreenButtonClickListener {
-            //onDone()
-            ioScope.launch {
-                if (options?.playerId == null) {
-                    return@launch;
-                }
-                BccmPlayerPluginSingleton.eventBus.emit(FullscreenPlayerResult(options!!.playerId!!))
-            }
-            dismiss()
-        };
-    }
-
-    override fun onDestroyView() {
-        playerView?.let {
-            playerController?.releasePlayerView(it)
-        }
-        super.onDestroyView()
-    }
-
-
-    companion object {
-
-        @Parcelize
-        data class Options(
-                */
-/** **Note:** Primary if null **//*
- val playerId: String?,
-                val startInPictureInPicture: Boolean = false
-        ) : Parcelable
-
-        fun newInstance(playerController: ExoPlayerController, options: Options): FullscreenPlayerView {
-            val frag = FullscreenPlayerView()
-            frag.playerController = playerController
-            val args = Bundle()
-            args.putParcelable("options", options)
-            frag.arguments = args
-            return frag
-        }
-    }
-}*/

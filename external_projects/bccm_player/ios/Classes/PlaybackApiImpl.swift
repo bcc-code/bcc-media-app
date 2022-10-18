@@ -29,6 +29,9 @@ public class PlaybackApiImpl: NSObject, PlaybackPlatformPigeon {
             p.updateAppConfig(appConfig: appConfig)
         }
     }
+    public func setPlayerViewVisibility(_ viewId: NSNumber, visible: NSNumber, error: AutoreleasingUnsafeMutablePointer<FlutterError?>) {
+        
+    }
 
     public func setNpawConfig(_ config: NpawConfig?, error: AutoreleasingUnsafeMutablePointer<FlutterError?>) {
         npawConfig = config;

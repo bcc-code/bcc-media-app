@@ -86,4 +86,9 @@ class PlaybackService extends PlaybackPlatformInterface {
   void setAppConfig(AppConfig? config) {
     _pigeon.setAppConfig(config);
   }
+
+  @override
+  void setPlayerViewVisibility(int viewId, bool visible) {
+    _pigeon.setPlayerViewVisibility(viewId, visible);
+  }
 }

@@ -161,21 +161,24 @@ class _LiveScreenState extends ConsumerState<LiveScreen> with AutoRouteAware {
               ),
             ]),
           )),
-      body: ListView(children: [
-        if (audioOnly)
-          const MiniPlayer()
-        else if (player.currentMediaItem?.metadata?.extras?['id'] !=
-            'livestream')
-          _playPoster(player)
-        else
-          _player(player),
-        const SizedBox(height: 20),
-        const SizedBox(
-            height: 20000,
-            child: Align(
-                alignment: Alignment.topCenter, child: Text('Calendar here'))),
-        //
-      ]),
+      body: SingleChildScrollView(
+        child: Column(children: [
+          if (audioOnly)
+            const MiniPlayer()
+          else if (playerFuture == null ||
+              player.currentMediaItem?.metadata?.extras?['id'] != 'livestream')
+            _playPoster(player)
+          else
+            _player(player),
+          const SizedBox(height: 20),
+          const SizedBox(
+              height: 20000,
+              child: Align(
+                  alignment: Alignment.topCenter,
+                  child: Text('Calendar here'))),
+          //
+        ]),
+      ),
     );
   }
 
@@ -194,14 +197,18 @@ class _LiveScreenState extends ConsumerState<LiveScreen> with AutoRouteAware {
               setup();
             });
           },
-          child: AspectRatio(
-            aspectRatio: 16 / 9,
-            child: Image.network(
-              'https://brunstad.tv/static/images/placeholder.jpg',
-              fit: BoxFit.fill,
-              width: 64,
-              height: 36,
-            ),
+          child: Column(
+            children: [
+              AspectRatio(
+                aspectRatio: 16 / 9,
+                child: Image.network(
+                  'https://brunstad.tv/static/images/placeholder.jpg',
+                  fit: BoxFit.fill,
+                  width: 64,
+                  height: 36,
+                ),
+              ),
+            ],
           ),
         ),
         Column(

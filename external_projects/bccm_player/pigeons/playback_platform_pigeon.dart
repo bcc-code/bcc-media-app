@@ -21,6 +21,9 @@ abstract class PlaybackPlatformPigeon {
   void replaceCurrentMediaItem(String playerId, MediaItem mediaItem,
       bool? playbackPositionFromPrimary, bool? autoplay);
 
+  @ObjCSelector("setPlayerViewVisibility:visible:")
+  void setPlayerViewVisibility(int viewId, bool visible);
+
   @async
   @ObjCSelector("setPrimary:")
   void setPrimary(String id);

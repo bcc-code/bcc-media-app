@@ -177,89 +177,125 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen> {
           ),
         ],
       ),
-      body: ListView(
-        children: [
-          if (error != null) Text(error ?? ''),
-          FutureBuilder<Episode?>(
-              future: episodeFuture,
-              builder: (context, snapshot) {
-                var displayPlayer =
-                    animationStatus == AnimationStatus.completed &&
-                        snapshot.hasData;
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            if (error != null) Text(error ?? ''),
+            FutureBuilder<Episode?>(
+                future: episodeFuture,
+                builder: (context, snapshot) {
+                  var displayPlayer =
+                      animationStatus == AnimationStatus.completed &&
+                          snapshot.hasData;
 
-                var episode = snapshot.data;
+                  var episode = snapshot.data;
 
-                var tempTitle = ref.watch(tempTitleProvider) ?? '';
+                  var tempTitle = ref.watch(tempTitleProvider) ?? '';
 
-                if (snapshot.hasError) {
-                  return Text(snapshot.error.toString());
-                }
+                  if (snapshot.hasError) {
+                    return Text(snapshot.error.toString());
+                  }
 
-                return Container(
-                  color: const Color.fromARGB(255, 29, 40, 56),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      isCorrectItem(player.currentMediaItem)
-                          ? _player(displayPlayer, casting, primaryPlayerId)
-                          : AspectRatio(
-                              aspectRatio: 16 / 9,
-                              child: episode == null
-                                  ? const Center(
-                                      child: SizedBox(
-                                          height: 40,
-                                          width: 40,
-                                          child: CircularProgressIndicator()),
-                                    )
-                                  : Stack(
-                                      children: [
-                                        GestureDetector(
-                                          behavior: HitTestBehavior.opaque,
-                                          //excludeFromSemantics: true,
-                                          onTap: () {
-                                            setState(() {
-                                              settingUp = true;
-                                            });
-                                            setup();
-                                          },
-                                          child: AspectRatio(
-                                            aspectRatio: 16 / 9,
-                                            child: Image.network(
-                                              episode!.imageUrl!,
-                                              fit: BoxFit.fill,
-                                              width: 64,
-                                              height: 36,
+                  return Container(
+                    color: const Color.fromARGB(255, 29, 40, 56),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        isCorrectItem(player.currentMediaItem)
+                            ? _player(displayPlayer, casting, primaryPlayerId)
+                            : AspectRatio(
+                                aspectRatio: 16 / 9,
+                                child: episode == null
+                                    ? const Center(
+                                        child: SizedBox(
+                                            height: 40,
+                                            width: 40,
+                                            child: CircularProgressIndicator()),
+                                      )
+                                    : Stack(
+                                        children: [
+                                          GestureDetector(
+                                            behavior: HitTestBehavior.opaque,
+                                            //excludeFromSemantics: true,
+                                            onTap: () {
+                                              setState(() {
+                                                settingUp = true;
+                                              });
+                                              setup();
+                                            },
+                                            child: AspectRatio(
+                                              aspectRatio: 16 / 9,
+                                              child: Image.network(
+                                                episode!.imageUrl!,
+                                                fit: BoxFit.fill,
+                                                width: 64,
+                                                height: 36,
+                                              ),
                                             ),
                                           ),
-                                        ),
-                                        Center(
-                                            child: !settingUp
-                                                ? Image.asset(
-                                                    'assets/icons/Play.png')
-                                                : const CircularProgressIndicator()),
-                                      ],
-                                    )),
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Text(
-                            episode?.title != null ? episode!.title : tempTitle,
-                            style: Theme.of(context).textTheme.titleLarge),
-                      )
-                    ],
-                  ),
-                );
-              }),
-          Column(
-            children: List.generate(
-                100,
-                (index) => SizedBox(
-                    width: 200,
-                    height: 400,
-                    child: Padding(
-                        padding: const EdgeInsets.all(10),
-                        child: Container(color: Colors.red)))),
-          )
-        ],
+                                          Center(
+                                              child: !settingUp
+                                                  ? Image.asset(
+                                                      'assets/icons/Play.png')
+                                                  : const CircularProgressIndicator()),
+                                        ],
+                                      )),
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Text(
+                              episode?.title != null
+                                  ? episode!.title
+                                  : tempTitle,
+                              style: Theme.of(context).textTheme.titleLarge),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Text(
+                              episode?.title != null
+                                  ? episode!.title
+                                  : tempTitle,
+                              style: Theme.of(context).textTheme.titleLarge),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Text(
+                              episode?.title != null
+                                  ? episode!.title
+                                  : tempTitle,
+                              style: Theme.of(context).textTheme.titleLarge),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Text(
+                              episode?.title != null
+                                  ? episode!.title
+                                  : tempTitle,
+                              style: Theme.of(context).textTheme.titleLarge),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Text(
+                              episode?.title != null
+                                  ? episode!.title
+                                  : tempTitle,
+                              style: Theme.of(context).textTheme.titleLarge),
+                        )
+                      ],
+                    ),
+                  );
+                }),
+            Column(
+              children: List.generate(
+                  100,
+                  (index) => SizedBox(
+                      width: 200,
+                      height: 400,
+                      child: Padding(
+                          padding: const EdgeInsets.all(10),
+                          child: Container(color: Colors.red)))),
+            )
+          ],
+        ),
       ),
     );
   }
@@ -273,7 +309,8 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen> {
             },
             child: const Text('open'));
       } */
-      return BccmPlayer(id: casting ? 'chromecast' : primaryPlayerId);
+      return BccmPlayer(
+          key: Key('test'), id: casting ? 'chromecast' : primaryPlayerId);
     } else {
       return const AspectRatio(
           aspectRatio: 16 / 9,

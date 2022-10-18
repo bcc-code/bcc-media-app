@@ -510,6 +510,27 @@ void PlaybackPlatformPigeonSetup(id<FlutterBinaryMessenger> binaryMessenger, NSO
   {
     FlutterBasicMessageChannel *channel =
       [[FlutterBasicMessageChannel alloc]
+        initWithName:@"dev.flutter.pigeon.PlaybackPlatformPigeon.setPlayerViewVisibility"
+        binaryMessenger:binaryMessenger
+        codec:PlaybackPlatformPigeonGetCodec()        ];
+    if (api) {
+      NSCAssert([api respondsToSelector:@selector(setPlayerViewVisibility:visible:error:)], @"PlaybackPlatformPigeon api (%@) doesn't respond to @selector(setPlayerViewVisibility:visible:error:)", api);
+      [channel setMessageHandler:^(id _Nullable message, FlutterReply callback) {
+        NSArray *args = message;
+        NSNumber *arg_viewId = GetNullableObjectAtIndex(args, 0);
+        NSNumber *arg_visible = GetNullableObjectAtIndex(args, 1);
+        FlutterError *error;
+        [api setPlayerViewVisibility:arg_viewId visible:arg_visible error:&error];
+        callback(wrapResult(nil, error));
+      }];
+    }
+    else {
+      [channel setMessageHandler:nil];
+    }
+  }
+  {
+    FlutterBasicMessageChannel *channel =
+      [[FlutterBasicMessageChannel alloc]
         initWithName:@"dev.flutter.pigeon.PlaybackPlatformPigeon.setPrimary"
         binaryMessenger:binaryMessenger
         codec:PlaybackPlatformPigeonGetCodec()        ];

@@ -751,6 +751,7 @@ public class PlaybackPlatformApi {
     void newPlayer(@Nullable String url, Result<String> result);
     void queueMediaItem(@NonNull String playerId, @NonNull MediaItem mediaItem, Result<Void> result);
     void replaceCurrentMediaItem(@NonNull String playerId, @NonNull MediaItem mediaItem, @Nullable Boolean playbackPositionFromPrimary, @Nullable Boolean autoplay, Result<Void> result);
+    void setPlayerViewVisibility(@NonNull Long viewId, @NonNull Boolean visible);
     void setPrimary(@NonNull String id, Result<Void> result);
     void play(@NonNull String playerId);
     void pause(@NonNull String playerId);
@@ -873,6 +874,34 @@ public class PlaybackPlatformApi {
               wrapped.put("error", wrapError(exception));
               reply.reply(wrapped);
             }
+          });
+        } else {
+          channel.setMessageHandler(null);
+        }
+      }
+      {
+        BasicMessageChannel<Object> channel =
+            new BasicMessageChannel<>(binaryMessenger, "dev.flutter.pigeon.PlaybackPlatformPigeon.setPlayerViewVisibility", getCodec());
+        if (api != null) {
+          channel.setMessageHandler((message, reply) -> {
+            Map<String, Object> wrapped = new HashMap<>();
+            try {
+              ArrayList<Object> args = (ArrayList<Object>)message;
+              Number viewIdArg = (Number)args.get(0);
+              if (viewIdArg == null) {
+                throw new NullPointerException("viewIdArg unexpectedly null.");
+              }
+              Boolean visibleArg = (Boolean)args.get(1);
+              if (visibleArg == null) {
+                throw new NullPointerException("visibleArg unexpectedly null.");
+              }
+              api.setPlayerViewVisibility((viewIdArg == null) ? null : viewIdArg.longValue(), visibleArg);
+              wrapped.put("result", null);
+            }
+            catch (Error | RuntimeException exception) {
+              wrapped.put("error", wrapError(exception));
+            }
+            reply.reply(wrapped);
           });
         } else {
           channel.setMessageHandler(null);

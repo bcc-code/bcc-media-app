@@ -20,6 +20,7 @@ import 'package:bccm_player/chromecast_pigeon.g.dart';
 import 'package:riverpod/riverpod.dart';
 import 'package:bccm_player/playback_service_interface.dart';
 
+import 'debug_app.dart';
 import 'env/.env.dart';
 import 'env/dev/firebase_options.dart';
 
@@ -29,6 +30,15 @@ Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
 }
 
 void main() async {
+  /* WidgetsFlutterBinding.ensureInitialized();
+  var playerId = await PlaybackPlatformInterface.instance.newPlayer();
+  await PlaybackPlatformInterface.instance.replaceCurrentMediaItem(
+      playerId,
+      MediaItem(
+          url:
+              'https://devstreaming-cdn.apple.com/videos/streaming/examples/img_bipbop_adv_example_fmp4/master.m3u8'));
+  return runApp(DebugApp(playerId: playerId)); */
+
   WidgetsFlutterBinding.ensureInitialized();
   SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
