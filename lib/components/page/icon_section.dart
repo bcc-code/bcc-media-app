@@ -4,39 +4,42 @@ import 'package:auto_route/auto_route.dart';
 import '../category_button.dart';
 import '../horizontal_slider.dart';
 import '../../router/router.gr.dart';
+import '../../graphql/queries/page.graphql.dart';
 
-class ExploreCategories extends StatelessWidget {
-  final dynamic data;
+class IconSection extends StatelessWidget {
+  final Fragment$Section$$IconSection data;
 
-  const ExploreCategories({super.key, required this.data});
+  const IconSection(this.data, {super.key});
 
   @override
   Widget build(BuildContext context) {
+    final sectionItems = data.items.items;
     return Padding(
       padding: const EdgeInsets.only(top: 16, bottom: 12, left: 16),
       child: Column(
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Container(
-            margin: const EdgeInsets.only(bottom: 16),
-            child: Text(
-              data['title'] as String,
-              style: const TextStyle(fontSize: 20, fontWeight: FontWeight.w700),
+          if (data.title != null)
+            Container(
+              margin: const EdgeInsets.only(bottom: 16),
+              child: Text(
+                data.title!,
+                style:
+                    const TextStyle(fontSize: 20, fontWeight: FontWeight.w700),
+              ),
             ),
-          ),
           HorizontalSlider(
-            items: (data['items'] as List<Map<String, String>>)
+            items: sectionItems
                 .map(
                   (item) => CategoryButton(
                     onTap: () {
                       context.router.navigate(
-                        HomeExploreCategoryScreenRoute(
-                            category: item['label']!),
+                        HomeExploreCategoryScreenRoute(category: item.title),
                       );
                     },
-                    label: item['label']!,
-                    imagePath: "assets/icons/${item['image']!}",
+                    label: item.title,
+                    networkImage: item.icon,
                     width: 80,
                     margin: const EdgeInsets.only(right: 16),
                   ),

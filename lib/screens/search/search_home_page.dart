@@ -84,7 +84,7 @@ class SearchHomePage extends StatelessWidget {
                       Expanded(
                         child: CategoryButton(
                           label: _categories[itemIndex].label,
-                          imagePath: _categories[itemIndex].image,
+                          assetImage: _categories[itemIndex].image,
                           margin: const EdgeInsets.only(right: 8),
                           aspectRatio: 16 / 9,
                           onTap: () {
@@ -99,7 +99,7 @@ class SearchHomePage extends StatelessWidget {
                         child: itemIndex + 1 < _categories.length
                             ? CategoryButton(
                                 label: _categories[itemIndex + 1].label,
-                                imagePath: _categories[itemIndex + 1].image,
+                                assetImage: _categories[itemIndex + 1].image,
                                 margin: const EdgeInsets.only(left: 8),
                                 aspectRatio: 16 / 9,
                                 padding:

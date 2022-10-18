@@ -1,3 +1,31 @@
+enum Enum$ImageStyle { poster, featured, $default, $unknown }
+
+String toJson$Enum$ImageStyle(Enum$ImageStyle e) {
+  switch (e) {
+    case Enum$ImageStyle.poster:
+      return r'poster';
+    case Enum$ImageStyle.featured:
+      return r'featured';
+    case Enum$ImageStyle.$default:
+      return r'default';
+    case Enum$ImageStyle.$unknown:
+      return r'$unknown';
+  }
+}
+
+Enum$ImageStyle fromJson$Enum$ImageStyle(String value) {
+  switch (value) {
+    case r'poster':
+      return Enum$ImageStyle.poster;
+    case r'featured':
+      return Enum$ImageStyle.featured;
+    case r'default':
+      return Enum$ImageStyle.$default;
+    default:
+      return Enum$ImageStyle.$unknown;
+  }
+}
+
 enum Enum$StreamType { hls_ts, hls_cmaf, dash, $unknown }
 
 String toJson$Enum$StreamType(Enum$StreamType e) {

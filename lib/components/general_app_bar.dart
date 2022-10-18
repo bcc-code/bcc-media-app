@@ -20,33 +20,35 @@ class GeneralAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     print(kToolbarHeight);
-    return ClipRect(
+    return /* ClipRect(
       child: BackdropFilter(
         filter: ImageFilter.blur(sigmaX: 5, sigmaY: 5),
-        child: Container(
-          // padding: EdgeInsets.only(top: statusBarHeight),
-          height: 44 /* totalHeight,*/,
-          child: Row(children: [
-            Expanded(
-              child: Padding(
-                padding: const EdgeInsets.only(left: 11),
-                child: Row(children: leftActions),
-              ),
-            ),
-            title,
-            Expanded(
-              child: Padding(
-                padding: const EdgeInsets.only(right: 14),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: rightActions,
-                ),
-              ),
-            ),
-          ]),
+        child: */
+        Container(
+      // padding: EdgeInsets.only(top: statusBarHeight),
+      height: 44 /* totalHeight,*/,
+      child: Row(children: [
+        Expanded(
+          child: Padding(
+            padding: const EdgeInsets.only(left: 11),
+            child: Row(children: leftActions),
+          ),
         ),
+        title,
+        Expanded(
+          child: Padding(
+            padding: const EdgeInsets.only(right: 14),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: rightActions,
+            ),
+          ),
+        ),
+      ]),
+    ) /*,
       ),
-    );
+    )*/
+        ;
   }
 
   // @override

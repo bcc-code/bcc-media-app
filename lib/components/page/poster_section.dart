@@ -1,12 +1,19 @@
+import '../../graphql/queries/page.graphql.dart';
+import '../../graphql/schema/pages.graphql.dart';
 import 'package:flutter/material.dart';
 
 import '../horizontal_slider.dart';
 import '../bordered_image_container.dart';
 
-class ContinueWatching extends StatelessWidget {
-  final dynamic data;
+const Map<Enum$SectionSize, Size> imageSize = {
+  Enum$SectionSize.small: Size(140, 208),
+  Enum$SectionSize.medium: Size(230, 340),
+};
 
-  const ContinueWatching({super.key, required this.data});
+class PosterSection extends StatelessWidget {
+  final Fragment$Section$$PosterSection data;
+
+  const PosterSection(this.data, {super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -16,17 +23,28 @@ class ContinueWatching extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Container(
-            margin: const EdgeInsets.only(bottom: 16),
-            child: Text(
-              data['title'] as String,
-              style: const TextStyle(fontSize: 20, fontWeight: FontWeight.w700),
+          if (data.title != null)
+            Container(
+              margin: const EdgeInsets.only(bottom: 16),
+              child: Text(
+                data.title!,
+                style:
+                    const TextStyle(fontSize: 20, fontWeight: FontWeight.w700),
+              ),
             ),
-          ),
           HorizontalSlider(
-            items: (data['items'] as List<Map<String, dynamic>>)
-                .map((item) => _Item(small: data['small'], data: item))
-                .toList(),
+            items: data.items.items.map(
+              (item) {
+                if (item.item
+                    is Fragment$Section$$PosterSection$items$items$item$$Episode) {
+                  return _PosterEpisodeItem(sectionItem: item, size: data.size);
+                } else if (item.item
+                    is Fragment$Section$$PosterSection$items$items$item$$Show) {
+                  return _PosterShowItem(sectionItem: item, size: data.size);
+                }
+                return Container();
+              },
+            ).toList(),
           ),
         ],
       ),
@@ -34,36 +52,37 @@ class ContinueWatching extends StatelessWidget {
   }
 }
 
-class _Item extends StatelessWidget {
-  final Map<String, dynamic> data;
-  final bool small;
-  final double imageHeight;
+class _PosterEpisodeItem extends StatelessWidget {
+  final Fragment$Section$$PosterSection$items$items sectionItem;
+  final Fragment$Section$$PosterSection$items$items$item$$Episode episode;
+  final Enum$SectionSize size;
 
-  const _Item({super.key, required this.data, this.small = false})
-      : imageHeight = small ? 80 : 208;
+  _PosterEpisodeItem({
+    required this.sectionItem,
+    required this.size,
+  }) : episode = sectionItem.item
+            as Fragment$Section$$PosterSection$items$items$item$$Episode;
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 140,
+      width: imageSize[size]!.width,
       margin: const EdgeInsets.only(right: 16),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Stack(
-            children: [
-              BorderedImageContainer(
-                height: imageHeight,
-                margin: const EdgeInsets.only(bottom: 4),
-                image: NetworkImage(data['image']!),
-                child: Container(
-                  alignment: Alignment.bottomCenter,
-                  margin: const EdgeInsets.only(right: 4, bottom: 4, left: 4),
-                  child: _WatchProgressIndicator(
-                      totalDuration: 100, watchedDuration: 30),
-                ),
-              ),
-            ],
+          BorderedImageContainer(
+            height: imageSize[size]!.height,
+            margin: const EdgeInsets.only(bottom: 4),
+            image: sectionItem.image != null
+                ? NetworkImage(sectionItem.image!)
+                : null,
+            // child: Container(
+            //   alignment: Alignment.bottomCenter,
+            //   margin: const EdgeInsets.only(right: 4, bottom: 4, left: 4),
+            //   child: _WatchProgressIndicator(
+            //       totalDuration: 100, watchedDuration: 30),
+            // ),
           ),
           Container(
             margin: const EdgeInsets.only(bottom: 2),
@@ -71,7 +90,7 @@ class _Item extends StatelessWidget {
               children: [
                 Expanded(
                   child: Text(
-                    data['show'].replaceAll(' ', '\u{000A0}'),
+                    episode.season!.$show.title.replaceAll(' ', '\u{000A0}'),
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
                     style: const TextStyle(
@@ -81,11 +100,11 @@ class _Item extends StatelessWidget {
                     ),
                   ),
                 ),
-                if (data['date'] != null)
+                if (episode.productionDate != null)
                   Container(
                     margin: const EdgeInsets.only(left: 4),
                     child: Text(
-                      data['date'],
+                      episode.productionDate!,
                       style: const TextStyle(
                         fontSize: 12,
                         fontWeight: FontWeight.w500,
@@ -97,7 +116,45 @@ class _Item extends StatelessWidget {
             ),
           ),
           Text(
-            data['episode'],
+            sectionItem.title,
+            overflow: TextOverflow.ellipsis,
+            maxLines: 2,
+            style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w500),
+          )
+        ],
+      ),
+    );
+  }
+}
+
+class _PosterShowItem extends StatelessWidget {
+  final Fragment$Section$$PosterSection$items$items sectionItem;
+  final Fragment$Section$$PosterSection$items$items$item$$Show show;
+  final Enum$SectionSize size;
+
+  _PosterShowItem({
+    required this.sectionItem,
+    required this.size,
+  }) : show = sectionItem.item
+            as Fragment$Section$$PosterSection$items$items$item$$Show;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: imageSize[size]!.width,
+      margin: const EdgeInsets.only(right: 16),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          BorderedImageContainer(
+            height: imageSize[size]!.height,
+            margin: const EdgeInsets.only(bottom: 4),
+            image: sectionItem.image != null
+                ? NetworkImage(sectionItem.image!)
+                : null,
+          ),
+          Text(
+            sectionItem.title,
             overflow: TextOverflow.ellipsis,
             maxLines: 2,
             style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w500),

@@ -1,32 +1,170 @@
-fragment ItemSection on ItemSection {
+fragment Section on Section{
   title
-  items {
+  ... on LabelSection {
     items {
-      ...ItemSectionItem
+      items {
+        title,
+        icon,
+        ... on PageLinkItem {
+          page {
+            code
+          }
+        }
+        ... on URLLinkItem {
+          url
+        }
+      }
     }
+  }
+  ... on IconSection {
+    items {
+      items {
+        title,
+        icon
+        ... on PageLinkItem {
+          page {
+            code
+          }
+        }
+        ... on URLLinkItem {
+          url
+        }
+      }
+    }
+  }
+  ... on PosterSection {
+    size
+    items {
+      items {
+        id
+        title
+        image
+        item {
+          ... on Show {
+            episodeCount
+            seasonCount
+            __typename
+          }
+          ... on Episode {
+            productionDate
+            duration
+            season {
+              show {
+                title
+              }
+            }
+            __typename
+          }
+        }
+      }
+    }
+    __typename
+  }
+  ... on FeaturedSection {
+    size
+    items {
+      items {
+        id
+        title
+        description
+        image
+        item {
+          ... on Show {
+            __typename
+          }
+          ... on Episode {
+            __typename
+          }
+        }
+      }
+    }
+    __typename
+  }
+  ... on DefaultSection {
+    size
+    items {
+      items {
+        title
+        image
+        item {
+          ... on Show {
+            id
+            episodeCount
+            seasonCount
+            __typename
+          }
+          ... on Episode {
+            id
+            productionDate
+            duration
+            season {
+              show {
+                title
+              }
+            }
+            __typename
+          }
+        }
+      }
+    }
+    __typename
+  }
+  ... on GridSection {
+    gridSize: size
+    items {
+      items {
+        id
+        title
+        image
+        item {
+          ... on Show {
+            episodeCount
+            __typename
+          }
+          ... on Episode {
+            duration
+            number
+            season {
+              number
+              show {
+                title
+              }
+            }
+            __typename
+          }
+        }
+      }
+    }
+    __typename
   }
 }
 
-fragment ItemSectionItem on SectionItem {
-  id
-  sort
-  title
-  image
-  item {
-    ... on Episode {
-      number
-    }
-    ... on Show {
-      episodeCount
-    }
-  }
-}
+# fragment LinkItem on LinkItem {
+#   title,
+#   icon
+# }
+
+# fragment ItemSectionItem on SectionItem {
+#   id
+#   sort
+#   title
+#   image
+#   item {
+#     ... on Episode {
+#       number
+#     }
+#     ... on Show {
+#       episodeCount
+#     }
+#   }
+#   __typename
+# }
 
 query Page($code: String!) {
   page(code: $code) {
     sections {
       items {
-        ...ItemSection
+        ...Section
       }
     }
   }

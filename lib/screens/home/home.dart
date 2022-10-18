@@ -25,6 +25,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
   void initState() {
     super.initState();
     //sectionFuture = fetchSections();
+    print('Bearer ${AuthService.instance.auth0AccessToken}');
   }
 
   @override

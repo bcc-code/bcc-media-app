@@ -37,6 +37,7 @@ class BorderedImageContainer extends StatelessWidget {
           width: 1,
           color: const Color.fromRGBO(255, 255, 255, 0.1),
         ),
+        color: const Color.fromRGBO(29, 40, 56, 1),
       ),
       child: child,
     );

@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 
 class CategoryButton extends StatelessWidget {
   final String label;
-  final String imagePath;
+  final String? assetImage;
+  final String? networkImage;
   final EdgeInsetsGeometry margin;
   final EdgeInsetsGeometry padding;
   final VoidCallback? onTap;
@@ -12,7 +13,8 @@ class CategoryButton extends StatelessWidget {
   const CategoryButton({
     super.key,
     required this.label,
-    required this.imagePath,
+    this.assetImage,
+    this.networkImage,
     this.margin = EdgeInsets.zero,
     this.padding = const EdgeInsets.all(8),
     this.onTap,
@@ -40,11 +42,17 @@ class CategoryButton extends StatelessWidget {
                   color: const Color(0xff1d2838),
                 ),
                 child: Center(
-                  child: Image.asset(
-                    imagePath,
-                    height: double.infinity,
-                    fit: BoxFit.fitHeight,
-                  ),
+                  child: assetImage != null
+                      ? Image.asset(
+                          assetImage!,
+                          height: double.infinity,
+                          fit: BoxFit.fitHeight,
+                        )
+                      : Image.network(
+                          networkImage!,
+                          height: double.infinity,
+                          fit: BoxFit.fitHeight,
+                        ),
                 ),
               ),
             ),
