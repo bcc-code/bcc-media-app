@@ -326,7 +326,7 @@ abstract class SwipeDismissBaseActivity : Activity() {
 
     override fun dispatchTouchEvent(ev: MotionEvent?): Boolean {
         // TouchEvent dispatcher.
-        if (gestureDetector != null) {
+        if (gestureDetector != null && ev != null) {
             if (gestureDetector!!.onTouchEvent(ev)) // If the gestureDetector handles the event, a swipe has been
             // executed and no more needs to be done.
                 return true
@@ -335,7 +335,7 @@ abstract class SwipeDismissBaseActivity : Activity() {
     }
 
     override fun onTouchEvent(event: MotionEvent?): Boolean {
-        return gestureDetector!!.onTouchEvent(event)
+        return event?.let { gestureDetector!!.onTouchEvent(it) } ?: super.onTouchEvent(event)
     }
 
     companion object {

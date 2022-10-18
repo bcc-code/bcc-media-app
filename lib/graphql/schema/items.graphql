@@ -12,8 +12,8 @@ type Show {
     image(style: ImageStyle): String @goField(forceResolver: true)
     imageUrl: String
     images: [Image!]!
-    episodeCount: Int!
-    seasonCount: Int!
+    episodeCount: Int! @goField(forceResolver: true)
+    seasonCount: Int! @goField(forceResolver: true)
     seasons(
         first: Int
         offset: Int

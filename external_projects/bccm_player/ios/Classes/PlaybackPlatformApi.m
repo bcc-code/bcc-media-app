@@ -36,6 +36,11 @@ static id GetNullableObjectAtIndex(NSArray* array, NSInteger key) {
 + (nullable NpawConfig *)nullableFromMap:(NSDictionary *)dict;
 - (NSDictionary *)toMap;
 @end
+@interface AppConfig ()
++ (AppConfig *)fromMap:(NSDictionary *)dict;
++ (nullable AppConfig *)nullableFromMap:(NSDictionary *)dict;
+- (NSDictionary *)toMap;
+@end
 @interface User ()
 + (User *)fromMap:(NSDictionary *)dict;
 + (nullable User *)nullableFromMap:(NSDictionary *)dict;
@@ -100,6 +105,33 @@ static id GetNullableObjectAtIndex(NSArray* array, NSInteger key) {
     @"appName" : (self.appName ?: [NSNull null]),
     @"appReleaseVersion" : (self.appReleaseVersion ?: [NSNull null]),
     @"accountCode" : (self.accountCode ?: [NSNull null]),
+  };
+}
+@end
+
+@implementation AppConfig
++ (instancetype)makeWithAppLanguage:(nullable NSString *)appLanguage
+    audioLanguage:(nullable NSString *)audioLanguage
+    subtitleLanguage:(nullable NSString *)subtitleLanguage {
+  AppConfig* pigeonResult = [[AppConfig alloc] init];
+  pigeonResult.appLanguage = appLanguage;
+  pigeonResult.audioLanguage = audioLanguage;
+  pigeonResult.subtitleLanguage = subtitleLanguage;
+  return pigeonResult;
+}
++ (AppConfig *)fromMap:(NSDictionary *)dict {
+  AppConfig *pigeonResult = [[AppConfig alloc] init];
+  pigeonResult.appLanguage = GetNullableObject(dict, @"appLanguage");
+  pigeonResult.audioLanguage = GetNullableObject(dict, @"audioLanguage");
+  pigeonResult.subtitleLanguage = GetNullableObject(dict, @"subtitleLanguage");
+  return pigeonResult;
+}
++ (nullable AppConfig *)nullableFromMap:(NSDictionary *)dict { return (dict) ? [AppConfig fromMap:dict] : nil; }
+- (NSDictionary *)toMap {
+  return @{
+    @"appLanguage" : (self.appLanguage ?: [NSNull null]),
+    @"audioLanguage" : (self.audioLanguage ?: [NSNull null]),
+    @"subtitleLanguage" : (self.subtitleLanguage ?: [NSNull null]),
   };
 }
 @end
@@ -318,18 +350,21 @@ static id GetNullableObjectAtIndex(NSArray* array, NSInteger key) {
 {
   switch (type) {
     case 128:     
-      return [ChromecastState fromMap:[self readValue]];
+      return [AppConfig fromMap:[self readValue]];
     
     case 129:     
-      return [MediaItem fromMap:[self readValue]];
+      return [ChromecastState fromMap:[self readValue]];
     
     case 130:     
-      return [MediaMetadata fromMap:[self readValue]];
+      return [MediaItem fromMap:[self readValue]];
     
     case 131:     
-      return [NpawConfig fromMap:[self readValue]];
+      return [MediaMetadata fromMap:[self readValue]];
     
     case 132:     
+      return [NpawConfig fromMap:[self readValue]];
+    
+    case 133:     
       return [User fromMap:[self readValue]];
     
     default:    
@@ -344,24 +379,28 @@ static id GetNullableObjectAtIndex(NSArray* array, NSInteger key) {
 @implementation PlaybackPlatformPigeonCodecWriter
 - (void)writeValue:(id)value 
 {
-  if ([value isKindOfClass:[ChromecastState class]]) {
+  if ([value isKindOfClass:[AppConfig class]]) {
     [self writeByte:128];
     [self writeValue:[value toMap]];
   } else 
-  if ([value isKindOfClass:[MediaItem class]]) {
+  if ([value isKindOfClass:[ChromecastState class]]) {
     [self writeByte:129];
     [self writeValue:[value toMap]];
   } else 
-  if ([value isKindOfClass:[MediaMetadata class]]) {
+  if ([value isKindOfClass:[MediaItem class]]) {
     [self writeByte:130];
     [self writeValue:[value toMap]];
   } else 
-  if ([value isKindOfClass:[NpawConfig class]]) {
+  if ([value isKindOfClass:[MediaMetadata class]]) {
     [self writeByte:131];
     [self writeValue:[value toMap]];
   } else 
-  if ([value isKindOfClass:[User class]]) {
+  if ([value isKindOfClass:[NpawConfig class]]) {
     [self writeByte:132];
+    [self writeValue:[value toMap]];
+  } else 
+  if ([value isKindOfClass:[User class]]) {
+    [self writeByte:133];
     [self writeValue:[value toMap]];
   } else 
 {
@@ -571,6 +610,26 @@ void PlaybackPlatformPigeonSetup(id<FlutterBinaryMessenger> binaryMessenger, NSO
         NpawConfig *arg_config = GetNullableObjectAtIndex(args, 0);
         FlutterError *error;
         [api setNpawConfig:arg_config error:&error];
+        callback(wrapResult(nil, error));
+      }];
+    }
+    else {
+      [channel setMessageHandler:nil];
+    }
+  }
+  {
+    FlutterBasicMessageChannel *channel =
+      [[FlutterBasicMessageChannel alloc]
+        initWithName:@"dev.flutter.pigeon.PlaybackPlatformPigeon.setAppConfig"
+        binaryMessenger:binaryMessenger
+        codec:PlaybackPlatformPigeonGetCodec()        ];
+    if (api) {
+      NSCAssert([api respondsToSelector:@selector(setAppConfig:error:)], @"PlaybackPlatformPigeon api (%@) doesn't respond to @selector(setAppConfig:error:)", api);
+      [channel setMessageHandler:^(id _Nullable message, FlutterReply callback) {
+        NSArray *args = message;
+        AppConfig *arg_config = GetNullableObjectAtIndex(args, 0);
+        FlutterError *error;
+        [api setAppConfig:arg_config error:&error];
         callback(wrapResult(nil, error));
       }];
     }

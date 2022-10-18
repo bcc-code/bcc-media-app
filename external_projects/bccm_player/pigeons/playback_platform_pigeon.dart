@@ -40,6 +40,9 @@ abstract class PlaybackPlatformPigeon {
   @ObjCSelector("setNpawConfig:")
   void setNpawConfig(NpawConfig? config);
 
+  @ObjCSelector("setAppConfig:")
+  void setAppConfig(AppConfig? config);
+
   @async
   @ObjCSelector("getChromecastState")
   ChromecastState? getChromecastState();
@@ -55,6 +58,12 @@ class NpawConfig {
   late String? appName;
   late String? appReleaseVersion;
   late String? accountCode;
+}
+
+class AppConfig {
+  late String? appLanguage;
+  late String? audioLanguage;
+  late String? subtitleLanguage;
 }
 
 class User {

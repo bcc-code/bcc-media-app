@@ -13,6 +13,7 @@ import com.npaw.youbora.lib6.plugin.Options
 import com.npaw.youbora.lib6.plugin.Plugin
 import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.*
+import media.bcc.bccm_player.CastMediaItemConverter.Companion.PLAYER_DATA_IS_LIVE
 import media.bcc.player.PlaybackPlatformApi
 import java.util.*
 
@@ -76,6 +77,8 @@ class ExoPlayerController(private val context: Context) : PlayerController(), Pl
         youboraPlugin.adapter = adapter;
         player.addListener(this)
 
+        val appConfigState = handleUpdatedAppConfig(BccmPlayerPluginSingleton.appConfigState.value);
+
         mainScope.launch {
             BccmPlayerPluginSingleton.userState.collect() {
                 user ->
@@ -87,10 +90,27 @@ class ExoPlayerController(private val context: Context) : PlayerController(), Pl
             BccmPlayerPluginSingleton.npawConfigState.collectLatest { setBasicYouboraOptions(youboraPlugin.options, it) }
         }
         mainScope.launch {
+            BccmPlayerPluginSingleton.appConfigState.collectLatest { handleUpdatedAppConfig(it) }
+        }
+        mainScope.launch {
             BccmPlayerPluginSingleton.eventBus.filter { event -> event is AttachedToActivityEvent}.collect {
                 event -> BccmPlayerPluginSingleton.activityState.update { (event as AttachedToActivityEvent).activity }
             }
         }
+    }
+
+    override fun stop(reset: Boolean) {
+        player.stop()
+        if (reset) {
+            player.clearMediaItems()
+        }
+    }
+
+    private fun handleUpdatedAppConfig(appConfigState: PlaybackPlatformApi.AppConfig?) {
+        Log.d("bccm", "setting preferred audio and sub lang to: ${appConfigState?.audioLanguage}, ${appConfigState?.subtitleLanguage}")
+        player.trackSelectionParameters = trackSelector.parameters.buildUpon()
+                .setPreferredAudioLanguage(appConfigState?.audioLanguage)
+                .setPreferredTextLanguage(appConfigState?.subtitleLanguage).build()
     }
 
     private fun setBasicYouboraOptions(options: Options, config: PlaybackPlatformApi.NpawConfig?) {
@@ -104,7 +124,7 @@ class ExoPlayerController(private val context: Context) : PlayerController(), Pl
         return exoPlayer;
     }
 
-    fun setRendererDisabled(isDisabled: Boolean) {
+    private fun setRendererDisabled(isDisabled: Boolean) {
         var indexOfVideoRenderer = -1
 
         exoPlayer?.let {
@@ -190,7 +210,7 @@ class ExoPlayerController(private val context: Context) : PlayerController(), Pl
 
     override fun onMediaMetadataChanged(mediaMetadata: MediaMetadata) {
         val extras = mediaMetadata.extras?.let { extractExtrasFromAndroid(it) }
-        youboraPlugin.options.contentIsLive = extras?.get("npaw.content.isLive")?.toBoolean() ?: player.isCurrentMediaItemLive
+        youboraPlugin.options.contentIsLive = extras?.get("npaw.content.isLive")?.toBoolean() ?: extras?.get(PLAYER_DATA_IS_LIVE)?.toBoolean() ?: player.isCurrentMediaItemLive
         youboraPlugin.options.contentId = extras?.get("npaw.content.id") ?: mediaMetadata.extras?.getString("id")
         youboraPlugin.options.contentTitle = extras?.get("npaw.content.title") ?: mediaMetadata.title?.toString() ?: mediaMetadata.displayTitle?.toString()
         youboraPlugin.options.contentTvShow = extras?.get("npaw.content.tvShow")

@@ -44,6 +44,7 @@ object BccmPlayerPluginSingleton {
 
     val activityState = MutableStateFlow<Activity?>(null);
     val npawConfigState = MutableStateFlow<PlaybackPlatformApi.NpawConfig?>(null);
+    val appConfigState = MutableStateFlow<PlaybackPlatformApi.AppConfig?>(null);
     val userState = MutableStateFlow<User?>(null);
     val eventBus = MutableSharedFlow<BccmPlayerPluginEvent>();
     private val mainScope = CoroutineScope(Dispatchers.Main + Job())
@@ -159,6 +160,7 @@ class BccmPlayerPlugin : FlutterPlugin, ActivityAware, PluginRegistry.ActivityRe
         )
         mainScope.launch {
             Log.d("bccm","OnAttachedToActivity")
+            BccmPlayerPluginSingleton.activityState.update { binding.activity }
             BccmPlayerPluginSingleton.eventBus.emit(AttachedToActivityEvent(binding.activity))
         }
         mainScope.launch {

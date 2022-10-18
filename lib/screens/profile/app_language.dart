@@ -1,14 +1,16 @@
+import 'package:brunstadtv_app/providers/settings_service.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../components/option_list.dart';
 
-class AppLanguageScreen extends StatefulWidget {
+class AppLanguageScreen extends ConsumerStatefulWidget {
   const AppLanguageScreen({super.key});
 
   @override
-  State<AppLanguageScreen> createState() => _AppLanguageScreenState();
+  ConsumerState<AppLanguageScreen> createState() => _AppLanguageScreenState();
 }
 
-class _AppLanguageScreenState extends State<AppLanguageScreen> {
+class _AppLanguageScreenState extends ConsumerState<AppLanguageScreen> {
   var languageList = [
     Option(
       id: 'afr',
@@ -51,17 +53,25 @@ class _AppLanguageScreenState extends State<AppLanguageScreen> {
       title: 'Magyar (Hungarian)',
     ),
     Option(
-      id: 'nok',
+      id: 'no',
       title: 'Norsk bokmål (Norwegian Bokmål)',
     ),
   ];
 
-  String selected = 'nok';
+  late String selected;
 
-  void _onSelectionChanged(String id) {
+  Future<void> _onSelectionChanged(String id) async {
     setState(() {
       selected = id;
+      // obtain shared preferences
     });
+    ref.read(settingsServiceProvider.notifier).setAppLanguage(id);
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    selected = ref.read(settingsServiceProvider).appLanguage ?? 'no';
   }
 
   @override

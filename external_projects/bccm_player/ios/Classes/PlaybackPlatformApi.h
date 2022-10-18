@@ -17,6 +17,7 @@ typedef NS_ENUM(NSUInteger, CastConnectionState) {
 };
 
 @class NpawConfig;
+@class AppConfig;
 @class User;
 @class MediaItem;
 @class MediaMetadata;
@@ -33,6 +34,15 @@ typedef NS_ENUM(NSUInteger, CastConnectionState) {
 @property(nonatomic, copy, nullable) NSString * appName;
 @property(nonatomic, copy, nullable) NSString * appReleaseVersion;
 @property(nonatomic, copy, nullable) NSString * accountCode;
+@end
+
+@interface AppConfig : NSObject
++ (instancetype)makeWithAppLanguage:(nullable NSString *)appLanguage
+    audioLanguage:(nullable NSString *)audioLanguage
+    subtitleLanguage:(nullable NSString *)subtitleLanguage;
+@property(nonatomic, copy, nullable) NSString * appLanguage;
+@property(nonatomic, copy, nullable) NSString * audioLanguage;
+@property(nonatomic, copy, nullable) NSString * subtitleLanguage;
 @end
 
 @interface User : NSObject
@@ -124,6 +134,7 @@ NSObject<FlutterMessageCodec> *PlaybackPlatformPigeonGetCodec(void);
 - (void)stop:(NSString *)playerId reset:(NSNumber *)reset error:(FlutterError *_Nullable *_Nonnull)error;
 - (void)setUser:(nullable User *)user error:(FlutterError *_Nullable *_Nonnull)error;
 - (void)setNpawConfig:(nullable NpawConfig *)config error:(FlutterError *_Nullable *_Nonnull)error;
+- (void)setAppConfig:(nullable AppConfig *)config error:(FlutterError *_Nullable *_Nonnull)error;
 - (void)getChromecastState:(void(^)(ChromecastState *_Nullable, FlutterError *_Nullable))completion;
 - (void)openExpandedCastController:(FlutterError *_Nullable *_Nonnull)error;
 - (void)openCastDialog:(FlutterError *_Nullable *_Nonnull)error;

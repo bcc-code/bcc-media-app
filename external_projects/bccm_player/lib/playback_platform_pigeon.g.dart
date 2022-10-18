@@ -44,6 +44,35 @@ class NpawConfig {
   }
 }
 
+class AppConfig {
+  AppConfig({
+    this.appLanguage,
+    this.audioLanguage,
+    this.subtitleLanguage,
+  });
+
+  String? appLanguage;
+  String? audioLanguage;
+  String? subtitleLanguage;
+
+  Object encode() {
+    final Map<Object?, Object?> pigeonMap = <Object?, Object?>{};
+    pigeonMap['appLanguage'] = appLanguage;
+    pigeonMap['audioLanguage'] = audioLanguage;
+    pigeonMap['subtitleLanguage'] = subtitleLanguage;
+    return pigeonMap;
+  }
+
+  static AppConfig decode(Object message) {
+    final Map<Object?, Object?> pigeonMap = message as Map<Object?, Object?>;
+    return AppConfig(
+      appLanguage: pigeonMap['appLanguage'] as String?,
+      audioLanguage: pigeonMap['audioLanguage'] as String?,
+      subtitleLanguage: pigeonMap['subtitleLanguage'] as String?,
+    );
+  }
+}
+
 class User {
   User({
     this.id,
@@ -269,24 +298,28 @@ class _PlaybackPlatformPigeonCodec extends StandardMessageCodec {
   const _PlaybackPlatformPigeonCodec();
   @override
   void writeValue(WriteBuffer buffer, Object? value) {
-    if (value is ChromecastState) {
+    if (value is AppConfig) {
       buffer.putUint8(128);
       writeValue(buffer, value.encode());
     } else 
-    if (value is MediaItem) {
+    if (value is ChromecastState) {
       buffer.putUint8(129);
       writeValue(buffer, value.encode());
     } else 
-    if (value is MediaMetadata) {
+    if (value is MediaItem) {
       buffer.putUint8(130);
       writeValue(buffer, value.encode());
     } else 
-    if (value is NpawConfig) {
+    if (value is MediaMetadata) {
       buffer.putUint8(131);
       writeValue(buffer, value.encode());
     } else 
-    if (value is User) {
+    if (value is NpawConfig) {
       buffer.putUint8(132);
+      writeValue(buffer, value.encode());
+    } else 
+    if (value is User) {
+      buffer.putUint8(133);
       writeValue(buffer, value.encode());
     } else 
 {
@@ -297,18 +330,21 @@ class _PlaybackPlatformPigeonCodec extends StandardMessageCodec {
   Object? readValueOfType(int type, ReadBuffer buffer) {
     switch (type) {
       case 128:       
-        return ChromecastState.decode(readValue(buffer)!);
+        return AppConfig.decode(readValue(buffer)!);
       
       case 129:       
-        return MediaItem.decode(readValue(buffer)!);
+        return ChromecastState.decode(readValue(buffer)!);
       
       case 130:       
-        return MediaMetadata.decode(readValue(buffer)!);
+        return MediaItem.decode(readValue(buffer)!);
       
       case 131:       
-        return NpawConfig.decode(readValue(buffer)!);
+        return MediaMetadata.decode(readValue(buffer)!);
       
       case 132:       
+        return NpawConfig.decode(readValue(buffer)!);
+      
+      case 133:       
         return User.decode(readValue(buffer)!);
       
       default:      
@@ -512,6 +548,28 @@ class PlaybackPlatformPigeon {
   Future<void> setNpawConfig(NpawConfig? arg_config) async {
     final BasicMessageChannel<Object?> channel = BasicMessageChannel<Object?>(
         'dev.flutter.pigeon.PlaybackPlatformPigeon.setNpawConfig', codec, binaryMessenger: _binaryMessenger);
+    final Map<Object?, Object?>? replyMap =
+        await channel.send(<Object?>[arg_config]) as Map<Object?, Object?>?;
+    if (replyMap == null) {
+      throw PlatformException(
+        code: 'channel-error',
+        message: 'Unable to establish connection on channel.',
+      );
+    } else if (replyMap['error'] != null) {
+      final Map<Object?, Object?> error = (replyMap['error'] as Map<Object?, Object?>?)!;
+      throw PlatformException(
+        code: (error['code'] as String?)!,
+        message: error['message'] as String?,
+        details: error['details'],
+      );
+    } else {
+      return;
+    }
+  }
+
+  Future<void> setAppConfig(AppConfig? arg_config) async {
+    final BasicMessageChannel<Object?> channel = BasicMessageChannel<Object?>(
+        'dev.flutter.pigeon.PlaybackPlatformPigeon.setAppConfig', codec, binaryMessenger: _binaryMessenger);
     final Map<Object?, Object?>? replyMap =
         await channel.send(<Object?>[arg_config]) as Map<Object?, Object?>?;
     if (replyMap == null) {

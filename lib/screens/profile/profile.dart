@@ -1,16 +1,17 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../router/router.gr.dart';
 import './avatar.dart';
 import './action_buttons.dart';
 import '../../components/setting_list.dart';
 
-class Profile extends StatefulWidget {
+class Profile extends ConsumerStatefulWidget {
   @override
-  State<Profile> createState() => _ProfileState();
+  ConsumerState<Profile> createState() => _ProfileState();
 }
 
-class _ProfileState extends State<Profile> {
+class _ProfileState extends ConsumerState<Profile> {
   late List<Map<String, Object?>> _settingsOptions;
   late List<Map<String, Object?>> _supportOptions;
   late List<Map<String, Object?>> _termsaAndPrivacyOptions;
