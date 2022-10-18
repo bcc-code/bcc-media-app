@@ -75,7 +75,7 @@ class _RootScreenState extends ConsumerState<RootScreen> with AutoRouteAware {
           HomeScreenRoute(),
           EmptyRouterPageRoute(),
           LiveScreenRoute(),
-          HomeScreenRoute(),
+          CalendarPageRoute()
         ],
         builder: (context, child, animation) {
           // obtain the scoped TabsRouter controller using context

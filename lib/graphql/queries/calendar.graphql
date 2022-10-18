@@ -1,7 +1,11 @@
 query CalendarPeriod($from: Date!, $to: Date!) {
   calendar {
     period(from: $from, to: $to) {
-      activeDays
+      activeDays #dot
+      events {
+        start
+        end
+      } #event
     }
   }
 }
@@ -13,6 +17,25 @@ fragment CalendarDay on CalendarDay {
     start
     end
     image
+  }
+  entries {
+    id
+    title
+    description
+    start
+    end
+    __typename
+    ... on EpisodeCalendarEntry {
+      episode {
+        id
+        __typename
+      }
+      id
+    }
+    ... on SimpleCalendarEntry {
+      id
+      __typename
+    }
   }
 }
 
