@@ -24,53 +24,6 @@ type SectionPagination implements Pagination {
     items: [Section!]!
 }
 
-# LINK SECTION
-interface LinkSection implements Section {
-    id: ID!
-    title: String
-    items(first: Int, offset: Int): LinkItemPagination! @goField(forceResolver: true)
-}
-
-type IconSection implements Section & LinkSection {
-    id: ID!
-    title: String
-    items(first: Int, offset: Int): LinkItemPagination! @goField(forceResolver: true)
-}
-
-interface LinkItem {
-    id: ID!
-    title: String!
-    icon: String
-}
-
-type PageLinkItem implements LinkItem {
-    id: ID!
-    title: String!
-    icon: String
-    page: Page! @goField(forceResolver: true)
-}
-
-type URLLinkItem implements LinkItem {
-    id: ID!
-    title: String!
-    icon: String
-    url: String!
-}
-
-type LinkItemPagination implements Pagination {
-    total: Int!
-    first: Int!
-    offset: Int!
-    items: [LinkItem!]!
-}
-
-type LabelSection implements Section & LinkSection {
-    id: ID!
-    title: String
-    items(first: Int, offset: Int): LinkItemPagination! @goField(forceResolver: true)
-}
-
-# ITEM SECTION
 enum SectionSize {
     small
     medium
@@ -114,6 +67,18 @@ type GridSection implements Section & ItemSection {
     items(first: Int, offset: Int): SectionItemPagination! @goField(forceResolver: true)
 }
 
+type IconSection implements Section & ItemSection {
+    id: ID!
+    title: String
+    items(first: Int, offset: Int): SectionItemPagination! @goField(forceResolver: true)
+}
+
+type LabelSection implements Section & ItemSection {
+    id: ID!
+    title: String
+    items(first: Int, offset: Int): SectionItemPagination! @goField(forceResolver: true)
+}
+
 type Collection {
     id: ID!
     items(
@@ -122,7 +87,12 @@ type Collection {
     ): CollectionItemPagination @goField(forceResolver: true)
 }
 
-union SectionItemType = Show | Season | Episode | Page
+type Link {
+    id: ID!
+    url: String!
+}
+
+union SectionItemType = Show | Season | Episode | Page | Link
 
 type SectionItem {
     id: ID!
