@@ -27,60 +27,53 @@ Enum$Language fromJson$Enum$Language(String value) {
 }
 
 const possibleTypesMap = {
+  'Pagination': {
+    'SeasonPagination',
+    'EpisodePagination',
+    'CollectionItemPagination',
+    'QuestionPagination',
+    'FAQCategoryPagination',
+    'SectionPagination',
+    'SectionItemPagination',
+  },
+  'CollectionItem': {
+    'ShowItem',
+    'SeasonItem',
+    'EpisodeItem',
+    'PageItem',
+  },
   'CalendarEntry': {
     'SimpleCalendarEntry',
     'EpisodeCalendarEntry',
     'SeasonCalendarEntry',
     'ShowCalendarEntry',
   },
-  'Pagination': {
-    'QuestionPagination',
-    'FAQCategoryPagination',
-    'CollectionItemPagination',
-    'SeasonPagination',
-    'EpisodePagination',
-    'SectionPagination',
-    'LinkItemPagination',
-    'SectionItemPagination',
-  },
-  'CollectionItem': {
-    'URLItem',
-    'ShowItem',
-    'SeasonItem',
-    'EpisodeItem',
-    'PageItem',
+  'SearchResultItem': {
+    'EpisodeSearchItem',
+    'SeasonSearchItem',
+    'ShowSearchItem',
   },
   'Section': {
-    'IconSection',
-    'LabelSection',
     'PosterSection',
     'FeaturedSection',
     'DefaultSection',
     'GridSection',
-  },
-  'LinkSection': {
     'IconSection',
     'LabelSection',
-  },
-  'LinkItem': {
-    'PageLinkItem',
-    'URLLinkItem',
   },
   'ItemSection': {
     'PosterSection',
     'FeaturedSection',
     'DefaultSection',
     'GridSection',
+    'IconSection',
+    'LabelSection',
   },
   'SectionItemType': {
     'Show',
     'Season',
     'Episode',
     'Page',
-  },
-  'SearchResultItem': {
-    'EpisodeSearchItem',
-    'SeasonSearchItem',
-    'ShowSearchItem',
+    'Link',
   },
 };
