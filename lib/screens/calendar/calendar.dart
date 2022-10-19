@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'dart:collection';
+import 'dart:math';
 import 'package:brunstadtv_app/graphql/client.dart';
 import 'package:brunstadtv_app/graphql/queries/calendar.graphql.dart';
 import 'package:brunstadtv_app/router/router.gr.dart';
@@ -30,10 +31,10 @@ class _CalendarPageState extends ConsumerState<CalendarPage> {
   HashSet<DateTime> activeDaysPeriod = HashSet<DateTime>();
   List<String> eventsPeriod = [];
 
-  final kFirstDay = DateTime(
-      DateTime.now().year - 2, DateTime.now().month, DateTime.now().day);
-  final kLastDay = DateTime(
-      DateTime.now().year + 2, DateTime.now().month, DateTime.now().day);
+  final kFirstDay = DateTime(DateTime.now().year - (5 * pow(10, 4)) as int,
+      DateTime.now().month, DateTime.now().day);
+  final kLastDay = DateTime(DateTime.now().year + 5 * pow(10, 4) as int,
+      DateTime.now().month, DateTime.now().day);
 
   List<DateTime> _getEventsForDay(DateTime day) {
     List<DateTime> result = [];
@@ -61,6 +62,7 @@ class _CalendarPageState extends ConsumerState<CalendarPage> {
   }
 
   /// Calculates week number from a date as per https://en.wikipedia.org/wiki/ISO_week_date#Calculation
+  /// https://stackoverflow.com/questions/49393231/how-to-get-day-of-year-week-of-year-from-a-datetime-dart-object/54129275#54129275
   int _getWeekNumber(DateTime date) {
     int dayOfYear = int.parse(DateFormat("D").format(date));
     int woy = ((dayOfYear - date.weekday + 10) / 7).floor();
@@ -78,8 +80,7 @@ class _CalendarPageState extends ConsumerState<CalendarPage> {
   }
 
   String convertToIso8601inDays(DateTime time) {
-    String timeIn8601 = DateFormat("yyyy-MM-ddTHH:mm:ss'Z'").format(time);
-    return timeIn8601.substring(0, 10);
+    return DateFormat("yyyy-MM-dd").format(time);
   }
 
   List<String> expandStartNEndDate(String first, String last) {
@@ -87,19 +88,79 @@ class _CalendarPageState extends ConsumerState<CalendarPage> {
     DateTime startDate = DateTime.parse(first);
     DateTime endDate = DateTime.parse(last);
     final dayCount = endDate.difference(startDate).inDays + 1;
-    // var length = (endDate.day != startDate.day)
-    //     ? endDate.difference(startDate).inDays + 1
-    //     : 1;
 
     return List.generate(
         dayCount,
         (index) =>
             convertToIso8601inDays(startDate.add(Duration(days: (index)))));
+  }
 
-    var result = List.generate(dayCount, (index) {
-      return convertToIso8601inDays(startDate.add(Duration(days: (index))));
-    });
-    return result;
+  Widget hightlightMarker(DateTime day, bool isFromDefaultBuilder) {
+    var dayString = convertToIso8601inDays(day);
+    var thatDayinHLIndex = eventsPeriod.indexOf(dayString);
+    var previousDayinHLIndex = eventsPeriod.indexOf(dayString) - 1;
+    if (eventsPeriod.contains(convertToIso8601inDays(day))) {
+      //within List
+      if (thatDayinHLIndex == 0 ||
+          previousDayinHLIndex.isNegative ||
+          !eventsPeriod.contains(
+              convertToIso8601inDays(day.subtract(Duration(days: 1))))) {
+        //is first
+        if (!eventsPeriod.contains(
+            convertToIso8601inDays(day.subtract(Duration(days: 1))))) {
+          //doesn't have any previous index in the list
+          if (!eventsPeriod
+              .contains(convertToIso8601inDays(day.add(Duration(days: 1))))) {
+            //doesn't have any following index in the list
+            return isFromDefaultBuilder
+                ? Stack(
+                    children: [
+                      HighLightSingle(),
+                      CenterText(Colors.white, day),
+                    ],
+                  )
+                : HighLightSingle();
+          } else {
+            return isFromDefaultBuilder
+                ? Stack(
+                    children: [
+                      HighLightOpen(),
+                      CenterText(Colors.white, day),
+                    ],
+                  )
+                : HighLightOpen();
+          }
+        }
+      } else if (!eventsPeriod
+          .contains(convertToIso8601inDays(day.add(Duration(days: 1))))) {
+        return isFromDefaultBuilder
+            ? Stack(
+                children: [
+                  HighLightClose(),
+                  CenterText(Colors.white, day),
+                ],
+              )
+            : HighLightClose();
+      } else {
+        return isFromDefaultBuilder
+            ? Stack(
+                children: [
+                  HighLightMiddle(),
+                  CenterText(Colors.white, day),
+                ],
+              )
+            : HighLightMiddle();
+      }
+    } else {
+      return isFromDefaultBuilder
+          ? Stack(
+              children: [
+                CenterText(Colors.white, day),
+              ],
+            )
+          : SizedBox.shrink();
+    }
+    return SizedBox.shrink();
   }
 
   loadingInputPeriodData() async {
@@ -118,17 +179,19 @@ class _CalendarPageState extends ConsumerState<CalendarPage> {
       if (value.hasException) {
         throw ErrorDescription(value.exception.toString());
       }
-      List<String> activeDaysList = [];
-      value.parsedData?.calendar?.period.activeDays
-          .forEach((element) => activeDaysList.add(element));
-      activeDaysList.forEach((dayTime) {
-        activeDaysPeriod.add(DateTime.parse(dayTime));
-      });
+      List<DateTime>? activeDaysList111 = value
+          .parsedData?.calendar?.period.activeDays
+          .map((e) => DateTime.parse(e))
+          .toList();
 
-      eventsPeriod = [];
-      value.parsedData?.calendar?.period.events.forEach((element) {
-        eventsPeriod.addAll(expandStartNEndDate(element.start, element.end));
+      setState(() {
+        activeDaysPeriod = HashSet.from(activeDaysList111 ?? []);
+        eventsPeriod = [];
+        value.parsedData?.calendar?.period.events.forEach((element) {
+          eventsPeriod.addAll(expandStartNEndDate(element.start, element.end));
+        });
       });
+      eventsPeriod.sort();
       return value.parsedData?.calendar?.period;
     });
     return await _calendarPeriod;
@@ -208,10 +271,6 @@ class _CalendarPageState extends ConsumerState<CalendarPage> {
                             : CalendarFormat.month,
                         startingDayOfWeek: StartingDayOfWeek.monday,
                         daysOfWeekStyle: DaysOfWeekStyle(
-                          weekdayStyle: TextStyle(
-                              color: Color.fromRGBO(112, 124, 142, 1)),
-                          weekendStyle: TextStyle(
-                              color: Color.fromRGBO(112, 124, 142, 1)),
                           dowTextFormatter: (date, locale) =>
                               DateFormat.E(locale)
                                   .format(date)[0], //only display one letter
@@ -261,6 +320,11 @@ class _CalendarPageState extends ConsumerState<CalendarPage> {
                           todayDecoration: BoxDecoration(
                             shape: BoxShape.circle,
                           ),
+                          weekendTextStyle: TextStyle(
+                              fontFamily: 'assets\fonts\Barlow\Barlow-Bold.ttf',
+                              color: Colors.white,
+                              fontSize: 17,
+                              fontWeight: FontWeight.w700),
                           outsideTextStyle: TextStyle(
                               fontFamily: 'assets\fonts\Barlow\Barlow-Bold.ttf',
                               color: Colors.grey,
@@ -290,72 +354,21 @@ class _CalendarPageState extends ConsumerState<CalendarPage> {
                           }
                         },
                         onPageChanged: (focusedDay) async {
-                          _focusedDay = focusedDay;
-                          await loadingInputPeriodData();
                           setState(() {
-                            eventsPeriod = eventsPeriod;
+                            _focusedDay = focusedDay;
                           });
+                          await loadingInputPeriodData();
                         },
                         eventLoader: _getEventsForDay,
                         calendarBuilders: CalendarBuilders(
                           defaultBuilder: (context, day, focusedDay) {
-                            var dayString = convertToIso8601inDays(day);
-                            var thatDayinHLIndex =
-                                eventsPeriod.indexOf(dayString);
-                            var previousDayinHLIndex =
-                                eventsPeriod.indexOf(dayString) - 1;
-                            if (eventsPeriod.contains(dayString)) {
-                              if (thatDayinHLIndex == 0 ||
-                                  previousDayinHLIndex.isNegative ||
-                                  !eventsPeriod.contains(convertToIso8601inDays(
-                                      day.subtract(Duration(days: 1))))) {
-                                if (!eventsPeriod.contains(
-                                    convertToIso8601inDays(
-                                        day.add(Duration(days: 1))))) {
-                                  return Stack(
-                                    children: [
-                                      HighLightSingle(),
-                                      CenterText(Colors.white, day),
-                                    ],
-                                  );
-                                } else {
-                                  return Stack(
-                                    children: [
-                                      HighLightOpen(),
-                                      CenterText(Colors.white, day),
-                                    ],
-                                  );
-                                }
-                              } else if (!eventsPeriod.contains(
-                                  convertToIso8601inDays(
-                                      day.add(Duration(days: 1))))) {
-                                return Stack(
-                                  children: [
-                                    HighLightClose(),
-                                    CenterText(Colors.white, day),
-                                  ],
-                                );
-                              } else {
-                                return Stack(
-                                  children: [
-                                    HighLightMiddle(),
-                                    CenterText(Colors.white, day),
-                                  ],
-                                );
-                              }
-                            } else
-                              return CenterText(Colors.white, day);
+                            return Stack(
+                              children: [
+                                hightlightMarker(day, true),
+                              ],
+                            );
                           },
                           outsideBuilder: (context, day, focusedDay) {
-                            var dayString = convertToIso8601inDays(day);
-                            var thatDayinHLIndex =
-                                eventsPeriod.indexOf(dayString);
-                            var previousDayinHLIndex =
-                                eventsPeriod.indexOf(dayString) - 1;
-                            var afterDayinHLIndex =
-                                eventsPeriod.indexOf(dayString) + 1;
-                            var dayS = day.toString();
-
                             return Stack(
                               children: <Widget>[
                                 Center(
@@ -365,35 +378,11 @@ class _CalendarPageState extends ConsumerState<CalendarPage> {
                                     child: CenterText(Colors.grey, day),
                                   ),
                                 ),
-                                eventsPeriod
-                                        .contains(convertToIso8601inDays(day))
-                                    ? (thatDayinHLIndex == 0 ||
-                                            previousDayinHLIndex.isNegative ||
-                                            !eventsPeriod.contains(
-                                                convertToIso8601inDays(
-                                                    day.subtract(
-                                                        Duration(days: 1))))
-                                        ? (!eventsPeriod.contains(
-                                                convertToIso8601inDays(day
-                                                    .add(Duration(days: 1)))))
-                                            ? HighLightSingle()
-                                            : HighLightOpen()
-                                        : !eventsPeriod.contains(
-                                                convertToIso8601inDays(
-                                                    day.add(Duration(days: 1))))
-                                            ? HighLightClose()
-                                            : HighLightMiddle())
-                                    : SizedBox.shrink()
+                                hightlightMarker(day, false),
                               ],
                             );
                           },
                           selectedBuilder: (context, day, focusedDay) {
-                            var dayString = convertToIso8601inDays(day);
-                            var thatDayinHLIndex =
-                                eventsPeriod.indexOf(dayString);
-                            var previousDayinHLIndex =
-                                eventsPeriod.indexOf(dayString) - 1;
-                            if (eventsPeriod!.contains(dayString)) {}
                             if (normalizeDate(focusedDay) !=
                                 normalizeDate(DateTime.now())) {
                               return Stack(
@@ -414,25 +403,7 @@ class _CalendarPageState extends ConsumerState<CalendarPage> {
                                       child: CenterText(Colors.white, day),
                                     ),
                                   ),
-                                  eventsPeriod!
-                                          .contains(convertToIso8601inDays(day))
-                                      ? (thatDayinHLIndex == 0 ||
-                                              previousDayinHLIndex.isNegative ||
-                                              !eventsPeriod.contains(
-                                                  convertToIso8601inDays(
-                                                      day.subtract(
-                                                          Duration(days: 1))))
-                                          ? (!eventsPeriod.contains(
-                                                  convertToIso8601inDays(day
-                                                      .add(Duration(days: 1)))))
-                                              ? HighLightSingle()
-                                              : HighLightOpen()
-                                          : !eventsPeriod.contains(
-                                                  convertToIso8601inDays(day
-                                                      .add(Duration(days: 1))))
-                                              ? HighLightClose()
-                                              : HighLightMiddle())
-                                      : SizedBox.shrink()
+                                  hightlightMarker(day, false),
                                 ],
                               );
                             } else {
@@ -609,9 +580,9 @@ class _EntriesSlot extends StatelessWidget {
 
   String calculateDuration(String st, String et) {
     Duration duration = DateTime.parse(et).difference(DateTime.parse(st));
-    String hour = duration.inHours % 24 == 0
+    String hour = (duration.inHours % 24 == 0 && duration.inHours != 24)
         ? ''
-        : '${(duration.inHours % 24).toString()}h';
+        : '${(duration.inHours).toString()}h';
     String minutes = duration.inMinutes % 60 == 0
         ? ''
         : '${(duration.inMinutes % 60).toString()}m';
@@ -621,6 +592,11 @@ class _EntriesSlot extends StatelessWidget {
 
   bool isClassOfEpisodeCalendarEntry(var input) {
     return (input is Fragment$CalendarDay$entries$$EpisodeCalendarEntry);
+  }
+
+  bool isHappeningNow(String endStr, String stStr) {
+    return DateTime.parse(endStr).isAfter(DateTime.now()) &&
+        DateTime.parse(stStr).isBefore(DateTime.now());
   }
 
   pushToEpisodePage(BuildContext context, var id) {
@@ -649,20 +625,16 @@ class _EntriesSlot extends StatelessWidget {
               child: Container(
                 padding: EdgeInsets.symmetric(horizontal: 8, vertical: 16),
                 decoration: BoxDecoration(
-                  color: (DateTime.parse(entriesList[i].end)
-                              .isAfter(DateTime.now()) &&
-                          DateTime.parse(entriesList[i].end)
-                              .isBefore(DateTime.now()))
-                      ? Colors.red
-                      : null,
+                  color:
+                      isHappeningNow(entriesList[i].end, entriesList[i].start)
+                          ? Colors.red
+                          : null,
                   border: Border(
-                    left: (DateTime.parse(entriesList[i].end)
-                                .isAfter(DateTime.now()) &&
-                            DateTime.parse(entriesList[i].end)
-                                .isBefore(DateTime.now()))
-                        ? BorderSide(
-                            color: Color.fromRGBO(230, 60, 98, 1), width: 4)
-                        : BorderSide(width: 4),
+                    left:
+                        isHappeningNow(entriesList[i].end, entriesList[i].start)
+                            ? BorderSide(
+                                color: Color.fromRGBO(230, 60, 98, 1), width: 4)
+                            : BorderSide(width: 4),
                   ),
                 ),
                 child: Row(
@@ -673,10 +645,8 @@ class _EntriesSlot extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            (DateTime.parse(entriesList[i].end)
-                                        .isAfter(DateTime.now()) &&
-                                    DateTime.parse(entriesList[i].end)
-                                        .isBefore(DateTime.now()))
+                            isHappeningNow(
+                                    entriesList[i].end, entriesList[i].start)
                                 ? 'Now'
                                 : '${DateTime.parse(entriesList[i].start).toIso8601String().substring(11, 16)}',
                             style: TextStyle(
@@ -724,10 +694,8 @@ class _EntriesSlot extends StatelessWidget {
                         SizedBox(height: 4),
                         Text('${entriesList[i].description}',
                             style: TextStyle(
-                              color: (DateTime.parse(entriesList[i].end)
-                                          .isAfter(DateTime.now()) &&
-                                      DateTime.parse(entriesList[i].end)
-                                          .isBefore(DateTime.now()))
+                              color: isHappeningNow(
+                                      entriesList[i].end, entriesList[i].start)
                                   ? isClassOfEpisodeCalendarEntry(
                                           entriesList[i])
                                       ? Colors.red
@@ -769,70 +737,23 @@ class _EntriesSlot extends StatelessWidget {
   }
 }
 
-class TvGuideTime extends StatefulWidget {
+class TvGuideTime extends StatelessWidget {
   const TvGuideTime();
-
-  @override
-  State<TvGuideTime> createState() => _TvGuideTimeState();
-}
-
-class _TvGuideTimeState extends State<TvGuideTime> {
-  String time =
-      DateTime.now().hour.toString() + ":" + DateTime.now().minute.toString();
-  late Timer mytimer;
-
-  @override
-  void initState() {
-    mytimer = Timer.periodic(Duration(seconds: 1), (timer) {
-      time = DateTime.now().hour.toString() +
-          ":" +
-          DateTime.now().minute.toString();
-      setState(() {});
-    });
-    super.initState();
-  }
-
-  @override
-  void deactivate() {
-    if (mytimer.isActive) {
-      mytimer.cancel();
-    }
-    super.deactivate();
-  }
 
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 23.0),
-      child: Column(
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text(
-                'Tv guide timetable is in your local time: ${DateTime.now().timeZoneName}',
-                // 'Tidspunkter er i din lokale tid: ${DateFormat.Hms().format(DateTime.now())} CET',
-                style: TextStyle(
-                  color: Color.fromRGBO(112, 124, 142, 1),
-                  fontSize: 14,
-                  fontFamily: 'assets\fonts\Barlow\Barlow-Regular.ttf',
-                ),
-              ),
-            ],
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text(
-                // 'Tv guide timetable is in your local time: ${DateTime.now().timeZoneName}',
-                'Tidspunkter er i din lokale tid: ${time} CET',
-                style: TextStyle(
-                  color: Color.fromRGBO(112, 124, 142, 1),
-                  fontSize: 14,
-                  fontFamily: 'assets\fonts\Barlow\Barlow-Regular.ttf',
-                ),
-              ),
-            ],
+          Text(
+            'Tv guide timetable is in your local time: ${DateTime.now().timeZoneName}',
+            style: TextStyle(
+              color: Color.fromRGBO(112, 124, 142, 1),
+              fontSize: 14,
+              fontFamily: 'assets\fonts\Barlow\Barlow-Regular.ttf',
+            ),
           ),
         ],
       ),
