@@ -6,16 +6,22 @@ import 'package:graphql_flutter/graphql_flutter.dart' as graphql_flutter;
 class Fragment$CalendarDay {
   Fragment$CalendarDay({
     required this.events,
+    required this.entries,
     required this.$__typename,
   });
 
   factory Fragment$CalendarDay.fromJson(Map<String, dynamic> json) {
     final l$events = json['events'];
+    final l$entries = json['entries'];
     final l$$__typename = json['__typename'];
     return Fragment$CalendarDay(
       events: (l$events as List<dynamic>)
           .map((e) =>
               Fragment$CalendarDay$events.fromJson((e as Map<String, dynamic>)))
+          .toList(),
+      entries: (l$entries as List<dynamic>)
+          .map((e) => Fragment$CalendarDay$entries.fromJson(
+              (e as Map<String, dynamic>)))
           .toList(),
       $__typename: (l$$__typename as String),
     );
@@ -23,12 +29,16 @@ class Fragment$CalendarDay {
 
   final List<Fragment$CalendarDay$events> events;
 
+  final List<Fragment$CalendarDay$entries> entries;
+
   final String $__typename;
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
     final l$events = events;
     _resultData['events'] = l$events.map((e) => e.toJson()).toList();
+    final l$entries = entries;
+    _resultData['entries'] = l$entries.map((e) => e.toJson()).toList();
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -37,9 +47,11 @@ class Fragment$CalendarDay {
   @override
   int get hashCode {
     final l$events = events;
+    final l$entries = entries;
     final l$$__typename = $__typename;
     return Object.hashAll([
       Object.hashAll(l$events.map((v) => v)),
+      Object.hashAll(l$entries.map((v) => v)),
       l$$__typename,
     ]);
   }
@@ -61,6 +73,18 @@ class Fragment$CalendarDay {
       final l$events$entry = l$events[i];
       final lOther$events$entry = lOther$events[i];
       if (l$events$entry != lOther$events$entry) {
+        return false;
+      }
+    }
+    final l$entries = entries;
+    final lOther$entries = other.entries;
+    if (l$entries.length != lOther$entries.length) {
+      return false;
+    }
+    for (int i = 0; i < l$entries.length; i++) {
+      final l$entries$entry = l$entries[i];
+      final lOther$entries$entry = lOther$entries[i];
+      if (l$entries$entry != lOther$entries$entry) {
         return false;
       }
     }
@@ -92,6 +116,7 @@ abstract class CopyWith$Fragment$CalendarDay<TRes> {
 
   TRes call({
     List<Fragment$CalendarDay$events>? events,
+    List<Fragment$CalendarDay$entries>? entries,
     String? $__typename,
   });
   TRes events(
@@ -99,6 +124,12 @@ abstract class CopyWith$Fragment$CalendarDay<TRes> {
               Iterable<
                   CopyWith$Fragment$CalendarDay$events<
                       Fragment$CalendarDay$events>>)
+          _fn);
+  TRes entries(
+      Iterable<Fragment$CalendarDay$entries> Function(
+              Iterable<
+                  CopyWith$Fragment$CalendarDay$entries<
+                      Fragment$CalendarDay$entries>>)
           _fn);
 }
 
@@ -117,12 +148,16 @@ class _CopyWithImpl$Fragment$CalendarDay<TRes>
 
   TRes call({
     Object? events = _undefined,
+    Object? entries = _undefined,
     Object? $__typename = _undefined,
   }) =>
       _then(Fragment$CalendarDay(
         events: events == _undefined || events == null
             ? _instance.events
             : (events as List<Fragment$CalendarDay$events>),
+        entries: entries == _undefined || entries == null
+            ? _instance.entries
+            : (entries as List<Fragment$CalendarDay$entries>),
         $__typename: $__typename == _undefined || $__typename == null
             ? _instance.$__typename
             : ($__typename as String),
@@ -139,6 +174,18 @@ class _CopyWithImpl$Fragment$CalendarDay<TRes>
                     e,
                     (i) => i,
                   ))).toList());
+  TRes entries(
+          Iterable<Fragment$CalendarDay$entries> Function(
+                  Iterable<
+                      CopyWith$Fragment$CalendarDay$entries<
+                          Fragment$CalendarDay$entries>>)
+              _fn) =>
+      call(
+          entries: _fn(_instance.entries
+              .map((e) => CopyWith$Fragment$CalendarDay$entries(
+                    e,
+                    (i) => i,
+                  ))).toList());
 }
 
 class _CopyWithStubImpl$Fragment$CalendarDay<TRes>
@@ -149,10 +196,12 @@ class _CopyWithStubImpl$Fragment$CalendarDay<TRes>
 
   call({
     List<Fragment$CalendarDay$events>? events,
+    List<Fragment$CalendarDay$entries>? entries,
     String? $__typename,
   }) =>
       _res;
   events(_fn) => _res;
+  entries(_fn) => _res;
 }
 
 const fragmentDefinitionCalendarDay = FragmentDefinitionNode(
@@ -211,6 +260,126 @@ const fragmentDefinitionCalendarDay = FragmentDefinitionNode(
           arguments: [],
           directives: [],
           selectionSet: null,
+        ),
+      ]),
+    ),
+    FieldNode(
+      name: NameNode(value: 'entries'),
+      alias: null,
+      arguments: [],
+      directives: [],
+      selectionSet: SelectionSetNode(selections: [
+        FieldNode(
+          name: NameNode(value: 'id'),
+          alias: null,
+          arguments: [],
+          directives: [],
+          selectionSet: null,
+        ),
+        FieldNode(
+          name: NameNode(value: 'title'),
+          alias: null,
+          arguments: [],
+          directives: [],
+          selectionSet: null,
+        ),
+        FieldNode(
+          name: NameNode(value: 'description'),
+          alias: null,
+          arguments: [],
+          directives: [],
+          selectionSet: null,
+        ),
+        FieldNode(
+          name: NameNode(value: 'start'),
+          alias: null,
+          arguments: [],
+          directives: [],
+          selectionSet: null,
+        ),
+        FieldNode(
+          name: NameNode(value: 'end'),
+          alias: null,
+          arguments: [],
+          directives: [],
+          selectionSet: null,
+        ),
+        FieldNode(
+          name: NameNode(value: '__typename'),
+          alias: null,
+          arguments: [],
+          directives: [],
+          selectionSet: null,
+        ),
+        InlineFragmentNode(
+          typeCondition: TypeConditionNode(
+              on: NamedTypeNode(
+            name: NameNode(value: 'EpisodeCalendarEntry'),
+            isNonNull: false,
+          )),
+          directives: [],
+          selectionSet: SelectionSetNode(selections: [
+            FieldNode(
+              name: NameNode(value: 'episode'),
+              alias: null,
+              arguments: [],
+              directives: [],
+              selectionSet: SelectionSetNode(selections: [
+                FieldNode(
+                  name: NameNode(value: 'id'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null,
+                ),
+                FieldNode(
+                  name: NameNode(value: '__typename'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null,
+                ),
+              ]),
+            ),
+            FieldNode(
+              name: NameNode(value: 'id'),
+              alias: null,
+              arguments: [],
+              directives: [],
+              selectionSet: null,
+            ),
+            FieldNode(
+              name: NameNode(value: '__typename'),
+              alias: null,
+              arguments: [],
+              directives: [],
+              selectionSet: null,
+            ),
+          ]),
+        ),
+        InlineFragmentNode(
+          typeCondition: TypeConditionNode(
+              on: NamedTypeNode(
+            name: NameNode(value: 'SimpleCalendarEntry'),
+            isNonNull: false,
+          )),
+          directives: [],
+          selectionSet: SelectionSetNode(selections: [
+            FieldNode(
+              name: NameNode(value: 'id'),
+              alias: null,
+              arguments: [],
+              directives: [],
+              selectionSet: null,
+            ),
+            FieldNode(
+              name: NameNode(value: '__typename'),
+              alias: null,
+              arguments: [],
+              directives: [],
+              selectionSet: null,
+            ),
+          ]),
         ),
       ]),
     ),
@@ -458,6 +627,798 @@ class _CopyWithStubImpl$Fragment$CalendarDay$events<TRes>
     String? start,
     String? end,
     String? image,
+    String? $__typename,
+  }) =>
+      _res;
+}
+
+class Fragment$CalendarDay$entries {
+  Fragment$CalendarDay$entries({
+    required this.id,
+    required this.title,
+    required this.description,
+    required this.start,
+    required this.end,
+    required this.$__typename,
+  });
+
+  factory Fragment$CalendarDay$entries.fromJson(Map<String, dynamic> json) {
+    switch (json["__typename"] as String) {
+      case "EpisodeCalendarEntry":
+        return Fragment$CalendarDay$entries$$EpisodeCalendarEntry.fromJson(
+            json);
+
+      case "SimpleCalendarEntry":
+        return Fragment$CalendarDay$entries$$SimpleCalendarEntry.fromJson(json);
+
+      default:
+        final l$id = json['id'];
+        final l$title = json['title'];
+        final l$description = json['description'];
+        final l$start = json['start'];
+        final l$end = json['end'];
+        final l$$__typename = json['__typename'];
+        return Fragment$CalendarDay$entries(
+          id: (l$id as String),
+          title: (l$title as String),
+          description: (l$description as String),
+          start: (l$start as String),
+          end: (l$end as String),
+          $__typename: (l$$__typename as String),
+        );
+    }
+  }
+
+  final String id;
+
+  final String title;
+
+  final String description;
+
+  final String start;
+
+  final String end;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$id = id;
+    _resultData['id'] = l$id;
+    final l$title = title;
+    _resultData['title'] = l$title;
+    final l$description = description;
+    _resultData['description'] = l$description;
+    final l$start = start;
+    _resultData['start'] = l$start;
+    final l$end = end;
+    _resultData['end'] = l$end;
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$id = id;
+    final l$title = title;
+    final l$description = description;
+    final l$start = start;
+    final l$end = end;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$id,
+      l$title,
+      l$description,
+      l$start,
+      l$end,
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (!(other is Fragment$CalendarDay$entries) ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$id = id;
+    final lOther$id = other.id;
+    if (l$id != lOther$id) {
+      return false;
+    }
+    final l$title = title;
+    final lOther$title = other.title;
+    if (l$title != lOther$title) {
+      return false;
+    }
+    final l$description = description;
+    final lOther$description = other.description;
+    if (l$description != lOther$description) {
+      return false;
+    }
+    final l$start = start;
+    final lOther$start = other.start;
+    if (l$start != lOther$start) {
+      return false;
+    }
+    final l$end = end;
+    final lOther$end = other.end;
+    if (l$end != lOther$end) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Fragment$CalendarDay$entries
+    on Fragment$CalendarDay$entries {
+  CopyWith$Fragment$CalendarDay$entries<Fragment$CalendarDay$entries>
+      get copyWith => CopyWith$Fragment$CalendarDay$entries(
+            this,
+            (i) => i,
+          );
+}
+
+abstract class CopyWith$Fragment$CalendarDay$entries<TRes> {
+  factory CopyWith$Fragment$CalendarDay$entries(
+    Fragment$CalendarDay$entries instance,
+    TRes Function(Fragment$CalendarDay$entries) then,
+  ) = _CopyWithImpl$Fragment$CalendarDay$entries;
+
+  factory CopyWith$Fragment$CalendarDay$entries.stub(TRes res) =
+      _CopyWithStubImpl$Fragment$CalendarDay$entries;
+
+  TRes call({
+    String? id,
+    String? title,
+    String? description,
+    String? start,
+    String? end,
+    String? $__typename,
+  });
+}
+
+class _CopyWithImpl$Fragment$CalendarDay$entries<TRes>
+    implements CopyWith$Fragment$CalendarDay$entries<TRes> {
+  _CopyWithImpl$Fragment$CalendarDay$entries(
+    this._instance,
+    this._then,
+  );
+
+  final Fragment$CalendarDay$entries _instance;
+
+  final TRes Function(Fragment$CalendarDay$entries) _then;
+
+  static const _undefined = {};
+
+  TRes call({
+    Object? id = _undefined,
+    Object? title = _undefined,
+    Object? description = _undefined,
+    Object? start = _undefined,
+    Object? end = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(Fragment$CalendarDay$entries(
+        id: id == _undefined || id == null ? _instance.id : (id as String),
+        title: title == _undefined || title == null
+            ? _instance.title
+            : (title as String),
+        description: description == _undefined || description == null
+            ? _instance.description
+            : (description as String),
+        start: start == _undefined || start == null
+            ? _instance.start
+            : (start as String),
+        end: end == _undefined || end == null ? _instance.end : (end as String),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+}
+
+class _CopyWithStubImpl$Fragment$CalendarDay$entries<TRes>
+    implements CopyWith$Fragment$CalendarDay$entries<TRes> {
+  _CopyWithStubImpl$Fragment$CalendarDay$entries(this._res);
+
+  TRes _res;
+
+  call({
+    String? id,
+    String? title,
+    String? description,
+    String? start,
+    String? end,
+    String? $__typename,
+  }) =>
+      _res;
+}
+
+class Fragment$CalendarDay$entries$$EpisodeCalendarEntry
+    implements Fragment$CalendarDay$entries {
+  Fragment$CalendarDay$entries$$EpisodeCalendarEntry({
+    required this.id,
+    required this.title,
+    required this.description,
+    required this.start,
+    required this.end,
+    required this.$__typename,
+    this.episode,
+  });
+
+  factory Fragment$CalendarDay$entries$$EpisodeCalendarEntry.fromJson(
+      Map<String, dynamic> json) {
+    final l$id = json['id'];
+    final l$title = json['title'];
+    final l$description = json['description'];
+    final l$start = json['start'];
+    final l$end = json['end'];
+    final l$$__typename = json['__typename'];
+    final l$episode = json['episode'];
+    return Fragment$CalendarDay$entries$$EpisodeCalendarEntry(
+      id: (l$id as String),
+      title: (l$title as String),
+      description: (l$description as String),
+      start: (l$start as String),
+      end: (l$end as String),
+      $__typename: (l$$__typename as String),
+      episode: l$episode == null
+          ? null
+          : Fragment$CalendarDay$entries$$EpisodeCalendarEntry$episode.fromJson(
+              (l$episode as Map<String, dynamic>)),
+    );
+  }
+
+  final String id;
+
+  final String title;
+
+  final String description;
+
+  final String start;
+
+  final String end;
+
+  final String $__typename;
+
+  final Fragment$CalendarDay$entries$$EpisodeCalendarEntry$episode? episode;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$episode = episode;
+    _resultData['episode'] = l$episode?.toJson();
+    final l$id = id;
+    _resultData['id'] = l$id;
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$id = id;
+    final l$title = title;
+    final l$description = description;
+    final l$start = start;
+    final l$end = end;
+    final l$$__typename = $__typename;
+    final l$episode = episode;
+    return Object.hashAll([
+      l$id,
+      l$title,
+      l$description,
+      l$start,
+      l$end,
+      l$$__typename,
+      l$episode,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (!(other is Fragment$CalendarDay$entries$$EpisodeCalendarEntry) ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$id = id;
+    final lOther$id = other.id;
+    if (l$id != lOther$id) {
+      return false;
+    }
+    final l$title = title;
+    final lOther$title = other.title;
+    if (l$title != lOther$title) {
+      return false;
+    }
+    final l$description = description;
+    final lOther$description = other.description;
+    if (l$description != lOther$description) {
+      return false;
+    }
+    final l$start = start;
+    final lOther$start = other.start;
+    if (l$start != lOther$start) {
+      return false;
+    }
+    final l$end = end;
+    final lOther$end = other.end;
+    if (l$end != lOther$end) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    final l$episode = episode;
+    final lOther$episode = other.episode;
+    if (l$episode != lOther$episode) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Fragment$CalendarDay$entries$$EpisodeCalendarEntry
+    on Fragment$CalendarDay$entries$$EpisodeCalendarEntry {
+  CopyWith$Fragment$CalendarDay$entries$$EpisodeCalendarEntry<
+          Fragment$CalendarDay$entries$$EpisodeCalendarEntry>
+      get copyWith =>
+          CopyWith$Fragment$CalendarDay$entries$$EpisodeCalendarEntry(
+            this,
+            (i) => i,
+          );
+}
+
+abstract class CopyWith$Fragment$CalendarDay$entries$$EpisodeCalendarEntry<
+    TRes> {
+  factory CopyWith$Fragment$CalendarDay$entries$$EpisodeCalendarEntry(
+    Fragment$CalendarDay$entries$$EpisodeCalendarEntry instance,
+    TRes Function(Fragment$CalendarDay$entries$$EpisodeCalendarEntry) then,
+  ) = _CopyWithImpl$Fragment$CalendarDay$entries$$EpisodeCalendarEntry;
+
+  factory CopyWith$Fragment$CalendarDay$entries$$EpisodeCalendarEntry.stub(
+          TRes res) =
+      _CopyWithStubImpl$Fragment$CalendarDay$entries$$EpisodeCalendarEntry;
+
+  TRes call({
+    String? id,
+    String? title,
+    String? description,
+    String? start,
+    String? end,
+    String? $__typename,
+    Fragment$CalendarDay$entries$$EpisodeCalendarEntry$episode? episode,
+  });
+  CopyWith$Fragment$CalendarDay$entries$$EpisodeCalendarEntry$episode<TRes>
+      get episode;
+}
+
+class _CopyWithImpl$Fragment$CalendarDay$entries$$EpisodeCalendarEntry<TRes>
+    implements
+        CopyWith$Fragment$CalendarDay$entries$$EpisodeCalendarEntry<TRes> {
+  _CopyWithImpl$Fragment$CalendarDay$entries$$EpisodeCalendarEntry(
+    this._instance,
+    this._then,
+  );
+
+  final Fragment$CalendarDay$entries$$EpisodeCalendarEntry _instance;
+
+  final TRes Function(Fragment$CalendarDay$entries$$EpisodeCalendarEntry) _then;
+
+  static const _undefined = {};
+
+  TRes call({
+    Object? id = _undefined,
+    Object? title = _undefined,
+    Object? description = _undefined,
+    Object? start = _undefined,
+    Object? end = _undefined,
+    Object? $__typename = _undefined,
+    Object? episode = _undefined,
+  }) =>
+      _then(Fragment$CalendarDay$entries$$EpisodeCalendarEntry(
+        id: id == _undefined || id == null ? _instance.id : (id as String),
+        title: title == _undefined || title == null
+            ? _instance.title
+            : (title as String),
+        description: description == _undefined || description == null
+            ? _instance.description
+            : (description as String),
+        start: start == _undefined || start == null
+            ? _instance.start
+            : (start as String),
+        end: end == _undefined || end == null ? _instance.end : (end as String),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+        episode: episode == _undefined
+            ? _instance.episode
+            : (episode
+                as Fragment$CalendarDay$entries$$EpisodeCalendarEntry$episode?),
+      ));
+  CopyWith$Fragment$CalendarDay$entries$$EpisodeCalendarEntry$episode<TRes>
+      get episode {
+    final local$episode = _instance.episode;
+    return local$episode == null
+        ? CopyWith$Fragment$CalendarDay$entries$$EpisodeCalendarEntry$episode
+            .stub(_then(_instance))
+        : CopyWith$Fragment$CalendarDay$entries$$EpisodeCalendarEntry$episode(
+            local$episode, (e) => call(episode: e));
+  }
+}
+
+class _CopyWithStubImpl$Fragment$CalendarDay$entries$$EpisodeCalendarEntry<TRes>
+    implements
+        CopyWith$Fragment$CalendarDay$entries$$EpisodeCalendarEntry<TRes> {
+  _CopyWithStubImpl$Fragment$CalendarDay$entries$$EpisodeCalendarEntry(
+      this._res);
+
+  TRes _res;
+
+  call({
+    String? id,
+    String? title,
+    String? description,
+    String? start,
+    String? end,
+    String? $__typename,
+    Fragment$CalendarDay$entries$$EpisodeCalendarEntry$episode? episode,
+  }) =>
+      _res;
+  CopyWith$Fragment$CalendarDay$entries$$EpisodeCalendarEntry$episode<TRes>
+      get episode =>
+          CopyWith$Fragment$CalendarDay$entries$$EpisodeCalendarEntry$episode
+              .stub(_res);
+}
+
+class Fragment$CalendarDay$entries$$EpisodeCalendarEntry$episode {
+  Fragment$CalendarDay$entries$$EpisodeCalendarEntry$episode({
+    required this.id,
+    required this.$__typename,
+  });
+
+  factory Fragment$CalendarDay$entries$$EpisodeCalendarEntry$episode.fromJson(
+      Map<String, dynamic> json) {
+    final l$id = json['id'];
+    final l$$__typename = json['__typename'];
+    return Fragment$CalendarDay$entries$$EpisodeCalendarEntry$episode(
+      id: (l$id as String),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final String id;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$id = id;
+    _resultData['id'] = l$id;
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$id = id;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$id,
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (!(other
+            is Fragment$CalendarDay$entries$$EpisodeCalendarEntry$episode) ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$id = id;
+    final lOther$id = other.id;
+    if (l$id != lOther$id) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Fragment$CalendarDay$entries$$EpisodeCalendarEntry$episode
+    on Fragment$CalendarDay$entries$$EpisodeCalendarEntry$episode {
+  CopyWith$Fragment$CalendarDay$entries$$EpisodeCalendarEntry$episode<
+          Fragment$CalendarDay$entries$$EpisodeCalendarEntry$episode>
+      get copyWith =>
+          CopyWith$Fragment$CalendarDay$entries$$EpisodeCalendarEntry$episode(
+            this,
+            (i) => i,
+          );
+}
+
+abstract class CopyWith$Fragment$CalendarDay$entries$$EpisodeCalendarEntry$episode<
+    TRes> {
+  factory CopyWith$Fragment$CalendarDay$entries$$EpisodeCalendarEntry$episode(
+    Fragment$CalendarDay$entries$$EpisodeCalendarEntry$episode instance,
+    TRes Function(Fragment$CalendarDay$entries$$EpisodeCalendarEntry$episode)
+        then,
+  ) = _CopyWithImpl$Fragment$CalendarDay$entries$$EpisodeCalendarEntry$episode;
+
+  factory CopyWith$Fragment$CalendarDay$entries$$EpisodeCalendarEntry$episode.stub(
+          TRes res) =
+      _CopyWithStubImpl$Fragment$CalendarDay$entries$$EpisodeCalendarEntry$episode;
+
+  TRes call({
+    String? id,
+    String? $__typename,
+  });
+}
+
+class _CopyWithImpl$Fragment$CalendarDay$entries$$EpisodeCalendarEntry$episode<
+        TRes>
+    implements
+        CopyWith$Fragment$CalendarDay$entries$$EpisodeCalendarEntry$episode<
+            TRes> {
+  _CopyWithImpl$Fragment$CalendarDay$entries$$EpisodeCalendarEntry$episode(
+    this._instance,
+    this._then,
+  );
+
+  final Fragment$CalendarDay$entries$$EpisodeCalendarEntry$episode _instance;
+
+  final TRes Function(
+      Fragment$CalendarDay$entries$$EpisodeCalendarEntry$episode) _then;
+
+  static const _undefined = {};
+
+  TRes call({
+    Object? id = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(Fragment$CalendarDay$entries$$EpisodeCalendarEntry$episode(
+        id: id == _undefined || id == null ? _instance.id : (id as String),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+}
+
+class _CopyWithStubImpl$Fragment$CalendarDay$entries$$EpisodeCalendarEntry$episode<
+        TRes>
+    implements
+        CopyWith$Fragment$CalendarDay$entries$$EpisodeCalendarEntry$episode<
+            TRes> {
+  _CopyWithStubImpl$Fragment$CalendarDay$entries$$EpisodeCalendarEntry$episode(
+      this._res);
+
+  TRes _res;
+
+  call({
+    String? id,
+    String? $__typename,
+  }) =>
+      _res;
+}
+
+class Fragment$CalendarDay$entries$$SimpleCalendarEntry
+    implements Fragment$CalendarDay$entries {
+  Fragment$CalendarDay$entries$$SimpleCalendarEntry({
+    required this.id,
+    required this.title,
+    required this.description,
+    required this.start,
+    required this.end,
+    required this.$__typename,
+  });
+
+  factory Fragment$CalendarDay$entries$$SimpleCalendarEntry.fromJson(
+      Map<String, dynamic> json) {
+    final l$id = json['id'];
+    final l$title = json['title'];
+    final l$description = json['description'];
+    final l$start = json['start'];
+    final l$end = json['end'];
+    final l$$__typename = json['__typename'];
+    return Fragment$CalendarDay$entries$$SimpleCalendarEntry(
+      id: (l$id as String),
+      title: (l$title as String),
+      description: (l$description as String),
+      start: (l$start as String),
+      end: (l$end as String),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final String id;
+
+  final String title;
+
+  final String description;
+
+  final String start;
+
+  final String end;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$id = id;
+    _resultData['id'] = l$id;
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$id = id;
+    final l$title = title;
+    final l$description = description;
+    final l$start = start;
+    final l$end = end;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$id,
+      l$title,
+      l$description,
+      l$start,
+      l$end,
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (!(other is Fragment$CalendarDay$entries$$SimpleCalendarEntry) ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$id = id;
+    final lOther$id = other.id;
+    if (l$id != lOther$id) {
+      return false;
+    }
+    final l$title = title;
+    final lOther$title = other.title;
+    if (l$title != lOther$title) {
+      return false;
+    }
+    final l$description = description;
+    final lOther$description = other.description;
+    if (l$description != lOther$description) {
+      return false;
+    }
+    final l$start = start;
+    final lOther$start = other.start;
+    if (l$start != lOther$start) {
+      return false;
+    }
+    final l$end = end;
+    final lOther$end = other.end;
+    if (l$end != lOther$end) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Fragment$CalendarDay$entries$$SimpleCalendarEntry
+    on Fragment$CalendarDay$entries$$SimpleCalendarEntry {
+  CopyWith$Fragment$CalendarDay$entries$$SimpleCalendarEntry<
+          Fragment$CalendarDay$entries$$SimpleCalendarEntry>
+      get copyWith =>
+          CopyWith$Fragment$CalendarDay$entries$$SimpleCalendarEntry(
+            this,
+            (i) => i,
+          );
+}
+
+abstract class CopyWith$Fragment$CalendarDay$entries$$SimpleCalendarEntry<
+    TRes> {
+  factory CopyWith$Fragment$CalendarDay$entries$$SimpleCalendarEntry(
+    Fragment$CalendarDay$entries$$SimpleCalendarEntry instance,
+    TRes Function(Fragment$CalendarDay$entries$$SimpleCalendarEntry) then,
+  ) = _CopyWithImpl$Fragment$CalendarDay$entries$$SimpleCalendarEntry;
+
+  factory CopyWith$Fragment$CalendarDay$entries$$SimpleCalendarEntry.stub(
+          TRes res) =
+      _CopyWithStubImpl$Fragment$CalendarDay$entries$$SimpleCalendarEntry;
+
+  TRes call({
+    String? id,
+    String? title,
+    String? description,
+    String? start,
+    String? end,
+    String? $__typename,
+  });
+}
+
+class _CopyWithImpl$Fragment$CalendarDay$entries$$SimpleCalendarEntry<TRes>
+    implements
+        CopyWith$Fragment$CalendarDay$entries$$SimpleCalendarEntry<TRes> {
+  _CopyWithImpl$Fragment$CalendarDay$entries$$SimpleCalendarEntry(
+    this._instance,
+    this._then,
+  );
+
+  final Fragment$CalendarDay$entries$$SimpleCalendarEntry _instance;
+
+  final TRes Function(Fragment$CalendarDay$entries$$SimpleCalendarEntry) _then;
+
+  static const _undefined = {};
+
+  TRes call({
+    Object? id = _undefined,
+    Object? title = _undefined,
+    Object? description = _undefined,
+    Object? start = _undefined,
+    Object? end = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(Fragment$CalendarDay$entries$$SimpleCalendarEntry(
+        id: id == _undefined || id == null ? _instance.id : (id as String),
+        title: title == _undefined || title == null
+            ? _instance.title
+            : (title as String),
+        description: description == _undefined || description == null
+            ? _instance.description
+            : (description as String),
+        start: start == _undefined || start == null
+            ? _instance.start
+            : (start as String),
+        end: end == _undefined || end == null ? _instance.end : (end as String),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+}
+
+class _CopyWithStubImpl$Fragment$CalendarDay$entries$$SimpleCalendarEntry<TRes>
+    implements
+        CopyWith$Fragment$CalendarDay$entries$$SimpleCalendarEntry<TRes> {
+  _CopyWithStubImpl$Fragment$CalendarDay$entries$$SimpleCalendarEntry(
+      this._res);
+
+  TRes _res;
+
+  call({
+    String? id,
+    String? title,
+    String? description,
+    String? start,
+    String? end,
     String? $__typename,
   }) =>
       _res;
@@ -778,6 +1739,35 @@ const documentNodeQueryCalendarPeriod = DocumentNode(definitions: [
                 selectionSet: null,
               ),
               FieldNode(
+                name: NameNode(value: 'events'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: SelectionSetNode(selections: [
+                  FieldNode(
+                    name: NameNode(value: 'start'),
+                    alias: null,
+                    arguments: [],
+                    directives: [],
+                    selectionSet: null,
+                  ),
+                  FieldNode(
+                    name: NameNode(value: 'end'),
+                    alias: null,
+                    arguments: [],
+                    directives: [],
+                    selectionSet: null,
+                  ),
+                  FieldNode(
+                    name: NameNode(value: '__typename'),
+                    alias: null,
+                    arguments: [],
+                    directives: [],
+                    selectionSet: null,
+                  ),
+                ]),
+              ),
+              FieldNode(
                 name: NameNode(value: '__typename'),
                 alias: null,
                 arguments: [],
@@ -1069,21 +2059,29 @@ class _CopyWithStubImpl$Query$CalendarPeriod$calendar<TRes>
 class Query$CalendarPeriod$calendar$period {
   Query$CalendarPeriod$calendar$period({
     required this.activeDays,
+    required this.events,
     required this.$__typename,
   });
 
   factory Query$CalendarPeriod$calendar$period.fromJson(
       Map<String, dynamic> json) {
     final l$activeDays = json['activeDays'];
+    final l$events = json['events'];
     final l$$__typename = json['__typename'];
     return Query$CalendarPeriod$calendar$period(
       activeDays:
           (l$activeDays as List<dynamic>).map((e) => (e as String)).toList(),
+      events: (l$events as List<dynamic>)
+          .map((e) => Query$CalendarPeriod$calendar$period$events.fromJson(
+              (e as Map<String, dynamic>)))
+          .toList(),
       $__typename: (l$$__typename as String),
     );
   }
 
   final List<String> activeDays;
+
+  final List<Query$CalendarPeriod$calendar$period$events> events;
 
   final String $__typename;
 
@@ -1091,6 +2089,8 @@ class Query$CalendarPeriod$calendar$period {
     final _resultData = <String, dynamic>{};
     final l$activeDays = activeDays;
     _resultData['activeDays'] = l$activeDays.map((e) => e).toList();
+    final l$events = events;
+    _resultData['events'] = l$events.map((e) => e.toJson()).toList();
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -1099,9 +2099,11 @@ class Query$CalendarPeriod$calendar$period {
   @override
   int get hashCode {
     final l$activeDays = activeDays;
+    final l$events = events;
     final l$$__typename = $__typename;
     return Object.hashAll([
       Object.hashAll(l$activeDays.map((v) => v)),
+      Object.hashAll(l$events.map((v) => v)),
       l$$__typename,
     ]);
   }
@@ -1124,6 +2126,18 @@ class Query$CalendarPeriod$calendar$period {
       final l$activeDays$entry = l$activeDays[i];
       final lOther$activeDays$entry = lOther$activeDays[i];
       if (l$activeDays$entry != lOther$activeDays$entry) {
+        return false;
+      }
+    }
+    final l$events = events;
+    final lOther$events = other.events;
+    if (l$events.length != lOther$events.length) {
+      return false;
+    }
+    for (int i = 0; i < l$events.length; i++) {
+      final l$events$entry = l$events[i];
+      final lOther$events$entry = lOther$events[i];
+      if (l$events$entry != lOther$events$entry) {
         return false;
       }
     }
@@ -1157,8 +2171,15 @@ abstract class CopyWith$Query$CalendarPeriod$calendar$period<TRes> {
 
   TRes call({
     List<String>? activeDays,
+    List<Query$CalendarPeriod$calendar$period$events>? events,
     String? $__typename,
   });
+  TRes events(
+      Iterable<Query$CalendarPeriod$calendar$period$events> Function(
+              Iterable<
+                  CopyWith$Query$CalendarPeriod$calendar$period$events<
+                      Query$CalendarPeriod$calendar$period$events>>)
+          _fn);
 }
 
 class _CopyWithImpl$Query$CalendarPeriod$calendar$period<TRes>
@@ -1176,16 +2197,32 @@ class _CopyWithImpl$Query$CalendarPeriod$calendar$period<TRes>
 
   TRes call({
     Object? activeDays = _undefined,
+    Object? events = _undefined,
     Object? $__typename = _undefined,
   }) =>
       _then(Query$CalendarPeriod$calendar$period(
         activeDays: activeDays == _undefined || activeDays == null
             ? _instance.activeDays
             : (activeDays as List<String>),
+        events: events == _undefined || events == null
+            ? _instance.events
+            : (events as List<Query$CalendarPeriod$calendar$period$events>),
         $__typename: $__typename == _undefined || $__typename == null
             ? _instance.$__typename
             : ($__typename as String),
       ));
+  TRes events(
+          Iterable<Query$CalendarPeriod$calendar$period$events> Function(
+                  Iterable<
+                      CopyWith$Query$CalendarPeriod$calendar$period$events<
+                          Query$CalendarPeriod$calendar$period$events>>)
+              _fn) =>
+      call(
+          events: _fn(_instance.events
+              .map((e) => CopyWith$Query$CalendarPeriod$calendar$period$events(
+                    e,
+                    (i) => i,
+                  ))).toList());
 }
 
 class _CopyWithStubImpl$Query$CalendarPeriod$calendar$period<TRes>
@@ -1196,6 +2233,153 @@ class _CopyWithStubImpl$Query$CalendarPeriod$calendar$period<TRes>
 
   call({
     List<String>? activeDays,
+    List<Query$CalendarPeriod$calendar$period$events>? events,
+    String? $__typename,
+  }) =>
+      _res;
+  events(_fn) => _res;
+}
+
+class Query$CalendarPeriod$calendar$period$events {
+  Query$CalendarPeriod$calendar$period$events({
+    required this.start,
+    required this.end,
+    required this.$__typename,
+  });
+
+  factory Query$CalendarPeriod$calendar$period$events.fromJson(
+      Map<String, dynamic> json) {
+    final l$start = json['start'];
+    final l$end = json['end'];
+    final l$$__typename = json['__typename'];
+    return Query$CalendarPeriod$calendar$period$events(
+      start: (l$start as String),
+      end: (l$end as String),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final String start;
+
+  final String end;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$start = start;
+    _resultData['start'] = l$start;
+    final l$end = end;
+    _resultData['end'] = l$end;
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$start = start;
+    final l$end = end;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$start,
+      l$end,
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (!(other is Query$CalendarPeriod$calendar$period$events) ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$start = start;
+    final lOther$start = other.start;
+    if (l$start != lOther$start) {
+      return false;
+    }
+    final l$end = end;
+    final lOther$end = other.end;
+    if (l$end != lOther$end) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Query$CalendarPeriod$calendar$period$events
+    on Query$CalendarPeriod$calendar$period$events {
+  CopyWith$Query$CalendarPeriod$calendar$period$events<
+          Query$CalendarPeriod$calendar$period$events>
+      get copyWith => CopyWith$Query$CalendarPeriod$calendar$period$events(
+            this,
+            (i) => i,
+          );
+}
+
+abstract class CopyWith$Query$CalendarPeriod$calendar$period$events<TRes> {
+  factory CopyWith$Query$CalendarPeriod$calendar$period$events(
+    Query$CalendarPeriod$calendar$period$events instance,
+    TRes Function(Query$CalendarPeriod$calendar$period$events) then,
+  ) = _CopyWithImpl$Query$CalendarPeriod$calendar$period$events;
+
+  factory CopyWith$Query$CalendarPeriod$calendar$period$events.stub(TRes res) =
+      _CopyWithStubImpl$Query$CalendarPeriod$calendar$period$events;
+
+  TRes call({
+    String? start,
+    String? end,
+    String? $__typename,
+  });
+}
+
+class _CopyWithImpl$Query$CalendarPeriod$calendar$period$events<TRes>
+    implements CopyWith$Query$CalendarPeriod$calendar$period$events<TRes> {
+  _CopyWithImpl$Query$CalendarPeriod$calendar$period$events(
+    this._instance,
+    this._then,
+  );
+
+  final Query$CalendarPeriod$calendar$period$events _instance;
+
+  final TRes Function(Query$CalendarPeriod$calendar$period$events) _then;
+
+  static const _undefined = {};
+
+  TRes call({
+    Object? start = _undefined,
+    Object? end = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(Query$CalendarPeriod$calendar$period$events(
+        start: start == _undefined || start == null
+            ? _instance.start
+            : (start as String),
+        end: end == _undefined || end == null ? _instance.end : (end as String),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+}
+
+class _CopyWithStubImpl$Query$CalendarPeriod$calendar$period$events<TRes>
+    implements CopyWith$Query$CalendarPeriod$calendar$period$events<TRes> {
+  _CopyWithStubImpl$Query$CalendarPeriod$calendar$period$events(this._res);
+
+  TRes _res;
+
+  call({
+    String? start,
+    String? end,
     String? $__typename,
   }) =>
       _res;
