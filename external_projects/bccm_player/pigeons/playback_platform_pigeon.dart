@@ -94,7 +94,7 @@ class MediaMetadata {
   String? title;
   String? artist;
   String? episodeId;
-  Map<String?, String?>? extras;
+  Map<String?, Object?>? extras;
 }
 
 class ChromecastState {

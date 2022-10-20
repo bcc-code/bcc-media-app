@@ -141,7 +141,12 @@ class CastPlayerController: NSObject, PlayerController  {
             }
             if let extras = originalMeta.extras {
                 for kv in extras {
-                    metadata.setString(kv.value, forKey: MetadataNamespace.BccmExtras.rawValue + "." + kv.key)
+                    if let value = kv.value as? String {
+                        metadata.setString(value, forKey: MetadataNamespace.BccmExtras.rawValue + "." + kv.key)
+                    } else {
+                        var val = kv.value
+                        debugPrint("error!!!!!!!!!!!!! Value is: ")
+                    }
                 }
             }
         }

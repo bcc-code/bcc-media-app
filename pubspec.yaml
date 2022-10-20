@@ -56,7 +56,7 @@ dependencies:
   package_info_plus: ^1.4.3+1
   graphql: ^5.1.1
   graphql_flutter: ^5.1.0
-  auth0_flutter: ^1.0.1
+  auth0_flutter: 1.0.1
   shared_preferences: ^2.0.15
   hive: ^2.2.3
   firebase_messaging: ^13.0.4

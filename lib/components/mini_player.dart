@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:brunstadtv_app/helpers/utils.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -56,7 +57,8 @@ class _MiniPlayerState extends ConsumerState<MiniPlayer> {
 
     return GestureDetector(
       onTap: () {
-        var id = player!.currentMediaItem?.metadata?.extras?['id'];
+        var id = player?.currentMediaItem?.metadata?.extras?['id']
+            .asOrNull<String>();
         if (id == 'livestream') {
           context.router.navigate(const LiveScreenRoute());
         } else if (id != null) {

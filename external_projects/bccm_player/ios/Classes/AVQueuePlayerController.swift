@@ -133,7 +133,7 @@ public class AVQueuePlayerController: NSObject, PlayerController, AVPlayerViewCo
         player.pause()
     }
     
-    func npawHandleMediaItemUpdate(playerItem: AVPlayerItem?, extras: [String: String]?) {
+    func npawHandleMediaItemUpdate(playerItem: AVPlayerItem?, extras: [String: Any]?) {
         guard #available(iOS 12.2, *) else {
             // AVPlayerItem.externalMetadata isn't available < 12.2
             // TODO: check what people did before that
@@ -149,13 +149,13 @@ public class AVQueuePlayerController: NSObject, PlayerController, AVPlayerViewCo
             return;
         }
         let duration = player.currentItem?.duration
-        let isLive = (extras["npaw.content.isLive"] as NSString?)?.boolValue ?? (player.currentItem?.status == AVPlayerItem.Status.readyToPlay && duration != nil ? CMTIME_IS_INDEFINITE(duration!) : nil);
+        let isLive = (extras["npaw.content.isLive"] as? NSString)?.boolValue ?? (player.currentItem?.status == AVPlayerItem.Status.readyToPlay && duration != nil ? CMTIME_IS_INDEFINITE(duration!) : nil);
         youboraPlugin.options.contentIsLive = isLive as NSValue?;
-        youboraPlugin.options.contentId = extras["npaw.content.id"] ?? extras["id"];
-        youboraPlugin.options.contentTitle = extras["npaw.content.title"] ?? playerItem?.externalMetadata.first(where: { $0.identifier == AVMetadataIdentifier.commonIdentifierTitle })?.stringValue
-        youboraPlugin.options.contentTvShow = extras["npaw.content.tvShow"];
-        youboraPlugin.options.contentSeason = extras["npaw.content.season"];
-        youboraPlugin.options.contentEpisodeTitle = extras["npaw.content.episodeTitle"];
+        youboraPlugin.options.contentId = extras["npaw.content.id"] as? String ?? extras["id"] as? String;
+        youboraPlugin.options.contentTitle = extras["npaw.content.title"] as? String ?? playerItem?.externalMetadata.first(where: { $0.identifier == AVMetadataIdentifier.commonIdentifierTitle })?.stringValue
+        youboraPlugin.options.contentTvShow = extras["npaw.content.tvShow"] as? String;
+        youboraPlugin.options.contentSeason = extras["npaw.content.season"] as? String;
+        youboraPlugin.options.contentEpisodeTitle = extras["npaw.content.episodeTitle"] as? String;
     }
 
     public func updateNpawConfig(npawConfig: NpawConfig?) {
@@ -244,8 +244,9 @@ public class AVQueuePlayerController: NSObject, PlayerController, AVPlayerViewCo
         }
         if let extras = mediaItem.metadata?.extras {
             for item in extras {
-                if let metadataItem = MetadataUtils.metadataItem(identifier: item.key, value: item.value as (NSCopying & NSObjectProtocol)?, namespace: .BccmExtras) {
-                    allItems.append(metadataItem)
+                if let value = item.value as? (NSCopying & NSObjectProtocol)?,
+                   let metadataItem = MetadataUtils.metadataItem(identifier: item.key, value: value, namespace: .BccmExtras) {
+                        allItems.append(metadataItem)
                 }
             }
         }

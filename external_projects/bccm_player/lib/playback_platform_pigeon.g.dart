@@ -154,7 +154,7 @@ class MediaMetadata {
   String? title;
   String? artist;
   String? episodeId;
-  Map<String?, String?>? extras;
+  Map<String?, Object?>? extras;
 
   Object encode() {
     final Map<Object?, Object?> pigeonMap = <Object?, Object?>{};
@@ -173,7 +173,7 @@ class MediaMetadata {
       title: pigeonMap['title'] as String?,
       artist: pigeonMap['artist'] as String?,
       episodeId: pigeonMap['episodeId'] as String?,
-      extras: (pigeonMap['extras'] as Map<Object?, Object?>?)?.cast<String?, String?>(),
+      extras: (pigeonMap['extras'] as Map<Object?, Object?>?)?.cast<String?, Object?>(),
     );
   }
 }

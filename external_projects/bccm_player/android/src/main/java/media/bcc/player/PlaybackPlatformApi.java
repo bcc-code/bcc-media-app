@@ -343,9 +343,9 @@ public class PlaybackPlatformApi {
       this.episodeId = setterArg;
     }
 
-    private @Nullable Map<String, String> extras;
-    public @Nullable Map<String, String> getExtras() { return extras; }
-    public void setExtras(@Nullable Map<String, String> setterArg) {
+    private @Nullable Map<String, Object> extras;
+    public @Nullable Map<String, Object> getExtras() { return extras; }
+    public void setExtras(@Nullable Map<String, Object> setterArg) {
       this.extras = setterArg;
     }
 
@@ -370,8 +370,8 @@ public class PlaybackPlatformApi {
         this.episodeId = setterArg;
         return this;
       }
-      private @Nullable Map<String, String> extras;
-      public @NonNull Builder setExtras(@Nullable Map<String, String> setterArg) {
+      private @Nullable Map<String, Object> extras;
+      public @NonNull Builder setExtras(@Nullable Map<String, Object> setterArg) {
         this.extras = setterArg;
         return this;
       }
@@ -405,7 +405,7 @@ public class PlaybackPlatformApi {
       Object episodeId = map.get("episodeId");
       pigeonResult.setEpisodeId((String)episodeId);
       Object extras = map.get("extras");
-      pigeonResult.setExtras((Map<String, String>)extras);
+      pigeonResult.setExtras((Map<String, Object>)extras);
       return pigeonResult;
     }
   }

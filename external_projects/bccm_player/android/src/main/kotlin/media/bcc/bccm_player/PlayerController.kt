@@ -76,7 +76,9 @@ abstract class PlayerController() : Player.Listener {
         val sourceExtra = mediaItem.metadata?.extras;
         if (sourceExtra != null) {
             for (extra in sourceExtra) {
-                extraMeta.putString(BCCM_EXTRAS + "." + extra.key, extra.value);
+                (extra.value as? String?).let {
+                    extraMeta.putString(BCCM_EXTRAS + "." + extra.key, it);
+                }
             }
         }
 

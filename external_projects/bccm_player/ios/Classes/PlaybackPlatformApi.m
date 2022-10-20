@@ -203,7 +203,7 @@ static id GetNullableObjectAtIndex(NSArray* array, NSInteger key) {
     title:(nullable NSString *)title
     artist:(nullable NSString *)artist
     episodeId:(nullable NSString *)episodeId
-    extras:(nullable NSDictionary<NSString *, NSString *> *)extras {
+    extras:(nullable NSDictionary<NSString *, id> *)extras {
   MediaMetadata* pigeonResult = [[MediaMetadata alloc] init];
   pigeonResult.artworkUri = artworkUri;
   pigeonResult.title = title;

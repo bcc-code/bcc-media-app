@@ -158,9 +158,6 @@ class _LiveScreenState extends ConsumerState<LiveScreen> with AutoRouteAware {
     var playerProvider = casting ? castPlayerProvider : primaryPlayerProvider;
     var player = ref.watch(playerProvider);
 
-    debugPrint(
-        'bccm: ran build method in "live.dart" ${DateTime.now()}. Casting: $casting, currentMediaItem: ${player?.currentMediaItem?.metadata?.extras?["id"]}');
-
     if (player == null) return const SizedBox.shrink();
     return Scaffold(
       appBar: PreferredSize(
@@ -245,7 +242,10 @@ class _LiveScreenState extends ConsumerState<LiveScreen> with AutoRouteAware {
                 Text(error ?? ''),
               Center(
                   child: !settingUp
-                      ? const CircularProgressIndicator() //Image.asset('assets/icons/Play.png')
+                      ? Image.asset(
+                          'assets/icons/Play.png',
+                          gaplessPlayback: true,
+                        )
                       : const CircularProgressIndicator())
             ],
           ),
