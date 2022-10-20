@@ -61,7 +61,7 @@ class FullscreenPlayerActivity : SwipeDismissBaseActivity(), Player.Listener {
 
         binding = ActivityPictureInPictureBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        layoutInflater.inflate(R.layout.btvplayer_view, binding.root, true)
+        layoutInflater.inflate(R.layout.player_fullscreen_view, binding.root, true)
         _playerView = this.findViewById<PlayerView>(R.id.brunstad_player)
 
 

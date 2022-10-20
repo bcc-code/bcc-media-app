@@ -5,6 +5,7 @@ import android.content.Intent
 import android.graphics.Color
 import android.util.Log
 import android.view.LayoutInflater
+import android.view.SurfaceView
 import android.view.View
 import android.widget.*
 import androidx.annotation.NonNull
@@ -42,20 +43,11 @@ class BccmPlayerViewWrapper(
     private val _v: LinearLayout = LinearLayout(context)
     private var _playerView: PlayerView? = null
     private val ioScope = CoroutineScope(Dispatchers.IO + SupervisorJob())
-    private val mainScope = CoroutineScope(Dispatchers.Main + SupervisorJob())
     private var fullscreenListener: Job? = null
     private var setupDone = false;
 
     init {
         setup()
-
-        mainScope.launch {
-            BccmPlayerPluginSingleton.eventBus.filterIsInstance<SetPlayerViewVisibilityEvent>().filter { it.viewId == flutterViewId.toLong() }.collect {
-                event ->
-                Log.d("bccm", "TestEvent, playerView?.visibility: ${_playerView?.visibility}")
-                _playerView?.visibility = if(event.visible) View.VISIBLE else View.GONE
-            }
-        }
     }
 
     override fun getView(): View {
@@ -68,7 +60,6 @@ class BccmPlayerViewWrapper(
         playerController = null
         _playerView = null
         ioScope.cancel()
-        mainScope.cancel()
     }
 
     fun getPlayerView(): PlayerView? {
@@ -79,9 +70,8 @@ class BccmPlayerViewWrapper(
         if (_playerView?.player != null) {
             return;
         }
-        _v.setBackgroundColor(Color.RED)
         _v.removeAllViews()
-        LayoutInflater.from(context).inflate(R.layout.btvplayer_view, _v, true)
+        LayoutInflater.from(context).inflate(R.layout.player_view, _v, true)
         playerController = playbackService.getController(playerId) as ExoPlayerController
 
         if (playerController == null) {
@@ -197,9 +187,6 @@ class BccmPlayerViewWrapper(
         _playerView = null
         playerController = null
         _v.removeAllViews()
-        val textView = TextView(context);
-        textView.text = "Loading..."
-        _v.addView(textView)
         setupDone = false
     }
 }

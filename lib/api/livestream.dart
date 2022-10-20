@@ -6,14 +6,17 @@ import '../services/auth_service.dart';
 
 class LivestreamUrl {
   final String streamUrl;
+  final DateTime expiryTime;
 
-  const LivestreamUrl({required this.streamUrl});
+  LivestreamUrl({required this.streamUrl, DateTime? expiryTime})
+      : expiryTime =
+            (expiryTime ?? DateTime.now().add(const Duration(hours: 3)));
 
   factory LivestreamUrl.fromJson(Map<String, dynamic> json) {
     String streamUrl = json['url'];
     return LivestreamUrl(
-      streamUrl: streamUrl,
-    );
+        streamUrl: streamUrl,
+        expiryTime: DateTime.tryParse(json['expiryTime']));
   }
 }
 

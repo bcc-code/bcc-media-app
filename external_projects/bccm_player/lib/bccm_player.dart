@@ -112,62 +112,46 @@ class _AndroidPlayerState extends State<AndroidPlayer> {
   int? viewId;
   @override
   Widget build(BuildContext context) {
-    return VisibilityDetector(
-      key: Key(widget.id),
-      onVisibilityChanged: (info) {
-        debugPrint("${info.visibleFraction} of my widget is visible");
-        if (!mounted) {
-          return;
-        }
-        if (info.visibleFraction < 0.1 && viewId != null) {
-          PlaybackPlatformInterface.instance
-              .setPlayerViewVisibility(viewId!, false);
-        } else if (viewId != null) {
-          PlaybackPlatformInterface.instance
-              .setPlayerViewVisibility(viewId!, true);
-        }
+    return PlatformViewLink(
+      viewType: 'bccm-player',
+      surfaceFactory: (context, controller) {
+        debugPrint("viewId ${controller.viewId}");
+        return AndroidViewSurface(
+          controller: controller as AndroidViewController,
+          hitTestBehavior: PlatformViewHitTestBehavior.opaque,
+          gestureRecognizers: <Factory<OneSequenceGestureRecognizer>>{
+            Factory<OneSequenceGestureRecognizer>(
+              () => EagerGestureRecognizer(),
+            ),
+          },
+        );
       },
-      child: Visibility(
-        visible: !hide,
-        child: PlatformViewLink(
+      onCreatePlatformView: (params) {
+        var controller = PlatformViewsService.initExpensiveAndroidView(
+          id: params.id,
           viewType: 'bccm-player',
-          surfaceFactory: (context, controller) {
-            debugPrint("viewId ${controller.viewId}");
-            return AndroidViewSurface(
-              controller: controller as AndroidViewController,
-              hitTestBehavior: PlatformViewHitTestBehavior.opaque,
-              gestureRecognizers: <Factory<OneSequenceGestureRecognizer>>{
-                Factory<OneSequenceGestureRecognizer>(
-                  () => EagerGestureRecognizer(),
-                ),
-              },
-            );
+          layoutDirection: TextDirection.ltr,
+          creationParams: <String, dynamic>{
+            'player_id': widget.id,
           },
-          onCreatePlatformView: (params) {
-            var controller = PlatformViewsService.initExpensiveAndroidView(
-              id: params.id,
-              viewType: 'bccm-player',
-              layoutDirection: TextDirection.ltr,
-              creationParams: <String, dynamic>{
-                'player_id': widget.id,
-              },
-              creationParamsCodec: const StandardMessageCodec(),
-              onFocus: () {
-                params.onFocusChanged(true);
-              },
-            );
-            controller
-              ..addOnPlatformViewCreatedListener((val) {
-                setState(() {
-                  viewId = controller.viewId;
-                });
-                params.onPlatformViewCreated(val);
-              })
-              ..create();
-            return controller;
+          creationParamsCodec: const StandardMessageCodec(),
+          onFocus: () {
+            params.onFocusChanged(true);
           },
-        ),
-      ),
+        );
+        controller
+          ..addOnPlatformViewCreatedListener((val) {
+            if (mounted) {
+              setState(() {
+                viewId = controller.viewId;
+              });
+            }
+
+            params.onPlatformViewCreated(val);
+          })
+          ..create();
+        return controller;
+      },
     );
   }
 }

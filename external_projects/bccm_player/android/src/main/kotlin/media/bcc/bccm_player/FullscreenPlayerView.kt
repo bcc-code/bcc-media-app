@@ -2,16 +2,13 @@ package media.bcc.bccm_player
 
 import android.app.Activity
 import android.app.PictureInPictureParams
-import android.content.Context
 import android.os.Build
 import android.util.Log
 import android.util.Rational
 import android.view.LayoutInflater
 import android.view.View
-import android.view.WindowManager
 import android.widget.ImageButton
 import android.widget.LinearLayout
-import android.widget.ProgressBar
 import androidx.annotation.RequiresApi
 import androidx.core.view.WindowCompat
 import androidx.core.view.WindowInsetsCompat
@@ -20,10 +17,7 @@ import androidx.media3.common.MediaItem
 import androidx.media3.common.Player
 import androidx.media3.ui.PlayerView
 import kotlinx.coroutines.*
-import kotlinx.coroutines.flow.collect
-import kotlinx.coroutines.flow.filter
 import kotlinx.coroutines.flow.filterIsInstance
-import media.bcc.player.PlaybackPlatformApi
 
 
 class FullscreenPlayerView(val activity: Activity, val playerController: ExoPlayerController) : LinearLayout(activity) {
@@ -32,7 +26,7 @@ class FullscreenPlayerView(val activity: Activity, val playerController: ExoPlay
     var isInPip: Boolean = false;
     init {
         makeActivityFullscreen()
-        LayoutInflater.from(context).inflate(R.layout.btvplayer_view, this, true)
+        LayoutInflater.from(context).inflate(R.layout.player_fullscreen_view, this, true)
         playerView = this.findViewById<PlayerView>(R.id.brunstad_player)
         playerView?.let {
             playerController.takeOwnership(it)
