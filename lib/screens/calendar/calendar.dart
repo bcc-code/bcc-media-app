@@ -90,63 +90,14 @@ class _CalendarPageState extends ConsumerState<CalendarPage> {
             convertToIso8601inDays(startDate.add(Duration(days: (index)))));
   }
 
-  Widget hightlightMarker(DateTime day, bool isFromDefaultBuilder) {
-    var dayString = convertToIso8601inDays(day);
-    var thatDayinHLIndex = eventsPeriod.indexOf(dayString);
-    var previousDayinHLIndex = eventsPeriod.indexOf(dayString) - 1;
-    if (eventsPeriod.contains(convertToIso8601inDays(day))) {
-      //within List
-      if (thatDayinHLIndex == 0 ||
-          previousDayinHLIndex.isNegative ||
-          !eventsPeriod.contains(
-              convertToIso8601inDays(day.subtract(const Duration(days: 1))))) {
-        //is first
-        if (!eventsPeriod.contains(
-            convertToIso8601inDays(day.subtract(const Duration(days: 1))))) {
-          //doesn't have any previous index in the list
-          if (!eventsPeriod.contains(
-              convertToIso8601inDays(day.add(const Duration(days: 1))))) {
-            //doesn't have any following index in the list
-            return isFromDefaultBuilder
-                ? Stack(
-                    children: [
-                      const HighLightSingle(),
-                      CenterText(Colors.white, day),
-                    ],
-                  )
-                : const HighLightSingle();
-          } else {
-            return isFromDefaultBuilder
-                ? Stack(
-                    children: [
-                      const HighLightOpen(),
-                      CenterText(Colors.white, day),
-                    ],
-                  )
-                : const HighLightOpen();
-          }
-        }
-      } else if (!eventsPeriod
-          .contains(convertToIso8601inDays(day.add(const Duration(days: 1))))) {
-        return isFromDefaultBuilder
-            ? Stack(
-                children: [
-                  const HighLightClose(),
-                  CenterText(Colors.white, day),
-                ],
-              )
-            : const HighLightClose();
-      } else {
-        return isFromDefaultBuilder
-            ? Stack(
-                children: [
-                  const HighLightMiddle(),
-                  CenterText(Colors.white, day),
-                ],
-              )
-            : const HighLightMiddle();
-      }
-    } else {
+  Widget highlightMarker(DateTime day, bool isFromDefaultBuilder) {
+    final isNotPartOfEvent =
+        !eventsPeriod.contains(convertToIso8601inDays(day));
+    final isFirstDay = !eventsPeriod.contains(
+        convertToIso8601inDays(day.subtract(const Duration(days: 1))));
+    final isLastDay = !eventsPeriod
+        .contains(convertToIso8601inDays(day.add(const Duration(days: 1))));
+    if (isNotPartOfEvent) {
       return isFromDefaultBuilder
           ? Stack(
               children: [
@@ -155,7 +106,44 @@ class _CalendarPageState extends ConsumerState<CalendarPage> {
             )
           : const SizedBox.shrink();
     }
-    return const SizedBox.shrink();
+    if (isFirstDay && isLastDay) {
+      return isFromDefaultBuilder
+          ? Stack(
+              children: [
+                const HighLightSingle(),
+                CenterText(Colors.white, day),
+              ],
+            )
+          : const HighLightSingle();
+    }
+    if (isFirstDay) {
+      return isFromDefaultBuilder
+          ? Stack(
+              children: [
+                const HighLightOpen(),
+                CenterText(Colors.white, day),
+              ],
+            )
+          : const HighLightOpen();
+    }
+    if (isLastDay) {
+      return isFromDefaultBuilder
+          ? Stack(
+              children: [
+                const HighLightClose(),
+                CenterText(Colors.white, day),
+              ],
+            )
+          : const HighLightClose();
+    }
+    return isFromDefaultBuilder
+        ? Stack(
+            children: [
+              const HighLightMiddle(),
+              CenterText(Colors.white, day),
+            ],
+          )
+        : const HighLightMiddle();
   }
 
   loadingInputPeriodData() async {
@@ -185,8 +173,8 @@ class _CalendarPageState extends ConsumerState<CalendarPage> {
         value.parsedData?.calendar?.period.events.forEach((element) {
           eventsPeriod.addAll(expandStartNEndDate(element.start, element.end));
         });
+        eventsPeriod.sort();
       });
-      eventsPeriod.sort();
       return value.parsedData?.calendar?.period;
     });
     return await _calendarPeriod;
@@ -355,11 +343,7 @@ class _CalendarPageState extends ConsumerState<CalendarPage> {
                       eventLoader: _getEventsForDay,
                       calendarBuilders: CalendarBuilders(
                         defaultBuilder: (context, day, focusedDay) {
-                          return Stack(
-                            children: [
-                              hightlightMarker(day, true),
-                            ],
-                          );
+                          return highlightMarker(day, true);
                         },
                         outsideBuilder: (context, day, focusedDay) {
                           return Stack(
@@ -371,7 +355,7 @@ class _CalendarPageState extends ConsumerState<CalendarPage> {
                                   child: CenterText(Colors.grey, day),
                                 ),
                               ),
-                              hightlightMarker(day, false),
+                              highlightMarker(day, false),
                             ],
                           );
                         },
@@ -396,7 +380,7 @@ class _CalendarPageState extends ConsumerState<CalendarPage> {
                                     child: CenterText(Colors.white, day),
                                   ),
                                 ),
-                                hightlightMarker(day, false),
+                                highlightMarker(day, false),
                               ],
                             );
                           } else {
@@ -464,7 +448,7 @@ class _CalendarPageState extends ConsumerState<CalendarPage> {
                             ),
                           );
                         }
-                        return _EntriesSlot(snapshot);
+                        return _EntriesSlot(snapshot.data);
                       },
                     ),
                   ),
@@ -568,9 +552,9 @@ class HighLightSingle extends StatelessWidget {
 }
 
 class _EntriesSlot extends StatelessWidget {
-  final AsyncSnapshot<Query$CalendarDay$calendar?> _snapshot;
+  final Query$CalendarDay$calendar? _snapshotData;
 
-  const _EntriesSlot(this._snapshot);
+  const _EntriesSlot(this._snapshotData);
 
   String calculateDuration(String st, String et) {
     Duration duration = DateTime.parse(et).difference(DateTime.parse(st));
@@ -588,9 +572,10 @@ class _EntriesSlot extends StatelessWidget {
     return (input is Fragment$CalendarDay$entries$$EpisodeCalendarEntry);
   }
 
-  bool isHappeningNow(String endStr, String stStr) {
-    return DateTime.parse(endStr).isAfter(DateTime.now()) &&
-        DateTime.parse(stStr).isBefore(DateTime.now());
+  bool isHappeningNow(Fragment$CalendarDay$entries entry) {
+    var endStr = DateTime.parse(entry.end);
+    var stStr = DateTime.parse(entry.start);
+    return endStr.isAfter(DateTime.now()) && stStr.isBefore(DateTime.now());
   }
 
   pushToEpisodePage(BuildContext context, var id) {
@@ -599,8 +584,8 @@ class _EntriesSlot extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var eventsList = _snapshot.data?.day.events;
-    var entriesList = _snapshot.data?.day.entries;
+    var eventsList = _snapshotData?.day.events;
+    var entriesList = _snapshotData?.day.entries;
     return Column(
       children: <Widget>[
         if (entriesList != null && entriesList.isNotEmpty) ...[
@@ -620,16 +605,12 @@ class _EntriesSlot extends StatelessWidget {
                 padding:
                     const EdgeInsets.symmetric(horizontal: 8, vertical: 16),
                 decoration: BoxDecoration(
-                  color:
-                      isHappeningNow(entriesList[i].end, entriesList[i].start)
-                          ? Colors.red
-                          : null,
+                  color: isHappeningNow(entriesList[i]) ? Colors.red : null,
                   border: Border(
-                    left:
-                        isHappeningNow(entriesList[i].end, entriesList[i].start)
-                            ? const BorderSide(
-                                color: Color.fromRGBO(230, 60, 98, 1), width: 4)
-                            : const BorderSide(width: 4),
+                    left: isHappeningNow(entriesList[i])
+                        ? const BorderSide(
+                            color: Color.fromRGBO(230, 60, 98, 1), width: 4)
+                        : const BorderSide(width: 4),
                   ),
                 ),
                 child: Row(
@@ -640,8 +621,7 @@ class _EntriesSlot extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            isHappeningNow(
-                                    entriesList[i].end, entriesList[i].start)
+                            isHappeningNow(entriesList[i])
                                 ? 'Now'
                                 : DateTime.parse(entriesList[i].start)
                                     .toIso8601String()
@@ -691,8 +671,7 @@ class _EntriesSlot extends StatelessWidget {
                         const SizedBox(height: 4),
                         Text(entriesList[i].description,
                             style: TextStyle(
-                              color: isHappeningNow(
-                                      entriesList[i].end, entriesList[i].start)
+                              color: isHappeningNow(entriesList[i])
                                   ? isClassOfEpisodeCalendarEntry(
                                           entriesList[i])
                                       ? Colors.red
