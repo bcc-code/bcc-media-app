@@ -4,11 +4,9 @@ import 'dart:math';
 import 'package:brunstadtv_app/graphql/client.dart';
 import 'package:brunstadtv_app/graphql/queries/calendar.graphql.dart';
 import 'package:brunstadtv_app/router/router.gr.dart';
-import 'package:flutter_riverpod/src/consumer.dart'
-    show ConsumerState, ConsumerStatefulWidget;
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter/material.dart';
 import 'package:auto_route/auto_route.dart';
-import 'package:riverpod/riverpod.dart';
 import 'package:table_calendar/table_calendar.dart';
 import 'package:intl/intl.dart';
 
@@ -26,7 +24,7 @@ class _CalendarPageState extends ConsumerState<CalendarPage> {
   bool _isCalendarCollapse = true;
 
   Future<Query$CalendarPeriod$calendar$period?>? _calendarPeriod;
-  Future<Query$CalendarDay$calendar?>? _selectedDayEvent = null;
+  Future<Query$CalendarDay$calendar?>? _selectedDayEvent;
 
   HashSet<DateTime> activeDaysPeriod = HashSet<DateTime>();
   List<String> eventsPeriod = [];
@@ -38,15 +36,12 @@ class _CalendarPageState extends ConsumerState<CalendarPage> {
 
   List<DateTime> _getEventsForDay(DateTime day) {
     List<DateTime> result = [];
-    if (activeDaysPeriod != null) {
-      for (var i in activeDaysPeriod) {
-        if (i.year == day.year && i.month == day.month && i.day == day.day) {
-          result.add(i);
-        }
+    for (var i in activeDaysPeriod) {
+      if (i.year == day.year && i.month == day.month && i.day == day.day) {
+        result.add(i);
       }
-      return result;
-    } else
-      return List.filled(0, DateTime.now());
+    }
+    return result;
   }
 
   bool _isSameWeekAsCurrentWeek(DateTime date) {
@@ -57,14 +52,14 @@ class _CalendarPageState extends ConsumerState<CalendarPage> {
   /// Calculates number of weeks for a given year as per https://en.wikipedia.org/wiki/ISO_week_date#Weeks_per_year
   int numOfWeeks(int year) {
     DateTime dec28 = DateTime(year, 12, 28);
-    int dayOfDec28 = int.parse(DateFormat("D").format(dec28));
+    int dayOfDec28 = int.parse(DateFormat('D').format(dec28));
     return ((dayOfDec28 - dec28.weekday + 10) / 7).floor();
   }
 
   /// Calculates week number from a date as per https://en.wikipedia.org/wiki/ISO_week_date#Calculation
   /// https://stackoverflow.com/questions/49393231/how-to-get-day-of-year-week-of-year-from-a-datetime-dart-object/54129275#54129275
   int _getWeekNumber(DateTime date) {
-    int dayOfYear = int.parse(DateFormat("D").format(date));
+    int dayOfYear = int.parse(DateFormat('D').format(date));
     int woy = ((dayOfYear - date.weekday + 10) / 7).floor();
     if (woy < 1) {
       woy = numOfWeeks(date.year - 1);
@@ -80,7 +75,7 @@ class _CalendarPageState extends ConsumerState<CalendarPage> {
   }
 
   String convertToIso8601inDays(DateTime time) {
-    return DateFormat("yyyy-MM-dd").format(time);
+    return DateFormat('yyyy-MM-dd').format(time);
   }
 
   List<String> expandStartNEndDate(String first, String last) {
@@ -104,52 +99,52 @@ class _CalendarPageState extends ConsumerState<CalendarPage> {
       if (thatDayinHLIndex == 0 ||
           previousDayinHLIndex.isNegative ||
           !eventsPeriod.contains(
-              convertToIso8601inDays(day.subtract(Duration(days: 1))))) {
+              convertToIso8601inDays(day.subtract(const Duration(days: 1))))) {
         //is first
         if (!eventsPeriod.contains(
-            convertToIso8601inDays(day.subtract(Duration(days: 1))))) {
+            convertToIso8601inDays(day.subtract(const Duration(days: 1))))) {
           //doesn't have any previous index in the list
-          if (!eventsPeriod
-              .contains(convertToIso8601inDays(day.add(Duration(days: 1))))) {
+          if (!eventsPeriod.contains(
+              convertToIso8601inDays(day.add(const Duration(days: 1))))) {
             //doesn't have any following index in the list
             return isFromDefaultBuilder
                 ? Stack(
                     children: [
-                      HighLightSingle(),
+                      const HighLightSingle(),
                       CenterText(Colors.white, day),
                     ],
                   )
-                : HighLightSingle();
+                : const HighLightSingle();
           } else {
             return isFromDefaultBuilder
                 ? Stack(
                     children: [
-                      HighLightOpen(),
+                      const HighLightOpen(),
                       CenterText(Colors.white, day),
                     ],
                   )
-                : HighLightOpen();
+                : const HighLightOpen();
           }
         }
       } else if (!eventsPeriod
-          .contains(convertToIso8601inDays(day.add(Duration(days: 1))))) {
+          .contains(convertToIso8601inDays(day.add(const Duration(days: 1))))) {
         return isFromDefaultBuilder
             ? Stack(
                 children: [
-                  HighLightClose(),
+                  const HighLightClose(),
                   CenterText(Colors.white, day),
                 ],
               )
-            : HighLightClose();
+            : const HighLightClose();
       } else {
         return isFromDefaultBuilder
             ? Stack(
                 children: [
-                  HighLightMiddle(),
+                  const HighLightMiddle(),
                   CenterText(Colors.white, day),
                 ],
               )
-            : HighLightMiddle();
+            : const HighLightMiddle();
       }
     } else {
       return isFromDefaultBuilder
@@ -158,14 +153,14 @@ class _CalendarPageState extends ConsumerState<CalendarPage> {
                 CenterText(Colors.white, day),
               ],
             )
-          : SizedBox.shrink();
+          : const SizedBox.shrink();
     }
-    return SizedBox.shrink();
+    return const SizedBox.shrink();
   }
 
   loadingInputPeriodData() async {
-    var from = convertToIso8601(_focusedDay!.subtract(Duration(days: 31)));
-    var to = convertToIso8601(_focusedDay!.add(Duration(days: 31)));
+    var from = convertToIso8601(_focusedDay.subtract(const Duration(days: 31)));
+    var to = convertToIso8601(_focusedDay.add(const Duration(days: 31)));
     final client = ref.read(gqlClientProvider);
 
     _calendarPeriod = client
@@ -226,258 +221,257 @@ class _CalendarPageState extends ConsumerState<CalendarPage> {
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
-      child: Container(
-        child: Center(
-          child: Column(
-            children: [
-              const SizedBox(height: 20.0),
-              SafeArea(
-                child: Column(
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.only(
-                          left: 16.0, right: 16.0, top: 15.0),
-                      child: Row(
-                        children: [
-                          Expanded(
-                            child: Text(
-                              'Calendar ',
-                              textAlign: TextAlign.center,
-                              style: Theme.of(context).textTheme.headline6,
-                            ),
+      child: Center(
+        child: Column(
+          children: [
+            const SizedBox(height: 20.0),
+            SafeArea(
+              child: Column(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(
+                        left: 16.0, right: 16.0, top: 15.0),
+                    child: Row(
+                      children: [
+                        Expanded(
+                          child: Text(
+                            'Calendar ',
+                            textAlign: TextAlign.center,
+                            style: Theme.of(context).textTheme.headline6,
                           ),
-                          GestureDetector(
-                            onTapUp: (details) {
-                              setState(() {
-                                _isCalendarCollapse = !_isCalendarCollapse;
-                              });
-                            },
-                            child: Image.asset(
-                              _isCalendarCollapse
-                                  ? 'assets/icons/Calendar_Selected.png'
-                                  : 'assets/icons/Calendar_Default.png',
-                              gaplessPlayback: true,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                      child: TableCalendar(
-                        rowHeight: 54,
-                        calendarFormat: _isCalendarCollapse
-                            ? CalendarFormat.week
-                            : CalendarFormat.month,
-                        startingDayOfWeek: StartingDayOfWeek.monday,
-                        daysOfWeekStyle: DaysOfWeekStyle(
-                          dowTextFormatter: (date, locale) =>
-                              DateFormat.E(locale)
-                                  .format(date)[0], //only display one letter
                         ),
-                        shouldFillViewport: true,
-                        headerStyle: HeaderStyle(
-                          formatButtonVisible: false,
-                          titleCentered: true,
-                          titleTextFormatter: (date, locale) =>
-                              _isCalendarCollapse
-                                  ? _isSameWeekAsCurrentWeek(date)
-                                      ? 'This week'
-                                      : 'week ${_getWeekNumber(date).toString()}'
-                                  : DateFormat.MMMM().format(date).toString(),
-                          headerMargin: EdgeInsets.zero,
-                          titleTextStyle: TextStyle(
-                              fontFamily: 'assets\fonts\Barlow\Barlow-Bold.ttf',
-                              color: Color.fromRGBO(112, 124, 142, 1),
-                              fontSize: 17,
-                              fontWeight: FontWeight.w700),
-                          leftChevronIcon: Icon(
-                              Icons.arrow_back_ios_new_outlined,
-                              color: Color.fromRGBO(112, 124, 142, 1),
-                              size: 16),
-                          leftChevronMargin: EdgeInsets.only(left: 0),
-                          rightChevronIcon: Icon(
-                              Icons.arrow_forward_ios_outlined,
-                              color: Color.fromRGBO(112, 124, 142, 1),
-                              size: 16),
-                          rightChevronMargin: EdgeInsets.only(right: 0),
-                        ),
-                        availableGestures: AvailableGestures.horizontalSwipe,
-                        rangeSelectionMode: RangeSelectionMode.disabled,
-                        calendarStyle: CalendarStyle(
-                          tableBorder: TableBorder.symmetric(),
-                          canMarkersOverflow: true,
-                          defaultTextStyle: TextStyle(
-                              fontFamily: 'assets\fonts\Barlow\Barlow-Bold.ttf',
-                              color: Colors.white,
-                              fontSize: 17,
-                              fontWeight: FontWeight.w700),
-                          todayTextStyle: TextStyle(
-                              fontFamily: 'assets\fonts\Barlow\Barlow-Bold.ttf',
-                              color: Color.fromRGBO(230, 60, 98, 1),
-                              fontSize: 17,
-                              fontWeight: FontWeight.w700),
-                          todayDecoration: BoxDecoration(
-                            shape: BoxShape.circle,
-                          ),
-                          weekendTextStyle: TextStyle(
-                              fontFamily: 'assets\fonts\Barlow\Barlow-Bold.ttf',
-                              color: Colors.white,
-                              fontSize: 17,
-                              fontWeight: FontWeight.w700),
-                          outsideTextStyle: TextStyle(
-                              fontFamily: 'assets\fonts\Barlow\Barlow-Bold.ttf',
-                              color: Colors.grey,
-                              fontSize: 17,
-                              fontWeight: FontWeight.w700),
-                          markerMargin: EdgeInsets.only(top: 3),
-                          markerDecoration: BoxDecoration(
-                            color: Color.fromRGBO(112, 124, 142, 1),
-                            shape: BoxShape.circle,
-                          ),
-                          markerSize: 5.5,
-                        ),
-                        focusedDay: _focusedDay,
-                        firstDay: kFirstDay,
-                        lastDay: kLastDay,
-                        selectedDayPredicate: (day) =>
-                            isSameDay(_selectedDay, day),
-                        onCalendarCreated: (pageController) =>
-                            loadingSelectedEvent,
-                        onDaySelected: (selectedDay, focusedDay) {
-                          if (!isSameDay(_selectedDay, selectedDay)) {
+                        GestureDetector(
+                          onTapUp: (details) {
                             setState(() {
-                              _selectedDay = selectedDay;
-                              _focusedDay = focusedDay;
+                              _isCalendarCollapse = !_isCalendarCollapse;
                             });
-                            loadingSelectedEvent();
-                          }
-                        },
-                        onPageChanged: (focusedDay) async {
+                          },
+                          child: Image.asset(
+                            _isCalendarCollapse
+                                ? 'assets/icons/Calendar_Selected.png'
+                                : 'assets/icons/Calendar_Default.png',
+                            gaplessPlayback: true,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                    child: TableCalendar(
+                      rowHeight: 54,
+                      calendarFormat: _isCalendarCollapse
+                          ? CalendarFormat.week
+                          : CalendarFormat.month,
+                      startingDayOfWeek: StartingDayOfWeek.monday,
+                      daysOfWeekStyle: DaysOfWeekStyle(
+                        dowTextFormatter: (date, locale) => DateFormat.E(locale)
+                            .format(date)[0], //only display one letter
+                      ),
+                      shouldFillViewport: true,
+                      headerStyle: HeaderStyle(
+                        formatButtonVisible: false,
+                        titleCentered: true,
+                        titleTextFormatter: (date, locale) =>
+                            _isCalendarCollapse
+                                ? _isSameWeekAsCurrentWeek(date)
+                                    ? 'This week'
+                                    : 'week ${_getWeekNumber(date).toString()}'
+                                : DateFormat.MMMM().format(date).toString(),
+                        headerMargin: EdgeInsets.zero,
+                        titleTextStyle: const TextStyle(
+                            fontFamily: 'assets\fontsBarlowBarlow-Bold.ttf',
+                            color: Color.fromRGBO(112, 124, 142, 1),
+                            fontSize: 17,
+                            fontWeight: FontWeight.w700),
+                        leftChevronIcon: const Icon(
+                            Icons.arrow_back_ios_new_outlined,
+                            color: Color.fromRGBO(112, 124, 142, 1),
+                            size: 16),
+                        leftChevronMargin: const EdgeInsets.only(left: 0),
+                        rightChevronIcon: const Icon(
+                            Icons.arrow_forward_ios_outlined,
+                            color: Color.fromRGBO(112, 124, 142, 1),
+                            size: 16),
+                        rightChevronMargin: const EdgeInsets.only(right: 0),
+                      ),
+                      availableGestures: AvailableGestures.horizontalSwipe,
+                      rangeSelectionMode: RangeSelectionMode.disabled,
+                      calendarStyle: CalendarStyle(
+                        tableBorder: TableBorder.symmetric(),
+                        canMarkersOverflow: true,
+                        defaultTextStyle: const TextStyle(
+                            fontFamily: 'assets\fontsBarlowBarlow-Bold.ttf',
+                            color: Colors.white,
+                            fontSize: 17,
+                            fontWeight: FontWeight.w700),
+                        todayTextStyle: const TextStyle(
+                            fontFamily: 'assets\fontsBarlowBarlow-Bold.ttf',
+                            color: Color.fromRGBO(230, 60, 98, 1),
+                            fontSize: 17,
+                            fontWeight: FontWeight.w700),
+                        todayDecoration: const BoxDecoration(
+                          shape: BoxShape.circle,
+                        ),
+                        weekendTextStyle: const TextStyle(
+                            fontFamily: 'assets\fontsBarlowBarlow-Bold.ttf',
+                            color: Colors.white,
+                            fontSize: 17,
+                            fontWeight: FontWeight.w700),
+                        outsideTextStyle: const TextStyle(
+                            fontFamily: 'assets\fontsBarlowBarlow-Bold.ttf',
+                            color: Colors.grey,
+                            fontSize: 17,
+                            fontWeight: FontWeight.w700),
+                        markerMargin: const EdgeInsets.only(top: 3),
+                        markerDecoration: const BoxDecoration(
+                          color: Color.fromRGBO(112, 124, 142, 1),
+                          shape: BoxShape.circle,
+                        ),
+                        markerSize: 5.5,
+                      ),
+                      focusedDay: _focusedDay,
+                      firstDay: kFirstDay,
+                      lastDay: kLastDay,
+                      selectedDayPredicate: (day) =>
+                          isSameDay(_selectedDay, day),
+                      onCalendarCreated: (pageController) =>
+                          loadingSelectedEvent,
+                      onDaySelected: (selectedDay, focusedDay) {
+                        if (!isSameDay(_selectedDay, selectedDay)) {
                           setState(() {
+                            _selectedDay = selectedDay;
                             _focusedDay = focusedDay;
                           });
-                          await loadingInputPeriodData();
+                          loadingSelectedEvent();
+                        }
+                      },
+                      onPageChanged: (focusedDay) async {
+                        setState(() {
+                          _focusedDay = focusedDay;
+                        });
+                        await loadingInputPeriodData();
+                      },
+                      eventLoader: _getEventsForDay,
+                      calendarBuilders: CalendarBuilders(
+                        defaultBuilder: (context, day, focusedDay) {
+                          return Stack(
+                            children: [
+                              hightlightMarker(day, true),
+                            ],
+                          );
                         },
-                        eventLoader: _getEventsForDay,
-                        calendarBuilders: CalendarBuilders(
-                          defaultBuilder: (context, day, focusedDay) {
+                        outsideBuilder: (context, day, focusedDay) {
+                          return Stack(
+                            children: <Widget>[
+                              Center(
+                                child: SizedBox(
+                                  width: 30,
+                                  height: 30,
+                                  child: CenterText(Colors.grey, day),
+                                ),
+                              ),
+                              hightlightMarker(day, false),
+                            ],
+                          );
+                        },
+                        selectedBuilder: (context, day, focusedDay) {
+                          if (normalizeDate(focusedDay) !=
+                              normalizeDate(DateTime.now())) {
                             return Stack(
                               children: [
-                                hightlightMarker(day, true),
-                              ],
-                            );
-                          },
-                          outsideBuilder: (context, day, focusedDay) {
-                            return Stack(
-                              children: <Widget>[
                                 Center(
                                   child: Container(
                                     width: 30,
                                     height: 30,
-                                    child: CenterText(Colors.grey, day),
+                                    decoration: BoxDecoration(
+                                        color: const Color.fromRGBO(
+                                            112, 124, 142, 0.3),
+                                        border: Border.all(
+                                          color: Colors.white,
+                                          width: 1.0,
+                                        ),
+                                        borderRadius: const BorderRadius.all(
+                                            Radius.elliptical(30, 30))),
+                                    child: CenterText(Colors.white, day),
                                   ),
                                 ),
                                 hightlightMarker(day, false),
                               ],
                             );
-                          },
-                          selectedBuilder: (context, day, focusedDay) {
-                            if (normalizeDate(focusedDay) !=
-                                normalizeDate(DateTime.now())) {
-                              return Stack(
-                                children: [
-                                  Center(
-                                    child: Container(
-                                      width: 30,
-                                      height: 30,
-                                      decoration: BoxDecoration(
-                                          color: Color.fromRGBO(
-                                              112, 124, 142, 0.3),
-                                          border: Border.all(
-                                            color: Colors.white,
-                                            width: 1.0,
-                                          ),
-                                          borderRadius: BorderRadius.all(
-                                              Radius.elliptical(30, 30))),
-                                      child: CenterText(Colors.white, day),
+                          } else {
+                            return Center(
+                              child: Container(
+                                width: 33,
+                                height: 33,
+                                decoration: BoxDecoration(
+                                    color: const Color.fromRGBO(
+                                        112, 124, 142, 0.3),
+                                    border: Border.all(
+                                      color: Colors.white,
+                                      width: 1.0,
                                     ),
-                                  ),
-                                  hightlightMarker(day, false),
-                                ],
-                              );
-                            } else {
-                              return Center(
-                                child: Container(
-                                  width: 33,
-                                  height: 33,
-                                  decoration: BoxDecoration(
-                                      color: Color.fromRGBO(112, 124, 142, 0.3),
-                                      border: Border.all(
-                                        color: Colors.white,
-                                        width: 1.0,
-                                      ),
-                                      borderRadius: BorderRadius.all(
-                                          Radius.elliptical(30, 30))),
-                                  child: Center(
-                                    child: Text(
-                                      '${day.day}',
-                                      style: TextStyle(
-                                          fontFamily:
-                                              'assets\fonts\Barlow\Barlow-Bold.ttf',
-                                          color: Color.fromRGBO(230, 60, 98, 1),
-                                          fontSize: 17,
-                                          fontWeight: FontWeight.w700),
-                                    ),
+                                    borderRadius: const BorderRadius.all(
+                                        Radius.elliptical(30, 30))),
+                                child: Center(
+                                  child: Text(
+                                    '${day.day}',
+                                    style: const TextStyle(
+                                        fontFamily:
+                                            'assets\fontsBarlowBarlow-Bold.ttf',
+                                        color: Color.fromRGBO(230, 60, 98, 1),
+                                        fontSize: 17,
+                                        fontWeight: FontWeight.w700),
                                   ),
                                 ),
-                              );
-                            }
-                          },
-                        ),
-                      ),
-                    ),
-                    Divider(
-                      color: Color.fromRGBO(204, 221, 255, 0.1),
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.symmetric(
-                              horizontal: 15, vertical: 24),
-                          child: Text(
-                            'Today, ${DateFormat('d MMMM').format(DateTime.now())}',
-                            style: TextStyle(
-                              fontSize: 20,
-                              fontWeight: FontWeight.w700,
-                              fontFamily: 'assets\fonts\Barlow\Barlow-Bold.ttf',
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                    SizedBox(
-                      child: FutureBuilder<Query$CalendarDay$calendar?>(
-                        future: _selectedDayEvent,
-                        builder: (context, snapshot) {
-                          if (snapshot.connectionState ==
-                              ConnectionState.waiting)
-                            return const Center(
-                              child: SizedBox.square(
-                                dimension: 50,
-                                child: CircularProgressIndicator(),
                               ),
                             );
-                          return _EntriesSlot(snapshot);
+                          }
                         },
                       ),
                     ),
-                  ],
-                ),
+                  ),
+                  const Divider(
+                    color: Color.fromRGBO(204, 221, 255, 0.1),
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 15, vertical: 24),
+                        child: Text(
+                          'Today, ${DateFormat('d MMMM').format(DateTime.now())}',
+                          style: const TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.w700,
+                            fontFamily: 'assets\fontsBarlowBarlow-Bold.ttf',
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                  SizedBox(
+                    child: FutureBuilder<Query$CalendarDay$calendar?>(
+                      future: _selectedDayEvent,
+                      builder: (context, snapshot) {
+                        if (snapshot.connectionState ==
+                            ConnectionState.waiting) {
+                          return const Center(
+                            child: SizedBox.square(
+                              dimension: 50,
+                              child: CircularProgressIndicator(),
+                            ),
+                          );
+                        }
+                        return _EntriesSlot(snapshot);
+                      },
+                    ),
+                  ),
+                ],
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );
@@ -486,16 +480,16 @@ class _CalendarPageState extends ConsumerState<CalendarPage> {
 
 class CenterText extends StatelessWidget {
   final DateTime day;
-  late Color _color;
-  CenterText(this._color, this.day);
+  final Color color;
+  const CenterText(this.color, this.day, {super.key});
   @override
   Widget build(BuildContext context) {
     return Center(
       child: Text(
         '${day.day}',
         style: TextStyle(
-            fontFamily: 'assets\fonts\Barlow\Barlow-Bold.ttf',
-            color: _color,
+            fontFamily: 'assets\fontsBarlowBarlow-Bold.ttf',
+            color: color,
             fontSize: 17,
             fontWeight: FontWeight.w700),
       ),
@@ -511,8 +505,8 @@ class HighLightOpen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.only(top: 10, bottom: 10, left: 6),
-      decoration: BoxDecoration(
+      margin: const EdgeInsets.only(top: 10, bottom: 10, left: 6),
+      decoration: const BoxDecoration(
           color: Color.fromRGBO(110, 176, 230, 0.15),
           borderRadius: BorderRadius.only(
             bottomLeft: Radius.circular(40),
@@ -530,8 +524,8 @@ class HighLightClose extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.only(top: 10, bottom: 10, right: 6),
-      decoration: BoxDecoration(
+      margin: const EdgeInsets.only(top: 10, bottom: 10, right: 6),
+      decoration: const BoxDecoration(
           color: Color.fromRGBO(110, 176, 230, 0.15),
           borderRadius: BorderRadius.only(
             bottomRight: Radius.circular(40),
@@ -549,8 +543,8 @@ class HighLightMiddle extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.only(top: 10, bottom: 10),
-      decoration: BoxDecoration(
+      margin: const EdgeInsets.only(top: 10, bottom: 10),
+      decoration: const BoxDecoration(
         color: Color.fromRGBO(110, 176, 230, 0.15),
       ),
     );
@@ -565,18 +559,18 @@ class HighLightSingle extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.symmetric(horizontal: 6, vertical: 10),
+      margin: const EdgeInsets.symmetric(horizontal: 6, vertical: 10),
       decoration: BoxDecoration(
-          color: Color.fromRGBO(110, 176, 230, 0.15),
+          color: const Color.fromRGBO(110, 176, 230, 0.15),
           borderRadius: BorderRadius.circular(40)),
     );
   }
 }
 
 class _EntriesSlot extends StatelessWidget {
-  final snapshot;
+  final AsyncSnapshot<Query$CalendarDay$calendar?> _snapshot;
 
-  _EntriesSlot(this.snapshot);
+  const _EntriesSlot(this._snapshot);
 
   String calculateDuration(String st, String et) {
     Duration duration = DateTime.parse(et).difference(DateTime.parse(st));
@@ -587,7 +581,7 @@ class _EntriesSlot extends StatelessWidget {
         ? ''
         : '${(duration.inMinutes % 60).toString()}m';
 
-    return '${hour} ${minutes}';
+    return '$hour $minutes';
   }
 
   bool isClassOfEpisodeCalendarEntry(var input) {
@@ -605,16 +599,16 @@ class _EntriesSlot extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var eventsList = snapshot.data?.day.events;
-    var entriesList = snapshot.data?.day.entries;
+    var eventsList = _snapshot.data?.day.events;
+    var entriesList = _snapshot.data?.day.entries;
     return Column(
       children: <Widget>[
         if (entriesList != null && entriesList.isNotEmpty) ...[
           (eventsList != null)
-              ? Padding(
+              ? const Padding(
                   padding: EdgeInsets.symmetric(horizontal: 16),
                 )
-              : Text('ingen bilder'),
+              : const Text('ingen bilder'),
           for (var i = 0; i < entriesList!.length; i++)
             GestureDetector(
               onTapUp: (details) {
@@ -623,7 +617,8 @@ class _EntriesSlot extends StatelessWidget {
                     : null;
               },
               child: Container(
-                padding: EdgeInsets.symmetric(horizontal: 8, vertical: 16),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 8, vertical: 16),
                 decoration: BoxDecoration(
                   color:
                       isHappeningNow(entriesList[i].end, entriesList[i].start)
@@ -632,9 +627,9 @@ class _EntriesSlot extends StatelessWidget {
                   border: Border(
                     left:
                         isHappeningNow(entriesList[i].end, entriesList[i].start)
-                            ? BorderSide(
+                            ? const BorderSide(
                                 color: Color.fromRGBO(230, 60, 98, 1), width: 4)
-                            : BorderSide(width: 4),
+                            : const BorderSide(width: 4),
                   ),
                 ),
                 child: Row(
@@ -648,29 +643,31 @@ class _EntriesSlot extends StatelessWidget {
                             isHappeningNow(
                                     entriesList[i].end, entriesList[i].start)
                                 ? 'Now'
-                                : '${DateTime.parse(entriesList[i].start).toIso8601String().substring(11, 16)}',
+                                : DateTime.parse(entriesList[i].start)
+                                    .toIso8601String()
+                                    .substring(11, 16),
                             style: TextStyle(
                                 fontWeight: FontWeight.w700,
                                 fontSize: 17,
-                                fontFamily:
-                                    'assets\fonts\Barlow\Barlow-Bold.ttf',
+                                fontFamily: 'assets\fontsBarlowBarlow-Bold.ttf',
                                 color: isClassOfEpisodeCalendarEntry(
                                         entriesList[i])
                                     ? Colors.white
                                     : Colors.white54),
                           ),
-                          SizedBox(height: 4),
+                          const SizedBox(height: 4),
                           Text(
-                            '${calculateDuration(entriesList[i].start, entriesList[i].end)}',
+                            calculateDuration(
+                                entriesList[i].start, entriesList[i].end),
                             style: TextStyle(
-                              color:
-                                  isClassOfEpisodeCalendarEntry(entriesList[i])
-                                      ? Color.fromRGBO(112, 124, 142, 1)
-                                      : Color.fromRGBO(112, 124, 142, 0.5),
+                              color: isClassOfEpisodeCalendarEntry(
+                                      entriesList[i])
+                                  ? const Color.fromRGBO(112, 124, 142, 1)
+                                  : const Color.fromRGBO(112, 124, 142, 0.5),
                               fontWeight: FontWeight.w500,
                               fontSize: 14,
                               fontFamily:
-                                  'assets\fonts\Barlow\Barlow-Regular.ttf',
+                                  'assets\fontsBarlowBarlow-Regular.ttf',
                             ),
                           ),
                         ],
@@ -680,19 +677,19 @@ class _EntriesSlot extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          '${entriesList[i].title}',
+                          entriesList[i].title,
                           style: TextStyle(
                               fontWeight: FontWeight.w700,
                               fontSize: 17,
                               fontFamily:
-                                  'assets\fonts\Barlow\Barlow-Regular.ttf',
+                                  'assets\fontsBarlowBarlow-Regular.ttf',
                               color:
                                   isClassOfEpisodeCalendarEntry(entriesList[i])
                                       ? Colors.white
                                       : Colors.white54),
                         ),
-                        SizedBox(height: 4),
-                        Text('${entriesList[i].description}',
+                        const SizedBox(height: 4),
+                        Text(entriesList[i].description,
                             style: TextStyle(
                               color: isHappeningNow(
                                       entriesList[i].end, entriesList[i].start)
@@ -700,11 +697,11 @@ class _EntriesSlot extends StatelessWidget {
                                           entriesList[i])
                                       ? Colors.red
                                       : Colors.pink[800]
-                                  : Color.fromRGBO(110, 176, 230, 1),
+                                  : const Color.fromRGBO(110, 176, 230, 1),
                               fontWeight: FontWeight.w500,
                               fontSize: 14,
                               fontFamily:
-                                  'assets\fonts\Barlow\Barlow-Regular.ttf',
+                                  'assets\fontsBarlowBarlow-Regular.ttf',
                             )),
                       ],
                     ),
@@ -712,20 +709,20 @@ class _EntriesSlot extends StatelessWidget {
                 ),
               ),
             ),
-          TvGuideTime()
+          const TvGuideTime()
         ] else ...[
           Padding(
             padding: const EdgeInsets.symmetric(vertical: 36.0),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
-              children: [
+              children: const [
                 Text(
                   'Ingen planlagte sendinger',
                   style: TextStyle(
                     color: Colors.white,
                     fontWeight: FontWeight.w700,
                     fontSize: 17,
-                    fontFamily: 'assets\fonts\Barlow\Barlow-Regular.ttf',
+                    fontFamily: 'assets\fontsBarlowBarlow-Regular.ttf',
                   ),
                 )
               ],
@@ -738,7 +735,7 @@ class _EntriesSlot extends StatelessWidget {
 }
 
 class TvGuideTime extends StatelessWidget {
-  const TvGuideTime();
+  const TvGuideTime({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -749,10 +746,10 @@ class TvGuideTime extends StatelessWidget {
         children: [
           Text(
             'Tv guide timetable is in your local time: ${DateTime.now().timeZoneName}',
-            style: TextStyle(
+            style: const TextStyle(
               color: Color.fromRGBO(112, 124, 142, 1),
               fontSize: 14,
-              fontFamily: 'assets\fonts\Barlow\Barlow-Regular.ttf',
+              fontFamily: 'assets\fontsBarlowBarlow-Regular.ttf',
             ),
           ),
         ],
