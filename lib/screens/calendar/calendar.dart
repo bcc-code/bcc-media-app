@@ -74,6 +74,9 @@ class _CalendarPageState extends ConsumerState<CalendarPage> {
     return DateFormat("yyyy-MM-ddTHH:mm:ss'Z'").format(time);
   }
 
+  //HH:mm
+  //{DateFormat('HH:mm').format(DateTime.parse(entriesList[i].start))}
+
   String convertToIso8601inDays(DateTime time) {
     return DateFormat('yyyy-MM-dd').format(time);
   }
@@ -268,7 +271,7 @@ class _CalendarPageState extends ConsumerState<CalendarPage> {
                                 : DateFormat.MMMM().format(date).toString(),
                         headerMargin: EdgeInsets.zero,
                         titleTextStyle: const TextStyle(
-                            fontFamily: 'assets\fontsBarlowBarlow-Bold.ttf',
+                            fontFamily: 'Barlow',
                             color: Color.fromRGBO(112, 124, 142, 1),
                             fontSize: 17,
                             fontWeight: FontWeight.w700),
@@ -289,12 +292,12 @@ class _CalendarPageState extends ConsumerState<CalendarPage> {
                         tableBorder: TableBorder.symmetric(),
                         canMarkersOverflow: true,
                         defaultTextStyle: const TextStyle(
-                            fontFamily: 'assets\fontsBarlowBarlow-Bold.ttf',
+                            fontFamily: 'Barlow',
                             color: Colors.white,
                             fontSize: 17,
                             fontWeight: FontWeight.w700),
                         todayTextStyle: const TextStyle(
-                            fontFamily: 'assets\fontsBarlowBarlow-Bold.ttf',
+                            fontFamily: 'Barlow',
                             color: Color.fromRGBO(230, 60, 98, 1),
                             fontSize: 17,
                             fontWeight: FontWeight.w700),
@@ -302,12 +305,12 @@ class _CalendarPageState extends ConsumerState<CalendarPage> {
                           shape: BoxShape.circle,
                         ),
                         weekendTextStyle: const TextStyle(
-                            fontFamily: 'assets\fontsBarlowBarlow-Bold.ttf',
+                            fontFamily: 'Barlow',
                             color: Colors.white,
                             fontSize: 17,
                             fontWeight: FontWeight.w700),
                         outsideTextStyle: const TextStyle(
-                            fontFamily: 'assets\fontsBarlowBarlow-Bold.ttf',
+                            fontFamily: 'Barlow',
                             color: Colors.grey,
                             fontSize: 17,
                             fontWeight: FontWeight.w700),
@@ -401,8 +404,7 @@ class _CalendarPageState extends ConsumerState<CalendarPage> {
                                   child: Text(
                                     '${day.day}',
                                     style: const TextStyle(
-                                        fontFamily:
-                                            'assets\fontsBarlowBarlow-Bold.ttf',
+                                        fontFamily: 'Barlow',
                                         color: Color.fromRGBO(230, 60, 98, 1),
                                         fontSize: 17,
                                         fontWeight: FontWeight.w700),
@@ -429,7 +431,7 @@ class _CalendarPageState extends ConsumerState<CalendarPage> {
                           style: const TextStyle(
                             fontSize: 20,
                             fontWeight: FontWeight.w700,
-                            fontFamily: 'assets\fontsBarlowBarlow-Bold.ttf',
+                            fontFamily: 'Barlow',
                           ),
                         ),
                       ),
@@ -472,7 +474,7 @@ class CenterText extends StatelessWidget {
       child: Text(
         '${day.day}',
         style: TextStyle(
-            fontFamily: 'assets\fontsBarlowBarlow-Bold.ttf',
+            fontFamily: 'Barlow',
             color: color,
             fontSize: 17,
             fontWeight: FontWeight.w700),
@@ -558,14 +560,12 @@ class _EntriesSlot extends StatelessWidget {
 
   String calculateDuration(String st, String et) {
     Duration duration = DateTime.parse(et).difference(DateTime.parse(st));
-    String hour = (duration.inHours % 24 == 0 && duration.inHours != 24)
-        ? ''
-        : '${(duration.inHours).toString()}h';
+    String hour = (duration.inHours == 0) ? '' : '${duration.inHours}h';
     String minutes = duration.inMinutes % 60 == 0
         ? ''
         : '${(duration.inMinutes % 60).toString()}m';
 
-    return '$hour $minutes';
+    return '$hour $minutes'.trim();
   }
 
   bool isClassOfEpisodeCalendarEntry(var input) {
@@ -605,7 +605,9 @@ class _EntriesSlot extends StatelessWidget {
                 padding:
                     const EdgeInsets.symmetric(horizontal: 8, vertical: 16),
                 decoration: BoxDecoration(
-                  color: isHappeningNow(entriesList[i]) ? Colors.red : null,
+                  color: isHappeningNow(entriesList[i])
+                      ? const Color.fromRGBO(230, 60, 98, 0.1)
+                      : null,
                   border: Border(
                     left: isHappeningNow(entriesList[i])
                         ? const BorderSide(
@@ -623,13 +625,12 @@ class _EntriesSlot extends StatelessWidget {
                           Text(
                             isHappeningNow(entriesList[i])
                                 ? 'Now'
-                                : DateTime.parse(entriesList[i].start)
-                                    .toIso8601String()
-                                    .substring(11, 16),
+                                : DateFormat('HH:mm').format(
+                                    DateTime.parse(entriesList[i].start)),
                             style: TextStyle(
                                 fontWeight: FontWeight.w700,
                                 fontSize: 17,
-                                fontFamily: 'assets\fontsBarlowBarlow-Bold.ttf',
+                                fontFamily: 'Barlow',
                                 color: isClassOfEpisodeCalendarEntry(
                                         entriesList[i])
                                     ? Colors.white
@@ -646,8 +647,7 @@ class _EntriesSlot extends StatelessWidget {
                                   : const Color.fromRGBO(112, 124, 142, 0.5),
                               fontWeight: FontWeight.w500,
                               fontSize: 14,
-                              fontFamily:
-                                  'assets\fontsBarlowBarlow-Regular.ttf',
+                              fontFamily: 'Barlow',
                             ),
                           ),
                         ],
@@ -661,8 +661,7 @@ class _EntriesSlot extends StatelessWidget {
                           style: TextStyle(
                               fontWeight: FontWeight.w700,
                               fontSize: 17,
-                              fontFamily:
-                                  'assets\fontsBarlowBarlow-Regular.ttf',
+                              fontFamily: 'Barlow',
                               color:
                                   isClassOfEpisodeCalendarEntry(entriesList[i])
                                       ? Colors.white
@@ -679,8 +678,7 @@ class _EntriesSlot extends StatelessWidget {
                                   : const Color.fromRGBO(110, 176, 230, 1),
                               fontWeight: FontWeight.w500,
                               fontSize: 14,
-                              fontFamily:
-                                  'assets\fontsBarlowBarlow-Regular.ttf',
+                              fontFamily: 'Barlow',
                             )),
                       ],
                     ),
@@ -701,7 +699,7 @@ class _EntriesSlot extends StatelessWidget {
                     color: Colors.white,
                     fontWeight: FontWeight.w700,
                     fontSize: 17,
-                    fontFamily: 'assets\fontsBarlowBarlow-Regular.ttf',
+                    fontFamily: 'Barlow',
                   ),
                 )
               ],
@@ -728,7 +726,7 @@ class TvGuideTime extends StatelessWidget {
             style: const TextStyle(
               color: Color.fromRGBO(112, 124, 142, 1),
               fontSize: 14,
-              fontFamily: 'assets\fontsBarlowBarlow-Regular.ttf',
+              fontFamily: 'Barlow',
             ),
           ),
         ],
