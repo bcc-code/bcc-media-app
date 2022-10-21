@@ -77,4 +77,8 @@ abstract class PlaybackPlatformInterface extends PlatformInterface {
   void setAppConfig(AppConfig? config) {
     throw UnimplementedError('setAppConfig() has not been implemented.');
   }
+
+  void setPlayerViewVisibility(int viewId, bool visible) {
+    throw UnimplementedError('setAppConfig() has not been implemented.');
+  }
 }

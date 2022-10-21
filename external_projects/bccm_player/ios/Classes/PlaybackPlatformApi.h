@@ -51,18 +51,20 @@ typedef NS_ENUM(NSUInteger, CastConnectionState) {
 @end
 
 @interface MediaItem : NSObject
-/// `init` unavailable to enforce nonnull fields, see the `make` class method.
-- (instancetype)init NS_UNAVAILABLE;
-+ (instancetype)makeWithUrl:(NSString *)url
++ (instancetype)makeWithUrl:(nullable NSString *)url
     mimeType:(nullable NSString *)mimeType
     metadata:(nullable MediaMetadata *)metadata
     isLive:(nullable NSNumber *)isLive
-    playbackStartPositionMs:(nullable NSNumber *)playbackStartPositionMs;
-@property(nonatomic, copy) NSString * url;
+    playbackStartPositionMs:(nullable NSNumber *)playbackStartPositionMs
+    lastKnownAudioLanguage:(nullable NSString *)lastKnownAudioLanguage
+    lastKnownSubtitleLanguage:(nullable NSString *)lastKnownSubtitleLanguage;
+@property(nonatomic, copy, nullable) NSString * url;
 @property(nonatomic, copy, nullable) NSString * mimeType;
 @property(nonatomic, strong, nullable) MediaMetadata * metadata;
 @property(nonatomic, strong, nullable) NSNumber * isLive;
 @property(nonatomic, strong, nullable) NSNumber * playbackStartPositionMs;
+@property(nonatomic, copy, nullable) NSString * lastKnownAudioLanguage;
+@property(nonatomic, copy, nullable) NSString * lastKnownSubtitleLanguage;
 @end
 
 @interface MediaMetadata : NSObject
@@ -70,19 +72,21 @@ typedef NS_ENUM(NSUInteger, CastConnectionState) {
     title:(nullable NSString *)title
     artist:(nullable NSString *)artist
     episodeId:(nullable NSString *)episodeId
-    extras:(nullable NSDictionary<NSString *, NSString *> *)extras;
+    extras:(nullable NSDictionary<NSString *, id> *)extras;
 @property(nonatomic, copy, nullable) NSString * artworkUri;
 @property(nonatomic, copy, nullable) NSString * title;
 @property(nonatomic, copy, nullable) NSString * artist;
 @property(nonatomic, copy, nullable) NSString * episodeId;
-@property(nonatomic, strong, nullable) NSDictionary<NSString *, NSString *> * extras;
+@property(nonatomic, strong, nullable) NSDictionary<NSString *, id> * extras;
 @end
 
 @interface ChromecastState : NSObject
 /// `init` unavailable to enforce nonnull fields, see the `make` class method.
 - (instancetype)init NS_UNAVAILABLE;
-+ (instancetype)makeWithConnectionState:(CastConnectionState)connectionState;
++ (instancetype)makeWithConnectionState:(CastConnectionState)connectionState
+    mediaItem:(nullable MediaItem *)mediaItem;
 @property(nonatomic, assign) CastConnectionState connectionState;
+@property(nonatomic, strong, nullable) MediaItem * mediaItem;
 @end
 
 @interface PositionUpdateEvent : NSObject
@@ -128,6 +132,7 @@ NSObject<FlutterMessageCodec> *PlaybackPlatformPigeonGetCodec(void);
 - (void)newPlayer:(nullable NSString *)url completion:(void(^)(NSString *_Nullable, FlutterError *_Nullable))completion;
 - (void)queueMediaItem:(NSString *)playerId mediaItem:(MediaItem *)mediaItem completion:(void(^)(FlutterError *_Nullable))completion;
 - (void)replaceCurrentMediaItem:(NSString *)playerId mediaItem:(MediaItem *)mediaItem playbackPositionFromPrimary:(nullable NSNumber *)playbackPositionFromPrimary autoplay:(nullable NSNumber *)autoplay completion:(void(^)(FlutterError *_Nullable))completion;
+- (void)setPlayerViewVisibility:(NSNumber *)viewId visible:(NSNumber *)visible error:(FlutterError *_Nullable *_Nonnull)error;
 - (void)setPrimary:(NSString *)id completion:(void(^)(FlutterError *_Nullable))completion;
 - (void)play:(NSString *)playerId error:(FlutterError *_Nullable *_Nonnull)error;
 - (void)pause:(NSString *)playerId error:(FlutterError *_Nullable *_Nonnull)error;

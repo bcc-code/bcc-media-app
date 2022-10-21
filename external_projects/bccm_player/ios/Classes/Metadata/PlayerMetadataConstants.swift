@@ -10,5 +10,4 @@ final class PlayerMetadataConstants {
     static let EpisodeId = "episode_id";
     static let MimeType = "mime_type";
     static let IsLive = "is_live";
-    static let ExtrasJson = "extras_json";
 }

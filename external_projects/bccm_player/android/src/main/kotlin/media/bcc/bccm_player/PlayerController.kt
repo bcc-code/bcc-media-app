@@ -6,7 +6,9 @@ import androidx.media3.common.MediaItem
 import androidx.media3.common.MediaMetadata
 import androidx.media3.common.Player
 import com.npaw.youbora.lib6.exoplayer2.Exoplayer2Adapter
+import media.bcc.bccm_player.CastMediaItemConverter.Companion.BCCM_EXTRAS
 import media.bcc.bccm_player.CastMediaItemConverter.Companion.PLAYER_DATA_IS_LIVE
+import media.bcc.bccm_player.CastMediaItemConverter.Companion.PLAYER_DATA_MIME_TYPE
 import media.bcc.player.PlaybackPlatformApi
 
 
@@ -35,10 +37,8 @@ abstract class PlayerController() : Player.Listener {
             playbackStartPositionMs = mediaItem.playbackStartPositionMs
         }
         player.setMediaItem(androidMi, playbackStartPositionMs ?: 0)
-        if (autoplay == true) {
-            player.prepare()
-            player.play()
-        }
+        player.playWhenReady = autoplay == true
+        player.prepare()
     }
 
     fun queueMediaItem(mediaItem: PlaybackPlatformApi.MediaItem) {
@@ -52,7 +52,9 @@ abstract class PlayerController() : Player.Listener {
             val value = source[sourceKey]
             if (!sourceKey.contains("media.bcc.extras.") || value !is String) continue
             val newKey = sourceKey.substring(sourceKey.indexOf("media.bcc.extras.") + "media.bcc.extras.".length)
-            extraMeta[newKey] = source[sourceKey].toString();
+            source[sourceKey]?.toString()?.let {
+                extraMeta[newKey] = it;
+            }
         }
         return extraMeta;
     }
@@ -74,7 +76,9 @@ abstract class PlayerController() : Player.Listener {
         val sourceExtra = mediaItem.metadata?.extras;
         if (sourceExtra != null) {
             for (extra in sourceExtra) {
-                extraMeta.putString("media.bcc.extras." + extra.key, extra.value);
+                (extra.value as? String?).let {
+                    extraMeta.putString(BCCM_EXTRAS + "." + extra.key, it);
+                }
             }
         }
 
@@ -91,28 +95,30 @@ abstract class PlayerController() : Player.Listener {
     }
 
     fun mapMediaItem(mediaItem: MediaItem): PlaybackPlatformApi.MediaItem {
+
         val metaBuilder = PlaybackPlatformApi.MediaMetadata.Builder();
         if (mediaItem.mediaMetadata.artworkUri != null) {
-            metaBuilder.setArtworkUri(mediaItem.mediaMetadata.artworkUri.toString())
+            metaBuilder.setArtworkUri(mediaItem.mediaMetadata.artworkUri?.toString())
         }
         val episodeId = mediaItem.mediaMetadata.extras?.getString("episode_id");
         if (episodeId != null) {
             metaBuilder.setEpisodeId(episodeId);
         }
-        metaBuilder.setTitle(mediaItem.mediaMetadata.title.toString());
-        metaBuilder.setArtist(mediaItem.mediaMetadata.artist.toString());
+        metaBuilder.setTitle(mediaItem.mediaMetadata.title?.toString());
+        metaBuilder.setArtist(mediaItem.mediaMetadata.artist?.toString());
         var extraMeta: Map<String, String> = mutableMapOf()
         val sourceExtras = mediaItem.mediaMetadata.extras;
         if (sourceExtras != null) {
             extraMeta = extractExtrasFromAndroid(sourceExtras)
         }
         metaBuilder.setExtras(extraMeta)
-
         val miBuilder = PlaybackPlatformApi.MediaItem.Builder()
-                .setUrl(mediaItem.localConfiguration?.uri.toString())
-                .setIsLive(extraMeta["is_live"] == "true")
+                .setUrl(mediaItem.localConfiguration?.uri?.toString())
+                .setIsLive(extraMeta[PLAYER_DATA_IS_LIVE] == "true")
                 .setMetadata(metaBuilder.build())
-        if (mediaItem.localConfiguration?.mimeType != null) {
+        if (extraMeta[PLAYER_DATA_MIME_TYPE] != null) {
+            miBuilder.setMimeType(extraMeta[PLAYER_DATA_MIME_TYPE]);
+        } else if (mediaItem.localConfiguration?.mimeType != null) {
             miBuilder.setMimeType(mediaItem.localConfiguration?.mimeType);
         }
         return miBuilder.build()

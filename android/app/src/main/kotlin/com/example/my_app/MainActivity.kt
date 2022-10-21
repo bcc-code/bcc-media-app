@@ -24,10 +24,8 @@ class MainActivity: FlutterFragmentActivity() {
         requestWindowFeature(Window.FEATURE_ACTIVITY_TRANSITIONS);
     }
 
-
     override fun configureFlutterEngine(@NonNull flutterEngine: FlutterEngine) {
         super.configureFlutterEngine(flutterEngine)
-
 
         MethodChannel(flutterEngine.dartExecutor.binaryMessenger, _channel).setMethodCallHandler {
             call, result ->

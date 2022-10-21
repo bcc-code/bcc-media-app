@@ -17,6 +17,7 @@
             "request": "launch",
             "type": "dart",
             "flutterMode": "profile",
+            "args": ["--flavor", "prod"],
             "cwd": "${workspaceFolder}",
             "program": "lib/main.dart"
         },
@@ -25,6 +26,7 @@
             "request": "launch",
             "type": "dart",
             "flutterMode": "release",
+            "args": ["--flavor", "prod"],
             "cwd": "${workspaceFolder}",
             "program": "lib/main.dart"
         }

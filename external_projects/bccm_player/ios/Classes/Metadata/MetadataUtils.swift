@@ -37,14 +37,4 @@ final class MetadataUtils {
         item.extendedLanguageTag = "und"
         return item.copy() as? AVMetadataItem
     }
-    
-    static func dictToJson(_ dictionary: [String: String]) -> String? {
-        do {
-            let jsonData: Data = try JSONSerialization.data(withJSONObject: dictionary)
-            return String(data: jsonData, encoding: .utf8)
-        } catch {
-            print(error.localizedDescription)
-            return nil;
-        }
-    }
 }

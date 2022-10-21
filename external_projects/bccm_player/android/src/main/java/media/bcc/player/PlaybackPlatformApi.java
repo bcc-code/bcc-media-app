@@ -196,12 +196,9 @@ public class PlaybackPlatformApi {
 
   /** Generated class from Pigeon that represents data sent in messages. */
   public static class MediaItem {
-    private @NonNull String url;
-    public @NonNull String getUrl() { return url; }
-    public void setUrl(@NonNull String setterArg) {
-      if (setterArg == null) {
-        throw new IllegalStateException("Nonnull field \"url\" is null.");
-      }
+    private @Nullable String url;
+    public @Nullable String getUrl() { return url; }
+    public void setUrl(@Nullable String setterArg) {
       this.url = setterArg;
     }
 
@@ -229,11 +226,21 @@ public class PlaybackPlatformApi {
       this.playbackStartPositionMs = setterArg;
     }
 
-    /** Constructor is private to enforce null safety; use Builder. */
-    private MediaItem() {}
+    private @Nullable String lastKnownAudioLanguage;
+    public @Nullable String getLastKnownAudioLanguage() { return lastKnownAudioLanguage; }
+    public void setLastKnownAudioLanguage(@Nullable String setterArg) {
+      this.lastKnownAudioLanguage = setterArg;
+    }
+
+    private @Nullable String lastKnownSubtitleLanguage;
+    public @Nullable String getLastKnownSubtitleLanguage() { return lastKnownSubtitleLanguage; }
+    public void setLastKnownSubtitleLanguage(@Nullable String setterArg) {
+      this.lastKnownSubtitleLanguage = setterArg;
+    }
+
     public static final class Builder {
       private @Nullable String url;
-      public @NonNull Builder setUrl(@NonNull String setterArg) {
+      public @NonNull Builder setUrl(@Nullable String setterArg) {
         this.url = setterArg;
         return this;
       }
@@ -257,6 +264,16 @@ public class PlaybackPlatformApi {
         this.playbackStartPositionMs = setterArg;
         return this;
       }
+      private @Nullable String lastKnownAudioLanguage;
+      public @NonNull Builder setLastKnownAudioLanguage(@Nullable String setterArg) {
+        this.lastKnownAudioLanguage = setterArg;
+        return this;
+      }
+      private @Nullable String lastKnownSubtitleLanguage;
+      public @NonNull Builder setLastKnownSubtitleLanguage(@Nullable String setterArg) {
+        this.lastKnownSubtitleLanguage = setterArg;
+        return this;
+      }
       public @NonNull MediaItem build() {
         MediaItem pigeonReturn = new MediaItem();
         pigeonReturn.setUrl(url);
@@ -264,6 +281,8 @@ public class PlaybackPlatformApi {
         pigeonReturn.setMetadata(metadata);
         pigeonReturn.setIsLive(isLive);
         pigeonReturn.setPlaybackStartPositionMs(playbackStartPositionMs);
+        pigeonReturn.setLastKnownAudioLanguage(lastKnownAudioLanguage);
+        pigeonReturn.setLastKnownSubtitleLanguage(lastKnownSubtitleLanguage);
         return pigeonReturn;
       }
     }
@@ -274,6 +293,8 @@ public class PlaybackPlatformApi {
       toMapResult.put("metadata", (metadata == null) ? null : metadata.toMap());
       toMapResult.put("isLive", isLive);
       toMapResult.put("playbackStartPositionMs", playbackStartPositionMs);
+      toMapResult.put("lastKnownAudioLanguage", lastKnownAudioLanguage);
+      toMapResult.put("lastKnownSubtitleLanguage", lastKnownSubtitleLanguage);
       return toMapResult;
     }
     static @NonNull MediaItem fromMap(@NonNull Map<String, Object> map) {
@@ -288,6 +309,10 @@ public class PlaybackPlatformApi {
       pigeonResult.setIsLive((Boolean)isLive);
       Object playbackStartPositionMs = map.get("playbackStartPositionMs");
       pigeonResult.setPlaybackStartPositionMs((playbackStartPositionMs == null) ? null : ((playbackStartPositionMs instanceof Integer) ? (Integer)playbackStartPositionMs : (Long)playbackStartPositionMs));
+      Object lastKnownAudioLanguage = map.get("lastKnownAudioLanguage");
+      pigeonResult.setLastKnownAudioLanguage((String)lastKnownAudioLanguage);
+      Object lastKnownSubtitleLanguage = map.get("lastKnownSubtitleLanguage");
+      pigeonResult.setLastKnownSubtitleLanguage((String)lastKnownSubtitleLanguage);
       return pigeonResult;
     }
   }
@@ -318,9 +343,9 @@ public class PlaybackPlatformApi {
       this.episodeId = setterArg;
     }
 
-    private @Nullable Map<String, String> extras;
-    public @Nullable Map<String, String> getExtras() { return extras; }
-    public void setExtras(@Nullable Map<String, String> setterArg) {
+    private @Nullable Map<String, Object> extras;
+    public @Nullable Map<String, Object> getExtras() { return extras; }
+    public void setExtras(@Nullable Map<String, Object> setterArg) {
       this.extras = setterArg;
     }
 
@@ -345,8 +370,8 @@ public class PlaybackPlatformApi {
         this.episodeId = setterArg;
         return this;
       }
-      private @Nullable Map<String, String> extras;
-      public @NonNull Builder setExtras(@Nullable Map<String, String> setterArg) {
+      private @Nullable Map<String, Object> extras;
+      public @NonNull Builder setExtras(@Nullable Map<String, Object> setterArg) {
         this.extras = setterArg;
         return this;
       }
@@ -380,7 +405,7 @@ public class PlaybackPlatformApi {
       Object episodeId = map.get("episodeId");
       pigeonResult.setEpisodeId((String)episodeId);
       Object extras = map.get("extras");
-      pigeonResult.setExtras((Map<String, String>)extras);
+      pigeonResult.setExtras((Map<String, Object>)extras);
       return pigeonResult;
     }
   }
@@ -396,6 +421,12 @@ public class PlaybackPlatformApi {
       this.connectionState = setterArg;
     }
 
+    private @Nullable MediaItem mediaItem;
+    public @Nullable MediaItem getMediaItem() { return mediaItem; }
+    public void setMediaItem(@Nullable MediaItem setterArg) {
+      this.mediaItem = setterArg;
+    }
+
     /** Constructor is private to enforce null safety; use Builder. */
     private ChromecastState() {}
     public static final class Builder {
@@ -404,21 +435,30 @@ public class PlaybackPlatformApi {
         this.connectionState = setterArg;
         return this;
       }
+      private @Nullable MediaItem mediaItem;
+      public @NonNull Builder setMediaItem(@Nullable MediaItem setterArg) {
+        this.mediaItem = setterArg;
+        return this;
+      }
       public @NonNull ChromecastState build() {
         ChromecastState pigeonReturn = new ChromecastState();
         pigeonReturn.setConnectionState(connectionState);
+        pigeonReturn.setMediaItem(mediaItem);
         return pigeonReturn;
       }
     }
     @NonNull Map<String, Object> toMap() {
       Map<String, Object> toMapResult = new HashMap<>();
       toMapResult.put("connectionState", connectionState == null ? null : connectionState.index);
+      toMapResult.put("mediaItem", (mediaItem == null) ? null : mediaItem.toMap());
       return toMapResult;
     }
     static @NonNull ChromecastState fromMap(@NonNull Map<String, Object> map) {
       ChromecastState pigeonResult = new ChromecastState();
       Object connectionState = map.get("connectionState");
       pigeonResult.setConnectionState(connectionState == null ? null : CastConnectionState.values()[(int)connectionState]);
+      Object mediaItem = map.get("mediaItem");
+      pigeonResult.setMediaItem((mediaItem == null) ? null : MediaItem.fromMap((Map)mediaItem));
       return pigeonResult;
     }
   }
@@ -711,6 +751,7 @@ public class PlaybackPlatformApi {
     void newPlayer(@Nullable String url, Result<String> result);
     void queueMediaItem(@NonNull String playerId, @NonNull MediaItem mediaItem, Result<Void> result);
     void replaceCurrentMediaItem(@NonNull String playerId, @NonNull MediaItem mediaItem, @Nullable Boolean playbackPositionFromPrimary, @Nullable Boolean autoplay, Result<Void> result);
+    void setPlayerViewVisibility(@NonNull Long viewId, @NonNull Boolean visible);
     void setPrimary(@NonNull String id, Result<Void> result);
     void play(@NonNull String playerId);
     void pause(@NonNull String playerId);
@@ -833,6 +874,34 @@ public class PlaybackPlatformApi {
               wrapped.put("error", wrapError(exception));
               reply.reply(wrapped);
             }
+          });
+        } else {
+          channel.setMessageHandler(null);
+        }
+      }
+      {
+        BasicMessageChannel<Object> channel =
+            new BasicMessageChannel<>(binaryMessenger, "dev.flutter.pigeon.PlaybackPlatformPigeon.setPlayerViewVisibility", getCodec());
+        if (api != null) {
+          channel.setMessageHandler((message, reply) -> {
+            Map<String, Object> wrapped = new HashMap<>();
+            try {
+              ArrayList<Object> args = (ArrayList<Object>)message;
+              Number viewIdArg = (Number)args.get(0);
+              if (viewIdArg == null) {
+                throw new NullPointerException("viewIdArg unexpectedly null.");
+              }
+              Boolean visibleArg = (Boolean)args.get(1);
+              if (visibleArg == null) {
+                throw new NullPointerException("visibleArg unexpectedly null.");
+              }
+              api.setPlayerViewVisibility((viewIdArg == null) ? null : viewIdArg.longValue(), visibleArg);
+              wrapped.put("result", null);
+            }
+            catch (Error | RuntimeException exception) {
+              wrapped.put("error", wrapError(exception));
+            }
+            reply.reply(wrapped);
           });
         } else {
           channel.setMessageHandler(null);

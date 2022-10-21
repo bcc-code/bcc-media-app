@@ -156,27 +156,32 @@ static id GetNullableObjectAtIndex(NSArray* array, NSInteger key) {
 @end
 
 @implementation MediaItem
-+ (instancetype)makeWithUrl:(NSString *)url
++ (instancetype)makeWithUrl:(nullable NSString *)url
     mimeType:(nullable NSString *)mimeType
     metadata:(nullable MediaMetadata *)metadata
     isLive:(nullable NSNumber *)isLive
-    playbackStartPositionMs:(nullable NSNumber *)playbackStartPositionMs {
+    playbackStartPositionMs:(nullable NSNumber *)playbackStartPositionMs
+    lastKnownAudioLanguage:(nullable NSString *)lastKnownAudioLanguage
+    lastKnownSubtitleLanguage:(nullable NSString *)lastKnownSubtitleLanguage {
   MediaItem* pigeonResult = [[MediaItem alloc] init];
   pigeonResult.url = url;
   pigeonResult.mimeType = mimeType;
   pigeonResult.metadata = metadata;
   pigeonResult.isLive = isLive;
   pigeonResult.playbackStartPositionMs = playbackStartPositionMs;
+  pigeonResult.lastKnownAudioLanguage = lastKnownAudioLanguage;
+  pigeonResult.lastKnownSubtitleLanguage = lastKnownSubtitleLanguage;
   return pigeonResult;
 }
 + (MediaItem *)fromMap:(NSDictionary *)dict {
   MediaItem *pigeonResult = [[MediaItem alloc] init];
   pigeonResult.url = GetNullableObject(dict, @"url");
-  NSAssert(pigeonResult.url != nil, @"");
   pigeonResult.mimeType = GetNullableObject(dict, @"mimeType");
   pigeonResult.metadata = [MediaMetadata nullableFromMap:GetNullableObject(dict, @"metadata")];
   pigeonResult.isLive = GetNullableObject(dict, @"isLive");
   pigeonResult.playbackStartPositionMs = GetNullableObject(dict, @"playbackStartPositionMs");
+  pigeonResult.lastKnownAudioLanguage = GetNullableObject(dict, @"lastKnownAudioLanguage");
+  pigeonResult.lastKnownSubtitleLanguage = GetNullableObject(dict, @"lastKnownSubtitleLanguage");
   return pigeonResult;
 }
 + (nullable MediaItem *)nullableFromMap:(NSDictionary *)dict { return (dict) ? [MediaItem fromMap:dict] : nil; }
@@ -187,6 +192,8 @@ static id GetNullableObjectAtIndex(NSArray* array, NSInteger key) {
     @"metadata" : (self.metadata ? [self.metadata toMap] : [NSNull null]),
     @"isLive" : (self.isLive ?: [NSNull null]),
     @"playbackStartPositionMs" : (self.playbackStartPositionMs ?: [NSNull null]),
+    @"lastKnownAudioLanguage" : (self.lastKnownAudioLanguage ?: [NSNull null]),
+    @"lastKnownSubtitleLanguage" : (self.lastKnownSubtitleLanguage ?: [NSNull null]),
   };
 }
 @end
@@ -196,7 +203,7 @@ static id GetNullableObjectAtIndex(NSArray* array, NSInteger key) {
     title:(nullable NSString *)title
     artist:(nullable NSString *)artist
     episodeId:(nullable NSString *)episodeId
-    extras:(nullable NSDictionary<NSString *, NSString *> *)extras {
+    extras:(nullable NSDictionary<NSString *, id> *)extras {
   MediaMetadata* pigeonResult = [[MediaMetadata alloc] init];
   pigeonResult.artworkUri = artworkUri;
   pigeonResult.title = title;
@@ -227,20 +234,24 @@ static id GetNullableObjectAtIndex(NSArray* array, NSInteger key) {
 @end
 
 @implementation ChromecastState
-+ (instancetype)makeWithConnectionState:(CastConnectionState)connectionState {
++ (instancetype)makeWithConnectionState:(CastConnectionState)connectionState
+    mediaItem:(nullable MediaItem *)mediaItem {
   ChromecastState* pigeonResult = [[ChromecastState alloc] init];
   pigeonResult.connectionState = connectionState;
+  pigeonResult.mediaItem = mediaItem;
   return pigeonResult;
 }
 + (ChromecastState *)fromMap:(NSDictionary *)dict {
   ChromecastState *pigeonResult = [[ChromecastState alloc] init];
   pigeonResult.connectionState = [GetNullableObject(dict, @"connectionState") integerValue];
+  pigeonResult.mediaItem = [MediaItem nullableFromMap:GetNullableObject(dict, @"mediaItem")];
   return pigeonResult;
 }
 + (nullable ChromecastState *)nullableFromMap:(NSDictionary *)dict { return (dict) ? [ChromecastState fromMap:dict] : nil; }
 - (NSDictionary *)toMap {
   return @{
     @"connectionState" : @(self.connectionState),
+    @"mediaItem" : (self.mediaItem ? [self.mediaItem toMap] : [NSNull null]),
   };
 }
 @end
@@ -490,6 +501,27 @@ void PlaybackPlatformPigeonSetup(id<FlutterBinaryMessenger> binaryMessenger, NSO
         [api replaceCurrentMediaItem:arg_playerId mediaItem:arg_mediaItem playbackPositionFromPrimary:arg_playbackPositionFromPrimary autoplay:arg_autoplay completion:^(FlutterError *_Nullable error) {
           callback(wrapResult(nil, error));
         }];
+      }];
+    }
+    else {
+      [channel setMessageHandler:nil];
+    }
+  }
+  {
+    FlutterBasicMessageChannel *channel =
+      [[FlutterBasicMessageChannel alloc]
+        initWithName:@"dev.flutter.pigeon.PlaybackPlatformPigeon.setPlayerViewVisibility"
+        binaryMessenger:binaryMessenger
+        codec:PlaybackPlatformPigeonGetCodec()        ];
+    if (api) {
+      NSCAssert([api respondsToSelector:@selector(setPlayerViewVisibility:visible:error:)], @"PlaybackPlatformPigeon api (%@) doesn't respond to @selector(setPlayerViewVisibility:visible:error:)", api);
+      [channel setMessageHandler:^(id _Nullable message, FlutterReply callback) {
+        NSArray *args = message;
+        NSNumber *arg_viewId = GetNullableObjectAtIndex(args, 0);
+        NSNumber *arg_visible = GetNullableObjectAtIndex(args, 1);
+        FlutterError *error;
+        [api setPlayerViewVisibility:arg_viewId visible:arg_visible error:&error];
+        callback(wrapResult(nil, error));
       }];
     }
     else {

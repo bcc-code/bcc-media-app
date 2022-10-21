@@ -40,7 +40,7 @@ class BccmCastPlayerView(
     }
 
     fun setup() {
-        LayoutInflater.from(context).inflate(R.layout.btvplayer_view, _v, true)
+        LayoutInflater.from(context).inflate(R.layout.player_view, _v, true)
 
         val playerView = _v.findViewById<PlayerView>(R.id.brunstad_player)
                 .also { _playerView = it }

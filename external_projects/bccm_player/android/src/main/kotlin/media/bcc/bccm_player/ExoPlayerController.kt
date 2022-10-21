@@ -196,14 +196,6 @@ class ExoPlayerController(private val context: Context) : PlayerController(), Pl
         exoPlayer.release()
     }
 
-    override fun onPositionDiscontinuity(oldPosition: Player.PositionInfo, newPosition: Player.PositionInfo, reason: Int) {
-
-    }
-
-    override fun onIsPlayingChanged(isPlaying: Boolean) {
-
-    }
-
     override fun onMediaItemTransition(mediaItem: MediaItem?, reason: Int) {
         mediaItem?.mediaMetadata?.let { onMediaMetadataChanged(it) }
     }

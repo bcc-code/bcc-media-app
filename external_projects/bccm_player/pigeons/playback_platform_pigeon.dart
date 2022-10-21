@@ -21,6 +21,9 @@ abstract class PlaybackPlatformPigeon {
   void replaceCurrentMediaItem(String playerId, MediaItem mediaItem,
       bool? playbackPositionFromPrimary, bool? autoplay);
 
+  @ObjCSelector("setPlayerViewVisibility:visible:")
+  void setPlayerViewVisibility(int viewId, bool visible);
+
   @async
   @ObjCSelector("setPrimary:")
   void setPrimary(String id);
@@ -77,11 +80,13 @@ class SetUrlArgs {
 }
 
 class MediaItem {
-  late String url;
+  String? url;
   String? mimeType;
   MediaMetadata? metadata;
   bool? isLive;
   int? playbackStartPositionMs;
+  String? lastKnownAudioLanguage;
+  String? lastKnownSubtitleLanguage;
 }
 
 class MediaMetadata {
@@ -89,11 +94,12 @@ class MediaMetadata {
   String? title;
   String? artist;
   String? episodeId;
-  Map<String?, String?>? extras;
+  Map<String?, Object?>? extras;
 }
 
 class ChromecastState {
   late CastConnectionState connectionState;
+  MediaItem? mediaItem;
 }
 
 enum CastConnectionState {
