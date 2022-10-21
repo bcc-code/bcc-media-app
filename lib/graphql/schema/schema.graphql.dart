@@ -34,11 +34,9 @@ const possibleTypesMap = {
     'QuestionPagination',
     'FAQCategoryPagination',
     'SectionPagination',
-    'LinkItemPagination',
     'SectionItemPagination',
   },
   'CollectionItem': {
-    'URLItem',
     'ShowItem',
     'SeasonItem',
     'EpisodeItem',
@@ -56,31 +54,26 @@ const possibleTypesMap = {
     'ShowSearchItem',
   },
   'Section': {
-    'IconSection',
-    'LabelSection',
     'PosterSection',
     'FeaturedSection',
     'DefaultSection',
     'GridSection',
-  },
-  'LinkSection': {
     'IconSection',
     'LabelSection',
-  },
-  'LinkItem': {
-    'PageLinkItem',
-    'URLLinkItem',
   },
   'ItemSection': {
     'PosterSection',
     'FeaturedSection',
     'DefaultSection',
     'GridSection',
+    'IconSection',
+    'LabelSection',
   },
   'SectionItemType': {
     'Show',
     'Season',
     'Episode',
     'Page',
+    'Link',
   },
 };

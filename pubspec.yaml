@@ -54,6 +54,10 @@ dependencies:
   # package to fetch device info
   device_info_plus: ^4.1.2
   package_info_plus: ^1.4.3+1
+  # calendar
+  table_calendar: ^3.0.7
+  #
+  intl: ^0.17.0
   graphql: ^5.1.1
   graphql_flutter: ^5.1.0
   auth0_flutter: 1.0.1

@@ -13,15 +13,6 @@ type CollectionItemPagination implements Pagination {
     items: [CollectionItem!]!
 }
 
-type URLItem implements CollectionItem {
-    id: ID!
-    sort: Int!
-    title: String!
-    imageUrl: String
-    images: [Image!]!
-    url: String!
-}
-
 type ShowItem implements CollectionItem {
     id: ID!
     sort: Int!

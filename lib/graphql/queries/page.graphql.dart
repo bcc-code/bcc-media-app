@@ -1848,6 +1848,12 @@ class Query$Page$page$sections$items {
       case "GridSection":
         return Query$Page$page$sections$items$$GridSection.fromJson(json);
 
+      case "IconSection":
+        return Query$Page$page$sections$items$$IconSection.fromJson(json);
+
+      case "LabelSection":
+        return Query$Page$page$sections$items$$LabelSection.fromJson(json);
+
       default:
         final l$$__typename = json['__typename'];
         return Query$Page$page$sections$items(
@@ -3212,6 +3218,640 @@ class _CopyWithStubImpl$Query$Page$page$sections$items$$GridSection$items<TRes>
     implements
         CopyWith$Query$Page$page$sections$items$$GridSection$items<TRes> {
   _CopyWithStubImpl$Query$Page$page$sections$items$$GridSection$items(
+      this._res);
+
+  TRes _res;
+
+  call({
+    List<Fragment$ItemSectionItem>? items,
+    String? $__typename,
+  }) =>
+      _res;
+  items(_fn) => _res;
+}
+
+class Query$Page$page$sections$items$$IconSection
+    implements Fragment$ItemSection, Query$Page$page$sections$items {
+  Query$Page$page$sections$items$$IconSection({
+    required this.$__typename,
+    this.title,
+    required this.items,
+  });
+
+  factory Query$Page$page$sections$items$$IconSection.fromJson(
+      Map<String, dynamic> json) {
+    final l$$__typename = json['__typename'];
+    final l$title = json['title'];
+    final l$items = json['items'];
+    return Query$Page$page$sections$items$$IconSection(
+      $__typename: (l$$__typename as String),
+      title: (l$title as String?),
+      items: Query$Page$page$sections$items$$IconSection$items.fromJson(
+          (l$items as Map<String, dynamic>)),
+    );
+  }
+
+  final String $__typename;
+
+  final String? title;
+
+  final Query$Page$page$sections$items$$IconSection$items items;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$title = title;
+    _resultData['title'] = l$title;
+    final l$items = items;
+    _resultData['items'] = l$items.toJson();
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$$__typename = $__typename;
+    final l$title = title;
+    final l$items = items;
+    return Object.hashAll([
+      l$$__typename,
+      l$title,
+      l$items,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (!(other is Query$Page$page$sections$items$$IconSection) ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    final l$title = title;
+    final lOther$title = other.title;
+    if (l$title != lOther$title) {
+      return false;
+    }
+    final l$items = items;
+    final lOther$items = other.items;
+    if (l$items != lOther$items) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Query$Page$page$sections$items$$IconSection
+    on Query$Page$page$sections$items$$IconSection {
+  CopyWith$Query$Page$page$sections$items$$IconSection<
+          Query$Page$page$sections$items$$IconSection>
+      get copyWith => CopyWith$Query$Page$page$sections$items$$IconSection(
+            this,
+            (i) => i,
+          );
+}
+
+abstract class CopyWith$Query$Page$page$sections$items$$IconSection<TRes> {
+  factory CopyWith$Query$Page$page$sections$items$$IconSection(
+    Query$Page$page$sections$items$$IconSection instance,
+    TRes Function(Query$Page$page$sections$items$$IconSection) then,
+  ) = _CopyWithImpl$Query$Page$page$sections$items$$IconSection;
+
+  factory CopyWith$Query$Page$page$sections$items$$IconSection.stub(TRes res) =
+      _CopyWithStubImpl$Query$Page$page$sections$items$$IconSection;
+
+  TRes call({
+    String? $__typename,
+    String? title,
+    Query$Page$page$sections$items$$IconSection$items? items,
+  });
+  CopyWith$Query$Page$page$sections$items$$IconSection$items<TRes> get items;
+}
+
+class _CopyWithImpl$Query$Page$page$sections$items$$IconSection<TRes>
+    implements CopyWith$Query$Page$page$sections$items$$IconSection<TRes> {
+  _CopyWithImpl$Query$Page$page$sections$items$$IconSection(
+    this._instance,
+    this._then,
+  );
+
+  final Query$Page$page$sections$items$$IconSection _instance;
+
+  final TRes Function(Query$Page$page$sections$items$$IconSection) _then;
+
+  static const _undefined = {};
+
+  TRes call({
+    Object? $__typename = _undefined,
+    Object? title = _undefined,
+    Object? items = _undefined,
+  }) =>
+      _then(Query$Page$page$sections$items$$IconSection(
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+        title: title == _undefined ? _instance.title : (title as String?),
+        items: items == _undefined || items == null
+            ? _instance.items
+            : (items as Query$Page$page$sections$items$$IconSection$items),
+      ));
+  CopyWith$Query$Page$page$sections$items$$IconSection$items<TRes> get items {
+    final local$items = _instance.items;
+    return CopyWith$Query$Page$page$sections$items$$IconSection$items(
+        local$items, (e) => call(items: e));
+  }
+}
+
+class _CopyWithStubImpl$Query$Page$page$sections$items$$IconSection<TRes>
+    implements CopyWith$Query$Page$page$sections$items$$IconSection<TRes> {
+  _CopyWithStubImpl$Query$Page$page$sections$items$$IconSection(this._res);
+
+  TRes _res;
+
+  call({
+    String? $__typename,
+    String? title,
+    Query$Page$page$sections$items$$IconSection$items? items,
+  }) =>
+      _res;
+  CopyWith$Query$Page$page$sections$items$$IconSection$items<TRes> get items =>
+      CopyWith$Query$Page$page$sections$items$$IconSection$items.stub(_res);
+}
+
+class Query$Page$page$sections$items$$IconSection$items
+    implements Fragment$ItemSection$items {
+  Query$Page$page$sections$items$$IconSection$items({
+    required this.items,
+    required this.$__typename,
+  });
+
+  factory Query$Page$page$sections$items$$IconSection$items.fromJson(
+      Map<String, dynamic> json) {
+    final l$items = json['items'];
+    final l$$__typename = json['__typename'];
+    return Query$Page$page$sections$items$$IconSection$items(
+      items: (l$items as List<dynamic>)
+          .map((e) =>
+              Fragment$ItemSectionItem.fromJson((e as Map<String, dynamic>)))
+          .toList(),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final List<Fragment$ItemSectionItem> items;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$items = items;
+    _resultData['items'] = l$items.map((e) => e.toJson()).toList();
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$items = items;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      Object.hashAll(l$items.map((v) => v)),
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (!(other is Query$Page$page$sections$items$$IconSection$items) ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$items = items;
+    final lOther$items = other.items;
+    if (l$items.length != lOther$items.length) {
+      return false;
+    }
+    for (int i = 0; i < l$items.length; i++) {
+      final l$items$entry = l$items[i];
+      final lOther$items$entry = lOther$items[i];
+      if (l$items$entry != lOther$items$entry) {
+        return false;
+      }
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Query$Page$page$sections$items$$IconSection$items
+    on Query$Page$page$sections$items$$IconSection$items {
+  CopyWith$Query$Page$page$sections$items$$IconSection$items<
+          Query$Page$page$sections$items$$IconSection$items>
+      get copyWith =>
+          CopyWith$Query$Page$page$sections$items$$IconSection$items(
+            this,
+            (i) => i,
+          );
+}
+
+abstract class CopyWith$Query$Page$page$sections$items$$IconSection$items<
+    TRes> {
+  factory CopyWith$Query$Page$page$sections$items$$IconSection$items(
+    Query$Page$page$sections$items$$IconSection$items instance,
+    TRes Function(Query$Page$page$sections$items$$IconSection$items) then,
+  ) = _CopyWithImpl$Query$Page$page$sections$items$$IconSection$items;
+
+  factory CopyWith$Query$Page$page$sections$items$$IconSection$items.stub(
+          TRes res) =
+      _CopyWithStubImpl$Query$Page$page$sections$items$$IconSection$items;
+
+  TRes call({
+    List<Fragment$ItemSectionItem>? items,
+    String? $__typename,
+  });
+  TRes items(
+      Iterable<Fragment$ItemSectionItem> Function(
+              Iterable<
+                  CopyWith$Fragment$ItemSectionItem<Fragment$ItemSectionItem>>)
+          _fn);
+}
+
+class _CopyWithImpl$Query$Page$page$sections$items$$IconSection$items<TRes>
+    implements
+        CopyWith$Query$Page$page$sections$items$$IconSection$items<TRes> {
+  _CopyWithImpl$Query$Page$page$sections$items$$IconSection$items(
+    this._instance,
+    this._then,
+  );
+
+  final Query$Page$page$sections$items$$IconSection$items _instance;
+
+  final TRes Function(Query$Page$page$sections$items$$IconSection$items) _then;
+
+  static const _undefined = {};
+
+  TRes call({
+    Object? items = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(Query$Page$page$sections$items$$IconSection$items(
+        items: items == _undefined || items == null
+            ? _instance.items
+            : (items as List<Fragment$ItemSectionItem>),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+  TRes items(
+          Iterable<Fragment$ItemSectionItem> Function(
+                  Iterable<
+                      CopyWith$Fragment$ItemSectionItem<
+                          Fragment$ItemSectionItem>>)
+              _fn) =>
+      call(
+          items:
+              _fn(_instance.items.map((e) => CopyWith$Fragment$ItemSectionItem(
+                    e,
+                    (i) => i,
+                  ))).toList());
+}
+
+class _CopyWithStubImpl$Query$Page$page$sections$items$$IconSection$items<TRes>
+    implements
+        CopyWith$Query$Page$page$sections$items$$IconSection$items<TRes> {
+  _CopyWithStubImpl$Query$Page$page$sections$items$$IconSection$items(
+      this._res);
+
+  TRes _res;
+
+  call({
+    List<Fragment$ItemSectionItem>? items,
+    String? $__typename,
+  }) =>
+      _res;
+  items(_fn) => _res;
+}
+
+class Query$Page$page$sections$items$$LabelSection
+    implements Fragment$ItemSection, Query$Page$page$sections$items {
+  Query$Page$page$sections$items$$LabelSection({
+    required this.$__typename,
+    this.title,
+    required this.items,
+  });
+
+  factory Query$Page$page$sections$items$$LabelSection.fromJson(
+      Map<String, dynamic> json) {
+    final l$$__typename = json['__typename'];
+    final l$title = json['title'];
+    final l$items = json['items'];
+    return Query$Page$page$sections$items$$LabelSection(
+      $__typename: (l$$__typename as String),
+      title: (l$title as String?),
+      items: Query$Page$page$sections$items$$LabelSection$items.fromJson(
+          (l$items as Map<String, dynamic>)),
+    );
+  }
+
+  final String $__typename;
+
+  final String? title;
+
+  final Query$Page$page$sections$items$$LabelSection$items items;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$title = title;
+    _resultData['title'] = l$title;
+    final l$items = items;
+    _resultData['items'] = l$items.toJson();
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$$__typename = $__typename;
+    final l$title = title;
+    final l$items = items;
+    return Object.hashAll([
+      l$$__typename,
+      l$title,
+      l$items,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (!(other is Query$Page$page$sections$items$$LabelSection) ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    final l$title = title;
+    final lOther$title = other.title;
+    if (l$title != lOther$title) {
+      return false;
+    }
+    final l$items = items;
+    final lOther$items = other.items;
+    if (l$items != lOther$items) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Query$Page$page$sections$items$$LabelSection
+    on Query$Page$page$sections$items$$LabelSection {
+  CopyWith$Query$Page$page$sections$items$$LabelSection<
+          Query$Page$page$sections$items$$LabelSection>
+      get copyWith => CopyWith$Query$Page$page$sections$items$$LabelSection(
+            this,
+            (i) => i,
+          );
+}
+
+abstract class CopyWith$Query$Page$page$sections$items$$LabelSection<TRes> {
+  factory CopyWith$Query$Page$page$sections$items$$LabelSection(
+    Query$Page$page$sections$items$$LabelSection instance,
+    TRes Function(Query$Page$page$sections$items$$LabelSection) then,
+  ) = _CopyWithImpl$Query$Page$page$sections$items$$LabelSection;
+
+  factory CopyWith$Query$Page$page$sections$items$$LabelSection.stub(TRes res) =
+      _CopyWithStubImpl$Query$Page$page$sections$items$$LabelSection;
+
+  TRes call({
+    String? $__typename,
+    String? title,
+    Query$Page$page$sections$items$$LabelSection$items? items,
+  });
+  CopyWith$Query$Page$page$sections$items$$LabelSection$items<TRes> get items;
+}
+
+class _CopyWithImpl$Query$Page$page$sections$items$$LabelSection<TRes>
+    implements CopyWith$Query$Page$page$sections$items$$LabelSection<TRes> {
+  _CopyWithImpl$Query$Page$page$sections$items$$LabelSection(
+    this._instance,
+    this._then,
+  );
+
+  final Query$Page$page$sections$items$$LabelSection _instance;
+
+  final TRes Function(Query$Page$page$sections$items$$LabelSection) _then;
+
+  static const _undefined = {};
+
+  TRes call({
+    Object? $__typename = _undefined,
+    Object? title = _undefined,
+    Object? items = _undefined,
+  }) =>
+      _then(Query$Page$page$sections$items$$LabelSection(
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+        title: title == _undefined ? _instance.title : (title as String?),
+        items: items == _undefined || items == null
+            ? _instance.items
+            : (items as Query$Page$page$sections$items$$LabelSection$items),
+      ));
+  CopyWith$Query$Page$page$sections$items$$LabelSection$items<TRes> get items {
+    final local$items = _instance.items;
+    return CopyWith$Query$Page$page$sections$items$$LabelSection$items(
+        local$items, (e) => call(items: e));
+  }
+}
+
+class _CopyWithStubImpl$Query$Page$page$sections$items$$LabelSection<TRes>
+    implements CopyWith$Query$Page$page$sections$items$$LabelSection<TRes> {
+  _CopyWithStubImpl$Query$Page$page$sections$items$$LabelSection(this._res);
+
+  TRes _res;
+
+  call({
+    String? $__typename,
+    String? title,
+    Query$Page$page$sections$items$$LabelSection$items? items,
+  }) =>
+      _res;
+  CopyWith$Query$Page$page$sections$items$$LabelSection$items<TRes> get items =>
+      CopyWith$Query$Page$page$sections$items$$LabelSection$items.stub(_res);
+}
+
+class Query$Page$page$sections$items$$LabelSection$items
+    implements Fragment$ItemSection$items {
+  Query$Page$page$sections$items$$LabelSection$items({
+    required this.items,
+    required this.$__typename,
+  });
+
+  factory Query$Page$page$sections$items$$LabelSection$items.fromJson(
+      Map<String, dynamic> json) {
+    final l$items = json['items'];
+    final l$$__typename = json['__typename'];
+    return Query$Page$page$sections$items$$LabelSection$items(
+      items: (l$items as List<dynamic>)
+          .map((e) =>
+              Fragment$ItemSectionItem.fromJson((e as Map<String, dynamic>)))
+          .toList(),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final List<Fragment$ItemSectionItem> items;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$items = items;
+    _resultData['items'] = l$items.map((e) => e.toJson()).toList();
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$items = items;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      Object.hashAll(l$items.map((v) => v)),
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (!(other is Query$Page$page$sections$items$$LabelSection$items) ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$items = items;
+    final lOther$items = other.items;
+    if (l$items.length != lOther$items.length) {
+      return false;
+    }
+    for (int i = 0; i < l$items.length; i++) {
+      final l$items$entry = l$items[i];
+      final lOther$items$entry = lOther$items[i];
+      if (l$items$entry != lOther$items$entry) {
+        return false;
+      }
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Query$Page$page$sections$items$$LabelSection$items
+    on Query$Page$page$sections$items$$LabelSection$items {
+  CopyWith$Query$Page$page$sections$items$$LabelSection$items<
+          Query$Page$page$sections$items$$LabelSection$items>
+      get copyWith =>
+          CopyWith$Query$Page$page$sections$items$$LabelSection$items(
+            this,
+            (i) => i,
+          );
+}
+
+abstract class CopyWith$Query$Page$page$sections$items$$LabelSection$items<
+    TRes> {
+  factory CopyWith$Query$Page$page$sections$items$$LabelSection$items(
+    Query$Page$page$sections$items$$LabelSection$items instance,
+    TRes Function(Query$Page$page$sections$items$$LabelSection$items) then,
+  ) = _CopyWithImpl$Query$Page$page$sections$items$$LabelSection$items;
+
+  factory CopyWith$Query$Page$page$sections$items$$LabelSection$items.stub(
+          TRes res) =
+      _CopyWithStubImpl$Query$Page$page$sections$items$$LabelSection$items;
+
+  TRes call({
+    List<Fragment$ItemSectionItem>? items,
+    String? $__typename,
+  });
+  TRes items(
+      Iterable<Fragment$ItemSectionItem> Function(
+              Iterable<
+                  CopyWith$Fragment$ItemSectionItem<Fragment$ItemSectionItem>>)
+          _fn);
+}
+
+class _CopyWithImpl$Query$Page$page$sections$items$$LabelSection$items<TRes>
+    implements
+        CopyWith$Query$Page$page$sections$items$$LabelSection$items<TRes> {
+  _CopyWithImpl$Query$Page$page$sections$items$$LabelSection$items(
+    this._instance,
+    this._then,
+  );
+
+  final Query$Page$page$sections$items$$LabelSection$items _instance;
+
+  final TRes Function(Query$Page$page$sections$items$$LabelSection$items) _then;
+
+  static const _undefined = {};
+
+  TRes call({
+    Object? items = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(Query$Page$page$sections$items$$LabelSection$items(
+        items: items == _undefined || items == null
+            ? _instance.items
+            : (items as List<Fragment$ItemSectionItem>),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+  TRes items(
+          Iterable<Fragment$ItemSectionItem> Function(
+                  Iterable<
+                      CopyWith$Fragment$ItemSectionItem<
+                          Fragment$ItemSectionItem>>)
+              _fn) =>
+      call(
+          items:
+              _fn(_instance.items.map((e) => CopyWith$Fragment$ItemSectionItem(
+                    e,
+                    (i) => i,
+                  ))).toList());
+}
+
+class _CopyWithStubImpl$Query$Page$page$sections$items$$LabelSection$items<TRes>
+    implements
+        CopyWith$Query$Page$page$sections$items$$LabelSection$items<TRes> {
+  _CopyWithStubImpl$Query$Page$page$sections$items$$LabelSection$items(
       this._res);
 
   TRes _res;
