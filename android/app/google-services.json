@@ -31,10 +31,10 @@
               "client_type": 3
             },
             {
-              "client_id": "16643555326-ekipcbraq4ke3e2jnsli36997bco1hsa.apps.googleusercontent.com",
+              "client_id": "16643555326-8m0psdauoik1cb0ga17u565j5umrjfh4.apps.googleusercontent.com",
               "client_type": 2,
               "ios_info": {
-                "bundle_id": "tv.brunstad.app.dev"
+                "bundle_id": "tv.brunstad.app.v4.dev"
               }
             }
           ]
@@ -67,10 +67,10 @@
               "client_type": 3
             },
             {
-              "client_id": "16643555326-ekipcbraq4ke3e2jnsli36997bco1hsa.apps.googleusercontent.com",
+              "client_id": "16643555326-8m0psdauoik1cb0ga17u565j5umrjfh4.apps.googleusercontent.com",
               "client_type": 2,
               "ios_info": {
-                "bundle_id": "tv.brunstad.app.dev"
+                "bundle_id": "tv.brunstad.app.v4.dev"
               }
             }
           ]
@@ -103,10 +103,10 @@
               "client_type": 3
             },
             {
-              "client_id": "16643555326-ekipcbraq4ke3e2jnsli36997bco1hsa.apps.googleusercontent.com",
+              "client_id": "16643555326-8m0psdauoik1cb0ga17u565j5umrjfh4.apps.googleusercontent.com",
               "client_type": 2,
               "ios_info": {
-                "bundle_id": "tv.brunstad.app.dev"
+                "bundle_id": "tv.brunstad.app.v4.dev"
               }
             }
           ]
@@ -139,10 +139,10 @@
               "client_type": 3
             },
             {
-              "client_id": "16643555326-ekipcbraq4ke3e2jnsli36997bco1hsa.apps.googleusercontent.com",
+              "client_id": "16643555326-8m0psdauoik1cb0ga17u565j5umrjfh4.apps.googleusercontent.com",
               "client_type": 2,
               "ios_info": {
-                "bundle_id": "tv.brunstad.app.dev"
+                "bundle_id": "tv.brunstad.app.v4.dev"
               }
             }
           ]
