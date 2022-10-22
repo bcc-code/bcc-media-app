@@ -15,6 +15,7 @@
 		97C146FC1CF9000F007C117D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 97C146FA1CF9000F007C117D /* Main.storyboard */; };
 		97C146FE1CF9000F007C117D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 97C146FD1CF9000F007C117D /* Assets.xcassets */; };
 		97C147011CF9000F007C117D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 97C146FF1CF9000F007C117D /* LaunchScreen.storyboard */; };
+		A70FAD90A63DE435708FE658 /* GoogleService-Info.plist in Sources */ = {isa = PBXBuildFile; fileRef = 54F352901D70C1ABD306AD4E /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -39,6 +40,7 @@
 		3B3967151E833CAA004F5970 /* AppFrameworkInfo.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = AppFrameworkInfo.plist; path = Flutter/AppFrameworkInfo.plist; sourceTree = "<group>"; };
 		3E83B1BD7BC40E4B3250F5E6 /* Pods-Runner.profile.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Runner.profile.xcconfig"; path = "Target Support Files/Pods-Runner/Pods-Runner.profile.xcconfig"; sourceTree = "<group>"; };
 		475671DFE29B809298E742CD /* Pods-Runner.profile-dev.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Runner.profile-dev.xcconfig"; path = "Target Support Files/Pods-Runner/Pods-Runner.profile-dev.xcconfig"; sourceTree = "<group>"; };
+		54F352901D70C1ABD306AD4E /* GoogleService-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		74858FAD1ED2DC5600515810 /* Runner-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Runner-Bridging-Header.h"; sourceTree = "<group>"; };
 		74858FAE1ED2DC5600515810 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7AFA3C8E1D35360C0083082E /* Release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = Release.xcconfig; path = Flutter/Release.xcconfig; sourceTree = "<group>"; };
@@ -90,6 +92,22 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		8189A69329041DBE009B13E3 /* Firebase */ = {
+			isa = PBXGroup;
+			children = (
+				8189A69429041DC8009B13E3 /* dev */,
+			);
+			path = Firebase;
+			sourceTree = "<group>";
+		};
+		8189A69429041DC8009B13E3 /* dev */ = {
+			isa = PBXGroup;
+			children = (
+				54F352901D70C1ABD306AD4E /* GoogleService-Info.plist */,
+			);
+			path = dev;
+			sourceTree = "<group>";
+		};
 		9740EEB11CF90186004384FC /* Flutter */ = {
 			isa = PBXGroup;
 			children = (
@@ -104,6 +122,7 @@
 		97C146E51CF9000F007C117D = {
 			isa = PBXGroup;
 			children = (
+				8189A69329041DBE009B13E3 /* Firebase */,
 				9740EEB11CF90186004384FC /* Flutter */,
 				97C146F01CF9000F007C117D /* Runner */,
 				97C146EF1CF9000F007C117D /* Products */,
@@ -301,6 +320,7 @@
 				74858FAF1ED2DC5600515810 /* AppDelegate.swift in Sources */,
 				8186027F286AFB0300D7DDEE /* PlayerViewController.swift in Sources */,
 				1498D2341E8E89220040F4C2 /* GeneratedPluginRegistrant.m in Sources */,
+				A70FAD90A63DE435708FE658 /* GoogleService-Info.plist in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -386,6 +406,7 @@
 				DEVELOPMENT_ASSET_PATHS = "";
 				DEVELOPMENT_TEAM = 2E82C4Q94P;
 				ENABLE_BITCODE = NO;
+				FLUTTER_TARGET = lib/main_prod.dart;
 				INFOPLIST_FILE = "Runner/Info-$(CONFIGURATION).plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -467,6 +488,7 @@
 				DEVELOPMENT_ASSET_PATHS = "";
 				DEVELOPMENT_TEAM = 2E82C4Q94P;
 				ENABLE_BITCODE = NO;
+				FLUTTER_TARGET = lib/main_dev.dart;
 				INFOPLIST_FILE = "Runner/Info-$(CONFIGURATION).plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -545,6 +567,7 @@
 				DEVELOPMENT_ASSET_PATHS = "";
 				DEVELOPMENT_TEAM = 2E82C4Q94P;
 				ENABLE_BITCODE = NO;
+				FLUTTER_TARGET = lib/main_dev.dart;
 				INFOPLIST_FILE = "Runner/Info-$(CONFIGURATION).plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -620,6 +643,7 @@
 				DEVELOPMENT_ASSET_PATHS = "";
 				DEVELOPMENT_TEAM = 2E82C4Q94P;
 				ENABLE_BITCODE = NO;
+				FLUTTER_TARGET = lib/main_dev.dart;
 				INFOPLIST_FILE = "Runner/Info-$(CONFIGURATION).plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -753,6 +777,7 @@
 				DEVELOPMENT_ASSET_PATHS = "";
 				DEVELOPMENT_TEAM = 2E82C4Q94P;
 				ENABLE_BITCODE = NO;
+				FLUTTER_TARGET = lib/main_prod.dart;
 				INFOPLIST_FILE = "Runner/Info-$(CONFIGURATION).plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -779,6 +804,7 @@
 				DEVELOPMENT_ASSET_PATHS = "";
 				DEVELOPMENT_TEAM = 2E82C4Q94P;
 				ENABLE_BITCODE = NO;
+				FLUTTER_TARGET = lib/main_prod.dart;
 				INFOPLIST_FILE = "Runner/Info-$(CONFIGURATION).plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (

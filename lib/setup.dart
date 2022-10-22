@@ -29,7 +29,7 @@ Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
   print('${message.data}');
 }
 
-void main() async {
+void setup({required FirebaseOptions? firebaseOptions}) async {
   /* WidgetsFlutterBinding.ensureInitialized();
   var playerId = await PlaybackPlatformInterface.instance.newPlayer();
   await PlaybackPlatformInterface.instance.replaceCurrentMediaItem(
@@ -83,9 +83,9 @@ void main() async {
 
   providerContainer.read(settingsServiceProvider.notifier).load();
 
-  if (kDebugMode && Platform.isAndroid) {
+  if (firebaseOptions != null) {
     await Firebase.initializeApp(
-      options: DevFirebaseOptions.currentPlatform,
+      options: DefaultFirebaseOptions.currentPlatform,
     );
     FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
   }
