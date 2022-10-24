@@ -63,7 +63,8 @@ class _MiniPlayerState extends ConsumerState<MiniPlayer> {
           context.router.navigate(const LiveScreenRoute());
         } else if (id != null) {
           ref.read(tempTitleProvider.notifier).state = title;
-          context.router.popAndPush(EpisodeScreenRoute(episodeId: id));
+          context.navigateTo(HomeScreenWrapperRoute(
+              children: [EpisodeScreenRoute(episodeId: id)]));
         }
       },
       child: _MiniPlayer(
