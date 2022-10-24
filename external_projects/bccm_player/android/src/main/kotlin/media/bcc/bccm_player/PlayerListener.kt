@@ -3,6 +3,7 @@ package media.bcc.bccm_player
 import androidx.media3.common.MediaItem
 import androidx.media3.common.MediaMetadata
 import androidx.media3.common.Player
+import androidx.media3.common.Timeline
 import media.bcc.player.PlaybackPlatformApi
 
 class PlayerListener(private val playerController: PlayerController, val plugin: BccmPlayerPlugin) : Player.Listener {
@@ -25,6 +26,10 @@ class PlayerListener(private val playerController: PlayerController, val plugin:
     }
 
     override fun onMediaMetadataChanged(mediaMetadata: MediaMetadata) {
+        onMediaItemTransition(playerController.player.currentMediaItem, Player.MEDIA_ITEM_TRANSITION_REASON_PLAYLIST_CHANGED);
+    }
+
+    override fun onTimelineChanged(timeline: Timeline, reason: Int) {
         onMediaItemTransition(playerController.player.currentMediaItem, Player.MEDIA_ITEM_TRANSITION_REASON_PLAYLIST_CHANGED);
     }
 

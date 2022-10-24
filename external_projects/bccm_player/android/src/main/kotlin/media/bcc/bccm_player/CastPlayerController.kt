@@ -1,6 +1,7 @@
 package media.bcc.bccm_player
 
 import android.net.Uri
+import android.os.Bundle
 import android.util.Log
 import androidx.media3.cast.CastPlayer
 import androidx.media3.cast.DefaultMediaItemConverter
@@ -19,6 +20,8 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
+import media.bcc.bccm_player.CastMediaItemConverter.Companion.PLAYER_DATA_LAST_KNOWN_AUDIO_LANGUAGE
+import media.bcc.bccm_player.CastMediaItemConverter.Companion.PLAYER_DATA_LAST_KNOWN_SUBTITLE_LANGUAGE
 import media.bcc.player.ChromecastControllerPigeon
 import media.bcc.player.PlaybackPlatformApi
 import org.json.JSONException
@@ -58,7 +61,13 @@ class CastPlayerController(
     }
 
     fun getState(): PlaybackPlatformApi.ChromecastState {
-        return PlaybackPlatformApi.ChromecastState.Builder().setConnectionState(PlaybackPlatformApi.CastConnectionState.values()[castContext.castState]).build()
+        val builder = PlaybackPlatformApi.ChromecastState.Builder();
+        Log.d("bccm", "getState, player currentMediaItem: " + player.currentMediaItem)
+        player.currentMediaItem?.let {
+            builder.setMediaItem(mapMediaItem(it));
+        }
+        builder.setConnectionState(PlaybackPlatformApi.CastConnectionState.values()[castContext.castState]);
+        return builder.build()
     }
 
     private fun handleUpdatedAppConfig(appConfigState: PlaybackPlatformApi.AppConfig?) {
@@ -118,7 +127,13 @@ class CastPlayerController(
         Log.d("Bccm", "Session available. Transferring state from primaryPlayer to castPlayer");
         val primaryPlayer =
                 plugin.getPlaybackService()?.getPrimaryController()?.player ?: return
-        transferState(primaryPlayer, player);
+
+        Log.d("bccm", "oncastsessionavailable + " + player.mediaMetadata.extras?.getString("id"))
+        if (primaryPlayer.isPlaying) {
+            transferState(primaryPlayer, player);
+        } else {
+            primaryPlayer.stop()
+        }
     }
 
     override fun onCastSessionUnavailable() {
@@ -128,28 +143,17 @@ class CastPlayerController(
             event.setPlaybackPositionMs(currentPosition);
         }
         chromecastListenerPigeon.onCastSessionUnavailable(event.build()) {};
-/*
-        Log.d("Bccm", "Session unavailable. Transferring state from castPlayer to primaryPlayer");
-         val primaryPlayer = plugin.getPlaybackService()?.getPrimaryController()?.player ?: throw Error("PlaybackService not active");
-         transferState(primaryPlayer, castPlayer);*/
     }
 
     // Extra
 
     private fun transferState(previous: Player, next: Player) {
-        /*var isLive = false
-        if (previous.isCurrentMediaItemDynamic){
-            val mediaItem = previous.currentMediaItem ?: return;
-            mediaItem.mediaMetadata.extras?.putString("is_live");
-            isLive = true
-            previous.stop()
-            previous.clearMediaItems()
-
-            next.setMediaItem(mediaItem, true)
-            next.playWhenReady = true
-            next.prepare()
-            next.play()
-        }*/
+        val currentTracks = previous.currentTracks;
+        Log.d("bccm", currentTracks.toString())
+        val audioTrack = currentTracks.groups.firstOrNull { it.isSelected && it.type == C.TRACK_TYPE_AUDIO }?.getTrackFormat(0)?.language
+        val subtitleTrack = currentTracks.groups.firstOrNull { it.isSelected && it.type == C.TRACK_TYPE_TEXT }?.getTrackFormat(0)?.language
+        Log.d("bccm", "audioTrack when transferring to cast: $audioTrack")
+        Log.d("bccm", "subtitleTrack when transferring to cast: $subtitleTrack")
 
         // Copy state from primary player
         var playbackPositionMs = C.TIME_UNSET
@@ -158,7 +162,17 @@ class CastPlayerController(
 
         val queue = mutableListOf<MediaItem>()
         for (x in 0 until previous.mediaItemCount) {
-            queue.add(previous.getMediaItemAt(x));
+            val mediaItem = previous.getMediaItemAt(x);
+            val metaBuilder = mediaItem.mediaMetadata.buildUpon();
+            val extras = mediaItem.mediaMetadata.extras ?: Bundle()
+            extras.putString(PLAYER_DATA_LAST_KNOWN_AUDIO_LANGUAGE, audioTrack)
+            extras.putString(PLAYER_DATA_LAST_KNOWN_SUBTITLE_LANGUAGE, subtitleTrack)
+            metaBuilder.setExtras(extras)
+            val newMediaItem = mediaItem
+                    .buildUpon()
+                    .setMediaMetadata(metaBuilder.build())
+                    .build();
+            queue.add(newMediaItem);
         }
 
         if (previous.playbackState != Player.STATE_ENDED) {
@@ -173,7 +187,6 @@ class CastPlayerController(
         }
         previous.stop()
         previous.clearMediaItems()
-
         next.setMediaItems(queue, currentItemIndex, playbackPositionMs)
         next.playWhenReady = true
         next.prepare()

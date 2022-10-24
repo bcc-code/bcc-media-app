@@ -28,9 +28,11 @@ class _LiveScreenState extends ConsumerState<LiveScreen> with AutoRouteAware {
   final TextEditingController _idTokenDisplayController =
       TextEditingController(text: AuthService.instance.idToken);
   Future? playerFuture;
+  LivestreamUrl? liveUrl;
   bool audioOnly = false;
   bool settingUp = false;
   String? error;
+  Timer? refreshTimer;
   Completer? setupCompleter;
 
   @override
@@ -43,7 +45,14 @@ class _LiveScreenState extends ConsumerState<LiveScreen> with AutoRouteAware {
     });
   }
 
+  @override
+  void dispose() {
+    refreshTimer?.cancel();
+    super.dispose();
+  }
+
   Future setup() async {
+    // TODO: move to some playbackservice
     setState(() {
       error = null;
       settingUp = true;
@@ -61,9 +70,11 @@ class _LiveScreenState extends ConsumerState<LiveScreen> with AutoRouteAware {
       var playbackApi = ref.read(playbackApiProvider);
       var liveUrl = await fetchLiveUrl();
 
-      if (player.currentMediaItem?.metadata?.extras?['id'] == 'livestream') {
-        return;
-      }
+      if (!mounted) return;
+
+      setState(() {
+        this.liveUrl = liveUrl;
+      });
 
       await playbackApi.replaceCurrentMediaItem(
           player.playerId,
@@ -78,12 +89,22 @@ class _LiveScreenState extends ConsumerState<LiveScreen> with AutoRouteAware {
                   extras: {'id': 'livestream'},
                   artworkUri:
                       'https://brunstad.tv/static/images/poster_placeholder.jpg')));
-      await ensurePlayingWithinReasonableTime(
+
+      if (!mounted) return;
+
+      ensurePlayingWithinReasonableTime(
           castingNow ? castPlayerProvider : primaryPlayerProvider);
+
+      scheduleRefreshBasedOn(liveUrl.expiryTime);
     }();
-    setState(() {
-      settingUp = false;
-    });
+  }
+
+  void scheduleRefreshBasedOn(DateTime expiryTime) {
+    final durationUntilExpiry = expiryTime.difference(DateTime.now());
+    // Example: if expiry is in 180minutes, we refresh after 162 minutes
+    final durationUntilRefresh =
+        durationUntilExpiry - (durationUntilExpiry * 0.1);
+    refreshTimer = Timer(durationUntilRefresh, () => setup());
   }
 
   void setStateIfMounted(void Function() fn) {
@@ -137,9 +158,6 @@ class _LiveScreenState extends ConsumerState<LiveScreen> with AutoRouteAware {
     var playerProvider = casting ? castPlayerProvider : primaryPlayerProvider;
     var player = ref.watch(playerProvider);
 
-    debugPrint(
-        'bccm: ran build method in "live.dart" ${DateTime.now()}. Casting: $casting, currentMediaItem: ${player?.currentMediaItem?.metadata?.extras?["id"]}');
-
     if (player == null) return const SizedBox.shrink();
     return Scaffold(
       appBar: PreferredSize(
@@ -164,37 +182,29 @@ class _LiveScreenState extends ConsumerState<LiveScreen> with AutoRouteAware {
               ),
             ]),
           )),
-      body: ListView(children: [
-        if (audioOnly)
-          const MiniPlayer()
-        else if (playerFuture == null ||
-            player.currentMediaItem?.metadata?.extras?['id'] != 'livestream')
-          _playPoster(player)
-        else
-          _player(player),
-        const SizedBox(height: 20),
-        const SizedBox(
-            height: 20000,
-            child: Align(
-                alignment: Alignment.topCenter, child: Text('Calendar here'))),
-        //
-      ]),
+      body: SingleChildScrollView(
+        child: Column(children: [
+          if (audioOnly)
+            const MiniPlayer()
+          else if (player.currentMediaItem?.metadata?.extras?['id'] !=
+              'livestream')
+            _playPoster(player)
+          else
+            _player(player),
+          const SizedBox(height: 20),
+          const SizedBox(
+              height: 20000,
+              child: Align(
+                  alignment: Alignment.topCenter,
+                  child: Text('Calendar here'))),
+          //
+        ]),
+      ),
     );
   }
 
-  FutureBuilder<dynamic> _player(Player player) {
-    return FutureBuilder(
-        future: playerFuture,
-        builder: (context, snapshot) {
-          if (snapshot.connectionState == ConnectionState.done) {
-            return BccmPlayer(id: player.playerId);
-          } else if (snapshot.hasError) {
-            return Text(snapshot.error.toString());
-          }
-          return const AspectRatio(
-              aspectRatio: 16 / 9,
-              child: Center(child: CircularProgressIndicator()));
-        });
+  Widget _player(Player player) {
+    return BccmPlayer(id: player.playerId);
   }
 
   Widget _playPoster(Player player) {
@@ -205,28 +215,40 @@ class _LiveScreenState extends ConsumerState<LiveScreen> with AutoRouteAware {
           //excludeFromSemantics: true,
           onTap: () {
             setState(() {
-              playerFuture = setup();
+              setup();
             });
           },
-          child: AspectRatio(
-            aspectRatio: 16 / 9,
-            child: Image.network(
-              'https://brunstad.tv/static/images/placeholder.jpg',
-              fit: BoxFit.fill,
-              width: 64,
-              height: 36,
-            ),
+          child: Column(
+            children: [
+              AspectRatio(
+                aspectRatio: 16 / 9,
+                child: Image.network(
+                  'https://brunstad.tv/static/images/placeholder.jpg',
+                  fit: BoxFit.fill,
+                  width: 64,
+                  height: 36,
+                ),
+              ),
+            ],
           ),
         ),
-        Column(
-          children: [
-            if (error != null && !isCorrectItem(player.currentMediaItem))
-              Text(error ?? ''),
-            Center(
-                child: !settingUp
-                    ? Image.asset('assets/icons/Play.png')
-                    : const CircularProgressIndicator())
-          ],
+        AspectRatio(
+          aspectRatio: 16 / 9,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              if (error != null && !isCorrectItem(player.currentMediaItem))
+                Text(error ?? ''),
+              Center(
+                  child: !settingUp
+                      ? Image.asset(
+                          'assets/icons/Play.png',
+                          gaplessPlayback: true,
+                        )
+                      : const CircularProgressIndicator())
+            ],
+          ),
         ),
       ],
     );

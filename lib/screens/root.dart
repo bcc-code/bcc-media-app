@@ -5,6 +5,7 @@ import 'package:brunstadtv_app/graphql/client.dart';
 import 'package:brunstadtv_app/graphql/queries/devices.graphql.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:brunstadtv_app/providers/chromecast.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:brunstadtv_app/components/mini_player.dart';
@@ -61,6 +62,7 @@ class _RootScreenState extends ConsumerState<RootScreen> with AutoRouteAware {
   }
 
   Future setupPushNotifications() async {
+    if (!kDebugMode || !Platform.isAndroid) return;
     var token = await FirebaseMessaging.instance.getToken();
     print("autoinit: ${FirebaseMessaging.instance.isAutoInitEnabled}");
     print("token: ${token}");
@@ -120,7 +122,7 @@ class _RootScreenState extends ConsumerState<RootScreen> with AutoRouteAware {
           HomeScreenWrapperRoute(),
           SearchScreenWrapperRoute(),
           LiveScreenRoute(),
-          HomeScreenWrapperRoute(),
+          CalendarPageRoute(),
         ],
         builder: (context, child, animation) {
           // obtain the scoped TabsRouter controller using context

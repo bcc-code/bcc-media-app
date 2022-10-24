@@ -1,5 +1,8 @@
+import 'dart:io';
+
 import 'package:bccm_player/playback_platform_pigeon.g.dart';
 import 'package:brunstadtv_app/providers/settings_service.dart';
+import 'package:brunstadtv_app/providers/video_state.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/foundation.dart';
@@ -17,6 +20,7 @@ import 'package:bccm_player/chromecast_pigeon.g.dart';
 import 'package:riverpod/riverpod.dart';
 import 'package:bccm_player/playback_service_interface.dart';
 
+import 'debug_app.dart';
 import 'env/.env.dart';
 import 'env/dev/firebase_options.dart';
 
@@ -26,6 +30,15 @@ Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
 }
 
 void main() async {
+  /* WidgetsFlutterBinding.ensureInitialized();
+  var playerId = await PlaybackPlatformInterface.instance.newPlayer();
+  await PlaybackPlatformInterface.instance.replaceCurrentMediaItem(
+      playerId,
+      MediaItem(
+          url:
+              'https://devstreaming-cdn.apple.com/videos/streaming/examples/img_bipbop_adv_example_fmp4/master.m3u8'));
+  return runApp(DebugApp(playerId: playerId)); */
+
   WidgetsFlutterBinding.ensureInitialized();
 
   SystemChrome.setSystemUIOverlayStyle(
@@ -61,9 +74,16 @@ void main() async {
 
   providerContainer.read(chromecastListenerProvider);
 
-  providerContainer.read(playbackApiProvider).getChromecastState().then(
-      (value) => providerContainer.read(isCasting.notifier).state =
-          value?.connectionState == CastConnectionState.connected);
+  providerContainer
+      .read(playbackApiProvider)
+      .getChromecastState()
+      .then((value) {
+    providerContainer.read(isCasting.notifier).state =
+        value?.connectionState == CastConnectionState.connected;
+    providerContainer
+        .read(castPlayerProvider.notifier)
+        .setMediaItem(value?.mediaItem);
+  });
 
   if (Env.NPAW_ACCOUNT_CODE != '') {
     providerContainer.read(playbackApiProvider).setNpawConfig(NpawConfig(
@@ -74,7 +94,7 @@ void main() async {
 
   providerContainer.read(settingsServiceProvider.notifier).load();
 
-  if (kDebugMode) {
+  if (kDebugMode && Platform.isAndroid) {
     await Firebase.initializeApp(
       options: DevFirebaseOptions.currentPlatform,
     );

@@ -29,7 +29,7 @@ class CastPlayerViewFactory: NSObject, FlutterPlatformViewFactory {
             arguments args: Any?
     ) -> FlutterPlatformView {
         let argDictionary = args as! [String: Any]?
-        let playerController = playbackApi.getPlayer("chromecast")
+        let playerController = playbackApi.getPlayer(CastPlayerController.DEFAULT_ID)
         guard let pc = playerController as? CastPlayerController else {
             fatalError("Playercontroller is of unknown type.");
         }

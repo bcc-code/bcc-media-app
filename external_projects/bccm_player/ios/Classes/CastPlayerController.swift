@@ -10,6 +10,7 @@ import AVFoundation
 import GoogleCast
 
 class CastPlayerController: NSObject, PlayerController  {
+    static let DEFAULT_ID = "chromecast"
     private var playbackApi: PlaybackApiImpl?
     var id: String
     var chromecastPigeon: ChromecastPigeon
@@ -17,10 +18,11 @@ class CastPlayerController: NSObject, PlayerController  {
     var castState: GCKCastState?
     var positionUponEndingSession: TimeInterval?
     var sessionManager: GCKSessionManager?
+    var appConfig: AppConfig? = nil
     final var observers = [NSKeyValueObservation]()
     
     init(chromecastPigeon: ChromecastPigeon, playbackListener: PlaybackListenerPigeon) {
-        self.id = "chromecast"
+        self.id = CastPlayerController.DEFAULT_ID
         self.chromecastPigeon = chromecastPigeon
         self.playbackListener = playbackListener
         let castContext = GCKCastContext.sharedInstance();
@@ -40,6 +42,13 @@ class CastPlayerController: NSObject, PlayerController  {
     public func hasBecomePrimary() {
     }
     
+    func getCurrentItem() -> MediaItem? {
+        if let currentItem = GCKCastContext.sharedInstance().sessionManager.currentCastSession?.remoteMediaClient?.mediaStatus?.currentQueueItem {
+            return mapMediaQueueItem(currentItem)
+        }
+        return nil
+    }
+    
     func setPlaybackApi(_ playbackApi: PlaybackApiImpl) {
         self.playbackApi = playbackApi;
     }
@@ -51,6 +60,10 @@ class CastPlayerController: NSObject, PlayerController  {
     
     func updateNpawConfig(npawConfig: NpawConfig?) {
         
+    }
+    
+    func updateAppConfig(appConfig: AppConfig?) {
+        self.appConfig = appConfig
     }
     
     func replaceCurrentMediaItem(_ mediaItem: MediaItem, autoplay: NSNumber?) {
@@ -98,7 +111,7 @@ class CastPlayerController: NSObject, PlayerController  {
     }
     
     func mapMediaItemToMediaInformation(_ mediaItem: MediaItem) -> GCKMediaInformation? {
-        guard let url = URL(string: mediaItem.url) else {
+        guard let urlString = mediaItem.url, let url = URL(string: urlString) else {
             return nil
         }
         let mediaInfoBuilder = GCKMediaInformationBuilder(contentURL: url);
@@ -107,6 +120,7 @@ class CastPlayerController: NSObject, PlayerController  {
             mediaInfoBuilder.streamType = .live
             playerData[PlayerMetadataConstants.IsLive] = "true"
         }
+        
         if let mimeType = mediaItem.mimeType {
             mediaInfoBuilder.contentType = mimeType
         }
@@ -126,8 +140,13 @@ class CastPlayerController: NSObject, PlayerController  {
                 }
             }
             if let extras = originalMeta.extras {
-                if let extrasJson = MetadataUtils.dictToJson(extras) {
-                    playerData[PlayerMetadataConstants.ExtrasJson] = extrasJson
+                for kv in extras {
+                    if let value = kv.value as? String {
+                        metadata.setString(value, forKey: MetadataNamespace.BccmExtras.rawValue + "." + kv.key)
+                    } else {
+                        var val = kv.value
+                        debugPrint("error!!!!!!!!!!!!! Value is: ")
+                    }
                 }
             }
         }
@@ -135,6 +154,25 @@ class CastPlayerController: NSObject, PlayerController  {
             metadata.setString(kv.value, forKey: MetadataNamespace.BccmPlayer.rawValue + "." + kv.key)
         }
         
+        var customData: [String: Any] = [:]
+        var audioTracks = [String]()
+        var subtitlesTracks = [String]()
+        if let lang = mediaItem.lastKnownAudioLanguage {
+            audioTracks.append(lang)
+        }
+        if let lang = mediaItem.lastKnownSubtitleLanguage {
+            subtitlesTracks.append(lang)
+        }
+        if let lang = appConfig?.audioLanguage {
+            audioTracks.append(lang)
+        }
+        if let lang = appConfig?.subtitleLanguage {
+            subtitlesTracks.append(lang)
+        }
+        customData["audioTracks"] = audioTracks
+        customData["subtitlesTracks"] = subtitlesTracks
+        
+        mediaInfoBuilder.customData = customData
         mediaInfoBuilder.metadata = metadata;
         return mediaInfoBuilder.build();
     }
@@ -178,18 +216,21 @@ class CastPlayerController: NSObject, PlayerController  {
         player.removeAllItems()
         player.pause()
     }
-   
-    var metaTemp: GCKMediaMetadata? = nil
     
-}
-
-extension CastPlayerController : GCKRemoteMediaClientListener {
-    func remoteMediaClient(_ client: GCKRemoteMediaClient, didUpdate mediaMetadata: GCKMediaMetadata?) {
-        debugPrint("something didUpdate mediaMetadata:" + mediaMetadata.debugDescription)
-        debugPrint("is metaTemp same?: " + (metaTemp == mediaMetadata).description)
+    func mapMediaQueueItem(_ mediaQueueItem: GCKMediaQueueItem?) -> MediaItem? {
+        guard let mediaQueueItem = mediaQueueItem else {
+            return nil;
+        }
+        guard let mediaItem = mapMediaMetadata(mediaQueueItem.mediaInformation.metadata) else {
+            return nil
+        }
+        mediaItem.url = mediaQueueItem.mediaInformation.contentURL?.absoluteString
+        return mediaItem
+    }
+    
+    func mapMediaMetadata(_ mediaMetadata: GCKMediaMetadata?) -> MediaItem? {
         guard let mediaMetadata = mediaMetadata else {
-            self.playbackListener.onMediaItemTransition(MediaItemTransitionEvent.make(withPlayerId: self.id, mediaItem: nil), completion: { e in })
-            return;
+            return nil;
         }
        
         let mappedMetadata = MediaMetadata();
@@ -207,21 +248,44 @@ extension CastPlayerController : GCKRemoteMediaClientListener {
             playerData[playerDataKey] = mediaMetadata.string(forKey: metadataKey)
         }
         
-        if let extrasJson = playerData[PlayerMetadataConstants.ExtrasJson]?.data(using: .utf8) {
-            do {
-                let decoded = try JSONSerialization.jsonObject(with: extrasJson, options: [])
-                if let dictFromJSON = decoded as? [String:String] {
-                    mappedMetadata.extras = dictFromJSON
-                }
-            } catch {
-                print (error.localizedDescription)
+        var extras: [String: String] = [:]
+        for metadataKey in mediaMetadata.allKeys() {
+            guard let namespaceStringRange = metadataKey.range(of: MetadataNamespace.BccmExtras.rawValue + ".") else {
+                continue
             }
+            let extrasKey = String(metadataKey[namespaceStringRange.upperBound...]);
+            extras[extrasKey] = mediaMetadata.string(forKey: metadataKey)
         }
+        mappedMetadata.extras = extras
+        
         let mimeType = playerData[PlayerMetadataConstants.MimeType]
         let isLive = playerData[PlayerMetadataConstants.IsLive] == "true"
         debugPrint(mappedMetadata.extras as Any)
         debugPrint(playerData)
-        let mediaItem = MediaItem.make(withUrl: "", mimeType: mimeType, metadata: mappedMetadata, isLive: isLive as NSNumber, playbackStartPositionMs: nil)
+        let mediaItem = MediaItem.make(
+            withUrl: "",
+            mimeType: mimeType,
+            metadata: mappedMetadata,
+            isLive: isLive as NSNumber,
+            playbackStartPositionMs: nil,
+            lastKnownAudioLanguage: nil,
+            lastKnownSubtitleLanguage: nil)
+        
+        return mediaItem
+    }
+   
+    var metaTemp: GCKMediaMetadata? = nil
+    
+}
+
+extension CastPlayerController : GCKRemoteMediaClientListener {
+    func remoteMediaClient(_ client: GCKRemoteMediaClient, didUpdate mediaMetadata: GCKMediaMetadata?) {
+        debugPrint("something didUpdate mediaMetadata:" + mediaMetadata.debugDescription)
+        debugPrint("is metaTemp same?: " + (metaTemp == mediaMetadata).description)
+        guard let mediaItem = mapMediaMetadata(mediaMetadata) else {
+            self.playbackListener.onMediaItemTransition(MediaItemTransitionEvent.make(withPlayerId: self.id, mediaItem: nil), completion: { e in })
+            return;
+        }
         let event = MediaItemTransitionEvent.make(withPlayerId: self.id, mediaItem: mediaItem)
         playbackListener.onMediaItemTransition(event, completion: { e in })
     }

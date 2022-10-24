@@ -7,6 +7,7 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
+import 'package:visibility_detector/visibility_detector.dart';
 
 enum PlayerType { betterPlayer, videoPlayer, native }
 
@@ -86,7 +87,7 @@ class _BccmPlayerState extends State<BccmPlayer> {
             children: [
               //SizedBox(height: 100, child: AndroidNativeText(widget: widget)),
               AspectRatio(
-                  aspectRatio: 16 / 9, child: AndroidPlayer(widget: widget)),
+                  aspectRatio: 16 / 9, child: AndroidPlayer(id: widget.id)),
             ],
           )
       ],
@@ -94,22 +95,30 @@ class _BccmPlayerState extends State<BccmPlayer> {
   }
 }
 
-class AndroidPlayer extends StatelessWidget {
+class AndroidPlayer extends StatefulWidget {
   const AndroidPlayer({
     Key? key,
-    required this.widget,
+    required this.id,
   }) : super(key: key);
 
-  final BccmPlayer widget;
+  final String id;
 
+  @override
+  State<AndroidPlayer> createState() => _AndroidPlayerState();
+}
+
+class _AndroidPlayerState extends State<AndroidPlayer> {
+  bool hide = false;
+  int? viewId;
   @override
   Widget build(BuildContext context) {
     return PlatformViewLink(
       viewType: 'bccm-player',
       surfaceFactory: (context, controller) {
+        debugPrint("viewId ${controller.viewId}");
         return AndroidViewSurface(
           controller: controller as AndroidViewController,
-          hitTestBehavior: PlatformViewHitTestBehavior.translucent,
+          hitTestBehavior: PlatformViewHitTestBehavior.opaque,
           gestureRecognizers: <Factory<OneSequenceGestureRecognizer>>{
             Factory<OneSequenceGestureRecognizer>(
               () => EagerGestureRecognizer(),
@@ -118,7 +127,7 @@ class AndroidPlayer extends StatelessWidget {
         );
       },
       onCreatePlatformView: (params) {
-        return PlatformViewsService.initExpensiveAndroidView(
+        var controller = PlatformViewsService.initExpensiveAndroidView(
           id: params.id,
           viewType: 'bccm-player',
           layoutDirection: TextDirection.ltr,
@@ -129,9 +138,19 @@ class AndroidPlayer extends StatelessWidget {
           onFocus: () {
             params.onFocusChanged(true);
           },
-        )
-          ..addOnPlatformViewCreatedListener(params.onPlatformViewCreated)
+        );
+        controller
+          ..addOnPlatformViewCreatedListener((val) {
+            if (mounted) {
+              setState(() {
+                viewId = controller.viewId;
+              });
+            }
+
+            params.onPlatformViewCreated(val);
+          })
           ..create();
+        return controller;
       },
     );
   }

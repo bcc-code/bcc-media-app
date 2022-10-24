@@ -96,18 +96,22 @@ class User {
 
 class MediaItem {
   MediaItem({
-    required this.url,
+    this.url,
     this.mimeType,
     this.metadata,
     this.isLive,
     this.playbackStartPositionMs,
+    this.lastKnownAudioLanguage,
+    this.lastKnownSubtitleLanguage,
   });
 
-  String url;
+  String? url;
   String? mimeType;
   MediaMetadata? metadata;
   bool? isLive;
   int? playbackStartPositionMs;
+  String? lastKnownAudioLanguage;
+  String? lastKnownSubtitleLanguage;
 
   Object encode() {
     final Map<Object?, Object?> pigeonMap = <Object?, Object?>{};
@@ -116,19 +120,23 @@ class MediaItem {
     pigeonMap['metadata'] = metadata?.encode();
     pigeonMap['isLive'] = isLive;
     pigeonMap['playbackStartPositionMs'] = playbackStartPositionMs;
+    pigeonMap['lastKnownAudioLanguage'] = lastKnownAudioLanguage;
+    pigeonMap['lastKnownSubtitleLanguage'] = lastKnownSubtitleLanguage;
     return pigeonMap;
   }
 
   static MediaItem decode(Object message) {
     final Map<Object?, Object?> pigeonMap = message as Map<Object?, Object?>;
     return MediaItem(
-      url: pigeonMap['url']! as String,
+      url: pigeonMap['url'] as String?,
       mimeType: pigeonMap['mimeType'] as String?,
       metadata: pigeonMap['metadata'] != null
           ? MediaMetadata.decode(pigeonMap['metadata']!)
           : null,
       isLive: pigeonMap['isLive'] as bool?,
       playbackStartPositionMs: pigeonMap['playbackStartPositionMs'] as int?,
+      lastKnownAudioLanguage: pigeonMap['lastKnownAudioLanguage'] as String?,
+      lastKnownSubtitleLanguage: pigeonMap['lastKnownSubtitleLanguage'] as String?,
     );
   }
 }
@@ -146,7 +154,7 @@ class MediaMetadata {
   String? title;
   String? artist;
   String? episodeId;
-  Map<String?, String?>? extras;
+  Map<String?, Object?>? extras;
 
   Object encode() {
     final Map<Object?, Object?> pigeonMap = <Object?, Object?>{};
@@ -165,7 +173,7 @@ class MediaMetadata {
       title: pigeonMap['title'] as String?,
       artist: pigeonMap['artist'] as String?,
       episodeId: pigeonMap['episodeId'] as String?,
-      extras: (pigeonMap['extras'] as Map<Object?, Object?>?)?.cast<String?, String?>(),
+      extras: (pigeonMap['extras'] as Map<Object?, Object?>?)?.cast<String?, Object?>(),
     );
   }
 }
@@ -173,13 +181,16 @@ class MediaMetadata {
 class ChromecastState {
   ChromecastState({
     required this.connectionState,
+    this.mediaItem,
   });
 
   CastConnectionState connectionState;
+  MediaItem? mediaItem;
 
   Object encode() {
     final Map<Object?, Object?> pigeonMap = <Object?, Object?>{};
     pigeonMap['connectionState'] = connectionState.index;
+    pigeonMap['mediaItem'] = mediaItem?.encode();
     return pigeonMap;
   }
 
@@ -188,6 +199,9 @@ class ChromecastState {
     return ChromecastState(
       connectionState: CastConnectionState.values[pigeonMap['connectionState']! as int]
 ,
+      mediaItem: pigeonMap['mediaItem'] != null
+          ? MediaItem.decode(pigeonMap['mediaItem']!)
+          : null,
     );
   }
 }
@@ -418,6 +432,28 @@ class PlaybackPlatformPigeon {
         'dev.flutter.pigeon.PlaybackPlatformPigeon.replaceCurrentMediaItem', codec, binaryMessenger: _binaryMessenger);
     final Map<Object?, Object?>? replyMap =
         await channel.send(<Object?>[arg_playerId, arg_mediaItem, arg_playbackPositionFromPrimary, arg_autoplay]) as Map<Object?, Object?>?;
+    if (replyMap == null) {
+      throw PlatformException(
+        code: 'channel-error',
+        message: 'Unable to establish connection on channel.',
+      );
+    } else if (replyMap['error'] != null) {
+      final Map<Object?, Object?> error = (replyMap['error'] as Map<Object?, Object?>?)!;
+      throw PlatformException(
+        code: (error['code'] as String?)!,
+        message: error['message'] as String?,
+        details: error['details'],
+      );
+    } else {
+      return;
+    }
+  }
+
+  Future<void> setPlayerViewVisibility(int arg_viewId, bool arg_visible) async {
+    final BasicMessageChannel<Object?> channel = BasicMessageChannel<Object?>(
+        'dev.flutter.pigeon.PlaybackPlatformPigeon.setPlayerViewVisibility', codec, binaryMessenger: _binaryMessenger);
+    final Map<Object?, Object?>? replyMap =
+        await channel.send(<Object?>[arg_viewId, arg_visible]) as Map<Object?, Object?>?;
     if (replyMap == null) {
       throw PlatformException(
         code: 'channel-error',
