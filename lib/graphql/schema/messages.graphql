@@ -1,8 +1,11 @@
-type Messages {
-    maintenance(timestamp: String): [MaintenanceMessage!]! @goField(forceResolver: true)
+type MessageStyle {
+    text: String!
+    background: String!
+    border: String!
 }
 
-type MaintenanceMessage {
-    message: String!
-    details: String
+type Message {
+    title: String!
+    content: String!
+    style: MessageStyle!
 }

@@ -48,6 +48,7 @@ type QueryRoot{
 
   section(
     id: ID!
+    timestamp: String
   ): Section!
 
   show(
@@ -73,8 +74,6 @@ type QueryRoot{
     type: String
     minScore: Int
   ): SearchResult!
-
-  messages: Messages!
 
   calendar: Calendar
   event(id: ID!): Event

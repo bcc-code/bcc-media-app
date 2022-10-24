@@ -1845,8 +1845,12 @@ class Query$Page$page$sections$items {
       case "DefaultSection":
         return Query$Page$page$sections$items$$DefaultSection.fromJson(json);
 
-      case "GridSection":
-        return Query$Page$page$sections$items$$GridSection.fromJson(json);
+      case "DefaultGridSection":
+        return Query$Page$page$sections$items$$DefaultGridSection.fromJson(
+            json);
+
+      case "PosterGridSection":
+        return Query$Page$page$sections$items$$PosterGridSection.fromJson(json);
 
       case "IconSection":
         return Query$Page$page$sections$items$$IconSection.fromJson(json);
@@ -2913,23 +2917,23 @@ class _CopyWithStubImpl$Query$Page$page$sections$items$$DefaultSection$items<
   items(_fn) => _res;
 }
 
-class Query$Page$page$sections$items$$GridSection
+class Query$Page$page$sections$items$$DefaultGridSection
     implements Fragment$ItemSection, Query$Page$page$sections$items {
-  Query$Page$page$sections$items$$GridSection({
+  Query$Page$page$sections$items$$DefaultGridSection({
     required this.$__typename,
     this.title,
     required this.items,
   });
 
-  factory Query$Page$page$sections$items$$GridSection.fromJson(
+  factory Query$Page$page$sections$items$$DefaultGridSection.fromJson(
       Map<String, dynamic> json) {
     final l$$__typename = json['__typename'];
     final l$title = json['title'];
     final l$items = json['items'];
-    return Query$Page$page$sections$items$$GridSection(
+    return Query$Page$page$sections$items$$DefaultGridSection(
       $__typename: (l$$__typename as String),
       title: (l$title as String?),
-      items: Query$Page$page$sections$items$$GridSection$items.fromJson(
+      items: Query$Page$page$sections$items$$DefaultGridSection$items.fromJson(
           (l$items as Map<String, dynamic>)),
     );
   }
@@ -2938,7 +2942,7 @@ class Query$Page$page$sections$items$$GridSection
 
   final String? title;
 
-  final Query$Page$page$sections$items$$GridSection$items items;
+  final Query$Page$page$sections$items$$DefaultGridSection$items items;
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
@@ -2968,7 +2972,7 @@ class Query$Page$page$sections$items$$GridSection
     if (identical(this, other)) {
       return true;
     }
-    if (!(other is Query$Page$page$sections$items$$GridSection) ||
+    if (!(other is Query$Page$page$sections$items$$DefaultGridSection) ||
         runtimeType != other.runtimeType) {
       return false;
     }
@@ -2991,43 +2995,48 @@ class Query$Page$page$sections$items$$GridSection
   }
 }
 
-extension UtilityExtension$Query$Page$page$sections$items$$GridSection
-    on Query$Page$page$sections$items$$GridSection {
-  CopyWith$Query$Page$page$sections$items$$GridSection<
-          Query$Page$page$sections$items$$GridSection>
-      get copyWith => CopyWith$Query$Page$page$sections$items$$GridSection(
+extension UtilityExtension$Query$Page$page$sections$items$$DefaultGridSection
+    on Query$Page$page$sections$items$$DefaultGridSection {
+  CopyWith$Query$Page$page$sections$items$$DefaultGridSection<
+          Query$Page$page$sections$items$$DefaultGridSection>
+      get copyWith =>
+          CopyWith$Query$Page$page$sections$items$$DefaultGridSection(
             this,
             (i) => i,
           );
 }
 
-abstract class CopyWith$Query$Page$page$sections$items$$GridSection<TRes> {
-  factory CopyWith$Query$Page$page$sections$items$$GridSection(
-    Query$Page$page$sections$items$$GridSection instance,
-    TRes Function(Query$Page$page$sections$items$$GridSection) then,
-  ) = _CopyWithImpl$Query$Page$page$sections$items$$GridSection;
+abstract class CopyWith$Query$Page$page$sections$items$$DefaultGridSection<
+    TRes> {
+  factory CopyWith$Query$Page$page$sections$items$$DefaultGridSection(
+    Query$Page$page$sections$items$$DefaultGridSection instance,
+    TRes Function(Query$Page$page$sections$items$$DefaultGridSection) then,
+  ) = _CopyWithImpl$Query$Page$page$sections$items$$DefaultGridSection;
 
-  factory CopyWith$Query$Page$page$sections$items$$GridSection.stub(TRes res) =
-      _CopyWithStubImpl$Query$Page$page$sections$items$$GridSection;
+  factory CopyWith$Query$Page$page$sections$items$$DefaultGridSection.stub(
+          TRes res) =
+      _CopyWithStubImpl$Query$Page$page$sections$items$$DefaultGridSection;
 
   TRes call({
     String? $__typename,
     String? title,
-    Query$Page$page$sections$items$$GridSection$items? items,
+    Query$Page$page$sections$items$$DefaultGridSection$items? items,
   });
-  CopyWith$Query$Page$page$sections$items$$GridSection$items<TRes> get items;
+  CopyWith$Query$Page$page$sections$items$$DefaultGridSection$items<TRes>
+      get items;
 }
 
-class _CopyWithImpl$Query$Page$page$sections$items$$GridSection<TRes>
-    implements CopyWith$Query$Page$page$sections$items$$GridSection<TRes> {
-  _CopyWithImpl$Query$Page$page$sections$items$$GridSection(
+class _CopyWithImpl$Query$Page$page$sections$items$$DefaultGridSection<TRes>
+    implements
+        CopyWith$Query$Page$page$sections$items$$DefaultGridSection<TRes> {
+  _CopyWithImpl$Query$Page$page$sections$items$$DefaultGridSection(
     this._instance,
     this._then,
   );
 
-  final Query$Page$page$sections$items$$GridSection _instance;
+  final Query$Page$page$sections$items$$DefaultGridSection _instance;
 
-  final TRes Function(Query$Page$page$sections$items$$GridSection) _then;
+  final TRes Function(Query$Page$page$sections$items$$DefaultGridSection) _then;
 
   static const _undefined = {};
 
@@ -3036,50 +3045,56 @@ class _CopyWithImpl$Query$Page$page$sections$items$$GridSection<TRes>
     Object? title = _undefined,
     Object? items = _undefined,
   }) =>
-      _then(Query$Page$page$sections$items$$GridSection(
+      _then(Query$Page$page$sections$items$$DefaultGridSection(
         $__typename: $__typename == _undefined || $__typename == null
             ? _instance.$__typename
             : ($__typename as String),
         title: title == _undefined ? _instance.title : (title as String?),
         items: items == _undefined || items == null
             ? _instance.items
-            : (items as Query$Page$page$sections$items$$GridSection$items),
+            : (items
+                as Query$Page$page$sections$items$$DefaultGridSection$items),
       ));
-  CopyWith$Query$Page$page$sections$items$$GridSection$items<TRes> get items {
+  CopyWith$Query$Page$page$sections$items$$DefaultGridSection$items<TRes>
+      get items {
     final local$items = _instance.items;
-    return CopyWith$Query$Page$page$sections$items$$GridSection$items(
+    return CopyWith$Query$Page$page$sections$items$$DefaultGridSection$items(
         local$items, (e) => call(items: e));
   }
 }
 
-class _CopyWithStubImpl$Query$Page$page$sections$items$$GridSection<TRes>
-    implements CopyWith$Query$Page$page$sections$items$$GridSection<TRes> {
-  _CopyWithStubImpl$Query$Page$page$sections$items$$GridSection(this._res);
+class _CopyWithStubImpl$Query$Page$page$sections$items$$DefaultGridSection<TRes>
+    implements
+        CopyWith$Query$Page$page$sections$items$$DefaultGridSection<TRes> {
+  _CopyWithStubImpl$Query$Page$page$sections$items$$DefaultGridSection(
+      this._res);
 
   TRes _res;
 
   call({
     String? $__typename,
     String? title,
-    Query$Page$page$sections$items$$GridSection$items? items,
+    Query$Page$page$sections$items$$DefaultGridSection$items? items,
   }) =>
       _res;
-  CopyWith$Query$Page$page$sections$items$$GridSection$items<TRes> get items =>
-      CopyWith$Query$Page$page$sections$items$$GridSection$items.stub(_res);
+  CopyWith$Query$Page$page$sections$items$$DefaultGridSection$items<TRes>
+      get items =>
+          CopyWith$Query$Page$page$sections$items$$DefaultGridSection$items
+              .stub(_res);
 }
 
-class Query$Page$page$sections$items$$GridSection$items
+class Query$Page$page$sections$items$$DefaultGridSection$items
     implements Fragment$ItemSection$items {
-  Query$Page$page$sections$items$$GridSection$items({
+  Query$Page$page$sections$items$$DefaultGridSection$items({
     required this.items,
     required this.$__typename,
   });
 
-  factory Query$Page$page$sections$items$$GridSection$items.fromJson(
+  factory Query$Page$page$sections$items$$DefaultGridSection$items.fromJson(
       Map<String, dynamic> json) {
     final l$items = json['items'];
     final l$$__typename = json['__typename'];
-    return Query$Page$page$sections$items$$GridSection$items(
+    return Query$Page$page$sections$items$$DefaultGridSection$items(
       items: (l$items as List<dynamic>)
           .map((e) =>
               Fragment$ItemSectionItem.fromJson((e as Map<String, dynamic>)))
@@ -3116,7 +3131,7 @@ class Query$Page$page$sections$items$$GridSection$items
     if (identical(this, other)) {
       return true;
     }
-    if (!(other is Query$Page$page$sections$items$$GridSection$items) ||
+    if (!(other is Query$Page$page$sections$items$$DefaultGridSection$items) ||
         runtimeType != other.runtimeType) {
       return false;
     }
@@ -3141,27 +3156,28 @@ class Query$Page$page$sections$items$$GridSection$items
   }
 }
 
-extension UtilityExtension$Query$Page$page$sections$items$$GridSection$items
-    on Query$Page$page$sections$items$$GridSection$items {
-  CopyWith$Query$Page$page$sections$items$$GridSection$items<
-          Query$Page$page$sections$items$$GridSection$items>
+extension UtilityExtension$Query$Page$page$sections$items$$DefaultGridSection$items
+    on Query$Page$page$sections$items$$DefaultGridSection$items {
+  CopyWith$Query$Page$page$sections$items$$DefaultGridSection$items<
+          Query$Page$page$sections$items$$DefaultGridSection$items>
       get copyWith =>
-          CopyWith$Query$Page$page$sections$items$$GridSection$items(
+          CopyWith$Query$Page$page$sections$items$$DefaultGridSection$items(
             this,
             (i) => i,
           );
 }
 
-abstract class CopyWith$Query$Page$page$sections$items$$GridSection$items<
+abstract class CopyWith$Query$Page$page$sections$items$$DefaultGridSection$items<
     TRes> {
-  factory CopyWith$Query$Page$page$sections$items$$GridSection$items(
-    Query$Page$page$sections$items$$GridSection$items instance,
-    TRes Function(Query$Page$page$sections$items$$GridSection$items) then,
-  ) = _CopyWithImpl$Query$Page$page$sections$items$$GridSection$items;
+  factory CopyWith$Query$Page$page$sections$items$$DefaultGridSection$items(
+    Query$Page$page$sections$items$$DefaultGridSection$items instance,
+    TRes Function(Query$Page$page$sections$items$$DefaultGridSection$items)
+        then,
+  ) = _CopyWithImpl$Query$Page$page$sections$items$$DefaultGridSection$items;
 
-  factory CopyWith$Query$Page$page$sections$items$$GridSection$items.stub(
+  factory CopyWith$Query$Page$page$sections$items$$DefaultGridSection$items.stub(
           TRes res) =
-      _CopyWithStubImpl$Query$Page$page$sections$items$$GridSection$items;
+      _CopyWithStubImpl$Query$Page$page$sections$items$$DefaultGridSection$items;
 
   TRes call({
     List<Fragment$ItemSectionItem>? items,
@@ -3174,17 +3190,20 @@ abstract class CopyWith$Query$Page$page$sections$items$$GridSection$items<
           _fn);
 }
 
-class _CopyWithImpl$Query$Page$page$sections$items$$GridSection$items<TRes>
+class _CopyWithImpl$Query$Page$page$sections$items$$DefaultGridSection$items<
+        TRes>
     implements
-        CopyWith$Query$Page$page$sections$items$$GridSection$items<TRes> {
-  _CopyWithImpl$Query$Page$page$sections$items$$GridSection$items(
+        CopyWith$Query$Page$page$sections$items$$DefaultGridSection$items<
+            TRes> {
+  _CopyWithImpl$Query$Page$page$sections$items$$DefaultGridSection$items(
     this._instance,
     this._then,
   );
 
-  final Query$Page$page$sections$items$$GridSection$items _instance;
+  final Query$Page$page$sections$items$$DefaultGridSection$items _instance;
 
-  final TRes Function(Query$Page$page$sections$items$$GridSection$items) _then;
+  final TRes Function(Query$Page$page$sections$items$$DefaultGridSection$items)
+      _then;
 
   static const _undefined = {};
 
@@ -3192,7 +3211,7 @@ class _CopyWithImpl$Query$Page$page$sections$items$$GridSection$items<TRes>
     Object? items = _undefined,
     Object? $__typename = _undefined,
   }) =>
-      _then(Query$Page$page$sections$items$$GridSection$items(
+      _then(Query$Page$page$sections$items$$DefaultGridSection$items(
         items: items == _undefined || items == null
             ? _instance.items
             : (items as List<Fragment$ItemSectionItem>),
@@ -3214,10 +3233,343 @@ class _CopyWithImpl$Query$Page$page$sections$items$$GridSection$items<TRes>
                   ))).toList());
 }
 
-class _CopyWithStubImpl$Query$Page$page$sections$items$$GridSection$items<TRes>
+class _CopyWithStubImpl$Query$Page$page$sections$items$$DefaultGridSection$items<
+        TRes>
     implements
-        CopyWith$Query$Page$page$sections$items$$GridSection$items<TRes> {
-  _CopyWithStubImpl$Query$Page$page$sections$items$$GridSection$items(
+        CopyWith$Query$Page$page$sections$items$$DefaultGridSection$items<
+            TRes> {
+  _CopyWithStubImpl$Query$Page$page$sections$items$$DefaultGridSection$items(
+      this._res);
+
+  TRes _res;
+
+  call({
+    List<Fragment$ItemSectionItem>? items,
+    String? $__typename,
+  }) =>
+      _res;
+  items(_fn) => _res;
+}
+
+class Query$Page$page$sections$items$$PosterGridSection
+    implements Fragment$ItemSection, Query$Page$page$sections$items {
+  Query$Page$page$sections$items$$PosterGridSection({
+    required this.$__typename,
+    this.title,
+    required this.items,
+  });
+
+  factory Query$Page$page$sections$items$$PosterGridSection.fromJson(
+      Map<String, dynamic> json) {
+    final l$$__typename = json['__typename'];
+    final l$title = json['title'];
+    final l$items = json['items'];
+    return Query$Page$page$sections$items$$PosterGridSection(
+      $__typename: (l$$__typename as String),
+      title: (l$title as String?),
+      items: Query$Page$page$sections$items$$PosterGridSection$items.fromJson(
+          (l$items as Map<String, dynamic>)),
+    );
+  }
+
+  final String $__typename;
+
+  final String? title;
+
+  final Query$Page$page$sections$items$$PosterGridSection$items items;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$title = title;
+    _resultData['title'] = l$title;
+    final l$items = items;
+    _resultData['items'] = l$items.toJson();
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$$__typename = $__typename;
+    final l$title = title;
+    final l$items = items;
+    return Object.hashAll([
+      l$$__typename,
+      l$title,
+      l$items,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (!(other is Query$Page$page$sections$items$$PosterGridSection) ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    final l$title = title;
+    final lOther$title = other.title;
+    if (l$title != lOther$title) {
+      return false;
+    }
+    final l$items = items;
+    final lOther$items = other.items;
+    if (l$items != lOther$items) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Query$Page$page$sections$items$$PosterGridSection
+    on Query$Page$page$sections$items$$PosterGridSection {
+  CopyWith$Query$Page$page$sections$items$$PosterGridSection<
+          Query$Page$page$sections$items$$PosterGridSection>
+      get copyWith =>
+          CopyWith$Query$Page$page$sections$items$$PosterGridSection(
+            this,
+            (i) => i,
+          );
+}
+
+abstract class CopyWith$Query$Page$page$sections$items$$PosterGridSection<
+    TRes> {
+  factory CopyWith$Query$Page$page$sections$items$$PosterGridSection(
+    Query$Page$page$sections$items$$PosterGridSection instance,
+    TRes Function(Query$Page$page$sections$items$$PosterGridSection) then,
+  ) = _CopyWithImpl$Query$Page$page$sections$items$$PosterGridSection;
+
+  factory CopyWith$Query$Page$page$sections$items$$PosterGridSection.stub(
+          TRes res) =
+      _CopyWithStubImpl$Query$Page$page$sections$items$$PosterGridSection;
+
+  TRes call({
+    String? $__typename,
+    String? title,
+    Query$Page$page$sections$items$$PosterGridSection$items? items,
+  });
+  CopyWith$Query$Page$page$sections$items$$PosterGridSection$items<TRes>
+      get items;
+}
+
+class _CopyWithImpl$Query$Page$page$sections$items$$PosterGridSection<TRes>
+    implements
+        CopyWith$Query$Page$page$sections$items$$PosterGridSection<TRes> {
+  _CopyWithImpl$Query$Page$page$sections$items$$PosterGridSection(
+    this._instance,
+    this._then,
+  );
+
+  final Query$Page$page$sections$items$$PosterGridSection _instance;
+
+  final TRes Function(Query$Page$page$sections$items$$PosterGridSection) _then;
+
+  static const _undefined = {};
+
+  TRes call({
+    Object? $__typename = _undefined,
+    Object? title = _undefined,
+    Object? items = _undefined,
+  }) =>
+      _then(Query$Page$page$sections$items$$PosterGridSection(
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+        title: title == _undefined ? _instance.title : (title as String?),
+        items: items == _undefined || items == null
+            ? _instance.items
+            : (items
+                as Query$Page$page$sections$items$$PosterGridSection$items),
+      ));
+  CopyWith$Query$Page$page$sections$items$$PosterGridSection$items<TRes>
+      get items {
+    final local$items = _instance.items;
+    return CopyWith$Query$Page$page$sections$items$$PosterGridSection$items(
+        local$items, (e) => call(items: e));
+  }
+}
+
+class _CopyWithStubImpl$Query$Page$page$sections$items$$PosterGridSection<TRes>
+    implements
+        CopyWith$Query$Page$page$sections$items$$PosterGridSection<TRes> {
+  _CopyWithStubImpl$Query$Page$page$sections$items$$PosterGridSection(
+      this._res);
+
+  TRes _res;
+
+  call({
+    String? $__typename,
+    String? title,
+    Query$Page$page$sections$items$$PosterGridSection$items? items,
+  }) =>
+      _res;
+  CopyWith$Query$Page$page$sections$items$$PosterGridSection$items<TRes>
+      get items =>
+          CopyWith$Query$Page$page$sections$items$$PosterGridSection$items.stub(
+              _res);
+}
+
+class Query$Page$page$sections$items$$PosterGridSection$items
+    implements Fragment$ItemSection$items {
+  Query$Page$page$sections$items$$PosterGridSection$items({
+    required this.items,
+    required this.$__typename,
+  });
+
+  factory Query$Page$page$sections$items$$PosterGridSection$items.fromJson(
+      Map<String, dynamic> json) {
+    final l$items = json['items'];
+    final l$$__typename = json['__typename'];
+    return Query$Page$page$sections$items$$PosterGridSection$items(
+      items: (l$items as List<dynamic>)
+          .map((e) =>
+              Fragment$ItemSectionItem.fromJson((e as Map<String, dynamic>)))
+          .toList(),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final List<Fragment$ItemSectionItem> items;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$items = items;
+    _resultData['items'] = l$items.map((e) => e.toJson()).toList();
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$items = items;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      Object.hashAll(l$items.map((v) => v)),
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (!(other is Query$Page$page$sections$items$$PosterGridSection$items) ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$items = items;
+    final lOther$items = other.items;
+    if (l$items.length != lOther$items.length) {
+      return false;
+    }
+    for (int i = 0; i < l$items.length; i++) {
+      final l$items$entry = l$items[i];
+      final lOther$items$entry = lOther$items[i];
+      if (l$items$entry != lOther$items$entry) {
+        return false;
+      }
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Query$Page$page$sections$items$$PosterGridSection$items
+    on Query$Page$page$sections$items$$PosterGridSection$items {
+  CopyWith$Query$Page$page$sections$items$$PosterGridSection$items<
+          Query$Page$page$sections$items$$PosterGridSection$items>
+      get copyWith =>
+          CopyWith$Query$Page$page$sections$items$$PosterGridSection$items(
+            this,
+            (i) => i,
+          );
+}
+
+abstract class CopyWith$Query$Page$page$sections$items$$PosterGridSection$items<
+    TRes> {
+  factory CopyWith$Query$Page$page$sections$items$$PosterGridSection$items(
+    Query$Page$page$sections$items$$PosterGridSection$items instance,
+    TRes Function(Query$Page$page$sections$items$$PosterGridSection$items) then,
+  ) = _CopyWithImpl$Query$Page$page$sections$items$$PosterGridSection$items;
+
+  factory CopyWith$Query$Page$page$sections$items$$PosterGridSection$items.stub(
+          TRes res) =
+      _CopyWithStubImpl$Query$Page$page$sections$items$$PosterGridSection$items;
+
+  TRes call({
+    List<Fragment$ItemSectionItem>? items,
+    String? $__typename,
+  });
+  TRes items(
+      Iterable<Fragment$ItemSectionItem> Function(
+              Iterable<
+                  CopyWith$Fragment$ItemSectionItem<Fragment$ItemSectionItem>>)
+          _fn);
+}
+
+class _CopyWithImpl$Query$Page$page$sections$items$$PosterGridSection$items<
+        TRes>
+    implements
+        CopyWith$Query$Page$page$sections$items$$PosterGridSection$items<TRes> {
+  _CopyWithImpl$Query$Page$page$sections$items$$PosterGridSection$items(
+    this._instance,
+    this._then,
+  );
+
+  final Query$Page$page$sections$items$$PosterGridSection$items _instance;
+
+  final TRes Function(Query$Page$page$sections$items$$PosterGridSection$items)
+      _then;
+
+  static const _undefined = {};
+
+  TRes call({
+    Object? items = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(Query$Page$page$sections$items$$PosterGridSection$items(
+        items: items == _undefined || items == null
+            ? _instance.items
+            : (items as List<Fragment$ItemSectionItem>),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+  TRes items(
+          Iterable<Fragment$ItemSectionItem> Function(
+                  Iterable<
+                      CopyWith$Fragment$ItemSectionItem<
+                          Fragment$ItemSectionItem>>)
+              _fn) =>
+      call(
+          items:
+              _fn(_instance.items.map((e) => CopyWith$Fragment$ItemSectionItem(
+                    e,
+                    (i) => i,
+                  ))).toList());
+}
+
+class _CopyWithStubImpl$Query$Page$page$sections$items$$PosterGridSection$items<
+        TRes>
+    implements
+        CopyWith$Query$Page$page$sections$items$$PosterGridSection$items<TRes> {
+  _CopyWithStubImpl$Query$Page$page$sections$items$$PosterGridSection$items(
       this._res);
 
   TRes _res;
