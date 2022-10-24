@@ -211,254 +211,220 @@ class _CalendarPageState extends ConsumerState<CalendarPage> {
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child: Center(
-        child: Column(
-          children: [
-            const SizedBox(height: 20.0),
-            SafeArea(
-              child: Column(
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.only(
-                        left: 16.0, right: 16.0, top: 15.0),
-                    child: Row(
-                      children: [
-                        Expanded(
-                          child: Text(
-                            'Calendar ',
-                            textAlign: TextAlign.center,
-                            style: Theme.of(context).textTheme.headline6,
-                          ),
-                        ),
-                        GestureDetector(
-                          onTapUp: (details) {
-                            setState(() {
-                              _isCalendarCollapse = !_isCalendarCollapse;
-                            });
-                          },
-                          child: Image.asset(
-                            _isCalendarCollapse
-                                ? 'assets/icons/Calendar_Selected.png'
-                                : 'assets/icons/Calendar_Default.png',
-                            gaplessPlayback: true,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                    child: TableCalendar(
-                      rowHeight: 54,
-                      calendarFormat: _isCalendarCollapse
-                          ? CalendarFormat.week
-                          : CalendarFormat.month,
-                      startingDayOfWeek: StartingDayOfWeek.monday,
-                      daysOfWeekStyle: DaysOfWeekStyle(
-                        dowTextFormatter: (date, locale) => DateFormat.E(locale)
-                            .format(date)[0], //only display one letter
-                      ),
-                      shouldFillViewport: true,
-                      headerStyle: HeaderStyle(
-                        formatButtonVisible: false,
-                        titleCentered: true,
-                        titleTextFormatter: (date, locale) =>
-                            _isCalendarCollapse
-                                ? _isSameWeekAsCurrentWeek(date)
-                                    ? 'This week'
-                                    : 'week ${_getWeekNumber(date).toString()}'
-                                : DateFormat.MMMM().format(date).toString(),
-                        headerMargin: EdgeInsets.zero,
-                        titleTextStyle: const TextStyle(
-                            fontFamily: 'Barlow',
-                            color: Color.fromRGBO(112, 124, 142, 1),
-                            fontSize: 17,
-                            fontWeight: FontWeight.w700),
-                        leftChevronIcon: const Icon(
-                            Icons.arrow_back_ios_new_outlined,
-                            color: Color.fromRGBO(112, 124, 142, 1),
-                            size: 16),
-                        leftChevronMargin: const EdgeInsets.only(left: 0),
-                        rightChevronIcon: const Icon(
-                            Icons.arrow_forward_ios_outlined,
-                            color: Color.fromRGBO(112, 124, 142, 1),
-                            size: 16),
-                        rightChevronMargin: const EdgeInsets.only(right: 0),
-                      ),
-                      availableGestures: AvailableGestures.horizontalSwipe,
-                      rangeSelectionMode: RangeSelectionMode.disabled,
-                      calendarStyle: CalendarStyle(
-                        tableBorder: TableBorder.symmetric(),
-                        canMarkersOverflow: true,
-                        defaultTextStyle: const TextStyle(
-                            fontFamily: 'Barlow',
-                            color: Colors.white,
-                            fontSize: 17,
-                            fontWeight: FontWeight.w700),
-                        todayTextStyle: const TextStyle(
-                            fontFamily: 'Barlow',
-                            color: Color.fromRGBO(230, 60, 98, 1),
-                            fontSize: 17,
-                            fontWeight: FontWeight.w700),
-                        todayDecoration: const BoxDecoration(
-                          shape: BoxShape.circle,
-                        ),
-                        weekendTextStyle: const TextStyle(
-                            fontFamily: 'Barlow',
-                            color: Colors.white,
-                            fontSize: 17,
-                            fontWeight: FontWeight.w700),
-                        outsideTextStyle: const TextStyle(
-                            fontFamily: 'Barlow',
-                            color: Colors.grey,
-                            fontSize: 17,
-                            fontWeight: FontWeight.w700),
-                        markerMargin: const EdgeInsets.only(top: 3),
-                        markerDecoration: const BoxDecoration(
-                          color: Color.fromRGBO(112, 124, 142, 1),
-                          shape: BoxShape.circle,
-                        ),
-                        markerSize: 5.5,
-                      ),
-                      focusedDay: _focusedDay,
-                      firstDay: kFirstDay,
-                      lastDay: kLastDay,
-                      selectedDayPredicate: (day) =>
-                          isSameDay(_selectedDay, day),
-                      onCalendarCreated: (pageController) =>
-                          loadingSelectedEvent,
-                      onDaySelected: (selectedDay, focusedDay) {
-                        if (!isSameDay(_selectedDay, selectedDay)) {
-                          setState(() {
-                            _selectedDay = selectedDay;
-                            _focusedDay = focusedDay;
-                          });
-                          loadingSelectedEvent();
-                        }
-                      },
-                      onPageChanged: (focusedDay) async {
-                        setState(() {
-                          _focusedDay = focusedDay;
-                        });
-                        await loadingInputPeriodData();
-                      },
-                      eventLoader: _getEventsForDay,
-                      calendarBuilders: CalendarBuilders(
-                        defaultBuilder: (context, day, focusedDay) {
-                          return highlightMarker(day, true);
-                        },
-                        outsideBuilder: (context, day, focusedDay) {
-                          return Stack(
-                            children: <Widget>[
-                              Center(
-                                child: SizedBox(
-                                  width: 30,
-                                  height: 30,
-                                  child: CenterText(Colors.grey, day),
-                                ),
-                              ),
-                              highlightMarker(day, false),
-                            ],
-                          );
-                        },
-                        selectedBuilder: (context, day, focusedDay) {
-                          if (normalizeDate(focusedDay) !=
-                              normalizeDate(DateTime.now())) {
-                            return Stack(
-                              children: [
-                                Center(
-                                  child: Container(
-                                    width: 30,
-                                    height: 30,
-                                    decoration: BoxDecoration(
-                                        color: const Color.fromRGBO(
-                                            112, 124, 142, 0.3),
-                                        border: Border.all(
-                                          color: Colors.white,
-                                          width: 1.0,
-                                        ),
-                                        borderRadius: const BorderRadius.all(
-                                            Radius.elliptical(30, 30))),
-                                    child: CenterText(Colors.white, day),
-                                  ),
-                                ),
-                                highlightMarker(day, false),
-                              ],
-                            );
-                          } else {
-                            return Center(
-                              child: Container(
-                                width: 33,
-                                height: 33,
-                                decoration: BoxDecoration(
-                                    color: const Color.fromRGBO(
-                                        112, 124, 142, 0.3),
-                                    border: Border.all(
-                                      color: Colors.white,
-                                      width: 1.0,
-                                    ),
-                                    borderRadius: const BorderRadius.all(
-                                        Radius.elliptical(30, 30))),
-                                child: Center(
-                                  child: Text(
-                                    '${day.day}',
-                                    style: const TextStyle(
-                                        fontFamily: 'Barlow',
-                                        color: Color.fromRGBO(230, 60, 98, 1),
-                                        fontSize: 17,
-                                        fontWeight: FontWeight.w700),
-                                  ),
-                                ),
-                              ),
-                            );
-                          }
-                        },
-                      ),
-                    ),
-                  ),
-                  const Divider(
-                    color: Color.fromRGBO(204, 221, 255, 0.1),
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 15, vertical: 24),
-                        child: Text(
-                          'Today, ${DateFormat('d MMMM').format(DateTime.now())}',
-                          style: const TextStyle(
-                            fontSize: 20,
-                            fontWeight: FontWeight.w700,
-                            fontFamily: 'Barlow',
-                          ),
+    return Scaffold(
+      appBar: AppBar(title: const Text('Calendar'), actions: [
+        GestureDetector(
+          onTapUp: (details) {
+            setState(() {
+              _isCalendarCollapse = !_isCalendarCollapse;
+            });
+          },
+          child: Image.asset(
+            _isCalendarCollapse
+                ? 'assets/icons/Calendar_Selected.png'
+                : 'assets/icons/Calendar_Default.png',
+            gaplessPlayback: true,
+          ),
+        ),
+      ]),
+      body: ListView(
+        children: [
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 8.0),
+            child: TableCalendar(
+              rowHeight: 54,
+              shouldFillViewport: false,
+              calendarFormat: _isCalendarCollapse
+                  ? CalendarFormat.week
+                  : CalendarFormat.month,
+              startingDayOfWeek: StartingDayOfWeek.monday,
+              daysOfWeekStyle: DaysOfWeekStyle(
+                dowTextFormatter: (date, locale) => DateFormat.E(locale)
+                    .format(date)[0], //only display one letter
+              ),
+              headerStyle: HeaderStyle(
+                formatButtonVisible: false,
+                titleCentered: true,
+                titleTextFormatter: (date, locale) => _isCalendarCollapse
+                    ? _isSameWeekAsCurrentWeek(date)
+                        ? 'This week'
+                        : 'week ${_getWeekNumber(date).toString()}'
+                    : DateFormat.MMMM().format(date).toString(),
+                headerMargin: EdgeInsets.zero,
+                titleTextStyle: const TextStyle(
+                    fontFamily: 'Barlow',
+                    color: Color.fromRGBO(112, 124, 142, 1),
+                    fontSize: 17,
+                    fontWeight: FontWeight.w700),
+                leftChevronIcon: const Icon(Icons.arrow_back_ios_new_outlined,
+                    color: Color.fromRGBO(112, 124, 142, 1), size: 16),
+                leftChevronMargin: const EdgeInsets.only(left: 0),
+                rightChevronIcon: const Icon(Icons.arrow_forward_ios_outlined,
+                    color: Color.fromRGBO(112, 124, 142, 1), size: 16),
+                rightChevronMargin: const EdgeInsets.only(right: 0),
+              ),
+              availableGestures: AvailableGestures.horizontalSwipe,
+              rangeSelectionMode: RangeSelectionMode.disabled,
+              calendarStyle: CalendarStyle(
+                tableBorder: TableBorder.symmetric(),
+                canMarkersOverflow: true,
+                defaultTextStyle: const TextStyle(
+                    fontFamily: 'Barlow',
+                    color: Colors.white,
+                    fontSize: 17,
+                    fontWeight: FontWeight.w700),
+                todayTextStyle: const TextStyle(
+                    fontFamily: 'Barlow',
+                    color: Color.fromRGBO(230, 60, 98, 1),
+                    fontSize: 17,
+                    fontWeight: FontWeight.w700),
+                todayDecoration: const BoxDecoration(
+                  shape: BoxShape.circle,
+                ),
+                weekendTextStyle: const TextStyle(
+                    fontFamily: 'Barlow',
+                    color: Colors.white,
+                    fontSize: 17,
+                    fontWeight: FontWeight.w700),
+                outsideTextStyle: const TextStyle(
+                    fontFamily: 'Barlow',
+                    color: Colors.grey,
+                    fontSize: 17,
+                    fontWeight: FontWeight.w700),
+                markerMargin: const EdgeInsets.only(top: 3),
+                markerDecoration: const BoxDecoration(
+                  color: Color.fromRGBO(112, 124, 142, 1),
+                  shape: BoxShape.circle,
+                ),
+                markerSize: 5.5,
+              ),
+              focusedDay: _focusedDay,
+              firstDay: kFirstDay,
+              lastDay: kLastDay,
+              selectedDayPredicate: (day) => isSameDay(_selectedDay, day),
+              onCalendarCreated: (pageController) => loadingSelectedEvent,
+              onDaySelected: (selectedDay, focusedDay) {
+                if (!isSameDay(_selectedDay, selectedDay)) {
+                  setState(() {
+                    _selectedDay = selectedDay;
+                    _focusedDay = focusedDay;
+                  });
+                  loadingSelectedEvent();
+                }
+              },
+              onPageChanged: (focusedDay) async {
+                setState(() {
+                  _focusedDay = focusedDay;
+                });
+                await loadingInputPeriodData();
+              },
+              eventLoader: _getEventsForDay,
+              calendarBuilders: CalendarBuilders(
+                defaultBuilder: (context, day, focusedDay) {
+                  return highlightMarker(day, true);
+                },
+                outsideBuilder: (context, day, focusedDay) {
+                  return Stack(
+                    children: <Widget>[
+                      Center(
+                        child: SizedBox(
+                          width: 30,
+                          height: 30,
+                          child: CenterText(Colors.grey, day),
                         ),
                       ),
+                      highlightMarker(day, false),
                     ],
-                  ),
-                  SizedBox(
-                    child: FutureBuilder<Query$CalendarDay$calendar?>(
-                      future: _selectedDayEvent,
-                      builder: (context, snapshot) {
-                        if (snapshot.connectionState ==
-                            ConnectionState.waiting) {
-                          return const Center(
-                            child: SizedBox.square(
-                              dimension: 50,
-                              child: CircularProgressIndicator(),
+                  );
+                },
+                selectedBuilder: (context, day, focusedDay) {
+                  if (normalizeDate(focusedDay) !=
+                      normalizeDate(DateTime.now())) {
+                    return Stack(
+                      children: [
+                        Center(
+                          child: Container(
+                            width: 30,
+                            height: 30,
+                            decoration: BoxDecoration(
+                                color: const Color.fromRGBO(112, 124, 142, 0.3),
+                                border: Border.all(
+                                  color: Colors.white,
+                                  width: 1.0,
+                                ),
+                                borderRadius: const BorderRadius.all(
+                                    Radius.elliptical(30, 30))),
+                            child: CenterText(Colors.white, day),
+                          ),
+                        ),
+                        highlightMarker(day, false),
+                      ],
+                    );
+                  } else {
+                    return Center(
+                      child: Container(
+                        width: 33,
+                        height: 33,
+                        decoration: BoxDecoration(
+                            color: const Color.fromRGBO(112, 124, 142, 0.3),
+                            border: Border.all(
+                              color: Colors.white,
+                              width: 1.0,
                             ),
-                          );
-                        }
-                        return _EntriesSlot(snapshot.data);
-                      },
-                    ),
-                  ),
-                ],
+                            borderRadius: const BorderRadius.all(
+                                Radius.elliptical(30, 30))),
+                        child: Center(
+                          child: Text(
+                            '${day.day}',
+                            style: const TextStyle(
+                                fontFamily: 'Barlow',
+                                color: Color.fromRGBO(230, 60, 98, 1),
+                                fontSize: 17,
+                                fontWeight: FontWeight.w700),
+                          ),
+                        ),
+                      ),
+                    );
+                  }
+                },
               ),
             ),
-          ],
-        ),
+          ),
+          const Divider(
+            color: Color.fromRGBO(204, 221, 255, 0.1),
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              Padding(
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 15, vertical: 24),
+                child: Text(
+                  'Today, ${DateFormat('d MMMM').format(DateTime.now())}',
+                  style: const TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.w700,
+                    fontFamily: 'Barlow',
+                  ),
+                ),
+              ),
+            ],
+          ),
+          FutureBuilder<Query$CalendarDay$calendar?>(
+            future: _selectedDayEvent,
+            builder: (context, snapshot) {
+              if (snapshot.connectionState == ConnectionState.waiting) {
+                return const Center(
+                  child: SizedBox.square(
+                    dimension: 50,
+                    child: CircularProgressIndicator(),
+                  ),
+                );
+              }
+              return _EntriesSlot(snapshot.data);
+            },
+          ),
+        ],
       ),
     );
   }
