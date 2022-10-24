@@ -129,7 +129,7 @@ class _DefaultEpisodeItem extends StatelessWidget {
                     ),
                   if (episode.productionDate != null)
                     Text(
-                      episode.productionDate!,
+                      getFormattedProductionDate(episode.productionDate!),
                       style: const TextStyle(
                         fontSize: 12,
                         fontWeight: FontWeight.w500,

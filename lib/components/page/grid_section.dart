@@ -1,8 +1,10 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:brunstadtv_app/components/bordered_image_container.dart';
 import 'package:flutter/material.dart';
 
 import '../../graphql/queries/page.graphql.dart';
 import '../../graphql/schema/pages.graphql.dart';
+import '../../router/router.gr.dart';
 import '../../services/utils.dart';
 import 'feature_tag.dart';
 import 'episode_duration.dart';
@@ -80,52 +82,56 @@ class _GridEpisodeItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        sectionItemImage,
-        Row(
-          children: [
-            if (episode.season != null)
-              Flexible(
-                child: Container(
-                  margin: const EdgeInsets.only(right: 4),
-                  child: Text(
-                    episode.season!.$show.title.replaceAll(' ', '\u{000A0}'),
-                    maxLines: 1,
-                    overflow: TextOverflow.ellipsis,
-                    style: const TextStyle(
-                      fontSize: 12,
-                      fontWeight: FontWeight.w500,
-                      color: Color.fromRGBO(110, 176, 230, 1),
+    return GestureDetector(
+      onTap: () => context.router
+          .navigate(EpisodeScreenRoute(episodeId: sectionItem.id)),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          sectionItemImage,
+          Row(
+            children: [
+              if (episode.season != null)
+                Flexible(
+                  child: Container(
+                    margin: const EdgeInsets.only(right: 4),
+                    child: Text(
+                      episode.season!.$show.title.replaceAll(' ', '\u{000A0}'),
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                      style: const TextStyle(
+                        fontSize: 12,
+                        fontWeight: FontWeight.w500,
+                        color: Color.fromRGBO(110, 176, 230, 1),
+                      ),
                     ),
                   ),
                 ),
-              ),
-            if (episode.season != null)
-              Text(
-                'S${episode.season!.number}:E${episode.number}',
-                style: const TextStyle(
-                  fontSize: 12,
-                  fontWeight: FontWeight.w500,
-                  color: Color.fromRGBO(112, 124, 142, 1),
+              if (episode.season != null)
+                Text(
+                  'S${episode.season!.number}:E${episode.number}',
+                  style: const TextStyle(
+                    fontSize: 12,
+                    fontWeight: FontWeight.w500,
+                    color: Color.fromRGBO(112, 124, 142, 1),
+                  ),
                 ),
+            ],
+          ),
+          Container(
+            margin: const EdgeInsets.only(bottom: 2),
+            child: Text(
+              sectionItem.title,
+              maxLines: 2,
+              overflow: TextOverflow.ellipsis,
+              style: const TextStyle(
+                fontSize: 14,
+                fontWeight: FontWeight.w500,
               ),
-          ],
-        ),
-        Container(
-          margin: const EdgeInsets.only(bottom: 2),
-          child: Text(
-            sectionItem.title,
-            maxLines: 2,
-            overflow: TextOverflow.ellipsis,
-            style: const TextStyle(
-              fontSize: 14,
-              fontWeight: FontWeight.w500,
             ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 

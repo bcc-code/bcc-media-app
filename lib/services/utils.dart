@@ -1,3 +1,5 @@
+import 'package:intl/intl.dart';
+
 String getFormattedDuration(int durSeconds) {
   final duration = Duration(seconds: durSeconds);
 
@@ -27,6 +29,6 @@ String getFormattedDuration(int durSeconds) {
   return durationSegments.join(':');
 }
 
-// String getFormattedProductionDate(String prodDate) {
-//   // return DateTime.parse()
-// }
+String getFormattedProductionDate(String prodDate) {
+  return DateFormat('dd. MMMM y').format(DateTime.parse(prodDate));
+}

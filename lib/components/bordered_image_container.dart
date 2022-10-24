@@ -32,7 +32,7 @@ class BorderedImageContainer extends StatelessWidget {
                 fit: BoxFit.cover,
               )
             : null,
-        borderRadius: BorderRadius.circular(4),
+        borderRadius: BorderRadius.circular(6),
         border: Border.all(
           width: 1,
           color: const Color.fromRGBO(255, 255, 255, 0.1),

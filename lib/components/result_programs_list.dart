@@ -29,7 +29,7 @@ class ResultProgramsList extends StatelessWidget {
         ),
         HorizontalSlider(
           items: items.map((program) => _Program(program)).toList(),
-          margin: const EdgeInsets.only(left: 16, bottom: 8),
+          padding: const EdgeInsets.only(left: 16, right: 16, bottom: 8),
         ),
       ],
     );
@@ -52,7 +52,7 @@ class _Program extends StatelessWidget {
           AspectRatio(
             aspectRatio: 16 / 9,
             child: BorderedImageContainer(
-              margin: const EdgeInsets.only(right: 16, bottom: 7),
+              margin: const EdgeInsets.only(bottom: 7),
               image: _item.image != null ? NetworkImage(_item.image!) : null,
             ),
           ),

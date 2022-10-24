@@ -20,18 +20,20 @@ class HorizontalSlider extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       margin: margin,
-      padding: padding,
       child: SingleChildScrollView(
         clipBehavior: clipBehaviour,
         physics: const BouncingScrollPhysics(),
         scrollDirection: Axis.horizontal,
-        child: Row(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: items.map((item) {
-            return Container(
-                margin: EdgeInsets.only(right: item == items.last ? 0 : gap),
-                child: item);
-          }).toList(),
+        child: Container(
+          padding: padding,
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: items.map((item) {
+              return Container(
+                  margin: EdgeInsets.only(right: item == items.last ? 0 : gap),
+                  child: item);
+            }).toList(),
+          ),
         ),
       ),
     );
