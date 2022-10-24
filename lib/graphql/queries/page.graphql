@@ -1,17 +1,43 @@
 fragment Section on Section{
   title
+  ... on ItemSection {
+    items {
+      items {
+        id
+        title
+        image
+        item {
+          ... on Link {
+            url
+          }
+          ... on Page {
+            code
+          }
+          ... on Episode {
+            id
+          }
+          ... on Show {
+            id
+          }
+          __typename
+        }
+      }
+    }
+  }
   ... on LabelSection {
     items {
       items {
-        title,
-        icon,
-        ... on PageLinkItem {
-          page {
+        id
+        title
+        image
+        item {
+          ... on Link {
+            url
+          }
+          ... on Page {
             code
           }
-        }
-        ... on URLLinkItem {
-          url
+          __typename
         }
       }
     }
@@ -20,14 +46,15 @@ fragment Section on Section{
     items {
       items {
         title,
-        icon
-        ... on PageLinkItem {
-          page {
+        image,
+        item {
+          ... on Link {
+            url
+          }
+          ... on Page {
             code
           }
-        }
-        ... on URLLinkItem {
-          url
+          __typename
         }
       }
     }
@@ -43,7 +70,6 @@ fragment Section on Section{
           ... on Show {
             episodeCount
             seasonCount
-            __typename
           }
           ... on Episode {
             productionDate
@@ -53,12 +79,11 @@ fragment Section on Section{
                 title
               }
             }
-            __typename
           }
+          __typename
         }
       }
     }
-    __typename
   }
   ... on FeaturedSection {
     size
@@ -78,7 +103,6 @@ fragment Section on Section{
         }
       }
     }
-    __typename
   }
   ... on DefaultSection {
     size
@@ -88,13 +112,10 @@ fragment Section on Section{
         image
         item {
           ... on Show {
-            id
             episodeCount
             seasonCount
-            __typename
           }
           ... on Episode {
-            id
             productionDate
             duration
             season {
@@ -102,12 +123,11 @@ fragment Section on Section{
                 title
               }
             }
-            __typename
           }
+          __typename
         }
       }
     }
-    __typename
   }
   ... on GridSection {
     gridSize: size
@@ -119,9 +139,10 @@ fragment Section on Section{
         item {
           ... on Show {
             episodeCount
-            __typename
+            seasonCount
           }
           ... on Episode {
+            productionDate
             duration
             number
             season {
@@ -130,35 +151,14 @@ fragment Section on Section{
                 title
               }
             }
-            __typename
           }
+          __typename
         }
       }
     }
-    __typename
   }
+  __typename
 }
-
-# fragment LinkItem on LinkItem {
-#   title,
-#   icon
-# }
-
-# fragment ItemSectionItem on SectionItem {
-#   id
-#   sort
-#   title
-#   image
-#   item {
-#     ... on Episode {
-#       number
-#     }
-#     ... on Show {
-#       episodeCount
-#     }
-#   }
-#   __typename
-# }
 
 query Page($code: String!) {
   page(code: $code) {

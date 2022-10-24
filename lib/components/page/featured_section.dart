@@ -1,3 +1,5 @@
+import 'package:auto_route/auto_route.dart';
+import 'package:brunstadtv_app/router/router.gr.dart';
 import 'package:flutter/material.dart';
 
 import '../../graphql/queries/page.graphql.dart';
@@ -99,7 +101,13 @@ class _FeaturedItem extends StatelessWidget {
                     : IconLabelButton.secondarySmall(
                         imagePath: 'assets/icons/Play.png',
                         labelText: 'Watch now',
-                        onPressed: () {},
+                        onPressed: () {
+                          if (sectionItem.item
+                              is Fragment$Section$$FeaturedSection$items$items$item$$Episode) {
+                            context.router.navigate(
+                                EpisodeScreenRoute(episodeId: sectionItem.id));
+                          }
+                        },
                       ),
               ],
             ),

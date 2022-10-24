@@ -2,49 +2,45 @@ import 'package:brunstadtv_app/router/router.gr.dart';
 import 'package:flutter/material.dart';
 import 'package:auto_route/auto_route.dart';
 
+import '../../graphql/queries/page.graphql.dart';
 import '../horizontal_slider.dart';
 
-class CategoryChips extends StatelessWidget {
-  final dynamic data;
-  final String parentPageName;
+class LabelSection extends StatelessWidget {
+  final Fragment$Section$$LabelSection data;
 
-  const CategoryChips(
-      {super.key, required this.data, required this.parentPageName});
+  const LabelSection(this.data, {super.key});
 
   @override
   Widget build(BuildContext context) {
     return Container(
       margin: const EdgeInsets.only(top: 12, left: 16),
       child: HorizontalSlider(
-        items: (data['items'] as List<String>)
-            .map((item) => _Item(
-                  item: item,
-                  parentPageName: parentPageName,
-                ))
-            .toList(),
+        gap: 8,
+        items: data.items.items.map((item) => _LabelItem(item)).toList(),
       ),
     );
   }
 }
 
-class _Item extends StatelessWidget {
-  final String item;
-  final String parentPageName;
+class _LabelItem extends StatelessWidget {
+  final Fragment$Section$$LabelSection$items$items sectionItem;
 
-  const _Item({required this.item, required this.parentPageName});
+  const _LabelItem(this.sectionItem);
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => context.router.navigate(
-        HomeExploreSubCategoryScreenRoute(
-          category: item,
-          parentPageName: parentPageName,
-        ),
-      ),
+      onTap: () {
+        if (sectionItem.item
+            is Fragment$Section$$LabelSection$items$items$item$$Page) {
+          final pageItem = sectionItem.item
+              as Fragment$Section$$LabelSection$items$items$item$$Page;
+          context.router.navigate(PageScreenRoute(
+              pageCode: pageItem.code, pageTitle: sectionItem.title));
+        }
+      },
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
-        margin: const EdgeInsets.only(right: 8),
         decoration: BoxDecoration(
           border: Border.all(
             width: 1,
@@ -54,7 +50,7 @@ class _Item extends StatelessWidget {
           color: const Color.fromRGBO(29, 40, 56, 1),
         ),
         child: Text(
-          item,
+          sectionItem.title,
           style: const TextStyle(
             fontSize: 16,
             fontWeight: FontWeight.w500,

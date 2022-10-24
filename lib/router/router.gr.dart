@@ -12,15 +12,14 @@
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:auto_route/auto_route.dart' as _i10;
-import 'package:flutter/material.dart' as _i18;
+import 'package:flutter/material.dart' as _i17;
 
-import '../helpers/custom_transitions.dart' as _i20;
+import '../helpers/custom_transitions.dart' as _i19;
 import '../screens/episode.dart' as _i13;
-import '../screens/home/explore_category_page.dart' as _i14;
-import '../screens/home/explore_sub_category_page.dart' as _i15;
 import '../screens/home/home.dart' as _i12;
 import '../screens/live.dart' as _i11;
 import '../screens/login.dart' as _i1;
+import '../screens/page.dart' as _i14;
 import '../screens/profile/app_language.dart' as _i3;
 import '../screens/profile/audio_language.dart' as _i4;
 import '../screens/profile/contact_support.dart' as _i7;
@@ -29,17 +28,17 @@ import '../screens/profile/profile.dart' as _i2;
 import '../screens/profile/subtitle_language.dart' as _i5;
 import '../screens/profile/video_quality.dart' as _i6;
 import '../screens/root.dart' as _i9;
-import '../screens/search/explore_category_page.dart' as _i17;
-import '../screens/search/search.dart' as _i16;
-import 'auth_guard.dart' as _i19;
+import '../screens/search/explore_category_page.dart' as _i16;
+import '../screens/search/search.dart' as _i15;
+import 'auth_guard.dart' as _i18;
 
 class AppRouter extends _i10.RootStackRouter {
   AppRouter({
-    _i18.GlobalKey<_i18.NavigatorState>? navigatorKey,
+    _i17.GlobalKey<_i17.NavigatorState>? navigatorKey,
     required this.authGuard,
   }) : super(navigatorKey);
 
-  final _i19.AuthGuard authGuard;
+  final _i18.AuthGuard authGuard;
 
   @override
   final Map<String, _i10.PageFactory> pagesMap = {
@@ -127,7 +126,8 @@ class AppRouter extends _i10.RootStackRouter {
       return _i10.CustomPage<void>(
         routeData: routeData,
         child: const _i12.HomeScreen(),
-        customRouteBuilder: _i20.CustomTransitionsBuilders.slideUpAndDown,
+        maintainState: false,
+        customRouteBuilder: _i19.CustomTransitionsBuilders.slideUpAndDown,
         durationInMilliseconds: 500,
         reverseDurationInMilliseconds: 500,
         opaque: true,
@@ -152,43 +152,33 @@ class AppRouter extends _i10.RootStackRouter {
           episodeId: args.episodeId,
           autoplay: args.autoplay,
         ),
-        customRouteBuilder: _i20.CustomTransitionsBuilders.slideUpAndDown,
+        customRouteBuilder: _i19.CustomTransitionsBuilders.slideUpAndDown,
         opaque: true,
         barrierDismissible: false,
       );
     },
-    HomeExploreCategoryScreenRoute.name: (routeData) {
-      final args = routeData.argsAs<HomeExploreCategoryScreenRouteArgs>();
+    PageScreenRoute.name: (routeData) {
+      final args = routeData.argsAs<PageScreenRouteArgs>();
       return _i10.MaterialPageX<void>(
         routeData: routeData,
-        child: _i14.HomeExploreCategoryScreen(
+        child: _i14.PageScreen(
           key: args.key,
-          category: args.category,
-        ),
-      );
-    },
-    HomeExploreSubCategoryScreenRoute.name: (routeData) {
-      final args = routeData.argsAs<HomeExploreSubCategoryScreenRouteArgs>();
-      return _i10.MaterialPageX<void>(
-        routeData: routeData,
-        child: _i15.HomeExploreSubCategoryScreen(
-          key: args.key,
-          category: args.category,
-          parentPageName: args.parentPageName,
+          pageCode: args.pageCode,
+          pageTitle: args.pageTitle,
         ),
       );
     },
     SearchScreenRoute.name: (routeData) {
       return _i10.MaterialPageX<void>(
         routeData: routeData,
-        child: const _i16.SearchScreen(),
+        child: const _i15.SearchScreen(),
       );
     },
     ExploreCategoryScreenRoute.name: (routeData) {
       final args = routeData.argsAs<ExploreCategoryScreenRouteArgs>();
       return _i10.MaterialPageX<void>(
         routeData: routeData,
-        child: _i17.ExploreCategoryScreen(category: args.category),
+        child: _i16.ExploreCategoryScreen(category: args.category),
       );
     },
   };
@@ -248,13 +238,8 @@ class AppRouter extends _i10.RootStackRouter {
                   parent: HomeScreenWrapperRoute.name,
                 ),
                 _i10.RouteConfig(
-                  HomeExploreCategoryScreenRoute.name,
-                  path: 'explore-category',
-                  parent: HomeScreenWrapperRoute.name,
-                ),
-                _i10.RouteConfig(
-                  HomeExploreSubCategoryScreenRoute.name,
-                  path: 'explore-sub-category',
+                  PageScreenRoute.name,
+                  path: 'page/:pageCode',
                   parent: HomeScreenWrapperRoute.name,
                 ),
               ],
@@ -291,7 +276,7 @@ class AppRouter extends _i10.RootStackRouter {
 /// [_i1.LoginScreen]
 class LoginScreenRoute extends _i10.PageRouteInfo<LoginScreenRouteArgs> {
   LoginScreenRoute({
-    _i18.Key? key,
+    _i17.Key? key,
     String? loginError,
     void Function(bool)? onResult,
   }) : super(
@@ -314,7 +299,7 @@ class LoginScreenRouteArgs {
     this.onResult,
   });
 
-  final _i18.Key? key;
+  final _i17.Key? key;
 
   final String? loginError;
 
@@ -477,7 +462,7 @@ class HomeScreenRoute extends _i10.PageRouteInfo<void> {
 /// [_i13.EpisodeScreen]
 class EpisodeScreenRoute extends _i10.PageRouteInfo<EpisodeScreenRouteArgs> {
   EpisodeScreenRoute({
-    _i18.Key? key,
+    _i17.Key? key,
     required String episodeId,
     bool autoplay = false,
   }) : super(
@@ -502,7 +487,7 @@ class EpisodeScreenRouteArgs {
     this.autoplay = false,
   });
 
-  final _i18.Key? key;
+  final _i17.Key? key;
 
   final String episodeId;
 
@@ -515,82 +500,47 @@ class EpisodeScreenRouteArgs {
 }
 
 /// generated route for
-/// [_i14.HomeExploreCategoryScreen]
-class HomeExploreCategoryScreenRoute
-    extends _i10.PageRouteInfo<HomeExploreCategoryScreenRouteArgs> {
-  HomeExploreCategoryScreenRoute({
-    _i18.Key? key,
-    required String category,
+/// [_i14.PageScreen]
+class PageScreenRoute extends _i10.PageRouteInfo<PageScreenRouteArgs> {
+  PageScreenRoute({
+    _i17.Key? key,
+    required String pageCode,
+    required String pageTitle,
   }) : super(
-          HomeExploreCategoryScreenRoute.name,
-          path: 'explore-category',
-          args: HomeExploreCategoryScreenRouteArgs(
+          PageScreenRoute.name,
+          path: 'page/:pageCode',
+          args: PageScreenRouteArgs(
             key: key,
-            category: category,
+            pageCode: pageCode,
+            pageTitle: pageTitle,
           ),
+          rawPathParams: {'pageCode': pageCode},
         );
 
-  static const String name = 'HomeExploreCategoryScreenRoute';
+  static const String name = 'PageScreenRoute';
 }
 
-class HomeExploreCategoryScreenRouteArgs {
-  const HomeExploreCategoryScreenRouteArgs({
+class PageScreenRouteArgs {
+  const PageScreenRouteArgs({
     this.key,
-    required this.category,
+    required this.pageCode,
+    required this.pageTitle,
   });
 
-  final _i18.Key? key;
+  final _i17.Key? key;
 
-  final String category;
+  final String pageCode;
+
+  final String pageTitle;
 
   @override
   String toString() {
-    return 'HomeExploreCategoryScreenRouteArgs{key: $key, category: $category}';
+    return 'PageScreenRouteArgs{key: $key, pageCode: $pageCode, pageTitle: $pageTitle}';
   }
 }
 
 /// generated route for
-/// [_i15.HomeExploreSubCategoryScreen]
-class HomeExploreSubCategoryScreenRoute
-    extends _i10.PageRouteInfo<HomeExploreSubCategoryScreenRouteArgs> {
-  HomeExploreSubCategoryScreenRoute({
-    _i18.Key? key,
-    required String category,
-    required String parentPageName,
-  }) : super(
-          HomeExploreSubCategoryScreenRoute.name,
-          path: 'explore-sub-category',
-          args: HomeExploreSubCategoryScreenRouteArgs(
-            key: key,
-            category: category,
-            parentPageName: parentPageName,
-          ),
-        );
-
-  static const String name = 'HomeExploreSubCategoryScreenRoute';
-}
-
-class HomeExploreSubCategoryScreenRouteArgs {
-  const HomeExploreSubCategoryScreenRouteArgs({
-    this.key,
-    required this.category,
-    required this.parentPageName,
-  });
-
-  final _i18.Key? key;
-
-  final String category;
-
-  final String parentPageName;
-
-  @override
-  String toString() {
-    return 'HomeExploreSubCategoryScreenRouteArgs{key: $key, category: $category, parentPageName: $parentPageName}';
-  }
-}
-
-/// generated route for
-/// [_i16.SearchScreen]
+/// [_i15.SearchScreen]
 class SearchScreenRoute extends _i10.PageRouteInfo<void> {
   const SearchScreenRoute()
       : super(
@@ -602,7 +552,7 @@ class SearchScreenRoute extends _i10.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i17.ExploreCategoryScreen]
+/// [_i16.ExploreCategoryScreen]
 class ExploreCategoryScreenRoute
     extends _i10.PageRouteInfo<ExploreCategoryScreenRouteArgs> {
   ExploreCategoryScreenRoute({required String category})

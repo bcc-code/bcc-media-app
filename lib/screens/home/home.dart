@@ -47,11 +47,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
     return Scaffold(
       // extendBodyBehindAppBar: true,
       appBar: appBar,
-      body: BccmPage(
-        code: 'frontpage',
-        // appbarOffset: appBar.preferredSize.height,
-        parentPageName: 'none',
-      ),
+      body: const BccmPage(pageCode: 'frontpage'),
     );
   }
 }

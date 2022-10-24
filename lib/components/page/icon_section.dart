@@ -30,21 +30,24 @@ class IconSection extends StatelessWidget {
               ),
             ),
           HorizontalSlider(
-            items: sectionItems
-                .map(
-                  (item) => CategoryButton(
-                    onTap: () {
-                      context.router.navigate(
-                        HomeExploreCategoryScreenRoute(category: item.title),
-                      );
-                    },
-                    label: item.title,
-                    networkImage: item.icon,
-                    width: 80,
-                    margin: const EdgeInsets.only(right: 16),
-                  ),
-                )
-                .toList(),
+            items: sectionItems.map((item) {
+              return CategoryButton(
+                onTap: () {
+                  if (item.item
+                      is Fragment$Section$$IconSection$items$items$item$$Page) {
+                    final pageItem = item.item
+                        as Fragment$Section$$IconSection$items$items$item$$Page;
+                    context.router.navigate(
+                      PageScreenRoute(
+                          pageCode: pageItem.code, pageTitle: item.title),
+                    );
+                  }
+                },
+                label: item.title,
+                networkImage: item.image,
+                width: 80,
+              );
+            }).toList(),
           ),
         ],
       ),

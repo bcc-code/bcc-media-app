@@ -26,3 +26,7 @@ String getFormattedDuration(int durSeconds) {
 
   return durationSegments.join(':');
 }
+
+// String getFormattedProductionDate(String prodDate) {
+//   // return DateTime.parse()
+// }

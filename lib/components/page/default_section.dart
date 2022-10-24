@@ -1,10 +1,14 @@
+import 'package:auto_route/auto_route.dart';
+import 'package:brunstadtv_app/components/page/watch_progress_indicator.dart';
+import 'package:brunstadtv_app/router/router.gr.dart';
 import 'package:flutter/material.dart';
 
 import '../../services/utils.dart';
-import '../horizontal_slider.dart';
 import '../bordered_image_container.dart';
+import '../horizontal_slider.dart';
 import 'episode_duration.dart';
-import 'seen.dart';
+import 'watched.dart';
+import 'feature_tag.dart';
 import '../../graphql/schema/pages.graphql.dart';
 import '../../graphql/queries/page.graphql.dart';
 
@@ -20,38 +24,49 @@ class DefaultSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final sectionItems = data.items.items;
-    return Padding(
-      padding: const EdgeInsets.only(top: 19, bottom: 12, left: 16),
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          if (data.title != null)
-            Container(
-              margin: const EdgeInsets.only(bottom: 16),
-              child: Text(
-                data.title!,
-                style:
-                    const TextStyle(fontSize: 20, fontWeight: FontWeight.w700),
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        if (data.title != null)
+          Container(
+            padding: const EdgeInsets.only(
+              left: 16,
+              top: 19,
+              right: 16,
+              bottom: 5,
+            ),
+            child: Text(
+              data.title!,
+              style: const TextStyle(
+                fontSize: 20,
+                fontWeight: FontWeight.w700,
               ),
             ),
-          HorizontalSlider(
-            clipBehaviour: Clip.none,
-            items: sectionItems.map((item) {
-              if (item.item
-                  is Fragment$Section$$DefaultSection$items$items$item$$Episode) {
-                return _DefaultEpisodeItem(sectionItem: item, size: data.size);
-              } else if (item.item
-                  is Fragment$Section$$DefaultSection$items$items$item$$Show) {
-                return _DefaultShowItem(sectionItem: item, size: data.size);
-              }
-              return Container();
-            }).toList(),
           ),
-        ],
-      ),
+        HorizontalSlider(
+          clipBehaviour: Clip.none,
+          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+          items: sectionItems,
+        ),
+      ],
     );
+  }
+
+  List<Widget> get sectionItems {
+    final sectionItemsList = <Widget>[];
+    for (var item in data.items.items) {
+      if (item.item
+          is Fragment$Section$$DefaultSection$items$items$item$$Episode) {
+        sectionItemsList
+            .add(_DefaultEpisodeItem(sectionItem: item, size: data.size));
+      } else if (item.item
+          is Fragment$Section$$DefaultSection$items$items$item$$Show) {
+        sectionItemsList
+            .add(_DefaultShowItem(sectionItem: item, size: data.size));
+      }
+    }
+    return sectionItemsList;
   }
 }
 
@@ -61,68 +76,59 @@ class _DefaultEpisodeItem extends StatelessWidget {
   final Enum$SectionSize size;
 
   // TODO: Remove these temp variables
-  // bool watched = false;
-  bool newItem = true;
+  bool watched = false;
+  bool isLive = false;
+  // bool isComingSoon = true;
+  bool isNewItem = false;
+  bool showWatchProgressIndicator = false;
 
   _DefaultEpisodeItem({required this.sectionItem, required this.size})
       : episode = sectionItem.item
             as Fragment$Section$$DefaultSection$items$items$item$$Episode;
 
+  bool get showFeaturedTag => isLive || isNewItem || isComingSoon;
+
+  bool get isComingSoon {
+    if (episode.productionDate == null) {
+      return false;
+    }
+    return DateTime.now().isBefore(DateTime.parse(episode.productionDate!));
+  }
+
   @override
   Widget build(BuildContext context) {
-    final imageWidget = BorderedImageContainer(
-      height: imageSize[size]!.height,
-      margin: const EdgeInsets.only(bottom: 4),
-      image:
-          sectionItem.image != null ? NetworkImage(sectionItem.image!) : null,
-      child: Align(
-        alignment: Alignment.bottomCenter,
-        child: Container(
-          height: 12,
-          margin: const EdgeInsets.only(right: 4, bottom: 4, left: 4),
-          child: Row(
-            children: [
-              // if (watched) const Seen(),
-              const Spacer(),
-              EpisodeDuration(duration: getFormattedDuration(episode.duration)),
-            ],
-          ),
-        ),
-      ),
-    );
-
-    return Container(
-      width: imageSize[size]!.width,
-      margin: const EdgeInsets.only(right: 16),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          newItem
-              ? _Chipped(
-                  chipLabel: 'New',
-                  child: imageWidget,
-                )
-              : imageWidget,
-          Container(
-            margin: const EdgeInsets.only(bottom: 2),
-            child: Row(
-              children: [
-                Flexible(
-                  child: Text(
-                    episode.season!.$show.title.replaceAll(' ', '\u{000A0}'),
-                    maxLines: 1,
-                    overflow: TextOverflow.ellipsis,
-                    style: const TextStyle(
-                      fontSize: 12,
-                      fontWeight: FontWeight.w500,
-                      color: Color.fromRGBO(110, 176, 230, 1),
+    return GestureDetector(
+      onTap: () => context.router
+          .navigate(EpisodeScreenRoute(episodeId: sectionItem.id)),
+      child: SizedBox(
+        width: imageSize[size]!.width,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            sectionItemImage,
+            Container(
+              margin: const EdgeInsets.only(bottom: 2),
+              child: Row(
+                children: [
+                  if (episode.season != null)
+                    Flexible(
+                      child: Container(
+                        margin: const EdgeInsets.only(right: 4),
+                        child: Text(
+                          episode.season!.$show.title
+                              .replaceAll(' ', '\u{000A0}'),
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                          style: const TextStyle(
+                            fontSize: 12,
+                            fontWeight: FontWeight.w500,
+                            color: Color.fromRGBO(110, 176, 230, 1),
+                          ),
+                        ),
+                      ),
                     ),
-                  ),
-                ),
-                if (episode.productionDate != null)
-                  Container(
-                    margin: const EdgeInsets.only(left: 4),
-                    child: Text(
+                  if (episode.productionDate != null)
+                    Text(
                       episode.productionDate!,
                       style: const TextStyle(
                         fontSize: 12,
@@ -130,17 +136,96 @@ class _DefaultEpisodeItem extends StatelessWidget {
                         color: Color.fromRGBO(112, 124, 142, 1),
                       ),
                     ),
-                  )
-              ],
+                ],
+              ),
             ),
+            Text(
+              sectionItem.title,
+              style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w500),
+            )
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget get sectionItemImage {
+    return Container(
+      margin: const EdgeInsets.only(bottom: 4),
+      width: imageSize[size]!.width,
+      height: imageSize[size]!.height,
+      child: Stack(
+        clipBehavior: Clip.none,
+        children: [
+          BorderedImageContainer(
+            image: sectionItem.image != null
+                ? NetworkImage(sectionItem.image!)
+                : null,
           ),
-          Text(
-            sectionItem.title,
-            style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w500),
-          )
+          if (isComingSoon)
+            Container(
+              width: double.infinity,
+              height: double.infinity,
+              decoration: const BoxDecoration(
+                color: Color.fromRGBO(0, 0, 0, 0.5),
+                image: DecorationImage(
+                  image: AssetImage('assets/icons/Wait.png'),
+                ),
+              ),
+            ),
+          showWatchProgressIndicator
+              ? Align(
+                  alignment: Alignment.bottomCenter,
+                  child: Container(
+                    margin: const EdgeInsets.only(left: 4, bottom: 4, right: 4),
+                    child: WatchProgressIndicator(
+                        totalDuration: episode.duration, watchedDuration: 10),
+                  ),
+                )
+              : Align(
+                  alignment: Alignment.bottomCenter,
+                  child: Container(
+                    height: 12,
+                    margin: const EdgeInsets.only(right: 4, bottom: 4, left: 4),
+                    child: Row(
+                      children: [
+                        if (watched) const Watched(),
+                        const Spacer(),
+                        EpisodeDuration(
+                            duration: getFormattedDuration(episode.duration)),
+                      ],
+                    ),
+                  ),
+                ),
+          if (showFeaturedTag)
+            Positioned(
+              top: -4,
+              right: -4,
+              child: featuredTag!,
+            ),
         ],
       ),
     );
+  }
+
+  Widget? get featuredTag {
+    if (isLive) {
+      return const FeatureTag(
+        label: 'Live now',
+        color: Color.fromRGBO(230, 60, 98, 1),
+      );
+    } else if (isComingSoon) {
+      return const FeatureTag(
+        label: 'Coming soon',
+        color: Color.fromRGBO(29, 40, 56, 1),
+      );
+    } else if (isNewItem) {
+      return const FeatureTag(
+        label: 'New',
+        color: Color.fromRGBO(230, 60, 98, 1),
+      );
+    }
+    return null;
   }
 }
 
@@ -150,7 +235,7 @@ class _DefaultShowItem extends StatelessWidget {
   Enum$SectionSize size;
 
   // TODO: Remove this
-  bool newEpisodes = true;
+  bool hasNewEpisodes = true;
 
   _DefaultShowItem({required this.sectionItem, required this.size})
       : show = sectionItem.item
@@ -158,25 +243,12 @@ class _DefaultShowItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final imageWidget = BorderedImageContainer(
-      height: imageSize[size]!.height,
-      margin: const EdgeInsets.only(bottom: 4),
-      image:
-          sectionItem.image != null ? NetworkImage(sectionItem.image!) : null,
-    );
-
-    return Container(
+    return SizedBox(
       width: imageSize[size]!.width,
-      margin: const EdgeInsets.only(right: 16),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          newEpisodes
-              ? _Chipped(
-                  chipLabel: 'New Episodes',
-                  child: imageWidget,
-                )
-              : imageWidget,
+          sectionItemImage,
           Container(
             margin: const EdgeInsets.only(bottom: 2),
             child: Text(
@@ -196,44 +268,31 @@ class _DefaultShowItem extends StatelessWidget {
       ),
     );
   }
-}
 
-class _Chipped extends StatelessWidget {
-  final String chipLabel;
-  final Widget child;
-
-  const _Chipped({required this.child, required this.chipLabel});
-
-  @override
-  Widget build(BuildContext context) {
-    return Stack(
-      clipBehavior: Clip.none,
-      children: [
-        child,
-        Positioned(
-          top: -4,
-          right: -4,
-          child: Container(
-            padding: const EdgeInsets.only(left: 4, bottom: 2, right: 4),
-            decoration: BoxDecoration(
-              color: const Color.fromRGBO(230, 60, 98, 1),
-              borderRadius: BorderRadius.circular(8),
-              border: Border.all(
-                width: 1,
-                color: const Color.fromRGBO(204, 221, 255, 0.1),
-              ),
-            ),
-            child: Text(
-              chipLabel,
-              style: const TextStyle(
-                fontSize: 12,
-                fontWeight: FontWeight.w500,
-                color: Colors.white,
-              ),
-            ),
+  Widget get sectionItemImage {
+    return Container(
+      margin: const EdgeInsets.only(bottom: 4),
+      width: imageSize[size]!.width,
+      height: imageSize[size]!.height,
+      child: Stack(
+        clipBehavior: Clip.none,
+        children: [
+          BorderedImageContainer(
+            image: sectionItem.image != null
+                ? NetworkImage(sectionItem.image!)
+                : null,
           ),
-        ),
-      ],
+          if (hasNewEpisodes)
+            const Positioned(
+              top: -4,
+              right: -4,
+              child: FeatureTag(
+                label: 'New Episodes',
+                color: Color.fromRGBO(230, 60, 98, 1),
+              ),
+            ),
+        ],
+      ),
     );
   }
 }

@@ -5,24 +5,19 @@ import '../../graphql/client.dart';
 import '../../graphql/queries/page.graphql.dart';
 import '../icon_label_button.dart';
 import 'featured_section.dart';
+import 'grid_section.dart';
 import 'icon_section.dart';
+import 'label_section.dart';
 import 'poster_section.dart';
 import 'default_section.dart';
-import 'favourites.dart';
 import 'error_message.dart';
-import 'kids_bible_stories.dart';
-import 'category_chips.dart';
-import 'sample_data.dart';
 
 class BccmPage extends ConsumerStatefulWidget {
-  final String code;
-  final String parentPageName;
+  final String pageCode;
 
   const BccmPage({
     super.key,
-    required this.code,
-    // this.appbarOffset = 0,
-    required this.parentPageName,
+    required this.pageCode,
   });
 
   @override
@@ -42,7 +37,8 @@ class _BccmPageState extends ConsumerState<BccmPage> {
 
     resultFuture = client
         .query$Page(
-      Options$Query$Page(variables: Variables$Query$Page(code: widget.code)),
+      Options$Query$Page(
+          variables: Variables$Query$Page(code: widget.pageCode)),
     )
         .then(
       (value) {
@@ -62,18 +58,25 @@ class _BccmPageState extends ConsumerState<BccmPage> {
     final sectionItems = pageData.sections.items;
 
     return ListView.builder(
-      padding: const EdgeInsets.only(top: 12),
+      shrinkWrap: true,
       itemCount: sectionItems.length,
       itemBuilder: ((context, index) {
         if (sectionItems[index] is Fragment$Section$$IconSection) {
           return IconSection(
               sectionItems[index] as Fragment$Section$$IconSection);
+        } else if (sectionItems[index] is Fragment$Section$$LabelSection) {
+          return LabelSection(
+            sectionItems[index] as Fragment$Section$$LabelSection,
+          );
         } else if (sectionItems[index] is Fragment$Section$$DefaultSection) {
           return DefaultSection(
               sectionItems[index] as Fragment$Section$$DefaultSection);
         } else if (sectionItems[index] is Fragment$Section$$PosterSection) {
           return PosterSection(
               sectionItems[index] as Fragment$Section$$PosterSection);
+        } else if (sectionItems[index] is Fragment$Section$$GridSection) {
+          return GridSection(
+              sectionItems[index] as Fragment$Section$$GridSection);
         } else if (sectionItems[index] is Fragment$Section$$FeaturedSection) {
           return FeaturedSection(
               sectionItems[index] as Fragment$Section$$FeaturedSection);
@@ -100,47 +103,6 @@ class _BccmPageState extends ConsumerState<BccmPage> {
         return loadingContent;
       },
     );
-
-    // if (isLoading) {
-    //   return loadingContent;
-    // } else if (hasLoadingError) {
-    //   return loadingError;
-    // } else {
-    //   return ListView(
-    //     padding: const EdgeInsets.only(top: 12),
-    //     children:
-    //         // SizedBox(height: appbarOffset),
-    //         (widget.code == 'frontpage'
-    //                 ? frontPageSections
-    //                 : exploreCategoriesSections)
-    //             .map((section) {
-    //       switch (section['type']) {
-    //         case 'featured':
-    //           return Featured(
-    //               items: section['items'] as List<Map<String, dynamic>>);
-    //         case 'explore_categories':
-    //           return IconSection(data: section);
-    //         case 'continue_watching':
-    //           return ContinueWatching(data: section);
-    //         case 'trending':
-    //           return Trending(data: section);
-    //         case 'favourites':
-    //           return Favourites(data: section);
-    //         case 'kids_bible_stories':
-    //           return KidsBibleStories(data: section);
-    //         case 'categories':
-    //           return CategoryChips(
-    //             data: section,
-    //             parentPageName: widget.parentPageName,
-    //           );
-    //         case 'error':
-    //           return ErrorMessage(data: section);
-    //         default:
-    //           return Container();
-    //       }
-    //     }).toList(),
-    //   );
-    // }
   }
 
   final loadingContent = Center(
