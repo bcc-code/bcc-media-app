@@ -15,17 +15,18 @@ const Map<Enum$GridSectionSize, int> columnSize = {
   Enum$GridSectionSize.half: 2,
 };
 
-class GridSection extends StatelessWidget {
-  final Fragment$Section$$GridSection data;
+class DefaultGridSection extends StatelessWidget {
+  final Fragment$Section$$DefaultGridSection data;
 
-  const GridSection(this.data, {super.key});
+  const DefaultGridSection(this.data, {super.key});
 
-  Widget getItemWidget(Fragment$Section$$GridSection$items$items sectionItem) {
+  Widget getItemWidget(
+      Fragment$Section$$DefaultGridSection$items$items sectionItem) {
     if (sectionItem.item
-        is Fragment$Section$$GridSection$items$items$item$$Episode) {
+        is Fragment$Section$$DefaultGridSection$items$items$item$$Episode) {
       return _GridEpisodeItem(sectionItem);
     } else if (sectionItem.item
-        is Fragment$Section$$GridSection$items$items$item$$Show) {
+        is Fragment$Section$$DefaultGridSection$items$items$item$$Show) {
       return _GridShowItem(sectionItem);
     }
     return const SizedBox();
@@ -34,8 +35,6 @@ class GridSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final sectionItems = data.items.items;
-    // TODO: Check why too many items are removed when rmoveLast is used with hot reload
-    // sectionItems.removeLast();
     final colSize = columnSize[data.gridSize]!;
     final rowSize = (sectionItems.length / colSize).ceil();
     return Container(
@@ -58,8 +57,8 @@ class GridSection extends StatelessWidget {
 }
 
 class _GridEpisodeItem extends StatelessWidget {
-  final Fragment$Section$$GridSection$items$items sectionItem;
-  final Fragment$Section$$GridSection$items$items$item$$Episode episode;
+  final Fragment$Section$$DefaultGridSection$items$items sectionItem;
+  final Fragment$Section$$DefaultGridSection$items$items$item$$Episode episode;
 
   // TODO: Remove these temp variables
   bool watched = false;
@@ -69,7 +68,7 @@ class _GridEpisodeItem extends StatelessWidget {
 
   _GridEpisodeItem(this.sectionItem)
       : episode = sectionItem.item
-            as Fragment$Section$$GridSection$items$items$item$$Episode;
+            as Fragment$Section$$DefaultGridSection$items$items$item$$Episode;
 
   bool get showFeaturedTag => isLive || isNewItem || isComingSoon;
 
@@ -220,15 +219,15 @@ class _GridEpisodeItem extends StatelessWidget {
 }
 
 class _GridShowItem extends StatelessWidget {
-  final Fragment$Section$$GridSection$items$items sectionItem;
-  final Fragment$Section$$GridSection$items$items$item$$Show show;
+  final Fragment$Section$$DefaultGridSection$items$items sectionItem;
+  final Fragment$Section$$DefaultGridSection$items$items$item$$Show show;
 
   // TODO: Remove this
-  bool hasNewEpisodes = true;
+  bool hasNewEpisodes = false;
 
   _GridShowItem(this.sectionItem)
       : show = sectionItem.item
-            as Fragment$Section$$GridSection$items$items$item$$Show;
+            as Fragment$Section$$DefaultGridSection$items$items$item$$Show;
 
   @override
   Widget build(BuildContext context) {

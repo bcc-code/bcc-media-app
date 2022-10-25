@@ -24,48 +24,10 @@ fragment Section on Section{
       }
     }
   }
-  ... on LabelSection {
-    items {
-      items {
-        id
-        title
-        image
-        item {
-          ... on Link {
-            url
-          }
-          ... on Page {
-            code
-          }
-          __typename
-        }
-      }
-    }
-  }
-  ... on IconSection {
-    items {
-      items {
-        title,
-        image,
-        item {
-          ... on Link {
-            url
-          }
-          ... on Page {
-            code
-          }
-          __typename
-        }
-      }
-    }
-  }
   ... on PosterSection {
     size
     items {
       items {
-        id
-        title
-        image
         item {
           ... on Show {
             episodeCount
@@ -89,18 +51,7 @@ fragment Section on Section{
     size
     items {
       items {
-        id
-        title
         description
-        image
-        item {
-          ... on Show {
-            __typename
-          }
-          ... on Episode {
-            __typename
-          }
-        }
       }
     }
   }
@@ -108,8 +59,6 @@ fragment Section on Section{
     size
     items {
       items {
-        title
-        image
         item {
           ... on Show {
             episodeCount
@@ -133,9 +82,6 @@ fragment Section on Section{
     gridSize: size
     items {
       items {
-        id
-        title
-        image
         item {
           ... on Show {
             episodeCount

@@ -5,12 +5,12 @@ import '../../graphql/client.dart';
 import '../../graphql/queries/page.graphql.dart';
 import '../icon_label_button.dart';
 import 'featured_section.dart';
-import 'grid_section.dart';
+import 'default_grid_section.dart';
+import 'poster_grid_section.dart';
 import 'icon_section.dart';
 import 'label_section.dart';
 import 'poster_section.dart';
 import 'default_section.dart';
-import 'error_message.dart';
 
 class BccmPage extends ConsumerStatefulWidget {
   final String pageCode;
@@ -74,9 +74,13 @@ class _BccmPageState extends ConsumerState<BccmPage> {
         } else if (sectionItems[index] is Fragment$Section$$PosterSection) {
           return PosterSection(
               sectionItems[index] as Fragment$Section$$PosterSection);
-        } else if (sectionItems[index] is Fragment$Section$$GridSection) {
-          return GridSection(
-              sectionItems[index] as Fragment$Section$$GridSection);
+        } else if (sectionItems[index]
+            is Fragment$Section$$DefaultGridSection) {
+          return DefaultGridSection(
+              sectionItems[index] as Fragment$Section$$DefaultGridSection);
+        } else if (sectionItems[index] is Fragment$Section$$PosterGridSection) {
+          return PosterGridSection(
+              sectionItems[index] as Fragment$Section$$PosterGridSection);
         } else if (sectionItems[index] is Fragment$Section$$FeaturedSection) {
           return FeaturedSection(
               sectionItems[index] as Fragment$Section$$FeaturedSection);
