@@ -1,14 +1,22 @@
-import 'package:flutter/material.dart';
+import 'dart:ui';
+
 import 'package:auto_route/auto_route.dart';
+import 'package:brunstadtv_app/helpers/svg_icons.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:brunstadtv_app/router/router.gr.dart';
 
 import 'package:bccm_player/cast_button.dart';
-import '../../graphql/client.dart';
-import '../../graphql/queries/page.graphql.dart';
-import '../../router/router.gr.dart';
+import 'package:flutter_svg/svg.dart';
 import '../../components/general_app_bar.dart';
 import '../../components/icon_label_button.dart';
+import '../../components/mini_player.dart';
 import '../../components/page/page.dart';
+import '../../graphql/client.dart';
+import '../../graphql/queries/page.graphql.dart';
+import '../../services/auth_service.dart';
+
+final logo = Image.asset('assets/images/logo.png');
 
 class HomeScreen extends ConsumerStatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -46,21 +54,43 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final appBar = GeneralAppBar(
-      title: Image.asset('assets/icons/Logo.png'),
-      leftActions: [
-        IconLabelButton(
-          imagePath: 'assets/icons/Profile.png',
-          onPressed: () => context.router.push(const ProfileRoute()),
-        )
-      ],
-      rightActions: const [
-        SizedBox.square(dimension: 24, child: CastButton()),
-      ],
-    );
-
     return Scaffold(
-      appBar: appBar,
+      extendBodyBehindAppBar: true,
+      appBar: AppBar(
+        toolbarHeight: 44,
+        shadowColor: Colors.black,
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+        title: logo,
+        leading: GestureDetector(
+            onTap: () {
+              context.router.push(const ProfileRoute());
+            },
+            child: Padding(
+                padding: const EdgeInsets.only(left: 16, top: 12, bottom: 12),
+                child: SvgPicture.string(
+                  SvgIcons.profile,
+                ))),
+        actions: const [SizedBox(width: 40, child: CastButton())],
+        flexibleSpace: Container(
+          decoration: BoxDecoration(boxShadow: <BoxShadow>[
+            BoxShadow(
+                color: Colors.black54,
+                blurRadius: 8,
+                blurStyle: BlurStyle.outer)
+          ]),
+          child: ClipRect(
+            clipBehavior: Clip.hardEdge,
+            child: BackdropFilter(
+              filter: ImageFilter.blur(sigmaX: 20, sigmaY: 20),
+              child: Container(
+                color: Colors.transparent,
+                height: 1000,
+              ),
+            ),
+          ),
+        ),
+      ),
       body: BccmPage(pageFuture: resultFuture),
     );
   }

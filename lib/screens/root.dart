@@ -137,7 +137,7 @@ class _RootScreenState extends ConsumerState<RootScreen> with AutoRouteAware {
               tabsRouter.current.meta['hide_mini_player'] == true ||
               isOnCurrentEpisodePage;
           return Scaffold(
-              body: SafeArea(child: child),
+              body: child,
               bottomSheet: AnimatedSlide(
                   offset: hideMiniPlayer ? const Offset(0, 1) : Offset.zero,
                   duration: Duration(milliseconds: 250),
