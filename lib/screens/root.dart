@@ -115,9 +115,6 @@ class _RootScreenState extends ConsumerState<RootScreen> with AutoRouteAware {
   Widget build(BuildContext context) {
     return AutoTabsRouter(
         navigatorObservers: () => [HeroController()],
-        // list of your tab routes
-        // routes used here must be declaraed as children
-        // routes of /dashboard
         routes: const [
           HomeScreenWrapperRoute(),
           SearchScreenWrapperRoute(),
@@ -125,12 +122,7 @@ class _RootScreenState extends ConsumerState<RootScreen> with AutoRouteAware {
           CalendarPageRoute(),
         ],
         builder: (context, child, animation) {
-          // obtain the scoped TabsRouter controller using context
           final tabsRouter = AutoTabsRouter.of(context);
-          // Here we're building our Scaffold inside of AutoTabsRouter
-          // to access the tabsRouter controller provided in this context
-          //
-          //alterntivly you could use a global keyfinal
 
           final player = ref.watch(isCasting) == true
               ? ref.watch(castPlayerProvider)
@@ -145,12 +137,12 @@ class _RootScreenState extends ConsumerState<RootScreen> with AutoRouteAware {
               tabsRouter.current.meta['hide_mini_player'] == true ||
               isOnCurrentEpisodePage;
           return Scaffold(
-              body: SafeArea(child: child),
+              body: child,
               bottomSheet: AnimatedSlide(
                   offset: hideMiniPlayer ? const Offset(0, 1) : Offset.zero,
                   duration: Duration(milliseconds: 250),
                   curve: Curves.easeOutQuad,
-                  child: BottomSheetMiniPlayer()),
+                  child: const BottomSheetMiniPlayer()),
               bottomNavigationBar: Container(
                 decoration: BoxDecoration(
                     border: Border(

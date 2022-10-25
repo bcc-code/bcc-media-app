@@ -254,7 +254,8 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen> {
                     ),
                   );
                 }),
-            SizedBox(height: 1500, child: SvgPicture.string(kSvgChevronDown))
+            SizedBox(
+                height: 1500, child: SvgPicture.string(SvgIcons.chevronDown))
           ],
         ),
       ),

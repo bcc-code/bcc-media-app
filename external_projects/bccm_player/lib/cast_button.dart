@@ -10,13 +10,11 @@ class CastButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     if (Platform.isAndroid) {
-      return Container(
-        child: const AndroidView(
-          viewType: 'bccm_player/cast_button',
-          layoutDirection: TextDirection.ltr,
-          creationParams: <String, dynamic>{},
-          creationParamsCodec: StandardMessageCodec(),
-        ),
+      return const AndroidView(
+        viewType: 'bccm_player/cast_button',
+        layoutDirection: TextDirection.ltr,
+        creationParams: <String, dynamic>{},
+        creationParamsCodec: StandardMessageCodec(),
       );
     } else if (Platform.isIOS) {
       return const UiKitView(viewType: 'bccm_player/cast_button');
