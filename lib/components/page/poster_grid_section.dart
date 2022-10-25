@@ -11,6 +11,8 @@ import 'episode_duration.dart';
 import 'watch_progress_indicator.dart';
 import 'watched.dart';
 
+const posterAspectRatio = 0.67;
+
 const Map<Enum$GridSectionSize, int> columnSize = {
   Enum$GridSectionSize.half: 2,
 };
@@ -139,7 +141,7 @@ class _GridEpisodeItem extends StatelessWidget {
       margin: const EdgeInsets.only(bottom: 4),
       width: double.infinity,
       child: AspectRatio(
-        aspectRatio: 9 / 16,
+        aspectRatio: posterAspectRatio,
         child: Stack(
           clipBehavior: Clip.none,
           children: [
@@ -264,7 +266,7 @@ class _GridShowItem extends StatelessWidget {
       margin: const EdgeInsets.only(bottom: 4),
       width: double.infinity,
       child: AspectRatio(
-        aspectRatio: 9 / 16,
+        aspectRatio: posterAspectRatio,
         child: Stack(
           clipBehavior: Clip.none,
           children: [
