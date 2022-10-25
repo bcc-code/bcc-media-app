@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:bccm_player/playback_platform_pigeon.g.dart';
+import 'package:brunstadtv_app/helpers/btv_colors.dart';
 import 'package:brunstadtv_app/providers/settings_service.dart';
 import 'package:brunstadtv_app/providers/video_state.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -95,25 +96,30 @@ void main() async {
     child: Builder(
         builder: (context) => MaterialApp.router(
               theme: ThemeData(),
-              darkTheme: ThemeData(
-                brightness: Brightness.dark,
-                colorScheme: ColorScheme.fromSeed(
-                    brightness: Brightness.dark,
-                    seedColor: const Color.fromARGB(255, 110, 176, 230)),
-                fontFamily: 'Barlow',
-                canvasColor: const Color.fromARGB(255, 13, 22, 35),
-                textTheme: const TextTheme(
-                    headlineMedium: TextStyle(
-                        fontFamily: 'Barlow',
-                        fontSize: 28,
-                        fontWeight: FontWeight.w800,
-                        color: Colors.white)),
-                scaffoldBackgroundColor: const Color.fromARGB(255, 13, 22, 35),
-              ),
+              darkTheme: createTheme(),
               themeMode: ThemeMode.dark,
               title: 'BrunstadTV',
               routerDelegate: appRouter.delegate(),
               routeInformationParser: appRouter.defaultRouteParser(),
             )),
   ));
+}
+
+ThemeData createTheme() {
+  return ThemeData(
+    //useMaterial3: true,
+    brightness: Brightness.dark,
+    colorScheme: ColorScheme.fromSeed(
+        brightness: Brightness.dark, seedColor: BtvColors.tint1),
+    fontFamily: 'Barlow',
+    canvasColor: BtvColors.background1,
+    backgroundColor: BtvColors.background2,
+    scaffoldBackgroundColor: BtvColors.background1,
+    textTheme: const TextTheme(
+        headlineMedium: TextStyle(
+            fontFamily: 'Barlow',
+            fontSize: 28,
+            fontWeight: FontWeight.w800,
+            color: Colors.white)),
+  );
 }
