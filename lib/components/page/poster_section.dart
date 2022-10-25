@@ -77,7 +77,7 @@ class _PosterEpisodeItem extends StatelessWidget {
 
   // TODO: Remove these temp variables
   bool watched = false;
-  bool isLive = true;
+  bool isLive = false;
   bool isNewItem = false;
   bool showWatchProgressIndicator = false;
 
@@ -237,7 +237,7 @@ class _PosterShowItem extends StatelessWidget {
   final Fragment$Section$$PosterSection$items$items$item$$Show show;
   final Enum$SectionSize size;
 
-  bool hasNewEpisodes = true;
+  bool hasNewEpisodes = false;
 
   _PosterShowItem({
     required this.sectionItem,

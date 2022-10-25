@@ -165,13 +165,15 @@ class AppRouter extends _i10.RootStackRouter {
       );
     },
     PageScreenRoute.name: (routeData) {
-      final args = routeData.argsAs<PageScreenRouteArgs>();
+      final pathParams = routeData.inheritedPathParams;
+      final args = routeData.argsAs<PageScreenRouteArgs>(
+          orElse: () =>
+              PageScreenRouteArgs(pageCode: pathParams.getString('pageCode')));
       return _i10.MaterialPageX<void>(
         routeData: routeData,
         child: _i15.PageScreen(
           key: args.key,
           pageCode: args.pageCode,
-          pageTitle: args.pageTitle,
         ),
       );
     },
@@ -529,14 +531,12 @@ class PageScreenRoute extends _i10.PageRouteInfo<PageScreenRouteArgs> {
   PageScreenRoute({
     _i18.Key? key,
     required String pageCode,
-    required String pageTitle,
   }) : super(
           PageScreenRoute.name,
           path: 'page/:pageCode',
           args: PageScreenRouteArgs(
             key: key,
             pageCode: pageCode,
-            pageTitle: pageTitle,
           ),
           rawPathParams: {'pageCode': pageCode},
         );
@@ -548,18 +548,15 @@ class PageScreenRouteArgs {
   const PageScreenRouteArgs({
     this.key,
     required this.pageCode,
-    required this.pageTitle,
   });
 
   final _i18.Key? key;
 
   final String pageCode;
 
-  final String pageTitle;
-
   @override
   String toString() {
-    return 'PageScreenRouteArgs{key: $key, pageCode: $pageCode, pageTitle: $pageTitle}';
+    return 'PageScreenRouteArgs{key: $key, pageCode: $pageCode}';
   }
 }
 

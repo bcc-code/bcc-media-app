@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../graphql/client.dart';
 import '../../graphql/queries/page.graphql.dart';
 import '../icon_label_button.dart';
 import 'featured_section.dart';
@@ -12,47 +10,13 @@ import 'label_section.dart';
 import 'poster_section.dart';
 import 'default_section.dart';
 
-class BccmPage extends ConsumerStatefulWidget {
-  final String pageCode;
+class BccmPage extends StatelessWidget {
+  final Future<Query$Page$page?> pageFuture;
 
-  const BccmPage({
+  BccmPage({
     super.key,
-    required this.pageCode,
+    required this.pageFuture,
   });
-
-  @override
-  ConsumerState<BccmPage> createState() => _BccmPageState();
-}
-
-class _BccmPageState extends ConsumerState<BccmPage> {
-  final isLoading = false;
-  final hasLoadingError = false;
-  late Future<Query$Page$page?> resultFuture;
-
-  @override
-  void initState() {
-    super.initState();
-
-    final client = ref.read(gqlClientProvider);
-
-    resultFuture = client
-        .query$Page(
-      Options$Query$Page(
-          variables: Variables$Query$Page(code: widget.pageCode)),
-    )
-        .then(
-      (value) {
-        if (value.hasException) {
-          throw ErrorDescription(value.exception.toString());
-        }
-        return value.parsedData?.page;
-      },
-    ).catchError(
-      (error) {
-        print(error);
-      },
-    );
-  }
 
   Widget getPage(Query$Page$page pageData) {
     final sectionItems = pageData.sections.items;
@@ -93,7 +57,7 @@ class _BccmPageState extends ConsumerState<BccmPage> {
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
-      future: resultFuture,
+      future: pageFuture,
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
           return loadingContent;
@@ -101,7 +65,6 @@ class _BccmPageState extends ConsumerState<BccmPage> {
         if (snapshot.hasData) {
           return getPage(snapshot.data as Query$Page$page);
         } else if (snapshot.hasError) {
-          print(snapshot.error.toString());
           return loadingError;
         }
         return loadingContent;

@@ -108,6 +108,7 @@ fragment Section on Section{
 
 query Page($code: String!) {
   page(code: $code) {
+    title
     sections {
       items {
         ...Section

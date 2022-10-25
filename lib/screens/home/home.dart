@@ -3,12 +3,12 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'package:bccm_player/cast_button.dart';
-import '../../api/sliders.dart';
+import '../../graphql/client.dart';
+import '../../graphql/queries/page.graphql.dart';
 import '../../router/router.gr.dart';
 import '../../components/general_app_bar.dart';
 import '../../components/icon_label_button.dart';
 import '../../components/page/page.dart';
-import '../../services/auth_service.dart';
 
 class HomeScreen extends ConsumerStatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -18,20 +18,35 @@ class HomeScreen extends ConsumerStatefulWidget {
 }
 
 class _HomeScreenState extends ConsumerState<HomeScreen> {
-  String name = AuthService.instance.user!.name!;
-  late Future<List<Section>> sectionFuture;
+  late Future<Query$Page$page?> resultFuture;
 
   @override
   void initState() {
     super.initState();
-    //sectionFuture = fetchSections();
-    print('Bearer ${AuthService.instance.auth0AccessToken}');
+
+    final client = ref.read(gqlClientProvider);
+
+    resultFuture = client
+        .query$Page(
+      Options$Query$Page(variables: Variables$Query$Page(code: 'frontpage')),
+    )
+        .then(
+      (value) {
+        if (value.hasException) {
+          throw ErrorDescription(value.exception.toString());
+        }
+        return value.parsedData?.page;
+      },
+    ).catchError(
+      (error) {
+        print(error);
+      },
+    );
   }
 
   @override
   Widget build(BuildContext context) {
     final appBar = GeneralAppBar(
-      // statusBarHeight: MediaQuery.of(context).padding.top,
       title: Image.asset('assets/icons/Logo.png'),
       leftActions: [
         IconLabelButton(
@@ -45,9 +60,8 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
     );
 
     return Scaffold(
-      // extendBodyBehindAppBar: true,
       appBar: appBar,
-      body: const BccmPage(pageCode: 'frontpage'),
+      body: BccmPage(pageFuture: resultFuture),
     );
   }
 }

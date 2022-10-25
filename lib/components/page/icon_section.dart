@@ -38,8 +38,7 @@ class IconSection extends StatelessWidget {
                     final pageItem = item.item
                         as Fragment$Section$$IconSection$items$items$item$$Page;
                     context.router.navigate(
-                      PageScreenRoute(
-                          pageCode: pageItem.code, pageTitle: item.title),
+                      PageScreenRoute(pageCode: pageItem.code),
                     );
                   }
                 },

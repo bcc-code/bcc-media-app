@@ -11335,6 +11335,13 @@ const documentNodeQueryPage = DocumentNode(definitions: [
         directives: [],
         selectionSet: SelectionSetNode(selections: [
           FieldNode(
+            name: NameNode(value: 'title'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
             name: NameNode(value: 'sections'),
             alias: null,
             arguments: [],
@@ -11512,19 +11519,24 @@ class Query$Page$Widget extends graphql_flutter.Query<Query$Page> {
 
 class Query$Page$page {
   Query$Page$page({
+    required this.title,
     required this.sections,
     required this.$__typename,
   });
 
   factory Query$Page$page.fromJson(Map<String, dynamic> json) {
+    final l$title = json['title'];
     final l$sections = json['sections'];
     final l$$__typename = json['__typename'];
     return Query$Page$page(
+      title: (l$title as String),
       sections: Query$Page$page$sections.fromJson(
           (l$sections as Map<String, dynamic>)),
       $__typename: (l$$__typename as String),
     );
   }
+
+  final String title;
 
   final Query$Page$page$sections sections;
 
@@ -11532,6 +11544,8 @@ class Query$Page$page {
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
+    final l$title = title;
+    _resultData['title'] = l$title;
     final l$sections = sections;
     _resultData['sections'] = l$sections.toJson();
     final l$$__typename = $__typename;
@@ -11541,9 +11555,11 @@ class Query$Page$page {
 
   @override
   int get hashCode {
+    final l$title = title;
     final l$sections = sections;
     final l$$__typename = $__typename;
     return Object.hashAll([
+      l$title,
       l$sections,
       l$$__typename,
     ]);
@@ -11555,6 +11571,11 @@ class Query$Page$page {
       return true;
     }
     if (!(other is Query$Page$page) || runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$title = title;
+    final lOther$title = other.title;
+    if (l$title != lOther$title) {
       return false;
     }
     final l$sections = sections;
@@ -11589,6 +11610,7 @@ abstract class CopyWith$Query$Page$page<TRes> {
       _CopyWithStubImpl$Query$Page$page;
 
   TRes call({
+    String? title,
     Query$Page$page$sections? sections,
     String? $__typename,
   });
@@ -11609,10 +11631,14 @@ class _CopyWithImpl$Query$Page$page<TRes>
   static const _undefined = {};
 
   TRes call({
+    Object? title = _undefined,
     Object? sections = _undefined,
     Object? $__typename = _undefined,
   }) =>
       _then(Query$Page$page(
+        title: title == _undefined || title == null
+            ? _instance.title
+            : (title as String),
         sections: sections == _undefined || sections == null
             ? _instance.sections
             : (sections as Query$Page$page$sections),
@@ -11634,6 +11660,7 @@ class _CopyWithStubImpl$Query$Page$page<TRes>
   TRes _res;
 
   call({
+    String? title,
     Query$Page$page$sections? sections,
     String? $__typename,
   }) =>

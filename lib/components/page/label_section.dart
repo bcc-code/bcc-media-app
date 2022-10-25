@@ -35,8 +35,7 @@ class _LabelItem extends StatelessWidget {
             is Fragment$Section$$LabelSection$items$items$item$$Page) {
           final pageItem = sectionItem.item
               as Fragment$Section$$LabelSection$items$items$item$$Page;
-          context.router.navigate(PageScreenRoute(
-              pageCode: pageItem.code, pageTitle: sectionItem.title));
+          context.router.navigate(PageScreenRoute(pageCode: pageItem.code));
         }
       },
       child: Container(
