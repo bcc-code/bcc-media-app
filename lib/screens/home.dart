@@ -9,8 +9,8 @@ import 'package:brunstadtv_app/router/router.gr.dart';
 
 import 'package:bccm_player/cast_button.dart';
 import 'package:flutter_svg/svg.dart';
-import '../components/mini_player.dart';
 import '../components/page.dart';
+import '../helpers/btv_colors.dart';
 import '../services/auth_service.dart';
 
 final logo = Image.asset('assets/images/logo.png');
@@ -29,7 +29,6 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
   @override
   void initState() {
     super.initState();
-    //sectionFuture = fetchSections();
   }
 
   @override
@@ -54,7 +53,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                 ))),
         actions: const [SizedBox(width: 40, child: CastButton())],
         flexibleSpace: Container(
-          decoration: BoxDecoration(boxShadow: <BoxShadow>[
+          decoration: const BoxDecoration(boxShadow: <BoxShadow>[
             BoxShadow(
                 color: Colors.black54,
                 blurRadius: 8,
@@ -63,9 +62,13 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
           child: ClipRect(
             clipBehavior: Clip.hardEdge,
             child: BackdropFilter(
-              filter: ImageFilter.blur(sigmaX: 20, sigmaY: 20),
+              filter: ImageFilter.blur(sigmaX: 12, sigmaY: 12),
               child: Container(
-                color: Colors.transparent,
+                decoration: const BoxDecoration(
+                    gradient: LinearGradient(
+                        begin: Alignment.topCenter,
+                        end: Alignment.bottomCenter,
+                        colors: [BtvColors.background1, Colors.transparent])),
                 height: 1000,
               ),
             ),
