@@ -2,16 +2,24 @@ import 'package:flutter/material.dart';
 
 class CategoryButton extends StatelessWidget {
   final String label;
-  final String imagePath;
+  final String? assetImage;
+  final String? networkImage;
   final EdgeInsetsGeometry margin;
+  final EdgeInsetsGeometry padding;
   final VoidCallback? onTap;
+  final double width;
+  final double aspectRatio;
 
   const CategoryButton({
     super.key,
     required this.label,
-    required this.imagePath,
-    this.margin = const EdgeInsets.all(0),
+    this.assetImage,
+    this.networkImage,
+    this.margin = EdgeInsets.zero,
+    this.padding = const EdgeInsets.all(8),
     this.onTap,
+    this.width = double.infinity,
+    this.aspectRatio = 1,
   });
 
   @override
@@ -20,25 +28,31 @@ class CategoryButton extends StatelessWidget {
       onTap: onTap,
       child: Container(
         margin: margin,
+        width: width,
         child: Column(
           children: [
             AspectRatio(
-              aspectRatio: 16 / 9,
+              aspectRatio: aspectRatio,
               child: Container(
-                width: double.infinity,
                 margin: const EdgeInsets.only(bottom: 4),
-                padding: const EdgeInsets.symmetric(vertical: 14),
+                padding: padding,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(12),
                   border: Border.all(width: 1, color: const Color(0x19ccddff)),
                   color: const Color(0xff1d2838),
                 ),
                 child: Center(
-                  child: Image.asset(
-                    imagePath,
-                    height: double.infinity,
-                    fit: BoxFit.fitHeight,
-                  ),
+                  child: assetImage != null
+                      ? Image.asset(
+                          assetImage!,
+                          height: double.infinity,
+                          fit: BoxFit.fitHeight,
+                        )
+                      : Image.network(
+                          networkImage!,
+                          height: double.infinity,
+                          fit: BoxFit.fitHeight,
+                        ),
                 ),
               ),
             ),
@@ -47,7 +61,7 @@ class CategoryButton extends StatelessWidget {
                 label,
                 textAlign: TextAlign.center,
                 style: const TextStyle(
-                  color: Colors.white,
+                  color: Color.fromRGBO(254, 254, 254, 1),
                   fontSize: 16,
                   fontFamily: 'Barlow',
                   fontWeight: FontWeight.w500,

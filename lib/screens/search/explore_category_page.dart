@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../components/category_episode.dart';
+import '../../components/bordered_image_container.dart';
 import '../../components/explore_category_sort.dart';
 import '../../components/icon_label_button.dart';
 import '../../components/general_app_bar.dart';
@@ -74,14 +74,14 @@ class ExploreCategoryScreen extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Expanded(
-                  child: CategoryEpisode(
+                  child: _CategoryEpisode(
                     episode: _episodeList[itemIndex],
                     margin: const EdgeInsets.only(right: 8),
                   ),
                 ),
                 Expanded(
                   child: itemIndex + 1 < _episodeList.length
-                      ? CategoryEpisode(
+                      ? _CategoryEpisode(
                           episode: _episodeList[itemIndex + 1],
                           margin: const EdgeInsets.only(left: 8),
                         )
@@ -91,6 +91,42 @@ class ExploreCategoryScreen extends StatelessWidget {
             ),
           );
         },
+      ),
+    );
+  }
+}
+
+class _CategoryEpisode extends StatelessWidget {
+  EdgeInsetsGeometry margin;
+  Map<String, String> episode;
+
+  _CategoryEpisode({
+    required this.episode,
+    this.margin = const EdgeInsets.all(0),
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      margin: margin,
+      child: Column(
+        children: [
+          LayoutBuilder(
+            builder: (context, constraints) {
+              return BorderedImageContainer(
+                height: constraints.maxWidth * (9 / 16),
+                margin: const EdgeInsets.only(bottom: 4),
+                image: episode['image'] != null
+                    ? NetworkImage(episode['image']!)
+                    : null,
+              );
+            },
+          ),
+          Text(
+            episode['title']!,
+            style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w500),
+          ),
+        ],
       ),
     );
   }
