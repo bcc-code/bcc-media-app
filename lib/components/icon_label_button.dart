@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:riverpod/riverpod.dart';
 
+import '../helpers/btv_colors.dart';
+import '../helpers/btv_typography.dart';
+
 class IconLabelButton extends StatelessWidget {
   final String? imagePath;
   final String? labelText;
@@ -10,9 +13,8 @@ class IconLabelButton extends StatelessWidget {
   double? gap = 0;
   double? imageDimension = 24;
   Color? backgroundColor = Colors.transparent;
-  Color labelColor = const Color.fromRGBO(110, 176, 230, 1);
-  double? labelFontSize = 15;
   BoxBorder? border;
+  TextStyle? textStyle = BtvTextStyles.button2;
 
   IconLabelButton({
     super.key,
@@ -21,7 +23,6 @@ class IconLabelButton extends StatelessWidget {
     this.imagePath,
     this.imageDimension,
     this.backgroundColor,
-    this.labelFontSize,
     this.border,
   });
 
@@ -34,11 +35,10 @@ class IconLabelButton extends StatelessWidget {
     gap = imagePath != null ? 6 : 0;
     padding = const EdgeInsets.only(top: 4, right: 12, bottom: 4, left: 14);
     backgroundColor = const Color.fromRGBO(204, 221, 255, 0.1);
-    labelColor = const Color.fromRGBO(254, 254, 254, 1);
-    labelFontSize = 18;
     border =
         Border.all(color: const Color.fromRGBO(204, 221, 255, 0.1), width: 1);
     imageDimension = 20;
+    textStyle = BtvTextStyles.button1.copyWith(color: BtvColors.label1);
   }
 
   IconLabelButton.redSmall({
@@ -50,11 +50,10 @@ class IconLabelButton extends StatelessWidget {
     gap = imagePath != null ? 6 : 0;
     padding = const EdgeInsets.only(top: 4, right: 12, bottom: 4, left: 14);
     backgroundColor = const Color.fromRGBO(230, 60, 98, 1);
-    labelColor = const Color.fromRGBO(254, 254, 254, 1);
-    labelFontSize = 18;
     border =
         Border.all(color: const Color.fromRGBO(255, 255, 255, 0.2), width: 1);
     imageDimension = 20;
+    textStyle = BtvTextStyles.button1.copyWith(color: BtvColors.label1);
   }
 
   IconLabelButton.medium({
@@ -66,11 +65,10 @@ class IconLabelButton extends StatelessWidget {
     gap = imagePath != null ? 6 : 0;
     padding = const EdgeInsets.symmetric(horizontal: 16, vertical: 8);
     backgroundColor = const Color.fromRGBO(110, 176, 230, 1);
-    labelColor = const Color.fromRGBO(254, 254, 254, 1);
-    labelFontSize = 18;
     border =
         Border.all(color: const Color.fromRGBO(255, 255, 255, 0.2), width: 1);
     imageDimension = 20;
+    textStyle = BtvTextStyles.button1.copyWith(color: BtvColors.label1);
   }
 
   @override
@@ -78,7 +76,7 @@ class IconLabelButton extends StatelessWidget {
     return GestureDetector(
       onTap: onPressed,
       child: Container(
-        padding: padding!,
+        padding: padding,
         decoration: BoxDecoration(
           border: border,
           borderRadius: BorderRadius.circular(borderRadius!),
@@ -98,11 +96,7 @@ class IconLabelButton extends StatelessWidget {
             if (labelText != null)
               Text(
                 labelText!,
-                style: TextStyle(
-                  fontWeight: FontWeight.w700,
-                  fontSize: labelFontSize,
-                  color: labelColor,
-                ),
+                style: textStyle,
               )
           ],
         ),

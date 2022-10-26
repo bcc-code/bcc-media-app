@@ -1,4 +1,7 @@
+import 'package:brunstadtv_app/helpers/btv_typography.dart';
 import 'package:flutter/material.dart';
+
+import '../helpers/btv_colors.dart';
 
 class FeatureBadge extends StatelessWidget {
   final String label;
@@ -24,11 +27,7 @@ class FeatureBadge extends StatelessWidget {
       ),
       child: Text(
         label,
-        style: const TextStyle(
-          fontSize: 12,
-          fontWeight: FontWeight.w500,
-          color: Colors.white,
-        ),
+        style: BtvTextStyles.caption2.copyWith(color: BtvColors.onTint),
       ),
     );
   }

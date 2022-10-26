@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../helpers/btv_typography.dart';
+
 class ActionButtons extends StatelessWidget {
   void _editPictureClicked() {}
   void _logOutClicked() {}
@@ -16,10 +18,9 @@ class ActionButtons extends StatelessWidget {
             child: ElevatedButton(
               onPressed: _editPictureClicked,
               style: ElevatedButton.styleFrom(
-                primary: const Color.fromRGBO(110, 176, 230, 1),
-                onPrimary: Colors.white,
-                textStyle:
-                    const TextStyle(fontSize: 18, fontWeight: FontWeight.w700),
+                backgroundColor: const Color.fromRGBO(110, 176, 230, 1),
+                foregroundColor: Colors.white,
+                textStyle: BtvTextStyles.button1,
                 shape: const RoundedRectangleBorder(
                     borderRadius: BorderRadius.all(Radius.circular(20))),
                 side: const BorderSide(
@@ -31,10 +32,9 @@ class ActionButtons extends StatelessWidget {
           ElevatedButton(
             onPressed: _logOutClicked,
             style: ElevatedButton.styleFrom(
-              primary: const Color.fromRGBO(204, 221, 255, 0.1),
-              onPrimary: Colors.white,
-              textStyle:
-                  const TextStyle(fontSize: 18, fontWeight: FontWeight.w700),
+              backgroundColor: const Color.fromRGBO(204, 221, 255, 0.1),
+              foregroundColor: Colors.white,
+              textStyle: BtvTextStyles.button1,
               shape: const RoundedRectangleBorder(
                   borderRadius: BorderRadius.all(Radius.circular(20))),
               side: const BorderSide(

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:brunstadtv_app/graphql/queries/search.graphql.dart';
 
+import '../helpers/btv_colors.dart';
+import '../helpers/btv_typography.dart';
 import 'horizontal_slider.dart';
 import 'bordered_image_container.dart';
 
@@ -21,10 +23,7 @@ class ResultProgramsList extends StatelessWidget {
           margin: const EdgeInsets.only(bottom: 8),
           child: Text(
             title,
-            style: const TextStyle(
-              fontSize: 24,
-              fontWeight: FontWeight.w800,
-            ),
+            style: BtvTextStyles.title2,
           ),
         ),
         HorizontalSlider(
@@ -56,7 +55,8 @@ class _Program extends StatelessWidget {
               image: _item.image != null ? NetworkImage(_item.image!) : null,
             ),
           ),
-          Text(_item.title),
+          Text(_item.title,
+              style: BtvTextStyles.caption1.copyWith(color: BtvColors.label1)),
         ],
       ),
     );

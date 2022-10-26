@@ -1,3 +1,4 @@
+import 'package:brunstadtv_app/helpers/btv_typography.dart';
 import 'package:flutter/material.dart';
 import 'package:auto_route/auto_route.dart';
 
@@ -25,8 +26,7 @@ class IconSection extends StatelessWidget {
               margin: const EdgeInsets.only(bottom: 16),
               child: Text(
                 data.title!,
-                style:
-                    const TextStyle(fontSize: 20, fontWeight: FontWeight.w700),
+                style: BtvTextStyles.title2,
               ),
             ),
           HorizontalSlider(

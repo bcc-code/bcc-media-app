@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 
+import '../helpers/btv_colors.dart';
+import '../helpers/btv_typography.dart';
+
 class EpisodeDuration extends StatelessWidget {
   final String duration;
 
@@ -16,8 +19,7 @@ class EpisodeDuration extends StatelessWidget {
       ),
       child: Text(
         duration,
-        style: const TextStyle(
-            fontSize: 11, fontWeight: FontWeight.w500, height: 1.1),
+        style: BtvTextStyles.caption3.copyWith(color: BtvColors.onTint),
       ),
     );
   }

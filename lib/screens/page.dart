@@ -7,6 +7,7 @@ import '../components/general_app_bar.dart';
 import '../components/page.dart';
 import '../graphql/client.dart';
 import '../graphql/queries/page.graphql.dart';
+import '../helpers/btv_typography.dart';
 
 class PageScreen extends ConsumerStatefulWidget {
   final String pageCode;
@@ -62,10 +63,7 @@ class _PageScreenState extends ConsumerState<PageScreen> {
       appBar: GeneralAppBar(
         title: Text(
           pageTitle,
-          style: const TextStyle(
-            fontSize: 20,
-            fontWeight: FontWeight.w700,
-          ),
+          style: BtvTextStyles.title3,
         ),
         leftActions: [
           IconLabelButton(

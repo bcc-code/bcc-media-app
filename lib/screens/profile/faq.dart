@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:auto_route/auto_route.dart';
 
+import '../../helpers/btv_colors.dart';
+import '../../helpers/btv_typography.dart';
+
 class FAQItem {
   final int id;
   final String question;
@@ -76,11 +79,7 @@ class _FAQState extends State<FAQ> {
               Text(
                 'Profil',
                 overflow: TextOverflow.ellipsis,
-                style: TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.w700,
-                  color: Color.fromRGBO(110, 176, 230, 1),
-                ),
+                style: BtvTextStyles.button2,
               ),
             ],
           ),
@@ -146,11 +145,7 @@ class _ExpansionTileDropDownState extends State<_ExpansionTileDropDown> {
           child: ExpansionTile(
             title: Text(
               widget.questionList.question,
-              style: const TextStyle(
-                color: Colors.white,
-                fontSize: 17,
-                fontWeight: FontWeight.w700,
-              ),
+              style: BtvTextStyles.title3,
             ),
             textColor: Colors.teal,
             trailing: !_customTileExpanded
@@ -169,11 +164,7 @@ class _ExpansionTileDropDownState extends State<_ExpansionTileDropDown> {
             children: <Widget>[
               Text(
                 widget.questionList.answer,
-                style: const TextStyle(
-                  fontSize: 16,
-                  fontWeight: FontWeight.w500,
-                  color: Color.fromRGBO(180, 192, 210, 1),
-                ),
+                style: BtvTextStyles.body2.copyWith(color: BtvColors.label3),
               )
             ],
             onExpansionChanged: (bool expanded) {

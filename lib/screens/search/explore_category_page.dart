@@ -1,9 +1,11 @@
+import 'package:brunstadtv_app/helpers/btv_typography.dart';
 import 'package:flutter/material.dart';
 
 import '../../components/bordered_image_container.dart';
 import '../../components/explore_category_sort.dart';
 import '../../components/icon_label_button.dart';
 import '../../components/general_app_bar.dart';
+import '../../helpers/btv_colors.dart';
 
 class ExploreCategoryScreen extends StatelessWidget {
   final String category;
@@ -54,11 +56,7 @@ class ExploreCategoryScreen extends StatelessWidget {
       appBar: GeneralAppBar(
         title: Text(
           category,
-          style: const TextStyle(
-            fontWeight: FontWeight.w700,
-            fontSize: 17,
-            color: Color.fromRGBO(254, 254, 254, 1),
-          ),
+          style: BtvTextStyles.title3,
         ),
         leftActions: leftAppBarButtons,
         rightActions: rightAppBarButtons,
@@ -124,7 +122,7 @@ class _CategoryEpisode extends StatelessWidget {
           ),
           Text(
             episode['title']!,
-            style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w500),
+            style: BtvTextStyles.caption1.copyWith(color: BtvColors.label1),
           ),
         ],
       ),

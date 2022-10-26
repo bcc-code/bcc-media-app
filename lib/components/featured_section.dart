@@ -1,8 +1,10 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:brunstadtv_app/helpers/btv_typography.dart';
 import 'package:brunstadtv_app/router/router.gr.dart';
 import 'package:flutter/material.dart';
 
 import '../graphql/queries/page.graphql.dart';
+import '../helpers/btv_colors.dart';
 import 'icon_label_button.dart';
 
 class FeaturedSection extends StatelessWidget {
@@ -77,8 +79,7 @@ class _FeaturedItem extends StatelessWidget {
                   child: Text(
                     sectionItem.title,
                     textAlign: TextAlign.center,
-                    style: const TextStyle(
-                        fontSize: 24, fontWeight: FontWeight.w800),
+                    style: BtvTextStyles.title1,
                   ),
                 ),
                 Container(
@@ -88,8 +89,8 @@ class _FeaturedItem extends StatelessWidget {
                     maxLines: 2,
                     overflow: TextOverflow.ellipsis,
                     textAlign: TextAlign.center,
-                    style: const TextStyle(
-                        fontSize: 16, fontWeight: FontWeight.w500),
+                    style:
+                        BtvTextStyles.body2.copyWith(color: BtvColors.label2),
                   ),
                 ),
                 false

@@ -1,8 +1,10 @@
+import 'package:brunstadtv_app/helpers/btv_typography.dart';
 import 'package:brunstadtv_app/router/router.gr.dart';
 import 'package:flutter/material.dart';
 import 'package:auto_route/auto_route.dart';
 
 import '../graphql/queries/page.graphql.dart';
+import '../helpers/btv_colors.dart';
 import 'horizontal_slider.dart';
 
 class LabelSection extends StatelessWidget {
@@ -50,10 +52,7 @@ class _LabelItem extends StatelessWidget {
         ),
         child: Text(
           sectionItem.title,
-          style: const TextStyle(
-            fontSize: 16,
-            fontWeight: FontWeight.w500,
-          ),
+          style: BtvTextStyles.body2.copyWith(color: BtvColors.label1),
         ),
       ),
     );
