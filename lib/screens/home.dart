@@ -41,6 +41,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
         shadowColor: Colors.black,
         backgroundColor: Colors.transparent,
         elevation: 0,
+        centerTitle: true,
         title: logo,
         leading: GestureDetector(
             onTap: () {
