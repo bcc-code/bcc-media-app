@@ -48,8 +48,8 @@ class _RootScreenState extends ConsumerState<RootScreen> with AutoRouteAware {
   Future setupPushNotifications() async {
     if (!kDebugMode || !Platform.isAndroid) return;
     var token = await FirebaseMessaging.instance.getToken();
-    print("autoinit: ${FirebaseMessaging.instance.isAutoInitEnabled}");
-    print("token: ${token}");
+    print('autoinit: ${FirebaseMessaging.instance.isAutoInitEnabled}');
+    print('token: ${token}');
     if (token != null) {
       ref.read(gqlClientProvider).mutate$SetDeviceToken(
           Options$Mutation$SetDeviceToken(
@@ -198,48 +198,6 @@ class _TabBarState extends State<TabBar> {
           icon: _icon(icons['calendar_default']),
           activeIcon: _icon(icons['calendar_selected'])),
     ];
-    final double bottomPadding = MediaQuery.of(context).padding.bottom;
-/* 
-    return SizedBox(
-      height: 50 + bottomPadding,
-      child: DecoratedBox(
-        decoration: const BoxDecoration(
-            border: Border(
-                top: BorderSide(width: 1, color: BtvColors.seperatorOnLight))),
-        child: Padding(
-          padding: EdgeInsets.only(bottom: bottomPadding),
-          child: Row(children: [
-            ...items.asMap().entries.map(
-              (e) {
-                final index = e.key;
-                final item = e.value;
-                final active = e.key == widget.tabsRouter.activeIndex;
-                return Expanded(
-                  child: InkWell(
-                    borderRadius: BorderRadius.all(Radius.circular(200)),
-                    customBorder: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(1999),
-                    ),
-                    onTap: () => widget.tabsRouter.setActiveIndex(index),
-                    child: Column(children: [
-                      Padding(
-                        padding: const EdgeInsets.only(top: 2.0),
-                        child: active ? item.activeIcon : item.icon,
-                      ),
-                      Text(
-                        item.label ?? '',
-                        style: BtvTextStyles.caption3.copyWith(
-                            color: active ? BtvColors.tint1 : BtvColors.label3),
-                      )
-                    ]),
-                  ),
-                );
-              },
-            ).toList()
-          ]),
-        ),
-      ),
-    ); */
 
     if (android) {
       return Container(
