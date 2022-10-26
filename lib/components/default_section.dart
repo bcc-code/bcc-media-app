@@ -3,6 +3,8 @@ import 'package:brunstadtv_app/components/watch_progress_indicator.dart';
 import 'package:brunstadtv_app/router/router.gr.dart';
 import 'package:flutter/material.dart';
 
+import '../helpers/btv_colors.dart';
+import '../helpers/btv_typography.dart';
 import '../services/utils.dart';
 import 'bordered_image_container.dart';
 import 'horizontal_slider.dart';
@@ -38,10 +40,7 @@ class DefaultSection extends StatelessWidget {
             ),
             child: Text(
               data.title!,
-              style: const TextStyle(
-                fontSize: 20,
-                fontWeight: FontWeight.w700,
-              ),
+              style: BtvTextStyles.title2,
             ),
           ),
         HorizontalSlider(
@@ -110,29 +109,22 @@ class _DefaultEpisodeItem extends StatelessWidget {
                               .replaceAll(' ', '\u{000A0}'),
                           maxLines: 1,
                           overflow: TextOverflow.ellipsis,
-                          style: const TextStyle(
-                            fontSize: 12,
-                            fontWeight: FontWeight.w500,
-                            color: Color.fromRGBO(110, 176, 230, 1),
-                          ),
+                          style: BtvTextStyles.caption2
+                              .copyWith(color: BtvColors.tint1),
                         ),
                       ),
                     ),
                   if (productionDate != null)
                     Text(
                       productionDate,
-                      style: const TextStyle(
-                        fontSize: 12,
-                        fontWeight: FontWeight.w500,
-                        color: Color.fromRGBO(112, 124, 142, 1),
-                      ),
+                      style: BtvTextStyles.caption2,
                     ),
                 ],
               ),
             ),
             Text(
               sectionItem.title,
-              style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w500),
+              style: BtvTextStyles.caption1.copyWith(color: BtvColors.label1),
             )
           ],
         ),
@@ -244,16 +236,12 @@ class _DefaultShowItem extends StatelessWidget {
             margin: const EdgeInsets.only(bottom: 2),
             child: Text(
               sectionItem.title,
-              style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w500),
+              style: BtvTextStyles.caption1.copyWith(color: BtvColors.label1),
             ),
           ),
           Text(
             '${show.seasonCount} Seasons - ${show.episodeCount} Episodes',
-            style: const TextStyle(
-              fontSize: 12,
-              fontWeight: FontWeight.w500,
-              color: Color.fromRGBO(112, 124, 142, 1),
-            ),
+            style: BtvTextStyles.caption2,
           )
         ],
       ),

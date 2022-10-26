@@ -1,4 +1,6 @@
+import 'package:brunstadtv_app/helpers/btv_typography.dart';
 import 'package:flutter/material.dart';
+import '../helpers/btv_colors.dart';
 import 'option_list.dart';
 
 class ExploreCategorySort extends StatefulWidget {
@@ -35,7 +37,7 @@ class _ExploreCategorySortState extends State<ExploreCategorySort> {
               width: 40,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(100),
-                color: const Color.fromRGBO(112, 124, 142, 1),
+                color: BtvColors.label4,
               ),
             ),
           ),
@@ -44,11 +46,7 @@ class _ExploreCategorySortState extends State<ExploreCategorySort> {
             child: const Text(
               'Sort by',
               textAlign: TextAlign.center,
-              style: TextStyle(
-                fontSize: 17,
-                fontWeight: FontWeight.w700,
-                color: Color.fromRGBO(254, 254, 254, 1),
-              ),
+              style: BtvTextStyles.title3,
             ),
           ),
           Container(
@@ -75,13 +73,9 @@ class _ExploreCategorySortState extends State<ExploreCategorySort> {
               onPressed: () {
                 Navigator.pop(context);
               },
-              child: const Text(
+              child: Text(
                 'Cancel',
-                style: TextStyle(
-                  color: Color.fromRGBO(254, 254, 254, 1),
-                  fontSize: 18,
-                  fontWeight: FontWeight.w700,
-                ),
+                style: BtvTextStyles.button1.copyWith(color: BtvColors.label1),
               ),
             ),
           ),

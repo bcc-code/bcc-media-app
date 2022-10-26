@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 
+import '../helpers/btv_colors.dart';
+import '../helpers/btv_typography.dart';
+
 class SearchBar extends StatefulWidget {
   final Function onModeChange;
   final Function onInputChange;
@@ -106,10 +109,8 @@ class _SearchBarState extends State<SearchBar> {
                           const BoxConstraints(minWidth: 0, maxHeight: 24),
                       border: InputBorder.none,
                       hintText: 'Search',
-                      hintStyle: const TextStyle(
-                          color: Color.fromRGBO(112, 124, 142, 1),
-                          fontFamily: 'Barlow',
-                          fontWeight: FontWeight.w500),
+                      hintStyle: BtvTextStyles.body2
+                          .copyWith(color: BtvColors.label4, height: 1.45),
                     ),
                   ),
                 ),
@@ -130,7 +131,7 @@ class _SearchBarState extends State<SearchBar> {
                 onPressed: _onCancelled,
                 child: const Text(
                   'Cancel',
-                  style: TextStyle(fontWeight: FontWeight.w700, fontSize: 15),
+                  style: BtvTextStyles.button2,
                 ),
               ),
             )

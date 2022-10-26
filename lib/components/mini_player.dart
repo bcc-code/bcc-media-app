@@ -10,6 +10,7 @@ import 'package:brunstadtv_app/providers/video_state.dart';
 import 'package:brunstadtv_app/router/router.gr.dart';
 import 'package:transparent_image/transparent_image.dart';
 
+import '../helpers/btv_typography.dart';
 import '../providers/fun.dart';
 
 class BottomSheetMiniPlayer extends StatelessWidget {
@@ -151,24 +152,16 @@ class _MiniPlayer extends StatelessWidget {
                 if (artist != null)
                   Text(
                     artist!,
-                    style: const TextStyle(
-                      color: BtvColors.tint1,
-                      fontSize: 12,
-                      fontFamily: 'Barlow',
-                      fontWeight: FontWeight.w500,
-                    ),
+                    style:
+                        BtvTextStyles.caption2.copyWith(color: BtvColors.tint1),
                   ),
                 Padding(
                   padding: const EdgeInsets.only(top: 4.0),
                   child: Text(
                     title,
                     overflow: TextOverflow.ellipsis,
-                    style: const TextStyle(
-                      color: BtvColors.label1,
-                      fontSize: 14,
-                      fontFamily: 'Barlow',
-                      fontWeight: FontWeight.w500,
-                    ),
+                    style: BtvTextStyles.caption1
+                        .copyWith(color: BtvColors.label1),
                   ),
                 ),
               ],

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:auto_route/auto_route.dart';
 
+import '../helpers/btv_colors.dart';
+import '../helpers/btv_typography.dart';
 import '../router/router.gr.dart';
 import '../graphql/queries/page.graphql.dart';
 import '../graphql/schema/pages.graphql.dart';
@@ -38,10 +40,7 @@ class PosterSection extends StatelessWidget {
             ),
             child: Text(
               data.title!,
-              style: const TextStyle(
-                fontSize: 20,
-                fontWeight: FontWeight.w700,
-              ),
+              style: BtvTextStyles.title2,
             ),
           ),
         HorizontalSlider(
@@ -112,22 +111,15 @@ class _PosterEpisodeItem extends StatelessWidget {
                               .replaceAll(' ', '\u{000A0}'),
                           maxLines: 1,
                           overflow: TextOverflow.ellipsis,
-                          style: const TextStyle(
-                            fontSize: 12,
-                            fontWeight: FontWeight.w500,
-                            color: Color.fromRGBO(110, 176, 230, 1),
-                          ),
+                          style: BtvTextStyles.caption2
+                              .copyWith(color: BtvColors.tint1),
                         ),
                       ),
                     ),
                   if (productionDate != null)
                     Text(
                       productionDate,
-                      style: const TextStyle(
-                        fontSize: 12,
-                        fontWeight: FontWeight.w500,
-                        color: Color.fromRGBO(112, 124, 142, 1),
-                      ),
+                      style: BtvTextStyles.caption2,
                     ),
                 ],
               ),
@@ -136,7 +128,7 @@ class _PosterEpisodeItem extends StatelessWidget {
               sectionItem.title,
               overflow: TextOverflow.ellipsis,
               maxLines: 2,
-              style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w500),
+              style: BtvTextStyles.caption1.copyWith(color: BtvColors.label1),
             )
           ],
         ),
@@ -256,7 +248,7 @@ class _PosterShowItem extends StatelessWidget {
             sectionItem.title,
             overflow: TextOverflow.ellipsis,
             maxLines: 2,
-            style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w500),
+            style: BtvTextStyles.caption1.copyWith(color: BtvColors.label1),
           )
         ],
       ),

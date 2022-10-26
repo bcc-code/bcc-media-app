@@ -1,3 +1,4 @@
+import 'package:brunstadtv_app/helpers/btv_typography.dart';
 import 'package:flutter/material.dart';
 import 'package:auto_route/auto_route.dart';
 import '../../graphql/queries/search.graphql.dart';
@@ -65,10 +66,7 @@ class SearchHomePage extends StatelessWidget {
               child: const Text(
                 'Explore Categories',
                 textAlign: TextAlign.start,
-                style: TextStyle(
-                  fontSize: 24,
-                  fontWeight: FontWeight.w800,
-                ),
+                style: BtvTextStyles.title2,
               ),
             ),
             Column(

@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 
+import '../helpers/btv_colors.dart';
+import '../helpers/btv_typography.dart';
+
 class CategoryButton extends StatelessWidget {
   final String label;
   final String? assetImage;
@@ -60,12 +63,7 @@ class CategoryButton extends StatelessWidget {
               child: Text(
                 label,
                 textAlign: TextAlign.center,
-                style: const TextStyle(
-                  color: Color.fromRGBO(254, 254, 254, 1),
-                  fontSize: 16,
-                  fontFamily: 'Barlow',
-                  fontWeight: FontWeight.w500,
-                ),
+                style: BtvTextStyles.body2.copyWith(color: BtvColors.label1),
               ),
             )
           ],

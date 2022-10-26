@@ -1,3 +1,4 @@
+import 'package:brunstadtv_app/helpers/btv_typography.dart';
 import 'package:flutter/material.dart';
 //listFrame.dart
 
@@ -72,21 +73,14 @@ class _OptionButton extends StatelessWidget {
               fit: FlexFit.tight,
               child: Text(
                 optionName,
-                style: const TextStyle(
-                  fontSize: 17,
-                  fontWeight: FontWeight.w700,
-                  color: Color.fromRGBO(254, 254, 254, 1),
-                ),
+                style: BtvTextStyles.title3,
               ),
             ),
             Container(
               margin: const EdgeInsets.only(right: 5),
               child: Text(
                 currentSelection ?? '',
-                style: const TextStyle(
-                  fontSize: 16,
-                  color: Color.fromRGBO(112, 124, 142, 1),
-                ),
+                style: BtvTextStyles.body2,
               ),
             ),
             const Icon(

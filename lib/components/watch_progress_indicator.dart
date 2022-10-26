@@ -1,5 +1,7 @@
+import 'package:brunstadtv_app/helpers/btv_typography.dart';
 import 'package:flutter/material.dart';
 
+import '../helpers/btv_colors.dart';
 import '../services/utils.dart';
 
 class WatchProgressIndicator extends StatelessWidget {
@@ -50,11 +52,7 @@ class WatchProgressIndicator extends StatelessWidget {
             margin: const EdgeInsets.only(right: 4),
             child: Text(
               getFormattedDuration(watchedDuration),
-              style: const TextStyle(
-                fontSize: 11,
-                fontWeight: FontWeight.w500,
-                height: 1,
-              ),
+              style: BtvTextStyles.caption3.copyWith(color: BtvColors.label1),
             ),
           )
         ],

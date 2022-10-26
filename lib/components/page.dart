@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 import '../graphql/queries/page.graphql.dart';
+import '../helpers/btv_colors.dart';
+import '../helpers/btv_typography.dart';
 import 'icon_label_button.dart';
 import 'featured_section.dart';
 import 'default_grid_section.dart';
@@ -80,11 +82,7 @@ class BccmPage extends StatelessWidget {
       ),
       const Text(
         'Loading content',
-        style: TextStyle(
-          color: Color.fromRGBO(112, 124, 142, 1),
-          fontSize: 16,
-          fontWeight: FontWeight.w500,
-        ),
+        style: BtvTextStyles.body2,
       ),
     ]),
   );
@@ -99,19 +97,15 @@ class BccmPage extends StatelessWidget {
             margin: const EdgeInsets.only(bottom: 8),
             child: const Text(
               "Couldn't load content",
-              style: TextStyle(fontSize: 24, fontWeight: FontWeight.w800),
+              style: BtvTextStyles.title1,
             ),
           ),
           Container(
             margin: const EdgeInsets.only(bottom: 16),
-            child: const Text(
+            child: Text(
               'Check internet connection and try again',
               textAlign: TextAlign.center,
-              style: TextStyle(
-                color: Color.fromRGBO(180, 192, 210, 1),
-                fontSize: 19,
-                fontWeight: FontWeight.w400,
-              ),
+              style: BtvTextStyles.body1.copyWith(color: BtvColors.label3),
             ),
           ),
           IconLabelButton.medium(labelText: 'Try again', onPressed: () {})
