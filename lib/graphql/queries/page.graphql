@@ -1,32 +1,117 @@
-fragment ItemSection on ItemSection {
+fragment Section on Section{
   title
-  items {
+  ... on ItemSection {
     items {
-      ...ItemSectionItem
+      items {
+        id
+        title
+        image
+        item {
+          ... on Link {
+            url
+          }
+          ... on Page {
+            code
+          }
+          ... on Episode {
+            id
+          }
+          ... on Show {
+            id
+          }
+          __typename
+        }
+      }
     }
   }
-}
-
-fragment ItemSectionItem on SectionItem {
-  id
-  sort
-  title
-  image
-  item {
-    ... on Episode {
-      number
-    }
-    ... on Show {
-      episodeCount
+  ... on PosterSection {
+    size
+    items {
+      items {
+        item {
+          ... on Show {
+            episodeCount
+            seasonCount
+          }
+          ... on Episode {
+            productionDate
+            duration
+            season {
+              show {
+                title
+              }
+            }
+          }
+          __typename
+        }
+      }
     }
   }
+  ... on FeaturedSection {
+    size
+    items {
+      items {
+        description
+      }
+    }
+  }
+  ... on DefaultSection {
+    size
+    items {
+      items {
+        item {
+          ... on Show {
+            episodeCount
+            seasonCount
+          }
+          ... on Episode {
+            productionDate
+            duration
+            season {
+              show {
+                title
+              }
+            }
+          }
+          __typename
+        }
+      }
+    }
+  }
+  ... on GridSection {
+    gridSize: size
+    items {
+      items {
+        item {
+          ... on Show {
+            episodeCount
+            seasonCount
+          }
+          ... on Episode {
+            productionDate
+            duration
+            number
+            season {
+              number
+              show {
+                title
+              }
+            }
+          }
+          __typename
+        }
+      }
+    }
+  }
+  __typename
 }
 
 query Page($code: String!) {
   page(code: $code) {
+    title
     sections {
       items {
-        ...ItemSection
+        ...Section
       }
     }
   }

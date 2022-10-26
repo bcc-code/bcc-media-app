@@ -4,13 +4,16 @@ import 'package:auto_route/auto_route.dart';
 import 'package:brunstadtv_app/helpers/svg_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:brunstadtv_app/api/sliders.dart';
 import 'package:brunstadtv_app/router/router.gr.dart';
 
 import 'package:bccm_player/cast_button.dart';
 import 'package:flutter_svg/svg.dart';
+import '../components/general_app_bar.dart';
+import '../components/icon_label_button.dart';
 import '../components/mini_player.dart';
 import '../components/page.dart';
+import '../graphql/client.dart';
+import '../graphql/queries/page.graphql.dart';
 import '../services/auth_service.dart';
 
 final logo = Image.asset('assets/images/logo.png');
@@ -23,13 +26,33 @@ class HomeScreen extends ConsumerStatefulWidget {
 }
 
 class _HomeScreenState extends ConsumerState<HomeScreen> {
-  String name = AuthService.instance.user!.name!;
-  late Future<List<Section>> sectionFuture;
+  late Future<Query$Page$page> resultFuture;
 
   @override
   void initState() {
     super.initState();
-    //sectionFuture = fetchSections();
+
+    final client = ref.read(gqlClientProvider);
+
+    resultFuture = client
+        .query$Page(
+      Options$Query$Page(variables: Variables$Query$Page(code: 'frontpage')),
+    )
+        .then(
+      (value) {
+        if (value.hasException) {
+          throw ErrorDescription(value.exception.toString());
+        }
+        if (value.parsedData == null) {
+          throw ErrorDescription("No data for page code: 'frontpage'");
+        }
+        return value.parsedData!.page;
+      },
+    ).catchError(
+      (error) {
+        print(error);
+      },
+    );
   }
 
   @override
@@ -42,6 +65,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
         backgroundColor: Colors.transparent,
         elevation: 0,
         title: logo,
+        centerTitle: true,
         leading: GestureDetector(
             onTap: () {
               context.router.push(const ProfileRoute());
@@ -71,7 +95,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
           ),
         ),
       ),
-      body: const BccmPage(code: 'frontpage'),
+      body: BccmPage(pageFuture: resultFuture),
     );
   }
 }

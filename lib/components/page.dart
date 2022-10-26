@@ -1,74 +1,122 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../graphql/client.dart';
 import '../graphql/queries/page.graphql.dart';
-import '../sections.dart';
-import 'featured.dart';
+import 'icon_label_button.dart';
+import 'featured_section.dart';
+import 'default_grid_section.dart';
+import 'poster_grid_section.dart';
+import 'icon_section.dart';
+import 'label_section.dart';
+import 'poster_section.dart';
+import 'default_section.dart';
 
-class BccmPage extends ConsumerStatefulWidget {
-  const BccmPage({Key? key, required String code}) : super(key: key);
+class BccmPage extends StatelessWidget {
+  final Future<Query$Page$page> pageFuture;
 
-  @override
-  ConsumerState<ConsumerStatefulWidget> createState() => _PageState();
-}
+  BccmPage({
+    super.key,
+    required this.pageFuture,
+  });
 
-class _PageState extends ConsumerState<BccmPage> {
-  late Future<Query$Page$page?> pageFuture;
+  Widget getPage(Query$Page$page pageData) {
+    final sectionItems = pageData.sections.items;
 
-  @override
-  void initState() {
-    super.initState();
-    final client = ref.read(gqlClientProvider);
-
-    pageFuture = client
-        .query$Page(
-      Options$Query$Page(
-        variables: Variables$Query$Page(code: 'frontpage'),
-      ),
-    )
-        .onError((error, stackTrace) {
-      1;
-      throw Error();
-    }).then((value) {
-      if (value.hasException) {
-        throw ErrorDescription(value.exception.toString());
-      }
-      return value.parsedData?.page;
-    });
+    return ListView.builder(
+      shrinkWrap: true,
+      itemCount: sectionItems.length,
+      itemBuilder: ((context, index) {
+        if (sectionItems[index] is Fragment$Section$$IconSection) {
+          return IconSection(
+              sectionItems[index] as Fragment$Section$$IconSection);
+        } else if (sectionItems[index] is Fragment$Section$$LabelSection) {
+          return LabelSection(
+            sectionItems[index] as Fragment$Section$$LabelSection,
+          );
+        } else if (sectionItems[index] is Fragment$Section$$DefaultSection) {
+          return DefaultSection(
+              sectionItems[index] as Fragment$Section$$DefaultSection);
+        } else if (sectionItems[index] is Fragment$Section$$PosterSection) {
+          return PosterSection(
+              sectionItems[index] as Fragment$Section$$PosterSection);
+        } else if (sectionItems[index]
+            is Fragment$Section$$DefaultGridSection) {
+          return DefaultGridSection(
+              sectionItems[index] as Fragment$Section$$DefaultGridSection);
+        } else if (sectionItems[index] is Fragment$Section$$PosterGridSection) {
+          return PosterGridSection(
+              sectionItems[index] as Fragment$Section$$PosterGridSection);
+        } else if (sectionItems[index] is Fragment$Section$$FeaturedSection) {
+          return FeaturedSection(
+              sectionItems[index] as Fragment$Section$$FeaturedSection);
+        }
+        return Container();
+      }),
+    );
   }
 
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder<Query$Page$page?>(
+    return FutureBuilder<Query$Page$page>(
       future: pageFuture,
       builder: (context, snapshot) {
-        if (snapshot.hasData) {
-          var sections = snapshot.data!.sections.items
-              .where(
-                (element) => element is Fragment$ItemSection,
-              )
-              .map((s) => ItemSection.fromSection(
-                  context, s as Fragment$ItemSection, ref))
-              .toList();
-          return ListView(
-            physics: const AlwaysScrollableScrollPhysics(),
-            shrinkWrap: true,
-            children: [
-              const Featured(),
-              Column(
-                children: [...sections],
-              )
-            ],
-          );
-        } else if (snapshot.hasError) {
-          return Text(snapshot.error.toString());
-        } else if (snapshot.connectionState == ConnectionState.done) {
-          return Text("other error");
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          return loadingContent;
         }
-        // By default, show a loading spinner.
-        return const CircularProgressIndicator();
+        if (snapshot.hasData) {
+          return getPage(snapshot.data!);
+        } else if (snapshot.hasError) {
+          return loadingError;
+        }
+        return loadingContent;
       },
     );
   }
+
+  final loadingContent = Center(
+    child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
+      Container(
+        margin: const EdgeInsets.only(bottom: 12),
+        child: const CircularProgressIndicator(strokeWidth: 2),
+      ),
+      const Text(
+        'Loading content',
+        style: TextStyle(
+          color: Color.fromRGBO(112, 124, 142, 1),
+          fontSize: 16,
+          fontWeight: FontWeight.w500,
+        ),
+      ),
+    ]),
+  );
+
+  final loadingError = Center(
+    child: Container(
+      padding: const EdgeInsets.symmetric(horizontal: 24),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Container(
+            margin: const EdgeInsets.only(bottom: 8),
+            child: const Text(
+              "Couldn't load content",
+              style: TextStyle(fontSize: 24, fontWeight: FontWeight.w800),
+            ),
+          ),
+          Container(
+            margin: const EdgeInsets.only(bottom: 16),
+            child: const Text(
+              'Check internet connection and try again',
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                color: Color.fromRGBO(180, 192, 210, 1),
+                fontSize: 19,
+                fontWeight: FontWeight.w400,
+              ),
+            ),
+          ),
+          IconLabelButton.medium(labelText: 'Try again', onPressed: () {})
+        ],
+      ),
+    ),
+  );
 }

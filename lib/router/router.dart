@@ -14,8 +14,8 @@ import 'package:brunstadtv_app/screens/profile/profile.dart';
 import 'package:brunstadtv_app/screens/search/search.dart';
 
 import '../helpers/custom_transitions.dart';
-import '../providers/fun.dart';
 import '../screens/episode.dart';
+import '../screens/page.dart';
 import '../screens/root.dart';
 import '../screens/search/explore_category_page.dart';
 
@@ -44,6 +44,7 @@ import '../screens/search/explore_category_page.dart';
               CustomRoute<void>(
                   page: HomeScreen,
                   path: '',
+                  maintainState: false,
                   durationInMilliseconds: 500,
                   reverseDurationInMilliseconds: 500,
                   customRouteBuilder: CustomTransitionsBuilders.slideUpAndDown),
@@ -51,6 +52,7 @@ import '../screens/search/explore_category_page.dart';
                   page: EpisodeScreen,
                   path: 'episode/:episodeId',
                   customRouteBuilder: CustomTransitionsBuilders.slideUpAndDown),
+              MaterialRoute<void>(page: PageScreen, path: 'page/:pageCode'),
             ]),
         MaterialRoute<void>(
             page: LiveScreen,

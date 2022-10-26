@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:brunstadtv_app/graphql/queries/search.graphql.dart';
 
 import 'horizontal_slider.dart';
+import 'bordered_image_container.dart';
 
 class ResultProgramsList extends StatelessWidget {
   final String title;
@@ -28,7 +29,7 @@ class ResultProgramsList extends StatelessWidget {
         ),
         HorizontalSlider(
           items: items.map((program) => _Program(program)).toList(),
-          margin: const EdgeInsets.only(left: 16, bottom: 8),
+          padding: const EdgeInsets.only(left: 16, right: 16, bottom: 8),
         ),
       ],
     );
@@ -50,21 +51,9 @@ class _Program extends StatelessWidget {
         children: [
           AspectRatio(
             aspectRatio: 16 / 9,
-            child: Container(
-              margin: const EdgeInsets.only(right: 16, bottom: 7),
-              decoration: BoxDecoration(
-                image: _item.image != null
-                    ? DecorationImage(
-                        image: NetworkImage(_item.image!),
-                        fit: BoxFit.cover,
-                      )
-                    : null,
-                borderRadius: BorderRadius.circular(4),
-                border: Border.all(
-                  width: 1,
-                  color: const Color.fromRGBO(255, 255, 255, 0.1),
-                ),
-              ),
+            child: BorderedImageContainer(
+              margin: const EdgeInsets.only(bottom: 7),
+              image: _item.image != null ? NetworkImage(_item.image!) : null,
             ),
           ),
           Text(_item.title),
