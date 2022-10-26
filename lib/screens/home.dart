@@ -8,13 +8,13 @@ import 'package:brunstadtv_app/router/router.gr.dart';
 
 import 'package:bccm_player/cast_button.dart';
 import 'package:flutter_svg/svg.dart';
-import '../../components/general_app_bar.dart';
-import '../../components/icon_label_button.dart';
-import '../../components/mini_player.dart';
-import '../../components/page/page.dart';
-import '../../graphql/client.dart';
-import '../../graphql/queries/page.graphql.dart';
-import '../../services/auth_service.dart';
+import '../components/general_app_bar.dart';
+import '../components/icon_label_button.dart';
+import '../components/mini_player.dart';
+import '../components/page.dart';
+import '../graphql/client.dart';
+import '../graphql/queries/page.graphql.dart';
+import '../services/auth_service.dart';
 
 final logo = Image.asset('assets/images/logo.png');
 
@@ -26,7 +26,7 @@ class HomeScreen extends ConsumerStatefulWidget {
 }
 
 class _HomeScreenState extends ConsumerState<HomeScreen> {
-  late Future<Query$Page$page?> resultFuture;
+  late Future<Query$Page$page> resultFuture;
 
   @override
   void initState() {
@@ -43,7 +43,10 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
         if (value.hasException) {
           throw ErrorDescription(value.exception.toString());
         }
-        return value.parsedData?.page;
+        if (value.parsedData == null) {
+          throw ErrorDescription("No data for page code: 'frontpage'");
+        }
+        return value.parsedData!.page;
       },
     ).catchError(
       (error) {
@@ -62,6 +65,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
         backgroundColor: Colors.transparent,
         elevation: 0,
         title: logo,
+        centerTitle: true,
         leading: GestureDetector(
             onTap: () {
               context.router.push(const ProfileRoute());

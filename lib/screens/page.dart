@@ -4,7 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../components/icon_label_button.dart';
 import '../components/general_app_bar.dart';
-import '../components/page/page.dart';
+import '../components/page.dart';
 import '../graphql/client.dart';
 import '../graphql/queries/page.graphql.dart';
 
@@ -21,7 +21,7 @@ class PageScreen extends ConsumerStatefulWidget {
 }
 
 class _PageScreenState extends ConsumerState<PageScreen> {
-  late Future<Query$Page$page?> resultFuture;
+  late Future<Query$Page$page> resultFuture;
   String pageTitle = '';
 
   @override
@@ -40,7 +40,10 @@ class _PageScreenState extends ConsumerState<PageScreen> {
         if (value.hasException) {
           throw ErrorDescription(value.exception.toString());
         }
-        return value.parsedData?.page;
+        if (value.parsedData == null) {
+          throw ErrorDescription('No data for page code: ${widget.pageCode}');
+        }
+        return value.parsedData!.page;
       },
     ).catchError(
       (error) {
@@ -48,10 +51,8 @@ class _PageScreenState extends ConsumerState<PageScreen> {
       },
     );
 
-    resultFuture.then((value) {
-      if (value != null) {
-        setState(() => pageTitle = value.title);
-      }
+    resultFuture.then((pageData) {
+      setState(() => pageTitle = pageData.title);
     });
   }
 

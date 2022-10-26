@@ -2,8 +2,8 @@ import 'package:auto_route/auto_route.dart';
 import 'package:brunstadtv_app/router/router.gr.dart';
 import 'package:flutter/material.dart';
 
-import '../../graphql/queries/page.graphql.dart';
-import '../icon_label_button.dart';
+import '../graphql/queries/page.graphql.dart';
+import 'icon_label_button.dart';
 
 class FeaturedSection extends StatelessWidget {
   final Fragment$Section$$FeaturedSection data;

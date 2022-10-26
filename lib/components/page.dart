@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../../graphql/queries/page.graphql.dart';
-import '../icon_label_button.dart';
+import '../graphql/queries/page.graphql.dart';
+import 'icon_label_button.dart';
 import 'featured_section.dart';
 import 'default_grid_section.dart';
 import 'poster_grid_section.dart';
@@ -11,7 +11,7 @@ import 'poster_section.dart';
 import 'default_section.dart';
 
 class BccmPage extends StatelessWidget {
-  final Future<Query$Page$page?> pageFuture;
+  final Future<Query$Page$page> pageFuture;
 
   BccmPage({
     super.key,
@@ -56,14 +56,14 @@ class BccmPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder(
+    return FutureBuilder<Query$Page$page>(
       future: pageFuture,
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
           return loadingContent;
         }
         if (snapshot.hasData) {
-          return getPage(snapshot.data as Query$Page$page);
+          return getPage(snapshot.data!);
         } else if (snapshot.hasError) {
           return loadingError;
         }

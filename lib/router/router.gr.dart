@@ -17,7 +17,7 @@ import 'package:flutter/material.dart' as _i18;
 import '../helpers/custom_transitions.dart' as _i20;
 import '../screens/calendar/calendar.dart' as _i12;
 import '../screens/episode.dart' as _i14;
-import '../screens/home/home.dart' as _i13;
+import '../screens/home.dart' as _i13;
 import '../screens/live.dart' as _i11;
 import '../screens/login.dart' as _i1;
 import '../screens/page.dart' as _i15;

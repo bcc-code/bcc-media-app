@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class Watched extends StatelessWidget {
-  const Watched({super.key});
+class WatchedBadge extends StatelessWidget {
+  const WatchedBadge({super.key});
 
   @override
   Widget build(BuildContext context) {

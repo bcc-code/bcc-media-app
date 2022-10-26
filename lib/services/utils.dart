@@ -29,6 +29,24 @@ String getFormattedDuration(int durSeconds) {
   return durationSegments.join(':');
 }
 
-String getFormattedProductionDate(String prodDate) {
-  return DateFormat('dd. MMMM y').format(DateTime.parse(prodDate));
+String? getFormattedProductionDate(String? prodDate) {
+  if (prodDate == null) {
+    return null;
+  }
+  final parsedDateTime = DateTime.tryParse(prodDate);
+  if (parsedDateTime == null) {
+    return null;
+  }
+  return DateFormat('dd. MMMM y').format(parsedDateTime);
+}
+
+bool isComingSoon(String? prodDate) {
+  if (prodDate == null) {
+    return false;
+  }
+  final parsedDateTime = DateTime.tryParse(prodDate);
+  if (parsedDateTime == null) {
+    return false;
+  }
+  return DateTime.now().isBefore(parsedDateTime);
 }

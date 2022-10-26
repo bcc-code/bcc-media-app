@@ -1,16 +1,16 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:brunstadtv_app/components/page/watch_progress_indicator.dart';
+import 'package:brunstadtv_app/components/watch_progress_indicator.dart';
 import 'package:brunstadtv_app/router/router.gr.dart';
 import 'package:flutter/material.dart';
 
-import '../../services/utils.dart';
-import '../bordered_image_container.dart';
-import '../horizontal_slider.dart';
+import '../services/utils.dart';
+import 'bordered_image_container.dart';
+import 'horizontal_slider.dart';
 import 'episode_duration.dart';
-import 'watched.dart';
-import 'feature_tag.dart';
-import '../../graphql/schema/pages.graphql.dart';
-import '../../graphql/queries/page.graphql.dart';
+import 'watched_badge.dart';
+import 'feature_badge.dart';
+import '../graphql/schema/pages.graphql.dart';
+import '../graphql/queries/page.graphql.dart';
 
 const Map<Enum$SectionSize, Size> imageSize = {
   Enum$SectionSize.small: Size(140, 80),
@@ -78,7 +78,6 @@ class _DefaultEpisodeItem extends StatelessWidget {
   // TODO: Remove these temp variables
   bool watched = false;
   bool isLive = false;
-  // bool isComingSoon = true;
   bool isNewItem = false;
   bool showWatchProgressIndicator = false;
 
@@ -86,17 +85,9 @@ class _DefaultEpisodeItem extends StatelessWidget {
       : episode = sectionItem.item
             as Fragment$Section$$DefaultSection$items$items$item$$Episode;
 
-  bool get showFeaturedTag => isLive || isNewItem || isComingSoon;
-
-  bool get isComingSoon {
-    if (episode.productionDate == null) {
-      return false;
-    }
-    return DateTime.now().isBefore(DateTime.parse(episode.productionDate!));
-  }
-
   @override
   Widget build(BuildContext context) {
+    final productionDate = getFormattedProductionDate(episode.productionDate);
     return GestureDetector(
       onTap: () => context.router
           .navigate(EpisodeScreenRoute(episodeId: sectionItem.id)),
@@ -127,9 +118,9 @@ class _DefaultEpisodeItem extends StatelessWidget {
                         ),
                       ),
                     ),
-                  if (episode.productionDate != null)
+                  if (productionDate != null)
                     Text(
-                      getFormattedProductionDate(episode.productionDate!),
+                      productionDate,
                       style: const TextStyle(
                         fontSize: 12,
                         fontWeight: FontWeight.w500,
@@ -162,7 +153,7 @@ class _DefaultEpisodeItem extends StatelessWidget {
                 ? NetworkImage(sectionItem.image!)
                 : null,
           ),
-          if (isComingSoon)
+          if (isComingSoon(episode.productionDate))
             Container(
               width: double.infinity,
               height: double.infinity,
@@ -189,7 +180,7 @@ class _DefaultEpisodeItem extends StatelessWidget {
                     margin: const EdgeInsets.only(right: 4, bottom: 4, left: 4),
                     child: Row(
                       children: [
-                        if (watched) const Watched(),
+                        if (watched) const WatchedBadge(),
                         const Spacer(),
                         EpisodeDuration(
                             duration: getFormattedDuration(episode.duration)),
@@ -197,7 +188,7 @@ class _DefaultEpisodeItem extends StatelessWidget {
                     ),
                   ),
                 ),
-          if (showFeaturedTag)
+          if (featuredTag != null)
             Positioned(
               top: -4,
               right: -4,
@@ -210,17 +201,17 @@ class _DefaultEpisodeItem extends StatelessWidget {
 
   Widget? get featuredTag {
     if (isLive) {
-      return const FeatureTag(
+      return const FeatureBadge(
         label: 'Live now',
         color: Color.fromRGBO(230, 60, 98, 1),
       );
-    } else if (isComingSoon) {
-      return const FeatureTag(
+    } else if (isComingSoon(episode.productionDate)) {
+      return const FeatureBadge(
         label: 'Coming soon',
         color: Color.fromRGBO(29, 40, 56, 1),
       );
     } else if (isNewItem) {
-      return const FeatureTag(
+      return const FeatureBadge(
         label: 'New',
         color: Color.fromRGBO(230, 60, 98, 1),
       );
@@ -286,7 +277,7 @@ class _DefaultShowItem extends StatelessWidget {
             const Positioned(
               top: -4,
               right: -4,
-              child: FeatureTag(
+              child: FeatureBadge(
                 label: 'New Episodes',
                 color: Color.fromRGBO(230, 60, 98, 1),
               ),

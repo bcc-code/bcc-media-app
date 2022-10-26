@@ -7,7 +7,7 @@ import 'package:brunstadtv_app/screens/profile/subtitle_language.dart';
 import 'package:brunstadtv_app/screens/profile/video_quality.dart';
 import 'package:brunstadtv_app/screens/profile/contact_support.dart';
 import 'package:brunstadtv_app/screens/profile/faq.dart';
-import 'package:brunstadtv_app/screens/home/home.dart';
+import 'package:brunstadtv_app/screens/home.dart';
 import 'package:brunstadtv_app/screens/live.dart';
 import 'package:brunstadtv_app/screens/login.dart';
 import 'package:brunstadtv_app/screens/profile/profile.dart';
@@ -16,7 +16,6 @@ import 'package:brunstadtv_app/screens/search/search.dart';
 import '../helpers/custom_transitions.dart';
 import '../screens/episode.dart';
 import '../screens/page.dart';
-import '../screens/home/explore_sub_category_page.dart';
 import '../screens/root.dart';
 import '../screens/search/explore_category_page.dart';
 

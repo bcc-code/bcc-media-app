@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:auto_route/auto_route.dart';
 
-import '../category_button.dart';
-import '../horizontal_slider.dart';
-import '../../router/router.gr.dart';
-import '../../graphql/queries/page.graphql.dart';
+import 'category_button.dart';
+import 'horizontal_slider.dart';
+import '../router/router.gr.dart';
+import '../graphql/queries/page.graphql.dart';
 
 class IconSection extends StatelessWidget {
   final Fragment$Section$$IconSection data;

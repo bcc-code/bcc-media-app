@@ -5,12 +5,12 @@ class IconLabelButton extends StatelessWidget {
   final String? imagePath;
   final String? labelText;
   final VoidCallback onPressed;
-  EdgeInsetsGeometry? padding = const EdgeInsets.all(0);
-  double? borderRadius = 20;
+  EdgeInsetsGeometry padding = const EdgeInsets.all(0);
+  double borderRadius = 20;
   double? gap = 0;
   double? imageDimension = 24;
   Color? backgroundColor = Colors.transparent;
-  Color? labelColor = const Color.fromRGBO(110, 176, 230, 1);
+  Color labelColor = const Color.fromRGBO(110, 176, 230, 1);
   double? labelFontSize = 15;
   BoxBorder? border;
 
@@ -19,13 +19,6 @@ class IconLabelButton extends StatelessWidget {
     required this.onPressed,
     this.labelText,
     this.imagePath,
-    /**
-     * TODO: Figure out what the issue is when removing constructor initializers for following fields
-     */
-    this.padding = const EdgeInsets.all(0),
-    this.borderRadius = 20,
-    this.gap = 0,
-    this.labelColor = const Color.fromRGBO(110, 176, 230, 1),
     this.imageDimension,
     this.backgroundColor,
     this.labelFontSize,
@@ -108,7 +101,7 @@ class IconLabelButton extends StatelessWidget {
                 style: TextStyle(
                   fontWeight: FontWeight.w700,
                   fontSize: labelFontSize,
-                  color: labelColor!,
+                  color: labelColor,
                 ),
               )
           ],

@@ -2,8 +2,8 @@ import 'package:brunstadtv_app/router/router.gr.dart';
 import 'package:flutter/material.dart';
 import 'package:auto_route/auto_route.dart';
 
-import '../../graphql/queries/page.graphql.dart';
-import '../horizontal_slider.dart';
+import '../graphql/queries/page.graphql.dart';
+import 'horizontal_slider.dart';
 
 class LabelSection extends StatelessWidget {
   final Fragment$Section$$LabelSection data;

@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
-class FeatureTag extends StatelessWidget {
+class FeatureBadge extends StatelessWidget {
   final String label;
   final Color color;
 
-  const FeatureTag({
+  const FeatureBadge({
     super.key,
     required this.label,
     required this.color,

@@ -2,18 +2,19 @@ import 'package:auto_route/auto_route.dart';
 import 'package:brunstadtv_app/components/bordered_image_container.dart';
 import 'package:flutter/material.dart';
 
-import '../../graphql/queries/page.graphql.dart';
-import '../../graphql/schema/pages.graphql.dart';
-import '../../router/router.gr.dart';
-import '../../services/utils.dart';
-import 'feature_tag.dart';
+import '../graphql/queries/page.graphql.dart';
+import '../graphql/schema/pages.graphql.dart';
+import '../router/router.gr.dart';
+import '../services/utils.dart';
+import 'feature_badge.dart';
 import 'episode_duration.dart';
+import 'grid_row.dart';
 import 'watch_progress_indicator.dart';
-import 'watched.dart';
+import 'watched_badge.dart';
 
 const posterAspectRatio = 0.67;
 
-const Map<Enum$GridSectionSize, int> columnSize = {
+const Map<Enum$GridSectionSize, int> _columnSize = {
   Enum$GridSectionSize.half: 2,
 };
 
@@ -37,18 +38,19 @@ class PosterGridSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final sectionItems = data.items.items;
-    final colSize = columnSize[data.gridSize]!;
+    final colSize =
+        _columnSize[data.gridSize] ?? _columnSize[Enum$GridSectionSize.half]!;
     final rowSize = (sectionItems.length / colSize).ceil();
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 16),
       child: Column(
         mainAxisSize: MainAxisSize.min,
-        children: List<_GridRow>.generate(rowSize, (rowIndex) {
+        children: List<GridRow>.generate(rowSize, (rowIndex) {
           final firstIndex = rowIndex * colSize;
           final subList = firstIndex + colSize <= sectionItems.length
               ? sectionItems.sublist(firstIndex, firstIndex + colSize)
               : sectionItems.sublist(firstIndex);
-          return _GridRow(
+          return GridRow(
             items: subList.map(getItemWidget).toList(),
             colSize: colSize,
           );
@@ -71,15 +73,6 @@ class _GridEpisodeItem extends StatelessWidget {
   _GridEpisodeItem(this.sectionItem)
       : episode = sectionItem.item
             as Fragment$Section$$PosterGridSection$items$items$item$$Episode;
-
-  bool get showFeaturedTag => isLive || isNewItem || isComingSoon;
-
-  bool get isComingSoon {
-    if (episode.productionDate == null) {
-      return false;
-    }
-    return DateTime.now().isBefore(DateTime.parse(episode.productionDate!));
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -150,7 +143,7 @@ class _GridEpisodeItem extends StatelessWidget {
                   ? NetworkImage(sectionItem.image!)
                   : null,
             ),
-            if (isComingSoon)
+            if (isComingSoon(episode.productionDate))
               Container(
                 width: double.infinity,
                 height: double.infinity,
@@ -179,7 +172,7 @@ class _GridEpisodeItem extends StatelessWidget {
                           const EdgeInsets.only(right: 4, bottom: 4, left: 4),
                       child: Row(
                         children: [
-                          if (watched) const Watched(),
+                          if (watched) const WatchedBadge(),
                           const Spacer(),
                           EpisodeDuration(
                               duration: getFormattedDuration(episode.duration)),
@@ -187,7 +180,7 @@ class _GridEpisodeItem extends StatelessWidget {
                       ),
                     ),
                   ),
-            if (showFeaturedTag)
+            if (featuredTag != null)
               Positioned(
                 top: -4,
                 right: -4,
@@ -201,17 +194,17 @@ class _GridEpisodeItem extends StatelessWidget {
 
   Widget? get featuredTag {
     if (isLive) {
-      return const FeatureTag(
+      return const FeatureBadge(
         label: 'Live now',
         color: Color.fromRGBO(230, 60, 98, 1),
       );
-    } else if (isComingSoon) {
-      return const FeatureTag(
+    } else if (isComingSoon(episode.productionDate)) {
+      return const FeatureBadge(
         label: 'Coming soon',
         color: Color.fromRGBO(29, 40, 56, 1),
       );
     } else if (isNewItem) {
-      return const FeatureTag(
+      return const FeatureBadge(
         label: 'New',
         color: Color.fromRGBO(230, 60, 98, 1),
       );
@@ -279,49 +272,13 @@ class _GridShowItem extends StatelessWidget {
               const Positioned(
                 top: -4,
                 right: -4,
-                child: FeatureTag(
+                child: FeatureBadge(
                   label: 'New Episodes',
                   color: Color.fromRGBO(230, 60, 98, 1),
                 ),
               ),
           ],
         ),
-      ),
-    );
-  }
-}
-
-class _GridRow extends StatelessWidget {
-  final int colSize;
-  final List<Widget> items;
-
-  const _GridRow({required this.items, required this.colSize});
-
-  List<Widget> get spacedItems {
-    if (items.length < colSize) {
-      items.addAll(
-        List<Container>.generate(
-            colSize - items.length, (index) => Container()),
-      );
-    }
-
-    final newItems = <Widget>[];
-    for (var item in items) {
-      newItems.add(Expanded(child: item));
-      if (item != items.last) {
-        newItems.add(const SizedBox(width: 16));
-      }
-    }
-    return newItems;
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      margin: const EdgeInsets.only(top: 12, bottom: 12),
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: spacedItems,
       ),
     );
   }

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../services/utils.dart';
+import '../services/utils.dart';
 
 class WatchProgressIndicator extends StatelessWidget {
   final int totalDuration;
