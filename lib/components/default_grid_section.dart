@@ -39,20 +39,40 @@ class DefaultGridSection extends StatelessWidget {
     final colSize =
         _columnSize[data.gridSize] ?? _columnSize[Enum$GridSectionSize.half]!;
     final rowSize = (sectionItems.length / colSize).ceil();
+
+    final rows = List<GridRow>.generate(rowSize, (rowIndex) {
+      final firstIndex = rowIndex * colSize;
+      final subList = firstIndex + colSize <= sectionItems.length
+          ? sectionItems.sublist(firstIndex, firstIndex + colSize)
+          : sectionItems.sublist(firstIndex);
+      return GridRow(
+        items: subList.map(getItemWidget).toList(),
+        colSize: colSize,
+      );
+    });
+
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 16),
       child: Column(
         mainAxisSize: MainAxisSize.min,
-        children: List<GridRow>.generate(rowSize, (rowIndex) {
-          final firstIndex = rowIndex * colSize;
-          final subList = firstIndex + colSize <= sectionItems.length
-              ? sectionItems.sublist(firstIndex, firstIndex + colSize)
-              : sectionItems.sublist(firstIndex);
-          return GridRow(
-            items: subList.map(getItemWidget).toList(),
-            colSize: colSize,
-          );
-        }),
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          if (data.title != null)
+            Container(
+              padding: const EdgeInsets.only(
+                top: 19,
+                bottom: 5,
+              ),
+              child: Text(
+                data.title!,
+                style: const TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.w700,
+                ),
+              ),
+            ),
+          ...rows
+        ],
       ),
     );
   }
