@@ -8,6 +8,7 @@ import 'package:brunstadtv_app/router/router.gr.dart';
 
 import 'package:bccm_player/cast_button.dart';
 import 'package:flutter_svg/svg.dart';
+import '../helpers/btv_colors.dart';
 import '../components/general_app_bar.dart';
 import '../components/icon_label_button.dart';
 import '../components/mini_player.dart';
@@ -64,8 +65,8 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
         shadowColor: Colors.black,
         backgroundColor: Colors.transparent,
         elevation: 0,
-        title: logo,
         centerTitle: true,
+        title: logo,
         leading: GestureDetector(
             onTap: () {
               context.router.push(const ProfileRoute());
@@ -77,7 +78,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                 ))),
         actions: const [SizedBox(width: 40, child: CastButton())],
         flexibleSpace: Container(
-          decoration: BoxDecoration(boxShadow: <BoxShadow>[
+          decoration: const BoxDecoration(boxShadow: <BoxShadow>[
             BoxShadow(
                 color: Colors.black54,
                 blurRadius: 8,
@@ -86,9 +87,13 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
           child: ClipRect(
             clipBehavior: Clip.hardEdge,
             child: BackdropFilter(
-              filter: ImageFilter.blur(sigmaX: 20, sigmaY: 20),
+              filter: ImageFilter.blur(sigmaX: 12, sigmaY: 12),
               child: Container(
-                color: Colors.transparent,
+                decoration: const BoxDecoration(
+                    gradient: LinearGradient(
+                        begin: Alignment.topCenter,
+                        end: Alignment.bottomCenter,
+                        colors: [BtvColors.background1, Colors.transparent])),
                 height: 1000,
               ),
             ),
