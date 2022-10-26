@@ -7,8 +7,6 @@ import 'package:flutter/material.dart';
 import '../helpers/btv_colors.dart';
 import '../helpers/btv_typography.dart';
 
-final bool android = Platform.isAndroid;
-
 const double _iconSize = 28;
 
 class CustomTabBar extends StatefulWidget {
@@ -25,6 +23,8 @@ class CustomTabBar extends StatefulWidget {
 
 class _CustomTabBarState extends State<CustomTabBar> {
   late final Map<String, Image> icons;
+  final useMaterial = Platform.isAndroid;
+
   @override
   void initState() {
     icons = {
@@ -61,7 +61,7 @@ class _CustomTabBarState extends State<CustomTabBar> {
 
   Widget _icon(Image? image) {
     return Padding(
-        padding: EdgeInsets.only(top: 2, bottom: android ? 2 : 0),
+        padding: EdgeInsets.only(top: 2, bottom: useMaterial ? 2 : 0),
         child: SizedBox(height: _iconSize, child: image));
   }
 
@@ -86,7 +86,7 @@ class _CustomTabBarState extends State<CustomTabBar> {
           activeIcon: _icon(icons['calendar_selected'])),
     ];
 
-    if (android) {
+    if (useMaterial) {
       return Container(
         decoration: const BoxDecoration(
             border: Border(
