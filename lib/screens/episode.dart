@@ -5,6 +5,7 @@ import 'dart:async';
 import 'package:auto_route/auto_route.dart';
 import 'package:bccm_player/playback_platform_pigeon.g.dart';
 import 'package:bccm_player/playback_service_interface.dart';
+import 'package:brunstadtv_app/helpers/svg_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:bccm_player/bccm_player.dart';
 import 'package:flutter/scheduler.dart';
@@ -16,6 +17,7 @@ import 'package:brunstadtv_app/providers/fun.dart';
 import 'package:brunstadtv_app/providers/playback_api.dart';
 import 'package:brunstadtv_app/providers/video_state.dart';
 import 'package:bccm_player/cast_button.dart';
+import 'package:flutter_svg/svg.dart';
 
 import '../api/brunstadtv.dart';
 import '../api/episodes.dart';
@@ -247,53 +249,13 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen> {
                                   ? episode!.title
                                   : tempTitle,
                               style: Theme.of(context).textTheme.titleLarge),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Text(
-                              episode?.title != null
-                                  ? episode!.title
-                                  : tempTitle,
-                              style: Theme.of(context).textTheme.titleLarge),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Text(
-                              episode?.title != null
-                                  ? episode!.title
-                                  : tempTitle,
-                              style: Theme.of(context).textTheme.titleLarge),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Text(
-                              episode?.title != null
-                                  ? episode!.title
-                                  : tempTitle,
-                              style: Theme.of(context).textTheme.titleLarge),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Text(
-                              episode?.title != null
-                                  ? episode!.title
-                                  : tempTitle,
-                              style: Theme.of(context).textTheme.titleLarge),
                         )
                       ],
                     ),
                   );
                 }),
-            Column(
-              children: List.generate(
-                  100,
-                  (index) => SizedBox(
-                      width: 200,
-                      height: 400,
-                      child: Padding(
-                          padding: const EdgeInsets.all(10),
-                          child: Container(color: Colors.red)))),
-            )
+            SizedBox(
+                height: 1500, child: SvgPicture.string(SvgIcons.chevronDown))
           ],
         ),
       ),

@@ -5,6 +5,8 @@ import '../../graphql/client.dart';
 import '../../graphql/queries/search.graphql.dart';
 import '../../components/episode_list.dart';
 import '../../components/result_programs_list.dart';
+import '../../helpers/btv_colors.dart';
+import '../../helpers/btv_typography.dart';
 
 class SearchResultsPage extends ConsumerStatefulWidget {
   final String _searchInput;
@@ -101,14 +103,10 @@ class _SearchResultsPageState extends ConsumerState<SearchResultsPage> {
       children: [
         Image.asset('assets/icons/Search_Default.png',
             width: 80, height: 80, fit: BoxFit.fill),
-        const Text(
+        Text(
           'No results found',
           textAlign: TextAlign.center,
-          style: TextStyle(
-            fontSize: 19,
-            fontWeight: FontWeight.w400,
-            color: Color.fromRGBO(180, 192, 210, 1),
-          ),
+          style: BtvTextStyles.body1.copyWith(color: BtvColors.label3),
         )
       ],
     ),
@@ -117,14 +115,10 @@ class _SearchResultsPageState extends ConsumerState<SearchResultsPage> {
   final _noInputInfoWidget = Center(
     child: Container(
       margin: const EdgeInsets.symmetric(horizontal: 24),
-      child: const Text(
+      child: Text(
         'You can search all content from BrunstadTV.  Series, videos and episodes.',
         textAlign: TextAlign.center,
-        style: TextStyle(
-          fontSize: 19,
-          fontWeight: FontWeight.w400,
-          color: Color.fromRGBO(180, 192, 210, 1),
-        ),
+        style: BtvTextStyles.body1.copyWith(color: BtvColors.label3),
       ),
     ),
   );

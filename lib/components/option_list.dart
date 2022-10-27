@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../helpers/btv_typography.dart';
+
 class OptionList extends StatelessWidget {
   final List<Option> optionData;
   final String currentSelection;
@@ -66,22 +68,14 @@ class OptionList extends StatelessWidget {
                   children: [
                     Text(
                       option.title,
-                      style: const TextStyle(
-                        fontSize: 17,
-                        fontWeight: FontWeight.w700,
-                        color: Color.fromRGBO(254, 254, 254, 1),
-                      ),
+                      style: BtvTextStyles.title3,
                     ),
                     (option.subTitle != null)
                         ? Container(
                             margin: const EdgeInsets.only(top: 2),
                             child: Text(
                               option.subTitle as String,
-                              style: const TextStyle(
-                                fontSize: 14,
-                                fontWeight: FontWeight.w500,
-                                color: Color.fromRGBO(254, 254, 254, 1),
-                              ),
+                              style: BtvTextStyles.caption1,
                             ),
                           )
                         : const SizedBox.shrink(),

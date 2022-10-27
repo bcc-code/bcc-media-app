@@ -1,9 +1,11 @@
+import 'package:brunstadtv_app/helpers/btv_typography.dart';
 import 'package:flutter/material.dart';
 
-import '../../components/category_episode.dart';
+import '../../components/bordered_image_container.dart';
 import '../../components/explore_category_sort.dart';
 import '../../components/icon_label_button.dart';
 import '../../components/general_app_bar.dart';
+import '../../helpers/btv_colors.dart';
 
 class ExploreCategoryScreen extends StatelessWidget {
   final String category;
@@ -54,11 +56,7 @@ class ExploreCategoryScreen extends StatelessWidget {
       appBar: GeneralAppBar(
         title: Text(
           category,
-          style: const TextStyle(
-            fontWeight: FontWeight.w700,
-            fontSize: 17,
-            color: Color.fromRGBO(254, 254, 254, 1),
-          ),
+          style: BtvTextStyles.title3,
         ),
         leftActions: leftAppBarButtons,
         rightActions: rightAppBarButtons,
@@ -74,14 +72,14 @@ class ExploreCategoryScreen extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Expanded(
-                  child: CategoryEpisode(
+                  child: _CategoryEpisode(
                     episode: _episodeList[itemIndex],
                     margin: const EdgeInsets.only(right: 8),
                   ),
                 ),
                 Expanded(
                   child: itemIndex + 1 < _episodeList.length
-                      ? CategoryEpisode(
+                      ? _CategoryEpisode(
                           episode: _episodeList[itemIndex + 1],
                           margin: const EdgeInsets.only(left: 8),
                         )
@@ -91,6 +89,42 @@ class ExploreCategoryScreen extends StatelessWidget {
             ),
           );
         },
+      ),
+    );
+  }
+}
+
+class _CategoryEpisode extends StatelessWidget {
+  EdgeInsetsGeometry margin;
+  Map<String, String> episode;
+
+  _CategoryEpisode({
+    required this.episode,
+    this.margin = const EdgeInsets.all(0),
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      margin: margin,
+      child: Column(
+        children: [
+          LayoutBuilder(
+            builder: (context, constraints) {
+              return BorderedImageContainer(
+                height: constraints.maxWidth * (9 / 16),
+                margin: const EdgeInsets.only(bottom: 4),
+                image: episode['image'] != null
+                    ? NetworkImage(episode['image']!)
+                    : null,
+              );
+            },
+          ),
+          Text(
+            episode['title']!,
+            style: BtvTextStyles.caption1.copyWith(color: BtvColors.label1),
+          ),
+        ],
       ),
     );
   }

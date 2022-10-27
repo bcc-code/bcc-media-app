@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:brunstadtv_app/helpers/btv_colors.dart';
 import 'package:brunstadtv_app/helpers/utils.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
@@ -9,6 +10,7 @@ import 'package:brunstadtv_app/providers/video_state.dart';
 import 'package:brunstadtv_app/router/router.gr.dart';
 import 'package:transparent_image/transparent_image.dart';
 
+import '../helpers/btv_typography.dart';
 import '../providers/fun.dart';
 
 class BottomSheetMiniPlayer extends StatelessWidget {
@@ -150,24 +152,16 @@ class _MiniPlayer extends StatelessWidget {
                 if (artist != null)
                   Text(
                     artist!,
-                    style: const TextStyle(
-                      color: Color(0xff6eb0e6),
-                      fontSize: 12,
-                      fontFamily: 'Barlow',
-                      fontWeight: FontWeight.w500,
-                    ),
+                    style:
+                        BtvTextStyles.caption2.copyWith(color: BtvColors.tint1),
                   ),
                 Padding(
                   padding: const EdgeInsets.only(top: 4.0),
                   child: Text(
                     title,
                     overflow: TextOverflow.ellipsis,
-                    style: const TextStyle(
-                      color: Color(0xfffefefe),
-                      fontSize: 14,
-                      fontFamily: 'Barlow',
-                      fontWeight: FontWeight.w500,
-                    ),
+                    style: BtvTextStyles.caption1
+                        .copyWith(color: BtvColors.label1),
                   ),
                 ),
               ],

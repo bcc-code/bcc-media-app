@@ -33,23 +33,25 @@ class _SearchScreenState extends State<SearchScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(
-        children: [
-          SearchBar(
-            onModeChange: _onSearchModeChanged,
-            onInputChange: _onSearchInputChanged,
-          ),
-          Container(
-            margin: const EdgeInsets.only(bottom: 8),
-            child: const Divider(
-                height: 1, color: Color.fromRGBO(204, 221, 255, 0.1)),
-          ),
-          Expanded(
-            child: _inSearchMode
-                ? SearchResultsPage(_curSearchValue)
-                : SearchHomePage(),
-          ),
-        ],
+      body: SafeArea(
+        child: Column(
+          children: [
+            SearchBar(
+              onModeChange: _onSearchModeChanged,
+              onInputChange: _onSearchInputChanged,
+            ),
+            Container(
+              margin: const EdgeInsets.only(bottom: 8),
+              child: const Divider(
+                  height: 1, color: Color.fromRGBO(204, 221, 255, 0.1)),
+            ),
+            Expanded(
+              child: _inSearchMode
+                  ? SearchResultsPage(_curSearchValue)
+                  : SearchHomePage(),
+            ),
+          ],
+        ),
       ),
     );
   }

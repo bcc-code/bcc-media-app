@@ -1,10 +1,13 @@
 import 'dart:io';
 
 import 'package:bccm_player/playback_platform_pigeon.g.dart';
+import 'package:brunstadtv_app/helpers/btv_colors.dart';
+import 'package:brunstadtv_app/helpers/btv_typography.dart';
 import 'package:brunstadtv_app/providers/settings_service.dart';
 import 'package:brunstadtv_app/providers/video_state.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -40,6 +43,17 @@ void setup({required FirebaseOptions? firebaseOptions}) async {
   return runApp(DebugApp(playerId: playerId)); */
 
   WidgetsFlutterBinding.ensureInitialized();
+
+  SystemChrome.setSystemUIOverlayStyle(
+    const SystemUiOverlayStyle(
+      statusBarColor: Colors.transparent,
+      systemNavigationBarColor: Colors.transparent,
+      systemNavigationBarContrastEnforced: false,
+    ),
+  );
+
+  SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
+
   SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
     DeviceOrientation.landscapeRight,
@@ -95,25 +109,38 @@ void setup({required FirebaseOptions? firebaseOptions}) async {
     child: Builder(
         builder: (context) => MaterialApp.router(
               theme: ThemeData(),
-              darkTheme: ThemeData(
-                brightness: Brightness.dark,
-                colorScheme: ColorScheme.fromSeed(
-                    brightness: Brightness.dark,
-                    seedColor: const Color.fromARGB(255, 110, 176, 230)),
-                fontFamily: 'Barlow',
-                canvasColor: const Color.fromARGB(255, 13, 22, 35),
-                textTheme: const TextTheme(
-                    headlineMedium: TextStyle(
-                        fontFamily: 'Barlow',
-                        fontSize: 28,
-                        fontWeight: FontWeight.w800,
-                        color: Colors.white)),
-                scaffoldBackgroundColor: const Color.fromARGB(255, 13, 22, 35),
-              ),
+              darkTheme: createTheme(),
               themeMode: ThemeMode.dark,
               title: 'BrunstadTV',
               routerDelegate: appRouter.delegate(),
               routeInformationParser: appRouter.defaultRouteParser(),
             )),
   ));
+}
+
+ThemeData createTheme() {
+  return ThemeData(
+    //useMaterial3: true,
+    cupertinoOverrideTheme: CupertinoThemeData(
+        barBackgroundColor: BtvColors.background1,
+        textTheme:
+            CupertinoTextThemeData(tabLabelTextStyle: BtvTextStyles.caption3)),
+    brightness: Brightness.dark,
+    colorScheme: ColorScheme.fromSeed(
+        brightness: Brightness.dark, seedColor: BtvColors.tint1),
+    fontFamily: 'Barlow',
+    canvasColor: BtvColors.background1,
+    backgroundColor: BtvColors.background2,
+    scaffoldBackgroundColor: BtvColors.background1,
+    bottomNavigationBarTheme: BottomNavigationBarThemeData(
+        selectedItemColor: BtvColors.tint1,
+        elevation: 0,
+        selectedLabelStyle:
+            BtvTextStyles.caption3.copyWith(color: BtvColors.tint1),
+        unselectedLabelStyle: BtvTextStyles.caption3),
+    typography: Typography.material2021().copyWith(
+        white: Typography.material2021()
+            .white
+            .copyWith(headlineMedium: BtvTextStyles.headline2)),
+  );
 }

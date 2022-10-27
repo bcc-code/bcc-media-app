@@ -1,3 +1,4 @@
+import 'package:brunstadtv_app/helpers/btv_typography.dart';
 import 'package:flutter/material.dart';
 
 import '../../services/auth_service.dart';
@@ -38,10 +39,7 @@ class Avatar extends StatelessWidget {
           ),
           Text(
             name,
-            style: const TextStyle(
-              fontSize: 24,
-              fontWeight: FontWeight.w800,
-            ),
+            style: BtvTextStyles.title1,
           ),
         ],
       ),

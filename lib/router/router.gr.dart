@@ -12,14 +12,15 @@
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:auto_route/auto_route.dart' as _i10;
-import 'package:flutter/material.dart' as _i17;
+import 'package:flutter/material.dart' as _i18;
 
-import '../helpers/custom_transitions.dart' as _i19;
+import '../helpers/custom_transitions.dart' as _i20;
 import '../screens/calendar/calendar.dart' as _i12;
 import '../screens/episode.dart' as _i14;
 import '../screens/home.dart' as _i13;
 import '../screens/live.dart' as _i11;
 import '../screens/login.dart' as _i1;
+import '../screens/page.dart' as _i15;
 import '../screens/profile/app_language.dart' as _i3;
 import '../screens/profile/audio_language.dart' as _i4;
 import '../screens/profile/contact_support.dart' as _i7;
@@ -28,17 +29,17 @@ import '../screens/profile/profile.dart' as _i2;
 import '../screens/profile/subtitle_language.dart' as _i5;
 import '../screens/profile/video_quality.dart' as _i6;
 import '../screens/root.dart' as _i9;
-import '../screens/search/explore_category_page.dart' as _i16;
-import '../screens/search/search.dart' as _i15;
-import 'auth_guard.dart' as _i18;
+import '../screens/search/explore_category_page.dart' as _i17;
+import '../screens/search/search.dart' as _i16;
+import 'auth_guard.dart' as _i19;
 
 class AppRouter extends _i10.RootStackRouter {
   AppRouter({
-    _i17.GlobalKey<_i17.NavigatorState>? navigatorKey,
+    _i18.GlobalKey<_i18.NavigatorState>? navigatorKey,
     required this.authGuard,
   }) : super(navigatorKey);
 
-  final _i18.AuthGuard authGuard;
+  final _i19.AuthGuard authGuard;
 
   @override
   final Map<String, _i10.PageFactory> pagesMap = {
@@ -132,7 +133,8 @@ class AppRouter extends _i10.RootStackRouter {
       return _i10.CustomPage<void>(
         routeData: routeData,
         child: const _i13.HomeScreen(),
-        customRouteBuilder: _i19.CustomTransitionsBuilders.slideUpAndDown,
+        maintainState: false,
+        customRouteBuilder: _i20.CustomTransitionsBuilders.slideUpAndDown,
         durationInMilliseconds: 500,
         reverseDurationInMilliseconds: 500,
         opaque: true,
@@ -157,22 +159,35 @@ class AppRouter extends _i10.RootStackRouter {
           episodeId: args.episodeId,
           autoplay: args.autoplay,
         ),
-        customRouteBuilder: _i19.CustomTransitionsBuilders.slideUpAndDown,
+        customRouteBuilder: _i20.CustomTransitionsBuilders.slideUpAndDown,
         opaque: true,
         barrierDismissible: false,
+      );
+    },
+    PageScreenRoute.name: (routeData) {
+      final pathParams = routeData.inheritedPathParams;
+      final args = routeData.argsAs<PageScreenRouteArgs>(
+          orElse: () =>
+              PageScreenRouteArgs(pageCode: pathParams.getString('pageCode')));
+      return _i10.MaterialPageX<void>(
+        routeData: routeData,
+        child: _i15.PageScreen(
+          key: args.key,
+          pageCode: args.pageCode,
+        ),
       );
     },
     SearchScreenRoute.name: (routeData) {
       return _i10.MaterialPageX<void>(
         routeData: routeData,
-        child: const _i15.SearchScreen(),
+        child: const _i16.SearchScreen(),
       );
     },
     ExploreCategoryScreenRoute.name: (routeData) {
       final args = routeData.argsAs<ExploreCategoryScreenRouteArgs>();
       return _i10.MaterialPageX<void>(
         routeData: routeData,
-        child: _i16.ExploreCategoryScreen(category: args.category),
+        child: _i17.ExploreCategoryScreen(category: args.category),
       );
     },
   };
@@ -231,6 +246,11 @@ class AppRouter extends _i10.RootStackRouter {
                   path: 'episode/:episodeId',
                   parent: HomeScreenWrapperRoute.name,
                 ),
+                _i10.RouteConfig(
+                  PageScreenRoute.name,
+                  path: 'page/:pageCode',
+                  parent: HomeScreenWrapperRoute.name,
+                ),
               ],
             ),
             _i10.RouteConfig(
@@ -270,7 +290,7 @@ class AppRouter extends _i10.RootStackRouter {
 /// [_i1.LoginScreen]
 class LoginScreenRoute extends _i10.PageRouteInfo<LoginScreenRouteArgs> {
   LoginScreenRoute({
-    _i17.Key? key,
+    _i18.Key? key,
     String? loginError,
     void Function(bool)? onResult,
   }) : super(
@@ -293,7 +313,7 @@ class LoginScreenRouteArgs {
     this.onResult,
   });
 
-  final _i17.Key? key;
+  final _i18.Key? key;
 
   final String? loginError;
 
@@ -468,7 +488,7 @@ class HomeScreenRoute extends _i10.PageRouteInfo<void> {
 /// [_i14.EpisodeScreen]
 class EpisodeScreenRoute extends _i10.PageRouteInfo<EpisodeScreenRouteArgs> {
   EpisodeScreenRoute({
-    _i17.Key? key,
+    _i18.Key? key,
     required String episodeId,
     bool autoplay = false,
   }) : super(
@@ -493,7 +513,7 @@ class EpisodeScreenRouteArgs {
     this.autoplay = false,
   });
 
-  final _i17.Key? key;
+  final _i18.Key? key;
 
   final String episodeId;
 
@@ -506,7 +526,42 @@ class EpisodeScreenRouteArgs {
 }
 
 /// generated route for
-/// [_i15.SearchScreen]
+/// [_i15.PageScreen]
+class PageScreenRoute extends _i10.PageRouteInfo<PageScreenRouteArgs> {
+  PageScreenRoute({
+    _i18.Key? key,
+    required String pageCode,
+  }) : super(
+          PageScreenRoute.name,
+          path: 'page/:pageCode',
+          args: PageScreenRouteArgs(
+            key: key,
+            pageCode: pageCode,
+          ),
+          rawPathParams: {'pageCode': pageCode},
+        );
+
+  static const String name = 'PageScreenRoute';
+}
+
+class PageScreenRouteArgs {
+  const PageScreenRouteArgs({
+    this.key,
+    required this.pageCode,
+  });
+
+  final _i18.Key? key;
+
+  final String pageCode;
+
+  @override
+  String toString() {
+    return 'PageScreenRouteArgs{key: $key, pageCode: $pageCode}';
+  }
+}
+
+/// generated route for
+/// [_i16.SearchScreen]
 class SearchScreenRoute extends _i10.PageRouteInfo<void> {
   const SearchScreenRoute()
       : super(
@@ -518,7 +573,7 @@ class SearchScreenRoute extends _i10.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i16.ExploreCategoryScreen]
+/// [_i17.ExploreCategoryScreen]
 class ExploreCategoryScreenRoute
     extends _i10.PageRouteInfo<ExploreCategoryScreenRouteArgs> {
   ExploreCategoryScreenRoute({required String category})

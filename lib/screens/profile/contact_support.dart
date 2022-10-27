@@ -4,6 +4,9 @@ import 'package:auto_route/auto_route.dart';
 import 'package:device_info_plus/device_info_plus.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 
+import '../../helpers/btv_colors.dart';
+import '../../helpers/btv_typography.dart';
+
 class ContactSupport extends StatefulWidget {
   const ContactSupport({super.key});
 
@@ -111,11 +114,7 @@ class _ContactSupportState extends State<ContactSupport> {
               width: 56,
               child: Text(
                 'Cancel',
-                style: TextStyle(
-                  fontSize: 15,
-                  fontWeight: FontWeight.w700,
-                  color: Color.fromRGBO(110, 176, 230, 1),
-                ),
+                style: BtvTextStyles.button2,
               ),
             ),
           ),
@@ -138,8 +137,7 @@ class _ContactSupportState extends State<ContactSupport> {
                         backgroundColor: const Color.fromRGBO(110, 176, 230, 1),
                         padding: const EdgeInsets.only(
                             left: 12, right: 12, top: 3.5, bottom: 4.5),
-                        textStyle: const TextStyle(
-                            fontSize: 18, fontWeight: FontWeight.w700),
+                        textStyle: BtvTextStyles.button1,
                         shape: const RoundedRectangleBorder(
                           side: BorderSide.none,
                           borderRadius: BorderRadius.all(Radius.circular(30)),
@@ -163,23 +161,16 @@ class _ContactSupportState extends State<ContactSupport> {
             children: <Widget>[
               const Text(
                 'Contact Support',
-                style: TextStyle(
-                  color: Colors.white,
-                  backgroundColor: Color.fromRGBO(13, 22, 35, 1),
-                  fontSize: 34,
-                  fontWeight: FontWeight.w700,
-                ),
+                style: BtvTextStyles.headline1,
               ),
               if (!_loading) ...[
                 _TextFieldInput(
-                    textController: _textController,
-                    textFldOnChange: _textFieldHandler),
-                const Text(
+                  textController: _textController,
+                  textFldOnChange: _textFieldHandler,
+                ),
+                Text(
                   'Your message will include this information, to help us better fix the issues.',
-                  style: TextStyle(
-                    fontWeight: FontWeight.w500,
-                    fontSize: 16,
-                  ),
+                  style: BtvTextStyles.body2.copyWith(color: BtvColors.label1),
                 ),
                 _DeviceInfo(deviceInfos: deviceInfos()),
               ] else
@@ -210,11 +201,7 @@ class _ContactSupportState extends State<ContactSupport> {
                                 ),
                                 Text(
                                   'Sending',
-                                  style: TextStyle(
-                                    color: Color.fromRGBO(122, 124, 142, 1),
-                                    fontWeight: FontWeight.w400,
-                                    fontSize: 19,
-                                  ),
+                                  style: BtvTextStyles.body1,
                                 ),
                               ],
                             ),
@@ -249,18 +236,11 @@ class _TextFieldInput extends StatelessWidget {
         textAlign: TextAlign.start,
         keyboardType: TextInputType.multiline,
         textInputAction: TextInputAction.newline,
-        style: const TextStyle(
-          fontWeight: FontWeight.w400,
-          fontSize: 19,
-        ),
+        style: BtvTextStyles.body1.copyWith(color: BtvColors.label1),
         decoration: const InputDecoration(
           hintText:
               'Describe the issue you are experiencing, and what you do to make it happen.',
-          hintStyle: TextStyle(
-            color: Color.fromRGBO(112, 124, 142, 1),
-            fontWeight: FontWeight.w400,
-            fontSize: 19,
-          ),
+          hintStyle: BtvTextStyles.body1,
           filled: true,
           fillColor: Color.fromRGBO(29, 40, 56, 1),
           enabledBorder: OutlineInputBorder(
@@ -341,11 +321,7 @@ class _DeviceInfoList extends StatelessWidget {
                       fit: FlexFit.tight,
                       child: Text(
                         item.title,
-                        style: const TextStyle(
-                          fontSize: 17,
-                          fontWeight: FontWeight.w500,
-                          color: Color.fromRGBO(112, 124, 142, 1),
-                        ),
+                        style: BtvTextStyles.body2,
                       ),
                     ),
                     Flexible(
@@ -353,11 +329,8 @@ class _DeviceInfoList extends StatelessWidget {
                       child: Text(
                         item.content ?? 'N/A',
                         textAlign: TextAlign.right,
-                        style: const TextStyle(
-                          fontSize: 17,
-                          fontWeight: FontWeight.w500,
-                          color: Color.fromRGBO(254, 254, 254, 1),
-                        ),
+                        style: BtvTextStyles.body2
+                            .copyWith(color: BtvColors.label1),
                       ),
                     ),
                   ],
@@ -404,22 +377,14 @@ class _SendingResultPage extends StatelessWidget {
                   Text(
                     sendingResult ? sendSuccessMsgTitle : sendErrorMsgTitle,
                     textAlign: TextAlign.center,
-                    style: const TextStyle(
-                      color: Colors.white,
-                      backgroundColor: Color.fromRGBO(13, 22, 35, 1),
-                      fontSize: 34,
-                      fontWeight: FontWeight.w700,
-                    ),
+                    style: BtvTextStyles.headline1,
                   ),
                   const SizedBox(height: 12),
                   Text(
                     sendingResult ? sendSuccessMsgContent : sendErrorMsgContent,
                     textAlign: TextAlign.center,
-                    style: const TextStyle(
-                      color: Color.fromRGBO(180, 192, 210, 1),
-                      fontSize: 19,
-                      fontWeight: FontWeight.w400,
-                    ),
+                    style:
+                        BtvTextStyles.body1.copyWith(color: BtvColors.label3),
                   ),
                 ],
               ),
@@ -429,7 +394,6 @@ class _SendingResultPage extends StatelessWidget {
             padding: const EdgeInsets.only(bottom: 58),
             child: ElevatedButton(
               style: ElevatedButton.styleFrom(
-                textStyle: const TextStyle(fontSize: 20),
                 shadowColor: Colors.blue[200],
                 shape: const RoundedRectangleBorder(
                   side: BorderSide.none,
@@ -442,11 +406,7 @@ class _SendingResultPage extends StatelessWidget {
               },
               child: Text(
                 sendingResult ? successBtnMsg : errorBtnMsg,
-                style: const TextStyle(
-                  fontSize: 18,
-                  fontWeight: FontWeight.w700,
-                  color: Color.fromRGBO(255, 255, 255, 1),
-                ),
+                style: BtvTextStyles.button1.copyWith(color: BtvColors.onTint),
               ),
             ),
           ),

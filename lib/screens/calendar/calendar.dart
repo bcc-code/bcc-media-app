@@ -10,6 +10,9 @@ import 'package:auto_route/auto_route.dart';
 import 'package:table_calendar/table_calendar.dart';
 import 'package:intl/intl.dart';
 
+import '../../helpers/btv_colors.dart';
+import '../../helpers/btv_typography.dart';
+
 class CalendarPage extends ConsumerStatefulWidget {
   const CalendarPage({super.key});
 
@@ -251,11 +254,7 @@ class _CalendarPageState extends ConsumerState<CalendarPage> {
                         : 'week ${_getWeekNumber(date).toString()}'
                     : DateFormat.MMMM().format(date).toString(),
                 headerMargin: EdgeInsets.zero,
-                titleTextStyle: const TextStyle(
-                    fontFamily: 'Barlow',
-                    color: Color.fromRGBO(112, 124, 142, 1),
-                    fontSize: 17,
-                    fontWeight: FontWeight.w700),
+                titleTextStyle: BtvTextStyles.caption1,
                 leftChevronIcon: const Icon(Icons.arrow_back_ios_new_outlined,
                     color: Color.fromRGBO(112, 124, 142, 1), size: 16),
                 leftChevronMargin: const EdgeInsets.only(left: 0),
@@ -268,24 +267,13 @@ class _CalendarPageState extends ConsumerState<CalendarPage> {
               calendarStyle: CalendarStyle(
                 tableBorder: TableBorder.symmetric(),
                 canMarkersOverflow: true,
-                defaultTextStyle: const TextStyle(
-                    fontFamily: 'Barlow',
-                    color: Colors.white,
-                    fontSize: 17,
-                    fontWeight: FontWeight.w700),
-                todayTextStyle: const TextStyle(
-                    fontFamily: 'Barlow',
-                    color: Color.fromRGBO(230, 60, 98, 1),
-                    fontSize: 17,
-                    fontWeight: FontWeight.w700),
+                defaultTextStyle: BtvTextStyles.title3,
+                todayTextStyle:
+                    BtvTextStyles.title3.copyWith(color: BtvColors.tint2),
                 todayDecoration: const BoxDecoration(
                   shape: BoxShape.circle,
                 ),
-                weekendTextStyle: const TextStyle(
-                    fontFamily: 'Barlow',
-                    color: Colors.white,
-                    fontSize: 17,
-                    fontWeight: FontWeight.w700),
+                weekendTextStyle: BtvTextStyles.title3,
                 outsideTextStyle: const TextStyle(
                     fontFamily: 'Barlow',
                     color: Colors.grey,
@@ -376,11 +364,8 @@ class _CalendarPageState extends ConsumerState<CalendarPage> {
                         child: Center(
                           child: Text(
                             '${day.day}',
-                            style: const TextStyle(
-                                fontFamily: 'Barlow',
-                                color: Color.fromRGBO(230, 60, 98, 1),
-                                fontSize: 17,
-                                fontWeight: FontWeight.w700),
+                            style: BtvTextStyles.title3
+                                .copyWith(color: BtvColors.tint2),
                           ),
                         ),
                       ),
@@ -401,11 +386,7 @@ class _CalendarPageState extends ConsumerState<CalendarPage> {
                     const EdgeInsets.symmetric(horizontal: 15, vertical: 24),
                 child: Text(
                   'Today, ${DateFormat('d MMMM').format(DateTime.now())}',
-                  style: const TextStyle(
-                    fontSize: 20,
-                    fontWeight: FontWeight.w700,
-                    fontFamily: 'Barlow',
-                  ),
+                  style: BtvTextStyles.title2,
                 ),
               ),
             ],
@@ -439,11 +420,7 @@ class CenterText extends StatelessWidget {
     return Center(
       child: Text(
         '${day.day}',
-        style: TextStyle(
-            fontFamily: 'Barlow',
-            color: color,
-            fontSize: 17,
-            fontWeight: FontWeight.w700),
+        style: BtvTextStyles.title3.copyWith(color: color),
       ),
     );
   }
@@ -593,29 +570,23 @@ class _EntriesSlot extends StatelessWidget {
                                 ? 'Now'
                                 : DateFormat('HH:mm').format(
                                     DateTime.parse(entriesList[i].start)),
-                            style: TextStyle(
-                                fontWeight: FontWeight.w700,
-                                fontSize: 17,
-                                fontFamily: 'Barlow',
-                                color: isClassOfEpisodeCalendarEntry(
-                                        entriesList[i])
-                                    ? Colors.white
-                                    : Colors.white54),
+                            style: BtvTextStyles.title3.copyWith(
+                              color:
+                                  isClassOfEpisodeCalendarEntry(entriesList[i])
+                                      ? Colors.white
+                                      : Colors.white54,
+                            ),
                           ),
                           const SizedBox(height: 4),
                           Text(
-                            calculateDuration(
-                                entriesList[i].start, entriesList[i].end),
-                            style: TextStyle(
-                              color: isClassOfEpisodeCalendarEntry(
-                                      entriesList[i])
-                                  ? const Color.fromRGBO(112, 124, 142, 1)
-                                  : const Color.fromRGBO(112, 124, 142, 0.5),
-                              fontWeight: FontWeight.w500,
-                              fontSize: 14,
-                              fontFamily: 'Barlow',
-                            ),
-                          ),
+                              calculateDuration(
+                                  entriesList[i].start, entriesList[i].end),
+                              style: BtvTextStyles.caption1.copyWith(
+                                color: isClassOfEpisodeCalendarEntry(
+                                        entriesList[i])
+                                    ? const Color.fromRGBO(112, 124, 142, 1)
+                                    : const Color.fromRGBO(112, 124, 142, 0.5),
+                              )),
                         ],
                       ),
                     ),
@@ -624,28 +595,23 @@ class _EntriesSlot extends StatelessWidget {
                       children: [
                         Text(
                           entriesList[i].title,
-                          style: TextStyle(
-                              fontWeight: FontWeight.w700,
-                              fontSize: 17,
-                              fontFamily: 'Barlow',
-                              color:
-                                  isClassOfEpisodeCalendarEntry(entriesList[i])
-                                      ? Colors.white
-                                      : Colors.white54),
+                          style: BtvTextStyles.title3.copyWith(
+                            color: isClassOfEpisodeCalendarEntry(entriesList[i])
+                                ? Colors.white
+                                : Colors.white54,
+                          ),
                         ),
                         const SizedBox(height: 4),
-                        Text(entriesList[i].description,
-                            style: TextStyle(
-                              color: isHappeningNow(entriesList[i])
-                                  ? isClassOfEpisodeCalendarEntry(
-                                          entriesList[i])
-                                      ? Colors.red
-                                      : Colors.pink[800]
-                                  : const Color.fromRGBO(110, 176, 230, 1),
-                              fontWeight: FontWeight.w500,
-                              fontSize: 14,
-                              fontFamily: 'Barlow',
-                            )),
+                        Text(
+                          entriesList[i].description,
+                          style: BtvTextStyles.caption1.copyWith(
+                            color: isHappeningNow(entriesList[i])
+                                ? isClassOfEpisodeCalendarEntry(entriesList[i])
+                                    ? Colors.red
+                                    : Colors.pink[800]
+                                : const Color.fromRGBO(110, 176, 230, 1),
+                          ),
+                        ),
                       ],
                     ),
                   ],
@@ -661,12 +627,7 @@ class _EntriesSlot extends StatelessWidget {
               children: const [
                 Text(
                   'Ingen planlagte sendinger',
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontWeight: FontWeight.w700,
-                    fontSize: 17,
-                    fontFamily: 'Barlow',
-                  ),
+                  style: BtvTextStyles.title3,
                 )
               ],
             ),
@@ -689,11 +650,7 @@ class TvGuideTime extends StatelessWidget {
         children: [
           Text(
             'Tv guide timetable is in your local time: ${DateTime.now().timeZoneName}',
-            style: const TextStyle(
-              color: Color.fromRGBO(112, 124, 142, 1),
-              fontSize: 14,
-              fontFamily: 'Barlow',
-            ),
+            style: BtvTextStyles.caption1,
           ),
         ],
       ),

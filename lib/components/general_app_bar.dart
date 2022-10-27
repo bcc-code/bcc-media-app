@@ -6,6 +6,7 @@ class GeneralAppBar extends StatelessWidget implements PreferredSizeWidget {
   final List<Widget> rightActions;
 
   const GeneralAppBar({
+    super.key,
     required this.title,
     this.leftActions = const [],
     this.rightActions = const [],
@@ -13,34 +14,28 @@ class GeneralAppBar extends StatelessWidget implements PreferredSizeWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: 44,
-      decoration: const BoxDecoration(
-        border: Border(
-          bottom: BorderSide(
-            width: 1,
-            color: Color.fromRGBO(204, 221, 255, 0.1),
-          ),
-        ),
-      ),
-      child: Row(children: [
-        Expanded(
-          child: Padding(
-            padding: const EdgeInsets.only(left: 11),
-            child: Row(children: leftActions),
-          ),
-        ),
-        title,
-        Expanded(
-          child: Padding(
-            padding: const EdgeInsets.only(right: 14),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: rightActions,
+    return SafeArea(
+      child: SizedBox(
+        height: 44,
+        child: Row(children: [
+          Expanded(
+            child: Padding(
+              padding: const EdgeInsets.only(left: 11),
+              child: Row(children: leftActions),
             ),
           ),
-        ),
-      ]),
+          title,
+          Expanded(
+            child: Padding(
+              padding: const EdgeInsets.only(right: 14),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: rightActions,
+              ),
+            ),
+          ),
+        ]),
+      ),
     );
   }
 
