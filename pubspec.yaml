@@ -67,6 +67,8 @@ dependencies:
   firebase_core: ^1.24.0
   flutter_secure_storage: ^6.0.0
   visibility_detector: ^0.3.3
+  webview_flutter: ^3.0.4
+  url_launcher: ^6.1.6
 dependency_overrides:
   bccm_player:
     path: external_projects/bccm_player
