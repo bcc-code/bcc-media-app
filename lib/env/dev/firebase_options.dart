@@ -59,11 +59,11 @@ class DefaultFirebaseOptions {
 
   static const FirebaseOptions ios = FirebaseOptions(
     apiKey: 'AIzaSyCQT1kE2HaFcHFsEc4lI76PufpGsHXFSLY',
-    appId: '1:16643555326:ios:d3a08262faf6daab4f8aaf',
+    appId: '1:16643555326:ios:def73dc078e8eab74f8aaf',
     messagingSenderId: '16643555326',
     projectId: 'btv-platform-dev-2',
     storageBucket: 'btv-platform-dev-2.appspot.com',
-    iosClientId: '16643555326-8m0psdauoik1cb0ga17u565j5umrjfh4.apps.googleusercontent.com',
-    iosBundleId: 'tv.brunstad.app.v4.dev',
+    iosClientId: '16643555326-a5t3tecdce6fbkqea4nrm6r0i134e1or.apps.googleusercontent.com',
+    iosBundleId: 'tv.brunstad.app.v4.dev2',
   );
 }

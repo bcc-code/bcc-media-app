@@ -1,6 +1,6 @@
 import 'package:brunstadtv_app/env/dev/firebase_options.dart';
-import 'package:brunstadtv_app/setup.dart';
+import 'package:brunstadtv_app/main.dart';
 
 void main() async {
-  return setup(firebaseOptions: DefaultFirebaseOptions.currentPlatform);
+  return $main(firebaseOptions: DefaultFirebaseOptions.currentPlatform);
 }

@@ -9,26 +9,26 @@
             "request": "launch",
             "type": "dart",
             "cwd": "${workspaceFolder}",
-            "args": ["--flavor", "dev"],
-            "program": "lib/main.dart"
+            "args": ["--flavor", "dev"], // Remember to change the "program" property too
+            "program": "lib/main_dev.dart"
         },
         {
             "name": "brunstadtv_app (profile mode)",
             "request": "launch",
             "type": "dart",
             "flutterMode": "profile",
-            "args": ["--flavor", "prod"],
+            "args": ["--flavor", "prod"], // Remember to change the "program" property too
             "cwd": "${workspaceFolder}",
-            "program": "lib/main.dart"
+            "program": "lib/main_prod.dart"
         },
         {
             "name": "brunstadtv_app (release mode)",
             "request": "launch",
             "type": "dart",
             "flutterMode": "release",
-            "args": ["--flavor", "prod"],
+            "args": ["--flavor", "prod"], // Remember to change the "program" property too
             "cwd": "${workspaceFolder}",
-            "program": "lib/main.dart"
+            "program": "lib/main_prod.dart"
         }
     ]
 }

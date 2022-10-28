@@ -28,7 +28,7 @@ import '../screens/profile/faq.dart' as _i8;
 import '../screens/profile/profile.dart' as _i2;
 import '../screens/profile/subtitle_language.dart' as _i5;
 import '../screens/profile/video_quality.dart' as _i6;
-import '../screens/root.dart' as _i9;
+import '../screens/tabs_root.dart' as _i9;
 import '../screens/search/explore_category_page.dart' as _i17;
 import '../screens/search/search.dart' as _i16;
 import 'auth_guard.dart' as _i19;
@@ -100,7 +100,7 @@ class AppRouter extends _i10.RootStackRouter {
     RootScreenRoute.name: (routeData) {
       return _i10.MaterialPageX<void>(
         routeData: routeData,
-        child: const _i9.RootScreen(),
+        child: const _i9.TabsRootScreen(),
       );
     },
     HomeScreenWrapperRoute.name: (routeData) {
@@ -410,7 +410,7 @@ class FAQRoute extends _i10.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i9.RootScreen]
+/// [_i9.TabsRootScreen]
 class RootScreenRoute extends _i10.PageRouteInfo<void> {
   const RootScreenRoute({List<_i10.PageRouteInfo>? children})
       : super(

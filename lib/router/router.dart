@@ -16,7 +16,7 @@ import 'package:brunstadtv_app/screens/search/search.dart';
 import '../helpers/custom_transitions.dart';
 import '../screens/episode.dart';
 import '../screens/page.dart';
-import '../screens/root.dart';
+import '../screens/tabs_root.dart';
 import '../screens/search/explore_category_page.dart';
 
 @MaterialAutoRouter(
@@ -30,7 +30,7 @@ import '../screens/search/explore_category_page.dart';
     MaterialRoute<void>(page: ContactSupport, path: 'contact-support'),
     MaterialRoute<void>(page: FAQ, path: 'faq'),
     MaterialRoute<void>(
-      page: RootScreen,
+      page: TabsRootScreen,
       path: '/',
       initial: true,
       guards: [AuthGuard],

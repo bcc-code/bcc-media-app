@@ -1,5 +1,5 @@
-import 'package:brunstadtv_app/setup.dart';
+import 'package:brunstadtv_app/main.dart';
 
 void main() async {
-  return setup(firebaseOptions: null);
+  return $main(firebaseOptions: null);
 }

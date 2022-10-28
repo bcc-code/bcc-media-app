@@ -61,7 +61,7 @@
       </BuildableProductRunnable>
    </LaunchAction>
    <ProfileAction
-      buildConfiguration = "Debug-dev"
+      buildConfiguration = "Release-dev"
       shouldUseLaunchSchemeArgsEnv = "YES"
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
@@ -78,7 +78,7 @@
       </BuildableProductRunnable>
    </ProfileAction>
    <AnalyzeAction
-      buildConfiguration = "Debug-dev">
+      buildConfiguration = "Release-dev">
    </AnalyzeAction>
    <ArchiveAction
       buildConfiguration = "Debug-dev"

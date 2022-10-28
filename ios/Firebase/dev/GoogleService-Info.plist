@@ -3,9 +3,9 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>16643555326-8m0psdauoik1cb0ga17u565j5umrjfh4.apps.googleusercontent.com</string>
+	<string>16643555326-a5t3tecdce6fbkqea4nrm6r0i134e1or.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.16643555326-8m0psdauoik1cb0ga17u565j5umrjfh4</string>
+	<string>com.googleusercontent.apps.16643555326-a5t3tecdce6fbkqea4nrm6r0i134e1or</string>
 	<key>API_KEY</key>
 	<string>AIzaSyCQT1kE2HaFcHFsEc4lI76PufpGsHXFSLY</string>
 	<key>GCM_SENDER_ID</key>
@@ -13,7 +13,7 @@
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>tv.brunstad.app.v4.dev</string>
+	<string>tv.brunstad.app.v4.dev2</string>
 	<key>PROJECT_ID</key>
 	<string>btv-platform-dev-2</string>
 	<key>STORAGE_BUCKET</key>
@@ -29,6 +29,6 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:16643555326:ios:d3a08262faf6daab4f8aaf</string>
+	<string>1:16643555326:ios:def73dc078e8eab74f8aaf</string>
 </dict>
 </plist>
