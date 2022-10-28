@@ -57,9 +57,10 @@ class _AppRootState extends ConsumerState<AppRoot> {
         alert: false, badge: false, sound: true);
 
     if (token != null) {
-      ref.read(gqlClientProvider).mutate$SetDeviceToken(
+      var result = await ref.read(gqlClientProvider).mutate$SetDeviceToken(
           Options$Mutation$SetDeviceToken(
               variables: Variables$Mutation$SetDeviceToken(token: token)));
+      debugPrint(result.data?.toString());
     }
 
     FirebaseMessaging.instance.onTokenRefresh.listen((fcmToken) {

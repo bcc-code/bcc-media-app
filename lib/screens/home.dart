@@ -67,15 +67,18 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
         elevation: 0,
         centerTitle: true,
         title: logo,
-        leading: GestureDetector(
-            onTap: () {
-              context.router.push(const ProfileRoute());
-            },
-            child: Padding(
-                padding: const EdgeInsets.only(left: 16, top: 12, bottom: 12),
-                child: SvgPicture.string(
-                  SvgIcons.profile,
-                ))),
+        leading: Container(
+          margin: const EdgeInsets.only(left: 16),
+          child: InkWell(
+              onTap: () {
+                context.router.push(const ProfileRoute());
+              },
+              child: Padding(
+                  padding: const EdgeInsets.only(top: 12, bottom: 12),
+                  child: SvgPicture.string(
+                    SvgIcons.profile,
+                  ))),
+        ),
         actions: const [SizedBox(width: 40, child: CastButton())],
         flexibleSpace: Container(
           decoration: const BoxDecoration(boxShadow: <BoxShadow>[

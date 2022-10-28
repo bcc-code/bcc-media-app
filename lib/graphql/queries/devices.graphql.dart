@@ -276,7 +276,21 @@ const documentNodeMutationSetDeviceToken = DocumentNode(definitions: [
             arguments: [],
             directives: [],
             selectionSet: null,
-          )
+          ),
+          FieldNode(
+            name: NameNode(value: 'token'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
+            name: NameNode(value: 'updatedAt'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
         ]),
       ),
       FieldNode(
@@ -496,28 +510,51 @@ class Mutation$SetDeviceToken$Widget
 }
 
 class Mutation$SetDeviceToken$setDevicePushToken {
-  Mutation$SetDeviceToken$setDevicePushToken({required this.$__typename});
+  Mutation$SetDeviceToken$setDevicePushToken({
+    required this.$__typename,
+    required this.token,
+    required this.updatedAt,
+  });
 
   factory Mutation$SetDeviceToken$setDevicePushToken.fromJson(
       Map<String, dynamic> json) {
     final l$$__typename = json['__typename'];
+    final l$token = json['token'];
+    final l$updatedAt = json['updatedAt'];
     return Mutation$SetDeviceToken$setDevicePushToken(
-        $__typename: (l$$__typename as String));
+      $__typename: (l$$__typename as String),
+      token: (l$token as String),
+      updatedAt: (l$updatedAt as String),
+    );
   }
 
   final String $__typename;
+
+  final String token;
+
+  final String updatedAt;
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
+    final l$token = token;
+    _resultData['token'] = l$token;
+    final l$updatedAt = updatedAt;
+    _resultData['updatedAt'] = l$updatedAt;
     return _resultData;
   }
 
   @override
   int get hashCode {
     final l$$__typename = $__typename;
-    return Object.hashAll([l$$__typename]);
+    final l$token = token;
+    final l$updatedAt = updatedAt;
+    return Object.hashAll([
+      l$$__typename,
+      l$token,
+      l$updatedAt,
+    ]);
   }
 
   @override
@@ -532,6 +569,16 @@ class Mutation$SetDeviceToken$setDevicePushToken {
     final l$$__typename = $__typename;
     final lOther$$__typename = other.$__typename;
     if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    final l$token = token;
+    final lOther$token = other.token;
+    if (l$token != lOther$token) {
+      return false;
+    }
+    final l$updatedAt = updatedAt;
+    final lOther$updatedAt = other.updatedAt;
+    if (l$updatedAt != lOther$updatedAt) {
       return false;
     }
     return true;
@@ -557,7 +604,11 @@ abstract class CopyWith$Mutation$SetDeviceToken$setDevicePushToken<TRes> {
   factory CopyWith$Mutation$SetDeviceToken$setDevicePushToken.stub(TRes res) =
       _CopyWithStubImpl$Mutation$SetDeviceToken$setDevicePushToken;
 
-  TRes call({String? $__typename});
+  TRes call({
+    String? $__typename,
+    String? token,
+    String? updatedAt,
+  });
 }
 
 class _CopyWithImpl$Mutation$SetDeviceToken$setDevicePushToken<TRes>
@@ -573,11 +624,22 @@ class _CopyWithImpl$Mutation$SetDeviceToken$setDevicePushToken<TRes>
 
   static const _undefined = {};
 
-  TRes call({Object? $__typename = _undefined}) =>
+  TRes call({
+    Object? $__typename = _undefined,
+    Object? token = _undefined,
+    Object? updatedAt = _undefined,
+  }) =>
       _then(Mutation$SetDeviceToken$setDevicePushToken(
-          $__typename: $__typename == _undefined || $__typename == null
-              ? _instance.$__typename
-              : ($__typename as String)));
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+        token: token == _undefined || token == null
+            ? _instance.token
+            : (token as String),
+        updatedAt: updatedAt == _undefined || updatedAt == null
+            ? _instance.updatedAt
+            : (updatedAt as String),
+      ));
 }
 
 class _CopyWithStubImpl$Mutation$SetDeviceToken$setDevicePushToken<TRes>
@@ -586,5 +648,10 @@ class _CopyWithStubImpl$Mutation$SetDeviceToken$setDevicePushToken<TRes>
 
   TRes _res;
 
-  call({String? $__typename}) => _res;
+  call({
+    String? $__typename,
+    String? token,
+    String? updatedAt,
+  }) =>
+      _res;
 }
