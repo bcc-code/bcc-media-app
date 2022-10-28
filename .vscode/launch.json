@@ -5,7 +5,7 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "brunstadtv_app",
+            "name": "dev",
             "request": "launch",
             "type": "dart",
             "cwd": "${workspaceFolder}",
@@ -13,7 +13,32 @@
             "program": "lib/main_dev.dart"
         },
         {
-            "name": "brunstadtv_app (profile mode)",
+            "name": "dev (profile)",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "profile",
+            "args": ["--flavor", "dev"], // Remember to change the "program" property too
+            "cwd": "${workspaceFolder}",
+            "program": "lib/main_dev.dart"
+        },
+        {
+            "name": "dev (release)",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "release",
+            "args": ["--flavor", "dev"], // Remember to change the "program" property too
+            "cwd": "${workspaceFolder}",
+            "program": "lib/main_dev.dart"
+        },{
+            "name": "prod",
+            "request": "launch",
+            "type": "dart",
+            "cwd": "${workspaceFolder}",
+            "args": ["--flavor", "prod"], // Remember to change the "program" property too
+            "program": "lib/main_prod.dart"
+        },
+        {
+            "name": "prod (profile)",
             "request": "launch",
             "type": "dart",
             "flutterMode": "profile",
@@ -22,7 +47,7 @@
             "program": "lib/main_prod.dart"
         },
         {
-            "name": "brunstadtv_app (release mode)",
+            "name": "prod (release)",
             "request": "launch",
             "type": "dart",
             "flutterMode": "release",
