@@ -26,7 +26,6 @@ import 'package:bccm_player/playback_service_interface.dart';
 import 'app_root.dart';
 import 'debug_app.dart';
 import 'env/.env.dart';
-import 'env/dev/firebase_options.dart';
 import 'background_tasks.dart';
 
 /// There is 1 main() per environment, e.g. main_dev.dart
@@ -99,9 +98,13 @@ void $main({required FirebaseOptions? firebaseOptions}) async {
   providerContainer.read(settingsServiceProvider.notifier).load();
 
   if (firebaseOptions != null) {
-    await Firebase.initializeApp(
-      options: DefaultFirebaseOptions.currentPlatform,
-    );
+    try {
+      await Firebase.initializeApp(
+        options: firebaseOptions,
+      );
+    } catch (e) {
+      debugPrint(e.toString());
+    }
     FirebaseMessaging.onBackgroundMessage(onFirebaseBackgroundMessage);
   }
 
