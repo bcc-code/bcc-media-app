@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 
 import '../../helpers/btv_typography.dart';
+import '../../services/auth_service.dart';
 
 class ActionButtons extends StatelessWidget {
   void _editPictureClicked() {}
-  void _logOutClicked() {}
+  void _logOutClicked(context) {
+    AuthService.instance.logoutAndNavigate(context);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +33,7 @@ class ActionButtons extends StatelessWidget {
             ),
           ),
           ElevatedButton(
-            onPressed: _logOutClicked,
+            onPressed: () => _logOutClicked(context),
             style: ElevatedButton.styleFrom(
               backgroundColor: const Color.fromRGBO(204, 221, 255, 0.1),
               foregroundColor: Colors.white,

@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:brunstadtv_app/router/auth_guard.dart';
 import 'package:brunstadtv_app/screens/calendar/calendar.dart';
+import 'package:brunstadtv_app/screens/profile/about.dart';
 import 'package:brunstadtv_app/screens/profile/app_language.dart';
 import 'package:brunstadtv_app/screens/profile/audio_language.dart';
 import 'package:brunstadtv_app/screens/profile/subtitle_language.dart';
@@ -28,6 +29,7 @@ import '../screens/search/explore_category_page.dart';
     MaterialRoute<void>(page: AppSubtitleLanguage, path: 'subtitle-language'),
     MaterialRoute<void>(page: VideoQuality, path: 'video-quality'),
     MaterialRoute<void>(page: ContactSupport, path: 'contact-support'),
+    MaterialRoute<void>(page: AboutScreen, path: 'about'),
     MaterialRoute<void>(page: FAQ, path: 'faq'),
     MaterialRoute<void>(
       page: TabsRootScreen,

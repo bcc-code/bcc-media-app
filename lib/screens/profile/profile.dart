@@ -46,21 +46,11 @@ class _ProfileState extends ConsumerState<Profile> {
           context.router.push(const VideoQualityRoute());
         },
       },
-      {
-        'optionName': 'Notifikationer',
-        'currentSelection': 'Yes',
-        'onPressed': () {},
-      },
     ];
 
     _supportOptions = [
       {
-        'optionName': 'Nyheder fra BrunstadTV',
-        'currentSelection': null,
-        'onPressed': () {},
-      },
-      {
-        'optionName': 'Ofte stillede spørsmål',
+        'optionName': 'Ofte stilte spørsmål',
         'currentSelection': null,
         'onPressed': () {
           context.router.push(const FAQRoute());
@@ -73,14 +63,16 @@ class _ProfileState extends ConsumerState<Profile> {
           context.router.push(const ContactSupportRoute());
         },
       },
+      {
+        'optionName': 'Om',
+        'currentSelection': null,
+        'onPressed': () {
+          context.router.push(const AboutScreenRoute());
+        },
+      },
     ];
 
     _termsaAndPrivacyOptions = [
-      {
-        'optionName': 'Samtykke',
-        'currentSelection': null,
-        'onPressed': () {},
-      },
       {
         'optionName': 'Terms & Conditions',
         'currentSelection': null,
