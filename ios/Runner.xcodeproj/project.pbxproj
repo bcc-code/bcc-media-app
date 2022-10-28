@@ -42,7 +42,7 @@
 		74858FAD1ED2DC5600515810 /* Runner-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Runner-Bridging-Header.h"; sourceTree = "<group>"; };
 		74858FAE1ED2DC5600515810 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7AFA3C8E1D35360C0083082E /* Release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = Release.xcconfig; path = Flutter/Release.xcconfig; sourceTree = "<group>"; };
-		8121E252290BF10700C67B7F /* Firebase */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Firebase; sourceTree = "<group>"; };
+		8121E256290C056100C67B7F /* Firebase */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Firebase; path = Runner/Firebase; sourceTree = "<group>"; };
 		813228DB290151AB001984C1 /* Info-Release-prod.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Info-Release-prod.plist"; sourceTree = "<group>"; };
 		8140DB7A2901518E00321A19 /* Info-Profile-prod.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Info-Profile-prod.plist"; sourceTree = "<group>"; };
 		8140DB7B2901519100321A19 /* Info-Debug-prod.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Info-Debug-prod.plist"; sourceTree = "<group>"; };
@@ -106,7 +106,7 @@
 		97C146E51CF9000F007C117D = {
 			isa = PBXGroup;
 			children = (
-				8121E252290BF10700C67B7F /* Firebase */,
+				8121E256290C056100C67B7F /* Firebase */,
 				9740EEB11CF90186004384FC /* Flutter */,
 				97C146F01CF9000F007C117D /* Runner */,
 				97C146EF1CF9000F007C117D /* Products */,

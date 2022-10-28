@@ -4,9 +4,9 @@ import 'package:auth0_flutter/auth0_flutter.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:brunstadtv_app/env/.env.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 
+import '../env/env.dart';
 import '../helpers/constants.dart';
 import '../models/auth0_id_token.dart';
 import '../router/router.gr.dart';
@@ -16,7 +16,7 @@ class AuthService {
   factory AuthService() => instance;
   AuthService._internal();
 
-  final Auth0 auth0 = Auth0("https://${Env.AUTH0_DOMAIN}", Env.AUTH0_CLIENT_ID);
+  final Auth0 auth0 = Auth0("https://${Env.auth0Domain}", Env.auth0ClientId);
   UserProfile? user;
   String? auth0AccessToken;
   String? idToken;
@@ -47,7 +47,7 @@ class AuthService {
       final PackageInfo info = await PackageInfo.fromPlatform();
       final result =
           await auth0.webAuthentication(scheme: info.packageName).login(
-        audience: Env.AUTH0_AUDIENCE,
+        audience: Env.auth0Audience,
         scopes: {'openid', 'profile', 'offline_access', 'email'},
       );
 

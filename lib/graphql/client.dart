@@ -2,11 +2,11 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:graphql/client.dart';
 import 'package:brunstadtv_app/services/auth_service.dart';
 
-import '../env/.env.dart';
+import '../env/env.dart';
 
 final gqlClientProvider = Provider<GraphQLClient>((ref) {
   final httpLink = HttpLink(
-    Env.BRUNSTADTV_API_ENDPOINT,
+    Env.brunstadtvApiEndpoint,
   );
 
   final authLink = AuthLink(

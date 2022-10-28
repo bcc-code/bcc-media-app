@@ -25,8 +25,8 @@ import 'package:bccm_player/playback_service_interface.dart';
 
 import 'app_root.dart';
 import 'debug_app.dart';
-import 'env/.env.dart';
 import 'background_tasks.dart';
+import 'env/env.dart';
 
 /// There is 1 main() per environment, e.g. main_dev.dart
 /// This function runs on all of them
@@ -88,9 +88,9 @@ void $main({required FirebaseOptions? firebaseOptions}) async {
         .setMediaItem(value?.mediaItem);
   });
 
-  if (Env.NPAW_ACCOUNT_CODE != '') {
+  if (Env.npawAccountCode != '') {
     providerContainer.read(playbackApiProvider).setNpawConfig(NpawConfig(
-        accountCode: Env.NPAW_ACCOUNT_CODE,
+        accountCode: Env.npawAccountCode,
         appName: 'mobile',
         appReleaseVersion: '4.0.0-alpha'));
   }

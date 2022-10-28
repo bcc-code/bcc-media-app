@@ -47,5 +47,6 @@ app.*.map.json
 
 # Custom
 lib/env/.env.dart
-
+.env
 *.ignore
+SchemePreActions.h
