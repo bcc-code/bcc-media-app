@@ -5,6 +5,15 @@
    <BuildAction
       parallelizeBuildables = "YES"
       buildImplicitDependencies = "YES">
+      <PreActions>
+         <ExecutionAction
+            ActionType = "Xcode.IDEStandardExecutionActionsCore.ExecutionActionType.ShellScriptAction">
+            <ActionContent
+               title = "Copy GoogleServices-Info.plist &amp; firebase_app_id_file.json to the correct location"
+               scriptText = "environment=&quot;default&quot;&#10;&#10;# Regex to extract the scheme name from the Build Configuration&#10;# We have named our Build Configurations as Debug-dev, Debug-prod etc.&#10;# Here, dev and prod are the scheme names. This kind of naming is required by Flutter for flavors to work.&#10;# We are using the $CONFIGURATION variable available in the XCode build environment to extract &#10;# the environment (or flavor)&#10;# For eg.&#10;# If CONFIGURATION=&quot;Debug-prod&quot;, then environment will get set to &quot;prod&quot;.&#10;if [[ $CONFIGURATION =~ -([^-]*)$ ]]; then&#10;environment=${BASH_REMATCH[1]}&#10;fi&#10;&#10;echo $environment&#10;&#10;# Name and path of the resource we&apos;re copying&#10;FIREBASE_APP_ID_JSON=firebase_app_id_file.json&#10;FIREBASE_APP_ID_FILE=${PROJECT_DIR}/Config/${environment}/${FIREBASE_APP_ID_JSON}&#10;&#10;GOOGLESERVICE_INFO_PLIST=GoogleService-Info.plist&#10;GOOGLESERVICE_INFO_FILE=${PROJECT_DIR}/Config/${environment}/${GOOGLESERVICE_INFO_PLIST}&#10;&#10;# Make sure GoogleService-Info.plist exists&#10;echo &quot;Looking for ${GOOGLESERVICE_INFO_PLIST} in ${GOOGLESERVICE_INFO_FILE}&quot;&#10;if [ ! -f $GOOGLESERVICE_INFO_FILE ]&#10;then&#10;echo &quot;No GoogleService-Info.plist found. Please ensure it&apos;s in the proper directory.&quot;&#10;exit 1&#10;fi&#10;&#10;# Make sure firebase_app_id_file.json exists&#10;echo &quot;Looking for ${FIREBASE_APP_ID_JSON} in ${FIREBASE_APP_ID_FILE}&quot;&#10;if [ ! -f $FIREBASE_APP_ID_FILE ]&#10;then&#10;echo &quot;No firebase_app_id_file.json found. Please ensure it&apos;s in the proper directory.&quot;&#10;exit 1&#10;fi&#10;&#10;FIREBASE_PLIST_JSON_DESTINATION=${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.app&#10;# Get a reference to the destination location for the GoogleService-Info.plist&#10;# This is the default location where Firebase init code expects to find GoogleServices-Info.plist file&#10;echo &quot;Will copy ${GOOGLESERVICE_INFO_PLIST} to final destination: ${FIREBASE_PLIST_JSON_DESTINATION}&quot;&#10;&#10;# Get a reference to the destination location for the firebase_app_id_file.json&#10;# This is the default location where Firebase init code expects to find firebase_app_id_file.json file&#10;echo &quot;Will copy ${FIREBASE_APP_ID_JSON} to final destination: ${FIREBASE_PLIST_JSON_DESTINATION}&quot;&#10;&#10;# Copy over the prod GoogleService-Info.plist for Release builds&#10;cp &quot;${GOOGLESERVICE_INFO_FILE}&quot; &quot;${FIREBASE_PLIST_JSON_DESTINATION}&quot;&#10;&#10;# Copy over the prod firebase_app_id_file.json for Release builds&#10;cp &quot;${FIREBASE_APP_ID_FILE}&quot; &quot;${FIREBASE_PLIST_JSON_DESTINATION}&quot;&#10;">
+            </ActionContent>
+         </ExecutionAction>
+      </PreActions>
       <BuildActionEntries>
          <BuildActionEntry
             buildForTesting = "YES"
@@ -52,7 +61,7 @@
       </BuildableProductRunnable>
    </LaunchAction>
    <ProfileAction
-      buildConfiguration = "Debug-dev"
+      buildConfiguration = "Release-dev"
       shouldUseLaunchSchemeArgsEnv = "YES"
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
@@ -69,7 +78,7 @@
       </BuildableProductRunnable>
    </ProfileAction>
    <AnalyzeAction
-      buildConfiguration = "Debug-dev">
+      buildConfiguration = "Release-dev">
    </AnalyzeAction>
    <ArchiveAction
       buildConfiguration = "Debug-dev"

@@ -16,16 +16,17 @@ import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
 import '../components/custom_tab_bar.dart';
 
-class RootScreen extends ConsumerStatefulWidget {
+class TabsRootScreen extends ConsumerStatefulWidget {
   static const route = '/';
 
-  const RootScreen({super.key});
+  const TabsRootScreen({super.key});
 
   @override
-  ConsumerState<RootScreen> createState() => _RootScreenState();
+  ConsumerState<TabsRootScreen> createState() => _TabsRootScreenState();
 }
 
-class _RootScreenState extends ConsumerState<RootScreen> with AutoRouteAware {
+class _TabsRootScreenState extends ConsumerState<TabsRootScreen>
+    with AutoRouteAware {
   @override
   void initState() {
     super.initState();
@@ -33,45 +34,6 @@ class _RootScreenState extends ConsumerState<RootScreen> with AutoRouteAware {
       var player = Player(playerId: playerId);
       ref.read(playbackApiProvider).setPrimary(playerId);
       ref.read(primaryPlayerProvider.notifier).setState(player);
-    });
-
-    setupPushNotifications();
-  }
-
-  Future setupPushNotifications() async {
-    if (!kDebugMode || !Platform.isAndroid) return;
-    var token = await FirebaseMessaging.instance.getToken();
-    print('autoinit: ${FirebaseMessaging.instance.isAutoInitEnabled}');
-    print('token: ${token}');
-    if (token != null) {
-      ref.read(gqlClientProvider).mutate$SetDeviceToken(
-          Options$Mutation$SetDeviceToken(
-              variables: Variables$Mutation$SetDeviceToken(token: token)));
-    }
-    FirebaseMessaging.instance.onTokenRefresh.listen((fcmToken) {
-      // Note: This callback is fired at each app startup and whenever a new
-      // token is generated.
-
-      // TODO: If necessary send token to application server.
-      ref.read(gqlClientProvider).mutate$SetDeviceToken(
-          Options$Mutation$SetDeviceToken(
-              variables: Variables$Mutation$SetDeviceToken(token: fcmToken)));
-      print('fcm token refreshed: $fcmToken');
-
-      const storage = FlutterSecureStorage();
-      storage.write(key: 'fcm_token', value: fcmToken);
-      print('fcm token refreshed and stored: $fcmToken');
-    }).onError((err) {
-      print('error onTokenRefresh');
-    });
-    FirebaseMessaging.onMessage.listen((RemoteMessage message) {
-      print('Got a message whilst in the foreground!');
-      print('Message data: ${message.data}');
-
-      if (message.notification != null) {
-        print(
-            'Message also contained a notification: ${message.notification?.title}');
-      }
     });
   }
 

@@ -1,15 +1,21 @@
 import UIKit
 import Flutter
+import FirebaseCore
 
 @UIApplicationMain
 @objc class AppDelegate: FlutterAppDelegate {
     
     var playerViewController: PlayerViewController?
     
+    override func applicationDidBecomeActive(_ application: UIApplication) {
+        UIApplication.shared.applicationIconBadgeNumber = 0
+    }
+    
     override func application(
         _ application: UIApplication,
         didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?
     ) -> Bool {
+        FirebaseApp.configure()
         GeneratedPluginRegistrant.register(with: self)
         
         let flutterResult = super.application(application, didFinishLaunchingWithOptions: launchOptions)

@@ -23,16 +23,15 @@ import 'package:bccm_player/chromecast_pigeon.g.dart';
 import 'package:riverpod/riverpod.dart';
 import 'package:bccm_player/playback_service_interface.dart';
 
+import 'app_root.dart';
 import 'debug_app.dart';
 import 'env/.env.dart';
 import 'env/dev/firebase_options.dart';
+import 'background_tasks.dart';
 
-Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
-  print('Handling a background message: ${message.messageId}');
-  print('${message.data}');
-}
-
-void main() async {
+/// There is 1 main() per environment, e.g. main_dev.dart
+/// This function runs on all of them
+void $main({required FirebaseOptions? firebaseOptions}) async {
   /* WidgetsFlutterBinding.ensureInitialized();
   var playerId = await PlaybackPlatformInterface.instance.newPlayer();
   await PlaybackPlatformInterface.instance.replaceCurrentMediaItem(
@@ -60,7 +59,9 @@ void main() async {
     DeviceOrientation.landscapeLeft,
   ]);
   await AuthService.instance.init();
-  final appRouter = AppRouter(authGuard: AuthGuard());
+  GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
+  final appRouter =
+      AppRouter(authGuard: AuthGuard(), navigatorKey: navigatorKey);
 
   var chromecastListenerOverride = chromecastListenerProvider
       .overrideWithProvider(Provider<ChromecastListener>((ref) {
@@ -97,24 +98,29 @@ void main() async {
 
   providerContainer.read(settingsServiceProvider.notifier).load();
 
-  if (kDebugMode && Platform.isAndroid) {
+  if (firebaseOptions != null) {
     await Firebase.initializeApp(
-      options: DevFirebaseOptions.currentPlatform,
+      options: DefaultFirebaseOptions.currentPlatform,
     );
-    FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
+    FirebaseMessaging.onBackgroundMessage(onFirebaseBackgroundMessage);
   }
 
   runApp(UncontrolledProviderScope(
     container: providerContainer,
     child: Builder(
         builder: (context) => MaterialApp.router(
-              theme: ThemeData(),
-              darkTheme: createTheme(),
-              themeMode: ThemeMode.dark,
-              title: 'BrunstadTV',
-              routerDelegate: appRouter.delegate(),
-              routeInformationParser: appRouter.defaultRouteParser(),
-            )),
+            theme: ThemeData(),
+            darkTheme: createTheme(),
+            themeMode: ThemeMode.dark,
+            title: 'BrunstadTV',
+            routerDelegate: appRouter.delegate(),
+            routeInformationParser: appRouter.defaultRouteParser(),
+            builder: (BuildContext context, Widget? child) {
+              return AppRoot(
+                child: child,
+                navigatorKey: navigatorKey,
+              );
+            })),
   ));
 }
 

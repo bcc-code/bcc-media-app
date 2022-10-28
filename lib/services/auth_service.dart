@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:auth0_flutter/auth0_flutter.dart';
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:brunstadtv_app/env/.env.dart';
@@ -8,6 +9,7 @@ import 'package:package_info_plus/package_info_plus.dart';
 
 import '../helpers/constants.dart';
 import '../models/auth0_id_token.dart';
+import '../router/router.gr.dart';
 
 class AuthService {
   static final AuthService instance = AuthService._internal();
@@ -33,6 +35,11 @@ class AuthService {
     } on Error catch (e) {
       return e;
     }
+  }
+
+  Future logoutAndNavigate(BuildContext context) async {
+    await auth0.credentialsManager.clearCredentials();
+    context.router.push(LoginScreenRoute());
   }
 
   Future<Error?> login() async {
