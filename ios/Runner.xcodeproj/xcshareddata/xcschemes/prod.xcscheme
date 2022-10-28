@@ -10,7 +10,7 @@
             ActionType = "Xcode.IDEStandardExecutionActionsCore.ExecutionActionType.ShellScriptAction">
             <ActionContent
                title = "Run Script"
-               scriptText = "LOG_FILE=${PROJECT_DIR}/prebuild.log&#10;ERROR_FILE=${PROJECT_DIR}/Runner/SchemePreActions.h&#10;&#10;exec &gt; $LOG_FILE 2&gt;&amp;1&#10;echo &quot;// auto-generated&quot; &gt; $ERROR_FILE&#10;&#10;trap &quot;echo &apos;#error Pre-action script failed, this is here to prevent the build from succeeding. See $LOG_FILE.&apos; &gt;&gt; $ERROR_FILE&quot; ERR&#10;&#10;/bin/sh ${PROJECT_DIR}/Runner/Firebase/copy_script.sh&#10;">
+               scriptText = "/bin/sh ${PROJECT_DIR}/Runner/Firebase/copy_script.sh&#10;">
                <EnvironmentBuildable>
                   <BuildableReference
                      BuildableIdentifier = "primary"

@@ -1,4 +1,10 @@
-trap "exit 1" ERR
+LOG_FILE=${PROJECT_DIR}/prebuild.log
+ERROR_FILE=${PROJECT_DIR}/Runner/SchemePreActions.h
+
+exec > $LOG_FILE 2>&1
+echo "// auto-generated" > $ERROR_FILE
+
+trap "echo '#error Pre-action script failed, this is here to prevent the build from succeeding. See $LOG_FILE.' >> $ERROR_FILE; exit 1" ERR
 
 environment="default"
 
