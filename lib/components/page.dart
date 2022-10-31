@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../graphql/queries/page.graphql.dart';
 import '../helpers/btv_colors.dart';
 import '../helpers/btv_typography.dart';
+import '../l10n/app_localizations.dart';
 import 'icon_label_button.dart';
 import 'featured_section.dart';
 import 'default_grid_section.dart';
@@ -67,7 +68,7 @@ class BccmPage extends StatelessWidget {
         if (snapshot.hasData) {
           return getPage(snapshot.data!);
         } else if (snapshot.hasError) {
-          return loadingError;
+          return loadingError(context);
         }
         return loadingContent;
       },
@@ -87,7 +88,7 @@ class BccmPage extends StatelessWidget {
     ]),
   );
 
-  final loadingError = Center(
+  Widget loadingError(BuildContext context) => Center(
     child: Container(
       padding: const EdgeInsets.symmetric(horizontal: 24),
       child: Column(
@@ -103,12 +104,12 @@ class BccmPage extends StatelessWidget {
           Container(
             margin: const EdgeInsets.only(bottom: 16),
             child: Text(
-              'Check internet connection and try again',
+              S.of(context).checkNetwork,
               textAlign: TextAlign.center,
               style: BtvTextStyles.body1.copyWith(color: BtvColors.label3),
             ),
           ),
-          IconLabelButton.medium(labelText: 'Try again', onPressed: () {})
+          IconLabelButton.medium(labelText: S.of(context).tryAgainButton, onPressed: () {})
         ],
       ),
     ),

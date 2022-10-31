@@ -13,48 +13,64 @@ class AppLanguageScreen extends ConsumerStatefulWidget {
 class _AppLanguageScreenState extends ConsumerState<AppLanguageScreen> {
   var languageList = [
     Option(
-      id: 'afr',
-      title: 'Afrikaans (Afrikaans)',
+      id: 'de',
+      title: 'Deutsch',
     ),
     Option(
-      id: 'deu',
-      title: 'Deutsch (German)',
+      id: 'en',
+      title: 'English',
     ),
     Option(
-      id: 'eng',
-      title: 'English (English)',
+      id: 'es',
+      title: 'Español',
     ),
     Option(
-      id: 'dut',
-      title: 'Nederlands (Dutch)',
+      id: 'fi',
+      title: 'Suomi',
     ),
     Option(
-      id: 'tur',
-      title: 'Türkçe (Turkish)',
+      id: 'fr',
+      title: 'Français',
     ),
     Option(
-      id: 'est',
-      title: 'Eesti (Estonian)',
+      id: 'hu',
+      title: 'Magyar',
     ),
     Option(
-      id: 'spa',
-      title: 'Español (Spanish)',
+      id: 'it',
+      title: 'Italiano',
     ),
     Option(
-      id: 'fra',
-      title: 'Español (Spanish)',
-    ),
-    Option(
-      id: 'ita',
-      title: 'Italiano (Italian)',
-    ),
-    Option(
-      id: 'hun',
-      title: 'Magyar (Hungarian)',
+      id: 'nl',
+      title: 'Nederlands',
     ),
     Option(
       id: 'no',
-      title: 'Norsk bokmål (Norwegian Bokmål)',
+      title: 'Norsk',
+    ),
+    Option(
+      id: 'pl',
+      title: 'Polski',
+    ),
+    Option(
+      id: 'pt',
+      title: 'Português',
+    ),
+    Option(
+      id: 'ro',
+      title: 'Română',
+    ),
+    Option(
+      id: 'ru',
+      title: 'Pусский',
+    ),
+    Option(
+      id: 'sl',
+      title: 'Slovenščina',
+    ),
+    Option(
+      id: 'tr',
+      title: 'Türkçe',
     ),
   ];
 
@@ -65,13 +81,13 @@ class _AppLanguageScreenState extends ConsumerState<AppLanguageScreen> {
       selected = id;
       // obtain shared preferences
     });
-    ref.read(settingsServiceProvider.notifier).setAppLanguage(id);
+    ref.read(settingsProvider.notifier).setAppLanguage(id);
   }
 
   @override
   void initState() {
     super.initState();
-    selected = ref.read(settingsServiceProvider).appLanguage ?? 'no';
+    selected = ref.read(settingsProvider).appLanguage?.languageCode ?? 'no';
   }
 
   @override

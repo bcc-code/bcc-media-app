@@ -15,35 +15,63 @@ class _AppSubtitleLanguageState extends ConsumerState<AppSubtitleLanguage> {
   var languageList = [
     Option(
       id: 'de',
-      title: 'Deutsch (German)',
+      title: 'Deutsch',
     ),
     Option(
       id: 'en',
-      title: 'English (English)',
-    ),
-    Option(
-      id: 'nl',
-      title: 'Nederlands (Dutch)',
+      title: 'English',
     ),
     Option(
       id: 'es',
-      title: 'Español (Spanish)',
+      title: 'Español',
+    ),
+    Option(
+      id: 'fi',
+      title: 'Suomi',
     ),
     Option(
       id: 'fr',
-      title: 'French',
-    ),
-    Option(
-      id: 'it',
-      title: 'Italiano (Italian)',
+      title: 'Français',
     ),
     Option(
       id: 'hu',
-      title: 'Magyar (Hungarian)',
+      title: 'Magyar',
+    ),
+    Option(
+      id: 'it',
+      title: 'Italiano',
+    ),
+    Option(
+      id: 'nl',
+      title: 'Nederlands',
     ),
     Option(
       id: 'no',
-      title: 'Norsk bokmål (Norwegian Bokmål)',
+      title: 'Norsk',
+    ),
+    Option(
+      id: 'pl',
+      title: 'Polski',
+    ),
+    Option(
+      id: 'pt',
+      title: 'Português',
+    ),
+    Option(
+      id: 'ro',
+      title: 'Română',
+    ),
+    Option(
+      id: 'ru',
+      title: 'Pусский',
+    ),
+    Option(
+      id: 'sl',
+      title: 'Slovenščina',
+    ),
+    Option(
+      id: 'tr',
+      title: 'Türkçe',
     ),
   ];
 
@@ -53,7 +81,7 @@ class _AppSubtitleLanguageState extends ConsumerState<AppSubtitleLanguage> {
     setState(() {
       selected = id;
     });
-    ref.read(settingsServiceProvider.notifier).setSubtitleLanguage(id);
+    ref.read(settingsProvider.notifier).setSubtitleLanguage(id);
   }
 
   @override

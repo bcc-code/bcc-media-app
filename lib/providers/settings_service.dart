@@ -1,5 +1,6 @@
 import 'package:bccm_player/playback_platform_pigeon.g.dart';
 import 'package:bccm_player/playback_service_interface.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -9,7 +10,7 @@ part 'settings_service.freezed.dart';
 @freezed
 class Settings with _$Settings {
   const factory Settings(
-      {String? appLanguage,
+      {Locale? appLanguage,
       String? audioLanguage,
       String? subtitleLanguage}) = _Settings;
 }
@@ -17,7 +18,7 @@ class Settings with _$Settings {
 extension on Settings {
   AppConfig toAppConfig() {
     return AppConfig(
-        appLanguage: appLanguage,
+        appLanguage: appLanguage?.languageCode,
         audioLanguage: audioLanguage,
         subtitleLanguage: subtitleLanguage);
   }
@@ -31,7 +32,7 @@ class SettingsService extends StateNotifier<Settings> {
   Future<void> load() async {
     var prefs = await prefsF;
     state = state.copyWith(
-        appLanguage: prefs.getString('app_language'),
+        appLanguage: Locale(prefs.getString('app_language') ?? 'en'),
         audioLanguage: prefs.getString('audio_language'),
         subtitleLanguage: prefs.getString('subtitle_language'));
     PlaybackPlatformInterface.instance.setAppConfig(state.toAppConfig());
@@ -39,8 +40,9 @@ class SettingsService extends StateNotifier<Settings> {
 
   Future<void> setAppLanguage(String code) async {
     var prefs = await prefsF;
+
     prefs.setString('app_language', code);
-    state = state.copyWith(appLanguage: code);
+    state = state.copyWith(appLanguage: Locale(code));
     // update the rest of the app
   }
 
@@ -59,7 +61,7 @@ class SettingsService extends StateNotifier<Settings> {
   }
 }
 
-final settingsServiceProvider =
+final settingsProvider =
     StateNotifierProvider<SettingsService, Settings>((ref) {
   return SettingsService(const Settings());
 });

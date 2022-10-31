@@ -6,6 +6,7 @@ import 'package:package_info_plus/package_info_plus.dart';
 
 import '../../helpers/btv_colors.dart';
 import '../../helpers/btv_typography.dart';
+import '../../l10n/app_localizations.dart';
 
 class ContactSupport extends StatefulWidget {
   const ContactSupport({super.key});
@@ -365,6 +366,7 @@ class _SendingResultPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final s = S.of(context);
     return Expanded(
       child: Column(
         children: <Widget>[

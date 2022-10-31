@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../components/option_list.dart';
+import '../../l10n/app_localizations.dart';
 import '../../providers/settings_service.dart';
 
 class AppAudioLanguage extends ConsumerStatefulWidget {
@@ -14,35 +15,63 @@ class _AppAudioLanguageState extends ConsumerState<AppAudioLanguage> {
   var languageList = [
     Option(
       id: 'de',
-      title: 'Deutsch (German)',
+      title: 'Deutsch',
     ),
     Option(
       id: 'en',
-      title: 'English (English)',
-    ),
-    Option(
-      id: 'nl',
-      title: 'Nederlands (Dutch)',
+      title: 'English',
     ),
     Option(
       id: 'es',
-      title: 'Español (Spanish)',
+      title: 'Español',
+    ),
+    Option(
+      id: 'fi',
+      title: 'Suomi',
     ),
     Option(
       id: 'fr',
-      title: 'French',
-    ),
-    Option(
-      id: 'it',
-      title: 'Italiano (Italian)',
+      title: 'Français',
     ),
     Option(
       id: 'hu',
-      title: 'Magyar (Hungarian)',
+      title: 'Magyar',
+    ),
+    Option(
+      id: 'it',
+      title: 'Italiano',
+    ),
+    Option(
+      id: 'nl',
+      title: 'Nederlands',
     ),
     Option(
       id: 'no',
-      title: 'Norsk bokmål (Norwegian Bokmål)',
+      title: 'Norsk',
+    ),
+    Option(
+      id: 'pl',
+      title: 'Polski',
+    ),
+    Option(
+      id: 'pt',
+      title: 'Português',
+    ),
+    Option(
+      id: 'ro',
+      title: 'Română',
+    ),
+    Option(
+      id: 'ru',
+      title: 'Pусский',
+    ),
+    Option(
+      id: 'sl',
+      title: 'Slovenščina',
+    ),
+    Option(
+      id: 'tr',
+      title: 'Türkçe',
     ),
   ];
 
@@ -52,13 +81,13 @@ class _AppAudioLanguageState extends ConsumerState<AppAudioLanguage> {
     setState(() {
       selected = id;
     });
-    ref.read(settingsServiceProvider.notifier).setAudioLanguage(id);
+    ref.read(settingsProvider.notifier).setAudioLanguage(id);
   }
 
   @override
   void initState() {
     super.initState();
-    selected = ref.read(settingsServiceProvider).audioLanguage ?? 'no';
+    selected = ref.read(settingsProvider).audioLanguage ?? 'no';
   }
 
   @override
@@ -66,7 +95,7 @@ class _AppAudioLanguageState extends ConsumerState<AppAudioLanguage> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: const Color.fromRGBO(13, 22, 35, 1),
-        title: const Text('Lydspråk'),
+        title: Text(S.of(context).audioLanguage),
         centerTitle: true,
         bottom: const PreferredSize(
           preferredSize: Size.fromHeight(6),

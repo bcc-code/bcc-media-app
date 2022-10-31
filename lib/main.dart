@@ -1,4 +1,3 @@
-import 'dart:io';
 
 import 'package:bccm_player/playback_platform_pigeon.g.dart';
 import 'package:brunstadtv_app/helpers/btv_colors.dart';
@@ -8,7 +7,6 @@ import 'package:brunstadtv_app/providers/video_state.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -18,28 +16,18 @@ import 'package:brunstadtv_app/providers/playback_listener.dart';
 import 'package:brunstadtv_app/router/auth_guard.dart';
 import 'package:brunstadtv_app/router/router.gr.dart';
 import 'package:brunstadtv_app/services/auth_service.dart';
-import 'package:brunstadtv_app/providers/auth_state.dart';
 import 'package:bccm_player/chromecast_pigeon.g.dart';
-import 'package:riverpod/riverpod.dart';
-import 'package:bccm_player/playback_service_interface.dart';
+import 'package:intl/intl.dart';
+import 'package:intl/intl_standalone.dart';
 
 import 'app_root.dart';
-import 'debug_app.dart';
 import 'background_tasks.dart';
 import 'env/env.dart';
+import 'l10n/app_localizations.dart';
 
 /// There is 1 main() per environment, e.g. main_dev.dart
 /// This function runs on all of them
 void $main({required FirebaseOptions? firebaseOptions}) async {
-  /* WidgetsFlutterBinding.ensureInitialized();
-  var playerId = await PlaybackPlatformInterface.instance.newPlayer();
-  await PlaybackPlatformInterface.instance.replaceCurrentMediaItem(
-      playerId,
-      MediaItem(
-          url:
-              'https://devstreaming-cdn.apple.com/videos/streaming/examples/img_bipbop_adv_example_fmp4/master.m3u8'));
-  return runApp(DebugApp(playerId: playerId)); */
-
   WidgetsFlutterBinding.ensureInitialized();
 
   SystemChrome.setSystemUIOverlayStyle(
@@ -75,6 +63,7 @@ void $main({required FirebaseOptions? firebaseOptions}) async {
   PlaybackListenerPigeon.setup(
       PlaybackListener(providerReader: providerContainer.read));
 
+  providerContainer.read(settingsProvider.notifier).load();
   providerContainer.read(chromecastListenerProvider);
 
   providerContainer
@@ -95,8 +84,6 @@ void $main({required FirebaseOptions? firebaseOptions}) async {
         appReleaseVersion: '4.0.0-alpha'));
   }
 
-  providerContainer.read(settingsServiceProvider.notifier).load();
-
   if (firebaseOptions != null) {
     try {
       await Firebase.initializeApp(
@@ -108,10 +95,15 @@ void $main({required FirebaseOptions? firebaseOptions}) async {
     FirebaseMessaging.onBackgroundMessage(onFirebaseBackgroundMessage);
   }
 
+  Intl.defaultLocale = await getDefaultLocale();
+
   runApp(UncontrolledProviderScope(
     container: providerContainer,
-    child: Builder(
-        builder: (context) => MaterialApp.router(
+    child: Consumer(
+        builder: (context, ref, w) => MaterialApp.router(
+            localizationsDelegates: S.localizationsDelegates,
+            supportedLocales: S.supportedLocales,
+            locale: ref.watch(settingsProvider).appLanguage,
             theme: ThemeData(),
             darkTheme: createTheme(),
             themeMode: ThemeMode.dark,
@@ -130,7 +122,7 @@ void $main({required FirebaseOptions? firebaseOptions}) async {
 ThemeData createTheme() {
   return ThemeData(
     //useMaterial3: true,
-    cupertinoOverrideTheme: CupertinoThemeData(
+    cupertinoOverrideTheme: const CupertinoThemeData(
         barBackgroundColor: BtvColors.background1,
         textTheme:
             CupertinoTextThemeData(tabLabelTextStyle: BtvTextStyles.caption3)),
@@ -152,4 +144,27 @@ ThemeData createTheme() {
             .white
             .copyWith(headlineMedium: BtvTextStyles.headline2)),
   );
+}
+
+Future<String?> getDefaultLocale() async {
+  final String systemLocale = await findSystemLocale();
+  final verifiedLocale = Intl.verifiedLocale(
+      systemLocale, NumberFormat.localeExists,
+      onFailure: (String _) => 'en');
+  if (verifiedLocale != null) {
+    final locale = Intl.shortLocale(verifiedLocale);
+    return findCorrectFromAlternativeLocales(locale);
+  }
+  return null;
+}
+
+String findCorrectFromAlternativeLocales(String locale) {
+  switch (locale) {
+    case 'tk':
+      return 'tr';
+    case 'nb':
+    case 'nn':
+      return 'no';
+  }
+  return locale;
 }
