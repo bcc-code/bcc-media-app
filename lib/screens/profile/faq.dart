@@ -155,7 +155,7 @@ class _ExpansionTileDropDownState extends State<_ExpansionTileDropDown> {
                   )
                 : const Icon(
                     Icons.keyboard_arrow_up,
-                    color: Color.fromRGBO(255, 15, 15, 1),
+                    color: BtvColors.tint2,
                   ),
             childrenPadding: const EdgeInsets.only(
               top: 12,
