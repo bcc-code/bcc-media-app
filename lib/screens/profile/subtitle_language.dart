@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../components/option_list.dart';
+import '../../helpers/btv_colors.dart';
 import '../../providers/settings_service.dart';
 
 class AppSubtitleLanguage extends ConsumerStatefulWidget {
@@ -88,13 +89,13 @@ class _AppSubtitleLanguageState extends ConsumerState<AppSubtitleLanguage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: const Color.fromRGBO(13, 22, 35, 1),
+        backgroundColor: BtvColors.background1,
         title: const Text('Språk for undertekster'),
         centerTitle: true,
-        bottom: const PreferredSize(
-          preferredSize: Size.fromHeight(6),
+        bottom: PreferredSize(
+          preferredSize: const Size.fromHeight(6),
           child: Divider(
-            color: Color.fromRGBO(204, 221, 255, 0.3),
+            color: BtvColors.seperatorOnLight.withOpacity(0.3),
             height: 1,
           ),
         ),

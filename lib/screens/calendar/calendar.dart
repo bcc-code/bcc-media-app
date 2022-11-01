@@ -256,10 +256,10 @@ class _CalendarPageState extends ConsumerState<CalendarPage> {
                 headerMargin: EdgeInsets.zero,
                 titleTextStyle: BtvTextStyles.caption1,
                 leftChevronIcon: const Icon(Icons.arrow_back_ios_new_outlined,
-                    color: Color.fromRGBO(112, 124, 142, 1), size: 16),
+                    color: BtvColors.label4, size: 16),
                 leftChevronMargin: const EdgeInsets.only(left: 0),
                 rightChevronIcon: const Icon(Icons.arrow_forward_ios_outlined,
-                    color: Color.fromRGBO(112, 124, 142, 1), size: 16),
+                    color: BtvColors.label4, size: 16),
                 rightChevronMargin: const EdgeInsets.only(right: 0),
               ),
               availableGestures: AvailableGestures.horizontalSwipe,
@@ -281,7 +281,7 @@ class _CalendarPageState extends ConsumerState<CalendarPage> {
                     fontWeight: FontWeight.w700),
                 markerMargin: const EdgeInsets.only(top: 3),
                 markerDecoration: const BoxDecoration(
-                  color: Color.fromRGBO(112, 124, 142, 1),
+                  color: BtvColors.label4,
                   shape: BoxShape.circle,
                 ),
                 markerSize: 5.5,
@@ -335,7 +335,7 @@ class _CalendarPageState extends ConsumerState<CalendarPage> {
                             width: 30,
                             height: 30,
                             decoration: BoxDecoration(
-                                color: const Color.fromRGBO(112, 124, 142, 0.3),
+                                color: BtvColors.label4.withOpacity(0.3),
                                 border: Border.all(
                                   color: Colors.white,
                                   width: 1.0,
@@ -354,7 +354,7 @@ class _CalendarPageState extends ConsumerState<CalendarPage> {
                         width: 33,
                         height: 33,
                         decoration: BoxDecoration(
-                            color: const Color.fromRGBO(112, 124, 142, 0.3),
+                            color: BtvColors.label4.withOpacity(0.3),
                             border: Border.all(
                               color: Colors.white,
                               width: 1.0,
@@ -376,7 +376,7 @@ class _CalendarPageState extends ConsumerState<CalendarPage> {
             ),
           ),
           const Divider(
-            color: Color.fromRGBO(204, 221, 255, 0.1),
+            color: BtvColors.seperatorOnLight,
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.start,
@@ -435,9 +435,9 @@ class HighLightOpen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       margin: const EdgeInsets.only(top: 10, bottom: 10, left: 6),
-      decoration: const BoxDecoration(
-          color: Color.fromRGBO(110, 176, 230, 0.15),
-          borderRadius: BorderRadius.only(
+      decoration: BoxDecoration(
+          color: BtvColors.tint1.withOpacity(0.15),
+          borderRadius: const BorderRadius.only(
             bottomLeft: Radius.circular(40),
             topLeft: Radius.circular(40),
           )),
@@ -454,9 +454,9 @@ class HighLightClose extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       margin: const EdgeInsets.only(top: 10, bottom: 10, right: 6),
-      decoration: const BoxDecoration(
-          color: Color.fromRGBO(110, 176, 230, 0.15),
-          borderRadius: BorderRadius.only(
+      decoration: BoxDecoration(
+          color: BtvColors.tint1.withOpacity(0.15),
+          borderRadius: const BorderRadius.only(
             bottomRight: Radius.circular(40),
             topRight: Radius.circular(40),
           )),
@@ -473,8 +473,8 @@ class HighLightMiddle extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       margin: const EdgeInsets.only(top: 10, bottom: 10),
-      decoration: const BoxDecoration(
-        color: Color.fromRGBO(110, 176, 230, 0.15),
+      decoration: BoxDecoration(
+        color: BtvColors.tint1.withOpacity(0.15),
       ),
     );
   }
@@ -490,7 +490,7 @@ class HighLightSingle extends StatelessWidget {
     return Container(
       margin: const EdgeInsets.symmetric(horizontal: 6, vertical: 10),
       decoration: BoxDecoration(
-          color: const Color.fromRGBO(110, 176, 230, 0.15),
+          color: BtvColors.tint1.withOpacity(0.15),
           borderRadius: BorderRadius.circular(40)),
     );
   }
@@ -549,12 +549,11 @@ class _EntriesSlot extends StatelessWidget {
                     const EdgeInsets.symmetric(horizontal: 8, vertical: 16),
                 decoration: BoxDecoration(
                   color: isHappeningNow(entriesList[i])
-                      ? const Color.fromRGBO(230, 60, 98, 0.1)
+                      ? BtvColors.tint2.withOpacity(0.1)
                       : null,
                   border: Border(
                     left: isHappeningNow(entriesList[i])
-                        ? const BorderSide(
-                            color: Color.fromRGBO(230, 60, 98, 1), width: 4)
+                        ? const BorderSide(color: BtvColors.tint2, width: 4)
                         : const BorderSide(width: 4),
                   ),
                 ),
@@ -584,8 +583,8 @@ class _EntriesSlot extends StatelessWidget {
                               style: BtvTextStyles.caption1.copyWith(
                                 color: isClassOfEpisodeCalendarEntry(
                                         entriesList[i])
-                                    ? const Color.fromRGBO(112, 124, 142, 1)
-                                    : const Color.fromRGBO(112, 124, 142, 0.5),
+                                    ? BtvColors.label4
+                                    : BtvColors.label4.withOpacity(0.5),
                               )),
                         ],
                       ),
@@ -609,7 +608,7 @@ class _EntriesSlot extends StatelessWidget {
                                 ? isClassOfEpisodeCalendarEntry(entriesList[i])
                                     ? Colors.red
                                     : Colors.pink[800]
-                                : const Color.fromRGBO(110, 176, 230, 1),
+                                : BtvColors.tint1,
                           ),
                         ),
                       ],

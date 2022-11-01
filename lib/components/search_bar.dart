@@ -72,7 +72,7 @@ class _SearchBarState extends State<SearchBar> {
               padding: const EdgeInsets.symmetric(vertical: 3),
               decoration: const BoxDecoration(
                 borderRadius: BorderRadius.all(Radius.circular(28)),
-                color: Color.fromARGB(255, 29, 40, 56),
+                color: BtvColors.background2,
               ),
               child: FocusScope(
                 child: Focus(

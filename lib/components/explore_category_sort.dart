@@ -64,11 +64,11 @@ class _ExploreCategorySortState extends State<ExploreCategorySort> {
             height: 52.1,
             child: TextButton(
               style: TextButton.styleFrom(
-                backgroundColor: const Color.fromRGBO(204, 221, 255, 0.1),
+                backgroundColor: BtvColors.seperatorOnLight,
                 shape: const RoundedRectangleBorder(
                     borderRadius: BorderRadius.all(Radius.circular(100))),
                 side: const BorderSide(
-                    width: 1, color: Color.fromRGBO(204, 221, 255, 0.1)),
+                    width: 1, color: BtvColors.seperatorOnLight),
               ),
               onPressed: () {
                 Navigator.pop(context);

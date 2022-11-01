@@ -63,7 +63,7 @@ class _FAQState extends State<FAQ> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: const Color.fromRGBO(13, 22, 35, 1),
+        backgroundColor: BtvColors.background1,
         leadingWidth: 90,
         leading: GestureDetector(
           onTapDown: (details) {
@@ -74,7 +74,7 @@ class _FAQState extends State<FAQ> {
             children: const [
               Icon(
                 Icons.arrow_back_ios_new,
-                color: Color.fromRGBO(110, 176, 230, 1),
+                color: BtvColors.tint1,
               ),
               Text(
                 'Profil',
@@ -133,7 +133,7 @@ class _ExpansionTileDropDownState extends State<_ExpansionTileDropDown> {
         vertical: 8,
       ),
       decoration: BoxDecoration(
-        color: const Color.fromRGBO(29, 40, 56, 1),
+        color: BtvColors.background2,
         borderRadius: BorderRadius.circular(12),
       ),
       child: Theme(
@@ -151,11 +151,11 @@ class _ExpansionTileDropDownState extends State<_ExpansionTileDropDown> {
             trailing: !_customTileExpanded
                 ? const Icon(
                     Icons.keyboard_arrow_down,
-                    color: Color.fromRGBO(110, 176, 230, 1),
+                    color: BtvColors.tint1,
                   )
                 : const Icon(
                     Icons.keyboard_arrow_up,
-                    color: Color.fromRGBO(255, 15, 15, 1),
+                    color: BtvColors.tint2,
                   ),
             childrenPadding: const EdgeInsets.only(
               top: 12,

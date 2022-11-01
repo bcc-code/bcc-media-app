@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../helpers/btv_colors.dart';
 import '../../helpers/btv_typography.dart';
 import '../../services/auth_service.dart';
 
@@ -21,13 +22,13 @@ class ActionButtons extends StatelessWidget {
             child: ElevatedButton(
               onPressed: _editPictureClicked,
               style: ElevatedButton.styleFrom(
-                backgroundColor: const Color.fromRGBO(110, 176, 230, 1),
+                backgroundColor: BtvColors.tint1,
                 foregroundColor: Colors.white,
                 textStyle: BtvTextStyles.button1,
                 shape: const RoundedRectangleBorder(
                     borderRadius: BorderRadius.all(Radius.circular(20))),
-                side: const BorderSide(
-                    width: 1, color: Color.fromRGBO(255, 255, 255, 0.2)),
+                side: BorderSide(
+                    width: 1, color: BtvColors.onTint.withOpacity(0.2)),
               ),
               child: const Text('Edit picture'),
             ),
@@ -35,13 +36,13 @@ class ActionButtons extends StatelessWidget {
           ElevatedButton(
             onPressed: () => _logOutClicked(context),
             style: ElevatedButton.styleFrom(
-              backgroundColor: const Color.fromRGBO(204, 221, 255, 0.1),
+              backgroundColor: BtvColors.seperatorOnLight,
               foregroundColor: Colors.white,
               textStyle: BtvTextStyles.button1,
               shape: const RoundedRectangleBorder(
                   borderRadius: BorderRadius.all(Radius.circular(20))),
-              side: const BorderSide(
-                  width: 1, color: Color.fromRGBO(204, 221, 255, 0.1)),
+              side:
+                  const BorderSide(width: 1, color: BtvColors.seperatorOnLight),
             ),
             child: const Text('Log out'),
           ),

@@ -18,7 +18,7 @@ class WatchProgressIndicator extends StatelessWidget {
     return Container(
       height: 12,
       decoration: BoxDecoration(
-        color: const Color.fromRGBO(13, 22, 35, 0.7),
+        color: BtvColors.background1.withOpacity(0.7),
         borderRadius: BorderRadius.circular(2),
       ),
       child: Row(
@@ -31,7 +31,7 @@ class WatchProgressIndicator extends StatelessWidget {
                 children: [
                   Container(
                     decoration: BoxDecoration(
-                      color: const Color.fromRGBO(204, 221, 255, 0.1),
+                      color: BtvColors.seperatorOnLight,
                       borderRadius: BorderRadius.circular(4),
                     ),
                   ),

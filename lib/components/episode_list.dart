@@ -92,10 +92,10 @@ class _Episode extends StatelessWidget {
                         padding:
                             const EdgeInsets.only(right: 4, bottom: 2, left: 4),
                         decoration: BoxDecoration(
-                          color: const Color.fromRGBO(29, 40, 56, 1),
+                          color: BtvColors.background2,
                           border: Border.all(
                             width: 1,
-                            color: const Color.fromRGBO(204, 221, 255, 0.1),
+                            color: BtvColors.seperatorOnLight,
                           ),
                           borderRadius:
                               const BorderRadius.all(Radius.circular(8)),
