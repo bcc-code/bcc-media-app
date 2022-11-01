@@ -153,66 +153,69 @@ class _ContactSupportState extends State<ContactSupport> {
                 : const SizedBox.shrink(),
           ],
         ),
-        body: Container(
-          padding: const EdgeInsets.symmetric(horizontal: 15.5),
-          height: double.infinity,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              const Text(
-                'Contact Support',
-                style: BtvTextStyles.headline1,
-              ),
-              if (!_loading) ...[
-                _TextFieldInput(
-                  textController: _textController,
-                  textFldOnChange: _textFieldHandler,
+        body: SafeArea(
+          child: Container(
+            padding: const EdgeInsets.symmetric(horizontal: 15.5),
+            height: double.infinity,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                const Text(
+                  'Contact Support',
+                  style: BtvTextStyles.headline1,
                 ),
-                Text(
-                  'Your message will include this information, to help us better fix the issues.',
-                  style: BtvTextStyles.body2.copyWith(color: BtvColors.label1),
-                ),
-                _DeviceInfo(deviceInfos: deviceInfos()),
-              ] else
-                FutureBuilder<String>(
-                  future: ajaxCall,
-                  builder:
-                      (BuildContext context, AsyncSnapshot<String> snapshot) {
-                    if (snapshot.hasData) {
-                      return _SendingResultPage(
-                        sendingResult: true,
-                      );
-                    } else if (snapshot.hasError) {
-                      return _SendingResultPage(
-                        sendingResult: false,
-                      );
-                    } else {
-                      return Expanded(
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Column(
-                              mainAxisSize: MainAxisSize.max,
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: const <Widget>[
-                                CircularProgressIndicator(),
-                                SizedBox(
-                                  height: 12,
-                                ),
-                                Text(
-                                  'Sending',
-                                  style: BtvTextStyles.body1,
-                                ),
-                              ],
-                            ),
-                          ],
-                        ),
-                      );
-                    }
-                  },
-                ),
-            ],
+                if (!_loading) ...[
+                  _TextFieldInput(
+                    textController: _textController,
+                    textFldOnChange: _textFieldHandler,
+                  ),
+                  Text(
+                    'Your message will include this information, to help us better fix the issues.',
+                    style:
+                        BtvTextStyles.body2.copyWith(color: BtvColors.label1),
+                  ),
+                  _DeviceInfo(deviceInfos: deviceInfos()),
+                ] else
+                  FutureBuilder<String>(
+                    future: ajaxCall,
+                    builder:
+                        (BuildContext context, AsyncSnapshot<String> snapshot) {
+                      if (snapshot.hasData) {
+                        return _SendingResultPage(
+                          sendingResult: true,
+                        );
+                      } else if (snapshot.hasError) {
+                        return _SendingResultPage(
+                          sendingResult: false,
+                        );
+                      } else {
+                        return Expanded(
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Column(
+                                mainAxisSize: MainAxisSize.max,
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: const <Widget>[
+                                  CircularProgressIndicator(),
+                                  SizedBox(
+                                    height: 12,
+                                  ),
+                                  Text(
+                                    'Sending',
+                                    style: BtvTextStyles.body1,
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
+                        );
+                      }
+                    },
+                  ),
+              ],
+            ),
           ),
         ),
       ),
