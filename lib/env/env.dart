@@ -12,5 +12,5 @@ class Env {
   static const auth0Domain = 'login.bcc.no';
   static const auth0Audience = 'api.bcc.no';
   static const brunstadtvApiEndpoint = 'https://api.brunstad.tv/query';
-  static const npawAccountCode = _Secrets.something;
+  static const npawAccountCode = _Secrets.npawAccountCode;
 }
