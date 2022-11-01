@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:brunstadtv_app/graphql/queries/devices.graphql.dart';
 import 'package:brunstadtv_app/helpers/btv_typography.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -49,33 +50,7 @@ class _AppRootState extends ConsumerState<AppRoot> {
     _handleMessage(message, openedFromBackground: true);
   }
 
-  Future _setupPushNotifications() async {
-    var result = await FirebaseMessaging.instance.requestPermission();
-    print(result.toString());
-    var token = await FirebaseMessaging.instance.getToken();
-    FirebaseMessaging.instance.setForegroundNotificationPresentationOptions(
-        alert: false, badge: false, sound: true);
-
-    if (token != null) {
-      var result = await ref.read(gqlClientProvider).mutate$SetDeviceToken(
-          Options$Mutation$SetDeviceToken(
-              variables: Variables$Mutation$SetDeviceToken(token: token)));
-      debugPrint(result.data?.toString());
-    }
-
-    FirebaseMessaging.instance.onTokenRefresh.listen((fcmToken) {
-      ref.read(gqlClientProvider).mutate$SetDeviceToken(
-          Options$Mutation$SetDeviceToken(
-              variables: Variables$Mutation$SetDeviceToken(token: fcmToken)));
-      print('fcm token refreshed: $fcmToken');
-
-      const storage = FlutterSecureStorage();
-      storage.write(key: 'fcm_token', value: fcmToken);
-      print('fcm token refreshed and stored: $fcmToken');
-    }).onError((err) {
-      print('error onTokenRefresh');
-    });
-
+  Future _setupFcmListeners() async {
     FirebaseMessaging.onMessage.listen((RemoteMessage message) {
       _handleMessage(message);
       print('Got a message whilst in the foreground!');
@@ -100,7 +75,7 @@ class _AppRootState extends ConsumerState<AppRoot> {
   @override
   void initState() {
     super.initState();
-    _setupPushNotifications();
+    _setupFcmListeners();
   }
 
   @override

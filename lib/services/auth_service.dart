@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:auth0_flutter/auth0_flutter.dart';
 import 'package:auto_route/auto_route.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:package_info_plus/package_info_plus.dart';
@@ -39,6 +40,10 @@ class AuthService {
 
   Future logoutAndNavigate(BuildContext context) async {
     await auth0.credentialsManager.clearCredentials();
+    auth0AccessToken = null;
+    idToken = null;
+    user = null;
+    FirebaseMessaging.instance.deleteToken();
     context.router.push(LoginScreenRoute());
   }
 

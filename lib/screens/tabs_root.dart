@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:io';
 
 import 'package:auto_route/auto_route.dart';
@@ -35,6 +36,50 @@ class _TabsRootScreenState extends ConsumerState<TabsRootScreen>
       ref.read(playbackApiProvider).setPrimary(playerId);
       ref.read(primaryPlayerProvider.notifier).setState(player);
     });
+    initFcm();
+  }
+
+  StreamSubscription? fcmSubscription;
+
+  Future initFcm() async {
+    var result = await FirebaseMessaging.instance.requestPermission();
+    print(result.toString());
+    var token = await FirebaseMessaging.instance.getToken();
+    FirebaseMessaging.instance.setForegroundNotificationPresentationOptions(
+        alert: false, badge: false, sound: true);
+
+    if (token != null) {
+      if(!mounted) {
+        return;
+      }
+      var result = await ref.read(gqlClientProvider).mutate$SetDeviceToken(
+          Options$Mutation$SetDeviceToken(
+              variables: Variables$Mutation$SetDeviceToken(token: token)));
+      debugPrint(result.data?.toString());
+    }
+
+    fcmSubscription = FirebaseMessaging.instance.onTokenRefresh.listen((fcmToken) {
+      if (!mounted) {
+        return;
+      }
+      ref.read(gqlClientProvider).mutate$SetDeviceToken(
+          Options$Mutation$SetDeviceToken(
+              variables: Variables$Mutation$SetDeviceToken(token: fcmToken)));
+      print('fcm token refreshed: $fcmToken');
+
+      const storage = FlutterSecureStorage();
+      storage.write(key: 'fcm_token', value: fcmToken);
+      print('fcm token refreshed and stored: $fcmToken');
+    });
+    fcmSubscription?.onError((err) {
+      print('error onTokenRefresh');
+    });
+  }
+
+  @override
+  void dispose() {
+    fcmSubscription?.cancel();
+    super.dispose();
   }
 
   @override
