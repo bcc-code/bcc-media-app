@@ -17,7 +17,7 @@ class _AboutScreenState extends State<AboutScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: const Color.fromRGBO(13, 22, 35, 1),
+        backgroundColor: BtvColors.background1,
         leadingWidth: 90,
         centerTitle: true,
         title: const Text(

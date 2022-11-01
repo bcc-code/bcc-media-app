@@ -45,10 +45,10 @@ class _LabelItem extends StatelessWidget {
         decoration: BoxDecoration(
           border: Border.all(
             width: 1,
-            color: const Color.fromRGBO(204, 221, 255, 0.1),
+            color: BtvColors.seperatorOnLight,
           ),
           borderRadius: BorderRadius.circular(24),
-          color: const Color.fromRGBO(29, 40, 56, 1),
+          color: BtvColors.background2,
         ),
         child: Text(
           sectionItem.title,

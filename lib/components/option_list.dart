@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../helpers/btv_colors.dart';
 import '../helpers/btv_typography.dart';
 
 class OptionList extends StatelessWidget {
@@ -23,7 +24,7 @@ class OptionList extends StatelessWidget {
     return Container(
       margin: margin,
       decoration: BoxDecoration(
-        color: const Color.fromRGBO(29, 40, 56, 1),
+        color: BtvColors.background2,
         borderRadius: BorderRadius.circular(12),
       ),
       child: ListView.separated(
@@ -75,7 +76,9 @@ class OptionList extends StatelessWidget {
                             margin: const EdgeInsets.only(top: 2),
                             child: Text(
                               option.subTitle as String,
-                              style: BtvTextStyles.caption1,
+                              style: BtvTextStyles.caption1.copyWith(
+                                  color:
+                                      const Color.fromRGBO(235, 235, 245, 0.6)),
                             ),
                           )
                         : const SizedBox.shrink(),

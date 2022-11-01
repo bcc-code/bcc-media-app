@@ -1,5 +1,7 @@
 import 'package:brunstadtv_app/helpers/btv_typography.dart';
 import 'package:flutter/material.dart';
+
+import '../helpers/btv_colors.dart';
 //listFrame.dart
 
 class SettingList extends StatelessWidget {
@@ -14,9 +16,9 @@ class SettingList extends StatelessWidget {
         border: Border.symmetric(
             horizontal: BorderSide(
           width: 1,
-          color: Color.fromRGBO(204, 221, 255, 0.1),
+          color: BtvColors.seperatorOnLight,
         )),
-        color: Color.fromRGBO(29, 40, 56, 1),
+        color: BtvColors.background2,
       ),
       child: ListView.separated(
         shrinkWrap: true,
@@ -63,7 +65,6 @@ class _OptionButton extends StatelessWidget {
       child: TextButton(
         onPressed: onPressed,
         style: TextButton.styleFrom(
-          backgroundColor: const Color.fromRGBO(29, 40, 56, 1),
           shape: const BeveledRectangleBorder(),
           padding: const EdgeInsets.only(left: 16, right: 16),
         ),
@@ -86,7 +87,7 @@ class _OptionButton extends StatelessWidget {
             const Icon(
               Icons.arrow_forward_ios,
               size: 13,
-              color: Color.fromRGBO(112, 124, 142, 1),
+              color: BtvColors.label4,
             ),
           ],
         ),

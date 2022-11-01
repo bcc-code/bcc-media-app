@@ -22,7 +22,7 @@ class FeatureBadge extends StatelessWidget {
         borderRadius: BorderRadius.circular(8),
         border: Border.all(
           width: 1,
-          color: const Color.fromRGBO(204, 221, 255, 0.1),
+          color: BtvColors.seperatorOnLight,
         ),
       ),
       child: Text(

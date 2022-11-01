@@ -103,7 +103,7 @@ class _ContactSupportState extends State<ContactSupport> {
       child: Scaffold(
         resizeToAvoidBottomInset: false,
         appBar: AppBar(
-          backgroundColor: const Color.fromRGBO(13, 22, 35, 1),
+          backgroundColor: BtvColors.background1,
           automaticallyImplyLeading: false,
           elevation: 0,
           title: GestureDetector(
@@ -134,8 +134,8 @@ class _ContactSupportState extends State<ContactSupport> {
                         });
                       },
                       style: TextButton.styleFrom(
-                        foregroundColor: const Color.fromRGBO(255, 255, 255, 1),
-                        backgroundColor: const Color.fromRGBO(110, 176, 230, 1),
+                        foregroundColor: BtvColors.onTint,
+                        backgroundColor: BtvColors.tint1,
                         padding: const EdgeInsets.only(
                             left: 12, right: 12, top: 3.5, bottom: 4.5),
                         textStyle: BtvTextStyles.button1,
@@ -243,19 +243,19 @@ class _TextFieldInput extends StatelessWidget {
               'Describe the issue you are experiencing, and what you do to make it happen.',
           hintStyle: BtvTextStyles.body1,
           filled: true,
-          fillColor: Color.fromRGBO(29, 40, 56, 1),
+          fillColor: BtvColors.background2,
           enabledBorder: OutlineInputBorder(
             borderRadius: BorderRadius.all(Radius.circular(6.0)),
             borderSide: BorderSide(
               width: 1,
-              color: Color.fromRGBO(13, 22, 35, 1),
+              color: BtvColors.background1,
             ),
           ),
           focusedBorder: OutlineInputBorder(
               borderRadius: BorderRadius.all(Radius.circular(6.0)),
               borderSide: BorderSide(
                 width: 1,
-                color: Color.fromRGBO(110, 176, 230, 1),
+                color: BtvColors.tint1,
               )),
           contentPadding: EdgeInsets.symmetric(horizontal: 16, vertical: 15),
         ),
@@ -339,7 +339,7 @@ class _DeviceInfoList extends StatelessWidget {
               ),
               const Divider(
                 height: 1,
-                color: Color.fromRGBO(204, 221, 255, 0.1),
+                color: BtvColors.seperatorOnLight,
               ),
             ],
           ),

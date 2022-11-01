@@ -34,9 +34,8 @@ class IconLabelButton extends StatelessWidget {
   }) {
     gap = imagePath != null ? 6 : 0;
     padding = const EdgeInsets.only(top: 4, right: 12, bottom: 4, left: 14);
-    backgroundColor = const Color.fromRGBO(204, 221, 255, 0.1);
-    border =
-        Border.all(color: const Color.fromRGBO(204, 221, 255, 0.1), width: 1);
+    backgroundColor = BtvColors.seperatorOnLight;
+    border = Border.all(color: BtvColors.seperatorOnLight, width: 1);
     imageDimension = 20;
     textStyle = BtvTextStyles.button1.copyWith(color: BtvColors.label1);
   }
@@ -49,9 +48,8 @@ class IconLabelButton extends StatelessWidget {
   }) {
     gap = imagePath != null ? 6 : 0;
     padding = const EdgeInsets.only(top: 4, right: 12, bottom: 4, left: 14);
-    backgroundColor = const Color.fromRGBO(230, 60, 98, 1);
-    border =
-        Border.all(color: const Color.fromRGBO(255, 255, 255, 0.2), width: 1);
+    backgroundColor = BtvColors.tint2;
+    border = Border.all(color: BtvColors.onTint.withOpacity(0.2), width: 1);
     imageDimension = 20;
     textStyle = BtvTextStyles.button1.copyWith(color: BtvColors.label1);
   }
@@ -64,9 +62,8 @@ class IconLabelButton extends StatelessWidget {
   }) {
     gap = imagePath != null ? 6 : 0;
     padding = const EdgeInsets.symmetric(horizontal: 16, vertical: 8);
-    backgroundColor = const Color.fromRGBO(110, 176, 230, 1);
-    border =
-        Border.all(color: const Color.fromRGBO(255, 255, 255, 0.2), width: 1);
+    backgroundColor = BtvColors.tint1;
+    border = Border.all(color: BtvColors.onTint.withOpacity(0.2), width: 1);
     imageDimension = 20;
     textStyle = BtvTextStyles.button1.copyWith(color: BtvColors.label1);
   }

@@ -68,6 +68,7 @@ class BccmPage extends StatelessWidget {
         if (snapshot.hasData) {
           return getPage(snapshot.data!);
         } else if (snapshot.hasError) {
+          print(snapshot.error);
           return loadingError(context);
         }
         return loadingContent;
@@ -89,29 +90,30 @@ class BccmPage extends StatelessWidget {
   );
 
   Widget loadingError(BuildContext context) => Center(
-    child: Container(
-      padding: const EdgeInsets.symmetric(horizontal: 24),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Container(
-            margin: const EdgeInsets.only(bottom: 8),
-            child: const Text(
-              "Couldn't load content",
-              style: BtvTextStyles.title1,
-            ),
+        child: Container(
+          padding: const EdgeInsets.symmetric(horizontal: 24),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Container(
+                margin: const EdgeInsets.only(bottom: 8),
+                child: const Text(
+                  "Couldn't load content",
+                  style: BtvTextStyles.title1,
+                ),
+              ),
+              Container(
+                margin: const EdgeInsets.only(bottom: 16),
+                child: Text(
+                  S.of(context).checkNetwork,
+                  textAlign: TextAlign.center,
+                  style: BtvTextStyles.body1.copyWith(color: BtvColors.label3),
+                ),
+              ),
+              IconLabelButton.medium(
+                  labelText: S.of(context).tryAgainButton, onPressed: () {})
+            ],
           ),
-          Container(
-            margin: const EdgeInsets.only(bottom: 16),
-            child: Text(
-              S.of(context).checkNetwork,
-              textAlign: TextAlign.center,
-              style: BtvTextStyles.body1.copyWith(color: BtvColors.label3),
-            ),
-          ),
-          IconLabelButton.medium(labelText: S.of(context).tryAgainButton, onPressed: () {})
-        ],
-      ),
-    ),
-  );
+        ),
+      );
 }

@@ -14,7 +14,7 @@ class EpisodeDuration extends StatelessWidget {
       height: 12,
       padding: const EdgeInsets.symmetric(horizontal: 4),
       decoration: BoxDecoration(
-        color: const Color.fromRGBO(13, 22, 35, 0.7),
+        color: BtvColors.background1.withOpacity(0.7),
         borderRadius: BorderRadius.circular(2),
       ),
       child: Text(

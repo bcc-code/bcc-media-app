@@ -133,6 +133,11 @@ class _DefaultEpisodeItem extends StatelessWidget {
   }
 
   Widget get sectionItemImage {
+    final thumbnailImage = BorderedImageContainer(
+      image:
+          sectionItem.image != null ? NetworkImage(sectionItem.image!) : null,
+    );
+
     return Container(
       margin: const EdgeInsets.only(bottom: 4),
       width: imageSize[size]!.width,
@@ -140,17 +145,17 @@ class _DefaultEpisodeItem extends StatelessWidget {
       child: Stack(
         clipBehavior: Clip.none,
         children: [
-          BorderedImageContainer(
-            image: sectionItem.image != null
-                ? NetworkImage(sectionItem.image!)
-                : null,
-          ),
+          isComingSoon(episode.productionDate)
+              ? Opacity(
+                  opacity: 0.5,
+                  child: thumbnailImage,
+                )
+              : thumbnailImage,
           if (isComingSoon(episode.productionDate))
             Container(
               width: double.infinity,
               height: double.infinity,
               decoration: const BoxDecoration(
-                color: Color.fromRGBO(0, 0, 0, 0.5),
                 image: DecorationImage(
                   image: AssetImage('assets/icons/Wait.png'),
                 ),
@@ -195,17 +200,17 @@ class _DefaultEpisodeItem extends StatelessWidget {
     if (isLive) {
       return const FeatureBadge(
         label: 'Live now',
-        color: Color.fromRGBO(230, 60, 98, 1),
+        color: BtvColors.tint2,
       );
     } else if (isComingSoon(episode.productionDate)) {
       return const FeatureBadge(
         label: 'Coming soon',
-        color: Color.fromRGBO(29, 40, 56, 1),
+        color: BtvColors.background2,
       );
     } else if (isNewItem) {
       return const FeatureBadge(
         label: 'New',
-        color: Color.fromRGBO(230, 60, 98, 1),
+        color: BtvColors.tint2,
       );
     }
     return null;
@@ -267,7 +272,7 @@ class _DefaultShowItem extends StatelessWidget {
               right: -4,
               child: FeatureBadge(
                 label: 'New Episodes',
-                color: Color.fromRGBO(230, 60, 98, 1),
+                color: BtvColors.tint2,
               ),
             ),
         ],
