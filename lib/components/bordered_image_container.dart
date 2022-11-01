@@ -1,7 +1,8 @@
+import 'package:extended_image/extended_image.dart';
 import 'package:flutter/material.dart';
 
 class BorderedImageContainer extends StatelessWidget {
-  final ImageProvider<Object>? image;
+  final Widget? image;
   final double height;
   final double width;
   final EdgeInsetsGeometry margin;
@@ -26,12 +27,6 @@ class BorderedImageContainer extends StatelessWidget {
       margin: margin,
       padding: padding,
       decoration: BoxDecoration(
-        image: image != null
-            ? DecorationImage(
-                image: image!,
-                fit: BoxFit.cover,
-              )
-            : null,
         borderRadius: BorderRadius.circular(6),
         border: Border.all(
           width: 1,
@@ -39,7 +34,7 @@ class BorderedImageContainer extends StatelessWidget {
         ),
         color: const Color.fromRGBO(29, 40, 56, 1),
       ),
-      child: child,
+      child: image,
     );
   }
 }

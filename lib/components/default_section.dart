@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:brunstadtv_app/components/watch_progress_indicator.dart';
 import 'package:brunstadtv_app/router/router.gr.dart';
+import 'package:extended_image/extended_image.dart';
 import 'package:flutter/material.dart';
 
 import '../helpers/btv_colors.dart';
@@ -26,6 +27,13 @@ class DefaultSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final items = data.items.items
+        .where((element) =>
+            element.item
+                is Fragment$Section$$DefaultSection$items$items$item$$Episode ||
+            element.item
+                is Fragment$Section$$DefaultSection$items$items$item$$Show)
+        .toList();
     return Column(
       mainAxisSize: MainAxisSize.min,
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -44,28 +52,25 @@ class DefaultSection extends StatelessWidget {
             ),
           ),
         HorizontalSlider(
+          height: data.size == Enum$SectionSize.small ? 156 : 222,
           clipBehaviour: Clip.none,
           padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-          items: sectionItems,
+          itemCount: items.length,
+          itemBuilder: (BuildContext context, int index) {
+            var item = items[index];
+            if (item.item
+                is Fragment$Section$$DefaultSection$items$items$item$$Episode) {
+              return _DefaultEpisodeItem(sectionItem: item, size: data.size);
+            } else if (item.item
+                is Fragment$Section$$DefaultSection$items$items$item$$Show) {
+              return _DefaultShowItem(sectionItem: item, size: data.size);
+            }
+            // Theoretically impossible, see filter above.
+            return const SizedBox.shrink();
+          },
         ),
       ],
     );
-  }
-
-  List<Widget> get sectionItems {
-    final sectionItemsList = <Widget>[];
-    for (var item in data.items.items) {
-      if (item.item
-          is Fragment$Section$$DefaultSection$items$items$item$$Episode) {
-        sectionItemsList
-            .add(_DefaultEpisodeItem(sectionItem: item, size: data.size));
-      } else if (item.item
-          is Fragment$Section$$DefaultSection$items$items$item$$Show) {
-        sectionItemsList
-            .add(_DefaultShowItem(sectionItem: item, size: data.size));
-      }
-    }
-    return sectionItemsList;
   }
 }
 
@@ -74,15 +79,18 @@ class _DefaultEpisodeItem extends StatelessWidget {
   final Fragment$Section$$DefaultSection$items$items$item$$Episode episode;
   final Enum$SectionSize size;
 
-  // TODO: Remove these temp variables
-  bool watched = false;
-  bool isLive = false;
-  bool isNewItem = false;
-  bool showWatchProgressIndicator = false;
-
   _DefaultEpisodeItem({required this.sectionItem, required this.size})
       : episode = sectionItem.item
             as Fragment$Section$$DefaultSection$items$items$item$$Episode;
+
+  // TODO: Remove these temp variables
+  bool watched = false;
+
+  bool isLive = false;
+
+  bool isNewItem = false;
+
+  bool showWatchProgressIndicator = false;
 
   @override
   Widget build(BuildContext context) {
@@ -142,7 +150,13 @@ class _DefaultEpisodeItem extends StatelessWidget {
         children: [
           BorderedImageContainer(
             image: sectionItem.image != null
-                ? NetworkImage(sectionItem.image!)
+                ? ExtendedImage.network(sectionItem.image!,
+                    height: imageSize[size]!.height *
+                        MediaQuery.of(context).devicePixelRatio,
+                    cacheHeight: (imageSize[size]!.height *
+                            MediaQuery.of(context).devicePixelRatio)
+                        .toInt(),
+                    clearMemoryCacheWhenDispose: true)
                 : null,
           ),
           if (isComingSoon(episode.productionDate))
@@ -231,7 +245,7 @@ class _DefaultShowItem extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          sectionItemImage,
+          sectionItemImage(context),
           Container(
             margin: const EdgeInsets.only(bottom: 2),
             child: Text(
@@ -248,7 +262,7 @@ class _DefaultShowItem extends StatelessWidget {
     );
   }
 
-  Widget get sectionItemImage {
+  Widget sectionItemImage(BuildContext context) {
     return Container(
       margin: const EdgeInsets.only(bottom: 4),
       width: imageSize[size]!.width,
@@ -258,7 +272,15 @@ class _DefaultShowItem extends StatelessWidget {
         children: [
           BorderedImageContainer(
             image: sectionItem.image != null
-                ? NetworkImage(sectionItem.image!)
+                ? ExtendedImage.network(
+                    sectionItem.image!,
+                    height: imageSize[size]!.height *
+                        MediaQuery.of(context).devicePixelRatio,
+                    cacheHeight: (imageSize[size]!.height *
+                            MediaQuery.of(context).devicePixelRatio)
+                        .toInt(),
+                    clearMemoryCacheWhenDispose: true,
+                  )
                 : null,
           ),
           if (hasNewEpisodes)

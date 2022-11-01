@@ -344,6 +344,20 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "4.1.0"
+  extended_image:
+    dependency: "direct main"
+    description:
+      name: extended_image
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "6.3.1"
+  extended_image_library:
+    dependency: transitive
+    description:
+      name: extended_image_library
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "3.4.0"
   fake_async:
     dependency: transitive
     description:
@@ -651,6 +665,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.13.5"
+  http_client_helper:
+    dependency: transitive
+    description:
+      name: http_client_helper
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "2.0.3"
   http_multi_server:
     dependency: transitive
     description:
@@ -966,6 +987,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.2.1"
+  pull_to_refresh:
+    dependency: "direct main"
+    description:
+      name: pull_to_refresh
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "2.0.0"
   recase:
     dependency: transitive
     description:

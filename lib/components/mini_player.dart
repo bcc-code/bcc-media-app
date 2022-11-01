@@ -1,7 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:brunstadtv_app/helpers/btv_colors.dart';
 import 'package:brunstadtv_app/helpers/utils.dart';
-import 'package:cached_network_image/cached_network_image.dart';
+import 'package:extended_image/extended_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:brunstadtv_app/providers/chromecast.dart';

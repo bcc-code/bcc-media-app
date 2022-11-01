@@ -1,5 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:brunstadtv_app/components/bordered_image_container.dart';
+import 'package:extended_image/extended_image.dart';
 import 'package:flutter/material.dart';
 
 import '../graphql/queries/page.graphql.dart';
@@ -149,7 +150,11 @@ class _GridEpisodeItem extends StatelessWidget {
           children: [
             BorderedImageContainer(
               image: sectionItem.image != null
-                  ? NetworkImage(sectionItem.image!)
+                  ? ExtendedImage.network(sectionItem.image!,
+                      height: 90,
+                      width: 160,
+                      cacheWidth: 90.toInt(),
+                      cacheHeight: 160.toInt())
                   : null,
             ),
             if (isComingSoon(episode.productionDate))
@@ -267,7 +272,11 @@ class _GridShowItem extends StatelessWidget {
           children: [
             BorderedImageContainer(
               image: sectionItem.image != null
-                  ? NetworkImage(sectionItem.image!)
+                  ? ExtendedImage.network(sectionItem.image!,
+                      height: 90,
+                      width: 160,
+                      cacheWidth: 90.toInt(),
+                      cacheHeight: 160.toInt())
                   : null,
             ),
             if (hasNewEpisodes)

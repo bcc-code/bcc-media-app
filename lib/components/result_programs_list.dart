@@ -1,3 +1,4 @@
+import 'package:extended_image/extended_image.dart';
 import 'package:flutter/material.dart';
 import 'package:brunstadtv_app/graphql/queries/search.graphql.dart';
 
@@ -27,8 +28,13 @@ class ResultProgramsList extends StatelessWidget {
           ),
         ),
         HorizontalSlider(
-          items: items.map((program) => _Program(program)).toList(),
+          height: 140,
           padding: const EdgeInsets.only(left: 16, right: 16, bottom: 8),
+          itemCount: items.length,
+          itemBuilder: (BuildContext context, int index) {
+            var item = items[index];
+            return _Program(item);
+          },
         ),
       ],
     );
@@ -52,7 +58,9 @@ class _Program extends StatelessWidget {
             aspectRatio: 16 / 9,
             child: BorderedImageContainer(
               margin: const EdgeInsets.only(bottom: 7),
-              image: _item.image != null ? NetworkImage(_item.image!) : null,
+              image: _item.image != null
+                  ? ExtendedImage.network(_item.image!)
+                  : null,
             ),
           ),
           Text(_item.title,

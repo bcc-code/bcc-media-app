@@ -30,7 +30,10 @@ class IconSection extends StatelessWidget {
               ),
             ),
           HorizontalSlider(
-            items: sectionItems.map((item) {
+            height: 139,
+            itemCount: data.items.items.length,
+            itemBuilder: (BuildContext context, int index) {
+              var item = data.items.items[index];
               return CategoryButton(
                 onTap: () {
                   if (item.item
@@ -46,7 +49,7 @@ class IconSection extends StatelessWidget {
                 networkImage: item.image,
                 width: 80,
               );
-            }).toList(),
+            },
           ),
         ],
       ),

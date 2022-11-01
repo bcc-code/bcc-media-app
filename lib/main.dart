@@ -1,5 +1,6 @@
 
 import 'package:bccm_player/playback_platform_pigeon.g.dart';
+import 'package:brunstadtv_app/debug_app.dart';
 import 'package:brunstadtv_app/helpers/btv_colors.dart';
 import 'package:brunstadtv_app/helpers/btv_typography.dart';
 import 'package:brunstadtv_app/providers/settings_service.dart';
@@ -29,6 +30,7 @@ import 'l10n/app_localizations.dart';
 /// This function runs on all of them
 void $main({required FirebaseOptions? firebaseOptions}) async {
   WidgetsFlutterBinding.ensureInitialized();
+  PaintingBinding.instance.imageCache.maximumSizeBytes = 1024 * 1024 * 50;
 
   SystemChrome.setSystemUIOverlayStyle(
     const SystemUiOverlayStyle(

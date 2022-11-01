@@ -6,9 +6,9 @@ import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
 
 class DebugApp extends StatelessWidget {
-  const DebugApp({super.key, required this.playerId});
+  const DebugApp({super.key, this.playerId});
 
-  final String playerId;
+  final String? playerId;
 
   // This widget is the root of your application.
   @override
@@ -55,38 +55,18 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
-    // This method is rerun every time setState is called, for instance as done
-    // by the _incrementCounter method above.
-    //
-    // The Flutter framework has been optimized to make rerunning build methods
-    // fast, so that you can just rebuild anything that needs updating rather
-    // than having to individually change instances of widgets.
     return Stack(children: [
       Scaffold(
         appBar: AppBar(
-          // Here we take the value from the MyHomePage object that was created by
-          // the App.build method, and use it to set our appbar title.
+          
           title: Text(widget.title),
         ),
-        body: Center(
-          // Center is a layout widget. It takes a single child and positions it
-          // in the middle of the parent.
-          child: ListView(
-            children: <Widget>[
-              AspectRatio(
-                aspectRatio: 16 / 9,
-                child: BccmPlayer(id: widget.app.playerId),
-              ),
-              ...List.generate(
-                  10,
-                  (index) => SizedBox(
-                        width: 100,
-                        height: 500,
-                        child: Container(color: Colors.green),
-                      ))
-            ],
-          ),
-        ),
+        body:  RefreshIndicator(
+              onRefresh: () => Future.delayed(Duration(milliseconds: 200)),
+              child: ListView(
+                  physics: BouncingScrollPhysics(
+                      parent: AlwaysScrollableScrollPhysics()),
+                  children: [SizedBox(height:10000, child: Container(color: Colors.green))],)),
       ),
     ]);
   }

@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:brunstadtv_app/helpers/btv_typography.dart';
 import 'package:brunstadtv_app/router/router.gr.dart';
+import 'package:extended_image/extended_image.dart';
 import 'package:flutter/material.dart';
 
 import '../graphql/queries/search.graphql.dart';
@@ -57,8 +58,9 @@ class _Episode extends StatelessWidget {
               width: 128,
               height: 128 * (9 / 16),
               margin: const EdgeInsets.only(right: 16),
-              image:
-                  _episode.image != null ? NetworkImage(_episode.image!) : null,
+              image: _episode.image != null
+                  ? ExtendedImage.network(_episode.image!)
+                  : null,
             ),
             Expanded(
               child: Column(

@@ -1,3 +1,4 @@
+import 'package:extended_image/extended_image.dart';
 import 'package:flutter/material.dart';
 import 'package:auto_route/auto_route.dart';
 
@@ -26,6 +27,13 @@ class PosterSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var items = data.items.items
+        .where((element) =>
+            element.item
+                is Fragment$Section$$PosterSection$items$items$item$$Episode ||
+            element.item
+                is Fragment$Section$$PosterSection$items$items$item$$Show)
+        .toList();
     return Column(
       mainAxisSize: MainAxisSize.min,
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -44,9 +52,22 @@ class PosterSection extends StatelessWidget {
             ),
           ),
         HorizontalSlider(
+          height: 284,
           clipBehaviour: Clip.none,
           padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-          items: sectionItems,
+          itemCount: items.length,
+          itemBuilder: (BuildContext context, int index) {
+            var item = items[index];
+            if (item.item
+                is Fragment$Section$$PosterSection$items$items$item$$Episode) {
+              return _PosterEpisodeItem(sectionItem: item, size: data.size);
+            } else if (item.item
+                is Fragment$Section$$PosterSection$items$items$item$$Show) {
+              return _PosterShowItem(sectionItem: item, size: data.size);
+            }
+            // Theoretically impossible, see filter above.
+            return const SizedBox.shrink();
+          },
         ),
       ],
     );
@@ -146,7 +167,12 @@ class _PosterEpisodeItem extends StatelessWidget {
         children: [
           BorderedImageContainer(
             image: sectionItem.image != null
-                ? NetworkImage(sectionItem.image!)
+                ? ExtendedImage.network(
+                    sectionItem.image!,
+                    height: imageSize[size]!.height,
+                    cacheHeight: imageSize[size]!.height.toInt(),
+                    clearMemoryCacheWhenDispose: true,
+                  )
                 : null,
           ),
           if (isComingSoon(episode.productionDate))
@@ -234,8 +260,14 @@ class _PosterShowItem extends StatelessWidget {
     final imageWidget = BorderedImageContainer(
       height: imageSize[size]!.height,
       margin: const EdgeInsets.only(bottom: 4),
-      image:
-          sectionItem.image != null ? NetworkImage(sectionItem.image!) : null,
+      image: sectionItem.image != null
+          ? ExtendedImage.network(
+              sectionItem.image!,
+              height: imageSize[size]!.height,
+              cacheHeight: imageSize[size]!.height.toInt(),
+              clearMemoryCacheWhenDispose: true,
+            )
+          : null,
     );
 
     return SizedBox(
@@ -265,7 +297,12 @@ class _PosterShowItem extends StatelessWidget {
         children: [
           BorderedImageContainer(
             image: sectionItem.image != null
-                ? NetworkImage(sectionItem.image!)
+                ? ExtendedImage.network(
+                    sectionItem.image!,
+                    height: imageSize[size]!.height,
+                    cacheHeight: imageSize[size]!.height.toInt(),
+                    clearMemoryCacheWhenDispose: true,
+                  )
                 : null,
           ),
           if (hasNewEpisodes)

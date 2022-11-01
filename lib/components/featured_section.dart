@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:brunstadtv_app/helpers/btv_typography.dart';
 import 'package:brunstadtv_app/router/router.gr.dart';
+import 'package:extended_image/extended_image.dart';
 import 'package:flutter/material.dart';
 
 import '../graphql/queries/page.graphql.dart';
@@ -136,7 +137,7 @@ class _GradientImage extends StatelessWidget {
         image: image != null
             ? DecorationImage(
                 fit: BoxFit.cover,
-                image: NetworkImage(image!),
+                image: ExtendedNetworkImageProvider(image!),
               )
             : null,
       ),
