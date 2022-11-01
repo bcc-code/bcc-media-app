@@ -56,14 +56,16 @@ class _VideoQualityState extends State<VideoQuality> {
           ),
         ),
       ),
-      body: Container(
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(15),
-        ),
-        child: OptionList(
-          optionData: qualityList,
-          currentSelection: selected,
-          onSelectionChange: _onSelectionChanged,
+      body: SafeArea(
+        child: Container(
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(15),
+          ),
+          child: OptionList(
+            optionData: qualityList,
+            currentSelection: selected,
+            onSelectionChange: _onSelectionChanged,
+          ),
         ),
       ),
     );

@@ -100,14 +100,16 @@ class _AppSubtitleLanguageState extends ConsumerState<AppSubtitleLanguage> {
           ),
         ),
       ),
-      body: Container(
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(15),
-        ),
-        child: OptionList(
-          optionData: languageList,
-          currentSelection: selected,
-          onSelectionChange: _onSelectionChanged,
+      body: SafeArea(
+        child: Container(
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(15),
+          ),
+          child: OptionList(
+            optionData: languageList,
+            currentSelection: selected,
+            onSelectionChange: _onSelectionChanged,
+          ),
         ),
       ),
     );
