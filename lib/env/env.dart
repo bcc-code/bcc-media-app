@@ -1,5 +1,3 @@
-import 'package:envify/envify.dart';
-
 part '.env.dart';
 
 class Env {
