@@ -37,11 +37,6 @@ const _episodeScreenRoute = CustomRoute<void>(
     MaterialRoute<void>(page: ContactSupport, path: 'contact-support'),
     MaterialRoute<void>(page: AboutScreen, path: 'about'),
     MaterialRoute<void>(page: FAQ, path: 'faq'),
-    CustomRoute<void>(
-      page: EpisodeScreen,
-      path: 'episode/:episodeId',
-      customRouteBuilder: CustomTransitionsBuilders.slideUpAndDown,
-    ),
     MaterialRoute<void>(
       page: TabsRootScreen,
       path: '/',
