@@ -45,7 +45,8 @@ class _Episode extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => context.router.root.navigateNamed('/episode/${_episode.id}'),
+      onTap: () =>
+          context.navigateTo(EpisodeScreenRoute(episodeId: _episode.id)),
       child: Container(
         height: 98,
         margin: const EdgeInsets.only(bottom: 4),

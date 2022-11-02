@@ -75,6 +75,8 @@ class _SearchResultsPageState extends ConsumerState<SearchResultsPage> {
                   .whereType<Fragment$SearchResultItem$$EpisodeSearchItem>()
                   .toList();
               return ListView(
+                keyboardDismissBehavior:
+                    ScrollViewKeyboardDismissBehavior.onDrag,
                 children: [
                   if (programs.isNotEmpty)
                     ResultProgramsList(title: 'Programs', items: programs),
