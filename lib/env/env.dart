@@ -3,7 +3,6 @@ part '.env.dart';
 class Env {
 /* 
   Env(Variables variables) {
-
   } */
 
   static const auth0ClientId = 'CU6aNYSKaD6vpgFZvLJ9gvGAFnKRlpir';

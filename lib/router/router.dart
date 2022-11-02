@@ -20,6 +20,12 @@ import '../screens/page.dart';
 import '../screens/tabs_root.dart';
 import '../screens/search/explore_category_page.dart';
 
+const _episodeScreenRoute = CustomRoute<void>(
+  page: EpisodeScreen,
+  path: 'episode/:episodeId',
+  customRouteBuilder: CustomTransitionsBuilders.slideUpAndDown,
+);
+
 @MaterialAutoRouter(
   routes: [
     MaterialRoute<void>(page: LoginScreen, path: '/login'),
@@ -44,16 +50,14 @@ import '../screens/search/explore_category_page.dart';
             initial: true,
             children: [
               CustomRoute<void>(
-                  page: HomeScreen,
-                  path: '',
-                  maintainState: false,
-                  durationInMilliseconds: 500,
-                  reverseDurationInMilliseconds: 500,
-                  customRouteBuilder: CustomTransitionsBuilders.slideUpAndDown),
-              CustomRoute<void>(
-                  page: EpisodeScreen,
-                  path: 'episode/:episodeId',
-                  customRouteBuilder: CustomTransitionsBuilders.slideUpAndDown),
+                page: HomeScreen,
+                path: '',
+                maintainState: false,
+                durationInMilliseconds: 500,
+                reverseDurationInMilliseconds: 500,
+                customRouteBuilder: CustomTransitionsBuilders.slideUpAndDown,
+              ),
+              _episodeScreenRoute,
               MaterialRoute<void>(page: PageScreen, path: 'page/:pageCode'),
             ]),
         MaterialRoute<void>(
@@ -69,6 +73,7 @@ import '../screens/search/explore_category_page.dart';
               MaterialRoute<void>(page: SearchScreen, path: ''),
               MaterialRoute<void>(
                   page: ExploreCategoryScreen, path: 'explore-category'),
+              _episodeScreenRoute,
             ]),
         MaterialRoute<void>(
             name: 'CalendarPageRoute', page: CalendarPage, path: 'calendar'),
