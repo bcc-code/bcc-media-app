@@ -99,6 +99,21 @@ type MessageSection implements Section {
     messages: [Message!] @goField(forceResolver: true)
 }
 
+enum WebSectionSize {
+    r16_9
+    r4_3
+    r9_16
+    r1_1
+}
+
+type WebSection implements Section {
+    id: ID!
+    title: String
+    url: String!
+    size: WebSectionSize!
+    authentication: Boolean!
+}
+
 type Collection {
     id: ID!
     items(

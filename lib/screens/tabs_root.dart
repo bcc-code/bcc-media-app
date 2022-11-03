@@ -4,6 +4,7 @@ import 'dart:io';
 import 'package:auto_route/auto_route.dart';
 import 'package:brunstadtv_app/graphql/client.dart';
 import 'package:brunstadtv_app/graphql/queries/devices.graphql.dart';
+import 'package:brunstadtv_app/providers/settings_service.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:brunstadtv_app/providers/chromecast.dart';
 import 'package:flutter/foundation.dart';
@@ -49,22 +50,18 @@ class _TabsRootScreenState extends ConsumerState<TabsRootScreen>
         alert: false, badge: false, sound: true);
 
     if (token != null) {
-      if(!mounted) {
-        return;
-      }
-      var result = await ref.read(gqlClientProvider).mutate$SetDeviceToken(
-          Options$Mutation$SetDeviceToken(
-              variables: Variables$Mutation$SetDeviceToken(token: token)));
-      debugPrint(result.data?.toString());
-    }
-
-    fcmSubscription = FirebaseMessaging.instance.onTokenRefresh.listen((fcmToken) {
       if (!mounted) {
         return;
       }
-      ref.read(gqlClientProvider).mutate$SetDeviceToken(
-          Options$Mutation$SetDeviceToken(
-              variables: Variables$Mutation$SetDeviceToken(token: fcmToken)));
+      await setDeviceToken(token);
+    }
+
+    fcmSubscription =
+        FirebaseMessaging.instance.onTokenRefresh.listen((fcmToken) {
+      if (!mounted) {
+        return;
+      }
+      setDeviceToken(fcmToken);
       print('fcm token refreshed: $fcmToken');
 
       const storage = FlutterSecureStorage();
@@ -74,6 +71,18 @@ class _TabsRootScreenState extends ConsumerState<TabsRootScreen>
     fcmSubscription?.onError((err) {
       print('error onTokenRefresh');
     });
+  }
+
+  Future setDeviceToken(String token) async {
+    var result = await ref.read(gqlClientProvider).mutate$SetDeviceToken(
+            Options$Mutation$SetDeviceToken(
+                variables: Variables$Mutation$SetDeviceToken(
+                    token: token,
+                    languages: [
+              ref.read(settingsProvider).appLanguage.languageCode
+            ])));
+    debugPrint(result.data?.toString());
+    return result;
   }
 
   @override

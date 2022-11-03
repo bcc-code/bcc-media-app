@@ -5,9 +5,13 @@ import 'package:graphql/client.dart' as graphql;
 import 'package:graphql_flutter/graphql_flutter.dart' as graphql_flutter;
 
 class Variables$Mutation$SetDeviceToken {
-  factory Variables$Mutation$SetDeviceToken({required String token}) =>
+  factory Variables$Mutation$SetDeviceToken({
+    required String token,
+    required List<String> languages,
+  }) =>
       Variables$Mutation$SetDeviceToken._({
         r'token': token,
+        r'languages': languages,
       });
 
   Variables$Mutation$SetDeviceToken._(this._$data);
@@ -17,16 +21,22 @@ class Variables$Mutation$SetDeviceToken {
     final result$data = <String, dynamic>{};
     final l$token = data['token'];
     result$data['token'] = (l$token as String);
+    final l$languages = data['languages'];
+    result$data['languages'] =
+        (l$languages as List<dynamic>).map((e) => (e as String)).toList();
     return Variables$Mutation$SetDeviceToken._(result$data);
   }
 
   Map<String, dynamic> _$data;
 
   String get token => (_$data['token'] as String);
+  List<String> get languages => (_$data['languages'] as List<String>);
   Map<String, dynamic> toJson() {
     final result$data = <String, dynamic>{};
     final l$token = token;
     result$data['token'] = l$token;
+    final l$languages = languages;
+    result$data['languages'] = l$languages.map((e) => e).toList();
     return result$data;
   }
 
@@ -49,13 +59,29 @@ class Variables$Mutation$SetDeviceToken {
     if (l$token != lOther$token) {
       return false;
     }
+    final l$languages = languages;
+    final lOther$languages = other.languages;
+    if (l$languages.length != lOther$languages.length) {
+      return false;
+    }
+    for (int i = 0; i < l$languages.length; i++) {
+      final l$languages$entry = l$languages[i];
+      final lOther$languages$entry = lOther$languages[i];
+      if (l$languages$entry != lOther$languages$entry) {
+        return false;
+      }
+    }
     return true;
   }
 
   @override
   int get hashCode {
     final l$token = token;
-    return Object.hashAll([l$token]);
+    final l$languages = languages;
+    return Object.hashAll([
+      l$token,
+      Object.hashAll(l$languages.map((v) => v)),
+    ]);
   }
 }
 
@@ -68,7 +94,10 @@ abstract class CopyWith$Variables$Mutation$SetDeviceToken<TRes> {
   factory CopyWith$Variables$Mutation$SetDeviceToken.stub(TRes res) =
       _CopyWithStubImpl$Variables$Mutation$SetDeviceToken;
 
-  TRes call({String? token});
+  TRes call({
+    String? token,
+    List<String>? languages,
+  });
 }
 
 class _CopyWithImpl$Variables$Mutation$SetDeviceToken<TRes>
@@ -84,10 +113,15 @@ class _CopyWithImpl$Variables$Mutation$SetDeviceToken<TRes>
 
   static const _undefined = {};
 
-  TRes call({Object? token = _undefined}) =>
+  TRes call({
+    Object? token = _undefined,
+    Object? languages = _undefined,
+  }) =>
       _then(Variables$Mutation$SetDeviceToken._({
         ..._instance._$data,
         if (token != _undefined && token != null) 'token': (token as String),
+        if (languages != _undefined && languages != null)
+          'languages': (languages as List<String>),
       }));
 }
 
@@ -97,7 +131,11 @@ class _CopyWithStubImpl$Variables$Mutation$SetDeviceToken<TRes>
 
   TRes _res;
 
-  call({String? token}) => _res;
+  call({
+    String? token,
+    List<String>? languages,
+  }) =>
+      _res;
 }
 
 class Mutation$SetDeviceToken {
@@ -255,7 +293,19 @@ const documentNodeMutationSetDeviceToken = DocumentNode(definitions: [
         ),
         defaultValue: DefaultValueNode(value: null),
         directives: [],
-      )
+      ),
+      VariableDefinitionNode(
+        variable: VariableNode(name: NameNode(value: 'languages')),
+        type: ListTypeNode(
+          type: NamedTypeNode(
+            name: NameNode(value: 'String'),
+            isNonNull: true,
+          ),
+          isNonNull: true,
+        ),
+        defaultValue: DefaultValueNode(value: null),
+        directives: [],
+      ),
     ],
     directives: [],
     selectionSet: SelectionSetNode(selections: [
@@ -266,7 +316,11 @@ const documentNodeMutationSetDeviceToken = DocumentNode(definitions: [
           ArgumentNode(
             name: NameNode(value: 'token'),
             value: VariableNode(name: NameNode(value: 'token')),
-          )
+          ),
+          ArgumentNode(
+            name: NameNode(value: 'languages'),
+            value: VariableNode(name: NameNode(value: 'languages')),
+          ),
         ],
         directives: [],
         selectionSet: SelectionSetNode(selections: [

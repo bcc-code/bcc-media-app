@@ -40,6 +40,11 @@ type User {
 
 type QueryRoot{
   application: Application!
+  export(
+    # Only export for this groups. The groups will be filtered by the groups the users has access to.
+    # NOT IMPLEMENTED YET!
+    groups: [String!]
+  ): Export!
 
   page(
     id: ID
@@ -89,6 +94,6 @@ type QueryRoot{
 }
 
 type MutationRoot {
-  setDevicePushToken(token: String!): Device
-#  createProfile(name: String!): Profile
+  setDevicePushToken(token: String!, languages: [String!]!): Device
+  setEpisodeProgress(id: ID!, progress: Int, duration: Int): Episode!
 }
