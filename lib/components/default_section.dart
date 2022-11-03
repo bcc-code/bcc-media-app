@@ -141,7 +141,6 @@ class _DefaultEpisodeItem extends StatelessWidget {
   }
 
   Widget sectionItemImage() {
-    // MEMORY ISSUES HERE
     return Container(
       margin: const EdgeInsets.only(bottom: 4),
       width: imageSize[size]!.width,
@@ -258,7 +257,6 @@ class _DefaultShowItem extends StatelessWidget {
   }
 
   Widget sectionItemImage() {
-    // Memory issue here?
     return Container(
       margin: const EdgeInsets.only(bottom: 4),
       width: imageSize[size]!.width,
