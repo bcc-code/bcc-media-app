@@ -6,23 +6,59 @@ import '../helpers/btv_typography.dart';
 class SearchBar extends StatefulWidget {
   final Function onModeChange;
   final Function onInputChange;
+  String? initialQuery;
 
-  const SearchBar({required this.onModeChange, required this.onInputChange});
+  SearchBar({
+    super.key,
+    required this.onModeChange,
+    required this.onInputChange,
+    this.initialQuery,
+  });
 
   @override
   State<SearchBar> createState() => _SearchBarState();
 }
 
 class _SearchBarState extends State<SearchBar> {
-  final _fieldController = TextEditingController();
+  late TextEditingController _fieldController;
   var _showClearButton = false;
-  var _showCancelButton = false;
-  var _prevValue = '';
+  var _inSearchMode = false;
+  String? _prevValue;
 
   @override
   void initState() {
     super.initState();
+    _fieldController = TextEditingController(text: widget.initialQuery);
     _fieldController.addListener(_onValueChange);
+    if (widget.initialQuery != null) {
+      _prevValue = widget.initialQuery;
+      _showClearButton = true;
+      _inSearchMode = true;
+      FocusScope.of(context).unfocus();
+    }
+  }
+
+  @override
+  void didUpdateWidget(SearchBar oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    // If query param has changed
+    if (oldWidget.initialQuery != widget.initialQuery &&
+        widget.initialQuery != null) {
+      _fieldController = TextEditingController.fromValue(
+        TextEditingValue(
+          text: widget.initialQuery!,
+          selection: TextSelection.fromPosition(
+            // Move cursor to the end
+            TextPosition(offset: widget.initialQuery!.length),
+          ),
+        ),
+      );
+      _fieldController.addListener(_onValueChange);
+      _prevValue = widget.initialQuery;
+      _showClearButton = true;
+      _inSearchMode = true;
+      FocusScope.of(context).unfocus();
+    }
   }
 
   void _onValueChange() {
@@ -42,15 +78,17 @@ class _SearchBarState extends State<SearchBar> {
 
   void _onFocusChanged(focus) {
     if (focus) {
-      widget.onModeChange(true);
-      _showCancelButton = true;
+      if (!_inSearchMode) {
+        widget.onModeChange(true);
+      }
+      _inSearchMode = true;
     }
   }
 
   void _onCancelled() {
     _onCleared();
     FocusScope.of(context).unfocus();
-    _showCancelButton = false;
+    _inSearchMode = false;
     widget.onModeChange(false);
   }
 
@@ -117,7 +155,7 @@ class _SearchBarState extends State<SearchBar> {
               ),
             ),
           ),
-          if (_showCancelButton)
+          if (_inSearchMode)
             Container(
               margin:
                   const EdgeInsets.only(left: 8, top: 0, right: 0, bottom: 0),

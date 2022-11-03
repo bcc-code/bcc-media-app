@@ -29,14 +29,14 @@ const _episodeScreenRoute = CustomRoute<void>(
 @MaterialAutoRouter(
   routes: [
     MaterialRoute<void>(page: LoginScreen, path: '/login'),
-    MaterialRoute<void>(page: Profile, path: 'profile'),
-    MaterialRoute<void>(page: AppLanguageScreen, path: 'app-language'),
-    MaterialRoute<void>(page: AppAudioLanguage, path: 'audio-languga'),
-    MaterialRoute<void>(page: AppSubtitleLanguage, path: 'subtitle-language'),
-    MaterialRoute<void>(page: VideoQuality, path: 'video-quality'),
-    MaterialRoute<void>(page: ContactSupport, path: 'contact-support'),
-    MaterialRoute<void>(page: AboutScreen, path: 'about'),
-    MaterialRoute<void>(page: FAQ, path: 'faq'),
+    MaterialRoute<void>(page: Profile, path: '/profile'),
+    MaterialRoute<void>(page: AppLanguageScreen, path: '/app-language'),
+    MaterialRoute<void>(page: AppAudioLanguage, path: '/audio-language'),
+    MaterialRoute<void>(page: AppSubtitleLanguage, path: '/subtitle-language'),
+    MaterialRoute<void>(page: VideoQuality, path: '/video-quality'),
+    MaterialRoute<void>(page: ContactSupport, path: '/contact-support'),
+    MaterialRoute<void>(page: AboutScreen, path: '/about'),
+    MaterialRoute<void>(page: FAQ, path: '/faq'),
     MaterialRoute<void>(
       page: TabsRootScreen,
       path: '/',

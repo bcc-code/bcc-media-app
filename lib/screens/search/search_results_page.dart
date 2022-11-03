@@ -9,9 +9,9 @@ import '../../helpers/btv_colors.dart';
 import '../../helpers/btv_typography.dart';
 
 class SearchResultsPage extends ConsumerStatefulWidget {
-  final String _searchInput;
+  final String? _searchInput;
 
-  const SearchResultsPage(this._searchInput);
+  const SearchResultsPage(this._searchInput, {super.key});
 
   @override
   ConsumerState<SearchResultsPage> createState() => _SearchResultsPageState();
@@ -20,17 +20,14 @@ class SearchResultsPage extends ConsumerStatefulWidget {
 class _SearchResultsPageState extends ConsumerState<SearchResultsPage> {
   late Future<Query$Search$search?> _resultFuture;
 
-  @override
-  void didUpdateWidget(SearchResultsPage oldWidget) {
-    super.didUpdateWidget(oldWidget);
-
+  void setResultFuture() {
     final client = ref.read(gqlClientProvider);
 
-    if (widget._searchInput != '') {
+    if (widget._searchInput != null && widget._searchInput != '') {
       _resultFuture = client
           .query$Search(
         Options$Query$Search(
-          variables: Variables$Query$Search(queryString: widget._searchInput),
+          variables: Variables$Query$Search(queryString: widget._searchInput!),
         ),
       )
           .onError((error, stackTrace) {
@@ -48,8 +45,20 @@ class _SearchResultsPageState extends ConsumerState<SearchResultsPage> {
   }
 
   @override
+  void initState() {
+    super.initState();
+    setResultFuture();
+  }
+
+  @override
+  void didUpdateWidget(SearchResultsPage oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    setResultFuture();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    if (widget._searchInput == '') {
+    if (widget._searchInput == null || widget._searchInput == '') {
       return _noInputInfoWidget;
     } else {
       return FutureBuilder<Query$Search$search?>(

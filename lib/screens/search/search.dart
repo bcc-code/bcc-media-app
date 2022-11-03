@@ -1,3 +1,4 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 
 import '../../helpers/btv_colors.dart';
@@ -5,19 +6,20 @@ import './search_home_page.dart';
 import './search_results_page.dart';
 
 import '../../components/search_bar.dart';
-import '../../services/auth_service.dart';
 
 class SearchScreen extends StatefulWidget {
-  const SearchScreen({Key? key}) : super(key: key);
+  final String? query;
+
+  const SearchScreen({Key? key, @QueryParam('q') this.query}) : super(key: key);
 
   @override
   State<SearchScreen> createState() => _SearchScreenState();
 }
 
 class _SearchScreenState extends State<SearchScreen> {
-  String name = AuthService.instance.user!.name!;
   var _inSearchMode = false;
-  var _curSearchValue = '';
+  String? _curSearchValue;
+  String? queryParam;
 
   _onSearchModeChanged(bool mode) {
     setState(() {
@@ -32,14 +34,40 @@ class _SearchScreenState extends State<SearchScreen> {
   }
 
   @override
+  void initState() {
+    super.initState();
+    processQueryParam();
+  }
+
+  @override
+  void didUpdateWidget(SearchScreen oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    processQueryParam();
+  }
+
+  processQueryParam() {
+    if (widget.query != null && widget.query!.trim().isEmpty) {
+      queryParam = null;
+    } else {
+      queryParam = widget.query;
+    }
+    if (queryParam != null) {
+      _curSearchValue = queryParam;
+      _inSearchMode = true;
+    }
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    print('--- HELLO ---');
+    final searchScreen = Scaffold(
       body: SafeArea(
         child: Column(
           children: [
             SearchBar(
               onModeChange: _onSearchModeChanged,
               onInputChange: _onSearchInputChanged,
+              initialQuery: queryParam,
             ),
             Container(
               margin: const EdgeInsets.only(bottom: 8),
@@ -55,5 +83,7 @@ class _SearchScreenState extends State<SearchScreen> {
         ),
       ),
     );
+    queryParam = null;
+    return searchScreen;
   }
 }
