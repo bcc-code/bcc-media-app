@@ -1,3 +1,4 @@
+import 'package:alice/alice.dart';
 import 'package:bccm_player/playback_platform_pigeon.g.dart';
 import 'package:brunstadtv_app/debug_app.dart';
 import 'package:brunstadtv_app/helpers/btv_colors.dart';
@@ -25,6 +26,8 @@ import 'background_tasks.dart';
 import 'env/env.dart';
 import 'l10n/app_localizations.dart';
 
+final Alice alice = Alice(showNotification: true);
+
 /// There is 1 main() per environment, e.g. main_dev.dart
 /// This function runs on all of them
 void $main({required FirebaseOptions? firebaseOptions}) async {
@@ -51,12 +54,13 @@ void $main({required FirebaseOptions? firebaseOptions}) async {
   final appRouter =
       AppRouter(authGuard: AuthGuard(), navigatorKey: navigatorKey);
 
-  var chromecastListenerOverride = chromecastListenerProvider
-      .overrideWithProvider(Provider<ChromecastListener>((ref) {
-    var listener = ChromecastListener(providerRef: ref);
+  alice.setNavigatorKey(navigatorKey);
+
+  var chromecastListenerOverride = chromecastListenerProvider.overrideWith((c) {
+    var listener = ChromecastListener(providerRef: c);
     ChromecastPigeon.setup(listener);
     return listener;
-  }));
+  });
 
   var providerContainer =
       ProviderContainer(overrides: [chromecastListenerOverride]);

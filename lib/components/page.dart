@@ -83,6 +83,7 @@ class BccmPage extends StatelessWidget {
           print(snapshot.error);
           return loadingError(context);
         }
+        debugPrint(snapshot.connectionState.toString());
         return loadingContent;
       },
     );
@@ -123,7 +124,7 @@ class BccmPage extends StatelessWidget {
                 ),
               ),
               IconLabelButton.medium(
-                  labelText: S.of(context).tryAgainButton, onPressed: () {})
+                  labelText: S.of(context).tryAgainButton, onPressed: onRefresh)
             ],
           ),
         ),
