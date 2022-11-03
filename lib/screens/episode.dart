@@ -6,6 +6,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:bccm_player/playback_platform_pigeon.g.dart';
 import 'package:bccm_player/playback_service_interface.dart';
 import 'package:brunstadtv_app/helpers/svg_icons.dart';
+import 'package:extended_image/extended_image.dart';
 import 'package:flutter/material.dart';
 import 'package:bccm_player/bccm_player.dart';
 import 'package:flutter/scheduler.dart';
@@ -228,7 +229,7 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen> {
                                             },
                                             child: AspectRatio(
                                               aspectRatio: 16 / 9,
-                                              child: Image.network(
+                                              child: ExtendedImage.network(
                                                 episode!.imageUrl!,
                                                 fit: BoxFit.fill,
                                                 width: 64,

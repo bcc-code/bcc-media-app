@@ -26,6 +26,13 @@ class PosterSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var items = data.items.items
+        .where((element) =>
+            element.item
+                is Fragment$Section$$PosterSection$items$items$item$$Episode ||
+            element.item
+                is Fragment$Section$$PosterSection$items$items$item$$Show)
+        .toList();
     return Column(
       mainAxisSize: MainAxisSize.min,
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -44,9 +51,22 @@ class PosterSection extends StatelessWidget {
             ),
           ),
         HorizontalSlider(
+          height: 284,
           clipBehaviour: Clip.none,
           padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-          items: sectionItems,
+          itemCount: items.length,
+          itemBuilder: (BuildContext context, int index) {
+            var item = items[index];
+            if (item.item
+                is Fragment$Section$$PosterSection$items$items$item$$Episode) {
+              return _PosterEpisodeItem(sectionItem: item, size: data.size);
+            } else if (item.item
+                is Fragment$Section$$PosterSection$items$items$item$$Show) {
+              return _PosterShowItem(sectionItem: item, size: data.size);
+            }
+            // Theoretically impossible, see filter above.
+            return const SizedBox.shrink();
+          },
         ),
       ],
     );
@@ -97,7 +117,7 @@ class _PosterEpisodeItem extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            sectionItemImage,
+            sectionItemImage(context),
             Container(
               margin: const EdgeInsets.only(bottom: 2),
               child: Row(
@@ -136,12 +156,7 @@ class _PosterEpisodeItem extends StatelessWidget {
     );
   }
 
-  Widget get sectionItemImage {
-    final thumbnailImage = BorderedImageContainer(
-      image:
-          sectionItem.image != null ? NetworkImage(sectionItem.image!) : null,
-    );
-
+  Widget sectionItemImage(BuildContext context) {
     return Container(
       margin: const EdgeInsets.only(bottom: 4),
       width: imageSize[size]!.width,
@@ -152,9 +167,9 @@ class _PosterEpisodeItem extends StatelessWidget {
           isComingSoon(episode.productionDate)
               ? Opacity(
                   opacity: 0.5,
-                  child: thumbnailImage,
+                  child: BorderedImageContainer(imageUrl: sectionItem.image),
                 )
-              : thumbnailImage,
+              : BorderedImageContainer(imageUrl: sectionItem.image),
           if (isComingSoon(episode.productionDate))
             Container(
               width: double.infinity,
@@ -236,19 +251,12 @@ class _PosterShowItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final imageWidget = BorderedImageContainer(
-      height: imageSize[size]!.height,
-      margin: const EdgeInsets.only(bottom: 4),
-      image:
-          sectionItem.image != null ? NetworkImage(sectionItem.image!) : null,
-    );
-
     return SizedBox(
       width: imageSize[size]!.width,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          sectionItemImage,
+          sectionItemImage(context),
           Text(
             sectionItem.title,
             overflow: TextOverflow.ellipsis,
@@ -260,7 +268,7 @@ class _PosterShowItem extends StatelessWidget {
     );
   }
 
-  Widget get sectionItemImage {
+  Widget sectionItemImage(BuildContext context) {
     return Container(
       margin: const EdgeInsets.only(bottom: 4),
       width: imageSize[size]!.width,
@@ -268,11 +276,7 @@ class _PosterShowItem extends StatelessWidget {
       child: Stack(
         clipBehavior: Clip.none,
         children: [
-          BorderedImageContainer(
-            image: sectionItem.image != null
-                ? NetworkImage(sectionItem.image!)
-                : null,
-          ),
+          BorderedImageContainer(imageUrl: sectionItem.image),
           if (hasNewEpisodes)
             const Positioned(
               top: -4,

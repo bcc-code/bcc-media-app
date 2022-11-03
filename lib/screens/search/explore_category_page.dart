@@ -1,4 +1,5 @@
 import 'package:brunstadtv_app/helpers/btv_typography.dart';
+import 'package:extended_image/extended_image.dart';
 import 'package:flutter/material.dart';
 
 import '../../components/bordered_image_container.dart';
@@ -109,17 +110,7 @@ class _CategoryEpisode extends StatelessWidget {
       margin: margin,
       child: Column(
         children: [
-          LayoutBuilder(
-            builder: (context, constraints) {
-              return BorderedImageContainer(
-                height: constraints.maxWidth * (9 / 16),
-                margin: const EdgeInsets.only(bottom: 4),
-                image: episode['image'] != null
-                    ? NetworkImage(episode['image']!)
-                    : null,
-              );
-            },
-          ),
+          BorderedImageContainer(imageUrl: episode['image']),
           Text(
             episode['title']!,
             style: BtvTextStyles.caption1.copyWith(color: BtvColors.label1),

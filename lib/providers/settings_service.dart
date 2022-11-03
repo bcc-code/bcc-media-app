@@ -1,16 +1,20 @@
 import 'package:bccm_player/playback_platform_pigeon.g.dart';
 import 'package:bccm_player/playback_service_interface.dart';
+import 'package:brunstadtv_app/graphql/queries/devices.graphql.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+
+import '../graphql/client.dart';
 
 part 'settings_service.freezed.dart';
 
 @freezed
 class Settings with _$Settings {
   const factory Settings(
-      {Locale? appLanguage,
+      {required Locale appLanguage,
       String? audioLanguage,
       String? subtitleLanguage}) = _Settings;
 }
@@ -18,14 +22,16 @@ class Settings with _$Settings {
 extension on Settings {
   AppConfig toAppConfig() {
     return AppConfig(
-        appLanguage: appLanguage?.languageCode,
+        appLanguage: appLanguage.languageCode,
         audioLanguage: audioLanguage,
         subtitleLanguage: subtitleLanguage);
   }
 }
 
 class SettingsService extends StateNotifier<Settings> {
-  SettingsService(Settings settings) : super(settings);
+  SettingsService(this.ref, Settings settings) : super(settings);
+
+  final Ref ref;
 
   final Future<SharedPreferences> prefsF = SharedPreferences.getInstance();
 
@@ -43,6 +49,15 @@ class SettingsService extends StateNotifier<Settings> {
 
     prefs.setString('app_language', code);
     state = state.copyWith(appLanguage: Locale(code));
+    var token = await FirebaseMessaging.instance.getToken();
+    if (token != null) {
+      var result = await ref.read(gqlClientProvider).mutate$SetDeviceToken(
+          Options$Mutation$SetDeviceToken(
+              variables: Variables$Mutation$SetDeviceToken(
+                  token: token, languages: [state.appLanguage.languageCode])));
+      debugPrint(result.data?.toString());
+    }
+
     // update the rest of the app
   }
 
@@ -63,5 +78,5 @@ class SettingsService extends StateNotifier<Settings> {
 
 final settingsProvider =
     StateNotifierProvider<SettingsService, Settings>((ref) {
-  return SettingsService(const Settings());
+  return SettingsService(ref, const Settings(appLanguage: Locale('en')));
 });

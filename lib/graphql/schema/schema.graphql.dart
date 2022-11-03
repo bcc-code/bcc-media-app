@@ -62,6 +62,7 @@ const possibleTypesMap = {
     'IconSection',
     'LabelSection',
     'MessageSection',
+    'WebSection',
   },
   'ItemSection': {
     'PosterSection',

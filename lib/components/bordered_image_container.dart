@@ -1,20 +1,21 @@
 import 'package:flutter/material.dart';
+import 'package:transparent_image/transparent_image.dart';
 
 import '../helpers/btv_colors.dart';
 
 class BorderedImageContainer extends StatelessWidget {
-  final ImageProvider<Object>? image;
-  final double height;
-  final double width;
+  final String? imageUrl;
+  final double? height;
+  final double? width;
   final EdgeInsetsGeometry margin;
   final EdgeInsetsGeometry padding;
   final Widget? child;
 
   const BorderedImageContainer({
     super.key,
-    this.image,
-    this.width = double.infinity,
-    this.height = double.infinity,
+    this.imageUrl,
+    this.width,
+    this.height,
     this.margin = EdgeInsets.zero,
     this.padding = EdgeInsets.zero,
     this.child,
@@ -23,25 +24,46 @@ class BorderedImageContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: width,
-      height: height,
-      margin: margin,
-      padding: padding,
-      decoration: BoxDecoration(
-        image: image != null
-            ? DecorationImage(
-                image: image!,
-                fit: BoxFit.cover,
-              )
-            : null,
-        borderRadius: BorderRadius.circular(6),
-        border: Border.all(
-          width: 1,
-          color: BtvColors.onTint.withOpacity(0.1),
+        width: width ?? double.infinity,
+        height: height ?? double.infinity,
+        margin: margin,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(6),
+          border: Border.all(
+            width: 1,
+            color: BtvColors.onTint.withOpacity(0.1),
+          ),
+          color: BtvColors.background2,
         ),
-        color: BtvColors.background2,
-      ),
-      child: child,
-    );
+        child: LayoutBuilder(
+          builder: (context, BoxConstraints constraints) {
+            if (imageUrl != null) {
+              return ClipRRect(
+                borderRadius: BorderRadius.circular(6),
+                child: SizedBox(
+                  height: constraints.maxHeight,
+                  child: FadeInImage.memoryNetwork(
+                      fit: BoxFit.cover,
+                      imageErrorBuilder: (context, error, stackTrace) {
+                        debugPrint(stackTrace.toString());
+                        return Text('error');
+                      },
+                      placeholderErrorBuilder: (context, error, stackTrace) {
+                        debugPrint(stackTrace.toString());
+                        return Text('error p');
+                      },
+                      placeholder: kTransparentImage,
+                      image: imageUrl!,
+                      fadeInDuration: const Duration(milliseconds: 400),
+                      imageCacheHeight: (constraints.maxHeight *
+                              MediaQuery.of(context).devicePixelRatio)
+                          .round()),
+                ),
+              );
+            }
+
+            return const SizedBox.shrink();
+          },
+        ));
   }
 }

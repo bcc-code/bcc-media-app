@@ -1,39 +1,43 @@
 import 'package:flutter/material.dart';
 
 class HorizontalSlider extends StatelessWidget {
-  final List<Widget> items;
+  final int itemCount;
+  final IndexedWidgetBuilder itemBuilder;
   final Clip clipBehaviour;
   final EdgeInsetsGeometry padding;
-  final EdgeInsetsGeometry margin;
   final double gap;
+  final double height;
 
   const HorizontalSlider({
     super.key,
-    required this.items,
     this.clipBehaviour = Clip.hardEdge,
-    this.margin = EdgeInsets.zero,
     this.padding = EdgeInsets.zero,
     this.gap = 16,
+    required this.height,
+    required this.itemCount,
+    required this.itemBuilder,
   });
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      margin: margin,
-      child: SingleChildScrollView(
-        clipBehavior: clipBehaviour,
-        physics: const BouncingScrollPhysics(),
-        scrollDirection: Axis.horizontal,
-        child: Container(
-          padding: padding,
-          child: Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: items.map((item) {
-              return Container(
-                  margin: EdgeInsets.only(right: item == items.last ? 0 : gap),
-                  child: item);
-            }).toList(),
-          ),
+    return ConstrainedBox(
+      constraints: BoxConstraints(minHeight: 0, maxHeight: height),
+      child: Container(
+        padding: padding,
+        child: ListView.builder(
+          cacheExtent: MediaQuery.of(context).size.width * 2,
+          addAutomaticKeepAlives: false,
+          clipBehavior: clipBehaviour,
+          physics: const BouncingScrollPhysics(
+              parent: AlwaysScrollableScrollPhysics()),
+          scrollDirection: Axis.horizontal,
+          itemCount: itemCount,
+          itemBuilder: (BuildContext context, int index) {
+            return Container(
+                margin:
+                    EdgeInsets.only(right: index == itemCount - 1 ? 0 : gap),
+                child: itemBuilder(context, index));
+          },
         ),
       ),
     );

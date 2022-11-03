@@ -16,7 +16,7 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$Settings {
-  Locale? get appLanguage => throw _privateConstructorUsedError;
+  Locale get appLanguage => throw _privateConstructorUsedError;
   String? get audioLanguage => throw _privateConstructorUsedError;
   String? get subtitleLanguage => throw _privateConstructorUsedError;
 
@@ -30,7 +30,7 @@ abstract class $SettingsCopyWith<$Res> {
   factory $SettingsCopyWith(Settings value, $Res Function(Settings) then) =
       _$SettingsCopyWithImpl<$Res>;
   $Res call(
-      {Locale? appLanguage, String? audioLanguage, String? subtitleLanguage});
+      {Locale appLanguage, String? audioLanguage, String? subtitleLanguage});
 }
 
 /// @nodoc
@@ -51,7 +51,7 @@ class _$SettingsCopyWithImpl<$Res> implements $SettingsCopyWith<$Res> {
       appLanguage: appLanguage == freezed
           ? _value.appLanguage
           : appLanguage // ignore: cast_nullable_to_non_nullable
-              as Locale?,
+              as Locale,
       audioLanguage: audioLanguage == freezed
           ? _value.audioLanguage
           : audioLanguage // ignore: cast_nullable_to_non_nullable
@@ -71,7 +71,7 @@ abstract class _$$_SettingsCopyWith<$Res> implements $SettingsCopyWith<$Res> {
       __$$_SettingsCopyWithImpl<$Res>;
   @override
   $Res call(
-      {Locale? appLanguage, String? audioLanguage, String? subtitleLanguage});
+      {Locale appLanguage, String? audioLanguage, String? subtitleLanguage});
 }
 
 /// @nodoc
@@ -94,7 +94,7 @@ class __$$_SettingsCopyWithImpl<$Res> extends _$SettingsCopyWithImpl<$Res>
       appLanguage: appLanguage == freezed
           ? _value.appLanguage
           : appLanguage // ignore: cast_nullable_to_non_nullable
-              as Locale?,
+              as Locale,
       audioLanguage: audioLanguage == freezed
           ? _value.audioLanguage
           : audioLanguage // ignore: cast_nullable_to_non_nullable
@@ -111,10 +111,10 @@ class __$$_SettingsCopyWithImpl<$Res> extends _$SettingsCopyWithImpl<$Res>
 
 class _$_Settings implements _Settings {
   const _$_Settings(
-      {this.appLanguage, this.audioLanguage, this.subtitleLanguage});
+      {required this.appLanguage, this.audioLanguage, this.subtitleLanguage});
 
   @override
-  final Locale? appLanguage;
+  final Locale appLanguage;
   @override
   final String? audioLanguage;
   @override
@@ -153,12 +153,12 @@ class _$_Settings implements _Settings {
 
 abstract class _Settings implements Settings {
   const factory _Settings(
-      {final Locale? appLanguage,
+      {required final Locale appLanguage,
       final String? audioLanguage,
       final String? subtitleLanguage}) = _$_Settings;
 
   @override
-  Locale? get appLanguage;
+  Locale get appLanguage;
   @override
   String? get audioLanguage;
   @override

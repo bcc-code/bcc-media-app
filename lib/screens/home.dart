@@ -33,9 +33,12 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
   void initState() {
     super.initState();
 
-    final client = ref.read(gqlClientProvider);
+    resultFuture = getPage();
+  }
 
-    resultFuture = client
+  Future<Query$Page$page> getPage() async {
+    final client = ref.read(gqlClientProvider);
+    return client
         .query$Page(
       Options$Query$Page(variables: Variables$Query$Page(code: 'frontpage')),
     )
@@ -103,7 +106,13 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
           ),
         ),
       ),
-      body: BccmPage(pageFuture: resultFuture),
+      body: BccmPage(pageFuture: resultFuture, onRefresh: () async {
+        var future =  getPage();
+          setState(() {
+            resultFuture = future;
+          });
+          await future;
+      }),
     );
   }
 }

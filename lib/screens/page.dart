@@ -29,9 +29,14 @@ class _PageScreenState extends ConsumerState<PageScreen> {
   void initState() {
     super.initState();
 
-    final client = ref.read(gqlClientProvider);
+    resultFuture.then((pageData) {
+      setState(() => pageTitle = pageData.title);
+    });
+  }
 
-    resultFuture = client
+  Future<Query$Page$page> getPage() {
+    final client = ref.read(gqlClientProvider);
+    return client
         .query$Page(
       Options$Query$Page(
           variables: Variables$Query$Page(code: widget.pageCode)),
@@ -51,10 +56,6 @@ class _PageScreenState extends ConsumerState<PageScreen> {
         print(error);
       },
     );
-
-    resultFuture.then((pageData) {
-      setState(() => pageTitle = pageData.title);
-    });
   }
 
   @override
@@ -75,6 +76,13 @@ class _PageScreenState extends ConsumerState<PageScreen> {
       ),
       body: BccmPage(
         pageFuture: resultFuture,
+        onRefresh: () async {
+          var future = getPage();
+          setState(() {
+            resultFuture = future;
+          });
+          await future;
+        },
       ),
     );
   }
