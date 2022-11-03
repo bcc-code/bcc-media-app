@@ -59,7 +59,6 @@ class _SearchScreenState extends State<SearchScreen> {
 
   @override
   Widget build(BuildContext context) {
-    print('--- HELLO ---');
     final searchScreen = Scaffold(
       body: SafeArea(
         child: Column(

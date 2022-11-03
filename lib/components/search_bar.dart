@@ -21,7 +21,7 @@ class SearchBar extends StatefulWidget {
 
 class _SearchBarState extends State<SearchBar> {
   late TextEditingController _fieldController;
-  var _showClearButton = false;
+  late FocusNode focusNode;
   var _inSearchMode = false;
   String? _prevValue;
 
@@ -30,11 +30,10 @@ class _SearchBarState extends State<SearchBar> {
     super.initState();
     _fieldController = TextEditingController(text: widget.initialQuery);
     _fieldController.addListener(_onValueChange);
+    focusNode = FocusNode();
     if (widget.initialQuery != null) {
       _prevValue = widget.initialQuery;
-      _showClearButton = true;
       _inSearchMode = true;
-      FocusScope.of(context).unfocus();
     }
   }
 
@@ -55,9 +54,8 @@ class _SearchBarState extends State<SearchBar> {
       );
       _fieldController.addListener(_onValueChange);
       _prevValue = widget.initialQuery;
-      _showClearButton = true;
       _inSearchMode = true;
-      FocusScope.of(context).unfocus();
+      focusNode.unfocus();
     }
   }
 
@@ -67,13 +65,11 @@ class _SearchBarState extends State<SearchBar> {
       widget.onInputChange(_fieldController.text);
     }
     _prevValue = _fieldController.text;
-    setState(() {
-      _showClearButton = _fieldController.text == '' ? false : true;
-    });
   }
 
   void _onCleared() {
     _fieldController.clear();
+    focusNode.requestFocus();
   }
 
   void _onFocusChanged(focus) {
@@ -86,15 +82,16 @@ class _SearchBarState extends State<SearchBar> {
   }
 
   void _onCancelled() {
-    _onCleared();
-    FocusScope.of(context).unfocus();
+    _fieldController.clear();
     _inSearchMode = false;
     widget.onModeChange(false);
+    focusNode.unfocus();
   }
 
   @override
   void dispose() {
     _fieldController.dispose();
+    focusNode.dispose();
     super.dispose();
   }
 
@@ -117,6 +114,7 @@ class _SearchBarState extends State<SearchBar> {
                   onFocusChange: _onFocusChanged,
                   child: TextField(
                     controller: _fieldController,
+                    focusNode: focusNode,
                     decoration: InputDecoration(
                       isDense: true,
                       prefixIcon: const Padding(
@@ -128,7 +126,7 @@ class _SearchBarState extends State<SearchBar> {
                       ),
                       prefixIconConstraints:
                           const BoxConstraints(minWidth: 0, maxHeight: 24),
-                      suffixIcon: _showClearButton
+                      suffixIcon: _fieldController.text != ''
                           ? Padding(
                               padding:
                                   const EdgeInsets.only(right: 12, left: 10),
