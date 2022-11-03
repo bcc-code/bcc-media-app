@@ -79,6 +79,16 @@ class MockBccmPlayerPlatform
   void stop(String playerId, bool reset) {
     // TODO: implement stop
   }
+
+  @override
+  void setAppConfig(AppConfig? config) {
+    // TODO: implement setAppConfig
+  }
+
+  @override
+  void setPlayerViewVisibility(int viewId, bool visible) {
+    // TODO: implement setPlayerViewVisibility
+  }
 }
 
 void main() {

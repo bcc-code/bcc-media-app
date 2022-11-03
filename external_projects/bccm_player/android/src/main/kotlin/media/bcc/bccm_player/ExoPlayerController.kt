@@ -8,7 +8,7 @@ import androidx.media3.exoplayer.ExoPlayer
 import androidx.media3.exoplayer.trackselection.DefaultTrackSelector
 import androidx.media3.ui.PlayerView
 import com.google.android.gms.cast.framework.CastContext
-import com.npaw.youbora.lib6.exoplayer2.Exoplayer2Adapter
+import com.npaw.youbora.lib6.media3.Media3Adapter
 import com.npaw.youbora.lib6.plugin.Options
 import com.npaw.youbora.lib6.plugin.Plugin
 import kotlinx.coroutines.*
@@ -73,7 +73,7 @@ class ExoPlayerController(private val context: Context) : PlayerController(), Pl
         // app.https missing?
 
         youboraPlugin = Plugin(youboraOptions, context)
-        val adapter = Exoplayer2Adapter(exoPlayer);
+        val adapter = Media3Adapter(exoPlayer);
         youboraPlugin.adapter = adapter;
         player.addListener(this)
 
