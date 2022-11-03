@@ -56,12 +56,7 @@ class _Program extends StatelessWidget {
         children: [
           AspectRatio(
             aspectRatio: 16 / 9,
-            child: BorderedImageContainer(
-              margin: const EdgeInsets.only(bottom: 7),
-              image: _item.image != null
-                  ? ExtendedImage.network(_item.image!)
-                  : null,
-            ),
+            child: BorderedImageContainer(imageUrl: _item.image),
           ),
           Text(_item.title,
               style: BtvTextStyles.caption1.copyWith(color: BtvColors.label1)),

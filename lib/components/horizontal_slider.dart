@@ -5,14 +5,12 @@ class HorizontalSlider extends StatelessWidget {
   final IndexedWidgetBuilder itemBuilder;
   final Clip clipBehaviour;
   final EdgeInsetsGeometry padding;
-  final EdgeInsetsGeometry margin;
   final double gap;
   final double height;
 
   const HorizontalSlider({
     super.key,
     this.clipBehaviour = Clip.hardEdge,
-    this.margin = EdgeInsets.zero,
     this.padding = EdgeInsets.zero,
     this.gap = 16,
     required this.height,
@@ -25,9 +23,9 @@ class HorizontalSlider extends StatelessWidget {
     return ConstrainedBox(
       constraints: BoxConstraints(minHeight: 0, maxHeight: height),
       child: Container(
-        margin: margin,
+        padding: padding,
         child: ListView.builder(
-          cacheExtent: 10000,
+          cacheExtent: MediaQuery.of(context).size.width * 2,
           addAutomaticKeepAlives: false,
           clipBehavior: clipBehaviour,
           physics: const BouncingScrollPhysics(

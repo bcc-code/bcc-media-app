@@ -55,13 +55,9 @@ class _Episode extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             BorderedImageContainer(
-              width: 128,
-              height: 128 * (9 / 16),
-              margin: const EdgeInsets.only(right: 16),
-              image: _episode.image != null
-                  ? ExtendedImage.network(_episode.image!)
-                  : null,
-            ),
+                imageUrl: _episode.image,
+                width: 128,
+                margin: EdgeInsets.only(right: 16)),
             Expanded(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,

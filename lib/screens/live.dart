@@ -5,6 +5,7 @@ import 'package:bccm_player/bccm_player.dart';
 import 'package:bccm_player/cast_button.dart';
 import 'package:bccm_player/playback_platform_pigeon.g.dart';
 import 'package:bccm_player/playback_service_interface.dart';
+import 'package:extended_image/extended_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:brunstadtv_app/api/livestream.dart';
@@ -222,7 +223,7 @@ class _LiveScreenState extends ConsumerState<LiveScreen> with AutoRouteAware {
             children: [
               AspectRatio(
                 aspectRatio: 16 / 9,
-                child: Image.network(
+                child: ExtendedImage.network(
                   'https://brunstad.tv/static/images/placeholder.jpg',
                   fit: BoxFit.fill,
                   width: 64,

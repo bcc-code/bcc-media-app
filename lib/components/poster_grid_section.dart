@@ -102,7 +102,7 @@ class _GridEpisodeItem extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          sectionItemImage,
+          sectionItemImage(context),
           Row(
             children: [
               if (episode.season != null)
@@ -139,7 +139,7 @@ class _GridEpisodeItem extends StatelessWidget {
     );
   }
 
-  Widget get sectionItemImage {
+  Widget sectionItemImage(BuildContext context) {
     return Container(
       margin: const EdgeInsets.only(bottom: 4),
       width: double.infinity,
@@ -148,15 +148,7 @@ class _GridEpisodeItem extends StatelessWidget {
         child: Stack(
           clipBehavior: Clip.none,
           children: [
-            BorderedImageContainer(
-              image: sectionItem.image != null
-                  ? ExtendedImage.network(sectionItem.image!,
-                      height: 90,
-                      width: 160,
-                      cacheWidth: 90.toInt(),
-                      cacheHeight: 160.toInt())
-                  : null,
-            ),
+            BorderedImageContainer(imageUrl: sectionItem.image),
             if (isComingSoon(episode.productionDate))
               Container(
                 width: double.infinity,
@@ -243,7 +235,7 @@ class _GridShowItem extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        sectionItemImage,
+        sectionItemImage(context),
         Container(
           margin: const EdgeInsets.only(bottom: 2),
           child: Text(
@@ -261,7 +253,7 @@ class _GridShowItem extends StatelessWidget {
     );
   }
 
-  Widget get sectionItemImage {
+  Widget sectionItemImage(BuildContext context) {
     return Container(
       margin: const EdgeInsets.only(bottom: 4),
       width: double.infinity,
@@ -270,15 +262,7 @@ class _GridShowItem extends StatelessWidget {
         child: Stack(
           clipBehavior: Clip.none,
           children: [
-            BorderedImageContainer(
-              image: sectionItem.image != null
-                  ? ExtendedImage.network(sectionItem.image!,
-                      height: 90,
-                      width: 160,
-                      cacheWidth: 90.toInt(),
-                      cacheHeight: 160.toInt())
-                  : null,
-            ),
+            BorderedImageContainer(imageUrl: sectionItem.image),
             if (hasNewEpisodes)
               const Positioned(
                 top: -4,

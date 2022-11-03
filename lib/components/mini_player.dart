@@ -136,7 +136,7 @@ class _MiniPlayer extends StatelessWidget {
             ),
             child: ClipRRect(
                 borderRadius: BorderRadius.circular(4),
-                child: Image.network(
+                child: ExtendedImage.network(
                   fit: BoxFit.fill,
                   artworkUri,
                   width: 64,

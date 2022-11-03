@@ -1,4 +1,3 @@
-
 import 'package:bccm_player/playback_platform_pigeon.g.dart';
 import 'package:brunstadtv_app/debug_app.dart';
 import 'package:brunstadtv_app/helpers/btv_colors.dart';
@@ -99,6 +98,8 @@ void $main({required FirebaseOptions? firebaseOptions}) async {
 
   Intl.defaultLocale = await getDefaultLocale();
 
+  debugInvertOversizedImages = true;
+
   runApp(UncontrolledProviderScope(
     container: providerContainer,
     child: Consumer(
@@ -113,9 +114,12 @@ void $main({required FirebaseOptions? firebaseOptions}) async {
             routerDelegate: appRouter.delegate(),
             routeInformationParser: appRouter.defaultRouteParser(),
             builder: (BuildContext context, Widget? child) {
-              return AppRoot(
-                child: child,
-                navigatorKey: navigatorKey,
+              return MediaQuery(
+                data: MediaQuery.of(context).copyWith(textScaleFactor: 1.0),
+                child: AppRoot(
+                  navigatorKey: navigatorKey,
+                  child: child,
+                ),
               );
             })),
   ));

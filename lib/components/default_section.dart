@@ -103,7 +103,7 @@ class _DefaultEpisodeItem extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            sectionItemImage,
+            sectionItemImage(),
             Container(
               margin: const EdgeInsets.only(bottom: 2),
               child: Row(
@@ -132,6 +132,7 @@ class _DefaultEpisodeItem extends StatelessWidget {
             ),
             Text(
               sectionItem.title,
+              maxLines: 2,
               style: BtvTextStyles.caption1.copyWith(color: BtvColors.label1),
             )
           ],
@@ -140,7 +141,8 @@ class _DefaultEpisodeItem extends StatelessWidget {
     );
   }
 
-  Widget get sectionItemImage {
+  Widget sectionItemImage() {
+    // MEMORY ISSUES HERE
     return Container(
       margin: const EdgeInsets.only(bottom: 4),
       width: imageSize[size]!.width,
@@ -148,17 +150,7 @@ class _DefaultEpisodeItem extends StatelessWidget {
       child: Stack(
         clipBehavior: Clip.none,
         children: [
-          BorderedImageContainer(
-            image: sectionItem.image != null
-                ? ExtendedImage.network(sectionItem.image!,
-                    height: imageSize[size]!.height *
-                        MediaQuery.of(context).devicePixelRatio,
-                    cacheHeight: (imageSize[size]!.height *
-                            MediaQuery.of(context).devicePixelRatio)
-                        .toInt(),
-                    clearMemoryCacheWhenDispose: true)
-                : null,
-          ),
+          BorderedImageContainer(imageUrl: sectionItem.image),
           if (isComingSoon(episode.productionDate))
             Container(
               width: double.infinity,
@@ -245,7 +237,7 @@ class _DefaultShowItem extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          sectionItemImage(context),
+          sectionItemImage(),
           Container(
             margin: const EdgeInsets.only(bottom: 2),
             child: Text(
@@ -262,7 +254,8 @@ class _DefaultShowItem extends StatelessWidget {
     );
   }
 
-  Widget sectionItemImage(BuildContext context) {
+  Widget sectionItemImage() {
+    // Memory issue here?
     return Container(
       margin: const EdgeInsets.only(bottom: 4),
       width: imageSize[size]!.width,
@@ -270,19 +263,7 @@ class _DefaultShowItem extends StatelessWidget {
       child: Stack(
         clipBehavior: Clip.none,
         children: [
-          BorderedImageContainer(
-            image: sectionItem.image != null
-                ? ExtendedImage.network(
-                    sectionItem.image!,
-                    height: imageSize[size]!.height *
-                        MediaQuery.of(context).devicePixelRatio,
-                    cacheHeight: (imageSize[size]!.height *
-                            MediaQuery.of(context).devicePixelRatio)
-                        .toInt(),
-                    clearMemoryCacheWhenDispose: true,
-                  )
-                : null,
-          ),
+          BorderedImageContainer(imageUrl: sectionItem.image),
           if (hasNewEpisodes)
             const Positioned(
               top: -4,

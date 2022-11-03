@@ -118,7 +118,7 @@ class _PosterEpisodeItem extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            sectionItemImage,
+            sectionItemImage(context),
             Container(
               margin: const EdgeInsets.only(bottom: 2),
               child: Row(
@@ -157,7 +157,7 @@ class _PosterEpisodeItem extends StatelessWidget {
     );
   }
 
-  Widget get sectionItemImage {
+  Widget sectionItemImage(BuildContext context) {
     return Container(
       margin: const EdgeInsets.only(bottom: 4),
       width: imageSize[size]!.width,
@@ -165,16 +165,7 @@ class _PosterEpisodeItem extends StatelessWidget {
       child: Stack(
         clipBehavior: Clip.none,
         children: [
-          BorderedImageContainer(
-            image: sectionItem.image != null
-                ? ExtendedImage.network(
-                    sectionItem.image!,
-                    height: imageSize[size]!.height,
-                    cacheHeight: imageSize[size]!.height.toInt(),
-                    clearMemoryCacheWhenDispose: true,
-                  )
-                : null,
-          ),
+          BorderedImageContainer(imageUrl: sectionItem.image),
           if (isComingSoon(episode.productionDate))
             Container(
               width: double.infinity,
@@ -257,25 +248,12 @@ class _PosterShowItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final imageWidget = BorderedImageContainer(
-      height: imageSize[size]!.height,
-      margin: const EdgeInsets.only(bottom: 4),
-      image: sectionItem.image != null
-          ? ExtendedImage.network(
-              sectionItem.image!,
-              height: imageSize[size]!.height,
-              cacheHeight: imageSize[size]!.height.toInt(),
-              clearMemoryCacheWhenDispose: true,
-            )
-          : null,
-    );
-
     return SizedBox(
       width: imageSize[size]!.width,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          sectionItemImage,
+          sectionItemImage(context),
           Text(
             sectionItem.title,
             overflow: TextOverflow.ellipsis,
@@ -287,7 +265,7 @@ class _PosterShowItem extends StatelessWidget {
     );
   }
 
-  Widget get sectionItemImage {
+  Widget sectionItemImage(BuildContext context) {
     return Container(
       margin: const EdgeInsets.only(bottom: 4),
       width: imageSize[size]!.width,
@@ -295,16 +273,7 @@ class _PosterShowItem extends StatelessWidget {
       child: Stack(
         clipBehavior: Clip.none,
         children: [
-          BorderedImageContainer(
-            image: sectionItem.image != null
-                ? ExtendedImage.network(
-                    sectionItem.image!,
-                    height: imageSize[size]!.height,
-                    cacheHeight: imageSize[size]!.height.toInt(),
-                    clearMemoryCacheWhenDispose: true,
-                  )
-                : null,
-          ),
+          BorderedImageContainer(imageUrl: sectionItem.image),
           if (hasNewEpisodes)
             const Positioned(
               top: -4,

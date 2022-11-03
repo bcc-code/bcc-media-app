@@ -16,39 +16,39 @@ class IconSection extends StatelessWidget {
   Widget build(BuildContext context) {
     final sectionItems = data.items.items;
     return Padding(
-      padding: const EdgeInsets.only(top: 16, bottom: 12, left: 16),
+      padding: const EdgeInsets.only(top: 16, left: 16),
       child: Column(
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           if (data.title != null)
             Container(
-              margin: const EdgeInsets.only(bottom: 16),
               child: Text(
                 data.title!,
                 style: BtvTextStyles.title2,
               ),
             ),
           HorizontalSlider(
-            height: 139,
+            height: 140,
             itemCount: data.items.items.length,
             itemBuilder: (BuildContext context, int index) {
               var item = data.items.items[index];
               return CategoryButton(
-                onTap: () {
-                  if (item.item
-                      is Fragment$Section$$IconSection$items$items$item$$Page) {
-                    final pageItem = item.item
-                        as Fragment$Section$$IconSection$items$items$item$$Page;
-                    context.router.navigate(
-                      PageScreenRoute(pageCode: pageItem.code),
-                    );
-                  }
-                },
-                label: item.title,
-                networkImage: item.image,
-                width: 80,
-              );
+                  onTap: () {
+                    if (item.item
+                        is Fragment$Section$$IconSection$items$items$item$$Page) {
+                      final pageItem = item.item
+                          as Fragment$Section$$IconSection$items$items$item$$Page;
+                      context.router.navigate(
+                        PageScreenRoute(pageCode: pageItem.code),
+                      );
+                    }
+                  },
+                  label: item.title,
+                  networkImage: item.image,
+                  width: 80,
+                  padding: EdgeInsets.all(8),
+                  margin: EdgeInsets.only(top: 12, bottom: 4));
             },
           ),
         ],

@@ -1,3 +1,4 @@
+import 'package:extended_image/extended_image.dart';
 import 'package:flutter/material.dart';
 
 import '../helpers/btv_colors.dart';
@@ -37,29 +38,32 @@ class CategoryButton extends StatelessWidget {
             AspectRatio(
               aspectRatio: aspectRatio,
               child: Container(
-                margin: const EdgeInsets.only(bottom: 4),
                 padding: padding,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(12),
                   border: Border.all(width: 1, color: const Color(0x19ccddff)),
                   color: const Color(0xff1d2838),
                 ),
-                child: Center(
-                  child: assetImage != null
-                      ? Image.asset(
-                          assetImage!,
-                          height: double.infinity,
-                          fit: BoxFit.fitHeight,
-                        )
-                      : Image.network(
-                          networkImage!,
-                          height: double.infinity,
-                          fit: BoxFit.fitHeight,
-                        ),
-                ),
+                child: LayoutBuilder(builder: (context, constraints) {
+                  return Center(
+                    child: assetImage != null
+                        ? Image.asset(
+                            assetImage!,
+                            fit: BoxFit.fitHeight,
+                          )
+                        : ExtendedImage.network(
+                            networkImage!,
+                            cacheHeight: (constraints.maxHeight *
+                                    MediaQuery.of(context).devicePixelRatio)
+                                .round(),
+                            fit: BoxFit.fitHeight,
+                          ),
+                  );
+                }),
               ),
             ),
-            SizedBox(
+            Padding(
+              padding: EdgeInsets.only(top: 4),
               child: Text(
                 label,
                 textAlign: TextAlign.center,

@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 
 import '../graphql/queries/page.graphql.dart';
 import '../helpers/btv_colors.dart';
+import '../helpers/utils.dart';
 import 'icon_label_button.dart';
 
 class FeaturedSection extends StatelessWidget {
@@ -20,18 +21,21 @@ class FeaturedSection extends StatelessWidget {
       final viewportFraction =
           (constraints.maxWidth - (32 - 2 * marginX)) / constraints.maxWidth;
       final sectionItems = data.items.items;
-      return SizedBox(
-        height: 323,
-        child: PageView.builder(
-          controller: PageController(viewportFraction: viewportFraction),
-          itemCount: sectionItems.length,
-          itemBuilder: (context, index) {
-            final sectionItem = sectionItems[index % sectionItems.length];
-            return _FeaturedItem(
-              sectionItem: sectionItem,
-              margin: const EdgeInsets.symmetric(horizontal: marginX),
-            );
-          },
+      return Padding(
+        padding: EdgeInsets.only(top: 16),
+        child: SizedBox(
+          height: 323,
+          child: PageView.builder(
+            controller: PageController(viewportFraction: viewportFraction),
+            itemCount: sectionItems.length,
+            itemBuilder: (context, index) {
+              final sectionItem = sectionItems[index % sectionItems.length];
+              return _FeaturedItem(
+                sectionItem: sectionItem,
+                margin: const EdgeInsets.symmetric(horizontal: marginX),
+              );
+            },
+          ),
         ),
       );
     });
@@ -137,7 +141,8 @@ class _GradientImage extends StatelessWidget {
         image: image != null
             ? DecorationImage(
                 fit: BoxFit.cover,
-                image: ExtendedNetworkImageProvider(image!),
+                image: cacheOptimizedImage(
+                    context: context, imageUrl: image!, height: height),
               )
             : null,
       ),
