@@ -83,6 +83,7 @@ class BccmPage extends StatelessWidget {
         if (snapshot.hasData) {
           return getPage(snapshot.data!);
         } else if (snapshot.hasError) {
+          print(snapshot.error);
           return loadingError(context);
         }
         return loadingContent;

@@ -2,6 +2,7 @@ import 'package:brunstadtv_app/helpers/btv_typography.dart';
 import 'package:extended_image/extended_image.dart';
 import 'package:flutter/material.dart';
 
+import '../../helpers/btv_colors.dart';
 import '../../services/auth_service.dart';
 
 class Avatar extends StatelessWidget {
@@ -24,7 +25,7 @@ class Avatar extends StatelessWidget {
               height: avatarWidth,
               decoration: BoxDecoration(
                 border: Border.all(
-                  color: const Color.fromRGBO(29, 40, 56, 1),
+                  color: BtvColors.background2,
                   width: 2,
                 ),
                 borderRadius:

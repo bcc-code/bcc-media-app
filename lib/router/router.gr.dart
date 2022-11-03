@@ -285,6 +285,11 @@ class AppRouter extends _i11.RootStackRouter {
                   path: 'explore-category',
                   parent: SearchScreenWrapperRoute.name,
                 ),
+                _i11.RouteConfig(
+                  EpisodeScreenRoute.name,
+                  path: 'episode/:episodeId',
+                  parent: SearchScreenWrapperRoute.name,
+                ),
               ],
             ),
             _i11.RouteConfig(

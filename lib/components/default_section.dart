@@ -1,7 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:brunstadtv_app/components/watch_progress_indicator.dart';
 import 'package:brunstadtv_app/router/router.gr.dart';
-import 'package:extended_image/extended_image.dart';
 import 'package:flutter/material.dart';
 
 import '../helpers/btv_colors.dart';
@@ -150,13 +149,17 @@ class _DefaultEpisodeItem extends StatelessWidget {
       child: Stack(
         clipBehavior: Clip.none,
         children: [
-          BorderedImageContainer(imageUrl: sectionItem.image),
+          isComingSoon(episode.productionDate)
+              ? Opacity(
+                  opacity: 0.5,
+                  child: BorderedImageContainer(imageUrl: sectionItem.image),
+                )
+              : BorderedImageContainer(imageUrl: sectionItem.image),
           if (isComingSoon(episode.productionDate))
             Container(
               width: double.infinity,
               height: double.infinity,
               decoration: const BoxDecoration(
-                color: Color.fromRGBO(0, 0, 0, 0.5),
                 image: DecorationImage(
                   image: AssetImage('assets/icons/Wait.png'),
                 ),
@@ -201,17 +204,17 @@ class _DefaultEpisodeItem extends StatelessWidget {
     if (isLive) {
       return const FeatureBadge(
         label: 'Live now',
-        color: Color.fromRGBO(230, 60, 98, 1),
+        color: BtvColors.tint2,
       );
     } else if (isComingSoon(episode.productionDate)) {
       return const FeatureBadge(
         label: 'Coming soon',
-        color: Color.fromRGBO(29, 40, 56, 1),
+        color: BtvColors.background2,
       );
     } else if (isNewItem) {
       return const FeatureBadge(
         label: 'New',
-        color: Color.fromRGBO(230, 60, 98, 1),
+        color: BtvColors.tint2,
       );
     }
     return null;
@@ -270,7 +273,7 @@ class _DefaultShowItem extends StatelessWidget {
               right: -4,
               child: FeatureBadge(
                 label: 'New Episodes',
-                color: Color.fromRGBO(230, 60, 98, 1),
+                color: BtvColors.tint2,
               ),
             ),
         ],

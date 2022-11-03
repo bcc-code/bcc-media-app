@@ -103,7 +103,7 @@ class _ContactSupportState extends State<ContactSupport> {
       child: Scaffold(
         resizeToAvoidBottomInset: false,
         appBar: AppBar(
-          backgroundColor: const Color.fromRGBO(13, 22, 35, 1),
+          backgroundColor: BtvColors.background1,
           automaticallyImplyLeading: false,
           elevation: 0,
           title: GestureDetector(
@@ -134,8 +134,8 @@ class _ContactSupportState extends State<ContactSupport> {
                         });
                       },
                       style: TextButton.styleFrom(
-                        foregroundColor: const Color.fromRGBO(255, 255, 255, 1),
-                        backgroundColor: const Color.fromRGBO(110, 176, 230, 1),
+                        foregroundColor: BtvColors.onTint,
+                        backgroundColor: BtvColors.tint1,
                         padding: const EdgeInsets.only(
                             left: 12, right: 12, top: 3.5, bottom: 4.5),
                         textStyle: BtvTextStyles.button1,
@@ -153,66 +153,69 @@ class _ContactSupportState extends State<ContactSupport> {
                 : const SizedBox.shrink(),
           ],
         ),
-        body: Container(
-          padding: const EdgeInsets.symmetric(horizontal: 15.5),
-          height: double.infinity,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              const Text(
-                'Contact Support',
-                style: BtvTextStyles.headline1,
-              ),
-              if (!_loading) ...[
-                _TextFieldInput(
-                  textController: _textController,
-                  textFldOnChange: _textFieldHandler,
+        body: SafeArea(
+          child: Container(
+            padding: const EdgeInsets.symmetric(horizontal: 15.5),
+            height: double.infinity,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                const Text(
+                  'Contact Support',
+                  style: BtvTextStyles.headline1,
                 ),
-                Text(
-                  'Your message will include this information, to help us better fix the issues.',
-                  style: BtvTextStyles.body2.copyWith(color: BtvColors.label1),
-                ),
-                _DeviceInfo(deviceInfos: deviceInfos()),
-              ] else
-                FutureBuilder<String>(
-                  future: ajaxCall,
-                  builder:
-                      (BuildContext context, AsyncSnapshot<String> snapshot) {
-                    if (snapshot.hasData) {
-                      return _SendingResultPage(
-                        sendingResult: true,
-                      );
-                    } else if (snapshot.hasError) {
-                      return _SendingResultPage(
-                        sendingResult: false,
-                      );
-                    } else {
-                      return Expanded(
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Column(
-                              mainAxisSize: MainAxisSize.max,
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: const <Widget>[
-                                CircularProgressIndicator(),
-                                SizedBox(
-                                  height: 12,
-                                ),
-                                Text(
-                                  'Sending',
-                                  style: BtvTextStyles.body1,
-                                ),
-                              ],
-                            ),
-                          ],
-                        ),
-                      );
-                    }
-                  },
-                ),
-            ],
+                if (!_loading) ...[
+                  _TextFieldInput(
+                    textController: _textController,
+                    textFldOnChange: _textFieldHandler,
+                  ),
+                  Text(
+                    'Your message will include this information, to help us better fix the issues.',
+                    style:
+                        BtvTextStyles.body2.copyWith(color: BtvColors.label1),
+                  ),
+                  _DeviceInfo(deviceInfos: deviceInfos()),
+                ] else
+                  FutureBuilder<String>(
+                    future: ajaxCall,
+                    builder:
+                        (BuildContext context, AsyncSnapshot<String> snapshot) {
+                      if (snapshot.hasData) {
+                        return _SendingResultPage(
+                          sendingResult: true,
+                        );
+                      } else if (snapshot.hasError) {
+                        return _SendingResultPage(
+                          sendingResult: false,
+                        );
+                      } else {
+                        return Expanded(
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Column(
+                                mainAxisSize: MainAxisSize.max,
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: const <Widget>[
+                                  CircularProgressIndicator(),
+                                  SizedBox(
+                                    height: 12,
+                                  ),
+                                  Text(
+                                    'Sending',
+                                    style: BtvTextStyles.body1,
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
+                        );
+                      }
+                    },
+                  ),
+              ],
+            ),
           ),
         ),
       ),
@@ -243,19 +246,19 @@ class _TextFieldInput extends StatelessWidget {
               'Describe the issue you are experiencing, and what you do to make it happen.',
           hintStyle: BtvTextStyles.body1,
           filled: true,
-          fillColor: Color.fromRGBO(29, 40, 56, 1),
+          fillColor: BtvColors.background2,
           enabledBorder: OutlineInputBorder(
             borderRadius: BorderRadius.all(Radius.circular(6.0)),
             borderSide: BorderSide(
               width: 1,
-              color: Color.fromRGBO(13, 22, 35, 1),
+              color: BtvColors.background1,
             ),
           ),
           focusedBorder: OutlineInputBorder(
               borderRadius: BorderRadius.all(Radius.circular(6.0)),
               borderSide: BorderSide(
                 width: 1,
-                color: Color.fromRGBO(110, 176, 230, 1),
+                color: BtvColors.tint1,
               )),
           contentPadding: EdgeInsets.symmetric(horizontal: 16, vertical: 15),
         ),
@@ -339,7 +342,7 @@ class _DeviceInfoList extends StatelessWidget {
               ),
               const Divider(
                 height: 1,
-                color: Color.fromRGBO(204, 221, 255, 0.1),
+                color: BtvColors.seperatorOnLight,
               ),
             ],
           ),

@@ -23,6 +23,7 @@ import 'package:flutter_svg/svg.dart';
 import '../api/brunstadtv.dart';
 import '../api/episodes.dart';
 import '../components/mini_player.dart';
+import '../helpers/btv_colors.dart';
 
 class EpisodePageArguments {
   int episodeId;
@@ -200,7 +201,7 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen> {
                   }
 
                   return Container(
-                    color: const Color.fromARGB(255, 29, 40, 56),
+                    color: BtvColors.background2,
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [

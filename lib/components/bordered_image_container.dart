@@ -1,6 +1,7 @@
-import 'package:extended_image/extended_image.dart';
 import 'package:flutter/material.dart';
 import 'package:transparent_image/transparent_image.dart';
+
+import '../helpers/btv_colors.dart';
 
 class BorderedImageContainer extends StatelessWidget {
   final String? imageUrl;
@@ -30,9 +31,9 @@ class BorderedImageContainer extends StatelessWidget {
           borderRadius: BorderRadius.circular(6),
           border: Border.all(
             width: 1,
-            color: const Color.fromRGBO(255, 255, 255, 0.1),
+            color: BtvColors.onTint.withOpacity(0.1),
           ),
-          color: const Color.fromRGBO(29, 40, 56, 1),
+          color: BtvColors.background2,
         ),
         child: LayoutBuilder(
           builder: (context, BoxConstraints constraints) {

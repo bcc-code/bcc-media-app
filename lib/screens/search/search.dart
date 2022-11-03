@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../helpers/btv_colors.dart';
 import './search_home_page.dart';
 import './search_results_page.dart';
 
@@ -42,8 +43,8 @@ class _SearchScreenState extends State<SearchScreen> {
             ),
             Container(
               margin: const EdgeInsets.only(bottom: 8),
-              child: const Divider(
-                  height: 1, color: Color.fromRGBO(204, 221, 255, 0.1)),
+              child:
+                  const Divider(height: 1, color: BtvColors.seperatorOnLight),
             ),
             Expanded(
               child: _inSearchMode

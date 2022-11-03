@@ -17,7 +17,7 @@ class _AboutScreenState extends State<AboutScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: const Color.fromRGBO(13, 22, 35, 1),
+        backgroundColor: BtvColors.background1,
         leadingWidth: 90,
         centerTitle: true,
         title: const Text(
@@ -26,21 +26,24 @@ class _AboutScreenState extends State<AboutScreen> {
           textAlign: TextAlign.center,
         ),
       ),
-      body: SingleChildScrollView(
-        child: Container(
-          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 17),
-          child: Column(
-            children: [
-              SizedBox(
-                  width: 200,
-                  height: 30,
-                  child: ElevatedButton(
-                      onPressed: () async {
-                        var token = await FirebaseMessaging.instance.getToken();
-                        print('token : $token');
-                      },
-                      child: const Text('Print info to console')))
-            ],
+      body: SafeArea(
+        child: SingleChildScrollView(
+          child: Container(
+            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 17),
+            child: Column(
+              children: [
+                SizedBox(
+                    width: 200,
+                    height: 30,
+                    child: ElevatedButton(
+                        onPressed: () async {
+                          var token =
+                              await FirebaseMessaging.instance.getToken();
+                          print('token : $token');
+                        },
+                        child: const Text('Print info to console')))
+              ],
+            ),
           ),
         ),
       ),

@@ -113,7 +113,7 @@ class _MiniPlayer extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       height: 62,
-      color: const Color(0xff1d2838),
+      color: BtvColors.background2,
       padding: const EdgeInsets.symmetric(
         horizontal: 16,
         vertical: 12,
@@ -130,7 +130,7 @@ class _MiniPlayer extends StatelessWidget {
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(4),
               border: Border.all(
-                color: const Color(0x19ffffff),
+                color: BtvColors.onTint.withOpacity(0.01),
                 width: 1,
               ),
             ),

@@ -2,6 +2,7 @@ import 'package:brunstadtv_app/providers/settings_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../components/option_list.dart';
+import '../../helpers/btv_colors.dart';
 
 class AppLanguageScreen extends ConsumerStatefulWidget {
   const AppLanguageScreen({super.key});
@@ -94,25 +95,27 @@ class _AppLanguageScreenState extends ConsumerState<AppLanguageScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: const Color.fromRGBO(13, 22, 35, 1),
+        backgroundColor: BtvColors.background1,
         title: const Text('App language'),
         centerTitle: true,
-        bottom: const PreferredSize(
-          preferredSize: Size.fromHeight(6),
+        bottom: PreferredSize(
+          preferredSize: const Size.fromHeight(6),
           child: Divider(
-            color: Color.fromRGBO(204, 221, 255, 0.3),
+            color: BtvColors.seperatorOnLight.withOpacity(0.3),
             height: 1,
           ),
         ),
       ),
-      body: Container(
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(15),
-        ),
-        child: OptionList(
-          optionData: languageList,
-          currentSelection: selected,
-          onSelectionChange: _onSelectionChanged,
+      body: SafeArea(
+        child: Container(
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(15),
+          ),
+          child: OptionList(
+            optionData: languageList,
+            currentSelection: selected,
+            onSelectionChange: _onSelectionChanged,
+          ),
         ),
       ),
     );

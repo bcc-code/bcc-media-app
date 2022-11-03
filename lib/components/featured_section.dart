@@ -64,15 +64,15 @@ class _FeaturedItem extends StatelessWidget {
             width: double.infinity,
             padding:
                 const EdgeInsets.only(top: 12, right: 18, bottom: 18, left: 18),
-            decoration: const BoxDecoration(
+            decoration: BoxDecoration(
               gradient: LinearGradient(
                 begin: Alignment.topCenter,
                 end: Alignment.bottomCenter,
                 colors: [
-                  Color.fromRGBO(13, 22, 35, 0),
-                  Color.fromRGBO(13, 22, 35, 1),
+                  BtvColors.background1.withOpacity(0),
+                  BtvColors.background1,
                 ],
-                stops: [0, 0.36],
+                stops: const [0, 0.36],
               ),
             ),
             child: Column(
@@ -137,7 +137,7 @@ class _GradientImage extends StatelessWidget {
       width: double.infinity,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(12),
-        color: const Color.fromRGBO(29, 40, 56, 1),
+        color: BtvColors.background2,
         image: image != null
             ? DecorationImage(
                 fit: BoxFit.cover,
@@ -146,14 +146,14 @@ class _GradientImage extends StatelessWidget {
               )
             : null,
       ),
-      foregroundDecoration: const BoxDecoration(
+      foregroundDecoration: BoxDecoration(
         gradient: LinearGradient(
           begin: Alignment.topCenter,
           end: Alignment.bottomCenter,
           colors: [
-            Color.fromRGBO(13, 22, 35, 0.23),
+            BtvColors.background1.withOpacity(0.23),
             Color.fromRGBO(26, 37, 53, 0),
-            Color.fromRGBO(13, 22, 35, 1),
+            BtvColors.background1,
           ],
           stops: [0, 0.5, 1],
         ),

@@ -87,25 +87,27 @@ class _ProfileState extends ConsumerState<Profile> {
       appBar: AppBar(
         title: const Text('Profile'),
       ),
-      body: SingleChildScrollView(
-        child: SizedBox(
-          width: double.infinity,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: <Widget>[
-              const Avatar(),
-              ActionButtons(),
-              Column(
-                children: [
-                  SettingList(_settingsOptions),
-                  const SizedBox(height: 24),
-                  SettingList(_supportOptions),
-                  const SizedBox(height: 24),
-                  SettingList(_termsaAndPrivacyOptions),
-                  const SizedBox(height: 24),
-                ],
-              ),
-            ],
+      body: SafeArea(
+        child: SingleChildScrollView(
+          child: SizedBox(
+            width: double.infinity,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: <Widget>[
+                const Avatar(),
+                ActionButtons(),
+                Column(
+                  children: [
+                    SettingList(_settingsOptions),
+                    const SizedBox(height: 24),
+                    SettingList(_supportOptions),
+                    const SizedBox(height: 24),
+                    SettingList(_termsaAndPrivacyOptions),
+                    const SizedBox(height: 24),
+                  ],
+                ),
+              ],
+            ),
           ),
         ),
       ),

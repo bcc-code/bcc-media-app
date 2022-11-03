@@ -41,8 +41,9 @@ class CategoryButton extends StatelessWidget {
                 padding: padding,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(12),
-                  border: Border.all(width: 1, color: const Color(0x19ccddff)),
-                  color: const Color(0xff1d2838),
+                  border:
+                      Border.all(width: 1, color: BtvColors.seperatorOnLight),
+                  color: BtvColors.background2,
                 ),
                 child: LayoutBuilder(builder: (context, constraints) {
                   return Center(
