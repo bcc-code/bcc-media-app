@@ -17,8 +17,13 @@ class LabelSection extends StatelessWidget {
     return Container(
       margin: const EdgeInsets.only(top: 12, left: 16),
       child: HorizontalSlider(
+        height: 28,
         gap: 8,
-        items: data.items.items.map((item) => _LabelItem(item)).toList(),
+        itemCount: data.items.items.length,
+        itemBuilder: (BuildContext context, int index) {
+          var item = data.items.items[index];
+          return _LabelItem(item);
+        },
       ),
     );
   }

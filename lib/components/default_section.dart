@@ -26,6 +26,13 @@ class DefaultSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final items = data.items.items
+        .where((element) =>
+            element.item
+                is Fragment$Section$$DefaultSection$items$items$item$$Episode ||
+            element.item
+                is Fragment$Section$$DefaultSection$items$items$item$$Show)
+        .toList();
     return Column(
       mainAxisSize: MainAxisSize.min,
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -44,28 +51,25 @@ class DefaultSection extends StatelessWidget {
             ),
           ),
         HorizontalSlider(
+          height: data.size == Enum$SectionSize.small ? 156 : 222,
           clipBehaviour: Clip.none,
           padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-          items: sectionItems,
+          itemCount: items.length,
+          itemBuilder: (BuildContext context, int index) {
+            var item = items[index];
+            if (item.item
+                is Fragment$Section$$DefaultSection$items$items$item$$Episode) {
+              return _DefaultEpisodeItem(sectionItem: item, size: data.size);
+            } else if (item.item
+                is Fragment$Section$$DefaultSection$items$items$item$$Show) {
+              return _DefaultShowItem(sectionItem: item, size: data.size);
+            }
+            // Theoretically impossible, see filter above.
+            return const SizedBox.shrink();
+          },
         ),
       ],
     );
-  }
-
-  List<Widget> get sectionItems {
-    final sectionItemsList = <Widget>[];
-    for (var item in data.items.items) {
-      if (item.item
-          is Fragment$Section$$DefaultSection$items$items$item$$Episode) {
-        sectionItemsList
-            .add(_DefaultEpisodeItem(sectionItem: item, size: data.size));
-      } else if (item.item
-          is Fragment$Section$$DefaultSection$items$items$item$$Show) {
-        sectionItemsList
-            .add(_DefaultShowItem(sectionItem: item, size: data.size));
-      }
-    }
-    return sectionItemsList;
   }
 }
 
@@ -74,15 +78,18 @@ class _DefaultEpisodeItem extends StatelessWidget {
   final Fragment$Section$$DefaultSection$items$items$item$$Episode episode;
   final Enum$SectionSize size;
 
-  // TODO: Remove these temp variables
-  bool watched = false;
-  bool isLive = false;
-  bool isNewItem = false;
-  bool showWatchProgressIndicator = false;
-
   _DefaultEpisodeItem({required this.sectionItem, required this.size})
       : episode = sectionItem.item
             as Fragment$Section$$DefaultSection$items$items$item$$Episode;
+
+  // TODO: Remove these temp variables
+  bool watched = false;
+
+  bool isLive = false;
+
+  bool isNewItem = false;
+
+  bool showWatchProgressIndicator = false;
 
   @override
   Widget build(BuildContext context) {
@@ -95,7 +102,7 @@ class _DefaultEpisodeItem extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            sectionItemImage,
+            sectionItemImage(),
             Container(
               margin: const EdgeInsets.only(bottom: 2),
               child: Row(
@@ -124,6 +131,7 @@ class _DefaultEpisodeItem extends StatelessWidget {
             ),
             Text(
               sectionItem.title,
+              maxLines: 2,
               style: BtvTextStyles.caption1.copyWith(color: BtvColors.label1),
             )
           ],
@@ -132,12 +140,7 @@ class _DefaultEpisodeItem extends StatelessWidget {
     );
   }
 
-  Widget get sectionItemImage {
-    final thumbnailImage = BorderedImageContainer(
-      image:
-          sectionItem.image != null ? NetworkImage(sectionItem.image!) : null,
-    );
-
+  Widget sectionItemImage() {
     return Container(
       margin: const EdgeInsets.only(bottom: 4),
       width: imageSize[size]!.width,
@@ -148,9 +151,9 @@ class _DefaultEpisodeItem extends StatelessWidget {
           isComingSoon(episode.productionDate)
               ? Opacity(
                   opacity: 0.5,
-                  child: thumbnailImage,
+                  child: BorderedImageContainer(imageUrl: sectionItem.image),
                 )
-              : thumbnailImage,
+              : BorderedImageContainer(imageUrl: sectionItem.image),
           if (isComingSoon(episode.productionDate))
             Container(
               width: double.infinity,
@@ -236,7 +239,7 @@ class _DefaultShowItem extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          sectionItemImage,
+          sectionItemImage(),
           Container(
             margin: const EdgeInsets.only(bottom: 2),
             child: Text(
@@ -253,7 +256,7 @@ class _DefaultShowItem extends StatelessWidget {
     );
   }
 
-  Widget get sectionItemImage {
+  Widget sectionItemImage() {
     return Container(
       margin: const EdgeInsets.only(bottom: 4),
       width: imageSize[size]!.width,
@@ -261,11 +264,7 @@ class _DefaultShowItem extends StatelessWidget {
       child: Stack(
         clipBehavior: Clip.none,
         children: [
-          BorderedImageContainer(
-            image: sectionItem.image != null
-                ? NetworkImage(sectionItem.image!)
-                : null,
-          ),
+          BorderedImageContainer(imageUrl: sectionItem.image),
           if (hasNewEpisodes)
             const Positioned(
               top: -4,

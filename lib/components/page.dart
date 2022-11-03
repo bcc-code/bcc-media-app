@@ -15,45 +15,60 @@ import 'default_section.dart';
 
 class BccmPage extends StatelessWidget {
   final Future<Query$Page$page> pageFuture;
+  final Future Function() onRefresh;
 
   BccmPage({
     super.key,
     required this.pageFuture,
+    required this.onRefresh,
   });
 
   Widget getPage(Query$Page$page pageData) {
     final sectionItems = pageData.sections.items;
 
-    return ListView.builder(
-      shrinkWrap: true,
-      itemCount: sectionItems.length,
-      itemBuilder: ((context, index) {
-        if (sectionItems[index] is Fragment$Section$$IconSection) {
-          return IconSection(
-              sectionItems[index] as Fragment$Section$$IconSection);
-        } else if (sectionItems[index] is Fragment$Section$$LabelSection) {
-          return LabelSection(
-            sectionItems[index] as Fragment$Section$$LabelSection,
-          );
-        } else if (sectionItems[index] is Fragment$Section$$DefaultSection) {
-          return DefaultSection(
-              sectionItems[index] as Fragment$Section$$DefaultSection);
-        } else if (sectionItems[index] is Fragment$Section$$PosterSection) {
-          return PosterSection(
-              sectionItems[index] as Fragment$Section$$PosterSection);
-        } else if (sectionItems[index]
-            is Fragment$Section$$DefaultGridSection) {
-          return DefaultGridSection(
-              sectionItems[index] as Fragment$Section$$DefaultGridSection);
-        } else if (sectionItems[index] is Fragment$Section$$PosterGridSection) {
-          return PosterGridSection(
-              sectionItems[index] as Fragment$Section$$PosterGridSection);
-        } else if (sectionItems[index] is Fragment$Section$$FeaturedSection) {
-          return FeaturedSection(
-              sectionItems[index] as Fragment$Section$$FeaturedSection);
-        }
-        return Container();
-      }),
+    return RefreshIndicator(
+      edgeOffset: 70,
+      triggerMode: RefreshIndicatorTriggerMode.anywhere,
+      displacement: 40,
+      onRefresh: onRefresh,
+      notificationPredicate: (notification) => true,
+      child: ListView.builder(
+        cacheExtent: 10000,
+        physics: const BouncingScrollPhysics(
+            parent: AlwaysScrollableScrollPhysics()),
+        itemCount: sectionItems.length,
+        itemBuilder: ((context, index) {
+          if (sectionItems[index] is Fragment$Section$$IconSection) {
+            return IconSection(
+                sectionItems[index] as Fragment$Section$$IconSection);
+          } else if (sectionItems[index] is Fragment$Section$$LabelSection) {
+            return SizedBox.shrink();
+            return LabelSection(
+              sectionItems[index] as Fragment$Section$$LabelSection,
+            );
+          } else if (sectionItems[index] is Fragment$Section$$DefaultSection) {
+            return DefaultSection(
+                sectionItems[index] as Fragment$Section$$DefaultSection);
+          } else if (sectionItems[index] is Fragment$Section$$PosterSection) {
+            return PosterSection(
+                sectionItems[index] as Fragment$Section$$PosterSection);
+          } else if (sectionItems[index]
+              is Fragment$Section$$DefaultGridSection) {
+            return SizedBox.shrink();
+            return DefaultGridSection(
+                sectionItems[index] as Fragment$Section$$DefaultGridSection);
+          } else if (sectionItems[index]
+              is Fragment$Section$$PosterGridSection) {
+            return SizedBox.shrink();
+            return PosterGridSection(
+                sectionItems[index] as Fragment$Section$$PosterGridSection);
+          } else if (sectionItems[index] is Fragment$Section$$FeaturedSection) {
+            return FeaturedSection(
+                sectionItems[index] as Fragment$Section$$FeaturedSection);
+          }
+          return Container();
+        }),
+      ),
     );
   }
 

@@ -1,4 +1,5 @@
 import 'package:brunstadtv_app/helpers/btv_typography.dart';
+import 'package:extended_image/extended_image.dart';
 import 'package:flutter/material.dart';
 
 import '../../helpers/btv_colors.dart';
@@ -32,7 +33,7 @@ class Avatar extends StatelessWidget {
               ),
               child: imageUrl != null
                   ? CircleAvatar(
-                      backgroundImage: NetworkImage(imageUrl),
+                      backgroundImage: ExtendedNetworkImageProvider(imageUrl),
                       radius: avatarWidth / 2,
                     )
                   : Container(),

@@ -75,6 +75,7 @@ class _PageScreenState extends ConsumerState<PageScreen> {
       ),
       body: BccmPage(
         pageFuture: resultFuture,
+        onRefresh: () async {},
       ),
     );
   }
