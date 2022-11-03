@@ -1,13 +1,17 @@
+import 'package:brunstadtv_app/providers/settings_service.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:graphql/client.dart';
 import 'package:brunstadtv_app/services/auth_service.dart';
+import 'package:http/http.dart';
 
 import '../env/env.dart';
 
 final gqlClientProvider = Provider<GraphQLClient>((ref) {
-  final httpLink = HttpLink(
-    Env.brunstadtvApiEndpoint,
-  );
+  final httpLink = HttpLink(Env.brunstadtvApiEndpoint,
+      defaultHeaders: {
+        'Accept-Language': ref.watch(settingsProvider).appLanguage.languageCode
+      },
+      httpClient: Client());
 
   final authLink = AuthLink(
     getToken: () async => AuthService.instance.idToken != null

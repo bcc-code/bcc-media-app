@@ -11,13 +11,13 @@ final playbackListenerProvider =
     Provider<PlaybackListener>((_) => throw UnimplementedError());
 
 class PlaybackListener implements PlaybackListenerPigeon {
-  Reader? providerReader;
+  ProviderContainer providerContainer;
 
-  PlaybackListener({required this.providerReader});
+  PlaybackListener({required this.providerContainer});
 
   @override
   void onPositionUpdate(PositionUpdateEvent event) {
-    var player = providerReader?.call(primaryPlayerProvider);
+    var player = providerContainer.read(primaryPlayerProvider);
     if (player != null && player.currentMediaItem != null) {
       //providerRef?.read(primaryPlayerProvider.notifier).
     }
@@ -28,7 +28,7 @@ class PlaybackListener implements PlaybackListenerPigeon {
     var playerProvider = event.playerId == 'chromecast'
         ? castPlayerProvider
         : primaryPlayerProvider;
-    providerReader?.call(playerProvider.notifier).setPlaybackState(
+    providerContainer.read(playerProvider.notifier).setPlaybackState(
         event.isPlaying ? PlaybackState.playing : PlaybackState.paused);
   }
 
@@ -37,7 +37,9 @@ class PlaybackListener implements PlaybackListenerPigeon {
     var playerProvider = event.playerId == 'chromecast'
         ? castPlayerProvider
         : primaryPlayerProvider;
-    providerReader?.call(playerProvider.notifier).setMediaItem(event.mediaItem);
+    providerContainer
+        .read(playerProvider.notifier)
+        .setMediaItem(event.mediaItem);
   }
 
   @override
@@ -45,8 +47,8 @@ class PlaybackListener implements PlaybackListenerPigeon {
     var playerProvider = event.playerId == 'chromecast'
         ? castPlayerProvider
         : primaryPlayerProvider;
-    providerReader
-        ?.call(playerProvider.notifier)
+    providerContainer
+        .read(playerProvider.notifier)
         .setIsInPipMode(event.isInPipMode);
   }
 }

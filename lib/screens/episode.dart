@@ -168,9 +168,6 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen> {
     var player = ref.watch(playerProvider);
     final primaryPlayerId = player!.playerId;
 
-    debugPrint(
-        'bccm: ran build method in "live.dart" ${DateTime.now()}. Casting: $casting, currentMediaItem: ${player?.currentMediaItem?.metadata?.extras?["id"]}');
-
     return Scaffold(
       appBar: AppBar(
         title: const Text('Episode'),

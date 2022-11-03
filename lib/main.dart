@@ -62,7 +62,7 @@ void $main({required FirebaseOptions? firebaseOptions}) async {
       ProviderContainer(overrides: [chromecastListenerOverride]);
 
   PlaybackListenerPigeon.setup(
-      PlaybackListener(providerReader: providerContainer.read));
+      PlaybackListener(providerContainer: providerContainer));
 
   providerContainer.read(settingsProvider.notifier).load();
   providerContainer.read(chromecastListenerProvider);
