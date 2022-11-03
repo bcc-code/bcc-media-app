@@ -29,8 +29,8 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  flutter_localizations: 
-    sdk: flutter         
+  flutter_localizations:
+    sdk: flutter
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
@@ -44,18 +44,18 @@ dependencies:
   json_serializable: ^6.2.0
   mockito: ^5.2.0
   flutter_svg: ^1.1.1+1
-  auto_route: ^4.2.1
+  auto_route: ^5.0.2
   build_runner: ^2.2.0
   cached_network_image: ^3.2.1
   transparent_image: ^2.0.0
-  bccm_player: any
-  riverpod: ^1.0.3
-  flutter_riverpod: ^1.0.4
+  bccm_player:
+    path: external_projects/bccm_player
+  riverpod: ^2.1.1
+  flutter_riverpod: ^2.1.1
   freezed_annotation: ^2.1.0
   collection: ^1.16.0
   # package to fetch device info
-  device_info_plus: ^4.1.2
-  package_info_plus: ^1.4.3+1
+  package_info_plus: ^3.0.1
   # calendar
   table_calendar: ^3.0.7
   #
@@ -65,18 +65,14 @@ dependencies:
   auth0_flutter: 1.0.1
   shared_preferences: ^2.0.15
   hive: ^2.2.3
-  firebase_messaging: ^13.0.4
-  firebase_core: ^1.24.0
+  firebase_messaging: ^14.0.3
+  firebase_core: ^2.1.1
   flutter_secure_storage: ^6.0.0
   visibility_detector: ^0.3.3
   pull_to_refresh: ^2.0.0
   extended_image: ^6.3.1
+  device_info_plus: ^8.0.0
   #smooth: any
-dependency_overrides:
-  #smooth: 
-    #path: external_projects/flutter_smooth/packages/smooth
-  bccm_player:
-    path: external_projects/bccm_player
 
 dev_dependencies:
   flutter_test:
@@ -88,8 +84,8 @@ dev_dependencies:
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
   flutter_lints: ^2.0.0
-  auto_route_generator: ^4.2.0
-  pigeon: ^3.2.6
+  auto_route_generator: ^5.0.2
+  pigeon: ^4.2.5
   freezed: ^2.1.0+1
   graphql_codegen: ^0.11.0
 

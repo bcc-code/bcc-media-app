@@ -29,6 +29,8 @@ class _PageScreenState extends ConsumerState<PageScreen> {
   void initState() {
     super.initState();
 
+    resultFuture = getPage();
+
     resultFuture.then((pageData) {
       setState(() => pageTitle = pageData.title);
     });

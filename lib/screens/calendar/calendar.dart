@@ -24,7 +24,7 @@ class _CalendarPageState extends ConsumerState<CalendarPage> {
   DateTime _focusedDay = DateTime.now();
   DateTime? _selectedDay = DateTime.now();
 
-  bool _isCalendarCollapse = true;
+  bool _isCalendarCollapse = false;
 
   Future<Query$CalendarPeriod$calendar$period?>? _calendarPeriod;
   Future<Query$CalendarDay$calendar?>? _selectedDayEvent;
