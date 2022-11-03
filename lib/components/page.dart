@@ -42,7 +42,6 @@ class BccmPage extends StatelessWidget {
             return IconSection(
                 sectionItems[index] as Fragment$Section$$IconSection);
           } else if (sectionItems[index] is Fragment$Section$$LabelSection) {
-            return SizedBox.shrink();
             return LabelSection(
               sectionItems[index] as Fragment$Section$$LabelSection,
             );
@@ -54,12 +53,10 @@ class BccmPage extends StatelessWidget {
                 sectionItems[index] as Fragment$Section$$PosterSection);
           } else if (sectionItems[index]
               is Fragment$Section$$DefaultGridSection) {
-            return SizedBox.shrink();
             return DefaultGridSection(
                 sectionItems[index] as Fragment$Section$$DefaultGridSection);
           } else if (sectionItems[index]
               is Fragment$Section$$PosterGridSection) {
-            return SizedBox.shrink();
             return PosterGridSection(
                 sectionItems[index] as Fragment$Section$$PosterGridSection);
           } else if (sectionItems[index] is Fragment$Section$$FeaturedSection) {
