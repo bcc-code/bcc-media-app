@@ -19,7 +19,7 @@ class SearchScreen extends StatefulWidget {
 class _SearchScreenState extends State<SearchScreen> {
   var _inSearchMode = false;
   String? _curSearchValue;
-  String? queryParam;
+  String? searchPrefillValue;
 
   _onSearchModeChanged(bool mode) {
     setState(() {
@@ -30,6 +30,7 @@ class _SearchScreenState extends State<SearchScreen> {
   _onSearchInputChanged(String input) {
     setState(() {
       _curSearchValue = input;
+      searchPrefillValue = null;
     });
   }
 
@@ -46,27 +47,33 @@ class _SearchScreenState extends State<SearchScreen> {
   }
 
   processQueryParam() {
-    if (widget.query != null && widget.query!.trim().isEmpty) {
-      queryParam = null;
-    } else {
+    String? queryParam;
+    if (widget.query != null && widget.query!.trim().isNotEmpty) {
       queryParam = widget.query;
     }
-    if (queryParam != null) {
-      _curSearchValue = queryParam;
+    /* 
+      `searchPrefillValue` should be non-null only if this cycle
+       is triggered due to a change in query parameter
+    */
+    if (_curSearchValue != queryParam) {
+      searchPrefillValue = queryParam;
+      _curSearchValue = searchPrefillValue;
       _inSearchMode = true;
+    } else {
+      searchPrefillValue = null;
     }
   }
 
   @override
   Widget build(BuildContext context) {
-    final searchScreen = Scaffold(
+    return Scaffold(
       body: SafeArea(
         child: Column(
           children: [
             SearchBar(
               onModeChange: _onSearchModeChanged,
               onInputChange: _onSearchInputChanged,
-              initialQuery: queryParam,
+              initialQuery: searchPrefillValue,
             ),
             Container(
               margin: const EdgeInsets.only(bottom: 8),
@@ -82,7 +89,5 @@ class _SearchScreenState extends State<SearchScreen> {
         ),
       ),
     );
-    queryParam = null;
-    return searchScreen;
   }
 }
