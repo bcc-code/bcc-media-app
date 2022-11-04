@@ -106,13 +106,13 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
           ),
         ),
       ),
-      body: BccmPage(pageFuture: resultFuture, onRefresh: () async {
-        var future =  getPage();
-          setState(() {
-            resultFuture = future;
-          });
-          await future;
-      }),
+      body: BccmPage(
+          pageFuture: resultFuture,
+          onRefresh: () async {
+            setState(() {
+              resultFuture = getPage();
+            });
+          }),
     );
   }
 }

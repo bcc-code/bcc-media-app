@@ -9,55 +9,61 @@ PODS:
     - Flutter
     - YouboraAVPlayerAdapter (= 6.6.8)
     - YouboraLib (= 6.6.22)
+  - better_player (0.0.1):
+    - Cache (~> 6.0.0)
+    - Flutter
+    - GCDWebServer
+    - HLSCachingReverseProxyServer
+    - PINCache
+  - Cache (6.0.0)
   - connectivity_plus (0.0.1):
     - Flutter
     - ReachabilitySwift
   - device_info_plus (0.0.1):
     - Flutter
-  - Firebase/CoreOnly (9.6.0):
-    - FirebaseCore (= 9.6.0)
-  - Firebase/Messaging (9.6.0):
+  - Firebase/CoreOnly (10.0.0):
+    - FirebaseCore (= 10.0.0)
+  - Firebase/Messaging (10.0.0):
     - Firebase/CoreOnly
-    - FirebaseMessaging (~> 9.6.0)
-  - firebase_core (1.24.0):
-    - Firebase/CoreOnly (= 9.6.0)
+    - FirebaseMessaging (~> 10.0.0)
+  - firebase_core (2.1.1):
+    - Firebase/CoreOnly (= 10.0.0)
     - Flutter
-  - firebase_messaging (13.0.4):
-    - Firebase/Messaging (= 9.6.0)
+  - firebase_messaging (14.0.3):
+    - Firebase/Messaging (= 10.0.0)
     - firebase_core
     - Flutter
-  - FirebaseCore (9.6.0):
-    - FirebaseCoreDiagnostics (~> 9.0)
-    - FirebaseCoreInternal (~> 9.0)
-    - GoogleUtilities/Environment (~> 7.7)
-    - GoogleUtilities/Logger (~> 7.7)
-  - FirebaseCoreDiagnostics (9.6.0):
-    - GoogleDataTransport (< 10.0.0, >= 9.1.4)
-    - GoogleUtilities/Environment (~> 7.7)
-    - GoogleUtilities/Logger (~> 7.7)
-    - nanopb (< 2.30910.0, >= 2.30908.0)
-  - FirebaseCoreInternal (9.6.0):
-    - "GoogleUtilities/NSData+zlib (~> 7.7)"
-  - FirebaseInstallations (9.6.0):
-    - FirebaseCore (~> 9.0)
-    - GoogleUtilities/Environment (~> 7.7)
-    - GoogleUtilities/UserDefaults (~> 7.7)
+  - FirebaseCore (10.0.0):
+    - FirebaseCoreInternal (~> 10.0)
+    - GoogleUtilities/Environment (~> 7.8)
+    - GoogleUtilities/Logger (~> 7.8)
+  - FirebaseCoreInternal (10.1.0):
+    - "GoogleUtilities/NSData+zlib (~> 7.8)"
+  - FirebaseInstallations (10.1.0):
+    - FirebaseCore (~> 10.0)
+    - GoogleUtilities/Environment (~> 7.8)
+    - GoogleUtilities/UserDefaults (~> 7.8)
     - PromisesObjC (~> 2.1)
-  - FirebaseMessaging (9.6.0):
-    - FirebaseCore (~> 9.0)
-    - FirebaseInstallations (~> 9.0)
-    - GoogleDataTransport (< 10.0.0, >= 9.1.4)
-    - GoogleUtilities/AppDelegateSwizzler (~> 7.7)
-    - GoogleUtilities/Environment (~> 7.7)
-    - GoogleUtilities/Reachability (~> 7.7)
-    - GoogleUtilities/UserDefaults (~> 7.7)
+  - FirebaseMessaging (10.0.0):
+    - FirebaseCore (~> 10.0)
+    - FirebaseInstallations (~> 10.0)
+    - GoogleDataTransport (~> 9.2)
+    - GoogleUtilities/AppDelegateSwizzler (~> 7.8)
+    - GoogleUtilities/Environment (~> 7.8)
+    - GoogleUtilities/Reachability (~> 7.8)
+    - GoogleUtilities/UserDefaults (~> 7.8)
     - nanopb (< 2.30910.0, >= 2.30908.0)
   - Flutter (1.0.0)
+  - flutter_local_notifications (0.0.1):
+    - Flutter
   - flutter_secure_storage (3.3.1):
     - Flutter
   - FMDB (2.7.5):
     - FMDB/standard (= 2.7.5)
   - FMDB/standard (2.7.5)
+  - GCDWebServer (3.5.4):
+    - GCDWebServer/Core (= 3.5.4)
+  - GCDWebServer/Core (3.5.4)
   - GoogleDataTransport (9.2.0):
     - GoogleUtilities/Environment (~> 7.7)
     - nanopb (< 2.30910.0, >= 2.30908.0)
@@ -79,26 +85,43 @@ PODS:
     - GoogleUtilities/Logger
   - GoogleUtilities/UserDefaults (7.8.0):
     - GoogleUtilities/Logger
+  - HLSCachingReverseProxyServer (0.1.0):
+    - GCDWebServer (~> 3.5)
+    - PINCache (>= 3.0.1-beta.3)
   - JWTDecode (3.0.0)
   - nanopb (2.30909.0):
     - nanopb/decode (= 2.30909.0)
     - nanopb/encode (= 2.30909.0)
   - nanopb/decode (2.30909.0)
   - nanopb/encode (2.30909.0)
+  - open_filex (0.0.2):
+    - Flutter
   - package_info_plus (0.4.5):
     - Flutter
   - path_provider_ios (0.0.1):
     - Flutter
+  - permission_handler_apple (9.0.4):
+    - Flutter
+  - PINCache (3.0.3):
+    - PINCache/Arc-exception-safe (= 3.0.3)
+    - PINCache/Core (= 3.0.3)
+  - PINCache/Arc-exception-safe (3.0.3):
+    - PINCache/Core
+  - PINCache/Core (3.0.3):
+    - PINOperation (~> 1.2.1)
+  - PINOperation (1.2.1)
   - PromisesObjC (2.1.1)
   - ReachabilitySwift (5.0.0)
+  - sensors_plus (0.0.1):
+    - Flutter
+  - share_plus (0.0.1):
+    - Flutter
   - shared_preferences_ios (0.0.1):
     - Flutter
   - SimpleKeychain (1.0.1)
   - sqflite (0.0.2):
     - Flutter
     - FMDB (>= 2.7.5)
-  - video_player_avfoundation (0.0.1):
-    - Flutter
   - wakelock (0.0.1):
     - Flutter
   - YouboraAVPlayerAdapter (6.6.8):
@@ -111,33 +134,42 @@ PODS:
 DEPENDENCIES:
   - auth0_flutter (from `.symlinks/plugins/auth0_flutter/ios`)
   - bccm_player (from `.symlinks/plugins/bccm_player/ios`)
+  - better_player (from `.symlinks/plugins/better_player/ios`)
   - connectivity_plus (from `.symlinks/plugins/connectivity_plus/ios`)
   - device_info_plus (from `.symlinks/plugins/device_info_plus/ios`)
   - firebase_core (from `.symlinks/plugins/firebase_core/ios`)
   - firebase_messaging (from `.symlinks/plugins/firebase_messaging/ios`)
   - Flutter (from `Flutter`)
+  - flutter_local_notifications (from `.symlinks/plugins/flutter_local_notifications/ios`)
   - flutter_secure_storage (from `.symlinks/plugins/flutter_secure_storage/ios`)
+  - open_filex (from `.symlinks/plugins/open_filex/ios`)
   - package_info_plus (from `.symlinks/plugins/package_info_plus/ios`)
   - path_provider_ios (from `.symlinks/plugins/path_provider_ios/ios`)
+  - permission_handler_apple (from `.symlinks/plugins/permission_handler_apple/ios`)
+  - sensors_plus (from `.symlinks/plugins/sensors_plus/ios`)
+  - share_plus (from `.symlinks/plugins/share_plus/ios`)
   - shared_preferences_ios (from `.symlinks/plugins/shared_preferences_ios/ios`)
   - sqflite (from `.symlinks/plugins/sqflite/ios`)
-  - video_player_avfoundation (from `.symlinks/plugins/video_player_avfoundation/ios`)
   - wakelock (from `.symlinks/plugins/wakelock/ios`)
 
 SPEC REPOS:
   trunk:
     - Auth0
+    - Cache
     - Firebase
     - FirebaseCore
-    - FirebaseCoreDiagnostics
     - FirebaseCoreInternal
     - FirebaseInstallations
     - FirebaseMessaging
     - FMDB
+    - GCDWebServer
     - GoogleDataTransport
     - GoogleUtilities
+    - HLSCachingReverseProxyServer
     - JWTDecode
     - nanopb
+    - PINCache
+    - PINOperation
     - PromisesObjC
     - ReachabilitySwift
     - SimpleKeychain
@@ -149,6 +181,8 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/auth0_flutter/ios"
   bccm_player:
     :path: ".symlinks/plugins/bccm_player/ios"
+  better_player:
+    :path: ".symlinks/plugins/better_player/ios"
   connectivity_plus:
     :path: ".symlinks/plugins/connectivity_plus/ios"
   device_info_plus:
@@ -159,18 +193,26 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/firebase_messaging/ios"
   Flutter:
     :path: Flutter
+  flutter_local_notifications:
+    :path: ".symlinks/plugins/flutter_local_notifications/ios"
   flutter_secure_storage:
     :path: ".symlinks/plugins/flutter_secure_storage/ios"
+  open_filex:
+    :path: ".symlinks/plugins/open_filex/ios"
   package_info_plus:
     :path: ".symlinks/plugins/package_info_plus/ios"
   path_provider_ios:
     :path: ".symlinks/plugins/path_provider_ios/ios"
+  permission_handler_apple:
+    :path: ".symlinks/plugins/permission_handler_apple/ios"
+  sensors_plus:
+    :path: ".symlinks/plugins/sensors_plus/ios"
+  share_plus:
+    :path: ".symlinks/plugins/share_plus/ios"
   shared_preferences_ios:
     :path: ".symlinks/plugins/shared_preferences_ios/ios"
   sqflite:
     :path: ".symlinks/plugins/sqflite/ios"
-  video_player_avfoundation:
-    :path: ".symlinks/plugins/video_player_avfoundation/ios"
   wakelock:
     :path: ".symlinks/plugins/wakelock/ios"
 
@@ -178,31 +220,40 @@ SPEC CHECKSUMS:
   Auth0: 910a23b611b7f1c2978fca3ac7579898f8524b0d
   auth0_flutter: a076a59ac9202220da8324ba94e69ce39b89d876
   bccm_player: 0629994846024330859f6b7752d712e32cb05041
+  better_player: 2406bfe8175203c7a46fa15f9d778d73b12e1646
+  Cache: 4ca7e00363fca5455f26534e5607634c820ffc2d
   connectivity_plus: 413a8857dd5d9f1c399a39130850d02fe0feaf7e
   device_info_plus: e5c5da33f982a436e103237c0c85f9031142abed
-  Firebase: 5ae8b7cf8efce559a653aef0ad95bab3f427c351
-  firebase_core: 7c28ecc1e5dd74e03829ac3e9ff5ba3314e737a9
-  firebase_messaging: a42787dea8e7a8f96458ef8b1c159495f8aa1c97
-  FirebaseCore: 2082fffcd855f95f883c0a1641133eb9bbe76d40
-  FirebaseCoreDiagnostics: 99a495094b10a57eeb3ae8efa1665700ad0bdaa6
-  FirebaseCoreInternal: bca76517fe1ed381e989f5e7d8abb0da8d85bed3
-  FirebaseInstallations: 0a115432c4e223c5ab20b0dbbe4cbefa793a0e8e
-  FirebaseMessaging: a4d7910e4af663c9cbfc1071c5bef34651690949
+  Firebase: 1b810f3d0c0532e27a48f1961f8c0400a668a2cf
+  firebase_core: 5c0bb0ca7d0e70480a68a6e9ad9bf55d1edd5305
+  firebase_messaging: 46616a7ded661b632eb7a28846d906849c8b15af
+  FirebaseCore: 97f48a3a567a72b8d4daa0f03c3aadb78df4e995
+  FirebaseCoreInternal: 96d75228e10fd369564da51bd898414eb0f54df5
+  FirebaseInstallations: 99d24bac0243cf8b0e96cf5426340d211f0bcc80
+  FirebaseMessaging: 8916bf5edb1dbfac74665a181e4d1ab3a78a08a2
   Flutter: f04841e97a9d0b0a8025694d0796dd46242b2854
+  flutter_local_notifications: 0c0b1ae97e741e1521e4c1629a459d04b9aec743
   flutter_secure_storage: 7953c38a04c3fdbb00571bcd87d8e3b5ceb9daec
   FMDB: 2ce00b547f966261cd18927a3ddb07cb6f3db82a
+  GCDWebServer: 2c156a56c8226e2d5c0c3f208a3621ccffbe3ce4
   GoogleDataTransport: 1c8145da7117bd68bbbed00cf304edb6a24de00f
   GoogleUtilities: 1d20a6ad97ef46f67bbdec158ce00563a671ebb7
+  HLSCachingReverseProxyServer: 59935e1e0244ad7f3375d75b5ef46e8eb26ab181
   JWTDecode: 82480a7173f8a811954e7e14a2b59f688ca4222a
   nanopb: b552cce312b6c8484180ef47159bc0f65a1f0431
+  open_filex: 6e26e659846ec990262224a12ef1c528bb4edbe4
   package_info_plus: 6c92f08e1f853dc01228d6f553146438dafcd14e
   path_provider_ios: 14f3d2fd28c4fdb42f44e0f751d12861c43cee02
+  permission_handler_apple: 44366e37eaf29454a1e7b1b7d736c2cceaeb17ce
+  PINCache: 7a8fc1a691173d21dbddbf86cd515de6efa55086
+  PINOperation: 00c935935f1e8cf0d1e2d6b542e75b88fc3e5e20
   PromisesObjC: ab77feca74fa2823e7af4249b8326368e61014cb
   ReachabilitySwift: 985039c6f7b23a1da463388634119492ff86c825
+  sensors_plus: 5717760720f7e6acd96fdbd75b7428f5ad755ec2
+  share_plus: 056a1e8ac890df3e33cb503afffaf1e9b4fbae68
   shared_preferences_ios: 548a61f8053b9b8a49ac19c1ffbc8b92c50d68ad
   SimpleKeychain: 130211269f88f038d7dc5254cf0b1b9ce978c398
   sqflite: 6d358c025f5b867b29ed92fc697fd34924e11904
-  video_player_avfoundation: e489aac24ef5cf7af82702979ed16f2a5ef84cff
   wakelock: d0fc7c864128eac40eba1617cb5264d9c940b46f
   YouboraAVPlayerAdapter: bc898a61e09c667202a77491b677a42dfa0adc04
   YouboraLib: fc65b030ac93499f8beb3f5daa10deb3879fb2d2

@@ -4,6 +4,7 @@ import 'package:auto_route/auto_route.dart';
 
 import '../../helpers/btv_colors.dart';
 import '../../helpers/btv_typography.dart';
+import '../../main.dart';
 
 class AboutScreen extends StatefulWidget {
   const AboutScreen({super.key});
@@ -41,7 +42,15 @@ class _AboutScreenState extends State<AboutScreen> {
                               await FirebaseMessaging.instance.getToken();
                           print('token : $token');
                         },
-                        child: const Text('Print info to console')))
+                        child: const Text('Print info to console'))),
+                SizedBox(
+                    width: 200,
+                    height: 30,
+                    child: ElevatedButton(
+                        onPressed: () async {
+                          alice.showInspector();
+                        },
+                        child: const Text('Open alice')))
               ],
             ),
           ),
