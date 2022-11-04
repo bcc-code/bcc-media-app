@@ -102,8 +102,6 @@ void $main({required FirebaseOptions? firebaseOptions}) async {
 
   Intl.defaultLocale = await getDefaultLocale();
 
-  debugInvertOversizedImages = true;
-
   runApp(UncontrolledProviderScope(
     container: providerContainer,
     child: Consumer(

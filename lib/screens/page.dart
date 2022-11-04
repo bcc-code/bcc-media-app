@@ -32,7 +32,9 @@ class _PageScreenState extends ConsumerState<PageScreen> {
     resultFuture = getPage();
 
     resultFuture.then((pageData) {
-      setState(() => pageTitle = pageData.title);
+      if (mounted) {
+        setState(() => pageTitle = pageData.title);
+      }
     });
   }
 
