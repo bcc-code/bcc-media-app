@@ -1,3 +1,4 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 
 import '../../helpers/btv_colors.dart';
@@ -5,19 +6,20 @@ import './search_home_page.dart';
 import './search_results_page.dart';
 
 import '../../components/search_bar.dart';
-import '../../services/auth_service.dart';
 
 class SearchScreen extends StatefulWidget {
-  const SearchScreen({Key? key}) : super(key: key);
+  final String? query;
+
+  const SearchScreen({Key? key, @QueryParam('q') this.query}) : super(key: key);
 
   @override
   State<SearchScreen> createState() => _SearchScreenState();
 }
 
 class _SearchScreenState extends State<SearchScreen> {
-  String name = AuthService.instance.user!.name!;
   var _inSearchMode = false;
-  var _curSearchValue = '';
+  String? _curSearchValue;
+  String? searchPrefillValue;
 
   _onSearchModeChanged(bool mode) {
     setState(() {
@@ -28,7 +30,38 @@ class _SearchScreenState extends State<SearchScreen> {
   _onSearchInputChanged(String input) {
     setState(() {
       _curSearchValue = input;
+      searchPrefillValue = null;
     });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    processQueryParam();
+  }
+
+  @override
+  void didUpdateWidget(SearchScreen oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    processQueryParam();
+  }
+
+  processQueryParam() {
+    String? queryParam;
+    if (widget.query != null && widget.query!.trim().isNotEmpty) {
+      queryParam = widget.query;
+    }
+    /* 
+      `searchPrefillValue` should be non-null only if this cycle
+       is triggered due to a change in query parameter
+    */
+    if (_curSearchValue != queryParam) {
+      searchPrefillValue = queryParam;
+      _curSearchValue = searchPrefillValue;
+      _inSearchMode = true;
+    } else {
+      searchPrefillValue = null;
+    }
   }
 
   @override
@@ -40,6 +73,7 @@ class _SearchScreenState extends State<SearchScreen> {
             SearchBar(
               onModeChange: _onSearchModeChanged,
               onInputChange: _onSearchInputChanged,
+              initialQuery: searchPrefillValue,
             ),
             Container(
               margin: const EdgeInsets.only(bottom: 8),

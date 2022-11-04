@@ -186,9 +186,16 @@ class AppRouter extends _i19.RootStackRouter {
       );
     },
     SearchScreenRoute.name: (routeData) {
+      final queryParams = routeData.queryParams;
+      final args = routeData.argsAs<SearchScreenRouteArgs>(
+          orElse: () =>
+              SearchScreenRouteArgs(query: queryParams.optString('q')));
       return _i19.MaterialPageX<void>(
         routeData: routeData,
-        child: const _i17.SearchScreen(),
+        child: _i17.SearchScreen(
+          key: args.key,
+          query: args.query,
+        ),
       );
     },
     ExploreCategoryScreenRoute.name: (routeData) {
@@ -208,35 +215,35 @@ class AppRouter extends _i19.RootStackRouter {
         ),
         _i19.RouteConfig(
           ProfileRoute.name,
-          path: 'profile',
+          path: '/profile',
         ),
         _i19.RouteConfig(
           AppLanguageScreenRoute.name,
-          path: 'app-language',
+          path: '/app-language',
         ),
         _i19.RouteConfig(
           AppAudioLanguageRoute.name,
-          path: 'audio-languga',
+          path: '/audio-language',
         ),
         _i19.RouteConfig(
           AppSubtitleLanguageRoute.name,
-          path: 'subtitle-language',
+          path: '/subtitle-language',
         ),
         _i19.RouteConfig(
           VideoQualityRoute.name,
-          path: 'video-quality',
+          path: '/video-quality',
         ),
         _i19.RouteConfig(
           ContactSupportRoute.name,
-          path: 'contact-support',
+          path: '/contact-support',
         ),
         _i19.RouteConfig(
           AboutScreenRoute.name,
-          path: 'about',
+          path: '/about',
         ),
         _i19.RouteConfig(
           FAQRoute.name,
-          path: 'faq',
+          path: '/faq',
         ),
         _i19.RouteConfig(
           TabsRootScreenRoute.name,
@@ -348,7 +355,7 @@ class ProfileRoute extends _i19.PageRouteInfo<void> {
   const ProfileRoute()
       : super(
           ProfileRoute.name,
-          path: 'profile',
+          path: '/profile',
         );
 
   static const String name = 'ProfileRoute';
@@ -360,7 +367,7 @@ class AppLanguageScreenRoute extends _i19.PageRouteInfo<void> {
   const AppLanguageScreenRoute()
       : super(
           AppLanguageScreenRoute.name,
-          path: 'app-language',
+          path: '/app-language',
         );
 
   static const String name = 'AppLanguageScreenRoute';
@@ -372,7 +379,7 @@ class AppAudioLanguageRoute extends _i19.PageRouteInfo<void> {
   const AppAudioLanguageRoute()
       : super(
           AppAudioLanguageRoute.name,
-          path: 'audio-languga',
+          path: '/audio-language',
         );
 
   static const String name = 'AppAudioLanguageRoute';
@@ -384,7 +391,7 @@ class AppSubtitleLanguageRoute extends _i19.PageRouteInfo<void> {
   const AppSubtitleLanguageRoute()
       : super(
           AppSubtitleLanguageRoute.name,
-          path: 'subtitle-language',
+          path: '/subtitle-language',
         );
 
   static const String name = 'AppSubtitleLanguageRoute';
@@ -396,7 +403,7 @@ class VideoQualityRoute extends _i19.PageRouteInfo<void> {
   const VideoQualityRoute()
       : super(
           VideoQualityRoute.name,
-          path: 'video-quality',
+          path: '/video-quality',
         );
 
   static const String name = 'VideoQualityRoute';
@@ -408,7 +415,7 @@ class ContactSupportRoute extends _i19.PageRouteInfo<void> {
   const ContactSupportRoute()
       : super(
           ContactSupportRoute.name,
-          path: 'contact-support',
+          path: '/contact-support',
         );
 
   static const String name = 'ContactSupportRoute';
@@ -420,7 +427,7 @@ class AboutScreenRoute extends _i19.PageRouteInfo<void> {
   const AboutScreenRoute()
       : super(
           AboutScreenRoute.name,
-          path: 'about',
+          path: '/about',
         );
 
   static const String name = 'AboutScreenRoute';
@@ -432,7 +439,7 @@ class FAQRoute extends _i19.PageRouteInfo<void> {
   const FAQRoute()
       : super(
           FAQRoute.name,
-          path: 'faq',
+          path: '/faq',
         );
 
   static const String name = 'FAQRoute';
@@ -591,14 +598,37 @@ class PageScreenRouteArgs {
 
 /// generated route for
 /// [_i17.SearchScreen]
-class SearchScreenRoute extends _i19.PageRouteInfo<void> {
-  const SearchScreenRoute()
-      : super(
+class SearchScreenRoute extends _i19.PageRouteInfo<SearchScreenRouteArgs> {
+  SearchScreenRoute({
+    _i20.Key? key,
+    String? query,
+  }) : super(
           SearchScreenRoute.name,
           path: '',
+          args: SearchScreenRouteArgs(
+            key: key,
+            query: query,
+          ),
+          rawQueryParams: {'q': query},
         );
 
   static const String name = 'SearchScreenRoute';
+}
+
+class SearchScreenRouteArgs {
+  const SearchScreenRouteArgs({
+    this.key,
+    this.query,
+  });
+
+  final _i20.Key? key;
+
+  final String? query;
+
+  @override
+  String toString() {
+    return 'SearchScreenRouteArgs{key: $key, query: $query}';
+  }
 }
 
 /// generated route for
