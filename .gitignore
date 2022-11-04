@@ -50,3 +50,8 @@ lib/env/.env.dart
 .env
 *.ignore
 SchemePreActions.h
+
+# These change depending on flavor
+# they get copied here by a prebuild script, see copy-script.sh
+ios/Runner/firebase_app_id_file.json
+ios/Runner/GoogleService-Info.plist
