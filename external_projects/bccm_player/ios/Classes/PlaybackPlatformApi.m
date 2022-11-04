@@ -56,14 +56,19 @@ static id GetNullableObjectAtIndex(NSArray* array, NSInteger key) {
 + (nullable MediaMetadata *)nullableFromMap:(NSDictionary *)dict;
 - (NSDictionary *)toMap;
 @end
+@interface PlayerState ()
++ (PlayerState *)fromMap:(NSDictionary *)dict;
++ (nullable PlayerState *)nullableFromMap:(NSDictionary *)dict;
+- (NSDictionary *)toMap;
+@end
 @interface ChromecastState ()
 + (ChromecastState *)fromMap:(NSDictionary *)dict;
 + (nullable ChromecastState *)nullableFromMap:(NSDictionary *)dict;
 - (NSDictionary *)toMap;
 @end
-@interface PositionUpdateEvent ()
-+ (PositionUpdateEvent *)fromMap:(NSDictionary *)dict;
-+ (nullable PositionUpdateEvent *)nullableFromMap:(NSDictionary *)dict;
+@interface PositionDiscontinuityEvent ()
++ (PositionDiscontinuityEvent *)fromMap:(NSDictionary *)dict;
++ (nullable PositionDiscontinuityEvent *)nullableFromMap:(NSDictionary *)dict;
 - (NSDictionary *)toMap;
 @end
 @interface IsPlayingChangedEvent ()
@@ -233,6 +238,35 @@ static id GetNullableObjectAtIndex(NSArray* array, NSInteger key) {
 }
 @end
 
+@implementation PlayerState
++ (instancetype)makeWithPlayerId:(NSString *)playerId
+    isPlaying:(NSNumber *)isPlaying
+    playbackPositionMs:(nullable NSNumber *)playbackPositionMs {
+  PlayerState* pigeonResult = [[PlayerState alloc] init];
+  pigeonResult.playerId = playerId;
+  pigeonResult.isPlaying = isPlaying;
+  pigeonResult.playbackPositionMs = playbackPositionMs;
+  return pigeonResult;
+}
++ (PlayerState *)fromMap:(NSDictionary *)dict {
+  PlayerState *pigeonResult = [[PlayerState alloc] init];
+  pigeonResult.playerId = GetNullableObject(dict, @"playerId");
+  NSAssert(pigeonResult.playerId != nil, @"");
+  pigeonResult.isPlaying = GetNullableObject(dict, @"isPlaying");
+  NSAssert(pigeonResult.isPlaying != nil, @"");
+  pigeonResult.playbackPositionMs = GetNullableObject(dict, @"playbackPositionMs");
+  return pigeonResult;
+}
++ (nullable PlayerState *)nullableFromMap:(NSDictionary *)dict { return (dict) ? [PlayerState fromMap:dict] : nil; }
+- (NSDictionary *)toMap {
+  return @{
+    @"playerId" : (self.playerId ?: [NSNull null]),
+    @"isPlaying" : (self.isPlaying ?: [NSNull null]),
+    @"playbackPositionMs" : (self.playbackPositionMs ?: [NSNull null]),
+  };
+}
+@end
+
 @implementation ChromecastState
 + (instancetype)makeWithConnectionState:(CastConnectionState)connectionState
     mediaItem:(nullable MediaItem *)mediaItem {
@@ -256,22 +290,22 @@ static id GetNullableObjectAtIndex(NSArray* array, NSInteger key) {
 }
 @end
 
-@implementation PositionUpdateEvent
+@implementation PositionDiscontinuityEvent
 + (instancetype)makeWithPlayerId:(NSString *)playerId
     playbackPositionMs:(nullable NSNumber *)playbackPositionMs {
-  PositionUpdateEvent* pigeonResult = [[PositionUpdateEvent alloc] init];
+  PositionDiscontinuityEvent* pigeonResult = [[PositionDiscontinuityEvent alloc] init];
   pigeonResult.playerId = playerId;
   pigeonResult.playbackPositionMs = playbackPositionMs;
   return pigeonResult;
 }
-+ (PositionUpdateEvent *)fromMap:(NSDictionary *)dict {
-  PositionUpdateEvent *pigeonResult = [[PositionUpdateEvent alloc] init];
++ (PositionDiscontinuityEvent *)fromMap:(NSDictionary *)dict {
+  PositionDiscontinuityEvent *pigeonResult = [[PositionDiscontinuityEvent alloc] init];
   pigeonResult.playerId = GetNullableObject(dict, @"playerId");
   NSAssert(pigeonResult.playerId != nil, @"");
   pigeonResult.playbackPositionMs = GetNullableObject(dict, @"playbackPositionMs");
   return pigeonResult;
 }
-+ (nullable PositionUpdateEvent *)nullableFromMap:(NSDictionary *)dict { return (dict) ? [PositionUpdateEvent fromMap:dict] : nil; }
++ (nullable PositionDiscontinuityEvent *)nullableFromMap:(NSDictionary *)dict { return (dict) ? [PositionDiscontinuityEvent fromMap:dict] : nil; }
 - (NSDictionary *)toMap {
   return @{
     @"playerId" : (self.playerId ?: [NSNull null]),
@@ -376,6 +410,9 @@ static id GetNullableObjectAtIndex(NSArray* array, NSInteger key) {
       return [NpawConfig fromMap:[self readValue]];
     
     case 133:     
+      return [PlayerState fromMap:[self readValue]];
+    
+    case 134:     
       return [User fromMap:[self readValue]];
     
     default:    
@@ -410,8 +447,12 @@ static id GetNullableObjectAtIndex(NSArray* array, NSInteger key) {
     [self writeByte:132];
     [self writeValue:[value toMap]];
   } else 
-  if ([value isKindOfClass:[User class]]) {
+  if ([value isKindOfClass:[PlayerState class]]) {
     [self writeByte:133];
+    [self writeValue:[value toMap]];
+  } else 
+  if ([value isKindOfClass:[User class]]) {
+    [self writeByte:134];
     [self writeValue:[value toMap]];
   } else 
 {
@@ -672,6 +713,26 @@ void PlaybackPlatformPigeonSetup(id<FlutterBinaryMessenger> binaryMessenger, NSO
   {
     FlutterBasicMessageChannel *channel =
       [[FlutterBasicMessageChannel alloc]
+        initWithName:@"dev.flutter.pigeon.PlaybackPlatformPigeon.getPlayerState"
+        binaryMessenger:binaryMessenger
+        codec:PlaybackPlatformPigeonGetCodec()        ];
+    if (api) {
+      NSCAssert([api respondsToSelector:@selector(getPlayerState:completion:)], @"PlaybackPlatformPigeon api (%@) doesn't respond to @selector(getPlayerState:completion:)", api);
+      [channel setMessageHandler:^(id _Nullable message, FlutterReply callback) {
+        NSArray *args = message;
+        NSString *arg_playerId = GetNullableObjectAtIndex(args, 0);
+        [api getPlayerState:arg_playerId completion:^(PlayerState *_Nullable output, FlutterError *_Nullable error) {
+          callback(wrapResult(output, error));
+        }];
+      }];
+    }
+    else {
+      [channel setMessageHandler:nil];
+    }
+  }
+  {
+    FlutterBasicMessageChannel *channel =
+      [[FlutterBasicMessageChannel alloc]
         initWithName:@"dev.flutter.pigeon.PlaybackPlatformPigeon.getChromecastState"
         binaryMessenger:binaryMessenger
         codec:PlaybackPlatformPigeonGetCodec()        ];
@@ -746,7 +807,10 @@ void PlaybackPlatformPigeonSetup(id<FlutterBinaryMessenger> binaryMessenger, NSO
       return [PictureInPictureModeChangedEvent fromMap:[self readValue]];
     
     case 133:     
-      return [PositionUpdateEvent fromMap:[self readValue]];
+      return [PlayerState fromMap:[self readValue]];
+    
+    case 134:     
+      return [PositionDiscontinuityEvent fromMap:[self readValue]];
     
     default:    
       return [super readValueOfType:type];
@@ -780,8 +844,12 @@ void PlaybackPlatformPigeonSetup(id<FlutterBinaryMessenger> binaryMessenger, NSO
     [self writeByte:132];
     [self writeValue:[value toMap]];
   } else 
-  if ([value isKindOfClass:[PositionUpdateEvent class]]) {
+  if ([value isKindOfClass:[PlayerState class]]) {
     [self writeByte:133];
+    [self writeValue:[value toMap]];
+  } else 
+  if ([value isKindOfClass:[PositionDiscontinuityEvent class]]) {
+    [self writeByte:134];
     [self writeValue:[value toMap]];
   } else 
 {
@@ -825,10 +893,20 @@ NSObject<FlutterMessageCodec> *PlaybackListenerPigeonGetCodec() {
   }
   return self;
 }
-- (void)onPositionUpdate:(PositionUpdateEvent *)arg_event completion:(void(^)(NSError *_Nullable))completion {
+- (void)onPositionDiscontinuity:(PositionDiscontinuityEvent *)arg_event completion:(void(^)(NSError *_Nullable))completion {
   FlutterBasicMessageChannel *channel =
     [FlutterBasicMessageChannel
-      messageChannelWithName:@"dev.flutter.pigeon.PlaybackListenerPigeon.onPositionUpdate"
+      messageChannelWithName:@"dev.flutter.pigeon.PlaybackListenerPigeon.onPositionDiscontinuity"
+      binaryMessenger:self.binaryMessenger
+      codec:PlaybackListenerPigeonGetCodec()];
+  [channel sendMessage:@[arg_event ?: [NSNull null]] reply:^(id reply) {
+    completion(nil);
+  }];
+}
+- (void)onPlayerStateUpdate:(PlayerState *)arg_event completion:(void(^)(NSError *_Nullable))completion {
+  FlutterBasicMessageChannel *channel =
+    [FlutterBasicMessageChannel
+      messageChannelWithName:@"dev.flutter.pigeon.PlaybackListenerPigeon.onPlayerStateUpdate"
       binaryMessenger:self.binaryMessenger
       codec:PlaybackListenerPigeonGetCodec()];
   [channel sendMessage:@[arg_event ?: [NSNull null]] reply:^(id reply) {

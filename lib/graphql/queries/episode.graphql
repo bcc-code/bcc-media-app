@@ -5,6 +5,8 @@ query FetchEpisode($id: ID!) {
     description
     extraDescription
     imageUrl
+    duration
+    progress
     streams {
       type
       url

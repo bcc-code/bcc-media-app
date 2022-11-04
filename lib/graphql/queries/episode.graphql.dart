@@ -295,6 +295,20 @@ const documentNodeQueryFetchEpisode = DocumentNode(definitions: [
             selectionSet: null,
           ),
           FieldNode(
+            name: NameNode(value: 'duration'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
+            name: NameNode(value: 'progress'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
             name: NameNode(value: 'streams'),
             alias: null,
             arguments: [],
@@ -532,6 +546,8 @@ class Query$FetchEpisode$episode {
     required this.description,
     required this.extraDescription,
     this.imageUrl,
+    required this.duration,
+    this.progress,
     required this.streams,
     this.season,
     required this.$__typename,
@@ -543,6 +559,8 @@ class Query$FetchEpisode$episode {
     final l$description = json['description'];
     final l$extraDescription = json['extraDescription'];
     final l$imageUrl = json['imageUrl'];
+    final l$duration = json['duration'];
+    final l$progress = json['progress'];
     final l$streams = json['streams'];
     final l$season = json['season'];
     final l$$__typename = json['__typename'];
@@ -552,6 +570,8 @@ class Query$FetchEpisode$episode {
       description: (l$description as String),
       extraDescription: (l$extraDescription as String),
       imageUrl: (l$imageUrl as String?),
+      duration: (l$duration as int),
+      progress: (l$progress as int?),
       streams: (l$streams as List<dynamic>)
           .map((e) => Query$FetchEpisode$episode$streams.fromJson(
               (e as Map<String, dynamic>)))
@@ -574,6 +594,10 @@ class Query$FetchEpisode$episode {
 
   final String? imageUrl;
 
+  final int duration;
+
+  final int? progress;
+
   final List<Query$FetchEpisode$episode$streams> streams;
 
   final Query$FetchEpisode$episode$season? season;
@@ -592,6 +616,10 @@ class Query$FetchEpisode$episode {
     _resultData['extraDescription'] = l$extraDescription;
     final l$imageUrl = imageUrl;
     _resultData['imageUrl'] = l$imageUrl;
+    final l$duration = duration;
+    _resultData['duration'] = l$duration;
+    final l$progress = progress;
+    _resultData['progress'] = l$progress;
     final l$streams = streams;
     _resultData['streams'] = l$streams.map((e) => e.toJson()).toList();
     final l$season = season;
@@ -608,6 +636,8 @@ class Query$FetchEpisode$episode {
     final l$description = description;
     final l$extraDescription = extraDescription;
     final l$imageUrl = imageUrl;
+    final l$duration = duration;
+    final l$progress = progress;
     final l$streams = streams;
     final l$season = season;
     final l$$__typename = $__typename;
@@ -617,6 +647,8 @@ class Query$FetchEpisode$episode {
       l$description,
       l$extraDescription,
       l$imageUrl,
+      l$duration,
+      l$progress,
       Object.hashAll(l$streams.map((v) => v)),
       l$season,
       l$$__typename,
@@ -655,6 +687,16 @@ class Query$FetchEpisode$episode {
     final l$imageUrl = imageUrl;
     final lOther$imageUrl = other.imageUrl;
     if (l$imageUrl != lOther$imageUrl) {
+      return false;
+    }
+    final l$duration = duration;
+    final lOther$duration = other.duration;
+    if (l$duration != lOther$duration) {
+      return false;
+    }
+    final l$progress = progress;
+    final lOther$progress = other.progress;
+    if (l$progress != lOther$progress) {
       return false;
     }
     final l$streams = streams;
@@ -707,6 +749,8 @@ abstract class CopyWith$Query$FetchEpisode$episode<TRes> {
     String? description,
     String? extraDescription,
     String? imageUrl,
+    int? duration,
+    int? progress,
     List<Query$FetchEpisode$episode$streams>? streams,
     Query$FetchEpisode$episode$season? season,
     String? $__typename,
@@ -739,6 +783,8 @@ class _CopyWithImpl$Query$FetchEpisode$episode<TRes>
     Object? description = _undefined,
     Object? extraDescription = _undefined,
     Object? imageUrl = _undefined,
+    Object? duration = _undefined,
+    Object? progress = _undefined,
     Object? streams = _undefined,
     Object? season = _undefined,
     Object? $__typename = _undefined,
@@ -757,6 +803,11 @@ class _CopyWithImpl$Query$FetchEpisode$episode<TRes>
                 : (extraDescription as String),
         imageUrl:
             imageUrl == _undefined ? _instance.imageUrl : (imageUrl as String?),
+        duration: duration == _undefined || duration == null
+            ? _instance.duration
+            : (duration as int),
+        progress:
+            progress == _undefined ? _instance.progress : (progress as int?),
         streams: streams == _undefined || streams == null
             ? _instance.streams
             : (streams as List<Query$FetchEpisode$episode$streams>),
@@ -800,6 +851,8 @@ class _CopyWithStubImpl$Query$FetchEpisode$episode<TRes>
     String? description,
     String? extraDescription,
     String? imageUrl,
+    int? duration,
+    int? progress,
     List<Query$FetchEpisode$episode$streams>? streams,
     Query$FetchEpisode$episode$season? season,
     String? $__typename,

@@ -47,6 +47,10 @@ abstract class PlaybackPlatformPigeon {
   void setAppConfig(AppConfig? config);
 
   @async
+  @ObjCSelector("getPlayerState:")
+  PlayerState? getPlayerState(String playerId);
+
+  @async
   @ObjCSelector("getChromecastState")
   ChromecastState? getChromecastState();
 
@@ -97,6 +101,13 @@ class MediaMetadata {
   Map<String?, Object?>? extras;
 }
 
+class PlayerState {
+  late String playerId;
+  late bool isPlaying;
+  // This is double because pigeon uses NSNumber for int :(
+  double? playbackPositionMs;
+}
+
 class ChromecastState {
   late CastConnectionState connectionState;
   MediaItem? mediaItem;
@@ -114,8 +125,10 @@ enum CastConnectionState {
 
 @FlutterApi()
 abstract class PlaybackListenerPigeon {
-  @ObjCSelector("onPositionUpdate:")
-  void onPositionUpdate(PositionUpdateEvent event);
+  @ObjCSelector("onPositionDiscontinuity:")
+  void onPositionDiscontinuity(PositionDiscontinuityEvent event);
+  @ObjCSelector("onPlayerStateUpdate:")
+  void onPlayerStateUpdate(PlayerState event);
   @ObjCSelector("onIsPlayingChanged:")
   void onIsPlayingChanged(IsPlayingChangedEvent event);
   @ObjCSelector("onMediaItemTransition:")
@@ -124,7 +137,7 @@ abstract class PlaybackListenerPigeon {
   void onPictureInPictureModeChanged(PictureInPictureModeChangedEvent event);
 }
 
-class PositionUpdateEvent {
+class PositionDiscontinuityEvent {
   late String playerId;
   int? playbackPositionMs;
 }

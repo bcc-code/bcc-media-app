@@ -425,10 +425,22 @@ class Fragment$SearchResultItem$$EpisodeSearchItem
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
-    final l$showTitle = showTitle;
-    _resultData['showTitle'] = l$showTitle;
+    final l$collection = collection;
+    _resultData['collection'] = l$collection;
+    final l$id = id;
+    _resultData['id'] = l$id;
+    final l$legacyID = legacyID;
+    _resultData['legacyID'] = l$legacyID;
+    final l$title = title;
+    _resultData['title'] = l$title;
+    final l$description = description;
+    _resultData['description'] = l$description;
+    final l$image = image;
+    _resultData['image'] = l$image;
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
+    final l$showTitle = showTitle;
+    _resultData['showTitle'] = l$showTitle;
     return _resultData;
   }
 
@@ -651,6 +663,18 @@ class Fragment$SearchResultItem$$ShowSearchItem
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
+    final l$collection = collection;
+    _resultData['collection'] = l$collection;
+    final l$id = id;
+    _resultData['id'] = l$id;
+    final l$legacyID = legacyID;
+    _resultData['legacyID'] = l$legacyID;
+    final l$title = title;
+    _resultData['title'] = l$title;
+    final l$description = description;
+    _resultData['description'] = l$description;
+    final l$image = image;
+    _resultData['image'] = l$image;
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;

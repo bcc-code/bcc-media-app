@@ -28,39 +28,43 @@ mixin _$Settings {
 /// @nodoc
 abstract class $SettingsCopyWith<$Res> {
   factory $SettingsCopyWith(Settings value, $Res Function(Settings) then) =
-      _$SettingsCopyWithImpl<$Res>;
+      _$SettingsCopyWithImpl<$Res, Settings>;
+  @useResult
   $Res call(
       {Locale appLanguage, String? audioLanguage, String? subtitleLanguage});
 }
 
 /// @nodoc
-class _$SettingsCopyWithImpl<$Res> implements $SettingsCopyWith<$Res> {
+class _$SettingsCopyWithImpl<$Res, $Val extends Settings>
+    implements $SettingsCopyWith<$Res> {
   _$SettingsCopyWithImpl(this._value, this._then);
 
-  final Settings _value;
   // ignore: unused_field
-  final $Res Function(Settings) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? appLanguage = freezed,
+    Object? appLanguage = null,
     Object? audioLanguage = freezed,
     Object? subtitleLanguage = freezed,
   }) {
     return _then(_value.copyWith(
-      appLanguage: appLanguage == freezed
+      appLanguage: null == appLanguage
           ? _value.appLanguage
           : appLanguage // ignore: cast_nullable_to_non_nullable
               as Locale,
-      audioLanguage: audioLanguage == freezed
+      audioLanguage: freezed == audioLanguage
           ? _value.audioLanguage
           : audioLanguage // ignore: cast_nullable_to_non_nullable
               as String?,
-      subtitleLanguage: subtitleLanguage == freezed
+      subtitleLanguage: freezed == subtitleLanguage
           ? _value.subtitleLanguage
           : subtitleLanguage // ignore: cast_nullable_to_non_nullable
               as String?,
-    ));
+    ) as $Val);
   }
 }
 
@@ -70,36 +74,36 @@ abstract class _$$_SettingsCopyWith<$Res> implements $SettingsCopyWith<$Res> {
           _$_Settings value, $Res Function(_$_Settings) then) =
       __$$_SettingsCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call(
       {Locale appLanguage, String? audioLanguage, String? subtitleLanguage});
 }
 
 /// @nodoc
-class __$$_SettingsCopyWithImpl<$Res> extends _$SettingsCopyWithImpl<$Res>
+class __$$_SettingsCopyWithImpl<$Res>
+    extends _$SettingsCopyWithImpl<$Res, _$_Settings>
     implements _$$_SettingsCopyWith<$Res> {
   __$$_SettingsCopyWithImpl(
       _$_Settings _value, $Res Function(_$_Settings) _then)
-      : super(_value, (v) => _then(v as _$_Settings));
+      : super(_value, _then);
 
-  @override
-  _$_Settings get _value => super._value as _$_Settings;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? appLanguage = freezed,
+    Object? appLanguage = null,
     Object? audioLanguage = freezed,
     Object? subtitleLanguage = freezed,
   }) {
     return _then(_$_Settings(
-      appLanguage: appLanguage == freezed
+      appLanguage: null == appLanguage
           ? _value.appLanguage
           : appLanguage // ignore: cast_nullable_to_non_nullable
               as Locale,
-      audioLanguage: audioLanguage == freezed
+      audioLanguage: freezed == audioLanguage
           ? _value.audioLanguage
           : audioLanguage // ignore: cast_nullable_to_non_nullable
               as String?,
-      subtitleLanguage: subtitleLanguage == freezed
+      subtitleLanguage: freezed == subtitleLanguage
           ? _value.subtitleLanguage
           : subtitleLanguage // ignore: cast_nullable_to_non_nullable
               as String?,
@@ -130,23 +134,21 @@ class _$_Settings implements _Settings {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_Settings &&
-            const DeepCollectionEquality()
-                .equals(other.appLanguage, appLanguage) &&
-            const DeepCollectionEquality()
-                .equals(other.audioLanguage, audioLanguage) &&
-            const DeepCollectionEquality()
-                .equals(other.subtitleLanguage, subtitleLanguage));
+            (identical(other.appLanguage, appLanguage) ||
+                other.appLanguage == appLanguage) &&
+            (identical(other.audioLanguage, audioLanguage) ||
+                other.audioLanguage == audioLanguage) &&
+            (identical(other.subtitleLanguage, subtitleLanguage) ||
+                other.subtitleLanguage == subtitleLanguage));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(appLanguage),
-      const DeepCollectionEquality().hash(audioLanguage),
-      const DeepCollectionEquality().hash(subtitleLanguage));
+  int get hashCode =>
+      Object.hash(runtimeType, appLanguage, audioLanguage, subtitleLanguage);
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$_SettingsCopyWith<_$_Settings> get copyWith =>
       __$$_SettingsCopyWithImpl<_$_Settings>(this, _$identity);
 }

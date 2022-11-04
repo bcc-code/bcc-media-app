@@ -33,6 +33,25 @@ class PlaybackApiImpl(private val plugin: BccmPlayerPlugin) : PlaybackPlatformAp
         }
     }
 
+    override fun getPlayerState(playerId: String, result: PlaybackPlatformApi.Result<PlaybackPlatformApi.PlayerState>?) {
+        val playbackService = plugin.getPlaybackService()
+        if (playbackService == null) {
+            result?.error(Error())
+            return
+        }
+        val playerController = playbackService.getController(playerId);
+        if (playerController == null) {
+            result?.error(Error("Player with id $playerId does not exist."))
+            return
+        }
+
+        val position = playerController.player.currentPosition.toDouble();
+        result?.success(PlaybackPlatformApi.PlayerState.Builder()
+                .setPlayerId(playerId)
+                .setIsPlaying(playerController.player.isPlaying)
+                .setPlaybackPositionMs(position).build());
+    }
+
     override fun newPlayer(url: String?, result: PlaybackPlatformApi.Result<String>?) {
         Log.d("bccm", "PlaybackPigeon: newPlayer()")
         val playbackService = plugin.getPlaybackService()
@@ -58,8 +77,11 @@ class PlaybackApiImpl(private val plugin: BccmPlayerPlugin) : PlaybackPlatformAp
             mediaItem.playbackStartPositionMs = playbackService.getPrimaryController()?.player?.currentPosition
         }
 
-        val playerController = playbackService.getController(playerId)
-                ?: throw Error("Player with id ${playerId} does not exist.")
+        val playerController = playbackService.getController(playerId);
+        if (playerController == null) {
+            result?.error(Error("Player with id $playerId does not exist."))
+            return
+        }
 
         playerController.replaceCurrentMediaItem(mediaItem, autoplay)
         result?.success(null);

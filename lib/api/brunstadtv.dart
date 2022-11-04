@@ -6,14 +6,13 @@ import 'package:riverpod/riverpod.dart';
 
 import '../graphql/client.dart';
 import '../graphql/schema/items.graphql.dart';
-import 'episodes.dart';
 
 class Api {
   final GraphQLClient client;
 
   Api(this.client);
 
-  Future<Episode?> fetchEpisode(String id) async {
+  Future<Query$FetchEpisode$episode?> fetchEpisode(String id) async {
     final result = await client.query$FetchEpisode(
       Options$Query$FetchEpisode(
         variables: Variables$Query$FetchEpisode(id: id),
@@ -25,19 +24,19 @@ class Api {
     var episode = result.parsedData?.episode;
     if (episode == null) return null;
 
-    var streamUrl = episode.streams
+    return episode;
+  }
+}
+
+extension StreamUrlExtension on Query$FetchEpisode$episode {
+  String getBestStreamUrl() {
+    var streamUrl = streams
         .firstWhereOrNull((element) =>
             element.type == Enum$StreamType.hls_cmaf ||
             element.type == Enum$StreamType.hls_ts)
         ?.url;
-    streamUrl ??= episode.streams.first.url;
-    return Episode(
-        id: episode.id,
-        streamUrl: streamUrl,
-        title: episode.title,
-        imageUrl: episode.imageUrl,
-        showTitle: episode.season?.$show.title,
-        seasonTitle: episode.season?.title);
+    streamUrl ??= streams.first.url;
+    return streamUrl;
   }
 }
 

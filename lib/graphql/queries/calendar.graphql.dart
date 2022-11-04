@@ -894,12 +894,20 @@ class Fragment$CalendarDay$entries$$EpisodeCalendarEntry
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
-    final l$episode = episode;
-    _resultData['episode'] = l$episode?.toJson();
     final l$id = id;
     _resultData['id'] = l$id;
+    final l$title = title;
+    _resultData['title'] = l$title;
+    final l$description = description;
+    _resultData['description'] = l$description;
+    final l$start = start;
+    _resultData['start'] = l$start;
+    final l$end = end;
+    _resultData['end'] = l$end;
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
+    final l$episode = episode;
+    _resultData['episode'] = l$episode?.toJson();
     return _resultData;
   }
 
@@ -1267,6 +1275,14 @@ class Fragment$CalendarDay$entries$$SimpleCalendarEntry
     final _resultData = <String, dynamic>{};
     final l$id = id;
     _resultData['id'] = l$id;
+    final l$title = title;
+    _resultData['title'] = l$title;
+    final l$description = description;
+    _resultData['description'] = l$description;
+    final l$start = start;
+    _resultData['start'] = l$start;
+    final l$end = end;
+    _resultData['end'] = l$end;
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;

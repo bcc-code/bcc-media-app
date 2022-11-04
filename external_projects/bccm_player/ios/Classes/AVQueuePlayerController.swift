@@ -18,6 +18,7 @@ public class AVQueuePlayerController: NSObject, PlayerController, AVPlayerViewCo
     var youboraPlugin: YBPlugin
     var pipController: AVPlayerViewController? = nil
     var appConfig: AppConfig? = nil
+    var refreshStateTimer: Timer? = nil
 
     init(id: String? = nil, playbackListener: PlaybackListenerPigeon, npawConfig: NpawConfig?, appConfig: AppConfig?) {
         self.id = id ?? UUID().uuidString;
@@ -33,7 +34,18 @@ public class AVQueuePlayerController: NSObject, PlayerController, AVPlayerViewCo
         super.init()
         youboraPlugin.adapter = YBAVPlayerAdapterSwiftTranformer.transform(from: YBAVPlayerAdapter(player: player))
         addObservers();
+        refreshStateTimer = Timer.scheduledTimer(withTimeInterval: 15, repeats: true) { _ in
+            let playerState = PlayerState.make(
+                withPlayerId: self.id,
+                isPlaying: self.isPlaying() as NSNumber,
+                playbackPositionMs: NSNumber(value: self.player.currentTime().seconds * 1000 ));
+            playbackListener.onPlayerStateUpdate(playerState, completion: {_ in })
+        }
         print("BTV DEBUG: end of init playerController")
+    }
+    
+    deinit {
+        refreshStateTimer?.invalidate()
     }
     
     public func getCurrentItem() -> MediaItem? {
@@ -291,23 +303,18 @@ public class AVQueuePlayerController: NSObject, PlayerController, AVPlayerViewCo
         observers.append(player.observe(\.timeControlStatus, options: [.old, .new]) {
             (player, change) in
             debugPrint("BTV DEBUG: player status changed...")
-            
-            print("bccm: audiosession playerstatuschanged outputDataSource: " + String(AVAudioSession.sharedInstance().outputDataSource?.dataSourceName ?? ""))
-            print("bccm: audiosession playerstatuschanged sec: " + String(AVAudioSession.sharedInstance().secondaryAudioShouldBeSilencedHint))
-            print("bccm: audiosession playerstatuschanged ioBufferDuration: " + String(AVAudioSession.sharedInstance().ioBufferDuration))
-            print("bccm: audiosession playerstatuschanged mode: " + AVAudioSession.sharedInstance().mode.rawValue)
-            print("bccm: audiosession playerstatuschanged debugDesc: " + AVAudioSession.sharedInstance().debugDescription)
-            print("bccm: audiosession playerstatuschanged category: " + AVAudioSession.sharedInstance().category.rawValue)
-            print("bccm: audiosession playerstatuschanged categoryoptions: " + String(AVAudioSession.sharedInstance().categoryOptions.rawValue))
-            // We don't want "isPlaying" to be affected by stuttering
-            // So we only check if the player is paused or doesnt have an item to play.
-            let paused = player.timeControlStatus == AVPlayer.TimeControlStatus.paused;
-            let waitingBecauseNoItemToPlay = player.timeControlStatus == AVPlayer.TimeControlStatus.waitingToPlayAtSpecifiedRate
-                    && player.reasonForWaitingToPlay == AVPlayer.WaitingReason.noItemToPlay
-            let isPlaying = !paused && !waitingBecauseNoItemToPlay;
-            let event = IsPlayingChangedEvent.make(withPlayerId: self.id, isPlaying: isPlaying as NSNumber)
+            let event = IsPlayingChangedEvent.make(withPlayerId: self.id, isPlaying: self.isPlaying() as NSNumber)
             self.playbackListener.onIsPlayingChanged(event, completion: { _ in })
         })
+    }
+    
+    func isPlaying() -> Bool {
+        // We don't want "isPlaying" to be affected by buffering
+        // So we only check if the player is paused or doesnt have an item to play.
+        let paused = player.timeControlStatus == AVPlayer.TimeControlStatus.paused;
+        let waitingBecauseNoItemToPlay = player.timeControlStatus == AVPlayer.TimeControlStatus.waitingToPlayAtSpecifiedRate
+                && player.reasonForWaitingToPlay == AVPlayer.WaitingReason.noItemToPlay
+        return !paused && !waitingBecauseNoItemToPlay;
     }
 }
 

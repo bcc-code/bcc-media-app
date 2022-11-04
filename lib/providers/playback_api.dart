@@ -1,9 +1,9 @@
 import 'package:bccm_player/playback_platform_pigeon.g.dart';
 import 'package:bccm_player/playback_service.dart';
 import 'package:bccm_player/playback_service_interface.dart';
+import 'package:brunstadtv_app/api/brunstadtv.dart';
+import 'package:brunstadtv_app/graphql/queries/episode.graphql.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:brunstadtv_app/api/episodes.dart';
-import 'package:brunstadtv_app/providers/video_state.dart';
 
 final playbackApiProvider = Provider<PlaybackPlatformInterface>((ref) {
   return PlaybackService();
@@ -11,11 +11,11 @@ final playbackApiProvider = Provider<PlaybackPlatformInterface>((ref) {
 
 Future playEpisode(
     {required String playerId,
-    required Episode episode,
+    required Query$FetchEpisode$episode episode,
     bool? autoplay,
     int? playbackPositionMs}) async {
   var mediaItem = MediaItem(
-      url: episode.streamUrl,
+      url: episode.getBestStreamUrl(),
       mimeType: 'application/x-mpegURL',
       metadata: MediaMetadata(
           title: episode.title,
@@ -23,8 +23,8 @@ Future playEpisode(
           extras: {
             'id': episode.id.toString(),
             'npaw.content.id': episode.id,
-            'npaw.content.tvShow': episode.showTitle,
-            'npaw.content.season': episode.seasonTitle,
+            'npaw.content.tvShow': episode.season?.$show.title,
+            'npaw.content.season': episode.season?.title,
             'npaw.content.episodeTitle': episode.title,
           }),
       playbackStartPositionMs: playbackPositionMs);
@@ -34,9 +34,10 @@ Future playEpisode(
 }
 
 Future queueEpisode(
-    {required String playerId, required Episode episode}) async {
+    {required String playerId,
+    required Query$FetchEpisode$episode episode}) async {
   var mediaItem = MediaItem(
-      url: episode.streamUrl,
+      url: episode.getBestStreamUrl(),
       mimeType: 'application/x-mpegURL',
       metadata: MediaMetadata(
           title: episode.title,
@@ -44,8 +45,8 @@ Future queueEpisode(
           extras: {
             'id': episode.id.toString(),
             'npaw.content.id': episode.id,
-            'npaw.content.tvShow': episode.showTitle,
-            'npaw.content.season': episode.seasonTitle,
+            'npaw.content.tvShow': episode.season?.$show.title,
+            'npaw.content.season': episode.season?.title,
             'npaw.content.episodeTitle': episode.title,
           }));
 

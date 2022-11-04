@@ -83,11 +83,10 @@ class _GridEpisodeItem extends StatelessWidget {
   final Fragment$Section$$PosterGridSection$items$items sectionItem;
   final Fragment$Section$$PosterGridSection$items$items$item$$Episode episode;
 
-  // TODO: Remove these temp variables
-  bool watched = false;
+  bool get watched =>
+      episode.progress != null && episode.progress! > episode.duration * 0.9;
   bool isLive = false;
   bool isNewItem = false;
-  bool showWatchProgressIndicator = false;
 
   _GridEpisodeItem(this.sectionItem)
       : episode = sectionItem.item
@@ -163,14 +162,15 @@ class _GridEpisodeItem extends StatelessWidget {
                   ),
                 ),
               ),
-            showWatchProgressIndicator
+            episode.progress != null && !watched
                 ? Align(
                     alignment: Alignment.bottomCenter,
                     child: Container(
                       margin:
                           const EdgeInsets.only(left: 4, bottom: 4, right: 4),
                       child: WatchProgressIndicator(
-                          totalDuration: episode.duration, watchedDuration: 10),
+                          totalDuration: episode.duration,
+                          watchedDuration: episode.progress!),
                     ),
                   )
                 : Align(
@@ -235,24 +235,28 @@ class _GridShowItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        sectionItemImage(context),
-        Container(
-          margin: const EdgeInsets.only(bottom: 2),
-          child: Text(
-            sectionItem.title,
-            maxLines: 2,
-            overflow: TextOverflow.ellipsis,
-            style: BtvTextStyles.caption1.copyWith(color: BtvColors.label1),
+    return GestureDetector(
+      onTap: () => context.router
+          .navigate(EpisodeScreenRoute(episodeId: show.defaultEpisode.id)),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          sectionItemImage(context),
+          Container(
+            margin: const EdgeInsets.only(bottom: 2),
+            child: Text(
+              sectionItem.title,
+              maxLines: 2,
+              overflow: TextOverflow.ellipsis,
+              style: BtvTextStyles.caption1.copyWith(color: BtvColors.label1),
+            ),
           ),
-        ),
-        Text(
-          '${show.seasonCount} Seasons - ${show.episodeCount} Episodes',
-          style: BtvTextStyles.caption2,
-        )
-      ],
+          Text(
+            '${show.seasonCount} Seasons - ${show.episodeCount} Episodes',
+            style: BtvTextStyles.caption2,
+          )
+        ],
+      ),
     );
   }
 

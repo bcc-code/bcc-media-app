@@ -93,6 +93,10 @@ public class PlaybackApiImpl: NSObject, PlaybackPlatformPigeon {
         completion(nil)
     }
 
+    public func getPlayerState(_ playerId: String, completion: @escaping (PlayerState?, FlutterError?) -> Void) {
+        completion(nil, FlutterError(code: "not_implemented", message: "not implemented", details: nil))
+    }
+    
     public func play(_ playerId: String, error: AutoreleasingUnsafeMutablePointer<FlutterError?>) {
         let player = getPlayer(playerId);
         player?.play();

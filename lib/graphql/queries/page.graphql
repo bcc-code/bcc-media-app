@@ -1,4 +1,4 @@
-fragment Section on Section{
+fragment Section on Section {
   title
   ... on ItemSection {
     items {
@@ -15,8 +15,13 @@ fragment Section on Section{
           }
           ... on Episode {
             id
+            duration
+            progress
           }
           ... on Show {
+            defaultEpisode {
+              id
+            }
             id
           }
           __typename

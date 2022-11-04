@@ -21,7 +21,6 @@ import 'package:bccm_player/cast_button.dart';
 import 'package:flutter_svg/svg.dart';
 
 import '../api/brunstadtv.dart';
-import '../api/episodes.dart';
 import '../components/mini_player.dart';
 import '../helpers/btv_colors.dart';
 
@@ -43,7 +42,7 @@ class EpisodeScreen extends ConsumerStatefulWidget {
 }
 
 class _EpisodeScreenState extends ConsumerState<EpisodeScreen> {
-  late Future<Episode?> episodeFuture;
+  late Future<Query$FetchEpisode$episode?> episodeFuture;
   bool settingUp = false;
   String? error;
   Completer? setupCompleter;
@@ -90,8 +89,15 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen> {
       var episode = await episodeFuture;
       if (!mounted || episode == null) return;
 
+      var startPositionSeconds = (episode.progress ?? 0);
+      if (startPositionSeconds > episode.duration * 0.9) {
+        startPositionSeconds = 0;
+      }
       await playEpisode(
-          playerId: player.playerId, episode: episode, autoplay: true);
+          playerId: player.playerId,
+          episode: episode,
+          autoplay: true,
+          playbackPositionMs: startPositionSeconds * 1000);
       await ensurePlayingWithinReasonableTime(playerProvider);
     }();
   }
@@ -117,9 +123,7 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen> {
       while (true) {
         await Future.delayed(const Duration(milliseconds: 100));
         if (!mounted) return;
-        debugPrint('bccm: setupCompleter watch loop ${DateTime.now()}');
         if (isCorrectItem(ref.read(playerProvider)?.currentMediaItem)) {
-          debugPrint('bccm: isCorrectItem ${DateTime.now()} !!!!!!!!!!!!!!!!!');
           setupCompleter?.complete();
           setStateIfMounted(() {
             error = null;
@@ -182,7 +186,7 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen> {
         child: Column(
           children: [
             if (error != null) Text(error ?? ''),
-            FutureBuilder<Episode?>(
+            FutureBuilder<Query$FetchEpisode$episode?>(
                 future: episodeFuture,
                 builder: (context, snapshot) {
                   var displayPlayer =
@@ -213,34 +217,37 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen> {
                                             width: 40,
                                             child: CircularProgressIndicator()),
                                       )
-                                    : Stack(
-                                        children: [
-                                          GestureDetector(
-                                            behavior: HitTestBehavior.opaque,
-                                            //excludeFromSemantics: true,
-                                            onTap: () {
-                                              setState(() {
-                                                settingUp = true;
-                                              });
-                                              setup();
-                                            },
-                                            child: AspectRatio(
+                                    : GestureDetector(
+                                        behavior: HitTestBehavior.opaque,
+                                        //excludeFromSemantics: true,
+                                        onTap: () {
+                                          setState(() {
+                                            settingUp = true;
+                                          });
+                                          Future.delayed(
+                                              const Duration(milliseconds: 200),
+                                              () {
+                                            setup();
+                                          });
+                                        },
+                                        child: Stack(
+                                          children: [
+                                            AspectRatio(
                                               aspectRatio: 16 / 9,
                                               child: ExtendedImage.network(
-                                                episode!.imageUrl!,
+                                                episode.imageUrl!,
                                                 fit: BoxFit.fill,
                                                 width: 64,
                                                 height: 36,
                                               ),
                                             ),
-                                          ),
-                                          Center(
-                                              child: !settingUp
-                                                  ? Image.asset(
-                                                      'assets/icons/Play.png')
-                                                  : const CircularProgressIndicator()),
-                                        ],
-                                      )),
+                                            Center(
+                                                child: !settingUp
+                                                    ? Image.asset(
+                                                        'assets/icons/Play.png')
+                                                    : const CircularProgressIndicator()),
+                                          ],
+                                        ))),
                         Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: Text(

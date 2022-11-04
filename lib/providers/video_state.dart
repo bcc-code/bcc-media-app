@@ -4,43 +4,6 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:collection/collection.dart'; // You have to add this manually, for some reason it cannot be added automatically
 
 part 'video_state.freezed.dart';
-/* 
-final playerListProvider =
-    StateNotifierProvider<PlayerListStateNotifier, PlayerListState>(
-        ((ref) => PlayerListStateNotifier(ref)));
-
-class PlayerListStateNotifier extends StateNotifier<PlayerListState> {
-  Ref ref;
-
-  PlayerListStateNotifier(Ref this.ref)
-      : super(
-            const PlayerListState(players: <String, StateProvider<Player>>{}));
-
-  Future<String> newPlayer() async {
-    var playerId = await ref.read(playbackApiProvider).newPlayer();
-    var players = Map<String, StateProvider<Player>>.from(state.players);
-    players[playerId] =
-        StateProvider<Player>((ref) => Player(playerId: playerId));
-    state = state.copyWith(players: players);
-    return playerId;
-  }
-
-  void setPrimary(String playerId) {
-    state = state.copyWith(primaryPlayerId: playerId);
-  }
-}
-
-@freezed
-class PlayerListState with _$PlayerListState {
-  const PlayerListState._();
-  StateProvider<Player>? getPrimaryPlayer() {
-    return players[primaryPlayerId];
-  }
-
-  const factory PlayerListState(
-      {required Map<String, StateProvider<Player>> players,
-      String? primaryPlayerId}) = _PlayerState;
-} */
 
 final castPlayerProvider =
     StateNotifierProvider<PlayerNotifier, Player?>((ref) {

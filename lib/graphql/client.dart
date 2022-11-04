@@ -12,16 +12,12 @@ import '../env/env.dart';
 import '../main.dart';
 
 final gqlClientProvider = Provider<GraphQLClient>((ref) {
-  final httpLink = DioLink(Env.brunstadtvApiEndpoint,
-      defaultHeaders: {
-        'Accept-Language': ref.watch(settingsProvider).appLanguage.languageCode
-      },
-      client: Dio(BaseOptions(
-          sendTimeout: 5000, connectTimeout: 5000, receiveTimeout: 5000))
-        ..interceptors.add(alice.getDioInterceptor()));
+  final httpLink = HttpLink(Env.brunstadtvApiEndpoint, defaultHeaders: {
+    'Accept-Language': ref.watch(settingsProvider).appLanguage.languageCode,
+  });
 
   final authLink = AuthLink(
-    getToken: () async => AuthService.instance.idToken != null
+    getToken: () => AuthService.instance.auth0AccessToken != null
         ? 'Bearer ${AuthService.instance.auth0AccessToken}'
         : null,
   );
