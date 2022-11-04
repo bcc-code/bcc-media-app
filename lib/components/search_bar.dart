@@ -41,7 +41,8 @@ class _SearchBarState extends State<SearchBar> {
   void didUpdateWidget(SearchBar oldWidget) {
     super.didUpdateWidget(oldWidget);
     // If query param has changed
-    if (widget.initialQuery != null) {
+    if (oldWidget.initialQuery != widget.initialQuery &&
+        widget.initialQuery != null) {
       _fieldController = TextEditingController.fromValue(
         TextEditingValue(
           text: widget.initialQuery!,
