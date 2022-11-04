@@ -1297,3 +1297,600 @@ class _CopyWithStubImpl$Query$FetchEpisode$episode$season$show<TRes>
   }) =>
       _res;
 }
+
+class Variables$Query$legacyIDLookup {
+  factory Variables$Query$legacyIDLookup({
+    int? episodeId,
+    int? programId,
+  }) =>
+      Variables$Query$legacyIDLookup._({
+        if (episodeId != null) r'episodeId': episodeId,
+        if (programId != null) r'programId': programId,
+      });
+
+  Variables$Query$legacyIDLookup._(this._$data);
+
+  factory Variables$Query$legacyIDLookup.fromJson(Map<String, dynamic> data) {
+    final result$data = <String, dynamic>{};
+    if (data.containsKey('episodeId')) {
+      final l$episodeId = data['episodeId'];
+      result$data['episodeId'] = (l$episodeId as int?);
+    }
+    if (data.containsKey('programId')) {
+      final l$programId = data['programId'];
+      result$data['programId'] = (l$programId as int?);
+    }
+    return Variables$Query$legacyIDLookup._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  int? get episodeId => (_$data['episodeId'] as int?);
+  int? get programId => (_$data['programId'] as int?);
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    if (_$data.containsKey('episodeId')) {
+      final l$episodeId = episodeId;
+      result$data['episodeId'] = l$episodeId;
+    }
+    if (_$data.containsKey('programId')) {
+      final l$programId = programId;
+      result$data['programId'] = l$programId;
+    }
+    return result$data;
+  }
+
+  CopyWith$Variables$Query$legacyIDLookup<Variables$Query$legacyIDLookup>
+      get copyWith => CopyWith$Variables$Query$legacyIDLookup(
+            this,
+            (i) => i,
+          );
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (!(other is Variables$Query$legacyIDLookup) ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$episodeId = episodeId;
+    final lOther$episodeId = other.episodeId;
+    if (_$data.containsKey('episodeId') !=
+        other._$data.containsKey('episodeId')) {
+      return false;
+    }
+    if (l$episodeId != lOther$episodeId) {
+      return false;
+    }
+    final l$programId = programId;
+    final lOther$programId = other.programId;
+    if (_$data.containsKey('programId') !=
+        other._$data.containsKey('programId')) {
+      return false;
+    }
+    if (l$programId != lOther$programId) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$episodeId = episodeId;
+    final l$programId = programId;
+    return Object.hashAll([
+      _$data.containsKey('episodeId') ? l$episodeId : const {},
+      _$data.containsKey('programId') ? l$programId : const {},
+    ]);
+  }
+}
+
+abstract class CopyWith$Variables$Query$legacyIDLookup<TRes> {
+  factory CopyWith$Variables$Query$legacyIDLookup(
+    Variables$Query$legacyIDLookup instance,
+    TRes Function(Variables$Query$legacyIDLookup) then,
+  ) = _CopyWithImpl$Variables$Query$legacyIDLookup;
+
+  factory CopyWith$Variables$Query$legacyIDLookup.stub(TRes res) =
+      _CopyWithStubImpl$Variables$Query$legacyIDLookup;
+
+  TRes call({
+    int? episodeId,
+    int? programId,
+  });
+}
+
+class _CopyWithImpl$Variables$Query$legacyIDLookup<TRes>
+    implements CopyWith$Variables$Query$legacyIDLookup<TRes> {
+  _CopyWithImpl$Variables$Query$legacyIDLookup(
+    this._instance,
+    this._then,
+  );
+
+  final Variables$Query$legacyIDLookup _instance;
+
+  final TRes Function(Variables$Query$legacyIDLookup) _then;
+
+  static const _undefined = {};
+
+  TRes call({
+    Object? episodeId = _undefined,
+    Object? programId = _undefined,
+  }) =>
+      _then(Variables$Query$legacyIDLookup._({
+        ..._instance._$data,
+        if (episodeId != _undefined) 'episodeId': (episodeId as int?),
+        if (programId != _undefined) 'programId': (programId as int?),
+      }));
+}
+
+class _CopyWithStubImpl$Variables$Query$legacyIDLookup<TRes>
+    implements CopyWith$Variables$Query$legacyIDLookup<TRes> {
+  _CopyWithStubImpl$Variables$Query$legacyIDLookup(this._res);
+
+  TRes _res;
+
+  call({
+    int? episodeId,
+    int? programId,
+  }) =>
+      _res;
+}
+
+class Query$legacyIDLookup {
+  Query$legacyIDLookup({
+    required this.legacyIDLookup,
+    required this.$__typename,
+  });
+
+  factory Query$legacyIDLookup.fromJson(Map<String, dynamic> json) {
+    final l$legacyIDLookup = json['legacyIDLookup'];
+    final l$$__typename = json['__typename'];
+    return Query$legacyIDLookup(
+      legacyIDLookup: Query$legacyIDLookup$legacyIDLookup.fromJson(
+          (l$legacyIDLookup as Map<String, dynamic>)),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final Query$legacyIDLookup$legacyIDLookup legacyIDLookup;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$legacyIDLookup = legacyIDLookup;
+    _resultData['legacyIDLookup'] = l$legacyIDLookup.toJson();
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$legacyIDLookup = legacyIDLookup;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$legacyIDLookup,
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (!(other is Query$legacyIDLookup) || runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$legacyIDLookup = legacyIDLookup;
+    final lOther$legacyIDLookup = other.legacyIDLookup;
+    if (l$legacyIDLookup != lOther$legacyIDLookup) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Query$legacyIDLookup on Query$legacyIDLookup {
+  CopyWith$Query$legacyIDLookup<Query$legacyIDLookup> get copyWith =>
+      CopyWith$Query$legacyIDLookup(
+        this,
+        (i) => i,
+      );
+}
+
+abstract class CopyWith$Query$legacyIDLookup<TRes> {
+  factory CopyWith$Query$legacyIDLookup(
+    Query$legacyIDLookup instance,
+    TRes Function(Query$legacyIDLookup) then,
+  ) = _CopyWithImpl$Query$legacyIDLookup;
+
+  factory CopyWith$Query$legacyIDLookup.stub(TRes res) =
+      _CopyWithStubImpl$Query$legacyIDLookup;
+
+  TRes call({
+    Query$legacyIDLookup$legacyIDLookup? legacyIDLookup,
+    String? $__typename,
+  });
+  CopyWith$Query$legacyIDLookup$legacyIDLookup<TRes> get legacyIDLookup;
+}
+
+class _CopyWithImpl$Query$legacyIDLookup<TRes>
+    implements CopyWith$Query$legacyIDLookup<TRes> {
+  _CopyWithImpl$Query$legacyIDLookup(
+    this._instance,
+    this._then,
+  );
+
+  final Query$legacyIDLookup _instance;
+
+  final TRes Function(Query$legacyIDLookup) _then;
+
+  static const _undefined = {};
+
+  TRes call({
+    Object? legacyIDLookup = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(Query$legacyIDLookup(
+        legacyIDLookup: legacyIDLookup == _undefined || legacyIDLookup == null
+            ? _instance.legacyIDLookup
+            : (legacyIDLookup as Query$legacyIDLookup$legacyIDLookup),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+  CopyWith$Query$legacyIDLookup$legacyIDLookup<TRes> get legacyIDLookup {
+    final local$legacyIDLookup = _instance.legacyIDLookup;
+    return CopyWith$Query$legacyIDLookup$legacyIDLookup(
+        local$legacyIDLookup, (e) => call(legacyIDLookup: e));
+  }
+}
+
+class _CopyWithStubImpl$Query$legacyIDLookup<TRes>
+    implements CopyWith$Query$legacyIDLookup<TRes> {
+  _CopyWithStubImpl$Query$legacyIDLookup(this._res);
+
+  TRes _res;
+
+  call({
+    Query$legacyIDLookup$legacyIDLookup? legacyIDLookup,
+    String? $__typename,
+  }) =>
+      _res;
+  CopyWith$Query$legacyIDLookup$legacyIDLookup<TRes> get legacyIDLookup =>
+      CopyWith$Query$legacyIDLookup$legacyIDLookup.stub(_res);
+}
+
+const documentNodeQuerylegacyIDLookup = DocumentNode(definitions: [
+  OperationDefinitionNode(
+    type: OperationType.query,
+    name: NameNode(value: 'legacyIDLookup'),
+    variableDefinitions: [
+      VariableDefinitionNode(
+        variable: VariableNode(name: NameNode(value: 'episodeId')),
+        type: NamedTypeNode(
+          name: NameNode(value: 'Int'),
+          isNonNull: false,
+        ),
+        defaultValue: DefaultValueNode(value: null),
+        directives: [],
+      ),
+      VariableDefinitionNode(
+        variable: VariableNode(name: NameNode(value: 'programId')),
+        type: NamedTypeNode(
+          name: NameNode(value: 'Int'),
+          isNonNull: false,
+        ),
+        defaultValue: DefaultValueNode(value: null),
+        directives: [],
+      ),
+    ],
+    directives: [],
+    selectionSet: SelectionSetNode(selections: [
+      FieldNode(
+        name: NameNode(value: 'legacyIDLookup'),
+        alias: null,
+        arguments: [
+          ArgumentNode(
+            name: NameNode(value: 'options'),
+            value: ObjectValueNode(fields: [
+              ObjectFieldNode(
+                name: NameNode(value: 'episodeID'),
+                value: VariableNode(name: NameNode(value: 'episodeId')),
+              ),
+              ObjectFieldNode(
+                name: NameNode(value: 'programID'),
+                value: VariableNode(name: NameNode(value: 'programId')),
+              ),
+            ]),
+          )
+        ],
+        directives: [],
+        selectionSet: SelectionSetNode(selections: [
+          FieldNode(
+            name: NameNode(value: 'id'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
+            name: NameNode(value: '__typename'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+        ]),
+      ),
+      FieldNode(
+        name: NameNode(value: '__typename'),
+        alias: null,
+        arguments: [],
+        directives: [],
+        selectionSet: null,
+      ),
+    ]),
+  ),
+]);
+Query$legacyIDLookup _parserFn$Query$legacyIDLookup(
+        Map<String, dynamic> data) =>
+    Query$legacyIDLookup.fromJson(data);
+
+class Options$Query$legacyIDLookup
+    extends graphql.QueryOptions<Query$legacyIDLookup> {
+  Options$Query$legacyIDLookup({
+    String? operationName,
+    Variables$Query$legacyIDLookup? variables,
+    graphql.FetchPolicy? fetchPolicy,
+    graphql.ErrorPolicy? errorPolicy,
+    graphql.CacheRereadPolicy? cacheRereadPolicy,
+    Object? optimisticResult,
+    Duration? pollInterval,
+    graphql.Context? context,
+  }) : super(
+          variables: variables?.toJson() ?? {},
+          operationName: operationName,
+          fetchPolicy: fetchPolicy,
+          errorPolicy: errorPolicy,
+          cacheRereadPolicy: cacheRereadPolicy,
+          optimisticResult: optimisticResult,
+          pollInterval: pollInterval,
+          context: context,
+          document: documentNodeQuerylegacyIDLookup,
+          parserFn: _parserFn$Query$legacyIDLookup,
+        );
+}
+
+class WatchOptions$Query$legacyIDLookup
+    extends graphql.WatchQueryOptions<Query$legacyIDLookup> {
+  WatchOptions$Query$legacyIDLookup({
+    String? operationName,
+    Variables$Query$legacyIDLookup? variables,
+    graphql.FetchPolicy? fetchPolicy,
+    graphql.ErrorPolicy? errorPolicy,
+    graphql.CacheRereadPolicy? cacheRereadPolicy,
+    Object? optimisticResult,
+    graphql.Context? context,
+    Duration? pollInterval,
+    bool? eagerlyFetchResults,
+    bool carryForwardDataOnException = true,
+    bool fetchResults = false,
+  }) : super(
+          variables: variables?.toJson() ?? {},
+          operationName: operationName,
+          fetchPolicy: fetchPolicy,
+          errorPolicy: errorPolicy,
+          cacheRereadPolicy: cacheRereadPolicy,
+          optimisticResult: optimisticResult,
+          context: context,
+          document: documentNodeQuerylegacyIDLookup,
+          pollInterval: pollInterval,
+          eagerlyFetchResults: eagerlyFetchResults,
+          carryForwardDataOnException: carryForwardDataOnException,
+          fetchResults: fetchResults,
+          parserFn: _parserFn$Query$legacyIDLookup,
+        );
+}
+
+class FetchMoreOptions$Query$legacyIDLookup extends graphql.FetchMoreOptions {
+  FetchMoreOptions$Query$legacyIDLookup({
+    required graphql.UpdateQuery updateQuery,
+    Variables$Query$legacyIDLookup? variables,
+  }) : super(
+          updateQuery: updateQuery,
+          variables: variables?.toJson() ?? {},
+          document: documentNodeQuerylegacyIDLookup,
+        );
+}
+
+extension ClientExtension$Query$legacyIDLookup on graphql.GraphQLClient {
+  Future<graphql.QueryResult<Query$legacyIDLookup>> query$legacyIDLookup(
+          [Options$Query$legacyIDLookup? options]) async =>
+      await this.query(options ?? Options$Query$legacyIDLookup());
+  graphql.ObservableQuery<Query$legacyIDLookup> watchQuery$legacyIDLookup(
+          [WatchOptions$Query$legacyIDLookup? options]) =>
+      this.watchQuery(options ?? WatchOptions$Query$legacyIDLookup());
+  void writeQuery$legacyIDLookup({
+    required Query$legacyIDLookup data,
+    Variables$Query$legacyIDLookup? variables,
+    bool broadcast = true,
+  }) =>
+      this.writeQuery(
+        graphql.Request(
+          operation:
+              graphql.Operation(document: documentNodeQuerylegacyIDLookup),
+          variables: variables?.toJson() ?? const {},
+        ),
+        data: data.toJson(),
+        broadcast: broadcast,
+      );
+  Query$legacyIDLookup? readQuery$legacyIDLookup({
+    Variables$Query$legacyIDLookup? variables,
+    bool optimistic = true,
+  }) {
+    final result = this.readQuery(
+      graphql.Request(
+        operation: graphql.Operation(document: documentNodeQuerylegacyIDLookup),
+        variables: variables?.toJson() ?? const {},
+      ),
+      optimistic: optimistic,
+    );
+    return result == null ? null : Query$legacyIDLookup.fromJson(result);
+  }
+}
+
+graphql_flutter.QueryHookResult<Query$legacyIDLookup> useQuery$legacyIDLookup(
+        [Options$Query$legacyIDLookup? options]) =>
+    graphql_flutter.useQuery(options ?? Options$Query$legacyIDLookup());
+graphql.ObservableQuery<Query$legacyIDLookup> useWatchQuery$legacyIDLookup(
+        [WatchOptions$Query$legacyIDLookup? options]) =>
+    graphql_flutter
+        .useWatchQuery(options ?? WatchOptions$Query$legacyIDLookup());
+
+class Query$legacyIDLookup$Widget
+    extends graphql_flutter.Query<Query$legacyIDLookup> {
+  Query$legacyIDLookup$Widget({
+    widgets.Key? key,
+    Options$Query$legacyIDLookup? options,
+    required graphql_flutter.QueryBuilder<Query$legacyIDLookup> builder,
+  }) : super(
+          key: key,
+          options: options ?? Options$Query$legacyIDLookup(),
+          builder: builder,
+        );
+}
+
+class Query$legacyIDLookup$legacyIDLookup {
+  Query$legacyIDLookup$legacyIDLookup({
+    required this.id,
+    required this.$__typename,
+  });
+
+  factory Query$legacyIDLookup$legacyIDLookup.fromJson(
+      Map<String, dynamic> json) {
+    final l$id = json['id'];
+    final l$$__typename = json['__typename'];
+    return Query$legacyIDLookup$legacyIDLookup(
+      id: (l$id as String),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final String id;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$id = id;
+    _resultData['id'] = l$id;
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$id = id;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$id,
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (!(other is Query$legacyIDLookup$legacyIDLookup) ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$id = id;
+    final lOther$id = other.id;
+    if (l$id != lOther$id) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Query$legacyIDLookup$legacyIDLookup
+    on Query$legacyIDLookup$legacyIDLookup {
+  CopyWith$Query$legacyIDLookup$legacyIDLookup<
+          Query$legacyIDLookup$legacyIDLookup>
+      get copyWith => CopyWith$Query$legacyIDLookup$legacyIDLookup(
+            this,
+            (i) => i,
+          );
+}
+
+abstract class CopyWith$Query$legacyIDLookup$legacyIDLookup<TRes> {
+  factory CopyWith$Query$legacyIDLookup$legacyIDLookup(
+    Query$legacyIDLookup$legacyIDLookup instance,
+    TRes Function(Query$legacyIDLookup$legacyIDLookup) then,
+  ) = _CopyWithImpl$Query$legacyIDLookup$legacyIDLookup;
+
+  factory CopyWith$Query$legacyIDLookup$legacyIDLookup.stub(TRes res) =
+      _CopyWithStubImpl$Query$legacyIDLookup$legacyIDLookup;
+
+  TRes call({
+    String? id,
+    String? $__typename,
+  });
+}
+
+class _CopyWithImpl$Query$legacyIDLookup$legacyIDLookup<TRes>
+    implements CopyWith$Query$legacyIDLookup$legacyIDLookup<TRes> {
+  _CopyWithImpl$Query$legacyIDLookup$legacyIDLookup(
+    this._instance,
+    this._then,
+  );
+
+  final Query$legacyIDLookup$legacyIDLookup _instance;
+
+  final TRes Function(Query$legacyIDLookup$legacyIDLookup) _then;
+
+  static const _undefined = {};
+
+  TRes call({
+    Object? id = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(Query$legacyIDLookup$legacyIDLookup(
+        id: id == _undefined || id == null ? _instance.id : (id as String),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+}
+
+class _CopyWithStubImpl$Query$legacyIDLookup$legacyIDLookup<TRes>
+    implements CopyWith$Query$legacyIDLookup$legacyIDLookup<TRes> {
+  _CopyWithStubImpl$Query$legacyIDLookup$legacyIDLookup(this._res);
+
+  TRes _res;
+
+  call({
+    String? id,
+    String? $__typename,
+  }) =>
+      _res;
+}

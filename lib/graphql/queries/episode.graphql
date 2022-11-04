@@ -19,3 +19,9 @@ query FetchEpisode($id: ID!) {
     }
   }
 }
+
+query legacyIDLookup($episodeId: Int, $programId: Int) {
+  legacyIDLookup(options: { episodeID: $episodeId, programID: $programId }) {
+    id
+  }
+}

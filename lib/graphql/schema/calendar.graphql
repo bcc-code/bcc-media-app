@@ -37,8 +37,8 @@ type SimpleCalendarEntry implements CalendarEntry {
 type EpisodeCalendarEntry implements CalendarEntry {
     id: ID!
     event: Event @goField(forceResolver: true)
-    title: String!
-    description: String!
+    title: String! @goField(forceResolver: true)
+    description: String! @goField(forceResolver: true)
     start: Date!
     end: Date!
     episode: Episode @goField(forceResolver: true)
@@ -47,8 +47,8 @@ type EpisodeCalendarEntry implements CalendarEntry {
 type SeasonCalendarEntry implements CalendarEntry {
     id: ID!
     event: Event @goField(forceResolver: true)
-    title: String!
-    description: String!
+    title: String! @goField(forceResolver: true)
+    description: String! @goField(forceResolver: true)
     start: Date!
     end: Date!
     season: Season @goField(forceResolver: true)
@@ -57,8 +57,8 @@ type SeasonCalendarEntry implements CalendarEntry {
 type ShowCalendarEntry implements CalendarEntry {
     id: ID!
     event: Event @goField(forceResolver: true)
-    title: String!
-    description: String!
+    title: String! @goField(forceResolver: true)
+    description: String! @goField(forceResolver: true)
     start: Date!
     end: Date!
     show: Show @goField(forceResolver: true)
