@@ -44,7 +44,9 @@ echo "No firebase_app_id_file.json found. Please ensure it's in the proper direc
 exit 1
 fi
 
+
 FIREBASE_PLIST_JSON_DESTINATION=${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.app
+FIREBASE_PLIST_JSON_DESTINATION="${PROJECT_DIR}/Runner/"
 # Get a reference to the destination location for the GoogleService-Info.plist
 # This is the default location where Firebase init code expects to find GoogleServices-Info.plist file
 echo "Will copy ${GOOGLESERVICE_INFO_PLIST} to final destination: ${FIREBASE_PLIST_JSON_DESTINATION}"
