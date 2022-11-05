@@ -8,6 +8,7 @@ import 'package:brunstadtv_app/providers/video_state.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -103,35 +104,35 @@ void $main({required FirebaseOptions? firebaseOptions}) async {
 
   Intl.defaultLocale = await getDefaultLocale();
 
-  runApp(InteractiveViewer(
-    maxScale: 10,
-    child: UncontrolledProviderScope(
-      container: providerContainer,
-      child: Consumer(
-          builder: (context, ref, w) => MaterialApp.router(
-              localizationsDelegates: S.localizationsDelegates,
-              supportedLocales: S.supportedLocales,
-              locale: ref.watch(settingsProvider).appLanguage,
-              theme: ThemeData(),
-              darkTheme: createTheme(),
-              themeMode: ThemeMode.dark,
-              title: 'BrunstadTV',
-              routerDelegate: appRouter.delegate(),
-              routeInformationParser: appRouter.defaultRouteParser(),
-              builder: (BuildContext context, Widget? child) {
-                return MediaQuery(
-                  data: MediaQuery.of(context).copyWith(textScaleFactor: 1.0),
-                  child: OnScreenRulerWidget(
-                    gridColor: Colors.white60.withOpacity(0.1),
-                    child: AppRoot(
-                      navigatorKey: navigatorKey,
-                      child: child,
-                    ),
-                  ),
-                );
-              })),
-    ),
-  ));
+  final app = UncontrolledProviderScope(
+    container: providerContainer,
+    child: Consumer(
+        builder: (context, ref, w) => MaterialApp.router(
+            localizationsDelegates: S.localizationsDelegates,
+            supportedLocales: S.supportedLocales,
+            locale: ref.watch(settingsProvider).appLanguage,
+            theme: ThemeData(),
+            darkTheme: createTheme(),
+            themeMode: ThemeMode.dark,
+            title: 'BrunstadTV',
+            routerDelegate: appRouter.delegate(),
+            routeInformationParser: appRouter.defaultRouteParser(),
+            builder: (BuildContext context, Widget? child) {
+              return MediaQuery(
+                data: MediaQuery.of(context).copyWith(textScaleFactor: 1.0),
+                child: AppRoot(
+                  navigatorKey: navigatorKey,
+                  child: !kDebugMode
+                      ? child
+                      : OnScreenRulerWidget(
+                          gridColor: Colors.white60.withOpacity(0.1),
+                          child: child!),
+                ),
+              );
+            })),
+  );
+
+  runApp(!kDebugMode ? app : InteractiveViewer(maxScale: 10, child: app));
 }
 
 ThemeData createTheme() {
