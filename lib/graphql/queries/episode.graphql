@@ -2,11 +2,13 @@ query FetchEpisode($id: ID!) {
   episode(id: $id) {
     id
     title
+    number
     description
     extraDescription
     imageUrl
     duration
     progress
+    ageRating
     streams {
       type
       url
@@ -15,8 +17,10 @@ query FetchEpisode($id: ID!) {
     }
     season {
       title
+      number
       show {
         title
+        type
       }
     }
   }

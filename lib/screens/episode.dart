@@ -4,14 +4,13 @@ import 'dart:async';
 
 import 'package:auto_route/auto_route.dart';
 import 'package:bccm_player/playback_platform_pigeon.g.dart';
-import 'package:bccm_player/playback_service_interface.dart';
+import 'package:brunstadtv_app/components/feature_badge.dart';
+import 'package:brunstadtv_app/graphql/schema/items.graphql.dart';
 import 'package:brunstadtv_app/helpers/svg_icons.dart';
 import 'package:extended_image/extended_image.dart';
 import 'package:flutter/material.dart';
 import 'package:bccm_player/bccm_player.dart';
-import 'package:flutter/scheduler.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:brunstadtv_app/graphql/client.dart';
 import 'package:brunstadtv_app/graphql/queries/episode.graphql.dart';
 import 'package:brunstadtv_app/providers/chromecast.dart';
 import 'package:brunstadtv_app/providers/fun.dart';
@@ -19,10 +18,13 @@ import 'package:brunstadtv_app/providers/playback_api.dart';
 import 'package:brunstadtv_app/providers/video_state.dart';
 import 'package:bccm_player/cast_button.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:transparent_image/transparent_image.dart';
 
 import '../api/brunstadtv.dart';
-import '../components/mini_player.dart';
+import '../components/custom_back_button.dart';
 import '../helpers/btv_colors.dart';
+import '../helpers/btv_typography.dart';
+import '../l10n/app_localizations.dart';
 
 class EpisodePageArguments {
   int episodeId;
@@ -109,7 +111,7 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen> {
     setState(fn);
   }
 
-  bool isCorrectItem(MediaItem? mediaItem) {
+  bool episodeIsCurrentItem(MediaItem? mediaItem) {
     return mediaItem?.metadata?.extras?['id'] == widget.episodeId;
   }
 
@@ -123,7 +125,7 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen> {
       while (true) {
         await Future.delayed(const Duration(milliseconds: 100));
         if (!mounted) return;
-        if (isCorrectItem(ref.read(playerProvider)?.currentMediaItem)) {
+        if (episodeIsCurrentItem(ref.read(playerProvider)?.currentMediaItem)) {
           setupCompleter?.complete();
           setStateIfMounted(() {
             error = null;
@@ -172,119 +174,194 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen> {
     var player = ref.watch(playerProvider);
     final primaryPlayerId = player!.playerId;
 
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Episode'),
-        actions: const [
-          Padding(
-            padding: EdgeInsets.only(right: 16.0),
-            child: SizedBox(width: 40, child: CastButton()),
-          ),
-        ],
-      ),
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            if (error != null) Text(error ?? ''),
-            FutureBuilder<Query$FetchEpisode$episode?>(
-                future: episodeFuture,
-                builder: (context, snapshot) {
-                  var displayPlayer =
-                      animationStatus == AnimationStatus.completed &&
-                          snapshot.hasData;
+    return FutureBuilder<Query$FetchEpisode$episode?>(
+        future: episodeFuture,
+        builder: (context, snapshot) {
+          var displayPlayer =
+              animationStatus == AnimationStatus.completed && snapshot.hasData;
 
-                  var episode = snapshot.data;
+          var episode = snapshot.data;
 
-                  var tempTitle = ref.watch(tempTitleProvider) ?? '';
+          var tempTitle = ref.watch(tempTitleProvider) ?? '';
 
-                  if (snapshot.hasError) {
-                    return Text(snapshot.error.toString());
+          return Scaffold(
+              appBar: AppBar(
+                leadingWidth: 92,
+                leading: const CustomBackButton(),
+                title: Text(episode?.season?.$show.title ?? ''),
+                actions: const [
+                  Padding(
+                    padding: EdgeInsets.only(left: 16, right: 16.0),
+                    child: SizedBox(width: 24, child: CastButton()),
+                  ),
+                ],
+              ),
+              body: Builder(
+                builder: (context) {
+                  if (error != null) return Text(error ?? '');
+                  if (snapshot.hasError) return Text(snapshot.error.toString());
+                  if (snapshot.connectionState != ConnectionState.done)
+                    return _loading();
+                  if (snapshot.data == null) {
+                    return Text(S.of(context).errorTryAgain);
                   }
 
-                  return Container(
-                    color: BtvColors.background2,
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        isCorrectItem(player.currentMediaItem)
-                            ? _player(displayPlayer, casting, primaryPlayerId)
-                            : AspectRatio(
-                                aspectRatio: 16 / 9,
-                                child: episode == null
-                                    ? const Center(
-                                        child: SizedBox(
-                                            height: 40,
-                                            width: 40,
-                                            child: CircularProgressIndicator()),
-                                      )
-                                    : GestureDetector(
-                                        behavior: HitTestBehavior.opaque,
-                                        //excludeFromSemantics: true,
-                                        onTap: () {
-                                          setState(() {
-                                            settingUp = true;
-                                          });
-                                          Future.delayed(
-                                              const Duration(milliseconds: 200),
-                                              () {
-                                            setup();
-                                          });
-                                        },
-                                        child: Stack(
-                                          children: [
-                                            AspectRatio(
-                                              aspectRatio: 16 / 9,
-                                              child: ExtendedImage.network(
-                                                episode.imageUrl!,
-                                                fit: BoxFit.fill,
-                                                width: 64,
-                                                height: 36,
-                                              ),
-                                            ),
-                                            Center(
-                                                child: !settingUp
-                                                    ? Image.asset(
-                                                        'assets/icons/Play.png')
-                                                    : const CircularProgressIndicator()),
-                                          ],
-                                        ))),
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Text(
-                              episode?.title != null
-                                  ? episode!.title
-                                  : tempTitle,
-                              style: Theme.of(context).textTheme.titleLarge),
-                        )
-                      ],
-                    ),
-                  );
-                }),
-            SizedBox(
-                height: 1500, child: SvgPicture.string(SvgIcons.chevronDown))
+                  return _episode(player, displayPlayer, casting,
+                      primaryPlayerId, episode!, tempTitle, context);
+                },
+              ));
+        });
+  }
+
+  Widget _loading() {
+    return Column(
+      children: [
+        AspectRatio(
+            aspectRatio: 16 / 9,
+            child: Container(color: BtvColors.background2)),
+        Expanded(
+            child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            const SizedBox(
+                width: 32,
+                height: 32,
+                child: CircularProgressIndicator(strokeWidth: 2)),
+            const SizedBox(height: 12),
+            Text(S.of(context).loading, style: BtvTextStyles.body2)
           ],
-        ),
-      ),
+        ))
+      ],
     );
   }
 
-  Widget _player(bool displayPlayer, bool casting, String primaryPlayerId) {
-    if (displayPlayer) {
-      /* if (casting) {
-        return ElevatedButton(
-            onPressed: () {
-              PlaybackPlatformInterface.instance.openExpandedCastController();
+  Widget _episode(
+      Player player,
+      bool displayPlayer,
+      bool casting,
+      String primaryPlayerId,
+      Query$FetchEpisode$episode episode,
+      String tempTitle,
+      BuildContext context) {
+    final showEpisodeNumber =
+        episode.season?.$show.type == Enum$ShowType.series;
+    final episodeNumberFormatted =
+        'S${episode.season?.number}:E${episode.number}';
+
+    return Column(
+      children: [
+        !episodeIsCurrentItem(player.currentMediaItem)
+            ? _playPoster(episode)
+            : _player(displayPlayer, casting, primaryPlayerId),
+        Container(
+          color: BtvColors.background2,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(episode.title, style: BtvTextStyles.title2),
+                    const SizedBox(height: 4),
+                    Row(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.only(top: 3, right: 4),
+                            child: FeatureBadge(
+                                label: episode.ageRating,
+                                color: BtvColors.background2),
+                          ),
+                          Center(
+                            child: Text(
+                                episode.season?.$show.title ??
+                                    S.of(context).shortFilms,
+                                style: BtvTextStyles.caption1
+                                    .copyWith(color: BtvColors.tint1)),
+                          ),
+                          if (showEpisodeNumber)
+                            Padding(
+                                padding: const EdgeInsets.only(left: 4),
+                                child: Text(episodeNumberFormatted,
+                                    style: BtvTextStyles.caption1
+                                        .copyWith(color: BtvColors.label4)))
+                        ]),
+                    const SizedBox(height: 14.5),
+                    Text(episode.description,
+                        style: BtvTextStyles.body2
+                            .copyWith(color: BtvColors.label3))
+                  ],
+                ),
+              )
+            ],
+          ),
+        ),
+      ],
+    );
+  }
+
+  AspectRatio _playPoster(Query$FetchEpisode$episode episode) {
+    return AspectRatio(
+        aspectRatio: 16 / 9,
+        child: GestureDetector(
+            behavior: HitTestBehavior.opaque,
+            //excludeFromSemantics: true,
+            onTap: () {
+              setState(() {
+                settingUp = true;
+              });
+              Future.delayed(const Duration(milliseconds: 200), () {
+                setup();
+              });
             },
-            child: const Text('open'));
-      } */
-      return BccmPlayer(
-          key: Key('test'), id: casting ? 'chromecast' : primaryPlayerId);
-    } else {
-      return const AspectRatio(
-          aspectRatio: 16 / 9,
-          child: Center(
-              child: SizedBox(
-                  width: 40, height: 40, child: CircularProgressIndicator())));
-    }
+            child: Stack(
+              children: [
+                AspectRatio(
+                    aspectRatio: 16 / 9,
+                    child: episode.imageUrl == null
+                        ? null
+                        : LayoutBuilder(builder: (context, constraints) {
+                            return Opacity(
+                              opacity: 0.5,
+                              child: FadeInImage.memoryNetwork(
+                                  fit: BoxFit.cover,
+                                  placeholder: kTransparentImage,
+                                  image: episode.imageUrl!,
+                                  fadeInDuration:
+                                      const Duration(milliseconds: 200),
+                                  imageCacheHeight: (constraints.maxHeight *
+                                          MediaQuery.of(context)
+                                              .devicePixelRatio)
+                                      .round()),
+                            );
+                          })),
+                Center(
+                    child: !settingUp
+                        ? Image.asset('assets/icons/Play.png')
+                        : const CircularProgressIndicator()),
+              ],
+            )));
+  }
+}
+
+Widget _player(bool displayPlayer, bool casting, String primaryPlayerId) {
+  if (displayPlayer) {
+    /* if (casting) {
+      return ElevatedButton(
+          onPressed: () {
+            PlaybackPlatformInterface.instance.openExpandedCastController();
+          },
+          child: const Text('open'));
+    } */
+    return BccmPlayer(
+        key: const Key('test'), id: casting ? 'chromecast' : primaryPlayerId);
+  } else {
+    return const AspectRatio(
+        aspectRatio: 16 / 9,
+        child: Center(
+            child: SizedBox(
+                width: 40, height: 40, child: CircularProgressIndicator())));
   }
 }

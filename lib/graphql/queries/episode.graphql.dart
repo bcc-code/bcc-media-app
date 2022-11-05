@@ -274,6 +274,13 @@ const documentNodeQueryFetchEpisode = DocumentNode(definitions: [
             selectionSet: null,
           ),
           FieldNode(
+            name: NameNode(value: 'number'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
             name: NameNode(value: 'description'),
             alias: null,
             arguments: [],
@@ -303,6 +310,13 @@ const documentNodeQueryFetchEpisode = DocumentNode(definitions: [
           ),
           FieldNode(
             name: NameNode(value: 'progress'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
+            name: NameNode(value: 'ageRating'),
             alias: null,
             arguments: [],
             directives: [],
@@ -365,6 +379,13 @@ const documentNodeQueryFetchEpisode = DocumentNode(definitions: [
                 selectionSet: null,
               ),
               FieldNode(
+                name: NameNode(value: 'number'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null,
+              ),
+              FieldNode(
                 name: NameNode(value: 'show'),
                 alias: null,
                 arguments: [],
@@ -372,6 +393,13 @@ const documentNodeQueryFetchEpisode = DocumentNode(definitions: [
                 selectionSet: SelectionSetNode(selections: [
                   FieldNode(
                     name: NameNode(value: 'title'),
+                    alias: null,
+                    arguments: [],
+                    directives: [],
+                    selectionSet: null,
+                  ),
+                  FieldNode(
+                    name: NameNode(value: 'type'),
                     alias: null,
                     arguments: [],
                     directives: [],
@@ -543,11 +571,13 @@ class Query$FetchEpisode$episode {
   Query$FetchEpisode$episode({
     required this.id,
     required this.title,
+    this.number,
     required this.description,
     required this.extraDescription,
     this.imageUrl,
     required this.duration,
     this.progress,
+    required this.ageRating,
     required this.streams,
     this.season,
     required this.$__typename,
@@ -556,22 +586,26 @@ class Query$FetchEpisode$episode {
   factory Query$FetchEpisode$episode.fromJson(Map<String, dynamic> json) {
     final l$id = json['id'];
     final l$title = json['title'];
+    final l$number = json['number'];
     final l$description = json['description'];
     final l$extraDescription = json['extraDescription'];
     final l$imageUrl = json['imageUrl'];
     final l$duration = json['duration'];
     final l$progress = json['progress'];
+    final l$ageRating = json['ageRating'];
     final l$streams = json['streams'];
     final l$season = json['season'];
     final l$$__typename = json['__typename'];
     return Query$FetchEpisode$episode(
       id: (l$id as String),
       title: (l$title as String),
+      number: (l$number as int?),
       description: (l$description as String),
       extraDescription: (l$extraDescription as String),
       imageUrl: (l$imageUrl as String?),
       duration: (l$duration as int),
       progress: (l$progress as int?),
+      ageRating: (l$ageRating as String),
       streams: (l$streams as List<dynamic>)
           .map((e) => Query$FetchEpisode$episode$streams.fromJson(
               (e as Map<String, dynamic>)))
@@ -588,6 +622,8 @@ class Query$FetchEpisode$episode {
 
   final String title;
 
+  final int? number;
+
   final String description;
 
   final String extraDescription;
@@ -597,6 +633,8 @@ class Query$FetchEpisode$episode {
   final int duration;
 
   final int? progress;
+
+  final String ageRating;
 
   final List<Query$FetchEpisode$episode$streams> streams;
 
@@ -610,6 +648,8 @@ class Query$FetchEpisode$episode {
     _resultData['id'] = l$id;
     final l$title = title;
     _resultData['title'] = l$title;
+    final l$number = number;
+    _resultData['number'] = l$number;
     final l$description = description;
     _resultData['description'] = l$description;
     final l$extraDescription = extraDescription;
@@ -620,6 +660,8 @@ class Query$FetchEpisode$episode {
     _resultData['duration'] = l$duration;
     final l$progress = progress;
     _resultData['progress'] = l$progress;
+    final l$ageRating = ageRating;
+    _resultData['ageRating'] = l$ageRating;
     final l$streams = streams;
     _resultData['streams'] = l$streams.map((e) => e.toJson()).toList();
     final l$season = season;
@@ -633,22 +675,26 @@ class Query$FetchEpisode$episode {
   int get hashCode {
     final l$id = id;
     final l$title = title;
+    final l$number = number;
     final l$description = description;
     final l$extraDescription = extraDescription;
     final l$imageUrl = imageUrl;
     final l$duration = duration;
     final l$progress = progress;
+    final l$ageRating = ageRating;
     final l$streams = streams;
     final l$season = season;
     final l$$__typename = $__typename;
     return Object.hashAll([
       l$id,
       l$title,
+      l$number,
       l$description,
       l$extraDescription,
       l$imageUrl,
       l$duration,
       l$progress,
+      l$ageRating,
       Object.hashAll(l$streams.map((v) => v)),
       l$season,
       l$$__typename,
@@ -674,6 +720,11 @@ class Query$FetchEpisode$episode {
     if (l$title != lOther$title) {
       return false;
     }
+    final l$number = number;
+    final lOther$number = other.number;
+    if (l$number != lOther$number) {
+      return false;
+    }
     final l$description = description;
     final lOther$description = other.description;
     if (l$description != lOther$description) {
@@ -697,6 +748,11 @@ class Query$FetchEpisode$episode {
     final l$progress = progress;
     final lOther$progress = other.progress;
     if (l$progress != lOther$progress) {
+      return false;
+    }
+    final l$ageRating = ageRating;
+    final lOther$ageRating = other.ageRating;
+    if (l$ageRating != lOther$ageRating) {
       return false;
     }
     final l$streams = streams;
@@ -746,11 +802,13 @@ abstract class CopyWith$Query$FetchEpisode$episode<TRes> {
   TRes call({
     String? id,
     String? title,
+    int? number,
     String? description,
     String? extraDescription,
     String? imageUrl,
     int? duration,
     int? progress,
+    String? ageRating,
     List<Query$FetchEpisode$episode$streams>? streams,
     Query$FetchEpisode$episode$season? season,
     String? $__typename,
@@ -780,11 +838,13 @@ class _CopyWithImpl$Query$FetchEpisode$episode<TRes>
   TRes call({
     Object? id = _undefined,
     Object? title = _undefined,
+    Object? number = _undefined,
     Object? description = _undefined,
     Object? extraDescription = _undefined,
     Object? imageUrl = _undefined,
     Object? duration = _undefined,
     Object? progress = _undefined,
+    Object? ageRating = _undefined,
     Object? streams = _undefined,
     Object? season = _undefined,
     Object? $__typename = _undefined,
@@ -794,6 +854,7 @@ class _CopyWithImpl$Query$FetchEpisode$episode<TRes>
         title: title == _undefined || title == null
             ? _instance.title
             : (title as String),
+        number: number == _undefined ? _instance.number : (number as int?),
         description: description == _undefined || description == null
             ? _instance.description
             : (description as String),
@@ -808,6 +869,9 @@ class _CopyWithImpl$Query$FetchEpisode$episode<TRes>
             : (duration as int),
         progress:
             progress == _undefined ? _instance.progress : (progress as int?),
+        ageRating: ageRating == _undefined || ageRating == null
+            ? _instance.ageRating
+            : (ageRating as String),
         streams: streams == _undefined || streams == null
             ? _instance.streams
             : (streams as List<Query$FetchEpisode$episode$streams>),
@@ -848,11 +912,13 @@ class _CopyWithStubImpl$Query$FetchEpisode$episode<TRes>
   call({
     String? id,
     String? title,
+    int? number,
     String? description,
     String? extraDescription,
     String? imageUrl,
     int? duration,
     int? progress,
+    String? ageRating,
     List<Query$FetchEpisode$episode$streams>? streams,
     Query$FetchEpisode$episode$season? season,
     String? $__typename,
@@ -1072,6 +1138,7 @@ class _CopyWithStubImpl$Query$FetchEpisode$episode$streams<TRes>
 class Query$FetchEpisode$episode$season {
   Query$FetchEpisode$episode$season({
     required this.title,
+    required this.number,
     required this.$show,
     required this.$__typename,
   });
@@ -1079,10 +1146,12 @@ class Query$FetchEpisode$episode$season {
   factory Query$FetchEpisode$episode$season.fromJson(
       Map<String, dynamic> json) {
     final l$title = json['title'];
+    final l$number = json['number'];
     final l$$show = json['show'];
     final l$$__typename = json['__typename'];
     return Query$FetchEpisode$episode$season(
       title: (l$title as String),
+      number: (l$number as int),
       $show: Query$FetchEpisode$episode$season$show.fromJson(
           (l$$show as Map<String, dynamic>)),
       $__typename: (l$$__typename as String),
@@ -1090,6 +1159,8 @@ class Query$FetchEpisode$episode$season {
   }
 
   final String title;
+
+  final int number;
 
   final Query$FetchEpisode$episode$season$show $show;
 
@@ -1099,6 +1170,8 @@ class Query$FetchEpisode$episode$season {
     final _resultData = <String, dynamic>{};
     final l$title = title;
     _resultData['title'] = l$title;
+    final l$number = number;
+    _resultData['number'] = l$number;
     final l$$show = $show;
     _resultData['show'] = l$$show.toJson();
     final l$$__typename = $__typename;
@@ -1109,10 +1182,12 @@ class Query$FetchEpisode$episode$season {
   @override
   int get hashCode {
     final l$title = title;
+    final l$number = number;
     final l$$show = $show;
     final l$$__typename = $__typename;
     return Object.hashAll([
       l$title,
+      l$number,
       l$$show,
       l$$__typename,
     ]);
@@ -1130,6 +1205,11 @@ class Query$FetchEpisode$episode$season {
     final l$title = title;
     final lOther$title = other.title;
     if (l$title != lOther$title) {
+      return false;
+    }
+    final l$number = number;
+    final lOther$number = other.number;
+    if (l$number != lOther$number) {
       return false;
     }
     final l$$show = $show;
@@ -1166,6 +1246,7 @@ abstract class CopyWith$Query$FetchEpisode$episode$season<TRes> {
 
   TRes call({
     String? title,
+    int? number,
     Query$FetchEpisode$episode$season$show? $show,
     String? $__typename,
   });
@@ -1187,6 +1268,7 @@ class _CopyWithImpl$Query$FetchEpisode$episode$season<TRes>
 
   TRes call({
     Object? title = _undefined,
+    Object? number = _undefined,
     Object? $show = _undefined,
     Object? $__typename = _undefined,
   }) =>
@@ -1194,6 +1276,9 @@ class _CopyWithImpl$Query$FetchEpisode$episode$season<TRes>
         title: title == _undefined || title == null
             ? _instance.title
             : (title as String),
+        number: number == _undefined || number == null
+            ? _instance.number
+            : (number as int),
         $show: $show == _undefined || $show == null
             ? _instance.$show
             : ($show as Query$FetchEpisode$episode$season$show),
@@ -1216,6 +1301,7 @@ class _CopyWithStubImpl$Query$FetchEpisode$episode$season<TRes>
 
   call({
     String? title,
+    int? number,
     Query$FetchEpisode$episode$season$show? $show,
     String? $__typename,
   }) =>
@@ -1227,20 +1313,25 @@ class _CopyWithStubImpl$Query$FetchEpisode$episode$season<TRes>
 class Query$FetchEpisode$episode$season$show {
   Query$FetchEpisode$episode$season$show({
     required this.title,
+    required this.type,
     required this.$__typename,
   });
 
   factory Query$FetchEpisode$episode$season$show.fromJson(
       Map<String, dynamic> json) {
     final l$title = json['title'];
+    final l$type = json['type'];
     final l$$__typename = json['__typename'];
     return Query$FetchEpisode$episode$season$show(
       title: (l$title as String),
+      type: fromJson$Enum$ShowType((l$type as String)),
       $__typename: (l$$__typename as String),
     );
   }
 
   final String title;
+
+  final Enum$ShowType type;
 
   final String $__typename;
 
@@ -1248,6 +1339,8 @@ class Query$FetchEpisode$episode$season$show {
     final _resultData = <String, dynamic>{};
     final l$title = title;
     _resultData['title'] = l$title;
+    final l$type = type;
+    _resultData['type'] = toJson$Enum$ShowType(l$type);
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -1256,9 +1349,11 @@ class Query$FetchEpisode$episode$season$show {
   @override
   int get hashCode {
     final l$title = title;
+    final l$type = type;
     final l$$__typename = $__typename;
     return Object.hashAll([
       l$title,
+      l$type,
       l$$__typename,
     ]);
   }
@@ -1275,6 +1370,11 @@ class Query$FetchEpisode$episode$season$show {
     final l$title = title;
     final lOther$title = other.title;
     if (l$title != lOther$title) {
+      return false;
+    }
+    final l$type = type;
+    final lOther$type = other.type;
+    if (l$type != lOther$type) {
       return false;
     }
     final l$$__typename = $__typename;
@@ -1307,6 +1407,7 @@ abstract class CopyWith$Query$FetchEpisode$episode$season$show<TRes> {
 
   TRes call({
     String? title,
+    Enum$ShowType? type,
     String? $__typename,
   });
 }
@@ -1326,12 +1427,16 @@ class _CopyWithImpl$Query$FetchEpisode$episode$season$show<TRes>
 
   TRes call({
     Object? title = _undefined,
+    Object? type = _undefined,
     Object? $__typename = _undefined,
   }) =>
       _then(Query$FetchEpisode$episode$season$show(
         title: title == _undefined || title == null
             ? _instance.title
             : (title as String),
+        type: type == _undefined || type == null
+            ? _instance.type
+            : (type as Enum$ShowType),
         $__typename: $__typename == _undefined || $__typename == null
             ? _instance.$__typename
             : ($__typename as String),
@@ -1346,6 +1451,7 @@ class _CopyWithStubImpl$Query$FetchEpisode$episode$season$show<TRes>
 
   call({
     String? title,
+    Enum$ShowType? type,
     String? $__typename,
   }) =>
       _res;

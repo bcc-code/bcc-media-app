@@ -53,6 +53,7 @@ const _episodeScreenRoute = CustomRoute<void>(
               CustomRoute<void>(
                 page: HomeScreen,
                 path: '',
+                name: 'home',
                 maintainState: false,
                 durationInMilliseconds: 500,
                 reverseDurationInMilliseconds: 500,

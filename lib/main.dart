@@ -20,6 +20,7 @@ import 'package:brunstadtv_app/services/auth_service.dart';
 import 'package:bccm_player/chromecast_pigeon.g.dart';
 import 'package:intl/intl.dart';
 import 'package:intl/intl_standalone.dart';
+import 'package:on_screen_ruler/on_screen_ruler.dart';
 
 import 'app_root.dart';
 import 'background_tasks.dart';
@@ -102,28 +103,34 @@ void $main({required FirebaseOptions? firebaseOptions}) async {
 
   Intl.defaultLocale = await getDefaultLocale();
 
-  runApp(UncontrolledProviderScope(
-    container: providerContainer,
-    child: Consumer(
-        builder: (context, ref, w) => MaterialApp.router(
-            localizationsDelegates: S.localizationsDelegates,
-            supportedLocales: S.supportedLocales,
-            locale: ref.watch(settingsProvider).appLanguage,
-            theme: ThemeData(),
-            darkTheme: createTheme(),
-            themeMode: ThemeMode.dark,
-            title: 'BrunstadTV',
-            routerDelegate: appRouter.delegate(),
-            routeInformationParser: appRouter.defaultRouteParser(),
-            builder: (BuildContext context, Widget? child) {
-              return MediaQuery(
-                data: MediaQuery.of(context).copyWith(textScaleFactor: 1.0),
-                child: AppRoot(
-                  navigatorKey: navigatorKey,
-                  child: child,
-                ),
-              );
-            })),
+  runApp(InteractiveViewer(
+    maxScale: 10,
+    child: UncontrolledProviderScope(
+      container: providerContainer,
+      child: Consumer(
+          builder: (context, ref, w) => MaterialApp.router(
+              localizationsDelegates: S.localizationsDelegates,
+              supportedLocales: S.supportedLocales,
+              locale: ref.watch(settingsProvider).appLanguage,
+              theme: ThemeData(),
+              darkTheme: createTheme(),
+              themeMode: ThemeMode.dark,
+              title: 'BrunstadTV',
+              routerDelegate: appRouter.delegate(),
+              routeInformationParser: appRouter.defaultRouteParser(),
+              builder: (BuildContext context, Widget? child) {
+                return MediaQuery(
+                  data: MediaQuery.of(context).copyWith(textScaleFactor: 1.0),
+                  child: OnScreenRulerWidget(
+                    gridColor: Colors.white60.withOpacity(0.1),
+                    child: AppRoot(
+                      navigatorKey: navigatorKey,
+                      child: child,
+                    ),
+                  ),
+                );
+              })),
+    ),
   ));
 }
 
@@ -140,6 +147,16 @@ ThemeData createTheme() {
     fontFamily: 'Barlow',
     canvasColor: BtvColors.background1,
     backgroundColor: BtvColors.background2,
+    highlightColor: BtvColors.background2.withOpacity(0.5),
+    splashColor: BtvColors.background2.withOpacity(1),
+    progressIndicatorTheme: ProgressIndicatorThemeData(color: BtvColors.tint1),
+    appBarTheme: AppBarTheme(
+        titleTextStyle: BtvTextStyles.title3.copyWith(height: 1),
+        toolbarTextStyle: BtvTextStyles.button2,
+        centerTitle: true,
+        toolbarHeight: 44,
+        iconTheme: IconThemeData(color: BtvColors.tint1),
+        backgroundColor: BtvColors.background1),
     scaffoldBackgroundColor: BtvColors.background1,
     bottomNavigationBarTheme: BottomNavigationBarThemeData(
         selectedItemColor: BtvColors.tint1,
