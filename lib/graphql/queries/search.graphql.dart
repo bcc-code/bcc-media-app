@@ -299,6 +299,20 @@ const fragmentDefinitionSearchResultItem = FragmentDefinitionNode(
           selectionSet: null,
         ),
         FieldNode(
+          name: NameNode(value: 'ageRating'),
+          alias: null,
+          arguments: [],
+          directives: [],
+          selectionSet: null,
+        ),
+        FieldNode(
+          name: NameNode(value: 'duration'),
+          alias: null,
+          arguments: [],
+          directives: [],
+          selectionSet: null,
+        ),
+        FieldNode(
           name: NameNode(value: '__typename'),
           alias: null,
           arguments: [],
@@ -383,6 +397,8 @@ class Fragment$SearchResultItem$$EpisodeSearchItem
     this.image,
     required this.$__typename,
     this.showTitle,
+    required this.ageRating,
+    required this.duration,
   });
 
   factory Fragment$SearchResultItem$$EpisodeSearchItem.fromJson(
@@ -395,6 +411,8 @@ class Fragment$SearchResultItem$$EpisodeSearchItem
     final l$image = json['image'];
     final l$$__typename = json['__typename'];
     final l$showTitle = json['showTitle'];
+    final l$ageRating = json['ageRating'];
+    final l$duration = json['duration'];
     return Fragment$SearchResultItem$$EpisodeSearchItem(
       collection: (l$collection as String),
       id: (l$id as String),
@@ -404,6 +422,8 @@ class Fragment$SearchResultItem$$EpisodeSearchItem
       image: (l$image as String?),
       $__typename: (l$$__typename as String),
       showTitle: (l$showTitle as String?),
+      ageRating: (l$ageRating as String),
+      duration: (l$duration as int),
     );
   }
 
@@ -423,6 +443,10 @@ class Fragment$SearchResultItem$$EpisodeSearchItem
 
   final String? showTitle;
 
+  final String ageRating;
+
+  final int duration;
+
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
     final l$collection = collection;
@@ -441,6 +465,10 @@ class Fragment$SearchResultItem$$EpisodeSearchItem
     _resultData['__typename'] = l$$__typename;
     final l$showTitle = showTitle;
     _resultData['showTitle'] = l$showTitle;
+    final l$ageRating = ageRating;
+    _resultData['ageRating'] = l$ageRating;
+    final l$duration = duration;
+    _resultData['duration'] = l$duration;
     return _resultData;
   }
 
@@ -454,6 +482,8 @@ class Fragment$SearchResultItem$$EpisodeSearchItem
     final l$image = image;
     final l$$__typename = $__typename;
     final l$showTitle = showTitle;
+    final l$ageRating = ageRating;
+    final l$duration = duration;
     return Object.hashAll([
       l$collection,
       l$id,
@@ -463,6 +493,8 @@ class Fragment$SearchResultItem$$EpisodeSearchItem
       l$image,
       l$$__typename,
       l$showTitle,
+      l$ageRating,
+      l$duration,
     ]);
   }
 
@@ -515,6 +547,16 @@ class Fragment$SearchResultItem$$EpisodeSearchItem
     if (l$showTitle != lOther$showTitle) {
       return false;
     }
+    final l$ageRating = ageRating;
+    final lOther$ageRating = other.ageRating;
+    if (l$ageRating != lOther$ageRating) {
+      return false;
+    }
+    final l$duration = duration;
+    final lOther$duration = other.duration;
+    if (l$duration != lOther$duration) {
+      return false;
+    }
     return true;
   }
 }
@@ -547,6 +589,8 @@ abstract class CopyWith$Fragment$SearchResultItem$$EpisodeSearchItem<TRes> {
     String? image,
     String? $__typename,
     String? showTitle,
+    String? ageRating,
+    int? duration,
   });
 }
 
@@ -572,6 +616,8 @@ class _CopyWithImpl$Fragment$SearchResultItem$$EpisodeSearchItem<TRes>
     Object? image = _undefined,
     Object? $__typename = _undefined,
     Object? showTitle = _undefined,
+    Object? ageRating = _undefined,
+    Object? duration = _undefined,
   }) =>
       _then(Fragment$SearchResultItem$$EpisodeSearchItem(
         collection: collection == _undefined || collection == null
@@ -593,6 +639,12 @@ class _CopyWithImpl$Fragment$SearchResultItem$$EpisodeSearchItem<TRes>
         showTitle: showTitle == _undefined
             ? _instance.showTitle
             : (showTitle as String?),
+        ageRating: ageRating == _undefined || ageRating == null
+            ? _instance.ageRating
+            : (ageRating as String),
+        duration: duration == _undefined || duration == null
+            ? _instance.duration
+            : (duration as int),
       ));
 }
 
@@ -611,6 +663,8 @@ class _CopyWithStubImpl$Fragment$SearchResultItem$$EpisodeSearchItem<TRes>
     String? image,
     String? $__typename,
     String? showTitle,
+    String? ageRating,
+    int? duration,
   }) =>
       _res;
 }

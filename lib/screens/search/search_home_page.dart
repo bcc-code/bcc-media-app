@@ -40,6 +40,8 @@ class SearchHomePage extends StatelessWidget {
       10,
       Fragment$SearchResultItem$$EpisodeSearchItem(
         collection: 'episode',
+        ageRating: 'A',
+        duration: 100,
         id: '1',
         title: '25. august - PROMO: Høstcamp og Romjulscamp',
         legacyID: '1',

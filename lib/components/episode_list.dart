@@ -6,6 +6,8 @@ import 'package:flutter/material.dart';
 
 import '../graphql/queries/search.graphql.dart';
 import '../helpers/btv_colors.dart';
+import '../helpers/utils.dart';
+import '../services/utils.dart';
 import 'bordered_image_container.dart';
 
 class EpisodeList extends StatelessWidget {
@@ -38,8 +40,6 @@ class EpisodeList extends StatelessWidget {
 
 class _Episode extends StatelessWidget {
   final Fragment$SearchResultItem$$EpisodeSearchItem _episode;
-  final _ageGroup = '12+';
-  final _duration = '40 min';
 
   const _Episode(this._episode);
 
@@ -100,13 +100,13 @@ class _Episode extends StatelessWidget {
                               const BorderRadius.all(Radius.circular(8)),
                         ),
                         child: Text(
-                          _ageGroup,
+                          getFormattedAgeRating(_episode.ageRating),
                           style: BtvTextStyles.caption2
                               .copyWith(color: BtvColors.onTint, height: 1.1),
                         ),
                       ),
                       Text(
-                        _duration,
+                        getFormattedDuration(_episode.duration),
                         style: BtvTextStyles.caption2
                             .copyWith(color: BtvColors.label3),
                       )

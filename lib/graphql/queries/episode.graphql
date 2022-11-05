@@ -18,12 +18,32 @@ query FetchEpisode($id: ID!) {
     season {
       title
       number
+      episodes {
+        items {
+          ...SeasonListEpisode
+        }
+      }
       show {
         title
         type
+        seasons {
+          items {
+            id
+            title
+          }
+        }
       }
     }
   }
+}
+
+fragment SeasonListEpisode on Episode {
+  id
+  imageUrl
+  number
+  title
+  ageRating
+  duration
 }
 
 query legacyIDLookup($episodeId: Int, $programId: Int) {

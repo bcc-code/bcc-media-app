@@ -4,6 +4,7 @@ import 'dart:async';
 
 import 'package:auto_route/auto_route.dart';
 import 'package:bccm_player/playback_platform_pigeon.g.dart';
+import 'package:brunstadtv_app/components/episode_list.dart';
 import 'package:brunstadtv_app/components/feature_badge.dart';
 import 'package:brunstadtv_app/graphql/schema/items.graphql.dart';
 import 'package:brunstadtv_app/helpers/svg_icons.dart';
@@ -24,6 +25,7 @@ import '../api/brunstadtv.dart';
 import '../components/custom_back_button.dart';
 import '../helpers/btv_colors.dart';
 import '../helpers/btv_typography.dart';
+import '../helpers/utils.dart';
 import '../l10n/app_localizations.dart';
 
 class EpisodePageArguments {
@@ -271,7 +273,7 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen> {
                           Padding(
                             padding: const EdgeInsets.only(top: 3, right: 4),
                             child: FeatureBadge(
-                                label: episode.ageRating,
+                                label: getFormattedAgeRating(episode.ageRating),
                                 color: BtvColors.background2),
                           ),
                           Center(
@@ -301,6 +303,12 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen> {
       ],
     );
   }
+/* 
+  Widget seasonList(List<Fragment$SeasonListEpisode> episodes) {
+    /* return ListView.builder(itemCount: episodes.length, itemBuilder: (context, index) {
+    }); */
+    return EpisodeList(title: null, items: episodes);
+  } */
 
   AspectRatio _playPoster(Query$FetchEpisode$episode episode) {
     return AspectRatio(
@@ -330,7 +338,7 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen> {
                                   placeholder: kTransparentImage,
                                   image: episode.imageUrl!,
                                   fadeInDuration:
-                                      const Duration(milliseconds: 200),
+                                      const Duration(milliseconds: 150),
                                   imageCacheHeight: (constraints.maxHeight *
                                           MediaQuery.of(context)
                                               .devicePixelRatio)
