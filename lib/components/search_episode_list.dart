@@ -10,11 +10,12 @@ import '../helpers/utils.dart';
 import '../services/utils.dart';
 import 'bordered_image_container.dart';
 
-class EpisodeList extends StatelessWidget {
+class SearchEpisodeList extends StatelessWidget {
   final String title;
   final List<Fragment$SearchResultItem$$EpisodeSearchItem> items;
 
-  const EpisodeList({required this.title, required this.items});
+  const SearchEpisodeList(
+      {super.key, required this.title, required this.items});
 
   @override
   Widget build(BuildContext context) {
@@ -106,7 +107,7 @@ class _Episode extends StatelessWidget {
                         ),
                       ),
                       Text(
-                        getFormattedDuration(_episode.duration),
+                        '${Duration(seconds: _episode.duration).inMinutes} min',
                         style: BtvTextStyles.caption2
                             .copyWith(color: BtvColors.label3),
                       )

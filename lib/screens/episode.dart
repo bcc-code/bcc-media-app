@@ -4,7 +4,7 @@ import 'dart:async';
 
 import 'package:auto_route/auto_route.dart';
 import 'package:bccm_player/playback_platform_pigeon.g.dart';
-import 'package:brunstadtv_app/components/episode_list.dart';
+import 'package:brunstadtv_app/components/season_episode_list.dart';
 import 'package:brunstadtv_app/components/feature_badge.dart';
 import 'package:brunstadtv_app/graphql/schema/items.graphql.dart';
 import 'package:brunstadtv_app/helpers/svg_icons.dart';
@@ -250,57 +250,71 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen> {
     final episodeNumberFormatted =
         'S${episode.season?.number}:E${episode.number}';
 
-    return Column(
-      children: [
-        !episodeIsCurrentItem(player.currentMediaItem)
-            ? _playPoster(episode)
-            : _player(displayPlayer, casting, primaryPlayerId),
-        Container(
-          color: BtvColors.background2,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Padding(
-                padding: const EdgeInsets.all(16.0),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(episode.title, style: BtvTextStyles.title2),
-                    const SizedBox(height: 4),
-                    Row(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.only(top: 3, right: 4),
-                            child: FeatureBadge(
-                                label: getFormattedAgeRating(episode.ageRating),
-                                color: BtvColors.background2),
-                          ),
-                          Center(
-                            child: Text(
-                                episode.season?.$show.title ??
-                                    S.of(context).shortFilms,
-                                style: BtvTextStyles.caption1
-                                    .copyWith(color: BtvColors.tint1)),
-                          ),
-                          if (showEpisodeNumber)
+    return SingleChildScrollView(
+      child: Column(
+        children: [
+          !episodeIsCurrentItem(player.currentMediaItem)
+              ? _playPoster(episode)
+              : _player(displayPlayer, casting, primaryPlayerId),
+          Container(
+            color: BtvColors.background2,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.all(16.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(episode.title, style: BtvTextStyles.title2),
+                      const SizedBox(height: 4),
+                      Row(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
                             Padding(
-                                padding: const EdgeInsets.only(left: 4),
-                                child: Text(episodeNumberFormatted,
-                                    style: BtvTextStyles.caption1
-                                        .copyWith(color: BtvColors.label4)))
-                        ]),
-                    const SizedBox(height: 14.5),
-                    Text(episode.description,
-                        style: BtvTextStyles.body2
-                            .copyWith(color: BtvColors.label3))
-                  ],
-                ),
-              )
-            ],
+                              padding: const EdgeInsets.only(top: 3, right: 4),
+                              child: FeatureBadge(
+                                  label:
+                                      getFormattedAgeRating(episode.ageRating),
+                                  color: BtvColors.background2),
+                            ),
+                            Center(
+                              child: Text(
+                                  episode.season?.$show.title ??
+                                      S.of(context).shortFilms,
+                                  style: BtvTextStyles.caption1
+                                      .copyWith(color: BtvColors.tint1)),
+                            ),
+                            if (showEpisodeNumber)
+                              Padding(
+                                  padding: const EdgeInsets.only(left: 4),
+                                  child: Text(episodeNumberFormatted,
+                                      style: BtvTextStyles.caption1
+                                          .copyWith(color: BtvColors.label4)))
+                          ]),
+                      const SizedBox(height: 14.5),
+                      Text(episode.description,
+                          style: BtvTextStyles.body2
+                              .copyWith(color: BtvColors.label3))
+                    ],
+                  ),
+                )
+              ],
+            ),
           ),
-        ),
-      ],
+          SeasonEpisodeList(
+              items: episode.season!.episodes.items.map((ep) {
+            return EpisodeListEpisode(
+                episodeId: ep.id,
+                ageRating: ep.ageRating,
+                duration: ep.duration,
+                title: ep.title,
+                image: ep.imageUrl,
+                seasonNumber: episode.season!.number,
+                episodeNumber: ep.number);
+          }).toList())
+        ],
+      ),
     );
   }
 /* 

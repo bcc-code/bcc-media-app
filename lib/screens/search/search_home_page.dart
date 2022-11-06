@@ -6,7 +6,7 @@ import '../../models/explore_category.dart';
 import '../../router/router.gr.dart';
 
 import 'package:brunstadtv_app/components/category_button.dart';
-import '../../components/episode_list.dart';
+import '../../components/search_episode_list.dart';
 
 class SearchHomePage extends StatelessWidget {
   final List<ExploreCategory> _categories = [
@@ -122,7 +122,7 @@ class SearchHomePage extends StatelessWidget {
           ],
         ),
       ),
-      EpisodeList(title: 'Suggested', items: _episodeList),
+      SearchEpisodeList(title: 'Suggested', items: _episodeList),
     ]);
   }
 }
