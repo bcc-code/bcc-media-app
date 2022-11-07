@@ -62,7 +62,7 @@ class DefaultGridSection extends StatelessWidget {
           if (data.title != null)
             Container(
               padding: const EdgeInsets.only(
-                top: 19,
+                top: 20,
                 bottom: 5,
               ),
               child: Text(
