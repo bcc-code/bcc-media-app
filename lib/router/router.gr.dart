@@ -15,7 +15,7 @@ import 'package:auto_route/auto_route.dart' as _i19;
 import 'package:auto_route/empty_router_widgets.dart' as _i11;
 import 'package:flutter/material.dart' as _i20;
 
-import '../helpers/custom_transitions.dart' as _i22;
+import '../helpers/custom_transitions.dart' as _i23;
 import '../screens/calendar/calendar.dart' as _i13;
 import '../screens/episode.dart' as _i15;
 import '../screens/home.dart' as _i14;
@@ -32,6 +32,7 @@ import '../screens/profile/subtitle_language.dart' as _i5;
 import '../screens/profile/video_quality.dart' as _i6;
 import '../screens/search/explore_category_page.dart' as _i18;
 import '../screens/search/search.dart' as _i17;
+import '../screens/special_route.dart' as _i22;
 import '../screens/tabs_root.dart' as _i10;
 import 'auth_guard.dart' as _i21;
 
@@ -39,9 +40,12 @@ class AppRouter extends _i19.RootStackRouter {
   AppRouter({
     _i20.GlobalKey<_i20.NavigatorState>? navigatorKey,
     required this.authGuard,
+    required this.specialRoutesGuard,
   }) : super(navigatorKey);
 
   final _i21.AuthGuard authGuard;
+
+  final _i22.SpecialRoutesGuard specialRoutesGuard;
 
   @override
   final Map<String, _i19.PageFactory> pagesMap = {
@@ -111,6 +115,12 @@ class AppRouter extends _i19.RootStackRouter {
         child: const _i10.TabsRootScreen(),
       );
     },
+    EmptyRouterPageRoute.name: (routeData) {
+      return _i19.MaterialPageX<dynamic>(
+        routeData: routeData,
+        child: const _i11.EmptyRouterPage(),
+      );
+    },
     HomeScreenWrapperRoute.name: (routeData) {
       return _i19.CustomPage<void>(
         routeData: routeData,
@@ -142,7 +152,7 @@ class AppRouter extends _i19.RootStackRouter {
         routeData: routeData,
         child: const _i14.HomeScreen(),
         maintainState: false,
-        customRouteBuilder: _i22.CustomTransitionsBuilders.slideUpAndDown,
+        customRouteBuilder: _i23.CustomTransitionsBuilders.slideUpAndDown,
         durationInMilliseconds: 500,
         reverseDurationInMilliseconds: 500,
         opaque: true,
@@ -167,7 +177,7 @@ class AppRouter extends _i19.RootStackRouter {
           episodeId: args.episodeId,
           autoplay: args.autoplay,
         ),
-        customRouteBuilder: _i22.CustomTransitionsBuilders.slideUpAndDown,
+        customRouteBuilder: _i23.CustomTransitionsBuilders.slideUpAndDown,
         opaque: true,
         barrierDismissible: false,
       );
@@ -203,6 +213,24 @@ class AppRouter extends _i19.RootStackRouter {
       return _i19.MaterialPageX<void>(
         routeData: routeData,
         child: _i18.ExploreCategoryScreen(category: args.category),
+      );
+    },
+    CustomActionRoute.name: (routeData) {
+      return _i19.MaterialPageX<void>(
+        routeData: routeData,
+        child: const _i11.EmptyRouterPage(),
+      );
+    },
+    LegacyEpisodeRoute.name: (routeData) {
+      return _i19.MaterialPageX<void>(
+        routeData: routeData,
+        child: const _i11.EmptyRouterPage(),
+      );
+    },
+    LegacyProgramRoute.name: (routeData) {
+      return _i19.MaterialPageX<void>(
+        routeData: routeData,
+        child: const _i11.EmptyRouterPage(),
       );
     },
   };
@@ -304,6 +332,31 @@ class AppRouter extends _i19.RootStackRouter {
               CalendarPageRoute.name,
               path: 'calendar',
               parent: TabsRootScreenRoute.name,
+            ),
+          ],
+        ),
+        _i19.RouteConfig(
+          EmptyRouterPageRoute.name,
+          path: '/',
+          guards: [
+            authGuard,
+            specialRoutesGuard,
+          ],
+          children: [
+            _i19.RouteConfig(
+              CustomActionRoute.name,
+              path: 'r/:code',
+              parent: EmptyRouterPageRoute.name,
+            ),
+            _i19.RouteConfig(
+              LegacyEpisodeRoute.name,
+              path: 'series/:legacyEpisodeId',
+              parent: EmptyRouterPageRoute.name,
+            ),
+            _i19.RouteConfig(
+              LegacyProgramRoute.name,
+              path: 'program/:legacyProgramId',
+              parent: EmptyRouterPageRoute.name,
             ),
           ],
         ),
@@ -456,6 +509,19 @@ class TabsRootScreenRoute extends _i19.PageRouteInfo<void> {
         );
 
   static const String name = 'TabsRootScreenRoute';
+}
+
+/// generated route for
+/// [_i11.EmptyRouterPage]
+class EmptyRouterPageRoute extends _i19.PageRouteInfo<void> {
+  const EmptyRouterPageRoute({List<_i19.PageRouteInfo>? children})
+      : super(
+          EmptyRouterPageRoute.name,
+          path: '/',
+          initialChildren: children,
+        );
+
+  static const String name = 'EmptyRouterPageRoute';
 }
 
 /// generated route for
@@ -654,4 +720,40 @@ class ExploreCategoryScreenRouteArgs {
   String toString() {
     return 'ExploreCategoryScreenRouteArgs{category: $category}';
   }
+}
+
+/// generated route for
+/// [_i11.EmptyRouterPage]
+class CustomActionRoute extends _i19.PageRouteInfo<void> {
+  const CustomActionRoute()
+      : super(
+          CustomActionRoute.name,
+          path: 'r/:code',
+        );
+
+  static const String name = 'CustomActionRoute';
+}
+
+/// generated route for
+/// [_i11.EmptyRouterPage]
+class LegacyEpisodeRoute extends _i19.PageRouteInfo<void> {
+  const LegacyEpisodeRoute()
+      : super(
+          LegacyEpisodeRoute.name,
+          path: 'series/:legacyEpisodeId',
+        );
+
+  static const String name = 'LegacyEpisodeRoute';
+}
+
+/// generated route for
+/// [_i11.EmptyRouterPage]
+class LegacyProgramRoute extends _i19.PageRouteInfo<void> {
+  const LegacyProgramRoute()
+      : super(
+          LegacyProgramRoute.name,
+          path: 'program/:legacyProgramId',
+        );
+
+  static const String name = 'LegacyProgramRoute';
 }

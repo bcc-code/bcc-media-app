@@ -1003,10 +1003,12 @@ class Fragment$Section$$PosterSection implements Fragment$Section {
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
-    final l$items = items;
-    _resultData['items'] = l$items.toJson();
+    final l$title = title;
+    _resultData['title'] = l$title;
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
+    final l$items = items;
+    _resultData['items'] = l$items.toJson();
     final l$size = size;
     _resultData['size'] = toJson$Enum$SectionSize(l$size);
     return _resultData;
@@ -1631,10 +1633,10 @@ class Fragment$Section$$PosterSection$items$items$item$$Link
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
-    final l$url = url;
-    _resultData['url'] = l$url;
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
+    final l$url = url;
+    _resultData['url'] = l$url;
     return _resultData;
   }
 
@@ -1765,10 +1767,10 @@ class Fragment$Section$$PosterSection$items$items$item$$Page
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
-    final l$code = code;
-    _resultData['code'] = l$code;
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
+    final l$code = code;
+    _resultData['code'] = l$code;
     return _resultData;
   }
 
@@ -1920,10 +1922,10 @@ class Fragment$Section$$PosterSection$items$items$item$$Episode
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
-    final l$id = id;
-    _resultData['id'] = l$id;
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
+    final l$id = id;
+    _resultData['id'] = l$id;
     final l$productionDate = productionDate;
     _resultData['productionDate'] = l$productionDate;
     final l$duration = duration;
@@ -2130,10 +2132,10 @@ class Fragment$Section$$PosterSection$items$items$item$$Show
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
-    final l$id = id;
-    _resultData['id'] = l$id;
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
+    final l$id = id;
+    _resultData['id'] = l$id;
     final l$episodeCount = episodeCount;
     _resultData['episodeCount'] = l$episodeCount;
     final l$seasonCount = seasonCount;
@@ -2304,10 +2306,12 @@ class Fragment$Section$$FeaturedSection implements Fragment$Section {
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
-    final l$items = items;
-    _resultData['items'] = l$items.toJson();
+    final l$title = title;
+    _resultData['title'] = l$title;
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
+    final l$items = items;
+    _resultData['items'] = l$items.toJson();
     final l$size = size;
     _resultData['size'] = toJson$Enum$SectionSize(l$size);
     return _resultData;
@@ -2959,10 +2963,10 @@ class Fragment$Section$$FeaturedSection$items$items$item$$Link
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
-    final l$url = url;
-    _resultData['url'] = l$url;
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
+    final l$url = url;
+    _resultData['url'] = l$url;
     return _resultData;
   }
 
@@ -3097,10 +3101,10 @@ class Fragment$Section$$FeaturedSection$items$items$item$$Page
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
-    final l$code = code;
-    _resultData['code'] = l$code;
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
+    final l$code = code;
+    _resultData['code'] = l$code;
     return _resultData;
   }
 
@@ -3237,10 +3241,10 @@ class Fragment$Section$$FeaturedSection$items$items$item$$Episode
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
-    final l$id = id;
-    _resultData['id'] = l$id;
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
+    final l$id = id;
+    _resultData['id'] = l$id;
     return _resultData;
   }
 
@@ -3376,10 +3380,10 @@ class Fragment$Section$$FeaturedSection$items$items$item$$Show
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
-    final l$id = id;
-    _resultData['id'] = l$id;
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
+    final l$id = id;
+    _resultData['id'] = l$id;
     return _resultData;
   }
 
@@ -3523,10 +3527,12 @@ class Fragment$Section$$DefaultSection implements Fragment$Section {
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
-    final l$items = items;
-    _resultData['items'] = l$items.toJson();
+    final l$title = title;
+    _resultData['title'] = l$title;
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
+    final l$items = items;
+    _resultData['items'] = l$items.toJson();
     final l$size = size;
     _resultData['size'] = toJson$Enum$SectionSize(l$size);
     return _resultData;
@@ -4157,10 +4163,10 @@ class Fragment$Section$$DefaultSection$items$items$item$$Link
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
-    final l$url = url;
-    _resultData['url'] = l$url;
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
+    final l$url = url;
+    _resultData['url'] = l$url;
     return _resultData;
   }
 
@@ -4292,10 +4298,10 @@ class Fragment$Section$$DefaultSection$items$items$item$$Page
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
-    final l$code = code;
-    _resultData['code'] = l$code;
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
+    final l$code = code;
+    _resultData['code'] = l$code;
     return _resultData;
   }
 
@@ -4448,10 +4454,10 @@ class Fragment$Section$$DefaultSection$items$items$item$$Episode
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
-    final l$id = id;
-    _resultData['id'] = l$id;
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
+    final l$id = id;
+    _resultData['id'] = l$id;
     final l$productionDate = productionDate;
     _resultData['productionDate'] = l$productionDate;
     final l$duration = duration;
@@ -4659,10 +4665,10 @@ class Fragment$Section$$DefaultSection$items$items$item$$Show
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
-    final l$id = id;
-    _resultData['id'] = l$id;
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
+    final l$id = id;
+    _resultData['id'] = l$id;
     final l$episodeCount = episodeCount;
     _resultData['episodeCount'] = l$episodeCount;
     final l$seasonCount = seasonCount;
@@ -4834,10 +4840,12 @@ class Fragment$Section$$DefaultGridSection implements Fragment$Section {
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
-    final l$items = items;
-    _resultData['items'] = l$items.toJson();
+    final l$title = title;
+    _resultData['title'] = l$title;
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
+    final l$items = items;
+    _resultData['items'] = l$items.toJson();
     final l$gridSize = gridSize;
     _resultData['gridSize'] = toJson$Enum$GridSectionSize(l$gridSize);
     return _resultData;
@@ -5475,10 +5483,10 @@ class Fragment$Section$$DefaultGridSection$items$items$item$$Link
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
-    final l$url = url;
-    _resultData['url'] = l$url;
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
+    final l$url = url;
+    _resultData['url'] = l$url;
     return _resultData;
   }
 
@@ -5614,10 +5622,10 @@ class Fragment$Section$$DefaultGridSection$items$items$item$$Page
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
-    final l$code = code;
-    _resultData['code'] = l$code;
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
+    final l$code = code;
+    _resultData['code'] = l$code;
     return _resultData;
   }
 
@@ -5779,10 +5787,10 @@ class Fragment$Section$$DefaultGridSection$items$items$item$$Episode
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
-    final l$id = id;
-    _resultData['id'] = l$id;
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
+    final l$id = id;
+    _resultData['id'] = l$id;
     final l$productionDate = productionDate;
     _resultData['productionDate'] = l$productionDate;
     final l$duration = duration;
@@ -6007,10 +6015,10 @@ class Fragment$Section$$DefaultGridSection$items$items$item$$Show
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
-    final l$id = id;
-    _resultData['id'] = l$id;
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
+    final l$id = id;
+    _resultData['id'] = l$id;
     final l$episodeCount = episodeCount;
     _resultData['episodeCount'] = l$episodeCount;
     final l$seasonCount = seasonCount;
@@ -6186,10 +6194,12 @@ class Fragment$Section$$PosterGridSection implements Fragment$Section {
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
-    final l$items = items;
-    _resultData['items'] = l$items.toJson();
+    final l$title = title;
+    _resultData['title'] = l$title;
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
+    final l$items = items;
+    _resultData['items'] = l$items.toJson();
     final l$gridSize = gridSize;
     _resultData['gridSize'] = toJson$Enum$GridSectionSize(l$gridSize);
     return _resultData;
@@ -6826,10 +6836,10 @@ class Fragment$Section$$PosterGridSection$items$items$item$$Link
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
-    final l$url = url;
-    _resultData['url'] = l$url;
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
+    final l$url = url;
+    _resultData['url'] = l$url;
     return _resultData;
   }
 
@@ -6965,10 +6975,10 @@ class Fragment$Section$$PosterGridSection$items$items$item$$Page
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
-    final l$code = code;
-    _resultData['code'] = l$code;
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
+    final l$code = code;
+    _resultData['code'] = l$code;
     return _resultData;
   }
 
@@ -7130,10 +7140,10 @@ class Fragment$Section$$PosterGridSection$items$items$item$$Episode
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
-    final l$id = id;
-    _resultData['id'] = l$id;
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
+    final l$id = id;
+    _resultData['id'] = l$id;
     final l$productionDate = productionDate;
     _resultData['productionDate'] = l$productionDate;
     final l$duration = duration;
@@ -7356,10 +7366,10 @@ class Fragment$Section$$PosterGridSection$items$items$item$$Show
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
-    final l$id = id;
-    _resultData['id'] = l$id;
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
+    final l$id = id;
+    _resultData['id'] = l$id;
     final l$episodeCount = episodeCount;
     _resultData['episodeCount'] = l$episodeCount;
     final l$seasonCount = seasonCount;
@@ -7529,10 +7539,12 @@ class Fragment$Section$$IconSection implements Fragment$Section {
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
-    final l$items = items;
-    _resultData['items'] = l$items.toJson();
+    final l$title = title;
+    _resultData['title'] = l$title;
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
+    final l$items = items;
+    _resultData['items'] = l$items.toJson();
     return _resultData;
   }
 
@@ -8142,10 +8154,10 @@ class Fragment$Section$$IconSection$items$items$item$$Link
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
-    final l$url = url;
-    _resultData['url'] = l$url;
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
+    final l$url = url;
+    _resultData['url'] = l$url;
     return _resultData;
   }
 
@@ -8276,10 +8288,10 @@ class Fragment$Section$$IconSection$items$items$item$$Page
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
-    final l$code = code;
-    _resultData['code'] = l$code;
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
+    final l$code = code;
+    _resultData['code'] = l$code;
     return _resultData;
   }
 
@@ -8412,10 +8424,10 @@ class Fragment$Section$$IconSection$items$items$item$$Episode
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
-    final l$id = id;
-    _resultData['id'] = l$id;
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
+    final l$id = id;
+    _resultData['id'] = l$id;
     return _resultData;
   }
 
@@ -8547,10 +8559,10 @@ class Fragment$Section$$IconSection$items$items$item$$Show
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
-    final l$id = id;
-    _resultData['id'] = l$id;
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
+    final l$id = id;
+    _resultData['id'] = l$id;
     return _resultData;
   }
 
@@ -8685,10 +8697,12 @@ class Fragment$Section$$LabelSection implements Fragment$Section {
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
-    final l$items = items;
-    _resultData['items'] = l$items.toJson();
+    final l$title = title;
+    _resultData['title'] = l$title;
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
+    final l$items = items;
+    _resultData['items'] = l$items.toJson();
     return _resultData;
   }
 
@@ -9298,10 +9312,10 @@ class Fragment$Section$$LabelSection$items$items$item$$Link
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
-    final l$url = url;
-    _resultData['url'] = l$url;
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
+    final l$url = url;
+    _resultData['url'] = l$url;
     return _resultData;
   }
 
@@ -9432,10 +9446,10 @@ class Fragment$Section$$LabelSection$items$items$item$$Page
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
-    final l$code = code;
-    _resultData['code'] = l$code;
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
+    final l$code = code;
+    _resultData['code'] = l$code;
     return _resultData;
   }
 
@@ -9568,10 +9582,10 @@ class Fragment$Section$$LabelSection$items$items$item$$Episode
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
-    final l$id = id;
-    _resultData['id'] = l$id;
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
+    final l$id = id;
+    _resultData['id'] = l$id;
     return _resultData;
   }
 
@@ -9706,10 +9720,10 @@ class Fragment$Section$$LabelSection$items$items$item$$Show
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
-    final l$id = id;
-    _resultData['id'] = l$id;
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
+    final l$id = id;
+    _resultData['id'] = l$id;
     return _resultData;
   }
 
