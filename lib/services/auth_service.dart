@@ -9,7 +9,6 @@ import 'package:package_info_plus/package_info_plus.dart';
 
 import '../env/env.dart';
 import '../helpers/constants.dart';
-import '../models/auth0_id_token.dart';
 import '../router/router.gr.dart';
 
 class AuthService {
@@ -64,20 +63,5 @@ class AuthService {
     } on Error catch (e) {
       return e;
     }
-  }
-
-  Auth0IdToken parseIdToken(String idToken) {
-    final parts = idToken.split(r'.');
-    assert(parts.length == 3);
-
-    final Map<String, dynamic> json = jsonDecode(
-      utf8.decode(
-        base64Url.decode(
-          base64Url.normalize(parts[1]),
-        ),
-      ),
-    );
-
-    return Auth0IdToken.fromJson(json);
   }
 }

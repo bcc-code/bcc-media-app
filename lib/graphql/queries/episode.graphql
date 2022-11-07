@@ -52,3 +52,23 @@ query legacyIDLookup($episodeId: Int, $programId: Int) {
     id
   }
 }
+
+query EpisodeDetails($id: ID!) {
+  episode(id: $id) {
+    ...EpisodeDetails
+  }
+}
+
+fragment EpisodeDetails on Episode {
+  id
+  publishDate
+  availableFrom
+  availableTo
+  ageRating
+  audioLanguages
+  season {
+    show {
+      description
+    }
+  }
+}

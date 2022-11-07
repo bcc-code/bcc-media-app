@@ -1,6 +1,8 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import '../../components/custom_back_button.dart';
+import '../../l10n/app_localizations.dart';
 import '../../router/router.gr.dart';
 import './avatar.dart';
 import './action_buttons.dart';
@@ -85,7 +87,9 @@ class _ProfileState extends ConsumerState<Profile> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Profile'),
+        leadingWidth: 92,
+        leading: const CustomBackButton(),
+        title: Text(S.of(context).profileTab),
       ),
       body: SafeArea(
         child: SingleChildScrollView(

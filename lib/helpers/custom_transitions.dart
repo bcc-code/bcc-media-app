@@ -50,11 +50,11 @@ class CustomTransitionsBuilders {
         CurveTween curveTween;
         CurveTween curveTweenLeaving;
         if (animation.status == AnimationStatus.reverse) {
-          curveTween = CurveTween(curve: Curves.easeOutQuart);
+          curveTween = CurveTween(curve: Curves.easeInQuart);
           curveTweenLeaving = CurveTween(curve: Curves.easeOutQuart);
         } else {
           curveTween = CurveTween(curve: Curves.easeOutQuart);
-          curveTweenLeaving = CurveTween(curve: Curves.easeOutQuart);
+          curveTweenLeaving = CurveTween(curve: Curves.easeInQuart);
         }
         return SlideTransition(
           position:

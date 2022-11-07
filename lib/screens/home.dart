@@ -70,14 +70,15 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
         elevation: 0,
         centerTitle: true,
         title: logo,
-        leading: Container(
-          margin: const EdgeInsets.only(left: 16),
-          child: InkWell(
+        leading: Align(
+          alignment: Alignment.centerLeft,
+          child: GestureDetector(
+              behavior: HitTestBehavior.opaque,
               onTap: () {
                 context.router.push(const ProfileRoute());
               },
               child: Padding(
-                  padding: const EdgeInsets.only(top: 12, bottom: 12),
+                  padding: const EdgeInsets.only(left: 18, top: 12, bottom: 12),
                   child: SvgPicture.string(
                     SvgIcons.profile,
                   ))),
