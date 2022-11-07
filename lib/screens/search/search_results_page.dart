@@ -3,7 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../graphql/client.dart';
 import '../../graphql/queries/search.graphql.dart';
-import '../../components/episode_list.dart';
+import '../../components/search_episode_list.dart';
 import '../../components/result_programs_list.dart';
 import '../../helpers/btv_colors.dart';
 import '../../helpers/btv_typography.dart';
@@ -90,7 +90,7 @@ class _SearchResultsPageState extends ConsumerState<SearchResultsPage> {
                   if (programs.isNotEmpty)
                     ResultProgramsList(title: 'Programs', items: programs),
                   if (episodes.isNotEmpty)
-                    EpisodeList(title: 'Episodes', items: episodes),
+                    SearchEpisodeList(title: 'Episodes', items: episodes),
                 ],
               );
             }

@@ -26,6 +26,7 @@ const _episodeScreenRoute = CustomRoute<void>(
   page: EpisodeScreen,
   path: 'episode/:episodeId',
   customRouteBuilder: CustomTransitionsBuilders.slideUpAndDown,
+  usesPathAsKey: true,
 );
 
 const _specialRoutes = AutoRoute(
@@ -77,6 +78,7 @@ const _specialRoutes = AutoRoute(
               CustomRoute<void>(
                 page: HomeScreen,
                 path: '',
+                name: 'home',
                 maintainState: false,
                 durationInMilliseconds: 500,
                 reverseDurationInMilliseconds: 500,

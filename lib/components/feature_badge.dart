@@ -15,19 +15,30 @@ class FeatureBadge extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.only(left: 4, bottom: 2, right: 4),
-      decoration: BoxDecoration(
-        color: color,
-        borderRadius: BorderRadius.circular(8),
-        border: Border.all(
-          width: 1,
-          color: BtvColors.seperatorOnLight,
-        ),
-      ),
-      child: Text(
-        label,
-        style: BtvTextStyles.caption2.copyWith(color: BtvColors.onTint),
+    return SizedBox(
+      height: 16,
+      child: Stack(
+        children: [
+          Positioned.fill(
+            child: Container(
+              decoration: BoxDecoration(
+                color: color,
+                borderRadius: BorderRadius.circular(8),
+                border: Border.all(
+                  width: 1,
+                  color: BtvColors.seperatorOnLight,
+                ),
+              ),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(left: 4, bottom: 2, right: 4),
+            child: Text(
+              label,
+              style: BtvTextStyles.caption2.copyWith(color: BtvColors.onTint),
+            ),
+          )
+        ],
       ),
     );
   }

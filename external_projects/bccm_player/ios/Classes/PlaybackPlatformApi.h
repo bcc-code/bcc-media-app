@@ -21,8 +21,9 @@ typedef NS_ENUM(NSUInteger, CastConnectionState) {
 @class User;
 @class MediaItem;
 @class MediaMetadata;
+@class PlayerState;
 @class ChromecastState;
-@class PositionUpdateEvent;
+@class PositionDiscontinuityEvent;
 @class IsPlayingChangedEvent;
 @class PictureInPictureModeChangedEvent;
 @class MediaItemTransitionEvent;
@@ -80,6 +81,17 @@ typedef NS_ENUM(NSUInteger, CastConnectionState) {
 @property(nonatomic, strong, nullable) NSDictionary<NSString *, id> * extras;
 @end
 
+@interface PlayerState : NSObject
+/// `init` unavailable to enforce nonnull fields, see the `make` class method.
+- (instancetype)init NS_UNAVAILABLE;
++ (instancetype)makeWithPlayerId:(NSString *)playerId
+    isPlaying:(NSNumber *)isPlaying
+    playbackPositionMs:(nullable NSNumber *)playbackPositionMs;
+@property(nonatomic, copy) NSString * playerId;
+@property(nonatomic, strong) NSNumber * isPlaying;
+@property(nonatomic, strong, nullable) NSNumber * playbackPositionMs;
+@end
+
 @interface ChromecastState : NSObject
 /// `init` unavailable to enforce nonnull fields, see the `make` class method.
 - (instancetype)init NS_UNAVAILABLE;
@@ -89,7 +101,7 @@ typedef NS_ENUM(NSUInteger, CastConnectionState) {
 @property(nonatomic, strong, nullable) MediaItem * mediaItem;
 @end
 
-@interface PositionUpdateEvent : NSObject
+@interface PositionDiscontinuityEvent : NSObject
 /// `init` unavailable to enforce nonnull fields, see the `make` class method.
 - (instancetype)init NS_UNAVAILABLE;
 + (instancetype)makeWithPlayerId:(NSString *)playerId
@@ -140,6 +152,7 @@ NSObject<FlutterMessageCodec> *PlaybackPlatformPigeonGetCodec(void);
 - (void)setUser:(nullable User *)user error:(FlutterError *_Nullable *_Nonnull)error;
 - (void)setNpawConfig:(nullable NpawConfig *)config error:(FlutterError *_Nullable *_Nonnull)error;
 - (void)setAppConfig:(nullable AppConfig *)config error:(FlutterError *_Nullable *_Nonnull)error;
+- (void)getPlayerState:(NSString *)playerId completion:(void(^)(PlayerState *_Nullable, FlutterError *_Nullable))completion;
 - (void)getChromecastState:(void(^)(ChromecastState *_Nullable, FlutterError *_Nullable))completion;
 - (void)openExpandedCastController:(FlutterError *_Nullable *_Nonnull)error;
 - (void)openCastDialog:(FlutterError *_Nullable *_Nonnull)error;
@@ -152,7 +165,8 @@ NSObject<FlutterMessageCodec> *PlaybackListenerPigeonGetCodec(void);
 
 @interface PlaybackListenerPigeon : NSObject
 - (instancetype)initWithBinaryMessenger:(id<FlutterBinaryMessenger>)binaryMessenger;
-- (void)onPositionUpdate:(PositionUpdateEvent *)event completion:(void(^)(NSError *_Nullable))completion;
+- (void)onPositionDiscontinuity:(PositionDiscontinuityEvent *)event completion:(void(^)(NSError *_Nullable))completion;
+- (void)onPlayerStateUpdate:(PlayerState *)event completion:(void(^)(NSError *_Nullable))completion;
 - (void)onIsPlayingChanged:(IsPlayingChangedEvent *)event completion:(void(^)(NSError *_Nullable))completion;
 - (void)onMediaItemTransition:(MediaItemTransitionEvent *)event completion:(void(^)(NSError *_Nullable))completion;
 - (void)onPictureInPictureModeChanged:(PictureInPictureModeChangedEvent *)event completion:(void(^)(NSError *_Nullable))completion;

@@ -16,20 +16,20 @@ class OptionList extends StatelessWidget {
     required this.currentSelection,
     required this.onSelectionChange,
     this.enableDivider = true,
-    this.margin = const EdgeInsets.all(16),
+    this.margin = const EdgeInsets.only(top: 16, left: 16, right: 16),
   });
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      margin: margin,
+    return DecoratedBox(
       decoration: BoxDecoration(
         color: BtvColors.background2,
         borderRadius: BorderRadius.circular(12),
       ),
       child: ListView.separated(
+        physics: const NeverScrollableScrollPhysics(),
+        cacheExtent: 100000,
         shrinkWrap: true,
-        // physics: const NeverScrollableScrollPhysics(),
         itemCount: optionData.length,
         itemBuilder: (context, index) {
           final option = optionData[index];

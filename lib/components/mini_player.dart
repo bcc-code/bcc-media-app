@@ -65,13 +65,17 @@ class _MiniPlayerState extends ConsumerState<MiniPlayer> {
           context.router.navigate(const LiveScreenRoute());
         } else if (id != null) {
           ref.read(tempTitleProvider.notifier).state = title;
-          context.navigateTo(HomeScreenWrapperRoute(
-              children: [EpisodeScreenRoute(episodeId: id)]));
+          try {
+            context.navigateTo(EpisodeScreenRoute(episodeId: id));
+          } catch (_) {
+            context.navigateTo(HomeScreenWrapperRoute(
+                children: [EpisodeScreenRoute(episodeId: id)]));
+          }
         }
       },
       child: _MiniPlayer(
         artist: artist,
-        title: title ?? 'Title missing',
+        title: title ?? '',
         artworkUri:
             artworkUri ?? 'https://source.unsplash.com/random/1600x900/?fruit',
         isPlaying: playbackState == PlaybackState.playing,

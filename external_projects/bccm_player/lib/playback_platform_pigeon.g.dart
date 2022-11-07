@@ -178,6 +178,35 @@ class MediaMetadata {
   }
 }
 
+class PlayerState {
+  PlayerState({
+    required this.playerId,
+    required this.isPlaying,
+    this.playbackPositionMs,
+  });
+
+  String playerId;
+  bool isPlaying;
+  double? playbackPositionMs;
+
+  Object encode() {
+    final Map<Object?, Object?> pigeonMap = <Object?, Object?>{};
+    pigeonMap['playerId'] = playerId;
+    pigeonMap['isPlaying'] = isPlaying;
+    pigeonMap['playbackPositionMs'] = playbackPositionMs;
+    return pigeonMap;
+  }
+
+  static PlayerState decode(Object message) {
+    final Map<Object?, Object?> pigeonMap = message as Map<Object?, Object?>;
+    return PlayerState(
+      playerId: pigeonMap['playerId']! as String,
+      isPlaying: pigeonMap['isPlaying']! as bool,
+      playbackPositionMs: pigeonMap['playbackPositionMs'] as double?,
+    );
+  }
+}
+
 class ChromecastState {
   ChromecastState({
     required this.connectionState,
@@ -206,8 +235,8 @@ class ChromecastState {
   }
 }
 
-class PositionUpdateEvent {
-  PositionUpdateEvent({
+class PositionDiscontinuityEvent {
+  PositionDiscontinuityEvent({
     required this.playerId,
     this.playbackPositionMs,
   });
@@ -222,9 +251,9 @@ class PositionUpdateEvent {
     return pigeonMap;
   }
 
-  static PositionUpdateEvent decode(Object message) {
+  static PositionDiscontinuityEvent decode(Object message) {
     final Map<Object?, Object?> pigeonMap = message as Map<Object?, Object?>;
-    return PositionUpdateEvent(
+    return PositionDiscontinuityEvent(
       playerId: pigeonMap['playerId']! as String,
       playbackPositionMs: pigeonMap['playbackPositionMs'] as int?,
     );
@@ -332,8 +361,12 @@ class _PlaybackPlatformPigeonCodec extends StandardMessageCodec {
       buffer.putUint8(132);
       writeValue(buffer, value.encode());
     } else 
-    if (value is User) {
+    if (value is PlayerState) {
       buffer.putUint8(133);
+      writeValue(buffer, value.encode());
+    } else 
+    if (value is User) {
+      buffer.putUint8(134);
       writeValue(buffer, value.encode());
     } else 
 {
@@ -359,6 +392,9 @@ class _PlaybackPlatformPigeonCodec extends StandardMessageCodec {
         return NpawConfig.decode(readValue(buffer)!);
       
       case 133:       
+        return PlayerState.decode(readValue(buffer)!);
+      
+      case 134:       
         return User.decode(readValue(buffer)!);
       
       default:      
@@ -625,6 +661,28 @@ class PlaybackPlatformPigeon {
     }
   }
 
+  Future<PlayerState?> getPlayerState(String arg_playerId) async {
+    final BasicMessageChannel<Object?> channel = BasicMessageChannel<Object?>(
+        'dev.flutter.pigeon.PlaybackPlatformPigeon.getPlayerState', codec, binaryMessenger: _binaryMessenger);
+    final Map<Object?, Object?>? replyMap =
+        await channel.send(<Object?>[arg_playerId]) as Map<Object?, Object?>?;
+    if (replyMap == null) {
+      throw PlatformException(
+        code: 'channel-error',
+        message: 'Unable to establish connection on channel.',
+      );
+    } else if (replyMap['error'] != null) {
+      final Map<Object?, Object?> error = (replyMap['error'] as Map<Object?, Object?>?)!;
+      throw PlatformException(
+        code: (error['code'] as String?)!,
+        message: error['message'] as String?,
+        details: error['details'],
+      );
+    } else {
+      return (replyMap['result'] as PlayerState?);
+    }
+  }
+
   Future<ChromecastState?> getChromecastState() async {
     final BasicMessageChannel<Object?> channel = BasicMessageChannel<Object?>(
         'dev.flutter.pigeon.PlaybackPlatformPigeon.getChromecastState', codec, binaryMessenger: _binaryMessenger);
@@ -716,8 +774,12 @@ class _PlaybackListenerPigeonCodec extends StandardMessageCodec {
       buffer.putUint8(132);
       writeValue(buffer, value.encode());
     } else 
-    if (value is PositionUpdateEvent) {
+    if (value is PlayerState) {
       buffer.putUint8(133);
+      writeValue(buffer, value.encode());
+    } else 
+    if (value is PositionDiscontinuityEvent) {
+      buffer.putUint8(134);
       writeValue(buffer, value.encode());
     } else 
 {
@@ -743,7 +805,10 @@ class _PlaybackListenerPigeonCodec extends StandardMessageCodec {
         return PictureInPictureModeChangedEvent.decode(readValue(buffer)!);
       
       case 133:       
-        return PositionUpdateEvent.decode(readValue(buffer)!);
+        return PlayerState.decode(readValue(buffer)!);
+      
+      case 134:       
+        return PositionDiscontinuityEvent.decode(readValue(buffer)!);
       
       default:      
         return super.readValueOfType(type, buffer);
@@ -754,23 +819,40 @@ class _PlaybackListenerPigeonCodec extends StandardMessageCodec {
 abstract class PlaybackListenerPigeon {
   static const MessageCodec<Object?> codec = _PlaybackListenerPigeonCodec();
 
-  void onPositionUpdate(PositionUpdateEvent event);
+  void onPositionDiscontinuity(PositionDiscontinuityEvent event);
+  void onPlayerStateUpdate(PlayerState event);
   void onIsPlayingChanged(IsPlayingChangedEvent event);
   void onMediaItemTransition(MediaItemTransitionEvent event);
   void onPictureInPictureModeChanged(PictureInPictureModeChangedEvent event);
   static void setup(PlaybackListenerPigeon? api, {BinaryMessenger? binaryMessenger}) {
     {
       final BasicMessageChannel<Object?> channel = BasicMessageChannel<Object?>(
-          'dev.flutter.pigeon.PlaybackListenerPigeon.onPositionUpdate', codec, binaryMessenger: binaryMessenger);
+          'dev.flutter.pigeon.PlaybackListenerPigeon.onPositionDiscontinuity', codec, binaryMessenger: binaryMessenger);
       if (api == null) {
         channel.setMessageHandler(null);
       } else {
         channel.setMessageHandler((Object? message) async {
-          assert(message != null, 'Argument for dev.flutter.pigeon.PlaybackListenerPigeon.onPositionUpdate was null.');
+          assert(message != null, 'Argument for dev.flutter.pigeon.PlaybackListenerPigeon.onPositionDiscontinuity was null.');
           final List<Object?> args = (message as List<Object?>?)!;
-          final PositionUpdateEvent? arg_event = (args[0] as PositionUpdateEvent?);
-          assert(arg_event != null, 'Argument for dev.flutter.pigeon.PlaybackListenerPigeon.onPositionUpdate was null, expected non-null PositionUpdateEvent.');
-          api.onPositionUpdate(arg_event!);
+          final PositionDiscontinuityEvent? arg_event = (args[0] as PositionDiscontinuityEvent?);
+          assert(arg_event != null, 'Argument for dev.flutter.pigeon.PlaybackListenerPigeon.onPositionDiscontinuity was null, expected non-null PositionDiscontinuityEvent.');
+          api.onPositionDiscontinuity(arg_event!);
+          return;
+        });
+      }
+    }
+    {
+      final BasicMessageChannel<Object?> channel = BasicMessageChannel<Object?>(
+          'dev.flutter.pigeon.PlaybackListenerPigeon.onPlayerStateUpdate', codec, binaryMessenger: binaryMessenger);
+      if (api == null) {
+        channel.setMessageHandler(null);
+      } else {
+        channel.setMessageHandler((Object? message) async {
+          assert(message != null, 'Argument for dev.flutter.pigeon.PlaybackListenerPigeon.onPlayerStateUpdate was null.');
+          final List<Object?> args = (message as List<Object?>?)!;
+          final PlayerState? arg_event = (args[0] as PlayerState?);
+          assert(arg_event != null, 'Argument for dev.flutter.pigeon.PlaybackListenerPigeon.onPlayerStateUpdate was null, expected non-null PlayerState.');
+          api.onPlayerStateUpdate(arg_event!);
           return;
         });
       }

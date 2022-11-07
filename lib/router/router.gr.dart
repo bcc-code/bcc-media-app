@@ -147,7 +147,7 @@ class AppRouter extends _i19.RootStackRouter {
         child: const _i13.CalendarPage(),
       );
     },
-    HomeScreenRoute.name: (routeData) {
+    Home.name: (routeData) {
       return _i19.CustomPage<void>(
         routeData: routeData,
         child: const _i14.HomeScreen(),
@@ -284,7 +284,7 @@ class AppRouter extends _i19.RootStackRouter {
               parent: TabsRootScreenRoute.name,
               children: [
                 _i19.RouteConfig(
-                  HomeScreenRoute.name,
+                  Home.name,
                   path: '',
                   parent: HomeScreenWrapperRoute.name,
                 ),
@@ -292,6 +292,7 @@ class AppRouter extends _i19.RootStackRouter {
                   EpisodeScreenRoute.name,
                   path: 'episode/:episodeId',
                   parent: HomeScreenWrapperRoute.name,
+                  usesPathAsKey: true,
                 ),
                 _i19.RouteConfig(
                   PageScreenRoute.name,
@@ -325,6 +326,7 @@ class AppRouter extends _i19.RootStackRouter {
                   EpisodeScreenRoute.name,
                   path: 'episode/:episodeId',
                   parent: SearchScreenWrapperRoute.name,
+                  usesPathAsKey: true,
                 ),
               ],
             ),
@@ -576,14 +578,14 @@ class CalendarPageRoute extends _i19.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i14.HomeScreen]
-class HomeScreenRoute extends _i19.PageRouteInfo<void> {
-  const HomeScreenRoute()
+class Home extends _i19.PageRouteInfo<void> {
+  const Home()
       : super(
-          HomeScreenRoute.name,
+          Home.name,
           path: '',
         );
 
-  static const String name = 'HomeScreenRoute';
+  static const String name = 'Home';
 }
 
 /// generated route for

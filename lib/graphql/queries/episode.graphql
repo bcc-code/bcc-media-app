@@ -2,9 +2,13 @@ query FetchEpisode($id: ID!) {
   episode(id: $id) {
     id
     title
+    number
     description
     extraDescription
     imageUrl
+    duration
+    progress
+    ageRating
     streams {
       type
       url
@@ -12,10 +16,39 @@ query FetchEpisode($id: ID!) {
       subtitleLanguages
     }
     season {
+      id
       title
+      number
+      episodes {
+        items {
+          ...SeasonListEpisode
+        }
+      }
       show {
         title
+        type
+        seasons {
+          items {
+            id
+            title
+          }
+        }
       }
     }
+  }
+}
+
+fragment SeasonListEpisode on Episode {
+  id
+  imageUrl
+  number
+  title
+  ageRating
+  duration
+}
+
+query legacyIDLookup($episodeId: Int, $programId: Int) {
+  legacyIDLookup(options: { episodeID: $episodeId, programID: $programId }) {
+    id
   }
 }

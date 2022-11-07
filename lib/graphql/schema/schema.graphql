@@ -38,6 +38,15 @@ type User {
   roles: [String!]!
 }
 
+input LegacyIDLookupOptions {
+  episodeID: Int
+  programID: Int
+}
+
+type LegacyIDLookup {
+  id: ID!
+}
+
 type QueryRoot{
   application: Application!
   export(
@@ -91,6 +100,8 @@ type QueryRoot{
 
   profiles: [Profile!]!
   profile: Profile!
+
+  legacyIDLookup(options: LegacyIDLookupOptions): LegacyIDLookup!
 }
 
 type MutationRoot {

@@ -1,0 +1,7 @@
+mutation setEpisodeProgress($id: ID!, $duration: Int, $progress: Int) {
+  setEpisodeProgress(id: $id, duration: $duration, progress: $progress) {
+    __typename
+    duration
+    progress
+  }
+}

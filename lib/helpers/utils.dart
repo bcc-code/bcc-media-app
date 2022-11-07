@@ -19,3 +19,7 @@ ImageProvider cacheOptimizedImage(
       provider: ExtendedNetworkImageProvider(imageUrl),
       cacheHeight: (height * MediaQuery.of(context).devicePixelRatio).round());
 }
+
+String getFormattedAgeRating(String ageRating) {
+  return ageRating == 'A' ? 'A' : '$ageRating+';
+}

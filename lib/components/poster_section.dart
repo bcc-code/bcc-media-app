@@ -94,11 +94,10 @@ class _PosterEpisodeItem extends StatelessWidget {
   final Fragment$Section$$PosterSection$items$items$item$$Episode episode;
   final Enum$SectionSize size;
 
-  // TODO: Remove these temp variables
-  bool watched = false;
+  bool get watched =>
+      episode.progress != null && episode.progress! > episode.duration * 0.9;
   bool isLive = false;
   bool isNewItem = false;
-  bool showWatchProgressIndicator = false;
 
   _PosterEpisodeItem({
     required this.sectionItem,
@@ -180,13 +179,14 @@ class _PosterEpisodeItem extends StatelessWidget {
                 ),
               ),
             ),
-          showWatchProgressIndicator
+          episode.progress != null && !watched
               ? Align(
                   alignment: Alignment.bottomCenter,
                   child: Container(
                     margin: const EdgeInsets.only(left: 4, bottom: 4, right: 4),
                     child: WatchProgressIndicator(
-                        totalDuration: episode.duration, watchedDuration: 10),
+                        totalDuration: episode.duration,
+                        watchedDuration: episode.progress!),
                   ),
                 )
               : Align(
@@ -251,19 +251,23 @@ class _PosterShowItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      width: imageSize[size]!.width,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          sectionItemImage(context),
-          Text(
-            sectionItem.title,
-            overflow: TextOverflow.ellipsis,
-            maxLines: 2,
-            style: BtvTextStyles.caption1.copyWith(color: BtvColors.label1),
-          )
-        ],
+    return GestureDetector(
+      onTap: () => context.router
+          .navigate(EpisodeScreenRoute(episodeId: show.defaultEpisode.id)),
+      child: SizedBox(
+        width: imageSize[size]!.width,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            sectionItemImage(context),
+            Text(
+              sectionItem.title,
+              overflow: TextOverflow.ellipsis,
+              maxLines: 2,
+              style: BtvTextStyles.caption1.copyWith(color: BtvColors.label1),
+            )
+          ],
+        ),
       ),
     );
   }

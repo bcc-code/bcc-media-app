@@ -82,14 +82,12 @@ class _DefaultEpisodeItem extends StatelessWidget {
       : episode = sectionItem.item
             as Fragment$Section$$DefaultSection$items$items$item$$Episode;
 
-  // TODO: Remove these temp variables
-  bool watched = false;
+  bool get watched =>
+      episode.progress != null && episode.progress! > episode.duration * 0.9;
 
   bool isLive = false;
 
   bool isNewItem = false;
-
-  bool showWatchProgressIndicator = false;
 
   @override
   Widget build(BuildContext context) {
@@ -164,13 +162,14 @@ class _DefaultEpisodeItem extends StatelessWidget {
                 ),
               ),
             ),
-          showWatchProgressIndicator
+          episode.progress != null && !watched
               ? Align(
                   alignment: Alignment.bottomCenter,
                   child: Container(
                     margin: const EdgeInsets.only(left: 4, bottom: 4, right: 4),
                     child: WatchProgressIndicator(
-                        totalDuration: episode.duration, watchedDuration: 10),
+                        totalDuration: episode.duration,
+                        watchedDuration: episode.progress!),
                   ),
                 )
               : Align(
@@ -234,24 +233,28 @@ class _DefaultShowItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      width: imageSize[size]!.width,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          sectionItemImage(),
-          Container(
-            margin: const EdgeInsets.only(bottom: 2),
-            child: Text(
-              sectionItem.title,
-              style: BtvTextStyles.caption1.copyWith(color: BtvColors.label1),
+    return GestureDetector(
+      onTap: () => context.router
+          .navigate(EpisodeScreenRoute(episodeId: show.defaultEpisode!.id)),
+      child: SizedBox(
+        width: imageSize[size]!.width,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            sectionItemImage(),
+            Container(
+              margin: const EdgeInsets.only(bottom: 2),
+              child: Text(
+                sectionItem.title,
+                style: BtvTextStyles.caption1.copyWith(color: BtvColors.label1),
+              ),
             ),
-          ),
-          Text(
-            '${show.seasonCount} Seasons - ${show.episodeCount} Episodes',
-            style: BtvTextStyles.caption2,
-          )
-        ],
+            Text(
+              '${show.seasonCount} Seasons - ${show.episodeCount} Episodes',
+              style: BtvTextStyles.caption2,
+            )
+          ],
+        ),
       ),
     );
   }
