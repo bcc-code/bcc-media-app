@@ -20,8 +20,9 @@ class SpecialRoutesGuard extends AutoRouteGuard {
       final code = route.pathParams.get('code');
       print('Code: $code');
     } else if (route.segments[0] == 'series') {
-      final legacyEpisodeId = route.pathParams.getInt('legacyEpisodeId');
-      if (ref != null) {
+      final legacyEpisodeId =
+          int.tryParse(route.pathParams.get('legacyEpisodeId'));
+      if (ref != null && legacyEpisodeId != null) {
         final newIdFuture =
             _getEpisodeId(ref, legacyEpisodeId: legacyEpisodeId);
         newIdFuture?.then((newId) {
@@ -30,10 +31,10 @@ class SpecialRoutesGuard extends AutoRouteGuard {
           }
         });
       }
-      // final newEpisodeId = _getEpisodeId();
     } else if (route.segments[0] == 'program') {
-      final legacyProgramId = route.pathParams.getInt('legacyProgramId');
-      if (ref != null) {
+      final legacyProgramId =
+          int.tryParse(route.pathParams.get('legacyProgramId'));
+      if (ref != null && legacyProgramId != null) {
         final newIdFuture =
             _getEpisodeId(ref, legacyProgramId: legacyProgramId);
         newIdFuture?.then((newId) {
