@@ -22,7 +22,10 @@ import 'package:flutter_svg/svg.dart';
 import 'package:transparent_image/transparent_image.dart';
 
 import '../api/brunstadtv.dart';
+import '../components/bottom_sheet_select.dart';
 import '../components/custom_back_button.dart';
+import '../components/label_tag.dart';
+import '../components/option_list.dart';
 import '../helpers/btv_colors.dart';
 import '../helpers/btv_typography.dart';
 import '../helpers/utils.dart';
@@ -35,8 +38,8 @@ class EpisodePageArguments {
 
 class EpisodeScreen extends ConsumerStatefulWidget {
   final String episodeId;
-  bool autoplay;
-  EpisodeScreen(
+  final bool autoplay;
+  const EpisodeScreen(
       {super.key,
       @PathParam() required this.episodeId,
       @QueryParam() this.autoplay = false});
@@ -54,12 +57,39 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen> {
   Animation? animation;
   StreamSubscription? chromecastSubscription;
 
+  String? selectedSeasonId;
+  Map<String, List<EpisodeListEpisode>?>? seasonsMap;
+
   @override
   void initState() {
     super.initState();
 
     episodeFuture =
-        ref.read(apiProvider).fetchEpisode(widget.episodeId.toString());
+        ref.read(apiProvider).fetchEpisode(widget.episodeId.toString()).then(
+      (result) {
+        if (mounted && result?.season != null) {
+          setState(() {
+            seasonsMap = <String, List<EpisodeListEpisode>?>{};
+            for (var season in result!.season!.$show.seasons.items) {
+              seasonsMap![season.id] = null;
+            }
+            seasonsMap![result.season!.id] =
+                result.season!.episodes.items.map((ep) {
+              return EpisodeListEpisode(
+                  episodeId: ep.id,
+                  ageRating: ep.ageRating,
+                  duration: ep.duration,
+                  title: ep.title,
+                  image: ep.imageUrl,
+                  seasonNumber: result.season!.number,
+                  episodeNumber: ep.number);
+            }).toList();
+          });
+        }
+        if (mounted) setState(() => selectedSeasonId = result?.season?.id);
+        return result;
+      },
+    );
 
     chromecastSubscription = ref
         .read(chromecastListenerProvider)
@@ -74,6 +104,27 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen> {
           episode: episode,
           playbackPositionMs: event.playbackPositionMs);
     });
+  }
+
+  Future onSeasonSelected(String id) async {
+    setState(() {
+      selectedSeasonId = id;
+    });
+    var season = await ref.read(apiProvider).getSeasonEpisodes(id);
+    if (mounted && season != null) {
+      setState(() {
+        seasonsMap?[id] = season.episodes.items
+            .map((ep) => EpisodeListEpisode(
+                episodeId: ep.id,
+                ageRating: ep.ageRating,
+                duration: ep.duration,
+                title: ep.title,
+                image: ep.imageUrl,
+                seasonNumber: season.number,
+                episodeNumber: ep.number))
+            .toList();
+      });
+    }
   }
 
   Future setup() async {
@@ -252,6 +303,7 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen> {
 
     return SingleChildScrollView(
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           !episodeIsCurrentItem(player.currentMediaItem)
               ? _playPoster(episode)
@@ -302,17 +354,50 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen> {
               ],
             ),
           ),
-          SeasonEpisodeList(
-              items: episode.season!.episodes.items.map((ep) {
-            return EpisodeListEpisode(
-                episodeId: ep.id,
-                ageRating: ep.ageRating,
-                duration: ep.duration,
-                title: ep.title,
-                image: ep.imageUrl,
-                seasonNumber: episode.season!.number,
-                episodeNumber: ep.number);
-          }).toList())
+          Container(
+              decoration: const BoxDecoration(
+                border: Border(
+                    bottom: BorderSide(
+                        width: 1, color: BtvColors.seperatorOnLight)),
+              ),
+              child: Padding(
+                  padding: EdgeInsets.all(16),
+                  child: Row(
+                    children: [
+                      TabButton(S.of(context).episodes.toUpperCase(),
+                          selected: true),
+                      const SizedBox(width: 8),
+                      TabButton('Extras'.toUpperCase(), selected: false),
+                      const SizedBox(width: 8),
+                      TabButton('Settings'.toUpperCase(), selected: false)
+                    ],
+                  ))),
+          episode.season == null && selectedSeasonId != null
+              ? const SizedBox.shrink()
+              : Padding(
+                  padding: const EdgeInsets.only(left: 28, top: 16, bottom: 20),
+                  child: _DropDownSelect(
+                    title: 'Select season',
+                    onSelectionChanged: onSeasonSelected,
+                    items: episode.season!.$show.seasons.items
+                        .map((e) => Option(id: e.id, title: e.title))
+                        .toList(),
+                    selectedId: selectedSeasonId!,
+                  ),
+                ),
+          Builder(builder: (context) {
+            if (seasonsMap?[selectedSeasonId] == null) {
+              return const SizedBox(
+                  height: 1000,
+                  child: Align(
+                      alignment: Alignment.topCenter,
+                      child: Padding(
+                          padding: EdgeInsets.only(top: 16),
+                          child: CircularProgressIndicator())));
+            } else {
+              return SeasonEpisodeList(items: seasonsMap![selectedSeasonId]!);
+            }
+          })
         ],
       ),
     );
@@ -365,6 +450,60 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen> {
                         : const CircularProgressIndicator()),
               ],
             )));
+  }
+}
+
+class _DropDownSelect extends StatelessWidget {
+  final String selectedId;
+  final String title;
+  final List<Option> items;
+  final void Function(String id) onSelectionChanged;
+
+  const _DropDownSelect(
+      {Key? key,
+      required this.items,
+      required this.selectedId,
+      required this.onSelectionChanged,
+      required this.title})
+      : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: () {
+        showModalBottomSheet(
+            context: context,
+            useRootNavigator: true,
+            builder: (ctx) {
+              return BottomSheetSelect(
+                title: title,
+                items: items,
+                selectedId: selectedId,
+                onSelectionChanged: onSelectionChanged,
+              );
+            });
+      },
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Text(
+            items
+                .firstWhere((element) => element.id == selectedId)
+                .title
+                .toUpperCase(),
+            style: BtvTextStyles.button2.copyWith(color: BtvColors.label1),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(left: 6),
+            child: Center(
+              child: SvgPicture.string(SvgIcons.chevronDown),
+            ),
+          )
+        ],
+      ),
+    );
   }
 }
 

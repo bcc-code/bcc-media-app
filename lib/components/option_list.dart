@@ -29,6 +29,7 @@ class OptionList extends StatelessWidget {
       child: ListView.separated(
         physics: const NeverScrollableScrollPhysics(),
         cacheExtent: 100000,
+        shrinkWrap: true,
         itemCount: optionData.length,
         itemBuilder: (context, index) {
           final option = optionData[index];

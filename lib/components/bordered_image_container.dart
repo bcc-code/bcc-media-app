@@ -44,14 +44,6 @@ class BorderedImageContainer extends StatelessWidget {
                   height: constraints.maxHeight,
                   child: FadeInImage.memoryNetwork(
                       fit: BoxFit.cover,
-                      imageErrorBuilder: (context, error, stackTrace) {
-                        debugPrint(stackTrace.toString());
-                        return Text('error');
-                      },
-                      placeholderErrorBuilder: (context, error, stackTrace) {
-                        debugPrint(stackTrace.toString());
-                        return Text('error p');
-                      },
                       placeholder: kTransparentImage,
                       image: imageUrl!,
                       fadeInDuration: const Duration(milliseconds: 400),

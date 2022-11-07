@@ -110,7 +110,7 @@ class _CategoryEpisode extends StatelessWidget {
       margin: margin,
       child: Column(
         children: [
-          BorderedImageContainer(imageUrl: episode['image']),
+          BorderedImageContainer(height: 100, imageUrl: episode['image']),
           Text(
             episode['title']!,
             style: BtvTextStyles.caption1.copyWith(color: BtvColors.label1),

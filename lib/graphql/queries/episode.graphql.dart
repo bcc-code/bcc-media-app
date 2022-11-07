@@ -691,6 +691,13 @@ const documentNodeQueryFetchEpisode = DocumentNode(definitions: [
             directives: [],
             selectionSet: SelectionSetNode(selections: [
               FieldNode(
+                name: NameNode(value: 'id'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null,
+              ),
+              FieldNode(
                 name: NameNode(value: 'title'),
                 alias: null,
                 arguments: [],
@@ -1535,6 +1542,7 @@ class _CopyWithStubImpl$Query$FetchEpisode$episode$streams<TRes>
 
 class Query$FetchEpisode$episode$season {
   Query$FetchEpisode$episode$season({
+    required this.id,
     required this.title,
     required this.number,
     required this.episodes,
@@ -1544,12 +1552,14 @@ class Query$FetchEpisode$episode$season {
 
   factory Query$FetchEpisode$episode$season.fromJson(
       Map<String, dynamic> json) {
+    final l$id = json['id'];
     final l$title = json['title'];
     final l$number = json['number'];
     final l$episodes = json['episodes'];
     final l$$show = json['show'];
     final l$$__typename = json['__typename'];
     return Query$FetchEpisode$episode$season(
+      id: (l$id as String),
       title: (l$title as String),
       number: (l$number as int),
       episodes: Query$FetchEpisode$episode$season$episodes.fromJson(
@@ -1559,6 +1569,8 @@ class Query$FetchEpisode$episode$season {
       $__typename: (l$$__typename as String),
     );
   }
+
+  final String id;
 
   final String title;
 
@@ -1572,6 +1584,8 @@ class Query$FetchEpisode$episode$season {
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
+    final l$id = id;
+    _resultData['id'] = l$id;
     final l$title = title;
     _resultData['title'] = l$title;
     final l$number = number;
@@ -1587,12 +1601,14 @@ class Query$FetchEpisode$episode$season {
 
   @override
   int get hashCode {
+    final l$id = id;
     final l$title = title;
     final l$number = number;
     final l$episodes = episodes;
     final l$$show = $show;
     final l$$__typename = $__typename;
     return Object.hashAll([
+      l$id,
       l$title,
       l$number,
       l$episodes,
@@ -1608,6 +1624,11 @@ class Query$FetchEpisode$episode$season {
     }
     if (!(other is Query$FetchEpisode$episode$season) ||
         runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$id = id;
+    final lOther$id = other.id;
+    if (l$id != lOther$id) {
       return false;
     }
     final l$title = title;
@@ -1658,6 +1679,7 @@ abstract class CopyWith$Query$FetchEpisode$episode$season<TRes> {
       _CopyWithStubImpl$Query$FetchEpisode$episode$season;
 
   TRes call({
+    String? id,
     String? title,
     int? number,
     Query$FetchEpisode$episode$season$episodes? episodes,
@@ -1682,6 +1704,7 @@ class _CopyWithImpl$Query$FetchEpisode$episode$season<TRes>
   static const _undefined = {};
 
   TRes call({
+    Object? id = _undefined,
     Object? title = _undefined,
     Object? number = _undefined,
     Object? episodes = _undefined,
@@ -1689,6 +1712,7 @@ class _CopyWithImpl$Query$FetchEpisode$episode$season<TRes>
     Object? $__typename = _undefined,
   }) =>
       _then(Query$FetchEpisode$episode$season(
+        id: id == _undefined || id == null ? _instance.id : (id as String),
         title: title == _undefined || title == null
             ? _instance.title
             : (title as String),
@@ -1725,6 +1749,7 @@ class _CopyWithStubImpl$Query$FetchEpisode$episode$season<TRes>
   TRes _res;
 
   call({
+    String? id,
     String? title,
     int? number,
     Query$FetchEpisode$episode$season$episodes? episodes,

@@ -16,6 +16,7 @@ query FetchEpisode($id: ID!) {
       subtitleLanguages
     }
     season {
+      id
       title
       number
       episodes {

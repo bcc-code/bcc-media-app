@@ -2,6 +2,7 @@ import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:graphql/client.dart';
 import 'package:brunstadtv_app/graphql/queries/episode.graphql.dart';
+import 'package:brunstadtv_app/graphql/queries/season.graphql.dart';
 import 'package:riverpod/riverpod.dart';
 
 import '../graphql/client.dart';
@@ -25,6 +26,21 @@ class Api {
     if (episode == null) return null;
 
     return episode;
+  }
+
+  Future<Query$GetSeasonEpisodes$season?> getSeasonEpisodes(String id) async {
+    final result = await client.query$GetSeasonEpisodes(
+      Options$Query$GetSeasonEpisodes(
+        variables: Variables$Query$GetSeasonEpisodes(id: id),
+      ),
+    );
+    if (result.hasException) {
+      throw ErrorDescription(result.exception.toString());
+    }
+    var season = result.parsedData?.season;
+    if (season == null) return null;
+
+    return season;
   }
 }
 
