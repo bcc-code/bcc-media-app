@@ -83,7 +83,6 @@ class BccmPage extends StatelessWidget {
           print(snapshot.error);
           return loadingError(context);
         }
-        debugPrint(snapshot.connectionState.toString());
         return loadingContent;
       },
     );

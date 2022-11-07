@@ -23,3 +23,27 @@ ImageProvider cacheOptimizedImage(
 String getFormattedAgeRating(String ageRating) {
   return ageRating == 'A' ? 'A' : '$ageRating+';
 }
+
+FutureBuilder simpleFutureBuilder<T>(
+    {required Future<T> future,
+    required Widget Function() loading,
+    required Widget Function(Object?) error,
+    required Widget Function() noData,
+    required Widget Function(T) ready}) {
+  return FutureBuilder<T>(
+      future: future,
+      builder: (context, snapshot) {
+        if (snapshot.hasError) {
+          return error(snapshot.error);
+        }
+        if (snapshot.connectionState != ConnectionState.done) {
+          return loading();
+        }
+        final data = snapshot.data;
+        if (data != null) {
+          return ready(data);
+        } else {
+          return noData();
+        }
+      });
+}

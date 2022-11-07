@@ -24,7 +24,9 @@ import 'package:transparent_image/transparent_image.dart';
 import '../api/brunstadtv.dart';
 import '../components/bottom_sheet_select.dart';
 import '../components/custom_back_button.dart';
-import '../components/label_tag.dart';
+import '../components/episode_details.dart';
+import '../components/episode_tab_selector.dart';
+import '../components/fade_indexed_stack.dart';
 import '../components/option_list.dart';
 import '../helpers/btv_colors.dart';
 import '../helpers/btv_typography.dart';
@@ -56,7 +58,7 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen> {
   AnimationStatus? animationStatus;
   Animation? animation;
   StreamSubscription? chromecastSubscription;
-
+  int selectedTab = 0;
   String? selectedSeasonId;
   Map<String, List<EpisodeListEpisodeData>?>? seasonsMap;
 
@@ -367,56 +369,115 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen> {
               ],
             ),
           ),
-          Container(
-              decoration: const BoxDecoration(
-                border: Border(
-                    bottom: BorderSide(
-                        width: 1, color: BtvColors.seperatorOnLight)),
-              ),
-              child: Padding(
-                  padding: EdgeInsets.all(16),
-                  child: Row(
-                    children: [
-                      TabButton(S.of(context).episodes.toUpperCase(),
-                          selected: true),
-                      const SizedBox(width: 8),
-                      TabButton('Extras'.toUpperCase(), selected: false),
-                      const SizedBox(width: 8),
-                      TabButton('Settings'.toUpperCase(), selected: false)
-                    ],
-                  ))),
-          episode.season == null && selectedSeasonId != null
-              ? const SizedBox.shrink()
-              : Padding(
-                  padding: const EdgeInsets.only(left: 28, top: 16, bottom: 20),
-                  child: _DropDownSelect(
-                      title: 'Select season',
-                      onSelectionChanged: onSeasonSelected,
-                      items: episode.season!.$show.seasons.items
-                          .map((e) => Option(id: e.id, title: e.title))
-                          .toList(),
-                      selectedId: selectedSeasonId!),
+          DefaultTabController(
+              length: 2,
+              child: Builder(
+                builder: (context) => Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Container(
+                        decoration: const BoxDecoration(
+                          border: Border(
+                              bottom: BorderSide(
+                                  width: 1, color: BtvColors.seperatorOnLight)),
+                        ),
+                        child: Padding(
+                            padding: EdgeInsets.all(16),
+                            child: EpisodeTabSelector(
+                                onSelectionChange: (val) {
+                                  setState(() {
+                                    DefaultTabController.of(context)!
+                                        .animateTo(val);
+                                  });
+                                },
+                                selectedId: '',
+                                selectedIndex:
+                                    DefaultTabController.of(context)!.index,
+                                tabs: [
+                                  Option(
+                                      id: 'episodes',
+                                      title: (S
+                                          .of(context)
+                                          .episodes
+                                          .toUpperCase())),
+                                  Option(id: 'details', title: 'Details'),
+                                ]))),
+                    Builder(builder: (context) {
+                      return GestureDetector(
+                        behavior: HitTestBehavior.opaque,
+                        onHorizontalDragUpdate: (details) {
+                          // Note: Sensitivity is integer used when you don't want to mess up vertical drag
+                          var controller = DefaultTabController.of(context);
+                          debugPrint('index ${controller?.index}');
+                          if (controller == null) return;
+                          int sensitivity = 8;
+                          if (details.delta.dx > sensitivity &&
+                              controller.index > 0) {
+                            debugPrint('animated l');
+                            setState(() {
+                              controller.animateTo(controller.index - 1);
+                            });
+                          } else if (details.delta.dx < -sensitivity &&
+                              controller.index + 1 < controller.length) {
+                            //controller.animateTo(1);
+                            setState(() {
+                              controller.animateTo(controller.index + 1);
+                            });
+                            debugPrint('animated r');
+                          }
+                        },
+                        child: FadeIndexedStack(
+                          index: DefaultTabController.of(context)!.index,
+                          children: [
+                            _seasonEpisodeList(episode),
+                            EpisodeDetails(episode.id)
+                          ],
+                        ),
+                      );
+                    }),
+                  ],
                 ),
-          Builder(builder: (context) {
-            if (seasonsMap?[selectedSeasonId] == null) {
-              return const SizedBox(
-                  height: 1000,
-                  child: Align(
-                      alignment: Alignment.topCenter,
-                      child: Padding(
-                          padding: EdgeInsets.only(top: 16),
-                          child: CircularProgressIndicator())));
-            } else {
-              return SeasonEpisodeList(
-                  items: seasonsMap![selectedSeasonId]!
-                      .map((e) => e.episodeId == widget.episodeId
-                          ? e.copyWith(highlighted: true)
-                          : e)
-                      .toList());
-            }
-          })
+              )),
         ],
       ),
+    );
+  }
+
+  Widget _seasonEpisodeList(Query$FetchEpisode$episode episode) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        episode.season == null && selectedSeasonId != null
+            ? const SizedBox.shrink()
+            : Padding(
+                padding: const EdgeInsets.only(left: 28, top: 16, bottom: 20),
+                child: _DropDownSelect(
+                    title: 'Select season',
+                    onSelectionChanged: onSeasonSelected,
+                    items: episode.season!.$show.seasons.items
+                        .map((e) => Option(id: e.id, title: e.title))
+                        .toList(),
+                    selectedId: selectedSeasonId!),
+              ),
+        Builder(builder: (context) {
+          if (seasonsMap?[selectedSeasonId] == null) {
+            return const SizedBox(
+                height: 1000,
+                child: Align(
+                    alignment: Alignment.topCenter,
+                    child: Padding(
+                        padding: EdgeInsets.only(top: 16),
+                        child: CircularProgressIndicator())));
+          } else {
+            return SeasonEpisodeList(
+                items: seasonsMap![selectedSeasonId]!
+                    .map((e) => e.episodeId == widget.episodeId
+                        ? e.copyWith(highlighted: true)
+                        : e)
+                    .toList());
+          }
+        }),
+      ],
     );
   }
 /* 

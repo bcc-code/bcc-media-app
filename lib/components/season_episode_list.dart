@@ -73,6 +73,7 @@ class EpisodeListEpisode extends StatelessWidget {
         ? '${S.of(context).seasonLetter}${data.seasonNumber}:${S.of(context).episodeLetter}${data.episodeNumber}'
         : null;
     return GestureDetector(
+      behavior: HitTestBehavior.opaque,
       onTap: () =>
           context.navigateTo(EpisodeScreenRoute(episodeId: data.episodeId)),
       child: Stack(

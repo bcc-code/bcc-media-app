@@ -25,6 +25,7 @@ class CustomBackButton extends StatelessWidget {
           child: Align(
             alignment: Alignment.topLeft,
             child: GestureDetector(
+              behavior: HitTestBehavior.opaque,
               onTap: () {
                 if (onPressed != null) {
                   onPressed!();
