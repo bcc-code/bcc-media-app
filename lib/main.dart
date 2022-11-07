@@ -5,7 +5,7 @@ import 'package:brunstadtv_app/helpers/btv_colors.dart';
 import 'package:brunstadtv_app/helpers/btv_typography.dart';
 import 'package:brunstadtv_app/providers/settings_service.dart';
 import 'package:brunstadtv_app/providers/video_state.dart';
-import 'package:brunstadtv_app/screens/special_route.dart';
+import 'package:brunstadtv_app/router/special_routes_guard.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/cupertino.dart';

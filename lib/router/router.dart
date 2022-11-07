@@ -18,7 +18,7 @@ import 'package:brunstadtv_app/screens/search/search.dart';
 import '../helpers/custom_transitions.dart';
 import '../screens/episode.dart';
 import '../screens/page.dart';
-import '../screens/special_route.dart';
+import 'special_routes_guard.dart';
 import '../screens/tabs_root.dart';
 import '../screens/search/explore_category_page.dart';
 

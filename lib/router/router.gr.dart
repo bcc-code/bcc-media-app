@@ -32,7 +32,7 @@ import '../screens/profile/subtitle_language.dart' as _i5;
 import '../screens/profile/video_quality.dart' as _i6;
 import '../screens/search/explore_category_page.dart' as _i18;
 import '../screens/search/search.dart' as _i17;
-import '../screens/special_route.dart' as _i22;
+import 'special_routes_guard.dart' as _i22;
 import '../screens/tabs_root.dart' as _i10;
 import 'auth_guard.dart' as _i21;
 
