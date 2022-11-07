@@ -66,8 +66,7 @@ class _MiniPlayerState extends ConsumerState<MiniPlayer> {
         } else if (id != null) {
           ref.read(tempTitleProvider.notifier).state = title;
           try {
-            context.navigateTo(SearchScreenWrapperRoute(
-                children: [EpisodeScreenRoute(episodeId: id)]));
+            context.navigateTo(EpisodeScreenRoute(episodeId: id));
           } catch (_) {
             context.navigateTo(HomeScreenWrapperRoute(
                 children: [EpisodeScreenRoute(episodeId: id)]));

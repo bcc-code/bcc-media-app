@@ -58,38 +58,20 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen> {
   StreamSubscription? chromecastSubscription;
 
   String? selectedSeasonId;
-  Map<String, List<EpisodeListEpisode>?>? seasonsMap;
+  Map<String, List<EpisodeListEpisodeData>?>? seasonsMap;
+
+  @override
+  void didUpdateWidget(old) {
+    super.didUpdateWidget(old);
+    if (old.episodeId == widget.episodeId) return;
+    loadEpisode();
+  }
 
   @override
   void initState() {
     super.initState();
 
-    episodeFuture =
-        ref.read(apiProvider).fetchEpisode(widget.episodeId.toString()).then(
-      (result) {
-        if (mounted && result?.season != null) {
-          setState(() {
-            seasonsMap = <String, List<EpisodeListEpisode>?>{};
-            for (var season in result!.season!.$show.seasons.items) {
-              seasonsMap![season.id] = null;
-            }
-            seasonsMap![result.season!.id] =
-                result.season!.episodes.items.map((ep) {
-              return EpisodeListEpisode(
-                  episodeId: ep.id,
-                  ageRating: ep.ageRating,
-                  duration: ep.duration,
-                  title: ep.title,
-                  image: ep.imageUrl,
-                  seasonNumber: result.season!.number,
-                  episodeNumber: ep.number);
-            }).toList();
-          });
-        }
-        if (mounted) setState(() => selectedSeasonId = result?.season?.id);
-        return result;
-      },
-    );
+    loadEpisode();
 
     chromecastSubscription = ref
         .read(chromecastListenerProvider)
@@ -106,6 +88,37 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen> {
     });
   }
 
+  Future loadEpisode() async {
+    setState(() {
+      episodeFuture =
+          ref.read(apiProvider).fetchEpisode(widget.episodeId.toString()).then(
+        (result) {
+          if (mounted && result?.season != null) {
+            setState(() {
+              seasonsMap = <String, List<EpisodeListEpisodeData>?>{};
+              for (var season in result!.season!.$show.seasons.items) {
+                seasonsMap![season.id] = null;
+              }
+              seasonsMap![result.season!.id] =
+                  result.season!.episodes.items.map((ep) {
+                return EpisodeListEpisodeData(
+                    episodeId: ep.id,
+                    ageRating: ep.ageRating,
+                    duration: ep.duration,
+                    title: ep.title,
+                    image: ep.imageUrl,
+                    seasonNumber: result.season!.number,
+                    episodeNumber: ep.number);
+              }).toList();
+            });
+          }
+          if (mounted) setState(() => selectedSeasonId = result?.season?.id);
+          return result;
+        },
+      );
+    });
+  }
+
   Future onSeasonSelected(String id) async {
     setState(() {
       selectedSeasonId = id;
@@ -114,7 +127,7 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen> {
     if (mounted && season != null) {
       setState(() {
         seasonsMap?[id] = season.episodes.items
-            .map((ep) => EpisodeListEpisode(
+            .map((ep) => EpisodeListEpisodeData(
                 episodeId: ep.id,
                 ageRating: ep.ageRating,
                 duration: ep.duration,
@@ -127,7 +140,7 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen> {
     }
   }
 
-  Future setup() async {
+  Future setupPlayer() async {
     var castingNow = ref.read(isCasting);
     var playerProvider =
         castingNow ? castPlayerProvider : primaryPlayerProvider;
@@ -377,13 +390,12 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen> {
               : Padding(
                   padding: const EdgeInsets.only(left: 28, top: 16, bottom: 20),
                   child: _DropDownSelect(
-                    title: 'Select season',
-                    onSelectionChanged: onSeasonSelected,
-                    items: episode.season!.$show.seasons.items
-                        .map((e) => Option(id: e.id, title: e.title))
-                        .toList(),
-                    selectedId: selectedSeasonId!,
-                  ),
+                      title: 'Select season',
+                      onSelectionChanged: onSeasonSelected,
+                      items: episode.season!.$show.seasons.items
+                          .map((e) => Option(id: e.id, title: e.title))
+                          .toList(),
+                      selectedId: selectedSeasonId!),
                 ),
           Builder(builder: (context) {
             if (seasonsMap?[selectedSeasonId] == null) {
@@ -395,7 +407,12 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen> {
                           padding: EdgeInsets.only(top: 16),
                           child: CircularProgressIndicator())));
             } else {
-              return SeasonEpisodeList(items: seasonsMap![selectedSeasonId]!);
+              return SeasonEpisodeList(
+                  items: seasonsMap![selectedSeasonId]!
+                      .map((e) => e.episodeId == widget.episodeId
+                          ? e.copyWith(highlighted: true)
+                          : e)
+                      .toList());
             }
           })
         ],
@@ -420,7 +437,7 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen> {
                 settingUp = true;
               });
               Future.delayed(const Duration(milliseconds: 200), () {
-                setup();
+                setupPlayer();
               });
             },
             child: Stack(

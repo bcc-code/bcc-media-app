@@ -264,6 +264,7 @@ class AppRouter extends _i19.RootStackRouter {
                   EpisodeScreenRoute.name,
                   path: 'episode/:episodeId',
                   parent: HomeScreenWrapperRoute.name,
+                  usesPathAsKey: true,
                 ),
                 _i19.RouteConfig(
                   PageScreenRoute.name,
@@ -297,6 +298,7 @@ class AppRouter extends _i19.RootStackRouter {
                   EpisodeScreenRoute.name,
                   path: 'episode/:episodeId',
                   parent: SearchScreenWrapperRoute.name,
+                  usesPathAsKey: true,
                 ),
               ],
             ),

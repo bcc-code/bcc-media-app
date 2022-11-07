@@ -25,6 +25,7 @@ const _episodeScreenRoute = CustomRoute<void>(
   page: EpisodeScreen,
   path: 'episode/:episodeId',
   customRouteBuilder: CustomTransitionsBuilders.slideUpAndDown,
+  usesPathAsKey: true,
 );
 
 @MaterialAutoRouter(
