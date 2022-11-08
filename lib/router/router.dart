@@ -18,6 +18,7 @@ import 'package:brunstadtv_app/screens/search/search.dart';
 import '../helpers/custom_transitions.dart';
 import '../screens/episode.dart';
 import '../screens/page.dart';
+import 'special_routes_guard.dart';
 import '../screens/tabs_root.dart';
 import '../screens/search/explore_category_page.dart';
 
@@ -25,6 +26,29 @@ const _episodeScreenRoute = CustomRoute<void>(
   page: EpisodeScreen,
   path: 'episode/:episodeId',
   customRouteBuilder: CustomTransitionsBuilders.slideUpAndDown,
+);
+
+const _specialRoutes = AutoRoute(
+  page: EmptyRouterPage,
+  path: '/',
+  guards: [AuthGuard, SpecialRoutesGuard],
+  children: [
+    AutoRoute<void>(
+      page: EmptyRouterPage,
+      name: 'CustomActionRoute',
+      path: 'r/:code',
+    ),
+    AutoRoute<void>(
+      page: EmptyRouterPage,
+      name: 'LegacyEpisodeRoute',
+      path: 'series/:legacyEpisodeId',
+    ),
+    AutoRoute<void>(
+      page: EmptyRouterPage,
+      name: 'LegacyProgramRoute',
+      path: 'program/:legacyProgramId',
+    ),
+  ],
 );
 
 @MaterialAutoRouter(
@@ -79,8 +103,14 @@ const _episodeScreenRoute = CustomRoute<void>(
             ]),
         MaterialRoute<void>(
             name: 'CalendarPageRoute', page: CalendarPage, path: 'calendar'),
+        // MaterialRoute<void>(
+        //   page: EmptyRouterPage,
+        //   path: '*',
+        //   guards: [SpecialRoutesGuard],
+        // ),
       ],
     ),
+    _specialRoutes,
   ],
 )
 class $AppRouter {}
