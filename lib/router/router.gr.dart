@@ -15,7 +15,6 @@ import 'package:auto_route/auto_route.dart' as _i19;
 import 'package:auto_route/empty_router_widgets.dart' as _i11;
 import 'package:flutter/material.dart' as _i20;
 
-import '../helpers/custom_transitions.dart' as _i23;
 import '../screens/calendar/calendar.dart' as _i13;
 import '../screens/episode.dart' as _i15;
 import '../screens/home.dart' as _i14;
@@ -32,9 +31,9 @@ import '../screens/profile/subtitle_language.dart' as _i5;
 import '../screens/profile/video_quality.dart' as _i6;
 import '../screens/search/explore_category_page.dart' as _i18;
 import '../screens/search/search.dart' as _i17;
-import 'special_routes_guard.dart' as _i22;
 import '../screens/tabs_root.dart' as _i10;
 import 'auth_guard.dart' as _i21;
+import 'special_routes_guard.dart' as _i22;
 
 class AppRouter extends _i19.RootStackRouter {
   AppRouter({
@@ -152,7 +151,6 @@ class AppRouter extends _i19.RootStackRouter {
         routeData: routeData,
         child: const _i14.HomeScreen(),
         maintainState: false,
-        customRouteBuilder: _i23.CustomTransitionsBuilders.slideUpAndDown,
         durationInMilliseconds: 500,
         reverseDurationInMilliseconds: 500,
         opaque: true,
@@ -177,7 +175,9 @@ class AppRouter extends _i19.RootStackRouter {
           episodeId: args.episodeId,
           autoplay: args.autoplay,
         ),
-        customRouteBuilder: _i23.CustomTransitionsBuilders.slideUpAndDown,
+        transitionsBuilder: _i19.TransitionsBuilders.slideLeft,
+        durationInMilliseconds: 300,
+        reverseDurationInMilliseconds: 300,
         opaque: true,
         barrierDismissible: false,
       );
