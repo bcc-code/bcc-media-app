@@ -54,6 +54,7 @@ class EpisodeScreen extends ConsumerStatefulWidget {
 class _EpisodeScreenState extends ConsumerState<EpisodeScreen>
     with AutoRouteAwareStateMixin<EpisodeScreen> {
   late Future<Query$FetchEpisode$episode?> episodeFuture;
+  final scrollController = ScrollController();
   bool settingUp = false;
   String? error;
   Completer? setupCompleter;
@@ -68,14 +69,16 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen>
   void didUpdateWidget(old) {
     super.didUpdateWidget(old);
     if (old.episodeId == widget.episodeId) return;
-    loadEpisode();
+    scrollController.animateTo(0,
+        duration: const Duration(milliseconds: 600), curve: Curves.easeOutExpo);
+    loadEpisode(autoplay: true);
   }
 
   @override
   void initState() {
     super.initState();
 
-    loadEpisode();
+    loadEpisode(autoplay: widget.autoplay);
 
     chromecastSubscription = ref
         .read(chromecastListenerProvider)
@@ -102,7 +105,7 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen>
     1;
   }
 
-  Future loadEpisode() async {
+  Future loadEpisode({required bool autoplay}) async {
     setState(() {
       episodeFuture =
           ref.read(apiProvider).fetchEpisode(widget.episodeId.toString()).then(
@@ -131,6 +134,11 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen>
         },
       );
     });
+    if (autoplay) {
+      episodeFuture.whenComplete(() {
+        setupPlayer();
+      });
+    }
   }
 
   Future onSeasonSelected(String id) async {
@@ -334,6 +342,7 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen>
         'S${episode.season?.number}:E${episode.number}';
 
     return SingleChildScrollView(
+      controller: scrollController,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
