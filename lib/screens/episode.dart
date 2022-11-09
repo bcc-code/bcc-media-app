@@ -4,6 +4,7 @@ import 'dart:async';
 
 import 'package:auto_route/auto_route.dart';
 import 'package:bccm_player/playback_platform_pigeon.g.dart';
+import 'package:brunstadtv_app/components/loading_indicator.dart';
 import 'package:brunstadtv_app/components/season_episode_list.dart';
 import 'package:brunstadtv_app/components/feature_badge.dart';
 import 'package:brunstadtv_app/graphql/schema/items.graphql.dart';
@@ -50,8 +51,10 @@ class EpisodeScreen extends ConsumerStatefulWidget {
   ConsumerState<EpisodeScreen> createState() => _EpisodeScreenState();
 }
 
-class _EpisodeScreenState extends ConsumerState<EpisodeScreen> {
+class _EpisodeScreenState extends ConsumerState<EpisodeScreen>
+    with AutoRouteAwareStateMixin<EpisodeScreen> {
   late Future<Query$FetchEpisode$episode?> episodeFuture;
+  final scrollController = ScrollController();
   bool settingUp = false;
   String? error;
   Completer? setupCompleter;
@@ -66,14 +69,16 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen> {
   void didUpdateWidget(old) {
     super.didUpdateWidget(old);
     if (old.episodeId == widget.episodeId) return;
-    loadEpisode();
+    scrollController.animateTo(0,
+        duration: const Duration(milliseconds: 600), curve: Curves.easeOutExpo);
+    loadEpisode(autoplay: true);
   }
 
   @override
   void initState() {
     super.initState();
 
-    loadEpisode();
+    loadEpisode(autoplay: widget.autoplay);
 
     chromecastSubscription = ref
         .read(chromecastListenerProvider)
@@ -90,7 +95,17 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen> {
     });
   }
 
-  Future loadEpisode() async {
+  @override
+  void didPush() {
+    1;
+  }
+
+  @override
+  void didPushNext() {
+    1;
+  }
+
+  Future loadEpisode({required bool autoplay}) async {
     setState(() {
       episodeFuture =
           ref.read(apiProvider).fetchEpisode(widget.episodeId.toString()).then(
@@ -119,6 +134,11 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen> {
         },
       );
     });
+    if (autoplay) {
+      episodeFuture.whenComplete(() {
+        setupPlayer();
+      });
+    }
   }
 
   Future onSeasonSelected(String id) async {
@@ -248,15 +268,13 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen> {
           var displayPlayer =
               animationStatus == AnimationStatus.completed && snapshot.hasData;
 
-          var episode = snapshot.data;
-
           var tempTitle = ref.watch(tempTitleProvider) ?? '';
 
           return Scaffold(
               appBar: AppBar(
                 leadingWidth: 92,
                 leading: const CustomBackButton(),
-                title: Text(episode?.season?.$show.title ?? ''),
+                title: Text(snapshot.data?.season?.$show.title ?? ''),
                 actions: const [
                   Padding(
                     padding: EdgeInsets.only(left: 16, right: 16.0),
@@ -268,14 +286,23 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen> {
                 builder: (context) {
                   if (error != null) return Text(error ?? '');
                   if (snapshot.hasError) return Text(snapshot.error.toString());
-                  if (snapshot.connectionState != ConnectionState.done)
+                  if (snapshot.data == null &&
+                      snapshot.connectionState != ConnectionState.done) {
                     return _loading();
+                  }
                   if (snapshot.data == null) {
                     return Text(S.of(context).errorTryAgain);
                   }
 
-                  return _episode(player, displayPlayer, casting,
-                      primaryPlayerId, episode!, tempTitle, context);
+                  return _episode(
+                      player,
+                      displayPlayer,
+                      casting,
+                      primaryPlayerId,
+                      snapshot.data!,
+                      snapshot.connectionState != ConnectionState.done,
+                      tempTitle,
+                      context);
                 },
               ));
         });
@@ -291,10 +318,7 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen> {
             child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const SizedBox(
-                width: 32,
-                height: 32,
-                child: CircularProgressIndicator(strokeWidth: 2)),
+            const LoadingIndicator(),
             const SizedBox(height: 12),
             Text(S.of(context).loading, style: BtvTextStyles.body2)
           ],
@@ -309,6 +333,7 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen> {
       bool casting,
       String primaryPlayerId,
       Query$FetchEpisode$episode episode,
+      bool episodeLoading,
       String tempTitle,
       BuildContext context) {
     final showEpisodeNumber =
@@ -317,57 +342,77 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen> {
         'S${episode.season?.number}:E${episode.number}';
 
     return SingleChildScrollView(
+      controller: scrollController,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          !episodeIsCurrentItem(player.currentMediaItem)
-              ? _playPoster(episode)
-              : _player(displayPlayer, casting, primaryPlayerId),
-          Container(
-            color: BtvColors.background2,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Padding(
-                  padding: const EdgeInsets.all(16.0),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(episode.title, style: BtvTextStyles.title2),
-                      const SizedBox(height: 4),
-                      Row(
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            Padding(
-                              padding: const EdgeInsets.only(top: 3, right: 4),
-                              child: FeatureBadge(
-                                  label:
-                                      getFormattedAgeRating(episode.ageRating),
-                                  color: BtvColors.background2),
-                            ),
-                            Center(
-                              child: Text(
-                                  episode.season?.$show.title ??
-                                      S.of(context).shortFilms,
-                                  style: BtvTextStyles.caption1
-                                      .copyWith(color: BtvColors.tint1)),
-                            ),
-                            if (showEpisodeNumber)
-                              Padding(
-                                  padding: const EdgeInsets.only(left: 4),
-                                  child: Text(episodeNumberFormatted,
-                                      style: BtvTextStyles.caption1
-                                          .copyWith(color: BtvColors.label4)))
-                          ]),
-                      const SizedBox(height: 14.5),
-                      Text(episode.description,
-                          style: BtvTextStyles.body2
-                              .copyWith(color: BtvColors.label3))
-                    ],
+          Stack(
+            children: [
+              Column(
+                children: [
+                  !episodeIsCurrentItem(player.currentMediaItem)
+                      ? _playPoster(episode)
+                      : _player(displayPlayer, casting, primaryPlayerId),
+                  Container(
+                    color: BtvColors.background2,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.all(16.0),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(episode.title, style: BtvTextStyles.title2),
+                              const SizedBox(height: 4),
+                              Row(
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  children: [
+                                    Padding(
+                                      padding: const EdgeInsets.only(
+                                          top: 3, right: 4),
+                                      child: FeatureBadge(
+                                          label: getFormattedAgeRating(
+                                              episode.ageRating),
+                                          color: BtvColors.background2),
+                                    ),
+                                    Center(
+                                      child: Text(
+                                          episode.season?.$show.title ??
+                                              S.of(context).shortFilms,
+                                          style: BtvTextStyles.caption1
+                                              .copyWith(
+                                                  color: BtvColors.tint1)),
+                                    ),
+                                    if (showEpisodeNumber)
+                                      Padding(
+                                          padding:
+                                              const EdgeInsets.only(left: 4),
+                                          child: Text(episodeNumberFormatted,
+                                              style: BtvTextStyles.caption1
+                                                  .copyWith(
+                                                      color: BtvColors.label4)))
+                                  ]),
+                              const SizedBox(height: 14.5),
+                              Text(episode.description,
+                                  style: BtvTextStyles.body2
+                                      .copyWith(color: BtvColors.label3))
+                            ],
+                          ),
+                        )
+                      ],
+                    ),
                   ),
-                )
-              ],
-            ),
+                ],
+              ),
+              if (episodeLoading)
+                Positioned.fill(
+                    child: Container(
+                        color: BtvColors.background2,
+                        child: const Center(
+                          child: LoadingIndicator(),
+                        )))
+            ],
           ),
           DefaultTabController(
               length: 2,
@@ -447,7 +492,7 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        episode.season == null && selectedSeasonId != null
+        episode.season == null && selectedSeasonId == null
             ? const SizedBox.shrink()
             : Padding(
                 padding: const EdgeInsets.only(left: 28, top: 16, bottom: 20),
@@ -467,7 +512,7 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen> {
                     alignment: Alignment.topCenter,
                     child: Padding(
                         padding: EdgeInsets.only(top: 16),
-                        child: CircularProgressIndicator())));
+                        child: LoadingIndicator())));
           } else {
             return SeasonEpisodeList(
                 items: seasonsMap![selectedSeasonId]!
@@ -525,7 +570,7 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen> {
                 Center(
                     child: !settingUp
                         ? Image.asset('assets/icons/Play.png')
-                        : const CircularProgressIndicator()),
+                        : const LoadingIndicator()),
               ],
             )));
   }

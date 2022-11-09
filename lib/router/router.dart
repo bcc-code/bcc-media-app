@@ -23,10 +23,13 @@ import '../screens/tabs_root.dart';
 import '../screens/search/explore_category_page.dart';
 
 const _episodeScreenRoute = CustomRoute<void>(
-  page: EpisodeScreen,
-  path: 'episode/:episodeId',
-  customRouteBuilder: CustomTransitionsBuilders.slideUpAndDown,
-);
+    page: EpisodeScreen,
+    path: 'episode/:episodeId',
+    durationInMilliseconds: 300,
+    reverseDurationInMilliseconds: 300,
+    transitionsBuilder: TransitionsBuilders.slideLeft
+    //customRouteBuilder: CustomTransitionsBuilders.slideUpAndDown,
+    );
 
 const _specialRoutes = AutoRoute(
   page: EmptyRouterPage,
@@ -81,7 +84,6 @@ const _specialRoutes = AutoRoute(
                 maintainState: false,
                 durationInMilliseconds: 500,
                 reverseDurationInMilliseconds: 500,
-                customRouteBuilder: CustomTransitionsBuilders.slideUpAndDown,
               ),
               _episodeScreenRoute,
               MaterialRoute<void>(page: PageScreen, path: 'page/:pageCode'),

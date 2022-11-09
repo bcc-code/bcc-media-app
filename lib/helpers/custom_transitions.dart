@@ -69,7 +69,7 @@ class CustomTransitionsBuilders {
                 curve: curveTweenLeaving.curve,
               ),
             ),
-            child: page.buildPage(context),
+            child: child,
           ),
         );
       },

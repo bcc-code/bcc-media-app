@@ -1,5 +1,5 @@
 name: brunstadtv_app
-description: A new Flutter project.
+description: The app for browsing content from BrunstadTV
 
 # The following line prevents the package from being accidentally published to
 # pub.dev using `flutter pub publish`. This is preferred for private packages.
@@ -15,7 +15,7 @@ publish_to: "none" # Remove this line if you wish to publish to pub.dev
 # In iOS, build-name is used as CFBundleShortVersionString while build-number used as CFBundleVersion.
 # Read more about iOS versioning at
 # https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html
-version: 4.0.0+4.0-alpha1
+version: 4.0.0+4.0-alpha2
 
 environment:
   sdk: ">=2.17.0 <3.0.0"
@@ -73,6 +73,7 @@ dependencies:
   alice: ^0.3.1
   dio: ^4.0.6
   gql_dio_link: ^0.2.2
+  firebase_crashlytics: ^3.0.4
   #smooth: any
 
 dev_dependencies:

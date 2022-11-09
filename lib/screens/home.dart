@@ -3,6 +3,8 @@ import 'dart:ui';
 import 'package:auto_route/auto_route.dart';
 import 'package:brunstadtv_app/components/sign_in_tooltip.dart';
 import 'package:brunstadtv_app/helpers/svg_icons.dart';
+import 'package:brunstadtv_app/helpers/utils.dart';
+import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:brunstadtv_app/router/router.gr.dart';
@@ -65,17 +67,23 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
     )
         .then(
       (value) {
-        if (value.hasException) {
-          throw ErrorDescription(value.exception.toString());
+        if (value.exception != null) {
+          throw value.exception!;
         }
         if (value.parsedData == null) {
           throw ErrorDescription("No data for page code: 'frontpage'");
         }
         return value.parsedData!.page;
       },
-    ).catchError(
-      (error) {
-        print(error);
+    ).onError(
+      (error, stackTrace) {
+        FirebaseCrashlytics.instance
+            .recordError(error, stackTrace, reason: 'a non-fatal error');
+        var message = error.asOrNull<ErrorDescription>();
+        if (message != null) {
+          debugPrint(message.value.toString());
+        }
+        return Future.error(error ?? ErrorHint('Unknown error'));
       },
     );
   }

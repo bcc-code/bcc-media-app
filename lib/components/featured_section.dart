@@ -132,6 +132,7 @@ class _GradientImage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    //TODO: use fadeinimage instead
     return Container(
       height: height,
       width: double.infinity,
