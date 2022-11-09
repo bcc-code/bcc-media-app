@@ -3,9 +3,9 @@ import 'package:brunstadtv_app/helpers/btv_typography.dart';
 import 'package:flutter/material.dart';
 
 import '../../components/bordered_image_container.dart';
-import '../../components/icon_label_button.dart';
 import '../../components/general_app_bar.dart';
 import '../../components/option_list.dart';
+import '../../helpers/btv_buttons.dart';
 import '../../helpers/btv_colors.dart';
 import '../../l10n/app_localizations.dart';
 
