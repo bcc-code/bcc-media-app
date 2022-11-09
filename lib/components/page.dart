@@ -23,11 +23,11 @@ class BccmPage extends StatelessWidget {
     required this.onRefresh,
   });
 
-  Widget getPage(Query$Page$page pageData) {
+  Widget getPage(context, Query$Page$page pageData) {
     final sectionItems = pageData.sections.items;
 
     return RefreshIndicator(
-      edgeOffset: 70,
+      edgeOffset: MediaQuery.of(context).padding.top,
       triggerMode: RefreshIndicatorTriggerMode.anywhere,
       displacement: 40,
       onRefresh: onRefresh,
@@ -78,7 +78,7 @@ class BccmPage extends StatelessWidget {
           return loadingContent;
         }
         if (snapshot.hasData) {
-          return getPage(snapshot.data!);
+          return getPage(context, snapshot.data!);
         } else if (snapshot.hasError) {
           print(snapshot.error);
           return loadingError(context);
