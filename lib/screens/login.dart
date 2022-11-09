@@ -2,7 +2,6 @@ import 'package:auto_route/auto_route.dart';
 import 'package:brunstadtv_app/helpers/btv_typography.dart';
 import 'package:flutter/material.dart';
 import '../helpers/btv_buttons.dart';
-import '../components/sign_in_tooltip.dart';
 import '../helpers/btv_colors.dart';
 import '../services/auth_service.dart';
 

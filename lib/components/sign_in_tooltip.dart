@@ -22,7 +22,7 @@ class SignInTooltip extends StatelessWidget {
                 boxShadow: [
                   BoxShadow(
                     offset: const Offset(0, 4),
-                    color: Colors.black.withOpacity(0.2),
+                    color: Colors.black.withOpacity(0.3),
                     blurRadius: 8,
                   ),
                 ],
