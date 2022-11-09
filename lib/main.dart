@@ -49,8 +49,6 @@ void $main({required FirebaseOptions? firebaseOptions}) async {
 
   SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
-    DeviceOrientation.landscapeRight,
-    DeviceOrientation.landscapeLeft,
   ]);
   await AuthService.instance.init();
   GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();

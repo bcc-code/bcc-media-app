@@ -1,6 +1,7 @@
 import UIKit
 import Flutter
 import FirebaseCore
+import AVKit
 
 @UIApplicationMain
 @objc class AppDelegate: FlutterAppDelegate {
@@ -49,5 +50,30 @@ import FirebaseCore
         
         return flutterResult
     }
+    
+    override func application(_ application: UIApplication,
+                     supportedInterfaceOrientationsFor window: UIWindow?) -> UIInterfaceOrientationMask {
 
+        if fetchCurrentVC(self.window?.rootViewController) is AVPlayerViewController {
+            return .allButUpsideDown
+        }
+        return .portrait
+    }
+
+    func fetchCurrentVC(_ viewController: UIViewController?) -> UIViewController? {
+
+        if let tabBarController = viewController as? UITabBarController {
+            return fetchCurrentVC(tabBarController.selectedViewController)
+        }
+
+        if let navigationController = viewController as? UINavigationController{
+            return fetchCurrentVC(navigationController.visibleViewController)
+        }
+
+        if let viewController = viewController?.presentedViewController {
+            return fetchCurrentVC(viewController)
+        }
+
+        return viewController
+    }
 }
