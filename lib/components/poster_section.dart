@@ -18,6 +18,10 @@ const Map<Enum$SectionSize, Size> imageSize = {
   Enum$SectionSize.small: Size(140, 208),
   Enum$SectionSize.medium: Size(230, 340),
 };
+const Map<Enum$SectionSize, double> sliderHeight = {
+  Enum$SectionSize.small: 284,
+  Enum$SectionSize.medium: 400,
+};
 
 class PosterSection extends StatelessWidget {
   final Fragment$Section$$PosterSection data;
@@ -26,6 +30,9 @@ class PosterSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    if (data.size == Enum$SectionSize.$unknown) {
+      return const SizedBox.shrink();
+    }
     var items = data.items.items
         .where((element) =>
             element.item
@@ -51,7 +58,7 @@ class PosterSection extends StatelessWidget {
             ),
           ),
         HorizontalSlider(
-          height: 284,
+          height: sliderHeight[data.size]!,
           clipBehaviour: Clip.none,
           padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
           itemCount: items.length,

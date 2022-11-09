@@ -25,46 +25,53 @@ class BccmPage extends StatelessWidget {
 
   Widget getPage(context, Query$Page$page pageData) {
     final sectionItems = pageData.sections.items;
-
-    return RefreshIndicator(
-      edgeOffset: MediaQuery.of(context).padding.top,
-      triggerMode: RefreshIndicatorTriggerMode.anywhere,
-      displacement: 40,
-      onRefresh: onRefresh,
-      notificationPredicate: (notification) => true,
-      child: ListView.builder(
-        cacheExtent: 10000,
-        physics: const BouncingScrollPhysics(
-            parent: AlwaysScrollableScrollPhysics()),
-        itemCount: sectionItems.length,
-        itemBuilder: ((context, index) {
-          if (sectionItems[index] is Fragment$Section$$IconSection) {
-            return IconSection(
-                sectionItems[index] as Fragment$Section$$IconSection);
-          } else if (sectionItems[index] is Fragment$Section$$LabelSection) {
-            return LabelSection(
-              sectionItems[index] as Fragment$Section$$LabelSection,
-            );
-          } else if (sectionItems[index] is Fragment$Section$$DefaultSection) {
-            return DefaultSection(
-                sectionItems[index] as Fragment$Section$$DefaultSection);
-          } else if (sectionItems[index] is Fragment$Section$$PosterSection) {
-            return PosterSection(
-                sectionItems[index] as Fragment$Section$$PosterSection);
-          } else if (sectionItems[index]
-              is Fragment$Section$$DefaultGridSection) {
-            return DefaultGridSection(
-                sectionItems[index] as Fragment$Section$$DefaultGridSection);
-          } else if (sectionItems[index]
-              is Fragment$Section$$PosterGridSection) {
-            return PosterGridSection(
-                sectionItems[index] as Fragment$Section$$PosterGridSection);
-          } else if (sectionItems[index] is Fragment$Section$$FeaturedSection) {
-            return FeaturedSection(
-                sectionItems[index] as Fragment$Section$$FeaturedSection);
-          }
-          return Container();
-        }),
+    final mediaQueryData = MediaQuery.of(context);
+    return MediaQuery(
+      data: mediaQueryData.copyWith(
+          padding: mediaQueryData.padding
+              .copyWith(bottom: mediaQueryData.padding.bottom + 32)),
+      child: RefreshIndicator(
+        edgeOffset: MediaQuery.of(context).padding.top,
+        triggerMode: RefreshIndicatorTriggerMode.anywhere,
+        displacement: 40,
+        onRefresh: onRefresh,
+        notificationPredicate: (notification) => true,
+        child: ListView.builder(
+          cacheExtent: 10000,
+          physics: const BouncingScrollPhysics(
+              parent: AlwaysScrollableScrollPhysics()),
+          itemCount: sectionItems.length,
+          itemBuilder: ((context, index) {
+            if (sectionItems[index] is Fragment$Section$$IconSection) {
+              return IconSection(
+                  sectionItems[index] as Fragment$Section$$IconSection);
+            } else if (sectionItems[index] is Fragment$Section$$LabelSection) {
+              return LabelSection(
+                sectionItems[index] as Fragment$Section$$LabelSection,
+              );
+            } else if (sectionItems[index]
+                is Fragment$Section$$DefaultSection) {
+              return DefaultSection(
+                  sectionItems[index] as Fragment$Section$$DefaultSection);
+            } else if (sectionItems[index] is Fragment$Section$$PosterSection) {
+              return PosterSection(
+                  sectionItems[index] as Fragment$Section$$PosterSection);
+            } else if (sectionItems[index]
+                is Fragment$Section$$DefaultGridSection) {
+              return DefaultGridSection(
+                  sectionItems[index] as Fragment$Section$$DefaultGridSection);
+            } else if (sectionItems[index]
+                is Fragment$Section$$PosterGridSection) {
+              return PosterGridSection(
+                  sectionItems[index] as Fragment$Section$$PosterGridSection);
+            } else if (sectionItems[index]
+                is Fragment$Section$$FeaturedSection) {
+              return FeaturedSection(
+                  sectionItems[index] as Fragment$Section$$FeaturedSection);
+            }
+            return Container();
+          }),
+        ),
       ),
     );
   }

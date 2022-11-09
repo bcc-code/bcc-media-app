@@ -66,26 +66,29 @@ class _SearchScreenState extends State<SearchScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SafeArea(
-        child: Column(
-          children: [
-            SearchBar(
-              onModeChange: _onSearchModeChanged,
-              onInputChange: _onSearchInputChanged,
-              initialQuery: searchPrefillValue,
-            ),
-            Container(
-              margin: const EdgeInsets.only(bottom: 8),
-              child:
-                  const Divider(height: 1, color: BtvColors.seperatorOnLight),
-            ),
-            Expanded(
-              child: _inSearchMode
-                  ? SearchResultsPage(_curSearchValue)
-                  : SearchHomePage(),
-            ),
-          ],
+    return GestureDetector(
+      onTap: () => FocusScope.of(context).unfocus(),
+      child: Scaffold(
+        body: SafeArea(
+          child: Column(
+            children: [
+              SearchBar(
+                onModeChange: _onSearchModeChanged,
+                onInputChange: _onSearchInputChanged,
+                initialQuery: searchPrefillValue,
+              ),
+              Container(
+                margin: const EdgeInsets.only(bottom: 8),
+                child:
+                    const Divider(height: 1, color: BtvColors.seperatorOnLight),
+              ),
+              Expanded(
+                child: _inSearchMode
+                    ? SearchResultsPage(_curSearchValue)
+                    : SearchHomePage(),
+              ),
+            ],
+          ),
         ),
       ),
     );

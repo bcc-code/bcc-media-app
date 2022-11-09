@@ -78,6 +78,9 @@ class _SearchBarState extends State<SearchBar> {
         widget.onModeChange(true);
       }
       _inSearchMode = true;
+    } else if (_inSearchMode && _fieldController.value.text.isEmpty) {
+      widget.onModeChange(false);
+      _inSearchMode = false;
     }
   }
 
