@@ -39,6 +39,7 @@ class _LiveMiniPlayerState extends ConsumerState<LiveMiniPlayer> {
       artworkUri: metadata.artworkUri,
       isPlaying: false,
       loading: waitingForMediaItemToBeCorrect,
+      hideCloseButton: true,
       onPlayTap: () {
         setState(() {
           waitingForMediaItemToBeCorrect = true;

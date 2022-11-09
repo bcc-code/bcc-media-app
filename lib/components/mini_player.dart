@@ -6,6 +6,8 @@ import 'package:transparent_image/transparent_image.dart';
 
 import '../helpers/btv_typography.dart';
 
+const double kMiniPlayerHeight = 62;
+
 class MiniPlayer extends StatelessWidget {
   final String? secondaryTitle;
   final String title;
@@ -15,6 +17,7 @@ class MiniPlayer extends StatelessWidget {
   final VoidCallback? onPauseTap;
   final VoidCallback? onPlayTap;
   final VoidCallback? onCloseTap;
+  final bool? hideCloseButton;
 
   const MiniPlayer({
     Key? key,
@@ -26,12 +29,14 @@ class MiniPlayer extends StatelessWidget {
     this.onPlayTap,
     this.onCloseTap,
     this.loading,
+    this.hideCloseButton,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 62,
+      height: kMiniPlayerHeight,
+      width: MediaQuery.of(context).size.width,
       color: BtvColors.background2,
       padding: const EdgeInsets.symmetric(
         horizontal: 16,
@@ -56,6 +61,7 @@ class MiniPlayer extends StatelessWidget {
             child: ClipRRect(
                 borderRadius: BorderRadius.circular(4),
                 child: FadeInImage.memoryNetwork(
+                  fadeInDuration: Duration(milliseconds: 200),
                   placeholder: kTransparentImage,
                   fit: BoxFit.fill,
                   image: artworkUri ??
@@ -111,7 +117,7 @@ class MiniPlayer extends StatelessWidget {
                         gaplessPlayback: true),
               ),
             ),
-          if (onCloseTap != null)
+          if (hideCloseButton != true)
             GestureDetector(
               onTap: () => onCloseTap?.call(),
               child: Container(

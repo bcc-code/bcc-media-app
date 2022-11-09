@@ -1,16 +1,12 @@
 import 'dart:async';
-import 'dart:io';
 
 import 'package:auto_route/auto_route.dart';
 import 'package:brunstadtv_app/graphql/client.dart';
 import 'package:brunstadtv_app/graphql/queries/devices.graphql.dart';
 import 'package:brunstadtv_app/providers/settings_service.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
-import 'package:brunstadtv_app/providers/chromecast.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:brunstadtv_app/components/mini_player.dart';
 import 'package:brunstadtv_app/providers/playback_api.dart';
 import 'package:brunstadtv_app/providers/video_state.dart';
 import 'package:brunstadtv_app/router/router.gr.dart';
@@ -109,27 +105,15 @@ class _TabsRootScreenState extends ConsumerState<TabsRootScreen>
         ],
         builder: (context, child, animation) {
           final tabsRouter = AutoTabsRouter.of(context);
-
-          final player = ref.watch(isCasting) == true
-              ? ref.watch(castPlayerProvider)
-              : ref.watch(primaryPlayerProvider);
-
-          final episodeId = player?.currentMediaItem?.metadata?.extras?['id'];
-
-          final isOnCurrentEpisodePage = episodeId != null &&
-              tabsRouter.currentSegments.any((element) =>
-                  element.stringMatch.contains('episode/$episodeId'));
-          final hideMiniPlayer = player?.currentMediaItem == null ||
-              tabsRouter.current.meta['hide_mini_player'] == true ||
-              isOnCurrentEpisodePage;
-          return Scaffold(
-              body: child,
-              bottomSheet: AnimatedSlide(
-                  offset: hideMiniPlayer ? const Offset(0, 1) : Offset.zero,
-                  duration: const Duration(milliseconds: 250),
-                  curve: Curves.easeOutQuad,
-                  child: const BottomSheetMiniPlayer()),
-              bottomNavigationBar: CustomTabBar(tabsRouter: tabsRouter));
+          return Theme(
+            data: Theme.of(context).copyWith(
+                bottomSheetTheme: const BottomSheetThemeData(
+                    backgroundColor: Colors.transparent)),
+            child: Scaffold(
+                body: child,
+                bottomSheet: const BottomSheetMiniPlayer(),
+                bottomNavigationBar: CustomTabBar(tabsRouter: tabsRouter)),
+          );
         });
   }
 }

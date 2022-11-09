@@ -30,6 +30,7 @@ import 'env/env.dart';
 import 'l10n/app_localizations.dart';
 
 final Alice alice = Alice(showNotification: true);
+final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 
 /// There is 1 main() per environment, e.g. main_dev.dart
 /// This function runs on all of them
@@ -51,7 +52,6 @@ void $main({required FirebaseOptions? firebaseOptions}) async {
     DeviceOrientation.portraitUp,
   ]);
   await AuthService.instance.init();
-  GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
   final appRouter = AppRouter(
       authGuard: AuthGuard(),
       specialRoutesGuard: SpecialRoutesGuard(),
