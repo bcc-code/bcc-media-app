@@ -90,9 +90,11 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      calcTooltipPos();
-    });
+    if (showTooltip) {
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        calcTooltipPos();
+      });
+    }
     return Stack(
       children: [
         Scaffold(
