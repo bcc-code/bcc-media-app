@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 
 import '../../components/bordered_image_container.dart';
 import '../../components/explore_category_sort.dart';
-import '../../components/icon_label_button.dart';
+import '../../helpers/btv_buttons.dart';
 import '../../components/general_app_bar.dart';
 import '../../helpers/btv_colors.dart';
 
@@ -35,7 +35,7 @@ class ExploreCategoryScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     List<Widget> leftAppBarButtons = [
-      IconLabelButton(
+      BtvButton(
         imagePath: 'assets/icons/Left.png',
         labelText: 'Back',
         onPressed: () => Navigator.pop(context),

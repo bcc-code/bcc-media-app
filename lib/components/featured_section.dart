@@ -7,7 +7,7 @@ import 'package:flutter/material.dart';
 import '../graphql/queries/page.graphql.dart';
 import '../helpers/btv_colors.dart';
 import '../helpers/utils.dart';
-import 'icon_label_button.dart';
+import '../helpers/btv_buttons.dart';
 
 class FeaturedSection extends StatelessWidget {
   final Fragment$Section$$FeaturedSection data;
@@ -99,12 +99,12 @@ class _FeaturedItem extends StatelessWidget {
                   ),
                 ),
                 false
-                    ? IconLabelButton.redSmall(
+                    ? BtvButton.smallRed(
                         imagePath: 'assets/icons/Play.png',
                         labelText: 'Live',
                         onPressed: () {},
                       )
-                    : IconLabelButton.secondarySmall(
+                    : BtvButton.smallSecondary(
                         imagePath: 'assets/icons/Play.png',
                         labelText: 'Watch now',
                         onPressed: () {

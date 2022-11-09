@@ -1,5 +1,9 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:brunstadtv_app/helpers/btv_typography.dart';
 import 'package:flutter/material.dart';
+import '../helpers/btv_buttons.dart';
+import '../components/sign_in_tooltip.dart';
+import '../helpers/btv_colors.dart';
 import '../services/auth_service.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -55,20 +59,81 @@ class _LoginScreenState extends State<LoginScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        // automaticallyImplyLeading: false,
-        title: const Text('Login'),
+        toolbarHeight: 44,
+        shadowColor: Colors.black,
+        elevation: 0,
+        centerTitle: true,
+        title: Image.asset('assets/images/logo.png'),
+        automaticallyImplyLeading: false,
       ),
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Center(
-            child: ElevatedButton(
-              onPressed: loginAction,
-              child: const Text('Login'),
+      body: SafeArea(
+        child: Column(
+          children: [
+            Expanded(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Container(
+                    margin: const EdgeInsets.only(bottom: 32),
+                    child: Image.asset('assets/images/Onboarding.png'),
+                  ),
+                  Container(
+                    margin:
+                        const EdgeInsets.only(right: 38, bottom: 12, left: 38),
+                    child: const Text(
+                      'The most powerful message in the world',
+                      style: BtvTextStyles.title1,
+                      textAlign: TextAlign.center,
+                    ),
+                  ),
+                  Container(
+                    margin:
+                        const EdgeInsets.only(left: 38, bottom: 60, right: 38),
+                    child: Text(
+                      'Watch series, shows and films based on Christian values',
+                      textAlign: TextAlign.center,
+                      style:
+                          BtvTextStyles.body1.copyWith(color: BtvColors.label3),
+                    ),
+                  ),
+                  Text(
+                    'Produced by BCC Media',
+                    style: BtvTextStyles.caption1
+                        .copyWith(color: BtvColors.label3),
+                  )
+                ],
+              ),
             ),
-          ),
-          Text(errorMessage)
-        ],
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  Container(
+                    margin: const EdgeInsets.only(bottom: 12),
+                    child: BtvButton.large(
+                      onPressed: loginAction,
+                      labelText: 'Sign in',
+                    ),
+                  ),
+                  BtvButton.mediumSecondary(
+                    labelText: 'Skip to watch public content',
+                    onPressed: () {
+                      AuthService.instance.guestUser = true;
+                      context.router.popUntil((route) => false);
+                      context.router.pushNamed('/');
+                    },
+                  ).copyWith(
+                    backgroundColor: Colors.transparent,
+                    border: Border.all(color: Colors.transparent),
+                  ),
+                ],
+              ),
+            ),
+            if (errorMessage != '') Text(errorMessage),
+          ],
+        ),
       ),
     );
   }
