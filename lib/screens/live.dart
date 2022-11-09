@@ -6,6 +6,7 @@ import 'package:bccm_player/cast_button.dart';
 import 'package:bccm_player/playback_platform_pigeon.g.dart';
 import 'package:bccm_player/playback_service_interface.dart';
 import 'package:extended_image/extended_image.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:brunstadtv_app/api/livestream.dart';
@@ -13,8 +14,11 @@ import 'package:brunstadtv_app/components/mini_player.dart';
 import 'package:brunstadtv_app/providers/playback_api.dart';
 import 'package:brunstadtv_app/providers/video_state.dart';
 
+import '../helpers/btv_colors.dart';
+import '../helpers/btv_typography.dart';
 import '../providers/chromecast.dart';
 import '../services/auth_service.dart';
+import 'calendar/calendar.dart';
 
 class LiveScreen extends ConsumerStatefulWidget {
   const LiveScreen({Key? key}) : super(key: key);
@@ -183,6 +187,8 @@ class _LiveScreenState extends ConsumerState<LiveScreen> with AutoRouteAware {
             ]),
           )),
       body: SingleChildScrollView(
+        primary: true,
+        physics: BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
         child: Column(children: [
           if (audioOnly)
             const MiniPlayer()
@@ -191,15 +197,38 @@ class _LiveScreenState extends ConsumerState<LiveScreen> with AutoRouteAware {
             _playPoster(player)
           else
             _player(player),
-          const SizedBox(height: 20),
-          const SizedBox(
-              height: 20000,
-              child: Align(
-                  alignment: Alignment.topCenter,
-                  child: Text('Calendar here'))),
+          _info()
           //
         ]),
       ),
+    );
+  }
+
+  Widget _info() {
+    const episodeInfo = null;
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: [
+        if (episodeInfo != null)
+          Container(
+            color: BtvColors.background2,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.all(16.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: const [
+                      Text('Episode title', style: BtvTextStyles.title2),
+                    ],
+                  ),
+                )
+              ],
+            ),
+          ),
+        const CalendarWidget(collapsed: true)
+      ],
     );
   }
 

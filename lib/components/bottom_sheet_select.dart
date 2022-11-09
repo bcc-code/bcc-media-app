@@ -40,7 +40,7 @@ class _BottomSheetSelectState extends State<BottomSheetSelect> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+        padding: const EdgeInsets.only(left: 16, right: 16, top: 8, bottom: 32),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           mainAxisSize: MainAxisSize.min,
