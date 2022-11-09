@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../components/icon_label_button.dart';
+import '../helpers/btv_buttons.dart';
 import '../components/general_app_bar.dart';
 import '../components/page.dart';
 import '../graphql/client.dart';
@@ -71,7 +71,7 @@ class _PageScreenState extends ConsumerState<PageScreen> {
           style: BtvTextStyles.title3,
         ),
         leftActions: [
-          IconLabelButton(
+          BtvButton(
             imagePath: 'assets/icons/Left.png',
             labelText: 'Home',
             onPressed: () => context.router.pop(),

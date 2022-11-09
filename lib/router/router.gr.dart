@@ -12,13 +12,13 @@
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:auto_route/auto_route.dart' as _i19;
-import 'package:auto_route/empty_router_widgets.dart' as _i11;
+import 'package:auto_route/empty_router_widgets.dart' as _i12;
 import 'package:flutter/material.dart' as _i20;
 
-import '../screens/calendar/calendar.dart' as _i13;
+import '../screens/calendar/calendar.dart' as _i14;
 import '../screens/episode.dart' as _i15;
-import '../screens/home.dart' as _i14;
-import '../screens/live.dart' as _i12;
+import '../screens/home.dart' as _i10;
+import '../screens/live.dart' as _i13;
 import '../screens/login.dart' as _i1;
 import '../screens/page.dart' as _i16;
 import '../screens/profile/about.dart' as _i8;
@@ -31,7 +31,7 @@ import '../screens/profile/subtitle_language.dart' as _i5;
 import '../screens/profile/video_quality.dart' as _i6;
 import '../screens/search/explore_category_page.dart' as _i18;
 import '../screens/search/search.dart' as _i17;
-import '../screens/tabs_root.dart' as _i10;
+import '../screens/tabs_root.dart' as _i11;
 import 'auth_guard.dart' as _i21;
 import 'special_routes_guard.dart' as _i22;
 
@@ -108,22 +108,33 @@ class AppRouter extends _i19.RootStackRouter {
         child: const _i9.FAQ(),
       );
     },
+    PublicHomeRoute.name: (routeData) {
+      return _i19.CustomPage<void>(
+        routeData: routeData,
+        child: const _i10.HomeScreen(),
+        maintainState: false,
+        durationInMilliseconds: 500,
+        reverseDurationInMilliseconds: 500,
+        opaque: true,
+        barrierDismissible: false,
+      );
+    },
     TabsRootScreenRoute.name: (routeData) {
       return _i19.MaterialPageX<void>(
         routeData: routeData,
-        child: const _i10.TabsRootScreen(),
+        child: const _i11.TabsRootScreen(),
       );
     },
     EmptyRouterPageRoute.name: (routeData) {
       return _i19.MaterialPageX<dynamic>(
         routeData: routeData,
-        child: const _i11.EmptyRouterPage(),
+        child: const _i12.EmptyRouterPage(),
       );
     },
     HomeScreenWrapperRoute.name: (routeData) {
       return _i19.CustomPage<void>(
         routeData: routeData,
-        child: const _i11.EmptyRouterPage(),
+        child: const _i12.EmptyRouterPage(),
         opaque: true,
         barrierDismissible: false,
       );
@@ -131,25 +142,25 @@ class AppRouter extends _i19.RootStackRouter {
     LiveScreenRoute.name: (routeData) {
       return _i19.MaterialPageX<void>(
         routeData: routeData,
-        child: const _i12.LiveScreen(),
+        child: const _i13.LiveScreen(),
       );
     },
     SearchScreenWrapperRoute.name: (routeData) {
       return _i19.MaterialPageX<void>(
         routeData: routeData,
-        child: const _i11.EmptyRouterPage(),
+        child: const _i12.EmptyRouterPage(),
       );
     },
     CalendarPageRoute.name: (routeData) {
       return _i19.MaterialPageX<void>(
         routeData: routeData,
-        child: const _i13.CalendarPage(),
+        child: const _i14.CalendarPage(),
       );
     },
     Home.name: (routeData) {
       return _i19.CustomPage<void>(
         routeData: routeData,
-        child: const _i14.HomeScreen(),
+        child: const _i10.HomeScreen(),
         maintainState: false,
         durationInMilliseconds: 500,
         reverseDurationInMilliseconds: 500,
@@ -218,19 +229,19 @@ class AppRouter extends _i19.RootStackRouter {
     CustomActionRoute.name: (routeData) {
       return _i19.MaterialPageX<void>(
         routeData: routeData,
-        child: const _i11.EmptyRouterPage(),
+        child: const _i12.EmptyRouterPage(),
       );
     },
     LegacyEpisodeRoute.name: (routeData) {
       return _i19.MaterialPageX<void>(
         routeData: routeData,
-        child: const _i11.EmptyRouterPage(),
+        child: const _i12.EmptyRouterPage(),
       );
     },
     LegacyProgramRoute.name: (routeData) {
       return _i19.MaterialPageX<void>(
         routeData: routeData,
-        child: const _i11.EmptyRouterPage(),
+        child: const _i12.EmptyRouterPage(),
       );
     },
   };
@@ -272,6 +283,10 @@ class AppRouter extends _i19.RootStackRouter {
         _i19.RouteConfig(
           FAQRoute.name,
           path: '/faq',
+        ),
+        _i19.RouteConfig(
+          PublicHomeRoute.name,
+          path: '/public-home',
         ),
         _i19.RouteConfig(
           TabsRootScreenRoute.name,
@@ -499,7 +514,19 @@ class FAQRoute extends _i19.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i10.TabsRootScreen]
+/// [_i10.HomeScreen]
+class PublicHomeRoute extends _i19.PageRouteInfo<void> {
+  const PublicHomeRoute()
+      : super(
+          PublicHomeRoute.name,
+          path: '/public-home',
+        );
+
+  static const String name = 'PublicHomeRoute';
+}
+
+/// generated route for
+/// [_i11.TabsRootScreen]
 class TabsRootScreenRoute extends _i19.PageRouteInfo<void> {
   const TabsRootScreenRoute({List<_i19.PageRouteInfo>? children})
       : super(
@@ -512,7 +539,7 @@ class TabsRootScreenRoute extends _i19.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i11.EmptyRouterPage]
+/// [_i12.EmptyRouterPage]
 class EmptyRouterPageRoute extends _i19.PageRouteInfo<void> {
   const EmptyRouterPageRoute({List<_i19.PageRouteInfo>? children})
       : super(
@@ -525,7 +552,7 @@ class EmptyRouterPageRoute extends _i19.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i11.EmptyRouterPage]
+/// [_i12.EmptyRouterPage]
 class HomeScreenWrapperRoute extends _i19.PageRouteInfo<void> {
   const HomeScreenWrapperRoute({List<_i19.PageRouteInfo>? children})
       : super(
@@ -538,7 +565,7 @@ class HomeScreenWrapperRoute extends _i19.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i12.LiveScreen]
+/// [_i13.LiveScreen]
 class LiveScreenRoute extends _i19.PageRouteInfo<void> {
   const LiveScreenRoute()
       : super(
@@ -550,7 +577,7 @@ class LiveScreenRoute extends _i19.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i11.EmptyRouterPage]
+/// [_i12.EmptyRouterPage]
 class SearchScreenWrapperRoute extends _i19.PageRouteInfo<void> {
   const SearchScreenWrapperRoute({List<_i19.PageRouteInfo>? children})
       : super(
@@ -563,7 +590,7 @@ class SearchScreenWrapperRoute extends _i19.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i13.CalendarPage]
+/// [_i14.CalendarPage]
 class CalendarPageRoute extends _i19.PageRouteInfo<void> {
   const CalendarPageRoute()
       : super(
@@ -575,7 +602,7 @@ class CalendarPageRoute extends _i19.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i14.HomeScreen]
+/// [_i10.HomeScreen]
 class Home extends _i19.PageRouteInfo<void> {
   const Home()
       : super(
@@ -723,7 +750,7 @@ class ExploreCategoryScreenRouteArgs {
 }
 
 /// generated route for
-/// [_i11.EmptyRouterPage]
+/// [_i12.EmptyRouterPage]
 class CustomActionRoute extends _i19.PageRouteInfo<void> {
   const CustomActionRoute()
       : super(
@@ -735,7 +762,7 @@ class CustomActionRoute extends _i19.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i11.EmptyRouterPage]
+/// [_i12.EmptyRouterPage]
 class LegacyEpisodeRoute extends _i19.PageRouteInfo<void> {
   const LegacyEpisodeRoute()
       : super(
@@ -747,7 +774,7 @@ class LegacyEpisodeRoute extends _i19.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i11.EmptyRouterPage]
+/// [_i12.EmptyRouterPage]
 class LegacyProgramRoute extends _i19.PageRouteInfo<void> {
   const LegacyProgramRoute()
       : super(

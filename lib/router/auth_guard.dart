@@ -8,7 +8,9 @@ class AuthGuard extends AutoRouteGuard {
   void onNavigation(NavigationResolver resolver, StackRouter router) {
     // the navigation is paused until resolver.next() is called with either
     // true to resume/continue navigation or false to abort navigation
-    if (AuthService.instance.idToken == null) {
+
+    if (AuthService.instance.idToken == null &&
+        !AuthService.instance.guestUser) {
       // we redirect the user to our login page
       router.push(LoginScreenRoute(onResult: (success) {
         // if success == true the navigation will be resumed

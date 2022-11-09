@@ -4,7 +4,7 @@ import '../graphql/queries/page.graphql.dart';
 import '../helpers/btv_colors.dart';
 import '../helpers/btv_typography.dart';
 import '../l10n/app_localizations.dart';
-import 'icon_label_button.dart';
+import '../helpers/btv_buttons.dart';
 import 'featured_section.dart';
 import 'default_grid_section.dart';
 import 'poster_grid_section.dart';
@@ -122,7 +122,7 @@ class BccmPage extends StatelessWidget {
                   style: BtvTextStyles.body1.copyWith(color: BtvColors.label3),
                 ),
               ),
-              IconLabelButton.medium(
+              BtvButton.medium(
                   labelText: S.of(context).tryAgainButton, onPressed: onRefresh)
             ],
           ),

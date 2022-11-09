@@ -20,6 +20,7 @@ class AuthService {
   UserProfile? user;
   String? auth0AccessToken;
   String? idToken;
+  bool guestUser = false;
 
   Future<Error?> init() async {
     try {
@@ -30,6 +31,7 @@ class AuthService {
       auth0AccessToken = result.accessToken;
       user = result.user;
       idToken = result.idToken;
+      guestUser = false;
       return null;
       //return await _storeCredentials(result);
     } on Error catch (e) {
@@ -42,6 +44,7 @@ class AuthService {
     auth0AccessToken = null;
     idToken = null;
     user = null;
+    guestUser = false;
     FirebaseMessaging.instance.deleteToken();
     context.router.push(LoginScreenRoute());
   }
@@ -58,6 +61,7 @@ class AuthService {
       auth0AccessToken = result.accessToken;
       user = result.user;
       idToken = result.idToken;
+      guestUser = false;
       return null;
       //return await _storeCredentials(result);
     } on Error catch (e) {

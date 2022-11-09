@@ -65,6 +65,14 @@ const _specialRoutes = AutoRoute(
     MaterialRoute<void>(page: ContactSupport, path: '/contact-support'),
     MaterialRoute<void>(page: AboutScreen, path: '/about'),
     MaterialRoute<void>(page: FAQ, path: '/faq'),
+    CustomRoute<void>(
+      page: HomeScreen,
+      name: 'PublicHomeRoute',
+      path: '/public-home',
+      maintainState: false,
+      durationInMilliseconds: 500,
+      reverseDurationInMilliseconds: 500,
+    ),
     MaterialRoute<void>(
       page: TabsRootScreen,
       path: '/',
@@ -105,11 +113,6 @@ const _specialRoutes = AutoRoute(
             ]),
         MaterialRoute<void>(
             name: 'CalendarPageRoute', page: CalendarPage, path: 'calendar'),
-        // MaterialRoute<void>(
-        //   page: EmptyRouterPage,
-        //   path: '*',
-        //   guards: [SpecialRoutesGuard],
-        // ),
       ],
     ),
     _specialRoutes,
