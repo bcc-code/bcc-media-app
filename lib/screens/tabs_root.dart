@@ -16,6 +16,7 @@ import 'package:brunstadtv_app/providers/video_state.dart';
 import 'package:brunstadtv_app/router/router.gr.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
+import '../components/bottom_sheet_mini_player.dart';
 import '../components/custom_tab_bar.dart';
 
 class TabsRootScreen extends ConsumerStatefulWidget {

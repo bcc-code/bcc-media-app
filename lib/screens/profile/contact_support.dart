@@ -34,11 +34,10 @@ class _ContactSupportState extends State<ContactSupport> {
 
     PackageInfo packageInfo = await PackageInfo.fromPlatform();
     os = Platform.operatingSystemVersion;
-    String screenWidth = '360', screenHeight = '360';
-    if (mounted) {
-      screenWidth = MediaQuery.of(context).size.width.toInt().toString();
-      screenHeight = MediaQuery.of(context).size.height.toInt().toString();
-    }
+    final screenWidth =
+        WidgetsBinding.instance.window.physicalSize.width.toInt().toString();
+    final screenHeight =
+        WidgetsBinding.instance.window.physicalSize.height.toInt().toString();
     screenSize = '${screenHeight}x$screenWidth';
     appVer = packageInfo.buildNumber;
 
@@ -103,19 +102,25 @@ class _ContactSupportState extends State<ContactSupport> {
       child: Scaffold(
         resizeToAvoidBottomInset: false,
         appBar: AppBar(
-          backgroundColor: BtvColors.background1,
+          toolbarHeight: 44,
           automaticallyImplyLeading: false,
-          elevation: 0,
-          title: GestureDetector(
-            onTapDown: (details) {
-              context.router.pop();
-            },
-            child: const SizedBox(
-              height: 24,
-              width: 56,
-              child: Text(
-                'Cancel',
-                style: BtvTextStyles.button2,
+          leadingWidth: 100,
+          leading: Align(
+            alignment: Alignment.centerLeft,
+            child: GestureDetector(
+              onTapDown: (details) {
+                context.router.pop();
+              },
+              child: Padding(
+                padding: const EdgeInsets.only(left: 16),
+                child: SizedBox(
+                  height: 24,
+                  width: 56,
+                  child: Text(
+                    S.of(context).cancel,
+                    style: BtvTextStyles.button2,
+                  ),
+                ),
               ),
             ),
           ),

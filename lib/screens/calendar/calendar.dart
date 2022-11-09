@@ -3,10 +3,12 @@ import 'dart:collection';
 import 'dart:math';
 import 'package:brunstadtv_app/graphql/client.dart';
 import 'package:brunstadtv_app/graphql/queries/calendar.graphql.dart';
+import 'package:brunstadtv_app/helpers/svg_icons.dart';
 import 'package:brunstadtv_app/router/router.gr.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter/material.dart';
 import 'package:auto_route/auto_route.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:table_calendar/table_calendar.dart';
 import 'package:intl/intl.dart';
 
@@ -28,18 +30,18 @@ class _CalendarPageState extends ConsumerState<CalendarPage> {
     return Scaffold(
         appBar: AppBar(title: const Text('Calendar'), actions: [
           GestureDetector(
-            onTapUp: (details) {
-              setState(() {
-                collapsed = !collapsed;
-              });
-            },
-            child: Image.asset(
-              collapsed
-                  ? 'assets/icons/Calendar_Selected.png'
-                  : 'assets/icons/Calendar_Default.png',
-              gaplessPlayback: true,
-            ),
-          ),
+              behavior: HitTestBehavior.opaque,
+              onTapUp: (details) {
+                setState(() {
+                  collapsed = !collapsed;
+                });
+              },
+              child: Padding(
+                padding: const EdgeInsets.only(right: 16),
+                child: collapsed
+                    ? SvgPicture.string(SvgIcons.calendar_1_line)
+                    : SvgPicture.string(SvgIcons.calendar_2_lines),
+              )),
         ]),
         body:
             SingleChildScrollView(child: CalendarWidget(collapsed: collapsed)));
