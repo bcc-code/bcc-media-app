@@ -32,6 +32,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
   bool showTooltip = false;
   GlobalKey profileIconKey = GlobalKey();
   Offset? tooltipPos;
+  String loginError = '';
 
   @override
   void initState() {
@@ -43,19 +44,13 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
     resultFuture = getPage();
   }
 
-  void calcTooltipPos() {
-    if (profileIconKey.currentContext == null) {
-      return;
-    }
-    final RenderBox renderBox =
-        profileIconKey.currentContext!.findRenderObject() as RenderBox;
-    final position = renderBox.localToGlobal(Offset.zero);
-    final profileIconBottomCenterX = position.dx + renderBox.size.width / 2;
-    final profileIconBottomCenterY = position.dy + renderBox.size.height;
-    final newToolTipPos =
-        Offset(profileIconBottomCenterX - 20, profileIconBottomCenterY);
-    if (tooltipPos != newToolTipPos) {
-      setState(() => tooltipPos = newToolTipPos);
+  Future<void> loginAction(BuildContext context) async {
+    final error = await AuthService.instance.login();
+    if (error == null) {
+      context.router.popUntil((route) => false);
+      context.router.pushNamed('/');
+    } else {
+      loginError = error.toString();
     }
   }
 
@@ -90,11 +85,6 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    if (showTooltip) {
-      WidgetsBinding.instance.addPostFrameCallback((_) {
-        calcTooltipPos();
-      });
-    }
     return Stack(
       children: [
         Scaffold(
@@ -111,10 +101,10 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
               child: GestureDetector(
                   behavior: HitTestBehavior.opaque,
                   onTap: () {
-                    if (!isGuestUser) {
-                      context.router.push(const ProfileRoute());
+                    if (isGuestUser) {
+                      loginAction(context);
                     } else {
-                      context.router.push(LoginScreenRoute());
+                      context.router.pushNamed('/profile');
                     }
                   },
                   child: Padding(
@@ -152,21 +142,27 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
               ),
             ),
           ),
-          body: BccmPage(
-              pageFuture: resultFuture,
-              onRefresh: () async {
-                setState(() {
-                  resultFuture = getPage();
-                });
-              }),
+          body: SafeArea(
+            top: false,
+            child: BccmPage(
+                pageFuture: resultFuture,
+                onRefresh: () async {
+                  setState(() {
+                    resultFuture = getPage();
+                  });
+                }),
+          ),
         ),
-        if (showTooltip && tooltipPos != null)
+        if (showTooltip)
           Positioned(
-            left: tooltipPos!.dx,
-            top: tooltipPos!.dy,
-            child: SignInTooltip(onClose: () {
-              setState(() => showTooltip = false);
-            }),
+            left: 7 + MediaQuery.of(context).padding.left,
+            top: 35 + MediaQuery.of(context).padding.top,
+            child: Material(
+              color: Colors.transparent,
+              child: SignInTooltip(onClose: () {
+                setState(() => showTooltip = false);
+              }),
+            ),
           )
       ],
     );

@@ -121,7 +121,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     onPressed: () {
                       AuthService.instance.guestUser = true;
                       context.router.popUntil((route) => false);
-                      context.router.pushNamed('/');
+                      context.router.pushNamed('/public-home');
                     },
                   ).copyWith(
                     backgroundColor: Colors.transparent,
