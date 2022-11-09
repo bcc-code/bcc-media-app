@@ -1,18 +1,24 @@
+import 'package:brunstadtv_app/components/bottom_sheet_select.dart';
 import 'package:brunstadtv_app/helpers/btv_typography.dart';
-import 'package:extended_image/extended_image.dart';
 import 'package:flutter/material.dart';
 
 import '../../components/bordered_image_container.dart';
-import '../../components/explore_category_sort.dart';
-import '../../helpers/btv_buttons.dart';
+import '../../components/icon_label_button.dart';
 import '../../components/general_app_bar.dart';
+import '../../components/option_list.dart';
 import '../../helpers/btv_colors.dart';
+import '../../l10n/app_localizations.dart';
 
-class ExploreCategoryScreen extends StatelessWidget {
+class ExploreCategoryScreen extends StatefulWidget {
   final String category;
 
   ExploreCategoryScreen({required this.category});
 
+  @override
+  State<ExploreCategoryScreen> createState() => _ExploreCategoryScreenState();
+}
+
+class _ExploreCategoryScreenState extends State<ExploreCategoryScreen> {
   final _episodeList = List.filled(
     11,
     {
@@ -27,7 +33,15 @@ class ExploreCategoryScreen extends StatelessWidget {
       context: context,
       useRootNavigator: true,
       builder: (context) {
-        return ExploreCategorySort();
+        return BottomSheetSelect(
+          title: S.of(context).sortBy,
+          items: [
+            Option(id: 'recently_published', title: 'Recently published'),
+            Option(id: 'a_z', title: 'A - Z'),
+          ],
+          selectedId: 'recently_published',
+          onSelectionChanged: (val) {},
+        );
       },
     );
   }
@@ -56,7 +70,7 @@ class ExploreCategoryScreen extends StatelessWidget {
     return Scaffold(
       appBar: GeneralAppBar(
         title: Text(
-          category,
+          widget.category,
           style: BtvTextStyles.title3,
         ),
         leftActions: leftAppBarButtons,

@@ -71,14 +71,14 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen>
     if (old.episodeId == widget.episodeId) return;
     scrollController.animateTo(0,
         duration: const Duration(milliseconds: 600), curve: Curves.easeOutExpo);
-    loadEpisode(autoplay: true);
+    loadEpisode();
   }
 
   @override
   void initState() {
     super.initState();
 
-    loadEpisode(autoplay: widget.autoplay);
+    loadEpisode();
 
     chromecastSubscription = ref
         .read(chromecastListenerProvider)
@@ -105,7 +105,7 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen>
     1;
   }
 
-  Future loadEpisode({required bool autoplay}) async {
+  Future loadEpisode() async {
     setState(() {
       episodeFuture =
           ref.read(apiProvider).fetchEpisode(widget.episodeId.toString()).then(
@@ -134,7 +134,7 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen>
         },
       );
     });
-    if (autoplay) {
+    if (widget.autoplay) {
       episodeFuture.whenComplete(() {
         setupPlayer();
       });
@@ -593,6 +593,7 @@ class _DropDownSelect extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
+      behavior: HitTestBehavior.opaque,
       onTap: () {
         showModalBottomSheet(
             context: context,

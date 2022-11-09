@@ -21,11 +21,43 @@ class CalendarPage extends ConsumerStatefulWidget {
 }
 
 class _CalendarPageState extends ConsumerState<CalendarPage> {
+  bool collapsed = false;
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+        appBar: AppBar(title: const Text('Calendar'), actions: [
+          GestureDetector(
+            onTapUp: (details) {
+              setState(() {
+                collapsed = !collapsed;
+              });
+            },
+            child: Image.asset(
+              collapsed
+                  ? 'assets/icons/Calendar_Selected.png'
+                  : 'assets/icons/Calendar_Default.png',
+              gaplessPlayback: true,
+            ),
+          ),
+        ]),
+        body:
+            SingleChildScrollView(child: CalendarWidget(collapsed: collapsed)));
+  }
+}
+
+class CalendarWidget extends ConsumerStatefulWidget {
+  const CalendarWidget({super.key, required this.collapsed});
+
+  final bool collapsed;
+
+  @override
+  ConsumerState<CalendarWidget> createState() => _CalendarWidgetState();
+}
+
+class _CalendarWidgetState extends ConsumerState<CalendarWidget> {
   DateTime _focusedDay = DateTime.now();
   DateTime? _selectedDay = DateTime.now();
-
-  bool _isCalendarCollapse = false;
-
   Future<Query$CalendarPeriod$calendar$period?>? _calendarPeriod;
   Future<Query$CalendarDay$calendar?>? _selectedDayEvent;
 
@@ -214,199 +246,180 @@ class _CalendarPageState extends ConsumerState<CalendarPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: const Text('Calendar'), actions: [
-        GestureDetector(
-          onTapUp: (details) {
-            setState(() {
-              _isCalendarCollapse = !_isCalendarCollapse;
-            });
-          },
-          child: Image.asset(
-            _isCalendarCollapse
-                ? 'assets/icons/Calendar_Selected.png'
-                : 'assets/icons/Calendar_Default.png',
-            gaplessPlayback: true,
-          ),
-        ),
-      ]),
-      body: ListView(
-        children: [
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 8.0),
-            child: TableCalendar(
-              rowHeight: 54,
-              shouldFillViewport: false,
-              calendarFormat: _isCalendarCollapse
-                  ? CalendarFormat.week
-                  : CalendarFormat.month,
-              startingDayOfWeek: StartingDayOfWeek.monday,
-              daysOfWeekStyle: DaysOfWeekStyle(
-                dowTextFormatter: (date, locale) => DateFormat.E(locale)
-                    .format(date)[0], //only display one letter
+    return Column(
+      children: [
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 8.0),
+          child: TableCalendar(
+            rowHeight: 54,
+            shouldFillViewport: false,
+            calendarFormat:
+                widget.collapsed ? CalendarFormat.week : CalendarFormat.month,
+            startingDayOfWeek: StartingDayOfWeek.monday,
+            daysOfWeekStyle: DaysOfWeekStyle(
+              dowTextFormatter: (date, locale) => DateFormat.E(locale)
+                  .format(date)[0], //only display one letter
+            ),
+            headerStyle: HeaderStyle(
+              formatButtonVisible: false,
+              titleCentered: true,
+              titleTextFormatter: (date, locale) => widget.collapsed
+                  ? _isSameWeekAsCurrentWeek(date)
+                      ? 'This week'
+                      : 'week ${_getWeekNumber(date).toString()}'
+                  : DateFormat.MMMM().format(date).toString(),
+              headerMargin: EdgeInsets.zero,
+              titleTextStyle: BtvTextStyles.caption1,
+              leftChevronIcon: const Icon(Icons.arrow_back_ios_new_outlined,
+                  color: BtvColors.label4, size: 16),
+              leftChevronMargin: const EdgeInsets.only(left: 0),
+              rightChevronIcon: const Icon(Icons.arrow_forward_ios_outlined,
+                  color: BtvColors.label4, size: 16),
+              rightChevronMargin: const EdgeInsets.only(right: 0),
+            ),
+            availableGestures: AvailableGestures.horizontalSwipe,
+            rangeSelectionMode: RangeSelectionMode.disabled,
+            calendarStyle: CalendarStyle(
+              tableBorder: TableBorder.symmetric(),
+              canMarkersOverflow: true,
+              defaultTextStyle: BtvTextStyles.title3,
+              todayTextStyle:
+                  BtvTextStyles.title3.copyWith(color: BtvColors.tint2),
+              todayDecoration: const BoxDecoration(
+                shape: BoxShape.circle,
               ),
-              headerStyle: HeaderStyle(
-                formatButtonVisible: false,
-                titleCentered: true,
-                titleTextFormatter: (date, locale) => _isCalendarCollapse
-                    ? _isSameWeekAsCurrentWeek(date)
-                        ? 'This week'
-                        : 'week ${_getWeekNumber(date).toString()}'
-                    : DateFormat.MMMM().format(date).toString(),
-                headerMargin: EdgeInsets.zero,
-                titleTextStyle: BtvTextStyles.caption1,
-                leftChevronIcon: const Icon(Icons.arrow_back_ios_new_outlined,
-                    color: BtvColors.label4, size: 16),
-                leftChevronMargin: const EdgeInsets.only(left: 0),
-                rightChevronIcon: const Icon(Icons.arrow_forward_ios_outlined,
-                    color: BtvColors.label4, size: 16),
-                rightChevronMargin: const EdgeInsets.only(right: 0),
+              weekendTextStyle: BtvTextStyles.title3,
+              outsideTextStyle: const TextStyle(
+                  fontFamily: 'Barlow',
+                  color: Colors.grey,
+                  fontSize: 17,
+                  fontWeight: FontWeight.w700),
+              markerMargin: const EdgeInsets.only(top: 3),
+              markerDecoration: const BoxDecoration(
+                color: BtvColors.label4,
+                shape: BoxShape.circle,
               ),
-              availableGestures: AvailableGestures.horizontalSwipe,
-              rangeSelectionMode: RangeSelectionMode.disabled,
-              calendarStyle: CalendarStyle(
-                tableBorder: TableBorder.symmetric(),
-                canMarkersOverflow: true,
-                defaultTextStyle: BtvTextStyles.title3,
-                todayTextStyle:
-                    BtvTextStyles.title3.copyWith(color: BtvColors.tint2),
-                todayDecoration: const BoxDecoration(
-                  shape: BoxShape.circle,
-                ),
-                weekendTextStyle: BtvTextStyles.title3,
-                outsideTextStyle: const TextStyle(
-                    fontFamily: 'Barlow',
-                    color: Colors.grey,
-                    fontSize: 17,
-                    fontWeight: FontWeight.w700),
-                markerMargin: const EdgeInsets.only(top: 3),
-                markerDecoration: const BoxDecoration(
-                  color: BtvColors.label4,
-                  shape: BoxShape.circle,
-                ),
-                markerSize: 5.5,
-              ),
-              focusedDay: _focusedDay,
-              firstDay: kFirstDay,
-              lastDay: kLastDay,
-              selectedDayPredicate: (day) => isSameDay(_selectedDay, day),
-              onCalendarCreated: (pageController) => loadingSelectedEvent,
-              onDaySelected: (selectedDay, focusedDay) {
-                if (!isSameDay(_selectedDay, selectedDay)) {
-                  setState(() {
-                    _selectedDay = selectedDay;
-                    _focusedDay = focusedDay;
-                  });
-                  loadingSelectedEvent();
-                }
-              },
-              onPageChanged: (focusedDay) async {
+              markerSize: 5.5,
+            ),
+            focusedDay: _focusedDay,
+            firstDay: kFirstDay,
+            lastDay: kLastDay,
+            selectedDayPredicate: (day) => isSameDay(_selectedDay, day),
+            onCalendarCreated: (pageController) => loadingSelectedEvent,
+            onDaySelected: (selectedDay, focusedDay) {
+              if (!isSameDay(_selectedDay, selectedDay)) {
                 setState(() {
+                  _selectedDay = selectedDay;
                   _focusedDay = focusedDay;
                 });
-                await loadingInputPeriodData();
+                loadingSelectedEvent();
+              }
+            },
+            onPageChanged: (focusedDay) async {
+              setState(() {
+                _focusedDay = focusedDay;
+              });
+              await loadingInputPeriodData();
+            },
+            eventLoader: _getEventsForDay,
+            calendarBuilders: CalendarBuilders(
+              defaultBuilder: (context, day, focusedDay) {
+                return highlightMarker(day, true);
               },
-              eventLoader: _getEventsForDay,
-              calendarBuilders: CalendarBuilders(
-                defaultBuilder: (context, day, focusedDay) {
-                  return highlightMarker(day, true);
-                },
-                outsideBuilder: (context, day, focusedDay) {
+              outsideBuilder: (context, day, focusedDay) {
+                return Stack(
+                  children: <Widget>[
+                    Center(
+                      child: SizedBox(
+                        width: 30,
+                        height: 30,
+                        child: CenterText(Colors.grey, day),
+                      ),
+                    ),
+                    highlightMarker(day, false),
+                  ],
+                );
+              },
+              selectedBuilder: (context, day, focusedDay) {
+                if (normalizeDate(focusedDay) !=
+                    normalizeDate(DateTime.now())) {
                   return Stack(
-                    children: <Widget>[
+                    children: [
                       Center(
-                        child: SizedBox(
+                        child: Container(
                           width: 30,
                           height: 30,
-                          child: CenterText(Colors.grey, day),
+                          decoration: BoxDecoration(
+                              color: BtvColors.label4.withOpacity(0.3),
+                              border: Border.all(
+                                color: Colors.white,
+                                width: 1.0,
+                              ),
+                              borderRadius: const BorderRadius.all(
+                                  Radius.elliptical(30, 30))),
+                          child: CenterText(Colors.white, day),
                         ),
                       ),
                       highlightMarker(day, false),
                     ],
                   );
-                },
-                selectedBuilder: (context, day, focusedDay) {
-                  if (normalizeDate(focusedDay) !=
-                      normalizeDate(DateTime.now())) {
-                    return Stack(
-                      children: [
-                        Center(
-                          child: Container(
-                            width: 30,
-                            height: 30,
-                            decoration: BoxDecoration(
-                                color: BtvColors.label4.withOpacity(0.3),
-                                border: Border.all(
-                                  color: Colors.white,
-                                  width: 1.0,
-                                ),
-                                borderRadius: const BorderRadius.all(
-                                    Radius.elliptical(30, 30))),
-                            child: CenterText(Colors.white, day),
+                } else {
+                  return Center(
+                    child: Container(
+                      width: 33,
+                      height: 33,
+                      decoration: BoxDecoration(
+                          color: BtvColors.label4.withOpacity(0.3),
+                          border: Border.all(
+                            color: Colors.white,
+                            width: 1.0,
                           ),
-                        ),
-                        highlightMarker(day, false),
-                      ],
-                    );
-                  } else {
-                    return Center(
-                      child: Container(
-                        width: 33,
-                        height: 33,
-                        decoration: BoxDecoration(
-                            color: BtvColors.label4.withOpacity(0.3),
-                            border: Border.all(
-                              color: Colors.white,
-                              width: 1.0,
-                            ),
-                            borderRadius: const BorderRadius.all(
-                                Radius.elliptical(30, 30))),
-                        child: Center(
-                          child: Text(
-                            '${day.day}',
-                            style: BtvTextStyles.title3
-                                .copyWith(color: BtvColors.tint2),
-                          ),
+                          borderRadius: const BorderRadius.all(
+                              Radius.elliptical(30, 30))),
+                      child: Center(
+                        child: Text(
+                          '${day.day}',
+                          style: BtvTextStyles.title3
+                              .copyWith(color: BtvColors.tint2),
                         ),
                       ),
-                    );
-                  }
-                },
-              ),
+                    ),
+                  );
+                }
+              },
             ),
           ),
-          const Divider(
-            color: BtvColors.seperatorOnLight,
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              Padding(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 15, vertical: 24),
-                child: Text(
-                  'Today, ${DateFormat('d MMMM').format(DateTime.now())}',
-                  style: BtvTextStyles.title2,
-                ),
+        ),
+        const Divider(
+          color: BtvColors.seperatorOnLight,
+        ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 24),
+              child: Text(
+                'Today, ${DateFormat('d MMMM').format(DateTime.now())}',
+                style: BtvTextStyles.title2,
               ),
-            ],
-          ),
-          FutureBuilder<Query$CalendarDay$calendar?>(
-            future: _selectedDayEvent,
-            builder: (context, snapshot) {
-              if (snapshot.connectionState == ConnectionState.waiting) {
-                return const Center(
-                  child: SizedBox.square(
-                    dimension: 50,
-                    child: CircularProgressIndicator(),
-                  ),
-                );
-              }
-              return _EntriesSlot(snapshot.data);
-            },
-          ),
-        ],
-      ),
+            ),
+          ],
+        ),
+        FutureBuilder<Query$CalendarDay$calendar?>(
+          future: _selectedDayEvent,
+          builder: (context, snapshot) {
+            if (snapshot.connectionState == ConnectionState.waiting) {
+              return const Center(
+                child: SizedBox.square(
+                  dimension: 50,
+                  child: CircularProgressIndicator(),
+                ),
+              );
+            }
+            return _EntriesSlot(snapshot.data);
+          },
+        ),
+      ],
     );
   }
 }
@@ -522,7 +535,8 @@ class _EntriesSlot extends StatelessWidget {
   }
 
   pushToEpisodePage(BuildContext context, var id) {
-    context.router.push(EpisodeScreenRoute(episodeId: id));
+    context.router.navigate(
+        HomeScreenWrapperRoute(children: [EpisodeScreenRoute(episodeId: id)]));
   }
 
   @override
@@ -537,7 +551,7 @@ class _EntriesSlot extends StatelessWidget {
                   padding: EdgeInsets.symmetric(horizontal: 16),
                 )
               : const Text('ingen bilder'),
-          for (var i = 0; i < entriesList!.length; i++)
+          for (var i = 0; i < entriesList.length; i++)
             GestureDetector(
               onTapUp: (details) {
                 isClassOfEpisodeCalendarEntry(entriesList[i])
@@ -557,63 +571,54 @@ class _EntriesSlot extends StatelessWidget {
                         : const BorderSide(width: 4),
                   ),
                 ),
-                child: Row(
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.only(left: 12, right: 24.0),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            isHappeningNow(entriesList[i])
-                                ? 'Now'
-                                : DateFormat('HH:mm').format(
-                                    DateTime.parse(entriesList[i].start)),
-                            style: BtvTextStyles.title3.copyWith(
-                              color:
-                                  isClassOfEpisodeCalendarEntry(entriesList[i])
-                                      ? Colors.white
-                                      : Colors.white54,
+                child: Opacity(
+                  opacity:
+                      isClassOfEpisodeCalendarEntry(entriesList[i]) ? 1 : 0.7,
+                  child: Row(
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.only(left: 12, right: 24.0),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              isHappeningNow(entriesList[i])
+                                  ? 'Now'
+                                  : DateFormat('HH:mm').format(
+                                      DateTime.parse(entriesList[i].start)),
+                              style: BtvTextStyles.title3,
                             ),
-                          ),
-                          const SizedBox(height: 4),
-                          Text(
-                              calculateDuration(
-                                  entriesList[i].start, entriesList[i].end),
-                              style: BtvTextStyles.caption1.copyWith(
-                                color: isClassOfEpisodeCalendarEntry(
-                                        entriesList[i])
-                                    ? BtvColors.label4
-                                    : BtvColors.label4.withOpacity(0.5),
-                              )),
-                        ],
+                            const SizedBox(height: 4),
+                            Text(
+                                calculateDuration(
+                                    entriesList[i].start, entriesList[i].end),
+                                style: BtvTextStyles.caption1),
+                          ],
+                        ),
                       ),
-                    ),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          entriesList[i].title,
-                          style: BtvTextStyles.title3.copyWith(
-                            color: isClassOfEpisodeCalendarEntry(entriesList[i])
-                                ? Colors.white
-                                : Colors.white54,
-                          ),
+                      Flexible(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              entriesList[i].title,
+                              style: BtvTextStyles.title3
+                                  .copyWith(color: BtvColors.label1),
+                            ),
+                            const SizedBox(height: 4),
+                            Text(
+                              entriesList[i].description,
+                              overflow: TextOverflow.ellipsis,
+                              style: BtvTextStyles.caption1.copyWith(
+                                  color: isHappeningNow(entriesList[i])
+                                      ? BtvColors.tint2
+                                      : BtvColors.tint1),
+                            ),
+                          ],
                         ),
-                        const SizedBox(height: 4),
-                        Text(
-                          entriesList[i].description,
-                          style: BtvTextStyles.caption1.copyWith(
-                            color: isHappeningNow(entriesList[i])
-                                ? isClassOfEpisodeCalendarEntry(entriesList[i])
-                                    ? Colors.red
-                                    : Colors.pink[800]
-                                : BtvColors.tint1,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ],
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ),
