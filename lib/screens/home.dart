@@ -30,8 +30,6 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
   late Future<Query$Page$page> resultFuture;
   bool isGuestUser = false;
   bool showTooltip = false;
-  GlobalKey profileIconKey = GlobalKey();
-  Offset? tooltipPos;
   String loginError = '';
 
   @override
@@ -111,7 +109,6 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                       padding:
                           const EdgeInsets.only(left: 18, top: 12, bottom: 12),
                       child: SvgPicture.string(
-                        key: profileIconKey,
                         SvgIcons.profile,
                       ))),
             ),
@@ -153,17 +150,24 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                 }),
           ),
         ),
-        if (showTooltip)
-          Positioned(
-            left: 7 + MediaQuery.of(context).padding.left,
-            top: 35 + MediaQuery.of(context).padding.top,
-            child: Material(
-              color: Colors.transparent,
-              child: SignInTooltip(onClose: () {
-                setState(() => showTooltip = false);
-              }),
-            ),
-          )
+        Positioned(
+          left: 7 + MediaQuery.of(context).padding.left,
+          top: 35 + MediaQuery.of(context).padding.top,
+          child: AnimatedSwitcher(
+            duration: const Duration(milliseconds: 500),
+            transitionBuilder: (Widget child, Animation<double> animation) {
+              return FadeTransition(opacity: animation, child: child);
+            },
+            child: !showTooltip
+                ? null
+                : Material(
+                    color: Colors.transparent,
+                    child: SignInTooltip(onClose: () {
+                      setState(() => showTooltip = false);
+                    }),
+                  ),
+          ),
+        )
       ],
     );
   }
