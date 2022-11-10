@@ -39,10 +39,11 @@ class _BottomSheetMiniPlayerState extends ConsumerState<BottomSheetMiniPlayer> {
 
     bool hideMiniPlayer = _shouldHideMiniPlayer(player, context.watchRouter);
 
-    return AnimatedSlide(
+    return AnimatedAlign(
         duration: const Duration(milliseconds: 200),
         curve: Curves.easeOutQuart,
-        offset: hideMiniPlayer ? const Offset(0, 1) : const Offset(0, 0),
+        alignment: Alignment.topCenter,
+        heightFactor: hideMiniPlayer ? 0 : 1,
         child: hideMiniPlayer || player == null
             ? _buildDummy()
             : _buildMiniPlayer(player));
