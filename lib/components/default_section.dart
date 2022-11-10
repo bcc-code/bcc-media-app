@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 
 import '../helpers/btv_colors.dart';
 import '../helpers/btv_typography.dart';
+import '../helpers/utils.dart';
 import '../services/utils.dart';
 import 'bordered_image_container.dart';
 import 'horizontal_slider.dart';
@@ -93,8 +94,7 @@ class _DefaultEpisodeItem extends StatelessWidget {
   Widget build(BuildContext context) {
     final productionDate = getFormattedProductionDate(episode.productionDate);
     return GestureDetector(
-      onTap: () => context.router
-          .navigate(EpisodeScreenRoute(episodeId: sectionItem.id)),
+      onTap: () => handleSectionItemClick(context, sectionItem.item),
       child: SizedBox(
         width: imageSize[size]!.width,
         child: Column(
@@ -146,13 +146,13 @@ class _DefaultEpisodeItem extends StatelessWidget {
       child: Stack(
         clipBehavior: Clip.none,
         children: [
-          isComingSoon(episode.productionDate)
+          isComingSoon(episode.availableFrom)
               ? Opacity(
                   opacity: 0.5,
                   child: BorderedImageContainer(imageUrl: sectionItem.image),
                 )
               : BorderedImageContainer(imageUrl: sectionItem.image),
-          if (isComingSoon(episode.productionDate))
+          if (isComingSoon(episode.availableFrom))
             Container(
               width: double.infinity,
               height: double.infinity,
@@ -204,7 +204,7 @@ class _DefaultEpisodeItem extends StatelessWidget {
         label: 'Live now',
         color: BtvColors.tint2,
       );
-    } else if (isComingSoon(episode.productionDate)) {
+    } else if (isComingSoon(episode.availableFrom)) {
       return const FeatureBadge(
         label: 'Coming soon',
         color: BtvColors.background2,
@@ -225,7 +225,7 @@ class _DefaultShowItem extends StatelessWidget {
   Enum$SectionSize size;
 
   // TODO: Remove this
-  bool hasNewEpisodes = true;
+  bool hasNewEpisodes = false;
 
   _DefaultShowItem({required this.sectionItem, required this.size})
       : show = sectionItem.item
@@ -234,8 +234,7 @@ class _DefaultShowItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => context.router
-          .navigate(EpisodeScreenRoute(episodeId: show.defaultEpisode!.id)),
+      onTap: () => handleSectionItemClick(context, sectionItem.item),
       child: SizedBox(
         width: imageSize[size]!.width,
         child: Column(

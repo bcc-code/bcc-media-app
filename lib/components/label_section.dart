@@ -1,4 +1,5 @@
 import 'package:brunstadtv_app/helpers/btv_typography.dart';
+import 'package:brunstadtv_app/helpers/utils.dart';
 import 'package:brunstadtv_app/router/router.gr.dart';
 import 'package:flutter/material.dart';
 import 'package:auto_route/auto_route.dart';
@@ -30,21 +31,14 @@ class LabelSection extends StatelessWidget {
 }
 
 class _LabelItem extends StatelessWidget {
-  final Fragment$Section$$LabelSection$items$items sectionItem;
+  final Fragment$ItemSectionItem sectionItem;
 
   const _LabelItem(this.sectionItem);
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {
-        if (sectionItem.item
-            is Fragment$Section$$LabelSection$items$items$item$$Page) {
-          final pageItem = sectionItem.item
-              as Fragment$Section$$LabelSection$items$items$item$$Page;
-          context.router.navigate(PageScreenRoute(pageCode: pageItem.code));
-        }
-      },
+      onTap: () => handleSectionItemClick(context, sectionItem.item),
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
         decoration: BoxDecoration(

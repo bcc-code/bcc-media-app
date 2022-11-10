@@ -161,7 +161,6 @@ class AppRouter extends _i19.RootStackRouter {
       return _i19.CustomPage<void>(
         routeData: routeData,
         child: const _i10.HomeScreen(),
-        maintainState: false,
         durationInMilliseconds: 500,
         reverseDurationInMilliseconds: 500,
         opaque: true,

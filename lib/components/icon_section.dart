@@ -1,4 +1,5 @@
 import 'package:brunstadtv_app/helpers/btv_typography.dart';
+import 'package:brunstadtv_app/helpers/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:auto_route/auto_route.dart';
 
@@ -35,14 +36,7 @@ class IconSection extends StatelessWidget {
               var item = data.items.items[index];
               return CategoryButton(
                   onTap: () {
-                    if (item.item
-                        is Fragment$Section$$IconSection$items$items$item$$Page) {
-                      final pageItem = item.item
-                          as Fragment$Section$$IconSection$items$items$item$$Page;
-                      context.router.navigate(
-                        PageScreenRoute(pageCode: pageItem.code),
-                      );
-                    }
+                    handleSectionItemClick(context, item.item);
                   },
                   label: item.title,
                   networkImage: item.image,

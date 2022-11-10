@@ -111,12 +111,6 @@ class _EpisodeDetailsState extends ConsumerState<EpisodeDetails> {
                     text:
                         DateFormat.yMMMMd(locale).add_jm().format(publishDate),
                   ),
-                if (availableFrom != null)
-                  _InfoItem(
-                    title: 'Available from',
-                    text:
-                        DateFormat.yMMMd(locale).add_jm().format(availableFrom),
-                  ),
                 if (availableTo != null)
                   _InfoItem(
                     title: 'Available to',

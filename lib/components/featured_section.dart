@@ -53,73 +53,83 @@ class _FeaturedItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      margin: margin,
-      height: double.infinity,
-      child: Stack(children: [
-        _GradientImage(image: sectionItem.image),
-        Align(
-          alignment: Alignment.bottomCenter,
-          child: Container(
-            width: double.infinity,
-            padding:
-                const EdgeInsets.only(top: 12, right: 18, bottom: 18, left: 18),
-            decoration: BoxDecoration(
-              gradient: LinearGradient(
-                begin: Alignment.topCenter,
-                end: Alignment.bottomCenter,
-                colors: [
-                  BtvColors.background1.withOpacity(0),
-                  BtvColors.background1,
+    return GestureDetector(
+      behavior: HitTestBehavior.opaque,
+      onTap: () => handleSectionItemClick(context, sectionItem.item),
+      child: Container(
+        margin: margin,
+        height: double.infinity,
+        child: Stack(children: [
+          _GradientImage(image: sectionItem.image),
+          Align(
+            alignment: Alignment.bottomCenter,
+            child: Container(
+              width: double.infinity,
+              padding: const EdgeInsets.only(
+                  top: 12, right: 18, bottom: 18, left: 18),
+              decoration: BoxDecoration(
+                gradient: LinearGradient(
+                  begin: Alignment.topCenter,
+                  end: Alignment.bottomCenter,
+                  colors: [
+                    BtvColors.background1.withOpacity(0),
+                    BtvColors.background1,
+                  ],
+                  stops: const [0, 0.36],
+                ),
+              ),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  Container(
+                    margin: const EdgeInsets.only(bottom: 4),
+                    child: Text(
+                      sectionItem.title,
+                      textAlign: TextAlign.center,
+                      style: BtvTextStyles.title1,
+                    ),
+                  ),
+                  Container(
+                    margin: const EdgeInsets.only(bottom: 16),
+                    child: Text(
+                      sectionItem.description,
+                      maxLines: 2,
+                      overflow: TextOverflow.ellipsis,
+                      textAlign: TextAlign.center,
+                      style:
+                          BtvTextStyles.body2.copyWith(color: BtvColors.label2),
+                    ),
+                  ),
+                  false
+                      ? BtvButton.smallRed(
+                          imagePath: 'assets/icons/Play.png',
+                          labelText: 'Live',
+                          onPressed: () {},
+                        )
+                      : BtvButton.smallSecondary(
+                          imagePath: 'assets/icons/Play.png',
+                          labelText: 'Watch now',
+                          onPressed: () {
+                            var episodeItem = sectionItem.item.asOrNull<
+                                Fragment$Section$$FeaturedSection$items$items$item$$Episode>();
+                            var showItem = sectionItem.item.asOrNull<
+                                Fragment$Section$$FeaturedSection$items$items$item$$Show>();
+                            if (episodeItem != null) {
+                              context.router.navigate(EpisodeScreenRoute(
+                                  episodeId: episodeItem.id));
+                            } else if (showItem != null) {
+                              context.router.navigate(EpisodeScreenRoute(
+                                  episodeId: showItem.defaultEpisode.id));
+                            }
+                          },
+                        ),
                 ],
-                stops: const [0, 0.36],
               ),
             ),
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [
-                Container(
-                  margin: const EdgeInsets.only(bottom: 4),
-                  child: Text(
-                    sectionItem.title,
-                    textAlign: TextAlign.center,
-                    style: BtvTextStyles.title1,
-                  ),
-                ),
-                Container(
-                  margin: const EdgeInsets.only(bottom: 16),
-                  child: Text(
-                    sectionItem.description,
-                    maxLines: 2,
-                    overflow: TextOverflow.ellipsis,
-                    textAlign: TextAlign.center,
-                    style:
-                        BtvTextStyles.body2.copyWith(color: BtvColors.label2),
-                  ),
-                ),
-                false
-                    ? BtvButton.smallRed(
-                        imagePath: 'assets/icons/Play.png',
-                        labelText: 'Live',
-                        onPressed: () {},
-                      )
-                    : BtvButton.smallSecondary(
-                        imagePath: 'assets/icons/Play.png',
-                        labelText: 'Watch now',
-                        onPressed: () {
-                          if (sectionItem.item
-                              is Fragment$Section$$FeaturedSection$items$items$item$$Episode) {
-                            context.router.navigate(
-                                EpisodeScreenRoute(episodeId: sectionItem.id));
-                          }
-                        },
-                      ),
-              ],
-            ),
           ),
-        ),
-      ]),
+        ]),
+      ),
     );
   }
 }

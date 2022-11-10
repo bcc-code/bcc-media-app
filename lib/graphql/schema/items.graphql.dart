@@ -50,6 +50,30 @@ Enum$ShowType fromJson$Enum$ShowType(String value) {
   }
 }
 
+enum Enum$EpisodeType { episode, standalone, $unknown }
+
+String toJson$Enum$EpisodeType(Enum$EpisodeType e) {
+  switch (e) {
+    case Enum$EpisodeType.episode:
+      return r'episode';
+    case Enum$EpisodeType.standalone:
+      return r'standalone';
+    case Enum$EpisodeType.$unknown:
+      return r'$unknown';
+  }
+}
+
+Enum$EpisodeType fromJson$Enum$EpisodeType(String value) {
+  switch (value) {
+    case r'episode':
+      return Enum$EpisodeType.episode;
+    case r'standalone':
+      return Enum$EpisodeType.standalone;
+    default:
+      return Enum$EpisodeType.$unknown;
+  }
+}
+
 enum Enum$StreamType { hls_ts, hls_cmaf, dash, $unknown }
 
 String toJson$Enum$StreamType(Enum$StreamType e) {

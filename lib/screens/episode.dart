@@ -69,10 +69,14 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen>
   void didUpdateWidget(old) {
     super.didUpdateWidget(old);
     if (old.episodeId == widget.episodeId) return;
-    scrollController.animateTo(0,
-        duration: const Duration(milliseconds: 600), curve: Curves.easeOutExpo);
-    loadEpisode();
+    scrollController
+        .animateTo(0,
+            duration: const Duration(milliseconds: 600),
+            curve: Curves.easeOutExpo)
+        .whenComplete(() => loadEpisode());
   }
+
+  Future scrollToTop() async {}
 
   @override
   void initState() {
@@ -268,13 +272,13 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen>
           var displayPlayer =
               animationStatus == AnimationStatus.completed && snapshot.hasData;
 
-          var tempTitle = ref.watch(tempTitleProvider) ?? '';
-
           return Scaffold(
               appBar: AppBar(
                 leadingWidth: 92,
                 leading: const CustomBackButton(),
-                title: Text(snapshot.data?.season?.$show.title ?? ''),
+                title: Text(snapshot.data?.season?.$show.title ??
+                    snapshot.data?.title ??
+                    ''),
                 actions: const [
                   Padding(
                     padding: EdgeInsets.only(left: 16, right: 16.0),
@@ -286,8 +290,9 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen>
                 builder: (context) {
                   if (error != null) return Text(error ?? '');
                   if (snapshot.hasError) return Text(snapshot.error.toString());
-                  if (snapshot.data == null &&
-                      snapshot.connectionState != ConnectionState.done) {
+                  if (animationStatus != AnimationStatus.completed ||
+                      snapshot.data == null &&
+                          snapshot.connectionState != ConnectionState.done) {
                     return _loading();
                   }
                   if (snapshot.data == null) {
@@ -301,7 +306,6 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen>
                       primaryPlayerId,
                       snapshot.data!,
                       snapshot.connectionState != ConnectionState.done,
-                      tempTitle,
                       context);
                 },
               ));
@@ -334,7 +338,6 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen>
       String primaryPlayerId,
       Query$FetchEpisode$episode episode,
       bool episodeLoading,
-      String tempTitle,
       BuildContext context) {
     final showEpisodeNumber =
         episode.season?.$show.type == Enum$ShowType.series;
@@ -376,14 +379,13 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen>
                                               episode.ageRating),
                                           color: BtvColors.background2),
                                     ),
-                                    Center(
-                                      child: Text(
-                                          episode.season?.$show.title ??
-                                              S.of(context).shortFilms,
-                                          style: BtvTextStyles.caption1
-                                              .copyWith(
-                                                  color: BtvColors.tint1)),
-                                    ),
+                                    if (episode.season?.$show.title != null)
+                                      Center(
+                                        child: Text(episode.season!.$show.title,
+                                            style: BtvTextStyles.caption1
+                                                .copyWith(
+                                                    color: BtvColors.tint1)),
+                                      ),
                                     if (showEpisodeNumber)
                                       Padding(
                                           padding:
@@ -474,7 +476,10 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen>
                         child: FadeIndexedStack(
                           index: DefaultTabController.of(context)!.index,
                           children: [
-                            _seasonEpisodeList(episode),
+                            if (episode.season != null)
+                              _seasonEpisodeList(episode)
+                            else
+                              _standaloneEpisodeList(episode),
                             EpisodeDetails(episode.id)
                           ],
                         ),
@@ -525,12 +530,27 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen>
       ],
     );
   }
-/* 
-  Widget seasonList(List<Fragment$SeasonListEpisode> episodes) {
-    /* return ListView.builder(itemCount: episodes.length, itemBuilder: (context, index) {
-    }); */
-    return EpisodeList(title: null, items: episodes);
-  } */
+
+  Widget _standaloneEpisodeList(Query$FetchEpisode$episode episode) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Builder(builder: (context) {
+          if (seasonsMap?[selectedSeasonId] == null) {
+            return const SizedBox(
+                height: 1000,
+                child: Align(
+                    alignment: Alignment.topCenter,
+                    child: Padding(
+                        padding: EdgeInsets.only(top: 16),
+                        child: LoadingIndicator())));
+          } else {
+            return SeasonEpisodeList(items: []);
+          }
+        }),
+      ],
+    );
+  }
 
   AspectRatio _playPoster(Query$FetchEpisode$episode episode) {
     return AspectRatio(

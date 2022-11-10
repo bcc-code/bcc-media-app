@@ -51,7 +51,7 @@ class WatchProgressIndicator extends StatelessWidget {
           Container(
             margin: const EdgeInsets.only(right: 4),
             child: Text(
-              getFormattedDuration(watchedDuration),
+              getFormattedDuration(totalDuration),
               style: BtvTextStyles.caption3.copyWith(color: BtvColors.label1),
             ),
           )

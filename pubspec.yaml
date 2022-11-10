@@ -76,6 +76,7 @@ dependencies:
   firebase_crashlytics: ^3.0.4
   flutter_svg_provider: ^1.0.3
   on_screen_ruler: ^0.0.1
+  url_launcher: ^6.1.6
   #smooth: any
 
 dev_dependencies:

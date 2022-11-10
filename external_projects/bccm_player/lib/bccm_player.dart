@@ -7,7 +7,6 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
-import 'package:visibility_detector/visibility_detector.dart';
 
 enum PlayerType { betterPlayer, videoPlayer, native }
 
@@ -45,7 +44,7 @@ class _BccmPlayerState extends State<BccmPlayer> {
   @override
   Widget build(BuildContext context) {
     if (widget.id == 'chromecast') {
-      return BccmCastPlayer();
+      return const BccmCastPlayer();
     }
     if (kIsWeb) {
       return Container(

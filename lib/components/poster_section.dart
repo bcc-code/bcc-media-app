@@ -3,6 +3,7 @@ import 'package:auto_route/auto_route.dart';
 
 import '../helpers/btv_colors.dart';
 import '../helpers/btv_typography.dart';
+import '../helpers/utils.dart';
 import '../router/router.gr.dart';
 import '../graphql/queries/page.graphql.dart';
 import '../graphql/schema/pages.graphql.dart';
@@ -116,8 +117,7 @@ class _PosterEpisodeItem extends StatelessWidget {
   Widget build(BuildContext context) {
     final productionDate = getFormattedProductionDate(episode.productionDate);
     return GestureDetector(
-      onTap: () => context.router
-          .navigate(EpisodeScreenRoute(episodeId: sectionItem.id)),
+      onTap: () => handleSectionItemClick(context, sectionItem.item),
       child: SizedBox(
         width: imageSize[size]!.width,
         child: Column(
@@ -170,13 +170,13 @@ class _PosterEpisodeItem extends StatelessWidget {
       child: Stack(
         clipBehavior: Clip.none,
         children: [
-          isComingSoon(episode.productionDate)
+          isComingSoon(episode.availableFrom)
               ? Opacity(
                   opacity: 0.5,
                   child: BorderedImageContainer(imageUrl: sectionItem.image),
                 )
               : BorderedImageContainer(imageUrl: sectionItem.image),
-          if (isComingSoon(episode.productionDate))
+          if (isComingSoon(episode.availableFrom))
             Container(
               width: double.infinity,
               height: double.infinity,
@@ -228,7 +228,7 @@ class _PosterEpisodeItem extends StatelessWidget {
         label: 'Live now',
         color: BtvColors.tint2,
       );
-    } else if (isComingSoon(episode.productionDate)) {
+    } else if (isComingSoon(episode.availableFrom)) {
       return const FeatureBadge(
         label: 'Coming soon',
         color: BtvColors.background2,
@@ -259,8 +259,7 @@ class _PosterShowItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => context.router
-          .navigate(EpisodeScreenRoute(episodeId: show.defaultEpisode.id)),
+      onTap: () => handleSectionItemClick(context, sectionItem.item),
       child: SizedBox(
         width: imageSize[size]!.width,
         child: Column(

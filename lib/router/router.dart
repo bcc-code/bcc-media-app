@@ -89,7 +89,7 @@ const _specialRoutes = AutoRoute(
                 page: HomeScreen,
                 path: '',
                 name: 'home',
-                maintainState: false,
+                maintainState: true,
                 durationInMilliseconds: 500,
                 reverseDurationInMilliseconds: 500,
               ),

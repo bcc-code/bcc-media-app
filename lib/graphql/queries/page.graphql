@@ -1,31 +1,35 @@
+fragment ItemSectionItem on SectionItem {
+  id
+  title
+  image
+  item {
+    ... on Link {
+      url
+    }
+    ... on Page {
+      code
+    }
+    ... on Episode {
+      id
+      duration
+      progress
+    }
+    ... on Show {
+      defaultEpisode {
+        id
+      }
+      id
+    }
+    __typename
+  }
+}
+
 fragment Section on Section {
   title
   ... on ItemSection {
     items {
       items {
-        id
-        title
-        image
-        item {
-          ... on Link {
-            url
-          }
-          ... on Page {
-            code
-          }
-          ... on Episode {
-            id
-            duration
-            progress
-          }
-          ... on Show {
-            defaultEpisode {
-              id
-            }
-            id
-          }
-          __typename
-        }
+        ...ItemSectionItem
       }
     }
   }
@@ -40,6 +44,7 @@ fragment Section on Section {
           }
           ... on Episode {
             productionDate
+            availableFrom
             duration
             season {
               show {
@@ -71,6 +76,7 @@ fragment Section on Section {
           }
           ... on Episode {
             productionDate
+            availableFrom
             duration
             season {
               show {
@@ -93,7 +99,7 @@ fragment Section on Section {
             seasonCount
           }
           ... on Episode {
-            productionDate
+            availableFrom
             duration
             number
             season {

@@ -56,8 +56,8 @@ class _BottomSheetMiniPlayerState extends ConsumerState<BottomSheetMiniPlayer> {
 
     return GestureDetector(
       onTap: () {
-        var id = player?.currentMediaItem?.metadata?.extras?['id']
-            .asOrNull<String>();
+        var id =
+            player.currentMediaItem?.metadata?.extras?['id'].asOrNull<String>();
         if (id == 'livestream') {
           context.router.navigate(const LiveScreenRoute());
         } else if (id != null) {
@@ -77,13 +77,13 @@ class _BottomSheetMiniPlayerState extends ConsumerState<BottomSheetMiniPlayer> {
             artworkUri ?? 'https://source.unsplash.com/random/1600x900/?fruit',
         isPlaying: playbackState == PlaybackState.playing,
         onPlayTap: () {
-          ref.read(playbackApiProvider).play(player!.playerId);
+          ref.read(playbackApiProvider).play(player.playerId);
         },
         onPauseTap: () {
-          ref.read(playbackApiProvider).pause(player!.playerId);
+          ref.read(playbackApiProvider).pause(player.playerId);
         },
         onCloseTap: () {
-          ref.read(playbackApiProvider).stop(player!.playerId, true);
+          ref.read(playbackApiProvider).stop(player.playerId, true);
         },
       ),
     );

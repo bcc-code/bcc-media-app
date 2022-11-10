@@ -88,7 +88,7 @@ class _AppLanguageScreenState extends ConsumerState<AppLanguageScreen> {
   @override
   void initState() {
     super.initState();
-    selected = ref.read(settingsProvider).appLanguage?.languageCode ?? 'no';
+    selected = ref.read(settingsProvider).appLanguage.languageCode;
   }
 
   @override

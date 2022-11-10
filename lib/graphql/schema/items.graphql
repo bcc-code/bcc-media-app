@@ -53,13 +53,19 @@ type SeasonPagination implements Pagination {
     items: [Season!]!
 }
 
+enum EpisodeType {
+    episode
+    standalone
+}
+
 type Episode {
     id: ID!
+    type: EpisodeType!
     legacyID: ID
     legacyProgramID: ID
-    publishDate: String!
-    availableFrom: String!
-    availableTo: String!
+    publishDate: Date!
+    availableFrom: Date! @goField(forceResolver: true)
+    availableTo: Date!
     ageRating: String!
     title: String!
     description: String!
@@ -75,6 +81,7 @@ type Episode {
     progress: Int @goField(forceResolver: true)
     audioLanguages: [Language!]!
     subtitleLanguages: [Language!]!
+    relatedItems(first: Int, offset: Int): SectionItemPagination @goField(forceResolver: true)
     images: [Image!]!
     number: Int
 }

@@ -66,7 +66,7 @@ class _LiveMiniPlayerState extends ConsumerState<LiveMiniPlayer> {
     }
 
     if (player.currentMediaItem?.metadata?.extras?['id'] != 'livestream') {
-      return _emptyPlayer(player!);
+      return _emptyPlayer(player);
     } else if (waitingForMediaItemToBeCorrect == true) {
       WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {
             waitingForMediaItemToBeCorrect = false;

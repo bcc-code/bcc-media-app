@@ -3,4 +3,5 @@ type Application {
     code: String!
     clientVersion: String!
     page: Page @goField(forceResolver: true)
+    searchPage: Page @goField(forceResolver: true)
 }

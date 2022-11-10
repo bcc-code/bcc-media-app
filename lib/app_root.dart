@@ -1,13 +1,8 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:brunstadtv_app/graphql/queries/devices.graphql.dart';
 import 'package:brunstadtv_app/helpers/btv_typography.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:flutter_secure_storage/flutter_secure_storage.dart';
-
-import 'graphql/client.dart';
 
 class AppRoot extends ConsumerStatefulWidget {
   const AppRoot({super.key, required this.child, required this.navigatorKey});

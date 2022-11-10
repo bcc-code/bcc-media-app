@@ -97,14 +97,14 @@ class EpisodeListEpisode extends StatelessWidget {
                   clipBehavior: Clip.none,
                   children: [
                     BorderedImageContainer(width: 128, imageUrl: data.image),
-                    /* isComingSoon(episode.productionDate)
+                    /* isComingSoon(episode.availableFrom)
                         ? Opacity(
                             opacity: 0.5,
                             child:
                                 BorderedImageContainer(imageUrl: sectionItem.image),
                           )
                         : BorderedImageContainer(imageUrl: sectionItem.image),
-                    if (isComingSoon(episode.productionDate))
+                    if (isComingSoon(episode.availableFrom))
                       Container(
                         width: double.infinity,
                         height: double.infinity,
