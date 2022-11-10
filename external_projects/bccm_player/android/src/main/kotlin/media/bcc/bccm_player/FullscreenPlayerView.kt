@@ -2,6 +2,7 @@ package media.bcc.bccm_player
 
 import android.app.Activity
 import android.app.PictureInPictureParams
+import android.content.pm.ActivityInfo
 import android.os.Build
 import android.util.Log
 import android.util.Rational
@@ -24,7 +25,9 @@ class FullscreenPlayerView(val activity: Activity, val playerController: ExoPlay
     var playerView: PlayerView?
     val mainScope = CoroutineScope(Dispatchers.Main + SupervisorJob())
     var isInPip: Boolean = false;
+    val orientationBeforeGoingFullscreen = activity.requestedOrientation;
     init {
+        activity.requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED;
         makeActivityFullscreen()
         LayoutInflater.from(context).inflate(R.layout.player_fullscreen_view, this, true)
         playerView = this.findViewById<PlayerView>(R.id.brunstad_player)
@@ -105,6 +108,7 @@ class FullscreenPlayerView(val activity: Activity, val playerController: ExoPlay
     fun setFullscreenButtonClickListener(listener: () -> Unit) {
         playerView?.setFullscreenButtonClickListener {
             listener()
+            activity.requestedOrientation = orientationBeforeGoingFullscreen;
             exitFullscreen()
         }
     }
