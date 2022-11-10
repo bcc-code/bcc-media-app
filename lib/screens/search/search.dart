@@ -1,25 +1,31 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:brunstadtv_app/api/brunstadtv.dart';
+import 'package:brunstadtv_app/components/page.dart';
+import 'package:brunstadtv_app/providers/app_config.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../graphql/queries/page.graphql.dart';
 import '../../helpers/btv_colors.dart';
 import './search_home_page.dart';
 import './search_results_page.dart';
 
 import '../../components/search_bar.dart';
 
-class SearchScreen extends StatefulWidget {
+class SearchScreen extends ConsumerStatefulWidget {
   final String? query;
 
   const SearchScreen({Key? key, @QueryParam('q') this.query}) : super(key: key);
 
   @override
-  State<SearchScreen> createState() => _SearchScreenState();
+  ConsumerState<SearchScreen> createState() => _SearchScreenState();
 }
 
-class _SearchScreenState extends State<SearchScreen> {
+class _SearchScreenState extends ConsumerState<SearchScreen> {
   var _inSearchMode = false;
   String? _curSearchValue;
   String? searchPrefillValue;
+  late Future<Query$Page$page> pageFuture;
 
   _onSearchModeChanged(bool mode) {
     setState(() {
@@ -38,12 +44,24 @@ class _SearchScreenState extends State<SearchScreen> {
   void initState() {
     super.initState();
     processQueryParam();
+    pageFuture = getSearchPage();
   }
 
   @override
   void didUpdateWidget(SearchScreen oldWidget) {
     super.didUpdateWidget(oldWidget);
     processQueryParam();
+  }
+
+  Future<Query$Page$page> getSearchPage() async {
+    final api = ref.read(apiProvider);
+    return ref.read(appConfigProvider).then((value) {
+      final code = value?.application.searchPage?.code;
+      if (code == null) {
+        throw ErrorHint('Application config error');
+      }
+      return api.getPage(code);
+    });
   }
 
   processQueryParam() {
@@ -85,7 +103,14 @@ class _SearchScreenState extends State<SearchScreen> {
               Expanded(
                 child: _inSearchMode
                     ? SearchResultsPage(_curSearchValue)
-                    : SearchHomePage(),
+                    : BccmPage(
+                        pageFuture: pageFuture,
+                        onRefresh: () async {
+                          setState(() {
+                            pageFuture = getSearchPage();
+                          });
+                        },
+                      ),
               ),
             ],
           ),

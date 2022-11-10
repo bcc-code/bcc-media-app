@@ -1,3 +1,4 @@
+import 'package:brunstadtv_app/api/brunstadtv.dart';
 import 'package:flutter/material.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -39,27 +40,7 @@ class _PageScreenState extends ConsumerState<PageScreen> {
   }
 
   Future<Query$Page$page> getPage() {
-    final client = ref.read(gqlClientProvider);
-    return client
-        .query$Page(
-      Options$Query$Page(
-          variables: Variables$Query$Page(code: widget.pageCode)),
-    )
-        .then(
-      (value) {
-        if (value.hasException) {
-          throw ErrorDescription(value.exception.toString());
-        }
-        if (value.parsedData == null) {
-          throw ErrorDescription('No data for page code: ${widget.pageCode}');
-        }
-        return value.parsedData!.page;
-      },
-    ).catchError(
-      (error) {
-        print(error);
-      },
-    );
+    return ref.read(apiProvider).getPage(widget.pageCode);
   }
 
   @override

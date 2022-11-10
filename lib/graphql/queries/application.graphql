@@ -1,0 +1,10 @@
+query Application {
+  application {
+    page {
+      code
+    }
+    searchPage {
+      code
+    }
+  }
+}

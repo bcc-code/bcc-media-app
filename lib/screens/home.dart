@@ -11,10 +11,12 @@ import 'package:brunstadtv_app/router/router.gr.dart';
 
 import 'package:bccm_player/cast_button.dart';
 import 'package:flutter_svg/svg.dart';
+import '../api/brunstadtv.dart';
 import '../helpers/btv_colors.dart';
 import '../components/page.dart';
 import '../graphql/client.dart';
 import '../graphql/queries/page.graphql.dart';
+import '../providers/app_config.dart';
 import '../services/auth_service.dart';
 
 final logo = Image.asset('assets/images/logo.png');
@@ -39,7 +41,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
       isGuestUser = true;
       showTooltip = true;
     }
-    resultFuture = getPage();
+    resultFuture = getHomePage();
   }
 
   Future<void> loginAction(BuildContext context) async {
@@ -52,33 +54,15 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
     }
   }
 
-  Future<Query$Page$page> getPage() async {
-    final client = ref.read(gqlClientProvider);
-    return client
-        .query$Page(
-      Options$Query$Page(variables: Variables$Query$Page(code: 'frontpage')),
-    )
-        .then(
-      (value) {
-        if (value.exception != null) {
-          throw value.exception!;
-        }
-        if (value.parsedData == null) {
-          throw ErrorDescription("No data for page code: 'frontpage'");
-        }
-        return value.parsedData!.page;
-      },
-    ).onError(
-      (error, stackTrace) {
-        FirebaseCrashlytics.instance
-            .recordError(error, stackTrace, reason: 'a non-fatal error');
-        var message = error.asOrNull<ErrorDescription>();
-        if (message != null) {
-          debugPrint(message.value.toString());
-        }
-        return Future.error(error ?? ErrorHint('Unknown error'));
-      },
-    );
+  Future<Query$Page$page> getHomePage() async {
+    final api = ref.read(apiProvider);
+    return ref.read(appConfigProvider).then((value) {
+      final code = value?.application.page?.code;
+      if (code == null) {
+        throw ErrorHint('Application config error');
+      }
+      return api.getPage(code);
+    });
   }
 
   @override
@@ -145,7 +129,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                 pageFuture: resultFuture,
                 onRefresh: () async {
                   setState(() {
-                    resultFuture = getPage();
+                    resultFuture = getHomePage();
                   });
                 }),
           ),
