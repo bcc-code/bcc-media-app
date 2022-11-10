@@ -85,11 +85,13 @@ android {
             dimension "env"
             applicationIdSuffix ""
             manifestPlaceholders = [appName: "BrunstadTV v4"]
+            flutter.target "lib/main_prod.dart"
         }
         dev {
             dimension "env"
             applicationIdSuffix ".dev"
             manifestPlaceholders = [appName: "DEV BrunstadTV v4"]
+            flutter.target "lib/main_dev.dart"
         }
     }
 }
