@@ -4,10 +4,13 @@ import 'dart:async';
 
 import 'package:auto_route/auto_route.dart';
 import 'package:bccm_player/playback_platform_pigeon.g.dart';
+import 'package:brunstadtv_app/components/default_grid_section.dart';
 import 'package:brunstadtv_app/components/loading_indicator.dart';
 import 'package:brunstadtv_app/components/season_episode_list.dart';
 import 'package:brunstadtv_app/components/feature_badge.dart';
 import 'package:brunstadtv_app/graphql/schema/items.graphql.dart';
+import 'package:brunstadtv_app/graphql/schema/pages.graphql.dart';
+import 'package:brunstadtv_app/helpers/navigation_override.dart';
 import 'package:brunstadtv_app/helpers/svg_icons.dart';
 import 'package:extended_image/extended_image.dart';
 import 'package:flutter/material.dart';
@@ -29,6 +32,7 @@ import '../components/episode_details.dart';
 import '../components/episode_tab_selector.dart';
 import '../components/fade_indexed_stack.dart';
 import '../components/option_list.dart';
+import '../graphql/queries/page.graphql.dart';
 import '../helpers/btv_colors.dart';
 import '../helpers/btv_typography.dart';
 import '../helpers/utils.dart';
@@ -59,6 +63,7 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen>
   String? error;
   Completer? setupCompleter;
   AnimationStatus? animationStatus;
+  Future? scrollFuture;
   Animation? animation;
   StreamSubscription? chromecastSubscription;
   int selectedTab = 0;
@@ -69,14 +74,13 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen>
   void didUpdateWidget(old) {
     super.didUpdateWidget(old);
     if (old.episodeId == widget.episodeId) return;
-    scrollController
-        .animateTo(0,
-            duration: const Duration(milliseconds: 600),
-            curve: Curves.easeOutExpo)
-        .whenComplete(() => loadEpisode());
+    loadEpisode();
+    setState(() {
+      scrollFuture = scrollController.animateTo(0,
+          duration: const Duration(milliseconds: 600),
+          curve: Curves.easeOutExpo);
+    });
   }
-
-  Future scrollToTop() async {}
 
   @override
   void initState() {
@@ -97,16 +101,6 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen>
           episode: episode,
           playbackPositionMs: event.playbackPositionMs);
     });
-  }
-
-  @override
-  void didPush() {
-    1;
-  }
-
-  @override
-  void didPushNext() {
-    1;
   }
 
   Future loadEpisode() async {
@@ -138,10 +132,15 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen>
         },
       );
     });
+    await episodeFuture;
     if (widget.autoplay) {
-      episodeFuture.whenComplete(() {
+      if (scrollFuture == null) {
         setupPlayer();
-      });
+      } else {
+        scrollFuture!.whenComplete(() {
+          setupPlayer();
+        });
+      }
     }
   }
 
@@ -479,7 +478,7 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen>
                             if (episode.season != null)
                               _seasonEpisodeList(episode)
                             else
-                              _standaloneEpisodeList(episode),
+                              _relatedItems(episode),
                             EpisodeDetails(episode.id)
                           ],
                         ),
@@ -531,22 +530,23 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen>
     );
   }
 
-  Widget _standaloneEpisodeList(Query$FetchEpisode$episode episode) {
+  Widget _relatedItems(Query$FetchEpisode$episode episode) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Builder(builder: (context) {
-          if (seasonsMap?[selectedSeasonId] == null) {
-            return const SizedBox(
-                height: 1000,
-                child: Align(
-                    alignment: Alignment.topCenter,
-                    child: Padding(
-                        padding: EdgeInsets.only(top: 16),
-                        child: LoadingIndicator())));
-          } else {
-            return SeasonEpisodeList(items: []);
+          if (episode.relatedItems != null) {
+            return Padding(
+              padding: const EdgeInsets.all(16).copyWith(bottom: 100),
+              child: NavigationOverride(
+                pushInsteadOfReplace: true,
+                child: GridSectionList(
+                    size: Enum$GridSectionSize.half,
+                    sectionItems: episode.relatedItems!.items),
+              ),
+            );
           }
+          return const SizedBox.shrink();
         }),
       ],
     );

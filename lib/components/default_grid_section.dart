@@ -24,23 +24,57 @@ class DefaultGridSection extends StatelessWidget {
 
   const DefaultGridSection(this.data, {super.key});
 
-  Widget getItemWidget(
-      Fragment$Section$$DefaultGridSection$items$items sectionItem) {
-    if (sectionItem.item
-        is Fragment$Section$$DefaultGridSection$items$items$item$$Episode) {
-      return _GridEpisodeItem(sectionItem);
-    } else if (sectionItem.item
-        is Fragment$Section$$DefaultGridSection$items$items$item$$Show) {
-      return _GridShowItem(sectionItem);
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 16),
+      child: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            if (data.title != null)
+              Container(
+                padding: const EdgeInsets.only(
+                  top: 20,
+                  bottom: 5,
+                ),
+                child: Text(
+                  data.title!,
+                  style: BtvTextStyles.title2,
+                ),
+              ),
+            GridSectionList(size: data.gridSize, sectionItems: data.items.items)
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class GridSectionList extends StatelessWidget {
+  const GridSectionList(
+      {super.key, required this.size, required this.sectionItems});
+
+  final Enum$GridSectionSize size;
+  final List<Fragment$GridSectionItem> sectionItems;
+
+  Widget getItemWidget(Fragment$GridSectionItem sectionItem) {
+    var episode =
+        sectionItem.item.asOrNull<Fragment$GridSectionItem$item$$Episode>();
+    if (episode != null) {
+      return _GridEpisodeItem(sectionItem: sectionItem, episode: episode);
+    }
+    var show = sectionItem.item.asOrNull<Fragment$GridSectionItem$item$$Show>();
+    if (show != null) {
+      return _GridShowItem(sectionItem: sectionItem, show: show);
     }
     return const SizedBox();
   }
 
   @override
   Widget build(BuildContext context) {
-    final sectionItems = data.items.items;
     final colSize =
-        _columnSize[data.gridSize] ?? _columnSize[Enum$GridSectionSize.half]!;
+        _columnSize[size] ?? _columnSize[Enum$GridSectionSize.half]!;
     final rowSize = (sectionItems.length / colSize).ceil();
 
     final rows = List<GridRow>.generate(rowSize, (rowIndex) {
@@ -53,44 +87,25 @@ class DefaultGridSection extends StatelessWidget {
         colSize: colSize,
       );
     });
-
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 16),
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          if (data.title != null)
-            Container(
-              padding: const EdgeInsets.only(
-                top: 20,
-                bottom: 5,
-              ),
-              child: Text(
-                data.title!,
-                style: BtvTextStyles.title2,
-              ),
-            ),
-          ...rows
-        ],
-      ),
-    );
+    return ListView.builder(
+        primary: true,
+        shrinkWrap: true,
+        physics: NeverScrollableScrollPhysics(),
+        itemCount: rows.length,
+        itemBuilder: (context, index) => rows[index]);
   }
 }
 
 class _GridEpisodeItem extends StatelessWidget {
-  final Fragment$Section$$DefaultGridSection$items$items sectionItem;
-  final Fragment$Section$$DefaultGridSection$items$items$item$$Episode episode;
+  final Fragment$GridSectionItem sectionItem;
+  final Fragment$GridSectionItem$item$$Episode episode;
+  _GridEpisodeItem({required this.sectionItem, required this.episode});
 
   // TODO: Remove these temp variables
   bool get watched =>
       episode.progress != null && episode.progress! > episode.duration * 0.9;
   bool isLive = false;
   bool isNewItem = false;
-
-  _GridEpisodeItem(this.sectionItem)
-      : episode = sectionItem.item
-            as Fragment$Section$$DefaultGridSection$items$items$item$$Episode;
 
   @override
   Widget build(BuildContext context) {
@@ -222,15 +237,12 @@ class _GridEpisodeItem extends StatelessWidget {
 }
 
 class _GridShowItem extends StatelessWidget {
-  final Fragment$Section$$DefaultGridSection$items$items sectionItem;
-  final Fragment$Section$$DefaultGridSection$items$items$item$$Show show;
+  final Fragment$GridSectionItem sectionItem;
+  final Fragment$GridSectionItem$item$$Show show;
+  _GridShowItem({required this.sectionItem, required this.show});
 
   // TODO: Remove this
   bool hasNewEpisodes = false;
-
-  _GridShowItem(this.sectionItem)
-      : show = sectionItem.item
-            as Fragment$Section$$DefaultGridSection$items$items$item$$Show;
 
   @override
   Widget build(BuildContext context) {

@@ -4,6 +4,7 @@ import 'package:flutter/widgets.dart' as widgets;
 import 'package:gql/ast.dart';
 import 'package:graphql/client.dart' as graphql;
 import 'package:graphql_flutter/graphql_flutter.dart' as graphql_flutter;
+import 'page.graphql.dart';
 
 class Fragment$SeasonListEpisode {
   Fragment$SeasonListEpisode({
@@ -1304,6 +1305,40 @@ const documentNodeQueryFetchEpisode = DocumentNode(definitions: [
             selectionSet: null,
           ),
           FieldNode(
+            name: NameNode(value: 'relatedItems'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: SelectionSetNode(selections: [
+              FieldNode(
+                name: NameNode(value: 'items'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: SelectionSetNode(selections: [
+                  FragmentSpreadNode(
+                    name: NameNode(value: 'GridSectionItem'),
+                    directives: [],
+                  ),
+                  FieldNode(
+                    name: NameNode(value: '__typename'),
+                    alias: null,
+                    arguments: [],
+                    directives: [],
+                    selectionSet: null,
+                  ),
+                ]),
+              ),
+              FieldNode(
+                name: NameNode(value: '__typename'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null,
+              ),
+            ]),
+          ),
+          FieldNode(
             name: NameNode(value: 'streams'),
             alias: null,
             arguments: [],
@@ -1507,6 +1542,8 @@ const documentNodeQueryFetchEpisode = DocumentNode(definitions: [
       ),
     ]),
   ),
+  fragmentDefinitionGridSectionItem,
+  fragmentDefinitionItemSectionItem,
   fragmentDefinitionSeasonListEpisode,
 ]);
 Query$FetchEpisode _parserFn$Query$FetchEpisode(Map<String, dynamic> data) =>
@@ -1645,6 +1682,7 @@ class Query$FetchEpisode$episode {
     required this.duration,
     this.progress,
     required this.ageRating,
+    this.relatedItems,
     required this.streams,
     this.season,
     required this.$__typename,
@@ -1660,6 +1698,7 @@ class Query$FetchEpisode$episode {
     final l$duration = json['duration'];
     final l$progress = json['progress'];
     final l$ageRating = json['ageRating'];
+    final l$relatedItems = json['relatedItems'];
     final l$streams = json['streams'];
     final l$season = json['season'];
     final l$$__typename = json['__typename'];
@@ -1673,6 +1712,10 @@ class Query$FetchEpisode$episode {
       duration: (l$duration as int),
       progress: (l$progress as int?),
       ageRating: (l$ageRating as String),
+      relatedItems: l$relatedItems == null
+          ? null
+          : Query$FetchEpisode$episode$relatedItems.fromJson(
+              (l$relatedItems as Map<String, dynamic>)),
       streams: (l$streams as List<dynamic>)
           .map((e) => Query$FetchEpisode$episode$streams.fromJson(
               (e as Map<String, dynamic>)))
@@ -1703,6 +1746,8 @@ class Query$FetchEpisode$episode {
 
   final String ageRating;
 
+  final Query$FetchEpisode$episode$relatedItems? relatedItems;
+
   final List<Query$FetchEpisode$episode$streams> streams;
 
   final Query$FetchEpisode$episode$season? season;
@@ -1729,6 +1774,8 @@ class Query$FetchEpisode$episode {
     _resultData['progress'] = l$progress;
     final l$ageRating = ageRating;
     _resultData['ageRating'] = l$ageRating;
+    final l$relatedItems = relatedItems;
+    _resultData['relatedItems'] = l$relatedItems?.toJson();
     final l$streams = streams;
     _resultData['streams'] = l$streams.map((e) => e.toJson()).toList();
     final l$season = season;
@@ -1749,6 +1796,7 @@ class Query$FetchEpisode$episode {
     final l$duration = duration;
     final l$progress = progress;
     final l$ageRating = ageRating;
+    final l$relatedItems = relatedItems;
     final l$streams = streams;
     final l$season = season;
     final l$$__typename = $__typename;
@@ -1762,6 +1810,7 @@ class Query$FetchEpisode$episode {
       l$duration,
       l$progress,
       l$ageRating,
+      l$relatedItems,
       Object.hashAll(l$streams.map((v) => v)),
       l$season,
       l$$__typename,
@@ -1822,6 +1871,11 @@ class Query$FetchEpisode$episode {
     if (l$ageRating != lOther$ageRating) {
       return false;
     }
+    final l$relatedItems = relatedItems;
+    final lOther$relatedItems = other.relatedItems;
+    if (l$relatedItems != lOther$relatedItems) {
+      return false;
+    }
     final l$streams = streams;
     final lOther$streams = other.streams;
     if (l$streams.length != lOther$streams.length) {
@@ -1876,10 +1930,12 @@ abstract class CopyWith$Query$FetchEpisode$episode<TRes> {
     int? duration,
     int? progress,
     String? ageRating,
+    Query$FetchEpisode$episode$relatedItems? relatedItems,
     List<Query$FetchEpisode$episode$streams>? streams,
     Query$FetchEpisode$episode$season? season,
     String? $__typename,
   });
+  CopyWith$Query$FetchEpisode$episode$relatedItems<TRes> get relatedItems;
   TRes streams(
       Iterable<Query$FetchEpisode$episode$streams> Function(
               Iterable<
@@ -1912,6 +1968,7 @@ class _CopyWithImpl$Query$FetchEpisode$episode<TRes>
     Object? duration = _undefined,
     Object? progress = _undefined,
     Object? ageRating = _undefined,
+    Object? relatedItems = _undefined,
     Object? streams = _undefined,
     Object? season = _undefined,
     Object? $__typename = _undefined,
@@ -1939,6 +1996,9 @@ class _CopyWithImpl$Query$FetchEpisode$episode<TRes>
         ageRating: ageRating == _undefined || ageRating == null
             ? _instance.ageRating
             : (ageRating as String),
+        relatedItems: relatedItems == _undefined
+            ? _instance.relatedItems
+            : (relatedItems as Query$FetchEpisode$episode$relatedItems?),
         streams: streams == _undefined || streams == null
             ? _instance.streams
             : (streams as List<Query$FetchEpisode$episode$streams>),
@@ -1949,6 +2009,15 @@ class _CopyWithImpl$Query$FetchEpisode$episode<TRes>
             ? _instance.$__typename
             : ($__typename as String),
       ));
+  CopyWith$Query$FetchEpisode$episode$relatedItems<TRes> get relatedItems {
+    final local$relatedItems = _instance.relatedItems;
+    return local$relatedItems == null
+        ? CopyWith$Query$FetchEpisode$episode$relatedItems.stub(
+            _then(_instance))
+        : CopyWith$Query$FetchEpisode$episode$relatedItems(
+            local$relatedItems, (e) => call(relatedItems: e));
+  }
+
   TRes streams(
           Iterable<Query$FetchEpisode$episode$streams> Function(
                   Iterable<
@@ -1986,14 +2055,172 @@ class _CopyWithStubImpl$Query$FetchEpisode$episode<TRes>
     int? duration,
     int? progress,
     String? ageRating,
+    Query$FetchEpisode$episode$relatedItems? relatedItems,
     List<Query$FetchEpisode$episode$streams>? streams,
     Query$FetchEpisode$episode$season? season,
     String? $__typename,
   }) =>
       _res;
+  CopyWith$Query$FetchEpisode$episode$relatedItems<TRes> get relatedItems =>
+      CopyWith$Query$FetchEpisode$episode$relatedItems.stub(_res);
   streams(_fn) => _res;
   CopyWith$Query$FetchEpisode$episode$season<TRes> get season =>
       CopyWith$Query$FetchEpisode$episode$season.stub(_res);
+}
+
+class Query$FetchEpisode$episode$relatedItems {
+  Query$FetchEpisode$episode$relatedItems({
+    required this.items,
+    required this.$__typename,
+  });
+
+  factory Query$FetchEpisode$episode$relatedItems.fromJson(
+      Map<String, dynamic> json) {
+    final l$items = json['items'];
+    final l$$__typename = json['__typename'];
+    return Query$FetchEpisode$episode$relatedItems(
+      items: (l$items as List<dynamic>)
+          .map((e) =>
+              Fragment$GridSectionItem.fromJson((e as Map<String, dynamic>)))
+          .toList(),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final List<Fragment$GridSectionItem> items;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$items = items;
+    _resultData['items'] = l$items.map((e) => e.toJson()).toList();
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$items = items;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      Object.hashAll(l$items.map((v) => v)),
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (!(other is Query$FetchEpisode$episode$relatedItems) ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$items = items;
+    final lOther$items = other.items;
+    if (l$items.length != lOther$items.length) {
+      return false;
+    }
+    for (int i = 0; i < l$items.length; i++) {
+      final l$items$entry = l$items[i];
+      final lOther$items$entry = lOther$items[i];
+      if (l$items$entry != lOther$items$entry) {
+        return false;
+      }
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Query$FetchEpisode$episode$relatedItems
+    on Query$FetchEpisode$episode$relatedItems {
+  CopyWith$Query$FetchEpisode$episode$relatedItems<
+          Query$FetchEpisode$episode$relatedItems>
+      get copyWith => CopyWith$Query$FetchEpisode$episode$relatedItems(
+            this,
+            (i) => i,
+          );
+}
+
+abstract class CopyWith$Query$FetchEpisode$episode$relatedItems<TRes> {
+  factory CopyWith$Query$FetchEpisode$episode$relatedItems(
+    Query$FetchEpisode$episode$relatedItems instance,
+    TRes Function(Query$FetchEpisode$episode$relatedItems) then,
+  ) = _CopyWithImpl$Query$FetchEpisode$episode$relatedItems;
+
+  factory CopyWith$Query$FetchEpisode$episode$relatedItems.stub(TRes res) =
+      _CopyWithStubImpl$Query$FetchEpisode$episode$relatedItems;
+
+  TRes call({
+    List<Fragment$GridSectionItem>? items,
+    String? $__typename,
+  });
+  TRes items(
+      Iterable<Fragment$GridSectionItem> Function(
+              Iterable<
+                  CopyWith$Fragment$GridSectionItem<Fragment$GridSectionItem>>)
+          _fn);
+}
+
+class _CopyWithImpl$Query$FetchEpisode$episode$relatedItems<TRes>
+    implements CopyWith$Query$FetchEpisode$episode$relatedItems<TRes> {
+  _CopyWithImpl$Query$FetchEpisode$episode$relatedItems(
+    this._instance,
+    this._then,
+  );
+
+  final Query$FetchEpisode$episode$relatedItems _instance;
+
+  final TRes Function(Query$FetchEpisode$episode$relatedItems) _then;
+
+  static const _undefined = {};
+
+  TRes call({
+    Object? items = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(Query$FetchEpisode$episode$relatedItems(
+        items: items == _undefined || items == null
+            ? _instance.items
+            : (items as List<Fragment$GridSectionItem>),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+  TRes items(
+          Iterable<Fragment$GridSectionItem> Function(
+                  Iterable<
+                      CopyWith$Fragment$GridSectionItem<
+                          Fragment$GridSectionItem>>)
+              _fn) =>
+      call(
+          items:
+              _fn(_instance.items.map((e) => CopyWith$Fragment$GridSectionItem(
+                    e,
+                    (i) => i,
+                  ))).toList());
+}
+
+class _CopyWithStubImpl$Query$FetchEpisode$episode$relatedItems<TRes>
+    implements CopyWith$Query$FetchEpisode$episode$relatedItems<TRes> {
+  _CopyWithStubImpl$Query$FetchEpisode$episode$relatedItems(this._res);
+
+  TRes _res;
+
+  call({
+    List<Fragment$GridSectionItem>? items,
+    String? $__typename,
+  }) =>
+      _res;
+  items(_fn) => _res;
 }
 
 class Query$FetchEpisode$episode$streams {

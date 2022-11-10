@@ -9,6 +9,11 @@ query FetchEpisode($id: ID!) {
     duration
     progress
     ageRating
+    relatedItems {
+      items {
+        ...GridSectionItem
+      }
+    }
     streams {
       type
       url

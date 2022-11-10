@@ -7,6 +7,7 @@ import 'package:url_launcher/url_launcher_string.dart';
 import '../graphql/queries/page.graphql.dart';
 import '../providers/video_state.dart';
 import '../router/router.gr.dart';
+import 'navigation_override.dart';
 
 T? cast<T>(x) => x is T ? x : null;
 
@@ -55,23 +56,33 @@ FutureBuilder simpleFutureBuilder<T>(
       });
 }
 
+Future overrideAwareNavigation(
+    BuildContext context, PageRouteInfo<dynamic> route) {
+  if (NavigationOverride.of(context)?.pushInsteadOfReplace == true) {
+    return context.router.push(route);
+  } else {
+    return context.router.navigate(route);
+  }
+}
+
 Future<dynamic>? handleSectionItemClick(
     BuildContext context, Fragment$ItemSectionItem$item item) {
   var episodeItem = item.asOrNull<Fragment$ItemSectionItem$item$$Episode>();
   if (episodeItem != null) {
-    return context.router
-        .navigate(EpisodeScreenRoute(episodeId: episodeItem.id));
+    return overrideAwareNavigation(
+        context, EpisodeScreenRoute(episodeId: episodeItem.id));
   }
 
   var showItem = item.asOrNull<Fragment$ItemSectionItem$item$$Show>();
   if (showItem != null) {
-    return context.router
-        .navigate(EpisodeScreenRoute(episodeId: showItem.defaultEpisode.id));
+    return overrideAwareNavigation(
+        context, EpisodeScreenRoute(episodeId: showItem.defaultEpisode.id));
   }
 
   var pageItem = item.asOrNull<Fragment$ItemSectionItem$item$$Page>();
   if (pageItem != null) {
-    return context.router.navigate(PageScreenRoute(pageCode: pageItem.code));
+    return overrideAwareNavigation(
+        context, PageScreenRoute(pageCode: pageItem.code));
   }
 
   var linkItem = item.asOrNull<Fragment$ItemSectionItem$item$$Link>();

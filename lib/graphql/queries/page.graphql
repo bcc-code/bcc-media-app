@@ -1,3 +1,25 @@
+fragment GridSectionItem on SectionItem {
+  ...ItemSectionItem
+  item {
+    ... on Show {
+      episodeCount
+      seasonCount
+    }
+    ... on Episode {
+      availableFrom
+      duration
+      number
+      season {
+        number
+        show {
+          title
+        }
+      }
+    }
+    __typename
+  }
+}
+
 fragment ItemSectionItem on SectionItem {
   id
   title
@@ -93,24 +115,7 @@ fragment Section on Section {
     gridSize: size
     items {
       items {
-        item {
-          ... on Show {
-            episodeCount
-            seasonCount
-          }
-          ... on Episode {
-            availableFrom
-            duration
-            number
-            season {
-              number
-              show {
-                title
-              }
-            }
-          }
-          __typename
-        }
+        ...GridSectionItem
       }
     }
   }
