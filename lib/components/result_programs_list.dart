@@ -1,3 +1,5 @@
+import 'package:brunstadtv_app/components/loading_indicator.dart';
+import 'package:brunstadtv_app/helpers/utils.dart';
 import 'package:extended_image/extended_image.dart';
 import 'package:flutter/material.dart';
 import 'package:brunstadtv_app/graphql/queries/search.graphql.dart';
@@ -41,31 +43,67 @@ class ResultProgramsList extends StatelessWidget {
   }
 }
 
-class _Program extends StatelessWidget {
+class _Program extends StatefulWidget {
   final Fragment$SearchResultItem$$ShowSearchItem _item;
-  final _slideWidth = 140.0;
 
   const _Program(this._item);
 
   @override
+  State<_Program> createState() => _ProgramState();
+}
+
+class _ProgramState extends State<_Program> {
+  static const _slideWidth = 140.0;
+  Future? navigationFuture;
+
+  @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      width: _slideWidth,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          AspectRatio(
-            aspectRatio: 16 / 9,
-            child: BorderedImageContainer(imageUrl: _item.image),
+    return Stack(
+      children: [
+        GestureDetector(
+          behavior: HitTestBehavior.opaque,
+          onTap: () {
+            setState(() {
+              navigationFuture =
+                  navigateToShowWithoutEpisodeId(context, widget._item.id);
+            });
+          },
+          child: SizedBox(
+            width: _slideWidth,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Stack(
+                  children: [
+                    AspectRatio(
+                      aspectRatio: 16 / 9,
+                      child:
+                          BorderedImageContainer(imageUrl: widget._item.image),
+                    ),
+                    if (navigationFuture != null)
+                      simpleFutureBuilder(
+                          future: navigationFuture!,
+                          loading: () => Positioned.fill(
+                              child: Container(
+                                  color: BtvColors.background1.withOpacity(0.5),
+                                  child:
+                                      const Center(child: LoadingIndicator()))),
+                          error: (e) => const SizedBox.shrink(),
+                          noData: () => const SizedBox.shrink(),
+                          ready: (d) => const SizedBox.shrink()),
+                  ],
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(top: 7),
+                  child: Text(widget._item.title,
+                      style: BtvTextStyles.caption1
+                          .copyWith(color: BtvColors.label1)),
+                ),
+              ],
+            ),
           ),
-          Padding(
-            padding: const EdgeInsets.only(top: 7),
-            child: Text(_item.title,
-                style:
-                    BtvTextStyles.caption1.copyWith(color: BtvColors.label1)),
-          ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 }

@@ -77,3 +77,11 @@ fragment EpisodeDetails on Episode {
     }
   }
 }
+
+query getDefaultEpisodeForShow($showId: ID!) {
+  show(id: $showId) {
+    defaultEpisode {
+      id
+    }
+  }
+}

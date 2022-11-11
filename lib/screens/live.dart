@@ -177,7 +177,7 @@ class _LiveScreenState extends ConsumerState<LiveScreen> with AutoRouteAware {
             child: SizedBox(width: 24, child: CastButton()),
           ),
           Padding(
-            padding: const EdgeInsets.only(right: 16),
+            padding: const EdgeInsets.only(right: 8),
             child: Switch(
               inactiveTrackColor: BtvColors.tint2,
               inactiveThumbColor: BtvColors.label1,

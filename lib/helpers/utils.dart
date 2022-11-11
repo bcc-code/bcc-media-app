@@ -1,10 +1,13 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:brunstadtv_app/graphql/client.dart';
+import 'package:brunstadtv_app/graphql/queries/episode.graphql.dart';
 import 'package:extended_image/extended_image.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 
 import '../graphql/queries/page.graphql.dart';
+import '../graphql/queries/search.graphql.dart';
 import '../providers/video_state.dart';
 import '../router/router.gr.dart';
 import 'navigation_override.dart';
@@ -56,33 +59,35 @@ FutureBuilder simpleFutureBuilder<T>(
       });
 }
 
-Future overrideAwareNavigation(
-    BuildContext context, PageRouteInfo<dynamic> route) {
-  if (NavigationOverride.of(context)?.pushInsteadOfReplace == true) {
-    return context.router.push(route);
+Future overrideAwareNavigation(NavigationOverride? override, StackRouter router,
+    PageRouteInfo<dynamic> route) {
+  if (override?.pushInsteadOfReplace == true) {
+    return router.push(route);
   } else {
-    return context.router.navigate(route);
+    return router.navigate(route);
   }
 }
 
 Future<dynamic>? handleSectionItemClick(
     BuildContext context, Fragment$ItemSectionItem$item item) {
+  final navigationOverride = NavigationOverride.of(context);
+  final router = context.router;
   var episodeItem = item.asOrNull<Fragment$ItemSectionItem$item$$Episode>();
   if (episodeItem != null) {
-    return overrideAwareNavigation(
-        context, EpisodeScreenRoute(episodeId: episodeItem.id));
+    return overrideAwareNavigation(navigationOverride, router,
+        EpisodeScreenRoute(episodeId: episodeItem.id));
   }
 
   var showItem = item.asOrNull<Fragment$ItemSectionItem$item$$Show>();
   if (showItem != null) {
-    return overrideAwareNavigation(
-        context, EpisodeScreenRoute(episodeId: showItem.defaultEpisode.id));
+    return overrideAwareNavigation(navigationOverride, router,
+        EpisodeScreenRoute(episodeId: showItem.defaultEpisode.id));
   }
 
   var pageItem = item.asOrNull<Fragment$ItemSectionItem$item$$Page>();
   if (pageItem != null) {
     return overrideAwareNavigation(
-        context, PageScreenRoute(pageCode: pageItem.code));
+        navigationOverride, router, PageScreenRoute(pageCode: pageItem.code));
   }
 
   var linkItem = item.asOrNull<Fragment$ItemSectionItem$item$$Link>();
@@ -91,4 +96,21 @@ Future<dynamic>? handleSectionItemClick(
   }
 
   return null;
+}
+
+Future<dynamic>? navigateToShowWithoutEpisodeId(
+    BuildContext context, String showId) async {
+  debugPrint('navigateToShowWithoutEpisodeId');
+  final navigationOverride = NavigationOverride.of(context);
+  final router = context.router;
+  final result = await ProviderScope.containerOf(context, listen: false)
+      .read(gqlClientProvider)
+      .query$getDefaultEpisodeForShow(Options$Query$getDefaultEpisodeForShow(
+          variables: Variables$Query$getDefaultEpisodeForShow(showId: showId)));
+  final episodeId = result?.parsedData?.$show.defaultEpisode.id;
+  if (episodeId == null) {
+    throw ErrorHint('Failed getting defaultEpisodeId for show $showId');
+  }
+  return overrideAwareNavigation(
+      navigationOverride, router, EpisodeScreenRoute(episodeId: episodeId));
 }

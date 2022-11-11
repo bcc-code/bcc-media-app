@@ -4298,3 +4298,714 @@ class Query$EpisodeDetails$Widget
           builder: builder,
         );
 }
+
+class Variables$Query$getDefaultEpisodeForShow {
+  factory Variables$Query$getDefaultEpisodeForShow({required String showId}) =>
+      Variables$Query$getDefaultEpisodeForShow._({
+        r'showId': showId,
+      });
+
+  Variables$Query$getDefaultEpisodeForShow._(this._$data);
+
+  factory Variables$Query$getDefaultEpisodeForShow.fromJson(
+      Map<String, dynamic> data) {
+    final result$data = <String, dynamic>{};
+    final l$showId = data['showId'];
+    result$data['showId'] = (l$showId as String);
+    return Variables$Query$getDefaultEpisodeForShow._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  String get showId => (_$data['showId'] as String);
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    final l$showId = showId;
+    result$data['showId'] = l$showId;
+    return result$data;
+  }
+
+  CopyWith$Variables$Query$getDefaultEpisodeForShow<
+          Variables$Query$getDefaultEpisodeForShow>
+      get copyWith => CopyWith$Variables$Query$getDefaultEpisodeForShow(
+            this,
+            (i) => i,
+          );
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (!(other is Variables$Query$getDefaultEpisodeForShow) ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$showId = showId;
+    final lOther$showId = other.showId;
+    if (l$showId != lOther$showId) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$showId = showId;
+    return Object.hashAll([l$showId]);
+  }
+}
+
+abstract class CopyWith$Variables$Query$getDefaultEpisodeForShow<TRes> {
+  factory CopyWith$Variables$Query$getDefaultEpisodeForShow(
+    Variables$Query$getDefaultEpisodeForShow instance,
+    TRes Function(Variables$Query$getDefaultEpisodeForShow) then,
+  ) = _CopyWithImpl$Variables$Query$getDefaultEpisodeForShow;
+
+  factory CopyWith$Variables$Query$getDefaultEpisodeForShow.stub(TRes res) =
+      _CopyWithStubImpl$Variables$Query$getDefaultEpisodeForShow;
+
+  TRes call({String? showId});
+}
+
+class _CopyWithImpl$Variables$Query$getDefaultEpisodeForShow<TRes>
+    implements CopyWith$Variables$Query$getDefaultEpisodeForShow<TRes> {
+  _CopyWithImpl$Variables$Query$getDefaultEpisodeForShow(
+    this._instance,
+    this._then,
+  );
+
+  final Variables$Query$getDefaultEpisodeForShow _instance;
+
+  final TRes Function(Variables$Query$getDefaultEpisodeForShow) _then;
+
+  static const _undefined = {};
+
+  TRes call({Object? showId = _undefined}) =>
+      _then(Variables$Query$getDefaultEpisodeForShow._({
+        ..._instance._$data,
+        if (showId != _undefined && showId != null)
+          'showId': (showId as String),
+      }));
+}
+
+class _CopyWithStubImpl$Variables$Query$getDefaultEpisodeForShow<TRes>
+    implements CopyWith$Variables$Query$getDefaultEpisodeForShow<TRes> {
+  _CopyWithStubImpl$Variables$Query$getDefaultEpisodeForShow(this._res);
+
+  TRes _res;
+
+  call({String? showId}) => _res;
+}
+
+class Query$getDefaultEpisodeForShow {
+  Query$getDefaultEpisodeForShow({
+    required this.$show,
+    required this.$__typename,
+  });
+
+  factory Query$getDefaultEpisodeForShow.fromJson(Map<String, dynamic> json) {
+    final l$$show = json['show'];
+    final l$$__typename = json['__typename'];
+    return Query$getDefaultEpisodeForShow(
+      $show: Query$getDefaultEpisodeForShow$show.fromJson(
+          (l$$show as Map<String, dynamic>)),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final Query$getDefaultEpisodeForShow$show $show;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$$show = $show;
+    _resultData['show'] = l$$show.toJson();
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$$show = $show;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$$show,
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (!(other is Query$getDefaultEpisodeForShow) ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$$show = $show;
+    final lOther$$show = other.$show;
+    if (l$$show != lOther$$show) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Query$getDefaultEpisodeForShow
+    on Query$getDefaultEpisodeForShow {
+  CopyWith$Query$getDefaultEpisodeForShow<Query$getDefaultEpisodeForShow>
+      get copyWith => CopyWith$Query$getDefaultEpisodeForShow(
+            this,
+            (i) => i,
+          );
+}
+
+abstract class CopyWith$Query$getDefaultEpisodeForShow<TRes> {
+  factory CopyWith$Query$getDefaultEpisodeForShow(
+    Query$getDefaultEpisodeForShow instance,
+    TRes Function(Query$getDefaultEpisodeForShow) then,
+  ) = _CopyWithImpl$Query$getDefaultEpisodeForShow;
+
+  factory CopyWith$Query$getDefaultEpisodeForShow.stub(TRes res) =
+      _CopyWithStubImpl$Query$getDefaultEpisodeForShow;
+
+  TRes call({
+    Query$getDefaultEpisodeForShow$show? $show,
+    String? $__typename,
+  });
+  CopyWith$Query$getDefaultEpisodeForShow$show<TRes> get $show;
+}
+
+class _CopyWithImpl$Query$getDefaultEpisodeForShow<TRes>
+    implements CopyWith$Query$getDefaultEpisodeForShow<TRes> {
+  _CopyWithImpl$Query$getDefaultEpisodeForShow(
+    this._instance,
+    this._then,
+  );
+
+  final Query$getDefaultEpisodeForShow _instance;
+
+  final TRes Function(Query$getDefaultEpisodeForShow) _then;
+
+  static const _undefined = {};
+
+  TRes call({
+    Object? $show = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(Query$getDefaultEpisodeForShow(
+        $show: $show == _undefined || $show == null
+            ? _instance.$show
+            : ($show as Query$getDefaultEpisodeForShow$show),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+  CopyWith$Query$getDefaultEpisodeForShow$show<TRes> get $show {
+    final local$$show = _instance.$show;
+    return CopyWith$Query$getDefaultEpisodeForShow$show(
+        local$$show, (e) => call($show: e));
+  }
+}
+
+class _CopyWithStubImpl$Query$getDefaultEpisodeForShow<TRes>
+    implements CopyWith$Query$getDefaultEpisodeForShow<TRes> {
+  _CopyWithStubImpl$Query$getDefaultEpisodeForShow(this._res);
+
+  TRes _res;
+
+  call({
+    Query$getDefaultEpisodeForShow$show? $show,
+    String? $__typename,
+  }) =>
+      _res;
+  CopyWith$Query$getDefaultEpisodeForShow$show<TRes> get $show =>
+      CopyWith$Query$getDefaultEpisodeForShow$show.stub(_res);
+}
+
+const documentNodeQuerygetDefaultEpisodeForShow = DocumentNode(definitions: [
+  OperationDefinitionNode(
+    type: OperationType.query,
+    name: NameNode(value: 'getDefaultEpisodeForShow'),
+    variableDefinitions: [
+      VariableDefinitionNode(
+        variable: VariableNode(name: NameNode(value: 'showId')),
+        type: NamedTypeNode(
+          name: NameNode(value: 'ID'),
+          isNonNull: true,
+        ),
+        defaultValue: DefaultValueNode(value: null),
+        directives: [],
+      )
+    ],
+    directives: [],
+    selectionSet: SelectionSetNode(selections: [
+      FieldNode(
+        name: NameNode(value: 'show'),
+        alias: null,
+        arguments: [
+          ArgumentNode(
+            name: NameNode(value: 'id'),
+            value: VariableNode(name: NameNode(value: 'showId')),
+          )
+        ],
+        directives: [],
+        selectionSet: SelectionSetNode(selections: [
+          FieldNode(
+            name: NameNode(value: 'defaultEpisode'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: SelectionSetNode(selections: [
+              FieldNode(
+                name: NameNode(value: 'id'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null,
+              ),
+              FieldNode(
+                name: NameNode(value: '__typename'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null,
+              ),
+            ]),
+          ),
+          FieldNode(
+            name: NameNode(value: '__typename'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+        ]),
+      ),
+      FieldNode(
+        name: NameNode(value: '__typename'),
+        alias: null,
+        arguments: [],
+        directives: [],
+        selectionSet: null,
+      ),
+    ]),
+  ),
+]);
+Query$getDefaultEpisodeForShow _parserFn$Query$getDefaultEpisodeForShow(
+        Map<String, dynamic> data) =>
+    Query$getDefaultEpisodeForShow.fromJson(data);
+
+class Options$Query$getDefaultEpisodeForShow
+    extends graphql.QueryOptions<Query$getDefaultEpisodeForShow> {
+  Options$Query$getDefaultEpisodeForShow({
+    String? operationName,
+    required Variables$Query$getDefaultEpisodeForShow variables,
+    graphql.FetchPolicy? fetchPolicy,
+    graphql.ErrorPolicy? errorPolicy,
+    graphql.CacheRereadPolicy? cacheRereadPolicy,
+    Object? optimisticResult,
+    Duration? pollInterval,
+    graphql.Context? context,
+  }) : super(
+          variables: variables.toJson(),
+          operationName: operationName,
+          fetchPolicy: fetchPolicy,
+          errorPolicy: errorPolicy,
+          cacheRereadPolicy: cacheRereadPolicy,
+          optimisticResult: optimisticResult,
+          pollInterval: pollInterval,
+          context: context,
+          document: documentNodeQuerygetDefaultEpisodeForShow,
+          parserFn: _parserFn$Query$getDefaultEpisodeForShow,
+        );
+}
+
+class WatchOptions$Query$getDefaultEpisodeForShow
+    extends graphql.WatchQueryOptions<Query$getDefaultEpisodeForShow> {
+  WatchOptions$Query$getDefaultEpisodeForShow({
+    String? operationName,
+    required Variables$Query$getDefaultEpisodeForShow variables,
+    graphql.FetchPolicy? fetchPolicy,
+    graphql.ErrorPolicy? errorPolicy,
+    graphql.CacheRereadPolicy? cacheRereadPolicy,
+    Object? optimisticResult,
+    graphql.Context? context,
+    Duration? pollInterval,
+    bool? eagerlyFetchResults,
+    bool carryForwardDataOnException = true,
+    bool fetchResults = false,
+  }) : super(
+          variables: variables.toJson(),
+          operationName: operationName,
+          fetchPolicy: fetchPolicy,
+          errorPolicy: errorPolicy,
+          cacheRereadPolicy: cacheRereadPolicy,
+          optimisticResult: optimisticResult,
+          context: context,
+          document: documentNodeQuerygetDefaultEpisodeForShow,
+          pollInterval: pollInterval,
+          eagerlyFetchResults: eagerlyFetchResults,
+          carryForwardDataOnException: carryForwardDataOnException,
+          fetchResults: fetchResults,
+          parserFn: _parserFn$Query$getDefaultEpisodeForShow,
+        );
+}
+
+class FetchMoreOptions$Query$getDefaultEpisodeForShow
+    extends graphql.FetchMoreOptions {
+  FetchMoreOptions$Query$getDefaultEpisodeForShow({
+    required graphql.UpdateQuery updateQuery,
+    required Variables$Query$getDefaultEpisodeForShow variables,
+  }) : super(
+          updateQuery: updateQuery,
+          variables: variables.toJson(),
+          document: documentNodeQuerygetDefaultEpisodeForShow,
+        );
+}
+
+extension ClientExtension$Query$getDefaultEpisodeForShow
+    on graphql.GraphQLClient {
+  Future<graphql.QueryResult<Query$getDefaultEpisodeForShow>>
+      query$getDefaultEpisodeForShow(
+              Options$Query$getDefaultEpisodeForShow options) async =>
+          await this.query(options);
+  graphql.ObservableQuery<Query$getDefaultEpisodeForShow>
+      watchQuery$getDefaultEpisodeForShow(
+              WatchOptions$Query$getDefaultEpisodeForShow options) =>
+          this.watchQuery(options);
+  void writeQuery$getDefaultEpisodeForShow({
+    required Query$getDefaultEpisodeForShow data,
+    required Variables$Query$getDefaultEpisodeForShow variables,
+    bool broadcast = true,
+  }) =>
+      this.writeQuery(
+        graphql.Request(
+          operation: graphql.Operation(
+              document: documentNodeQuerygetDefaultEpisodeForShow),
+          variables: variables.toJson(),
+        ),
+        data: data.toJson(),
+        broadcast: broadcast,
+      );
+  Query$getDefaultEpisodeForShow? readQuery$getDefaultEpisodeForShow({
+    required Variables$Query$getDefaultEpisodeForShow variables,
+    bool optimistic = true,
+  }) {
+    final result = this.readQuery(
+      graphql.Request(
+        operation: graphql.Operation(
+            document: documentNodeQuerygetDefaultEpisodeForShow),
+        variables: variables.toJson(),
+      ),
+      optimistic: optimistic,
+    );
+    return result == null
+        ? null
+        : Query$getDefaultEpisodeForShow.fromJson(result);
+  }
+}
+
+graphql_flutter.QueryHookResult<Query$getDefaultEpisodeForShow>
+    useQuery$getDefaultEpisodeForShow(
+            Options$Query$getDefaultEpisodeForShow options) =>
+        graphql_flutter.useQuery(options);
+graphql.ObservableQuery<Query$getDefaultEpisodeForShow>
+    useWatchQuery$getDefaultEpisodeForShow(
+            WatchOptions$Query$getDefaultEpisodeForShow options) =>
+        graphql_flutter.useWatchQuery(options);
+
+class Query$getDefaultEpisodeForShow$Widget
+    extends graphql_flutter.Query<Query$getDefaultEpisodeForShow> {
+  Query$getDefaultEpisodeForShow$Widget({
+    widgets.Key? key,
+    required Options$Query$getDefaultEpisodeForShow options,
+    required graphql_flutter.QueryBuilder<Query$getDefaultEpisodeForShow>
+        builder,
+  }) : super(
+          key: key,
+          options: options,
+          builder: builder,
+        );
+}
+
+class Query$getDefaultEpisodeForShow$show {
+  Query$getDefaultEpisodeForShow$show({
+    required this.defaultEpisode,
+    required this.$__typename,
+  });
+
+  factory Query$getDefaultEpisodeForShow$show.fromJson(
+      Map<String, dynamic> json) {
+    final l$defaultEpisode = json['defaultEpisode'];
+    final l$$__typename = json['__typename'];
+    return Query$getDefaultEpisodeForShow$show(
+      defaultEpisode:
+          Query$getDefaultEpisodeForShow$show$defaultEpisode.fromJson(
+              (l$defaultEpisode as Map<String, dynamic>)),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final Query$getDefaultEpisodeForShow$show$defaultEpisode defaultEpisode;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$defaultEpisode = defaultEpisode;
+    _resultData['defaultEpisode'] = l$defaultEpisode.toJson();
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$defaultEpisode = defaultEpisode;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$defaultEpisode,
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (!(other is Query$getDefaultEpisodeForShow$show) ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$defaultEpisode = defaultEpisode;
+    final lOther$defaultEpisode = other.defaultEpisode;
+    if (l$defaultEpisode != lOther$defaultEpisode) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Query$getDefaultEpisodeForShow$show
+    on Query$getDefaultEpisodeForShow$show {
+  CopyWith$Query$getDefaultEpisodeForShow$show<
+          Query$getDefaultEpisodeForShow$show>
+      get copyWith => CopyWith$Query$getDefaultEpisodeForShow$show(
+            this,
+            (i) => i,
+          );
+}
+
+abstract class CopyWith$Query$getDefaultEpisodeForShow$show<TRes> {
+  factory CopyWith$Query$getDefaultEpisodeForShow$show(
+    Query$getDefaultEpisodeForShow$show instance,
+    TRes Function(Query$getDefaultEpisodeForShow$show) then,
+  ) = _CopyWithImpl$Query$getDefaultEpisodeForShow$show;
+
+  factory CopyWith$Query$getDefaultEpisodeForShow$show.stub(TRes res) =
+      _CopyWithStubImpl$Query$getDefaultEpisodeForShow$show;
+
+  TRes call({
+    Query$getDefaultEpisodeForShow$show$defaultEpisode? defaultEpisode,
+    String? $__typename,
+  });
+  CopyWith$Query$getDefaultEpisodeForShow$show$defaultEpisode<TRes>
+      get defaultEpisode;
+}
+
+class _CopyWithImpl$Query$getDefaultEpisodeForShow$show<TRes>
+    implements CopyWith$Query$getDefaultEpisodeForShow$show<TRes> {
+  _CopyWithImpl$Query$getDefaultEpisodeForShow$show(
+    this._instance,
+    this._then,
+  );
+
+  final Query$getDefaultEpisodeForShow$show _instance;
+
+  final TRes Function(Query$getDefaultEpisodeForShow$show) _then;
+
+  static const _undefined = {};
+
+  TRes call({
+    Object? defaultEpisode = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(Query$getDefaultEpisodeForShow$show(
+        defaultEpisode: defaultEpisode == _undefined || defaultEpisode == null
+            ? _instance.defaultEpisode
+            : (defaultEpisode
+                as Query$getDefaultEpisodeForShow$show$defaultEpisode),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+  CopyWith$Query$getDefaultEpisodeForShow$show$defaultEpisode<TRes>
+      get defaultEpisode {
+    final local$defaultEpisode = _instance.defaultEpisode;
+    return CopyWith$Query$getDefaultEpisodeForShow$show$defaultEpisode(
+        local$defaultEpisode, (e) => call(defaultEpisode: e));
+  }
+}
+
+class _CopyWithStubImpl$Query$getDefaultEpisodeForShow$show<TRes>
+    implements CopyWith$Query$getDefaultEpisodeForShow$show<TRes> {
+  _CopyWithStubImpl$Query$getDefaultEpisodeForShow$show(this._res);
+
+  TRes _res;
+
+  call({
+    Query$getDefaultEpisodeForShow$show$defaultEpisode? defaultEpisode,
+    String? $__typename,
+  }) =>
+      _res;
+  CopyWith$Query$getDefaultEpisodeForShow$show$defaultEpisode<TRes>
+      get defaultEpisode =>
+          CopyWith$Query$getDefaultEpisodeForShow$show$defaultEpisode.stub(
+              _res);
+}
+
+class Query$getDefaultEpisodeForShow$show$defaultEpisode {
+  Query$getDefaultEpisodeForShow$show$defaultEpisode({
+    required this.id,
+    required this.$__typename,
+  });
+
+  factory Query$getDefaultEpisodeForShow$show$defaultEpisode.fromJson(
+      Map<String, dynamic> json) {
+    final l$id = json['id'];
+    final l$$__typename = json['__typename'];
+    return Query$getDefaultEpisodeForShow$show$defaultEpisode(
+      id: (l$id as String),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final String id;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$id = id;
+    _resultData['id'] = l$id;
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$id = id;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$id,
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (!(other is Query$getDefaultEpisodeForShow$show$defaultEpisode) ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$id = id;
+    final lOther$id = other.id;
+    if (l$id != lOther$id) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Query$getDefaultEpisodeForShow$show$defaultEpisode
+    on Query$getDefaultEpisodeForShow$show$defaultEpisode {
+  CopyWith$Query$getDefaultEpisodeForShow$show$defaultEpisode<
+          Query$getDefaultEpisodeForShow$show$defaultEpisode>
+      get copyWith =>
+          CopyWith$Query$getDefaultEpisodeForShow$show$defaultEpisode(
+            this,
+            (i) => i,
+          );
+}
+
+abstract class CopyWith$Query$getDefaultEpisodeForShow$show$defaultEpisode<
+    TRes> {
+  factory CopyWith$Query$getDefaultEpisodeForShow$show$defaultEpisode(
+    Query$getDefaultEpisodeForShow$show$defaultEpisode instance,
+    TRes Function(Query$getDefaultEpisodeForShow$show$defaultEpisode) then,
+  ) = _CopyWithImpl$Query$getDefaultEpisodeForShow$show$defaultEpisode;
+
+  factory CopyWith$Query$getDefaultEpisodeForShow$show$defaultEpisode.stub(
+          TRes res) =
+      _CopyWithStubImpl$Query$getDefaultEpisodeForShow$show$defaultEpisode;
+
+  TRes call({
+    String? id,
+    String? $__typename,
+  });
+}
+
+class _CopyWithImpl$Query$getDefaultEpisodeForShow$show$defaultEpisode<TRes>
+    implements
+        CopyWith$Query$getDefaultEpisodeForShow$show$defaultEpisode<TRes> {
+  _CopyWithImpl$Query$getDefaultEpisodeForShow$show$defaultEpisode(
+    this._instance,
+    this._then,
+  );
+
+  final Query$getDefaultEpisodeForShow$show$defaultEpisode _instance;
+
+  final TRes Function(Query$getDefaultEpisodeForShow$show$defaultEpisode) _then;
+
+  static const _undefined = {};
+
+  TRes call({
+    Object? id = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(Query$getDefaultEpisodeForShow$show$defaultEpisode(
+        id: id == _undefined || id == null ? _instance.id : (id as String),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+}
+
+class _CopyWithStubImpl$Query$getDefaultEpisodeForShow$show$defaultEpisode<TRes>
+    implements
+        CopyWith$Query$getDefaultEpisodeForShow$show$defaultEpisode<TRes> {
+  _CopyWithStubImpl$Query$getDefaultEpisodeForShow$show$defaultEpisode(
+      this._res);
+
+  TRes _res;
+
+  call({
+    String? id,
+    String? $__typename,
+  }) =>
+      _res;
+}
