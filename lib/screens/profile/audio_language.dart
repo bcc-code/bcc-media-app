@@ -33,16 +33,8 @@ class _AppAudioLanguageState extends ConsumerState<AppAudioLanguage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: BtvColors.background1,
+        elevation: 0,
         title: Text(S.of(context).audioLanguage),
-        centerTitle: true,
-        bottom: PreferredSize(
-          preferredSize: const Size.fromHeight(6),
-          child: Divider(
-            color: BtvColors.seperatorOnLight.withOpacity(0.3),
-            height: 1,
-          ),
-        ),
       ),
       body: SafeArea(
         child: Container(

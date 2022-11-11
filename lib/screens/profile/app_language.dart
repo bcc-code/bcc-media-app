@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../components/option_list.dart';
 import '../../helpers/btv_colors.dart';
 import '../../helpers/languages.dart';
+import '../../l10n/app_localizations.dart';
 
 class AppLanguageScreen extends ConsumerStatefulWidget {
   const AppLanguageScreen({super.key});
@@ -33,16 +34,8 @@ class _AppLanguageScreenState extends ConsumerState<AppLanguageScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: BtvColors.background1,
-        title: const Text('App language'),
-        centerTitle: true,
-        bottom: PreferredSize(
-          preferredSize: const Size.fromHeight(6),
-          child: Divider(
-            color: BtvColors.seperatorOnLight.withOpacity(0.3),
-            height: 1,
-          ),
-        ),
+        elevation: 0,
+        title: Text(S.of(context).appLanguage),
       ),
       body: SafeArea(
         child: Container(

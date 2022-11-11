@@ -199,7 +199,7 @@ class _LiveScreenState extends ConsumerState<LiveScreen> with AutoRouteAware {
       ),
       body: SingleChildScrollView(
         primary: true,
-        physics: BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
+        physics: const AlwaysScrollableScrollPhysics(),
         child: Column(children: [
           if (audioOnly)
             LiveMiniPlayer(onStartRequest: () {

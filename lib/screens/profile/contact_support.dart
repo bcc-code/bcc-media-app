@@ -1,9 +1,12 @@
+import 'package:brunstadtv_app/components/loading_indicator.dart';
 import 'package:flutter/material.dart';
 import 'dart:io';
 import 'package:auto_route/auto_route.dart';
 import 'package:device_info_plus/device_info_plus.dart';
+import 'package:flutter/rendering.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 
+import '../../helpers/btv_buttons.dart';
 import '../../helpers/btv_colors.dart';
 import '../../helpers/btv_typography.dart';
 import '../../l10n/app_localizations.dart';
@@ -102,6 +105,7 @@ class _ContactSupportState extends State<ContactSupport> {
       child: Scaffold(
         resizeToAvoidBottomInset: false,
         appBar: AppBar(
+          elevation: 0,
           toolbarHeight: 44,
           automaticallyImplyLeading: false,
           leadingWidth: 100,
@@ -126,33 +130,17 @@ class _ContactSupportState extends State<ContactSupport> {
           ),
           actions: [
             (_isTextFieldEnter && _isSendBtnShown)
-                ? Container(
-                    width: 65,
-                    height: 32,
+                ? Padding(
                     padding:
-                        const EdgeInsets.symmetric(horizontal: 4, vertical: 12),
-                    child: ElevatedButton(
+                        const EdgeInsets.symmetric(vertical: 6, horizontal: 16),
+                    child: BtvButton.small(
                       onPressed: () {
                         setState(() {
                           _loading = true;
                           _isSendBtnShown = false;
                         });
                       },
-                      style: TextButton.styleFrom(
-                        foregroundColor: BtvColors.onTint,
-                        backgroundColor: BtvColors.tint1,
-                        padding: const EdgeInsets.only(
-                            left: 12, right: 12, top: 3.5, bottom: 4.5),
-                        textStyle: BtvTextStyles.button1,
-                        shape: const RoundedRectangleBorder(
-                          side: BorderSide.none,
-                          borderRadius: BorderRadius.all(Radius.circular(30)),
-                        ),
-                      ),
-                      child: const FittedBox(
-                        fit: BoxFit.contain,
-                        child: Text('Send'),
-                      ),
+                      labelText: S.of(context).send,
                     ),
                   )
                 : const SizedBox.shrink(),
@@ -161,59 +149,71 @@ class _ContactSupportState extends State<ContactSupport> {
         body: SafeArea(
           child: Container(
             padding: const EdgeInsets.symmetric(horizontal: 15.5),
-            height: double.infinity,
             child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
-                const Text(
-                  'Contact Support',
-                  style: BtvTextStyles.headline1,
-                ),
-                if (!_loading) ...[
-                  _TextFieldInput(
-                    textController: _textController,
-                    textFldOnChange: _textFieldHandler,
-                  ),
-                  Text(
-                    'Your message will include this information, to help us better fix the issues.',
-                    style:
-                        BtvTextStyles.body2.copyWith(color: BtvColors.label1),
-                  ),
-                  _DeviceInfo(deviceInfos: deviceInfos()),
-                ] else
+              children: [
+                if (!_loading)
+                  Expanded(
+                    child: SingleChildScrollView(
+                        child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: <Widget>[
+                          Padding(
+                            padding: const EdgeInsets.only(bottom: 32),
+                            child: Text(
+                              S.of(context).contactSupport,
+                              style: BtvTextStyles.headline1,
+                            ),
+                          ),
+                          _TextFieldInput(
+                            textController: _textController,
+                            textFldOnChange: _textFieldHandler,
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(top: 20, bottom: 10),
+                            child: Text(
+                              S.of(context).debugInfoExplanation,
+                              style: BtvTextStyles.body2
+                                  .copyWith(color: BtvColors.label1),
+                            ),
+                          ),
+                          _DeviceInfo(deviceInfos: deviceInfos()),
+                        ])),
+                  )
+                else
                   FutureBuilder<String>(
                     future: ajaxCall,
                     builder:
                         (BuildContext context, AsyncSnapshot<String> snapshot) {
                       if (snapshot.hasData) {
-                        return _SendingResultPage(
-                          sendingResult: true,
+                        return Expanded(
+                          child: _SendingResultPage(
+                            sendingResult: true,
+                          ),
                         );
                       } else if (snapshot.hasError) {
-                        return _SendingResultPage(
-                          sendingResult: false,
+                        return Expanded(
+                          child: _SendingResultPage(
+                            sendingResult: false,
+                          ),
                         );
                       } else {
                         return Expanded(
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Column(
-                                mainAxisSize: MainAxisSize.max,
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: const <Widget>[
-                                  CircularProgressIndicator(),
-                                  SizedBox(
-                                    height: 12,
-                                  ),
-                                  Text(
-                                    'Sending',
-                                    style: BtvTextStyles.body1,
-                                  ),
-                                ],
-                              ),
-                            ],
+                          child: Center(
+                            child: Column(
+                              mainAxisSize: MainAxisSize.max,
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                const LoadingIndicator(),
+                                const SizedBox(
+                                  height: 12,
+                                ),
+                                Text(
+                                  S.of(context).sending,
+                                  style: BtvTextStyles.body1,
+                                ),
+                              ],
+                            ),
                           ),
                         );
                       }
@@ -246,20 +246,19 @@ class _TextFieldInput extends StatelessWidget {
         keyboardType: TextInputType.multiline,
         textInputAction: TextInputAction.newline,
         style: BtvTextStyles.body1.copyWith(color: BtvColors.label1),
-        decoration: const InputDecoration(
-          hintText:
-              'Describe the issue you are experiencing, and what you do to make it happen.',
+        decoration: InputDecoration(
+          hintText: S.of(context).concernTextPlaceholder,
           hintStyle: BtvTextStyles.body1,
           filled: true,
           fillColor: BtvColors.background2,
-          enabledBorder: OutlineInputBorder(
+          enabledBorder: const OutlineInputBorder(
             borderRadius: BorderRadius.all(Radius.circular(6.0)),
             borderSide: BorderSide(
               width: 1,
               color: BtvColors.background1,
             ),
           ),
-          focusedBorder: OutlineInputBorder(
+          focusedBorder: const OutlineInputBorder(
               borderRadius: BorderRadius.all(Radius.circular(6.0)),
               borderSide: BorderSide(
                 width: 1,
@@ -293,10 +292,7 @@ class _DeviceInfo extends StatelessWidget {
           return const Text('Null Data');
         } else if (snapshot.data != null) {
           final data = snapshot.data!;
-          return SizedBox(
-            height: MediaQuery.of(context).size.height * 0.38,
-            child: _DeviceInfoList(data: data),
-          );
+          return _DeviceInfoList(data: data);
         }
         return const Text('Loading.....');
       },
@@ -358,14 +354,6 @@ class _DeviceInfoList extends StatelessWidget {
 
 class _SendingResultPage extends StatelessWidget {
   final GlobalKey _widgetKey = GlobalKey();
-  final String sendErrorMsgTitle = 'Couldn’t send you message';
-  final String sendErrorMsgContent =
-      'Something went wrong. Check your internet connection and try again.';
-  final String sendSuccessMsgTitle = 'Thank you for your feedback!';
-  final String sendSuccessMsgContent =
-      'We appreciate all feedback and we will address the issue as soon as possible.';
-  final String successBtnMsg = 'Done';
-  final String errorBtnMsg = 'Send again';
   final bool sendingResult;
 
   _SendingResultPage({
@@ -374,54 +362,57 @@ class _SendingResultPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final s = S.of(context);
-    return Expanded(
-      child: Column(
-        children: <Widget>[
-          Expanded(
-            child: Padding(
-              padding: const EdgeInsets.only(top: 260),
-              child: Column(
-                key: _widgetKey,
-                children: <Widget>[
-                  Text(
-                    sendingResult ? sendSuccessMsgTitle : sendErrorMsgTitle,
-                    textAlign: TextAlign.center,
-                    style: BtvTextStyles.headline1,
-                  ),
-                  const SizedBox(height: 12),
-                  Text(
-                    sendingResult ? sendSuccessMsgContent : sendErrorMsgContent,
-                    textAlign: TextAlign.center,
-                    style:
-                        BtvTextStyles.body1.copyWith(color: BtvColors.label3),
-                  ),
-                ],
-              ),
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(bottom: 58),
-            child: ElevatedButton(
-              style: ElevatedButton.styleFrom(
-                shadowColor: Colors.blue[200],
-                shape: const RoundedRectangleBorder(
-                  side: BorderSide.none,
-                  borderRadius: BorderRadius.all(Radius.circular(24)),
+    final sendErrorMsgTitle = S.of(context).sendFail;
+    final sendErrorMsgContent = S.of(context).sendFailDescription;
+    final sendSuccessMsgTitle = S.of(context).thankYouSupportTitle;
+    final sendSuccessMsgContent = S.of(context).thankYouSupportDescription;
+    final successBtnMsg = S.of(context).done;
+    final errorBtnMsg = S.of(context).tryAgainButton;
+    return Column(
+      children: <Widget>[
+        Expanded(
+          child: Padding(
+            padding: EdgeInsets.symmetric(horizontal: 16),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              key: _widgetKey,
+              children: <Widget>[
+                Text(
+                  sendingResult ? sendSuccessMsgTitle : sendErrorMsgTitle,
+                  textAlign: TextAlign.center,
+                  style: BtvTextStyles.headline1,
                 ),
-                minimumSize: const Size.fromHeight(50),
-              ),
-              onPressed: () {
-                context.router.pop();
-              },
-              child: Text(
-                sendingResult ? successBtnMsg : errorBtnMsg,
-                style: BtvTextStyles.button1.copyWith(color: BtvColors.onTint),
-              ),
+                const SizedBox(height: 12),
+                Text(
+                  sendingResult ? sendSuccessMsgContent : sendErrorMsgContent,
+                  textAlign: TextAlign.center,
+                  style: BtvTextStyles.body1.copyWith(color: BtvColors.label3),
+                ),
+              ],
             ),
           ),
-        ],
-      ),
+        ),
+        Padding(
+          padding: const EdgeInsets.only(bottom: 58),
+          child: ElevatedButton(
+            style: ElevatedButton.styleFrom(
+              shadowColor: Colors.blue[200],
+              shape: const RoundedRectangleBorder(
+                side: BorderSide.none,
+                borderRadius: BorderRadius.all(Radius.circular(24)),
+              ),
+              minimumSize: const Size.fromHeight(50),
+            ),
+            onPressed: () {
+              context.router.pop();
+            },
+            child: Text(
+              sendingResult ? successBtnMsg : errorBtnMsg,
+              style: BtvTextStyles.button1.copyWith(color: BtvColors.onTint),
+            ),
+          ),
+        ),
+      ],
     );
   }
 }

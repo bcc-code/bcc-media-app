@@ -20,12 +20,12 @@ class _ProfileState extends ConsumerState<Profile> {
   List<OptionButton> get _supportButtons {
     return [
       OptionButton(
-          optionName: 'Kontakt support',
+          optionName: S.of(context).contactSupport,
           onPressed: () {
             context.router.push(const ContactSupportRoute());
           }),
       OptionButton(
-          optionName: 'Om',
+          optionName: S.of(context).about,
           onPressed: () {
             context.router.push(const AboutScreenRoute());
           })
@@ -72,6 +72,7 @@ class _ProfileState extends ConsumerState<Profile> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        elevation: 0,
         toolbarHeight: 44,
         leadingWidth: 92,
         leading: const CustomBackButton(),

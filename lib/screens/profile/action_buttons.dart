@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../helpers/btv_buttons.dart';
+import '../../l10n/app_localizations.dart';
 import '../../services/auth_service.dart';
 
 class ActionButtons extends StatelessWidget {
@@ -18,7 +19,7 @@ class ActionButtons extends StatelessWidget {
         children: [
           BtvButton.smallSecondary(
             onPressed: () => _logOutClicked(context),
-            labelText: 'Log out',
+            labelText: S.of(context).logOutButton,
           ),
         ],
       ),
