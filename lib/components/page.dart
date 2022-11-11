@@ -15,7 +15,7 @@ import 'default_section.dart';
 
 class BccmPage extends StatelessWidget {
   final Future<Query$Page$page> pageFuture;
-  final Future Function() onRefresh;
+  final Future Function(bool retry) onRefresh;
 
   BccmPage({
     super.key,
@@ -34,7 +34,7 @@ class BccmPage extends StatelessWidget {
         edgeOffset: MediaQuery.of(context).padding.top,
         triggerMode: RefreshIndicatorTriggerMode.anywhere,
         displacement: 40,
-        onRefresh: onRefresh,
+        onRefresh: () => onRefresh(false),
         notificationPredicate: (notification) => true,
         child: ListView.builder(
           cacheExtent: 10000,
@@ -130,7 +130,8 @@ class BccmPage extends StatelessWidget {
                 ),
               ),
               BtvButton.medium(
-                  labelText: S.of(context).tryAgainButton, onPressed: onRefresh)
+                  labelText: S.of(context).tryAgainButton,
+                  onPressed: () => onRefresh(true))
             ],
           ),
         ),

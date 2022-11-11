@@ -9,6 +9,7 @@ import 'package:brunstadtv_app/graphql/queries/season.graphql.dart';
 import 'package:riverpod/riverpod.dart';
 
 import '../graphql/client.dart';
+import '../graphql/queries/application.graphql.dart';
 import '../graphql/schema/items.graphql.dart';
 
 class Api {
@@ -72,6 +73,12 @@ class Api {
         return Future.error(error ?? ErrorHint('Unknown error'));
       },
     );
+  }
+
+  Future<Query$Application?> queryAppConfig() {
+    return client.query$Application().then((val) {
+      return val.parsedData;
+    });
   }
 }
 

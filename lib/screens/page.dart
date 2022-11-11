@@ -61,7 +61,7 @@ class _PageScreenState extends ConsumerState<PageScreen> {
       ),
       body: BccmPage(
         pageFuture: resultFuture,
-        onRefresh: () async {
+        onRefresh: (r) async {
           var future = getPage();
           setState(() {
             resultFuture = future;

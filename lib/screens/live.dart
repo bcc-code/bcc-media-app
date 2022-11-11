@@ -172,8 +172,12 @@ class _LiveScreenState extends ConsumerState<LiveScreen> with AutoRouteAware {
         leadingWidth: 92,
         title: Text(S.of(context).liveHeader),
         actions: [
+          const Padding(
+            padding: EdgeInsets.only(right: 2.0),
+            child: SizedBox(width: 24, child: CastButton()),
+          ),
           Padding(
-            padding: const EdgeInsets.only(right: 2),
+            padding: const EdgeInsets.only(right: 16),
             child: Switch(
               inactiveTrackColor: BtvColors.tint2,
               inactiveThumbColor: BtvColors.label1,
@@ -190,10 +194,6 @@ class _LiveScreenState extends ConsumerState<LiveScreen> with AutoRouteAware {
                 });
               },
             ),
-          ),
-          const Padding(
-            padding: EdgeInsets.only(right: 16.0),
-            child: SizedBox(width: 24, child: CastButton()),
           ),
         ],
       ),

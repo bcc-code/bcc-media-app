@@ -4,8 +4,20 @@ import 'package:bccm_player/playback_service_interface.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-class CastButton extends StatelessWidget {
+class CastButton extends StatefulWidget {
   const CastButton({super.key});
+
+  final methodChannel = const MethodChannel('bccm_player/cast_button');
+
+  @override
+  State<CastButton> createState() => _CastButtonState();
+}
+
+class _CastButtonState extends State<CastButton> {
+  @override
+  void initState() {
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -20,20 +32,5 @@ class CastButton extends StatelessWidget {
       return const UiKitView(viewType: 'bccm_player/cast_button');
     }
     return Container();
-  }
-
-  InkWell localButton() {
-    return InkWell(
-      onTap: () {
-        PlaybackPlatformInterface.instance.openCastDialog();
-      },
-      splashColor: Colors.transparent,
-      child: SizedBox(
-        width: 40,
-        height: 40,
-        child: Image.asset('assets/icons/castbutton_default.png',
-            package: 'bccm_player'),
-      ),
-    );
   }
 }

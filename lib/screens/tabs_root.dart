@@ -38,6 +38,7 @@ class _TabsRootScreenState extends ConsumerState<TabsRootScreen>
   }
 
   StreamSubscription? fcmSubscription;
+  ProviderSubscription? settingsSubscription;
 
   Future initFcm() async {
     var result = await FirebaseMessaging.instance.requestPermission();
@@ -45,6 +46,14 @@ class _TabsRootScreenState extends ConsumerState<TabsRootScreen>
     var token = await FirebaseMessaging.instance.getToken();
     FirebaseMessaging.instance.setForegroundNotificationPresentationOptions(
         alert: false, badge: false, sound: true);
+
+    settingsSubscription =
+        ref.listenManual<Settings>(settingsProvider, (old, value) async {
+      var token = await FirebaseMessaging.instance.getToken();
+      if (token != null && old?.appLanguage != value.appLanguage) {
+        setDeviceToken(token);
+      }
+    });
 
     if (token != null) {
       if (!mounted) {
@@ -85,6 +94,7 @@ class _TabsRootScreenState extends ConsumerState<TabsRootScreen>
   @override
   void dispose() {
     fcmSubscription?.cancel();
+    settingsSubscription?.close();
     super.dispose();
   }
 

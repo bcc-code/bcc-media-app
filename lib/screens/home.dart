@@ -65,6 +65,12 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
     });
   }
 
+  Future<Query$Page$page> retry() async {
+    ref.read(appConfigProvider.notifier).state =
+        ref.read(apiProvider).queryAppConfig();
+    return getHomePage();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Stack(
@@ -96,7 +102,14 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                         SvgIcons.profile,
                       ))),
             ),
-            actions: const [SizedBox(width: 40, child: CastButton())],
+            actions: [
+              Padding(
+                padding: EdgeInsets.only(right: 16.0),
+                child: ConstrainedBox(
+                    constraints: BoxConstraints.loose(Size(24, 24)),
+                    child: CastButton()),
+              ),
+            ],
             flexibleSpace: Container(
               decoration: const BoxDecoration(boxShadow: <BoxShadow>[
                 BoxShadow(
@@ -127,9 +140,9 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
             top: false,
             child: BccmPage(
                 pageFuture: resultFuture,
-                onRefresh: () async {
+                onRefresh: (r) async {
                   setState(() {
-                    resultFuture = getHomePage();
+                    resultFuture = r ? retry() : getHomePage();
                   });
                 }),
           ),

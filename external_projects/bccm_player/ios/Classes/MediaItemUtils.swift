@@ -25,9 +25,11 @@ class MediaItemUtils {
         if #available(iOS 12.2, *) {
             let extras = getNamespacedMetadata(playerItem.externalMetadata, namespace: .BccmExtras)
             playerData = getNamespacedMetadata(playerItem.externalMetadata, namespace: .BccmPlayer)
-
+            debugPrint("externalMetadata")
+            playerItem.externalMetadata.forEach({ e in debugPrint(e) })
+            let artworkUri: String? = playerData?[PlayerMetadataConstants.ArtworkUri]
             metadata = MediaMetadata.make(
-                    withArtworkUri: playerItem.externalMetadata.first(where: { $0.identifier == AVMetadataIdentifier.commonIdentifierArtwork })?.stringValue,
+                    withArtworkUri: artworkUri,
                     title: playerItem.externalMetadata.first(where: { $0.identifier == AVMetadataIdentifier.commonIdentifierTitle })?.stringValue,
                     artist: playerItem.externalMetadata.first(where: { $0.identifier == AVMetadataIdentifier.commonIdentifierArtist })?.stringValue,
                     episodeId: playerItem.externalMetadata.first(where: { $0.identifier == AVMetadataIdentifier(PlayerMetadataConstants.EpisodeId) })?.stringValue,

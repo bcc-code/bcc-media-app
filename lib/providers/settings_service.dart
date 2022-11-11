@@ -49,14 +49,6 @@ class SettingsService extends StateNotifier<Settings> {
 
     prefs.setString('app_language', code);
     state = state.copyWith(appLanguage: Locale(code));
-    var token = await FirebaseMessaging.instance.getToken();
-    if (token != null) {
-      var result = await ref.read(gqlClientProvider).mutate$SetDeviceToken(
-          Options$Mutation$SetDeviceToken(
-              variables: Variables$Mutation$SetDeviceToken(
-                  token: token, languages: [state.appLanguage.languageCode])));
-      debugPrint(result.data?.toString());
-    }
 
     // update the rest of the app
   }

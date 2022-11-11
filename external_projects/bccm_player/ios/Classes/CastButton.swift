@@ -30,42 +30,65 @@ class CastButtonFactory: NSObject, FlutterPlatformViewFactory {
             viewIdentifier viewId: Int64,
             arguments args: Any?
     ) -> FlutterPlatformView {
+        
         return CastButton(
-                frame: frame)
+            frame: frame, viewId: viewId)
     }
 }
 
 class CastButton: NSObject, FlutterPlatformView {
-    private var _view: UIView = UIView()
+    private var _buttonView: GCKUICastButton
+    private var _viewId: Int64
 
-    init(
-            frame: CGRect
-    ) {
-        _view.frame = frame
+    init(frame: CGRect, viewId: Int64) {
+        _buttonView = GCKUICastButton(frame: frame)
+        _buttonView.tintColor = UIColor(red: 110/255, green: 176/255, blue: 230/255, alpha: 1)
+        _viewId = viewId
         super.init()
-
-        // iOS views can be created here
-
-        createNativeView(frame: frame, view: _view)
     }
 
     func view() -> UIView {
-        return _view
-    }
-
-    deinit {
-
-        //_playerController?.player?.pause()
-    }
-
-    func createNativeView(frame: CGRect, view _view: UIView) {
-        let nativeLabel = UILabel()
-        nativeLabel.text = "Native text from iOS"
-        nativeLabel.textColor = UIColor.white
-        nativeLabel.textAlignment = .center
-        nativeLabel.frame = CGRect(x: 0, y: 0, width: 180, height: 48.0)
-
-
-        _view.addSubview(GCKUICastButton(frame: CGRect(x: 0, y: 0, width: 20, height: 20)))
+        return _buttonView
     }
 }
+/*
+ 
+ 
+ private var isHiddenListeners: Dictionary<Int64, (Bool) -> Void> = [:]
+ 
+ isHiddenListeners[viewId] = listener
+ 
+ func listener(hidden: Bool) -> Void {
+     _eventChannel.("is_hidden", arguments: hidden)
+ }
+ 
+ 
+ */
+//class CustomGCKUICastButton : GCKUICastButton {
+//    var _eventSink: FlutterEventSink?
+//    init(frame: CGRect, eventSink: FlutterEventSink) {
+//        _eventSink = eventSink
+//        super.init(frame: frame)
+//    }
+//
+//    required init(coder: NSCoder) {
+//        super.init(coder: coder)
+//    }
+//
+//
+//    override public var isHidden: Bool {
+//        didSet {
+//            debugPrint("GCKUICastButton.isHidden didSet")
+//            debugPrint(isHidden)
+//            isHiddenListeners.forEach({ listenerKv in listenerKv.value(isHidden)})
+//        }
+//    }
+//
+//    override public var bounds: CGRect {
+//        didSet {
+//            debugPrint("GCKUICastButton.bounds didSet")
+//            debugPrint(bounds)
+//            isHiddenListeners.forEach({ listenerKv in listenerKv.value(bounds.isEmpty)})
+//        }
+//    }
+//}

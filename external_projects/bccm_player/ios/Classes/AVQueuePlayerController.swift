@@ -252,6 +252,9 @@ public class AVQueuePlayerController: NSObject, PlayerController, AVPlayerViewCo
                         }
                     }
                 }
+                if let artworkUriMeta = MetadataUtils.metadataItem(identifier: PlayerMetadataConstants.ArtworkUri, value: artworkUri as (NSCopying & NSObjectProtocol)?, namespace: .BccmPlayer) {
+                    allItems.append(artworkUriMeta)
+                }
             }
         }
         if let extras = mediaItem.metadata?.extras {

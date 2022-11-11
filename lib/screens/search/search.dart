@@ -105,7 +105,7 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
                     ? SearchResultsPage(_curSearchValue)
                     : BccmPage(
                         pageFuture: pageFuture,
-                        onRefresh: () async {
+                        onRefresh: (r) async {
                           setState(() {
                             pageFuture = getSearchPage();
                           });
