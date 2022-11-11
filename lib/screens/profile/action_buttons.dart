@@ -16,13 +16,6 @@ class ActionButtons extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Container(
-            margin: const EdgeInsets.only(right: 16),
-            child: BtvButton.small(
-              onPressed: _editPictureClicked,
-              labelText: 'Edit picture',
-            ),
-          ),
           BtvButton.smallSecondary(
             onPressed: () => _logOutClicked(context),
             labelText: 'Log out',

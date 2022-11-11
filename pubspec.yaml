@@ -77,6 +77,7 @@ dependencies:
   flutter_svg_provider: ^1.0.3
   on_screen_ruler: ^0.0.1
   url_launcher: ^6.1.6
+  modal_bottom_sheet: ^2.1.2
   #smooth: any
 
 dev_dependencies:

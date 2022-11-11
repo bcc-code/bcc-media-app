@@ -1,7 +1,10 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:brunstadtv_app/providers/settings_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:url_launcher/url_launcher_string.dart';
 import '../../components/custom_back_button.dart';
+import '../../helpers/languages.dart';
 import '../../l10n/app_localizations.dart';
 import '../../router/router.gr.dart';
 import './avatar.dart';
@@ -14,72 +17,54 @@ class Profile extends ConsumerStatefulWidget {
 }
 
 class _ProfileState extends ConsumerState<Profile> {
-  late List<Map<String, Object?>> _settingsOptions;
-  late List<Map<String, Object?>> _supportOptions;
-  late List<Map<String, Object?>> _termsaAndPrivacyOptions;
-
-  _ProfileState() {
-    _settingsOptions = [
-      {
-        'optionName': 'Appspråk',
-        'currentSelection': 'English',
-        'onPressed': () {
-          context.router.push(const AppLanguageScreenRoute());
-        },
-      },
-      {
-        'optionName': 'Lydspråk',
-        'currentSelection': 'English',
-        'onPressed': () {
-          context.router.push(const AppAudioLanguageRoute());
-        },
-      },
-      {
-        'optionName': 'Språk for undertekster',
-        'currentSelection': 'English',
-        'onPressed': () {
-          context.router.push(const AppSubtitleLanguageRoute());
-        },
-      },
-      {
-        'optionName': 'Video kvalitet',
-        'currentSelection': 'Auto',
-        'onPressed': () {
-          context.router.push(const VideoQualityRoute());
-        },
-      },
+  List<OptionButton> get _supportButtons {
+    return [
+      OptionButton(
+          optionName: 'Kontakt support',
+          onPressed: () {
+            context.router.push(const ContactSupportRoute());
+          }),
+      OptionButton(
+          optionName: 'Om',
+          onPressed: () {
+            context.router.push(const AboutScreenRoute());
+          })
     ];
+  }
 
-    _supportOptions = [
-      {
-        'optionName': 'Ofte stilte spørsmål',
-        'currentSelection': null,
-        'onPressed': () {
-          context.router.push(const FAQRoute());
-        },
-      },
-      {
-        'optionName': 'Kontakt Support',
-        'currentSelection': null,
-        'onPressed': () {
-          context.router.push(const ContactSupportRoute());
-        },
-      },
-      {
-        'optionName': 'Om',
-        'currentSelection': null,
-        'onPressed': () {
-          context.router.push(const AboutScreenRoute());
-        },
-      },
+  List<OptionButton> get _termsaAndPrivacyOptions {
+    return [
+      OptionButton(
+          optionName: S.of(context).privacyPolicy,
+          currentSelection: '(external page)',
+          onPressed: () {
+            launchUrlString('https://bcc.media/privacy');
+            // TODO: Terms & conditions
+          }),
     ];
+  }
 
-    _termsaAndPrivacyOptions = [
-      {
-        'optionName': 'Terms & Conditions',
-        'currentSelection': null,
-        'onPressed': () {},
-      },
+  List<OptionButton> get _settingsOptions {
+    var settings = ref.watch(settingsProvider);
+    return [
+      OptionButton(
+          optionName: S.of(context).appLanguage,
+          currentSelection: getLanguageName(settings.appLanguage.languageCode),
+          onPressed: () {
+            context.router.push(const AppLanguageScreenRoute());
+          }),
+      OptionButton(
+          optionName: S.of(context).audioLanguage,
+          currentSelection: getLanguageName(settings.audioLanguage),
+          onPressed: () {
+            context.router.push(const AppAudioLanguageRoute());
+          }),
+      OptionButton(
+          optionName: S.of(context).subtitleLanguage,
+          currentSelection: getLanguageName(settings.subtitleLanguage),
+          onPressed: () {
+            context.router.push(const AppSubtitleLanguageRoute());
+          })
     ];
   }
 
@@ -87,6 +72,7 @@ class _ProfileState extends ConsumerState<Profile> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        toolbarHeight: 44,
         leadingWidth: 92,
         leading: const CustomBackButton(),
         title: Text(S.of(context).profileTab),
@@ -102,11 +88,11 @@ class _ProfileState extends ConsumerState<Profile> {
                 ActionButtons(),
                 Column(
                   children: [
-                    SettingList(_settingsOptions),
+                    SettingList(buttons: _settingsOptions),
                     const SizedBox(height: 24),
-                    SettingList(_supportOptions),
+                    SettingList(buttons: _supportButtons),
                     const SizedBox(height: 24),
-                    SettingList(_termsaAndPrivacyOptions),
+                    SettingList(buttons: _termsaAndPrivacyOptions),
                     const SizedBox(height: 24),
                   ],
                 ),

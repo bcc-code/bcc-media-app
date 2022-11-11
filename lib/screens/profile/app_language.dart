@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../components/option_list.dart';
 import '../../helpers/btv_colors.dart';
+import '../../helpers/languages.dart';
 
 class AppLanguageScreen extends ConsumerStatefulWidget {
   const AppLanguageScreen({super.key});
@@ -12,69 +13,6 @@ class AppLanguageScreen extends ConsumerStatefulWidget {
 }
 
 class _AppLanguageScreenState extends ConsumerState<AppLanguageScreen> {
-  var languageList = [
-    Option(
-      id: 'de',
-      title: 'Deutsch',
-    ),
-    Option(
-      id: 'en',
-      title: 'English',
-    ),
-    Option(
-      id: 'es',
-      title: 'Español',
-    ),
-    Option(
-      id: 'fi',
-      title: 'Suomi',
-    ),
-    Option(
-      id: 'fr',
-      title: 'Français',
-    ),
-    Option(
-      id: 'hu',
-      title: 'Magyar',
-    ),
-    Option(
-      id: 'it',
-      title: 'Italiano',
-    ),
-    Option(
-      id: 'nl',
-      title: 'Nederlands',
-    ),
-    Option(
-      id: 'no',
-      title: 'Norsk',
-    ),
-    Option(
-      id: 'pl',
-      title: 'Polski',
-    ),
-    Option(
-      id: 'pt',
-      title: 'Português',
-    ),
-    Option(
-      id: 'ro',
-      title: 'Română',
-    ),
-    Option(
-      id: 'ru',
-      title: 'Pусский',
-    ),
-    Option(
-      id: 'sl',
-      title: 'Slovenščina',
-    ),
-    Option(
-      id: 'tr',
-      title: 'Türkçe',
-    ),
-  ];
-
   late String selected;
 
   Future<void> _onSelectionChanged(String id) async {
@@ -111,10 +49,21 @@ class _AppLanguageScreenState extends ConsumerState<AppLanguageScreen> {
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(15),
           ),
-          child: OptionList(
-            optionData: languageList,
-            currentSelection: selected,
-            onSelectionChange: _onSelectionChanged,
+          child: SingleChildScrollView(
+            child: Column(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.all(16).copyWith(bottom: 100),
+                  child: OptionList(
+                    optionData: languages
+                        .map((l) => Option(id: l.code, title: l.nativeName))
+                        .toList(),
+                    currentSelection: selected,
+                    onSelectionChange: _onSelectionChanged,
+                  ),
+                )
+              ],
+            ),
           ),
         ),
       ),

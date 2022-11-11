@@ -27,7 +27,7 @@ const _episodeScreenRoute = CustomRoute<void>(
     path: 'episode/:episodeId',
     durationInMilliseconds: 300,
     reverseDurationInMilliseconds: 300,
-    transitionsBuilder: TransitionsBuilders.slideLeft
+    transitionsBuilder: CustomTransitionsBuilders.slideLeft
     //customRouteBuilder: CustomTransitionsBuilders.slideUpAndDown,
     );
 
@@ -57,14 +57,62 @@ const _specialRoutes = AutoRoute(
 @MaterialAutoRouter(
   routes: [
     MaterialRoute<void>(page: LoginScreen, path: '/login'),
-    MaterialRoute<void>(page: Profile, path: '/profile'),
-    MaterialRoute<void>(page: AppLanguageScreen, path: '/app-language'),
-    MaterialRoute<void>(page: AppAudioLanguage, path: '/audio-language'),
-    MaterialRoute<void>(page: AppSubtitleLanguage, path: '/subtitle-language'),
-    MaterialRoute<void>(page: VideoQuality, path: '/video-quality'),
-    MaterialRoute<void>(page: ContactSupport, path: '/contact-support'),
-    MaterialRoute<void>(page: AboutScreen, path: '/about'),
-    MaterialRoute<void>(page: FAQ, path: '/faq'),
+    CustomRoute<void>(
+        opaque: false,
+        durationInMilliseconds: 400,
+        reverseDurationInMilliseconds: 600,
+        transitionsBuilder: CustomTransitionsBuilders.slideUp,
+        page: Profile,
+        path: '/profile'),
+    CustomRoute<void>(
+      page: AppLanguageScreen,
+      path: '/app-language',
+      durationInMilliseconds: 400,
+      reverseDurationInMilliseconds: 600,
+      transitionsBuilder: CustomTransitionsBuilders.slideLeft,
+    ),
+    CustomRoute<void>(
+      page: AppAudioLanguage,
+      path: '/audio-language',
+      durationInMilliseconds: 400,
+      reverseDurationInMilliseconds: 600,
+      transitionsBuilder: CustomTransitionsBuilders.slideLeft,
+    ),
+    CustomRoute<void>(
+      page: AppSubtitleLanguage,
+      path: '/subtitle-language',
+      durationInMilliseconds: 400,
+      reverseDurationInMilliseconds: 600,
+      transitionsBuilder: CustomTransitionsBuilders.slideLeft,
+    ),
+    CustomRoute<void>(
+      page: VideoQuality,
+      path: '/video-quality',
+      durationInMilliseconds: 400,
+      reverseDurationInMilliseconds: 600,
+      transitionsBuilder: CustomTransitionsBuilders.slideLeft,
+    ),
+    CustomRoute<void>(
+      page: ContactSupport,
+      path: '/contact-support',
+      durationInMilliseconds: 400,
+      reverseDurationInMilliseconds: 600,
+      transitionsBuilder: CustomTransitionsBuilders.slideLeft,
+    ),
+    CustomRoute<void>(
+      page: AboutScreen,
+      path: '/about',
+      durationInMilliseconds: 400,
+      reverseDurationInMilliseconds: 600,
+      transitionsBuilder: CustomTransitionsBuilders.slideLeft,
+    ),
+    CustomRoute<void>(
+      page: FAQ,
+      path: '/faq',
+      durationInMilliseconds: 400,
+      reverseDurationInMilliseconds: 600,
+      transitionsBuilder: CustomTransitionsBuilders.slideLeft,
+    ),
     CustomRoute<void>(
       page: HomeScreen,
       name: 'PublicHomeRoute',
@@ -73,7 +121,7 @@ const _specialRoutes = AutoRoute(
       durationInMilliseconds: 500,
       reverseDurationInMilliseconds: 500,
     ),
-    MaterialRoute<void>(
+    CustomRoute<void>(
       page: TabsRootScreen,
       path: '/',
       initial: true,
@@ -90,8 +138,6 @@ const _specialRoutes = AutoRoute(
                 path: '',
                 name: 'home',
                 maintainState: true,
-                durationInMilliseconds: 500,
-                reverseDurationInMilliseconds: 500,
               ),
               _episodeScreenRoute,
               MaterialRoute<void>(page: PageScreen, path: 'page/:pageCode'),

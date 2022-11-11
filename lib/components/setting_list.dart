@@ -5,9 +5,9 @@ import '../helpers/btv_colors.dart';
 //listFrame.dart
 
 class SettingList extends StatelessWidget {
-  final List<Map<String, Object?>> _optionData;
+  final List<OptionButton> buttons;
 
-  const SettingList(this._optionData);
+  const SettingList({super.key, required this.buttons});
 
   @override
   Widget build(BuildContext context) {
@@ -23,17 +23,9 @@ class SettingList extends StatelessWidget {
       child: ListView.separated(
         shrinkWrap: true,
         physics: const NeverScrollableScrollPhysics(),
-        itemCount: _optionData.length,
+        itemCount: buttons.length,
         itemBuilder: (context, index) {
-          final optionName = _optionData[index]['optionName'] as String;
-          final currentSelection =
-              _optionData[index]['currentSelection'] as String?;
-          final onPressed = _optionData[index]['onPressed'] as VoidCallback;
-          return _OptionButton(
-            optionName: optionName,
-            onPressed: onPressed,
-            currentSelection: currentSelection,
-          );
+          return buttons[index];
         },
         separatorBuilder: (context, index) {
           return const Divider(
@@ -47,12 +39,12 @@ class SettingList extends StatelessWidget {
   }
 }
 
-class _OptionButton extends StatelessWidget {
+class OptionButton extends StatelessWidget {
   final String optionName;
   final String? currentSelection;
   final VoidCallback onPressed;
 
-  const _OptionButton({
+  const OptionButton({
     required this.optionName,
     required this.onPressed,
     this.currentSelection,
