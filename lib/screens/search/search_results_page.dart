@@ -22,6 +22,8 @@ class _SearchResultsPageState extends ConsumerState<SearchResultsPage> {
   late Future<Query$Search$search?> _resultFuture;
 
   void setResultFuture() {
+    // TODO: debouncer: https://stackoverflow.com/questions/52915035/how-to-debounce-search-suggestions-in-flutters-searchpage-widget
+    /// https://github.com/jifalops/debounce_throttle/blob/master/lib/debounce_throttle.dart
     final client = ref.read(gqlClientProvider);
 
     if (widget.searchInput != null && widget.searchInput != '') {
