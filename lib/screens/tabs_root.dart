@@ -4,6 +4,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:brunstadtv_app/graphql/client.dart';
 import 'package:brunstadtv_app/graphql/queries/devices.graphql.dart';
 import 'package:brunstadtv_app/providers/settings_service.dart';
+import 'package:brunstadtv_app/screens/search/search.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -107,9 +108,11 @@ class _TabsRootScreenState extends ConsumerState<TabsRootScreen>
   Widget build(BuildContext context) {
     return AutoTabsRouter(
         navigatorObservers: () => [HeroController()],
-        routes: const [
+        routes: [
           HomeScreenWrapperRoute(),
-          SearchScreenWrapperRoute(),
+          SearchScreenWrapperRoute(children: [
+            SearchScreenRoute(key: GlobalKey<SearchScreenState>())
+          ]),
           LiveScreenRoute(),
           CalendarPageRoute(),
         ],

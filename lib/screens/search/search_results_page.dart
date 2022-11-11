@@ -9,9 +9,10 @@ import '../../helpers/btv_colors.dart';
 import '../../helpers/btv_typography.dart';
 
 class SearchResultsPage extends ConsumerStatefulWidget {
-  final String? searchInput;
+  final String searchInput;
 
-  const SearchResultsPage(this.searchInput, {super.key});
+  const SearchResultsPage(this.searchInput, {super.key})
+      : assert(searchInput != '');
 
   @override
   ConsumerState<SearchResultsPage> createState() => _SearchResultsPageState();
@@ -60,54 +61,49 @@ class _SearchResultsPageState extends ConsumerState<SearchResultsPage> {
 
   @override
   Widget build(BuildContext context) {
-    if (widget.searchInput == null || widget.searchInput == '') {
-      return _noInputInfoWidget;
-    } else {
-      return FutureBuilder<Query$Search$search?>(
-        future: _resultFuture,
-        builder: (context, snapshot) {
-          if (snapshot.connectionState == ConnectionState.waiting) {
-            return const Center(
-              child: SizedBox.square(
-                dimension: 50,
-                child: CircularProgressIndicator(),
-              ),
-            );
-          }
-          if (snapshot.hasData) {
-            var searchResults = snapshot.data!.result;
-            if (searchResults.isEmpty) {
-              return _noResultsInfoWidget;
-            } else {
-              final programs = searchResults
-                  .whereType<Fragment$SearchResultItem$$ShowSearchItem>()
-                  .toList();
-              final episodes = searchResults
-                  .whereType<Fragment$SearchResultItem$$EpisodeSearchItem>()
-                  .toList();
-              return ListView(
-                keyboardDismissBehavior:
-                    ScrollViewKeyboardDismissBehavior.onDrag,
-                children: [
-                  if (programs.isNotEmpty)
-                    ResultProgramsList(title: 'Programs', items: programs),
-                  if (episodes.isNotEmpty)
-                    SearchEpisodeList(title: 'Episodes', items: episodes),
-                ],
-              );
-            }
-          } else if (snapshot.hasError) {
-            return Text(snapshot.error.toString());
-          }
+    return FutureBuilder<Query$Search$search?>(
+      future: _resultFuture,
+      builder: (context, snapshot) {
+        if (snapshot.connectionState == ConnectionState.waiting) {
           return const Center(
             child: SizedBox.square(
               dimension: 50,
               child: CircularProgressIndicator(),
             ),
           );
-        },
-      );
-    }
+        }
+        if (snapshot.hasData) {
+          var searchResults = snapshot.data!.result;
+          if (searchResults.isEmpty) {
+            return _noResultsInfoWidget;
+          } else {
+            final programs = searchResults
+                .whereType<Fragment$SearchResultItem$$ShowSearchItem>()
+                .toList();
+            final episodes = searchResults
+                .whereType<Fragment$SearchResultItem$$EpisodeSearchItem>()
+                .toList();
+            return ListView(
+              keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
+              children: [
+                if (programs.isNotEmpty)
+                  ResultProgramsList(title: 'Programs', items: programs),
+                if (episodes.isNotEmpty)
+                  SearchEpisodeList(title: 'Episodes', items: episodes),
+              ],
+            );
+          }
+        } else if (snapshot.hasError) {
+          return Text(snapshot.error.toString());
+        }
+        return const Center(
+          child: SizedBox.square(
+            dimension: 50,
+            child: CircularProgressIndicator(),
+          ),
+        );
+      },
+    );
   }
 
   final _noResultsInfoWidget = Center(
@@ -122,17 +118,6 @@ class _SearchResultsPageState extends ConsumerState<SearchResultsPage> {
           style: BtvTextStyles.body1.copyWith(color: BtvColors.label3),
         )
       ],
-    ),
-  );
-
-  final _noInputInfoWidget = Center(
-    child: Container(
-      margin: const EdgeInsets.symmetric(horizontal: 24),
-      child: Text(
-        'You can search all content from BrunstadTV.  Series, videos and episodes.',
-        textAlign: TextAlign.center,
-        style: BtvTextStyles.body1.copyWith(color: BtvColors.label3),
-      ),
     ),
   );
 }

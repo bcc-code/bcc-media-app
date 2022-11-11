@@ -4,16 +4,15 @@ import '../helpers/btv_colors.dart';
 import '../helpers/btv_typography.dart';
 
 class SearchBar extends StatefulWidget {
-  final Function onModeChange;
   final Function onInputChange;
-  String? initialQuery;
+  final String? currentValue;
+  final Function(bool) onFocusChanged;
 
-  SearchBar({
-    super.key,
-    required this.onModeChange,
-    required this.onInputChange,
-    this.initialQuery,
-  });
+  const SearchBar(
+      {super.key,
+      required this.onInputChange,
+      required this.currentValue,
+      required this.onFocusChanged});
 
   @override
   State<SearchBar> createState() => _SearchBarState();
@@ -22,49 +21,38 @@ class SearchBar extends StatefulWidget {
 class _SearchBarState extends State<SearchBar> {
   late TextEditingController _fieldController;
   late FocusNode focusNode;
-  var _inSearchMode = false;
-  String? _prevValue;
+  bool _focusing = false;
 
   @override
   void initState() {
     super.initState();
-    _fieldController = TextEditingController(text: widget.initialQuery);
+    _fieldController = TextEditingController(text: widget.currentValue);
     _fieldController.addListener(_onValueChange);
     focusNode = FocusNode();
-    if (widget.initialQuery != null) {
-      _prevValue = widget.initialQuery;
-      _inSearchMode = true;
-    }
   }
 
   @override
   void didUpdateWidget(SearchBar oldWidget) {
     super.didUpdateWidget(oldWidget);
     // If query param has changed
-    if (oldWidget.initialQuery != widget.initialQuery &&
-        widget.initialQuery != null) {
-      _fieldController = TextEditingController.fromValue(
-        TextEditingValue(
-          text: widget.initialQuery!,
+    if (widget.currentValue != _fieldController.value.text) {
+      setState(() {
+        _fieldController.value = TextEditingValue(
+          text: widget.currentValue ?? '',
           selection: TextSelection.fromPosition(
             // Move cursor to the end
-            TextPosition(offset: widget.initialQuery!.length),
+            TextPosition(offset: widget.currentValue?.length ?? 0),
           ),
-        ),
-      );
-      _fieldController.addListener(_onValueChange);
-      _prevValue = widget.initialQuery;
-      _inSearchMode = true;
-      focusNode.unfocus();
+        );
+      });
     }
   }
 
   void _onValueChange() {
-    /* Ignore event caused when focussing text field */
-    if (_fieldController.text != _prevValue) {
-      widget.onInputChange(_fieldController.text);
+    if (_fieldController.text == widget.currentValue) {
+      return;
     }
-    _prevValue = _fieldController.text;
+    widget.onInputChange(_fieldController.text);
   }
 
   void _onCleared() {
@@ -72,22 +60,8 @@ class _SearchBarState extends State<SearchBar> {
     focusNode.requestFocus();
   }
 
-  void _onFocusChanged(focus) {
-    if (focus) {
-      if (!_inSearchMode) {
-        widget.onModeChange(true);
-      }
-      _inSearchMode = true;
-    } else if (_inSearchMode && _fieldController.value.text.isEmpty) {
-      widget.onModeChange(false);
-      _inSearchMode = false;
-    }
-  }
-
   void _onCancelled() {
     _fieldController.clear();
-    _inSearchMode = false;
-    widget.onModeChange(false);
     focusNode.unfocus();
   }
 
@@ -114,7 +88,7 @@ class _SearchBarState extends State<SearchBar> {
               ),
               child: FocusScope(
                 child: Focus(
-                  onFocusChange: _onFocusChanged,
+                  onFocusChange: widget.onFocusChanged,
                   child: TextField(
                     controller: _fieldController,
                     focusNode: focusNode,
@@ -156,7 +130,7 @@ class _SearchBarState extends State<SearchBar> {
               ),
             ),
           ),
-          if (_inSearchMode)
+          if (_fieldController.value.text.isNotEmpty || focusNode.hasFocus)
             Container(
               margin:
                   const EdgeInsets.only(left: 8, top: 0, right: 0, bottom: 0),

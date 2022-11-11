@@ -7,7 +7,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../graphql/queries/page.graphql.dart';
 import '../../helpers/btv_colors.dart';
-import './search_home_page.dart';
+import '../../helpers/btv_typography.dart';
 import './search_results_page.dart';
 
 import '../../components/search_bar.dart';
@@ -18,25 +18,23 @@ class SearchScreen extends ConsumerStatefulWidget {
   const SearchScreen({Key? key, @QueryParam('q') this.query}) : super(key: key);
 
   @override
-  ConsumerState<SearchScreen> createState() => _SearchScreenState();
+  ConsumerState<SearchScreen> createState() => SearchScreenState();
 }
 
-class _SearchScreenState extends ConsumerState<SearchScreen> {
-  var _inSearchMode = false;
+class SearchScreenState extends ConsumerState<SearchScreen> {
+  var focusing = false;
   String? _curSearchValue;
-  String? searchPrefillValue;
   late Future<Query$Page$page> pageFuture;
 
-  _onSearchModeChanged(bool mode) {
-    setState(() {
-      _inSearchMode = mode;
-    });
+  clear() {
+    _onSearchInputChanged(null);
   }
 
-  _onSearchInputChanged(String input) {
-    setState(() {
-      _curSearchValue = input;
-      searchPrefillValue = null;
+  void _onSearchInputChanged(String? input) {
+    WidgetsBinding.instance.scheduleFrameCallback((d) {
+      setState(() {
+        _curSearchValue = input;
+      });
     });
   }
 
@@ -50,7 +48,9 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
   @override
   void didUpdateWidget(SearchScreen oldWidget) {
     super.didUpdateWidget(oldWidget);
-    processQueryParam();
+    if (oldWidget.query != widget.query) {
+      processQueryParam();
+    }
   }
 
   Future<Query$Page$page> getSearchPage() async {
@@ -65,20 +65,42 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
   }
 
   processQueryParam() {
-    String? queryParam;
-    if (widget.query != null && widget.query!.trim().isNotEmpty) {
-      queryParam = widget.query;
+    String? queryParam = widget.query?.trim();
+    if (queryParam?.isEmpty == true) {
+      return;
     }
-    /* 
-      `searchPrefillValue` should be non-null only if this cycle
-       is triggered due to a change in query parameter
-    */
     if (_curSearchValue != queryParam) {
-      searchPrefillValue = queryParam;
-      _curSearchValue = searchPrefillValue;
-      _inSearchMode = true;
+      setState(() {
+        _curSearchValue = queryParam;
+      });
+    }
+  }
+
+  final _noInputInfoWidget = Center(
+    child: Container(
+      margin: const EdgeInsets.symmetric(horizontal: 24),
+      child: Text(
+        'You can search all content from BrunstadTV.  Series, videos and episodes.',
+        textAlign: TextAlign.center,
+        style: BtvTextStyles.body1.copyWith(color: BtvColors.label3),
+      ),
+    ),
+  );
+
+  Widget get mainContent {
+    if (_curSearchValue?.isEmpty == true && focusing) {
+      return _noInputInfoWidget;
+    } else if (_curSearchValue?.isNotEmpty == true) {
+      return SearchResultsPage(_curSearchValue!);
     } else {
-      searchPrefillValue = null;
+      return BccmPage(
+        pageFuture: pageFuture,
+        onRefresh: (r) async {
+          setState(() {
+            pageFuture = getSearchPage();
+          });
+        },
+      );
     }
   }
 
@@ -91,9 +113,21 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
           child: Column(
             children: [
               SearchBar(
-                onModeChange: _onSearchModeChanged,
+                onFocusChanged: (val) {
+                  if (!val) {
+                    setState(() {
+                      focusing = false;
+                    });
+                  } else {
+                    // This is just to avoid some visual glitches with the _noInputInfoWidget.
+                    Future.delayed(const Duration(milliseconds: 100))
+                        .whenComplete(() => setState(() {
+                              focusing = true;
+                            }));
+                  }
+                },
+                currentValue: _curSearchValue,
                 onInputChange: _onSearchInputChanged,
-                initialQuery: searchPrefillValue,
               ),
               Container(
                 margin: const EdgeInsets.only(bottom: 8),
@@ -101,17 +135,10 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
                     const Divider(height: 1, color: BtvColors.seperatorOnLight),
               ),
               Expanded(
-                child: _inSearchMode
-                    ? SearchResultsPage(_curSearchValue)
-                    : BccmPage(
-                        pageFuture: pageFuture,
-                        onRefresh: (r) async {
-                          setState(() {
-                            pageFuture = getSearchPage();
-                          });
-                        },
-                      ),
-              ),
+                child: AnimatedSwitcher(
+                    duration: const Duration(milliseconds: 100),
+                    child: mainContent),
+              )
             ],
           ),
         ),

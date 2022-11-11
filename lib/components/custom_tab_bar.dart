@@ -1,6 +1,8 @@
 import 'dart:io';
 
 import 'package:auto_route/auto_route.dart';
+import 'package:brunstadtv_app/helpers/utils.dart';
+import 'package:brunstadtv_app/screens/search/search.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -99,6 +101,7 @@ class _CustomTabBarState extends State<CustomTabBar> {
             onTap: (index) {
               // here we switch between tabs
               if (widget.tabsRouter.activeIndex == index) {
+                final current = widget.tabsRouter.current;
                 widget.tabsRouter.stackRouterOfIndex(index)?.popUntilRoot();
               }
               widget.tabsRouter.setActiveIndex(index);
@@ -113,6 +116,14 @@ class _CustomTabBarState extends State<CustomTabBar> {
         onTap: (index) {
           // here we switch between tabs
           if (widget.tabsRouter.activeIndex == index) {
+            final searchState = widget.tabsRouter.topPage?.child
+                .asOrNull<SearchScreen>()
+                ?.key
+                ?.asOrNull<GlobalKey<SearchScreenState>>()
+                ?.currentState;
+            if (searchState != null) {
+              searchState.clear();
+            }
             widget.tabsRouter.stackRouterOfIndex(index)?.popUntilRoot();
           }
           widget.tabsRouter.setActiveIndex(index);
