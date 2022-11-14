@@ -84,6 +84,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
             elevation: 0,
             centerTitle: true,
             title: logo,
+            leadingWidth: 100,
             leading: Align(
               alignment: Alignment.centerLeft,
               child: GestureDetector(
@@ -96,8 +97,8 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                     }
                   },
                   child: Padding(
-                      padding:
-                          const EdgeInsets.only(left: 18, top: 12, bottom: 12),
+                      padding: const EdgeInsets.only(
+                          left: 18, top: 12, bottom: 12, right: 32),
                       child: SvgPicture.string(
                         SvgIcons.profile,
                       ))),
