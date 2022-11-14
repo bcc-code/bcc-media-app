@@ -78,6 +78,7 @@ dependencies:
   on_screen_ruler: ^0.0.1
   url_launcher: ^6.1.6
   modal_bottom_sheet: ^2.1.2
+  webview_flutter: ^3.0.4
   #smooth: any
 
 dev_dependencies:

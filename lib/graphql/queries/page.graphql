@@ -119,6 +119,11 @@ fragment Section on Section {
       }
     }
   }
+  ... on WebSection {
+    authentication
+    widthRatio
+    url
+  }
   __typename
 }
 

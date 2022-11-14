@@ -25,8 +25,7 @@ class TabsRootScreen extends ConsumerStatefulWidget {
   ConsumerState<TabsRootScreen> createState() => _TabsRootScreenState();
 }
 
-class _TabsRootScreenState extends ConsumerState<TabsRootScreen>
-    with AutoRouteAware {
+class _TabsRootScreenState extends ConsumerState<TabsRootScreen> with AutoRouteAware {
   @override
   void initState() {
     super.initState();
@@ -45,11 +44,9 @@ class _TabsRootScreenState extends ConsumerState<TabsRootScreen>
     var result = await FirebaseMessaging.instance.requestPermission();
     print(result.toString());
     var token = await FirebaseMessaging.instance.getToken();
-    FirebaseMessaging.instance.setForegroundNotificationPresentationOptions(
-        alert: false, badge: false, sound: true);
+    FirebaseMessaging.instance.setForegroundNotificationPresentationOptions(alert: false, badge: false, sound: true);
 
-    settingsSubscription =
-        ref.listenManual<Settings>(settingsProvider, (old, value) async {
+    settingsSubscription = ref.listenManual<Settings>(settingsProvider, (old, value) async {
       var token = await FirebaseMessaging.instance.getToken();
       if (token != null && old?.appLanguage != value.appLanguage) {
         setDeviceToken(token);
@@ -63,8 +60,7 @@ class _TabsRootScreenState extends ConsumerState<TabsRootScreen>
       await setDeviceToken(token);
     }
 
-    fcmSubscription =
-        FirebaseMessaging.instance.onTokenRefresh.listen((fcmToken) {
+    fcmSubscription = FirebaseMessaging.instance.onTokenRefresh.listen((fcmToken) {
       if (!mounted) {
         return;
       }
@@ -81,13 +77,8 @@ class _TabsRootScreenState extends ConsumerState<TabsRootScreen>
   }
 
   Future setDeviceToken(String token) async {
-    var result = await ref.read(gqlClientProvider).mutate$SetDeviceToken(
-            Options$Mutation$SetDeviceToken(
-                variables: Variables$Mutation$SetDeviceToken(
-                    token: token,
-                    languages: [
-              ref.read(settingsProvider).appLanguage.languageCode
-            ])));
+    var result = await ref.read(gqlClientProvider).mutate$SetDeviceToken(Options$Mutation$SetDeviceToken(
+        variables: Variables$Mutation$SetDeviceToken(token: token, languages: [ref.read(settingsProvider).appLanguage.languageCode])));
     debugPrint(result.data?.toString());
     return result;
   }
@@ -110,22 +101,15 @@ class _TabsRootScreenState extends ConsumerState<TabsRootScreen>
         navigatorObservers: () => [HeroController()],
         routes: [
           HomeScreenWrapperRoute(),
-          SearchScreenWrapperRoute(children: [
-            SearchScreenRoute(key: GlobalKey<SearchScreenState>())
-          ]),
+          SearchScreenWrapperRoute(children: [SearchScreenRoute(key: GlobalKey<SearchScreenState>())]),
           LiveScreenRoute(),
           CalendarPageRoute(),
         ],
         builder: (context, child, animation) {
           final tabsRouter = AutoTabsRouter.of(context);
           return Theme(
-            data: Theme.of(context).copyWith(
-                bottomSheetTheme: const BottomSheetThemeData(
-                    backgroundColor: Colors.transparent)),
-            child: Scaffold(
-                body: child,
-                bottomSheet: const BottomSheetMiniPlayer(),
-                bottomNavigationBar: CustomTabBar(tabsRouter: tabsRouter)),
+            data: Theme.of(context).copyWith(bottomSheetTheme: const BottomSheetThemeData(backgroundColor: Colors.transparent)),
+            child: Scaffold(body: child, bottomSheet: const BottomSheetMiniPlayer(), bottomNavigationBar: CustomTabBar(tabsRouter: tabsRouter)),
           );
         });
   }

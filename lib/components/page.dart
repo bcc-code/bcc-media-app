@@ -1,3 +1,5 @@
+import 'package:brunstadtv_app/components/web_section.dart';
+import 'package:brunstadtv_app/helpers/utils.dart';
 import 'package:flutter/material.dart';
 
 import '../graphql/queries/page.graphql.dart';
@@ -27,9 +29,7 @@ class BccmPage extends StatelessWidget {
     final sectionItems = pageData.sections.items;
     final mediaQueryData = MediaQuery.of(context);
     return MediaQuery(
-      data: mediaQueryData.copyWith(
-          padding: mediaQueryData.padding
-              .copyWith(bottom: mediaQueryData.padding.bottom + 32)),
+      data: mediaQueryData.copyWith(padding: mediaQueryData.padding.copyWith(bottom: mediaQueryData.padding.bottom + 32)),
       child: RefreshIndicator(
         edgeOffset: MediaQuery.of(context).padding.top,
         triggerMode: RefreshIndicatorTriggerMode.anywhere,
@@ -38,36 +38,42 @@ class BccmPage extends StatelessWidget {
         notificationPredicate: (notification) => true,
         child: ListView.builder(
           cacheExtent: 10000,
-          physics: const BouncingScrollPhysics(
-              parent: AlwaysScrollableScrollPhysics()),
+          physics: const BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
           itemCount: sectionItems.length,
           itemBuilder: ((context, index) {
-            if (sectionItems[index] is Fragment$Section$$IconSection) {
-              return IconSection(
-                  sectionItems[index] as Fragment$Section$$IconSection);
-            } else if (sectionItems[index] is Fragment$Section$$LabelSection) {
-              return LabelSection(
-                sectionItems[index] as Fragment$Section$$LabelSection,
-              );
-            } else if (sectionItems[index]
-                is Fragment$Section$$DefaultSection) {
-              return DefaultSection(
-                  sectionItems[index] as Fragment$Section$$DefaultSection);
-            } else if (sectionItems[index] is Fragment$Section$$PosterSection) {
-              return PosterSection(
-                  sectionItems[index] as Fragment$Section$$PosterSection);
-            } else if (sectionItems[index]
-                is Fragment$Section$$DefaultGridSection) {
-              return DefaultGridSection(
-                  sectionItems[index] as Fragment$Section$$DefaultGridSection);
-            } else if (sectionItems[index]
-                is Fragment$Section$$PosterGridSection) {
-              return PosterGridSection(
-                  sectionItems[index] as Fragment$Section$$PosterGridSection);
-            } else if (sectionItems[index]
-                is Fragment$Section$$FeaturedSection) {
-              return FeaturedSection(
-                  sectionItems[index] as Fragment$Section$$FeaturedSection);
+            var s = sectionItems[index];
+
+            final iconSection = s.asOrNull<Fragment$Section$$IconSection>();
+            if (iconSection != null) {
+              return IconSection(iconSection);
+            }
+            final labelSection = s.asOrNull<Fragment$Section$$LabelSection>();
+            if (labelSection != null) {
+              return LabelSection(labelSection);
+            }
+            final defaultSection = s.asOrNull<Fragment$Section$$DefaultSection>();
+            if (defaultSection != null) {
+              return DefaultSection(defaultSection);
+            }
+            final posterSection = s.asOrNull<Fragment$Section$$PosterSection>();
+            if (posterSection != null) {
+              return PosterSection(posterSection);
+            }
+            final defaultGridSection = s.asOrNull<Fragment$Section$$DefaultGridSection>();
+            if (defaultGridSection != null) {
+              return DefaultGridSection(defaultGridSection);
+            }
+            final posterGridSection = s.asOrNull<Fragment$Section$$PosterGridSection>();
+            if (posterGridSection != null) {
+              return PosterGridSection(posterGridSection);
+            }
+            final featuredSection = s.asOrNull<Fragment$Section$$FeaturedSection>();
+            if (featuredSection != null) {
+              return FeaturedSection(featuredSection);
+            }
+            final webSection = s.asOrNull<Fragment$Section$$WebSection>();
+            if (webSection != null) {
+              return WebSection(webSection);
             }
             return Container();
           }),
@@ -129,9 +135,7 @@ class BccmPage extends StatelessWidget {
                   style: BtvTextStyles.body1.copyWith(color: BtvColors.label3),
                 ),
               ),
-              BtvButton.medium(
-                  labelText: S.of(context).tryAgainButton,
-                  onPressed: () => onRefresh(true))
+              BtvButton.medium(labelText: S.of(context).tryAgainButton, onPressed: () => onRefresh(true))
             ],
           ),
         ),

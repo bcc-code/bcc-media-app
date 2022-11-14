@@ -2881,6 +2881,9 @@ class Fragment$Section {
       case "LabelSection":
         return Fragment$Section$$LabelSection.fromJson(json);
 
+      case "WebSection":
+        return Fragment$Section$$WebSection.fromJson(json);
+
       default:
         final l$title = json['title'];
         final l$$__typename = json['__typename'];
@@ -3523,6 +3526,44 @@ const fragmentDefinitionSection = FragmentDefinitionNode(
               selectionSet: null,
             ),
           ]),
+        ),
+        FieldNode(
+          name: NameNode(value: '__typename'),
+          alias: null,
+          arguments: [],
+          directives: [],
+          selectionSet: null,
+        ),
+      ]),
+    ),
+    InlineFragmentNode(
+      typeCondition: TypeConditionNode(
+          on: NamedTypeNode(
+        name: NameNode(value: 'WebSection'),
+        isNonNull: false,
+      )),
+      directives: [],
+      selectionSet: SelectionSetNode(selections: [
+        FieldNode(
+          name: NameNode(value: 'authentication'),
+          alias: null,
+          arguments: [],
+          directives: [],
+          selectionSet: null,
+        ),
+        FieldNode(
+          name: NameNode(value: 'widthRatio'),
+          alias: null,
+          arguments: [],
+          directives: [],
+          selectionSet: null,
+        ),
+        FieldNode(
+          name: NameNode(value: 'url'),
+          alias: null,
+          arguments: [],
+          directives: [],
+          selectionSet: null,
         ),
         FieldNode(
           name: NameNode(value: '__typename'),
@@ -15304,6 +15345,187 @@ class _CopyWithStubImpl$Fragment$Section$$IconGridSection$items$items$item$$Epis
   call({
     String? title,
     String? $__typename,
+  }) =>
+      _res;
+}
+
+class Fragment$Section$$WebSection implements Fragment$Section {
+  Fragment$Section$$WebSection({
+    this.title,
+    required this.$__typename,
+    required this.authentication,
+    required this.widthRatio,
+    required this.url,
+  });
+
+  factory Fragment$Section$$WebSection.fromJson(Map<String, dynamic> json) {
+    final l$title = json['title'];
+    final l$$__typename = json['__typename'];
+    final l$authentication = json['authentication'];
+    final l$widthRatio = json['widthRatio'];
+    final l$url = json['url'];
+    return Fragment$Section$$WebSection(
+      title: (l$title as String?),
+      $__typename: (l$$__typename as String),
+      authentication: (l$authentication as bool),
+      widthRatio: (l$widthRatio as num).toDouble(),
+      url: (l$url as String),
+    );
+  }
+
+  final String? title;
+
+  final String $__typename;
+
+  final bool authentication;
+
+  final double widthRatio;
+
+  final String url;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$title = title;
+    _resultData['title'] = l$title;
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    final l$authentication = authentication;
+    _resultData['authentication'] = l$authentication;
+    final l$widthRatio = widthRatio;
+    _resultData['widthRatio'] = l$widthRatio;
+    final l$url = url;
+    _resultData['url'] = l$url;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$title = title;
+    final l$$__typename = $__typename;
+    final l$authentication = authentication;
+    final l$widthRatio = widthRatio;
+    final l$url = url;
+    return Object.hashAll([
+      l$title,
+      l$$__typename,
+      l$authentication,
+      l$widthRatio,
+      l$url,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (!(other is Fragment$Section$$WebSection) ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$title = title;
+    final lOther$title = other.title;
+    if (l$title != lOther$title) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    final l$authentication = authentication;
+    final lOther$authentication = other.authentication;
+    if (l$authentication != lOther$authentication) {
+      return false;
+    }
+    final l$widthRatio = widthRatio;
+    final lOther$widthRatio = other.widthRatio;
+    if (l$widthRatio != lOther$widthRatio) {
+      return false;
+    }
+    final l$url = url;
+    final lOther$url = other.url;
+    if (l$url != lOther$url) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Fragment$Section$$WebSection
+    on Fragment$Section$$WebSection {
+  CopyWith$Fragment$Section$$WebSection<Fragment$Section$$WebSection>
+      get copyWith => CopyWith$Fragment$Section$$WebSection(
+            this,
+            (i) => i,
+          );
+}
+
+abstract class CopyWith$Fragment$Section$$WebSection<TRes> {
+  factory CopyWith$Fragment$Section$$WebSection(
+    Fragment$Section$$WebSection instance,
+    TRes Function(Fragment$Section$$WebSection) then,
+  ) = _CopyWithImpl$Fragment$Section$$WebSection;
+
+  factory CopyWith$Fragment$Section$$WebSection.stub(TRes res) =
+      _CopyWithStubImpl$Fragment$Section$$WebSection;
+
+  TRes call({
+    String? title,
+    String? $__typename,
+    bool? authentication,
+    double? widthRatio,
+    String? url,
+  });
+}
+
+class _CopyWithImpl$Fragment$Section$$WebSection<TRes>
+    implements CopyWith$Fragment$Section$$WebSection<TRes> {
+  _CopyWithImpl$Fragment$Section$$WebSection(
+    this._instance,
+    this._then,
+  );
+
+  final Fragment$Section$$WebSection _instance;
+
+  final TRes Function(Fragment$Section$$WebSection) _then;
+
+  static const _undefined = {};
+
+  TRes call({
+    Object? title = _undefined,
+    Object? $__typename = _undefined,
+    Object? authentication = _undefined,
+    Object? widthRatio = _undefined,
+    Object? url = _undefined,
+  }) =>
+      _then(Fragment$Section$$WebSection(
+        title: title == _undefined ? _instance.title : (title as String?),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+        authentication: authentication == _undefined || authentication == null
+            ? _instance.authentication
+            : (authentication as bool),
+        widthRatio: widthRatio == _undefined || widthRatio == null
+            ? _instance.widthRatio
+            : (widthRatio as double),
+        url: url == _undefined || url == null ? _instance.url : (url as String),
+      ));
+}
+
+class _CopyWithStubImpl$Fragment$Section$$WebSection<TRes>
+    implements CopyWith$Fragment$Section$$WebSection<TRes> {
+  _CopyWithStubImpl$Fragment$Section$$WebSection(this._res);
+
+  TRes _res;
+
+  call({
+    String? title,
+    String? $__typename,
+    bool? authentication,
+    double? widthRatio,
+    String? url,
   }) =>
       _res;
 }
