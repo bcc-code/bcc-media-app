@@ -106,6 +106,7 @@ class _WebSectionState extends State<WebSection> {
                     },
                     onWebResourceError: (error) => setState(() => this.error = error),
                     navigationDelegate: (navigation) async {
+                      if (navigation.isForMainFrame) return NavigationDecision.navigate;
                       var uri = Uri.tryParse(widget.data.url);
                       if (uri != null &&
                           navigation.url.toLowerCase().startsWith('${uri.scheme}:${uri.host}') &&
@@ -120,17 +121,17 @@ class _WebSectionState extends State<WebSection> {
                       debugPrint("Error: Couldn't launch the url in the view.");
                       return NavigationDecision.prevent;
                     }),
-                IgnorePointer(
-                  ignoring: !loading,
-                  child: AnimatedOpacity(
-                    duration: const Duration(milliseconds: 200),
-                    opacity: loading ? 1 : 0,
-                    curve: Curves.easeInOut,
-                    child: Shimmer.fromColors(
-                        enabled: loading,
-                        baseColor: BtvColors.background1,
-                        highlightColor: BtvColors.background2,
-                        child: Positioned.fill(
+                Positioned.fill(
+                  child: IgnorePointer(
+                    ignoring: !loading,
+                    child: AnimatedOpacity(
+                        duration: const Duration(milliseconds: 200),
+                        opacity: loading ? 1 : 0,
+                        curve: Curves.easeInOut,
+                        child: Shimmer.fromColors(
+                            enabled: loading,
+                            baseColor: BtvColors.background1,
+                            highlightColor: BtvColors.background2,
                             child: Container(decoration: BoxDecoration(borderRadius: BorderRadius.circular(9), color: BtvColors.background2)))),
                   ),
                 ),
