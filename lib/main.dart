@@ -170,6 +170,10 @@ ThemeData createTheme() {
         toolbarHeight: 44,
         iconTheme: IconThemeData(color: BtvColors.tint1),
         backgroundColor: BtvColors.background1),
+    dialogTheme: const DialogTheme(
+        backgroundColor: BtvColors.background2,
+        contentTextStyle: BtvTextStyles.body1,
+        titleTextStyle: BtvTextStyles.title3),
     scaffoldBackgroundColor: BtvColors.background1,
     bottomNavigationBarTheme: BottomNavigationBarThemeData(
         selectedItemColor: BtvColors.tint1,

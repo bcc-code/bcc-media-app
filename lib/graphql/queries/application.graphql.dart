@@ -149,6 +149,13 @@ const documentNodeQueryApplication = DocumentNode(definitions: [
         directives: [],
         selectionSet: SelectionSetNode(selections: [
           FieldNode(
+            name: NameNode(value: 'clientVersion'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
             name: NameNode(value: 'page'),
             alias: null,
             arguments: [],
@@ -324,16 +331,19 @@ class Query$Application$Widget
 
 class Query$Application$application {
   Query$Application$application({
+    required this.clientVersion,
     this.page,
     this.searchPage,
     required this.$__typename,
   });
 
   factory Query$Application$application.fromJson(Map<String, dynamic> json) {
+    final l$clientVersion = json['clientVersion'];
     final l$page = json['page'];
     final l$searchPage = json['searchPage'];
     final l$$__typename = json['__typename'];
     return Query$Application$application(
+      clientVersion: (l$clientVersion as String),
       page: l$page == null
           ? null
           : Query$Application$application$page.fromJson(
@@ -346,6 +356,8 @@ class Query$Application$application {
     );
   }
 
+  final String clientVersion;
+
   final Query$Application$application$page? page;
 
   final Query$Application$application$searchPage? searchPage;
@@ -354,6 +366,8 @@ class Query$Application$application {
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
+    final l$clientVersion = clientVersion;
+    _resultData['clientVersion'] = l$clientVersion;
     final l$page = page;
     _resultData['page'] = l$page?.toJson();
     final l$searchPage = searchPage;
@@ -365,10 +379,12 @@ class Query$Application$application {
 
   @override
   int get hashCode {
+    final l$clientVersion = clientVersion;
     final l$page = page;
     final l$searchPage = searchPage;
     final l$$__typename = $__typename;
     return Object.hashAll([
+      l$clientVersion,
       l$page,
       l$searchPage,
       l$$__typename,
@@ -382,6 +398,11 @@ class Query$Application$application {
     }
     if (!(other is Query$Application$application) ||
         runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$clientVersion = clientVersion;
+    final lOther$clientVersion = other.clientVersion;
+    if (l$clientVersion != lOther$clientVersion) {
       return false;
     }
     final l$page = page;
@@ -422,6 +443,7 @@ abstract class CopyWith$Query$Application$application<TRes> {
       _CopyWithStubImpl$Query$Application$application;
 
   TRes call({
+    String? clientVersion,
     Query$Application$application$page? page,
     Query$Application$application$searchPage? searchPage,
     String? $__typename,
@@ -444,11 +466,15 @@ class _CopyWithImpl$Query$Application$application<TRes>
   static const _undefined = {};
 
   TRes call({
+    Object? clientVersion = _undefined,
     Object? page = _undefined,
     Object? searchPage = _undefined,
     Object? $__typename = _undefined,
   }) =>
       _then(Query$Application$application(
+        clientVersion: clientVersion == _undefined || clientVersion == null
+            ? _instance.clientVersion
+            : (clientVersion as String),
         page: page == _undefined
             ? _instance.page
             : (page as Query$Application$application$page?),
@@ -484,6 +510,7 @@ class _CopyWithStubImpl$Query$Application$application<TRes>
   TRes _res;
 
   call({
+    String? clientVersion,
     Query$Application$application$page? page,
     Query$Application$application$searchPage? searchPage,
     String? $__typename,

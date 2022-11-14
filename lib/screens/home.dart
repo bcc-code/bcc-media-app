@@ -1,9 +1,11 @@
+import 'dart:io';
 import 'dart:ui';
 
 import 'package:auto_route/auto_route.dart';
 import 'package:brunstadtv_app/components/sign_in_tooltip.dart';
 import 'package:brunstadtv_app/helpers/svg_icons.dart';
 import 'package:brunstadtv_app/helpers/utils.dart';
+import 'package:brunstadtv_app/helpers/version_number_utils.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -11,11 +13,17 @@ import 'package:brunstadtv_app/router/router.gr.dart';
 
 import 'package:bccm_player/cast_button.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:package_info_plus/package_info_plus.dart';
+import 'package:url_launcher/url_launcher_string.dart';
 import '../api/brunstadtv.dart';
+import '../graphql/queries/application.graphql.dart';
+import '../helpers/btv_buttons.dart';
 import '../helpers/btv_colors.dart';
 import '../components/page.dart';
 import '../graphql/client.dart';
 import '../graphql/queries/page.graphql.dart';
+import '../helpers/btv_typography.dart';
+import '../l10n/app_localizations.dart';
 import '../providers/app_config.dart';
 import '../services/auth_service.dart';
 
@@ -29,6 +37,7 @@ class HomeScreen extends ConsumerStatefulWidget {
 }
 
 class _HomeScreenState extends ConsumerState<HomeScreen> {
+  late ProviderSubscription<Future<Query$Application?>> appConfigListener;
   late Future<Query$Page$page> resultFuture;
   bool isGuestUser = false;
   bool showTooltip = false;
@@ -42,6 +51,59 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
       showTooltip = true;
     }
     resultFuture = getHomePage();
+    showDialogIfOldAppVersion();
+    appConfigListener = ref.listenManual<Future<Query$Application?>>(
+        appConfigProvider, (prev, next) async {
+      showDialogIfOldAppVersion();
+    });
+  }
+
+  @override
+  void dispose() {
+    appConfigListener.close();
+    super.dispose();
+  }
+
+  void showDialogIfOldAppVersion() async {
+    final appConfig = await ref.read(appConfigProvider);
+    if (appConfig == null) return;
+    final packageInfo = await PackageInfo.fromPlatform();
+    final minVersionNumber = appConfig.application.clientVersion;
+    final currentVersionNumber = packageInfo.version;
+    debugPrint(minVersionNumber);
+    debugPrint(
+        'minVersionNumber ${getExtendedVersionNumber(minVersionNumber)}');
+    debugPrint(
+        'currentVersionNumber ${getExtendedVersionNumber(currentVersionNumber)}');
+    if (minVersionNumber != null &&
+        getExtendedVersionNumber(minVersionNumber) >
+            getExtendedVersionNumber(currentVersionNumber)) {
+      showDialog(
+          context: context,
+          builder: (context) {
+            return SimpleDialog(
+              title: Text(
+                S.of(context).appUpdateTitle,
+                style: BtvTextStyles.title3,
+              ),
+              contentPadding: const EdgeInsets.all(24).copyWith(top: 8),
+              children: [
+                Padding(
+                    padding: EdgeInsets.only(bottom: 16),
+                    child: Text(S.of(context).appUpdateRequest)),
+                BtvButton.medium(
+                    onPressed: () {
+                      if (Platform.isIOS) {
+                        launchUrlString('itms-apps://itunes.apple.com');
+                      } else if (Platform.isAndroid) {
+                        launchUrlString('market://search?q=brunstadtv');
+                      }
+                    },
+                    labelText: S.of(context).appUpdateAccepted)
+              ],
+            );
+          });
+    }
   }
 
   Future<void> loginAction(BuildContext context) async {
