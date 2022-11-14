@@ -26,6 +26,7 @@ class BccmPlayerFactory: NSObject, FlutterPlatformViewFactory {
             viewIdentifier viewId: Int64,
             arguments args: Any?
     ) -> FlutterPlatformView {
+        debugPrint("BccmPlayerFactory create")
         let argDictionary = args as! [String: Any]?
         let playerId = argDictionary?["player_id"] as? String
         guard playerId != nil else {
@@ -57,6 +58,7 @@ class AVPlayerBccmPlayerView: NSObject, FlutterPlatformView {
             frame: CGRect,
             playerController: AVQueuePlayerController
     ) {
+        debugPrint("AVPlayerBccmPlayerView init")
         _view.frame = frame
         _playerController = playerController
         super.init()

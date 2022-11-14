@@ -25,8 +25,6 @@ class MediaItemUtils {
         if #available(iOS 12.2, *) {
             let extras = getNamespacedMetadata(playerItem.externalMetadata, namespace: .BccmExtras)
             playerData = getNamespacedMetadata(playerItem.externalMetadata, namespace: .BccmPlayer)
-            debugPrint("externalMetadata")
-            playerItem.externalMetadata.forEach({ e in debugPrint(e) })
             let artworkUri: String? = playerData?[PlayerMetadataConstants.ArtworkUri]
             metadata = MediaMetadata.make(
                     withArtworkUri: artworkUri,
@@ -38,7 +36,6 @@ class MediaItemUtils {
             
             nowPlayingInfoCenter.nowPlayingInfo?[MPMediaItemPropertyArtist] = metadata?.artist
             nowPlayingInfoCenter.nowPlayingInfo?[MPMediaItemPropertyTitle] = metadata?.title
-            print ("image is " + (playerItem.externalMetadata.first(where: { $0.identifier == AVMetadataIdentifier.commonIdentifierArtwork })?.debugDescription ?? ""))
             if let imageData = playerItem.externalMetadata.first(where: { $0.identifier == AVMetadataIdentifier.commonIdentifierArtwork })?.value as? Data {
                 if let image = UIImage(data: imageData) {
                     let nowPlayingArtwork = MPMediaItemArtwork(boundsSize: image.size, requestHandler: { (_ size : CGSize) -> UIImage in

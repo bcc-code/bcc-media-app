@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:auto_route/auto_route.dart';
 import 'package:brunstadtv_app/graphql/client.dart';
 import 'package:brunstadtv_app/graphql/queries/episode.graphql.dart';
@@ -113,4 +115,10 @@ Future<dynamic>? navigateToShowWithoutEpisodeId(
   }
   return overrideAwareNavigation(
       navigationOverride, router, EpisodeScreenRoute(episodeId: episodeId));
+}
+
+Completer<T> wrapInCompleter<T>(Future<T> future) {
+  final completer = Completer<T>();
+  future.then(completer.complete).catchError(completer.completeError);
+  return completer;
 }

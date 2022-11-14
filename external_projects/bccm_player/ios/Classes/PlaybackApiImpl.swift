@@ -54,7 +54,12 @@ public class PlaybackApiImpl: NSObject, PlaybackPlatformPigeon {
         let player = AVQueuePlayerController(playbackListener: playbackListener, npawConfig: npawConfig, appConfig: appConfig);
         players.append(player)
         if (url != nil) {
-            player.replaceCurrentMediaItem(MediaItem.make(withUrl: url!, mimeType: "application/x-mpegURL", metadata: nil, isLive: false, playbackStartPositionMs: nil, lastKnownAudioLanguage: nil, lastKnownSubtitleLanguage: nil), autoplay: false)
+            let mediaItem = MediaItem.make(withUrl: url!, mimeType: "application/x-mpegURL", metadata: nil, isLive: false, playbackStartPositionMs: nil, lastKnownAudioLanguage: nil, lastKnownSubtitleLanguage: nil)
+            player.replaceCurrentMediaItem(mediaItem, autoplay: false, completion: {
+                err in
+                let playerId = err == nil ? player.id : nil
+                completion(playerId, err)
+            })
         }
         completion(player.id, nil)
     }
@@ -86,11 +91,10 @@ public class PlaybackApiImpl: NSObject, PlaybackPlatformPigeon {
         completion(nil)
     }
 
-    public func replaceCurrentMediaItem(_ playerId: String, mediaItem: MediaItem, playbackPositionFromPrimary: NSNumber?, autoplay: NSNumber?, completion: (FlutterError?) -> ()) {
+    public func replaceCurrentMediaItem(_ playerId: String, mediaItem: MediaItem, playbackPositionFromPrimary: NSNumber?, autoplay: NSNumber?, completion: @escaping (FlutterError?) -> ()) {
         let player = getPlayer(playerId);
 
-        player?.replaceCurrentMediaItem(mediaItem, autoplay: autoplay)
-        completion(nil)
+        player?.replaceCurrentMediaItem(mediaItem, autoplay: autoplay, completion: completion)
     }
 
     public func getPlayerState(_ playerId: String, completion: @escaping (PlayerState?, FlutterError?) -> Void) {

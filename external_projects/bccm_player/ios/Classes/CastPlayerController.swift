@@ -66,7 +66,7 @@ class CastPlayerController: NSObject, PlayerController  {
         self.appConfig = appConfig
     }
     
-    func replaceCurrentMediaItem(_ mediaItem: MediaItem, autoplay: NSNumber?) {
+    func replaceCurrentMediaItem(_ mediaItem: MediaItem, autoplay: NSNumber?, completion: @escaping (FlutterError?) -> Void) {
         guard let mediaInfo = mapMediaItemToMediaInformation(mediaItem) else {
             fatalError("invalid url passed to setMediaItem");
         };

@@ -76,8 +76,14 @@ class Api {
   }
 
   Future<Query$Application?> queryAppConfig() {
-    return client.query$Application().then((val) {
-      return val.parsedData;
+    return client.query$Application().then((value) {
+      if (value.exception != null) {
+        throw value.exception!;
+      }
+      if (value.parsedData == null) {
+        throw ErrorDescription('App config data is null.');
+      }
+      return value.parsedData;
     });
   }
 }

@@ -1,6 +1,3 @@
-//
-// Created by Andreas Gangsø on 16/09/2022.
-//
 
 import Foundation
 import AVFoundation
@@ -77,21 +74,10 @@ public class AVQueuePlayerController: NSObject, PlayerController, AVPlayerViewCo
         registerPipController(playerViewController)
     }
     
-    public func playerViewControllerDidStartPictureInPicture(_ playerViewController: AVPlayerViewController) {
-        print("playerViewControllerDidStartPictureInPicture")
-    }
-    public func playerViewController(_ playerViewController: AVPlayerViewController, willBeginFullScreenPresentationWithAnimationCoordinator coordinator: UIViewControllerTransitionCoordinator) {
-        print("willBeginFullScreenPresentationWithAnimationCoordinator")
-    }
-    
     public func playerViewControllerShouldAutomaticallyDismissAtPictureInPictureStart(_ playerViewController: AVPlayerViewController) -> Bool {
         print("playerViewControllerShouldAutomaticallyDismissAtPictureInPictureStart");
         return false;
     }
-//    public func playerViewController(_ playerViewController: AVPlayerViewController, restoreUserInterfaceForPictureInPictureStopWithCompletionHandler completionHandler: @escaping (Bool) -> Void) {
-//        print("restoreUserInterfaceForPictureInPictureStopWithCompletionHandler")
-//        completionHandler(true)
-//    }
     
     public func playerViewControllerWillStopPictureInPicture(_ playerViewController: AVPlayerViewController) {
         print("bccm: audiosession category willstop: " + AVAudioSession.sharedInstance().category.rawValue)
@@ -181,34 +167,39 @@ public class AVQueuePlayerController: NSObject, PlayerController, AVPlayerViewCo
         self.appConfig = appConfig
     }
     
-    public func replaceCurrentMediaItem(_ mediaItem: MediaItem, autoplay: NSNumber?) {
-        guard let playerItem = mapMediaItem(mediaItem) else {
-            return
-        }
-    
-        player.replaceCurrentItem(with: playerItem)
-        
-        temporaryStatusObserver = playerItem.observe(\.status, options: [.new, .old]) {
-            (playerItem, change) in
-            if (playerItem.status == .readyToPlay) {
-                if let playbackStartPositionMs = mediaItem.playbackStartPositionMs {
-                    playerItem.seek(to: CMTime(value: Int64(truncating: playbackStartPositionMs), timescale: 1000), completionHandler: nil)
-                }
-                if (autoplay?.boolValue == true) {
-                    self.player.play()
-                }
-                if let audioLanguage = self.appConfig?.audioLanguage {
-                    _ = playerItem.setAudioLanguage(audioLanguage)
-                }
-                if let subtitleLanguage = self.appConfig?.subtitleLanguage {
-                    _ = playerItem.setSubtitleLanguage(subtitleLanguage)
-                }
-            } else if (playerItem.status == .failed || playerItem.status == .unknown) {
-                print("Mediaitem failed to play")
+    public func replaceCurrentMediaItem(_ mediaItem: MediaItem, autoplay: NSNumber?, completion:  @escaping (FlutterError?) -> ()) {
+        self.createPlayerItem(mediaItem, { playerItem in
+            guard let playerItem = playerItem else {
+                return;
             }
-            self.temporaryStatusObserver?.invalidate()
-            self.temporaryStatusObserver = nil
-        }
+            DispatchQueue.main.async {
+                self.player.replaceCurrentItem(with: playerItem)
+                self.temporaryStatusObserver = playerItem.observe(\.status, options: [.new, .old]) {
+                    (playerItem, change) in
+                    if (playerItem.status == .readyToPlay) {
+                        if let playbackStartPositionMs = mediaItem.playbackStartPositionMs {
+                            playerItem.seek(to: CMTime(value: Int64(truncating: playbackStartPositionMs), timescale: 1000), completionHandler: nil)
+                        }
+                        if (autoplay?.boolValue == true) {
+                            self.player.play()
+                        }
+                        if let audioLanguage = self.appConfig?.audioLanguage {
+                            _ = playerItem.setAudioLanguage(audioLanguage)
+                        }
+                        if let subtitleLanguage = self.appConfig?.subtitleLanguage {
+                            _ = playerItem.setSubtitleLanguage(subtitleLanguage)
+                        }
+                        
+                        completion(nil);
+                    } else if (playerItem.status == .failed || playerItem.status == .unknown) {
+                        print("Mediaitem failed to play")
+                        completion(FlutterError(code: "", message: "MediaItem failed to load", details: ["playerItem.status", playerItem.status.rawValue]));
+                    }
+                    self.temporaryStatusObserver?.invalidate()
+                    self.temporaryStatusObserver = nil
+                }
+            }
+        })
     }
     
     public func getPlayer() -> AVQueuePlayer {
@@ -216,9 +207,14 @@ public class AVQueuePlayerController: NSObject, PlayerController, AVPlayerViewCo
     }
 
     public func queueItem(_ mediaItem: MediaItem) {
-        if let playerItem = mapMediaItem(mediaItem) {
-            player.insert(playerItem, after: nil);
-        }
+        self.createPlayerItem(mediaItem, { playerItem in
+            guard let playerItem = playerItem else {
+                return;
+            }
+            DispatchQueue.main.async {
+                self.player.insert(playerItem, after: nil)
+            }
+        })
     }
     
     func takeOwnership(_ playerViewController: AVPlayerViewController) {
@@ -228,55 +224,65 @@ public class AVQueuePlayerController: NSObject, PlayerController, AVPlayerViewCo
         playerViewController.player = player
     }
     
-    func mapMediaItem(_ mediaItem: MediaItem) -> AVPlayerItem? {
-        guard let urlString = mediaItem.url, let url = URL(string: urlString) else {
-            return nil
-        }
-        let playerItem = AVPlayerItem(url: url);
-
-        var allItems: [AVMetadataItem] = []
-        if let metadataItem = MetadataUtils.metadataItem(identifier: AVMetadataIdentifier.commonIdentifierTitle.rawValue, value: mediaItem.metadata?.title as (NSCopying & NSObjectProtocol)?) {
-            allItems.append(metadataItem)
-        }
-        if let artist = mediaItem.metadata?.artist {
-            if let metadataItem = MetadataUtils.metadataItem(identifier: AVMetadataIdentifier.commonIdentifierArtist.rawValue, value: artist as (NSCopying & NSObjectProtocol)?) {
-                allItems.append(metadataItem)
+    func createPlayerItem(_ mediaItem: MediaItem, _ completion: @escaping (AVPlayerItem?) -> Void ) {
+        DispatchQueue.global(qos: .userInitiated).async {
+            guard let urlString = mediaItem.url, let url = URL(string: urlString) else {
+                return completion(nil)
+            }
+            let asset = AVURLAsset(url: url);
+            
+            asset.loadValuesAsynchronously(forKeys: ["playable", "duration", "tracks"]) {
+                let playerItem = self._createPlayerItem(mediaItem, asset)
+                completion(playerItem);
             }
         }
-        if let artworkUri = mediaItem.metadata?.artworkUri {
-            if let url = URL(string: artworkUri) {
-                if let data = try? Data(contentsOf: url) {
-                    if let image = UIImage(data: data) {
-                        if let artworkItem = MetadataUtils.metadataArtworkItem(image: image) {
-                            allItems.append(artworkItem)
+    }
+    
+    private func _createPlayerItem(_ mediaItem: MediaItem, _ asset: AVAsset) -> AVPlayerItem? {
+        let playerItem = AVPlayerItem(asset: asset);
+        if #available(iOS 12.2, *) {
+            var allItems: [AVMetadataItem] = []
+            if let metadataItem = MetadataUtils.metadataItem(identifier: AVMetadataIdentifier.commonIdentifierTitle.rawValue, value: mediaItem.metadata?.title as (NSCopying & NSObjectProtocol)?) {
+                allItems.append(metadataItem)
+            }
+            if let artist = mediaItem.metadata?.artist {
+                if let metadataItem = MetadataUtils.metadataItem(identifier: AVMetadataIdentifier.commonIdentifierArtist.rawValue, value: artist as (NSCopying & NSObjectProtocol)?) {
+                    allItems.append(metadataItem)
+                }
+            }
+            if let artworkUri = mediaItem.metadata?.artworkUri {
+                if let url = URL(string: artworkUri) {
+                    if let data = try? Data(contentsOf: url) {
+                        if let image = UIImage(data: data) {
+                            if let artworkItem = MetadataUtils.metadataArtworkItem(image: image) {
+                            
+                                var externalMetadata = playerItem.externalMetadata;
+                                externalMetadata.append(artworkItem)
+                                playerItem.externalMetadata = externalMetadata;
+                            }
                         }
                     }
-                }
-                if let artworkUriMeta = MetadataUtils.metadataItem(identifier: PlayerMetadataConstants.ArtworkUri, value: artworkUri as (NSCopying & NSObjectProtocol)?, namespace: .BccmPlayer) {
-                    allItems.append(artworkUriMeta)
-                }
-            }
-        }
-        if let extras = mediaItem.metadata?.extras {
-            for item in extras {
-                if let value = item.value as? (NSCopying & NSObjectProtocol)?,
-                   let metadataItem = MetadataUtils.metadataItem(identifier: item.key, value: value, namespace: .BccmExtras) {
-                        allItems.append(metadataItem)
+                    if let artworkUriMeta = MetadataUtils.metadataItem(identifier: PlayerMetadataConstants.ArtworkUri, value: artworkUri as (NSCopying & NSObjectProtocol)?, namespace: .BccmPlayer) {
+                        playerItem.externalMetadata.append(artworkUriMeta)
+                    }
                 }
             }
-        }
-        if let mimeType = mediaItem.mimeType {
-            if let metadataItem = MetadataUtils.metadataItem(identifier: PlayerMetadataConstants.MimeType, value: mimeType as (NSCopying & NSObjectProtocol)?, namespace: .BccmPlayer) {
-                allItems.append(metadataItem)
+            if let extras = mediaItem.metadata?.extras {
+                for item in extras {
+                    if let value = item.value as? (NSCopying & NSObjectProtocol)?,
+                       let metadataItem = MetadataUtils.metadataItem(identifier: item.key, value: value, namespace: .BccmExtras) {
+                            allItems.append(metadataItem)
+                    }
+                }
             }
-        }
-
-        if #available(iOS 12.2, *) {
+            if let mimeType = mediaItem.mimeType {
+                if let metadataItem = MetadataUtils.metadataItem(identifier: PlayerMetadataConstants.MimeType, value: mimeType as (NSCopying & NSObjectProtocol)?, namespace: .BccmPlayer) {
+                    allItems.append(metadataItem)
+                }
+            }
+            
             playerItem.externalMetadata.append(contentsOf: allItems)
-        } else {
-            // Fallback on earlier versions
         }
-        
         return playerItem;
     }
     
@@ -284,7 +290,6 @@ public class AVQueuePlayerController: NSObject, PlayerController, AVPlayerViewCo
         // listening for current item change
         observers.append(player.observe(\.currentItem, options: [.old, .new]) {
             (player, _) in
-            debugPrint("BTV DEBUG: media item changed...")
             let mediaItem = MediaItemUtils.mapPlayerItem(player.currentItem)
             let event = MediaItemTransitionEvent.make(withPlayerId: self.id, mediaItem: mediaItem)
             self.playbackListener.onMediaItemTransition(event, completion: { _ in })
@@ -293,19 +298,16 @@ public class AVQueuePlayerController: NSObject, PlayerController, AVPlayerViewCo
             
             self.observers.append(player.observe(\.currentItem?.duration, options: [.old, .new]) {
                 (player, change) in
-                debugPrint("BTV DEBUG: duration..")
                 MPNowPlayingInfoCenter.default().nowPlayingInfo?[MPMediaItemPropertyPlaybackDuration] = player.currentItem?.duration.seconds
             })
         })
         self.observers.append(player.observe(\.rate, options: [.old, .new]) {
             (player, change) in
-            debugPrint("BTV DEBUG: duration..")
             let nowPlayingInfoCenter = MPNowPlayingInfoCenter.default()
             nowPlayingInfoCenter.nowPlayingInfo?[MPNowPlayingInfoPropertyElapsedPlaybackTime] = player.currentTime().seconds
         })
         observers.append(player.observe(\.timeControlStatus, options: [.old, .new]) {
             (player, change) in
-            debugPrint("BTV DEBUG: player status changed...")
             let event = IsPlayingChangedEvent.make(withPlayerId: self.id, isPlaying: self.isPlaying() as NSNumber)
             self.playbackListener.onIsPlayingChanged(event, completion: { _ in })
         })
@@ -319,6 +321,7 @@ public class AVQueuePlayerController: NSObject, PlayerController, AVPlayerViewCo
                 && player.reasonForWaitingToPlay == AVPlayer.WaitingReason.noItemToPlay
         return !paused && !waitingBecauseNoItemToPlay;
     }
+    
 }
 
 

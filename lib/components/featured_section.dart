@@ -22,10 +22,11 @@ class FeaturedSection extends StatelessWidget {
           (constraints.maxWidth - (32 - 2 * marginX)) / constraints.maxWidth;
       final sectionItems = data.items.items;
       return Padding(
-        padding: EdgeInsets.only(top: 16),
+        padding: const EdgeInsets.only(top: 16),
         child: SizedBox(
           height: 323,
           child: PageView.builder(
+            physics: const _CustomPageViewScrollPhysics(),
             controller: PageController(viewportFraction: viewportFraction),
             itemCount: sectionItems.length,
             itemBuilder: (context, index) {
@@ -163,7 +164,7 @@ class _GradientImage extends StatelessWidget {
           end: Alignment.bottomCenter,
           colors: [
             BtvColors.background1.withOpacity(0.23),
-            Color.fromRGBO(26, 37, 53, 0),
+            const Color.fromRGBO(26, 37, 53, 0),
             BtvColors.background1,
           ],
           stops: [0, 0.5, 1],
@@ -171,4 +172,21 @@ class _GradientImage extends StatelessWidget {
       ),
     );
   }
+}
+
+class _CustomPageViewScrollPhysics extends ScrollPhysics {
+  const _CustomPageViewScrollPhysics({ScrollPhysics? parent})
+      : super(parent: parent);
+
+  @override
+  _CustomPageViewScrollPhysics applyTo(ScrollPhysics? ancestor) {
+    return _CustomPageViewScrollPhysics(parent: buildParent(ancestor)!);
+  }
+
+  @override
+  SpringDescription get spring => const SpringDescription(
+        mass: 50,
+        stiffness: 10,
+        damping: 2,
+      );
 }
