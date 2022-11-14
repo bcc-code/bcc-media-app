@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:transparent_image/transparent_image.dart';
+import 'package:brunstadtv_app/helpers/transparent_image.dart';
 
 import '../helpers/btv_colors.dart';
+import '../helpers/image_utils.dart';
 
 class BorderedImageContainer extends StatelessWidget {
   final String? imageUrl;
@@ -37,24 +38,27 @@ class BorderedImageContainer extends StatelessWidget {
         ),
         child: LayoutBuilder(
           builder: (context, BoxConstraints constraints) {
-            if (imageUrl != null) {
-              return ClipRRect(
-                borderRadius: BorderRadius.circular(6),
-                child: SizedBox(
-                  height: constraints.maxHeight,
-                  child: FadeInImage.memoryNetwork(
-                      fit: BoxFit.cover,
-                      placeholder: kTransparentImage,
-                      image: imageUrl!,
-                      fadeInDuration: const Duration(milliseconds: 400),
-                      imageCacheHeight: (constraints.maxHeight *
-                              MediaQuery.of(context).devicePixelRatio)
-                          .round()),
-                ),
-              );
+            if (imageUrl == null) {
+              return const SizedBox.shrink();
             }
-
-            return const SizedBox.shrink();
+            final imageHeight = (constraints.maxHeight * MediaQuery.of(context).devicePixelRatio).round();
+            final imageWidth = (constraints.maxWidth * MediaQuery.of(context).devicePixelRatio).round();
+            final imageUri = getImageUri(imageUrl!, width: imageWidth, height: imageHeight);
+            if (imageUri == null) {
+              return const SizedBox.shrink();
+            }
+            return ClipRRect(
+              borderRadius: BorderRadius.circular(6),
+              child: SizedBox(
+                height: constraints.maxHeight,
+                child: FadeInImage.memoryNetwork(
+                    fit: BoxFit.cover,
+                    placeholder: kTransparentImage,
+                    image: imageUri.toString()!,
+                    fadeInDuration: const Duration(milliseconds: 400),
+                    imageCacheHeight: (constraints.maxHeight * MediaQuery.of(context).devicePixelRatio).round()),
+              ),
+            );
           },
         ));
   }

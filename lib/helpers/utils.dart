@@ -3,7 +3,6 @@ import 'dart:async';
 import 'package:auto_route/auto_route.dart';
 import 'package:brunstadtv_app/graphql/client.dart';
 import 'package:brunstadtv_app/graphql/queries/episode.graphql.dart';
-import 'package:extended_image/extended_image.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:url_launcher/url_launcher_string.dart';
@@ -22,11 +21,6 @@ extension AsExtension on Object? {
     var self = this;
     return self is X ? self : null;
   }
-}
-
-ImageProvider cacheOptimizedImage({required BuildContext context, required String imageUrl, required double height}) {
-  return ExtendedResizeImage.resizeIfNeeded(
-      provider: ExtendedNetworkImageProvider(imageUrl), cacheHeight: (height * MediaQuery.of(context).devicePixelRatio).round());
 }
 
 String getFormattedAgeRating(String ageRating) {

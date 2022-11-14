@@ -62,12 +62,11 @@ void $main({required FirebaseOptions? firebaseOptions}) async {
     DeviceOrientation.portraitUp,
   ]);
   await AuthService.instance.init();
-  final appRouter = AppRouter(
-      authGuard: AuthGuard(),
-      specialRoutesGuard: SpecialRoutesGuard(),
-      navigatorKey: navigatorKey);
+  final appRouter = AppRouter(authGuard: AuthGuard(), specialRoutesGuard: SpecialRoutesGuard(), navigatorKey: navigatorKey);
 
   alice.setNavigatorKey(navigatorKey);
+
+  debugInvertOversizedImages = true;
 
   var chromecastListenerOverride = chromecastListenerProvider.overrideWith((c) {
     var listener = ChromecastListener(providerRef: c);
@@ -75,32 +74,23 @@ void $main({required FirebaseOptions? firebaseOptions}) async {
     return listener;
   });
 
-  var providerContainer =
-      ProviderContainer(overrides: [chromecastListenerOverride]);
+  var providerContainer = ProviderContainer(overrides: [chromecastListenerOverride]);
 
-  PlaybackListenerPigeon.setup(
-      PlaybackListener(providerContainer: providerContainer));
+  PlaybackListenerPigeon.setup(PlaybackListener(providerContainer: providerContainer));
 
   providerContainer.read(settingsProvider.notifier).load();
   providerContainer.read(chromecastListenerProvider);
   providerContainer.read(appConfigProvider);
 
-  providerContainer
-      .read(playbackApiProvider)
-      .getChromecastState()
-      .then((value) {
-    providerContainer.read(isCasting.notifier).state =
-        value?.connectionState == CastConnectionState.connected;
-    providerContainer
-        .read(castPlayerProvider.notifier)
-        .setMediaItem(value?.mediaItem);
+  providerContainer.read(playbackApiProvider).getChromecastState().then((value) {
+    providerContainer.read(isCasting.notifier).state = value?.connectionState == CastConnectionState.connected;
+    providerContainer.read(castPlayerProvider.notifier).setMediaItem(value?.mediaItem);
   });
 
   if (Env.npawAccountCode != '') {
-    providerContainer.read(playbackApiProvider).setNpawConfig(NpawConfig(
-        accountCode: Env.npawAccountCode,
-        appName: 'mobile',
-        appReleaseVersion: '4.0.0-alpha'));
+    providerContainer
+        .read(playbackApiProvider)
+        .setNpawConfig(NpawConfig(accountCode: Env.npawAccountCode, appName: 'mobile', appReleaseVersion: '4.0.0-alpha'));
   }
 
   if (firebaseOptions != null) {
@@ -134,11 +124,7 @@ void $main({required FirebaseOptions? firebaseOptions}) async {
                 data: MediaQuery.of(context).copyWith(textScaleFactor: 1.0),
                 child: AppRoot(
                   navigatorKey: navigatorKey,
-                  child: !kDebugMode
-                      ? child
-                      : OnScreenRulerWidget(
-                          gridColor: Colors.white60.withOpacity(0.1),
-                          child: child!),
+                  child: !kDebugMode ? child : OnScreenRulerWidget(gridColor: Colors.white60.withOpacity(0.1), child: child!),
                 ),
               );
             })),
@@ -151,12 +137,9 @@ ThemeData createTheme() {
   return ThemeData(
     //useMaterial3: true,
     cupertinoOverrideTheme: const CupertinoThemeData(
-        barBackgroundColor: BtvColors.background1,
-        textTheme:
-            CupertinoTextThemeData(tabLabelTextStyle: BtvTextStyles.caption3)),
+        barBackgroundColor: BtvColors.background1, textTheme: CupertinoTextThemeData(tabLabelTextStyle: BtvTextStyles.caption3)),
     brightness: Brightness.dark,
-    colorScheme: ColorScheme.fromSeed(
-        brightness: Brightness.dark, seedColor: BtvColors.tint1),
+    colorScheme: ColorScheme.fromSeed(brightness: Brightness.dark, seedColor: BtvColors.tint1),
     fontFamily: 'Barlow',
     canvasColor: BtvColors.background1,
     backgroundColor: BtvColors.background2,
@@ -170,29 +153,21 @@ ThemeData createTheme() {
         toolbarHeight: 44,
         iconTheme: IconThemeData(color: BtvColors.tint1),
         backgroundColor: BtvColors.background1),
-    dialogTheme: const DialogTheme(
-        backgroundColor: BtvColors.background2,
-        contentTextStyle: BtvTextStyles.body1,
-        titleTextStyle: BtvTextStyles.title3),
+    dialogTheme:
+        const DialogTheme(backgroundColor: BtvColors.background2, contentTextStyle: BtvTextStyles.body1, titleTextStyle: BtvTextStyles.title3),
     scaffoldBackgroundColor: BtvColors.background1,
     bottomNavigationBarTheme: BottomNavigationBarThemeData(
         selectedItemColor: BtvColors.tint1,
         elevation: 0,
-        selectedLabelStyle:
-            BtvTextStyles.caption3.copyWith(color: BtvColors.tint1),
+        selectedLabelStyle: BtvTextStyles.caption3.copyWith(color: BtvColors.tint1),
         unselectedLabelStyle: BtvTextStyles.caption3),
-    typography: Typography.material2021().copyWith(
-        white: Typography.material2021()
-            .white
-            .copyWith(headlineMedium: BtvTextStyles.headline2)),
+    typography: Typography.material2021().copyWith(white: Typography.material2021().white.copyWith(headlineMedium: BtvTextStyles.headline2)),
   );
 }
 
 Future<String?> getDefaultLocale() async {
   final String systemLocale = await findSystemLocale();
-  final verifiedLocale = Intl.verifiedLocale(
-      systemLocale, NumberFormat.localeExists,
-      onFailure: (String _) => 'en');
+  final verifiedLocale = Intl.verifiedLocale(systemLocale, NumberFormat.localeExists, onFailure: (String _) => 'en');
   if (verifiedLocale != null) {
     final locale = Intl.shortLocale(verifiedLocale);
     return findCorrectFromAlternativeLocales(locale);

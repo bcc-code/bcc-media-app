@@ -1,6 +1,5 @@
 import 'package:brunstadtv_app/components/loading_indicator.dart';
 import 'package:brunstadtv_app/helpers/utils.dart';
-import 'package:extended_image/extended_image.dart';
 import 'package:flutter/material.dart';
 import 'package:brunstadtv_app/graphql/queries/search.graphql.dart';
 
@@ -21,8 +20,7 @@ class ResultProgramsList extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Container(
-          padding:
-              const EdgeInsets.only(top: 12, right: 16, bottom: 8, left: 16),
+          padding: const EdgeInsets.only(top: 12, right: 16, bottom: 8, left: 16),
           margin: const EdgeInsets.only(bottom: 8),
           child: Text(
             title,
@@ -64,8 +62,7 @@ class _ProgramState extends State<_Program> {
           behavior: HitTestBehavior.opaque,
           onTap: () {
             setState(() {
-              navigationFuture =
-                  navigateToShowWithoutEpisodeId(context, widget._item.id);
+              navigationFuture = navigateToShowWithoutEpisodeId(context, widget._item.id);
             });
           },
           child: SizedBox(
@@ -77,17 +74,13 @@ class _ProgramState extends State<_Program> {
                   children: [
                     AspectRatio(
                       aspectRatio: 16 / 9,
-                      child:
-                          BorderedImageContainer(imageUrl: widget._item.image),
+                      child: BorderedImageContainer(imageUrl: widget._item.image),
                     ),
                     if (navigationFuture != null)
                       simpleFutureBuilder(
                           future: navigationFuture!,
                           loading: () => Positioned.fill(
-                              child: Container(
-                                  color: BtvColors.background1.withOpacity(0.5),
-                                  child:
-                                      const Center(child: LoadingIndicator()))),
+                              child: Container(color: BtvColors.background1.withOpacity(0.5), child: const Center(child: LoadingIndicator()))),
                           error: (e) => const SizedBox.shrink(),
                           noData: () => const SizedBox.shrink(),
                           ready: (d) => const SizedBox.shrink()),
@@ -95,9 +88,7 @@ class _ProgramState extends State<_Program> {
                 ),
                 Padding(
                   padding: const EdgeInsets.only(top: 7),
-                  child: Text(widget._item.title,
-                      style: BtvTextStyles.caption1
-                          .copyWith(color: BtvColors.label1)),
+                  child: Text(widget._item.title, style: BtvTextStyles.caption1.copyWith(color: BtvColors.label1)),
                 ),
               ],
             ),

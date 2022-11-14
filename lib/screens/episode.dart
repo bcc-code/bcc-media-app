@@ -22,7 +22,7 @@ import 'package:brunstadtv_app/providers/playback_api.dart';
 import 'package:brunstadtv_app/providers/video_state.dart';
 import 'package:bccm_player/cast_button.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:transparent_image/transparent_image.dart';
+import 'package:brunstadtv_app/helpers/transparent_image.dart';
 
 import '../api/brunstadtv.dart';
 import '../components/bottom_sheet_select.dart';
@@ -45,17 +45,13 @@ class EpisodePageArguments {
 class EpisodeScreen extends ConsumerStatefulWidget {
   final String episodeId;
   final bool autoplay;
-  const EpisodeScreen(
-      {super.key,
-      @PathParam() required this.episodeId,
-      @QueryParam() this.autoplay = false});
+  const EpisodeScreen({super.key, @PathParam() required this.episodeId, @QueryParam() this.autoplay = false});
 
   @override
   ConsumerState<EpisodeScreen> createState() => _EpisodeScreenState();
 }
 
-class _EpisodeScreenState extends ConsumerState<EpisodeScreen>
-    with AutoRouteAwareStateMixin<EpisodeScreen> {
+class _EpisodeScreenState extends ConsumerState<EpisodeScreen> with AutoRouteAwareStateMixin<EpisodeScreen> {
   late Future<Query$FetchEpisode$episode?> episodeFuture;
   final scrollController = ScrollController();
   bool settingUp = false;
@@ -75,9 +71,7 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen>
     if (old.episodeId == widget.episodeId) return;
     loadEpisode();
     setState(() {
-      scrollCompleter = wrapInCompleter(scrollController.animateTo(0,
-          duration: const Duration(milliseconds: 600),
-          curve: Curves.easeOutExpo));
+      scrollCompleter = wrapInCompleter(scrollController.animateTo(0, duration: const Duration(milliseconds: 600), curve: Curves.easeOutExpo));
     });
   }
 
@@ -87,26 +81,18 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen>
 
     loadEpisode();
 
-    chromecastSubscription = ref
-        .read(chromecastListenerProvider)
-        .on<CastSessionUnavailable>()
-        .listen((event) async {
+    chromecastSubscription = ref.read(chromecastListenerProvider).on<CastSessionUnavailable>().listen((event) async {
       var player = ref.read(primaryPlayerProvider);
       var episode = await episodeFuture;
       if (!mounted || episode == null) return;
 
-      playEpisode(
-          playerId: player!.playerId,
-          autoplay: false,
-          episode: episode,
-          playbackPositionMs: event.playbackPositionMs);
+      playEpisode(playerId: player!.playerId, autoplay: false, episode: episode, playbackPositionMs: event.playbackPositionMs);
     });
   }
 
   Future loadEpisode() async {
     setState(() {
-      episodeFuture =
-          ref.read(apiProvider).fetchEpisode(widget.episodeId.toString()).then(
+      episodeFuture = ref.read(apiProvider).fetchEpisode(widget.episodeId.toString()).then(
         (result) {
           if (mounted && result?.season != null) {
             setState(() {
@@ -114,8 +100,7 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen>
               for (var season in result!.season!.$show.seasons.items) {
                 seasonsMap![season.id] = null;
               }
-              seasonsMap![result.season!.id] =
-                  result.season!.episodes.items.map((ep) {
+              seasonsMap![result.season!.id] = result.season!.episodes.items.map((ep) {
                 return EpisodeListEpisodeData(
                     episodeId: ep.id,
                     ageRating: ep.ageRating,
@@ -167,14 +152,12 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen>
 
   Future setupPlayer() async {
     var castingNow = ref.read(isCasting);
-    var playerProvider =
-        castingNow ? castPlayerProvider : primaryPlayerProvider;
+    var playerProvider = castingNow ? castPlayerProvider : primaryPlayerProvider;
     setState(() {
       settingUp = true;
     });
     var player = ref.read(playerProvider);
-    if (player!.currentMediaItem?.metadata?.extras?['id'] ==
-        widget.episodeId.toString()) {
+    if (player!.currentMediaItem?.metadata?.extras?['id'] == widget.episodeId.toString()) {
       return;
     }
 
@@ -187,12 +170,9 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen>
     }
 
     setState(() {
-      playerSetupCompleter = wrapInCompleter(playEpisode(
-              playerId: player.playerId,
-              episode: episode,
-              autoplay: true,
-              playbackPositionMs: startPositionSeconds * 1000)
-          .timeout(const Duration(milliseconds: 12000)));
+      playerSetupCompleter = wrapInCompleter(
+          playEpisode(playerId: player.playerId, episode: episode, autoplay: true, playbackPositionMs: startPositionSeconds * 1000)
+              .timeout(const Duration(milliseconds: 12000)));
     });
   }
 
@@ -237,16 +217,13 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen>
     return FutureBuilder<Query$FetchEpisode$episode?>(
         future: episodeFuture,
         builder: (context, snapshot) {
-          var displayPlayer =
-              animationStatus == AnimationStatus.completed && snapshot.hasData;
+          var displayPlayer = animationStatus == AnimationStatus.completed && snapshot.hasData;
 
           return Scaffold(
               appBar: AppBar(
                 leadingWidth: 92,
                 leading: const CustomBackButton(),
-                title: Text(snapshot.data?.season?.$show.title ??
-                    snapshot.data?.title ??
-                    ''),
+                title: Text(snapshot.data?.season?.$show.title ?? snapshot.data?.title ?? ''),
                 actions: const [
                   Padding(
                     padding: EdgeInsets.only(left: 16, right: 16.0),
@@ -257,9 +234,7 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen>
               body: Builder(
                 builder: (context) {
                   if (snapshot.hasError) return Text(snapshot.error.toString());
-                  if (animationStatus != AnimationStatus.completed ||
-                      snapshot.data == null &&
-                          snapshot.connectionState != ConnectionState.done) {
+                  if (animationStatus != AnimationStatus.completed || snapshot.data == null && snapshot.connectionState != ConnectionState.done) {
                     return _loading();
                   }
                   if (snapshot.data == null) {
@@ -267,13 +242,7 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen>
                   }
 
                   return _episode(
-                      player,
-                      displayPlayer,
-                      casting,
-                      primaryPlayerId,
-                      snapshot.data!,
-                      snapshot.connectionState != ConnectionState.done,
-                      context);
+                      player, displayPlayer, casting, primaryPlayerId, snapshot.data!, snapshot.connectionState != ConnectionState.done, context);
                 },
               ));
         });
@@ -282,34 +251,20 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen>
   Widget _loading() {
     return Column(
       children: [
-        AspectRatio(
-            aspectRatio: 16 / 9,
-            child: Container(color: BtvColors.background2)),
+        AspectRatio(aspectRatio: 16 / 9, child: Container(color: BtvColors.background2)),
         Expanded(
             child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            const LoadingIndicator(),
-            const SizedBox(height: 12),
-            Text(S.of(context).loading, style: BtvTextStyles.body2)
-          ],
+          children: [const LoadingIndicator(), const SizedBox(height: 12), Text(S.of(context).loading, style: BtvTextStyles.body2)],
         ))
       ],
     );
   }
 
-  Widget _episode(
-      Player player,
-      bool displayPlayer,
-      bool casting,
-      String primaryPlayerId,
-      Query$FetchEpisode$episode episode,
-      bool episodeLoading,
+  Widget _episode(Player player, bool displayPlayer, bool casting, String primaryPlayerId, Query$FetchEpisode$episode episode, bool episodeLoading,
       BuildContext context) {
-    final showEpisodeNumber =
-        episode.season?.$show.type == Enum$ShowType.series;
-    final episodeNumberFormatted =
-        'S${episode.season?.number}:E${episode.number}';
+    final showEpisodeNumber = episode.season?.$show.type == Enum$ShowType.series;
+    final episodeNumberFormatted = 'S${episode.season?.number}:E${episode.number}';
 
     return FutureBuilder(
         future: playerSetupCompleter?.future,
@@ -323,15 +278,10 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen>
                   children: [
                     Column(
                       children: [
-                        if (playerSetupSnapshot.hasError &&
-                            playerSetupSnapshot.connectionState !=
-                                ConnectionState.waiting)
+                        if (playerSetupSnapshot.hasError && playerSetupSnapshot.connectionState != ConnectionState.waiting)
                           _playerError(episode, playerSetupSnapshot)
                         else
-                          !episodeIsCurrentItem(player.currentMediaItem)
-                              ? _playPoster(episode)
-                              : _player(
-                                  displayPlayer, casting, primaryPlayerId),
+                          !episodeIsCurrentItem(player.currentMediaItem) ? _playPoster(episode) : _player(displayPlayer, casting, primaryPlayerId),
                         Container(
                           color: BtvColors.background2,
                           child: Column(
@@ -342,47 +292,24 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen>
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    Text(episode.title,
-                                        style: BtvTextStyles.title2),
+                                    Text(episode.title, style: BtvTextStyles.title2),
                                     const SizedBox(height: 4),
-                                    Row(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.center,
-                                        children: [
-                                          Padding(
-                                            padding: const EdgeInsets.only(
-                                                top: 3, right: 4),
-                                            child: FeatureBadge(
-                                                label: getFormattedAgeRating(
-                                                    episode.ageRating),
-                                                color: BtvColors.background2),
-                                          ),
-                                          if (episode.season?.$show.title !=
-                                              null)
-                                            Center(
-                                              child: Text(
-                                                  episode.season!.$show.title,
-                                                  style: BtvTextStyles.caption1
-                                                      .copyWith(
-                                                          color:
-                                                              BtvColors.tint1)),
-                                            ),
-                                          if (showEpisodeNumber)
-                                            Padding(
-                                                padding: const EdgeInsets.only(
-                                                    left: 4),
-                                                child: Text(
-                                                    episodeNumberFormatted,
-                                                    style: BtvTextStyles
-                                                        .caption1
-                                                        .copyWith(
-                                                            color: BtvColors
-                                                                .label4)))
-                                        ]),
+                                    Row(crossAxisAlignment: CrossAxisAlignment.center, children: [
+                                      Padding(
+                                        padding: const EdgeInsets.only(top: 3, right: 4),
+                                        child: FeatureBadge(label: getFormattedAgeRating(episode.ageRating), color: BtvColors.background2),
+                                      ),
+                                      if (episode.season?.$show.title != null)
+                                        Center(
+                                          child: Text(episode.season!.$show.title, style: BtvTextStyles.caption1.copyWith(color: BtvColors.tint1)),
+                                        ),
+                                      if (showEpisodeNumber)
+                                        Padding(
+                                            padding: const EdgeInsets.only(left: 4),
+                                            child: Text(episodeNumberFormatted, style: BtvTextStyles.caption1.copyWith(color: BtvColors.label4)))
+                                    ]),
                                     const SizedBox(height: 14.5),
-                                    Text(episode.description,
-                                        style: BtvTextStyles.body2
-                                            .copyWith(color: BtvColors.label3))
+                                    Text(episode.description, style: BtvTextStyles.body2.copyWith(color: BtvColors.label3))
                                   ],
                                 ),
                               )
@@ -408,31 +335,20 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen>
                         children: [
                           Container(
                               decoration: const BoxDecoration(
-                                border: Border(
-                                    bottom: BorderSide(
-                                        width: 1,
-                                        color: BtvColors.seperatorOnLight)),
+                                border: Border(bottom: BorderSide(width: 1, color: BtvColors.seperatorOnLight)),
                               ),
                               child: Padding(
                                   padding: const EdgeInsets.all(16),
                                   child: EpisodeTabSelector(
                                       onSelectionChange: (val) {
                                         setState(() {
-                                          DefaultTabController.of(context)!
-                                              .animateTo(val);
+                                          DefaultTabController.of(context)!.animateTo(val);
                                         });
                                       },
                                       selectedId: '',
-                                      selectedIndex:
-                                          DefaultTabController.of(context)!
-                                              .index,
+                                      selectedIndex: DefaultTabController.of(context)!.index,
                                       tabs: [
-                                        Option(
-                                            id: 'episodes',
-                                            title: (S
-                                                .of(context)
-                                                .episodes
-                                                .toUpperCase())),
+                                        Option(id: 'episodes', title: (S.of(context).episodes.toUpperCase())),
                                         Option(id: 'details', title: 'Details'),
                                       ]))),
                           Builder(builder: (context) {
@@ -440,19 +356,16 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen>
                               behavior: HitTestBehavior.opaque,
                               onHorizontalDragUpdate: (details) {
                                 // Note: Sensitivity is integer used when you don't want to mess up vertical drag
-                                var controller =
-                                    DefaultTabController.of(context);
+                                var controller = DefaultTabController.of(context);
                                 debugPrint('index ${controller?.index}');
                                 if (controller == null) return;
                                 int sensitivity = 16;
-                                if (details.delta.dx > sensitivity &&
-                                    controller.index > 0) {
+                                if (details.delta.dx > sensitivity && controller.index > 0) {
                                   debugPrint('animated l');
                                   setState(() {
                                     controller.animateTo(controller.index - 1);
                                   });
-                                } else if (details.delta.dx < -sensitivity &&
-                                    controller.index + 1 < controller.length) {
+                                } else if (details.delta.dx < -sensitivity && controller.index + 1 < controller.length) {
                                   //controller.animateTo(1);
                                   setState(() {
                                     controller.animateTo(controller.index + 1);
@@ -463,10 +376,7 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen>
                               child: FadeIndexedStack(
                                 index: DefaultTabController.of(context)!.index,
                                 children: [
-                                  if (episode.season != null)
-                                    _seasonEpisodeList(episode)
-                                  else
-                                    _relatedItems(episode),
+                                  if (episode.season != null) _seasonEpisodeList(episode) else _relatedItems(episode),
                                   EpisodeDetails(episode.id)
                                 ],
                               ),
@@ -493,27 +403,17 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen>
                 child: _DropDownSelect(
                     title: 'Select season',
                     onSelectionChanged: onSeasonSelected,
-                    items: episode.season!.$show.seasons.items
-                        .map((e) => Option(id: e.id, title: e.title))
-                        .toList(),
+                    items: episode.season!.$show.seasons.items.map((e) => Option(id: e.id, title: e.title)).toList(),
                     selectedId: selectedSeasonId!),
               ),
         Builder(builder: (context) {
           if (seasonsMap?[selectedSeasonId] == null) {
             return const SizedBox(
                 height: 1000,
-                child: Align(
-                    alignment: Alignment.topCenter,
-                    child: Padding(
-                        padding: EdgeInsets.only(top: 16),
-                        child: LoadingIndicator())));
+                child: Align(alignment: Alignment.topCenter, child: Padding(padding: EdgeInsets.only(top: 16), child: LoadingIndicator())));
           } else {
             return SeasonEpisodeList(
-                items: seasonsMap![selectedSeasonId]!
-                    .map((e) => e.episodeId == widget.episodeId
-                        ? e.copyWith(highlighted: true)
-                        : e)
-                    .toList());
+                items: seasonsMap![selectedSeasonId]!.map((e) => e.episodeId == widget.episodeId ? e.copyWith(highlighted: true) : e).toList());
           }
         }),
       ],
@@ -530,9 +430,7 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen>
               padding: const EdgeInsets.all(16),
               child: NavigationOverride(
                 pushInsteadOfReplace: true,
-                child: GridSectionList(
-                    size: Enum$GridSectionSize.half,
-                    sectionItems: episode.relatedItems!.items),
+                child: GridSectionList(size: Enum$GridSectionSize.half, sectionItems: episode.relatedItems!.items),
               ),
             );
           }
@@ -562,31 +460,21 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen>
                         ? null
                         : LayoutBuilder(builder: (context, constraints) {
                             return Opacity(
-                              opacity: scrollCompleter?.isCompleted == false
-                                  ? 0
-                                  : 0.5,
+                              opacity: scrollCompleter?.isCompleted == false ? 0 : 0.5,
                               child: FadeInImage.memoryNetwork(
                                   fit: BoxFit.cover,
                                   placeholder: kTransparentImage,
                                   image: episode.imageUrl!,
-                                  fadeInDuration:
-                                      const Duration(milliseconds: 150),
-                                  imageCacheHeight: (constraints.maxHeight *
-                                          MediaQuery.of(context)
-                                              .devicePixelRatio)
-                                      .round()),
+                                  fadeInDuration: const Duration(milliseconds: 150),
+                                  imageCacheHeight: (constraints.maxHeight * MediaQuery.of(context).devicePixelRatio).round()),
                             );
                           })),
-                Center(
-                    child: !settingUp
-                        ? Image.asset('assets/icons/Play.png')
-                        : const LoadingIndicator()),
+                Center(child: !settingUp ? Image.asset('assets/icons/Play.png') : const LoadingIndicator()),
               ],
             )));
   }
 
-  _playerError(Query$FetchEpisode$episode episode,
-      AsyncSnapshot<Object?> playerSetupSnapshot) {
+  _playerError(Query$FetchEpisode$episode episode, AsyncSnapshot<Object?> playerSetupSnapshot) {
     return AspectRatio(
         aspectRatio: 16 / 9,
         child: GestureDetector(
@@ -603,19 +491,13 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen>
                         ? null
                         : LayoutBuilder(builder: (context, constraints) {
                             return Opacity(
-                              opacity: scrollCompleter?.isCompleted == false
-                                  ? 0
-                                  : 0.2,
+                              opacity: scrollCompleter?.isCompleted == false ? 0 : 0.2,
                               child: FadeInImage.memoryNetwork(
                                   fit: BoxFit.cover,
                                   placeholder: kTransparentImage,
                                   image: episode.imageUrl!,
-                                  fadeInDuration:
-                                      const Duration(milliseconds: 150),
-                                  imageCacheHeight: (constraints.maxHeight *
-                                          MediaQuery.of(context)
-                                              .devicePixelRatio)
-                                      .round()),
+                                  fadeInDuration: const Duration(milliseconds: 150),
+                                  imageCacheHeight: (constraints.maxHeight * MediaQuery.of(context).devicePixelRatio).round()),
                             );
                           })),
                 Center(
@@ -662,12 +544,7 @@ class _DropDownSelect extends StatelessWidget {
   final List<Option> items;
   final void Function(String id) onSelectionChanged;
 
-  const _DropDownSelect(
-      {Key? key,
-      required this.items,
-      required this.selectedId,
-      required this.onSelectionChanged,
-      required this.title})
+  const _DropDownSelect({Key? key, required this.items, required this.selectedId, required this.onSelectionChanged, required this.title})
       : super(key: key);
 
   @override
@@ -693,10 +570,7 @@ class _DropDownSelect extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Text(
-            items
-                .firstWhere((element) => element.id == selectedId)
-                .title
-                .toUpperCase(),
+            items.firstWhere((element) => element.id == selectedId).title.toUpperCase(),
             style: BtvTextStyles.button2.copyWith(color: BtvColors.label1),
           ),
           Padding(
@@ -720,13 +594,8 @@ Widget _player(bool displayPlayer, bool casting, String primaryPlayerId) {
           },
           child: const Text('open'));
     } */
-    return BccmPlayer(
-        key: const Key('test'), id: casting ? 'chromecast' : primaryPlayerId);
+    return BccmPlayer(key: const Key('test'), id: casting ? 'chromecast' : primaryPlayerId);
   } else {
-    return const AspectRatio(
-        aspectRatio: 16 / 9,
-        child: Center(
-            child: SizedBox(
-                width: 40, height: 40, child: CircularProgressIndicator())));
+    return const AspectRatio(aspectRatio: 16 / 9, child: Center(child: SizedBox(width: 40, height: 40, child: CircularProgressIndicator())));
   }
 }

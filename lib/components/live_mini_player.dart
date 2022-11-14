@@ -7,15 +7,14 @@ import 'package:brunstadtv_app/providers/chromecast.dart';
 import 'package:brunstadtv_app/providers/playback_api.dart';
 import 'package:brunstadtv_app/providers/video_state.dart';
 import 'package:brunstadtv_app/router/router.gr.dart';
-import 'package:transparent_image/transparent_image.dart';
+import 'package:brunstadtv_app/helpers/transparent_image.dart';
 
 import '../providers/fun.dart';
 import '../screens/live.dart';
 import 'mini_player.dart';
 
 class LiveMiniPlayer extends ConsumerStatefulWidget {
-  const LiveMiniPlayer({Key? key, required this.onStartRequest})
-      : super(key: key);
+  const LiveMiniPlayer({Key? key, required this.onStartRequest}) : super(key: key);
 
   final void Function() onStartRequest;
 
@@ -80,15 +79,13 @@ class _LiveMiniPlayerState extends ConsumerState<LiveMiniPlayer> {
 
     return GestureDetector(
       onTap: () {
-        var id = player?.currentMediaItem?.metadata?.extras?['id']
-            .asOrNull<String>();
+        var id = player?.currentMediaItem?.metadata?.extras?['id'].asOrNull<String>();
         context.router.navigate(const LiveScreenRoute());
       },
       child: MiniPlayer(
         secondaryTitle: artist,
         title: title ?? '',
-        artworkUri:
-            artworkUri ?? 'https://source.unsplash.com/random/1600x900/?fruit',
+        artworkUri: artworkUri ?? 'https://source.unsplash.com/random/1600x900/?fruit',
         isPlaying: playbackState == PlaybackState.playing,
         onPlayTap: () {
           ref.read(playbackApiProvider).play(player!.playerId);

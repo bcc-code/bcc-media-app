@@ -1,4 +1,4 @@
-import 'package:extended_image/extended_image.dart';
+import 'package:brunstadtv_app/helpers/transparent_image.dart';
 import 'package:flutter/material.dart';
 
 import '../helpers/btv_colors.dart';
@@ -41,8 +41,7 @@ class CategoryButton extends StatelessWidget {
                 padding: padding,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(12),
-                  border:
-                      Border.all(width: 1, color: BtvColors.seperatorOnLight),
+                  border: Border.all(width: 1, color: BtvColors.seperatorOnLight),
                   color: BtvColors.background2,
                 ),
                 child: LayoutBuilder(builder: (context, constraints) {
@@ -52,11 +51,11 @@ class CategoryButton extends StatelessWidget {
                             assetImage!,
                             fit: BoxFit.fitHeight,
                           )
-                        : ExtendedImage.network(
-                            networkImage!,
-                            cacheHeight: (constraints.maxHeight *
-                                    MediaQuery.of(context).devicePixelRatio)
-                                .round(),
+                        : FadeInImage.memoryNetwork(
+                            placeholder: kTransparentImage,
+                            fadeInDuration: const Duration(milliseconds: 200),
+                            image: networkImage!,
+                            imageCacheHeight: (constraints.maxHeight * MediaQuery.of(context).devicePixelRatio).round(),
                             fit: BoxFit.fitHeight,
                           ),
                   );

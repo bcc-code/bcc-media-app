@@ -1,7 +1,8 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:brunstadtv_app/helpers/btv_typography.dart';
+import 'package:brunstadtv_app/helpers/image_utils.dart';
+import 'package:brunstadtv_app/helpers/transparent_image.dart';
 import 'package:brunstadtv_app/router/router.gr.dart';
-import 'package:extended_image/extended_image.dart';
 import 'package:flutter/material.dart';
 
 import '../graphql/queries/page.graphql.dart';
@@ -18,8 +19,7 @@ class FeaturedSection extends StatelessWidget {
   Widget build(BuildContext context) {
     return LayoutBuilder(builder: (context, constraints) {
       const marginX = 2.0;
-      final viewportFraction =
-          (constraints.maxWidth - (32 - 2 * marginX)) / constraints.maxWidth;
+      final viewportFraction = (constraints.maxWidth - (32 - 2 * marginX)) / constraints.maxWidth;
       final sectionItems = data.items.items;
       return Padding(
         padding: const EdgeInsets.only(top: 16),
@@ -66,8 +66,7 @@ class _FeaturedItem extends StatelessWidget {
             alignment: Alignment.bottomCenter,
             child: Container(
               width: double.infinity,
-              padding: const EdgeInsets.only(
-                  top: 12, right: 18, bottom: 18, left: 18),
+              padding: const EdgeInsets.only(top: 12, right: 18, bottom: 18, left: 18),
               decoration: BoxDecoration(
                 gradient: LinearGradient(
                   begin: Alignment.topCenter,
@@ -98,8 +97,7 @@ class _FeaturedItem extends StatelessWidget {
                       maxLines: 2,
                       overflow: TextOverflow.ellipsis,
                       textAlign: TextAlign.center,
-                      style:
-                          BtvTextStyles.body2.copyWith(color: BtvColors.label2),
+                      style: BtvTextStyles.body2.copyWith(color: BtvColors.label2),
                     ),
                   ),
                   false
@@ -112,16 +110,12 @@ class _FeaturedItem extends StatelessWidget {
                           imagePath: 'assets/icons/Play.png',
                           labelText: 'Watch now',
                           onPressed: () {
-                            var episodeItem = sectionItem.item.asOrNull<
-                                Fragment$Section$$FeaturedSection$items$items$item$$Episode>();
-                            var showItem = sectionItem.item.asOrNull<
-                                Fragment$Section$$FeaturedSection$items$items$item$$Show>();
+                            var episodeItem = sectionItem.item.asOrNull<Fragment$Section$$FeaturedSection$items$items$item$$Episode>();
+                            var showItem = sectionItem.item.asOrNull<Fragment$Section$$FeaturedSection$items$items$item$$Show>();
                             if (episodeItem != null) {
-                              context.router.navigate(EpisodeScreenRoute(
-                                  episodeId: episodeItem.id));
+                              context.router.navigate(EpisodeScreenRoute(episodeId: episodeItem.id));
                             } else if (showItem != null) {
-                              context.router.navigate(EpisodeScreenRoute(
-                                  episodeId: showItem.defaultEpisode.id));
+                              context.router.navigate(EpisodeScreenRoute(episodeId: showItem.defaultEpisode.id));
                             }
                           },
                         ),
@@ -143,40 +137,54 @@ class _GradientImage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    //TODO: use fadeinimage instead
     return Container(
-      height: height,
-      width: double.infinity,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(12),
-        color: BtvColors.background2,
-        image: image != null
-            ? DecorationImage(
-                fit: BoxFit.cover,
-                image: cacheOptimizedImage(
-                    context: context, imageUrl: image!, height: height),
-              )
-            : null,
-      ),
-      foregroundDecoration: BoxDecoration(
-        gradient: LinearGradient(
-          begin: Alignment.topCenter,
-          end: Alignment.bottomCenter,
-          colors: [
-            BtvColors.background1.withOpacity(0.23),
-            const Color.fromRGBO(26, 37, 53, 0),
-            BtvColors.background1,
-          ],
-          stops: [0, 0.5, 1],
+        width: double.infinity,
+        height: height,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(12),
+          color: BtvColors.background2,
         ),
-      ),
-    );
+        foregroundDecoration: BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+            colors: [
+              BtvColors.background1.withOpacity(0.23),
+              const Color.fromRGBO(26, 37, 53, 0),
+              BtvColors.background1,
+            ],
+            stops: const [0, 0.5, 1],
+          ),
+        ),
+        child: LayoutBuilder(builder: (context, BoxConstraints constraints) {
+          if (image == null) {
+            return const SizedBox.shrink();
+          }
+          final imageHeight = (constraints.maxHeight * MediaQuery.of(context).devicePixelRatio).round();
+          final imageWidth = (constraints.maxWidth * MediaQuery.of(context).devicePixelRatio).round();
+          final imageUri = getImageUri(image!, width: imageWidth, height: imageHeight);
+          if (imageUri == null) {
+            return const SizedBox.shrink();
+          }
+          return ClipRRect(
+            borderRadius: BorderRadius.circular(6),
+            child: SizedBox(
+              height: constraints.maxHeight,
+              child: FadeInImage.memoryNetwork(
+                fit: BoxFit.cover,
+                placeholder: kTransparentImage,
+                image: imageUri.toString(),
+                fadeInDuration: const Duration(milliseconds: 200),
+                imageCacheHeight: imageHeight,
+              ),
+            ),
+          );
+        }));
   }
 }
 
 class _CustomPageViewScrollPhysics extends ScrollPhysics {
-  const _CustomPageViewScrollPhysics({ScrollPhysics? parent})
-      : super(parent: parent);
+  const _CustomPageViewScrollPhysics({ScrollPhysics? parent}) : super(parent: parent);
 
   @override
   _CustomPageViewScrollPhysics applyTo(ScrollPhysics? ancestor) {

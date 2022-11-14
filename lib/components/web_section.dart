@@ -3,7 +3,7 @@ import 'package:brunstadtv_app/helpers/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:shimmer/shimmer.dart';
-import 'package:transparent_image/transparent_image.dart';
+import 'package:brunstadtv_app/helpers/transparent_image.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
@@ -64,7 +64,7 @@ class _WebSectionState extends State<WebSection> {
         children: [
           if (widget.data.title != null)
             Padding(
-              padding: EdgeInsets.only(bottom: 12),
+              padding: const EdgeInsets.only(bottom: 12),
               child: Text(
                 widget.data.title!,
                 style: BtvTextStyles.title2,
@@ -102,7 +102,7 @@ class _WebSectionState extends State<WebSection> {
                           })
                     },
                     onPageFinished: (_) {
-                      Future.delayed(Duration(seconds: 1), () => setState(() => loading = false));
+                      Future.delayed(const Duration(seconds: 0), () => setState(() => loading = false));
                     },
                     onWebResourceError: (error) => setState(() => this.error = error),
                     navigationDelegate: (navigation) async {
@@ -123,7 +123,7 @@ class _WebSectionState extends State<WebSection> {
                 IgnorePointer(
                   ignoring: !loading,
                   child: AnimatedOpacity(
-                    duration: Duration(milliseconds: 200),
+                    duration: const Duration(milliseconds: 200),
                     opacity: loading ? 1 : 0,
                     curve: Curves.easeInOut,
                     child: Shimmer.fromColors(

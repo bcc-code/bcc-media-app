@@ -1,8 +1,7 @@
 import 'package:brunstadtv_app/components/loading_indicator.dart';
 import 'package:brunstadtv_app/helpers/btv_colors.dart';
-import 'package:extended_image/extended_image.dart';
 import 'package:flutter/material.dart';
-import 'package:transparent_image/transparent_image.dart';
+import 'package:brunstadtv_app/helpers/transparent_image.dart';
 
 import '../helpers/btv_typography.dart';
 
@@ -64,8 +63,7 @@ class MiniPlayer extends StatelessWidget {
                   fadeInDuration: Duration(milliseconds: 200),
                   placeholder: kTransparentImage,
                   fit: BoxFit.fill,
-                  image: artworkUri ??
-                      'https://static.bcc.media/images/placeholder.jpg',
+                  image: artworkUri ?? 'https://static.bcc.media/images/placeholder.jpg',
                   imageCacheHeight: 64,
                   width: 64,
                   height: 36,
@@ -80,26 +78,21 @@ class MiniPlayer extends StatelessWidget {
                 if (secondaryTitle != null)
                   Text(
                     secondaryTitle!,
-                    style:
-                        BtvTextStyles.caption2.copyWith(color: BtvColors.tint1),
+                    style: BtvTextStyles.caption2.copyWith(color: BtvColors.tint1),
                   ),
                 Padding(
                   padding: const EdgeInsets.only(top: 4.0),
                   child: Text(
                     title,
                     overflow: TextOverflow.ellipsis,
-                    style: BtvTextStyles.caption1
-                        .copyWith(color: BtvColors.label1),
+                    style: BtvTextStyles.caption1.copyWith(color: BtvColors.label1),
                   ),
                 ),
               ],
             ),
           ),
           if (loading == true)
-            Container(
-                margin: const EdgeInsets.only(left: 16),
-                height: 36,
-                child: const LoadingIndicator(height: 24))
+            Container(margin: const EdgeInsets.only(left: 16), height: 36, child: const LoadingIndicator(height: 24))
           else
             GestureDetector(
               onTap: () => isPlaying ? onPauseTap?.call() : onPlayTap?.call(),
@@ -107,14 +100,8 @@ class MiniPlayer extends StatelessWidget {
                 margin: const EdgeInsets.only(left: 16),
                 height: 36,
                 child: isPlaying
-                    ? Image.asset(
-                        height: 24,
-                        'assets/icons/Pause.png',
-                        gaplessPlayback: true)
-                    : Image.asset(
-                        height: 24,
-                        'assets/icons/Play.png',
-                        gaplessPlayback: true),
+                    ? Image.asset(height: 24, 'assets/icons/Pause.png', gaplessPlayback: true)
+                    : Image.asset(height: 24, 'assets/icons/Play.png', gaplessPlayback: true),
               ),
             ),
           if (hideCloseButton != true)
@@ -123,11 +110,7 @@ class MiniPlayer extends StatelessWidget {
               child: Container(
                 margin: const EdgeInsets.only(left: 7),
                 height: 36,
-                child: Image.asset(
-                    width: 32,
-                    height: 16,
-                    'assets/icons/Close.png',
-                    gaplessPlayback: true),
+                child: Image.asset(width: 32, height: 16, 'assets/icons/Close.png', gaplessPlayback: true),
               ),
             ),
         ],

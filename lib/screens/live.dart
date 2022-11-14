@@ -5,14 +5,13 @@ import 'package:bccm_player/bccm_player.dart';
 import 'package:bccm_player/cast_button.dart';
 import 'package:bccm_player/playback_platform_pigeon.g.dart';
 import 'package:brunstadtv_app/components/live_mini_player.dart';
-import 'package:extended_image/extended_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:brunstadtv_app/api/livestream.dart';
 import 'package:brunstadtv_app/providers/playback_api.dart';
 import 'package:brunstadtv_app/providers/video_state.dart';
 import 'package:flutter_svg_provider/flutter_svg_provider.dart';
-import 'package:transparent_image/transparent_image.dart';
+import 'package:brunstadtv_app/helpers/transparent_image.dart';
 import '../components/custom_back_button.dart';
 import '../helpers/btv_colors.dart';
 import '../helpers/btv_typography.dart';
@@ -23,10 +22,7 @@ import 'calendar/calendar.dart';
 
 final liveMetadataProvider = Provider<MediaMetadata>((ref) {
   return MediaMetadata(
-      artist: 'BrunstadTV',
-      title: 'Live',
-      extras: {'id': 'livestream'},
-      artworkUri: 'https://static.bcc.media/images/live-placeholder.png');
+      artist: 'BrunstadTV', title: 'Live', extras: {'id': 'livestream'}, artworkUri: 'https://static.bcc.media/images/live-placeholder.png');
 });
 
 class LiveScreen extends ConsumerStatefulWidget {
@@ -38,8 +34,7 @@ class LiveScreen extends ConsumerStatefulWidget {
 
 class _LiveScreenState extends ConsumerState<LiveScreen> with AutoRouteAware {
   String name = AuthService.instance.user!.name!;
-  final TextEditingController _idTokenDisplayController =
-      TextEditingController(text: AuthService.instance.idToken);
+  final TextEditingController _idTokenDisplayController = TextEditingController(text: AuthService.instance.idToken);
   Future? playerFuture;
   LivestreamUrl? liveUrl;
   bool audioOnly = false;
@@ -72,9 +67,7 @@ class _LiveScreenState extends ConsumerState<LiveScreen> with AutoRouteAware {
     });
     await () async {
       var castingNow = ref.read(isCasting);
-      var player = castingNow
-          ? ref.read(castPlayerProvider)
-          : ref.read(primaryPlayerProvider);
+      var player = castingNow ? ref.read(castPlayerProvider) : ref.read(primaryPlayerProvider);
 
       if (player == null) {
         throw ErrorDescription('player cant be null');
@@ -92,16 +85,11 @@ class _LiveScreenState extends ConsumerState<LiveScreen> with AutoRouteAware {
       await playbackApi.replaceCurrentMediaItem(
           player.playerId,
           autoplay: true,
-          MediaItem(
-              url: liveUrl.streamUrl,
-              mimeType: 'application/x-mpegURL',
-              isLive: true,
-              metadata: ref.read(liveMetadataProvider)));
+          MediaItem(url: liveUrl.streamUrl, mimeType: 'application/x-mpegURL', isLive: true, metadata: ref.read(liveMetadataProvider)));
 
       if (!mounted) return;
 
-      ensurePlayingWithinReasonableTime(
-          castingNow ? castPlayerProvider : primaryPlayerProvider);
+      ensurePlayingWithinReasonableTime(castingNow ? castPlayerProvider : primaryPlayerProvider);
 
       scheduleRefreshBasedOn(liveUrl.expiryTime);
     }();
@@ -110,8 +98,7 @@ class _LiveScreenState extends ConsumerState<LiveScreen> with AutoRouteAware {
   void scheduleRefreshBasedOn(DateTime expiryTime) {
     final durationUntilExpiry = expiryTime.difference(DateTime.now());
     // Example: if expiry is in 180minutes, we refresh after 162 minutes
-    final durationUntilRefresh =
-        durationUntilExpiry - (durationUntilExpiry * 0.1);
+    final durationUntilRefresh = durationUntilExpiry - (durationUntilExpiry * 0.1);
     refreshTimer = Timer(durationUntilRefresh, () => setup());
   }
 
@@ -122,8 +109,7 @@ class _LiveScreenState extends ConsumerState<LiveScreen> with AutoRouteAware {
     setState(fn);
   }
 
-  Future ensurePlayingWithinReasonableTime(
-      StateNotifierProvider<PlayerNotifier, Player?> playerProvider) async {
+  Future ensurePlayingWithinReasonableTime(StateNotifierProvider<PlayerNotifier, Player?> playerProvider) async {
     setStateIfMounted(() {
       setupCompleter = Completer();
     });
@@ -145,8 +131,7 @@ class _LiveScreenState extends ConsumerState<LiveScreen> with AutoRouteAware {
       }
     }();
 
-    await setupCompleter?.future.timeout(const Duration(milliseconds: 10000),
-        onTimeout: () {
+    await setupCompleter?.future.timeout(const Duration(milliseconds: 10000), onTimeout: () {
       debugPrint("bccm: TIMEOUT ${DateTime.now()}");
       setStateIfMounted(() {
         error = 'Something might have gone wrong (timeout).';
@@ -181,12 +166,10 @@ class _LiveScreenState extends ConsumerState<LiveScreen> with AutoRouteAware {
             child: Switch(
               inactiveTrackColor: BtvColors.tint2,
               inactiveThumbColor: BtvColors.label1,
-              inactiveThumbImage:
-                  const Svg('assets/icons/headphones.svg', size: Size(12, 12)),
+              inactiveThumbImage: const Svg('assets/icons/headphones.svg', size: Size(12, 12)),
               activeColor: BtvColors.label1,
               activeTrackColor: BtvColors.tint1,
-              activeThumbImage:
-                  const Svg('assets/icons/play_alt.svg', size: Size(9, 9)),
+              activeThumbImage: const Svg('assets/icons/play_alt.svg', size: Size(9, 9)),
               value: !audioOnly,
               onChanged: (value) {
                 setState(() {
@@ -205,8 +188,7 @@ class _LiveScreenState extends ConsumerState<LiveScreen> with AutoRouteAware {
             LiveMiniPlayer(onStartRequest: () {
               setup();
             })
-          else if (player.currentMediaItem?.metadata?.extras?['id'] !=
-              'livestream')
+          else if (player.currentMediaItem?.metadata?.extras?['id'] != 'livestream')
             _playPoster(player)
           else
             _player(player),
@@ -270,12 +252,9 @@ class _LiveScreenState extends ConsumerState<LiveScreen> with AutoRouteAware {
                       child: FadeInImage.memoryNetwork(
                           fit: BoxFit.cover,
                           placeholder: kTransparentImage,
-                          image: ref.watch(liveMetadataProvider).artworkUri ??
-                              'https://static.bcc.media/images/placeholder.jpg',
+                          image: ref.watch(liveMetadataProvider).artworkUri ?? 'https://static.bcc.media/images/placeholder.jpg',
                           fadeInDuration: const Duration(milliseconds: 150),
-                          imageCacheHeight: (constraints.maxHeight *
-                                  MediaQuery.of(context).devicePixelRatio)
-                              .round()),
+                          imageCacheHeight: (constraints.maxHeight * MediaQuery.of(context).devicePixelRatio).round()),
                     );
                   }))
             ],
@@ -287,8 +266,7 @@ class _LiveScreenState extends ConsumerState<LiveScreen> with AutoRouteAware {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              if (error != null && !isCorrectItem(player.currentMediaItem))
-                Text(error ?? ''),
+              if (error != null && !isCorrectItem(player.currentMediaItem)) Text(error ?? ''),
               Center(
                   child: !settingUp
                       ? Image.asset(

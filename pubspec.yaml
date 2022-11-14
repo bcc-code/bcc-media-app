@@ -44,8 +44,6 @@ dependencies:
   flutter_svg: ^1.1.1+1
   auto_route: ^5.0.2
   build_runner: ^2.2.0
-  cached_network_image: ^3.2.1
-  transparent_image: ^2.0.0
   bccm_player:
     path: external_projects/bccm_player
   riverpod: ^2.1.1
@@ -68,7 +66,6 @@ dependencies:
   flutter_secure_storage: ^6.0.0
   visibility_detector: ^0.3.3
   pull_to_refresh: ^2.0.0
-  extended_image: ^6.3.1
   device_info_plus: ^8.0.0
   alice: ^0.3.1
   dio: ^4.0.6
