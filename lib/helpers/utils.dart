@@ -24,13 +24,9 @@ extension AsExtension on Object? {
   }
 }
 
-ImageProvider cacheOptimizedImage(
-    {required BuildContext context,
-    required String imageUrl,
-    required double height}) {
+ImageProvider cacheOptimizedImage({required BuildContext context, required String imageUrl, required double height}) {
   return ExtendedResizeImage.resizeIfNeeded(
-      provider: ExtendedNetworkImageProvider(imageUrl),
-      cacheHeight: (height * MediaQuery.of(context).devicePixelRatio).round());
+      provider: ExtendedNetworkImageProvider(imageUrl), cacheHeight: (height * MediaQuery.of(context).devicePixelRatio).round());
 }
 
 String getFormattedAgeRating(String ageRating) {
@@ -61,8 +57,7 @@ FutureBuilder simpleFutureBuilder<T>(
       });
 }
 
-Future overrideAwareNavigation(NavigationOverride? override, StackRouter router,
-    PageRouteInfo<dynamic> route) {
+Future overrideAwareNavigation(NavigationOverride? override, StackRouter router, PageRouteInfo<dynamic> route) {
   if (override?.pushInsteadOfReplace == true) {
     return router.push(route);
   } else {
@@ -70,26 +65,22 @@ Future overrideAwareNavigation(NavigationOverride? override, StackRouter router,
   }
 }
 
-Future<dynamic>? handleSectionItemClick(
-    BuildContext context, Fragment$ItemSectionItem$item item) {
+Future<dynamic>? handleSectionItemClick(BuildContext context, Fragment$ItemSectionItem$item item) {
   final navigationOverride = NavigationOverride.of(context);
   final router = context.router;
   var episodeItem = item.asOrNull<Fragment$ItemSectionItem$item$$Episode>();
   if (episodeItem != null) {
-    return overrideAwareNavigation(navigationOverride, router,
-        EpisodeScreenRoute(episodeId: episodeItem.id));
+    return overrideAwareNavigation(navigationOverride, router, EpisodeScreenRoute(episodeId: episodeItem.id));
   }
 
   var showItem = item.asOrNull<Fragment$ItemSectionItem$item$$Show>();
   if (showItem != null) {
-    return overrideAwareNavigation(navigationOverride, router,
-        EpisodeScreenRoute(episodeId: showItem.defaultEpisode.id));
+    return overrideAwareNavigation(navigationOverride, router, EpisodeScreenRoute(episodeId: showItem.defaultEpisode.id));
   }
 
   var pageItem = item.asOrNull<Fragment$ItemSectionItem$item$$Page>();
   if (pageItem != null) {
-    return overrideAwareNavigation(
-        navigationOverride, router, PageScreenRoute(pageCode: pageItem.code));
+    return overrideAwareNavigation(navigationOverride, router, PageScreenRoute(pageCode: pageItem.code));
   }
 
   var linkItem = item.asOrNull<Fragment$ItemSectionItem$item$$Link>();
@@ -100,25 +91,40 @@ Future<dynamic>? handleSectionItemClick(
   return null;
 }
 
-Future<dynamic>? navigateToShowWithoutEpisodeId(
-    BuildContext context, String showId) async {
+Future<dynamic>? navigateToShowWithoutEpisodeId(BuildContext context, String showId) async {
   debugPrint('navigateToShowWithoutEpisodeId');
   final navigationOverride = NavigationOverride.of(context);
   final router = context.router;
   final result = await ProviderScope.containerOf(context, listen: false)
       .read(gqlClientProvider)
-      .query$getDefaultEpisodeForShow(Options$Query$getDefaultEpisodeForShow(
-          variables: Variables$Query$getDefaultEpisodeForShow(showId: showId)));
+      .query$getDefaultEpisodeForShow(Options$Query$getDefaultEpisodeForShow(variables: Variables$Query$getDefaultEpisodeForShow(showId: showId)));
   final episodeId = result?.parsedData?.$show.defaultEpisode.id;
   if (episodeId == null) {
     throw ErrorHint('Failed getting defaultEpisodeId for show $showId');
   }
-  return overrideAwareNavigation(
-      navigationOverride, router, EpisodeScreenRoute(episodeId: episodeId));
+  return overrideAwareNavigation(navigationOverride, router, EpisodeScreenRoute(episodeId: episodeId));
 }
 
 Completer<T> wrapInCompleter<T>(Future<T> future) {
   final completer = Completer<T>();
   future.then(completer.complete).catchError(completer.completeError);
   return completer;
+}
+
+class ConditionalParentWidget extends StatelessWidget {
+  const ConditionalParentWidget({
+    super.key,
+    required this.condition,
+    required this.child,
+    required this.conditionalBuilder,
+  });
+
+  final Widget child;
+  final bool condition;
+  final Widget Function(Widget child) conditionalBuilder;
+
+  @override
+  Widget build(BuildContext context) {
+    return condition ? conditionalBuilder(child) : child;
+  }
 }

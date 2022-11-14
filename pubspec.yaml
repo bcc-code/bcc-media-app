@@ -79,6 +79,7 @@ dependencies:
   url_launcher: ^6.1.6
   modal_bottom_sheet: ^2.1.2
   webview_flutter: ^3.0.4
+  shimmer: ^2.0.0
   #smooth: any
 
 dev_dependencies:

@@ -2,9 +2,12 @@ import 'package:brunstadtv_app/helpers/btv_typography.dart';
 import 'package:brunstadtv_app/helpers/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:auto_route/auto_route.dart';
+import 'package:shimmer/shimmer.dart';
 import 'package:transparent_image/transparent_image.dart';
+import 'package:url_launcher/url_launcher_string.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
+import '../helpers/btv_colors.dart';
 import 'category_button.dart';
 import 'horizontal_slider.dart';
 import '../router/router.gr.dart';
@@ -21,12 +24,34 @@ class WebSection extends StatefulWidget {
 
 class _WebSectionState extends State<WebSection> {
   WebViewController? webViewController;
+  WebResourceError? error;
+  bool loading = true;
+  double? height;
 
   void onWebViewCreated(WebViewController controller) {
     setState(() {
       webViewController = controller;
     });
     webViewController?.loadUrl(widget.data.url);
+  }
+
+  void updateHeight() async {
+    if (webViewController == null) return;
+    double height = double.parse(await webViewController!.runJavascriptReturningResult('document.documentElement.scrollHeight;'));
+
+    if (this.height != height) {
+      setState(() {
+        this.height = height;
+      });
+    }
+  }
+
+  Widget _heightOrAspectRatio({double? height, required double aspectRatio, required Widget child}) {
+    if (height != null) {
+      return ConstrainedBox(constraints: BoxConstraints.loose(Size.fromHeight(height)), child: child);
+    } else {
+      return AspectRatio(aspectRatio: aspectRatio, child: child);
+    }
   }
 
   @override
@@ -38,19 +63,78 @@ class _WebSectionState extends State<WebSection> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           if (widget.data.title != null)
-            Container(
+            Padding(
+              padding: EdgeInsets.only(bottom: 12),
               child: Text(
                 widget.data.title!,
                 style: BtvTextStyles.title2,
               ),
             ),
-          AspectRatio(
-            aspectRatio: 16 / 9,
-            child: WebView(
-              backgroundColor: Colors.transparent,
-              javascriptMode: JavascriptMode.unrestricted,
-              onWebViewCreated: onWebViewCreated,
-              initialUrl: widget.data.url,
+          _heightOrAspectRatio(
+            height: height,
+            aspectRatio: widget.data.widthRatio,
+            child: Stack(
+              children: [
+                WebView(
+                    backgroundColor: Colors.transparent,
+                    javascriptMode: JavascriptMode.unrestricted,
+                    onWebViewCreated: onWebViewCreated,
+                    initialUrl: widget.data.url,
+                    javascriptChannels: {
+                      JavascriptChannel(
+                        name: 'default',
+                        onMessageReceived: (message) {
+                          if (message.message == 'refresh') {}
+                        },
+                      ),
+                      JavascriptChannel(
+                          name: "Resize",
+                          onMessageReceived: (JavascriptMessage message) {
+                            updateHeight();
+                          }),
+                      JavascriptChannel(
+                          name: "Router",
+                          onMessageReceived: (JavascriptMessage message) {
+                            if (message.message.startsWith('navigate:')) {
+                              final path = message.message.substring('navigate:'.length);
+                              context.router.navigateNamed(path);
+                            }
+                          })
+                    },
+                    onPageFinished: (_) {
+                      Future.delayed(Duration(seconds: 1), () => setState(() => loading = false));
+                    },
+                    onWebResourceError: (error) => setState(() => this.error = error),
+                    navigationDelegate: (navigation) async {
+                      var uri = Uri.tryParse(widget.data.url);
+                      if (uri != null &&
+                          navigation.url.toLowerCase().startsWith('${uri.scheme}:${uri.host}') &&
+                          !navigation.url.toLowerCase().contains('launch_url=true')) {
+                        return NavigationDecision.navigate;
+                      }
+
+                      if (uri != null && await canLaunchUrlString(navigation.url)) {
+                        await launchUrlString(navigation.url, mode: LaunchMode.externalApplication);
+                        return NavigationDecision.prevent;
+                      }
+                      debugPrint("Error: Couldn't launch the url in the view.");
+                      return NavigationDecision.prevent;
+                    }),
+                IgnorePointer(
+                  ignoring: !loading,
+                  child: AnimatedOpacity(
+                    duration: Duration(milliseconds: 200),
+                    opacity: loading ? 1 : 0,
+                    curve: Curves.easeInOut,
+                    child: Shimmer.fromColors(
+                        enabled: loading,
+                        baseColor: BtvColors.background1,
+                        highlightColor: BtvColors.background2,
+                        child: Positioned.fill(
+                            child: Container(decoration: BoxDecoration(borderRadius: BorderRadius.circular(9), color: BtvColors.background2)))),
+                  ),
+                ),
+              ],
             ),
           )
         ],
