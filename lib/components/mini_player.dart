@@ -76,17 +76,17 @@ class MiniPlayer extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 if (secondaryTitle != null)
-                  Text(
-                    secondaryTitle!,
-                    style: BtvTextStyles.caption2.copyWith(color: BtvColors.tint1),
+                  Padding(
+                    padding: const EdgeInsets.only(bottom: 4.0),
+                    child: Text(
+                      secondaryTitle!,
+                      style: BtvTextStyles.caption2.copyWith(color: BtvColors.tint1),
+                    ),
                   ),
-                Padding(
-                  padding: const EdgeInsets.only(top: 4.0),
-                  child: Text(
-                    title,
-                    overflow: TextOverflow.ellipsis,
-                    style: BtvTextStyles.caption1.copyWith(color: BtvColors.label1),
-                  ),
+                Text(
+                  title,
+                  overflow: TextOverflow.ellipsis,
+                  style: BtvTextStyles.caption1.copyWith(color: BtvColors.label1),
                 ),
               ],
             ),

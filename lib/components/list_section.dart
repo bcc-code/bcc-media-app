@@ -1,3 +1,4 @@
+import 'package:brunstadtv_app/components/search_episode_list.dart';
 import 'package:brunstadtv_app/helpers/btv_typography.dart';
 import 'package:brunstadtv_app/helpers/utils.dart';
 import 'package:flutter/material.dart';
@@ -8,14 +9,14 @@ import 'horizontal_slider.dart';
 import '../router/router.gr.dart';
 import '../graphql/queries/page.graphql.dart';
 
-class IconSection extends StatelessWidget {
-  final Fragment$Section$$IconSection data;
+class ListSection extends StatelessWidget {
+  final Fragment$Section$$ListSection data;
 
-  const IconSection(this.data, {super.key});
+  const ListSection(this.data, {super.key});
 
   @override
   Widget build(BuildContext context) {
-    final sectionItems = data.items.items;
+    final sectionItems = data.items.items.map((i) => i.item).whereType<Fragment$Section$$ListSection$items$items$item$$Episode>();
     return Padding(
       padding: const EdgeInsets.only(top: 16, left: 16),
       child: Column(
@@ -29,22 +30,14 @@ class IconSection extends StatelessWidget {
                 style: BtvTextStyles.title2,
               ),
             ),
-          HorizontalSlider(
-            height: 140,
-            itemCount: data.items.items.length,
-            itemBuilder: (BuildContext context, int index) {
-              var item = data.items.items[index];
-              return CategoryButton(
-                  onTap: () {
-                    handleSectionItemClick(context, item.item);
-                  },
-                  label: item.title,
-                  networkImage: item.image,
-                  width: 80,
-                  padding: EdgeInsets.all(8),
-                  margin: EdgeInsets.only(top: 16, bottom: 4));
-            },
-          ),
+          EpisodeList(
+            items: sectionItems
+                .map(
+                  (e) => EpisodeListEpisodeData(
+                      id: e.id, showTitle: e.season?.$show.title, ageRating: e.ageRating, duration: e.duration, title: e.title, image: e.image),
+                )
+                .toList(),
+          )
         ],
       ),
     );

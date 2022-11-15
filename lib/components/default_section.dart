@@ -29,10 +29,8 @@ class DefaultSection extends StatelessWidget {
   Widget build(BuildContext context) {
     final items = data.items.items
         .where((element) =>
-            element.item
-                is Fragment$Section$$DefaultSection$items$items$item$$Episode ||
-            element.item
-                is Fragment$Section$$DefaultSection$items$items$item$$Show)
+            element.item is Fragment$Section$$DefaultSection$items$items$item$$Episode ||
+            element.item is Fragment$Section$$DefaultSection$items$items$item$$Show)
         .toList();
     return Column(
       mainAxisSize: MainAxisSize.min,
@@ -44,7 +42,7 @@ class DefaultSection extends StatelessWidget {
               left: 16,
               top: 19,
               right: 16,
-              bottom: 5,
+              bottom: 16,
             ),
             child: Text(
               data.title!,
@@ -54,15 +52,13 @@ class DefaultSection extends StatelessWidget {
         HorizontalSlider(
           height: data.size == Enum$SectionSize.small ? 156 : 222,
           clipBehaviour: Clip.none,
-          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+          padding: const EdgeInsets.symmetric(horizontal: 16),
           itemCount: items.length,
           itemBuilder: (BuildContext context, int index) {
             var item = items[index];
-            if (item.item
-                is Fragment$Section$$DefaultSection$items$items$item$$Episode) {
+            if (item.item is Fragment$Section$$DefaultSection$items$items$item$$Episode) {
               return _DefaultEpisodeItem(sectionItem: item, size: data.size);
-            } else if (item.item
-                is Fragment$Section$$DefaultSection$items$items$item$$Show) {
+            } else if (item.item is Fragment$Section$$DefaultSection$items$items$item$$Show) {
               return _DefaultShowItem(sectionItem: item, size: data.size);
             }
             // Theoretically impossible, see filter above.
@@ -80,11 +76,9 @@ class _DefaultEpisodeItem extends StatelessWidget {
   final Enum$SectionSize size;
 
   _DefaultEpisodeItem({required this.sectionItem, required this.size})
-      : episode = sectionItem.item
-            as Fragment$Section$$DefaultSection$items$items$item$$Episode;
+      : episode = sectionItem.item as Fragment$Section$$DefaultSection$items$items$item$$Episode;
 
-  bool get watched =>
-      episode.progress != null && episode.progress! > episode.duration * 0.9;
+  bool get watched => episode.progress != null && episode.progress! > episode.duration * 0.9;
 
   bool isLive = false;
 
@@ -110,12 +104,10 @@ class _DefaultEpisodeItem extends StatelessWidget {
                       child: Container(
                         margin: const EdgeInsets.only(right: 4),
                         child: Text(
-                          episode.season!.$show.title
-                              .replaceAll(' ', '\u{000A0}'),
+                          episode.season!.$show.title.replaceAll(' ', '\u{000A0}'),
                           maxLines: 1,
                           overflow: TextOverflow.ellipsis,
-                          style: BtvTextStyles.caption2
-                              .copyWith(color: BtvColors.tint1),
+                          style: BtvTextStyles.caption2.copyWith(color: BtvColors.tint1),
                         ),
                       ),
                     ),
@@ -167,9 +159,7 @@ class _DefaultEpisodeItem extends StatelessWidget {
                   alignment: Alignment.bottomCenter,
                   child: Container(
                     margin: const EdgeInsets.only(left: 4, bottom: 4, right: 4),
-                    child: WatchProgressIndicator(
-                        totalDuration: episode.duration,
-                        watchedDuration: episode.progress!),
+                    child: WatchProgressIndicator(totalDuration: episode.duration, watchedDuration: episode.progress!),
                   ),
                 )
               : Align(
@@ -181,8 +171,7 @@ class _DefaultEpisodeItem extends StatelessWidget {
                       children: [
                         if (watched) const WatchedBadge(),
                         const Spacer(),
-                        EpisodeDuration(
-                            duration: getFormattedDuration(episode.duration)),
+                        EpisodeDuration(duration: getFormattedDuration(episode.duration)),
                       ],
                     ),
                   ),
@@ -228,8 +217,7 @@ class _DefaultShowItem extends StatelessWidget {
   bool hasNewEpisodes = false;
 
   _DefaultShowItem({required this.sectionItem, required this.size})
-      : show = sectionItem.item
-            as Fragment$Section$$DefaultSection$items$items$item$$Show;
+      : show = sectionItem.item as Fragment$Section$$DefaultSection$items$items$item$$Show;
 
   @override
   Widget build(BuildContext context) {

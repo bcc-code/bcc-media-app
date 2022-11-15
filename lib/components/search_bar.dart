@@ -8,11 +8,7 @@ class SearchBar extends StatefulWidget {
   final String? currentValue;
   final Function(bool) onFocusChanged;
 
-  const SearchBar(
-      {super.key,
-      required this.onInputChange,
-      required this.currentValue,
-      required this.onFocusChanged});
+  const SearchBar({super.key, required this.onInputChange, required this.currentValue, required this.onFocusChanged});
 
   @override
   State<SearchBar> createState() => _SearchBarState();
@@ -95,35 +91,25 @@ class _SearchBarState extends State<SearchBar> {
                     decoration: InputDecoration(
                       isDense: true,
                       prefixIcon: const Padding(
-                        padding: EdgeInsets.only(
-                            left: 8, top: 1, bottom: 1, right: 10),
-                        child: ImageIcon(
-                            AssetImage('assets/icons/Search_Default.png'),
-                            size: 24),
+                        padding: EdgeInsets.only(left: 8, top: 1, bottom: 1, right: 10),
+                        child: ImageIcon(color: BtvColors.tint1, AssetImage('assets/icons/Search_Default.png'), size: 24),
                       ),
-                      prefixIconConstraints:
-                          const BoxConstraints(minWidth: 0, maxHeight: 24),
+                      prefixIconConstraints: const BoxConstraints(minWidth: 0, maxHeight: 24),
                       suffixIcon: _fieldController.text != ''
                           ? Padding(
-                              padding:
-                                  const EdgeInsets.only(right: 12, left: 10),
+                              padding: const EdgeInsets.only(right: 12, left: 10),
                               child: InkWell(
                                 onTap: () {
                                   _onCleared();
                                 },
-                                child: const ImageIcon(
-                                    AssetImage(
-                                        'assets/icons/Cancel_Default.png'),
-                                    size: 16),
+                                child: const ImageIcon(AssetImage('assets/icons/Cancel_Default.png'), size: 16),
                               ),
                             )
                           : null,
-                      suffixIconConstraints:
-                          const BoxConstraints(minWidth: 0, maxHeight: 24),
+                      suffixIconConstraints: const BoxConstraints(minWidth: 0, maxHeight: 24),
                       border: InputBorder.none,
                       hintText: 'Search',
-                      hintStyle: BtvTextStyles.body2
-                          .copyWith(color: BtvColors.label4, height: 1.45),
+                      hintStyle: BtvTextStyles.body2.copyWith(color: BtvColors.label4, height: 1.45),
                     ),
                   ),
                 ),
@@ -132,13 +118,11 @@ class _SearchBarState extends State<SearchBar> {
           ),
           if (_fieldController.value.text.isNotEmpty || focusNode.hasFocus)
             Container(
-              margin:
-                  const EdgeInsets.only(left: 8, top: 0, right: 0, bottom: 0),
+              margin: const EdgeInsets.only(left: 8, top: 0, right: 0, bottom: 0),
               child: TextButton(
                 style: TextButton.styleFrom(
                   // splashFactory: NoSplash.splashFactory,
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(50)),
+                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(50)),
                   padding: const EdgeInsets.symmetric(horizontal: 8),
                 ),
                 onPressed: _onCancelled,

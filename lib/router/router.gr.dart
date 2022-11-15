@@ -355,7 +355,7 @@ class AppRouter extends _i19.RootStackRouter {
                 ),
                 _i19.RouteConfig(
                   PageScreenRoute.name,
-                  path: 'page/:pageCode',
+                  path: ':pageCode',
                   parent: HomeScreenWrapperRoute.name,
                   usesPathAsKey: true,
                 ),
@@ -386,6 +386,12 @@ class AppRouter extends _i19.RootStackRouter {
                   EpisodeScreenRoute.name,
                   path: 'episode/:episodeId',
                   parent: SearchScreenWrapperRoute.name,
+                ),
+                _i19.RouteConfig(
+                  PageScreenRoute.name,
+                  path: ':pageCode',
+                  parent: SearchScreenWrapperRoute.name,
+                  usesPathAsKey: true,
                 ),
               ],
             ),
@@ -708,7 +714,7 @@ class PageScreenRoute extends _i19.PageRouteInfo<PageScreenRouteArgs> {
     required String pageCode,
   }) : super(
           PageScreenRoute.name,
-          path: 'page/:pageCode',
+          path: ':pageCode',
           args: PageScreenRouteArgs(
             key: key,
             pageCode: pageCode,

@@ -7,12 +7,12 @@ import '../../components/search_episode_list.dart';
 import '../../components/result_programs_list.dart';
 import '../../helpers/btv_colors.dart';
 import '../../helpers/btv_typography.dart';
+import '../../l10n/app_localizations.dart';
 
 class SearchResultsPage extends ConsumerStatefulWidget {
   final String searchInput;
 
-  const SearchResultsPage(this.searchInput, {super.key})
-      : assert(searchInput != '');
+  const SearchResultsPage(this.searchInput, {super.key}) : assert(searchInput != '');
 
   @override
   ConsumerState<SearchResultsPage> createState() => _SearchResultsPageState();
@@ -79,19 +79,30 @@ class _SearchResultsPageState extends ConsumerState<SearchResultsPage> {
           if (searchResults.isEmpty) {
             return _noResultsInfoWidget;
           } else {
-            final programs = searchResults
-                .whereType<Fragment$SearchResultItem$$ShowSearchItem>()
-                .toList();
-            final episodes = searchResults
-                .whereType<Fragment$SearchResultItem$$EpisodeSearchItem>()
-                .toList();
+            final programs = searchResults.whereType<Fragment$SearchResultItem$$ShowSearchItem>().toList();
+            final episodes = searchResults.whereType<Fragment$SearchResultItem$$EpisodeSearchItem>().toList();
             return ListView(
               keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
               children: [
-                if (programs.isNotEmpty)
-                  ResultProgramsList(title: 'Programs', items: programs),
+                if (programs.isNotEmpty) ResultProgramsList(title: S.of(context).programsSection, items: programs),
                 if (episodes.isNotEmpty)
-                  SearchEpisodeList(title: 'Episodes', items: episodes),
+                  Container(
+                    padding: const EdgeInsets.only(top: 12, right: 16, left: 16),
+                    margin: const EdgeInsets.only(bottom: 8),
+                    child: Text(
+                      S.of(context).episodes,
+                      style: BtvTextStyles.title2,
+                    ),
+                  ),
+                if (episodes.isNotEmpty)
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 16),
+                    child: EpisodeList(
+                        items: episodes
+                            .map((e) => EpisodeListEpisodeData(
+                                id: e.id, title: e.title, ageRating: e.ageRating, duration: e.duration, image: e.image, showTitle: e.showTitle))
+                            .toList()),
+                  ),
               ],
             );
           }
@@ -112,8 +123,7 @@ class _SearchResultsPageState extends ConsumerState<SearchResultsPage> {
     child: Column(
       mainAxisSize: MainAxisSize.min,
       children: [
-        Image.asset('assets/icons/Search_Default.png',
-            width: 80, height: 80, fit: BoxFit.fill),
+        Image.asset('assets/icons/Search_Default.png', width: 80, height: 80, fit: BoxFit.fill),
         Text(
           'No results found',
           textAlign: TextAlign.center,

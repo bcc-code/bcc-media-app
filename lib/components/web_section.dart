@@ -64,7 +64,7 @@ class _WebSectionState extends State<WebSection> {
         children: [
           if (widget.data.title != null)
             Padding(
-              padding: const EdgeInsets.only(bottom: 12),
+              padding: const EdgeInsets.only(bottom: 16),
               child: Text(
                 widget.data.title!,
                 style: BtvTextStyles.title2,

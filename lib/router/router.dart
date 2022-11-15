@@ -31,6 +31,14 @@ const _episodeScreenRoute = CustomRoute<void>(
     //customRouteBuilder: CustomTransitionsBuilders.slideUpAndDown,
     );
 
+const _pageScreenRoute = CustomRoute<void>(
+    page: PageScreen,
+    path: ':pageCode',
+    usesPathAsKey: true,
+    durationInMilliseconds: 300,
+    reverseDurationInMilliseconds: 300,
+    transitionsBuilder: CustomTransitionsBuilders.slideLeft);
+
 const _specialRoutes = AutoRoute(
   page: EmptyRouterPage,
   path: '/',
@@ -135,19 +143,14 @@ const _specialRoutes = AutoRoute(
             maintainState: true,
           ),
           _episodeScreenRoute,
-          CustomRoute<void>(
-              page: PageScreen,
-              path: 'page/:pageCode',
-              usesPathAsKey: true,
-              durationInMilliseconds: 300,
-              reverseDurationInMilliseconds: 300,
-              transitionsBuilder: CustomTransitionsBuilders.slideLeft),
+          _pageScreenRoute,
         ]),
         MaterialRoute<void>(page: LiveScreen, path: 'live', meta: {'hide_mini_player': true}, maintainState: true),
         MaterialRoute<void>(name: 'SearchScreenWrapperRoute', page: EmptyRouterPage, path: 'search', children: [
           MaterialRoute<void>(page: SearchScreen, path: ''),
           MaterialRoute<void>(page: ExploreCategoryScreen, path: 'explore-category'),
           _episodeScreenRoute,
+          _pageScreenRoute
         ]),
         MaterialRoute<void>(name: 'CalendarPageRoute', page: CalendarPage, path: 'calendar'),
       ],

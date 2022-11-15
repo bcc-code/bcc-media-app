@@ -1,5 +1,8 @@
+import 'package:brunstadtv_app/components/icon_grid_section.dart';
+import 'package:brunstadtv_app/components/list_section.dart';
 import 'package:brunstadtv_app/components/web_section.dart';
 import 'package:brunstadtv_app/helpers/utils.dart';
+import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/material.dart';
 
 import '../graphql/queries/page.graphql.dart';
@@ -70,6 +73,14 @@ class BccmPage extends StatelessWidget {
             final featuredSection = s.asOrNull<Fragment$Section$$FeaturedSection>();
             if (featuredSection != null) {
               return FeaturedSection(featuredSection);
+            }
+            final iconGridSection = s.asOrNull<Fragment$Section$$IconGridSection>();
+            if (iconGridSection != null) {
+              return IconGridSection(iconGridSection);
+            }
+            final listSection = s.asOrNull<Fragment$Section$$ListSection>();
+            if (listSection != null) {
+              return ListSection(listSection);
             }
             final webSection = s.asOrNull<Fragment$Section$$WebSection>();
             if (webSection != null) {

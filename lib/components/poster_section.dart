@@ -36,10 +36,8 @@ class PosterSection extends StatelessWidget {
     }
     var items = data.items.items
         .where((element) =>
-            element.item
-                is Fragment$Section$$PosterSection$items$items$item$$Episode ||
-            element.item
-                is Fragment$Section$$PosterSection$items$items$item$$Show)
+            element.item is Fragment$Section$$PosterSection$items$items$item$$Episode ||
+            element.item is Fragment$Section$$PosterSection$items$items$item$$Show)
         .toList();
     return Column(
       mainAxisSize: MainAxisSize.min,
@@ -51,7 +49,7 @@ class PosterSection extends StatelessWidget {
               left: 16,
               top: 20,
               right: 16,
-              bottom: 5,
+              bottom: 16,
             ),
             child: Text(
               data.title!,
@@ -61,15 +59,13 @@ class PosterSection extends StatelessWidget {
         HorizontalSlider(
           height: sliderHeight[data.size]!,
           clipBehaviour: Clip.none,
-          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+          padding: const EdgeInsets.symmetric(horizontal: 16),
           itemCount: items.length,
           itemBuilder: (BuildContext context, int index) {
             var item = items[index];
-            if (item.item
-                is Fragment$Section$$PosterSection$items$items$item$$Episode) {
+            if (item.item is Fragment$Section$$PosterSection$items$items$item$$Episode) {
               return _PosterEpisodeItem(sectionItem: item, size: data.size);
-            } else if (item.item
-                is Fragment$Section$$PosterSection$items$items$item$$Show) {
+            } else if (item.item is Fragment$Section$$PosterSection$items$items$item$$Show) {
               return _PosterShowItem(sectionItem: item, size: data.size);
             }
             // Theoretically impossible, see filter above.
@@ -83,14 +79,10 @@ class PosterSection extends StatelessWidget {
   List<Widget> get sectionItems {
     final sectionItemsList = <Widget>[];
     for (var item in data.items.items) {
-      if (item.item
-          is Fragment$Section$$PosterSection$items$items$item$$Episode) {
-        sectionItemsList
-            .add(_PosterEpisodeItem(sectionItem: item, size: data.size));
-      } else if (item.item
-          is Fragment$Section$$PosterSection$items$items$item$$Show) {
-        sectionItemsList
-            .add(_PosterShowItem(sectionItem: item, size: data.size));
+      if (item.item is Fragment$Section$$PosterSection$items$items$item$$Episode) {
+        sectionItemsList.add(_PosterEpisodeItem(sectionItem: item, size: data.size));
+      } else if (item.item is Fragment$Section$$PosterSection$items$items$item$$Show) {
+        sectionItemsList.add(_PosterShowItem(sectionItem: item, size: data.size));
       }
     }
     return sectionItemsList;
@@ -102,16 +94,14 @@ class _PosterEpisodeItem extends StatelessWidget {
   final Fragment$Section$$PosterSection$items$items$item$$Episode episode;
   final Enum$SectionSize size;
 
-  bool get watched =>
-      episode.progress != null && episode.progress! > episode.duration * 0.9;
+  bool get watched => episode.progress != null && episode.progress! > episode.duration * 0.9;
   bool isLive = false;
   bool isNewItem = false;
 
   _PosterEpisodeItem({
     required this.sectionItem,
     required this.size,
-  }) : episode = sectionItem.item
-            as Fragment$Section$$PosterSection$items$items$item$$Episode;
+  }) : episode = sectionItem.item as Fragment$Section$$PosterSection$items$items$item$$Episode;
 
   @override
   Widget build(BuildContext context) {
@@ -133,12 +123,10 @@ class _PosterEpisodeItem extends StatelessWidget {
                       child: Container(
                         margin: const EdgeInsets.only(right: 4),
                         child: Text(
-                          episode.season!.$show.title
-                              .replaceAll(' ', '\u{000A0}'),
+                          episode.season!.$show.title.replaceAll(' ', '\u{000A0}'),
                           maxLines: 1,
                           overflow: TextOverflow.ellipsis,
-                          style: BtvTextStyles.caption2
-                              .copyWith(color: BtvColors.tint1),
+                          style: BtvTextStyles.caption2.copyWith(color: BtvColors.tint1),
                         ),
                       ),
                     ),
@@ -191,9 +179,7 @@ class _PosterEpisodeItem extends StatelessWidget {
                   alignment: Alignment.bottomCenter,
                   child: Container(
                     margin: const EdgeInsets.only(left: 4, bottom: 4, right: 4),
-                    child: WatchProgressIndicator(
-                        totalDuration: episode.duration,
-                        watchedDuration: episode.progress!),
+                    child: WatchProgressIndicator(totalDuration: episode.duration, watchedDuration: episode.progress!),
                   ),
                 )
               : Align(
@@ -205,8 +191,7 @@ class _PosterEpisodeItem extends StatelessWidget {
                       children: [
                         if (watched) const WatchedBadge(),
                         const Spacer(),
-                        EpisodeDuration(
-                            duration: getFormattedDuration(episode.duration)),
+                        EpisodeDuration(duration: getFormattedDuration(episode.duration)),
                       ],
                     ),
                   ),
@@ -253,8 +238,7 @@ class _PosterShowItem extends StatelessWidget {
   _PosterShowItem({
     required this.sectionItem,
     required this.size,
-  }) : show = sectionItem.item
-            as Fragment$Section$$PosterSection$items$items$item$$Show;
+  }) : show = sectionItem.item as Fragment$Section$$PosterSection$items$items$item$$Show;
 
   @override
   Widget build(BuildContext context) {

@@ -119,6 +119,25 @@ fragment Section on Section {
       }
     }
   }
+  ... on ListSection {
+    items {
+      items {
+        item {
+          ... on Episode {
+            title
+            ageRating
+            duration
+            image
+            season {
+              show {
+                title
+              }
+            }
+          }
+        }
+      }
+    }
+  }
   ... on WebSection {
     authentication
     widthRatio

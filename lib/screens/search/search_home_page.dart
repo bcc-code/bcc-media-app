@@ -46,8 +46,7 @@ class SearchHomePage extends StatelessWidget {
         title: '25. august - PROMO: Høstcamp og Romjulscamp',
         legacyID: '1',
         description: 'Test Description',
-        image:
-            'https://brunstadtv.imgix.net/c7b34d9c-d961-4326-9686-d480d461b54c.jpg',
+        image: 'https://brunstadtv.imgix.net/c7b34d9c-d961-4326-9686-d480d461b54c.jpg',
         showTitle: 'Fra Kåre til BUK',
         $__typename: 'EpisodeSearchItem',
       ));
@@ -76,9 +75,7 @@ class SearchHomePage extends StatelessWidget {
               children: List.generate(numCategoryRows, (index) {
                 var itemIndex = index * 2;
                 return Container(
-                  margin: index + 1 == numCategoryRows
-                      ? null
-                      : const EdgeInsets.only(bottom: 12),
+                  margin: index + 1 == numCategoryRows ? null : const EdgeInsets.only(bottom: 12),
                   child: Row(
                     children: [
                       Expanded(
@@ -89,8 +86,7 @@ class SearchHomePage extends StatelessWidget {
                           aspectRatio: 16 / 9,
                           onTap: () {
                             context.router.navigate(
-                              ExploreCategoryScreenRoute(
-                                  category: _categories[itemIndex].label),
+                              ExploreCategoryScreenRoute(category: _categories[itemIndex].label),
                             );
                           },
                         ),
@@ -102,13 +98,10 @@ class SearchHomePage extends StatelessWidget {
                                 assetImage: _categories[itemIndex + 1].image,
                                 margin: const EdgeInsets.only(left: 8),
                                 aspectRatio: 16 / 9,
-                                padding:
-                                    const EdgeInsets.symmetric(vertical: 14),
+                                padding: const EdgeInsets.symmetric(vertical: 14),
                                 onTap: () {
                                   context.router.navigate(
-                                    ExploreCategoryScreenRoute(
-                                        category:
-                                            _categories[itemIndex + 1].label),
+                                    ExploreCategoryScreenRoute(category: _categories[itemIndex + 1].label),
                                   );
                                 },
                               )
@@ -122,7 +115,6 @@ class SearchHomePage extends StatelessWidget {
           ],
         ),
       ),
-      SearchEpisodeList(title: 'Suggested', items: _episodeList),
     ]);
   }
 }

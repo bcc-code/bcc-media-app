@@ -51,13 +51,15 @@ class CategoryButton extends StatelessWidget {
                             assetImage!,
                             fit: BoxFit.fitHeight,
                           )
-                        : FadeInImage.memoryNetwork(
-                            placeholder: kTransparentImage,
-                            fadeInDuration: const Duration(milliseconds: 200),
-                            image: networkImage!,
-                            imageCacheHeight: (constraints.maxHeight * MediaQuery.of(context).devicePixelRatio).round(),
-                            fit: BoxFit.fitHeight,
-                          ),
+                        : networkImage != null
+                            ? FadeInImage.memoryNetwork(
+                                placeholder: kTransparentImage,
+                                fadeInDuration: const Duration(milliseconds: 200),
+                                image: networkImage!,
+                                imageCacheHeight: (constraints.maxHeight * MediaQuery.of(context).devicePixelRatio).round(),
+                                fit: BoxFit.fitHeight,
+                              )
+                            : null,
                   );
                 }),
               ),

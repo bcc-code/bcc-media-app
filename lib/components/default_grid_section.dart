@@ -52,15 +52,13 @@ class DefaultGridSection extends StatelessWidget {
 }
 
 class GridSectionList extends StatelessWidget {
-  const GridSectionList(
-      {super.key, required this.size, required this.sectionItems});
+  const GridSectionList({super.key, required this.size, required this.sectionItems});
 
   final Enum$GridSectionSize size;
   final List<Fragment$GridSectionItem> sectionItems;
 
   Widget getItemWidget(Fragment$GridSectionItem sectionItem) {
-    var episode =
-        sectionItem.item.asOrNull<Fragment$GridSectionItem$item$$Episode>();
+    var episode = sectionItem.item.asOrNull<Fragment$GridSectionItem$item$$Episode>();
     if (episode != null) {
       return _GridEpisodeItem(sectionItem: sectionItem, episode: episode);
     }
@@ -73,16 +71,15 @@ class GridSectionList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final colSize =
-        _columnSize[size] ?? _columnSize[Enum$GridSectionSize.half]!;
+    final colSize = _columnSize[size] ?? _columnSize[Enum$GridSectionSize.half]!;
     final rowSize = (sectionItems.length / colSize).ceil();
 
     final rows = List<GridRow>.generate(rowSize, (rowIndex) {
       final firstIndex = rowIndex * colSize;
-      final subList = firstIndex + colSize <= sectionItems.length
-          ? sectionItems.sublist(firstIndex, firstIndex + colSize)
-          : sectionItems.sublist(firstIndex);
+      final subList =
+          firstIndex + colSize <= sectionItems.length ? sectionItems.sublist(firstIndex, firstIndex + colSize) : sectionItems.sublist(firstIndex);
       return GridRow(
+        margin: const EdgeInsets.only(top: 12, bottom: 12),
         items: subList.map(getItemWidget).toList(),
         colSize: colSize,
       );
@@ -102,8 +99,7 @@ class _GridEpisodeItem extends StatelessWidget {
   _GridEpisodeItem({required this.sectionItem, required this.episode});
 
   // TODO: Remove these temp variables
-  bool get watched =>
-      episode.progress != null && episode.progress! > episode.duration * 0.9;
+  bool get watched => episode.progress != null && episode.progress! > episode.duration * 0.9;
   bool isLive = false;
   bool isNewItem = false;
 
@@ -125,8 +121,7 @@ class _GridEpisodeItem extends StatelessWidget {
                       episode.season!.$show.title.replaceAll(' ', '\u{000A0}'),
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
-                      style: BtvTextStyles.caption2
-                          .copyWith(color: BtvColors.tint1),
+                      style: BtvTextStyles.caption2.copyWith(color: BtvColors.tint1),
                     ),
                   ),
                 ),
@@ -180,25 +175,20 @@ class _GridEpisodeItem extends StatelessWidget {
                 ? Align(
                     alignment: Alignment.bottomCenter,
                     child: Container(
-                      margin:
-                          const EdgeInsets.only(left: 4, bottom: 4, right: 4),
-                      child: WatchProgressIndicator(
-                          totalDuration: episode.duration,
-                          watchedDuration: episode.progress!),
+                      margin: const EdgeInsets.only(left: 4, bottom: 4, right: 4),
+                      child: WatchProgressIndicator(totalDuration: episode.duration, watchedDuration: episode.progress!),
                     ),
                   )
                 : Align(
                     alignment: Alignment.bottomCenter,
                     child: Container(
                       height: 12,
-                      margin:
-                          const EdgeInsets.only(right: 4, bottom: 4, left: 4),
+                      margin: const EdgeInsets.only(right: 4, bottom: 4, left: 4),
                       child: Row(
                         children: [
                           if (watched) const WatchedBadge(),
                           const Spacer(),
-                          EpisodeDuration(
-                              duration: getFormattedDuration(episode.duration)),
+                          EpisodeDuration(duration: getFormattedDuration(episode.duration)),
                         ],
                       ),
                     ),

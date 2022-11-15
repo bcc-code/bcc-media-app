@@ -9,35 +9,34 @@ import '../helpers/utils.dart';
 import '../services/utils.dart';
 import 'bordered_image_container.dart';
 
-class SearchEpisodeList extends StatelessWidget {
-  final String title;
-  final List<Fragment$SearchResultItem$$EpisodeSearchItem> items;
+class EpisodeList extends StatelessWidget {
+  final List<EpisodeListEpisodeData> items;
 
-  const SearchEpisodeList({super.key, required this.title, required this.items});
+  const EpisodeList({super.key, required this.items});
 
   @override
   Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Container(
-          padding: const EdgeInsets.only(top: 12, right: 16, bottom: 8, left: 16),
-          margin: const EdgeInsets.only(bottom: 8),
-          child: Text(
-            title,
-            style: BtvTextStyles.title2,
-          ),
-        ),
-        ...items.map((episode) {
-          return _Episode(episode);
-        }).toList()
-      ],
+      children: items.map((episode) {
+        return _Episode(episode);
+      }).toList(),
     );
   }
 }
 
+class EpisodeListEpisodeData {
+  EpisodeListEpisodeData({required this.id, required this.title, this.image, this.showTitle, required this.ageRating, required this.duration});
+  final String id;
+  final String title;
+  final String? image;
+  final String? showTitle;
+  final String ageRating;
+  final int duration;
+}
+
 class _Episode extends StatelessWidget {
-  final Fragment$SearchResultItem$$EpisodeSearchItem _episode;
+  final EpisodeListEpisodeData _episode;
 
   const _Episode(this._episode);
 
@@ -49,11 +48,11 @@ class _Episode extends StatelessWidget {
       child: Container(
         height: 98,
         margin: const EdgeInsets.only(bottom: 4),
-        padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 16),
+        padding: const EdgeInsets.symmetric(vertical: 12),
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            BorderedImageContainer(imageUrl: _episode.image, width: 128, margin: EdgeInsets.only(right: 16)),
+            BorderedImageContainer(imageUrl: _episode.image, width: 128, margin: const EdgeInsets.only(right: 16)),
             Expanded(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
