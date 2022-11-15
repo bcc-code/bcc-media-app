@@ -1,8 +1,11 @@
 import 'dart:async';
 
 import 'package:auto_route/auto_route.dart';
+import 'package:brunstadtv_app/components/mini_player.dart';
 import 'package:brunstadtv_app/graphql/client.dart';
 import 'package:brunstadtv_app/graphql/queries/devices.graphql.dart';
+import 'package:brunstadtv_app/helpers/utils.dart';
+import 'package:brunstadtv_app/providers/chromecast.dart';
 import 'package:brunstadtv_app/providers/settings_service.dart';
 import 'package:brunstadtv_app/screens/search/search.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
@@ -95,21 +98,56 @@ class _TabsRootScreenState extends ConsumerState<TabsRootScreen> with AutoRouteA
     print('Changed to settings tab from ${previousRoute.name}');
   }
 
+  bool _shouldHideMiniPlayer(BuildContext context) {
+    final router = context.watchRouter;
+    Player? player;
+    if (ref.watch(isCasting)) {
+      player = ref.watch(castPlayerProvider);
+    } else {
+      player = ref.watch(primaryPlayerProvider);
+    }
+    if (player == null || player.currentMediaItem == null) {
+      return true;
+    }
+    if (router.currentSegments.last.meta.containsKey('hide_mini_player')) {
+      return true;
+    }
+    if (player.isInPipMode) {
+      return true;
+    }
+
+    final currentEpisodePageArgs = (router.currentSegments.last.args as Object?).asOrNull<EpisodeScreenRouteArgs>();
+
+    if (currentEpisodePageArgs?.autoplay == true) {
+      return true;
+    }
+
+    final episodeId = player.currentMediaItem?.metadata?.extras?['id']?.asOrNull<String>();
+
+    if (episodeId != null && currentEpisodePageArgs != null && currentEpisodePageArgs.episodeId == episodeId) {
+      return true;
+    }
+    return false;
+  }
+
   @override
   Widget build(BuildContext context) {
     return AutoTabsRouter(
         navigatorObservers: () => [HeroController()],
         routes: [
-          HomeScreenWrapperRoute(),
+          const HomeScreenWrapperRoute(),
           SearchScreenWrapperRoute(children: [SearchScreenRoute(key: GlobalKey<SearchScreenState>())]),
-          LiveScreenRoute(),
-          CalendarPageRoute(),
+          const LiveScreenRoute(),
+          const CalendarPageRoute(),
         ],
         builder: (context, child, animation) {
           final tabsRouter = AutoTabsRouter.of(context);
           return Theme(
             data: Theme.of(context).copyWith(bottomSheetTheme: const BottomSheetThemeData(backgroundColor: Colors.transparent)),
-            child: Scaffold(body: child, bottomSheet: const BottomSheetMiniPlayer(), bottomNavigationBar: CustomTabBar(tabsRouter: tabsRouter)),
+            child: Scaffold(
+                body: Padding(padding: EdgeInsets.only(bottom: _shouldHideMiniPlayer(context) ? 0 : kMiniPlayerHeight), child: child),
+                bottomSheet: BottomSheetMiniPlayer(hidden: _shouldHideMiniPlayer(context)),
+                bottomNavigationBar: CustomTabBar(tabsRouter: tabsRouter)),
           );
         });
   }

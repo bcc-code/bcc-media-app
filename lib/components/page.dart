@@ -37,7 +37,7 @@ class BccmPage extends StatelessWidget {
         onRefresh: () => onRefresh(false),
         notificationPredicate: (notification) => true,
         child: ListView.builder(
-          cacheExtent: 10000,
+          cacheExtent: 3000,
           physics: const BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
           itemCount: sectionItems.length,
           itemBuilder: ((context, index) {

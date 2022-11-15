@@ -127,38 +127,29 @@ const _specialRoutes = AutoRoute(
       initial: true,
       guards: [AuthGuard],
       children: [
-        CustomRoute<void>(
-            name: 'HomeScreenWrapperRoute',
-            page: EmptyRouterPage,
+        CustomRoute<void>(name: 'HomeScreenWrapperRoute', page: EmptyRouterPage, path: '', initial: true, children: [
+          CustomRoute<void>(
+            page: HomeScreen,
             path: '',
-            initial: true,
-            children: [
-              CustomRoute<void>(
-                page: HomeScreen,
-                path: '',
-                name: 'home',
-                maintainState: true,
-              ),
-              _episodeScreenRoute,
-              MaterialRoute<void>(page: PageScreen, path: 'page/:pageCode'),
-            ]),
-        MaterialRoute<void>(
-            page: LiveScreen,
-            path: 'live',
-            meta: {'hide_mini_player': true},
-            maintainState: true),
-        MaterialRoute<void>(
-            name: 'SearchScreenWrapperRoute',
-            page: EmptyRouterPage,
-            path: 'search',
-            children: [
-              MaterialRoute<void>(page: SearchScreen, path: ''),
-              MaterialRoute<void>(
-                  page: ExploreCategoryScreen, path: 'explore-category'),
-              _episodeScreenRoute,
-            ]),
-        MaterialRoute<void>(
-            name: 'CalendarPageRoute', page: CalendarPage, path: 'calendar'),
+            name: 'home',
+            maintainState: true,
+          ),
+          _episodeScreenRoute,
+          CustomRoute<void>(
+              page: PageScreen,
+              path: 'page/:pageCode',
+              usesPathAsKey: true,
+              durationInMilliseconds: 300,
+              reverseDurationInMilliseconds: 300,
+              transitionsBuilder: CustomTransitionsBuilders.slideLeft),
+        ]),
+        MaterialRoute<void>(page: LiveScreen, path: 'live', meta: {'hide_mini_player': true}, maintainState: true),
+        MaterialRoute<void>(name: 'SearchScreenWrapperRoute', page: EmptyRouterPage, path: 'search', children: [
+          MaterialRoute<void>(page: SearchScreen, path: ''),
+          MaterialRoute<void>(page: ExploreCategoryScreen, path: 'explore-category'),
+          _episodeScreenRoute,
+        ]),
+        MaterialRoute<void>(name: 'CalendarPageRoute', page: CalendarPage, path: 'calendar'),
       ],
     ),
     _specialRoutes,

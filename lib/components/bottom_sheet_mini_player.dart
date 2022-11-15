@@ -13,11 +13,12 @@ import '../providers/fun.dart';
 import 'mini_player.dart';
 
 class BottomSheetMiniPlayer extends ConsumerStatefulWidget {
-  const BottomSheetMiniPlayer({Key? key}) : super(key: key);
+  const BottomSheetMiniPlayer({Key? key, required this.hidden}) : super(key: key);
+
+  final bool hidden;
 
   @override
-  ConsumerState<ConsumerStatefulWidget> createState() =>
-      _BottomSheetMiniPlayerState();
+  ConsumerState<ConsumerStatefulWidget> createState() => _BottomSheetMiniPlayerState();
 }
 
 class _BottomSheetMiniPlayerState extends ConsumerState<BottomSheetMiniPlayer> {
@@ -37,16 +38,12 @@ class _BottomSheetMiniPlayerState extends ConsumerState<BottomSheetMiniPlayer> {
           }));
     }
 
-    bool hideMiniPlayer = _shouldHideMiniPlayer(player, context.watchRouter);
-
     return AnimatedAlign(
         duration: const Duration(milliseconds: 200),
         curve: Curves.easeOutQuart,
         alignment: Alignment.topCenter,
-        heightFactor: hideMiniPlayer ? 0 : 1,
-        child: hideMiniPlayer || player == null
-            ? _buildDummy()
-            : _buildMiniPlayer(player));
+        heightFactor: widget.hidden ? 0 : 1,
+        child: widget.hidden || player == null ? _buildDummy() : _buildMiniPlayer(player));
   }
 
   Widget _buildMiniPlayer(Player player) {
@@ -57,8 +54,7 @@ class _BottomSheetMiniPlayerState extends ConsumerState<BottomSheetMiniPlayer> {
 
     return GestureDetector(
       onTap: () {
-        var id =
-            player.currentMediaItem?.metadata?.extras?['id'].asOrNull<String>();
+        var id = player.currentMediaItem?.metadata?.extras?['id'].asOrNull<String>();
         if (id == 'livestream') {
           context.router.navigate(const LiveScreenRoute());
         } else if (id != null) {
@@ -66,16 +62,14 @@ class _BottomSheetMiniPlayerState extends ConsumerState<BottomSheetMiniPlayer> {
           try {
             context.navigateTo(EpisodeScreenRoute(episodeId: id));
           } catch (_) {
-            context.navigateTo(HomeScreenWrapperRoute(
-                children: [EpisodeScreenRoute(episodeId: id)]));
+            context.navigateTo(HomeScreenWrapperRoute(children: [EpisodeScreenRoute(episodeId: id)]));
           }
         }
       },
       child: MiniPlayer(
         secondaryTitle: artist,
         title: title ?? '',
-        artworkUri:
-            artworkUri ?? 'https://source.unsplash.com/random/1600x900/?fruit',
+        artworkUri: artworkUri ?? 'https://source.unsplash.com/random/1600x900/?fruit',
         isPlaying: playbackState == PlaybackState.playing,
         onPlayTap: () {
           ref.read(playbackApiProvider).play(player.playerId);
@@ -100,8 +94,7 @@ class _BottomSheetMiniPlayerState extends ConsumerState<BottomSheetMiniPlayer> {
       return MiniPlayer(
           secondaryTitle: artist,
           title: title ?? '',
-          artworkUri: artworkUri ??
-              'https://source.unsplash.com/random/1600x900/?fruit',
+          artworkUri: artworkUri ?? 'https://source.unsplash.com/random/1600x900/?fruit',
           isPlaying: false);
     }
     return Container(
@@ -112,34 +105,5 @@ class _BottomSheetMiniPlayerState extends ConsumerState<BottomSheetMiniPlayer> {
           horizontal: 16,
           vertical: 12,
         ));
-  }
-
-  bool _shouldHideMiniPlayer(Player? player, StackRouter router) {
-    if (player == null || player.currentMediaItem == null) {
-      return true;
-    }
-    if (router.currentSegments.last.meta.containsKey('hide_mini_player')) {
-      return true;
-    }
-    if (player.isInPipMode) {
-      return true;
-    }
-
-    final currentEpisodePageArgs = (router.currentSegments.last.args as Object?)
-        .asOrNull<EpisodeScreenRouteArgs>();
-
-    if (currentEpisodePageArgs?.autoplay == true) {
-      return true;
-    }
-
-    final episodeId =
-        player.currentMediaItem?.metadata?.extras?['id']?.asOrNull<String>();
-
-    if (episodeId != null &&
-        currentEpisodePageArgs != null &&
-        currentEpisodePageArgs.episodeId == episodeId) {
-      return true;
-    }
-    return false;
   }
 }

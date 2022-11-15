@@ -270,6 +270,7 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen> with AutoRouteAwa
         future: playerSetupCompleter?.future,
         builder: (context, playerSetupSnapshot) {
           return SingleChildScrollView(
+            physics: const AlwaysScrollableScrollPhysics(),
             controller: scrollController,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -385,7 +386,6 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen> with AutoRouteAwa
                         ],
                       ),
                     )),
-                const SizedBox(height: kMiniPlayerHeight)
               ],
             ),
           );

@@ -238,12 +238,17 @@ class AppRouter extends _i19.RootStackRouter {
       final args = routeData.argsAs<PageScreenRouteArgs>(
           orElse: () =>
               PageScreenRouteArgs(pageCode: pathParams.getString('pageCode')));
-      return _i19.MaterialPageX<void>(
+      return _i19.CustomPage<void>(
         routeData: routeData,
         child: _i16.PageScreen(
           key: args.key,
           pageCode: args.pageCode,
         ),
+        transitionsBuilder: _i23.CustomTransitionsBuilders.slideLeft,
+        durationInMilliseconds: 300,
+        reverseDurationInMilliseconds: 300,
+        opaque: true,
+        barrierDismissible: false,
       );
     },
     SearchScreenRoute.name: (routeData) {
@@ -352,6 +357,7 @@ class AppRouter extends _i19.RootStackRouter {
                   PageScreenRoute.name,
                   path: 'page/:pageCode',
                   parent: HomeScreenWrapperRoute.name,
+                  usesPathAsKey: true,
                 ),
               ],
             ),

@@ -1,13 +1,28 @@
 import 'dart:math';
 import 'dart:ui';
 
+import 'package:auto_route/auto_route.dart';
 import 'package:brunstadtv_app/helpers/svg_icons.dart';
+import 'package:brunstadtv_app/helpers/utils.dart';
+import 'package:brunstadtv_app/router/router.gr.dart';
+import 'package:brunstadtv_app/screens/home.dart';
+import 'package:brunstadtv_app/screens/search/search.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
 import '../helpers/btv_colors.dart';
 import '../helpers/btv_typography.dart';
 import '../l10n/app_localizations.dart';
+import '../screens/page.dart';
+
+String? getLocalizedRouteName(S localizations, Type route) {
+  switch (route) {
+    case SearchScreen:
+      return localizations.search;
+    case HomeScreen:
+      return localizations.homeTab;
+  }
+}
 
 class CustomBackButton extends StatelessWidget {
   const CustomBackButton({super.key, this.color, this.onPressed});
@@ -18,6 +33,17 @@ class CustomBackButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final stack = context.router.stack;
+    var pageTitle = '';
+    if (stack.length >= 2) {
+      final previousInStack = stack[stack.length - 2];
+      final previousPage = previousInStack.child.asOrNull<PageScreen>();
+      final previousPageTitle = previousPage?.key.asOrNull<GlobalKey<PageScreenState>>()?.currentState?.pageTitle;
+
+      final localizedTitle = getLocalizedRouteName(S.of(context), previousInStack.child.runtimeType);
+
+      pageTitle = previousPageTitle ?? localizedTitle ?? '';
+    }
     return Stack(
       children: [
         Padding(
@@ -39,9 +65,7 @@ class CustomBackButton extends StatelessWidget {
                 children: <Widget>[
                   SvgPicture.string(SvgIcons.chevronLeft, height: 16),
                   SizedBox(width: 8),
-                  Center(
-                      child: Text('Home',
-                          style: BtvTextStyles.button2.copyWith(height: 1)))
+                  Center(child: Text(pageTitle, style: BtvTextStyles.button2.copyWith(height: 1)))
                 ],
               ),
             ),

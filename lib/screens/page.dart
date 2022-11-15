@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../components/custom_back_button.dart';
 import '../helpers/btv_buttons.dart';
 import '../components/general_app_bar.dart';
 import '../components/page.dart';
@@ -13,16 +14,16 @@ import '../helpers/btv_typography.dart';
 class PageScreen extends ConsumerStatefulWidget {
   final String pageCode;
 
-  const PageScreen({
-    super.key,
+  PageScreen({
+    Key? key,
     @PathParam() required this.pageCode,
-  });
+  }) : super(key: key ?? GlobalKey<PageScreenState>());
 
   @override
-  ConsumerState<PageScreen> createState() => _PageScreenState();
+  ConsumerState<PageScreen> createState() => PageScreenState();
 }
 
-class _PageScreenState extends ConsumerState<PageScreen> {
+class PageScreenState extends ConsumerState<PageScreen> {
   late Future<Query$Page$page> resultFuture;
   String pageTitle = '';
 
@@ -46,18 +47,10 @@ class _PageScreenState extends ConsumerState<PageScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: GeneralAppBar(
-        title: Text(
-          pageTitle,
-          style: BtvTextStyles.title3,
-        ),
-        leftActions: [
-          BtvButton(
-            imagePath: 'assets/icons/Left.png',
-            labelText: 'Home',
-            onPressed: () => context.router.pop(),
-          ),
-        ],
+      appBar: AppBar(
+        leadingWidth: 92,
+        leading: const CustomBackButton(),
+        title: Text(pageTitle),
       ),
       body: BccmPage(
         pageFuture: resultFuture,
