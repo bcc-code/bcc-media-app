@@ -67,8 +67,6 @@ void $main({required FirebaseOptions? firebaseOptions}) async {
 
   alice.setNavigatorKey(navigatorKey);
 
-  debugInvertOversizedImages = true;
-
   var chromecastListenerOverride = chromecastListenerProvider.overrideWith((c) {
     var listener = ChromecastListener(providerRef: c);
     ChromecastPigeon.setup(listener);
