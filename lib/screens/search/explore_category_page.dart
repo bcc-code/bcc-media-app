@@ -22,8 +22,7 @@ class _ExploreCategoryScreenState extends State<ExploreCategoryScreen> {
   final _episodeList = List.filled(
     11,
     {
-      'image':
-          'https://brunstadtv.imgix.net/c7b34d9c-d961-4326-9686-d480d461b54c.jpg',
+      'image': 'https://brunstadtv.imgix.net/c7b34d9c-d961-4326-9686-d480d461b54c.jpg',
       'title': '25. august - PROMO: Høstcamp og Romjulscamp',
     },
   );
@@ -58,6 +57,7 @@ class _ExploreCategoryScreenState extends State<ExploreCategoryScreen> {
 
     List<Widget> rightAppBarButtons = [
       GestureDetector(
+        behavior: HitTestBehavior.opaque,
         onTap: () => _openSortOptions(context),
         child: Image.asset(
           'assets/icons/ExploreCategorySort.png',

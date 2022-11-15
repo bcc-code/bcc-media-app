@@ -106,6 +106,7 @@ class _GridEpisodeItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
+      behavior: HitTestBehavior.opaque,
       onTap: () => handleSectionItemClick(context, sectionItem.item),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -237,6 +238,7 @@ class _GridShowItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
+      behavior: HitTestBehavior.opaque,
       onTap: () => handleSectionItemClick(context, sectionItem.item),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,

@@ -66,6 +66,7 @@ class _FAQState extends State<FAQ> {
         backgroundColor: BtvColors.background1,
         leadingWidth: 90,
         leading: GestureDetector(
+          behavior: HitTestBehavior.opaque,
           onTapDown: (details) {
             context.router.pop();
           },
@@ -96,10 +97,7 @@ class _FAQState extends State<FAQ> {
           child: Container(
             padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 17),
             child: Column(
-              children: <Widget>[
-                for (var i in listOfList)
-                  _ExpansionTileDropDown(i, listOfList.indexOf(i))
-              ],
+              children: <Widget>[for (var i in listOfList) _ExpansionTileDropDown(i, listOfList.indexOf(i))],
             ),
           ),
         ),

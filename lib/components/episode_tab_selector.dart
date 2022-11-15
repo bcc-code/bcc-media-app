@@ -7,12 +7,7 @@ import '../l10n/app_localizations.dart';
 import 'option_list.dart';
 
 class EpisodeTabSelector extends StatelessWidget {
-  const EpisodeTabSelector(
-      {super.key,
-      required this.tabs,
-      required this.selectedId,
-      required this.selectedIndex,
-      required this.onSelectionChange});
+  const EpisodeTabSelector({super.key, required this.tabs, required this.selectedId, required this.selectedIndex, required this.onSelectionChange});
 
   final List<Option> tabs;
   final String selectedId;
@@ -30,9 +25,7 @@ class EpisodeTabSelector extends StatelessWidget {
                 children: tabs
                     .map((tab) => Padding(
                         padding: const EdgeInsets.only(right: 8),
-                        child: TabButton(tab.title,
-                            selected: selectedIndex == tabs.indexOf(tab),
-                            onTap: () {
+                        child: TabButton(tab.title, selected: selectedIndex == tabs.indexOf(tab), onTap: () {
                           onSelectionChange(tabs.indexOf(tab));
                         })))
                     .toList())),
@@ -42,8 +35,7 @@ class EpisodeTabSelector extends StatelessWidget {
 }
 
 class TabButton extends StatelessWidget {
-  const TabButton(this.text,
-      {super.key, required this.selected, required this.onTap});
+  const TabButton(this.text, {super.key, required this.selected, required this.onTap});
 
   final String text;
   final bool selected;
@@ -52,6 +44,7 @@ class TabButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
+      behavior: HitTestBehavior.opaque,
       onTap: onTap,
       child: Container(
         decoration: BoxDecoration(
@@ -68,8 +61,7 @@ class TabButton extends StatelessWidget {
         ),
         child: Text(
           text.toUpperCase(),
-          style: BtvTextStyles.button2
-              .copyWith(color: !selected ? BtvColors.label4 : BtvColors.label1),
+          style: BtvTextStyles.button2.copyWith(color: !selected ? BtvColors.label4 : BtvColors.label1),
         ),
       ),
     );

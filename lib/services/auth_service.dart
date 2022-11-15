@@ -24,9 +24,6 @@ class AuthService {
 
   Future<Error?> init() async {
     try {
-      if (!await auth0.credentialsManager.hasValidCredentials(minTtl: 60)) {
-        return null;
-      }
       final result = await auth0.credentialsManager.credentials();
       auth0AccessToken = result.accessToken;
       user = result.user;
@@ -52,8 +49,7 @@ class AuthService {
   Future<Error?> login() async {
     try {
       final PackageInfo info = await PackageInfo.fromPlatform();
-      final result =
-          await auth0.webAuthentication(scheme: info.packageName).login(
+      final result = await auth0.webAuthentication(scheme: info.packageName).login(
         audience: Env.auth0Audience,
         scopes: {'openid', 'profile', 'offline_access', 'email'},
       );

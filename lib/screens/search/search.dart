@@ -120,10 +120,9 @@ class SearchScreenState extends ConsumerState<SearchScreen> {
                     });
                   } else {
                     // This is just to avoid some visual glitches with the _noInputInfoWidget.
-                    Future.delayed(const Duration(milliseconds: 100))
-                        .whenComplete(() => setState(() {
-                              focusing = true;
-                            }));
+                    Future.delayed(const Duration(milliseconds: 100)).whenComplete(() => setState(() {
+                          focusing = true;
+                        }));
                   }
                 },
                 currentValue: _curSearchValue,
@@ -131,13 +130,10 @@ class SearchScreenState extends ConsumerState<SearchScreen> {
               ),
               Container(
                 margin: const EdgeInsets.only(bottom: 8),
-                child:
-                    const Divider(height: 1, color: BtvColors.seperatorOnLight),
+                child: const Divider(height: 1, color: BtvColors.seperatorOnLight),
               ),
               Expanded(
-                child: AnimatedSwitcher(
-                    duration: const Duration(milliseconds: 100),
-                    child: mainContent),
+                child: AnimatedSwitcher(duration: const Duration(milliseconds: 100), child: mainContent),
               )
             ],
           ),

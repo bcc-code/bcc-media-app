@@ -78,6 +78,7 @@ class _LiveMiniPlayerState extends ConsumerState<LiveMiniPlayer> {
     var playbackState = player.playbackState;
 
     return GestureDetector(
+      behavior: HitTestBehavior.opaque,
       onTap: () {
         var id = player?.currentMediaItem?.metadata?.extras?['id'].asOrNull<String>();
         context.router.navigate(const LiveScreenRoute());
@@ -87,6 +88,7 @@ class _LiveMiniPlayerState extends ConsumerState<LiveMiniPlayer> {
         title: title ?? '',
         artworkUri: artworkUri ?? 'https://source.unsplash.com/random/1600x900/?fruit',
         isPlaying: playbackState == PlaybackState.playing,
+        hideCloseButton: true,
         onPlayTap: () {
           ref.read(playbackApiProvider).play(player!.playerId);
         },

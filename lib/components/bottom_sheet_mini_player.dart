@@ -53,6 +53,7 @@ class _BottomSheetMiniPlayerState extends ConsumerState<BottomSheetMiniPlayer> {
     var playbackState = player.playbackState;
 
     return GestureDetector(
+      behavior: HitTestBehavior.opaque,
       onTap: () {
         var id = player.currentMediaItem?.metadata?.extras?['id'].asOrNull<String>();
         if (id == 'livestream') {
