@@ -38,6 +38,16 @@
                 <category android:name="android.intent.category.BROWSABLE" />
                 <data android:scheme="http" android:host="brunstad.tv" />
                 <data android:scheme="https" />
+                <data android:path='/'/>
+                <data android:path='/public-home'/>
+                <data android:path='/home'/>
+                <data android:path='/live'/>
+                <data android:pathPattern='/search.*'/>
+                <data android:pathPattern='/episode/.*'/>
+                <data android:path='/calendar'/>
+                <data android:pathPattern='/r/.*'/>
+                <data android:pathPattern='/series/.*'/>
+                <data android:pathPattern='/program/.*'/>
             </intent-filter>
         </activity>
 
