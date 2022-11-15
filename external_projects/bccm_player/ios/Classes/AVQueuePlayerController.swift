@@ -26,6 +26,7 @@ public class AVQueuePlayerController: NSObject, PlayerController, AVPlayerViewCo
         youboraOptions.enabled = npawConfig != nil;
         youboraOptions.accountCode = npawConfig?.accountCode;
         youboraOptions.appName = npawConfig?.appName;
+        youboraOptions.autoDetectBackground = false;
         youboraOptions.appReleaseVersion = npawConfig?.appReleaseVersion;
         youboraPlugin = YBPlugin(options: youboraOptions)
         super.init()
