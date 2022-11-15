@@ -107,6 +107,7 @@ class _PosterEpisodeItem extends StatelessWidget {
   Widget build(BuildContext context) {
     final productionDate = getFormattedProductionDate(episode.productionDate);
     return GestureDetector(
+      behavior: HitTestBehavior.opaque,
       onTap: () => handleSectionItemClick(context, sectionItem.item),
       child: SizedBox(
         width: imageSize[size]!.width,
@@ -243,6 +244,7 @@ class _PosterShowItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
+      behavior: HitTestBehavior.opaque,
       onTap: () => handleSectionItemClick(context, sectionItem.item),
       child: SizedBox(
         width: imageSize[size]!.width,

@@ -38,6 +38,7 @@ class _LabelItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
+      behavior: HitTestBehavior.opaque,
       onTap: () => handleSectionItemClick(context, sectionItem.item),
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),

@@ -38,13 +38,10 @@ class _CalendarPageState extends ConsumerState<CalendarPage> {
               },
               child: Padding(
                 padding: const EdgeInsets.only(right: 16),
-                child: collapsed
-                    ? SvgPicture.string(SvgIcons.calendar_1_line)
-                    : SvgPicture.string(SvgIcons.calendar_2_lines),
+                child: collapsed ? SvgPicture.string(SvgIcons.calendar_1_line) : SvgPicture.string(SvgIcons.calendar_2_lines),
               )),
         ]),
-        body:
-            SingleChildScrollView(child: CalendarWidget(collapsed: collapsed)));
+        body: SingleChildScrollView(child: CalendarWidget(collapsed: collapsed)));
   }
 }
 
@@ -66,10 +63,8 @@ class _CalendarWidgetState extends ConsumerState<CalendarWidget> {
   HashSet<DateTime> activeDaysPeriod = HashSet<DateTime>();
   List<String> eventsPeriod = [];
 
-  final kFirstDay = DateTime(DateTime.now().year - (5 * pow(10, 4)) as int,
-      DateTime.now().month, DateTime.now().day);
-  final kLastDay = DateTime(DateTime.now().year + 5 * pow(10, 4) as int,
-      DateTime.now().month, DateTime.now().day);
+  final kFirstDay = DateTime(DateTime.now().year - (5 * pow(10, 4)) as int, DateTime.now().month, DateTime.now().day);
+  final kLastDay = DateTime(DateTime.now().year + 5 * pow(10, 4) as int, DateTime.now().month, DateTime.now().day);
 
   List<DateTime> _getEventsForDay(DateTime day) {
     List<DateTime> result = [];
@@ -82,8 +77,7 @@ class _CalendarWidgetState extends ConsumerState<CalendarWidget> {
   }
 
   bool _isSameWeekAsCurrentWeek(DateTime date) {
-    return _getWeekNumber(date).toString() ==
-        _getWeekNumber(DateTime.now()).toString();
+    return _getWeekNumber(date).toString() == _getWeekNumber(DateTime.now()).toString();
   }
 
   /// Calculates number of weeks for a given year as per https://en.wikipedia.org/wiki/ISO_week_date#Weeks_per_year
@@ -124,19 +118,13 @@ class _CalendarWidgetState extends ConsumerState<CalendarWidget> {
     DateTime endDate = DateTime.parse(last);
     final dayCount = endDate.difference(startDate).inDays + 1;
 
-    return List.generate(
-        dayCount,
-        (index) =>
-            convertToIso8601inDays(startDate.add(Duration(days: (index)))));
+    return List.generate(dayCount, (index) => convertToIso8601inDays(startDate.add(Duration(days: (index)))));
   }
 
   Widget highlightMarker(DateTime day, bool isFromDefaultBuilder) {
-    final isNotPartOfEvent =
-        !eventsPeriod.contains(convertToIso8601inDays(day));
-    final isFirstDay = !eventsPeriod.contains(
-        convertToIso8601inDays(day.subtract(const Duration(days: 1))));
-    final isLastDay = !eventsPeriod
-        .contains(convertToIso8601inDays(day.add(const Duration(days: 1))));
+    final isNotPartOfEvent = !eventsPeriod.contains(convertToIso8601inDays(day));
+    final isFirstDay = !eventsPeriod.contains(convertToIso8601inDays(day.subtract(const Duration(days: 1))));
+    final isLastDay = !eventsPeriod.contains(convertToIso8601inDays(day.add(const Duration(days: 1))));
     if (isNotPartOfEvent) {
       return isFromDefaultBuilder
           ? Stack(
@@ -202,10 +190,7 @@ class _CalendarWidgetState extends ConsumerState<CalendarWidget> {
       if (value.hasException) {
         throw ErrorDescription(value.exception.toString());
       }
-      List<DateTime>? activeDaysList111 = value
-          .parsedData?.calendar?.period.activeDays
-          .map((e) => DateTime.parse(e))
-          .toList();
+      List<DateTime>? activeDaysList111 = value.parsedData?.calendar?.period.activeDays.map((e) => DateTime.parse(e)).toList();
 
       setState(() {
         activeDaysPeriod = HashSet.from(activeDaysList111 ?? []);
@@ -223,9 +208,7 @@ class _CalendarWidgetState extends ConsumerState<CalendarWidget> {
   loadingSelectedEvent() {
     final client = ref.read(gqlClientProvider);
     _selectedDayEvent = client
-        .query$CalendarDay(Options$Query$CalendarDay(
-            variables: Variables$Query$CalendarDay(
-                date: convertToIso8601(_selectedDay!))))
+        .query$CalendarDay(Options$Query$CalendarDay(variables: Variables$Query$CalendarDay(date: convertToIso8601(_selectedDay!))))
         .onError((error, stackTrace) {
       1;
       print('ERROR: $error');
@@ -255,12 +238,10 @@ class _CalendarWidgetState extends ConsumerState<CalendarWidget> {
           child: TableCalendar(
             rowHeight: 54,
             shouldFillViewport: false,
-            calendarFormat:
-                widget.collapsed ? CalendarFormat.week : CalendarFormat.month,
+            calendarFormat: widget.collapsed ? CalendarFormat.week : CalendarFormat.month,
             startingDayOfWeek: StartingDayOfWeek.monday,
             daysOfWeekStyle: DaysOfWeekStyle(
-              dowTextFormatter: (date, locale) => DateFormat.E(locale)
-                  .format(date)[0], //only display one letter
+              dowTextFormatter: (date, locale) => DateFormat.E(locale).format(date)[0], //only display one letter
             ),
             headerStyle: HeaderStyle(
               formatButtonVisible: false,
@@ -272,11 +253,9 @@ class _CalendarWidgetState extends ConsumerState<CalendarWidget> {
                   : DateFormat.MMMM().format(date).toString(),
               headerMargin: EdgeInsets.zero,
               titleTextStyle: BtvTextStyles.caption1,
-              leftChevronIcon: const Icon(Icons.arrow_back_ios_new_outlined,
-                  color: BtvColors.label4, size: 16),
+              leftChevronIcon: const Icon(Icons.arrow_back_ios_new_outlined, color: BtvColors.label4, size: 16),
               leftChevronMargin: const EdgeInsets.only(left: 0),
-              rightChevronIcon: const Icon(Icons.arrow_forward_ios_outlined,
-                  color: BtvColors.label4, size: 16),
+              rightChevronIcon: const Icon(Icons.arrow_forward_ios_outlined, color: BtvColors.label4, size: 16),
               rightChevronMargin: const EdgeInsets.only(right: 0),
             ),
             availableGestures: AvailableGestures.horizontalSwipe,
@@ -285,17 +264,12 @@ class _CalendarWidgetState extends ConsumerState<CalendarWidget> {
               tableBorder: TableBorder.symmetric(),
               canMarkersOverflow: true,
               defaultTextStyle: BtvTextStyles.title3,
-              todayTextStyle:
-                  BtvTextStyles.title3.copyWith(color: BtvColors.tint2),
+              todayTextStyle: BtvTextStyles.title3.copyWith(color: BtvColors.tint2),
               todayDecoration: const BoxDecoration(
                 shape: BoxShape.circle,
               ),
               weekendTextStyle: BtvTextStyles.title3,
-              outsideTextStyle: const TextStyle(
-                  fontFamily: 'Barlow',
-                  color: Colors.grey,
-                  fontSize: 17,
-                  fontWeight: FontWeight.w700),
+              outsideTextStyle: const TextStyle(fontFamily: 'Barlow', color: Colors.grey, fontSize: 17, fontWeight: FontWeight.w700),
               markerMargin: const EdgeInsets.only(top: 3),
               markerDecoration: const BoxDecoration(
                 color: BtvColors.label4,
@@ -343,8 +317,7 @@ class _CalendarWidgetState extends ConsumerState<CalendarWidget> {
                 );
               },
               selectedBuilder: (context, day, focusedDay) {
-                if (normalizeDate(focusedDay) !=
-                    normalizeDate(DateTime.now())) {
+                if (normalizeDate(focusedDay) != normalizeDate(DateTime.now())) {
                   return Stack(
                     children: [
                       Center(
@@ -357,8 +330,7 @@ class _CalendarWidgetState extends ConsumerState<CalendarWidget> {
                                 color: Colors.white,
                                 width: 1.0,
                               ),
-                              borderRadius: const BorderRadius.all(
-                                  Radius.elliptical(30, 30))),
+                              borderRadius: const BorderRadius.all(Radius.elliptical(30, 30))),
                           child: CenterText(Colors.white, day),
                         ),
                       ),
@@ -376,13 +348,11 @@ class _CalendarWidgetState extends ConsumerState<CalendarWidget> {
                             color: Colors.white,
                             width: 1.0,
                           ),
-                          borderRadius: const BorderRadius.all(
-                              Radius.elliptical(30, 30))),
+                          borderRadius: const BorderRadius.all(Radius.elliptical(30, 30))),
                       child: Center(
                         child: Text(
                           '${day.day}',
-                          style: BtvTextStyles.title3
-                              .copyWith(color: BtvColors.tint2),
+                          style: BtvTextStyles.title3.copyWith(color: BtvColors.tint2),
                         ),
                       ),
                     ),
@@ -504,9 +474,7 @@ class HighLightSingle extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       margin: const EdgeInsets.symmetric(horizontal: 6, vertical: 10),
-      decoration: BoxDecoration(
-          color: BtvColors.tint1.withOpacity(0.15),
-          borderRadius: BorderRadius.circular(40)),
+      decoration: BoxDecoration(color: BtvColors.tint1.withOpacity(0.15), borderRadius: BorderRadius.circular(40)),
     );
   }
 }
@@ -519,9 +487,7 @@ class _EntriesSlot extends StatelessWidget {
   String calculateDuration(String st, String et) {
     Duration duration = DateTime.parse(et).difference(DateTime.parse(st));
     String hour = (duration.inHours == 0) ? '' : '${duration.inHours}h';
-    String minutes = duration.inMinutes % 60 == 0
-        ? ''
-        : '${(duration.inMinutes % 60).toString()}m';
+    String minutes = duration.inMinutes % 60 == 0 ? '' : '${(duration.inMinutes % 60).toString()}m';
 
     return '$hour $minutes'.trim();
   }
@@ -537,8 +503,7 @@ class _EntriesSlot extends StatelessWidget {
   }
 
   pushToEpisodePage(BuildContext context, var id) {
-    context.router.navigate(
-        HomeScreenWrapperRoute(children: [EpisodeScreenRoute(episodeId: id)]));
+    context.router.navigate(HomeScreenWrapperRoute(children: [EpisodeScreenRoute(episodeId: id)]));
   }
 
   @override
@@ -555,27 +520,20 @@ class _EntriesSlot extends StatelessWidget {
               : const Text('ingen bilder'),
           for (var i = 0; i < entriesList.length; i++)
             GestureDetector(
+              behavior: HitTestBehavior.opaque,
               onTapUp: (details) {
-                isClassOfEpisodeCalendarEntry(entriesList[i])
-                    ? pushToEpisodePage(context, entriesList[i].id)
-                    : null;
+                isClassOfEpisodeCalendarEntry(entriesList[i]) ? pushToEpisodePage(context, entriesList[i].id) : null;
               },
               child: Container(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 8, vertical: 16),
+                padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 16),
                 decoration: BoxDecoration(
-                  color: isHappeningNow(entriesList[i])
-                      ? BtvColors.tint2.withOpacity(0.1)
-                      : null,
+                  color: isHappeningNow(entriesList[i]) ? BtvColors.tint2.withOpacity(0.1) : null,
                   border: Border(
-                    left: isHappeningNow(entriesList[i])
-                        ? const BorderSide(color: BtvColors.tint2, width: 4)
-                        : const BorderSide(width: 4),
+                    left: isHappeningNow(entriesList[i]) ? const BorderSide(color: BtvColors.tint2, width: 4) : const BorderSide(width: 4),
                   ),
                 ),
                 child: Opacity(
-                  opacity:
-                      isClassOfEpisodeCalendarEntry(entriesList[i]) ? 1 : 0.7,
+                  opacity: isClassOfEpisodeCalendarEntry(entriesList[i]) ? 1 : 0.7,
                   child: Row(
                     children: [
                       Padding(
@@ -584,17 +542,11 @@ class _EntriesSlot extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              isHappeningNow(entriesList[i])
-                                  ? 'Now'
-                                  : DateFormat('HH:mm').format(
-                                      DateTime.parse(entriesList[i].start)),
+                              isHappeningNow(entriesList[i]) ? 'Now' : DateFormat('HH:mm').format(DateTime.parse(entriesList[i].start)),
                               style: BtvTextStyles.title3,
                             ),
                             const SizedBox(height: 4),
-                            Text(
-                                calculateDuration(
-                                    entriesList[i].start, entriesList[i].end),
-                                style: BtvTextStyles.caption1),
+                            Text(calculateDuration(entriesList[i].start, entriesList[i].end), style: BtvTextStyles.caption1),
                           ],
                         ),
                       ),
@@ -604,17 +556,13 @@ class _EntriesSlot extends StatelessWidget {
                           children: [
                             Text(
                               entriesList[i].title,
-                              style: BtvTextStyles.title3
-                                  .copyWith(color: BtvColors.label1),
+                              style: BtvTextStyles.title3.copyWith(color: BtvColors.label1),
                             ),
                             const SizedBox(height: 4),
                             Text(
                               entriesList[i].description,
                               overflow: TextOverflow.ellipsis,
-                              style: BtvTextStyles.caption1.copyWith(
-                                  color: isHappeningNow(entriesList[i])
-                                      ? BtvColors.tint2
-                                      : BtvColors.tint1),
+                              style: BtvTextStyles.caption1.copyWith(color: isHappeningNow(entriesList[i]) ? BtvColors.tint2 : BtvColors.tint1),
                             ),
                           ],
                         ),

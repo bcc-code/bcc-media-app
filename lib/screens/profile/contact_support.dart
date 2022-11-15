@@ -37,10 +37,8 @@ class _ContactSupportState extends State<ContactSupport> {
 
     PackageInfo packageInfo = await PackageInfo.fromPlatform();
     os = Platform.operatingSystemVersion;
-    final screenWidth =
-        WidgetsBinding.instance.window.physicalSize.width.toInt().toString();
-    final screenHeight =
-        WidgetsBinding.instance.window.physicalSize.height.toInt().toString();
+    final screenWidth = WidgetsBinding.instance.window.physicalSize.width.toInt().toString();
+    final screenHeight = WidgetsBinding.instance.window.physicalSize.height.toInt().toString();
     screenSize = '${screenHeight}x$screenWidth';
     appVer = packageInfo.buildNumber;
 
@@ -112,6 +110,7 @@ class _ContactSupportState extends State<ContactSupport> {
           leading: Align(
             alignment: Alignment.centerLeft,
             child: GestureDetector(
+              behavior: HitTestBehavior.opaque,
               onTapDown: (details) {
                 context.router.pop();
               },
@@ -131,8 +130,7 @@ class _ContactSupportState extends State<ContactSupport> {
           actions: [
             (_isTextFieldEnter && _isSendBtnShown)
                 ? Padding(
-                    padding:
-                        const EdgeInsets.symmetric(vertical: 6, horizontal: 16),
+                    padding: const EdgeInsets.symmetric(vertical: 6, horizontal: 16),
                     child: BtvButton.small(
                       onPressed: () {
                         setState(() {
@@ -155,36 +153,32 @@ class _ContactSupportState extends State<ContactSupport> {
                 if (!_loading)
                   Expanded(
                     child: SingleChildScrollView(
-                        child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: <Widget>[
-                          Padding(
-                            padding: const EdgeInsets.only(bottom: 32),
-                            child: Text(
-                              S.of(context).contactSupport,
-                              style: BtvTextStyles.headline1,
-                            ),
-                          ),
-                          _TextFieldInput(
-                            textController: _textController,
-                            textFldOnChange: _textFieldHandler,
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.only(top: 20, bottom: 10),
-                            child: Text(
-                              S.of(context).debugInfoExplanation,
-                              style: BtvTextStyles.body2
-                                  .copyWith(color: BtvColors.label1),
-                            ),
-                          ),
-                          _DeviceInfo(deviceInfos: deviceInfos()),
-                        ])),
+                        child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: <Widget>[
+                      Padding(
+                        padding: const EdgeInsets.only(bottom: 32),
+                        child: Text(
+                          S.of(context).contactSupport,
+                          style: BtvTextStyles.headline1,
+                        ),
+                      ),
+                      _TextFieldInput(
+                        textController: _textController,
+                        textFldOnChange: _textFieldHandler,
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(top: 20, bottom: 10),
+                        child: Text(
+                          S.of(context).debugInfoExplanation,
+                          style: BtvTextStyles.body2.copyWith(color: BtvColors.label1),
+                        ),
+                      ),
+                      _DeviceInfo(deviceInfos: deviceInfos()),
+                    ])),
                   )
                 else
                   FutureBuilder<String>(
                     future: ajaxCall,
-                    builder:
-                        (BuildContext context, AsyncSnapshot<String> snapshot) {
+                    builder: (BuildContext context, AsyncSnapshot<String> snapshot) {
                       if (snapshot.hasData) {
                         return Expanded(
                           child: _SendingResultPage(
@@ -232,8 +226,7 @@ class _TextFieldInput extends StatelessWidget {
   final TextEditingController textController;
   final VoidCallback textFldOnChange;
 
-  const _TextFieldInput(
-      {required this.textController, required this.textFldOnChange});
+  const _TextFieldInput({required this.textController, required this.textFldOnChange});
 
   @override
   Widget build(BuildContext context) {
@@ -319,8 +312,7 @@ class _DeviceInfoList extends StatelessWidget {
                 padding: const EdgeInsets.symmetric(vertical: 11.0),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  crossAxisAlignment: CrossAxisAlignment
-                      .start, //control the LH bar vertical alignment
+                  crossAxisAlignment: CrossAxisAlignment.start, //control the LH bar vertical alignment
                   children: <Widget>[
                     Flexible(
                       fit: FlexFit.tight,
@@ -334,8 +326,7 @@ class _DeviceInfoList extends StatelessWidget {
                       child: Text(
                         item.content ?? 'N/A',
                         textAlign: TextAlign.right,
-                        style: BtvTextStyles.body2
-                            .copyWith(color: BtvColors.label1),
+                        style: BtvTextStyles.body2.copyWith(color: BtvColors.label1),
                       ),
                     ),
                   ],

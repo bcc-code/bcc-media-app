@@ -95,6 +95,7 @@ class MiniPlayer extends StatelessWidget {
             Container(margin: const EdgeInsets.only(left: 16), height: 36, child: const LoadingIndicator(height: 24))
           else
             GestureDetector(
+              behavior: HitTestBehavior.opaque,
               onTap: () => isPlaying ? onPauseTap?.call() : onPlayTap?.call(),
               child: Container(
                 margin: const EdgeInsets.only(left: 16),
@@ -106,6 +107,7 @@ class MiniPlayer extends StatelessWidget {
             ),
           if (hideCloseButton != true)
             GestureDetector(
+              behavior: HitTestBehavior.opaque,
               onTap: () => onCloseTap?.call(),
               child: Container(
                 margin: const EdgeInsets.only(left: 7),
