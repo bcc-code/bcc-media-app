@@ -10,7 +10,7 @@
             ActionType = "Xcode.IDEStandardExecutionActionsCore.ExecutionActionType.ShellScriptAction">
             <ActionContent
                title = "Copy GoogleServices-Info.plist &amp; firebase_app_id_file.json to the correct location"
-               scriptText = "/bin/sh ${PROJECT_DIR}/Runner/Firebase/copy_script.sh&#10;">
+               scriptText = "/bin/sh ${PROJECT_DIR}/../firebase/ios_copy_script.sh&#10;">
                <EnvironmentBuildable>
                   <BuildableReference
                      BuildableIdentifier = "primary"

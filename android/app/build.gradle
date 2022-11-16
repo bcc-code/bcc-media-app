@@ -52,7 +52,7 @@ android {
     }
 
     defaultConfig {
-        applicationId "tv.brunstad.app.v4"
+        applicationId "tv.brunstad.app"
         minSdkVersion 21
         targetSdkVersion flutter.targetSdkVersion
         versionCode flutterVersionCode.toInteger()
@@ -84,14 +84,26 @@ android {
         prod {
             dimension "env"
             applicationIdSuffix ""
-            manifestPlaceholders = [appName: "BrunstadTV v4"]
+            manifestPlaceholders = [appName: "BrunstadTV"]
             flutter.target "lib/main_prod.dart"
         }
         dev {
             dimension "env"
             applicationIdSuffix ".dev"
-            manifestPlaceholders = [appName: "DEV BrunstadTV v4"]
+            manifestPlaceholders = [appName: "DEV BrunstadTV"]
             flutter.target "lib/main_dev.dart"
+        }
+        v4_prod {
+            dimension "env"
+            applicationIdSuffix ".v4"
+            manifestPlaceholders = [appName: "BrunstadTV v4"]
+            flutter.target "lib/main_v4_prod.dart"
+        }
+        v4_dev {
+            dimension "env"
+            applicationIdSuffix ".v4.dev"
+            manifestPlaceholders = [appName: "DEV BrunstadTV v4"]
+            flutter.target "lib/main_v4_dev.dart"
         }
     }
 }
