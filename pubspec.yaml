@@ -77,6 +77,7 @@ dependencies:
   modal_bottom_sheet: ^2.1.2
   webview_flutter: ^3.0.4
   shimmer: ^2.0.0
+  flutter_markdown: ^0.6.13
   #smooth: any
 
 dev_dependencies:
