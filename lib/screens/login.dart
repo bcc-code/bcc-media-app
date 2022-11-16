@@ -1,21 +1,23 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:brunstadtv_app/helpers/btv_typography.dart';
+import 'package:brunstadtv_app/providers/auth_state.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../helpers/btv_buttons.dart';
 import '../helpers/btv_colors.dart';
-import '../services/auth_service.dart';
+import '../l10n/app_localizations.dart';
 
-class LoginScreen extends StatefulWidget {
+class LoginScreen extends ConsumerStatefulWidget {
   final String? loginError;
   final void Function(bool)? onResult;
 
   const LoginScreen({super.key, this.loginError, this.onResult});
 
   @override
-  State<LoginScreen> createState() => _LoginScreenState();
+  ConsumerState<LoginScreen> createState() => _LoginScreenState();
 }
 
-class _LoginScreenState extends State<LoginScreen> {
+class _LoginScreenState extends ConsumerState<LoginScreen> {
   bool isProgressing = false;
   bool isLoggedIn = false;
   String errorMessage = '';
@@ -41,16 +43,17 @@ class _LoginScreenState extends State<LoginScreen> {
   }
 
   Future<void> loginAction() async {
+    final tryAgainMessage = S.of(context).errorTryAgain;
     setState(() {
       isProgressing = true;
       errorMessage = '';
     });
 
-    final error = await AuthService.instance.login();
-    if (error == null) {
+    final success = await ref.read(authStateProvider.notifier).login();
+    if (success) {
       handleSuccess();
     } else {
-      handleError(error.toString());
+      handleError(tryAgainMessage);
     }
   }
 
@@ -77,8 +80,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     child: Image.asset('assets/images/Onboarding.png'),
                   ),
                   Container(
-                    margin:
-                        const EdgeInsets.only(right: 38, bottom: 12, left: 38),
+                    margin: const EdgeInsets.only(right: 38, bottom: 12, left: 38),
                     child: const Text(
                       'The most powerful message in the world',
                       style: BtvTextStyles.title1,
@@ -86,19 +88,16 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
                   ),
                   Container(
-                    margin:
-                        const EdgeInsets.only(left: 38, bottom: 60, right: 38),
+                    margin: const EdgeInsets.only(left: 38, bottom: 60, right: 38),
                     child: Text(
                       'Watch series, shows and films based on Christian values',
                       textAlign: TextAlign.center,
-                      style:
-                          BtvTextStyles.body1.copyWith(color: BtvColors.label3),
+                      style: BtvTextStyles.body1.copyWith(color: BtvColors.label3),
                     ),
                   ),
                   Text(
                     'Produced by BCC Media',
-                    style: BtvTextStyles.caption1
-                        .copyWith(color: BtvColors.label3),
+                    style: BtvTextStyles.caption1.copyWith(color: BtvColors.label3),
                   )
                 ],
               ),
@@ -119,7 +118,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   BtvButton.mediumSecondary(
                     labelText: 'Skip to watch public content',
                     onPressed: () {
-                      AuthService.instance.guestUser = true;
+                      ref.read(authStateProvider.notifier).setGuestUserMode(true);
                       context.router.popUntil((route) => false);
                       context.router.pushNamed('/public-home');
                     },

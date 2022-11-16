@@ -1,7 +1,7 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:brunstadtv_app/providers/auth_state.dart';
 import 'package:brunstadtv_app/router/router.gr.dart';
-
-import '../services/auth_service.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class AuthGuard extends AutoRouteGuard {
   @override
@@ -9,12 +9,13 @@ class AuthGuard extends AutoRouteGuard {
     // the navigation is paused until resolver.next() is called with either
     // true to resume/continue navigation or false to abort navigation
 
-    if (AuthService.instance.idToken == null &&
-        !AuthService.instance.guestUser) {
-      // we redirect the user to our login page
+    ProviderContainer? ref;
+    if (router.navigatorKey.currentContext != null) {
+      ref = ProviderScope.containerOf(router.navigatorKey.currentContext!, listen: false);
+    }
+
+    if (ref != null && ref.read(authStateProvider).auth0AccessToken == null && !ref.read(authStateProvider).guestUser) {
       router.push(LoginScreenRoute(onResult: (success) {
-        // if success == true the navigation will be resumed
-        // else it will be aborted
         resolver.next(success);
       }));
     } else {

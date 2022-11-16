@@ -4,20 +4,18 @@ import 'package:auto_route/auto_route.dart';
 import 'package:bccm_player/bccm_player.dart';
 import 'package:bccm_player/cast_button.dart';
 import 'package:bccm_player/playback_platform_pigeon.g.dart';
+import 'package:brunstadtv_app/api/brunstadtv.dart';
 import 'package:brunstadtv_app/components/live_mini_player.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:brunstadtv_app/api/livestream.dart';
 import 'package:brunstadtv_app/providers/playback_api.dart';
 import 'package:brunstadtv_app/providers/video_state.dart';
 import 'package:flutter_svg_provider/flutter_svg_provider.dart';
 import 'package:brunstadtv_app/helpers/transparent_image.dart';
-import '../components/custom_back_button.dart';
 import '../helpers/btv_colors.dart';
 import '../helpers/btv_typography.dart';
 import '../l10n/app_localizations.dart';
 import '../providers/chromecast.dart';
-import '../services/auth_service.dart';
 import 'calendar/calendar.dart';
 
 final liveMetadataProvider = Provider<MediaMetadata>((ref) {
@@ -33,8 +31,6 @@ class LiveScreen extends ConsumerStatefulWidget {
 }
 
 class _LiveScreenState extends ConsumerState<LiveScreen> with AutoRouteAware {
-  String name = AuthService.instance.user!.name!;
-  final TextEditingController _idTokenDisplayController = TextEditingController(text: AuthService.instance.idToken);
   Future? playerFuture;
   LivestreamUrl? liveUrl;
   bool audioOnly = false;
@@ -74,7 +70,7 @@ class _LiveScreenState extends ConsumerState<LiveScreen> with AutoRouteAware {
       }
 
       var playbackApi = ref.read(playbackApiProvider);
-      var liveUrl = await fetchLiveUrl();
+      var liveUrl = await ref.read(apiProvider).fetchLiveUrl();
 
       if (!mounted) return;
 
