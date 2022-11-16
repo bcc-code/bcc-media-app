@@ -1,16 +1,17 @@
 import 'package:brunstadtv_app/helpers/btv_typography.dart';
+import 'package:brunstadtv_app/providers/auth_state.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../helpers/btv_colors.dart';
-import '../../services/auth_service.dart';
 
-class Avatar extends StatelessWidget {
+class Avatar extends ConsumerWidget {
   const Avatar({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
-    final imageUrl = AuthService.instance.user?.pictureUrl.toString();
-    final name = AuthService.instance.user?.name as String;
+  Widget build(BuildContext context, WidgetRef ref) {
+    final imageUrl = ref.read(authStateProvider).user?.pictureUrl.toString();
+    final name = ref.read(authStateProvider).user?.name as String;
     const avatarWidth = 100.0;
 
     return Container(

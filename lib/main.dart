@@ -19,7 +19,7 @@ import 'package:brunstadtv_app/providers/playback_api.dart';
 import 'package:brunstadtv_app/providers/playback_listener.dart';
 import 'package:brunstadtv_app/router/auth_guard.dart';
 import 'package:brunstadtv_app/router/router.gr.dart';
-import 'package:brunstadtv_app/services/auth_service.dart';
+import 'package:brunstadtv_app/providers/auth_state.dart';
 import 'package:bccm_player/chromecast_pigeon.g.dart';
 import 'package:intl/intl.dart';
 import 'package:intl/intl_standalone.dart';
@@ -46,6 +46,7 @@ void $main({required FirebaseOptions? firebaseOptions}) async {
       return true;
     };
   }
+
   WidgetsFlutterBinding.ensureInitialized();
   PaintingBinding.instance.imageCache.maximumSizeBytes = 1024 * 1024 * 50;
 
@@ -62,7 +63,7 @@ void $main({required FirebaseOptions? firebaseOptions}) async {
   SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
   ]);
-  await AuthService.instance.init();
+
   final appRouter = AppRouter(authGuard: AuthGuard(), specialRoutesGuard: SpecialRoutesGuard(), navigatorKey: navigatorKey);
 
   alice.setNavigatorKey(navigatorKey);
@@ -74,13 +75,11 @@ void $main({required FirebaseOptions? firebaseOptions}) async {
   });
 
   var providerContainer = ProviderContainer(overrides: [chromecastListenerOverride]);
-
   PlaybackListenerPigeon.setup(PlaybackListener(providerContainer: providerContainer));
-
+  providerContainer.read(authStateProvider.notifier).load();
   providerContainer.read(settingsProvider.notifier).load();
   providerContainer.read(chromecastListenerProvider);
   providerContainer.read(appConfigProvider);
-
   providerContainer.read(playbackApiProvider).getChromecastState().then((value) {
     providerContainer.read(isCasting.notifier).state = value?.connectionState == CastConnectionState.connected;
     providerContainer.read(castPlayerProvider.notifier).setMediaItem(value?.mediaItem);

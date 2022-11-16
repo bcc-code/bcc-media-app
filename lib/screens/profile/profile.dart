@@ -1,4 +1,6 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:brunstadtv_app/helpers/btv_buttons.dart';
+import 'package:brunstadtv_app/providers/auth_state.dart';
 import 'package:brunstadtv_app/providers/settings_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -8,7 +10,6 @@ import '../../helpers/languages.dart';
 import '../../l10n/app_localizations.dart';
 import '../../router/router.gr.dart';
 import './avatar.dart';
-import './action_buttons.dart';
 import '../../components/setting_list.dart';
 
 class Profile extends ConsumerStatefulWidget {
@@ -86,7 +87,18 @@ class _ProfileState extends ConsumerState<Profile> {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: <Widget>[
                 const Avatar(),
-                ActionButtons(),
+                Container(
+                  margin: const EdgeInsets.only(bottom: 24),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      BtvButton.smallSecondary(
+                        onPressed: () => ref.read(authStateProvider.notifier).logoutAndNavigate(context),
+                        labelText: S.of(context).logOutButton,
+                      ),
+                    ],
+                  ),
+                ),
                 Column(
                   children: [
                     SettingList(buttons: _settingsOptions),

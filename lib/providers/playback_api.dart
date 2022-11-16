@@ -3,6 +3,8 @@ import 'package:bccm_player/playback_service.dart';
 import 'package:bccm_player/playback_service_interface.dart';
 import 'package:brunstadtv_app/api/brunstadtv.dart';
 import 'package:brunstadtv_app/graphql/queries/episode.graphql.dart';
+import 'package:brunstadtv_app/graphql/schema/items.graphql.dart';
+import 'package:collection/collection.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 final playbackApiProvider = Provider<PlaybackPlatformInterface>((ref) {
@@ -31,4 +33,12 @@ Future playEpisode({required String playerId, required Query$FetchEpisode$episod
 Future queueEpisode({required String playerId, required Query$FetchEpisode$episode episode}) async {
   var mediaItem = _mapEpisode(episode);
   PlaybackPlatformInterface.instance.queueMediaItem(playerId, mediaItem);
+}
+
+extension StreamUrlExtension on Query$FetchEpisode$episode {
+  String getBestStreamUrl() {
+    var streamUrl = streams.firstWhereOrNull((element) => element.type == Enum$StreamType.hls_cmaf || element.type == Enum$StreamType.hls_ts)?.url;
+    streamUrl ??= streams.first.url;
+    return streamUrl;
+  }
 }

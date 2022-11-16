@@ -6,6 +6,7 @@ import 'package:brunstadtv_app/components/sign_in_tooltip.dart';
 import 'package:brunstadtv_app/helpers/svg_icons.dart';
 import 'package:brunstadtv_app/helpers/utils.dart';
 import 'package:brunstadtv_app/helpers/version_number_utils.dart';
+import 'package:brunstadtv_app/providers/auth_state.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -25,7 +26,6 @@ import '../graphql/queries/page.graphql.dart';
 import '../helpers/btv_typography.dart';
 import '../l10n/app_localizations.dart';
 import '../providers/app_config.dart';
-import '../services/auth_service.dart';
 
 final logo = Image.asset('assets/images/logo.png');
 
@@ -46,14 +46,13 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
   @override
   void initState() {
     super.initState();
-    if (AuthService.instance.guestUser) {
+    if (ref.read(authStateProvider).guestUser) {
       isGuestUser = true;
       showTooltip = true;
     }
     resultFuture = getHomePage();
     showDialogIfOldAppVersion();
-    appConfigListener = ref.listenManual<Future<Query$Application?>>(
-        appConfigProvider, (prev, next) async {
+    appConfigListener = ref.listenManual<Future<Query$Application?>>(appConfigProvider, (prev, next) async {
       showDialogIfOldAppVersion();
     });
   }
@@ -71,13 +70,9 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
     final minVersionNumber = appConfig.application.clientVersion;
     final currentVersionNumber = packageInfo.version;
     debugPrint(minVersionNumber);
-    debugPrint(
-        'minVersionNumber ${getExtendedVersionNumber(minVersionNumber)}');
-    debugPrint(
-        'currentVersionNumber ${getExtendedVersionNumber(currentVersionNumber)}');
-    if (minVersionNumber != null &&
-        getExtendedVersionNumber(minVersionNumber) >
-            getExtendedVersionNumber(currentVersionNumber)) {
+    debugPrint('minVersionNumber ${getExtendedVersionNumber(minVersionNumber)}');
+    debugPrint('currentVersionNumber ${getExtendedVersionNumber(currentVersionNumber)}');
+    if (minVersionNumber != null && getExtendedVersionNumber(minVersionNumber) > getExtendedVersionNumber(currentVersionNumber)) {
       showDialog(
           context: context,
           builder: (context) {
@@ -88,9 +83,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
               ),
               contentPadding: const EdgeInsets.all(24).copyWith(top: 8),
               children: [
-                Padding(
-                    padding: EdgeInsets.only(bottom: 16),
-                    child: Text(S.of(context).appUpdateRequest)),
+                Padding(padding: EdgeInsets.only(bottom: 16), child: Text(S.of(context).appUpdateRequest)),
                 BtvButton.medium(
                     onPressed: () {
                       if (Platform.isIOS) {
@@ -107,12 +100,12 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
   }
 
   Future<void> loginAction(BuildContext context) async {
-    final error = await AuthService.instance.login();
-    if (error == null) {
+    final success = await ref.read(authStateProvider.notifier).login();
+    if (success) {
       context.router.popUntil((route) => false);
       context.router.pushNamed('/');
     } else {
-      loginError = error.toString();
+      loginError = 'Login failed';
     }
   }
 
@@ -128,8 +121,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
   }
 
   Future<Query$Page$page> retry() async {
-    ref.read(appConfigProvider.notifier).state =
-        ref.read(apiProvider).queryAppConfig();
+    ref.read(appConfigProvider.notifier).state = ref.read(apiProvider).queryAppConfig();
     return getHomePage();
   }
 
@@ -159,8 +151,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                     }
                   },
                   child: Padding(
-                      padding: const EdgeInsets.only(
-                          left: 18, top: 12, bottom: 12, right: 32),
+                      padding: const EdgeInsets.only(left: 18, top: 12, bottom: 12, right: 32),
                       child: SvgPicture.string(
                         SvgIcons.profile,
                       ))),
@@ -168,18 +159,11 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
             actions: [
               Padding(
                 padding: EdgeInsets.only(right: 16.0),
-                child: ConstrainedBox(
-                    constraints: BoxConstraints.loose(Size(24, 24)),
-                    child: CastButton()),
+                child: ConstrainedBox(constraints: BoxConstraints.loose(Size(24, 24)), child: CastButton()),
               ),
             ],
             flexibleSpace: Container(
-              decoration: const BoxDecoration(boxShadow: <BoxShadow>[
-                BoxShadow(
-                    color: Colors.black54,
-                    blurRadius: 8,
-                    blurStyle: BlurStyle.outer)
-              ]),
+              decoration: const BoxDecoration(boxShadow: <BoxShadow>[BoxShadow(color: Colors.black54, blurRadius: 8, blurStyle: BlurStyle.outer)]),
               child: ClipRect(
                 clipBehavior: Clip.hardEdge,
                 child: BackdropFilter(
@@ -187,12 +171,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                   child: Container(
                     decoration: const BoxDecoration(
                         gradient: LinearGradient(
-                            begin: Alignment.topCenter,
-                            end: Alignment.bottomCenter,
-                            colors: [
-                          BtvColors.background1,
-                          Colors.transparent
-                        ])),
+                            begin: Alignment.topCenter, end: Alignment.bottomCenter, colors: [BtvColors.background1, Colors.transparent])),
                     height: 1000,
                   ),
                 ),

@@ -5,55 +5,74 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "dev",
+            "name": "v4_prod",
             "request": "launch",
             "type": "dart",
             "cwd": "${workspaceFolder}",
-            "args": ["--flavor", "dev"], // Remember to change the "program" property too
-            "program": "lib/main_dev.dart"
+            "args": [
+                "--flavor",
+                "v4_prod"
+            ], // Remember to change the "program" property too
+            "program": "lib/main_v4_prod.dart"
         },
         {
-            "name": "dev (profile)",
+            "name": "v4_prod (profile)",
             "request": "launch",
             "type": "dart",
             "flutterMode": "profile",
-            "args": ["--flavor", "dev"], // Remember to change the "program" property too
+            "args": [
+                "--flavor",
+                "v4_prod"
+            ], // Remember to change the "program" property too
             "cwd": "${workspaceFolder}",
-            "program": "lib/main_dev.dart"
+            "program": "lib/main_v4_prod.dart"
         },
         {
-            "name": "dev (release)",
+            "name": "v4_prod (release)",
             "request": "launch",
             "type": "dart",
             "flutterMode": "release",
-            "args": ["--flavor", "dev"], // Remember to change the "program" property too
+            "args": [
+                "--flavor",
+                "v4_prod"
+            ], // Remember to change the "program" property too
             "cwd": "${workspaceFolder}",
-            "program": "lib/main_dev.dart"
-        },{
-            "name": "prod",
+            "program": "lib/main_v4_prod.dart"
+        },
+        {
+            "name": "v4_dev",
             "request": "launch",
             "type": "dart",
             "cwd": "${workspaceFolder}",
-            "args": ["--flavor", "prod"], // Remember to change the "program" property too
-            "program": "lib/main_prod.dart"
+            "args": [
+                "--flavor",
+                "v4_dev"
+            ], // Remember to change the "program" property too
+            "program": "lib/main_v4_dev.dart"
         },
         {
-            "name": "prod (profile)",
+            "name": "v4_dev (profile)",
             "request": "launch",
             "type": "dart",
             "flutterMode": "profile",
-            "args": ["--flavor", "prod"], // Remember to change the "program" property too
+            "args": [
+                "--flavor",
+                "v4_dev"
+            ], // Remember to change the "program" property too
             "cwd": "${workspaceFolder}",
-            "program": "lib/main_prod.dart"
+            "program": "lib/main_v4_dev.dart"
         },
         {
-            "name": "prod (release)",
+            "name": "v4_dev (release)",
             "request": "launch",
             "type": "dart",
             "flutterMode": "release",
-            "args": ["--flavor", "prod"], // Remember to change the "program" property too
+            "args": [
+                "--flavor",
+                "v4_dev"
+            ], // Remember to change the "program" property too
             "cwd": "${workspaceFolder}",
-            "program": "lib/main_prod.dart"
-        }
+            "program": "lib/main_v4_dev.dart"
+        },
     ]
 }

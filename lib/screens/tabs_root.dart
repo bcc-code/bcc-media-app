@@ -1,10 +1,12 @@
 import 'dart:async';
 
 import 'package:auto_route/auto_route.dart';
+import 'package:brunstadtv_app/components/loading_indicator.dart';
 import 'package:brunstadtv_app/components/mini_player.dart';
 import 'package:brunstadtv_app/graphql/client.dart';
 import 'package:brunstadtv_app/graphql/queries/devices.graphql.dart';
 import 'package:brunstadtv_app/helpers/utils.dart';
+import 'package:brunstadtv_app/providers/auth_state.dart';
 import 'package:brunstadtv_app/providers/chromecast.dart';
 import 'package:brunstadtv_app/providers/settings_service.dart';
 import 'package:brunstadtv_app/screens/search/search.dart';
@@ -132,6 +134,10 @@ class _TabsRootScreenState extends ConsumerState<TabsRootScreen> with AutoRouteA
 
   @override
   Widget build(BuildContext context) {
+    if (ref.watch(authStateProvider).loading) {
+      return const Center(child: LoadingIndicator());
+    }
+
     return AutoTabsRouter(
         navigatorObservers: () => [HeroController()],
         routes: [

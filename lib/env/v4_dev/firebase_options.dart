@@ -50,20 +50,20 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyCIie1N55IWsXPLupVCMuSGhdY-YPJ2V5o',
-    appId: '1:617519323732:android:1133305cc9654fcc89ebc1',
-    messagingSenderId: '617519323732',
-    projectId: 'btv-platform-prod-2',
-    storageBucket: 'btv-platform-prod-2.appspot.com',
+    apiKey: 'AIzaSyCf5FKg_ueLDlX1VxmEk-Y1reSQ-_NnVto',
+    appId: '1:16643555326:android:9ffa1cf2cf4aec604f8aaf',
+    messagingSenderId: '16643555326',
+    projectId: 'btv-platform-dev-2',
+    storageBucket: 'btv-platform-dev-2.appspot.com',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyCV5dcov2D9S2b9wjTzkKDQRTWnqMUhcAU',
-    appId: '1:617519323732:ios:8fd75bf6b4cd0f6d89ebc1',
-    messagingSenderId: '617519323732',
-    projectId: 'btv-platform-prod-2',
-    storageBucket: 'btv-platform-prod-2.appspot.com',
-    iosClientId: '617519323732-t3m0h9gh2pueotst8qj8r8oisahjv9dp.apps.googleusercontent.com',
-    iosBundleId: 'tv.brunstad.app',
+    apiKey: 'AIzaSyCQT1kE2HaFcHFsEc4lI76PufpGsHXFSLY',
+    appId: '1:16643555326:ios:def73dc078e8eab74f8aaf',
+    messagingSenderId: '16643555326',
+    projectId: 'btv-platform-dev-2',
+    storageBucket: 'btv-platform-dev-2.appspot.com',
+    iosClientId: '16643555326-a5t3tecdce6fbkqea4nrm6r0i134e1or.apps.googleusercontent.com',
+    iosBundleId: 'tv.brunstad.app.v4.dev2',
   );
 }

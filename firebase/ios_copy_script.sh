@@ -23,10 +23,10 @@ echo $environment
 
 # Name and path of the resource we're copying
 FIREBASE_APP_ID_JSON=firebase_app_id_file.json
-FIREBASE_APP_ID_FILE=${PROJECT_DIR}/Runner/Firebase/${environment}/${FIREBASE_APP_ID_JSON}
+FIREBASE_APP_ID_FILE=${PROJECT_DIR}/../firebase/${environment}/${FIREBASE_APP_ID_JSON}
 
 GOOGLESERVICE_INFO_PLIST=GoogleService-Info.plist
-GOOGLESERVICE_INFO_FILE=${PROJECT_DIR}/Runner/Firebase/${environment}/${GOOGLESERVICE_INFO_PLIST}
+GOOGLESERVICE_INFO_FILE=${PROJECT_DIR}/../firebase/${environment}/${GOOGLESERVICE_INFO_PLIST}
 
 # Make sure GoogleService-Info.plist exists
 echo "Looking for ${GOOGLESERVICE_INFO_PLIST} in ${GOOGLESERVICE_INFO_FILE}"
