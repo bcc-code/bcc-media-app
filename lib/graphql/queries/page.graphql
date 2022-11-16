@@ -144,9 +144,8 @@ fragment Section on Section {
     url
   }
   ... on MessageSection {
-    id,
+    id
     messages {
-      title
       content
       style {
         text
