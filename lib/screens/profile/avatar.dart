@@ -11,7 +11,7 @@ class Avatar extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final imageUrl = ref.read(authStateProvider).user?.pictureUrl.toString();
-    final name = ref.read(authStateProvider).user?.name as String;
+    final name = ref.read(authStateProvider).user?.name;
     const avatarWidth = 100.0;
 
     return Container(
@@ -42,7 +42,7 @@ class Avatar extends ConsumerWidget {
             ),
           ),
           Text(
-            name,
+            name ?? '',
             style: BtvTextStyles.title1,
           ),
         ],

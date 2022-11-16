@@ -7,14 +7,18 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gql_dio_link/gql_dio_link.dart';
 import 'package:graphql/client.dart';
 import 'package:http/http.dart';
+import 'package:http/io_client.dart';
+import 'package:http/retry.dart';
 
 import '../env/env.dart';
 import '../main.dart';
 
 final gqlClientProvider = Provider<GraphQLClient>((ref) {
-  final httpLink = HttpLink(Env.brunstadtvApiEndpoint, defaultHeaders: {
-    'Accept-Language': ref.watch(settingsProvider).appLanguage.languageCode,
-  });
+  final httpLink = HttpLink(Env.brunstadtvApiEndpoint,
+      defaultHeaders: {
+        'Accept-Language': ref.watch(settingsProvider).appLanguage.languageCode,
+      },
+      httpClient: RetryClient(Client(), retries: 1, when: (response) => response.statusCode == 500 || response.statusCode == 429));
 
   final authLink = AuthLink(getToken: () {
     final token = ref.read(authStateProvider).auth0AccessToken;

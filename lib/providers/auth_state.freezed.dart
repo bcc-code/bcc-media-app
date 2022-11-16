@@ -16,11 +16,11 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$AuthState {
-  bool get loading => throw _privateConstructorUsedError;
   UserProfile? get user => throw _privateConstructorUsedError;
   String? get auth0AccessToken => throw _privateConstructorUsedError;
+  DateTime? get expiresAt => throw _privateConstructorUsedError;
   String? get idToken => throw _privateConstructorUsedError;
-  bool get guestUser => throw _privateConstructorUsedError;
+  bool get guestMode => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $AuthStateCopyWith<AuthState> get copyWith =>
@@ -33,11 +33,11 @@ abstract class $AuthStateCopyWith<$Res> {
       _$AuthStateCopyWithImpl<$Res, AuthState>;
   @useResult
   $Res call(
-      {bool loading,
-      UserProfile? user,
+      {UserProfile? user,
       String? auth0AccessToken,
+      DateTime? expiresAt,
       String? idToken,
-      bool guestUser});
+      bool guestMode});
 }
 
 /// @nodoc
@@ -53,17 +53,13 @@ class _$AuthStateCopyWithImpl<$Res, $Val extends AuthState>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? loading = null,
     Object? user = freezed,
     Object? auth0AccessToken = freezed,
+    Object? expiresAt = freezed,
     Object? idToken = freezed,
-    Object? guestUser = null,
+    Object? guestMode = null,
   }) {
     return _then(_value.copyWith(
-      loading: null == loading
-          ? _value.loading
-          : loading // ignore: cast_nullable_to_non_nullable
-              as bool,
       user: freezed == user
           ? _value.user
           : user // ignore: cast_nullable_to_non_nullable
@@ -72,13 +68,17 @@ class _$AuthStateCopyWithImpl<$Res, $Val extends AuthState>
           ? _value.auth0AccessToken
           : auth0AccessToken // ignore: cast_nullable_to_non_nullable
               as String?,
+      expiresAt: freezed == expiresAt
+          ? _value.expiresAt
+          : expiresAt // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
       idToken: freezed == idToken
           ? _value.idToken
           : idToken // ignore: cast_nullable_to_non_nullable
               as String?,
-      guestUser: null == guestUser
-          ? _value.guestUser
-          : guestUser // ignore: cast_nullable_to_non_nullable
+      guestMode: null == guestMode
+          ? _value.guestMode
+          : guestMode // ignore: cast_nullable_to_non_nullable
               as bool,
     ) as $Val);
   }
@@ -91,11 +91,11 @@ abstract class _$$_AuthCopyWith<$Res> implements $AuthStateCopyWith<$Res> {
   @override
   @useResult
   $Res call(
-      {bool loading,
-      UserProfile? user,
+      {UserProfile? user,
       String? auth0AccessToken,
+      DateTime? expiresAt,
       String? idToken,
-      bool guestUser});
+      bool guestMode});
 }
 
 /// @nodoc
@@ -107,17 +107,13 @@ class __$$_AuthCopyWithImpl<$Res> extends _$AuthStateCopyWithImpl<$Res, _$_Auth>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? loading = null,
     Object? user = freezed,
     Object? auth0AccessToken = freezed,
+    Object? expiresAt = freezed,
     Object? idToken = freezed,
-    Object? guestUser = null,
+    Object? guestMode = null,
   }) {
     return _then(_$_Auth(
-      loading: null == loading
-          ? _value.loading
-          : loading // ignore: cast_nullable_to_non_nullable
-              as bool,
       user: freezed == user
           ? _value.user
           : user // ignore: cast_nullable_to_non_nullable
@@ -126,13 +122,17 @@ class __$$_AuthCopyWithImpl<$Res> extends _$AuthStateCopyWithImpl<$Res, _$_Auth>
           ? _value.auth0AccessToken
           : auth0AccessToken // ignore: cast_nullable_to_non_nullable
               as String?,
+      expiresAt: freezed == expiresAt
+          ? _value.expiresAt
+          : expiresAt // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
       idToken: freezed == idToken
           ? _value.idToken
           : idToken // ignore: cast_nullable_to_non_nullable
               as String?,
-      guestUser: null == guestUser
-          ? _value.guestUser
-          : guestUser // ignore: cast_nullable_to_non_nullable
+      guestMode: null == guestMode
+          ? _value.guestMode
+          : guestMode // ignore: cast_nullable_to_non_nullable
               as bool,
     ));
   }
@@ -142,28 +142,27 @@ class __$$_AuthCopyWithImpl<$Res> extends _$AuthStateCopyWithImpl<$Res, _$_Auth>
 
 class _$_Auth implements _Auth {
   const _$_Auth(
-      {this.loading = false,
-      this.user,
+      {this.user,
       this.auth0AccessToken,
+      this.expiresAt,
       this.idToken,
-      this.guestUser = false});
+      this.guestMode = false});
 
-  @override
-  @JsonKey()
-  final bool loading;
   @override
   final UserProfile? user;
   @override
   final String? auth0AccessToken;
   @override
+  final DateTime? expiresAt;
+  @override
   final String? idToken;
   @override
   @JsonKey()
-  final bool guestUser;
+  final bool guestMode;
 
   @override
   String toString() {
-    return 'AuthState(loading: $loading, user: $user, auth0AccessToken: $auth0AccessToken, idToken: $idToken, guestUser: $guestUser)';
+    return 'AuthState(user: $user, auth0AccessToken: $auth0AccessToken, expiresAt: $expiresAt, idToken: $idToken, guestMode: $guestMode)';
   }
 
   @override
@@ -171,18 +170,19 @@ class _$_Auth implements _Auth {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_Auth &&
-            (identical(other.loading, loading) || other.loading == loading) &&
             (identical(other.user, user) || other.user == user) &&
             (identical(other.auth0AccessToken, auth0AccessToken) ||
                 other.auth0AccessToken == auth0AccessToken) &&
+            (identical(other.expiresAt, expiresAt) ||
+                other.expiresAt == expiresAt) &&
             (identical(other.idToken, idToken) || other.idToken == idToken) &&
-            (identical(other.guestUser, guestUser) ||
-                other.guestUser == guestUser));
+            (identical(other.guestMode, guestMode) ||
+                other.guestMode == guestMode));
   }
 
   @override
   int get hashCode => Object.hash(
-      runtimeType, loading, user, auth0AccessToken, idToken, guestUser);
+      runtimeType, user, auth0AccessToken, expiresAt, idToken, guestMode);
 
   @JsonKey(ignore: true)
   @override
@@ -193,22 +193,22 @@ class _$_Auth implements _Auth {
 
 abstract class _Auth implements AuthState {
   const factory _Auth(
-      {final bool loading,
-      final UserProfile? user,
+      {final UserProfile? user,
       final String? auth0AccessToken,
+      final DateTime? expiresAt,
       final String? idToken,
-      final bool guestUser}) = _$_Auth;
+      final bool guestMode}) = _$_Auth;
 
-  @override
-  bool get loading;
   @override
   UserProfile? get user;
   @override
   String? get auth0AccessToken;
   @override
+  DateTime? get expiresAt;
+  @override
   String? get idToken;
   @override
-  bool get guestUser;
+  bool get guestMode;
   @override
   @JsonKey(ignore: true)
   _$$_AuthCopyWith<_$_Auth> get copyWith => throw _privateConstructorUsedError;

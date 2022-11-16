@@ -93,7 +93,7 @@ class _ProfileState extends ConsumerState<Profile> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       BtvButton.smallSecondary(
-                        onPressed: () => ref.read(authStateProvider.notifier).logoutAndNavigate(context),
+                        onPressed: () => ref.read(authStateProvider.notifier).logout(),
                         labelText: S.of(context).logOutButton,
                       ),
                     ],
