@@ -49,7 +49,7 @@ class BorderedImageContainer extends StatelessWidget {
               child: SizedBox(
                 height: constraints.maxHeight,
                 child: imageUri == null
-                    ? const SizedBox.shrink()
+                    ? null
                     : FadeInImage.memoryNetwork(
                         fit: BoxFit.cover,
                         placeholder: kTransparentImage,
