@@ -17,9 +17,9 @@ class PageSection extends StatelessWidget {
           Container(
             padding: const EdgeInsets.only(
               left: 16,
-              top: 19,
+              top: 20,
               right: 16,
-              bottom: 5,
+              bottom: 6,
             ),
             child: Text(
               title!,
