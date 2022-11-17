@@ -1,6 +1,3 @@
-import 'package:auto_route/auto_route.dart';
-import 'package:brunstadtv_app/components/watch_progress_indicator.dart';
-import 'package:brunstadtv_app/router/router.gr.dart';
 import 'package:flutter/material.dart';
 
 import '../helpers/btv_colors.dart';
@@ -12,6 +9,7 @@ import 'horizontal_slider.dart';
 import 'episode_duration.dart';
 import 'watched_badge.dart';
 import 'feature_badge.dart';
+import 'watch_progress_indicator.dart';
 import '../graphql/schema/pages.graphql.dart';
 import '../graphql/queries/page.graphql.dart';
 
@@ -32,40 +30,21 @@ class DefaultSection extends StatelessWidget {
             element.item is Fragment$Section$$DefaultSection$items$items$item$$Episode ||
             element.item is Fragment$Section$$DefaultSection$items$items$item$$Show)
         .toList();
-    return Column(
-      mainAxisSize: MainAxisSize.min,
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        if (data.title != null)
-          Container(
-            padding: const EdgeInsets.only(
-              left: 16,
-              top: 19,
-              right: 16,
-              bottom: 16,
-            ),
-            child: Text(
-              data.title!,
-              style: BtvTextStyles.title2,
-            ),
-          ),
-        HorizontalSlider(
-          height: data.size == Enum$SectionSize.small ? 156 : 222,
-          clipBehaviour: Clip.none,
-          padding: const EdgeInsets.symmetric(horizontal: 16),
-          itemCount: items.length,
-          itemBuilder: (BuildContext context, int index) {
-            var item = items[index];
-            if (item.item is Fragment$Section$$DefaultSection$items$items$item$$Episode) {
-              return _DefaultEpisodeItem(sectionItem: item, size: data.size);
-            } else if (item.item is Fragment$Section$$DefaultSection$items$items$item$$Show) {
-              return _DefaultShowItem(sectionItem: item, size: data.size);
-            }
-            // Theoretically impossible, see filter above.
-            return const SizedBox.shrink();
-          },
-        ),
-      ],
+    return HorizontalSlider(
+      height: data.size == Enum$SectionSize.small ? 156 : 222,
+      clipBehaviour: Clip.none,
+      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+      itemCount: items.length,
+      itemBuilder: (BuildContext context, int index) {
+        var item = items[index];
+        if (item.item is Fragment$Section$$DefaultSection$items$items$item$$Episode) {
+          return _DefaultEpisodeItem(sectionItem: item, size: data.size);
+        } else if (item.item is Fragment$Section$$DefaultSection$items$items$item$$Show) {
+          return _DefaultShowItem(sectionItem: item, size: data.size);
+        }
+        // Theoretically impossible, see filter above.
+        return const SizedBox.shrink();
+      },
     );
   }
 }

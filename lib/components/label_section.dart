@@ -1,11 +1,9 @@
-import 'package:brunstadtv_app/helpers/btv_typography.dart';
-import 'package:brunstadtv_app/helpers/utils.dart';
-import 'package:brunstadtv_app/router/router.gr.dart';
 import 'package:flutter/material.dart';
-import 'package:auto_route/auto_route.dart';
 
 import '../graphql/queries/page.graphql.dart';
 import '../helpers/btv_colors.dart';
+import '../helpers/btv_typography.dart';
+import '../helpers/utils.dart';
 import 'horizontal_slider.dart';
 
 class LabelSection extends StatelessWidget {
@@ -16,8 +14,9 @@ class LabelSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.only(top: 12, left: 16),
+      margin: const EdgeInsets.only(top: 12),
       child: HorizontalSlider(
+        padding: const EdgeInsets.symmetric(horizontal: 16),
         height: 28,
         gap: 8,
         itemCount: data.items.items.length,

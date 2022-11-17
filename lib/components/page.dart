@@ -1,8 +1,3 @@
-import 'package:brunstadtv_app/components/icon_grid_section.dart';
-import 'package:brunstadtv_app/components/list_section.dart';
-import 'package:brunstadtv_app/components/web_section.dart';
-import 'package:brunstadtv_app/helpers/utils.dart';
-import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/material.dart';
 
 import '../graphql/queries/page.graphql.dart';
@@ -10,6 +5,7 @@ import '../helpers/btv_colors.dart';
 import '../helpers/btv_typography.dart';
 import '../l10n/app_localizations.dart';
 import '../helpers/btv_buttons.dart';
+import '../helpers/utils.dart';
 import 'featured_section.dart';
 import 'default_grid_section.dart';
 import 'poster_grid_section.dart';
@@ -17,6 +13,10 @@ import 'icon_section.dart';
 import 'label_section.dart';
 import 'poster_section.dart';
 import 'default_section.dart';
+import 'icon_grid_section.dart';
+import 'list_section.dart';
+import 'section.dart';
+import 'web_section.dart';
 
 class BccmPage extends StatelessWidget {
   final Future<Query$Page$page> pageFuture;
@@ -48,15 +48,15 @@ class BccmPage extends StatelessWidget {
 
             final iconSection = s.asOrNull<Fragment$Section$$IconSection>();
             if (iconSection != null) {
-              return IconSection(iconSection);
+              return Section(title: iconSection.title, child: IconSection(iconSection));
             }
             final labelSection = s.asOrNull<Fragment$Section$$LabelSection>();
             if (labelSection != null) {
-              return LabelSection(labelSection);
+              return Section(title: labelSection.title, child: LabelSection(labelSection));
             }
             final defaultSection = s.asOrNull<Fragment$Section$$DefaultSection>();
             if (defaultSection != null) {
-              return DefaultSection(defaultSection);
+              return Section(title: defaultSection.title, child: DefaultSection(defaultSection));
             }
             final posterSection = s.asOrNull<Fragment$Section$$PosterSection>();
             if (posterSection != null) {
