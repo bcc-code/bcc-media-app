@@ -39,7 +39,7 @@ String? getFormattedProductionDate(String? prodDate) {
   if (parsedDateTime == null) {
     return null;
   }
-  return DateFormat('dd. MMMM y').format(parsedDateTime);
+  return DateFormat('dd. MMM y').format(parsedDateTime);
 }
 
 bool isComingSoon(String? prodDate) {

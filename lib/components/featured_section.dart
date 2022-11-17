@@ -1,14 +1,15 @@
-import 'package:auto_route/auto_route.dart';
-import 'package:brunstadtv_app/helpers/btv_typography.dart';
-import 'package:brunstadtv_app/helpers/image_utils.dart';
-import 'package:brunstadtv_app/helpers/transparent_image.dart';
-import 'package:brunstadtv_app/router/router.gr.dart';
 import 'package:flutter/material.dart';
+
+import 'package:auto_route/auto_route.dart';
+import '../router/router.gr.dart';
 
 import '../graphql/queries/page.graphql.dart';
 import '../helpers/btv_colors.dart';
 import '../helpers/utils.dart';
 import '../helpers/btv_buttons.dart';
+import '../helpers/btv_typography.dart';
+import '../helpers/image_utils.dart';
+import '../helpers/transparent_image.dart';
 
 class FeaturedSection extends StatelessWidget {
   final Fragment$Section$$FeaturedSection data;

@@ -1,5 +1,3 @@
-import 'package:auto_route/auto_route.dart';
-import 'package:brunstadtv_app/components/bordered_image_container.dart';
 import 'package:flutter/material.dart';
 
 import '../graphql/queries/page.graphql.dart';
@@ -7,13 +5,13 @@ import '../graphql/schema/pages.graphql.dart';
 import '../helpers/btv_colors.dart';
 import '../helpers/btv_typography.dart';
 import '../helpers/utils.dart';
-import '../router/router.gr.dart';
 import '../services/utils.dart';
 import 'feature_badge.dart';
 import 'episode_duration.dart';
 import 'grid_row.dart';
 import 'watch_progress_indicator.dart';
 import 'watched_badge.dart';
+import 'bordered_image_container.dart';
 
 const posterAspectRatio = 0.67;
 
@@ -37,16 +35,21 @@ class PosterGridSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final sectionItems = data.items.items;
     final colSize = _columnSize[data.gridSize] ?? _columnSize[Enum$GridSectionSize.half]!;
-    final rowSize = (sectionItems.length / colSize).ceil();
+
+    final items = data.items.items
+        .where((element) =>
+            element.item is Fragment$Section$$PosterGridSection$items$items$item$$Episode ||
+            element.item is Fragment$Section$$PosterGridSection$items$items$item$$Show)
+        .toList();
+
+    final rowSize = (items.length / colSize).ceil();
 
     final rows = List<GridRow>.generate(rowSize, (rowIndex) {
       final firstIndex = rowIndex * colSize;
-      final subList =
-          firstIndex + colSize <= sectionItems.length ? sectionItems.sublist(firstIndex, firstIndex + colSize) : sectionItems.sublist(firstIndex);
+      final subList = firstIndex + colSize <= items.length ? items.sublist(firstIndex, firstIndex + colSize) : items.sublist(firstIndex);
       return GridRow(
-        margin: const EdgeInsets.only(top: 12, bottom: 12),
+        margin: const EdgeInsets.symmetric(vertical: 12),
         items: subList.map(getItemWidget).toList(),
         colSize: colSize,
       );
@@ -57,20 +60,7 @@ class PosterGridSection extends StatelessWidget {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          if (data.title != null)
-            Container(
-              padding: const EdgeInsets.only(
-                top: 19,
-                bottom: 5,
-              ),
-              child: Text(
-                data.title!,
-                style: BtvTextStyles.title2,
-              ),
-            ),
-          ...rows
-        ],
+        children: rows,
       ),
     );
   }
