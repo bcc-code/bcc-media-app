@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:auto_route/auto_route.dart';
 
 import '../helpers/btv_colors.dart';
 import '../helpers/btv_typography.dart';
 import '../helpers/utils.dart';
-import '../router/router.gr.dart';
 import '../graphql/queries/page.graphql.dart';
 import '../graphql/schema/pages.graphql.dart';
 import '../services/utils.dart';
@@ -39,40 +37,21 @@ class PosterSection extends StatelessWidget {
             element.item is Fragment$Section$$PosterSection$items$items$item$$Episode ||
             element.item is Fragment$Section$$PosterSection$items$items$item$$Show)
         .toList();
-    return Column(
-      mainAxisSize: MainAxisSize.min,
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        if (data.title != null)
-          Container(
-            padding: const EdgeInsets.only(
-              left: 16,
-              top: 20,
-              right: 16,
-              bottom: 16,
-            ),
-            child: Text(
-              data.title!,
-              style: BtvTextStyles.title2,
-            ),
-          ),
-        HorizontalSlider(
-          height: sliderHeight[data.size]!,
-          clipBehaviour: Clip.none,
-          padding: const EdgeInsets.symmetric(horizontal: 16),
-          itemCount: items.length,
-          itemBuilder: (BuildContext context, int index) {
-            var item = items[index];
-            if (item.item is Fragment$Section$$PosterSection$items$items$item$$Episode) {
-              return _PosterEpisodeItem(sectionItem: item, size: data.size);
-            } else if (item.item is Fragment$Section$$PosterSection$items$items$item$$Show) {
-              return _PosterShowItem(sectionItem: item, size: data.size);
-            }
-            // Theoretically impossible, see filter above.
-            return const SizedBox.shrink();
-          },
-        ),
-      ],
+    return HorizontalSlider(
+      height: sliderHeight[data.size]!,
+      clipBehaviour: Clip.none,
+      padding: const EdgeInsets.symmetric(horizontal: 16),
+      itemCount: items.length,
+      itemBuilder: (BuildContext context, int index) {
+        var item = items[index];
+        if (item.item is Fragment$Section$$PosterSection$items$items$item$$Episode) {
+          return _PosterEpisodeItem(sectionItem: item, size: data.size);
+        } else if (item.item is Fragment$Section$$PosterSection$items$items$item$$Show) {
+          return _PosterShowItem(sectionItem: item, size: data.size);
+        }
+        // Theoretically impossible, see filter above.
+        return const SizedBox.shrink();
+      },
     );
   }
 
@@ -109,7 +88,8 @@ class _PosterEpisodeItem extends StatelessWidget {
     return GestureDetector(
       behavior: HitTestBehavior.opaque,
       onTap: () => handleSectionItemClick(context, sectionItem.item),
-      child: SizedBox(
+      child: Container(
+        margin: const EdgeInsets.symmetric(vertical: 12),
         width: imageSize[size]!.width,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -246,7 +226,8 @@ class _PosterShowItem extends StatelessWidget {
     return GestureDetector(
       behavior: HitTestBehavior.opaque,
       onTap: () => handleSectionItemClick(context, sectionItem.item),
-      child: SizedBox(
+      child: Container(
+        margin: const EdgeInsets.symmetric(vertical: 12),
         width: imageSize[size]!.width,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,

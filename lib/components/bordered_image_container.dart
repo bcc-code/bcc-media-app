@@ -28,13 +28,12 @@ class BorderedImageContainer extends StatelessWidget {
         width: width ?? double.infinity,
         height: height ?? double.infinity,
         margin: margin,
-        decoration: BoxDecoration(
+        foregroundDecoration: BoxDecoration(
           borderRadius: BorderRadius.circular(6),
           border: Border.all(
             width: 1,
             color: BtvColors.onTint.withOpacity(0.1),
           ),
-          color: BtvColors.background2,
         ),
         child: LayoutBuilder(
           builder: (context, BoxConstraints constraints) {
