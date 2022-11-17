@@ -4,8 +4,8 @@ enum ImageCropMode {
   faces,
 }
 
-Uri? getImageUri(String? image, {int? width, int? height, ImageCropMode cropMode = ImageCropMode.faces}) {
-  final originalUri = Uri.tryParse(image!);
+Uri? getImageUri(String image, {int? width, int? height, ImageCropMode cropMode = ImageCropMode.faces}) {
+  final originalUri = Uri.tryParse(image);
   if (originalUri == null) {
     return null;
   }

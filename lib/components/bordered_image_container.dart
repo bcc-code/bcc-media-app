@@ -43,20 +43,19 @@ class BorderedImageContainer extends StatelessWidget {
             }
             final imageHeight = (constraints.maxHeight * MediaQuery.of(context).devicePixelRatio).round();
             final imageWidth = (constraints.maxWidth * MediaQuery.of(context).devicePixelRatio).round();
-            final imageUri = getImageUri(imageUrl!, width: imageWidth, height: imageHeight);
-            if (imageUri == null) {
-              return const SizedBox.shrink();
-            }
+            final imageUri = imageUrl == null ? null : getImageUri(imageUrl!, width: imageWidth, height: imageHeight);
             return ClipRRect(
               borderRadius: BorderRadius.circular(6),
               child: SizedBox(
                 height: constraints.maxHeight,
-                child: FadeInImage.memoryNetwork(
-                    fit: BoxFit.cover,
-                    placeholder: kTransparentImage,
-                    image: imageUri.toString()!,
-                    fadeInDuration: const Duration(milliseconds: 400),
-                    imageCacheHeight: (constraints.maxHeight * MediaQuery.of(context).devicePixelRatio).round()),
+                child: imageUri == null
+                    ? const SizedBox.shrink()
+                    : FadeInImage.memoryNetwork(
+                        fit: BoxFit.cover,
+                        placeholder: kTransparentImage,
+                        image: imageUri.toString(),
+                        fadeInDuration: const Duration(milliseconds: 400),
+                        imageCacheHeight: (constraints.maxHeight * MediaQuery.of(context).devicePixelRatio).round()),
               ),
             );
           },
