@@ -5,6 +5,17 @@
     "version": "0.2.0",
     "configurations": [
         {
+            "name": "prod",
+            "request": "launch",
+            "type": "dart",
+            "cwd": "${workspaceFolder}",
+            "args": [
+                "--flavor",
+                "prod"
+            ], // Remember to change the "program" property too
+            "program": "lib/main_prod.dart"
+        },
+        {
             "name": "v4_prod",
             "request": "launch",
             "type": "dart",
