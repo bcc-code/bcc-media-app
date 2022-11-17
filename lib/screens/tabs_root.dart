@@ -134,10 +134,6 @@ class _TabsRootScreenState extends ConsumerState<TabsRootScreen> with AutoRouteA
 
   @override
   Widget build(BuildContext context) {
-    if (ref.watch(authStateProvider).loading) {
-      return const Center(child: LoadingIndicator());
-    }
-
     return AutoTabsRouter(
         navigatorObservers: () => [HeroController()],
         routes: [

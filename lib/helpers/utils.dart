@@ -28,7 +28,7 @@ String getFormattedAgeRating(String ageRating) {
 }
 
 FutureBuilder simpleFutureBuilder<T>(
-    {required Future<T> future,
+    {required Future<T>? future,
     required Widget Function() loading,
     required Widget Function(Object?) error,
     required Widget Function() noData,
@@ -36,11 +36,11 @@ FutureBuilder simpleFutureBuilder<T>(
   return FutureBuilder<T>(
       future: future,
       builder: (context, snapshot) {
-        if (snapshot.hasError) {
-          return error(snapshot.error);
-        }
         if (snapshot.connectionState != ConnectionState.done) {
           return loading();
+        }
+        if (snapshot.hasError) {
+          return error(snapshot.error);
         }
         final data = snapshot.data;
         if (data != null) {

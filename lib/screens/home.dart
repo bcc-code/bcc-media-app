@@ -46,7 +46,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
   @override
   void initState() {
     super.initState();
-    if (ref.read(authStateProvider).guestUser) {
+    if (ref.read(authStateProvider).guestMode) {
       isGuestUser = true;
       showTooltip = true;
     }

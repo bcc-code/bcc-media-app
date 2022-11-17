@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:auto_route/empty_router_widgets.dart';
 import 'package:brunstadtv_app/router/auth_guard.dart';
+import 'package:brunstadtv_app/screens/auto_login.dart';
 import 'package:brunstadtv_app/screens/calendar/calendar.dart';
 import 'package:brunstadtv_app/screens/profile/about.dart';
 import 'package:brunstadtv_app/screens/profile/app_language.dart';
@@ -129,13 +130,13 @@ const _specialRoutes = AutoRoute(
       durationInMilliseconds: 500,
       reverseDurationInMilliseconds: 500,
     ),
+    CustomRoute(page: AutoLoginScreeen, initial: true, path: 'auto-login'),
     CustomRoute<void>(
       page: TabsRootScreen,
       path: '/',
-      initial: true,
       guards: [AuthGuard],
       children: [
-        CustomRoute<void>(name: 'HomeScreenWrapperRoute', page: EmptyRouterPage, path: '', initial: true, children: [
+        CustomRoute<void>(name: 'HomeScreenWrapperRoute', page: EmptyRouterPage, path: '', children: [
           CustomRoute<void>(
             page: HomeScreen,
             path: '',

@@ -1,4 +1,5 @@
 import 'package:alice/alice.dart';
+import 'package:auto_route/auto_route.dart';
 import 'package:bccm_player/playback_platform_pigeon.g.dart';
 import 'package:brunstadtv_app/helpers/btv_colors.dart';
 import 'package:brunstadtv_app/helpers/btv_typography.dart';
@@ -28,6 +29,7 @@ import 'package:on_screen_ruler/on_screen_ruler.dart';
 import 'app_root.dart';
 import 'background_tasks.dart';
 import 'env/env.dart';
+import 'helpers/utils.dart';
 import 'l10n/app_localizations.dart';
 
 final Alice alice = Alice(showNotification: true);
@@ -36,7 +38,19 @@ final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 /// There is 1 main() per environment, e.g. main_dev.dart
 /// This function runs on all of them
 void $main({required FirebaseOptions? firebaseOptions}) async {
-  if (!kDebugMode) {
+  WidgetsFlutterBinding.ensureInitialized();
+  if (firebaseOptions != null) {
+    try {
+      await Firebase.initializeApp(
+        options: firebaseOptions,
+      );
+    } catch (e) {
+      debugPrint(e.toString());
+    }
+    FirebaseMessaging.onBackgroundMessage(onFirebaseBackgroundMessage);
+  }
+
+  if (firebaseOptions != null && !kDebugMode) {
     FlutterError.onError = (errorDetails) {
       FirebaseCrashlytics.instance.recordFlutterFatalError(errorDetails);
     };
@@ -47,7 +61,6 @@ void $main({required FirebaseOptions? firebaseOptions}) async {
     };
   }
 
-  WidgetsFlutterBinding.ensureInitialized();
   PaintingBinding.instance.imageCache.maximumSizeBytes = 1024 * 1024 * 50;
 
   SystemChrome.setSystemUIOverlayStyle(
@@ -76,7 +89,7 @@ void $main({required FirebaseOptions? firebaseOptions}) async {
 
   var providerContainer = ProviderContainer(overrides: [chromecastListenerOverride]);
   PlaybackListenerPigeon.setup(PlaybackListener(providerContainer: providerContainer));
-  providerContainer.read(authStateProvider.notifier).load();
+  final authLoadingCompleter = wrapInCompleter(providerContainer.read(authStateProvider.notifier).load());
   providerContainer.read(settingsProvider.notifier).load();
   providerContainer.read(chromecastListenerProvider);
   providerContainer.read(appConfigProvider);
@@ -91,18 +104,17 @@ void $main({required FirebaseOptions? firebaseOptions}) async {
         .setNpawConfig(NpawConfig(accountCode: Env.npawAccountCode, appName: 'mobile', appReleaseVersion: '4.0.0-alpha'));
   }
 
-  if (firebaseOptions != null) {
-    try {
-      await Firebase.initializeApp(
-        options: firebaseOptions,
-      );
-    } catch (e) {
-      debugPrint(e.toString());
-    }
-    FirebaseMessaging.onBackgroundMessage(onFirebaseBackgroundMessage);
-  }
-
   Intl.defaultLocale = await getDefaultLocale();
+
+  PageRouteInfo initialRoute = const AutoLoginScreeenRoute();
+  if (authLoadingCompleter.isCompleted) {
+    final authenticated = await authLoadingCompleter.future;
+    if (authenticated) {
+      initialRoute = const TabsRootScreenRoute();
+    } else {
+      initialRoute = LoginScreenRoute();
+    }
+  }
 
   final app = UncontrolledProviderScope(
     container: providerContainer,
@@ -115,7 +127,7 @@ void $main({required FirebaseOptions? firebaseOptions}) async {
             darkTheme: createTheme(),
             themeMode: ThemeMode.dark,
             title: 'BrunstadTV',
-            routerDelegate: appRouter.delegate(),
+            routerDelegate: appRouter.delegate(initialRoutes: [initialRoute]),
             routeInformationParser: appRouter.defaultRouteParser(),
             builder: (BuildContext context, Widget? child) {
               return MediaQuery(

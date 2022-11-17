@@ -2884,6 +2884,9 @@ class Fragment$Section {
       case "WebSection":
         return Fragment$Section$$WebSection.fromJson(json);
 
+      case "MessageSection":
+        return Fragment$Section$$MessageSection.fromJson(json);
+
       default:
         final l$title = json['title'];
         final l$$__typename = json['__typename'];
@@ -3708,6 +3711,88 @@ const fragmentDefinitionSection = FragmentDefinitionNode(
           arguments: [],
           directives: [],
           selectionSet: null,
+        ),
+        FieldNode(
+          name: NameNode(value: '__typename'),
+          alias: null,
+          arguments: [],
+          directives: [],
+          selectionSet: null,
+        ),
+      ]),
+    ),
+    InlineFragmentNode(
+      typeCondition: TypeConditionNode(
+          on: NamedTypeNode(
+        name: NameNode(value: 'MessageSection'),
+        isNonNull: false,
+      )),
+      directives: [],
+      selectionSet: SelectionSetNode(selections: [
+        FieldNode(
+          name: NameNode(value: 'id'),
+          alias: null,
+          arguments: [],
+          directives: [],
+          selectionSet: null,
+        ),
+        FieldNode(
+          name: NameNode(value: 'messages'),
+          alias: null,
+          arguments: [],
+          directives: [],
+          selectionSet: SelectionSetNode(selections: [
+            FieldNode(
+              name: NameNode(value: 'content'),
+              alias: null,
+              arguments: [],
+              directives: [],
+              selectionSet: null,
+            ),
+            FieldNode(
+              name: NameNode(value: 'style'),
+              alias: null,
+              arguments: [],
+              directives: [],
+              selectionSet: SelectionSetNode(selections: [
+                FieldNode(
+                  name: NameNode(value: 'text'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null,
+                ),
+                FieldNode(
+                  name: NameNode(value: 'background'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null,
+                ),
+                FieldNode(
+                  name: NameNode(value: 'border'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null,
+                ),
+                FieldNode(
+                  name: NameNode(value: '__typename'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null,
+                ),
+              ]),
+            ),
+            FieldNode(
+              name: NameNode(value: '__typename'),
+              alias: null,
+              arguments: [],
+              directives: [],
+              selectionSet: null,
+            ),
+          ]),
         ),
         FieldNode(
           name: NameNode(value: '__typename'),
@@ -17146,6 +17231,524 @@ class _CopyWithStubImpl$Fragment$Section$$WebSection<TRes>
     bool? authentication,
     double? widthRatio,
     String? url,
+  }) =>
+      _res;
+}
+
+class Fragment$Section$$MessageSection implements Fragment$Section {
+  Fragment$Section$$MessageSection({
+    this.title,
+    required this.$__typename,
+    required this.id,
+    this.messages,
+  });
+
+  factory Fragment$Section$$MessageSection.fromJson(Map<String, dynamic> json) {
+    final l$title = json['title'];
+    final l$$__typename = json['__typename'];
+    final l$id = json['id'];
+    final l$messages = json['messages'];
+    return Fragment$Section$$MessageSection(
+      title: (l$title as String?),
+      $__typename: (l$$__typename as String),
+      id: (l$id as String),
+      messages: (l$messages as List<dynamic>?)
+          ?.map((e) => Fragment$Section$$MessageSection$messages.fromJson(
+              (e as Map<String, dynamic>)))
+          .toList(),
+    );
+  }
+
+  final String? title;
+
+  final String $__typename;
+
+  final String id;
+
+  final List<Fragment$Section$$MessageSection$messages>? messages;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$title = title;
+    _resultData['title'] = l$title;
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    final l$id = id;
+    _resultData['id'] = l$id;
+    final l$messages = messages;
+    _resultData['messages'] = l$messages?.map((e) => e.toJson()).toList();
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$title = title;
+    final l$$__typename = $__typename;
+    final l$id = id;
+    final l$messages = messages;
+    return Object.hashAll([
+      l$title,
+      l$$__typename,
+      l$id,
+      l$messages == null ? null : Object.hashAll(l$messages.map((v) => v)),
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (!(other is Fragment$Section$$MessageSection) ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$title = title;
+    final lOther$title = other.title;
+    if (l$title != lOther$title) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    final l$id = id;
+    final lOther$id = other.id;
+    if (l$id != lOther$id) {
+      return false;
+    }
+    final l$messages = messages;
+    final lOther$messages = other.messages;
+    if (l$messages != null && lOther$messages != null) {
+      if (l$messages.length != lOther$messages.length) {
+        return false;
+      }
+      for (int i = 0; i < l$messages.length; i++) {
+        final l$messages$entry = l$messages[i];
+        final lOther$messages$entry = lOther$messages[i];
+        if (l$messages$entry != lOther$messages$entry) {
+          return false;
+        }
+      }
+    } else if (l$messages != lOther$messages) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Fragment$Section$$MessageSection
+    on Fragment$Section$$MessageSection {
+  CopyWith$Fragment$Section$$MessageSection<Fragment$Section$$MessageSection>
+      get copyWith => CopyWith$Fragment$Section$$MessageSection(
+            this,
+            (i) => i,
+          );
+}
+
+abstract class CopyWith$Fragment$Section$$MessageSection<TRes> {
+  factory CopyWith$Fragment$Section$$MessageSection(
+    Fragment$Section$$MessageSection instance,
+    TRes Function(Fragment$Section$$MessageSection) then,
+  ) = _CopyWithImpl$Fragment$Section$$MessageSection;
+
+  factory CopyWith$Fragment$Section$$MessageSection.stub(TRes res) =
+      _CopyWithStubImpl$Fragment$Section$$MessageSection;
+
+  TRes call({
+    String? title,
+    String? $__typename,
+    String? id,
+    List<Fragment$Section$$MessageSection$messages>? messages,
+  });
+  TRes messages(
+      Iterable<Fragment$Section$$MessageSection$messages>? Function(
+              Iterable<
+                  CopyWith$Fragment$Section$$MessageSection$messages<
+                      Fragment$Section$$MessageSection$messages>>?)
+          _fn);
+}
+
+class _CopyWithImpl$Fragment$Section$$MessageSection<TRes>
+    implements CopyWith$Fragment$Section$$MessageSection<TRes> {
+  _CopyWithImpl$Fragment$Section$$MessageSection(
+    this._instance,
+    this._then,
+  );
+
+  final Fragment$Section$$MessageSection _instance;
+
+  final TRes Function(Fragment$Section$$MessageSection) _then;
+
+  static const _undefined = {};
+
+  TRes call({
+    Object? title = _undefined,
+    Object? $__typename = _undefined,
+    Object? id = _undefined,
+    Object? messages = _undefined,
+  }) =>
+      _then(Fragment$Section$$MessageSection(
+        title: title == _undefined ? _instance.title : (title as String?),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+        id: id == _undefined || id == null ? _instance.id : (id as String),
+        messages: messages == _undefined
+            ? _instance.messages
+            : (messages as List<Fragment$Section$$MessageSection$messages>?),
+      ));
+  TRes messages(
+          Iterable<Fragment$Section$$MessageSection$messages>? Function(
+                  Iterable<
+                      CopyWith$Fragment$Section$$MessageSection$messages<
+                          Fragment$Section$$MessageSection$messages>>?)
+              _fn) =>
+      call(
+          messages: _fn(_instance.messages
+              ?.map((e) => CopyWith$Fragment$Section$$MessageSection$messages(
+                    e,
+                    (i) => i,
+                  )))?.toList());
+}
+
+class _CopyWithStubImpl$Fragment$Section$$MessageSection<TRes>
+    implements CopyWith$Fragment$Section$$MessageSection<TRes> {
+  _CopyWithStubImpl$Fragment$Section$$MessageSection(this._res);
+
+  TRes _res;
+
+  call({
+    String? title,
+    String? $__typename,
+    String? id,
+    List<Fragment$Section$$MessageSection$messages>? messages,
+  }) =>
+      _res;
+  messages(_fn) => _res;
+}
+
+class Fragment$Section$$MessageSection$messages {
+  Fragment$Section$$MessageSection$messages({
+    required this.content,
+    required this.style,
+    required this.$__typename,
+  });
+
+  factory Fragment$Section$$MessageSection$messages.fromJson(
+      Map<String, dynamic> json) {
+    final l$content = json['content'];
+    final l$style = json['style'];
+    final l$$__typename = json['__typename'];
+    return Fragment$Section$$MessageSection$messages(
+      content: (l$content as String),
+      style: Fragment$Section$$MessageSection$messages$style.fromJson(
+          (l$style as Map<String, dynamic>)),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final String content;
+
+  final Fragment$Section$$MessageSection$messages$style style;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$content = content;
+    _resultData['content'] = l$content;
+    final l$style = style;
+    _resultData['style'] = l$style.toJson();
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$content = content;
+    final l$style = style;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$content,
+      l$style,
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (!(other is Fragment$Section$$MessageSection$messages) ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$content = content;
+    final lOther$content = other.content;
+    if (l$content != lOther$content) {
+      return false;
+    }
+    final l$style = style;
+    final lOther$style = other.style;
+    if (l$style != lOther$style) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Fragment$Section$$MessageSection$messages
+    on Fragment$Section$$MessageSection$messages {
+  CopyWith$Fragment$Section$$MessageSection$messages<
+          Fragment$Section$$MessageSection$messages>
+      get copyWith => CopyWith$Fragment$Section$$MessageSection$messages(
+            this,
+            (i) => i,
+          );
+}
+
+abstract class CopyWith$Fragment$Section$$MessageSection$messages<TRes> {
+  factory CopyWith$Fragment$Section$$MessageSection$messages(
+    Fragment$Section$$MessageSection$messages instance,
+    TRes Function(Fragment$Section$$MessageSection$messages) then,
+  ) = _CopyWithImpl$Fragment$Section$$MessageSection$messages;
+
+  factory CopyWith$Fragment$Section$$MessageSection$messages.stub(TRes res) =
+      _CopyWithStubImpl$Fragment$Section$$MessageSection$messages;
+
+  TRes call({
+    String? content,
+    Fragment$Section$$MessageSection$messages$style? style,
+    String? $__typename,
+  });
+  CopyWith$Fragment$Section$$MessageSection$messages$style<TRes> get style;
+}
+
+class _CopyWithImpl$Fragment$Section$$MessageSection$messages<TRes>
+    implements CopyWith$Fragment$Section$$MessageSection$messages<TRes> {
+  _CopyWithImpl$Fragment$Section$$MessageSection$messages(
+    this._instance,
+    this._then,
+  );
+
+  final Fragment$Section$$MessageSection$messages _instance;
+
+  final TRes Function(Fragment$Section$$MessageSection$messages) _then;
+
+  static const _undefined = {};
+
+  TRes call({
+    Object? content = _undefined,
+    Object? style = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(Fragment$Section$$MessageSection$messages(
+        content: content == _undefined || content == null
+            ? _instance.content
+            : (content as String),
+        style: style == _undefined || style == null
+            ? _instance.style
+            : (style as Fragment$Section$$MessageSection$messages$style),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+  CopyWith$Fragment$Section$$MessageSection$messages$style<TRes> get style {
+    final local$style = _instance.style;
+    return CopyWith$Fragment$Section$$MessageSection$messages$style(
+        local$style, (e) => call(style: e));
+  }
+}
+
+class _CopyWithStubImpl$Fragment$Section$$MessageSection$messages<TRes>
+    implements CopyWith$Fragment$Section$$MessageSection$messages<TRes> {
+  _CopyWithStubImpl$Fragment$Section$$MessageSection$messages(this._res);
+
+  TRes _res;
+
+  call({
+    String? content,
+    Fragment$Section$$MessageSection$messages$style? style,
+    String? $__typename,
+  }) =>
+      _res;
+  CopyWith$Fragment$Section$$MessageSection$messages$style<TRes> get style =>
+      CopyWith$Fragment$Section$$MessageSection$messages$style.stub(_res);
+}
+
+class Fragment$Section$$MessageSection$messages$style {
+  Fragment$Section$$MessageSection$messages$style({
+    required this.text,
+    required this.background,
+    required this.border,
+    required this.$__typename,
+  });
+
+  factory Fragment$Section$$MessageSection$messages$style.fromJson(
+      Map<String, dynamic> json) {
+    final l$text = json['text'];
+    final l$background = json['background'];
+    final l$border = json['border'];
+    final l$$__typename = json['__typename'];
+    return Fragment$Section$$MessageSection$messages$style(
+      text: (l$text as String),
+      background: (l$background as String),
+      border: (l$border as String),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final String text;
+
+  final String background;
+
+  final String border;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$text = text;
+    _resultData['text'] = l$text;
+    final l$background = background;
+    _resultData['background'] = l$background;
+    final l$border = border;
+    _resultData['border'] = l$border;
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$text = text;
+    final l$background = background;
+    final l$border = border;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$text,
+      l$background,
+      l$border,
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (!(other is Fragment$Section$$MessageSection$messages$style) ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$text = text;
+    final lOther$text = other.text;
+    if (l$text != lOther$text) {
+      return false;
+    }
+    final l$background = background;
+    final lOther$background = other.background;
+    if (l$background != lOther$background) {
+      return false;
+    }
+    final l$border = border;
+    final lOther$border = other.border;
+    if (l$border != lOther$border) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Fragment$Section$$MessageSection$messages$style
+    on Fragment$Section$$MessageSection$messages$style {
+  CopyWith$Fragment$Section$$MessageSection$messages$style<
+          Fragment$Section$$MessageSection$messages$style>
+      get copyWith => CopyWith$Fragment$Section$$MessageSection$messages$style(
+            this,
+            (i) => i,
+          );
+}
+
+abstract class CopyWith$Fragment$Section$$MessageSection$messages$style<TRes> {
+  factory CopyWith$Fragment$Section$$MessageSection$messages$style(
+    Fragment$Section$$MessageSection$messages$style instance,
+    TRes Function(Fragment$Section$$MessageSection$messages$style) then,
+  ) = _CopyWithImpl$Fragment$Section$$MessageSection$messages$style;
+
+  factory CopyWith$Fragment$Section$$MessageSection$messages$style.stub(
+          TRes res) =
+      _CopyWithStubImpl$Fragment$Section$$MessageSection$messages$style;
+
+  TRes call({
+    String? text,
+    String? background,
+    String? border,
+    String? $__typename,
+  });
+}
+
+class _CopyWithImpl$Fragment$Section$$MessageSection$messages$style<TRes>
+    implements CopyWith$Fragment$Section$$MessageSection$messages$style<TRes> {
+  _CopyWithImpl$Fragment$Section$$MessageSection$messages$style(
+    this._instance,
+    this._then,
+  );
+
+  final Fragment$Section$$MessageSection$messages$style _instance;
+
+  final TRes Function(Fragment$Section$$MessageSection$messages$style) _then;
+
+  static const _undefined = {};
+
+  TRes call({
+    Object? text = _undefined,
+    Object? background = _undefined,
+    Object? border = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(Fragment$Section$$MessageSection$messages$style(
+        text: text == _undefined || text == null
+            ? _instance.text
+            : (text as String),
+        background: background == _undefined || background == null
+            ? _instance.background
+            : (background as String),
+        border: border == _undefined || border == null
+            ? _instance.border
+            : (border as String),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+}
+
+class _CopyWithStubImpl$Fragment$Section$$MessageSection$messages$style<TRes>
+    implements CopyWith$Fragment$Section$$MessageSection$messages$style<TRes> {
+  _CopyWithStubImpl$Fragment$Section$$MessageSection$messages$style(this._res);
+
+  TRes _res;
+
+  call({
+    String? text,
+    String? background,
+    String? border,
+    String? $__typename,
   }) =>
       _res;
 }

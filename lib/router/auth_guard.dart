@@ -5,7 +5,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class AuthGuard extends AutoRouteGuard {
   @override
-  void onNavigation(NavigationResolver resolver, StackRouter router) {
+  void onNavigation(NavigationResolver resolver, StackRouter router) async {
     // the navigation is paused until resolver.next() is called with either
     // true to resume/continue navigation or false to abort navigation
 
@@ -14,12 +14,26 @@ class AuthGuard extends AutoRouteGuard {
       ref = ProviderScope.containerOf(router.navigatorKey.currentContext!, listen: false);
     }
 
-    if (ref != null && ref.read(authStateProvider).auth0AccessToken == null && !ref.read(authStateProvider).guestUser) {
+    if (ref == null) {
+      // AFAIK, this happen always on the very first route, but never after.
+      return resolver.next(true);
+    }
+
+    final authState = ref.read(authStateProvider);
+
+    if (authState.guestMode) {
+      return resolver.next(true);
+    }
+
+    if (authState.auth0AccessToken == null) {
       router.push(LoginScreenRoute(onResult: (success) {
         resolver.next(success);
       }));
+      return;
     } else {
       resolver.next(true);
+      return;
     }
+    resolver.next(true);
   }
 }

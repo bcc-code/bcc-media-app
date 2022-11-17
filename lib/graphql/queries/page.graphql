@@ -143,6 +143,17 @@ fragment Section on Section {
     widthRatio
     url
   }
+  ... on MessageSection {
+    id
+    messages {
+      content
+      style {
+        text
+        background
+        border
+      }
+    }
+  }
   __typename
 }
 

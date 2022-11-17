@@ -1,5 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:brunstadtv_app/helpers/btv_typography.dart';
+import 'package:brunstadtv_app/providers/auth_state.dart';
+import 'package:brunstadtv_app/router/router.gr.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -15,13 +17,22 @@ class AppRoot extends ConsumerStatefulWidget {
 }
 
 class _AppRootState extends ConsumerState<AppRoot> {
+  late ProviderSubscription authSubscription;
+  @override
+  void initState() {
+    super.initState();
+    _setupFcmListeners();
+    authSubscription = ref.listenManual<AuthState>(authStateProvider, (previous, next) {
+      if (previous?.auth0AccessToken != null && next.auth0AccessToken == null) {
+        widget.navigatorKey.currentContext?.router.root.navigate(LoginScreenRoute());
+      }
+    });
+  }
+
   void _handleMessage(RemoteMessage message, {bool? openedFromBackground}) {
     var navigatorContext = widget.navigatorKey.currentState?.context;
     var notification = message.notification;
-    if (openedFromBackground != true &&
-        notification != null &&
-        message.data['show_in_app'] == true &&
-        navigatorContext != null) {
+    if (openedFromBackground != true && notification != null && message.data['show_in_app'] == true && navigatorContext != null) {
       showDialog(
           context: navigatorContext,
           builder: (context) {
@@ -52,8 +63,7 @@ class _AppRootState extends ConsumerState<AppRoot> {
       print('Message data: ${message.data}');
 
       if (message.notification != null) {
-        print(
-            'Message also contained a notification: ${message.notification?.title}');
+        print('Message also contained a notification: ${message.notification?.title}');
       }
     });
 
@@ -63,14 +73,7 @@ class _AppRootState extends ConsumerState<AppRoot> {
       _handleMessageOpenedFromBackground(initialMessage);
     }
 
-    FirebaseMessaging.onMessageOpenedApp
-        .listen((message) => _handleMessageOpenedFromBackground(message));
-  }
-
-  @override
-  void initState() {
-    super.initState();
-    _setupFcmListeners();
+    FirebaseMessaging.onMessageOpenedApp.listen((message) => _handleMessageOpenedFromBackground(message));
   }
 
   @override

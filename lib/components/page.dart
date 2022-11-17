@@ -8,6 +8,7 @@ import '../helpers/btv_buttons.dart';
 import '../helpers/utils.dart';
 import 'featured_section.dart';
 import 'default_grid_section.dart';
+import 'message_section.dart';
 import 'poster_grid_section.dart';
 import 'icon_section.dart';
 import 'label_section.dart';
@@ -85,6 +86,10 @@ class BccmPage extends StatelessWidget {
             final webSection = s.asOrNull<Fragment$Section$$WebSection>();
             if (webSection != null) {
               return WebSection(webSection);
+            }
+            final messageSection = s.asOrNull<Fragment$Section$$MessageSection>();
+            if (messageSection != null) {
+              return MessageSection(messageSection);
             }
             return Container();
           }),
