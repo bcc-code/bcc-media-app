@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 
 import '../helpers/btv_typography.dart';
 
-class Section extends StatelessWidget {
+class PageSection extends StatelessWidget {
   final String? title;
   final Widget child;
-  const Section({super.key, this.title, required this.child});
+  const PageSection({super.key, this.title, required this.child});
 
   @override
   Widget build(BuildContext context) {
