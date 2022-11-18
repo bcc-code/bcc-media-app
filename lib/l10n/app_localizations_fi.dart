@@ -14,7 +14,8 @@ class SFi extends S {
   String get profileTab => 'Profiili';
 
   @override
-  String get bccMediaCenter => 'BrunstadTV on ei-kaupallinen kristillisten ja positiivisten arvojen mukaisen median tuottaja.';
+  String get bccMediaCenter =>
+      'BrunstadTV on ei-kaupallinen kristillisten ja positiivisten arvojen mukaisen median tuottaja.';
 
   @override
   String get signInButton => 'Kirjaudu sisään';
@@ -26,7 +27,8 @@ class SFi extends S {
   String get loggedOutTitle => 'Kirjautunut ulos';
 
   @override
-  String get loggedOutMessage => 'Et ole kirjautuneena. Kirjaudu sisään uudelleen.';
+  String get loggedOutMessage =>
+      'Et ole kirjautuneena. Kirjaudu sisään uudelleen.';
 
   @override
   String get mostWatched => 'Eniten katsellut';
@@ -44,10 +46,12 @@ class SFi extends S {
   String get ok => 'OK';
 
   @override
-  String get loginFailedCheckNetwork => 'Kirjautuminen epäonnistui. Tarkista nettiyhteys ja koita uudelleen.';
+  String get loginFailedCheckNetwork =>
+      'Kirjautuminen epäonnistui. Tarkista nettiyhteys ja koita uudelleen.';
 
   @override
-  String get loginFailedTryAgain => 'Kirjautuminen epäonnistui. Yritä myöhemmin uudelleen.';
+  String get loginFailedTryAgain =>
+      'Kirjautuminen epäonnistui. Yritä myöhemmin uudelleen.';
 
   @override
   String get soundLanguage => 'Äänen kieli';
@@ -140,7 +144,8 @@ class SFi extends S {
   String get queueLimitTitle => 'Rajoitus';
 
   @override
-  String get queueLimitMessage => 'Jonossa ei voi olle enempää kuin {0} juttua.';
+  String get queueLimitMessage =>
+      'Jonossa ei voi olle enempää kuin {0} juttua.';
 
   @override
   String get recentSearches => 'Aiemmin haettu';
@@ -149,7 +154,8 @@ class SFi extends S {
   String get tVLogin => 'Kirjaudu sisään televisiolla';
 
   @override
-  String get tVLoginSuccessful => 'Kirjautuminen onnistui. Vahvista televisiosta.';
+  String get tVLoginSuccessful =>
+      'Kirjautuminen onnistui. Vahvista televisiosta.';
 
   @override
   String get seeMore => 'Näytä lisää';
@@ -161,7 +167,8 @@ class SFi extends S {
   String get series => 'Sarjat';
 
   @override
-  String get livestreamMaintenance => 'Suoratoisto on juuri korjattavana. Pahoittelemme. Koita myöhemmin uudelleen.';
+  String get livestreamMaintenance =>
+      'Suoratoisto on juuri korjattavana. Pahoittelemme. Koita myöhemmin uudelleen.';
 
   @override
   String get homeTab => 'Etusivu';
@@ -182,7 +189,8 @@ class SFi extends S {
   String get high => 'Laadukas';
 
   @override
-  String get emptySearch => 'Täältä voit hakea mitä tahansa BrunstadTV:n sisältöä; sarjoja, elokuvia, ja jaksoja.';
+  String get emptySearch =>
+      'Täältä voit hakea mitä tahansa BrunstadTV:n sisältöä; sarjoja, elokuvia, ja jaksoja.';
 
   @override
   String get back => 'Takaisin';
@@ -263,7 +271,8 @@ class SFi extends S {
   String get recordingTipB => 'Huolehdi tasaisesta valaistuksesta kasvoille.';
 
   @override
-  String get recordingTipC => 'Ajattele ensin mitä aiot sanoa - kuvaa vasta sitten.';
+  String get recordingTipC =>
+      'Ajattele ensin mitä aiot sanoa - kuvaa vasta sitten.';
 
   @override
   String get recordingTipD => 'Pidä puhelinta vaaka-asennossa.';
@@ -281,25 +290,32 @@ class SFi extends S {
   String get next => 'Seuraava';
 
   @override
-  String get recordVideoCameraPermissionAlert => 'Anna sovellukselle oikeus käyttää kameraa videon kuvaamiseen.';
+  String get recordVideoCameraPermissionAlert =>
+      'Anna sovellukselle oikeus käyttää kameraa videon kuvaamiseen.';
 
   @override
-  String get recordVideoPhotosPermissionAlert => 'Anna sovellukselle oikeus käyttää kuva-albumia videon kuvaamista varten.';
+  String get recordVideoPhotosPermissionAlert =>
+      'Anna sovellukselle oikeus käyttää kuva-albumia videon kuvaamista varten.';
 
   @override
-  String get recordVideoStoragePermissionAlert => 'Anna sovellukselle oikeus käyttää tallennustilaa videon kuvaamista varten.';
+  String get recordVideoStoragePermissionAlert =>
+      'Anna sovellukselle oikeus käyttää tallennustilaa videon kuvaamista varten.';
 
   @override
-  String get recordVideoMicrophonePermissionAlert => 'Videon kuvaaminen vaatii oikeuden käyttää mikrofonia.';
+  String get recordVideoMicrophonePermissionAlert =>
+      'Videon kuvaaminen vaatii oikeuden käyttää mikrofonia.';
 
   @override
-  String get takePhotoStoragePermissionAlert => 'Kuvan ottamiseen tarvitaan oikeus käyttää tallennustilaa.';
+  String get takePhotoStoragePermissionAlert =>
+      'Kuvan ottamiseen tarvitaan oikeus käyttää tallennustilaa.';
 
   @override
-  String get takePhotoCameraPermissionAlert => 'Kuvan ottamiseen tarvitaan oikeus käyttää kameraa.';
+  String get takePhotoCameraPermissionAlert =>
+      'Kuvan ottamiseen tarvitaan oikeus käyttää kameraa.';
 
   @override
-  String get pickPhotoStoragePermissionAlert => 'Anna sovellukselle oikeus käyttää tallennustilaa jotta voidaan valita kuvia.';
+  String get pickPhotoStoragePermissionAlert =>
+      'Anna sovellukselle oikeus käyttää tallennustilaa jotta voidaan valita kuvia.';
 
   @override
   String get permissionsAlertTitle => 'Tarvitaan käyttöoikeuksia';
@@ -314,7 +330,8 @@ class SFi extends S {
   String get recordingFailedTitle => 'Videon ottaminen epäonnistui';
 
   @override
-  String get recordingFailedMessage => 'Jotain meni pieleen videon kuvaamisessa.';
+  String get recordingFailedMessage =>
+      'Jotain meni pieleen videon kuvaamisessa.';
 
   @override
   String get pollSubtitle => 'Kysely';
@@ -326,16 +343,19 @@ class SFi extends S {
   String get feed => 'Syöte';
 
   @override
-  String get atmosphereFeedDescription => 'Osallistu viestivirtaan lähettämällä viesti, kuva, tai todistus. Missä oletkin.';
+  String get atmosphereFeedDescription =>
+      'Osallistu viestivirtaan lähettämällä viesti, kuva, tai todistus. Missä oletkin.';
 
   @override
   String get information => 'Tiedot';
 
   @override
-  String get photoNotSupported => 'Kuvien ottaminen tai valitseminen ei onnistu laitteellasi.';
+  String get photoNotSupported =>
+      'Kuvien ottaminen tai valitseminen ei onnistu laitteellasi.';
 
   @override
-  String get answerFailed => 'Vastauksen lähettäminen epäonnistui. Yritä uudelleen.';
+  String get answerFailed =>
+      'Vastauksen lähettäminen epäonnistui. Yritä uudelleen.';
 
   @override
   String get question => 'Kysymys';
@@ -353,7 +373,8 @@ class SFi extends S {
   String get concernTextPlaceholder => 'Kerro ongelmasta';
 
   @override
-  String get debugInfoExplanation => 'Palautteesi sisältää myös seuraavat tiedot auttamaan meitä paremmin ymmärtämään ongelmaa.';
+  String get debugInfoExplanation =>
+      'Palautteesi sisältää myös seuraavat tiedot auttamaan meitä paremmin ymmärtämään ongelmaa.';
 
   @override
   String get send => 'Lähetä';
@@ -365,13 +386,15 @@ class SFi extends S {
   String get thankYouSupportTitle => 'Kiitos palautteesta!';
 
   @override
-  String get thankYouSupportDescription => 'Arvostamme kovasti palautetta ja teemme parhaamme ongelman korjaamiseen.';
+  String get thankYouSupportDescription =>
+      'Arvostamme kovasti palautetta ja teemme parhaamme ongelman korjaamiseen.';
 
   @override
   String get sendFail => 'Lähettäminen epäonnistui';
 
   @override
-  String get sendFailDescription => 'Jokin ei nyt toimi. Tarkista nettiyhteys ja kokeile uudelleen.';
+  String get sendFailDescription =>
+      'Jokin ei nyt toimi. Tarkista nettiyhteys ja kokeile uudelleen.';
 
   @override
   String get today => 'Tänään';
@@ -404,7 +427,8 @@ class SFi extends S {
   String get wellDoneDistance => 'Hienoa! Olet ilmoittanut yhteensä {0} km';
 
   @override
-  String get distanceRegistered => 'Ilmoittamasi matka on tallennettu. Tuossa alempana voit lisätä vielä muita lenkkejä.';
+  String get distanceRegistered =>
+      'Ilmoittamasi matka on tallennettu. Tuossa alempana voit lisätä vielä muita lenkkejä.';
 
   @override
   String get ranMore => 'Kuljin yli {0} km';
@@ -413,7 +437,8 @@ class SFi extends S {
   String get moreThan => 'Yli {0} km';
 
   @override
-  String get runningEffort => 'Hyvä suoritus! Kirjaa kulkemasi matka tuohon alas.';
+  String get runningEffort =>
+      'Hyvä suoritus! Kirjaa kulkemasi matka tuohon alas.';
 
   @override
   String get slideSelect => 'Säädä matkaa palkkia liu\'uttamalla';
@@ -437,13 +462,15 @@ class SFi extends S {
   String get yourQuestion => 'Kysymyksesi';
 
   @override
-  String get uploadingInquirySuccess => 'Huomaathan, että kaikkiin kysymyksiin ei lähetyksessä vastata.';
+  String get uploadingInquirySuccess =>
+      'Huomaathan, että kaikkiin kysymyksiin ei lähetyksessä vastata.';
 
   @override
   String get askQuestion => 'Kysy jotain';
 
   @override
-  String get submitQuestionInfo => 'Kysymällä jotain hyväksyt myös että kysymys voidaan julkaista.';
+  String get submitQuestionInfo =>
+      'Kysymällä jotain hyväksyt myös että kysymys voidaan julkaista.';
 
   @override
   String get posting => 'Lähetetään';
@@ -452,7 +479,8 @@ class SFi extends S {
   String get loading => 'Lataillaan';
 
   @override
-  String get submitPostInfo => 'Lähettämällä kuvan tai tekstin hyväksyt myös että se voidaan julkaista. ';
+  String get submitPostInfo =>
+      'Lähettämällä kuvan tai tekstin hyväksyt myös että se voidaan julkaista. ';
 
   @override
   String get cropImage => 'Rajaa kuvaa';
@@ -473,7 +501,8 @@ class SFi extends S {
   String get pollEnded => 'Valintakysely on valmis. Kiitos vastauksista.';
 
   @override
-  String get browserInstall => 'Selain ei aukea. Voitko asentaa sellaisen jos se puuttuu.';
+  String get browserInstall =>
+      'Selain ei aukea. Voitko asentaa sellaisen jos se puuttuu.';
 
   @override
   String get share => 'Jaa';
@@ -503,7 +532,8 @@ class SFi extends S {
   String get quizAnswered => 'Vastaukset toimitettu';
 
   @override
-  String get quizNotEnabled => 'Kyselyyn ei voi vastata juuri nyt. Yritä toiste.';
+  String get quizNotEnabled =>
+      'Kyselyyn ei voi vastata juuri nyt. Yritä toiste.';
 
   @override
   String get calendar => 'Kalenteri';
@@ -515,13 +545,15 @@ class SFi extends S {
   String get appUpdateTitle => 'Päivitys on tarpeen';
 
   @override
-  String get appUpdateRequest => 'Päivitä sovellus. Siinä on uusia juttuja ja vikoja on korjattu.';
+  String get appUpdateRequest =>
+      'Päivitä sovellus. Siinä on uusia juttuja ja vikoja on korjattu.';
 
   @override
   String get appUpdateAccepted => 'Päivitä';
 
   @override
-  String get donationNotAvailable => 'Juuri nyt ei voi lahjoittaa. Yritä myöhemmin uudelleen.';
+  String get donationNotAvailable =>
+      'Juuri nyt ei voi lahjoittaa. Yritä myöhemmin uudelleen.';
 
   @override
   String get posts => '{0} viestiä';
@@ -557,13 +589,15 @@ class SFi extends S {
   String get audioOnlyErrorTitle => 'Sisällön lataaminen epäonnistui';
 
   @override
-  String get audioOnlyErrorDescription => 'Tarkista nettiyhteys ja yritä uudelleen';
+  String get audioOnlyErrorDescription =>
+      'Tarkista nettiyhteys ja yritä uudelleen';
 
   @override
   String get privacyPolicy => 'Tietosuojakäytäntö';
 
   @override
-  String get tokenError => 'Nettiongelman vuoksi emme voi varmistaa kuka olet. Tämän vuoksi et voi vielä käyttää kaikkia ominaisuuksia.';
+  String get tokenError =>
+      'Nettiongelman vuoksi emme voi varmistaa kuka olet. Tämän vuoksi et voi vielä käyttää kaikkia ominaisuuksia.';
 
   @override
   String get categoriesTab => 'Luokat';
@@ -575,13 +609,15 @@ class SFi extends S {
   String get confirmLogin => 'Vahvista kirjautuminen';
 
   @override
-  String get scanInfo => 'Koodin kuvaaminen kännykällä vie sinut kirjautumissivulle.';
+  String get scanInfo =>
+      'Koodin kuvaaminen kännykällä vie sinut kirjautumissivulle.';
 
   @override
   String get validInfo => 'QR-koodi on voimassa 15 minuuttia.';
 
   @override
-  String get confirmInfo => 'Kirjaudu sisään kännykällä. Vahvista sitten kirjautuminen alla olevasta painikkeesta.';
+  String get confirmInfo =>
+      'Kirjaudu sisään kännykällä. Vahvista sitten kirjautuminen alla olevasta painikkeesta.';
 
   @override
   String get seriesTab => 'Sarjat';
@@ -599,7 +635,8 @@ class SFi extends S {
   String get subtitlesLanguage => 'Tekstityksen kieli';
 
   @override
-  String get removeFromRecentSearches => 'Haluatko poistaa tämän hakuhistoriasta?';
+  String get removeFromRecentSearches =>
+      'Haluatko poistaa tämän hakuhistoriasta?';
 
   @override
   String get noTransmissionToday => 'Tänään ei ole lähetystä';
@@ -620,10 +657,12 @@ class SFi extends S {
   String get errorTryAgain => 'Jokin meni pieleen. Yritä myöhemmin uudelleen.';
 
   @override
-  String get reportProblem => 'Ongelmatilanteessa lähetä tämän QR-koodin avulla meille sähköpostia.';
+  String get reportProblem =>
+      'Ongelmatilanteessa lähetä tämän QR-koodin avulla meille sähköpostia.';
 
   @override
-  String get phoneReadingProblem => 'Jos et onnistu käyttämään QR-koodia, lähetä meille sähköpostia seuraavin tiedoin';
+  String get phoneReadingProblem =>
+      'Jos et onnistu käyttämään QR-koodia, lähetä meille sähköpostia seuraavin tiedoin';
 
   @override
   String get goTo => 'vaihtoehtoisesti mene';
@@ -641,7 +680,8 @@ class SFi extends S {
   String get authResponse1 => 'Kirjaudu kännykällä QR-koodin avulla.';
 
   @override
-  String get authResponse3 => 'Tarkista nettiyhteys ja kokeile sitten uudelleen.';
+  String get authResponse3 =>
+      'Tarkista nettiyhteys ja kokeile sitten uudelleen.';
 
   @override
   String get liveHeader => 'Live';

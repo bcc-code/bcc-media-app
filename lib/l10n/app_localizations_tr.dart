@@ -14,7 +14,8 @@ class STr extends S {
   String get profileTab => 'Profil';
 
   @override
-  String get bccMediaCenter => 'BrunstadTV, pozitif ve Hıristiyan değerlere dayalı içerik üreten ve yayınlayan, ticari olmayan bir medya merkezidir.';
+  String get bccMediaCenter =>
+      'BrunstadTV, pozitif ve Hıristiyan değerlere dayalı içerik üreten ve yayınlayan, ticari olmayan bir medya merkezidir.';
 
   @override
   String get signInButton => 'Giriş';
@@ -44,10 +45,12 @@ class STr extends S {
   String get ok => 'Tamam';
 
   @override
-  String get loginFailedCheckNetwork => 'Giriş başarısız. Ağ bağlantınızı kontrol edip tekrar deneyin.';
+  String get loginFailedCheckNetwork =>
+      'Giriş başarısız. Ağ bağlantınızı kontrol edip tekrar deneyin.';
 
   @override
-  String get loginFailedTryAgain => 'Giriş başarısız. Lütfen daha sonra tekrar deneyiniz.';
+  String get loginFailedTryAgain =>
+      'Giriş başarısız. Lütfen daha sonra tekrar deneyiniz.';
 
   @override
   String get soundLanguage => 'Ses dili';
@@ -59,7 +62,8 @@ class STr extends S {
   String get appLanguage => 'App dili';
 
   @override
-  String get checkNetwork => 'Ağ bağlantınızı kontrol edip tekrar giriş yapmayı deneyin.';
+  String get checkNetwork =>
+      'Ağ bağlantınızı kontrol edip tekrar giriş yapmayı deneyin.';
 
   @override
   String get tryAgain => 'Lütfen daha sonra tekrar deneyiniz.';
@@ -161,7 +165,8 @@ class STr extends S {
   String get series => 'Diziler';
 
   @override
-  String get livestreamMaintenance => 'Üzgünüz, canlı yayın şu anda bakımda. Lütfen daha sonra tekrar deneyiniz.';
+  String get livestreamMaintenance =>
+      'Üzgünüz, canlı yayın şu anda bakımda. Lütfen daha sonra tekrar deneyiniz.';
 
   @override
   String get homeTab => 'Başlangıç';
@@ -182,7 +187,8 @@ class STr extends S {
   String get high => 'Yüksek';
 
   @override
-  String get emptySearch => 'Tüm içeriği BrunstadTV\'den arayabilirsiniz. Dizi, filmler ve bölümler.';
+  String get emptySearch =>
+      'Tüm içeriği BrunstadTV\'den arayabilirsiniz. Dizi, filmler ve bölümler.';
 
   @override
   String get back => 'Geri';
@@ -263,7 +269,8 @@ class STr extends S {
   String get recordingTipB => 'Yüzünüzün eşit şekilde yandığından emin olun.';
 
   @override
-  String get recordingTipC => 'Kayda başlamadan önce ne söylemek istediğinizi düşünün.';
+  String get recordingTipC =>
+      'Kayda başlamadan önce ne söylemek istediğinizi düşünün.';
 
   @override
   String get recordingTipD => 'Telefonunuzu yatay moda çevirin.';
@@ -281,25 +288,32 @@ class STr extends S {
   String get next => 'Sonraki';
 
   @override
-  String get recordVideoCameraPermissionAlert => 'Video kaydetmek için ayarlarda kamera izni vermelisiniz.';
+  String get recordVideoCameraPermissionAlert =>
+      'Video kaydetmek için ayarlarda kamera izni vermelisiniz.';
 
   @override
-  String get recordVideoPhotosPermissionAlert => 'Video kaydetmek için ayarlarda kamera izni vermelisiniz.';
+  String get recordVideoPhotosPermissionAlert =>
+      'Video kaydetmek için ayarlarda kamera izni vermelisiniz.';
 
   @override
-  String get recordVideoStoragePermissionAlert => 'Video kaydetmek için ayarlarda depolama izni vermelisiniz.';
+  String get recordVideoStoragePermissionAlert =>
+      'Video kaydetmek için ayarlarda depolama izni vermelisiniz.';
 
   @override
-  String get recordVideoMicrophonePermissionAlert => 'Video kaydetmek için ayarlarda mikrofon izni vermelisiniz.';
+  String get recordVideoMicrophonePermissionAlert =>
+      'Video kaydetmek için ayarlarda mikrofon izni vermelisiniz.';
 
   @override
-  String get takePhotoStoragePermissionAlert => 'Fotoğraf seçmek için ayarlarda depolama izni vermelisiniz.';
+  String get takePhotoStoragePermissionAlert =>
+      'Fotoğraf seçmek için ayarlarda depolama izni vermelisiniz.';
 
   @override
-  String get takePhotoCameraPermissionAlert => 'Fotoğraf çekmek için ayarlarda kamera izni vermelisiniz.';
+  String get takePhotoCameraPermissionAlert =>
+      'Fotoğraf çekmek için ayarlarda kamera izni vermelisiniz.';
 
   @override
-  String get pickPhotoStoragePermissionAlert => 'Fotoğraf seçmek için ayarlarda depolama izni vermelisiniz.';
+  String get pickPhotoStoragePermissionAlert =>
+      'Fotoğraf seçmek için ayarlarda depolama izni vermelisiniz.';
 
   @override
   String get permissionsAlertTitle => 'İzinler gerekli';
@@ -314,7 +328,8 @@ class STr extends S {
   String get recordingFailedTitle => 'Video kaydedilemedi';
 
   @override
-  String get recordingFailedMessage => 'Videoyu kaydetmeye çalışırken bir şeyler ters gitti.';
+  String get recordingFailedMessage =>
+      'Videoyu kaydetmeye çalışırken bir şeyler ters gitti.';
 
   @override
   String get pollSubtitle => 'Anket';
@@ -326,16 +341,19 @@ class STr extends S {
   String get feed => 'Besleme';
 
   @override
-  String get atmosphereFeedDescription => 'Bulunduğunuz yerden mesaj, tanıklık veya resim göndererek etkinlik akışına katkıda bulunun.';
+  String get atmosphereFeedDescription =>
+      'Bulunduğunuz yerden mesaj, tanıklık veya resim göndererek etkinlik akışına katkıda bulunun.';
 
   @override
   String get information => 'Bilgi';
 
   @override
-  String get photoNotSupported => 'Fotoğraf çekme ve çekme cihazınızda desteklenmiyor.';
+  String get photoNotSupported =>
+      'Fotoğraf çekme ve çekme cihazınızda desteklenmiyor.';
 
   @override
-  String get answerFailed => 'Üzgünüz! Cevabı gönderemedik. Lütfen tekrar deneyin.';
+  String get answerFailed =>
+      'Üzgünüz! Cevabı gönderemedik. Lütfen tekrar deneyin.';
 
   @override
   String get question => 'Soru';
@@ -353,7 +371,8 @@ class STr extends S {
   String get concernTextPlaceholder => 'Sorunu tanımlayın';
 
   @override
-  String get debugInfoExplanation => 'Mesajınız, sorunu daha iyi anlamamıza yardımcı olmak için bu bilgileri içerecektir.';
+  String get debugInfoExplanation =>
+      'Mesajınız, sorunu daha iyi anlamamıza yardımcı olmak için bu bilgileri içerecektir.';
 
   @override
   String get send => 'Gönder';
@@ -365,13 +384,15 @@ class STr extends S {
   String get thankYouSupportTitle => 'Geri bildiriminiz için teşekkür ederiz!';
 
   @override
-  String get thankYouSupportDescription => 'Tüm geri bildirimleri takdir ediyoruz ve sorunu en kısa sürede ele alacağız.';
+  String get thankYouSupportDescription =>
+      'Tüm geri bildirimleri takdir ediyoruz ve sorunu en kısa sürede ele alacağız.';
 
   @override
   String get sendFail => 'Sana mesaj gönderilemedi';
 
   @override
-  String get sendFailDescription => 'Bir şeyler yanlış gitti. İnternet bağlantınızı kontrol edip tekrar deneyin.';
+  String get sendFailDescription =>
+      'Bir şeyler yanlış gitti. İnternet bağlantınızı kontrol edip tekrar deneyin.';
 
   @override
   String get today => 'Bugün';
@@ -404,7 +425,8 @@ class STr extends S {
   String get wellDoneDistance => 'Aferin! Toplam mesafe {0} km kaydettiniz';
 
   @override
-  String get distanceRegistered => 'Mesafeniz kaydedildi. Başka bir mesafe göndermek istiyorsanız aşağıya devam edin.';
+  String get distanceRegistered =>
+      'Mesafeniz kaydedildi. Başka bir mesafe göndermek istiyorsanız aşağıya devam edin.';
 
   @override
   String get ranMore => '{0} km\'den fazla gittim';
@@ -413,7 +435,8 @@ class STr extends S {
   String get moreThan => '{0} km\'den fazla';
 
   @override
-  String get runningEffort => 'İnanılmaz çaba! Aşağıya kat ettiğiniz kilometreyi yazın.';
+  String get runningEffort =>
+      'İnanılmaz çaba! Aşağıya kat ettiğiniz kilometreyi yazın.';
 
   @override
   String get slideSelect => 'Ne kadar ileri gittiğinizi seçmek için kaydırın';
@@ -431,19 +454,22 @@ class STr extends S {
   String get firstPostTitle => 'İlk resim veya mesaj gönderen siz olun';
 
   @override
-  String get timezoneInformation => 'Tv rehberi zaman çizelgesi yerel saatinizde: {0}';
+  String get timezoneInformation =>
+      'Tv rehberi zaman çizelgesi yerel saatinizde: {0}';
 
   @override
   String get yourQuestion => 'Senin sorun';
 
   @override
-  String get uploadingInquirySuccess => 'Lütfen gönderilen tüm soruların yayında yanıtlanmadığını unutmayın.';
+  String get uploadingInquirySuccess =>
+      'Lütfen gönderilen tüm soruların yayında yanıtlanmadığını unutmayın.';
 
   @override
   String get askQuestion => 'Soru sor';
 
   @override
-  String get submitQuestionInfo => 'Bir soru göndererek, onun yayın amaçlı kullanılabileceğini kabul etmiş olursunuz.';
+  String get submitQuestionInfo =>
+      'Bir soru göndererek, onun yayın amaçlı kullanılabileceğini kabul etmiş olursunuz.';
 
   @override
   String get posting => 'Gönderi';
@@ -452,7 +478,8 @@ class STr extends S {
   String get loading => 'Yükleniyor';
 
   @override
-  String get submitPostInfo => 'Bir post ya da fotoğraf göndererek, onun yayın amaçlı kullanılabileceğini kabul etmiş olursunuz. ';
+  String get submitPostInfo =>
+      'Bir post ya da fotoğraf göndererek, onun yayın amaçlı kullanılabileceğini kabul etmiş olursunuz. ';
 
   @override
   String get cropImage => 'Görüntüyü kırp';
@@ -467,13 +494,16 @@ class STr extends S {
   String get pollSingleChoice => 'Cevabınızı yalnızca bir kez seçebilirsiniz.';
 
   @override
-  String get pollMultipleChoice => 'Cevabınızı birden çok kez değiştirebilirsiniz.';
+  String get pollMultipleChoice =>
+      'Cevabınızı birden çok kez değiştirebilirsiniz.';
 
   @override
-  String get pollEnded => 'Anket bölümü sona erdi. Cevaplarınız için teşekkür ederim.';
+  String get pollEnded =>
+      'Anket bölümü sona erdi. Cevaplarınız için teşekkür ederim.';
 
   @override
-  String get browserInstall => 'Bu URL\'yi açabilmek için lütfen web tarayıcısını kurun.';
+  String get browserInstall =>
+      'Bu URL\'yi açabilmek için lütfen web tarayıcısını kurun.';
 
   @override
   String get share => 'Share';
@@ -503,7 +533,8 @@ class STr extends S {
   String get quizAnswered => 'Answers submitted';
 
   @override
-  String get quizNotEnabled => 'Quiz is not available at the moment. Please try again later.';
+  String get quizNotEnabled =>
+      'Quiz is not available at the moment. Please try again later.';
 
   @override
   String get calendar => 'Calendar';
@@ -515,13 +546,15 @@ class STr extends S {
   String get appUpdateTitle => 'Update required';
 
   @override
-  String get appUpdateRequest => 'Please download the latest app to enjoy all the latest features and bug fixes.';
+  String get appUpdateRequest =>
+      'Please download the latest app to enjoy all the latest features and bug fixes.';
 
   @override
   String get appUpdateAccepted => 'Update';
 
   @override
-  String get donationNotAvailable => 'Donation is not available at the moment. Please try again later.';
+  String get donationNotAvailable =>
+      'Donation is not available at the moment. Please try again later.';
 
   @override
   String get posts => '{0} Posts';
@@ -557,13 +590,15 @@ class STr extends S {
   String get audioOnlyErrorTitle => 'Couldn’t load content';
 
   @override
-  String get audioOnlyErrorDescription => 'Check internet connection and try again';
+  String get audioOnlyErrorDescription =>
+      'Check internet connection and try again';
 
   @override
   String get privacyPolicy => 'Privacy Policy';
 
   @override
-  String get tokenError => 'We couldn\'t confirm your identity, most likely due to a network problem. Some features of the app may not work correctly.';
+  String get tokenError =>
+      'We couldn\'t confirm your identity, most likely due to a network problem. Some features of the app may not work correctly.';
 
   @override
   String get categoriesTab => 'Categories';
@@ -575,13 +610,15 @@ class STr extends S {
   String get confirmLogin => 'Girişi onayla';
 
   @override
-  String get scanInfo => 'Giriş sayfasına girmek için kodu telefonunuzla tarayın.';
+  String get scanInfo =>
+      'Giriş sayfasına girmek için kodu telefonunuzla tarayın.';
 
   @override
   String get validInfo => 'QR Kodu 15 dakika geçerlidir.';
 
   @override
-  String get confirmInfo => 'Cihazınızda başarılı bir şekilde oturum açtıktan sonra, girişinizi onaylamak için aşağıdaki düğmeye tıklayın.';
+  String get confirmInfo =>
+      'Cihazınızda başarılı bir şekilde oturum açtıktan sonra, girişinizi onaylamak için aşağıdaki düğmeye tıklayın.';
 
   @override
   String get seriesTab => 'Diziler';
@@ -599,7 +636,8 @@ class STr extends S {
   String get subtitlesLanguage => 'Altyazı dili';
 
   @override
-  String get removeFromRecentSearches => 'Bu öğeyi son aramalardan kaldırmak istiyor musunuz?';
+  String get removeFromRecentSearches =>
+      'Bu öğeyi son aramalardan kaldırmak istiyor musunuz?';
 
   @override
   String get noTransmissionToday => 'Bugün için planlanmış yayın yok';
@@ -617,13 +655,16 @@ class STr extends S {
   String get featured => 'Öne çıkan';
 
   @override
-  String get errorTryAgain => 'Bir şeyler yanlış oldu. Lütfen sonra tekrar deneyiniz.';
+  String get errorTryAgain =>
+      'Bir şeyler yanlış oldu. Lütfen sonra tekrar deneyiniz.';
 
   @override
-  String get reportProblem => 'Herhangi bir sorun olması durumunda, bize bir e-posta göndermek için aşağıdaki QR kodunu kullanın.';
+  String get reportProblem =>
+      'Herhangi bir sorun olması durumunda, bize bir e-posta göndermek için aşağıdaki QR kodunu kullanın.';
 
   @override
-  String get phoneReadingProblem => 'Telefonunuz QR kodunu okuyamıyorsa, aşağıdaki bilgileri içeren bir e-posta gönderin';
+  String get phoneReadingProblem =>
+      'Telefonunuz QR kodunu okuyamıyorsa, aşağıdaki bilgileri içeren bir e-posta gönderin';
 
   @override
   String get goTo => 'veya şuraya git';
@@ -638,10 +679,12 @@ class STr extends S {
   String get authResponse0 => 'Giriş için lütfen QR kodunu kullanınız.';
 
   @override
-  String get authResponse1 => 'Mobil olarak giriş için lütfen QR kodunu kullanınız.';
+  String get authResponse1 =>
+      'Mobil olarak giriş için lütfen QR kodunu kullanınız.';
 
   @override
-  String get authResponse3 => 'Ağ bağlantınızı kontrol edip tekrar giriş yapmayı deneyin.';
+  String get authResponse3 =>
+      'Ağ bağlantınızı kontrol edip tekrar giriş yapmayı deneyin.';
 
   @override
   String get liveHeader => 'Canlı';

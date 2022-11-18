@@ -1,10 +1,9 @@
-import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
-import 'package:auto_route/auto_route.dart';
+import 'package:package_info_plus/package_info_plus.dart';
 
-import '../../helpers/btv_colors.dart';
+import '../../components/custom_back_button.dart';
 import '../../helpers/btv_typography.dart';
-import '../../main.dart';
+import '../../l10n/app_localizations.dart';
 
 class AboutScreen extends StatefulWidget {
   const AboutScreen({super.key});
@@ -14,45 +13,63 @@ class AboutScreen extends StatefulWidget {
 }
 
 class _AboutScreenState extends State<AboutScreen> {
+  Future<String> get appVersion async {
+    PackageInfo packageInfo = await PackageInfo.fromPlatform();
+    return '${packageInfo.version} (${packageInfo.buildNumber})';
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: BtvColors.background1,
-        leadingWidth: 90,
-        centerTitle: true,
-        title: const Text(
-          'Om',
-          overflow: TextOverflow.ellipsis,
-          textAlign: TextAlign.center,
-        ),
+        elevation: 0,
+        toolbarHeight: 44,
+        leadingWidth: 92,
+        leading: const CustomBackButton(),
+        title: Text(S.of(context).about),
       ),
       body: SafeArea(
-        child: SingleChildScrollView(
-          child: Container(
-            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 17),
-            child: Column(
-              children: [
-                SizedBox(
-                    width: 200,
-                    height: 30,
-                    child: ElevatedButton(
-                        onPressed: () async {
-                          var token =
-                              await FirebaseMessaging.instance.getToken();
-                          print('token : $token');
-                        },
-                        child: const Text('Print info to console'))),
-                SizedBox(
-                    width: 200,
-                    height: 30,
-                    child: ElevatedButton(
-                        onPressed: () async {
-                          alice.showInspector();
-                        },
-                        child: const Text('Open alice')))
-              ],
-            ),
+        child: Padding(
+          padding: const EdgeInsets.all(16),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              Expanded(
+                child: Column(
+                  children: [
+                    SizedBox(
+                      width: 200,
+                      child: Image.asset('assets/images/logo.png', fit: BoxFit.fitWidth),
+                    ),
+                    Container(
+                      margin: const EdgeInsets.symmetric(vertical: 16),
+                      child: Text(
+                        S.of(context).bccMediaCenter,
+                        style: BtvTextStyles.body2,
+                        textAlign: TextAlign.center,
+                      ),
+                    ),
+                    const Text(
+                      'www.brunstad.tv',
+                      style: BtvTextStyles.body2,
+                      textAlign: TextAlign.center,
+                    ),
+                  ],
+                ),
+              ),
+              FutureBuilder<String>(
+                future: appVersion,
+                builder: (context, snapshot) {
+                  return snapshot.hasData
+                      ? Text(
+                          '${S.of(context).version}: ${snapshot.data!}',
+                          style: BtvTextStyles.caption1,
+                          textAlign: TextAlign.center,
+                        )
+                      : const Text('');
+                },
+              ),
+            ],
           ),
         ),
       ),
