@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../graphql/queries/page.graphql.dart';
 import '../graphql/schema/pages.graphql.dart';
 import '../helpers/btv_colors.dart';
+import '../l10n/app_localizations.dart';
 import '../services/utils.dart';
 import '../helpers/btv_typography.dart';
 import '../helpers/utils.dart';
@@ -110,7 +111,7 @@ class _GridEpisodeItem extends StatelessWidget {
                 ),
               if (episode.season != null)
                 Text(
-                  'S${episode.season!.number}:E${episode.number}',
+                  '${S.of(context).seasonLetter}${episode.season!.number}:${S.of(context).episodeLetter}${episode.number}',
                   style: BtvTextStyles.caption2,
                 ),
             ],
@@ -236,7 +237,7 @@ class _GridShowItem extends StatelessWidget {
             ),
           ),
           Text(
-            '${show.seasonCount} Seasons - ${show.episodeCount} Episodes',
+            '${show.seasonCount} ${S.of(context).seasons} - ${show.episodeCount} ${S.of(context).episodes}',
             style: BtvTextStyles.caption2,
           )
         ],

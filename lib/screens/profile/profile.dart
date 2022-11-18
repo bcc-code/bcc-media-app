@@ -33,7 +33,7 @@ class _ProfileState extends ConsumerState<Profile> {
     ];
   }
 
-  List<OptionButton> get _termsaAndPrivacyOptions {
+  List<OptionButton> get _termsAndPrivacyOptions {
     return [
       OptionButton(
           optionName: S.of(context).privacyPolicy,
@@ -105,7 +105,7 @@ class _ProfileState extends ConsumerState<Profile> {
                     const SizedBox(height: 24),
                     SettingList(buttons: _supportButtons),
                     const SizedBox(height: 24),
-                    SettingList(buttons: _termsaAndPrivacyOptions),
+                    SettingList(buttons: _termsAndPrivacyOptions),
                     const SizedBox(height: 24),
                   ],
                 ),

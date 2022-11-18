@@ -287,7 +287,7 @@ class _DeviceInfo extends StatelessWidget {
           final data = snapshot.data!;
           return _DeviceInfoList(data: data);
         }
-        return const Text('Loading.....');
+        return Text('${S.of(context).loading}.....');
       },
     );
   }
@@ -334,7 +334,7 @@ class _DeviceInfoList extends StatelessWidget {
               ),
               const Divider(
                 height: 1,
-                color: BtvColors.seperatorOnLight,
+                color: BtvColors.separatorOnLight,
               ),
             ],
           ),

@@ -5,6 +5,36 @@ class SNl extends S {
   SNl([String locale = 'nl']) : super(locale);
 
   @override
+  String get loadingContent => 'Loading content';
+
+  @override
+  String get signInTooltip => 'Sign in to watch more content';
+
+  @override
+  String get skipToPublicContent => 'Skip to watch public content';
+
+  @override
+  String get minutesShort => 'min';
+
+  @override
+  String get calendarThisWeek => 'This week';
+
+  @override
+  String get calendarWeek => 'week';
+
+  @override
+  String get loading => 'Laden';
+
+  @override
+  String get loginPageDisplay1 => 'The most powerful message in the world';
+
+  @override
+  String get loginPageDisplay2 => 'Watch series, shows and films based on Christian values';
+
+  @override
+  String get loginPageDisplay3 => 'Produced by BCC Media';
+
+  @override
   String get liveTab => 'Live';
 
   @override
@@ -12,6 +42,9 @@ class SNl extends S {
 
   @override
   String get profileTab => 'Profiel';
+
+  @override
+  String get faq => 'Frequently asked questions';
 
   @override
   String get bccMediaCenter => 'BrunstadTV is een niet-commerciëel mediahuis, dat content gebaseerd op positieve en Christelijke waarden produceert en distribueert.';
@@ -449,9 +482,6 @@ class SNl extends S {
   String get posting => 'Verzenden';
 
   @override
-  String get loading => 'Laden';
-
-  @override
   String get submitPostInfo => 'Bij het aanleveren van een foto of een bijdrage, accepteert u dat deze kan worden gebruikt voor uitzenddoeleinden. ';
 
   @override
@@ -554,7 +584,7 @@ class SNl extends S {
   String get shareTime => 'Delen van punt';
 
   @override
-  String get audioOnlyErrorTitle => 'Kon de inhoud niet laden';
+  String get loadContentError => 'Kon de inhoud niet laden';
 
   @override
   String get audioOnlyErrorDescription => 'Controleer uw internetverbinding en probeer opnieuw';

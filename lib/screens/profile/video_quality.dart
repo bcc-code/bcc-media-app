@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../../components/option_list.dart';
 import '../../helpers/btv_colors.dart';
+import '../../l10n/app_localizations.dart';
 
 class VideoQuality extends StatefulWidget {
   const VideoQuality({super.key});
@@ -46,12 +47,12 @@ class _VideoQualityState extends State<VideoQuality> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: BtvColors.background1,
-        title: const Text('Video kvalitet'),
+        title: Text(S.of(context).videoQuality),
         centerTitle: true,
         bottom: PreferredSize(
           preferredSize: const Size.fromHeight(6),
           child: Divider(
-            color: BtvColors.seperatorOnLight.withOpacity(0.3),
+            color: BtvColors.separatorOnLight.withOpacity(0.3),
             height: 1,
           ),
         ),

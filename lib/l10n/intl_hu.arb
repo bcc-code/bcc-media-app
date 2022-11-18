@@ -914,8 +914,8 @@
     "description": "Option on action sheet for sharing from time",
     "type": "text"
   },
-  "audioOnlyErrorTitle": "Nem sikerült betölteni a tartalmat",
-  "@audioOnlyErrorTitle": {
+  "loadContentError": "Nem sikerült betölteni a tartalmat",
+  "@loadContentError": {
     "description": "Error title when audio only fails to play",
     "type": "text"
   },

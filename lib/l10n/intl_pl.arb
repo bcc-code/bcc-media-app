@@ -914,8 +914,8 @@
     "description": "Option on action sheet for sharing from time",
     "type": "text"
   },
-  "audioOnlyErrorTitle": "Nie udało się załadować treści",
-  "@audioOnlyErrorTitle": {
+  "loadContentError": "Nie udało się załadować treści",
+  "@loadContentError": {
     "description": "Error title when audio only fails to play",
     "type": "text"
   },

@@ -914,8 +914,8 @@
     "description": "Option on action sheet for sharing from time",
     "type": "text"
   },
-  "audioOnlyErrorTitle": "Sisällön lataaminen epäonnistui",
-  "@audioOnlyErrorTitle": {
+  "loadContentError": "Sisällön lataaminen epäonnistui",
+  "@loadContentError": {
     "description": "Error title when audio only fails to play",
     "type": "text"
   },

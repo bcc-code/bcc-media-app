@@ -96,8 +96,8 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                     ),
                     Container(
                       margin: const EdgeInsets.only(right: 38, bottom: 12, left: 38),
-                      child: const Text(
-                        'The most powerful message in the world',
+                      child: Text(
+                        S.of(context).loginPageDisplay1,
                         style: BtvTextStyles.title1,
                         textAlign: TextAlign.center,
                       ),
@@ -105,13 +105,13 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                     Container(
                       margin: const EdgeInsets.only(left: 38, bottom: 60, right: 38),
                       child: Text(
-                        'Watch series, shows and films based on Christian values',
+                        S.of(context).loginPageDisplay2,
                         textAlign: TextAlign.center,
                         style: BtvTextStyles.body1.copyWith(color: BtvColors.label3),
                       ),
                     ),
                     Text(
-                      'Produced by BCC Media',
+                      S.of(context).loginPageDisplay3,
                       style: BtvTextStyles.caption1.copyWith(color: BtvColors.label3),
                     )
                   ],
@@ -128,11 +128,11 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                       margin: const EdgeInsets.only(bottom: 12),
                       child: BtvButton.large(
                         onPressed: loginAction,
-                        labelText: 'Sign in',
+                        labelText: S.of(context).signInButton,
                       ),
                     ),
                     BtvButton.mediumSecondary(
-                      labelText: 'Skip to watch public content',
+                      labelText: S.of(context).skipToPublicContent,
                       onPressed: () {
                         ref.read(authStateProvider.notifier).setGuestMode(true);
                         context.router.popUntil((route) => false);

@@ -5,6 +5,36 @@ class SNo extends S {
   SNo([String locale = 'no']) : super(locale);
 
   @override
+  String get loadingContent => 'Loading content';
+
+  @override
+  String get signInTooltip => 'Sign in to watch more content';
+
+  @override
+  String get skipToPublicContent => 'Skip to watch public content';
+
+  @override
+  String get minutesShort => 'min';
+
+  @override
+  String get calendarThisWeek => 'This week';
+
+  @override
+  String get calendarWeek => 'week';
+
+  @override
+  String get loading => 'Laster';
+
+  @override
+  String get loginPageDisplay1 => 'The most powerful message in the world';
+
+  @override
+  String get loginPageDisplay2 => 'Watch series, shows and films based on Christian values';
+
+  @override
+  String get loginPageDisplay3 => 'Produced by BCC Media';
+
+  @override
   String get liveTab => 'Direkte';
 
   @override
@@ -12,6 +42,9 @@ class SNo extends S {
 
   @override
   String get profileTab => 'Min profil';
+
+  @override
+  String get faq => 'Frequently asked questions';
 
   @override
   String get bccMediaCenter => 'BrunstadTV er et ikke-kommersielt mediesenter som produserer og distribuerer innhold med positive og kristne verdier.';
@@ -449,9 +482,6 @@ class SNo extends S {
   String get posting => 'Innsending';
 
   @override
-  String get loading => 'Laster';
-
-  @override
   String get submitPostInfo => 'Ved å sende inn et spørsmål aksepterer du at dette kan bli brukt for senere publisering. ';
 
   @override
@@ -554,7 +584,7 @@ class SNo extends S {
   String get shareTime => 'Del fra tid {0}';
 
   @override
-  String get audioOnlyErrorTitle => 'Kunne ikke laste innhold';
+  String get loadContentError => 'Kunne ikke laste innhold';
 
   @override
   String get audioOnlyErrorDescription => 'Sjekk nettverksforbindelsen og prøv en gang til';

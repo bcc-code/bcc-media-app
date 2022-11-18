@@ -5,6 +5,36 @@ class SFi extends S {
   SFi([String locale = 'fi']) : super(locale);
 
   @override
+  String get loadingContent => 'Loading content';
+
+  @override
+  String get signInTooltip => 'Sign in to watch more content';
+
+  @override
+  String get skipToPublicContent => 'Skip to watch public content';
+
+  @override
+  String get minutesShort => 'min';
+
+  @override
+  String get calendarThisWeek => 'This week';
+
+  @override
+  String get calendarWeek => 'week';
+
+  @override
+  String get loading => 'Lataillaan';
+
+  @override
+  String get loginPageDisplay1 => 'The most powerful message in the world';
+
+  @override
+  String get loginPageDisplay2 => 'Watch series, shows and films based on Christian values';
+
+  @override
+  String get loginPageDisplay3 => 'Produced by BCC Media';
+
+  @override
   String get liveTab => 'Live';
 
   @override
@@ -12,6 +42,9 @@ class SFi extends S {
 
   @override
   String get profileTab => 'Profiili';
+
+  @override
+  String get faq => 'Frequently asked questions';
 
   @override
   String get bccMediaCenter => 'BrunstadTV on ei-kaupallinen kristillisten ja positiivisten arvojen mukaisen median tuottaja.';
@@ -449,9 +482,6 @@ class SFi extends S {
   String get posting => 'Lähetetään';
 
   @override
-  String get loading => 'Lataillaan';
-
-  @override
   String get submitPostInfo => 'Lähettämällä kuvan tai tekstin hyväksyt myös että se voidaan julkaista. ';
 
   @override
@@ -554,7 +584,7 @@ class SFi extends S {
   String get shareTime => 'Jaa video tästä kohtaa {0}';
 
   @override
-  String get audioOnlyErrorTitle => 'Sisällön lataaminen epäonnistui';
+  String get loadContentError => 'Sisällön lataaminen epäonnistui';
 
   @override
   String get audioOnlyErrorDescription => 'Tarkista nettiyhteys ja yritä uudelleen';

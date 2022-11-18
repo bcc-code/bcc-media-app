@@ -1,5 +1,6 @@
 import '../helpers/btv_colors.dart';
 import '../helpers/btv_typography.dart';
+import '../l10n/app_localizations.dart';
 import 'Package:flutter/material.dart';
 
 class SignInTooltip extends StatelessWidget {
@@ -30,17 +31,14 @@ class SignInTooltip extends StatelessWidget {
               child: Row(
                 children: [
                   Padding(
-                    padding: const EdgeInsets.only(
-                        top: 10, right: 4, bottom: 10, left: 12),
+                    padding: const EdgeInsets.only(top: 10, right: 4, bottom: 10, left: 12),
                     child: Text(
-                      'Sign in to watch more content',
-                      style:
-                          BtvTextStyles.body2.copyWith(color: BtvColors.label1),
+                      S.of(context).signInTooltip,
+                      style: BtvTextStyles.body2.copyWith(color: BtvColors.label1),
                     ),
                   ),
                   Padding(
-                    padding:
-                        const EdgeInsets.only(top: 8, right: 12, bottom: 8),
+                    padding: const EdgeInsets.only(top: 8, right: 12, bottom: 8),
                     child: IconButton(
                       icon: Image.asset('assets/icons/Close.png'),
                       constraints: const BoxConstraints(maxHeight: 24),
