@@ -133,7 +133,7 @@ const _specialRoutes = AutoRoute(
     CustomRoute<void>(
       page: TabsRootScreen,
       path: '/',
-      guards: [AuthGuard],
+      guards: [],
       children: [
         CustomRoute<void>(name: 'HomeScreenWrapperRoute', page: EmptyRouterPage, path: '', children: [
           CustomRoute<void>(

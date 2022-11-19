@@ -40,6 +40,8 @@ class SignInTooltip extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.only(top: 8, right: 12, bottom: 8),
                     child: IconButton(
+                      splashRadius: 1,
+                      splashColor: Colors.transparent,
                       icon: Image.asset('assets/icons/Close.png'),
                       constraints: const BoxConstraints(maxHeight: 24),
                       padding: EdgeInsets.zero,

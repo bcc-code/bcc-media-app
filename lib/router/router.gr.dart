@@ -341,7 +341,6 @@ class AppRouter extends _i19.RootStackRouter {
         _i19.RouteConfig(
           TabsRootScreenRoute.name,
           path: '/',
-          guards: [authGuard],
           children: [
             _i19.RouteConfig(
               HomeScreenWrapperRoute.name,
