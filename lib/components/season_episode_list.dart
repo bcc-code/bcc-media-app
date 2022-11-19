@@ -163,7 +163,7 @@ class EpisodeListEpisode extends StatelessWidget {
                               color: BtvColors.background2,
                               border: Border.all(
                                 width: 1,
-                                color: BtvColors.seperatorOnLight,
+                                color: BtvColors.separatorOnLight,
                               ),
                               borderRadius: const BorderRadius.all(Radius.circular(8)),
                             ),

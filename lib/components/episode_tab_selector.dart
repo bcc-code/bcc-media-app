@@ -50,7 +50,7 @@ class TabButton extends StatelessWidget {
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(16),
           border: Border.all(
-            color: !selected ? Colors.transparent : BtvColors.seperatorOnLight,
+            color: !selected ? Colors.transparent : BtvColors.separatorOnLight,
             width: 1,
           ),
           color: !selected ? Colors.transparent : BtvColors.background2,

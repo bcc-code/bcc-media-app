@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import '../graphql/queries/search.graphql.dart';
 import '../helpers/btv_colors.dart';
 import '../helpers/utils.dart';
+import '../l10n/app_localizations.dart';
 import '../services/utils.dart';
 import 'bordered_image_container.dart';
 
@@ -85,7 +86,7 @@ class _Episode extends StatelessWidget {
                           color: BtvColors.background2,
                           border: Border.all(
                             width: 1,
-                            color: BtvColors.seperatorOnLight,
+                            color: BtvColors.separatorOnLight,
                           ),
                           borderRadius: const BorderRadius.all(Radius.circular(8)),
                         ),
@@ -95,7 +96,7 @@ class _Episode extends StatelessWidget {
                         ),
                       ),
                       Text(
-                        '${Duration(seconds: _episode.duration).inMinutes} min',
+                        '${Duration(seconds: _episode.duration).inMinutes} ${S.of(context).minutesShort}',
                         style: BtvTextStyles.caption2.copyWith(color: BtvColors.label3),
                       )
                     ],

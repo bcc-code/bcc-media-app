@@ -5,6 +5,36 @@ class SEn extends S {
   SEn([String locale = 'en']) : super(locale);
 
   @override
+  String get loadingContent => 'Loading content';
+
+  @override
+  String get signInTooltip => 'Sign in to watch more content';
+
+  @override
+  String get skipToPublicContent => 'Skip to watch public content';
+
+  @override
+  String get minutesShort => 'min';
+
+  @override
+  String get calendarThisWeek => 'This week';
+
+  @override
+  String get calendarWeek => 'week';
+
+  @override
+  String get loading => 'Loading';
+
+  @override
+  String get loginPageDisplay1 => 'The most powerful message in the world';
+
+  @override
+  String get loginPageDisplay2 => 'Watch series, shows and films based on Christian values';
+
+  @override
+  String get loginPageDisplay3 => 'Produced by BCC Media';
+
+  @override
   String get liveTab => 'Live';
 
   @override
@@ -12,6 +42,9 @@ class SEn extends S {
 
   @override
   String get profileTab => 'Profile';
+
+  @override
+  String get faq => 'Frequently asked questions';
 
   @override
   String get bccMediaCenter => 'BrunstadTV is a non-commercial media center producing and distributing content based on positive and Christian values.';
@@ -119,7 +152,7 @@ class SEn extends S {
   String get search => 'Search';
 
   @override
-  String get noResults => 'No results';
+  String get noResults => 'No results found';
 
   @override
   String get doYouWantCast => 'Do you want to cast this video?';
@@ -182,7 +215,7 @@ class SEn extends S {
   String get high => 'High';
 
   @override
-  String get emptySearch => 'You can search all content from BrunstadTV. Series, movies and episodes.';
+  String get emptySearch => 'You can search all content from BrunstadTV. Series, videos and episodes.';
 
   @override
   String get back => 'Back';
@@ -311,7 +344,7 @@ class SEn extends S {
   String get change => 'Change';
 
   @override
-  String get recordingFailedTitle => 'Coulnd\'t record the video';
+  String get recordingFailedTitle => 'Couldn\'t record the video';
 
   @override
   String get recordingFailedMessage => 'Something went wrong while trying to record the video.';
@@ -431,7 +464,7 @@ class SEn extends S {
   String get firstPostTitle => 'Be the first to post a picture or message';
 
   @override
-  String get timezoneInformation => 'Tv guide timetable is in your local time: {0}';
+  String get timezoneInformation => 'Tv guide timetable is in your local time';
 
   @override
   String get yourQuestion => 'Your question';
@@ -447,9 +480,6 @@ class SEn extends S {
 
   @override
   String get posting => 'Posting';
-
-  @override
-  String get loading => 'Loading';
 
   @override
   String get submitPostInfo => 'By submitting a post or photo you accept that it can be used for broadcast purposes. ';
@@ -554,7 +584,7 @@ class SEn extends S {
   String get shareTime => 'Share from time {0}';
 
   @override
-  String get audioOnlyErrorTitle => 'Couldn’t load content';
+  String get loadContentError => 'Couldn’t load content';
 
   @override
   String get audioOnlyErrorDescription => 'Check internet connection and try again';

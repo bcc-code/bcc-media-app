@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../helpers/btv_colors.dart';
 import '../helpers/btv_typography.dart';
+import '../l10n/app_localizations.dart';
 import 'option_list.dart';
 
 class BottomSheetSelectResult {
@@ -16,12 +17,7 @@ class BottomSheetSelect extends StatefulWidget {
   final List<Option> items;
   final void Function(String id) onSelectionChanged;
 
-  const BottomSheetSelect(
-      {Key? key,
-      required this.title,
-      required this.items,
-      required this.selectedId,
-      required this.onSelectionChanged})
+  const BottomSheetSelect({Key? key, required this.title, required this.items, required this.selectedId, required this.onSelectionChanged})
       : super(key: key);
 
   @override
@@ -42,8 +38,7 @@ class _BottomSheetSelectState extends State<BottomSheetSelect> {
       color: BtvColors.background1,
       child: SafeArea(
         child: Padding(
-          padding:
-              const EdgeInsets.only(left: 16, right: 16, top: 8, bottom: 32),
+          padding: const EdgeInsets.only(left: 16, right: 16, top: 8, bottom: 32),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             mainAxisSize: MainAxisSize.min,
@@ -77,8 +72,7 @@ class _BottomSheetSelectState extends State<BottomSheetSelect> {
                       localSelectedId = val;
                     });
                     widget.onSelectionChanged(val);
-                    Navigator.pop(
-                        context, BottomSheetSelectResult(cancelled: false));
+                    Navigator.pop(context, BottomSheetSelectResult(cancelled: false));
                   },
                   margin: const EdgeInsets.all(0),
                   enableDivider: false,
@@ -89,20 +83,16 @@ class _BottomSheetSelectState extends State<BottomSheetSelect> {
                 height: 52.1,
                 child: TextButton(
                   style: TextButton.styleFrom(
-                    backgroundColor: BtvColors.seperatorOnLight,
-                    shape: const RoundedRectangleBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(100))),
-                    side: const BorderSide(
-                        width: 1, color: BtvColors.seperatorOnLight),
+                    backgroundColor: BtvColors.separatorOnLight,
+                    shape: const RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(100))),
+                    side: const BorderSide(width: 1, color: BtvColors.separatorOnLight),
                   ),
                   onPressed: () {
-                    Navigator.pop(
-                        context, BottomSheetSelectResult(cancelled: true));
+                    Navigator.pop(context, BottomSheetSelectResult(cancelled: true));
                   },
                   child: Text(
-                    'Cancel',
-                    style:
-                        BtvTextStyles.button1.copyWith(color: BtvColors.label1),
+                    S.of(context).cancel,
+                    style: BtvTextStyles.button1.copyWith(color: BtvColors.label1),
                   ),
                 ),
               ),

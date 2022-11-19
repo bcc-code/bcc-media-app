@@ -1,4 +1,64 @@
 {
+  "loadingContent": "Loading content",
+  "@loadingContent": {
+    "description": "Text displayed when page content is loading.",
+    "type": "text"
+  },
+
+  "signInTooltip": "Sign in to watch more content",
+  "@signInTooltip": {
+    "description": "Text for tooltip displayed when a non-member user opens the home page.",
+    "type": "text"
+  },
+
+  "skipToPublicContent": "Skip to watch public content",
+  "@skipToPublicContent": {
+    "description": "Text for button displayed on login screen to skip sign in and watch public content.",
+    "type": "text"
+  },
+
+  "minutesShort": "min",
+  "@minutesShort": {
+    "description": "Text for minutes.",
+    "type": "text"
+  },
+
+  "calendarThisWeek": "This week",
+  "@calendarThisWeek": {
+    "description": "Text for This week.",
+    "type": "text"
+  },
+
+  "calendarWeek": "week",
+  "@calendarWeek": {
+    "description": "Text week.",
+    "type": "text"
+  },
+
+  "loading": "Loading",
+  "@loading": {
+    "description": "Text to indicate loading state.",
+    "type": "text"
+  },
+
+  "loginPageDisplay1": "The most powerful message in the world",
+  "@loginPageDisplay1": {
+    "description": "Text displayed on login screen.",
+    "type": "text"
+  },
+
+  "loginPageDisplay2": "Watch series, shows and films based on Christian values",
+  "@loginPageDisplay2": {
+    "description": "Text displayed on login screen.",
+    "type": "text"
+  },
+
+  "loginPageDisplay3": "Produced by BCC Media",
+  "@loginPageDisplay3": {
+    "description": "Text displayed on login screen.",
+    "type": "text"
+  },
+
   "liveTab": "Live",
   "@liveTab": {
     "description": "Title of live page tab",
@@ -12,6 +72,11 @@
   "profileTab": "Profile",
   "@profileTab": {
     "description": "Title of the profile page",
+    "type": "text"
+  },
+  "faq": "Frequently asked questions",
+  "@faq": {
+    "description": "Title of the FAQ page.",
     "type": "text"
   },
   "bccMediaCenter": "BrunstadTV is a non-commercial media center producing and distributing content based on positive and Christian values.",
@@ -189,9 +254,9 @@
     "description": "Button to clear cache",
     "type": "text"
   },
-  "noResults": "No results",
+  "noResults": "No results found",
   "@noResults": {
-    "description": "Search title",
+    "description": "No search results.",
     "type": "text"
   },
   "doYouWantCast": "Do you want to cast this video?",
@@ -294,7 +359,7 @@
     "description": "High quality video option",
     "type": "text"
   },
-  "emptySearch": "You can search all content from BrunstadTV. Series, movies and episodes.",
+  "emptySearch": "You can search all content from BrunstadTV. Series, videos and episodes.",
   "@emptySearch": {
     "description": "Message on search page when there is no search results.",
     "type": "text"
@@ -509,7 +574,7 @@
     "description": "Button text on interactive live avatar section",
     "type": "text"
   },
-  "recordingFailedTitle": "Coulnd't record the video",
+  "recordingFailedTitle": "Couldn't record the video",
   "@recordingFailedTitle": {
     "description": "Title in alert dialog when recording fails",
     "type": "text"
@@ -709,9 +774,9 @@
     "description": "Text on feed page when feed is empty.",
     "type": "text"
   },
-  "timezoneInformation": "Tv guide timetable is in your local time: {0}",
+  "timezoneInformation": "Tv guide timetable is in your local time",
   "@timezoneInformation": {
-    "description": "TV guide footer info text. {0} is timezone acronym like CET",
+    "description": "TV guide footer info text.",
     "type": "text"
   },
   "yourQuestion": "Your question",
@@ -736,7 +801,7 @@
   },
   "posting": "Posting",
   "@posting": {
-    "description": "Information about ongiong posting process",
+    "description": "Information about ongoing posting process",
     "type": "text"
   },
   "loading": "Loading",
@@ -914,9 +979,9 @@
     "description": "Option on action sheet for sharing from time",
     "type": "text"
   },
-  "audioOnlyErrorTitle": "Couldn’t load content",
-  "@audioOnlyErrorTitle": {
-    "description": "Error title when audio only fails to play",
+  "loadContentError": "Couldn’t load content",
+  "@loadContentError": {
+    "description": "Error text when content couldn't be loaded.",
     "type": "text"
   },
   "audioOnlyErrorDescription": "Check internet connection and try again",

@@ -5,6 +5,36 @@ class SPl extends S {
   SPl([String locale = 'pl']) : super(locale);
 
   @override
+  String get loadingContent => 'Loading content';
+
+  @override
+  String get signInTooltip => 'Sign in to watch more content';
+
+  @override
+  String get skipToPublicContent => 'Skip to watch public content';
+
+  @override
+  String get minutesShort => 'min';
+
+  @override
+  String get calendarThisWeek => 'This week';
+
+  @override
+  String get calendarWeek => 'week';
+
+  @override
+  String get loading => 'Ładuję';
+
+  @override
+  String get loginPageDisplay1 => 'The most powerful message in the world';
+
+  @override
+  String get loginPageDisplay2 => 'Watch series, shows and films based on Christian values';
+
+  @override
+  String get loginPageDisplay3 => 'Produced by BCC Media';
+
+  @override
   String get liveTab => 'Na żywo';
 
   @override
@@ -12,6 +42,9 @@ class SPl extends S {
 
   @override
   String get profileTab => 'Profil';
+
+  @override
+  String get faq => 'Frequently asked questions';
 
   @override
   String get bccMediaCenter => 'BrunstadTV jest niekomercyjnym domem medialnym tworzącym i rozpowszechniającym treści oparte na pozytywnych i chrześcijańskich wartościach.';
@@ -449,9 +482,6 @@ class SPl extends S {
   String get posting => 'Wysyłanie';
 
   @override
-  String get loading => 'Ładuję';
-
-  @override
   String get submitPostInfo => 'Wysyłając wiadomość lub zdjęcie, zgadzasz się na użycie jej lub go podczas transmisji.';
 
   @override
@@ -554,7 +584,7 @@ class SPl extends S {
   String get shareTime => 'Udostępnij od {0}';
 
   @override
-  String get audioOnlyErrorTitle => 'Nie udało się załadować treści';
+  String get loadContentError => 'Nie udało się załadować treści';
 
   @override
   String get audioOnlyErrorDescription => 'Sprawdź połączenie internetowe i spróbuj ponownie';

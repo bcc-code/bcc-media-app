@@ -3,6 +3,7 @@ import 'package:auto_route/auto_route.dart';
 
 import '../../helpers/btv_colors.dart';
 import '../../helpers/btv_typography.dart';
+import '../../l10n/app_localizations.dart';
 
 class FAQItem {
   final int id;
@@ -72,13 +73,13 @@ class _FAQState extends State<FAQ> {
           },
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: const [
-              Icon(
+            children: [
+              const Icon(
                 Icons.arrow_back_ios_new,
                 color: BtvColors.tint1,
               ),
               Text(
-                'Profil',
+                S.of(context).faq,
                 overflow: TextOverflow.ellipsis,
                 style: BtvTextStyles.button2,
               ),
@@ -86,8 +87,8 @@ class _FAQState extends State<FAQ> {
           ),
         ),
         centerTitle: true,
-        title: const Text(
-          'Ofte stillede spørsmål',
+        title: Text(
+          S.of(context).faq,
           overflow: TextOverflow.ellipsis,
           textAlign: TextAlign.center,
         ),

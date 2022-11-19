@@ -5,6 +5,36 @@ class STr extends S {
   STr([String locale = 'tr']) : super(locale);
 
   @override
+  String get loadingContent => 'Loading content';
+
+  @override
+  String get signInTooltip => 'Sign in to watch more content';
+
+  @override
+  String get skipToPublicContent => 'Skip to watch public content';
+
+  @override
+  String get minutesShort => 'min';
+
+  @override
+  String get calendarThisWeek => 'This week';
+
+  @override
+  String get calendarWeek => 'week';
+
+  @override
+  String get loading => 'Yükleniyor';
+
+  @override
+  String get loginPageDisplay1 => 'The most powerful message in the world';
+
+  @override
+  String get loginPageDisplay2 => 'Watch series, shows and films based on Christian values';
+
+  @override
+  String get loginPageDisplay3 => 'Produced by BCC Media';
+
+  @override
   String get liveTab => 'Canlı';
 
   @override
@@ -12,6 +42,9 @@ class STr extends S {
 
   @override
   String get profileTab => 'Profil';
+
+  @override
+  String get faq => 'Frequently asked questions';
 
   @override
   String get bccMediaCenter => 'BrunstadTV, pozitif ve Hıristiyan değerlere dayalı içerik üreten ve yayınlayan, ticari olmayan bir medya merkezidir.';
@@ -449,9 +482,6 @@ class STr extends S {
   String get posting => 'Gönderi';
 
   @override
-  String get loading => 'Yükleniyor';
-
-  @override
   String get submitPostInfo => 'Bir post ya da fotoğraf göndererek, onun yayın amaçlı kullanılabileceğini kabul etmiş olursunuz. ';
 
   @override
@@ -554,7 +584,7 @@ class STr extends S {
   String get shareTime => 'Share from time {0}';
 
   @override
-  String get audioOnlyErrorTitle => 'Couldn’t load content';
+  String get loadContentError => 'Couldn’t load content';
 
   @override
   String get audioOnlyErrorDescription => 'Check internet connection and try again';

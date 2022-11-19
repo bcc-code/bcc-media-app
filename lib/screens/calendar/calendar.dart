@@ -14,6 +14,7 @@ import 'package:intl/intl.dart';
 
 import '../../helpers/btv_colors.dart';
 import '../../helpers/btv_typography.dart';
+import '../../l10n/app_localizations.dart';
 
 class CalendarPage extends ConsumerStatefulWidget {
   const CalendarPage({super.key});
@@ -28,7 +29,7 @@ class _CalendarPageState extends ConsumerState<CalendarPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(title: const Text('Calendar'), actions: [
+        appBar: AppBar(title: Text(S.of(context).calendar), actions: [
           GestureDetector(
               behavior: HitTestBehavior.opaque,
               onTapUp: (details) {
@@ -248,8 +249,8 @@ class _CalendarWidgetState extends ConsumerState<CalendarWidget> {
               titleCentered: true,
               titleTextFormatter: (date, locale) => widget.collapsed
                   ? _isSameWeekAsCurrentWeek(date)
-                      ? 'This week'
-                      : 'week ${_getWeekNumber(date).toString()}'
+                      ? S.of(context).calendarThisWeek
+                      : '${S.of(context).calendarWeek} ${_getWeekNumber(date).toString()}'
                   : DateFormat.MMMM().format(date).toString(),
               headerMargin: EdgeInsets.zero,
               titleTextStyle: BtvTextStyles.caption1,
@@ -363,7 +364,7 @@ class _CalendarWidgetState extends ConsumerState<CalendarWidget> {
           ),
         ),
         const Divider(
-          color: BtvColors.seperatorOnLight,
+          color: BtvColors.separatorOnLight,
         ),
         Row(
           mainAxisAlignment: MainAxisAlignment.start,
@@ -371,7 +372,7 @@ class _CalendarWidgetState extends ConsumerState<CalendarWidget> {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 24),
               child: Text(
-                'Today, ${DateFormat('d MMMM').format(DateTime.now())}',
+                '${S.of(context).today}, ${DateFormat('d MMMM').format(DateTime.now())}',
                 style: BtvTextStyles.title2,
               ),
             ),
@@ -542,7 +543,7 @@ class _EntriesSlot extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              isHappeningNow(entriesList[i]) ? 'Now' : DateFormat('HH:mm').format(DateTime.parse(entriesList[i].start)),
+                              isHappeningNow(entriesList[i]) ? S.of(context).now : DateFormat('HH:mm').format(DateTime.parse(entriesList[i].start)),
                               style: BtvTextStyles.title3,
                             ),
                             const SizedBox(height: 4),
@@ -578,9 +579,9 @@ class _EntriesSlot extends StatelessWidget {
             padding: const EdgeInsets.symmetric(vertical: 36.0),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
-              children: const [
+              children: [
                 Text(
-                  'Ingen planlagte sendinger',
+                  S.of(context).noPlannedEvents,
                   style: BtvTextStyles.title3,
                 )
               ],
@@ -603,7 +604,7 @@ class TvGuideTime extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Text(
-            'Tv guide timetable is in your local time: ${DateTime.now().timeZoneName}',
+            '${S.of(context).timezoneInformation}: ${DateTime.now().timeZoneName}',
             style: BtvTextStyles.caption1,
           ),
         ],
