@@ -5,6 +5,36 @@ class SEs extends S {
   SEs([String locale = 'es']) : super(locale);
 
   @override
+  String get loadingContent => 'Loading content';
+
+  @override
+  String get signInTooltip => 'Sign in to watch more content';
+
+  @override
+  String get skipToPublicContent => 'Skip to watch public content';
+
+  @override
+  String get minutesShort => 'min';
+
+  @override
+  String get calendarThisWeek => 'This week';
+
+  @override
+  String get calendarWeek => 'week';
+
+  @override
+  String get loading => 'Cargando';
+
+  @override
+  String get loginPageDisplay1 => 'The most powerful message in the world';
+
+  @override
+  String get loginPageDisplay2 => 'Watch series, shows and films based on Christian values';
+
+  @override
+  String get loginPageDisplay3 => 'Produced by BCC Media';
+
+  @override
   String get liveTab => 'En Vivo';
 
   @override
@@ -12,6 +42,9 @@ class SEs extends S {
 
   @override
   String get profileTab => 'Perfil';
+
+  @override
+  String get faq => 'Frequently asked questions';
 
   @override
   String get bccMediaCenter => 'BrunstadTV es un centro de medio audiovisuales no comercial, que produce contenido basado en valores positivos y en valores cristianos.';
@@ -449,9 +482,6 @@ class SEs extends S {
   String get posting => 'Publicando';
 
   @override
-  String get loading => 'Cargando';
-
-  @override
   String get submitPostInfo => 'Al enviar una publicación o una foto, ud acepta que se puede utilizar para fines de transmisión. ';
 
   @override
@@ -554,7 +584,7 @@ class SEs extends S {
   String get shareTime => 'Compartir desde {0}';
 
   @override
-  String get audioOnlyErrorTitle => 'El contenido no pudo ser cargado';
+  String get loadContentError => 'El contenido no pudo ser cargado';
 
   @override
   String get audioOnlyErrorDescription => 'Revisa tu conexión a internet e inténtalo otra vez';

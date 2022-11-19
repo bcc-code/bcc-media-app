@@ -336,7 +336,7 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen> with AutoRouteAwa
                         children: [
                           Container(
                               decoration: const BoxDecoration(
-                                border: Border(bottom: BorderSide(width: 1, color: BtvColors.seperatorOnLight)),
+                                border: Border(bottom: BorderSide(width: 1, color: BtvColors.separatorOnLight)),
                               ),
                               child: Padding(
                                   padding: const EdgeInsets.all(16),

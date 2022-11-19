@@ -11,5 +11,5 @@ class BtvColors {
   static const Color label4 = Color(0xff707C8E);
   static const Color background1 = Color(0xff0D1623);
   static const Color background2 = Color(0xff1D2838);
-  static const Color seperatorOnLight = Color.fromRGBO(204, 221, 255, 0.1);
+  static const Color separatorOnLight = Color.fromRGBO(204, 221, 255, 0.1);
 }

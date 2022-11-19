@@ -5,6 +5,36 @@ class SHu extends S {
   SHu([String locale = 'hu']) : super(locale);
 
   @override
+  String get loadingContent => 'Loading content';
+
+  @override
+  String get signInTooltip => 'Sign in to watch more content';
+
+  @override
+  String get skipToPublicContent => 'Skip to watch public content';
+
+  @override
+  String get minutesShort => 'min';
+
+  @override
+  String get calendarThisWeek => 'This week';
+
+  @override
+  String get calendarWeek => 'week';
+
+  @override
+  String get loading => 'Betöltés';
+
+  @override
+  String get loginPageDisplay1 => 'The most powerful message in the world';
+
+  @override
+  String get loginPageDisplay2 => 'Watch series, shows and films based on Christian values';
+
+  @override
+  String get loginPageDisplay3 => 'Produced by BCC Media';
+
+  @override
   String get liveTab => 'Élő';
 
   @override
@@ -12,6 +42,9 @@ class SHu extends S {
 
   @override
   String get profileTab => 'Profil';
+
+  @override
+  String get faq => 'Frequently asked questions';
 
   @override
   String get bccMediaCenter => 'BrunstadTV nem kereskedelmi média, hanem olyan tartalmakat állít elő és közvetít, amelyek pozitív és keresztény értékeken alapul.';
@@ -449,9 +482,6 @@ class SHu extends S {
   String get posting => 'Közzé tenni';
 
   @override
-  String get loading => 'Betöltés';
-
-  @override
   String get submitPostInfo => 'Hozzászólás vagy fotó beküldéseddel elfogadod, hogy azt adási célokra lehet felhasználni. ';
 
   @override
@@ -554,7 +584,7 @@ class SHu extends S {
   String get shareTime => 'Megosztás innentől {0}';
 
   @override
-  String get audioOnlyErrorTitle => 'Nem sikerült betölteni a tartalmat';
+  String get loadContentError => 'Nem sikerült betölteni a tartalmat';
 
   @override
   String get audioOnlyErrorDescription => 'Ellenőrizd a hálózati csatlakozásodat és próbálj újra';

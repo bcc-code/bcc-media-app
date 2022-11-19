@@ -914,8 +914,8 @@
     "description": "Option on action sheet for sharing from time",
     "type": "text"
   },
-  "audioOnlyErrorTitle": "Nalaganje vsebine ni uspelo",
-  "@audioOnlyErrorTitle": {
+  "loadContentError": "Nalaganje vsebine ni uspelo",
+  "@loadContentError": {
     "description": "Error title when audio only fails to play",
     "type": "text"
   },

@@ -4,6 +4,7 @@ import 'package:auto_route/auto_route.dart';
 
 import '../../helpers/btv_colors.dart';
 import '../../helpers/btv_typography.dart';
+import '../../l10n/app_localizations.dart';
 import '../../main.dart';
 
 class AboutScreen extends StatefulWidget {
@@ -21,8 +22,8 @@ class _AboutScreenState extends State<AboutScreen> {
         backgroundColor: BtvColors.background1,
         leadingWidth: 90,
         centerTitle: true,
-        title: const Text(
-          'Om',
+        title: Text(
+          S.of(context).about,
           overflow: TextOverflow.ellipsis,
           textAlign: TextAlign.center,
         ),
@@ -38,8 +39,7 @@ class _AboutScreenState extends State<AboutScreen> {
                     height: 30,
                     child: ElevatedButton(
                         onPressed: () async {
-                          var token =
-                              await FirebaseMessaging.instance.getToken();
+                          var token = await FirebaseMessaging.instance.getToken();
                           print('token : $token');
                         },
                         child: const Text('Print info to console'))),

@@ -77,7 +77,7 @@ class _SearchResultsPageState extends ConsumerState<SearchResultsPage> {
         if (snapshot.hasData) {
           var searchResults = snapshot.data!.result;
           if (searchResults.isEmpty) {
-            return _noResultsInfoWidget;
+            return _getNoResultsInfoWidget(context);
           } else {
             final programs = searchResults.whereType<Fragment$SearchResultItem$$ShowSearchItem>().toList();
             final episodes = searchResults.whereType<Fragment$SearchResultItem$$EpisodeSearchItem>().toList();
@@ -119,17 +119,17 @@ class _SearchResultsPageState extends ConsumerState<SearchResultsPage> {
     );
   }
 
-  final _noResultsInfoWidget = Center(
-    child: Column(
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        Image.asset('assets/icons/Search_Default.png', width: 80, height: 80, fit: BoxFit.fill),
-        Text(
-          'No results found',
-          textAlign: TextAlign.center,
-          style: BtvTextStyles.body1.copyWith(color: BtvColors.label3),
-        )
-      ],
-    ),
-  );
+  Widget _getNoResultsInfoWidget(context) => Center(
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Image.asset('assets/icons/Search_Default.png', width: 80, height: 80, fit: BoxFit.fill),
+            Text(
+              S.of(context).noResults,
+              textAlign: TextAlign.center,
+              style: BtvTextStyles.body1.copyWith(color: BtvColors.label3),
+            )
+          ],
+        ),
+      );
 }

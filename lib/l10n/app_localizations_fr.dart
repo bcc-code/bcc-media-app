@@ -5,6 +5,36 @@ class SFr extends S {
   SFr([String locale = 'fr']) : super(locale);
 
   @override
+  String get loadingContent => 'Loading content';
+
+  @override
+  String get signInTooltip => 'Sign in to watch more content';
+
+  @override
+  String get skipToPublicContent => 'Skip to watch public content';
+
+  @override
+  String get minutesShort => 'min';
+
+  @override
+  String get calendarThisWeek => 'This week';
+
+  @override
+  String get calendarWeek => 'week';
+
+  @override
+  String get loading => 'Chargement';
+
+  @override
+  String get loginPageDisplay1 => 'The most powerful message in the world';
+
+  @override
+  String get loginPageDisplay2 => 'Watch series, shows and films based on Christian values';
+
+  @override
+  String get loginPageDisplay3 => 'Produced by BCC Media';
+
+  @override
   String get liveTab => 'En direct';
 
   @override
@@ -12,6 +42,9 @@ class SFr extends S {
 
   @override
   String get profileTab => 'Profil';
+
+  @override
+  String get faq => 'Frequently asked questions';
 
   @override
   String get bccMediaCenter => 'BrunstadTV est un média à caractère non lucratif qui produit et distribue du contenu basé sur des valeurs positives et chrétiennes.';
@@ -449,9 +482,6 @@ class SFr extends S {
   String get posting => 'Envoyer';
 
   @override
-  String get loading => 'Chargement';
-
-  @override
   String get submitPostInfo => 'En postant un message ou une photo, tu acceptes son utilisation dans le cadre de l\'émission. ';
 
   @override
@@ -554,7 +584,7 @@ class SFr extends S {
   String get shareTime => 'Partager à partir de {0}';
 
   @override
-  String get audioOnlyErrorTitle => 'Impossible de charger le contenu';
+  String get loadContentError => 'Impossible de charger le contenu';
 
   @override
   String get audioOnlyErrorDescription => 'Vérifie ta connexion internet et retente à nouveau';

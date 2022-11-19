@@ -5,6 +5,36 @@ class SIt extends S {
   SIt([String locale = 'it']) : super(locale);
 
   @override
+  String get loadingContent => 'Loading content';
+
+  @override
+  String get signInTooltip => 'Sign in to watch more content';
+
+  @override
+  String get skipToPublicContent => 'Skip to watch public content';
+
+  @override
+  String get minutesShort => 'min';
+
+  @override
+  String get calendarThisWeek => 'This week';
+
+  @override
+  String get calendarWeek => 'week';
+
+  @override
+  String get loading => 'Loading';
+
+  @override
+  String get loginPageDisplay1 => 'The most powerful message in the world';
+
+  @override
+  String get loginPageDisplay2 => 'Watch series, shows and films based on Christian values';
+
+  @override
+  String get loginPageDisplay3 => 'Produced by BCC Media';
+
+  @override
   String get liveTab => 'Diretta';
 
   @override
@@ -12,6 +42,9 @@ class SIt extends S {
 
   @override
   String get profileTab => 'Profilo';
+
+  @override
+  String get faq => 'Frequently asked questions';
 
   @override
   String get bccMediaCenter => 'BrunstadTV è un centro multimediale non-commerciale che produce e distribuisce contenuti basati su valori positivi e cristiani.';
@@ -449,9 +482,6 @@ class SIt extends S {
   String get posting => 'Posting';
 
   @override
-  String get loading => 'Loading';
-
-  @override
   String get submitPostInfo => 'By submitting a post or photo you accept that it can be used for broadcast purposes. ';
 
   @override
@@ -554,7 +584,7 @@ class SIt extends S {
   String get shareTime => 'Share from time {0}';
 
   @override
-  String get audioOnlyErrorTitle => 'Couldn’t load content';
+  String get loadContentError => 'Couldn’t load content';
 
   @override
   String get audioOnlyErrorDescription => 'Check internet connection and try again';

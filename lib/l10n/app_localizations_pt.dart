@@ -5,6 +5,36 @@ class SPt extends S {
   SPt([String locale = 'pt']) : super(locale);
 
   @override
+  String get loadingContent => 'Loading content';
+
+  @override
+  String get signInTooltip => 'Sign in to watch more content';
+
+  @override
+  String get skipToPublicContent => 'Skip to watch public content';
+
+  @override
+  String get minutesShort => 'min';
+
+  @override
+  String get calendarThisWeek => 'This week';
+
+  @override
+  String get calendarWeek => 'week';
+
+  @override
+  String get loading => 'Carregando';
+
+  @override
+  String get loginPageDisplay1 => 'The most powerful message in the world';
+
+  @override
+  String get loginPageDisplay2 => 'Watch series, shows and films based on Christian values';
+
+  @override
+  String get loginPageDisplay3 => 'Produced by BCC Media';
+
+  @override
   String get liveTab => 'Ao vivo. ';
 
   @override
@@ -12,6 +42,9 @@ class SPt extends S {
 
   @override
   String get profileTab => 'Perfil';
+
+  @override
+  String get faq => 'Frequently asked questions';
 
   @override
   String get bccMediaCenter => 'BrunstadTV é um centro de mídia não comercial que produz e distribui conteúdo com base em valores positivos e cristãos.';
@@ -449,9 +482,6 @@ class SPt extends S {
   String get posting => 'Postar';
 
   @override
-  String get loading => 'Carregando';
-
-  @override
   String get submitPostInfo => 'Ao enviar uma postagem ou foto, você concorda que ela pode ser usada para fins de transmissão. ';
 
   @override
@@ -554,7 +584,7 @@ class SPt extends S {
   String get shareTime => 'Compartilhar de uma vez';
 
   @override
-  String get audioOnlyErrorTitle => 'Não foi possível carregar o conteúdo';
+  String get loadContentError => 'Não foi possível carregar o conteúdo';
 
   @override
   String get audioOnlyErrorDescription => 'Verifique a conexão com a Internet e tente novamente';

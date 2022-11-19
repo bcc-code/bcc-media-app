@@ -5,6 +5,36 @@ class SRo extends S {
   SRo([String locale = 'ro']) : super(locale);
 
   @override
+  String get loadingContent => 'Loading content';
+
+  @override
+  String get signInTooltip => 'Sign in to watch more content';
+
+  @override
+  String get skipToPublicContent => 'Skip to watch public content';
+
+  @override
+  String get minutesShort => 'min';
+
+  @override
+  String get calendarThisWeek => 'This week';
+
+  @override
+  String get calendarWeek => 'week';
+
+  @override
+  String get loading => 'Se încarcă';
+
+  @override
+  String get loginPageDisplay1 => 'The most powerful message in the world';
+
+  @override
+  String get loginPageDisplay2 => 'Watch series, shows and films based on Christian values';
+
+  @override
+  String get loginPageDisplay3 => 'Produced by BCC Media';
+
+  @override
   String get liveTab => 'În direct';
 
   @override
@@ -12,6 +42,9 @@ class SRo extends S {
 
   @override
   String get profileTab => 'Profil';
+
+  @override
+  String get faq => 'Frequently asked questions';
 
   @override
   String get bccMediaCenter => 'BrunstadTV este un centru media necomercial care produce și distribuie conținut bazat pe valori pozitive și creștine.';
@@ -449,9 +482,6 @@ class SRo extends S {
   String get posting => 'Se postează';
 
   @override
-  String get loading => 'Se încarcă';
-
-  @override
   String get submitPostInfo => 'Prin trimiterea unei postări sau poze, accepți să se poată utiliza în scopurile difuzării. ';
 
   @override
@@ -554,7 +584,7 @@ class SRo extends S {
   String get shareTime => 'Share from time {0}';
 
   @override
-  String get audioOnlyErrorTitle => 'Couldn’t load content';
+  String get loadContentError => 'Couldn’t load content';
 
   @override
   String get audioOnlyErrorDescription => 'Check internet connection and try again';

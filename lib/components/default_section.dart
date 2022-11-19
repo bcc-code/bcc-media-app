@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../helpers/btv_colors.dart';
 import '../helpers/btv_typography.dart';
 import '../helpers/utils.dart';
+import '../l10n/app_localizations.dart';
 import '../services/utils.dart';
 import 'bordered_image_container.dart';
 import 'horizontal_slider.dart';
@@ -218,7 +219,7 @@ class _DefaultShowItem extends StatelessWidget {
               ),
             ),
             Text(
-              '${show.seasonCount} Seasons - ${show.episodeCount} Episodes',
+              '${show.seasonCount} ${S.of(context).seasons} - ${show.episodeCount} ${S.of(context).episodes}',
               style: BtvTextStyles.caption2,
             )
           ],

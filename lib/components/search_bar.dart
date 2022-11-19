@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../helpers/btv_colors.dart';
 import '../helpers/btv_typography.dart';
+import '../l10n/app_localizations.dart';
 
 class SearchBar extends StatefulWidget {
   final Function onInputChange;
@@ -126,8 +127,8 @@ class _SearchBarState extends State<SearchBar> {
                   padding: const EdgeInsets.symmetric(horizontal: 8),
                 ),
                 onPressed: _onCancelled,
-                child: const Text(
-                  'Cancel',
+                child: Text(
+                  S.of(context).cancel,
                   style: BtvTextStyles.button2,
                 ),
               ),

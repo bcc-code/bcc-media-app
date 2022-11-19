@@ -79,8 +79,8 @@ class BtvButton extends StatelessWidget {
     String? imagePath,
   }) {
     return BtvButton.small(onPressed: onPressed, labelText: labelText, imagePath: imagePath).copyWith(
-      backgroundColor: BtvColors.seperatorOnLight,
-      border: Border.all(color: BtvColors.seperatorOnLight, width: 1),
+      backgroundColor: BtvColors.separatorOnLight,
+      border: Border.all(color: BtvColors.separatorOnLight, width: 1),
     );
   }
 
@@ -107,7 +107,7 @@ class BtvButton extends StatelessWidget {
   }) {
     return BtvButton.small(onPressed: onPressed, labelText: labelText, imagePath: imagePath).copyWith(
       backgroundColor: BtvColors.background1,
-      border: Border.all(color: BtvColors.seperatorOnLight, width: 1),
+      border: Border.all(color: BtvColors.separatorOnLight, width: 1),
       textStyle: BtvTextStyles.button1.copyWith(color: BtvColors.label4),
     );
   }
@@ -151,8 +151,8 @@ class BtvButton extends StatelessWidget {
     String? imagePath,
   }) {
     return BtvButton.medium(onPressed: onPressed, labelText: labelText, imagePath: imagePath).copyWith(
-      backgroundColor: BtvColors.seperatorOnLight,
-      border: Border.all(color: BtvColors.seperatorOnLight.withOpacity(0.1), width: 1),
+      backgroundColor: BtvColors.separatorOnLight,
+      border: Border.all(color: BtvColors.separatorOnLight.withOpacity(0.1), width: 1),
     );
   }
 
@@ -163,7 +163,7 @@ class BtvButton extends StatelessWidget {
   }) {
     return BtvButton.medium(onPressed: onPressed, labelText: labelText, imagePath: imagePath).copyWith(
       backgroundColor: BtvColors.background1,
-      border: Border.all(color: BtvColors.seperatorOnLight, width: 1),
+      border: Border.all(color: BtvColors.separatorOnLight, width: 1),
       textStyle: BtvTextStyles.button1.copyWith(color: BtvColors.label4),
     );
   }
@@ -208,8 +208,8 @@ class BtvButton extends StatelessWidget {
     String? imagePath,
   }) {
     return BtvButton.large(onPressed: onPressed, labelText: labelText, imagePath: imagePath).copyWith(
-      backgroundColor: BtvColors.seperatorOnLight,
-      border: Border.all(color: BtvColors.seperatorOnLight.withOpacity(0.1), width: 1),
+      backgroundColor: BtvColors.separatorOnLight,
+      border: Border.all(color: BtvColors.separatorOnLight.withOpacity(0.1), width: 1),
     );
   }
 
@@ -220,7 +220,7 @@ class BtvButton extends StatelessWidget {
   }) {
     return BtvButton.large(onPressed: onPressed, labelText: labelText, imagePath: imagePath).copyWith(
       backgroundColor: BtvColors.background1,
-      border: Border.all(color: BtvColors.seperatorOnLight, width: 1),
+      border: Border.all(color: BtvColors.separatorOnLight, width: 1),
       textStyle: BtvTextStyles.button1.copyWith(color: BtvColors.label4),
     );
   }

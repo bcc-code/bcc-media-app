@@ -119,6 +119,66 @@ abstract class S {
     Locale('tr')
   ];
 
+  /// Text displayed when page content is loading.
+  ///
+  /// In en, this message translates to:
+  /// **'Loading content'**
+  String get loadingContent;
+
+  /// Text for tooltip displayed when a non-member user opens the home page.
+  ///
+  /// In en, this message translates to:
+  /// **'Sign in to watch more content'**
+  String get signInTooltip;
+
+  /// Text for button displayed on login screen to skip sign in and watch public content.
+  ///
+  /// In en, this message translates to:
+  /// **'Skip to watch public content'**
+  String get skipToPublicContent;
+
+  /// Text for minutes.
+  ///
+  /// In en, this message translates to:
+  /// **'min'**
+  String get minutesShort;
+
+  /// Text for This week.
+  ///
+  /// In en, this message translates to:
+  /// **'This week'**
+  String get calendarThisWeek;
+
+  /// Text week.
+  ///
+  /// In en, this message translates to:
+  /// **'week'**
+  String get calendarWeek;
+
+  /// Message displayed during loading info operation
+  ///
+  /// In en, this message translates to:
+  /// **'Loading'**
+  String get loading;
+
+  /// Text displayed on login screen.
+  ///
+  /// In en, this message translates to:
+  /// **'The most powerful message in the world'**
+  String get loginPageDisplay1;
+
+  /// Text displayed on login screen.
+  ///
+  /// In en, this message translates to:
+  /// **'Watch series, shows and films based on Christian values'**
+  String get loginPageDisplay2;
+
+  /// Text displayed on login screen.
+  ///
+  /// In en, this message translates to:
+  /// **'Produced by BCC Media'**
+  String get loginPageDisplay3;
+
   /// Title of live page tab
   ///
   /// In en, this message translates to:
@@ -136,6 +196,12 @@ abstract class S {
   /// In en, this message translates to:
   /// **'Profile'**
   String get profileTab;
+
+  /// Title of the FAQ page.
+  ///
+  /// In en, this message translates to:
+  /// **'Frequently asked questions'**
+  String get faq;
 
   /// Disclaimer on login page
   ///
@@ -347,10 +413,10 @@ abstract class S {
   /// **'Search'**
   String get search;
 
-  /// Search title
+  /// No search results.
   ///
   /// In en, this message translates to:
-  /// **'No results'**
+  /// **'No results found'**
   String get noResults;
 
   /// Prompt displayed to the user
@@ -476,7 +542,7 @@ abstract class S {
   /// Message on search page when there is no search results.
   ///
   /// In en, this message translates to:
-  /// **'You can search all content from BrunstadTV. Series, movies and episodes.'**
+  /// **'You can search all content from BrunstadTV. Series, videos and episodes.'**
   String get emptySearch;
 
   /// General back button to navigate back
@@ -734,7 +800,7 @@ abstract class S {
   /// Title in alert dialog when recording fails
   ///
   /// In en, this message translates to:
-  /// **'Coulnd\'t record the video'**
+  /// **'Couldn\'t record the video'**
   String get recordingFailedTitle;
 
   /// Message in alert dialog when recording fails
@@ -971,10 +1037,10 @@ abstract class S {
   /// **'Be the first to post a picture or message'**
   String get firstPostTitle;
 
-  /// TV guide footer info text. {0} is timezone acronym like CET
+  /// TV guide footer info text.
   ///
   /// In en, this message translates to:
-  /// **'Tv guide timetable is in your local time: {0}'**
+  /// **'Tv guide timetable is in your local time'**
   String get timezoneInformation;
 
   /// Title on ask question page
@@ -1001,17 +1067,11 @@ abstract class S {
   /// **'By submitting a question you accept that it can be used for broadcast purposes.'**
   String get submitQuestionInfo;
 
-  /// Information about ongiong posting process
+  /// Information about ongoing posting process
   ///
   /// In en, this message translates to:
   /// **'Posting'**
   String get posting;
-
-  /// Message displayed during loading info operation
-  ///
-  /// In en, this message translates to:
-  /// **'Loading'**
-  String get loading;
 
   /// Disclaimer on text testimony page
   ///
@@ -1217,11 +1277,11 @@ abstract class S {
   /// **'Share from time {0}'**
   String get shareTime;
 
-  /// Error title when audio only fails to play
+  /// Error text when content couldn't be loaded.
   ///
   /// In en, this message translates to:
   /// **'Couldn’t load content'**
-  String get audioOnlyErrorTitle;
+  String get loadContentError;
 
   /// Error message when audio only fails to play
   ///

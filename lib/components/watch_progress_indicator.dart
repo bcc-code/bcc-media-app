@@ -31,7 +31,7 @@ class WatchProgressIndicator extends StatelessWidget {
                 children: [
                   Container(
                     decoration: BoxDecoration(
-                      color: BtvColors.seperatorOnLight,
+                      color: BtvColors.separatorOnLight,
                       borderRadius: BorderRadius.circular(4),
                     ),
                   ),

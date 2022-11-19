@@ -69,7 +69,7 @@ class _CustomTabBarState extends State<CustomTabBar> {
 
     if (useMaterial) {
       return Container(
-        decoration: const BoxDecoration(border: Border(top: BorderSide(width: 1, color: BtvColors.seperatorOnLight))),
+        decoration: const BoxDecoration(border: Border(top: BorderSide(width: 1, color: BtvColors.separatorOnLight))),
         child: BottomNavigationBar(
             type: BottomNavigationBarType.fixed,
             unselectedItemColor: BtvColors.label3,
@@ -104,7 +104,7 @@ class _CustomTabBarState extends State<CustomTabBar> {
         },
         inactiveColor: BtvColors.label3,
         activeColor: BtvColors.tint1,
-        border: const Border(top: BorderSide(width: 1, color: BtvColors.seperatorOnLight)),
+        border: const Border(top: BorderSide(width: 1, color: BtvColors.separatorOnLight)),
         items: items);
   }
 }

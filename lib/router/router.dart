@@ -21,7 +21,6 @@ import '../screens/episode.dart';
 import '../screens/page.dart';
 import 'special_routes_guard.dart';
 import '../screens/tabs_root.dart';
-import '../screens/search/explore_category_page.dart';
 
 const _episodeScreenRoute = CustomRoute<void>(
     page: EpisodeScreen,
@@ -147,12 +146,11 @@ const _specialRoutes = AutoRoute(
           _pageScreenRoute,
         ]),
         MaterialRoute<void>(page: LiveScreen, path: 'live', meta: {'hide_mini_player': true}, maintainState: true),
-        MaterialRoute<void>(name: 'SearchScreenWrapperRoute', page: EmptyRouterPage, path: 'search', children: [
-          MaterialRoute<void>(page: SearchScreen, path: ''),
-          MaterialRoute<void>(page: ExploreCategoryScreen, path: 'explore-category'),
-          _episodeScreenRoute,
-          _pageScreenRoute
-        ]),
+        MaterialRoute<void>(
+            name: 'SearchScreenWrapperRoute',
+            page: EmptyRouterPage,
+            path: 'search',
+            children: [MaterialRoute<void>(page: SearchScreen, path: ''), _episodeScreenRoute, _pageScreenRoute]),
         MaterialRoute<void>(name: 'CalendarPageRoute', page: CalendarPage, path: 'calendar'),
       ],
     ),
