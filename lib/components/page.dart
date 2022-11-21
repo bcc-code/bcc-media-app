@@ -89,7 +89,8 @@ class BccmPage extends StatelessWidget {
             }
             final messageSection = s.asOrNull<Fragment$Section$$MessageSection>();
             if (messageSection != null) {
-              return PageSection(title: messageSection.title, child: MessageSection(messageSection));
+              return Padding(
+                  padding: const EdgeInsets.only(top: 4), child: PageSection(title: messageSection.title, child: MessageSection(messageSection)));
             }
             return Container();
           }),

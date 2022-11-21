@@ -159,13 +159,13 @@ ThemeData createTheme() {
     backgroundColor: BtvColors.background2,
     highlightColor: BtvColors.background2.withOpacity(0.5),
     splashColor: BtvColors.background2.withOpacity(1),
-    progressIndicatorTheme: ProgressIndicatorThemeData(color: BtvColors.tint1),
+    progressIndicatorTheme: const ProgressIndicatorThemeData(color: BtvColors.tint1),
     appBarTheme: AppBarTheme(
         titleTextStyle: BtvTextStyles.title3.copyWith(height: 1),
         toolbarTextStyle: BtvTextStyles.button2,
         centerTitle: true,
         toolbarHeight: 44,
-        iconTheme: IconThemeData(color: BtvColors.tint1),
+        iconTheme: const IconThemeData(color: BtvColors.tint1),
         backgroundColor: BtvColors.background1),
     dialogTheme:
         const DialogTheme(backgroundColor: BtvColors.background2, contentTextStyle: BtvTextStyles.body1, titleTextStyle: BtvTextStyles.title3),
@@ -175,7 +175,10 @@ ThemeData createTheme() {
         elevation: 0,
         selectedLabelStyle: BtvTextStyles.caption3.copyWith(color: BtvColors.tint1),
         unselectedLabelStyle: BtvTextStyles.caption3),
-    typography: Typography.material2021().copyWith(white: Typography.material2021().white.copyWith(headlineMedium: BtvTextStyles.headline2)),
+    typography: Typography.material2021().copyWith(
+        white: Typography.material2021()
+            .white
+            .copyWith(headlineMedium: BtvTextStyles.headline2, bodyLarge: BtvTextStyles.body1, bodyMedium: BtvTextStyles.body2)),
   );
 }
 
