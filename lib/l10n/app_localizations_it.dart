@@ -14,8 +14,7 @@ class SIt extends S {
   String get profileTab => 'Profilo';
 
   @override
-  String get bccMediaCenter =>
-      'BrunstadTV è un centro multimediale non-commerciale che produce e distribuisce contenuti basati su valori positivi e cristiani.';
+  String get bccMediaCenter => 'BrunstadTV è un centro multimediale non-commerciale che produce e distribuisce contenuti basati su valori positivi e cristiani.';
 
   @override
   String get signInButton => '7 / 5000\nRegistrati';
@@ -27,8 +26,7 @@ class SIt extends S {
   String get loggedOutTitle => 'Disconnesso';
 
   @override
-  String get loggedOutMessage =>
-      'Sei stato disconnesso. Per favore esegui nuovamente l\'accesso.';
+  String get loggedOutMessage => 'Sei stato disconnesso. Per favore esegui nuovamente l\'accesso.';
 
   @override
   String get mostWatched => 'I più visti';
@@ -46,12 +44,10 @@ class SIt extends S {
   String get ok => 'OK';
 
   @override
-  String get loginFailedCheckNetwork =>
-      'Accesso fallito. Controlla la tua connessione di rete e riprova.';
+  String get loginFailedCheckNetwork => 'Accesso fallito. Controlla la tua connessione di rete e riprova.';
 
   @override
-  String get loginFailedTryAgain =>
-      'Accesso fallito. Per favore riprova più tardi.';
+  String get loginFailedTryAgain => 'Accesso fallito. Per favore riprova più tardi.';
 
   @override
   String get soundLanguage => 'Linguaggio del suono';
@@ -144,8 +140,7 @@ class SIt extends S {
   String get queueLimitTitle => 'Limit';
 
   @override
-  String get queueLimitMessage =>
-      'You cannot have more than {0} elements in queue.';
+  String get queueLimitMessage => 'You cannot have more than {0} elements in queue.';
 
   @override
   String get recentSearches => 'Ricerche recenti';
@@ -166,8 +161,7 @@ class SIt extends S {
   String get series => 'Serie';
 
   @override
-  String get livestreamMaintenance =>
-      'We\'re sorry, livestream is currently under maintenance. Please try again later.';
+  String get livestreamMaintenance => 'We\'re sorry, livestream is currently under maintenance. Please try again later.';
 
   @override
   String get homeTab => 'Home';
@@ -188,8 +182,7 @@ class SIt extends S {
   String get high => 'High';
 
   @override
-  String get emptySearch =>
-      'Puoi cercare tutti i contenuti di BrunstadTV. Serie, film ed episodi.';
+  String get emptySearch => 'Puoi cercare tutti i contenuti di BrunstadTV. Serie, film ed episodi.';
 
   @override
   String get back => 'Back';
@@ -270,8 +263,7 @@ class SIt extends S {
   String get recordingTipB => 'Make sure that your face is evenly lit.';
 
   @override
-  String get recordingTipC =>
-      'Think about what you want to say before you start recording.';
+  String get recordingTipC => 'Think about what you want to say before you start recording.';
 
   @override
   String get recordingTipD => 'Turn your phone in landscape mode.';
@@ -289,32 +281,25 @@ class SIt extends S {
   String get next => 'Next';
 
   @override
-  String get recordVideoCameraPermissionAlert =>
-      'You have to grant camera permission in settings to record video.';
+  String get recordVideoCameraPermissionAlert => 'You have to grant camera permission in settings to record video.';
 
   @override
-  String get recordVideoPhotosPermissionAlert =>
-      'You have to grant photo album permission in settings to record video.';
+  String get recordVideoPhotosPermissionAlert => 'You have to grant photo album permission in settings to record video.';
 
   @override
-  String get recordVideoStoragePermissionAlert =>
-      'You have to grant storage permission in settings to record video.';
+  String get recordVideoStoragePermissionAlert => 'You have to grant storage permission in settings to record video.';
 
   @override
-  String get recordVideoMicrophonePermissionAlert =>
-      'You have to grant microphone permission in settings to record video.';
+  String get recordVideoMicrophonePermissionAlert => 'You have to grant microphone permission in settings to record video.';
 
   @override
-  String get takePhotoStoragePermissionAlert =>
-      'You have to grant storage permission in settings to take photo.';
+  String get takePhotoStoragePermissionAlert => 'You have to grant storage permission in settings to take photo.';
 
   @override
-  String get takePhotoCameraPermissionAlert =>
-      'You have to grant camera permission in settings to take photo.';
+  String get takePhotoCameraPermissionAlert => 'You have to grant camera permission in settings to take photo.';
 
   @override
-  String get pickPhotoStoragePermissionAlert =>
-      'You have to grant storage permission in settings to pick photos.';
+  String get pickPhotoStoragePermissionAlert => 'You have to grant storage permission in settings to pick photos.';
 
   @override
   String get permissionsAlertTitle => 'Permissions needed';
@@ -329,8 +314,7 @@ class SIt extends S {
   String get recordingFailedTitle => 'Coulnd\'t record the video';
 
   @override
-  String get recordingFailedMessage =>
-      'Something went wrong while trying to record the video.';
+  String get recordingFailedMessage => 'Something went wrong while trying to record the video.';
 
   @override
   String get pollSubtitle => 'Poll';
@@ -342,19 +326,16 @@ class SIt extends S {
   String get feed => 'Feed';
 
   @override
-  String get atmosphereFeedDescription =>
-      'Contribute in the activity feed by sending in a message, testimony or picture from where you are.';
+  String get atmosphereFeedDescription => 'Contribute in the activity feed by sending in a message, testimony or picture from where you are.';
 
   @override
   String get information => 'Information';
 
   @override
-  String get photoNotSupported =>
-      'Taking and picking photo are not supported on your device.';
+  String get photoNotSupported => 'Taking and picking photo are not supported on your device.';
 
   @override
-  String get answerFailed =>
-      'Sorry! We were unable to send the answer. Please, try again.';
+  String get answerFailed => 'Sorry! We were unable to send the answer. Please, try again.';
 
   @override
   String get question => 'Question';
@@ -372,8 +353,7 @@ class SIt extends S {
   String get concernTextPlaceholder => 'Describe the issue';
 
   @override
-  String get debugInfoExplanation =>
-      'Your message will include this information, to help us better understand the issue.';
+  String get debugInfoExplanation => 'Your message will include this information, to help us better understand the issue.';
 
   @override
   String get send => 'Send';
@@ -385,15 +365,13 @@ class SIt extends S {
   String get thankYouSupportTitle => 'Thank you for your feedback!';
 
   @override
-  String get thankYouSupportDescription =>
-      'We appreciate all feedback and we will address the issue as soon as possible.';
+  String get thankYouSupportDescription => 'We appreciate all feedback and we will address the issue as soon as possible.';
 
   @override
   String get sendFail => 'Couldn’t send you message';
 
   @override
-  String get sendFailDescription =>
-      'Something went wrong. Check your internet connection and try again.';
+  String get sendFailDescription => 'Something went wrong. Check your internet connection and try again.';
 
   @override
   String get today => 'Today';
@@ -423,12 +401,10 @@ class SIt extends S {
   String get wellDone => 'Well done!';
 
   @override
-  String get wellDoneDistance =>
-      'Well done! You have registered a total distance of {0} km';
+  String get wellDoneDistance => 'Well done! You have registered a total distance of {0} km';
 
   @override
-  String get distanceRegistered =>
-      'Your distance has been registered. Continue below if you want to submit another distance.';
+  String get distanceRegistered => 'Your distance has been registered. Continue below if you want to submit another distance.';
 
   @override
   String get ranMore => 'I went more than {0} km';
@@ -437,8 +413,7 @@ class SIt extends S {
   String get moreThan => 'More than {0} km';
 
   @override
-  String get runningEffort =>
-      'Amazing effort! Type the amount of kilometers you went below.';
+  String get runningEffort => 'Amazing effort! Type the amount of kilometers you went below.';
 
   @override
   String get slideSelect => 'Slide to select how far you went';
@@ -456,22 +431,19 @@ class SIt extends S {
   String get firstPostTitle => 'Be the first to post a picture or message';
 
   @override
-  String get timezoneInformation =>
-      'L\'orario della guida Tv è nella tua ora locale: {0}';
+  String get timezoneInformation => 'L\'orario della guida Tv è nella tua ora locale: {0}';
 
   @override
   String get yourQuestion => 'Your question';
 
   @override
-  String get uploadingInquirySuccess =>
-      'Please note that not all submitted questions are answered in the broadcast.';
+  String get uploadingInquirySuccess => 'Please note that not all submitted questions are answered in the broadcast.';
 
   @override
   String get askQuestion => 'Ask a question';
 
   @override
-  String get submitQuestionInfo =>
-      'By submitting a question you accept that it can be used for broadcast purposes.';
+  String get submitQuestionInfo => 'By submitting a question you accept that it can be used for broadcast purposes.';
 
   @override
   String get posting => 'Posting';
@@ -480,8 +452,7 @@ class SIt extends S {
   String get loading => 'Loading';
 
   @override
-  String get submitPostInfo =>
-      'By submitting a post or photo you accept that it can be used for broadcast purposes. ';
+  String get submitPostInfo => 'By submitting a post or photo you accept that it can be used for broadcast purposes. ';
 
   @override
   String get cropImage => 'Crop image';
@@ -499,12 +470,10 @@ class SIt extends S {
   String get pollMultipleChoice => 'You may change your answer multiple times.';
 
   @override
-  String get pollEnded =>
-      'The poll section has ended. Thank you for your responses.';
+  String get pollEnded => 'The poll section has ended. Thank you for your responses.';
 
   @override
-  String get browserInstall =>
-      'Please install web browser to be able to open this URL.';
+  String get browserInstall => 'Please install web browser to be able to open this URL.';
 
   @override
   String get share => 'Share';
@@ -534,8 +503,7 @@ class SIt extends S {
   String get quizAnswered => 'Answers submitted';
 
   @override
-  String get quizNotEnabled =>
-      'Quiz is not available at the moment. Please try again later.';
+  String get quizNotEnabled => 'Quiz is not available at the moment. Please try again later.';
 
   @override
   String get calendar => 'Calendar';
@@ -547,15 +515,13 @@ class SIt extends S {
   String get appUpdateTitle => 'Aggiornamento necessario';
 
   @override
-  String get appUpdateRequest =>
-      'Scarica l\'ultima app per godere di tutte le ultime funzionalità e correzioni dei bug.';
+  String get appUpdateRequest => 'Scarica l\'ultima app per godere di tutte le ultime funzionalità e correzioni dei bug.';
 
   @override
   String get appUpdateAccepted => 'Aggiorna';
 
   @override
-  String get donationNotAvailable =>
-      'Donation is not available at the moment. Please try again later.';
+  String get donationNotAvailable => 'Donation is not available at the moment. Please try again later.';
 
   @override
   String get posts => '{0} Posts';
@@ -591,15 +557,13 @@ class SIt extends S {
   String get audioOnlyErrorTitle => 'Couldn’t load content';
 
   @override
-  String get audioOnlyErrorDescription =>
-      'Check internet connection and try again';
+  String get audioOnlyErrorDescription => 'Check internet connection and try again';
 
   @override
   String get privacyPolicy => 'Privacy Policy';
 
   @override
-  String get tokenError =>
-      'We couldn\'t confirm your identity, most likely due to a network problem. Some features of the app may not work correctly.';
+  String get tokenError => 'We couldn\'t confirm your identity, most likely due to a network problem. Some features of the app may not work correctly.';
 
   @override
   String get categoriesTab => 'Categorie';
@@ -611,15 +575,13 @@ class SIt extends S {
   String get confirmLogin => 'Conferma l\'accesso';
 
   @override
-  String get scanInfo =>
-      'Scansiona il codice con il tuo telefono per accedere alla pagina di accesso.';
+  String get scanInfo => 'Scansiona il codice con il tuo telefono per accedere alla pagina di accesso.';
 
   @override
   String get validInfo => 'Il codice QR è valido per 15 minuti.';
 
   @override
-  String get confirmInfo =>
-      'Dopo aver effettuato correttamente l\'accesso sul tuo dispositivo, fai clic sul pulsante in basso per confermare il tuo accesso.';
+  String get confirmInfo => 'Dopo aver effettuato correttamente l\'accesso sul tuo dispositivo, fai clic sul pulsante in basso per confermare il tuo accesso.';
 
   @override
   String get seriesTab => 'Serie';
@@ -637,15 +599,13 @@ class SIt extends S {
   String get subtitlesLanguage => 'Lingua dei sottotitoli';
 
   @override
-  String get removeFromRecentSearches =>
-      'Vuoi rimuovere questo elemento dalle ricerche recenti?';
+  String get removeFromRecentSearches => 'Vuoi rimuovere questo elemento dalle ricerche recenti?';
 
   @override
   String get noTransmissionToday => 'Nessuna trasmissione programmata per oggi';
 
   @override
-  String get livestreamMaintenanceTitle =>
-      'La trasmissione in diretta non è disponibile';
+  String get livestreamMaintenanceTitle => 'La trasmissione in diretta non è disponibile';
 
   @override
   String get start => 'Avvia';
@@ -660,12 +620,10 @@ class SIt extends S {
   String get errorTryAgain => 'Qualcosa è andato storto, riprova più tardi.';
 
   @override
-  String get reportProblem =>
-      'In caso di problemi usa il codice QR qui sotto per inviarci un\'e-mail.';
+  String get reportProblem => 'In caso di problemi usa il codice QR qui sotto per inviarci un\'e-mail.';
 
   @override
-  String get phoneReadingProblem =>
-      'Se il tuo telefono non riesce a leggere il codice QR, inviaci un\'e-mail con le seguenti informazioni a';
+  String get phoneReadingProblem => 'Se il tuo telefono non riesce a leggere il codice QR, inviaci un\'e-mail con le seguenti informazioni a';
 
   @override
   String get goTo => 'o vai a';
@@ -677,16 +635,13 @@ class SIt extends S {
   String get notLogged => 'Non sei collegato';
 
   @override
-  String get authResponse0 =>
-      'Si prega di utilizzare il nuovo codice QR per accedere.';
+  String get authResponse0 => 'Si prega di utilizzare il nuovo codice QR per accedere.';
 
   @override
-  String get authResponse1 =>
-      'Accedi sul tuo cellulare utilizzando il codice QR.';
+  String get authResponse1 => 'Accedi sul tuo cellulare utilizzando il codice QR.';
 
   @override
-  String get authResponse3 =>
-      'Controlla la tua connessione di rete e riprova più tardi.';
+  String get authResponse3 => 'Controlla la tua connessione di rete e riprova più tardi.';
 
   @override
   String get liveHeader => 'Diretta';

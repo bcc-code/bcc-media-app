@@ -14,8 +14,7 @@ class SPl extends S {
   String get profileTab => 'Profil';
 
   @override
-  String get bccMediaCenter =>
-      'BrunstadTV jest niekomercyjnym domem medialnym tworzącym i rozpowszechniającym treści oparte na pozytywnych i chrześcijańskich wartościach.';
+  String get bccMediaCenter => 'BrunstadTV jest niekomercyjnym domem medialnym tworzącym i rozpowszechniającym treści oparte na pozytywnych i chrześcijańskich wartościach.';
 
   @override
   String get signInButton => 'Zaloguj się';
@@ -27,8 +26,7 @@ class SPl extends S {
   String get loggedOutTitle => 'Wylogowany';
 
   @override
-  String get loggedOutMessage =>
-      'Zostałeś wylogowany, prosimy o ponowne zalogowanie.';
+  String get loggedOutMessage => 'Zostałeś wylogowany, prosimy o ponowne zalogowanie.';
 
   @override
   String get mostWatched => 'Najpopularniejsze';
@@ -46,12 +44,10 @@ class SPl extends S {
   String get ok => 'OK';
 
   @override
-  String get loginFailedCheckNetwork =>
-      'Logowanie nie powiodło się. Sprawdź połączenie z Internetem i spróbuj ponownie.';
+  String get loginFailedCheckNetwork => 'Logowanie nie powiodło się. Sprawdź połączenie z Internetem i spróbuj ponownie.';
 
   @override
-  String get loginFailedTryAgain =>
-      'Logowanie nie powiodło się. Spróbuj ponownie później.';
+  String get loginFailedTryAgain => 'Logowanie nie powiodło się. Spróbuj ponownie później.';
 
   @override
   String get soundLanguage => 'Język video';
@@ -63,8 +59,7 @@ class SPl extends S {
   String get appLanguage => 'Język aplikacji';
 
   @override
-  String get checkNetwork =>
-      'Sprawdź połączenie z Internetem i spróbuj ponownie.';
+  String get checkNetwork => 'Sprawdź połączenie z Internetem i spróbuj ponownie.';
 
   @override
   String get tryAgain => 'Spróbuj ponownie później.';
@@ -145,8 +140,7 @@ class SPl extends S {
   String get queueLimitTitle => 'Limit';
 
   @override
-  String get queueLimitMessage =>
-      'Nie możesz mieć więcej niż {0} elementów na liście.';
+  String get queueLimitMessage => 'Nie możesz mieć więcej niż {0} elementów na liście.';
 
   @override
   String get recentSearches => 'Ostatnie wyszukiwania';
@@ -155,8 +149,7 @@ class SPl extends S {
   String get tVLogin => 'Logowanie na telewizorze';
 
   @override
-  String get tVLoginSuccessful =>
-      'Logowanie przebiegło pomyślnie. Potwierdź logowanie na telewizorze.';
+  String get tVLoginSuccessful => 'Logowanie przebiegło pomyślnie. Potwierdź logowanie na telewizorze.';
 
   @override
   String get seeMore => 'Więcej';
@@ -168,8 +161,7 @@ class SPl extends S {
   String get series => 'Serial';
 
   @override
-  String get livestreamMaintenance =>
-      'Przepraszamy, transmisja na żywo jest zawieszona z powodu prac konserwacyjnych. Spróbuj ponownie później.';
+  String get livestreamMaintenance => 'Przepraszamy, transmisja na żywo jest zawieszona z powodu prac konserwacyjnych. Spróbuj ponownie później.';
 
   @override
   String get homeTab => 'Odkrywaj';
@@ -190,8 +182,7 @@ class SPl extends S {
   String get high => 'Wysoka';
 
   @override
-  String get emptySearch =>
-      'Wyszukuj treści w BrunstadTV. Seriale, filmy i odcinki.';
+  String get emptySearch => 'Wyszukuj treści w BrunstadTV. Seriale, filmy i odcinki.';
 
   @override
   String get back => 'Wstecz';
@@ -269,12 +260,10 @@ class SPl extends S {
   String get recordingTipA => 'Znajdź ciche miejsce.';
 
   @override
-  String get recordingTipB =>
-      'Upewnij się że Twoja twarz jest równomiernie oświetlona.';
+  String get recordingTipB => 'Upewnij się że Twoja twarz jest równomiernie oświetlona.';
 
   @override
-  String get recordingTipC =>
-      'Przed nagraniem pomyśl o tym co chcesz powiedzieć.';
+  String get recordingTipC => 'Przed nagraniem pomyśl o tym co chcesz powiedzieć.';
 
   @override
   String get recordingTipD => 'Obróć telefon do trypu horyzontalnego.';
@@ -292,32 +281,25 @@ class SPl extends S {
   String get next => 'Następne';
 
   @override
-  String get recordVideoCameraPermissionAlert =>
-      'Musisz nadać uprawnia do aparatu w ustawieniach żeby móc nagrywać video.';
+  String get recordVideoCameraPermissionAlert => 'Musisz nadać uprawnia do aparatu w ustawieniach żeby móc nagrywać video.';
 
   @override
-  String get recordVideoPhotosPermissionAlert =>
-      'Musisz nadać uprawnia do albumu zdjęć w ustawieniach żeby móc nagrywać video.';
+  String get recordVideoPhotosPermissionAlert => 'Musisz nadać uprawnia do albumu zdjęć w ustawieniach żeby móc nagrywać video.';
 
   @override
-  String get recordVideoStoragePermissionAlert =>
-      'Musisz nadać uprawnia do pamięci wewnętrznej w ustawieniach żeby móc nagrywać video.';
+  String get recordVideoStoragePermissionAlert => 'Musisz nadać uprawnia do pamięci wewnętrznej w ustawieniach żeby móc nagrywać video.';
 
   @override
-  String get recordVideoMicrophonePermissionAlert =>
-      'Musisz nadać uprawnia do mikrofonu w ustawieniach żeby móc nagrywać video.';
+  String get recordVideoMicrophonePermissionAlert => 'Musisz nadać uprawnia do mikrofonu w ustawieniach żeby móc nagrywać video.';
 
   @override
-  String get takePhotoStoragePermissionAlert =>
-      'Musisz nadać uprawnia do pamięci wewnętrznej w ustawieniach żeby móc robić zdjęcia.';
+  String get takePhotoStoragePermissionAlert => 'Musisz nadać uprawnia do pamięci wewnętrznej w ustawieniach żeby móc robić zdjęcia.';
 
   @override
-  String get takePhotoCameraPermissionAlert =>
-      'Musisz nadać uprawnia do aparatu w ustawieniach żeby móc robić zdjęcia.';
+  String get takePhotoCameraPermissionAlert => 'Musisz nadać uprawnia do aparatu w ustawieniach żeby móc robić zdjęcia.';
 
   @override
-  String get pickPhotoStoragePermissionAlert =>
-      'Musisz nadać uprawnia do pamięci wewnętrznej w ustawieniach żeby móc wybierać zdjęcia.';
+  String get pickPhotoStoragePermissionAlert => 'Musisz nadać uprawnia do pamięci wewnętrznej w ustawieniach żeby móc wybierać zdjęcia.';
 
   @override
   String get permissionsAlertTitle => 'Wymagane uprawnienia';
@@ -332,8 +314,7 @@ class SPl extends S {
   String get recordingFailedTitle => 'Nie udało się nagrać filmu';
 
   @override
-  String get recordingFailedMessage =>
-      'Coś poszło nie tak przy próbie nagrywania filmu.';
+  String get recordingFailedMessage => 'Coś poszło nie tak przy próbie nagrywania filmu.';
 
   @override
   String get pollSubtitle => 'Ankieta';
@@ -345,19 +326,16 @@ class SPl extends S {
   String get feed => 'Wpisy';
 
   @override
-  String get atmosphereFeedDescription =>
-      'Dodaj wpis wysyłając wiadomość, świadectwo albo zdjęcie z miejsca w którym się znajdujesz.';
+  String get atmosphereFeedDescription => 'Dodaj wpis wysyłając wiadomość, świadectwo albo zdjęcie z miejsca w którym się znajdujesz.';
 
   @override
   String get information => 'Informacje';
 
   @override
-  String get photoNotSupported =>
-      'Wybieranie i robienie zdjęć nie jest wspierane na Twoim urządzeniu.';
+  String get photoNotSupported => 'Wybieranie i robienie zdjęć nie jest wspierane na Twoim urządzeniu.';
 
   @override
-  String get answerFailed =>
-      'Niestety nie byliśmy w stanie wysłać odpowiedzi. Spróbuj ponownie później.';
+  String get answerFailed => 'Niestety nie byliśmy w stanie wysłać odpowiedzi. Spróbuj ponownie później.';
 
   @override
   String get question => 'Pytanie';
@@ -375,8 +353,7 @@ class SPl extends S {
   String get concernTextPlaceholder => 'Opisz problem';
 
   @override
-  String get debugInfoExplanation =>
-      'Ta informacja jest nam potrzebna, byśmy mogli lepiej zrozumieć problem.';
+  String get debugInfoExplanation => 'Ta informacja jest nam potrzebna, byśmy mogli lepiej zrozumieć problem.';
 
   @override
   String get send => 'Wyślij';
@@ -388,15 +365,13 @@ class SPl extends S {
   String get thankYouSupportTitle => 'Dziękujemy za informację!';
 
   @override
-  String get thankYouSupportDescription =>
-      'Doceniamy wszelkie informacje zwrotne i odniesiemy się do tego problemu tak szybko, jak to możliwe.';
+  String get thankYouSupportDescription => 'Doceniamy wszelkie informacje zwrotne i odniesiemy się do tego problemu tak szybko, jak to możliwe.';
 
   @override
   String get sendFail => 'Nie udało się wysłać wiadomości';
 
   @override
-  String get sendFailDescription =>
-      'Coś poszło nie tak. Sprawdź swoje połączenie internetowe i spróbuj jeszcze raz.';
+  String get sendFailDescription => 'Coś poszło nie tak. Sprawdź swoje połączenie internetowe i spróbuj jeszcze raz.';
 
   @override
   String get today => 'Dzisiaj';
@@ -426,12 +401,10 @@ class SPl extends S {
   String get wellDone => 'Dobra robota!';
 
   @override
-  String get wellDoneDistance =>
-      'Dobra robota! Zarejestrowałeś w sumie przebycie {0} km';
+  String get wellDoneDistance => 'Dobra robota! Zarejestrowałeś w sumie przebycie {0} km';
 
   @override
-  String get distanceRegistered =>
-      'Przebyty przez ciebie dystans został zapisany. Przejdź niżej, jeśli chcesz dodać kolejny przebyty dystans.';
+  String get distanceRegistered => 'Przebyty przez ciebie dystans został zapisany. Przejdź niżej, jeśli chcesz dodać kolejny przebyty dystans.';
 
   @override
   String get ranMore => 'Przebyłem więcej niż {0} km';
@@ -440,8 +413,7 @@ class SPl extends S {
   String get moreThan => 'Ponad {0} km';
 
   @override
-  String get runningEffort =>
-      'Znakomicie! Wpisz ilość przebytych kilometrów poniżej.';
+  String get runningEffort => 'Znakomicie! Wpisz ilość przebytych kilometrów poniżej.';
 
   @override
   String get slideSelect => 'Przesuń, by określić przebyty dystans';
@@ -459,22 +431,19 @@ class SPl extends S {
   String get firstPostTitle => 'Prześlij zdjęcie lub wiadomość jako pierwszy/a';
 
   @override
-  String get timezoneInformation =>
-      'Czasy w programie TV są przedstawione w twojej strefie czasowej: {0}';
+  String get timezoneInformation => 'Czasy w programie TV są przedstawione w twojej strefie czasowej: {0}';
 
   @override
   String get yourQuestion => 'Twoje pytanie';
 
   @override
-  String get uploadingInquirySuccess =>
-      'Nie wszystkie zadane pytania zostaną poruszone podczas transmisji.';
+  String get uploadingInquirySuccess => 'Nie wszystkie zadane pytania zostaną poruszone podczas transmisji.';
 
   @override
   String get askQuestion => 'Zadaj pytanie';
 
   @override
-  String get submitQuestionInfo =>
-      'Przez wysłanie pytania zgadzasz się na użycie go podczas transmisji.';
+  String get submitQuestionInfo => 'Przez wysłanie pytania zgadzasz się na użycie go podczas transmisji.';
 
   @override
   String get posting => 'Wysyłanie';
@@ -483,8 +452,7 @@ class SPl extends S {
   String get loading => 'Ładuję';
 
   @override
-  String get submitPostInfo =>
-      'Wysyłając wiadomość lub zdjęcie, zgadzasz się na użycie jej lub go podczas transmisji.';
+  String get submitPostInfo => 'Wysyłając wiadomość lub zdjęcie, zgadzasz się na użycie jej lub go podczas transmisji.';
 
   @override
   String get cropImage => 'Przytnij zdjęcie';
@@ -502,12 +470,10 @@ class SPl extends S {
   String get pollMultipleChoice => 'Możesz zmienić odpowiedź wiele razy.';
 
   @override
-  String get pollEnded =>
-      'Część z ankietami dobiegła końca. Dziękujemy za twoje odpowiedzi.';
+  String get pollEnded => 'Część z ankietami dobiegła końca. Dziękujemy za twoje odpowiedzi.';
 
   @override
-  String get browserInstall =>
-      'Zainstaluj przeglądarkę, aby móc otworzyć ten URL.';
+  String get browserInstall => 'Zainstaluj przeglądarkę, aby móc otworzyć ten URL.';
 
   @override
   String get share => 'Udostępnij';
@@ -537,8 +503,7 @@ class SPl extends S {
   String get quizAnswered => 'Odpowiedzi wprowadzone';
 
   @override
-  String get quizNotEnabled =>
-      'Quiz nie jest dostępny. Spróbuj ponownie później.';
+  String get quizNotEnabled => 'Quiz nie jest dostępny. Spróbuj ponownie później.';
 
   @override
   String get calendar => 'Kalendarz';
@@ -550,15 +515,13 @@ class SPl extends S {
   String get appUpdateTitle => 'Wymagana aktualizacja';
 
   @override
-  String get appUpdateRequest =>
-      'Zainstaluj najnowszą wersję aplikacji by korzystać z najnowszych funkcjonalności i poprawek.';
+  String get appUpdateRequest => 'Zainstaluj najnowszą wersję aplikacji by korzystać z najnowszych funkcjonalności i poprawek.';
 
   @override
   String get appUpdateAccepted => 'Uaktualnij';
 
   @override
-  String get donationNotAvailable =>
-      'Wpłaty nie są teraz dostępne. Spróbuj ponownie później.';
+  String get donationNotAvailable => 'Wpłaty nie są teraz dostępne. Spróbuj ponownie później.';
 
   @override
   String get posts => '{0} Wpisów';
@@ -594,15 +557,13 @@ class SPl extends S {
   String get audioOnlyErrorTitle => 'Nie udało się załadować treści';
 
   @override
-  String get audioOnlyErrorDescription =>
-      'Sprawdź połączenie internetowe i spróbuj ponownie';
+  String get audioOnlyErrorDescription => 'Sprawdź połączenie internetowe i spróbuj ponownie';
 
   @override
   String get privacyPolicy => 'Polityka prywatności';
 
   @override
-  String get tokenError =>
-      'Nie mogliśmy potwierdzić Twojej tożsamości, najprawdopodobniej przez problem z Internetem. Niektóre funkcjonalności mogą nie działać prawidłowo.';
+  String get tokenError => 'Nie mogliśmy potwierdzić Twojej tożsamości, najprawdopodobniej przez problem z Internetem. Niektóre funkcjonalności mogą nie działać prawidłowo.';
 
   @override
   String get categoriesTab => 'Kategorie';
@@ -614,15 +575,13 @@ class SPl extends S {
   String get confirmLogin => 'Potwierdź logowanie';
 
   @override
-  String get scanInfo =>
-      'Zeskanuj kod przy użyciu telefonu aby przejść do strony logowania.';
+  String get scanInfo => 'Zeskanuj kod przy użyciu telefonu aby przejść do strony logowania.';
 
   @override
   String get validInfo => 'Kod QR jest ważny przez 15 minut.';
 
   @override
-  String get confirmInfo =>
-      'Po udanym logowaniu na Twoim urządzeniu kliknij przycisk poniżej aby potwierdzić logowanie.';
+  String get confirmInfo => 'Po udanym logowaniu na Twoim urządzeniu kliknij przycisk poniżej aby potwierdzić logowanie.';
 
   @override
   String get seriesTab => 'Serial';
@@ -640,15 +599,13 @@ class SPl extends S {
   String get subtitlesLanguage => 'Jezyk napisów';
 
   @override
-  String get removeFromRecentSearches =>
-      'Czy chcesz usunąć ten element z ostatnio wyszukanych?';
+  String get removeFromRecentSearches => 'Czy chcesz usunąć ten element z ostatnio wyszukanych?';
 
   @override
   String get noTransmissionToday => 'Brak zaplanowanych transmisji na dzisiaj';
 
   @override
-  String get livestreamMaintenanceTitle =>
-      'Transmisja na żywo nie jest prowadzona';
+  String get livestreamMaintenanceTitle => 'Transmisja na żywo nie jest prowadzona';
 
   @override
   String get start => 'Start';
@@ -660,16 +617,13 @@ class SPl extends S {
   String get featured => 'Polecane';
 
   @override
-  String get errorTryAgain =>
-      'Coś się nie udało, proszę spróbuj ponownie później.';
+  String get errorTryAgain => 'Coś się nie udało, proszę spróbuj ponownie później.';
 
   @override
-  String get reportProblem =>
-      'W razie problemów użyj poniższego kodu QR aby wysłać zgłoszenie.';
+  String get reportProblem => 'W razie problemów użyj poniższego kodu QR aby wysłać zgłoszenie.';
 
   @override
-  String get phoneReadingProblem =>
-      'Jeśli Twój telefon nie może przeczytać kodu QR wyślij nam email zawierając poniższe dane na adres';
+  String get phoneReadingProblem => 'Jeśli Twój telefon nie może przeczytać kodu QR wyślij nam email zawierając poniższe dane na adres';
 
   @override
   String get goTo => 'lub wejdź na';
@@ -684,12 +638,10 @@ class SPl extends S {
   String get authResponse0 => 'Użyj nowego kodu QR aby się zalogować.';
 
   @override
-  String get authResponse1 =>
-      'Zaloguj się na urządzeniu mobilnym korzystając z kodu QR.';
+  String get authResponse1 => 'Zaloguj się na urządzeniu mobilnym korzystając z kodu QR.';
 
   @override
-  String get authResponse3 =>
-      'Sprawdź połączenie z Internetem i spróbuj ponownie.';
+  String get authResponse3 => 'Sprawdź połączenie z Internetem i spróbuj ponownie.';
 
   @override
   String get liveHeader => 'Na żywo';

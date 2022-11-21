@@ -14,8 +14,7 @@ class SNl extends S {
   String get profileTab => 'Profiel';
 
   @override
-  String get bccMediaCenter =>
-      'BrunstadTV is een niet-commerciëel mediahuis, dat content gebaseerd op positieve en Christelijke waarden produceert en distribueert.';
+  String get bccMediaCenter => 'BrunstadTV is een niet-commerciëel mediahuis, dat content gebaseerd op positieve en Christelijke waarden produceert en distribueert.';
 
   @override
   String get signInButton => 'Log in';
@@ -45,12 +44,10 @@ class SNl extends S {
   String get ok => 'Ok';
 
   @override
-  String get loginFailedCheckNetwork =>
-      'Er ging iets mis bij het inloggen. Controleer je netwerkverbinding en probeer het opnieuw.';
+  String get loginFailedCheckNetwork => 'Er ging iets mis bij het inloggen. Controleer je netwerkverbinding en probeer het opnieuw.';
 
   @override
-  String get loginFailedTryAgain =>
-      'Er ging iets mis bij het inloggen. Probeer het later opnieuw.';
+  String get loginFailedTryAgain => 'Er ging iets mis bij het inloggen. Probeer het later opnieuw.';
 
   @override
   String get soundLanguage => 'Geluidstaal';
@@ -62,8 +59,7 @@ class SNl extends S {
   String get appLanguage => 'Taal voor app';
 
   @override
-  String get checkNetwork =>
-      'Controleer je netwerkverbinding en probeer opnieuw';
+  String get checkNetwork => 'Controleer je netwerkverbinding en probeer opnieuw';
 
   @override
   String get tryAgain => 'Probeer het later nog eens';
@@ -144,8 +140,7 @@ class SNl extends S {
   String get queueLimitTitle => 'Limiet';
 
   @override
-  String get queueLimitMessage =>
-      'Het is niet mogelijk meer dan {0} elementen in de lijst te hebben.';
+  String get queueLimitMessage => 'Het is niet mogelijk meer dan {0} elementen in de lijst te hebben.';
 
   @override
   String get recentSearches => 'Recente zoekopdrachten';
@@ -166,8 +161,7 @@ class SNl extends S {
   String get series => 'Series';
 
   @override
-  String get livestreamMaintenance =>
-      'Op dit moment wordt er onderhoud gepleegd aan de live stream. Onze excuses voor het ongemak. Probeer het later nog eens.';
+  String get livestreamMaintenance => 'Op dit moment wordt er onderhoud gepleegd aan de live stream. Onze excuses voor het ongemak. Probeer het later nog eens.';
 
   @override
   String get homeTab => 'Home';
@@ -188,8 +182,7 @@ class SNl extends S {
   String get high => 'Hoog';
 
   @override
-  String get emptySearch =>
-      'U kunt zoeken op alle inhoud van BrunstadTV. TV series, films en afleveringen.';
+  String get emptySearch => 'U kunt zoeken op alle inhoud van BrunstadTV. TV series, films en afleveringen.';
 
   @override
   String get back => 'Terug';
@@ -267,12 +260,10 @@ class SNl extends S {
   String get recordingTipA => 'Kies een rustige plek wanneer u opneemt.';
 
   @override
-  String get recordingTipB =>
-      'Zorg ervoor dat uw gezicht gelijkmatig verlicht is.';
+  String get recordingTipB => 'Zorg ervoor dat uw gezicht gelijkmatig verlicht is.';
 
   @override
-  String get recordingTipC =>
-      'Denk na over wat u wilt zeggen voordat u begint met opnemen.';
+  String get recordingTipC => 'Denk na over wat u wilt zeggen voordat u begint met opnemen.';
 
   @override
   String get recordingTipD => 'Wijzig uw telefoon naar landscape modus.';
@@ -290,32 +281,25 @@ class SNl extends S {
   String get next => 'Volgende';
 
   @override
-  String get recordVideoCameraPermissionAlert =>
-      'Geef in de instelling je camera toestemming om video\'s op te nemen.';
+  String get recordVideoCameraPermissionAlert => 'Geef in de instelling je camera toestemming om video\'s op te nemen.';
 
   @override
-  String get recordVideoPhotosPermissionAlert =>
-      'Geef in de instellingen je fotoalbum toestemming om video\'s op te nemen.';
+  String get recordVideoPhotosPermissionAlert => 'Geef in de instellingen je fotoalbum toestemming om video\'s op te nemen.';
 
   @override
-  String get recordVideoStoragePermissionAlert =>
-      'Geef in de instellingen je opslag toestemming om video\'s op te nemen.';
+  String get recordVideoStoragePermissionAlert => 'Geef in de instellingen je opslag toestemming om video\'s op te nemen.';
 
   @override
-  String get recordVideoMicrophonePermissionAlert =>
-      'Geef in de instellingen je microfoon toestemming om video\'s op te nemen.';
+  String get recordVideoMicrophonePermissionAlert => 'Geef in de instellingen je microfoon toestemming om video\'s op te nemen.';
 
   @override
-  String get takePhotoStoragePermissionAlert =>
-      'Geef in de instellingen je opslag toestemming om foto\'s te nemen.';
+  String get takePhotoStoragePermissionAlert => 'Geef in de instellingen je opslag toestemming om foto\'s te nemen.';
 
   @override
-  String get takePhotoCameraPermissionAlert =>
-      'Geef in de instellingen je camera toestemming om foto\'s te nemen.';
+  String get takePhotoCameraPermissionAlert => 'Geef in de instellingen je camera toestemming om foto\'s te nemen.';
 
   @override
-  String get pickPhotoStoragePermissionAlert =>
-      'Wijzig je instellingen om foto\'s te kunnen selecteren.';
+  String get pickPhotoStoragePermissionAlert => 'Wijzig je instellingen om foto\'s te kunnen selecteren.';
 
   @override
   String get permissionsAlertTitle => 'Autorisatie vereist';
@@ -330,8 +314,7 @@ class SNl extends S {
   String get recordingFailedTitle => 'De filmopname is mislukt';
 
   @override
-  String get recordingFailedMessage =>
-      'Er is iets mis gegaan bij het opnemen van de film.';
+  String get recordingFailedMessage => 'Er is iets mis gegaan bij het opnemen van de film.';
 
   @override
   String get pollSubtitle => 'Poll';
@@ -343,19 +326,16 @@ class SNl extends S {
   String get feed => 'Feed';
 
   @override
-  String get atmosphereFeedDescription =>
-      'Draag bij aan de activiteitenfeed door een bericht, getuigenis of foto in te sturen van waar je bent.';
+  String get atmosphereFeedDescription => 'Draag bij aan de activiteitenfeed door een bericht, getuigenis of foto in te sturen van waar je bent.';
 
   @override
   String get information => 'Informatie';
 
   @override
-  String get photoNotSupported =>
-      'Het maken en selecteren van een foto wordt niet ondersteund door je apparaat.';
+  String get photoNotSupported => 'Het maken en selecteren van een foto wordt niet ondersteund door je apparaat.';
 
   @override
-  String get answerFailed =>
-      'Helaas is het niet gelukt je antwoord te verzenden. Probeer het nog een keer.';
+  String get answerFailed => 'Helaas is het niet gelukt je antwoord te verzenden. Probeer het nog een keer.';
 
   @override
   String get question => 'Vraag';
@@ -373,8 +353,7 @@ class SNl extends S {
   String get concernTextPlaceholder => 'Beschrijf het probleem';
 
   @override
-  String get debugInfoExplanation =>
-      'Je bericht zal deze informatie meenemen, om ons te helpen het probleem beter te begrijpen.';
+  String get debugInfoExplanation => 'Je bericht zal deze informatie meenemen, om ons te helpen het probleem beter te begrijpen.';
 
   @override
   String get send => 'Verzenden';
@@ -386,15 +365,13 @@ class SNl extends S {
   String get thankYouSupportTitle => 'Bedankt voor je feedback!';
 
   @override
-  String get thankYouSupportDescription =>
-      'We stellen alle feedback op prijs en gaan er zo snel mogelijk mee aan de slag.';
+  String get thankYouSupportDescription => 'We stellen alle feedback op prijs en gaan er zo snel mogelijk mee aan de slag.';
 
   @override
   String get sendFail => 'Je bericht kon niet worden verzonden';
 
   @override
-  String get sendFailDescription =>
-      'Er is iets misgegaan. Controleer je internetverbinding en probeer het opnieuw.';
+  String get sendFailDescription => 'Er is iets misgegaan. Controleer je internetverbinding en probeer het opnieuw.';
 
   @override
   String get today => 'Vandaag';
@@ -424,12 +401,10 @@ class SNl extends S {
   String get wellDone => 'Goed gedaan!';
 
   @override
-  String get wellDoneDistance =>
-      'Goed gedaan! Je hebt totaal km als afstand geregistreerd';
+  String get wellDoneDistance => 'Goed gedaan! Je hebt totaal km als afstand geregistreerd';
 
   @override
-  String get distanceRegistered =>
-      'Je afstand is geregistreerd. Hieronder kun je eventueel een nieuwe afstand invoeren.';
+  String get distanceRegistered => 'Je afstand is geregistreerd. Hieronder kun je eventueel een nieuwe afstand invoeren.';
 
   @override
   String get ranMore => 'Ik heb meer dan km afgelegd';
@@ -438,12 +413,10 @@ class SNl extends S {
   String get moreThan => 'Meer dan km';
 
   @override
-  String get runningEffort =>
-      'Wat een geweldige prestatie! Noteer hier onder het aantal afgelegde km.';
+  String get runningEffort => 'Wat een geweldige prestatie! Noteer hier onder het aantal afgelegde km.';
 
   @override
-  String get slideSelect =>
-      'Schuif om te selecteren welke afstand je hebt afgelegd';
+  String get slideSelect => 'Schuif om te selecteren welke afstand je hebt afgelegd';
 
   @override
   String get submitAnotherDistance => 'Voer nog een afstand in';
@@ -458,22 +431,19 @@ class SNl extends S {
   String get firstPostTitle => 'Plaats als eerste een foto of bericht';
 
   @override
-  String get timezoneInformation =>
-      'De tijden in de TV gids worden weergegeven in de lokale tijd van de tijdszone waarin je op dit moment bent';
+  String get timezoneInformation => 'De tijden in de TV gids worden weergegeven in de lokale tijd van de tijdszone waarin je op dit moment bent';
 
   @override
   String get yourQuestion => 'Je vraag';
 
   @override
-  String get uploadingInquirySuccess =>
-      'Houd er rekening mee dat niet alle gestelde vragen in de uitzending worden beantwoord.';
+  String get uploadingInquirySuccess => 'Houd er rekening mee dat niet alle gestelde vragen in de uitzending worden beantwoord.';
 
   @override
   String get askQuestion => 'Stel een vraag';
 
   @override
-  String get submitQuestionInfo =>
-      'Door een vraag in te dienen, accepteert u dat deze kan worden gebruikt voor uitzenddoeleinden.';
+  String get submitQuestionInfo => 'Door een vraag in te dienen, accepteert u dat deze kan worden gebruikt voor uitzenddoeleinden.';
 
   @override
   String get posting => 'Verzenden';
@@ -482,8 +452,7 @@ class SNl extends S {
   String get loading => 'Laden';
 
   @override
-  String get submitPostInfo =>
-      'Bij het aanleveren van een foto of een bijdrage, accepteert u dat deze kan worden gebruikt voor uitzenddoeleinden. ';
+  String get submitPostInfo => 'Bij het aanleveren van een foto of een bijdrage, accepteert u dat deze kan worden gebruikt voor uitzenddoeleinden. ';
 
   @override
   String get cropImage => 'Pas afbeelding aan';
@@ -498,15 +467,13 @@ class SNl extends S {
   String get pollSingleChoice => 'Je kan je antwoord maar één keer selecteren.';
 
   @override
-  String get pollMultipleChoice =>
-      'Je mag je antwoord meerdere keren wijzigen.';
+  String get pollMultipleChoice => 'Je mag je antwoord meerdere keren wijzigen.';
 
   @override
   String get pollEnded => 'De enquete is gestopt. Bedankt voor je antwoorden.';
 
   @override
-  String get browserInstall =>
-      'Installeer een webbrowser om deze URL te kunnen openen';
+  String get browserInstall => 'Installeer een webbrowser om deze URL te kunnen openen';
 
   @override
   String get share => 'Deel';
@@ -536,8 +503,7 @@ class SNl extends S {
   String get quizAnswered => 'Antwoord ingezonden';
 
   @override
-  String get quizNotEnabled =>
-      'De quiz is op dit moment niet beschikbaar. Probeer het later nog eens.';
+  String get quizNotEnabled => 'De quiz is op dit moment niet beschikbaar. Probeer het later nog eens.';
 
   @override
   String get calendar => 'Kalender';
@@ -549,15 +515,13 @@ class SNl extends S {
   String get appUpdateTitle => 'Update vereist';
 
   @override
-  String get appUpdateRequest =>
-      'Download de laatste update voor nieuwe functionaliteiten en bugfixes.';
+  String get appUpdateRequest => 'Download de laatste update voor nieuwe functionaliteiten en bugfixes.';
 
   @override
   String get appUpdateAccepted => 'Update';
 
   @override
-  String get donationNotAvailable =>
-      'Doneren is op dit moment niet mogelijk. Probeer het later nog eens.';
+  String get donationNotAvailable => 'Doneren is op dit moment niet mogelijk. Probeer het later nog eens.';
 
   @override
   String get posts => '{0} Berichten';
@@ -593,15 +557,13 @@ class SNl extends S {
   String get audioOnlyErrorTitle => 'Kon de inhoud niet laden';
 
   @override
-  String get audioOnlyErrorDescription =>
-      'Controleer uw internetverbinding en probeer opnieuw';
+  String get audioOnlyErrorDescription => 'Controleer uw internetverbinding en probeer opnieuw';
 
   @override
   String get privacyPolicy => 'Privacybeleid';
 
   @override
-  String get tokenError =>
-      'We konden uw identiteit niet bevestigen, waarschijnlijk door een netwerkprobleem. Sommige functies van de app werken mogelijk niet correct.';
+  String get tokenError => 'We konden uw identiteit niet bevestigen, waarschijnlijk door een netwerkprobleem. Sommige functies van de app werken mogelijk niet correct.';
 
   @override
   String get categoriesTab => 'Categorieën';
@@ -619,8 +581,7 @@ class SNl extends S {
   String get validInfo => 'De QR code is 15 minuten geldig.';
 
   @override
-  String get confirmInfo =>
-      'Klik na het inloggen op onderstaande knop om inloggen te bevestigen.';
+  String get confirmInfo => 'Klik na het inloggen op onderstaande knop om inloggen te bevestigen.';
 
   @override
   String get seriesTab => 'Series';
@@ -638,8 +599,7 @@ class SNl extends S {
   String get subtitlesLanguage => 'Taal ondertitels';
 
   @override
-  String get removeFromRecentSearches =>
-      'Wilt u dit element verwijderen uit het overzicht met recente zoekopdrachten?';
+  String get removeFromRecentSearches => 'Wilt u dit element verwijderen uit het overzicht met recente zoekopdrachten?';
 
   @override
   String get noTransmissionToday => 'Geen geplande uitzending voor vandaag';
@@ -657,16 +617,13 @@ class SNl extends S {
   String get featured => 'Aanbevolen';
 
   @override
-  String get errorTryAgain =>
-      'Er is iets mis gegaan, probeer het later nog eens.';
+  String get errorTryAgain => 'Er is iets mis gegaan, probeer het later nog eens.';
 
   @override
-  String get reportProblem =>
-      'Bij problemen kunt u onderstaande QR code scannen voor het verzenden van een e-mail.';
+  String get reportProblem => 'Bij problemen kunt u onderstaande QR code scannen voor het verzenden van een e-mail.';
 
   @override
-  String get phoneReadingProblem =>
-      'Mocht uw telefoon de QR code niet kunnen lezen, stuur ons een e-mail met de volgende informatie naar';
+  String get phoneReadingProblem => 'Mocht uw telefoon de QR code niet kunnen lezen, stuur ons een e-mail met de volgende informatie naar';
 
   @override
   String get goTo => 'of ga naar';
@@ -681,12 +638,10 @@ class SNl extends S {
   String get authResponse0 => 'Gebruik een nieuwe QR code om in te loggen.';
 
   @override
-  String get authResponse1 =>
-      'Gebruik de QR code om in te loggen op je mobiel.';
+  String get authResponse1 => 'Gebruik de QR code om in te loggen op je mobiel.';
 
   @override
-  String get authResponse3 =>
-      'Controleer je netwerkverbinding en probeer het later opnieuw.';
+  String get authResponse3 => 'Controleer je netwerkverbinding en probeer het later opnieuw.';
 
   @override
   String get liveHeader => 'Live';
