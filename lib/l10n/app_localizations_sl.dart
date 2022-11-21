@@ -5,6 +5,36 @@ class SSl extends S {
   SSl([String locale = 'sl']) : super(locale);
 
   @override
+  String get loadingContent => 'Loading content';
+
+  @override
+  String get signInTooltip => 'Sign in to watch more content';
+
+  @override
+  String get skipToPublicContent => 'Skip to watch public content';
+
+  @override
+  String get minutesShort => 'min';
+
+  @override
+  String get calendarThisWeek => 'This week';
+
+  @override
+  String get calendarWeek => 'week';
+
+  @override
+  String get loading => 'Nalaganje';
+
+  @override
+  String get loginPageDisplay1 => 'The most powerful message in the world';
+
+  @override
+  String get loginPageDisplay2 => 'Watch series, shows and films based on Christian values';
+
+  @override
+  String get loginPageDisplay3 => 'Produced by BCC Media';
+
+  @override
   String get liveTab => 'V živo';
 
   @override
@@ -12,6 +42,9 @@ class SSl extends S {
 
   @override
   String get profileTab => 'Profil';
+
+  @override
+  String get faq => 'Frequently asked questions';
 
   @override
   String get bccMediaCenter => 'BrunstadTV je nekomercialen medijski center, ki proizvaja in razširja vsebino, ki temelji na pozitivnih krščanskih vrednotah.';
@@ -449,9 +482,6 @@ class SSl extends S {
   String get posting => 'Objavljanje';
 
   @override
-  String get loading => 'Nalaganje';
-
-  @override
   String get submitPostInfo => 'S poslanim sporočilom ali sliko se strinjaš, da se to uporabi za potrebe prenosov. ';
 
   @override
@@ -554,7 +584,7 @@ class SSl extends S {
   String get shareTime => 'Deli od {0}';
 
   @override
-  String get audioOnlyErrorTitle => 'Nalaganje vsebine ni uspelo';
+  String get loadContentError => 'Nalaganje vsebine ni uspelo';
 
   @override
   String get audioOnlyErrorDescription => 'Preveri internetno povezavo in poskusi znova';

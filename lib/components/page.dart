@@ -104,7 +104,7 @@ class BccmPage extends StatelessWidget {
       future: pageFuture,
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
-          return loadingContent;
+          return getLoadingContent(context);
         }
         if (snapshot.hasData) {
           return getPage(context, snapshot.data!);
@@ -112,23 +112,23 @@ class BccmPage extends StatelessWidget {
           print(snapshot.error);
           return loadingError(context);
         }
-        return loadingContent;
+        return getLoadingContent(context);
       },
     );
   }
 
-  final loadingContent = Center(
-    child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
-      Container(
-        margin: const EdgeInsets.only(bottom: 12),
-        child: const CircularProgressIndicator(strokeWidth: 2),
-      ),
-      const Text(
-        'Loading content',
-        style: BtvTextStyles.body2,
-      ),
-    ]),
-  );
+  getLoadingContent(context) => Center(
+        child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
+          Container(
+            margin: const EdgeInsets.only(bottom: 12),
+            child: const CircularProgressIndicator(strokeWidth: 2),
+          ),
+          Text(
+            S.of(context).loadingContent,
+            style: BtvTextStyles.body2,
+          ),
+        ]),
+      );
 
   Widget loadingError(BuildContext context) => Center(
         child: Container(
@@ -138,8 +138,8 @@ class BccmPage extends StatelessWidget {
             children: [
               Container(
                 margin: const EdgeInsets.only(bottom: 8),
-                child: const Text(
-                  "Couldn't load content",
+                child: Text(
+                  S.of(context).loadContentError,
                   style: BtvTextStyles.title1,
                 ),
               ),

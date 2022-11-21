@@ -42,7 +42,7 @@ class CategoryButton extends StatelessWidget {
                 padding: padding,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(12),
-                  border: Border.all(width: 1, color: BtvColors.seperatorOnLight),
+                  border: Border.all(width: 1, color: BtvColors.separatorOnLight),
                   color: BtvColors.background2,
                 ),
                 child: LayoutBuilder(builder: (context, constraints) {

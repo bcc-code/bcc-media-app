@@ -5,6 +5,36 @@ class SRu extends S {
   SRu([String locale = 'ru']) : super(locale);
 
   @override
+  String get loadingContent => 'Loading content';
+
+  @override
+  String get signInTooltip => 'Sign in to watch more content';
+
+  @override
+  String get skipToPublicContent => 'Skip to watch public content';
+
+  @override
+  String get minutesShort => 'min';
+
+  @override
+  String get calendarThisWeek => 'This week';
+
+  @override
+  String get calendarWeek => 'week';
+
+  @override
+  String get loading => 'Загрузка';
+
+  @override
+  String get loginPageDisplay1 => 'The most powerful message in the world';
+
+  @override
+  String get loginPageDisplay2 => 'Watch series, shows and films based on Christian values';
+
+  @override
+  String get loginPageDisplay3 => 'Produced by BCC Media';
+
+  @override
   String get liveTab => 'Прямой эфир';
 
   @override
@@ -12,6 +42,9 @@ class SRu extends S {
 
   @override
   String get profileTab => 'Профиль';
+
+  @override
+  String get faq => 'Frequently asked questions';
 
   @override
   String get bccMediaCenter => 'BrunstadTV - это некоммерческий медиацентр, производящий и распространяющий контент, основанный на позитивных и христианских ценностях.';
@@ -449,9 +482,6 @@ class SRu extends S {
   String get posting => 'Публикуется';
 
   @override
-  String get loading => 'Загрузка';
-
-  @override
   String get submitPostInfo => 'Отправляя публикацию или фото, вы соглашаетесь с тем, что их можно использовать в целях трансляции. ';
 
   @override
@@ -554,7 +584,7 @@ class SRu extends S {
   String get shareTime => 'Поделиться с времени {0}';
 
   @override
-  String get audioOnlyErrorTitle => 'Не удалось загрузить контент';
+  String get loadContentError => 'Не удалось загрузить контент';
 
   @override
   String get audioOnlyErrorDescription => 'Проверьте подключение к сети и попробуйте снова';

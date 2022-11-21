@@ -914,8 +914,8 @@
     "description": "Option on action sheet for sharing from time",
     "type": "text"
   },
-  "audioOnlyErrorTitle": "Não foi possível carregar o conteúdo",
-  "@audioOnlyErrorTitle": {
+  "loadContentError": "Não foi possível carregar o conteúdo",
+  "@loadContentError": {
     "description": "Error title when audio only fails to play",
     "type": "text"
   },

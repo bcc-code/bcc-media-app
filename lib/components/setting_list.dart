@@ -16,7 +16,7 @@ class SettingList extends StatelessWidget {
         border: Border.symmetric(
             horizontal: BorderSide(
           width: 1,
-          color: BtvColors.seperatorOnLight,
+          color: BtvColors.separatorOnLight,
         )),
         color: BtvColors.background2,
       ),

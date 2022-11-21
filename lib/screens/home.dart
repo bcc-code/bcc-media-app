@@ -39,17 +39,12 @@ class HomeScreen extends ConsumerStatefulWidget {
 class _HomeScreenState extends ConsumerState<HomeScreen> {
   late ProviderSubscription<Future<Query$Application?>> appConfigListener;
   late Future<Query$Page$page> resultFuture;
-  bool isGuestUser = false;
-  bool showTooltip = false;
+  bool tooltipDismissed = false;
   String loginError = '';
 
   @override
   void initState() {
     super.initState();
-    if (ref.read(authStateProvider).guestMode) {
-      isGuestUser = true;
-      showTooltip = true;
-    }
     resultFuture = getHomePage();
     showDialogIfOldAppVersion();
     appConfigListener = ref.listenManual<Future<Query$Application?>>(appConfigProvider, (prev, next) async {
@@ -83,7 +78,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
               ),
               contentPadding: const EdgeInsets.all(24).copyWith(top: 8),
               children: [
-                Padding(padding: EdgeInsets.only(bottom: 16), child: Text(S.of(context).appUpdateRequest)),
+                Padding(padding: const EdgeInsets.only(bottom: 16), child: Text(S.of(context).appUpdateRequest)),
                 BtvButton.medium(
                     onPressed: () {
                       if (Platform.isIOS) {
@@ -102,8 +97,8 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
   Future<void> loginAction(BuildContext context) async {
     final success = await ref.read(authStateProvider.notifier).login();
     if (success) {
-      context.router.popUntil((route) => false);
-      context.router.pushNamed('/');
+      context.router.root.popUntil((route) => false);
+      context.router.root.push(const TabsRootScreenRoute());
     } else {
       loginError = 'Login failed';
     }
@@ -144,7 +139,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
               child: GestureDetector(
                   behavior: HitTestBehavior.opaque,
                   onTap: () {
-                    if (isGuestUser) {
+                    if (ref.watch(authStateProvider).guestMode) {
                       loginAction(context);
                     } else {
                       context.router.pushNamed('/profile');
@@ -197,12 +192,12 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
             transitionBuilder: (Widget child, Animation<double> animation) {
               return FadeTransition(opacity: animation, child: child);
             },
-            child: !showTooltip
+            child: !ref.read(authStateProvider).guestMode || tooltipDismissed
                 ? null
                 : Material(
                     color: Colors.transparent,
                     child: SignInTooltip(onClose: () {
-                      setState(() => showTooltip = false);
+                      setState(() => tooltipDismissed = true);
                     }),
                   ),
           ),

@@ -5,6 +5,36 @@ class SDe extends S {
   SDe([String locale = 'de']) : super(locale);
 
   @override
+  String get loadingContent => 'Loading content';
+
+  @override
+  String get signInTooltip => 'Sign in to watch more content';
+
+  @override
+  String get skipToPublicContent => 'Skip to watch public content';
+
+  @override
+  String get minutesShort => 'min';
+
+  @override
+  String get calendarThisWeek => 'This week';
+
+  @override
+  String get calendarWeek => 'week';
+
+  @override
+  String get loading => 'Lädt';
+
+  @override
+  String get loginPageDisplay1 => 'The most powerful message in the world';
+
+  @override
+  String get loginPageDisplay2 => 'Watch series, shows and films based on Christian values';
+
+  @override
+  String get loginPageDisplay3 => 'Produced by BCC Media';
+
+  @override
   String get liveTab => 'Live ';
 
   @override
@@ -12,6 +42,9 @@ class SDe extends S {
 
   @override
   String get profileTab => 'Profil ';
+
+  @override
+  String get faq => 'Frequently asked questions';
 
   @override
   String get bccMediaCenter => 'BrunstadTV ist ein nicht-kommerzielles Medium das Inhalte produziert und verteilt, die auf positiven und christlichen Werten basieren.';
@@ -449,9 +482,6 @@ class SDe extends S {
   String get posting => 'Einsenden';
 
   @override
-  String get loading => 'Lädt';
-
-  @override
   String get submitPostInfo => 'Mit dem Senden eines Posts oder eines Fotos akzeptierst du, dass diese für Sendezwecke verwendet werden kann. ';
 
   @override
@@ -554,7 +584,7 @@ class SDe extends S {
   String get shareTime => 'Teile von der Zeit {0}';
 
   @override
-  String get audioOnlyErrorTitle => 'Konnte den Inhalt nicht laden';
+  String get loadContentError => 'Konnte den Inhalt nicht laden';
 
   @override
   String get audioOnlyErrorDescription => 'Überprüfe deine Internetverbindung und versuche es noch einmal';

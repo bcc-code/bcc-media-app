@@ -8,6 +8,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../graphql/queries/page.graphql.dart';
 import '../../helpers/btv_colors.dart';
 import '../../helpers/btv_typography.dart';
+import '../../l10n/app_localizations.dart';
 import './search_results_page.dart';
 
 import '../../components/search_bar.dart';
@@ -76,20 +77,20 @@ class SearchScreenState extends ConsumerState<SearchScreen> {
     }
   }
 
-  final _noInputInfoWidget = Center(
-    child: Container(
-      margin: const EdgeInsets.symmetric(horizontal: 24),
-      child: Text(
-        'You can search all content from BrunstadTV.  Series, videos and episodes.',
-        textAlign: TextAlign.center,
-        style: BtvTextStyles.body1.copyWith(color: BtvColors.label3),
-      ),
-    ),
-  );
+  getNoInputInfoWidget(context) => Center(
+        child: Container(
+          margin: const EdgeInsets.symmetric(horizontal: 24),
+          child: Text(
+            S.of(context).emptySearch,
+            textAlign: TextAlign.center,
+            style: BtvTextStyles.body1.copyWith(color: BtvColors.label3),
+          ),
+        ),
+      );
 
   Widget get mainContent {
     if (_curSearchValue?.isEmpty == true && focusing) {
-      return _noInputInfoWidget;
+      return getNoInputInfoWidget(context);
     } else if (_curSearchValue?.isNotEmpty == true) {
       return SearchResultsPage(_curSearchValue!);
     } else {
@@ -130,7 +131,7 @@ class SearchScreenState extends ConsumerState<SearchScreen> {
               ),
               Container(
                 margin: const EdgeInsets.only(bottom: 8),
-                child: const Divider(height: 1, color: BtvColors.seperatorOnLight),
+                child: const Divider(height: 1, color: BtvColors.separatorOnLight),
               ),
               Expanded(
                 child: AnimatedSwitcher(duration: const Duration(milliseconds: 100), child: mainContent),

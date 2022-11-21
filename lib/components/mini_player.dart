@@ -79,6 +79,7 @@ class MiniPlayer extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.only(bottom: 4.0),
                     child: Text(
+                      overflow: TextOverflow.ellipsis,
                       secondaryTitle!,
                       style: BtvTextStyles.caption2.copyWith(color: BtvColors.tint1),
                     ),

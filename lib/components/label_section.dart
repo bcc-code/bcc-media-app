@@ -44,7 +44,7 @@ class _LabelItem extends StatelessWidget {
         decoration: BoxDecoration(
           border: Border.all(
             width: 1,
-            color: BtvColors.seperatorOnLight,
+            color: BtvColors.separatorOnLight,
           ),
           borderRadius: BorderRadius.circular(24),
           color: BtvColors.background2,
