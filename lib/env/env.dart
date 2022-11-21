@@ -1,5 +1,8 @@
 part '.env.dart';
 
+// Getting errors?
+// Check if your .env.dart file is missing anything from the .env.dart.example file.
+
 class Env {
   static const auth0ClientId = 'CU6aNYSKaD6vpgFZvLJ9gvGAFnKRlpir';
   static const auth0Domain = 'login.bcc.no';
