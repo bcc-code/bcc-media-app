@@ -735,6 +735,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.0.1"
+  logger:
+    dependency: transitive
+    description:
+      name: logger
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.1.0"
   logging:
     dependency: transitive
     description:
@@ -1036,6 +1043,41 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.1.1"
+  rudder_plugin_android:
+    dependency: transitive
+    description:
+      name: rudder_plugin_android
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "2.1.1"
+  rudder_plugin_ios:
+    dependency: transitive
+    description:
+      name: rudder_plugin_ios
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "2.1.1"
+  rudder_plugin_web:
+    dependency: transitive
+    description:
+      name: rudder_plugin_web
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "2.1.2"
+  rudder_sdk_flutter:
+    dependency: "direct main"
+    description:
+      name: rudder_sdk_flutter
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "2.2.0"
+  rudder_sdk_flutter_platform_interface:
+    dependency: "direct main"
+    description:
+      name: rudder_sdk_flutter_platform_interface
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "2.2.0"
   rxdart:
     dependency: transitive
     description:

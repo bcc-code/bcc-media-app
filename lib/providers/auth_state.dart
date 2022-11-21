@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:auth0_flutter/auth0_flutter.dart';
+import 'package:brunstadtv_app/api/brunstadtv.dart';
 import 'package:brunstadtv_app/helpers/utils.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
@@ -8,6 +9,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:package_info_plus/package_info_plus.dart';
+import 'package:rudder_sdk_flutter/RudderController.dart';
 
 import '../env/env.dart';
 
@@ -67,6 +69,9 @@ class AuthStateNotifier extends StateNotifier<AuthState> {
   }
 
   Future logout() async {
+    RudderController.instance.reset();
+    final PackageInfo info = await PackageInfo.fromPlatform();
+    await _auth0.webAuthentication(scheme: info.packageName).logout();
     await _auth0.credentialsManager.clearCredentials();
     state = const AuthState();
     FirebaseMessaging.instance.deleteToken();
@@ -77,7 +82,7 @@ class AuthStateNotifier extends StateNotifier<AuthState> {
       final PackageInfo info = await PackageInfo.fromPlatform();
       final result = await _auth0.webAuthentication(scheme: info.packageName).login(
         audience: Env.auth0Audience,
-        scopes: {'openid', 'profile', 'offline_access', 'email'},
+        scopes: {'openid', 'profile', 'offline_access', 'email', 'church', 'country'},
       );
       setStateBasedOnCredentials(result);
       final durationUntilExpiry = result.expiresAt.difference(DateTime.now());

@@ -138,6 +138,110 @@ class _CopyWithStubImpl$Input$LegacyIDLookupOptions<TRes>
       _res;
 }
 
+class Input$EpisodeContext {
+  factory Input$EpisodeContext({String? collectionId}) =>
+      Input$EpisodeContext._({
+        if (collectionId != null) r'collectionId': collectionId,
+      });
+
+  Input$EpisodeContext._(this._$data);
+
+  factory Input$EpisodeContext.fromJson(Map<String, dynamic> data) {
+    final result$data = <String, dynamic>{};
+    if (data.containsKey('collectionId')) {
+      final l$collectionId = data['collectionId'];
+      result$data['collectionId'] = (l$collectionId as String?);
+    }
+    return Input$EpisodeContext._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  String? get collectionId => (_$data['collectionId'] as String?);
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    if (_$data.containsKey('collectionId')) {
+      final l$collectionId = collectionId;
+      result$data['collectionId'] = l$collectionId;
+    }
+    return result$data;
+  }
+
+  CopyWith$Input$EpisodeContext<Input$EpisodeContext> get copyWith =>
+      CopyWith$Input$EpisodeContext(
+        this,
+        (i) => i,
+      );
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (!(other is Input$EpisodeContext) || runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$collectionId = collectionId;
+    final lOther$collectionId = other.collectionId;
+    if (_$data.containsKey('collectionId') !=
+        other._$data.containsKey('collectionId')) {
+      return false;
+    }
+    if (l$collectionId != lOther$collectionId) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$collectionId = collectionId;
+    return Object.hashAll(
+        [_$data.containsKey('collectionId') ? l$collectionId : const {}]);
+  }
+}
+
+abstract class CopyWith$Input$EpisodeContext<TRes> {
+  factory CopyWith$Input$EpisodeContext(
+    Input$EpisodeContext instance,
+    TRes Function(Input$EpisodeContext) then,
+  ) = _CopyWithImpl$Input$EpisodeContext;
+
+  factory CopyWith$Input$EpisodeContext.stub(TRes res) =
+      _CopyWithStubImpl$Input$EpisodeContext;
+
+  TRes call({String? collectionId});
+}
+
+class _CopyWithImpl$Input$EpisodeContext<TRes>
+    implements CopyWith$Input$EpisodeContext<TRes> {
+  _CopyWithImpl$Input$EpisodeContext(
+    this._instance,
+    this._then,
+  );
+
+  final Input$EpisodeContext _instance;
+
+  final TRes Function(Input$EpisodeContext) _then;
+
+  static const _undefined = {};
+
+  TRes call({Object? collectionId = _undefined}) =>
+      _then(Input$EpisodeContext._({
+        ..._instance._$data,
+        if (collectionId != _undefined)
+          'collectionId': (collectionId as String?),
+      }));
+}
+
+class _CopyWithStubImpl$Input$EpisodeContext<TRes>
+    implements CopyWith$Input$EpisodeContext<TRes> {
+  _CopyWithStubImpl$Input$EpisodeContext(this._res);
+
+  TRes _res;
+
+  call({String? collectionId}) => _res;
+}
+
 enum Enum$Language { en, no, de, $unknown }
 
 String toJson$Enum$Language(Enum$Language e) {
@@ -167,18 +271,12 @@ Enum$Language fromJson$Enum$Language(String value) {
 }
 
 const possibleTypesMap = {
-  'CalendarEntry': {
-    'SimpleCalendarEntry',
-    'EpisodeCalendarEntry',
-    'SeasonCalendarEntry',
-    'ShowCalendarEntry',
-  },
   'Pagination': {
+    'SeasonPagination',
+    'EpisodePagination',
     'CollectionItemPagination',
     'QuestionPagination',
     'FAQCategoryPagination',
-    'SeasonPagination',
-    'EpisodePagination',
     'SectionPagination',
     'SectionItemPagination',
   },
@@ -187,6 +285,17 @@ const possibleTypesMap = {
     'SeasonItem',
     'EpisodeItem',
     'PageItem',
+  },
+  'CalendarEntry': {
+    'SimpleCalendarEntry',
+    'EpisodeCalendarEntry',
+    'SeasonCalendarEntry',
+    'ShowCalendarEntry',
+  },
+  'SearchResultItem': {
+    'EpisodeSearchItem',
+    'SeasonSearchItem',
+    'ShowSearchItem',
   },
   'Section': {
     'PosterSection',
@@ -223,10 +332,5 @@ const possibleTypesMap = {
     'Episode',
     'Page',
     'Link',
-  },
-  'SearchResultItem': {
-    'EpisodeSearchItem',
-    'SeasonSearchItem',
-    'ShowSearchItem',
   },
 };

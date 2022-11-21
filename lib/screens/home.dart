@@ -153,22 +153,19 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
             ),
             actions: [
               Padding(
-                padding: EdgeInsets.only(right: 16.0),
-                child: ConstrainedBox(constraints: BoxConstraints.loose(Size(24, 24)), child: CastButton()),
+                padding: const EdgeInsets.only(right: 16.0),
+                child: ConstrainedBox(constraints: BoxConstraints.loose(const Size(24, 24)), child: const CastButton()),
               ),
             ],
-            flexibleSpace: Container(
-              decoration: const BoxDecoration(boxShadow: <BoxShadow>[BoxShadow(color: Colors.black54, blurRadius: 8, blurStyle: BlurStyle.outer)]),
-              child: ClipRect(
-                clipBehavior: Clip.hardEdge,
-                child: BackdropFilter(
-                  filter: ImageFilter.blur(sigmaX: 12, sigmaY: 12),
-                  child: Container(
-                    decoration: const BoxDecoration(
-                        gradient: LinearGradient(
-                            begin: Alignment.topCenter, end: Alignment.bottomCenter, colors: [BtvColors.background1, Colors.transparent])),
-                    height: 1000,
-                  ),
+            flexibleSpace: ClipRect(
+              clipBehavior: Clip.hardEdge,
+              child: BackdropFilter(
+                filter: ImageFilter.blur(sigmaX: 12, sigmaY: 6),
+                child: Container(
+                  decoration: const BoxDecoration(
+                      gradient: LinearGradient(
+                          begin: Alignment.topCenter, end: Alignment.bottomCenter, colors: [BtvColors.background1, Colors.transparent])),
+                  height: 1000,
                 ),
               ),
             ),

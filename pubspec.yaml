@@ -78,6 +78,8 @@ dependencies:
   webview_flutter: ^3.0.4
   shimmer: ^2.0.0
   flutter_markdown: ^0.6.13
+  rudder_sdk_flutter: ^2.2.0
+  rudder_sdk_flutter_platform_interface: ^2.2.0
   #smooth: any
 
 dev_dependencies:
