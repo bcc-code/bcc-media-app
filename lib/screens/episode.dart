@@ -129,27 +129,6 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen> with AutoRouteAwa
     }
   }
 
-  Future onSeasonSelected(String id) async {
-    setState(() {
-      selectedSeasonId = id;
-    });
-    var season = await ref.read(apiProvider).getSeasonEpisodes(id);
-    if (mounted && season != null) {
-      setState(() {
-        seasonsMap?[id] = season.episodes.items
-            .map((ep) => EpisodeListEpisodeData(
-                episodeId: ep.id,
-                ageRating: ep.ageRating,
-                duration: ep.duration,
-                title: ep.title,
-                image: ep.imageUrl,
-                seasonNumber: season.number,
-                episodeNumber: ep.number))
-            .toList();
-      });
-    }
-  }
-
   Future setupPlayer() async {
     var castingNow = ref.read(isCasting);
     var playerProvider = castingNow ? castPlayerProvider : primaryPlayerProvider;
@@ -390,6 +369,27 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen> with AutoRouteAwa
             ),
           );
         });
+  }
+
+  Future onSeasonSelected(String id) async {
+    setState(() {
+      selectedSeasonId = id;
+    });
+    var season = await ref.read(apiProvider).getSeasonEpisodes(id);
+    if (mounted && season != null) {
+      setState(() {
+        seasonsMap?[id] = season.episodes.items
+            .map((ep) => EpisodeListEpisodeData(
+                episodeId: ep.id,
+                ageRating: ep.ageRating,
+                duration: ep.duration,
+                title: ep.title,
+                image: ep.imageUrl,
+                seasonNumber: season.number,
+                episodeNumber: ep.number))
+            .toList();
+      });
+    }
   }
 
   Widget _seasonEpisodeList(Query$FetchEpisode$episode episode) {
