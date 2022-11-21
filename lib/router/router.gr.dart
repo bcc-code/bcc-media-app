@@ -297,10 +297,12 @@ class AppRouter extends _i19.RootStackRouter {
         _i19.RouteConfig(
           LoginScreenRoute.name,
           path: '/login',
+          meta: <String, dynamic>{'analytics_name': 'login'},
         ),
         _i19.RouteConfig(
           ProfileRoute.name,
           path: '/profile',
+          meta: <String, dynamic>{'analytics_name': 'profile'},
         ),
         _i19.RouteConfig(
           AppLanguageScreenRoute.name,
@@ -321,14 +323,17 @@ class AppRouter extends _i19.RootStackRouter {
         _i19.RouteConfig(
           ContactSupportRoute.name,
           path: '/contact-support',
+          meta: <String, dynamic>{'analytics_name': 'support'},
         ),
         _i19.RouteConfig(
           AboutScreenRoute.name,
           path: '/about',
+          meta: <String, dynamic>{'analytics_name': 'about'},
         ),
         _i19.RouteConfig(
           FAQRoute.name,
           path: '/faq',
+          meta: <String, dynamic>{'analytics_name': 'faq'},
         ),
         _i19.RouteConfig(
           PublicHomeRoute.name,
@@ -351,11 +356,13 @@ class AppRouter extends _i19.RootStackRouter {
                   Home.name,
                   path: '',
                   parent: HomeScreenWrapperRoute.name,
+                  meta: <String, dynamic>{'analytics_name': 'home'},
                 ),
                 _i19.RouteConfig(
                   EpisodeScreenRoute.name,
                   path: 'episode/:episodeId',
                   parent: HomeScreenWrapperRoute.name,
+                  meta: <String, dynamic>{'analytics_name': 'episode'},
                 ),
                 _i19.RouteConfig(
                   PageScreenRoute.name,
@@ -369,12 +376,16 @@ class AppRouter extends _i19.RootStackRouter {
               LiveScreenRoute.name,
               path: 'live',
               parent: TabsRootScreenRoute.name,
-              meta: <String, dynamic>{'hide_mini_player': true},
+              meta: <String, dynamic>{
+                'hide_mini_player': true,
+                'analytics_name': 'livestream',
+              },
             ),
             _i19.RouteConfig(
               SearchScreenWrapperRoute.name,
               path: 'search',
               parent: TabsRootScreenRoute.name,
+              meta: <String, dynamic>{'analytics_name': 'search'},
               children: [
                 _i19.RouteConfig(
                   SearchScreenRoute.name,
@@ -385,6 +396,7 @@ class AppRouter extends _i19.RootStackRouter {
                   EpisodeScreenRoute.name,
                   path: 'episode/:episodeId',
                   parent: SearchScreenWrapperRoute.name,
+                  meta: <String, dynamic>{'analytics_name': 'episode'},
                 ),
                 _i19.RouteConfig(
                   PageScreenRoute.name,

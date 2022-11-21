@@ -1,5 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:auto_route/empty_router_widgets.dart';
+import 'package:brunstadtv_app/helpers/constants.dart';
 import 'package:brunstadtv_app/router/auth_guard.dart';
 import 'package:brunstadtv_app/screens/auto_login.dart';
 import 'package:brunstadtv_app/screens/calendar/calendar.dart';
@@ -23,13 +24,14 @@ import 'special_routes_guard.dart';
 import '../screens/tabs_root.dart';
 
 const _episodeScreenRoute = CustomRoute<void>(
-    page: EpisodeScreen,
-    path: 'episode/:episodeId',
-    durationInMilliseconds: 300,
-    reverseDurationInMilliseconds: 300,
-    transitionsBuilder: CustomTransitionsBuilders.slideLeft
-    //customRouteBuilder: CustomTransitionsBuilders.slideUpAndDown,
-    );
+  page: EpisodeScreen,
+  path: 'episode/:episodeId',
+  durationInMilliseconds: 300,
+  reverseDurationInMilliseconds: 300,
+  transitionsBuilder: CustomTransitionsBuilders.slideLeft,
+  meta: {RouteMetaConstants.analyticsName: 'episode'},
+  //customRouteBuilder: CustomTransitionsBuilders.slideUpAndDown,
+);
 
 const _pageScreenRoute = CustomRoute<void>(
     page: PageScreen,
@@ -64,14 +66,15 @@ const _specialRoutes = AutoRoute(
 
 @MaterialAutoRouter(
   routes: [
-    MaterialRoute<void>(page: LoginScreen, path: '/login'),
+    MaterialRoute<void>(page: LoginScreen, path: '/login', meta: {RouteMetaConstants.analyticsName: 'login'}),
     CustomRoute<void>(
         opaque: false,
         durationInMilliseconds: 400,
         reverseDurationInMilliseconds: 600,
         transitionsBuilder: CustomTransitionsBuilders.slideUp,
         page: Profile,
-        path: '/profile'),
+        path: '/profile',
+        meta: {RouteMetaConstants.analyticsName: 'profile'}),
     CustomRoute<void>(
       page: AppLanguageScreen,
       path: '/app-language',
@@ -106,6 +109,7 @@ const _specialRoutes = AutoRoute(
       durationInMilliseconds: 400,
       reverseDurationInMilliseconds: 600,
       transitionsBuilder: CustomTransitionsBuilders.slideUp,
+      meta: {RouteMetaConstants.analyticsName: 'support'},
     ),
     CustomRoute<void>(
       page: AboutScreen,
@@ -113,6 +117,7 @@ const _specialRoutes = AutoRoute(
       durationInMilliseconds: 400,
       reverseDurationInMilliseconds: 600,
       transitionsBuilder: CustomTransitionsBuilders.slideUp,
+      meta: {RouteMetaConstants.analyticsName: 'about'},
     ),
     CustomRoute<void>(
       page: FAQ,
@@ -120,6 +125,7 @@ const _specialRoutes = AutoRoute(
       durationInMilliseconds: 400,
       reverseDurationInMilliseconds: 600,
       transitionsBuilder: CustomTransitionsBuilders.slideLeft,
+      meta: {RouteMetaConstants.analyticsName: 'faq'},
     ),
     CustomRoute<void>(
       page: HomeScreen,
@@ -141,16 +147,23 @@ const _specialRoutes = AutoRoute(
             path: '',
             name: 'home',
             maintainState: true,
+            meta: {RouteMetaConstants.analyticsName: 'home'},
           ),
           _episodeScreenRoute,
           _pageScreenRoute,
         ]),
-        MaterialRoute<void>(page: LiveScreen, path: 'live', meta: {'hide_mini_player': true}, maintainState: true),
         MaterialRoute<void>(
-            name: 'SearchScreenWrapperRoute',
-            page: EmptyRouterPage,
-            path: 'search',
-            children: [MaterialRoute<void>(page: SearchScreen, path: ''), _episodeScreenRoute, _pageScreenRoute]),
+            page: LiveScreen,
+            path: 'live',
+            meta: {RouteMetaConstants.hideMiniPlayer: true, RouteMetaConstants.analyticsName: 'livestream'},
+            maintainState: true),
+        MaterialRoute<void>(
+          name: 'SearchScreenWrapperRoute',
+          page: EmptyRouterPage,
+          path: 'search',
+          children: [MaterialRoute<void>(page: SearchScreen, path: ''), _episodeScreenRoute, _pageScreenRoute],
+          meta: {RouteMetaConstants.analyticsName: 'search'},
+        ),
         MaterialRoute<void>(name: 'CalendarPageRoute', page: CalendarPage, path: 'calendar'),
       ],
     ),

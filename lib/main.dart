@@ -131,7 +131,7 @@ void $main({required FirebaseOptions? firebaseOptions}) async {
             darkTheme: createTheme(),
             themeMode: ThemeMode.dark,
             title: 'BrunstadTV',
-            routerDelegate: appRouter.delegate(initialRoutes: [initialRoute]),
+            routerDelegate: appRouter.delegate(initialRoutes: [initialRoute], navigatorObservers: () => [AnalyticsNavigatorObserver()]),
             routeInformationParser: appRouter.defaultRouteParser(),
             builder: (BuildContext context, Widget? child) {
               return MediaQuery(
