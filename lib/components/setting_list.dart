@@ -52,14 +52,11 @@ class OptionButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: 56,
-      child: TextButton(
-        onPressed: onPressed,
-        style: TextButton.styleFrom(
-          shape: const BeveledRectangleBorder(),
-          padding: const EdgeInsets.only(left: 16, right: 16),
-        ),
+    return GestureDetector(
+      onTap: onPressed,
+      child: Container(
+        height: 56,
+        padding: const EdgeInsets.only(left: 16, right: 16),
         child: Row(
           children: [
             Flexible(

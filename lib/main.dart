@@ -4,6 +4,7 @@ import 'package:bccm_player/playback_platform_pigeon.g.dart';
 import 'package:brunstadtv_app/helpers/btv_colors.dart';
 import 'package:brunstadtv_app/helpers/btv_typography.dart';
 import 'package:brunstadtv_app/providers/app_config.dart';
+import 'package:brunstadtv_app/providers/rudder.dart';
 import 'package:brunstadtv_app/providers/settings_service.dart';
 import 'package:brunstadtv_app/providers/video_state.dart';
 import 'package:brunstadtv_app/router/special_routes_guard.dart';
@@ -25,6 +26,8 @@ import 'package:bccm_player/chromecast_pigeon.g.dart';
 import 'package:intl/intl.dart';
 import 'package:intl/intl_standalone.dart';
 import 'package:on_screen_ruler/on_screen_ruler.dart';
+import 'package:rudder_sdk_flutter_platform_interface/platform.dart';
+import 'package:rudder_sdk_flutter/RudderController.dart';
 
 import 'app_root.dart';
 import 'background_tasks.dart';
@@ -97,6 +100,7 @@ void $main({required FirebaseOptions? firebaseOptions}) async {
     providerContainer.read(isCasting.notifier).state = value?.connectionState == CastConnectionState.connected;
     providerContainer.read(castPlayerProvider.notifier).setMediaItem(value?.mediaItem);
   });
+  initializeRudderStack();
 
   if (Env.npawAccountCode != '') {
     providerContainer
@@ -127,7 +131,7 @@ void $main({required FirebaseOptions? firebaseOptions}) async {
             darkTheme: createTheme(),
             themeMode: ThemeMode.dark,
             title: 'BrunstadTV',
-            routerDelegate: appRouter.delegate(initialRoutes: [initialRoute]),
+            routerDelegate: appRouter.delegate(initialRoutes: [initialRoute], navigatorObservers: () => [AnalyticsNavigatorObserver()]),
             routeInformationParser: appRouter.defaultRouteParser(),
             builder: (BuildContext context, Widget? child) {
               return MediaQuery(
@@ -155,13 +159,13 @@ ThemeData createTheme() {
     backgroundColor: BtvColors.background2,
     highlightColor: BtvColors.background2.withOpacity(0.5),
     splashColor: BtvColors.background2.withOpacity(1),
-    progressIndicatorTheme: ProgressIndicatorThemeData(color: BtvColors.tint1),
+    progressIndicatorTheme: const ProgressIndicatorThemeData(color: BtvColors.tint1),
     appBarTheme: AppBarTheme(
         titleTextStyle: BtvTextStyles.title3.copyWith(height: 1),
         toolbarTextStyle: BtvTextStyles.button2,
         centerTitle: true,
         toolbarHeight: 44,
-        iconTheme: IconThemeData(color: BtvColors.tint1),
+        iconTheme: const IconThemeData(color: BtvColors.tint1),
         backgroundColor: BtvColors.background1),
     dialogTheme:
         const DialogTheme(backgroundColor: BtvColors.background2, contentTextStyle: BtvTextStyles.body1, titleTextStyle: BtvTextStyles.title3),
@@ -171,7 +175,10 @@ ThemeData createTheme() {
         elevation: 0,
         selectedLabelStyle: BtvTextStyles.caption3.copyWith(color: BtvColors.tint1),
         unselectedLabelStyle: BtvTextStyles.caption3),
-    typography: Typography.material2021().copyWith(white: Typography.material2021().white.copyWith(headlineMedium: BtvTextStyles.headline2)),
+    typography: Typography.material2021().copyWith(
+        white: Typography.material2021()
+            .white
+            .copyWith(headlineMedium: BtvTextStyles.headline2, bodyLarge: BtvTextStyles.body1, bodyMedium: BtvTextStyles.body2)),
   );
 }
 

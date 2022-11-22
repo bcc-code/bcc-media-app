@@ -1,8 +1,10 @@
 import 'dart:async';
+import 'dart:math';
 
 import 'package:auto_route/auto_route.dart';
 import 'package:brunstadtv_app/helpers/btv_typography.dart';
 import 'package:brunstadtv_app/providers/auth_state.dart';
+import 'package:brunstadtv_app/router/router.gr.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../helpers/btv_buttons.dart';
@@ -79,74 +81,72 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
         title: Image.asset('assets/images/logo.png'),
         automaticallyImplyLeading: false,
       ),
-      body: SafeArea(
-        child: AnimatedOpacity(
-          opacity: imagesLoaded ? 1 : 0,
-          duration: const Duration(milliseconds: 500),
-          child: Column(
-            children: [
-              Expanded(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Container(
-                      height: 220,
-                      margin: const EdgeInsets.only(bottom: 32),
-                      child: Image.asset('assets/images/Onboarding.png'),
+      body: AnimatedOpacity(
+        opacity: imagesLoaded ? 1 : 0,
+        duration: const Duration(milliseconds: 500),
+        child: Column(
+          children: [
+            Expanded(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Container(
+                    height: 220,
+                    margin: const EdgeInsets.only(bottom: 32),
+                    child: Image.asset('assets/images/Onboarding.png'),
+                  ),
+                  Container(
+                    margin: const EdgeInsets.only(right: 38, bottom: 12, left: 38),
+                    child: Text(
+                      S.of(context).loginPageDisplay1,
+                      style: BtvTextStyles.title1,
+                      textAlign: TextAlign.center,
                     ),
-                    Container(
-                      margin: const EdgeInsets.only(right: 38, bottom: 12, left: 38),
-                      child: Text(
-                        S.of(context).loginPageDisplay1,
-                        style: BtvTextStyles.title1,
-                        textAlign: TextAlign.center,
-                      ),
+                  ),
+                  Container(
+                    margin: const EdgeInsets.only(left: 38, bottom: 60, right: 38),
+                    child: Text(
+                      S.of(context).loginPageDisplay2,
+                      textAlign: TextAlign.center,
+                      style: BtvTextStyles.body1.copyWith(color: BtvColors.label3),
                     ),
-                    Container(
-                      margin: const EdgeInsets.only(left: 38, bottom: 60, right: 38),
-                      child: Text(
-                        S.of(context).loginPageDisplay2,
-                        textAlign: TextAlign.center,
-                        style: BtvTextStyles.body1.copyWith(color: BtvColors.label3),
-                      ),
-                    ),
-                    Text(
-                      S.of(context).loginPageDisplay3,
-                      style: BtvTextStyles.caption1.copyWith(color: BtvColors.label3),
-                    )
-                  ],
-                ),
+                  ),
+                  Text(
+                    S.of(context).loginPageDisplay3,
+                    style: BtvTextStyles.caption1.copyWith(color: BtvColors.label3),
+                  )
+                ],
               ),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 16),
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
-                  children: [
-                    if (errorMessage != '') Padding(padding: EdgeInsets.only(bottom: 16), child: Text(errorMessage, textAlign: TextAlign.center)),
-                    Container(
-                      margin: const EdgeInsets.only(bottom: 12),
-                      child: BtvButton.large(
-                        onPressed: loginAction,
-                        labelText: S.of(context).signInButton,
-                      ),
+            ),
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 16, vertical: max(16, MediaQuery.of(context).padding.bottom)),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  if (errorMessage != '') Padding(padding: const EdgeInsets.only(bottom: 16), child: Text(errorMessage, textAlign: TextAlign.center)),
+                  Container(
+                    margin: const EdgeInsets.only(bottom: 12),
+                    child: BtvButton.large(
+                      onPressed: loginAction,
+                      labelText: S.of(context).signInButton,
                     ),
-                    BtvButton.mediumSecondary(
-                      labelText: S.of(context).skipToPublicContent,
-                      onPressed: () {
-                        ref.read(authStateProvider.notifier).setGuestMode(true);
-                        context.router.popUntil((route) => false);
-                        context.router.pushNamed('/public-home');
-                      },
-                    ).copyWith(
-                      backgroundColor: Colors.transparent,
-                      border: Border.all(color: Colors.transparent),
-                    ),
-                  ],
-                ),
+                  ),
+                  BtvButton.mediumSecondary(
+                    labelText: S.of(context).skipToPublicContent,
+                    onPressed: () {
+                      ref.read(authStateProvider.notifier).setGuestMode(true);
+                      context.router.popUntil((route) => false);
+                      context.router.push(const TabsRootScreenRoute());
+                    },
+                  ).copyWith(
+                    backgroundColor: Colors.transparent,
+                    border: Border.all(color: Colors.transparent),
+                  ),
+                ],
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );

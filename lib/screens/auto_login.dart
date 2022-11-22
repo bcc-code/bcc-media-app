@@ -39,17 +39,17 @@ class _AutoLoginScreeenState extends ConsumerState<AutoLoginScreeen> {
     final hasCredentials = ref.read(authStateProvider).auth0AccessToken != null;
     if (hasCredentials) {
       WidgetsBinding.instance.scheduleFrameCallback((d) {
-        context.router.navigate(const TabsRootScreenRoute());
+        context.router.replaceAll([const TabsRootScreenRoute()]);
       });
     } else {
       setState(() {
         authFuture = ref.read(authStateProvider.notifier).load().then((_) {
           final hasCredentials = ref.read(authStateProvider).auth0AccessToken != null;
           if (!hasCredentials) {
-            context.router.navigate(LoginScreenRoute());
+            context.router.replaceAll([LoginScreenRoute()]);
             return;
           } else {
-            context.router.navigate(const TabsRootScreenRoute());
+            context.router.replaceAll([const TabsRootScreenRoute()]);
           }
         });
       });

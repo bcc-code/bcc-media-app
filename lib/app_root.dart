@@ -1,10 +1,14 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:brunstadtv_app/graphql/client.dart';
+import 'package:brunstadtv_app/graphql/queries/me.graphql.dart';
 import 'package:brunstadtv_app/helpers/btv_typography.dart';
 import 'package:brunstadtv_app/providers/auth_state.dart';
+import 'package:brunstadtv_app/providers/rudder.dart';
 import 'package:brunstadtv_app/router/router.gr.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:rudder_sdk_flutter/RudderController.dart';
 
 class AppRoot extends ConsumerStatefulWidget {
   const AppRoot({super.key, required this.child, required this.navigatorKey});
@@ -25,8 +29,25 @@ class _AppRootState extends ConsumerState<AppRoot> {
     authSubscription = ref.listenManual<AuthState>(authStateProvider, (previous, next) {
       if (previous?.auth0AccessToken != null && next.auth0AccessToken == null) {
         widget.navigatorKey.currentContext?.router.root.navigate(LoginScreenRoute());
+      } else if (next.auth0AccessToken != null) {
+        ref.read(gqlClientProvider).query$me().then((value) {
+          if (value.exception != null) {
+            throw value.exception!;
+          }
+          if (value.parsedData == null) {
+            throw ErrorDescription('"Me" data is null.');
+          }
+          identify(next.user!, value.parsedData!.me.analytics.anonymousId);
+          return value.parsedData;
+        });
       }
     });
+  }
+
+  @override
+  void dispose() {
+    authSubscription.close();
+    super.dispose();
   }
 
   void _handleMessage(RemoteMessage message, {bool? openedFromBackground}) {

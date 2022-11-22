@@ -149,7 +149,7 @@ class _TabsRootScreenState extends ConsumerState<TabsRootScreen> with AutoRouteA
             child: Scaffold(
                 body: Padding(padding: EdgeInsets.only(bottom: _shouldHideMiniPlayer(context) ? 0 : kMiniPlayerHeight), child: child),
                 bottomSheet: BottomSheetMiniPlayer(hidden: _shouldHideMiniPlayer(context)),
-                bottomNavigationBar: CustomTabBar(tabsRouter: tabsRouter)),
+                bottomNavigationBar: ref.watch(authStateProvider).guestMode ? null : CustomTabBar(tabsRouter: tabsRouter)),
           );
         });
   }

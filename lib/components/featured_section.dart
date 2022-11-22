@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:auto_route/auto_route.dart';
+import '../l10n/app_localizations.dart';
 import '../router/router.gr.dart';
 
 import '../graphql/queries/page.graphql.dart';
@@ -104,12 +105,12 @@ class _FeaturedItem extends StatelessWidget {
                   false
                       ? BtvButton.smallRed(
                           imagePath: 'assets/icons/Play.png',
-                          labelText: 'Live',
+                          labelText: S.of(context).liveNow,
                           onPressed: () {},
                         )
                       : BtvButton.smallSecondary(
                           imagePath: 'assets/icons/Play.png',
-                          labelText: 'Watch now',
+                          labelText: S.of(context).watchNow,
                           onPressed: () {
                             var episodeItem = sectionItem.item.asOrNull<Fragment$Section$$FeaturedSection$items$items$item$$Episode>();
                             var showItem = sectionItem.item.asOrNull<Fragment$Section$$FeaturedSection$items$items$item$$Show>();

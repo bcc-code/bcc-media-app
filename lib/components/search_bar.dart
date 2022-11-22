@@ -109,7 +109,7 @@ class _SearchBarState extends State<SearchBar> {
                           : null,
                       suffixIconConstraints: const BoxConstraints(minWidth: 0, maxHeight: 24),
                       border: InputBorder.none,
-                      hintText: 'Search',
+                      hintText: S.of(context).search,
                       hintStyle: BtvTextStyles.body2.copyWith(color: BtvColors.label4, height: 1.45),
                     ),
                   ),

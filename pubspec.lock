@@ -796,6 +796,13 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.0.1"
+  logger:
+    dependency: transitive
+    description:
+      name: logger
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.1.0"
   logging:
     dependency: transitive
     description:
@@ -827,7 +834,7 @@ packages:
       sha256: d92141dc6fe1dad30722f9aa826c7fbc896d021d792f80678280601aff8cf724
       url: "https://pub.dev"
     source: hosted
-    version: "0.2.0"
+    version: "0.1.5"
   meta:
     dependency: transitive
     description:
@@ -1132,7 +1139,7 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "4.1.0"
-  riverpod:
+riverpod:
     dependency: "direct main"
     description:
       name: riverpod
@@ -1140,6 +1147,41 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.1.1"
+  rudder_plugin_android:
+    dependency: transitive
+    description:
+      name: rudder_plugin_android
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "2.1.1"
+  rudder_plugin_ios:
+    dependency: transitive
+    description:
+      name: rudder_plugin_ios
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "2.1.1"
+  rudder_plugin_web:
+    dependency: transitive
+    description:
+      name: rudder_plugin_web
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "2.1.2"
+  rudder_sdk_flutter:
+    dependency: "direct main"
+    description:
+      name: rudder_sdk_flutter
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "2.2.0"
+  rudder_sdk_flutter_platform_interface:
+    dependency: "direct main"
+    description:
+      name: rudder_sdk_flutter_platform_interface
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "2.2.0"
   rxdart:
     dependency: transitive
     description:
@@ -1304,7 +1346,7 @@ packages:
       sha256: dd904f795d4b4f3b870833847c461801f6750a9fa8e61ea5ac53f9422b31f250
       url: "https://pub.dev"
     source: hosted
-    version: "1.9.1"
+    version: "1.9.0"
   stack_trace:
     dependency: transitive
     description:

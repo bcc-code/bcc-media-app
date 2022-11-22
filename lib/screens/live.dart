@@ -6,6 +6,7 @@ import 'package:bccm_player/cast_button.dart';
 import 'package:bccm_player/playback_platform_pigeon.g.dart';
 import 'package:brunstadtv_app/api/brunstadtv.dart';
 import 'package:brunstadtv_app/components/live_mini_player.dart';
+import 'package:brunstadtv_app/router/router.gr.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:brunstadtv_app/providers/playback_api.dart';

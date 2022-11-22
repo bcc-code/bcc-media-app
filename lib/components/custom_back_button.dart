@@ -44,34 +44,30 @@ class CustomBackButton extends StatelessWidget {
 
       pageTitle = previousPageTitle ?? localizedTitle ?? '';
     }
-    return Stack(
-      children: [
-        Padding(
-          padding: EdgeInsets.only(left: 17),
-          child: Align(
-            alignment: Alignment.topLeft,
-            child: GestureDetector(
-              behavior: HitTestBehavior.opaque,
-              onTap: () {
-                if (onPressed != null) {
-                  onPressed!();
-                } else {
-                  Navigator.maybePop(context);
-                }
-              },
-              child: Row(
-                mainAxisSize: MainAxisSize.min,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: <Widget>[
-                  SvgPicture.string(SvgIcons.chevronLeft, height: 16),
-                  SizedBox(width: 8),
-                  Center(child: Text(pageTitle, style: BtvTextStyles.button2.copyWith(height: 1)))
-                ],
-              ),
-            ),
+    return Padding(
+      padding: const EdgeInsets.only(left: 17),
+      child: Align(
+        alignment: Alignment.topLeft,
+        child: GestureDetector(
+          behavior: HitTestBehavior.opaque,
+          onTap: () {
+            if (onPressed != null) {
+              onPressed!();
+            } else {
+              Navigator.maybePop(context);
+            }
+          },
+          child: Row(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: <Widget>[
+              SvgPicture.string(SvgIcons.chevronLeft, height: 16),
+              const SizedBox(width: 8),
+              Expanded(child: Center(child: Text(pageTitle, overflow: TextOverflow.ellipsis, style: BtvTextStyles.button2.copyWith(height: 1))))
+            ],
           ),
         ),
-      ],
+      ),
     );
   }
 }
