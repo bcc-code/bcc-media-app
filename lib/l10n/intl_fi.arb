@@ -1,228 +1,1011 @@
 {
-  "@@locale": "fi",
-  "liveTab": "Live",
-  "logOutButton": "Kirjaudu ulos",
-  "profileTab": "Profiili",
-  "bccMediaCenter": "BrunstadTV on ei-kaupallinen kristillisten ja positiivisten arvojen mukaisen median tuottaja.",
-  "signInButton": "Kirjaudu sisään",
-  "tryAgainButton": "Koita uudelleen",
-  "loggedOutTitle": "Kirjautunut ulos",
-  "loggedOutMessage": "Et ole kirjautuneena. Kirjaudu sisään uudelleen.",
-  "mostWatched": "Eniten katsellut",
-  "mostRecent": "Tuoreimmat",
-  "latelyPublished": "Tuoreita julkaisuja",
-  "anErrorOccurred": "Sattui ongelma",
-  "ok": "OK",
-  "loginFailedCheckNetwork": "Kirjautuminen epäonnistui. Tarkista nettiyhteys ja koita uudelleen.",
-  "loginFailedTryAgain": "Kirjautuminen epäonnistui. Yritä myöhemmin uudelleen.",
-  "soundLanguage": "Äänen kieli",
-  "subtitleLanguage": "Tekstityksen kieli",
-  "appLanguage": "Sovelluksen kieli",
-  "checkNetwork": "Tarkista nettiyhteys ja yritä uudelleen.",
-  "tryAgain": "Yritä myöhemmin uudelleen.",
-  "cantPlayVideo": "Tätä videota ei voi nyt toistaa.",
-  "about": "Tietoja",
-  "version": "Versio",
-  "contactSupport": "Tukipyyntö",
-  "cancel": "Peru",
-  "upNext": "Tulossa",
-  "done": "Valmis",
-  "playerSettings": "Soittimen asetukset",
-  "settings": "Asetukset",
-  "none": "Ei mikään",
-  "auto": "Automaattinen",
-  "live": "Live",
-  "subtitles": "Tekstitys",
-  "audio": "Ääni",
-  "quality": "Laatu",
-  "seasons": "Tuotantokaudet",
-  "episodes": "Jaksoa",
-  "search": "Haku",
-  "noResults": "Mitään ei löytynyt",
-  "doYouWantCast": "Haluatko lähettää videon ruudulle?",
-  "play": "Toista",
-  "castQueue": "Toista kaikki isolle ruudulle",
-  "options": "Valinnat",
-  "remove": "Poista",
-  "queueLimitTitle": "Rajoitus",
-  "queueLimitMessage": "Jonossa ei voi olle enempää kuin {elementCount} juttua.",
-  "recentSearches": "Aiemmin haettu",
-  "tVLogin": "Kirjaudu sisään televisiolla",
-  "tVLoginSuccessful": "Kirjautuminen onnistui. Vahvista televisiosta.",
-  "seeMore": "Näytä lisää",
-  "seeAll": "Näytä kaikki",
-  "series": "Sarjat",
-  "livestreamMaintenance": "Suoratoisto on juuri korjattavana. Pahoittelemme. Koita myöhemmin uudelleen.",
-  "homeTab": "Etusivu",
-  "sortBy": "Järjestelyperuste",
-  "videoQuality": "Videon laatu",
-  "low": "Alhainen",
-  "medium": "Keskiverto",
-  "high": "Laadukas",
-  "emptySearch": "Täältä voit hakea mitä tahansa BrunstadTV:n sisältöä; sarjoja, elokuvia, ja jaksoja.",
-  "back": "Takaisin",
-  "seasonLetter": "TK",
-  "episodeLetter": "J",
-  "atoZ": "A-Ö",
-  "ztoA": "Ö-A",
-  "shortFilms": "Lyhytfilmit",
-  "videos": "Videota",
-  "moreInfo": "Tarkempia tietoja",
-  "info": "Tiedot",
-  "episode": "Jakso",
-  "takePhoto": "Ota kuva",
-  "pickPhoto": "Valitse kuvakansiosta",
-  "uploadFileTitle": "Lähetä tiedosto",
-  "uploadFileMessage": "Haluatko lähettää tämän tiedoston?",
-  "watchingWith": "Sinä ja {numPeople} muuta katselette tätä",
-  "uploading": "Lähetetään",
-  "uploadFail": "Lähettäminen epäonnistui",
-  "post": "Lähetä",
-  "charactersLimit": "{charsTotal} merkistä {charsLeft} jäljellä",
-  "uploadingPostSuccess": "Viestisi on toimitettu.",
-  "testimonyInfo": "Kuvaa video kännykällä.",
-  "yourVideo": "Videosi",
-  "record": "Kuvaa",
-  "recordingTips": "Vinkkejä hyvän videon kuvaamiseen",
-  "recordingTipA": "Kuvaa hiljaisessa ympäristössä.",
-  "recordingTipB": "Huolehdi tasaisesta valaistuksesta kasvoille.",
-  "recordingTipC": "Ajattele ensin mitä aiot sanoa - kuvaa vasta sitten.",
-  "recordingTipD": "Pidä puhelinta vaaka-asennossa.",
-  "thankYou": "Kiitoksia!",
-  "thankYouForContribution": "Kiitos panoksesta!",
-  "uploadingVideoSuccess": "Videosi on toimitettu.",
-  "next": "Seuraava",
-  "recordVideoCameraPermissionAlert": "Anna sovellukselle oikeus käyttää kameraa videon kuvaamiseen.",
-  "recordVideoPhotosPermissionAlert": "Anna sovellukselle oikeus käyttää kuva-albumia videon kuvaamista varten.",
-  "recordVideoStoragePermissionAlert": "Anna sovellukselle oikeus käyttää tallennustilaa videon kuvaamista varten.",
-  "recordVideoMicrophonePermissionAlert": "Videon kuvaaminen vaatii oikeuden käyttää mikrofonia.",
-  "takePhotoStoragePermissionAlert": "Kuvan ottamiseen tarvitaan oikeus käyttää tallennustilaa.",
-  "takePhotoCameraPermissionAlert": "Kuvan ottamiseen tarvitaan oikeus käyttää kameraa.",
-  "pickPhotoStoragePermissionAlert": "Anna sovellukselle oikeus käyttää tallennustilaa jotta voidaan valita kuvia.",
-  "permissionsAlertTitle": "Tarvitaan käyttöoikeuksia",
-  "add": "Lisää",
-  "change": "Vaihda",
-  "recordingFailedTitle": "Videon ottaminen epäonnistui",
-  "recordingFailedMessage": "Jotain meni pieleen videon kuvaamisessa.",
-  "pollSubtitle": "Kysely",
-  "writeHere": "Kirjoita tähän",
-  "feed": "Syöte",
-  "atmosphereFeedDescription": "Osallistu viestivirtaan lähettämällä viesti, kuva, tai todistus. Missä oletkin.",
-  "information": "Tiedot",
-  "photoNotSupported": "Kuvien ottaminen tai valitseminen ei onnistu laitteellasi.",
-  "answerFailed": "Vastauksen lähettäminen epäonnistui. Yritä uudelleen.",
-  "question": "Kysymys",
-  "notificationChannelPlayerName": "Soitin",
-  "now": "Nyt",
-  "createPost": "Luo viesti",
-  "concernTextPlaceholder": "Kerro ongelmasta",
-  "debugInfoExplanation": "Palautteesi sisältää myös seuraavat tiedot auttamaan meitä paremmin ymmärtämään ongelmaa.",
-  "send": "Lähetä",
-  "sending": "Lähetetään",
-  "thankYouSupportTitle": "Kiitos palautteesta!",
-  "thankYouSupportDescription": "Arvostamme kovasti palautetta ja teemme parhaamme ongelman korjaamiseen.",
-  "sendFail": "Lähettäminen epäonnistui",
-  "sendFailDescription": "Jokin ei nyt toimi. Tarkista nettiyhteys ja kokeile uudelleen.",
-  "today": "Tänään",
-  "noNewPosts": "Ei uusia viestejä",
-  "newPostsMultiple": "{postCount} uutta viestiä!",
-  "newPostsSingle": "{postCount} uutta viestiä!",
-  "expired": "Vanhentunut",
-  "availableFrom": "Saatavilla {date}",
-  "howFar": "Kuinka pitkän matkan kuljit?",
-  "submit": "Lähetä",
-  "wellDone": "Hyvin tehty!",
-  "wellDoneDistance": "Hienoa! Olet ilmoittanut yhteensä {distanceInKM} km",
-  "distanceRegistered": "Ilmoittamasi matka on tallennettu. Tuossa alempana voit lisätä vielä muita lenkkejä.",
-  "ranMore": "Kuljin yli {distanceInKM} km",
-  "moreThan": "Yli {distanceInKM} km",
-  "runningEffort": "Hyvä suoritus! Kirjaa kulkemasi matka tuohon alas.",
-  "slideSelect": "Säädä matkaa palkkia liu'uttamalla",
-  "submitAnotherDistance": "Lisää toinen lenkki",
-  "editPicture": "Muokkaa kuvaa",
-  "profilePicture": "Profiilikuva",
-  "firstPostTitle": "Ole ensimmäinen joka jakaa kuvan tai viestin",
-  "timezoneInformation": "Kellonajat ovat sinun aikavyöhykettä: {timeZone}",
-  "yourQuestion": "Kysymyksesi",
-  "uploadingInquirySuccess": "Huomaathan, että kaikkiin kysymyksiin ei lähetyksessä vastata.",
-  "askQuestion": "Kysy jotain",
-  "submitQuestionInfo": "Kysymällä jotain hyväksyt myös että kysymys voidaan julkaista.",
-  "posting": "Lähetetään",
+  
+  "loadingContent": "Loading content",
+  "@loadingContent": {
+    "description": "Text displayed when page content is loading."
+  },
+  "signInTooltip": "Sign in to watch more content",
+  "@signInTooltip": {
+    "description": "Text for tooltip displayed when a non-member user opens the home page."
+  },
+  "skipToPublicContent": "Skip to watch public content",
+  "@skipToPublicContent": {
+    "description": "Text for button displayed on login screen to skip sign in and watch public content."
+  },
+  "minutesShort": "min",
+  "@minutesShort": {
+    "description": "Text for minutes."
+  },
+  "calendarThisWeek": "This week",
+  "@calendarThisWeek": {
+    "description": "Text for This week."
+  },
+  "calendarWeek": "week",
+  "@calendarWeek": {
+    "description": "Text week."
+  },
   "loading": "Lataillaan",
+  "@loading": {
+    "description": "Text to indicate loading state."
+  },
+  "loginPageDisplay1": "The most powerful message in the world",
+  "@loginPageDisplay1": {
+    "description": "Text displayed on login screen."
+  },
+  "loginPageDisplay2": "Watch series, shows and films based on Christian values",
+  "@loginPageDisplay2": {
+    "description": "Text displayed on login screen."
+  },
+  "loginPageDisplay3": "Produced by BCC Media",
+  "@loginPageDisplay3": {
+    "description": "Text displayed on login screen."
+  },
+  "liveTab": "Live",
+  "@liveTab": {
+    "description": "Title of live page tab"
+  },
+  "logOutButton": "Kirjaudu ulos",
+  "@logOutButton": {
+    "description": "Text displayed on Log out button"
+  },
+  "profileTab": "Profiili",
+  "@profileTab": {
+    "description": "Title of the profile page"
+  },
+  "faq": "Frequently asked questions",
+  "@faq": {
+    "description": "Title of the FAQ page."
+  },
+  "bccMediaCenter": "BrunstadTV on ei-kaupallinen kristillisten ja positiivisten arvojen mukaisen median tuottaja.",
+  "@bccMediaCenter": {
+    "description": "Disclaimer on login page"
+  },
+  "signInButton": "Kirjaudu sisään",
+  "@signInButton": {
+    "description": "Text displayed on Sign in button"
+  },
+  "tryAgainButton": "Koita uudelleen",
+  "@tryAgainButton": {
+    "description": "Button on error alert that lets user to retry failed action"
+  },
+  "loggedOutTitle": "Kirjautunut ulos",
+  "@loggedOutTitle": {
+    "description": "Title of the alert message that is shown when user is logged out automatically."
+  },
+  "loggedOutMessage": "Et ole kirjautuneena. Kirjaudu sisään uudelleen.",
+  "@loggedOutMessage": {
+    "description": "Text of the alert message that is shown when user is logged out automatically."
+  },
+  "mostWatched": "Eniten katsellut",
+  "@mostWatched": {
+    "description": "Sorting option on audience page"
+  },
+  "mostRecent": "Tuoreimmat",
+  "@mostRecent": {
+    "description": "Sorting option on audience page"
+  },
+  "latelyPublished": "Tuoreita julkaisuja",
+  "@latelyPublished": {
+    "description": "Title for the list of videos on login page"
+  },
+  "anErrorOccurred": "Sattui ongelma",
+  "@anErrorOccurred": {
+    "description": "Title in error popup"
+  },
+  "ok": "OK",
+  "@ok": {
+    "description": "Popup confirmation button"
+  },
+  "loginFailedCheckNetwork": "Kirjautuminen epäonnistui. Tarkista nettiyhteys ja koita uudelleen.",
+  "@loginFailedCheckNetwork": {
+    "description": "Login error message"
+  },
+  "loginFailedTryAgain": "Kirjautuminen epäonnistui. Yritä myöhemmin uudelleen.",
+  "@loginFailedTryAgain": {
+    "description": "Login error message"
+  },
+  "soundLanguage": "Äänen kieli",
+  "@soundLanguage": {
+    "description": "Settings item on profile page"
+  },
+  "subtitleLanguage": "Tekstityksen kieli",
+  "@subtitleLanguage": {
+    "description": "Settings item on profile page"
+  },
+  "appLanguage": "Sovelluksen kieli",
+  "@appLanguage": {
+    "description": "Settings item on profile page"
+  },
+  "checkNetwork": "Tarkista nettiyhteys ja yritä uudelleen.",
+  "@checkNetwork": {
+    "description": "Error message for the user displayed in many contexts."
+  },
+  "tryAgain": "Yritä myöhemmin uudelleen.",
+  "@tryAgain": {
+    "description": "Error message for the user displayed in many contexts."
+  },
+  "cantPlayVideo": "Tätä videota ei voi nyt toistaa.",
+  "@cantPlayVideo": {
+    "description": "Error message for the user displayed when video playback attempt failed."
+  },
+  "about": "Tietoja",
+  "@about": {
+    "description": "Title of About page and item in profile page settings."
+  },
+  "version": "Versio",
+  "@version": {
+    "description": "Version ot the application on About page; followed by version number"
+  },
+  "contactSupport": "Tukipyyntö",
+  "@contactSupport": {
+    "description": "Settings item on profile page"
+  },
+  "cancel": "Peru",
+  "@cancel": {
+    "description": "General cancel action button"
+  },
+  "upNext": "Tulossa",
+  "@upNext": {
+    "description": "Title on Up next feature."
+  },
+  "done": "Valmis",
+  "@done": {
+    "description": "General Done button. User confirms that action completed sucessfully."
+  },
+  "playerSettings": "Soittimen asetukset",
+  "@playerSettings": {
+    "description": "Title of the Player settings activity in Android"
+  },
+  "settings": "Asetukset",
+  "@settings": {
+    "description": "Label of the button to go to Android/iOS settings"
+  },
+  "none": "Ei mikään",
+  "@none": {
+    "description": "Indicator on profile page that subtitles are disabled."
+  },
+  "auto": "Automaattinen",
+  "@auto": {
+    "description": "Indicator on profile page that audio and app language are chosen automatically."
+  },
+  "live": "Live",
+  "@live": {
+    "description": "Title of the live stream"
+  },
+  "subtitles": "Tekstitys",
+  "@subtitles": {
+    "description": "Title of the Player settings activity tab in Android"
+  },
+  "audio": "Ääni",
+  "@audio": {
+    "description": "Title of the Player settings activity tab in Android"
+  },
+  "quality": "Laatu",
+  "@quality": {
+    "description": "Title of the Player settings activity tab in Android"
+  },
+  "seasons": "Tuotantokaudet",
+  "@seasons": {
+    "description": "Followed by number of seasons in given series."
+  },
+  "episodes": "Jaksoa",
+  "@episodes": {
+    "description": "Followed by number of episodes in given series."
+  },
+  "search": "Haku",
+  "@search": {
+    "description": "Button to clear cache"
+  },
+  "noResults": "Mitään ei löytynyt",
+  "@noResults": {
+    "description": "No search results."
+  },
+  "doYouWantCast": "Haluatko lähettää videon ruudulle?",
+  "@doYouWantCast": {
+    "description": "Prompt displayed to the user"
+  },
+  "play": "Toista",
+  "@play": {
+    "description": "Option in prompt dialog."
+  },
+  "castQueue": "Toista kaikki isolle ruudulle",
+  "@castQueue": {
+    "description": "Queue page title"
+  },
+  "options": "Valinnat",
+  "@options": {
+    "description": "Options dialog title"
+  },
+  "remove": "Poista",
+  "@remove": {
+    "description": "Option in options dialog"
+  },
+  "queueLimitTitle": "Rajoitus",
+  "@queueLimitTitle": {
+    "description": "Title of the alert to the user when attempt to add video to cast queue failed due to full queue."
+  },
+  "queueLimitMessage": "You cannot have more than {elementCount} elements in queue.",
+  "@queueLimitMessage": {
+    "description": "Error message to the user when attempt to add video to cast queue failed due to full queue.",
+    "placeholders": {
+      "elementCount": {
+        "type": "int"
+      }
+    }
+  },
+  "recentSearches": "Aiemmin haettu",
+  "@recentSearches": {
+    "description": "Recent searches list title."
+  },
+  "tVLogin": "Kirjaudu sisään televisiolla",
+  "@tVLogin": {
+    "description": "Title of the TV login alert"
+  },
+  "tVLoginSuccessful": "Kirjautuminen onnistui. Vahvista televisiosta.",
+  "@tVLoginSuccessful": {
+    "description": "Message of the TV login alert"
+  },
+  "seeMore": "Näytä lisää",
+  "@seeMore": {
+    "description": "Button on featured item to navigete to page with player"
+  },
+  "seeAll": "Näytä kaikki",
+  "@seeAll": {
+    "description": "Button on explore page to navigete to audience page"
+  },
+  "series": "Sarjat",
+  "@series": {
+    "description": "Title of the tab on info page"
+  },
+  "livestreamMaintenance": "Suoratoisto on juuri korjattavana. Pahoittelemme. Koita myöhemmin uudelleen.",
+  "@livestreamMaintenance": {
+    "description": "Message displayed over overlay when livestream is under maintenance."
+  },
+  "homeTab": "Etusivu",
+  "@homeTab": {
+    "description": "Title of the home page"
+  },
+  "sortBy": "Järjestelyperuste",
+  "@sortBy": {
+    "description": "Sorting criteria selector"
+  },
+  "videoQuality": "Videon laatu",
+  "@videoQuality": {
+    "description": "Settings item in profile page for Android."
+  },
+  "low": "Alhainen",
+  "@low": {
+    "description": "Low quality video option"
+  },
+  "medium": "Keskiverto",
+  "@medium": {
+    "description": "Medium quality video option"
+  },
+  "high": "Laadukas",
+  "@high": {
+    "description": "High quality video option"
+  },
+  "emptySearch": "Täältä voit hakea mitä tahansa BrunstadTV:n sisältöä; sarjoja, elokuvia, ja jaksoja.",
+  "@emptySearch": {
+    "description": "Message on search page when there is no search results."
+  },
+  "back": "Takaisin",
+  "@back": {
+    "description": "General back button to navigate back"
+  },
+  "seasonLetter": "TK",
+  "@seasonLetter": {
+    "description": "Season  letter in label S1E3"
+  },
+  "episodeLetter": "J",
+  "@episodeLetter": {
+    "description": "Episode letter in label S1E3"
+  },
+  "atoZ": "A-Ö",
+  "@atoZ": {
+    "description": "Sort order"
+  },
+  "ztoA": "Ö-A",
+  "@ztoA": {
+    "description": "Sort order"
+  },
+  "shortFilms": "Lyhytfilmit",
+  "@shortFilms": {
+    "description": "Title of the films collection."
+  },
+  "videos": "Videota",
+  "@videos": {
+    "description": "Followed by number of videos"
+  },
+  "moreInfo": "Tarkempia tietoja",
+  "@moreInfo": {
+    "description": "Option in action sheet for the video that triggers info page for the video."
+  },
+  "info": "Tiedot",
+  "@info": {
+    "description": "Video info page title."
+  },
+  "episode": "Jakso",
+  "@episode": {
+    "description": "Title of the tab on info page"
+  },
+  "takePhoto": "Ota kuva",
+  "@takePhoto": {
+    "description": "Option in menu"
+  },
+  "pickPhoto": "Valitse kuvakansiosta",
+  "@pickPhoto": {
+    "description": "Option in menu"
+  },
+  "uploadFileTitle": "Lähetä tiedosto",
+  "@uploadFileTitle": {
+    "description": "Title of the dialog to confirm upload"
+  },
+  "uploadFileMessage": "Haluatko lähettää tämän tiedoston?",
+  "@uploadFileMessage": {
+    "description": "Content of the dialog to confirm upload"
+  },
+  "watchingWith": "You are watching with {numPeople} others",
+  "@watchingWith": {
+    "description": "Info on live stream page",
+    "placeholders": {
+      "numPeople": {
+        "type": "int"
+      }
+    }
+  },
+  "uploading": "Lähetetään",
+  "@uploading": {
+    "description": "Message during file upload"
+  },
+  "uploadFail": "Lähettäminen epäonnistui",
+  "@uploadFail": {
+    "description": "Upload result message"
+  },
+  "post": "Lähetä",
+  "@post": {
+    "description": "Button to post written testimony"
+  },
+  "charactersLimit": "{charsLeft} of {charsTotal} characters left",
+  "@charactersLimit": {
+    "description": "Info about limit of characters in written testimony",
+    "placeholders": {
+      "charsLeft": {
+        "type": "int"
+      },
+      "charsTotal": {
+        "type": "int"
+      }
+    }
+  },
+  "uploadingPostSuccess": "Viestisi on toimitettu.",
+  "@uploadingPostSuccess": {
+    "description": "Info in upload success page"
+  },
+  "testimonyInfo": "Kuvaa video kännykällä.",
+  "@testimonyInfo": {
+    "description": "Record testimony guideline page info"
+  },
+  "yourVideo": "Videosi",
+  "@yourVideo": {
+    "description": "Title on recording tip page page"
+  },
+  "record": "Kuvaa",
+  "@record": {
+    "description": "Button to record testimony"
+  },
+  "recordingTips": "Vinkkejä hyvän videon kuvaamiseen",
+  "@recordingTips": {
+    "description": "Record testimony guideline page tip list title"
+  },
+  "recordingTipA": "Kuvaa hiljaisessa ympäristössä.",
+  "@recordingTipA": {
+    "description": "Record testimony guideline page tip list item"
+  },
+  "recordingTipB": "Huolehdi tasaisesta valaistuksesta kasvoille.",
+  "@recordingTipB": {
+    "description": "Record testimony guideline page tip list item"
+  },
+  "recordingTipC": "Ajattele ensin mitä aiot sanoa - kuvaa vasta sitten.",
+  "@recordingTipC": {
+    "description": "Record testimony guideline page tip list item"
+  },
+  "recordingTipD": "Pidä puhelinta vaaka-asennossa.",
+  "@recordingTipD": {
+    "description": "Record testimony guideline page tip list item"
+  },
+  "thankYou": "Kiitoksia!",
+  "@thankYou": {
+    "description": "Title in upload success page"
+  },
+  "thankYouForContribution": "Kiitos panoksesta!",
+  "@thankYouForContribution": {
+    "description": "Title in upload success page"
+  },
+  "uploadingVideoSuccess": "Videosi on toimitettu.",
+  "@uploadingVideoSuccess": {
+    "description": "Info in upload success page"
+  },
+  "next": "Seuraava",
+  "@next": {
+    "description": "NEXT program in check in section"
+  },
+  "recordVideoCameraPermissionAlert": "Anna sovellukselle oikeus käyttää kameraa videon kuvaamiseen.",
+  "@recordVideoCameraPermissionAlert": {
+    "description": "Message in alert dialog informing about missing permission"
+  },
+  "recordVideoPhotosPermissionAlert": "Anna sovellukselle oikeus käyttää kuva-albumia videon kuvaamista varten.",
+  "@recordVideoPhotosPermissionAlert": {
+    "description": "Message in alert dialog informing about missing permission"
+  },
+  "recordVideoStoragePermissionAlert": "Anna sovellukselle oikeus käyttää tallennustilaa videon kuvaamista varten.",
+  "@recordVideoStoragePermissionAlert": {
+    "description": "Message in alert dialog informing about missing permission"
+  },
+  "recordVideoMicrophonePermissionAlert": "Videon kuvaaminen vaatii oikeuden käyttää mikrofonia.",
+  "@recordVideoMicrophonePermissionAlert": {
+    "description": "Message in alert dialog informing about missing permission"
+  },
+  "takePhotoStoragePermissionAlert": "Kuvan ottamiseen tarvitaan oikeus käyttää tallennustilaa.",
+  "@takePhotoStoragePermissionAlert": {
+    "description": "Message in alert dialog informing about missing permission"
+  },
+  "takePhotoCameraPermissionAlert": "Kuvan ottamiseen tarvitaan oikeus käyttää kameraa.",
+  "@takePhotoCameraPermissionAlert": {
+    "description": "Message in alert dialog informing about missing permission"
+  },
+  "pickPhotoStoragePermissionAlert": "Anna sovellukselle oikeus käyttää tallennustilaa jotta voidaan valita kuvia.",
+  "@pickPhotoStoragePermissionAlert": {
+    "description": "Message in alert dialog informing about missing permission"
+  },
+  "permissionsAlertTitle": "Tarvitaan käyttöoikeuksia",
+  "@permissionsAlertTitle": {
+    "description": "Title of an alert dialog informing about missing permission"
+  },
+  "add": "Lisää",
+  "@add": {
+    "description": "Button text on interactive live avatar section"
+  },
+  "change": "Vaihda",
+  "@change": {
+    "description": "Button text on interactive live avatar section"
+  },
+  "recordingFailedTitle": "Videon ottaminen epäonnistui",
+  "@recordingFailedTitle": {
+    "description": "Title in alert dialog when recording fails"
+  },
+  "recordingFailedMessage": "Jotain meni pieleen videon kuvaamisessa.",
+  "@recordingFailedMessage": {
+    "description": "Message in alert dialog when recording fails"
+  },
+  "pollSubtitle": "Kysely",
+  "@pollSubtitle": {
+    "description": "The little title in poll"
+  },
+  "writeHere": "Kirjoita tähän",
+  "@writeHere": {
+    "description": "New post text field placeholder"
+  },
+  "feed": "Syöte",
+  "@feed": {
+    "description": "Feed page bar title"
+  },
+  "atmosphereFeedDescription": "Osallistu viestivirtaan lähettämällä viesti, kuva, tai todistus. Missä oletkin.",
+  "@atmosphereFeedDescription": {
+    "description": "Feed page description"
+  },
+  "information": "Tiedot",
+  "@information": {
+    "description": "Feed information item title"
+  },
+  "photoNotSupported": "Kuvien ottaminen tai valitseminen ei onnistu laitteellasi.",
+  "@photoNotSupported": {
+    "description": "Alert displayed when phone can't take photo or pick photo from storage."
+  },
+  "answerFailed": "Vastauksen lähettäminen epäonnistui. Yritä uudelleen.",
+  "@answerFailed": {
+    "description": "Message displayed when user's answer hasn't' been sent'."
+  },
+  "question": "Kysymys",
+  "@question": {
+    "description": "Title of the question page"
+  },
+  "notificationChannelPlayerName": "Soitin",
+  "@notificationChannelPlayerName": {
+    "description": "Notification channel name in Android settings"
+  },
+  "now": "Nyt",
+  "@now": {
+    "description": "Tv guide now playing label"
+  },
+  "createPost": "Luo viesti",
+  "@createPost": {
+    "description": "Button to start text testimony and title on create post page"
+  },
+  "concernTextPlaceholder": "Kerro ongelmasta",
+  "@concernTextPlaceholder": {
+    "description": "Placeholder text in text field on contact support page"
+  },
+  "debugInfoExplanation": "Palautteesi sisältää myös seuraavat tiedot auttamaan meitä paremmin ymmärtämään ongelmaa.",
+  "@debugInfoExplanation": {
+    "description": "Info about debug info usage on contact support page"
+  },
+  "send": "Lähetä",
+  "@send": {
+    "description": "General button to send a form"
+  },
+  "sending": "Lähetetään",
+  "@sending": {
+    "description": "General sending action indicator"
+  },
+  "thankYouSupportTitle": "Kiitos palautteesta!",
+  "@thankYouSupportTitle": {
+    "description": "Text on contact support confirmation page"
+  },
+  "thankYouSupportDescription": "Arvostamme kovasti palautetta ja teemme parhaamme ongelman korjaamiseen.",
+  "@thankYouSupportDescription": {
+    "description": "Text on contact support confirmation page"
+  },
+  "sendFail": "Couldn't send you message",
+  "@sendFail": {
+    "description": "General error message that sending failed"
+  },
+  "sendFailDescription": "Jokin ei nyt toimi. Tarkista nettiyhteys ja kokeile uudelleen.",
+  "@sendFailDescription": {
+    "description": "General error message that sending failed"
+  },
+  "today": "Tänään",
+  "@today": {
+    "description": "First category in tv guide"
+  },
+  "noNewPosts": "Ei uusia viestejä",
+  "@noNewPosts": {
+    "description": "Text displayed on the button, when there are no new posts in the feed."
+  },
+  "newPostsMultiple": "{postCount} new posts!",
+  "@newPostsMultiple": {
+    "description": "Text displayed on the button, when there are number of new posts in the feed.",
+    "placeholders": {
+      "postCount": {
+        "type": "int"
+      }
+    }
+  },
+  "newPostsSingle": "{postCount} new post!",
+  "@newPostsSingle": {
+    "description": "Text displayed on the button, when there is one new post in the feed.",
+    "placeholders": {
+      "postCount": {
+        "type": "int"
+      }
+    }
+  },
+  "expired": "Vanhentunut",
+  "@expired": {
+    "description": "Info that episode is no longer available."
+  },
+  "availableFrom": "Available {date}",
+  "@availableFrom": {
+    "description": "Info that episode will be released at certain date.",
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "howFar": "Kuinka pitkän matkan kuljit?",
+  "@howFar": {
+    "description": "Text on running competition page."
+  },
+  "submit": "Lähetä",
+  "@submit": {
+    "description": "Submit button on running competition page."
+  },
+  "wellDone": "Hyvin tehty!",
+  "@wellDone": {
+    "description": "Text on running competition page."
+  },
+  "wellDoneDistance": "Well done! You have registered a total distance of {distanceInKM} km",
+  "@wellDoneDistance": {
+    "description": "Text on running competition page.",
+    "placeholders": {
+      "distanceInKM": {
+        "type": "int"
+      }
+    }
+  },
+  "distanceRegistered": "Ilmoittamasi matka on tallennettu. Tuossa alempana voit lisätä vielä muita lenkkejä.",
+  "@distanceRegistered": {
+    "description": "Text on running competition page."
+  },
+  "ranMore": "I went more than {distanceInKM} km",
+  "@ranMore": {
+    "description": "Text on running competition page.",
+    "placeholders": {
+      "distanceInKM": {
+        "type": "int"
+      }
+    }
+  },
+  "moreThan": "More than {distanceInKM} km",
+  "@moreThan": {
+    "description": "Text on running competition page.",
+    "placeholders": {
+      "distanceInKM": {
+        "type": "int"
+      }
+    }
+  },
+  "runningEffort": "Hyvä suoritus! Kirjaa kulkemasi matka tuohon alas.",
+  "@runningEffort": {
+    "description": "Text on running competition page."
+  },
+  "slideSelect": "Säädä matkaa palkkia liu'uttamalla",
+  "@slideSelect": {
+    "description": "Text on running competition page."
+  },
+  "submitAnotherDistance": "Lisää toinen lenkki",
+  "@submitAnotherDistance": {
+    "description": "Text on running competition page."
+  },
+  "editPicture": "Muokkaa kuvaa",
+  "@editPicture": {
+    "description": "Button on profile page to edit profile picture."
+  },
+  "profilePicture": "Profiilikuva",
+  "@profilePicture": {
+    "description": "Text on edit profile page."
+  },
+  "firstPostTitle": "Ole ensimmäinen joka jakaa kuvan tai viestin",
+  "@firstPostTitle": {
+    "description": "Text on feed page when feed is empty."
+  },
+  "timezoneInformation": "Tv guide timetable is in your local time: {timeZone}",
+  "@timezoneInformation": {
+    "description": "TV guide footer info text.",
+    "placeholders": {
+      "timeZone": {
+        "type": "String"
+      }
+    }
+  },
+  "yourQuestion": "Kysymyksesi",
+  "@yourQuestion": {
+    "description": "Title on ask question page"
+  },
+  "uploadingInquirySuccess": "Huomaathan, että kaikkiin kysymyksiin ei lähetyksessä vastata.",
+  "@uploadingInquirySuccess": {
+    "description": "Info in upload question success page"
+  },
+  "askQuestion": "Kysy jotain",
+  "@askQuestion": {
+    "description": "Ask question text field placeholder"
+  },
+  "submitQuestionInfo": "Kysymällä jotain hyväksyt myös että kysymys voidaan julkaista.",
+  "@submitQuestionInfo": {
+    "description": "Disclaimer on ask question page"
+  },
+  "posting": "Lähetetään",
+  "@posting": {
+    "description": "Information about ongoing posting process"
+  },
   "submitPostInfo": "Lähettämällä kuvan tai tekstin hyväksyt myös että se voidaan julkaista. ",
+  "@submitPostInfo": {
+    "description": "Disclaimer on text testimony page"
+  },
   "cropImage": "Rajaa kuvaa",
+  "@cropImage": {
+    "description": "Image crop page title"
+  },
   "square": "Neliö",
+  "@square": {
+    "description": "Image crop mode"
+  },
   "landscape": "Vaakakuva",
+  "@landscape": {
+    "description": "Image crop mode"
+  },
   "pollSingleChoice": "Vastauksen voi valita vain kerran.",
+  "@pollSingleChoice": {
+    "description": "Desciption of the poll type. States that user can change the answer only once."
+  },
   "pollMultipleChoice": "Vastausta voi muuttaa.",
+  "@pollMultipleChoice": {
+    "description": "Desciption of the poll type. States that user can change the answer multiple times."
+  },
   "pollEnded": "Valintakysely on valmis. Kiitos vastauksista.",
+  "@pollEnded": {
+    "description": "Message displayed when poll has been closed by administrator."
+  },
   "browserInstall": "Selain ei aukea. Voitko asentaa sellaisen jos se puuttuu.",
+  "@browserInstall": {
+    "description": "Message displayed when browser couldn't be opened on user's device."
+  },
   "share": "Jaa",
+  "@share": {
+    "description": "Option name to share video."
+  },
   "liveNow": "Jetzt live",
+  "@liveNow": {
+    "description": "Call to action button on featured carousel."
+  },
   "program": "Ohjelma",
+  "@program": {
+    "description": "Title of the program tab on live page."
+  },
   "participateTab": "Osallistu",
+  "@participateTab": {
+    "description": "Title of the participate tab on live page."
+  },
   "tomorrow": "Huomenna",
+  "@tomorrow": {
+    "description": "Day of transmission in tv guide."
+  },
   "readBy": "Lukenut: ",
-  "pollAnswer": "Olet vastannut: {answer}",
+  "@readBy": {
+    "description": "Feed verse pre author text."
+  },
+  "pollAnswer": "You've answered: {answer}",
+  "@pollAnswer": {
+    "description": "Snackbar label after user has chosen poll answer",
+    "placeholders": {
+      "answer": {
+        "type": "String"
+      }
+    }
+  },
   "broadcasts": "Lähetykset",
+  "@broadcasts": {
+    "description": "Title for tv guide collection on event page."
+  },
   "quizAnswered": "Vastaukset toimitettu",
+  "@quizAnswered": {
+    "description": "Text displayed on a button when all answers in quiz have been submitted."
+  },
   "quizNotEnabled": "Kyselyyn ei voi vastata juuri nyt. Yritä toiste.",
+  "@quizNotEnabled": {
+    "description": "Message on alert that appears when participate item is visible, but quiz is not enabled."
+  },
   "calendar": "Kalenteri",
+  "@calendar": {
+    "description": "Title of calendar page."
+  },
   "noEvents": "Ei suunniteltuja lähetyksiä",
+  "@noEvents": {
+    "description": "Info in calendar page that no transmissions are scheduled for selected day."
+  },
   "appUpdateTitle": "Päivitys on tarpeen",
+  "@appUpdateTitle": {
+    "description": "Title of the message displayed to the user when application is too old and should be updated in a timely manner."
+  },
   "appUpdateRequest": "Päivitä sovellus. Siinä on uusia juttuja ja vikoja on korjattu.",
+  "@appUpdateRequest": {
+    "description": "Message displayed to the user when application is too old and should be updated in a timely manner."
+  },
   "appUpdateAccepted": "Päivitä",
+  "@appUpdateAccepted": {
+    "description": "Option that can be chosen by the user to update his application."
+  },
   "donationNotAvailable": "Juuri nyt ei voi lahjoittaa. Yritä myöhemmin uudelleen.",
-  "posts": "{postsCount} viestiä",
+  "@donationNotAvailable": {
+    "description": "Message displayed when donation flow failed."
+  },
+  "posts": "{postsCount} Posts",
+  "@posts": {
+    "description": "Contributions to feed made by the users. Plural of post.",
+    "placeholders": {
+      "postsCount": {
+        "type": "int"
+      }
+    }
+  },
   "copy": "Kopioi",
+  "@copy": {
+    "description": "Copy option for quotes, verses."
+  },
   "reload": "Uusi yritys",
+  "@reload": {
+    "description": "Label on the button that allows to reload the player after error."
+  },
   "participantsTitle": "Kuka vastaa?",
+  "@participantsTitleTitle": {
+    "description": "Title label on the participants list before quiz."
+  },
   "participantsSubtitle": "Valitse yksi tai useampi osallistuja.",
+  "@participantsSubtitle": {
+    "description": "Subtitle label on the participants list before quiz."
+  },
   "yourFamily": "Perheesi",
+  "@yourFamily": {
+    "description": "Title on page when user selects family members that take part in the quiz."
+  },
   "yourTurn": "Sinun vuorosi",
+  "@yourTurn": {
+    "description": "Title on page informing user that other user will answer question in the next step."
+  },
   "fAQ": "UKK",
+  "@fAQ": {
+    "description": "Title on FAQ page and item in profile page settings."
+  },
   "shareStart": "Jaa video",
-  "shareTime": "Jaa video tästä kohtaa {time}",
-  "loadContentError": "Sisällön lataaminen epäonnistui",
+  "@shareStart": {
+    "description": "Option on action sheet for sharing from start"
+  },
+  "shareTime": "Share from time {time}",
+  "@shareTime": {
+    "description": "Option on action sheet for sharing from time",
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "loadContentError": "Couldn't load content",
+  "@loadContentError": {
+    "description": "Error text when content couldn't be loaded."
+  },
   "audioOnlyErrorDescription": "Tarkista nettiyhteys ja yritä uudelleen",
+  "@audioOnlyErrorDescription": {
+    "description": "Error message when audio only fails to play"
+  },
   "privacyPolicy": "Tietosuojakäytäntö",
+  "@privacyPolicy": {
+    "description": "Title on Privacy Policy page and item in profile page settings."
+  },
   "tokenError": "Nettiongelman vuoksi emme voi varmistaa kuka olet. Tämän vuoksi et voi vielä käyttää kaikkia ominaisuuksia.",
+  "@tokenError": {
+    "description": "Message indicating that there is a problem with user's token, and some features may be broken because of this."
+  },
   "categoriesTab": "Luokat",
+  "@categoriesTab": {
+    "description": "Title of the Categories Tab"
+  },
   "settingsTab": "Asetukset",
+  "@settingsTab": {
+    "description": "Title of the Settings Tab"
+  },
   "confirmLogin": "Vahvista kirjautuminen",
+  "@confirmLogin": {
+    "description": "Prompt that asks the user to confirm his log-in"
+  },
   "scanInfo": "Koodin kuvaaminen kännykällä vie sinut kirjautumissivulle.",
+  "@scanInfo": {
+    "description": "Text that informs the user that the QR code can be scanned to enter the login page. Used on AppleTV."
+  },
   "validInfo": "QR-koodi on voimassa 15 minuuttia.",
+  "@validInfo": {
+    "description": "Message that informs the user for how long the QR Code will be valid."
+  },
   "confirmInfo": "Kirjaudu sisään kännykällä. Vahvista sitten kirjautuminen alla olevasta painikkeesta.",
+  "@confirmInfo": {
+    "description": "Message that asks the user to click the button in order to proceed after successful login."
+  },
   "seriesTab": "Sarjat",
+  "@seriesTab": {
+    "description": "Series Tab title"
+  },
   "filmsTab": "Filmit",
+  "@filmsTab": {
+    "description": "Films Tab title"
+  },
   "eventsTab": "Tapahtumat",
+  "@eventsTab": {
+    "description": "Events Tab title"
+  },
   "audioLanguage": "Äänen kieli",
+  "@audioLanguage": {
+    "description": "Label indicating that the Audio Language can be changed here."
+  },
   "subtitlesLanguage": "Tekstityksen kieli",
+  "@subtitlesLanguage": {
+    "description": "Label indicating that the Subtitles Language can be changed here."
+  },
   "removeFromRecentSearches": "Haluatko poistaa tämän hakuhistoriasta?",
+  "@removeFromRecentSearches": {
+    "description": "Prompt that asks the user wheter they are certain, that they want to remove the element from recent searches."
+  },
   "noTransmissionToday": "Tänään ei ole lähetystä",
+  "@noTransmissionToday": {
+    "description": "Messages that informs the user, that there are no schedules transmission for today."
+  },
   "livestreamMaintenanceTitle": "Suoratoistoa ei nyt ole",
+  "@livestreamMaintenanceTitle": {
+    "description": "Message that informs the user, that the livestream is unavailable."
+  },
   "start": "Alkaa",
+  "@start": {
+    "description": "Word used while displaying information about the beggining of a video or an event in tv guide."
+  },
   "transmissionSchedule": "Lähetysten aikataulu",
+  "@transmissionSchedule": {
+    "description": "Label that indicates the user is looking at Transmission schedule"
+  },
   "featured": "Ajankohtaista",
+  "@featured": {
+    "description": "Featured videos collection header"
+  },
   "errorTryAgain": "Jokin meni pieleen. Yritä myöhemmin uudelleen.",
+  "@errorTryAgain": {
+    "description": "Message that informs the user, that there was an error. Then politely asks the user to try again later."
+  },
   "reportProblem": "Ongelmatilanteessa lähetä tämän QR-koodin avulla meille sähköpostia.",
+  "@reportProblem": {
+    "description": "Message indicating that whenever the user wants to report a problem, they can scan the QR code to send an email to support."
+  },
   "phoneReadingProblem": "Jos et onnistu käyttämään QR-koodia, lähetä meille sähköpostia seuraavin tiedoin",
+  "@phoneReadingProblem": {
+    "description": "Message explaining that if the user's phone can't scan the QR code, they can send the support e-mail with information listed after this message."
+  },
   "goTo": "vaihtoehtoisesti mene",
+  "@goTo": {
+    "description": "Message used to point the user to the shortened URL in case they can't use the QR code to log-in. This is used on AppleTV."
+  },
   "watchBrunstad": "Seuraa BrunstadTV lähetystä",
+  "@watchBrunstad": {
+    "description": "Text that entices the user to watch the livestream."
+  },
   "notLogged": "Ei kirjautuneena",
+  "@notLogged": {
+    "description": "Text that informs the user, that they are not logged in."
+  },
   "authResponse0": "Käytä uutta QR-koodia kirjautumiseen.",
+  "@authResponse0": {
+    "description": "Authentication response displayed to the user when an old QR code was used. Asking them to use a new one if they want to log in."
+  },
   "authResponse1": "Kirjaudu kännykällä QR-koodin avulla.",
+  "@authResponse1": {
+    "description": "Message displayed to the user when they tried to proceed with the log-in on AppleTv without first logging through their mobile device."
+  },
   "authResponse3": "Tarkista nettiyhteys ja kokeile sitten uudelleen.",
+  "@authResponse3": {
+    "description": "Message that indicates there was an error during Authentication process. Asking the user to check their network connection and try again."
+  },
   "liveHeader": "Live",
+  "@liveHeader": {
+    "description": "Header of the Live Tab — the tab that contains the livestream player on AppleTV."
+  },
   "recentlyPublishedSection": "Vastikään julkaistu",
+  "@recentlyPublishedSection": {
+    "description": "Section in explore."
+  },
   "exploreCategoriesSection": "Selaile eri aiheita",
+  "@exploreCategoriesSection": {
+    "description": "Section in explore."
+  },
   "programsSection": "Ohjelmat",
+  "@programsSection": {
+    "description": "Section in explore."
+  },
   "episodesSection": "Jaksoa",
+  "@episodesSection": {
+    "description": "Section in explore."
+  },
   "categorySeries": "Sarjat",
+  "@categorySeries": {
+    "description": "Category name"
+  },
   "categoryKids": "Lapset",
+  "@categoryKids": {
+    "description": "Category name"
+  },
   "categoryFilms": "Filmit",
+  "@categoryFilms": {
+    "description": "Category name"
+  },
   "categoryEvents": "Tapahtumat",
+  "@categoryEvents": {
+    "description": "Category name"
+  },
   "categoryMusic": "Musiikki",
+  "@categoryMusic": {
+    "description": "Category name"
+  },
   "noPlannedEvents": "Tänään ei tapahtumia tiedossa",
-  "watchNow": "Katso"
+  "@noPlannedEvents": {
+    "description": "Information in tvguide"
+  },
+  "watchNow": "Katso",
+  "@watchNow": {
+    "description": "Button on featured carousel"
+  }
 }

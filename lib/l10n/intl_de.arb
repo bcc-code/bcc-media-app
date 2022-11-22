@@ -1,228 +1,1011 @@
 {
-  "@@locale": "de",
-  "liveTab": "Live ",
-  "logOutButton": "Abmelden",
-  "profileTab": "Profil ",
-  "bccMediaCenter": "BrunstadTV ist ein nicht-kommerzielles Medium das Inhalte produziert und verteilt, die auf positiven und christlichen Werten basieren.",
-  "signInButton": "Einloggen",
-  "tryAgainButton": "Erneut versuchen",
-  "loggedOutTitle": "Ausgeloggt",
-  "loggedOutMessage": "Du wurdest ausgeloggt. Bitte logge dich wieder ein.",
-  "mostWatched": "Meistgesehen",
-  "mostRecent": "Neues",
-  "latelyPublished": "Zuletzt veröffentlicht",
-  "anErrorOccurred": "Ein Fehler ist aufgetreten",
-  "ok": "OK",
-  "loginFailedCheckNetwork": "Anmeldung fehlgeschlagen. Überprüfe deine Netzwerkverbindung und versuche es erneut.",
-  "loginFailedTryAgain": "Anmeldung fehlgeschlagen. Bitte versuche es später noch einmal.",
-  "soundLanguage": "Tonsprache",
-  "subtitleLanguage": "Untertitelsprache",
-  "appLanguage": "App-Sprache",
-  "checkNetwork": "Überprüfe deine Netzwerkverbindung und versuche es erneut.",
-  "tryAgain": "Bitte versuche es später noch einmal.",
-  "cantPlayVideo": "Leider können wir dieses Video aktuell nicht abspielen.",
-  "about": "Über",
-  "version": "Version",
-  "contactSupport": "Support kontaktieren",
-  "cancel": "Abbrechen",
-  "upNext": "Nächste",
-  "done": "Erledigt",
-  "playerSettings": "Abspieleinstellungen",
-  "settings": "Einstellungen",
-  "none": "Keine",
-  "auto": "Auto",
-  "live": "Live ",
-  "subtitles": "Untertitel",
-  "audio": "Audio",
-  "quality": "Qualität",
-  "seasons": "Staffeln",
-  "episodes": "Folgen",
-  "search": "Suchen",
-  "noResults": "Keine Ergebnisse",
-  "doYouWantCast": "Willst du dieses Video über Chromecast streamen?",
-  "play": "Abspielen",
-  "castQueue": "Wiedergabeliste streamen",
-  "options": "Optionen",
-  "remove": "Entfernen",
-  "queueLimitTitle": "Limit",
-  "queueLimitMessage": "Du kannst nicht mehr als {elementCount} Videos in der Warteschlange haben.",
-  "recentSearches": "Letzte Suchanfragen",
-  "tVLogin": "Fernseher Login",
-  "tVLoginSuccessful": "Login erfolgreich, bitte auf Fernseher bestätigen.",
-  "seeMore": "Mehr",
-  "seeAll": "Alles sehen",
-  "series": "Serien",
-  "livestreamMaintenance": "Wir entschuldigen uns, aber der Livestream wird gerade gewartet. Bitte versuche es später noch einmal.",
-  "homeTab": "Home",
-  "sortBy": "Sortiert nach",
-  "videoQuality": "Video Qualität",
-  "low": "Niedrig",
-  "medium": "Mittel",
-  "high": "Hoch",
-  "emptySearch": "Hier kannst nach allen Inhalten von BrunstadTV suchen. Serien, Filme und Folgen.",
-  "back": "Zurück",
-  "seasonLetter": "S",
-  "episodeLetter": "E",
-  "atoZ": "A-Z",
-  "ztoA": "Z-A",
-  "shortFilms": "Kurzfilme",
-  "videos": "Videos",
-  "moreInfo": "Mehr Information",
-  "info": "Information",
-  "episode": "Folge",
-  "takePhoto": "Mach ein Foto",
-  "pickPhoto": "Wähle aus der Galerie",
-  "uploadFileTitle": "Datei hochladen",
-  "uploadFileMessage": "Möchtest du diese Datei hochladen?",
-  "watchingWith": "Du siehst mit {numPeople} anderen",
-  "uploading": "Hochladen",
-  "uploadFail": "Hochladen fehlgeschlagen",
-  "post": "Poste",
-  "charactersLimit": "{charsLeft} von {charsTotal} Zeichen übrig",
-  "uploadingPostSuccess": "Dein Post wurde gesendet.",
-  "testimonyInfo": "Nimm ein Video mit deinem Handy auf.",
-  "yourVideo": "Dein Video",
-  "record": "Aufnahme",
-  "recordingTips": "Ein paar Tipps für eine gute Aufnahme",
-  "recordingTipA": "Finde einen ruhigen Ort fürs aufnehmen.",
-  "recordingTipB": "Stell sicher, dass dein Gesicht gleichmäßig beleuchtet ist.",
-  "recordingTipC": "Denke darüber nach was du sagen möchtest, bevor du aufnimmst.",
-  "recordingTipD": "Schalte dein Handy in den Querformatmodus.",
-  "thankYou": "Vielen Dank!",
-  "thankYouForContribution": "Danke für deinen Beitrag!",
-  "uploadingVideoSuccess": "Dein Video wurde eingeschickt.",
-  "next": "Weiter",
-  "recordVideoCameraPermissionAlert": "Du musst in den Einstellungen die Kameraberechtigung zulassen, um Videos aufnehmen zu können.",
-  "recordVideoPhotosPermissionAlert": "Du musst in den Einstellungen den Zugriff auf deine Fotos zulassen, um Videos aufnehmen zu können.",
-  "recordVideoStoragePermissionAlert": "Du musst in den Einstellungen die Speicherberechtigung genehmigen, um ein Video aufzunehmen.",
-  "recordVideoMicrophonePermissionAlert": "Du musst in den Einstellungen den Zugriff aufs Mikrofon einstellen, um ein Video aufzunehmen.",
-  "takePhotoStoragePermissionAlert": "Du musst in den Einstellungen die Speicherberechtigung genehmigen, um ein Foto zu machen.",
-  "takePhotoCameraPermissionAlert": "Du musst in den Einstellungen die Kameraberechtigung zulassen, um Fotos aufnehmen zu können.",
-  "pickPhotoStoragePermissionAlert": "Du musst in den Einstellungen die Speicherberechtigung zulassen, um Fotos auswählen zu können.",
-  "permissionsAlertTitle": "Erlaubnis erforderlich",
-  "add": "Hinzufügen",
-  "change": "Ändern",
-  "recordingFailedTitle": "Das Video konnte nicht aufgenommen werden",
-  "recordingFailedMessage": "Beim Versuch, das Video aufzunehmen, ist etwas schiefgegangen.",
-  "pollSubtitle": "Umfrage",
-  "writeHere": "Schreibe hier",
-  "feed": "Feed",
-  "atmosphereFeedDescription": "Nehme am Aktivitätsfeed teil, indem du eine Nachricht, ein Zeugnis oder ein Bild von deinem Standort aus einsendest.",
-  "information": "Information",
-  "photoNotSupported": "Fotos auswählen und machen wird auf deinem Gerät nicht unterstützt.",
-  "answerFailed": "Tut uns leid! Wir konnten die Antwort nicht senden. Bitte versuche es noch einmal.",
-  "question": "Frage",
-  "notificationChannelPlayerName": "Player",
-  "now": "Jetzt",
-  "createPost": "Einen Post erstellen",
-  "concernTextPlaceholder": "Beschreibe dein Anliegen",
-  "debugInfoExplanation": "Deine Nachricht wird diese Information enthalten, damit wir die Sache besser verstehen können.",
-  "send": "Senden",
-  "sending": "Sendung",
-  "thankYouSupportTitle": "Danke für dein Feedback!",
-  "thankYouSupportDescription": "Wir sind dankbar für jedes Feedback und wir werden uns so schnell wie möglich um das Anliegen kümmern.",
-  "sendFail": "Deine Nachricht konnte nicht gesendet werden",
-  "sendFailDescription": "Etwas lief schief. Bitte überprüfe deine Internetverbindung und versuche es noch einmal.",
-  "today": "Heute",
-  "noNewPosts": "Keine neuen Posts",
-  "newPostsMultiple": "{postCount} neue Posts!",
-  "newPostsSingle": "{postCount} neue Posts!",
-  "expired": "Abgelaufen",
-  "availableFrom": "Verfügbar {date}",
-  "howFar": "Wie weit bist du gekommen?",
-  "submit": "Bestätige",
-  "wellDone": "Gut gemacht!",
-  "wellDoneDistance": "Gut gemacht! Du hast eine Gesamtstrecke von {distanceInKM} km registriert",
-  "distanceRegistered": "Deine Distanz wurde registriert. Fortsetze weiter unten, wenn du eine weitere Distanz eintragen möchtest.",
-  "ranMore": "Ich bin mehr als {distanceInKM} km gelaufen",
-  "moreThan": "Mehr als {distanceInKM} km",
-  "runningEffort": "Super Einsatz! Trage unten die Anzahl Kilometer ein, die du gelaufen bist.",
-  "slideSelect": "Streiche, um zu sehen, wie weit du gegangen bist",
-  "submitAnotherDistance": "Bestätige eine neue Distanz",
-  "editPicture": "Bild bearbeiten",
-  "profilePicture": "Profilbild",
-  "firstPostTitle": "Sei der Erste, der ein Bild oder eine Nachricht postet",
-  "timezoneInformation": "Das Tv Programm ist deiner Ortszeit angepasst: {timeZone}",
-  "yourQuestion": "Deine Frage",
-  "uploadingInquirySuccess": "Bitte beachte, dass nicht alle eingereichten Fragen in der Sendung beantwortet werden.",
-  "askQuestion": "Stelle eine Frage",
-  "submitQuestionInfo": "Mit dem Absenden einer Frage akzeptierst du, dass diese für Sendezwecke verwendet werden kann.",
-  "posting": "Einsenden",
+  
+  "loadingContent": "Loading content",
+  "@loadingContent": {
+    "description": "Text displayed when page content is loading."
+  },
+  "signInTooltip": "Sign in to watch more content",
+  "@signInTooltip": {
+    "description": "Text for tooltip displayed when a non-member user opens the home page."
+  },
+  "skipToPublicContent": "Skip to watch public content",
+  "@skipToPublicContent": {
+    "description": "Text for button displayed on login screen to skip sign in and watch public content."
+  },
+  "minutesShort": "min",
+  "@minutesShort": {
+    "description": "Text for minutes."
+  },
+  "calendarThisWeek": "Diese Woche",
+  "@calendarThisWeek": {
+    "description": "Text for This week."
+  },
+  "calendarWeek": "Woche",
+  "@calendarWeek": {
+    "description": "Text week."
+  },
   "loading": "Lädt",
+  "@loading": {
+    "description": "Text to indicate loading state."
+  },
+  "loginPageDisplay1": "The most powerful message in the world",
+  "@loginPageDisplay1": {
+    "description": "Text displayed on login screen."
+  },
+  "loginPageDisplay2": "Watch series, shows and films based on Christian values",
+  "@loginPageDisplay2": {
+    "description": "Text displayed on login screen."
+  },
+  "loginPageDisplay3": "Produced by BCC Media",
+  "@loginPageDisplay3": {
+    "description": "Text displayed on login screen."
+  },
+  "liveTab": "Live ",
+  "@liveTab": {
+    "description": "Title of live page tab"
+  },
+  "logOutButton": "Abmelden",
+  "@logOutButton": {
+    "description": "Text displayed on Log out button"
+  },
+  "profileTab": "Profil ",
+  "@profileTab": {
+    "description": "Title of the profile page"
+  },
+  "faq": "Häufig gestellte Fragen",
+  "@faq": {
+    "description": "Title of the FAQ page."
+  },
+  "bccMediaCenter": "BrunstadTV ist ein nicht-kommerzielles Medium das Inhalte produziert und verteilt, die auf positiven und christlichen Werten basieren.",
+  "@bccMediaCenter": {
+    "description": "Disclaimer on login page"
+  },
+  "signInButton": "Einloggen",
+  "@signInButton": {
+    "description": "Text displayed on Sign in button"
+  },
+  "tryAgainButton": "Erneut versuchen",
+  "@tryAgainButton": {
+    "description": "Button on error alert that lets user to retry failed action"
+  },
+  "loggedOutTitle": "Ausgeloggt",
+  "@loggedOutTitle": {
+    "description": "Title of the alert message that is shown when user is logged out automatically."
+  },
+  "loggedOutMessage": "Du wurdest ausgeloggt. Bitte logge dich wieder ein.",
+  "@loggedOutMessage": {
+    "description": "Text of the alert message that is shown when user is logged out automatically."
+  },
+  "mostWatched": "Meistgesehen",
+  "@mostWatched": {
+    "description": "Sorting option on audience page"
+  },
+  "mostRecent": "Neues",
+  "@mostRecent": {
+    "description": "Sorting option on audience page"
+  },
+  "latelyPublished": "Zuletzt veröffentlicht",
+  "@latelyPublished": {
+    "description": "Title for the list of videos on login page"
+  },
+  "anErrorOccurred": "Ein Fehler ist aufgetreten",
+  "@anErrorOccurred": {
+    "description": "Title in error popup"
+  },
+  "ok": "OK",
+  "@ok": {
+    "description": "Popup confirmation button"
+  },
+  "loginFailedCheckNetwork": "Anmeldung fehlgeschlagen. Überprüfe deine Netzwerkverbindung und versuche es erneut.",
+  "@loginFailedCheckNetwork": {
+    "description": "Login error message"
+  },
+  "loginFailedTryAgain": "Anmeldung fehlgeschlagen. Bitte versuche es später noch einmal.",
+  "@loginFailedTryAgain": {
+    "description": "Login error message"
+  },
+  "soundLanguage": "Tonsprache",
+  "@soundLanguage": {
+    "description": "Settings item on profile page"
+  },
+  "subtitleLanguage": "Untertitelsprache",
+  "@subtitleLanguage": {
+    "description": "Settings item on profile page"
+  },
+  "appLanguage": "App-Sprache",
+  "@appLanguage": {
+    "description": "Settings item on profile page"
+  },
+  "checkNetwork": "Überprüfe deine Netzwerkverbindung und versuche es erneut.",
+  "@checkNetwork": {
+    "description": "Error message for the user displayed in many contexts."
+  },
+  "tryAgain": "Bitte versuche es später noch einmal.",
+  "@tryAgain": {
+    "description": "Error message for the user displayed in many contexts."
+  },
+  "cantPlayVideo": "Leider können wir dieses Video aktuell nicht abspielen.",
+  "@cantPlayVideo": {
+    "description": "Error message for the user displayed when video playback attempt failed."
+  },
+  "about": "Über",
+  "@about": {
+    "description": "Title of About page and item in profile page settings."
+  },
+  "version": "Version",
+  "@version": {
+    "description": "Version ot the application on About page; followed by version number"
+  },
+  "contactSupport": "Support kontaktieren",
+  "@contactSupport": {
+    "description": "Settings item on profile page"
+  },
+  "cancel": "Abbrechen",
+  "@cancel": {
+    "description": "General cancel action button"
+  },
+  "upNext": "Nächste",
+  "@upNext": {
+    "description": "Title on Up next feature."
+  },
+  "done": "Erledigt",
+  "@done": {
+    "description": "General Done button. User confirms that action completed sucessfully."
+  },
+  "playerSettings": "Abspieleinstellungen",
+  "@playerSettings": {
+    "description": "Title of the Player settings activity in Android"
+  },
+  "settings": "Einstellungen",
+  "@settings": {
+    "description": "Label of the button to go to Android/iOS settings"
+  },
+  "none": "Keine",
+  "@none": {
+    "description": "Indicator on profile page that subtitles are disabled."
+  },
+  "auto": "Auto",
+  "@auto": {
+    "description": "Indicator on profile page that audio and app language are chosen automatically."
+  },
+  "live": "Live ",
+  "@live": {
+    "description": "Title of the live stream"
+  },
+  "subtitles": "Untertitel",
+  "@subtitles": {
+    "description": "Title of the Player settings activity tab in Android"
+  },
+  "audio": "Audio",
+  "@audio": {
+    "description": "Title of the Player settings activity tab in Android"
+  },
+  "quality": "Qualität",
+  "@quality": {
+    "description": "Title of the Player settings activity tab in Android"
+  },
+  "seasons": "Staffeln",
+  "@seasons": {
+    "description": "Followed by number of seasons in given series."
+  },
+  "episodes": "Folgen",
+  "@episodes": {
+    "description": "Followed by number of episodes in given series."
+  },
+  "search": "Suchen",
+  "@search": {
+    "description": "Button to clear cache"
+  },
+  "noResults": "Keine Ergebnisse",
+  "@noResults": {
+    "description": "No search results."
+  },
+  "doYouWantCast": "Willst du dieses Video über Chromecast streamen?",
+  "@doYouWantCast": {
+    "description": "Prompt displayed to the user"
+  },
+  "play": "Abspielen",
+  "@play": {
+    "description": "Option in prompt dialog."
+  },
+  "castQueue": "Wiedergabeliste streamen",
+  "@castQueue": {
+    "description": "Queue page title"
+  },
+  "options": "Optionen",
+  "@options": {
+    "description": "Options dialog title"
+  },
+  "remove": "Entfernen",
+  "@remove": {
+    "description": "Option in options dialog"
+  },
+  "queueLimitTitle": "Limit",
+  "@queueLimitTitle": {
+    "description": "Title of the alert to the user when attempt to add video to cast queue failed due to full queue."
+  },
+  "queueLimitMessage": "You cannot have more than {elementCount} elements in queue.",
+  "@queueLimitMessage": {
+    "description": "Error message to the user when attempt to add video to cast queue failed due to full queue.",
+    "placeholders": {
+      "elementCount": {
+        "type": "int"
+      }
+    }
+  },
+  "recentSearches": "Letzte Suchanfragen",
+  "@recentSearches": {
+    "description": "Recent searches list title."
+  },
+  "tVLogin": "Fernseher Login",
+  "@tVLogin": {
+    "description": "Title of the TV login alert"
+  },
+  "tVLoginSuccessful": "Login erfolgreich, bitte auf Fernseher bestätigen.",
+  "@tVLoginSuccessful": {
+    "description": "Message of the TV login alert"
+  },
+  "seeMore": "Mehr",
+  "@seeMore": {
+    "description": "Button on featured item to navigete to page with player"
+  },
+  "seeAll": "Alles sehen",
+  "@seeAll": {
+    "description": "Button on explore page to navigete to audience page"
+  },
+  "series": "Serien",
+  "@series": {
+    "description": "Title of the tab on info page"
+  },
+  "livestreamMaintenance": "Wir entschuldigen uns, aber der Livestream wird gerade gewartet. Bitte versuche es später noch einmal.",
+  "@livestreamMaintenance": {
+    "description": "Message displayed over overlay when livestream is under maintenance."
+  },
+  "homeTab": "Home",
+  "@homeTab": {
+    "description": "Title of the home page"
+  },
+  "sortBy": "Sortiert nach",
+  "@sortBy": {
+    "description": "Sorting criteria selector"
+  },
+  "videoQuality": "Video Qualität",
+  "@videoQuality": {
+    "description": "Settings item in profile page for Android."
+  },
+  "low": "Niedrig",
+  "@low": {
+    "description": "Low quality video option"
+  },
+  "medium": "Mittel",
+  "@medium": {
+    "description": "Medium quality video option"
+  },
+  "high": "Hoch",
+  "@high": {
+    "description": "High quality video option"
+  },
+  "emptySearch": "Hier kannst nach allen Inhalten von BrunstadTV suchen. Serien, Filme und Folgen.",
+  "@emptySearch": {
+    "description": "Message on search page when there is no search results."
+  },
+  "back": "Zurück",
+  "@back": {
+    "description": "General back button to navigate back"
+  },
+  "seasonLetter": "S",
+  "@seasonLetter": {
+    "description": "Season  letter in label S1E3"
+  },
+  "episodeLetter": "E",
+  "@episodeLetter": {
+    "description": "Episode letter in label S1E3"
+  },
+  "atoZ": "A-Z",
+  "@atoZ": {
+    "description": "Sort order"
+  },
+  "ztoA": "Z-A",
+  "@ztoA": {
+    "description": "Sort order"
+  },
+  "shortFilms": "Kurzfilme",
+  "@shortFilms": {
+    "description": "Title of the films collection."
+  },
+  "videos": "Videos",
+  "@videos": {
+    "description": "Followed by number of videos"
+  },
+  "moreInfo": "Mehr Information",
+  "@moreInfo": {
+    "description": "Option in action sheet for the video that triggers info page for the video."
+  },
+  "info": "Information",
+  "@info": {
+    "description": "Video info page title."
+  },
+  "episode": "Folge",
+  "@episode": {
+    "description": "Title of the tab on info page"
+  },
+  "takePhoto": "Mach ein Foto",
+  "@takePhoto": {
+    "description": "Option in menu"
+  },
+  "pickPhoto": "Wähle aus der Galerie",
+  "@pickPhoto": {
+    "description": "Option in menu"
+  },
+  "uploadFileTitle": "Datei hochladen",
+  "@uploadFileTitle": {
+    "description": "Title of the dialog to confirm upload"
+  },
+  "uploadFileMessage": "Möchtest du diese Datei hochladen?",
+  "@uploadFileMessage": {
+    "description": "Content of the dialog to confirm upload"
+  },
+  "watchingWith": "You are watching with {numPeople} others",
+  "@watchingWith": {
+    "description": "Info on live stream page",
+    "placeholders": {
+      "numPeople": {
+        "type": "int"
+      }
+    }
+  },
+  "uploading": "Hochladen",
+  "@uploading": {
+    "description": "Message during file upload"
+  },
+  "uploadFail": "Hochladen fehlgeschlagen",
+  "@uploadFail": {
+    "description": "Upload result message"
+  },
+  "post": "Poste",
+  "@post": {
+    "description": "Button to post written testimony"
+  },
+  "charactersLimit": "{charsLeft} of {charsTotal} characters left",
+  "@charactersLimit": {
+    "description": "Info about limit of characters in written testimony",
+    "placeholders": {
+      "charsLeft": {
+        "type": "int"
+      },
+      "charsTotal": {
+        "type": "int"
+      }
+    }
+  },
+  "uploadingPostSuccess": "Dein Post wurde gesendet.",
+  "@uploadingPostSuccess": {
+    "description": "Info in upload success page"
+  },
+  "testimonyInfo": "Nimm ein Video mit deinem Handy auf.",
+  "@testimonyInfo": {
+    "description": "Record testimony guideline page info"
+  },
+  "yourVideo": "Dein Video",
+  "@yourVideo": {
+    "description": "Title on recording tip page page"
+  },
+  "record": "Aufnahme",
+  "@record": {
+    "description": "Button to record testimony"
+  },
+  "recordingTips": "Ein paar Tipps für eine gute Aufnahme",
+  "@recordingTips": {
+    "description": "Record testimony guideline page tip list title"
+  },
+  "recordingTipA": "Finde einen ruhigen Ort fürs aufnehmen.",
+  "@recordingTipA": {
+    "description": "Record testimony guideline page tip list item"
+  },
+  "recordingTipB": "Stell sicher, dass dein Gesicht gleichmäßig beleuchtet ist.",
+  "@recordingTipB": {
+    "description": "Record testimony guideline page tip list item"
+  },
+  "recordingTipC": "Denke darüber nach was du sagen möchtest, bevor du aufnimmst.",
+  "@recordingTipC": {
+    "description": "Record testimony guideline page tip list item"
+  },
+  "recordingTipD": "Schalte dein Handy in den Querformatmodus.",
+  "@recordingTipD": {
+    "description": "Record testimony guideline page tip list item"
+  },
+  "thankYou": "Vielen Dank!",
+  "@thankYou": {
+    "description": "Title in upload success page"
+  },
+  "thankYouForContribution": "Danke für deinen Beitrag!",
+  "@thankYouForContribution": {
+    "description": "Title in upload success page"
+  },
+  "uploadingVideoSuccess": "Dein Video wurde eingeschickt.",
+  "@uploadingVideoSuccess": {
+    "description": "Info in upload success page"
+  },
+  "next": "Weiter",
+  "@next": {
+    "description": "NEXT program in check in section"
+  },
+  "recordVideoCameraPermissionAlert": "Du musst in den Einstellungen die Kameraberechtigung zulassen, um Videos aufnehmen zu können.",
+  "@recordVideoCameraPermissionAlert": {
+    "description": "Message in alert dialog informing about missing permission"
+  },
+  "recordVideoPhotosPermissionAlert": "Du musst in den Einstellungen den Zugriff auf deine Fotos zulassen, um Videos aufnehmen zu können.",
+  "@recordVideoPhotosPermissionAlert": {
+    "description": "Message in alert dialog informing about missing permission"
+  },
+  "recordVideoStoragePermissionAlert": "Du musst in den Einstellungen die Speicherberechtigung genehmigen, um ein Video aufzunehmen.",
+  "@recordVideoStoragePermissionAlert": {
+    "description": "Message in alert dialog informing about missing permission"
+  },
+  "recordVideoMicrophonePermissionAlert": "Du musst in den Einstellungen den Zugriff aufs Mikrofon einstellen, um ein Video aufzunehmen.",
+  "@recordVideoMicrophonePermissionAlert": {
+    "description": "Message in alert dialog informing about missing permission"
+  },
+  "takePhotoStoragePermissionAlert": "Du musst in den Einstellungen die Speicherberechtigung genehmigen, um ein Foto zu machen.",
+  "@takePhotoStoragePermissionAlert": {
+    "description": "Message in alert dialog informing about missing permission"
+  },
+  "takePhotoCameraPermissionAlert": "Du musst in den Einstellungen die Kameraberechtigung zulassen, um Fotos aufnehmen zu können.",
+  "@takePhotoCameraPermissionAlert": {
+    "description": "Message in alert dialog informing about missing permission"
+  },
+  "pickPhotoStoragePermissionAlert": "Du musst in den Einstellungen die Speicherberechtigung zulassen, um Fotos auswählen zu können.",
+  "@pickPhotoStoragePermissionAlert": {
+    "description": "Message in alert dialog informing about missing permission"
+  },
+  "permissionsAlertTitle": "Erlaubnis erforderlich",
+  "@permissionsAlertTitle": {
+    "description": "Title of an alert dialog informing about missing permission"
+  },
+  "add": "Hinzufügen",
+  "@add": {
+    "description": "Button text on interactive live avatar section"
+  },
+  "change": "Ändern",
+  "@change": {
+    "description": "Button text on interactive live avatar section"
+  },
+  "recordingFailedTitle": "Das Video konnte nicht aufgenommen werden",
+  "@recordingFailedTitle": {
+    "description": "Title in alert dialog when recording fails"
+  },
+  "recordingFailedMessage": "Beim Versuch, das Video aufzunehmen, ist etwas schiefgegangen.",
+  "@recordingFailedMessage": {
+    "description": "Message in alert dialog when recording fails"
+  },
+  "pollSubtitle": "Umfrage",
+  "@pollSubtitle": {
+    "description": "The little title in poll"
+  },
+  "writeHere": "Schreibe hier",
+  "@writeHere": {
+    "description": "New post text field placeholder"
+  },
+  "feed": "Feed",
+  "@feed": {
+    "description": "Feed page bar title"
+  },
+  "atmosphereFeedDescription": "Nehme am Aktivitätsfeed teil, indem du eine Nachricht, ein Zeugnis oder ein Bild von deinem Standort aus einsendest.",
+  "@atmosphereFeedDescription": {
+    "description": "Feed page description"
+  },
+  "information": "Information",
+  "@information": {
+    "description": "Feed information item title"
+  },
+  "photoNotSupported": "Fotos auswählen und machen wird auf deinem Gerät nicht unterstützt.",
+  "@photoNotSupported": {
+    "description": "Alert displayed when phone can't take photo or pick photo from storage."
+  },
+  "answerFailed": "Tut uns leid! Wir konnten die Antwort nicht senden. Bitte versuche es noch einmal.",
+  "@answerFailed": {
+    "description": "Message displayed when user's answer hasn't' been sent'."
+  },
+  "question": "Frage",
+  "@question": {
+    "description": "Title of the question page"
+  },
+  "notificationChannelPlayerName": "Player",
+  "@notificationChannelPlayerName": {
+    "description": "Notification channel name in Android settings"
+  },
+  "now": "Jetzt",
+  "@now": {
+    "description": "Tv guide now playing label"
+  },
+  "createPost": "Einen Post erstellen",
+  "@createPost": {
+    "description": "Button to start text testimony and title on create post page"
+  },
+  "concernTextPlaceholder": "Beschreibe dein Anliegen",
+  "@concernTextPlaceholder": {
+    "description": "Placeholder text in text field on contact support page"
+  },
+  "debugInfoExplanation": "Deine Nachricht wird diese Information enthalten, damit wir die Sache besser verstehen können.",
+  "@debugInfoExplanation": {
+    "description": "Info about debug info usage on contact support page"
+  },
+  "send": "Senden",
+  "@send": {
+    "description": "General button to send a form"
+  },
+  "sending": "Sendung",
+  "@sending": {
+    "description": "General sending action indicator"
+  },
+  "thankYouSupportTitle": "Danke für dein Feedback!",
+  "@thankYouSupportTitle": {
+    "description": "Text on contact support confirmation page"
+  },
+  "thankYouSupportDescription": "Wir sind dankbar für jedes Feedback und wir werden uns so schnell wie möglich um das Anliegen kümmern.",
+  "@thankYouSupportDescription": {
+    "description": "Text on contact support confirmation page"
+  },
+  "sendFail": "Couldn't send you message",
+  "@sendFail": {
+    "description": "General error message that sending failed"
+  },
+  "sendFailDescription": "Etwas lief schief. Bitte überprüfe deine Internetverbindung und versuche es noch einmal.",
+  "@sendFailDescription": {
+    "description": "General error message that sending failed"
+  },
+  "today": "Heute",
+  "@today": {
+    "description": "First category in tv guide"
+  },
+  "noNewPosts": "Keine neuen Posts",
+  "@noNewPosts": {
+    "description": "Text displayed on the button, when there are no new posts in the feed."
+  },
+  "newPostsMultiple": "{postCount} new posts!",
+  "@newPostsMultiple": {
+    "description": "Text displayed on the button, when there are number of new posts in the feed.",
+    "placeholders": {
+      "postCount": {
+        "type": "int"
+      }
+    }
+  },
+  "newPostsSingle": "{postCount} new post!",
+  "@newPostsSingle": {
+    "description": "Text displayed on the button, when there is one new post in the feed.",
+    "placeholders": {
+      "postCount": {
+        "type": "int"
+      }
+    }
+  },
+  "expired": "Abgelaufen",
+  "@expired": {
+    "description": "Info that episode is no longer available."
+  },
+  "availableFrom": "Available {date}",
+  "@availableFrom": {
+    "description": "Info that episode will be released at certain date.",
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "howFar": "Wie weit bist du gekommen?",
+  "@howFar": {
+    "description": "Text on running competition page."
+  },
+  "submit": "Bestätige",
+  "@submit": {
+    "description": "Submit button on running competition page."
+  },
+  "wellDone": "Gut gemacht!",
+  "@wellDone": {
+    "description": "Text on running competition page."
+  },
+  "wellDoneDistance": "Well done! You have registered a total distance of {distanceInKM} km",
+  "@wellDoneDistance": {
+    "description": "Text on running competition page.",
+    "placeholders": {
+      "distanceInKM": {
+        "type": "int"
+      }
+    }
+  },
+  "distanceRegistered": "Deine Distanz wurde registriert. Fortsetze weiter unten, wenn du eine weitere Distanz eintragen möchtest.",
+  "@distanceRegistered": {
+    "description": "Text on running competition page."
+  },
+  "ranMore": "I went more than {distanceInKM} km",
+  "@ranMore": {
+    "description": "Text on running competition page.",
+    "placeholders": {
+      "distanceInKM": {
+        "type": "int"
+      }
+    }
+  },
+  "moreThan": "More than {distanceInKM} km",
+  "@moreThan": {
+    "description": "Text on running competition page.",
+    "placeholders": {
+      "distanceInKM": {
+        "type": "int"
+      }
+    }
+  },
+  "runningEffort": "Super Einsatz! Trage unten die Anzahl Kilometer ein, die du gelaufen bist.",
+  "@runningEffort": {
+    "description": "Text on running competition page."
+  },
+  "slideSelect": "Streiche, um zu sehen, wie weit du gegangen bist",
+  "@slideSelect": {
+    "description": "Text on running competition page."
+  },
+  "submitAnotherDistance": "Bestätige eine neue Distanz",
+  "@submitAnotherDistance": {
+    "description": "Text on running competition page."
+  },
+  "editPicture": "Bild bearbeiten",
+  "@editPicture": {
+    "description": "Button on profile page to edit profile picture."
+  },
+  "profilePicture": "Profilbild",
+  "@profilePicture": {
+    "description": "Text on edit profile page."
+  },
+  "firstPostTitle": "Sei der Erste, der ein Bild oder eine Nachricht postet",
+  "@firstPostTitle": {
+    "description": "Text on feed page when feed is empty."
+  },
+  "timezoneInformation": "Tv guide timetable is in your local time: {timeZone}",
+  "@timezoneInformation": {
+    "description": "TV guide footer info text.",
+    "placeholders": {
+      "timeZone": {
+        "type": "String"
+      }
+    }
+  },
+  "yourQuestion": "Deine Frage",
+  "@yourQuestion": {
+    "description": "Title on ask question page"
+  },
+  "uploadingInquirySuccess": "Bitte beachte, dass nicht alle eingereichten Fragen in der Sendung beantwortet werden.",
+  "@uploadingInquirySuccess": {
+    "description": "Info in upload question success page"
+  },
+  "askQuestion": "Stelle eine Frage",
+  "@askQuestion": {
+    "description": "Ask question text field placeholder"
+  },
+  "submitQuestionInfo": "Mit dem Absenden einer Frage akzeptierst du, dass diese für Sendezwecke verwendet werden kann.",
+  "@submitQuestionInfo": {
+    "description": "Disclaimer on ask question page"
+  },
+  "posting": "Einsenden",
+  "@posting": {
+    "description": "Information about ongoing posting process"
+  },
   "submitPostInfo": "Mit dem Senden eines Posts oder eines Fotos akzeptierst du, dass diese für Sendezwecke verwendet werden kann. ",
+  "@submitPostInfo": {
+    "description": "Disclaimer on text testimony page"
+  },
   "cropImage": "Bild zuschneiden",
+  "@cropImage": {
+    "description": "Image crop page title"
+  },
   "square": "Quadrat",
+  "@square": {
+    "description": "Image crop mode"
+  },
   "landscape": "Landschaft",
+  "@landscape": {
+    "description": "Image crop mode"
+  },
   "pollSingleChoice": "Du darfst deine Antwort nur einmal auswählen.",
+  "@pollSingleChoice": {
+    "description": "Desciption of the poll type. States that user can change the answer only once."
+  },
   "pollMultipleChoice": "Du darfst deine Antwort mehrmals abändern.",
+  "@pollMultipleChoice": {
+    "description": "Desciption of the poll type. States that user can change the answer multiple times."
+  },
   "pollEnded": "Die Umfrage ist beendet. Danke für deine Antworten.",
+  "@pollEnded": {
+    "description": "Message displayed when poll has been closed by administrator."
+  },
   "browserInstall": "Bitte installiere den Internetbrowser, um diese URL zu öffnen.",
+  "@browserInstall": {
+    "description": "Message displayed when browser couldn't be opened on user's device."
+  },
   "share": "Teilen",
+  "@share": {
+    "description": "Option name to share video."
+  },
   "liveNow": "Jetzt live",
+  "@liveNow": {
+    "description": "Call to action button on featured carousel."
+  },
   "program": "Programm",
+  "@program": {
+    "description": "Title of the program tab on live page."
+  },
   "participateTab": "Teilnehmen",
+  "@participateTab": {
+    "description": "Title of the participate tab on live page."
+  },
   "tomorrow": "Morgen",
+  "@tomorrow": {
+    "description": "Day of transmission in tv guide."
+  },
   "readBy": "Gelesen von",
-  "pollAnswer": "Du hast geantwortet {answer}",
+  "@readBy": {
+    "description": "Feed verse pre author text."
+  },
+  "pollAnswer": "You've answered: {answer}",
+  "@pollAnswer": {
+    "description": "Snackbar label after user has chosen poll answer",
+    "placeholders": {
+      "answer": {
+        "type": "String"
+      }
+    }
+  },
   "broadcasts": "Sendungen",
+  "@broadcasts": {
+    "description": "Title for tv guide collection on event page."
+  },
   "quizAnswered": "Antworten bestätigt",
+  "@quizAnswered": {
+    "description": "Text displayed on a button when all answers in quiz have been submitted."
+  },
   "quizNotEnabled": "Das Quiz ist im Moment nicht verfügbar. Bitte versuche es später noch einmal.",
+  "@quizNotEnabled": {
+    "description": "Message on alert that appears when participate item is visible, but quiz is not enabled."
+  },
   "calendar": "Kalender",
+  "@calendar": {
+    "description": "Title of calendar page."
+  },
   "noEvents": "Keine geplanten Übertragungen",
+  "@noEvents": {
+    "description": "Info in calendar page that no transmissions are scheduled for selected day."
+  },
   "appUpdateTitle": "Update wird benötigt",
+  "@appUpdateTitle": {
+    "description": "Title of the message displayed to the user when application is too old and should be updated in a timely manner."
+  },
   "appUpdateRequest": "Bitte lade die neuste App herunter, um alle neuen Features und Verbesserungen zu genießen. ",
+  "@appUpdateRequest": {
+    "description": "Message displayed to the user when application is too old and should be updated in a timely manner."
+  },
   "appUpdateAccepted": "Update",
+  "@appUpdateAccepted": {
+    "description": "Option that can be chosen by the user to update his application."
+  },
   "donationNotAvailable": "Das Spenden ist im Moment nicht möglich. Borte versuche es später noch einmal.",
+  "@donationNotAvailable": {
+    "description": "Message displayed when donation flow failed."
+  },
   "posts": "{postsCount} Posts",
+  "@posts": {
+    "description": "Contributions to feed made by the users. Plural of post.",
+    "placeholders": {
+      "postsCount": {
+        "type": "int"
+      }
+    }
+  },
   "copy": "Kopieren",
+  "@copy": {
+    "description": "Copy option for quotes, verses."
+  },
   "reload": "Nochmals laden",
+  "@reload": {
+    "description": "Label on the button that allows to reload the player after error."
+  },
   "participantsTitle": "Wer antwortet?",
+  "@participantsTitleTitle": {
+    "description": "Title label on the participants list before quiz."
+  },
   "participantsSubtitle": "Wähle einen oder mehrere Teilnehmer.",
+  "@participantsSubtitle": {
+    "description": "Subtitle label on the participants list before quiz."
+  },
   "yourFamily": "Deine Familie",
+  "@yourFamily": {
+    "description": "Title on page when user selects family members that take part in the quiz."
+  },
   "yourTurn": "Du bist dran",
+  "@yourTurn": {
+    "description": "Title on page informing user that other user will answer question in the next step."
+  },
   "fAQ": "FAQ",
+  "@fAQ": {
+    "description": "Title on FAQ page and item in profile page settings."
+  },
   "shareStart": "Teile von Anfang",
-  "shareTime": "Teile von der Zeit {time}",
-  "loadContentError": "Konnte den Inhalt nicht laden",
+  "@shareStart": {
+    "description": "Option on action sheet for sharing from start"
+  },
+  "shareTime": "Share from time {time}",
+  "@shareTime": {
+    "description": "Option on action sheet for sharing from time",
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "loadContentError": "Couldn't load content",
+  "@loadContentError": {
+    "description": "Error text when content couldn't be loaded."
+  },
   "audioOnlyErrorDescription": "Überprüfe deine Internetverbindung und versuche es noch einmal",
+  "@audioOnlyErrorDescription": {
+    "description": "Error message when audio only fails to play"
+  },
   "privacyPolicy": "Datenschutz",
+  "@privacyPolicy": {
+    "description": "Title on Privacy Policy page and item in profile page settings."
+  },
   "tokenError": "Wir konnten deine Identität nicht bestätigen, wahrscheinlich aufgrund eines Netzwerkproblems. Einige Funktionen der App könnten nicht funktionieren.",
+  "@tokenError": {
+    "description": "Message indicating that there is a problem with user's token, and some features may be broken because of this."
+  },
   "categoriesTab": "Kategorien",
+  "@categoriesTab": {
+    "description": "Title of the Categories Tab"
+  },
   "settingsTab": "Einstellungen",
+  "@settingsTab": {
+    "description": "Title of the Settings Tab"
+  },
   "confirmLogin": "Einloggen bestätigen",
+  "@confirmLogin": {
+    "description": "Prompt that asks the user to confirm his log-in"
+  },
   "scanInfo": "Scanne den QR-Code mit deinem Handy um zur Anmeldeseite zu gelangen.",
+  "@scanInfo": {
+    "description": "Text that informs the user that the QR code can be scanned to enter the login page. Used on AppleTV."
+  },
   "validInfo": "Der QR-Code ist für 15 Minuten gültig.",
+  "@validInfo": {
+    "description": "Message that informs the user for how long the QR Code will be valid."
+  },
   "confirmInfo": "Klicke untenstehenden Button nach erfolgreichem Einloggen auf deinem Gerät.",
+  "@confirmInfo": {
+    "description": "Message that asks the user to click the button in order to proceed after successful login."
+  },
   "seriesTab": "Serien",
+  "@seriesTab": {
+    "description": "Series Tab title"
+  },
   "filmsTab": "Filme",
+  "@filmsTab": {
+    "description": "Films Tab title"
+  },
   "eventsTab": "Ereignisse",
+  "@eventsTab": {
+    "description": "Events Tab title"
+  },
   "audioLanguage": "Tonsprache",
+  "@audioLanguage": {
+    "description": "Label indicating that the Audio Language can be changed here."
+  },
   "subtitlesLanguage": "Untertitelsprache",
+  "@subtitlesLanguage": {
+    "description": "Label indicating that the Subtitles Language can be changed here."
+  },
   "removeFromRecentSearches": "Möchtest du dieses Element von den letzten Suchanfragen löschen?",
+  "@removeFromRecentSearches": {
+    "description": "Prompt that asks the user wheter they are certain, that they want to remove the element from recent searches."
+  },
   "noTransmissionToday": "Keine geplante Übertragung für heute",
+  "@noTransmissionToday": {
+    "description": "Messages that informs the user, that there are no schedules transmission for today."
+  },
   "livestreamMaintenanceTitle": "Der Livestream ist nicht verfügbar",
+  "@livestreamMaintenanceTitle": {
+    "description": "Message that informs the user, that the livestream is unavailable."
+  },
   "start": "Start",
+  "@start": {
+    "description": "Word used while displaying information about the beggining of a video or an event in tv guide."
+  },
   "transmissionSchedule": "Zeitplan der Übertragung",
+  "@transmissionSchedule": {
+    "description": "Label that indicates the user is looking at Transmission schedule"
+  },
   "featured": "Empfohlen",
+  "@featured": {
+    "description": "Featured videos collection header"
+  },
   "errorTryAgain": "Etwas ist schief gelaufen, bitte versuche es später noch einmal.",
+  "@errorTryAgain": {
+    "description": "Message that informs the user, that there was an error. Then politely asks the user to try again later."
+  },
   "reportProblem": "Falls du Probleme hast benutze den QR-Code unten um uns eine E-Mail zu senden.",
+  "@reportProblem": {
+    "description": "Message indicating that whenever the user wants to report a problem, they can scan the QR code to send an email to support."
+  },
   "phoneReadingProblem": "Falls dein Handy keine QR-Codes lesen kann, sende uns eine E-Mail mit folgenden Infos an",
+  "@phoneReadingProblem": {
+    "description": "Message explaining that if the user's phone can't scan the QR code, they can send the support e-mail with information listed after this message."
+  },
   "goTo": "oder gehe zu",
+  "@goTo": {
+    "description": "Message used to point the user to the shortened URL in case they can't use the QR code to log-in. This is used on AppleTV."
+  },
   "watchBrunstad": "BrunstadTV live schauen",
+  "@watchBrunstad": {
+    "description": "Text that entices the user to watch the livestream."
+  },
   "notLogged": "Nicht eingeloggt",
+  "@notLogged": {
+    "description": "Text that informs the user, that they are not logged in."
+  },
   "authResponse0": "Bitte nutze einen neuen QR-Code um dich einzuloggen.",
+  "@authResponse0": {
+    "description": "Authentication response displayed to the user when an old QR code was used. Asking them to use a new one if they want to log in."
+  },
   "authResponse1": "Bitte logge dich auf deinem Handy mit Hilfe eines QR Codes ein.",
+  "@authResponse1": {
+    "description": "Message displayed to the user when they tried to proceed with the log-in on AppleTv without first logging through their mobile device."
+  },
   "authResponse3": "Überprüfen deine Netzwerkverbindung und versuche es später erneut.",
+  "@authResponse3": {
+    "description": "Message that indicates there was an error during Authentication process. Asking the user to check their network connection and try again."
+  },
   "liveHeader": "Live ",
+  "@liveHeader": {
+    "description": "Header of the Live Tab — the tab that contains the livestream player on AppleTV."
+  },
   "recentlyPublishedSection": "Zuletzt hinzugefügt",
+  "@recentlyPublishedSection": {
+    "description": "Section in explore."
+  },
   "exploreCategoriesSection": "Entdecke die Kategorien",
+  "@exploreCategoriesSection": {
+    "description": "Section in explore."
+  },
   "programsSection": "Programme",
+  "@programsSection": {
+    "description": "Section in explore."
+  },
   "episodesSection": "Folgen",
+  "@episodesSection": {
+    "description": "Section in explore."
+  },
   "categorySeries": "Serien",
+  "@categorySeries": {
+    "description": "Category name"
+  },
   "categoryKids": "Kinder",
+  "@categoryKids": {
+    "description": "Category name"
+  },
   "categoryFilms": "Filme",
+  "@categoryFilms": {
+    "description": "Category name"
+  },
   "categoryEvents": "Ereignisse",
+  "@categoryEvents": {
+    "description": "Category name"
+  },
   "categoryMusic": "Musik",
+  "@categoryMusic": {
+    "description": "Category name"
+  },
   "noPlannedEvents": "Keine geplanten Veranstaltungen heute",
-  "watchNow": "Schaue es jetzt"
+  "@noPlannedEvents": {
+    "description": "Information in tvguide"
+  },
+  "watchNow": "Schaue es jetzt",
+  "@watchNow": {
+    "description": "Button on featured carousel"
+  }
 }

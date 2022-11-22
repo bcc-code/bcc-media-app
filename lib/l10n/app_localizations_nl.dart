@@ -174,7 +174,7 @@ class SNl extends S {
 
   @override
   String queueLimitMessage(int elementCount) {
-    return 'Het is niet mogelijk meer dan $elementCount elementen in de lijst te hebben.';
+    return 'You cannot have more than $elementCount elements in queue.';
   }
 
   @override
@@ -263,7 +263,7 @@ class SNl extends S {
 
   @override
   String watchingWith(int numPeople) {
-    return 'Je kijkt samen met $numPeople anderen';
+    return 'You are watching with $numPeople others';
   }
 
   @override
@@ -277,7 +277,7 @@ class SNl extends S {
 
   @override
   String charactersLimit(int charsLeft, int charsTotal) {
-    return '$charsLeft of $charsTotal tekens over';
+    return '$charsLeft of $charsTotal characters left';
   }
 
   @override
@@ -407,7 +407,7 @@ class SNl extends S {
   String get thankYouSupportDescription => 'We stellen alle feedback op prijs en gaan er zo snel mogelijk mee aan de slag.';
 
   @override
-  String get sendFail => 'Je bericht kon niet worden verzonden';
+  String get sendFail => 'Couldn\'t send you message';
 
   @override
   String get sendFailDescription => 'Er is iets misgegaan. Controleer je internetverbinding en probeer het opnieuw.';
@@ -420,12 +420,12 @@ class SNl extends S {
 
   @override
   String newPostsMultiple(int postCount) {
-    return '$postCount nieuwe berichten!';
+    return '$postCount new posts!';
   }
 
   @override
   String newPostsSingle(int postCount) {
-    return '$postCount nieuw beircht!';
+    return '$postCount new post!';
   }
 
   @override
@@ -433,7 +433,7 @@ class SNl extends S {
 
   @override
   String availableFrom(String date) {
-    return 'Beschikbaar $date';
+    return 'Available $date';
   }
 
   @override
@@ -447,7 +447,7 @@ class SNl extends S {
 
   @override
   String wellDoneDistance(int distanceInKM) {
-    return 'Goed gedaan! Je hebt totaal $distanceInKM km als afstand geregistreerd';
+    return 'Well done! You have registered a total distance of $distanceInKM km';
   }
 
   @override
@@ -455,12 +455,12 @@ class SNl extends S {
 
   @override
   String ranMore(int distanceInKM) {
-    return 'Ik heb meer dan $distanceInKM km afgelegd';
+    return 'I went more than $distanceInKM km';
   }
 
   @override
   String moreThan(int distanceInKM) {
-    return 'Meer dan $distanceInKM km';
+    return 'More than $distanceInKM km';
   }
 
   @override
@@ -483,7 +483,7 @@ class SNl extends S {
 
   @override
   String timezoneInformation(String timeZone) {
-    return 'De tijden in de TV gids worden weergegeven in de lokale tijd van de tijdszone waarin je op dit moment bent: $timeZone';
+    return 'Tv guide timetable is in your local time: $timeZone';
   }
 
   @override
@@ -545,7 +545,7 @@ class SNl extends S {
 
   @override
   String pollAnswer(String answer) {
-    return 'Je hebt geantwoord $answer';
+    return 'You\'ve answered: $answer';
   }
 
   @override
@@ -577,7 +577,7 @@ class SNl extends S {
 
   @override
   String posts(int postsCount) {
-    return '$postsCount Berichten';
+    return '$postsCount Posts';
   }
 
   @override
@@ -606,11 +606,11 @@ class SNl extends S {
 
   @override
   String shareTime(String time) {
-    return 'Delen van punt $time';
+    return 'Share from time $time';
   }
 
   @override
-  String get loadContentError => 'Kon de inhoud niet laden';
+  String get loadContentError => 'Couldn\'t load content';
 
   @override
   String get audioOnlyErrorDescription => 'Controleer uw internetverbinding en probeer opnieuw';

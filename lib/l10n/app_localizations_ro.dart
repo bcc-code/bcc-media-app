@@ -152,7 +152,7 @@ class SRo extends S {
   String get search => 'Căutare';
 
   @override
-  String get noResults => 'Fără rezultate';
+  String get noResults => 'No results found';
 
   @override
   String get doYouWantCast => 'Vrei să trimiți acest video prin Chromecast?';
@@ -174,7 +174,7 @@ class SRo extends S {
 
   @override
   String queueLimitMessage(int elementCount) {
-    return 'Nu poți avea mai mult de $elementCount elemente în coadă.';
+    return 'You cannot have more than $elementCount elements in queue.';
   }
 
   @override
@@ -217,7 +217,7 @@ class SRo extends S {
   String get high => 'Înaltă';
 
   @override
-  String get emptySearch => 'Poți căuta în tot conținutul de la BrunstadTV. Seriale, filme și episoade.';
+  String get emptySearch => 'You can search all content from BrunstadTV. Series, videos and episodes.';
 
   @override
   String get back => 'Înapoi';
@@ -263,7 +263,7 @@ class SRo extends S {
 
   @override
   String watchingWith(int numPeople) {
-    return 'Urmărești cu încă $numPeople persoane';
+    return 'You are watching with $numPeople others';
   }
 
   @override
@@ -277,7 +277,7 @@ class SRo extends S {
 
   @override
   String charactersLimit(int charsLeft, int charsTotal) {
-    return 'Au mai rămas $charsLeft din $charsTotal caractere';
+    return '$charsLeft of $charsTotal characters left';
   }
 
   @override
@@ -350,7 +350,7 @@ class SRo extends S {
   String get change => 'Modifică';
 
   @override
-  String get recordingFailedTitle => 'Nu s-a putut înregistra videoul';
+  String get recordingFailedTitle => 'Couldn\'t record the video';
 
   @override
   String get recordingFailedMessage => 'A apărut o eroare în timpul înregistrării videoului.';
@@ -407,7 +407,7 @@ class SRo extends S {
   String get thankYouSupportDescription => 'Apreciem toate feedback-urile și vom aborda problema cât de curând posibil.';
 
   @override
-  String get sendFail => 'Trimiterea mesajului a eșuat';
+  String get sendFail => 'Couldn\'t send you message';
 
   @override
   String get sendFailDescription => 'Ceva n-a mers bine. Verifică conexiunea la internet și încearcă din nou.';
@@ -420,12 +420,12 @@ class SRo extends S {
 
   @override
   String newPostsMultiple(int postCount) {
-    return '$postCount postări noi!';
+    return '$postCount new posts!';
   }
 
   @override
   String newPostsSingle(int postCount) {
-    return '$postCount postare nouă!';
+    return '$postCount new post!';
   }
 
   @override
@@ -433,7 +433,7 @@ class SRo extends S {
 
   @override
   String availableFrom(String date) {
-    return 'Disponibil de pe $date';
+    return 'Available $date';
   }
 
   @override
@@ -447,7 +447,7 @@ class SRo extends S {
 
   @override
   String wellDoneDistance(int distanceInKM) {
-    return 'Bună treabă! Ai înregistrat o distanță totală de $distanceInKM km';
+    return 'Well done! You have registered a total distance of $distanceInKM km';
   }
 
   @override
@@ -455,12 +455,12 @@ class SRo extends S {
 
   @override
   String ranMore(int distanceInKM) {
-    return 'Am parcurs mai mult de $distanceInKM km';
+    return 'I went more than $distanceInKM km';
   }
 
   @override
   String moreThan(int distanceInKM) {
-    return 'Peste $distanceInKM km';
+    return 'More than $distanceInKM km';
   }
 
   @override
@@ -483,7 +483,7 @@ class SRo extends S {
 
   @override
   String timezoneInformation(String timeZone) {
-    return 'Programul ghidului TV este afișat în ora ta locală: $timeZone';
+    return 'Tv guide timetable is in your local time: $timeZone';
   }
 
   @override
@@ -545,7 +545,7 @@ class SRo extends S {
 
   @override
   String pollAnswer(String answer) {
-    return 'Ai răspuns $answer';
+    return 'You\'ve answered: $answer';
   }
 
   @override
@@ -577,7 +577,7 @@ class SRo extends S {
 
   @override
   String posts(int postsCount) {
-    return '$postsCount Postări';
+    return '$postsCount Posts';
   }
 
   @override

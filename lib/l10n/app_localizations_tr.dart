@@ -152,7 +152,7 @@ class STr extends S {
   String get search => 'Ara';
 
   @override
-  String get noResults => 'Sonuç yok';
+  String get noResults => 'No results found';
 
   @override
   String get doYouWantCast => 'Bu videoyu yayınlamak istiyor musunuz?';
@@ -174,7 +174,7 @@ class STr extends S {
 
   @override
   String queueLimitMessage(int elementCount) {
-    return 'Sırada $elementCount öğeden fazla öğe olamaz.';
+    return 'You cannot have more than $elementCount elements in queue.';
   }
 
   @override
@@ -217,7 +217,7 @@ class STr extends S {
   String get high => 'Yüksek';
 
   @override
-  String get emptySearch => 'Tüm içeriği BrunstadTV\'den arayabilirsiniz. Dizi, filmler ve bölümler.';
+  String get emptySearch => 'You can search all content from BrunstadTV. Series, videos and episodes.';
 
   @override
   String get back => 'Geri';
@@ -277,7 +277,7 @@ class STr extends S {
 
   @override
   String charactersLimit(int charsLeft, int charsTotal) {
-    return '$charsLeft / $charsTotal karakter kaldı';
+    return '$charsLeft of $charsTotal characters left';
   }
 
   @override
@@ -350,7 +350,7 @@ class STr extends S {
   String get change => 'Değiştir';
 
   @override
-  String get recordingFailedTitle => 'Video kaydedilemedi';
+  String get recordingFailedTitle => 'Couldn\'t record the video';
 
   @override
   String get recordingFailedMessage => 'Videoyu kaydetmeye çalışırken bir şeyler ters gitti.';
@@ -407,7 +407,7 @@ class STr extends S {
   String get thankYouSupportDescription => 'Tüm geri bildirimleri takdir ediyoruz ve sorunu en kısa sürede ele alacağız.';
 
   @override
-  String get sendFail => 'Sana mesaj gönderilemedi';
+  String get sendFail => 'Couldn\'t send you message';
 
   @override
   String get sendFailDescription => 'Bir şeyler yanlış gitti. İnternet bağlantınızı kontrol edip tekrar deneyin.';
@@ -420,12 +420,12 @@ class STr extends S {
 
   @override
   String newPostsMultiple(int postCount) {
-    return '$postCount yeni gönderiler!';
+    return '$postCount new posts!';
   }
 
   @override
   String newPostsSingle(int postCount) {
-    return '$postCount yeni gönderi!';
+    return '$postCount new post!';
   }
 
   @override
@@ -433,7 +433,7 @@ class STr extends S {
 
   @override
   String availableFrom(String date) {
-    return 'Uygun $date';
+    return 'Available $date';
   }
 
   @override
@@ -447,7 +447,7 @@ class STr extends S {
 
   @override
   String wellDoneDistance(int distanceInKM) {
-    return 'Aferin! Toplam mesafe $distanceInKM km kaydettiniz';
+    return 'Well done! You have registered a total distance of $distanceInKM km';
   }
 
   @override
@@ -455,12 +455,12 @@ class STr extends S {
 
   @override
   String ranMore(int distanceInKM) {
-    return '$distanceInKM km\'den fazla gittim';
+    return 'I went more than $distanceInKM km';
   }
 
   @override
   String moreThan(int distanceInKM) {
-    return '$distanceInKM km\'den fazla';
+    return 'More than $distanceInKM km';
   }
 
   @override
@@ -483,7 +483,7 @@ class STr extends S {
 
   @override
   String timezoneInformation(String timeZone) {
-    return 'Tv rehberi zaman çizelgesi yerel saatinizde: $timeZone';
+    return 'Tv guide timetable is in your local time: $timeZone';
   }
 
   @override

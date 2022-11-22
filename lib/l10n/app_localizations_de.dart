@@ -17,10 +17,10 @@ class SDe extends S {
   String get minutesShort => 'min';
 
   @override
-  String get calendarThisWeek => 'This week';
+  String get calendarThisWeek => 'Diese Woche';
 
   @override
-  String get calendarWeek => 'week';
+  String get calendarWeek => 'Woche';
 
   @override
   String get loading => 'Lädt';
@@ -44,7 +44,7 @@ class SDe extends S {
   String get profileTab => 'Profil ';
 
   @override
-  String get faq => 'Frequently asked questions';
+  String get faq => 'Häufig gestellte Fragen';
 
   @override
   String get bccMediaCenter => 'BrunstadTV ist ein nicht-kommerzielles Medium das Inhalte produziert und verteilt, die auf positiven und christlichen Werten basieren.';
@@ -174,7 +174,7 @@ class SDe extends S {
 
   @override
   String queueLimitMessage(int elementCount) {
-    return 'Du kannst nicht mehr als $elementCount Videos in der Warteschlange haben.';
+    return 'You cannot have more than $elementCount elements in queue.';
   }
 
   @override
@@ -263,7 +263,7 @@ class SDe extends S {
 
   @override
   String watchingWith(int numPeople) {
-    return 'Du siehst mit $numPeople anderen';
+    return 'You are watching with $numPeople others';
   }
 
   @override
@@ -277,7 +277,7 @@ class SDe extends S {
 
   @override
   String charactersLimit(int charsLeft, int charsTotal) {
-    return '$charsLeft von $charsTotal Zeichen übrig';
+    return '$charsLeft of $charsTotal characters left';
   }
 
   @override
@@ -407,7 +407,7 @@ class SDe extends S {
   String get thankYouSupportDescription => 'Wir sind dankbar für jedes Feedback und wir werden uns so schnell wie möglich um das Anliegen kümmern.';
 
   @override
-  String get sendFail => 'Deine Nachricht konnte nicht gesendet werden';
+  String get sendFail => 'Couldn\'t send you message';
 
   @override
   String get sendFailDescription => 'Etwas lief schief. Bitte überprüfe deine Internetverbindung und versuche es noch einmal.';
@@ -420,12 +420,12 @@ class SDe extends S {
 
   @override
   String newPostsMultiple(int postCount) {
-    return '$postCount neue Posts!';
+    return '$postCount new posts!';
   }
 
   @override
   String newPostsSingle(int postCount) {
-    return '$postCount neue Posts!';
+    return '$postCount new post!';
   }
 
   @override
@@ -433,7 +433,7 @@ class SDe extends S {
 
   @override
   String availableFrom(String date) {
-    return 'Verfügbar $date';
+    return 'Available $date';
   }
 
   @override
@@ -447,7 +447,7 @@ class SDe extends S {
 
   @override
   String wellDoneDistance(int distanceInKM) {
-    return 'Gut gemacht! Du hast eine Gesamtstrecke von $distanceInKM km registriert';
+    return 'Well done! You have registered a total distance of $distanceInKM km';
   }
 
   @override
@@ -455,12 +455,12 @@ class SDe extends S {
 
   @override
   String ranMore(int distanceInKM) {
-    return 'Ich bin mehr als $distanceInKM km gelaufen';
+    return 'I went more than $distanceInKM km';
   }
 
   @override
   String moreThan(int distanceInKM) {
-    return 'Mehr als $distanceInKM km';
+    return 'More than $distanceInKM km';
   }
 
   @override
@@ -483,7 +483,7 @@ class SDe extends S {
 
   @override
   String timezoneInformation(String timeZone) {
-    return 'Das Tv Programm ist deiner Ortszeit angepasst: $timeZone';
+    return 'Tv guide timetable is in your local time: $timeZone';
   }
 
   @override
@@ -545,7 +545,7 @@ class SDe extends S {
 
   @override
   String pollAnswer(String answer) {
-    return 'Du hast geantwortet $answer';
+    return 'You\'ve answered: $answer';
   }
 
   @override
@@ -606,11 +606,11 @@ class SDe extends S {
 
   @override
   String shareTime(String time) {
-    return 'Teile von der Zeit $time';
+    return 'Share from time $time';
   }
 
   @override
-  String get loadContentError => 'Konnte den Inhalt nicht laden';
+  String get loadContentError => 'Couldn\'t load content';
 
   @override
   String get audioOnlyErrorDescription => 'Überprüfe deine Internetverbindung und versuche es noch einmal';

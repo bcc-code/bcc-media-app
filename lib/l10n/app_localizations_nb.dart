@@ -1,8 +1,8 @@
 import 'app_localizations.dart';
 
-/// The translations for Norwegian (`no`).
-class SNo extends S {
-  SNo([String locale = 'no']) : super(locale);
+/// The translations for Norwegian Bokmål (`nb`).
+class SNb extends S {
+  SNb([String locale = 'nb']) : super(locale);
 
   @override
   String get loadingContent => 'Loading content';
@@ -20,7 +20,7 @@ class SNo extends S {
   String get calendarThisWeek => 'This week';
 
   @override
-  String get calendarWeek => 'week';
+  String get calendarWeek => 'uke';
 
   @override
   String get loading => 'Laster';
@@ -174,7 +174,7 @@ class SNo extends S {
 
   @override
   String queueLimitMessage(int elementCount) {
-    return 'Du kan ikke ha mer enn $elementCount elementer i køen.';
+    return 'You cannot have more than $elementCount elements in queue.';
   }
 
   @override
@@ -407,7 +407,7 @@ class SNo extends S {
   String get thankYouSupportDescription => 'Vi setter pris på alle tilbakemeldinger og vi vil se på problemet så snart som mulig.';
 
   @override
-  String get sendFail => 'Kunne ikke sende deg melding';
+  String get sendFail => 'Kunne ikke sende din melding';
 
   @override
   String get sendFailDescription => 'Noe gikk galt. Sjekk internettforbindelsen din og prøv på nytt.';
