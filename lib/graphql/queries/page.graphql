@@ -47,6 +47,7 @@ fragment ItemSectionItem on SectionItem {
 }
 
 fragment Section on Section {
+  id
   title
   ... on ItemSection {
     items {

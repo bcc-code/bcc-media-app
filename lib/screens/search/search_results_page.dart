@@ -1,9 +1,11 @@
+import 'package:auto_route/auto_route.dart';
+import 'package:brunstadtv_app/router/router.gr.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../graphql/client.dart';
 import '../../graphql/queries/search.graphql.dart';
-import '../../components/search_episode_list.dart';
+import '../../components/episode_list.dart';
 import '../../components/result_programs_list.dart';
 import '../../helpers/btv_colors.dart';
 import '../../helpers/btv_typography.dart';
@@ -97,11 +99,25 @@ class _SearchResultsPageState extends ConsumerState<SearchResultsPage> {
                 if (episodes.isNotEmpty)
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 16),
-                    child: EpisodeList(
-                        items: episodes
-                            .map((e) => EpisodeListEpisodeData(
-                                id: e.id, title: e.title, ageRating: e.ageRating, duration: e.duration, image: e.image, showTitle: e.showTitle))
-                            .toList()),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: episodes
+                          .map(
+                            (e) => GestureDetector(
+                              behavior: HitTestBehavior.opaque,
+                              onTap: () => context.navigateTo(EpisodeScreenRoute(episodeId: e.id)),
+                              child: EpisodeListEpisode(
+                                id: e.id,
+                                title: e.title,
+                                ageRating: e.ageRating,
+                                duration: e.duration,
+                                image: e.image,
+                                showTitle: e.showTitle,
+                              ),
+                            ),
+                          )
+                          .toList(),
+                    ),
                   ),
               ],
             );

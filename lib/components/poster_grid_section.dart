@@ -1,3 +1,4 @@
+import 'package:brunstadtv_app/components/section_item_click_wrapper.dart';
 import 'package:flutter/material.dart';
 
 import '../graphql/queries/page.graphql.dart';
@@ -6,6 +7,7 @@ import '../helpers/btv_colors.dart';
 import '../helpers/btv_typography.dart';
 import '../helpers/utils.dart';
 import '../l10n/app_localizations.dart';
+import '../models/analytics/sections.dart';
 import '../services/utils.dart';
 import 'feature_badge.dart';
 import 'episode_duration.dart';
@@ -51,7 +53,13 @@ class PosterGridSection extends StatelessWidget {
       final subList = firstIndex + colSize <= items.length ? items.sublist(firstIndex, firstIndex + colSize) : items.sublist(firstIndex);
       return GridRow(
         margin: const EdgeInsets.symmetric(vertical: 12),
-        items: subList.map(getItemWidget).toList(),
+        items: subList.asMap().entries.map((kv) {
+          return SectionItemClickWrapper(
+            item: kv.value.item,
+            analytics: SectionItemAnalytics(id: kv.value.id, position: kv.key, type: kv.value.$__typename, name: kv.value.title),
+            child: getItemWidget(kv.value),
+          );
+        }).toList(),
         colSize: colSize,
       );
     });
@@ -79,45 +87,41 @@ class _GridEpisodeItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      behavior: HitTestBehavior.opaque,
-      onTap: () => handleSectionItemClick(context, sectionItem.item),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          sectionItemImage(context),
-          Row(
-            children: [
-              if (episode.season != null)
-                Flexible(
-                  child: Container(
-                    margin: const EdgeInsets.only(right: 4),
-                    child: Text(
-                      episode.season!.$show.title.replaceAll(' ', '\u{000A0}'),
-                      maxLines: 1,
-                      overflow: TextOverflow.ellipsis,
-                      style: BtvTextStyles.caption2.copyWith(color: BtvColors.tint1),
-                    ),
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        sectionItemImage(context),
+        Row(
+          children: [
+            if (episode.season != null)
+              Flexible(
+                child: Container(
+                  margin: const EdgeInsets.only(right: 4),
+                  child: Text(
+                    episode.season!.$show.title.replaceAll(' ', '\u{000A0}'),
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                    style: BtvTextStyles.caption2.copyWith(color: BtvColors.tint1),
                   ),
                 ),
-              if (episode.season != null)
-                Text(
-                  '${S.of(context).seasonLetter}${episode.season!.number}:${S.of(context).episodeLetter}${episode.number}',
-                  style: BtvTextStyles.caption2,
-                ),
-            ],
+              ),
+            if (episode.season != null)
+              Text(
+                '${S.of(context).seasonLetter}${episode.season!.number}:${S.of(context).episodeLetter}${episode.number}',
+                style: BtvTextStyles.caption2,
+              ),
+          ],
+        ),
+        Container(
+          margin: const EdgeInsets.only(bottom: 2),
+          child: Text(
+            sectionItem.title,
+            maxLines: 2,
+            overflow: TextOverflow.ellipsis,
+            style: BtvTextStyles.caption1.copyWith(color: BtvColors.label1),
           ),
-          Container(
-            margin: const EdgeInsets.only(bottom: 2),
-            child: Text(
-              sectionItem.title,
-              maxLines: 2,
-              overflow: TextOverflow.ellipsis,
-              style: BtvTextStyles.caption1.copyWith(color: BtvColors.label1),
-            ),
-          ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 
@@ -212,28 +216,24 @@ class _GridShowItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      behavior: HitTestBehavior.opaque,
-      onTap: () => handleSectionItemClick(context, sectionItem.item),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          sectionItemImage(context),
-          Container(
-            margin: const EdgeInsets.only(bottom: 2),
-            child: Text(
-              sectionItem.title,
-              maxLines: 2,
-              overflow: TextOverflow.ellipsis,
-              style: BtvTextStyles.caption1.copyWith(color: BtvColors.label1),
-            ),
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        sectionItemImage(context),
+        Container(
+          margin: const EdgeInsets.only(bottom: 2),
+          child: Text(
+            sectionItem.title,
+            maxLines: 2,
+            overflow: TextOverflow.ellipsis,
+            style: BtvTextStyles.caption1.copyWith(color: BtvColors.label1),
           ),
-          Text(
-            '${show.seasonCount} ${S.of(context).seasons} - ${show.episodeCount} ${S.of(context).episodes}',
-            style: BtvTextStyles.caption2,
-          )
-        ],
-      ),
+        ),
+        Text(
+          '${show.seasonCount} ${S.of(context).seasons} - ${show.episodeCount} ${S.of(context).episodes}',
+          style: BtvTextStyles.caption2,
+        )
+      ],
     );
   }
 

@@ -1,9 +1,11 @@
+import 'package:brunstadtv_app/components/section_item_click_wrapper.dart';
 import 'package:flutter/material.dart';
 
 import '../graphql/queries/page.graphql.dart';
 import '../helpers/btv_colors.dart';
 import '../helpers/btv_typography.dart';
 import '../helpers/utils.dart';
+import '../models/analytics/sections.dart';
 import 'horizontal_slider.dart';
 
 class LabelSection extends StatelessWidget {
@@ -22,7 +24,11 @@ class LabelSection extends StatelessWidget {
         itemCount: data.items.items.length,
         itemBuilder: (BuildContext context, int index) {
           var item = data.items.items[index];
-          return _LabelItem(item);
+          return SectionItemClickWrapper(
+            item: item.item,
+            analytics: SectionItemAnalytics(id: item.id, position: index, type: item.$__typename, name: item.title),
+            child: _LabelItem(item),
+          );
         },
       ),
     );
@@ -36,23 +42,19 @@ class _LabelItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      behavior: HitTestBehavior.opaque,
-      onTap: () => handleSectionItemClick(context, sectionItem.item),
-      child: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
-        decoration: BoxDecoration(
-          border: Border.all(
-            width: 1,
-            color: BtvColors.separatorOnLight,
-          ),
-          borderRadius: BorderRadius.circular(24),
-          color: BtvColors.background2,
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+      decoration: BoxDecoration(
+        border: Border.all(
+          width: 1,
+          color: BtvColors.separatorOnLight,
         ),
-        child: Text(
-          sectionItem.title,
-          style: BtvTextStyles.body2.copyWith(color: BtvColors.label1),
-        ),
+        borderRadius: BorderRadius.circular(24),
+        color: BtvColors.background2,
+      ),
+      child: Text(
+        sectionItem.title,
+        style: BtvTextStyles.body2.copyWith(color: BtvColors.label1),
       ),
     );
   }
