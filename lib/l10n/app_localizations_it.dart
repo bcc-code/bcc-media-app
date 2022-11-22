@@ -433,7 +433,7 @@ class SIt extends S {
 
   @override
   String availableFrom(String date) {
-    return 'Disponibile${date}';
+    return 'Available $date';
   }
 
   @override
@@ -483,7 +483,7 @@ class SIt extends S {
 
   @override
   String timezoneInformation(String timeZone) {
-    return 'L\'orario della guida Tv è nella tua ora locale: $timeZone';
+    return 'Tv guide timetable is in your local time: $timeZone';
   }
 
   @override

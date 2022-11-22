@@ -12,8 +12,8 @@ import 'app_localizations_fi.dart';
 import 'app_localizations_fr.dart';
 import 'app_localizations_hu.dart';
 import 'app_localizations_it.dart';
+import 'app_localizations_nb.dart';
 import 'app_localizations_nl.dart';
-import 'app_localizations_no.dart';
 import 'app_localizations_pl.dart';
 import 'app_localizations_pt.dart';
 import 'app_localizations_ro.dart';
@@ -109,8 +109,8 @@ abstract class S {
     Locale('fr'),
     Locale('hu'),
     Locale('it'),
+    Locale('nb'),
     Locale('nl'),
-    Locale('no'),
     Locale('pl'),
     Locale('pt'),
     Locale('ro'),
@@ -1539,7 +1539,7 @@ class _SDelegate extends LocalizationsDelegate<S> {
   }
 
   @override
-  bool isSupported(Locale locale) => <String>['de', 'en', 'es', 'fi', 'fr', 'hu', 'it', 'nl', 'no', 'pl', 'pt', 'ro', 'ru', 'sl', 'tr'].contains(locale.languageCode);
+  bool isSupported(Locale locale) => <String>['de', 'en', 'es', 'fi', 'fr', 'hu', 'it', 'nb', 'nl', 'pl', 'pt', 'ro', 'ru', 'sl', 'tr'].contains(locale.languageCode);
 
   @override
   bool shouldReload(_SDelegate old) => false;
@@ -1557,8 +1557,8 @@ S lookupS(Locale locale) {
     case 'fr': return SFr();
     case 'hu': return SHu();
     case 'it': return SIt();
+    case 'nb': return SNb();
     case 'nl': return SNl();
-    case 'no': return SNo();
     case 'pl': return SPl();
     case 'pt': return SPt();
     case 'ro': return SRo();

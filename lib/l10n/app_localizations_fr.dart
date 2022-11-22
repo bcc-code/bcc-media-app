@@ -174,7 +174,7 @@ class SFr extends S {
 
   @override
   String queueLimitMessage(int elementCount) {
-    return 'Tu ne peux pas avoir plus de $elementCount éléments dans la file d\'attente.';
+    return 'You cannot have more than $elementCount elements in queue.';
   }
 
   @override
@@ -263,7 +263,7 @@ class SFr extends S {
 
   @override
   String watchingWith(int numPeople) {
-    return 'Tu regardes avec $numPeople autres personnes';
+    return 'You are watching with $numPeople others';
   }
 
   @override
@@ -277,7 +277,7 @@ class SFr extends S {
 
   @override
   String charactersLimit(int charsLeft, int charsTotal) {
-    return '$charsLeft sur $charsTotal caractères restants';
+    return '$charsLeft of $charsTotal characters left';
   }
 
   @override
@@ -407,7 +407,7 @@ class SFr extends S {
   String get thankYouSupportDescription => 'Nous apprécions tous les commentaires et nous nous pencherons sur ce problème dès que possible.';
 
   @override
-  String get sendFail => 'Ton message n\'a pas pu être envoyé';
+  String get sendFail => 'Couldn\'t send you message';
 
   @override
   String get sendFailDescription => 'Une erreur est survenue. Vérifie ta connexion internet et réessaye.';
@@ -420,12 +420,12 @@ class SFr extends S {
 
   @override
   String newPostsMultiple(int postCount) {
-    return '$postCount nouvelle(s) publication(s) !';
+    return '$postCount new posts!';
   }
 
   @override
   String newPostsSingle(int postCount) {
-    return '$postCount nouvelle publication !';
+    return '$postCount new post!';
   }
 
   @override
@@ -433,7 +433,7 @@ class SFr extends S {
 
   @override
   String availableFrom(String date) {
-    return 'Disponible $date';
+    return 'Available $date';
   }
 
   @override
@@ -447,7 +447,7 @@ class SFr extends S {
 
   @override
   String wellDoneDistance(int distanceInKM) {
-    return 'Bien joué ! Tu as enregistré une distance totale de $distanceInKM km';
+    return 'Well done! You have registered a total distance of $distanceInKM km';
   }
 
   @override
@@ -455,12 +455,12 @@ class SFr extends S {
 
   @override
   String ranMore(int distanceInKM) {
-    return 'J\'ai marché plus de $distanceInKM km';
+    return 'I went more than $distanceInKM km';
   }
 
   @override
   String moreThan(int distanceInKM) {
-    return 'Plus de $distanceInKM km';
+    return 'More than $distanceInKM km';
   }
 
   @override
@@ -483,7 +483,7 @@ class SFr extends S {
 
   @override
   String timezoneInformation(String timeZone) {
-    return 'Le calendrier du guide Tv s\'affiche selon l\'heure locale : $timeZone';
+    return 'Tv guide timetable is in your local time: $timeZone';
   }
 
   @override
@@ -545,7 +545,7 @@ class SFr extends S {
 
   @override
   String pollAnswer(String answer) {
-    return 'Tu as répondu : $answer';
+    return 'You\'ve answered: $answer';
   }
 
   @override
@@ -577,7 +577,7 @@ class SFr extends S {
 
   @override
   String posts(int postsCount) {
-    return '$postsCount Publications';
+    return '$postsCount Posts';
   }
 
   @override
@@ -606,11 +606,11 @@ class SFr extends S {
 
   @override
   String shareTime(String time) {
-    return 'Partager à partir de $time';
+    return 'Share from time $time';
   }
 
   @override
-  String get loadContentError => 'Impossible de charger le contenu';
+  String get loadContentError => 'Couldn\'t load content';
 
   @override
   String get audioOnlyErrorDescription => 'Vérifie ta connexion internet et retente à nouveau';
