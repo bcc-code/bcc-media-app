@@ -174,7 +174,6 @@ class SFi extends S {
 
   @override
   String queueLimitMessage(int elementCount) {
-
     return 'Jonossa ei voi olle enempää kuin $elementCount juttua.';
   }
 
@@ -264,7 +263,6 @@ class SFi extends S {
 
   @override
   String watchingWith(int numPeople) {
-
     return 'Sinä ja $numPeople muuta katselette tätä';
   }
 
@@ -279,7 +277,6 @@ class SFi extends S {
 
   @override
   String charactersLimit(int charsLeft, int charsTotal) {
-
     return '$charsTotal merkistä $charsLeft jäljellä';
   }
 
@@ -423,13 +420,11 @@ class SFi extends S {
 
   @override
   String newPostsMultiple(int postCount) {
-
     return '$postCount uutta viestiä!';
   }
 
   @override
   String newPostsSingle(int postCount) {
-
     return '$postCount uutta viestiä!';
   }
 
@@ -438,7 +433,6 @@ class SFi extends S {
 
   @override
   String availableFrom(String date) {
-
     return 'Saatavilla $date';
   }
 
@@ -453,7 +447,6 @@ class SFi extends S {
 
   @override
   String wellDoneDistance(int distanceInKM) {
-
     return 'Hienoa! Olet ilmoittanut yhteensä $distanceInKM km';
   }
 
@@ -462,13 +455,11 @@ class SFi extends S {
 
   @override
   String ranMore(int distanceInKM) {
-
     return 'Kuljin yli $distanceInKM km';
   }
 
   @override
   String moreThan(int distanceInKM) {
-
     return 'Yli $distanceInKM km';
   }
 
@@ -492,7 +483,6 @@ class SFi extends S {
 
   @override
   String timezoneInformation(String timeZone) {
-
     return 'Kellonajat ovat sinun aikavyöhykettä: $timeZone';
   }
 
@@ -555,7 +545,6 @@ class SFi extends S {
 
   @override
   String pollAnswer(String answer) {
-
     return 'Olet vastannut: $answer';
   }
 
@@ -588,7 +577,6 @@ class SFi extends S {
 
   @override
   String posts(int postsCount) {
-
     return '$postsCount viestiä';
   }
 
@@ -618,7 +606,6 @@ class SFi extends S {
 
   @override
   String shareTime(String time) {
-
     return 'Jaa video tästä kohtaa $time';
   }
 

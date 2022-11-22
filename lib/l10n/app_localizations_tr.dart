@@ -174,7 +174,6 @@ class STr extends S {
 
   @override
   String queueLimitMessage(int elementCount) {
-
     return 'Sırada $elementCount öğeden fazla öğe olamaz.';
   }
 
@@ -264,7 +263,6 @@ class STr extends S {
 
   @override
   String watchingWith(int numPeople) {
-
     return 'You are watching with $numPeople others';
   }
 
@@ -279,7 +277,6 @@ class STr extends S {
 
   @override
   String charactersLimit(int charsLeft, int charsTotal) {
-
     return '$charsLeft / $charsTotal karakter kaldı';
   }
 
@@ -423,13 +420,11 @@ class STr extends S {
 
   @override
   String newPostsMultiple(int postCount) {
-
     return '$postCount yeni gönderiler!';
   }
 
   @override
   String newPostsSingle(int postCount) {
-
     return '$postCount yeni gönderi!';
   }
 
@@ -438,7 +433,6 @@ class STr extends S {
 
   @override
   String availableFrom(String date) {
-
     return 'Uygun $date';
   }
 
@@ -453,7 +447,6 @@ class STr extends S {
 
   @override
   String wellDoneDistance(int distanceInKM) {
-
     return 'Aferin! Toplam mesafe $distanceInKM km kaydettiniz';
   }
 
@@ -462,13 +455,11 @@ class STr extends S {
 
   @override
   String ranMore(int distanceInKM) {
-
     return '$distanceInKM km\'den fazla gittim';
   }
 
   @override
   String moreThan(int distanceInKM) {
-
     return '$distanceInKM km\'den fazla';
   }
 
@@ -492,7 +483,6 @@ class STr extends S {
 
   @override
   String timezoneInformation(String timeZone) {
-
     return 'Tv rehberi zaman çizelgesi yerel saatinizde: $timeZone';
   }
 
@@ -555,7 +545,6 @@ class STr extends S {
 
   @override
   String pollAnswer(String answer) {
-
     return 'You\'ve answered: $answer';
   }
 
@@ -588,7 +577,6 @@ class STr extends S {
 
   @override
   String posts(int postsCount) {
-
     return '$postsCount Posts';
   }
 
@@ -618,7 +606,6 @@ class STr extends S {
 
   @override
   String shareTime(String time) {
-
     return 'Share from time $time';
   }
 

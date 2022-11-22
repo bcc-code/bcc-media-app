@@ -174,7 +174,6 @@ class SEs extends S {
 
   @override
   String queueLimitMessage(int elementCount) {
-
     return 'No puede tener más de $elementCount en la cola de reproducción.';
   }
 
@@ -264,7 +263,6 @@ class SEs extends S {
 
   @override
   String watchingWith(int numPeople) {
-
     return 'Estas viendo junto a $numPeople';
   }
 
@@ -279,7 +277,6 @@ class SEs extends S {
 
   @override
   String charactersLimit(int charsLeft, int charsTotal) {
-
     return '$charsLeft de $charsTotal caracteres disponibles';
   }
 
@@ -423,13 +420,11 @@ class SEs extends S {
 
   @override
   String newPostsMultiple(int postCount) {
-
     return '¡$postCount nueva/s publicación/es!';
   }
 
   @override
   String newPostsSingle(int postCount) {
-
     return '¡$postCount nuevas publicaciones!';
   }
 
@@ -438,7 +433,6 @@ class SEs extends S {
 
   @override
   String availableFrom(String date) {
-
     return 'Disponible/s $date';
   }
 
@@ -453,7 +447,6 @@ class SEs extends S {
 
   @override
   String wellDoneDistance(int distanceInKM) {
-
     return '¡Bien hecho! Ha registrado una distancia total de $distanceInKM km';
   }
 
@@ -462,13 +455,11 @@ class SEs extends S {
 
   @override
   String ranMore(int distanceInKM) {
-
     return 'Recorrí más de $distanceInKM km';
   }
 
   @override
   String moreThan(int distanceInKM) {
-
     return 'Mas de $distanceInKM km';
   }
 
@@ -492,7 +483,6 @@ class SEs extends S {
 
   @override
   String timezoneInformation(String timeZone) {
-
     return 'El horario de la guía de televisión está en su hora local $timeZone';
   }
 
@@ -555,7 +545,6 @@ class SEs extends S {
 
   @override
   String pollAnswer(String answer) {
-
     return 'Has respondido: $answer';
   }
 
@@ -588,7 +577,6 @@ class SEs extends S {
 
   @override
   String posts(int postsCount) {
-
     return '$postsCount Publicaciones';
   }
 
@@ -618,7 +606,6 @@ class SEs extends S {
 
   @override
   String shareTime(String time) {
-
     return 'Compartir desde $time';
   }
 

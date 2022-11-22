@@ -174,7 +174,6 @@ class SHu extends S {
 
   @override
   String queueLimitMessage(int elementCount) {
-
     return 'Nem lehet több mint $elementCount elem a lejátszási listán.';
   }
 
@@ -264,7 +263,6 @@ class SHu extends S {
 
   @override
   String watchingWith(int numPeople) {
-
     return 'Még $numPeople személlyel együtt nézed';
   }
 
@@ -279,7 +277,6 @@ class SHu extends S {
 
   @override
   String charactersLimit(int charsLeft, int charsTotal) {
-
     return '$charsLeft a $charsTotal karakterből van még hátra';
   }
 
@@ -423,13 +420,11 @@ class SHu extends S {
 
   @override
   String newPostsMultiple(int postCount) {
-
     return '$postCount új hozzászólás!';
   }
 
   @override
   String newPostsSingle(int postCount) {
-
     return '$postCount új hozzászólás!';
   }
 
@@ -438,7 +433,6 @@ class SHu extends S {
 
   @override
   String availableFrom(String date) {
-
     return 'Elérhető $date';
   }
 
@@ -453,7 +447,6 @@ class SHu extends S {
 
   @override
   String wellDoneDistance(int distanceInKM) {
-
     return 'Jól csináltad! A teljes regisztrált távolságod $distanceInKM km';
   }
 
@@ -462,13 +455,11 @@ class SHu extends S {
 
   @override
   String ranMore(int distanceInKM) {
-
     return 'Több mint $distanceInKM kilométert futottam';
   }
 
   @override
   String moreThan(int distanceInKM) {
-
     return 'Több mint $distanceInKM km';
   }
 
@@ -492,7 +483,6 @@ class SHu extends S {
 
   @override
   String timezoneInformation(String timeZone) {
-
     return 'A TV program időpontjai a helyi idő szerint jelenek meg: $timeZone';
   }
 
@@ -555,7 +545,6 @@ class SHu extends S {
 
   @override
   String pollAnswer(String answer) {
-
     return '$answer válaszoltál';
   }
 
@@ -588,7 +577,6 @@ class SHu extends S {
 
   @override
   String posts(int postsCount) {
-
     return '$postsCount Hozzászólások';
   }
 
@@ -618,7 +606,6 @@ class SHu extends S {
 
   @override
   String shareTime(String time) {
-
     return 'Megosztás innentől $time';
   }
 

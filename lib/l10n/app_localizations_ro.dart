@@ -174,7 +174,6 @@ class SRo extends S {
 
   @override
   String queueLimitMessage(int elementCount) {
-
     return 'Nu poți avea mai mult de $elementCount elemente în coadă.';
   }
 
@@ -264,7 +263,6 @@ class SRo extends S {
 
   @override
   String watchingWith(int numPeople) {
-
     return 'Urmărești cu încă $numPeople persoane';
   }
 
@@ -279,7 +277,6 @@ class SRo extends S {
 
   @override
   String charactersLimit(int charsLeft, int charsTotal) {
-
     return 'Au mai rămas $charsLeft din $charsTotal caractere';
   }
 
@@ -423,13 +420,11 @@ class SRo extends S {
 
   @override
   String newPostsMultiple(int postCount) {
-
     return '$postCount postări noi!';
   }
 
   @override
   String newPostsSingle(int postCount) {
-
     return '$postCount postare nouă!';
   }
 
@@ -438,7 +433,6 @@ class SRo extends S {
 
   @override
   String availableFrom(String date) {
-
     return 'Disponibil de pe $date';
   }
 
@@ -453,7 +447,6 @@ class SRo extends S {
 
   @override
   String wellDoneDistance(int distanceInKM) {
-
     return 'Bună treabă! Ai înregistrat o distanță totală de $distanceInKM km';
   }
 
@@ -462,13 +455,11 @@ class SRo extends S {
 
   @override
   String ranMore(int distanceInKM) {
-
     return 'Am parcurs mai mult de $distanceInKM km';
   }
 
   @override
   String moreThan(int distanceInKM) {
-
     return 'Peste $distanceInKM km';
   }
 
@@ -492,7 +483,6 @@ class SRo extends S {
 
   @override
   String timezoneInformation(String timeZone) {
-
     return 'Programul ghidului TV este afișat în ora ta locală: $timeZone';
   }
 
@@ -555,7 +545,6 @@ class SRo extends S {
 
   @override
   String pollAnswer(String answer) {
-
     return 'Ai răspuns $answer';
   }
 
@@ -588,7 +577,6 @@ class SRo extends S {
 
   @override
   String posts(int postsCount) {
-
     return '$postsCount Postări';
   }
 
@@ -618,7 +606,6 @@ class SRo extends S {
 
   @override
   String shareTime(String time) {
-
     return 'Share from time $time';
   }
 
