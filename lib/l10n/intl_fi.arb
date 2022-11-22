@@ -142,7 +142,7 @@
   "editPicture": "Muokkaa kuvaa",
   "profilePicture": "Profiilikuva",
   "firstPostTitle": "Ole ensimmäinen joka jakaa kuvan tai viestin",
-  "timezoneInformation": "Kellonajat ovat sinun aikavyöhykettä: {time}",
+  "timezoneInformation": "Kellonajat ovat sinun aikavyöhykettä: {timeZone}",
   "yourQuestion": "Kysymyksesi",
   "uploadingInquirySuccess": "Huomaathan, että kaikkiin kysymyksiin ei lähetyksessä vastata.",
   "askQuestion": "Kysy jotain",

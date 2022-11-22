@@ -660,11 +660,11 @@
   "@firstPostTitle": {
     "description": "Text on feed page when feed is empty."
   },
-  "timezoneInformation": "Tv guide timetable is in your local time: {time}",
+  "timezoneInformation": "Tv guide timetable is in your local time: {timeZone}",
   "@timezoneInformation": {
     "description": "TV guide footer info text.",
     "placeholders": {
-      "time": {
+      "timeZone": {
         "type": "String"
       }
     }

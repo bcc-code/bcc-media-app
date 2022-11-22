@@ -173,7 +173,10 @@ class SRu extends S {
   String get queueLimitTitle => 'Лимит';
 
   @override
-  String get queueLimitMessage => 'В очереди не может быть более {0} элементов.';
+  String queueLimitMessage(int elementCount) {
+
+    return 'В очереди не может быть более $elementCount элементов.';
+  }
 
   @override
   String get recentSearches => 'Недавние поиски';
@@ -260,7 +263,10 @@ class SRu extends S {
   String get uploadFileMessage => 'Вы хотите загрузить этот файл?';
 
   @override
-  String get watchingWith => 'Вы смотрите с {0} другими людьми';
+  String watchingWith(int numPeople) {
+
+    return 'Вы смотрите с $numPeople другими людьми';
+  }
 
   @override
   String get uploading => 'Загрузка';
@@ -272,7 +278,10 @@ class SRu extends S {
   String get post => 'Опубликовать';
 
   @override
-  String get charactersLimit => 'Осталось символов: {0} из {1}';
+  String charactersLimit(int charsLeft, int charsTotal) {
+
+    return 'Осталось символов: $charsLeft из $charsTotal';
+  }
 
   @override
   String get uploadingPostSuccess => 'Ваша публикация была отправлена.';
@@ -413,16 +422,25 @@ class SRu extends S {
   String get noNewPosts => 'Нет новых публикаций';
 
   @override
-  String get newPostsMultiple => '{0} новых публикаций!';
+  String newPostsMultiple(int postCount) {
+
+    return '$postCount новых публикаций!';
+  }
 
   @override
-  String get newPostsSingle => '{0} новых публикаций!';
+  String newPostsSingle(int postCount) {
+
+    return '$postCount новых публикаций!';
+  }
 
   @override
   String get expired => 'Прошёл';
 
   @override
-  String get availableFrom => 'Доступно {0}';
+  String availableFrom(String date) {
+
+    return 'Доступно $date';
+  }
 
   @override
   String get howFar => 'Как далеко вы прошли?';
@@ -434,16 +452,25 @@ class SRu extends S {
   String get wellDone => 'Отлично сработано!';
 
   @override
-  String get wellDoneDistance => 'Отлично сработано! Вы зарегистрировали общее расстояние {0} км';
+  String wellDoneDistance(int distanceInKM) {
+
+    return 'Отлично сработано! Вы зарегистрировали общее расстояние $distanceInKM км';
+  }
 
   @override
   String get distanceRegistered => 'Ваше расстояние было зарегистрировано. Продолжите ниже, если вы хотите отправить другое расстояние.';
 
   @override
-  String get ranMore => 'Я прошёл (ла) более {0} км';
+  String ranMore(int distanceInKM) {
+
+    return 'Я прошёл (ла) более $distanceInKM км';
+  }
 
   @override
-  String get moreThan => 'Более {0} км';
+  String moreThan(int distanceInKM) {
+
+    return 'Более $distanceInKM км';
+  }
 
   @override
   String get runningEffort => 'Отличное достижение! Введите количество километров, которое вы прошли ниже.';
@@ -464,7 +491,10 @@ class SRu extends S {
   String get firstPostTitle => 'Будьте первым, кто опубликует фото или сообщение';
 
   @override
-  String get timezoneInformation => 'Расписание телепрограммы указано по вашему местному времени: {0}';
+  String timezoneInformation(String timeZone) {
+
+    return 'Расписание телепрограммы указано по вашему местному времени: $timeZone';
+  }
 
   @override
   String get yourQuestion => 'Ваш вопрос';
@@ -524,7 +554,10 @@ class SRu extends S {
   String get readBy => 'Прочитано';
 
   @override
-  String get pollAnswer => 'Вы ответили: {0}';
+  String pollAnswer(String answer) {
+
+    return 'Вы ответили: $answer';
+  }
 
   @override
   String get broadcasts => 'Трансляции';
@@ -554,7 +587,10 @@ class SRu extends S {
   String get donationNotAvailable => 'Пожертвование на данный момент недоступно. Пожалуйста, повторите попытку позже.';
 
   @override
-  String get posts => '{0} Публикаций';
+  String posts(int postsCount) {
+
+    return '$postsCount Публикаций';
+  }
 
   @override
   String get copy => 'Копировать';
@@ -563,7 +599,7 @@ class SRu extends S {
   String get reload => 'Перезагрузить';
 
   @override
-  String get particiantsTitle => 'Кто отвечает?';
+  String get participantsTitle => 'Кто отвечает?';
 
   @override
   String get participantsSubtitle => 'Выберите одного или нескольких участников.';
@@ -581,7 +617,10 @@ class SRu extends S {
   String get shareStart => 'Поделиться с начала';
 
   @override
-  String get shareTime => 'Поделиться с времени {0}';
+  String shareTime(String time) {
+
+    return 'Поделиться с времени $time';
+  }
 
   @override
   String get loadContentError => 'Не удалось загрузить контент';

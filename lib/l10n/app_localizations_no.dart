@@ -173,7 +173,10 @@ class SNo extends S {
   String get queueLimitTitle => 'Købegrensing Title';
 
   @override
-  String get queueLimitMessage => 'Du kan ikke ha mer enn {0} elementer i køen.';
+  String queueLimitMessage(int elementCount) {
+
+    return 'Du kan ikke ha mer enn $elementCount elementer i køen.';
+  }
 
   @override
   String get recentSearches => 'Siste søk';
@@ -260,7 +263,10 @@ class SNo extends S {
   String get uploadFileMessage => 'Vil du laste opp denne filen?';
 
   @override
-  String get watchingWith => 'Du ser på sammen med {0} andre';
+  String watchingWith(int numPeople) {
+
+    return 'Du ser på sammen med $numPeople andre';
+  }
 
   @override
   String get uploading => 'Opplasting';
@@ -272,7 +278,10 @@ class SNo extends S {
   String get post => 'Send';
 
   @override
-  String get charactersLimit => '{0} av {1} tegn igjen';
+  String charactersLimit(int charsLeft, int charsTotal) {
+
+    return '$charsLeft av $charsTotal tegn igjen';
+  }
 
   @override
   String get uploadingPostSuccess => 'Ditt innlegg har blitt sendt inn.';
@@ -413,16 +422,25 @@ class SNo extends S {
   String get noNewPosts => 'Ingen nye innlegg';
 
   @override
-  String get newPostsMultiple => '{0} nye innlegg!';
+  String newPostsMultiple(int postCount) {
+
+    return '$postCount nye innlegg!';
+  }
 
   @override
-  String get newPostsSingle => '{0} nytt innlegg!';
+  String newPostsSingle(int postCount) {
+
+    return '$postCount nytt innlegg!';
+  }
 
   @override
   String get expired => 'Utgått';
 
   @override
-  String get availableFrom => 'Tilgjengelig {0}';
+  String availableFrom(String date) {
+
+    return 'Tilgjengelig $date';
+  }
 
   @override
   String get howFar => 'Hvor lang var turen din?';
@@ -434,16 +452,25 @@ class SNo extends S {
   String get wellDone => 'Bra jobbet!';
 
   @override
-  String get wellDoneDistance => 'Bra jobbet! Du har registrert en total distanse på {0} km';
+  String wellDoneDistance(int distanceInKM) {
+
+    return 'Bra jobbet! Du har registrert en total distanse på $distanceInKM km';
+  }
 
   @override
   String get distanceRegistered => 'Din distanse har blitt registrert. Fortsett under hvis du vil legge til en distanse til.';
 
   @override
-  String get ranMore => 'Jeg gikk mer enn {0} km';
+  String ranMore(int distanceInKM) {
+
+    return 'Jeg gikk mer enn $distanceInKM km';
+  }
 
   @override
-  String get moreThan => 'Mer enn {0} km';
+  String moreThan(int distanceInKM) {
+
+    return 'Mer enn $distanceInKM km';
+  }
 
   @override
   String get runningEffort => 'Fantastisk innsats! Skriv inn antallet kilometer du gikk under.';
@@ -464,7 +491,10 @@ class SNo extends S {
   String get firstPostTitle => 'Vær den første til å sende inn et bilde eller å skrive en melding';
 
   @override
-  String get timezoneInformation => 'Tv-guide tidstabell er i din lokale tid: {0}';
+  String timezoneInformation(String timeZone) {
+
+    return 'Tv-guide tidstabell er i din lokale tid: $timeZone';
+  }
 
   @override
   String get yourQuestion => 'Ditt spørsmål';
@@ -524,7 +554,10 @@ class SNo extends S {
   String get readBy => 'Lest av';
 
   @override
-  String get pollAnswer => 'Du har svart: {0}';
+  String pollAnswer(String answer) {
+
+    return 'Du har svart: $answer';
+  }
 
   @override
   String get broadcasts => 'Sendinger';
@@ -554,7 +587,10 @@ class SNo extends S {
   String get donationNotAvailable => 'Donasjon er ikke tilgjengelig for øyeblikket. Vennligst prøv igjen senere.';
 
   @override
-  String get posts => '{0} Innlegg';
+  String posts(int postsCount) {
+
+    return '$postsCount Innlegg';
+  }
 
   @override
   String get copy => 'Kopier';
@@ -563,7 +599,7 @@ class SNo extends S {
   String get reload => 'Last inn på nytt';
 
   @override
-  String get particiantsTitle => 'Hvem svarer?';
+  String get participantsTitle => 'Hvem svarer?';
 
   @override
   String get participantsSubtitle => 'Velg en eller flere deltagere.';
@@ -581,7 +617,10 @@ class SNo extends S {
   String get shareStart => 'Del fra start';
 
   @override
-  String get shareTime => 'Del fra tid {0}';
+  String shareTime(String time) {
+
+    return 'Del fra tid $time';
+  }
 
   @override
   String get loadContentError => 'Kunne ikke laste innhold';

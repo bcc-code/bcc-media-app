@@ -142,7 +142,7 @@
   "editPicture": "Modifier l'image",
   "profilePicture": "Photo de profil",
   "firstPostTitle": "Sois le premier à envoyer une photo ou un message",
-  "timezoneInformation": "Le calendrier du guide Tv s'affiche selon l'heure locale : {time}",
+  "timezoneInformation": "Le calendrier du guide Tv s'affiche selon l'heure locale : {timeZone}",
   "yourQuestion": "Ta question",
   "uploadingInquirySuccess": "Nous attirons l'attention sur le fait que nous ne répondrons pas à toutes les questions posées pendant l'émission.",
   "askQuestion": "Poser une question",

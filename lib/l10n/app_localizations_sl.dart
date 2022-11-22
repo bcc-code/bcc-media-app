@@ -173,7 +173,10 @@ class SSl extends S {
   String get queueLimitTitle => 'Limit';
 
   @override
-  String get queueLimitMessage => 'V čakalni vrsti ne more biti več kot {0} elementov.';
+  String queueLimitMessage(int elementCount) {
+
+    return 'V čakalni vrsti ne more biti več kot $elementCount elementov.';
+  }
 
   @override
   String get recentSearches => 'Nedavna iskanja';
@@ -260,7 +263,10 @@ class SSl extends S {
   String get uploadFileMessage => 'Ali hočete naložiti to datoteko?';
 
   @override
-  String get watchingWith => 'Gledaš še z {0} osebami';
+  String watchingWith(int numPeople) {
+
+    return 'Gledaš še z $numPeople osebami';
+  }
 
   @override
   String get uploading => 'Nalaganje';
@@ -272,7 +278,10 @@ class SSl extends S {
   String get post => 'Objavi';
 
   @override
-  String get charactersLimit => '{0} od {1} znakov';
+  String charactersLimit(int charsLeft, int charsTotal) {
+
+    return '$charsLeft od $charsTotal znakov';
+  }
 
   @override
   String get uploadingPostSuccess => 'Tvoja objava je bila poslana.';
@@ -413,16 +422,25 @@ class SSl extends S {
   String get noNewPosts => 'Ni novih objav';
 
   @override
-  String get newPostsMultiple => '{0} novih objav!';
+  String newPostsMultiple(int postCount) {
+
+    return '$postCount novih objav!';
+  }
 
   @override
-  String get newPostsSingle => '{0} novih objav!';
+  String newPostsSingle(int postCount) {
+
+    return '$postCount novih objav!';
+  }
 
   @override
   String get expired => 'Preteklo';
 
   @override
-  String get availableFrom => 'Na voljo {0}';
+  String availableFrom(String date) {
+
+    return 'Na voljo $date';
+  }
 
   @override
   String get howFar => 'Kako daleč si šel?';
@@ -434,16 +452,25 @@ class SSl extends S {
   String get wellDone => 'Bravo!';
 
   @override
-  String get wellDoneDistance => 'Bravo! Registriral si razdaljo {0} km';
+  String wellDoneDistance(int distanceInKM) {
+
+    return 'Bravo! Registriral si razdaljo $distanceInKM km';
+  }
 
   @override
   String get distanceRegistered => 'Tvoja razdalja je bila registrirana. Nadaljuj spodaj, če hočeš oddati drugo razdaljo.';
 
   @override
-  String get ranMore => 'Dosegel sem več kot {0} km';
+  String ranMore(int distanceInKM) {
+
+    return 'Dosegel sem več kot $distanceInKM km';
+  }
 
   @override
-  String get moreThan => 'Več kot {0} km';
+  String moreThan(int distanceInKM) {
+
+    return 'Več kot $distanceInKM km';
+  }
 
   @override
   String get runningEffort => 'Izjemen dosežek! Spodaj vpiši število kilometrov, ki si jih dosegel.';
@@ -464,7 +491,10 @@ class SSl extends S {
   String get firstPostTitle => 'Bodi prvi, ki objavi sliko ali sporočilo';
 
   @override
-  String get timezoneInformation => 'Tv spored je v tvojem lokalnem času: {0}';
+  String timezoneInformation(String timeZone) {
+
+    return 'Tv spored je v tvojem lokalnem času: $timeZone';
+  }
 
   @override
   String get yourQuestion => 'Tvoje vprašanje';
@@ -524,7 +554,10 @@ class SSl extends S {
   String get readBy => 'Prebral';
 
   @override
-  String get pollAnswer => 'Ti si odgovoril/a {0}';
+  String pollAnswer(String answer) {
+
+    return 'Ti si odgovoril/a $answer';
+  }
 
   @override
   String get broadcasts => 'Oddaje';
@@ -554,7 +587,10 @@ class SSl extends S {
   String get donationNotAvailable => 'Donacija trenutno ni na voljo. Prosim poskusi znova kasneje.';
 
   @override
-  String get posts => '{0} objav';
+  String posts(int postsCount) {
+
+    return '$postsCount objav';
+  }
 
   @override
   String get copy => 'Kopiraj';
@@ -563,7 +599,7 @@ class SSl extends S {
   String get reload => 'Ponovno naloži';
 
   @override
-  String get particiantsTitle => 'Kdo odgovarja?';
+  String get participantsTitle => 'Kdo odgovarja?';
 
   @override
   String get participantsSubtitle => 'Izberi enega ali več sodelujočih.';
@@ -581,7 +617,10 @@ class SSl extends S {
   String get shareStart => 'Deli od začetka';
 
   @override
-  String get shareTime => 'Deli od {0}';
+  String shareTime(String time) {
+
+    return 'Deli od $time';
+  }
 
   @override
   String get loadContentError => 'Nalaganje vsebine ni uspelo';

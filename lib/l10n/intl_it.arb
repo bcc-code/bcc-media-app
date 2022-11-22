@@ -142,7 +142,7 @@
   "editPicture": "Edit picture",
   "profilePicture": "Profile picture",
   "firstPostTitle": "Be the first to post a picture or message",
-  "timezoneInformation": "L'orario della guida Tv è nella tua ora locale: {time}",
+  "timezoneInformation": "L'orario della guida Tv è nella tua ora locale: {timeZone}",
   "yourQuestion": "Your question",
   "uploadingInquirySuccess": "Please note that not all submitted questions are answered in the broadcast.",
   "askQuestion": "Ask a question",

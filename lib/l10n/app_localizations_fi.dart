@@ -173,7 +173,10 @@ class SFi extends S {
   String get queueLimitTitle => 'Rajoitus';
 
   @override
-  String get queueLimitMessage => 'Jonossa ei voi olle enempää kuin {0} juttua.';
+  String queueLimitMessage(int elementCount) {
+
+    return 'Jonossa ei voi olle enempää kuin $elementCount juttua.';
+  }
 
   @override
   String get recentSearches => 'Aiemmin haettu';
@@ -260,7 +263,10 @@ class SFi extends S {
   String get uploadFileMessage => 'Haluatko lähettää tämän tiedoston?';
 
   @override
-  String get watchingWith => 'Sinä ja {0} muuta katselette tätä';
+  String watchingWith(int numPeople) {
+
+    return 'Sinä ja $numPeople muuta katselette tätä';
+  }
 
   @override
   String get uploading => 'Lähetetään';
@@ -272,7 +278,10 @@ class SFi extends S {
   String get post => 'Lähetä';
 
   @override
-  String get charactersLimit => '{1} merkistä {0} jäljellä';
+  String charactersLimit(int charsLeft, int charsTotal) {
+
+    return '$charsTotal merkistä $charsLeft jäljellä';
+  }
 
   @override
   String get uploadingPostSuccess => 'Viestisi on toimitettu.';
@@ -413,16 +422,25 @@ class SFi extends S {
   String get noNewPosts => 'Ei uusia viestejä';
 
   @override
-  String get newPostsMultiple => '{0} uutta viestiä!';
+  String newPostsMultiple(int postCount) {
+
+    return '$postCount uutta viestiä!';
+  }
 
   @override
-  String get newPostsSingle => '{0} uutta viestiä!';
+  String newPostsSingle(int postCount) {
+
+    return '$postCount uutta viestiä!';
+  }
 
   @override
   String get expired => 'Vanhentunut';
 
   @override
-  String get availableFrom => 'Saatavilla {0}';
+  String availableFrom(String date) {
+
+    return 'Saatavilla $date';
+  }
 
   @override
   String get howFar => 'Kuinka pitkän matkan kuljit?';
@@ -434,16 +452,25 @@ class SFi extends S {
   String get wellDone => 'Hyvin tehty!';
 
   @override
-  String get wellDoneDistance => 'Hienoa! Olet ilmoittanut yhteensä {0} km';
+  String wellDoneDistance(int distanceInKM) {
+
+    return 'Hienoa! Olet ilmoittanut yhteensä $distanceInKM km';
+  }
 
   @override
   String get distanceRegistered => 'Ilmoittamasi matka on tallennettu. Tuossa alempana voit lisätä vielä muita lenkkejä.';
 
   @override
-  String get ranMore => 'Kuljin yli {0} km';
+  String ranMore(int distanceInKM) {
+
+    return 'Kuljin yli $distanceInKM km';
+  }
 
   @override
-  String get moreThan => 'Yli {0} km';
+  String moreThan(int distanceInKM) {
+
+    return 'Yli $distanceInKM km';
+  }
 
   @override
   String get runningEffort => 'Hyvä suoritus! Kirjaa kulkemasi matka tuohon alas.';
@@ -464,7 +491,10 @@ class SFi extends S {
   String get firstPostTitle => 'Ole ensimmäinen joka jakaa kuvan tai viestin';
 
   @override
-  String get timezoneInformation => 'Kellonajat ovat sinun aikavyöhykettä: {0}';
+  String timezoneInformation(String timeZone) {
+
+    return 'Kellonajat ovat sinun aikavyöhykettä: $timeZone';
+  }
 
   @override
   String get yourQuestion => 'Kysymyksesi';
@@ -524,7 +554,10 @@ class SFi extends S {
   String get readBy => 'Lukenut: ';
 
   @override
-  String get pollAnswer => 'Olet vastannut: {0}';
+  String pollAnswer(String answer) {
+
+    return 'Olet vastannut: $answer';
+  }
 
   @override
   String get broadcasts => 'Lähetykset';
@@ -554,7 +587,10 @@ class SFi extends S {
   String get donationNotAvailable => 'Juuri nyt ei voi lahjoittaa. Yritä myöhemmin uudelleen.';
 
   @override
-  String get posts => '{0} viestiä';
+  String posts(int postsCount) {
+
+    return '$postsCount viestiä';
+  }
 
   @override
   String get copy => 'Kopioi';
@@ -563,7 +599,7 @@ class SFi extends S {
   String get reload => 'Uusi yritys';
 
   @override
-  String get particiantsTitle => 'Kuka vastaa?';
+  String get participantsTitle => 'Kuka vastaa?';
 
   @override
   String get participantsSubtitle => 'Valitse yksi tai useampi osallistuja.';
@@ -581,7 +617,10 @@ class SFi extends S {
   String get shareStart => 'Jaa video';
 
   @override
-  String get shareTime => 'Jaa video tästä kohtaa {0}';
+  String shareTime(String time) {
+
+    return 'Jaa video tästä kohtaa $time';
+  }
 
   @override
   String get loadContentError => 'Sisällön lataaminen epäonnistui';

@@ -142,7 +142,7 @@
   "editPicture": "Kép szerkesztése",
   "profilePicture": "Profilkép",
   "firstPostTitle": "Legyél az első, aki képet vagy üzenetet közzé tesz",
-  "timezoneInformation": "A TV program időpontjai a helyi idő szerint jelenek meg: {time}",
+  "timezoneInformation": "A TV program időpontjai a helyi idő szerint jelenek meg: {timeZone}",
   "yourQuestion": "A kérdésed",
   "uploadingInquirySuccess": "Felhívjuk figyelmedet, hogy az adásban nem minden feltett kérdésre adnak választ.",
   "askQuestion": "Tegyél fel kérdést",

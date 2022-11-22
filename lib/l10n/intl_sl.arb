@@ -142,7 +142,7 @@
   "editPicture": "Uredi sliko",
   "profilePicture": "Profilna slika",
   "firstPostTitle": "Bodi prvi, ki objavi sliko ali sporočilo",
-  "timezoneInformation": "Tv spored je v tvojem lokalnem času: {time}",
+  "timezoneInformation": "Tv spored je v tvojem lokalnem času: {timeZone}",
   "yourQuestion": "Tvoje vprašanje",
   "uploadingInquirySuccess": "Na vsa poslana vprašanja bomo odgovorili v prenosu.",
   "askQuestion": "Postavi vprašanje",

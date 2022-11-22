@@ -173,7 +173,10 @@ class SFr extends S {
   String get queueLimitTitle => 'Limite';
 
   @override
-  String get queueLimitMessage => 'Tu ne peux pas avoir plus de {0} éléments dans la file d\'attente.';
+  String queueLimitMessage(int elementCount) {
+
+    return 'Tu ne peux pas avoir plus de $elementCount éléments dans la file d\'attente.';
+  }
 
   @override
   String get recentSearches => 'Recherches récentes';
@@ -260,7 +263,10 @@ class SFr extends S {
   String get uploadFileMessage => 'Veux-tu télécharger ce fichier ?';
 
   @override
-  String get watchingWith => 'Tu regardes avec {0} autres personnes';
+  String watchingWith(int numPeople) {
+
+    return 'Tu regardes avec $numPeople autres personnes';
+  }
 
   @override
   String get uploading => 'Téléchargement';
@@ -272,7 +278,10 @@ class SFr extends S {
   String get post => 'Publier';
 
   @override
-  String get charactersLimit => '{0} sur {1} caractères restants';
+  String charactersLimit(int charsLeft, int charsTotal) {
+
+    return '$charsLeft sur $charsTotal caractères restants';
+  }
 
   @override
   String get uploadingPostSuccess => 'Ta contribution a été envoyée.';
@@ -413,16 +422,25 @@ class SFr extends S {
   String get noNewPosts => 'Aucune nouvelle publication';
 
   @override
-  String get newPostsMultiple => '{0} nouvelle(s) publication(s) !';
+  String newPostsMultiple(int postCount) {
+
+    return '$postCount nouvelle(s) publication(s) !';
+  }
 
   @override
-  String get newPostsSingle => '{0} nouvelle publication !';
+  String newPostsSingle(int postCount) {
+
+    return '$postCount nouvelle publication !';
+  }
 
   @override
   String get expired => 'Expiré';
 
   @override
-  String get availableFrom => 'Disponible {0}';
+  String availableFrom(String date) {
+
+    return 'Disponible $date';
+  }
 
   @override
   String get howFar => 'Quelle distance as-tu parcourue ?';
@@ -434,16 +452,25 @@ class SFr extends S {
   String get wellDone => 'Bien joué !';
 
   @override
-  String get wellDoneDistance => 'Bien joué ! Tu as enregistré une distance totale de {0} km';
+  String wellDoneDistance(int distanceInKM) {
+
+    return 'Bien joué ! Tu as enregistré une distance totale de $distanceInKM km';
+  }
 
   @override
   String get distanceRegistered => 'Ta distance a été enregistrée. Continue ci-dessous si tu souhaites enregistrer une nouvelle distance.';
 
   @override
-  String get ranMore => 'J\'ai marché plus de {0} km';
+  String ranMore(int distanceInKM) {
+
+    return 'J\'ai marché plus de $distanceInKM km';
+  }
 
   @override
-  String get moreThan => 'Plus de {0} km';
+  String moreThan(int distanceInKM) {
+
+    return 'Plus de $distanceInKM km';
+  }
 
   @override
   String get runningEffort => 'Quel effort impressionnant ! Inscris le nombre de kilomètres parcourus ci-dessous.';
@@ -464,7 +491,10 @@ class SFr extends S {
   String get firstPostTitle => 'Sois le premier à envoyer une photo ou un message';
 
   @override
-  String get timezoneInformation => 'Le calendrier du guide Tv s\'affiche selon l\'heure locale : {0}';
+  String timezoneInformation(String timeZone) {
+
+    return 'Le calendrier du guide Tv s\'affiche selon l\'heure locale : $timeZone';
+  }
 
   @override
   String get yourQuestion => 'Ta question';
@@ -524,7 +554,10 @@ class SFr extends S {
   String get readBy => 'Lu par';
 
   @override
-  String get pollAnswer => 'Tu as répondu : {0}';
+  String pollAnswer(String answer) {
+
+    return 'Tu as répondu : $answer';
+  }
 
   @override
   String get broadcasts => 'Transmissions';
@@ -554,7 +587,10 @@ class SFr extends S {
   String get donationNotAvailable => 'Il n\'est pas possible de faire un don pour le moment. Merci de retenter plus tard.';
 
   @override
-  String get posts => '{0} Publications';
+  String posts(int postsCount) {
+
+    return '$postsCount Publications';
+  }
 
   @override
   String get copy => 'Copier';
@@ -563,7 +599,7 @@ class SFr extends S {
   String get reload => 'Recharger';
 
   @override
-  String get particiantsTitle => 'Qui répond ?';
+  String get participantsTitle => 'Qui répond ?';
 
   @override
   String get participantsSubtitle => 'Sélectionne un ou plusieurs participants.';
@@ -581,7 +617,10 @@ class SFr extends S {
   String get shareStart => 'Partager depuis le début';
 
   @override
-  String get shareTime => 'Partager à partir de {0}';
+  String shareTime(String time) {
+
+    return 'Partager à partir de $time';
+  }
 
   @override
   String get loadContentError => 'Impossible de charger le contenu';

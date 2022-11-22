@@ -173,7 +173,10 @@ class SEs extends S {
   String get queueLimitTitle => 'Limite';
 
   @override
-  String get queueLimitMessage => 'No puede tener más de {0} en la cola de reproducción.';
+  String queueLimitMessage(int elementCount) {
+
+    return 'No puede tener más de $elementCount en la cola de reproducción.';
+  }
 
   @override
   String get recentSearches => 'Búsquedas recientes';
@@ -260,7 +263,10 @@ class SEs extends S {
   String get uploadFileMessage => '¿Desea subir este archivo?';
 
   @override
-  String get watchingWith => 'Estas viendo junto a {0}';
+  String watchingWith(int numPeople) {
+
+    return 'Estas viendo junto a $numPeople';
+  }
 
   @override
   String get uploading => 'Subiendo';
@@ -272,7 +278,10 @@ class SEs extends S {
   String get post => 'Publicar';
 
   @override
-  String get charactersLimit => '{0} de {1} caracteres disponibles';
+  String charactersLimit(int charsLeft, int charsTotal) {
+
+    return '$charsLeft de $charsTotal caracteres disponibles';
+  }
 
   @override
   String get uploadingPostSuccess => 'Tu video ha sido enviado.';
@@ -413,16 +422,25 @@ class SEs extends S {
   String get noNewPosts => 'No hay nuevas publicaciones';
 
   @override
-  String get newPostsMultiple => '¡{0} nueva/s publicación/es!';
+  String newPostsMultiple(int postCount) {
+
+    return '¡$postCount nueva/s publicación/es!';
+  }
 
   @override
-  String get newPostsSingle => '¡{0} nuevas publicaciones!';
+  String newPostsSingle(int postCount) {
+
+    return '¡$postCount nuevas publicaciones!';
+  }
 
   @override
   String get expired => 'Caducado';
 
   @override
-  String get availableFrom => 'Disponible/s {0}';
+  String availableFrom(String date) {
+
+    return 'Disponible/s $date';
+  }
 
   @override
   String get howFar => '¿Cuán lejos fue?';
@@ -434,16 +452,25 @@ class SEs extends S {
   String get wellDone => '¡Bien hecho!';
 
   @override
-  String get wellDoneDistance => '¡Bien hecho! Ha registrado una distancia total de {0} km';
+  String wellDoneDistance(int distanceInKM) {
+
+    return '¡Bien hecho! Ha registrado una distancia total de $distanceInKM km';
+  }
 
   @override
   String get distanceRegistered => 'Su distancia ha sido registrada. Continúe abajo si desea enviar otra distasia.';
 
   @override
-  String get ranMore => 'Recorrí más de {0} km';
+  String ranMore(int distanceInKM) {
+
+    return 'Recorrí más de $distanceInKM km';
+  }
 
   @override
-  String get moreThan => 'Mas de {0} km';
+  String moreThan(int distanceInKM) {
+
+    return 'Mas de $distanceInKM km';
+  }
 
   @override
   String get runningEffort => '¡Increíble! A continuación escriba la cantidad de kilómetros que recorrió.';
@@ -464,7 +491,10 @@ class SEs extends S {
   String get firstPostTitle => 'Sé el primero en publicar una imagen o mensaje';
 
   @override
-  String get timezoneInformation => 'El horario de la guía de televisión está en su hora local {0}';
+  String timezoneInformation(String timeZone) {
+
+    return 'El horario de la guía de televisión está en su hora local $timeZone';
+  }
 
   @override
   String get yourQuestion => 'Su pregunta';
@@ -524,7 +554,10 @@ class SEs extends S {
   String get readBy => 'Leido por';
 
   @override
-  String get pollAnswer => 'Has respondido: {0}';
+  String pollAnswer(String answer) {
+
+    return 'Has respondido: $answer';
+  }
 
   @override
   String get broadcasts => 'Transmision';
@@ -554,7 +587,10 @@ class SEs extends S {
   String get donationNotAvailable => 'La donaciónes no está disponibles en este momento. Por favor, inténtelo de nuevo más tarde.';
 
   @override
-  String get posts => '{0} Publicaciones';
+  String posts(int postsCount) {
+
+    return '$postsCount Publicaciones';
+  }
 
   @override
   String get copy => 'Copiar';
@@ -563,7 +599,7 @@ class SEs extends S {
   String get reload => 'Cargar';
 
   @override
-  String get particiantsTitle => '¿Quién está respondiendo?';
+  String get participantsTitle => '¿Quién está respondiendo?';
 
   @override
   String get participantsSubtitle => 'Elija uno o más participantes.';
@@ -581,7 +617,10 @@ class SEs extends S {
   String get shareStart => 'Compartir desde el inicio';
 
   @override
-  String get shareTime => 'Compartir desde {0}';
+  String shareTime(String time) {
+
+    return 'Compartir desde $time';
+  }
 
   @override
   String get loadContentError => 'El contenido no pudo ser cargado';

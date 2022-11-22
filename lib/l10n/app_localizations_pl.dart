@@ -173,7 +173,10 @@ class SPl extends S {
   String get queueLimitTitle => 'Limit';
 
   @override
-  String get queueLimitMessage => 'Nie możesz mieć więcej niż {0} elementów na liście.';
+  String queueLimitMessage(int elementCount) {
+
+    return 'Nie możesz mieć więcej niż $elementCount elementów na liście.';
+  }
 
   @override
   String get recentSearches => 'Ostatnie wyszukiwania';
@@ -260,7 +263,10 @@ class SPl extends S {
   String get uploadFileMessage => 'Czy chcesz wysłać ten plik?';
 
   @override
-  String get watchingWith => 'Oglądasz z {0} innymi osobami';
+  String watchingWith(int numPeople) {
+
+    return 'Oglądasz z $numPeople innymi osobami';
+  }
 
   @override
   String get uploading => 'Wysyłanie';
@@ -272,7 +278,10 @@ class SPl extends S {
   String get post => 'Wyślij';
 
   @override
-  String get charactersLimit => 'Pozostało {0} z {1} znaków';
+  String charactersLimit(int charsLeft, int charsTotal) {
+
+    return 'Pozostało $charsLeft z $charsTotal znaków';
+  }
 
   @override
   String get uploadingPostSuccess => 'Twój post został wysłany.';
@@ -413,16 +422,25 @@ class SPl extends S {
   String get noNewPosts => 'Brak nowych wpisów';
 
   @override
-  String get newPostsMultiple => '{0} nowych postów!';
+  String newPostsMultiple(int postCount) {
+
+    return '$postCount nowych postów!';
+  }
 
   @override
-  String get newPostsSingle => '{0} nowy post!';
+  String newPostsSingle(int postCount) {
+
+    return '$postCount nowy post!';
+  }
 
   @override
   String get expired => 'Wygasły';
 
   @override
-  String get availableFrom => 'Dostępne {0}';
+  String availableFrom(String date) {
+
+    return 'Dostępne $date';
+  }
 
   @override
   String get howFar => 'Jaką odległość przebyłeś?';
@@ -434,16 +452,25 @@ class SPl extends S {
   String get wellDone => 'Dobra robota!';
 
   @override
-  String get wellDoneDistance => 'Dobra robota! Zarejestrowałeś w sumie przebycie {0} km';
+  String wellDoneDistance(int distanceInKM) {
+
+    return 'Dobra robota! Zarejestrowałeś w sumie przebycie $distanceInKM km';
+  }
 
   @override
   String get distanceRegistered => 'Przebyty przez ciebie dystans został zapisany. Przejdź niżej, jeśli chcesz dodać kolejny przebyty dystans.';
 
   @override
-  String get ranMore => 'Przebyłem więcej niż {0} km';
+  String ranMore(int distanceInKM) {
+
+    return 'Przebyłem więcej niż $distanceInKM km';
+  }
 
   @override
-  String get moreThan => 'Ponad {0} km';
+  String moreThan(int distanceInKM) {
+
+    return 'Ponad $distanceInKM km';
+  }
 
   @override
   String get runningEffort => 'Znakomicie! Wpisz ilość przebytych kilometrów poniżej.';
@@ -464,7 +491,10 @@ class SPl extends S {
   String get firstPostTitle => 'Prześlij zdjęcie lub wiadomość jako pierwszy/a';
 
   @override
-  String get timezoneInformation => 'Czasy w programie TV są przedstawione w twojej strefie czasowej: {0}';
+  String timezoneInformation(String timeZone) {
+
+    return 'Czasy w programie TV są przedstawione w twojej strefie czasowej: $timeZone';
+  }
 
   @override
   String get yourQuestion => 'Twoje pytanie';
@@ -524,7 +554,10 @@ class SPl extends S {
   String get readBy => 'Lektor';
 
   @override
-  String get pollAnswer => 'Odpowiedziałeś: {0}';
+  String pollAnswer(String answer) {
+
+    return 'Odpowiedziałeś: $answer';
+  }
 
   @override
   String get broadcasts => 'Transmisje';
@@ -554,7 +587,10 @@ class SPl extends S {
   String get donationNotAvailable => 'Wpłaty nie są teraz dostępne. Spróbuj ponownie później.';
 
   @override
-  String get posts => '{0} Wpisów';
+  String posts(int postsCount) {
+
+    return '$postsCount Wpisów';
+  }
 
   @override
   String get copy => 'Kopiuj';
@@ -563,7 +599,7 @@ class SPl extends S {
   String get reload => 'Przeładuj';
 
   @override
-  String get particiantsTitle => 'Kto odpowiada?';
+  String get participantsTitle => 'Kto odpowiada?';
 
   @override
   String get participantsSubtitle => 'Wybierz jednego lub więcej uczestników.';
@@ -581,7 +617,10 @@ class SPl extends S {
   String get shareStart => 'Udostępnij od początku';
 
   @override
-  String get shareTime => 'Udostępnij od {0}';
+  String shareTime(String time) {
+
+    return 'Udostępnij od $time';
+  }
 
   @override
   String get loadContentError => 'Nie udało się załadować treści';

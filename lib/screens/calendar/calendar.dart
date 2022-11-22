@@ -604,7 +604,7 @@ class TvGuideTime extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Text(
-            '${S.of(context).timezoneInformation}: ${DateTime.now().timeZoneName}',
+            S.of(context).timezoneInformation(DateTime.now().timeZoneName),
             style: BtvTextStyles.caption1,
           ),
         ],

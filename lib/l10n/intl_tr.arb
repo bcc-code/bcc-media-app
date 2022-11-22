@@ -142,7 +142,7 @@
   "editPicture": "Resmi düzenle",
   "profilePicture": "Profil fotoğrafı",
   "firstPostTitle": "İlk resim veya mesaj gönderen siz olun",
-  "timezoneInformation": "Tv rehberi zaman çizelgesi yerel saatinizde: {time}",
+  "timezoneInformation": "Tv rehberi zaman çizelgesi yerel saatinizde: {timeZone}",
   "yourQuestion": "Senin sorun",
   "uploadingInquirySuccess": "Lütfen gönderilen tüm soruların yayında yanıtlanmadığını unutmayın.",
   "askQuestion": "Soru sor",

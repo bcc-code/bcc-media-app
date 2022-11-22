@@ -142,7 +142,7 @@
   "editPicture": "Editar imagen",
   "profilePicture": "Imagen de Perfil",
   "firstPostTitle": "Sé el primero en publicar una imagen o mensaje",
-  "timezoneInformation": "El horario de la guía de televisión está en su hora local {time}",
+  "timezoneInformation": "El horario de la guía de televisión está en su hora local {timeZone}",
   "yourQuestion": "Su pregunta",
   "uploadingInquirySuccess": "Por favor, tenga en cuenta que todas las preguntas enviadas serán respondidas durante la transmisión.",
   "askQuestion": "Haga una pregunta",

@@ -142,7 +142,7 @@
   "editPicture": "Rediger bilde",
   "profilePicture": "Profilbilde",
   "firstPostTitle": "Vær den første til å sende inn et bilde eller å skrive en melding",
-  "timezoneInformation": "Tv-guide tidstabell er i din lokale tid: {time}",
+  "timezoneInformation": "Tv-guide tidstabell er i din lokale tid: {timeZone}",
   "yourQuestion": "Ditt spørsmål",
   "uploadingInquirySuccess": "Vi gjør oppmerksom på at ikke alle svarene kan bli besvart i sendingen",
   "askQuestion": "Still et spørsmål",

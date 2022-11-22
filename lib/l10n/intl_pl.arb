@@ -142,7 +142,7 @@
   "editPicture": "Edytuj zdjęcie",
   "profilePicture": "Zdjęcie profilowe",
   "firstPostTitle": "Prześlij zdjęcie lub wiadomość jako pierwszy/a",
-  "timezoneInformation": "Czasy w programie TV są przedstawione w twojej strefie czasowej: {time}",
+  "timezoneInformation": "Czasy w programie TV są przedstawione w twojej strefie czasowej: {timeZone}",
   "yourQuestion": "Twoje pytanie",
   "uploadingInquirySuccess": "Nie wszystkie zadane pytania zostaną poruszone podczas transmisji.",
   "askQuestion": "Zadaj pytanie",
