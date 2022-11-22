@@ -1,1127 +1,228 @@
 {
+  "@@locale": "nl",
   "liveTab": "Live",
-  "@liveTab": {
-    "description": "Title of live page tab",
-    "type": "text"
-  },
   "logOutButton": "Log uit",
-  "@logOutButton": {
-    "description": "Text displayed on Log out button",
-    "type": "text"
-  },
   "profileTab": "Profiel",
-  "@profileTab": {
-    "description": "Title of the profile page",
-    "type": "text"
-  },
   "bccMediaCenter": "BrunstadTV is een niet-commerciëel mediahuis, dat content gebaseerd op positieve en Christelijke waarden produceert en distribueert.",
-  "@bccMediaCenter": {
-    "description": "Disclaimer on login page",
-    "type": "text"
-  },
   "signInButton": "Log in",
-  "@signInButton": {
-    "description": "Text displayed on Sign in button",
-    "type": "text"
-  },
   "tryAgainButton": "Probeer opnieuw",
-  "@tryAgainButton": {
-    "description": "Button on error alert that lets user to retry failed action",
-    "type": "text"
-  },
   "loggedOutTitle": "Afgemeld",
-  "@loggedOutTitle": {
-    "description": "Title of the alert message that is shown when user is logged out automatically.",
-    "type": "text"
-  },
   "loggedOutMessage": "Je bent nu uitgelogd. Log opnieuw in.",
-  "@loggedOutMessage": {
-    "description": "Text of the alert message that is shown when user is logged out automatically.",
-    "type": "text"
-  },
   "mostWatched": "Meest bekeken",
-  "@mostWatched": {
-    "description": "Sorting option on audience page",
-    "type": "text"
-  },
   "mostRecent": "Meest recent",
-  "@mostRecent": {
-    "description": "Sorting option on audience page",
-    "type": "text"
-  },
   "latelyPublished": "Onlangs verschenen",
-  "@latelyPublished": {
-    "description": "Title for the list of videos on login page",
-    "type": "text"
-  },
   "anErrorOccurred": "Er is een fout opgetreden",
-  "@anErrorOccurred": {
-    "description": "Title in error popup",
-    "type": "text"
-  },
   "ok": "Ok",
-  "@ok": {
-    "description": "Popup confirmation button",
-    "type": "text"
-  },
   "loginFailedCheckNetwork": "Er ging iets mis bij het inloggen. Controleer je netwerkverbinding en probeer het opnieuw.",
-  "@loginFailedCheckNetwork": {
-    "description": "Login error message",
-    "type": "text"
-  },
   "loginFailedTryAgain": "Er ging iets mis bij het inloggen. Probeer het later opnieuw.",
-  "@loginFailedTryAgain": {
-    "description": "Login error message",
-    "type": "text"
-  },
   "soundLanguage": "Geluidstaal",
-  "@soundLanguage": {
-    "description": "Settings item on profile page",
-    "type": "text"
-  },
   "subtitleLanguage": "Taal ondertitels",
-  "@subtitleLanguage": {
-    "description": "Settings item on profile page",
-    "type": "text"
-  },
   "appLanguage": "Taal voor app",
-  "@appLanguage": {
-    "description": "Settings item on profile page",
-    "type": "text"
-  },
   "checkNetwork": "Controleer je netwerkverbinding en probeer opnieuw",
-  "@checkNetwork": {
-    "description": "Error message for the user displayed in many contexts.",
-    "type": "text"
-  },
   "tryAgain": "Probeer het later nog eens",
-  "@tryAgain": {
-    "description": "Error message for the user displayed in many contexts.",
-    "type": "text"
-  },
   "cantPlayVideo": "Deze video kan momenteel niet worden getoond.",
-  "@cantPlayVideo": {
-    "description": "Error message for the user displayed when video playback attempt failed.",
-    "type": "text"
-  },
   "about": "Over",
-  "@about": {
-    "description": "Title of About page and item in profile page settings.",
-    "type": "text"
-  },
   "version": "Versie",
-  "@version": {
-    "description": "Version ot the application on About page; followed by version number",
-    "type": "text"
-  },
   "contactSupport": "Contact support",
-  "@contactSupport": {
-    "description": "Settings item on profile page",
-    "type": "text"
-  },
   "cancel": "Annuleren",
-  "@cancel": {
-    "description": "General cancel action button",
-    "type": "text"
-  },
   "upNext": "Volgende",
-  "@upNext": {
-    "description": "Title on Up next feature.",
-    "type": "text"
-  },
   "done": "Klaar",
-  "@done": {
-    "description": "General Done button. User confirms that action completed sucessfully.",
-    "type": "text"
-  },
   "playerSettings": "Instellingen player",
-  "@playerSettings": {
-    "description": "Title of the Player settings activity in Android",
-    "type": "text"
-  },
   "settings": "Instellingen",
-  "@settings": {
-    "description": "Label of the button to go to Android/iOS settings",
-    "type": "text"
-  },
   "none": "Geen",
-  "@none": {
-    "description": "Indicator on profile page that subtitles are disabled.",
-    "type": "text"
-  },
   "auto": "Auto",
-  "@auto": {
-    "description": "Indicator on profile page that audio and app language are chosen automatically.",
-    "type": "text"
-  },
   "live": "Live",
-  "@live": {
-    "description": "Title of the live stream",
-    "type": "text"
-  },
   "subtitles": "Ondertitels",
-  "@subtitles": {
-    "description": "Title of the Player settings activity tab in Android",
-    "type": "text"
-  },
   "audio": "Audio",
-  "@audio": {
-    "description": "Title of the Player settings activity tab in Android",
-    "type": "text"
-  },
   "quality": "Kwaliteit",
-  "@quality": {
-    "description": "Title of the Player settings activity tab in Android",
-    "type": "text"
-  },
   "seasons": "Seizoenen",
-  "@seasons": {
-    "description": "Followed by number of seasons in given series.",
-    "type": "text"
-  },
   "episodes": "Afleveringen",
-  "@episodes": {
-    "description": "Followed by number of episodes in given series.",
-    "type": "text"
-  },
   "search": "Zoeken",
-  "@search": {
-    "description": "Button to clear cache",
-    "type": "text"
-  },
   "noResults": "Geen resultaten",
-  "@noResults": {
-    "description": "Search title",
-    "type": "text"
-  },
   "doYouWantCast": "Wil je deze video casten?",
-  "@doYouWantCast": {
-    "description": "Prompt displayed to the user",
-    "type": "text"
-  },
   "play": "Afspelen",
-  "@play": {
-    "description": "Option in prompt dialog.",
-    "type": "text"
-  },
   "castQueue": "Lijst verwijderen",
-  "@castQueue": {
-    "description": "Queue page title",
-    "type": "text"
-  },
   "options": "Opties",
-  "@options": {
-    "description": "Options dialog title",
-    "type": "text"
-  },
   "remove": "Verwijderen",
-  "@remove": {
-    "description": "Option in options dialog",
-    "type": "text"
-  },
   "queueLimitTitle": "Limiet",
-  "@queueLimitTitle": {
-    "description": "Title of the alert to the user when attempt to add video to cast queue failed due to full queue.",
-    "type": "text"
-  },
-  "queueLimitMessage": "Het is niet mogelijk meer dan {0} elementen in de lijst te hebben.",
-  "@queueLimitMessage": {
-    "description": "Error message to the user when attempt to add video to cast queue failed due to full queue.",
-    "type": "text"
-  },
+  "queueLimitMessage": "Het is niet mogelijk meer dan {elementCount} elementen in de lijst te hebben.",
   "recentSearches": "Recente zoekopdrachten",
-  "@recentSearches": {
-    "description": "Recent searches list title.",
-    "type": "text"
-  },
   "tVLogin": "TV login",
-  "@tVLogin": {
-    "description": "Title of the TV login alert",
-    "type": "text"
-  },
   "tVLoginSuccessful": "Login is gelukt, bevestig op TV.",
-  "@tVLoginSuccessful": {
-    "description": "Message of the TV login alert",
-    "type": "text"
-  },
   "seeMore": "Meer bekijken",
-  "@seeMore": {
-    "description": "Button on featured item to navigete to page with player",
-    "type": "text"
-  },
   "seeAll": "Toon alles",
-  "@seeAll": {
-    "description": "Button on explore page to navigete to audience page",
-    "type": "text"
-  },
   "series": "Series",
-  "@series": {
-    "description": "Title of the tab on info page",
-    "type": "text"
-  },
   "livestreamMaintenance": "Op dit moment wordt er onderhoud gepleegd aan de live stream. Onze excuses voor het ongemak. Probeer het later nog eens.",
-  "@livestreamMaintenance": {
-    "description": "Message displayed over overlay when livestream is under maintenance.",
-    "type": "text"
-  },
   "homeTab": "Home",
-  "@homeTab": {
-    "description": "Title of the home page",
-    "type": "text"
-  },
   "sortBy": "Sorteren op",
-  "@sortBy": {
-    "description": "Sorting criteria selector",
-    "type": "text"
-  },
   "videoQuality": "Beeldkwaliteit",
-  "@videoQuality": {
-    "description": "Settings item in profile page for Android.",
-    "type": "text"
-  },
   "low": "Laag",
-  "@low": {
-    "description": "Low quality video option",
-    "type": "text"
-  },
   "medium": "Medium",
-  "@medium": {
-    "description": "Medium quality video option",
-    "type": "text"
-  },
   "high": "Hoog",
-  "@high": {
-    "description": "High quality video option",
-    "type": "text"
-  },
   "emptySearch": "U kunt zoeken op alle inhoud van BrunstadTV. TV series, films en afleveringen.",
-  "@emptySearch": {
-    "description": "Message on search page when there is no search results.",
-    "type": "text"
-  },
   "back": "Terug",
-  "@back": {
-    "description": "General back button to navigate back",
-    "type": "text"
-  },
   "seasonLetter": "Seizoen",
-  "@seasonLetter": {
-    "description": "Season  letter in label S1E3",
-    "type": "text"
-  },
   "episodeLetter": "Aflevering",
-  "@episodeLetter": {
-    "description": "Episode letter in label S1E3",
-    "type": "text"
-  },
   "atoZ": "A-Z",
-  "@atoZ": {
-    "description": "Sort order",
-    "type": "text"
-  },
   "ztoA": "Z-A",
-  "@ztoA": {
-    "description": "Sort order",
-    "type": "text"
-  },
   "shortFilms": "Korte films",
-  "@shortFilms": {
-    "description": "Title of the films collection.",
-    "type": "text"
-  },
   "videos": "Video's",
-  "@videos": {
-    "description": "Followed by number of videos",
-    "type": "text"
-  },
   "moreInfo": "Meer informatie",
-  "@moreInfo": {
-    "description": "Option in action sheet for the video that triggers info page for the video.",
-    "type": "text"
-  },
   "info": "Informatie",
-  "@info": {
-    "description": "Video info page title.",
-    "type": "text"
-  },
   "episode": "Aflevering",
-  "@episode": {
-    "description": "Title of the tab on info page",
-    "type": "text"
-  },
   "takePhoto": "Maak een foto",
-  "@takePhoto": {
-    "description": "Option in menu",
-    "type": "text"
-  },
   "pickPhoto": "Kies uit album",
-  "@pickPhoto": {
-    "description": "Option in menu",
-    "type": "text"
-  },
   "uploadFileTitle": "Upload bestand",
-  "@uploadFileTitle": {
-    "description": "Title of the dialog to confirm upload",
-    "type": "text"
-  },
   "uploadFileMessage": "Wilt u dit bestand uploaden?",
-  "@uploadFileMessage": {
-    "description": "Content of the dialog to confirm upload",
-    "type": "text"
-  },
-  "watchingWith": "Je kijkt samen met {0} anderen",
-  "@watchingWith": {
-    "description": "Info on live stream page - {0} is a number",
-    "type": "text"
-  },
+  "watchingWith": "Je kijkt samen met {numPeople} anderen",
   "uploading": "Aan het uploaden",
-  "@uploading": {
-    "description": "Message during file upload",
-    "type": "text"
-  },
   "uploadFail": "Upload is mislukt",
-  "@uploadFail": {
-    "description": "Upload result message",
-    "type": "text"
-  },
   "post": "Verzend",
-  "@post": {
-    "description": "Button to post written testimony",
-    "type": "text"
-  },
-  "charactersLimit": "{0} of {1} tekens over",
-  "@charactersLimit": {
-    "description": "Info about limit of characters in written testimony - {0} and {1} are numbers",
-    "type": "text"
-  },
+  "charactersLimit": "{charsLeft} of {charsTotal} tekens over",
   "uploadingPostSuccess": "Je bericht is verzonden.",
-  "@uploadingPostSuccess": {
-    "description": "Info in upload success page",
-    "type": "text"
-  },
   "testimonyInfo": "Neem je video op met je telefoon.",
-  "@testimonyInfo": {
-    "description": "Record testimony guideline page info",
-    "type": "text"
-  },
   "yourVideo": "Je opname",
-  "@yourVideo": {
-    "description": "Title on recording tip page page",
-    "type": "text"
-  },
   "record": "Opnemen",
-  "@record": {
-    "description": "Button to record testimony",
-    "type": "text"
-  },
   "recordingTips": "Een paar tips voor een goede opname",
-  "@recordingTips": {
-    "description": "Record testimony guideline page tip list title",
-    "type": "text"
-  },
   "recordingTipA": "Kies een rustige plek wanneer u opneemt.",
-  "@recordingTipA": {
-    "description": "Record testimony guideline page tip list item",
-    "type": "text"
-  },
   "recordingTipB": "Zorg ervoor dat uw gezicht gelijkmatig verlicht is.",
-  "@recordingTipB": {
-    "description": "Record testimony guideline page tip list item",
-    "type": "text"
-  },
   "recordingTipC": "Denk na over wat u wilt zeggen voordat u begint met opnemen.",
-  "@recordingTipC": {
-    "description": "Record testimony guideline page tip list item",
-    "type": "text"
-  },
   "recordingTipD": "Wijzig uw telefoon naar landscape modus.",
-  "@recordingTipD": {
-    "description": "Record testimony guideline page tip list item",
-    "type": "text"
-  },
   "thankYou": "Hartelijk dank!",
-  "@thankYou": {
-    "description": "Title in upload success page",
-    "type": "text"
-  },
   "thankYouForContribution": "Hartelijk dank voor je bijdrage!",
-  "@thankYouForContribution": {
-    "description": "Title in upload success page",
-    "type": "text"
-  },
   "uploadingVideoSuccess": "Je opname is verzonden.",
-  "@uploadingVideoSuccess": {
-    "description": "Info in upload success page",
-    "type": "text"
-  },
   "next": "Volgende",
-  "@next": {
-    "description": "NEXT program in check in section",
-    "type": "text"
-  },
   "recordVideoCameraPermissionAlert": "Geef in de instelling je camera toestemming om video's op te nemen.",
-  "@recordVideoCameraPermissionAlert": {
-    "description": "Message in alert dialog informing about missing permission",
-    "type": "text"
-  },
   "recordVideoPhotosPermissionAlert": "Geef in de instellingen je fotoalbum toestemming om video's op te nemen.",
-  "@recordVideoPhotosPermissionAlert": {
-    "description": "Message in alert dialog informing about missing permission",
-    "type": "text"
-  },
   "recordVideoStoragePermissionAlert": "Geef in de instellingen je opslag toestemming om video's op te nemen.",
-  "@recordVideoStoragePermissionAlert": {
-    "description": "Message in alert dialog informing about missing permission",
-    "type": "text"
-  },
   "recordVideoMicrophonePermissionAlert": "Geef in de instellingen je microfoon toestemming om video's op te nemen.",
-  "@recordVideoMicrophonePermissionAlert": {
-    "description": "Message in alert dialog informing about missing permission",
-    "type": "text"
-  },
   "takePhotoStoragePermissionAlert": "Geef in de instellingen je opslag toestemming om foto's te nemen.",
-  "@takePhotoStoragePermissionAlert": {
-    "description": "Message in alert dialog informing about missing permission",
-    "type": "text"
-  },
   "takePhotoCameraPermissionAlert": "Geef in de instellingen je camera toestemming om foto's te nemen.",
-  "@takePhotoCameraPermissionAlert": {
-    "description": "Message in alert dialog informing about missing permission",
-    "type": "text"
-  },
   "pickPhotoStoragePermissionAlert": "Wijzig je instellingen om foto's te kunnen selecteren.",
-  "@pickPhotoStoragePermissionAlert": {
-    "description": "Message in alert dialog informing about missing permission",
-    "type": "text"
-  },
   "permissionsAlertTitle": "Autorisatie vereist",
-  "@permissionsAlertTitle": {
-    "description": "Title of an alert dialog informing about missing permission",
-    "type": "text"
-  },
   "add": "Voeg toe",
-  "@add": {
-    "description": "Button text on interactive live avatar section",
-    "type": "text"
-  },
   "change": "Wijzig",
-  "@change": {
-    "description": "Button text on interactive live avatar section",
-    "type": "text"
-  },
   "recordingFailedTitle": "De filmopname is mislukt",
-  "@recordingFailedTitle": {
-    "description": "Title in alert dialog when recording fails",
-    "type": "text"
-  },
   "recordingFailedMessage": "Er is iets mis gegaan bij het opnemen van de film.",
-  "@recordingFailedMessage": {
-    "description": "Message in alert dialog when recording fails",
-    "type": "text"
-  },
   "pollSubtitle": "Poll",
-  "@pollSubtitle": {
-    "description": "The little title in poll",
-    "type": "text"
-  },
   "writeHere": "Schrijf hier",
-  "@writeHere": {
-    "description": "New post text field placeholder",
-    "type": "text"
-  },
   "feed": "Feed",
-  "@feed": {
-    "description": "Feed page bar title",
-    "type": "text"
-  },
   "atmosphereFeedDescription": "Draag bij aan de activiteitenfeed door een bericht, getuigenis of foto in te sturen van waar je bent.",
-  "@atmosphereFeedDescription": {
-    "description": "Feed page description",
-    "type": "text"
-  },
   "information": "Informatie",
-  "@information": {
-    "description": "Feed information item title",
-    "type": "text"
-  },
   "photoNotSupported": "Het maken en selecteren van een foto wordt niet ondersteund door je apparaat.",
-  "@photoNotSupported": {
-    "description": "Alert displayed when phone can't take photo or pick photo from storage.",
-    "type": "text"
-  },
   "answerFailed": "Helaas is het niet gelukt je antwoord te verzenden. Probeer het nog een keer.",
-  "@answerFailed": {
-    "description": "Message displayed when user's answer hasn't' been sent'.",
-    "type": "text"
-  },
   "question": "Vraag",
-  "@question": {
-    "description": "Title of the question page",
-    "type": "text"
-  },
   "notificationChannelPlayerName": "Mediaspeler",
-  "@notificationChannelPlayerName": {
-    "description": "Notification channel name in Android settings",
-    "type": "text"
-  },
   "now": "Nu",
-  "@now": {
-    "description": "Tv guide now playing label",
-    "type": "text"
-  },
   "createPost": "Bericht aanmaken",
-  "@createPost": {
-    "description": "Button to start text testimony and title on create post page",
-    "type": "text"
-  },
   "concernTextPlaceholder": "Beschrijf het probleem",
-  "@concernTextPlaceholder": {
-    "description": "Placeholder text in text field on contact support page",
-    "type": "text"
-  },
   "debugInfoExplanation": "Je bericht zal deze informatie meenemen, om ons te helpen het probleem beter te begrijpen.",
-  "@debugInfoExplanation": {
-    "description": "Info about debug info usage on contact support page",
-    "type": "text"
-  },
   "send": "Verzenden",
-  "@send": {
-    "description": "General button to send a form",
-    "type": "text"
-  },
   "sending": "Verzenden",
-  "@sending": {
-    "description": "General sending action indicator",
-    "type": "text"
-  },
   "thankYouSupportTitle": "Bedankt voor je feedback!",
-  "@thankYouSupportTitle": {
-    "description": "Text on contact support confirmation page",
-    "type": "text"
-  },
   "thankYouSupportDescription": "We stellen alle feedback op prijs en gaan er zo snel mogelijk mee aan de slag.",
-  "@thankYouSupportDescription": {
-    "description": "Text on contact support confirmation page",
-    "type": "text"
-  },
   "sendFail": "Je bericht kon niet worden verzonden",
-  "@sendFail": {
-    "description": "General error message that sending failed",
-    "type": "text"
-  },
   "sendFailDescription": "Er is iets misgegaan. Controleer je internetverbinding en probeer het opnieuw.",
-  "@sendFailDescription": {
-    "description": "General error message that sending failed",
-    "type": "text"
-  },
   "today": "Vandaag",
-  "@today": {
-    "description": "First category in tv guide",
-    "type": "text"
-  },
   "noNewPosts": "Geen nieuwe berichten",
-  "@noNewPosts": {
-    "description": "Text displayed on the button, when there are no new posts in the feed.",
-    "type": "text"
-  },
-  "newPostsMultiple": "{0} nieuwe berichten!",
-  "@newPostsMultiple": {
-    "description": "Text displayed on the button, when there are number of new posts in the feed. {0} is a number.",
-    "type": "text"
-  },
-  "newPostsSingle": "{0} nieuw beircht!",
-  "@newPostsSingle": {
-    "description": "Text displayed on the button, when there is one new post in the feed. {0} is a number.",
-    "type": "text"
-  },
+  "newPostsMultiple": "{postCount} nieuwe berichten!",
+  "newPostsSingle": "{postCount} nieuw beircht!",
   "expired": "Verlopen",
-  "@expired": {
-    "description": "Info that episode is no longer available.",
-    "type": "text"
-  },
   "availableFrom": "Beschikbaar",
-  "@availableFrom": {
-    "description": "Info that episode will be released at certain date. {0} is the date.",
-    "type": "text"
-  },
   "howFar": "Welke afstand heb je afgelegd?",
-  "@howFar": {
-    "description": "Text on running competition page.",
-    "type": "text"
-  },
   "submit": "Invoeren",
-  "@submit": {
-    "description": "Submit button on running competition page.",
-    "type": "text"
-  },
   "wellDone": "Goed gedaan!",
-  "@wellDone": {
-    "description": "Text on running competition page.",
-    "type": "text"
-  },
   "wellDoneDistance": "Goed gedaan! Je hebt totaal km als afstand geregistreerd",
-  "@wellDoneDistance": {
-    "description": "Text on running competition page. {0} will be a number.",
-    "type": "text"
-  },
   "distanceRegistered": "Je afstand is geregistreerd. Hieronder kun je eventueel een nieuwe afstand invoeren.",
-  "@distanceRegistered": {
-    "description": "Text on running competition page.",
-    "type": "text"
-  },
   "ranMore": "Ik heb meer dan km afgelegd",
-  "@ranMore": {
-    "description": "Text on running competition page. {0} will be a number.",
-    "type": "text"
-  },
   "moreThan": "Meer dan km",
-  "@moreThan": {
-    "description": "Text on running competition page. {0} will be a number.",
-    "type": "text"
-  },
   "runningEffort": "Wat een geweldige prestatie! Noteer hier onder het aantal afgelegde km.",
-  "@runningEffort": {
-    "description": "Text on running competition page.",
-    "type": "text"
-  },
   "slideSelect": "Schuif om te selecteren welke afstand je hebt afgelegd",
-  "@slideSelect": {
-    "description": "Text on running competition page.",
-    "type": "text"
-  },
   "submitAnotherDistance": "Voer nog een afstand in",
-  "@submitAnotherDistance": {
-    "description": "Text on running competition page.",
-    "type": "text"
-  },
   "editPicture": "Bewerk foto",
-  "@editPicture": {
-    "description": "Button on profile page to edit profile picture.",
-    "type": "text"
-  },
   "profilePicture": "Profielfoto",
-  "@profilePicture": {
-    "description": "Text on edit profile page.",
-    "type": "text"
-  },
   "firstPostTitle": "Plaats als eerste een foto of bericht",
-  "@firstPostTitle": {
-    "description": "Text on feed page when feed is empty.",
-    "type": "text"
-  },
   "timezoneInformation": "De tijden in de TV gids worden weergegeven in de lokale tijd van de tijdszone waarin je op dit moment bent",
-  "@timezoneInformation": {
-    "description": "TV guide footer info text. {0} is timezone acronym like CET",
-    "type": "text"
-  },
   "yourQuestion": "Je vraag",
-  "@yourQuestion": {
-    "description": "Title on ask question page",
-    "type": "text"
-  },
   "uploadingInquirySuccess": "Houd er rekening mee dat niet alle gestelde vragen in de uitzending worden beantwoord.",
-  "@uploadingInquirySuccess": {
-    "description": "Info in upload question success page",
-    "type": "text"
-  },
   "askQuestion": "Stel een vraag",
-  "@askQuestion": {
-    "description": "Ask question text field placeholder",
-    "type": "text"
-  },
   "submitQuestionInfo": "Door een vraag in te dienen, accepteert u dat deze kan worden gebruikt voor uitzenddoeleinden.",
-  "@submitQuestionInfo": {
-    "description": "Disclaimer on ask question page",
-    "type": "text"
-  },
   "posting": "Verzenden",
-  "@posting": {
-    "description": "Information about ongiong posting process",
-    "type": "text"
-  },
   "loading": "Laden",
-  "@loading": {
-    "description": "Message displayed during loading info operation",
-    "type": "text"
-  },
   "submitPostInfo": "Bij het aanleveren van een foto of een bijdrage, accepteert u dat deze kan worden gebruikt voor uitzenddoeleinden. ",
-  "@submitPostInfo": {
-    "description": "Disclaimer on text testimony page",
-    "type": "text"
-  },
   "cropImage": "Pas afbeelding aan",
-  "@cropImage": {
-    "description": "Image crop page title",
-    "type": "text"
-  },
   "square": "Vierkant",
-  "@square": {
-    "description": "Image crop mode",
-    "type": "text"
-  },
   "landscape": "Horizontaal",
-  "@landscape": {
-    "description": "Image crop mode",
-    "type": "text"
-  },
   "pollSingleChoice": "Je kan je antwoord maar één keer selecteren.",
-  "@pollSingleChoice": {
-    "description": "Desciption of the poll type. States that user can change the answer only once.",
-    "type": "text"
-  },
   "pollMultipleChoice": "Je mag je antwoord meerdere keren wijzigen.",
-  "@pollMultipleChoice": {
-    "description": "Desciption of the poll type. States that user can change the answer multiple times.",
-    "type": "text"
-  },
   "pollEnded": "De enquete is gestopt. Bedankt voor je antwoorden.",
-  "@pollEnded": {
-    "description": "Message displayed when poll has been closed by administrator.",
-    "type": "text"
-  },
   "browserInstall": "Installeer een webbrowser om deze URL te kunnen openen",
-  "@browserInstall": {
-    "description": "Message displayed when browser couldn't be opened on user's device.",
-    "type": "text"
-  },
   "share": "Deel",
-  "@share": {
-    "description": "Option name to share video.",
-    "type": "text"
-  },
   "liveNow": "Nu live",
-  "@liveNow": {
-    "description": "Call to action button on featured carousel.",
-    "type": "text"
-  },
   "program": "Programma",
-  "@program": {
-    "description": "Title of the program tab on live page.",
-    "type": "text"
-  },
   "participateTab": "Deelnemen",
-  "@participateTab": {
-    "description": "Title of the participate tab on live page.",
-    "type": "text"
-  },
   "tomorrow": "Morgen",
-  "@tomorrow": {
-    "description": "Day of transmission in tv guide.",
-    "type": "text"
-  },
   "readBy": "Gelezen door",
-  "@readBy": {
-    "description": "Feed verse pre author text.",
-    "type": "text"
-  },
-  "pollAnswer": "Je hebt geantwoord {0}",
-  "@pollAnswer": {
-    "description": "Snackbar label after user has chosen poll answer",
-    "type": "text"
-  },
+  "pollAnswer": "Je hebt geantwoord {answer}",
   "broadcasts": "Uitzending",
-  "@broadcasts": {
-    "description": "Title for tv guide collection on event page.",
-    "type": "text"
-  },
   "quizAnswered": "Antwoord ingezonden",
-  "@quizAnswered": {
-    "description": "Text displayed on a button when all answers in quiz have been submitted.",
-    "type": "text"
-  },
   "quizNotEnabled": "De quiz is op dit moment niet beschikbaar. Probeer het later nog eens.",
-  "@quizNotEnabled": {
-    "description": "Message on alert that appears when participate item is visible, but quiz is not enabled.",
-    "type": "text"
-  },
   "calendar": "Kalender",
-  "@calendar": {
-    "description": "Title of calendar page.",
-    "type": "text"
-  },
   "noEvents": "Geen geplande uitzendingen",
-  "@noEvents": {
-    "description": "Info in calendar page that no transmissions are scheduled for selected day.",
-    "type": "text"
-  },
   "appUpdateTitle": "Update vereist",
-  "@appUpdateTitle": {
-    "description": "Title of the message displayed to the user when application is too old and should be updated in a timely manner.",
-    "type": "text"
-  },
   "appUpdateRequest": "Download de laatste update voor nieuwe functionaliteiten en bugfixes.",
-  "@appUpdateRequest": {
-    "description": "Message displayed to the user when application is too old and should be updated in a timely manner.",
-    "type": "text"
-  },
   "appUpdateAccepted": "Update",
-  "@appUpdateAccepted": {
-    "description": "Option that can be chosen by the user to update his application.",
-    "type": "text"
-  },
   "donationNotAvailable": "Doneren is op dit moment niet mogelijk. Probeer het later nog eens.",
-  "@donationNotAvailable": {
-    "description": "Message displayed when donation flow failed.",
-    "type": "text"
-  },
-  "posts": "{0} Berichten",
-  "@posts": {
-    "description": "Contributions to feed made by the users. Plural of post.",
-    "type": "text"
-  },
+  "posts": "{postsCount} Berichten",
   "copy": "Kopie",
-  "@copy": {
-    "description": "Copy option for quotes, verses.",
-    "type": "text"
-  },
   "reload": "Opnieuw laden",
-  "@reload": {
-    "description": "Label on the button that allows to reload the player after error.",
-    "type": "text"
-  },
-  "particiantsTitle": "Wie antwoord?",
-  "@particiantsTitle": {
-    "description": "Title label on the participants list before quiz.",
-    "type": "text"
-  },
+  "participantsTitle": "Wie antwoord?",
   "participantsSubtitle": "Selecteer een of meerdere deelnemers.",
-  "@participantsSubtitle": {
-    "description": "Subtitle label on the participants list before quiz.",
-    "type": "text"
-  },
   "yourFamily": "Jouw familie",
-  "@yourFamily": {
-    "description": "Title on page when user selects family members that take part in the quiz.",
-    "type": "text"
-  },
   "yourTurn": "Jouw beurt",
-  "@yourTurn": {
-    "description": "Title on page informing user that other user will answer question in the next step.",
-    "type": "text"
-  },
   "fAQ": "FAQ",
-  "@fAQ": {
-    "description": "Title on FAQ page and item in profile page settings.",
-    "type": "text"
-  },
   "shareStart": "Delen van start",
-  "@shareStart": {
-    "description": "Option on action sheet for sharing from start",
-    "type": "text"
-  },
   "shareTime": "Delen van punt",
-  "@shareTime": {
-    "description": "Option on action sheet for sharing from time",
-    "type": "text"
-  },
   "loadContentError": "Kon de inhoud niet laden",
-  "@loadContentError": {
-    "description": "Error title when audio only fails to play",
-    "type": "text"
-  },
   "audioOnlyErrorDescription": "Controleer uw internetverbinding en probeer opnieuw",
-  "@audioOnlyErrorDescription": {
-    "description": "Error message when audio only fails to play",
-    "type": "text"
-  },
   "privacyPolicy": "Privacybeleid",
-  "@privacyPolicy": {
-    "description": "Title on Privacy Policy page and item in profile page settings.",
-    "type": "text"
-  },
   "tokenError": "We konden uw identiteit niet bevestigen, waarschijnlijk door een netwerkprobleem. Sommige functies van de app werken mogelijk niet correct.",
-  "@tokenError": {
-    "description": "Message indicating that there is a problem with user's token, and some features may be broken because of this.",
-    "type": "text"
-  },
   "categoriesTab": "Categorieën",
-  "@categoriesTab": {
-    "description": "Title of the Categories Tab",
-    "type": "text"
-  },
   "settingsTab": "Instellingen",
-  "@settingsTab": {
-    "description": "Title of the Settings Tab",
-    "type": "text"
-  },
   "confirmLogin": "Bevestig login",
-  "@confirmLogin": {
-    "description": "Prompt that asks the user to confirm his log-in",
-    "type": "text"
-  },
   "scanInfo": "Scan de code met je mobiel voor login.",
-  "@scanInfo": {
-    "description": "Text that informs the user that the QR code can be scanned to enter the login page. Used on AppleTV.",
-    "type": "text"
-  },
   "validInfo": "De QR code is 15 minuten geldig.",
-  "@validInfo": {
-    "description": "Message that informs the user for how long the QR Code will be valid.",
-    "type": "text"
-  },
   "confirmInfo": "Klik na het inloggen op onderstaande knop om inloggen te bevestigen.",
-  "@confirmInfo": {
-    "description": "Message that asks the user to click the button in order to proceed after successful login.",
-    "type": "text"
-  },
   "seriesTab": "Series",
-  "@seriesTab": {
-    "description": "Series Tab title",
-    "type": "text"
-  },
   "filmsTab": "Films",
-  "@filmsTab": {
-    "description": "Films Tab title",
-    "type": "text"
-  },
   "eventsTab": "Evenementen",
-  "@eventsTab": {
-    "description": "Events Tab title",
-    "type": "text"
-  },
   "audioLanguage": "Geluidstaal",
-  "@audioLanguage": {
-    "description": "Label indicating that the Audio Language can be changed here.",
-    "type": "text"
-  },
   "subtitlesLanguage": "Taal ondertitels",
-  "@subtitlesLanguage": {
-    "description": "Label indicating that the Subtitles Language can be changed here.",
-    "type": "text"
-  },
   "removeFromRecentSearches": "Wilt u dit element verwijderen uit het overzicht met recente zoekopdrachten?",
-  "@removeFromRecentSearches": {
-    "description": "Prompt that asks the user wheter they are certain, that they want to remove the element from recent searches.",
-    "type": "text"
-  },
   "noTransmissionToday": "Geen geplande uitzending voor vandaag",
-  "@noTransmissionToday": {
-    "description": "Messages that informs the user, that there are no schedules transmission for today.",
-    "type": "text"
-  },
   "livestreamMaintenanceTitle": "Live stream is niet beschikbaar",
-  "@livestreamMaintenanceTitle": {
-    "description": "Message that informs the user, that the livestream is unavailable.",
-    "type": "text"
-  },
   "start": "Start",
-  "@start": {
-    "description": "Word used while displaying information about the beggining of a video or an event in tv guide.",
-    "type": "text"
-  },
   "transmissionSchedule": "Programma overzicht",
-  "@transmissionSchedule": {
-    "description": "Label that indicates the user is looking at Transmission schedule",
-    "type": "text"
-  },
   "featured": "Aanbevolen",
-  "@featured": {
-    "description": "Featured videos collection header",
-    "type": "text"
-  },
   "errorTryAgain": "Er is iets mis gegaan, probeer het later nog eens.",
-  "@errorTryAgain": {
-    "description": "Message that informs the user, that there was an error. Then politely asks the user to try again later.",
-    "type": "text"
-  },
   "reportProblem": "Bij problemen kunt u onderstaande QR code scannen voor het verzenden van een e-mail.",
-  "@reportProblem": {
-    "description": "Message indicating that whenever the user wants to report a problem, they can scan the QR code to send an email to support.",
-    "type": "text"
-  },
   "phoneReadingProblem": "Mocht uw telefoon de QR code niet kunnen lezen, stuur ons een e-mail met de volgende informatie naar",
-  "@phoneReadingProblem": {
-    "description": "Message explaining that if the user's phone can't scan the QR code, they can send the support e-mail with information listed after this message.",
-    "type": "text"
-  },
   "goTo": "of ga naar",
-  "@goTo": {
-    "description": "Message used to point the user to the shortened URL in case they can't use the QR code to log-in. This is used on AppleTV.",
-    "type": "text"
-  },
   "watchBrunstad": "Volg BrunstadTV live",
-  "@watchBrunstad": {
-    "description": "Text that entices the user to watch the livestream.",
-    "type": "text"
-  },
   "notLogged": "Niet ingelogd",
-  "@notLogged": {
-    "description": "Text that informs the user, that they are not logged in.",
-    "type": "text"
-  },
   "authResponse0": "Gebruik een nieuwe QR code om in te loggen.",
-  "@authResponse0": {
-    "description": "Authentication response displayed to the user when an old QR code was used. Asking them to use a new one if they want to log in.",
-    "type": "text"
-  },
   "authResponse1": "Gebruik de QR code om in te loggen op je mobiel.",
-  "@authResponse1": {
-    "description": "Message displayed to the user when they tried to proceed with the log-in on AppleTv without first logging through their mobile device.",
-    "type": "text"
-  },
   "authResponse3": "Controleer je netwerkverbinding en probeer het later opnieuw.",
-  "@authResponse3": {
-    "description": "Message that indicates there was an error during Authentication process. Asking the user to check their network connection and try again.",
-    "type": "text"
-  },
   "liveHeader": "Live",
-  "@liveHeader": {
-    "description": "Header of the Live Tab — the tab that contains the livestream player on AppleTV.",
-    "type": "text"
-  },
   "recentlyPublishedSection": "Onlangs verschenen",
-  "@recentlyPublishedSection": {
-    "description": "Section in explore.",
-    "type": "text"
-  },
   "exploreCategoriesSection": "Verken categorieën",
-  "@exploreCategoriesSection": {
-    "description": "Section in explore.",
-    "type": "text"
-  },
   "programsSection": "Programma's",
-  "@programsSection": {
-    "description": "Section in explore.",
-    "type": "text"
-  },
   "episodesSection": "Afleveringen",
-  "@episodesSection": {
-    "description": "Section in explore.",
-    "type": "text"
-  },
   "categorySeries": "Series",
-  "@categorySeries": {
-    "description": "Category name",
-    "type": "text"
-  },
   "categoryKids": "Kids",
-  "@categoryKids": {
-    "description": "Category name",
-    "type": "text"
-  },
   "categoryFilms": "Films",
-  "@categoryFilms": {
-    "description": "Category name",
-    "type": "text"
-  },
   "categoryEvents": "Evenementen",
-  "@categoryEvents": {
-    "description": "Category name",
-    "type": "text"
-  },
   "categoryMusic": "Muziek",
-  "@categoryMusic": {
-    "description": "Category name",
-    "type": "text"
-  },
   "noPlannedEvents": "Geen geplande evenementen vandaag",
-  "@noPlannedEvents": {
-    "description": "Information in tvguide",
-    "type": "text"
-  },
-  "watchNow": "Nu kijken",
-  "@watchNow": {
-    "description": "Button on featured carousel",
-    "type": "text"
-  }
+  "watchNow": "Nu kijken"
 }
