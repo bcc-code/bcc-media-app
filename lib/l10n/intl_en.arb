@@ -229,7 +229,7 @@
     "description": "Error message to the user when attempt to add video to cast queue failed due to full queue.",
     "placeholders": {
       "elementCount": {
-        "type": "int",
+        "type": "int"
       }
     }
   },
