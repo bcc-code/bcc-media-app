@@ -800,7 +800,8 @@ packages:
     dependency: transitive
     description:
       name: logger
-      url: "https://pub.dartlang.org"
+      sha256: "5076f09225f91dc49289a4ccb92df2eeea9ea01cf7c26d49b3a1f04c6a49eec1"
+      url: "https://pub.dev"
     source: hosted
     version: "1.1.0"
   logging:
@@ -834,7 +835,7 @@ packages:
       sha256: d92141dc6fe1dad30722f9aa826c7fbc896d021d792f80678280601aff8cf724
       url: "https://pub.dev"
     source: hosted
-    version: "0.1.5"
+    version: "0.2.0"
   meta:
     dependency: transitive
     description:
@@ -1139,7 +1140,7 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "4.1.0"
-riverpod:
+  riverpod:
     dependency: "direct main"
     description:
       name: riverpod
@@ -1151,35 +1152,40 @@ riverpod:
     dependency: transitive
     description:
       name: rudder_plugin_android
-      url: "https://pub.dartlang.org"
+      sha256: "647e2c5738f57b2e634b46f47eed32c025c19a33ed398f7fffec9750b2252652"
+      url: "https://pub.dev"
     source: hosted
     version: "2.1.1"
   rudder_plugin_ios:
     dependency: transitive
     description:
       name: rudder_plugin_ios
-      url: "https://pub.dartlang.org"
+      sha256: "89f115d147aa0b4f9de4e05ea8eab00fcbc9f0f5bc153f6aa610c396ebd445b9"
+      url: "https://pub.dev"
     source: hosted
     version: "2.1.1"
   rudder_plugin_web:
     dependency: transitive
     description:
       name: rudder_plugin_web
-      url: "https://pub.dartlang.org"
+      sha256: "1c633b20e7443a1706df3c34740f74e141d1553b098d7fe41af56002cc2b1adb"
+      url: "https://pub.dev"
     source: hosted
     version: "2.1.2"
   rudder_sdk_flutter:
     dependency: "direct main"
     description:
       name: rudder_sdk_flutter
-      url: "https://pub.dartlang.org"
+      sha256: "5392d7c7a00c77da63000605e8e91851cb2c148e8e7077a9d138c5a493904fba"
+      url: "https://pub.dev"
     source: hosted
     version: "2.2.0"
   rudder_sdk_flutter_platform_interface:
     dependency: "direct main"
     description:
       name: rudder_sdk_flutter_platform_interface
-      url: "https://pub.dartlang.org"
+      sha256: "2ac4d911b871326dfd2bee5b56e1dc2500ab9d819fff924481f6924b6fc0cb21"
+      url: "https://pub.dev"
     source: hosted
     version: "2.2.0"
   rxdart:
@@ -1346,7 +1352,7 @@ riverpod:
       sha256: dd904f795d4b4f3b870833847c461801f6750a9fa8e61ea5ac53f9422b31f250
       url: "https://pub.dev"
     source: hosted
-    version: "1.9.0"
+    version: "1.9.1"
   stack_trace:
     dependency: transitive
     description:
