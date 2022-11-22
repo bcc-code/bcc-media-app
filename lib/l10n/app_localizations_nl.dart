@@ -173,7 +173,10 @@ class SNl extends S {
   String get queueLimitTitle => 'Limiet';
 
   @override
-  String get queueLimitMessage => 'Het is niet mogelijk meer dan {0} elementen in de lijst te hebben.';
+  String queueLimitMessage(int elementCount) {
+
+    return 'Het is niet mogelijk meer dan $elementCount elementen in de lijst te hebben.';
+  }
 
   @override
   String get recentSearches => 'Recente zoekopdrachten';
@@ -260,7 +263,10 @@ class SNl extends S {
   String get uploadFileMessage => 'Wilt u dit bestand uploaden?';
 
   @override
-  String get watchingWith => 'Je kijkt samen met {0} anderen';
+  String watchingWith(int numPeople) {
+
+    return 'Je kijkt samen met $numPeople anderen';
+  }
 
   @override
   String get uploading => 'Aan het uploaden';
@@ -272,7 +278,10 @@ class SNl extends S {
   String get post => 'Verzend';
 
   @override
-  String get charactersLimit => '{0} of {1} tekens over';
+  String charactersLimit(int charsLeft, int charsTotal) {
+
+    return '$charsLeft of $charsTotal tekens over';
+  }
 
   @override
   String get uploadingPostSuccess => 'Je bericht is verzonden.';
@@ -413,16 +422,25 @@ class SNl extends S {
   String get noNewPosts => 'Geen nieuwe berichten';
 
   @override
-  String get newPostsMultiple => '{0} nieuwe berichten!';
+  String newPostsMultiple(int postCount) {
+
+    return '$postCount nieuwe berichten!';
+  }
 
   @override
-  String get newPostsSingle => '{0} nieuw beircht!';
+  String newPostsSingle(int postCount) {
+
+    return '$postCount nieuw beircht!';
+  }
 
   @override
   String get expired => 'Verlopen';
 
   @override
-  String get availableFrom => 'Beschikbaar';
+  String availableFrom(String date) {
+
+    return 'Beschikbaar $date';
+  }
 
   @override
   String get howFar => 'Welke afstand heb je afgelegd?';
@@ -434,16 +452,25 @@ class SNl extends S {
   String get wellDone => 'Goed gedaan!';
 
   @override
-  String get wellDoneDistance => 'Goed gedaan! Je hebt totaal km als afstand geregistreerd';
+  String wellDoneDistance(int distanceInKM) {
+
+    return 'Goed gedaan! Je hebt totaal $distanceInKM km als afstand geregistreerd';
+  }
 
   @override
   String get distanceRegistered => 'Je afstand is geregistreerd. Hieronder kun je eventueel een nieuwe afstand invoeren.';
 
   @override
-  String get ranMore => 'Ik heb meer dan km afgelegd';
+  String ranMore(int distanceInKM) {
+
+    return 'Ik heb meer dan $distanceInKM km afgelegd';
+  }
 
   @override
-  String get moreThan => 'Meer dan km';
+  String moreThan(int distanceInKM) {
+
+    return 'Meer dan $distanceInKM km';
+  }
 
   @override
   String get runningEffort => 'Wat een geweldige prestatie! Noteer hier onder het aantal afgelegde km.';
@@ -464,7 +491,10 @@ class SNl extends S {
   String get firstPostTitle => 'Plaats als eerste een foto of bericht';
 
   @override
-  String get timezoneInformation => 'De tijden in de TV gids worden weergegeven in de lokale tijd van de tijdszone waarin je op dit moment bent';
+  String timezoneInformation(String timeZone) {
+
+    return 'De tijden in de TV gids worden weergegeven in de lokale tijd van de tijdszone waarin je op dit moment bent: $timeZone';
+  }
 
   @override
   String get yourQuestion => 'Je vraag';
@@ -524,7 +554,10 @@ class SNl extends S {
   String get readBy => 'Gelezen door';
 
   @override
-  String get pollAnswer => 'Je hebt geantwoord {0}';
+  String pollAnswer(String answer) {
+
+    return 'Je hebt geantwoord $answer';
+  }
 
   @override
   String get broadcasts => 'Uitzending';
@@ -554,7 +587,10 @@ class SNl extends S {
   String get donationNotAvailable => 'Doneren is op dit moment niet mogelijk. Probeer het later nog eens.';
 
   @override
-  String get posts => '{0} Berichten';
+  String posts(int postsCount) {
+
+    return '$postsCount Berichten';
+  }
 
   @override
   String get copy => 'Kopie';
@@ -563,7 +599,7 @@ class SNl extends S {
   String get reload => 'Opnieuw laden';
 
   @override
-  String get particiantsTitle => 'Wie antwoord?';
+  String get participantsTitle => 'Wie antwoord?';
 
   @override
   String get participantsSubtitle => 'Selecteer een of meerdere deelnemers.';
@@ -581,7 +617,10 @@ class SNl extends S {
   String get shareStart => 'Delen van start';
 
   @override
-  String get shareTime => 'Delen van punt';
+  String shareTime(String time) {
+
+    return 'Delen van punt $time';
+  }
 
   @override
   String get loadContentError => 'Kon de inhoud niet laden';

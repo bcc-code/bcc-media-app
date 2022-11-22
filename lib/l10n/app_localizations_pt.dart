@@ -173,7 +173,10 @@ class SPt extends S {
   String get queueLimitTitle => 'Limite';
 
   @override
-  String get queueLimitMessage => 'Você não pode adicionar mais que {0} elementos na fila.';
+  String queueLimitMessage(int elementCount) {
+
+    return 'Você não pode adicionar mais que $elementCount elementos na fila.';
+  }
 
   @override
   String get recentSearches => 'Buscas recentes';
@@ -260,7 +263,10 @@ class SPt extends S {
   String get uploadFileMessage => 'Deseja baixar este arquivo?';
 
   @override
-  String get watchingWith => 'Você está assistindo com {0} outras pessoas';
+  String watchingWith(int numPeople) {
+
+    return 'Você está assistindo com $numPeople outras pessoas';
+  }
 
   @override
   String get uploading => 'Enviando';
@@ -272,7 +278,10 @@ class SPt extends S {
   String get post => 'Postar';
 
   @override
-  String get charactersLimit => '{0} de {1} caracteres restantes';
+  String charactersLimit(int charsLeft, int charsTotal) {
+
+    return '$charsLeft de $charsTotal caracteres restantes';
+  }
 
   @override
   String get uploadingPostSuccess => 'Sua postagem foi enviada.';
@@ -413,16 +422,25 @@ class SPt extends S {
   String get noNewPosts => 'Não há novas postagens';
 
   @override
-  String get newPostsMultiple => '{0} novas postagens!';
+  String newPostsMultiple(int postCount) {
+
+    return '$postCount novas postagens!';
+  }
 
   @override
-  String get newPostsSingle => '{0} nova postagem!';
+  String newPostsSingle(int postCount) {
+
+    return '$postCount nova postagem!';
+  }
 
   @override
   String get expired => 'Expirado';
 
   @override
-  String get availableFrom => 'Disponível';
+  String availableFrom(String date) {
+
+    return 'Disponível $date';
+  }
 
   @override
   String get howFar => 'Até onde você foi?';
@@ -434,16 +452,25 @@ class SPt extends S {
   String get wellDone => 'Bem feito!';
 
   @override
-  String get wellDoneDistance => 'Bem feito! Você registrou uma distância total de {0} km';
+  String wellDoneDistance(int distanceInKM) {
+
+    return 'Bem feito! Você registrou uma distância total de $distanceInKM km';
+  }
 
   @override
   String get distanceRegistered => 'Sua distância foi registrada. Continue abaixo se desejar enviar outra distância.';
 
   @override
-  String get ranMore => 'Eu fui mais de {0} km';
+  String ranMore(int distanceInKM) {
+
+    return 'Eu fui mais de $distanceInKM km';
+  }
 
   @override
-  String get moreThan => 'Mais de {0} km';
+  String moreThan(int distanceInKM) {
+
+    return 'Mais de $distanceInKM km';
+  }
 
   @override
   String get runningEffort => 'Esforço incrível! Digite a quantidade de quilômetros que você percorreu abaixo.';
@@ -464,7 +491,10 @@ class SPt extends S {
   String get firstPostTitle => 'Seja o primeiro a postar uma foto ou mensagem';
 
   @override
-  String get timezoneInformation => 'O horário do guia de Tv está no seu horário local';
+  String timezoneInformation(String timeZone) {
+
+    return 'O horário do guia de Tv está no seu horário local: $timeZone';
+  }
 
   @override
   String get yourQuestion => 'Sua pergunta';
@@ -524,7 +554,10 @@ class SPt extends S {
   String get readBy => 'Lido por';
 
   @override
-  String get pollAnswer => 'Você respondeu: {0}';
+  String pollAnswer(String answer) {
+
+    return 'Você respondeu: $answer';
+  }
 
   @override
   String get broadcasts => 'Transmissão';
@@ -554,7 +587,10 @@ class SPt extends S {
   String get donationNotAvailable => 'A doação não está disponível no momento. Por favor, tente novamente mais tarde.';
 
   @override
-  String get posts => '{0} Publicações';
+  String posts(int postsCount) {
+
+    return '$postsCount Publicações';
+  }
 
   @override
   String get copy => 'Cópia';
@@ -563,7 +599,7 @@ class SPt extends S {
   String get reload => 'Recarregar';
 
   @override
-  String get particiantsTitle => 'Quem está respondendo?';
+  String get participantsTitle => 'Quem está respondendo?';
 
   @override
   String get participantsSubtitle => 'Selecione um ou mais participantes.';
@@ -581,7 +617,10 @@ class SPt extends S {
   String get shareStart => 'Compartilhar desde o início';
 
   @override
-  String get shareTime => 'Compartilhar de uma vez';
+  String shareTime(String time) {
+
+    return 'Compartilhar de uma vez $time';
+  }
 
   @override
   String get loadContentError => 'Não foi possível carregar o conteúdo';

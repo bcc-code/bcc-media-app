@@ -155,7 +155,7 @@ abstract class S {
   /// **'week'**
   String get calendarWeek;
 
-  /// Message displayed during loading info operation
+  /// Text to indicate loading state.
   ///
   /// In en, this message translates to:
   /// **'Loading'**
@@ -458,8 +458,8 @@ abstract class S {
   /// Error message to the user when attempt to add video to cast queue failed due to full queue.
   ///
   /// In en, this message translates to:
-  /// **'You cannot have more than {0} elements in queue.'**
-  String get queueLimitMessage;
+  /// **'You cannot have more than {elementCount} elements in queue.'**
+  String queueLimitMessage(int elementCount);
 
   /// Recent searches list title.
   ///
@@ -629,11 +629,11 @@ abstract class S {
   /// **'Do you want to upload this file?'**
   String get uploadFileMessage;
 
-  /// Info on live stream page - {0} is a number
+  /// Info on live stream page
   ///
   /// In en, this message translates to:
-  /// **'You are watching with {0} others'**
-  String get watchingWith;
+  /// **'You are watching with {numPeople} others'**
+  String watchingWith(int numPeople);
 
   /// Message during file upload
   ///
@@ -653,11 +653,11 @@ abstract class S {
   /// **'Post'**
   String get post;
 
-  /// Info about limit of characters in written testimony - {0} and {1} are numbers
+  /// Info about limit of characters in written testimony
   ///
   /// In en, this message translates to:
-  /// **'{0} of {1} characters left'**
-  String get charactersLimit;
+  /// **'{charsLeft} of {charsTotal} characters left'**
+  String charactersLimit(int charsLeft, int charsTotal);
 
   /// Info in upload success page
   ///
@@ -914,7 +914,7 @@ abstract class S {
   /// General error message that sending failed
   ///
   /// In en, this message translates to:
-  /// **'Couldn’t send you message'**
+  /// **'Couldn\'t send you message'**
   String get sendFail;
 
   /// General error message that sending failed
@@ -935,17 +935,17 @@ abstract class S {
   /// **'No new posts'**
   String get noNewPosts;
 
-  /// Text displayed on the button, when there are number of new posts in the feed. {0} is a number.
+  /// Text displayed on the button, when there are number of new posts in the feed.
   ///
   /// In en, this message translates to:
-  /// **'{0} new posts!'**
-  String get newPostsMultiple;
+  /// **'{postCount} new posts!'**
+  String newPostsMultiple(int postCount);
 
-  /// Text displayed on the button, when there is one new post in the feed. {0} is a number.
+  /// Text displayed on the button, when there is one new post in the feed.
   ///
   /// In en, this message translates to:
-  /// **'{0} new post!'**
-  String get newPostsSingle;
+  /// **'{postCount} new post!'**
+  String newPostsSingle(int postCount);
 
   /// Info that episode is no longer available.
   ///
@@ -953,11 +953,11 @@ abstract class S {
   /// **'Expired'**
   String get expired;
 
-  /// Info that episode will be released at certain date. {0} is the date.
+  /// Info that episode will be released at certain date.
   ///
   /// In en, this message translates to:
-  /// **'Available {0}'**
-  String get availableFrom;
+  /// **'Available {date}'**
+  String availableFrom(String date);
 
   /// Text on running competition page.
   ///
@@ -977,11 +977,11 @@ abstract class S {
   /// **'Well done!'**
   String get wellDone;
 
-  /// Text on running competition page. {0} will be a number.
+  /// Text on running competition page.
   ///
   /// In en, this message translates to:
-  /// **'Well done! You have registered a total distance of {0} km'**
-  String get wellDoneDistance;
+  /// **'Well done! You have registered a total distance of {distanceInKM} km'**
+  String wellDoneDistance(int distanceInKM);
 
   /// Text on running competition page.
   ///
@@ -989,17 +989,17 @@ abstract class S {
   /// **'Your distance has been registered. Continue below if you want to submit another distance.'**
   String get distanceRegistered;
 
-  /// Text on running competition page. {0} will be a number.
+  /// Text on running competition page.
   ///
   /// In en, this message translates to:
-  /// **'I went more than {0} km'**
-  String get ranMore;
+  /// **'I went more than {distanceInKM} km'**
+  String ranMore(int distanceInKM);
 
-  /// Text on running competition page. {0} will be a number.
+  /// Text on running competition page.
   ///
   /// In en, this message translates to:
-  /// **'More than {0} km'**
-  String get moreThan;
+  /// **'More than {distanceInKM} km'**
+  String moreThan(int distanceInKM);
 
   /// Text on running competition page.
   ///
@@ -1040,8 +1040,8 @@ abstract class S {
   /// TV guide footer info text.
   ///
   /// In en, this message translates to:
-  /// **'Tv guide timetable is in your local time'**
-  String get timezoneInformation;
+  /// **'Tv guide timetable is in your local time: {timeZone}'**
+  String timezoneInformation(String timeZone);
 
   /// Title on ask question page
   ///
@@ -1160,8 +1160,8 @@ abstract class S {
   /// Snackbar label after user has chosen poll answer
   ///
   /// In en, this message translates to:
-  /// **'You\'ve answered: {0}'**
-  String get pollAnswer;
+  /// **'You\'ve answered: {answer}'**
+  String pollAnswer(String answer);
 
   /// Title for tv guide collection on event page.
   ///
@@ -1220,8 +1220,8 @@ abstract class S {
   /// Contributions to feed made by the users. Plural of post.
   ///
   /// In en, this message translates to:
-  /// **'{0} Posts'**
-  String get posts;
+  /// **'{postsCount} Posts'**
+  String posts(int postsCount);
 
   /// Copy option for quotes, verses.
   ///
@@ -1235,11 +1235,11 @@ abstract class S {
   /// **'Reload'**
   String get reload;
 
-  /// Title label on the participants list before quiz.
+  /// No description provided for @participantsTitle.
   ///
   /// In en, this message translates to:
   /// **'Who is answering?'**
-  String get particiantsTitle;
+  String get participantsTitle;
 
   /// Subtitle label on the participants list before quiz.
   ///
@@ -1274,13 +1274,13 @@ abstract class S {
   /// Option on action sheet for sharing from time
   ///
   /// In en, this message translates to:
-  /// **'Share from time {0}'**
-  String get shareTime;
+  /// **'Share from time {time}'**
+  String shareTime(String time);
 
   /// Error text when content couldn't be loaded.
   ///
   /// In en, this message translates to:
-  /// **'Couldn’t load content'**
+  /// **'Couldn\'t load content'**
   String get loadContentError;
 
   /// Error message when audio only fails to play

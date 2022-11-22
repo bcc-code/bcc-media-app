@@ -173,7 +173,10 @@ class SHu extends S {
   String get queueLimitTitle => 'Korlátozott';
 
   @override
-  String get queueLimitMessage => 'Nem lehet több mint {0} elem a lejátszási listán.';
+  String queueLimitMessage(int elementCount) {
+
+    return 'Nem lehet több mint $elementCount elem a lejátszási listán.';
+  }
 
   @override
   String get recentSearches => 'Legutóbbi keresések';
@@ -260,7 +263,10 @@ class SHu extends S {
   String get uploadFileMessage => 'Szeretnéd ezt a fájlt feltölteni?';
 
   @override
-  String get watchingWith => 'Még {0} személlyel együtt nézed';
+  String watchingWith(int numPeople) {
+
+    return 'Még $numPeople személlyel együtt nézed';
+  }
 
   @override
   String get uploading => 'Feltöltés';
@@ -272,7 +278,10 @@ class SHu extends S {
   String get post => 'Közzé tenni';
 
   @override
-  String get charactersLimit => '{0} a {1} karakterből van még hátra';
+  String charactersLimit(int charsLeft, int charsTotal) {
+
+    return '$charsLeft a $charsTotal karakterből van még hátra';
+  }
 
   @override
   String get uploadingPostSuccess => 'A hozzászólásod be lett küldve.';
@@ -413,16 +422,25 @@ class SHu extends S {
   String get noNewPosts => 'Nincsenek új hozzászólások';
 
   @override
-  String get newPostsMultiple => '{0} új hozzászólás!';
+  String newPostsMultiple(int postCount) {
+
+    return '$postCount új hozzászólás!';
+  }
 
   @override
-  String get newPostsSingle => '{0} új hozzászólás!';
+  String newPostsSingle(int postCount) {
+
+    return '$postCount új hozzászólás!';
+  }
 
   @override
   String get expired => 'Lejárt';
 
   @override
-  String get availableFrom => 'Elérhető {0}';
+  String availableFrom(String date) {
+
+    return 'Elérhető $date';
+  }
 
   @override
   String get howFar => 'Mennyit kirándultál?';
@@ -434,16 +452,25 @@ class SHu extends S {
   String get wellDone => 'Jól csináltad!';
 
   @override
-  String get wellDoneDistance => 'Jól csináltad! A teljes regisztrált távolságod {0} km';
+  String wellDoneDistance(int distanceInKM) {
+
+    return 'Jól csináltad! A teljes regisztrált távolságod $distanceInKM km';
+  }
 
   @override
   String get distanceRegistered => 'Regisztrálva lett a távolságod. Folytass lent, ha szeretnél további távolságokat megadni.';
 
   @override
-  String get ranMore => 'Több mint {0} kilométert futottam';
+  String ranMore(int distanceInKM) {
+
+    return 'Több mint $distanceInKM kilométert futottam';
+  }
 
   @override
-  String get moreThan => 'Több mint {0} km';
+  String moreThan(int distanceInKM) {
+
+    return 'Több mint $distanceInKM km';
+  }
 
   @override
   String get runningEffort => 'Csodálatos erőfeszítés! Írd be az alul megtett kilométerek mennyiségét.';
@@ -464,7 +491,10 @@ class SHu extends S {
   String get firstPostTitle => 'Legyél az első, aki képet vagy üzenetet közzé tesz';
 
   @override
-  String get timezoneInformation => 'A TV program időpontjai a helyi idő szerint jelenek meg: {0}';
+  String timezoneInformation(String timeZone) {
+
+    return 'A TV program időpontjai a helyi idő szerint jelenek meg: $timeZone';
+  }
 
   @override
   String get yourQuestion => 'A kérdésed';
@@ -524,7 +554,10 @@ class SHu extends S {
   String get readBy => 'Elolvasva';
 
   @override
-  String get pollAnswer => '{0} válaszoltál';
+  String pollAnswer(String answer) {
+
+    return '$answer válaszoltál';
+  }
 
   @override
   String get broadcasts => 'Broadcasts';
@@ -554,7 +587,10 @@ class SHu extends S {
   String get donationNotAvailable => 'A Donation jelenleg nem érhető el. Kérlek, próbáld újra később.';
 
   @override
-  String get posts => '{0} Hozzászólások';
+  String posts(int postsCount) {
+
+    return '$postsCount Hozzászólások';
+  }
 
   @override
   String get copy => 'Másolás';
@@ -563,7 +599,7 @@ class SHu extends S {
   String get reload => 'Újratöltés';
 
   @override
-  String get particiantsTitle => 'Ki válaszol?';
+  String get participantsTitle => 'Ki válaszol?';
 
   @override
   String get participantsSubtitle => 'Válassz ki egy vagy több résztvevőt.';
@@ -581,7 +617,10 @@ class SHu extends S {
   String get shareStart => 'Oszd meg az elejétől';
 
   @override
-  String get shareTime => 'Megosztás innentől {0}';
+  String shareTime(String time) {
+
+    return 'Megosztás innentől $time';
+  }
 
   @override
   String get loadContentError => 'Nem sikerült betölteni a tartalmat';

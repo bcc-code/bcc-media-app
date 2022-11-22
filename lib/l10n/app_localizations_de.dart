@@ -173,7 +173,10 @@ class SDe extends S {
   String get queueLimitTitle => 'Limit';
 
   @override
-  String get queueLimitMessage => 'Du kannst nicht mehr als {0} Videos in der Warteschlange haben.';
+  String queueLimitMessage(int elementCount) {
+
+    return 'Du kannst nicht mehr als $elementCount Videos in der Warteschlange haben.';
+  }
 
   @override
   String get recentSearches => 'Letzte Suchanfragen';
@@ -260,7 +263,10 @@ class SDe extends S {
   String get uploadFileMessage => 'Möchtest du diese Datei hochladen?';
 
   @override
-  String get watchingWith => 'Du siehst mit {0} anderen';
+  String watchingWith(int numPeople) {
+
+    return 'Du siehst mit $numPeople anderen';
+  }
 
   @override
   String get uploading => 'Hochladen';
@@ -272,7 +278,10 @@ class SDe extends S {
   String get post => 'Poste';
 
   @override
-  String get charactersLimit => '{0} von {1} Zeichen übrig';
+  String charactersLimit(int charsLeft, int charsTotal) {
+
+    return '$charsLeft von $charsTotal Zeichen übrig';
+  }
 
   @override
   String get uploadingPostSuccess => 'Dein Post wurde gesendet.';
@@ -413,16 +422,25 @@ class SDe extends S {
   String get noNewPosts => 'Keine neuen Posts';
 
   @override
-  String get newPostsMultiple => '{0} neue Posts!';
+  String newPostsMultiple(int postCount) {
+
+    return '$postCount neue Posts!';
+  }
 
   @override
-  String get newPostsSingle => '{0} neue Posts!';
+  String newPostsSingle(int postCount) {
+
+    return '$postCount neue Posts!';
+  }
 
   @override
   String get expired => 'Abgelaufen';
 
   @override
-  String get availableFrom => 'Verfügbar';
+  String availableFrom(String date) {
+
+    return 'Verfügbar $date';
+  }
 
   @override
   String get howFar => 'Wie weit bist du gekommen?';
@@ -434,16 +452,25 @@ class SDe extends S {
   String get wellDone => 'Gut gemacht!';
 
   @override
-  String get wellDoneDistance => 'Gut gemacht! Du hast eine Gesamtstrecke von {0} km registriert';
+  String wellDoneDistance(int distanceInKM) {
+
+    return 'Gut gemacht! Du hast eine Gesamtstrecke von $distanceInKM km registriert';
+  }
 
   @override
   String get distanceRegistered => 'Deine Distanz wurde registriert. Fortsetze weiter unten, wenn du eine weitere Distanz eintragen möchtest.';
 
   @override
-  String get ranMore => 'Ich bin mehr als {0} km gelaufen';
+  String ranMore(int distanceInKM) {
+
+    return 'Ich bin mehr als $distanceInKM km gelaufen';
+  }
 
   @override
-  String get moreThan => 'Mehr als {0} km';
+  String moreThan(int distanceInKM) {
+
+    return 'Mehr als $distanceInKM km';
+  }
 
   @override
   String get runningEffort => 'Super Einsatz! Trage unten die Anzahl Kilometer ein, die du gelaufen bist.';
@@ -464,7 +491,10 @@ class SDe extends S {
   String get firstPostTitle => 'Sei der Erste, der ein Bild oder eine Nachricht postet';
 
   @override
-  String get timezoneInformation => 'Das Tv Programm ist deiner Ortszeit angepasst';
+  String timezoneInformation(String timeZone) {
+
+    return 'Das Tv Programm ist deiner Ortszeit angepasst: $timeZone';
+  }
 
   @override
   String get yourQuestion => 'Deine Frage';
@@ -524,7 +554,10 @@ class SDe extends S {
   String get readBy => 'Gelesen von';
 
   @override
-  String get pollAnswer => 'Du hast geantwortet {0}';
+  String pollAnswer(String answer) {
+
+    return 'Du hast geantwortet $answer';
+  }
 
   @override
   String get broadcasts => 'Sendungen';
@@ -554,7 +587,10 @@ class SDe extends S {
   String get donationNotAvailable => 'Das Spenden ist im Moment nicht möglich. Borte versuche es später noch einmal.';
 
   @override
-  String get posts => '{0} Posts';
+  String posts(int postsCount) {
+
+    return '$postsCount Posts';
+  }
 
   @override
   String get copy => 'Kopieren';
@@ -563,7 +599,7 @@ class SDe extends S {
   String get reload => 'Nochmals laden';
 
   @override
-  String get particiantsTitle => 'Wer antwortet?';
+  String get participantsTitle => 'Wer antwortet?';
 
   @override
   String get participantsSubtitle => 'Wähle einen oder mehrere Teilnehmer.';
@@ -581,7 +617,10 @@ class SDe extends S {
   String get shareStart => 'Teile von Anfang';
 
   @override
-  String get shareTime => 'Teile von der Zeit {0}';
+  String shareTime(String time) {
+
+    return 'Teile von der Zeit $time';
+  }
 
   @override
   String get loadContentError => 'Konnte den Inhalt nicht laden';

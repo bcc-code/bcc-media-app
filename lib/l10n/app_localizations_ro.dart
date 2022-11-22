@@ -173,7 +173,10 @@ class SRo extends S {
   String get queueLimitTitle => 'Limită';
 
   @override
-  String get queueLimitMessage => 'Nu poți avea mai mult de {0} elemente în coadă.';
+  String queueLimitMessage(int elementCount) {
+
+    return 'Nu poți avea mai mult de $elementCount elemente în coadă.';
+  }
 
   @override
   String get recentSearches => 'Căutări recente';
@@ -260,7 +263,10 @@ class SRo extends S {
   String get uploadFileMessage => 'Vrei să încarci acest fișier?';
 
   @override
-  String get watchingWith => 'Urmărești cu încă {0} persoane';
+  String watchingWith(int numPeople) {
+
+    return 'Urmărești cu încă $numPeople persoane';
+  }
 
   @override
   String get uploading => 'Se încarcă';
@@ -272,7 +278,10 @@ class SRo extends S {
   String get post => 'Trimite';
 
   @override
-  String get charactersLimit => 'Au mai rămas {0} din {1} caractere';
+  String charactersLimit(int charsLeft, int charsTotal) {
+
+    return 'Au mai rămas $charsLeft din $charsTotal caractere';
+  }
 
   @override
   String get uploadingPostSuccess => 'Postarea ta a fost trimisă.';
@@ -413,16 +422,25 @@ class SRo extends S {
   String get noNewPosts => 'Nici o postare nouă';
 
   @override
-  String get newPostsMultiple => '{0} postări noi!';
+  String newPostsMultiple(int postCount) {
+
+    return '$postCount postări noi!';
+  }
 
   @override
-  String get newPostsSingle => '{0} postare nouă!';
+  String newPostsSingle(int postCount) {
+
+    return '$postCount postare nouă!';
+  }
 
   @override
   String get expired => 'Expirat';
 
   @override
-  String get availableFrom => 'Disponibil de pe {0}';
+  String availableFrom(String date) {
+
+    return 'Disponibil de pe $date';
+  }
 
   @override
   String get howFar => 'Ce distanță ai parcurs?';
@@ -434,16 +452,25 @@ class SRo extends S {
   String get wellDone => 'Bună treabă!';
 
   @override
-  String get wellDoneDistance => 'Bună treabă! Ai înregistrat o distanță totală de {0} km';
+  String wellDoneDistance(int distanceInKM) {
+
+    return 'Bună treabă! Ai înregistrat o distanță totală de $distanceInKM km';
+  }
 
   @override
   String get distanceRegistered => 'Distanța ta a fost înregistrată. Continuă mai jos dacă dorești să adaugi o nouă distanță.';
 
   @override
-  String get ranMore => 'Am parcurs mai mult de {0} km';
+  String ranMore(int distanceInKM) {
+
+    return 'Am parcurs mai mult de $distanceInKM km';
+  }
 
   @override
-  String get moreThan => 'Peste {0} km';
+  String moreThan(int distanceInKM) {
+
+    return 'Peste $distanceInKM km';
+  }
 
   @override
   String get runningEffort => 'Efort uimitor! Tastează mai jos numărul de kilometri pe care i-ai parcurs.';
@@ -464,7 +491,10 @@ class SRo extends S {
   String get firstPostTitle => 'Fii primul care postează o imagine sau un mesaj';
 
   @override
-  String get timezoneInformation => 'Programul ghidului TV este afișat în ora ta locală: {0}';
+  String timezoneInformation(String timeZone) {
+
+    return 'Programul ghidului TV este afișat în ora ta locală: $timeZone';
+  }
 
   @override
   String get yourQuestion => 'Întrebarea ta';
@@ -524,7 +554,10 @@ class SRo extends S {
   String get readBy => 'Citit de';
 
   @override
-  String get pollAnswer => 'Ai răspuns {0}';
+  String pollAnswer(String answer) {
+
+    return 'Ai răspuns $answer';
+  }
 
   @override
   String get broadcasts => 'Transmisii';
@@ -554,7 +587,10 @@ class SRo extends S {
   String get donationNotAvailable => 'Donarea nu este disponibilă momentan. Te rugăm să încerci mai târziu.';
 
   @override
-  String get posts => 'Postări';
+  String posts(int postsCount) {
+
+    return '$postsCount Postări';
+  }
 
   @override
   String get copy => 'Copiere';
@@ -563,7 +599,7 @@ class SRo extends S {
   String get reload => 'Reîncarcă';
 
   @override
-  String get particiantsTitle => 'Who is answering?';
+  String get participantsTitle => 'Who is answering?';
 
   @override
   String get participantsSubtitle => 'Select one or more participants.';
@@ -581,10 +617,13 @@ class SRo extends S {
   String get shareStart => 'Share from start';
 
   @override
-  String get shareTime => 'Share from time {0}';
+  String shareTime(String time) {
+
+    return 'Share from time $time';
+  }
 
   @override
-  String get loadContentError => 'Couldn’t load content';
+  String get loadContentError => 'Couldn\'t load content';
 
   @override
   String get audioOnlyErrorDescription => 'Check internet connection and try again';

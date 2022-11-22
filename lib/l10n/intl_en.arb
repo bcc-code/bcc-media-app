@@ -1,1192 +1,1011 @@
 {
+  "@@locale": "en",
   "loadingContent": "Loading content",
   "@loadingContent": {
-    "description": "Text displayed when page content is loading.",
-    "type": "text"
+    "description": "Text displayed when page content is loading."
   },
-
   "signInTooltip": "Sign in to watch more content",
   "@signInTooltip": {
-    "description": "Text for tooltip displayed when a non-member user opens the home page.",
-    "type": "text"
+    "description": "Text for tooltip displayed when a non-member user opens the home page."
   },
-
   "skipToPublicContent": "Skip to watch public content",
   "@skipToPublicContent": {
-    "description": "Text for button displayed on login screen to skip sign in and watch public content.",
-    "type": "text"
+    "description": "Text for button displayed on login screen to skip sign in and watch public content."
   },
-
   "minutesShort": "min",
   "@minutesShort": {
-    "description": "Text for minutes.",
-    "type": "text"
+    "description": "Text for minutes."
   },
-
   "calendarThisWeek": "This week",
   "@calendarThisWeek": {
-    "description": "Text for This week.",
-    "type": "text"
+    "description": "Text for This week."
   },
-
   "calendarWeek": "week",
   "@calendarWeek": {
-    "description": "Text week.",
-    "type": "text"
+    "description": "Text week."
   },
-
   "loading": "Loading",
   "@loading": {
-    "description": "Text to indicate loading state.",
-    "type": "text"
+    "description": "Text to indicate loading state."
   },
-
   "loginPageDisplay1": "The most powerful message in the world",
   "@loginPageDisplay1": {
-    "description": "Text displayed on login screen.",
-    "type": "text"
+    "description": "Text displayed on login screen."
   },
-
   "loginPageDisplay2": "Watch series, shows and films based on Christian values",
   "@loginPageDisplay2": {
-    "description": "Text displayed on login screen.",
-    "type": "text"
+    "description": "Text displayed on login screen."
   },
-
   "loginPageDisplay3": "Produced by BCC Media",
   "@loginPageDisplay3": {
-    "description": "Text displayed on login screen.",
-    "type": "text"
+    "description": "Text displayed on login screen."
   },
-
   "liveTab": "Live",
   "@liveTab": {
-    "description": "Title of live page tab",
-    "type": "text"
+    "description": "Title of live page tab"
   },
   "logOutButton": "Log out",
   "@logOutButton": {
-    "description": "Text displayed on Log out button",
-    "type": "text"
+    "description": "Text displayed on Log out button"
   },
   "profileTab": "Profile",
   "@profileTab": {
-    "description": "Title of the profile page",
-    "type": "text"
+    "description": "Title of the profile page"
   },
   "faq": "Frequently asked questions",
   "@faq": {
-    "description": "Title of the FAQ page.",
-    "type": "text"
+    "description": "Title of the FAQ page."
   },
   "bccMediaCenter": "BrunstadTV is a non-commercial media center producing and distributing content based on positive and Christian values.",
   "@bccMediaCenter": {
-    "description": "Disclaimer on login page",
-    "type": "text"
+    "description": "Disclaimer on login page"
   },
   "signInButton": "Sign in",
   "@signInButton": {
-    "description": "Text displayed on Sign in button",
-    "type": "text"
+    "description": "Text displayed on Sign in button"
   },
   "tryAgainButton": "Try again",
   "@tryAgainButton": {
-    "description": "Button on error alert that lets user to retry failed action",
-    "type": "text"
+    "description": "Button on error alert that lets user to retry failed action"
   },
   "loggedOutTitle": "Logged out",
   "@loggedOutTitle": {
-    "description": "Title of the alert message that is shown when user is logged out automatically.",
-    "type": "text"
+    "description": "Title of the alert message that is shown when user is logged out automatically."
   },
   "loggedOutMessage": "You have been logged out. Please log in again.",
   "@loggedOutMessage": {
-    "description": "Text of the alert message that is shown when user is logged out automatically.",
-    "type": "text"
+    "description": "Text of the alert message that is shown when user is logged out automatically."
   },
   "mostWatched": "Most watched",
   "@mostWatched": {
-    "description": "Sorting option on audience page",
-    "type": "text"
+    "description": "Sorting option on audience page"
   },
   "mostRecent": "Most recent",
   "@mostRecent": {
-    "description": "Sorting option on audience page",
-    "type": "text"
+    "description": "Sorting option on audience page"
   },
   "latelyPublished": "Lately published",
   "@latelyPublished": {
-    "description": "Title for the list of videos on login page",
-    "type": "text"
+    "description": "Title for the list of videos on login page"
   },
   "anErrorOccurred": "An error occurred",
   "@anErrorOccurred": {
-    "description": "Title in error popup",
-    "type": "text"
+    "description": "Title in error popup"
   },
   "ok": "OK",
   "@ok": {
-    "description": "Popup confirmation button",
-    "type": "text"
+    "description": "Popup confirmation button"
   },
   "loginFailedCheckNetwork": "Login failed. Check your network connection and try again.",
   "@loginFailedCheckNetwork": {
-    "description": "Login error message",
-    "type": "text"
+    "description": "Login error message"
   },
   "loginFailedTryAgain": "Login failed. Please try again later.",
   "@loginFailedTryAgain": {
-    "description": "Login error message",
-    "type": "text"
+    "description": "Login error message"
   },
   "soundLanguage": "Sound language",
   "@soundLanguage": {
-    "description": "Settings item on profile page",
-    "type": "text"
+    "description": "Settings item on profile page"
   },
   "subtitleLanguage": "Subtitle language",
   "@subtitleLanguage": {
-    "description": "Settings item on profile page",
-    "type": "text"
+    "description": "Settings item on profile page"
   },
   "appLanguage": "App language",
   "@appLanguage": {
-    "description": "Settings item on profile page",
-    "type": "text"
+    "description": "Settings item on profile page"
   },
   "checkNetwork": "Check your network connection and try again.",
   "@checkNetwork": {
-    "description": "Error message for the user displayed in many contexts.",
-    "type": "text"
+    "description": "Error message for the user displayed in many contexts."
   },
   "tryAgain": "Please try again later.",
   "@tryAgain": {
-    "description": "Error message for the user displayed in many contexts.",
-    "type": "text"
+    "description": "Error message for the user displayed in many contexts."
   },
   "cantPlayVideo": "You can't play this video now.",
   "@cantPlayVideo": {
-    "description": "Error message for the user displayed when video playback attempt failed.",
-    "type": "text"
+    "description": "Error message for the user displayed when video playback attempt failed."
   },
   "about": "About",
   "@about": {
-    "description": "Title of About page and item in profile page settings.",
-    "type": "text"
+    "description": "Title of About page and item in profile page settings."
   },
   "version": "Version",
   "@version": {
-    "description": "Version ot the application on About page; followed by version number",
-    "type": "text"
+    "description": "Version ot the application on About page; followed by version number"
   },
   "contactSupport": "Contact support",
   "@contactSupport": {
-    "description": "Settings item on profile page",
-    "type": "text"
+    "description": "Settings item on profile page"
   },
   "cancel": "Cancel",
   "@cancel": {
-    "description": "General cancel action button",
-    "type": "text"
+    "description": "General cancel action button"
   },
   "upNext": "Up next",
   "@upNext": {
-    "description": "Title on Up next feature.",
-    "type": "text"
+    "description": "Title on Up next feature."
   },
   "done": "Done",
   "@done": {
-    "description": "General Done button. User confirms that action completed sucessfully.",
-    "type": "text"
+    "description": "General Done button. User confirms that action completed sucessfully."
   },
   "playerSettings": "Player settings",
   "@playerSettings": {
-    "description": "Title of the Player settings activity in Android",
-    "type": "text"
+    "description": "Title of the Player settings activity in Android"
   },
   "settings": "Settings",
   "@settings": {
-    "description": "Label of the button to go to Android/iOS settings",
-    "type": "text"
+    "description": "Label of the button to go to Android/iOS settings"
   },
   "none": "None",
   "@none": {
-    "description": "Indicator on profile page that subtitles are disabled.",
-    "type": "text"
+    "description": "Indicator on profile page that subtitles are disabled."
   },
   "auto": "Auto",
   "@auto": {
-    "description": "Indicator on profile page that audio and app language are chosen automatically.",
-    "type": "text"
+    "description": "Indicator on profile page that audio and app language are chosen automatically."
   },
   "live": "Live",
   "@live": {
-    "description": "Title of the live stream",
-    "type": "text"
+    "description": "Title of the live stream"
   },
   "subtitles": "Subtitles",
   "@subtitles": {
-    "description": "Title of the Player settings activity tab in Android",
-    "type": "text"
+    "description": "Title of the Player settings activity tab in Android"
   },
   "audio": "Audio",
   "@audio": {
-    "description": "Title of the Player settings activity tab in Android",
-    "type": "text"
+    "description": "Title of the Player settings activity tab in Android"
   },
   "quality": "Quality",
   "@quality": {
-    "description": "Title of the Player settings activity tab in Android",
-    "type": "text"
+    "description": "Title of the Player settings activity tab in Android"
   },
   "seasons": "Seasons",
   "@seasons": {
-    "description": "Followed by number of seasons in given series.",
-    "type": "text"
+    "description": "Followed by number of seasons in given series."
   },
   "episodes": "Episodes",
   "@episodes": {
-    "description": "Followed by number of episodes in given series.",
-    "type": "text"
+    "description": "Followed by number of episodes in given series."
   },
   "search": "Search",
   "@search": {
-    "description": "Button to clear cache",
-    "type": "text"
+    "description": "Button to clear cache"
   },
   "noResults": "No results found",
   "@noResults": {
-    "description": "No search results.",
-    "type": "text"
+    "description": "No search results."
   },
   "doYouWantCast": "Do you want to cast this video?",
   "@doYouWantCast": {
-    "description": "Prompt displayed to the user",
-    "type": "text"
+    "description": "Prompt displayed to the user"
   },
   "play": "Play",
   "@play": {
-    "description": "Option in prompt dialog.",
-    "type": "text"
+    "description": "Option in prompt dialog."
   },
   "castQueue": "Cast queue",
   "@castQueue": {
-    "description": "Queue page title",
-    "type": "text"
+    "description": "Queue page title"
   },
   "options": "Options",
   "@options": {
-    "description": "Options dialog title",
-    "type": "text"
+    "description": "Options dialog title"
   },
   "remove": "Remove",
   "@remove": {
-    "description": "Option in options dialog",
-    "type": "text"
+    "description": "Option in options dialog"
   },
   "queueLimitTitle": "Limit",
   "@queueLimitTitle": {
-    "description": "Title of the alert to the user when attempt to add video to cast queue failed due to full queue.",
-    "type": "text"
+    "description": "Title of the alert to the user when attempt to add video to cast queue failed due to full queue."
   },
-  "queueLimitMessage": "You cannot have more than {0} elements in queue.",
+  "queueLimitMessage": "You cannot have more than {elementCount} elements in queue.",
   "@queueLimitMessage": {
     "description": "Error message to the user when attempt to add video to cast queue failed due to full queue.",
-    "type": "text"
+    "placeholders": {
+      "elementCount": {
+        "type": "int"
+      }
+    }
   },
   "recentSearches": "Recent Searches",
   "@recentSearches": {
-    "description": "Recent searches list title.",
-    "type": "text"
+    "description": "Recent searches list title."
   },
   "tVLogin": "TV Login",
   "@tVLogin": {
-    "description": "Title of the TV login alert",
-    "type": "text"
+    "description": "Title of the TV login alert"
   },
   "tVLoginSuccessful": "Log in successful, please confirm on TV.",
   "@tVLoginSuccessful": {
-    "description": "Message of the TV login alert",
-    "type": "text"
+    "description": "Message of the TV login alert"
   },
   "seeMore": "See more",
   "@seeMore": {
-    "description": "Button on featured item to navigete to page with player",
-    "type": "text"
+    "description": "Button on featured item to navigete to page with player"
   },
   "seeAll": "See all",
   "@seeAll": {
-    "description": "Button on explore page to navigete to audience page",
-    "type": "text"
+    "description": "Button on explore page to navigete to audience page"
   },
   "series": "Series",
   "@series": {
-    "description": "Title of the tab on info page",
-    "type": "text"
+    "description": "Title of the tab on info page"
   },
   "livestreamMaintenance": "We're sorry, livestream is currently under maintenance. Please try again later.",
   "@livestreamMaintenance": {
-    "description": "Message displayed over overlay when livestream is under maintenance.",
-    "type": "text"
+    "description": "Message displayed over overlay when livestream is under maintenance."
   },
   "homeTab": "Home",
   "@homeTab": {
-    "description": "Title of the home page",
-    "type": "text"
+    "description": "Title of the home page"
   },
   "sortBy": "Sort by",
   "@sortBy": {
-    "description": "Sorting criteria selector",
-    "type": "text"
+    "description": "Sorting criteria selector"
   },
   "videoQuality": "Video quality",
   "@videoQuality": {
-    "description": "Settings item in profile page for Android.",
-    "type": "text"
+    "description": "Settings item in profile page for Android."
   },
   "low": "Low",
   "@low": {
-    "description": "Low quality video option",
-    "type": "text"
+    "description": "Low quality video option"
   },
   "medium": "Medium",
   "@medium": {
-    "description": "Medium quality video option",
-    "type": "text"
+    "description": "Medium quality video option"
   },
   "high": "High",
   "@high": {
-    "description": "High quality video option",
-    "type": "text"
+    "description": "High quality video option"
   },
   "emptySearch": "You can search all content from BrunstadTV. Series, videos and episodes.",
   "@emptySearch": {
-    "description": "Message on search page when there is no search results.",
-    "type": "text"
+    "description": "Message on search page when there is no search results."
   },
   "back": "Back",
   "@back": {
-    "description": "General back button to navigate back",
-    "type": "text"
+    "description": "General back button to navigate back"
   },
   "seasonLetter": "S",
   "@seasonLetter": {
-    "description": "Season  letter in label S1E3",
-    "type": "text"
+    "description": "Season  letter in label S1E3"
   },
   "episodeLetter": "E",
   "@episodeLetter": {
-    "description": "Episode letter in label S1E3",
-    "type": "text"
+    "description": "Episode letter in label S1E3"
   },
   "atoZ": "A-Z",
   "@atoZ": {
-    "description": "Sort order",
-    "type": "text"
+    "description": "Sort order"
   },
   "ztoA": "Z-A",
   "@ztoA": {
-    "description": "Sort order",
-    "type": "text"
+    "description": "Sort order"
   },
   "shortFilms": "Short films",
   "@shortFilms": {
-    "description": "Title of the films collection.",
-    "type": "text"
+    "description": "Title of the films collection."
   },
   "videos": "Videos",
   "@videos": {
-    "description": "Followed by number of videos",
-    "type": "text"
+    "description": "Followed by number of videos"
   },
   "moreInfo": "More information",
   "@moreInfo": {
-    "description": "Option in action sheet for the video that triggers info page for the video.",
-    "type": "text"
+    "description": "Option in action sheet for the video that triggers info page for the video."
   },
   "info": "Information",
   "@info": {
-    "description": "Video info page title.",
-    "type": "text"
+    "description": "Video info page title."
   },
   "episode": "Episode",
   "@episode": {
-    "description": "Title of the tab on info page",
-    "type": "text"
+    "description": "Title of the tab on info page"
   },
   "takePhoto": "Take a photo",
   "@takePhoto": {
-    "description": "Option in menu",
-    "type": "text"
+    "description": "Option in menu"
   },
   "pickPhoto": "Pick from gallery",
   "@pickPhoto": {
-    "description": "Option in menu",
-    "type": "text"
+    "description": "Option in menu"
   },
   "uploadFileTitle": "Upload file",
   "@uploadFileTitle": {
-    "description": "Title of the dialog to confirm upload",
-    "type": "text"
+    "description": "Title of the dialog to confirm upload"
   },
   "uploadFileMessage": "Do you want to upload this file?",
   "@uploadFileMessage": {
-    "description": "Content of the dialog to confirm upload",
-    "type": "text"
+    "description": "Content of the dialog to confirm upload"
   },
-  "watchingWith": "You are watching with {0} others",
+  "watchingWith": "You are watching with {numPeople} others",
   "@watchingWith": {
-    "description": "Info on live stream page - {0} is a number",
-    "type": "text"
+    "description": "Info on live stream page",
+    "placeholders": {
+      "numPeople": {
+        "type": "int"
+      }
+    }
   },
   "uploading": "Uploading",
   "@uploading": {
-    "description": "Message during file upload",
-    "type": "text"
+    "description": "Message during file upload"
   },
   "uploadFail": "Upload failed",
   "@uploadFail": {
-    "description": "Upload result message",
-    "type": "text"
+    "description": "Upload result message"
   },
   "post": "Post",
   "@post": {
-    "description": "Button to post written testimony",
-    "type": "text"
+    "description": "Button to post written testimony"
   },
-  "charactersLimit": "{0} of {1} characters left",
+  "charactersLimit": "{charsLeft} of {charsTotal} characters left",
   "@charactersLimit": {
-    "description": "Info about limit of characters in written testimony - {0} and {1} are numbers",
-    "type": "text"
+    "description": "Info about limit of characters in written testimony",
+    "placeholders": {
+      "charsLeft": {
+        "type": "int"
+      },
+      "charsTotal": {
+        "type": "int"
+      }
+    }
   },
   "uploadingPostSuccess": "Your post has been sent in.",
   "@uploadingPostSuccess": {
-    "description": "Info in upload success page",
-    "type": "text"
+    "description": "Info in upload success page"
   },
   "testimonyInfo": "Record your video with your phone.",
   "@testimonyInfo": {
-    "description": "Record testimony guideline page info",
-    "type": "text"
+    "description": "Record testimony guideline page info"
   },
   "yourVideo": "Your video",
   "@yourVideo": {
-    "description": "Title on recording tip page page",
-    "type": "text"
+    "description": "Title on recording tip page page"
   },
   "record": "Record",
   "@record": {
-    "description": "Button to record testimony",
-    "type": "text"
+    "description": "Button to record testimony"
   },
   "recordingTips": "A few tips to get a good recording",
   "@recordingTips": {
-    "description": "Record testimony guideline page tip list title",
-    "type": "text"
+    "description": "Record testimony guideline page tip list title"
   },
   "recordingTipA": "Find a quiet place to record.",
   "@recordingTipA": {
-    "description": "Record testimony guideline page tip list item",
-    "type": "text"
+    "description": "Record testimony guideline page tip list item"
   },
   "recordingTipB": "Make sure that your face is evenly lit.",
   "@recordingTipB": {
-    "description": "Record testimony guideline page tip list item",
-    "type": "text"
+    "description": "Record testimony guideline page tip list item"
   },
   "recordingTipC": "Think about what you want to say before you start recording.",
   "@recordingTipC": {
-    "description": "Record testimony guideline page tip list item",
-    "type": "text"
+    "description": "Record testimony guideline page tip list item"
   },
   "recordingTipD": "Turn your phone in landscape mode.",
   "@recordingTipD": {
-    "description": "Record testimony guideline page tip list item",
-    "type": "text"
+    "description": "Record testimony guideline page tip list item"
   },
   "thankYou": "Thank you!",
   "@thankYou": {
-    "description": "Title in upload success page",
-    "type": "text"
+    "description": "Title in upload success page"
   },
   "thankYouForContribution": "Thank you for your contribution!",
   "@thankYouForContribution": {
-    "description": "Title in upload success page",
-    "type": "text"
+    "description": "Title in upload success page"
   },
   "uploadingVideoSuccess": "Your video has been sent in.",
   "@uploadingVideoSuccess": {
-    "description": "Info in upload success page",
-    "type": "text"
+    "description": "Info in upload success page"
   },
   "next": "Next",
   "@next": {
-    "description": "NEXT program in check in section",
-    "type": "text"
+    "description": "NEXT program in check in section"
   },
   "recordVideoCameraPermissionAlert": "You have to grant camera permission in settings to record video.",
   "@recordVideoCameraPermissionAlert": {
-    "description": "Message in alert dialog informing about missing permission",
-    "type": "text"
+    "description": "Message in alert dialog informing about missing permission"
   },
   "recordVideoPhotosPermissionAlert": "You have to grant photo album permission in settings to record video.",
   "@recordVideoPhotosPermissionAlert": {
-    "description": "Message in alert dialog informing about missing permission",
-    "type": "text"
+    "description": "Message in alert dialog informing about missing permission"
   },
   "recordVideoStoragePermissionAlert": "You have to grant storage permission in settings to record video.",
   "@recordVideoStoragePermissionAlert": {
-    "description": "Message in alert dialog informing about missing permission",
-    "type": "text"
+    "description": "Message in alert dialog informing about missing permission"
   },
   "recordVideoMicrophonePermissionAlert": "You have to grant microphone permission in settings to record video.",
   "@recordVideoMicrophonePermissionAlert": {
-    "description": "Message in alert dialog informing about missing permission",
-    "type": "text"
+    "description": "Message in alert dialog informing about missing permission"
   },
   "takePhotoStoragePermissionAlert": "You have to grant storage permission in settings to take photo.",
   "@takePhotoStoragePermissionAlert": {
-    "description": "Message in alert dialog informing about missing permission",
-    "type": "text"
+    "description": "Message in alert dialog informing about missing permission"
   },
   "takePhotoCameraPermissionAlert": "You have to grant camera permission in settings to take photo.",
   "@takePhotoCameraPermissionAlert": {
-    "description": "Message in alert dialog informing about missing permission",
-    "type": "text"
+    "description": "Message in alert dialog informing about missing permission"
   },
   "pickPhotoStoragePermissionAlert": "You have to grant storage permission in settings to pick photos.",
   "@pickPhotoStoragePermissionAlert": {
-    "description": "Message in alert dialog informing about missing permission",
-    "type": "text"
+    "description": "Message in alert dialog informing about missing permission"
   },
   "permissionsAlertTitle": "Permissions needed",
   "@permissionsAlertTitle": {
-    "description": "Title of an alert dialog informing about missing permission",
-    "type": "text"
+    "description": "Title of an alert dialog informing about missing permission"
   },
   "add": "Add",
   "@add": {
-    "description": "Button text on interactive live avatar section",
-    "type": "text"
+    "description": "Button text on interactive live avatar section"
   },
   "change": "Change",
   "@change": {
-    "description": "Button text on interactive live avatar section",
-    "type": "text"
+    "description": "Button text on interactive live avatar section"
   },
   "recordingFailedTitle": "Couldn't record the video",
   "@recordingFailedTitle": {
-    "description": "Title in alert dialog when recording fails",
-    "type": "text"
+    "description": "Title in alert dialog when recording fails"
   },
   "recordingFailedMessage": "Something went wrong while trying to record the video.",
   "@recordingFailedMessage": {
-    "description": "Message in alert dialog when recording fails",
-    "type": "text"
+    "description": "Message in alert dialog when recording fails"
   },
   "pollSubtitle": "Poll",
   "@pollSubtitle": {
-    "description": "The little title in poll",
-    "type": "text"
+    "description": "The little title in poll"
   },
   "writeHere": "Write here",
   "@writeHere": {
-    "description": "New post text field placeholder",
-    "type": "text"
+    "description": "New post text field placeholder"
   },
   "feed": "Feed",
   "@feed": {
-    "description": "Feed page bar title",
-    "type": "text"
+    "description": "Feed page bar title"
   },
   "atmosphereFeedDescription": "Contribute in the activity feed by sending in a message, testimony or picture from where you are.",
   "@atmosphereFeedDescription": {
-    "description": "Feed page description",
-    "type": "text"
+    "description": "Feed page description"
   },
   "information": "Information",
   "@information": {
-    "description": "Feed information item title",
-    "type": "text"
+    "description": "Feed information item title"
   },
   "photoNotSupported": "Taking and picking photo are not supported on your device.",
   "@photoNotSupported": {
-    "description": "Alert displayed when phone can't take photo or pick photo from storage.",
-    "type": "text"
+    "description": "Alert displayed when phone can't take photo or pick photo from storage."
   },
   "answerFailed": "Sorry! We were unable to send the answer. Please, try again.",
   "@answerFailed": {
-    "description": "Message displayed when user's answer hasn't' been sent'.",
-    "type": "text"
+    "description": "Message displayed when user's answer hasn't' been sent'."
   },
   "question": "Question",
   "@question": {
-    "description": "Title of the question page",
-    "type": "text"
+    "description": "Title of the question page"
   },
   "notificationChannelPlayerName": "Player",
   "@notificationChannelPlayerName": {
-    "description": "Notification channel name in Android settings",
-    "type": "text"
+    "description": "Notification channel name in Android settings"
   },
   "now": "Now",
   "@now": {
-    "description": "Tv guide now playing label",
-    "type": "text"
+    "description": "Tv guide now playing label"
   },
   "createPost": "Create post",
   "@createPost": {
-    "description": "Button to start text testimony and title on create post page",
-    "type": "text"
+    "description": "Button to start text testimony and title on create post page"
   },
   "concernTextPlaceholder": "Describe the issue",
   "@concernTextPlaceholder": {
-    "description": "Placeholder text in text field on contact support page",
-    "type": "text"
+    "description": "Placeholder text in text field on contact support page"
   },
   "debugInfoExplanation": "Your message will include this information, to help us better understand the issue.",
   "@debugInfoExplanation": {
-    "description": "Info about debug info usage on contact support page",
-    "type": "text"
+    "description": "Info about debug info usage on contact support page"
   },
   "send": "Send",
   "@send": {
-    "description": "General button to send a form",
-    "type": "text"
+    "description": "General button to send a form"
   },
   "sending": "Sending",
   "@sending": {
-    "description": "General sending action indicator",
-    "type": "text"
+    "description": "General sending action indicator"
   },
   "thankYouSupportTitle": "Thank you for your feedback!",
   "@thankYouSupportTitle": {
-    "description": "Text on contact support confirmation page",
-    "type": "text"
+    "description": "Text on contact support confirmation page"
   },
   "thankYouSupportDescription": "We appreciate all feedback and we will address the issue as soon as possible.",
   "@thankYouSupportDescription": {
-    "description": "Text on contact support confirmation page",
-    "type": "text"
+    "description": "Text on contact support confirmation page"
   },
-  "sendFail": "Couldn’t send you message",
+  "sendFail": "Couldn't send you message",
   "@sendFail": {
-    "description": "General error message that sending failed",
-    "type": "text"
+    "description": "General error message that sending failed"
   },
   "sendFailDescription": "Something went wrong. Check your internet connection and try again.",
   "@sendFailDescription": {
-    "description": "General error message that sending failed",
-    "type": "text"
+    "description": "General error message that sending failed"
   },
   "today": "Today",
   "@today": {
-    "description": "First category in tv guide",
-    "type": "text"
+    "description": "First category in tv guide"
   },
   "noNewPosts": "No new posts",
   "@noNewPosts": {
-    "description": "Text displayed on the button, when there are no new posts in the feed.",
-    "type": "text"
+    "description": "Text displayed on the button, when there are no new posts in the feed."
   },
-  "newPostsMultiple": "{0} new posts!",
+  "newPostsMultiple": "{postCount} new posts!",
   "@newPostsMultiple": {
-    "description": "Text displayed on the button, when there are number of new posts in the feed. {0} is a number.",
-    "type": "text"
+    "description": "Text displayed on the button, when there are number of new posts in the feed.",
+    "placeholders": {
+      "postCount": {
+        "type": "int"
+      }
+    }
   },
-  "newPostsSingle": "{0} new post!",
+  "newPostsSingle": "{postCount} new post!",
   "@newPostsSingle": {
-    "description": "Text displayed on the button, when there is one new post in the feed. {0} is a number.",
-    "type": "text"
+    "description": "Text displayed on the button, when there is one new post in the feed.",
+    "placeholders": {
+      "postCount": {
+        "type": "int"
+      }
+    }
   },
   "expired": "Expired",
   "@expired": {
-    "description": "Info that episode is no longer available.",
-    "type": "text"
+    "description": "Info that episode is no longer available."
   },
-  "availableFrom": "Available {0}",
+  "availableFrom": "Available {date}",
   "@availableFrom": {
-    "description": "Info that episode will be released at certain date. {0} is the date.",
-    "type": "text"
+    "description": "Info that episode will be released at certain date.",
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
   },
   "howFar": "How far did you go?",
   "@howFar": {
-    "description": "Text on running competition page.",
-    "type": "text"
+    "description": "Text on running competition page."
   },
   "submit": "Submit",
   "@submit": {
-    "description": "Submit button on running competition page.",
-    "type": "text"
+    "description": "Submit button on running competition page."
   },
   "wellDone": "Well done!",
   "@wellDone": {
-    "description": "Text on running competition page.",
-    "type": "text"
+    "description": "Text on running competition page."
   },
-  "wellDoneDistance": "Well done! You have registered a total distance of {0} km",
+  "wellDoneDistance": "Well done! You have registered a total distance of {distanceInKM} km",
   "@wellDoneDistance": {
-    "description": "Text on running competition page. {0} will be a number.",
-    "type": "text"
+    "description": "Text on running competition page.",
+    "placeholders": {
+      "distanceInKM": {
+        "type": "int"
+      }
+    }
   },
   "distanceRegistered": "Your distance has been registered. Continue below if you want to submit another distance.",
   "@distanceRegistered": {
-    "description": "Text on running competition page.",
-    "type": "text"
+    "description": "Text on running competition page."
   },
-  "ranMore": "I went more than {0} km",
+  "ranMore": "I went more than {distanceInKM} km",
   "@ranMore": {
-    "description": "Text on running competition page. {0} will be a number.",
-    "type": "text"
+    "description": "Text on running competition page.",
+    "placeholders": {
+      "distanceInKM": {
+        "type": "int"
+      }
+    }
   },
-  "moreThan": "More than {0} km",
+  "moreThan": "More than {distanceInKM} km",
   "@moreThan": {
-    "description": "Text on running competition page. {0} will be a number.",
-    "type": "text"
+    "description": "Text on running competition page.",
+    "placeholders": {
+      "distanceInKM": {
+        "type": "int"
+      }
+    }
   },
   "runningEffort": "Amazing effort! Type the amount of kilometers you went below.",
   "@runningEffort": {
-    "description": "Text on running competition page.",
-    "type": "text"
+    "description": "Text on running competition page."
   },
   "slideSelect": "Slide to select how far you went",
   "@slideSelect": {
-    "description": "Text on running competition page.",
-    "type": "text"
+    "description": "Text on running competition page."
   },
   "submitAnotherDistance": "Submit another distance",
   "@submitAnotherDistance": {
-    "description": "Text on running competition page.",
-    "type": "text"
+    "description": "Text on running competition page."
   },
   "editPicture": "Edit picture",
   "@editPicture": {
-    "description": "Button on profile page to edit profile picture.",
-    "type": "text"
+    "description": "Button on profile page to edit profile picture."
   },
   "profilePicture": "Profile picture",
   "@profilePicture": {
-    "description": "Text on edit profile page.",
-    "type": "text"
+    "description": "Text on edit profile page."
   },
   "firstPostTitle": "Be the first to post a picture or message",
   "@firstPostTitle": {
-    "description": "Text on feed page when feed is empty.",
-    "type": "text"
+    "description": "Text on feed page when feed is empty."
   },
-  "timezoneInformation": "Tv guide timetable is in your local time",
+  "timezoneInformation": "Tv guide timetable is in your local time: {timeZone}",
   "@timezoneInformation": {
     "description": "TV guide footer info text.",
-    "type": "text"
+    "placeholders": {
+      "timeZone": {
+        "type": "String"
+      }
+    }
   },
   "yourQuestion": "Your question",
   "@yourQuestion": {
-    "description": "Title on ask question page",
-    "type": "text"
+    "description": "Title on ask question page"
   },
   "uploadingInquirySuccess": "Please note that not all submitted questions are answered in the broadcast.",
   "@uploadingInquirySuccess": {
-    "description": "Info in upload question success page",
-    "type": "text"
+    "description": "Info in upload question success page"
   },
   "askQuestion": "Ask a question",
   "@askQuestion": {
-    "description": "Ask question text field placeholder",
-    "type": "text"
+    "description": "Ask question text field placeholder"
   },
   "submitQuestionInfo": "By submitting a question you accept that it can be used for broadcast purposes.",
   "@submitQuestionInfo": {
-    "description": "Disclaimer on ask question page",
-    "type": "text"
+    "description": "Disclaimer on ask question page"
   },
   "posting": "Posting",
   "@posting": {
-    "description": "Information about ongoing posting process",
-    "type": "text"
-  },
-  "loading": "Loading",
-  "@loading": {
-    "description": "Message displayed during loading info operation",
-    "type": "text"
+    "description": "Information about ongoing posting process"
   },
   "submitPostInfo": "By submitting a post or photo you accept that it can be used for broadcast purposes. ",
   "@submitPostInfo": {
-    "description": "Disclaimer on text testimony page",
-    "type": "text"
+    "description": "Disclaimer on text testimony page"
   },
   "cropImage": "Crop image",
   "@cropImage": {
-    "description": "Image crop page title",
-    "type": "text"
+    "description": "Image crop page title"
   },
   "square": "Square",
   "@square": {
-    "description": "Image crop mode",
-    "type": "text"
+    "description": "Image crop mode"
   },
   "landscape": "Landscape",
   "@landscape": {
-    "description": "Image crop mode",
-    "type": "text"
+    "description": "Image crop mode"
   },
   "pollSingleChoice": "You may select your answer only once.",
   "@pollSingleChoice": {
-    "description": "Desciption of the poll type. States that user can change the answer only once.",
-    "type": "text"
+    "description": "Desciption of the poll type. States that user can change the answer only once."
   },
   "pollMultipleChoice": "You may change your answer multiple times.",
   "@pollMultipleChoice": {
-    "description": "Desciption of the poll type. States that user can change the answer multiple times.",
-    "type": "text"
+    "description": "Desciption of the poll type. States that user can change the answer multiple times."
   },
   "pollEnded": "The poll section has ended. Thank you for your responses.",
   "@pollEnded": {
-    "description": "Message displayed when poll has been closed by administrator.",
-    "type": "text"
+    "description": "Message displayed when poll has been closed by administrator."
   },
   "browserInstall": "Please install web browser to be able to open this URL.",
   "@browserInstall": {
-    "description": "Message displayed when browser couldn't be opened on user's device.",
-    "type": "text"
+    "description": "Message displayed when browser couldn't be opened on user's device."
   },
   "share": "Share",
   "@share": {
-    "description": "Option name to share video.",
-    "type": "text"
+    "description": "Option name to share video."
   },
   "liveNow": "Live now",
   "@liveNow": {
-    "description": "Call to action button on featured carousel.",
-    "type": "text"
+    "description": "Call to action button on featured carousel."
   },
   "program": "Program",
   "@program": {
-    "description": "Title of the program tab on live page.",
-    "type": "text"
+    "description": "Title of the program tab on live page."
   },
   "participateTab": "Participate",
   "@participateTab": {
-    "description": "Title of the participate tab on live page.",
-    "type": "text"
+    "description": "Title of the participate tab on live page."
   },
   "tomorrow": "Tomorrow",
   "@tomorrow": {
-    "description": "Day of transmission in tv guide.",
-    "type": "text"
+    "description": "Day of transmission in tv guide."
   },
   "readBy": "Read by",
   "@readBy": {
-    "description": "Feed verse pre author text.",
-    "type": "text"
+    "description": "Feed verse pre author text."
   },
-  "pollAnswer": "You've answered: {0}",
+  "pollAnswer": "You've answered: {answer}",
   "@pollAnswer": {
     "description": "Snackbar label after user has chosen poll answer",
-    "type": "text"
+    "placeholders": {
+      "answer": {
+        "type": "String"
+      }
+    }
   },
   "broadcasts": "Broadcasts",
   "@broadcasts": {
-    "description": "Title for tv guide collection on event page.",
-    "type": "text"
+    "description": "Title for tv guide collection on event page."
   },
   "quizAnswered": "Answers submitted",
   "@quizAnswered": {
-    "description": "Text displayed on a button when all answers in quiz have been submitted.",
-    "type": "text"
+    "description": "Text displayed on a button when all answers in quiz have been submitted."
   },
   "quizNotEnabled": "Quiz is not available at the moment. Please try again later.",
   "@quizNotEnabled": {
-    "description": "Message on alert that appears when participate item is visible, but quiz is not enabled.",
-    "type": "text"
+    "description": "Message on alert that appears when participate item is visible, but quiz is not enabled."
   },
   "calendar": "Calendar",
   "@calendar": {
-    "description": "Title of calendar page.",
-    "type": "text"
+    "description": "Title of calendar page."
   },
   "noEvents": "No scheduled transmissions",
   "@noEvents": {
-    "description": "Info in calendar page that no transmissions are scheduled for selected day.",
-    "type": "text"
+    "description": "Info in calendar page that no transmissions are scheduled for selected day."
   },
   "appUpdateTitle": "Update required",
   "@appUpdateTitle": {
-    "description": "Title of the message displayed to the user when application is too old and should be updated in a timely manner.",
-    "type": "text"
+    "description": "Title of the message displayed to the user when application is too old and should be updated in a timely manner."
   },
   "appUpdateRequest": "Please download the latest app to enjoy all the latest features and bug fixes.",
   "@appUpdateRequest": {
-    "description": "Message displayed to the user when application is too old and should be updated in a timely manner.",
-    "type": "text"
+    "description": "Message displayed to the user when application is too old and should be updated in a timely manner."
   },
   "appUpdateAccepted": "Update",
   "@appUpdateAccepted": {
-    "description": "Option that can be chosen by the user to update his application.",
-    "type": "text"
+    "description": "Option that can be chosen by the user to update his application."
   },
   "donationNotAvailable": "Donation is not available at the moment. Please try again later.",
   "@donationNotAvailable": {
-    "description": "Message displayed when donation flow failed.",
-    "type": "text"
+    "description": "Message displayed when donation flow failed."
   },
-  "posts": "{0} Posts",
+  "posts": "{postsCount} Posts",
   "@posts": {
     "description": "Contributions to feed made by the users. Plural of post.",
-    "type": "text"
+    "placeholders": {
+      "postsCount": {
+        "type": "int"
+      }
+    }
   },
   "copy": "Copy",
   "@copy": {
-    "description": "Copy option for quotes, verses.",
-    "type": "text"
+    "description": "Copy option for quotes, verses."
   },
   "reload": "Reload",
   "@reload": {
-    "description": "Label on the button that allows to reload the player after error.",
-    "type": "text"
+    "description": "Label on the button that allows to reload the player after error."
   },
-  "particiantsTitle": "Who is answering?",
-  "@particiantsTitle": {
-    "description": "Title label on the participants list before quiz.",
-    "type": "text"
+  "participantsTitle": "Who is answering?",
+  "@participantsTitleTitle": {
+    "description": "Title label on the participants list before quiz."
   },
   "participantsSubtitle": "Select one or more participants.",
   "@participantsSubtitle": {
-    "description": "Subtitle label on the participants list before quiz.",
-    "type": "text"
+    "description": "Subtitle label on the participants list before quiz."
   },
   "yourFamily": "Your family",
   "@yourFamily": {
-    "description": "Title on page when user selects family members that take part in the quiz.",
-    "type": "text"
+    "description": "Title on page when user selects family members that take part in the quiz."
   },
   "yourTurn": "Your turn",
   "@yourTurn": {
-    "description": "Title on page informing user that other user will answer question in the next step.",
-    "type": "text"
+    "description": "Title on page informing user that other user will answer question in the next step."
   },
   "fAQ": "FAQ",
   "@fAQ": {
-    "description": "Title on FAQ page and item in profile page settings.",
-    "type": "text"
+    "description": "Title on FAQ page and item in profile page settings."
   },
   "shareStart": "Share from start",
   "@shareStart": {
-    "description": "Option on action sheet for sharing from start",
-    "type": "text"
+    "description": "Option on action sheet for sharing from start"
   },
-  "shareTime": "Share from time {0}",
+  "shareTime": "Share from time {time}",
   "@shareTime": {
     "description": "Option on action sheet for sharing from time",
-    "type": "text"
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
   },
-  "loadContentError": "Couldn’t load content",
+  "loadContentError": "Couldn't load content",
   "@loadContentError": {
-    "description": "Error text when content couldn't be loaded.",
-    "type": "text"
+    "description": "Error text when content couldn't be loaded."
   },
   "audioOnlyErrorDescription": "Check internet connection and try again",
   "@audioOnlyErrorDescription": {
-    "description": "Error message when audio only fails to play",
-    "type": "text"
+    "description": "Error message when audio only fails to play"
   },
   "privacyPolicy": "Privacy Policy",
   "@privacyPolicy": {
-    "description": "Title on Privacy Policy page and item in profile page settings.",
-    "type": "text"
+    "description": "Title on Privacy Policy page and item in profile page settings."
   },
   "tokenError": "We couldn't confirm your identity, most likely due to a network problem. Some features of the app may not work correctly.",
   "@tokenError": {
-    "description": "Message indicating that there is a problem with user's token, and some features may be broken because of this.",
-    "type": "text"
+    "description": "Message indicating that there is a problem with user's token, and some features may be broken because of this."
   },
   "categoriesTab": "Categories",
   "@categoriesTab": {
-    "description": "Title of the Categories Tab",
-    "type": "text"
+    "description": "Title of the Categories Tab"
   },
   "settingsTab": "Settings",
   "@settingsTab": {
-    "description": "Title of the Settings Tab",
-    "type": "text"
+    "description": "Title of the Settings Tab"
   },
   "confirmLogin": "Confirm login",
   "@confirmLogin": {
-    "description": "Prompt that asks the user to confirm his log-in",
-    "type": "text"
+    "description": "Prompt that asks the user to confirm his log-in"
   },
   "scanInfo": "Scan code with your phone to enter login page.",
   "@scanInfo": {
-    "description": "Text that informs the user that the QR code can be scanned to enter the login page. Used on AppleTV.",
-    "type": "text"
+    "description": "Text that informs the user that the QR code can be scanned to enter the login page. Used on AppleTV."
   },
   "validInfo": "QR Code is valid for 15 minutes.",
   "@validInfo": {
-    "description": "Message that informs the user for how long the QR Code will be valid.",
-    "type": "text"
+    "description": "Message that informs the user for how long the QR Code will be valid."
   },
   "confirmInfo": "After successful login on your device click button below to confirm your login.",
   "@confirmInfo": {
-    "description": "Message that asks the user to click the button in order to proceed after successful login.",
-    "type": "text"
+    "description": "Message that asks the user to click the button in order to proceed after successful login."
   },
   "seriesTab": "Series",
   "@seriesTab": {
-    "description": "Series Tab title",
-    "type": "text"
+    "description": "Series Tab title"
   },
   "filmsTab": "Films",
   "@filmsTab": {
-    "description": "Films Tab title",
-    "type": "text"
+    "description": "Films Tab title"
   },
   "eventsTab": "Events",
   "@eventsTab": {
-    "description": "Events Tab title",
-    "type": "text"
+    "description": "Events Tab title"
   },
   "audioLanguage": "Audio language",
   "@audioLanguage": {
-    "description": "Label indicating that the Audio Language can be changed here.",
-    "type": "text"
+    "description": "Label indicating that the Audio Language can be changed here."
   },
   "subtitlesLanguage": "Subtitles language",
   "@subtitlesLanguage": {
-    "description": "Label indicating that the Subtitles Language can be changed here.",
-    "type": "text"
+    "description": "Label indicating that the Subtitles Language can be changed here."
   },
   "removeFromRecentSearches": "Do you want to remove this element from recent searches?",
   "@removeFromRecentSearches": {
-    "description": "Prompt that asks the user wheter they are certain, that they want to remove the element from recent searches.",
-    "type": "text"
+    "description": "Prompt that asks the user wheter they are certain, that they want to remove the element from recent searches."
   },
   "noTransmissionToday": "No scheduled transmission for today",
   "@noTransmissionToday": {
-    "description": "Messages that informs the user, that there are no schedules transmission for today.",
-    "type": "text"
+    "description": "Messages that informs the user, that there are no schedules transmission for today."
   },
   "livestreamMaintenanceTitle": "Live stream is not available",
   "@livestreamMaintenanceTitle": {
-    "description": "Message that informs the user, that the livestream is unavailable.",
-    "type": "text"
+    "description": "Message that informs the user, that the livestream is unavailable."
   },
   "start": "Start",
   "@start": {
-    "description": "Word used while displaying information about the beggining of a video or an event in tv guide.",
-    "type": "text"
+    "description": "Word used while displaying information about the beggining of a video or an event in tv guide."
   },
   "transmissionSchedule": "Transmission schedule",
   "@transmissionSchedule": {
-    "description": "Label that indicates the user is looking at Transmission schedule",
-    "type": "text"
+    "description": "Label that indicates the user is looking at Transmission schedule"
   },
   "featured": "Featured",
   "@featured": {
-    "description": "Featured videos collection header",
-    "type": "text"
+    "description": "Featured videos collection header"
   },
   "errorTryAgain": "Something went wrong, please try again later.",
   "@errorTryAgain": {
-    "description": "Message that informs the user, that there was an error. Then politely asks the user to try again later.",
-    "type": "text"
+    "description": "Message that informs the user, that there was an error. Then politely asks the user to try again later."
   },
   "reportProblem": "In case of any problems use QR code below to send us an email.",
   "@reportProblem": {
-    "description": "Message indicating that whenever the user wants to report a problem, they can scan the QR code to send an email to support.",
-    "type": "text"
+    "description": "Message indicating that whenever the user wants to report a problem, they can scan the QR code to send an email to support."
   },
   "phoneReadingProblem": "If your phone can't read QR code send us an email with following info to",
   "@phoneReadingProblem": {
-    "description": "Message explaining that if the user's phone can't scan the QR code, they can send the support e-mail with information listed after this message.",
-    "type": "text"
+    "description": "Message explaining that if the user's phone can't scan the QR code, they can send the support e-mail with information listed after this message."
   },
   "goTo": "or go to",
   "@goTo": {
-    "description": "Message used to point the user to the shortened URL in case they can't use the QR code to log-in. This is used on AppleTV.",
-    "type": "text"
+    "description": "Message used to point the user to the shortened URL in case they can't use the QR code to log-in. This is used on AppleTV."
   },
   "watchBrunstad": "Watch BrunstadTV live",
   "@watchBrunstad": {
-    "description": "Text that entices the user to watch the livestream.",
-    "type": "text"
+    "description": "Text that entices the user to watch the livestream."
   },
   "notLogged": "Not logged in",
   "@notLogged": {
-    "description": "Text that informs the user, that they are not logged in.",
-    "type": "text"
+    "description": "Text that informs the user, that they are not logged in."
   },
   "authResponse0": "Please use new QR code to log in.",
   "@authResponse0": {
-    "description": "Authentication response displayed to the user when an old QR code was used. Asking them to use a new one if they want to log in.",
-    "type": "text"
+    "description": "Authentication response displayed to the user when an old QR code was used. Asking them to use a new one if they want to log in."
   },
   "authResponse1": "Please log in on your mobile using QR code.",
   "@authResponse1": {
-    "description": "Message displayed to the user when they tried to proceed with the log-in on AppleTv without first logging through their mobile device.",
-    "type": "text"
+    "description": "Message displayed to the user when they tried to proceed with the log-in on AppleTv without first logging through their mobile device."
   },
   "authResponse3": "Check your network connection and please try again later.",
   "@authResponse3": {
-    "description": "Message that indicates there was an error during Authentication process. Asking the user to check their network connection and try again.",
-    "type": "text"
+    "description": "Message that indicates there was an error during Authentication process. Asking the user to check their network connection and try again."
   },
   "liveHeader": "Live",
   "@liveHeader": {
-    "description": "Header of the Live Tab — the tab that contains the livestream player on AppleTV.",
-    "type": "text"
+    "description": "Header of the Live Tab — the tab that contains the livestream player on AppleTV."
   },
   "recentlyPublishedSection": "Recently published",
   "@recentlyPublishedSection": {
-    "description": "Section in explore.",
-    "type": "text"
+    "description": "Section in explore."
   },
   "exploreCategoriesSection": "Explore categories",
   "@exploreCategoriesSection": {
-    "description": "Section in explore.",
-    "type": "text"
+    "description": "Section in explore."
   },
   "programsSection": "Programs",
   "@programsSection": {
-    "description": "Section in explore.",
-    "type": "text"
+    "description": "Section in explore."
   },
   "episodesSection": "Episodes",
   "@episodesSection": {
-    "description": "Section in explore.",
-    "type": "text"
+    "description": "Section in explore."
   },
   "categorySeries": "Series",
   "@categorySeries": {
-    "description": "Category name",
-    "type": "text"
+    "description": "Category name"
   },
   "categoryKids": "Kids",
   "@categoryKids": {
-    "description": "Category name",
-    "type": "text"
+    "description": "Category name"
   },
   "categoryFilms": "Films",
   "@categoryFilms": {
-    "description": "Category name",
-    "type": "text"
+    "description": "Category name"
   },
   "categoryEvents": "Events",
   "@categoryEvents": {
-    "description": "Category name",
-    "type": "text"
+    "description": "Category name"
   },
   "categoryMusic": "Music",
   "@categoryMusic": {
-    "description": "Category name",
-    "type": "text"
+    "description": "Category name"
   },
   "noPlannedEvents": "No planned events today",
   "@noPlannedEvents": {
-    "description": "Information in tvguide",
-    "type": "text"
+    "description": "Information in tvguide"
   },
   "watchNow": "Watch now",
   "@watchNow": {
-    "description": "Button on featured carousel",
-    "type": "text"
+    "description": "Button on featured carousel"
   }
 }

@@ -173,7 +173,10 @@ class STr extends S {
   String get queueLimitTitle => 'Limit';
 
   @override
-  String get queueLimitMessage => 'Sırada {0} öğeden fazla öğe olamaz.';
+  String queueLimitMessage(int elementCount) {
+
+    return 'Sırada $elementCount öğeden fazla öğe olamaz.';
+  }
 
   @override
   String get recentSearches => 'Son Aramalar';
@@ -260,7 +263,10 @@ class STr extends S {
   String get uploadFileMessage => 'Bu dosyayı yüklemek istiyor musunuz?';
 
   @override
-  String get watchingWith => 'You are watching with {0} others';
+  String watchingWith(int numPeople) {
+
+    return 'You are watching with $numPeople others';
+  }
 
   @override
   String get uploading => 'Yükleniyor';
@@ -272,7 +278,10 @@ class STr extends S {
   String get post => 'Gönderi';
 
   @override
-  String get charactersLimit => '{0} / {1} karakter kaldı';
+  String charactersLimit(int charsLeft, int charsTotal) {
+
+    return '$charsLeft / $charsTotal karakter kaldı';
+  }
 
   @override
   String get uploadingPostSuccess => 'Yayınınız gönderildi.';
@@ -413,16 +422,25 @@ class STr extends S {
   String get noNewPosts => 'Yeni mesaj yok';
 
   @override
-  String get newPostsMultiple => '{0} yeni gönderiler!';
+  String newPostsMultiple(int postCount) {
+
+    return '$postCount yeni gönderiler!';
+  }
 
   @override
-  String get newPostsSingle => '{0} yeni gönderi!';
+  String newPostsSingle(int postCount) {
+
+    return '$postCount yeni gönderi!';
+  }
 
   @override
   String get expired => 'Süresi doldu';
 
   @override
-  String get availableFrom => 'Uygun {0}';
+  String availableFrom(String date) {
+
+    return 'Uygun $date';
+  }
 
   @override
   String get howFar => 'Ne kadar ileri gittin?';
@@ -434,16 +452,25 @@ class STr extends S {
   String get wellDone => 'Aferin!';
 
   @override
-  String get wellDoneDistance => 'Aferin! Toplam mesafe {0} km kaydettiniz';
+  String wellDoneDistance(int distanceInKM) {
+
+    return 'Aferin! Toplam mesafe $distanceInKM km kaydettiniz';
+  }
 
   @override
   String get distanceRegistered => 'Mesafeniz kaydedildi. Başka bir mesafe göndermek istiyorsanız aşağıya devam edin.';
 
   @override
-  String get ranMore => '{0} km\'den fazla gittim';
+  String ranMore(int distanceInKM) {
+
+    return '$distanceInKM km\'den fazla gittim';
+  }
 
   @override
-  String get moreThan => '{0} km\'den fazla';
+  String moreThan(int distanceInKM) {
+
+    return '$distanceInKM km\'den fazla';
+  }
 
   @override
   String get runningEffort => 'İnanılmaz çaba! Aşağıya kat ettiğiniz kilometreyi yazın.';
@@ -464,7 +491,10 @@ class STr extends S {
   String get firstPostTitle => 'İlk resim veya mesaj gönderen siz olun';
 
   @override
-  String get timezoneInformation => 'Tv rehberi zaman çizelgesi yerel saatinizde: {0}';
+  String timezoneInformation(String timeZone) {
+
+    return 'Tv rehberi zaman çizelgesi yerel saatinizde: $timeZone';
+  }
 
   @override
   String get yourQuestion => 'Senin sorun';
@@ -524,7 +554,10 @@ class STr extends S {
   String get readBy => 'Read by';
 
   @override
-  String get pollAnswer => 'You\'ve answered: {0}';
+  String pollAnswer(String answer) {
+
+    return 'You\'ve answered: $answer';
+  }
 
   @override
   String get broadcasts => 'Broadcasts';
@@ -554,7 +587,10 @@ class STr extends S {
   String get donationNotAvailable => 'Donation is not available at the moment. Please try again later.';
 
   @override
-  String get posts => '{0} Posts';
+  String posts(int postsCount) {
+
+    return '$postsCount Posts';
+  }
 
   @override
   String get copy => 'Copy';
@@ -563,7 +599,7 @@ class STr extends S {
   String get reload => 'Reload';
 
   @override
-  String get particiantsTitle => 'Who is answering?';
+  String get participantsTitle => 'Who is answering?';
 
   @override
   String get participantsSubtitle => 'Select one or more participants.';
@@ -581,10 +617,13 @@ class STr extends S {
   String get shareStart => 'Share from start';
 
   @override
-  String get shareTime => 'Share from time {0}';
+  String shareTime(String time) {
+
+    return 'Share from time $time';
+  }
 
   @override
-  String get loadContentError => 'Couldn’t load content';
+  String get loadContentError => 'Couldn\'t load content';
 
   @override
   String get audioOnlyErrorDescription => 'Check internet connection and try again';

@@ -173,7 +173,10 @@ class SEn extends S {
   String get queueLimitTitle => 'Limit';
 
   @override
-  String get queueLimitMessage => 'You cannot have more than {0} elements in queue.';
+  String queueLimitMessage(int elementCount) {
+
+    return 'You cannot have more than $elementCount elements in queue.';
+  }
 
   @override
   String get recentSearches => 'Recent Searches';
@@ -260,7 +263,10 @@ class SEn extends S {
   String get uploadFileMessage => 'Do you want to upload this file?';
 
   @override
-  String get watchingWith => 'You are watching with {0} others';
+  String watchingWith(int numPeople) {
+
+    return 'You are watching with $numPeople others';
+  }
 
   @override
   String get uploading => 'Uploading';
@@ -272,7 +278,10 @@ class SEn extends S {
   String get post => 'Post';
 
   @override
-  String get charactersLimit => '{0} of {1} characters left';
+  String charactersLimit(int charsLeft, int charsTotal) {
+
+    return '$charsLeft of $charsTotal characters left';
+  }
 
   @override
   String get uploadingPostSuccess => 'Your post has been sent in.';
@@ -401,7 +410,7 @@ class SEn extends S {
   String get thankYouSupportDescription => 'We appreciate all feedback and we will address the issue as soon as possible.';
 
   @override
-  String get sendFail => 'Couldn’t send you message';
+  String get sendFail => 'Couldn\'t send you message';
 
   @override
   String get sendFailDescription => 'Something went wrong. Check your internet connection and try again.';
@@ -413,16 +422,25 @@ class SEn extends S {
   String get noNewPosts => 'No new posts';
 
   @override
-  String get newPostsMultiple => '{0} new posts!';
+  String newPostsMultiple(int postCount) {
+
+    return '$postCount new posts!';
+  }
 
   @override
-  String get newPostsSingle => '{0} new post!';
+  String newPostsSingle(int postCount) {
+
+    return '$postCount new post!';
+  }
 
   @override
   String get expired => 'Expired';
 
   @override
-  String get availableFrom => 'Available {0}';
+  String availableFrom(String date) {
+
+    return 'Available $date';
+  }
 
   @override
   String get howFar => 'How far did you go?';
@@ -434,16 +452,25 @@ class SEn extends S {
   String get wellDone => 'Well done!';
 
   @override
-  String get wellDoneDistance => 'Well done! You have registered a total distance of {0} km';
+  String wellDoneDistance(int distanceInKM) {
+
+    return 'Well done! You have registered a total distance of $distanceInKM km';
+  }
 
   @override
   String get distanceRegistered => 'Your distance has been registered. Continue below if you want to submit another distance.';
 
   @override
-  String get ranMore => 'I went more than {0} km';
+  String ranMore(int distanceInKM) {
+
+    return 'I went more than $distanceInKM km';
+  }
 
   @override
-  String get moreThan => 'More than {0} km';
+  String moreThan(int distanceInKM) {
+
+    return 'More than $distanceInKM km';
+  }
 
   @override
   String get runningEffort => 'Amazing effort! Type the amount of kilometers you went below.';
@@ -464,7 +491,10 @@ class SEn extends S {
   String get firstPostTitle => 'Be the first to post a picture or message';
 
   @override
-  String get timezoneInformation => 'Tv guide timetable is in your local time';
+  String timezoneInformation(String timeZone) {
+
+    return 'Tv guide timetable is in your local time: $timeZone';
+  }
 
   @override
   String get yourQuestion => 'Your question';
@@ -524,7 +554,10 @@ class SEn extends S {
   String get readBy => 'Read by';
 
   @override
-  String get pollAnswer => 'You\'ve answered: {0}';
+  String pollAnswer(String answer) {
+
+    return 'You\'ve answered: $answer';
+  }
 
   @override
   String get broadcasts => 'Broadcasts';
@@ -554,7 +587,10 @@ class SEn extends S {
   String get donationNotAvailable => 'Donation is not available at the moment. Please try again later.';
 
   @override
-  String get posts => '{0} Posts';
+  String posts(int postsCount) {
+
+    return '$postsCount Posts';
+  }
 
   @override
   String get copy => 'Copy';
@@ -563,7 +599,7 @@ class SEn extends S {
   String get reload => 'Reload';
 
   @override
-  String get particiantsTitle => 'Who is answering?';
+  String get participantsTitle => 'Who is answering?';
 
   @override
   String get participantsSubtitle => 'Select one or more participants.';
@@ -581,10 +617,13 @@ class SEn extends S {
   String get shareStart => 'Share from start';
 
   @override
-  String get shareTime => 'Share from time {0}';
+  String shareTime(String time) {
+
+    return 'Share from time $time';
+  }
 
   @override
-  String get loadContentError => 'Couldn’t load content';
+  String get loadContentError => 'Couldn\'t load content';
 
   @override
   String get audioOnlyErrorDescription => 'Check internet connection and try again';
