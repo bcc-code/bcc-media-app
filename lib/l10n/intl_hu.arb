@@ -1,4 +1,54 @@
 {
+  "loadingContent": "Loading content",
+  "@loadingContent": {
+    "description": "Text displayed when page content is loading.",
+    "type": "text"
+  },
+  "signInTooltip": "Sign in to watch more content",
+  "@signInTooltip": {
+    "description": "Text for tooltip displayed when a non-member user opens the home page.",
+    "type": "text"
+  },
+  "skipToPublicContent": "Skip to watch public content",
+  "@skipToPublicContent": {
+    "description": "Text for button displayed on login screen to skip sign in and watch public content.",
+    "type": "text"
+  },
+  "minutesShort": "min",
+  "@minutesShort": {
+    "description": "Text for minutes.",
+    "type": "text"
+  },
+  "calendarThisWeek": "This week",
+  "@calendarThisWeek": {
+    "description": "Text for This week.",
+    "type": "text"
+  },
+  "calendarWeek": "week",
+  "@calendarWeek": {
+    "description": "Text week.",
+    "type": "text"
+  },
+  "loading": "Betöltés",
+  "@loading": {
+    "description": "Message displayed during loading info operation",
+    "type": "text"
+  },
+  "loginPageDisplay1": "The most powerful message in the world",
+  "@loginPageDisplay1": {
+    "description": "Text displayed on login screen.",
+    "type": "text"
+  },
+  "loginPageDisplay2": "Watch series, shows and films based on Christian values",
+  "@loginPageDisplay2": {
+    "description": "Text displayed on login screen.",
+    "type": "text"
+  },
+  "loginPageDisplay3": "Produced by BCC Media",
+  "@loginPageDisplay3": {
+    "description": "Text displayed on login screen.",
+    "type": "text"
+  },
   "liveTab": "Élő",
   "@liveTab": {
     "description": "Title of live page tab",
@@ -12,6 +62,11 @@
   "profileTab": "Profil",
   "@profileTab": {
     "description": "Title of the profile page",
+    "type": "text"
+  },
+  "faq": "Frequently asked questions",
+  "@faq": {
+    "description": "Title of the FAQ page.",
     "type": "text"
   },
   "bccMediaCenter": "BrunstadTV nem kereskedelmi média, hanem olyan tartalmakat állít elő és közvetít, amelyek pozitív és keresztény értékeken alapul.",
@@ -191,7 +246,7 @@
   },
   "noResults": "Nincs eredmény",
   "@noResults": {
-    "description": "Search title",
+    "description": "No search results.",
     "type": "text"
   },
   "doYouWantCast": "Szeretnéd ezt a videót Chromecasten keresztül közvetíteni?",
@@ -711,7 +766,7 @@
   },
   "timezoneInformation": "A TV program időpontjai a helyi idő szerint jelenek meg: {0}",
   "@timezoneInformation": {
-    "description": "TV guide footer info text. {0} is timezone acronym like CET",
+    "description": "TV guide footer info text.",
     "type": "text"
   },
   "yourQuestion": "A kérdésed",
@@ -736,12 +791,7 @@
   },
   "posting": "Közzé tenni",
   "@posting": {
-    "description": "Information about ongiong posting process",
-    "type": "text"
-  },
-  "loading": "Betöltés",
-  "@loading": {
-    "description": "Message displayed during loading info operation",
+    "description": "Information about ongoing posting process",
     "type": "text"
   },
   "submitPostInfo": "Hozzászólás vagy fotó beküldéseddel elfogadod, hogy azt adási célokra lehet felhasználni. ",
@@ -916,7 +966,7 @@
   },
   "loadContentError": "Nem sikerült betölteni a tartalmat",
   "@loadContentError": {
-    "description": "Error title when audio only fails to play",
+    "description": "Error text when content couldn't be loaded.",
     "type": "text"
   },
   "audioOnlyErrorDescription": "Ellenőrizd a hálózati csatlakozásodat és próbálj újra",

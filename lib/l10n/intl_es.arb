@@ -1,4 +1,54 @@
 {
+  "loadingContent": "Loading content",
+  "@loadingContent": {
+    "description": "Text displayed when page content is loading.",
+    "type": "text"
+  },
+  "signInTooltip": "Sign in to watch more content",
+  "@signInTooltip": {
+    "description": "Text for tooltip displayed when a non-member user opens the home page.",
+    "type": "text"
+  },
+  "skipToPublicContent": "Skip to watch public content",
+  "@skipToPublicContent": {
+    "description": "Text for button displayed on login screen to skip sign in and watch public content.",
+    "type": "text"
+  },
+  "minutesShort": "min",
+  "@minutesShort": {
+    "description": "Text for minutes.",
+    "type": "text"
+  },
+  "calendarThisWeek": "This week",
+  "@calendarThisWeek": {
+    "description": "Text for This week.",
+    "type": "text"
+  },
+  "calendarWeek": "week",
+  "@calendarWeek": {
+    "description": "Text week.",
+    "type": "text"
+  },
+  "loading": "Cargando",
+  "@loading": {
+    "description": "Message displayed during loading info operation",
+    "type": "text"
+  },
+  "loginPageDisplay1": "The most powerful message in the world",
+  "@loginPageDisplay1": {
+    "description": "Text displayed on login screen.",
+    "type": "text"
+  },
+  "loginPageDisplay2": "Watch series, shows and films based on Christian values",
+  "@loginPageDisplay2": {
+    "description": "Text displayed on login screen.",
+    "type": "text"
+  },
+  "loginPageDisplay3": "Produced by BCC Media",
+  "@loginPageDisplay3": {
+    "description": "Text displayed on login screen.",
+    "type": "text"
+  },
   "liveTab": "En Vivo",
   "@liveTab": {
     "description": "Title of live page tab",
@@ -12,6 +62,11 @@
   "profileTab": "Perfil",
   "@profileTab": {
     "description": "Title of the profile page",
+    "type": "text"
+  },
+  "faq": "Frequently asked questions",
+  "@faq": {
+    "description": "Title of the FAQ page.",
     "type": "text"
   },
   "bccMediaCenter": "BrunstadTV es un centro de medio audiovisuales no comercial, que produce contenido basado en valores positivos y en valores cristianos.",
@@ -191,7 +246,7 @@
   },
   "noResults": "Sin resultados",
   "@noResults": {
-    "description": "Search title",
+    "description": "No search results.",
     "type": "text"
   },
   "doYouWantCast": "¿Desea transmitir este video?",
@@ -711,7 +766,7 @@
   },
   "timezoneInformation": "El horario de la guía de televisión está en su hora local {0}",
   "@timezoneInformation": {
-    "description": "TV guide footer info text. {0} is timezone acronym like CET",
+    "description": "TV guide footer info text.",
     "type": "text"
   },
   "yourQuestion": "Su pregunta",
@@ -736,12 +791,7 @@
   },
   "posting": "Publicando",
   "@posting": {
-    "description": "Information about ongiong posting process",
-    "type": "text"
-  },
-  "loading": "Cargando",
-  "@loading": {
-    "description": "Message displayed during loading info operation",
+    "description": "Information about ongoing posting process",
     "type": "text"
   },
   "submitPostInfo": "Al enviar una publicación o una foto, ud acepta que se puede utilizar para fines de transmisión. ",
@@ -916,7 +966,7 @@
   },
   "loadContentError": "El contenido no pudo ser cargado",
   "@loadContentError": {
-    "description": "Error title when audio only fails to play",
+    "description": "Error text when content couldn't be loaded.",
     "type": "text"
   },
   "audioOnlyErrorDescription": "Revisa tu conexión a internet e inténtalo otra vez",
