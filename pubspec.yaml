@@ -58,7 +58,7 @@ dependencies:
   intl: ^0.17.0
   graphql: ^5.1.1
   graphql_flutter: ^5.1.0
-  auth0_flutter: 1.0.1
+  auth0_flutter: ^1.0.2
   shared_preferences: ^2.0.15
   hive: ^2.2.3
   firebase_messaging: ^14.0.3
@@ -69,7 +69,6 @@ dependencies:
   device_info_plus: ^8.0.0
   alice: ^0.3.1
   dio: ^4.0.6
-  gql_dio_link: ^0.2.2
   firebase_crashlytics: ^3.0.4
   flutter_svg_provider: ^1.0.3
   on_screen_ruler: ^0.0.1
