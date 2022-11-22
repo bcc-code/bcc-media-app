@@ -46,92 +46,96 @@ fragment ItemSectionItem on SectionItem {
   }
 }
 
+fragment ItemSection on ItemSection {
+  items {
+    items {
+      ...ItemSectionItem
+    }
+  }
+}
+
 fragment Section on Section {
   id
   title
   ... on ItemSection {
-    items {
+    ...ItemSection
+    ... on PosterSection {
+      size
       items {
-        ...ItemSectionItem
-      }
-    }
-  }
-  ... on PosterSection {
-    size
-    items {
-      items {
-        item {
-          ... on Show {
-            episodeCount
-            seasonCount
-          }
-          ... on Episode {
-            productionDate
-            availableFrom
-            duration
-            season {
-              show {
-                title
+        items {
+          item {
+            ... on Show {
+              episodeCount
+              seasonCount
+            }
+            ... on Episode {
+              productionDate
+              availableFrom
+              duration
+              season {
+                show {
+                  title
+                }
               }
             }
+            __typename
           }
-          __typename
         }
       }
     }
-  }
-  ... on FeaturedSection {
-    size
-    items {
+    ... on FeaturedSection {
+      size
       items {
-        description
-      }
-    }
-  }
-  ... on DefaultSection {
-    size
-    items {
-      items {
-        item {
-          ... on Show {
-            episodeCount
-            seasonCount
-          }
-          ... on Episode {
-            productionDate
-            availableFrom
-            duration
-            season {
-              show {
-                title
-              }
-            }
-          }
-          __typename
+        items {
+          description
         }
       }
     }
-  }
-  ... on GridSection {
-    gridSize: size
-    items {
+    ... on DefaultSection {
+      size
       items {
-        ...GridSectionItem
+        items {
+          item {
+            ... on Show {
+              episodeCount
+              seasonCount
+            }
+            ... on Episode {
+              productionDate
+              availableFrom
+              duration
+              season {
+                show {
+                  title
+                }
+              }
+            }
+            __typename
+          }
+        }
       }
     }
-  }
-  ... on ListSection {
-    items {
+    ... on GridSection {
+      gridSize: size
       items {
-        item {
-          ... on Episode {
-            title
-            ageRating
-            duration
-            image
-            season {
-              show {
-                title
+        items {
+          ...GridSectionItem
+        }
+      }
+    }
+    ... on ListSection {
+      items {
+        items {
+          item {
+            ... on Episode {
+              title
+              ageRating
+              duration
+              image
+              season {
+                show {
+                  title
+                }
               }
             }
           }

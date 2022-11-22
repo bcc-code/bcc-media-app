@@ -2846,6 +2846,383 @@ class _CopyWithStubImpl$Fragment$ItemSectionItem$item$$Show$defaultEpisode<TRes>
       _res;
 }
 
+class Fragment$ItemSection {
+  Fragment$ItemSection({
+    required this.items,
+    required this.$__typename,
+  });
+
+  factory Fragment$ItemSection.fromJson(Map<String, dynamic> json) {
+    final l$items = json['items'];
+    final l$$__typename = json['__typename'];
+    return Fragment$ItemSection(
+      items: Fragment$ItemSection$items.fromJson(
+          (l$items as Map<String, dynamic>)),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final Fragment$ItemSection$items items;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$items = items;
+    _resultData['items'] = l$items.toJson();
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$items = items;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$items,
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (!(other is Fragment$ItemSection) || runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$items = items;
+    final lOther$items = other.items;
+    if (l$items != lOther$items) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Fragment$ItemSection on Fragment$ItemSection {
+  CopyWith$Fragment$ItemSection<Fragment$ItemSection> get copyWith =>
+      CopyWith$Fragment$ItemSection(
+        this,
+        (i) => i,
+      );
+}
+
+abstract class CopyWith$Fragment$ItemSection<TRes> {
+  factory CopyWith$Fragment$ItemSection(
+    Fragment$ItemSection instance,
+    TRes Function(Fragment$ItemSection) then,
+  ) = _CopyWithImpl$Fragment$ItemSection;
+
+  factory CopyWith$Fragment$ItemSection.stub(TRes res) =
+      _CopyWithStubImpl$Fragment$ItemSection;
+
+  TRes call({
+    Fragment$ItemSection$items? items,
+    String? $__typename,
+  });
+  CopyWith$Fragment$ItemSection$items<TRes> get items;
+}
+
+class _CopyWithImpl$Fragment$ItemSection<TRes>
+    implements CopyWith$Fragment$ItemSection<TRes> {
+  _CopyWithImpl$Fragment$ItemSection(
+    this._instance,
+    this._then,
+  );
+
+  final Fragment$ItemSection _instance;
+
+  final TRes Function(Fragment$ItemSection) _then;
+
+  static const _undefined = {};
+
+  TRes call({
+    Object? items = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(Fragment$ItemSection(
+        items: items == _undefined || items == null
+            ? _instance.items
+            : (items as Fragment$ItemSection$items),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+  CopyWith$Fragment$ItemSection$items<TRes> get items {
+    final local$items = _instance.items;
+    return CopyWith$Fragment$ItemSection$items(
+        local$items, (e) => call(items: e));
+  }
+}
+
+class _CopyWithStubImpl$Fragment$ItemSection<TRes>
+    implements CopyWith$Fragment$ItemSection<TRes> {
+  _CopyWithStubImpl$Fragment$ItemSection(this._res);
+
+  TRes _res;
+
+  call({
+    Fragment$ItemSection$items? items,
+    String? $__typename,
+  }) =>
+      _res;
+  CopyWith$Fragment$ItemSection$items<TRes> get items =>
+      CopyWith$Fragment$ItemSection$items.stub(_res);
+}
+
+const fragmentDefinitionItemSection = FragmentDefinitionNode(
+  name: NameNode(value: 'ItemSection'),
+  typeCondition: TypeConditionNode(
+      on: NamedTypeNode(
+    name: NameNode(value: 'ItemSection'),
+    isNonNull: false,
+  )),
+  directives: [],
+  selectionSet: SelectionSetNode(selections: [
+    FieldNode(
+      name: NameNode(value: 'items'),
+      alias: null,
+      arguments: [],
+      directives: [],
+      selectionSet: SelectionSetNode(selections: [
+        FieldNode(
+          name: NameNode(value: 'items'),
+          alias: null,
+          arguments: [],
+          directives: [],
+          selectionSet: SelectionSetNode(selections: [
+            FragmentSpreadNode(
+              name: NameNode(value: 'ItemSectionItem'),
+              directives: [],
+            ),
+            FieldNode(
+              name: NameNode(value: '__typename'),
+              alias: null,
+              arguments: [],
+              directives: [],
+              selectionSet: null,
+            ),
+          ]),
+        ),
+        FieldNode(
+          name: NameNode(value: '__typename'),
+          alias: null,
+          arguments: [],
+          directives: [],
+          selectionSet: null,
+        ),
+      ]),
+    ),
+    FieldNode(
+      name: NameNode(value: '__typename'),
+      alias: null,
+      arguments: [],
+      directives: [],
+      selectionSet: null,
+    ),
+  ]),
+);
+const documentNodeFragmentItemSection = DocumentNode(definitions: [
+  fragmentDefinitionItemSection,
+  fragmentDefinitionItemSectionItem,
+]);
+
+extension ClientExtension$Fragment$ItemSection on graphql.GraphQLClient {
+  void writeFragment$ItemSection({
+    required Fragment$ItemSection data,
+    required Map<String, dynamic> idFields,
+    bool broadcast = true,
+  }) =>
+      this.writeFragment(
+        graphql.FragmentRequest(
+          idFields: idFields,
+          fragment: const graphql.Fragment(
+            fragmentName: 'ItemSection',
+            document: documentNodeFragmentItemSection,
+          ),
+        ),
+        data: data.toJson(),
+        broadcast: broadcast,
+      );
+  Fragment$ItemSection? readFragment$ItemSection({
+    required Map<String, dynamic> idFields,
+    bool optimistic = true,
+  }) {
+    final result = this.readFragment(
+      graphql.FragmentRequest(
+        idFields: idFields,
+        fragment: const graphql.Fragment(
+          fragmentName: 'ItemSection',
+          document: documentNodeFragmentItemSection,
+        ),
+      ),
+      optimistic: optimistic,
+    );
+    return result == null ? null : Fragment$ItemSection.fromJson(result);
+  }
+}
+
+class Fragment$ItemSection$items {
+  Fragment$ItemSection$items({
+    required this.items,
+    required this.$__typename,
+  });
+
+  factory Fragment$ItemSection$items.fromJson(Map<String, dynamic> json) {
+    final l$items = json['items'];
+    final l$$__typename = json['__typename'];
+    return Fragment$ItemSection$items(
+      items: (l$items as List<dynamic>)
+          .map((e) =>
+              Fragment$ItemSectionItem.fromJson((e as Map<String, dynamic>)))
+          .toList(),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final List<Fragment$ItemSectionItem> items;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$items = items;
+    _resultData['items'] = l$items.map((e) => e.toJson()).toList();
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$items = items;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      Object.hashAll(l$items.map((v) => v)),
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (!(other is Fragment$ItemSection$items) ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$items = items;
+    final lOther$items = other.items;
+    if (l$items.length != lOther$items.length) {
+      return false;
+    }
+    for (int i = 0; i < l$items.length; i++) {
+      final l$items$entry = l$items[i];
+      final lOther$items$entry = lOther$items[i];
+      if (l$items$entry != lOther$items$entry) {
+        return false;
+      }
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Fragment$ItemSection$items
+    on Fragment$ItemSection$items {
+  CopyWith$Fragment$ItemSection$items<Fragment$ItemSection$items>
+      get copyWith => CopyWith$Fragment$ItemSection$items(
+            this,
+            (i) => i,
+          );
+}
+
+abstract class CopyWith$Fragment$ItemSection$items<TRes> {
+  factory CopyWith$Fragment$ItemSection$items(
+    Fragment$ItemSection$items instance,
+    TRes Function(Fragment$ItemSection$items) then,
+  ) = _CopyWithImpl$Fragment$ItemSection$items;
+
+  factory CopyWith$Fragment$ItemSection$items.stub(TRes res) =
+      _CopyWithStubImpl$Fragment$ItemSection$items;
+
+  TRes call({
+    List<Fragment$ItemSectionItem>? items,
+    String? $__typename,
+  });
+  TRes items(
+      Iterable<Fragment$ItemSectionItem> Function(
+              Iterable<
+                  CopyWith$Fragment$ItemSectionItem<Fragment$ItemSectionItem>>)
+          _fn);
+}
+
+class _CopyWithImpl$Fragment$ItemSection$items<TRes>
+    implements CopyWith$Fragment$ItemSection$items<TRes> {
+  _CopyWithImpl$Fragment$ItemSection$items(
+    this._instance,
+    this._then,
+  );
+
+  final Fragment$ItemSection$items _instance;
+
+  final TRes Function(Fragment$ItemSection$items) _then;
+
+  static const _undefined = {};
+
+  TRes call({
+    Object? items = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(Fragment$ItemSection$items(
+        items: items == _undefined || items == null
+            ? _instance.items
+            : (items as List<Fragment$ItemSectionItem>),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+  TRes items(
+          Iterable<Fragment$ItemSectionItem> Function(
+                  Iterable<
+                      CopyWith$Fragment$ItemSectionItem<
+                          Fragment$ItemSectionItem>>)
+              _fn) =>
+      call(
+          items:
+              _fn(_instance.items.map((e) => CopyWith$Fragment$ItemSectionItem(
+                    e,
+                    (i) => i,
+                  ))).toList());
+}
+
+class _CopyWithStubImpl$Fragment$ItemSection$items<TRes>
+    implements CopyWith$Fragment$ItemSection$items<TRes> {
+  _CopyWithStubImpl$Fragment$ItemSection$items(this._res);
+
+  TRes _res;
+
+  call({
+    List<Fragment$ItemSectionItem>? items,
+    String? $__typename,
+  }) =>
+      _res;
+  items(_fn) => _res;
+}
+
 class Fragment$Section {
   Fragment$Section({
     required this.id,
@@ -3052,70 +3429,25 @@ const fragmentDefinitionSection = FragmentDefinitionNode(
       )),
       directives: [],
       selectionSet: SelectionSetNode(selections: [
-        FieldNode(
-          name: NameNode(value: 'items'),
-          alias: null,
-          arguments: [],
+        FragmentSpreadNode(
+          name: NameNode(value: 'ItemSection'),
+          directives: [],
+        ),
+        InlineFragmentNode(
+          typeCondition: TypeConditionNode(
+              on: NamedTypeNode(
+            name: NameNode(value: 'PosterSection'),
+            isNonNull: false,
+          )),
           directives: [],
           selectionSet: SelectionSetNode(selections: [
             FieldNode(
-              name: NameNode(value: 'items'),
-              alias: null,
-              arguments: [],
-              directives: [],
-              selectionSet: SelectionSetNode(selections: [
-                FragmentSpreadNode(
-                  name: NameNode(value: 'ItemSectionItem'),
-                  directives: [],
-                ),
-                FieldNode(
-                  name: NameNode(value: '__typename'),
-                  alias: null,
-                  arguments: [],
-                  directives: [],
-                  selectionSet: null,
-                ),
-              ]),
-            ),
-            FieldNode(
-              name: NameNode(value: '__typename'),
+              name: NameNode(value: 'size'),
               alias: null,
               arguments: [],
               directives: [],
               selectionSet: null,
             ),
-          ]),
-        ),
-        FieldNode(
-          name: NameNode(value: '__typename'),
-          alias: null,
-          arguments: [],
-          directives: [],
-          selectionSet: null,
-        ),
-      ]),
-    ),
-    InlineFragmentNode(
-      typeCondition: TypeConditionNode(
-          on: NamedTypeNode(
-        name: NameNode(value: 'PosterSection'),
-        isNonNull: false,
-      )),
-      directives: [],
-      selectionSet: SelectionSetNode(selections: [
-        FieldNode(
-          name: NameNode(value: 'size'),
-          alias: null,
-          arguments: [],
-          directives: [],
-          selectionSet: null,
-        ),
-        FieldNode(
-          name: NameNode(value: 'items'),
-          alias: null,
-          arguments: [],
-          directives: [],
-          selectionSet: SelectionSetNode(selections: [
             FieldNode(
               name: NameNode(value: 'items'),
               alias: null,
@@ -3123,89 +3455,104 @@ const fragmentDefinitionSection = FragmentDefinitionNode(
               directives: [],
               selectionSet: SelectionSetNode(selections: [
                 FieldNode(
-                  name: NameNode(value: 'item'),
+                  name: NameNode(value: 'items'),
                   alias: null,
                   arguments: [],
                   directives: [],
                   selectionSet: SelectionSetNode(selections: [
-                    InlineFragmentNode(
-                      typeCondition: TypeConditionNode(
-                          on: NamedTypeNode(
-                        name: NameNode(value: 'Show'),
-                        isNonNull: false,
-                      )),
+                    FieldNode(
+                      name: NameNode(value: 'item'),
+                      alias: null,
+                      arguments: [],
                       directives: [],
                       selectionSet: SelectionSetNode(selections: [
-                        FieldNode(
-                          name: NameNode(value: 'episodeCount'),
-                          alias: null,
-                          arguments: [],
-                          directives: [],
-                          selectionSet: null,
-                        ),
-                        FieldNode(
-                          name: NameNode(value: 'seasonCount'),
-                          alias: null,
-                          arguments: [],
-                          directives: [],
-                          selectionSet: null,
-                        ),
-                        FieldNode(
-                          name: NameNode(value: '__typename'),
-                          alias: null,
-                          arguments: [],
-                          directives: [],
-                          selectionSet: null,
-                        ),
-                      ]),
-                    ),
-                    InlineFragmentNode(
-                      typeCondition: TypeConditionNode(
-                          on: NamedTypeNode(
-                        name: NameNode(value: 'Episode'),
-                        isNonNull: false,
-                      )),
-                      directives: [],
-                      selectionSet: SelectionSetNode(selections: [
-                        FieldNode(
-                          name: NameNode(value: 'productionDate'),
-                          alias: null,
-                          arguments: [],
-                          directives: [],
-                          selectionSet: null,
-                        ),
-                        FieldNode(
-                          name: NameNode(value: 'availableFrom'),
-                          alias: null,
-                          arguments: [],
-                          directives: [],
-                          selectionSet: null,
-                        ),
-                        FieldNode(
-                          name: NameNode(value: 'duration'),
-                          alias: null,
-                          arguments: [],
-                          directives: [],
-                          selectionSet: null,
-                        ),
-                        FieldNode(
-                          name: NameNode(value: 'season'),
-                          alias: null,
-                          arguments: [],
+                        InlineFragmentNode(
+                          typeCondition: TypeConditionNode(
+                              on: NamedTypeNode(
+                            name: NameNode(value: 'Show'),
+                            isNonNull: false,
+                          )),
                           directives: [],
                           selectionSet: SelectionSetNode(selections: [
                             FieldNode(
-                              name: NameNode(value: 'show'),
+                              name: NameNode(value: 'episodeCount'),
+                              alias: null,
+                              arguments: [],
+                              directives: [],
+                              selectionSet: null,
+                            ),
+                            FieldNode(
+                              name: NameNode(value: 'seasonCount'),
+                              alias: null,
+                              arguments: [],
+                              directives: [],
+                              selectionSet: null,
+                            ),
+                            FieldNode(
+                              name: NameNode(value: '__typename'),
+                              alias: null,
+                              arguments: [],
+                              directives: [],
+                              selectionSet: null,
+                            ),
+                          ]),
+                        ),
+                        InlineFragmentNode(
+                          typeCondition: TypeConditionNode(
+                              on: NamedTypeNode(
+                            name: NameNode(value: 'Episode'),
+                            isNonNull: false,
+                          )),
+                          directives: [],
+                          selectionSet: SelectionSetNode(selections: [
+                            FieldNode(
+                              name: NameNode(value: 'productionDate'),
+                              alias: null,
+                              arguments: [],
+                              directives: [],
+                              selectionSet: null,
+                            ),
+                            FieldNode(
+                              name: NameNode(value: 'availableFrom'),
+                              alias: null,
+                              arguments: [],
+                              directives: [],
+                              selectionSet: null,
+                            ),
+                            FieldNode(
+                              name: NameNode(value: 'duration'),
+                              alias: null,
+                              arguments: [],
+                              directives: [],
+                              selectionSet: null,
+                            ),
+                            FieldNode(
+                              name: NameNode(value: 'season'),
                               alias: null,
                               arguments: [],
                               directives: [],
                               selectionSet: SelectionSetNode(selections: [
                                 FieldNode(
-                                  name: NameNode(value: 'title'),
+                                  name: NameNode(value: 'show'),
                                   alias: null,
                                   arguments: [],
                                   directives: [],
-                                  selectionSet: null,
+                                  selectionSet: SelectionSetNode(selections: [
+                                    FieldNode(
+                                      name: NameNode(value: 'title'),
+                                      alias: null,
+                                      arguments: [],
+                                      directives: [],
+                                      selectionSet: null,
+                                    ),
+                                    FieldNode(
+                                      name: NameNode(value: '__typename'),
+                                      alias: null,
+                                      arguments: [],
+                                      directives: [],
+                                      selectionSet: null,
+                                    ),
+                                  ]),
                                 ),
                                 FieldNode(
                                   name: NameNode(value: '__typename'),
@@ -3261,36 +3608,21 @@ const fragmentDefinitionSection = FragmentDefinitionNode(
             ),
           ]),
         ),
-        FieldNode(
-          name: NameNode(value: '__typename'),
-          alias: null,
-          arguments: [],
-          directives: [],
-          selectionSet: null,
-        ),
-      ]),
-    ),
-    InlineFragmentNode(
-      typeCondition: TypeConditionNode(
-          on: NamedTypeNode(
-        name: NameNode(value: 'FeaturedSection'),
-        isNonNull: false,
-      )),
-      directives: [],
-      selectionSet: SelectionSetNode(selections: [
-        FieldNode(
-          name: NameNode(value: 'size'),
-          alias: null,
-          arguments: [],
-          directives: [],
-          selectionSet: null,
-        ),
-        FieldNode(
-          name: NameNode(value: 'items'),
-          alias: null,
-          arguments: [],
+        InlineFragmentNode(
+          typeCondition: TypeConditionNode(
+              on: NamedTypeNode(
+            name: NameNode(value: 'FeaturedSection'),
+            isNonNull: false,
+          )),
           directives: [],
           selectionSet: SelectionSetNode(selections: [
+            FieldNode(
+              name: NameNode(value: 'size'),
+              alias: null,
+              arguments: [],
+              directives: [],
+              selectionSet: null,
+            ),
             FieldNode(
               name: NameNode(value: 'items'),
               alias: null,
@@ -3298,11 +3630,26 @@ const fragmentDefinitionSection = FragmentDefinitionNode(
               directives: [],
               selectionSet: SelectionSetNode(selections: [
                 FieldNode(
-                  name: NameNode(value: 'description'),
+                  name: NameNode(value: 'items'),
                   alias: null,
                   arguments: [],
                   directives: [],
-                  selectionSet: null,
+                  selectionSet: SelectionSetNode(selections: [
+                    FieldNode(
+                      name: NameNode(value: 'description'),
+                      alias: null,
+                      arguments: [],
+                      directives: [],
+                      selectionSet: null,
+                    ),
+                    FieldNode(
+                      name: NameNode(value: '__typename'),
+                      alias: null,
+                      arguments: [],
+                      directives: [],
+                      selectionSet: null,
+                    ),
+                  ]),
                 ),
                 FieldNode(
                   name: NameNode(value: '__typename'),
@@ -3322,36 +3669,21 @@ const fragmentDefinitionSection = FragmentDefinitionNode(
             ),
           ]),
         ),
-        FieldNode(
-          name: NameNode(value: '__typename'),
-          alias: null,
-          arguments: [],
-          directives: [],
-          selectionSet: null,
-        ),
-      ]),
-    ),
-    InlineFragmentNode(
-      typeCondition: TypeConditionNode(
-          on: NamedTypeNode(
-        name: NameNode(value: 'DefaultSection'),
-        isNonNull: false,
-      )),
-      directives: [],
-      selectionSet: SelectionSetNode(selections: [
-        FieldNode(
-          name: NameNode(value: 'size'),
-          alias: null,
-          arguments: [],
-          directives: [],
-          selectionSet: null,
-        ),
-        FieldNode(
-          name: NameNode(value: 'items'),
-          alias: null,
-          arguments: [],
+        InlineFragmentNode(
+          typeCondition: TypeConditionNode(
+              on: NamedTypeNode(
+            name: NameNode(value: 'DefaultSection'),
+            isNonNull: false,
+          )),
           directives: [],
           selectionSet: SelectionSetNode(selections: [
+            FieldNode(
+              name: NameNode(value: 'size'),
+              alias: null,
+              arguments: [],
+              directives: [],
+              selectionSet: null,
+            ),
             FieldNode(
               name: NameNode(value: 'items'),
               alias: null,
@@ -3359,89 +3691,104 @@ const fragmentDefinitionSection = FragmentDefinitionNode(
               directives: [],
               selectionSet: SelectionSetNode(selections: [
                 FieldNode(
-                  name: NameNode(value: 'item'),
+                  name: NameNode(value: 'items'),
                   alias: null,
                   arguments: [],
                   directives: [],
                   selectionSet: SelectionSetNode(selections: [
-                    InlineFragmentNode(
-                      typeCondition: TypeConditionNode(
-                          on: NamedTypeNode(
-                        name: NameNode(value: 'Show'),
-                        isNonNull: false,
-                      )),
+                    FieldNode(
+                      name: NameNode(value: 'item'),
+                      alias: null,
+                      arguments: [],
                       directives: [],
                       selectionSet: SelectionSetNode(selections: [
-                        FieldNode(
-                          name: NameNode(value: 'episodeCount'),
-                          alias: null,
-                          arguments: [],
-                          directives: [],
-                          selectionSet: null,
-                        ),
-                        FieldNode(
-                          name: NameNode(value: 'seasonCount'),
-                          alias: null,
-                          arguments: [],
-                          directives: [],
-                          selectionSet: null,
-                        ),
-                        FieldNode(
-                          name: NameNode(value: '__typename'),
-                          alias: null,
-                          arguments: [],
-                          directives: [],
-                          selectionSet: null,
-                        ),
-                      ]),
-                    ),
-                    InlineFragmentNode(
-                      typeCondition: TypeConditionNode(
-                          on: NamedTypeNode(
-                        name: NameNode(value: 'Episode'),
-                        isNonNull: false,
-                      )),
-                      directives: [],
-                      selectionSet: SelectionSetNode(selections: [
-                        FieldNode(
-                          name: NameNode(value: 'productionDate'),
-                          alias: null,
-                          arguments: [],
-                          directives: [],
-                          selectionSet: null,
-                        ),
-                        FieldNode(
-                          name: NameNode(value: 'availableFrom'),
-                          alias: null,
-                          arguments: [],
-                          directives: [],
-                          selectionSet: null,
-                        ),
-                        FieldNode(
-                          name: NameNode(value: 'duration'),
-                          alias: null,
-                          arguments: [],
-                          directives: [],
-                          selectionSet: null,
-                        ),
-                        FieldNode(
-                          name: NameNode(value: 'season'),
-                          alias: null,
-                          arguments: [],
+                        InlineFragmentNode(
+                          typeCondition: TypeConditionNode(
+                              on: NamedTypeNode(
+                            name: NameNode(value: 'Show'),
+                            isNonNull: false,
+                          )),
                           directives: [],
                           selectionSet: SelectionSetNode(selections: [
                             FieldNode(
-                              name: NameNode(value: 'show'),
+                              name: NameNode(value: 'episodeCount'),
+                              alias: null,
+                              arguments: [],
+                              directives: [],
+                              selectionSet: null,
+                            ),
+                            FieldNode(
+                              name: NameNode(value: 'seasonCount'),
+                              alias: null,
+                              arguments: [],
+                              directives: [],
+                              selectionSet: null,
+                            ),
+                            FieldNode(
+                              name: NameNode(value: '__typename'),
+                              alias: null,
+                              arguments: [],
+                              directives: [],
+                              selectionSet: null,
+                            ),
+                          ]),
+                        ),
+                        InlineFragmentNode(
+                          typeCondition: TypeConditionNode(
+                              on: NamedTypeNode(
+                            name: NameNode(value: 'Episode'),
+                            isNonNull: false,
+                          )),
+                          directives: [],
+                          selectionSet: SelectionSetNode(selections: [
+                            FieldNode(
+                              name: NameNode(value: 'productionDate'),
+                              alias: null,
+                              arguments: [],
+                              directives: [],
+                              selectionSet: null,
+                            ),
+                            FieldNode(
+                              name: NameNode(value: 'availableFrom'),
+                              alias: null,
+                              arguments: [],
+                              directives: [],
+                              selectionSet: null,
+                            ),
+                            FieldNode(
+                              name: NameNode(value: 'duration'),
+                              alias: null,
+                              arguments: [],
+                              directives: [],
+                              selectionSet: null,
+                            ),
+                            FieldNode(
+                              name: NameNode(value: 'season'),
                               alias: null,
                               arguments: [],
                               directives: [],
                               selectionSet: SelectionSetNode(selections: [
                                 FieldNode(
-                                  name: NameNode(value: 'title'),
+                                  name: NameNode(value: 'show'),
                                   alias: null,
                                   arguments: [],
                                   directives: [],
-                                  selectionSet: null,
+                                  selectionSet: SelectionSetNode(selections: [
+                                    FieldNode(
+                                      name: NameNode(value: 'title'),
+                                      alias: null,
+                                      arguments: [],
+                                      directives: [],
+                                      selectionSet: null,
+                                    ),
+                                    FieldNode(
+                                      name: NameNode(value: '__typename'),
+                                      alias: null,
+                                      arguments: [],
+                                      directives: [],
+                                      selectionSet: null,
+                                    ),
+                                  ]),
                                 ),
                                 FieldNode(
                                   name: NameNode(value: '__typename'),
@@ -3497,45 +3844,45 @@ const fragmentDefinitionSection = FragmentDefinitionNode(
             ),
           ]),
         ),
-        FieldNode(
-          name: NameNode(value: '__typename'),
-          alias: null,
-          arguments: [],
-          directives: [],
-          selectionSet: null,
-        ),
-      ]),
-    ),
-    InlineFragmentNode(
-      typeCondition: TypeConditionNode(
-          on: NamedTypeNode(
-        name: NameNode(value: 'GridSection'),
-        isNonNull: false,
-      )),
-      directives: [],
-      selectionSet: SelectionSetNode(selections: [
-        FieldNode(
-          name: NameNode(value: 'size'),
-          alias: NameNode(value: 'gridSize'),
-          arguments: [],
-          directives: [],
-          selectionSet: null,
-        ),
-        FieldNode(
-          name: NameNode(value: 'items'),
-          alias: null,
-          arguments: [],
+        InlineFragmentNode(
+          typeCondition: TypeConditionNode(
+              on: NamedTypeNode(
+            name: NameNode(value: 'GridSection'),
+            isNonNull: false,
+          )),
           directives: [],
           selectionSet: SelectionSetNode(selections: [
+            FieldNode(
+              name: NameNode(value: 'size'),
+              alias: NameNode(value: 'gridSize'),
+              arguments: [],
+              directives: [],
+              selectionSet: null,
+            ),
             FieldNode(
               name: NameNode(value: 'items'),
               alias: null,
               arguments: [],
               directives: [],
               selectionSet: SelectionSetNode(selections: [
-                FragmentSpreadNode(
-                  name: NameNode(value: 'GridSectionItem'),
+                FieldNode(
+                  name: NameNode(value: 'items'),
+                  alias: null,
+                  arguments: [],
                   directives: [],
+                  selectionSet: SelectionSetNode(selections: [
+                    FragmentSpreadNode(
+                      name: NameNode(value: 'GridSectionItem'),
+                      directives: [],
+                    ),
+                    FieldNode(
+                      name: NameNode(value: '__typename'),
+                      alias: null,
+                      arguments: [],
+                      directives: [],
+                      selectionSet: null,
+                    ),
+                  ]),
                 ),
                 FieldNode(
                   name: NameNode(value: '__typename'),
@@ -3555,27 +3902,12 @@ const fragmentDefinitionSection = FragmentDefinitionNode(
             ),
           ]),
         ),
-        FieldNode(
-          name: NameNode(value: '__typename'),
-          alias: null,
-          arguments: [],
-          directives: [],
-          selectionSet: null,
-        ),
-      ]),
-    ),
-    InlineFragmentNode(
-      typeCondition: TypeConditionNode(
-          on: NamedTypeNode(
-        name: NameNode(value: 'ListSection'),
-        isNonNull: false,
-      )),
-      directives: [],
-      selectionSet: SelectionSetNode(selections: [
-        FieldNode(
-          name: NameNode(value: 'items'),
-          alias: null,
-          arguments: [],
+        InlineFragmentNode(
+          typeCondition: TypeConditionNode(
+              on: NamedTypeNode(
+            name: NameNode(value: 'ListSection'),
+            isNonNull: false,
+          )),
           directives: [],
           selectionSet: SelectionSetNode(selections: [
             FieldNode(
@@ -3585,65 +3917,80 @@ const fragmentDefinitionSection = FragmentDefinitionNode(
               directives: [],
               selectionSet: SelectionSetNode(selections: [
                 FieldNode(
-                  name: NameNode(value: 'item'),
+                  name: NameNode(value: 'items'),
                   alias: null,
                   arguments: [],
                   directives: [],
                   selectionSet: SelectionSetNode(selections: [
-                    InlineFragmentNode(
-                      typeCondition: TypeConditionNode(
-                          on: NamedTypeNode(
-                        name: NameNode(value: 'Episode'),
-                        isNonNull: false,
-                      )),
+                    FieldNode(
+                      name: NameNode(value: 'item'),
+                      alias: null,
+                      arguments: [],
                       directives: [],
                       selectionSet: SelectionSetNode(selections: [
-                        FieldNode(
-                          name: NameNode(value: 'title'),
-                          alias: null,
-                          arguments: [],
-                          directives: [],
-                          selectionSet: null,
-                        ),
-                        FieldNode(
-                          name: NameNode(value: 'ageRating'),
-                          alias: null,
-                          arguments: [],
-                          directives: [],
-                          selectionSet: null,
-                        ),
-                        FieldNode(
-                          name: NameNode(value: 'duration'),
-                          alias: null,
-                          arguments: [],
-                          directives: [],
-                          selectionSet: null,
-                        ),
-                        FieldNode(
-                          name: NameNode(value: 'image'),
-                          alias: null,
-                          arguments: [],
-                          directives: [],
-                          selectionSet: null,
-                        ),
-                        FieldNode(
-                          name: NameNode(value: 'season'),
-                          alias: null,
-                          arguments: [],
+                        InlineFragmentNode(
+                          typeCondition: TypeConditionNode(
+                              on: NamedTypeNode(
+                            name: NameNode(value: 'Episode'),
+                            isNonNull: false,
+                          )),
                           directives: [],
                           selectionSet: SelectionSetNode(selections: [
                             FieldNode(
-                              name: NameNode(value: 'show'),
+                              name: NameNode(value: 'title'),
+                              alias: null,
+                              arguments: [],
+                              directives: [],
+                              selectionSet: null,
+                            ),
+                            FieldNode(
+                              name: NameNode(value: 'ageRating'),
+                              alias: null,
+                              arguments: [],
+                              directives: [],
+                              selectionSet: null,
+                            ),
+                            FieldNode(
+                              name: NameNode(value: 'duration'),
+                              alias: null,
+                              arguments: [],
+                              directives: [],
+                              selectionSet: null,
+                            ),
+                            FieldNode(
+                              name: NameNode(value: 'image'),
+                              alias: null,
+                              arguments: [],
+                              directives: [],
+                              selectionSet: null,
+                            ),
+                            FieldNode(
+                              name: NameNode(value: 'season'),
                               alias: null,
                               arguments: [],
                               directives: [],
                               selectionSet: SelectionSetNode(selections: [
                                 FieldNode(
-                                  name: NameNode(value: 'title'),
+                                  name: NameNode(value: 'show'),
                                   alias: null,
                                   arguments: [],
                                   directives: [],
-                                  selectionSet: null,
+                                  selectionSet: SelectionSetNode(selections: [
+                                    FieldNode(
+                                      name: NameNode(value: 'title'),
+                                      alias: null,
+                                      arguments: [],
+                                      directives: [],
+                                      selectionSet: null,
+                                    ),
+                                    FieldNode(
+                                      name: NameNode(value: '__typename'),
+                                      alias: null,
+                                      arguments: [],
+                                      directives: [],
+                                      selectionSet: null,
+                                    ),
+                                  ]),
                                 ),
                                 FieldNode(
                                   name: NameNode(value: '__typename'),
@@ -3839,6 +4186,7 @@ const fragmentDefinitionSection = FragmentDefinitionNode(
 );
 const documentNodeFragmentSection = DocumentNode(definitions: [
   fragmentDefinitionSection,
+  fragmentDefinitionItemSection,
   fragmentDefinitionItemSectionItem,
   fragmentDefinitionGridSectionItem,
 ]);
@@ -3878,7 +4226,8 @@ extension ClientExtension$Fragment$Section on graphql.GraphQLClient {
   }
 }
 
-class Fragment$Section$$PosterSection implements Fragment$Section {
+class Fragment$Section$$PosterSection
+    implements Fragment$ItemSection, Fragment$Section {
   Fragment$Section$$PosterSection({
     required this.id,
     this.title,
@@ -4068,7 +4417,8 @@ class _CopyWithStubImpl$Fragment$Section$$PosterSection<TRes>
       CopyWith$Fragment$Section$$PosterSection$items.stub(_res);
 }
 
-class Fragment$Section$$PosterSection$items {
+class Fragment$Section$$PosterSection$items
+    implements Fragment$ItemSection$items {
   Fragment$Section$$PosterSection$items({
     required this.items,
     required this.$__typename,
@@ -5425,7 +5775,314 @@ class _CopyWithStubImpl$Fragment$Section$$PosterSection$items$items$item$$Show$d
       _res;
 }
 
-class Fragment$Section$$FeaturedSection implements Fragment$Section {
+class Fragment$Section$$PosterSection$items$items$item$$Episode$season {
+  Fragment$Section$$PosterSection$items$items$item$$Episode$season({
+    required this.$show,
+    required this.$__typename,
+  });
+
+  factory Fragment$Section$$PosterSection$items$items$item$$Episode$season.fromJson(
+      Map<String, dynamic> json) {
+    final l$$show = json['show'];
+    final l$$__typename = json['__typename'];
+    return Fragment$Section$$PosterSection$items$items$item$$Episode$season(
+      $show:
+          Fragment$Section$$PosterSection$items$items$item$$Episode$season$show
+              .fromJson((l$$show as Map<String, dynamic>)),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final Fragment$Section$$PosterSection$items$items$item$$Episode$season$show
+      $show;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$$show = $show;
+    _resultData['show'] = l$$show.toJson();
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$$show = $show;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$$show,
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (!(other
+            is Fragment$Section$$PosterSection$items$items$item$$Episode$season) ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$$show = $show;
+    final lOther$$show = other.$show;
+    if (l$$show != lOther$$show) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Fragment$Section$$PosterSection$items$items$item$$Episode$season
+    on Fragment$Section$$PosterSection$items$items$item$$Episode$season {
+  CopyWith$Fragment$Section$$PosterSection$items$items$item$$Episode$season<
+          Fragment$Section$$PosterSection$items$items$item$$Episode$season>
+      get copyWith =>
+          CopyWith$Fragment$Section$$PosterSection$items$items$item$$Episode$season(
+            this,
+            (i) => i,
+          );
+}
+
+abstract class CopyWith$Fragment$Section$$PosterSection$items$items$item$$Episode$season<
+    TRes> {
+  factory CopyWith$Fragment$Section$$PosterSection$items$items$item$$Episode$season(
+    Fragment$Section$$PosterSection$items$items$item$$Episode$season instance,
+    TRes Function(
+            Fragment$Section$$PosterSection$items$items$item$$Episode$season)
+        then,
+  ) = _CopyWithImpl$Fragment$Section$$PosterSection$items$items$item$$Episode$season;
+
+  factory CopyWith$Fragment$Section$$PosterSection$items$items$item$$Episode$season.stub(
+          TRes res) =
+      _CopyWithStubImpl$Fragment$Section$$PosterSection$items$items$item$$Episode$season;
+
+  TRes call({
+    Fragment$Section$$PosterSection$items$items$item$$Episode$season$show?
+        $show,
+    String? $__typename,
+  });
+  CopyWith$Fragment$Section$$PosterSection$items$items$item$$Episode$season$show<
+      TRes> get $show;
+}
+
+class _CopyWithImpl$Fragment$Section$$PosterSection$items$items$item$$Episode$season<
+        TRes>
+    implements
+        CopyWith$Fragment$Section$$PosterSection$items$items$item$$Episode$season<
+            TRes> {
+  _CopyWithImpl$Fragment$Section$$PosterSection$items$items$item$$Episode$season(
+    this._instance,
+    this._then,
+  );
+
+  final Fragment$Section$$PosterSection$items$items$item$$Episode$season
+      _instance;
+
+  final TRes Function(
+      Fragment$Section$$PosterSection$items$items$item$$Episode$season) _then;
+
+  static const _undefined = {};
+
+  TRes call({
+    Object? $show = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(Fragment$Section$$PosterSection$items$items$item$$Episode$season(
+        $show: $show == _undefined || $show == null
+            ? _instance.$show
+            : ($show
+                as Fragment$Section$$PosterSection$items$items$item$$Episode$season$show),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+  CopyWith$Fragment$Section$$PosterSection$items$items$item$$Episode$season$show<
+      TRes> get $show {
+    final local$$show = _instance.$show;
+    return CopyWith$Fragment$Section$$PosterSection$items$items$item$$Episode$season$show(
+        local$$show, (e) => call($show: e));
+  }
+}
+
+class _CopyWithStubImpl$Fragment$Section$$PosterSection$items$items$item$$Episode$season<
+        TRes>
+    implements
+        CopyWith$Fragment$Section$$PosterSection$items$items$item$$Episode$season<
+            TRes> {
+  _CopyWithStubImpl$Fragment$Section$$PosterSection$items$items$item$$Episode$season(
+      this._res);
+
+  TRes _res;
+
+  call({
+    Fragment$Section$$PosterSection$items$items$item$$Episode$season$show?
+        $show,
+    String? $__typename,
+  }) =>
+      _res;
+  CopyWith$Fragment$Section$$PosterSection$items$items$item$$Episode$season$show<
+          TRes>
+      get $show =>
+          CopyWith$Fragment$Section$$PosterSection$items$items$item$$Episode$season$show
+              .stub(_res);
+}
+
+class Fragment$Section$$PosterSection$items$items$item$$Episode$season$show {
+  Fragment$Section$$PosterSection$items$items$item$$Episode$season$show({
+    required this.title,
+    required this.$__typename,
+  });
+
+  factory Fragment$Section$$PosterSection$items$items$item$$Episode$season$show.fromJson(
+      Map<String, dynamic> json) {
+    final l$title = json['title'];
+    final l$$__typename = json['__typename'];
+    return Fragment$Section$$PosterSection$items$items$item$$Episode$season$show(
+      title: (l$title as String),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final String title;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$title = title;
+    _resultData['title'] = l$title;
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$title = title;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$title,
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (!(other
+            is Fragment$Section$$PosterSection$items$items$item$$Episode$season$show) ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$title = title;
+    final lOther$title = other.title;
+    if (l$title != lOther$title) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Fragment$Section$$PosterSection$items$items$item$$Episode$season$show
+    on Fragment$Section$$PosterSection$items$items$item$$Episode$season$show {
+  CopyWith$Fragment$Section$$PosterSection$items$items$item$$Episode$season$show<
+          Fragment$Section$$PosterSection$items$items$item$$Episode$season$show>
+      get copyWith =>
+          CopyWith$Fragment$Section$$PosterSection$items$items$item$$Episode$season$show(
+            this,
+            (i) => i,
+          );
+}
+
+abstract class CopyWith$Fragment$Section$$PosterSection$items$items$item$$Episode$season$show<
+    TRes> {
+  factory CopyWith$Fragment$Section$$PosterSection$items$items$item$$Episode$season$show(
+    Fragment$Section$$PosterSection$items$items$item$$Episode$season$show
+        instance,
+    TRes Function(
+            Fragment$Section$$PosterSection$items$items$item$$Episode$season$show)
+        then,
+  ) = _CopyWithImpl$Fragment$Section$$PosterSection$items$items$item$$Episode$season$show;
+
+  factory CopyWith$Fragment$Section$$PosterSection$items$items$item$$Episode$season$show.stub(
+          TRes res) =
+      _CopyWithStubImpl$Fragment$Section$$PosterSection$items$items$item$$Episode$season$show;
+
+  TRes call({
+    String? title,
+    String? $__typename,
+  });
+}
+
+class _CopyWithImpl$Fragment$Section$$PosterSection$items$items$item$$Episode$season$show<
+        TRes>
+    implements
+        CopyWith$Fragment$Section$$PosterSection$items$items$item$$Episode$season$show<
+            TRes> {
+  _CopyWithImpl$Fragment$Section$$PosterSection$items$items$item$$Episode$season$show(
+    this._instance,
+    this._then,
+  );
+
+  final Fragment$Section$$PosterSection$items$items$item$$Episode$season$show
+      _instance;
+
+  final TRes Function(
+          Fragment$Section$$PosterSection$items$items$item$$Episode$season$show)
+      _then;
+
+  static const _undefined = {};
+
+  TRes call({
+    Object? title = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(
+          Fragment$Section$$PosterSection$items$items$item$$Episode$season$show(
+        title: title == _undefined || title == null
+            ? _instance.title
+            : (title as String),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+}
+
+class _CopyWithStubImpl$Fragment$Section$$PosterSection$items$items$item$$Episode$season$show<
+        TRes>
+    implements
+        CopyWith$Fragment$Section$$PosterSection$items$items$item$$Episode$season$show<
+            TRes> {
+  _CopyWithStubImpl$Fragment$Section$$PosterSection$items$items$item$$Episode$season$show(
+      this._res);
+
+  TRes _res;
+
+  call({
+    String? title,
+    String? $__typename,
+  }) =>
+      _res;
+}
+
+class Fragment$Section$$FeaturedSection
+    implements Fragment$ItemSection, Fragment$Section {
   Fragment$Section$$FeaturedSection({
     required this.id,
     this.title,
@@ -5616,7 +6273,8 @@ class _CopyWithStubImpl$Fragment$Section$$FeaturedSection<TRes>
       CopyWith$Fragment$Section$$FeaturedSection$items.stub(_res);
 }
 
-class Fragment$Section$$FeaturedSection$items {
+class Fragment$Section$$FeaturedSection$items
+    implements Fragment$ItemSection$items {
   Fragment$Section$$FeaturedSection$items({
     required this.items,
     required this.$__typename,
@@ -6892,7 +7550,8 @@ class _CopyWithStubImpl$Fragment$Section$$FeaturedSection$items$items$item$$Show
       _res;
 }
 
-class Fragment$Section$$DefaultSection implements Fragment$Section {
+class Fragment$Section$$DefaultSection
+    implements Fragment$ItemSection, Fragment$Section {
   Fragment$Section$$DefaultSection({
     required this.id,
     this.title,
@@ -7082,7 +7741,8 @@ class _CopyWithStubImpl$Fragment$Section$$DefaultSection<TRes>
       CopyWith$Fragment$Section$$DefaultSection$items.stub(_res);
 }
 
-class Fragment$Section$$DefaultSection$items {
+class Fragment$Section$$DefaultSection$items
+    implements Fragment$ItemSection$items {
   Fragment$Section$$DefaultSection$items({
     required this.items,
     required this.$__typename,
@@ -8449,7 +9109,314 @@ class _CopyWithStubImpl$Fragment$Section$$DefaultSection$items$items$item$$Show$
       _res;
 }
 
-class Fragment$Section$$ListSection implements Fragment$Section {
+class Fragment$Section$$DefaultSection$items$items$item$$Episode$season {
+  Fragment$Section$$DefaultSection$items$items$item$$Episode$season({
+    required this.$show,
+    required this.$__typename,
+  });
+
+  factory Fragment$Section$$DefaultSection$items$items$item$$Episode$season.fromJson(
+      Map<String, dynamic> json) {
+    final l$$show = json['show'];
+    final l$$__typename = json['__typename'];
+    return Fragment$Section$$DefaultSection$items$items$item$$Episode$season(
+      $show:
+          Fragment$Section$$DefaultSection$items$items$item$$Episode$season$show
+              .fromJson((l$$show as Map<String, dynamic>)),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final Fragment$Section$$DefaultSection$items$items$item$$Episode$season$show
+      $show;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$$show = $show;
+    _resultData['show'] = l$$show.toJson();
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$$show = $show;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$$show,
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (!(other
+            is Fragment$Section$$DefaultSection$items$items$item$$Episode$season) ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$$show = $show;
+    final lOther$$show = other.$show;
+    if (l$$show != lOther$$show) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Fragment$Section$$DefaultSection$items$items$item$$Episode$season
+    on Fragment$Section$$DefaultSection$items$items$item$$Episode$season {
+  CopyWith$Fragment$Section$$DefaultSection$items$items$item$$Episode$season<
+          Fragment$Section$$DefaultSection$items$items$item$$Episode$season>
+      get copyWith =>
+          CopyWith$Fragment$Section$$DefaultSection$items$items$item$$Episode$season(
+            this,
+            (i) => i,
+          );
+}
+
+abstract class CopyWith$Fragment$Section$$DefaultSection$items$items$item$$Episode$season<
+    TRes> {
+  factory CopyWith$Fragment$Section$$DefaultSection$items$items$item$$Episode$season(
+    Fragment$Section$$DefaultSection$items$items$item$$Episode$season instance,
+    TRes Function(
+            Fragment$Section$$DefaultSection$items$items$item$$Episode$season)
+        then,
+  ) = _CopyWithImpl$Fragment$Section$$DefaultSection$items$items$item$$Episode$season;
+
+  factory CopyWith$Fragment$Section$$DefaultSection$items$items$item$$Episode$season.stub(
+          TRes res) =
+      _CopyWithStubImpl$Fragment$Section$$DefaultSection$items$items$item$$Episode$season;
+
+  TRes call({
+    Fragment$Section$$DefaultSection$items$items$item$$Episode$season$show?
+        $show,
+    String? $__typename,
+  });
+  CopyWith$Fragment$Section$$DefaultSection$items$items$item$$Episode$season$show<
+      TRes> get $show;
+}
+
+class _CopyWithImpl$Fragment$Section$$DefaultSection$items$items$item$$Episode$season<
+        TRes>
+    implements
+        CopyWith$Fragment$Section$$DefaultSection$items$items$item$$Episode$season<
+            TRes> {
+  _CopyWithImpl$Fragment$Section$$DefaultSection$items$items$item$$Episode$season(
+    this._instance,
+    this._then,
+  );
+
+  final Fragment$Section$$DefaultSection$items$items$item$$Episode$season
+      _instance;
+
+  final TRes Function(
+      Fragment$Section$$DefaultSection$items$items$item$$Episode$season) _then;
+
+  static const _undefined = {};
+
+  TRes call({
+    Object? $show = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(Fragment$Section$$DefaultSection$items$items$item$$Episode$season(
+        $show: $show == _undefined || $show == null
+            ? _instance.$show
+            : ($show
+                as Fragment$Section$$DefaultSection$items$items$item$$Episode$season$show),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+  CopyWith$Fragment$Section$$DefaultSection$items$items$item$$Episode$season$show<
+      TRes> get $show {
+    final local$$show = _instance.$show;
+    return CopyWith$Fragment$Section$$DefaultSection$items$items$item$$Episode$season$show(
+        local$$show, (e) => call($show: e));
+  }
+}
+
+class _CopyWithStubImpl$Fragment$Section$$DefaultSection$items$items$item$$Episode$season<
+        TRes>
+    implements
+        CopyWith$Fragment$Section$$DefaultSection$items$items$item$$Episode$season<
+            TRes> {
+  _CopyWithStubImpl$Fragment$Section$$DefaultSection$items$items$item$$Episode$season(
+      this._res);
+
+  TRes _res;
+
+  call({
+    Fragment$Section$$DefaultSection$items$items$item$$Episode$season$show?
+        $show,
+    String? $__typename,
+  }) =>
+      _res;
+  CopyWith$Fragment$Section$$DefaultSection$items$items$item$$Episode$season$show<
+          TRes>
+      get $show =>
+          CopyWith$Fragment$Section$$DefaultSection$items$items$item$$Episode$season$show
+              .stub(_res);
+}
+
+class Fragment$Section$$DefaultSection$items$items$item$$Episode$season$show {
+  Fragment$Section$$DefaultSection$items$items$item$$Episode$season$show({
+    required this.title,
+    required this.$__typename,
+  });
+
+  factory Fragment$Section$$DefaultSection$items$items$item$$Episode$season$show.fromJson(
+      Map<String, dynamic> json) {
+    final l$title = json['title'];
+    final l$$__typename = json['__typename'];
+    return Fragment$Section$$DefaultSection$items$items$item$$Episode$season$show(
+      title: (l$title as String),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final String title;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$title = title;
+    _resultData['title'] = l$title;
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$title = title;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$title,
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (!(other
+            is Fragment$Section$$DefaultSection$items$items$item$$Episode$season$show) ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$title = title;
+    final lOther$title = other.title;
+    if (l$title != lOther$title) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Fragment$Section$$DefaultSection$items$items$item$$Episode$season$show
+    on Fragment$Section$$DefaultSection$items$items$item$$Episode$season$show {
+  CopyWith$Fragment$Section$$DefaultSection$items$items$item$$Episode$season$show<
+          Fragment$Section$$DefaultSection$items$items$item$$Episode$season$show>
+      get copyWith =>
+          CopyWith$Fragment$Section$$DefaultSection$items$items$item$$Episode$season$show(
+            this,
+            (i) => i,
+          );
+}
+
+abstract class CopyWith$Fragment$Section$$DefaultSection$items$items$item$$Episode$season$show<
+    TRes> {
+  factory CopyWith$Fragment$Section$$DefaultSection$items$items$item$$Episode$season$show(
+    Fragment$Section$$DefaultSection$items$items$item$$Episode$season$show
+        instance,
+    TRes Function(
+            Fragment$Section$$DefaultSection$items$items$item$$Episode$season$show)
+        then,
+  ) = _CopyWithImpl$Fragment$Section$$DefaultSection$items$items$item$$Episode$season$show;
+
+  factory CopyWith$Fragment$Section$$DefaultSection$items$items$item$$Episode$season$show.stub(
+          TRes res) =
+      _CopyWithStubImpl$Fragment$Section$$DefaultSection$items$items$item$$Episode$season$show;
+
+  TRes call({
+    String? title,
+    String? $__typename,
+  });
+}
+
+class _CopyWithImpl$Fragment$Section$$DefaultSection$items$items$item$$Episode$season$show<
+        TRes>
+    implements
+        CopyWith$Fragment$Section$$DefaultSection$items$items$item$$Episode$season$show<
+            TRes> {
+  _CopyWithImpl$Fragment$Section$$DefaultSection$items$items$item$$Episode$season$show(
+    this._instance,
+    this._then,
+  );
+
+  final Fragment$Section$$DefaultSection$items$items$item$$Episode$season$show
+      _instance;
+
+  final TRes Function(
+          Fragment$Section$$DefaultSection$items$items$item$$Episode$season$show)
+      _then;
+
+  static const _undefined = {};
+
+  TRes call({
+    Object? title = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(
+          Fragment$Section$$DefaultSection$items$items$item$$Episode$season$show(
+        title: title == _undefined || title == null
+            ? _instance.title
+            : (title as String),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+}
+
+class _CopyWithStubImpl$Fragment$Section$$DefaultSection$items$items$item$$Episode$season$show<
+        TRes>
+    implements
+        CopyWith$Fragment$Section$$DefaultSection$items$items$item$$Episode$season$show<
+            TRes> {
+  _CopyWithStubImpl$Fragment$Section$$DefaultSection$items$items$item$$Episode$season$show(
+      this._res);
+
+  TRes _res;
+
+  call({
+    String? title,
+    String? $__typename,
+  }) =>
+      _res;
+}
+
+class Fragment$Section$$ListSection
+    implements Fragment$ItemSection, Fragment$Section {
   Fragment$Section$$ListSection({
     required this.id,
     this.title,
@@ -8619,7 +9586,8 @@ class _CopyWithStubImpl$Fragment$Section$$ListSection<TRes>
       CopyWith$Fragment$Section$$ListSection$items.stub(_res);
 }
 
-class Fragment$Section$$ListSection$items {
+class Fragment$Section$$ListSection$items
+    implements Fragment$ItemSection$items {
   Fragment$Section$$ListSection$items({
     required this.items,
     required this.$__typename,
@@ -9948,7 +10916,310 @@ class _CopyWithStubImpl$Fragment$Section$$ListSection$items$items$item$$Show$def
       _res;
 }
 
-class Fragment$Section$$DefaultGridSection implements Fragment$Section {
+class Fragment$Section$$ListSection$items$items$item$$Episode$season {
+  Fragment$Section$$ListSection$items$items$item$$Episode$season({
+    required this.$show,
+    required this.$__typename,
+  });
+
+  factory Fragment$Section$$ListSection$items$items$item$$Episode$season.fromJson(
+      Map<String, dynamic> json) {
+    final l$$show = json['show'];
+    final l$$__typename = json['__typename'];
+    return Fragment$Section$$ListSection$items$items$item$$Episode$season(
+      $show: Fragment$Section$$ListSection$items$items$item$$Episode$season$show
+          .fromJson((l$$show as Map<String, dynamic>)),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final Fragment$Section$$ListSection$items$items$item$$Episode$season$show
+      $show;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$$show = $show;
+    _resultData['show'] = l$$show.toJson();
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$$show = $show;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$$show,
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (!(other
+            is Fragment$Section$$ListSection$items$items$item$$Episode$season) ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$$show = $show;
+    final lOther$$show = other.$show;
+    if (l$$show != lOther$$show) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Fragment$Section$$ListSection$items$items$item$$Episode$season
+    on Fragment$Section$$ListSection$items$items$item$$Episode$season {
+  CopyWith$Fragment$Section$$ListSection$items$items$item$$Episode$season<
+          Fragment$Section$$ListSection$items$items$item$$Episode$season>
+      get copyWith =>
+          CopyWith$Fragment$Section$$ListSection$items$items$item$$Episode$season(
+            this,
+            (i) => i,
+          );
+}
+
+abstract class CopyWith$Fragment$Section$$ListSection$items$items$item$$Episode$season<
+    TRes> {
+  factory CopyWith$Fragment$Section$$ListSection$items$items$item$$Episode$season(
+    Fragment$Section$$ListSection$items$items$item$$Episode$season instance,
+    TRes Function(
+            Fragment$Section$$ListSection$items$items$item$$Episode$season)
+        then,
+  ) = _CopyWithImpl$Fragment$Section$$ListSection$items$items$item$$Episode$season;
+
+  factory CopyWith$Fragment$Section$$ListSection$items$items$item$$Episode$season.stub(
+          TRes res) =
+      _CopyWithStubImpl$Fragment$Section$$ListSection$items$items$item$$Episode$season;
+
+  TRes call({
+    Fragment$Section$$ListSection$items$items$item$$Episode$season$show? $show,
+    String? $__typename,
+  });
+  CopyWith$Fragment$Section$$ListSection$items$items$item$$Episode$season$show<
+      TRes> get $show;
+}
+
+class _CopyWithImpl$Fragment$Section$$ListSection$items$items$item$$Episode$season<
+        TRes>
+    implements
+        CopyWith$Fragment$Section$$ListSection$items$items$item$$Episode$season<
+            TRes> {
+  _CopyWithImpl$Fragment$Section$$ListSection$items$items$item$$Episode$season(
+    this._instance,
+    this._then,
+  );
+
+  final Fragment$Section$$ListSection$items$items$item$$Episode$season
+      _instance;
+
+  final TRes Function(
+      Fragment$Section$$ListSection$items$items$item$$Episode$season) _then;
+
+  static const _undefined = {};
+
+  TRes call({
+    Object? $show = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(Fragment$Section$$ListSection$items$items$item$$Episode$season(
+        $show: $show == _undefined || $show == null
+            ? _instance.$show
+            : ($show
+                as Fragment$Section$$ListSection$items$items$item$$Episode$season$show),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+  CopyWith$Fragment$Section$$ListSection$items$items$item$$Episode$season$show<
+      TRes> get $show {
+    final local$$show = _instance.$show;
+    return CopyWith$Fragment$Section$$ListSection$items$items$item$$Episode$season$show(
+        local$$show, (e) => call($show: e));
+  }
+}
+
+class _CopyWithStubImpl$Fragment$Section$$ListSection$items$items$item$$Episode$season<
+        TRes>
+    implements
+        CopyWith$Fragment$Section$$ListSection$items$items$item$$Episode$season<
+            TRes> {
+  _CopyWithStubImpl$Fragment$Section$$ListSection$items$items$item$$Episode$season(
+      this._res);
+
+  TRes _res;
+
+  call({
+    Fragment$Section$$ListSection$items$items$item$$Episode$season$show? $show,
+    String? $__typename,
+  }) =>
+      _res;
+  CopyWith$Fragment$Section$$ListSection$items$items$item$$Episode$season$show<
+          TRes>
+      get $show =>
+          CopyWith$Fragment$Section$$ListSection$items$items$item$$Episode$season$show
+              .stub(_res);
+}
+
+class Fragment$Section$$ListSection$items$items$item$$Episode$season$show {
+  Fragment$Section$$ListSection$items$items$item$$Episode$season$show({
+    required this.title,
+    required this.$__typename,
+  });
+
+  factory Fragment$Section$$ListSection$items$items$item$$Episode$season$show.fromJson(
+      Map<String, dynamic> json) {
+    final l$title = json['title'];
+    final l$$__typename = json['__typename'];
+    return Fragment$Section$$ListSection$items$items$item$$Episode$season$show(
+      title: (l$title as String),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final String title;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$title = title;
+    _resultData['title'] = l$title;
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$title = title;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$title,
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (!(other
+            is Fragment$Section$$ListSection$items$items$item$$Episode$season$show) ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$title = title;
+    final lOther$title = other.title;
+    if (l$title != lOther$title) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Fragment$Section$$ListSection$items$items$item$$Episode$season$show
+    on Fragment$Section$$ListSection$items$items$item$$Episode$season$show {
+  CopyWith$Fragment$Section$$ListSection$items$items$item$$Episode$season$show<
+          Fragment$Section$$ListSection$items$items$item$$Episode$season$show>
+      get copyWith =>
+          CopyWith$Fragment$Section$$ListSection$items$items$item$$Episode$season$show(
+            this,
+            (i) => i,
+          );
+}
+
+abstract class CopyWith$Fragment$Section$$ListSection$items$items$item$$Episode$season$show<
+    TRes> {
+  factory CopyWith$Fragment$Section$$ListSection$items$items$item$$Episode$season$show(
+    Fragment$Section$$ListSection$items$items$item$$Episode$season$show
+        instance,
+    TRes Function(
+            Fragment$Section$$ListSection$items$items$item$$Episode$season$show)
+        then,
+  ) = _CopyWithImpl$Fragment$Section$$ListSection$items$items$item$$Episode$season$show;
+
+  factory CopyWith$Fragment$Section$$ListSection$items$items$item$$Episode$season$show.stub(
+          TRes res) =
+      _CopyWithStubImpl$Fragment$Section$$ListSection$items$items$item$$Episode$season$show;
+
+  TRes call({
+    String? title,
+    String? $__typename,
+  });
+}
+
+class _CopyWithImpl$Fragment$Section$$ListSection$items$items$item$$Episode$season$show<
+        TRes>
+    implements
+        CopyWith$Fragment$Section$$ListSection$items$items$item$$Episode$season$show<
+            TRes> {
+  _CopyWithImpl$Fragment$Section$$ListSection$items$items$item$$Episode$season$show(
+    this._instance,
+    this._then,
+  );
+
+  final Fragment$Section$$ListSection$items$items$item$$Episode$season$show
+      _instance;
+
+  final TRes Function(
+          Fragment$Section$$ListSection$items$items$item$$Episode$season$show)
+      _then;
+
+  static const _undefined = {};
+
+  TRes call({
+    Object? title = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(Fragment$Section$$ListSection$items$items$item$$Episode$season$show(
+        title: title == _undefined || title == null
+            ? _instance.title
+            : (title as String),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+}
+
+class _CopyWithStubImpl$Fragment$Section$$ListSection$items$items$item$$Episode$season$show<
+        TRes>
+    implements
+        CopyWith$Fragment$Section$$ListSection$items$items$item$$Episode$season$show<
+            TRes> {
+  _CopyWithStubImpl$Fragment$Section$$ListSection$items$items$item$$Episode$season$show(
+      this._res);
+
+  TRes _res;
+
+  call({
+    String? title,
+    String? $__typename,
+  }) =>
+      _res;
+}
+
+class Fragment$Section$$DefaultGridSection
+    implements Fragment$ItemSection, Fragment$Section {
   Fragment$Section$$DefaultGridSection({
     required this.id,
     this.title,
@@ -10140,7 +11411,8 @@ class _CopyWithStubImpl$Fragment$Section$$DefaultGridSection<TRes>
       CopyWith$Fragment$Section$$DefaultGridSection$items.stub(_res);
 }
 
-class Fragment$Section$$DefaultGridSection$items {
+class Fragment$Section$$DefaultGridSection$items
+    implements Fragment$ItemSection$items {
   Fragment$Section$$DefaultGridSection$items({
     required this.items,
     required this.$__typename,
@@ -11533,7 +12805,339 @@ class _CopyWithStubImpl$Fragment$Section$$DefaultGridSection$items$items$item$$S
       _res;
 }
 
-class Fragment$Section$$PosterGridSection implements Fragment$Section {
+class Fragment$Section$$DefaultGridSection$items$items$item$$Episode$season
+    implements Fragment$GridSectionItem$item$$Episode$season {
+  Fragment$Section$$DefaultGridSection$items$items$item$$Episode$season({
+    required this.number,
+    required this.$show,
+    required this.$__typename,
+  });
+
+  factory Fragment$Section$$DefaultGridSection$items$items$item$$Episode$season.fromJson(
+      Map<String, dynamic> json) {
+    final l$number = json['number'];
+    final l$$show = json['show'];
+    final l$$__typename = json['__typename'];
+    return Fragment$Section$$DefaultGridSection$items$items$item$$Episode$season(
+      number: (l$number as int),
+      $show:
+          Fragment$Section$$DefaultGridSection$items$items$item$$Episode$season$show
+              .fromJson((l$$show as Map<String, dynamic>)),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final int number;
+
+  final Fragment$Section$$DefaultGridSection$items$items$item$$Episode$season$show
+      $show;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$number = number;
+    _resultData['number'] = l$number;
+    final l$$show = $show;
+    _resultData['show'] = l$$show.toJson();
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$number = number;
+    final l$$show = $show;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$number,
+      l$$show,
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (!(other
+            is Fragment$Section$$DefaultGridSection$items$items$item$$Episode$season) ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$number = number;
+    final lOther$number = other.number;
+    if (l$number != lOther$number) {
+      return false;
+    }
+    final l$$show = $show;
+    final lOther$$show = other.$show;
+    if (l$$show != lOther$$show) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Fragment$Section$$DefaultGridSection$items$items$item$$Episode$season
+    on Fragment$Section$$DefaultGridSection$items$items$item$$Episode$season {
+  CopyWith$Fragment$Section$$DefaultGridSection$items$items$item$$Episode$season<
+          Fragment$Section$$DefaultGridSection$items$items$item$$Episode$season>
+      get copyWith =>
+          CopyWith$Fragment$Section$$DefaultGridSection$items$items$item$$Episode$season(
+            this,
+            (i) => i,
+          );
+}
+
+abstract class CopyWith$Fragment$Section$$DefaultGridSection$items$items$item$$Episode$season<
+    TRes> {
+  factory CopyWith$Fragment$Section$$DefaultGridSection$items$items$item$$Episode$season(
+    Fragment$Section$$DefaultGridSection$items$items$item$$Episode$season
+        instance,
+    TRes Function(
+            Fragment$Section$$DefaultGridSection$items$items$item$$Episode$season)
+        then,
+  ) = _CopyWithImpl$Fragment$Section$$DefaultGridSection$items$items$item$$Episode$season;
+
+  factory CopyWith$Fragment$Section$$DefaultGridSection$items$items$item$$Episode$season.stub(
+          TRes res) =
+      _CopyWithStubImpl$Fragment$Section$$DefaultGridSection$items$items$item$$Episode$season;
+
+  TRes call({
+    int? number,
+    Fragment$Section$$DefaultGridSection$items$items$item$$Episode$season$show?
+        $show,
+    String? $__typename,
+  });
+  CopyWith$Fragment$Section$$DefaultGridSection$items$items$item$$Episode$season$show<
+      TRes> get $show;
+}
+
+class _CopyWithImpl$Fragment$Section$$DefaultGridSection$items$items$item$$Episode$season<
+        TRes>
+    implements
+        CopyWith$Fragment$Section$$DefaultGridSection$items$items$item$$Episode$season<
+            TRes> {
+  _CopyWithImpl$Fragment$Section$$DefaultGridSection$items$items$item$$Episode$season(
+    this._instance,
+    this._then,
+  );
+
+  final Fragment$Section$$DefaultGridSection$items$items$item$$Episode$season
+      _instance;
+
+  final TRes Function(
+          Fragment$Section$$DefaultGridSection$items$items$item$$Episode$season)
+      _then;
+
+  static const _undefined = {};
+
+  TRes call({
+    Object? number = _undefined,
+    Object? $show = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(
+          Fragment$Section$$DefaultGridSection$items$items$item$$Episode$season(
+        number: number == _undefined || number == null
+            ? _instance.number
+            : (number as int),
+        $show: $show == _undefined || $show == null
+            ? _instance.$show
+            : ($show
+                as Fragment$Section$$DefaultGridSection$items$items$item$$Episode$season$show),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+  CopyWith$Fragment$Section$$DefaultGridSection$items$items$item$$Episode$season$show<
+      TRes> get $show {
+    final local$$show = _instance.$show;
+    return CopyWith$Fragment$Section$$DefaultGridSection$items$items$item$$Episode$season$show(
+        local$$show, (e) => call($show: e));
+  }
+}
+
+class _CopyWithStubImpl$Fragment$Section$$DefaultGridSection$items$items$item$$Episode$season<
+        TRes>
+    implements
+        CopyWith$Fragment$Section$$DefaultGridSection$items$items$item$$Episode$season<
+            TRes> {
+  _CopyWithStubImpl$Fragment$Section$$DefaultGridSection$items$items$item$$Episode$season(
+      this._res);
+
+  TRes _res;
+
+  call({
+    int? number,
+    Fragment$Section$$DefaultGridSection$items$items$item$$Episode$season$show?
+        $show,
+    String? $__typename,
+  }) =>
+      _res;
+  CopyWith$Fragment$Section$$DefaultGridSection$items$items$item$$Episode$season$show<
+          TRes>
+      get $show =>
+          CopyWith$Fragment$Section$$DefaultGridSection$items$items$item$$Episode$season$show
+              .stub(_res);
+}
+
+class Fragment$Section$$DefaultGridSection$items$items$item$$Episode$season$show
+    implements Fragment$GridSectionItem$item$$Episode$season$show {
+  Fragment$Section$$DefaultGridSection$items$items$item$$Episode$season$show({
+    required this.title,
+    required this.$__typename,
+  });
+
+  factory Fragment$Section$$DefaultGridSection$items$items$item$$Episode$season$show.fromJson(
+      Map<String, dynamic> json) {
+    final l$title = json['title'];
+    final l$$__typename = json['__typename'];
+    return Fragment$Section$$DefaultGridSection$items$items$item$$Episode$season$show(
+      title: (l$title as String),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final String title;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$title = title;
+    _resultData['title'] = l$title;
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$title = title;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$title,
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (!(other
+            is Fragment$Section$$DefaultGridSection$items$items$item$$Episode$season$show) ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$title = title;
+    final lOther$title = other.title;
+    if (l$title != lOther$title) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Fragment$Section$$DefaultGridSection$items$items$item$$Episode$season$show
+    on Fragment$Section$$DefaultGridSection$items$items$item$$Episode$season$show {
+  CopyWith$Fragment$Section$$DefaultGridSection$items$items$item$$Episode$season$show<
+          Fragment$Section$$DefaultGridSection$items$items$item$$Episode$season$show>
+      get copyWith =>
+          CopyWith$Fragment$Section$$DefaultGridSection$items$items$item$$Episode$season$show(
+            this,
+            (i) => i,
+          );
+}
+
+abstract class CopyWith$Fragment$Section$$DefaultGridSection$items$items$item$$Episode$season$show<
+    TRes> {
+  factory CopyWith$Fragment$Section$$DefaultGridSection$items$items$item$$Episode$season$show(
+    Fragment$Section$$DefaultGridSection$items$items$item$$Episode$season$show
+        instance,
+    TRes Function(
+            Fragment$Section$$DefaultGridSection$items$items$item$$Episode$season$show)
+        then,
+  ) = _CopyWithImpl$Fragment$Section$$DefaultGridSection$items$items$item$$Episode$season$show;
+
+  factory CopyWith$Fragment$Section$$DefaultGridSection$items$items$item$$Episode$season$show.stub(
+          TRes res) =
+      _CopyWithStubImpl$Fragment$Section$$DefaultGridSection$items$items$item$$Episode$season$show;
+
+  TRes call({
+    String? title,
+    String? $__typename,
+  });
+}
+
+class _CopyWithImpl$Fragment$Section$$DefaultGridSection$items$items$item$$Episode$season$show<
+        TRes>
+    implements
+        CopyWith$Fragment$Section$$DefaultGridSection$items$items$item$$Episode$season$show<
+            TRes> {
+  _CopyWithImpl$Fragment$Section$$DefaultGridSection$items$items$item$$Episode$season$show(
+    this._instance,
+    this._then,
+  );
+
+  final Fragment$Section$$DefaultGridSection$items$items$item$$Episode$season$show
+      _instance;
+
+  final TRes Function(
+          Fragment$Section$$DefaultGridSection$items$items$item$$Episode$season$show)
+      _then;
+
+  static const _undefined = {};
+
+  TRes call({
+    Object? title = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(
+          Fragment$Section$$DefaultGridSection$items$items$item$$Episode$season$show(
+        title: title == _undefined || title == null
+            ? _instance.title
+            : (title as String),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+}
+
+class _CopyWithStubImpl$Fragment$Section$$DefaultGridSection$items$items$item$$Episode$season$show<
+        TRes>
+    implements
+        CopyWith$Fragment$Section$$DefaultGridSection$items$items$item$$Episode$season$show<
+            TRes> {
+  _CopyWithStubImpl$Fragment$Section$$DefaultGridSection$items$items$item$$Episode$season$show(
+      this._res);
+
+  TRes _res;
+
+  call({
+    String? title,
+    String? $__typename,
+  }) =>
+      _res;
+}
+
+class Fragment$Section$$PosterGridSection
+    implements Fragment$ItemSection, Fragment$Section {
   Fragment$Section$$PosterGridSection({
     required this.id,
     this.title,
@@ -11725,7 +13329,8 @@ class _CopyWithStubImpl$Fragment$Section$$PosterGridSection<TRes>
       CopyWith$Fragment$Section$$PosterGridSection$items.stub(_res);
 }
 
-class Fragment$Section$$PosterGridSection$items {
+class Fragment$Section$$PosterGridSection$items
+    implements Fragment$ItemSection$items {
   Fragment$Section$$PosterGridSection$items({
     required this.items,
     required this.$__typename,
@@ -13115,7 +14720,339 @@ class _CopyWithStubImpl$Fragment$Section$$PosterGridSection$items$items$item$$Sh
       _res;
 }
 
-class Fragment$Section$$IconGridSection implements Fragment$Section {
+class Fragment$Section$$PosterGridSection$items$items$item$$Episode$season
+    implements Fragment$GridSectionItem$item$$Episode$season {
+  Fragment$Section$$PosterGridSection$items$items$item$$Episode$season({
+    required this.number,
+    required this.$show,
+    required this.$__typename,
+  });
+
+  factory Fragment$Section$$PosterGridSection$items$items$item$$Episode$season.fromJson(
+      Map<String, dynamic> json) {
+    final l$number = json['number'];
+    final l$$show = json['show'];
+    final l$$__typename = json['__typename'];
+    return Fragment$Section$$PosterGridSection$items$items$item$$Episode$season(
+      number: (l$number as int),
+      $show:
+          Fragment$Section$$PosterGridSection$items$items$item$$Episode$season$show
+              .fromJson((l$$show as Map<String, dynamic>)),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final int number;
+
+  final Fragment$Section$$PosterGridSection$items$items$item$$Episode$season$show
+      $show;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$number = number;
+    _resultData['number'] = l$number;
+    final l$$show = $show;
+    _resultData['show'] = l$$show.toJson();
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$number = number;
+    final l$$show = $show;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$number,
+      l$$show,
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (!(other
+            is Fragment$Section$$PosterGridSection$items$items$item$$Episode$season) ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$number = number;
+    final lOther$number = other.number;
+    if (l$number != lOther$number) {
+      return false;
+    }
+    final l$$show = $show;
+    final lOther$$show = other.$show;
+    if (l$$show != lOther$$show) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Fragment$Section$$PosterGridSection$items$items$item$$Episode$season
+    on Fragment$Section$$PosterGridSection$items$items$item$$Episode$season {
+  CopyWith$Fragment$Section$$PosterGridSection$items$items$item$$Episode$season<
+          Fragment$Section$$PosterGridSection$items$items$item$$Episode$season>
+      get copyWith =>
+          CopyWith$Fragment$Section$$PosterGridSection$items$items$item$$Episode$season(
+            this,
+            (i) => i,
+          );
+}
+
+abstract class CopyWith$Fragment$Section$$PosterGridSection$items$items$item$$Episode$season<
+    TRes> {
+  factory CopyWith$Fragment$Section$$PosterGridSection$items$items$item$$Episode$season(
+    Fragment$Section$$PosterGridSection$items$items$item$$Episode$season
+        instance,
+    TRes Function(
+            Fragment$Section$$PosterGridSection$items$items$item$$Episode$season)
+        then,
+  ) = _CopyWithImpl$Fragment$Section$$PosterGridSection$items$items$item$$Episode$season;
+
+  factory CopyWith$Fragment$Section$$PosterGridSection$items$items$item$$Episode$season.stub(
+          TRes res) =
+      _CopyWithStubImpl$Fragment$Section$$PosterGridSection$items$items$item$$Episode$season;
+
+  TRes call({
+    int? number,
+    Fragment$Section$$PosterGridSection$items$items$item$$Episode$season$show?
+        $show,
+    String? $__typename,
+  });
+  CopyWith$Fragment$Section$$PosterGridSection$items$items$item$$Episode$season$show<
+      TRes> get $show;
+}
+
+class _CopyWithImpl$Fragment$Section$$PosterGridSection$items$items$item$$Episode$season<
+        TRes>
+    implements
+        CopyWith$Fragment$Section$$PosterGridSection$items$items$item$$Episode$season<
+            TRes> {
+  _CopyWithImpl$Fragment$Section$$PosterGridSection$items$items$item$$Episode$season(
+    this._instance,
+    this._then,
+  );
+
+  final Fragment$Section$$PosterGridSection$items$items$item$$Episode$season
+      _instance;
+
+  final TRes Function(
+          Fragment$Section$$PosterGridSection$items$items$item$$Episode$season)
+      _then;
+
+  static const _undefined = {};
+
+  TRes call({
+    Object? number = _undefined,
+    Object? $show = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(
+          Fragment$Section$$PosterGridSection$items$items$item$$Episode$season(
+        number: number == _undefined || number == null
+            ? _instance.number
+            : (number as int),
+        $show: $show == _undefined || $show == null
+            ? _instance.$show
+            : ($show
+                as Fragment$Section$$PosterGridSection$items$items$item$$Episode$season$show),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+  CopyWith$Fragment$Section$$PosterGridSection$items$items$item$$Episode$season$show<
+      TRes> get $show {
+    final local$$show = _instance.$show;
+    return CopyWith$Fragment$Section$$PosterGridSection$items$items$item$$Episode$season$show(
+        local$$show, (e) => call($show: e));
+  }
+}
+
+class _CopyWithStubImpl$Fragment$Section$$PosterGridSection$items$items$item$$Episode$season<
+        TRes>
+    implements
+        CopyWith$Fragment$Section$$PosterGridSection$items$items$item$$Episode$season<
+            TRes> {
+  _CopyWithStubImpl$Fragment$Section$$PosterGridSection$items$items$item$$Episode$season(
+      this._res);
+
+  TRes _res;
+
+  call({
+    int? number,
+    Fragment$Section$$PosterGridSection$items$items$item$$Episode$season$show?
+        $show,
+    String? $__typename,
+  }) =>
+      _res;
+  CopyWith$Fragment$Section$$PosterGridSection$items$items$item$$Episode$season$show<
+          TRes>
+      get $show =>
+          CopyWith$Fragment$Section$$PosterGridSection$items$items$item$$Episode$season$show
+              .stub(_res);
+}
+
+class Fragment$Section$$PosterGridSection$items$items$item$$Episode$season$show
+    implements Fragment$GridSectionItem$item$$Episode$season$show {
+  Fragment$Section$$PosterGridSection$items$items$item$$Episode$season$show({
+    required this.title,
+    required this.$__typename,
+  });
+
+  factory Fragment$Section$$PosterGridSection$items$items$item$$Episode$season$show.fromJson(
+      Map<String, dynamic> json) {
+    final l$title = json['title'];
+    final l$$__typename = json['__typename'];
+    return Fragment$Section$$PosterGridSection$items$items$item$$Episode$season$show(
+      title: (l$title as String),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final String title;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$title = title;
+    _resultData['title'] = l$title;
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$title = title;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$title,
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (!(other
+            is Fragment$Section$$PosterGridSection$items$items$item$$Episode$season$show) ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$title = title;
+    final lOther$title = other.title;
+    if (l$title != lOther$title) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Fragment$Section$$PosterGridSection$items$items$item$$Episode$season$show
+    on Fragment$Section$$PosterGridSection$items$items$item$$Episode$season$show {
+  CopyWith$Fragment$Section$$PosterGridSection$items$items$item$$Episode$season$show<
+          Fragment$Section$$PosterGridSection$items$items$item$$Episode$season$show>
+      get copyWith =>
+          CopyWith$Fragment$Section$$PosterGridSection$items$items$item$$Episode$season$show(
+            this,
+            (i) => i,
+          );
+}
+
+abstract class CopyWith$Fragment$Section$$PosterGridSection$items$items$item$$Episode$season$show<
+    TRes> {
+  factory CopyWith$Fragment$Section$$PosterGridSection$items$items$item$$Episode$season$show(
+    Fragment$Section$$PosterGridSection$items$items$item$$Episode$season$show
+        instance,
+    TRes Function(
+            Fragment$Section$$PosterGridSection$items$items$item$$Episode$season$show)
+        then,
+  ) = _CopyWithImpl$Fragment$Section$$PosterGridSection$items$items$item$$Episode$season$show;
+
+  factory CopyWith$Fragment$Section$$PosterGridSection$items$items$item$$Episode$season$show.stub(
+          TRes res) =
+      _CopyWithStubImpl$Fragment$Section$$PosterGridSection$items$items$item$$Episode$season$show;
+
+  TRes call({
+    String? title,
+    String? $__typename,
+  });
+}
+
+class _CopyWithImpl$Fragment$Section$$PosterGridSection$items$items$item$$Episode$season$show<
+        TRes>
+    implements
+        CopyWith$Fragment$Section$$PosterGridSection$items$items$item$$Episode$season$show<
+            TRes> {
+  _CopyWithImpl$Fragment$Section$$PosterGridSection$items$items$item$$Episode$season$show(
+    this._instance,
+    this._then,
+  );
+
+  final Fragment$Section$$PosterGridSection$items$items$item$$Episode$season$show
+      _instance;
+
+  final TRes Function(
+          Fragment$Section$$PosterGridSection$items$items$item$$Episode$season$show)
+      _then;
+
+  static const _undefined = {};
+
+  TRes call({
+    Object? title = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(
+          Fragment$Section$$PosterGridSection$items$items$item$$Episode$season$show(
+        title: title == _undefined || title == null
+            ? _instance.title
+            : (title as String),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+}
+
+class _CopyWithStubImpl$Fragment$Section$$PosterGridSection$items$items$item$$Episode$season$show<
+        TRes>
+    implements
+        CopyWith$Fragment$Section$$PosterGridSection$items$items$item$$Episode$season$show<
+            TRes> {
+  _CopyWithStubImpl$Fragment$Section$$PosterGridSection$items$items$item$$Episode$season$show(
+      this._res);
+
+  TRes _res;
+
+  call({
+    String? title,
+    String? $__typename,
+  }) =>
+      _res;
+}
+
+class Fragment$Section$$IconGridSection
+    implements Fragment$ItemSection, Fragment$Section {
   Fragment$Section$$IconGridSection({
     required this.id,
     this.title,
@@ -13306,7 +15243,8 @@ class _CopyWithStubImpl$Fragment$Section$$IconGridSection<TRes>
       CopyWith$Fragment$Section$$IconGridSection$items.stub(_res);
 }
 
-class Fragment$Section$$IconGridSection$items {
+class Fragment$Section$$IconGridSection$items
+    implements Fragment$ItemSection$items {
   Fragment$Section$$IconGridSection$items({
     required this.items,
     required this.$__typename,
@@ -14687,1930 +16625,6 @@ class _CopyWithStubImpl$Fragment$Section$$IconGridSection$items$items$item$$Show
       _res;
 }
 
-class Fragment$Section$$IconSection implements Fragment$Section {
-  Fragment$Section$$IconSection({
-    required this.id,
-    this.title,
-    required this.$__typename,
-    required this.items,
-  });
-
-  factory Fragment$Section$$IconSection.fromJson(Map<String, dynamic> json) {
-    final l$id = json['id'];
-    final l$title = json['title'];
-    final l$$__typename = json['__typename'];
-    final l$items = json['items'];
-    return Fragment$Section$$IconSection(
-      id: (l$id as String),
-      title: (l$title as String?),
-      $__typename: (l$$__typename as String),
-      items: Fragment$Section$$IconSection$items.fromJson(
-          (l$items as Map<String, dynamic>)),
-    );
-  }
-
-  final String id;
-
-  final String? title;
-
-  final String $__typename;
-
-  final Fragment$Section$$IconSection$items items;
-
-  Map<String, dynamic> toJson() {
-    final _resultData = <String, dynamic>{};
-    final l$id = id;
-    _resultData['id'] = l$id;
-    final l$title = title;
-    _resultData['title'] = l$title;
-    final l$$__typename = $__typename;
-    _resultData['__typename'] = l$$__typename;
-    final l$items = items;
-    _resultData['items'] = l$items.toJson();
-    return _resultData;
-  }
-
-  @override
-  int get hashCode {
-    final l$id = id;
-    final l$title = title;
-    final l$$__typename = $__typename;
-    final l$items = items;
-    return Object.hashAll([
-      l$id,
-      l$title,
-      l$$__typename,
-      l$items,
-    ]);
-  }
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) {
-      return true;
-    }
-    if (!(other is Fragment$Section$$IconSection) ||
-        runtimeType != other.runtimeType) {
-      return false;
-    }
-    final l$id = id;
-    final lOther$id = other.id;
-    if (l$id != lOther$id) {
-      return false;
-    }
-    final l$title = title;
-    final lOther$title = other.title;
-    if (l$title != lOther$title) {
-      return false;
-    }
-    final l$$__typename = $__typename;
-    final lOther$$__typename = other.$__typename;
-    if (l$$__typename != lOther$$__typename) {
-      return false;
-    }
-    final l$items = items;
-    final lOther$items = other.items;
-    if (l$items != lOther$items) {
-      return false;
-    }
-    return true;
-  }
-}
-
-extension UtilityExtension$Fragment$Section$$IconSection
-    on Fragment$Section$$IconSection {
-  CopyWith$Fragment$Section$$IconSection<Fragment$Section$$IconSection>
-      get copyWith => CopyWith$Fragment$Section$$IconSection(
-            this,
-            (i) => i,
-          );
-}
-
-abstract class CopyWith$Fragment$Section$$IconSection<TRes> {
-  factory CopyWith$Fragment$Section$$IconSection(
-    Fragment$Section$$IconSection instance,
-    TRes Function(Fragment$Section$$IconSection) then,
-  ) = _CopyWithImpl$Fragment$Section$$IconSection;
-
-  factory CopyWith$Fragment$Section$$IconSection.stub(TRes res) =
-      _CopyWithStubImpl$Fragment$Section$$IconSection;
-
-  TRes call({
-    String? id,
-    String? title,
-    String? $__typename,
-    Fragment$Section$$IconSection$items? items,
-  });
-  CopyWith$Fragment$Section$$IconSection$items<TRes> get items;
-}
-
-class _CopyWithImpl$Fragment$Section$$IconSection<TRes>
-    implements CopyWith$Fragment$Section$$IconSection<TRes> {
-  _CopyWithImpl$Fragment$Section$$IconSection(
-    this._instance,
-    this._then,
-  );
-
-  final Fragment$Section$$IconSection _instance;
-
-  final TRes Function(Fragment$Section$$IconSection) _then;
-
-  static const _undefined = {};
-
-  TRes call({
-    Object? id = _undefined,
-    Object? title = _undefined,
-    Object? $__typename = _undefined,
-    Object? items = _undefined,
-  }) =>
-      _then(Fragment$Section$$IconSection(
-        id: id == _undefined || id == null ? _instance.id : (id as String),
-        title: title == _undefined ? _instance.title : (title as String?),
-        $__typename: $__typename == _undefined || $__typename == null
-            ? _instance.$__typename
-            : ($__typename as String),
-        items: items == _undefined || items == null
-            ? _instance.items
-            : (items as Fragment$Section$$IconSection$items),
-      ));
-  CopyWith$Fragment$Section$$IconSection$items<TRes> get items {
-    final local$items = _instance.items;
-    return CopyWith$Fragment$Section$$IconSection$items(
-        local$items, (e) => call(items: e));
-  }
-}
-
-class _CopyWithStubImpl$Fragment$Section$$IconSection<TRes>
-    implements CopyWith$Fragment$Section$$IconSection<TRes> {
-  _CopyWithStubImpl$Fragment$Section$$IconSection(this._res);
-
-  TRes _res;
-
-  call({
-    String? id,
-    String? title,
-    String? $__typename,
-    Fragment$Section$$IconSection$items? items,
-  }) =>
-      _res;
-  CopyWith$Fragment$Section$$IconSection$items<TRes> get items =>
-      CopyWith$Fragment$Section$$IconSection$items.stub(_res);
-}
-
-class Fragment$Section$$IconSection$items {
-  Fragment$Section$$IconSection$items({
-    required this.items,
-    required this.$__typename,
-  });
-
-  factory Fragment$Section$$IconSection$items.fromJson(
-      Map<String, dynamic> json) {
-    final l$items = json['items'];
-    final l$$__typename = json['__typename'];
-    return Fragment$Section$$IconSection$items(
-      items: (l$items as List<dynamic>)
-          .map((e) =>
-              Fragment$ItemSectionItem.fromJson((e as Map<String, dynamic>)))
-          .toList(),
-      $__typename: (l$$__typename as String),
-    );
-  }
-
-  final List<Fragment$ItemSectionItem> items;
-
-  final String $__typename;
-
-  Map<String, dynamic> toJson() {
-    final _resultData = <String, dynamic>{};
-    final l$items = items;
-    _resultData['items'] = l$items.map((e) => e.toJson()).toList();
-    final l$$__typename = $__typename;
-    _resultData['__typename'] = l$$__typename;
-    return _resultData;
-  }
-
-  @override
-  int get hashCode {
-    final l$items = items;
-    final l$$__typename = $__typename;
-    return Object.hashAll([
-      Object.hashAll(l$items.map((v) => v)),
-      l$$__typename,
-    ]);
-  }
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) {
-      return true;
-    }
-    if (!(other is Fragment$Section$$IconSection$items) ||
-        runtimeType != other.runtimeType) {
-      return false;
-    }
-    final l$items = items;
-    final lOther$items = other.items;
-    if (l$items.length != lOther$items.length) {
-      return false;
-    }
-    for (int i = 0; i < l$items.length; i++) {
-      final l$items$entry = l$items[i];
-      final lOther$items$entry = lOther$items[i];
-      if (l$items$entry != lOther$items$entry) {
-        return false;
-      }
-    }
-    final l$$__typename = $__typename;
-    final lOther$$__typename = other.$__typename;
-    if (l$$__typename != lOther$$__typename) {
-      return false;
-    }
-    return true;
-  }
-}
-
-extension UtilityExtension$Fragment$Section$$IconSection$items
-    on Fragment$Section$$IconSection$items {
-  CopyWith$Fragment$Section$$IconSection$items<
-          Fragment$Section$$IconSection$items>
-      get copyWith => CopyWith$Fragment$Section$$IconSection$items(
-            this,
-            (i) => i,
-          );
-}
-
-abstract class CopyWith$Fragment$Section$$IconSection$items<TRes> {
-  factory CopyWith$Fragment$Section$$IconSection$items(
-    Fragment$Section$$IconSection$items instance,
-    TRes Function(Fragment$Section$$IconSection$items) then,
-  ) = _CopyWithImpl$Fragment$Section$$IconSection$items;
-
-  factory CopyWith$Fragment$Section$$IconSection$items.stub(TRes res) =
-      _CopyWithStubImpl$Fragment$Section$$IconSection$items;
-
-  TRes call({
-    List<Fragment$ItemSectionItem>? items,
-    String? $__typename,
-  });
-  TRes items(
-      Iterable<Fragment$ItemSectionItem> Function(
-              Iterable<
-                  CopyWith$Fragment$ItemSectionItem<Fragment$ItemSectionItem>>)
-          _fn);
-}
-
-class _CopyWithImpl$Fragment$Section$$IconSection$items<TRes>
-    implements CopyWith$Fragment$Section$$IconSection$items<TRes> {
-  _CopyWithImpl$Fragment$Section$$IconSection$items(
-    this._instance,
-    this._then,
-  );
-
-  final Fragment$Section$$IconSection$items _instance;
-
-  final TRes Function(Fragment$Section$$IconSection$items) _then;
-
-  static const _undefined = {};
-
-  TRes call({
-    Object? items = _undefined,
-    Object? $__typename = _undefined,
-  }) =>
-      _then(Fragment$Section$$IconSection$items(
-        items: items == _undefined || items == null
-            ? _instance.items
-            : (items as List<Fragment$ItemSectionItem>),
-        $__typename: $__typename == _undefined || $__typename == null
-            ? _instance.$__typename
-            : ($__typename as String),
-      ));
-  TRes items(
-          Iterable<Fragment$ItemSectionItem> Function(
-                  Iterable<
-                      CopyWith$Fragment$ItemSectionItem<
-                          Fragment$ItemSectionItem>>)
-              _fn) =>
-      call(
-          items:
-              _fn(_instance.items.map((e) => CopyWith$Fragment$ItemSectionItem(
-                    e,
-                    (i) => i,
-                  ))).toList());
-}
-
-class _CopyWithStubImpl$Fragment$Section$$IconSection$items<TRes>
-    implements CopyWith$Fragment$Section$$IconSection$items<TRes> {
-  _CopyWithStubImpl$Fragment$Section$$IconSection$items(this._res);
-
-  TRes _res;
-
-  call({
-    List<Fragment$ItemSectionItem>? items,
-    String? $__typename,
-  }) =>
-      _res;
-  items(_fn) => _res;
-}
-
-class Fragment$Section$$LabelSection implements Fragment$Section {
-  Fragment$Section$$LabelSection({
-    required this.id,
-    this.title,
-    required this.$__typename,
-    required this.items,
-  });
-
-  factory Fragment$Section$$LabelSection.fromJson(Map<String, dynamic> json) {
-    final l$id = json['id'];
-    final l$title = json['title'];
-    final l$$__typename = json['__typename'];
-    final l$items = json['items'];
-    return Fragment$Section$$LabelSection(
-      id: (l$id as String),
-      title: (l$title as String?),
-      $__typename: (l$$__typename as String),
-      items: Fragment$Section$$LabelSection$items.fromJson(
-          (l$items as Map<String, dynamic>)),
-    );
-  }
-
-  final String id;
-
-  final String? title;
-
-  final String $__typename;
-
-  final Fragment$Section$$LabelSection$items items;
-
-  Map<String, dynamic> toJson() {
-    final _resultData = <String, dynamic>{};
-    final l$id = id;
-    _resultData['id'] = l$id;
-    final l$title = title;
-    _resultData['title'] = l$title;
-    final l$$__typename = $__typename;
-    _resultData['__typename'] = l$$__typename;
-    final l$items = items;
-    _resultData['items'] = l$items.toJson();
-    return _resultData;
-  }
-
-  @override
-  int get hashCode {
-    final l$id = id;
-    final l$title = title;
-    final l$$__typename = $__typename;
-    final l$items = items;
-    return Object.hashAll([
-      l$id,
-      l$title,
-      l$$__typename,
-      l$items,
-    ]);
-  }
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) {
-      return true;
-    }
-    if (!(other is Fragment$Section$$LabelSection) ||
-        runtimeType != other.runtimeType) {
-      return false;
-    }
-    final l$id = id;
-    final lOther$id = other.id;
-    if (l$id != lOther$id) {
-      return false;
-    }
-    final l$title = title;
-    final lOther$title = other.title;
-    if (l$title != lOther$title) {
-      return false;
-    }
-    final l$$__typename = $__typename;
-    final lOther$$__typename = other.$__typename;
-    if (l$$__typename != lOther$$__typename) {
-      return false;
-    }
-    final l$items = items;
-    final lOther$items = other.items;
-    if (l$items != lOther$items) {
-      return false;
-    }
-    return true;
-  }
-}
-
-extension UtilityExtension$Fragment$Section$$LabelSection
-    on Fragment$Section$$LabelSection {
-  CopyWith$Fragment$Section$$LabelSection<Fragment$Section$$LabelSection>
-      get copyWith => CopyWith$Fragment$Section$$LabelSection(
-            this,
-            (i) => i,
-          );
-}
-
-abstract class CopyWith$Fragment$Section$$LabelSection<TRes> {
-  factory CopyWith$Fragment$Section$$LabelSection(
-    Fragment$Section$$LabelSection instance,
-    TRes Function(Fragment$Section$$LabelSection) then,
-  ) = _CopyWithImpl$Fragment$Section$$LabelSection;
-
-  factory CopyWith$Fragment$Section$$LabelSection.stub(TRes res) =
-      _CopyWithStubImpl$Fragment$Section$$LabelSection;
-
-  TRes call({
-    String? id,
-    String? title,
-    String? $__typename,
-    Fragment$Section$$LabelSection$items? items,
-  });
-  CopyWith$Fragment$Section$$LabelSection$items<TRes> get items;
-}
-
-class _CopyWithImpl$Fragment$Section$$LabelSection<TRes>
-    implements CopyWith$Fragment$Section$$LabelSection<TRes> {
-  _CopyWithImpl$Fragment$Section$$LabelSection(
-    this._instance,
-    this._then,
-  );
-
-  final Fragment$Section$$LabelSection _instance;
-
-  final TRes Function(Fragment$Section$$LabelSection) _then;
-
-  static const _undefined = {};
-
-  TRes call({
-    Object? id = _undefined,
-    Object? title = _undefined,
-    Object? $__typename = _undefined,
-    Object? items = _undefined,
-  }) =>
-      _then(Fragment$Section$$LabelSection(
-        id: id == _undefined || id == null ? _instance.id : (id as String),
-        title: title == _undefined ? _instance.title : (title as String?),
-        $__typename: $__typename == _undefined || $__typename == null
-            ? _instance.$__typename
-            : ($__typename as String),
-        items: items == _undefined || items == null
-            ? _instance.items
-            : (items as Fragment$Section$$LabelSection$items),
-      ));
-  CopyWith$Fragment$Section$$LabelSection$items<TRes> get items {
-    final local$items = _instance.items;
-    return CopyWith$Fragment$Section$$LabelSection$items(
-        local$items, (e) => call(items: e));
-  }
-}
-
-class _CopyWithStubImpl$Fragment$Section$$LabelSection<TRes>
-    implements CopyWith$Fragment$Section$$LabelSection<TRes> {
-  _CopyWithStubImpl$Fragment$Section$$LabelSection(this._res);
-
-  TRes _res;
-
-  call({
-    String? id,
-    String? title,
-    String? $__typename,
-    Fragment$Section$$LabelSection$items? items,
-  }) =>
-      _res;
-  CopyWith$Fragment$Section$$LabelSection$items<TRes> get items =>
-      CopyWith$Fragment$Section$$LabelSection$items.stub(_res);
-}
-
-class Fragment$Section$$LabelSection$items {
-  Fragment$Section$$LabelSection$items({
-    required this.items,
-    required this.$__typename,
-  });
-
-  factory Fragment$Section$$LabelSection$items.fromJson(
-      Map<String, dynamic> json) {
-    final l$items = json['items'];
-    final l$$__typename = json['__typename'];
-    return Fragment$Section$$LabelSection$items(
-      items: (l$items as List<dynamic>)
-          .map((e) =>
-              Fragment$ItemSectionItem.fromJson((e as Map<String, dynamic>)))
-          .toList(),
-      $__typename: (l$$__typename as String),
-    );
-  }
-
-  final List<Fragment$ItemSectionItem> items;
-
-  final String $__typename;
-
-  Map<String, dynamic> toJson() {
-    final _resultData = <String, dynamic>{};
-    final l$items = items;
-    _resultData['items'] = l$items.map((e) => e.toJson()).toList();
-    final l$$__typename = $__typename;
-    _resultData['__typename'] = l$$__typename;
-    return _resultData;
-  }
-
-  @override
-  int get hashCode {
-    final l$items = items;
-    final l$$__typename = $__typename;
-    return Object.hashAll([
-      Object.hashAll(l$items.map((v) => v)),
-      l$$__typename,
-    ]);
-  }
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) {
-      return true;
-    }
-    if (!(other is Fragment$Section$$LabelSection$items) ||
-        runtimeType != other.runtimeType) {
-      return false;
-    }
-    final l$items = items;
-    final lOther$items = other.items;
-    if (l$items.length != lOther$items.length) {
-      return false;
-    }
-    for (int i = 0; i < l$items.length; i++) {
-      final l$items$entry = l$items[i];
-      final lOther$items$entry = lOther$items[i];
-      if (l$items$entry != lOther$items$entry) {
-        return false;
-      }
-    }
-    final l$$__typename = $__typename;
-    final lOther$$__typename = other.$__typename;
-    if (l$$__typename != lOther$$__typename) {
-      return false;
-    }
-    return true;
-  }
-}
-
-extension UtilityExtension$Fragment$Section$$LabelSection$items
-    on Fragment$Section$$LabelSection$items {
-  CopyWith$Fragment$Section$$LabelSection$items<
-          Fragment$Section$$LabelSection$items>
-      get copyWith => CopyWith$Fragment$Section$$LabelSection$items(
-            this,
-            (i) => i,
-          );
-}
-
-abstract class CopyWith$Fragment$Section$$LabelSection$items<TRes> {
-  factory CopyWith$Fragment$Section$$LabelSection$items(
-    Fragment$Section$$LabelSection$items instance,
-    TRes Function(Fragment$Section$$LabelSection$items) then,
-  ) = _CopyWithImpl$Fragment$Section$$LabelSection$items;
-
-  factory CopyWith$Fragment$Section$$LabelSection$items.stub(TRes res) =
-      _CopyWithStubImpl$Fragment$Section$$LabelSection$items;
-
-  TRes call({
-    List<Fragment$ItemSectionItem>? items,
-    String? $__typename,
-  });
-  TRes items(
-      Iterable<Fragment$ItemSectionItem> Function(
-              Iterable<
-                  CopyWith$Fragment$ItemSectionItem<Fragment$ItemSectionItem>>)
-          _fn);
-}
-
-class _CopyWithImpl$Fragment$Section$$LabelSection$items<TRes>
-    implements CopyWith$Fragment$Section$$LabelSection$items<TRes> {
-  _CopyWithImpl$Fragment$Section$$LabelSection$items(
-    this._instance,
-    this._then,
-  );
-
-  final Fragment$Section$$LabelSection$items _instance;
-
-  final TRes Function(Fragment$Section$$LabelSection$items) _then;
-
-  static const _undefined = {};
-
-  TRes call({
-    Object? items = _undefined,
-    Object? $__typename = _undefined,
-  }) =>
-      _then(Fragment$Section$$LabelSection$items(
-        items: items == _undefined || items == null
-            ? _instance.items
-            : (items as List<Fragment$ItemSectionItem>),
-        $__typename: $__typename == _undefined || $__typename == null
-            ? _instance.$__typename
-            : ($__typename as String),
-      ));
-  TRes items(
-          Iterable<Fragment$ItemSectionItem> Function(
-                  Iterable<
-                      CopyWith$Fragment$ItemSectionItem<
-                          Fragment$ItemSectionItem>>)
-              _fn) =>
-      call(
-          items:
-              _fn(_instance.items.map((e) => CopyWith$Fragment$ItemSectionItem(
-                    e,
-                    (i) => i,
-                  ))).toList());
-}
-
-class _CopyWithStubImpl$Fragment$Section$$LabelSection$items<TRes>
-    implements CopyWith$Fragment$Section$$LabelSection$items<TRes> {
-  _CopyWithStubImpl$Fragment$Section$$LabelSection$items(this._res);
-
-  TRes _res;
-
-  call({
-    List<Fragment$ItemSectionItem>? items,
-    String? $__typename,
-  }) =>
-      _res;
-  items(_fn) => _res;
-}
-
-class Fragment$Section$$PosterSection$items$items$item$$Episode$season {
-  Fragment$Section$$PosterSection$items$items$item$$Episode$season({
-    required this.$show,
-    required this.$__typename,
-  });
-
-  factory Fragment$Section$$PosterSection$items$items$item$$Episode$season.fromJson(
-      Map<String, dynamic> json) {
-    final l$$show = json['show'];
-    final l$$__typename = json['__typename'];
-    return Fragment$Section$$PosterSection$items$items$item$$Episode$season(
-      $show:
-          Fragment$Section$$PosterSection$items$items$item$$Episode$season$show
-              .fromJson((l$$show as Map<String, dynamic>)),
-      $__typename: (l$$__typename as String),
-    );
-  }
-
-  final Fragment$Section$$PosterSection$items$items$item$$Episode$season$show
-      $show;
-
-  final String $__typename;
-
-  Map<String, dynamic> toJson() {
-    final _resultData = <String, dynamic>{};
-    final l$$show = $show;
-    _resultData['show'] = l$$show.toJson();
-    final l$$__typename = $__typename;
-    _resultData['__typename'] = l$$__typename;
-    return _resultData;
-  }
-
-  @override
-  int get hashCode {
-    final l$$show = $show;
-    final l$$__typename = $__typename;
-    return Object.hashAll([
-      l$$show,
-      l$$__typename,
-    ]);
-  }
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) {
-      return true;
-    }
-    if (!(other
-            is Fragment$Section$$PosterSection$items$items$item$$Episode$season) ||
-        runtimeType != other.runtimeType) {
-      return false;
-    }
-    final l$$show = $show;
-    final lOther$$show = other.$show;
-    if (l$$show != lOther$$show) {
-      return false;
-    }
-    final l$$__typename = $__typename;
-    final lOther$$__typename = other.$__typename;
-    if (l$$__typename != lOther$$__typename) {
-      return false;
-    }
-    return true;
-  }
-}
-
-extension UtilityExtension$Fragment$Section$$PosterSection$items$items$item$$Episode$season
-    on Fragment$Section$$PosterSection$items$items$item$$Episode$season {
-  CopyWith$Fragment$Section$$PosterSection$items$items$item$$Episode$season<
-          Fragment$Section$$PosterSection$items$items$item$$Episode$season>
-      get copyWith =>
-          CopyWith$Fragment$Section$$PosterSection$items$items$item$$Episode$season(
-            this,
-            (i) => i,
-          );
-}
-
-abstract class CopyWith$Fragment$Section$$PosterSection$items$items$item$$Episode$season<
-    TRes> {
-  factory CopyWith$Fragment$Section$$PosterSection$items$items$item$$Episode$season(
-    Fragment$Section$$PosterSection$items$items$item$$Episode$season instance,
-    TRes Function(
-            Fragment$Section$$PosterSection$items$items$item$$Episode$season)
-        then,
-  ) = _CopyWithImpl$Fragment$Section$$PosterSection$items$items$item$$Episode$season;
-
-  factory CopyWith$Fragment$Section$$PosterSection$items$items$item$$Episode$season.stub(
-          TRes res) =
-      _CopyWithStubImpl$Fragment$Section$$PosterSection$items$items$item$$Episode$season;
-
-  TRes call({
-    Fragment$Section$$PosterSection$items$items$item$$Episode$season$show?
-        $show,
-    String? $__typename,
-  });
-  CopyWith$Fragment$Section$$PosterSection$items$items$item$$Episode$season$show<
-      TRes> get $show;
-}
-
-class _CopyWithImpl$Fragment$Section$$PosterSection$items$items$item$$Episode$season<
-        TRes>
-    implements
-        CopyWith$Fragment$Section$$PosterSection$items$items$item$$Episode$season<
-            TRes> {
-  _CopyWithImpl$Fragment$Section$$PosterSection$items$items$item$$Episode$season(
-    this._instance,
-    this._then,
-  );
-
-  final Fragment$Section$$PosterSection$items$items$item$$Episode$season
-      _instance;
-
-  final TRes Function(
-      Fragment$Section$$PosterSection$items$items$item$$Episode$season) _then;
-
-  static const _undefined = {};
-
-  TRes call({
-    Object? $show = _undefined,
-    Object? $__typename = _undefined,
-  }) =>
-      _then(Fragment$Section$$PosterSection$items$items$item$$Episode$season(
-        $show: $show == _undefined || $show == null
-            ? _instance.$show
-            : ($show
-                as Fragment$Section$$PosterSection$items$items$item$$Episode$season$show),
-        $__typename: $__typename == _undefined || $__typename == null
-            ? _instance.$__typename
-            : ($__typename as String),
-      ));
-  CopyWith$Fragment$Section$$PosterSection$items$items$item$$Episode$season$show<
-      TRes> get $show {
-    final local$$show = _instance.$show;
-    return CopyWith$Fragment$Section$$PosterSection$items$items$item$$Episode$season$show(
-        local$$show, (e) => call($show: e));
-  }
-}
-
-class _CopyWithStubImpl$Fragment$Section$$PosterSection$items$items$item$$Episode$season<
-        TRes>
-    implements
-        CopyWith$Fragment$Section$$PosterSection$items$items$item$$Episode$season<
-            TRes> {
-  _CopyWithStubImpl$Fragment$Section$$PosterSection$items$items$item$$Episode$season(
-      this._res);
-
-  TRes _res;
-
-  call({
-    Fragment$Section$$PosterSection$items$items$item$$Episode$season$show?
-        $show,
-    String? $__typename,
-  }) =>
-      _res;
-  CopyWith$Fragment$Section$$PosterSection$items$items$item$$Episode$season$show<
-          TRes>
-      get $show =>
-          CopyWith$Fragment$Section$$PosterSection$items$items$item$$Episode$season$show
-              .stub(_res);
-}
-
-class Fragment$Section$$PosterSection$items$items$item$$Episode$season$show {
-  Fragment$Section$$PosterSection$items$items$item$$Episode$season$show({
-    required this.title,
-    required this.$__typename,
-  });
-
-  factory Fragment$Section$$PosterSection$items$items$item$$Episode$season$show.fromJson(
-      Map<String, dynamic> json) {
-    final l$title = json['title'];
-    final l$$__typename = json['__typename'];
-    return Fragment$Section$$PosterSection$items$items$item$$Episode$season$show(
-      title: (l$title as String),
-      $__typename: (l$$__typename as String),
-    );
-  }
-
-  final String title;
-
-  final String $__typename;
-
-  Map<String, dynamic> toJson() {
-    final _resultData = <String, dynamic>{};
-    final l$title = title;
-    _resultData['title'] = l$title;
-    final l$$__typename = $__typename;
-    _resultData['__typename'] = l$$__typename;
-    return _resultData;
-  }
-
-  @override
-  int get hashCode {
-    final l$title = title;
-    final l$$__typename = $__typename;
-    return Object.hashAll([
-      l$title,
-      l$$__typename,
-    ]);
-  }
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) {
-      return true;
-    }
-    if (!(other
-            is Fragment$Section$$PosterSection$items$items$item$$Episode$season$show) ||
-        runtimeType != other.runtimeType) {
-      return false;
-    }
-    final l$title = title;
-    final lOther$title = other.title;
-    if (l$title != lOther$title) {
-      return false;
-    }
-    final l$$__typename = $__typename;
-    final lOther$$__typename = other.$__typename;
-    if (l$$__typename != lOther$$__typename) {
-      return false;
-    }
-    return true;
-  }
-}
-
-extension UtilityExtension$Fragment$Section$$PosterSection$items$items$item$$Episode$season$show
-    on Fragment$Section$$PosterSection$items$items$item$$Episode$season$show {
-  CopyWith$Fragment$Section$$PosterSection$items$items$item$$Episode$season$show<
-          Fragment$Section$$PosterSection$items$items$item$$Episode$season$show>
-      get copyWith =>
-          CopyWith$Fragment$Section$$PosterSection$items$items$item$$Episode$season$show(
-            this,
-            (i) => i,
-          );
-}
-
-abstract class CopyWith$Fragment$Section$$PosterSection$items$items$item$$Episode$season$show<
-    TRes> {
-  factory CopyWith$Fragment$Section$$PosterSection$items$items$item$$Episode$season$show(
-    Fragment$Section$$PosterSection$items$items$item$$Episode$season$show
-        instance,
-    TRes Function(
-            Fragment$Section$$PosterSection$items$items$item$$Episode$season$show)
-        then,
-  ) = _CopyWithImpl$Fragment$Section$$PosterSection$items$items$item$$Episode$season$show;
-
-  factory CopyWith$Fragment$Section$$PosterSection$items$items$item$$Episode$season$show.stub(
-          TRes res) =
-      _CopyWithStubImpl$Fragment$Section$$PosterSection$items$items$item$$Episode$season$show;
-
-  TRes call({
-    String? title,
-    String? $__typename,
-  });
-}
-
-class _CopyWithImpl$Fragment$Section$$PosterSection$items$items$item$$Episode$season$show<
-        TRes>
-    implements
-        CopyWith$Fragment$Section$$PosterSection$items$items$item$$Episode$season$show<
-            TRes> {
-  _CopyWithImpl$Fragment$Section$$PosterSection$items$items$item$$Episode$season$show(
-    this._instance,
-    this._then,
-  );
-
-  final Fragment$Section$$PosterSection$items$items$item$$Episode$season$show
-      _instance;
-
-  final TRes Function(
-          Fragment$Section$$PosterSection$items$items$item$$Episode$season$show)
-      _then;
-
-  static const _undefined = {};
-
-  TRes call({
-    Object? title = _undefined,
-    Object? $__typename = _undefined,
-  }) =>
-      _then(
-          Fragment$Section$$PosterSection$items$items$item$$Episode$season$show(
-        title: title == _undefined || title == null
-            ? _instance.title
-            : (title as String),
-        $__typename: $__typename == _undefined || $__typename == null
-            ? _instance.$__typename
-            : ($__typename as String),
-      ));
-}
-
-class _CopyWithStubImpl$Fragment$Section$$PosterSection$items$items$item$$Episode$season$show<
-        TRes>
-    implements
-        CopyWith$Fragment$Section$$PosterSection$items$items$item$$Episode$season$show<
-            TRes> {
-  _CopyWithStubImpl$Fragment$Section$$PosterSection$items$items$item$$Episode$season$show(
-      this._res);
-
-  TRes _res;
-
-  call({
-    String? title,
-    String? $__typename,
-  }) =>
-      _res;
-}
-
-class Fragment$Section$$DefaultSection$items$items$item$$Episode$season {
-  Fragment$Section$$DefaultSection$items$items$item$$Episode$season({
-    required this.$show,
-    required this.$__typename,
-  });
-
-  factory Fragment$Section$$DefaultSection$items$items$item$$Episode$season.fromJson(
-      Map<String, dynamic> json) {
-    final l$$show = json['show'];
-    final l$$__typename = json['__typename'];
-    return Fragment$Section$$DefaultSection$items$items$item$$Episode$season(
-      $show:
-          Fragment$Section$$DefaultSection$items$items$item$$Episode$season$show
-              .fromJson((l$$show as Map<String, dynamic>)),
-      $__typename: (l$$__typename as String),
-    );
-  }
-
-  final Fragment$Section$$DefaultSection$items$items$item$$Episode$season$show
-      $show;
-
-  final String $__typename;
-
-  Map<String, dynamic> toJson() {
-    final _resultData = <String, dynamic>{};
-    final l$$show = $show;
-    _resultData['show'] = l$$show.toJson();
-    final l$$__typename = $__typename;
-    _resultData['__typename'] = l$$__typename;
-    return _resultData;
-  }
-
-  @override
-  int get hashCode {
-    final l$$show = $show;
-    final l$$__typename = $__typename;
-    return Object.hashAll([
-      l$$show,
-      l$$__typename,
-    ]);
-  }
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) {
-      return true;
-    }
-    if (!(other
-            is Fragment$Section$$DefaultSection$items$items$item$$Episode$season) ||
-        runtimeType != other.runtimeType) {
-      return false;
-    }
-    final l$$show = $show;
-    final lOther$$show = other.$show;
-    if (l$$show != lOther$$show) {
-      return false;
-    }
-    final l$$__typename = $__typename;
-    final lOther$$__typename = other.$__typename;
-    if (l$$__typename != lOther$$__typename) {
-      return false;
-    }
-    return true;
-  }
-}
-
-extension UtilityExtension$Fragment$Section$$DefaultSection$items$items$item$$Episode$season
-    on Fragment$Section$$DefaultSection$items$items$item$$Episode$season {
-  CopyWith$Fragment$Section$$DefaultSection$items$items$item$$Episode$season<
-          Fragment$Section$$DefaultSection$items$items$item$$Episode$season>
-      get copyWith =>
-          CopyWith$Fragment$Section$$DefaultSection$items$items$item$$Episode$season(
-            this,
-            (i) => i,
-          );
-}
-
-abstract class CopyWith$Fragment$Section$$DefaultSection$items$items$item$$Episode$season<
-    TRes> {
-  factory CopyWith$Fragment$Section$$DefaultSection$items$items$item$$Episode$season(
-    Fragment$Section$$DefaultSection$items$items$item$$Episode$season instance,
-    TRes Function(
-            Fragment$Section$$DefaultSection$items$items$item$$Episode$season)
-        then,
-  ) = _CopyWithImpl$Fragment$Section$$DefaultSection$items$items$item$$Episode$season;
-
-  factory CopyWith$Fragment$Section$$DefaultSection$items$items$item$$Episode$season.stub(
-          TRes res) =
-      _CopyWithStubImpl$Fragment$Section$$DefaultSection$items$items$item$$Episode$season;
-
-  TRes call({
-    Fragment$Section$$DefaultSection$items$items$item$$Episode$season$show?
-        $show,
-    String? $__typename,
-  });
-  CopyWith$Fragment$Section$$DefaultSection$items$items$item$$Episode$season$show<
-      TRes> get $show;
-}
-
-class _CopyWithImpl$Fragment$Section$$DefaultSection$items$items$item$$Episode$season<
-        TRes>
-    implements
-        CopyWith$Fragment$Section$$DefaultSection$items$items$item$$Episode$season<
-            TRes> {
-  _CopyWithImpl$Fragment$Section$$DefaultSection$items$items$item$$Episode$season(
-    this._instance,
-    this._then,
-  );
-
-  final Fragment$Section$$DefaultSection$items$items$item$$Episode$season
-      _instance;
-
-  final TRes Function(
-      Fragment$Section$$DefaultSection$items$items$item$$Episode$season) _then;
-
-  static const _undefined = {};
-
-  TRes call({
-    Object? $show = _undefined,
-    Object? $__typename = _undefined,
-  }) =>
-      _then(Fragment$Section$$DefaultSection$items$items$item$$Episode$season(
-        $show: $show == _undefined || $show == null
-            ? _instance.$show
-            : ($show
-                as Fragment$Section$$DefaultSection$items$items$item$$Episode$season$show),
-        $__typename: $__typename == _undefined || $__typename == null
-            ? _instance.$__typename
-            : ($__typename as String),
-      ));
-  CopyWith$Fragment$Section$$DefaultSection$items$items$item$$Episode$season$show<
-      TRes> get $show {
-    final local$$show = _instance.$show;
-    return CopyWith$Fragment$Section$$DefaultSection$items$items$item$$Episode$season$show(
-        local$$show, (e) => call($show: e));
-  }
-}
-
-class _CopyWithStubImpl$Fragment$Section$$DefaultSection$items$items$item$$Episode$season<
-        TRes>
-    implements
-        CopyWith$Fragment$Section$$DefaultSection$items$items$item$$Episode$season<
-            TRes> {
-  _CopyWithStubImpl$Fragment$Section$$DefaultSection$items$items$item$$Episode$season(
-      this._res);
-
-  TRes _res;
-
-  call({
-    Fragment$Section$$DefaultSection$items$items$item$$Episode$season$show?
-        $show,
-    String? $__typename,
-  }) =>
-      _res;
-  CopyWith$Fragment$Section$$DefaultSection$items$items$item$$Episode$season$show<
-          TRes>
-      get $show =>
-          CopyWith$Fragment$Section$$DefaultSection$items$items$item$$Episode$season$show
-              .stub(_res);
-}
-
-class Fragment$Section$$DefaultSection$items$items$item$$Episode$season$show {
-  Fragment$Section$$DefaultSection$items$items$item$$Episode$season$show({
-    required this.title,
-    required this.$__typename,
-  });
-
-  factory Fragment$Section$$DefaultSection$items$items$item$$Episode$season$show.fromJson(
-      Map<String, dynamic> json) {
-    final l$title = json['title'];
-    final l$$__typename = json['__typename'];
-    return Fragment$Section$$DefaultSection$items$items$item$$Episode$season$show(
-      title: (l$title as String),
-      $__typename: (l$$__typename as String),
-    );
-  }
-
-  final String title;
-
-  final String $__typename;
-
-  Map<String, dynamic> toJson() {
-    final _resultData = <String, dynamic>{};
-    final l$title = title;
-    _resultData['title'] = l$title;
-    final l$$__typename = $__typename;
-    _resultData['__typename'] = l$$__typename;
-    return _resultData;
-  }
-
-  @override
-  int get hashCode {
-    final l$title = title;
-    final l$$__typename = $__typename;
-    return Object.hashAll([
-      l$title,
-      l$$__typename,
-    ]);
-  }
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) {
-      return true;
-    }
-    if (!(other
-            is Fragment$Section$$DefaultSection$items$items$item$$Episode$season$show) ||
-        runtimeType != other.runtimeType) {
-      return false;
-    }
-    final l$title = title;
-    final lOther$title = other.title;
-    if (l$title != lOther$title) {
-      return false;
-    }
-    final l$$__typename = $__typename;
-    final lOther$$__typename = other.$__typename;
-    if (l$$__typename != lOther$$__typename) {
-      return false;
-    }
-    return true;
-  }
-}
-
-extension UtilityExtension$Fragment$Section$$DefaultSection$items$items$item$$Episode$season$show
-    on Fragment$Section$$DefaultSection$items$items$item$$Episode$season$show {
-  CopyWith$Fragment$Section$$DefaultSection$items$items$item$$Episode$season$show<
-          Fragment$Section$$DefaultSection$items$items$item$$Episode$season$show>
-      get copyWith =>
-          CopyWith$Fragment$Section$$DefaultSection$items$items$item$$Episode$season$show(
-            this,
-            (i) => i,
-          );
-}
-
-abstract class CopyWith$Fragment$Section$$DefaultSection$items$items$item$$Episode$season$show<
-    TRes> {
-  factory CopyWith$Fragment$Section$$DefaultSection$items$items$item$$Episode$season$show(
-    Fragment$Section$$DefaultSection$items$items$item$$Episode$season$show
-        instance,
-    TRes Function(
-            Fragment$Section$$DefaultSection$items$items$item$$Episode$season$show)
-        then,
-  ) = _CopyWithImpl$Fragment$Section$$DefaultSection$items$items$item$$Episode$season$show;
-
-  factory CopyWith$Fragment$Section$$DefaultSection$items$items$item$$Episode$season$show.stub(
-          TRes res) =
-      _CopyWithStubImpl$Fragment$Section$$DefaultSection$items$items$item$$Episode$season$show;
-
-  TRes call({
-    String? title,
-    String? $__typename,
-  });
-}
-
-class _CopyWithImpl$Fragment$Section$$DefaultSection$items$items$item$$Episode$season$show<
-        TRes>
-    implements
-        CopyWith$Fragment$Section$$DefaultSection$items$items$item$$Episode$season$show<
-            TRes> {
-  _CopyWithImpl$Fragment$Section$$DefaultSection$items$items$item$$Episode$season$show(
-    this._instance,
-    this._then,
-  );
-
-  final Fragment$Section$$DefaultSection$items$items$item$$Episode$season$show
-      _instance;
-
-  final TRes Function(
-          Fragment$Section$$DefaultSection$items$items$item$$Episode$season$show)
-      _then;
-
-  static const _undefined = {};
-
-  TRes call({
-    Object? title = _undefined,
-    Object? $__typename = _undefined,
-  }) =>
-      _then(
-          Fragment$Section$$DefaultSection$items$items$item$$Episode$season$show(
-        title: title == _undefined || title == null
-            ? _instance.title
-            : (title as String),
-        $__typename: $__typename == _undefined || $__typename == null
-            ? _instance.$__typename
-            : ($__typename as String),
-      ));
-}
-
-class _CopyWithStubImpl$Fragment$Section$$DefaultSection$items$items$item$$Episode$season$show<
-        TRes>
-    implements
-        CopyWith$Fragment$Section$$DefaultSection$items$items$item$$Episode$season$show<
-            TRes> {
-  _CopyWithStubImpl$Fragment$Section$$DefaultSection$items$items$item$$Episode$season$show(
-      this._res);
-
-  TRes _res;
-
-  call({
-    String? title,
-    String? $__typename,
-  }) =>
-      _res;
-}
-
-class Fragment$Section$$DefaultGridSection$items$items$item$$Episode$season
-    implements Fragment$GridSectionItem$item$$Episode$season {
-  Fragment$Section$$DefaultGridSection$items$items$item$$Episode$season({
-    required this.number,
-    required this.$show,
-    required this.$__typename,
-  });
-
-  factory Fragment$Section$$DefaultGridSection$items$items$item$$Episode$season.fromJson(
-      Map<String, dynamic> json) {
-    final l$number = json['number'];
-    final l$$show = json['show'];
-    final l$$__typename = json['__typename'];
-    return Fragment$Section$$DefaultGridSection$items$items$item$$Episode$season(
-      number: (l$number as int),
-      $show:
-          Fragment$Section$$DefaultGridSection$items$items$item$$Episode$season$show
-              .fromJson((l$$show as Map<String, dynamic>)),
-      $__typename: (l$$__typename as String),
-    );
-  }
-
-  final int number;
-
-  final Fragment$Section$$DefaultGridSection$items$items$item$$Episode$season$show
-      $show;
-
-  final String $__typename;
-
-  Map<String, dynamic> toJson() {
-    final _resultData = <String, dynamic>{};
-    final l$number = number;
-    _resultData['number'] = l$number;
-    final l$$show = $show;
-    _resultData['show'] = l$$show.toJson();
-    final l$$__typename = $__typename;
-    _resultData['__typename'] = l$$__typename;
-    return _resultData;
-  }
-
-  @override
-  int get hashCode {
-    final l$number = number;
-    final l$$show = $show;
-    final l$$__typename = $__typename;
-    return Object.hashAll([
-      l$number,
-      l$$show,
-      l$$__typename,
-    ]);
-  }
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) {
-      return true;
-    }
-    if (!(other
-            is Fragment$Section$$DefaultGridSection$items$items$item$$Episode$season) ||
-        runtimeType != other.runtimeType) {
-      return false;
-    }
-    final l$number = number;
-    final lOther$number = other.number;
-    if (l$number != lOther$number) {
-      return false;
-    }
-    final l$$show = $show;
-    final lOther$$show = other.$show;
-    if (l$$show != lOther$$show) {
-      return false;
-    }
-    final l$$__typename = $__typename;
-    final lOther$$__typename = other.$__typename;
-    if (l$$__typename != lOther$$__typename) {
-      return false;
-    }
-    return true;
-  }
-}
-
-extension UtilityExtension$Fragment$Section$$DefaultGridSection$items$items$item$$Episode$season
-    on Fragment$Section$$DefaultGridSection$items$items$item$$Episode$season {
-  CopyWith$Fragment$Section$$DefaultGridSection$items$items$item$$Episode$season<
-          Fragment$Section$$DefaultGridSection$items$items$item$$Episode$season>
-      get copyWith =>
-          CopyWith$Fragment$Section$$DefaultGridSection$items$items$item$$Episode$season(
-            this,
-            (i) => i,
-          );
-}
-
-abstract class CopyWith$Fragment$Section$$DefaultGridSection$items$items$item$$Episode$season<
-    TRes> {
-  factory CopyWith$Fragment$Section$$DefaultGridSection$items$items$item$$Episode$season(
-    Fragment$Section$$DefaultGridSection$items$items$item$$Episode$season
-        instance,
-    TRes Function(
-            Fragment$Section$$DefaultGridSection$items$items$item$$Episode$season)
-        then,
-  ) = _CopyWithImpl$Fragment$Section$$DefaultGridSection$items$items$item$$Episode$season;
-
-  factory CopyWith$Fragment$Section$$DefaultGridSection$items$items$item$$Episode$season.stub(
-          TRes res) =
-      _CopyWithStubImpl$Fragment$Section$$DefaultGridSection$items$items$item$$Episode$season;
-
-  TRes call({
-    int? number,
-    Fragment$Section$$DefaultGridSection$items$items$item$$Episode$season$show?
-        $show,
-    String? $__typename,
-  });
-  CopyWith$Fragment$Section$$DefaultGridSection$items$items$item$$Episode$season$show<
-      TRes> get $show;
-}
-
-class _CopyWithImpl$Fragment$Section$$DefaultGridSection$items$items$item$$Episode$season<
-        TRes>
-    implements
-        CopyWith$Fragment$Section$$DefaultGridSection$items$items$item$$Episode$season<
-            TRes> {
-  _CopyWithImpl$Fragment$Section$$DefaultGridSection$items$items$item$$Episode$season(
-    this._instance,
-    this._then,
-  );
-
-  final Fragment$Section$$DefaultGridSection$items$items$item$$Episode$season
-      _instance;
-
-  final TRes Function(
-          Fragment$Section$$DefaultGridSection$items$items$item$$Episode$season)
-      _then;
-
-  static const _undefined = {};
-
-  TRes call({
-    Object? number = _undefined,
-    Object? $show = _undefined,
-    Object? $__typename = _undefined,
-  }) =>
-      _then(
-          Fragment$Section$$DefaultGridSection$items$items$item$$Episode$season(
-        number: number == _undefined || number == null
-            ? _instance.number
-            : (number as int),
-        $show: $show == _undefined || $show == null
-            ? _instance.$show
-            : ($show
-                as Fragment$Section$$DefaultGridSection$items$items$item$$Episode$season$show),
-        $__typename: $__typename == _undefined || $__typename == null
-            ? _instance.$__typename
-            : ($__typename as String),
-      ));
-  CopyWith$Fragment$Section$$DefaultGridSection$items$items$item$$Episode$season$show<
-      TRes> get $show {
-    final local$$show = _instance.$show;
-    return CopyWith$Fragment$Section$$DefaultGridSection$items$items$item$$Episode$season$show(
-        local$$show, (e) => call($show: e));
-  }
-}
-
-class _CopyWithStubImpl$Fragment$Section$$DefaultGridSection$items$items$item$$Episode$season<
-        TRes>
-    implements
-        CopyWith$Fragment$Section$$DefaultGridSection$items$items$item$$Episode$season<
-            TRes> {
-  _CopyWithStubImpl$Fragment$Section$$DefaultGridSection$items$items$item$$Episode$season(
-      this._res);
-
-  TRes _res;
-
-  call({
-    int? number,
-    Fragment$Section$$DefaultGridSection$items$items$item$$Episode$season$show?
-        $show,
-    String? $__typename,
-  }) =>
-      _res;
-  CopyWith$Fragment$Section$$DefaultGridSection$items$items$item$$Episode$season$show<
-          TRes>
-      get $show =>
-          CopyWith$Fragment$Section$$DefaultGridSection$items$items$item$$Episode$season$show
-              .stub(_res);
-}
-
-class Fragment$Section$$DefaultGridSection$items$items$item$$Episode$season$show
-    implements Fragment$GridSectionItem$item$$Episode$season$show {
-  Fragment$Section$$DefaultGridSection$items$items$item$$Episode$season$show({
-    required this.title,
-    required this.$__typename,
-  });
-
-  factory Fragment$Section$$DefaultGridSection$items$items$item$$Episode$season$show.fromJson(
-      Map<String, dynamic> json) {
-    final l$title = json['title'];
-    final l$$__typename = json['__typename'];
-    return Fragment$Section$$DefaultGridSection$items$items$item$$Episode$season$show(
-      title: (l$title as String),
-      $__typename: (l$$__typename as String),
-    );
-  }
-
-  final String title;
-
-  final String $__typename;
-
-  Map<String, dynamic> toJson() {
-    final _resultData = <String, dynamic>{};
-    final l$title = title;
-    _resultData['title'] = l$title;
-    final l$$__typename = $__typename;
-    _resultData['__typename'] = l$$__typename;
-    return _resultData;
-  }
-
-  @override
-  int get hashCode {
-    final l$title = title;
-    final l$$__typename = $__typename;
-    return Object.hashAll([
-      l$title,
-      l$$__typename,
-    ]);
-  }
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) {
-      return true;
-    }
-    if (!(other
-            is Fragment$Section$$DefaultGridSection$items$items$item$$Episode$season$show) ||
-        runtimeType != other.runtimeType) {
-      return false;
-    }
-    final l$title = title;
-    final lOther$title = other.title;
-    if (l$title != lOther$title) {
-      return false;
-    }
-    final l$$__typename = $__typename;
-    final lOther$$__typename = other.$__typename;
-    if (l$$__typename != lOther$$__typename) {
-      return false;
-    }
-    return true;
-  }
-}
-
-extension UtilityExtension$Fragment$Section$$DefaultGridSection$items$items$item$$Episode$season$show
-    on Fragment$Section$$DefaultGridSection$items$items$item$$Episode$season$show {
-  CopyWith$Fragment$Section$$DefaultGridSection$items$items$item$$Episode$season$show<
-          Fragment$Section$$DefaultGridSection$items$items$item$$Episode$season$show>
-      get copyWith =>
-          CopyWith$Fragment$Section$$DefaultGridSection$items$items$item$$Episode$season$show(
-            this,
-            (i) => i,
-          );
-}
-
-abstract class CopyWith$Fragment$Section$$DefaultGridSection$items$items$item$$Episode$season$show<
-    TRes> {
-  factory CopyWith$Fragment$Section$$DefaultGridSection$items$items$item$$Episode$season$show(
-    Fragment$Section$$DefaultGridSection$items$items$item$$Episode$season$show
-        instance,
-    TRes Function(
-            Fragment$Section$$DefaultGridSection$items$items$item$$Episode$season$show)
-        then,
-  ) = _CopyWithImpl$Fragment$Section$$DefaultGridSection$items$items$item$$Episode$season$show;
-
-  factory CopyWith$Fragment$Section$$DefaultGridSection$items$items$item$$Episode$season$show.stub(
-          TRes res) =
-      _CopyWithStubImpl$Fragment$Section$$DefaultGridSection$items$items$item$$Episode$season$show;
-
-  TRes call({
-    String? title,
-    String? $__typename,
-  });
-}
-
-class _CopyWithImpl$Fragment$Section$$DefaultGridSection$items$items$item$$Episode$season$show<
-        TRes>
-    implements
-        CopyWith$Fragment$Section$$DefaultGridSection$items$items$item$$Episode$season$show<
-            TRes> {
-  _CopyWithImpl$Fragment$Section$$DefaultGridSection$items$items$item$$Episode$season$show(
-    this._instance,
-    this._then,
-  );
-
-  final Fragment$Section$$DefaultGridSection$items$items$item$$Episode$season$show
-      _instance;
-
-  final TRes Function(
-          Fragment$Section$$DefaultGridSection$items$items$item$$Episode$season$show)
-      _then;
-
-  static const _undefined = {};
-
-  TRes call({
-    Object? title = _undefined,
-    Object? $__typename = _undefined,
-  }) =>
-      _then(
-          Fragment$Section$$DefaultGridSection$items$items$item$$Episode$season$show(
-        title: title == _undefined || title == null
-            ? _instance.title
-            : (title as String),
-        $__typename: $__typename == _undefined || $__typename == null
-            ? _instance.$__typename
-            : ($__typename as String),
-      ));
-}
-
-class _CopyWithStubImpl$Fragment$Section$$DefaultGridSection$items$items$item$$Episode$season$show<
-        TRes>
-    implements
-        CopyWith$Fragment$Section$$DefaultGridSection$items$items$item$$Episode$season$show<
-            TRes> {
-  _CopyWithStubImpl$Fragment$Section$$DefaultGridSection$items$items$item$$Episode$season$show(
-      this._res);
-
-  TRes _res;
-
-  call({
-    String? title,
-    String? $__typename,
-  }) =>
-      _res;
-}
-
-class Fragment$Section$$PosterGridSection$items$items$item$$Episode$season
-    implements Fragment$GridSectionItem$item$$Episode$season {
-  Fragment$Section$$PosterGridSection$items$items$item$$Episode$season({
-    required this.number,
-    required this.$show,
-    required this.$__typename,
-  });
-
-  factory Fragment$Section$$PosterGridSection$items$items$item$$Episode$season.fromJson(
-      Map<String, dynamic> json) {
-    final l$number = json['number'];
-    final l$$show = json['show'];
-    final l$$__typename = json['__typename'];
-    return Fragment$Section$$PosterGridSection$items$items$item$$Episode$season(
-      number: (l$number as int),
-      $show:
-          Fragment$Section$$PosterGridSection$items$items$item$$Episode$season$show
-              .fromJson((l$$show as Map<String, dynamic>)),
-      $__typename: (l$$__typename as String),
-    );
-  }
-
-  final int number;
-
-  final Fragment$Section$$PosterGridSection$items$items$item$$Episode$season$show
-      $show;
-
-  final String $__typename;
-
-  Map<String, dynamic> toJson() {
-    final _resultData = <String, dynamic>{};
-    final l$number = number;
-    _resultData['number'] = l$number;
-    final l$$show = $show;
-    _resultData['show'] = l$$show.toJson();
-    final l$$__typename = $__typename;
-    _resultData['__typename'] = l$$__typename;
-    return _resultData;
-  }
-
-  @override
-  int get hashCode {
-    final l$number = number;
-    final l$$show = $show;
-    final l$$__typename = $__typename;
-    return Object.hashAll([
-      l$number,
-      l$$show,
-      l$$__typename,
-    ]);
-  }
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) {
-      return true;
-    }
-    if (!(other
-            is Fragment$Section$$PosterGridSection$items$items$item$$Episode$season) ||
-        runtimeType != other.runtimeType) {
-      return false;
-    }
-    final l$number = number;
-    final lOther$number = other.number;
-    if (l$number != lOther$number) {
-      return false;
-    }
-    final l$$show = $show;
-    final lOther$$show = other.$show;
-    if (l$$show != lOther$$show) {
-      return false;
-    }
-    final l$$__typename = $__typename;
-    final lOther$$__typename = other.$__typename;
-    if (l$$__typename != lOther$$__typename) {
-      return false;
-    }
-    return true;
-  }
-}
-
-extension UtilityExtension$Fragment$Section$$PosterGridSection$items$items$item$$Episode$season
-    on Fragment$Section$$PosterGridSection$items$items$item$$Episode$season {
-  CopyWith$Fragment$Section$$PosterGridSection$items$items$item$$Episode$season<
-          Fragment$Section$$PosterGridSection$items$items$item$$Episode$season>
-      get copyWith =>
-          CopyWith$Fragment$Section$$PosterGridSection$items$items$item$$Episode$season(
-            this,
-            (i) => i,
-          );
-}
-
-abstract class CopyWith$Fragment$Section$$PosterGridSection$items$items$item$$Episode$season<
-    TRes> {
-  factory CopyWith$Fragment$Section$$PosterGridSection$items$items$item$$Episode$season(
-    Fragment$Section$$PosterGridSection$items$items$item$$Episode$season
-        instance,
-    TRes Function(
-            Fragment$Section$$PosterGridSection$items$items$item$$Episode$season)
-        then,
-  ) = _CopyWithImpl$Fragment$Section$$PosterGridSection$items$items$item$$Episode$season;
-
-  factory CopyWith$Fragment$Section$$PosterGridSection$items$items$item$$Episode$season.stub(
-          TRes res) =
-      _CopyWithStubImpl$Fragment$Section$$PosterGridSection$items$items$item$$Episode$season;
-
-  TRes call({
-    int? number,
-    Fragment$Section$$PosterGridSection$items$items$item$$Episode$season$show?
-        $show,
-    String? $__typename,
-  });
-  CopyWith$Fragment$Section$$PosterGridSection$items$items$item$$Episode$season$show<
-      TRes> get $show;
-}
-
-class _CopyWithImpl$Fragment$Section$$PosterGridSection$items$items$item$$Episode$season<
-        TRes>
-    implements
-        CopyWith$Fragment$Section$$PosterGridSection$items$items$item$$Episode$season<
-            TRes> {
-  _CopyWithImpl$Fragment$Section$$PosterGridSection$items$items$item$$Episode$season(
-    this._instance,
-    this._then,
-  );
-
-  final Fragment$Section$$PosterGridSection$items$items$item$$Episode$season
-      _instance;
-
-  final TRes Function(
-          Fragment$Section$$PosterGridSection$items$items$item$$Episode$season)
-      _then;
-
-  static const _undefined = {};
-
-  TRes call({
-    Object? number = _undefined,
-    Object? $show = _undefined,
-    Object? $__typename = _undefined,
-  }) =>
-      _then(
-          Fragment$Section$$PosterGridSection$items$items$item$$Episode$season(
-        number: number == _undefined || number == null
-            ? _instance.number
-            : (number as int),
-        $show: $show == _undefined || $show == null
-            ? _instance.$show
-            : ($show
-                as Fragment$Section$$PosterGridSection$items$items$item$$Episode$season$show),
-        $__typename: $__typename == _undefined || $__typename == null
-            ? _instance.$__typename
-            : ($__typename as String),
-      ));
-  CopyWith$Fragment$Section$$PosterGridSection$items$items$item$$Episode$season$show<
-      TRes> get $show {
-    final local$$show = _instance.$show;
-    return CopyWith$Fragment$Section$$PosterGridSection$items$items$item$$Episode$season$show(
-        local$$show, (e) => call($show: e));
-  }
-}
-
-class _CopyWithStubImpl$Fragment$Section$$PosterGridSection$items$items$item$$Episode$season<
-        TRes>
-    implements
-        CopyWith$Fragment$Section$$PosterGridSection$items$items$item$$Episode$season<
-            TRes> {
-  _CopyWithStubImpl$Fragment$Section$$PosterGridSection$items$items$item$$Episode$season(
-      this._res);
-
-  TRes _res;
-
-  call({
-    int? number,
-    Fragment$Section$$PosterGridSection$items$items$item$$Episode$season$show?
-        $show,
-    String? $__typename,
-  }) =>
-      _res;
-  CopyWith$Fragment$Section$$PosterGridSection$items$items$item$$Episode$season$show<
-          TRes>
-      get $show =>
-          CopyWith$Fragment$Section$$PosterGridSection$items$items$item$$Episode$season$show
-              .stub(_res);
-}
-
-class Fragment$Section$$PosterGridSection$items$items$item$$Episode$season$show
-    implements Fragment$GridSectionItem$item$$Episode$season$show {
-  Fragment$Section$$PosterGridSection$items$items$item$$Episode$season$show({
-    required this.title,
-    required this.$__typename,
-  });
-
-  factory Fragment$Section$$PosterGridSection$items$items$item$$Episode$season$show.fromJson(
-      Map<String, dynamic> json) {
-    final l$title = json['title'];
-    final l$$__typename = json['__typename'];
-    return Fragment$Section$$PosterGridSection$items$items$item$$Episode$season$show(
-      title: (l$title as String),
-      $__typename: (l$$__typename as String),
-    );
-  }
-
-  final String title;
-
-  final String $__typename;
-
-  Map<String, dynamic> toJson() {
-    final _resultData = <String, dynamic>{};
-    final l$title = title;
-    _resultData['title'] = l$title;
-    final l$$__typename = $__typename;
-    _resultData['__typename'] = l$$__typename;
-    return _resultData;
-  }
-
-  @override
-  int get hashCode {
-    final l$title = title;
-    final l$$__typename = $__typename;
-    return Object.hashAll([
-      l$title,
-      l$$__typename,
-    ]);
-  }
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) {
-      return true;
-    }
-    if (!(other
-            is Fragment$Section$$PosterGridSection$items$items$item$$Episode$season$show) ||
-        runtimeType != other.runtimeType) {
-      return false;
-    }
-    final l$title = title;
-    final lOther$title = other.title;
-    if (l$title != lOther$title) {
-      return false;
-    }
-    final l$$__typename = $__typename;
-    final lOther$$__typename = other.$__typename;
-    if (l$$__typename != lOther$$__typename) {
-      return false;
-    }
-    return true;
-  }
-}
-
-extension UtilityExtension$Fragment$Section$$PosterGridSection$items$items$item$$Episode$season$show
-    on Fragment$Section$$PosterGridSection$items$items$item$$Episode$season$show {
-  CopyWith$Fragment$Section$$PosterGridSection$items$items$item$$Episode$season$show<
-          Fragment$Section$$PosterGridSection$items$items$item$$Episode$season$show>
-      get copyWith =>
-          CopyWith$Fragment$Section$$PosterGridSection$items$items$item$$Episode$season$show(
-            this,
-            (i) => i,
-          );
-}
-
-abstract class CopyWith$Fragment$Section$$PosterGridSection$items$items$item$$Episode$season$show<
-    TRes> {
-  factory CopyWith$Fragment$Section$$PosterGridSection$items$items$item$$Episode$season$show(
-    Fragment$Section$$PosterGridSection$items$items$item$$Episode$season$show
-        instance,
-    TRes Function(
-            Fragment$Section$$PosterGridSection$items$items$item$$Episode$season$show)
-        then,
-  ) = _CopyWithImpl$Fragment$Section$$PosterGridSection$items$items$item$$Episode$season$show;
-
-  factory CopyWith$Fragment$Section$$PosterGridSection$items$items$item$$Episode$season$show.stub(
-          TRes res) =
-      _CopyWithStubImpl$Fragment$Section$$PosterGridSection$items$items$item$$Episode$season$show;
-
-  TRes call({
-    String? title,
-    String? $__typename,
-  });
-}
-
-class _CopyWithImpl$Fragment$Section$$PosterGridSection$items$items$item$$Episode$season$show<
-        TRes>
-    implements
-        CopyWith$Fragment$Section$$PosterGridSection$items$items$item$$Episode$season$show<
-            TRes> {
-  _CopyWithImpl$Fragment$Section$$PosterGridSection$items$items$item$$Episode$season$show(
-    this._instance,
-    this._then,
-  );
-
-  final Fragment$Section$$PosterGridSection$items$items$item$$Episode$season$show
-      _instance;
-
-  final TRes Function(
-          Fragment$Section$$PosterGridSection$items$items$item$$Episode$season$show)
-      _then;
-
-  static const _undefined = {};
-
-  TRes call({
-    Object? title = _undefined,
-    Object? $__typename = _undefined,
-  }) =>
-      _then(
-          Fragment$Section$$PosterGridSection$items$items$item$$Episode$season$show(
-        title: title == _undefined || title == null
-            ? _instance.title
-            : (title as String),
-        $__typename: $__typename == _undefined || $__typename == null
-            ? _instance.$__typename
-            : ($__typename as String),
-      ));
-}
-
-class _CopyWithStubImpl$Fragment$Section$$PosterGridSection$items$items$item$$Episode$season$show<
-        TRes>
-    implements
-        CopyWith$Fragment$Section$$PosterGridSection$items$items$item$$Episode$season$show<
-            TRes> {
-  _CopyWithStubImpl$Fragment$Section$$PosterGridSection$items$items$item$$Episode$season$show(
-      this._res);
-
-  TRes _res;
-
-  call({
-    String? title,
-    String? $__typename,
-  }) =>
-      _res;
-}
-
 class Fragment$Section$$IconGridSection$items$items$item$$Episode$season
     implements Fragment$GridSectionItem$item$$Episode$season {
   Fragment$Section$$IconGridSection$items$items$item$$Episode$season({
@@ -16939,200 +16953,61 @@ class _CopyWithStubImpl$Fragment$Section$$IconGridSection$items$items$item$$Epis
       _res;
 }
 
-class Fragment$Section$$ListSection$items$items$item$$Episode$season {
-  Fragment$Section$$ListSection$items$items$item$$Episode$season({
-    required this.$show,
+class Fragment$Section$$IconSection
+    implements Fragment$ItemSection, Fragment$Section {
+  Fragment$Section$$IconSection({
+    required this.id,
+    this.title,
     required this.$__typename,
+    required this.items,
   });
 
-  factory Fragment$Section$$ListSection$items$items$item$$Episode$season.fromJson(
-      Map<String, dynamic> json) {
-    final l$$show = json['show'];
-    final l$$__typename = json['__typename'];
-    return Fragment$Section$$ListSection$items$items$item$$Episode$season(
-      $show: Fragment$Section$$ListSection$items$items$item$$Episode$season$show
-          .fromJson((l$$show as Map<String, dynamic>)),
-      $__typename: (l$$__typename as String),
-    );
-  }
-
-  final Fragment$Section$$ListSection$items$items$item$$Episode$season$show
-      $show;
-
-  final String $__typename;
-
-  Map<String, dynamic> toJson() {
-    final _resultData = <String, dynamic>{};
-    final l$$show = $show;
-    _resultData['show'] = l$$show.toJson();
-    final l$$__typename = $__typename;
-    _resultData['__typename'] = l$$__typename;
-    return _resultData;
-  }
-
-  @override
-  int get hashCode {
-    final l$$show = $show;
-    final l$$__typename = $__typename;
-    return Object.hashAll([
-      l$$show,
-      l$$__typename,
-    ]);
-  }
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) {
-      return true;
-    }
-    if (!(other
-            is Fragment$Section$$ListSection$items$items$item$$Episode$season) ||
-        runtimeType != other.runtimeType) {
-      return false;
-    }
-    final l$$show = $show;
-    final lOther$$show = other.$show;
-    if (l$$show != lOther$$show) {
-      return false;
-    }
-    final l$$__typename = $__typename;
-    final lOther$$__typename = other.$__typename;
-    if (l$$__typename != lOther$$__typename) {
-      return false;
-    }
-    return true;
-  }
-}
-
-extension UtilityExtension$Fragment$Section$$ListSection$items$items$item$$Episode$season
-    on Fragment$Section$$ListSection$items$items$item$$Episode$season {
-  CopyWith$Fragment$Section$$ListSection$items$items$item$$Episode$season<
-          Fragment$Section$$ListSection$items$items$item$$Episode$season>
-      get copyWith =>
-          CopyWith$Fragment$Section$$ListSection$items$items$item$$Episode$season(
-            this,
-            (i) => i,
-          );
-}
-
-abstract class CopyWith$Fragment$Section$$ListSection$items$items$item$$Episode$season<
-    TRes> {
-  factory CopyWith$Fragment$Section$$ListSection$items$items$item$$Episode$season(
-    Fragment$Section$$ListSection$items$items$item$$Episode$season instance,
-    TRes Function(
-            Fragment$Section$$ListSection$items$items$item$$Episode$season)
-        then,
-  ) = _CopyWithImpl$Fragment$Section$$ListSection$items$items$item$$Episode$season;
-
-  factory CopyWith$Fragment$Section$$ListSection$items$items$item$$Episode$season.stub(
-          TRes res) =
-      _CopyWithStubImpl$Fragment$Section$$ListSection$items$items$item$$Episode$season;
-
-  TRes call({
-    Fragment$Section$$ListSection$items$items$item$$Episode$season$show? $show,
-    String? $__typename,
-  });
-  CopyWith$Fragment$Section$$ListSection$items$items$item$$Episode$season$show<
-      TRes> get $show;
-}
-
-class _CopyWithImpl$Fragment$Section$$ListSection$items$items$item$$Episode$season<
-        TRes>
-    implements
-        CopyWith$Fragment$Section$$ListSection$items$items$item$$Episode$season<
-            TRes> {
-  _CopyWithImpl$Fragment$Section$$ListSection$items$items$item$$Episode$season(
-    this._instance,
-    this._then,
-  );
-
-  final Fragment$Section$$ListSection$items$items$item$$Episode$season
-      _instance;
-
-  final TRes Function(
-      Fragment$Section$$ListSection$items$items$item$$Episode$season) _then;
-
-  static const _undefined = {};
-
-  TRes call({
-    Object? $show = _undefined,
-    Object? $__typename = _undefined,
-  }) =>
-      _then(Fragment$Section$$ListSection$items$items$item$$Episode$season(
-        $show: $show == _undefined || $show == null
-            ? _instance.$show
-            : ($show
-                as Fragment$Section$$ListSection$items$items$item$$Episode$season$show),
-        $__typename: $__typename == _undefined || $__typename == null
-            ? _instance.$__typename
-            : ($__typename as String),
-      ));
-  CopyWith$Fragment$Section$$ListSection$items$items$item$$Episode$season$show<
-      TRes> get $show {
-    final local$$show = _instance.$show;
-    return CopyWith$Fragment$Section$$ListSection$items$items$item$$Episode$season$show(
-        local$$show, (e) => call($show: e));
-  }
-}
-
-class _CopyWithStubImpl$Fragment$Section$$ListSection$items$items$item$$Episode$season<
-        TRes>
-    implements
-        CopyWith$Fragment$Section$$ListSection$items$items$item$$Episode$season<
-            TRes> {
-  _CopyWithStubImpl$Fragment$Section$$ListSection$items$items$item$$Episode$season(
-      this._res);
-
-  TRes _res;
-
-  call({
-    Fragment$Section$$ListSection$items$items$item$$Episode$season$show? $show,
-    String? $__typename,
-  }) =>
-      _res;
-  CopyWith$Fragment$Section$$ListSection$items$items$item$$Episode$season$show<
-          TRes>
-      get $show =>
-          CopyWith$Fragment$Section$$ListSection$items$items$item$$Episode$season$show
-              .stub(_res);
-}
-
-class Fragment$Section$$ListSection$items$items$item$$Episode$season$show {
-  Fragment$Section$$ListSection$items$items$item$$Episode$season$show({
-    required this.title,
-    required this.$__typename,
-  });
-
-  factory Fragment$Section$$ListSection$items$items$item$$Episode$season$show.fromJson(
-      Map<String, dynamic> json) {
+  factory Fragment$Section$$IconSection.fromJson(Map<String, dynamic> json) {
+    final l$id = json['id'];
     final l$title = json['title'];
     final l$$__typename = json['__typename'];
-    return Fragment$Section$$ListSection$items$items$item$$Episode$season$show(
-      title: (l$title as String),
+    final l$items = json['items'];
+    return Fragment$Section$$IconSection(
+      id: (l$id as String),
+      title: (l$title as String?),
       $__typename: (l$$__typename as String),
+      items: Fragment$Section$$IconSection$items.fromJson(
+          (l$items as Map<String, dynamic>)),
     );
   }
 
-  final String title;
+  final String id;
+
+  final String? title;
 
   final String $__typename;
 
+  final Fragment$Section$$IconSection$items items;
+
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
+    final l$id = id;
+    _resultData['id'] = l$id;
     final l$title = title;
     _resultData['title'] = l$title;
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
+    final l$items = items;
+    _resultData['items'] = l$items.toJson();
     return _resultData;
   }
 
   @override
   int get hashCode {
+    final l$id = id;
     final l$title = title;
     final l$$__typename = $__typename;
+    final l$items = items;
     return Object.hashAll([
+      l$id,
       l$title,
       l$$__typename,
+      l$items,
     ]);
   }
 
@@ -17141,9 +17016,13 @@ class Fragment$Section$$ListSection$items$items$item$$Episode$season$show {
     if (identical(this, other)) {
       return true;
     }
-    if (!(other
-            is Fragment$Section$$ListSection$items$items$item$$Episode$season$show) ||
+    if (!(other is Fragment$Section$$IconSection) ||
         runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$id = id;
+    final lOther$id = other.id;
+    if (l$id != lOther$id) {
       return false;
     }
     final l$title = title;
@@ -17156,89 +17035,576 @@ class Fragment$Section$$ListSection$items$items$item$$Episode$season$show {
     if (l$$__typename != lOther$$__typename) {
       return false;
     }
+    final l$items = items;
+    final lOther$items = other.items;
+    if (l$items != lOther$items) {
+      return false;
+    }
     return true;
   }
 }
 
-extension UtilityExtension$Fragment$Section$$ListSection$items$items$item$$Episode$season$show
-    on Fragment$Section$$ListSection$items$items$item$$Episode$season$show {
-  CopyWith$Fragment$Section$$ListSection$items$items$item$$Episode$season$show<
-          Fragment$Section$$ListSection$items$items$item$$Episode$season$show>
-      get copyWith =>
-          CopyWith$Fragment$Section$$ListSection$items$items$item$$Episode$season$show(
+extension UtilityExtension$Fragment$Section$$IconSection
+    on Fragment$Section$$IconSection {
+  CopyWith$Fragment$Section$$IconSection<Fragment$Section$$IconSection>
+      get copyWith => CopyWith$Fragment$Section$$IconSection(
             this,
             (i) => i,
           );
 }
 
-abstract class CopyWith$Fragment$Section$$ListSection$items$items$item$$Episode$season$show<
-    TRes> {
-  factory CopyWith$Fragment$Section$$ListSection$items$items$item$$Episode$season$show(
-    Fragment$Section$$ListSection$items$items$item$$Episode$season$show
-        instance,
-    TRes Function(
-            Fragment$Section$$ListSection$items$items$item$$Episode$season$show)
-        then,
-  ) = _CopyWithImpl$Fragment$Section$$ListSection$items$items$item$$Episode$season$show;
+abstract class CopyWith$Fragment$Section$$IconSection<TRes> {
+  factory CopyWith$Fragment$Section$$IconSection(
+    Fragment$Section$$IconSection instance,
+    TRes Function(Fragment$Section$$IconSection) then,
+  ) = _CopyWithImpl$Fragment$Section$$IconSection;
 
-  factory CopyWith$Fragment$Section$$ListSection$items$items$item$$Episode$season$show.stub(
-          TRes res) =
-      _CopyWithStubImpl$Fragment$Section$$ListSection$items$items$item$$Episode$season$show;
+  factory CopyWith$Fragment$Section$$IconSection.stub(TRes res) =
+      _CopyWithStubImpl$Fragment$Section$$IconSection;
 
   TRes call({
+    String? id,
     String? title,
     String? $__typename,
+    Fragment$Section$$IconSection$items? items,
   });
+  CopyWith$Fragment$Section$$IconSection$items<TRes> get items;
 }
 
-class _CopyWithImpl$Fragment$Section$$ListSection$items$items$item$$Episode$season$show<
-        TRes>
-    implements
-        CopyWith$Fragment$Section$$ListSection$items$items$item$$Episode$season$show<
-            TRes> {
-  _CopyWithImpl$Fragment$Section$$ListSection$items$items$item$$Episode$season$show(
+class _CopyWithImpl$Fragment$Section$$IconSection<TRes>
+    implements CopyWith$Fragment$Section$$IconSection<TRes> {
+  _CopyWithImpl$Fragment$Section$$IconSection(
     this._instance,
     this._then,
   );
 
-  final Fragment$Section$$ListSection$items$items$item$$Episode$season$show
-      _instance;
+  final Fragment$Section$$IconSection _instance;
 
-  final TRes Function(
-          Fragment$Section$$ListSection$items$items$item$$Episode$season$show)
-      _then;
+  final TRes Function(Fragment$Section$$IconSection) _then;
 
   static const _undefined = {};
 
   TRes call({
+    Object? id = _undefined,
     Object? title = _undefined,
     Object? $__typename = _undefined,
+    Object? items = _undefined,
   }) =>
-      _then(Fragment$Section$$ListSection$items$items$item$$Episode$season$show(
-        title: title == _undefined || title == null
-            ? _instance.title
-            : (title as String),
+      _then(Fragment$Section$$IconSection(
+        id: id == _undefined || id == null ? _instance.id : (id as String),
+        title: title == _undefined ? _instance.title : (title as String?),
         $__typename: $__typename == _undefined || $__typename == null
             ? _instance.$__typename
             : ($__typename as String),
+        items: items == _undefined || items == null
+            ? _instance.items
+            : (items as Fragment$Section$$IconSection$items),
       ));
+  CopyWith$Fragment$Section$$IconSection$items<TRes> get items {
+    final local$items = _instance.items;
+    return CopyWith$Fragment$Section$$IconSection$items(
+        local$items, (e) => call(items: e));
+  }
 }
 
-class _CopyWithStubImpl$Fragment$Section$$ListSection$items$items$item$$Episode$season$show<
-        TRes>
-    implements
-        CopyWith$Fragment$Section$$ListSection$items$items$item$$Episode$season$show<
-            TRes> {
-  _CopyWithStubImpl$Fragment$Section$$ListSection$items$items$item$$Episode$season$show(
-      this._res);
+class _CopyWithStubImpl$Fragment$Section$$IconSection<TRes>
+    implements CopyWith$Fragment$Section$$IconSection<TRes> {
+  _CopyWithStubImpl$Fragment$Section$$IconSection(this._res);
 
   TRes _res;
 
   call({
+    String? id,
     String? title,
+    String? $__typename,
+    Fragment$Section$$IconSection$items? items,
+  }) =>
+      _res;
+  CopyWith$Fragment$Section$$IconSection$items<TRes> get items =>
+      CopyWith$Fragment$Section$$IconSection$items.stub(_res);
+}
+
+class Fragment$Section$$IconSection$items
+    implements Fragment$ItemSection$items {
+  Fragment$Section$$IconSection$items({
+    required this.items,
+    required this.$__typename,
+  });
+
+  factory Fragment$Section$$IconSection$items.fromJson(
+      Map<String, dynamic> json) {
+    final l$items = json['items'];
+    final l$$__typename = json['__typename'];
+    return Fragment$Section$$IconSection$items(
+      items: (l$items as List<dynamic>)
+          .map((e) =>
+              Fragment$ItemSectionItem.fromJson((e as Map<String, dynamic>)))
+          .toList(),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final List<Fragment$ItemSectionItem> items;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$items = items;
+    _resultData['items'] = l$items.map((e) => e.toJson()).toList();
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$items = items;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      Object.hashAll(l$items.map((v) => v)),
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (!(other is Fragment$Section$$IconSection$items) ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$items = items;
+    final lOther$items = other.items;
+    if (l$items.length != lOther$items.length) {
+      return false;
+    }
+    for (int i = 0; i < l$items.length; i++) {
+      final l$items$entry = l$items[i];
+      final lOther$items$entry = lOther$items[i];
+      if (l$items$entry != lOther$items$entry) {
+        return false;
+      }
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Fragment$Section$$IconSection$items
+    on Fragment$Section$$IconSection$items {
+  CopyWith$Fragment$Section$$IconSection$items<
+          Fragment$Section$$IconSection$items>
+      get copyWith => CopyWith$Fragment$Section$$IconSection$items(
+            this,
+            (i) => i,
+          );
+}
+
+abstract class CopyWith$Fragment$Section$$IconSection$items<TRes> {
+  factory CopyWith$Fragment$Section$$IconSection$items(
+    Fragment$Section$$IconSection$items instance,
+    TRes Function(Fragment$Section$$IconSection$items) then,
+  ) = _CopyWithImpl$Fragment$Section$$IconSection$items;
+
+  factory CopyWith$Fragment$Section$$IconSection$items.stub(TRes res) =
+      _CopyWithStubImpl$Fragment$Section$$IconSection$items;
+
+  TRes call({
+    List<Fragment$ItemSectionItem>? items,
+    String? $__typename,
+  });
+  TRes items(
+      Iterable<Fragment$ItemSectionItem> Function(
+              Iterable<
+                  CopyWith$Fragment$ItemSectionItem<Fragment$ItemSectionItem>>)
+          _fn);
+}
+
+class _CopyWithImpl$Fragment$Section$$IconSection$items<TRes>
+    implements CopyWith$Fragment$Section$$IconSection$items<TRes> {
+  _CopyWithImpl$Fragment$Section$$IconSection$items(
+    this._instance,
+    this._then,
+  );
+
+  final Fragment$Section$$IconSection$items _instance;
+
+  final TRes Function(Fragment$Section$$IconSection$items) _then;
+
+  static const _undefined = {};
+
+  TRes call({
+    Object? items = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(Fragment$Section$$IconSection$items(
+        items: items == _undefined || items == null
+            ? _instance.items
+            : (items as List<Fragment$ItemSectionItem>),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+  TRes items(
+          Iterable<Fragment$ItemSectionItem> Function(
+                  Iterable<
+                      CopyWith$Fragment$ItemSectionItem<
+                          Fragment$ItemSectionItem>>)
+              _fn) =>
+      call(
+          items:
+              _fn(_instance.items.map((e) => CopyWith$Fragment$ItemSectionItem(
+                    e,
+                    (i) => i,
+                  ))).toList());
+}
+
+class _CopyWithStubImpl$Fragment$Section$$IconSection$items<TRes>
+    implements CopyWith$Fragment$Section$$IconSection$items<TRes> {
+  _CopyWithStubImpl$Fragment$Section$$IconSection$items(this._res);
+
+  TRes _res;
+
+  call({
+    List<Fragment$ItemSectionItem>? items,
     String? $__typename,
   }) =>
       _res;
+  items(_fn) => _res;
+}
+
+class Fragment$Section$$LabelSection
+    implements Fragment$ItemSection, Fragment$Section {
+  Fragment$Section$$LabelSection({
+    required this.id,
+    this.title,
+    required this.$__typename,
+    required this.items,
+  });
+
+  factory Fragment$Section$$LabelSection.fromJson(Map<String, dynamic> json) {
+    final l$id = json['id'];
+    final l$title = json['title'];
+    final l$$__typename = json['__typename'];
+    final l$items = json['items'];
+    return Fragment$Section$$LabelSection(
+      id: (l$id as String),
+      title: (l$title as String?),
+      $__typename: (l$$__typename as String),
+      items: Fragment$Section$$LabelSection$items.fromJson(
+          (l$items as Map<String, dynamic>)),
+    );
+  }
+
+  final String id;
+
+  final String? title;
+
+  final String $__typename;
+
+  final Fragment$Section$$LabelSection$items items;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$id = id;
+    _resultData['id'] = l$id;
+    final l$title = title;
+    _resultData['title'] = l$title;
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    final l$items = items;
+    _resultData['items'] = l$items.toJson();
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$id = id;
+    final l$title = title;
+    final l$$__typename = $__typename;
+    final l$items = items;
+    return Object.hashAll([
+      l$id,
+      l$title,
+      l$$__typename,
+      l$items,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (!(other is Fragment$Section$$LabelSection) ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$id = id;
+    final lOther$id = other.id;
+    if (l$id != lOther$id) {
+      return false;
+    }
+    final l$title = title;
+    final lOther$title = other.title;
+    if (l$title != lOther$title) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    final l$items = items;
+    final lOther$items = other.items;
+    if (l$items != lOther$items) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Fragment$Section$$LabelSection
+    on Fragment$Section$$LabelSection {
+  CopyWith$Fragment$Section$$LabelSection<Fragment$Section$$LabelSection>
+      get copyWith => CopyWith$Fragment$Section$$LabelSection(
+            this,
+            (i) => i,
+          );
+}
+
+abstract class CopyWith$Fragment$Section$$LabelSection<TRes> {
+  factory CopyWith$Fragment$Section$$LabelSection(
+    Fragment$Section$$LabelSection instance,
+    TRes Function(Fragment$Section$$LabelSection) then,
+  ) = _CopyWithImpl$Fragment$Section$$LabelSection;
+
+  factory CopyWith$Fragment$Section$$LabelSection.stub(TRes res) =
+      _CopyWithStubImpl$Fragment$Section$$LabelSection;
+
+  TRes call({
+    String? id,
+    String? title,
+    String? $__typename,
+    Fragment$Section$$LabelSection$items? items,
+  });
+  CopyWith$Fragment$Section$$LabelSection$items<TRes> get items;
+}
+
+class _CopyWithImpl$Fragment$Section$$LabelSection<TRes>
+    implements CopyWith$Fragment$Section$$LabelSection<TRes> {
+  _CopyWithImpl$Fragment$Section$$LabelSection(
+    this._instance,
+    this._then,
+  );
+
+  final Fragment$Section$$LabelSection _instance;
+
+  final TRes Function(Fragment$Section$$LabelSection) _then;
+
+  static const _undefined = {};
+
+  TRes call({
+    Object? id = _undefined,
+    Object? title = _undefined,
+    Object? $__typename = _undefined,
+    Object? items = _undefined,
+  }) =>
+      _then(Fragment$Section$$LabelSection(
+        id: id == _undefined || id == null ? _instance.id : (id as String),
+        title: title == _undefined ? _instance.title : (title as String?),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+        items: items == _undefined || items == null
+            ? _instance.items
+            : (items as Fragment$Section$$LabelSection$items),
+      ));
+  CopyWith$Fragment$Section$$LabelSection$items<TRes> get items {
+    final local$items = _instance.items;
+    return CopyWith$Fragment$Section$$LabelSection$items(
+        local$items, (e) => call(items: e));
+  }
+}
+
+class _CopyWithStubImpl$Fragment$Section$$LabelSection<TRes>
+    implements CopyWith$Fragment$Section$$LabelSection<TRes> {
+  _CopyWithStubImpl$Fragment$Section$$LabelSection(this._res);
+
+  TRes _res;
+
+  call({
+    String? id,
+    String? title,
+    String? $__typename,
+    Fragment$Section$$LabelSection$items? items,
+  }) =>
+      _res;
+  CopyWith$Fragment$Section$$LabelSection$items<TRes> get items =>
+      CopyWith$Fragment$Section$$LabelSection$items.stub(_res);
+}
+
+class Fragment$Section$$LabelSection$items
+    implements Fragment$ItemSection$items {
+  Fragment$Section$$LabelSection$items({
+    required this.items,
+    required this.$__typename,
+  });
+
+  factory Fragment$Section$$LabelSection$items.fromJson(
+      Map<String, dynamic> json) {
+    final l$items = json['items'];
+    final l$$__typename = json['__typename'];
+    return Fragment$Section$$LabelSection$items(
+      items: (l$items as List<dynamic>)
+          .map((e) =>
+              Fragment$ItemSectionItem.fromJson((e as Map<String, dynamic>)))
+          .toList(),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final List<Fragment$ItemSectionItem> items;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$items = items;
+    _resultData['items'] = l$items.map((e) => e.toJson()).toList();
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$items = items;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      Object.hashAll(l$items.map((v) => v)),
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (!(other is Fragment$Section$$LabelSection$items) ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$items = items;
+    final lOther$items = other.items;
+    if (l$items.length != lOther$items.length) {
+      return false;
+    }
+    for (int i = 0; i < l$items.length; i++) {
+      final l$items$entry = l$items[i];
+      final lOther$items$entry = lOther$items[i];
+      if (l$items$entry != lOther$items$entry) {
+        return false;
+      }
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Fragment$Section$$LabelSection$items
+    on Fragment$Section$$LabelSection$items {
+  CopyWith$Fragment$Section$$LabelSection$items<
+          Fragment$Section$$LabelSection$items>
+      get copyWith => CopyWith$Fragment$Section$$LabelSection$items(
+            this,
+            (i) => i,
+          );
+}
+
+abstract class CopyWith$Fragment$Section$$LabelSection$items<TRes> {
+  factory CopyWith$Fragment$Section$$LabelSection$items(
+    Fragment$Section$$LabelSection$items instance,
+    TRes Function(Fragment$Section$$LabelSection$items) then,
+  ) = _CopyWithImpl$Fragment$Section$$LabelSection$items;
+
+  factory CopyWith$Fragment$Section$$LabelSection$items.stub(TRes res) =
+      _CopyWithStubImpl$Fragment$Section$$LabelSection$items;
+
+  TRes call({
+    List<Fragment$ItemSectionItem>? items,
+    String? $__typename,
+  });
+  TRes items(
+      Iterable<Fragment$ItemSectionItem> Function(
+              Iterable<
+                  CopyWith$Fragment$ItemSectionItem<Fragment$ItemSectionItem>>)
+          _fn);
+}
+
+class _CopyWithImpl$Fragment$Section$$LabelSection$items<TRes>
+    implements CopyWith$Fragment$Section$$LabelSection$items<TRes> {
+  _CopyWithImpl$Fragment$Section$$LabelSection$items(
+    this._instance,
+    this._then,
+  );
+
+  final Fragment$Section$$LabelSection$items _instance;
+
+  final TRes Function(Fragment$Section$$LabelSection$items) _then;
+
+  static const _undefined = {};
+
+  TRes call({
+    Object? items = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(Fragment$Section$$LabelSection$items(
+        items: items == _undefined || items == null
+            ? _instance.items
+            : (items as List<Fragment$ItemSectionItem>),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+  TRes items(
+          Iterable<Fragment$ItemSectionItem> Function(
+                  Iterable<
+                      CopyWith$Fragment$ItemSectionItem<
+                          Fragment$ItemSectionItem>>)
+              _fn) =>
+      call(
+          items:
+              _fn(_instance.items.map((e) => CopyWith$Fragment$ItemSectionItem(
+                    e,
+                    (i) => i,
+                  ))).toList());
+}
+
+class _CopyWithStubImpl$Fragment$Section$$LabelSection$items<TRes>
+    implements CopyWith$Fragment$Section$$LabelSection$items<TRes> {
+  _CopyWithStubImpl$Fragment$Section$$LabelSection$items(this._res);
+
+  TRes _res;
+
+  call({
+    List<Fragment$ItemSectionItem>? items,
+    String? $__typename,
+  }) =>
+      _res;
+  items(_fn) => _res;
 }
 
 class Fragment$Section$$WebSection implements Fragment$Section {
@@ -18265,6 +18631,7 @@ const documentNodeQueryPage = DocumentNode(definitions: [
     ]),
   ),
   fragmentDefinitionSection,
+  fragmentDefinitionItemSection,
   fragmentDefinitionItemSectionItem,
   fragmentDefinitionGridSectionItem,
 ]);
