@@ -1,3 +1,4 @@
+import 'package:brunstadtv_app/models/analytics/sections.dart';
 import 'package:flutter/material.dart';
 
 import '../graphql/queries/page.graphql.dart';
@@ -6,6 +7,7 @@ import '../helpers/btv_typography.dart';
 import '../l10n/app_localizations.dart';
 import '../helpers/btv_buttons.dart';
 import '../helpers/utils.dart';
+import '../providers/inherited_data.dart';
 import 'featured_section.dart';
 import 'default_grid_section.dart';
 import 'message_section.dart';
@@ -29,6 +31,54 @@ class BccmPage extends StatelessWidget {
     required this.onRefresh,
   });
 
+  Widget? _getSectionWidget(Fragment$Section s) {
+    final iconSection = s.asOrNull<Fragment$Section$$IconSection>();
+    if (iconSection != null) {
+      return PageSection(title: iconSection.title, child: IconSection(iconSection));
+    }
+    final labelSection = s.asOrNull<Fragment$Section$$LabelSection>();
+    if (labelSection != null) {
+      return PageSection(title: labelSection.title, child: LabelSection(labelSection));
+    }
+    final defaultSection = s.asOrNull<Fragment$Section$$DefaultSection>();
+    if (defaultSection != null) {
+      return PageSection(title: defaultSection.title, child: DefaultSection(defaultSection));
+    }
+    final posterSection = s.asOrNull<Fragment$Section$$PosterSection>();
+    if (posterSection != null) {
+      return PageSection(title: posterSection.title, child: PosterSection(posterSection));
+    }
+    final defaultGridSection = s.asOrNull<Fragment$Section$$DefaultGridSection>();
+    if (defaultGridSection != null) {
+      return PageSection(title: defaultGridSection.title, child: DefaultGridSection(defaultGridSection));
+    }
+    final posterGridSection = s.asOrNull<Fragment$Section$$PosterGridSection>();
+    if (posterGridSection != null) {
+      return PageSection(title: posterGridSection.title, child: PosterGridSection(posterGridSection));
+    }
+    final featuredSection = s.asOrNull<Fragment$Section$$FeaturedSection>();
+    if (featuredSection != null) {
+      return PageSection(title: featuredSection.title, child: FeaturedSection(featuredSection));
+    }
+    final iconGridSection = s.asOrNull<Fragment$Section$$IconGridSection>();
+    if (iconGridSection != null) {
+      return PageSection(title: iconGridSection.title, child: IconGridSection(iconGridSection));
+    }
+    final listSection = s.asOrNull<Fragment$Section$$ListSection>();
+    if (listSection != null) {
+      return PageSection(title: listSection.title, child: ListSection(listSection));
+    }
+    final webSection = s.asOrNull<Fragment$Section$$WebSection>();
+    if (webSection != null) {
+      return PageSection(title: webSection.title, child: WebSection(webSection));
+    }
+    final messageSection = s.asOrNull<Fragment$Section$$MessageSection>();
+    if (messageSection != null) {
+      return Padding(padding: const EdgeInsets.only(top: 4), child: PageSection(title: messageSection.title, child: MessageSection(messageSection)));
+    }
+    return null;
+  }
+
   Widget getPage(context, Query$Page$page pageData) {
     final sectionItems = pageData.sections.items;
     final mediaQueryData = MediaQuery.of(context);
@@ -46,53 +96,14 @@ class BccmPage extends StatelessWidget {
           itemCount: sectionItems.length,
           itemBuilder: ((context, index) {
             var s = sectionItems[index];
-
-            final iconSection = s.asOrNull<Fragment$Section$$IconSection>();
-            if (iconSection != null) {
-              return PageSection(title: iconSection.title, child: IconSection(iconSection));
+            final widget = _getSectionWidget(s);
+            if (widget != null) {
+              return InheritedData<SectionAnalytics>(
+                inheritedData: SectionAnalytics(id: s.id, position: index, type: s.$__typename, name: s.title),
+                child: (context) => widget,
+              );
             }
-            final labelSection = s.asOrNull<Fragment$Section$$LabelSection>();
-            if (labelSection != null) {
-              return PageSection(title: labelSection.title, child: LabelSection(labelSection));
-            }
-            final defaultSection = s.asOrNull<Fragment$Section$$DefaultSection>();
-            if (defaultSection != null) {
-              return PageSection(title: defaultSection.title, child: DefaultSection(defaultSection));
-            }
-            final posterSection = s.asOrNull<Fragment$Section$$PosterSection>();
-            if (posterSection != null) {
-              return PageSection(title: posterSection.title, child: PosterSection(posterSection));
-            }
-            final defaultGridSection = s.asOrNull<Fragment$Section$$DefaultGridSection>();
-            if (defaultGridSection != null) {
-              return PageSection(title: defaultGridSection.title, child: DefaultGridSection(defaultGridSection));
-            }
-            final posterGridSection = s.asOrNull<Fragment$Section$$PosterGridSection>();
-            if (posterGridSection != null) {
-              return PageSection(title: posterGridSection.title, child: PosterGridSection(posterGridSection));
-            }
-            final featuredSection = s.asOrNull<Fragment$Section$$FeaturedSection>();
-            if (featuredSection != null) {
-              return PageSection(title: featuredSection.title, child: FeaturedSection(featuredSection));
-            }
-            final iconGridSection = s.asOrNull<Fragment$Section$$IconGridSection>();
-            if (iconGridSection != null) {
-              return PageSection(title: iconGridSection.title, child: IconGridSection(iconGridSection));
-            }
-            final listSection = s.asOrNull<Fragment$Section$$ListSection>();
-            if (listSection != null) {
-              return PageSection(title: listSection.title, child: ListSection(listSection));
-            }
-            final webSection = s.asOrNull<Fragment$Section$$WebSection>();
-            if (webSection != null) {
-              return PageSection(title: webSection.title, child: WebSection(webSection));
-            }
-            final messageSection = s.asOrNull<Fragment$Section$$MessageSection>();
-            if (messageSection != null) {
-              return Padding(
-                  padding: const EdgeInsets.only(top: 4), child: PageSection(title: messageSection.title, child: MessageSection(messageSection)));
-            }
-            return Container();
+            return const SizedBox.shrink();
           }),
         ),
       ),

@@ -1,4 +1,11 @@
+import 'package:brunstadtv_app/components/section_item_click_wrapper.dart';
+import 'package:brunstadtv_app/models/analytics/sections.dart';
+import 'package:brunstadtv_app/providers/analytics.dart';
+import 'package:brunstadtv_app/providers/inherited_data.dart';
+import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/material.dart';
+import 'package:rudder_sdk_flutter/RudderController.dart';
+import 'package:rudder_sdk_flutter_platform_interface/platform.dart';
 
 import '../helpers/btv_colors.dart';
 import '../helpers/btv_typography.dart';
@@ -38,13 +45,20 @@ class DefaultSection extends StatelessWidget {
       itemCount: items.length,
       itemBuilder: (BuildContext context, int index) {
         var item = items[index];
+        Widget? widget;
         if (item.item is Fragment$Section$$DefaultSection$items$items$item$$Episode) {
-          return _DefaultEpisodeItem(sectionItem: item, size: data.size);
+          widget = _DefaultEpisodeItem(sectionItem: item, size: data.size);
         } else if (item.item is Fragment$Section$$DefaultSection$items$items$item$$Show) {
-          return _DefaultShowItem(sectionItem: item, size: data.size);
+          widget = _DefaultShowItem(sectionItem: item, size: data.size);
         }
-        // Theoretically impossible, see filter above.
-        return const SizedBox.shrink();
+        if (widget == null) {
+          return const SizedBox.shrink();
+        }
+        return SectionItemClickWrapper(
+          item: item.item,
+          analytics: SectionItemAnalytics(id: item.id, position: index, type: item.$__typename, name: item.title),
+          child: widget,
+        );
       },
     );
   }
@@ -67,46 +81,42 @@ class _DefaultEpisodeItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final productionDate = getFormattedProductionDate(episode.productionDate);
-    return GestureDetector(
-      behavior: HitTestBehavior.opaque,
-      onTap: () => handleSectionItemClick(context, sectionItem.item),
-      child: SizedBox(
-        width: imageSize[size]!.width,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            sectionItemImage(),
-            Container(
-              margin: const EdgeInsets.only(bottom: 2),
-              child: Row(
-                children: [
-                  if (episode.season != null)
-                    Flexible(
-                      child: Container(
-                        margin: const EdgeInsets.only(right: 4),
-                        child: Text(
-                          episode.season!.$show.title.replaceAll(' ', '\u{000A0}'),
-                          maxLines: 1,
-                          overflow: TextOverflow.ellipsis,
-                          style: BtvTextStyles.caption2.copyWith(color: BtvColors.tint1),
-                        ),
+    return SizedBox(
+      width: imageSize[size]!.width,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          sectionItemImage(),
+          Container(
+            margin: const EdgeInsets.only(bottom: 2),
+            child: Row(
+              children: [
+                if (episode.season != null)
+                  Flexible(
+                    child: Container(
+                      margin: const EdgeInsets.only(right: 4),
+                      child: Text(
+                        episode.season!.$show.title.replaceAll(' ', '\u{000A0}'),
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                        style: BtvTextStyles.caption2.copyWith(color: BtvColors.tint1),
                       ),
                     ),
-                  if (productionDate != null)
-                    Text(
-                      productionDate,
-                      style: BtvTextStyles.caption2,
-                    ),
-                ],
-              ),
+                  ),
+                if (productionDate != null)
+                  Text(
+                    productionDate,
+                    style: BtvTextStyles.caption2,
+                  ),
+              ],
             ),
-            Text(
-              sectionItem.title,
-              maxLines: 2,
-              style: BtvTextStyles.caption1.copyWith(color: BtvColors.label1),
-            )
-          ],
-        ),
+          ),
+          Text(
+            sectionItem.title,
+            maxLines: 2,
+            style: BtvTextStyles.caption1.copyWith(color: BtvColors.label1),
+          )
+        ],
       ),
     );
   }
@@ -202,28 +212,24 @@ class _DefaultShowItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      behavior: HitTestBehavior.opaque,
-      onTap: () => handleSectionItemClick(context, sectionItem.item),
-      child: SizedBox(
-        width: imageSize[size]!.width,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            sectionItemImage(),
-            Container(
-              margin: const EdgeInsets.only(bottom: 2),
-              child: Text(
-                sectionItem.title,
-                style: BtvTextStyles.caption1.copyWith(color: BtvColors.label1),
-              ),
+    return SizedBox(
+      width: imageSize[size]!.width,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          sectionItemImage(),
+          Container(
+            margin: const EdgeInsets.only(bottom: 2),
+            child: Text(
+              sectionItem.title,
+              style: BtvTextStyles.caption1.copyWith(color: BtvColors.label1),
             ),
-            Text(
-              '${show.seasonCount} ${S.of(context).seasons} - ${show.episodeCount} ${S.of(context).episodes}',
-              style: BtvTextStyles.caption2,
-            )
-          ],
-        ),
+          ),
+          Text(
+            '${show.seasonCount} ${S.of(context).seasons} - ${show.episodeCount} ${S.of(context).episodes}',
+            style: BtvTextStyles.caption2,
+          )
+        ],
       ),
     );
   }

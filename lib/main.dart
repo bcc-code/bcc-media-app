@@ -4,9 +4,10 @@ import 'package:bccm_player/playback_platform_pigeon.g.dart';
 import 'package:brunstadtv_app/helpers/btv_colors.dart';
 import 'package:brunstadtv_app/helpers/btv_typography.dart';
 import 'package:brunstadtv_app/providers/app_config.dart';
-import 'package:brunstadtv_app/providers/rudder.dart';
+import 'package:brunstadtv_app/providers/analytics.dart';
 import 'package:brunstadtv_app/providers/settings_service.dart';
 import 'package:brunstadtv_app/providers/video_state.dart';
+import 'package:brunstadtv_app/router/analytics_observer.dart';
 import 'package:brunstadtv_app/router/special_routes_guard.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
@@ -100,7 +101,7 @@ void $main({required FirebaseOptions? firebaseOptions}) async {
     providerContainer.read(isCasting.notifier).state = value?.connectionState == CastConnectionState.connected;
     providerContainer.read(castPlayerProvider.notifier).setMediaItem(value?.mediaItem);
   });
-  initializeRudderStack();
+  Analytics.initialize();
 
   if (Env.npawAccountCode != '') {
     providerContainer

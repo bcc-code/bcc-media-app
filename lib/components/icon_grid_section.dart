@@ -1,3 +1,5 @@
+import 'package:brunstadtv_app/components/section_item_click_wrapper.dart';
+import 'package:brunstadtv_app/models/analytics/sections.dart';
 import 'package:flutter/material.dart';
 
 import '../graphql/queries/page.graphql.dart';
@@ -35,6 +37,7 @@ class _IconGridSectionList extends StatelessWidget {
     final colSize = _columnSize[size] ?? _columnSize[Enum$GridSectionSize.half]!;
     final rowSize = (sectionItems.length / colSize).ceil();
 
+    // TODO: use itembuilder instead
     final rows = List<GridRow>.generate(rowSize, (rowIndex) {
       final firstIndex = rowIndex * colSize;
       final subList =
@@ -42,15 +45,16 @@ class _IconGridSectionList extends StatelessWidget {
       return GridRow(
         margin: const EdgeInsets.only(bottom: 12),
         items: subList
-            .map<Widget>((item) => CategoryButton(
-                onTap: () {
-                  handleSectionItemClick(context, item.item);
-                },
-                label: item.title,
-                networkImage: item.image,
-                width: 80,
-                aspectRatio: 16 / 9,
-                padding: const EdgeInsets.all(8)))
+            .asMap()
+            .entries
+            .map<Widget>(
+              (kv) => SectionItemClickWrapper(
+                item: kv.value.item,
+                analytics: SectionItemAnalytics(id: kv.value.id, position: kv.key, type: kv.value.$__typename, name: kv.value.title),
+                child: CategoryButton(
+                    label: kv.value.title, networkImage: kv.value.image, width: 80, aspectRatio: 16 / 9, padding: const EdgeInsets.all(8)),
+              ),
+            )
             .toList(),
         colSize: colSize,
       );

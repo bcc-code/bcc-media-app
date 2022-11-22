@@ -1,7 +1,10 @@
+import 'package:brunstadtv_app/components/section_item_click_wrapper.dart';
 import 'package:flutter/material.dart';
 
 import 'package:auto_route/auto_route.dart';
 import '../l10n/app_localizations.dart';
+import '../models/analytics/sections.dart';
+import '../providers/inherited_data.dart';
 import '../router/router.gr.dart';
 
 import '../graphql/queries/page.graphql.dart';
@@ -32,10 +35,14 @@ class FeaturedSection extends StatelessWidget {
             controller: PageController(viewportFraction: viewportFraction),
             itemCount: sectionItems.length,
             itemBuilder: (context, index) {
-              final sectionItem = sectionItems[index % sectionItems.length];
-              return _FeaturedItem(
-                sectionItem: sectionItem,
-                margin: const EdgeInsets.symmetric(horizontal: marginX),
+              final item = sectionItems[index % sectionItems.length];
+              return SectionItemClickWrapper(
+                item: item.item,
+                analytics: SectionItemAnalytics(id: item.id, position: index, type: item.$__typename, name: item.title),
+                child: _FeaturedItem(
+                  sectionItem: item,
+                  margin: const EdgeInsets.symmetric(horizontal: marginX),
+                ),
               );
             },
           ),
@@ -56,77 +63,73 @@ class _FeaturedItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      behavior: HitTestBehavior.opaque,
-      onTap: () => handleSectionItemClick(context, sectionItem.item),
-      child: Container(
-        margin: margin,
-        height: double.infinity,
-        child: Stack(children: [
-          _GradientImage(image: sectionItem.image),
-          Align(
-            alignment: Alignment.bottomCenter,
-            child: Container(
-              width: double.infinity,
-              padding: const EdgeInsets.only(top: 12, right: 18, bottom: 18, left: 18),
-              decoration: BoxDecoration(
-                gradient: LinearGradient(
-                  begin: Alignment.topCenter,
-                  end: Alignment.bottomCenter,
-                  colors: [
-                    BtvColors.background1.withOpacity(0),
-                    BtvColors.background1,
-                  ],
-                  stops: const [0, 0.36],
-                ),
-              ),
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  Container(
-                    margin: const EdgeInsets.only(bottom: 4),
-                    child: Text(
-                      sectionItem.title,
-                      textAlign: TextAlign.center,
-                      style: BtvTextStyles.title1,
-                    ),
-                  ),
-                  Container(
-                    margin: const EdgeInsets.only(bottom: 16),
-                    child: Text(
-                      sectionItem.description,
-                      maxLines: 2,
-                      overflow: TextOverflow.ellipsis,
-                      textAlign: TextAlign.center,
-                      style: BtvTextStyles.body2.copyWith(color: BtvColors.label2),
-                    ),
-                  ),
-                  false
-                      ? BtvButton.smallRed(
-                          imagePath: 'assets/icons/Play.png',
-                          labelText: S.of(context).liveNow,
-                          onPressed: () {},
-                        )
-                      : BtvButton.smallSecondary(
-                          imagePath: 'assets/icons/Play.png',
-                          labelText: S.of(context).watchNow,
-                          onPressed: () {
-                            var episodeItem = sectionItem.item.asOrNull<Fragment$Section$$FeaturedSection$items$items$item$$Episode>();
-                            var showItem = sectionItem.item.asOrNull<Fragment$Section$$FeaturedSection$items$items$item$$Show>();
-                            if (episodeItem != null) {
-                              context.router.navigate(EpisodeScreenRoute(episodeId: episodeItem.id));
-                            } else if (showItem != null) {
-                              context.router.navigate(EpisodeScreenRoute(episodeId: showItem.defaultEpisode.id));
-                            }
-                          },
-                        ),
+    return Container(
+      margin: margin,
+      height: double.infinity,
+      child: Stack(children: [
+        _GradientImage(image: sectionItem.image),
+        Align(
+          alignment: Alignment.bottomCenter,
+          child: Container(
+            width: double.infinity,
+            padding: const EdgeInsets.only(top: 12, right: 18, bottom: 18, left: 18),
+            decoration: BoxDecoration(
+              gradient: LinearGradient(
+                begin: Alignment.topCenter,
+                end: Alignment.bottomCenter,
+                colors: [
+                  BtvColors.background1.withOpacity(0),
+                  BtvColors.background1,
                 ],
+                stops: const [0, 0.36],
               ),
             ),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                Container(
+                  margin: const EdgeInsets.only(bottom: 4),
+                  child: Text(
+                    sectionItem.title,
+                    textAlign: TextAlign.center,
+                    style: BtvTextStyles.title1,
+                  ),
+                ),
+                Container(
+                  margin: const EdgeInsets.only(bottom: 16),
+                  child: Text(
+                    sectionItem.description,
+                    maxLines: 2,
+                    overflow: TextOverflow.ellipsis,
+                    textAlign: TextAlign.center,
+                    style: BtvTextStyles.body2.copyWith(color: BtvColors.label2),
+                  ),
+                ),
+                false
+                    ? BtvButton.smallRed(
+                        imagePath: 'assets/icons/Play.png',
+                        labelText: S.of(context).liveNow,
+                        onPressed: () {},
+                      )
+                    : BtvButton.smallSecondary(
+                        imagePath: 'assets/icons/Play.png',
+                        labelText: S.of(context).watchNow,
+                        onPressed: () {
+                          var episodeItem = sectionItem.item.asOrNull<Fragment$Section$$FeaturedSection$items$items$item$$Episode>();
+                          var showItem = sectionItem.item.asOrNull<Fragment$Section$$FeaturedSection$items$items$item$$Show>();
+                          if (episodeItem != null) {
+                            context.router.navigate(EpisodeScreenRoute(episodeId: episodeItem.id));
+                          } else if (showItem != null) {
+                            context.router.navigate(EpisodeScreenRoute(episodeId: showItem.defaultEpisode.id));
+                          }
+                        },
+                      ),
+              ],
+            ),
           ),
-        ]),
-      ),
+        ),
+      ]),
     );
   }
 }

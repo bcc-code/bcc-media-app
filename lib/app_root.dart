@@ -3,7 +3,7 @@ import 'package:brunstadtv_app/graphql/client.dart';
 import 'package:brunstadtv_app/graphql/queries/me.graphql.dart';
 import 'package:brunstadtv_app/helpers/btv_typography.dart';
 import 'package:brunstadtv_app/providers/auth_state.dart';
-import 'package:brunstadtv_app/providers/rudder.dart';
+import 'package:brunstadtv_app/providers/analytics.dart';
 import 'package:brunstadtv_app/router/router.gr.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
@@ -37,7 +37,7 @@ class _AppRootState extends ConsumerState<AppRoot> {
           if (value.parsedData == null) {
             throw ErrorDescription('"Me" data is null.');
           }
-          identify(next.user!, value.parsedData!.me.analytics.anonymousId);
+          Analytics.identify(next.user!, value.parsedData!.me.analytics.anonymousId);
           return value.parsedData;
         });
       }

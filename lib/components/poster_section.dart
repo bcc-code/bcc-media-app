@@ -1,3 +1,5 @@
+import 'package:brunstadtv_app/components/section_item_click_wrapper.dart';
+import 'package:brunstadtv_app/models/analytics/sections.dart';
 import 'package:flutter/material.dart';
 
 import '../helpers/btv_colors.dart';
@@ -44,13 +46,20 @@ class PosterSection extends StatelessWidget {
       itemCount: items.length,
       itemBuilder: (BuildContext context, int index) {
         var item = items[index];
+        Widget? widget;
         if (item.item is Fragment$Section$$PosterSection$items$items$item$$Episode) {
-          return _PosterEpisodeItem(sectionItem: item, size: data.size);
+          widget = _PosterEpisodeItem(sectionItem: item, size: data.size);
         } else if (item.item is Fragment$Section$$PosterSection$items$items$item$$Show) {
-          return _PosterShowItem(sectionItem: item, size: data.size);
+          widget = _PosterShowItem(sectionItem: item, size: data.size);
         }
-        // Theoretically impossible, see filter above.
-        return const SizedBox.shrink();
+        if (widget == null) {
+          return const SizedBox.shrink();
+        }
+        return SectionItemClickWrapper(
+          item: item.item,
+          analytics: SectionItemAnalytics(id: item.id, position: index, type: item.$__typename, name: item.title),
+          child: widget,
+        );
       },
     );
   }
@@ -74,8 +83,8 @@ class _PosterEpisodeItem extends StatelessWidget {
   final Enum$SectionSize size;
 
   bool get watched => episode.progress != null && episode.progress! > episode.duration * 0.9;
-  bool isLive = false;
-  bool isNewItem = false;
+  final bool isLive = false;
+  final bool isNewItem = false;
 
   _PosterEpisodeItem({
     required this.sectionItem,
@@ -85,48 +94,44 @@ class _PosterEpisodeItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final productionDate = getFormattedProductionDate(episode.productionDate);
-    return GestureDetector(
-      behavior: HitTestBehavior.opaque,
-      onTap: () => handleSectionItemClick(context, sectionItem.item),
-      child: Container(
-        margin: const EdgeInsets.symmetric(vertical: 12),
-        width: imageSize[size]!.width,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            sectionItemImage(context),
-            Container(
-              margin: const EdgeInsets.only(bottom: 2),
-              child: Row(
-                children: [
-                  if (episode.season != null)
-                    Expanded(
-                      child: Container(
-                        margin: const EdgeInsets.only(right: 4),
-                        child: Text(
-                          episode.season!.$show.title.replaceAll(' ', '\u{000A0}'),
-                          maxLines: 1,
-                          overflow: TextOverflow.ellipsis,
-                          style: BtvTextStyles.caption2.copyWith(color: BtvColors.tint1),
-                        ),
+    return Container(
+      margin: const EdgeInsets.symmetric(vertical: 12),
+      width: imageSize[size]!.width,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          sectionItemImage(context),
+          Container(
+            margin: const EdgeInsets.only(bottom: 2),
+            child: Row(
+              children: [
+                if (episode.season != null)
+                  Expanded(
+                    child: Container(
+                      margin: const EdgeInsets.only(right: 4),
+                      child: Text(
+                        episode.season!.$show.title.replaceAll(' ', '\u{000A0}'),
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                        style: BtvTextStyles.caption2.copyWith(color: BtvColors.tint1),
                       ),
                     ),
-                  if (productionDate != null)
-                    Text(
-                      productionDate,
-                      style: BtvTextStyles.caption2,
-                    ),
-                ],
-              ),
+                  ),
+                if (productionDate != null)
+                  Text(
+                    productionDate,
+                    style: BtvTextStyles.caption2,
+                  ),
+              ],
             ),
-            Text(
-              sectionItem.title,
-              overflow: TextOverflow.ellipsis,
-              maxLines: 2,
-              style: BtvTextStyles.caption1.copyWith(color: BtvColors.label1),
-            )
-          ],
-        ),
+          ),
+          Text(
+            sectionItem.title,
+            overflow: TextOverflow.ellipsis,
+            maxLines: 2,
+            style: BtvTextStyles.caption1.copyWith(color: BtvColors.label1),
+          )
+        ],
       ),
     );
   }
@@ -223,24 +228,20 @@ class _PosterShowItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      behavior: HitTestBehavior.opaque,
-      onTap: () => handleSectionItemClick(context, sectionItem.item),
-      child: Container(
-        margin: const EdgeInsets.symmetric(vertical: 12),
-        width: imageSize[size]!.width,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            sectionItemImage(context),
-            Text(
-              sectionItem.title,
-              overflow: TextOverflow.ellipsis,
-              maxLines: 2,
-              style: BtvTextStyles.caption1.copyWith(color: BtvColors.label1),
-            )
-          ],
-        ),
+    return Container(
+      margin: const EdgeInsets.symmetric(vertical: 12),
+      width: imageSize[size]!.width,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          sectionItemImage(context),
+          Text(
+            sectionItem.title,
+            overflow: TextOverflow.ellipsis,
+            maxLines: 2,
+            style: BtvTextStyles.caption1.copyWith(color: BtvColors.label1),
+          )
+        ],
       ),
     );
   }
