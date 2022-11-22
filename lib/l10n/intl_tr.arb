@@ -1,228 +1,1011 @@
 {
-  "@@locale": "tr",
-  "liveTab": "Canlı",
-  "logOutButton": "Oturumu kapat",
-  "profileTab": "Profil",
-  "bccMediaCenter": "BrunstadTV, pozitif ve Hıristiyan değerlere dayalı içerik üreten ve yayınlayan, ticari olmayan bir medya merkezidir.",
-  "signInButton": "Giriş",
-  "tryAgainButton": "Tekrar dene",
-  "loggedOutTitle": "Oturum Kapatıldı",
-  "loggedOutMessage": "Çıkış yaptınız. Lütfen tekrar giriş yapın.",
-  "mostWatched": "En çok izlenen",
-  "mostRecent": "En yeni",
-  "latelyPublished": "Son zamanlarda yayınlanmış",
-  "anErrorOccurred": "Hata Oluştu",
-  "ok": "Tamam",
-  "loginFailedCheckNetwork": "Giriş başarısız. Ağ bağlantınızı kontrol edip tekrar deneyin.",
-  "loginFailedTryAgain": "Giriş başarısız. Lütfen daha sonra tekrar deneyiniz.",
-  "soundLanguage": "Ses dili",
-  "subtitleLanguage": "Altyazı dili",
-  "appLanguage": "App dili",
-  "checkNetwork": "Ağ bağlantınızı kontrol edip tekrar giriş yapmayı deneyin.",
-  "tryAgain": "Lütfen daha sonra tekrar deneyiniz.",
-  "cantPlayVideo": "Bu videoyu şimdi oynatamazsınız.",
-  "about": "Hakkında",
-  "version": "Versiyon",
-  "contactSupport": "İletişim desteği",
-  "cancel": "İptal",
-  "upNext": "Bir sonraki",
-  "done": "Tamam",
-  "playerSettings": "Oynatıcı ayarları",
-  "settings": "Ayarlar",
-  "none": "Hiçbiri",
-  "auto": "Otomatik",
-  "live": "Canlı",
-  "subtitles": "Altyazılar",
-  "audio": "Ses",
-  "quality": "Kalite",
-  "seasons": "Sezonlar",
-  "episodes": "Bölümler",
-  "search": "Ara",
-  "noResults": "Sonuç yok",
-  "doYouWantCast": "Bu videoyu yayınlamak istiyor musunuz?",
-  "play": "Oynat",
-  "castQueue": "Yayın sırası",
-  "options": "Seçenekler",
-  "remove": "Kaldır",
-  "queueLimitTitle": "Limit",
-  "queueLimitMessage": "Sırada {elementCount} öğeden fazla öğe olamaz.",
-  "recentSearches": "Son Aramalar",
-  "tVLogin": "TV Girişi",
-  "tVLoginSuccessful": "Giriş başarılı, lütfen TV'de onaylayın.",
-  "seeMore": "Daha fazla gör",
-  "seeAll": "Hepsini gör",
-  "series": "Diziler",
-  "livestreamMaintenance": "Üzgünüz, canlı yayın şu anda bakımda. Lütfen daha sonra tekrar deneyiniz.",
-  "homeTab": "Başlangıç",
-  "sortBy": "Sırala",
-  "videoQuality": "Video kalitesi",
-  "low": "Düşük",
-  "medium": "Orta",
-  "high": "Yüksek",
-  "emptySearch": "Tüm içeriği BrunstadTV'den arayabilirsiniz. Dizi, filmler ve bölümler.",
-  "back": "Geri",
-  "seasonLetter": "S",
-  "episodeLetter": "E",
-  "atoZ": "A-Z",
-  "ztoA": "Z-A",
-  "shortFilms": "Kısa filmler",
-  "videos": "Videolar",
-  "moreInfo": "Daha fazla bilgi",
-  "info": "Bilgi",
-  "episode": "Bölüm",
-  "takePhoto": "Fotoğraf çek",
-  "pickPhoto": "Galeriden seç",
-  "uploadFileTitle": "Dosya Ekle",
-  "uploadFileMessage": "Bu dosyayı yüklemek istiyor musunuz?",
-  "watchingWith": "You are watching with {numPeople} others",
-  "uploading": "Yükleniyor",
-  "uploadFail": "Yükleme başarısız",
-  "post": "Gönderi",
-  "charactersLimit": "{charsLeft} / {charsTotal} karakter kaldı",
-  "uploadingPostSuccess": "Yayınınız gönderildi.",
-  "testimonyInfo": "Videonuzu telefonunuzla kaydedin.",
-  "yourVideo": "Video kaydın",
-  "record": "Kaydet",
-  "recordingTips": "İyi bir kayıt için birkaç ipucu",
-  "recordingTipA": "Kaydetmek için sessiz bir yer bulun.",
-  "recordingTipB": "Yüzünüzün eşit şekilde yandığından emin olun.",
-  "recordingTipC": "Kayda başlamadan önce ne söylemek istediğinizi düşünün.",
-  "recordingTipD": "Telefonunuzu yatay moda çevirin.",
-  "thankYou": "Teşekkür ederim!",
-  "thankYouForContribution": "Katkın için teşekkürler!",
-  "uploadingVideoSuccess": "Video kaydın gönderildi.",
-  "next": "Sonraki",
-  "recordVideoCameraPermissionAlert": "Video kaydetmek için ayarlarda kamera izni vermelisiniz.",
-  "recordVideoPhotosPermissionAlert": "Video kaydetmek için ayarlarda kamera izni vermelisiniz.",
-  "recordVideoStoragePermissionAlert": "Video kaydetmek için ayarlarda depolama izni vermelisiniz.",
-  "recordVideoMicrophonePermissionAlert": "Video kaydetmek için ayarlarda mikrofon izni vermelisiniz.",
-  "takePhotoStoragePermissionAlert": "Fotoğraf seçmek için ayarlarda depolama izni vermelisiniz.",
-  "takePhotoCameraPermissionAlert": "Fotoğraf çekmek için ayarlarda kamera izni vermelisiniz.",
-  "pickPhotoStoragePermissionAlert": "Fotoğraf seçmek için ayarlarda depolama izni vermelisiniz.",
-  "permissionsAlertTitle": "İzinler gerekli",
-  "add": "Ekle",
-  "change": "Değiştir",
-  "recordingFailedTitle": "Video kaydedilemedi",
-  "recordingFailedMessage": "Videoyu kaydetmeye çalışırken bir şeyler ters gitti.",
-  "pollSubtitle": "Anket",
-  "writeHere": "Buraya yaz",
-  "feed": "Besleme",
-  "atmosphereFeedDescription": "Bulunduğunuz yerden mesaj, tanıklık veya resim göndererek etkinlik akışına katkıda bulunun.",
-  "information": "Bilgi",
-  "photoNotSupported": "Fotoğraf çekme ve çekme cihazınızda desteklenmiyor.",
-  "answerFailed": "Üzgünüz! Cevabı gönderemedik. Lütfen tekrar deneyin.",
-  "question": "Soru",
-  "notificationChannelPlayerName": "Oynatıcı",
-  "now": "Şimdi",
-  "createPost": "Gönderi oluştur",
-  "concernTextPlaceholder": "Sorunu tanımlayın",
-  "debugInfoExplanation": "Mesajınız, sorunu daha iyi anlamamıza yardımcı olmak için bu bilgileri içerecektir.",
-  "send": "Gönder",
-  "sending": "Gönderiliyor",
-  "thankYouSupportTitle": "Geri bildiriminiz için teşekkür ederiz!",
-  "thankYouSupportDescription": "Tüm geri bildirimleri takdir ediyoruz ve sorunu en kısa sürede ele alacağız.",
-  "sendFail": "Sana mesaj gönderilemedi",
-  "sendFailDescription": "Bir şeyler yanlış gitti. İnternet bağlantınızı kontrol edip tekrar deneyin.",
-  "today": "Bugün",
-  "noNewPosts": "Yeni mesaj yok",
-  "newPostsMultiple": "{postCount} yeni gönderiler!",
-  "newPostsSingle": "{postCount} yeni gönderi!",
-  "expired": "Süresi doldu",
-  "availableFrom": "Uygun {date}",
-  "howFar": "Ne kadar ileri gittin?",
-  "submit": "Gönder",
-  "wellDone": "Aferin!",
-  "wellDoneDistance": "Aferin! Toplam mesafe {distanceInKM} km kaydettiniz",
-  "distanceRegistered": "Mesafeniz kaydedildi. Başka bir mesafe göndermek istiyorsanız aşağıya devam edin.",
-  "ranMore": "{distanceInKM} km'den fazla gittim",
-  "moreThan": "{distanceInKM} km'den fazla",
-  "runningEffort": "İnanılmaz çaba! Aşağıya kat ettiğiniz kilometreyi yazın.",
-  "slideSelect": "Ne kadar ileri gittiğinizi seçmek için kaydırın",
-  "submitAnotherDistance": "Başka bir mesafe gönderin",
-  "editPicture": "Resmi düzenle",
-  "profilePicture": "Profil fotoğrafı",
-  "firstPostTitle": "İlk resim veya mesaj gönderen siz olun",
-  "timezoneInformation": "Tv rehberi zaman çizelgesi yerel saatinizde: {timeZone}",
-  "yourQuestion": "Senin sorun",
-  "uploadingInquirySuccess": "Lütfen gönderilen tüm soruların yayında yanıtlanmadığını unutmayın.",
-  "askQuestion": "Soru sor",
-  "submitQuestionInfo": "Bir soru göndererek, onun yayın amaçlı kullanılabileceğini kabul etmiş olursunuz.",
-  "posting": "Gönderi",
+  "@@locale": "en",
+  "loadingContent": "Loading content",
+  "@loadingContent": {
+    "description": "Text displayed when page content is loading."
+  },
+  "signInTooltip": "Sign in to watch more content",
+  "@signInTooltip": {
+    "description": "Text for tooltip displayed when a non-member user opens the home page."
+  },
+  "skipToPublicContent": "Skip to watch public content",
+  "@skipToPublicContent": {
+    "description": "Text for button displayed on login screen to skip sign in and watch public content."
+  },
+  "minutesShort": "min",
+  "@minutesShort": {
+    "description": "Text for minutes."
+  },
+  "calendarThisWeek": "This week",
+  "@calendarThisWeek": {
+    "description": "Text for This week."
+  },
+  "calendarWeek": "week",
+  "@calendarWeek": {
+    "description": "Text week."
+  },
   "loading": "Yükleniyor",
+  "@loading": {
+    "description": "Text to indicate loading state."
+  },
+  "loginPageDisplay1": "The most powerful message in the world",
+  "@loginPageDisplay1": {
+    "description": "Text displayed on login screen."
+  },
+  "loginPageDisplay2": "Watch series, shows and films based on Christian values",
+  "@loginPageDisplay2": {
+    "description": "Text displayed on login screen."
+  },
+  "loginPageDisplay3": "Produced by BCC Media",
+  "@loginPageDisplay3": {
+    "description": "Text displayed on login screen."
+  },
+  "liveTab": "Canlı",
+  "@liveTab": {
+    "description": "Title of live page tab"
+  },
+  "logOutButton": "Oturumu kapat",
+  "@logOutButton": {
+    "description": "Text displayed on Log out button"
+  },
+  "profileTab": "Profil",
+  "@profileTab": {
+    "description": "Title of the profile page"
+  },
+  "faq": "Frequently asked questions",
+  "@faq": {
+    "description": "Title of the FAQ page."
+  },
+  "bccMediaCenter": "BrunstadTV, pozitif ve Hıristiyan değerlere dayalı içerik üreten ve yayınlayan, ticari olmayan bir medya merkezidir.",
+  "@bccMediaCenter": {
+    "description": "Disclaimer on login page"
+  },
+  "signInButton": "Giriş",
+  "@signInButton": {
+    "description": "Text displayed on Sign in button"
+  },
+  "tryAgainButton": "Tekrar dene",
+  "@tryAgainButton": {
+    "description": "Button on error alert that lets user to retry failed action"
+  },
+  "loggedOutTitle": "Oturum Kapatıldı",
+  "@loggedOutTitle": {
+    "description": "Title of the alert message that is shown when user is logged out automatically."
+  },
+  "loggedOutMessage": "Çıkış yaptınız. Lütfen tekrar giriş yapın.",
+  "@loggedOutMessage": {
+    "description": "Text of the alert message that is shown when user is logged out automatically."
+  },
+  "mostWatched": "En çok izlenen",
+  "@mostWatched": {
+    "description": "Sorting option on audience page"
+  },
+  "mostRecent": "En yeni",
+  "@mostRecent": {
+    "description": "Sorting option on audience page"
+  },
+  "latelyPublished": "Son zamanlarda yayınlanmış",
+  "@latelyPublished": {
+    "description": "Title for the list of videos on login page"
+  },
+  "anErrorOccurred": "Hata Oluştu",
+  "@anErrorOccurred": {
+    "description": "Title in error popup"
+  },
+  "ok": "Tamam",
+  "@ok": {
+    "description": "Popup confirmation button"
+  },
+  "loginFailedCheckNetwork": "Giriş başarısız. Ağ bağlantınızı kontrol edip tekrar deneyin.",
+  "@loginFailedCheckNetwork": {
+    "description": "Login error message"
+  },
+  "loginFailedTryAgain": "Giriş başarısız. Lütfen daha sonra tekrar deneyiniz.",
+  "@loginFailedTryAgain": {
+    "description": "Login error message"
+  },
+  "soundLanguage": "Ses dili",
+  "@soundLanguage": {
+    "description": "Settings item on profile page"
+  },
+  "subtitleLanguage": "Altyazı dili",
+  "@subtitleLanguage": {
+    "description": "Settings item on profile page"
+  },
+  "appLanguage": "App dili",
+  "@appLanguage": {
+    "description": "Settings item on profile page"
+  },
+  "checkNetwork": "Ağ bağlantınızı kontrol edip tekrar giriş yapmayı deneyin.",
+  "@checkNetwork": {
+    "description": "Error message for the user displayed in many contexts."
+  },
+  "tryAgain": "Lütfen daha sonra tekrar deneyiniz.",
+  "@tryAgain": {
+    "description": "Error message for the user displayed in many contexts."
+  },
+  "cantPlayVideo": "Bu videoyu şimdi oynatamazsınız.",
+  "@cantPlayVideo": {
+    "description": "Error message for the user displayed when video playback attempt failed."
+  },
+  "about": "Hakkında",
+  "@about": {
+    "description": "Title of About page and item in profile page settings."
+  },
+  "version": "Versiyon",
+  "@version": {
+    "description": "Version ot the application on About page; followed by version number"
+  },
+  "contactSupport": "İletişim desteği",
+  "@contactSupport": {
+    "description": "Settings item on profile page"
+  },
+  "cancel": "İptal",
+  "@cancel": {
+    "description": "General cancel action button"
+  },
+  "upNext": "Bir sonraki",
+  "@upNext": {
+    "description": "Title on Up next feature."
+  },
+  "done": "Tamam",
+  "@done": {
+    "description": "General Done button. User confirms that action completed sucessfully."
+  },
+  "playerSettings": "Oynatıcı ayarları",
+  "@playerSettings": {
+    "description": "Title of the Player settings activity in Android"
+  },
+  "settings": "Ayarlar",
+  "@settings": {
+    "description": "Label of the button to go to Android/iOS settings"
+  },
+  "none": "Hiçbiri",
+  "@none": {
+    "description": "Indicator on profile page that subtitles are disabled."
+  },
+  "auto": "Otomatik",
+  "@auto": {
+    "description": "Indicator on profile page that audio and app language are chosen automatically."
+  },
+  "live": "Canlı",
+  "@live": {
+    "description": "Title of the live stream"
+  },
+  "subtitles": "Altyazılar",
+  "@subtitles": {
+    "description": "Title of the Player settings activity tab in Android"
+  },
+  "audio": "Ses",
+  "@audio": {
+    "description": "Title of the Player settings activity tab in Android"
+  },
+  "quality": "Kalite",
+  "@quality": {
+    "description": "Title of the Player settings activity tab in Android"
+  },
+  "seasons": "Sezonlar",
+  "@seasons": {
+    "description": "Followed by number of seasons in given series."
+  },
+  "episodes": "Bölümler",
+  "@episodes": {
+    "description": "Followed by number of episodes in given series."
+  },
+  "search": "Ara",
+  "@search": {
+    "description": "Button to clear cache"
+  },
+  "noResults": "No results found",
+  "@noResults": {
+    "description": "No search results."
+  },
+  "doYouWantCast": "Bu videoyu yayınlamak istiyor musunuz?",
+  "@doYouWantCast": {
+    "description": "Prompt displayed to the user"
+  },
+  "play": "Oynat",
+  "@play": {
+    "description": "Option in prompt dialog."
+  },
+  "castQueue": "Yayın sırası",
+  "@castQueue": {
+    "description": "Queue page title"
+  },
+  "options": "Seçenekler",
+  "@options": {
+    "description": "Options dialog title"
+  },
+  "remove": "Kaldır",
+  "@remove": {
+    "description": "Option in options dialog"
+  },
+  "queueLimitTitle": "Limit",
+  "@queueLimitTitle": {
+    "description": "Title of the alert to the user when attempt to add video to cast queue failed due to full queue."
+  },
+  "queueLimitMessage": "You cannot have more than {elementCount} elements in queue.",
+  "@queueLimitMessage": {
+    "description": "Error message to the user when attempt to add video to cast queue failed due to full queue.",
+    "placeholders": {
+      "elementCount": {
+        "type": "int"
+      }
+    }
+  },
+  "recentSearches": "Son Aramalar",
+  "@recentSearches": {
+    "description": "Recent searches list title."
+  },
+  "tVLogin": "TV Girişi",
+  "@tVLogin": {
+    "description": "Title of the TV login alert"
+  },
+  "tVLoginSuccessful": "Giriş başarılı, lütfen TV'de onaylayın.",
+  "@tVLoginSuccessful": {
+    "description": "Message of the TV login alert"
+  },
+  "seeMore": "Daha fazla gör",
+  "@seeMore": {
+    "description": "Button on featured item to navigete to page with player"
+  },
+  "seeAll": "Hepsini gör",
+  "@seeAll": {
+    "description": "Button on explore page to navigete to audience page"
+  },
+  "series": "Diziler",
+  "@series": {
+    "description": "Title of the tab on info page"
+  },
+  "livestreamMaintenance": "Üzgünüz, canlı yayın şu anda bakımda. Lütfen daha sonra tekrar deneyiniz.",
+  "@livestreamMaintenance": {
+    "description": "Message displayed over overlay when livestream is under maintenance."
+  },
+  "homeTab": "Başlangıç",
+  "@homeTab": {
+    "description": "Title of the home page"
+  },
+  "sortBy": "Sırala",
+  "@sortBy": {
+    "description": "Sorting criteria selector"
+  },
+  "videoQuality": "Video kalitesi",
+  "@videoQuality": {
+    "description": "Settings item in profile page for Android."
+  },
+  "low": "Düşük",
+  "@low": {
+    "description": "Low quality video option"
+  },
+  "medium": "Orta",
+  "@medium": {
+    "description": "Medium quality video option"
+  },
+  "high": "Yüksek",
+  "@high": {
+    "description": "High quality video option"
+  },
+  "emptySearch": "You can search all content from BrunstadTV. Series, videos and episodes.",
+  "@emptySearch": {
+    "description": "Message on search page when there is no search results."
+  },
+  "back": "Geri",
+  "@back": {
+    "description": "General back button to navigate back"
+  },
+  "seasonLetter": "S",
+  "@seasonLetter": {
+    "description": "Season  letter in label S1E3"
+  },
+  "episodeLetter": "E",
+  "@episodeLetter": {
+    "description": "Episode letter in label S1E3"
+  },
+  "atoZ": "A-Z",
+  "@atoZ": {
+    "description": "Sort order"
+  },
+  "ztoA": "Z-A",
+  "@ztoA": {
+    "description": "Sort order"
+  },
+  "shortFilms": "Kısa filmler",
+  "@shortFilms": {
+    "description": "Title of the films collection."
+  },
+  "videos": "Videolar",
+  "@videos": {
+    "description": "Followed by number of videos"
+  },
+  "moreInfo": "Daha fazla bilgi",
+  "@moreInfo": {
+    "description": "Option in action sheet for the video that triggers info page for the video."
+  },
+  "info": "Bilgi",
+  "@info": {
+    "description": "Video info page title."
+  },
+  "episode": "Bölüm",
+  "@episode": {
+    "description": "Title of the tab on info page"
+  },
+  "takePhoto": "Fotoğraf çek",
+  "@takePhoto": {
+    "description": "Option in menu"
+  },
+  "pickPhoto": "Galeriden seç",
+  "@pickPhoto": {
+    "description": "Option in menu"
+  },
+  "uploadFileTitle": "Dosya Ekle",
+  "@uploadFileTitle": {
+    "description": "Title of the dialog to confirm upload"
+  },
+  "uploadFileMessage": "Bu dosyayı yüklemek istiyor musunuz?",
+  "@uploadFileMessage": {
+    "description": "Content of the dialog to confirm upload"
+  },
+  "watchingWith": "You are watching with {numPeople} others",
+  "@watchingWith": {
+    "description": "Info on live stream page",
+    "placeholders": {
+      "numPeople": {
+        "type": "int"
+      }
+    }
+  },
+  "uploading": "Yükleniyor",
+  "@uploading": {
+    "description": "Message during file upload"
+  },
+  "uploadFail": "Yükleme başarısız",
+  "@uploadFail": {
+    "description": "Upload result message"
+  },
+  "post": "Gönderi",
+  "@post": {
+    "description": "Button to post written testimony"
+  },
+  "charactersLimit": "{charsLeft} of {charsTotal} characters left",
+  "@charactersLimit": {
+    "description": "Info about limit of characters in written testimony",
+    "placeholders": {
+      "charsLeft": {
+        "type": "int"
+      },
+      "charsTotal": {
+        "type": "int"
+      }
+    }
+  },
+  "uploadingPostSuccess": "Yayınınız gönderildi.",
+  "@uploadingPostSuccess": {
+    "description": "Info in upload success page"
+  },
+  "testimonyInfo": "Videonuzu telefonunuzla kaydedin.",
+  "@testimonyInfo": {
+    "description": "Record testimony guideline page info"
+  },
+  "yourVideo": "Video kaydın",
+  "@yourVideo": {
+    "description": "Title on recording tip page page"
+  },
+  "record": "Kaydet",
+  "@record": {
+    "description": "Button to record testimony"
+  },
+  "recordingTips": "İyi bir kayıt için birkaç ipucu",
+  "@recordingTips": {
+    "description": "Record testimony guideline page tip list title"
+  },
+  "recordingTipA": "Kaydetmek için sessiz bir yer bulun.",
+  "@recordingTipA": {
+    "description": "Record testimony guideline page tip list item"
+  },
+  "recordingTipB": "Yüzünüzün eşit şekilde yandığından emin olun.",
+  "@recordingTipB": {
+    "description": "Record testimony guideline page tip list item"
+  },
+  "recordingTipC": "Kayda başlamadan önce ne söylemek istediğinizi düşünün.",
+  "@recordingTipC": {
+    "description": "Record testimony guideline page tip list item"
+  },
+  "recordingTipD": "Telefonunuzu yatay moda çevirin.",
+  "@recordingTipD": {
+    "description": "Record testimony guideline page tip list item"
+  },
+  "thankYou": "Teşekkür ederim!",
+  "@thankYou": {
+    "description": "Title in upload success page"
+  },
+  "thankYouForContribution": "Katkın için teşekkürler!",
+  "@thankYouForContribution": {
+    "description": "Title in upload success page"
+  },
+  "uploadingVideoSuccess": "Video kaydın gönderildi.",
+  "@uploadingVideoSuccess": {
+    "description": "Info in upload success page"
+  },
+  "next": "Sonraki",
+  "@next": {
+    "description": "NEXT program in check in section"
+  },
+  "recordVideoCameraPermissionAlert": "Video kaydetmek için ayarlarda kamera izni vermelisiniz.",
+  "@recordVideoCameraPermissionAlert": {
+    "description": "Message in alert dialog informing about missing permission"
+  },
+  "recordVideoPhotosPermissionAlert": "Video kaydetmek için ayarlarda kamera izni vermelisiniz.",
+  "@recordVideoPhotosPermissionAlert": {
+    "description": "Message in alert dialog informing about missing permission"
+  },
+  "recordVideoStoragePermissionAlert": "Video kaydetmek için ayarlarda depolama izni vermelisiniz.",
+  "@recordVideoStoragePermissionAlert": {
+    "description": "Message in alert dialog informing about missing permission"
+  },
+  "recordVideoMicrophonePermissionAlert": "Video kaydetmek için ayarlarda mikrofon izni vermelisiniz.",
+  "@recordVideoMicrophonePermissionAlert": {
+    "description": "Message in alert dialog informing about missing permission"
+  },
+  "takePhotoStoragePermissionAlert": "Fotoğraf seçmek için ayarlarda depolama izni vermelisiniz.",
+  "@takePhotoStoragePermissionAlert": {
+    "description": "Message in alert dialog informing about missing permission"
+  },
+  "takePhotoCameraPermissionAlert": "Fotoğraf çekmek için ayarlarda kamera izni vermelisiniz.",
+  "@takePhotoCameraPermissionAlert": {
+    "description": "Message in alert dialog informing about missing permission"
+  },
+  "pickPhotoStoragePermissionAlert": "Fotoğraf seçmek için ayarlarda depolama izni vermelisiniz.",
+  "@pickPhotoStoragePermissionAlert": {
+    "description": "Message in alert dialog informing about missing permission"
+  },
+  "permissionsAlertTitle": "İzinler gerekli",
+  "@permissionsAlertTitle": {
+    "description": "Title of an alert dialog informing about missing permission"
+  },
+  "add": "Ekle",
+  "@add": {
+    "description": "Button text on interactive live avatar section"
+  },
+  "change": "Değiştir",
+  "@change": {
+    "description": "Button text on interactive live avatar section"
+  },
+  "recordingFailedTitle": "Couldn't record the video",
+  "@recordingFailedTitle": {
+    "description": "Title in alert dialog when recording fails"
+  },
+  "recordingFailedMessage": "Videoyu kaydetmeye çalışırken bir şeyler ters gitti.",
+  "@recordingFailedMessage": {
+    "description": "Message in alert dialog when recording fails"
+  },
+  "pollSubtitle": "Anket",
+  "@pollSubtitle": {
+    "description": "The little title in poll"
+  },
+  "writeHere": "Buraya yaz",
+  "@writeHere": {
+    "description": "New post text field placeholder"
+  },
+  "feed": "Besleme",
+  "@feed": {
+    "description": "Feed page bar title"
+  },
+  "atmosphereFeedDescription": "Bulunduğunuz yerden mesaj, tanıklık veya resim göndererek etkinlik akışına katkıda bulunun.",
+  "@atmosphereFeedDescription": {
+    "description": "Feed page description"
+  },
+  "information": "Bilgi",
+  "@information": {
+    "description": "Feed information item title"
+  },
+  "photoNotSupported": "Fotoğraf çekme ve çekme cihazınızda desteklenmiyor.",
+  "@photoNotSupported": {
+    "description": "Alert displayed when phone can't take photo or pick photo from storage."
+  },
+  "answerFailed": "Üzgünüz! Cevabı gönderemedik. Lütfen tekrar deneyin.",
+  "@answerFailed": {
+    "description": "Message displayed when user's answer hasn't' been sent'."
+  },
+  "question": "Soru",
+  "@question": {
+    "description": "Title of the question page"
+  },
+  "notificationChannelPlayerName": "Oynatıcı",
+  "@notificationChannelPlayerName": {
+    "description": "Notification channel name in Android settings"
+  },
+  "now": "Şimdi",
+  "@now": {
+    "description": "Tv guide now playing label"
+  },
+  "createPost": "Gönderi oluştur",
+  "@createPost": {
+    "description": "Button to start text testimony and title on create post page"
+  },
+  "concernTextPlaceholder": "Sorunu tanımlayın",
+  "@concernTextPlaceholder": {
+    "description": "Placeholder text in text field on contact support page"
+  },
+  "debugInfoExplanation": "Mesajınız, sorunu daha iyi anlamamıza yardımcı olmak için bu bilgileri içerecektir.",
+  "@debugInfoExplanation": {
+    "description": "Info about debug info usage on contact support page"
+  },
+  "send": "Gönder",
+  "@send": {
+    "description": "General button to send a form"
+  },
+  "sending": "Gönderiliyor",
+  "@sending": {
+    "description": "General sending action indicator"
+  },
+  "thankYouSupportTitle": "Geri bildiriminiz için teşekkür ederiz!",
+  "@thankYouSupportTitle": {
+    "description": "Text on contact support confirmation page"
+  },
+  "thankYouSupportDescription": "Tüm geri bildirimleri takdir ediyoruz ve sorunu en kısa sürede ele alacağız.",
+  "@thankYouSupportDescription": {
+    "description": "Text on contact support confirmation page"
+  },
+  "sendFail": "Couldn't send you message",
+  "@sendFail": {
+    "description": "General error message that sending failed"
+  },
+  "sendFailDescription": "Bir şeyler yanlış gitti. İnternet bağlantınızı kontrol edip tekrar deneyin.",
+  "@sendFailDescription": {
+    "description": "General error message that sending failed"
+  },
+  "today": "Bugün",
+  "@today": {
+    "description": "First category in tv guide"
+  },
+  "noNewPosts": "Yeni mesaj yok",
+  "@noNewPosts": {
+    "description": "Text displayed on the button, when there are no new posts in the feed."
+  },
+  "newPostsMultiple": "{postCount} new posts!",
+  "@newPostsMultiple": {
+    "description": "Text displayed on the button, when there are number of new posts in the feed.",
+    "placeholders": {
+      "postCount": {
+        "type": "int"
+      }
+    }
+  },
+  "newPostsSingle": "{postCount} new post!",
+  "@newPostsSingle": {
+    "description": "Text displayed on the button, when there is one new post in the feed.",
+    "placeholders": {
+      "postCount": {
+        "type": "int"
+      }
+    }
+  },
+  "expired": "Süresi doldu",
+  "@expired": {
+    "description": "Info that episode is no longer available."
+  },
+  "availableFrom": "Available {date}",
+  "@availableFrom": {
+    "description": "Info that episode will be released at certain date.",
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "howFar": "Ne kadar ileri gittin?",
+  "@howFar": {
+    "description": "Text on running competition page."
+  },
+  "submit": "Gönder",
+  "@submit": {
+    "description": "Submit button on running competition page."
+  },
+  "wellDone": "Aferin!",
+  "@wellDone": {
+    "description": "Text on running competition page."
+  },
+  "wellDoneDistance": "Well done! You have registered a total distance of {distanceInKM} km",
+  "@wellDoneDistance": {
+    "description": "Text on running competition page.",
+    "placeholders": {
+      "distanceInKM": {
+        "type": "int"
+      }
+    }
+  },
+  "distanceRegistered": "Mesafeniz kaydedildi. Başka bir mesafe göndermek istiyorsanız aşağıya devam edin.",
+  "@distanceRegistered": {
+    "description": "Text on running competition page."
+  },
+  "ranMore": "I went more than {distanceInKM} km",
+  "@ranMore": {
+    "description": "Text on running competition page.",
+    "placeholders": {
+      "distanceInKM": {
+        "type": "int"
+      }
+    }
+  },
+  "moreThan": "More than {distanceInKM} km",
+  "@moreThan": {
+    "description": "Text on running competition page.",
+    "placeholders": {
+      "distanceInKM": {
+        "type": "int"
+      }
+    }
+  },
+  "runningEffort": "İnanılmaz çaba! Aşağıya kat ettiğiniz kilometreyi yazın.",
+  "@runningEffort": {
+    "description": "Text on running competition page."
+  },
+  "slideSelect": "Ne kadar ileri gittiğinizi seçmek için kaydırın",
+  "@slideSelect": {
+    "description": "Text on running competition page."
+  },
+  "submitAnotherDistance": "Başka bir mesafe gönderin",
+  "@submitAnotherDistance": {
+    "description": "Text on running competition page."
+  },
+  "editPicture": "Resmi düzenle",
+  "@editPicture": {
+    "description": "Button on profile page to edit profile picture."
+  },
+  "profilePicture": "Profil fotoğrafı",
+  "@profilePicture": {
+    "description": "Text on edit profile page."
+  },
+  "firstPostTitle": "İlk resim veya mesaj gönderen siz olun",
+  "@firstPostTitle": {
+    "description": "Text on feed page when feed is empty."
+  },
+  "timezoneInformation": "Tv guide timetable is in your local time: {timeZone}",
+  "@timezoneInformation": {
+    "description": "TV guide footer info text.",
+    "placeholders": {
+      "timeZone": {
+        "type": "String"
+      }
+    }
+  },
+  "yourQuestion": "Senin sorun",
+  "@yourQuestion": {
+    "description": "Title on ask question page"
+  },
+  "uploadingInquirySuccess": "Lütfen gönderilen tüm soruların yayında yanıtlanmadığını unutmayın.",
+  "@uploadingInquirySuccess": {
+    "description": "Info in upload question success page"
+  },
+  "askQuestion": "Soru sor",
+  "@askQuestion": {
+    "description": "Ask question text field placeholder"
+  },
+  "submitQuestionInfo": "Bir soru göndererek, onun yayın amaçlı kullanılabileceğini kabul etmiş olursunuz.",
+  "@submitQuestionInfo": {
+    "description": "Disclaimer on ask question page"
+  },
+  "posting": "Gönderi",
+  "@posting": {
+    "description": "Information about ongoing posting process"
+  },
   "submitPostInfo": "Bir post ya da fotoğraf göndererek, onun yayın amaçlı kullanılabileceğini kabul etmiş olursunuz. ",
+  "@submitPostInfo": {
+    "description": "Disclaimer on text testimony page"
+  },
   "cropImage": "Görüntüyü kırp",
+  "@cropImage": {
+    "description": "Image crop page title"
+  },
   "square": "Kare",
+  "@square": {
+    "description": "Image crop mode"
+  },
   "landscape": "Manzara",
+  "@landscape": {
+    "description": "Image crop mode"
+  },
   "pollSingleChoice": "Cevabınızı yalnızca bir kez seçebilirsiniz.",
+  "@pollSingleChoice": {
+    "description": "Desciption of the poll type. States that user can change the answer only once."
+  },
   "pollMultipleChoice": "Cevabınızı birden çok kez değiştirebilirsiniz.",
+  "@pollMultipleChoice": {
+    "description": "Desciption of the poll type. States that user can change the answer multiple times."
+  },
   "pollEnded": "Anket bölümü sona erdi. Cevaplarınız için teşekkür ederim.",
+  "@pollEnded": {
+    "description": "Message displayed when poll has been closed by administrator."
+  },
   "browserInstall": "Bu URL'yi açabilmek için lütfen web tarayıcısını kurun.",
+  "@browserInstall": {
+    "description": "Message displayed when browser couldn't be opened on user's device."
+  },
   "share": "Share",
+  "@share": {
+    "description": "Option name to share video."
+  },
   "liveNow": "Live now",
+  "@liveNow": {
+    "description": "Call to action button on featured carousel."
+  },
   "program": "Program",
+  "@program": {
+    "description": "Title of the program tab on live page."
+  },
   "participateTab": "Participate",
+  "@participateTab": {
+    "description": "Title of the participate tab on live page."
+  },
   "tomorrow": "Tomorrow",
+  "@tomorrow": {
+    "description": "Day of transmission in tv guide."
+  },
   "readBy": "Read by",
+  "@readBy": {
+    "description": "Feed verse pre author text."
+  },
   "pollAnswer": "You've answered: {answer}",
+  "@pollAnswer": {
+    "description": "Snackbar label after user has chosen poll answer",
+    "placeholders": {
+      "answer": {
+        "type": "String"
+      }
+    }
+  },
   "broadcasts": "Broadcasts",
+  "@broadcasts": {
+    "description": "Title for tv guide collection on event page."
+  },
   "quizAnswered": "Answers submitted",
+  "@quizAnswered": {
+    "description": "Text displayed on a button when all answers in quiz have been submitted."
+  },
   "quizNotEnabled": "Quiz is not available at the moment. Please try again later.",
+  "@quizNotEnabled": {
+    "description": "Message on alert that appears when participate item is visible, but quiz is not enabled."
+  },
   "calendar": "Calendar",
+  "@calendar": {
+    "description": "Title of calendar page."
+  },
   "noEvents": "No scheduled transmissions",
+  "@noEvents": {
+    "description": "Info in calendar page that no transmissions are scheduled for selected day."
+  },
   "appUpdateTitle": "Update required",
+  "@appUpdateTitle": {
+    "description": "Title of the message displayed to the user when application is too old and should be updated in a timely manner."
+  },
   "appUpdateRequest": "Please download the latest app to enjoy all the latest features and bug fixes.",
+  "@appUpdateRequest": {
+    "description": "Message displayed to the user when application is too old and should be updated in a timely manner."
+  },
   "appUpdateAccepted": "Update",
+  "@appUpdateAccepted": {
+    "description": "Option that can be chosen by the user to update his application."
+  },
   "donationNotAvailable": "Donation is not available at the moment. Please try again later.",
+  "@donationNotAvailable": {
+    "description": "Message displayed when donation flow failed."
+  },
   "posts": "{postsCount} Posts",
+  "@posts": {
+    "description": "Contributions to feed made by the users. Plural of post.",
+    "placeholders": {
+      "postsCount": {
+        "type": "int"
+      }
+    }
+  },
   "copy": "Copy",
+  "@copy": {
+    "description": "Copy option for quotes, verses."
+  },
   "reload": "Reload",
+  "@reload": {
+    "description": "Label on the button that allows to reload the player after error."
+  },
   "participantsTitle": "Who is answering?",
+  "@participantsTitleTitle": {
+    "description": "Title label on the participants list before quiz."
+  },
   "participantsSubtitle": "Select one or more participants.",
+  "@participantsSubtitle": {
+    "description": "Subtitle label on the participants list before quiz."
+  },
   "yourFamily": "Your family",
+  "@yourFamily": {
+    "description": "Title on page when user selects family members that take part in the quiz."
+  },
   "yourTurn": "Your turn",
+  "@yourTurn": {
+    "description": "Title on page informing user that other user will answer question in the next step."
+  },
   "fAQ": "FAQ",
+  "@fAQ": {
+    "description": "Title on FAQ page and item in profile page settings."
+  },
   "shareStart": "Share from start",
+  "@shareStart": {
+    "description": "Option on action sheet for sharing from start"
+  },
   "shareTime": "Share from time {time}",
+  "@shareTime": {
+    "description": "Option on action sheet for sharing from time",
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  },
   "loadContentError": "Couldn't load content",
+  "@loadContentError": {
+    "description": "Error text when content couldn't be loaded."
+  },
   "audioOnlyErrorDescription": "Check internet connection and try again",
+  "@audioOnlyErrorDescription": {
+    "description": "Error message when audio only fails to play"
+  },
   "privacyPolicy": "Privacy Policy",
+  "@privacyPolicy": {
+    "description": "Title on Privacy Policy page and item in profile page settings."
+  },
   "tokenError": "We couldn't confirm your identity, most likely due to a network problem. Some features of the app may not work correctly.",
+  "@tokenError": {
+    "description": "Message indicating that there is a problem with user's token, and some features may be broken because of this."
+  },
   "categoriesTab": "Categories",
+  "@categoriesTab": {
+    "description": "Title of the Categories Tab"
+  },
   "settingsTab": "Ayarlar",
+  "@settingsTab": {
+    "description": "Title of the Settings Tab"
+  },
   "confirmLogin": "Girişi onayla",
+  "@confirmLogin": {
+    "description": "Prompt that asks the user to confirm his log-in"
+  },
   "scanInfo": "Giriş sayfasına girmek için kodu telefonunuzla tarayın.",
+  "@scanInfo": {
+    "description": "Text that informs the user that the QR code can be scanned to enter the login page. Used on AppleTV."
+  },
   "validInfo": "QR Kodu 15 dakika geçerlidir.",
+  "@validInfo": {
+    "description": "Message that informs the user for how long the QR Code will be valid."
+  },
   "confirmInfo": "Cihazınızda başarılı bir şekilde oturum açtıktan sonra, girişinizi onaylamak için aşağıdaki düğmeye tıklayın.",
+  "@confirmInfo": {
+    "description": "Message that asks the user to click the button in order to proceed after successful login."
+  },
   "seriesTab": "Diziler",
+  "@seriesTab": {
+    "description": "Series Tab title"
+  },
   "filmsTab": "Filimler",
+  "@filmsTab": {
+    "description": "Films Tab title"
+  },
   "eventsTab": "Etkinlikler",
+  "@eventsTab": {
+    "description": "Events Tab title"
+  },
   "audioLanguage": "Ses dili",
+  "@audioLanguage": {
+    "description": "Label indicating that the Audio Language can be changed here."
+  },
   "subtitlesLanguage": "Altyazı dili",
+  "@subtitlesLanguage": {
+    "description": "Label indicating that the Subtitles Language can be changed here."
+  },
   "removeFromRecentSearches": "Bu öğeyi son aramalardan kaldırmak istiyor musunuz?",
+  "@removeFromRecentSearches": {
+    "description": "Prompt that asks the user wheter they are certain, that they want to remove the element from recent searches."
+  },
   "noTransmissionToday": "Bugün için planlanmış yayın yok",
+  "@noTransmissionToday": {
+    "description": "Messages that informs the user, that there are no schedules transmission for today."
+  },
   "livestreamMaintenanceTitle": "Canlı yayın mevcut değil",
+  "@livestreamMaintenanceTitle": {
+    "description": "Message that informs the user, that the livestream is unavailable."
+  },
   "start": "Başlat",
+  "@start": {
+    "description": "Word used while displaying information about the beggining of a video or an event in tv guide."
+  },
   "transmissionSchedule": "Yayın programı",
+  "@transmissionSchedule": {
+    "description": "Label that indicates the user is looking at Transmission schedule"
+  },
   "featured": "Öne çıkan",
+  "@featured": {
+    "description": "Featured videos collection header"
+  },
   "errorTryAgain": "Bir şeyler yanlış oldu. Lütfen sonra tekrar deneyiniz.",
+  "@errorTryAgain": {
+    "description": "Message that informs the user, that there was an error. Then politely asks the user to try again later."
+  },
   "reportProblem": "Herhangi bir sorun olması durumunda, bize bir e-posta göndermek için aşağıdaki QR kodunu kullanın.",
+  "@reportProblem": {
+    "description": "Message indicating that whenever the user wants to report a problem, they can scan the QR code to send an email to support."
+  },
   "phoneReadingProblem": "Telefonunuz QR kodunu okuyamıyorsa, aşağıdaki bilgileri içeren bir e-posta gönderin",
+  "@phoneReadingProblem": {
+    "description": "Message explaining that if the user's phone can't scan the QR code, they can send the support e-mail with information listed after this message."
+  },
   "goTo": "veya şuraya git",
+  "@goTo": {
+    "description": "Message used to point the user to the shortened URL in case they can't use the QR code to log-in. This is used on AppleTV."
+  },
   "watchBrunstad": "Brunstad TV Canlı Yayını İzle",
+  "@watchBrunstad": {
+    "description": "Text that entices the user to watch the livestream."
+  },
   "notLogged": "Oturum açılmadı",
+  "@notLogged": {
+    "description": "Text that informs the user, that they are not logged in."
+  },
   "authResponse0": "Giriş için lütfen QR kodunu kullanınız.",
+  "@authResponse0": {
+    "description": "Authentication response displayed to the user when an old QR code was used. Asking them to use a new one if they want to log in."
+  },
   "authResponse1": "Mobil olarak giriş için lütfen QR kodunu kullanınız.",
+  "@authResponse1": {
+    "description": "Message displayed to the user when they tried to proceed with the log-in on AppleTv without first logging through their mobile device."
+  },
   "authResponse3": "Ağ bağlantınızı kontrol edip tekrar giriş yapmayı deneyin.",
+  "@authResponse3": {
+    "description": "Message that indicates there was an error during Authentication process. Asking the user to check their network connection and try again."
+  },
   "liveHeader": "Canlı",
+  "@liveHeader": {
+    "description": "Header of the Live Tab — the tab that contains the livestream player on AppleTV."
+  },
   "recentlyPublishedSection": "Recently published",
+  "@recentlyPublishedSection": {
+    "description": "Section in explore."
+  },
   "exploreCategoriesSection": "Explore categories",
+  "@exploreCategoriesSection": {
+    "description": "Section in explore."
+  },
   "programsSection": "Programs",
+  "@programsSection": {
+    "description": "Section in explore."
+  },
   "episodesSection": "Bölümler",
+  "@episodesSection": {
+    "description": "Section in explore."
+  },
   "categorySeries": "Diziler",
+  "@categorySeries": {
+    "description": "Category name"
+  },
   "categoryKids": "Kids",
+  "@categoryKids": {
+    "description": "Category name"
+  },
   "categoryFilms": "Filimler",
+  "@categoryFilms": {
+    "description": "Category name"
+  },
   "categoryEvents": "Etkinlikler",
+  "@categoryEvents": {
+    "description": "Category name"
+  },
   "categoryMusic": "Music",
+  "@categoryMusic": {
+    "description": "Category name"
+  },
   "noPlannedEvents": "No planned events today",
-  "watchNow": "Watch now"
+  "@noPlannedEvents": {
+    "description": "Information in tvguide"
+  },
+  "watchNow": "Watch now",
+  "@watchNow": {
+    "description": "Button on featured carousel"
+  }
 }

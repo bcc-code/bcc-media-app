@@ -1,228 +1,1011 @@
 {
-  "@@locale": "hu",
-  "liveTab": "Élő",
-  "logOutButton": "Kijelentkezés",
-  "profileTab": "Profil",
-  "bccMediaCenter": "BrunstadTV nem kereskedelmi média, hanem olyan tartalmakat állít elő és közvetít, amelyek pozitív és keresztény értékeken alapul.",
-  "signInButton": "Bejelentkezés",
-  "tryAgainButton": "Próbálj újra",
-  "loggedOutTitle": "Kijelentkezve",
-  "loggedOutMessage": "Ki lettél jelentkezve. Jelentkezz újból be.",
-  "mostWatched": "Legnézetebb",
-  "mostRecent": "Legfrissebb",
-  "latelyPublished": "Nemrégiben megjelent",
-  "anErrorOccurred": "Hiba történt",
-  "ok": "OK",
-  "loginFailedCheckNetwork": "Hibás bejelentkezés. Ellenőrizd a hálózati csatlakozásodat és próbálj újra.",
-  "loginFailedTryAgain": "Hibás bejelentkezés. Próbálj később újra.",
-  "soundLanguage": "Tartalom nyelve",
-  "subtitleLanguage": "Felírat nyelve",
-  "appLanguage": "Applikáció nyelve",
-  "checkNetwork": "Ellenőrizd a hálózati csatlakozásodat és próbálj újra.",
-  "tryAgain": "Próbálj később újra.",
-  "cantPlayVideo": "Sajnos most nem tudod ezt a videót lejátszani.",
-  "about": "Rólunk",
-  "version": "Verzió",
-  "contactSupport": "Vedd fel a kapcsolatot a supporttal",
-  "cancel": "Mégse",
-  "upNext": "Következő",
-  "done": "Kész",
-  "playerSettings": "Lejátszási beállítások",
-  "settings": "Beállítások",
-  "none": "Nincs",
-  "auto": "Auto",
-  "live": "Élő",
-  "subtitles": "Felíratok",
-  "audio": "Audió",
-  "quality": "Minőség",
-  "seasons": "Sorozat",
-  "episodes": "Epizódok",
-  "search": "Keresés",
-  "noResults": "Nincs eredmény",
-  "doYouWantCast": "Szeretnéd ezt a videót Chromecasten keresztül közvetíteni?",
-  "play": "Lejátszás",
-  "castQueue": "Lejátszási listát közvetíteni",
-  "options": "Opciók",
-  "remove": "Eltávolítás",
-  "queueLimitTitle": "Korlátozott",
-  "queueLimitMessage": "Nem lehet több mint {elementCount} elem a lejátszási listán.",
-  "recentSearches": "Legutóbbi keresések",
-  "tVLogin": "TV bejelentkezés",
-  "tVLoginSuccessful": "Sikeres bejelentkezés. Hagyd jóvá a TV-n.",
-  "seeMore": "Mutass többet",
-  "seeAll": "Mutass mindent",
-  "series": "Sorozatok",
-  "livestreamMaintenance": "Sajnáljuk, az élőadás jelenleg karbantartás alatt van. Próbálj később újra.",
-  "homeTab": "Főoldal",
-  "sortBy": "Rendezés",
-  "videoQuality": "Videó minősége",
-  "low": "Alacsony",
-  "medium": "Közepes",
-  "high": "Magas",
-  "emptySearch": "Itt kereshetsz a BrunstadTV minden tartalmára. Sorozatokra, filmekre és epizódokra.",
-  "back": "Vissza",
-  "seasonLetter": "S",
-  "episodeLetter": "E",
-  "atoZ": "A-Z",
-  "ztoA": "Z-A",
-  "shortFilms": "Rövid filmek",
-  "videos": "Videók",
-  "moreInfo": "További információ",
-  "info": "Információ",
-  "episode": "Epizód",
-  "takePhoto": "Készíts képet",
-  "pickPhoto": "Kiválasztás a képtárból",
-  "uploadFileTitle": "Fájl feltöltése",
-  "uploadFileMessage": "Szeretnéd ezt a fájlt feltölteni?",
-  "watchingWith": "Még {numPeople} személlyel együtt nézed",
-  "uploading": "Feltöltés",
-  "uploadFail": "Sikertelen feltöltés",
-  "post": "Közzé tenni",
-  "charactersLimit": "{charsLeft} a {charsTotal} karakterből van még hátra",
-  "uploadingPostSuccess": "A hozzászólásod be lett küldve.",
-  "testimonyInfo": "Telefonoddal vedd fel a videót.",
-  "yourVideo": "A videód",
-  "record": "Felvétel",
-  "recordingTips": "Pár tipp a jó felvételhez",
-  "recordingTipA": "A felvételhez keress csendes helyet.",
-  "recordingTipB": "Győződjél meg arról, hogy az arcod egyenletesen meg legyen világítva.",
-  "recordingTipC": "Mielőtt elindítod a felvételt, gondold át, mit akarsz mondani.",
-  "recordingTipD": "Fordítsd a telefonod fekvő módra.",
-  "thankYou": "Köszönjük!",
-  "thankYouForContribution": "Köszönjük a hozzájárulásodat!",
-  "uploadingVideoSuccess": "A videód be lett küldve.",
-  "next": "Következő",
-  "recordVideoCameraPermissionAlert": "A videó rögzítéséhez engedélyezned kell a kamerát a beállításokban.",
-  "recordVideoPhotosPermissionAlert": "A video rögzítéséhez engedélyezned kell a képeidhez való hozzáférést a beállításokban.",
-  "recordVideoStoragePermissionAlert": "A videó rögzítéséhez tárolási engedélyt kell megadnod a beállításokban.",
-  "recordVideoMicrophonePermissionAlert": "A videó rögzítéséhez engedélyezned kell a mikrofont a beállításokban.",
-  "takePhotoStoragePermissionAlert": "A fényképek kiválasztásához a tárolási engedélyt kell megadnod a beállításokban.",
-  "takePhotoCameraPermissionAlert": "A fényképezéshez engedélyezned kell a kamerát beállításokban.",
-  "pickPhotoStoragePermissionAlert": "A fényképek kiválasztásához a tárolási engedélyt kell megadnod a beállításokban.",
-  "permissionsAlertTitle": "Engedély szükséges",
-  "add": "Hozzáadás",
-  "change": "Módosítás",
-  "recordingFailedTitle": "Vídeófelvétel sikertelen",
-  "recordingFailedMessage": "Videófelvétel közben valami nem sikerült.",
-  "pollSubtitle": "Szavazás",
-  "writeHere": "Írjál ide",
-  "feed": "Hírcsatorna",
-  "atmosphereFeedDescription": "Járj hozzá a hírcsatornához üzenet, bizonyságtétel vagy kép beküldésével, ahonnan éppen tartózkodsz.",
-  "information": "Információ",
-  "photoNotSupported": "Fényképek készítése és kiválasztása nem támogatott a készülékeden.",
-  "answerFailed": "Bocsánat! Képtelenek voltunk válaszolni. Próbáld újra.",
-  "question": "Kérdés",
-  "notificationChannelPlayerName": "Lejátszó",
-  "now": "Most",
-  "createPost": "Hozzászólás létrehozása",
-  "concernTextPlaceholder": "Írd le a kérdésedet",
-  "debugInfoExplanation": "Az üzeneted tartalmazza ezeket az információkat, hogy jobban megértsük a problémát.",
-  "send": "Küldés",
-  "sending": "Adás",
-  "thankYouSupportTitle": "Köszönjük visszajelzésedet!",
-  "thankYouSupportDescription": "Nagyra értékeljük az összes visszajelzést, és a lehető leghamarabb megválaszoljuk a kérdést.",
-  "sendFail": "Nem lehetett üzenetet küldeni neked",
-  "sendFailDescription": "Valami nem sikerült. Vizsgáld meg az internett kapcsolatodat és próbáld újra.",
-  "today": "Ma",
-  "noNewPosts": "Nincsenek új hozzászólások",
-  "newPostsMultiple": "{postCount} új hozzászólás!",
-  "newPostsSingle": "{postCount} új hozzászólás!",
-  "expired": "Lejárt",
-  "availableFrom": "Elérhető {date}",
-  "howFar": "Mennyit kirándultál?",
-  "submit": "Megerősítés",
-  "wellDone": "Jól csináltad!",
-  "wellDoneDistance": "Jól csináltad! A teljes regisztrált távolságod {distanceInKM} km",
-  "distanceRegistered": "Regisztrálva lett a távolságod. Folytass lent, ha szeretnél további távolságokat megadni.",
-  "ranMore": "Több mint {distanceInKM} kilométert futottam",
-  "moreThan": "Több mint {distanceInKM} km",
-  "runningEffort": "Csodálatos erőfeszítés! Írd be az alul megtett kilométerek mennyiségét.",
-  "slideSelect": "Válaszd ki a megtett távolságot",
-  "submitAnotherDistance": "Más távolság kiválasztása",
-  "editPicture": "Kép szerkesztése",
-  "profilePicture": "Profilkép",
-  "firstPostTitle": "Legyél az első, aki képet vagy üzenetet közzé tesz",
-  "timezoneInformation": "A TV program időpontjai a helyi idő szerint jelenek meg: {timeZone}",
-  "yourQuestion": "A kérdésed",
-  "uploadingInquirySuccess": "Felhívjuk figyelmedet, hogy az adásban nem minden feltett kérdésre adnak választ.",
-  "askQuestion": "Tegyél fel kérdést",
-  "submitQuestionInfo": "A kérdés beküldésével elfogadod, hogy azt adási célokra lehet felhasználni.",
-  "posting": "Közzé tenni",
+  "@@locale": "en",
+  "loadingContent": "Loading content",
+  "@loadingContent": {
+    "description": "Text displayed when page content is loading."
+  },
+  "signInTooltip": "Sign in to watch more content",
+  "@signInTooltip": {
+    "description": "Text for tooltip displayed when a non-member user opens the home page."
+  },
+  "skipToPublicContent": "Skip to watch public content",
+  "@skipToPublicContent": {
+    "description": "Text for button displayed on login screen to skip sign in and watch public content."
+  },
+  "minutesShort": "min",
+  "@minutesShort": {
+    "description": "Text for minutes."
+  },
+  "calendarThisWeek": "This week",
+  "@calendarThisWeek": {
+    "description": "Text for This week."
+  },
+  "calendarWeek": "week",
+  "@calendarWeek": {
+    "description": "Text week."
+  },
   "loading": "Betöltés",
+  "@loading": {
+    "description": "Text to indicate loading state."
+  },
+  "loginPageDisplay1": "The most powerful message in the world",
+  "@loginPageDisplay1": {
+    "description": "Text displayed on login screen."
+  },
+  "loginPageDisplay2": "Watch series, shows and films based on Christian values",
+  "@loginPageDisplay2": {
+    "description": "Text displayed on login screen."
+  },
+  "loginPageDisplay3": "Produced by BCC Media",
+  "@loginPageDisplay3": {
+    "description": "Text displayed on login screen."
+  },
+  "liveTab": "Élő",
+  "@liveTab": {
+    "description": "Title of live page tab"
+  },
+  "logOutButton": "Kijelentkezés",
+  "@logOutButton": {
+    "description": "Text displayed on Log out button"
+  },
+  "profileTab": "Profil",
+  "@profileTab": {
+    "description": "Title of the profile page"
+  },
+  "faq": "Frequently asked questions",
+  "@faq": {
+    "description": "Title of the FAQ page."
+  },
+  "bccMediaCenter": "BrunstadTV nem kereskedelmi média, hanem olyan tartalmakat állít elő és közvetít, amelyek pozitív és keresztény értékeken alapul.",
+  "@bccMediaCenter": {
+    "description": "Disclaimer on login page"
+  },
+  "signInButton": "Bejelentkezés",
+  "@signInButton": {
+    "description": "Text displayed on Sign in button"
+  },
+  "tryAgainButton": "Próbálj újra",
+  "@tryAgainButton": {
+    "description": "Button on error alert that lets user to retry failed action"
+  },
+  "loggedOutTitle": "Kijelentkezve",
+  "@loggedOutTitle": {
+    "description": "Title of the alert message that is shown when user is logged out automatically."
+  },
+  "loggedOutMessage": "Ki lettél jelentkezve. Jelentkezz újból be.",
+  "@loggedOutMessage": {
+    "description": "Text of the alert message that is shown when user is logged out automatically."
+  },
+  "mostWatched": "Legnézetebb",
+  "@mostWatched": {
+    "description": "Sorting option on audience page"
+  },
+  "mostRecent": "Legfrissebb",
+  "@mostRecent": {
+    "description": "Sorting option on audience page"
+  },
+  "latelyPublished": "Nemrégiben megjelent",
+  "@latelyPublished": {
+    "description": "Title for the list of videos on login page"
+  },
+  "anErrorOccurred": "Hiba történt",
+  "@anErrorOccurred": {
+    "description": "Title in error popup"
+  },
+  "ok": "OK",
+  "@ok": {
+    "description": "Popup confirmation button"
+  },
+  "loginFailedCheckNetwork": "Hibás bejelentkezés. Ellenőrizd a hálózati csatlakozásodat és próbálj újra.",
+  "@loginFailedCheckNetwork": {
+    "description": "Login error message"
+  },
+  "loginFailedTryAgain": "Hibás bejelentkezés. Próbálj később újra.",
+  "@loginFailedTryAgain": {
+    "description": "Login error message"
+  },
+  "soundLanguage": "Tartalom nyelve",
+  "@soundLanguage": {
+    "description": "Settings item on profile page"
+  },
+  "subtitleLanguage": "Felírat nyelve",
+  "@subtitleLanguage": {
+    "description": "Settings item on profile page"
+  },
+  "appLanguage": "Applikáció nyelve",
+  "@appLanguage": {
+    "description": "Settings item on profile page"
+  },
+  "checkNetwork": "Ellenőrizd a hálózati csatlakozásodat és próbálj újra.",
+  "@checkNetwork": {
+    "description": "Error message for the user displayed in many contexts."
+  },
+  "tryAgain": "Próbálj később újra.",
+  "@tryAgain": {
+    "description": "Error message for the user displayed in many contexts."
+  },
+  "cantPlayVideo": "Sajnos most nem tudod ezt a videót lejátszani.",
+  "@cantPlayVideo": {
+    "description": "Error message for the user displayed when video playback attempt failed."
+  },
+  "about": "Rólunk",
+  "@about": {
+    "description": "Title of About page and item in profile page settings."
+  },
+  "version": "Verzió",
+  "@version": {
+    "description": "Version ot the application on About page; followed by version number"
+  },
+  "contactSupport": "Vedd fel a kapcsolatot a supporttal",
+  "@contactSupport": {
+    "description": "Settings item on profile page"
+  },
+  "cancel": "Mégse",
+  "@cancel": {
+    "description": "General cancel action button"
+  },
+  "upNext": "Következő",
+  "@upNext": {
+    "description": "Title on Up next feature."
+  },
+  "done": "Kész",
+  "@done": {
+    "description": "General Done button. User confirms that action completed sucessfully."
+  },
+  "playerSettings": "Lejátszási beállítások",
+  "@playerSettings": {
+    "description": "Title of the Player settings activity in Android"
+  },
+  "settings": "Beállítások",
+  "@settings": {
+    "description": "Label of the button to go to Android/iOS settings"
+  },
+  "none": "Nincs",
+  "@none": {
+    "description": "Indicator on profile page that subtitles are disabled."
+  },
+  "auto": "Auto",
+  "@auto": {
+    "description": "Indicator on profile page that audio and app language are chosen automatically."
+  },
+  "live": "Élő",
+  "@live": {
+    "description": "Title of the live stream"
+  },
+  "subtitles": "Felíratok",
+  "@subtitles": {
+    "description": "Title of the Player settings activity tab in Android"
+  },
+  "audio": "Audió",
+  "@audio": {
+    "description": "Title of the Player settings activity tab in Android"
+  },
+  "quality": "Minőség",
+  "@quality": {
+    "description": "Title of the Player settings activity tab in Android"
+  },
+  "seasons": "Sorozat",
+  "@seasons": {
+    "description": "Followed by number of seasons in given series."
+  },
+  "episodes": "Epizódok",
+  "@episodes": {
+    "description": "Followed by number of episodes in given series."
+  },
+  "search": "Keresés",
+  "@search": {
+    "description": "Button to clear cache"
+  },
+  "noResults": "Nincs eredmény",
+  "@noResults": {
+    "description": "No search results."
+  },
+  "doYouWantCast": "Szeretnéd ezt a videót Chromecasten keresztül közvetíteni?",
+  "@doYouWantCast": {
+    "description": "Prompt displayed to the user"
+  },
+  "play": "Lejátszás",
+  "@play": {
+    "description": "Option in prompt dialog."
+  },
+  "castQueue": "Lejátszási listát közvetíteni",
+  "@castQueue": {
+    "description": "Queue page title"
+  },
+  "options": "Opciók",
+  "@options": {
+    "description": "Options dialog title"
+  },
+  "remove": "Eltávolítás",
+  "@remove": {
+    "description": "Option in options dialog"
+  },
+  "queueLimitTitle": "Korlátozott",
+  "@queueLimitTitle": {
+    "description": "Title of the alert to the user when attempt to add video to cast queue failed due to full queue."
+  },
+  "queueLimitMessage": "You cannot have more than {elementCount} elements in queue.",
+  "@queueLimitMessage": {
+    "description": "Error message to the user when attempt to add video to cast queue failed due to full queue.",
+    "placeholders": {
+      "elementCount": {
+        "type": "int"
+      }
+    }
+  },
+  "recentSearches": "Legutóbbi keresések",
+  "@recentSearches": {
+    "description": "Recent searches list title."
+  },
+  "tVLogin": "TV bejelentkezés",
+  "@tVLogin": {
+    "description": "Title of the TV login alert"
+  },
+  "tVLoginSuccessful": "Sikeres bejelentkezés. Hagyd jóvá a TV-n.",
+  "@tVLoginSuccessful": {
+    "description": "Message of the TV login alert"
+  },
+  "seeMore": "Mutass többet",
+  "@seeMore": {
+    "description": "Button on featured item to navigete to page with player"
+  },
+  "seeAll": "Mutass mindent",
+  "@seeAll": {
+    "description": "Button on explore page to navigete to audience page"
+  },
+  "series": "Sorozatok",
+  "@series": {
+    "description": "Title of the tab on info page"
+  },
+  "livestreamMaintenance": "Sajnáljuk, az élőadás jelenleg karbantartás alatt van. Próbálj később újra.",
+  "@livestreamMaintenance": {
+    "description": "Message displayed over overlay when livestream is under maintenance."
+  },
+  "homeTab": "Főoldal",
+  "@homeTab": {
+    "description": "Title of the home page"
+  },
+  "sortBy": "Rendezés",
+  "@sortBy": {
+    "description": "Sorting criteria selector"
+  },
+  "videoQuality": "Videó minősége",
+  "@videoQuality": {
+    "description": "Settings item in profile page for Android."
+  },
+  "low": "Alacsony",
+  "@low": {
+    "description": "Low quality video option"
+  },
+  "medium": "Közepes",
+  "@medium": {
+    "description": "Medium quality video option"
+  },
+  "high": "Magas",
+  "@high": {
+    "description": "High quality video option"
+  },
+  "emptySearch": "Itt kereshetsz a BrunstadTV minden tartalmára. Sorozatokra, filmekre és epizódokra.",
+  "@emptySearch": {
+    "description": "Message on search page when there is no search results."
+  },
+  "back": "Vissza",
+  "@back": {
+    "description": "General back button to navigate back"
+  },
+  "seasonLetter": "S",
+  "@seasonLetter": {
+    "description": "Season  letter in label S1E3"
+  },
+  "episodeLetter": "E",
+  "@episodeLetter": {
+    "description": "Episode letter in label S1E3"
+  },
+  "atoZ": "A-Z",
+  "@atoZ": {
+    "description": "Sort order"
+  },
+  "ztoA": "Z-A",
+  "@ztoA": {
+    "description": "Sort order"
+  },
+  "shortFilms": "Rövid filmek",
+  "@shortFilms": {
+    "description": "Title of the films collection."
+  },
+  "videos": "Videók",
+  "@videos": {
+    "description": "Followed by number of videos"
+  },
+  "moreInfo": "További információ",
+  "@moreInfo": {
+    "description": "Option in action sheet for the video that triggers info page for the video."
+  },
+  "info": "Információ",
+  "@info": {
+    "description": "Video info page title."
+  },
+  "episode": "Epizód",
+  "@episode": {
+    "description": "Title of the tab on info page"
+  },
+  "takePhoto": "Készíts képet",
+  "@takePhoto": {
+    "description": "Option in menu"
+  },
+  "pickPhoto": "Kiválasztás a képtárból",
+  "@pickPhoto": {
+    "description": "Option in menu"
+  },
+  "uploadFileTitle": "Fájl feltöltése",
+  "@uploadFileTitle": {
+    "description": "Title of the dialog to confirm upload"
+  },
+  "uploadFileMessage": "Szeretnéd ezt a fájlt feltölteni?",
+  "@uploadFileMessage": {
+    "description": "Content of the dialog to confirm upload"
+  },
+  "watchingWith": "You are watching with {numPeople} others",
+  "@watchingWith": {
+    "description": "Info on live stream page",
+    "placeholders": {
+      "numPeople": {
+        "type": "int"
+      }
+    }
+  },
+  "uploading": "Feltöltés",
+  "@uploading": {
+    "description": "Message during file upload"
+  },
+  "uploadFail": "Sikertelen feltöltés",
+  "@uploadFail": {
+    "description": "Upload result message"
+  },
+  "post": "Közzé tenni",
+  "@post": {
+    "description": "Button to post written testimony"
+  },
+  "charactersLimit": "{charsLeft} of {charsTotal} characters left",
+  "@charactersLimit": {
+    "description": "Info about limit of characters in written testimony",
+    "placeholders": {
+      "charsLeft": {
+        "type": "int"
+      },
+      "charsTotal": {
+        "type": "int"
+      }
+    }
+  },
+  "uploadingPostSuccess": "A hozzászólásod be lett küldve.",
+  "@uploadingPostSuccess": {
+    "description": "Info in upload success page"
+  },
+  "testimonyInfo": "Telefonoddal vedd fel a videót.",
+  "@testimonyInfo": {
+    "description": "Record testimony guideline page info"
+  },
+  "yourVideo": "A videód",
+  "@yourVideo": {
+    "description": "Title on recording tip page page"
+  },
+  "record": "Felvétel",
+  "@record": {
+    "description": "Button to record testimony"
+  },
+  "recordingTips": "Pár tipp a jó felvételhez",
+  "@recordingTips": {
+    "description": "Record testimony guideline page tip list title"
+  },
+  "recordingTipA": "A felvételhez keress csendes helyet.",
+  "@recordingTipA": {
+    "description": "Record testimony guideline page tip list item"
+  },
+  "recordingTipB": "Győződjél meg arról, hogy az arcod egyenletesen meg legyen világítva.",
+  "@recordingTipB": {
+    "description": "Record testimony guideline page tip list item"
+  },
+  "recordingTipC": "Mielőtt elindítod a felvételt, gondold át, mit akarsz mondani.",
+  "@recordingTipC": {
+    "description": "Record testimony guideline page tip list item"
+  },
+  "recordingTipD": "Fordítsd a telefonod fekvő módra.",
+  "@recordingTipD": {
+    "description": "Record testimony guideline page tip list item"
+  },
+  "thankYou": "Köszönjük!",
+  "@thankYou": {
+    "description": "Title in upload success page"
+  },
+  "thankYouForContribution": "Köszönjük a hozzájárulásodat!",
+  "@thankYouForContribution": {
+    "description": "Title in upload success page"
+  },
+  "uploadingVideoSuccess": "A videód be lett küldve.",
+  "@uploadingVideoSuccess": {
+    "description": "Info in upload success page"
+  },
+  "next": "Következő",
+  "@next": {
+    "description": "NEXT program in check in section"
+  },
+  "recordVideoCameraPermissionAlert": "A videó rögzítéséhez engedélyezned kell a kamerát a beállításokban.",
+  "@recordVideoCameraPermissionAlert": {
+    "description": "Message in alert dialog informing about missing permission"
+  },
+  "recordVideoPhotosPermissionAlert": "A video rögzítéséhez engedélyezned kell a képeidhez való hozzáférést a beállításokban.",
+  "@recordVideoPhotosPermissionAlert": {
+    "description": "Message in alert dialog informing about missing permission"
+  },
+  "recordVideoStoragePermissionAlert": "A videó rögzítéséhez tárolási engedélyt kell megadnod a beállításokban.",
+  "@recordVideoStoragePermissionAlert": {
+    "description": "Message in alert dialog informing about missing permission"
+  },
+  "recordVideoMicrophonePermissionAlert": "A videó rögzítéséhez engedélyezned kell a mikrofont a beállításokban.",
+  "@recordVideoMicrophonePermissionAlert": {
+    "description": "Message in alert dialog informing about missing permission"
+  },
+  "takePhotoStoragePermissionAlert": "A fényképek kiválasztásához a tárolási engedélyt kell megadnod a beállításokban.",
+  "@takePhotoStoragePermissionAlert": {
+    "description": "Message in alert dialog informing about missing permission"
+  },
+  "takePhotoCameraPermissionAlert": "A fényképezéshez engedélyezned kell a kamerát beállításokban.",
+  "@takePhotoCameraPermissionAlert": {
+    "description": "Message in alert dialog informing about missing permission"
+  },
+  "pickPhotoStoragePermissionAlert": "A fényképek kiválasztásához a tárolási engedélyt kell megadnod a beállításokban.",
+  "@pickPhotoStoragePermissionAlert": {
+    "description": "Message in alert dialog informing about missing permission"
+  },
+  "permissionsAlertTitle": "Engedély szükséges",
+  "@permissionsAlertTitle": {
+    "description": "Title of an alert dialog informing about missing permission"
+  },
+  "add": "Hozzáadás",
+  "@add": {
+    "description": "Button text on interactive live avatar section"
+  },
+  "change": "Módosítás",
+  "@change": {
+    "description": "Button text on interactive live avatar section"
+  },
+  "recordingFailedTitle": "Vídeófelvétel sikertelen",
+  "@recordingFailedTitle": {
+    "description": "Title in alert dialog when recording fails"
+  },
+  "recordingFailedMessage": "Videófelvétel közben valami nem sikerült.",
+  "@recordingFailedMessage": {
+    "description": "Message in alert dialog when recording fails"
+  },
+  "pollSubtitle": "Szavazás",
+  "@pollSubtitle": {
+    "description": "The little title in poll"
+  },
+  "writeHere": "Írjál ide",
+  "@writeHere": {
+    "description": "New post text field placeholder"
+  },
+  "feed": "Hírcsatorna",
+  "@feed": {
+    "description": "Feed page bar title"
+  },
+  "atmosphereFeedDescription": "Járj hozzá a hírcsatornához üzenet, bizonyságtétel vagy kép beküldésével, ahonnan éppen tartózkodsz.",
+  "@atmosphereFeedDescription": {
+    "description": "Feed page description"
+  },
+  "information": "Információ",
+  "@information": {
+    "description": "Feed information item title"
+  },
+  "photoNotSupported": "Fényképek készítése és kiválasztása nem támogatott a készülékeden.",
+  "@photoNotSupported": {
+    "description": "Alert displayed when phone can't take photo or pick photo from storage."
+  },
+  "answerFailed": "Bocsánat! Képtelenek voltunk válaszolni. Próbáld újra.",
+  "@answerFailed": {
+    "description": "Message displayed when user's answer hasn't' been sent'."
+  },
+  "question": "Kérdés",
+  "@question": {
+    "description": "Title of the question page"
+  },
+  "notificationChannelPlayerName": "Lejátszó",
+  "@notificationChannelPlayerName": {
+    "description": "Notification channel name in Android settings"
+  },
+  "now": "Most",
+  "@now": {
+    "description": "Tv guide now playing label"
+  },
+  "createPost": "Hozzászólás létrehozása",
+  "@createPost": {
+    "description": "Button to start text testimony and title on create post page"
+  },
+  "concernTextPlaceholder": "Írd le a kérdésedet",
+  "@concernTextPlaceholder": {
+    "description": "Placeholder text in text field on contact support page"
+  },
+  "debugInfoExplanation": "Az üzeneted tartalmazza ezeket az információkat, hogy jobban megértsük a problémát.",
+  "@debugInfoExplanation": {
+    "description": "Info about debug info usage on contact support page"
+  },
+  "send": "Küldés",
+  "@send": {
+    "description": "General button to send a form"
+  },
+  "sending": "Adás",
+  "@sending": {
+    "description": "General sending action indicator"
+  },
+  "thankYouSupportTitle": "Köszönjük visszajelzésedet!",
+  "@thankYouSupportTitle": {
+    "description": "Text on contact support confirmation page"
+  },
+  "thankYouSupportDescription": "Nagyra értékeljük az összes visszajelzést, és a lehető leghamarabb megválaszoljuk a kérdést.",
+  "@thankYouSupportDescription": {
+    "description": "Text on contact support confirmation page"
+  },
+  "sendFail": "Couldn't send you message",
+  "@sendFail": {
+    "description": "General error message that sending failed"
+  },
+  "sendFailDescription": "Valami nem sikerült. Vizsgáld meg az internett kapcsolatodat és próbáld újra.",
+  "@sendFailDescription": {
+    "description": "General error message that sending failed"
+  },
+  "today": "Ma",
+  "@today": {
+    "description": "First category in tv guide"
+  },
+  "noNewPosts": "Nincsenek új hozzászólások",
+  "@noNewPosts": {
+    "description": "Text displayed on the button, when there are no new posts in the feed."
+  },
+  "newPostsMultiple": "{postCount} new posts!",
+  "@newPostsMultiple": {
+    "description": "Text displayed on the button, when there are number of new posts in the feed.",
+    "placeholders": {
+      "postCount": {
+        "type": "int"
+      }
+    }
+  },
+  "newPostsSingle": "{postCount} new post!",
+  "@newPostsSingle": {
+    "description": "Text displayed on the button, when there is one new post in the feed.",
+    "placeholders": {
+      "postCount": {
+        "type": "int"
+      }
+    }
+  },
+  "expired": "Lejárt",
+  "@expired": {
+    "description": "Info that episode is no longer available."
+  },
+  "availableFrom": "Available {date}",
+  "@availableFrom": {
+    "description": "Info that episode will be released at certain date.",
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "howFar": "Mennyit kirándultál?",
+  "@howFar": {
+    "description": "Text on running competition page."
+  },
+  "submit": "Megerősítés",
+  "@submit": {
+    "description": "Submit button on running competition page."
+  },
+  "wellDone": "Jól csináltad!",
+  "@wellDone": {
+    "description": "Text on running competition page."
+  },
+  "wellDoneDistance": "Well done! You have registered a total distance of {distanceInKM} km",
+  "@wellDoneDistance": {
+    "description": "Text on running competition page.",
+    "placeholders": {
+      "distanceInKM": {
+        "type": "int"
+      }
+    }
+  },
+  "distanceRegistered": "Regisztrálva lett a távolságod. Folytass lent, ha szeretnél további távolságokat megadni.",
+  "@distanceRegistered": {
+    "description": "Text on running competition page."
+  },
+  "ranMore": "I went more than {distanceInKM} km",
+  "@ranMore": {
+    "description": "Text on running competition page.",
+    "placeholders": {
+      "distanceInKM": {
+        "type": "int"
+      }
+    }
+  },
+  "moreThan": "More than {distanceInKM} km",
+  "@moreThan": {
+    "description": "Text on running competition page.",
+    "placeholders": {
+      "distanceInKM": {
+        "type": "int"
+      }
+    }
+  },
+  "runningEffort": "Csodálatos erőfeszítés! Írd be az alul megtett kilométerek mennyiségét.",
+  "@runningEffort": {
+    "description": "Text on running competition page."
+  },
+  "slideSelect": "Válaszd ki a megtett távolságot",
+  "@slideSelect": {
+    "description": "Text on running competition page."
+  },
+  "submitAnotherDistance": "Más távolság kiválasztása",
+  "@submitAnotherDistance": {
+    "description": "Text on running competition page."
+  },
+  "editPicture": "Kép szerkesztése",
+  "@editPicture": {
+    "description": "Button on profile page to edit profile picture."
+  },
+  "profilePicture": "Profilkép",
+  "@profilePicture": {
+    "description": "Text on edit profile page."
+  },
+  "firstPostTitle": "Legyél az első, aki képet vagy üzenetet közzé tesz",
+  "@firstPostTitle": {
+    "description": "Text on feed page when feed is empty."
+  },
+  "timezoneInformation": "Tv guide timetable is in your local time: {timeZone}",
+  "@timezoneInformation": {
+    "description": "TV guide footer info text.",
+    "placeholders": {
+      "timeZone": {
+        "type": "String"
+      }
+    }
+  },
+  "yourQuestion": "A kérdésed",
+  "@yourQuestion": {
+    "description": "Title on ask question page"
+  },
+  "uploadingInquirySuccess": "Felhívjuk figyelmedet, hogy az adásban nem minden feltett kérdésre adnak választ.",
+  "@uploadingInquirySuccess": {
+    "description": "Info in upload question success page"
+  },
+  "askQuestion": "Tegyél fel kérdést",
+  "@askQuestion": {
+    "description": "Ask question text field placeholder"
+  },
+  "submitQuestionInfo": "A kérdés beküldésével elfogadod, hogy azt adási célokra lehet felhasználni.",
+  "@submitQuestionInfo": {
+    "description": "Disclaimer on ask question page"
+  },
+  "posting": "Közzé tenni",
+  "@posting": {
+    "description": "Information about ongoing posting process"
+  },
   "submitPostInfo": "Hozzászólás vagy fotó beküldéseddel elfogadod, hogy azt adási célokra lehet felhasználni. ",
+  "@submitPostInfo": {
+    "description": "Disclaimer on text testimony page"
+  },
   "cropImage": "Kép kivágása",
+  "@cropImage": {
+    "description": "Image crop page title"
+  },
   "square": "Négyzet",
+  "@square": {
+    "description": "Image crop mode"
+  },
   "landscape": "Tájkép",
+  "@landscape": {
+    "description": "Image crop mode"
+  },
   "pollSingleChoice": "Csak egyszer választhatod ki a válaszodat.",
+  "@pollSingleChoice": {
+    "description": "Desciption of the poll type. States that user can change the answer only once."
+  },
   "pollMultipleChoice": "Többször megváltoztathatod a válaszodat.",
+  "@pollMultipleChoice": {
+    "description": "Desciption of the poll type. States that user can change the answer multiple times."
+  },
   "pollEnded": "A szavazás ideje véget ért. Köszönjük válaszaidat.",
+  "@pollEnded": {
+    "description": "Message displayed when poll has been closed by administrator."
+  },
   "browserInstall": "Kérjünk, telepítsd a webböngészőt az URL megnyitásához.",
+  "@browserInstall": {
+    "description": "Message displayed when browser couldn't be opened on user's device."
+  },
   "share": "Megosztás",
+  "@share": {
+    "description": "Option name to share video."
+  },
   "liveNow": "Most élőben",
+  "@liveNow": {
+    "description": "Call to action button on featured carousel."
+  },
   "program": "Program",
+  "@program": {
+    "description": "Title of the program tab on live page."
+  },
   "participateTab": "Részt venni",
+  "@participateTab": {
+    "description": "Title of the participate tab on live page."
+  },
   "tomorrow": "Holnap",
+  "@tomorrow": {
+    "description": "Day of transmission in tv guide."
+  },
   "readBy": "Elolvasva",
-  "pollAnswer": "{answer} válaszoltál",
+  "@readBy": {
+    "description": "Feed verse pre author text."
+  },
+  "pollAnswer": "You've answered: {answer}",
+  "@pollAnswer": {
+    "description": "Snackbar label after user has chosen poll answer",
+    "placeholders": {
+      "answer": {
+        "type": "String"
+      }
+    }
+  },
   "broadcasts": "Broadcasts",
+  "@broadcasts": {
+    "description": "Title for tv guide collection on event page."
+  },
   "quizAnswered": "Benyújtott válaszok",
+  "@quizAnswered": {
+    "description": "Text displayed on a button when all answers in quiz have been submitted."
+  },
   "quizNotEnabled": "A kvíz jelenleg nem érhető el. Kérlek, próbáld újra később.",
+  "@quizNotEnabled": {
+    "description": "Message on alert that appears when participate item is visible, but quiz is not enabled."
+  },
   "calendar": "Naptár",
+  "@calendar": {
+    "description": "Title of calendar page."
+  },
   "noEvents": "Nincs tervezett adás",
+  "@noEvents": {
+    "description": "Info in calendar page that no transmissions are scheduled for selected day."
+  },
   "appUpdateTitle": "Frissítés szükséges",
+  "@appUpdateTitle": {
+    "description": "Title of the message displayed to the user when application is too old and should be updated in a timely manner."
+  },
   "appUpdateRequest": "Kérjük, töltsd le a legújabb alkalmazást, hogy élvezhessd a legújabb funkciókat és hibajavításokat.",
+  "@appUpdateRequest": {
+    "description": "Message displayed to the user when application is too old and should be updated in a timely manner."
+  },
   "appUpdateAccepted": "Frissítés",
+  "@appUpdateAccepted": {
+    "description": "Option that can be chosen by the user to update his application."
+  },
   "donationNotAvailable": "A Donation jelenleg nem érhető el. Kérlek, próbáld újra később.",
-  "posts": "{postsCount} Hozzászólások",
+  "@donationNotAvailable": {
+    "description": "Message displayed when donation flow failed."
+  },
+  "posts": "{postsCount} Posts",
+  "@posts": {
+    "description": "Contributions to feed made by the users. Plural of post.",
+    "placeholders": {
+      "postsCount": {
+        "type": "int"
+      }
+    }
+  },
   "copy": "Másolás",
+  "@copy": {
+    "description": "Copy option for quotes, verses."
+  },
   "reload": "Újratöltés",
+  "@reload": {
+    "description": "Label on the button that allows to reload the player after error."
+  },
   "participantsTitle": "Ki válaszol?",
+  "@participantsTitleTitle": {
+    "description": "Title label on the participants list before quiz."
+  },
   "participantsSubtitle": "Válassz ki egy vagy több résztvevőt.",
+  "@participantsSubtitle": {
+    "description": "Subtitle label on the participants list before quiz."
+  },
   "yourFamily": "A családod",
+  "@yourFamily": {
+    "description": "Title on page when user selects family members that take part in the quiz."
+  },
   "yourTurn": "Te vagy a soron",
+  "@yourTurn": {
+    "description": "Title on page informing user that other user will answer question in the next step."
+  },
   "fAQ": "GYIK",
+  "@fAQ": {
+    "description": "Title on FAQ page and item in profile page settings."
+  },
   "shareStart": "Oszd meg az elejétől",
-  "shareTime": "Megosztás innentől {time}",
-  "loadContentError": "Nem sikerült betölteni a tartalmat",
+  "@shareStart": {
+    "description": "Option on action sheet for sharing from start"
+  },
+  "shareTime": "Share from time {time}",
+  "@shareTime": {
+    "description": "Option on action sheet for sharing from time",
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "loadContentError": "Couldn't load content",
+  "@loadContentError": {
+    "description": "Error text when content couldn't be loaded."
+  },
   "audioOnlyErrorDescription": "Ellenőrizd a hálózati csatlakozásodat és próbálj újra",
+  "@audioOnlyErrorDescription": {
+    "description": "Error message when audio only fails to play"
+  },
   "privacyPolicy": "Adatvédelmi szabályzat",
+  "@privacyPolicy": {
+    "description": "Title on Privacy Policy page and item in profile page settings."
+  },
   "tokenError": "Nem tudtuk megerősíteni a személyazonosságodat, valószínűleg hálózati probléma miatt. Előfordulhat, hogy az alkalmazás egyes funkciói nem működnek megfelelően.",
+  "@tokenError": {
+    "description": "Message indicating that there is a problem with user's token, and some features may be broken because of this."
+  },
   "categoriesTab": "Kategóriák",
+  "@categoriesTab": {
+    "description": "Title of the Categories Tab"
+  },
   "settingsTab": "Beállítások",
+  "@settingsTab": {
+    "description": "Title of the Settings Tab"
+  },
   "confirmLogin": "Bejelentkezés jóváhagyása",
+  "@confirmLogin": {
+    "description": "Prompt that asks the user to confirm his log-in"
+  },
   "scanInfo": "Szkenneld be a kódot a telefonoddal és lépjél a jelentkezési oldalra.",
+  "@scanInfo": {
+    "description": "Text that informs the user that the QR code can be scanned to enter the login page. Used on AppleTV."
+  },
   "validInfo": "A QR kód 15 percig érvényes.",
+  "@validInfo": {
+    "description": "Message that informs the user for how long the QR Code will be valid."
+  },
   "confirmInfo": "Sikeres bejelentkezés után a készülékeden klikkelj a lenti gombra a bejelentkezés jóváhagyásához.",
+  "@confirmInfo": {
+    "description": "Message that asks the user to click the button in order to proceed after successful login."
+  },
   "seriesTab": "Sorozatok",
+  "@seriesTab": {
+    "description": "Series Tab title"
+  },
   "filmsTab": "Filmek",
+  "@filmsTab": {
+    "description": "Films Tab title"
+  },
   "eventsTab": "Események",
+  "@eventsTab": {
+    "description": "Events Tab title"
+  },
   "audioLanguage": "Tartalom nyelve",
+  "@audioLanguage": {
+    "description": "Label indicating that the Audio Language can be changed here."
+  },
   "subtitlesLanguage": "Felírat nyelve",
+  "@subtitlesLanguage": {
+    "description": "Label indicating that the Subtitles Language can be changed here."
+  },
   "removeFromRecentSearches": "Törölni szeretnéd ezt az elemet az utolsó keresésekből?",
+  "@removeFromRecentSearches": {
+    "description": "Prompt that asks the user wheter they are certain, that they want to remove the element from recent searches."
+  },
   "noTransmissionToday": "Mai napra nincs tervezett adás",
+  "@noTransmissionToday": {
+    "description": "Messages that informs the user, that there are no schedules transmission for today."
+  },
   "livestreamMaintenanceTitle": "Élő közvetítés nem elérhető",
+  "@livestreamMaintenanceTitle": {
+    "description": "Message that informs the user, that the livestream is unavailable."
+  },
   "start": "Kezdés",
+  "@start": {
+    "description": "Word used while displaying information about the beggining of a video or an event in tv guide."
+  },
   "transmissionSchedule": "Adások időpontjai",
+  "@transmissionSchedule": {
+    "description": "Label that indicates the user is looking at Transmission schedule"
+  },
   "featured": "Ajánlott",
+  "@featured": {
+    "description": "Featured videos collection header"
+  },
   "errorTryAgain": "Valami nem sikerült, próbáld később újra.",
+  "@errorTryAgain": {
+    "description": "Message that informs the user, that there was an error. Then politely asks the user to try again later."
+  },
   "reportProblem": "Ha problémád van, használd a lenti QR kódot e-mail küldéséhez.",
+  "@reportProblem": {
+    "description": "Message indicating that whenever the user wants to report a problem, they can scan the QR code to send an email to support."
+  },
   "phoneReadingProblem": "Ha a telefonod nem tud QR kódot olvasni, küldjél nekük e-mailt következő információval",
+  "@phoneReadingProblem": {
+    "description": "Message explaining that if the user's phone can't scan the QR code, they can send the support e-mail with information listed after this message."
+  },
   "goTo": "vagy lépjél tovább",
+  "@goTo": {
+    "description": "Message used to point the user to the shortened URL in case they can't use the QR code to log-in. This is used on AppleTV."
+  },
   "watchBrunstad": "Élő BrunstadTV nézés",
+  "@watchBrunstad": {
+    "description": "Text that entices the user to watch the livestream."
+  },
   "notLogged": "Nem vagy bejelentkezve",
+  "@notLogged": {
+    "description": "Text that informs the user, that they are not logged in."
+  },
   "authResponse0": "Bejelentkezéshez új QR kódot használj.",
+  "@authResponse0": {
+    "description": "Authentication response displayed to the user when an old QR code was used. Asking them to use a new one if they want to log in."
+  },
   "authResponse1": "Jelentkezz be a mobilodon QR kóddal.",
+  "@authResponse1": {
+    "description": "Message displayed to the user when they tried to proceed with the log-in on AppleTv without first logging through their mobile device."
+  },
   "authResponse3": "Ellenőrizd a hálózati kapcsolatodat és próbálj újra.",
+  "@authResponse3": {
+    "description": "Message that indicates there was an error during Authentication process. Asking the user to check their network connection and try again."
+  },
   "liveHeader": "Élő",
+  "@liveHeader": {
+    "description": "Header of the Live Tab — the tab that contains the livestream player on AppleTV."
+  },
   "recentlyPublishedSection": "Nemrégiben megjelent",
+  "@recentlyPublishedSection": {
+    "description": "Section in explore."
+  },
   "exploreCategoriesSection": "Kategóriák felfedezése",
+  "@exploreCategoriesSection": {
+    "description": "Section in explore."
+  },
   "programsSection": "Programok",
+  "@programsSection": {
+    "description": "Section in explore."
+  },
   "episodesSection": "Epizódok",
+  "@episodesSection": {
+    "description": "Section in explore."
+  },
   "categorySeries": "Sorozatok",
+  "@categorySeries": {
+    "description": "Category name"
+  },
   "categoryKids": "Gyerekek",
+  "@categoryKids": {
+    "description": "Category name"
+  },
   "categoryFilms": "Filmek",
+  "@categoryFilms": {
+    "description": "Category name"
+  },
   "categoryEvents": "Események",
+  "@categoryEvents": {
+    "description": "Category name"
+  },
   "categoryMusic": "Zene",
+  "@categoryMusic": {
+    "description": "Category name"
+  },
   "noPlannedEvents": "Ma nincs tervezett esemény",
-  "watchNow": "Nézd meg most"
+  "@noPlannedEvents": {
+    "description": "Information in tvguide"
+  },
+  "watchNow": "Nézd meg most",
+  "@watchNow": {
+    "description": "Button on featured carousel"
+  }
 }
