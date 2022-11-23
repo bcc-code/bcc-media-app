@@ -6,13 +6,9 @@ import 'package:brunstadtv_app/graphql/queries/episode.graphql.dart';
 import 'package:brunstadtv_app/providers/analytics.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:rudder_sdk_flutter/RudderController.dart';
-import 'package:rudder_sdk_flutter_platform_interface/platform.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 
 import '../graphql/queries/page.graphql.dart';
-import '../graphql/queries/search.graphql.dart';
-import '../providers/video_state.dart';
 import '../router/router.gr.dart';
 import 'navigation_override.dart';
 
@@ -63,7 +59,10 @@ Future overrideAwareNavigation(NavigationOverride? override, StackRouter router,
 }
 
 Future<dynamic>? handleSectionItemClick(BuildContext context, Fragment$ItemSectionItem$item item) {
-  Analytics.sectionItemClicked(context);
+  final ref = ProviderScope.containerOf(context, listen: false);
+  final analytics = ref.read(analyticsProvider);
+  analytics.sectionItemClicked(context);
+
   final navigationOverride = NavigationOverride.of(context);
   final router = context.router;
   var episodeItem = item.asOrNull<Fragment$ItemSectionItem$item$$Episode>();

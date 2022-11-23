@@ -8,7 +8,6 @@ import 'package:brunstadtv_app/router/router.gr.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:rudder_sdk_flutter/RudderController.dart';
 
 class AppRoot extends ConsumerStatefulWidget {
   const AppRoot({super.key, required this.child, required this.navigatorKey});
@@ -29,7 +28,7 @@ class _AppRootState extends ConsumerState<AppRoot> {
     authSubscription = ref.listenManual<AuthState>(authStateProvider, (previous, next) {
       if (previous?.auth0AccessToken != null && next.auth0AccessToken == null) {
         widget.navigatorKey.currentContext?.router.root.navigate(LoginScreenRoute());
-      } else if (next.auth0AccessToken != null) {
+      } else if (next.auth0AccessToken != null && next.user != null) {
         ref.read(gqlClientProvider).query$me().then((value) {
           if (value.exception != null) {
             throw value.exception!;
@@ -37,8 +36,7 @@ class _AppRootState extends ConsumerState<AppRoot> {
           if (value.parsedData == null) {
             throw ErrorDescription('"Me" data is null.');
           }
-          Analytics.identify(next.user!, value.parsedData!.me.analytics.anonymousId);
-          return value.parsedData;
+          ref.read(analyticsProvider).identify(next.user!, value.parsedData!.me.analytics.anonymousId);
         });
       }
     });

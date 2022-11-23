@@ -1,15 +1,9 @@
 import 'package:brunstadtv_app/components/section_item_click_wrapper.dart';
 import 'package:brunstadtv_app/models/analytics/sections.dart';
-import 'package:brunstadtv_app/providers/analytics.dart';
-import 'package:brunstadtv_app/providers/inherited_data.dart';
-import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/material.dart';
-import 'package:rudder_sdk_flutter/RudderController.dart';
-import 'package:rudder_sdk_flutter_platform_interface/platform.dart';
 
 import '../helpers/btv_colors.dart';
 import '../helpers/btv_typography.dart';
-import '../helpers/utils.dart';
 import '../l10n/app_localizations.dart';
 import '../services/utils.dart';
 import 'bordered_image_container.dart';

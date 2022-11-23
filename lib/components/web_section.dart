@@ -44,8 +44,10 @@ class _WebSectionState extends State<WebSection> {
   Widget _heightOrAspectRatio({double? height, required double aspectRatio, required Widget child}) {
     if (height != null) {
       return ConstrainedBox(constraints: BoxConstraints.loose(Size.fromHeight(height)), child: child);
-    } else {
+    } else if (aspectRatio != null) {
       return AspectRatio(aspectRatio: aspectRatio, child: child);
+    } else {
+      return const SizedBox.shrink();
     }
   }
 
@@ -54,7 +56,7 @@ class _WebSectionState extends State<WebSection> {
     return Padding(
       padding: const EdgeInsets.all(16),
       child: _heightOrAspectRatio(
-        height: height,
+        height: widget.data.height?.toDouble(),
         aspectRatio: widget.data.widthRatio,
         child: Stack(
           children: [
