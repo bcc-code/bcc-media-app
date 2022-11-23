@@ -153,6 +153,12 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen> with AutoRouteAwa
           playEpisode(playerId: player.playerId, episode: episode, autoplay: true, playbackPositionMs: startPositionSeconds * 1000)
               .timeout(const Duration(milliseconds: 12000)));
     });
+    playerSetupCompleter?.future.then((value) {
+      if (!mounted) return;
+      setState(() {
+        settingUp = false;
+      });
+    });
   }
 
   void setStateIfMounted(void Function() fn) {
@@ -447,9 +453,6 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen> with AutoRouteAwa
             behavior: HitTestBehavior.opaque,
             //excludeFromSemantics: true,
             onTap: () {
-              setState(() {
-                settingUp = true;
-              });
               setupPlayer();
             },
             child: Stack(
@@ -522,9 +525,6 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen> with AutoRouteAwa
                           padding: const EdgeInsets.only(top: 16),
                           child: BtvButton.small(
                               onPressed: () {
-                                setState(() {
-                                  settingUp = true;
-                                });
                                 setupPlayer();
                               },
                               labelText: S.of(context).tryAgainButton),
