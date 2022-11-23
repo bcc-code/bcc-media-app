@@ -1,228 +1,1011 @@
 {
-  "@@locale": "ru",
-  "liveTab": "Прямой эфир",
-  "logOutButton": "Выйти",
-  "profileTab": "Профиль",
-  "bccMediaCenter": "BrunstadTV - это некоммерческий медиацентр, производящий и распространяющий контент, основанный на позитивных и христианских ценностях.",
-  "signInButton": "Войти",
-  "tryAgainButton": "Попробовать еще раз",
-  "loggedOutTitle": "Не залогинен",
-  "loggedOutMessage": "Вы вышли из системы. Пожалуйста, войдите снова.",
-  "mostWatched": "Самое просматриваемое",
-  "mostRecent": "Самое последнее",
-  "latelyPublished": "Недавно опубликовано",
-  "anErrorOccurred": "Возникла ошибка",
-  "ok": "ОК",
-  "loginFailedCheckNetwork": "Ошибка входа. Проверьте подключение к сети и попробуйте снова.",
-  "loginFailedTryAgain": "Ошибка входа. Пожалуйста, попробуйте позже.",
-  "soundLanguage": "Язык воспроизведения",
-  "subtitleLanguage": "Язык субтитров",
-  "appLanguage": "Язык приложения",
-  "checkNetwork": "Проверьте подключение к сети и попробуйте снова.",
-  "tryAgain": "Пожалуйста, попробуйте позже.",
-  "cantPlayVideo": "Вы не можете воспроизводить это видео сейчас.",
-  "about": "Инфо",
-  "version": "Версия",
-  "contactSupport": "Связаться с поддержкой",
-  "cancel": "Отменить",
-  "upNext": "К следующему",
-  "done": "Готово",
-  "playerSettings": "Настройки плеера",
-  "settings": "Настройки",
-  "none": "Нет",
-  "auto": "Авто",
-  "live": "Прямой эфир",
-  "subtitles": "Субтитры",
-  "audio": "Аудио",
-  "quality": "Качество",
-  "seasons": "Сезоны",
-  "episodes": "Эпизоды",
-  "search": "Поиск",
-  "noResults": "Нет результатов",
-  "doYouWantCast": "Хотите показать это видео?",
-  "play": "Играть",
-  "castQueue": "Показывать очередь",
-  "options": "Опции",
-  "remove": "Удалить",
-  "queueLimitTitle": "Лимит",
-  "queueLimitMessage": "В очереди не может быть более {elementCount} элементов.",
-  "recentSearches": "Недавние поиски",
-  "tVLogin": "ТВ Логин",
-  "tVLoginSuccessful": "Успешный вход, пожалуйста, подтвердите на телевизоре.",
-  "seeMore": "Смотреть больше",
-  "seeAll": "Посмотреть все",
-  "series": "Серии",
-  "livestreamMaintenance": "К сожалению, прямой эфир в настоящее время находится на тех. обслуживании. Пожалуйста, попробуйте позже.",
-  "homeTab": "Главная",
-  "sortBy": "Сортировать по",
-  "videoQuality": "Качество видео",
-  "low": "Низкое",
-  "medium": "Среднее",
-  "high": "Высокое",
-  "emptySearch": "Вы можете искать по всему контенту от BrunstadTV. Серии, фильмы и эпизоды.",
-  "back": "Назад",
-  "seasonLetter": "С",
-  "episodeLetter": "Э",
-  "atoZ": "А-Я",
-  "ztoA": "Я-А",
-  "shortFilms": "Короткие фильмы",
-  "videos": "Видео",
-  "moreInfo": "Дополнительная информация",
-  "info": "Информация",
-  "episode": "Эпизод",
-  "takePhoto": "Сделать фото",
-  "pickPhoto": "Выбрать из галереи",
-  "uploadFileTitle": "Загрузить файл",
-  "uploadFileMessage": "Вы хотите загрузить этот файл?",
-  "watchingWith": "Вы смотрите с {numPeople} другими людьми",
-  "uploading": "Загрузка",
-  "uploadFail": "Загрузка не удалась",
-  "post": "Опубликовать",
-  "charactersLimit": "Осталось символов: {charsLeft} из {charsTotal}",
-  "uploadingPostSuccess": "Ваша публикация была отправлена.",
-  "testimonyInfo": "Запишите видео на телефон.",
-  "yourVideo": "Ваше видео",
-  "record": "Записать",
-  "recordingTips": "Несколько советов, чтобы получить хорошую запись",
-  "recordingTipA": "Найдите тихое место для записи.",
-  "recordingTipB": "Убедитесь, что ваше лицо освещено равномерно.",
-  "recordingTipC": "Подумайте, что вы хотите сказать, прежде чем начать запись.",
-  "recordingTipD": "Поверните ваш телефон в ландшафтный режим.",
-  "thankYou": "Спасибо!",
-  "thankYouForContribution": "Спасибо за ваш вклад!",
-  "uploadingVideoSuccess": "Ваше видео было отправлено.",
-  "next": "Дальше",
-  "recordVideoCameraPermissionAlert": "Вы должны предоставить разрешение к камере в настройках, для записи видео.",
-  "recordVideoPhotosPermissionAlert": "Вы должны предоставить разрешение к галерее в настройках, для записи видео.",
-  "recordVideoStoragePermissionAlert": "Вы должны предоставить разрешение к хранилищу в настройках, для записи видео.",
-  "recordVideoMicrophonePermissionAlert": "Вы должны предоставить разрешение к микрофону в настройках, для записи видео.",
-  "takePhotoStoragePermissionAlert": "Вы должны предоставить разрешение к хранилищу в настройках, чтобы сделать фото.",
-  "takePhotoCameraPermissionAlert": "Вы должны предоставить разрешение к камере в настройках, чтобы сделать фото.",
-  "pickPhotoStoragePermissionAlert": "Вы должны предоставить доступ к хранилищу в настройках, чтобы выбрать фотографии.",
-  "permissionsAlertTitle": "Требуются разрешения",
-  "add": "Добавить",
-  "change": "Изменить",
-  "recordingFailedTitle": "Не получилось записать видео",
-  "recordingFailedMessage": "Что-то пошло не так при попытке записать видео.",
-  "pollSubtitle": "Опрос",
-  "writeHere": "Пишите здесь",
-  "feed": "Лента",
-  "atmosphereFeedDescription": "Внесите свой вклад в ленту активности, отправив сообщение, свидетельство или фотографию, оттуда где вы находитесь.",
-  "information": "Информация",
-  "photoNotSupported": "Съемка и выбор фотографий не поддерживаются на вашем устройстве.",
-  "answerFailed": "К сожалению, мы не смогли отправить ответ. Пожалуйста, попробуйте еще раз.",
-  "question": "Вопросы",
-  "notificationChannelPlayerName": "Плеер",
-  "now": "Сейчас",
-  "createPost": "Создать пост",
-  "concernTextPlaceholder": "Опишите проблему",
-  "debugInfoExplanation": "Ваше сообщение будет содержать эту информацию, чтобы помочь нам лучше понять проблему.",
-  "send": "Отправить",
-  "sending": "Отправка",
-  "thankYouSupportTitle": "Спасибо за ваш отзыв!",
-  "thankYouSupportDescription": "Мы ценим все отзывы и постараемся решить эту проблему как можно скорее.",
-  "sendFail": "Не удалось отправить сообщение",
-  "sendFailDescription": "Что-то пошло не так. Проверьте подключение к интернету и попробуйте еще раз.",
-  "today": "Сегодня",
-  "noNewPosts": "Нет новых публикаций",
-  "newPostsMultiple": "{postCount} новых публикаций!",
-  "newPostsSingle": "{postCount} новых публикаций!",
-  "expired": "Прошёл",
-  "availableFrom": "Доступно {date}",
-  "howFar": "Как далеко вы прошли?",
-  "submit": "Отправить",
-  "wellDone": "Отлично сработано!",
-  "wellDoneDistance": "Отлично сработано! Вы зарегистрировали общее расстояние {distanceInKM} км",
-  "distanceRegistered": "Ваше расстояние было зарегистрировано. Продолжите ниже, если вы хотите отправить другое расстояние.",
-  "ranMore": "Я прошёл (ла) более {distanceInKM} км",
-  "moreThan": "Более {distanceInKM} км",
-  "runningEffort": "Отличное достижение! Введите количество километров, которое вы прошли ниже.",
-  "slideSelect": "Сделайте слайд, чтобы выбрать, как далеко вы прошли",
-  "submitAnotherDistance": "Отправить другое расстояние",
-  "editPicture": "Редактировать изображение",
-  "profilePicture": "Фотография профиля",
-  "firstPostTitle": "Будьте первым, кто опубликует фото или сообщение",
-  "timezoneInformation": "Расписание телепрограммы указано по вашему местному времени: {timeZone}",
-  "yourQuestion": "Ваш вопрос",
-  "uploadingInquirySuccess": "Обратите внимание, что не на все заданные вопросы даются ответы в трансляции.",
-  "askQuestion": "Задать вопрос",
-  "submitQuestionInfo": "Отправляя вопрос, вы соглашаетесь с тем, что его можно использовать в целях трансляции.",
-  "posting": "Публикуется",
+  
+  "loadingContent": "Loading content",
+  "@loadingContent": {
+    "description": "Text displayed when page content is loading."
+  },
+  "signInTooltip": "Sign in to watch more content",
+  "@signInTooltip": {
+    "description": "Text for tooltip displayed when a non-member user opens the home page."
+  },
+  "skipToPublicContent": "Skip to watch public content",
+  "@skipToPublicContent": {
+    "description": "Text for button displayed on login screen to skip sign in and watch public content."
+  },
+  "minutesShort": "min",
+  "@minutesShort": {
+    "description": "Text for minutes."
+  },
+  "calendarThisWeek": "This week",
+  "@calendarThisWeek": {
+    "description": "Text for This week."
+  },
+  "calendarWeek": "week",
+  "@calendarWeek": {
+    "description": "Text week."
+  },
   "loading": "Загрузка",
+  "@loading": {
+    "description": "Text to indicate loading state."
+  },
+  "loginPageDisplay1": "The most powerful message in the world",
+  "@loginPageDisplay1": {
+    "description": "Text displayed on login screen."
+  },
+  "loginPageDisplay2": "Watch series, shows and films based on Christian values",
+  "@loginPageDisplay2": {
+    "description": "Text displayed on login screen."
+  },
+  "loginPageDisplay3": "Produced by BCC Media",
+  "@loginPageDisplay3": {
+    "description": "Text displayed on login screen."
+  },
+  "liveTab": "Прямой эфир",
+  "@liveTab": {
+    "description": "Title of live page tab"
+  },
+  "logOutButton": "Выйти",
+  "@logOutButton": {
+    "description": "Text displayed on Log out button"
+  },
+  "profileTab": "Профиль",
+  "@profileTab": {
+    "description": "Title of the profile page"
+  },
+  "faq": "Frequently asked questions",
+  "@faq": {
+    "description": "Title of the FAQ page."
+  },
+  "bccMediaCenter": "BrunstadTV - это некоммерческий медиацентр, производящий и распространяющий контент, основанный на позитивных и христианских ценностях.",
+  "@bccMediaCenter": {
+    "description": "Disclaimer on login page"
+  },
+  "signInButton": "Войти",
+  "@signInButton": {
+    "description": "Text displayed on Sign in button"
+  },
+  "tryAgainButton": "Попробовать еще раз",
+  "@tryAgainButton": {
+    "description": "Button on error alert that lets user to retry failed action"
+  },
+  "loggedOutTitle": "Не залогинен",
+  "@loggedOutTitle": {
+    "description": "Title of the alert message that is shown when user is logged out automatically."
+  },
+  "loggedOutMessage": "Вы вышли из системы. Пожалуйста, войдите снова.",
+  "@loggedOutMessage": {
+    "description": "Text of the alert message that is shown when user is logged out automatically."
+  },
+  "mostWatched": "Самое просматриваемое",
+  "@mostWatched": {
+    "description": "Sorting option on audience page"
+  },
+  "mostRecent": "Самое последнее",
+  "@mostRecent": {
+    "description": "Sorting option on audience page"
+  },
+  "latelyPublished": "Недавно опубликовано",
+  "@latelyPublished": {
+    "description": "Title for the list of videos on login page"
+  },
+  "anErrorOccurred": "Возникла ошибка",
+  "@anErrorOccurred": {
+    "description": "Title in error popup"
+  },
+  "ok": "ОК",
+  "@ok": {
+    "description": "Popup confirmation button"
+  },
+  "loginFailedCheckNetwork": "Ошибка входа. Проверьте подключение к сети и попробуйте снова.",
+  "@loginFailedCheckNetwork": {
+    "description": "Login error message"
+  },
+  "loginFailedTryAgain": "Ошибка входа. Пожалуйста, попробуйте позже.",
+  "@loginFailedTryAgain": {
+    "description": "Login error message"
+  },
+  "soundLanguage": "Язык воспроизведения",
+  "@soundLanguage": {
+    "description": "Settings item on profile page"
+  },
+  "subtitleLanguage": "Язык субтитров",
+  "@subtitleLanguage": {
+    "description": "Settings item on profile page"
+  },
+  "appLanguage": "Язык приложения",
+  "@appLanguage": {
+    "description": "Settings item on profile page"
+  },
+  "checkNetwork": "Проверьте подключение к сети и попробуйте снова.",
+  "@checkNetwork": {
+    "description": "Error message for the user displayed in many contexts."
+  },
+  "tryAgain": "Пожалуйста, попробуйте позже.",
+  "@tryAgain": {
+    "description": "Error message for the user displayed in many contexts."
+  },
+  "cantPlayVideo": "Вы не можете воспроизводить это видео сейчас.",
+  "@cantPlayVideo": {
+    "description": "Error message for the user displayed when video playback attempt failed."
+  },
+  "about": "Инфо",
+  "@about": {
+    "description": "Title of About page and item in profile page settings."
+  },
+  "version": "Версия",
+  "@version": {
+    "description": "Version ot the application on About page; followed by version number"
+  },
+  "contactSupport": "Связаться с поддержкой",
+  "@contactSupport": {
+    "description": "Settings item on profile page"
+  },
+  "cancel": "Отменить",
+  "@cancel": {
+    "description": "General cancel action button"
+  },
+  "upNext": "К следующему",
+  "@upNext": {
+    "description": "Title on Up next feature."
+  },
+  "done": "Готово",
+  "@done": {
+    "description": "General Done button. User confirms that action completed sucessfully."
+  },
+  "playerSettings": "Настройки плеера",
+  "@playerSettings": {
+    "description": "Title of the Player settings activity in Android"
+  },
+  "settings": "Настройки",
+  "@settings": {
+    "description": "Label of the button to go to Android/iOS settings"
+  },
+  "none": "Нет",
+  "@none": {
+    "description": "Indicator on profile page that subtitles are disabled."
+  },
+  "auto": "Авто",
+  "@auto": {
+    "description": "Indicator on profile page that audio and app language are chosen automatically."
+  },
+  "live": "Прямой эфир",
+  "@live": {
+    "description": "Title of the live stream"
+  },
+  "subtitles": "Субтитры",
+  "@subtitles": {
+    "description": "Title of the Player settings activity tab in Android"
+  },
+  "audio": "Аудио",
+  "@audio": {
+    "description": "Title of the Player settings activity tab in Android"
+  },
+  "quality": "Качество",
+  "@quality": {
+    "description": "Title of the Player settings activity tab in Android"
+  },
+  "seasons": "Сезоны",
+  "@seasons": {
+    "description": "Followed by number of seasons in given series."
+  },
+  "episodes": "Эпизоды",
+  "@episodes": {
+    "description": "Followed by number of episodes in given series."
+  },
+  "search": "Поиск",
+  "@search": {
+    "description": "Button to clear cache"
+  },
+  "noResults": "No results found",
+  "@noResults": {
+    "description": "No search results."
+  },
+  "doYouWantCast": "Хотите показать это видео?",
+  "@doYouWantCast": {
+    "description": "Prompt displayed to the user"
+  },
+  "play": "Играть",
+  "@play": {
+    "description": "Option in prompt dialog."
+  },
+  "castQueue": "Показывать очередь",
+  "@castQueue": {
+    "description": "Queue page title"
+  },
+  "options": "Опции",
+  "@options": {
+    "description": "Options dialog title"
+  },
+  "remove": "Удалить",
+  "@remove": {
+    "description": "Option in options dialog"
+  },
+  "queueLimitTitle": "Лимит",
+  "@queueLimitTitle": {
+    "description": "Title of the alert to the user when attempt to add video to cast queue failed due to full queue."
+  },
+  "queueLimitMessage": "You cannot have more than {elementCount} elements in queue.",
+  "@queueLimitMessage": {
+    "description": "Error message to the user when attempt to add video to cast queue failed due to full queue.",
+    "placeholders": {
+      "elementCount": {
+        "type": "int"
+      }
+    }
+  },
+  "recentSearches": "Недавние поиски",
+  "@recentSearches": {
+    "description": "Recent searches list title."
+  },
+  "tVLogin": "ТВ Логин",
+  "@tVLogin": {
+    "description": "Title of the TV login alert"
+  },
+  "tVLoginSuccessful": "Успешный вход, пожалуйста, подтвердите на телевизоре.",
+  "@tVLoginSuccessful": {
+    "description": "Message of the TV login alert"
+  },
+  "seeMore": "Смотреть больше",
+  "@seeMore": {
+    "description": "Button on featured item to navigete to page with player"
+  },
+  "seeAll": "Посмотреть все",
+  "@seeAll": {
+    "description": "Button on explore page to navigete to audience page"
+  },
+  "series": "Серии",
+  "@series": {
+    "description": "Title of the tab on info page"
+  },
+  "livestreamMaintenance": "К сожалению, прямой эфир в настоящее время находится на тех. обслуживании. Пожалуйста, попробуйте позже.",
+  "@livestreamMaintenance": {
+    "description": "Message displayed over overlay when livestream is under maintenance."
+  },
+  "homeTab": "Главная",
+  "@homeTab": {
+    "description": "Title of the home page"
+  },
+  "sortBy": "Сортировать по",
+  "@sortBy": {
+    "description": "Sorting criteria selector"
+  },
+  "videoQuality": "Качество видео",
+  "@videoQuality": {
+    "description": "Settings item in profile page for Android."
+  },
+  "low": "Низкое",
+  "@low": {
+    "description": "Low quality video option"
+  },
+  "medium": "Среднее",
+  "@medium": {
+    "description": "Medium quality video option"
+  },
+  "high": "Высокое",
+  "@high": {
+    "description": "High quality video option"
+  },
+  "emptySearch": "You can search all content from BrunstadTV. Series, videos and episodes.",
+  "@emptySearch": {
+    "description": "Message on search page when there is no search results."
+  },
+  "back": "Назад",
+  "@back": {
+    "description": "General back button to navigate back"
+  },
+  "seasonLetter": "С",
+  "@seasonLetter": {
+    "description": "Season  letter in label S1E3"
+  },
+  "episodeLetter": "Э",
+  "@episodeLetter": {
+    "description": "Episode letter in label S1E3"
+  },
+  "atoZ": "А-Я",
+  "@atoZ": {
+    "description": "Sort order"
+  },
+  "ztoA": "Я-А",
+  "@ztoA": {
+    "description": "Sort order"
+  },
+  "shortFilms": "Короткие фильмы",
+  "@shortFilms": {
+    "description": "Title of the films collection."
+  },
+  "videos": "Видео",
+  "@videos": {
+    "description": "Followed by number of videos"
+  },
+  "moreInfo": "Дополнительная информация",
+  "@moreInfo": {
+    "description": "Option in action sheet for the video that triggers info page for the video."
+  },
+  "info": "Информация",
+  "@info": {
+    "description": "Video info page title."
+  },
+  "episode": "Эпизод",
+  "@episode": {
+    "description": "Title of the tab on info page"
+  },
+  "takePhoto": "Сделать фото",
+  "@takePhoto": {
+    "description": "Option in menu"
+  },
+  "pickPhoto": "Выбрать из галереи",
+  "@pickPhoto": {
+    "description": "Option in menu"
+  },
+  "uploadFileTitle": "Загрузить файл",
+  "@uploadFileTitle": {
+    "description": "Title of the dialog to confirm upload"
+  },
+  "uploadFileMessage": "Вы хотите загрузить этот файл?",
+  "@uploadFileMessage": {
+    "description": "Content of the dialog to confirm upload"
+  },
+  "watchingWith": "You are watching with {numPeople} others",
+  "@watchingWith": {
+    "description": "Info on live stream page",
+    "placeholders": {
+      "numPeople": {
+        "type": "int"
+      }
+    }
+  },
+  "uploading": "Загрузка",
+  "@uploading": {
+    "description": "Message during file upload"
+  },
+  "uploadFail": "Загрузка не удалась",
+  "@uploadFail": {
+    "description": "Upload result message"
+  },
+  "post": "Опубликовать",
+  "@post": {
+    "description": "Button to post written testimony"
+  },
+  "charactersLimit": "{charsLeft} of {charsTotal} characters left",
+  "@charactersLimit": {
+    "description": "Info about limit of characters in written testimony",
+    "placeholders": {
+      "charsLeft": {
+        "type": "int"
+      },
+      "charsTotal": {
+        "type": "int"
+      }
+    }
+  },
+  "uploadingPostSuccess": "Ваша публикация была отправлена.",
+  "@uploadingPostSuccess": {
+    "description": "Info in upload success page"
+  },
+  "testimonyInfo": "Запишите видео на телефон.",
+  "@testimonyInfo": {
+    "description": "Record testimony guideline page info"
+  },
+  "yourVideo": "Ваше видео",
+  "@yourVideo": {
+    "description": "Title on recording tip page page"
+  },
+  "record": "Записать",
+  "@record": {
+    "description": "Button to record testimony"
+  },
+  "recordingTips": "Несколько советов, чтобы получить хорошую запись",
+  "@recordingTips": {
+    "description": "Record testimony guideline page tip list title"
+  },
+  "recordingTipA": "Найдите тихое место для записи.",
+  "@recordingTipA": {
+    "description": "Record testimony guideline page tip list item"
+  },
+  "recordingTipB": "Убедитесь, что ваше лицо освещено равномерно.",
+  "@recordingTipB": {
+    "description": "Record testimony guideline page tip list item"
+  },
+  "recordingTipC": "Подумайте, что вы хотите сказать, прежде чем начать запись.",
+  "@recordingTipC": {
+    "description": "Record testimony guideline page tip list item"
+  },
+  "recordingTipD": "Поверните ваш телефон в ландшафтный режим.",
+  "@recordingTipD": {
+    "description": "Record testimony guideline page tip list item"
+  },
+  "thankYou": "Спасибо!",
+  "@thankYou": {
+    "description": "Title in upload success page"
+  },
+  "thankYouForContribution": "Спасибо за ваш вклад!",
+  "@thankYouForContribution": {
+    "description": "Title in upload success page"
+  },
+  "uploadingVideoSuccess": "Ваше видео было отправлено.",
+  "@uploadingVideoSuccess": {
+    "description": "Info in upload success page"
+  },
+  "next": "Дальше",
+  "@next": {
+    "description": "NEXT program in check in section"
+  },
+  "recordVideoCameraPermissionAlert": "Вы должны предоставить разрешение к камере в настройках, для записи видео.",
+  "@recordVideoCameraPermissionAlert": {
+    "description": "Message in alert dialog informing about missing permission"
+  },
+  "recordVideoPhotosPermissionAlert": "Вы должны предоставить разрешение к галерее в настройках, для записи видео.",
+  "@recordVideoPhotosPermissionAlert": {
+    "description": "Message in alert dialog informing about missing permission"
+  },
+  "recordVideoStoragePermissionAlert": "Вы должны предоставить разрешение к хранилищу в настройках, для записи видео.",
+  "@recordVideoStoragePermissionAlert": {
+    "description": "Message in alert dialog informing about missing permission"
+  },
+  "recordVideoMicrophonePermissionAlert": "Вы должны предоставить разрешение к микрофону в настройках, для записи видео.",
+  "@recordVideoMicrophonePermissionAlert": {
+    "description": "Message in alert dialog informing about missing permission"
+  },
+  "takePhotoStoragePermissionAlert": "Вы должны предоставить разрешение к хранилищу в настройках, чтобы сделать фото.",
+  "@takePhotoStoragePermissionAlert": {
+    "description": "Message in alert dialog informing about missing permission"
+  },
+  "takePhotoCameraPermissionAlert": "Вы должны предоставить разрешение к камере в настройках, чтобы сделать фото.",
+  "@takePhotoCameraPermissionAlert": {
+    "description": "Message in alert dialog informing about missing permission"
+  },
+  "pickPhotoStoragePermissionAlert": "Вы должны предоставить доступ к хранилищу в настройках, чтобы выбрать фотографии.",
+  "@pickPhotoStoragePermissionAlert": {
+    "description": "Message in alert dialog informing about missing permission"
+  },
+  "permissionsAlertTitle": "Требуются разрешения",
+  "@permissionsAlertTitle": {
+    "description": "Title of an alert dialog informing about missing permission"
+  },
+  "add": "Добавить",
+  "@add": {
+    "description": "Button text on interactive live avatar section"
+  },
+  "change": "Изменить",
+  "@change": {
+    "description": "Button text on interactive live avatar section"
+  },
+  "recordingFailedTitle": "Couldn't record the video",
+  "@recordingFailedTitle": {
+    "description": "Title in alert dialog when recording fails"
+  },
+  "recordingFailedMessage": "Что-то пошло не так при попытке записать видео.",
+  "@recordingFailedMessage": {
+    "description": "Message in alert dialog when recording fails"
+  },
+  "pollSubtitle": "Опрос",
+  "@pollSubtitle": {
+    "description": "The little title in poll"
+  },
+  "writeHere": "Пишите здесь",
+  "@writeHere": {
+    "description": "New post text field placeholder"
+  },
+  "feed": "Лента",
+  "@feed": {
+    "description": "Feed page bar title"
+  },
+  "atmosphereFeedDescription": "Внесите свой вклад в ленту активности, отправив сообщение, свидетельство или фотографию, оттуда где вы находитесь.",
+  "@atmosphereFeedDescription": {
+    "description": "Feed page description"
+  },
+  "information": "Информация",
+  "@information": {
+    "description": "Feed information item title"
+  },
+  "photoNotSupported": "Съемка и выбор фотографий не поддерживаются на вашем устройстве.",
+  "@photoNotSupported": {
+    "description": "Alert displayed when phone can't take photo or pick photo from storage."
+  },
+  "answerFailed": "К сожалению, мы не смогли отправить ответ. Пожалуйста, попробуйте еще раз.",
+  "@answerFailed": {
+    "description": "Message displayed when user's answer hasn't' been sent'."
+  },
+  "question": "Вопросы",
+  "@question": {
+    "description": "Title of the question page"
+  },
+  "notificationChannelPlayerName": "Плеер",
+  "@notificationChannelPlayerName": {
+    "description": "Notification channel name in Android settings"
+  },
+  "now": "Сейчас",
+  "@now": {
+    "description": "Tv guide now playing label"
+  },
+  "createPost": "Создать пост",
+  "@createPost": {
+    "description": "Button to start text testimony and title on create post page"
+  },
+  "concernTextPlaceholder": "Опишите проблему",
+  "@concernTextPlaceholder": {
+    "description": "Placeholder text in text field on contact support page"
+  },
+  "debugInfoExplanation": "Ваше сообщение будет содержать эту информацию, чтобы помочь нам лучше понять проблему.",
+  "@debugInfoExplanation": {
+    "description": "Info about debug info usage on contact support page"
+  },
+  "send": "Отправить",
+  "@send": {
+    "description": "General button to send a form"
+  },
+  "sending": "Отправка",
+  "@sending": {
+    "description": "General sending action indicator"
+  },
+  "thankYouSupportTitle": "Спасибо за ваш отзыв!",
+  "@thankYouSupportTitle": {
+    "description": "Text on contact support confirmation page"
+  },
+  "thankYouSupportDescription": "Мы ценим все отзывы и постараемся решить эту проблему как можно скорее.",
+  "@thankYouSupportDescription": {
+    "description": "Text on contact support confirmation page"
+  },
+  "sendFail": "Couldn't send you message",
+  "@sendFail": {
+    "description": "General error message that sending failed"
+  },
+  "sendFailDescription": "Что-то пошло не так. Проверьте подключение к интернету и попробуйте еще раз.",
+  "@sendFailDescription": {
+    "description": "General error message that sending failed"
+  },
+  "today": "Сегодня",
+  "@today": {
+    "description": "First category in tv guide"
+  },
+  "noNewPosts": "Нет новых публикаций",
+  "@noNewPosts": {
+    "description": "Text displayed on the button, when there are no new posts in the feed."
+  },
+  "newPostsMultiple": "{postCount} new posts!",
+  "@newPostsMultiple": {
+    "description": "Text displayed on the button, when there are number of new posts in the feed.",
+    "placeholders": {
+      "postCount": {
+        "type": "int"
+      }
+    }
+  },
+  "newPostsSingle": "{postCount} new post!",
+  "@newPostsSingle": {
+    "description": "Text displayed on the button, when there is one new post in the feed.",
+    "placeholders": {
+      "postCount": {
+        "type": "int"
+      }
+    }
+  },
+  "expired": "Прошёл",
+  "@expired": {
+    "description": "Info that episode is no longer available."
+  },
+  "availableFrom": "Available {date}",
+  "@availableFrom": {
+    "description": "Info that episode will be released at certain date.",
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "howFar": "Как далеко вы прошли?",
+  "@howFar": {
+    "description": "Text on running competition page."
+  },
+  "submit": "Отправить",
+  "@submit": {
+    "description": "Submit button on running competition page."
+  },
+  "wellDone": "Отлично сработано!",
+  "@wellDone": {
+    "description": "Text on running competition page."
+  },
+  "wellDoneDistance": "Well done! You have registered a total distance of {distanceInKM} km",
+  "@wellDoneDistance": {
+    "description": "Text on running competition page.",
+    "placeholders": {
+      "distanceInKM": {
+        "type": "int"
+      }
+    }
+  },
+  "distanceRegistered": "Ваше расстояние было зарегистрировано. Продолжите ниже, если вы хотите отправить другое расстояние.",
+  "@distanceRegistered": {
+    "description": "Text on running competition page."
+  },
+  "ranMore": "I went more than {distanceInKM} km",
+  "@ranMore": {
+    "description": "Text on running competition page.",
+    "placeholders": {
+      "distanceInKM": {
+        "type": "int"
+      }
+    }
+  },
+  "moreThan": "More than {distanceInKM} km",
+  "@moreThan": {
+    "description": "Text on running competition page.",
+    "placeholders": {
+      "distanceInKM": {
+        "type": "int"
+      }
+    }
+  },
+  "runningEffort": "Отличное достижение! Введите количество километров, которое вы прошли ниже.",
+  "@runningEffort": {
+    "description": "Text on running competition page."
+  },
+  "slideSelect": "Сделайте слайд, чтобы выбрать, как далеко вы прошли",
+  "@slideSelect": {
+    "description": "Text on running competition page."
+  },
+  "submitAnotherDistance": "Отправить другое расстояние",
+  "@submitAnotherDistance": {
+    "description": "Text on running competition page."
+  },
+  "editPicture": "Редактировать изображение",
+  "@editPicture": {
+    "description": "Button on profile page to edit profile picture."
+  },
+  "profilePicture": "Фотография профиля",
+  "@profilePicture": {
+    "description": "Text on edit profile page."
+  },
+  "firstPostTitle": "Будьте первым, кто опубликует фото или сообщение",
+  "@firstPostTitle": {
+    "description": "Text on feed page when feed is empty."
+  },
+  "timezoneInformation": "Tv guide timetable is in your local time: {timeZone}",
+  "@timezoneInformation": {
+    "description": "TV guide footer info text.",
+    "placeholders": {
+      "timeZone": {
+        "type": "String"
+      }
+    }
+  },
+  "yourQuestion": "Ваш вопрос",
+  "@yourQuestion": {
+    "description": "Title on ask question page"
+  },
+  "uploadingInquirySuccess": "Обратите внимание, что не на все заданные вопросы даются ответы в трансляции.",
+  "@uploadingInquirySuccess": {
+    "description": "Info in upload question success page"
+  },
+  "askQuestion": "Задать вопрос",
+  "@askQuestion": {
+    "description": "Ask question text field placeholder"
+  },
+  "submitQuestionInfo": "Отправляя вопрос, вы соглашаетесь с тем, что его можно использовать в целях трансляции.",
+  "@submitQuestionInfo": {
+    "description": "Disclaimer on ask question page"
+  },
+  "posting": "Публикуется",
+  "@posting": {
+    "description": "Information about ongoing posting process"
+  },
   "submitPostInfo": "Отправляя публикацию или фото, вы соглашаетесь с тем, что их можно использовать в целях трансляции. ",
+  "@submitPostInfo": {
+    "description": "Disclaimer on text testimony page"
+  },
   "cropImage": "Обрезать изображение",
+  "@cropImage": {
+    "description": "Image crop page title"
+  },
   "square": "Квадрат",
+  "@square": {
+    "description": "Image crop mode"
+  },
   "landscape": "Ориентация",
+  "@landscape": {
+    "description": "Image crop mode"
+  },
   "pollSingleChoice": "Вы можете выбрать свой ответ только один раз.",
+  "@pollSingleChoice": {
+    "description": "Desciption of the poll type. States that user can change the answer only once."
+  },
   "pollMultipleChoice": "Вы можете менять свой ответ несколько раз.",
+  "@pollMultipleChoice": {
+    "description": "Desciption of the poll type. States that user can change the answer multiple times."
+  },
   "pollEnded": "Опрос закончился. Спасибо за ваши ответы.",
+  "@pollEnded": {
+    "description": "Message displayed when poll has been closed by administrator."
+  },
   "browserInstall": "Пожалуйста, установите веб-браузер, чтобы иметь возможность открывать этот URL.",
+  "@browserInstall": {
+    "description": "Message displayed when browser couldn't be opened on user's device."
+  },
   "share": "Поделиться",
+  "@share": {
+    "description": "Option name to share video."
+  },
   "liveNow": "В прямом эфире",
+  "@liveNow": {
+    "description": "Call to action button on featured carousel."
+  },
   "program": "Программа",
+  "@program": {
+    "description": "Title of the program tab on live page."
+  },
   "participateTab": "Участвовать",
+  "@participateTab": {
+    "description": "Title of the participate tab on live page."
+  },
   "tomorrow": "Завтра",
+  "@tomorrow": {
+    "description": "Day of transmission in tv guide."
+  },
   "readBy": "Прочитано",
-  "pollAnswer": "Вы ответили: {answer}",
+  "@readBy": {
+    "description": "Feed verse pre author text."
+  },
+  "pollAnswer": "You've answered: {answer}",
+  "@pollAnswer": {
+    "description": "Snackbar label after user has chosen poll answer",
+    "placeholders": {
+      "answer": {
+        "type": "String"
+      }
+    }
+  },
   "broadcasts": "Трансляции",
+  "@broadcasts": {
+    "description": "Title for tv guide collection on event page."
+  },
   "quizAnswered": "Отправлено ответов",
+  "@quizAnswered": {
+    "description": "Text displayed on a button when all answers in quiz have been submitted."
+  },
   "quizNotEnabled": "Викторина в данный момент недоступна. Пожалуйста, повторите попытку позже.",
+  "@quizNotEnabled": {
+    "description": "Message on alert that appears when participate item is visible, but quiz is not enabled."
+  },
   "calendar": "Календарь",
+  "@calendar": {
+    "description": "Title of calendar page."
+  },
   "noEvents": "Нет запланированных трансляций",
+  "@noEvents": {
+    "description": "Info in calendar page that no transmissions are scheduled for selected day."
+  },
   "appUpdateTitle": "Требуется обновление",
+  "@appUpdateTitle": {
+    "description": "Title of the message displayed to the user when application is too old and should be updated in a timely manner."
+  },
   "appUpdateRequest": "Пожалуйста, загрузите последнюю версию приложения, чтобы пользоваться всеми последними функциями и исправлениями ошибок.",
+  "@appUpdateRequest": {
+    "description": "Message displayed to the user when application is too old and should be updated in a timely manner."
+  },
   "appUpdateAccepted": "Обновление",
+  "@appUpdateAccepted": {
+    "description": "Option that can be chosen by the user to update his application."
+  },
   "donationNotAvailable": "Пожертвование на данный момент недоступно. Пожалуйста, повторите попытку позже.",
-  "posts": "{postsCount} Публикаций",
+  "@donationNotAvailable": {
+    "description": "Message displayed when donation flow failed."
+  },
+  "posts": "{postsCount} Posts",
+  "@posts": {
+    "description": "Contributions to feed made by the users. Plural of post.",
+    "placeholders": {
+      "postsCount": {
+        "type": "int"
+      }
+    }
+  },
   "copy": "Копировать",
+  "@copy": {
+    "description": "Copy option for quotes, verses."
+  },
   "reload": "Перезагрузить",
+  "@reload": {
+    "description": "Label on the button that allows to reload the player after error."
+  },
   "participantsTitle": "Кто отвечает?",
+  "@participantsTitleTitle": {
+    "description": "Title label on the participants list before quiz."
+  },
   "participantsSubtitle": "Выберите одного или нескольких участников.",
+  "@participantsSubtitle": {
+    "description": "Subtitle label on the participants list before quiz."
+  },
   "yourFamily": "Твоя семья",
+  "@yourFamily": {
+    "description": "Title on page when user selects family members that take part in the quiz."
+  },
   "yourTurn": "Твой ход",
+  "@yourTurn": {
+    "description": "Title on page informing user that other user will answer question in the next step."
+  },
   "fAQ": "ЧАВО",
+  "@fAQ": {
+    "description": "Title on FAQ page and item in profile page settings."
+  },
   "shareStart": "Поделиться с начала",
-  "shareTime": "Поделиться с времени {time}",
-  "loadContentError": "Не удалось загрузить контент",
+  "@shareStart": {
+    "description": "Option on action sheet for sharing from start"
+  },
+  "shareTime": "Share from time {time}",
+  "@shareTime": {
+    "description": "Option on action sheet for sharing from time",
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "loadContentError": "Couldn't load content",
+  "@loadContentError": {
+    "description": "Error text when content couldn't be loaded."
+  },
   "audioOnlyErrorDescription": "Проверьте подключение к сети и попробуйте снова",
+  "@audioOnlyErrorDescription": {
+    "description": "Error message when audio only fails to play"
+  },
   "privacyPolicy": "Политика конфиденциальности",
+  "@privacyPolicy": {
+    "description": "Title on Privacy Policy page and item in profile page settings."
+  },
   "tokenError": "We couldn't confirm your identity, most likely due to a network problem. Some features of the app may not work correctly.",
+  "@tokenError": {
+    "description": "Message indicating that there is a problem with user's token, and some features may be broken because of this."
+  },
   "categoriesTab": "Категории",
+  "@categoriesTab": {
+    "description": "Title of the Categories Tab"
+  },
   "settingsTab": "Настройки",
+  "@settingsTab": {
+    "description": "Title of the Settings Tab"
+  },
   "confirmLogin": "Подтвердить вход",
+  "@confirmLogin": {
+    "description": "Prompt that asks the user to confirm his log-in"
+  },
   "scanInfo": "Отсканируйте код с помощью телефона для доступа на страницу входа.",
+  "@scanInfo": {
+    "description": "Text that informs the user that the QR code can be scanned to enter the login page. Used on AppleTV."
+  },
   "validInfo": "QR-код действителен в течение 15 минут.",
+  "@validInfo": {
+    "description": "Message that informs the user for how long the QR Code will be valid."
+  },
   "confirmInfo": "После успешного входа в систему на вашем устройстве, нажмите кнопку ниже, чтобы подтвердить вход.",
+  "@confirmInfo": {
+    "description": "Message that asks the user to click the button in order to proceed after successful login."
+  },
   "seriesTab": "Серии",
+  "@seriesTab": {
+    "description": "Series Tab title"
+  },
   "filmsTab": "Фильмы",
+  "@filmsTab": {
+    "description": "Films Tab title"
+  },
   "eventsTab": "События",
+  "@eventsTab": {
+    "description": "Events Tab title"
+  },
   "audioLanguage": "Язык воспроизведения",
+  "@audioLanguage": {
+    "description": "Label indicating that the Audio Language can be changed here."
+  },
   "subtitlesLanguage": "Язык субтитров",
+  "@subtitlesLanguage": {
+    "description": "Label indicating that the Subtitles Language can be changed here."
+  },
   "removeFromRecentSearches": "Хотите удалить этот элемент из последних поисков?",
+  "@removeFromRecentSearches": {
+    "description": "Prompt that asks the user wheter they are certain, that they want to remove the element from recent searches."
+  },
   "noTransmissionToday": "Нет запланированной трансляции на сегодня",
+  "@noTransmissionToday": {
+    "description": "Messages that informs the user, that there are no schedules transmission for today."
+  },
   "livestreamMaintenanceTitle": "Прямой эфир недоступен",
+  "@livestreamMaintenanceTitle": {
+    "description": "Message that informs the user, that the livestream is unavailable."
+  },
   "start": "Начало",
+  "@start": {
+    "description": "Word used while displaying information about the beggining of a video or an event in tv guide."
+  },
   "transmissionSchedule": "График трансляций",
+  "@transmissionSchedule": {
+    "description": "Label that indicates the user is looking at Transmission schedule"
+  },
   "featured": "Рекомендуемое",
+  "@featured": {
+    "description": "Featured videos collection header"
+  },
   "errorTryAgain": "Что-то пошло не так. Пожалуйста, повторите попытку позже.",
+  "@errorTryAgain": {
+    "description": "Message that informs the user, that there was an error. Then politely asks the user to try again later."
+  },
   "reportProblem": "В случае каких-либо проблем используйте QR-код ниже, чтобы отправить нам письмо.",
+  "@reportProblem": {
+    "description": "Message indicating that whenever the user wants to report a problem, they can scan the QR code to send an email to support."
+  },
   "phoneReadingProblem": "Если ваш телефон не может прочитать QR-код, отправьте нам электронное письмо со следующей информацией",
+  "@phoneReadingProblem": {
+    "description": "Message explaining that if the user's phone can't scan the QR code, they can send the support e-mail with information listed after this message."
+  },
   "goTo": "или перейдите",
+  "@goTo": {
+    "description": "Message used to point the user to the shortened URL in case they can't use the QR code to log-in. This is used on AppleTV."
+  },
   "watchBrunstad": "Смотреть BrunstadTV в прямом эфире",
+  "@watchBrunstad": {
+    "description": "Text that entices the user to watch the livestream."
+  },
   "notLogged": "Не залогинен",
+  "@notLogged": {
+    "description": "Text that informs the user, that they are not logged in."
+  },
   "authResponse0": "Пожалуйста, используйте новый QR-код для входа.",
+  "@authResponse0": {
+    "description": "Authentication response displayed to the user when an old QR code was used. Asking them to use a new one if they want to log in."
+  },
   "authResponse1": "Пожалуйста, войдите в систему на мобильном, с помощью QR-кода",
+  "@authResponse1": {
+    "description": "Message displayed to the user when they tried to proceed with the log-in on AppleTv without first logging through their mobile device."
+  },
   "authResponse3": "Проверьте подключение к сети и повторите попытку позже.",
+  "@authResponse3": {
+    "description": "Message that indicates there was an error during Authentication process. Asking the user to check their network connection and try again."
+  },
   "liveHeader": "Прямой эфир",
+  "@liveHeader": {
+    "description": "Header of the Live Tab — the tab that contains the livestream player on AppleTV."
+  },
   "recentlyPublishedSection": "Recently published",
+  "@recentlyPublishedSection": {
+    "description": "Section in explore."
+  },
   "exploreCategoriesSection": "Explore categories",
+  "@exploreCategoriesSection": {
+    "description": "Section in explore."
+  },
   "programsSection": "Programs",
+  "@programsSection": {
+    "description": "Section in explore."
+  },
   "episodesSection": "Эпизоды",
+  "@episodesSection": {
+    "description": "Section in explore."
+  },
   "categorySeries": "Серии",
+  "@categorySeries": {
+    "description": "Category name"
+  },
   "categoryKids": "Kids",
+  "@categoryKids": {
+    "description": "Category name"
+  },
   "categoryFilms": "Фильмы",
+  "@categoryFilms": {
+    "description": "Category name"
+  },
   "categoryEvents": "События",
+  "@categoryEvents": {
+    "description": "Category name"
+  },
   "categoryMusic": "Music",
+  "@categoryMusic": {
+    "description": "Category name"
+  },
   "noPlannedEvents": "No planned events today",
-  "watchNow": "Watch now"
+  "@noPlannedEvents": {
+    "description": "Information in tvguide"
+  },
+  "watchNow": "Watch now",
+  "@watchNow": {
+    "description": "Button on featured carousel"
+  }
 }

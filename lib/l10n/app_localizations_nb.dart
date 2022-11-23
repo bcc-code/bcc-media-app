@@ -1,8 +1,8 @@
 import 'app_localizations.dart';
 
-/// The translations for Norwegian (`no`).
-class SNo extends S {
-  SNo([String locale = 'no']) : super(locale);
+/// The translations for Norwegian Bokmål (`nb`).
+class SNb extends S {
+  SNb([String locale = 'nb']) : super(locale);
 
   @override
   String get loadingContent => 'Loading content';
@@ -20,7 +20,7 @@ class SNo extends S {
   String get calendarThisWeek => 'This week';
 
   @override
-  String get calendarWeek => 'week';
+  String get calendarWeek => 'uke';
 
   @override
   String get loading => 'Laster';
@@ -174,7 +174,8 @@ class SNo extends S {
 
   @override
   String queueLimitMessage(int elementCount) {
-    return 'Du kan ikke ha mer enn $elementCount elementer i køen.';
+
+    return 'You cannot have more than $elementCount elements in queue.';
   }
 
   @override
@@ -263,6 +264,7 @@ class SNo extends S {
 
   @override
   String watchingWith(int numPeople) {
+
     return 'Du ser på sammen med $numPeople andre';
   }
 
@@ -277,6 +279,7 @@ class SNo extends S {
 
   @override
   String charactersLimit(int charsLeft, int charsTotal) {
+
     return '$charsLeft av $charsTotal tegn igjen';
   }
 
@@ -407,7 +410,7 @@ class SNo extends S {
   String get thankYouSupportDescription => 'Vi setter pris på alle tilbakemeldinger og vi vil se på problemet så snart som mulig.';
 
   @override
-  String get sendFail => 'Kunne ikke sende deg melding';
+  String get sendFail => 'Kunne ikke sende din melding';
 
   @override
   String get sendFailDescription => 'Noe gikk galt. Sjekk internettforbindelsen din og prøv på nytt.';
@@ -420,11 +423,13 @@ class SNo extends S {
 
   @override
   String newPostsMultiple(int postCount) {
+
     return '$postCount nye innlegg!';
   }
 
   @override
   String newPostsSingle(int postCount) {
+
     return '$postCount nytt innlegg!';
   }
 
@@ -433,6 +438,7 @@ class SNo extends S {
 
   @override
   String availableFrom(String date) {
+
     return 'Tilgjengelig $date';
   }
 
@@ -447,6 +453,7 @@ class SNo extends S {
 
   @override
   String wellDoneDistance(int distanceInKM) {
+
     return 'Bra jobbet! Du har registrert en total distanse på $distanceInKM km';
   }
 
@@ -455,11 +462,13 @@ class SNo extends S {
 
   @override
   String ranMore(int distanceInKM) {
+
     return 'Jeg gikk mer enn $distanceInKM km';
   }
 
   @override
   String moreThan(int distanceInKM) {
+
     return 'Mer enn $distanceInKM km';
   }
 
@@ -483,6 +492,7 @@ class SNo extends S {
 
   @override
   String timezoneInformation(String timeZone) {
+
     return 'Tv-guide tidstabell er i din lokale tid: $timeZone';
   }
 
@@ -545,6 +555,7 @@ class SNo extends S {
 
   @override
   String pollAnswer(String answer) {
+
     return 'Du har svart: $answer';
   }
 
@@ -577,6 +588,7 @@ class SNo extends S {
 
   @override
   String posts(int postsCount) {
+
     return '$postsCount Innlegg';
   }
 
@@ -606,6 +618,7 @@ class SNo extends S {
 
   @override
   String shareTime(String time) {
+
     return 'Del fra tid $time';
   }
 

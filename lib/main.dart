@@ -126,6 +126,9 @@ void $main({required FirebaseOptions? firebaseOptions}) async {
     child: Consumer(
         builder: (context, ref, w) => MaterialApp.router(
             localizationsDelegates: S.localizationsDelegates,
+            localeResolutionCallback: (locale, supportedLocales) {
+              return locale?.languageCode == 'no' ? const Locale('nb') : locale;
+            },
             supportedLocales: S.supportedLocales,
             locale: ref.watch(settingsProvider).appLanguage,
             theme: ThemeData(),
@@ -165,6 +168,7 @@ ThemeData createTheme() {
         titleTextStyle: BtvTextStyles.title3.copyWith(height: 1),
         toolbarTextStyle: BtvTextStyles.button2,
         centerTitle: true,
+        elevation: 0,
         toolbarHeight: 44,
         iconTheme: const IconThemeData(color: BtvColors.tint1),
         backgroundColor: BtvColors.background1),

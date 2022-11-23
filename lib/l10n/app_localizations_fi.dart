@@ -174,7 +174,8 @@ class SFi extends S {
 
   @override
   String queueLimitMessage(int elementCount) {
-    return 'Jonossa ei voi olle enempää kuin $elementCount juttua.';
+
+    return 'You cannot have more than $elementCount elements in queue.';
   }
 
   @override
@@ -263,7 +264,8 @@ class SFi extends S {
 
   @override
   String watchingWith(int numPeople) {
-    return 'Sinä ja $numPeople muuta katselette tätä';
+
+    return 'You are watching with $numPeople others';
   }
 
   @override
@@ -277,7 +279,8 @@ class SFi extends S {
 
   @override
   String charactersLimit(int charsLeft, int charsTotal) {
-    return '$charsTotal merkistä $charsLeft jäljellä';
+
+    return '$charsLeft of $charsTotal characters left';
   }
 
   @override
@@ -407,7 +410,7 @@ class SFi extends S {
   String get thankYouSupportDescription => 'Arvostamme kovasti palautetta ja teemme parhaamme ongelman korjaamiseen.';
 
   @override
-  String get sendFail => 'Lähettäminen epäonnistui';
+  String get sendFail => 'Couldn\'t send you message';
 
   @override
   String get sendFailDescription => 'Jokin ei nyt toimi. Tarkista nettiyhteys ja kokeile uudelleen.';
@@ -420,12 +423,14 @@ class SFi extends S {
 
   @override
   String newPostsMultiple(int postCount) {
-    return '$postCount uutta viestiä!';
+
+    return '$postCount new posts!';
   }
 
   @override
   String newPostsSingle(int postCount) {
-    return '$postCount uutta viestiä!';
+
+    return '$postCount new post!';
   }
 
   @override
@@ -433,7 +438,8 @@ class SFi extends S {
 
   @override
   String availableFrom(String date) {
-    return 'Saatavilla $date';
+
+    return 'Available $date';
   }
 
   @override
@@ -447,7 +453,8 @@ class SFi extends S {
 
   @override
   String wellDoneDistance(int distanceInKM) {
-    return 'Hienoa! Olet ilmoittanut yhteensä $distanceInKM km';
+
+    return 'Well done! You have registered a total distance of $distanceInKM km';
   }
 
   @override
@@ -455,12 +462,14 @@ class SFi extends S {
 
   @override
   String ranMore(int distanceInKM) {
-    return 'Kuljin yli $distanceInKM km';
+
+    return 'I went more than $distanceInKM km';
   }
 
   @override
   String moreThan(int distanceInKM) {
-    return 'Yli $distanceInKM km';
+
+    return 'More than $distanceInKM km';
   }
 
   @override
@@ -483,7 +492,8 @@ class SFi extends S {
 
   @override
   String timezoneInformation(String timeZone) {
-    return 'Kellonajat ovat sinun aikavyöhykettä: $timeZone';
+
+    return 'Tv guide timetable is in your local time: $timeZone';
   }
 
   @override
@@ -545,7 +555,8 @@ class SFi extends S {
 
   @override
   String pollAnswer(String answer) {
-    return 'Olet vastannut: $answer';
+
+    return 'You\'ve answered: $answer';
   }
 
   @override
@@ -577,7 +588,8 @@ class SFi extends S {
 
   @override
   String posts(int postsCount) {
-    return '$postsCount viestiä';
+
+    return '$postsCount Posts';
   }
 
   @override
@@ -606,11 +618,12 @@ class SFi extends S {
 
   @override
   String shareTime(String time) {
-    return 'Jaa video tästä kohtaa $time';
+
+    return 'Share from time $time';
   }
 
   @override
-  String get loadContentError => 'Sisällön lataaminen epäonnistui';
+  String get loadContentError => 'Couldn\'t load content';
 
   @override
   String get audioOnlyErrorDescription => 'Tarkista nettiyhteys ja yritä uudelleen';

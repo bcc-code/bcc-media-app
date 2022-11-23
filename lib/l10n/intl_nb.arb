@@ -20,11 +20,11 @@
   "@calendarThisWeek": {
     "description": "Text for This week."
   },
-  "calendarWeek": "week",
+  "calendarWeek": "uke",
   "@calendarWeek": {
     "description": "Text week."
   },
-  "loading": "Loading",
+  "loading": "Laster",
   "@loading": {
     "description": "Text to indicate loading state."
   },
@@ -40,15 +40,15 @@
   "@loginPageDisplay3": {
     "description": "Text displayed on login screen."
   },
-  "liveTab": "Diretta",
+  "liveTab": "Direkte",
   "@liveTab": {
     "description": "Title of live page tab"
   },
-  "logOutButton": "Esci",
+  "logOutButton": "Logg ut",
   "@logOutButton": {
     "description": "Text displayed on Log out button"
   },
-  "profileTab": "Profilo",
+  "profileTab": "Min profil",
   "@profileTab": {
     "description": "Title of the profile page"
   },
@@ -56,39 +56,39 @@
   "@faq": {
     "description": "Title of the FAQ page."
   },
-  "bccMediaCenter": "BrunstadTV è un centro multimediale non-commerciale che produce e distribuisce contenuti basati su valori positivi e cristiani.",
+  "bccMediaCenter": "BrunstadTV er et ikke-kommersielt mediesenter som produserer og distribuerer innhold med positive og kristne verdier.",
   "@bccMediaCenter": {
     "description": "Disclaimer on login page"
   },
-  "signInButton": "7 / 5000\nRegistrati",
+  "signInButton": "Logg på",
   "@signInButton": {
     "description": "Text displayed on Sign in button"
   },
-  "tryAgainButton": "Riprova",
+  "tryAgainButton": "Prøv igjen",
   "@tryAgainButton": {
     "description": "Button on error alert that lets user to retry failed action"
   },
-  "loggedOutTitle": "Disconnesso",
+  "loggedOutTitle": "Logget ut",
   "@loggedOutTitle": {
     "description": "Title of the alert message that is shown when user is logged out automatically."
   },
-  "loggedOutMessage": "Sei stato disconnesso. Per favore esegui nuovamente l'accesso.",
+  "loggedOutMessage": "Du har blitt logget ut. Vennligst logg inn igjen.",
   "@loggedOutMessage": {
     "description": "Text of the alert message that is shown when user is logged out automatically."
   },
-  "mostWatched": "I più visti",
+  "mostWatched": "Mest sett",
   "@mostWatched": {
     "description": "Sorting option on audience page"
   },
-  "mostRecent": "I più recenti",
+  "mostRecent": "Sist publisert",
   "@mostRecent": {
     "description": "Sorting option on audience page"
   },
-  "latelyPublished": "Pubblicati di recente",
+  "latelyPublished": "Sist publisert",
   "@latelyPublished": {
     "description": "Title for the list of videos on login page"
   },
-  "anErrorOccurred": "Si è verificato un errore",
+  "anErrorOccurred": "Det har oppstått en feil",
   "@anErrorOccurred": {
     "description": "Title in error popup"
   },
@@ -96,71 +96,71 @@
   "@ok": {
     "description": "Popup confirmation button"
   },
-  "loginFailedCheckNetwork": "Accesso fallito. Controlla la tua connessione di rete e riprova.",
+  "loginFailedCheckNetwork": "Det har oppstått en feil. Sjekk nettverksforbindelsen og prøv en gang til.",
   "@loginFailedCheckNetwork": {
     "description": "Login error message"
   },
-  "loginFailedTryAgain": "Accesso fallito. Per favore riprova più tardi.",
+  "loginFailedTryAgain": "Det har oppstått en feil. Prøv igjen senere.",
   "@loginFailedTryAgain": {
     "description": "Login error message"
   },
-  "soundLanguage": "Linguaggio del suono",
+  "soundLanguage": "Lydspråk",
   "@soundLanguage": {
     "description": "Settings item on profile page"
   },
-  "subtitleLanguage": "Subtitle language",
+  "subtitleLanguage": "Språk for undertekster",
   "@subtitleLanguage": {
     "description": "Settings item on profile page"
   },
-  "appLanguage": "Lingua dell'applicazione",
+  "appLanguage": "App språk",
   "@appLanguage": {
     "description": "Settings item on profile page"
   },
-  "checkNetwork": "Check your network connection and try again.",
+  "checkNetwork": "Sjekk nettverksforbindelsen og prøv en gang til",
   "@checkNetwork": {
     "description": "Error message for the user displayed in many contexts."
   },
-  "tryAgain": "Please try again later.",
+  "tryAgain": "Prøv igjen senere.",
   "@tryAgain": {
     "description": "Error message for the user displayed in many contexts."
   },
-  "cantPlayVideo": "You can't play this video now.",
+  "cantPlayVideo": "Kan ikke spille av denne videoen nå.",
   "@cantPlayVideo": {
     "description": "Error message for the user displayed when video playback attempt failed."
   },
-  "about": "Circa",
+  "about": "Om",
   "@about": {
     "description": "Title of About page and item in profile page settings."
   },
-  "version": "Versione",
+  "version": "Versjon",
   "@version": {
     "description": "Version ot the application on About page; followed by version number"
   },
-  "contactSupport": "Contatta il supporto",
+  "contactSupport": "Kontakt support",
   "@contactSupport": {
     "description": "Settings item on profile page"
   },
-  "cancel": "Annulla",
+  "cancel": "Avbryt",
   "@cancel": {
     "description": "General cancel action button"
   },
-  "upNext": "Al prossimo",
+  "upNext": "Neste",
   "@upNext": {
     "description": "Title on Up next feature."
   },
-  "done": "Done",
+  "done": "Utført",
   "@done": {
     "description": "General Done button. User confirms that action completed sucessfully."
   },
-  "playerSettings": "Player settings",
+  "playerSettings": "Innstilling for videoavspiller",
   "@playerSettings": {
     "description": "Title of the Player settings activity in Android"
   },
-  "settings": "Impostazioni",
+  "settings": "Innstillinger",
   "@settings": {
     "description": "Label of the button to go to Android/iOS settings"
   },
-  "none": "Nessuno",
+  "none": "Ingen",
   "@none": {
     "description": "Indicator on profile page that subtitles are disabled."
   },
@@ -168,59 +168,59 @@
   "@auto": {
     "description": "Indicator on profile page that audio and app language are chosen automatically."
   },
-  "live": "Diretta",
+  "live": "Direkte",
   "@live": {
     "description": "Title of the live stream"
   },
-  "subtitles": "Subtitles",
+  "subtitles": "Undertekster",
   "@subtitles": {
     "description": "Title of the Player settings activity tab in Android"
   },
-  "audio": "Audio",
+  "audio": "Lyd",
   "@audio": {
     "description": "Title of the Player settings activity tab in Android"
   },
-  "quality": "Quality",
+  "quality": "Kvalitet",
   "@quality": {
     "description": "Title of the Player settings activity tab in Android"
   },
-  "seasons": "Seasons",
+  "seasons": "Sesonger",
   "@seasons": {
     "description": "Followed by number of seasons in given series."
   },
-  "episodes": "Episodi",
+  "episodes": "Episoder",
   "@episodes": {
     "description": "Followed by number of episodes in given series."
   },
-  "search": "Search",
+  "search": "Søk",
   "@search": {
     "description": "Button to clear cache"
   },
-  "noResults": "Nessun risultato",
+  "noResults": "Ingen resultater",
   "@noResults": {
     "description": "No search results."
   },
-  "doYouWantCast": "Do you want to cast this video?",
+  "doYouWantCast": "Vil du sende denne videoen til Chromecast?",
   "@doYouWantCast": {
     "description": "Prompt displayed to the user"
   },
-  "play": "Play",
+  "play": "Spill av",
   "@play": {
     "description": "Option in prompt dialog."
   },
-  "castQueue": "Cast queue",
+  "castQueue": "Legg til i kø",
   "@castQueue": {
     "description": "Queue page title"
   },
-  "options": "Options",
+  "options": "Alternativer",
   "@options": {
     "description": "Options dialog title"
   },
-  "remove": "Remove",
+  "remove": "Fjern",
   "@remove": {
     "description": "Option in options dialog"
   },
-  "queueLimitTitle": "Limit",
+  "queueLimitTitle": "Købegrensing Title",
   "@queueLimitTitle": {
     "description": "Title of the alert to the user when attempt to add video to cast queue failed due to full queue."
   },
@@ -233,7 +233,7 @@
       }
     }
   },
-  "recentSearches": "Ricerche recenti",
+  "recentSearches": "Siste søk",
   "@recentSearches": {
     "description": "Recent searches list title."
   },
@@ -241,39 +241,39 @@
   "@tVLogin": {
     "description": "Title of the TV login alert"
   },
-  "tVLoginSuccessful": "Log in successful, please confirm on TV.",
+  "tVLoginSuccessful": "Du er nå logget inn, vennligst bekreft på TVen",
   "@tVLoginSuccessful": {
     "description": "Message of the TV login alert"
   },
-  "seeMore": "See more",
+  "seeMore": "Se mer",
   "@seeMore": {
     "description": "Button on featured item to navigete to page with player"
   },
-  "seeAll": "See all",
+  "seeAll": "Se alle",
   "@seeAll": {
     "description": "Button on explore page to navigete to audience page"
   },
-  "series": "Serie",
+  "series": "Serier",
   "@series": {
     "description": "Title of the tab on info page"
   },
-  "livestreamMaintenance": "We're sorry, livestream is currently under maintenance. Please try again later.",
+  "livestreamMaintenance": "Vi beklager, direktestrømmen er for tiden ikke tilgjengelig på grunn av vedlikehold. Prøv igjen senere",
   "@livestreamMaintenance": {
     "description": "Message displayed over overlay when livestream is under maintenance."
   },
-  "homeTab": "Home",
+  "homeTab": "Hjem",
   "@homeTab": {
     "description": "Title of the home page"
   },
-  "sortBy": "Sort by",
+  "sortBy": "Sorter etter",
   "@sortBy": {
     "description": "Sorting criteria selector"
   },
-  "videoQuality": "Video quality",
+  "videoQuality": "Video kvalitet",
   "@videoQuality": {
     "description": "Settings item in profile page for Android."
   },
-  "low": "Low",
+  "low": "Lav",
   "@low": {
     "description": "Low quality video option"
   },
@@ -281,15 +281,15 @@
   "@medium": {
     "description": "Medium quality video option"
   },
-  "high": "High",
+  "high": "Høy",
   "@high": {
     "description": "High quality video option"
   },
-  "emptySearch": "Puoi cercare tutti i contenuti di BrunstadTV. Serie, film ed episodi.",
+  "emptySearch": "Du kan søke på alt innhold fra BrunstadTV. Serier, filmer og episoder",
   "@emptySearch": {
     "description": "Message on search page when there is no search results."
   },
-  "back": "Back",
+  "back": "Tilbake",
   "@back": {
     "description": "General back button to navigate back"
   },
@@ -301,51 +301,51 @@
   "@episodeLetter": {
     "description": "Episode letter in label S1E3"
   },
-  "atoZ": "A-Z",
+  "atoZ": "A-Å",
   "@atoZ": {
     "description": "Sort order"
   },
-  "ztoA": "Z-A",
+  "ztoA": "Å-A",
   "@ztoA": {
     "description": "Sort order"
   },
-  "shortFilms": "Brevi filmati",
+  "shortFilms": "Kortfilmer",
   "@shortFilms": {
     "description": "Title of the films collection."
   },
-  "videos": "Video",
+  "videos": "Filmer",
   "@videos": {
     "description": "Followed by number of videos"
   },
-  "moreInfo": "More information",
+  "moreInfo": "Mer informasjon",
   "@moreInfo": {
     "description": "Option in action sheet for the video that triggers info page for the video."
   },
-  "info": "Information",
+  "info": "Informasjon",
   "@info": {
     "description": "Video info page title."
   },
-  "episode": "Episodio",
+  "episode": "Episode",
   "@episode": {
     "description": "Title of the tab on info page"
   },
-  "takePhoto": "Take a photo",
+  "takePhoto": "Ta et bilde",
   "@takePhoto": {
     "description": "Option in menu"
   },
-  "pickPhoto": "Pick from gallery",
+  "pickPhoto": "Hent fra galleri",
   "@pickPhoto": {
     "description": "Option in menu"
   },
-  "uploadFileTitle": "Upload file",
+  "uploadFileTitle": "Last opp fil",
   "@uploadFileTitle": {
     "description": "Title of the dialog to confirm upload"
   },
-  "uploadFileMessage": "Do you want to upload this file?",
+  "uploadFileMessage": "Vil du laste opp denne filen?",
   "@uploadFileMessage": {
     "description": "Content of the dialog to confirm upload"
   },
-  "watchingWith": "You are watching with {numPeople} others",
+  "watchingWith": "Du ser på sammen med {numPeople} andre",
   "@watchingWith": {
     "description": "Info on live stream page",
     "placeholders": {
@@ -354,19 +354,19 @@
       }
     }
   },
-  "uploading": "Uploading",
+  "uploading": "Opplasting",
   "@uploading": {
     "description": "Message during file upload"
   },
-  "uploadFail": "Upload failed",
+  "uploadFail": "Opplasting feilet",
   "@uploadFail": {
     "description": "Upload result message"
   },
-  "post": "Post",
+  "post": "Send",
   "@post": {
     "description": "Button to post written testimony"
   },
-  "charactersLimit": "{charsLeft} of {charsTotal} characters left",
+  "charactersLimit": "{charsLeft} av {charsTotal} tegn igjen",
   "@charactersLimit": {
     "description": "Info about limit of characters in written testimony",
     "placeholders": {
@@ -378,111 +378,111 @@
       }
     }
   },
-  "uploadingPostSuccess": "Your post has been sent in.",
+  "uploadingPostSuccess": "Ditt innlegg har blitt sendt inn.",
   "@uploadingPostSuccess": {
     "description": "Info in upload success page"
   },
-  "testimonyInfo": "Record your video with your phone.",
+  "testimonyInfo": "Ta opp video med telefonen din.",
   "@testimonyInfo": {
     "description": "Record testimony guideline page info"
   },
-  "yourVideo": "Your video",
+  "yourVideo": "Din video",
   "@yourVideo": {
     "description": "Title on recording tip page page"
   },
-  "record": "Record",
+  "record": "Ta opp",
   "@record": {
     "description": "Button to record testimony"
   },
-  "recordingTips": "A few tips to get a good recording",
+  "recordingTips": "Noen tips for å ta et godt opptak",
   "@recordingTips": {
     "description": "Record testimony guideline page tip list title"
   },
-  "recordingTipA": "Find a quiet place to record.",
+  "recordingTipA": "Finn et stille sted for å ta opp.",
   "@recordingTipA": {
     "description": "Record testimony guideline page tip list item"
   },
-  "recordingTipB": "Make sure that your face is evenly lit.",
+  "recordingTipB": "Pass på at ansiktet ditt er jevnt opplyst.",
   "@recordingTipB": {
     "description": "Record testimony guideline page tip list item"
   },
-  "recordingTipC": "Think about what you want to say before you start recording.",
+  "recordingTipC": "Tenk over hva du ønsker å si før du starter opptak.",
   "@recordingTipC": {
     "description": "Record testimony guideline page tip list item"
   },
-  "recordingTipD": "Turn your phone in landscape mode.",
+  "recordingTipD": "Snu telefonen i liggende retning",
   "@recordingTipD": {
     "description": "Record testimony guideline page tip list item"
   },
-  "thankYou": "Thank you!",
+  "thankYou": "Tusen takk!",
   "@thankYou": {
     "description": "Title in upload success page"
   },
-  "thankYouForContribution": "Thank you for your contribution!",
+  "thankYouForContribution": "Takk for ditt bidrag!",
   "@thankYouForContribution": {
     "description": "Title in upload success page"
   },
-  "uploadingVideoSuccess": "Your video has been sent in.",
+  "uploadingVideoSuccess": "Din video har blitt sendt inn.",
   "@uploadingVideoSuccess": {
     "description": "Info in upload success page"
   },
-  "next": "Next",
+  "next": "Neste",
   "@next": {
     "description": "NEXT program in check in section"
   },
-  "recordVideoCameraPermissionAlert": "You have to grant camera permission in settings to record video.",
+  "recordVideoCameraPermissionAlert": "Du må gi kamera tillatelse i innstillinger for å kunne ta opp video.",
   "@recordVideoCameraPermissionAlert": {
     "description": "Message in alert dialog informing about missing permission"
   },
-  "recordVideoPhotosPermissionAlert": "You have to grant photo album permission in settings to record video.",
+  "recordVideoPhotosPermissionAlert": "Du må gi kamerarull tillatelse i innstillinger for å kunne ta opp video.",
   "@recordVideoPhotosPermissionAlert": {
     "description": "Message in alert dialog informing about missing permission"
   },
-  "recordVideoStoragePermissionAlert": "You have to grant storage permission in settings to record video.",
+  "recordVideoStoragePermissionAlert": "Du må gi lagring tillatelse i innstillinger for å kunne ta opp video.",
   "@recordVideoStoragePermissionAlert": {
     "description": "Message in alert dialog informing about missing permission"
   },
-  "recordVideoMicrophonePermissionAlert": "You have to grant microphone permission in settings to record video.",
+  "recordVideoMicrophonePermissionAlert": "Du må gi mikrofon tillatelse i innstillinger for å kunne ta opp video.",
   "@recordVideoMicrophonePermissionAlert": {
     "description": "Message in alert dialog informing about missing permission"
   },
-  "takePhotoStoragePermissionAlert": "You have to grant storage permission in settings to take photo.",
+  "takePhotoStoragePermissionAlert": "Du må gi lagring tillatelse i innstillinger for å kunne ta bilde.",
   "@takePhotoStoragePermissionAlert": {
     "description": "Message in alert dialog informing about missing permission"
   },
-  "takePhotoCameraPermissionAlert": "You have to grant camera permission in settings to take photo.",
+  "takePhotoCameraPermissionAlert": "Du må gi kamera tillatelse i innstillinger for å kunne ta bilde.",
   "@takePhotoCameraPermissionAlert": {
     "description": "Message in alert dialog informing about missing permission"
   },
-  "pickPhotoStoragePermissionAlert": "You have to grant storage permission in settings to pick photos.",
+  "pickPhotoStoragePermissionAlert": "Du må gi lagring tillatelse i innstillinger for å kunne velge bilder.",
   "@pickPhotoStoragePermissionAlert": {
     "description": "Message in alert dialog informing about missing permission"
   },
-  "permissionsAlertTitle": "Permissions needed",
+  "permissionsAlertTitle": "Tillatelse trenges",
   "@permissionsAlertTitle": {
     "description": "Title of an alert dialog informing about missing permission"
   },
-  "add": "Add",
+  "add": "Legg til",
   "@add": {
     "description": "Button text on interactive live avatar section"
   },
-  "change": "Change",
+  "change": "Endre",
   "@change": {
     "description": "Button text on interactive live avatar section"
   },
-  "recordingFailedTitle": "Coulnd't record the video",
+  "recordingFailedTitle": "Kunne ikke ta opp video",
   "@recordingFailedTitle": {
     "description": "Title in alert dialog when recording fails"
   },
-  "recordingFailedMessage": "Something went wrong while trying to record the video.",
+  "recordingFailedMessage": "Noe gikk feil underveis i videoopptaket.",
   "@recordingFailedMessage": {
     "description": "Message in alert dialog when recording fails"
   },
-  "pollSubtitle": "Poll",
+  "pollSubtitle": "Avstemming",
   "@pollSubtitle": {
     "description": "The little title in poll"
   },
-  "writeHere": "Write here",
+  "writeHere": "Skriv her",
   "@writeHere": {
     "description": "New post text field placeholder"
   },
@@ -490,43 +490,43 @@
   "@feed": {
     "description": "Feed page bar title"
   },
-  "atmosphereFeedDescription": "Contribute in the activity feed by sending in a message, testimony or picture from where you are.",
+  "atmosphereFeedDescription": "Bidra i feeden ved å sende inn en hilsen, et vitnesbyrd eller et bilde fra der du er.",
   "@atmosphereFeedDescription": {
     "description": "Feed page description"
   },
-  "information": "Information",
+  "information": "Informasjon",
   "@information": {
     "description": "Feed information item title"
   },
-  "photoNotSupported": "Taking and picking photo are not supported on your device.",
+  "photoNotSupported": "Ta og velge bilder er ikke støttet på denne enheten.",
   "@photoNotSupported": {
     "description": "Alert displayed when phone can't take photo or pick photo from storage."
   },
-  "answerFailed": "Sorry! We were unable to send the answer. Please, try again.",
+  "answerFailed": "Beklager! Vi kunne ikke sende inn svaret. Vennligst prøv igjen.",
   "@answerFailed": {
     "description": "Message displayed when user's answer hasn't' been sent'."
   },
-  "question": "Question",
+  "question": "Spørsmål",
   "@question": {
     "description": "Title of the question page"
   },
-  "notificationChannelPlayerName": "Player",
+  "notificationChannelPlayerName": "Spiller",
   "@notificationChannelPlayerName": {
     "description": "Notification channel name in Android settings"
   },
-  "now": "Adesso",
+  "now": "Nå",
   "@now": {
     "description": "Tv guide now playing label"
   },
-  "createPost": "Create post",
+  "createPost": "Lag innlegg",
   "@createPost": {
     "description": "Button to start text testimony and title on create post page"
   },
-  "concernTextPlaceholder": "Describe the issue",
+  "concernTextPlaceholder": "Beskriv problemet",
   "@concernTextPlaceholder": {
     "description": "Placeholder text in text field on contact support page"
   },
-  "debugInfoExplanation": "Your message will include this information, to help us better understand the issue.",
+  "debugInfoExplanation": "Meldingen din vil inneholde denne informasjonen for å hjelpe oss å forstå problemet bedre.",
   "@debugInfoExplanation": {
     "description": "Info about debug info usage on contact support page"
   },
@@ -534,35 +534,35 @@
   "@send": {
     "description": "General button to send a form"
   },
-  "sending": "Sending",
+  "sending": "Sender",
   "@sending": {
     "description": "General sending action indicator"
   },
-  "thankYouSupportTitle": "Thank you for your feedback!",
+  "thankYouSupportTitle": "Takk for din tilbakemelding!",
   "@thankYouSupportTitle": {
     "description": "Text on contact support confirmation page"
   },
-  "thankYouSupportDescription": "We appreciate all feedback and we will address the issue as soon as possible.",
+  "thankYouSupportDescription": "Vi setter pris på alle tilbakemeldinger og vi vil se på problemet så snart som mulig.",
   "@thankYouSupportDescription": {
     "description": "Text on contact support confirmation page"
   },
-  "sendFail": "Couldn't send you message",
+  "sendFail": "Kunne ikke sende din melding",
   "@sendFail": {
     "description": "General error message that sending failed"
   },
-  "sendFailDescription": "Something went wrong. Check your internet connection and try again.",
+  "sendFailDescription": "Noe gikk galt. Sjekk internettforbindelsen din og prøv på nytt.",
   "@sendFailDescription": {
     "description": "General error message that sending failed"
   },
-  "today": "Today",
+  "today": "I dag",
   "@today": {
     "description": "First category in tv guide"
   },
-  "noNewPosts": "No new posts",
+  "noNewPosts": "Ingen nye innlegg",
   "@noNewPosts": {
     "description": "Text displayed on the button, when there are no new posts in the feed."
   },
-  "newPostsMultiple": "{postCount} new posts!",
+  "newPostsMultiple": "{postCount} nye innlegg!",
   "@newPostsMultiple": {
     "description": "Text displayed on the button, when there are number of new posts in the feed.",
     "placeholders": {
@@ -571,7 +571,7 @@
       }
     }
   },
-  "newPostsSingle": "{postCount} new post!",
+  "newPostsSingle": "{postCount} nytt innlegg!",
   "@newPostsSingle": {
     "description": "Text displayed on the button, when there is one new post in the feed.",
     "placeholders": {
@@ -580,11 +580,11 @@
       }
     }
   },
-  "expired": "Scaduto",
+  "expired": "Utgått",
   "@expired": {
     "description": "Info that episode is no longer available."
   },
-  "availableFrom": "Available {date}",
+  "availableFrom": "Tilgjengelig {date}",
   "@availableFrom": {
     "description": "Info that episode will be released at certain date.",
     "placeholders": {
@@ -593,19 +593,19 @@
       }
     }
   },
-  "howFar": "How far did you go?",
+  "howFar": "Hvor lang var turen din?",
   "@howFar": {
     "description": "Text on running competition page."
   },
-  "submit": "Submit",
+  "submit": "Send inn",
   "@submit": {
     "description": "Submit button on running competition page."
   },
-  "wellDone": "Well done!",
+  "wellDone": "Bra jobbet!",
   "@wellDone": {
     "description": "Text on running competition page."
   },
-  "wellDoneDistance": "Well done! You have registered a total distance of {distanceInKM} km",
+  "wellDoneDistance": "Bra jobbet! Du har registrert en total distanse på {distanceInKM} km",
   "@wellDoneDistance": {
     "description": "Text on running competition page.",
     "placeholders": {
@@ -614,11 +614,11 @@
       }
     }
   },
-  "distanceRegistered": "Your distance has been registered. Continue below if you want to submit another distance.",
+  "distanceRegistered": "Din distanse har blitt registrert. Fortsett under hvis du vil legge til en distanse til.",
   "@distanceRegistered": {
     "description": "Text on running competition page."
   },
-  "ranMore": "I went more than {distanceInKM} km",
+  "ranMore": "Jeg gikk mer enn {distanceInKM} km",
   "@ranMore": {
     "description": "Text on running competition page.",
     "placeholders": {
@@ -627,7 +627,7 @@
       }
     }
   },
-  "moreThan": "More than {distanceInKM} km",
+  "moreThan": "Mer enn {distanceInKM} km",
   "@moreThan": {
     "description": "Text on running competition page.",
     "placeholders": {
@@ -636,31 +636,31 @@
       }
     }
   },
-  "runningEffort": "Amazing effort! Type the amount of kilometers you went below.",
+  "runningEffort": "Fantastisk innsats! Skriv inn antallet kilometer du gikk under.",
   "@runningEffort": {
     "description": "Text on running competition page."
   },
-  "slideSelect": "Slide to select how far you went",
+  "slideSelect": "Sveip for å velge hvor lang turen din var",
   "@slideSelect": {
     "description": "Text on running competition page."
   },
-  "submitAnotherDistance": "Submit another distance",
+  "submitAnotherDistance": "Legg til en distanse til",
   "@submitAnotherDistance": {
     "description": "Text on running competition page."
   },
-  "editPicture": "Edit picture",
+  "editPicture": "Rediger bilde",
   "@editPicture": {
     "description": "Button on profile page to edit profile picture."
   },
-  "profilePicture": "Profile picture",
+  "profilePicture": "Profilbilde",
   "@profilePicture": {
     "description": "Text on edit profile page."
   },
-  "firstPostTitle": "Be the first to post a picture or message",
+  "firstPostTitle": "Vær den første til å sende inn et bilde eller å skrive en melding",
   "@firstPostTitle": {
     "description": "Text on feed page when feed is empty."
   },
-  "timezoneInformation": "Tv guide timetable is in your local time: {timeZone}",
+  "timezoneInformation": "Tv-guide tidstabell er i din lokale tid: {timeZone}",
   "@timezoneInformation": {
     "description": "TV guide footer info text.",
     "placeholders": {
@@ -669,63 +669,63 @@
       }
     }
   },
-  "yourQuestion": "Your question",
+  "yourQuestion": "Ditt spørsmål",
   "@yourQuestion": {
     "description": "Title on ask question page"
   },
-  "uploadingInquirySuccess": "Please note that not all submitted questions are answered in the broadcast.",
+  "uploadingInquirySuccess": "Vi gjør oppmerksom på at ikke alle svarene kan bli besvart i sendingen",
   "@uploadingInquirySuccess": {
     "description": "Info in upload question success page"
   },
-  "askQuestion": "Ask a question",
+  "askQuestion": "Still et spørsmål",
   "@askQuestion": {
     "description": "Ask question text field placeholder"
   },
-  "submitQuestionInfo": "By submitting a question you accept that it can be used for broadcast purposes.",
+  "submitQuestionInfo": "Ved å sende inn et spørsmål aksepterer du at dette kan bli brukt for senere publisering.",
   "@submitQuestionInfo": {
     "description": "Disclaimer on ask question page"
   },
-  "posting": "Posting",
+  "posting": "Innsending",
   "@posting": {
     "description": "Information about ongoing posting process"
   },
-  "submitPostInfo": "By submitting a post or photo you accept that it can be used for broadcast purposes. ",
+  "submitPostInfo": "Ved å sende inn et spørsmål aksepterer du at dette kan bli brukt for senere publisering. ",
   "@submitPostInfo": {
     "description": "Disclaimer on text testimony page"
   },
-  "cropImage": "Crop image",
+  "cropImage": "Beskjær bildet",
   "@cropImage": {
     "description": "Image crop page title"
   },
-  "square": "Square",
+  "square": "Kvadrat",
   "@square": {
     "description": "Image crop mode"
   },
-  "landscape": "Landscape",
+  "landscape": "Landskap",
   "@landscape": {
     "description": "Image crop mode"
   },
-  "pollSingleChoice": "You may select your answer only once.",
+  "pollSingleChoice": "Du kan bare velge et svar en gang",
   "@pollSingleChoice": {
     "description": "Desciption of the poll type. States that user can change the answer only once."
   },
-  "pollMultipleChoice": "You may change your answer multiple times.",
+  "pollMultipleChoice": "Du kan endre svaret ditt flere ganger.",
   "@pollMultipleChoice": {
     "description": "Desciption of the poll type. States that user can change the answer multiple times."
   },
-  "pollEnded": "The poll section has ended. Thank you for your responses.",
+  "pollEnded": "Avstemningen er slutt. Takk for dine svar.",
   "@pollEnded": {
     "description": "Message displayed when poll has been closed by administrator."
   },
-  "browserInstall": "Please install web browser to be able to open this URL.",
+  "browserInstall": "Vennligst installer nettleser for å kunne åpne denne URLen.",
   "@browserInstall": {
     "description": "Message displayed when browser couldn't be opened on user's device."
   },
-  "share": "Share",
+  "share": "Del",
   "@share": {
     "description": "Option name to share video."
   },
-  "liveNow": "Live now",
+  "liveNow": "Direkte nå",
   "@liveNow": {
     "description": "Call to action button on featured carousel."
   },
@@ -733,19 +733,19 @@
   "@program": {
     "description": "Title of the program tab on live page."
   },
-  "participateTab": "Participate",
+  "participateTab": "Delta",
   "@participateTab": {
     "description": "Title of the participate tab on live page."
   },
-  "tomorrow": "Tomorrow",
+  "tomorrow": "I morgen",
   "@tomorrow": {
     "description": "Day of transmission in tv guide."
   },
-  "readBy": "Read by",
+  "readBy": "Lest av",
   "@readBy": {
     "description": "Feed verse pre author text."
   },
-  "pollAnswer": "You've answered: {answer}",
+  "pollAnswer": "Du har svart: {answer}",
   "@pollAnswer": {
     "description": "Snackbar label after user has chosen poll answer",
     "placeholders": {
@@ -754,43 +754,43 @@
       }
     }
   },
-  "broadcasts": "Broadcasts",
+  "broadcasts": "Sendinger",
   "@broadcasts": {
     "description": "Title for tv guide collection on event page."
   },
-  "quizAnswered": "Answers submitted",
+  "quizAnswered": "Svar sendt",
   "@quizAnswered": {
     "description": "Text displayed on a button when all answers in quiz have been submitted."
   },
-  "quizNotEnabled": "Quiz is not available at the moment. Please try again later.",
+  "quizNotEnabled": "Quiz er ikke tilgjengelig for øyeblikket. Vennligst prøv igjen senere.",
   "@quizNotEnabled": {
     "description": "Message on alert that appears when participate item is visible, but quiz is not enabled."
   },
-  "calendar": "Calendar",
+  "calendar": "Kalender",
   "@calendar": {
     "description": "Title of calendar page."
   },
-  "noEvents": "No scheduled transmissions",
+  "noEvents": "Ingen planlagte sendinger",
   "@noEvents": {
     "description": "Info in calendar page that no transmissions are scheduled for selected day."
   },
-  "appUpdateTitle": "Aggiornamento necessario",
+  "appUpdateTitle": "Krever oppdatering",
   "@appUpdateTitle": {
     "description": "Title of the message displayed to the user when application is too old and should be updated in a timely manner."
   },
-  "appUpdateRequest": "Scarica l'ultima app per godere di tutte le ultime funzionalità e correzioni dei bug.",
+  "appUpdateRequest": "Vennligst last ned den siste versjonen av appen for å få gleden av de siste funksjonene og feilrettingene.",
   "@appUpdateRequest": {
     "description": "Message displayed to the user when application is too old and should be updated in a timely manner."
   },
-  "appUpdateAccepted": "Aggiorna",
+  "appUpdateAccepted": "Oppdater",
   "@appUpdateAccepted": {
     "description": "Option that can be chosen by the user to update his application."
   },
-  "donationNotAvailable": "Donation is not available at the moment. Please try again later.",
+  "donationNotAvailable": "Donasjon er ikke tilgjengelig for øyeblikket. Vennligst prøv igjen senere.",
   "@donationNotAvailable": {
     "description": "Message displayed when donation flow failed."
   },
-  "posts": "{postsCount} Posts",
+  "posts": "{postsCount} Innlegg",
   "@posts": {
     "description": "Contributions to feed made by the users. Plural of post.",
     "placeholders": {
@@ -799,27 +799,27 @@
       }
     }
   },
-  "copy": "Copy",
+  "copy": "Kopier",
   "@copy": {
     "description": "Copy option for quotes, verses."
   },
-  "reload": "Reload",
+  "reload": "Last inn på nytt",
   "@reload": {
     "description": "Label on the button that allows to reload the player after error."
   },
-  "participantsTitle": "Who is answering?",
+  "participantsTitle": "Hvem svarer?",
   "@participantsTitleTitle": {
     "description": "Title label on the participants list before quiz."
   },
-  "participantsSubtitle": "Select one or more participants.",
+  "participantsSubtitle": "Velg en eller flere deltagere.",
   "@participantsSubtitle": {
     "description": "Subtitle label on the participants list before quiz."
   },
-  "yourFamily": "Your family",
+  "yourFamily": "Familien din",
   "@yourFamily": {
     "description": "Title on page when user selects family members that take part in the quiz."
   },
-  "yourTurn": "Your turn",
+  "yourTurn": "Din tur",
   "@yourTurn": {
     "description": "Title on page informing user that other user will answer question in the next step."
   },
@@ -827,11 +827,11 @@
   "@fAQ": {
     "description": "Title on FAQ page and item in profile page settings."
   },
-  "shareStart": "Share from start",
+  "shareStart": "Del fra start",
   "@shareStart": {
     "description": "Option on action sheet for sharing from start"
   },
-  "shareTime": "Share from time {time}",
+  "shareTime": "Del fra tid {time}",
   "@shareTime": {
     "description": "Option on action sheet for sharing from time",
     "placeholders": {
@@ -840,171 +840,171 @@
       }
     }
   },
-  "loadContentError": "Couldn't load content",
+  "loadContentError": "Kunne ikke laste innhold",
   "@loadContentError": {
     "description": "Error text when content couldn't be loaded."
   },
-  "audioOnlyErrorDescription": "Check internet connection and try again",
+  "audioOnlyErrorDescription": "Sjekk nettverksforbindelsen og prøv en gang til",
   "@audioOnlyErrorDescription": {
     "description": "Error message when audio only fails to play"
   },
-  "privacyPolicy": "Privacy Policy",
+  "privacyPolicy": "Personvernerklæring",
   "@privacyPolicy": {
     "description": "Title on Privacy Policy page and item in profile page settings."
   },
-  "tokenError": "We couldn't confirm your identity, most likely due to a network problem. Some features of the app may not work correctly.",
+  "tokenError": "Vi kunne ikke bekrefte din identitet, mest sannsynlig på grunn av et nettverksproblem. Noen funksjoner i appen fungerer kanskje ikke som de skal.",
   "@tokenError": {
     "description": "Message indicating that there is a problem with user's token, and some features may be broken because of this."
   },
-  "categoriesTab": "Categorie",
+  "categoriesTab": "Kategorier",
   "@categoriesTab": {
     "description": "Title of the Categories Tab"
   },
-  "settingsTab": "Impostazioni",
+  "settingsTab": "Innstillinger",
   "@settingsTab": {
     "description": "Title of the Settings Tab"
   },
-  "confirmLogin": "Conferma l'accesso",
+  "confirmLogin": "Bekreft innlogging",
   "@confirmLogin": {
     "description": "Prompt that asks the user to confirm his log-in"
   },
-  "scanInfo": "Scansiona il codice con il tuo telefono per accedere alla pagina di accesso.",
+  "scanInfo": "Skann koden med telefonen din for å gå til påloggingssiden.",
   "@scanInfo": {
     "description": "Text that informs the user that the QR code can be scanned to enter the login page. Used on AppleTV."
   },
-  "validInfo": "Il codice QR è valido per 15 minuti.",
+  "validInfo": "QR-koden er gyldig i 15 minutter.",
   "@validInfo": {
     "description": "Message that informs the user for how long the QR Code will be valid."
   },
-  "confirmInfo": "Dopo aver effettuato correttamente l'accesso sul tuo dispositivo, fai clic sul pulsante in basso per confermare il tuo accesso.",
+  "confirmInfo": "Etter innlogging, klikk på knappen nedenfor for å bekrefte innlogging.",
   "@confirmInfo": {
     "description": "Message that asks the user to click the button in order to proceed after successful login."
   },
-  "seriesTab": "Serie",
+  "seriesTab": "Serier",
   "@seriesTab": {
     "description": "Series Tab title"
   },
-  "filmsTab": "Film",
+  "filmsTab": "Filmer",
   "@filmsTab": {
     "description": "Films Tab title"
   },
-  "eventsTab": "Eventi",
+  "eventsTab": "Eventer",
   "@eventsTab": {
     "description": "Events Tab title"
   },
-  "audioLanguage": "Lingua audio",
+  "audioLanguage": "Lydspråk",
   "@audioLanguage": {
     "description": "Label indicating that the Audio Language can be changed here."
   },
-  "subtitlesLanguage": "Lingua dei sottotitoli",
+  "subtitlesLanguage": "Språk for undertekster",
   "@subtitlesLanguage": {
     "description": "Label indicating that the Subtitles Language can be changed here."
   },
-  "removeFromRecentSearches": "Vuoi rimuovere questo elemento dalle ricerche recenti?",
+  "removeFromRecentSearches": "Vil du fjerne dette elementet fra siste søk?",
   "@removeFromRecentSearches": {
     "description": "Prompt that asks the user wheter they are certain, that they want to remove the element from recent searches."
   },
-  "noTransmissionToday": "Nessuna trasmissione programmata per oggi",
+  "noTransmissionToday": "Ingen planlagte sendinger i dag",
   "@noTransmissionToday": {
     "description": "Messages that informs the user, that there are no schedules transmission for today."
   },
-  "livestreamMaintenanceTitle": "La trasmissione in diretta non è disponibile",
+  "livestreamMaintenanceTitle": "Direktestrømmen er ikke tilgjengelig",
   "@livestreamMaintenanceTitle": {
     "description": "Message that informs the user, that the livestream is unavailable."
   },
-  "start": "Avvia",
+  "start": "Start",
   "@start": {
     "description": "Word used while displaying information about the beggining of a video or an event in tv guide."
   },
-  "transmissionSchedule": "Programma delle trasmissioni",
+  "transmissionSchedule": "Sendetider",
   "@transmissionSchedule": {
     "description": "Label that indicates the user is looking at Transmission schedule"
   },
-  "featured": "Consigliato",
+  "featured": "Anbefalt",
   "@featured": {
     "description": "Featured videos collection header"
   },
-  "errorTryAgain": "Qualcosa è andato storto, riprova più tardi.",
+  "errorTryAgain": "Noe gikk galt, vennligst prøv igjen senere.",
   "@errorTryAgain": {
     "description": "Message that informs the user, that there was an error. Then politely asks the user to try again later."
   },
-  "reportProblem": "In caso di problemi usa il codice QR qui sotto per inviarci un'e-mail.",
+  "reportProblem": "Har du problemer med QR-koden - send oss en epost.",
   "@reportProblem": {
     "description": "Message indicating that whenever the user wants to report a problem, they can scan the QR code to send an email to support."
   },
-  "phoneReadingProblem": "Se il tuo telefono non riesce a leggere il codice QR, inviaci un'e-mail con le seguenti informazioni a",
+  "phoneReadingProblem": "Hvis telefonen din ikke kan lese QR-koden send en epost med følgende informasjon til",
   "@phoneReadingProblem": {
     "description": "Message explaining that if the user's phone can't scan the QR code, they can send the support e-mail with information listed after this message."
   },
-  "goTo": "o vai a",
+  "goTo": "eller gå til",
   "@goTo": {
     "description": "Message used to point the user to the shortened URL in case they can't use the QR code to log-in. This is used on AppleTV."
   },
-  "watchBrunstad": "Guarda BrunstadTV in diretta",
+  "watchBrunstad": "Se BrunstadTV direkte",
   "@watchBrunstad": {
     "description": "Text that entices the user to watch the livestream."
   },
-  "notLogged": "Non sei collegato",
+  "notLogged": "Ikke logget inn",
   "@notLogged": {
     "description": "Text that informs the user, that they are not logged in."
   },
-  "authResponse0": "Si prega di utilizzare il nuovo codice QR per accedere.",
+  "authResponse0": "Vennligst bruk ny QR-kode for å logge inn.",
   "@authResponse0": {
     "description": "Authentication response displayed to the user when an old QR code was used. Asking them to use a new one if they want to log in."
   },
-  "authResponse1": "Accedi sul tuo cellulare utilizzando il codice QR.",
+  "authResponse1": "Vennligst logg inn på mobilen din med QR-kode.",
   "@authResponse1": {
     "description": "Message displayed to the user when they tried to proceed with the log-in on AppleTv without first logging through their mobile device."
   },
-  "authResponse3": "Controlla la tua connessione di rete e riprova più tardi.",
+  "authResponse3": "Sjekk nettverksforbindelsen og prøv igjen senere.",
   "@authResponse3": {
     "description": "Message that indicates there was an error during Authentication process. Asking the user to check their network connection and try again."
   },
-  "liveHeader": "Diretta",
+  "liveHeader": "Direkte",
   "@liveHeader": {
     "description": "Header of the Live Tab — the tab that contains the livestream player on AppleTV."
   },
-  "recentlyPublishedSection": "Recently published",
+  "recentlyPublishedSection": "Nylig publisert",
   "@recentlyPublishedSection": {
     "description": "Section in explore."
   },
-  "exploreCategoriesSection": "Explore categories",
+  "exploreCategoriesSection": "Utforsk kategorier",
   "@exploreCategoriesSection": {
     "description": "Section in explore."
   },
-  "programsSection": "Programs",
+  "programsSection": "Programmer",
   "@programsSection": {
     "description": "Section in explore."
   },
-  "episodesSection": "Episodi",
+  "episodesSection": "Episoder",
   "@episodesSection": {
     "description": "Section in explore."
   },
-  "categorySeries": "Serie",
+  "categorySeries": "Serier",
   "@categorySeries": {
     "description": "Category name"
   },
-  "categoryKids": "Kids",
+  "categoryKids": "Barn",
   "@categoryKids": {
     "description": "Category name"
   },
-  "categoryFilms": "Film",
+  "categoryFilms": "Filmer",
   "@categoryFilms": {
     "description": "Category name"
   },
-  "categoryEvents": "Eventi",
+  "categoryEvents": "Eventer",
   "@categoryEvents": {
     "description": "Category name"
   },
-  "categoryMusic": "Music",
+  "categoryMusic": "Musikk",
   "@categoryMusic": {
     "description": "Category name"
   },
-  "noPlannedEvents": "No planned events today",
+  "noPlannedEvents": "Ingen planlagte hendelser i dag",
   "@noPlannedEvents": {
     "description": "Information in tvguide"
   },
-  "watchNow": "Watch now",
+  "watchNow": "Se nå",
   "@watchNow": {
     "description": "Button on featured carousel"
   }

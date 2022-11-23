@@ -1,228 +1,1011 @@
 {
-  "@@locale": "ro",
-  "liveTab": "În direct",
-  "logOutButton": "Deconectare",
-  "profileTab": "Profil",
-  "bccMediaCenter": "BrunstadTV este un centru media necomercial care produce și distribuie conținut bazat pe valori pozitive și creștine.",
-  "signInButton": "Conectare",
-  "tryAgainButton": "Încearcă din nou",
-  "loggedOutTitle": "Deconectat",
-  "loggedOutMessage": "Ai fost deconectat. Te rugăm să te conectezi din nou.",
-  "mostWatched": "Cele mai vizionate",
-  "mostRecent": "Cele mai recente",
-  "latelyPublished": "Ultimele publicate",
-  "anErrorOccurred": "A apărut o eroare",
-  "ok": "Bine",
-  "loginFailedCheckNetwork": "Conectarea a eșuat. Verifică conexiunea la internet și încearcă din nou.",
-  "loginFailedTryAgain": "Conectare eșuată. Te rog să încerci din nou mai târziu.",
-  "soundLanguage": "Limba sunetului",
-  "subtitleLanguage": "Limba subtitrării",
-  "appLanguage": "Limba aplicației",
-  "checkNetwork": "Verifică conexiunea la internet și încearcă din nou.",
-  "tryAgain": "Te rog să încerci din nou mai târziu.",
-  "cantPlayVideo": "Nu se poate reda acest video acum.",
-  "about": "Detalii aplicație",
-  "version": "Versiune",
-  "contactSupport": "Contactare suport",
-  "cancel": "Anulare",
-  "upNext": "Urmează",
-  "done": "Efectuat",
-  "playerSettings": "Setări player/redare",
-  "settings": "Setări",
-  "none": "Niciunul",
-  "auto": "Auto",
-  "live": "În direct",
-  "subtitles": "Subtitrări",
-  "audio": "Audio",
-  "quality": "Calitate",
-  "seasons": "Sezoane",
-  "episodes": "Episoade",
-  "search": "Căutare",
-  "noResults": "Fără rezultate",
-  "doYouWantCast": "Vrei să trimiți acest video prin Chromecast?",
-  "play": "Redare",
-  "castQueue": "Lista de redare",
-  "options": "Opțiuni",
-  "remove": "Elimină",
-  "queueLimitTitle": "Limită",
-  "queueLimitMessage": "Nu poți avea mai mult de {elementCount} elemente în coadă.",
-  "recentSearches": "Căutări recente",
-  "tVLogin": "Conectare TV",
-  "tVLoginSuccessful": "Conectare cu succes, confirmă te rog pe TV.",
-  "seeMore": "Vezi mai mult",
-  "seeAll": "Vezi toate",
-  "series": "Episoade",
-  "livestreamMaintenance": "Ne pare rău, se lucrează la transmisia în direct și nu este disponibilă momentan. Te rugăm să încerci din nou mai târziu.",
-  "homeTab": "Acasă",
-  "sortBy": "Sortare după",
-  "videoQuality": "Calitatea video",
-  "low": "Redusă",
-  "medium": "Mediu",
-  "high": "Înaltă",
-  "emptySearch": "Poți căuta în tot conținutul de la BrunstadTV. Seriale, filme și episoade.",
-  "back": "Înapoi",
-  "seasonLetter": "S",
-  "episodeLetter": "E",
-  "atoZ": "A-Z",
-  "ztoA": "Z-A",
-  "shortFilms": "Filme scurte",
-  "videos": "Videouri",
-  "moreInfo": "Mai multe informații",
-  "info": "Detalii",
-  "episode": "Episod",
-  "takePhoto": "Fă o poză",
-  "pickPhoto": "Alege din galerie",
-  "uploadFileTitle": "Încarcă fişier",
-  "uploadFileMessage": "Vrei să încarci acest fișier?",
-  "watchingWith": "Urmărești cu încă {numPeople} persoane",
-  "uploading": "Se încarcă",
-  "uploadFail": "Încărcarea a eșuat",
-  "post": "Trimite",
-  "charactersLimit": "Au mai rămas {charsLeft} din {charsTotal} caractere",
-  "uploadingPostSuccess": "Postarea ta a fost trimisă.",
-  "testimonyInfo": "Înregistrează video-ul cu telefonul.",
-  "yourVideo": "Filmarea ta",
-  "record": "Înregistrează",
-  "recordingTips": "Câteva sfaturi pentru o înregistrare bună",
-  "recordingTipA": "Găsește un loc liniștit pentru a înregistra.",
-  "recordingTipB": "Asigură-te că fața ta este luminată uniform.",
-  "recordingTipC": "Gândește-te la ce vrei să spui înainte de începerea înregistrării.",
-  "recordingTipD": "Întoarce telefonul în modul peisaj.",
-  "thankYou": "Mulțumim!",
-  "thankYouForContribution": "Mulțumim pentru contribuție!",
-  "uploadingVideoSuccess": "Filmarea ta a fost trimisă.",
-  "next": "Urmează",
-  "recordVideoCameraPermissionAlert": "Trebuie să acorzi permisiune camerei din setări pentru a înregistra videouri.",
-  "recordVideoPhotosPermissionAlert": "Trebuie să acorzi permisiune albumului foto din setări pentru a înregistra videouri.",
-  "recordVideoStoragePermissionAlert": "Trebuie să acorzi permisiune de stocare din setări pentru a înregistra videouri.",
-  "recordVideoMicrophonePermissionAlert": "Trebuie să acorzi permisiune microfonului din setări pentru a înregistra videouri.",
-  "takePhotoStoragePermissionAlert": "Trebuie să acorzi permisiune de stocare din setări pentru a face poze.",
-  "takePhotoCameraPermissionAlert": "Trebuie să acorzi permisiune camerei din setări pentru a face poze.",
-  "pickPhotoStoragePermissionAlert": "Trebuie să acorzi permisiune de stocare din setări pentru a alege poze.",
-  "permissionsAlertTitle": "Permisiuni necesare",
-  "add": "Adaugă",
-  "change": "Modifică",
-  "recordingFailedTitle": "Nu s-a putut înregistra videoul",
-  "recordingFailedMessage": "A apărut o eroare în timpul înregistrării videoului.",
-  "pollSubtitle": "Sondaj",
-  "writeHere": "Scrie aici",
-  "feed": "Feed",
-  "atmosphereFeedDescription": "Contribuie la fluxul de activitate trimițând un mesaj, mărturie sau o poză de unde te afli.",
-  "information": "Detalii",
-  "photoNotSupported": "Fotografierea și alegerea pozei nu sunt acceptate pe dispozitivul tău.",
-  "answerFailed": "Ne pare rău! Nu am putut trimite răspunsul. Te rugăm să încerci din nou.",
-  "question": "Întrebare",
-  "notificationChannelPlayerName": "Player",
-  "now": "Acum",
-  "createPost": "Creare postare",
-  "concernTextPlaceholder": "Descrie problema",
-  "debugInfoExplanation": "Mesajul tău va include aceste informații, pentru a ne ajuta să înțelegem mai bine problema.",
-  "send": "Trimite",
-  "sending": "Se trimite",
-  "thankYouSupportTitle": "Mulțumim pentru feedback-ul tău!",
-  "thankYouSupportDescription": "Apreciem toate feedback-urile și vom aborda problema cât de curând posibil.",
-  "sendFail": "Trimiterea mesajului a eșuat",
-  "sendFailDescription": "Ceva n-a mers bine. Verifică conexiunea la internet și încearcă din nou.",
-  "today": "Astăzi",
-  "noNewPosts": "Nici o postare nouă",
-  "newPostsMultiple": "{postCount} postări noi!",
-  "newPostsSingle": "{postCount} postare nouă!",
-  "expired": "Expirat",
-  "availableFrom": "Disponibil de pe {date}",
-  "howFar": "Ce distanță ai parcurs?",
-  "submit": "Trimite",
-  "wellDone": "Bună treabă!",
-  "wellDoneDistance": "Bună treabă! Ai înregistrat o distanță totală de {distanceInKM} km",
-  "distanceRegistered": "Distanța ta a fost înregistrată. Continuă mai jos dacă dorești să adaugi o nouă distanță.",
-  "ranMore": "Am parcurs mai mult de {distanceInKM} km",
-  "moreThan": "Peste {distanceInKM} km",
-  "runningEffort": "Efort uimitor! Tastează mai jos numărul de kilometri pe care i-ai parcurs.",
-  "slideSelect": "Glisează pentru a selecta cât ai parcurs",
-  "submitAnotherDistance": "Înregistrează o nouă distanță",
-  "editPicture": "Editează poza",
-  "profilePicture": "Poză de profil",
-  "firstPostTitle": "Fii primul care postează o imagine sau un mesaj",
-  "timezoneInformation": "Programul ghidului TV este afișat în ora ta locală: {timeZone}",
-  "yourQuestion": "Întrebarea ta",
-  "uploadingInquirySuccess": "Te rog să reții că nu toate întrebările trimise sunt răspunse în timpul transmisiunii.",
-  "askQuestion": "Pune o întrebare",
-  "submitQuestionInfo": "Prin trimiterea unei întrebări, accepți să se poată utiliza în scopurile difuzării.",
-  "posting": "Se postează",
+  
+  "loadingContent": "Loading content",
+  "@loadingContent": {
+    "description": "Text displayed when page content is loading."
+  },
+  "signInTooltip": "Sign in to watch more content",
+  "@signInTooltip": {
+    "description": "Text for tooltip displayed when a non-member user opens the home page."
+  },
+  "skipToPublicContent": "Skip to watch public content",
+  "@skipToPublicContent": {
+    "description": "Text for button displayed on login screen to skip sign in and watch public content."
+  },
+  "minutesShort": "min",
+  "@minutesShort": {
+    "description": "Text for minutes."
+  },
+  "calendarThisWeek": "This week",
+  "@calendarThisWeek": {
+    "description": "Text for This week."
+  },
+  "calendarWeek": "week",
+  "@calendarWeek": {
+    "description": "Text week."
+  },
   "loading": "Se încarcă",
+  "@loading": {
+    "description": "Text to indicate loading state."
+  },
+  "loginPageDisplay1": "The most powerful message in the world",
+  "@loginPageDisplay1": {
+    "description": "Text displayed on login screen."
+  },
+  "loginPageDisplay2": "Watch series, shows and films based on Christian values",
+  "@loginPageDisplay2": {
+    "description": "Text displayed on login screen."
+  },
+  "loginPageDisplay3": "Produced by BCC Media",
+  "@loginPageDisplay3": {
+    "description": "Text displayed on login screen."
+  },
+  "liveTab": "În direct",
+  "@liveTab": {
+    "description": "Title of live page tab"
+  },
+  "logOutButton": "Deconectare",
+  "@logOutButton": {
+    "description": "Text displayed on Log out button"
+  },
+  "profileTab": "Profil",
+  "@profileTab": {
+    "description": "Title of the profile page"
+  },
+  "faq": "Frequently asked questions",
+  "@faq": {
+    "description": "Title of the FAQ page."
+  },
+  "bccMediaCenter": "BrunstadTV este un centru media necomercial care produce și distribuie conținut bazat pe valori pozitive și creștine.",
+  "@bccMediaCenter": {
+    "description": "Disclaimer on login page"
+  },
+  "signInButton": "Conectare",
+  "@signInButton": {
+    "description": "Text displayed on Sign in button"
+  },
+  "tryAgainButton": "Încearcă din nou",
+  "@tryAgainButton": {
+    "description": "Button on error alert that lets user to retry failed action"
+  },
+  "loggedOutTitle": "Deconectat",
+  "@loggedOutTitle": {
+    "description": "Title of the alert message that is shown when user is logged out automatically."
+  },
+  "loggedOutMessage": "Ai fost deconectat. Te rugăm să te conectezi din nou.",
+  "@loggedOutMessage": {
+    "description": "Text of the alert message that is shown when user is logged out automatically."
+  },
+  "mostWatched": "Cele mai vizionate",
+  "@mostWatched": {
+    "description": "Sorting option on audience page"
+  },
+  "mostRecent": "Cele mai recente",
+  "@mostRecent": {
+    "description": "Sorting option on audience page"
+  },
+  "latelyPublished": "Ultimele publicate",
+  "@latelyPublished": {
+    "description": "Title for the list of videos on login page"
+  },
+  "anErrorOccurred": "A apărut o eroare",
+  "@anErrorOccurred": {
+    "description": "Title in error popup"
+  },
+  "ok": "Bine",
+  "@ok": {
+    "description": "Popup confirmation button"
+  },
+  "loginFailedCheckNetwork": "Conectarea a eșuat. Verifică conexiunea la internet și încearcă din nou.",
+  "@loginFailedCheckNetwork": {
+    "description": "Login error message"
+  },
+  "loginFailedTryAgain": "Conectare eșuată. Te rog să încerci din nou mai târziu.",
+  "@loginFailedTryAgain": {
+    "description": "Login error message"
+  },
+  "soundLanguage": "Limba sunetului",
+  "@soundLanguage": {
+    "description": "Settings item on profile page"
+  },
+  "subtitleLanguage": "Limba subtitrării",
+  "@subtitleLanguage": {
+    "description": "Settings item on profile page"
+  },
+  "appLanguage": "Limba aplicației",
+  "@appLanguage": {
+    "description": "Settings item on profile page"
+  },
+  "checkNetwork": "Verifică conexiunea la internet și încearcă din nou.",
+  "@checkNetwork": {
+    "description": "Error message for the user displayed in many contexts."
+  },
+  "tryAgain": "Te rog să încerci din nou mai târziu.",
+  "@tryAgain": {
+    "description": "Error message for the user displayed in many contexts."
+  },
+  "cantPlayVideo": "Nu se poate reda acest video acum.",
+  "@cantPlayVideo": {
+    "description": "Error message for the user displayed when video playback attempt failed."
+  },
+  "about": "Detalii aplicație",
+  "@about": {
+    "description": "Title of About page and item in profile page settings."
+  },
+  "version": "Versiune",
+  "@version": {
+    "description": "Version ot the application on About page; followed by version number"
+  },
+  "contactSupport": "Contactare suport",
+  "@contactSupport": {
+    "description": "Settings item on profile page"
+  },
+  "cancel": "Anulare",
+  "@cancel": {
+    "description": "General cancel action button"
+  },
+  "upNext": "Urmează",
+  "@upNext": {
+    "description": "Title on Up next feature."
+  },
+  "done": "Efectuat",
+  "@done": {
+    "description": "General Done button. User confirms that action completed sucessfully."
+  },
+  "playerSettings": "Setări player/redare",
+  "@playerSettings": {
+    "description": "Title of the Player settings activity in Android"
+  },
+  "settings": "Setări",
+  "@settings": {
+    "description": "Label of the button to go to Android/iOS settings"
+  },
+  "none": "Niciunul",
+  "@none": {
+    "description": "Indicator on profile page that subtitles are disabled."
+  },
+  "auto": "Auto",
+  "@auto": {
+    "description": "Indicator on profile page that audio and app language are chosen automatically."
+  },
+  "live": "În direct",
+  "@live": {
+    "description": "Title of the live stream"
+  },
+  "subtitles": "Subtitrări",
+  "@subtitles": {
+    "description": "Title of the Player settings activity tab in Android"
+  },
+  "audio": "Audio",
+  "@audio": {
+    "description": "Title of the Player settings activity tab in Android"
+  },
+  "quality": "Calitate",
+  "@quality": {
+    "description": "Title of the Player settings activity tab in Android"
+  },
+  "seasons": "Sezoane",
+  "@seasons": {
+    "description": "Followed by number of seasons in given series."
+  },
+  "episodes": "Episoade",
+  "@episodes": {
+    "description": "Followed by number of episodes in given series."
+  },
+  "search": "Căutare",
+  "@search": {
+    "description": "Button to clear cache"
+  },
+  "noResults": "No results found",
+  "@noResults": {
+    "description": "No search results."
+  },
+  "doYouWantCast": "Vrei să trimiți acest video prin Chromecast?",
+  "@doYouWantCast": {
+    "description": "Prompt displayed to the user"
+  },
+  "play": "Redare",
+  "@play": {
+    "description": "Option in prompt dialog."
+  },
+  "castQueue": "Lista de redare",
+  "@castQueue": {
+    "description": "Queue page title"
+  },
+  "options": "Opțiuni",
+  "@options": {
+    "description": "Options dialog title"
+  },
+  "remove": "Elimină",
+  "@remove": {
+    "description": "Option in options dialog"
+  },
+  "queueLimitTitle": "Limită",
+  "@queueLimitTitle": {
+    "description": "Title of the alert to the user when attempt to add video to cast queue failed due to full queue."
+  },
+  "queueLimitMessage": "You cannot have more than {elementCount} elements in queue.",
+  "@queueLimitMessage": {
+    "description": "Error message to the user when attempt to add video to cast queue failed due to full queue.",
+    "placeholders": {
+      "elementCount": {
+        "type": "int"
+      }
+    }
+  },
+  "recentSearches": "Căutări recente",
+  "@recentSearches": {
+    "description": "Recent searches list title."
+  },
+  "tVLogin": "Conectare TV",
+  "@tVLogin": {
+    "description": "Title of the TV login alert"
+  },
+  "tVLoginSuccessful": "Conectare cu succes, confirmă te rog pe TV.",
+  "@tVLoginSuccessful": {
+    "description": "Message of the TV login alert"
+  },
+  "seeMore": "Vezi mai mult",
+  "@seeMore": {
+    "description": "Button on featured item to navigete to page with player"
+  },
+  "seeAll": "Vezi toate",
+  "@seeAll": {
+    "description": "Button on explore page to navigete to audience page"
+  },
+  "series": "Episoade",
+  "@series": {
+    "description": "Title of the tab on info page"
+  },
+  "livestreamMaintenance": "Ne pare rău, se lucrează la transmisia în direct și nu este disponibilă momentan. Te rugăm să încerci din nou mai târziu.",
+  "@livestreamMaintenance": {
+    "description": "Message displayed over overlay when livestream is under maintenance."
+  },
+  "homeTab": "Acasă",
+  "@homeTab": {
+    "description": "Title of the home page"
+  },
+  "sortBy": "Sortare după",
+  "@sortBy": {
+    "description": "Sorting criteria selector"
+  },
+  "videoQuality": "Calitatea video",
+  "@videoQuality": {
+    "description": "Settings item in profile page for Android."
+  },
+  "low": "Redusă",
+  "@low": {
+    "description": "Low quality video option"
+  },
+  "medium": "Mediu",
+  "@medium": {
+    "description": "Medium quality video option"
+  },
+  "high": "Înaltă",
+  "@high": {
+    "description": "High quality video option"
+  },
+  "emptySearch": "You can search all content from BrunstadTV. Series, videos and episodes.",
+  "@emptySearch": {
+    "description": "Message on search page when there is no search results."
+  },
+  "back": "Înapoi",
+  "@back": {
+    "description": "General back button to navigate back"
+  },
+  "seasonLetter": "S",
+  "@seasonLetter": {
+    "description": "Season  letter in label S1E3"
+  },
+  "episodeLetter": "E",
+  "@episodeLetter": {
+    "description": "Episode letter in label S1E3"
+  },
+  "atoZ": "A-Z",
+  "@atoZ": {
+    "description": "Sort order"
+  },
+  "ztoA": "Z-A",
+  "@ztoA": {
+    "description": "Sort order"
+  },
+  "shortFilms": "Filme scurte",
+  "@shortFilms": {
+    "description": "Title of the films collection."
+  },
+  "videos": "Videouri",
+  "@videos": {
+    "description": "Followed by number of videos"
+  },
+  "moreInfo": "Mai multe informații",
+  "@moreInfo": {
+    "description": "Option in action sheet for the video that triggers info page for the video."
+  },
+  "info": "Detalii",
+  "@info": {
+    "description": "Video info page title."
+  },
+  "episode": "Episod",
+  "@episode": {
+    "description": "Title of the tab on info page"
+  },
+  "takePhoto": "Fă o poză",
+  "@takePhoto": {
+    "description": "Option in menu"
+  },
+  "pickPhoto": "Alege din galerie",
+  "@pickPhoto": {
+    "description": "Option in menu"
+  },
+  "uploadFileTitle": "Încarcă fişier",
+  "@uploadFileTitle": {
+    "description": "Title of the dialog to confirm upload"
+  },
+  "uploadFileMessage": "Vrei să încarci acest fișier?",
+  "@uploadFileMessage": {
+    "description": "Content of the dialog to confirm upload"
+  },
+  "watchingWith": "You are watching with {numPeople} others",
+  "@watchingWith": {
+    "description": "Info on live stream page",
+    "placeholders": {
+      "numPeople": {
+        "type": "int"
+      }
+    }
+  },
+  "uploading": "Se încarcă",
+  "@uploading": {
+    "description": "Message during file upload"
+  },
+  "uploadFail": "Încărcarea a eșuat",
+  "@uploadFail": {
+    "description": "Upload result message"
+  },
+  "post": "Trimite",
+  "@post": {
+    "description": "Button to post written testimony"
+  },
+  "charactersLimit": "{charsLeft} of {charsTotal} characters left",
+  "@charactersLimit": {
+    "description": "Info about limit of characters in written testimony",
+    "placeholders": {
+      "charsLeft": {
+        "type": "int"
+      },
+      "charsTotal": {
+        "type": "int"
+      }
+    }
+  },
+  "uploadingPostSuccess": "Postarea ta a fost trimisă.",
+  "@uploadingPostSuccess": {
+    "description": "Info in upload success page"
+  },
+  "testimonyInfo": "Înregistrează video-ul cu telefonul.",
+  "@testimonyInfo": {
+    "description": "Record testimony guideline page info"
+  },
+  "yourVideo": "Filmarea ta",
+  "@yourVideo": {
+    "description": "Title on recording tip page page"
+  },
+  "record": "Înregistrează",
+  "@record": {
+    "description": "Button to record testimony"
+  },
+  "recordingTips": "Câteva sfaturi pentru o înregistrare bună",
+  "@recordingTips": {
+    "description": "Record testimony guideline page tip list title"
+  },
+  "recordingTipA": "Găsește un loc liniștit pentru a înregistra.",
+  "@recordingTipA": {
+    "description": "Record testimony guideline page tip list item"
+  },
+  "recordingTipB": "Asigură-te că fața ta este luminată uniform.",
+  "@recordingTipB": {
+    "description": "Record testimony guideline page tip list item"
+  },
+  "recordingTipC": "Gândește-te la ce vrei să spui înainte de începerea înregistrării.",
+  "@recordingTipC": {
+    "description": "Record testimony guideline page tip list item"
+  },
+  "recordingTipD": "Întoarce telefonul în modul peisaj.",
+  "@recordingTipD": {
+    "description": "Record testimony guideline page tip list item"
+  },
+  "thankYou": "Mulțumim!",
+  "@thankYou": {
+    "description": "Title in upload success page"
+  },
+  "thankYouForContribution": "Mulțumim pentru contribuție!",
+  "@thankYouForContribution": {
+    "description": "Title in upload success page"
+  },
+  "uploadingVideoSuccess": "Filmarea ta a fost trimisă.",
+  "@uploadingVideoSuccess": {
+    "description": "Info in upload success page"
+  },
+  "next": "Urmează",
+  "@next": {
+    "description": "NEXT program in check in section"
+  },
+  "recordVideoCameraPermissionAlert": "Trebuie să acorzi permisiune camerei din setări pentru a înregistra videouri.",
+  "@recordVideoCameraPermissionAlert": {
+    "description": "Message in alert dialog informing about missing permission"
+  },
+  "recordVideoPhotosPermissionAlert": "Trebuie să acorzi permisiune albumului foto din setări pentru a înregistra videouri.",
+  "@recordVideoPhotosPermissionAlert": {
+    "description": "Message in alert dialog informing about missing permission"
+  },
+  "recordVideoStoragePermissionAlert": "Trebuie să acorzi permisiune de stocare din setări pentru a înregistra videouri.",
+  "@recordVideoStoragePermissionAlert": {
+    "description": "Message in alert dialog informing about missing permission"
+  },
+  "recordVideoMicrophonePermissionAlert": "Trebuie să acorzi permisiune microfonului din setări pentru a înregistra videouri.",
+  "@recordVideoMicrophonePermissionAlert": {
+    "description": "Message in alert dialog informing about missing permission"
+  },
+  "takePhotoStoragePermissionAlert": "Trebuie să acorzi permisiune de stocare din setări pentru a face poze.",
+  "@takePhotoStoragePermissionAlert": {
+    "description": "Message in alert dialog informing about missing permission"
+  },
+  "takePhotoCameraPermissionAlert": "Trebuie să acorzi permisiune camerei din setări pentru a face poze.",
+  "@takePhotoCameraPermissionAlert": {
+    "description": "Message in alert dialog informing about missing permission"
+  },
+  "pickPhotoStoragePermissionAlert": "Trebuie să acorzi permisiune de stocare din setări pentru a alege poze.",
+  "@pickPhotoStoragePermissionAlert": {
+    "description": "Message in alert dialog informing about missing permission"
+  },
+  "permissionsAlertTitle": "Permisiuni necesare",
+  "@permissionsAlertTitle": {
+    "description": "Title of an alert dialog informing about missing permission"
+  },
+  "add": "Adaugă",
+  "@add": {
+    "description": "Button text on interactive live avatar section"
+  },
+  "change": "Modifică",
+  "@change": {
+    "description": "Button text on interactive live avatar section"
+  },
+  "recordingFailedTitle": "Couldn't record the video",
+  "@recordingFailedTitle": {
+    "description": "Title in alert dialog when recording fails"
+  },
+  "recordingFailedMessage": "A apărut o eroare în timpul înregistrării videoului.",
+  "@recordingFailedMessage": {
+    "description": "Message in alert dialog when recording fails"
+  },
+  "pollSubtitle": "Sondaj",
+  "@pollSubtitle": {
+    "description": "The little title in poll"
+  },
+  "writeHere": "Scrie aici",
+  "@writeHere": {
+    "description": "New post text field placeholder"
+  },
+  "feed": "Feed",
+  "@feed": {
+    "description": "Feed page bar title"
+  },
+  "atmosphereFeedDescription": "Contribuie la fluxul de activitate trimițând un mesaj, mărturie sau o poză de unde te afli.",
+  "@atmosphereFeedDescription": {
+    "description": "Feed page description"
+  },
+  "information": "Detalii",
+  "@information": {
+    "description": "Feed information item title"
+  },
+  "photoNotSupported": "Fotografierea și alegerea pozei nu sunt acceptate pe dispozitivul tău.",
+  "@photoNotSupported": {
+    "description": "Alert displayed when phone can't take photo or pick photo from storage."
+  },
+  "answerFailed": "Ne pare rău! Nu am putut trimite răspunsul. Te rugăm să încerci din nou.",
+  "@answerFailed": {
+    "description": "Message displayed when user's answer hasn't' been sent'."
+  },
+  "question": "Întrebare",
+  "@question": {
+    "description": "Title of the question page"
+  },
+  "notificationChannelPlayerName": "Player",
+  "@notificationChannelPlayerName": {
+    "description": "Notification channel name in Android settings"
+  },
+  "now": "Acum",
+  "@now": {
+    "description": "Tv guide now playing label"
+  },
+  "createPost": "Creare postare",
+  "@createPost": {
+    "description": "Button to start text testimony and title on create post page"
+  },
+  "concernTextPlaceholder": "Descrie problema",
+  "@concernTextPlaceholder": {
+    "description": "Placeholder text in text field on contact support page"
+  },
+  "debugInfoExplanation": "Mesajul tău va include aceste informații, pentru a ne ajuta să înțelegem mai bine problema.",
+  "@debugInfoExplanation": {
+    "description": "Info about debug info usage on contact support page"
+  },
+  "send": "Trimite",
+  "@send": {
+    "description": "General button to send a form"
+  },
+  "sending": "Se trimite",
+  "@sending": {
+    "description": "General sending action indicator"
+  },
+  "thankYouSupportTitle": "Mulțumim pentru feedback-ul tău!",
+  "@thankYouSupportTitle": {
+    "description": "Text on contact support confirmation page"
+  },
+  "thankYouSupportDescription": "Apreciem toate feedback-urile și vom aborda problema cât de curând posibil.",
+  "@thankYouSupportDescription": {
+    "description": "Text on contact support confirmation page"
+  },
+  "sendFail": "Couldn't send you message",
+  "@sendFail": {
+    "description": "General error message that sending failed"
+  },
+  "sendFailDescription": "Ceva n-a mers bine. Verifică conexiunea la internet și încearcă din nou.",
+  "@sendFailDescription": {
+    "description": "General error message that sending failed"
+  },
+  "today": "Astăzi",
+  "@today": {
+    "description": "First category in tv guide"
+  },
+  "noNewPosts": "Nici o postare nouă",
+  "@noNewPosts": {
+    "description": "Text displayed on the button, when there are no new posts in the feed."
+  },
+  "newPostsMultiple": "{postCount} new posts!",
+  "@newPostsMultiple": {
+    "description": "Text displayed on the button, when there are number of new posts in the feed.",
+    "placeholders": {
+      "postCount": {
+        "type": "int"
+      }
+    }
+  },
+  "newPostsSingle": "{postCount} new post!",
+  "@newPostsSingle": {
+    "description": "Text displayed on the button, when there is one new post in the feed.",
+    "placeholders": {
+      "postCount": {
+        "type": "int"
+      }
+    }
+  },
+  "expired": "Expirat",
+  "@expired": {
+    "description": "Info that episode is no longer available."
+  },
+  "availableFrom": "Available {date}",
+  "@availableFrom": {
+    "description": "Info that episode will be released at certain date.",
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "howFar": "Ce distanță ai parcurs?",
+  "@howFar": {
+    "description": "Text on running competition page."
+  },
+  "submit": "Trimite",
+  "@submit": {
+    "description": "Submit button on running competition page."
+  },
+  "wellDone": "Bună treabă!",
+  "@wellDone": {
+    "description": "Text on running competition page."
+  },
+  "wellDoneDistance": "Well done! You have registered a total distance of {distanceInKM} km",
+  "@wellDoneDistance": {
+    "description": "Text on running competition page.",
+    "placeholders": {
+      "distanceInKM": {
+        "type": "int"
+      }
+    }
+  },
+  "distanceRegistered": "Distanța ta a fost înregistrată. Continuă mai jos dacă dorești să adaugi o nouă distanță.",
+  "@distanceRegistered": {
+    "description": "Text on running competition page."
+  },
+  "ranMore": "I went more than {distanceInKM} km",
+  "@ranMore": {
+    "description": "Text on running competition page.",
+    "placeholders": {
+      "distanceInKM": {
+        "type": "int"
+      }
+    }
+  },
+  "moreThan": "More than {distanceInKM} km",
+  "@moreThan": {
+    "description": "Text on running competition page.",
+    "placeholders": {
+      "distanceInKM": {
+        "type": "int"
+      }
+    }
+  },
+  "runningEffort": "Efort uimitor! Tastează mai jos numărul de kilometri pe care i-ai parcurs.",
+  "@runningEffort": {
+    "description": "Text on running competition page."
+  },
+  "slideSelect": "Glisează pentru a selecta cât ai parcurs",
+  "@slideSelect": {
+    "description": "Text on running competition page."
+  },
+  "submitAnotherDistance": "Înregistrează o nouă distanță",
+  "@submitAnotherDistance": {
+    "description": "Text on running competition page."
+  },
+  "editPicture": "Editează poza",
+  "@editPicture": {
+    "description": "Button on profile page to edit profile picture."
+  },
+  "profilePicture": "Poză de profil",
+  "@profilePicture": {
+    "description": "Text on edit profile page."
+  },
+  "firstPostTitle": "Fii primul care postează o imagine sau un mesaj",
+  "@firstPostTitle": {
+    "description": "Text on feed page when feed is empty."
+  },
+  "timezoneInformation": "Tv guide timetable is in your local time: {timeZone}",
+  "@timezoneInformation": {
+    "description": "TV guide footer info text.",
+    "placeholders": {
+      "timeZone": {
+        "type": "String"
+      }
+    }
+  },
+  "yourQuestion": "Întrebarea ta",
+  "@yourQuestion": {
+    "description": "Title on ask question page"
+  },
+  "uploadingInquirySuccess": "Te rog să reții că nu toate întrebările trimise sunt răspunse în timpul transmisiunii.",
+  "@uploadingInquirySuccess": {
+    "description": "Info in upload question success page"
+  },
+  "askQuestion": "Pune o întrebare",
+  "@askQuestion": {
+    "description": "Ask question text field placeholder"
+  },
+  "submitQuestionInfo": "Prin trimiterea unei întrebări, accepți să se poată utiliza în scopurile difuzării.",
+  "@submitQuestionInfo": {
+    "description": "Disclaimer on ask question page"
+  },
+  "posting": "Se postează",
+  "@posting": {
+    "description": "Information about ongoing posting process"
+  },
   "submitPostInfo": "Prin trimiterea unei postări sau poze, accepți să se poată utiliza în scopurile difuzării. ",
+  "@submitPostInfo": {
+    "description": "Disclaimer on text testimony page"
+  },
   "cropImage": "Decupează poza",
+  "@cropImage": {
+    "description": "Image crop page title"
+  },
   "square": "Pătrat",
+  "@square": {
+    "description": "Image crop mode"
+  },
   "landscape": "Peisaj",
+  "@landscape": {
+    "description": "Image crop mode"
+  },
   "pollSingleChoice": "Poți selecta răspunsul tău o singură dată.",
+  "@pollSingleChoice": {
+    "description": "Desciption of the poll type. States that user can change the answer only once."
+  },
   "pollMultipleChoice": "Poți schimba răspunsul de mai multe ori.",
+  "@pollMultipleChoice": {
+    "description": "Desciption of the poll type. States that user can change the answer multiple times."
+  },
   "pollEnded": "Chestionarul s-a încheiat. Mulțumim pentru răspunsuri.",
+  "@pollEnded": {
+    "description": "Message displayed when poll has been closed by administrator."
+  },
   "browserInstall": "Te rugăm să instalezi un browser web pentru a putea deschide această adresă URL.",
+  "@browserInstall": {
+    "description": "Message displayed when browser couldn't be opened on user's device."
+  },
   "share": "Distribuie",
+  "@share": {
+    "description": "Option name to share video."
+  },
   "liveNow": "Acum în direct",
+  "@liveNow": {
+    "description": "Call to action button on featured carousel."
+  },
   "program": "Program",
+  "@program": {
+    "description": "Title of the program tab on live page."
+  },
   "participateTab": "Participă",
+  "@participateTab": {
+    "description": "Title of the participate tab on live page."
+  },
   "tomorrow": "Mâine",
+  "@tomorrow": {
+    "description": "Day of transmission in tv guide."
+  },
   "readBy": "Citit de",
-  "pollAnswer": "Ai răspuns {answer}",
+  "@readBy": {
+    "description": "Feed verse pre author text."
+  },
+  "pollAnswer": "You've answered: {answer}",
+  "@pollAnswer": {
+    "description": "Snackbar label after user has chosen poll answer",
+    "placeholders": {
+      "answer": {
+        "type": "String"
+      }
+    }
+  },
   "broadcasts": "Transmisii",
+  "@broadcasts": {
+    "description": "Title for tv guide collection on event page."
+  },
   "quizAnswered": "Răspunsuri trimise",
+  "@quizAnswered": {
+    "description": "Text displayed on a button when all answers in quiz have been submitted."
+  },
   "quizNotEnabled": "Testul nu este disponibil momentan. Te rugăm să încerci mai târziu.",
+  "@quizNotEnabled": {
+    "description": "Message on alert that appears when participate item is visible, but quiz is not enabled."
+  },
   "calendar": "Calendar",
+  "@calendar": {
+    "description": "Title of calendar page."
+  },
   "noEvents": "Nici o transmisie programată",
+  "@noEvents": {
+    "description": "Info in calendar page that no transmissions are scheduled for selected day."
+  },
   "appUpdateTitle": "Necesită actualizare",
+  "@appUpdateTitle": {
+    "description": "Title of the message displayed to the user when application is too old and should be updated in a timely manner."
+  },
   "appUpdateRequest": "Actualizează la cea mai recentă aplicație pentru a te bucura de toate funcțiile recente și de repararea erorilor.",
+  "@appUpdateRequest": {
+    "description": "Message displayed to the user when application is too old and should be updated in a timely manner."
+  },
   "appUpdateAccepted": "Actualizare",
+  "@appUpdateAccepted": {
+    "description": "Option that can be chosen by the user to update his application."
+  },
   "donationNotAvailable": "Donarea nu este disponibilă momentan. Te rugăm să încerci mai târziu.",
-  "posts": "{postsCount} Postări",
+  "@donationNotAvailable": {
+    "description": "Message displayed when donation flow failed."
+  },
+  "posts": "{postsCount} Posts",
+  "@posts": {
+    "description": "Contributions to feed made by the users. Plural of post.",
+    "placeholders": {
+      "postsCount": {
+        "type": "int"
+      }
+    }
+  },
   "copy": "Copiere",
+  "@copy": {
+    "description": "Copy option for quotes, verses."
+  },
   "reload": "Reîncarcă",
+  "@reload": {
+    "description": "Label on the button that allows to reload the player after error."
+  },
   "participantsTitle": "Who is answering?",
+  "@participantsTitleTitle": {
+    "description": "Title label on the participants list before quiz."
+  },
   "participantsSubtitle": "Select one or more participants.",
+  "@participantsSubtitle": {
+    "description": "Subtitle label on the participants list before quiz."
+  },
   "yourFamily": "Your family",
+  "@yourFamily": {
+    "description": "Title on page when user selects family members that take part in the quiz."
+  },
   "yourTurn": "Your turn",
+  "@yourTurn": {
+    "description": "Title on page informing user that other user will answer question in the next step."
+  },
   "fAQ": "FAQ",
+  "@fAQ": {
+    "description": "Title on FAQ page and item in profile page settings."
+  },
   "shareStart": "Share from start",
+  "@shareStart": {
+    "description": "Option on action sheet for sharing from start"
+  },
   "shareTime": "Share from time {time}",
+  "@shareTime": {
+    "description": "Option on action sheet for sharing from time",
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  },
   "loadContentError": "Couldn't load content",
+  "@loadContentError": {
+    "description": "Error text when content couldn't be loaded."
+  },
   "audioOnlyErrorDescription": "Check internet connection and try again",
+  "@audioOnlyErrorDescription": {
+    "description": "Error message when audio only fails to play"
+  },
   "privacyPolicy": "Privacy Policy",
+  "@privacyPolicy": {
+    "description": "Title on Privacy Policy page and item in profile page settings."
+  },
   "tokenError": "We couldn't confirm your identity, most likely due to a network problem. Some features of the app may not work correctly.",
+  "@tokenError": {
+    "description": "Message indicating that there is a problem with user's token, and some features may be broken because of this."
+  },
   "categoriesTab": "Categorii",
+  "@categoriesTab": {
+    "description": "Title of the Categories Tab"
+  },
   "settingsTab": "Setări",
+  "@settingsTab": {
+    "description": "Title of the Settings Tab"
+  },
   "confirmLogin": "Confirmă conectarea",
+  "@confirmLogin": {
+    "description": "Prompt that asks the user to confirm his log-in"
+  },
   "scanInfo": "Scanează codul cu telefonul pentru a accesa pagina de autentificare.",
+  "@scanInfo": {
+    "description": "Text that informs the user that the QR code can be scanned to enter the login page. Used on AppleTV."
+  },
   "validInfo": "Codul QR este valabil 15 minute.",
+  "@validInfo": {
+    "description": "Message that informs the user for how long the QR Code will be valid."
+  },
   "confirmInfo": "După conectarea cu succes pe dispozitiv, apasă pe butonul de mai jos pentru a confirma conectarea.",
+  "@confirmInfo": {
+    "description": "Message that asks the user to click the button in order to proceed after successful login."
+  },
   "seriesTab": "Episoade",
+  "@seriesTab": {
+    "description": "Series Tab title"
+  },
   "filmsTab": "Filme",
+  "@filmsTab": {
+    "description": "Films Tab title"
+  },
   "eventsTab": "Evenimente",
+  "@eventsTab": {
+    "description": "Events Tab title"
+  },
   "audioLanguage": "Limba sunetului",
+  "@audioLanguage": {
+    "description": "Label indicating that the Audio Language can be changed here."
+  },
   "subtitlesLanguage": "Limba subtitrării",
+  "@subtitlesLanguage": {
+    "description": "Label indicating that the Subtitles Language can be changed here."
+  },
   "removeFromRecentSearches": "Dorești să elimini acest element din căutările recente?",
+  "@removeFromRecentSearches": {
+    "description": "Prompt that asks the user wheter they are certain, that they want to remove the element from recent searches."
+  },
   "noTransmissionToday": "Nicio transmisie programată pentru astăzi",
+  "@noTransmissionToday": {
+    "description": "Messages that informs the user, that there are no schedules transmission for today."
+  },
   "livestreamMaintenanceTitle": "Transmisia în direct nu este disponibilă",
+  "@livestreamMaintenanceTitle": {
+    "description": "Message that informs the user, that the livestream is unavailable."
+  },
   "start": "Începe",
+  "@start": {
+    "description": "Word used while displaying information about the beggining of a video or an event in tv guide."
+  },
   "transmissionSchedule": "Programul transmisiilor",
+  "@transmissionSchedule": {
+    "description": "Label that indicates the user is looking at Transmission schedule"
+  },
   "featured": "Recomandate",
+  "@featured": {
+    "description": "Featured videos collection header"
+  },
   "errorTryAgain": "A apărut o eroare, te rugăm să încerci din nou mai târziu.",
+  "@errorTryAgain": {
+    "description": "Message that informs the user, that there was an error. Then politely asks the user to try again later."
+  },
   "reportProblem": "În cazul unei probleme, folosește codul QR pentru a ne trimite un e-mail.",
+  "@reportProblem": {
+    "description": "Message indicating that whenever the user wants to report a problem, they can scan the QR code to send an email to support."
+  },
   "phoneReadingProblem": "Dacă telefonul tău nu citește codul QR, trimite-ne e-mail cu aceste informații la",
+  "@phoneReadingProblem": {
+    "description": "Message explaining that if the user's phone can't scan the QR code, they can send the support e-mail with information listed after this message."
+  },
   "goTo": "sau mergi la",
+  "@goTo": {
+    "description": "Message used to point the user to the shortened URL in case they can't use the QR code to log-in. This is used on AppleTV."
+  },
   "watchBrunstad": "Urmărește BrunstadTV în direct",
+  "@watchBrunstad": {
+    "description": "Text that entices the user to watch the livestream."
+  },
   "notLogged": "Deconectat",
+  "@notLogged": {
+    "description": "Text that informs the user, that they are not logged in."
+  },
   "authResponse0": "Te rugăm să folosești un nou cod QR pentru conectare.",
+  "@authResponse0": {
+    "description": "Authentication response displayed to the user when an old QR code was used. Asking them to use a new one if they want to log in."
+  },
   "authResponse1": "Te rugăm să te conectezi pe mobil folosind codul QR.",
+  "@authResponse1": {
+    "description": "Message displayed to the user when they tried to proceed with the log-in on AppleTv without first logging through their mobile device."
+  },
   "authResponse3": "Verifică conexiunea la internet și încearcă din nou.",
+  "@authResponse3": {
+    "description": "Message that indicates there was an error during Authentication process. Asking the user to check their network connection and try again."
+  },
   "liveHeader": "În direct",
+  "@liveHeader": {
+    "description": "Header of the Live Tab — the tab that contains the livestream player on AppleTV."
+  },
   "recentlyPublishedSection": "Recently published",
+  "@recentlyPublishedSection": {
+    "description": "Section in explore."
+  },
   "exploreCategoriesSection": "Explore categories",
+  "@exploreCategoriesSection": {
+    "description": "Section in explore."
+  },
   "programsSection": "Programs",
+  "@programsSection": {
+    "description": "Section in explore."
+  },
   "episodesSection": "Episoade",
+  "@episodesSection": {
+    "description": "Section in explore."
+  },
   "categorySeries": "Episoade",
+  "@categorySeries": {
+    "description": "Category name"
+  },
   "categoryKids": "Kids",
+  "@categoryKids": {
+    "description": "Category name"
+  },
   "categoryFilms": "Filme",
+  "@categoryFilms": {
+    "description": "Category name"
+  },
   "categoryEvents": "Evenimente",
+  "@categoryEvents": {
+    "description": "Category name"
+  },
   "categoryMusic": "Music",
+  "@categoryMusic": {
+    "description": "Category name"
+  },
   "noPlannedEvents": "No planned events today",
-  "watchNow": "Watch now"
+  "@noPlannedEvents": {
+    "description": "Information in tvguide"
+  },
+  "watchNow": "Watch now",
+  "@watchNow": {
+    "description": "Button on featured carousel"
+  }
 }

@@ -1,228 +1,1011 @@
 {
-  "@@locale": "sl",
-  "liveTab": "V živo",
-  "logOutButton": "Odjava",
-  "profileTab": "Profil",
-  "bccMediaCenter": "BrunstadTV je nekomercialen medijski center, ki proizvaja in razširja vsebino, ki temelji na pozitivnih krščanskih vrednotah.",
-  "signInButton": "Vpis",
-  "tryAgainButton": "Poskusite znova",
-  "loggedOutTitle": "Odjavljen",
-  "loggedOutMessage": "Odjavili ste se. Prosim, ponovno se prijavite.",
-  "mostWatched": "Najbolj gledano",
-  "mostRecent": "Najnovejše",
-  "latelyPublished": "Nedavno objavljeno",
-  "anErrorOccurred": "Prišlo je do napake",
-  "ok": "OK",
-  "loginFailedCheckNetwork": "Napaka pri prijavi. Preverite internetno povezavo in poskusite znova.",
-  "loginFailedTryAgain": "Napaka pri prijavi. Prosim, poskusite znova kasneje.",
-  "soundLanguage": "Jezik zvoka",
-  "subtitleLanguage": "Jezik podnapisov",
-  "appLanguage": "Jezik aplikacije",
-  "checkNetwork": "Preverite svojo internetno povezavo in poskusite znova.",
-  "tryAgain": "Prosim, poskusite znova kasneje.",
-  "cantPlayVideo": "Ta videoposnetek trenutno ni na voljo.",
-  "about": "O aplikaciji",
-  "version": "Verzija",
-  "contactSupport": "Podpora",
-  "cancel": "Prekliči",
-  "upNext": "Sledi",
-  "done": "Končano",
-  "playerSettings": "Nastavitve predvajalnika",
-  "settings": "Nastavitve",
-  "none": "Noben",
-  "auto": "Samodejno",
-  "live": "V živo",
-  "subtitles": "Podnapisi",
-  "audio": "Zvok",
-  "quality": "Kakovost",
-  "seasons": "Sezone",
-  "episodes": "Deli",
-  "search": "Išči",
-  "noResults": "Ni rezultatov",
-  "doYouWantCast": "Ali hočete predvajati ta video?",
-  "play": "Predvajaj",
-  "castQueue": "Predvajaj čakalno vrsto",
-  "options": "Možnosti",
-  "remove": "Odstrani",
-  "queueLimitTitle": "Limit",
-  "queueLimitMessage": "V čakalni vrsti ne more biti več kot {elementCount} elementov.",
-  "recentSearches": "Nedavna iskanja",
-  "tVLogin": "TV prijava",
-  "tVLoginSuccessful": "Prijava je bila uspešna, prosim potrdite jo na TV.",
-  "seeMore": "Več",
-  "seeAll": "Poglej vse",
-  "series": "Serije",
-  "livestreamMaintenance": "Zaradi vzdrževalnih del neposredni prenos trenutno ni na voljo. Prosimo, poskusite ponovno kasneje.",
-  "homeTab": "Domov",
-  "sortBy": "Razvrsti",
-  "videoQuality": "Kakovost videoposnetka",
-  "low": "Nizka",
-  "medium": "Srednja",
-  "high": "Visoka",
-  "emptySearch": "Iščete lahko po vsej vsebini od BrunstadTV. Serije, filmi in deli.",
-  "back": "Nazaj",
-  "seasonLetter": "S",
-  "episodeLetter": "E",
-  "atoZ": "A-Z",
-  "ztoA": "Z-A",
-  "shortFilms": "Kratki filmi",
-  "videos": "Videoposnetki",
-  "moreInfo": "Več informacij",
-  "info": "Informacije",
-  "episode": "Del",
-  "takePhoto": "Slikaj",
-  "pickPhoto": "Izberi iz galerije",
-  "uploadFileTitle": "Naloži datoteko",
-  "uploadFileMessage": "Ali hočete naložiti to datoteko?",
-  "watchingWith": "Gledaš še z {numPeople} osebami",
-  "uploading": "Nalaganje",
-  "uploadFail": "Nalaganje ni uspelo",
-  "post": "Objavi",
-  "charactersLimit": "{charsLeft} od {charsTotal} znakov",
-  "uploadingPostSuccess": "Tvoja objava je bila poslana.",
-  "testimonyInfo": "Posnemi video s svojim telefonom.",
-  "yourVideo": "Tvoj video",
-  "record": "Posnemi",
-  "recordingTips": "Nekaj namigov za dober posnetek",
-  "recordingTipA": "Poišči miren prostor za snemanje.",
-  "recordingTipB": "Poskrbi, da je tvoj obraz enakomerno osvetljen.",
-  "recordingTipC": "Pomisli kaj hočeš povedati, preden začneš snemati.",
-  "recordingTipD": "Postavi telefon v ležeči način.",
-  "thankYou": "Hvala!",
-  "thankYouForContribution": "Hvala za tvoj prispevek!",
-  "uploadingVideoSuccess": "Tvoj video je bil poslan.",
-  "next": "Sledi",
-  "recordVideoCameraPermissionAlert": "V nastavitvah je potrebno omogočiti dovoljenje kamere za snemanje videoposnetka.",
-  "recordVideoPhotosPermissionAlert": "V nastavitvah je potrebno omogočiti dovoljenje galerije za snemanje videoposnetka.",
-  "recordVideoStoragePermissionAlert": "V nastavitvah je potrebno omogočiti dovoljenje shrambe za snemanje videoposnetka.",
-  "recordVideoMicrophonePermissionAlert": "V nastavitvah je potrebno omogočiti dovoljenje mikrofona za snemanje videoposnetka.",
-  "takePhotoStoragePermissionAlert": "V nastavitvah je potrebno omogočiti dovoljenje shrambe za zajem fotografije.",
-  "takePhotoCameraPermissionAlert": "V nastavitvah je potrebno omogočiti dovoljenje kamere za zajem fotografije.",
-  "pickPhotoStoragePermissionAlert": "V nastavitvah je potrebno omogočiti dovoljenje shrambe za izbiro fotografij.",
-  "permissionsAlertTitle": "Potrebna so dovoljenja",
-  "add": "Dodaj",
-  "change": "Spremeni",
-  "recordingFailedTitle": "Videposnetka ni bilo mogoče posneti",
-  "recordingFailedMessage": "Prišlo je do napake pri snemanju videoposnetka.",
-  "pollSubtitle": "Anketa",
-  "writeHere": "Napiši tukaj",
-  "feed": "Prispevki",
-  "atmosphereFeedDescription": "Sodeluj pri prispevkih, tako da pošlješ sporočilo, pričevanje ali sliko od tam, kjer si.",
-  "information": "Informacije",
-  "photoNotSupported": "Zajem in izbira fotografij nista podprta na tvojem telefonu.",
-  "answerFailed": "Se opravičujemo! Odgovora ni bilo mogoče poslati. Prosim, poskusi znova.",
-  "question": "Vprašanje",
-  "notificationChannelPlayerName": "Predvajalnik",
-  "now": "Zdaj",
-  "createPost": "Ustvari objavo",
-  "concernTextPlaceholder": "Opiši težavo",
-  "debugInfoExplanation": "Tvoje sporočilo bo vsebovalo to informacijo. To nam bo pomagalo, da bomo bolje razumeli težavo.",
-  "send": "Pošlji",
-  "sending": "Pošiljam",
-  "thankYouSupportTitle": "Hvala za povratno sporočilo!",
-  "thankYouSupportDescription": "Cenimo vsa povratna sporočila in težave bomo rešili v najkrajšem možnem času.",
-  "sendFail": "Sporočila ni bilo mogoče poslati",
-  "sendFailDescription": "Nekaj je šlo narobe. Preveri svojo internetno povezavo in poskusi znova.",
-  "today": "Danes",
-  "noNewPosts": "Ni novih objav",
-  "newPostsMultiple": "{postCount} novih objav!",
-  "newPostsSingle": "{postCount} novih objav!",
-  "expired": "Preteklo",
-  "availableFrom": "Na voljo {date}",
-  "howFar": "Kako daleč si šel?",
-  "submit": "Oddaj",
-  "wellDone": "Bravo!",
-  "wellDoneDistance": "Bravo! Registriral si razdaljo {distanceInKM} km",
-  "distanceRegistered": "Tvoja razdalja je bila registrirana. Nadaljuj spodaj, če hočeš oddati drugo razdaljo.",
-  "ranMore": "Dosegel sem več kot {distanceInKM} km",
-  "moreThan": "Več kot {distanceInKM} km",
-  "runningEffort": "Izjemen dosežek! Spodaj vpiši število kilometrov, ki si jih dosegel.",
-  "slideSelect": "Podrsaj, da izbereš razdaljo",
-  "submitAnotherDistance": "Oddaj drugo razdaljo",
-  "editPicture": "Uredi sliko",
-  "profilePicture": "Profilna slika",
-  "firstPostTitle": "Bodi prvi, ki objavi sliko ali sporočilo",
-  "timezoneInformation": "Tv spored je v tvojem lokalnem času: {timeZone}",
-  "yourQuestion": "Tvoje vprašanje",
-  "uploadingInquirySuccess": "Na vsa poslana vprašanja bomo odgovorili v prenosu.",
-  "askQuestion": "Postavi vprašanje",
-  "submitQuestionInfo": "S poslanim vprašanjem se strinjaš, da se vprašanje lahko uporabi za potrebe prenosov.",
-  "posting": "Objavljanje",
+  
+  "loadingContent": "Nalagam vsebino",
+  "@loadingContent": {
+    "description": "Text displayed when page content is loading."
+  },
+  "signInTooltip": "Za ogled ostalih vsebin se prijavi",
+  "@signInTooltip": {
+    "description": "Text for tooltip displayed when a non-member user opens the home page."
+  },
+  "skipToPublicContent": "Nadaljuj z ogledom javno dostopne vsebine",
+  "@skipToPublicContent": {
+    "description": "Text for button displayed on login screen to skip sign in and watch public content."
+  },
+  "minutesShort": "min",
+  "@minutesShort": {
+    "description": "Text for minutes."
+  },
+  "calendarThisWeek": "Ta teden",
+  "@calendarThisWeek": {
+    "description": "Text for This week."
+  },
+  "calendarWeek": "teden",
+  "@calendarWeek": {
+    "description": "Text week."
+  },
   "loading": "Nalaganje",
+  "@loading": {
+    "description": "Text to indicate loading state."
+  },
+  "loginPageDisplay1": "Najmočnejše sporočilo na svetu",
+  "@loginPageDisplay1": {
+    "description": "Text displayed on login screen."
+  },
+  "loginPageDisplay2": "Oglej si serije in filme, narejene na podlagi krščanskih vrednot",
+  "@loginPageDisplay2": {
+    "description": "Text displayed on login screen."
+  },
+  "loginPageDisplay3": "Produkcija: BCC Media",
+  "@loginPageDisplay3": {
+    "description": "Text displayed on login screen."
+  },
+  "liveTab": "V živo",
+  "@liveTab": {
+    "description": "Title of live page tab"
+  },
+  "logOutButton": "Odjava",
+  "@logOutButton": {
+    "description": "Text displayed on Log out button"
+  },
+  "profileTab": "Profil",
+  "@profileTab": {
+    "description": "Title of the profile page"
+  },
+  "faq": "Pogosta vprašanja",
+  "@faq": {
+    "description": "Title of the FAQ page."
+  },
+  "bccMediaCenter": "BrunstadTV je nekomercialen medijski center, ki proizvaja in razširja vsebino, ki temelji na pozitivnih krščanskih vrednotah.",
+  "@bccMediaCenter": {
+    "description": "Disclaimer on login page"
+  },
+  "signInButton": "Vpis",
+  "@signInButton": {
+    "description": "Text displayed on Sign in button"
+  },
+  "tryAgainButton": "Poskusite znova",
+  "@tryAgainButton": {
+    "description": "Button on error alert that lets user to retry failed action"
+  },
+  "loggedOutTitle": "Odjavljen",
+  "@loggedOutTitle": {
+    "description": "Title of the alert message that is shown when user is logged out automatically."
+  },
+  "loggedOutMessage": "Odjavili ste se. Prosim, ponovno se prijavite.",
+  "@loggedOutMessage": {
+    "description": "Text of the alert message that is shown when user is logged out automatically."
+  },
+  "mostWatched": "Najbolj gledano",
+  "@mostWatched": {
+    "description": "Sorting option on audience page"
+  },
+  "mostRecent": "Najnovejše",
+  "@mostRecent": {
+    "description": "Sorting option on audience page"
+  },
+  "latelyPublished": "Nedavno objavljeno",
+  "@latelyPublished": {
+    "description": "Title for the list of videos on login page"
+  },
+  "anErrorOccurred": "Prišlo je do napake",
+  "@anErrorOccurred": {
+    "description": "Title in error popup"
+  },
+  "ok": "OK",
+  "@ok": {
+    "description": "Popup confirmation button"
+  },
+  "loginFailedCheckNetwork": "Napaka pri prijavi. Preverite internetno povezavo in poskusite znova.",
+  "@loginFailedCheckNetwork": {
+    "description": "Login error message"
+  },
+  "loginFailedTryAgain": "Napaka pri prijavi. Prosim, poskusite znova kasneje.",
+  "@loginFailedTryAgain": {
+    "description": "Login error message"
+  },
+  "soundLanguage": "Jezik zvoka",
+  "@soundLanguage": {
+    "description": "Settings item on profile page"
+  },
+  "subtitleLanguage": "Jezik podnapisov",
+  "@subtitleLanguage": {
+    "description": "Settings item on profile page"
+  },
+  "appLanguage": "Jezik aplikacije",
+  "@appLanguage": {
+    "description": "Settings item on profile page"
+  },
+  "checkNetwork": "Preverite svojo internetno povezavo in poskusite znova.",
+  "@checkNetwork": {
+    "description": "Error message for the user displayed in many contexts."
+  },
+  "tryAgain": "Prosim, poskusite znova kasneje.",
+  "@tryAgain": {
+    "description": "Error message for the user displayed in many contexts."
+  },
+  "cantPlayVideo": "Ta videoposnetek trenutno ni na voljo.",
+  "@cantPlayVideo": {
+    "description": "Error message for the user displayed when video playback attempt failed."
+  },
+  "about": "O aplikaciji",
+  "@about": {
+    "description": "Title of About page and item in profile page settings."
+  },
+  "version": "Verzija",
+  "@version": {
+    "description": "Version ot the application on About page; followed by version number"
+  },
+  "contactSupport": "Podpora",
+  "@contactSupport": {
+    "description": "Settings item on profile page"
+  },
+  "cancel": "Prekliči",
+  "@cancel": {
+    "description": "General cancel action button"
+  },
+  "upNext": "Sledi",
+  "@upNext": {
+    "description": "Title on Up next feature."
+  },
+  "done": "Končano",
+  "@done": {
+    "description": "General Done button. User confirms that action completed sucessfully."
+  },
+  "playerSettings": "Nastavitve predvajalnika",
+  "@playerSettings": {
+    "description": "Title of the Player settings activity in Android"
+  },
+  "settings": "Nastavitve",
+  "@settings": {
+    "description": "Label of the button to go to Android/iOS settings"
+  },
+  "none": "Noben",
+  "@none": {
+    "description": "Indicator on profile page that subtitles are disabled."
+  },
+  "auto": "Samodejno",
+  "@auto": {
+    "description": "Indicator on profile page that audio and app language are chosen automatically."
+  },
+  "live": "V živo",
+  "@live": {
+    "description": "Title of the live stream"
+  },
+  "subtitles": "Podnapisi",
+  "@subtitles": {
+    "description": "Title of the Player settings activity tab in Android"
+  },
+  "audio": "Zvok",
+  "@audio": {
+    "description": "Title of the Player settings activity tab in Android"
+  },
+  "quality": "Kakovost",
+  "@quality": {
+    "description": "Title of the Player settings activity tab in Android"
+  },
+  "seasons": "Sezone",
+  "@seasons": {
+    "description": "Followed by number of seasons in given series."
+  },
+  "episodes": "Deli",
+  "@episodes": {
+    "description": "Followed by number of episodes in given series."
+  },
+  "search": "Išči",
+  "@search": {
+    "description": "Button to clear cache"
+  },
+  "noResults": "Ni najdenih rezultatov",
+  "@noResults": {
+    "description": "No search results."
+  },
+  "doYouWantCast": "Ali hočete predvajati ta video?",
+  "@doYouWantCast": {
+    "description": "Prompt displayed to the user"
+  },
+  "play": "Predvajaj",
+  "@play": {
+    "description": "Option in prompt dialog."
+  },
+  "castQueue": "Predvajaj čakalno vrsto",
+  "@castQueue": {
+    "description": "Queue page title"
+  },
+  "options": "Možnosti",
+  "@options": {
+    "description": "Options dialog title"
+  },
+  "remove": "Odstrani",
+  "@remove": {
+    "description": "Option in options dialog"
+  },
+  "queueLimitTitle": "Limit",
+  "@queueLimitTitle": {
+    "description": "Title of the alert to the user when attempt to add video to cast queue failed due to full queue."
+  },
+  "queueLimitMessage": "V čakalni vrsti ne more biti več kot {elementCount} elementov.",
+  "@queueLimitMessage": {
+    "description": "Error message to the user when attempt to add video to cast queue failed due to full queue.",
+    "placeholders": {
+      "elementCount": {
+        "type": "int"
+      }
+    }
+  },
+  "recentSearches": "Nedavna iskanja",
+  "@recentSearches": {
+    "description": "Recent searches list title."
+  },
+  "tVLogin": "TV prijava",
+  "@tVLogin": {
+    "description": "Title of the TV login alert"
+  },
+  "tVLoginSuccessful": "Prijava je bila uspešna, prosim potrdite jo na TV.",
+  "@tVLoginSuccessful": {
+    "description": "Message of the TV login alert"
+  },
+  "seeMore": "Več",
+  "@seeMore": {
+    "description": "Button on featured item to navigete to page with player"
+  },
+  "seeAll": "Poglej vse",
+  "@seeAll": {
+    "description": "Button on explore page to navigete to audience page"
+  },
+  "series": "Serije",
+  "@series": {
+    "description": "Title of the tab on info page"
+  },
+  "livestreamMaintenance": "Zaradi vzdrževalnih del neposredni prenos trenutno ni na voljo. Prosimo, poskusite ponovno kasneje.",
+  "@livestreamMaintenance": {
+    "description": "Message displayed over overlay when livestream is under maintenance."
+  },
+  "homeTab": "Domov",
+  "@homeTab": {
+    "description": "Title of the home page"
+  },
+  "sortBy": "Razvrsti",
+  "@sortBy": {
+    "description": "Sorting criteria selector"
+  },
+  "videoQuality": "Kakovost videoposnetka",
+  "@videoQuality": {
+    "description": "Settings item in profile page for Android."
+  },
+  "low": "Nizka",
+  "@low": {
+    "description": "Low quality video option"
+  },
+  "medium": "Srednja",
+  "@medium": {
+    "description": "Medium quality video option"
+  },
+  "high": "Visoka",
+  "@high": {
+    "description": "High quality video option"
+  },
+  "emptySearch": "Iščete lahko po vsej vsebini od BrunstadTV. Serije, filmi in deli.",
+  "@emptySearch": {
+    "description": "Message on search page when there is no search results."
+  },
+  "back": "Nazaj",
+  "@back": {
+    "description": "General back button to navigate back"
+  },
+  "seasonLetter": "S",
+  "@seasonLetter": {
+    "description": "Season  letter in label S1E3"
+  },
+  "episodeLetter": "E",
+  "@episodeLetter": {
+    "description": "Episode letter in label S1E3"
+  },
+  "atoZ": "A-Z",
+  "@atoZ": {
+    "description": "Sort order"
+  },
+  "ztoA": "Z-A",
+  "@ztoA": {
+    "description": "Sort order"
+  },
+  "shortFilms": "Kratki filmi",
+  "@shortFilms": {
+    "description": "Title of the films collection."
+  },
+  "videos": "Videoposnetki",
+  "@videos": {
+    "description": "Followed by number of videos"
+  },
+  "moreInfo": "Več informacij",
+  "@moreInfo": {
+    "description": "Option in action sheet for the video that triggers info page for the video."
+  },
+  "info": "Informacije",
+  "@info": {
+    "description": "Video info page title."
+  },
+  "episode": "Del",
+  "@episode": {
+    "description": "Title of the tab on info page"
+  },
+  "takePhoto": "Slikaj",
+  "@takePhoto": {
+    "description": "Option in menu"
+  },
+  "pickPhoto": "Izberi iz galerije",
+  "@pickPhoto": {
+    "description": "Option in menu"
+  },
+  "uploadFileTitle": "Naloži datoteko",
+  "@uploadFileTitle": {
+    "description": "Title of the dialog to confirm upload"
+  },
+  "uploadFileMessage": "Ali hočete naložiti to datoteko?",
+  "@uploadFileMessage": {
+    "description": "Content of the dialog to confirm upload"
+  },
+  "watchingWith": "Gledaš še z {numPeople} osebami",
+  "@watchingWith": {
+    "description": "Info on live stream page",
+    "placeholders": {
+      "numPeople": {
+        "type": "int"
+      }
+    }
+  },
+  "uploading": "Nalaganje",
+  "@uploading": {
+    "description": "Message during file upload"
+  },
+  "uploadFail": "Nalaganje ni uspelo",
+  "@uploadFail": {
+    "description": "Upload result message"
+  },
+  "post": "Objavi",
+  "@post": {
+    "description": "Button to post written testimony"
+  },
+  "charactersLimit": "{charsLeft} od {charsTotal} znakov",
+  "@charactersLimit": {
+    "description": "Info about limit of characters in written testimony",
+    "placeholders": {
+      "charsLeft": {
+        "type": "int"
+      },
+      "charsTotal": {
+        "type": "int"
+      }
+    }
+  },
+  "uploadingPostSuccess": "Tvoja objava je bila poslana.",
+  "@uploadingPostSuccess": {
+    "description": "Info in upload success page"
+  },
+  "testimonyInfo": "Posnemi video s svojim telefonom.",
+  "@testimonyInfo": {
+    "description": "Record testimony guideline page info"
+  },
+  "yourVideo": "Tvoj video",
+  "@yourVideo": {
+    "description": "Title on recording tip page page"
+  },
+  "record": "Posnemi",
+  "@record": {
+    "description": "Button to record testimony"
+  },
+  "recordingTips": "Nekaj namigov za dober posnetek",
+  "@recordingTips": {
+    "description": "Record testimony guideline page tip list title"
+  },
+  "recordingTipA": "Poišči miren prostor za snemanje.",
+  "@recordingTipA": {
+    "description": "Record testimony guideline page tip list item"
+  },
+  "recordingTipB": "Poskrbi, da je tvoj obraz enakomerno osvetljen.",
+  "@recordingTipB": {
+    "description": "Record testimony guideline page tip list item"
+  },
+  "recordingTipC": "Pomisli kaj hočeš povedati, preden začneš snemati.",
+  "@recordingTipC": {
+    "description": "Record testimony guideline page tip list item"
+  },
+  "recordingTipD": "Postavi telefon v ležeči način.",
+  "@recordingTipD": {
+    "description": "Record testimony guideline page tip list item"
+  },
+  "thankYou": "Hvala!",
+  "@thankYou": {
+    "description": "Title in upload success page"
+  },
+  "thankYouForContribution": "Hvala za tvoj prispevek!",
+  "@thankYouForContribution": {
+    "description": "Title in upload success page"
+  },
+  "uploadingVideoSuccess": "Tvoj video je bil poslan.",
+  "@uploadingVideoSuccess": {
+    "description": "Info in upload success page"
+  },
+  "next": "Sledi",
+  "@next": {
+    "description": "NEXT program in check in section"
+  },
+  "recordVideoCameraPermissionAlert": "V nastavitvah je potrebno omogočiti dovoljenje kamere za snemanje videoposnetka.",
+  "@recordVideoCameraPermissionAlert": {
+    "description": "Message in alert dialog informing about missing permission"
+  },
+  "recordVideoPhotosPermissionAlert": "V nastavitvah je potrebno omogočiti dovoljenje galerije za snemanje videoposnetka.",
+  "@recordVideoPhotosPermissionAlert": {
+    "description": "Message in alert dialog informing about missing permission"
+  },
+  "recordVideoStoragePermissionAlert": "V nastavitvah je potrebno omogočiti dovoljenje shrambe za snemanje videoposnetka.",
+  "@recordVideoStoragePermissionAlert": {
+    "description": "Message in alert dialog informing about missing permission"
+  },
+  "recordVideoMicrophonePermissionAlert": "V nastavitvah je potrebno omogočiti dovoljenje mikrofona za snemanje videoposnetka.",
+  "@recordVideoMicrophonePermissionAlert": {
+    "description": "Message in alert dialog informing about missing permission"
+  },
+  "takePhotoStoragePermissionAlert": "V nastavitvah je potrebno omogočiti dovoljenje shrambe za zajem fotografije.",
+  "@takePhotoStoragePermissionAlert": {
+    "description": "Message in alert dialog informing about missing permission"
+  },
+  "takePhotoCameraPermissionAlert": "V nastavitvah je potrebno omogočiti dovoljenje kamere za zajem fotografije.",
+  "@takePhotoCameraPermissionAlert": {
+    "description": "Message in alert dialog informing about missing permission"
+  },
+  "pickPhotoStoragePermissionAlert": "V nastavitvah je potrebno omogočiti dovoljenje shrambe za izbiro fotografij.",
+  "@pickPhotoStoragePermissionAlert": {
+    "description": "Message in alert dialog informing about missing permission"
+  },
+  "permissionsAlertTitle": "Potrebna so dovoljenja",
+  "@permissionsAlertTitle": {
+    "description": "Title of an alert dialog informing about missing permission"
+  },
+  "add": "Dodaj",
+  "@add": {
+    "description": "Button text on interactive live avatar section"
+  },
+  "change": "Spremeni",
+  "@change": {
+    "description": "Button text on interactive live avatar section"
+  },
+  "recordingFailedTitle": "Videposnetka ni bilo mogoče posneti",
+  "@recordingFailedTitle": {
+    "description": "Title in alert dialog when recording fails"
+  },
+  "recordingFailedMessage": "Prišlo je do napake pri snemanju videoposnetka.",
+  "@recordingFailedMessage": {
+    "description": "Message in alert dialog when recording fails"
+  },
+  "pollSubtitle": "Anketa",
+  "@pollSubtitle": {
+    "description": "The little title in poll"
+  },
+  "writeHere": "Napiši tukaj",
+  "@writeHere": {
+    "description": "New post text field placeholder"
+  },
+  "feed": "Prispevki",
+  "@feed": {
+    "description": "Feed page bar title"
+  },
+  "atmosphereFeedDescription": "Sodeluj pri prispevkih, tako da pošlješ sporočilo, pričevanje ali sliko od tam, kjer si.",
+  "@atmosphereFeedDescription": {
+    "description": "Feed page description"
+  },
+  "information": "Informacije",
+  "@information": {
+    "description": "Feed information item title"
+  },
+  "photoNotSupported": "Zajem in izbira fotografij nista podprta na tvojem telefonu.",
+  "@photoNotSupported": {
+    "description": "Alert displayed when phone can't take photo or pick photo from storage."
+  },
+  "answerFailed": "Se opravičujemo! Odgovora ni bilo mogoče poslati. Prosim, poskusi znova.",
+  "@answerFailed": {
+    "description": "Message displayed when user's answer hasn't' been sent'."
+  },
+  "question": "Vprašanje",
+  "@question": {
+    "description": "Title of the question page"
+  },
+  "notificationChannelPlayerName": "Predvajalnik",
+  "@notificationChannelPlayerName": {
+    "description": "Notification channel name in Android settings"
+  },
+  "now": "Zdaj",
+  "@now": {
+    "description": "Tv guide now playing label"
+  },
+  "createPost": "Ustvari objavo",
+  "@createPost": {
+    "description": "Button to start text testimony and title on create post page"
+  },
+  "concernTextPlaceholder": "Opiši težavo",
+  "@concernTextPlaceholder": {
+    "description": "Placeholder text in text field on contact support page"
+  },
+  "debugInfoExplanation": "Tvoje sporočilo bo vsebovalo to informacijo. To nam bo pomagalo, da bomo bolje razumeli težavo.",
+  "@debugInfoExplanation": {
+    "description": "Info about debug info usage on contact support page"
+  },
+  "send": "Pošlji",
+  "@send": {
+    "description": "General button to send a form"
+  },
+  "sending": "Pošiljam",
+  "@sending": {
+    "description": "General sending action indicator"
+  },
+  "thankYouSupportTitle": "Hvala za povratno sporočilo!",
+  "@thankYouSupportTitle": {
+    "description": "Text on contact support confirmation page"
+  },
+  "thankYouSupportDescription": "Cenimo vsa povratna sporočila in težave bomo rešili v najkrajšem možnem času.",
+  "@thankYouSupportDescription": {
+    "description": "Text on contact support confirmation page"
+  },
+  "sendFail": "Sporočila ni bilo mogoče poslati",
+  "@sendFail": {
+    "description": "General error message that sending failed"
+  },
+  "sendFailDescription": "Nekaj je šlo narobe. Preveri svojo internetno povezavo in poskusi znova.",
+  "@sendFailDescription": {
+    "description": "General error message that sending failed"
+  },
+  "today": "Danes",
+  "@today": {
+    "description": "First category in tv guide"
+  },
+  "noNewPosts": "Ni novih objav",
+  "@noNewPosts": {
+    "description": "Text displayed on the button, when there are no new posts in the feed."
+  },
+  "newPostsMultiple": "{postCount} novih objav!",
+  "@newPostsMultiple": {
+    "description": "Text displayed on the button, when there are number of new posts in the feed.",
+    "placeholders": {
+      "postCount": {
+        "type": "int"
+      }
+    }
+  },
+  "newPostsSingle": "{postCount} novih objav!",
+  "@newPostsSingle": {
+    "description": "Text displayed on the button, when there is one new post in the feed.",
+    "placeholders": {
+      "postCount": {
+        "type": "int"
+      }
+    }
+  },
+  "expired": "Preteklo",
+  "@expired": {
+    "description": "Info that episode is no longer available."
+  },
+  "availableFrom": "Na voljo {date}",
+  "@availableFrom": {
+    "description": "Info that episode will be released at certain date.",
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "howFar": "Kako daleč si šel?",
+  "@howFar": {
+    "description": "Text on running competition page."
+  },
+  "submit": "Oddaj",
+  "@submit": {
+    "description": "Submit button on running competition page."
+  },
+  "wellDone": "Bravo!",
+  "@wellDone": {
+    "description": "Text on running competition page."
+  },
+  "wellDoneDistance": "Bravo! Registriral si razdaljo {distanceInKM} km",
+  "@wellDoneDistance": {
+    "description": "Text on running competition page.",
+    "placeholders": {
+      "distanceInKM": {
+        "type": "int"
+      }
+    }
+  },
+  "distanceRegistered": "Tvoja razdalja je bila registrirana. Nadaljuj spodaj, če hočeš oddati drugo razdaljo.",
+  "@distanceRegistered": {
+    "description": "Text on running competition page."
+  },
+  "ranMore": "Pretekel sem več kot {distanceInKM} km",
+  "@ranMore": {
+    "description": "Text on running competition page.",
+    "placeholders": {
+      "distanceInKM": {
+        "type": "int"
+      }
+    }
+  },
+  "moreThan": "Več kot {distanceInKM} km",
+  "@moreThan": {
+    "description": "Text on running competition page.",
+    "placeholders": {
+      "distanceInKM": {
+        "type": "int"
+      }
+    }
+  },
+  "runningEffort": "Izjemen dosežek! Spodaj vpiši število kilometrov, ki si jih dosegel.",
+  "@runningEffort": {
+    "description": "Text on running competition page."
+  },
+  "slideSelect": "Podrsaj, da izbereš razdaljo",
+  "@slideSelect": {
+    "description": "Text on running competition page."
+  },
+  "submitAnotherDistance": "Oddaj drugo razdaljo",
+  "@submitAnotherDistance": {
+    "description": "Text on running competition page."
+  },
+  "editPicture": "Uredi sliko",
+  "@editPicture": {
+    "description": "Button on profile page to edit profile picture."
+  },
+  "profilePicture": "Profilna slika",
+  "@profilePicture": {
+    "description": "Text on edit profile page."
+  },
+  "firstPostTitle": "Bodi prvi, ki objavi sliko ali sporočilo",
+  "@firstPostTitle": {
+    "description": "Text on feed page when feed is empty."
+  },
+  "timezoneInformation": "Tv spored je v tvojem lokalnem času: {timeZone}",
+  "@timezoneInformation": {
+    "description": "TV guide footer info text.",
+    "placeholders": {
+      "timeZone": {
+        "type": "String"
+      }
+    }
+  },
+  "yourQuestion": "Tvoje vprašanje",
+  "@yourQuestion": {
+    "description": "Title on ask question page"
+  },
+  "uploadingInquirySuccess": "Na vsa poslana vprašanja bomo odgovorili v prenosu.",
+  "@uploadingInquirySuccess": {
+    "description": "Info in upload question success page"
+  },
+  "askQuestion": "Postavi vprašanje",
+  "@askQuestion": {
+    "description": "Ask question text field placeholder"
+  },
+  "submitQuestionInfo": "S poslanim vprašanjem se strinjaš, da se vprašanje lahko uporabi za potrebe prenosov.",
+  "@submitQuestionInfo": {
+    "description": "Disclaimer on ask question page"
+  },
+  "posting": "Objavljanje",
+  "@posting": {
+    "description": "Information about ongoing posting process"
+  },
   "submitPostInfo": "S poslanim sporočilom ali sliko se strinjaš, da se to uporabi za potrebe prenosov. ",
+  "@submitPostInfo": {
+    "description": "Disclaimer on text testimony page"
+  },
   "cropImage": "Obreži sliko",
+  "@cropImage": {
+    "description": "Image crop page title"
+  },
   "square": "Kvadrat",
+  "@square": {
+    "description": "Image crop mode"
+  },
   "landscape": "Ležeče",
+  "@landscape": {
+    "description": "Image crop mode"
+  },
   "pollSingleChoice": "Svoj odgovor lahko izbereš le enkrat.",
+  "@pollSingleChoice": {
+    "description": "Desciption of the poll type. States that user can change the answer only once."
+  },
   "pollMultipleChoice": "Svoj odgovor lahko večkrat spremeniš.",
+  "@pollMultipleChoice": {
+    "description": "Desciption of the poll type. States that user can change the answer multiple times."
+  },
   "pollEnded": "Anketa se je končala. Hvala za tvoje odgovore.",
+  "@pollEnded": {
+    "description": "Message displayed when poll has been closed by administrator."
+  },
   "browserInstall": "Prosim naloži brskalnik, da lahko odpreš ta URL.",
+  "@browserInstall": {
+    "description": "Message displayed when browser couldn't be opened on user's device."
+  },
   "share": "Deli",
+  "@share": {
+    "description": "Option name to share video."
+  },
   "liveNow": "V živo",
+  "@liveNow": {
+    "description": "Call to action button on featured carousel."
+  },
   "program": "Program",
+  "@program": {
+    "description": "Title of the program tab on live page."
+  },
   "participateTab": "Sodeluj",
+  "@participateTab": {
+    "description": "Title of the participate tab on live page."
+  },
   "tomorrow": "Jutri",
+  "@tomorrow": {
+    "description": "Day of transmission in tv guide."
+  },
   "readBy": "Prebral",
+  "@readBy": {
+    "description": "Feed verse pre author text."
+  },
   "pollAnswer": "Ti si odgovoril/a {answer}",
+  "@pollAnswer": {
+    "description": "Snackbar label after user has chosen poll answer",
+    "placeholders": {
+      "answer": {
+        "type": "String"
+      }
+    }
+  },
   "broadcasts": "Oddaje",
+  "@broadcasts": {
+    "description": "Title for tv guide collection on event page."
+  },
   "quizAnswered": "Odgovor je poslan",
+  "@quizAnswered": {
+    "description": "Text displayed on a button when all answers in quiz have been submitted."
+  },
   "quizNotEnabled": "Trenutno kviz ni na voljo. Prosim poskusi znova kasneje.",
+  "@quizNotEnabled": {
+    "description": "Message on alert that appears when participate item is visible, but quiz is not enabled."
+  },
   "calendar": "Koledar",
+  "@calendar": {
+    "description": "Title of calendar page."
+  },
   "noEvents": "Ni načrtovanih prenosov",
+  "@noEvents": {
+    "description": "Info in calendar page that no transmissions are scheduled for selected day."
+  },
   "appUpdateTitle": "Potrebna posodobitev",
+  "@appUpdateTitle": {
+    "description": "Title of the message displayed to the user when application is too old and should be updated in a timely manner."
+  },
   "appUpdateRequest": "Prosim prenesi zadnjo verzijo aplikacije, da dobiš najnovejše dodatke in izboljšave.",
+  "@appUpdateRequest": {
+    "description": "Message displayed to the user when application is too old and should be updated in a timely manner."
+  },
   "appUpdateAccepted": "Posodobitev",
+  "@appUpdateAccepted": {
+    "description": "Option that can be chosen by the user to update his application."
+  },
   "donationNotAvailable": "Donacija trenutno ni na voljo. Prosim poskusi znova kasneje.",
+  "@donationNotAvailable": {
+    "description": "Message displayed when donation flow failed."
+  },
   "posts": "{postsCount} objav",
+  "@posts": {
+    "description": "Contributions to feed made by the users. Plural of post.",
+    "placeholders": {
+      "postsCount": {
+        "type": "int"
+      }
+    }
+  },
   "copy": "Kopiraj",
+  "@copy": {
+    "description": "Copy option for quotes, verses."
+  },
   "reload": "Ponovno naloži",
+  "@reload": {
+    "description": "Label on the button that allows to reload the player after error."
+  },
   "participantsTitle": "Kdo odgovarja?",
+  "@participantsTitleTitle": {
+    "description": "Title label on the participants list before quiz."
+  },
   "participantsSubtitle": "Izberi enega ali več sodelujočih.",
+  "@participantsSubtitle": {
+    "description": "Subtitle label on the participants list before quiz."
+  },
   "yourFamily": "Tvoja družina",
+  "@yourFamily": {
+    "description": "Title on page when user selects family members that take part in the quiz."
+  },
   "yourTurn": "Ti si na vrsti",
+  "@yourTurn": {
+    "description": "Title on page informing user that other user will answer question in the next step."
+  },
   "fAQ": "FAQ",
+  "@fAQ": {
+    "description": "Title on FAQ page and item in profile page settings."
+  },
   "shareStart": "Deli od začetka",
+  "@shareStart": {
+    "description": "Option on action sheet for sharing from start"
+  },
   "shareTime": "Deli od {time}",
+  "@shareTime": {
+    "description": "Option on action sheet for sharing from time",
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  },
   "loadContentError": "Nalaganje vsebine ni uspelo",
+  "@loadContentError": {
+    "description": "Error text when content couldn't be loaded."
+  },
   "audioOnlyErrorDescription": "Preveri internetno povezavo in poskusi znova",
+  "@audioOnlyErrorDescription": {
+    "description": "Error message when audio only fails to play"
+  },
   "privacyPolicy": "Pravilnik o zasebnosti",
+  "@privacyPolicy": {
+    "description": "Title on Privacy Policy page and item in profile page settings."
+  },
   "tokenError": "Ne moremo potrditi tvoje identitete, verjetno zaradi internetnih težav. Nekatere funkcije aplikacije mogoče ne bodo delovale pravilno.",
+  "@tokenError": {
+    "description": "Message indicating that there is a problem with user's token, and some features may be broken because of this."
+  },
   "categoriesTab": "Kategorije",
+  "@categoriesTab": {
+    "description": "Title of the Categories Tab"
+  },
   "settingsTab": "Nastavitve",
+  "@settingsTab": {
+    "description": "Title of the Settings Tab"
+  },
   "confirmLogin": "Potrdi prijavo",
+  "@confirmLogin": {
+    "description": "Prompt that asks the user to confirm his log-in"
+  },
   "scanInfo": "Za vstop do strani s prijavo, skenirajte kodo s svojim telefonom.",
+  "@scanInfo": {
+    "description": "Text that informs the user that the QR code can be scanned to enter the login page. Used on AppleTV."
+  },
   "validInfo": "QR-koda je veljavna 15 minut.",
+  "@validInfo": {
+    "description": "Message that informs the user for how long the QR Code will be valid."
+  },
   "confirmInfo": "Po uspešni prijavi na svoji napravi pritisnite na spodnji gumb za potrditev prijave.",
+  "@confirmInfo": {
+    "description": "Message that asks the user to click the button in order to proceed after successful login."
+  },
   "seriesTab": "Serije",
+  "@seriesTab": {
+    "description": "Series Tab title"
+  },
   "filmsTab": "Filmi",
+  "@filmsTab": {
+    "description": "Films Tab title"
+  },
   "eventsTab": "Dogodki",
+  "@eventsTab": {
+    "description": "Events Tab title"
+  },
   "audioLanguage": "Jezik zvoka",
+  "@audioLanguage": {
+    "description": "Label indicating that the Audio Language can be changed here."
+  },
   "subtitlesLanguage": "Jezik podnapisov",
+  "@subtitlesLanguage": {
+    "description": "Label indicating that the Subtitles Language can be changed here."
+  },
   "removeFromRecentSearches": "Ali želite odstraniti ta element iz nedavnih iskanj?",
+  "@removeFromRecentSearches": {
+    "description": "Prompt that asks the user wheter they are certain, that they want to remove the element from recent searches."
+  },
   "noTransmissionToday": "Danes ni načrtovanih prenosov",
+  "@noTransmissionToday": {
+    "description": "Messages that informs the user, that there are no schedules transmission for today."
+  },
   "livestreamMaintenanceTitle": "Neposredni prenos ni na voljo",
+  "@livestreamMaintenanceTitle": {
+    "description": "Message that informs the user, that the livestream is unavailable."
+  },
   "start": "Začetek",
+  "@start": {
+    "description": "Word used while displaying information about the beggining of a video or an event in tv guide."
+  },
   "transmissionSchedule": "Spored prenosa",
+  "@transmissionSchedule": {
+    "description": "Label that indicates the user is looking at Transmission schedule"
+  },
   "featured": "Priporočamo",
+  "@featured": {
+    "description": "Featured videos collection header"
+  },
   "errorTryAgain": "Prišlo je do napake, prosim poskusi znova.",
+  "@errorTryAgain": {
+    "description": "Message that informs the user, that there was an error. Then politely asks the user to try again later."
+  },
   "reportProblem": "V primeru težav uporabite spodnjo QR-kodo in pošljite mail.",
+  "@reportProblem": {
+    "description": "Message indicating that whenever the user wants to report a problem, they can scan the QR code to send an email to support."
+  },
   "phoneReadingProblem": "Če telefon ne podpira branja QR-kode, pošljite mail s sledečimi informacijami na",
+  "@phoneReadingProblem": {
+    "description": "Message explaining that if the user's phone can't scan the QR code, they can send the support e-mail with information listed after this message."
+  },
   "goTo": "ali pojdi na",
+  "@goTo": {
+    "description": "Message used to point the user to the shortened URL in case they can't use the QR code to log-in. This is used on AppleTV."
+  },
   "watchBrunstad": "Glej BrunstadTV v živo",
+  "@watchBrunstad": {
+    "description": "Text that entices the user to watch the livestream."
+  },
   "notLogged": "Nisi prijavljen",
+  "@notLogged": {
+    "description": "Text that informs the user, that they are not logged in."
+  },
   "authResponse0": "Za prijavo uporabite novo QR-kodo.",
+  "@authResponse0": {
+    "description": "Authentication response displayed to the user when an old QR code was used. Asking them to use a new one if they want to log in."
+  },
   "authResponse1": "Prosim, prijavite se na mobilni napravi z uporabo QR-kode.",
+  "@authResponse1": {
+    "description": "Message displayed to the user when they tried to proceed with the log-in on AppleTv without first logging through their mobile device."
+  },
   "authResponse3": "Preverite svojo internetno povezavo in poskusite ponovno kasneje.",
+  "@authResponse3": {
+    "description": "Message that indicates there was an error during Authentication process. Asking the user to check their network connection and try again."
+  },
   "liveHeader": "V živo",
+  "@liveHeader": {
+    "description": "Header of the Live Tab — the tab that contains the livestream player on AppleTV."
+  },
   "recentlyPublishedSection": "Nedavno objavljeno",
+  "@recentlyPublishedSection": {
+    "description": "Section in explore."
+  },
   "exploreCategoriesSection": "Raziskuj kategorije",
+  "@exploreCategoriesSection": {
+    "description": "Section in explore."
+  },
   "programsSection": "Programi",
+  "@programsSection": {
+    "description": "Section in explore."
+  },
   "episodesSection": "Deli",
+  "@episodesSection": {
+    "description": "Section in explore."
+  },
   "categorySeries": "Serije",
+  "@categorySeries": {
+    "description": "Category name"
+  },
   "categoryKids": "Otroci",
+  "@categoryKids": {
+    "description": "Category name"
+  },
   "categoryFilms": "Filmi",
+  "@categoryFilms": {
+    "description": "Category name"
+  },
   "categoryEvents": "Dogodki",
+  "@categoryEvents": {
+    "description": "Category name"
+  },
   "categoryMusic": "Glasba",
+  "@categoryMusic": {
+    "description": "Category name"
+  },
   "noPlannedEvents": "Ni načrtovanih dogodkov za danes",
-  "watchNow": "Glej zdaj"
+  "@noPlannedEvents": {
+    "description": "Information in tvguide"
+  },
+  "watchNow": "Glej zdaj",
+  "@watchNow": {
+    "description": "Button on featured carousel"
+  }
 }

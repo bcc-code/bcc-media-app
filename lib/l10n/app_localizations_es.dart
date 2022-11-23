@@ -174,7 +174,8 @@ class SEs extends S {
 
   @override
   String queueLimitMessage(int elementCount) {
-    return 'No puede tener más de $elementCount en la cola de reproducción.';
+
+    return 'You cannot have more than $elementCount elements in queue.';
   }
 
   @override
@@ -263,7 +264,8 @@ class SEs extends S {
 
   @override
   String watchingWith(int numPeople) {
-    return 'Estas viendo junto a $numPeople';
+
+    return 'You are watching with $numPeople others';
   }
 
   @override
@@ -277,7 +279,8 @@ class SEs extends S {
 
   @override
   String charactersLimit(int charsLeft, int charsTotal) {
-    return '$charsLeft de $charsTotal caracteres disponibles';
+
+    return '$charsLeft of $charsTotal characters left';
   }
 
   @override
@@ -407,7 +410,7 @@ class SEs extends S {
   String get thankYouSupportDescription => 'Agradecemos todos los comentarios y abordaremos el problema lo antes posible.';
 
   @override
-  String get sendFail => 'No fue posible enviar su mensaje';
+  String get sendFail => 'Couldn\'t send you message';
 
   @override
   String get sendFailDescription => 'Algo salió mal. Verifique su conexión a Internet e intente nuevamente.';
@@ -420,12 +423,14 @@ class SEs extends S {
 
   @override
   String newPostsMultiple(int postCount) {
-    return '¡$postCount nueva/s publicación/es!';
+
+    return '$postCount new posts!';
   }
 
   @override
   String newPostsSingle(int postCount) {
-    return '¡$postCount nuevas publicaciones!';
+
+    return '$postCount new post!';
   }
 
   @override
@@ -433,7 +438,8 @@ class SEs extends S {
 
   @override
   String availableFrom(String date) {
-    return 'Disponible/s $date';
+
+    return 'Available $date';
   }
 
   @override
@@ -447,7 +453,8 @@ class SEs extends S {
 
   @override
   String wellDoneDistance(int distanceInKM) {
-    return '¡Bien hecho! Ha registrado una distancia total de $distanceInKM km';
+
+    return 'Well done! You have registered a total distance of $distanceInKM km';
   }
 
   @override
@@ -455,12 +462,14 @@ class SEs extends S {
 
   @override
   String ranMore(int distanceInKM) {
-    return 'Recorrí más de $distanceInKM km';
+
+    return 'I went more than $distanceInKM km';
   }
 
   @override
   String moreThan(int distanceInKM) {
-    return 'Mas de $distanceInKM km';
+
+    return 'More than $distanceInKM km';
   }
 
   @override
@@ -483,7 +492,8 @@ class SEs extends S {
 
   @override
   String timezoneInformation(String timeZone) {
-    return 'El horario de la guía de televisión está en su hora local $timeZone';
+
+    return 'Tv guide timetable is in your local time: $timeZone';
   }
 
   @override
@@ -545,7 +555,8 @@ class SEs extends S {
 
   @override
   String pollAnswer(String answer) {
-    return 'Has respondido: $answer';
+
+    return 'You\'ve answered: $answer';
   }
 
   @override
@@ -577,7 +588,8 @@ class SEs extends S {
 
   @override
   String posts(int postsCount) {
-    return '$postsCount Publicaciones';
+
+    return '$postsCount Posts';
   }
 
   @override
@@ -606,11 +618,12 @@ class SEs extends S {
 
   @override
   String shareTime(String time) {
-    return 'Compartir desde $time';
+
+    return 'Share from time $time';
   }
 
   @override
-  String get loadContentError => 'El contenido no pudo ser cargado';
+  String get loadContentError => 'Couldn\'t load content';
 
   @override
   String get audioOnlyErrorDescription => 'Revisa tu conexión a internet e inténtalo otra vez';

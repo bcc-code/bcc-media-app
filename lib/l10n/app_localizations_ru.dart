@@ -152,7 +152,7 @@ class SRu extends S {
   String get search => 'Поиск';
 
   @override
-  String get noResults => 'Нет результатов';
+  String get noResults => 'No results found';
 
   @override
   String get doYouWantCast => 'Хотите показать это видео?';
@@ -174,7 +174,8 @@ class SRu extends S {
 
   @override
   String queueLimitMessage(int elementCount) {
-    return 'В очереди не может быть более $elementCount элементов.';
+
+    return 'You cannot have more than $elementCount elements in queue.';
   }
 
   @override
@@ -217,7 +218,7 @@ class SRu extends S {
   String get high => 'Высокое';
 
   @override
-  String get emptySearch => 'Вы можете искать по всему контенту от BrunstadTV. Серии, фильмы и эпизоды.';
+  String get emptySearch => 'You can search all content from BrunstadTV. Series, videos and episodes.';
 
   @override
   String get back => 'Назад';
@@ -263,7 +264,8 @@ class SRu extends S {
 
   @override
   String watchingWith(int numPeople) {
-    return 'Вы смотрите с $numPeople другими людьми';
+
+    return 'You are watching with $numPeople others';
   }
 
   @override
@@ -277,7 +279,8 @@ class SRu extends S {
 
   @override
   String charactersLimit(int charsLeft, int charsTotal) {
-    return 'Осталось символов: $charsLeft из $charsTotal';
+
+    return '$charsLeft of $charsTotal characters left';
   }
 
   @override
@@ -350,7 +353,7 @@ class SRu extends S {
   String get change => 'Изменить';
 
   @override
-  String get recordingFailedTitle => 'Не получилось записать видео';
+  String get recordingFailedTitle => 'Couldn\'t record the video';
 
   @override
   String get recordingFailedMessage => 'Что-то пошло не так при попытке записать видео.';
@@ -407,7 +410,7 @@ class SRu extends S {
   String get thankYouSupportDescription => 'Мы ценим все отзывы и постараемся решить эту проблему как можно скорее.';
 
   @override
-  String get sendFail => 'Не удалось отправить сообщение';
+  String get sendFail => 'Couldn\'t send you message';
 
   @override
   String get sendFailDescription => 'Что-то пошло не так. Проверьте подключение к интернету и попробуйте еще раз.';
@@ -420,12 +423,14 @@ class SRu extends S {
 
   @override
   String newPostsMultiple(int postCount) {
-    return '$postCount новых публикаций!';
+
+    return '$postCount new posts!';
   }
 
   @override
   String newPostsSingle(int postCount) {
-    return '$postCount новых публикаций!';
+
+    return '$postCount new post!';
   }
 
   @override
@@ -433,7 +438,8 @@ class SRu extends S {
 
   @override
   String availableFrom(String date) {
-    return 'Доступно $date';
+
+    return 'Available $date';
   }
 
   @override
@@ -447,7 +453,8 @@ class SRu extends S {
 
   @override
   String wellDoneDistance(int distanceInKM) {
-    return 'Отлично сработано! Вы зарегистрировали общее расстояние $distanceInKM км';
+
+    return 'Well done! You have registered a total distance of $distanceInKM km';
   }
 
   @override
@@ -455,12 +462,14 @@ class SRu extends S {
 
   @override
   String ranMore(int distanceInKM) {
-    return 'Я прошёл (ла) более $distanceInKM км';
+
+    return 'I went more than $distanceInKM km';
   }
 
   @override
   String moreThan(int distanceInKM) {
-    return 'Более $distanceInKM км';
+
+    return 'More than $distanceInKM km';
   }
 
   @override
@@ -483,7 +492,8 @@ class SRu extends S {
 
   @override
   String timezoneInformation(String timeZone) {
-    return 'Расписание телепрограммы указано по вашему местному времени: $timeZone';
+
+    return 'Tv guide timetable is in your local time: $timeZone';
   }
 
   @override
@@ -545,7 +555,8 @@ class SRu extends S {
 
   @override
   String pollAnswer(String answer) {
-    return 'Вы ответили: $answer';
+
+    return 'You\'ve answered: $answer';
   }
 
   @override
@@ -577,7 +588,8 @@ class SRu extends S {
 
   @override
   String posts(int postsCount) {
-    return '$postsCount Публикаций';
+
+    return '$postsCount Posts';
   }
 
   @override
@@ -606,11 +618,12 @@ class SRu extends S {
 
   @override
   String shareTime(String time) {
-    return 'Поделиться с времени $time';
+
+    return 'Share from time $time';
   }
 
   @override
-  String get loadContentError => 'Не удалось загрузить контент';
+  String get loadContentError => 'Couldn\'t load content';
 
   @override
   String get audioOnlyErrorDescription => 'Проверьте подключение к сети и попробуйте снова';

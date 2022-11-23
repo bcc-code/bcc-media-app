@@ -5,34 +5,34 @@ class SSl extends S {
   SSl([String locale = 'sl']) : super(locale);
 
   @override
-  String get loadingContent => 'Loading content';
+  String get loadingContent => 'Nalagam vsebino';
 
   @override
-  String get signInTooltip => 'Sign in to watch more content';
+  String get signInTooltip => 'Za ogled ostalih vsebin se prijavi';
 
   @override
-  String get skipToPublicContent => 'Skip to watch public content';
+  String get skipToPublicContent => 'Nadaljuj z ogledom javno dostopne vsebine';
 
   @override
   String get minutesShort => 'min';
 
   @override
-  String get calendarThisWeek => 'This week';
+  String get calendarThisWeek => 'Ta teden';
 
   @override
-  String get calendarWeek => 'week';
+  String get calendarWeek => 'teden';
 
   @override
   String get loading => 'Nalaganje';
 
   @override
-  String get loginPageDisplay1 => 'The most powerful message in the world';
+  String get loginPageDisplay1 => 'Najmočnejše sporočilo na svetu';
 
   @override
-  String get loginPageDisplay2 => 'Watch series, shows and films based on Christian values';
+  String get loginPageDisplay2 => 'Oglej si serije in filme, narejene na podlagi krščanskih vrednot';
 
   @override
-  String get loginPageDisplay3 => 'Produced by BCC Media';
+  String get loginPageDisplay3 => 'Produkcija: BCC Media';
 
   @override
   String get liveTab => 'V živo';
@@ -44,7 +44,7 @@ class SSl extends S {
   String get profileTab => 'Profil';
 
   @override
-  String get faq => 'Frequently asked questions';
+  String get faq => 'Pogosta vprašanja';
 
   @override
   String get bccMediaCenter => 'BrunstadTV je nekomercialen medijski center, ki proizvaja in razširja vsebino, ki temelji na pozitivnih krščanskih vrednotah.';
@@ -152,7 +152,7 @@ class SSl extends S {
   String get search => 'Išči';
 
   @override
-  String get noResults => 'Ni rezultatov';
+  String get noResults => 'Ni najdenih rezultatov';
 
   @override
   String get doYouWantCast => 'Ali hočete predvajati ta video?';
@@ -174,6 +174,7 @@ class SSl extends S {
 
   @override
   String queueLimitMessage(int elementCount) {
+
     return 'V čakalni vrsti ne more biti več kot $elementCount elementov.';
   }
 
@@ -263,6 +264,7 @@ class SSl extends S {
 
   @override
   String watchingWith(int numPeople) {
+
     return 'Gledaš še z $numPeople osebami';
   }
 
@@ -277,6 +279,7 @@ class SSl extends S {
 
   @override
   String charactersLimit(int charsLeft, int charsTotal) {
+
     return '$charsLeft od $charsTotal znakov';
   }
 
@@ -420,11 +423,13 @@ class SSl extends S {
 
   @override
   String newPostsMultiple(int postCount) {
+
     return '$postCount novih objav!';
   }
 
   @override
   String newPostsSingle(int postCount) {
+
     return '$postCount novih objav!';
   }
 
@@ -433,6 +438,7 @@ class SSl extends S {
 
   @override
   String availableFrom(String date) {
+
     return 'Na voljo $date';
   }
 
@@ -447,6 +453,7 @@ class SSl extends S {
 
   @override
   String wellDoneDistance(int distanceInKM) {
+
     return 'Bravo! Registriral si razdaljo $distanceInKM km';
   }
 
@@ -455,11 +462,13 @@ class SSl extends S {
 
   @override
   String ranMore(int distanceInKM) {
-    return 'Dosegel sem več kot $distanceInKM km';
+
+    return 'Pretekel sem več kot $distanceInKM km';
   }
 
   @override
   String moreThan(int distanceInKM) {
+
     return 'Več kot $distanceInKM km';
   }
 
@@ -483,6 +492,7 @@ class SSl extends S {
 
   @override
   String timezoneInformation(String timeZone) {
+
     return 'Tv spored je v tvojem lokalnem času: $timeZone';
   }
 
@@ -545,6 +555,7 @@ class SSl extends S {
 
   @override
   String pollAnswer(String answer) {
+
     return 'Ti si odgovoril/a $answer';
   }
 
@@ -577,6 +588,7 @@ class SSl extends S {
 
   @override
   String posts(int postsCount) {
+
     return '$postsCount objav';
   }
 
@@ -606,6 +618,7 @@ class SSl extends S {
 
   @override
   String shareTime(String time) {
+
     return 'Deli od $time';
   }
 

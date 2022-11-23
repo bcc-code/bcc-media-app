@@ -174,7 +174,8 @@ class SHu extends S {
 
   @override
   String queueLimitMessage(int elementCount) {
-    return 'Nem lehet több mint $elementCount elem a lejátszási listán.';
+
+    return 'You cannot have more than $elementCount elements in queue.';
   }
 
   @override
@@ -263,7 +264,8 @@ class SHu extends S {
 
   @override
   String watchingWith(int numPeople) {
-    return 'Még $numPeople személlyel együtt nézed';
+
+    return 'You are watching with $numPeople others';
   }
 
   @override
@@ -277,7 +279,8 @@ class SHu extends S {
 
   @override
   String charactersLimit(int charsLeft, int charsTotal) {
-    return '$charsLeft a $charsTotal karakterből van még hátra';
+
+    return '$charsLeft of $charsTotal characters left';
   }
 
   @override
@@ -407,7 +410,7 @@ class SHu extends S {
   String get thankYouSupportDescription => 'Nagyra értékeljük az összes visszajelzést, és a lehető leghamarabb megválaszoljuk a kérdést.';
 
   @override
-  String get sendFail => 'Nem lehetett üzenetet küldeni neked';
+  String get sendFail => 'Couldn\'t send you message';
 
   @override
   String get sendFailDescription => 'Valami nem sikerült. Vizsgáld meg az internett kapcsolatodat és próbáld újra.';
@@ -420,12 +423,14 @@ class SHu extends S {
 
   @override
   String newPostsMultiple(int postCount) {
-    return '$postCount új hozzászólás!';
+
+    return '$postCount new posts!';
   }
 
   @override
   String newPostsSingle(int postCount) {
-    return '$postCount új hozzászólás!';
+
+    return '$postCount new post!';
   }
 
   @override
@@ -433,7 +438,8 @@ class SHu extends S {
 
   @override
   String availableFrom(String date) {
-    return 'Elérhető $date';
+
+    return 'Available $date';
   }
 
   @override
@@ -447,7 +453,8 @@ class SHu extends S {
 
   @override
   String wellDoneDistance(int distanceInKM) {
-    return 'Jól csináltad! A teljes regisztrált távolságod $distanceInKM km';
+
+    return 'Well done! You have registered a total distance of $distanceInKM km';
   }
 
   @override
@@ -455,12 +462,14 @@ class SHu extends S {
 
   @override
   String ranMore(int distanceInKM) {
-    return 'Több mint $distanceInKM kilométert futottam';
+
+    return 'I went more than $distanceInKM km';
   }
 
   @override
   String moreThan(int distanceInKM) {
-    return 'Több mint $distanceInKM km';
+
+    return 'More than $distanceInKM km';
   }
 
   @override
@@ -483,7 +492,8 @@ class SHu extends S {
 
   @override
   String timezoneInformation(String timeZone) {
-    return 'A TV program időpontjai a helyi idő szerint jelenek meg: $timeZone';
+
+    return 'Tv guide timetable is in your local time: $timeZone';
   }
 
   @override
@@ -545,7 +555,8 @@ class SHu extends S {
 
   @override
   String pollAnswer(String answer) {
-    return '$answer válaszoltál';
+
+    return 'You\'ve answered: $answer';
   }
 
   @override
@@ -577,7 +588,8 @@ class SHu extends S {
 
   @override
   String posts(int postsCount) {
-    return '$postsCount Hozzászólások';
+
+    return '$postsCount Posts';
   }
 
   @override
@@ -606,11 +618,12 @@ class SHu extends S {
 
   @override
   String shareTime(String time) {
-    return 'Megosztás innentől $time';
+
+    return 'Share from time $time';
   }
 
   @override
-  String get loadContentError => 'Nem sikerült betölteni a tartalmat';
+  String get loadContentError => 'Couldn\'t load content';
 
   @override
   String get audioOnlyErrorDescription => 'Ellenőrizd a hálózati csatlakozásodat és próbálj újra';

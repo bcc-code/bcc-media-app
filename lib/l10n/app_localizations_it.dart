@@ -174,6 +174,7 @@ class SIt extends S {
 
   @override
   String queueLimitMessage(int elementCount) {
+
     return 'You cannot have more than $elementCount elements in queue.';
   }
 
@@ -263,6 +264,7 @@ class SIt extends S {
 
   @override
   String watchingWith(int numPeople) {
+
     return 'You are watching with $numPeople others';
   }
 
@@ -277,6 +279,7 @@ class SIt extends S {
 
   @override
   String charactersLimit(int charsLeft, int charsTotal) {
+
     return '$charsLeft of $charsTotal characters left';
   }
 
@@ -420,11 +423,13 @@ class SIt extends S {
 
   @override
   String newPostsMultiple(int postCount) {
+
     return '$postCount new posts!';
   }
 
   @override
   String newPostsSingle(int postCount) {
+
     return '$postCount new post!';
   }
 
@@ -433,7 +438,8 @@ class SIt extends S {
 
   @override
   String availableFrom(String date) {
-    return 'Disponibile${date}';
+
+    return 'Available $date';
   }
 
   @override
@@ -447,6 +453,7 @@ class SIt extends S {
 
   @override
   String wellDoneDistance(int distanceInKM) {
+
     return 'Well done! You have registered a total distance of $distanceInKM km';
   }
 
@@ -455,11 +462,13 @@ class SIt extends S {
 
   @override
   String ranMore(int distanceInKM) {
+
     return 'I went more than $distanceInKM km';
   }
 
   @override
   String moreThan(int distanceInKM) {
+
     return 'More than $distanceInKM km';
   }
 
@@ -483,7 +492,8 @@ class SIt extends S {
 
   @override
   String timezoneInformation(String timeZone) {
-    return 'L\'orario della guida Tv è nella tua ora locale: $timeZone';
+
+    return 'Tv guide timetable is in your local time: $timeZone';
   }
 
   @override
@@ -545,6 +555,7 @@ class SIt extends S {
 
   @override
   String pollAnswer(String answer) {
+
     return 'You\'ve answered: $answer';
   }
 
@@ -577,6 +588,7 @@ class SIt extends S {
 
   @override
   String posts(int postsCount) {
+
     return '$postsCount Posts';
   }
 
@@ -606,6 +618,7 @@ class SIt extends S {
 
   @override
   String shareTime(String time) {
+
     return 'Share from time $time';
   }
 

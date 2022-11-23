@@ -152,7 +152,7 @@ class SPl extends S {
   String get search => 'Szukaj';
 
   @override
-  String get noResults => 'Brak wyników';
+  String get noResults => 'No results found';
 
   @override
   String get doYouWantCast => 'Czy odtworzyć na Chromecast?';
@@ -174,7 +174,8 @@ class SPl extends S {
 
   @override
   String queueLimitMessage(int elementCount) {
-    return 'Nie możesz mieć więcej niż $elementCount elementów na liście.';
+
+    return 'You cannot have more than $elementCount elements in queue.';
   }
 
   @override
@@ -217,7 +218,7 @@ class SPl extends S {
   String get high => 'Wysoka';
 
   @override
-  String get emptySearch => 'Wyszukuj treści w BrunstadTV. Seriale, filmy i odcinki.';
+  String get emptySearch => 'You can search all content from BrunstadTV. Series, videos and episodes.';
 
   @override
   String get back => 'Wstecz';
@@ -263,7 +264,8 @@ class SPl extends S {
 
   @override
   String watchingWith(int numPeople) {
-    return 'Oglądasz z $numPeople innymi osobami';
+
+    return 'You are watching with $numPeople others';
   }
 
   @override
@@ -277,7 +279,8 @@ class SPl extends S {
 
   @override
   String charactersLimit(int charsLeft, int charsTotal) {
-    return 'Pozostało $charsLeft z $charsTotal znaków';
+
+    return '$charsLeft of $charsTotal characters left';
   }
 
   @override
@@ -350,7 +353,7 @@ class SPl extends S {
   String get change => 'Zmień';
 
   @override
-  String get recordingFailedTitle => 'Nie udało się nagrać filmu';
+  String get recordingFailedTitle => 'Couldn\'t record the video';
 
   @override
   String get recordingFailedMessage => 'Coś poszło nie tak przy próbie nagrywania filmu.';
@@ -407,7 +410,7 @@ class SPl extends S {
   String get thankYouSupportDescription => 'Doceniamy wszelkie informacje zwrotne i odniesiemy się do tego problemu tak szybko, jak to możliwe.';
 
   @override
-  String get sendFail => 'Nie udało się wysłać wiadomości';
+  String get sendFail => 'Couldn\'t send you message';
 
   @override
   String get sendFailDescription => 'Coś poszło nie tak. Sprawdź swoje połączenie internetowe i spróbuj jeszcze raz.';
@@ -420,12 +423,14 @@ class SPl extends S {
 
   @override
   String newPostsMultiple(int postCount) {
-    return '$postCount nowych postów!';
+
+    return '$postCount new posts!';
   }
 
   @override
   String newPostsSingle(int postCount) {
-    return '$postCount nowy post!';
+
+    return '$postCount new post!';
   }
 
   @override
@@ -433,7 +438,8 @@ class SPl extends S {
 
   @override
   String availableFrom(String date) {
-    return 'Dostępne $date';
+
+    return 'Available $date';
   }
 
   @override
@@ -447,7 +453,8 @@ class SPl extends S {
 
   @override
   String wellDoneDistance(int distanceInKM) {
-    return 'Dobra robota! Zarejestrowałeś w sumie przebycie $distanceInKM km';
+
+    return 'Well done! You have registered a total distance of $distanceInKM km';
   }
 
   @override
@@ -455,12 +462,14 @@ class SPl extends S {
 
   @override
   String ranMore(int distanceInKM) {
-    return 'Przebyłem więcej niż $distanceInKM km';
+
+    return 'I went more than $distanceInKM km';
   }
 
   @override
   String moreThan(int distanceInKM) {
-    return 'Ponad $distanceInKM km';
+
+    return 'More than $distanceInKM km';
   }
 
   @override
@@ -483,7 +492,8 @@ class SPl extends S {
 
   @override
   String timezoneInformation(String timeZone) {
-    return 'Czasy w programie TV są przedstawione w twojej strefie czasowej: $timeZone';
+
+    return 'Tv guide timetable is in your local time: $timeZone';
   }
 
   @override
@@ -545,7 +555,8 @@ class SPl extends S {
 
   @override
   String pollAnswer(String answer) {
-    return 'Odpowiedziałeś: $answer';
+
+    return 'You\'ve answered: $answer';
   }
 
   @override
@@ -577,7 +588,8 @@ class SPl extends S {
 
   @override
   String posts(int postsCount) {
-    return '$postsCount Wpisów';
+
+    return '$postsCount Posts';
   }
 
   @override
@@ -606,11 +618,12 @@ class SPl extends S {
 
   @override
   String shareTime(String time) {
-    return 'Udostępnij od $time';
+
+    return 'Share from time $time';
   }
 
   @override
-  String get loadContentError => 'Nie udało się załadować treści';
+  String get loadContentError => 'Couldn\'t load content';
 
   @override
   String get audioOnlyErrorDescription => 'Sprawdź połączenie internetowe i spróbuj ponownie';
