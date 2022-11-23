@@ -1,11 +1,12 @@
 import 'package:alice/alice.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:bccm_player/playback_platform_pigeon.g.dart';
+import 'package:bccm_player/playback_service_interface.dart';
 import 'package:brunstadtv_app/helpers/btv_colors.dart';
 import 'package:brunstadtv_app/helpers/btv_typography.dart';
 import 'package:brunstadtv_app/providers/app_config.dart';
 import 'package:brunstadtv_app/providers/analytics.dart';
-import 'package:brunstadtv_app/providers/settings_service.dart';
+import 'package:brunstadtv_app/providers/settings.dart';
 import 'package:brunstadtv_app/providers/video_state.dart';
 import 'package:brunstadtv_app/router/analytics_observer.dart';
 import 'package:brunstadtv_app/router/special_routes_guard.dart';
@@ -26,6 +27,7 @@ import 'package:brunstadtv_app/providers/auth_state.dart';
 import 'package:intl/intl.dart';
 import 'package:intl/intl_standalone.dart';
 import 'package:on_screen_ruler/on_screen_ruler.dart';
+import 'package:package_info_plus/package_info_plus.dart';
 
 import 'app_root.dart';
 import 'background_tasks.dart';
@@ -94,9 +96,15 @@ void $main({required FirebaseOptions? firebaseOptions}) async {
   providerContainer.read(analyticsProvider);
 
   if (Env.npawAccountCode != '') {
-    providerContainer
-        .read(playbackApiProvider)
-        .setNpawConfig(NpawConfig(accountCode: Env.npawAccountCode, appName: 'mobile', appReleaseVersion: '4.0.0-alpha'));
+    PackageInfo.fromPlatform().then(
+      (packageInfo) => providerContainer.read(playbackApiProvider).setNpawConfig(
+            NpawConfig(
+              accountCode: Env.npawAccountCode,
+              appName: 'mobile',
+              appReleaseVersion: formatAppVersion(packageInfo),
+            ),
+          ),
+    );
   }
 
   Intl.defaultLocale = await getDefaultLocale();

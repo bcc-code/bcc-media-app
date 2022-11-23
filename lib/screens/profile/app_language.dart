@@ -1,4 +1,4 @@
-import 'package:brunstadtv_app/providers/settings_service.dart';
+import 'package:brunstadtv_app/providers/settings.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../components/option_list.dart';
@@ -48,9 +48,7 @@ class _AppLanguageScreenState extends ConsumerState<AppLanguageScreen> {
                 Padding(
                   padding: const EdgeInsets.all(16).copyWith(bottom: 100),
                   child: OptionList(
-                    optionData: languages
-                        .map((l) => Option(id: l.code, title: l.nativeName))
-                        .toList(),
+                    optionData: languages.map((l) => Option(id: l.code, title: l.nativeName)).toList(),
                     currentSelection: selected,
                     onSelectionChange: _onSelectionChanged,
                   ),

@@ -49,17 +49,20 @@ class AppConfig {
     this.appLanguage,
     this.audioLanguage,
     this.subtitleLanguage,
+    this.analyticsId,
   });
 
   String? appLanguage;
   String? audioLanguage;
   String? subtitleLanguage;
+  String? analyticsId;
 
   Object encode() {
     final Map<Object?, Object?> pigeonMap = <Object?, Object?>{};
     pigeonMap['appLanguage'] = appLanguage;
     pigeonMap['audioLanguage'] = audioLanguage;
     pigeonMap['subtitleLanguage'] = subtitleLanguage;
+    pigeonMap['analyticsId'] = analyticsId;
     return pigeonMap;
   }
 
@@ -69,6 +72,7 @@ class AppConfig {
       appLanguage: pigeonMap['appLanguage'] as String?,
       audioLanguage: pigeonMap['audioLanguage'] as String?,
       subtitleLanguage: pigeonMap['subtitleLanguage'] as String?,
+      analyticsId: pigeonMap['analyticsId'] as String?,
     );
   }
 }

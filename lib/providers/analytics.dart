@@ -1,7 +1,8 @@
 import 'package:auth0_flutter/auth0_flutter.dart';
 import 'package:brunstadtv_app/env/env.dart';
+import 'package:brunstadtv_app/helpers/utils.dart';
 import 'package:brunstadtv_app/providers/inherited_data.dart';
-import 'package:brunstadtv_app/providers/settings_service.dart';
+import 'package:brunstadtv_app/providers/settings.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -56,7 +57,7 @@ class Analytics {
     return RudderProperty.fromMap({
       'channel': 'mobile',
       'appLanguage': ref.read(settingsProvider).appLanguage.languageCode,
-      'releaseVersion': '${packageInfo?.version}+${packageInfo?.buildNumber}',
+      'releaseVersion': packageInfo == null ? null : formatAppVersion(packageInfo!),
     });
   }
 
@@ -87,7 +88,8 @@ class Analytics {
     RudderController.instance.track('section_clicked', properties: getCommonData().putValue(map: event.toJson()));
   }
 
-  void identify(UserProfile profile, String anonymousId) {
+  void identify(UserProfile profile, String analyticsId) {
+    ref.read(settingsProvider.notifier).setAnalyticsId(analyticsId);
     final traits = RudderTraits();
 
     final birthDateTime = profile.birthdate == null ? null : DateTime.tryParse(profile.birthdate!);
@@ -103,7 +105,7 @@ class Analytics {
       traits.putGender(profile.gender!);
     }
 
-    RudderController.instance.identify(anonymousId, traits: traits);
+    RudderController.instance.identify(analyticsId, traits: traits);
   }
 
   void screen(screenName, {Map<String, Object?>? properties}) {

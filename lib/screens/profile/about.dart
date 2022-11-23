@@ -3,6 +3,7 @@ import 'package:package_info_plus/package_info_plus.dart';
 
 import '../../components/custom_back_button.dart';
 import '../../helpers/btv_typography.dart';
+import '../../helpers/utils.dart';
 import '../../l10n/app_localizations.dart';
 
 class AboutScreen extends StatefulWidget {
@@ -15,7 +16,7 @@ class AboutScreen extends StatefulWidget {
 class _AboutScreenState extends State<AboutScreen> {
   Future<String> get appVersion async {
     PackageInfo packageInfo = await PackageInfo.fromPlatform();
-    return '${packageInfo.version} (${packageInfo.buildNumber})';
+    return formatAppVersion(packageInfo);
   }
 
   @override

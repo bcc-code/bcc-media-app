@@ -174,7 +174,6 @@ class SFi extends S {
 
   @override
   String queueLimitMessage(int elementCount) {
-
     return 'You cannot have more than $elementCount elements in queue.';
   }
 
@@ -264,7 +263,6 @@ class SFi extends S {
 
   @override
   String watchingWith(int numPeople) {
-
     return 'You are watching with $numPeople others';
   }
 
@@ -279,7 +277,6 @@ class SFi extends S {
 
   @override
   String charactersLimit(int charsLeft, int charsTotal) {
-
     return '$charsLeft of $charsTotal characters left';
   }
 
@@ -423,13 +420,11 @@ class SFi extends S {
 
   @override
   String newPostsMultiple(int postCount) {
-
     return '$postCount new posts!';
   }
 
   @override
   String newPostsSingle(int postCount) {
-
     return '$postCount new post!';
   }
 
@@ -438,7 +433,6 @@ class SFi extends S {
 
   @override
   String availableFrom(String date) {
-
     return 'Available $date';
   }
 
@@ -453,7 +447,6 @@ class SFi extends S {
 
   @override
   String wellDoneDistance(int distanceInKM) {
-
     return 'Well done! You have registered a total distance of $distanceInKM km';
   }
 
@@ -462,13 +455,11 @@ class SFi extends S {
 
   @override
   String ranMore(int distanceInKM) {
-
     return 'I went more than $distanceInKM km';
   }
 
   @override
   String moreThan(int distanceInKM) {
-
     return 'More than $distanceInKM km';
   }
 
@@ -492,7 +483,6 @@ class SFi extends S {
 
   @override
   String timezoneInformation(String timeZone) {
-
     return 'Tv guide timetable is in your local time: $timeZone';
   }
 
@@ -555,7 +545,6 @@ class SFi extends S {
 
   @override
   String pollAnswer(String answer) {
-
     return 'You\'ve answered: $answer';
   }
 
@@ -588,7 +577,6 @@ class SFi extends S {
 
   @override
   String posts(int postsCount) {
-
     return '$postsCount Posts';
   }
 
@@ -618,7 +606,6 @@ class SFi extends S {
 
   @override
   String shareTime(String time) {
-
     return 'Share from time $time';
   }
 

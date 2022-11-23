@@ -118,6 +118,12 @@ public class PlaybackPlatformApi {
       this.subtitleLanguage = setterArg;
     }
 
+    private @Nullable String analyticsId;
+    public @Nullable String getAnalyticsId() { return analyticsId; }
+    public void setAnalyticsId(@Nullable String setterArg) {
+      this.analyticsId = setterArg;
+    }
+
     public static final class Builder {
       private @Nullable String appLanguage;
       public @NonNull Builder setAppLanguage(@Nullable String setterArg) {
@@ -134,11 +140,17 @@ public class PlaybackPlatformApi {
         this.subtitleLanguage = setterArg;
         return this;
       }
+      private @Nullable String analyticsId;
+      public @NonNull Builder setAnalyticsId(@Nullable String setterArg) {
+        this.analyticsId = setterArg;
+        return this;
+      }
       public @NonNull AppConfig build() {
         AppConfig pigeonReturn = new AppConfig();
         pigeonReturn.setAppLanguage(appLanguage);
         pigeonReturn.setAudioLanguage(audioLanguage);
         pigeonReturn.setSubtitleLanguage(subtitleLanguage);
+        pigeonReturn.setAnalyticsId(analyticsId);
         return pigeonReturn;
       }
     }
@@ -147,6 +159,7 @@ public class PlaybackPlatformApi {
       toMapResult.put("appLanguage", appLanguage);
       toMapResult.put("audioLanguage", audioLanguage);
       toMapResult.put("subtitleLanguage", subtitleLanguage);
+      toMapResult.put("analyticsId", analyticsId);
       return toMapResult;
     }
     static @NonNull AppConfig fromMap(@NonNull Map<String, Object> map) {
@@ -157,6 +170,8 @@ public class PlaybackPlatformApi {
       pigeonResult.setAudioLanguage((String)audioLanguage);
       Object subtitleLanguage = map.get("subtitleLanguage");
       pigeonResult.setSubtitleLanguage((String)subtitleLanguage);
+      Object analyticsId = map.get("analyticsId");
+      pigeonResult.setAnalyticsId((String)analyticsId);
       return pigeonResult;
     }
   }

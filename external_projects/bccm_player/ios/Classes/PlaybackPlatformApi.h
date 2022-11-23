@@ -40,10 +40,12 @@ typedef NS_ENUM(NSUInteger, CastConnectionState) {
 @interface AppConfig : NSObject
 + (instancetype)makeWithAppLanguage:(nullable NSString *)appLanguage
     audioLanguage:(nullable NSString *)audioLanguage
-    subtitleLanguage:(nullable NSString *)subtitleLanguage;
+    subtitleLanguage:(nullable NSString *)subtitleLanguage
+    analyticsId:(nullable NSString *)analyticsId;
 @property(nonatomic, copy, nullable) NSString * appLanguage;
 @property(nonatomic, copy, nullable) NSString * audioLanguage;
 @property(nonatomic, copy, nullable) NSString * subtitleLanguage;
+@property(nonatomic, copy, nullable) NSString * analyticsId;
 @end
 
 @interface User : NSObject
