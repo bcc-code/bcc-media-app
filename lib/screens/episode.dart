@@ -45,7 +45,9 @@ class EpisodePageArguments {
 class EpisodeScreen extends ConsumerStatefulWidget {
   final String episodeId;
   final bool autoplay;
-  const EpisodeScreen({super.key, @PathParam() required this.episodeId, @QueryParam() this.autoplay = false});
+  final int? queryParamStartPosition;
+  const EpisodeScreen(
+      {super.key, @PathParam() required this.episodeId, @QueryParam() this.autoplay = false, @QueryParam('t') this.queryParamStartPosition});
 
   @override
   ConsumerState<EpisodeScreen> createState() => _EpisodeScreenState();
@@ -143,9 +145,14 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen> with AutoRouteAwa
     var episode = await episodeFuture;
     if (!mounted || episode == null) return;
 
-    var startPositionSeconds = (episode.progress ?? 0);
-    if (startPositionSeconds > episode.duration * 0.9) {
-      startPositionSeconds = 0;
+    var startPositionSeconds = 0;
+    if (widget.queryParamStartPosition != null) {
+      startPositionSeconds = widget.queryParamStartPosition!;
+    } else {
+      startPositionSeconds = (episode.progress ?? 0);
+      if (startPositionSeconds > episode.duration * 0.9) {
+        startPositionSeconds = 0;
+      }
     }
 
     setState(() {
