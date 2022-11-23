@@ -63,7 +63,16 @@ class CustomBackButton extends StatelessWidget {
             children: <Widget>[
               SvgPicture.string(SvgIcons.chevronLeft, height: 16),
               const SizedBox(width: 8),
-              Expanded(child: Center(child: Text(pageTitle, overflow: TextOverflow.ellipsis, style: BtvTextStyles.button2.copyWith(height: 1))))
+              Expanded(
+                child: Align(
+                  alignment: Alignment.centerLeft,
+                  child: Text(
+                    pageTitle,
+                    overflow: TextOverflow.ellipsis,
+                    style: BtvTextStyles.button2.copyWith(height: 1),
+                  ),
+                ),
+              ),
             ],
           ),
         ),

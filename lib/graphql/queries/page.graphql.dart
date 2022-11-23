@@ -4078,6 +4078,13 @@ const fragmentDefinitionSection = FragmentDefinitionNode(
           selectionSet: null,
         ),
         FieldNode(
+          name: NameNode(value: 'height'),
+          alias: null,
+          arguments: [],
+          directives: [],
+          selectionSet: null,
+        ),
+        FieldNode(
           name: NameNode(value: 'url'),
           alias: null,
           arguments: [],
@@ -17614,6 +17621,7 @@ class Fragment$Section$$WebSection implements Fragment$Section {
     required this.$__typename,
     required this.authentication,
     required this.widthRatio,
+    this.height,
     required this.url,
   });
 
@@ -17623,6 +17631,7 @@ class Fragment$Section$$WebSection implements Fragment$Section {
     final l$$__typename = json['__typename'];
     final l$authentication = json['authentication'];
     final l$widthRatio = json['widthRatio'];
+    final l$height = json['height'];
     final l$url = json['url'];
     return Fragment$Section$$WebSection(
       id: (l$id as String),
@@ -17630,6 +17639,7 @@ class Fragment$Section$$WebSection implements Fragment$Section {
       $__typename: (l$$__typename as String),
       authentication: (l$authentication as bool),
       widthRatio: (l$widthRatio as num).toDouble(),
+      height: (l$height as int?),
       url: (l$url as String),
     );
   }
@@ -17643,6 +17653,8 @@ class Fragment$Section$$WebSection implements Fragment$Section {
   final bool authentication;
 
   final double widthRatio;
+
+  final int? height;
 
   final String url;
 
@@ -17658,6 +17670,8 @@ class Fragment$Section$$WebSection implements Fragment$Section {
     _resultData['authentication'] = l$authentication;
     final l$widthRatio = widthRatio;
     _resultData['widthRatio'] = l$widthRatio;
+    final l$height = height;
+    _resultData['height'] = l$height;
     final l$url = url;
     _resultData['url'] = l$url;
     return _resultData;
@@ -17670,6 +17684,7 @@ class Fragment$Section$$WebSection implements Fragment$Section {
     final l$$__typename = $__typename;
     final l$authentication = authentication;
     final l$widthRatio = widthRatio;
+    final l$height = height;
     final l$url = url;
     return Object.hashAll([
       l$id,
@@ -17677,6 +17692,7 @@ class Fragment$Section$$WebSection implements Fragment$Section {
       l$$__typename,
       l$authentication,
       l$widthRatio,
+      l$height,
       l$url,
     ]);
   }
@@ -17715,6 +17731,11 @@ class Fragment$Section$$WebSection implements Fragment$Section {
     if (l$widthRatio != lOther$widthRatio) {
       return false;
     }
+    final l$height = height;
+    final lOther$height = other.height;
+    if (l$height != lOther$height) {
+      return false;
+    }
     final l$url = url;
     final lOther$url = other.url;
     if (l$url != lOther$url) {
@@ -17748,6 +17769,7 @@ abstract class CopyWith$Fragment$Section$$WebSection<TRes> {
     String? $__typename,
     bool? authentication,
     double? widthRatio,
+    int? height,
     String? url,
   });
 }
@@ -17771,6 +17793,7 @@ class _CopyWithImpl$Fragment$Section$$WebSection<TRes>
     Object? $__typename = _undefined,
     Object? authentication = _undefined,
     Object? widthRatio = _undefined,
+    Object? height = _undefined,
     Object? url = _undefined,
   }) =>
       _then(Fragment$Section$$WebSection(
@@ -17785,6 +17808,7 @@ class _CopyWithImpl$Fragment$Section$$WebSection<TRes>
         widthRatio: widthRatio == _undefined || widthRatio == null
             ? _instance.widthRatio
             : (widthRatio as double),
+        height: height == _undefined ? _instance.height : (height as int?),
         url: url == _undefined || url == null ? _instance.url : (url as String),
       ));
 }
@@ -17801,6 +17825,7 @@ class _CopyWithStubImpl$Fragment$Section$$WebSection<TRes>
     String? $__typename,
     bool? authentication,
     double? widthRatio,
+    int? height,
     String? url,
   }) =>
       _res;

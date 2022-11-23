@@ -58,6 +58,8 @@ enum EpisodeType {
     standalone
 }
 
+union EpisodeContextUnion = Season | ContextCollection
+
 type Episode {
     id: ID!
     type: EpisodeType!
@@ -81,7 +83,7 @@ type Episode {
     progress: Int @goField(forceResolver: true)
     audioLanguages: [Language!]!
     subtitleLanguages: [Language!]!
-    context(first: Int, offset: Int): SectionItemPagination @goField(forceResolver: true)
+    context: EpisodeContextUnion @goField(forceResolver: true)
     relatedItems(first: Int, offset: Int): SectionItemPagination @goField(forceResolver: true)
     images: [Image!]!
     number: Int
