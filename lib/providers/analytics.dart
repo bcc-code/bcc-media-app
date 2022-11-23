@@ -1,16 +1,14 @@
 import 'package:auth0_flutter/auth0_flutter.dart';
-import 'package:auto_route/auto_route.dart';
 import 'package:brunstadtv_app/env/env.dart';
-import 'package:brunstadtv_app/helpers/utils.dart';
 import 'package:brunstadtv_app/providers/inherited_data.dart';
-import 'package:brunstadtv_app/router/router.gr.dart';
+import 'package:brunstadtv_app/providers/settings_service.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:package_info_plus/package_info_plus.dart';
 import 'package:rudder_sdk_flutter/RudderController.dart';
 import 'package:rudder_sdk_flutter_platform_interface/platform.dart';
 
-import '../helpers/constants.dart';
 import '../models/analytics/sections.dart';
 
 String getAgeGroup(int? age) {
@@ -36,22 +34,35 @@ String getAgeGroup(int? age) {
   }
 }
 
+final analyticsProvider = Provider<Analytics>((ref) {
+  return Analytics(ref: ref);
+});
+
 class Analytics {
-  static bool _initialized = false;
-  static void initialize() {
-    if (_initialized || Env.rudderstackWriteKey == '') {
-      return;
-    }
+  PackageInfo? packageInfo;
+  Ref ref;
+
+  Analytics({required this.ref}) {
     final RudderController controller = RudderController.instance;
     RudderLogger.init(RudderLogger.VERBOSE);
     RudderConfigBuilder builder = RudderConfigBuilder();
     builder.withDataPlaneUrl('https://rs.bcc.media/');
     builder.withMobileConfig(MobileConfig(recordScreenViews: true));
     controller.initialize(Env.rudderstackWriteKey, config: builder.build());
-    _initialized = true;
+    PackageInfo.fromPlatform().then((value) => packageInfo = value);
   }
 
-  static void sectionItemClicked(BuildContext context) {
+  RudderProperty getCommonData() {
+    return RudderProperty.fromMap({
+      'channel': 'mobile',
+      'appLanguage': ref.read(settingsProvider).appLanguage.languageCode,
+      'releaseVersion': '${packageInfo?.version}+${packageInfo?.buildNumber}',
+    });
+  }
+
+  void track() {}
+
+  void sectionItemClicked(BuildContext context) {
     var sectionAnalytics = InheritedData.read<SectionAnalytics>(context);
     if (sectionAnalytics == null) {
       FirebaseCrashlytics.instance.recordError(Exception('Missing SectionAnalytics.'), StackTrace.current);
@@ -73,10 +84,10 @@ class Analytics {
       elementType: sectionItemAnalytics.type,
       elementId: sectionItemAnalytics.id,
     );
-    RudderController.instance.track('section_clicked', properties: RudderProperty.fromMap(event.toJson()));
+    RudderController.instance.track('section_clicked', properties: getCommonData().putValue(map: event.toJson()));
   }
 
-  static void identify(UserProfile profile, String anonymousId) {
+  void identify(UserProfile profile, String anonymousId) {
     final traits = RudderTraits();
 
     final birthDateTime = profile.birthdate == null ? null : DateTime.tryParse(profile.birthdate!);
@@ -93,5 +104,9 @@ class Analytics {
     }
 
     RudderController.instance.identify(anonymousId, traits: traits);
+  }
+
+  void screen(screenName, {Map<String, Object?>? properties}) {
+    RudderController.instance.screen(screenName, properties: getCommonData().putValue(map: properties));
   }
 }

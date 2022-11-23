@@ -1,12 +1,9 @@
-import 'package:auth0_flutter/auth0_flutter.dart';
 import 'package:auto_route/auto_route.dart';
-import 'package:brunstadtv_app/env/env.dart';
 import 'package:brunstadtv_app/helpers/utils.dart';
+import 'package:brunstadtv_app/providers/analytics.dart';
 import 'package:brunstadtv_app/router/router.gr.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:rudder_sdk_flutter/RudderController.dart';
-import 'package:rudder_sdk_flutter_platform_interface/platform.dart';
 
 import '../helpers/constants.dart';
 
@@ -16,6 +13,11 @@ class AnalyticsNavigatorObserver extends NavigatorObserver {
   }
 
   void _sendScreenView(Route<dynamic> route) {
+    final context = navigator?.context;
+    if (context == null) {
+      return;
+    }
+    final ref = ProviderScope.containerOf(context);
     Map<String, Object?> extraProperties = {};
     final routeData = route.settings.asOrNull<AutoRoutePage>()?.routeData;
     if (routeData == null) return;
@@ -32,7 +34,7 @@ class AnalyticsNavigatorObserver extends NavigatorObserver {
     }
 
     if (screenName != null) {
-      RudderController.instance.screen(screenName, properties: RudderProperty.fromMap(extraProperties));
+      ref.read(analyticsProvider).screen(screenName, properties: extraProperties);
     }
   }
 

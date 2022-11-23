@@ -23,12 +23,9 @@ import 'package:brunstadtv_app/providers/playback_listener.dart';
 import 'package:brunstadtv_app/router/auth_guard.dart';
 import 'package:brunstadtv_app/router/router.gr.dart';
 import 'package:brunstadtv_app/providers/auth_state.dart';
-import 'package:bccm_player/chromecast_pigeon.g.dart';
 import 'package:intl/intl.dart';
 import 'package:intl/intl_standalone.dart';
 import 'package:on_screen_ruler/on_screen_ruler.dart';
-import 'package:rudder_sdk_flutter_platform_interface/platform.dart';
-import 'package:rudder_sdk_flutter/RudderController.dart';
 
 import 'app_root.dart';
 import 'background_tasks.dart';
@@ -84,14 +81,7 @@ void $main({required FirebaseOptions? firebaseOptions}) async {
   final appRouter = AppRouter(authGuard: AuthGuard(), specialRoutesGuard: SpecialRoutesGuard(), navigatorKey: navigatorKey);
 
   alice.setNavigatorKey(navigatorKey);
-
-  var chromecastListenerOverride = chromecastListenerProvider.overrideWith((c) {
-    var listener = ChromecastListener(providerRef: c);
-    ChromecastPigeon.setup(listener);
-    return listener;
-  });
-
-  var providerContainer = ProviderContainer(overrides: [chromecastListenerOverride]);
+  var providerContainer = ProviderContainer();
   PlaybackListenerPigeon.setup(PlaybackListener(providerContainer: providerContainer));
   final authLoadingCompleter = wrapInCompleter(providerContainer.read(authStateProvider.notifier).load());
   providerContainer.read(settingsProvider.notifier).load();
@@ -101,7 +91,7 @@ void $main({required FirebaseOptions? firebaseOptions}) async {
     providerContainer.read(isCasting.notifier).state = value?.connectionState == CastConnectionState.connected;
     providerContainer.read(castPlayerProvider.notifier).setMediaItem(value?.mediaItem);
   });
-  Analytics.initialize();
+  providerContainer.read(analyticsProvider);
 
   if (Env.npawAccountCode != '') {
     providerContainer
