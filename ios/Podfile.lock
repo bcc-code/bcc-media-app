@@ -29,7 +29,7 @@ PODS:
     - Firebase/Crashlytics (= 10.2.0)
     - firebase_core
     - Flutter
-  - firebase_messaging (14.1.1):
+  - firebase_messaging (14.1.2):
     - Firebase/Messaging (= 10.2.0)
     - firebase_core
     - Flutter
@@ -63,7 +63,7 @@ PODS:
   - Flutter (1.0.0)
   - flutter_local_notifications (0.0.1):
     - Flutter
-  - flutter_secure_storage (3.3.1):
+  - flutter_secure_storage (6.0.0):
     - Flutter
   - GoogleDataTransport (9.2.0):
     - GoogleUtilities/Environment (~> 7.7)
@@ -217,7 +217,7 @@ SPEC CHECKSUMS:
   Firebase: a3ea7eba4382afd83808376edb99acdaff078dcf
   firebase_core: db1432de826785171029b7c1a26e5b22ce1dd477
   firebase_crashlytics: 70150805355d1e11e2fbbfa379fc9e776d05e5ad
-  firebase_messaging: 5babce6fa9ce1e0c63a854dabba227f23dc68b1b
+  firebase_messaging: 7d54a2ef65a4a28c5729241bbdd5854d305e86ec
   FirebaseCore: 813838072b797b64f529f3c2ee35e696e5641dd1
   FirebaseCoreInternal: 091bde13e47bb1c5e9fe397634f3593dc390430f
   FirebaseCrashlytics: df7406152189d48346deafb716806d7bd9ebb573
@@ -225,7 +225,7 @@ SPEC CHECKSUMS:
   FirebaseMessaging: cc9f40f5b7494680f3844d08e517e92aa4e8d9f7
   Flutter: f04841e97a9d0b0a8025694d0796dd46242b2854
   flutter_local_notifications: 0c0b1ae97e741e1521e4c1629a459d04b9aec743
-  flutter_secure_storage: 7953c38a04c3fdbb00571bcd87d8e3b5ceb9daec
+  flutter_secure_storage: 23fc622d89d073675f2eaa109381aefbcf5a49be
   GoogleDataTransport: 1c8145da7117bd68bbbed00cf304edb6a24de00f
   GoogleUtilities: bad72cb363809015b1f7f19beb1f1cd23c589f95
   JWTDecode: 82480a7173f8a811954e7e14a2b59f688ca4222a
