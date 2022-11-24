@@ -66,7 +66,7 @@ class GridSectionList extends StatelessWidget {
       final subList = firstIndex + colSize <= items.length ? items.sublist(firstIndex, firstIndex + colSize) : items.sublist(firstIndex);
       return GridRow(
         margin: const EdgeInsets.symmetric(vertical: 12),
-        items: subList.asMap().entries.map((kv) {
+        items: subList.asMap().entries.map<Widget>((kv) {
           return SectionItemClickWrapper(
             item: kv.value.item,
             analytics: SectionItemAnalytics(id: kv.value.id, position: kv.key, type: kv.value.$__typename, name: kv.value.title),
