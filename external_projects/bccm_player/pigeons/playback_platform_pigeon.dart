@@ -87,7 +87,7 @@ class MediaItem {
   String? mimeType;
   MediaMetadata? metadata;
   bool? isLive;
-  int? playbackStartPositionMs;
+  double? playbackStartPositionMs;
   String? lastKnownAudioLanguage;
   String? lastKnownSubtitleLanguage;
 }
@@ -138,7 +138,7 @@ abstract class PlaybackListenerPigeon {
 
 class PositionDiscontinuityEvent {
   late String playerId;
-  int? playbackPositionMs;
+  double? playbackPositionMs;
 }
 
 class IsPlayingChangedEvent {

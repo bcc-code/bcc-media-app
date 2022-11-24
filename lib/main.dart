@@ -84,7 +84,7 @@ void $main({required FirebaseOptions? firebaseOptions}) async {
 
   alice.setNavigatorKey(navigatorKey);
   var providerContainer = ProviderContainer();
-  PlaybackListenerPigeon.setup(PlaybackListener(providerContainer: providerContainer));
+  PlaybackListenerPigeon.setup(PlaybackListener(ref: providerContainer));
   final authLoadingCompleter = wrapInCompleter(providerContainer.read(authStateProvider.notifier).load());
   providerContainer.read(settingsProvider.notifier).load();
   providerContainer.read(chromecastListenerProvider);

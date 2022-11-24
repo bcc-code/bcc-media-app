@@ -235,9 +235,9 @@ public class PlaybackPlatformApi {
       this.isLive = setterArg;
     }
 
-    private @Nullable Long playbackStartPositionMs;
-    public @Nullable Long getPlaybackStartPositionMs() { return playbackStartPositionMs; }
-    public void setPlaybackStartPositionMs(@Nullable Long setterArg) {
+    private @Nullable Double playbackStartPositionMs;
+    public @Nullable Double getPlaybackStartPositionMs() { return playbackStartPositionMs; }
+    public void setPlaybackStartPositionMs(@Nullable Double setterArg) {
       this.playbackStartPositionMs = setterArg;
     }
 
@@ -274,8 +274,8 @@ public class PlaybackPlatformApi {
         this.isLive = setterArg;
         return this;
       }
-      private @Nullable Long playbackStartPositionMs;
-      public @NonNull Builder setPlaybackStartPositionMs(@Nullable Long setterArg) {
+      private @Nullable Double playbackStartPositionMs;
+      public @NonNull Builder setPlaybackStartPositionMs(@Nullable Double setterArg) {
         this.playbackStartPositionMs = setterArg;
         return this;
       }
@@ -323,7 +323,7 @@ public class PlaybackPlatformApi {
       Object isLive = map.get("isLive");
       pigeonResult.setIsLive((Boolean)isLive);
       Object playbackStartPositionMs = map.get("playbackStartPositionMs");
-      pigeonResult.setPlaybackStartPositionMs((playbackStartPositionMs == null) ? null : ((playbackStartPositionMs instanceof Integer) ? (Integer)playbackStartPositionMs : (Long)playbackStartPositionMs));
+      pigeonResult.setPlaybackStartPositionMs((Double)playbackStartPositionMs);
       Object lastKnownAudioLanguage = map.get("lastKnownAudioLanguage");
       pigeonResult.setLastKnownAudioLanguage((String)lastKnownAudioLanguage);
       Object lastKnownSubtitleLanguage = map.get("lastKnownSubtitleLanguage");
@@ -560,9 +560,9 @@ public class PlaybackPlatformApi {
       this.playerId = setterArg;
     }
 
-    private @Nullable Long playbackPositionMs;
-    public @Nullable Long getPlaybackPositionMs() { return playbackPositionMs; }
-    public void setPlaybackPositionMs(@Nullable Long setterArg) {
+    private @Nullable Double playbackPositionMs;
+    public @Nullable Double getPlaybackPositionMs() { return playbackPositionMs; }
+    public void setPlaybackPositionMs(@Nullable Double setterArg) {
       this.playbackPositionMs = setterArg;
     }
 
@@ -574,8 +574,8 @@ public class PlaybackPlatformApi {
         this.playerId = setterArg;
         return this;
       }
-      private @Nullable Long playbackPositionMs;
-      public @NonNull Builder setPlaybackPositionMs(@Nullable Long setterArg) {
+      private @Nullable Double playbackPositionMs;
+      public @NonNull Builder setPlaybackPositionMs(@Nullable Double setterArg) {
         this.playbackPositionMs = setterArg;
         return this;
       }
@@ -597,7 +597,7 @@ public class PlaybackPlatformApi {
       Object playerId = map.get("playerId");
       pigeonResult.setPlayerId((String)playerId);
       Object playbackPositionMs = map.get("playbackPositionMs");
-      pigeonResult.setPlaybackPositionMs((playbackPositionMs == null) ? null : ((playbackPositionMs instanceof Integer) ? (Integer)playbackPositionMs : (Long)playbackPositionMs));
+      pigeonResult.setPlaybackPositionMs((Double)playbackPositionMs);
       return pigeonResult;
     }
   }

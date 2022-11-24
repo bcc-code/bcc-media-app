@@ -14,6 +14,7 @@ import 'package:http/http.dart' as http;
 
 import '../graphql/client.dart';
 import '../graphql/queries/application.graphql.dart';
+import '../graphql/queries/progress.graphql.dart';
 import '../graphql/schema/items.graphql.dart';
 
 class Api {
@@ -99,6 +100,13 @@ class Api {
     }
     var body = jsonDecode(response.body);
     return LivestreamUrl.fromJson(body);
+  }
+
+  Future updateProgress({required String episodeId, required double? progress}) async {
+    return gqlClient
+        .mutate$setEpisodeProgress(Options$Mutation$setEpisodeProgress(
+            variables: Variables$Mutation$setEpisodeProgress(id: episodeId, progress: progress?.finiteOrNull()?.round())))
+        .then((value) => debugPrint('set progress to: ${value.parsedData?.setEpisodeProgress.progress.toString()}'));
   }
 }
 

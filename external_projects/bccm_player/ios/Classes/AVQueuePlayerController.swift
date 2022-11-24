@@ -301,13 +301,23 @@ public class AVQueuePlayerController: NSObject, PlayerController, AVPlayerViewCo
         })
         self.observers.append(player.observe(\.rate, options: [.old, .new]) {
             (player, change) in
+            debugPrint("change observed: rate");
             let nowPlayingInfoCenter = MPNowPlayingInfoCenter.default()
+            nowPlayingInfoCenter.nowPlayingInfo?[MPNowPlayingInfoPropertyPlaybackRate] = change.newValue
             nowPlayingInfoCenter.nowPlayingInfo?[MPNowPlayingInfoPropertyElapsedPlaybackTime] = player.currentTime().seconds
+            let positionDiscontinuityEvent = PositionDiscontinuityEvent.make(withPlayerId: self.id, playbackPositionMs: (player.currentTime().seconds * 1000).rounded() as NSNumber)
+            self.playbackListener.onPositionDiscontinuity(positionDiscontinuityEvent, completion: { _ in })
         })
         observers.append(player.observe(\.timeControlStatus, options: [.old, .new]) {
             (player, change) in
-            let event = IsPlayingChangedEvent.make(withPlayerId: self.id, isPlaying: self.isPlaying() as NSNumber)
-            self.playbackListener.onIsPlayingChanged(event, completion: { _ in })
+            debugPrint("change observed: timeControlStatus");
+            let nowPlayingInfoCenter = MPNowPlayingInfoCenter.default()
+            nowPlayingInfoCenter.nowPlayingInfo?[MPNowPlayingInfoPropertyPlaybackRate] = player.rate
+            nowPlayingInfoCenter.nowPlayingInfo?[MPNowPlayingInfoPropertyElapsedPlaybackTime] = player.currentTime().seconds
+            let isPlayingEvent = IsPlayingChangedEvent.make(withPlayerId: self.id, isPlaying: self.isPlaying() as NSNumber)
+            self.playbackListener.onIsPlayingChanged(isPlayingEvent, completion: { _ in })
+            let positionDiscontinuityEvent = PositionDiscontinuityEvent.make(withPlayerId: self.id, playbackPositionMs: (player.currentTime().seconds * 1000).rounded() as NSNumber)
+            self.playbackListener.onPositionDiscontinuity(positionDiscontinuityEvent, completion: { _ in })
         })
     }
     
