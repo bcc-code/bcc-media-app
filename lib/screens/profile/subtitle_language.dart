@@ -4,14 +4,13 @@ import '../../components/option_list.dart';
 import '../../helpers/btv_colors.dart';
 import '../../helpers/languages.dart';
 import '../../l10n/app_localizations.dart';
-import '../../providers/settings_service.dart';
+import '../../providers/settings.dart';
 
 class AppSubtitleLanguage extends ConsumerStatefulWidget {
   const AppSubtitleLanguage({super.key});
 
   @override
-  ConsumerState<AppSubtitleLanguage> createState() =>
-      _AppSubtitleLanguageState();
+  ConsumerState<AppSubtitleLanguage> createState() => _AppSubtitleLanguageState();
 }
 
 class _AppSubtitleLanguageState extends ConsumerState<AppSubtitleLanguage> {
@@ -47,9 +46,7 @@ class _AppSubtitleLanguageState extends ConsumerState<AppSubtitleLanguage> {
                 Padding(
                   padding: const EdgeInsets.all(16).copyWith(bottom: 100),
                   child: OptionList(
-                    optionData: languages
-                        .map((l) => Option(id: l.code, title: l.nativeName))
-                        .toList(),
+                    optionData: languages.map((l) => Option(id: l.code, title: l.nativeName)).toList(),
                     currentSelection: selected,
                     onSelectionChange: _onSelectionChanged,
                   ),

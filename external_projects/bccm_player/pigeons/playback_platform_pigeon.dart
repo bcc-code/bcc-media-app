@@ -16,10 +16,8 @@ abstract class PlaybackPlatformPigeon {
   void queueMediaItem(String playerId, MediaItem mediaItem);
 
   @async
-  @ObjCSelector(
-      "replaceCurrentMediaItem:mediaItem:playbackPositionFromPrimary:autoplay:")
-  void replaceCurrentMediaItem(String playerId, MediaItem mediaItem,
-      bool? playbackPositionFromPrimary, bool? autoplay);
+  @ObjCSelector("replaceCurrentMediaItem:mediaItem:playbackPositionFromPrimary:autoplay:")
+  void replaceCurrentMediaItem(String playerId, MediaItem mediaItem, bool? playbackPositionFromPrimary, bool? autoplay);
 
   @ObjCSelector("setPlayerViewVisibility:visible:")
   void setPlayerViewVisibility(int viewId, bool visible);
@@ -71,6 +69,7 @@ class AppConfig {
   late String? appLanguage;
   late String? audioLanguage;
   late String? subtitleLanguage;
+  late String? analyticsId;
 }
 
 class User {
@@ -151,8 +150,7 @@ class IsPlayingChangedEvent {
 class PictureInPictureModeChangedEvent {
   String playerId;
   bool isInPipMode;
-  PictureInPictureModeChangedEvent(
-      {required this.playerId, required this.isInPipMode});
+  PictureInPictureModeChangedEvent({required this.playerId, required this.isInPipMode});
 }
 
 class MediaItemTransitionEvent {

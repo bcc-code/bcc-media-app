@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
-part of 'settings_service.dart';
+part of 'settings.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -19,6 +19,7 @@ mixin _$Settings {
   Locale get appLanguage => throw _privateConstructorUsedError;
   String? get audioLanguage => throw _privateConstructorUsedError;
   String? get subtitleLanguage => throw _privateConstructorUsedError;
+  String? get analyticsId => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $SettingsCopyWith<Settings> get copyWith =>
@@ -31,7 +32,10 @@ abstract class $SettingsCopyWith<$Res> {
       _$SettingsCopyWithImpl<$Res, Settings>;
   @useResult
   $Res call(
-      {Locale appLanguage, String? audioLanguage, String? subtitleLanguage});
+      {Locale appLanguage,
+      String? audioLanguage,
+      String? subtitleLanguage,
+      String? analyticsId});
 }
 
 /// @nodoc
@@ -50,6 +54,7 @@ class _$SettingsCopyWithImpl<$Res, $Val extends Settings>
     Object? appLanguage = null,
     Object? audioLanguage = freezed,
     Object? subtitleLanguage = freezed,
+    Object? analyticsId = freezed,
   }) {
     return _then(_value.copyWith(
       appLanguage: null == appLanguage
@@ -64,6 +69,10 @@ class _$SettingsCopyWithImpl<$Res, $Val extends Settings>
           ? _value.subtitleLanguage
           : subtitleLanguage // ignore: cast_nullable_to_non_nullable
               as String?,
+      analyticsId: freezed == analyticsId
+          ? _value.analyticsId
+          : analyticsId // ignore: cast_nullable_to_non_nullable
+              as String?,
     ) as $Val);
   }
 }
@@ -76,7 +85,10 @@ abstract class _$$_SettingsCopyWith<$Res> implements $SettingsCopyWith<$Res> {
   @override
   @useResult
   $Res call(
-      {Locale appLanguage, String? audioLanguage, String? subtitleLanguage});
+      {Locale appLanguage,
+      String? audioLanguage,
+      String? subtitleLanguage,
+      String? analyticsId});
 }
 
 /// @nodoc
@@ -93,6 +105,7 @@ class __$$_SettingsCopyWithImpl<$Res>
     Object? appLanguage = null,
     Object? audioLanguage = freezed,
     Object? subtitleLanguage = freezed,
+    Object? analyticsId = freezed,
   }) {
     return _then(_$_Settings(
       appLanguage: null == appLanguage
@@ -107,6 +120,10 @@ class __$$_SettingsCopyWithImpl<$Res>
           ? _value.subtitleLanguage
           : subtitleLanguage // ignore: cast_nullable_to_non_nullable
               as String?,
+      analyticsId: freezed == analyticsId
+          ? _value.analyticsId
+          : analyticsId // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -115,7 +132,10 @@ class __$$_SettingsCopyWithImpl<$Res>
 
 class _$_Settings implements _Settings {
   const _$_Settings(
-      {required this.appLanguage, this.audioLanguage, this.subtitleLanguage});
+      {required this.appLanguage,
+      this.audioLanguage,
+      this.subtitleLanguage,
+      this.analyticsId});
 
   @override
   final Locale appLanguage;
@@ -123,10 +143,12 @@ class _$_Settings implements _Settings {
   final String? audioLanguage;
   @override
   final String? subtitleLanguage;
+  @override
+  final String? analyticsId;
 
   @override
   String toString() {
-    return 'Settings(appLanguage: $appLanguage, audioLanguage: $audioLanguage, subtitleLanguage: $subtitleLanguage)';
+    return 'Settings(appLanguage: $appLanguage, audioLanguage: $audioLanguage, subtitleLanguage: $subtitleLanguage, analyticsId: $analyticsId)';
   }
 
   @override
@@ -139,12 +161,14 @@ class _$_Settings implements _Settings {
             (identical(other.audioLanguage, audioLanguage) ||
                 other.audioLanguage == audioLanguage) &&
             (identical(other.subtitleLanguage, subtitleLanguage) ||
-                other.subtitleLanguage == subtitleLanguage));
+                other.subtitleLanguage == subtitleLanguage) &&
+            (identical(other.analyticsId, analyticsId) ||
+                other.analyticsId == analyticsId));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, appLanguage, audioLanguage, subtitleLanguage);
+  int get hashCode => Object.hash(
+      runtimeType, appLanguage, audioLanguage, subtitleLanguage, analyticsId);
 
   @JsonKey(ignore: true)
   @override
@@ -157,7 +181,8 @@ abstract class _Settings implements Settings {
   const factory _Settings(
       {required final Locale appLanguage,
       final String? audioLanguage,
-      final String? subtitleLanguage}) = _$_Settings;
+      final String? subtitleLanguage,
+      final String? analyticsId}) = _$_Settings;
 
   @override
   Locale get appLanguage;
@@ -165,6 +190,8 @@ abstract class _Settings implements Settings {
   String? get audioLanguage;
   @override
   String? get subtitleLanguage;
+  @override
+  String? get analyticsId;
   @override
   @JsonKey(ignore: true)
   _$$_SettingsCopyWith<_$_Settings> get copyWith =>

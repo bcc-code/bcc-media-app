@@ -51,6 +51,16 @@ We are using auto_route.
 Schema files are copied from [the brunstadtv repo](https://github.com/bcc-code/brunstadtv).
 For a local workflow where the brunstadtv repo is side-by-side with this repo, see the [Makefile](Makefile).
 
+## Translations
+
+We are using Crowdin service for translations.
+In order up or download translations you need to have a [personal token](https://crowdin.com/settings#api-key) and [crowdin cli tool](https://developer.crowdin.com/cli-tool/#installation).
+
+You need to put the token into `CROWDIN_TOKEN` env var.
+Then you can run `crowdin upload` or `crowdin download` in the root of the project as apropriate.
+
+After downloading the translations into the project you also need to run `flutter gen-l10n`, which will generate .dart files in the same folder as the .arb files, based on [/l10n.yaml](/l10n.yaml).
+
 # Other
 
 ## "Unknown error" on login, issues with ssl, etc.

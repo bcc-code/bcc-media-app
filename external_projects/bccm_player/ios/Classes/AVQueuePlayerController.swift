@@ -20,7 +20,6 @@ public class AVQueuePlayerController: NSObject, PlayerController, AVPlayerViewCo
     init(id: String? = nil, playbackListener: PlaybackListenerPigeon, npawConfig: NpawConfig?, appConfig: AppConfig?) {
         self.id = id ?? UUID().uuidString;
         self.playbackListener = playbackListener
-        self.appConfig = appConfig
         
         let youboraOptions = YBOptions();
         youboraOptions.enabled = npawConfig != nil;
@@ -30,6 +29,7 @@ public class AVQueuePlayerController: NSObject, PlayerController, AVPlayerViewCo
         youboraOptions.appReleaseVersion = npawConfig?.appReleaseVersion;
         youboraPlugin = YBPlugin(options: youboraOptions)
         super.init()
+        updateAppConfig(appConfig: appConfig);
         youboraPlugin.adapter = YBAVPlayerAdapterSwiftTranformer.transform(from: YBAVPlayerAdapter(player: player))
         addObservers();
         refreshStateTimer = Timer.scheduledTimer(withTimeInterval: 15, repeats: true) { _ in
@@ -132,13 +132,8 @@ public class AVQueuePlayerController: NSObject, PlayerController, AVPlayerViewCo
         player.pause()
     }
     
-    func npawHandleMediaItemUpdate(playerItem: AVPlayerItem?, extras: [String: Any]?) {
-        guard #available(iOS 12.2, *) else {
-            // AVPlayerItem.externalMetadata isn't available < 12.2
-            // TODO: check what people did before that
-            return;
-        }
-        guard let extras = extras else {
+    func npawHandleMediaItemUpdate(mediaItem: MediaItem?) {
+        guard let mediaItem = mediaItem else {
             youboraPlugin.options.contentIsLive = nil
             youboraPlugin.options.contentId = nil
             youboraPlugin.options.contentTitle = nil
@@ -147,14 +142,14 @@ public class AVQueuePlayerController: NSObject, PlayerController, AVPlayerViewCo
             youboraPlugin.options.contentEpisodeTitle = nil
             return;
         }
-        let duration = player.currentItem?.duration
-        let isLive = (extras["npaw.content.isLive"] as? NSString)?.boolValue ?? (player.currentItem?.status == AVPlayerItem.Status.readyToPlay && duration != nil ? CMTIME_IS_INDEFINITE(duration!) : nil);
+        let extras = mediaItem.metadata?.extras;
+        let isLive = ((extras?["npaw.content.isLive"] as? String) == "true") || (mediaItem.isLive?.boolValue) == true;
         youboraPlugin.options.contentIsLive = isLive as NSValue?;
-        youboraPlugin.options.contentId = extras["npaw.content.id"] as? String ?? extras["id"] as? String;
-        youboraPlugin.options.contentTitle = extras["npaw.content.title"] as? String ?? playerItem?.externalMetadata.first(where: { $0.identifier == AVMetadataIdentifier.commonIdentifierTitle })?.stringValue
-        youboraPlugin.options.contentTvShow = extras["npaw.content.tvShow"] as? String;
-        youboraPlugin.options.contentSeason = extras["npaw.content.season"] as? String;
-        youboraPlugin.options.contentEpisodeTitle = extras["npaw.content.episodeTitle"] as? String;
+        youboraPlugin.options.contentId = extras?["npaw.content.id"] as? String ?? extras?["id"] as? String;
+        youboraPlugin.options.contentTitle = extras?["npaw.content.title"] as? String ?? mediaItem.metadata?.title;
+        youboraPlugin.options.contentTvShow = extras?["npaw.content.tvShow"] as? String;
+        youboraPlugin.options.contentSeason = extras?["npaw.content.season"] as? String;
+        youboraPlugin.options.contentEpisodeTitle = extras?["npaw.content.episodeTitle"] as? String;
     }
 
     public func updateNpawConfig(npawConfig: NpawConfig?) {
@@ -166,6 +161,7 @@ public class AVQueuePlayerController: NSObject, PlayerController, AVPlayerViewCo
 
     public func updateAppConfig(appConfig: AppConfig?) {
         self.appConfig = appConfig
+        self.youboraPlugin.options.username = appConfig?.analyticsId;
     }
     
     public func replaceCurrentMediaItem(_ mediaItem: MediaItem, autoplay: NSNumber?, completion:  @escaping (FlutterError?) -> ()) {
@@ -173,6 +169,7 @@ public class AVQueuePlayerController: NSObject, PlayerController, AVPlayerViewCo
             guard let playerItem = playerItem else {
                 return;
             }
+            self.npawHandleMediaItemUpdate(mediaItem: mediaItem);
             DispatchQueue.main.async {
                 self.player.replaceCurrentItem(with: playerItem)
                 self.temporaryStatusObserver = playerItem.observe(\.status, options: [.new, .old]) {
@@ -295,7 +292,7 @@ public class AVQueuePlayerController: NSObject, PlayerController, AVPlayerViewCo
             let event = MediaItemTransitionEvent.make(withPlayerId: self.id, mediaItem: mediaItem)
             self.playbackListener.onMediaItemTransition(event, completion: { _ in })
             
-            self.npawHandleMediaItemUpdate(playerItem: player.currentItem, extras: mediaItem?.metadata?.extras);
+            self.npawHandleMediaItemUpdate(mediaItem: mediaItem);
             
             self.observers.append(player.observe(\.currentItem?.duration, options: [.old, .new]) {
                 (player, change) in

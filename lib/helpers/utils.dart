@@ -6,6 +6,7 @@ import 'package:brunstadtv_app/graphql/queries/episode.graphql.dart';
 import 'package:brunstadtv_app/providers/analytics.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:package_info_plus/package_info_plus.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 
 import '../graphql/queries/page.graphql.dart';
@@ -20,6 +21,10 @@ extension AsExtension on Object? {
     var self = this;
     return self is X ? self : null;
   }
+}
+
+String formatAppVersion(PackageInfo packageInfo) {
+  return '${packageInfo.version}+${packageInfo.buildNumber}';
 }
 
 String getFormattedAgeRating(String ageRating) {

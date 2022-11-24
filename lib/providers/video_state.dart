@@ -5,13 +5,11 @@ import 'package:collection/collection.dart'; // You have to add this manually, f
 
 part 'video_state.freezed.dart';
 
-final castPlayerProvider =
-    StateNotifierProvider<PlayerNotifier, Player?>((ref) {
+final castPlayerProvider = StateNotifierProvider<PlayerNotifier, Player?>((ref) {
   return PlayerNotifier(player: const Player(playerId: 'chromecast'));
 });
 
-final primaryPlayerProvider =
-    StateNotifierProvider<PlayerNotifier, Player?>((ref) {
+final primaryPlayerProvider = StateNotifierProvider<PlayerNotifier, Player?>((ref) {
   return PlayerNotifier();
 });
 
@@ -28,6 +26,10 @@ class PlayerNotifier extends StateNotifier<Player?> {
 
   void setPlaybackState(PlaybackState playbackState) {
     state = state?.copyWith(playbackState: playbackState);
+  }
+
+  void setPlaybackPosition(int? ms) {
+    state = state?.copyWith(playbackPositionMs: ms);
   }
 
   void setIsInPipMode(bool isInPipMode) {

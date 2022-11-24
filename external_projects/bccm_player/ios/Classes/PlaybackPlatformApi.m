@@ -117,11 +117,13 @@ static id GetNullableObjectAtIndex(NSArray* array, NSInteger key) {
 @implementation AppConfig
 + (instancetype)makeWithAppLanguage:(nullable NSString *)appLanguage
     audioLanguage:(nullable NSString *)audioLanguage
-    subtitleLanguage:(nullable NSString *)subtitleLanguage {
+    subtitleLanguage:(nullable NSString *)subtitleLanguage
+    analyticsId:(nullable NSString *)analyticsId {
   AppConfig* pigeonResult = [[AppConfig alloc] init];
   pigeonResult.appLanguage = appLanguage;
   pigeonResult.audioLanguage = audioLanguage;
   pigeonResult.subtitleLanguage = subtitleLanguage;
+  pigeonResult.analyticsId = analyticsId;
   return pigeonResult;
 }
 + (AppConfig *)fromMap:(NSDictionary *)dict {
@@ -129,6 +131,7 @@ static id GetNullableObjectAtIndex(NSArray* array, NSInteger key) {
   pigeonResult.appLanguage = GetNullableObject(dict, @"appLanguage");
   pigeonResult.audioLanguage = GetNullableObject(dict, @"audioLanguage");
   pigeonResult.subtitleLanguage = GetNullableObject(dict, @"subtitleLanguage");
+  pigeonResult.analyticsId = GetNullableObject(dict, @"analyticsId");
   return pigeonResult;
 }
 + (nullable AppConfig *)nullableFromMap:(NSDictionary *)dict { return (dict) ? [AppConfig fromMap:dict] : nil; }
@@ -137,6 +140,7 @@ static id GetNullableObjectAtIndex(NSArray* array, NSInteger key) {
     @"appLanguage" : (self.appLanguage ?: [NSNull null]),
     @"audioLanguage" : (self.audioLanguage ?: [NSNull null]),
     @"subtitleLanguage" : (self.subtitleLanguage ?: [NSNull null]),
+    @"analyticsId" : (self.analyticsId ?: [NSNull null]),
   };
 }
 @end

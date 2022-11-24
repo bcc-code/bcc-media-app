@@ -4,6 +4,7 @@ import 'package:brunstadtv_app/graphql/queries/me.graphql.dart';
 import 'package:brunstadtv_app/helpers/btv_typography.dart';
 import 'package:brunstadtv_app/providers/auth_state.dart';
 import 'package:brunstadtv_app/providers/analytics.dart';
+import 'package:brunstadtv_app/providers/settings.dart';
 import 'package:brunstadtv_app/router/router.gr.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
@@ -27,6 +28,7 @@ class _AppRootState extends ConsumerState<AppRoot> {
     _setupFcmListeners();
     authSubscription = ref.listenManual<AuthState>(authStateProvider, (previous, next) {
       if (previous?.auth0AccessToken != null && next.auth0AccessToken == null) {
+        ref.read(settingsProvider.notifier).setAnalyticsId(null);
         widget.navigatorKey.currentContext?.router.root.navigate(LoginScreenRoute());
       } else if (next.auth0AccessToken != null && next.user != null) {
         ref.read(gqlClientProvider).query$me().then((value) {

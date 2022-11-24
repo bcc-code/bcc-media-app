@@ -1,5 +1,5 @@
 import 'package:brunstadtv_app/providers/auth_state.dart';
-import 'package:brunstadtv_app/providers/settings_service.dart';
+import 'package:brunstadtv_app/providers/settings.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:graphql/client.dart';
 import 'package:http/http.dart';

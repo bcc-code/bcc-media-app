@@ -12,8 +12,7 @@ import 'package:brunstadtv_app/providers/video_state.dart';
 
 import '../graphql/queries/devices.graphql.dart';
 
-final playbackListenerProvider =
-    Provider<PlaybackListener>((_) => throw UnimplementedError());
+final playbackListenerProvider = Provider<PlaybackListener>((_) => throw UnimplementedError());
 
 class PlaybackListener implements PlaybackListenerPigeon {
   ProviderContainer providerContainer;
@@ -22,52 +21,36 @@ class PlaybackListener implements PlaybackListenerPigeon {
 
   @override
   void onIsPlayingChanged(IsPlayingChangedEvent event) {
-    var playerProvider = event.playerId == 'chromecast'
-        ? castPlayerProvider
-        : primaryPlayerProvider;
-    providerContainer.read(playerProvider.notifier).setPlaybackState(
-        event.isPlaying ? PlaybackState.playing : PlaybackState.paused);
+    var playerProvider = event.playerId == 'chromecast' ? castPlayerProvider : primaryPlayerProvider;
+    providerContainer.read(playerProvider.notifier).setPlaybackState(event.isPlaying ? PlaybackState.playing : PlaybackState.paused);
   }
 
   @override
   void onMediaItemTransition(MediaItemTransitionEvent event) {
-    var playerProvider = event.playerId == 'chromecast'
-        ? castPlayerProvider
-        : primaryPlayerProvider;
-    providerContainer
-        .read(playerProvider.notifier)
-        .setMediaItem(event.mediaItem);
+    var playerProvider = event.playerId == 'chromecast' ? castPlayerProvider : primaryPlayerProvider;
+    providerContainer.read(playerProvider.notifier).setMediaItem(event.mediaItem);
   }
 
   @override
   void onPictureInPictureModeChanged(PictureInPictureModeChangedEvent event) {
-    var playerProvider = event.playerId == 'chromecast'
-        ? castPlayerProvider
-        : primaryPlayerProvider;
-    providerContainer
-        .read(playerProvider.notifier)
-        .setIsInPipMode(event.isInPipMode);
+    var playerProvider = event.playerId == 'chromecast' ? castPlayerProvider : primaryPlayerProvider;
+    providerContainer.read(playerProvider.notifier).setIsInPipMode(event.isInPipMode);
   }
 
   @override
   void onPositionDiscontinuity(PositionDiscontinuityEvent event) {
     debugPrint('onPositionDiscontinuity');
-    var playerProvider = event.playerId == 'chromecast'
-        ? castPlayerProvider
-        : primaryPlayerProvider;
+    var playerProvider = event.playerId == 'chromecast' ? castPlayerProvider : primaryPlayerProvider;
     var player = providerContainer.read(playerProvider);
-    final episodeId =
-        player?.currentMediaItem?.metadata?.extras?['id']?.asOrNull<String>();
+    providerContainer.read(playerProvider.notifier).setPlaybackPosition(event.playbackPositionMs);
+    final episodeId = player?.currentMediaItem?.metadata?.extras?['id']?.asOrNull<String>();
     if (episodeId != null) {
       final gqlClient = providerContainer.read(gqlClientProvider);
 
       gqlClient
           .mutate$setEpisodeProgress(Options$Mutation$setEpisodeProgress(
-              variables: Variables$Mutation$setEpisodeProgress(
-                  id: episodeId,
-                  progress: ((event.playbackPositionMs ?? 0) / 1000).round())))
-          .then((value) => debugPrint(
-              'set progress to: ${value.parsedData?.setEpisodeProgress.progress.toString()}'));
+              variables: Variables$Mutation$setEpisodeProgress(id: episodeId, progress: ((event.playbackPositionMs ?? 0) / 1000).round())))
+          .then((value) => debugPrint('set progress to: ${value.parsedData?.setEpisodeProgress.progress.toString()}'));
     }
   }
 
@@ -75,23 +58,18 @@ class PlaybackListener implements PlaybackListenerPigeon {
   void onPlayerStateUpdate(PlayerState event) {
     debugPrint('onPlayerStateUpdate');
 
-    var playerProvider = event.playerId == 'chromecast'
-        ? castPlayerProvider
-        : primaryPlayerProvider;
+    var playerProvider = event.playerId == 'chromecast' ? castPlayerProvider : primaryPlayerProvider;
     var player = providerContainer.read(playerProvider);
+    providerContainer.read(playerProvider.notifier).setPlaybackPosition(event.playbackPositionMs?.round());
 
-    final episodeId =
-        player?.currentMediaItem?.metadata?.extras?['id']?.asOrNull<String>();
+    final episodeId = player?.currentMediaItem?.metadata?.extras?['id']?.asOrNull<String>();
     if (event.isPlaying && episodeId != null) {
       final gqlClient = providerContainer.read(gqlClientProvider);
 
       gqlClient
           .mutate$setEpisodeProgress(Options$Mutation$setEpisodeProgress(
-              variables: Variables$Mutation$setEpisodeProgress(
-                  id: episodeId,
-                  progress: ((event.playbackPositionMs ?? 0) / 1000).round())))
-          .then((value) => debugPrint(
-              'set progress to: ${value.parsedData?.setEpisodeProgress.progress.toString()}'));
+              variables: Variables$Mutation$setEpisodeProgress(id: episodeId, progress: ((event.playbackPositionMs ?? 0) / 1000).round())))
+          .then((value) => debugPrint('set progress to: ${value.parsedData?.setEpisodeProgress.progress.toString()}'));
     }
   }
 }
