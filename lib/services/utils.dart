@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:intl/intl.dart';
 
-String getFormattedDuration(int durSeconds) {
+String getFormattedDuration(int durSeconds, {bool padFirstSegment = false}) {
   final duration = Duration(seconds: durSeconds);
 
   String twoDigits(int n) => n.toString().padLeft(2, '0');
@@ -15,11 +15,11 @@ String getFormattedDuration(int durSeconds) {
 
   // Hours
   if (hours != 0) {
-    durationSegments.add(hours.toString());
+    durationSegments.add(padFirstSegment ? twoDigits(hours) : hours.toString());
   }
 
   // Minutes
-  if (duration.inMinutes > minutes) {
+  if (duration.inMinutes > minutes || padFirstSegment) {
     durationSegments.add(twoDigits(minutes));
   } else {
     durationSegments.add(minutes.toString());

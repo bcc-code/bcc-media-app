@@ -226,6 +226,7 @@ class AppRouter extends _i19.RootStackRouter {
                   'autoplay',
                   false,
                 ),
+                queryParamStartPosition: queryParams.optInt('t'),
               ));
       return _i19.CustomPage<void>(
         routeData: routeData,
@@ -233,6 +234,7 @@ class AppRouter extends _i19.RootStackRouter {
           key: args.key,
           episodeId: args.episodeId,
           autoplay: args.autoplay,
+          queryParamStartPosition: args.queryParamStartPosition,
         ),
         transitionsBuilder: _i23.CustomTransitionsBuilders.slideLeft,
         durationInMilliseconds: 300,
@@ -695,6 +697,7 @@ class EpisodeScreenRoute extends _i19.PageRouteInfo<EpisodeScreenRouteArgs> {
     _i20.Key? key,
     required String episodeId,
     bool autoplay = false,
+    int? queryParamStartPosition,
   }) : super(
           EpisodeScreenRoute.name,
           path: 'episode/:episodeId',
@@ -702,9 +705,13 @@ class EpisodeScreenRoute extends _i19.PageRouteInfo<EpisodeScreenRouteArgs> {
             key: key,
             episodeId: episodeId,
             autoplay: autoplay,
+            queryParamStartPosition: queryParamStartPosition,
           ),
           rawPathParams: {'episodeId': episodeId},
-          rawQueryParams: {'autoplay': autoplay},
+          rawQueryParams: {
+            'autoplay': autoplay,
+            't': queryParamStartPosition,
+          },
         );
 
   static const String name = 'EpisodeScreenRoute';
@@ -715,6 +722,7 @@ class EpisodeScreenRouteArgs {
     this.key,
     required this.episodeId,
     this.autoplay = false,
+    this.queryParamStartPosition,
   });
 
   final _i20.Key? key;
@@ -723,9 +731,11 @@ class EpisodeScreenRouteArgs {
 
   final bool autoplay;
 
+  final int? queryParamStartPosition;
+
   @override
   String toString() {
-    return 'EpisodeScreenRouteArgs{key: $key, episodeId: $episodeId, autoplay: $autoplay}';
+    return 'EpisodeScreenRouteArgs{key: $key, episodeId: $episodeId, autoplay: $autoplay, queryParamStartPosition: $queryParamStartPosition}';
   }
 }
 
