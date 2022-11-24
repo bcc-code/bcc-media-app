@@ -207,19 +207,23 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen> with AutoRouteAwa
     final casting = ref.watch(isCasting);
     final playerProvider = casting ? castPlayerProvider : primaryPlayerProvider;
     final player = ref.watch(playerProvider);
-    final currentPosSeconds = (player?.playbackPositionMs ?? 0 / 1000).round();
+    final currentPosSeconds = ((player?.playbackPositionMs ?? 0) / 1000).round();
     final formattedPosition = getFormattedDuration(currentPosSeconds, padFirstSegment: true);
+
+    if (player != null) {
+      ref.read(playbackApiProvider).pause(player.playerId);
+    }
 
     var options = [
       Option(
         id: 'fromStart',
         title: 'Share from start',
-        icon: SvgPicture.string(SvgIcons.share),
+        icon: SvgPicture.string(SvgIcons.share, color: BtvColors.onTint),
       ),
       Option(
         id: 'fromTime',
         title: 'Share from time $formattedPosition',
-        icon: SvgPicture.string(SvgIcons.location),
+        icon: SvgPicture.string(SvgIcons.location, color: BtvColors.onTint),
       ),
     ];
 
