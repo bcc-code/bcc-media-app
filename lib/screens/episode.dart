@@ -148,10 +148,8 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen> with AutoRouteAwa
     if (!mounted || episode == null) return;
 
     var startPositionSeconds = 0;
-    if (widget.queryParamStartPosition != null) {
-      if (widget.queryParamStartPosition! > 0) {
-        startPositionSeconds = widget.queryParamStartPosition!;
-      }
+    if (widget.queryParamStartPosition != null && widget.queryParamStartPosition! >= 0) {
+      startPositionSeconds = widget.queryParamStartPosition!;
     } else {
       startPositionSeconds = (episode.progress ?? 0);
       if (startPositionSeconds > episode.duration * 0.9) {
