@@ -15,10 +15,17 @@ class BottomSheetSelect extends StatefulWidget {
   final String selectedId;
   final String title;
   final List<Option> items;
+  final bool showSelection;
   final void Function(String id) onSelectionChanged;
 
-  const BottomSheetSelect({Key? key, required this.title, required this.items, required this.selectedId, required this.onSelectionChanged})
-      : super(key: key);
+  const BottomSheetSelect({
+    Key? key,
+    required this.title,
+    required this.items,
+    required this.selectedId,
+    this.showSelection = true,
+    required this.onSelectionChanged,
+  }) : super(key: key);
 
   @override
   State<BottomSheetSelect> createState() => _BottomSheetSelectState();
@@ -67,6 +74,7 @@ class _BottomSheetSelectState extends State<BottomSheetSelect> {
                 child: OptionList(
                   optionData: widget.items,
                   currentSelection: localSelectedId,
+                  showSelection: widget.showSelection,
                   onSelectionChange: (val) {
                     setState(() {
                       localSelectedId = val;

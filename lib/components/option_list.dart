@@ -9,6 +9,7 @@ class OptionList extends StatelessWidget {
   final void Function(String) onSelectionChange;
   final EdgeInsetsGeometry margin;
   final bool enableDivider;
+  final bool showSelection;
 
   const OptionList({
     super.key,
@@ -16,6 +17,7 @@ class OptionList extends StatelessWidget {
     required this.currentSelection,
     required this.onSelectionChange,
     this.enableDivider = true,
+    this.showSelection = true,
     this.margin = const EdgeInsets.only(top: 16, left: 16, right: 16),
   });
 
@@ -33,7 +35,8 @@ class OptionList extends StatelessWidget {
         itemCount: optionData.length,
         itemBuilder: (context, index) {
           final option = optionData[index];
-          return _option(option, currentSelection);
+          final isOptionSelected = showSelection && (currentSelection.isNotEmpty && currentSelection == option.id);
+          return _getOption(option, isOptionSelected);
         },
         separatorBuilder: (context, index) {
           return Visibility(
@@ -49,20 +52,24 @@ class OptionList extends StatelessWidget {
     );
   }
 
-  SizedBox _option(Option option, String curSelect) {
+  SizedBox _getOption(Option option, bool isSelected) {
     return SizedBox(
       child: InkWell(
         onTapDown: (e) {
           onSelectionChange(option.id);
         },
         child: Container(
-          padding:
-              const EdgeInsets.only(left: 16, right: 16, top: 16, bottom: 16),
+          padding: const EdgeInsets.all(16),
           constraints: const BoxConstraints(minHeight: 56),
           child: Row(
             children: [
-              Flexible(
-                fit: FlexFit.tight,
+              if (option.icon != null)
+                Container(
+                  padding: const EdgeInsets.symmetric(horizontal: 3.2),
+                  margin: const EdgeInsets.only(right: 16),
+                  child: option.icon,
+                ),
+              Expanded(
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -76,18 +83,14 @@ class OptionList extends StatelessWidget {
                             margin: const EdgeInsets.only(top: 2),
                             child: Text(
                               option.subTitle as String,
-                              style: BtvTextStyles.caption1.copyWith(
-                                  color:
-                                      const Color.fromRGBO(235, 235, 245, 0.6)),
+                              style: BtvTextStyles.caption1.copyWith(color: const Color.fromRGBO(235, 235, 245, 0.6)),
                             ),
                           )
                         : const SizedBox.shrink(),
                   ],
                 ),
               ),
-              if (curSelect.isNotEmpty && curSelect == option.id)
-                Image.asset('assets/icons/Check_circle.png',
-                    gaplessPlayback: true),
+              if (isSelected) Image.asset('assets/icons/Check_circle.png', gaplessPlayback: true),
             ],
           ),
         ),
@@ -99,11 +102,13 @@ class OptionList extends StatelessWidget {
 class Option {
   final String id;
   final String title;
+  final Widget? icon;
   String? subTitle;
 
   Option({
     required this.id,
     required this.title,
+    this.icon,
     this.subTitle,
   });
 }
