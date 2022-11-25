@@ -1,4 +1,6 @@
 import 'package:brunstadtv_app/api/brunstadtv.dart';
+import 'package:brunstadtv_app/helpers/page_mixin.dart';
+import 'package:brunstadtv_app/helpers/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -23,17 +25,16 @@ class PageScreen extends ConsumerStatefulWidget {
   ConsumerState<PageScreen> createState() => PageScreenState();
 }
 
-class PageScreenState extends ConsumerState<PageScreen> {
-  late Future<Query$Page$page> resultFuture;
+class PageScreenState extends ConsumerState<PageScreen> with PageMixin {
   String pageTitle = '';
 
   @override
   void initState() {
     super.initState();
 
-    resultFuture = getPage();
+    pageResult = wrapInCompleter(getPage());
 
-    resultFuture.then((pageData) {
+    pageResult.future.then((pageData) {
       if (mounted) {
         setState(() => pageTitle = pageData.title);
       }
@@ -53,11 +54,11 @@ class PageScreenState extends ConsumerState<PageScreen> {
         title: Text(pageTitle),
       ),
       body: BccmPage(
-        pageFuture: resultFuture,
-        onRefresh: (r) async {
+        pageFuture: pageResult.future,
+        onRefresh: ({bool? retry}) async {
           var future = getPage();
           setState(() {
-            resultFuture = future;
+            pageResult = wrapInCompleter(future);
           });
           await future;
         },

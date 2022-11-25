@@ -47,6 +47,13 @@ fragment ItemSectionItem on SectionItem {
 }
 
 fragment ItemSection on ItemSection {
+  metadata {
+    continueWatching
+    secondaryTitles
+    collectionId
+    useContext
+    prependLiveElement
+  }
   items {
     items {
       ...ItemSectionItem
@@ -166,7 +173,7 @@ fragment Section on Section {
 query Page($code: String!) {
   page(code: $code) {
     title
-    sections {
+    sections(first: 30) {
       items {
         ...Section
       }

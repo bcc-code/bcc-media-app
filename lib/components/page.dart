@@ -21,15 +21,22 @@ import 'list_section.dart';
 import 'page_section.dart';
 import 'web_section.dart';
 
-class BccmPage extends StatelessWidget {
+class BccmPage extends StatefulWidget {
   final Future<Query$Page$page> pageFuture;
-  final Future Function(bool retry) onRefresh;
+  final Future Function({bool? retry}) onRefresh;
 
-  BccmPage({
+  const BccmPage({
     super.key,
     required this.pageFuture,
     required this.onRefresh,
   });
+
+  @override
+  State<BccmPage> createState() => _BccmPageState();
+}
+
+class _BccmPageState extends State<BccmPage> {
+  GlobalKey<State<FutureBuilder<Query$Page$page>>> futureBuilderKey = GlobalKey();
 
   Widget? _getSectionWidget(Fragment$Section s) {
     final iconSection = s.asOrNull<Fragment$Section$$IconSection>();
@@ -93,7 +100,12 @@ class BccmPage extends StatelessWidget {
         edgeOffset: MediaQuery.of(context).padding.top,
         triggerMode: RefreshIndicatorTriggerMode.anywhere,
         displacement: 40,
-        onRefresh: () => onRefresh(false),
+        onRefresh: () {
+          setState(() {
+            futureBuilderKey = GlobalKey();
+          });
+          return widget.onRefresh();
+        },
         notificationPredicate: (notification) => true,
         child: ListView.builder(
           cacheExtent: 3000,
@@ -118,16 +130,17 @@ class BccmPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return FutureBuilder<Query$Page$page>(
-      future: pageFuture,
+      key: futureBuilderKey,
+      future: widget.pageFuture,
       builder: (context, snapshot) {
-        if (snapshot.connectionState == ConnectionState.waiting) {
-          return getLoadingContent(context);
-        }
         if (snapshot.hasData) {
           return getPage(context, snapshot.data!);
         } else if (snapshot.hasError) {
           print(snapshot.error);
           return loadingError(context);
+        }
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          return getLoadingContent(context);
         }
         return getLoadingContent(context);
       },
@@ -168,7 +181,15 @@ class BccmPage extends StatelessWidget {
                   style: BtvTextStyles.body1.copyWith(color: BtvColors.label3),
                 ),
               ),
-              BtvButton.medium(labelText: S.of(context).tryAgainButton, onPressed: () => onRefresh(true))
+              BtvButton.medium(
+                labelText: S.of(context).tryAgainButton,
+                onPressed: () {
+                  setState(() {
+                    futureBuilderKey = GlobalKey();
+                  });
+                  widget.onRefresh(retry: true);
+                },
+              )
             ],
           ),
         ),

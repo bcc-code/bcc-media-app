@@ -606,7 +606,7 @@ class SEn extends S {
 
   @override
   String shareTime(String time) {
-    return 'Share from time $time';
+    return 'Share from $time';
   }
 
   @override

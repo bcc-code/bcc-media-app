@@ -24,7 +24,7 @@ query FetchEpisode($id: ID!) {
       id
       title
       number
-      episodes {
+      episodes(first: 50) {
         items {
           ...SeasonListEpisode
         }

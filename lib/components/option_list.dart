@@ -52,46 +52,50 @@ class OptionList extends StatelessWidget {
     );
   }
 
-  SizedBox _getOption(Option option, bool isSelected) {
-    return SizedBox(
-      child: InkWell(
-        onTapDown: (e) {
-          onSelectionChange(option.id);
-        },
-        child: Container(
-          padding: const EdgeInsets.all(16),
-          constraints: const BoxConstraints(minHeight: 56),
-          child: Row(
-            children: [
-              if (option.icon != null)
-                Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 3.2),
-                  margin: const EdgeInsets.only(right: 16),
-                  child: option.icon,
+  Widget _getOption(Option option, bool isSelected) {
+    return IgnorePointer(
+      ignoring: option.disabled,
+      child: Container(
+        foregroundDecoration: option.disabled ? BoxDecoration(color: BtvColors.background1.withAlpha(100)) : null,
+        child: InkWell(
+          onTapDown: (e) {
+            onSelectionChange(option.id);
+          },
+          child: Container(
+            padding: const EdgeInsets.all(16),
+            constraints: const BoxConstraints(minHeight: 56),
+            child: Row(
+              children: [
+                if (option.icon != null)
+                  Container(
+                    padding: const EdgeInsets.symmetric(horizontal: 3.2),
+                    margin: const EdgeInsets.only(right: 16),
+                    child: option.icon,
+                  ),
+                Expanded(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        option.title,
+                        style: BtvTextStyles.title3,
+                      ),
+                      (option.subTitle != null)
+                          ? Container(
+                              margin: const EdgeInsets.only(top: 2),
+                              child: Text(
+                                option.subTitle as String,
+                                style: BtvTextStyles.caption1.copyWith(color: const Color.fromRGBO(235, 235, 245, 0.6)),
+                              ),
+                            )
+                          : const SizedBox.shrink(),
+                    ],
+                  ),
                 ),
-              Expanded(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      option.title,
-                      style: BtvTextStyles.title3,
-                    ),
-                    (option.subTitle != null)
-                        ? Container(
-                            margin: const EdgeInsets.only(top: 2),
-                            child: Text(
-                              option.subTitle as String,
-                              style: BtvTextStyles.caption1.copyWith(color: const Color.fromRGBO(235, 235, 245, 0.6)),
-                            ),
-                          )
-                        : const SizedBox.shrink(),
-                  ],
-                ),
-              ),
-              if (isSelected) Image.asset('assets/icons/Check_circle.png', gaplessPlayback: true),
-            ],
+                if (isSelected) Image.asset('assets/icons/Check_circle.png', gaplessPlayback: true),
+              ],
+            ),
           ),
         ),
       ),
@@ -103,11 +107,13 @@ class Option {
   final String id;
   final String title;
   final Widget? icon;
+  bool disabled;
   String? subTitle;
 
   Option({
     required this.id,
     required this.title,
+    this.disabled = false,
     this.icon,
     this.subTitle,
   });
