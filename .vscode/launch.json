@@ -16,6 +16,18 @@
             "program": "lib/main_prod.dart"
         },
         {
+            "name": "prod (release)",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "release",
+            "args": [
+                "--flavor",
+                "prod"
+            ], // Remember to change the "program" property too
+            "cwd": "${workspaceFolder}",
+            "program": "lib/main_prod.dart"
+        },
+        {
             "name": "v4_prod",
             "request": "launch",
             "type": "dart",
