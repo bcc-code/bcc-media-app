@@ -134,14 +134,19 @@ class _TabsRootScreenState extends ConsumerState<TabsRootScreen> with AutoRouteA
 
   @override
   Widget build(BuildContext context) {
+    var routes = [
+      const HomeScreenWrapperRoute(),
+      SearchScreenWrapperRoute(children: [SearchScreenRoute(key: GlobalKey<SearchScreenState>())]),
+    ];
+    if (!ref.watch(authStateProvider).guestMode) {
+      routes.addAll([
+        const LiveScreenRoute(),
+        const CalendarPageRoute(),
+      ]);
+    }
     return AutoTabsRouter(
         navigatorObservers: () => [HeroController()],
-        routes: [
-          const HomeScreenWrapperRoute(),
-          SearchScreenWrapperRoute(children: [SearchScreenRoute(key: GlobalKey<SearchScreenState>())]),
-          const LiveScreenRoute(),
-          const CalendarPageRoute(),
-        ],
+        routes: routes,
         builder: (context, child, animation) {
           final tabsRouter = AutoTabsRouter.of(context);
           return Theme(
@@ -149,7 +154,7 @@ class _TabsRootScreenState extends ConsumerState<TabsRootScreen> with AutoRouteA
             child: Scaffold(
                 body: Padding(padding: EdgeInsets.only(bottom: _shouldHideMiniPlayer(context) ? 0 : kMiniPlayerHeight), child: child),
                 bottomSheet: BottomSheetMiniPlayer(hidden: _shouldHideMiniPlayer(context)),
-                bottomNavigationBar: ref.watch(authStateProvider).guestMode ? null : CustomTabBar(tabsRouter: tabsRouter)),
+                bottomNavigationBar: CustomTabBar(tabsRouter: tabsRouter)),
           );
         });
   }
