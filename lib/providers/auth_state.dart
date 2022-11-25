@@ -28,8 +28,7 @@ class AuthStateNotifier extends StateNotifier<AuthState> {
   Timer? refreshTimer;
 
   void setStateBasedOnCredentials(Credentials result) {
-    state = state.copyWith(
-        auth0AccessToken: result.accessToken, guestMode: false, idToken: result.idToken, user: result.user, expiresAt: result.expiresAt);
+    state = state.copyWith(auth0AccessToken: result.accessToken, idToken: result.idToken, user: result.user, expiresAt: result.expiresAt);
   }
 
   void scheduleRefresh() {
@@ -62,10 +61,6 @@ class AuthStateNotifier extends StateNotifier<AuthState> {
       }
       return false;
     }
-  }
-
-  void setGuestMode(bool guestMode) {
-    state = state.copyWith(guestMode: guestMode);
   }
 
   Future logout() async {
@@ -103,11 +98,14 @@ class AuthStateNotifier extends StateNotifier<AuthState> {
 
 @freezed
 class AuthState with _$AuthState {
+  const AuthState._();
+
   const factory AuthState({
     UserProfile? user,
     String? auth0AccessToken,
     DateTime? expiresAt,
     String? idToken,
-    @Default(false) bool guestMode,
   }) = _Auth;
+
+  bool get guestMode => auth0AccessToken == null;
 }

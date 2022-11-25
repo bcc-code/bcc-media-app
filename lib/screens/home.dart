@@ -193,9 +193,14 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                 ? null
                 : Material(
                     color: Colors.transparent,
-                    child: SignInTooltip(onClose: () {
-                      setState(() => tooltipDismissed = true);
-                    }),
+                    child: GestureDetector(
+                      onTap: () {
+                        setState(() => tooltipDismissed = true);
+                      },
+                      child: SignInTooltip(onClose: () {
+                        setState(() => tooltipDismissed = true);
+                      }),
+                    ),
                   ),
           ),
         )

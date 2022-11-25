@@ -21,7 +21,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:brunstadtv_app/providers/chromecast.dart';
 import 'package:brunstadtv_app/providers/playback_api.dart';
 import 'package:brunstadtv_app/providers/playback_listener.dart';
-import 'package:brunstadtv_app/router/auth_guard.dart';
 import 'package:brunstadtv_app/router/router.gr.dart';
 import 'package:brunstadtv_app/providers/auth_state.dart';
 import 'package:intl/intl.dart';
@@ -80,7 +79,7 @@ void $main({required FirebaseOptions? firebaseOptions}) async {
     DeviceOrientation.portraitUp,
   ]);
 
-  final appRouter = AppRouter(authGuard: AuthGuard(), specialRoutesGuard: SpecialRoutesGuard(), navigatorKey: navigatorKey);
+  final appRouter = AppRouter(specialRoutesGuard: SpecialRoutesGuard(), navigatorKey: navigatorKey);
 
   alice.setNavigatorKey(navigatorKey);
   var providerContainer = ProviderContainer();
