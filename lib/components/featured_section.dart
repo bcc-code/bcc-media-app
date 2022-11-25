@@ -116,13 +116,7 @@ class _FeaturedItem extends StatelessWidget {
                         imagePath: 'assets/icons/Play.png',
                         labelText: S.of(context).watchNow,
                         onPressed: () {
-                          var episodeItem = sectionItem.item.asOrNull<Fragment$Section$$FeaturedSection$items$items$item$$Episode>();
-                          var showItem = sectionItem.item.asOrNull<Fragment$Section$$FeaturedSection$items$items$item$$Show>();
-                          if (episodeItem != null) {
-                            context.router.navigate(EpisodeScreenRoute(episodeId: episodeItem.id));
-                          } else if (showItem != null) {
-                            context.router.navigate(EpisodeScreenRoute(episodeId: showItem.defaultEpisode.id));
-                          }
+                          handleSectionItemClick(context, sectionItem.item);
                         },
                       ),
               ],
