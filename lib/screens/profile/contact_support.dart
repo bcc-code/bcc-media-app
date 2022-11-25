@@ -1,21 +1,27 @@
+import 'package:brunstadtv_app/components/general_app_bar.dart';
 import 'package:brunstadtv_app/components/loading_indicator.dart';
 import 'package:flutter/material.dart';
 import 'dart:io';
 import 'package:auto_route/auto_route.dart';
 import 'package:device_info_plus/device_info_plus.dart';
-import 'package:flutter/rendering.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:package_info_plus/package_info_plus.dart';
+import 'package:string_extensions/string_extensions.dart';
 
+import '../../graphql/client.dart';
+import '../../graphql/queries/send_support_email.graphql.dart';
 import '../../helpers/btv_buttons.dart';
 import '../../helpers/btv_colors.dart';
 import '../../helpers/btv_typography.dart';
+import '../../helpers/utils.dart';
 import '../../l10n/app_localizations.dart';
+import '../../providers/auth_state.dart';
 
-class ContactSupport extends StatefulWidget {
+class ContactSupport extends ConsumerStatefulWidget {
   const ContactSupport({super.key});
 
   @override
-  State<ContactSupport> createState() => _ContactSupportState();
+  ConsumerState<ContactSupport> createState() => _ContactSupportState();
 }
 
 class ListItem {
@@ -25,38 +31,100 @@ class ListItem {
   ListItem({required this.title, this.content});
 }
 
-class _ContactSupportState extends State<ContactSupport> {
-  bool _isTextFieldEnter = false;
-  bool _loading = false;
-  bool _isSendBtnShown = false;
+class _ContactSupportState extends ConsumerState<ContactSupport> {
+  bool isOnInputPage = true;
+  List<ListItem>? deviceInfo;
+  String title = '';
+  String content = '';
 
-  final _textController = TextEditingController();
+  @override
+  void initState() {
+    super.initState();
+    setDeviceInfo().whenComplete(() => null);
+  }
 
-  Future<List<ListItem>> deviceInfos() async {
+  void onTryAgain() {
+    setState(() => isOnInputPage = false);
+  }
+
+  void onContentChanged(content_) {
+    setState(() => content = content_);
+  }
+
+  void onSend() {
+    setState(() => isOnInputPage = false);
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
+      child: Scaffold(
+        appBar: GeneralAppBar(
+          leftActions: [
+            BtvButton(
+              labelText: S.of(context).cancel,
+              onPressed: context.router.pop,
+            )
+          ],
+          rightActions: [
+            if (isOnInputPage && content.isNotEmpty)
+              BtvButton.small(
+                labelText: S.of(context).send,
+                onPressed: onSend,
+              )
+          ],
+        ),
+        body: SafeArea(
+          child: Container(
+            padding: const EdgeInsets.all(16),
+            child: isOnInputPage
+                ? _InputPage(deviceInfo: deviceInfo, onContentChanged: onContentChanged)
+                : FutureBuilder<bool>(
+                    future: sendSupportEmailFuture,
+                    builder: (BuildContext context, AsyncSnapshot<bool> snapshot) {
+                      if (snapshot.hasData) {
+                        return snapshot.data! ? _SuccessPage() : _FailurePage(onTryAgain: onTryAgain);
+                      } else if (snapshot.hasError) {
+                        return _FailurePage(onTryAgain: onTryAgain);
+                      }
+                      return sendingIndicator;
+                    },
+                  ),
+          ),
+        ),
+      ),
+    );
+  }
+
+  Future setDeviceInfo() async {
     String? device, manufacturer, os, screenSize, appVer, userId;
 
     PackageInfo packageInfo = await PackageInfo.fromPlatform();
-    os = Platform.operatingSystemVersion;
     final screenWidth = WidgetsBinding.instance.window.physicalSize.width.toInt().toString();
     final screenHeight = WidgetsBinding.instance.window.physicalSize.height.toInt().toString();
     screenSize = '${screenHeight}x$screenWidth';
-    appVer = packageInfo.buildNumber;
+    appVer = formatAppVersion(packageInfo);
+    userId = ref.read(authStateProvider).user?.name;
+
+    List<ListItem>? deviceInfoTmp;
 
     if (Platform.isAndroid) {
       AndroidDeviceInfo androidInfo = await DeviceInfoPlugin().androidInfo;
+      os = '${Platform.operatingSystem.capitalize} ${androidInfo.version.release}';
       device = androidInfo.model;
       manufacturer = androidInfo.manufacturer;
-      userId = androidInfo.id;
     } else if (Platform.isIOS) {
       IosDeviceInfo iosInfo = await DeviceInfoPlugin().iosInfo;
+      os = '${Platform.operatingSystem.capitalize} ${iosInfo.systemVersion}';
       device = iosInfo.model;
       manufacturer = 'Apple';
-      userId = iosInfo.identifierForVendor;
     } else {
-      //Window or Chrome or Linex
-      return [];
+      //Windows or Chrome or Linux
+      deviceInfoTmp = [];
     }
-    return [
+
+    deviceInfoTmp = [
       ListItem(
         title: 'Device',
         content: device,
@@ -82,151 +150,111 @@ class _ContactSupportState extends State<ContactSupport> {
         content: userId,
       ),
     ];
-  }
 
-  _textFieldHandler() {
     setState(() {
-      _isTextFieldEnter = _textController.text.isNotEmpty;
-      _isSendBtnShown = true;
+      deviceInfo = deviceInfoTmp;
+      title = 'BTV $appVer $os';
     });
   }
 
-  final Future<String> ajaxCall = Future<String>.delayed(
-    const Duration(seconds: 7),
-    () => 'Data Loaded',
-  );
+  Widget get sendingIndicator {
+    return Center(
+      child: Column(
+        mainAxisSize: MainAxisSize.max,
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          const LoadingIndicator(),
+          const SizedBox(
+            height: 12,
+          ),
+          Text(
+            S.of(context).sending,
+            style: BtvTextStyles.body1,
+          ),
+        ],
+      ),
+    );
+  }
+
+  String get deviceInfoHtml {
+    if (deviceInfo == null) {
+      return '';
+    }
+    final rows = deviceInfo!.map((entry) => '<th>${entry.title}</th><td>${entry.content}</td>').join('\n');
+    return '''
+      <table>
+        <tbody>
+          $rows
+        </tbody>
+      </table>
+    ''';
+  }
+
+  Future<bool> get sendSupportEmailFuture async {
+    print('Title: $title');
+    print('Content: $content');
+    print('HTML: $deviceInfoHtml');
+    var sendResult = await ref.read(gqlClientProvider).mutate$sendSupportEmail(Options$Mutation$sendSupportEmail(
+        variables: Variables$Mutation$sendSupportEmail(title: title, content: '', html: '<p>$content</p>$deviceInfoHtml')));
+    return sendResult.data?['sendSupportEmail'] ?? false;
+  }
+}
+
+class _InputPage extends StatefulWidget {
+  final List<ListItem>? deviceInfo;
+  final Function onContentChanged;
+
+  const _InputPage({required this.deviceInfo, required this.onContentChanged});
+
+  @override
+  State<_InputPage> createState() => _InputPageState();
+}
+
+class _InputPageState extends State<_InputPage> {
+  final textController = TextEditingController();
+
+  @override
+  void initState() {
+    super.initState();
+    textController.addListener(() => widget.onContentChanged(textController.text));
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    textController.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
-      child: Scaffold(
-        resizeToAvoidBottomInset: false,
-        appBar: AppBar(
-          elevation: 0,
-          toolbarHeight: 44,
-          automaticallyImplyLeading: false,
-          leadingWidth: 100,
-          leading: Align(
-            alignment: Alignment.centerLeft,
-            child: GestureDetector(
-              behavior: HitTestBehavior.opaque,
-              onTapDown: (details) {
-                context.router.pop();
-              },
-              child: Padding(
-                padding: const EdgeInsets.only(left: 16),
-                child: SizedBox(
-                  height: 24,
-                  width: 56,
-                  child: Text(
-                    S.of(context).cancel,
-                    style: BtvTextStyles.button2,
-                  ),
-                ),
-              ),
-            ),
-          ),
-          actions: [
-            (_isTextFieldEnter && _isSendBtnShown)
-                ? Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 6, horizontal: 16),
-                    child: BtvButton.small(
-                      onPressed: () {
-                        setState(() {
-                          _loading = true;
-                          _isSendBtnShown = false;
-                        });
-                      },
-                      labelText: S.of(context).send,
-                    ),
-                  )
-                : const SizedBox.shrink(),
-          ],
-        ),
-        body: SafeArea(
-          child: Container(
-            padding: const EdgeInsets.symmetric(horizontal: 15.5),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                if (!_loading)
-                  Expanded(
-                    child: SingleChildScrollView(
-                        child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: <Widget>[
-                      Padding(
-                        padding: const EdgeInsets.only(bottom: 32),
-                        child: Text(
-                          S.of(context).contactSupport,
-                          style: BtvTextStyles.headline1,
-                        ),
-                      ),
-                      _TextFieldInput(
-                        textController: _textController,
-                        textFldOnChange: _textFieldHandler,
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(top: 20, bottom: 10),
-                        child: Text(
-                          S.of(context).debugInfoExplanation,
-                          style: BtvTextStyles.body2.copyWith(color: BtvColors.label1),
-                        ),
-                      ),
-                      _DeviceInfo(deviceInfos: deviceInfos()),
-                    ])),
-                  )
-                else
-                  FutureBuilder<String>(
-                    future: ajaxCall,
-                    builder: (BuildContext context, AsyncSnapshot<String> snapshot) {
-                      if (snapshot.hasData) {
-                        return Expanded(
-                          child: _SendingResultPage(
-                            sendingResult: true,
-                          ),
-                        );
-                      } else if (snapshot.hasError) {
-                        return Expanded(
-                          child: _SendingResultPage(
-                            sendingResult: false,
-                          ),
-                        );
-                      } else {
-                        return Expanded(
-                          child: Center(
-                            child: Column(
-                              mainAxisSize: MainAxisSize.max,
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                const LoadingIndicator(),
-                                const SizedBox(
-                                  height: 12,
-                                ),
-                                Text(
-                                  S.of(context).sending,
-                                  style: BtvTextStyles.body1,
-                                ),
-                              ],
-                            ),
-                          ),
-                        );
-                      }
-                    },
-                  ),
-              ],
-            ),
-          ),
+    return SingleChildScrollView(
+        child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: <Widget>[
+      Padding(
+        padding: const EdgeInsets.only(bottom: 32),
+        child: Text(
+          S.of(context).contactSupport,
+          style: BtvTextStyles.headline1,
         ),
       ),
-    );
+      _TextFieldInput(
+        textController: textController,
+      ),
+      Padding(
+        padding: const EdgeInsets.only(top: 20, bottom: 10),
+        child: Text(
+          S.of(context).debugInfoExplanation,
+          style: BtvTextStyles.body2.copyWith(color: BtvColors.label1),
+        ),
+      ),
+      widget.deviceInfo != null ? _DeviceInfoList(data: widget.deviceInfo!) : Text('${S.of(context).loading}...'),
+    ]));
   }
 }
 
 class _TextFieldInput extends StatelessWidget {
   final TextEditingController textController;
-  final VoidCallback textFldOnChange;
 
-  const _TextFieldInput({required this.textController, required this.textFldOnChange});
+  const _TextFieldInput({required this.textController});
 
   @override
   Widget build(BuildContext context) {
@@ -257,38 +285,10 @@ class _TextFieldInput extends StatelessWidget {
                 width: 1,
                 color: BtvColors.tint1,
               )),
-          contentPadding: EdgeInsets.symmetric(horizontal: 16, vertical: 15),
+          contentPadding: const EdgeInsets.all(16),
         ),
         controller: textController,
-        onChanged: (_) => textFldOnChange(),
       ),
-    );
-  }
-}
-
-class _DeviceInfo extends StatelessWidget {
-  const _DeviceInfo({
-    Key? key,
-    required this.deviceInfos,
-  }) : super(key: key);
-
-  final Future<List<ListItem>> deviceInfos;
-
-  @override
-  Widget build(BuildContext context) {
-    return FutureBuilder<List<ListItem>>(
-      future: deviceInfos,
-      builder: (context, snapshot) {
-        if (snapshot.hasError) {
-          return Text('Result: ${snapshot.error}');
-        } else if (snapshot.data == null) {
-          return const Text('Null Data');
-        } else if (snapshot.data != null) {
-          final data = snapshot.data!;
-          return _DeviceInfoList(data: data);
-        }
-        return Text('${S.of(context).loading}.....');
-      },
     );
   }
 }
@@ -343,65 +343,70 @@ class _DeviceInfoList extends StatelessWidget {
   }
 }
 
-class _SendingResultPage extends StatelessWidget {
-  final GlobalKey _widgetKey = GlobalKey();
-  final bool sendingResult;
+class _SuccessPage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: [
+        Expanded(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                S.of(context).thankYouSupportTitle,
+                textAlign: TextAlign.center,
+                style: BtvTextStyles.headline1,
+              ),
+              const SizedBox(height: 12),
+              Text(
+                S.of(context).thankYouSupportDescription,
+                textAlign: TextAlign.center,
+                style: BtvTextStyles.body1.copyWith(color: BtvColors.label3),
+              ),
+            ],
+          ),
+        ),
+        BtvButton.large(
+          labelText: S.of(context).done,
+          onPressed: context.router.pop,
+        ),
+      ],
+    );
+  }
+}
 
-  _SendingResultPage({
-    this.sendingResult = true,
-  });
+class _FailurePage extends StatelessWidget {
+  final VoidCallback onTryAgain;
+
+  const _FailurePage({required this.onTryAgain});
 
   @override
   Widget build(BuildContext context) {
-    final sendErrorMsgTitle = S.of(context).sendFail;
-    final sendErrorMsgContent = S.of(context).sendFailDescription;
-    final sendSuccessMsgTitle = S.of(context).thankYouSupportTitle;
-    final sendSuccessMsgContent = S.of(context).thankYouSupportDescription;
-    final successBtnMsg = S.of(context).done;
-    final errorBtnMsg = S.of(context).tryAgainButton;
     return Column(
-      children: <Widget>[
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: [
         Expanded(
-          child: Padding(
-            padding: EdgeInsets.symmetric(horizontal: 16),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              key: _widgetKey,
-              children: <Widget>[
-                Text(
-                  sendingResult ? sendSuccessMsgTitle : sendErrorMsgTitle,
-                  textAlign: TextAlign.center,
-                  style: BtvTextStyles.headline1,
-                ),
-                const SizedBox(height: 12),
-                Text(
-                  sendingResult ? sendSuccessMsgContent : sendErrorMsgContent,
-                  textAlign: TextAlign.center,
-                  style: BtvTextStyles.body1.copyWith(color: BtvColors.label3),
-                ),
-              ],
-            ),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                S.of(context).sendFail,
+                textAlign: TextAlign.center,
+                style: BtvTextStyles.headline1,
+              ),
+              const SizedBox(height: 12),
+              Text(
+                S.of(context).sendFailDescription,
+                textAlign: TextAlign.center,
+                style: BtvTextStyles.body1.copyWith(color: BtvColors.label3),
+              ),
+            ],
           ),
         ),
-        Padding(
-          padding: const EdgeInsets.only(bottom: 58),
-          child: ElevatedButton(
-            style: ElevatedButton.styleFrom(
-              shadowColor: Colors.blue[200],
-              shape: const RoundedRectangleBorder(
-                side: BorderSide.none,
-                borderRadius: BorderRadius.all(Radius.circular(24)),
-              ),
-              minimumSize: const Size.fromHeight(50),
-            ),
-            onPressed: () {
-              context.router.pop();
-            },
-            child: Text(
-              sendingResult ? successBtnMsg : errorBtnMsg,
-              style: BtvTextStyles.button1.copyWith(color: BtvColors.onTint),
-            ),
-          ),
+        BtvButton.large(
+          onPressed: onTryAgain,
+          labelText: S.of(context).tryAgainButton,
         ),
       ],
     );

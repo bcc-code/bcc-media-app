@@ -914,7 +914,7 @@ abstract class S {
   /// General error message that sending failed
   ///
   /// In en, this message translates to:
-  /// **'Couldn\'t send you message'**
+  /// **'Couldn\'t send your message'**
   String get sendFail;
 
   /// General error message that sending failed

@@ -174,6 +174,7 @@ class SSl extends S {
 
   @override
   String queueLimitMessage(int elementCount) {
+
     return 'V čakalni vrsti ne more biti več kot $elementCount elementov.';
   }
 
@@ -263,6 +264,7 @@ class SSl extends S {
 
   @override
   String watchingWith(int numPeople) {
+
     return 'Gledaš še z $numPeople osebami';
   }
 
@@ -277,6 +279,7 @@ class SSl extends S {
 
   @override
   String charactersLimit(int charsLeft, int charsTotal) {
+
     return '$charsLeft od $charsTotal znakov';
   }
 
@@ -420,11 +423,13 @@ class SSl extends S {
 
   @override
   String newPostsMultiple(int postCount) {
+
     return '$postCount novih objav!';
   }
 
   @override
   String newPostsSingle(int postCount) {
+
     return '$postCount novih objav!';
   }
 
@@ -433,6 +438,7 @@ class SSl extends S {
 
   @override
   String availableFrom(String date) {
+
     return 'Na voljo $date';
   }
 
@@ -447,6 +453,7 @@ class SSl extends S {
 
   @override
   String wellDoneDistance(int distanceInKM) {
+
     return 'Bravo! Registriral si razdaljo $distanceInKM km';
   }
 
@@ -455,11 +462,13 @@ class SSl extends S {
 
   @override
   String ranMore(int distanceInKM) {
+
     return 'Pretekel sem več kot $distanceInKM km';
   }
 
   @override
   String moreThan(int distanceInKM) {
+
     return 'Več kot $distanceInKM km';
   }
 
@@ -483,6 +492,7 @@ class SSl extends S {
 
   @override
   String timezoneInformation(String timeZone) {
+
     return 'Tv spored je v tvojem lokalnem času: $timeZone';
   }
 
@@ -545,6 +555,7 @@ class SSl extends S {
 
   @override
   String pollAnswer(String answer) {
+
     return 'Ti si odgovoril/a $answer';
   }
 
@@ -577,6 +588,7 @@ class SSl extends S {
 
   @override
   String posts(int postsCount) {
+
     return '$postsCount objav';
   }
 
@@ -606,6 +618,7 @@ class SSl extends S {
 
   @override
   String shareTime(String time) {
+
     return 'Deli od $time';
   }
 

@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
 class GeneralAppBar extends StatelessWidget implements PreferredSizeWidget {
-  final Widget title;
+  final Widget? title;
   final List<Widget> leftActions;
   final List<Widget> rightActions;
 
   const GeneralAppBar({
     super.key,
-    required this.title,
+    this.title,
     this.leftActions = const [],
     this.rightActions = const [],
   });
@@ -17,24 +17,21 @@ class GeneralAppBar extends StatelessWidget implements PreferredSizeWidget {
     return SafeArea(
       child: SizedBox(
         height: 44,
-        child: Row(children: [
-          Expanded(
-            child: Padding(
-              padding: const EdgeInsets.only(left: 11),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 16),
+          child: Row(children: [
+            Expanded(
               child: Row(children: leftActions),
             ),
-          ),
-          title,
-          Expanded(
-            child: Padding(
-              padding: const EdgeInsets.only(right: 14),
+            if (title != null) title!,
+            Expanded(
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: rightActions,
               ),
             ),
-          ),
-        ]),
+          ]),
+        ),
       ),
     );
   }
