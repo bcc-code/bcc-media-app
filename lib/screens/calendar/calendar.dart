@@ -4,6 +4,7 @@ import 'dart:math';
 import 'package:brunstadtv_app/graphql/client.dart';
 import 'package:brunstadtv_app/graphql/queries/calendar.graphql.dart';
 import 'package:brunstadtv_app/helpers/svg_icons.dart';
+import 'package:brunstadtv_app/helpers/utils.dart';
 import 'package:brunstadtv_app/router/router.gr.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter/material.dart';
@@ -503,10 +504,6 @@ class _EntriesSlot extends StatelessWidget {
     return endStr.isAfter(DateTime.now()) && stStr.isBefore(DateTime.now());
   }
 
-  pushToEpisodePage(BuildContext context, var id) {
-    context.router.navigate(HomeScreenWrapperRoute(children: [EpisodeScreenRoute(episodeId: id)]));
-  }
-
   @override
   Widget build(BuildContext context) {
     var eventsList = _snapshotData?.day.events;
@@ -523,7 +520,14 @@ class _EntriesSlot extends StatelessWidget {
             GestureDetector(
               behavior: HitTestBehavior.opaque,
               onTapUp: (details) {
-                isClassOfEpisodeCalendarEntry(entriesList[i]) ? pushToEpisodePage(context, entriesList[i].id) : null;
+                final episode = entriesList[i].asOrNull<Fragment$CalendarDay$entries$$EpisodeCalendarEntry>();
+                if (episode != null && episode.episode != null) {
+                  context.router.navigate(
+                    HomeScreenWrapperRoute(children: [
+                      EpisodeScreenRoute(episodeId: episode.episode!.id),
+                    ]),
+                  );
+                }
               },
               child: Container(
                 padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 16),
