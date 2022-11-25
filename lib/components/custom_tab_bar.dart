@@ -5,6 +5,7 @@ import 'package:brunstadtv_app/helpers/utils.dart';
 import 'package:brunstadtv_app/screens/search/search.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 import '../helpers/btv_colors.dart';
 import '../helpers/btv_typography.dart';
@@ -101,6 +102,7 @@ class _CustomTabBarState extends State<CustomTabBar> {
             widget.tabsRouter.stackRouterOfIndex(index)?.popUntilRoot();
           }
           widget.tabsRouter.setActiveIndex(index);
+          HapticFeedback.selectionClick();
         },
         inactiveColor: BtvColors.label3,
         activeColor: BtvColors.tint1,
