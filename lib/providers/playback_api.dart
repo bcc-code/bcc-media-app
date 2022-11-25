@@ -26,7 +26,7 @@ MediaItem _mapEpisode(Query$FetchEpisode$episode episode) {
 
 Future playEpisode({required String playerId, required Query$FetchEpisode$episode episode, bool? autoplay, int? playbackPositionMs}) async {
   var mediaItem = _mapEpisode(episode);
-  mediaItem.playbackStartPositionMs = playbackPositionMs;
+  mediaItem.playbackStartPositionMs = playbackPositionMs?.toDouble();
   await PlaybackPlatformInterface.instance.replaceCurrentMediaItem(playerId, mediaItem, autoplay: autoplay);
 }
 

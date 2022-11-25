@@ -1,9 +1,22 @@
+import 'dart:async';
+
 import 'package:bccm_player/playback_platform_pigeon.g.dart';
 import 'package:riverpod/riverpod.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:collection/collection.dart'; // You have to add this manually, for some reason it cannot be added automatically
+import 'package:brunstadtv_app/helpers/utils.dart';
 
 part 'video_state.freezed.dart';
+
+StateNotifierProvider<PlayerNotifier, Player?>? getPlayerProvider(ProviderContainer ref, String playerId) {
+  // TODO: proper list etc
+  if (playerId == 'chromecast') {
+    return castPlayerProvider;
+  } else if (playerId == ref.read(primaryPlayerProvider)?.playerId) {
+    return primaryPlayerProvider;
+  } else {
+    return null;
+  }
+}
 
 final castPlayerProvider = StateNotifierProvider<PlayerNotifier, Player?>((ref) {
   return PlayerNotifier(player: const Player(playerId: 'chromecast'));
@@ -14,7 +27,15 @@ final primaryPlayerProvider = StateNotifierProvider<PlayerNotifier, Player?>((re
 });
 
 class PlayerNotifier extends StateNotifier<Player?> {
-  PlayerNotifier({Player? player}) : super(player);
+  PlayerNotifier({Player? player}) : super(player) {
+    const oneSec = Duration(seconds: 1);
+    Timer.periodic(oneSec, (Timer t) {
+      final s = state;
+      if (s != null && s.playbackPositionMs != null && s.playbackState == PlaybackState.playing) {
+        state = state?.copyWith(playbackPositionMs: s.playbackPositionMs! + 1000);
+      }
+    });
+  }
 
   void setState(Player? player) {
     state = player;

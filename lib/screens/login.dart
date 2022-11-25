@@ -135,7 +135,6 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                   BtvButton.mediumSecondary(
                     labelText: S.of(context).skipToPublicContent,
                     onPressed: () {
-                      ref.read(authStateProvider.notifier).setGuestMode(true);
                       context.router.popUntil((route) => false);
                       context.router.push(const TabsRootScreenRoute());
                     },

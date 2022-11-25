@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:io';
 import 'dart:ui';
 
@@ -6,6 +7,7 @@ import 'package:brunstadtv_app/components/sign_in_tooltip.dart';
 import 'package:brunstadtv_app/helpers/svg_icons.dart';
 import 'package:brunstadtv_app/helpers/utils.dart';
 import 'package:brunstadtv_app/helpers/version_number_utils.dart';
+import 'package:brunstadtv_app/helpers/watch_progress.dart';
 import 'package:brunstadtv_app/providers/auth_state.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/material.dart';
@@ -24,7 +26,10 @@ import '../components/page.dart';
 import '../graphql/client.dart';
 import '../graphql/queries/page.graphql.dart';
 import '../helpers/btv_typography.dart';
+import '../helpers/event_bus.dart';
+import '../helpers/page_mixin.dart';
 import '../l10n/app_localizations.dart';
+import '../models/events/watch_progress.dart';
 import '../providers/app_config.dart';
 
 final logo = Image.asset('assets/images/logo.png');
@@ -36,25 +41,24 @@ class HomeScreen extends ConsumerStatefulWidget {
   ConsumerState<HomeScreen> createState() => _HomeScreenState();
 }
 
-class _HomeScreenState extends ConsumerState<HomeScreen> {
-  late ProviderSubscription<Future<Query$Application?>> appConfigListener;
-  late Future<Query$Page$page> resultFuture;
+class _HomeScreenState extends ConsumerState<HomeScreen> with PageMixin {
+  late ProviderSubscription<Future<Query$Application?>> _appConfigListener;
   bool tooltipDismissed = false;
   String loginError = '';
 
   @override
   void initState() {
     super.initState();
-    resultFuture = getHomePage();
+    pageResult = wrapInCompleter(getHomePage());
     showDialogIfOldAppVersion();
-    appConfigListener = ref.listenManual<Future<Query$Application?>>(appConfigProvider, (prev, next) async {
+    _appConfigListener = ref.listenManual<Future<Query$Application?>>(appConfigProvider, (prev, next) async {
       showDialogIfOldAppVersion();
     });
   }
 
   @override
   void dispose() {
-    appConfigListener.close();
+    _appConfigListener.close();
     super.dispose();
   }
 
@@ -115,7 +119,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
     });
   }
 
-  Future<Query$Page$page> retry() async {
+  Future<Query$Page$page> getHomeAndAppConfig() async {
     ref.read(appConfigProvider.notifier).state = ref.read(apiProvider).queryAppConfig();
     return getHomePage();
   }
@@ -173,10 +177,10 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
           body: SafeArea(
             top: false,
             child: BccmPage(
-                pageFuture: resultFuture,
-                onRefresh: (r) async {
+                pageFuture: pageResult.future,
+                onRefresh: ({bool? retry}) async {
                   setState(() {
-                    resultFuture = r ? retry() : getHomePage();
+                    pageResult = wrapInCompleter(retry == true ? getHomeAndAppConfig() : getHomePage());
                   });
                 }),
           ),
@@ -193,9 +197,14 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                 ? null
                 : Material(
                     color: Colors.transparent,
-                    child: SignInTooltip(onClose: () {
-                      setState(() => tooltipDismissed = true);
-                    }),
+                    child: GestureDetector(
+                      onTap: () {
+                        setState(() => tooltipDismissed = true);
+                      },
+                      child: SignInTooltip(onClose: () {
+                        setState(() => tooltipDismissed = true);
+                      }),
+                    ),
                   ),
           ),
         )

@@ -47,7 +47,8 @@ class SEn extends S {
   String get faq => 'Frequently asked questions';
 
   @override
-  String get bccMediaCenter => 'BrunstadTV is a non-commercial media center producing and distributing content based on positive and Christian values.';
+  String get bccMediaCenter =>
+      'BrunstadTV is a non-commercial media center producing and distributing content based on positive and Christian values.';
 
   @override
   String get signInButton => 'Sign in';
@@ -174,7 +175,6 @@ class SEn extends S {
 
   @override
   String queueLimitMessage(int elementCount) {
-
     return 'You cannot have more than $elementCount elements in queue.';
   }
 
@@ -264,7 +264,6 @@ class SEn extends S {
 
   @override
   String watchingWith(int numPeople) {
-
     return 'You are watching with $numPeople others';
   }
 
@@ -279,7 +278,6 @@ class SEn extends S {
 
   @override
   String charactersLimit(int charsLeft, int charsTotal) {
-
     return '$charsLeft of $charsTotal characters left';
   }
 
@@ -423,13 +421,11 @@ class SEn extends S {
 
   @override
   String newPostsMultiple(int postCount) {
-
     return '$postCount new posts!';
   }
 
   @override
   String newPostsSingle(int postCount) {
-
     return '$postCount new post!';
   }
 
@@ -438,7 +434,6 @@ class SEn extends S {
 
   @override
   String availableFrom(String date) {
-
     return 'Available $date';
   }
 
@@ -453,7 +448,6 @@ class SEn extends S {
 
   @override
   String wellDoneDistance(int distanceInKM) {
-
     return 'Well done! You have registered a total distance of $distanceInKM km';
   }
 
@@ -462,13 +456,11 @@ class SEn extends S {
 
   @override
   String ranMore(int distanceInKM) {
-
     return 'I went more than $distanceInKM km';
   }
 
   @override
   String moreThan(int distanceInKM) {
-
     return 'More than $distanceInKM km';
   }
 
@@ -492,7 +484,6 @@ class SEn extends S {
 
   @override
   String timezoneInformation(String timeZone) {
-
     return 'Tv guide timetable is in your local time: $timeZone';
   }
 
@@ -555,7 +546,6 @@ class SEn extends S {
 
   @override
   String pollAnswer(String answer) {
-
     return 'You\'ve answered: $answer';
   }
 
@@ -588,7 +578,6 @@ class SEn extends S {
 
   @override
   String posts(int postsCount) {
-
     return '$postsCount Posts';
   }
 
@@ -618,7 +607,6 @@ class SEn extends S {
 
   @override
   String shareTime(String time) {
-
     return 'Share from time $time';
   }
 
@@ -632,7 +620,8 @@ class SEn extends S {
   String get privacyPolicy => 'Privacy Policy';
 
   @override
-  String get tokenError => 'We couldn\'t confirm your identity, most likely due to a network problem. Some features of the app may not work correctly.';
+  String get tokenError =>
+      'We couldn\'t confirm your identity, most likely due to a network problem. Some features of the app may not work correctly.';
 
   @override
   String get categoriesTab => 'Categories';

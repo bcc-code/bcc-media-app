@@ -15,7 +15,7 @@ import 'package:auto_route/auto_route.dart' as _i19;
 import 'package:auto_route/empty_router_widgets.dart' as _i13;
 import 'package:flutter/material.dart' as _i20;
 
-import '../helpers/custom_transitions.dart' as _i23;
+import '../helpers/custom_transitions.dart' as _i22;
 import '../screens/auto_login.dart' as _i11;
 import '../screens/calendar/calendar.dart' as _i15;
 import '../screens/episode.dart' as _i16;
@@ -33,19 +33,15 @@ import '../screens/profile/subtitle_language.dart' as _i5;
 import '../screens/profile/video_quality.dart' as _i6;
 import '../screens/search/search.dart' as _i18;
 import '../screens/tabs_root.dart' as _i12;
-import 'auth_guard.dart' as _i21;
-import 'special_routes_guard.dart' as _i22;
+import 'special_routes_guard.dart' as _i21;
 
 class AppRouter extends _i19.RootStackRouter {
   AppRouter({
     _i20.GlobalKey<_i20.NavigatorState>? navigatorKey,
-    required this.authGuard,
     required this.specialRoutesGuard,
   }) : super(navigatorKey);
 
-  final _i21.AuthGuard authGuard;
-
-  final _i22.SpecialRoutesGuard specialRoutesGuard;
+  final _i21.SpecialRoutesGuard specialRoutesGuard;
 
   @override
   final Map<String, _i19.PageFactory> pagesMap = {
@@ -65,7 +61,7 @@ class AppRouter extends _i19.RootStackRouter {
       return _i19.CustomPage<void>(
         routeData: routeData,
         child: _i2.Profile(),
-        transitionsBuilder: _i23.CustomTransitionsBuilders.slideUp,
+        transitionsBuilder: _i22.CustomTransitionsBuilders.slideUp,
         durationInMilliseconds: 400,
         reverseDurationInMilliseconds: 600,
         opaque: false,
@@ -76,7 +72,7 @@ class AppRouter extends _i19.RootStackRouter {
       return _i19.CustomPage<void>(
         routeData: routeData,
         child: const _i3.AppLanguageScreen(),
-        transitionsBuilder: _i23.CustomTransitionsBuilders.slideUp,
+        transitionsBuilder: _i22.CustomTransitionsBuilders.slideUp,
         durationInMilliseconds: 400,
         reverseDurationInMilliseconds: 600,
         opaque: true,
@@ -87,7 +83,7 @@ class AppRouter extends _i19.RootStackRouter {
       return _i19.CustomPage<void>(
         routeData: routeData,
         child: const _i4.AppAudioLanguage(),
-        transitionsBuilder: _i23.CustomTransitionsBuilders.slideUp,
+        transitionsBuilder: _i22.CustomTransitionsBuilders.slideUp,
         durationInMilliseconds: 400,
         reverseDurationInMilliseconds: 600,
         opaque: true,
@@ -98,7 +94,7 @@ class AppRouter extends _i19.RootStackRouter {
       return _i19.CustomPage<void>(
         routeData: routeData,
         child: const _i5.AppSubtitleLanguage(),
-        transitionsBuilder: _i23.CustomTransitionsBuilders.slideUp,
+        transitionsBuilder: _i22.CustomTransitionsBuilders.slideUp,
         durationInMilliseconds: 400,
         reverseDurationInMilliseconds: 600,
         opaque: true,
@@ -109,7 +105,7 @@ class AppRouter extends _i19.RootStackRouter {
       return _i19.CustomPage<void>(
         routeData: routeData,
         child: const _i6.VideoQuality(),
-        transitionsBuilder: _i23.CustomTransitionsBuilders.slideUp,
+        transitionsBuilder: _i22.CustomTransitionsBuilders.slideUp,
         durationInMilliseconds: 400,
         reverseDurationInMilliseconds: 600,
         opaque: true,
@@ -120,7 +116,7 @@ class AppRouter extends _i19.RootStackRouter {
       return _i19.CustomPage<void>(
         routeData: routeData,
         child: const _i7.ContactSupport(),
-        transitionsBuilder: _i23.CustomTransitionsBuilders.slideUp,
+        transitionsBuilder: _i22.CustomTransitionsBuilders.slideUp,
         durationInMilliseconds: 400,
         reverseDurationInMilliseconds: 600,
         opaque: true,
@@ -131,7 +127,7 @@ class AppRouter extends _i19.RootStackRouter {
       return _i19.CustomPage<void>(
         routeData: routeData,
         child: const _i8.AboutScreen(),
-        transitionsBuilder: _i23.CustomTransitionsBuilders.slideUp,
+        transitionsBuilder: _i22.CustomTransitionsBuilders.slideUp,
         durationInMilliseconds: 400,
         reverseDurationInMilliseconds: 600,
         opaque: true,
@@ -142,7 +138,7 @@ class AppRouter extends _i19.RootStackRouter {
       return _i19.CustomPage<void>(
         routeData: routeData,
         child: const _i9.FAQ(),
-        transitionsBuilder: _i23.CustomTransitionsBuilders.slideLeft,
+        transitionsBuilder: _i22.CustomTransitionsBuilders.slideLeft,
         durationInMilliseconds: 400,
         reverseDurationInMilliseconds: 600,
         opaque: true,
@@ -236,7 +232,7 @@ class AppRouter extends _i19.RootStackRouter {
           autoplay: args.autoplay,
           queryParamStartPosition: args.queryParamStartPosition,
         ),
-        transitionsBuilder: _i23.CustomTransitionsBuilders.slideLeft,
+        transitionsBuilder: _i22.CustomTransitionsBuilders.slideLeft,
         durationInMilliseconds: 300,
         reverseDurationInMilliseconds: 300,
         opaque: true,
@@ -254,7 +250,7 @@ class AppRouter extends _i19.RootStackRouter {
           key: args.key,
           pageCode: args.pageCode,
         ),
-        transitionsBuilder: _i23.CustomTransitionsBuilders.slideLeft,
+        transitionsBuilder: _i22.CustomTransitionsBuilders.slideLeft,
         durationInMilliseconds: 300,
         reverseDurationInMilliseconds: 300,
         opaque: true,
@@ -418,10 +414,7 @@ class AppRouter extends _i19.RootStackRouter {
         _i19.RouteConfig(
           EmptyRouterPageRoute.name,
           path: '/',
-          guards: [
-            authGuard,
-            specialRoutesGuard,
-          ],
+          guards: [specialRoutesGuard],
           children: [
             _i19.RouteConfig(
               CustomActionRoute.name,

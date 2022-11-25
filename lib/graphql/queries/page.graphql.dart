@@ -2848,19 +2848,27 @@ class _CopyWithStubImpl$Fragment$ItemSectionItem$item$$Show$defaultEpisode<TRes>
 
 class Fragment$ItemSection {
   Fragment$ItemSection({
+    this.metadata,
     required this.items,
     required this.$__typename,
   });
 
   factory Fragment$ItemSection.fromJson(Map<String, dynamic> json) {
+    final l$metadata = json['metadata'];
     final l$items = json['items'];
     final l$$__typename = json['__typename'];
     return Fragment$ItemSection(
+      metadata: l$metadata == null
+          ? null
+          : Fragment$ItemSection$metadata.fromJson(
+              (l$metadata as Map<String, dynamic>)),
       items: Fragment$ItemSection$items.fromJson(
           (l$items as Map<String, dynamic>)),
       $__typename: (l$$__typename as String),
     );
   }
+
+  final Fragment$ItemSection$metadata? metadata;
 
   final Fragment$ItemSection$items items;
 
@@ -2868,6 +2876,8 @@ class Fragment$ItemSection {
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
+    final l$metadata = metadata;
+    _resultData['metadata'] = l$metadata?.toJson();
     final l$items = items;
     _resultData['items'] = l$items.toJson();
     final l$$__typename = $__typename;
@@ -2877,9 +2887,11 @@ class Fragment$ItemSection {
 
   @override
   int get hashCode {
+    final l$metadata = metadata;
     final l$items = items;
     final l$$__typename = $__typename;
     return Object.hashAll([
+      l$metadata,
       l$items,
       l$$__typename,
     ]);
@@ -2891,6 +2903,11 @@ class Fragment$ItemSection {
       return true;
     }
     if (!(other is Fragment$ItemSection) || runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$metadata = metadata;
+    final lOther$metadata = other.metadata;
+    if (l$metadata != lOther$metadata) {
       return false;
     }
     final l$items = items;
@@ -2925,9 +2942,11 @@ abstract class CopyWith$Fragment$ItemSection<TRes> {
       _CopyWithStubImpl$Fragment$ItemSection;
 
   TRes call({
+    Fragment$ItemSection$metadata? metadata,
     Fragment$ItemSection$items? items,
     String? $__typename,
   });
+  CopyWith$Fragment$ItemSection$metadata<TRes> get metadata;
   CopyWith$Fragment$ItemSection$items<TRes> get items;
 }
 
@@ -2945,10 +2964,14 @@ class _CopyWithImpl$Fragment$ItemSection<TRes>
   static const _undefined = {};
 
   TRes call({
+    Object? metadata = _undefined,
     Object? items = _undefined,
     Object? $__typename = _undefined,
   }) =>
       _then(Fragment$ItemSection(
+        metadata: metadata == _undefined
+            ? _instance.metadata
+            : (metadata as Fragment$ItemSection$metadata?),
         items: items == _undefined || items == null
             ? _instance.items
             : (items as Fragment$ItemSection$items),
@@ -2956,6 +2979,14 @@ class _CopyWithImpl$Fragment$ItemSection<TRes>
             ? _instance.$__typename
             : ($__typename as String),
       ));
+  CopyWith$Fragment$ItemSection$metadata<TRes> get metadata {
+    final local$metadata = _instance.metadata;
+    return local$metadata == null
+        ? CopyWith$Fragment$ItemSection$metadata.stub(_then(_instance))
+        : CopyWith$Fragment$ItemSection$metadata(
+            local$metadata, (e) => call(metadata: e));
+  }
+
   CopyWith$Fragment$ItemSection$items<TRes> get items {
     final local$items = _instance.items;
     return CopyWith$Fragment$ItemSection$items(
@@ -2970,10 +3001,13 @@ class _CopyWithStubImpl$Fragment$ItemSection<TRes>
   TRes _res;
 
   call({
+    Fragment$ItemSection$metadata? metadata,
     Fragment$ItemSection$items? items,
     String? $__typename,
   }) =>
       _res;
+  CopyWith$Fragment$ItemSection$metadata<TRes> get metadata =>
+      CopyWith$Fragment$ItemSection$metadata.stub(_res);
   CopyWith$Fragment$ItemSection$items<TRes> get items =>
       CopyWith$Fragment$ItemSection$items.stub(_res);
 }
@@ -2987,6 +3021,56 @@ const fragmentDefinitionItemSection = FragmentDefinitionNode(
   )),
   directives: [],
   selectionSet: SelectionSetNode(selections: [
+    FieldNode(
+      name: NameNode(value: 'metadata'),
+      alias: null,
+      arguments: [],
+      directives: [],
+      selectionSet: SelectionSetNode(selections: [
+        FieldNode(
+          name: NameNode(value: 'continueWatching'),
+          alias: null,
+          arguments: [],
+          directives: [],
+          selectionSet: null,
+        ),
+        FieldNode(
+          name: NameNode(value: 'secondaryTitles'),
+          alias: null,
+          arguments: [],
+          directives: [],
+          selectionSet: null,
+        ),
+        FieldNode(
+          name: NameNode(value: 'collectionId'),
+          alias: null,
+          arguments: [],
+          directives: [],
+          selectionSet: null,
+        ),
+        FieldNode(
+          name: NameNode(value: 'useContext'),
+          alias: null,
+          arguments: [],
+          directives: [],
+          selectionSet: null,
+        ),
+        FieldNode(
+          name: NameNode(value: 'prependLiveElement'),
+          alias: null,
+          arguments: [],
+          directives: [],
+          selectionSet: null,
+        ),
+        FieldNode(
+          name: NameNode(value: '__typename'),
+          alias: null,
+          arguments: [],
+          directives: [],
+          selectionSet: null,
+        ),
+      ]),
+    ),
     FieldNode(
       name: NameNode(value: 'items'),
       alias: null,
@@ -3068,6 +3152,214 @@ extension ClientExtension$Fragment$ItemSection on graphql.GraphQLClient {
     );
     return result == null ? null : Fragment$ItemSection.fromJson(result);
   }
+}
+
+class Fragment$ItemSection$metadata {
+  Fragment$ItemSection$metadata({
+    required this.continueWatching,
+    required this.secondaryTitles,
+    required this.collectionId,
+    required this.useContext,
+    required this.prependLiveElement,
+    required this.$__typename,
+  });
+
+  factory Fragment$ItemSection$metadata.fromJson(Map<String, dynamic> json) {
+    final l$continueWatching = json['continueWatching'];
+    final l$secondaryTitles = json['secondaryTitles'];
+    final l$collectionId = json['collectionId'];
+    final l$useContext = json['useContext'];
+    final l$prependLiveElement = json['prependLiveElement'];
+    final l$$__typename = json['__typename'];
+    return Fragment$ItemSection$metadata(
+      continueWatching: (l$continueWatching as bool),
+      secondaryTitles: (l$secondaryTitles as bool),
+      collectionId: (l$collectionId as String),
+      useContext: (l$useContext as bool),
+      prependLiveElement: (l$prependLiveElement as bool),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final bool continueWatching;
+
+  final bool secondaryTitles;
+
+  final String collectionId;
+
+  final bool useContext;
+
+  final bool prependLiveElement;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$continueWatching = continueWatching;
+    _resultData['continueWatching'] = l$continueWatching;
+    final l$secondaryTitles = secondaryTitles;
+    _resultData['secondaryTitles'] = l$secondaryTitles;
+    final l$collectionId = collectionId;
+    _resultData['collectionId'] = l$collectionId;
+    final l$useContext = useContext;
+    _resultData['useContext'] = l$useContext;
+    final l$prependLiveElement = prependLiveElement;
+    _resultData['prependLiveElement'] = l$prependLiveElement;
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$continueWatching = continueWatching;
+    final l$secondaryTitles = secondaryTitles;
+    final l$collectionId = collectionId;
+    final l$useContext = useContext;
+    final l$prependLiveElement = prependLiveElement;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$continueWatching,
+      l$secondaryTitles,
+      l$collectionId,
+      l$useContext,
+      l$prependLiveElement,
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (!(other is Fragment$ItemSection$metadata) ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$continueWatching = continueWatching;
+    final lOther$continueWatching = other.continueWatching;
+    if (l$continueWatching != lOther$continueWatching) {
+      return false;
+    }
+    final l$secondaryTitles = secondaryTitles;
+    final lOther$secondaryTitles = other.secondaryTitles;
+    if (l$secondaryTitles != lOther$secondaryTitles) {
+      return false;
+    }
+    final l$collectionId = collectionId;
+    final lOther$collectionId = other.collectionId;
+    if (l$collectionId != lOther$collectionId) {
+      return false;
+    }
+    final l$useContext = useContext;
+    final lOther$useContext = other.useContext;
+    if (l$useContext != lOther$useContext) {
+      return false;
+    }
+    final l$prependLiveElement = prependLiveElement;
+    final lOther$prependLiveElement = other.prependLiveElement;
+    if (l$prependLiveElement != lOther$prependLiveElement) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Fragment$ItemSection$metadata
+    on Fragment$ItemSection$metadata {
+  CopyWith$Fragment$ItemSection$metadata<Fragment$ItemSection$metadata>
+      get copyWith => CopyWith$Fragment$ItemSection$metadata(
+            this,
+            (i) => i,
+          );
+}
+
+abstract class CopyWith$Fragment$ItemSection$metadata<TRes> {
+  factory CopyWith$Fragment$ItemSection$metadata(
+    Fragment$ItemSection$metadata instance,
+    TRes Function(Fragment$ItemSection$metadata) then,
+  ) = _CopyWithImpl$Fragment$ItemSection$metadata;
+
+  factory CopyWith$Fragment$ItemSection$metadata.stub(TRes res) =
+      _CopyWithStubImpl$Fragment$ItemSection$metadata;
+
+  TRes call({
+    bool? continueWatching,
+    bool? secondaryTitles,
+    String? collectionId,
+    bool? useContext,
+    bool? prependLiveElement,
+    String? $__typename,
+  });
+}
+
+class _CopyWithImpl$Fragment$ItemSection$metadata<TRes>
+    implements CopyWith$Fragment$ItemSection$metadata<TRes> {
+  _CopyWithImpl$Fragment$ItemSection$metadata(
+    this._instance,
+    this._then,
+  );
+
+  final Fragment$ItemSection$metadata _instance;
+
+  final TRes Function(Fragment$ItemSection$metadata) _then;
+
+  static const _undefined = {};
+
+  TRes call({
+    Object? continueWatching = _undefined,
+    Object? secondaryTitles = _undefined,
+    Object? collectionId = _undefined,
+    Object? useContext = _undefined,
+    Object? prependLiveElement = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(Fragment$ItemSection$metadata(
+        continueWatching:
+            continueWatching == _undefined || continueWatching == null
+                ? _instance.continueWatching
+                : (continueWatching as bool),
+        secondaryTitles:
+            secondaryTitles == _undefined || secondaryTitles == null
+                ? _instance.secondaryTitles
+                : (secondaryTitles as bool),
+        collectionId: collectionId == _undefined || collectionId == null
+            ? _instance.collectionId
+            : (collectionId as String),
+        useContext: useContext == _undefined || useContext == null
+            ? _instance.useContext
+            : (useContext as bool),
+        prependLiveElement:
+            prependLiveElement == _undefined || prependLiveElement == null
+                ? _instance.prependLiveElement
+                : (prependLiveElement as bool),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+}
+
+class _CopyWithStubImpl$Fragment$ItemSection$metadata<TRes>
+    implements CopyWith$Fragment$ItemSection$metadata<TRes> {
+  _CopyWithStubImpl$Fragment$ItemSection$metadata(this._res);
+
+  TRes _res;
+
+  call({
+    bool? continueWatching,
+    bool? secondaryTitles,
+    String? collectionId,
+    bool? useContext,
+    bool? prependLiveElement,
+    String? $__typename,
+  }) =>
+      _res;
 }
 
 class Fragment$ItemSection$items {
@@ -4239,6 +4531,7 @@ class Fragment$Section$$PosterSection
     required this.id,
     this.title,
     required this.$__typename,
+    this.metadata,
     required this.items,
     required this.size,
   });
@@ -4247,12 +4540,17 @@ class Fragment$Section$$PosterSection
     final l$id = json['id'];
     final l$title = json['title'];
     final l$$__typename = json['__typename'];
+    final l$metadata = json['metadata'];
     final l$items = json['items'];
     final l$size = json['size'];
     return Fragment$Section$$PosterSection(
       id: (l$id as String),
       title: (l$title as String?),
       $__typename: (l$$__typename as String),
+      metadata: l$metadata == null
+          ? null
+          : Fragment$Section$$PosterSection$metadata.fromJson(
+              (l$metadata as Map<String, dynamic>)),
       items: Fragment$Section$$PosterSection$items.fromJson(
           (l$items as Map<String, dynamic>)),
       size: fromJson$Enum$SectionSize((l$size as String)),
@@ -4264,6 +4562,8 @@ class Fragment$Section$$PosterSection
   final String? title;
 
   final String $__typename;
+
+  final Fragment$Section$$PosterSection$metadata? metadata;
 
   final Fragment$Section$$PosterSection$items items;
 
@@ -4277,6 +4577,8 @@ class Fragment$Section$$PosterSection
     _resultData['title'] = l$title;
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
+    final l$metadata = metadata;
+    _resultData['metadata'] = l$metadata?.toJson();
     final l$items = items;
     _resultData['items'] = l$items.toJson();
     final l$size = size;
@@ -4289,12 +4591,14 @@ class Fragment$Section$$PosterSection
     final l$id = id;
     final l$title = title;
     final l$$__typename = $__typename;
+    final l$metadata = metadata;
     final l$items = items;
     final l$size = size;
     return Object.hashAll([
       l$id,
       l$title,
       l$$__typename,
+      l$metadata,
       l$items,
       l$size,
     ]);
@@ -4322,6 +4626,11 @@ class Fragment$Section$$PosterSection
     final l$$__typename = $__typename;
     final lOther$$__typename = other.$__typename;
     if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    final l$metadata = metadata;
+    final lOther$metadata = other.metadata;
+    if (l$metadata != lOther$metadata) {
       return false;
     }
     final l$items = items;
@@ -4360,9 +4669,11 @@ abstract class CopyWith$Fragment$Section$$PosterSection<TRes> {
     String? id,
     String? title,
     String? $__typename,
+    Fragment$Section$$PosterSection$metadata? metadata,
     Fragment$Section$$PosterSection$items? items,
     Enum$SectionSize? size,
   });
+  CopyWith$Fragment$Section$$PosterSection$metadata<TRes> get metadata;
   CopyWith$Fragment$Section$$PosterSection$items<TRes> get items;
 }
 
@@ -4383,6 +4694,7 @@ class _CopyWithImpl$Fragment$Section$$PosterSection<TRes>
     Object? id = _undefined,
     Object? title = _undefined,
     Object? $__typename = _undefined,
+    Object? metadata = _undefined,
     Object? items = _undefined,
     Object? size = _undefined,
   }) =>
@@ -4392,6 +4704,9 @@ class _CopyWithImpl$Fragment$Section$$PosterSection<TRes>
         $__typename: $__typename == _undefined || $__typename == null
             ? _instance.$__typename
             : ($__typename as String),
+        metadata: metadata == _undefined
+            ? _instance.metadata
+            : (metadata as Fragment$Section$$PosterSection$metadata?),
         items: items == _undefined || items == null
             ? _instance.items
             : (items as Fragment$Section$$PosterSection$items),
@@ -4399,6 +4714,15 @@ class _CopyWithImpl$Fragment$Section$$PosterSection<TRes>
             ? _instance.size
             : (size as Enum$SectionSize),
       ));
+  CopyWith$Fragment$Section$$PosterSection$metadata<TRes> get metadata {
+    final local$metadata = _instance.metadata;
+    return local$metadata == null
+        ? CopyWith$Fragment$Section$$PosterSection$metadata.stub(
+            _then(_instance))
+        : CopyWith$Fragment$Section$$PosterSection$metadata(
+            local$metadata, (e) => call(metadata: e));
+  }
+
   CopyWith$Fragment$Section$$PosterSection$items<TRes> get items {
     final local$items = _instance.items;
     return CopyWith$Fragment$Section$$PosterSection$items(
@@ -4416,12 +4740,226 @@ class _CopyWithStubImpl$Fragment$Section$$PosterSection<TRes>
     String? id,
     String? title,
     String? $__typename,
+    Fragment$Section$$PosterSection$metadata? metadata,
     Fragment$Section$$PosterSection$items? items,
     Enum$SectionSize? size,
   }) =>
       _res;
+  CopyWith$Fragment$Section$$PosterSection$metadata<TRes> get metadata =>
+      CopyWith$Fragment$Section$$PosterSection$metadata.stub(_res);
   CopyWith$Fragment$Section$$PosterSection$items<TRes> get items =>
       CopyWith$Fragment$Section$$PosterSection$items.stub(_res);
+}
+
+class Fragment$Section$$PosterSection$metadata
+    implements Fragment$ItemSection$metadata {
+  Fragment$Section$$PosterSection$metadata({
+    required this.continueWatching,
+    required this.secondaryTitles,
+    required this.collectionId,
+    required this.useContext,
+    required this.prependLiveElement,
+    required this.$__typename,
+  });
+
+  factory Fragment$Section$$PosterSection$metadata.fromJson(
+      Map<String, dynamic> json) {
+    final l$continueWatching = json['continueWatching'];
+    final l$secondaryTitles = json['secondaryTitles'];
+    final l$collectionId = json['collectionId'];
+    final l$useContext = json['useContext'];
+    final l$prependLiveElement = json['prependLiveElement'];
+    final l$$__typename = json['__typename'];
+    return Fragment$Section$$PosterSection$metadata(
+      continueWatching: (l$continueWatching as bool),
+      secondaryTitles: (l$secondaryTitles as bool),
+      collectionId: (l$collectionId as String),
+      useContext: (l$useContext as bool),
+      prependLiveElement: (l$prependLiveElement as bool),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final bool continueWatching;
+
+  final bool secondaryTitles;
+
+  final String collectionId;
+
+  final bool useContext;
+
+  final bool prependLiveElement;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$continueWatching = continueWatching;
+    _resultData['continueWatching'] = l$continueWatching;
+    final l$secondaryTitles = secondaryTitles;
+    _resultData['secondaryTitles'] = l$secondaryTitles;
+    final l$collectionId = collectionId;
+    _resultData['collectionId'] = l$collectionId;
+    final l$useContext = useContext;
+    _resultData['useContext'] = l$useContext;
+    final l$prependLiveElement = prependLiveElement;
+    _resultData['prependLiveElement'] = l$prependLiveElement;
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$continueWatching = continueWatching;
+    final l$secondaryTitles = secondaryTitles;
+    final l$collectionId = collectionId;
+    final l$useContext = useContext;
+    final l$prependLiveElement = prependLiveElement;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$continueWatching,
+      l$secondaryTitles,
+      l$collectionId,
+      l$useContext,
+      l$prependLiveElement,
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (!(other is Fragment$Section$$PosterSection$metadata) ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$continueWatching = continueWatching;
+    final lOther$continueWatching = other.continueWatching;
+    if (l$continueWatching != lOther$continueWatching) {
+      return false;
+    }
+    final l$secondaryTitles = secondaryTitles;
+    final lOther$secondaryTitles = other.secondaryTitles;
+    if (l$secondaryTitles != lOther$secondaryTitles) {
+      return false;
+    }
+    final l$collectionId = collectionId;
+    final lOther$collectionId = other.collectionId;
+    if (l$collectionId != lOther$collectionId) {
+      return false;
+    }
+    final l$useContext = useContext;
+    final lOther$useContext = other.useContext;
+    if (l$useContext != lOther$useContext) {
+      return false;
+    }
+    final l$prependLiveElement = prependLiveElement;
+    final lOther$prependLiveElement = other.prependLiveElement;
+    if (l$prependLiveElement != lOther$prependLiveElement) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Fragment$Section$$PosterSection$metadata
+    on Fragment$Section$$PosterSection$metadata {
+  CopyWith$Fragment$Section$$PosterSection$metadata<
+          Fragment$Section$$PosterSection$metadata>
+      get copyWith => CopyWith$Fragment$Section$$PosterSection$metadata(
+            this,
+            (i) => i,
+          );
+}
+
+abstract class CopyWith$Fragment$Section$$PosterSection$metadata<TRes> {
+  factory CopyWith$Fragment$Section$$PosterSection$metadata(
+    Fragment$Section$$PosterSection$metadata instance,
+    TRes Function(Fragment$Section$$PosterSection$metadata) then,
+  ) = _CopyWithImpl$Fragment$Section$$PosterSection$metadata;
+
+  factory CopyWith$Fragment$Section$$PosterSection$metadata.stub(TRes res) =
+      _CopyWithStubImpl$Fragment$Section$$PosterSection$metadata;
+
+  TRes call({
+    bool? continueWatching,
+    bool? secondaryTitles,
+    String? collectionId,
+    bool? useContext,
+    bool? prependLiveElement,
+    String? $__typename,
+  });
+}
+
+class _CopyWithImpl$Fragment$Section$$PosterSection$metadata<TRes>
+    implements CopyWith$Fragment$Section$$PosterSection$metadata<TRes> {
+  _CopyWithImpl$Fragment$Section$$PosterSection$metadata(
+    this._instance,
+    this._then,
+  );
+
+  final Fragment$Section$$PosterSection$metadata _instance;
+
+  final TRes Function(Fragment$Section$$PosterSection$metadata) _then;
+
+  static const _undefined = {};
+
+  TRes call({
+    Object? continueWatching = _undefined,
+    Object? secondaryTitles = _undefined,
+    Object? collectionId = _undefined,
+    Object? useContext = _undefined,
+    Object? prependLiveElement = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(Fragment$Section$$PosterSection$metadata(
+        continueWatching:
+            continueWatching == _undefined || continueWatching == null
+                ? _instance.continueWatching
+                : (continueWatching as bool),
+        secondaryTitles:
+            secondaryTitles == _undefined || secondaryTitles == null
+                ? _instance.secondaryTitles
+                : (secondaryTitles as bool),
+        collectionId: collectionId == _undefined || collectionId == null
+            ? _instance.collectionId
+            : (collectionId as String),
+        useContext: useContext == _undefined || useContext == null
+            ? _instance.useContext
+            : (useContext as bool),
+        prependLiveElement:
+            prependLiveElement == _undefined || prependLiveElement == null
+                ? _instance.prependLiveElement
+                : (prependLiveElement as bool),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+}
+
+class _CopyWithStubImpl$Fragment$Section$$PosterSection$metadata<TRes>
+    implements CopyWith$Fragment$Section$$PosterSection$metadata<TRes> {
+  _CopyWithStubImpl$Fragment$Section$$PosterSection$metadata(this._res);
+
+  TRes _res;
+
+  call({
+    bool? continueWatching,
+    bool? secondaryTitles,
+    String? collectionId,
+    bool? useContext,
+    bool? prependLiveElement,
+    String? $__typename,
+  }) =>
+      _res;
 }
 
 class Fragment$Section$$PosterSection$items
@@ -6094,6 +6632,7 @@ class Fragment$Section$$FeaturedSection
     required this.id,
     this.title,
     required this.$__typename,
+    this.metadata,
     required this.items,
     required this.size,
   });
@@ -6103,12 +6642,17 @@ class Fragment$Section$$FeaturedSection
     final l$id = json['id'];
     final l$title = json['title'];
     final l$$__typename = json['__typename'];
+    final l$metadata = json['metadata'];
     final l$items = json['items'];
     final l$size = json['size'];
     return Fragment$Section$$FeaturedSection(
       id: (l$id as String),
       title: (l$title as String?),
       $__typename: (l$$__typename as String),
+      metadata: l$metadata == null
+          ? null
+          : Fragment$Section$$FeaturedSection$metadata.fromJson(
+              (l$metadata as Map<String, dynamic>)),
       items: Fragment$Section$$FeaturedSection$items.fromJson(
           (l$items as Map<String, dynamic>)),
       size: fromJson$Enum$SectionSize((l$size as String)),
@@ -6120,6 +6664,8 @@ class Fragment$Section$$FeaturedSection
   final String? title;
 
   final String $__typename;
+
+  final Fragment$Section$$FeaturedSection$metadata? metadata;
 
   final Fragment$Section$$FeaturedSection$items items;
 
@@ -6133,6 +6679,8 @@ class Fragment$Section$$FeaturedSection
     _resultData['title'] = l$title;
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
+    final l$metadata = metadata;
+    _resultData['metadata'] = l$metadata?.toJson();
     final l$items = items;
     _resultData['items'] = l$items.toJson();
     final l$size = size;
@@ -6145,12 +6693,14 @@ class Fragment$Section$$FeaturedSection
     final l$id = id;
     final l$title = title;
     final l$$__typename = $__typename;
+    final l$metadata = metadata;
     final l$items = items;
     final l$size = size;
     return Object.hashAll([
       l$id,
       l$title,
       l$$__typename,
+      l$metadata,
       l$items,
       l$size,
     ]);
@@ -6178,6 +6728,11 @@ class Fragment$Section$$FeaturedSection
     final l$$__typename = $__typename;
     final lOther$$__typename = other.$__typename;
     if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    final l$metadata = metadata;
+    final lOther$metadata = other.metadata;
+    if (l$metadata != lOther$metadata) {
       return false;
     }
     final l$items = items;
@@ -6216,9 +6771,11 @@ abstract class CopyWith$Fragment$Section$$FeaturedSection<TRes> {
     String? id,
     String? title,
     String? $__typename,
+    Fragment$Section$$FeaturedSection$metadata? metadata,
     Fragment$Section$$FeaturedSection$items? items,
     Enum$SectionSize? size,
   });
+  CopyWith$Fragment$Section$$FeaturedSection$metadata<TRes> get metadata;
   CopyWith$Fragment$Section$$FeaturedSection$items<TRes> get items;
 }
 
@@ -6239,6 +6796,7 @@ class _CopyWithImpl$Fragment$Section$$FeaturedSection<TRes>
     Object? id = _undefined,
     Object? title = _undefined,
     Object? $__typename = _undefined,
+    Object? metadata = _undefined,
     Object? items = _undefined,
     Object? size = _undefined,
   }) =>
@@ -6248,6 +6806,9 @@ class _CopyWithImpl$Fragment$Section$$FeaturedSection<TRes>
         $__typename: $__typename == _undefined || $__typename == null
             ? _instance.$__typename
             : ($__typename as String),
+        metadata: metadata == _undefined
+            ? _instance.metadata
+            : (metadata as Fragment$Section$$FeaturedSection$metadata?),
         items: items == _undefined || items == null
             ? _instance.items
             : (items as Fragment$Section$$FeaturedSection$items),
@@ -6255,6 +6816,15 @@ class _CopyWithImpl$Fragment$Section$$FeaturedSection<TRes>
             ? _instance.size
             : (size as Enum$SectionSize),
       ));
+  CopyWith$Fragment$Section$$FeaturedSection$metadata<TRes> get metadata {
+    final local$metadata = _instance.metadata;
+    return local$metadata == null
+        ? CopyWith$Fragment$Section$$FeaturedSection$metadata.stub(
+            _then(_instance))
+        : CopyWith$Fragment$Section$$FeaturedSection$metadata(
+            local$metadata, (e) => call(metadata: e));
+  }
+
   CopyWith$Fragment$Section$$FeaturedSection$items<TRes> get items {
     final local$items = _instance.items;
     return CopyWith$Fragment$Section$$FeaturedSection$items(
@@ -6272,12 +6842,226 @@ class _CopyWithStubImpl$Fragment$Section$$FeaturedSection<TRes>
     String? id,
     String? title,
     String? $__typename,
+    Fragment$Section$$FeaturedSection$metadata? metadata,
     Fragment$Section$$FeaturedSection$items? items,
     Enum$SectionSize? size,
   }) =>
       _res;
+  CopyWith$Fragment$Section$$FeaturedSection$metadata<TRes> get metadata =>
+      CopyWith$Fragment$Section$$FeaturedSection$metadata.stub(_res);
   CopyWith$Fragment$Section$$FeaturedSection$items<TRes> get items =>
       CopyWith$Fragment$Section$$FeaturedSection$items.stub(_res);
+}
+
+class Fragment$Section$$FeaturedSection$metadata
+    implements Fragment$ItemSection$metadata {
+  Fragment$Section$$FeaturedSection$metadata({
+    required this.continueWatching,
+    required this.secondaryTitles,
+    required this.collectionId,
+    required this.useContext,
+    required this.prependLiveElement,
+    required this.$__typename,
+  });
+
+  factory Fragment$Section$$FeaturedSection$metadata.fromJson(
+      Map<String, dynamic> json) {
+    final l$continueWatching = json['continueWatching'];
+    final l$secondaryTitles = json['secondaryTitles'];
+    final l$collectionId = json['collectionId'];
+    final l$useContext = json['useContext'];
+    final l$prependLiveElement = json['prependLiveElement'];
+    final l$$__typename = json['__typename'];
+    return Fragment$Section$$FeaturedSection$metadata(
+      continueWatching: (l$continueWatching as bool),
+      secondaryTitles: (l$secondaryTitles as bool),
+      collectionId: (l$collectionId as String),
+      useContext: (l$useContext as bool),
+      prependLiveElement: (l$prependLiveElement as bool),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final bool continueWatching;
+
+  final bool secondaryTitles;
+
+  final String collectionId;
+
+  final bool useContext;
+
+  final bool prependLiveElement;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$continueWatching = continueWatching;
+    _resultData['continueWatching'] = l$continueWatching;
+    final l$secondaryTitles = secondaryTitles;
+    _resultData['secondaryTitles'] = l$secondaryTitles;
+    final l$collectionId = collectionId;
+    _resultData['collectionId'] = l$collectionId;
+    final l$useContext = useContext;
+    _resultData['useContext'] = l$useContext;
+    final l$prependLiveElement = prependLiveElement;
+    _resultData['prependLiveElement'] = l$prependLiveElement;
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$continueWatching = continueWatching;
+    final l$secondaryTitles = secondaryTitles;
+    final l$collectionId = collectionId;
+    final l$useContext = useContext;
+    final l$prependLiveElement = prependLiveElement;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$continueWatching,
+      l$secondaryTitles,
+      l$collectionId,
+      l$useContext,
+      l$prependLiveElement,
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (!(other is Fragment$Section$$FeaturedSection$metadata) ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$continueWatching = continueWatching;
+    final lOther$continueWatching = other.continueWatching;
+    if (l$continueWatching != lOther$continueWatching) {
+      return false;
+    }
+    final l$secondaryTitles = secondaryTitles;
+    final lOther$secondaryTitles = other.secondaryTitles;
+    if (l$secondaryTitles != lOther$secondaryTitles) {
+      return false;
+    }
+    final l$collectionId = collectionId;
+    final lOther$collectionId = other.collectionId;
+    if (l$collectionId != lOther$collectionId) {
+      return false;
+    }
+    final l$useContext = useContext;
+    final lOther$useContext = other.useContext;
+    if (l$useContext != lOther$useContext) {
+      return false;
+    }
+    final l$prependLiveElement = prependLiveElement;
+    final lOther$prependLiveElement = other.prependLiveElement;
+    if (l$prependLiveElement != lOther$prependLiveElement) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Fragment$Section$$FeaturedSection$metadata
+    on Fragment$Section$$FeaturedSection$metadata {
+  CopyWith$Fragment$Section$$FeaturedSection$metadata<
+          Fragment$Section$$FeaturedSection$metadata>
+      get copyWith => CopyWith$Fragment$Section$$FeaturedSection$metadata(
+            this,
+            (i) => i,
+          );
+}
+
+abstract class CopyWith$Fragment$Section$$FeaturedSection$metadata<TRes> {
+  factory CopyWith$Fragment$Section$$FeaturedSection$metadata(
+    Fragment$Section$$FeaturedSection$metadata instance,
+    TRes Function(Fragment$Section$$FeaturedSection$metadata) then,
+  ) = _CopyWithImpl$Fragment$Section$$FeaturedSection$metadata;
+
+  factory CopyWith$Fragment$Section$$FeaturedSection$metadata.stub(TRes res) =
+      _CopyWithStubImpl$Fragment$Section$$FeaturedSection$metadata;
+
+  TRes call({
+    bool? continueWatching,
+    bool? secondaryTitles,
+    String? collectionId,
+    bool? useContext,
+    bool? prependLiveElement,
+    String? $__typename,
+  });
+}
+
+class _CopyWithImpl$Fragment$Section$$FeaturedSection$metadata<TRes>
+    implements CopyWith$Fragment$Section$$FeaturedSection$metadata<TRes> {
+  _CopyWithImpl$Fragment$Section$$FeaturedSection$metadata(
+    this._instance,
+    this._then,
+  );
+
+  final Fragment$Section$$FeaturedSection$metadata _instance;
+
+  final TRes Function(Fragment$Section$$FeaturedSection$metadata) _then;
+
+  static const _undefined = {};
+
+  TRes call({
+    Object? continueWatching = _undefined,
+    Object? secondaryTitles = _undefined,
+    Object? collectionId = _undefined,
+    Object? useContext = _undefined,
+    Object? prependLiveElement = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(Fragment$Section$$FeaturedSection$metadata(
+        continueWatching:
+            continueWatching == _undefined || continueWatching == null
+                ? _instance.continueWatching
+                : (continueWatching as bool),
+        secondaryTitles:
+            secondaryTitles == _undefined || secondaryTitles == null
+                ? _instance.secondaryTitles
+                : (secondaryTitles as bool),
+        collectionId: collectionId == _undefined || collectionId == null
+            ? _instance.collectionId
+            : (collectionId as String),
+        useContext: useContext == _undefined || useContext == null
+            ? _instance.useContext
+            : (useContext as bool),
+        prependLiveElement:
+            prependLiveElement == _undefined || prependLiveElement == null
+                ? _instance.prependLiveElement
+                : (prependLiveElement as bool),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+}
+
+class _CopyWithStubImpl$Fragment$Section$$FeaturedSection$metadata<TRes>
+    implements CopyWith$Fragment$Section$$FeaturedSection$metadata<TRes> {
+  _CopyWithStubImpl$Fragment$Section$$FeaturedSection$metadata(this._res);
+
+  TRes _res;
+
+  call({
+    bool? continueWatching,
+    bool? secondaryTitles,
+    String? collectionId,
+    bool? useContext,
+    bool? prependLiveElement,
+    String? $__typename,
+  }) =>
+      _res;
 }
 
 class Fragment$Section$$FeaturedSection$items
@@ -7563,6 +8347,7 @@ class Fragment$Section$$DefaultSection
     required this.id,
     this.title,
     required this.$__typename,
+    this.metadata,
     required this.items,
     required this.size,
   });
@@ -7571,12 +8356,17 @@ class Fragment$Section$$DefaultSection
     final l$id = json['id'];
     final l$title = json['title'];
     final l$$__typename = json['__typename'];
+    final l$metadata = json['metadata'];
     final l$items = json['items'];
     final l$size = json['size'];
     return Fragment$Section$$DefaultSection(
       id: (l$id as String),
       title: (l$title as String?),
       $__typename: (l$$__typename as String),
+      metadata: l$metadata == null
+          ? null
+          : Fragment$Section$$DefaultSection$metadata.fromJson(
+              (l$metadata as Map<String, dynamic>)),
       items: Fragment$Section$$DefaultSection$items.fromJson(
           (l$items as Map<String, dynamic>)),
       size: fromJson$Enum$SectionSize((l$size as String)),
@@ -7588,6 +8378,8 @@ class Fragment$Section$$DefaultSection
   final String? title;
 
   final String $__typename;
+
+  final Fragment$Section$$DefaultSection$metadata? metadata;
 
   final Fragment$Section$$DefaultSection$items items;
 
@@ -7601,6 +8393,8 @@ class Fragment$Section$$DefaultSection
     _resultData['title'] = l$title;
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
+    final l$metadata = metadata;
+    _resultData['metadata'] = l$metadata?.toJson();
     final l$items = items;
     _resultData['items'] = l$items.toJson();
     final l$size = size;
@@ -7613,12 +8407,14 @@ class Fragment$Section$$DefaultSection
     final l$id = id;
     final l$title = title;
     final l$$__typename = $__typename;
+    final l$metadata = metadata;
     final l$items = items;
     final l$size = size;
     return Object.hashAll([
       l$id,
       l$title,
       l$$__typename,
+      l$metadata,
       l$items,
       l$size,
     ]);
@@ -7646,6 +8442,11 @@ class Fragment$Section$$DefaultSection
     final l$$__typename = $__typename;
     final lOther$$__typename = other.$__typename;
     if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    final l$metadata = metadata;
+    final lOther$metadata = other.metadata;
+    if (l$metadata != lOther$metadata) {
       return false;
     }
     final l$items = items;
@@ -7684,9 +8485,11 @@ abstract class CopyWith$Fragment$Section$$DefaultSection<TRes> {
     String? id,
     String? title,
     String? $__typename,
+    Fragment$Section$$DefaultSection$metadata? metadata,
     Fragment$Section$$DefaultSection$items? items,
     Enum$SectionSize? size,
   });
+  CopyWith$Fragment$Section$$DefaultSection$metadata<TRes> get metadata;
   CopyWith$Fragment$Section$$DefaultSection$items<TRes> get items;
 }
 
@@ -7707,6 +8510,7 @@ class _CopyWithImpl$Fragment$Section$$DefaultSection<TRes>
     Object? id = _undefined,
     Object? title = _undefined,
     Object? $__typename = _undefined,
+    Object? metadata = _undefined,
     Object? items = _undefined,
     Object? size = _undefined,
   }) =>
@@ -7716,6 +8520,9 @@ class _CopyWithImpl$Fragment$Section$$DefaultSection<TRes>
         $__typename: $__typename == _undefined || $__typename == null
             ? _instance.$__typename
             : ($__typename as String),
+        metadata: metadata == _undefined
+            ? _instance.metadata
+            : (metadata as Fragment$Section$$DefaultSection$metadata?),
         items: items == _undefined || items == null
             ? _instance.items
             : (items as Fragment$Section$$DefaultSection$items),
@@ -7723,6 +8530,15 @@ class _CopyWithImpl$Fragment$Section$$DefaultSection<TRes>
             ? _instance.size
             : (size as Enum$SectionSize),
       ));
+  CopyWith$Fragment$Section$$DefaultSection$metadata<TRes> get metadata {
+    final local$metadata = _instance.metadata;
+    return local$metadata == null
+        ? CopyWith$Fragment$Section$$DefaultSection$metadata.stub(
+            _then(_instance))
+        : CopyWith$Fragment$Section$$DefaultSection$metadata(
+            local$metadata, (e) => call(metadata: e));
+  }
+
   CopyWith$Fragment$Section$$DefaultSection$items<TRes> get items {
     final local$items = _instance.items;
     return CopyWith$Fragment$Section$$DefaultSection$items(
@@ -7740,12 +8556,226 @@ class _CopyWithStubImpl$Fragment$Section$$DefaultSection<TRes>
     String? id,
     String? title,
     String? $__typename,
+    Fragment$Section$$DefaultSection$metadata? metadata,
     Fragment$Section$$DefaultSection$items? items,
     Enum$SectionSize? size,
   }) =>
       _res;
+  CopyWith$Fragment$Section$$DefaultSection$metadata<TRes> get metadata =>
+      CopyWith$Fragment$Section$$DefaultSection$metadata.stub(_res);
   CopyWith$Fragment$Section$$DefaultSection$items<TRes> get items =>
       CopyWith$Fragment$Section$$DefaultSection$items.stub(_res);
+}
+
+class Fragment$Section$$DefaultSection$metadata
+    implements Fragment$ItemSection$metadata {
+  Fragment$Section$$DefaultSection$metadata({
+    required this.continueWatching,
+    required this.secondaryTitles,
+    required this.collectionId,
+    required this.useContext,
+    required this.prependLiveElement,
+    required this.$__typename,
+  });
+
+  factory Fragment$Section$$DefaultSection$metadata.fromJson(
+      Map<String, dynamic> json) {
+    final l$continueWatching = json['continueWatching'];
+    final l$secondaryTitles = json['secondaryTitles'];
+    final l$collectionId = json['collectionId'];
+    final l$useContext = json['useContext'];
+    final l$prependLiveElement = json['prependLiveElement'];
+    final l$$__typename = json['__typename'];
+    return Fragment$Section$$DefaultSection$metadata(
+      continueWatching: (l$continueWatching as bool),
+      secondaryTitles: (l$secondaryTitles as bool),
+      collectionId: (l$collectionId as String),
+      useContext: (l$useContext as bool),
+      prependLiveElement: (l$prependLiveElement as bool),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final bool continueWatching;
+
+  final bool secondaryTitles;
+
+  final String collectionId;
+
+  final bool useContext;
+
+  final bool prependLiveElement;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$continueWatching = continueWatching;
+    _resultData['continueWatching'] = l$continueWatching;
+    final l$secondaryTitles = secondaryTitles;
+    _resultData['secondaryTitles'] = l$secondaryTitles;
+    final l$collectionId = collectionId;
+    _resultData['collectionId'] = l$collectionId;
+    final l$useContext = useContext;
+    _resultData['useContext'] = l$useContext;
+    final l$prependLiveElement = prependLiveElement;
+    _resultData['prependLiveElement'] = l$prependLiveElement;
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$continueWatching = continueWatching;
+    final l$secondaryTitles = secondaryTitles;
+    final l$collectionId = collectionId;
+    final l$useContext = useContext;
+    final l$prependLiveElement = prependLiveElement;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$continueWatching,
+      l$secondaryTitles,
+      l$collectionId,
+      l$useContext,
+      l$prependLiveElement,
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (!(other is Fragment$Section$$DefaultSection$metadata) ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$continueWatching = continueWatching;
+    final lOther$continueWatching = other.continueWatching;
+    if (l$continueWatching != lOther$continueWatching) {
+      return false;
+    }
+    final l$secondaryTitles = secondaryTitles;
+    final lOther$secondaryTitles = other.secondaryTitles;
+    if (l$secondaryTitles != lOther$secondaryTitles) {
+      return false;
+    }
+    final l$collectionId = collectionId;
+    final lOther$collectionId = other.collectionId;
+    if (l$collectionId != lOther$collectionId) {
+      return false;
+    }
+    final l$useContext = useContext;
+    final lOther$useContext = other.useContext;
+    if (l$useContext != lOther$useContext) {
+      return false;
+    }
+    final l$prependLiveElement = prependLiveElement;
+    final lOther$prependLiveElement = other.prependLiveElement;
+    if (l$prependLiveElement != lOther$prependLiveElement) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Fragment$Section$$DefaultSection$metadata
+    on Fragment$Section$$DefaultSection$metadata {
+  CopyWith$Fragment$Section$$DefaultSection$metadata<
+          Fragment$Section$$DefaultSection$metadata>
+      get copyWith => CopyWith$Fragment$Section$$DefaultSection$metadata(
+            this,
+            (i) => i,
+          );
+}
+
+abstract class CopyWith$Fragment$Section$$DefaultSection$metadata<TRes> {
+  factory CopyWith$Fragment$Section$$DefaultSection$metadata(
+    Fragment$Section$$DefaultSection$metadata instance,
+    TRes Function(Fragment$Section$$DefaultSection$metadata) then,
+  ) = _CopyWithImpl$Fragment$Section$$DefaultSection$metadata;
+
+  factory CopyWith$Fragment$Section$$DefaultSection$metadata.stub(TRes res) =
+      _CopyWithStubImpl$Fragment$Section$$DefaultSection$metadata;
+
+  TRes call({
+    bool? continueWatching,
+    bool? secondaryTitles,
+    String? collectionId,
+    bool? useContext,
+    bool? prependLiveElement,
+    String? $__typename,
+  });
+}
+
+class _CopyWithImpl$Fragment$Section$$DefaultSection$metadata<TRes>
+    implements CopyWith$Fragment$Section$$DefaultSection$metadata<TRes> {
+  _CopyWithImpl$Fragment$Section$$DefaultSection$metadata(
+    this._instance,
+    this._then,
+  );
+
+  final Fragment$Section$$DefaultSection$metadata _instance;
+
+  final TRes Function(Fragment$Section$$DefaultSection$metadata) _then;
+
+  static const _undefined = {};
+
+  TRes call({
+    Object? continueWatching = _undefined,
+    Object? secondaryTitles = _undefined,
+    Object? collectionId = _undefined,
+    Object? useContext = _undefined,
+    Object? prependLiveElement = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(Fragment$Section$$DefaultSection$metadata(
+        continueWatching:
+            continueWatching == _undefined || continueWatching == null
+                ? _instance.continueWatching
+                : (continueWatching as bool),
+        secondaryTitles:
+            secondaryTitles == _undefined || secondaryTitles == null
+                ? _instance.secondaryTitles
+                : (secondaryTitles as bool),
+        collectionId: collectionId == _undefined || collectionId == null
+            ? _instance.collectionId
+            : (collectionId as String),
+        useContext: useContext == _undefined || useContext == null
+            ? _instance.useContext
+            : (useContext as bool),
+        prependLiveElement:
+            prependLiveElement == _undefined || prependLiveElement == null
+                ? _instance.prependLiveElement
+                : (prependLiveElement as bool),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+}
+
+class _CopyWithStubImpl$Fragment$Section$$DefaultSection$metadata<TRes>
+    implements CopyWith$Fragment$Section$$DefaultSection$metadata<TRes> {
+  _CopyWithStubImpl$Fragment$Section$$DefaultSection$metadata(this._res);
+
+  TRes _res;
+
+  call({
+    bool? continueWatching,
+    bool? secondaryTitles,
+    String? collectionId,
+    bool? useContext,
+    bool? prependLiveElement,
+    String? $__typename,
+  }) =>
+      _res;
 }
 
 class Fragment$Section$$DefaultSection$items
@@ -9428,6 +10458,7 @@ class Fragment$Section$$ListSection
     required this.id,
     this.title,
     required this.$__typename,
+    this.metadata,
     required this.items,
   });
 
@@ -9435,11 +10466,16 @@ class Fragment$Section$$ListSection
     final l$id = json['id'];
     final l$title = json['title'];
     final l$$__typename = json['__typename'];
+    final l$metadata = json['metadata'];
     final l$items = json['items'];
     return Fragment$Section$$ListSection(
       id: (l$id as String),
       title: (l$title as String?),
       $__typename: (l$$__typename as String),
+      metadata: l$metadata == null
+          ? null
+          : Fragment$Section$$ListSection$metadata.fromJson(
+              (l$metadata as Map<String, dynamic>)),
       items: Fragment$Section$$ListSection$items.fromJson(
           (l$items as Map<String, dynamic>)),
     );
@@ -9451,6 +10487,8 @@ class Fragment$Section$$ListSection
 
   final String $__typename;
 
+  final Fragment$Section$$ListSection$metadata? metadata;
+
   final Fragment$Section$$ListSection$items items;
 
   Map<String, dynamic> toJson() {
@@ -9461,6 +10499,8 @@ class Fragment$Section$$ListSection
     _resultData['title'] = l$title;
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
+    final l$metadata = metadata;
+    _resultData['metadata'] = l$metadata?.toJson();
     final l$items = items;
     _resultData['items'] = l$items.toJson();
     return _resultData;
@@ -9471,11 +10511,13 @@ class Fragment$Section$$ListSection
     final l$id = id;
     final l$title = title;
     final l$$__typename = $__typename;
+    final l$metadata = metadata;
     final l$items = items;
     return Object.hashAll([
       l$id,
       l$title,
       l$$__typename,
+      l$metadata,
       l$items,
     ]);
   }
@@ -9502,6 +10544,11 @@ class Fragment$Section$$ListSection
     final l$$__typename = $__typename;
     final lOther$$__typename = other.$__typename;
     if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    final l$metadata = metadata;
+    final lOther$metadata = other.metadata;
+    if (l$metadata != lOther$metadata) {
       return false;
     }
     final l$items = items;
@@ -9535,8 +10582,10 @@ abstract class CopyWith$Fragment$Section$$ListSection<TRes> {
     String? id,
     String? title,
     String? $__typename,
+    Fragment$Section$$ListSection$metadata? metadata,
     Fragment$Section$$ListSection$items? items,
   });
+  CopyWith$Fragment$Section$$ListSection$metadata<TRes> get metadata;
   CopyWith$Fragment$Section$$ListSection$items<TRes> get items;
 }
 
@@ -9557,6 +10606,7 @@ class _CopyWithImpl$Fragment$Section$$ListSection<TRes>
     Object? id = _undefined,
     Object? title = _undefined,
     Object? $__typename = _undefined,
+    Object? metadata = _undefined,
     Object? items = _undefined,
   }) =>
       _then(Fragment$Section$$ListSection(
@@ -9565,10 +10615,21 @@ class _CopyWithImpl$Fragment$Section$$ListSection<TRes>
         $__typename: $__typename == _undefined || $__typename == null
             ? _instance.$__typename
             : ($__typename as String),
+        metadata: metadata == _undefined
+            ? _instance.metadata
+            : (metadata as Fragment$Section$$ListSection$metadata?),
         items: items == _undefined || items == null
             ? _instance.items
             : (items as Fragment$Section$$ListSection$items),
       ));
+  CopyWith$Fragment$Section$$ListSection$metadata<TRes> get metadata {
+    final local$metadata = _instance.metadata;
+    return local$metadata == null
+        ? CopyWith$Fragment$Section$$ListSection$metadata.stub(_then(_instance))
+        : CopyWith$Fragment$Section$$ListSection$metadata(
+            local$metadata, (e) => call(metadata: e));
+  }
+
   CopyWith$Fragment$Section$$ListSection$items<TRes> get items {
     final local$items = _instance.items;
     return CopyWith$Fragment$Section$$ListSection$items(
@@ -9586,11 +10647,225 @@ class _CopyWithStubImpl$Fragment$Section$$ListSection<TRes>
     String? id,
     String? title,
     String? $__typename,
+    Fragment$Section$$ListSection$metadata? metadata,
     Fragment$Section$$ListSection$items? items,
   }) =>
       _res;
+  CopyWith$Fragment$Section$$ListSection$metadata<TRes> get metadata =>
+      CopyWith$Fragment$Section$$ListSection$metadata.stub(_res);
   CopyWith$Fragment$Section$$ListSection$items<TRes> get items =>
       CopyWith$Fragment$Section$$ListSection$items.stub(_res);
+}
+
+class Fragment$Section$$ListSection$metadata
+    implements Fragment$ItemSection$metadata {
+  Fragment$Section$$ListSection$metadata({
+    required this.continueWatching,
+    required this.secondaryTitles,
+    required this.collectionId,
+    required this.useContext,
+    required this.prependLiveElement,
+    required this.$__typename,
+  });
+
+  factory Fragment$Section$$ListSection$metadata.fromJson(
+      Map<String, dynamic> json) {
+    final l$continueWatching = json['continueWatching'];
+    final l$secondaryTitles = json['secondaryTitles'];
+    final l$collectionId = json['collectionId'];
+    final l$useContext = json['useContext'];
+    final l$prependLiveElement = json['prependLiveElement'];
+    final l$$__typename = json['__typename'];
+    return Fragment$Section$$ListSection$metadata(
+      continueWatching: (l$continueWatching as bool),
+      secondaryTitles: (l$secondaryTitles as bool),
+      collectionId: (l$collectionId as String),
+      useContext: (l$useContext as bool),
+      prependLiveElement: (l$prependLiveElement as bool),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final bool continueWatching;
+
+  final bool secondaryTitles;
+
+  final String collectionId;
+
+  final bool useContext;
+
+  final bool prependLiveElement;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$continueWatching = continueWatching;
+    _resultData['continueWatching'] = l$continueWatching;
+    final l$secondaryTitles = secondaryTitles;
+    _resultData['secondaryTitles'] = l$secondaryTitles;
+    final l$collectionId = collectionId;
+    _resultData['collectionId'] = l$collectionId;
+    final l$useContext = useContext;
+    _resultData['useContext'] = l$useContext;
+    final l$prependLiveElement = prependLiveElement;
+    _resultData['prependLiveElement'] = l$prependLiveElement;
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$continueWatching = continueWatching;
+    final l$secondaryTitles = secondaryTitles;
+    final l$collectionId = collectionId;
+    final l$useContext = useContext;
+    final l$prependLiveElement = prependLiveElement;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$continueWatching,
+      l$secondaryTitles,
+      l$collectionId,
+      l$useContext,
+      l$prependLiveElement,
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (!(other is Fragment$Section$$ListSection$metadata) ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$continueWatching = continueWatching;
+    final lOther$continueWatching = other.continueWatching;
+    if (l$continueWatching != lOther$continueWatching) {
+      return false;
+    }
+    final l$secondaryTitles = secondaryTitles;
+    final lOther$secondaryTitles = other.secondaryTitles;
+    if (l$secondaryTitles != lOther$secondaryTitles) {
+      return false;
+    }
+    final l$collectionId = collectionId;
+    final lOther$collectionId = other.collectionId;
+    if (l$collectionId != lOther$collectionId) {
+      return false;
+    }
+    final l$useContext = useContext;
+    final lOther$useContext = other.useContext;
+    if (l$useContext != lOther$useContext) {
+      return false;
+    }
+    final l$prependLiveElement = prependLiveElement;
+    final lOther$prependLiveElement = other.prependLiveElement;
+    if (l$prependLiveElement != lOther$prependLiveElement) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Fragment$Section$$ListSection$metadata
+    on Fragment$Section$$ListSection$metadata {
+  CopyWith$Fragment$Section$$ListSection$metadata<
+          Fragment$Section$$ListSection$metadata>
+      get copyWith => CopyWith$Fragment$Section$$ListSection$metadata(
+            this,
+            (i) => i,
+          );
+}
+
+abstract class CopyWith$Fragment$Section$$ListSection$metadata<TRes> {
+  factory CopyWith$Fragment$Section$$ListSection$metadata(
+    Fragment$Section$$ListSection$metadata instance,
+    TRes Function(Fragment$Section$$ListSection$metadata) then,
+  ) = _CopyWithImpl$Fragment$Section$$ListSection$metadata;
+
+  factory CopyWith$Fragment$Section$$ListSection$metadata.stub(TRes res) =
+      _CopyWithStubImpl$Fragment$Section$$ListSection$metadata;
+
+  TRes call({
+    bool? continueWatching,
+    bool? secondaryTitles,
+    String? collectionId,
+    bool? useContext,
+    bool? prependLiveElement,
+    String? $__typename,
+  });
+}
+
+class _CopyWithImpl$Fragment$Section$$ListSection$metadata<TRes>
+    implements CopyWith$Fragment$Section$$ListSection$metadata<TRes> {
+  _CopyWithImpl$Fragment$Section$$ListSection$metadata(
+    this._instance,
+    this._then,
+  );
+
+  final Fragment$Section$$ListSection$metadata _instance;
+
+  final TRes Function(Fragment$Section$$ListSection$metadata) _then;
+
+  static const _undefined = {};
+
+  TRes call({
+    Object? continueWatching = _undefined,
+    Object? secondaryTitles = _undefined,
+    Object? collectionId = _undefined,
+    Object? useContext = _undefined,
+    Object? prependLiveElement = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(Fragment$Section$$ListSection$metadata(
+        continueWatching:
+            continueWatching == _undefined || continueWatching == null
+                ? _instance.continueWatching
+                : (continueWatching as bool),
+        secondaryTitles:
+            secondaryTitles == _undefined || secondaryTitles == null
+                ? _instance.secondaryTitles
+                : (secondaryTitles as bool),
+        collectionId: collectionId == _undefined || collectionId == null
+            ? _instance.collectionId
+            : (collectionId as String),
+        useContext: useContext == _undefined || useContext == null
+            ? _instance.useContext
+            : (useContext as bool),
+        prependLiveElement:
+            prependLiveElement == _undefined || prependLiveElement == null
+                ? _instance.prependLiveElement
+                : (prependLiveElement as bool),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+}
+
+class _CopyWithStubImpl$Fragment$Section$$ListSection$metadata<TRes>
+    implements CopyWith$Fragment$Section$$ListSection$metadata<TRes> {
+  _CopyWithStubImpl$Fragment$Section$$ListSection$metadata(this._res);
+
+  TRes _res;
+
+  call({
+    bool? continueWatching,
+    bool? secondaryTitles,
+    String? collectionId,
+    bool? useContext,
+    bool? prependLiveElement,
+    String? $__typename,
+  }) =>
+      _res;
 }
 
 class Fragment$Section$$ListSection$items
@@ -11231,6 +12506,7 @@ class Fragment$Section$$DefaultGridSection
     required this.id,
     this.title,
     required this.$__typename,
+    this.metadata,
     required this.items,
     required this.gridSize,
   });
@@ -11240,12 +12516,17 @@ class Fragment$Section$$DefaultGridSection
     final l$id = json['id'];
     final l$title = json['title'];
     final l$$__typename = json['__typename'];
+    final l$metadata = json['metadata'];
     final l$items = json['items'];
     final l$gridSize = json['gridSize'];
     return Fragment$Section$$DefaultGridSection(
       id: (l$id as String),
       title: (l$title as String?),
       $__typename: (l$$__typename as String),
+      metadata: l$metadata == null
+          ? null
+          : Fragment$Section$$DefaultGridSection$metadata.fromJson(
+              (l$metadata as Map<String, dynamic>)),
       items: Fragment$Section$$DefaultGridSection$items.fromJson(
           (l$items as Map<String, dynamic>)),
       gridSize: fromJson$Enum$GridSectionSize((l$gridSize as String)),
@@ -11257,6 +12538,8 @@ class Fragment$Section$$DefaultGridSection
   final String? title;
 
   final String $__typename;
+
+  final Fragment$Section$$DefaultGridSection$metadata? metadata;
 
   final Fragment$Section$$DefaultGridSection$items items;
 
@@ -11270,6 +12553,8 @@ class Fragment$Section$$DefaultGridSection
     _resultData['title'] = l$title;
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
+    final l$metadata = metadata;
+    _resultData['metadata'] = l$metadata?.toJson();
     final l$items = items;
     _resultData['items'] = l$items.toJson();
     final l$gridSize = gridSize;
@@ -11282,12 +12567,14 @@ class Fragment$Section$$DefaultGridSection
     final l$id = id;
     final l$title = title;
     final l$$__typename = $__typename;
+    final l$metadata = metadata;
     final l$items = items;
     final l$gridSize = gridSize;
     return Object.hashAll([
       l$id,
       l$title,
       l$$__typename,
+      l$metadata,
       l$items,
       l$gridSize,
     ]);
@@ -11315,6 +12602,11 @@ class Fragment$Section$$DefaultGridSection
     final l$$__typename = $__typename;
     final lOther$$__typename = other.$__typename;
     if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    final l$metadata = metadata;
+    final lOther$metadata = other.metadata;
+    if (l$metadata != lOther$metadata) {
       return false;
     }
     final l$items = items;
@@ -11354,9 +12646,11 @@ abstract class CopyWith$Fragment$Section$$DefaultGridSection<TRes> {
     String? id,
     String? title,
     String? $__typename,
+    Fragment$Section$$DefaultGridSection$metadata? metadata,
     Fragment$Section$$DefaultGridSection$items? items,
     Enum$GridSectionSize? gridSize,
   });
+  CopyWith$Fragment$Section$$DefaultGridSection$metadata<TRes> get metadata;
   CopyWith$Fragment$Section$$DefaultGridSection$items<TRes> get items;
 }
 
@@ -11377,6 +12671,7 @@ class _CopyWithImpl$Fragment$Section$$DefaultGridSection<TRes>
     Object? id = _undefined,
     Object? title = _undefined,
     Object? $__typename = _undefined,
+    Object? metadata = _undefined,
     Object? items = _undefined,
     Object? gridSize = _undefined,
   }) =>
@@ -11386,6 +12681,9 @@ class _CopyWithImpl$Fragment$Section$$DefaultGridSection<TRes>
         $__typename: $__typename == _undefined || $__typename == null
             ? _instance.$__typename
             : ($__typename as String),
+        metadata: metadata == _undefined
+            ? _instance.metadata
+            : (metadata as Fragment$Section$$DefaultGridSection$metadata?),
         items: items == _undefined || items == null
             ? _instance.items
             : (items as Fragment$Section$$DefaultGridSection$items),
@@ -11393,6 +12691,15 @@ class _CopyWithImpl$Fragment$Section$$DefaultGridSection<TRes>
             ? _instance.gridSize
             : (gridSize as Enum$GridSectionSize),
       ));
+  CopyWith$Fragment$Section$$DefaultGridSection$metadata<TRes> get metadata {
+    final local$metadata = _instance.metadata;
+    return local$metadata == null
+        ? CopyWith$Fragment$Section$$DefaultGridSection$metadata.stub(
+            _then(_instance))
+        : CopyWith$Fragment$Section$$DefaultGridSection$metadata(
+            local$metadata, (e) => call(metadata: e));
+  }
+
   CopyWith$Fragment$Section$$DefaultGridSection$items<TRes> get items {
     final local$items = _instance.items;
     return CopyWith$Fragment$Section$$DefaultGridSection$items(
@@ -11410,12 +12717,227 @@ class _CopyWithStubImpl$Fragment$Section$$DefaultGridSection<TRes>
     String? id,
     String? title,
     String? $__typename,
+    Fragment$Section$$DefaultGridSection$metadata? metadata,
     Fragment$Section$$DefaultGridSection$items? items,
     Enum$GridSectionSize? gridSize,
   }) =>
       _res;
+  CopyWith$Fragment$Section$$DefaultGridSection$metadata<TRes> get metadata =>
+      CopyWith$Fragment$Section$$DefaultGridSection$metadata.stub(_res);
   CopyWith$Fragment$Section$$DefaultGridSection$items<TRes> get items =>
       CopyWith$Fragment$Section$$DefaultGridSection$items.stub(_res);
+}
+
+class Fragment$Section$$DefaultGridSection$metadata
+    implements Fragment$ItemSection$metadata {
+  Fragment$Section$$DefaultGridSection$metadata({
+    required this.continueWatching,
+    required this.secondaryTitles,
+    required this.collectionId,
+    required this.useContext,
+    required this.prependLiveElement,
+    required this.$__typename,
+  });
+
+  factory Fragment$Section$$DefaultGridSection$metadata.fromJson(
+      Map<String, dynamic> json) {
+    final l$continueWatching = json['continueWatching'];
+    final l$secondaryTitles = json['secondaryTitles'];
+    final l$collectionId = json['collectionId'];
+    final l$useContext = json['useContext'];
+    final l$prependLiveElement = json['prependLiveElement'];
+    final l$$__typename = json['__typename'];
+    return Fragment$Section$$DefaultGridSection$metadata(
+      continueWatching: (l$continueWatching as bool),
+      secondaryTitles: (l$secondaryTitles as bool),
+      collectionId: (l$collectionId as String),
+      useContext: (l$useContext as bool),
+      prependLiveElement: (l$prependLiveElement as bool),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final bool continueWatching;
+
+  final bool secondaryTitles;
+
+  final String collectionId;
+
+  final bool useContext;
+
+  final bool prependLiveElement;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$continueWatching = continueWatching;
+    _resultData['continueWatching'] = l$continueWatching;
+    final l$secondaryTitles = secondaryTitles;
+    _resultData['secondaryTitles'] = l$secondaryTitles;
+    final l$collectionId = collectionId;
+    _resultData['collectionId'] = l$collectionId;
+    final l$useContext = useContext;
+    _resultData['useContext'] = l$useContext;
+    final l$prependLiveElement = prependLiveElement;
+    _resultData['prependLiveElement'] = l$prependLiveElement;
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$continueWatching = continueWatching;
+    final l$secondaryTitles = secondaryTitles;
+    final l$collectionId = collectionId;
+    final l$useContext = useContext;
+    final l$prependLiveElement = prependLiveElement;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$continueWatching,
+      l$secondaryTitles,
+      l$collectionId,
+      l$useContext,
+      l$prependLiveElement,
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (!(other is Fragment$Section$$DefaultGridSection$metadata) ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$continueWatching = continueWatching;
+    final lOther$continueWatching = other.continueWatching;
+    if (l$continueWatching != lOther$continueWatching) {
+      return false;
+    }
+    final l$secondaryTitles = secondaryTitles;
+    final lOther$secondaryTitles = other.secondaryTitles;
+    if (l$secondaryTitles != lOther$secondaryTitles) {
+      return false;
+    }
+    final l$collectionId = collectionId;
+    final lOther$collectionId = other.collectionId;
+    if (l$collectionId != lOther$collectionId) {
+      return false;
+    }
+    final l$useContext = useContext;
+    final lOther$useContext = other.useContext;
+    if (l$useContext != lOther$useContext) {
+      return false;
+    }
+    final l$prependLiveElement = prependLiveElement;
+    final lOther$prependLiveElement = other.prependLiveElement;
+    if (l$prependLiveElement != lOther$prependLiveElement) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Fragment$Section$$DefaultGridSection$metadata
+    on Fragment$Section$$DefaultGridSection$metadata {
+  CopyWith$Fragment$Section$$DefaultGridSection$metadata<
+          Fragment$Section$$DefaultGridSection$metadata>
+      get copyWith => CopyWith$Fragment$Section$$DefaultGridSection$metadata(
+            this,
+            (i) => i,
+          );
+}
+
+abstract class CopyWith$Fragment$Section$$DefaultGridSection$metadata<TRes> {
+  factory CopyWith$Fragment$Section$$DefaultGridSection$metadata(
+    Fragment$Section$$DefaultGridSection$metadata instance,
+    TRes Function(Fragment$Section$$DefaultGridSection$metadata) then,
+  ) = _CopyWithImpl$Fragment$Section$$DefaultGridSection$metadata;
+
+  factory CopyWith$Fragment$Section$$DefaultGridSection$metadata.stub(
+          TRes res) =
+      _CopyWithStubImpl$Fragment$Section$$DefaultGridSection$metadata;
+
+  TRes call({
+    bool? continueWatching,
+    bool? secondaryTitles,
+    String? collectionId,
+    bool? useContext,
+    bool? prependLiveElement,
+    String? $__typename,
+  });
+}
+
+class _CopyWithImpl$Fragment$Section$$DefaultGridSection$metadata<TRes>
+    implements CopyWith$Fragment$Section$$DefaultGridSection$metadata<TRes> {
+  _CopyWithImpl$Fragment$Section$$DefaultGridSection$metadata(
+    this._instance,
+    this._then,
+  );
+
+  final Fragment$Section$$DefaultGridSection$metadata _instance;
+
+  final TRes Function(Fragment$Section$$DefaultGridSection$metadata) _then;
+
+  static const _undefined = {};
+
+  TRes call({
+    Object? continueWatching = _undefined,
+    Object? secondaryTitles = _undefined,
+    Object? collectionId = _undefined,
+    Object? useContext = _undefined,
+    Object? prependLiveElement = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(Fragment$Section$$DefaultGridSection$metadata(
+        continueWatching:
+            continueWatching == _undefined || continueWatching == null
+                ? _instance.continueWatching
+                : (continueWatching as bool),
+        secondaryTitles:
+            secondaryTitles == _undefined || secondaryTitles == null
+                ? _instance.secondaryTitles
+                : (secondaryTitles as bool),
+        collectionId: collectionId == _undefined || collectionId == null
+            ? _instance.collectionId
+            : (collectionId as String),
+        useContext: useContext == _undefined || useContext == null
+            ? _instance.useContext
+            : (useContext as bool),
+        prependLiveElement:
+            prependLiveElement == _undefined || prependLiveElement == null
+                ? _instance.prependLiveElement
+                : (prependLiveElement as bool),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+}
+
+class _CopyWithStubImpl$Fragment$Section$$DefaultGridSection$metadata<TRes>
+    implements CopyWith$Fragment$Section$$DefaultGridSection$metadata<TRes> {
+  _CopyWithStubImpl$Fragment$Section$$DefaultGridSection$metadata(this._res);
+
+  TRes _res;
+
+  call({
+    bool? continueWatching,
+    bool? secondaryTitles,
+    String? collectionId,
+    bool? useContext,
+    bool? prependLiveElement,
+    String? $__typename,
+  }) =>
+      _res;
 }
 
 class Fragment$Section$$DefaultGridSection$items
@@ -13149,6 +14671,7 @@ class Fragment$Section$$PosterGridSection
     required this.id,
     this.title,
     required this.$__typename,
+    this.metadata,
     required this.items,
     required this.gridSize,
   });
@@ -13158,12 +14681,17 @@ class Fragment$Section$$PosterGridSection
     final l$id = json['id'];
     final l$title = json['title'];
     final l$$__typename = json['__typename'];
+    final l$metadata = json['metadata'];
     final l$items = json['items'];
     final l$gridSize = json['gridSize'];
     return Fragment$Section$$PosterGridSection(
       id: (l$id as String),
       title: (l$title as String?),
       $__typename: (l$$__typename as String),
+      metadata: l$metadata == null
+          ? null
+          : Fragment$Section$$PosterGridSection$metadata.fromJson(
+              (l$metadata as Map<String, dynamic>)),
       items: Fragment$Section$$PosterGridSection$items.fromJson(
           (l$items as Map<String, dynamic>)),
       gridSize: fromJson$Enum$GridSectionSize((l$gridSize as String)),
@@ -13175,6 +14703,8 @@ class Fragment$Section$$PosterGridSection
   final String? title;
 
   final String $__typename;
+
+  final Fragment$Section$$PosterGridSection$metadata? metadata;
 
   final Fragment$Section$$PosterGridSection$items items;
 
@@ -13188,6 +14718,8 @@ class Fragment$Section$$PosterGridSection
     _resultData['title'] = l$title;
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
+    final l$metadata = metadata;
+    _resultData['metadata'] = l$metadata?.toJson();
     final l$items = items;
     _resultData['items'] = l$items.toJson();
     final l$gridSize = gridSize;
@@ -13200,12 +14732,14 @@ class Fragment$Section$$PosterGridSection
     final l$id = id;
     final l$title = title;
     final l$$__typename = $__typename;
+    final l$metadata = metadata;
     final l$items = items;
     final l$gridSize = gridSize;
     return Object.hashAll([
       l$id,
       l$title,
       l$$__typename,
+      l$metadata,
       l$items,
       l$gridSize,
     ]);
@@ -13233,6 +14767,11 @@ class Fragment$Section$$PosterGridSection
     final l$$__typename = $__typename;
     final lOther$$__typename = other.$__typename;
     if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    final l$metadata = metadata;
+    final lOther$metadata = other.metadata;
+    if (l$metadata != lOther$metadata) {
       return false;
     }
     final l$items = items;
@@ -13272,9 +14811,11 @@ abstract class CopyWith$Fragment$Section$$PosterGridSection<TRes> {
     String? id,
     String? title,
     String? $__typename,
+    Fragment$Section$$PosterGridSection$metadata? metadata,
     Fragment$Section$$PosterGridSection$items? items,
     Enum$GridSectionSize? gridSize,
   });
+  CopyWith$Fragment$Section$$PosterGridSection$metadata<TRes> get metadata;
   CopyWith$Fragment$Section$$PosterGridSection$items<TRes> get items;
 }
 
@@ -13295,6 +14836,7 @@ class _CopyWithImpl$Fragment$Section$$PosterGridSection<TRes>
     Object? id = _undefined,
     Object? title = _undefined,
     Object? $__typename = _undefined,
+    Object? metadata = _undefined,
     Object? items = _undefined,
     Object? gridSize = _undefined,
   }) =>
@@ -13304,6 +14846,9 @@ class _CopyWithImpl$Fragment$Section$$PosterGridSection<TRes>
         $__typename: $__typename == _undefined || $__typename == null
             ? _instance.$__typename
             : ($__typename as String),
+        metadata: metadata == _undefined
+            ? _instance.metadata
+            : (metadata as Fragment$Section$$PosterGridSection$metadata?),
         items: items == _undefined || items == null
             ? _instance.items
             : (items as Fragment$Section$$PosterGridSection$items),
@@ -13311,6 +14856,15 @@ class _CopyWithImpl$Fragment$Section$$PosterGridSection<TRes>
             ? _instance.gridSize
             : (gridSize as Enum$GridSectionSize),
       ));
+  CopyWith$Fragment$Section$$PosterGridSection$metadata<TRes> get metadata {
+    final local$metadata = _instance.metadata;
+    return local$metadata == null
+        ? CopyWith$Fragment$Section$$PosterGridSection$metadata.stub(
+            _then(_instance))
+        : CopyWith$Fragment$Section$$PosterGridSection$metadata(
+            local$metadata, (e) => call(metadata: e));
+  }
+
   CopyWith$Fragment$Section$$PosterGridSection$items<TRes> get items {
     final local$items = _instance.items;
     return CopyWith$Fragment$Section$$PosterGridSection$items(
@@ -13328,12 +14882,226 @@ class _CopyWithStubImpl$Fragment$Section$$PosterGridSection<TRes>
     String? id,
     String? title,
     String? $__typename,
+    Fragment$Section$$PosterGridSection$metadata? metadata,
     Fragment$Section$$PosterGridSection$items? items,
     Enum$GridSectionSize? gridSize,
   }) =>
       _res;
+  CopyWith$Fragment$Section$$PosterGridSection$metadata<TRes> get metadata =>
+      CopyWith$Fragment$Section$$PosterGridSection$metadata.stub(_res);
   CopyWith$Fragment$Section$$PosterGridSection$items<TRes> get items =>
       CopyWith$Fragment$Section$$PosterGridSection$items.stub(_res);
+}
+
+class Fragment$Section$$PosterGridSection$metadata
+    implements Fragment$ItemSection$metadata {
+  Fragment$Section$$PosterGridSection$metadata({
+    required this.continueWatching,
+    required this.secondaryTitles,
+    required this.collectionId,
+    required this.useContext,
+    required this.prependLiveElement,
+    required this.$__typename,
+  });
+
+  factory Fragment$Section$$PosterGridSection$metadata.fromJson(
+      Map<String, dynamic> json) {
+    final l$continueWatching = json['continueWatching'];
+    final l$secondaryTitles = json['secondaryTitles'];
+    final l$collectionId = json['collectionId'];
+    final l$useContext = json['useContext'];
+    final l$prependLiveElement = json['prependLiveElement'];
+    final l$$__typename = json['__typename'];
+    return Fragment$Section$$PosterGridSection$metadata(
+      continueWatching: (l$continueWatching as bool),
+      secondaryTitles: (l$secondaryTitles as bool),
+      collectionId: (l$collectionId as String),
+      useContext: (l$useContext as bool),
+      prependLiveElement: (l$prependLiveElement as bool),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final bool continueWatching;
+
+  final bool secondaryTitles;
+
+  final String collectionId;
+
+  final bool useContext;
+
+  final bool prependLiveElement;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$continueWatching = continueWatching;
+    _resultData['continueWatching'] = l$continueWatching;
+    final l$secondaryTitles = secondaryTitles;
+    _resultData['secondaryTitles'] = l$secondaryTitles;
+    final l$collectionId = collectionId;
+    _resultData['collectionId'] = l$collectionId;
+    final l$useContext = useContext;
+    _resultData['useContext'] = l$useContext;
+    final l$prependLiveElement = prependLiveElement;
+    _resultData['prependLiveElement'] = l$prependLiveElement;
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$continueWatching = continueWatching;
+    final l$secondaryTitles = secondaryTitles;
+    final l$collectionId = collectionId;
+    final l$useContext = useContext;
+    final l$prependLiveElement = prependLiveElement;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$continueWatching,
+      l$secondaryTitles,
+      l$collectionId,
+      l$useContext,
+      l$prependLiveElement,
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (!(other is Fragment$Section$$PosterGridSection$metadata) ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$continueWatching = continueWatching;
+    final lOther$continueWatching = other.continueWatching;
+    if (l$continueWatching != lOther$continueWatching) {
+      return false;
+    }
+    final l$secondaryTitles = secondaryTitles;
+    final lOther$secondaryTitles = other.secondaryTitles;
+    if (l$secondaryTitles != lOther$secondaryTitles) {
+      return false;
+    }
+    final l$collectionId = collectionId;
+    final lOther$collectionId = other.collectionId;
+    if (l$collectionId != lOther$collectionId) {
+      return false;
+    }
+    final l$useContext = useContext;
+    final lOther$useContext = other.useContext;
+    if (l$useContext != lOther$useContext) {
+      return false;
+    }
+    final l$prependLiveElement = prependLiveElement;
+    final lOther$prependLiveElement = other.prependLiveElement;
+    if (l$prependLiveElement != lOther$prependLiveElement) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Fragment$Section$$PosterGridSection$metadata
+    on Fragment$Section$$PosterGridSection$metadata {
+  CopyWith$Fragment$Section$$PosterGridSection$metadata<
+          Fragment$Section$$PosterGridSection$metadata>
+      get copyWith => CopyWith$Fragment$Section$$PosterGridSection$metadata(
+            this,
+            (i) => i,
+          );
+}
+
+abstract class CopyWith$Fragment$Section$$PosterGridSection$metadata<TRes> {
+  factory CopyWith$Fragment$Section$$PosterGridSection$metadata(
+    Fragment$Section$$PosterGridSection$metadata instance,
+    TRes Function(Fragment$Section$$PosterGridSection$metadata) then,
+  ) = _CopyWithImpl$Fragment$Section$$PosterGridSection$metadata;
+
+  factory CopyWith$Fragment$Section$$PosterGridSection$metadata.stub(TRes res) =
+      _CopyWithStubImpl$Fragment$Section$$PosterGridSection$metadata;
+
+  TRes call({
+    bool? continueWatching,
+    bool? secondaryTitles,
+    String? collectionId,
+    bool? useContext,
+    bool? prependLiveElement,
+    String? $__typename,
+  });
+}
+
+class _CopyWithImpl$Fragment$Section$$PosterGridSection$metadata<TRes>
+    implements CopyWith$Fragment$Section$$PosterGridSection$metadata<TRes> {
+  _CopyWithImpl$Fragment$Section$$PosterGridSection$metadata(
+    this._instance,
+    this._then,
+  );
+
+  final Fragment$Section$$PosterGridSection$metadata _instance;
+
+  final TRes Function(Fragment$Section$$PosterGridSection$metadata) _then;
+
+  static const _undefined = {};
+
+  TRes call({
+    Object? continueWatching = _undefined,
+    Object? secondaryTitles = _undefined,
+    Object? collectionId = _undefined,
+    Object? useContext = _undefined,
+    Object? prependLiveElement = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(Fragment$Section$$PosterGridSection$metadata(
+        continueWatching:
+            continueWatching == _undefined || continueWatching == null
+                ? _instance.continueWatching
+                : (continueWatching as bool),
+        secondaryTitles:
+            secondaryTitles == _undefined || secondaryTitles == null
+                ? _instance.secondaryTitles
+                : (secondaryTitles as bool),
+        collectionId: collectionId == _undefined || collectionId == null
+            ? _instance.collectionId
+            : (collectionId as String),
+        useContext: useContext == _undefined || useContext == null
+            ? _instance.useContext
+            : (useContext as bool),
+        prependLiveElement:
+            prependLiveElement == _undefined || prependLiveElement == null
+                ? _instance.prependLiveElement
+                : (prependLiveElement as bool),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+}
+
+class _CopyWithStubImpl$Fragment$Section$$PosterGridSection$metadata<TRes>
+    implements CopyWith$Fragment$Section$$PosterGridSection$metadata<TRes> {
+  _CopyWithStubImpl$Fragment$Section$$PosterGridSection$metadata(this._res);
+
+  TRes _res;
+
+  call({
+    bool? continueWatching,
+    bool? secondaryTitles,
+    String? collectionId,
+    bool? useContext,
+    bool? prependLiveElement,
+    String? $__typename,
+  }) =>
+      _res;
 }
 
 class Fragment$Section$$PosterGridSection$items
@@ -15064,6 +16832,7 @@ class Fragment$Section$$IconGridSection
     required this.id,
     this.title,
     required this.$__typename,
+    this.metadata,
     required this.items,
     required this.gridSize,
   });
@@ -15073,12 +16842,17 @@ class Fragment$Section$$IconGridSection
     final l$id = json['id'];
     final l$title = json['title'];
     final l$$__typename = json['__typename'];
+    final l$metadata = json['metadata'];
     final l$items = json['items'];
     final l$gridSize = json['gridSize'];
     return Fragment$Section$$IconGridSection(
       id: (l$id as String),
       title: (l$title as String?),
       $__typename: (l$$__typename as String),
+      metadata: l$metadata == null
+          ? null
+          : Fragment$Section$$IconGridSection$metadata.fromJson(
+              (l$metadata as Map<String, dynamic>)),
       items: Fragment$Section$$IconGridSection$items.fromJson(
           (l$items as Map<String, dynamic>)),
       gridSize: fromJson$Enum$GridSectionSize((l$gridSize as String)),
@@ -15090,6 +16864,8 @@ class Fragment$Section$$IconGridSection
   final String? title;
 
   final String $__typename;
+
+  final Fragment$Section$$IconGridSection$metadata? metadata;
 
   final Fragment$Section$$IconGridSection$items items;
 
@@ -15103,6 +16879,8 @@ class Fragment$Section$$IconGridSection
     _resultData['title'] = l$title;
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
+    final l$metadata = metadata;
+    _resultData['metadata'] = l$metadata?.toJson();
     final l$items = items;
     _resultData['items'] = l$items.toJson();
     final l$gridSize = gridSize;
@@ -15115,12 +16893,14 @@ class Fragment$Section$$IconGridSection
     final l$id = id;
     final l$title = title;
     final l$$__typename = $__typename;
+    final l$metadata = metadata;
     final l$items = items;
     final l$gridSize = gridSize;
     return Object.hashAll([
       l$id,
       l$title,
       l$$__typename,
+      l$metadata,
       l$items,
       l$gridSize,
     ]);
@@ -15148,6 +16928,11 @@ class Fragment$Section$$IconGridSection
     final l$$__typename = $__typename;
     final lOther$$__typename = other.$__typename;
     if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    final l$metadata = metadata;
+    final lOther$metadata = other.metadata;
+    if (l$metadata != lOther$metadata) {
       return false;
     }
     final l$items = items;
@@ -15186,9 +16971,11 @@ abstract class CopyWith$Fragment$Section$$IconGridSection<TRes> {
     String? id,
     String? title,
     String? $__typename,
+    Fragment$Section$$IconGridSection$metadata? metadata,
     Fragment$Section$$IconGridSection$items? items,
     Enum$GridSectionSize? gridSize,
   });
+  CopyWith$Fragment$Section$$IconGridSection$metadata<TRes> get metadata;
   CopyWith$Fragment$Section$$IconGridSection$items<TRes> get items;
 }
 
@@ -15209,6 +16996,7 @@ class _CopyWithImpl$Fragment$Section$$IconGridSection<TRes>
     Object? id = _undefined,
     Object? title = _undefined,
     Object? $__typename = _undefined,
+    Object? metadata = _undefined,
     Object? items = _undefined,
     Object? gridSize = _undefined,
   }) =>
@@ -15218,6 +17006,9 @@ class _CopyWithImpl$Fragment$Section$$IconGridSection<TRes>
         $__typename: $__typename == _undefined || $__typename == null
             ? _instance.$__typename
             : ($__typename as String),
+        metadata: metadata == _undefined
+            ? _instance.metadata
+            : (metadata as Fragment$Section$$IconGridSection$metadata?),
         items: items == _undefined || items == null
             ? _instance.items
             : (items as Fragment$Section$$IconGridSection$items),
@@ -15225,6 +17016,15 @@ class _CopyWithImpl$Fragment$Section$$IconGridSection<TRes>
             ? _instance.gridSize
             : (gridSize as Enum$GridSectionSize),
       ));
+  CopyWith$Fragment$Section$$IconGridSection$metadata<TRes> get metadata {
+    final local$metadata = _instance.metadata;
+    return local$metadata == null
+        ? CopyWith$Fragment$Section$$IconGridSection$metadata.stub(
+            _then(_instance))
+        : CopyWith$Fragment$Section$$IconGridSection$metadata(
+            local$metadata, (e) => call(metadata: e));
+  }
+
   CopyWith$Fragment$Section$$IconGridSection$items<TRes> get items {
     final local$items = _instance.items;
     return CopyWith$Fragment$Section$$IconGridSection$items(
@@ -15242,12 +17042,226 @@ class _CopyWithStubImpl$Fragment$Section$$IconGridSection<TRes>
     String? id,
     String? title,
     String? $__typename,
+    Fragment$Section$$IconGridSection$metadata? metadata,
     Fragment$Section$$IconGridSection$items? items,
     Enum$GridSectionSize? gridSize,
   }) =>
       _res;
+  CopyWith$Fragment$Section$$IconGridSection$metadata<TRes> get metadata =>
+      CopyWith$Fragment$Section$$IconGridSection$metadata.stub(_res);
   CopyWith$Fragment$Section$$IconGridSection$items<TRes> get items =>
       CopyWith$Fragment$Section$$IconGridSection$items.stub(_res);
+}
+
+class Fragment$Section$$IconGridSection$metadata
+    implements Fragment$ItemSection$metadata {
+  Fragment$Section$$IconGridSection$metadata({
+    required this.continueWatching,
+    required this.secondaryTitles,
+    required this.collectionId,
+    required this.useContext,
+    required this.prependLiveElement,
+    required this.$__typename,
+  });
+
+  factory Fragment$Section$$IconGridSection$metadata.fromJson(
+      Map<String, dynamic> json) {
+    final l$continueWatching = json['continueWatching'];
+    final l$secondaryTitles = json['secondaryTitles'];
+    final l$collectionId = json['collectionId'];
+    final l$useContext = json['useContext'];
+    final l$prependLiveElement = json['prependLiveElement'];
+    final l$$__typename = json['__typename'];
+    return Fragment$Section$$IconGridSection$metadata(
+      continueWatching: (l$continueWatching as bool),
+      secondaryTitles: (l$secondaryTitles as bool),
+      collectionId: (l$collectionId as String),
+      useContext: (l$useContext as bool),
+      prependLiveElement: (l$prependLiveElement as bool),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final bool continueWatching;
+
+  final bool secondaryTitles;
+
+  final String collectionId;
+
+  final bool useContext;
+
+  final bool prependLiveElement;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$continueWatching = continueWatching;
+    _resultData['continueWatching'] = l$continueWatching;
+    final l$secondaryTitles = secondaryTitles;
+    _resultData['secondaryTitles'] = l$secondaryTitles;
+    final l$collectionId = collectionId;
+    _resultData['collectionId'] = l$collectionId;
+    final l$useContext = useContext;
+    _resultData['useContext'] = l$useContext;
+    final l$prependLiveElement = prependLiveElement;
+    _resultData['prependLiveElement'] = l$prependLiveElement;
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$continueWatching = continueWatching;
+    final l$secondaryTitles = secondaryTitles;
+    final l$collectionId = collectionId;
+    final l$useContext = useContext;
+    final l$prependLiveElement = prependLiveElement;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$continueWatching,
+      l$secondaryTitles,
+      l$collectionId,
+      l$useContext,
+      l$prependLiveElement,
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (!(other is Fragment$Section$$IconGridSection$metadata) ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$continueWatching = continueWatching;
+    final lOther$continueWatching = other.continueWatching;
+    if (l$continueWatching != lOther$continueWatching) {
+      return false;
+    }
+    final l$secondaryTitles = secondaryTitles;
+    final lOther$secondaryTitles = other.secondaryTitles;
+    if (l$secondaryTitles != lOther$secondaryTitles) {
+      return false;
+    }
+    final l$collectionId = collectionId;
+    final lOther$collectionId = other.collectionId;
+    if (l$collectionId != lOther$collectionId) {
+      return false;
+    }
+    final l$useContext = useContext;
+    final lOther$useContext = other.useContext;
+    if (l$useContext != lOther$useContext) {
+      return false;
+    }
+    final l$prependLiveElement = prependLiveElement;
+    final lOther$prependLiveElement = other.prependLiveElement;
+    if (l$prependLiveElement != lOther$prependLiveElement) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Fragment$Section$$IconGridSection$metadata
+    on Fragment$Section$$IconGridSection$metadata {
+  CopyWith$Fragment$Section$$IconGridSection$metadata<
+          Fragment$Section$$IconGridSection$metadata>
+      get copyWith => CopyWith$Fragment$Section$$IconGridSection$metadata(
+            this,
+            (i) => i,
+          );
+}
+
+abstract class CopyWith$Fragment$Section$$IconGridSection$metadata<TRes> {
+  factory CopyWith$Fragment$Section$$IconGridSection$metadata(
+    Fragment$Section$$IconGridSection$metadata instance,
+    TRes Function(Fragment$Section$$IconGridSection$metadata) then,
+  ) = _CopyWithImpl$Fragment$Section$$IconGridSection$metadata;
+
+  factory CopyWith$Fragment$Section$$IconGridSection$metadata.stub(TRes res) =
+      _CopyWithStubImpl$Fragment$Section$$IconGridSection$metadata;
+
+  TRes call({
+    bool? continueWatching,
+    bool? secondaryTitles,
+    String? collectionId,
+    bool? useContext,
+    bool? prependLiveElement,
+    String? $__typename,
+  });
+}
+
+class _CopyWithImpl$Fragment$Section$$IconGridSection$metadata<TRes>
+    implements CopyWith$Fragment$Section$$IconGridSection$metadata<TRes> {
+  _CopyWithImpl$Fragment$Section$$IconGridSection$metadata(
+    this._instance,
+    this._then,
+  );
+
+  final Fragment$Section$$IconGridSection$metadata _instance;
+
+  final TRes Function(Fragment$Section$$IconGridSection$metadata) _then;
+
+  static const _undefined = {};
+
+  TRes call({
+    Object? continueWatching = _undefined,
+    Object? secondaryTitles = _undefined,
+    Object? collectionId = _undefined,
+    Object? useContext = _undefined,
+    Object? prependLiveElement = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(Fragment$Section$$IconGridSection$metadata(
+        continueWatching:
+            continueWatching == _undefined || continueWatching == null
+                ? _instance.continueWatching
+                : (continueWatching as bool),
+        secondaryTitles:
+            secondaryTitles == _undefined || secondaryTitles == null
+                ? _instance.secondaryTitles
+                : (secondaryTitles as bool),
+        collectionId: collectionId == _undefined || collectionId == null
+            ? _instance.collectionId
+            : (collectionId as String),
+        useContext: useContext == _undefined || useContext == null
+            ? _instance.useContext
+            : (useContext as bool),
+        prependLiveElement:
+            prependLiveElement == _undefined || prependLiveElement == null
+                ? _instance.prependLiveElement
+                : (prependLiveElement as bool),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+}
+
+class _CopyWithStubImpl$Fragment$Section$$IconGridSection$metadata<TRes>
+    implements CopyWith$Fragment$Section$$IconGridSection$metadata<TRes> {
+  _CopyWithStubImpl$Fragment$Section$$IconGridSection$metadata(this._res);
+
+  TRes _res;
+
+  call({
+    bool? continueWatching,
+    bool? secondaryTitles,
+    String? collectionId,
+    bool? useContext,
+    bool? prependLiveElement,
+    String? $__typename,
+  }) =>
+      _res;
 }
 
 class Fragment$Section$$IconGridSection$items
@@ -16966,6 +18980,7 @@ class Fragment$Section$$IconSection
     required this.id,
     this.title,
     required this.$__typename,
+    this.metadata,
     required this.items,
   });
 
@@ -16973,11 +18988,16 @@ class Fragment$Section$$IconSection
     final l$id = json['id'];
     final l$title = json['title'];
     final l$$__typename = json['__typename'];
+    final l$metadata = json['metadata'];
     final l$items = json['items'];
     return Fragment$Section$$IconSection(
       id: (l$id as String),
       title: (l$title as String?),
       $__typename: (l$$__typename as String),
+      metadata: l$metadata == null
+          ? null
+          : Fragment$Section$$IconSection$metadata.fromJson(
+              (l$metadata as Map<String, dynamic>)),
       items: Fragment$Section$$IconSection$items.fromJson(
           (l$items as Map<String, dynamic>)),
     );
@@ -16989,6 +19009,8 @@ class Fragment$Section$$IconSection
 
   final String $__typename;
 
+  final Fragment$Section$$IconSection$metadata? metadata;
+
   final Fragment$Section$$IconSection$items items;
 
   Map<String, dynamic> toJson() {
@@ -16999,6 +19021,8 @@ class Fragment$Section$$IconSection
     _resultData['title'] = l$title;
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
+    final l$metadata = metadata;
+    _resultData['metadata'] = l$metadata?.toJson();
     final l$items = items;
     _resultData['items'] = l$items.toJson();
     return _resultData;
@@ -17009,11 +19033,13 @@ class Fragment$Section$$IconSection
     final l$id = id;
     final l$title = title;
     final l$$__typename = $__typename;
+    final l$metadata = metadata;
     final l$items = items;
     return Object.hashAll([
       l$id,
       l$title,
       l$$__typename,
+      l$metadata,
       l$items,
     ]);
   }
@@ -17040,6 +19066,11 @@ class Fragment$Section$$IconSection
     final l$$__typename = $__typename;
     final lOther$$__typename = other.$__typename;
     if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    final l$metadata = metadata;
+    final lOther$metadata = other.metadata;
+    if (l$metadata != lOther$metadata) {
       return false;
     }
     final l$items = items;
@@ -17073,8 +19104,10 @@ abstract class CopyWith$Fragment$Section$$IconSection<TRes> {
     String? id,
     String? title,
     String? $__typename,
+    Fragment$Section$$IconSection$metadata? metadata,
     Fragment$Section$$IconSection$items? items,
   });
+  CopyWith$Fragment$Section$$IconSection$metadata<TRes> get metadata;
   CopyWith$Fragment$Section$$IconSection$items<TRes> get items;
 }
 
@@ -17095,6 +19128,7 @@ class _CopyWithImpl$Fragment$Section$$IconSection<TRes>
     Object? id = _undefined,
     Object? title = _undefined,
     Object? $__typename = _undefined,
+    Object? metadata = _undefined,
     Object? items = _undefined,
   }) =>
       _then(Fragment$Section$$IconSection(
@@ -17103,10 +19137,21 @@ class _CopyWithImpl$Fragment$Section$$IconSection<TRes>
         $__typename: $__typename == _undefined || $__typename == null
             ? _instance.$__typename
             : ($__typename as String),
+        metadata: metadata == _undefined
+            ? _instance.metadata
+            : (metadata as Fragment$Section$$IconSection$metadata?),
         items: items == _undefined || items == null
             ? _instance.items
             : (items as Fragment$Section$$IconSection$items),
       ));
+  CopyWith$Fragment$Section$$IconSection$metadata<TRes> get metadata {
+    final local$metadata = _instance.metadata;
+    return local$metadata == null
+        ? CopyWith$Fragment$Section$$IconSection$metadata.stub(_then(_instance))
+        : CopyWith$Fragment$Section$$IconSection$metadata(
+            local$metadata, (e) => call(metadata: e));
+  }
+
   CopyWith$Fragment$Section$$IconSection$items<TRes> get items {
     final local$items = _instance.items;
     return CopyWith$Fragment$Section$$IconSection$items(
@@ -17124,11 +19169,225 @@ class _CopyWithStubImpl$Fragment$Section$$IconSection<TRes>
     String? id,
     String? title,
     String? $__typename,
+    Fragment$Section$$IconSection$metadata? metadata,
     Fragment$Section$$IconSection$items? items,
   }) =>
       _res;
+  CopyWith$Fragment$Section$$IconSection$metadata<TRes> get metadata =>
+      CopyWith$Fragment$Section$$IconSection$metadata.stub(_res);
   CopyWith$Fragment$Section$$IconSection$items<TRes> get items =>
       CopyWith$Fragment$Section$$IconSection$items.stub(_res);
+}
+
+class Fragment$Section$$IconSection$metadata
+    implements Fragment$ItemSection$metadata {
+  Fragment$Section$$IconSection$metadata({
+    required this.continueWatching,
+    required this.secondaryTitles,
+    required this.collectionId,
+    required this.useContext,
+    required this.prependLiveElement,
+    required this.$__typename,
+  });
+
+  factory Fragment$Section$$IconSection$metadata.fromJson(
+      Map<String, dynamic> json) {
+    final l$continueWatching = json['continueWatching'];
+    final l$secondaryTitles = json['secondaryTitles'];
+    final l$collectionId = json['collectionId'];
+    final l$useContext = json['useContext'];
+    final l$prependLiveElement = json['prependLiveElement'];
+    final l$$__typename = json['__typename'];
+    return Fragment$Section$$IconSection$metadata(
+      continueWatching: (l$continueWatching as bool),
+      secondaryTitles: (l$secondaryTitles as bool),
+      collectionId: (l$collectionId as String),
+      useContext: (l$useContext as bool),
+      prependLiveElement: (l$prependLiveElement as bool),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final bool continueWatching;
+
+  final bool secondaryTitles;
+
+  final String collectionId;
+
+  final bool useContext;
+
+  final bool prependLiveElement;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$continueWatching = continueWatching;
+    _resultData['continueWatching'] = l$continueWatching;
+    final l$secondaryTitles = secondaryTitles;
+    _resultData['secondaryTitles'] = l$secondaryTitles;
+    final l$collectionId = collectionId;
+    _resultData['collectionId'] = l$collectionId;
+    final l$useContext = useContext;
+    _resultData['useContext'] = l$useContext;
+    final l$prependLiveElement = prependLiveElement;
+    _resultData['prependLiveElement'] = l$prependLiveElement;
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$continueWatching = continueWatching;
+    final l$secondaryTitles = secondaryTitles;
+    final l$collectionId = collectionId;
+    final l$useContext = useContext;
+    final l$prependLiveElement = prependLiveElement;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$continueWatching,
+      l$secondaryTitles,
+      l$collectionId,
+      l$useContext,
+      l$prependLiveElement,
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (!(other is Fragment$Section$$IconSection$metadata) ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$continueWatching = continueWatching;
+    final lOther$continueWatching = other.continueWatching;
+    if (l$continueWatching != lOther$continueWatching) {
+      return false;
+    }
+    final l$secondaryTitles = secondaryTitles;
+    final lOther$secondaryTitles = other.secondaryTitles;
+    if (l$secondaryTitles != lOther$secondaryTitles) {
+      return false;
+    }
+    final l$collectionId = collectionId;
+    final lOther$collectionId = other.collectionId;
+    if (l$collectionId != lOther$collectionId) {
+      return false;
+    }
+    final l$useContext = useContext;
+    final lOther$useContext = other.useContext;
+    if (l$useContext != lOther$useContext) {
+      return false;
+    }
+    final l$prependLiveElement = prependLiveElement;
+    final lOther$prependLiveElement = other.prependLiveElement;
+    if (l$prependLiveElement != lOther$prependLiveElement) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Fragment$Section$$IconSection$metadata
+    on Fragment$Section$$IconSection$metadata {
+  CopyWith$Fragment$Section$$IconSection$metadata<
+          Fragment$Section$$IconSection$metadata>
+      get copyWith => CopyWith$Fragment$Section$$IconSection$metadata(
+            this,
+            (i) => i,
+          );
+}
+
+abstract class CopyWith$Fragment$Section$$IconSection$metadata<TRes> {
+  factory CopyWith$Fragment$Section$$IconSection$metadata(
+    Fragment$Section$$IconSection$metadata instance,
+    TRes Function(Fragment$Section$$IconSection$metadata) then,
+  ) = _CopyWithImpl$Fragment$Section$$IconSection$metadata;
+
+  factory CopyWith$Fragment$Section$$IconSection$metadata.stub(TRes res) =
+      _CopyWithStubImpl$Fragment$Section$$IconSection$metadata;
+
+  TRes call({
+    bool? continueWatching,
+    bool? secondaryTitles,
+    String? collectionId,
+    bool? useContext,
+    bool? prependLiveElement,
+    String? $__typename,
+  });
+}
+
+class _CopyWithImpl$Fragment$Section$$IconSection$metadata<TRes>
+    implements CopyWith$Fragment$Section$$IconSection$metadata<TRes> {
+  _CopyWithImpl$Fragment$Section$$IconSection$metadata(
+    this._instance,
+    this._then,
+  );
+
+  final Fragment$Section$$IconSection$metadata _instance;
+
+  final TRes Function(Fragment$Section$$IconSection$metadata) _then;
+
+  static const _undefined = {};
+
+  TRes call({
+    Object? continueWatching = _undefined,
+    Object? secondaryTitles = _undefined,
+    Object? collectionId = _undefined,
+    Object? useContext = _undefined,
+    Object? prependLiveElement = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(Fragment$Section$$IconSection$metadata(
+        continueWatching:
+            continueWatching == _undefined || continueWatching == null
+                ? _instance.continueWatching
+                : (continueWatching as bool),
+        secondaryTitles:
+            secondaryTitles == _undefined || secondaryTitles == null
+                ? _instance.secondaryTitles
+                : (secondaryTitles as bool),
+        collectionId: collectionId == _undefined || collectionId == null
+            ? _instance.collectionId
+            : (collectionId as String),
+        useContext: useContext == _undefined || useContext == null
+            ? _instance.useContext
+            : (useContext as bool),
+        prependLiveElement:
+            prependLiveElement == _undefined || prependLiveElement == null
+                ? _instance.prependLiveElement
+                : (prependLiveElement as bool),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+}
+
+class _CopyWithStubImpl$Fragment$Section$$IconSection$metadata<TRes>
+    implements CopyWith$Fragment$Section$$IconSection$metadata<TRes> {
+  _CopyWithStubImpl$Fragment$Section$$IconSection$metadata(this._res);
+
+  TRes _res;
+
+  call({
+    bool? continueWatching,
+    bool? secondaryTitles,
+    String? collectionId,
+    bool? useContext,
+    bool? prependLiveElement,
+    String? $__typename,
+  }) =>
+      _res;
 }
 
 class Fragment$Section$$IconSection$items
@@ -17293,6 +19552,7 @@ class Fragment$Section$$LabelSection
     required this.id,
     this.title,
     required this.$__typename,
+    this.metadata,
     required this.items,
   });
 
@@ -17300,11 +19560,16 @@ class Fragment$Section$$LabelSection
     final l$id = json['id'];
     final l$title = json['title'];
     final l$$__typename = json['__typename'];
+    final l$metadata = json['metadata'];
     final l$items = json['items'];
     return Fragment$Section$$LabelSection(
       id: (l$id as String),
       title: (l$title as String?),
       $__typename: (l$$__typename as String),
+      metadata: l$metadata == null
+          ? null
+          : Fragment$Section$$LabelSection$metadata.fromJson(
+              (l$metadata as Map<String, dynamic>)),
       items: Fragment$Section$$LabelSection$items.fromJson(
           (l$items as Map<String, dynamic>)),
     );
@@ -17316,6 +19581,8 @@ class Fragment$Section$$LabelSection
 
   final String $__typename;
 
+  final Fragment$Section$$LabelSection$metadata? metadata;
+
   final Fragment$Section$$LabelSection$items items;
 
   Map<String, dynamic> toJson() {
@@ -17326,6 +19593,8 @@ class Fragment$Section$$LabelSection
     _resultData['title'] = l$title;
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
+    final l$metadata = metadata;
+    _resultData['metadata'] = l$metadata?.toJson();
     final l$items = items;
     _resultData['items'] = l$items.toJson();
     return _resultData;
@@ -17336,11 +19605,13 @@ class Fragment$Section$$LabelSection
     final l$id = id;
     final l$title = title;
     final l$$__typename = $__typename;
+    final l$metadata = metadata;
     final l$items = items;
     return Object.hashAll([
       l$id,
       l$title,
       l$$__typename,
+      l$metadata,
       l$items,
     ]);
   }
@@ -17367,6 +19638,11 @@ class Fragment$Section$$LabelSection
     final l$$__typename = $__typename;
     final lOther$$__typename = other.$__typename;
     if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    final l$metadata = metadata;
+    final lOther$metadata = other.metadata;
+    if (l$metadata != lOther$metadata) {
       return false;
     }
     final l$items = items;
@@ -17400,8 +19676,10 @@ abstract class CopyWith$Fragment$Section$$LabelSection<TRes> {
     String? id,
     String? title,
     String? $__typename,
+    Fragment$Section$$LabelSection$metadata? metadata,
     Fragment$Section$$LabelSection$items? items,
   });
+  CopyWith$Fragment$Section$$LabelSection$metadata<TRes> get metadata;
   CopyWith$Fragment$Section$$LabelSection$items<TRes> get items;
 }
 
@@ -17422,6 +19700,7 @@ class _CopyWithImpl$Fragment$Section$$LabelSection<TRes>
     Object? id = _undefined,
     Object? title = _undefined,
     Object? $__typename = _undefined,
+    Object? metadata = _undefined,
     Object? items = _undefined,
   }) =>
       _then(Fragment$Section$$LabelSection(
@@ -17430,10 +19709,22 @@ class _CopyWithImpl$Fragment$Section$$LabelSection<TRes>
         $__typename: $__typename == _undefined || $__typename == null
             ? _instance.$__typename
             : ($__typename as String),
+        metadata: metadata == _undefined
+            ? _instance.metadata
+            : (metadata as Fragment$Section$$LabelSection$metadata?),
         items: items == _undefined || items == null
             ? _instance.items
             : (items as Fragment$Section$$LabelSection$items),
       ));
+  CopyWith$Fragment$Section$$LabelSection$metadata<TRes> get metadata {
+    final local$metadata = _instance.metadata;
+    return local$metadata == null
+        ? CopyWith$Fragment$Section$$LabelSection$metadata.stub(
+            _then(_instance))
+        : CopyWith$Fragment$Section$$LabelSection$metadata(
+            local$metadata, (e) => call(metadata: e));
+  }
+
   CopyWith$Fragment$Section$$LabelSection$items<TRes> get items {
     final local$items = _instance.items;
     return CopyWith$Fragment$Section$$LabelSection$items(
@@ -17451,11 +19742,225 @@ class _CopyWithStubImpl$Fragment$Section$$LabelSection<TRes>
     String? id,
     String? title,
     String? $__typename,
+    Fragment$Section$$LabelSection$metadata? metadata,
     Fragment$Section$$LabelSection$items? items,
   }) =>
       _res;
+  CopyWith$Fragment$Section$$LabelSection$metadata<TRes> get metadata =>
+      CopyWith$Fragment$Section$$LabelSection$metadata.stub(_res);
   CopyWith$Fragment$Section$$LabelSection$items<TRes> get items =>
       CopyWith$Fragment$Section$$LabelSection$items.stub(_res);
+}
+
+class Fragment$Section$$LabelSection$metadata
+    implements Fragment$ItemSection$metadata {
+  Fragment$Section$$LabelSection$metadata({
+    required this.continueWatching,
+    required this.secondaryTitles,
+    required this.collectionId,
+    required this.useContext,
+    required this.prependLiveElement,
+    required this.$__typename,
+  });
+
+  factory Fragment$Section$$LabelSection$metadata.fromJson(
+      Map<String, dynamic> json) {
+    final l$continueWatching = json['continueWatching'];
+    final l$secondaryTitles = json['secondaryTitles'];
+    final l$collectionId = json['collectionId'];
+    final l$useContext = json['useContext'];
+    final l$prependLiveElement = json['prependLiveElement'];
+    final l$$__typename = json['__typename'];
+    return Fragment$Section$$LabelSection$metadata(
+      continueWatching: (l$continueWatching as bool),
+      secondaryTitles: (l$secondaryTitles as bool),
+      collectionId: (l$collectionId as String),
+      useContext: (l$useContext as bool),
+      prependLiveElement: (l$prependLiveElement as bool),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final bool continueWatching;
+
+  final bool secondaryTitles;
+
+  final String collectionId;
+
+  final bool useContext;
+
+  final bool prependLiveElement;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$continueWatching = continueWatching;
+    _resultData['continueWatching'] = l$continueWatching;
+    final l$secondaryTitles = secondaryTitles;
+    _resultData['secondaryTitles'] = l$secondaryTitles;
+    final l$collectionId = collectionId;
+    _resultData['collectionId'] = l$collectionId;
+    final l$useContext = useContext;
+    _resultData['useContext'] = l$useContext;
+    final l$prependLiveElement = prependLiveElement;
+    _resultData['prependLiveElement'] = l$prependLiveElement;
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$continueWatching = continueWatching;
+    final l$secondaryTitles = secondaryTitles;
+    final l$collectionId = collectionId;
+    final l$useContext = useContext;
+    final l$prependLiveElement = prependLiveElement;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$continueWatching,
+      l$secondaryTitles,
+      l$collectionId,
+      l$useContext,
+      l$prependLiveElement,
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (!(other is Fragment$Section$$LabelSection$metadata) ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$continueWatching = continueWatching;
+    final lOther$continueWatching = other.continueWatching;
+    if (l$continueWatching != lOther$continueWatching) {
+      return false;
+    }
+    final l$secondaryTitles = secondaryTitles;
+    final lOther$secondaryTitles = other.secondaryTitles;
+    if (l$secondaryTitles != lOther$secondaryTitles) {
+      return false;
+    }
+    final l$collectionId = collectionId;
+    final lOther$collectionId = other.collectionId;
+    if (l$collectionId != lOther$collectionId) {
+      return false;
+    }
+    final l$useContext = useContext;
+    final lOther$useContext = other.useContext;
+    if (l$useContext != lOther$useContext) {
+      return false;
+    }
+    final l$prependLiveElement = prependLiveElement;
+    final lOther$prependLiveElement = other.prependLiveElement;
+    if (l$prependLiveElement != lOther$prependLiveElement) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Fragment$Section$$LabelSection$metadata
+    on Fragment$Section$$LabelSection$metadata {
+  CopyWith$Fragment$Section$$LabelSection$metadata<
+          Fragment$Section$$LabelSection$metadata>
+      get copyWith => CopyWith$Fragment$Section$$LabelSection$metadata(
+            this,
+            (i) => i,
+          );
+}
+
+abstract class CopyWith$Fragment$Section$$LabelSection$metadata<TRes> {
+  factory CopyWith$Fragment$Section$$LabelSection$metadata(
+    Fragment$Section$$LabelSection$metadata instance,
+    TRes Function(Fragment$Section$$LabelSection$metadata) then,
+  ) = _CopyWithImpl$Fragment$Section$$LabelSection$metadata;
+
+  factory CopyWith$Fragment$Section$$LabelSection$metadata.stub(TRes res) =
+      _CopyWithStubImpl$Fragment$Section$$LabelSection$metadata;
+
+  TRes call({
+    bool? continueWatching,
+    bool? secondaryTitles,
+    String? collectionId,
+    bool? useContext,
+    bool? prependLiveElement,
+    String? $__typename,
+  });
+}
+
+class _CopyWithImpl$Fragment$Section$$LabelSection$metadata<TRes>
+    implements CopyWith$Fragment$Section$$LabelSection$metadata<TRes> {
+  _CopyWithImpl$Fragment$Section$$LabelSection$metadata(
+    this._instance,
+    this._then,
+  );
+
+  final Fragment$Section$$LabelSection$metadata _instance;
+
+  final TRes Function(Fragment$Section$$LabelSection$metadata) _then;
+
+  static const _undefined = {};
+
+  TRes call({
+    Object? continueWatching = _undefined,
+    Object? secondaryTitles = _undefined,
+    Object? collectionId = _undefined,
+    Object? useContext = _undefined,
+    Object? prependLiveElement = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(Fragment$Section$$LabelSection$metadata(
+        continueWatching:
+            continueWatching == _undefined || continueWatching == null
+                ? _instance.continueWatching
+                : (continueWatching as bool),
+        secondaryTitles:
+            secondaryTitles == _undefined || secondaryTitles == null
+                ? _instance.secondaryTitles
+                : (secondaryTitles as bool),
+        collectionId: collectionId == _undefined || collectionId == null
+            ? _instance.collectionId
+            : (collectionId as String),
+        useContext: useContext == _undefined || useContext == null
+            ? _instance.useContext
+            : (useContext as bool),
+        prependLiveElement:
+            prependLiveElement == _undefined || prependLiveElement == null
+                ? _instance.prependLiveElement
+                : (prependLiveElement as bool),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+}
+
+class _CopyWithStubImpl$Fragment$Section$$LabelSection$metadata<TRes>
+    implements CopyWith$Fragment$Section$$LabelSection$metadata<TRes> {
+  _CopyWithStubImpl$Fragment$Section$$LabelSection$metadata(this._res);
+
+  TRes _res;
+
+  call({
+    bool? continueWatching,
+    bool? secondaryTitles,
+    String? collectionId,
+    bool? useContext,
+    bool? prependLiveElement,
+    String? $__typename,
+  }) =>
+      _res;
 }
 
 class Fragment$Section$$LabelSection$items
@@ -18606,7 +21111,12 @@ const documentNodeQueryPage = DocumentNode(definitions: [
           FieldNode(
             name: NameNode(value: 'sections'),
             alias: null,
-            arguments: [],
+            arguments: [
+              ArgumentNode(
+                name: NameNode(value: 'first'),
+                value: IntValueNode(value: '30'),
+              )
+            ],
             directives: [],
             selectionSet: SelectionSetNode(selections: [
               FieldNode(

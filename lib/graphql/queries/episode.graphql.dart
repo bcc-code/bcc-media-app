@@ -1411,7 +1411,12 @@ const documentNodeQueryFetchEpisode = DocumentNode(definitions: [
               FieldNode(
                 name: NameNode(value: 'episodes'),
                 alias: null,
-                arguments: [],
+                arguments: [
+                  ArgumentNode(
+                    name: NameNode(value: 'first'),
+                    value: IntValueNode(value: '50'),
+                  )
+                ],
                 directives: [],
                 selectionSet: SelectionSetNode(selections: [
                   FieldNode(

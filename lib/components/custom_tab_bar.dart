@@ -2,9 +2,11 @@ import 'dart:io';
 
 import 'package:auto_route/auto_route.dart';
 import 'package:brunstadtv_app/helpers/utils.dart';
+import 'package:brunstadtv_app/providers/auth_state.dart';
 import 'package:brunstadtv_app/screens/search/search.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../helpers/btv_colors.dart';
 import '../helpers/btv_typography.dart';
@@ -12,7 +14,7 @@ import '../l10n/app_localizations.dart';
 
 const double _iconSize = 28;
 
-class CustomTabBar extends StatefulWidget {
+class CustomTabBar extends ConsumerStatefulWidget {
   const CustomTabBar({
     Key? key,
     required this.tabsRouter,
@@ -21,10 +23,10 @@ class CustomTabBar extends StatefulWidget {
   final TabsRouter tabsRouter;
 
   @override
-  State<CustomTabBar> createState() => _CustomTabBarState();
+  ConsumerState<CustomTabBar> createState() => _CustomTabBarState();
 }
 
-class _CustomTabBarState extends State<CustomTabBar> {
+class _CustomTabBarState extends ConsumerState<CustomTabBar> {
   late final Map<String, Image> icons;
   final useMaterial = Platform.isAndroid;
 
@@ -63,9 +65,14 @@ class _CustomTabBarState extends State<CustomTabBar> {
     var items = [
       BottomNavigationBarItem(label: S.of(context).homeTab, icon: _icon(icons['home_default']), activeIcon: _icon(icons['home_selected'])),
       BottomNavigationBarItem(label: S.of(context).search, icon: _icon(icons['search_default']), activeIcon: _icon(icons['search_selected'])),
-      BottomNavigationBarItem(label: S.of(context).liveTab, icon: _icon(icons['live_default']), activeIcon: _icon(icons['live_selected'])),
-      BottomNavigationBarItem(label: S.of(context).calendar, icon: _icon(icons['calendar_default']), activeIcon: _icon(icons['calendar_selected'])),
     ];
+
+    if (!ref.watch(authStateProvider).guestMode) {
+      items.addAll([
+        BottomNavigationBarItem(label: S.of(context).liveTab, icon: _icon(icons['live_default']), activeIcon: _icon(icons['live_selected'])),
+        BottomNavigationBarItem(label: S.of(context).calendar, icon: _icon(icons['calendar_default']), activeIcon: _icon(icons['calendar_selected'])),
+      ]);
+    }
 
     if (useMaterial) {
       return Container(

@@ -51,7 +51,7 @@ class PlayerListener(private val playerController: PlayerController, val plugin:
     override fun onPositionDiscontinuity(oldPosition: Player.PositionInfo, newPosition: Player.PositionInfo, reason: Int) {
         val event = PlaybackPlatformApi.PositionDiscontinuityEvent.Builder()
                 .setPlayerId(playerController.id);
-        plugin.playbackPigeon?.onPositionDiscontinuity(event.setPlaybackPositionMs(newPosition.positionMs).build()) {};
+        plugin.playbackPigeon?.onPositionDiscontinuity(event.setPlaybackPositionMs(newPosition.positionMs.toDouble()).build()) {};
     }
 
 }

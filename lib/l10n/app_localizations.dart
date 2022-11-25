@@ -1274,7 +1274,7 @@ abstract class S {
   /// Option on action sheet for sharing from time
   ///
   /// In en, this message translates to:
-  /// **'Share from time {time}'**
+  /// **'Share from {time}'**
   String shareTime(String time);
 
   /// Error text when content couldn't be loaded.

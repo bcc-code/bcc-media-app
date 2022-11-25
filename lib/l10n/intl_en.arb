@@ -1,5 +1,4 @@
 {
-  
   "loadingContent": "Loading content",
   "@loadingContent": {
     "description": "Text displayed when page content is loading."
@@ -831,7 +830,7 @@
   "@shareStart": {
     "description": "Option on action sheet for sharing from start"
   },
-  "shareTime": "Share from time {time}",
+  "shareTime": "Share from {time}",
   "@shareTime": {
     "description": "Option on action sheet for sharing from time",
     "placeholders": {

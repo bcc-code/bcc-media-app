@@ -20,7 +20,6 @@ mixin _$AuthState {
   String? get auth0AccessToken => throw _privateConstructorUsedError;
   DateTime? get expiresAt => throw _privateConstructorUsedError;
   String? get idToken => throw _privateConstructorUsedError;
-  bool get guestMode => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $AuthStateCopyWith<AuthState> get copyWith =>
@@ -36,8 +35,7 @@ abstract class $AuthStateCopyWith<$Res> {
       {UserProfile? user,
       String? auth0AccessToken,
       DateTime? expiresAt,
-      String? idToken,
-      bool guestMode});
+      String? idToken});
 }
 
 /// @nodoc
@@ -57,7 +55,6 @@ class _$AuthStateCopyWithImpl<$Res, $Val extends AuthState>
     Object? auth0AccessToken = freezed,
     Object? expiresAt = freezed,
     Object? idToken = freezed,
-    Object? guestMode = null,
   }) {
     return _then(_value.copyWith(
       user: freezed == user
@@ -76,10 +73,6 @@ class _$AuthStateCopyWithImpl<$Res, $Val extends AuthState>
           ? _value.idToken
           : idToken // ignore: cast_nullable_to_non_nullable
               as String?,
-      guestMode: null == guestMode
-          ? _value.guestMode
-          : guestMode // ignore: cast_nullable_to_non_nullable
-              as bool,
     ) as $Val);
   }
 }
@@ -94,8 +87,7 @@ abstract class _$$_AuthCopyWith<$Res> implements $AuthStateCopyWith<$Res> {
       {UserProfile? user,
       String? auth0AccessToken,
       DateTime? expiresAt,
-      String? idToken,
-      bool guestMode});
+      String? idToken});
 }
 
 /// @nodoc
@@ -111,7 +103,6 @@ class __$$_AuthCopyWithImpl<$Res> extends _$AuthStateCopyWithImpl<$Res, _$_Auth>
     Object? auth0AccessToken = freezed,
     Object? expiresAt = freezed,
     Object? idToken = freezed,
-    Object? guestMode = null,
   }) {
     return _then(_$_Auth(
       user: freezed == user
@@ -130,23 +121,16 @@ class __$$_AuthCopyWithImpl<$Res> extends _$AuthStateCopyWithImpl<$Res, _$_Auth>
           ? _value.idToken
           : idToken // ignore: cast_nullable_to_non_nullable
               as String?,
-      guestMode: null == guestMode
-          ? _value.guestMode
-          : guestMode // ignore: cast_nullable_to_non_nullable
-              as bool,
     ));
   }
 }
 
 /// @nodoc
 
-class _$_Auth implements _Auth {
+class _$_Auth extends _Auth {
   const _$_Auth(
-      {this.user,
-      this.auth0AccessToken,
-      this.expiresAt,
-      this.idToken,
-      this.guestMode = false});
+      {this.user, this.auth0AccessToken, this.expiresAt, this.idToken})
+      : super._();
 
   @override
   final UserProfile? user;
@@ -156,13 +140,10 @@ class _$_Auth implements _Auth {
   final DateTime? expiresAt;
   @override
   final String? idToken;
-  @override
-  @JsonKey()
-  final bool guestMode;
 
   @override
   String toString() {
-    return 'AuthState(user: $user, auth0AccessToken: $auth0AccessToken, expiresAt: $expiresAt, idToken: $idToken, guestMode: $guestMode)';
+    return 'AuthState(user: $user, auth0AccessToken: $auth0AccessToken, expiresAt: $expiresAt, idToken: $idToken)';
   }
 
   @override
@@ -175,14 +156,12 @@ class _$_Auth implements _Auth {
                 other.auth0AccessToken == auth0AccessToken) &&
             (identical(other.expiresAt, expiresAt) ||
                 other.expiresAt == expiresAt) &&
-            (identical(other.idToken, idToken) || other.idToken == idToken) &&
-            (identical(other.guestMode, guestMode) ||
-                other.guestMode == guestMode));
+            (identical(other.idToken, idToken) || other.idToken == idToken));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType, user, auth0AccessToken, expiresAt, idToken, guestMode);
+  int get hashCode =>
+      Object.hash(runtimeType, user, auth0AccessToken, expiresAt, idToken);
 
   @JsonKey(ignore: true)
   @override
@@ -191,13 +170,13 @@ class _$_Auth implements _Auth {
       __$$_AuthCopyWithImpl<_$_Auth>(this, _$identity);
 }
 
-abstract class _Auth implements AuthState {
+abstract class _Auth extends AuthState {
   const factory _Auth(
       {final UserProfile? user,
       final String? auth0AccessToken,
       final DateTime? expiresAt,
-      final String? idToken,
-      final bool guestMode}) = _$_Auth;
+      final String? idToken}) = _$_Auth;
+  const _Auth._() : super._();
 
   @override
   UserProfile? get user;
@@ -207,8 +186,6 @@ abstract class _Auth implements AuthState {
   DateTime? get expiresAt;
   @override
   String? get idToken;
-  @override
-  bool get guestMode;
   @override
   @JsonKey(ignore: true)
   _$$_AuthCopyWith<_$_Auth> get copyWith => throw _privateConstructorUsedError;

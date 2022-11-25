@@ -113,7 +113,7 @@ class MediaItem {
   String? mimeType;
   MediaMetadata? metadata;
   bool? isLive;
-  int? playbackStartPositionMs;
+  double? playbackStartPositionMs;
   String? lastKnownAudioLanguage;
   String? lastKnownSubtitleLanguage;
 
@@ -138,7 +138,7 @@ class MediaItem {
           ? MediaMetadata.decode(pigeonMap['metadata']!)
           : null,
       isLive: pigeonMap['isLive'] as bool?,
-      playbackStartPositionMs: pigeonMap['playbackStartPositionMs'] as int?,
+      playbackStartPositionMs: pigeonMap['playbackStartPositionMs'] as double?,
       lastKnownAudioLanguage: pigeonMap['lastKnownAudioLanguage'] as String?,
       lastKnownSubtitleLanguage: pigeonMap['lastKnownSubtitleLanguage'] as String?,
     );
@@ -246,7 +246,7 @@ class PositionDiscontinuityEvent {
   });
 
   String playerId;
-  int? playbackPositionMs;
+  double? playbackPositionMs;
 
   Object encode() {
     final Map<Object?, Object?> pigeonMap = <Object?, Object?>{};
@@ -259,7 +259,7 @@ class PositionDiscontinuityEvent {
     final Map<Object?, Object?> pigeonMap = message as Map<Object?, Object?>;
     return PositionDiscontinuityEvent(
       playerId: pigeonMap['playerId']! as String,
-      playbackPositionMs: pigeonMap['playbackPositionMs'] as int?,
+      playbackPositionMs: pigeonMap['playbackPositionMs'] as double?,
     );
   }
 }

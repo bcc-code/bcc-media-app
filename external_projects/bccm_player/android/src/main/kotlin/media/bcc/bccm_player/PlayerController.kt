@@ -31,11 +31,11 @@ abstract class PlayerController() : Player.Listener {
     fun replaceCurrentMediaItem(mediaItem: PlaybackPlatformApi.MediaItem, autoplay: Boolean?) {
         this.isLive = mediaItem.isLive ?: false;
         val androidMi = mapMediaItem(mediaItem);
-        var playbackStartPositionMs: Long? = null
+        var playbackStartPositionMs: Double? = null
         if (!this.isLive && mediaItem.playbackStartPositionMs != null) {
             playbackStartPositionMs = mediaItem.playbackStartPositionMs
         }
-        player.setMediaItem(androidMi, playbackStartPositionMs ?: 0)
+        player.setMediaItem(androidMi, playbackStartPositionMs?.toLong() ?: 0)
         player.playWhenReady = autoplay == true
         player.prepare()
     }

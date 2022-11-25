@@ -23,6 +23,12 @@ extension AsExtension on Object? {
   }
 }
 
+extension FiniteOrNull on double {
+  double? finiteOrNull() {
+    return isFinite ? this : null;
+  }
+}
+
 String formatAppVersion(PackageInfo packageInfo) {
   return '${packageInfo.version}+${packageInfo.buildNumber}';
 }
