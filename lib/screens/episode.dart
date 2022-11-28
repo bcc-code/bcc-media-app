@@ -239,20 +239,15 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen> with AutoRouteAwa
           var episodeUrl = 'https://brunstad.tv/episode/${widget.episodeId}';
           if (id == 'fromStart') {
             SharePlugin.Share.share(episodeUrl);
-            ref.read(analyticsProvider).shared(Share(
-                  pageName: 'episode',
-                  elementType: 'episode',
-                  elementId: widget.episodeId,
-                ));
           } else {
             SharePlugin.Share.share('$episodeUrl?t=$currentPosSeconds');
-            ref.read(analyticsProvider).shared(Share(
-                  pageName: 'episode',
-                  elementType: 'episode',
-                  elementId: widget.episodeId,
-                  position: currentPosSeconds,
-                ));
           }
+          ref.read(analyticsProvider).shared(Share(
+                pageName: 'episode',
+                elementType: 'episode',
+                elementId: widget.episodeId,
+                position: id == 'fromStart' ? null : currentPosSeconds,
+              ));
         },
       ),
     );
