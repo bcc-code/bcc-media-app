@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../components/option_list.dart';
 import '../../helpers/languages.dart';
 import '../../l10n/app_localizations.dart';
+import '../../models/analytics/language_changed.dart';
 import '../../providers/analytics.dart';
 import '../../providers/settings.dart';
 
@@ -17,7 +18,11 @@ class _AppAudioLanguageState extends ConsumerState<AppAudioLanguage> {
   late String selected;
 
   void _onSelectionChanged(String id) {
-    ref.read(analyticsProvider).languageChanged(selected, id, 'audio');
+    ref.read(analyticsProvider).languageChanged(LanguageChangedEvent(
+          languageFrom: selected,
+          languageTo: id,
+          languageChangeType: 'audio',
+        ));
     setState(() {
       selected = id;
     });

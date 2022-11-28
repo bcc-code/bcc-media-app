@@ -25,7 +25,7 @@ import 'package:brunstadtv_app/providers/video_state.dart';
 import 'package:bccm_player/cast_button.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:brunstadtv_app/helpers/transparent_image.dart';
-import 'package:share_plus/share_plus.dart' as SharePlugin;
+import 'package:share_plus/share_plus.dart';
 
 import '../api/brunstadtv.dart';
 import '../components/bottom_sheet_select.dart';
@@ -39,7 +39,7 @@ import '../helpers/btv_colors.dart';
 import '../helpers/btv_typography.dart';
 import '../helpers/utils.dart';
 import '../l10n/app_localizations.dart';
-import '../../models/analytics/share.dart';
+import '../models/analytics/content_shared.dart';
 
 class EpisodePageArguments {
   int episodeId;
@@ -238,12 +238,12 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen> with AutoRouteAwa
         onSelectionChanged: (id) {
           var episodeUrl = 'https://brunstad.tv/episode/${widget.episodeId}';
           if (id == 'fromStart') {
-            SharePlugin.Share.share(episodeUrl);
+            Share.share(episodeUrl);
           } else {
-            SharePlugin.Share.share('$episodeUrl?t=$currentPosSeconds');
+            Share.share('$episodeUrl?t=$currentPosSeconds');
           }
-          ref.read(analyticsProvider).shared(Share(
-                pageName: 'episode',
+          ref.read(analyticsProvider).contentShared(ContentSharedEvent(
+                pageCode: 'episode',
                 elementType: 'episode',
                 elementId: widget.episodeId,
                 position: id == 'fromStart' ? null : currentPosSeconds,

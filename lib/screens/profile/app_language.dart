@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../components/option_list.dart';
 import '../../helpers/languages.dart';
 import '../../l10n/app_localizations.dart';
+import '../../models/analytics/language_changed.dart';
 import '../../providers/analytics.dart';
 
 class AppLanguageScreen extends ConsumerStatefulWidget {
@@ -17,7 +18,11 @@ class _AppLanguageScreenState extends ConsumerState<AppLanguageScreen> {
   late String selected;
 
   Future<void> _onSelectionChanged(String id) async {
-    ref.read(analyticsProvider).languageChanged(selected, id, 'app');
+    ref.read(analyticsProvider).languageChanged(LanguageChangedEvent(
+          languageFrom: selected,
+          languageTo: id,
+          languageChangeType: 'app',
+        ));
     setState(() {
       selected = id;
       // obtain shared preferences
