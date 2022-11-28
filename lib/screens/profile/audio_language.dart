@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../components/option_list.dart';
-import '../../helpers/btv_colors.dart';
 import '../../helpers/languages.dart';
 import '../../l10n/app_localizations.dart';
+import '../../providers/analytics.dart';
 import '../../providers/settings.dart';
 
 class AppAudioLanguage extends ConsumerStatefulWidget {
@@ -17,6 +17,7 @@ class _AppAudioLanguageState extends ConsumerState<AppAudioLanguage> {
   late String selected;
 
   void _onSelectionChanged(String id) {
+    ref.read(analyticsProvider).languageChanged(selected, id, 'audio');
     setState(() {
       selected = id;
     });

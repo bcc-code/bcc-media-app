@@ -4,6 +4,7 @@ import '../../components/option_list.dart';
 import '../../helpers/btv_colors.dart';
 import '../../helpers/languages.dart';
 import '../../l10n/app_localizations.dart';
+import '../../providers/analytics.dart';
 import '../../providers/settings.dart';
 
 class AppSubtitleLanguage extends ConsumerStatefulWidget {
@@ -22,6 +23,7 @@ class _AppSubtitleLanguageState extends ConsumerState<AppSubtitleLanguage> {
   }
 
   void _onSelectionChanged(String id) {
+    ref.read(analyticsProvider).languageChanged(selected, id, 'subtitle');
     setState(() {
       selected = id;
     });

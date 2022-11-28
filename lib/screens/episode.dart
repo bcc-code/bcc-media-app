@@ -13,6 +13,7 @@ import 'package:brunstadtv_app/graphql/schema/items.graphql.dart';
 import 'package:brunstadtv_app/graphql/schema/pages.graphql.dart';
 import 'package:brunstadtv_app/helpers/navigation_override.dart';
 import 'package:brunstadtv_app/helpers/svg_icons.dart';
+import 'package:brunstadtv_app/providers/analytics.dart';
 import 'package:brunstadtv_app/services/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:bccm_player/bccm_player.dart';
@@ -24,7 +25,7 @@ import 'package:brunstadtv_app/providers/video_state.dart';
 import 'package:bccm_player/cast_button.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:brunstadtv_app/helpers/transparent_image.dart';
-import 'package:share_plus/share_plus.dart';
+import 'package:share_plus/share_plus.dart' as SharePlugin;
 
 import '../api/brunstadtv.dart';
 import '../components/bottom_sheet_select.dart';
@@ -38,6 +39,7 @@ import '../helpers/btv_colors.dart';
 import '../helpers/btv_typography.dart';
 import '../helpers/utils.dart';
 import '../l10n/app_localizations.dart';
+import '../../models/analytics/share.dart';
 
 class EpisodePageArguments {
   int episodeId;
@@ -236,9 +238,20 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen> with AutoRouteAwa
         onSelectionChanged: (id) {
           var episodeUrl = 'https://brunstad.tv/episode/${widget.episodeId}';
           if (id == 'fromStart') {
-            Share.share(episodeUrl);
+            SharePlugin.Share.share(episodeUrl);
+            ref.read(analyticsProvider).shared(Share(
+                  pageName: 'episode',
+                  elementType: 'episode',
+                  elementId: widget.episodeId,
+                ));
           } else {
-            Share.share('$episodeUrl?t=$currentPosSeconds');
+            SharePlugin.Share.share('$episodeUrl?t=$currentPosSeconds');
+            ref.read(analyticsProvider).shared(Share(
+                  pageName: 'episode',
+                  elementType: 'episode',
+                  elementId: widget.episodeId,
+                  position: currentPosSeconds,
+                ));
           }
         },
       ),
