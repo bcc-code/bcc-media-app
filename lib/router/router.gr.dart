@@ -18,11 +18,11 @@ import 'package:flutter/material.dart' as _i20;
 import '../helpers/custom_transitions.dart' as _i22;
 import '../screens/auto_login.dart' as _i11;
 import '../screens/calendar/calendar.dart' as _i15;
-import '../screens/episode.dart' as _i16;
+import '../screens/episode.dart' as _i17;
 import '../screens/home.dart' as _i10;
 import '../screens/live.dart' as _i14;
 import '../screens/login.dart' as _i1;
-import '../screens/page.dart' as _i17;
+import '../screens/page.dart' as _i18;
 import '../screens/profile/about.dart' as _i8;
 import '../screens/profile/app_language.dart' as _i3;
 import '../screens/profile/audio_language.dart' as _i4;
@@ -31,7 +31,7 @@ import '../screens/profile/faq.dart' as _i9;
 import '../screens/profile/profile.dart' as _i2;
 import '../screens/profile/subtitle_language.dart' as _i5;
 import '../screens/profile/video_quality.dart' as _i6;
-import '../screens/search/search.dart' as _i18;
+import '../screens/search/search.dart' as _i16;
 import '../screens/tabs_root.dart' as _i12;
 import 'special_routes_guard.dart' as _i21;
 
@@ -178,14 +178,6 @@ class AppRouter extends _i19.RootStackRouter {
         child: const _i13.EmptyRouterPage(),
       );
     },
-    HomeScreenWrapperRoute.name: (routeData) {
-      return _i19.CustomPage<void>(
-        routeData: routeData,
-        child: const _i13.EmptyRouterPage(),
-        opaque: true,
-        barrierDismissible: false,
-      );
-    },
     LiveScreenRoute.name: (routeData) {
       return _i19.MaterialPageX<void>(
         routeData: routeData,
@@ -204,12 +196,25 @@ class AppRouter extends _i19.RootStackRouter {
         child: const _i15.CalendarPage(),
       );
     },
-    Home.name: (routeData) {
+    HomeScreenWrapperRoute.name: (routeData) {
       return _i19.CustomPage<void>(
         routeData: routeData,
-        child: const _i10.HomeScreen(),
+        child: const _i13.EmptyRouterPage(),
         opaque: true,
         barrierDismissible: false,
+      );
+    },
+    SearchScreenRoute.name: (routeData) {
+      final queryParams = routeData.queryParams;
+      final args = routeData.argsAs<SearchScreenRouteArgs>(
+          orElse: () =>
+              SearchScreenRouteArgs(query: queryParams.optString('q')));
+      return _i19.MaterialPageX<void>(
+        routeData: routeData,
+        child: _i16.SearchScreen(
+          key: args.key,
+          query: args.query,
+        ),
       );
     },
     EpisodeScreenRoute.name: (routeData) {
@@ -226,7 +231,7 @@ class AppRouter extends _i19.RootStackRouter {
               ));
       return _i19.CustomPage<void>(
         routeData: routeData,
-        child: _i16.EpisodeScreen(
+        child: _i17.EpisodeScreen(
           key: args.key,
           episodeId: args.episodeId,
           autoplay: args.autoplay,
@@ -246,7 +251,7 @@ class AppRouter extends _i19.RootStackRouter {
               PageScreenRouteArgs(pageCode: pathParams.getString('pageCode')));
       return _i19.CustomPage<void>(
         routeData: routeData,
-        child: _i17.PageScreen(
+        child: _i18.PageScreen(
           key: args.key,
           pageCode: args.pageCode,
         ),
@@ -257,17 +262,12 @@ class AppRouter extends _i19.RootStackRouter {
         barrierDismissible: false,
       );
     },
-    SearchScreenRoute.name: (routeData) {
-      final queryParams = routeData.queryParams;
-      final args = routeData.argsAs<SearchScreenRouteArgs>(
-          orElse: () =>
-              SearchScreenRouteArgs(query: queryParams.optString('q')));
-      return _i19.MaterialPageX<void>(
+    Home.name: (routeData) {
+      return _i19.CustomPage<void>(
         routeData: routeData,
-        child: _i18.SearchScreen(
-          key: args.key,
-          query: args.query,
-        ),
+        child: const _i10.HomeScreen(),
+        opaque: true,
+        barrierDismissible: false,
       );
     },
     CustomActionRoute.name: (routeData) {
@@ -346,31 +346,6 @@ class AppRouter extends _i19.RootStackRouter {
           path: '/',
           children: [
             _i19.RouteConfig(
-              HomeScreenWrapperRoute.name,
-              path: '',
-              parent: TabsRootScreenRoute.name,
-              children: [
-                _i19.RouteConfig(
-                  Home.name,
-                  path: '',
-                  parent: HomeScreenWrapperRoute.name,
-                  meta: <String, dynamic>{'analytics_name': 'home'},
-                ),
-                _i19.RouteConfig(
-                  EpisodeScreenRoute.name,
-                  path: 'episode/:episodeId',
-                  parent: HomeScreenWrapperRoute.name,
-                  meta: <String, dynamic>{'analytics_name': 'episode'},
-                ),
-                _i19.RouteConfig(
-                  PageScreenRoute.name,
-                  path: ':pageCode',
-                  parent: HomeScreenWrapperRoute.name,
-                  usesPathAsKey: true,
-                ),
-              ],
-            ),
-            _i19.RouteConfig(
               LiveScreenRoute.name,
               path: 'live',
               parent: TabsRootScreenRoute.name,
@@ -408,6 +383,31 @@ class AppRouter extends _i19.RootStackRouter {
               CalendarPageRoute.name,
               path: 'calendar',
               parent: TabsRootScreenRoute.name,
+            ),
+            _i19.RouteConfig(
+              HomeScreenWrapperRoute.name,
+              path: '',
+              parent: TabsRootScreenRoute.name,
+              children: [
+                _i19.RouteConfig(
+                  Home.name,
+                  path: '',
+                  parent: HomeScreenWrapperRoute.name,
+                  meta: <String, dynamic>{'analytics_name': 'home'},
+                ),
+                _i19.RouteConfig(
+                  EpisodeScreenRoute.name,
+                  path: 'episode/:episodeId',
+                  parent: HomeScreenWrapperRoute.name,
+                  meta: <String, dynamic>{'analytics_name': 'episode'},
+                ),
+                _i19.RouteConfig(
+                  PageScreenRoute.name,
+                  path: ':pageCode',
+                  parent: HomeScreenWrapperRoute.name,
+                  usesPathAsKey: true,
+                ),
+              ],
             ),
           ],
         ),
@@ -622,19 +622,6 @@ class EmptyRouterPageRoute extends _i19.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i13.EmptyRouterPage]
-class HomeScreenWrapperRoute extends _i19.PageRouteInfo<void> {
-  const HomeScreenWrapperRoute({List<_i19.PageRouteInfo>? children})
-      : super(
-          HomeScreenWrapperRoute.name,
-          path: '',
-          initialChildren: children,
-        );
-
-  static const String name = 'HomeScreenWrapperRoute';
-}
-
-/// generated route for
 /// [_i14.LiveScreen]
 class LiveScreenRoute extends _i19.PageRouteInfo<void> {
   const LiveScreenRoute()
@@ -672,19 +659,55 @@ class CalendarPageRoute extends _i19.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i10.HomeScreen]
-class Home extends _i19.PageRouteInfo<void> {
-  const Home()
+/// [_i13.EmptyRouterPage]
+class HomeScreenWrapperRoute extends _i19.PageRouteInfo<void> {
+  const HomeScreenWrapperRoute({List<_i19.PageRouteInfo>? children})
       : super(
-          Home.name,
+          HomeScreenWrapperRoute.name,
           path: '',
+          initialChildren: children,
         );
 
-  static const String name = 'Home';
+  static const String name = 'HomeScreenWrapperRoute';
 }
 
 /// generated route for
-/// [_i16.EpisodeScreen]
+/// [_i16.SearchScreen]
+class SearchScreenRoute extends _i19.PageRouteInfo<SearchScreenRouteArgs> {
+  SearchScreenRoute({
+    _i20.Key? key,
+    String? query,
+  }) : super(
+          SearchScreenRoute.name,
+          path: '',
+          args: SearchScreenRouteArgs(
+            key: key,
+            query: query,
+          ),
+          rawQueryParams: {'q': query},
+        );
+
+  static const String name = 'SearchScreenRoute';
+}
+
+class SearchScreenRouteArgs {
+  const SearchScreenRouteArgs({
+    this.key,
+    this.query,
+  });
+
+  final _i20.Key? key;
+
+  final String? query;
+
+  @override
+  String toString() {
+    return 'SearchScreenRouteArgs{key: $key, query: $query}';
+  }
+}
+
+/// generated route for
+/// [_i17.EpisodeScreen]
 class EpisodeScreenRoute extends _i19.PageRouteInfo<EpisodeScreenRouteArgs> {
   EpisodeScreenRoute({
     _i20.Key? key,
@@ -733,7 +756,7 @@ class EpisodeScreenRouteArgs {
 }
 
 /// generated route for
-/// [_i17.PageScreen]
+/// [_i18.PageScreen]
 class PageScreenRoute extends _i19.PageRouteInfo<PageScreenRouteArgs> {
   PageScreenRoute({
     _i20.Key? key,
@@ -768,38 +791,15 @@ class PageScreenRouteArgs {
 }
 
 /// generated route for
-/// [_i18.SearchScreen]
-class SearchScreenRoute extends _i19.PageRouteInfo<SearchScreenRouteArgs> {
-  SearchScreenRoute({
-    _i20.Key? key,
-    String? query,
-  }) : super(
-          SearchScreenRoute.name,
+/// [_i10.HomeScreen]
+class Home extends _i19.PageRouteInfo<void> {
+  const Home()
+      : super(
+          Home.name,
           path: '',
-          args: SearchScreenRouteArgs(
-            key: key,
-            query: query,
-          ),
-          rawQueryParams: {'q': query},
         );
 
-  static const String name = 'SearchScreenRoute';
-}
-
-class SearchScreenRouteArgs {
-  const SearchScreenRouteArgs({
-    this.key,
-    this.query,
-  });
-
-  final _i20.Key? key;
-
-  final String? query;
-
-  @override
-  String toString() {
-    return 'SearchScreenRouteArgs{key: $key, query: $query}';
-  }
+  static const String name = 'Home';
 }
 
 /// generated route for

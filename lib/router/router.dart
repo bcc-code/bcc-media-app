@@ -140,17 +140,6 @@ const _specialRoutes = AutoRoute(
       path: '/',
       guards: [],
       children: [
-        CustomRoute<void>(name: 'HomeScreenWrapperRoute', page: EmptyRouterPage, path: '', children: [
-          CustomRoute<void>(
-            page: HomeScreen,
-            path: '',
-            name: 'home',
-            maintainState: true,
-            meta: {RouteMetaConstants.analyticsName: 'home'},
-          ),
-          _episodeScreenRoute,
-          _pageScreenRoute,
-        ]),
         MaterialRoute<void>(
             page: LiveScreen,
             path: 'live',
@@ -164,6 +153,17 @@ const _specialRoutes = AutoRoute(
           meta: {RouteMetaConstants.analyticsName: 'search'},
         ),
         MaterialRoute<void>(name: 'CalendarPageRoute', page: CalendarPage, path: 'calendar'),
+        CustomRoute<void>(name: 'HomeScreenWrapperRoute', page: EmptyRouterPage, path: '', children: [
+          CustomRoute<void>(
+            page: HomeScreen,
+            path: '',
+            name: 'home',
+            maintainState: true,
+            meta: {RouteMetaConstants.analyticsName: 'home'},
+          ),
+          _episodeScreenRoute,
+          _pageScreenRoute,
+        ]),
       ],
     ),
     _specialRoutes,
