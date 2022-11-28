@@ -77,7 +77,7 @@ class AuthStateNotifier extends StateNotifier<AuthState> {
       final PackageInfo info = await PackageInfo.fromPlatform();
       final result = await _auth0.webAuthentication(scheme: info.packageName).login(
         audience: Env.auth0Audience,
-        scopes: {'openid', 'profile', 'offline_access', 'email', 'church', 'country'},
+        scopes: {'openid', 'profile', 'offline_access', 'church', 'country'},
       );
       setStateBasedOnCredentials(result);
       final durationUntilExpiry = result.expiresAt.difference(DateTime.now());
