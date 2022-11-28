@@ -64,12 +64,15 @@ class _AppRootState extends ConsumerState<AppRoot> {
             ));
           });
     }
-    if (message.data['command'] == 'deeplink') {
+    if (message.data['action'] == 'deep_link') {
       //context.router.navigate();
-      if (message.data.containsKey('path') && message.data['path'] is String) {
-        String path = message.data['path'];
+      if (message.data.containsKey('deep_link') && message.data['deep_link'] is String) {
+        String path = message.data['deep_link'];
         navigatorContext?.router.navigateNamed(path);
       }
+    } else if (message.data['action'] == 'clear_cache') {
+      // TODO: implement cache clearing
+
     }
   }
 
