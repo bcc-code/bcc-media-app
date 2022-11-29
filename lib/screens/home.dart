@@ -143,7 +143,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> with PageMixin {
               child: GestureDetector(
                   behavior: HitTestBehavior.opaque,
                   onTap: () {
-                    if (ref.watch(authStateProvider).guestMode) {
+                    if (ref.read(authStateProvider).guestMode) {
                       loginAction(context);
                     } else {
                       context.router.pushNamed('/profile');
