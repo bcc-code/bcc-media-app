@@ -31,7 +31,7 @@ class SectionItemClickWrapper extends ConsumerWidget {
           behavior: HitTestBehavior.opaque,
           onLongPress: () {
             var episode = item.asOrNull<Fragment$ItemSectionItem$item$$Episode>();
-            if (episode == null) {
+            if (episode?.progress == null || episode!.progress == 0) {
               return;
             }
             HapticFeedback.heavyImpact();
