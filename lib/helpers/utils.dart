@@ -93,7 +93,7 @@ Future<dynamic>? handleSectionItemClick(BuildContext context, Fragment$ItemSecti
 
   var linkItem = item.asOrNull<Fragment$ItemSectionItem$item$$Link>();
   if (linkItem != null) {
-    return launchUrlString(linkItem.url);
+    return launchUrlString(linkItem.url, mode: LaunchMode.externalApplication);
   }
 
   return null;

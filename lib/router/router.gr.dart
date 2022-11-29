@@ -270,7 +270,13 @@ class AppRouter extends _i19.RootStackRouter {
         barrierDismissible: false,
       );
     },
-    CustomActionRoute.name: (routeData) {
+    RedirectRoute.name: (routeData) {
+      return _i19.MaterialPageX<void>(
+        routeData: routeData,
+        child: const _i13.EmptyRouterPage(),
+      );
+    },
+    TvLoginRoute.name: (routeData) {
       return _i19.MaterialPageX<void>(
         routeData: routeData,
         child: const _i13.EmptyRouterPage(),
@@ -417,8 +423,13 @@ class AppRouter extends _i19.RootStackRouter {
           guards: [specialRoutesGuard],
           children: [
             _i19.RouteConfig(
-              CustomActionRoute.name,
+              RedirectRoute.name,
               path: 'r/:code',
+              parent: EmptyRouterPageRoute.name,
+            ),
+            _i19.RouteConfig(
+              TvLoginRoute.name,
+              path: 'tvlogin/*',
               parent: EmptyRouterPageRoute.name,
             ),
             _i19.RouteConfig(
@@ -804,14 +815,26 @@ class Home extends _i19.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i13.EmptyRouterPage]
-class CustomActionRoute extends _i19.PageRouteInfo<void> {
-  const CustomActionRoute()
+class RedirectRoute extends _i19.PageRouteInfo<void> {
+  const RedirectRoute()
       : super(
-          CustomActionRoute.name,
+          RedirectRoute.name,
           path: 'r/:code',
         );
 
-  static const String name = 'CustomActionRoute';
+  static const String name = 'RedirectRoute';
+}
+
+/// generated route for
+/// [_i13.EmptyRouterPage]
+class TvLoginRoute extends _i19.PageRouteInfo<void> {
+  const TvLoginRoute()
+      : super(
+          TvLoginRoute.name,
+          path: 'tvlogin/*',
+        );
+
+  static const String name = 'TvLoginRoute';
 }
 
 /// generated route for

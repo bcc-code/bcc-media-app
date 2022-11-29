@@ -5,6 +5,7 @@ import 'package:brunstadtv_app/providers/settings.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:url_launcher/url_launcher_string.dart';
+import 'package:webview_flutter/webview_flutter.dart';
 import '../../components/custom_back_button.dart';
 import '../../helpers/languages.dart';
 import '../../l10n/app_localizations.dart';

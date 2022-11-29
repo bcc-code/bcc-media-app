@@ -86,9 +86,9 @@ class _HomeScreenState extends ConsumerState<HomeScreen> with PageMixin {
                 BtvButton.medium(
                     onPressed: () {
                       if (Platform.isIOS) {
-                        launchUrlString('itms-apps://itunes.apple.com');
+                        launchUrlString('itms-apps://itunes.apple.com', mode: LaunchMode.externalApplication);
                       } else if (Platform.isAndroid) {
-                        launchUrlString('market://search?q=brunstadtv');
+                        launchUrlString('market://search?q=brunstadtv', mode: LaunchMode.externalApplication);
                       }
                     },
                     labelText: S.of(context).appUpdateAccepted)

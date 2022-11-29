@@ -47,8 +47,13 @@ const _specialRoutes = AutoRoute(
   children: [
     AutoRoute<void>(
       page: EmptyRouterPage,
-      name: 'CustomActionRoute',
+      name: 'RedirectRoute',
       path: 'r/:code',
+    ),
+    AutoRoute<void>(
+      page: EmptyRouterPage,
+      name: 'TvLoginRoute',
+      path: 'tvlogin/*',
     ),
     AutoRoute<void>(
       page: EmptyRouterPage,
