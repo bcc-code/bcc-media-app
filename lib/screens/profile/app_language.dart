@@ -2,9 +2,10 @@ import 'package:brunstadtv_app/providers/settings.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../components/option_list.dart';
-import '../../helpers/btv_colors.dart';
 import '../../helpers/languages.dart';
 import '../../l10n/app_localizations.dart';
+import '../../models/analytics/language_changed.dart';
+import '../../providers/analytics.dart';
 
 class AppLanguageScreen extends ConsumerStatefulWidget {
   const AppLanguageScreen({super.key});
@@ -17,6 +18,11 @@ class _AppLanguageScreenState extends ConsumerState<AppLanguageScreen> {
   late String selected;
 
   Future<void> _onSelectionChanged(String id) async {
+    ref.read(analyticsProvider).languageChanged(LanguageChangedEvent(
+          languageFrom: selected,
+          languageTo: id,
+          languageChangeType: 'app',
+        ));
     setState(() {
       selected = id;
       // obtain shared preferences

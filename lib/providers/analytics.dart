@@ -10,7 +10,9 @@ import 'package:package_info_plus/package_info_plus.dart';
 import 'package:rudder_sdk_flutter/RudderController.dart';
 import 'package:rudder_sdk_flutter_platform_interface/platform.dart';
 
+import '../models/analytics/language_changed.dart';
 import '../models/analytics/sections.dart';
+import '../models/analytics/content_shared.dart';
 
 String getAgeGroup(int? age) {
   if (age == null) {
@@ -86,6 +88,14 @@ class Analytics {
       elementId: sectionItemAnalytics.id,
     );
     RudderController.instance.track('section_clicked', properties: getCommonData().putValue(map: event.toJson()));
+  }
+
+  void languageChanged(LanguageChangedEvent event) {
+    RudderController.instance.track('language_changed', properties: getCommonData().putValue(map: event.toJson()));
+  }
+
+  void contentShared(ContentSharedEvent event) {
+    RudderController.instance.track('content_shared', properties: getCommonData().putValue(map: event.toJson()));
   }
 
   void identify(UserProfile profile, String analyticsId) {
