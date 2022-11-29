@@ -2,6 +2,7 @@ import 'package:brunstadtv_app/api/brunstadtv.dart';
 import 'package:brunstadtv_app/helpers/event_bus.dart';
 import 'package:brunstadtv_app/models/events/watch_progress.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -33,6 +34,7 @@ class SectionItemClickWrapper extends ConsumerWidget {
             if (episode == null) {
               return;
             }
+            HapticFeedback.heavyImpact();
             showModalBottomSheet(
               useRootNavigator: true,
               context: context,
