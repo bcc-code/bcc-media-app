@@ -14,7 +14,7 @@ class DeveloperOptions extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return BottomSheetSelect(
-      title: 'Share video',
+      title: 'Developer options',
       selectedId: 'fromStart',
       items: [Option(id: 'override_env', title: 'Override environment')],
       showSelection: false,
