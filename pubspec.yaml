@@ -15,7 +15,12 @@ publish_to: "none" # Remove this line if you wish to publish to pub.dev
 # In iOS, build-name is used as CFBundleShortVersionString while build-number used as CFBundleVersion.
 # Read more about iOS versioning at
 # https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html
-version: 4.0.0+22.11.282
+
+# major.minor.patch+YY.MM.DDx where the x is an additional number
+# so we kind of can't have more than 10 builds per day
+# Note: On play store the build number dots gets removed, so it
+# becomes a number in the millions range (2211301 for example).
+version: 4.0.0+22.11.301
 
 environment:
   sdk: ">=2.17.0 <3.0.0"
