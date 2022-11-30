@@ -3,6 +3,7 @@ import 'dart:collection';
 import 'dart:math';
 import 'package:brunstadtv_app/graphql/client.dart';
 import 'package:brunstadtv_app/graphql/queries/calendar.graphql.dart';
+import 'package:brunstadtv_app/helpers/string_utils.dart';
 import 'package:brunstadtv_app/helpers/svg_icons.dart';
 import 'package:brunstadtv_app/helpers/utils.dart';
 import 'package:brunstadtv_app/router/router.gr.dart';
@@ -376,13 +377,17 @@ class _CalendarWidgetState extends ConsumerState<CalendarWidget> {
         Row(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 24),
-              child: Text(
-                '${S.of(context).today}, ${DateFormat('d MMMM').format(DateTime.now())}',
-                style: BtvTextStyles.title2,
+            if (_selectedDay != null)
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 24),
+                child: Builder(builder: (context) {
+                  final isToday = isSameDay(_selectedDay, DateTime.now());
+                  return Text(
+                    '${isToday ? S.of(context).today : DateFormat(DateFormat.WEEKDAY).format(_selectedDay!).capitalized}, ${DateFormat(DateFormat.MONTH_DAY).format(DateTime.now())}',
+                    style: BtvTextStyles.title2,
+                  );
+                }),
               ),
-            ),
           ],
         ),
         FutureBuilder<Query$CalendarDay$calendar?>(

@@ -111,12 +111,12 @@ class _ContactSupportState extends ConsumerState<ContactSupport> {
 
     if (Platform.isAndroid) {
       AndroidDeviceInfo androidInfo = await DeviceInfoPlugin().androidInfo;
-      os = '${Platform.operatingSystem.capitalize} ${androidInfo.version.release}';
+      os = '${Platform.operatingSystem.capitalized} ${androidInfo.version.release}';
       device = androidInfo.model;
       manufacturer = androidInfo.manufacturer;
     } else if (Platform.isIOS) {
       IosDeviceInfo iosInfo = await DeviceInfoPlugin().iosInfo;
-      os = '${Platform.operatingSystem.capitalize} ${iosInfo.systemVersion}';
+      os = '${Platform.operatingSystem.capitalized} ${iosInfo.systemVersion}';
       device = iosInfo.model;
       manufacturer = 'Apple';
     } else {

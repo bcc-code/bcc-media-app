@@ -4,6 +4,7 @@ import 'package:brunstadtv_app/providers/playback_api.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:intl/intl.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 part 'settings.freezed.dart';
@@ -84,6 +85,9 @@ final settingsProvider = StateNotifierProvider<SettingsService, Settings>((ref) 
   settingsService.addListener(fireImmediately: false, (state) {
     if (!ref.exists(playbackApiProvider)) return;
     ref.read(playbackApiProvider).setAppConfig(state.toAppConfig());
+  });
+  settingsService.addListener(fireImmediately: false, (state) {
+    Intl.defaultLocale = state.appLanguage.toLanguageTag();
   });
   return settingsService;
 });

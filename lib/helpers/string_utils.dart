@@ -1,6 +1,6 @@
 extension StringExtensions on String? {
   bool get isBlank => this?.trim().isEmpty ?? true;
-  String? get capitalize {
+  String? get capitalized {
     if (isBlank) {
       return this;
     }
