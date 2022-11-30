@@ -21,24 +21,33 @@ class AppRoot extends ConsumerStatefulWidget {
 }
 
 class _AppRootState extends ConsumerState<AppRoot> {
-  late ProviderSubscription authSubscription;
+  ProviderSubscription? authSubscription;
   @override
   void initState() {
     super.initState();
     _setupFcmListeners();
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    final gqlClient = ref.read(gqlClientProvider);
+    final analytics = ref.read(analyticsProvider);
+    final settingsNotifier = ref.read(settingsProvider.notifier);
+    authSubscription?.close();
     authSubscription = ref.listenManual<AuthState>(authStateProvider, (previous, next) {
       if (previous?.auth0AccessToken != null && next.auth0AccessToken == null) {
-        ref.read(settingsProvider.notifier).setAnalyticsId(null);
+        settingsNotifier.setAnalyticsId(null);
         widget.navigatorKey.currentContext?.router.root.navigate(LoginScreenRoute());
       } else if (next.auth0AccessToken != null && next.user != null) {
-        ref.read(gqlClientProvider).query$me().then((value) {
+        gqlClient.query$me().then((value) {
           if (value.exception != null) {
             throw value.exception!;
           }
           if (value.parsedData == null) {
             throw ErrorDescription('"Me" data is null.');
           }
-          ref.read(analyticsProvider).identify(next.user!, value.parsedData!.me.analytics.anonymousId);
+          analytics.identify(next.user!, value.parsedData!.me.analytics.anonymousId);
         });
       }
     });
@@ -46,7 +55,7 @@ class _AppRootState extends ConsumerState<AppRoot> {
 
   @override
   void dispose() {
-    authSubscription.close();
+    authSubscription?.close();
     super.dispose();
   }
 

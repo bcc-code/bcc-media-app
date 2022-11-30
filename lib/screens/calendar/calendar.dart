@@ -539,7 +539,7 @@ class _EntriesSlot extends StatelessWidget {
                   ),
                 ),
                 child: Opacity(
-                  opacity: entriesList[i] is Fragment$CalendarDay$entries$$EpisodeCalendarEntry ? 1 : 0.7,
+                  opacity: entriesList[i].asOrNull<Fragment$CalendarDay$entries$$EpisodeCalendarEntry>()?.episode != null ? 1 : 0.7,
                   child: Row(
                     children: [
                       Padding(

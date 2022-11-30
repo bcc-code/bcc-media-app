@@ -8,18 +8,19 @@ class GridRow extends StatelessWidget {
   const GridRow({super.key, required this.items, required this.colSize, this.margin});
 
   List<Widget> get spacedItems {
-    if (items.length < colSize) {
-      items.addAll(
-        List<Widget>.generate(colSize - items.length, (index) => Expanded(child: Container())),
-      );
-    }
-
     final newItems = <Widget>[];
     for (var item in items) {
       newItems.add(Expanded(child: item));
       if (item != items.last) {
         newItems.add(const SizedBox(width: 16));
       }
+    }
+
+    var missingColumns = colSize - items.length;
+    if (missingColumns > 0) {
+      newItems.addAll(
+        List<Widget>.generate(missingColumns, (_) => const Spacer()),
+      );
     }
     return newItems;
   }

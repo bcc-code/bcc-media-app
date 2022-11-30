@@ -28,6 +28,7 @@ fragment CalendarDay on CalendarDay {
     ... on EpisodeCalendarEntry {
       episode {
         id
+        publishDate
         __typename
       }
       id
