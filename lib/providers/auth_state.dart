@@ -15,7 +15,7 @@ import '../env/env.dart';
 
 part 'auth_state.freezed.dart';
 
-const kMinimumCredentialsTTL = Duration(minutes: 60);
+const kMinimumCredentialsTTL = Duration(hours: 1, minutes: 59);
 
 final Auth0 _auth0 = Auth0("https://${Env.auth0Domain}", Env.auth0ClientId);
 
