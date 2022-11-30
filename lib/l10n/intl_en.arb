@@ -999,7 +999,7 @@
   "@categoryMusic": {
     "description": "Category name"
   },
-  "noPlannedEvents": "No planned events today",
+  "noPlannedEvents": "No events planned this day",
   "@noPlannedEvents": {
     "description": "Information in tvguide"
   },
