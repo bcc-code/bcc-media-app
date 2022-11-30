@@ -5,34 +5,34 @@ class SFr extends S {
   SFr([String locale = 'fr']) : super(locale);
 
   @override
-  String get loadingContent => 'Loading content';
+  String get loadingContent => 'Chargement du contenu';
 
   @override
-  String get signInTooltip => 'Sign in to watch more content';
+  String get signInTooltip => 'Se connecter pour voir plus de contenu';
 
   @override
-  String get skipToPublicContent => 'Skip to watch public content';
+  String get skipToPublicContent => 'Passer à la visualisation du contenu public';
 
   @override
   String get minutesShort => 'min';
 
   @override
-  String get calendarThisWeek => 'This week';
+  String get calendarThisWeek => 'Cette semaine';
 
   @override
-  String get calendarWeek => 'week';
+  String get calendarWeek => 'semaine';
 
   @override
   String get loading => 'Chargement';
 
   @override
-  String get loginPageDisplay1 => 'The most powerful message in the world';
+  String get loginPageDisplay1 => 'Le message le plus puissant au monde';
 
   @override
-  String get loginPageDisplay2 => 'Watch series, shows and films based on Christian values';
+  String get loginPageDisplay2 => 'Regarde des séries, des émissions et des films basés sur les valeurs chrétiennes';
 
   @override
-  String get loginPageDisplay3 => 'Produced by BCC Media';
+  String get loginPageDisplay3 => 'Produit par BCC Media';
 
   @override
   String get liveTab => 'En direct';
@@ -44,7 +44,7 @@ class SFr extends S {
   String get profileTab => 'Profil';
 
   @override
-  String get faq => 'Frequently asked questions';
+  String get faq => 'Foire aux Questions';
 
   @override
   String get bccMediaCenter => 'BrunstadTV est un média à caractère non lucratif qui produit et distribue du contenu basé sur des valeurs positives et chrétiennes.';
@@ -174,7 +174,7 @@ class SFr extends S {
 
   @override
   String queueLimitMessage(int elementCount) {
-    return 'You cannot have more than $elementCount elements in queue.';
+    return 'Tu ne peux pas avoir plus de $elementCount éléments dans la file d\'attente.';
   }
 
   @override
@@ -263,7 +263,7 @@ class SFr extends S {
 
   @override
   String watchingWith(int numPeople) {
-    return 'You are watching with $numPeople others';
+    return 'Tu regardes avec $numPeople autres personnes';
   }
 
   @override
@@ -277,7 +277,7 @@ class SFr extends S {
 
   @override
   String charactersLimit(int charsLeft, int charsTotal) {
-    return '$charsLeft of $charsTotal characters left';
+    return '$charsLeft sur $charsTotal caractères restants';
   }
 
   @override
@@ -407,7 +407,7 @@ class SFr extends S {
   String get thankYouSupportDescription => 'Nous apprécions tous les commentaires et nous nous pencherons sur ce problème dès que possible.';
 
   @override
-  String get sendFail => 'Couldn\'t send you message';
+  String get sendFail => 'Ton message n\'a pas pu être envoyé';
 
   @override
   String get sendFailDescription => 'Une erreur est survenue. Vérifie ta connexion internet et réessaye.';
@@ -420,12 +420,12 @@ class SFr extends S {
 
   @override
   String newPostsMultiple(int postCount) {
-    return '$postCount new posts!';
+    return '$postCount nouvelles publications !';
   }
 
   @override
   String newPostsSingle(int postCount) {
-    return '$postCount new post!';
+    return '$postCount nouvelle publication !';
   }
 
   @override
@@ -433,7 +433,7 @@ class SFr extends S {
 
   @override
   String availableFrom(String date) {
-    return 'Available $date';
+    return 'Disponible $date';
   }
 
   @override
@@ -447,7 +447,7 @@ class SFr extends S {
 
   @override
   String wellDoneDistance(int distanceInKM) {
-    return 'Well done! You have registered a total distance of $distanceInKM km';
+    return 'Bien joué ! Tu as enregistré une distance totale de $distanceInKM km';
   }
 
   @override
@@ -455,12 +455,12 @@ class SFr extends S {
 
   @override
   String ranMore(int distanceInKM) {
-    return 'I went more than $distanceInKM km';
+    return 'J\'ai marché plus de $distanceInKM km';
   }
 
   @override
   String moreThan(int distanceInKM) {
-    return 'More than $distanceInKM km';
+    return 'Plus de $distanceInKM km';
   }
 
   @override
@@ -483,7 +483,7 @@ class SFr extends S {
 
   @override
   String timezoneInformation(String timeZone) {
-    return 'Tv guide timetable is in your local time: $timeZone';
+    return 'Le calendrier du guide TV s\'affiche selon l\'heure locale : $timeZone';
   }
 
   @override
@@ -545,7 +545,7 @@ class SFr extends S {
 
   @override
   String pollAnswer(String answer) {
-    return 'You\'ve answered: $answer';
+    return 'Tu as répondu : $answer';
   }
 
   @override
@@ -577,7 +577,7 @@ class SFr extends S {
 
   @override
   String posts(int postsCount) {
-    return '$postsCount Posts';
+    return '$postsCount Publications';
   }
 
   @override
@@ -606,11 +606,11 @@ class SFr extends S {
 
   @override
   String shareTime(String time) {
-    return 'Share from time $time';
+    return 'Partager à partir de $time';
   }
 
   @override
-  String get loadContentError => 'Couldn\'t load content';
+  String get loadContentError => 'Impossible de charger le contenu';
 
   @override
   String get audioOnlyErrorDescription => 'Vérifie ta connexion internet et retente à nouveau';
@@ -619,7 +619,7 @@ class SFr extends S {
   String get privacyPolicy => 'Politique de confidentialité';
 
   @override
-  String get tokenError => 'We couldn\'t confirm your identity, most likely due to a network problem. Some features of the app may not work correctly.';
+  String get tokenError => 'Nous n\'avons pas pu confirmer ton identité, probablement en raison d\'un problème de réseau. Certaines fonctionnalités de l\'application peuvent ne pas fonctionner correctement.';
 
   @override
   String get categoriesTab => 'Catégories';
@@ -703,13 +703,13 @@ class SFr extends S {
   String get liveHeader => 'En direct';
 
   @override
-  String get recentlyPublishedSection => 'Recently published';
+  String get recentlyPublishedSection => 'Publié récemment';
 
   @override
-  String get exploreCategoriesSection => 'Explore categories';
+  String get exploreCategoriesSection => 'Explorer les catégories';
 
   @override
-  String get programsSection => 'Programs';
+  String get programsSection => 'Programmes';
 
   @override
   String get episodesSection => 'Episodes';
@@ -718,7 +718,7 @@ class SFr extends S {
   String get categorySeries => 'Séries';
 
   @override
-  String get categoryKids => 'Kids';
+  String get categoryKids => 'Enfants';
 
   @override
   String get categoryFilms => 'Films';
@@ -727,11 +727,11 @@ class SFr extends S {
   String get categoryEvents => 'Evénements';
 
   @override
-  String get categoryMusic => 'Music';
+  String get categoryMusic => 'Musique';
 
   @override
-  String get noPlannedEvents => 'No planned events today';
+  String get noPlannedEvents => 'Aucun événement prévu aujourd\'hui';
 
   @override
-  String get watchNow => 'Watch now';
+  String get watchNow => 'Regarder maintenant';
 }

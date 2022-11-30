@@ -1,26 +1,25 @@
 {
-  
-  "loadingContent": "Loading content",
+  "loadingContent": "Загрузка контента",
   "@loadingContent": {
     "description": "Text displayed when page content is loading."
   },
-  "signInTooltip": "Sign in to watch more content",
+  "signInTooltip": "Войдите, чтобы смотреть больше контента",
   "@signInTooltip": {
     "description": "Text for tooltip displayed when a non-member user opens the home page."
   },
-  "skipToPublicContent": "Skip to watch public content",
+  "skipToPublicContent": "Перейти к просмотру общедоступного контента",
   "@skipToPublicContent": {
     "description": "Text for button displayed on login screen to skip sign in and watch public content."
   },
-  "minutesShort": "min",
+  "minutesShort": "мин",
   "@minutesShort": {
     "description": "Text for minutes."
   },
-  "calendarThisWeek": "This week",
+  "calendarThisWeek": "На этой неделе",
   "@calendarThisWeek": {
     "description": "Text for This week."
   },
-  "calendarWeek": "week",
+  "calendarWeek": "неделя",
   "@calendarWeek": {
     "description": "Text week."
   },
@@ -28,15 +27,15 @@
   "@loading": {
     "description": "Text to indicate loading state."
   },
-  "loginPageDisplay1": "The most powerful message in the world",
+  "loginPageDisplay1": "Самое мощное послание в мире",
   "@loginPageDisplay1": {
     "description": "Text displayed on login screen."
   },
-  "loginPageDisplay2": "Watch series, shows and films based on Christian values",
+  "loginPageDisplay2": "Смотрите сериалы, шоу и фильмы, основанные на христианских ценностях",
   "@loginPageDisplay2": {
     "description": "Text displayed on login screen."
   },
-  "loginPageDisplay3": "Produced by BCC Media",
+  "loginPageDisplay3": "Произведено BCC Media",
   "@loginPageDisplay3": {
     "description": "Text displayed on login screen."
   },
@@ -52,7 +51,7 @@
   "@profileTab": {
     "description": "Title of the profile page"
   },
-  "faq": "Frequently asked questions",
+  "faq": "Часто задаваемые вопросы",
   "@faq": {
     "description": "Title of the FAQ page."
   },
@@ -196,7 +195,7 @@
   "@search": {
     "description": "Button to clear cache"
   },
-  "noResults": "No results found",
+  "noResults": "Результатов не найдено",
   "@noResults": {
     "description": "No search results."
   },
@@ -224,7 +223,7 @@
   "@queueLimitTitle": {
     "description": "Title of the alert to the user when attempt to add video to cast queue failed due to full queue."
   },
-  "queueLimitMessage": "You cannot have more than {elementCount} elements in queue.",
+  "queueLimitMessage": "В очереди не может быть больше элементов, чем {elementCount}.",
   "@queueLimitMessage": {
     "description": "Error message to the user when attempt to add video to cast queue failed due to full queue.",
     "placeholders": {
@@ -285,7 +284,7 @@
   "@high": {
     "description": "High quality video option"
   },
-  "emptySearch": "You can search all content from BrunstadTV. Series, videos and episodes.",
+  "emptySearch": "Вы можете искать по всему контенту с BrunstadTV. Сериях, видео и эпизодах.",
   "@emptySearch": {
     "description": "Message on search page when there is no search results."
   },
@@ -345,7 +344,7 @@
   "@uploadFileMessage": {
     "description": "Content of the dialog to confirm upload"
   },
-  "watchingWith": "You are watching with {numPeople} others",
+  "watchingWith": "Вы смотрите с {numPeople} другими",
   "@watchingWith": {
     "description": "Info on live stream page",
     "placeholders": {
@@ -366,7 +365,7 @@
   "@post": {
     "description": "Button to post written testimony"
   },
-  "charactersLimit": "{charsLeft} of {charsTotal} characters left",
+  "charactersLimit": "Осталось {charsLeft} из {charsTotal} символов",
   "@charactersLimit": {
     "description": "Info about limit of characters in written testimony",
     "placeholders": {
@@ -470,7 +469,7 @@
   "@change": {
     "description": "Button text on interactive live avatar section"
   },
-  "recordingFailedTitle": "Couldn't record the video",
+  "recordingFailedTitle": "Не удалось записать видео",
   "@recordingFailedTitle": {
     "description": "Title in alert dialog when recording fails"
   },
@@ -546,7 +545,7 @@
   "@thankYouSupportDescription": {
     "description": "Text on contact support confirmation page"
   },
-  "sendFail": "Couldn't send you message",
+  "sendFail": "Не удалось отправить вам сообщение",
   "@sendFail": {
     "description": "General error message that sending failed"
   },
@@ -562,7 +561,7 @@
   "@noNewPosts": {
     "description": "Text displayed on the button, when there are no new posts in the feed."
   },
-  "newPostsMultiple": "{postCount} new posts!",
+  "newPostsMultiple": "{postCount} новых публикаций!",
   "@newPostsMultiple": {
     "description": "Text displayed on the button, when there are number of new posts in the feed.",
     "placeholders": {
@@ -571,7 +570,7 @@
       }
     }
   },
-  "newPostsSingle": "{postCount} new post!",
+  "newPostsSingle": "{postCount} новых публикаций!",
   "@newPostsSingle": {
     "description": "Text displayed on the button, when there is one new post in the feed.",
     "placeholders": {
@@ -584,7 +583,7 @@
   "@expired": {
     "description": "Info that episode is no longer available."
   },
-  "availableFrom": "Available {date}",
+  "availableFrom": "Доступно {date}",
   "@availableFrom": {
     "description": "Info that episode will be released at certain date.",
     "placeholders": {
@@ -605,7 +604,7 @@
   "@wellDone": {
     "description": "Text on running competition page."
   },
-  "wellDoneDistance": "Well done! You have registered a total distance of {distanceInKM} km",
+  "wellDoneDistance": "Отлично сработано! Вы зарегистрировали общее расстояние {distanceInKM} км",
   "@wellDoneDistance": {
     "description": "Text on running competition page.",
     "placeholders": {
@@ -618,7 +617,7 @@
   "@distanceRegistered": {
     "description": "Text on running competition page."
   },
-  "ranMore": "I went more than {distanceInKM} km",
+  "ranMore": "Я прошёл (ла) более {distanceInKM} км",
   "@ranMore": {
     "description": "Text on running competition page.",
     "placeholders": {
@@ -627,7 +626,7 @@
       }
     }
   },
-  "moreThan": "More than {distanceInKM} km",
+  "moreThan": "Более {distanceInKM} км",
   "@moreThan": {
     "description": "Text on running competition page.",
     "placeholders": {
@@ -660,7 +659,7 @@
   "@firstPostTitle": {
     "description": "Text on feed page when feed is empty."
   },
-  "timezoneInformation": "Tv guide timetable is in your local time: {timeZone}",
+  "timezoneInformation": "Расписание телепрограммы указано по вашему местному времени: {timeZone}",
   "@timezoneInformation": {
     "description": "TV guide footer info text.",
     "placeholders": {
@@ -745,7 +744,7 @@
   "@readBy": {
     "description": "Feed verse pre author text."
   },
-  "pollAnswer": "You've answered: {answer}",
+  "pollAnswer": "Вы ответили: {answer}",
   "@pollAnswer": {
     "description": "Snackbar label after user has chosen poll answer",
     "placeholders": {
@@ -790,7 +789,7 @@
   "@donationNotAvailable": {
     "description": "Message displayed when donation flow failed."
   },
-  "posts": "{postsCount} Posts",
+  "posts": "{postsCount} Публикаций",
   "@posts": {
     "description": "Contributions to feed made by the users. Plural of post.",
     "placeholders": {
@@ -831,7 +830,7 @@
   "@shareStart": {
     "description": "Option on action sheet for sharing from start"
   },
-  "shareTime": "Share from time {time}",
+  "shareTime": "Поделиться с времени {time}",
   "@shareTime": {
     "description": "Option on action sheet for sharing from time",
     "placeholders": {
@@ -840,7 +839,7 @@
       }
     }
   },
-  "loadContentError": "Couldn't load content",
+  "loadContentError": "Не удалось загрузить контент",
   "@loadContentError": {
     "description": "Error text when content couldn't be loaded."
   },
@@ -852,7 +851,7 @@
   "@privacyPolicy": {
     "description": "Title on Privacy Policy page and item in profile page settings."
   },
-  "tokenError": "We couldn't confirm your identity, most likely due to a network problem. Some features of the app may not work correctly.",
+  "tokenError": "Нам не удалось подтвердить вашу личность, скорее всего, из-за проблемы с сетью. Некоторые функции приложения могут работать некорректно.",
   "@tokenError": {
     "description": "Message indicating that there is a problem with user's token, and some features may be broken because of this."
   },
@@ -964,15 +963,15 @@
   "@liveHeader": {
     "description": "Header of the Live Tab — the tab that contains the livestream player on AppleTV."
   },
-  "recentlyPublishedSection": "Recently published",
+  "recentlyPublishedSection": "Недавно опубликовано",
   "@recentlyPublishedSection": {
     "description": "Section in explore."
   },
-  "exploreCategoriesSection": "Explore categories",
+  "exploreCategoriesSection": "Исследуйте категории",
   "@exploreCategoriesSection": {
     "description": "Section in explore."
   },
-  "programsSection": "Programs",
+  "programsSection": "Программы",
   "@programsSection": {
     "description": "Section in explore."
   },
@@ -984,7 +983,7 @@
   "@categorySeries": {
     "description": "Category name"
   },
-  "categoryKids": "Kids",
+  "categoryKids": "Для детей",
   "@categoryKids": {
     "description": "Category name"
   },
@@ -996,15 +995,15 @@
   "@categoryEvents": {
     "description": "Category name"
   },
-  "categoryMusic": "Music",
+  "categoryMusic": "Музыка",
   "@categoryMusic": {
     "description": "Category name"
   },
-  "noPlannedEvents": "No planned events today",
+  "noPlannedEvents": "Сегодня нет запланированных мероприятий",
   "@noPlannedEvents": {
     "description": "Information in tvguide"
   },
-  "watchNow": "Watch now",
+  "watchNow": "Смотреть сейчас",
   "@watchNow": {
     "description": "Button on featured carousel"
   }

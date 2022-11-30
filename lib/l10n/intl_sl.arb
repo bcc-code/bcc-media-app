@@ -1,5 +1,4 @@
 {
-  
   "loadingContent": "Nalagam vsebino",
   "@loadingContent": {
     "description": "Text displayed when page content is loading."

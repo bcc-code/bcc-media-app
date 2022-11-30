@@ -1520,7 +1520,7 @@ abstract class S {
   /// Information in tvguide
   ///
   /// In en, this message translates to:
-  /// **'No planned events today'**
+  /// **'No events planned this day'**
   String get noPlannedEvents;
 
   /// Button on featured carousel

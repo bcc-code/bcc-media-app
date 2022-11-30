@@ -5,34 +5,34 @@ class SHu extends S {
   SHu([String locale = 'hu']) : super(locale);
 
   @override
-  String get loadingContent => 'Loading content';
+  String get loadingContent => 'Tartalom betöltése';
 
   @override
-  String get signInTooltip => 'Sign in to watch more content';
+  String get signInTooltip => 'További tartalmak megtekintéséhez jelentkezzél be';
 
   @override
-  String get skipToPublicContent => 'Skip to watch public content';
+  String get skipToPublicContent => 'Ugrás a nyilvános tartalom megtekintéséhez';
 
   @override
-  String get minutesShort => 'min';
+  String get minutesShort => 'perc';
 
   @override
-  String get calendarThisWeek => 'This week';
+  String get calendarThisWeek => 'Ez a hét';
 
   @override
-  String get calendarWeek => 'week';
+  String get calendarWeek => 'hét';
 
   @override
   String get loading => 'Betöltés';
 
   @override
-  String get loginPageDisplay1 => 'The most powerful message in the world';
+  String get loginPageDisplay1 => 'A világ legerősebb üzenete';
 
   @override
-  String get loginPageDisplay2 => 'Watch series, shows and films based on Christian values';
+  String get loginPageDisplay2 => 'Keresztény értékeken alapuló sorozatok, műsorok és filmek megtekintése';
 
   @override
-  String get loginPageDisplay3 => 'Produced by BCC Media';
+  String get loginPageDisplay3 => 'Készítette a BCC Media';
 
   @override
   String get liveTab => 'Élő';
@@ -44,7 +44,7 @@ class SHu extends S {
   String get profileTab => 'Profil';
 
   @override
-  String get faq => 'Frequently asked questions';
+  String get faq => 'Gyakran ismételt kérdések';
 
   @override
   String get bccMediaCenter => 'BrunstadTV nem kereskedelmi média, hanem olyan tartalmakat állít elő és közvetít, amelyek pozitív és keresztény értékeken alapul.';
@@ -174,7 +174,7 @@ class SHu extends S {
 
   @override
   String queueLimitMessage(int elementCount) {
-    return 'You cannot have more than $elementCount elements in queue.';
+    return 'A várólistában nem lehet több, mint $elementCount elem.';
   }
 
   @override
@@ -263,7 +263,7 @@ class SHu extends S {
 
   @override
   String watchingWith(int numPeople) {
-    return 'You are watching with $numPeople others';
+    return 'Még $numPeople személlyel együtt nézed';
   }
 
   @override
@@ -277,7 +277,7 @@ class SHu extends S {
 
   @override
   String charactersLimit(int charsLeft, int charsTotal) {
-    return '$charsLeft of $charsTotal characters left';
+    return '$charsLeft a $charsTotal karakterből van még hátra';
   }
 
   @override
@@ -407,7 +407,7 @@ class SHu extends S {
   String get thankYouSupportDescription => 'Nagyra értékeljük az összes visszajelzést, és a lehető leghamarabb megválaszoljuk a kérdést.';
 
   @override
-  String get sendFail => 'Couldn\'t send you message';
+  String get sendFail => 'Neked nem em lehetett üzenetet küldeni';
 
   @override
   String get sendFailDescription => 'Valami nem sikerült. Vizsgáld meg az internett kapcsolatodat és próbáld újra.';
@@ -420,12 +420,12 @@ class SHu extends S {
 
   @override
   String newPostsMultiple(int postCount) {
-    return '$postCount new posts!';
+    return '$postCount új hozzászólás!';
   }
 
   @override
   String newPostsSingle(int postCount) {
-    return '$postCount new post!';
+    return '$postCount új hozzászólás!';
   }
 
   @override
@@ -433,7 +433,7 @@ class SHu extends S {
 
   @override
   String availableFrom(String date) {
-    return 'Available $date';
+    return 'Elérhető $date';
   }
 
   @override
@@ -447,7 +447,7 @@ class SHu extends S {
 
   @override
   String wellDoneDistance(int distanceInKM) {
-    return 'Well done! You have registered a total distance of $distanceInKM km';
+    return 'Szép munka! Összesen $distanceInKM km távolságot teljesítettél';
   }
 
   @override
@@ -455,12 +455,12 @@ class SHu extends S {
 
   @override
   String ranMore(int distanceInKM) {
-    return 'I went more than $distanceInKM km';
+    return 'Több mint $distanceInKM kilométert futottam';
   }
 
   @override
   String moreThan(int distanceInKM) {
-    return 'More than $distanceInKM km';
+    return 'Több mint $distanceInKM km';
   }
 
   @override
@@ -483,7 +483,7 @@ class SHu extends S {
 
   @override
   String timezoneInformation(String timeZone) {
-    return 'Tv guide timetable is in your local time: $timeZone';
+    return 'A Tv program időpontjai a helyi idő szerint jelenek meg: $timeZone';
   }
 
   @override
@@ -545,7 +545,7 @@ class SHu extends S {
 
   @override
   String pollAnswer(String answer) {
-    return 'You\'ve answered: $answer';
+    return '$answer válaszoltál';
   }
 
   @override
@@ -577,7 +577,7 @@ class SHu extends S {
 
   @override
   String posts(int postsCount) {
-    return '$postsCount Posts';
+    return '$postsCount Hozzászólások';
   }
 
   @override
@@ -606,11 +606,11 @@ class SHu extends S {
 
   @override
   String shareTime(String time) {
-    return 'Share from time $time';
+    return 'Megosztás innentől $time';
   }
 
   @override
-  String get loadContentError => 'Couldn\'t load content';
+  String get loadContentError => 'Nem sikerült betölteni a tartalmat';
 
   @override
   String get audioOnlyErrorDescription => 'Ellenőrizd a hálózati csatlakozásodat és próbálj újra';

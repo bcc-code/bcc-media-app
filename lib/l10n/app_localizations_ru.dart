@@ -5,34 +5,34 @@ class SRu extends S {
   SRu([String locale = 'ru']) : super(locale);
 
   @override
-  String get loadingContent => 'Loading content';
+  String get loadingContent => 'Загрузка контента';
 
   @override
-  String get signInTooltip => 'Sign in to watch more content';
+  String get signInTooltip => 'Войдите, чтобы смотреть больше контента';
 
   @override
-  String get skipToPublicContent => 'Skip to watch public content';
+  String get skipToPublicContent => 'Перейти к просмотру общедоступного контента';
 
   @override
-  String get minutesShort => 'min';
+  String get minutesShort => 'мин';
 
   @override
-  String get calendarThisWeek => 'This week';
+  String get calendarThisWeek => 'На этой неделе';
 
   @override
-  String get calendarWeek => 'week';
+  String get calendarWeek => 'неделя';
 
   @override
   String get loading => 'Загрузка';
 
   @override
-  String get loginPageDisplay1 => 'The most powerful message in the world';
+  String get loginPageDisplay1 => 'Самое мощное послание в мире';
 
   @override
-  String get loginPageDisplay2 => 'Watch series, shows and films based on Christian values';
+  String get loginPageDisplay2 => 'Смотрите сериалы, шоу и фильмы, основанные на христианских ценностях';
 
   @override
-  String get loginPageDisplay3 => 'Produced by BCC Media';
+  String get loginPageDisplay3 => 'Произведено BCC Media';
 
   @override
   String get liveTab => 'Прямой эфир';
@@ -44,7 +44,7 @@ class SRu extends S {
   String get profileTab => 'Профиль';
 
   @override
-  String get faq => 'Frequently asked questions';
+  String get faq => 'Часто задаваемые вопросы';
 
   @override
   String get bccMediaCenter => 'BrunstadTV - это некоммерческий медиацентр, производящий и распространяющий контент, основанный на позитивных и христианских ценностях.';
@@ -152,7 +152,7 @@ class SRu extends S {
   String get search => 'Поиск';
 
   @override
-  String get noResults => 'No results found';
+  String get noResults => 'Результатов не найдено';
 
   @override
   String get doYouWantCast => 'Хотите показать это видео?';
@@ -174,7 +174,7 @@ class SRu extends S {
 
   @override
   String queueLimitMessage(int elementCount) {
-    return 'You cannot have more than $elementCount elements in queue.';
+    return 'В очереди не может быть больше элементов, чем $elementCount.';
   }
 
   @override
@@ -217,7 +217,7 @@ class SRu extends S {
   String get high => 'Высокое';
 
   @override
-  String get emptySearch => 'You can search all content from BrunstadTV. Series, videos and episodes.';
+  String get emptySearch => 'Вы можете искать по всему контенту с BrunstadTV. Сериях, видео и эпизодах.';
 
   @override
   String get back => 'Назад';
@@ -263,7 +263,7 @@ class SRu extends S {
 
   @override
   String watchingWith(int numPeople) {
-    return 'You are watching with $numPeople others';
+    return 'Вы смотрите с $numPeople другими';
   }
 
   @override
@@ -277,7 +277,7 @@ class SRu extends S {
 
   @override
   String charactersLimit(int charsLeft, int charsTotal) {
-    return '$charsLeft of $charsTotal characters left';
+    return 'Осталось $charsLeft из $charsTotal символов';
   }
 
   @override
@@ -350,7 +350,7 @@ class SRu extends S {
   String get change => 'Изменить';
 
   @override
-  String get recordingFailedTitle => 'Couldn\'t record the video';
+  String get recordingFailedTitle => 'Не удалось записать видео';
 
   @override
   String get recordingFailedMessage => 'Что-то пошло не так при попытке записать видео.';
@@ -407,7 +407,7 @@ class SRu extends S {
   String get thankYouSupportDescription => 'Мы ценим все отзывы и постараемся решить эту проблему как можно скорее.';
 
   @override
-  String get sendFail => 'Couldn\'t send you message';
+  String get sendFail => 'Не удалось отправить вам сообщение';
 
   @override
   String get sendFailDescription => 'Что-то пошло не так. Проверьте подключение к интернету и попробуйте еще раз.';
@@ -420,12 +420,12 @@ class SRu extends S {
 
   @override
   String newPostsMultiple(int postCount) {
-    return '$postCount new posts!';
+    return '$postCount новых публикаций!';
   }
 
   @override
   String newPostsSingle(int postCount) {
-    return '$postCount new post!';
+    return '$postCount новых публикаций!';
   }
 
   @override
@@ -433,7 +433,7 @@ class SRu extends S {
 
   @override
   String availableFrom(String date) {
-    return 'Available $date';
+    return 'Доступно $date';
   }
 
   @override
@@ -447,7 +447,7 @@ class SRu extends S {
 
   @override
   String wellDoneDistance(int distanceInKM) {
-    return 'Well done! You have registered a total distance of $distanceInKM km';
+    return 'Отлично сработано! Вы зарегистрировали общее расстояние $distanceInKM км';
   }
 
   @override
@@ -455,12 +455,12 @@ class SRu extends S {
 
   @override
   String ranMore(int distanceInKM) {
-    return 'I went more than $distanceInKM km';
+    return 'Я прошёл (ла) более $distanceInKM км';
   }
 
   @override
   String moreThan(int distanceInKM) {
-    return 'More than $distanceInKM km';
+    return 'Более $distanceInKM км';
   }
 
   @override
@@ -483,7 +483,7 @@ class SRu extends S {
 
   @override
   String timezoneInformation(String timeZone) {
-    return 'Tv guide timetable is in your local time: $timeZone';
+    return 'Расписание телепрограммы указано по вашему местному времени: $timeZone';
   }
 
   @override
@@ -545,7 +545,7 @@ class SRu extends S {
 
   @override
   String pollAnswer(String answer) {
-    return 'You\'ve answered: $answer';
+    return 'Вы ответили: $answer';
   }
 
   @override
@@ -577,7 +577,7 @@ class SRu extends S {
 
   @override
   String posts(int postsCount) {
-    return '$postsCount Posts';
+    return '$postsCount Публикаций';
   }
 
   @override
@@ -606,11 +606,11 @@ class SRu extends S {
 
   @override
   String shareTime(String time) {
-    return 'Share from time $time';
+    return 'Поделиться с времени $time';
   }
 
   @override
-  String get loadContentError => 'Couldn\'t load content';
+  String get loadContentError => 'Не удалось загрузить контент';
 
   @override
   String get audioOnlyErrorDescription => 'Проверьте подключение к сети и попробуйте снова';
@@ -619,7 +619,7 @@ class SRu extends S {
   String get privacyPolicy => 'Политика конфиденциальности';
 
   @override
-  String get tokenError => 'We couldn\'t confirm your identity, most likely due to a network problem. Some features of the app may not work correctly.';
+  String get tokenError => 'Нам не удалось подтвердить вашу личность, скорее всего, из-за проблемы с сетью. Некоторые функции приложения могут работать некорректно.';
 
   @override
   String get categoriesTab => 'Категории';
@@ -703,13 +703,13 @@ class SRu extends S {
   String get liveHeader => 'Прямой эфир';
 
   @override
-  String get recentlyPublishedSection => 'Recently published';
+  String get recentlyPublishedSection => 'Недавно опубликовано';
 
   @override
-  String get exploreCategoriesSection => 'Explore categories';
+  String get exploreCategoriesSection => 'Исследуйте категории';
 
   @override
-  String get programsSection => 'Programs';
+  String get programsSection => 'Программы';
 
   @override
   String get episodesSection => 'Эпизоды';
@@ -718,7 +718,7 @@ class SRu extends S {
   String get categorySeries => 'Серии';
 
   @override
-  String get categoryKids => 'Kids';
+  String get categoryKids => 'Для детей';
 
   @override
   String get categoryFilms => 'Фильмы';
@@ -727,11 +727,11 @@ class SRu extends S {
   String get categoryEvents => 'События';
 
   @override
-  String get categoryMusic => 'Music';
+  String get categoryMusic => 'Музыка';
 
   @override
-  String get noPlannedEvents => 'No planned events today';
+  String get noPlannedEvents => 'Сегодня нет запланированных мероприятий';
 
   @override
-  String get watchNow => 'Watch now';
+  String get watchNow => 'Смотреть сейчас';
 }

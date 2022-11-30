@@ -730,7 +730,7 @@ class SEn extends S {
   String get categoryMusic => 'Music';
 
   @override
-  String get noPlannedEvents => 'No planned events today';
+  String get noPlannedEvents => 'No events planned this day';
 
   @override
   String get watchNow => 'Watch now';

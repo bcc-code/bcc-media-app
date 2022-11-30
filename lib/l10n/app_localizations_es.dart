@@ -5,34 +5,34 @@ class SEs extends S {
   SEs([String locale = 'es']) : super(locale);
 
   @override
-  String get loadingContent => 'Loading content';
+  String get loadingContent => 'Cargando contenido';
 
   @override
-  String get signInTooltip => 'Sign in to watch more content';
+  String get signInTooltip => 'Inicia sesión para ver más contenido';
 
   @override
-  String get skipToPublicContent => 'Skip to watch public content';
+  String get skipToPublicContent => 'Saltar para ver contenido público';
 
   @override
   String get minutesShort => 'min';
 
   @override
-  String get calendarThisWeek => 'This week';
+  String get calendarThisWeek => 'Esta semana';
 
   @override
-  String get calendarWeek => 'week';
+  String get calendarWeek => 'semana';
 
   @override
   String get loading => 'Cargando';
 
   @override
-  String get loginPageDisplay1 => 'The most powerful message in the world';
+  String get loginPageDisplay1 => 'El mensaje más poderoso del mundo';
 
   @override
-  String get loginPageDisplay2 => 'Watch series, shows and films based on Christian values';
+  String get loginPageDisplay2 => 'Ver series, espectáculos y películas basadas en Valores cristianos';
 
   @override
-  String get loginPageDisplay3 => 'Produced by BCC Media';
+  String get loginPageDisplay3 => 'Producida por BCC Media';
 
   @override
   String get liveTab => 'En Vivo';
@@ -44,7 +44,7 @@ class SEs extends S {
   String get profileTab => 'Perfil';
 
   @override
-  String get faq => 'Frequently asked questions';
+  String get faq => 'Preguntas frecuentes';
 
   @override
   String get bccMediaCenter => 'BrunstadTV es un centro de medio audiovisuales no comercial, que produce contenido basado en valores positivos y en valores cristianos.';
@@ -174,7 +174,7 @@ class SEs extends S {
 
   @override
   String queueLimitMessage(int elementCount) {
-    return 'You cannot have more than $elementCount elements in queue.';
+    return 'No puede tener más de $elementCount elementos en cola.';
   }
 
   @override
@@ -263,7 +263,7 @@ class SEs extends S {
 
   @override
   String watchingWith(int numPeople) {
-    return 'You are watching with $numPeople others';
+    return 'Estás viendo junto a $numPeople';
   }
 
   @override
@@ -277,7 +277,7 @@ class SEs extends S {
 
   @override
   String charactersLimit(int charsLeft, int charsTotal) {
-    return '$charsLeft of $charsTotal characters left';
+    return 'Quedan $charsLeft de $charsTotal caracteres';
   }
 
   @override
@@ -407,7 +407,7 @@ class SEs extends S {
   String get thankYouSupportDescription => 'Agradecemos todos los comentarios y abordaremos el problema lo antes posible.';
 
   @override
-  String get sendFail => 'Couldn\'t send you message';
+  String get sendFail => 'No pude enviarte mensaje';
 
   @override
   String get sendFailDescription => 'Algo salió mal. Verifique su conexión a Internet e intente nuevamente.';
@@ -420,12 +420,12 @@ class SEs extends S {
 
   @override
   String newPostsMultiple(int postCount) {
-    return '$postCount new posts!';
+    return '¡$postCount publicaciones nuevas!';
   }
 
   @override
   String newPostsSingle(int postCount) {
-    return '$postCount new post!';
+    return '¡$postCount nueva/s publicacion/es!';
   }
 
   @override
@@ -433,7 +433,7 @@ class SEs extends S {
 
   @override
   String availableFrom(String date) {
-    return 'Available $date';
+    return 'Disponible${date}';
   }
 
   @override
@@ -447,7 +447,7 @@ class SEs extends S {
 
   @override
   String wellDoneDistance(int distanceInKM) {
-    return 'Well done! You have registered a total distance of $distanceInKM km';
+    return '¡Bien hecho! Ha registrado una distancia total de $distanceInKM km';
   }
 
   @override
@@ -455,12 +455,12 @@ class SEs extends S {
 
   @override
   String ranMore(int distanceInKM) {
-    return 'I went more than $distanceInKM km';
+    return 'Recorrí más de $distanceInKM km';
   }
 
   @override
   String moreThan(int distanceInKM) {
-    return 'More than $distanceInKM km';
+    return 'Más de $distanceInKM km';
   }
 
   @override
@@ -483,7 +483,7 @@ class SEs extends S {
 
   @override
   String timezoneInformation(String timeZone) {
-    return 'Tv guide timetable is in your local time: $timeZone';
+    return 'El horario de la guía de televisión está en su hora local: $timeZone';
   }
 
   @override
@@ -545,7 +545,7 @@ class SEs extends S {
 
   @override
   String pollAnswer(String answer) {
-    return 'You\'ve answered: $answer';
+    return 'Has respondido:$answer';
   }
 
   @override
@@ -577,7 +577,7 @@ class SEs extends S {
 
   @override
   String posts(int postsCount) {
-    return '$postsCount Posts';
+    return '$postsCount Publicaciones';
   }
 
   @override
@@ -606,20 +606,20 @@ class SEs extends S {
 
   @override
   String shareTime(String time) {
-    return 'Share from time $time';
+    return 'Compartir desde $time';
   }
 
   @override
-  String get loadContentError => 'Couldn\'t load content';
+  String get loadContentError => 'No se pudo cargar el contenido';
 
   @override
   String get audioOnlyErrorDescription => 'Revisa tu conexión a internet e inténtalo otra vez';
 
   @override
-  String get privacyPolicy => 'Privacy Policy';
+  String get privacyPolicy => 'Políticas de privacidad';
 
   @override
-  String get tokenError => 'We couldn\'t confirm your identity, most likely due to a network problem. Some features of the app may not work correctly.';
+  String get tokenError => 'No pudimos confirmar su identidad, quizá debido a un problema de internet. Algunas características de la app quizá no funcionen correctamente.';
 
   @override
   String get categoriesTab => 'Categorías';
@@ -703,13 +703,13 @@ class SEs extends S {
   String get liveHeader => 'En Vivo';
 
   @override
-  String get recentlyPublishedSection => 'Recently published';
+  String get recentlyPublishedSection => 'Publicaciones recientemente';
 
   @override
-  String get exploreCategoriesSection => 'Explore categories';
+  String get exploreCategoriesSection => 'Explorar categorías';
 
   @override
-  String get programsSection => 'Programs';
+  String get programsSection => 'Programas';
 
   @override
   String get episodesSection => 'Episodios';
@@ -718,7 +718,7 @@ class SEs extends S {
   String get categorySeries => 'Series';
 
   @override
-  String get categoryKids => 'Kids';
+  String get categoryKids => 'Niños';
 
   @override
   String get categoryFilms => 'Películas';
@@ -727,11 +727,11 @@ class SEs extends S {
   String get categoryEvents => 'Eventos';
 
   @override
-  String get categoryMusic => 'Music';
+  String get categoryMusic => 'Música';
 
   @override
-  String get noPlannedEvents => 'No planned events today';
+  String get noPlannedEvents => 'No hay eventos planeados';
 
   @override
-  String get watchNow => 'Watch now';
+  String get watchNow => 'Ver ahora';
 }
