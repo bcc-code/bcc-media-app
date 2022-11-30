@@ -59,8 +59,8 @@ class CalendarWidget extends ConsumerStatefulWidget {
 class _CalendarWidgetState extends ConsumerState<CalendarWidget> {
   DateTime _focusedDay = DateTime.now();
   DateTime? _selectedDay = DateTime.now();
-  Future<Query$CalendarPeriod$calendar$period?>? _calendarPeriod;
-  Future<Query$CalendarDay$calendar?>? _selectedDayEvent;
+  Future<Query$CalendarPeriod$calendar$period?>? _calendarPeriodFuture;
+  Future<Query$CalendarDay$calendar?>? _selectedDayFuture;
 
   HashSet<DateTime> activeDaysPeriod = HashSet<DateTime>();
   List<String> eventsPeriod = [];
@@ -176,12 +176,12 @@ class _CalendarWidgetState extends ConsumerState<CalendarWidget> {
         : const HighLightMiddle();
   }
 
-  loadingInputPeriodData() async {
+  loadInputPeriodData() async {
     var from = convertToIso8601(_focusedDay.subtract(const Duration(days: 31)));
     var to = convertToIso8601(_focusedDay.add(const Duration(days: 31)));
     final client = ref.read(gqlClientProvider);
 
-    _calendarPeriod = client
+    _calendarPeriodFuture = client
         .query$CalendarPeriod(Options$Query$CalendarPeriod(
       variables: Variables$Query$CalendarPeriod(from: from, to: to),
     ))
@@ -204,12 +204,12 @@ class _CalendarWidgetState extends ConsumerState<CalendarWidget> {
       });
       return value.parsedData?.calendar?.period;
     });
-    return await _calendarPeriod;
+    return await _calendarPeriodFuture;
   }
 
-  loadingSelectedEvent() {
+  loadSelectedDay() {
     final client = ref.read(gqlClientProvider);
-    _selectedDayEvent = client
+    _selectedDayFuture = client
         .query$CalendarDay(Options$Query$CalendarDay(variables: Variables$Query$CalendarDay(date: convertToIso8601(_selectedDay!))))
         .onError((error, stackTrace) {
       1;
@@ -219,15 +219,14 @@ class _CalendarWidgetState extends ConsumerState<CalendarWidget> {
       if (value.hasException) {
         throw ErrorDescription(value.exception.toString());
       }
-      value.exception?.linkException?.hashCode ?? 123;
       return value.parsedData?.calendar;
     });
   }
 
   @override
   void initState() {
-    loadingInputPeriodData();
-    loadingSelectedEvent();
+    loadInputPeriodData();
+    loadSelectedDay();
     super.initState();
   }
 
@@ -282,22 +281,24 @@ class _CalendarWidgetState extends ConsumerState<CalendarWidget> {
             focusedDay: _focusedDay,
             firstDay: kFirstDay,
             lastDay: kLastDay,
-            selectedDayPredicate: (day) => isSameDay(_selectedDay, day),
-            onCalendarCreated: (pageController) => loadingSelectedEvent,
+            selectedDayPredicate: (day) {
+              return isSameDay(_selectedDay, day);
+            },
+            onCalendarCreated: (pageController) => loadSelectedDay,
             onDaySelected: (selectedDay, focusedDay) {
               if (!isSameDay(_selectedDay, selectedDay)) {
                 setState(() {
                   _selectedDay = selectedDay;
                   _focusedDay = focusedDay;
                 });
-                loadingSelectedEvent();
+                loadSelectedDay();
               }
             },
             onPageChanged: (focusedDay) async {
               setState(() {
                 _focusedDay = focusedDay;
               });
-              await loadingInputPeriodData();
+              await loadInputPeriodData();
             },
             eventLoader: _getEventsForDay,
             calendarBuilders: CalendarBuilders(
@@ -319,7 +320,7 @@ class _CalendarWidgetState extends ConsumerState<CalendarWidget> {
                 );
               },
               selectedBuilder: (context, day, focusedDay) {
-                if (normalizeDate(focusedDay) != normalizeDate(DateTime.now())) {
+                if (normalizeDate(day) != normalizeDate(DateTime.now())) {
                   return Stack(
                     children: [
                       Center(
@@ -340,24 +341,29 @@ class _CalendarWidgetState extends ConsumerState<CalendarWidget> {
                     ],
                   );
                 } else {
-                  return Center(
-                    child: Container(
-                      width: 33,
-                      height: 33,
-                      decoration: BoxDecoration(
-                          color: BtvColors.label4.withOpacity(0.3),
-                          border: Border.all(
-                            color: Colors.white,
-                            width: 1.0,
+                  return Stack(
+                    children: [
+                      highlightMarker(day, false),
+                      Center(
+                        child: Container(
+                          width: 33,
+                          height: 33,
+                          decoration: BoxDecoration(
+                              color: BtvColors.label4.withOpacity(0.3),
+                              border: Border.all(
+                                color: Colors.white,
+                                width: 1.0,
+                              ),
+                              borderRadius: const BorderRadius.all(Radius.elliptical(30, 30))),
+                          child: Center(
+                            child: Text(
+                              '${day.day}',
+                              style: BtvTextStyles.title3.copyWith(color: BtvColors.tint2),
+                            ),
                           ),
-                          borderRadius: const BorderRadius.all(Radius.elliptical(30, 30))),
-                      child: Center(
-                        child: Text(
-                          '${day.day}',
-                          style: BtvTextStyles.title3.copyWith(color: BtvColors.tint2),
                         ),
                       ),
-                    ),
+                    ],
                   );
                 }
               },
@@ -380,7 +386,7 @@ class _CalendarWidgetState extends ConsumerState<CalendarWidget> {
           ],
         ),
         FutureBuilder<Query$CalendarDay$calendar?>(
-          future: _selectedDayEvent,
+          future: _selectedDayFuture,
           builder: (context, snapshot) {
             if (snapshot.connectionState == ConnectionState.waiting) {
               return const Center(
@@ -482,9 +488,9 @@ class HighLightSingle extends StatelessWidget {
 }
 
 class _EntriesSlot extends StatelessWidget {
-  final Query$CalendarDay$calendar? _snapshotData;
+  final Query$CalendarDay$calendar? _calendarDay;
 
-  const _EntriesSlot(this._snapshotData);
+  const _EntriesSlot(this._calendarDay);
 
   String calculateDuration(String st, String et) {
     Duration duration = DateTime.parse(et).difference(DateTime.parse(st));
@@ -494,28 +500,18 @@ class _EntriesSlot extends StatelessWidget {
     return '$hour $minutes'.trim();
   }
 
-  bool isClassOfEpisodeCalendarEntry(var input) {
-    return (input is Fragment$CalendarDay$entries$$EpisodeCalendarEntry);
-  }
-
   bool isHappeningNow(Fragment$CalendarDay$entries entry) {
-    var endStr = DateTime.parse(entry.end);
-    var stStr = DateTime.parse(entry.start);
+    var endStr = DateTime.parse(entry.end).toLocal();
+    var stStr = DateTime.parse(entry.start).toLocal();
     return endStr.isAfter(DateTime.now()) && stStr.isBefore(DateTime.now());
   }
 
   @override
   Widget build(BuildContext context) {
-    var eventsList = _snapshotData?.day.events;
-    var entriesList = _snapshotData?.day.entries;
+    var entriesList = _calendarDay?.day.entries;
     return Column(
       children: <Widget>[
         if (entriesList != null && entriesList.isNotEmpty) ...[
-          (eventsList != null)
-              ? const Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 16),
-                )
-              : const Text('ingen bilder'),
           for (var i = 0; i < entriesList.length; i++)
             GestureDetector(
               behavior: HitTestBehavior.opaque,
@@ -538,7 +534,7 @@ class _EntriesSlot extends StatelessWidget {
                   ),
                 ),
                 child: Opacity(
-                  opacity: isClassOfEpisodeCalendarEntry(entriesList[i]) ? 1 : 0.7,
+                  opacity: entriesList[i] is Fragment$CalendarDay$entries$$EpisodeCalendarEntry ? 1 : 0.7,
                   child: Row(
                     children: [
                       Padding(
@@ -547,7 +543,9 @@ class _EntriesSlot extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              isHappeningNow(entriesList[i]) ? S.of(context).now : DateFormat('HH:mm').format(DateTime.parse(entriesList[i].start)),
+                              isHappeningNow(entriesList[i])
+                                  ? S.of(context).now
+                                  : DateFormat('HH:mm').format(DateTime.parse(entriesList[i].start).toLocal()),
                               style: BtvTextStyles.title3,
                             ),
                             const SizedBox(height: 4),

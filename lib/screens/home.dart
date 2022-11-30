@@ -71,7 +71,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> with PageMixin {
     debugPrint(minVersionNumber);
     debugPrint('minVersionNumber ${getExtendedVersionNumber(minVersionNumber)}');
     debugPrint('currentVersionNumber ${getExtendedVersionNumber(currentVersionNumber)}');
-    if (minVersionNumber != null && getExtendedVersionNumber(minVersionNumber) > getExtendedVersionNumber(currentVersionNumber)) {
+    if (getExtendedVersionNumber(minVersionNumber) > getExtendedVersionNumber(currentVersionNumber)) {
       showDialog(
           context: context,
           builder: (context) {
