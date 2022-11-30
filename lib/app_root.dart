@@ -64,7 +64,7 @@ class _AppRootState extends ConsumerState<AppRoot> {
             ));
           });
     }
-    if (message.data['action'] == 'deep_link') {
+    if (openedFromBackground == true && message.data['action'] == 'deep_link') {
       //context.router.navigate();
       if (message.data.containsKey('deep_link') && message.data['deep_link'] is String) {
         String path = message.data['deep_link'];
