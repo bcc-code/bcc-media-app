@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:brunstadtv_app/helpers/debouncer.dart';
 import 'package:brunstadtv_app/router/router.gr.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -22,30 +23,31 @@ class SearchResultsPage extends ConsumerStatefulWidget {
 
 class _SearchResultsPageState extends ConsumerState<SearchResultsPage> {
   late Future<Query$Search$search?> _resultFuture;
+  final AsyncDebouncer<Query$Search$search?> debouncer = AsyncDebouncer(milliseconds: 150);
 
   void setResultFuture() {
-    // TODO: debouncer: https://stackoverflow.com/questions/52915035/how-to-debounce-search-suggestions-in-flutters-searchpage-widget
-    /// https://github.com/jifalops/debounce_throttle/blob/master/lib/debounce_throttle.dart
     final client = ref.read(gqlClientProvider);
-
-    if (widget.searchInput != null && widget.searchInput != '') {
-      _resultFuture = client
-          .query$Search(
-        Options$Query$Search(
-          variables: Variables$Query$Search(queryString: widget.searchInput!),
-        ),
-      )
-          .onError((error, stackTrace) {
-        1;
-        throw Error();
-      }).then(
-        (value) {
-          if (value.hasException) {
-            throw ErrorDescription(value.exception.toString());
-          }
-          return value.parsedData?.search;
-        },
-      );
+    if (widget.searchInput != '') {
+      setState(() {
+        _resultFuture = debouncer.run(
+          () => client
+              .query$Search(
+            Options$Query$Search(
+              variables: Variables$Query$Search(queryString: widget.searchInput),
+            ),
+          )
+              .onError((error, stackTrace) {
+            throw Error();
+          }).then(
+            (value) {
+              if (value.hasException) {
+                throw ErrorDescription(value.exception.toString());
+              }
+              return value.parsedData?.search;
+            },
+          ),
+        );
+      });
     }
   }
 

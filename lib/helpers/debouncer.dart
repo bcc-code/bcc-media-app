@@ -12,3 +12,20 @@ class Debouncer {
     _timer = Timer(Duration(milliseconds: milliseconds), action);
   }
 }
+
+class AsyncDebouncer<T> {
+  final int milliseconds;
+  Timer? _timer;
+
+  AsyncDebouncer({required this.milliseconds});
+
+  Future<T> run(Future<T> Function() action) {
+    var completer = Completer<T>();
+    _timer?.cancel();
+    _timer = Timer(Duration(milliseconds: milliseconds), () async {
+      final value = await action();
+      completer.complete(value);
+    });
+    return completer.future;
+  }
+}
