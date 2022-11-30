@@ -1,3 +1,4 @@
+import 'package:brunstadtv_app/components/error_generic.dart';
 import 'package:brunstadtv_app/models/analytics/sections.dart';
 import 'package:flutter/material.dart';
 
@@ -137,7 +138,14 @@ class _BccmPageState extends State<BccmPage> {
           return getPage(context, snapshot.data!);
         } else if (snapshot.hasError) {
           print(snapshot.error);
-          return loadingError(context);
+          return ErrorGeneric(
+            onRetry: () {
+              setState(() {
+                futureBuilderKey = GlobalKey();
+              });
+              widget.onRefresh(retry: true);
+            },
+          );
         }
         if (snapshot.connectionState == ConnectionState.waiting) {
           return getLoadingContent(context);
@@ -158,40 +166,5 @@ class _BccmPageState extends State<BccmPage> {
             style: BtvTextStyles.body2,
           ),
         ]),
-      );
-
-  Widget loadingError(BuildContext context) => Center(
-        child: Container(
-          padding: const EdgeInsets.symmetric(horizontal: 24),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Container(
-                margin: const EdgeInsets.only(bottom: 8),
-                child: Text(
-                  S.of(context).loadContentError,
-                  style: BtvTextStyles.title1,
-                ),
-              ),
-              Container(
-                margin: const EdgeInsets.only(bottom: 16),
-                child: Text(
-                  S.of(context).checkNetwork,
-                  textAlign: TextAlign.center,
-                  style: BtvTextStyles.body1.copyWith(color: BtvColors.label3),
-                ),
-              ),
-              BtvButton.medium(
-                labelText: S.of(context).tryAgainButton,
-                onPressed: () {
-                  setState(() {
-                    futureBuilderKey = GlobalKey();
-                  });
-                  widget.onRefresh(retry: true);
-                },
-              )
-            ],
-          ),
-        ),
       );
 }
