@@ -6,7 +6,7 @@ fragment GridSectionItem on SectionItem {
       seasonCount
     }
     ... on Episode {
-      availableFrom
+      publishDate
       duration
       number
       season {
@@ -77,7 +77,7 @@ fragment Section on Section {
             }
             ... on Episode {
               productionDate
-              availableFrom
+              publishDate
               duration
               season {
                 show {
@@ -109,7 +109,7 @@ fragment Section on Section {
             }
             ... on Episode {
               productionDate
-              availableFrom
+              publishDate
               duration
               season {
                 show {

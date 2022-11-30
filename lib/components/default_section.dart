@@ -123,13 +123,13 @@ class _DefaultEpisodeItem extends StatelessWidget {
       child: Stack(
         clipBehavior: Clip.none,
         children: [
-          isComingSoon(episode.availableFrom)
+          isComingSoon(episode.publishDate)
               ? Opacity(
                   opacity: 0.5,
                   child: BorderedImageContainer(imageUrl: sectionItem.image),
                 )
               : BorderedImageContainer(imageUrl: sectionItem.image),
-          if (isComingSoon(episode.availableFrom))
+          if (isComingSoon(episode.publishDate))
             Container(
               width: double.infinity,
               height: double.infinity,
@@ -178,7 +178,7 @@ class _DefaultEpisodeItem extends StatelessWidget {
         label: 'Live now',
         color: BtvColors.tint2,
       );
-    } else if (isComingSoon(episode.availableFrom)) {
+    } else if (isComingSoon(episode.publishDate)) {
       return const FeatureBadge(
         label: 'Coming soon',
         color: BtvColors.background2,

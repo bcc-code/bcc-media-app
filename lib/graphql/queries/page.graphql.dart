@@ -253,7 +253,7 @@ const fragmentDefinitionGridSectionItem = FragmentDefinitionNode(
           directives: [],
           selectionSet: SelectionSetNode(selections: [
             FieldNode(
-              name: NameNode(value: 'availableFrom'),
+              name: NameNode(value: 'publishDate'),
               alias: null,
               arguments: [],
               directives: [],
@@ -758,7 +758,7 @@ class Fragment$GridSectionItem$item$$Episode
     required this.id,
     required this.duration,
     this.progress,
-    required this.availableFrom,
+    required this.publishDate,
     this.number,
     this.season,
   });
@@ -769,7 +769,7 @@ class Fragment$GridSectionItem$item$$Episode
     final l$id = json['id'];
     final l$duration = json['duration'];
     final l$progress = json['progress'];
-    final l$availableFrom = json['availableFrom'];
+    final l$publishDate = json['publishDate'];
     final l$number = json['number'];
     final l$season = json['season'];
     return Fragment$GridSectionItem$item$$Episode(
@@ -777,7 +777,7 @@ class Fragment$GridSectionItem$item$$Episode
       id: (l$id as String),
       duration: (l$duration as int),
       progress: (l$progress as int?),
-      availableFrom: (l$availableFrom as String),
+      publishDate: (l$publishDate as String),
       number: (l$number as int?),
       season: l$season == null
           ? null
@@ -794,7 +794,7 @@ class Fragment$GridSectionItem$item$$Episode
 
   final int? progress;
 
-  final String availableFrom;
+  final String publishDate;
 
   final int? number;
 
@@ -810,8 +810,8 @@ class Fragment$GridSectionItem$item$$Episode
     _resultData['duration'] = l$duration;
     final l$progress = progress;
     _resultData['progress'] = l$progress;
-    final l$availableFrom = availableFrom;
-    _resultData['availableFrom'] = l$availableFrom;
+    final l$publishDate = publishDate;
+    _resultData['publishDate'] = l$publishDate;
     final l$number = number;
     _resultData['number'] = l$number;
     final l$season = season;
@@ -825,7 +825,7 @@ class Fragment$GridSectionItem$item$$Episode
     final l$id = id;
     final l$duration = duration;
     final l$progress = progress;
-    final l$availableFrom = availableFrom;
+    final l$publishDate = publishDate;
     final l$number = number;
     final l$season = season;
     return Object.hashAll([
@@ -833,7 +833,7 @@ class Fragment$GridSectionItem$item$$Episode
       l$id,
       l$duration,
       l$progress,
-      l$availableFrom,
+      l$publishDate,
       l$number,
       l$season,
     ]);
@@ -868,9 +868,9 @@ class Fragment$GridSectionItem$item$$Episode
     if (l$progress != lOther$progress) {
       return false;
     }
-    final l$availableFrom = availableFrom;
-    final lOther$availableFrom = other.availableFrom;
-    if (l$availableFrom != lOther$availableFrom) {
+    final l$publishDate = publishDate;
+    final lOther$publishDate = other.publishDate;
+    if (l$publishDate != lOther$publishDate) {
       return false;
     }
     final l$number = number;
@@ -911,7 +911,7 @@ abstract class CopyWith$Fragment$GridSectionItem$item$$Episode<TRes> {
     String? id,
     int? duration,
     int? progress,
-    String? availableFrom,
+    String? publishDate,
     int? number,
     Fragment$GridSectionItem$item$$Episode$season? season,
   });
@@ -936,7 +936,7 @@ class _CopyWithImpl$Fragment$GridSectionItem$item$$Episode<TRes>
     Object? id = _undefined,
     Object? duration = _undefined,
     Object? progress = _undefined,
-    Object? availableFrom = _undefined,
+    Object? publishDate = _undefined,
     Object? number = _undefined,
     Object? season = _undefined,
   }) =>
@@ -950,9 +950,9 @@ class _CopyWithImpl$Fragment$GridSectionItem$item$$Episode<TRes>
             : (duration as int),
         progress:
             progress == _undefined ? _instance.progress : (progress as int?),
-        availableFrom: availableFrom == _undefined || availableFrom == null
-            ? _instance.availableFrom
-            : (availableFrom as String),
+        publishDate: publishDate == _undefined || publishDate == null
+            ? _instance.publishDate
+            : (publishDate as String),
         number: number == _undefined ? _instance.number : (number as int?),
         season: season == _undefined
             ? _instance.season
@@ -979,7 +979,7 @@ class _CopyWithStubImpl$Fragment$GridSectionItem$item$$Episode<TRes>
     String? id,
     int? duration,
     int? progress,
-    String? availableFrom,
+    String? publishDate,
     int? number,
     Fragment$GridSectionItem$item$$Episode$season? season,
   }) =>
@@ -3805,7 +3805,7 @@ const fragmentDefinitionSection = FragmentDefinitionNode(
                               selectionSet: null,
                             ),
                             FieldNode(
-                              name: NameNode(value: 'availableFrom'),
+                              name: NameNode(value: 'publishDate'),
                               alias: null,
                               arguments: [],
                               directives: [],
@@ -4041,7 +4041,7 @@ const fragmentDefinitionSection = FragmentDefinitionNode(
                               selectionSet: null,
                             ),
                             FieldNode(
-                              name: NameNode(value: 'availableFrom'),
+                              name: NameNode(value: 'publishDate'),
                               alias: null,
                               arguments: [],
                               directives: [],
@@ -5711,7 +5711,7 @@ class Fragment$Section$$PosterSection$items$items$item$$Episode
     required this.duration,
     this.progress,
     this.productionDate,
-    required this.availableFrom,
+    required this.publishDate,
     this.season,
   });
 
@@ -5722,7 +5722,7 @@ class Fragment$Section$$PosterSection$items$items$item$$Episode
     final l$duration = json['duration'];
     final l$progress = json['progress'];
     final l$productionDate = json['productionDate'];
-    final l$availableFrom = json['availableFrom'];
+    final l$publishDate = json['publishDate'];
     final l$season = json['season'];
     return Fragment$Section$$PosterSection$items$items$item$$Episode(
       $__typename: (l$$__typename as String),
@@ -5730,7 +5730,7 @@ class Fragment$Section$$PosterSection$items$items$item$$Episode
       duration: (l$duration as int),
       progress: (l$progress as int?),
       productionDate: (l$productionDate as String?),
-      availableFrom: (l$availableFrom as String),
+      publishDate: (l$publishDate as String),
       season: l$season == null
           ? null
           : Fragment$Section$$PosterSection$items$items$item$$Episode$season
@@ -5748,7 +5748,7 @@ class Fragment$Section$$PosterSection$items$items$item$$Episode
 
   final String? productionDate;
 
-  final String availableFrom;
+  final String publishDate;
 
   final Fragment$Section$$PosterSection$items$items$item$$Episode$season?
       season;
@@ -5765,8 +5765,8 @@ class Fragment$Section$$PosterSection$items$items$item$$Episode
     _resultData['progress'] = l$progress;
     final l$productionDate = productionDate;
     _resultData['productionDate'] = l$productionDate;
-    final l$availableFrom = availableFrom;
-    _resultData['availableFrom'] = l$availableFrom;
+    final l$publishDate = publishDate;
+    _resultData['publishDate'] = l$publishDate;
     final l$season = season;
     _resultData['season'] = l$season?.toJson();
     return _resultData;
@@ -5779,7 +5779,7 @@ class Fragment$Section$$PosterSection$items$items$item$$Episode
     final l$duration = duration;
     final l$progress = progress;
     final l$productionDate = productionDate;
-    final l$availableFrom = availableFrom;
+    final l$publishDate = publishDate;
     final l$season = season;
     return Object.hashAll([
       l$$__typename,
@@ -5787,7 +5787,7 @@ class Fragment$Section$$PosterSection$items$items$item$$Episode
       l$duration,
       l$progress,
       l$productionDate,
-      l$availableFrom,
+      l$publishDate,
       l$season,
     ]);
   }
@@ -5826,9 +5826,9 @@ class Fragment$Section$$PosterSection$items$items$item$$Episode
     if (l$productionDate != lOther$productionDate) {
       return false;
     }
-    final l$availableFrom = availableFrom;
-    final lOther$availableFrom = other.availableFrom;
-    if (l$availableFrom != lOther$availableFrom) {
+    final l$publishDate = publishDate;
+    final lOther$publishDate = other.publishDate;
+    if (l$publishDate != lOther$publishDate) {
       return false;
     }
     final l$season = season;
@@ -5869,7 +5869,7 @@ abstract class CopyWith$Fragment$Section$$PosterSection$items$items$item$$Episod
     int? duration,
     int? progress,
     String? productionDate,
-    String? availableFrom,
+    String? publishDate,
     Fragment$Section$$PosterSection$items$items$item$$Episode$season? season,
   });
   CopyWith$Fragment$Section$$PosterSection$items$items$item$$Episode$season<
@@ -5899,7 +5899,7 @@ class _CopyWithImpl$Fragment$Section$$PosterSection$items$items$item$$Episode<
     Object? duration = _undefined,
     Object? progress = _undefined,
     Object? productionDate = _undefined,
-    Object? availableFrom = _undefined,
+    Object? publishDate = _undefined,
     Object? season = _undefined,
   }) =>
       _then(Fragment$Section$$PosterSection$items$items$item$$Episode(
@@ -5915,9 +5915,9 @@ class _CopyWithImpl$Fragment$Section$$PosterSection$items$items$item$$Episode<
         productionDate: productionDate == _undefined
             ? _instance.productionDate
             : (productionDate as String?),
-        availableFrom: availableFrom == _undefined || availableFrom == null
-            ? _instance.availableFrom
-            : (availableFrom as String),
+        publishDate: publishDate == _undefined || publishDate == null
+            ? _instance.publishDate
+            : (publishDate as String),
         season: season == _undefined
             ? _instance.season
             : (season
@@ -5950,7 +5950,7 @@ class _CopyWithStubImpl$Fragment$Section$$PosterSection$items$items$item$$Episod
     int? duration,
     int? progress,
     String? productionDate,
-    String? availableFrom,
+    String? publishDate,
     Fragment$Section$$PosterSection$items$items$item$$Episode$season? season,
   }) =>
       _res;
@@ -9535,7 +9535,7 @@ class Fragment$Section$$DefaultSection$items$items$item$$Episode
     required this.duration,
     this.progress,
     this.productionDate,
-    required this.availableFrom,
+    required this.publishDate,
     this.season,
   });
 
@@ -9546,7 +9546,7 @@ class Fragment$Section$$DefaultSection$items$items$item$$Episode
     final l$duration = json['duration'];
     final l$progress = json['progress'];
     final l$productionDate = json['productionDate'];
-    final l$availableFrom = json['availableFrom'];
+    final l$publishDate = json['publishDate'];
     final l$season = json['season'];
     return Fragment$Section$$DefaultSection$items$items$item$$Episode(
       $__typename: (l$$__typename as String),
@@ -9554,7 +9554,7 @@ class Fragment$Section$$DefaultSection$items$items$item$$Episode
       duration: (l$duration as int),
       progress: (l$progress as int?),
       productionDate: (l$productionDate as String?),
-      availableFrom: (l$availableFrom as String),
+      publishDate: (l$publishDate as String),
       season: l$season == null
           ? null
           : Fragment$Section$$DefaultSection$items$items$item$$Episode$season
@@ -9572,7 +9572,7 @@ class Fragment$Section$$DefaultSection$items$items$item$$Episode
 
   final String? productionDate;
 
-  final String availableFrom;
+  final String publishDate;
 
   final Fragment$Section$$DefaultSection$items$items$item$$Episode$season?
       season;
@@ -9589,8 +9589,8 @@ class Fragment$Section$$DefaultSection$items$items$item$$Episode
     _resultData['progress'] = l$progress;
     final l$productionDate = productionDate;
     _resultData['productionDate'] = l$productionDate;
-    final l$availableFrom = availableFrom;
-    _resultData['availableFrom'] = l$availableFrom;
+    final l$publishDate = publishDate;
+    _resultData['publishDate'] = l$publishDate;
     final l$season = season;
     _resultData['season'] = l$season?.toJson();
     return _resultData;
@@ -9603,7 +9603,7 @@ class Fragment$Section$$DefaultSection$items$items$item$$Episode
     final l$duration = duration;
     final l$progress = progress;
     final l$productionDate = productionDate;
-    final l$availableFrom = availableFrom;
+    final l$publishDate = publishDate;
     final l$season = season;
     return Object.hashAll([
       l$$__typename,
@@ -9611,7 +9611,7 @@ class Fragment$Section$$DefaultSection$items$items$item$$Episode
       l$duration,
       l$progress,
       l$productionDate,
-      l$availableFrom,
+      l$publishDate,
       l$season,
     ]);
   }
@@ -9651,9 +9651,9 @@ class Fragment$Section$$DefaultSection$items$items$item$$Episode
     if (l$productionDate != lOther$productionDate) {
       return false;
     }
-    final l$availableFrom = availableFrom;
-    final lOther$availableFrom = other.availableFrom;
-    if (l$availableFrom != lOther$availableFrom) {
+    final l$publishDate = publishDate;
+    final lOther$publishDate = other.publishDate;
+    if (l$publishDate != lOther$publishDate) {
       return false;
     }
     final l$season = season;
@@ -9694,7 +9694,7 @@ abstract class CopyWith$Fragment$Section$$DefaultSection$items$items$item$$Episo
     int? duration,
     int? progress,
     String? productionDate,
-    String? availableFrom,
+    String? publishDate,
     Fragment$Section$$DefaultSection$items$items$item$$Episode$season? season,
   });
   CopyWith$Fragment$Section$$DefaultSection$items$items$item$$Episode$season<
@@ -9724,7 +9724,7 @@ class _CopyWithImpl$Fragment$Section$$DefaultSection$items$items$item$$Episode<
     Object? duration = _undefined,
     Object? progress = _undefined,
     Object? productionDate = _undefined,
-    Object? availableFrom = _undefined,
+    Object? publishDate = _undefined,
     Object? season = _undefined,
   }) =>
       _then(Fragment$Section$$DefaultSection$items$items$item$$Episode(
@@ -9740,9 +9740,9 @@ class _CopyWithImpl$Fragment$Section$$DefaultSection$items$items$item$$Episode<
         productionDate: productionDate == _undefined
             ? _instance.productionDate
             : (productionDate as String?),
-        availableFrom: availableFrom == _undefined || availableFrom == null
-            ? _instance.availableFrom
-            : (availableFrom as String),
+        publishDate: publishDate == _undefined || publishDate == null
+            ? _instance.publishDate
+            : (publishDate as String),
         season: season == _undefined
             ? _instance.season
             : (season
@@ -9775,7 +9775,7 @@ class _CopyWithStubImpl$Fragment$Section$$DefaultSection$items$items$item$$Episo
     int? duration,
     int? progress,
     String? productionDate,
-    String? availableFrom,
+    String? publishDate,
     Fragment$Section$$DefaultSection$items$items$item$$Episode$season? season,
   }) =>
       _res;
@@ -13713,7 +13713,7 @@ class Fragment$Section$$DefaultGridSection$items$items$item$$Episode
     required this.id,
     required this.duration,
     this.progress,
-    required this.availableFrom,
+    required this.publishDate,
     this.number,
     this.season,
   });
@@ -13724,7 +13724,7 @@ class Fragment$Section$$DefaultGridSection$items$items$item$$Episode
     final l$id = json['id'];
     final l$duration = json['duration'];
     final l$progress = json['progress'];
-    final l$availableFrom = json['availableFrom'];
+    final l$publishDate = json['publishDate'];
     final l$number = json['number'];
     final l$season = json['season'];
     return Fragment$Section$$DefaultGridSection$items$items$item$$Episode(
@@ -13732,7 +13732,7 @@ class Fragment$Section$$DefaultGridSection$items$items$item$$Episode
       id: (l$id as String),
       duration: (l$duration as int),
       progress: (l$progress as int?),
-      availableFrom: (l$availableFrom as String),
+      publishDate: (l$publishDate as String),
       number: (l$number as int?),
       season: l$season == null
           ? null
@@ -13749,7 +13749,7 @@ class Fragment$Section$$DefaultGridSection$items$items$item$$Episode
 
   final int? progress;
 
-  final String availableFrom;
+  final String publishDate;
 
   final int? number;
 
@@ -13766,8 +13766,8 @@ class Fragment$Section$$DefaultGridSection$items$items$item$$Episode
     _resultData['duration'] = l$duration;
     final l$progress = progress;
     _resultData['progress'] = l$progress;
-    final l$availableFrom = availableFrom;
-    _resultData['availableFrom'] = l$availableFrom;
+    final l$publishDate = publishDate;
+    _resultData['publishDate'] = l$publishDate;
     final l$number = number;
     _resultData['number'] = l$number;
     final l$season = season;
@@ -13781,7 +13781,7 @@ class Fragment$Section$$DefaultGridSection$items$items$item$$Episode
     final l$id = id;
     final l$duration = duration;
     final l$progress = progress;
-    final l$availableFrom = availableFrom;
+    final l$publishDate = publishDate;
     final l$number = number;
     final l$season = season;
     return Object.hashAll([
@@ -13789,7 +13789,7 @@ class Fragment$Section$$DefaultGridSection$items$items$item$$Episode
       l$id,
       l$duration,
       l$progress,
-      l$availableFrom,
+      l$publishDate,
       l$number,
       l$season,
     ]);
@@ -13825,9 +13825,9 @@ class Fragment$Section$$DefaultGridSection$items$items$item$$Episode
     if (l$progress != lOther$progress) {
       return false;
     }
-    final l$availableFrom = availableFrom;
-    final lOther$availableFrom = other.availableFrom;
-    if (l$availableFrom != lOther$availableFrom) {
+    final l$publishDate = publishDate;
+    final lOther$publishDate = other.publishDate;
+    if (l$publishDate != lOther$publishDate) {
       return false;
     }
     final l$number = number;
@@ -13873,7 +13873,7 @@ abstract class CopyWith$Fragment$Section$$DefaultGridSection$items$items$item$$E
     String? id,
     int? duration,
     int? progress,
-    String? availableFrom,
+    String? publishDate,
     int? number,
     Fragment$Section$$DefaultGridSection$items$items$item$$Episode$season?
         season,
@@ -13905,7 +13905,7 @@ class _CopyWithImpl$Fragment$Section$$DefaultGridSection$items$items$item$$Episo
     Object? id = _undefined,
     Object? duration = _undefined,
     Object? progress = _undefined,
-    Object? availableFrom = _undefined,
+    Object? publishDate = _undefined,
     Object? number = _undefined,
     Object? season = _undefined,
   }) =>
@@ -13919,9 +13919,9 @@ class _CopyWithImpl$Fragment$Section$$DefaultGridSection$items$items$item$$Episo
             : (duration as int),
         progress:
             progress == _undefined ? _instance.progress : (progress as int?),
-        availableFrom: availableFrom == _undefined || availableFrom == null
-            ? _instance.availableFrom
-            : (availableFrom as String),
+        publishDate: publishDate == _undefined || publishDate == null
+            ? _instance.publishDate
+            : (publishDate as String),
         number: number == _undefined ? _instance.number : (number as int?),
         season: season == _undefined
             ? _instance.season
@@ -13954,7 +13954,7 @@ class _CopyWithStubImpl$Fragment$Section$$DefaultGridSection$items$items$item$$E
     String? id,
     int? duration,
     int? progress,
-    String? availableFrom,
+    String? publishDate,
     int? number,
     Fragment$Section$$DefaultGridSection$items$items$item$$Episode$season?
         season,
@@ -15876,7 +15876,7 @@ class Fragment$Section$$PosterGridSection$items$items$item$$Episode
     required this.id,
     required this.duration,
     this.progress,
-    required this.availableFrom,
+    required this.publishDate,
     this.number,
     this.season,
   });
@@ -15887,7 +15887,7 @@ class Fragment$Section$$PosterGridSection$items$items$item$$Episode
     final l$id = json['id'];
     final l$duration = json['duration'];
     final l$progress = json['progress'];
-    final l$availableFrom = json['availableFrom'];
+    final l$publishDate = json['publishDate'];
     final l$number = json['number'];
     final l$season = json['season'];
     return Fragment$Section$$PosterGridSection$items$items$item$$Episode(
@@ -15895,7 +15895,7 @@ class Fragment$Section$$PosterGridSection$items$items$item$$Episode
       id: (l$id as String),
       duration: (l$duration as int),
       progress: (l$progress as int?),
-      availableFrom: (l$availableFrom as String),
+      publishDate: (l$publishDate as String),
       number: (l$number as int?),
       season: l$season == null
           ? null
@@ -15912,7 +15912,7 @@ class Fragment$Section$$PosterGridSection$items$items$item$$Episode
 
   final int? progress;
 
-  final String availableFrom;
+  final String publishDate;
 
   final int? number;
 
@@ -15929,8 +15929,8 @@ class Fragment$Section$$PosterGridSection$items$items$item$$Episode
     _resultData['duration'] = l$duration;
     final l$progress = progress;
     _resultData['progress'] = l$progress;
-    final l$availableFrom = availableFrom;
-    _resultData['availableFrom'] = l$availableFrom;
+    final l$publishDate = publishDate;
+    _resultData['publishDate'] = l$publishDate;
     final l$number = number;
     _resultData['number'] = l$number;
     final l$season = season;
@@ -15944,7 +15944,7 @@ class Fragment$Section$$PosterGridSection$items$items$item$$Episode
     final l$id = id;
     final l$duration = duration;
     final l$progress = progress;
-    final l$availableFrom = availableFrom;
+    final l$publishDate = publishDate;
     final l$number = number;
     final l$season = season;
     return Object.hashAll([
@@ -15952,7 +15952,7 @@ class Fragment$Section$$PosterGridSection$items$items$item$$Episode
       l$id,
       l$duration,
       l$progress,
-      l$availableFrom,
+      l$publishDate,
       l$number,
       l$season,
     ]);
@@ -15988,9 +15988,9 @@ class Fragment$Section$$PosterGridSection$items$items$item$$Episode
     if (l$progress != lOther$progress) {
       return false;
     }
-    final l$availableFrom = availableFrom;
-    final lOther$availableFrom = other.availableFrom;
-    if (l$availableFrom != lOther$availableFrom) {
+    final l$publishDate = publishDate;
+    final lOther$publishDate = other.publishDate;
+    if (l$publishDate != lOther$publishDate) {
       return false;
     }
     final l$number = number;
@@ -16035,7 +16035,7 @@ abstract class CopyWith$Fragment$Section$$PosterGridSection$items$items$item$$Ep
     String? id,
     int? duration,
     int? progress,
-    String? availableFrom,
+    String? publishDate,
     int? number,
     Fragment$Section$$PosterGridSection$items$items$item$$Episode$season?
         season,
@@ -16066,7 +16066,7 @@ class _CopyWithImpl$Fragment$Section$$PosterGridSection$items$items$item$$Episod
     Object? id = _undefined,
     Object? duration = _undefined,
     Object? progress = _undefined,
-    Object? availableFrom = _undefined,
+    Object? publishDate = _undefined,
     Object? number = _undefined,
     Object? season = _undefined,
   }) =>
@@ -16080,9 +16080,9 @@ class _CopyWithImpl$Fragment$Section$$PosterGridSection$items$items$item$$Episod
             : (duration as int),
         progress:
             progress == _undefined ? _instance.progress : (progress as int?),
-        availableFrom: availableFrom == _undefined || availableFrom == null
-            ? _instance.availableFrom
-            : (availableFrom as String),
+        publishDate: publishDate == _undefined || publishDate == null
+            ? _instance.publishDate
+            : (publishDate as String),
         number: number == _undefined ? _instance.number : (number as int?),
         season: season == _undefined
             ? _instance.season
@@ -16115,7 +16115,7 @@ class _CopyWithStubImpl$Fragment$Section$$PosterGridSection$items$items$item$$Ep
     String? id,
     int? duration,
     int? progress,
-    String? availableFrom,
+    String? publishDate,
     int? number,
     Fragment$Section$$PosterGridSection$items$items$item$$Episode$season?
         season,
@@ -18030,7 +18030,7 @@ class Fragment$Section$$IconGridSection$items$items$item$$Episode
     required this.id,
     required this.duration,
     this.progress,
-    required this.availableFrom,
+    required this.publishDate,
     this.number,
     this.season,
   });
@@ -18041,7 +18041,7 @@ class Fragment$Section$$IconGridSection$items$items$item$$Episode
     final l$id = json['id'];
     final l$duration = json['duration'];
     final l$progress = json['progress'];
-    final l$availableFrom = json['availableFrom'];
+    final l$publishDate = json['publishDate'];
     final l$number = json['number'];
     final l$season = json['season'];
     return Fragment$Section$$IconGridSection$items$items$item$$Episode(
@@ -18049,7 +18049,7 @@ class Fragment$Section$$IconGridSection$items$items$item$$Episode
       id: (l$id as String),
       duration: (l$duration as int),
       progress: (l$progress as int?),
-      availableFrom: (l$availableFrom as String),
+      publishDate: (l$publishDate as String),
       number: (l$number as int?),
       season: l$season == null
           ? null
@@ -18066,7 +18066,7 @@ class Fragment$Section$$IconGridSection$items$items$item$$Episode
 
   final int? progress;
 
-  final String availableFrom;
+  final String publishDate;
 
   final int? number;
 
@@ -18083,8 +18083,8 @@ class Fragment$Section$$IconGridSection$items$items$item$$Episode
     _resultData['duration'] = l$duration;
     final l$progress = progress;
     _resultData['progress'] = l$progress;
-    final l$availableFrom = availableFrom;
-    _resultData['availableFrom'] = l$availableFrom;
+    final l$publishDate = publishDate;
+    _resultData['publishDate'] = l$publishDate;
     final l$number = number;
     _resultData['number'] = l$number;
     final l$season = season;
@@ -18098,7 +18098,7 @@ class Fragment$Section$$IconGridSection$items$items$item$$Episode
     final l$id = id;
     final l$duration = duration;
     final l$progress = progress;
-    final l$availableFrom = availableFrom;
+    final l$publishDate = publishDate;
     final l$number = number;
     final l$season = season;
     return Object.hashAll([
@@ -18106,7 +18106,7 @@ class Fragment$Section$$IconGridSection$items$items$item$$Episode
       l$id,
       l$duration,
       l$progress,
-      l$availableFrom,
+      l$publishDate,
       l$number,
       l$season,
     ]);
@@ -18142,9 +18142,9 @@ class Fragment$Section$$IconGridSection$items$items$item$$Episode
     if (l$progress != lOther$progress) {
       return false;
     }
-    final l$availableFrom = availableFrom;
-    final lOther$availableFrom = other.availableFrom;
-    if (l$availableFrom != lOther$availableFrom) {
+    final l$publishDate = publishDate;
+    final lOther$publishDate = other.publishDate;
+    if (l$publishDate != lOther$publishDate) {
       return false;
     }
     final l$number = number;
@@ -18189,7 +18189,7 @@ abstract class CopyWith$Fragment$Section$$IconGridSection$items$items$item$$Epis
     String? id,
     int? duration,
     int? progress,
-    String? availableFrom,
+    String? publishDate,
     int? number,
     Fragment$Section$$IconGridSection$items$items$item$$Episode$season? season,
   });
@@ -18219,7 +18219,7 @@ class _CopyWithImpl$Fragment$Section$$IconGridSection$items$items$item$$Episode<
     Object? id = _undefined,
     Object? duration = _undefined,
     Object? progress = _undefined,
-    Object? availableFrom = _undefined,
+    Object? publishDate = _undefined,
     Object? number = _undefined,
     Object? season = _undefined,
   }) =>
@@ -18233,9 +18233,9 @@ class _CopyWithImpl$Fragment$Section$$IconGridSection$items$items$item$$Episode<
             : (duration as int),
         progress:
             progress == _undefined ? _instance.progress : (progress as int?),
-        availableFrom: availableFrom == _undefined || availableFrom == null
-            ? _instance.availableFrom
-            : (availableFrom as String),
+        publishDate: publishDate == _undefined || publishDate == null
+            ? _instance.publishDate
+            : (publishDate as String),
         number: number == _undefined ? _instance.number : (number as int?),
         season: season == _undefined
             ? _instance.season
@@ -18268,7 +18268,7 @@ class _CopyWithStubImpl$Fragment$Section$$IconGridSection$items$items$item$$Epis
     String? id,
     int? duration,
     int? progress,
-    String? availableFrom,
+    String? publishDate,
     int? number,
     Fragment$Section$$IconGridSection$items$items$item$$Episode$season? season,
   }) =>
