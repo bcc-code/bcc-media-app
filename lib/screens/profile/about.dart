@@ -1,4 +1,6 @@
+import 'package:brunstadtv_app/components/developer_options.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 
 import '../../components/custom_back_button.dart';
@@ -14,6 +16,8 @@ class AboutScreen extends StatefulWidget {
 }
 
 class _AboutScreenState extends State<AboutScreen> {
+  int timesPressedLogo = 0;
+
   Future<String> get appVersion async {
     PackageInfo packageInfo = await PackageInfo.fromPlatform();
     return formatAppVersion(packageInfo);
@@ -38,9 +42,24 @@ class _AboutScreenState extends State<AboutScreen> {
               Expanded(
                 child: Column(
                   children: [
-                    SizedBox(
-                      width: 200,
-                      child: Image.asset('assets/images/logo.png', fit: BoxFit.fitWidth),
+                    GestureDetector(
+                      onTap: () {
+                        timesPressedLogo++;
+                        if (timesPressedLogo == 7) {
+                          timesPressedLogo = 0;
+                          HapticFeedback.heavyImpact();
+                          showModalBottomSheet(
+                            context: context,
+                            builder: (context) {
+                              return const DeveloperOptions();
+                            },
+                          );
+                        }
+                      },
+                      child: SizedBox(
+                        width: 200,
+                        child: Image.asset('assets/images/logo.png', fit: BoxFit.fitWidth),
+                      ),
                     ),
                     Container(
                       margin: const EdgeInsets.symmetric(vertical: 16),

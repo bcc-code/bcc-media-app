@@ -1,3 +1,4 @@
+import 'package:brunstadtv_app/helpers/constants.dart';
 import 'package:brunstadtv_app/providers/auth_state.dart';
 import 'package:brunstadtv_app/providers/settings.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -8,9 +9,10 @@ import 'package:http/retry.dart';
 import '../env/env.dart';
 
 final gqlClientProvider = Provider<GraphQLClient>((ref) {
-  final httpLink = HttpLink(Env.brunstadtvApiEndpoint,
+  final settings = ref.watch(settingsProvider);
+  final httpLink = HttpLink(ApiEnvUrls[settings.envOverride] ?? ApiEnvUrls[Environments.prod]!,
       defaultHeaders: {
-        'Accept-Language': ref.watch(settingsProvider).appLanguage.languageCode,
+        'Accept-Language': settings.appLanguage.languageCode,
       },
       httpClient: RetryClient(Client(), retries: 1, when: (response) => response.statusCode == 500 || response.statusCode == 429));
 

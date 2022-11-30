@@ -1,15 +1,10 @@
 import 'package:bccm_player/playback_platform_pigeon.g.dart';
-import 'package:bccm_player/playback_service_interface.dart';
-import 'package:brunstadtv_app/graphql/queries/devices.graphql.dart';
 import 'package:brunstadtv_app/helpers/constants.dart';
 import 'package:brunstadtv_app/providers/playback_api.dart';
-import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
-import '../graphql/client.dart';
 
 part 'settings.freezed.dart';
 
@@ -20,6 +15,7 @@ class Settings with _$Settings {
     String? audioLanguage,
     String? subtitleLanguage,
     String? analyticsId,
+    String? envOverride,
   }) = _Settings;
 }
 
@@ -44,11 +40,11 @@ class SettingsService extends StateNotifier<Settings> {
   Future<void> load() async {
     var prefs = await prefsF;
     state = state.copyWith(
-      appLanguage: Locale(prefs.getString(PrefKeys.appLanguage) ?? 'en'),
-      audioLanguage: prefs.getString(PrefKeys.audioLanguage),
-      subtitleLanguage: prefs.getString(PrefKeys.subtitleLanguage),
-      analyticsId: prefs.getString(PrefKeys.analyticsId),
-    );
+        appLanguage: Locale(prefs.getString(PrefKeys.appLanguage) ?? 'en'),
+        audioLanguage: prefs.getString(PrefKeys.audioLanguage),
+        subtitleLanguage: prefs.getString(PrefKeys.subtitleLanguage),
+        analyticsId: prefs.getString(PrefKeys.analyticsId),
+        envOverride: prefs.getString(PrefKeys.envOverride));
   }
 
   Future<void> setAppLanguage(String code) async {

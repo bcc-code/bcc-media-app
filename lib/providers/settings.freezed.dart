@@ -20,6 +20,7 @@ mixin _$Settings {
   String? get audioLanguage => throw _privateConstructorUsedError;
   String? get subtitleLanguage => throw _privateConstructorUsedError;
   String? get analyticsId => throw _privateConstructorUsedError;
+  String? get envOverride => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $SettingsCopyWith<Settings> get copyWith =>
@@ -35,7 +36,8 @@ abstract class $SettingsCopyWith<$Res> {
       {Locale appLanguage,
       String? audioLanguage,
       String? subtitleLanguage,
-      String? analyticsId});
+      String? analyticsId,
+      String? envOverride});
 }
 
 /// @nodoc
@@ -55,6 +57,7 @@ class _$SettingsCopyWithImpl<$Res, $Val extends Settings>
     Object? audioLanguage = freezed,
     Object? subtitleLanguage = freezed,
     Object? analyticsId = freezed,
+    Object? envOverride = freezed,
   }) {
     return _then(_value.copyWith(
       appLanguage: null == appLanguage
@@ -73,6 +76,10 @@ class _$SettingsCopyWithImpl<$Res, $Val extends Settings>
           ? _value.analyticsId
           : analyticsId // ignore: cast_nullable_to_non_nullable
               as String?,
+      envOverride: freezed == envOverride
+          ? _value.envOverride
+          : envOverride // ignore: cast_nullable_to_non_nullable
+              as String?,
     ) as $Val);
   }
 }
@@ -88,7 +95,8 @@ abstract class _$$_SettingsCopyWith<$Res> implements $SettingsCopyWith<$Res> {
       {Locale appLanguage,
       String? audioLanguage,
       String? subtitleLanguage,
-      String? analyticsId});
+      String? analyticsId,
+      String? envOverride});
 }
 
 /// @nodoc
@@ -106,6 +114,7 @@ class __$$_SettingsCopyWithImpl<$Res>
     Object? audioLanguage = freezed,
     Object? subtitleLanguage = freezed,
     Object? analyticsId = freezed,
+    Object? envOverride = freezed,
   }) {
     return _then(_$_Settings(
       appLanguage: null == appLanguage
@@ -124,6 +133,10 @@ class __$$_SettingsCopyWithImpl<$Res>
           ? _value.analyticsId
           : analyticsId // ignore: cast_nullable_to_non_nullable
               as String?,
+      envOverride: freezed == envOverride
+          ? _value.envOverride
+          : envOverride // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -135,7 +148,8 @@ class _$_Settings implements _Settings {
       {required this.appLanguage,
       this.audioLanguage,
       this.subtitleLanguage,
-      this.analyticsId});
+      this.analyticsId,
+      this.envOverride});
 
   @override
   final Locale appLanguage;
@@ -145,10 +159,12 @@ class _$_Settings implements _Settings {
   final String? subtitleLanguage;
   @override
   final String? analyticsId;
+  @override
+  final String? envOverride;
 
   @override
   String toString() {
-    return 'Settings(appLanguage: $appLanguage, audioLanguage: $audioLanguage, subtitleLanguage: $subtitleLanguage, analyticsId: $analyticsId)';
+    return 'Settings(appLanguage: $appLanguage, audioLanguage: $audioLanguage, subtitleLanguage: $subtitleLanguage, analyticsId: $analyticsId, envOverride: $envOverride)';
   }
 
   @override
@@ -163,12 +179,14 @@ class _$_Settings implements _Settings {
             (identical(other.subtitleLanguage, subtitleLanguage) ||
                 other.subtitleLanguage == subtitleLanguage) &&
             (identical(other.analyticsId, analyticsId) ||
-                other.analyticsId == analyticsId));
+                other.analyticsId == analyticsId) &&
+            (identical(other.envOverride, envOverride) ||
+                other.envOverride == envOverride));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType, appLanguage, audioLanguage, subtitleLanguage, analyticsId);
+  int get hashCode => Object.hash(runtimeType, appLanguage, audioLanguage,
+      subtitleLanguage, analyticsId, envOverride);
 
   @JsonKey(ignore: true)
   @override
@@ -182,7 +200,8 @@ abstract class _Settings implements Settings {
       {required final Locale appLanguage,
       final String? audioLanguage,
       final String? subtitleLanguage,
-      final String? analyticsId}) = _$_Settings;
+      final String? analyticsId,
+      final String? envOverride}) = _$_Settings;
 
   @override
   Locale get appLanguage;
@@ -192,6 +211,8 @@ abstract class _Settings implements Settings {
   String? get subtitleLanguage;
   @override
   String? get analyticsId;
+  @override
+  String? get envOverride;
   @override
   @JsonKey(ignore: true)
   _$$_SettingsCopyWith<_$_Settings> get copyWith =>

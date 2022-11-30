@@ -1,9 +1,12 @@
+import 'dart:async';
+
 import 'package:alice/alice.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:bccm_player/playback_platform_pigeon.g.dart';
 import 'package:bccm_player/playback_service_interface.dart';
 import 'package:brunstadtv_app/helpers/btv_colors.dart';
 import 'package:brunstadtv_app/helpers/btv_typography.dart';
+import 'package:brunstadtv_app/helpers/constants.dart';
 import 'package:brunstadtv_app/providers/app_config.dart';
 import 'package:brunstadtv_app/providers/analytics.dart';
 import 'package:brunstadtv_app/providers/settings.dart';
@@ -27,6 +30,7 @@ import 'package:intl/intl.dart';
 import 'package:intl/intl_standalone.dart';
 import 'package:on_screen_ruler/on_screen_ruler.dart';
 import 'package:package_info_plus/package_info_plus.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import 'app_root.dart';
 import 'background_tasks.dart';
@@ -62,6 +66,16 @@ void $main({required FirebaseOptions? firebaseOptions}) async {
       return true;
     };
   }
+/* 
+  String? envOverride;
+  try {
+    final sharedPrefs = await SharedPreferences.getInstance().timeout(const Duration(milliseconds: 200));
+    envOverride = sharedPrefs.getString(PrefKeys.envOverride);
+  } on TimeoutException catch (e) {
+    print('env override failed, timeout.');
+  } on Exception catch (e) {
+    print('env override failed: $e');
+  } */
 
   PaintingBinding.instance.imageCache.maximumSizeBytes = 1024 * 1024 * 50;
 
@@ -85,7 +99,7 @@ void $main({required FirebaseOptions? firebaseOptions}) async {
   var providerContainer = ProviderContainer();
   PlaybackListenerPigeon.setup(PlaybackListener(ref: providerContainer));
   final authLoadingCompleter = wrapInCompleter(providerContainer.read(authStateProvider.notifier).load());
-  providerContainer.read(settingsProvider.notifier).load();
+  providerContainer.read(settingsProvider.notifier);
   providerContainer.read(chromecastListenerProvider);
   providerContainer.read(appConfigProvider);
   providerContainer.read(playbackApiProvider).getChromecastState().then((value) {
