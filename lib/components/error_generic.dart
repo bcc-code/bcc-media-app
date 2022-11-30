@@ -33,7 +33,7 @@ class ErrorGeneric extends StatelessWidget {
               ),
               BtvButton.medium(
                 labelText: S.of(context).tryAgainButton,
-                onPressed: onRetry,
+                onPressed: () => onRetry(),
               )
             ],
           ),

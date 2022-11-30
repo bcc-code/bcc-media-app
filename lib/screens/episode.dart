@@ -5,6 +5,7 @@ import 'dart:async';
 import 'package:auto_route/auto_route.dart';
 import 'package:bccm_player/playback_platform_pigeon.g.dart';
 import 'package:brunstadtv_app/components/default_grid_section.dart';
+import 'package:brunstadtv_app/components/error_generic.dart';
 import 'package:brunstadtv_app/components/loading_indicator.dart';
 import 'package:brunstadtv_app/components/mini_player.dart';
 import 'package:brunstadtv_app/components/season_episode_list.dart';
@@ -279,13 +280,10 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen> with AutoRouteAwa
               ),
               body: Builder(
                 builder: (context) {
-                  if (snapshot.hasError) return Text(snapshot.error.toString());
                   if (animationStatus != AnimationStatus.completed || snapshot.data == null && snapshot.connectionState != ConnectionState.done) {
                     return _loading();
                   }
-                  if (snapshot.data == null) {
-                    return Text(S.of(context).errorTryAgain);
-                  }
+                  if (snapshot.hasError || snapshot.data == null) return ErrorGeneric(onRetry: () => loadEpisode());
 
                   return _episode(
                       player, displayPlayer, casting, primaryPlayerId, snapshot.data!, snapshot.connectionState != ConnectionState.done, context);
