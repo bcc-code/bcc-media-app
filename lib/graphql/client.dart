@@ -1,6 +1,7 @@
 import 'package:brunstadtv_app/helpers/constants.dart';
 import 'package:brunstadtv_app/providers/auth_state.dart';
 import 'package:brunstadtv_app/providers/settings.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:graphql/client.dart';
 import 'package:http/http.dart';
@@ -10,7 +11,8 @@ import '../env/env.dart';
 
 final gqlClientProvider = Provider<GraphQLClient>((ref) {
   final settings = ref.watch(settingsProvider);
-  final httpLink = HttpLink(ApiEnvUrls[settings.envOverride] ?? ApiEnvUrls[Environments.prod]!,
+  debugPrint('envOverride: ${settings.envOverride}');
+  final httpLink = HttpLink(apiEnvUrls[settings.envOverride] ?? apiEnvUrls[Environments.prod]!,
       defaultHeaders: {
         'Accept-Language': settings.appLanguage.languageCode,
       },
@@ -20,6 +22,8 @@ final gqlClientProvider = Provider<GraphQLClient>((ref) {
     final token = ref.read(authStateProvider).auth0AccessToken;
     return token != null ? 'Bearer ${ref.read(authStateProvider).auth0AccessToken}' : null;
   });
+
+  debugPrint(httpLink.uri.toString());
 
   Link link = authLink.concat(httpLink);
 

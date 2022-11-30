@@ -14,9 +14,9 @@ class PrefKeys {
   static const analyticsId = 'analytics_id';
 }
 
-const ApiEnvUrls = <String, String>{
+const apiEnvUrls = <String, String>{
   Environments.dev: 'https://api.dev.brunstad.tv/query',
-  Environments.staging: 'https://api.staging.brunstad.tv/query',
+  Environments.staging: 'https://api.sta.brunstad.tv/query',
   Environments.prod: 'https://api.brunstad.tv/query',
 };
 

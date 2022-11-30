@@ -34,7 +34,7 @@ class DeveloperOptions extends ConsumerWidget {
                         .map((env) => SimpleDialogOption(
                               onPressed: () async {
                                 var prefs = await SharedPreferences.getInstance();
-                                prefs.setString(PrefKeys.envOverride, env);
+                                await prefs.setString(PrefKeys.envOverride, env);
                                 Restart.restartApp();
                               },
                               child: Text(env),

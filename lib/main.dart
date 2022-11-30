@@ -99,7 +99,7 @@ void $main({required FirebaseOptions? firebaseOptions}) async {
   var providerContainer = ProviderContainer();
   PlaybackListenerPigeon.setup(PlaybackListener(ref: providerContainer));
   final authLoadingCompleter = wrapInCompleter(providerContainer.read(authStateProvider.notifier).load());
-  providerContainer.read(settingsProvider.notifier);
+  providerContainer.read(settingsProvider.notifier).load();
   providerContainer.read(chromecastListenerProvider);
   providerContainer.read(appConfigProvider);
   providerContainer.read(playbackApiProvider).getChromecastState().then((value) {
