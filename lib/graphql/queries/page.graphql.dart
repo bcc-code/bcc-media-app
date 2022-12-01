@@ -2846,6 +2846,144 @@ class _CopyWithStubImpl$Fragment$ItemSectionItem$item$$Show$defaultEpisode<TRes>
       _res;
 }
 
+class Variables$Fragment$ItemSection {
+  factory Variables$Fragment$ItemSection({
+    int? first,
+    int? offset,
+  }) =>
+      Variables$Fragment$ItemSection._({
+        if (first != null) r'first': first,
+        if (offset != null) r'offset': offset,
+      });
+
+  Variables$Fragment$ItemSection._(this._$data);
+
+  factory Variables$Fragment$ItemSection.fromJson(Map<String, dynamic> data) {
+    final result$data = <String, dynamic>{};
+    if (data.containsKey('first')) {
+      final l$first = data['first'];
+      result$data['first'] = (l$first as int?);
+    }
+    if (data.containsKey('offset')) {
+      final l$offset = data['offset'];
+      result$data['offset'] = (l$offset as int?);
+    }
+    return Variables$Fragment$ItemSection._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  int? get first => (_$data['first'] as int?);
+  int? get offset => (_$data['offset'] as int?);
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    if (_$data.containsKey('first')) {
+      final l$first = first;
+      result$data['first'] = l$first;
+    }
+    if (_$data.containsKey('offset')) {
+      final l$offset = offset;
+      result$data['offset'] = l$offset;
+    }
+    return result$data;
+  }
+
+  CopyWith$Variables$Fragment$ItemSection<Variables$Fragment$ItemSection>
+      get copyWith => CopyWith$Variables$Fragment$ItemSection(
+            this,
+            (i) => i,
+          );
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (!(other is Variables$Fragment$ItemSection) ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$first = first;
+    final lOther$first = other.first;
+    if (_$data.containsKey('first') != other._$data.containsKey('first')) {
+      return false;
+    }
+    if (l$first != lOther$first) {
+      return false;
+    }
+    final l$offset = offset;
+    final lOther$offset = other.offset;
+    if (_$data.containsKey('offset') != other._$data.containsKey('offset')) {
+      return false;
+    }
+    if (l$offset != lOther$offset) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$first = first;
+    final l$offset = offset;
+    return Object.hashAll([
+      _$data.containsKey('first') ? l$first : const {},
+      _$data.containsKey('offset') ? l$offset : const {},
+    ]);
+  }
+}
+
+abstract class CopyWith$Variables$Fragment$ItemSection<TRes> {
+  factory CopyWith$Variables$Fragment$ItemSection(
+    Variables$Fragment$ItemSection instance,
+    TRes Function(Variables$Fragment$ItemSection) then,
+  ) = _CopyWithImpl$Variables$Fragment$ItemSection;
+
+  factory CopyWith$Variables$Fragment$ItemSection.stub(TRes res) =
+      _CopyWithStubImpl$Variables$Fragment$ItemSection;
+
+  TRes call({
+    int? first,
+    int? offset,
+  });
+}
+
+class _CopyWithImpl$Variables$Fragment$ItemSection<TRes>
+    implements CopyWith$Variables$Fragment$ItemSection<TRes> {
+  _CopyWithImpl$Variables$Fragment$ItemSection(
+    this._instance,
+    this._then,
+  );
+
+  final Variables$Fragment$ItemSection _instance;
+
+  final TRes Function(Variables$Fragment$ItemSection) _then;
+
+  static const _undefined = {};
+
+  TRes call({
+    Object? first = _undefined,
+    Object? offset = _undefined,
+  }) =>
+      _then(Variables$Fragment$ItemSection._({
+        ..._instance._$data,
+        if (first != _undefined) 'first': (first as int?),
+        if (offset != _undefined) 'offset': (offset as int?),
+      }));
+}
+
+class _CopyWithStubImpl$Variables$Fragment$ItemSection<TRes>
+    implements CopyWith$Variables$Fragment$ItemSection<TRes> {
+  _CopyWithStubImpl$Variables$Fragment$ItemSection(this._res);
+
+  TRes _res;
+
+  call({
+    int? first,
+    int? offset,
+  }) =>
+      _res;
+}
+
 class Fragment$ItemSection {
   Fragment$ItemSection({
     this.metadata,
@@ -3074,9 +3212,32 @@ const fragmentDefinitionItemSection = FragmentDefinitionNode(
     FieldNode(
       name: NameNode(value: 'items'),
       alias: null,
-      arguments: [],
+      arguments: [
+        ArgumentNode(
+          name: NameNode(value: 'first'),
+          value: VariableNode(name: NameNode(value: 'first')),
+        ),
+        ArgumentNode(
+          name: NameNode(value: 'offset'),
+          value: VariableNode(name: NameNode(value: 'offset')),
+        ),
+      ],
       directives: [],
       selectionSet: SelectionSetNode(selections: [
+        FieldNode(
+          name: NameNode(value: 'offset'),
+          alias: null,
+          arguments: [],
+          directives: [],
+          selectionSet: null,
+        ),
+        FieldNode(
+          name: NameNode(value: 'first'),
+          alias: null,
+          arguments: [],
+          directives: [],
+          selectionSet: null,
+        ),
         FieldNode(
           name: NameNode(value: 'items'),
           alias: null,
@@ -3123,6 +3284,7 @@ extension ClientExtension$Fragment$ItemSection on graphql.GraphQLClient {
   void writeFragment$ItemSection({
     required Fragment$ItemSection data,
     required Map<String, dynamic> idFields,
+    Variables$Fragment$ItemSection? variables,
     bool broadcast = true,
   }) =>
       this.writeFragment(
@@ -3132,12 +3294,14 @@ extension ClientExtension$Fragment$ItemSection on graphql.GraphQLClient {
             fragmentName: 'ItemSection',
             document: documentNodeFragmentItemSection,
           ),
+          variables: variables?.toJson() ?? const {},
         ),
         data: data.toJson(),
         broadcast: broadcast,
       );
   Fragment$ItemSection? readFragment$ItemSection({
     required Map<String, dynamic> idFields,
+    Variables$Fragment$ItemSection? variables,
     bool optimistic = true,
   }) {
     final result = this.readFragment(
@@ -3147,6 +3311,7 @@ extension ClientExtension$Fragment$ItemSection on graphql.GraphQLClient {
           fragmentName: 'ItemSection',
           document: documentNodeFragmentItemSection,
         ),
+        variables: variables?.toJson() ?? const {},
       ),
       optimistic: optimistic,
     );
@@ -3364,14 +3529,20 @@ class _CopyWithStubImpl$Fragment$ItemSection$metadata<TRes>
 
 class Fragment$ItemSection$items {
   Fragment$ItemSection$items({
+    required this.offset,
+    required this.first,
     required this.items,
     required this.$__typename,
   });
 
   factory Fragment$ItemSection$items.fromJson(Map<String, dynamic> json) {
+    final l$offset = json['offset'];
+    final l$first = json['first'];
     final l$items = json['items'];
     final l$$__typename = json['__typename'];
     return Fragment$ItemSection$items(
+      offset: (l$offset as int),
+      first: (l$first as int),
       items: (l$items as List<dynamic>)
           .map((e) =>
               Fragment$ItemSectionItem.fromJson((e as Map<String, dynamic>)))
@@ -3380,12 +3551,20 @@ class Fragment$ItemSection$items {
     );
   }
 
+  final int offset;
+
+  final int first;
+
   final List<Fragment$ItemSectionItem> items;
 
   final String $__typename;
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
+    final l$offset = offset;
+    _resultData['offset'] = l$offset;
+    final l$first = first;
+    _resultData['first'] = l$first;
     final l$items = items;
     _resultData['items'] = l$items.map((e) => e.toJson()).toList();
     final l$$__typename = $__typename;
@@ -3395,9 +3574,13 @@ class Fragment$ItemSection$items {
 
   @override
   int get hashCode {
+    final l$offset = offset;
+    final l$first = first;
     final l$items = items;
     final l$$__typename = $__typename;
     return Object.hashAll([
+      l$offset,
+      l$first,
       Object.hashAll(l$items.map((v) => v)),
       l$$__typename,
     ]);
@@ -3410,6 +3593,16 @@ class Fragment$ItemSection$items {
     }
     if (!(other is Fragment$ItemSection$items) ||
         runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$offset = offset;
+    final lOther$offset = other.offset;
+    if (l$offset != lOther$offset) {
+      return false;
+    }
+    final l$first = first;
+    final lOther$first = other.first;
+    if (l$first != lOther$first) {
       return false;
     }
     final l$items = items;
@@ -3452,6 +3645,8 @@ abstract class CopyWith$Fragment$ItemSection$items<TRes> {
       _CopyWithStubImpl$Fragment$ItemSection$items;
 
   TRes call({
+    int? offset,
+    int? first,
     List<Fragment$ItemSectionItem>? items,
     String? $__typename,
   });
@@ -3476,10 +3671,18 @@ class _CopyWithImpl$Fragment$ItemSection$items<TRes>
   static const _undefined = {};
 
   TRes call({
+    Object? offset = _undefined,
+    Object? first = _undefined,
     Object? items = _undefined,
     Object? $__typename = _undefined,
   }) =>
       _then(Fragment$ItemSection$items(
+        offset: offset == _undefined || offset == null
+            ? _instance.offset
+            : (offset as int),
+        first: first == _undefined || first == null
+            ? _instance.first
+            : (first as int),
         items: items == _undefined || items == null
             ? _instance.items
             : (items as List<Fragment$ItemSectionItem>),
@@ -3508,11 +3711,151 @@ class _CopyWithStubImpl$Fragment$ItemSection$items<TRes>
   TRes _res;
 
   call({
+    int? offset,
+    int? first,
     List<Fragment$ItemSectionItem>? items,
     String? $__typename,
   }) =>
       _res;
   items(_fn) => _res;
+}
+
+class Variables$Fragment$Section {
+  factory Variables$Fragment$Section({
+    int? first,
+    int? offset,
+  }) =>
+      Variables$Fragment$Section._({
+        if (first != null) r'first': first,
+        if (offset != null) r'offset': offset,
+      });
+
+  Variables$Fragment$Section._(this._$data);
+
+  factory Variables$Fragment$Section.fromJson(Map<String, dynamic> data) {
+    final result$data = <String, dynamic>{};
+    if (data.containsKey('first')) {
+      final l$first = data['first'];
+      result$data['first'] = (l$first as int?);
+    }
+    if (data.containsKey('offset')) {
+      final l$offset = data['offset'];
+      result$data['offset'] = (l$offset as int?);
+    }
+    return Variables$Fragment$Section._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  int? get first => (_$data['first'] as int?);
+  int? get offset => (_$data['offset'] as int?);
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    if (_$data.containsKey('first')) {
+      final l$first = first;
+      result$data['first'] = l$first;
+    }
+    if (_$data.containsKey('offset')) {
+      final l$offset = offset;
+      result$data['offset'] = l$offset;
+    }
+    return result$data;
+  }
+
+  CopyWith$Variables$Fragment$Section<Variables$Fragment$Section>
+      get copyWith => CopyWith$Variables$Fragment$Section(
+            this,
+            (i) => i,
+          );
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (!(other is Variables$Fragment$Section) ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$first = first;
+    final lOther$first = other.first;
+    if (_$data.containsKey('first') != other._$data.containsKey('first')) {
+      return false;
+    }
+    if (l$first != lOther$first) {
+      return false;
+    }
+    final l$offset = offset;
+    final lOther$offset = other.offset;
+    if (_$data.containsKey('offset') != other._$data.containsKey('offset')) {
+      return false;
+    }
+    if (l$offset != lOther$offset) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$first = first;
+    final l$offset = offset;
+    return Object.hashAll([
+      _$data.containsKey('first') ? l$first : const {},
+      _$data.containsKey('offset') ? l$offset : const {},
+    ]);
+  }
+}
+
+abstract class CopyWith$Variables$Fragment$Section<TRes> {
+  factory CopyWith$Variables$Fragment$Section(
+    Variables$Fragment$Section instance,
+    TRes Function(Variables$Fragment$Section) then,
+  ) = _CopyWithImpl$Variables$Fragment$Section;
+
+  factory CopyWith$Variables$Fragment$Section.stub(TRes res) =
+      _CopyWithStubImpl$Variables$Fragment$Section;
+
+  TRes call({
+    int? first,
+    int? offset,
+  });
+}
+
+class _CopyWithImpl$Variables$Fragment$Section<TRes>
+    implements CopyWith$Variables$Fragment$Section<TRes> {
+  _CopyWithImpl$Variables$Fragment$Section(
+    this._instance,
+    this._then,
+  );
+
+  final Variables$Fragment$Section _instance;
+
+  final TRes Function(Variables$Fragment$Section) _then;
+
+  static const _undefined = {};
+
+  TRes call({
+    Object? first = _undefined,
+    Object? offset = _undefined,
+  }) =>
+      _then(Variables$Fragment$Section._({
+        ..._instance._$data,
+        if (first != _undefined) 'first': (first as int?),
+        if (offset != _undefined) 'offset': (offset as int?),
+      }));
+}
+
+class _CopyWithStubImpl$Variables$Fragment$Section<TRes>
+    implements CopyWith$Variables$Fragment$Section<TRes> {
+  _CopyWithStubImpl$Variables$Fragment$Section(this._res);
+
+  TRes _res;
+
+  call({
+    int? first,
+    int? offset,
+  }) =>
+      _res;
 }
 
 class Fragment$Section {
@@ -3743,7 +4086,16 @@ const fragmentDefinitionSection = FragmentDefinitionNode(
             FieldNode(
               name: NameNode(value: 'items'),
               alias: null,
-              arguments: [],
+              arguments: [
+                ArgumentNode(
+                  name: NameNode(value: 'first'),
+                  value: VariableNode(name: NameNode(value: 'first')),
+                ),
+                ArgumentNode(
+                  name: NameNode(value: 'offset'),
+                  value: VariableNode(name: NameNode(value: 'offset')),
+                ),
+              ],
               directives: [],
               selectionSet: SelectionSetNode(selections: [
                 FieldNode(
@@ -3918,7 +4270,16 @@ const fragmentDefinitionSection = FragmentDefinitionNode(
             FieldNode(
               name: NameNode(value: 'items'),
               alias: null,
-              arguments: [],
+              arguments: [
+                ArgumentNode(
+                  name: NameNode(value: 'first'),
+                  value: VariableNode(name: NameNode(value: 'first')),
+                ),
+                ArgumentNode(
+                  name: NameNode(value: 'offset'),
+                  value: VariableNode(name: NameNode(value: 'offset')),
+                ),
+              ],
               directives: [],
               selectionSet: SelectionSetNode(selections: [
                 FieldNode(
@@ -3979,7 +4340,16 @@ const fragmentDefinitionSection = FragmentDefinitionNode(
             FieldNode(
               name: NameNode(value: 'items'),
               alias: null,
-              arguments: [],
+              arguments: [
+                ArgumentNode(
+                  name: NameNode(value: 'first'),
+                  value: VariableNode(name: NameNode(value: 'first')),
+                ),
+                ArgumentNode(
+                  name: NameNode(value: 'offset'),
+                  value: VariableNode(name: NameNode(value: 'offset')),
+                ),
+              ],
               directives: [],
               selectionSet: SelectionSetNode(selections: [
                 FieldNode(
@@ -4154,7 +4524,16 @@ const fragmentDefinitionSection = FragmentDefinitionNode(
             FieldNode(
               name: NameNode(value: 'items'),
               alias: null,
-              arguments: [],
+              arguments: [
+                ArgumentNode(
+                  name: NameNode(value: 'first'),
+                  value: VariableNode(name: NameNode(value: 'first')),
+                ),
+                ArgumentNode(
+                  name: NameNode(value: 'offset'),
+                  value: VariableNode(name: NameNode(value: 'offset')),
+                ),
+              ],
               directives: [],
               selectionSet: SelectionSetNode(selections: [
                 FieldNode(
@@ -4205,7 +4584,16 @@ const fragmentDefinitionSection = FragmentDefinitionNode(
             FieldNode(
               name: NameNode(value: 'items'),
               alias: null,
-              arguments: [],
+              arguments: [
+                ArgumentNode(
+                  name: NameNode(value: 'first'),
+                  value: VariableNode(name: NameNode(value: 'first')),
+                ),
+                ArgumentNode(
+                  name: NameNode(value: 'offset'),
+                  value: VariableNode(name: NameNode(value: 'offset')),
+                ),
+              ],
               directives: [],
               selectionSet: SelectionSetNode(selections: [
                 FieldNode(
@@ -4494,6 +4882,7 @@ extension ClientExtension$Fragment$Section on graphql.GraphQLClient {
   void writeFragment$Section({
     required Fragment$Section data,
     required Map<String, dynamic> idFields,
+    Variables$Fragment$Section? variables,
     bool broadcast = true,
   }) =>
       this.writeFragment(
@@ -4503,12 +4892,14 @@ extension ClientExtension$Fragment$Section on graphql.GraphQLClient {
             fragmentName: 'Section',
             document: documentNodeFragmentSection,
           ),
+          variables: variables?.toJson() ?? const {},
         ),
         data: data.toJson(),
         broadcast: broadcast,
       );
   Fragment$Section? readFragment$Section({
     required Map<String, dynamic> idFields,
+    Variables$Fragment$Section? variables,
     bool optimistic = true,
   }) {
     final result = this.readFragment(
@@ -4518,6 +4909,7 @@ extension ClientExtension$Fragment$Section on graphql.GraphQLClient {
           fragmentName: 'Section',
           document: documentNodeFragmentSection,
         ),
+        variables: variables?.toJson() ?? const {},
       ),
       optimistic: optimistic,
     );
@@ -4965,15 +5357,21 @@ class _CopyWithStubImpl$Fragment$Section$$PosterSection$metadata<TRes>
 class Fragment$Section$$PosterSection$items
     implements Fragment$ItemSection$items {
   Fragment$Section$$PosterSection$items({
+    required this.offset,
+    required this.first,
     required this.items,
     required this.$__typename,
   });
 
   factory Fragment$Section$$PosterSection$items.fromJson(
       Map<String, dynamic> json) {
+    final l$offset = json['offset'];
+    final l$first = json['first'];
     final l$items = json['items'];
     final l$$__typename = json['__typename'];
     return Fragment$Section$$PosterSection$items(
+      offset: (l$offset as int),
+      first: (l$first as int),
       items: (l$items as List<dynamic>)
           .map((e) => Fragment$Section$$PosterSection$items$items.fromJson(
               (e as Map<String, dynamic>)))
@@ -4982,12 +5380,20 @@ class Fragment$Section$$PosterSection$items
     );
   }
 
+  final int offset;
+
+  final int first;
+
   final List<Fragment$Section$$PosterSection$items$items> items;
 
   final String $__typename;
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
+    final l$offset = offset;
+    _resultData['offset'] = l$offset;
+    final l$first = first;
+    _resultData['first'] = l$first;
     final l$items = items;
     _resultData['items'] = l$items.map((e) => e.toJson()).toList();
     final l$$__typename = $__typename;
@@ -4997,9 +5403,13 @@ class Fragment$Section$$PosterSection$items
 
   @override
   int get hashCode {
+    final l$offset = offset;
+    final l$first = first;
     final l$items = items;
     final l$$__typename = $__typename;
     return Object.hashAll([
+      l$offset,
+      l$first,
       Object.hashAll(l$items.map((v) => v)),
       l$$__typename,
     ]);
@@ -5012,6 +5422,16 @@ class Fragment$Section$$PosterSection$items
     }
     if (!(other is Fragment$Section$$PosterSection$items) ||
         runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$offset = offset;
+    final lOther$offset = other.offset;
+    if (l$offset != lOther$offset) {
+      return false;
+    }
+    final l$first = first;
+    final lOther$first = other.first;
+    if (l$first != lOther$first) {
       return false;
     }
     final l$items = items;
@@ -5055,6 +5475,8 @@ abstract class CopyWith$Fragment$Section$$PosterSection$items<TRes> {
       _CopyWithStubImpl$Fragment$Section$$PosterSection$items;
 
   TRes call({
+    int? offset,
+    int? first,
     List<Fragment$Section$$PosterSection$items$items>? items,
     String? $__typename,
   });
@@ -5080,10 +5502,18 @@ class _CopyWithImpl$Fragment$Section$$PosterSection$items<TRes>
   static const _undefined = {};
 
   TRes call({
+    Object? offset = _undefined,
+    Object? first = _undefined,
     Object? items = _undefined,
     Object? $__typename = _undefined,
   }) =>
       _then(Fragment$Section$$PosterSection$items(
+        offset: offset == _undefined || offset == null
+            ? _instance.offset
+            : (offset as int),
+        first: first == _undefined || first == null
+            ? _instance.first
+            : (first as int),
         items: items == _undefined || items == null
             ? _instance.items
             : (items as List<Fragment$Section$$PosterSection$items$items>),
@@ -5112,6 +5542,8 @@ class _CopyWithStubImpl$Fragment$Section$$PosterSection$items<TRes>
   TRes _res;
 
   call({
+    int? offset,
+    int? first,
     List<Fragment$Section$$PosterSection$items$items>? items,
     String? $__typename,
   }) =>
@@ -7067,15 +7499,21 @@ class _CopyWithStubImpl$Fragment$Section$$FeaturedSection$metadata<TRes>
 class Fragment$Section$$FeaturedSection$items
     implements Fragment$ItemSection$items {
   Fragment$Section$$FeaturedSection$items({
+    required this.offset,
+    required this.first,
     required this.items,
     required this.$__typename,
   });
 
   factory Fragment$Section$$FeaturedSection$items.fromJson(
       Map<String, dynamic> json) {
+    final l$offset = json['offset'];
+    final l$first = json['first'];
     final l$items = json['items'];
     final l$$__typename = json['__typename'];
     return Fragment$Section$$FeaturedSection$items(
+      offset: (l$offset as int),
+      first: (l$first as int),
       items: (l$items as List<dynamic>)
           .map((e) => Fragment$Section$$FeaturedSection$items$items.fromJson(
               (e as Map<String, dynamic>)))
@@ -7084,12 +7522,20 @@ class Fragment$Section$$FeaturedSection$items
     );
   }
 
+  final int offset;
+
+  final int first;
+
   final List<Fragment$Section$$FeaturedSection$items$items> items;
 
   final String $__typename;
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
+    final l$offset = offset;
+    _resultData['offset'] = l$offset;
+    final l$first = first;
+    _resultData['first'] = l$first;
     final l$items = items;
     _resultData['items'] = l$items.map((e) => e.toJson()).toList();
     final l$$__typename = $__typename;
@@ -7099,9 +7545,13 @@ class Fragment$Section$$FeaturedSection$items
 
   @override
   int get hashCode {
+    final l$offset = offset;
+    final l$first = first;
     final l$items = items;
     final l$$__typename = $__typename;
     return Object.hashAll([
+      l$offset,
+      l$first,
       Object.hashAll(l$items.map((v) => v)),
       l$$__typename,
     ]);
@@ -7114,6 +7564,16 @@ class Fragment$Section$$FeaturedSection$items
     }
     if (!(other is Fragment$Section$$FeaturedSection$items) ||
         runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$offset = offset;
+    final lOther$offset = other.offset;
+    if (l$offset != lOther$offset) {
+      return false;
+    }
+    final l$first = first;
+    final lOther$first = other.first;
+    if (l$first != lOther$first) {
       return false;
     }
     final l$items = items;
@@ -7157,6 +7617,8 @@ abstract class CopyWith$Fragment$Section$$FeaturedSection$items<TRes> {
       _CopyWithStubImpl$Fragment$Section$$FeaturedSection$items;
 
   TRes call({
+    int? offset,
+    int? first,
     List<Fragment$Section$$FeaturedSection$items$items>? items,
     String? $__typename,
   });
@@ -7182,10 +7644,18 @@ class _CopyWithImpl$Fragment$Section$$FeaturedSection$items<TRes>
   static const _undefined = {};
 
   TRes call({
+    Object? offset = _undefined,
+    Object? first = _undefined,
     Object? items = _undefined,
     Object? $__typename = _undefined,
   }) =>
       _then(Fragment$Section$$FeaturedSection$items(
+        offset: offset == _undefined || offset == null
+            ? _instance.offset
+            : (offset as int),
+        first: first == _undefined || first == null
+            ? _instance.first
+            : (first as int),
         items: items == _undefined || items == null
             ? _instance.items
             : (items as List<Fragment$Section$$FeaturedSection$items$items>),
@@ -7214,6 +7684,8 @@ class _CopyWithStubImpl$Fragment$Section$$FeaturedSection$items<TRes>
   TRes _res;
 
   call({
+    int? offset,
+    int? first,
     List<Fragment$Section$$FeaturedSection$items$items>? items,
     String? $__typename,
   }) =>
@@ -8781,15 +9253,21 @@ class _CopyWithStubImpl$Fragment$Section$$DefaultSection$metadata<TRes>
 class Fragment$Section$$DefaultSection$items
     implements Fragment$ItemSection$items {
   Fragment$Section$$DefaultSection$items({
+    required this.offset,
+    required this.first,
     required this.items,
     required this.$__typename,
   });
 
   factory Fragment$Section$$DefaultSection$items.fromJson(
       Map<String, dynamic> json) {
+    final l$offset = json['offset'];
+    final l$first = json['first'];
     final l$items = json['items'];
     final l$$__typename = json['__typename'];
     return Fragment$Section$$DefaultSection$items(
+      offset: (l$offset as int),
+      first: (l$first as int),
       items: (l$items as List<dynamic>)
           .map((e) => Fragment$Section$$DefaultSection$items$items.fromJson(
               (e as Map<String, dynamic>)))
@@ -8798,12 +9276,20 @@ class Fragment$Section$$DefaultSection$items
     );
   }
 
+  final int offset;
+
+  final int first;
+
   final List<Fragment$Section$$DefaultSection$items$items> items;
 
   final String $__typename;
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
+    final l$offset = offset;
+    _resultData['offset'] = l$offset;
+    final l$first = first;
+    _resultData['first'] = l$first;
     final l$items = items;
     _resultData['items'] = l$items.map((e) => e.toJson()).toList();
     final l$$__typename = $__typename;
@@ -8813,9 +9299,13 @@ class Fragment$Section$$DefaultSection$items
 
   @override
   int get hashCode {
+    final l$offset = offset;
+    final l$first = first;
     final l$items = items;
     final l$$__typename = $__typename;
     return Object.hashAll([
+      l$offset,
+      l$first,
       Object.hashAll(l$items.map((v) => v)),
       l$$__typename,
     ]);
@@ -8828,6 +9318,16 @@ class Fragment$Section$$DefaultSection$items
     }
     if (!(other is Fragment$Section$$DefaultSection$items) ||
         runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$offset = offset;
+    final lOther$offset = other.offset;
+    if (l$offset != lOther$offset) {
+      return false;
+    }
+    final l$first = first;
+    final lOther$first = other.first;
+    if (l$first != lOther$first) {
       return false;
     }
     final l$items = items;
@@ -8871,6 +9371,8 @@ abstract class CopyWith$Fragment$Section$$DefaultSection$items<TRes> {
       _CopyWithStubImpl$Fragment$Section$$DefaultSection$items;
 
   TRes call({
+    int? offset,
+    int? first,
     List<Fragment$Section$$DefaultSection$items$items>? items,
     String? $__typename,
   });
@@ -8896,10 +9398,18 @@ class _CopyWithImpl$Fragment$Section$$DefaultSection$items<TRes>
   static const _undefined = {};
 
   TRes call({
+    Object? offset = _undefined,
+    Object? first = _undefined,
     Object? items = _undefined,
     Object? $__typename = _undefined,
   }) =>
       _then(Fragment$Section$$DefaultSection$items(
+        offset: offset == _undefined || offset == null
+            ? _instance.offset
+            : (offset as int),
+        first: first == _undefined || first == null
+            ? _instance.first
+            : (first as int),
         items: items == _undefined || items == null
             ? _instance.items
             : (items as List<Fragment$Section$$DefaultSection$items$items>),
@@ -8928,6 +9438,8 @@ class _CopyWithStubImpl$Fragment$Section$$DefaultSection$items<TRes>
   TRes _res;
 
   call({
+    int? offset,
+    int? first,
     List<Fragment$Section$$DefaultSection$items$items>? items,
     String? $__typename,
   }) =>
@@ -10871,15 +11383,21 @@ class _CopyWithStubImpl$Fragment$Section$$ListSection$metadata<TRes>
 class Fragment$Section$$ListSection$items
     implements Fragment$ItemSection$items {
   Fragment$Section$$ListSection$items({
+    required this.offset,
+    required this.first,
     required this.items,
     required this.$__typename,
   });
 
   factory Fragment$Section$$ListSection$items.fromJson(
       Map<String, dynamic> json) {
+    final l$offset = json['offset'];
+    final l$first = json['first'];
     final l$items = json['items'];
     final l$$__typename = json['__typename'];
     return Fragment$Section$$ListSection$items(
+      offset: (l$offset as int),
+      first: (l$first as int),
       items: (l$items as List<dynamic>)
           .map((e) => Fragment$Section$$ListSection$items$items.fromJson(
               (e as Map<String, dynamic>)))
@@ -10888,12 +11406,20 @@ class Fragment$Section$$ListSection$items
     );
   }
 
+  final int offset;
+
+  final int first;
+
   final List<Fragment$Section$$ListSection$items$items> items;
 
   final String $__typename;
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
+    final l$offset = offset;
+    _resultData['offset'] = l$offset;
+    final l$first = first;
+    _resultData['first'] = l$first;
     final l$items = items;
     _resultData['items'] = l$items.map((e) => e.toJson()).toList();
     final l$$__typename = $__typename;
@@ -10903,9 +11429,13 @@ class Fragment$Section$$ListSection$items
 
   @override
   int get hashCode {
+    final l$offset = offset;
+    final l$first = first;
     final l$items = items;
     final l$$__typename = $__typename;
     return Object.hashAll([
+      l$offset,
+      l$first,
       Object.hashAll(l$items.map((v) => v)),
       l$$__typename,
     ]);
@@ -10918,6 +11448,16 @@ class Fragment$Section$$ListSection$items
     }
     if (!(other is Fragment$Section$$ListSection$items) ||
         runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$offset = offset;
+    final lOther$offset = other.offset;
+    if (l$offset != lOther$offset) {
+      return false;
+    }
+    final l$first = first;
+    final lOther$first = other.first;
+    if (l$first != lOther$first) {
       return false;
     }
     final l$items = items;
@@ -10961,6 +11501,8 @@ abstract class CopyWith$Fragment$Section$$ListSection$items<TRes> {
       _CopyWithStubImpl$Fragment$Section$$ListSection$items;
 
   TRes call({
+    int? offset,
+    int? first,
     List<Fragment$Section$$ListSection$items$items>? items,
     String? $__typename,
   });
@@ -10986,10 +11528,18 @@ class _CopyWithImpl$Fragment$Section$$ListSection$items<TRes>
   static const _undefined = {};
 
   TRes call({
+    Object? offset = _undefined,
+    Object? first = _undefined,
     Object? items = _undefined,
     Object? $__typename = _undefined,
   }) =>
       _then(Fragment$Section$$ListSection$items(
+        offset: offset == _undefined || offset == null
+            ? _instance.offset
+            : (offset as int),
+        first: first == _undefined || first == null
+            ? _instance.first
+            : (first as int),
         items: items == _undefined || items == null
             ? _instance.items
             : (items as List<Fragment$Section$$ListSection$items$items>),
@@ -11018,6 +11568,8 @@ class _CopyWithStubImpl$Fragment$Section$$ListSection$items<TRes>
   TRes _res;
 
   call({
+    int? offset,
+    int? first,
     List<Fragment$Section$$ListSection$items$items>? items,
     String? $__typename,
   }) =>
@@ -12943,15 +13495,21 @@ class _CopyWithStubImpl$Fragment$Section$$DefaultGridSection$metadata<TRes>
 class Fragment$Section$$DefaultGridSection$items
     implements Fragment$ItemSection$items {
   Fragment$Section$$DefaultGridSection$items({
+    required this.offset,
+    required this.first,
     required this.items,
     required this.$__typename,
   });
 
   factory Fragment$Section$$DefaultGridSection$items.fromJson(
       Map<String, dynamic> json) {
+    final l$offset = json['offset'];
+    final l$first = json['first'];
     final l$items = json['items'];
     final l$$__typename = json['__typename'];
     return Fragment$Section$$DefaultGridSection$items(
+      offset: (l$offset as int),
+      first: (l$first as int),
       items: (l$items as List<dynamic>)
           .map((e) => Fragment$Section$$DefaultGridSection$items$items.fromJson(
               (e as Map<String, dynamic>)))
@@ -12960,12 +13518,20 @@ class Fragment$Section$$DefaultGridSection$items
     );
   }
 
+  final int offset;
+
+  final int first;
+
   final List<Fragment$Section$$DefaultGridSection$items$items> items;
 
   final String $__typename;
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
+    final l$offset = offset;
+    _resultData['offset'] = l$offset;
+    final l$first = first;
+    _resultData['first'] = l$first;
     final l$items = items;
     _resultData['items'] = l$items.map((e) => e.toJson()).toList();
     final l$$__typename = $__typename;
@@ -12975,9 +13541,13 @@ class Fragment$Section$$DefaultGridSection$items
 
   @override
   int get hashCode {
+    final l$offset = offset;
+    final l$first = first;
     final l$items = items;
     final l$$__typename = $__typename;
     return Object.hashAll([
+      l$offset,
+      l$first,
       Object.hashAll(l$items.map((v) => v)),
       l$$__typename,
     ]);
@@ -12990,6 +13560,16 @@ class Fragment$Section$$DefaultGridSection$items
     }
     if (!(other is Fragment$Section$$DefaultGridSection$items) ||
         runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$offset = offset;
+    final lOther$offset = other.offset;
+    if (l$offset != lOther$offset) {
+      return false;
+    }
+    final l$first = first;
+    final lOther$first = other.first;
+    if (l$first != lOther$first) {
       return false;
     }
     final l$items = items;
@@ -13033,6 +13613,8 @@ abstract class CopyWith$Fragment$Section$$DefaultGridSection$items<TRes> {
       _CopyWithStubImpl$Fragment$Section$$DefaultGridSection$items;
 
   TRes call({
+    int? offset,
+    int? first,
     List<Fragment$Section$$DefaultGridSection$items$items>? items,
     String? $__typename,
   });
@@ -13058,10 +13640,18 @@ class _CopyWithImpl$Fragment$Section$$DefaultGridSection$items<TRes>
   static const _undefined = {};
 
   TRes call({
+    Object? offset = _undefined,
+    Object? first = _undefined,
     Object? items = _undefined,
     Object? $__typename = _undefined,
   }) =>
       _then(Fragment$Section$$DefaultGridSection$items(
+        offset: offset == _undefined || offset == null
+            ? _instance.offset
+            : (offset as int),
+        first: first == _undefined || first == null
+            ? _instance.first
+            : (first as int),
         items: items == _undefined || items == null
             ? _instance.items
             : (items as List<Fragment$Section$$DefaultGridSection$items$items>),
@@ -13090,6 +13680,8 @@ class _CopyWithStubImpl$Fragment$Section$$DefaultGridSection$items<TRes>
   TRes _res;
 
   call({
+    int? offset,
+    int? first,
     List<Fragment$Section$$DefaultGridSection$items$items>? items,
     String? $__typename,
   }) =>
@@ -15107,15 +15699,21 @@ class _CopyWithStubImpl$Fragment$Section$$PosterGridSection$metadata<TRes>
 class Fragment$Section$$PosterGridSection$items
     implements Fragment$ItemSection$items {
   Fragment$Section$$PosterGridSection$items({
+    required this.offset,
+    required this.first,
     required this.items,
     required this.$__typename,
   });
 
   factory Fragment$Section$$PosterGridSection$items.fromJson(
       Map<String, dynamic> json) {
+    final l$offset = json['offset'];
+    final l$first = json['first'];
     final l$items = json['items'];
     final l$$__typename = json['__typename'];
     return Fragment$Section$$PosterGridSection$items(
+      offset: (l$offset as int),
+      first: (l$first as int),
       items: (l$items as List<dynamic>)
           .map((e) => Fragment$Section$$PosterGridSection$items$items.fromJson(
               (e as Map<String, dynamic>)))
@@ -15124,12 +15722,20 @@ class Fragment$Section$$PosterGridSection$items
     );
   }
 
+  final int offset;
+
+  final int first;
+
   final List<Fragment$Section$$PosterGridSection$items$items> items;
 
   final String $__typename;
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
+    final l$offset = offset;
+    _resultData['offset'] = l$offset;
+    final l$first = first;
+    _resultData['first'] = l$first;
     final l$items = items;
     _resultData['items'] = l$items.map((e) => e.toJson()).toList();
     final l$$__typename = $__typename;
@@ -15139,9 +15745,13 @@ class Fragment$Section$$PosterGridSection$items
 
   @override
   int get hashCode {
+    final l$offset = offset;
+    final l$first = first;
     final l$items = items;
     final l$$__typename = $__typename;
     return Object.hashAll([
+      l$offset,
+      l$first,
       Object.hashAll(l$items.map((v) => v)),
       l$$__typename,
     ]);
@@ -15154,6 +15764,16 @@ class Fragment$Section$$PosterGridSection$items
     }
     if (!(other is Fragment$Section$$PosterGridSection$items) ||
         runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$offset = offset;
+    final lOther$offset = other.offset;
+    if (l$offset != lOther$offset) {
+      return false;
+    }
+    final l$first = first;
+    final lOther$first = other.first;
+    if (l$first != lOther$first) {
       return false;
     }
     final l$items = items;
@@ -15197,6 +15817,8 @@ abstract class CopyWith$Fragment$Section$$PosterGridSection$items<TRes> {
       _CopyWithStubImpl$Fragment$Section$$PosterGridSection$items;
 
   TRes call({
+    int? offset,
+    int? first,
     List<Fragment$Section$$PosterGridSection$items$items>? items,
     String? $__typename,
   });
@@ -15222,10 +15844,18 @@ class _CopyWithImpl$Fragment$Section$$PosterGridSection$items<TRes>
   static const _undefined = {};
 
   TRes call({
+    Object? offset = _undefined,
+    Object? first = _undefined,
     Object? items = _undefined,
     Object? $__typename = _undefined,
   }) =>
       _then(Fragment$Section$$PosterGridSection$items(
+        offset: offset == _undefined || offset == null
+            ? _instance.offset
+            : (offset as int),
+        first: first == _undefined || first == null
+            ? _instance.first
+            : (first as int),
         items: items == _undefined || items == null
             ? _instance.items
             : (items as List<Fragment$Section$$PosterGridSection$items$items>),
@@ -15254,6 +15884,8 @@ class _CopyWithStubImpl$Fragment$Section$$PosterGridSection$items<TRes>
   TRes _res;
 
   call({
+    int? offset,
+    int? first,
     List<Fragment$Section$$PosterGridSection$items$items>? items,
     String? $__typename,
   }) =>
@@ -17267,15 +17899,21 @@ class _CopyWithStubImpl$Fragment$Section$$IconGridSection$metadata<TRes>
 class Fragment$Section$$IconGridSection$items
     implements Fragment$ItemSection$items {
   Fragment$Section$$IconGridSection$items({
+    required this.offset,
+    required this.first,
     required this.items,
     required this.$__typename,
   });
 
   factory Fragment$Section$$IconGridSection$items.fromJson(
       Map<String, dynamic> json) {
+    final l$offset = json['offset'];
+    final l$first = json['first'];
     final l$items = json['items'];
     final l$$__typename = json['__typename'];
     return Fragment$Section$$IconGridSection$items(
+      offset: (l$offset as int),
+      first: (l$first as int),
       items: (l$items as List<dynamic>)
           .map((e) => Fragment$Section$$IconGridSection$items$items.fromJson(
               (e as Map<String, dynamic>)))
@@ -17284,12 +17922,20 @@ class Fragment$Section$$IconGridSection$items
     );
   }
 
+  final int offset;
+
+  final int first;
+
   final List<Fragment$Section$$IconGridSection$items$items> items;
 
   final String $__typename;
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
+    final l$offset = offset;
+    _resultData['offset'] = l$offset;
+    final l$first = first;
+    _resultData['first'] = l$first;
     final l$items = items;
     _resultData['items'] = l$items.map((e) => e.toJson()).toList();
     final l$$__typename = $__typename;
@@ -17299,9 +17945,13 @@ class Fragment$Section$$IconGridSection$items
 
   @override
   int get hashCode {
+    final l$offset = offset;
+    final l$first = first;
     final l$items = items;
     final l$$__typename = $__typename;
     return Object.hashAll([
+      l$offset,
+      l$first,
       Object.hashAll(l$items.map((v) => v)),
       l$$__typename,
     ]);
@@ -17314,6 +17964,16 @@ class Fragment$Section$$IconGridSection$items
     }
     if (!(other is Fragment$Section$$IconGridSection$items) ||
         runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$offset = offset;
+    final lOther$offset = other.offset;
+    if (l$offset != lOther$offset) {
+      return false;
+    }
+    final l$first = first;
+    final lOther$first = other.first;
+    if (l$first != lOther$first) {
       return false;
     }
     final l$items = items;
@@ -17357,6 +18017,8 @@ abstract class CopyWith$Fragment$Section$$IconGridSection$items<TRes> {
       _CopyWithStubImpl$Fragment$Section$$IconGridSection$items;
 
   TRes call({
+    int? offset,
+    int? first,
     List<Fragment$Section$$IconGridSection$items$items>? items,
     String? $__typename,
   });
@@ -17382,10 +18044,18 @@ class _CopyWithImpl$Fragment$Section$$IconGridSection$items<TRes>
   static const _undefined = {};
 
   TRes call({
+    Object? offset = _undefined,
+    Object? first = _undefined,
     Object? items = _undefined,
     Object? $__typename = _undefined,
   }) =>
       _then(Fragment$Section$$IconGridSection$items(
+        offset: offset == _undefined || offset == null
+            ? _instance.offset
+            : (offset as int),
+        first: first == _undefined || first == null
+            ? _instance.first
+            : (first as int),
         items: items == _undefined || items == null
             ? _instance.items
             : (items as List<Fragment$Section$$IconGridSection$items$items>),
@@ -17414,6 +18084,8 @@ class _CopyWithStubImpl$Fragment$Section$$IconGridSection$items<TRes>
   TRes _res;
 
   call({
+    int? offset,
+    int? first,
     List<Fragment$Section$$IconGridSection$items$items>? items,
     String? $__typename,
   }) =>
@@ -19393,15 +20065,21 @@ class _CopyWithStubImpl$Fragment$Section$$IconSection$metadata<TRes>
 class Fragment$Section$$IconSection$items
     implements Fragment$ItemSection$items {
   Fragment$Section$$IconSection$items({
+    required this.offset,
+    required this.first,
     required this.items,
     required this.$__typename,
   });
 
   factory Fragment$Section$$IconSection$items.fromJson(
       Map<String, dynamic> json) {
+    final l$offset = json['offset'];
+    final l$first = json['first'];
     final l$items = json['items'];
     final l$$__typename = json['__typename'];
     return Fragment$Section$$IconSection$items(
+      offset: (l$offset as int),
+      first: (l$first as int),
       items: (l$items as List<dynamic>)
           .map((e) =>
               Fragment$ItemSectionItem.fromJson((e as Map<String, dynamic>)))
@@ -19410,12 +20088,20 @@ class Fragment$Section$$IconSection$items
     );
   }
 
+  final int offset;
+
+  final int first;
+
   final List<Fragment$ItemSectionItem> items;
 
   final String $__typename;
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
+    final l$offset = offset;
+    _resultData['offset'] = l$offset;
+    final l$first = first;
+    _resultData['first'] = l$first;
     final l$items = items;
     _resultData['items'] = l$items.map((e) => e.toJson()).toList();
     final l$$__typename = $__typename;
@@ -19425,9 +20111,13 @@ class Fragment$Section$$IconSection$items
 
   @override
   int get hashCode {
+    final l$offset = offset;
+    final l$first = first;
     final l$items = items;
     final l$$__typename = $__typename;
     return Object.hashAll([
+      l$offset,
+      l$first,
       Object.hashAll(l$items.map((v) => v)),
       l$$__typename,
     ]);
@@ -19440,6 +20130,16 @@ class Fragment$Section$$IconSection$items
     }
     if (!(other is Fragment$Section$$IconSection$items) ||
         runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$offset = offset;
+    final lOther$offset = other.offset;
+    if (l$offset != lOther$offset) {
+      return false;
+    }
+    final l$first = first;
+    final lOther$first = other.first;
+    if (l$first != lOther$first) {
       return false;
     }
     final l$items = items;
@@ -19483,6 +20183,8 @@ abstract class CopyWith$Fragment$Section$$IconSection$items<TRes> {
       _CopyWithStubImpl$Fragment$Section$$IconSection$items;
 
   TRes call({
+    int? offset,
+    int? first,
     List<Fragment$ItemSectionItem>? items,
     String? $__typename,
   });
@@ -19507,10 +20209,18 @@ class _CopyWithImpl$Fragment$Section$$IconSection$items<TRes>
   static const _undefined = {};
 
   TRes call({
+    Object? offset = _undefined,
+    Object? first = _undefined,
     Object? items = _undefined,
     Object? $__typename = _undefined,
   }) =>
       _then(Fragment$Section$$IconSection$items(
+        offset: offset == _undefined || offset == null
+            ? _instance.offset
+            : (offset as int),
+        first: first == _undefined || first == null
+            ? _instance.first
+            : (first as int),
         items: items == _undefined || items == null
             ? _instance.items
             : (items as List<Fragment$ItemSectionItem>),
@@ -19539,6 +20249,8 @@ class _CopyWithStubImpl$Fragment$Section$$IconSection$items<TRes>
   TRes _res;
 
   call({
+    int? offset,
+    int? first,
     List<Fragment$ItemSectionItem>? items,
     String? $__typename,
   }) =>
@@ -19966,15 +20678,21 @@ class _CopyWithStubImpl$Fragment$Section$$LabelSection$metadata<TRes>
 class Fragment$Section$$LabelSection$items
     implements Fragment$ItemSection$items {
   Fragment$Section$$LabelSection$items({
+    required this.offset,
+    required this.first,
     required this.items,
     required this.$__typename,
   });
 
   factory Fragment$Section$$LabelSection$items.fromJson(
       Map<String, dynamic> json) {
+    final l$offset = json['offset'];
+    final l$first = json['first'];
     final l$items = json['items'];
     final l$$__typename = json['__typename'];
     return Fragment$Section$$LabelSection$items(
+      offset: (l$offset as int),
+      first: (l$first as int),
       items: (l$items as List<dynamic>)
           .map((e) =>
               Fragment$ItemSectionItem.fromJson((e as Map<String, dynamic>)))
@@ -19983,12 +20701,20 @@ class Fragment$Section$$LabelSection$items
     );
   }
 
+  final int offset;
+
+  final int first;
+
   final List<Fragment$ItemSectionItem> items;
 
   final String $__typename;
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
+    final l$offset = offset;
+    _resultData['offset'] = l$offset;
+    final l$first = first;
+    _resultData['first'] = l$first;
     final l$items = items;
     _resultData['items'] = l$items.map((e) => e.toJson()).toList();
     final l$$__typename = $__typename;
@@ -19998,9 +20724,13 @@ class Fragment$Section$$LabelSection$items
 
   @override
   int get hashCode {
+    final l$offset = offset;
+    final l$first = first;
     final l$items = items;
     final l$$__typename = $__typename;
     return Object.hashAll([
+      l$offset,
+      l$first,
       Object.hashAll(l$items.map((v) => v)),
       l$$__typename,
     ]);
@@ -20013,6 +20743,16 @@ class Fragment$Section$$LabelSection$items
     }
     if (!(other is Fragment$Section$$LabelSection$items) ||
         runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$offset = offset;
+    final lOther$offset = other.offset;
+    if (l$offset != lOther$offset) {
+      return false;
+    }
+    final l$first = first;
+    final lOther$first = other.first;
+    if (l$first != lOther$first) {
       return false;
     }
     final l$items = items;
@@ -20056,6 +20796,8 @@ abstract class CopyWith$Fragment$Section$$LabelSection$items<TRes> {
       _CopyWithStubImpl$Fragment$Section$$LabelSection$items;
 
   TRes call({
+    int? offset,
+    int? first,
     List<Fragment$ItemSectionItem>? items,
     String? $__typename,
   });
@@ -20080,10 +20822,18 @@ class _CopyWithImpl$Fragment$Section$$LabelSection$items<TRes>
   static const _undefined = {};
 
   TRes call({
+    Object? offset = _undefined,
+    Object? first = _undefined,
     Object? items = _undefined,
     Object? $__typename = _undefined,
   }) =>
       _then(Fragment$Section$$LabelSection$items(
+        offset: offset == _undefined || offset == null
+            ? _instance.offset
+            : (offset as int),
+        first: first == _undefined || first == null
+            ? _instance.first
+            : (first as int),
         items: items == _undefined || items == null
             ? _instance.items
             : (items as List<Fragment$ItemSectionItem>),
@@ -20112,6 +20862,8 @@ class _CopyWithStubImpl$Fragment$Section$$LabelSection$items<TRes>
   TRes _res;
 
   call({
+    int? offset,
+    int? first,
     List<Fragment$ItemSectionItem>? items,
     String? $__typename,
   }) =>
@@ -20855,9 +21607,15 @@ class _CopyWithStubImpl$Fragment$Section$$MessageSection$messages$style<TRes>
 }
 
 class Variables$Query$Page {
-  factory Variables$Query$Page({required String code}) =>
+  factory Variables$Query$Page({
+    required String code,
+    int? first,
+    int? offset,
+  }) =>
       Variables$Query$Page._({
         r'code': code,
+        if (first != null) r'first': first,
+        if (offset != null) r'offset': offset,
       });
 
   Variables$Query$Page._(this._$data);
@@ -20866,16 +21624,34 @@ class Variables$Query$Page {
     final result$data = <String, dynamic>{};
     final l$code = data['code'];
     result$data['code'] = (l$code as String);
+    if (data.containsKey('first')) {
+      final l$first = data['first'];
+      result$data['first'] = (l$first as int?);
+    }
+    if (data.containsKey('offset')) {
+      final l$offset = data['offset'];
+      result$data['offset'] = (l$offset as int?);
+    }
     return Variables$Query$Page._(result$data);
   }
 
   Map<String, dynamic> _$data;
 
   String get code => (_$data['code'] as String);
+  int? get first => (_$data['first'] as int?);
+  int? get offset => (_$data['offset'] as int?);
   Map<String, dynamic> toJson() {
     final result$data = <String, dynamic>{};
     final l$code = code;
     result$data['code'] = l$code;
+    if (_$data.containsKey('first')) {
+      final l$first = first;
+      result$data['first'] = l$first;
+    }
+    if (_$data.containsKey('offset')) {
+      final l$offset = offset;
+      result$data['offset'] = l$offset;
+    }
     return result$data;
   }
 
@@ -20897,13 +21673,35 @@ class Variables$Query$Page {
     if (l$code != lOther$code) {
       return false;
     }
+    final l$first = first;
+    final lOther$first = other.first;
+    if (_$data.containsKey('first') != other._$data.containsKey('first')) {
+      return false;
+    }
+    if (l$first != lOther$first) {
+      return false;
+    }
+    final l$offset = offset;
+    final lOther$offset = other.offset;
+    if (_$data.containsKey('offset') != other._$data.containsKey('offset')) {
+      return false;
+    }
+    if (l$offset != lOther$offset) {
+      return false;
+    }
     return true;
   }
 
   @override
   int get hashCode {
     final l$code = code;
-    return Object.hashAll([l$code]);
+    final l$first = first;
+    final l$offset = offset;
+    return Object.hashAll([
+      l$code,
+      _$data.containsKey('first') ? l$first : const {},
+      _$data.containsKey('offset') ? l$offset : const {},
+    ]);
   }
 }
 
@@ -20916,7 +21714,11 @@ abstract class CopyWith$Variables$Query$Page<TRes> {
   factory CopyWith$Variables$Query$Page.stub(TRes res) =
       _CopyWithStubImpl$Variables$Query$Page;
 
-  TRes call({String? code});
+  TRes call({
+    String? code,
+    int? first,
+    int? offset,
+  });
 }
 
 class _CopyWithImpl$Variables$Query$Page<TRes>
@@ -20932,9 +21734,16 @@ class _CopyWithImpl$Variables$Query$Page<TRes>
 
   static const _undefined = {};
 
-  TRes call({Object? code = _undefined}) => _then(Variables$Query$Page._({
+  TRes call({
+    Object? code = _undefined,
+    Object? first = _undefined,
+    Object? offset = _undefined,
+  }) =>
+      _then(Variables$Query$Page._({
         ..._instance._$data,
         if (code != _undefined && code != null) 'code': (code as String),
+        if (first != _undefined) 'first': (first as int?),
+        if (offset != _undefined) 'offset': (offset as int?),
       }));
 }
 
@@ -20944,7 +21753,12 @@ class _CopyWithStubImpl$Variables$Query$Page<TRes>
 
   TRes _res;
 
-  call({String? code}) => _res;
+  call({
+    String? code,
+    int? first,
+    int? offset,
+  }) =>
+      _res;
 }
 
 class Query$Page {
@@ -21086,7 +21900,25 @@ const documentNodeQueryPage = DocumentNode(definitions: [
         ),
         defaultValue: DefaultValueNode(value: null),
         directives: [],
-      )
+      ),
+      VariableDefinitionNode(
+        variable: VariableNode(name: NameNode(value: 'first')),
+        type: NamedTypeNode(
+          name: NameNode(value: 'Int'),
+          isNonNull: false,
+        ),
+        defaultValue: DefaultValueNode(value: null),
+        directives: [],
+      ),
+      VariableDefinitionNode(
+        variable: VariableNode(name: NameNode(value: 'offset')),
+        type: NamedTypeNode(
+          name: NameNode(value: 'Int'),
+          isNonNull: false,
+        ),
+        defaultValue: DefaultValueNode(value: null),
+        directives: [],
+      ),
     ],
     directives: [],
     selectionSet: SelectionSetNode(selections: [

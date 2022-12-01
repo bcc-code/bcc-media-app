@@ -1,0 +1,13 @@
+query FetchMoreItemsForItemSection($id: ID!, $first: Int, $offset: Int) {
+  section(id: $id) {
+    id
+    ...Section
+    ... on ItemSection {
+      items(first: $first, offset: $offset) {
+        items {
+          ...ItemSectionItem
+        }
+      }
+    }
+  }
+}

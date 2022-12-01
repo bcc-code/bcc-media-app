@@ -54,7 +54,9 @@ fragment ItemSection on ItemSection {
     useContext
     prependLiveElement
   }
-  items {
+  items(first: $first, offset: $offset) {
+    offset
+    first
     items {
       ...ItemSectionItem
     }
@@ -68,7 +70,7 @@ fragment Section on Section {
     ...ItemSection
     ... on PosterSection {
       size
-      items {
+      items(first: $first, offset: $offset) {
         items {
           item {
             ... on Show {
@@ -92,7 +94,7 @@ fragment Section on Section {
     }
     ... on FeaturedSection {
       size
-      items {
+      items(first: $first, offset: $offset) {
         items {
           description
         }
@@ -100,7 +102,7 @@ fragment Section on Section {
     }
     ... on DefaultSection {
       size
-      items {
+      items(first: $first, offset: $offset) {
         items {
           item {
             ... on Show {
@@ -124,14 +126,14 @@ fragment Section on Section {
     }
     ... on GridSection {
       gridSize: size
-      items {
+      items(first: $first, offset: $offset) {
         items {
           ...GridSectionItem
         }
       }
     }
     ... on ListSection {
-      items {
+      items(first: $first, offset: $offset) {
         items {
           item {
             ... on Episode {
@@ -170,7 +172,7 @@ fragment Section on Section {
   __typename
 }
 
-query Page($code: String!) {
+query Page($code: String!, $first: Int, $offset: Int) {
   page(code: $code) {
     title
     sections(first: 30) {
