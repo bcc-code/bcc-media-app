@@ -49,6 +49,7 @@ class AVPlayerBccmPlayerView: NSObject, FlutterPlatformView {
     private var _view: UIView = .init()
     private var _playerController: AVQueuePlayerController
     private var playerViewController: AVPlayerViewController? = nil
+    lazy var flutterEngine = FlutterEngine(name: "overlay flutter engine")
 
     init(
         frame: CGRect,
@@ -123,7 +124,6 @@ class AVPlayerBccmPlayerView: NSObject, FlutterPlatformView {
             playerViewController.view.frame = _view.frame
             playerViewController.showsPlaybackControls = true
             playerViewController.delegate = _playerController
-            playerViewController.exitsFullScreenWhenPlaybackEnds = false
             playerViewController.allowsPictureInPicturePlayback = true
             playerViewController.updatesNowPlayingInfoCenter = false
             if #available(iOS 16.0, *) {

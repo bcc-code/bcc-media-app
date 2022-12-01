@@ -144,6 +144,59 @@ public class AVQueuePlayerController: NSObject, PlayerController, AVPlayerViewCo
         }
     }
     
+    
+    func fetchCurrentVC(_ viewController: UIViewController?) -> UIViewController? {
+
+        if let tabBarController = viewController as? UITabBarController {
+            return fetchCurrentVC(tabBarController.selectedViewController)
+        }
+
+        if let navigationController = viewController as? UINavigationController{
+            return fetchCurrentVC(navigationController.visibleViewController)
+        }
+
+        if let viewController = viewController?.presentedViewController {
+            return fetchCurrentVC(viewController)
+        }
+
+        return viewController
+    }
+    
+    public func playerViewController(_ playerViewController: AVPlayerViewController, willBeginFullScreenPresentationWithAnimationCoordinator coordinator: UIViewControllerTransitionCoordinator) {
+        
+        let flutterEngine = FlutterEngine(name: "play flutter engine")
+        flutterEngine.run(withEntrypoint: "extraOverlayEntryPoint", libraryURI: "package:brunstadtv_app/main.dart")
+        
+        let flutterViewController =
+            FlutterViewController(engine: flutterEngine, nibName: nil, bundle: nil)
+        
+        flutterViewController.isViewOpaque = false;
+        
+        let uiViewController = UIViewController();
+        
+        flutterViewController.modalPresentationStyle = .custom
+        flutterViewController.modalTransitionStyle = .crossDissolve              // use whatever transition you want
+        flutterViewController.transitioningDelegate = customTransitioningDelegate
+        
+        FlutterMethodChannel(name: "player_overlay", binaryMessenger: flutterEngine.binaryMessenger).setMethodCallHandler({
+            (call: FlutterMethodCall, result: @escaping FlutterResult) -> Void in
+            // This method is invoked on the UI thread.
+            guard call.method == "go_to_quiz" else {
+              result(FlutterMethodNotImplemented)
+              return
+            }
+            
+            playerViewController.dismiss(animated: true);
+            
+        })
+    
+        
+        let viewController : UIViewController? = UIApplication.shared.delegate?.window??.rootViewController
+        
+        fetchCurrentVC(viewController)?.present(flutterViewController, animated:false, completion: nil)
+        
+    }
+    
     func registerPipController(_ playerView: AVPlayerViewController?) {
         pipController = playerView
         let event = PictureInPictureModeChangedEvent.make(withPlayerId: id, isInPipMode: (playerView != nil) as NSNumber)
@@ -475,3 +528,53 @@ extension AVPlayerItem {
         return nil
     }
 }
+
+
+
+
+
+
+
+/// Just testing some flutter overlay stuff:
+
+class PresentationController: UIPresentationController {
+    override var shouldPresentInFullscreen: Bool {
+        // We don't want full screen
+        return false
+    }
+
+    override var frameOfPresentedViewInContainerView: CGRect {
+        let size = containerView?.frame.size ?? presentingViewController.view.frame.size
+
+        // Since the containerView's frame has been resized already, we just need to return a frame of the same
+        // size with a 0,0 origin.
+        return CGRect(origin: .zero, size: size)
+    }
+
+    override func presentationTransitionWillBegin() {
+        super.presentationTransitionWillBegin()
+
+        guard let containerView = containerView else { return }
+
+        // By default the containerView's frame covers the screen which prevents interacting with the presenting view controller.
+        // Update the containerView's frame to match the area needed by the presented view controller. This allows
+        // interection with the presenting view controller even while the presented view controller is in view.
+        //
+        // This code assumes we want the presented view controller to use the full width of the presenting view controller
+        // while honoring the preferredContentSize height. It also assumes we want the bottom of the presented view
+        // controller to appear at the bottom of the presenting view controller. Adjust as needed.
+        let containerSize = containerView.bounds.size
+        let preferredSize = CGSize(width: 150, height: 50)
+        containerView.frame = CGRect(x: containerSize.width - preferredSize.width - 16, y: containerSize.height - preferredSize.height - 150,
+                                     width: preferredSize.width, height: preferredSize.height)
+    }
+}
+
+class TransitioningDelegate: NSObject, UIViewControllerTransitioningDelegate {
+    func presentationController(forPresented presented: UIViewController, presenting: UIViewController?, source: UIViewController) -> UIPresentationController? {
+        return PresentationController(presentedViewController: presented, presenting: presenting)
+    }
+}
+
+private var customTransitioningDelegate = TransitioningDelegate()
+

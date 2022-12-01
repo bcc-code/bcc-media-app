@@ -6,11 +6,13 @@ import 'package:brunstadtv_app/providers/shared_preferences.dart';
 import 'package:brunstadtv_app/providers/unleash.dart';
 import 'package:brunstadtv_app/providers/router_provider.dart';
 import 'package:brunstadtv_app/providers/deeplink_service.dart';
+
 import 'package:brunstadtv_app/providers/app_config.dart';
 import 'package:brunstadtv_app/providers/analytics.dart';
 import 'package:brunstadtv_app/providers/settings.dart';
 import 'package:brunstadtv_app/helpers/firebase.dart';
-import 'package:device_preview/device_preview.dart';
+import 'package:brunstadtv_app/theme/design_system/bccmedia/design_system.dart';
+import 'package:brunstadtv_app/theme/design_system/design_system.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -22,13 +24,32 @@ import 'package:intl/intl.dart';
 import 'package:intl/intl_standalone.dart' if (dart.library.html) 'package:intl/intl_browser.dart';
 import 'package:flutter_web_plugins/url_strategy.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:device_preview/device_preview.dart';
 
 import 'app_root.dart';
 import 'flavors.dart';
+import 'helpers/ui/btv_buttons.dart';
 import 'l10n/app_localizations.dart';
 
 final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 const useDevicePreview = false;
+
+@pragma('vm:entry-point')
+void extraOverlayEntryPoint() {
+  debugPrint('hello world from extraOverlayEntryPoint');
+  final design = BccMediaDesignSystem();
+  runApp(
+    MaterialApp(
+        debugShowCheckedModeBanner: false,
+        theme: design.materialThemeData,
+        home: design.buttons.small(
+            onPressed: () {
+              debugPrint('I will do something now!!');
+              const MethodChannel('player_overlay').invokeMethod('go_to_quiz');
+            },
+            labelText: 'Go to quiz')),
+  );
+}
 
 /// This function is called from the flavor-specific entrypoints
 /// E.g. main_dev.dart, main_prod.dart
