@@ -30,6 +30,7 @@ typedef NS_ENUM(NSUInteger, CastConnectionState) {
 @class MediaMetadata;
 @class PlayerStateSnapshot;
 @class ChromecastState;
+@class FullscreenOverlayConfig;
 @class PrimaryPlayerChangedEvent;
 @class PlayerStateUpdateEvent;
 @class PositionDiscontinuityEvent;
@@ -114,6 +115,29 @@ typedef NS_ENUM(NSUInteger, CastConnectionState) {
 @property(nonatomic, strong, nullable) MediaItem * mediaItem;
 @end
 
+@interface FullscreenOverlayConfig : NSObject
+/// `init` unavailable to enforce nonnull fields, see the `make` class method.
+- (instancetype)init NS_UNAVAILABLE;
++ (instancetype)makeWithId:(NSString *)id
+    entrypoint:(NSString *)entrypoint
+    libraryPath:(NSString *)libraryPath
+    width:(NSNumber *)width
+    height:(NSNumber *)height
+    top:(nullable NSNumber *)top
+    left:(nullable NSNumber *)left
+    right:(nullable NSNumber *)right
+    bottom:(nullable NSNumber *)bottom;
+@property(nonatomic, copy) NSString * id;
+@property(nonatomic, copy) NSString * entrypoint;
+@property(nonatomic, copy) NSString * libraryPath;
+@property(nonatomic, strong) NSNumber * width;
+@property(nonatomic, strong) NSNumber * height;
+@property(nonatomic, strong, nullable) NSNumber * top;
+@property(nonatomic, strong, nullable) NSNumber * left;
+@property(nonatomic, strong, nullable) NSNumber * right;
+@property(nonatomic, strong, nullable) NSNumber * bottom;
+@end
+
 @interface PrimaryPlayerChangedEvent : NSObject
 + (instancetype)makeWithPlayerId:(nullable NSString *)playerId;
 @property(nonatomic, copy, nullable) NSString * playerId;
@@ -194,6 +218,7 @@ NSObject<FlutterMessageCodec> *PlaybackPlatformPigeonGetCodec(void);
 - (void)getChromecastState:(void (^)(ChromecastState *_Nullable, FlutterError *_Nullable))completion;
 - (void)openExpandedCastController:(FlutterError *_Nullable *_Nonnull)error;
 - (void)openCastDialog:(FlutterError *_Nullable *_Nonnull)error;
+- (void)showFullscreenOverlay:(NSString *)playerId config:(FullscreenOverlayConfig *)config error:(FlutterError *_Nullable *_Nonnull)error;
 @end
 
 extern void PlaybackPlatformPigeonSetup(id<FlutterBinaryMessenger> binaryMessenger, NSObject<PlaybackPlatformPigeon> *_Nullable api);

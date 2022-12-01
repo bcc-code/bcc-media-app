@@ -25,6 +25,7 @@ import 'package:intl/intl_standalone.dart' if (dart.library.html) 'package:intl/
 import 'package:flutter_web_plugins/url_strategy.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:device_preview/device_preview.dart';
+import 'package:bccm_player/fullscreen_overlay.dart';
 
 import 'app_root.dart';
 import 'flavors.dart';
@@ -45,7 +46,7 @@ void extraOverlayEntryPoint() {
         home: design.buttons.small(
             onPressed: () {
               debugPrint('I will do something now!!');
-              const MethodChannel('player_overlay').invokeMethod('go_to_quiz');
+              fullscreenOverlayMethodChannel.invokeMethod('go_to_quiz');
             },
             labelText: 'Go to quiz')),
   );

@@ -63,6 +63,9 @@ abstract class PlaybackPlatformPigeon {
 
   @ObjCSelector("openCastDialog")
   void openCastDialog();
+
+  @ObjCSelector("showFullscreenOverlay:config:")
+  void showFullscreenOverlay(String playerId, FullscreenOverlayConfig config);
 }
 
 class NpawConfig {
@@ -130,6 +133,18 @@ enum CastConnectionState {
   notConnected,
   connecting,
   connected,
+}
+
+class FullscreenOverlayConfig {
+  late String id;
+  late String entrypoint;
+  late String libraryPath;
+  late double width;
+  late double height;
+  late double? top;
+  late double? left;
+  late double? right;
+  late double? bottom;
 }
 
 ////////////////// Playback Listener

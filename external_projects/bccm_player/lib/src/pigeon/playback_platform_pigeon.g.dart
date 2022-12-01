@@ -259,6 +259,67 @@ class ChromecastState {
   }
 }
 
+class FullscreenOverlayConfig {
+  FullscreenOverlayConfig({
+    required this.id,
+    required this.entrypoint,
+    required this.libraryPath,
+    required this.width,
+    required this.height,
+    this.top,
+    this.left,
+    this.right,
+    this.bottom,
+  });
+
+  String id;
+
+  String entrypoint;
+
+  String libraryPath;
+
+  double width;
+
+  double height;
+
+  double? top;
+
+  double? left;
+
+  double? right;
+
+  double? bottom;
+
+  Object encode() {
+    return <Object?>[
+      id,
+      entrypoint,
+      libraryPath,
+      width,
+      height,
+      top,
+      left,
+      right,
+      bottom,
+    ];
+  }
+
+  static FullscreenOverlayConfig decode(Object result) {
+    result as List<Object?>;
+    return FullscreenOverlayConfig(
+      id: result[0]! as String,
+      entrypoint: result[1]! as String,
+      libraryPath: result[2]! as String,
+      width: result[3]! as double,
+      height: result[4]! as double,
+      top: result[5] as double?,
+      left: result[6] as double?,
+      right: result[7] as double?,
+      bottom: result[8] as double?,
+    );
+  }
+}
+
 class PrimaryPlayerChangedEvent {
   PrimaryPlayerChangedEvent({
     this.playerId,
@@ -450,17 +511,20 @@ class _PlaybackPlatformPigeonCodec extends StandardMessageCodec {
     } else if (value is ChromecastState) {
       buffer.putUint8(129);
       writeValue(buffer, value.encode());
-    } else if (value is MediaItem) {
+    } else if (value is FullscreenOverlayConfig) {
       buffer.putUint8(130);
       writeValue(buffer, value.encode());
-    } else if (value is MediaMetadata) {
+    } else if (value is MediaItem) {
       buffer.putUint8(131);
       writeValue(buffer, value.encode());
-    } else if (value is NpawConfig) {
+    } else if (value is MediaMetadata) {
       buffer.putUint8(132);
       writeValue(buffer, value.encode());
-    } else if (value is PlayerStateSnapshot) {
+    } else if (value is NpawConfig) {
       buffer.putUint8(133);
+      writeValue(buffer, value.encode());
+    } else if (value is PlayerStateSnapshot) {
+      buffer.putUint8(134);
       writeValue(buffer, value.encode());
     } else {
       super.writeValue(buffer, value);
@@ -475,12 +539,14 @@ class _PlaybackPlatformPigeonCodec extends StandardMessageCodec {
       case 129: 
         return ChromecastState.decode(readValue(buffer)!);
       case 130: 
-        return MediaItem.decode(readValue(buffer)!);
+        return FullscreenOverlayConfig.decode(readValue(buffer)!);
       case 131: 
-        return MediaMetadata.decode(readValue(buffer)!);
+        return MediaItem.decode(readValue(buffer)!);
       case 132: 
-        return NpawConfig.decode(readValue(buffer)!);
+        return MediaMetadata.decode(readValue(buffer)!);
       case 133: 
+        return NpawConfig.decode(readValue(buffer)!);
+      case 134: 
         return PlayerStateSnapshot.decode(readValue(buffer)!);
       default:
         return super.readValueOfType(type, buffer);
@@ -861,6 +927,28 @@ class PlaybackPlatformPigeon {
         binaryMessenger: _binaryMessenger);
     final List<Object?>? replyList =
         await channel.send(null) as List<Object?>?;
+    if (replyList == null) {
+      throw PlatformException(
+        code: 'channel-error',
+        message: 'Unable to establish connection on channel.',
+      );
+    } else if (replyList.length > 1) {
+      throw PlatformException(
+        code: replyList[0]! as String,
+        message: replyList[1] as String?,
+        details: replyList[2],
+      );
+    } else {
+      return;
+    }
+  }
+
+  Future<void> showFullscreenOverlay(String arg_playerId, FullscreenOverlayConfig arg_config) async {
+    final BasicMessageChannel<Object?> channel = BasicMessageChannel<Object?>(
+        'dev.flutter.pigeon.PlaybackPlatformPigeon.showFullscreenOverlay', codec,
+        binaryMessenger: _binaryMessenger);
+    final List<Object?>? replyList =
+        await channel.send(<Object?>[arg_playerId, arg_config]) as List<Object?>?;
     if (replyList == null) {
       throw PlatformException(
         code: 'channel-error',

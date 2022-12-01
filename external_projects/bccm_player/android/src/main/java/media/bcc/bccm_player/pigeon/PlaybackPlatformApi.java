@@ -801,6 +801,235 @@ public class PlaybackPlatformApi {
   }
 
   /** Generated class from Pigeon that represents data sent in messages. */
+  public static final class FullscreenOverlayConfig {
+    private @NonNull String id;
+
+    public @NonNull String getId() {
+      return id;
+    }
+
+    public void setId(@NonNull String setterArg) {
+      if (setterArg == null) {
+        throw new IllegalStateException("Nonnull field \"id\" is null.");
+      }
+      this.id = setterArg;
+    }
+
+    private @NonNull String entrypoint;
+
+    public @NonNull String getEntrypoint() {
+      return entrypoint;
+    }
+
+    public void setEntrypoint(@NonNull String setterArg) {
+      if (setterArg == null) {
+        throw new IllegalStateException("Nonnull field \"entrypoint\" is null.");
+      }
+      this.entrypoint = setterArg;
+    }
+
+    private @NonNull String libraryPath;
+
+    public @NonNull String getLibraryPath() {
+      return libraryPath;
+    }
+
+    public void setLibraryPath(@NonNull String setterArg) {
+      if (setterArg == null) {
+        throw new IllegalStateException("Nonnull field \"libraryPath\" is null.");
+      }
+      this.libraryPath = setterArg;
+    }
+
+    private @NonNull Double width;
+
+    public @NonNull Double getWidth() {
+      return width;
+    }
+
+    public void setWidth(@NonNull Double setterArg) {
+      if (setterArg == null) {
+        throw new IllegalStateException("Nonnull field \"width\" is null.");
+      }
+      this.width = setterArg;
+    }
+
+    private @NonNull Double height;
+
+    public @NonNull Double getHeight() {
+      return height;
+    }
+
+    public void setHeight(@NonNull Double setterArg) {
+      if (setterArg == null) {
+        throw new IllegalStateException("Nonnull field \"height\" is null.");
+      }
+      this.height = setterArg;
+    }
+
+    private @Nullable Double top;
+
+    public @Nullable Double getTop() {
+      return top;
+    }
+
+    public void setTop(@Nullable Double setterArg) {
+      this.top = setterArg;
+    }
+
+    private @Nullable Double left;
+
+    public @Nullable Double getLeft() {
+      return left;
+    }
+
+    public void setLeft(@Nullable Double setterArg) {
+      this.left = setterArg;
+    }
+
+    private @Nullable Double right;
+
+    public @Nullable Double getRight() {
+      return right;
+    }
+
+    public void setRight(@Nullable Double setterArg) {
+      this.right = setterArg;
+    }
+
+    private @Nullable Double bottom;
+
+    public @Nullable Double getBottom() {
+      return bottom;
+    }
+
+    public void setBottom(@Nullable Double setterArg) {
+      this.bottom = setterArg;
+    }
+
+    /** Constructor is non-public to enforce null safety; use Builder. */
+    FullscreenOverlayConfig() {}
+
+    public static final class Builder {
+
+      private @Nullable String id;
+
+      public @NonNull Builder setId(@NonNull String setterArg) {
+        this.id = setterArg;
+        return this;
+      }
+
+      private @Nullable String entrypoint;
+
+      public @NonNull Builder setEntrypoint(@NonNull String setterArg) {
+        this.entrypoint = setterArg;
+        return this;
+      }
+
+      private @Nullable String libraryPath;
+
+      public @NonNull Builder setLibraryPath(@NonNull String setterArg) {
+        this.libraryPath = setterArg;
+        return this;
+      }
+
+      private @Nullable Double width;
+
+      public @NonNull Builder setWidth(@NonNull Double setterArg) {
+        this.width = setterArg;
+        return this;
+      }
+
+      private @Nullable Double height;
+
+      public @NonNull Builder setHeight(@NonNull Double setterArg) {
+        this.height = setterArg;
+        return this;
+      }
+
+      private @Nullable Double top;
+
+      public @NonNull Builder setTop(@Nullable Double setterArg) {
+        this.top = setterArg;
+        return this;
+      }
+
+      private @Nullable Double left;
+
+      public @NonNull Builder setLeft(@Nullable Double setterArg) {
+        this.left = setterArg;
+        return this;
+      }
+
+      private @Nullable Double right;
+
+      public @NonNull Builder setRight(@Nullable Double setterArg) {
+        this.right = setterArg;
+        return this;
+      }
+
+      private @Nullable Double bottom;
+
+      public @NonNull Builder setBottom(@Nullable Double setterArg) {
+        this.bottom = setterArg;
+        return this;
+      }
+
+      public @NonNull FullscreenOverlayConfig build() {
+        FullscreenOverlayConfig pigeonReturn = new FullscreenOverlayConfig();
+        pigeonReturn.setId(id);
+        pigeonReturn.setEntrypoint(entrypoint);
+        pigeonReturn.setLibraryPath(libraryPath);
+        pigeonReturn.setWidth(width);
+        pigeonReturn.setHeight(height);
+        pigeonReturn.setTop(top);
+        pigeonReturn.setLeft(left);
+        pigeonReturn.setRight(right);
+        pigeonReturn.setBottom(bottom);
+        return pigeonReturn;
+      }
+    }
+
+    @NonNull
+    ArrayList<Object> toList() {
+      ArrayList<Object> toListResult = new ArrayList<Object>(9);
+      toListResult.add(id);
+      toListResult.add(entrypoint);
+      toListResult.add(libraryPath);
+      toListResult.add(width);
+      toListResult.add(height);
+      toListResult.add(top);
+      toListResult.add(left);
+      toListResult.add(right);
+      toListResult.add(bottom);
+      return toListResult;
+    }
+
+    static @NonNull FullscreenOverlayConfig fromList(@NonNull ArrayList<Object> list) {
+      FullscreenOverlayConfig pigeonResult = new FullscreenOverlayConfig();
+      Object id = list.get(0);
+      pigeonResult.setId((String) id);
+      Object entrypoint = list.get(1);
+      pigeonResult.setEntrypoint((String) entrypoint);
+      Object libraryPath = list.get(2);
+      pigeonResult.setLibraryPath((String) libraryPath);
+      Object width = list.get(3);
+      pigeonResult.setWidth((Double) width);
+      Object height = list.get(4);
+      pigeonResult.setHeight((Double) height);
+      Object top = list.get(5);
+      pigeonResult.setTop((Double) top);
+      Object left = list.get(6);
+      pigeonResult.setLeft((Double) left);
+      Object right = list.get(7);
+      pigeonResult.setRight((Double) right);
+      Object bottom = list.get(8);
+      pigeonResult.setBottom((Double) bottom);
+      return pigeonResult;
+    }
+  }
+
+  /** Generated class from Pigeon that represents data sent in messages. */
   public static final class PrimaryPlayerChangedEvent {
     private @Nullable String playerId;
 
@@ -1292,12 +1521,14 @@ public class PlaybackPlatformApi {
         case (byte) 129:
           return ChromecastState.fromList((ArrayList<Object>) readValue(buffer));
         case (byte) 130:
-          return MediaItem.fromList((ArrayList<Object>) readValue(buffer));
+          return FullscreenOverlayConfig.fromList((ArrayList<Object>) readValue(buffer));
         case (byte) 131:
-          return MediaMetadata.fromList((ArrayList<Object>) readValue(buffer));
+          return MediaItem.fromList((ArrayList<Object>) readValue(buffer));
         case (byte) 132:
-          return NpawConfig.fromList((ArrayList<Object>) readValue(buffer));
+          return MediaMetadata.fromList((ArrayList<Object>) readValue(buffer));
         case (byte) 133:
+          return NpawConfig.fromList((ArrayList<Object>) readValue(buffer));
+        case (byte) 134:
           return PlayerStateSnapshot.fromList((ArrayList<Object>) readValue(buffer));
         default:
           return super.readValueOfType(type, buffer);
@@ -1312,17 +1543,20 @@ public class PlaybackPlatformApi {
       } else if (value instanceof ChromecastState) {
         stream.write(129);
         writeValue(stream, ((ChromecastState) value).toList());
-      } else if (value instanceof MediaItem) {
+      } else if (value instanceof FullscreenOverlayConfig) {
         stream.write(130);
+        writeValue(stream, ((FullscreenOverlayConfig) value).toList());
+      } else if (value instanceof MediaItem) {
+        stream.write(131);
         writeValue(stream, ((MediaItem) value).toList());
       } else if (value instanceof MediaMetadata) {
-        stream.write(131);
+        stream.write(132);
         writeValue(stream, ((MediaMetadata) value).toList());
       } else if (value instanceof NpawConfig) {
-        stream.write(132);
+        stream.write(133);
         writeValue(stream, ((NpawConfig) value).toList());
       } else if (value instanceof PlayerStateSnapshot) {
-        stream.write(133);
+        stream.write(134);
         writeValue(stream, ((PlayerStateSnapshot) value).toList());
       } else {
         super.writeValue(stream, value);
@@ -1366,6 +1600,8 @@ public class PlaybackPlatformApi {
     void openExpandedCastController();
 
     void openCastDialog();
+
+    void showFullscreenOverlay(@NonNull String playerId, @NonNull FullscreenOverlayConfig config);
 
     /** The codec used by PlaybackPlatformPigeon. */
     static @NonNull MessageCodec<Object> getCodec() {
@@ -1802,6 +2038,31 @@ public class PlaybackPlatformApi {
                 ArrayList<Object> wrapped = new ArrayList<Object>();
                 try {
                   api.openCastDialog();
+                  wrapped.add(0, null);
+                }
+ catch (Throwable exception) {
+                  ArrayList<Object> wrappedError = wrapError(exception);
+                  wrapped = wrappedError;
+                }
+                reply.reply(wrapped);
+              });
+        } else {
+          channel.setMessageHandler(null);
+        }
+      }
+      {
+        BasicMessageChannel<Object> channel =
+            new BasicMessageChannel<>(
+                binaryMessenger, "dev.flutter.pigeon.PlaybackPlatformPigeon.showFullscreenOverlay", getCodec());
+        if (api != null) {
+          channel.setMessageHandler(
+              (message, reply) -> {
+                ArrayList<Object> wrapped = new ArrayList<Object>();
+                ArrayList<Object> args = (ArrayList<Object>) message;
+                String playerIdArg = (String) args.get(0);
+                FullscreenOverlayConfig configArg = (FullscreenOverlayConfig) args.get(1);
+                try {
+                  api.showFullscreenOverlay(playerIdArg, configArg);
                   wrapped.add(0, null);
                 }
  catch (Throwable exception) {

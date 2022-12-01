@@ -57,6 +57,12 @@ static id GetNullableObjectAtIndex(NSArray *array, NSInteger key) {
 - (NSArray *)toList;
 @end
 
+@interface FullscreenOverlayConfig ()
++ (FullscreenOverlayConfig *)fromList:(NSArray *)list;
++ (nullable FullscreenOverlayConfig *)nullableFromList:(NSArray *)list;
+- (NSArray *)toList;
+@end
+
 @interface PrimaryPlayerChangedEvent ()
 + (PrimaryPlayerChangedEvent *)fromList:(NSArray *)list;
 + (nullable PrimaryPlayerChangedEvent *)nullableFromList:(NSArray *)list;
@@ -311,6 +317,64 @@ static id GetNullableObjectAtIndex(NSArray *array, NSInteger key) {
 }
 @end
 
+@implementation FullscreenOverlayConfig
++ (instancetype)makeWithId:(NSString *)id
+    entrypoint:(NSString *)entrypoint
+    libraryPath:(NSString *)libraryPath
+    width:(NSNumber *)width
+    height:(NSNumber *)height
+    top:(nullable NSNumber *)top
+    left:(nullable NSNumber *)left
+    right:(nullable NSNumber *)right
+    bottom:(nullable NSNumber *)bottom {
+  FullscreenOverlayConfig* pigeonResult = [[FullscreenOverlayConfig alloc] init];
+  pigeonResult.id = id;
+  pigeonResult.entrypoint = entrypoint;
+  pigeonResult.libraryPath = libraryPath;
+  pigeonResult.width = width;
+  pigeonResult.height = height;
+  pigeonResult.top = top;
+  pigeonResult.left = left;
+  pigeonResult.right = right;
+  pigeonResult.bottom = bottom;
+  return pigeonResult;
+}
++ (FullscreenOverlayConfig *)fromList:(NSArray *)list {
+  FullscreenOverlayConfig *pigeonResult = [[FullscreenOverlayConfig alloc] init];
+  pigeonResult.id = GetNullableObjectAtIndex(list, 0);
+  NSAssert(pigeonResult.id != nil, @"");
+  pigeonResult.entrypoint = GetNullableObjectAtIndex(list, 1);
+  NSAssert(pigeonResult.entrypoint != nil, @"");
+  pigeonResult.libraryPath = GetNullableObjectAtIndex(list, 2);
+  NSAssert(pigeonResult.libraryPath != nil, @"");
+  pigeonResult.width = GetNullableObjectAtIndex(list, 3);
+  NSAssert(pigeonResult.width != nil, @"");
+  pigeonResult.height = GetNullableObjectAtIndex(list, 4);
+  NSAssert(pigeonResult.height != nil, @"");
+  pigeonResult.top = GetNullableObjectAtIndex(list, 5);
+  pigeonResult.left = GetNullableObjectAtIndex(list, 6);
+  pigeonResult.right = GetNullableObjectAtIndex(list, 7);
+  pigeonResult.bottom = GetNullableObjectAtIndex(list, 8);
+  return pigeonResult;
+}
++ (nullable FullscreenOverlayConfig *)nullableFromList:(NSArray *)list {
+  return (list) ? [FullscreenOverlayConfig fromList:list] : nil;
+}
+- (NSArray *)toList {
+  return @[
+    (self.id ?: [NSNull null]),
+    (self.entrypoint ?: [NSNull null]),
+    (self.libraryPath ?: [NSNull null]),
+    (self.width ?: [NSNull null]),
+    (self.height ?: [NSNull null]),
+    (self.top ?: [NSNull null]),
+    (self.left ?: [NSNull null]),
+    (self.right ?: [NSNull null]),
+    (self.bottom ?: [NSNull null]),
+  ];
+}
+@end
+
 @implementation PrimaryPlayerChangedEvent
 + (instancetype)makeWithPlayerId:(nullable NSString *)playerId {
   PrimaryPlayerChangedEvent* pigeonResult = [[PrimaryPlayerChangedEvent alloc] init];
@@ -500,12 +564,14 @@ static id GetNullableObjectAtIndex(NSArray *array, NSInteger key) {
     case 129: 
       return [ChromecastState fromList:[self readValue]];
     case 130: 
-      return [MediaItem fromList:[self readValue]];
+      return [FullscreenOverlayConfig fromList:[self readValue]];
     case 131: 
-      return [MediaMetadata fromList:[self readValue]];
+      return [MediaItem fromList:[self readValue]];
     case 132: 
-      return [NpawConfig fromList:[self readValue]];
+      return [MediaMetadata fromList:[self readValue]];
     case 133: 
+      return [NpawConfig fromList:[self readValue]];
+    case 134: 
       return [PlayerStateSnapshot fromList:[self readValue]];
     default:
       return [super readValueOfType:type];
@@ -523,17 +589,20 @@ static id GetNullableObjectAtIndex(NSArray *array, NSInteger key) {
   } else if ([value isKindOfClass:[ChromecastState class]]) {
     [self writeByte:129];
     [self writeValue:[value toList]];
-  } else if ([value isKindOfClass:[MediaItem class]]) {
+  } else if ([value isKindOfClass:[FullscreenOverlayConfig class]]) {
     [self writeByte:130];
     [self writeValue:[value toList]];
-  } else if ([value isKindOfClass:[MediaMetadata class]]) {
+  } else if ([value isKindOfClass:[MediaItem class]]) {
     [self writeByte:131];
     [self writeValue:[value toList]];
-  } else if ([value isKindOfClass:[NpawConfig class]]) {
+  } else if ([value isKindOfClass:[MediaMetadata class]]) {
     [self writeByte:132];
     [self writeValue:[value toList]];
-  } else if ([value isKindOfClass:[PlayerStateSnapshot class]]) {
+  } else if ([value isKindOfClass:[NpawConfig class]]) {
     [self writeByte:133];
+    [self writeValue:[value toList]];
+  } else if ([value isKindOfClass:[PlayerStateSnapshot class]]) {
+    [self writeByte:134];
     [self writeValue:[value toList]];
   } else {
     [super writeValue:value];
@@ -878,6 +947,26 @@ void PlaybackPlatformPigeonSetup(id<FlutterBinaryMessenger> binaryMessenger, NSO
       [channel setMessageHandler:^(id _Nullable message, FlutterReply callback) {
         FlutterError *error;
         [api openCastDialog:&error];
+        callback(wrapResult(nil, error));
+      }];
+    } else {
+      [channel setMessageHandler:nil];
+    }
+  }
+  {
+    FlutterBasicMessageChannel *channel =
+      [[FlutterBasicMessageChannel alloc]
+        initWithName:@"dev.flutter.pigeon.PlaybackPlatformPigeon.showFullscreenOverlay"
+        binaryMessenger:binaryMessenger
+        codec:PlaybackPlatformPigeonGetCodec()];
+    if (api) {
+      NSCAssert([api respondsToSelector:@selector(showFullscreenOverlay:config:error:)], @"PlaybackPlatformPigeon api (%@) doesn't respond to @selector(showFullscreenOverlay:config:error:)", api);
+      [channel setMessageHandler:^(id _Nullable message, FlutterReply callback) {
+        NSArray *args = message;
+        NSString *arg_playerId = GetNullableObjectAtIndex(args, 0);
+        FullscreenOverlayConfig *arg_config = GetNullableObjectAtIndex(args, 1);
+        FlutterError *error;
+        [api showFullscreenOverlay:arg_playerId config:arg_config error:&error];
         callback(wrapResult(nil, error));
       }];
     } else {

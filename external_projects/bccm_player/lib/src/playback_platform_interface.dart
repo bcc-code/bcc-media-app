@@ -98,6 +98,10 @@ abstract class BccmPlayerInterface extends PlatformInterface {
   }
 
   void setPlayerViewVisibility(int viewId, bool visible) {
-    throw UnimplementedError('setAppConfig() has not been implemented.');
+    throw UnimplementedError('setPlayerViewVisibility() has not been implemented.');
+  }
+
+  void showFullscreenOverlay(String playerId, FullscreenOverlayConfig config) {
+    throw UnimplementedError('showFullscreenOverlay() has not been implemented.');
   }
 }
