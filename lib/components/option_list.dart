@@ -5,7 +5,7 @@ import '../helpers/btv_typography.dart';
 
 class OptionList extends StatelessWidget {
   final List<Option> optionData;
-  final String currentSelection;
+  final String? currentSelection;
   final void Function(String) onSelectionChange;
   final EdgeInsetsGeometry margin;
   final bool enableDivider;
@@ -35,7 +35,7 @@ class OptionList extends StatelessWidget {
         itemCount: optionData.length,
         itemBuilder: (context, index) {
           final option = optionData[index];
-          final isOptionSelected = showSelection && (currentSelection.isNotEmpty && currentSelection == option.id);
+          final isOptionSelected = currentSelection != null && showSelection && (currentSelection!.isNotEmpty && currentSelection == option.id);
           return _getOption(option, isOptionSelected);
         },
         separatorBuilder: (context, index) {

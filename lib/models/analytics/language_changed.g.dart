@@ -9,7 +9,7 @@ part of 'language_changed.dart';
 _$_LanguageChangedEvent _$$_LanguageChangedEventFromJson(
         Map<String, dynamic> json) =>
     _$_LanguageChangedEvent(
-      languageFrom: json['languageFrom'] as String,
+      languageFrom: json['languageFrom'] as String?,
       languageTo: json['languageTo'] as String,
       languageChangeType: json['languageChangeType'] as String,
     );

@@ -15,7 +15,7 @@ class AppAudioLanguage extends ConsumerStatefulWidget {
 }
 
 class _AppAudioLanguageState extends ConsumerState<AppAudioLanguage> {
-  late String selected;
+  late String? selected;
 
   void _onSelectionChanged(String id) {
     ref.read(analyticsProvider).languageChanged(LanguageChangedEvent(
@@ -32,7 +32,7 @@ class _AppAudioLanguageState extends ConsumerState<AppAudioLanguage> {
   @override
   void initState() {
     super.initState();
-    selected = ref.read(settingsProvider).audioLanguage ?? 'no';
+    selected = ref.read(settingsProvider).audioLanguage;
   }
 
   @override

@@ -16,11 +16,11 @@ class AppSubtitleLanguage extends ConsumerStatefulWidget {
 }
 
 class _AppSubtitleLanguageState extends ConsumerState<AppSubtitleLanguage> {
-  late String selected;
+  late String? selected;
   @override
   void initState() {
     super.initState();
-    selected = ref.read(settingsProvider).subtitleLanguage ?? 'no';
+    selected = ref.read(settingsProvider).subtitleLanguage;
   }
 
   void _onSelectionChanged(String id) {

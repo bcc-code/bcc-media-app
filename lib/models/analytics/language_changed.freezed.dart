@@ -20,7 +20,7 @@ LanguageChangedEvent _$LanguageChangedEventFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$LanguageChangedEvent {
-  String get languageFrom => throw _privateConstructorUsedError;
+  String? get languageFrom => throw _privateConstructorUsedError;
   String get languageTo => throw _privateConstructorUsedError;
   String get languageChangeType => throw _privateConstructorUsedError;
 
@@ -37,7 +37,7 @@ abstract class $LanguageChangedEventCopyWith<$Res> {
       _$LanguageChangedEventCopyWithImpl<$Res, LanguageChangedEvent>;
   @useResult
   $Res call(
-      {String languageFrom, String languageTo, String languageChangeType});
+      {String? languageFrom, String languageTo, String languageChangeType});
 }
 
 /// @nodoc
@@ -54,15 +54,15 @@ class _$LanguageChangedEventCopyWithImpl<$Res,
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? languageFrom = null,
+    Object? languageFrom = freezed,
     Object? languageTo = null,
     Object? languageChangeType = null,
   }) {
     return _then(_value.copyWith(
-      languageFrom: null == languageFrom
+      languageFrom: freezed == languageFrom
           ? _value.languageFrom
           : languageFrom // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       languageTo: null == languageTo
           ? _value.languageTo
           : languageTo // ignore: cast_nullable_to_non_nullable
@@ -84,7 +84,7 @@ abstract class _$$_LanguageChangedEventCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {String languageFrom, String languageTo, String languageChangeType});
+      {String? languageFrom, String languageTo, String languageChangeType});
 }
 
 /// @nodoc
@@ -98,15 +98,15 @@ class __$$_LanguageChangedEventCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? languageFrom = null,
+    Object? languageFrom = freezed,
     Object? languageTo = null,
     Object? languageChangeType = null,
   }) {
     return _then(_$_LanguageChangedEvent(
-      languageFrom: null == languageFrom
+      languageFrom: freezed == languageFrom
           ? _value.languageFrom
           : languageFrom // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       languageTo: null == languageTo
           ? _value.languageTo
           : languageTo // ignore: cast_nullable_to_non_nullable
@@ -131,7 +131,7 @@ class _$_LanguageChangedEvent implements _LanguageChangedEvent {
       _$$_LanguageChangedEventFromJson(json);
 
   @override
-  final String languageFrom;
+  final String? languageFrom;
   @override
   final String languageTo;
   @override
@@ -177,7 +177,7 @@ class _$_LanguageChangedEvent implements _LanguageChangedEvent {
 
 abstract class _LanguageChangedEvent implements LanguageChangedEvent {
   const factory _LanguageChangedEvent(
-      {required final String languageFrom,
+      {required final String? languageFrom,
       required final String languageTo,
       required final String languageChangeType}) = _$_LanguageChangedEvent;
 
@@ -185,7 +185,7 @@ abstract class _LanguageChangedEvent implements LanguageChangedEvent {
       _$_LanguageChangedEvent.fromJson;
 
   @override
-  String get languageFrom;
+  String? get languageFrom;
   @override
   String get languageTo;
   @override
