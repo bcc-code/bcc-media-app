@@ -537,7 +537,7 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen> with AutoRouteAwa
                                   imageCacheHeight: (constraints.maxHeight * MediaQuery.of(context).devicePixelRatio).round()),
                             );
                           })),
-                Center(child: !settingUp ? Image.asset('assets/icons/Play.png') : const LoadingIndicator()),
+                Center(child: !settingUp ? SizedBox(width: 36, height: 36, child: SvgPicture.string(SvgIcons.play)) : const LoadingIndicator()),
               ],
             )));
   }

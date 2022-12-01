@@ -11,17 +11,19 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:brunstadtv_app/providers/playback_api.dart';
 import 'package:brunstadtv_app/providers/video_state.dart';
+import 'package:flutter_svg/svg.dart' show SvgPicture;
 import 'package:flutter_svg_provider/flutter_svg_provider.dart';
 import 'package:brunstadtv_app/helpers/transparent_image.dart';
 import '../helpers/btv_colors.dart';
 import '../helpers/btv_typography.dart';
+import '../helpers/svg_icons.dart';
 import '../l10n/app_localizations.dart';
 import '../providers/chromecast.dart';
 import 'calendar/calendar.dart';
 
 final liveMetadataProvider = Provider<MediaMetadata>((ref) {
   return MediaMetadata(
-      artist: 'BrunstadTV', title: 'Live', extras: {'id': 'livestream'}, artworkUri: 'https://static.bcc.media/images/live-placeholder.png');
+      artist: 'BrunstadTV', title: 'Live', extras: {'id': 'livestream'}, artworkUri: 'https://static.bcc.media/images/live-placeholder.jpg');
 });
 
 class LiveScreen extends ConsumerStatefulWidget {
@@ -177,21 +179,24 @@ class _LiveScreenState extends ConsumerState<LiveScreen> with AutoRouteAware {
           ),
         ],
       ),
-      body: SingleChildScrollView(
-        primary: true,
-        physics: const AlwaysScrollableScrollPhysics(),
-        child: Column(children: [
-          if (audioOnly)
-            LiveMiniPlayer(onStartRequest: () {
-              setup();
-            })
-          else if (player.currentMediaItem?.metadata?.extras?['id'] != 'livestream')
-            _playPoster(player)
-          else
-            _player(player),
-          _info()
-          //
-        ]),
+      body: SizedBox(
+        height: double.infinity,
+        child: SingleChildScrollView(
+          primary: true,
+          physics: const AlwaysScrollableScrollPhysics(),
+          child: Column(children: [
+            if (audioOnly)
+              LiveMiniPlayer(onStartRequest: () {
+                setup();
+              })
+            else if (player.currentMediaItem?.metadata?.extras?['id'] != 'livestream')
+              _playPoster(player)
+            else
+              _player(player),
+            _info()
+            //
+          ]),
+        ),
       ),
     );
   }
@@ -249,7 +254,7 @@ class _LiveScreenState extends ConsumerState<LiveScreen> with AutoRouteAware {
                       child: FadeInImage.memoryNetwork(
                           fit: BoxFit.cover,
                           placeholder: kTransparentImage,
-                          image: ref.watch(liveMetadataProvider).artworkUri ?? 'https://static.bcc.media/images/placeholder.jpg',
+                          image: 'https://static.bcc.media/images/live-placeholder-without-play.jpg',
                           fadeInDuration: const Duration(milliseconds: 150),
                           imageCacheHeight: (constraints.maxHeight * MediaQuery.of(context).devicePixelRatio).round()),
                     );
@@ -264,13 +269,7 @@ class _LiveScreenState extends ConsumerState<LiveScreen> with AutoRouteAware {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               if (error != null && !isCorrectItem(player.currentMediaItem)) Text(error ?? ''),
-              Center(
-                  child: !settingUp
-                      ? Image.asset(
-                          'assets/icons/Play.png',
-                          gaplessPlayback: true,
-                        )
-                      : const CircularProgressIndicator())
+              Center(child: !settingUp ? SizedBox(width: 36, height: 36, child: SvgPicture.string(SvgIcons.play)) : const CircularProgressIndicator())
             ],
           ),
         ),
