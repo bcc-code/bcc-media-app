@@ -234,17 +234,17 @@ class _LiveScreenState extends ConsumerState<LiveScreen> with AutoRouteAware {
   }
 
   Widget _playPoster(Player player) {
-    return Stack(
-      children: [
-        GestureDetector(
-          behavior: HitTestBehavior.opaque,
-          //excludeFromSemantics: true,
-          onTap: () {
-            setState(() {
-              setup();
-            });
-          },
-          child: Column(
+    return GestureDetector(
+      behavior: HitTestBehavior.opaque,
+      //excludeFromSemantics: true,
+      onTap: () {
+        setState(() {
+          setup();
+        });
+      },
+      child: Stack(
+        children: [
+          Column(
             children: [
               AspectRatio(
                   aspectRatio: 16 / 9,
@@ -261,19 +261,20 @@ class _LiveScreenState extends ConsumerState<LiveScreen> with AutoRouteAware {
                   }))
             ],
           ),
-        ),
-        AspectRatio(
-          aspectRatio: 16 / 9,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              if (error != null && !isCorrectItem(player.currentMediaItem)) Text(error ?? ''),
-              Center(child: !settingUp ? SizedBox(width: 36, height: 36, child: SvgPicture.string(SvgIcons.play)) : const CircularProgressIndicator())
-            ],
+          AspectRatio(
+            aspectRatio: 16 / 9,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                if (error != null && !isCorrectItem(player.currentMediaItem)) Text(error ?? ''),
+                Center(
+                    child: !settingUp ? SizedBox(width: 36, height: 36, child: SvgPicture.string(SvgIcons.play)) : const CircularProgressIndicator())
+              ],
+            ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }
