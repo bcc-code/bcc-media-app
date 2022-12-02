@@ -22,6 +22,7 @@ mixin _$EpisodeListEpisodeData {
   String? get image => throw _privateConstructorUsedError;
   int? get seasonNumber => throw _privateConstructorUsedError;
   int? get episodeNumber => throw _privateConstructorUsedError;
+  String? get publishDate => throw _privateConstructorUsedError;
   String get ageRating => throw _privateConstructorUsedError;
   int get duration => throw _privateConstructorUsedError;
 
@@ -43,6 +44,7 @@ abstract class $EpisodeListEpisodeDataCopyWith<$Res> {
       String? image,
       int? seasonNumber,
       int? episodeNumber,
+      String? publishDate,
       String ageRating,
       int duration});
 }
@@ -67,6 +69,7 @@ class _$EpisodeListEpisodeDataCopyWithImpl<$Res,
     Object? image = freezed,
     Object? seasonNumber = freezed,
     Object? episodeNumber = freezed,
+    Object? publishDate = freezed,
     Object? ageRating = null,
     Object? duration = null,
   }) {
@@ -95,6 +98,10 @@ class _$EpisodeListEpisodeDataCopyWithImpl<$Res,
           ? _value.episodeNumber
           : episodeNumber // ignore: cast_nullable_to_non_nullable
               as int?,
+      publishDate: freezed == publishDate
+          ? _value.publishDate
+          : publishDate // ignore: cast_nullable_to_non_nullable
+              as String?,
       ageRating: null == ageRating
           ? _value.ageRating
           : ageRating // ignore: cast_nullable_to_non_nullable
@@ -122,6 +129,7 @@ abstract class _$$_EpisodeListEpisodeCopyWith<$Res>
       String? image,
       int? seasonNumber,
       int? episodeNumber,
+      String? publishDate,
       String ageRating,
       int duration});
 }
@@ -143,6 +151,7 @@ class __$$_EpisodeListEpisodeCopyWithImpl<$Res>
     Object? image = freezed,
     Object? seasonNumber = freezed,
     Object? episodeNumber = freezed,
+    Object? publishDate = freezed,
     Object? ageRating = null,
     Object? duration = null,
   }) {
@@ -171,6 +180,10 @@ class __$$_EpisodeListEpisodeCopyWithImpl<$Res>
           ? _value.episodeNumber
           : episodeNumber // ignore: cast_nullable_to_non_nullable
               as int?,
+      publishDate: freezed == publishDate
+          ? _value.publishDate
+          : publishDate // ignore: cast_nullable_to_non_nullable
+              as String?,
       ageRating: null == ageRating
           ? _value.ageRating
           : ageRating // ignore: cast_nullable_to_non_nullable
@@ -190,9 +203,10 @@ class _$_EpisodeListEpisode implements _EpisodeListEpisode {
       {required this.episodeId,
       required this.title,
       this.highlighted,
-      this.image,
+      required this.image,
       this.seasonNumber,
       this.episodeNumber,
+      required this.publishDate,
       required this.ageRating,
       required this.duration});
 
@@ -209,13 +223,15 @@ class _$_EpisodeListEpisode implements _EpisodeListEpisode {
   @override
   final int? episodeNumber;
   @override
+  final String? publishDate;
+  @override
   final String ageRating;
   @override
   final int duration;
 
   @override
   String toString() {
-    return 'EpisodeListEpisodeData(episodeId: $episodeId, title: $title, highlighted: $highlighted, image: $image, seasonNumber: $seasonNumber, episodeNumber: $episodeNumber, ageRating: $ageRating, duration: $duration)';
+    return 'EpisodeListEpisodeData(episodeId: $episodeId, title: $title, highlighted: $highlighted, image: $image, seasonNumber: $seasonNumber, episodeNumber: $episodeNumber, publishDate: $publishDate, ageRating: $ageRating, duration: $duration)';
   }
 
   @override
@@ -233,6 +249,8 @@ class _$_EpisodeListEpisode implements _EpisodeListEpisode {
                 other.seasonNumber == seasonNumber) &&
             (identical(other.episodeNumber, episodeNumber) ||
                 other.episodeNumber == episodeNumber) &&
+            (identical(other.publishDate, publishDate) ||
+                other.publishDate == publishDate) &&
             (identical(other.ageRating, ageRating) ||
                 other.ageRating == ageRating) &&
             (identical(other.duration, duration) ||
@@ -241,7 +259,7 @@ class _$_EpisodeListEpisode implements _EpisodeListEpisode {
 
   @override
   int get hashCode => Object.hash(runtimeType, episodeId, title, highlighted,
-      image, seasonNumber, episodeNumber, ageRating, duration);
+      image, seasonNumber, episodeNumber, publishDate, ageRating, duration);
 
   @JsonKey(ignore: true)
   @override
@@ -256,9 +274,10 @@ abstract class _EpisodeListEpisode implements EpisodeListEpisodeData {
       {required final String episodeId,
       required final String title,
       final bool? highlighted,
-      final String? image,
+      required final String? image,
       final int? seasonNumber,
       final int? episodeNumber,
+      required final String? publishDate,
       required final String ageRating,
       required final int duration}) = _$_EpisodeListEpisode;
 
@@ -274,6 +293,8 @@ abstract class _EpisodeListEpisode implements EpisodeListEpisodeData {
   int? get seasonNumber;
   @override
   int? get episodeNumber;
+  @override
+  String? get publishDate;
   @override
   String get ageRating;
   @override

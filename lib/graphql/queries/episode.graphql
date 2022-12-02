@@ -24,7 +24,7 @@ query FetchEpisode($id: ID!) {
       id
       title
       number
-      episodes(first: 50) {
+      episodes(first: 70) {
         items {
           ...SeasonListEpisode
         }
@@ -48,6 +48,7 @@ fragment SeasonListEpisode on Episode {
   imageUrl
   number
   title
+  publishDate
   ageRating
   duration
 }

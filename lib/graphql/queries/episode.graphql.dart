@@ -12,6 +12,7 @@ class Fragment$SeasonListEpisode {
     this.imageUrl,
     this.number,
     required this.title,
+    required this.publishDate,
     required this.ageRating,
     required this.duration,
     required this.$__typename,
@@ -22,6 +23,7 @@ class Fragment$SeasonListEpisode {
     final l$imageUrl = json['imageUrl'];
     final l$number = json['number'];
     final l$title = json['title'];
+    final l$publishDate = json['publishDate'];
     final l$ageRating = json['ageRating'];
     final l$duration = json['duration'];
     final l$$__typename = json['__typename'];
@@ -30,6 +32,7 @@ class Fragment$SeasonListEpisode {
       imageUrl: (l$imageUrl as String?),
       number: (l$number as int?),
       title: (l$title as String),
+      publishDate: (l$publishDate as String),
       ageRating: (l$ageRating as String),
       duration: (l$duration as int),
       $__typename: (l$$__typename as String),
@@ -43,6 +46,8 @@ class Fragment$SeasonListEpisode {
   final int? number;
 
   final String title;
+
+  final String publishDate;
 
   final String ageRating;
 
@@ -60,6 +65,8 @@ class Fragment$SeasonListEpisode {
     _resultData['number'] = l$number;
     final l$title = title;
     _resultData['title'] = l$title;
+    final l$publishDate = publishDate;
+    _resultData['publishDate'] = l$publishDate;
     final l$ageRating = ageRating;
     _resultData['ageRating'] = l$ageRating;
     final l$duration = duration;
@@ -75,6 +82,7 @@ class Fragment$SeasonListEpisode {
     final l$imageUrl = imageUrl;
     final l$number = number;
     final l$title = title;
+    final l$publishDate = publishDate;
     final l$ageRating = ageRating;
     final l$duration = duration;
     final l$$__typename = $__typename;
@@ -83,6 +91,7 @@ class Fragment$SeasonListEpisode {
       l$imageUrl,
       l$number,
       l$title,
+      l$publishDate,
       l$ageRating,
       l$duration,
       l$$__typename,
@@ -116,6 +125,11 @@ class Fragment$SeasonListEpisode {
     final l$title = title;
     final lOther$title = other.title;
     if (l$title != lOther$title) {
+      return false;
+    }
+    final l$publishDate = publishDate;
+    final lOther$publishDate = other.publishDate;
+    if (l$publishDate != lOther$publishDate) {
       return false;
     }
     final l$ageRating = ageRating;
@@ -160,6 +174,7 @@ abstract class CopyWith$Fragment$SeasonListEpisode<TRes> {
     String? imageUrl,
     int? number,
     String? title,
+    String? publishDate,
     String? ageRating,
     int? duration,
     String? $__typename,
@@ -184,6 +199,7 @@ class _CopyWithImpl$Fragment$SeasonListEpisode<TRes>
     Object? imageUrl = _undefined,
     Object? number = _undefined,
     Object? title = _undefined,
+    Object? publishDate = _undefined,
     Object? ageRating = _undefined,
     Object? duration = _undefined,
     Object? $__typename = _undefined,
@@ -196,6 +212,9 @@ class _CopyWithImpl$Fragment$SeasonListEpisode<TRes>
         title: title == _undefined || title == null
             ? _instance.title
             : (title as String),
+        publishDate: publishDate == _undefined || publishDate == null
+            ? _instance.publishDate
+            : (publishDate as String),
         ageRating: ageRating == _undefined || ageRating == null
             ? _instance.ageRating
             : (ageRating as String),
@@ -219,6 +238,7 @@ class _CopyWithStubImpl$Fragment$SeasonListEpisode<TRes>
     String? imageUrl,
     int? number,
     String? title,
+    String? publishDate,
     String? ageRating,
     int? duration,
     String? $__typename,
@@ -258,6 +278,13 @@ const fragmentDefinitionSeasonListEpisode = FragmentDefinitionNode(
     ),
     FieldNode(
       name: NameNode(value: 'title'),
+      alias: null,
+      arguments: [],
+      directives: [],
+      selectionSet: null,
+    ),
+    FieldNode(
+      name: NameNode(value: 'publishDate'),
       alias: null,
       arguments: [],
       directives: [],
@@ -1414,7 +1441,7 @@ const documentNodeQueryFetchEpisode = DocumentNode(definitions: [
                 arguments: [
                   ArgumentNode(
                     name: NameNode(value: 'first'),
-                    value: IntValueNode(value: '50'),
+                    value: IntValueNode(value: '70'),
                   )
                 ],
                 directives: [],

@@ -97,11 +97,11 @@ class _DefaultEpisodeItem extends StatelessWidget {
                       ),
                     ),
                   ),
-                if (productionDate != null)
+                /* if (productionDate != null)
                   Text(
                     productionDate,
                     style: BtvTextStyles.caption2,
-                  ),
+                  ), */
               ],
             ),
           ),
@@ -139,57 +139,38 @@ class _DefaultEpisodeItem extends StatelessWidget {
                 ),
               ),
             ),
-          episode.progress != null && !watched
-              ? Align(
-                  alignment: Alignment.bottomCenter,
-                  child: Container(
-                    margin: const EdgeInsets.only(left: 4, bottom: 4, right: 4),
-                    child: WatchProgressIndicator(totalDuration: episode.duration, watchedDuration: episode.progress!),
-                  ),
-                )
-              : Align(
-                  alignment: Alignment.bottomCenter,
-                  child: Container(
-                    height: 12,
-                    margin: const EdgeInsets.only(right: 4, bottom: 4, left: 4),
-                    child: Row(
-                      children: [
-                        if (watched) const WatchedBadge(),
-                        const Spacer(),
-                        EpisodeDuration(duration: getFormattedDuration(episode.duration)),
-                      ],
-                    ),
-                  ),
+          if (episode.progress != null && !watched)
+            Align(
+              alignment: Alignment.bottomCenter,
+              child: Container(
+                margin: const EdgeInsets.only(left: 4, bottom: 4, right: 4),
+                child: WatchProgressIndicator(totalDuration: episode.duration, watchedDuration: episode.progress!),
+              ),
+            )
+          else if (!isComingSoon(episode.publishDate))
+            Align(
+              alignment: Alignment.bottomCenter,
+              child: Container(
+                height: 12,
+                margin: const EdgeInsets.only(right: 4, bottom: 4, left: 4),
+                child: Row(
+                  children: [
+                    if (watched) const WatchedBadge(),
+                    const Spacer(),
+                    EpisodeDuration(duration: getFormattedDuration(episode.duration)),
+                  ],
                 ),
-          if (featuredTag != null)
+              ),
+            ),
+          if (getFeaturedTag(publishDate: episode.publishDate) != null)
             Positioned(
               top: -4,
               right: -4,
-              child: featuredTag!,
+              child: getFeaturedTag(publishDate: episode.publishDate)!,
             ),
         ],
       ),
     );
-  }
-
-  Widget? get featuredTag {
-    if (isLive) {
-      return const FeatureBadge(
-        label: 'Live now',
-        color: BtvColors.tint2,
-      );
-    } else if (isComingSoon(episode.publishDate)) {
-      return const FeatureBadge(
-        label: 'Coming soon',
-        color: BtvColors.background2,
-      );
-    } else if (isNewItem) {
-      return const FeatureBadge(
-        label: 'New',
-        color: BtvColors.tint2,
-      );
-    }
-    return null;
   }
 }
 

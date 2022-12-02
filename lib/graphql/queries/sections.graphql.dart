@@ -2135,8 +2135,8 @@ class Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item
     required this.id,
     required this.duration,
     this.progress,
-    this.productionDate,
     required this.publishDate,
+    this.productionDate,
     this.season,
   });
 
@@ -2146,16 +2146,16 @@ class Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item
     final l$id = json['id'];
     final l$duration = json['duration'];
     final l$progress = json['progress'];
-    final l$productionDate = json['productionDate'];
     final l$publishDate = json['publishDate'];
+    final l$productionDate = json['productionDate'];
     final l$season = json['season'];
     return Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Episode(
       $__typename: (l$$__typename as String),
       id: (l$id as String),
       duration: (l$duration as int),
       progress: (l$progress as int?),
-      productionDate: (l$productionDate as String?),
       publishDate: (l$publishDate as String),
+      productionDate: (l$productionDate as String?),
       season: l$season == null
           ? null
           : Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Episode$season
@@ -2171,9 +2171,9 @@ class Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item
 
   final int? progress;
 
-  final String? productionDate;
-
   final String publishDate;
+
+  final String? productionDate;
 
   final Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Episode$season?
       season;
@@ -2188,10 +2188,10 @@ class Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item
     _resultData['duration'] = l$duration;
     final l$progress = progress;
     _resultData['progress'] = l$progress;
-    final l$productionDate = productionDate;
-    _resultData['productionDate'] = l$productionDate;
     final l$publishDate = publishDate;
     _resultData['publishDate'] = l$publishDate;
+    final l$productionDate = productionDate;
+    _resultData['productionDate'] = l$productionDate;
     final l$season = season;
     _resultData['season'] = l$season?.toJson();
     return _resultData;
@@ -2203,16 +2203,16 @@ class Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item
     final l$id = id;
     final l$duration = duration;
     final l$progress = progress;
-    final l$productionDate = productionDate;
     final l$publishDate = publishDate;
+    final l$productionDate = productionDate;
     final l$season = season;
     return Object.hashAll([
       l$$__typename,
       l$id,
       l$duration,
       l$progress,
-      l$productionDate,
       l$publishDate,
+      l$productionDate,
       l$season,
     ]);
   }
@@ -2247,14 +2247,14 @@ class Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item
     if (l$progress != lOther$progress) {
       return false;
     }
-    final l$productionDate = productionDate;
-    final lOther$productionDate = other.productionDate;
-    if (l$productionDate != lOther$productionDate) {
-      return false;
-    }
     final l$publishDate = publishDate;
     final lOther$publishDate = other.publishDate;
     if (l$publishDate != lOther$publishDate) {
+      return false;
+    }
+    final l$productionDate = productionDate;
+    final lOther$productionDate = other.productionDate;
+    if (l$productionDate != lOther$productionDate) {
       return false;
     }
     final l$season = season;
@@ -2296,8 +2296,8 @@ abstract class CopyWith$Query$FetchMoreItemsForItemSection$section$$PosterSectio
     String? id,
     int? duration,
     int? progress,
-    String? productionDate,
     String? publishDate,
+    String? productionDate,
     Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Episode$season?
         season,
   });
@@ -2329,8 +2329,8 @@ class _CopyWithImpl$Query$FetchMoreItemsForItemSection$section$$PosterSection$it
     Object? id = _undefined,
     Object? duration = _undefined,
     Object? progress = _undefined,
-    Object? productionDate = _undefined,
     Object? publishDate = _undefined,
+    Object? productionDate = _undefined,
     Object? season = _undefined,
   }) =>
       _then(
@@ -2344,12 +2344,12 @@ class _CopyWithImpl$Query$FetchMoreItemsForItemSection$section$$PosterSection$it
             : (duration as int),
         progress:
             progress == _undefined ? _instance.progress : (progress as int?),
-        productionDate: productionDate == _undefined
-            ? _instance.productionDate
-            : (productionDate as String?),
         publishDate: publishDate == _undefined || publishDate == null
             ? _instance.publishDate
             : (publishDate as String),
+        productionDate: productionDate == _undefined
+            ? _instance.productionDate
+            : (productionDate as String?),
         season: season == _undefined
             ? _instance.season
             : (season
@@ -2381,8 +2381,8 @@ class _CopyWithStubImpl$Query$FetchMoreItemsForItemSection$section$$PosterSectio
     String? id,
     int? duration,
     int? progress,
-    String? productionDate,
     String? publishDate,
+    String? productionDate,
     Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Episode$season?
         season,
   }) =>
@@ -4472,6 +4472,7 @@ class Query$FetchMoreItemsForItemSection$section$$FeaturedSection$items$items$it
     required this.id,
     required this.duration,
     this.progress,
+    required this.publishDate,
   });
 
   factory Query$FetchMoreItemsForItemSection$section$$FeaturedSection$items$items$item$$Episode.fromJson(
@@ -4480,11 +4481,13 @@ class Query$FetchMoreItemsForItemSection$section$$FeaturedSection$items$items$it
     final l$id = json['id'];
     final l$duration = json['duration'];
     final l$progress = json['progress'];
+    final l$publishDate = json['publishDate'];
     return Query$FetchMoreItemsForItemSection$section$$FeaturedSection$items$items$item$$Episode(
       $__typename: (l$$__typename as String),
       id: (l$id as String),
       duration: (l$duration as int),
       progress: (l$progress as int?),
+      publishDate: (l$publishDate as String),
     );
   }
 
@@ -4496,6 +4499,8 @@ class Query$FetchMoreItemsForItemSection$section$$FeaturedSection$items$items$it
 
   final int? progress;
 
+  final String publishDate;
+
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
     final l$$__typename = $__typename;
@@ -4506,6 +4511,8 @@ class Query$FetchMoreItemsForItemSection$section$$FeaturedSection$items$items$it
     _resultData['duration'] = l$duration;
     final l$progress = progress;
     _resultData['progress'] = l$progress;
+    final l$publishDate = publishDate;
+    _resultData['publishDate'] = l$publishDate;
     return _resultData;
   }
 
@@ -4515,11 +4522,13 @@ class Query$FetchMoreItemsForItemSection$section$$FeaturedSection$items$items$it
     final l$id = id;
     final l$duration = duration;
     final l$progress = progress;
+    final l$publishDate = publishDate;
     return Object.hashAll([
       l$$__typename,
       l$id,
       l$duration,
       l$progress,
+      l$publishDate,
     ]);
   }
 
@@ -4551,6 +4560,11 @@ class Query$FetchMoreItemsForItemSection$section$$FeaturedSection$items$items$it
     final l$progress = progress;
     final lOther$progress = other.progress;
     if (l$progress != lOther$progress) {
+      return false;
+    }
+    final l$publishDate = publishDate;
+    final lOther$publishDate = other.publishDate;
+    if (l$publishDate != lOther$publishDate) {
       return false;
     }
     return true;
@@ -4587,6 +4601,7 @@ abstract class CopyWith$Query$FetchMoreItemsForItemSection$section$$FeaturedSect
     String? id,
     int? duration,
     int? progress,
+    String? publishDate,
   });
 }
 
@@ -4614,6 +4629,7 @@ class _CopyWithImpl$Query$FetchMoreItemsForItemSection$section$$FeaturedSection$
     Object? id = _undefined,
     Object? duration = _undefined,
     Object? progress = _undefined,
+    Object? publishDate = _undefined,
   }) =>
       _then(
           Query$FetchMoreItemsForItemSection$section$$FeaturedSection$items$items$item$$Episode(
@@ -4626,6 +4642,9 @@ class _CopyWithImpl$Query$FetchMoreItemsForItemSection$section$$FeaturedSection$
             : (duration as int),
         progress:
             progress == _undefined ? _instance.progress : (progress as int?),
+        publishDate: publishDate == _undefined || publishDate == null
+            ? _instance.publishDate
+            : (publishDate as String),
       ));
 }
 
@@ -4644,6 +4663,7 @@ class _CopyWithStubImpl$Query$FetchMoreItemsForItemSection$section$$FeaturedSect
     String? id,
     int? duration,
     int? progress,
+    String? publishDate,
   }) =>
       _res;
 }
@@ -6352,8 +6372,8 @@ class Query$FetchMoreItemsForItemSection$section$$DefaultSection$items$items$ite
     required this.id,
     required this.duration,
     this.progress,
-    this.productionDate,
     required this.publishDate,
+    this.productionDate,
     this.season,
   });
 
@@ -6363,16 +6383,16 @@ class Query$FetchMoreItemsForItemSection$section$$DefaultSection$items$items$ite
     final l$id = json['id'];
     final l$duration = json['duration'];
     final l$progress = json['progress'];
-    final l$productionDate = json['productionDate'];
     final l$publishDate = json['publishDate'];
+    final l$productionDate = json['productionDate'];
     final l$season = json['season'];
     return Query$FetchMoreItemsForItemSection$section$$DefaultSection$items$items$item$$Episode(
       $__typename: (l$$__typename as String),
       id: (l$id as String),
       duration: (l$duration as int),
       progress: (l$progress as int?),
-      productionDate: (l$productionDate as String?),
       publishDate: (l$publishDate as String),
+      productionDate: (l$productionDate as String?),
       season: l$season == null
           ? null
           : Query$FetchMoreItemsForItemSection$section$$DefaultSection$items$items$item$$Episode$season
@@ -6388,9 +6408,9 @@ class Query$FetchMoreItemsForItemSection$section$$DefaultSection$items$items$ite
 
   final int? progress;
 
-  final String? productionDate;
-
   final String publishDate;
+
+  final String? productionDate;
 
   final Query$FetchMoreItemsForItemSection$section$$DefaultSection$items$items$item$$Episode$season?
       season;
@@ -6405,10 +6425,10 @@ class Query$FetchMoreItemsForItemSection$section$$DefaultSection$items$items$ite
     _resultData['duration'] = l$duration;
     final l$progress = progress;
     _resultData['progress'] = l$progress;
-    final l$productionDate = productionDate;
-    _resultData['productionDate'] = l$productionDate;
     final l$publishDate = publishDate;
     _resultData['publishDate'] = l$publishDate;
+    final l$productionDate = productionDate;
+    _resultData['productionDate'] = l$productionDate;
     final l$season = season;
     _resultData['season'] = l$season?.toJson();
     return _resultData;
@@ -6420,16 +6440,16 @@ class Query$FetchMoreItemsForItemSection$section$$DefaultSection$items$items$ite
     final l$id = id;
     final l$duration = duration;
     final l$progress = progress;
-    final l$productionDate = productionDate;
     final l$publishDate = publishDate;
+    final l$productionDate = productionDate;
     final l$season = season;
     return Object.hashAll([
       l$$__typename,
       l$id,
       l$duration,
       l$progress,
-      l$productionDate,
       l$publishDate,
+      l$productionDate,
       l$season,
     ]);
   }
@@ -6464,14 +6484,14 @@ class Query$FetchMoreItemsForItemSection$section$$DefaultSection$items$items$ite
     if (l$progress != lOther$progress) {
       return false;
     }
-    final l$productionDate = productionDate;
-    final lOther$productionDate = other.productionDate;
-    if (l$productionDate != lOther$productionDate) {
-      return false;
-    }
     final l$publishDate = publishDate;
     final lOther$publishDate = other.publishDate;
     if (l$publishDate != lOther$publishDate) {
+      return false;
+    }
+    final l$productionDate = productionDate;
+    final lOther$productionDate = other.productionDate;
+    if (l$productionDate != lOther$productionDate) {
       return false;
     }
     final l$season = season;
@@ -6513,8 +6533,8 @@ abstract class CopyWith$Query$FetchMoreItemsForItemSection$section$$DefaultSecti
     String? id,
     int? duration,
     int? progress,
-    String? productionDate,
     String? publishDate,
+    String? productionDate,
     Query$FetchMoreItemsForItemSection$section$$DefaultSection$items$items$item$$Episode$season?
         season,
   });
@@ -6546,8 +6566,8 @@ class _CopyWithImpl$Query$FetchMoreItemsForItemSection$section$$DefaultSection$i
     Object? id = _undefined,
     Object? duration = _undefined,
     Object? progress = _undefined,
-    Object? productionDate = _undefined,
     Object? publishDate = _undefined,
+    Object? productionDate = _undefined,
     Object? season = _undefined,
   }) =>
       _then(
@@ -6561,12 +6581,12 @@ class _CopyWithImpl$Query$FetchMoreItemsForItemSection$section$$DefaultSection$i
             : (duration as int),
         progress:
             progress == _undefined ? _instance.progress : (progress as int?),
-        productionDate: productionDate == _undefined
-            ? _instance.productionDate
-            : (productionDate as String?),
         publishDate: publishDate == _undefined || publishDate == null
             ? _instance.publishDate
             : (publishDate as String),
+        productionDate: productionDate == _undefined
+            ? _instance.productionDate
+            : (productionDate as String?),
         season: season == _undefined
             ? _instance.season
             : (season
@@ -6598,8 +6618,8 @@ class _CopyWithStubImpl$Query$FetchMoreItemsForItemSection$section$$DefaultSecti
     String? id,
     int? duration,
     int? progress,
-    String? productionDate,
     String? publishDate,
+    String? productionDate,
     Query$FetchMoreItemsForItemSection$section$$DefaultSection$items$items$item$$Episode$season?
         season,
   }) =>
@@ -8634,6 +8654,7 @@ class Query$FetchMoreItemsForItemSection$section$$ListSection$items$items$item$$
     required this.id,
     required this.duration,
     this.progress,
+    required this.publishDate,
     required this.title,
     required this.ageRating,
     this.image,
@@ -8646,6 +8667,7 @@ class Query$FetchMoreItemsForItemSection$section$$ListSection$items$items$item$$
     final l$id = json['id'];
     final l$duration = json['duration'];
     final l$progress = json['progress'];
+    final l$publishDate = json['publishDate'];
     final l$title = json['title'];
     final l$ageRating = json['ageRating'];
     final l$image = json['image'];
@@ -8655,6 +8677,7 @@ class Query$FetchMoreItemsForItemSection$section$$ListSection$items$items$item$$
       id: (l$id as String),
       duration: (l$duration as int),
       progress: (l$progress as int?),
+      publishDate: (l$publishDate as String),
       title: (l$title as String),
       ageRating: (l$ageRating as String),
       image: (l$image as String?),
@@ -8672,6 +8695,8 @@ class Query$FetchMoreItemsForItemSection$section$$ListSection$items$items$item$$
   final int duration;
 
   final int? progress;
+
+  final String publishDate;
 
   final String title;
 
@@ -8692,6 +8717,8 @@ class Query$FetchMoreItemsForItemSection$section$$ListSection$items$items$item$$
     _resultData['duration'] = l$duration;
     final l$progress = progress;
     _resultData['progress'] = l$progress;
+    final l$publishDate = publishDate;
+    _resultData['publishDate'] = l$publishDate;
     final l$title = title;
     _resultData['title'] = l$title;
     final l$ageRating = ageRating;
@@ -8709,6 +8736,7 @@ class Query$FetchMoreItemsForItemSection$section$$ListSection$items$items$item$$
     final l$id = id;
     final l$duration = duration;
     final l$progress = progress;
+    final l$publishDate = publishDate;
     final l$title = title;
     final l$ageRating = ageRating;
     final l$image = image;
@@ -8718,6 +8746,7 @@ class Query$FetchMoreItemsForItemSection$section$$ListSection$items$items$item$$
       l$id,
       l$duration,
       l$progress,
+      l$publishDate,
       l$title,
       l$ageRating,
       l$image,
@@ -8753,6 +8782,11 @@ class Query$FetchMoreItemsForItemSection$section$$ListSection$items$items$item$$
     final l$progress = progress;
     final lOther$progress = other.progress;
     if (l$progress != lOther$progress) {
+      return false;
+    }
+    final l$publishDate = publishDate;
+    final lOther$publishDate = other.publishDate;
+    if (l$publishDate != lOther$publishDate) {
       return false;
     }
     final l$title = title;
@@ -8809,6 +8843,7 @@ abstract class CopyWith$Query$FetchMoreItemsForItemSection$section$$ListSection$
     String? id,
     int? duration,
     int? progress,
+    String? publishDate,
     String? title,
     String? ageRating,
     String? image,
@@ -8843,6 +8878,7 @@ class _CopyWithImpl$Query$FetchMoreItemsForItemSection$section$$ListSection$item
     Object? id = _undefined,
     Object? duration = _undefined,
     Object? progress = _undefined,
+    Object? publishDate = _undefined,
     Object? title = _undefined,
     Object? ageRating = _undefined,
     Object? image = _undefined,
@@ -8859,6 +8895,9 @@ class _CopyWithImpl$Query$FetchMoreItemsForItemSection$section$$ListSection$item
             : (duration as int),
         progress:
             progress == _undefined ? _instance.progress : (progress as int?),
+        publishDate: publishDate == _undefined || publishDate == null
+            ? _instance.publishDate
+            : (publishDate as String),
         title: title == _undefined || title == null
             ? _instance.title
             : (title as String),
@@ -8897,6 +8936,7 @@ class _CopyWithStubImpl$Query$FetchMoreItemsForItemSection$section$$ListSection$
     String? id,
     int? duration,
     int? progress,
+    String? publishDate,
     String? title,
     String? ageRating,
     String? image,

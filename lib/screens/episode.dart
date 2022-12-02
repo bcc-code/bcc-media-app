@@ -112,6 +112,7 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen> with AutoRouteAwa
                     episodeId: ep.id,
                     ageRating: ep.ageRating,
                     duration: ep.duration,
+                    publishDate: ep.publishDate,
                     title: ep.title,
                     image: ep.imageUrl,
                     seasonNumber: result.season!.number,
@@ -218,12 +219,12 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen> with AutoRouteAwa
     var options = [
       Option(
         id: 'fromStart',
-        title: 'Share from start',
+        title: S.of(context).shareStart,
         icon: SvgPicture.string(SvgIcons.share, color: BtvColors.onTint),
       ),
       Option(
         id: 'fromTime',
-        title: 'Share from time $formattedPosition',
+        title: S.of(context).shareTime(formattedPosition),
         icon: SvgPicture.string(SvgIcons.location, color: BtvColors.onTint),
       ),
     ];
@@ -232,7 +233,7 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen> with AutoRouteAwa
       useRootNavigator: true,
       context: context,
       builder: (ctx) => BottomSheetSelect(
-        title: 'Share video',
+        title: S.of(context).share,
         selectedId: 'fromStart',
         items: options,
         showSelection: false,
@@ -307,7 +308,7 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen> with AutoRouteAwa
 
   Widget _episode(Player player, bool displayPlayer, bool casting, String primaryPlayerId, Query$FetchEpisode$episode episode, bool episodeLoading,
       BuildContext context) {
-    final showEpisodeNumber = episode.season?.$show.type == Enum$ShowType.series;
+    const showEpisodeNumber = false;
     final episodeNumberFormatted = '${S.of(context).seasonLetter}${episode.season?.number}:${S.of(context).episodeLetter}${episode.number}';
 
     return FutureBuilder(
@@ -337,11 +338,14 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen> with AutoRouteAwa
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    Row(crossAxisAlignment: CrossAxisAlignment.center, children: [
+                                    Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
                                       Expanded(child: Text(episode.title, style: BtvTextStyles.title1)),
                                       GestureDetector(
                                         onTap: shareVideo,
-                                        child: SvgPicture.string(SvgIcons.share, color: BtvColors.label3),
+                                        child: Padding(
+                                          padding: const EdgeInsets.only(top: 4, left: 16),
+                                          child: SvgPicture.string(SvgIcons.share, color: BtvColors.label3),
+                                        ),
                                       ),
                                     ]),
                                     const SizedBox(height: 4),
@@ -408,20 +412,16 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen> with AutoRouteAwa
                               onHorizontalDragUpdate: (details) {
                                 // Note: Sensitivity is integer used when you don't want to mess up vertical drag
                                 var controller = DefaultTabController.of(context);
-                                debugPrint('index ${controller?.index}');
                                 if (controller == null) return;
                                 int sensitivity = 16;
                                 if (details.delta.dx > sensitivity && controller.index > 0) {
-                                  debugPrint('animated l');
                                   setState(() {
                                     controller.animateTo(controller.index - 1);
                                   });
                                 } else if (details.delta.dx < -sensitivity && controller.index + 1 < controller.length) {
-                                  //controller.animateTo(1);
                                   setState(() {
                                     controller.animateTo(controller.index + 1);
                                   });
-                                  debugPrint('animated r');
                                 }
                               },
                               child: FadeIndexedStack(
@@ -453,6 +453,7 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen> with AutoRouteAwa
             .map((ep) => EpisodeListEpisodeData(
                 episodeId: ep.id,
                 ageRating: ep.ageRating,
+                publishDate: ep.publishDate,
                 duration: ep.duration,
                 title: ep.title,
                 image: ep.imageUrl,
@@ -516,7 +517,6 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen> with AutoRouteAwa
         aspectRatio: 16 / 9,
         child: GestureDetector(
             behavior: HitTestBehavior.opaque,
-            //excludeFromSemantics: true,
             onTap: () {
               setupPlayer();
             },

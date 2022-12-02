@@ -12,16 +12,6 @@ import '../providers/analytics.dart';
 import '../providers/inherited_data.dart';
 import 'bordered_image_container.dart';
 
-class EpisodeListEpisodeData {
-  EpisodeListEpisodeData({required this.id, required this.title, this.image, this.showTitle, required this.ageRating, required this.duration});
-  final String id;
-  final String title;
-  final String? image;
-  final String? showTitle;
-  final String ageRating;
-  final int duration;
-}
-
 class EpisodeListEpisode extends StatelessWidget {
   const EpisodeListEpisode(
       {super.key, required this.id, required this.title, this.image, this.showTitle, required this.ageRating, required this.duration});
@@ -66,23 +56,24 @@ class EpisodeListEpisode extends StatelessWidget {
                 Row(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Container(
-                      margin: const EdgeInsets.only(right: 6),
-                      height: 16,
-                      padding: const EdgeInsets.only(right: 4, bottom: 2, left: 4),
-                      decoration: BoxDecoration(
-                        color: BtvColors.background2,
-                        border: Border.all(
-                          width: 1,
-                          color: BtvColors.separatorOnLight,
+                    if (ageRating != 'A')
+                      Container(
+                        margin: const EdgeInsets.only(right: 6),
+                        height: 16,
+                        padding: const EdgeInsets.only(right: 4, bottom: 2, left: 4),
+                        decoration: BoxDecoration(
+                          color: BtvColors.background2,
+                          border: Border.all(
+                            width: 1,
+                            color: BtvColors.separatorOnLight,
+                          ),
+                          borderRadius: const BorderRadius.all(Radius.circular(8)),
                         ),
-                        borderRadius: const BorderRadius.all(Radius.circular(8)),
+                        child: Text(
+                          getFormattedAgeRating(ageRating),
+                          style: BtvTextStyles.caption2.copyWith(color: BtvColors.onTint, height: 1.1),
+                        ),
                       ),
-                      child: Text(
-                        getFormattedAgeRating(ageRating),
-                        style: BtvTextStyles.caption2.copyWith(color: BtvColors.onTint, height: 1.1),
-                      ),
-                    ),
                     Text(
                       '${Duration(seconds: duration).inMinutes} ${S.of(context).minutesShort}',
                       style: BtvTextStyles.caption2.copyWith(color: BtvColors.label3),

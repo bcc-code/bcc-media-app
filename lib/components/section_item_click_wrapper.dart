@@ -1,6 +1,7 @@
 import 'package:brunstadtv_app/api/brunstadtv.dart';
 import 'package:brunstadtv_app/helpers/event_bus.dart';
 import 'package:brunstadtv_app/models/events/watch_progress.dart';
+import 'package:brunstadtv_app/services/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/src/widgets/container.dart';
@@ -60,6 +61,10 @@ class SectionItemClickWrapper extends ConsumerWidget {
             );
           },
           onTap: () {
+            var episode = item.asOrNull<Fragment$ItemSectionItem$item$$Episode>();
+            if (isComingSoon(episode?.publishDate)) {
+              return;
+            }
             handleSectionItemClick(context, item);
           },
           child: child,

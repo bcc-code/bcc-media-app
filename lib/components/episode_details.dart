@@ -16,7 +16,7 @@ class _InfoItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.only(bottom: 32),
+      padding: const EdgeInsets.only(bottom: 32),
       child: Column(
         mainAxisSize: MainAxisSize.min,
         mainAxisAlignment: MainAxisAlignment.start,
@@ -26,7 +26,7 @@ class _InfoItem extends StatelessWidget {
             width: double.infinity,
             child: Text(
               title,
-              style: TextStyle(
+              style: const TextStyle(
                 color: Color(0xfffefefe),
                 fontSize: 17,
                 fontFamily: "Barlow",
@@ -34,12 +34,12 @@ class _InfoItem extends StatelessWidget {
               ),
             ),
           ),
-          SizedBox(height: 4),
+          const SizedBox(height: 4),
           SizedBox(
             width: double.infinity,
             child: Text(
               text,
-              style: TextStyle(
+              style: const TextStyle(
                 color: Color(0xff707c8e),
                 fontSize: 16,
                 fontFamily: "Barlow",
@@ -70,8 +70,7 @@ class _EpisodeDetailsState extends ConsumerState<EpisodeDetails> {
     super.initState();
     episodeFuture = ref
         .read(gqlClientProvider)
-        .query$EpisodeDetails(Options$Query$EpisodeDetails(
-            variables: Variables$Query$EpisodeDetails(id: widget.episodeId)))
+        .query$EpisodeDetails(Options$Query$EpisodeDetails(variables: Variables$Query$EpisodeDetails(id: widget.episodeId)))
         .then((value) {
       return value.parsedData?.episode;
     });
@@ -81,9 +80,9 @@ class _EpisodeDetailsState extends ConsumerState<EpisodeDetails> {
   Widget build(BuildContext context) {
     return simpleFutureBuilder<Fragment$EpisodeDetails?>(
         future: episodeFuture,
-        loading: () => Center(child: CircularProgressIndicator()),
-        error: (e) => SizedBox.shrink(),
-        noData: () => SizedBox.shrink(),
+        loading: () => const Center(child: CircularProgressIndicator()),
+        error: (e) => const SizedBox.shrink(),
+        noData: () => const SizedBox.shrink(),
         ready: (episode) {
           if (episode == null) return const SizedBox.shrink();
 
@@ -108,24 +107,16 @@ class _EpisodeDetailsState extends ConsumerState<EpisodeDetails> {
                 if (publishDate != null)
                   _InfoItem(
                     title: 'Episode release date',
-                    text:
-                        DateFormat.yMMMMd(locale).add_jm().format(publishDate),
+                    text: DateFormat.yMMMMd(locale).add_jm().format(publishDate),
                   ),
-                if (availableTo != null)
+                if (availableTo != null && availableTo.isBefore(DateTime.now().add(const Duration(days: 365))))
                   _InfoItem(
                     title: 'Available to',
                     text: DateFormat.yMMMd(locale).add_jm().format(availableTo),
                   ),
-                _InfoItem(
-                    title: 'Age rating',
-                    text: episode.ageRating == 'A'
-                        ? 'All'
-                        : '${episode.ageRating}+'),
+                _InfoItem(title: 'Age rating', text: episode.ageRating == 'A' ? 'All' : '${episode.ageRating}+'),
                 if (episode.audioLanguages.isNotEmpty)
-                  _InfoItem(
-                      title: 'Audio',
-                      text: episode.audioLanguages.fold(
-                          '', (str, lang) => str += '${lang.toString()}\n')),
+                  _InfoItem(title: 'Audio', text: episode.audioLanguages.fold('', (str, lang) => str += '${lang.toString()}\n')),
               ],
             ),
           );

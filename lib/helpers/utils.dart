@@ -34,7 +34,7 @@ String formatAppVersion(PackageInfo packageInfo) {
 }
 
 String getFormattedAgeRating(String ageRating) {
-  return ageRating == 'A' ? 'A' : '$ageRating+';
+  return ageRating == 'A' ? '0+' : '$ageRating+';
 }
 
 FutureBuilder simpleFutureBuilder<T>(

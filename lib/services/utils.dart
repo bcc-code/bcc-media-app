@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 
 import 'package:intl/intl.dart';
 
+import '../components/feature_badge.dart';
+import '../helpers/btv_colors.dart';
+
 String getFormattedDuration(int durSeconds, {bool padFirstSegment = false}) {
   final duration = Duration(seconds: durSeconds);
 
@@ -42,11 +45,11 @@ String? getFormattedProductionDate(String? prodDate) {
   return DateFormat('dd. MMM y').format(parsedDateTime);
 }
 
-bool isComingSoon(String? prodDate) {
-  if (prodDate == null) {
+bool isComingSoon(String? publishDate) {
+  if (publishDate == null) {
     return false;
   }
-  final parsedDateTime = DateTime.tryParse(prodDate);
+  final parsedDateTime = DateTime.tryParse(publishDate);
   if (parsedDateTime == null) {
     return false;
   }
@@ -69,4 +72,26 @@ Color? getColorFromHex(String hexString) {
     return null;
   }
   return Color(color);
+}
+
+Widget? getFeaturedTag({required String? publishDate}) {
+  bool isLive = false;
+  bool isNewItem = false;
+  if (isLive) {
+    return const FeatureBadge(
+      label: 'Live now',
+      color: BtvColors.tint2,
+    );
+  } else if (isComingSoon(publishDate)) {
+    return const FeatureBadge(
+      label: 'Coming soon',
+      color: BtvColors.background2,
+    );
+  } else if (isNewItem) {
+    return const FeatureBadge(
+      label: 'New',
+      color: BtvColors.tint2,
+    );
+  }
+  return null;
 }
