@@ -17,6 +17,7 @@ import 'package:intl/intl.dart';
 import '../../helpers/btv_colors.dart';
 import '../../helpers/btv_typography.dart';
 import '../../l10n/app_localizations.dart';
+import '../../services/utils.dart';
 
 class CalendarPage extends ConsumerStatefulWidget {
   const CalendarPage({super.key});
@@ -124,57 +125,23 @@ class _CalendarWidgetState extends ConsumerState<CalendarWidget> {
     return List.generate(dayCount, (index) => convertToIso8601inDays(startDate.add(Duration(days: (index)))));
   }
 
-  Widget highlightMarker(DateTime day, bool isFromDefaultBuilder) {
+  Widget getEventHighlightFor(DateTime day) {
     final isNotPartOfEvent = !eventsPeriod.contains(convertToIso8601inDays(day));
     final isFirstDay = !eventsPeriod.contains(convertToIso8601inDays(day.subtract(const Duration(days: 1))));
     final isLastDay = !eventsPeriod.contains(convertToIso8601inDays(day.add(const Duration(days: 1))));
     if (isNotPartOfEvent) {
-      return isFromDefaultBuilder
-          ? Stack(
-              children: [
-                CenterText(Colors.white, day),
-              ],
-            )
-          : const SizedBox.shrink();
+      return const SizedBox.shrink();
     }
     if (isFirstDay && isLastDay) {
-      return isFromDefaultBuilder
-          ? Stack(
-              children: [
-                const HighLightSingle(),
-                CenterText(Colors.white, day),
-              ],
-            )
-          : const HighLightSingle();
+      return const HighLightSingle();
     }
     if (isFirstDay) {
-      return isFromDefaultBuilder
-          ? Stack(
-              children: [
-                const HighLightOpen(),
-                CenterText(Colors.white, day),
-              ],
-            )
-          : const HighLightOpen();
+      return const HighLightOpen();
     }
     if (isLastDay) {
-      return isFromDefaultBuilder
-          ? Stack(
-              children: [
-                const HighLightClose(),
-                CenterText(Colors.white, day),
-              ],
-            )
-          : const HighLightClose();
+      return const HighLightClose();
     }
-    return isFromDefaultBuilder
-        ? Stack(
-            children: [
-              const HighLightMiddle(),
-              CenterText(Colors.white, day),
-            ],
-          )
-        : const HighLightMiddle();
+    return const HighLightMiddle();
   }
 
   loadInputPeriodData() async {
@@ -304,8 +271,19 @@ class _CalendarWidgetState extends ConsumerState<CalendarWidget> {
             eventLoader: _getEventsForDay,
             calendarBuilders: CalendarBuilders(
               defaultBuilder: (context, day, focusedDay) {
-                return highlightMarker(day, true);
+                return Stack(
+                  children: [
+                    getEventHighlightFor(day),
+                    CenterText(Colors.white, day),
+                  ],
+                );
               },
+              todayBuilder: (context, day, focusedDay) => Stack(
+                children: [
+                  getEventHighlightFor(day),
+                  CenterText(BtvColors.tint2, day),
+                ],
+              ),
               outsideBuilder: (context, day, focusedDay) {
                 return Stack(
                   children: <Widget>[
@@ -316,7 +294,7 @@ class _CalendarWidgetState extends ConsumerState<CalendarWidget> {
                         child: CenterText(Colors.grey, day),
                       ),
                     ),
-                    highlightMarker(day, false),
+                    getEventHighlightFor(day),
                   ],
                 );
               },
@@ -338,13 +316,13 @@ class _CalendarWidgetState extends ConsumerState<CalendarWidget> {
                           child: CenterText(Colors.white, day),
                         ),
                       ),
-                      highlightMarker(day, false),
+                      getEventHighlightFor(day),
                     ],
                   );
                 } else {
                   return Stack(
                     children: [
-                      highlightMarker(day, false),
+                      getEventHighlightFor(day),
                       Center(
                         child: Container(
                           width: 33,
@@ -517,12 +495,12 @@ class _EntriesSlot extends StatelessWidget {
     return Column(
       children: <Widget>[
         if (entriesList != null && entriesList.isNotEmpty) ...[
-          for (var i = 0; i < entriesList.length; i++)
-            GestureDetector(
+          ...entriesList.map((entry) {
+            final episode = entry.asOrNull<Fragment$CalendarDay$entries$$EpisodeCalendarEntry>();
+            return GestureDetector(
               behavior: HitTestBehavior.opaque,
               onTapUp: (details) {
-                final episode = entriesList[i].asOrNull<Fragment$CalendarDay$entries$$EpisodeCalendarEntry>();
-                if (episode != null && episode.episode != null) {
+                if (episode != null && episode.episode != null && !isComingSoon(episode.episode!.publishDate)) {
                   context.router.navigate(
                     HomeScreenWrapperRoute(children: [
                       EpisodeScreenRoute(episodeId: episode.episode!.id),
@@ -533,13 +511,13 @@ class _EntriesSlot extends StatelessWidget {
               child: Container(
                 padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 16),
                 decoration: BoxDecoration(
-                  color: isHappeningNow(entriesList[i]) ? BtvColors.tint2.withOpacity(0.1) : null,
+                  color: isHappeningNow(entry) ? BtvColors.tint2.withOpacity(0.1) : null,
                   border: Border(
-                    left: isHappeningNow(entriesList[i]) ? const BorderSide(color: BtvColors.tint2, width: 4) : const BorderSide(width: 4),
+                    left: isHappeningNow(entry) ? const BorderSide(color: BtvColors.tint2, width: 4) : const BorderSide(width: 4),
                   ),
                 ),
                 child: Opacity(
-                  opacity: entriesList[i].asOrNull<Fragment$CalendarDay$entries$$EpisodeCalendarEntry>()?.episode != null ? 1 : 0.7,
+                  opacity: episode?.episode != null && !isComingSoon(episode?.episode!.publishDate) ? 1 : 0.7,
                   child: Row(
                     children: [
                       Padding(
@@ -548,13 +526,11 @@ class _EntriesSlot extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              isHappeningNow(entriesList[i])
-                                  ? S.of(context).now
-                                  : DateFormat('HH:mm').format(DateTime.parse(entriesList[i].start).toLocal()),
+                              isHappeningNow(entry) ? S.of(context).now : DateFormat('HH:mm').format(DateTime.parse(entry.start).toLocal()),
                               style: BtvTextStyles.title3,
                             ),
                             const SizedBox(height: 4),
-                            Text(calculateDuration(entriesList[i].start, entriesList[i].end), style: BtvTextStyles.caption1),
+                            Text(calculateDuration(entry.start, entry.end), style: BtvTextStyles.caption1),
                           ],
                         ),
                       ),
@@ -563,14 +539,14 @@ class _EntriesSlot extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              entriesList[i].title,
+                              entry.title,
                               style: BtvTextStyles.title3.copyWith(color: BtvColors.label1),
                             ),
                             const SizedBox(height: 4),
                             Text(
-                              entriesList[i].description,
+                              entry.description,
                               overflow: TextOverflow.ellipsis,
-                              style: BtvTextStyles.caption1.copyWith(color: isHappeningNow(entriesList[i]) ? BtvColors.tint2 : BtvColors.tint1),
+                              style: BtvTextStyles.caption1.copyWith(color: isHappeningNow(entry) ? BtvColors.tint2 : BtvColors.tint1),
                             ),
                           ],
                         ),
@@ -579,7 +555,8 @@ class _EntriesSlot extends StatelessWidget {
                   ),
                 ),
               ),
-            ),
+            );
+          }).toList(),
           const TvGuideTime()
         ] else ...[
           Padding(
