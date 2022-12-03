@@ -361,7 +361,7 @@ class _CalendarWidgetState extends ConsumerState<CalendarWidget> {
                 child: Builder(builder: (context) {
                   final isToday = isSameDay(_selectedDay, DateTime.now());
                   return Text(
-                    '${isToday ? S.of(context).today : DateFormat(DateFormat.WEEKDAY).format(_selectedDay!).capitalized}, ${DateFormat(DateFormat.MONTH_DAY).format(DateTime.now())}',
+                    '${isToday ? S.of(context).today : DateFormat(DateFormat.WEEKDAY).format(_selectedDay!).capitalized}, ${DateFormat(DateFormat.MONTH_DAY).format(_selectedDay!)}',
                     style: BtvTextStyles.title2,
                   );
                 }),
