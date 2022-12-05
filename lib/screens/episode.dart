@@ -10,11 +10,14 @@ import 'package:brunstadtv_app/components/loading_indicator.dart';
 import 'package:brunstadtv_app/components/mini_player.dart';
 import 'package:brunstadtv_app/components/season_episode_list.dart';
 import 'package:brunstadtv_app/components/feature_badge.dart';
+import 'package:brunstadtv_app/components/study/study_button.dart';
 import 'package:brunstadtv_app/graphql/schema/items.graphql.dart';
 import 'package:brunstadtv_app/graphql/schema/pages.graphql.dart';
+import 'package:brunstadtv_app/helpers/btv_gradients.dart';
 import 'package:brunstadtv_app/helpers/navigation_override.dart';
 import 'package:brunstadtv_app/helpers/svg_icons.dart';
 import 'package:brunstadtv_app/providers/analytics.dart';
+import 'package:brunstadtv_app/router/router.gr.dart';
 import 'package:brunstadtv_app/services/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:bccm_player/bccm_player.dart';
@@ -364,7 +367,18 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen> with AutoRouteAwa
                                             child: Text(episodeNumberFormatted, style: BtvTextStyles.caption1.copyWith(color: BtvColors.label4)))
                                     ]),
                                     const SizedBox(height: 14.5),
-                                    Text(episode.description, style: BtvTextStyles.body2.copyWith(color: BtvColors.label3))
+                                    Text(episode.description, style: BtvTextStyles.body2.copyWith(color: BtvColors.label3)),
+                                    if (false)
+                                      Padding(
+                                        padding: const EdgeInsets.only(top: 16),
+                                        child: GestureDetector(
+                                          behavior: HitTestBehavior.opaque,
+                                          onTap: () {
+                                            context.router.root.push(StudyScreenRoute());
+                                          },
+                                          child: const StudyMoreButton(),
+                                        ),
+                                      )
                                   ],
                                 ),
                               )

@@ -1,4 +1,5 @@
 import 'package:brunstadtv_app/components/error_generic.dart';
+import 'package:brunstadtv_app/components/loading_generic.dart';
 import 'package:brunstadtv_app/components/loading_indicator.dart';
 import 'package:brunstadtv_app/graphql/client.dart';
 import 'package:brunstadtv_app/graphql/queries/sections.graphql.dart';
@@ -229,25 +230,12 @@ class _BccmPageState extends ConsumerState<BccmPage> {
           );
         }
         if (snapshot.connectionState == ConnectionState.waiting) {
-          return getLoadingContent(context);
+          return const LoadingGeneric();
         }
-        return getLoadingContent(context);
+        return const LoadingGeneric();
       },
     );
   }
-
-  getLoadingContent(context) => Center(
-        child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
-          Container(
-            margin: const EdgeInsets.only(bottom: 12),
-            child: const LoadingIndicator(),
-          ),
-          Text(
-            S.of(context).loadingContent,
-            style: BtvTextStyles.body2,
-          ),
-        ]),
-      );
 
   void resetState() {
     setState(() {

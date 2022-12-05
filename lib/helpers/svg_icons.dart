@@ -17,6 +17,11 @@ class SvgIcons {
 </svg>
 ''';
 
+  static const chevronRight = '''<svg width="7" height="12" viewBox="0 0 7 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M0.714294 0.643066L5.81634 5.74511L0.714294 10.8471" stroke="white" stroke-width="1.53061"/>
+</svg>
+''';
+
   static const calendar_1_line = '''<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
 <path fill-rule="evenodd" clip-rule="evenodd" d="M7 2C7.55228 2 8 2.44772 8 3V4H16V3C16 2.44772 16.4477 2 17 2C17.5523 2 18 2.44772 18 3V4H19C20.6569 4 22 5.34315 22 7V19C22 20.6569 20.6569 22 19 22H5C3.34315 22 2 20.6569 2 19V7C2 5.34315 3.34315 4 5 4H6V3C6 2.44772 6.44772 2 7 2ZM16 6V7C16 7.55228 16.4477 8 17 8C17.5523 8 18 7.55228 18 7V6H19C19.5523 6 20 6.44771 20 7V19C20 19.5523 19.5523 20 19 20H5C4.44772 20 4 19.5523 4 19V7C4 6.44772 4.44772 6 5 6H6V7C6 7.55228 6.44772 8 7 8C7.55228 8 8 7.55228 8 7V6H16Z" fill="#6EB0E6"/>
 <path fill-rule="evenodd" clip-rule="evenodd" d="M7 13C7 12.4477 7.44772 12 8 12H16C16.5523 12 17 12.4477 17 13C17 13.5523 16.5523 14 16 14H8C7.44772 14 7 13.5523 7 13Z" fill="#6EB0E6"/>
@@ -40,6 +45,22 @@ class SvgIcons {
 
   static const play = '''<svg width="38" height="38" viewBox="0 0 38 38" fill="none" xmlns="http://www.w3.org/2000/svg">
 <path fill-rule="evenodd" clip-rule="evenodd" d="M33.6144 25.1652C38.7952 22.3996 38.7952 15.6004 33.6144 12.8348L12.378 1.4984C7.12376 -1.30644 0.5 2.13154 0.5 7.66356V30.3364C0.5 35.8685 7.12376 39.3064 12.378 36.5016L33.6144 25.1652Z" fill="white"/>
+</svg>
+''';
+
+  static const temporaryTree = '''<svg width="44" height="44" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M42.2449 21.7451C42.2449 32.7908 33.2906 41.7451 22.2449 41.7451C11.1992 41.7451 2.24493 32.7908 2.24493 21.7451C2.24493 11.0347 10.6638 2.29071 21.2449 1.76968C21.5762 1.75337 21.9096 1.74512 22.2449 1.74512C22.5803 1.74512 22.9137 1.75337 23.2449 1.76968C33.826 2.29071 42.2449 11.0347 42.2449 21.7451Z" stroke="url(#paint0_linear_7591_90106)" stroke-width="3"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M23.2449 11.7451C26.2282 11.7451 28.7029 13.9224 29.1668 16.7745C31.0243 17.8534 32.2449 19.6771 32.2449 21.7451C32.2449 25.0588 29.1109 27.7451 25.2449 27.7451C24.9054 27.7451 24.5715 27.7244 24.2449 27.6844V31.7451C24.2449 32.8497 23.3495 33.7451 22.2449 33.7451C21.1404 33.7451 20.2449 32.8497 20.2449 31.7451V27.5846C19.7634 27.6896 19.2612 27.7451 18.7449 27.7451C15.1551 27.7451 12.2449 25.0588 12.2449 21.7451C12.2449 18.8076 14.5318 16.3632 17.5517 15.846C18.3462 13.4631 20.595 11.7451 23.2449 11.7451Z" fill="url(#paint1_linear_7591_90106)"/>
+<defs>
+<linearGradient id="paint0_linear_7591_90106" x1="-17.7551" y1="21.7451" x2="22.2449" y2="61.7451" gradientUnits="userSpaceOnUse">
+<stop stop-color="#70C5BD"/>
+<stop offset="1" stop-color="#FDCF48"/>
+</linearGradient>
+<linearGradient id="paint1_linear_7591_90106" x1="2.24493" y1="22.7451" x2="24.1454" y2="42.6546" gradientUnits="userSpaceOnUse">
+<stop stop-color="#70C5BD"/>
+<stop offset="1" stop-color="#FDCF48"/>
+</linearGradient>
+</defs>
 </svg>
 ''';
 }

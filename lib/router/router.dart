@@ -15,6 +15,7 @@ import 'package:brunstadtv_app/screens/live.dart';
 import 'package:brunstadtv_app/screens/login.dart';
 import 'package:brunstadtv_app/screens/profile/profile.dart';
 import 'package:brunstadtv_app/screens/search/search.dart';
+import 'package:brunstadtv_app/screens/study.dart';
 
 import '../helpers/custom_transitions.dart';
 import '../screens/episode.dart';
@@ -29,7 +30,6 @@ const _episodeScreenRoute = CustomRoute<void>(
   reverseDurationInMilliseconds: 300,
   transitionsBuilder: CustomTransitionsBuilders.slideLeft,
   meta: {RouteMetaConstants.analyticsName: 'episode'},
-  //customRouteBuilder: CustomTransitionsBuilders.slideUpAndDown,
 );
 
 const _pageScreenRoute = CustomRoute<void>(
@@ -140,6 +140,13 @@ const _specialRoutes = AutoRoute(
       reverseDurationInMilliseconds: 500,
     ),
     CustomRoute(page: AutoLoginScreeen, initial: true, path: 'auto-login'),
+    CustomRoute<void>(
+        page: StudyScreen,
+        path: 'study',
+        durationInMilliseconds: 400,
+        reverseDurationInMilliseconds: 600,
+        transitionsBuilder: CustomTransitionsBuilders.slideUp,
+        meta: {RouteMetaConstants.analyticsName: 'study'}),
     CustomRoute<void>(
       page: TabsRootScreen,
       path: '/',
