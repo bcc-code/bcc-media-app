@@ -63,4 +63,9 @@ class SvgIcons {
 </defs>
 </svg>
 ''';
+
+static const tasksCompleted = '''<svg width="101" height="102" viewBox="0 0 101 102" fill="none" xmlns="http://www.w3.org/2000/svg">
+<circle cx="50.5" cy="51" r="50.25" fill="#6EB0E6"/>
+<path d="M77.8804 34.4732L42.3483 70.0053L24.3282 51.9852" stroke="white" stroke-width="8.375"/>
+</svg>''';
 }

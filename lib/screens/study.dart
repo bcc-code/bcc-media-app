@@ -1,15 +1,19 @@
-import 'package:brunstadtv_app/api/brunstadtv.dart';
 import 'package:brunstadtv_app/components/loading_generic.dart';
-import 'package:brunstadtv_app/helpers/page_mixin.dart';
-import 'package:brunstadtv_app/helpers/utils.dart';
+import 'package:brunstadtv_app/helpers/btv_typography.dart';
+import 'package:brunstadtv_app/helpers/webview/should_override_url_loading.dart';
 import 'package:flutter/material.dart';
-import 'package:auto_route/auto_route.dart';
+import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_svg/svg.dart';
+import 'package:url_launcher/url_launcher.dart';
 import 'package:url_launcher/url_launcher_string.dart';
-import 'package:webview_flutter/webview_flutter.dart';
 
 import '../components/custom_back_button.dart';
 import '../env/env.dart';
+import '../helpers/btv_buttons.dart';
+import '../helpers/btv_colors.dart';
+import '../helpers/svg_icons.dart';
+import '../helpers/webview/router_js_channel.dart';
 
 class StudyScreen extends ConsumerStatefulWidget {
   final String episodeId = '';
@@ -25,7 +29,7 @@ class StudyScreen extends ConsumerStatefulWidget {
 class StudyScreenState extends ConsumerState<StudyScreen> {
   String pageTitle = 'Matthew 1, 2';
   String url = Env.studyUrl;
-  WebViewController? webViewController;
+  InAppWebViewController? webViewController;
   WebResourceError? error;
   bool loading = true;
   double? height;
@@ -33,6 +37,25 @@ class StudyScreenState extends ConsumerState<StudyScreen> {
   @override
   void initState() {
     super.initState();
+  }
+
+  void onWebViewCreated(InAppWebViewController controller) {
+    setState(() {
+      webViewController = controller;
+    });
+    final uri = Uri.tryParse(url);
+    if (uri != null) {
+      webViewController?.loadUrl(
+        urlRequest: URLRequest(
+          url: WebUri.uri(uri),
+          allowsCellularAccess: true,
+          allowsConstrainedNetworkAccess: true,
+          allowsExpensiveNetworkAccess: true,
+        ),
+      );
+    }
+    RouterJsChannel.register(context, controller);
+    controller.addJavaScriptHandler(handlerName: 'flutter_study_channel', callback: handleMessage);
   }
 
   @override
@@ -47,51 +70,64 @@ class StudyScreenState extends ConsumerState<StudyScreen> {
         children: [
           Opacity(
             opacity: loading ? 0 : 1,
-            child: WebView(
-              backgroundColor: Colors.transparent,
-              javascriptMode: JavascriptMode.unrestricted,
-              initialUrl: url,
-              javascriptChannels: {
-                JavascriptChannel(
-                  name: 'default',
-                  onMessageReceived: (message) {
-                    if (message.message == 'refresh') {}
-                  },
-                ),
-                JavascriptChannel(
-                    name: 'Router',
-                    onMessageReceived: (JavascriptMessage message) {
-                      if (message.message.startsWith('navigate:')) {
-                        final path = message.message.substring('navigate:'.length);
-                        context.router.navigateNamed(path);
-                      }
-                    })
-              },
-              onPageFinished: (_) {
+            child: InAppWebView(
+              initialSettings: InAppWebViewSettings(
+                useHybridComposition: false,
+                transparentBackground: true,
+              ),
+              onWebViewCreated: onWebViewCreated,
+              onConsoleMessage: (_, msg) => debugPrint(msg.message),
+              onLoadStop: (controller, url) {
                 Future.delayed(const Duration(seconds: 0), () => setState(() => loading = false));
               },
-              onWebResourceError: (error) => setState(() => this.error = error),
-              navigationDelegate: (navigation) async {
-                if (navigation.isForMainFrame) return NavigationDecision.navigate;
-                var uri = Uri.tryParse(url);
-                if (uri != null &&
-                    navigation.url.toLowerCase().startsWith('${uri.scheme}:${uri.host}') &&
-                    !navigation.url.toLowerCase().contains('launch_url=true')) {
-                  return NavigationDecision.navigate;
-                }
-
-                if (uri != null && await canLaunchUrlString(navigation.url)) {
-                  await launchUrlString(navigation.url, mode: LaunchMode.externalApplication);
-                  return NavigationDecision.prevent;
-                }
-                debugPrint("Error: Couldn't launch the url in the view.");
-                return NavigationDecision.prevent;
-              },
+              shouldOverrideUrlLoading: shouldOverrideUrlLoading(url),
             ),
           ),
           if (loading) const LoadingGeneric()
         ],
       ),
     );
+  }
+
+  void handleMessage(List<dynamic> arguments) {
+    if (arguments[0] == 'tasks_completed') {
+      showDialog(
+        barrierDismissible: false,
+        context: context,
+        builder: (context) => Dialog(
+          insetPadding: const EdgeInsets.all(16),
+          child: Container(
+            padding: const EdgeInsets.only(left: 32, right: 32, top: 40, bottom: 32),
+            width: double.infinity,
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                const Text('Well done!', style: BtvTextStyles.headline1),
+                Text('Great job on completing the video.', style: BtvTextStyles.caption1.copyWith(color: BtvColors.label3)),
+                Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 24),
+                  child: SvgPicture.string(SvgIcons.tasksCompleted),
+                ),
+                Text(
+                  'Watch the episode again and explore other available resources to deepen your understanding.',
+                  textAlign: TextAlign.center,
+                  style: BtvTextStyles.caption1.copyWith(color: BtvColors.label3),
+                ),
+                Container(
+                  padding: const EdgeInsets.only(top: 24),
+                  width: double.infinity,
+                  child: BtvButton.large(
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
+                    labelText: 'Ok',
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+      );
+    }
   }
 }

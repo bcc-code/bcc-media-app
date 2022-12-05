@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 
 import 'package:auto_route/auto_route.dart';
+import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'package:shimmer/shimmer.dart';
+import 'package:url_launcher/url_launcher.dart';
 import 'package:url_launcher/url_launcher_string.dart';
-import 'package:webview_flutter/webview_flutter.dart';
 
 import '../graphql/queries/page.graphql.dart';
 import '../helpers/btv_colors.dart';
+import '../helpers/webview/router_js_channel.dart';
 
 class WebSection extends StatefulWidget {
   final Fragment$Section$$WebSection data;
@@ -18,33 +20,33 @@ class WebSection extends StatefulWidget {
 }
 
 class _WebSectionState extends State<WebSection> {
-  WebViewController? webViewController;
+  InAppWebViewController? webViewController;
   WebResourceError? error;
   bool loading = true;
   double? height;
 
-  void onWebViewCreated(WebViewController controller) {
+  void onWebViewCreated(InAppWebViewController controller) {
     setState(() {
       webViewController = controller;
     });
-    webViewController?.loadUrl(widget.data.url);
-  }
-
-  void updateHeight() async {
-    if (webViewController == null) return;
-    double height = double.parse(await webViewController!.runJavascriptReturningResult('document.documentElement.scrollHeight;'));
-
-    if (this.height != height) {
-      setState(() {
-        this.height = height;
-      });
+    final uri = Uri.tryParse(widget.data.url);
+    if (uri != null) {
+      webViewController?.loadUrl(
+        urlRequest: URLRequest(
+          url: WebUri.uri(uri),
+          allowsCellularAccess: true,
+          allowsConstrainedNetworkAccess: true,
+          allowsExpensiveNetworkAccess: true,
+        ),
+      );
     }
+    RouterJsChannel.register(context, controller);
   }
 
   Widget _heightOrAspectRatio({double? height, required double aspectRatio, required Widget child}) {
     if (height != null) {
       return ConstrainedBox(constraints: BoxConstraints.loose(Size.fromHeight(height)), child: child);
-    } else if (aspectRatio != null) {
+    } else if (aspectRatio != 0) {
       return AspectRatio(aspectRatio: aspectRatio, child: child);
     } else {
       return const SizedBox.shrink();
@@ -60,52 +62,33 @@ class _WebSectionState extends State<WebSection> {
         aspectRatio: widget.data.widthRatio,
         child: Stack(
           children: [
-            WebView(
-                backgroundColor: Colors.transparent,
-                javascriptMode: JavascriptMode.unrestricted,
-                onWebViewCreated: onWebViewCreated,
-                initialUrl: widget.data.url,
-                javascriptChannels: {
-                  JavascriptChannel(
-                    name: 'default',
-                    onMessageReceived: (message) {
-                      if (message.message == 'refresh') {}
-                    },
-                  ),
-                  JavascriptChannel(
-                      name: "Resize",
-                      onMessageReceived: (JavascriptMessage message) {
-                        updateHeight();
-                      }),
-                  JavascriptChannel(
-                      name: "Router",
-                      onMessageReceived: (JavascriptMessage message) {
-                        if (message.message.startsWith('navigate:')) {
-                          final path = message.message.substring('navigate:'.length);
-                          context.router.navigateNamed(path);
-                        }
-                      })
-                },
-                onPageFinished: (_) {
-                  Future.delayed(const Duration(seconds: 0), () => setState(() => loading = false));
-                },
-                onWebResourceError: (error) => setState(() => this.error = error),
-                navigationDelegate: (navigation) async {
-                  if (navigation.isForMainFrame) return NavigationDecision.navigate;
-                  var uri = Uri.tryParse(widget.data.url);
-                  if (uri != null &&
-                      navigation.url.toLowerCase().startsWith('${uri.scheme}:${uri.host}') &&
-                      !navigation.url.toLowerCase().contains('launch_url=true')) {
-                    return NavigationDecision.navigate;
-                  }
+            InAppWebView(
+              initialSettings: InAppWebViewSettings(
+                useHybridComposition: false,
+                transparentBackground: true,
+              ),
+              onWebViewCreated: onWebViewCreated,
+              onLoadStop: (controller, url) {
+                Future.delayed(const Duration(seconds: 0), () => setState(() => loading = false));
+              },
+              shouldOverrideUrlLoading: (controller, navigationAction) async {
+                if (navigationAction.isForMainFrame) return NavigationActionPolicy.ALLOW;
+                var originalUri = Uri.tryParse(widget.data.url);
+                var navigationUri = navigationAction.request.url?.uriValue;
+                if (originalUri != null &&
+                    navigationAction.request.url?.host == originalUri.host &&
+                    navigationAction.request.url?.queryParameters['launch_url'] != 'true') {
+                  return NavigationActionPolicy.ALLOW;
+                }
 
-                  if (uri != null && await canLaunchUrlString(navigation.url)) {
-                    await launchUrlString(navigation.url, mode: LaunchMode.externalApplication);
-                    return NavigationDecision.prevent;
-                  }
-                  debugPrint("Error: Couldn't launch the url in the view.");
-                  return NavigationDecision.prevent;
-                }),
+                if (navigationUri != null && await canLaunchUrl(navigationUri)) {
+                  await launchUrl(navigationUri, mode: LaunchMode.externalApplication);
+                  return NavigationActionPolicy.CANCEL;
+                }
+                debugPrint("Error: Couldn't launch the url in the view.");
+                return NavigationActionPolicy.CANCEL;
+              },
+            ),
             Positioned.fill(
               child: IgnorePointer(
                 ignoring: !loading,

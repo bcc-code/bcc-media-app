@@ -183,8 +183,12 @@ ThemeData createTheme() {
         toolbarHeight: 44,
         iconTheme: const IconThemeData(color: BtvColors.tint1),
         backgroundColor: BtvColors.background1),
-    dialogTheme:
-        const DialogTheme(backgroundColor: BtvColors.background2, contentTextStyle: BtvTextStyles.body1, titleTextStyle: BtvTextStyles.title3),
+    dialogTheme: const DialogTheme(
+      backgroundColor: BtvColors.background2,
+      contentTextStyle: BtvTextStyles.body1,
+      titleTextStyle: BtvTextStyles.title3,
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(16))),
+    ),
     scaffoldBackgroundColor: BtvColors.background1,
     bottomNavigationBarTheme: BottomNavigationBarThemeData(
         selectedItemColor: BtvColors.tint1,
