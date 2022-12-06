@@ -42,13 +42,16 @@ class FullscreenPlayerView(val activity: Activity, val playerController: ExoPlay
             }
         }
 
-
         // Live ui
         setLiveUIEnabled(playerController.isLive)
         playerController.player.addListener(object : Player.Listener {
             private lateinit var player: Player
             override fun onEvents(player: Player, events: Player.Events) {
                 this.player = player
+            }
+
+            override fun onIsPlayingChanged(isPlaying: Boolean) {
+                playerView?.keepScreenOn = isPlaying
             }
 
             override fun onMediaItemTransition(mediaItem: MediaItem?, reason: Int) {

@@ -93,6 +93,10 @@ class BccmPlayerViewWrapper(
                 this.player = player
             }
 
+            override fun onIsPlayingChanged(isPlaying: Boolean) {
+                playerView?.keepScreenOn = isPlaying
+            }
+
             override fun onPlaybackStateChanged(playbackState: Int) {
                 setLiveUIEnabled(playerController?.isLive == true)
                 playerView.setShowNextButton(false)
