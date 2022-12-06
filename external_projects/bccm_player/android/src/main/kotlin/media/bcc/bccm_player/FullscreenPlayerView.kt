@@ -8,6 +8,7 @@ import android.util.Log
 import android.util.Rational
 import android.view.LayoutInflater
 import android.view.View
+import android.view.WindowManager
 import android.widget.ImageButton
 import android.widget.LinearLayout
 import androidx.annotation.RequiresApi
@@ -20,20 +21,31 @@ import androidx.media3.ui.PlayerView
 import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.filterIsInstance
 
-
-class FullscreenPlayerView(val activity: Activity, val playerController: ExoPlayerController) : LinearLayout(activity) {
+class FullscreenPlayerView(val activity: Activity, val playerController: ExoPlayerController, private val forceLandscape: Boolean = true) : LinearLayout(activity), BccmPlayerViewController {
     var playerView: PlayerView?
     val mainScope = CoroutineScope(Dispatchers.Main + SupervisorJob())
     var isInPip: Boolean = false;
     val orientationBeforeGoingFullscreen = activity.requestedOrientation;
+    var onExitListener: (() -> Unit)? = null;
+
     init {
-        activity.requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED;
-        makeActivityFullscreen()
+        makeActivityFullscreen(forceLandscape)
         LayoutInflater.from(context).inflate(R.layout.player_fullscreen_view, this, true)
         playerView = this.findViewById<PlayerView>(R.id.brunstad_player)
         playerView?.let {
-            playerController.takeOwnership(it)
+            playerController.takeOwnership(it, this)
         }
+
+        playerView?.videoSurfaceView?.setOnTouchListener(SwipeTouchListener(activity.window.decorView.height*0.3, object : SwipeTouchListener.Listener {
+            override fun onTopToBottomSwipe() {
+                exit();
+            }
+        }))
+
+        playerView?.setFullscreenButtonClickListener {
+            exit()
+        }
+
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             val pipButton = findViewById<ImageButton>(R.id.pip_button)
             pipButton.visibility = View.VISIBLE
@@ -51,6 +63,7 @@ class FullscreenPlayerView(val activity: Activity, val playerController: ExoPlay
             }
 
             override fun onIsPlayingChanged(isPlaying: Boolean) {
+                Log.d("bccm", "fullscreenplayer playerView?.keepScreenOn = $isPlaying")
                 playerView?.keepScreenOn = isPlaying
             }
 
@@ -73,7 +86,7 @@ class FullscreenPlayerView(val activity: Activity, val playerController: ExoPlay
                 Log.d("bccm", "PictureInPictureModeChangedEvent2, isInPiP: $isInPip")
                 if (!event.isInPictureInPictureMode) {
                     delay(500)
-                    makeActivityFullscreen()
+                    makeActivityFullscreen(true)
                 }
             }
         }
@@ -84,18 +97,16 @@ class FullscreenPlayerView(val activity: Activity, val playerController: ExoPlay
                 playerController.player.stop()
             }
         }
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            mainScope.launch {
-                BccmPlayerPluginSingleton.eventBus.filterIsInstance<UserLeaveHintEvent>().collect {
-                    event ->
-                    Log.d("bccm", "UserLeaveHintEvent and isInPiP: $isInPip")
-                        enterPictureInPicture()
-                }
-            }
-        }
     }
 
-    private fun makeActivityFullscreen() {
+    override fun shouldPipAutomatically(): Boolean {
+        return true;
+    }
+
+    private fun makeActivityFullscreen(forceLandscape: Boolean) {
+        if (forceLandscape) {
+            activity.requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_USER_LANDSCAPE
+        }
         WindowCompat.setDecorFitsSystemWindows(activity.window, false)
         WindowInsetsControllerCompat(activity.window, this@FullscreenPlayerView).let { controller ->
             controller.hide(WindowInsetsCompat.Type.systemBars())
@@ -103,17 +114,12 @@ class FullscreenPlayerView(val activity: Activity, val playerController: ExoPlay
         }
     }
 
-    private fun exitFullscreen() {
+    private fun exit() {
+        activity.requestedOrientation = orientationBeforeGoingFullscreen;
         WindowCompat.setDecorFitsSystemWindows(activity.window, true)
         WindowInsetsControllerCompat(activity.window, this).show(WindowInsetsCompat.Type.systemBars())
-    }
-
-    fun setFullscreenButtonClickListener(listener: () -> Unit) {
-        playerView?.setFullscreenButtonClickListener {
-            listener()
-            activity.requestedOrientation = orientationBeforeGoingFullscreen;
-            exitFullscreen()
-        }
+        onExitListener?.let { listener -> listener() }
+        release();
     }
 
     fun setLiveUIEnabled(enabled: Boolean) {
@@ -136,7 +142,7 @@ class FullscreenPlayerView(val activity: Activity, val playerController: ExoPlay
     }
 
     @RequiresApi(Build.VERSION_CODES.O)
-    fun enterPictureInPicture() {
+    override fun enterPictureInPicture() {
         Log.d("Bccm", "enterPictureInPicture fullscreenplayerView")
 
         val aspectRatio = playerController.player.let {
@@ -150,7 +156,7 @@ class FullscreenPlayerView(val activity: Activity, val playerController: ExoPlay
         playerView?.hideController()
     }
 
-    fun release() {
+    private fun release() {
         playerView?.let {
             playerController.releasePlayerView(it)
         }

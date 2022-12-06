@@ -2,13 +2,12 @@ package media.bcc.bccm_player
 
 import android.content.Context
 import android.util.Log
+import android.view.WindowManager
 import androidx.media3.common.*
 import androidx.media3.common.C.VIDEO_SCALING_MODE_SCALE_TO_FIT
 import androidx.media3.exoplayer.ExoPlayer
 import androidx.media3.exoplayer.trackselection.DefaultTrackSelector
 import androidx.media3.ui.PlayerView
-import com.google.android.gms.cast.framework.CastContext
-import com.npaw.youbora.lib6.Timer
 import com.npaw.youbora.lib6.media3.Media3Adapter
 import com.npaw.youbora.lib6.plugin.Options
 import com.npaw.youbora.lib6.plugin.Plugin
@@ -19,9 +18,7 @@ import media.bcc.player.PlaybackPlatformApi
 import java.util.*
 
 
-class ExoPlayerController(private val context: Context) : PlayerController(), PlayerManager.Listener {
-    private var playerManager: PlayerManager? = null
-    private var castContext: CastContext? = null
+class ExoPlayerController(private val context: Context) : PlayerController() {
     override val id: String = UUID.randomUUID().toString()
     private val trackSelector: DefaultTrackSelector = DefaultTrackSelector(context)
     private val exoPlayer: ExoPlayer = ExoPlayer.Builder(context)
@@ -30,7 +27,7 @@ class ExoPlayerController(private val context: Context) : PlayerController(), Pl
             .setVideoScalingMode(VIDEO_SCALING_MODE_SCALE_TO_FIT)
             .build()
     override val player: ForwardingPlayer
-    private var currentPlayerViewWrapper: BccmPlayerViewWrapper? = null
+    override var currentPlayerViewController: BccmPlayerViewController? = null
 
     private var _currentPlayerView: PlayerView? = null
     private var currentPlayerView: PlayerView?
@@ -42,11 +39,17 @@ class ExoPlayerController(private val context: Context) : PlayerController(), Pl
                     delay(6000)
                     if (_currentPlayerView == null) {
                         setRendererDisabled(true);
+                        val activity = BccmPlayerPluginSingleton.activityState.value;
+                        Log.d("bccm", "FLAG_KEEP_SCREEN_ON added")
+                        activity?.window?.clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
                     }
                 }
             } else {
                 Log.d("bccm", "Enabling video, playerView attached")
                 setRendererDisabled(false);
+                val activity = BccmPlayerPluginSingleton.activityState.value;
+                Log.d("bccm", "FLAG_KEEP_SCREEN_ON cleared")
+                activity?.window?.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
             }
         }
 
@@ -60,10 +63,6 @@ class ExoPlayerController(private val context: Context) : PlayerController(), Pl
         };*/
 
         player = BccmForwardingPlayer(this)
-        try {
-            castContext = CastContext.getSharedInstance(context);
-        } catch (e: Exception) {
-        }
 
         val youboraOptions = Options()
         setBasicYouboraOptions(youboraOptions, BccmPlayerPluginSingleton.npawConfigState.value)
@@ -92,11 +91,6 @@ class ExoPlayerController(private val context: Context) : PlayerController(), Pl
         }
         mainScope.launch {
             BccmPlayerPluginSingleton.appConfigState.collectLatest { handleUpdatedAppConfig(it) }
-        }
-        mainScope.launch {
-            BccmPlayerPluginSingleton.eventBus.filter { event -> event is AttachedToActivityEvent}.collect {
-                event -> BccmPlayerPluginSingleton.activityState.update { (event as AttachedToActivityEvent).activity }
-            }
         }
     }
 
@@ -145,51 +139,21 @@ class ExoPlayerController(private val context: Context) : PlayerController(), Pl
         Log.d("bccm", if (isDisabled) "Disabled video" else "Enabled video")
     }
 
-    fun takeOwnership(playerView: PlayerView) {
+    fun takeOwnership(playerView: PlayerView, viewController: BccmPlayerViewController) {
         if (currentPlayerView != null) {
             PlayerView.switchTargetView(player, currentPlayerView, playerView)
         } else {
             playerView.player = player
         }
         currentPlayerView = playerView;
-        //setRendererDisabled(false)
-    }
-
-    fun takeOwnership(pvWrapper: BccmPlayerViewWrapper) {
-        val previousPvWrapper = currentPlayerViewWrapper;
-        currentPlayerViewWrapper = pvWrapper;
-        val playerView = pvWrapper.getPlayerView()
-                ?: throw Error("pvWrapper.getPlayerView() was null");
-        val currentPlayerView = previousPvWrapper?.getPlayerView();
-        //setRendererDisabled(false)
-
-
-        playerView.player = player
-
-        //playerManager?.setPlayerView(playerView);
-        /*if (currentPlayerView != null) {
-            PlayerView.switchTargetView(getPlayer(), currentPlayerView, playerView)
-        } else {
-            playerView.player = getPlayer()
-        }
-
-        pvWrapper.onDispose = {
-            if (pvWrapper.isFullscreenPlayer()) {
-                previousPvWrapper?.run {
-                    //takeOwnership(previousPvWrapper)
-                    this.setup()
-                };
-            } else {
-                currentPlayerViewWrapper = null
-            }
-        }*/
-
+        currentPlayerViewController = viewController;
     }
 
     fun releasePlayerView(playerView: PlayerView) {
         if (currentPlayerView == playerView) {
             //setRendererDisabled(true)
             currentPlayerView = null;
+            currentPlayerViewController = null;
         }
     }
 
@@ -210,27 +174,6 @@ class ExoPlayerController(private val context: Context) : PlayerController(), Pl
         youboraPlugin.options.contentTvShow = extras?.get("npaw.content.tvShow")
         youboraPlugin.options.contentSeason = extras?.get("npaw.content.season");
         youboraPlugin.options.contentEpisodeTitle = extras?.get("npaw.content.episodeTitle")
-    }
-
-    override fun onQueuePositionChanged(previousIndex: Int, newIndex: Int) {
-        if (previousIndex != C.INDEX_UNSET) {
-
-        }
-        if (newIndex != C.INDEX_UNSET) {
-
-        }
-    }
-
-    override fun onPlaybackStateChanged(playbackState: Int) {
-        super.onPlaybackStateChanged(playbackState)
-    }
-
-    override fun onUnsupportedTrack(trackType: Int) {
-        if (trackType == C.TRACK_TYPE_AUDIO) {
-
-        } else if (trackType == C.TRACK_TYPE_VIDEO) {
-
-        }
     }
 
     val emitter = object : Emitter {

@@ -14,6 +14,7 @@ import media.bcc.player.PlaybackPlatformApi
 abstract class PlayerController() : Player.Listener {
     abstract val id: String;
     abstract val player: Player;
+    abstract var currentPlayerViewController: BccmPlayerViewController?;
     var isLive: Boolean = false
 
     abstract fun release();

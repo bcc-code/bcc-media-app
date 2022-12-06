@@ -6,6 +6,7 @@ import android.content.Context
 import android.content.Intent
 import android.content.ServiceConnection
 import android.content.res.Configuration
+import android.os.Build
 import android.os.IBinder
 import android.util.Log
 import androidx.annotation.NonNull
@@ -63,7 +64,7 @@ object BccmPlayerPluginSingleton {
 }
 
 /** BccmPlayerPlugin */
-class BccmPlayerPlugin : FlutterPlugin, ActivityAware, PluginRegistry.ActivityResultListener, PluginRegistry.UserLeaveHintListener {
+class BccmPlayerPlugin : FlutterPlugin, ActivityAware, PluginRegistry.UserLeaveHintListener {
     /// The MethodChannel that will the communication between Flutter and native Android
     ///
     /// This local reference serves to register the plugin with the Flutter Engine and unregister it
@@ -145,7 +146,6 @@ class BccmPlayerPlugin : FlutterPlugin, ActivityAware, PluginRegistry.ActivityRe
     override fun onAttachedToActivity(binding: ActivityPluginBinding) {
         activity = binding.activity
         activityBinding = binding
-        activityBinding?.addActivityResultListener(this)
         activityBinding?.addOnUserLeaveHintListener(this)
 
         PlaybackPlatformPigeon.setup(pluginBinding!!.binaryMessenger, PlaybackApiImpl(this))
@@ -197,7 +197,6 @@ class BccmPlayerPlugin : FlutterPlugin, ActivityAware, PluginRegistry.ActivityRe
     }
 
     override fun onDetachedFromActivity() {
-        activityBinding?.removeActivityResultListener(this);
         activityBinding?.removeOnUserLeaveHintListener(this)
         mainScope.launch {
             Log.d("bccm","OnDetachedFromActivity")
@@ -211,29 +210,10 @@ class BccmPlayerPlugin : FlutterPlugin, ActivityAware, PluginRegistry.ActivityRe
         return playbackService;
     }
 
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?): Boolean {
-        // TODO: broadcast event, and listen from any playerview with same ID??? something like that
-        // nahhh it only needs to be that calling one that needs to listen, i think
-        // requestCode: 1, resultCode : 0, data : null
-
-
-        val options = data?.extras?.getParcelable<FullscreenPlayerActivity.Options>("options")
-
-        if (options?.playerId != null) {
-           /*mainScope.launch {
-                BccmPlayerPluginSingleton.eventBus.emit(FullscreenPlayerResult(options.playerId))
-            }*/
-            return true;
-        }
-
-
-
-        return false;
-    }
-
     override fun onUserLeaveHint() {
-        mainScope.launch {
-            BccmPlayerPluginSingleton.eventBus.emit(UserLeaveHintEvent())
+        val currentPlayerViewController = playbackService?.getPrimaryController()?.currentPlayerViewController;
+        if (currentPlayerViewController?.shouldPipAutomatically() == true && Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            currentPlayerViewController.enterPictureInPicture()
         }
     }
 }

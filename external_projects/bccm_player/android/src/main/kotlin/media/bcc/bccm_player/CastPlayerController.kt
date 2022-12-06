@@ -34,6 +34,7 @@ class CastPlayerController(
         private val plugin: BccmPlayerPlugin)
     : PlayerController(), SessionManagerListener<Session>, SessionAvailabilityListener {
     override val player = CastPlayer(castContext, CastMediaItemConverter())
+    override var currentPlayerViewController: BccmPlayerViewController? = null;
     private val mainScope = CoroutineScope(Dispatchers.Main + SupervisorJob())
 
     override fun release() {

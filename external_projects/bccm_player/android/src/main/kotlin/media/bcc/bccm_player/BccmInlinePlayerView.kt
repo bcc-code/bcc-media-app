@@ -1,12 +1,11 @@
 package media.bcc.bccm_player
 
 import android.content.Context
-import android.content.Intent
-import android.graphics.Color
+import android.os.Build
 import android.util.Log
 import android.view.LayoutInflater
-import android.view.SurfaceView
 import android.view.View
+import android.view.WindowManager
 import android.widget.*
 import androidx.annotation.NonNull
 import androidx.annotation.Nullable
@@ -18,8 +17,6 @@ import io.flutter.plugin.platform.PlatformView
 import io.flutter.plugin.platform.PlatformViewFactory
 import io.flutter.util.ViewUtils.getActivity
 import kotlinx.coroutines.*
-import kotlinx.coroutines.flow.filter
-import kotlinx.coroutines.flow.filterIsInstance
 
 
 class PlayerPlatformViewFactory(private val playbackService: PlaybackService?) : PlatformViewFactory(StandardMessageCodec.INSTANCE) {
@@ -30,15 +27,15 @@ class PlayerPlatformViewFactory(private val playbackService: PlaybackService?) :
         }
 
         val creationParams = args as Map<String?, Any?>?
-        return BccmPlayerViewWrapper(playbackService, context!!, creationParams?.get("player_id") as String, id)
+        return BccmInlinePlayerView(playbackService, context!!, creationParams?.get("player_id") as String, id)
     }
 }
 
-class BccmPlayerViewWrapper(
+class BccmInlinePlayerView(
         private val playbackService: PlaybackService,
         private val context: Context,
         private var playerId: String,
-        private val flutterViewId: Int) : PlatformView {
+        private val flutterViewId: Int) : PlatformView, BccmPlayerViewController {
     private var playerController: ExoPlayerController? = null
     private val _v: LinearLayout = LinearLayout(context)
     private var _playerView: PlayerView? = null
@@ -93,10 +90,6 @@ class BccmPlayerViewWrapper(
                 this.player = player
             }
 
-            override fun onIsPlayingChanged(isPlaying: Boolean) {
-                playerView?.keepScreenOn = isPlaying
-            }
-
             override fun onPlaybackStateChanged(playbackState: Int) {
                 setLiveUIEnabled(playerController?.isLive == true)
                 playerView.setShowNextButton(false)
@@ -116,7 +109,7 @@ class BccmPlayerViewWrapper(
             debugTextView.visibility = View.VISIBLE
         }
 
-        playerController!!.takeOwnership(playerView)
+        playerController!!.takeOwnership(playerView, this)
         setLiveUIEnabled(playerController?.isLive == true)
         setupDone = true;
     }
@@ -140,50 +133,23 @@ class BccmPlayerViewWrapper(
         }
     }
 
-    private fun goFullscreenUsingActivity(startInPictureInPicture: Boolean) {
-        val activity = getActivity(context) ?: return
-        val newIntent = Intent(activity, FullscreenPlayerActivity::class.java)
-        newIntent.putExtra("options", FullscreenPlayerActivity.Options(playerId, startInPictureInPicture))
-        activity.startActivity(newIntent)
-        activity.overridePendingTransition(R.anim.dev2, R.anim.dev2)
-        addFullscreenListener()
-        resetPlayerView();
-    }
-
-    private fun goFullscreen() {
+    private fun goFullscreen(startInPip: Boolean = false) {
         val activity = getActivity(context) ?: return
         val rootLayout: FrameLayout = activity.window.decorView.findViewById<View>(android.R.id.content) as FrameLayout
-        //activity.requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE
+
         playerController?.let { playerController ->
-            val fullScreenPlayer = FullscreenPlayerView(activity, playerController)
+            val fullScreenPlayer = FullscreenPlayerView(activity, playerController, !startInPip)
             rootLayout.addView(fullScreenPlayer)
-            fullScreenPlayer.setFullscreenButtonClickListener {
+            fullScreenPlayer.onExitListener = {
                 setup()
-                fullScreenPlayer.release();
                 rootLayout.removeView(fullScreenPlayer)
             }
-        }
 
-        addFullscreenListener()
-        resetPlayerView();
-    }
-
-    private fun addFullscreenListener() {
-        if (fullscreenListener != null) {
-            return;
-        }
-        val activity = getActivity(context) ?: return
-        fullscreenListener = ioScope.launch {
-            BccmPlayerPluginSingleton.eventBus.filter { event -> event is FullscreenPlayerResult && event.playerId == playerId}.collect {
-                event ->
-                Log.d("bccm", "FullscreenPlayerResult");
-                activity.runOnUiThread {
-                    // Stuff that updates the UI
-                    Log.d("bccm", "FullscreenPlayerResult ui thread");
-                    setup()
-                }
+            if (startInPip && Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                fullScreenPlayer.enterPictureInPicture()
             }
         }
+        resetPlayerView();
     }
 
 
@@ -192,5 +158,13 @@ class BccmPlayerViewWrapper(
         playerController = null
         _v.removeAllViews()
         setupDone = false
+    }
+
+    override fun shouldPipAutomatically(): Boolean {
+        return playerController?.player?.isPlaying ?: false;
+    }
+
+    override fun enterPictureInPicture() {
+        goFullscreen(true)
     }
 }

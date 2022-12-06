@@ -33,8 +33,8 @@ class MainActivity: FlutterFragmentActivity() {
         }
     }
 
-    override fun onPictureInPictureModeChanged(isInPictureInPictureMode: Boolean) {
-        super.onPictureInPictureModeChanged(isInPictureInPictureMode)
+    override fun onPictureInPictureModeChanged(isInPictureInPictureMode: Boolean, newConfig: Configuration) {
+        super.onPictureInPictureModeChanged(isInPictureInPictureMode, newConfig)
         val bccmPlayerPlugin = flutterEngine?.plugins?.get(BccmPlayerPlugin::class.javaObjectType)
         (bccmPlayerPlugin as? BccmPlayerPlugin)?.onPictureInPictureModeChanged(isInPictureInPictureMode, null);
     }
