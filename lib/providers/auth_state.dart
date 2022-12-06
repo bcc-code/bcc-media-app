@@ -35,7 +35,7 @@ class AuthStateNotifier extends StateNotifier<AuthState> {
     final expiresAt = state.expiresAt;
     if (expiresAt == null) {
       FirebaseCrashlytics.instance.recordError('AuthState.scheduleRefresh: expiresAt is null. Logging user out.', null);
-      logout();
+      logout(federated: false);
       return;
     }
     refreshTimer?.cancel();
@@ -57,16 +57,18 @@ class AuthStateNotifier extends StateNotifier<AuthState> {
       if (cause == 'RENEW_FAILED') {
         rethrow;
       } else {
-        logout();
+        logout(federated: false);
       }
       return false;
     }
   }
 
-  Future logout() async {
+  Future logout({bool federated = true}) async {
     RudderController.instance.reset();
     final PackageInfo info = await PackageInfo.fromPlatform();
-    await _auth0.webAuthentication(scheme: info.packageName).logout();
+    if (federated) {
+      await _auth0.webAuthentication(scheme: info.packageName).logout();
+    }
     await _auth0.credentialsManager.clearCredentials();
     state = const AuthState();
     FirebaseMessaging.instance.deleteToken();
@@ -90,7 +92,7 @@ class AuthStateNotifier extends StateNotifier<AuthState> {
       }
       return true;
     } catch (e) {
-      logout();
+      logout(federated: false);
       return false;
     }
   }
