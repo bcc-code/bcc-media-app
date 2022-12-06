@@ -8,7 +8,7 @@
         <item name="android:buttonBarStyle">?android:attr/buttonBarStyle</item>
     </style>
 
-    <style name="TransparentActivity" parent="@android:style/Theme.Light.NoTitleBar">
+    <style name="TransparentActivity" parent="@style/Theme.AppCompat.NoActionBar">
         <item name="android:windowIsTranslucent">true</item>
         <item name="android:windowBackground">@android:color/transparent</item>
         <item name="android:windowContentOverlay">@null</item>
