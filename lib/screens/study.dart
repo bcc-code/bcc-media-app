@@ -94,40 +94,49 @@ class StudyScreenState extends ConsumerState<StudyScreen> {
       showDialog(
         barrierDismissible: false,
         context: context,
-        builder: (context) => Dialog(
-          insetPadding: const EdgeInsets.all(16),
-          child: Container(
-            padding: const EdgeInsets.only(left: 32, right: 32, top: 40, bottom: 32),
-            width: double.infinity,
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                const Text('Well done!', style: BtvTextStyles.headline1),
-                Text('Great job on completing the video.', style: BtvTextStyles.caption1.copyWith(color: BtvColors.label3)),
-                Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 24),
-                  child: SvgPicture.string(SvgIcons.tasksCompleted),
-                ),
-                Text(
-                  'Watch the episode again and explore other available resources to deepen your understanding.',
-                  textAlign: TextAlign.center,
-                  style: BtvTextStyles.caption1.copyWith(color: BtvColors.label3),
-                ),
-                Container(
-                  padding: const EdgeInsets.only(top: 24),
-                  width: double.infinity,
-                  child: BtvButton.large(
-                    onPressed: () {
-                      Navigator.pop(context);
-                    },
-                    labelText: 'Ok',
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ),
+        builder: (context) => const _WellDoneDialog(),
       );
     }
+  }
+}
+
+class _WellDoneDialog extends StatelessWidget {
+  const _WellDoneDialog();
+
+  @override
+  Widget build(BuildContext context) {
+    return Dialog(
+      insetPadding: const EdgeInsets.all(16),
+      child: Container(
+        padding: const EdgeInsets.only(left: 32, right: 32, top: 40, bottom: 32),
+        width: double.infinity,
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            const Text('Well done!', style: BtvTextStyles.headline1),
+            Text('Great job on completing the video.', style: BtvTextStyles.caption1.copyWith(color: BtvColors.label3)),
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical: 24),
+              child: SvgPicture.string(SvgIcons.tasksCompleted),
+            ),
+            Text(
+              'Watch the episode again and explore other available resources to deepen your understanding.',
+              textAlign: TextAlign.center,
+              style: BtvTextStyles.caption1.copyWith(color: BtvColors.label3),
+            ),
+            Container(
+              padding: const EdgeInsets.only(top: 24),
+              width: double.infinity,
+              child: BtvButton.large(
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+                labelText: 'Ok',
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
   }
 }
