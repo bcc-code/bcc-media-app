@@ -129,9 +129,7 @@ void $main({required FirebaseOptions? firebaseOptions}) async {
   appLinks.uriLinkStream.listen((uri) {
     print('deep link opened: ${uri.toString()}');
 
-    appRouter.root
-      ..popUntilRoot()
-      ..pushNamed(uriStringWithoutHost(uri), includePrefixMatches: true);
+    appRouter.pushNamed(uriStringWithoutHost(uri), includePrefixMatches: true);
   });
 
   String? deepLink = deepLinkUri != null ? uriStringWithoutHost(deepLinkUri) : null;
