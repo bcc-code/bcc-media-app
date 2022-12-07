@@ -70,7 +70,7 @@ const _specialRoutes = AutoRoute(
 
 @MaterialAutoRouter(
   routes: [
-    MaterialRoute<void>(page: LoginScreen, path: '/login', meta: {RouteMetaConstants.analyticsName: 'login'}),
+    MaterialRoute<void>(page: LoginScreen, path: 'login', meta: {RouteMetaConstants.analyticsName: 'login'}),
     CustomRoute<void>(
         opaque: false,
         durationInMilliseconds: 400,
@@ -139,7 +139,7 @@ const _specialRoutes = AutoRoute(
       durationInMilliseconds: 500,
       reverseDurationInMilliseconds: 500,
     ),
-    CustomRoute(page: AutoLoginScreeen, initial: true, path: 'auto-login'),
+    CustomRoute(page: AutoLoginScreeen, path: 'auto-login'),
     CustomRoute<void>(
         page: StudyScreen,
         path: 'study',
@@ -170,6 +170,7 @@ const _specialRoutes = AutoRoute(
             page: HomeScreen,
             path: '',
             name: 'home',
+            initial: true,
             maintainState: true,
             meta: {RouteMetaConstants.analyticsName: 'home'},
           ),

@@ -263,12 +263,11 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen> with AutoRouteAwa
     final casting = ref.watch(isCasting);
     var playerProvider = casting ? castPlayerProvider : primaryPlayerProvider;
     var player = ref.watch(playerProvider);
-    final primaryPlayerId = player!.playerId;
 
     return FutureBuilder<Query$FetchEpisode$episode?>(
         future: episodeFuture,
         builder: (context, snapshot) {
-          var displayPlayer = animationStatus == AnimationStatus.completed && snapshot.hasData;
+          var displayPlayer = animationStatus != AnimationStatus.forward && snapshot.hasData;
 
           return Scaffold(
               appBar: AppBar(
@@ -284,13 +283,17 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen> with AutoRouteAwa
               ),
               body: Builder(
                 builder: (context) {
-                  if (animationStatus != AnimationStatus.completed || snapshot.data == null && snapshot.connectionState != ConnectionState.done) {
+                  if (snapshot.hasError && snapshot.connectionState == ConnectionState.done) {
+                    return ErrorGeneric(onRetry: () => loadEpisode());
+                  }
+                  if (player == null ||
+                      animationStatus == AnimationStatus.forward ||
+                      snapshot.data == null && snapshot.connectionState != ConnectionState.done) {
                     return _loading();
                   }
-                  if (snapshot.hasError || snapshot.data == null) return ErrorGeneric(onRetry: () => loadEpisode());
 
                   return _episode(
-                      player, displayPlayer, casting, primaryPlayerId, snapshot.data!, snapshot.connectionState != ConnectionState.done, context);
+                      player, displayPlayer, casting, player.playerId, snapshot.data!, snapshot.connectionState != ConnectionState.done, context);
                 },
               ));
         });
@@ -368,7 +371,7 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen> with AutoRouteAwa
                                     ]),
                                     const SizedBox(height: 14.5),
                                     Text(episode.description, style: BtvTextStyles.body2.copyWith(color: BtvColors.label3)),
-                                    if (false)
+                                    if (true)
                                       Padding(
                                         padding: const EdgeInsets.only(top: 16),
                                         child: GestureDetector(
