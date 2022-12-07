@@ -371,7 +371,7 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen> with AutoRouteAwa
                                     ]),
                                     const SizedBox(height: 14.5),
                                     Text(episode.description, style: BtvTextStyles.body2.copyWith(color: BtvColors.label3)),
-                                    if (true)
+                                    if (false)
                                       Padding(
                                         padding: const EdgeInsets.only(top: 16),
                                         child: GestureDetector(
