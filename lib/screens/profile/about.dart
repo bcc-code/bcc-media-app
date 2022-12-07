@@ -81,7 +81,7 @@ class _AboutScreenState extends State<AboutScreen> {
                 future: appVersion,
                 builder: (context, snapshot) {
                   return snapshot.hasData
-                      ? Text(
+                      ? SelectableText(
                           '${S.of(context).version}: ${snapshot.data!}',
                           style: BtvTextStyles.caption1,
                           textAlign: TextAlign.center,

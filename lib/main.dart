@@ -7,6 +7,7 @@ import 'package:bccm_player/playback_service_interface.dart';
 import 'package:brunstadtv_app/helpers/btv_colors.dart';
 import 'package:brunstadtv_app/helpers/btv_typography.dart';
 import 'package:brunstadtv_app/helpers/constants.dart';
+import 'package:brunstadtv_app/helpers/navigation_utils.dart';
 import 'package:brunstadtv_app/providers/app_config.dart';
 import 'package:brunstadtv_app/providers/analytics.dart';
 import 'package:brunstadtv_app/providers/settings.dart';
@@ -128,8 +129,7 @@ void $main({required FirebaseOptions? firebaseOptions}) async {
   final deepLinkUri = await appLinks.getInitialAppLink();
   appLinks.uriLinkStream.listen((uri) {
     print('deep link opened: ${uri.toString()}');
-
-    appRouter.pushNamed(uriStringWithoutHost(uri), includePrefixMatches: true);
+    appRouter.navigateNamedFromRoot(uriStringWithoutHost(uri));
   });
 
   String? deepLink = deepLinkUri != null ? uriStringWithoutHost(deepLinkUri) : null;
