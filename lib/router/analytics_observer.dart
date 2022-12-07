@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../helpers/constants.dart';
+import '../models/analytics/deep_link_opened.dart';
 
 class AnalyticsNavigatorObserver extends NavigatorObserver {
   bool _routeFilter(Route<dynamic> route) {
@@ -38,11 +39,28 @@ class AnalyticsNavigatorObserver extends NavigatorObserver {
     }
   }
 
+  void _sendDeepLinkOpened(Route<dynamic> route) {
+    final context = navigator?.context;
+    if (context == null) {
+      return;
+    }
+    final ref = ProviderScope.containerOf(context);
+    final routeData = route.settings.asOrNull<AutoRoutePage>()?.routeData;
+    if (routeData == null || routeData.queryParams.isEmpty) return;
+    final cid = routeData.queryParams.optString('cid');
+    final cs = routeData.queryParams.optString('cs');
+    if (cid == null && cs == null) {
+      return;
+    }
+    ref.read(analyticsProvider).deepLinkOpened(DeepLinkOpenedEvent(url: routeData.path, source: cs ?? '', campaignId: cid ?? ''));
+  }
+
   @override
   void didPush(Route<dynamic> route, Route<dynamic>? previousRoute) {
     super.didPush(route, previousRoute);
     if (_routeFilter(route)) {
       _sendScreenView(route);
+      _sendDeepLinkOpened(route);
     }
   }
 

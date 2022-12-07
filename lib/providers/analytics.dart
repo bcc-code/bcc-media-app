@@ -10,6 +10,7 @@ import 'package:package_info_plus/package_info_plus.dart';
 import 'package:rudder_sdk_flutter/RudderController.dart';
 import 'package:rudder_sdk_flutter_platform_interface/platform.dart';
 
+import '../models/analytics/deep_link_opened.dart';
 import '../models/analytics/language_changed.dart';
 import '../models/analytics/sections.dart';
 import '../models/analytics/content_shared.dart';
@@ -88,6 +89,10 @@ class Analytics {
       elementId: sectionItemAnalytics.id,
     );
     RudderController.instance.track('section_clicked', properties: getCommonData().putValue(map: event.toJson()));
+  }
+
+  void deepLinkOpened(DeepLinkOpenedEvent event) {
+    RudderController.instance.track('deep_link_opened', properties: getCommonData().putValue(map: event.toJson()));
   }
 
   void languageChanged(LanguageChangedEvent event) {
