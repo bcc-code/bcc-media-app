@@ -330,7 +330,9 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen> with AutoRouteAwa
                   children: [
                     Column(
                       children: [
-                        if (playerSetupSnapshot.hasError && playerSetupSnapshot.connectionState != ConnectionState.waiting)
+                        if (!episodeIsCurrentItem(player.currentMediaItem) &&
+                            playerSetupSnapshot.hasError &&
+                            playerSetupSnapshot.connectionState != ConnectionState.waiting)
                           _playerError(episode, playerSetupSnapshot)
                         else
                           !episodeIsCurrentItem(player.currentMediaItem) ? _playPoster(episode) : _player(displayPlayer, casting, primaryPlayerId),
