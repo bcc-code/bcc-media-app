@@ -77,7 +77,7 @@ class _AppRootState extends ConsumerState<AppRoot> {
       //context.router.navigate();
       if (message.data.containsKey('deep_link') && message.data['deep_link'] is String) {
         String path = message.data['deep_link'];
-        navigatorContext?.router.navigateNamed(path);
+        navigatorContext?.router.navigateNamed(path, includePrefixMatches: true);
       }
     } else if (message.data['action'] == 'clear_cache') {
       // TODO: implement cache clearing

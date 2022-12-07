@@ -31,6 +31,8 @@ import 'package:intl/intl_standalone.dart';
 import 'package:on_screen_ruler/on_screen_ruler.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'dart:ui' as ui;
+import 'package:app_links/app_links.dart';
 
 import 'app_root.dart';
 import 'background_tasks.dart';
@@ -122,15 +124,33 @@ void $main({required FirebaseOptions? firebaseOptions}) async {
 
   Intl.defaultLocale = await getDefaultLocale();
 
-  PageRouteInfo initialRoute = const AutoLoginScreeenRoute();
-  if (authLoadingCompleter.isCompleted) {
-    final authenticated = await authLoadingCompleter.future;
-    if (authenticated) {
-      initialRoute = const TabsRootScreenRoute();
-    } else {
-      initialRoute = LoginScreenRoute();
+  final appLinks = AppLinks();
+  final deepLinkUri = await appLinks.getInitialAppLink();
+  appLinks.uriLinkStream.listen((uri) {
+    print('deep link opened: ${uri.toString()}');
+
+    appRouter.root
+      ..popUntilRoot()
+      ..pushNamed(uriStringWithoutHost(uri), includePrefixMatches: true);
+  });
+
+  String? deepLink = deepLinkUri != null ? uriStringWithoutHost(deepLinkUri) : null;
+  List<PageRouteInfo<dynamic>>? initialRoutes;
+  if (deepLink == null) {
+    if (!authLoadingCompleter.isCompleted) {
+      initialRoutes = [const AutoLoginScreeenRoute()];
+    } else if (deepLink == null) {
+      final authenticated = await authLoadingCompleter.future;
+      if (authenticated) {
+        initialRoutes = [const TabsRootScreenRoute()];
+      } else {
+        initialRoutes = [LoginScreenRoute()];
+      }
     }
   }
+
+  print('initialDeepLink: $deepLink');
+  print('initialRoute: $deepLink');
 
   final app = UncontrolledProviderScope(
     container: providerContainer,
@@ -146,8 +166,12 @@ void $main({required FirebaseOptions? firebaseOptions}) async {
             darkTheme: createTheme(),
             themeMode: ThemeMode.dark,
             title: 'BrunstadTV',
-            routerDelegate: appRouter.delegate(initialRoutes: [initialRoute], navigatorObservers: () => [AnalyticsNavigatorObserver()]),
-            routeInformationParser: appRouter.defaultRouteParser(),
+            routerDelegate: appRouter.delegate(
+              initialDeepLink: deepLink,
+              initialRoutes: initialRoutes,
+              navigatorObservers: () => [AnalyticsNavigatorObserver()],
+            ),
+            routeInformationParser: appRouter.defaultRouteParser(includePrefixMatches: true),
             builder: (BuildContext context, Widget? child) {
               return MediaQuery(
                 data: MediaQuery.of(context).copyWith(textScaleFactor: 1.0),

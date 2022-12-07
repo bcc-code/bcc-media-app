@@ -314,7 +314,7 @@ class AppRouter extends _i20.RootStackRouter {
   List<_i20.RouteConfig> get routes => [
         _i20.RouteConfig(
           LoginScreenRoute.name,
-          path: '/login',
+          path: 'login',
           meta: <String, dynamic>{'analytics_name': 'login'},
         ),
         _i20.RouteConfig(
@@ -475,7 +475,7 @@ class LoginScreenRoute extends _i20.PageRouteInfo<LoginScreenRouteArgs> {
     void Function(bool)? onResult,
   }) : super(
           LoginScreenRoute.name,
-          path: '/login',
+          path: 'login',
           args: LoginScreenRouteArgs(
             key: key,
             loginError: loginError,
