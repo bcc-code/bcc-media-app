@@ -5,7 +5,7 @@ query FetchEpisode($id: ID!) {
     number
     description
     extraDescription
-    imageUrl
+    image
     duration
     progress
     ageRating
@@ -45,7 +45,7 @@ query FetchEpisode($id: ID!) {
 
 fragment SeasonListEpisode on Episode {
   id
-  imageUrl
+  image
   number
   title
   publishDate

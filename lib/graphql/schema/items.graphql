@@ -16,7 +16,7 @@ type Show {
     title: String!
     description: String!
     image(style: ImageStyle): String @goField(forceResolver: true)
-    imageUrl: String
+    imageUrl: String @deprecated(reason: "Replaced by the image field")
     images: [Image!]!
     episodeCount: Int! @goField(forceResolver: true)
     seasonCount: Int! @goField(forceResolver: true)
@@ -35,7 +35,7 @@ type Season {
     title: String!
     description: String!
     image(style: ImageStyle): String @goField(forceResolver: true)
-    imageUrl: String
+    imageUrl: String @deprecated(reason: "Replaced by the image field")
     images: [Image!]!
     number: Int!
     show: Show! @goField(forceResolver: true)
@@ -66,6 +66,8 @@ type Episode {
     legacyID: ID
     legacyProgramID: ID
     publishDate: Date!
+    productionDate: Date!
+    productionDateInTitle: Boolean!
     availableFrom: Date! @goField(forceResolver: true)
     availableTo: Date!
     ageRating: String!
@@ -73,8 +75,7 @@ type Episode {
     description: String!
     extraDescription: String!
     image(style: ImageStyle): String @goField(forceResolver: true)
-    imageUrl: String
-    productionDate: String
+    imageUrl: String @deprecated(reason: "Replaced by the image field")
     streams: [Stream!]! @goField(forceResolver: true)
     files: [File!]! @goField(forceResolver: true)
     chapters: [Chapter!]!

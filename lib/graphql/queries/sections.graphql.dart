@@ -2136,7 +2136,7 @@ class Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item
     required this.duration,
     this.progress,
     required this.publishDate,
-    this.productionDate,
+    required this.productionDate,
     this.season,
   });
 
@@ -2155,7 +2155,7 @@ class Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item
       duration: (l$duration as int),
       progress: (l$progress as int?),
       publishDate: (l$publishDate as String),
-      productionDate: (l$productionDate as String?),
+      productionDate: (l$productionDate as String),
       season: l$season == null
           ? null
           : Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Episode$season
@@ -2173,7 +2173,7 @@ class Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item
 
   final String publishDate;
 
-  final String? productionDate;
+  final String productionDate;
 
   final Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Episode$season?
       season;
@@ -2347,9 +2347,9 @@ class _CopyWithImpl$Query$FetchMoreItemsForItemSection$section$$PosterSection$it
         publishDate: publishDate == _undefined || publishDate == null
             ? _instance.publishDate
             : (publishDate as String),
-        productionDate: productionDate == _undefined
+        productionDate: productionDate == _undefined || productionDate == null
             ? _instance.productionDate
-            : (productionDate as String?),
+            : (productionDate as String),
         season: season == _undefined
             ? _instance.season
             : (season
@@ -6373,7 +6373,7 @@ class Query$FetchMoreItemsForItemSection$section$$DefaultSection$items$items$ite
     required this.duration,
     this.progress,
     required this.publishDate,
-    this.productionDate,
+    required this.productionDate,
     this.season,
   });
 
@@ -6392,7 +6392,7 @@ class Query$FetchMoreItemsForItemSection$section$$DefaultSection$items$items$ite
       duration: (l$duration as int),
       progress: (l$progress as int?),
       publishDate: (l$publishDate as String),
-      productionDate: (l$productionDate as String?),
+      productionDate: (l$productionDate as String),
       season: l$season == null
           ? null
           : Query$FetchMoreItemsForItemSection$section$$DefaultSection$items$items$item$$Episode$season
@@ -6410,7 +6410,7 @@ class Query$FetchMoreItemsForItemSection$section$$DefaultSection$items$items$ite
 
   final String publishDate;
 
-  final String? productionDate;
+  final String productionDate;
 
   final Query$FetchMoreItemsForItemSection$section$$DefaultSection$items$items$item$$Episode$season?
       season;
@@ -6584,9 +6584,9 @@ class _CopyWithImpl$Query$FetchMoreItemsForItemSection$section$$DefaultSection$i
         publishDate: publishDate == _undefined || publishDate == null
             ? _instance.publishDate
             : (publishDate as String),
-        productionDate: productionDate == _undefined
+        productionDate: productionDate == _undefined || productionDate == null
             ? _instance.productionDate
-            : (productionDate as String?),
+            : (productionDate as String),
         season: season == _undefined
             ? _instance.season
             : (season

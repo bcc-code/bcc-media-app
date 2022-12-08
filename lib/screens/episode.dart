@@ -117,7 +117,7 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen> with AutoRouteAwa
                     duration: ep.duration,
                     publishDate: ep.publishDate,
                     title: ep.title,
-                    image: ep.imageUrl,
+                    image: ep.image,
                     seasonNumber: result.season!.number,
                     episodeNumber: ep.number);
               }).toList();
@@ -475,7 +475,7 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen> with AutoRouteAwa
                 publishDate: ep.publishDate,
                 duration: ep.duration,
                 title: ep.title,
-                image: ep.imageUrl,
+                image: ep.image,
                 seasonNumber: season.number,
                 episodeNumber: ep.number))
             .toList();
@@ -543,7 +543,7 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen> with AutoRouteAwa
               children: [
                 AspectRatio(
                     aspectRatio: 16 / 9,
-                    child: episode.imageUrl == null
+                    child: episode.image == null
                         ? null
                         : LayoutBuilder(builder: (context, constraints) {
                             return Opacity(
@@ -551,7 +551,7 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen> with AutoRouteAwa
                               child: FadeInImage.memoryNetwork(
                                   fit: BoxFit.cover,
                                   placeholder: kTransparentImage,
-                                  image: episode.imageUrl!,
+                                  image: episode.image!,
                                   fadeInDuration: const Duration(milliseconds: 150),
                                   imageCacheHeight: (constraints.maxHeight * MediaQuery.of(context).devicePixelRatio).round()),
                             );
@@ -574,7 +574,7 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen> with AutoRouteAwa
               children: [
                 AspectRatio(
                     aspectRatio: 16 / 9,
-                    child: episode.imageUrl == null
+                    child: episode.image == null
                         ? null
                         : LayoutBuilder(builder: (context, constraints) {
                             return Opacity(
@@ -582,7 +582,7 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen> with AutoRouteAwa
                               child: FadeInImage.memoryNetwork(
                                   fit: BoxFit.cover,
                                   placeholder: kTransparentImage,
-                                  image: episode.imageUrl!,
+                                  image: episode.image!,
                                   fadeInDuration: const Duration(milliseconds: 150),
                                   imageCacheHeight: (constraints.maxHeight * MediaQuery.of(context).devicePixelRatio).round()),
                             );

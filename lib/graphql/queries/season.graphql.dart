@@ -798,7 +798,7 @@ class Query$GetSeasonEpisodes$season$episodes$items
     implements Fragment$SeasonListEpisode {
   Query$GetSeasonEpisodes$season$episodes$items({
     required this.id,
-    this.imageUrl,
+    this.image,
     this.number,
     required this.title,
     required this.publishDate,
@@ -810,7 +810,7 @@ class Query$GetSeasonEpisodes$season$episodes$items
   factory Query$GetSeasonEpisodes$season$episodes$items.fromJson(
       Map<String, dynamic> json) {
     final l$id = json['id'];
-    final l$imageUrl = json['imageUrl'];
+    final l$image = json['image'];
     final l$number = json['number'];
     final l$title = json['title'];
     final l$publishDate = json['publishDate'];
@@ -819,7 +819,7 @@ class Query$GetSeasonEpisodes$season$episodes$items
     final l$$__typename = json['__typename'];
     return Query$GetSeasonEpisodes$season$episodes$items(
       id: (l$id as String),
-      imageUrl: (l$imageUrl as String?),
+      image: (l$image as String?),
       number: (l$number as int?),
       title: (l$title as String),
       publishDate: (l$publishDate as String),
@@ -831,7 +831,7 @@ class Query$GetSeasonEpisodes$season$episodes$items
 
   final String id;
 
-  final String? imageUrl;
+  final String? image;
 
   final int? number;
 
@@ -849,8 +849,8 @@ class Query$GetSeasonEpisodes$season$episodes$items
     final _resultData = <String, dynamic>{};
     final l$id = id;
     _resultData['id'] = l$id;
-    final l$imageUrl = imageUrl;
-    _resultData['imageUrl'] = l$imageUrl;
+    final l$image = image;
+    _resultData['image'] = l$image;
     final l$number = number;
     _resultData['number'] = l$number;
     final l$title = title;
@@ -869,7 +869,7 @@ class Query$GetSeasonEpisodes$season$episodes$items
   @override
   int get hashCode {
     final l$id = id;
-    final l$imageUrl = imageUrl;
+    final l$image = image;
     final l$number = number;
     final l$title = title;
     final l$publishDate = publishDate;
@@ -878,7 +878,7 @@ class Query$GetSeasonEpisodes$season$episodes$items
     final l$$__typename = $__typename;
     return Object.hashAll([
       l$id,
-      l$imageUrl,
+      l$image,
       l$number,
       l$title,
       l$publishDate,
@@ -902,9 +902,9 @@ class Query$GetSeasonEpisodes$season$episodes$items
     if (l$id != lOther$id) {
       return false;
     }
-    final l$imageUrl = imageUrl;
-    final lOther$imageUrl = other.imageUrl;
-    if (l$imageUrl != lOther$imageUrl) {
+    final l$image = image;
+    final lOther$image = other.image;
+    if (l$image != lOther$image) {
       return false;
     }
     final l$number = number;
@@ -963,7 +963,7 @@ abstract class CopyWith$Query$GetSeasonEpisodes$season$episodes$items<TRes> {
 
   TRes call({
     String? id,
-    String? imageUrl,
+    String? image,
     int? number,
     String? title,
     String? publishDate,
@@ -988,7 +988,7 @@ class _CopyWithImpl$Query$GetSeasonEpisodes$season$episodes$items<TRes>
 
   TRes call({
     Object? id = _undefined,
-    Object? imageUrl = _undefined,
+    Object? image = _undefined,
     Object? number = _undefined,
     Object? title = _undefined,
     Object? publishDate = _undefined,
@@ -998,8 +998,7 @@ class _CopyWithImpl$Query$GetSeasonEpisodes$season$episodes$items<TRes>
   }) =>
       _then(Query$GetSeasonEpisodes$season$episodes$items(
         id: id == _undefined || id == null ? _instance.id : (id as String),
-        imageUrl:
-            imageUrl == _undefined ? _instance.imageUrl : (imageUrl as String?),
+        image: image == _undefined ? _instance.image : (image as String?),
         number: number == _undefined ? _instance.number : (number as int?),
         title: title == _undefined || title == null
             ? _instance.title
@@ -1027,7 +1026,7 @@ class _CopyWithStubImpl$Query$GetSeasonEpisodes$season$episodes$items<TRes>
 
   call({
     String? id,
-    String? imageUrl,
+    String? image,
     int? number,
     String? title,
     String? publishDate,

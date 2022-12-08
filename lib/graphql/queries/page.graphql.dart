@@ -6121,7 +6121,7 @@ class Fragment$Section$$PosterSection$items$items$item$$Episode
     required this.duration,
     this.progress,
     required this.publishDate,
-    this.productionDate,
+    required this.productionDate,
     this.season,
   });
 
@@ -6140,7 +6140,7 @@ class Fragment$Section$$PosterSection$items$items$item$$Episode
       duration: (l$duration as int),
       progress: (l$progress as int?),
       publishDate: (l$publishDate as String),
-      productionDate: (l$productionDate as String?),
+      productionDate: (l$productionDate as String),
       season: l$season == null
           ? null
           : Fragment$Section$$PosterSection$items$items$item$$Episode$season
@@ -6158,7 +6158,7 @@ class Fragment$Section$$PosterSection$items$items$item$$Episode
 
   final String publishDate;
 
-  final String? productionDate;
+  final String productionDate;
 
   final Fragment$Section$$PosterSection$items$items$item$$Episode$season?
       season;
@@ -6325,9 +6325,9 @@ class _CopyWithImpl$Fragment$Section$$PosterSection$items$items$item$$Episode<
         publishDate: publishDate == _undefined || publishDate == null
             ? _instance.publishDate
             : (publishDate as String),
-        productionDate: productionDate == _undefined
+        productionDate: productionDate == _undefined || productionDate == null
             ? _instance.productionDate
-            : (productionDate as String?),
+            : (productionDate as String),
         season: season == _undefined
             ? _instance.season
             : (season
@@ -10045,7 +10045,7 @@ class Fragment$Section$$DefaultSection$items$items$item$$Episode
     required this.duration,
     this.progress,
     required this.publishDate,
-    this.productionDate,
+    required this.productionDate,
     this.season,
   });
 
@@ -10064,7 +10064,7 @@ class Fragment$Section$$DefaultSection$items$items$item$$Episode
       duration: (l$duration as int),
       progress: (l$progress as int?),
       publishDate: (l$publishDate as String),
-      productionDate: (l$productionDate as String?),
+      productionDate: (l$productionDate as String),
       season: l$season == null
           ? null
           : Fragment$Section$$DefaultSection$items$items$item$$Episode$season
@@ -10082,7 +10082,7 @@ class Fragment$Section$$DefaultSection$items$items$item$$Episode
 
   final String publishDate;
 
-  final String? productionDate;
+  final String productionDate;
 
   final Fragment$Section$$DefaultSection$items$items$item$$Episode$season?
       season;
@@ -10250,9 +10250,9 @@ class _CopyWithImpl$Fragment$Section$$DefaultSection$items$items$item$$Episode<
         publishDate: publishDate == _undefined || publishDate == null
             ? _instance.publishDate
             : (publishDate as String),
-        productionDate: productionDate == _undefined
+        productionDate: productionDate == _undefined || productionDate == null
             ? _instance.productionDate
-            : (productionDate as String?),
+            : (productionDate as String),
         season: season == _undefined
             ? _instance.season
             : (season

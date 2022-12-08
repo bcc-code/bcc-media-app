@@ -15,7 +15,7 @@ MediaItem _mapEpisode(Query$FetchEpisode$episode episode) {
   return MediaItem(
       url: episode.getBestStreamUrl(),
       mimeType: 'application/x-mpegURL',
-      metadata: MediaMetadata(title: episode.title, artist: episode.season?.$show.title, artworkUri: episode.imageUrl, extras: {
+      metadata: MediaMetadata(title: episode.title, artist: episode.season?.$show.title, artworkUri: episode.image, extras: {
         'id': episode.id.toString(),
         'npaw.content.id': episode.id,
         'npaw.content.tvShow': episode.season?.$show.title,

@@ -1,5 +1,4 @@
 import '../schema/items.graphql.dart';
-import '../schema/schema.graphql.dart';
 import 'package:flutter/widgets.dart' as widgets;
 import 'package:gql/ast.dart';
 import 'package:graphql/client.dart' as graphql;
@@ -9,7 +8,7 @@ import 'page.graphql.dart';
 class Fragment$SeasonListEpisode {
   Fragment$SeasonListEpisode({
     required this.id,
-    this.imageUrl,
+    this.image,
     this.number,
     required this.title,
     required this.publishDate,
@@ -20,7 +19,7 @@ class Fragment$SeasonListEpisode {
 
   factory Fragment$SeasonListEpisode.fromJson(Map<String, dynamic> json) {
     final l$id = json['id'];
-    final l$imageUrl = json['imageUrl'];
+    final l$image = json['image'];
     final l$number = json['number'];
     final l$title = json['title'];
     final l$publishDate = json['publishDate'];
@@ -29,7 +28,7 @@ class Fragment$SeasonListEpisode {
     final l$$__typename = json['__typename'];
     return Fragment$SeasonListEpisode(
       id: (l$id as String),
-      imageUrl: (l$imageUrl as String?),
+      image: (l$image as String?),
       number: (l$number as int?),
       title: (l$title as String),
       publishDate: (l$publishDate as String),
@@ -41,7 +40,7 @@ class Fragment$SeasonListEpisode {
 
   final String id;
 
-  final String? imageUrl;
+  final String? image;
 
   final int? number;
 
@@ -59,8 +58,8 @@ class Fragment$SeasonListEpisode {
     final _resultData = <String, dynamic>{};
     final l$id = id;
     _resultData['id'] = l$id;
-    final l$imageUrl = imageUrl;
-    _resultData['imageUrl'] = l$imageUrl;
+    final l$image = image;
+    _resultData['image'] = l$image;
     final l$number = number;
     _resultData['number'] = l$number;
     final l$title = title;
@@ -79,7 +78,7 @@ class Fragment$SeasonListEpisode {
   @override
   int get hashCode {
     final l$id = id;
-    final l$imageUrl = imageUrl;
+    final l$image = image;
     final l$number = number;
     final l$title = title;
     final l$publishDate = publishDate;
@@ -88,7 +87,7 @@ class Fragment$SeasonListEpisode {
     final l$$__typename = $__typename;
     return Object.hashAll([
       l$id,
-      l$imageUrl,
+      l$image,
       l$number,
       l$title,
       l$publishDate,
@@ -112,9 +111,9 @@ class Fragment$SeasonListEpisode {
     if (l$id != lOther$id) {
       return false;
     }
-    final l$imageUrl = imageUrl;
-    final lOther$imageUrl = other.imageUrl;
-    if (l$imageUrl != lOther$imageUrl) {
+    final l$image = image;
+    final lOther$image = other.image;
+    if (l$image != lOther$image) {
       return false;
     }
     final l$number = number;
@@ -171,7 +170,7 @@ abstract class CopyWith$Fragment$SeasonListEpisode<TRes> {
 
   TRes call({
     String? id,
-    String? imageUrl,
+    String? image,
     int? number,
     String? title,
     String? publishDate,
@@ -196,7 +195,7 @@ class _CopyWithImpl$Fragment$SeasonListEpisode<TRes>
 
   TRes call({
     Object? id = _undefined,
-    Object? imageUrl = _undefined,
+    Object? image = _undefined,
     Object? number = _undefined,
     Object? title = _undefined,
     Object? publishDate = _undefined,
@@ -206,8 +205,7 @@ class _CopyWithImpl$Fragment$SeasonListEpisode<TRes>
   }) =>
       _then(Fragment$SeasonListEpisode(
         id: id == _undefined || id == null ? _instance.id : (id as String),
-        imageUrl:
-            imageUrl == _undefined ? _instance.imageUrl : (imageUrl as String?),
+        image: image == _undefined ? _instance.image : (image as String?),
         number: number == _undefined ? _instance.number : (number as int?),
         title: title == _undefined || title == null
             ? _instance.title
@@ -235,7 +233,7 @@ class _CopyWithStubImpl$Fragment$SeasonListEpisode<TRes>
 
   call({
     String? id,
-    String? imageUrl,
+    String? image,
     int? number,
     String? title,
     String? publishDate,
@@ -263,7 +261,7 @@ const fragmentDefinitionSeasonListEpisode = FragmentDefinitionNode(
       selectionSet: null,
     ),
     FieldNode(
-      name: NameNode(value: 'imageUrl'),
+      name: NameNode(value: 'image'),
       alias: null,
       arguments: [],
       directives: [],
@@ -380,7 +378,7 @@ class Fragment$EpisodeDetails {
       availableTo: (l$availableTo as String),
       ageRating: (l$ageRating as String),
       audioLanguages: (l$audioLanguages as List<dynamic>)
-          .map((e) => fromJson$Enum$Language((e as String)))
+          .map((e) => (e as String))
           .toList(),
       season: l$season == null
           ? null
@@ -400,7 +398,7 @@ class Fragment$EpisodeDetails {
 
   final String ageRating;
 
-  final List<Enum$Language> audioLanguages;
+  final List<String> audioLanguages;
 
   final Fragment$EpisodeDetails$season? season;
 
@@ -419,8 +417,7 @@ class Fragment$EpisodeDetails {
     final l$ageRating = ageRating;
     _resultData['ageRating'] = l$ageRating;
     final l$audioLanguages = audioLanguages;
-    _resultData['audioLanguages'] =
-        l$audioLanguages.map((e) => toJson$Enum$Language(e)).toList();
+    _resultData['audioLanguages'] = l$audioLanguages.map((e) => e).toList();
     final l$season = season;
     _resultData['season'] = l$season?.toJson();
     final l$$__typename = $__typename;
@@ -533,7 +530,7 @@ abstract class CopyWith$Fragment$EpisodeDetails<TRes> {
     String? availableFrom,
     String? availableTo,
     String? ageRating,
-    List<Enum$Language>? audioLanguages,
+    List<String>? audioLanguages,
     Fragment$EpisodeDetails$season? season,
     String? $__typename,
   });
@@ -579,7 +576,7 @@ class _CopyWithImpl$Fragment$EpisodeDetails<TRes>
             : (ageRating as String),
         audioLanguages: audioLanguages == _undefined || audioLanguages == null
             ? _instance.audioLanguages
-            : (audioLanguages as List<Enum$Language>),
+            : (audioLanguages as List<String>),
         season: season == _undefined
             ? _instance.season
             : (season as Fragment$EpisodeDetails$season?),
@@ -608,7 +605,7 @@ class _CopyWithStubImpl$Fragment$EpisodeDetails<TRes>
     String? availableFrom,
     String? availableTo,
     String? ageRating,
-    List<Enum$Language>? audioLanguages,
+    List<String>? audioLanguages,
     Fragment$EpisodeDetails$season? season,
     String? $__typename,
   }) =>
@@ -1304,7 +1301,7 @@ const documentNodeQueryFetchEpisode = DocumentNode(definitions: [
             selectionSet: null,
           ),
           FieldNode(
-            name: NameNode(value: 'imageUrl'),
+            name: NameNode(value: 'image'),
             alias: null,
             arguments: [],
             directives: [],
@@ -1710,7 +1707,7 @@ class Query$FetchEpisode$episode {
     this.number,
     required this.description,
     required this.extraDescription,
-    this.imageUrl,
+    this.image,
     required this.duration,
     this.progress,
     required this.ageRating,
@@ -1726,7 +1723,7 @@ class Query$FetchEpisode$episode {
     final l$number = json['number'];
     final l$description = json['description'];
     final l$extraDescription = json['extraDescription'];
-    final l$imageUrl = json['imageUrl'];
+    final l$image = json['image'];
     final l$duration = json['duration'];
     final l$progress = json['progress'];
     final l$ageRating = json['ageRating'];
@@ -1740,7 +1737,7 @@ class Query$FetchEpisode$episode {
       number: (l$number as int?),
       description: (l$description as String),
       extraDescription: (l$extraDescription as String),
-      imageUrl: (l$imageUrl as String?),
+      image: (l$image as String?),
       duration: (l$duration as int),
       progress: (l$progress as int?),
       ageRating: (l$ageRating as String),
@@ -1770,7 +1767,7 @@ class Query$FetchEpisode$episode {
 
   final String extraDescription;
 
-  final String? imageUrl;
+  final String? image;
 
   final int duration;
 
@@ -1798,8 +1795,8 @@ class Query$FetchEpisode$episode {
     _resultData['description'] = l$description;
     final l$extraDescription = extraDescription;
     _resultData['extraDescription'] = l$extraDescription;
-    final l$imageUrl = imageUrl;
-    _resultData['imageUrl'] = l$imageUrl;
+    final l$image = image;
+    _resultData['image'] = l$image;
     final l$duration = duration;
     _resultData['duration'] = l$duration;
     final l$progress = progress;
@@ -1824,7 +1821,7 @@ class Query$FetchEpisode$episode {
     final l$number = number;
     final l$description = description;
     final l$extraDescription = extraDescription;
-    final l$imageUrl = imageUrl;
+    final l$image = image;
     final l$duration = duration;
     final l$progress = progress;
     final l$ageRating = ageRating;
@@ -1838,7 +1835,7 @@ class Query$FetchEpisode$episode {
       l$number,
       l$description,
       l$extraDescription,
-      l$imageUrl,
+      l$image,
       l$duration,
       l$progress,
       l$ageRating,
@@ -1883,9 +1880,9 @@ class Query$FetchEpisode$episode {
     if (l$extraDescription != lOther$extraDescription) {
       return false;
     }
-    final l$imageUrl = imageUrl;
-    final lOther$imageUrl = other.imageUrl;
-    if (l$imageUrl != lOther$imageUrl) {
+    final l$image = image;
+    final lOther$image = other.image;
+    if (l$image != lOther$image) {
       return false;
     }
     final l$duration = duration;
@@ -1958,7 +1955,7 @@ abstract class CopyWith$Query$FetchEpisode$episode<TRes> {
     int? number,
     String? description,
     String? extraDescription,
-    String? imageUrl,
+    String? image,
     int? duration,
     int? progress,
     String? ageRating,
@@ -1996,7 +1993,7 @@ class _CopyWithImpl$Query$FetchEpisode$episode<TRes>
     Object? number = _undefined,
     Object? description = _undefined,
     Object? extraDescription = _undefined,
-    Object? imageUrl = _undefined,
+    Object? image = _undefined,
     Object? duration = _undefined,
     Object? progress = _undefined,
     Object? ageRating = _undefined,
@@ -2018,8 +2015,7 @@ class _CopyWithImpl$Query$FetchEpisode$episode<TRes>
             extraDescription == _undefined || extraDescription == null
                 ? _instance.extraDescription
                 : (extraDescription as String),
-        imageUrl:
-            imageUrl == _undefined ? _instance.imageUrl : (imageUrl as String?),
+        image: image == _undefined ? _instance.image : (image as String?),
         duration: duration == _undefined || duration == null
             ? _instance.duration
             : (duration as int),
@@ -2083,7 +2079,7 @@ class _CopyWithStubImpl$Query$FetchEpisode$episode<TRes>
     int? number,
     String? description,
     String? extraDescription,
-    String? imageUrl,
+    String? image,
     int? duration,
     int? progress,
     String? ageRating,
@@ -2275,10 +2271,10 @@ class Query$FetchEpisode$episode$streams {
       type: fromJson$Enum$StreamType((l$type as String)),
       url: (l$url as String),
       audioLanguages: (l$audioLanguages as List<dynamic>)
-          .map((e) => fromJson$Enum$Language((e as String)))
+          .map((e) => (e as String))
           .toList(),
       subtitleLanguages: (l$subtitleLanguages as List<dynamic>)
-          .map((e) => fromJson$Enum$Language((e as String)))
+          .map((e) => (e as String))
           .toList(),
       $__typename: (l$$__typename as String),
     );
@@ -2288,9 +2284,9 @@ class Query$FetchEpisode$episode$streams {
 
   final String url;
 
-  final List<Enum$Language> audioLanguages;
+  final List<String> audioLanguages;
 
-  final List<Enum$Language> subtitleLanguages;
+  final List<String> subtitleLanguages;
 
   final String $__typename;
 
@@ -2301,11 +2297,10 @@ class Query$FetchEpisode$episode$streams {
     final l$url = url;
     _resultData['url'] = l$url;
     final l$audioLanguages = audioLanguages;
-    _resultData['audioLanguages'] =
-        l$audioLanguages.map((e) => toJson$Enum$Language(e)).toList();
+    _resultData['audioLanguages'] = l$audioLanguages.map((e) => e).toList();
     final l$subtitleLanguages = subtitleLanguages;
     _resultData['subtitleLanguages'] =
-        l$subtitleLanguages.map((e) => toJson$Enum$Language(e)).toList();
+        l$subtitleLanguages.map((e) => e).toList();
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -2401,8 +2396,8 @@ abstract class CopyWith$Query$FetchEpisode$episode$streams<TRes> {
   TRes call({
     Enum$StreamType? type,
     String? url,
-    List<Enum$Language>? audioLanguages,
-    List<Enum$Language>? subtitleLanguages,
+    List<String>? audioLanguages,
+    List<String>? subtitleLanguages,
     String? $__typename,
   });
 }
@@ -2434,11 +2429,11 @@ class _CopyWithImpl$Query$FetchEpisode$episode$streams<TRes>
         url: url == _undefined || url == null ? _instance.url : (url as String),
         audioLanguages: audioLanguages == _undefined || audioLanguages == null
             ? _instance.audioLanguages
-            : (audioLanguages as List<Enum$Language>),
+            : (audioLanguages as List<String>),
         subtitleLanguages:
             subtitleLanguages == _undefined || subtitleLanguages == null
                 ? _instance.subtitleLanguages
-                : (subtitleLanguages as List<Enum$Language>),
+                : (subtitleLanguages as List<String>),
         $__typename: $__typename == _undefined || $__typename == null
             ? _instance.$__typename
             : ($__typename as String),
@@ -2454,8 +2449,8 @@ class _CopyWithStubImpl$Query$FetchEpisode$episode$streams<TRes>
   call({
     Enum$StreamType? type,
     String? url,
-    List<Enum$Language>? audioLanguages,
-    List<Enum$Language>? subtitleLanguages,
+    List<String>? audioLanguages,
+    List<String>? subtitleLanguages,
     String? $__typename,
   }) =>
       _res;

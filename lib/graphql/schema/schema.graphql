@@ -12,12 +12,7 @@ interface Pagination {
   offset: Int!
 }
 
-
-enum Language{
-  en
-  no
-  de
-}
+scalar Language
 
 scalar Cursor
 scalar Date
@@ -107,6 +102,9 @@ type QueryRoot{
     minScore: Int
   ): SearchResult!
 
+  studyTopic(id: ID!): StudyTopic!
+  studyLesson(id: ID!): Lesson!
+
   calendar: Calendar
   event(id: ID!): Event
 
@@ -127,4 +125,9 @@ type MutationRoot {
   setEpisodeProgress(id: ID!, progress: Int, duration: Int, context: EpisodeContext): Episode!
 
   sendSupportEmail(title: String!, content: String!, html: String!): Boolean!
+
+  completeTask(id: ID!): Boolean!
+
+  sendTaskMessage(taskId: ID!, message: String): ID!
+  updateTaskMessage(id: ID!, message: String!): ID!
 }
