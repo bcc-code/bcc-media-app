@@ -110,6 +110,7 @@ void $main({required FirebaseOptions? firebaseOptions}) async {
     providerContainer.read(isCasting.notifier).state = value?.connectionState == CastConnectionState.connected;
     providerContainer.read(castPlayerProvider.notifier).setMediaItem(value?.mediaItem);
   });
+  providerContainer.read(analyticsProvider);
 
   if (Env.npawAccountCode != '') {
     PackageInfo.fromPlatform().then(
