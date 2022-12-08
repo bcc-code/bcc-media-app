@@ -11,6 +11,8 @@ import '../../components/result_programs_list.dart';
 import '../../helpers/btv_colors.dart';
 import '../../helpers/btv_typography.dart';
 import '../../l10n/app_localizations.dart';
+import '../../models/analytics/search_performed.dart';
+import '../../providers/analytics.dart';
 
 class SearchResultsPage extends ConsumerStatefulWidget {
   final String searchInput;
@@ -27,25 +29,38 @@ class _SearchResultsPageState extends ConsumerState<SearchResultsPage> {
 
   void setResultFuture() {
     final client = ref.read(gqlClientProvider);
+    final analytics = ref.read(analyticsProvider);
     if (widget.searchInput != '') {
       setState(() {
         _resultFuture = debouncer.run(
-          () => client
-              .query$Search(
-            Options$Query$Search(
-              variables: Variables$Query$Search(queryString: widget.searchInput),
-            ),
-          )
-              .onError((error, stackTrace) {
-            throw Error();
-          }).then(
-            (value) {
-              if (value.hasException) {
-                throw ErrorDescription(value.exception.toString());
-              }
-              return value.parsedData?.search;
-            },
-          ),
+          () {
+            final searchStopwatch = Stopwatch()..start();
+            return client
+                .query$Search(
+              Options$Query$Search(
+                variables: Variables$Query$Search(queryString: widget.searchInput),
+              ),
+            )
+                .onError((error, stackTrace) {
+              throw Error();
+            }).then(
+              (value) {
+                searchStopwatch.stop();
+                if (value.hasException) {
+                  throw ErrorDescription(value.exception.toString());
+                }
+                final searchResult = value.parsedData?.search;
+                if (searchResult != null) {
+                  analytics.searchPerformed(SearchPerformedEvent(
+                    searchText: widget.searchInput,
+                    searchLatency: searchStopwatch.elapsedMilliseconds,
+                    searchResultCount: searchResult.hits,
+                  ));
+                }
+                return searchResult;
+              },
+            );
+          },
         );
       });
     }
