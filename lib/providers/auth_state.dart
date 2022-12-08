@@ -31,16 +31,17 @@ class AuthStateNotifier extends StateNotifier<AuthState> {
     state = state.copyWith(auth0AccessToken: result.accessToken, idToken: result.idToken, user: result.user, expiresAt: result.expiresAt);
   }
 
-  void scheduleRefresh() {
-    final expiresAt = state.expiresAt;
-    if (expiresAt == null) {
-      FirebaseCrashlytics.instance.recordError('AuthState.scheduleRefresh: expiresAt is null. Logging user out.', null);
-      logout(federated: false);
-      return;
+  Future<AuthState?> getExistingAndEnsureNotExpired() async {
+    if (state.expiresAt == null || state.auth0AccessToken == null) {
+      return null;
     }
-    refreshTimer?.cancel();
-    final timeUntilExpiry = expiresAt.difference(DateTime.now());
-    refreshTimer = Timer(timeUntilExpiry - kMinimumCredentialsTTL, () => load());
+    if (state.expiresAt!.isBefore(DateTime.now())) {
+      await load();
+    }
+    if (state.expiresAt!.isBefore(DateTime.now())) {
+      throw Exception('Auth state is still expired after attempting to renew.');
+    }
+    return state;
   }
 
   Future<bool> load() async {
@@ -49,7 +50,6 @@ class AuthStateNotifier extends StateNotifier<AuthState> {
       final result = await _auth0.credentialsManager.credentials(minTtl: kMinimumCredentialsTTL.inSeconds);
       print('credentials() took ${stopwatch.elapsedMilliseconds}ms');
       setStateBasedOnCredentials(result);
-      scheduleRefresh();
       return true;
     } catch (e) {
       FirebaseCrashlytics.instance.recordError(e, StackTrace.current);
@@ -82,14 +82,6 @@ class AuthStateNotifier extends StateNotifier<AuthState> {
         scopes: {'openid', 'profile', 'offline_access', 'church', 'country'},
       );
       setStateBasedOnCredentials(result);
-      final durationUntilExpiry = result.expiresAt.difference(DateTime.now());
-      if (durationUntilExpiry > kMinimumCredentialsTTL) {
-        scheduleRefresh();
-      } else {
-        FirebaseCrashlytics.instance.recordError(
-            'Expiry time for fresh token is very short, it\'s only: ${durationUntilExpiry.inSeconds} seconds. Not scheduling refresh to prevent excessive load.',
-            StackTrace.current);
-      }
       return true;
     } catch (e) {
       logout(federated: false);
