@@ -37,35 +37,40 @@ packages:
     dependency: "direct main"
     description:
       name: app_links
-      url: "https://pub.dartlang.org"
+      sha256: d1b2cf9ad5568cc5b9036cb3f8c42705b4ada26c4ef57de75323186eafe36a0d
+      url: "https://pub.dev"
     source: hosted
     version: "3.3.0"
   app_links_macos:
     dependency: transitive
     description:
       name: app_links_macos
-      url: "https://pub.dartlang.org"
+      sha256: "4cba12f66b74e9cbbd9a8d01671eb64cc09ffef52feceb85e617c2c4ca2b8e67"
+      url: "https://pub.dev"
     source: hosted
     version: "1.0.0"
   app_links_platform_interface:
     dependency: transitive
     description:
       name: app_links_platform_interface
-      url: "https://pub.dartlang.org"
+      sha256: "8bfdad6007218e8087a6a494abb16807b813a631ee36a15f2a1868fd9d82e569"
+      url: "https://pub.dev"
     source: hosted
     version: "1.0.2"
   app_links_web:
     dependency: transitive
     description:
       name: app_links_web
-      url: "https://pub.dartlang.org"
+      sha256: "4871af0bfe3c67f592a8e8b3539bde24e5c2bb763152d2ea1d837f3bba7f364b"
+      url: "https://pub.dev"
     source: hosted
     version: "1.0.0"
   app_links_windows:
     dependency: transitive
     description:
       name: app_links_windows
-      url: "https://pub.dartlang.org"
+      sha256: fb4eabe73e0536c8264ac37515dc8c118b76273f206c171d0e563e261777c94e
+      url: "https://pub.dev"
     source: hosted
     version: "1.0.1"
   args:

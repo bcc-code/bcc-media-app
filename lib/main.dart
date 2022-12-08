@@ -39,6 +39,7 @@ import 'background_tasks.dart';
 import 'env/env.dart';
 import 'helpers/utils.dart';
 import 'l10n/app_localizations.dart';
+import 'models/analytics/deep_link_opened.dart';
 
 final Alice alice = Alice(showNotification: true);
 final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
@@ -108,7 +109,6 @@ void $main({required FirebaseOptions? firebaseOptions}) async {
     providerContainer.read(isCasting.notifier).state = value?.connectionState == CastConnectionState.connected;
     providerContainer.read(castPlayerProvider.notifier).setMediaItem(value?.mediaItem);
   });
-  providerContainer.read(analyticsProvider);
 
   if (Env.npawAccountCode != '') {
     PackageInfo.fromPlatform().then(
@@ -127,11 +127,16 @@ void $main({required FirebaseOptions? firebaseOptions}) async {
   final appLinks = AppLinks();
   final deepLinkUri = await appLinks.getInitialAppLink();
   appLinks.uriLinkStream.listen((uri) {
-    print('deep link opened: ${uri.toString()}');
-
     appRouter.root
       ..popUntilRoot()
       ..pushNamed(uriStringWithoutHost(uri), includePrefixMatches: true);
+    providerContainer.read(analyticsProvider).deepLinkOpened(
+          DeepLinkOpenedEvent(
+            url: uri.toString(),
+            source: uri.queryParameters['cs'] ?? '',
+            campaignId: uri.queryParameters['cid'] ?? '',
+          ),
+        );
   });
 
   String? deepLink = deepLinkUri != null ? uriStringWithoutHost(deepLinkUri) : null;
