@@ -136,14 +136,3 @@ class ConditionalParentWidget extends StatelessWidget {
     return condition ? conditionalBuilder(child) : child;
   }
 }
-
-String uriStringWithoutHost(Uri uri) {
-  var result = uri.path;
-  if (uri.query.isNotEmpty) {
-    result += '?${uri.query}';
-  }
-  if (uri.fragment.isNotEmpty) {
-    result += '#${uri.fragment}';
-  }
-  return result;
-}

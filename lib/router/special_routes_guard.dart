@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:brunstadtv_app/graphql/queries/episode.graphql.dart';
 import 'package:brunstadtv_app/graphql/queries/redirect.graphql.dart';
+import 'package:brunstadtv_app/helpers/navigation_utils.dart';
 import 'package:brunstadtv_app/router/router.gr.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -49,7 +50,7 @@ class SpecialRoutesGuard extends AutoRouteGuard {
         final newIdFuture = _getEpisodeId(ref, legacyEpisodeId: legacyEpisodeId);
         newIdFuture?.then((newId) {
           if (newId != null) {
-            router.root.navigate(EpisodeScreenRoute(episodeId: newId));
+            router.root.navigateNamedFromRoot('/episode/$newId${route.queryParams.toQueryStringWithQuestionMark()}');
           }
         });
       }
@@ -59,7 +60,7 @@ class SpecialRoutesGuard extends AutoRouteGuard {
         final newIdFuture = _getEpisodeId(ref, legacyProgramId: legacyProgramId);
         newIdFuture?.then((newId) {
           if (newId != null) {
-            router.root.navigate(EpisodeScreenRoute(episodeId: newId));
+            router.root.navigateNamedFromRoot('/episode/$newId${route.queryParams.toQueryStringWithQuestionMark()}');
           }
         });
       }
