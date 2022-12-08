@@ -40,6 +40,7 @@ import 'background_tasks.dart';
 import 'env/env.dart';
 import 'helpers/utils.dart';
 import 'l10n/app_localizations.dart';
+import 'models/analytics/deep_link_opened.dart';
 
 final Alice alice = Alice(showNotification: true);
 final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
@@ -128,8 +129,14 @@ void $main({required FirebaseOptions? firebaseOptions}) async {
   final appLinks = AppLinks();
   final deepLinkUri = await appLinks.getInitialAppLink();
   appLinks.uriLinkStream.listen((uri) {
-    print('deep link opened: ${uri.toString()}');
     appRouter.navigateNamedFromRoot(uriStringWithoutHost(uri));
+    providerContainer.read(analyticsProvider).deepLinkOpened(
+          DeepLinkOpenedEvent(
+            url: uri.toString(),
+            source: uri.queryParameters['cs'] ?? '',
+            campaignId: uri.queryParameters['cid'] ?? '',
+          ),
+        );
   });
 
   String? deepLink = deepLinkUri != null ? uriStringWithoutHost(deepLinkUri) : null;
