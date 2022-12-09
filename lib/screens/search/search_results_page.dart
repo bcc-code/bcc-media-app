@@ -36,8 +36,7 @@ class _SearchResultsPageState extends ConsumerState<SearchResultsPage> {
       setState(() {
         _resultFuture = debouncer.run(
           () {
-            final searchStopwatch = Stopwatch()..start();
-            return client
+            final searchResultFuture = client
                 .query$Search(
               Options$Query$Search(
                 variables: Variables$Query$Search(queryString: widget.searchInput),
@@ -47,25 +46,35 @@ class _SearchResultsPageState extends ConsumerState<SearchResultsPage> {
               throw Error();
             }).then(
               (value) {
-                searchStopwatch.stop();
                 if (value.hasException) {
                   throw ErrorDescription(value.exception.toString());
                 }
-                final searchResult = value.parsedData?.search;
-                if (searchResult != null) {
-                  ref.read(analyticsProvider).searchPerformed(SearchPerformedEvent(
-                        searchText: widget.searchInput,
-                        searchLatency: searchStopwatch.elapsedMilliseconds,
-                        searchResultCount: searchResult.hits,
-                      ));
-                }
-                return searchResult;
+                return value.parsedData?.search;
               },
             );
+
+            sendSearchPerformedAnalytics(searchResultFuture);
+
+            return searchResultFuture;
           },
         );
       });
     }
+  }
+
+  void sendSearchPerformedAnalytics(Future searchResultFuture) {
+    final searchStopwatch = Stopwatch()..start();
+    searchResultFuture.then((searchResult) {
+      if (searchResult == null) {
+        return;
+      }
+      searchStopwatch.stop();
+      ref.read(analyticsProvider).searchPerformed(SearchPerformedEvent(
+            searchText: widget.searchInput,
+            searchLatency: searchStopwatch.elapsedMilliseconds,
+            searchResultCount: searchResult.hits,
+          ));
+    });
   }
 
   @override
