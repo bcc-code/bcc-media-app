@@ -18,9 +18,12 @@ final gqlClientProvider = Provider<GraphQLClient>((ref) {
       },
       httpClient: RetryClient(Client(), retries: 1, when: (response) => response.statusCode == 500 || response.statusCode == 429));
 
-  final authLink = AuthLink(getToken: () {
-    final token = ref.read(authStateProvider).auth0AccessToken;
-    return token != null ? 'Bearer ${ref.read(authStateProvider).auth0AccessToken}' : null;
+  final authLink = AuthLink(getToken: () async {
+    final authState = await ref.read(authStateProvider.notifier).getExistingAndEnsureNotExpired();
+    if (authState == null) {
+      return null;
+    }
+    return 'Bearer ${authState.auth0AccessToken}';
   });
 
   debugPrint(httpLink.uri.toString());

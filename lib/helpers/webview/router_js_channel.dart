@@ -8,7 +8,7 @@ class RouterJsChannel {
 
   static void register(BuildContext context, InAppWebViewController controller) {
     controller.addJavaScriptHandler(
-      handlerName: 'flutter_router_channel',
+      handlerName: 'flutter_router',
       callback: RouterJsChannel._(context.router).handleMessage,
     );
   }

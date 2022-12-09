@@ -1,0 +1,28 @@
+fragment LessonProgressOverview on Lesson {
+  id
+  progress {
+    total
+    completed
+  }
+}
+
+fragment EpisodeLessonProgressOverview on Episode {
+  lessons {
+    items {
+      ...LessonProgressOverview
+    }
+  }
+}
+
+query GetEpisodeLessonProgress($id: ID!) {
+  episode(id: $id) {
+    ...EpisodeLessonProgressOverview
+    season {
+      episodes {
+        items {
+          ...EpisodeLessonProgressOverview
+        }
+      }
+    }
+  }
+}

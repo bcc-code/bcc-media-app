@@ -174,7 +174,6 @@ class SNl extends S {
 
   @override
   String queueLimitMessage(int elementCount) {
-
     return 'Het is niet mogelijk meer dan $elementCount elementen in de lijst te hebben.';
   }
 
@@ -264,7 +263,6 @@ class SNl extends S {
 
   @override
   String watchingWith(int numPeople) {
-
     return 'U kijkt met $numPeople anderen';
   }
 
@@ -279,7 +277,6 @@ class SNl extends S {
 
   @override
   String charactersLimit(int charsLeft, int charsTotal) {
-
     return '$charsLeft of $charsTotal tekens over';
   }
 
@@ -423,13 +420,11 @@ class SNl extends S {
 
   @override
   String newPostsMultiple(int postCount) {
-
     return '$postCount nieuwe berichten!';
   }
 
   @override
   String newPostsSingle(int postCount) {
-
     return '$postCount nieuw bericht!';
   }
 
@@ -438,7 +433,6 @@ class SNl extends S {
 
   @override
   String availableFrom(String date) {
-
     return 'Beschikbaar $date';
   }
 
@@ -453,7 +447,6 @@ class SNl extends S {
 
   @override
   String wellDoneDistance(int distanceInKM) {
-
     return 'Goed gedaan! Je hebt in totaal $distanceInKM km geregistreerd';
   }
 
@@ -462,13 +455,11 @@ class SNl extends S {
 
   @override
   String ranMore(int distanceInKM) {
-
     return 'Ik liep meer dan $distanceInKM km';
   }
 
   @override
   String moreThan(int distanceInKM) {
-
     return 'Meer dan $distanceInKM km';
   }
 
@@ -492,7 +483,6 @@ class SNl extends S {
 
   @override
   String timezoneInformation(String timeZone) {
-
     return 'De tijden in de TV gids worden weergegeven in de lokale tijd van de tijdszone waarin je op dit moment bent: $timeZone';
   }
 
@@ -555,7 +545,6 @@ class SNl extends S {
 
   @override
   String pollAnswer(String answer) {
-
     return 'Je hebt geantwoord $answer';
   }
 
@@ -588,7 +577,6 @@ class SNl extends S {
 
   @override
   String posts(int postsCount) {
-
     return '$postsCount Berichten';
   }
 
@@ -618,7 +606,6 @@ class SNl extends S {
 
   @override
   String shareTime(String time) {
-
     return 'Delen van punt $time';
   }
 

@@ -174,7 +174,6 @@ class SNb extends S {
 
   @override
   String queueLimitMessage(int elementCount) {
-
     return 'You cannot have more than $elementCount elements in queue.';
   }
 
@@ -264,7 +263,6 @@ class SNb extends S {
 
   @override
   String watchingWith(int numPeople) {
-
     return 'Du ser på sammen med $numPeople andre';
   }
 
@@ -279,7 +277,6 @@ class SNb extends S {
 
   @override
   String charactersLimit(int charsLeft, int charsTotal) {
-
     return '$charsLeft av $charsTotal tegn igjen';
   }
 
@@ -423,13 +420,11 @@ class SNb extends S {
 
   @override
   String newPostsMultiple(int postCount) {
-
     return '$postCount nye innlegg!';
   }
 
   @override
   String newPostsSingle(int postCount) {
-
     return '$postCount nytt innlegg!';
   }
 
@@ -438,7 +433,6 @@ class SNb extends S {
 
   @override
   String availableFrom(String date) {
-
     return 'Tilgjengelig $date';
   }
 
@@ -453,7 +447,6 @@ class SNb extends S {
 
   @override
   String wellDoneDistance(int distanceInKM) {
-
     return 'Bra jobbet! Du har registrert en total distanse på $distanceInKM km';
   }
 
@@ -462,13 +455,11 @@ class SNb extends S {
 
   @override
   String ranMore(int distanceInKM) {
-
     return 'Jeg gikk mer enn $distanceInKM km';
   }
 
   @override
   String moreThan(int distanceInKM) {
-
     return 'Mer enn $distanceInKM km';
   }
 
@@ -492,7 +483,6 @@ class SNb extends S {
 
   @override
   String timezoneInformation(String timeZone) {
-
     return 'Tv-guide tidstabell er i din lokale tid: $timeZone';
   }
 
@@ -555,7 +545,6 @@ class SNb extends S {
 
   @override
   String pollAnswer(String answer) {
-
     return 'Du har svart: $answer';
   }
 
@@ -588,7 +577,6 @@ class SNb extends S {
 
   @override
   String posts(int postsCount) {
-
     return '$postsCount Innlegg';
   }
 
@@ -618,7 +606,6 @@ class SNb extends S {
 
   @override
   String shareTime(String time) {
-
     return 'Del fra tid $time';
   }
 
