@@ -88,6 +88,7 @@ type Episode {
     relatedItems(first: Int, offset: Int): SectionItemPagination @goField(forceResolver: true)
     images: [Image!]!
     number: Int
+    lessons(first: Int, offset: Int): LessonPagination! @goField(forceResolver: true)
 }
 
 type EpisodePagination implements Pagination {

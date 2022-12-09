@@ -7,13 +7,11 @@ import 'package:bccm_player/playback_platform_pigeon.g.dart';
 import 'package:brunstadtv_app/components/default_grid_section.dart';
 import 'package:brunstadtv_app/components/error_generic.dart';
 import 'package:brunstadtv_app/components/loading_indicator.dart';
-import 'package:brunstadtv_app/components/mini_player.dart';
 import 'package:brunstadtv_app/components/season_episode_list.dart';
 import 'package:brunstadtv_app/components/feature_badge.dart';
 import 'package:brunstadtv_app/components/study/study_button.dart';
-import 'package:brunstadtv_app/graphql/schema/items.graphql.dart';
+import 'package:brunstadtv_app/graphql/client.dart';
 import 'package:brunstadtv_app/graphql/schema/pages.graphql.dart';
-import 'package:brunstadtv_app/helpers/btv_gradients.dart';
 import 'package:brunstadtv_app/helpers/navigation_override.dart';
 import 'package:brunstadtv_app/helpers/svg_icons.dart';
 import 'package:brunstadtv_app/providers/analytics.dart';
@@ -38,6 +36,7 @@ import '../components/episode_details.dart';
 import '../components/episode_tab_selector.dart';
 import '../components/fade_indexed_stack.dart';
 import '../components/option_list.dart';
+import '../graphql/queries/studies.graphql.dart';
 import '../helpers/btv_buttons.dart';
 import '../helpers/btv_colors.dart';
 import '../helpers/btv_typography.dart';
@@ -63,6 +62,7 @@ class EpisodeScreen extends ConsumerStatefulWidget {
 
 class _EpisodeScreenState extends ConsumerState<EpisodeScreen> with AutoRouteAwareStateMixin<EpisodeScreen> {
   late Future<Query$FetchEpisode$episode?> episodeFuture;
+  late Future<Query$GetEpisodeLessonProgress?> lessonProgressFuture;
   final scrollController = ScrollController();
   bool settingUp = false;
   String? error;
@@ -104,13 +104,14 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen> with AutoRouteAwa
     setState(() {
       episodeFuture = ref.read(apiProvider).fetchEpisode(widget.episodeId.toString()).then(
         (result) {
-          if (mounted && result?.season != null) {
+          final episodeSeason = result?.season;
+          if (mounted && episodeSeason != null) {
             setState(() {
               seasonsMap = <String, List<EpisodeListEpisodeData>?>{};
               for (var season in result!.season!.$show.seasons.items) {
                 seasonsMap![season.id] = null;
               }
-              seasonsMap![result.season!.id] = result.season!.episodes.items.map((ep) {
+              seasonsMap![episodeSeason.id] = episodeSeason.episodes.items.map((ep) {
                 return EpisodeListEpisodeData(
                     episodeId: ep.id,
                     ageRating: ep.ageRating,
@@ -118,7 +119,7 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen> with AutoRouteAwa
                     publishDate: ep.publishDate,
                     title: ep.title,
                     image: ep.image,
-                    seasonNumber: result.season!.number,
+                    seasonNumber: episodeSeason.number,
                     episodeNumber: ep.number);
               }).toList();
             });
@@ -127,6 +128,11 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen> with AutoRouteAwa
           return result;
         },
       );
+      lessonProgressFuture = ref
+          .read(gqlClientProvider)
+          .query$GetEpisodeLessonProgress(
+              Options$Query$GetEpisodeLessonProgress(variables: Variables$Query$GetEpisodeLessonProgress(id: widget.episodeId.toString())))
+          .then(((value) => value.parsedData));
     });
     await episodeFuture;
     if (widget.autoplay) {
@@ -373,15 +379,21 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen> with AutoRouteAwa
                                     ]),
                                     const SizedBox(height: 14.5),
                                     Text(episode.description, style: BtvTextStyles.body2.copyWith(color: BtvColors.label3)),
-                                    if (false)
-                                      Padding(
-                                        padding: const EdgeInsets.only(top: 16),
-                                        child: GestureDetector(
-                                          behavior: HitTestBehavior.opaque,
-                                          onTap: () {
-                                            context.router.root.push(StudyScreenRoute());
-                                          },
-                                          child: const StudyMoreButton(),
+                                    if (episode.lessons.items.isNotEmpty)
+                                      simpleFutureBuilder<Query$GetEpisodeLessonProgress?>(
+                                        future: lessonProgressFuture,
+                                        loading: () => const LoadingIndicator(),
+                                        error: (e) => const SizedBox.shrink(),
+                                        noData: () => const SizedBox.shrink(),
+                                        ready: (data) => Padding(
+                                          padding: const EdgeInsets.only(top: 16),
+                                          child: GestureDetector(
+                                            behavior: HitTestBehavior.opaque,
+                                            onTap: () {
+                                              context.router.root.push(StudyScreenRoute(lessonId: data!.episode.lessons.items[0].id));
+                                            },
+                                            child: StudyMoreButton(progressOverview: data!.episode.lessons.items[0]),
+                                          ),
                                         ),
                                       )
                                   ],

@@ -1,6 +1,9 @@
 import 'package:brunstadtv_app/components/loading_generic.dart';
 import 'package:brunstadtv_app/helpers/btv_typography.dart';
+import 'package:brunstadtv_app/helpers/webview/auth_js_channel.dart';
 import 'package:brunstadtv_app/helpers/webview/should_override_url_loading.dart';
+import 'package:flutter/foundation.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -16,10 +19,11 @@ import '../helpers/svg_icons.dart';
 import '../helpers/webview/router_js_channel.dart';
 
 class StudyScreen extends ConsumerStatefulWidget {
-  final String episodeId = '';
+  final String lessonId;
 
   StudyScreen({
     Key? key,
+    required this.lessonId,
   }) : super(key: key ?? GlobalKey<StudyScreenState>());
 
   @override
@@ -28,7 +32,7 @@ class StudyScreen extends ConsumerStatefulWidget {
 
 class StudyScreenState extends ConsumerState<StudyScreen> {
   String pageTitle = 'Matthew 1, 2';
-  String url = Env.studyUrl;
+  late String url;
   InAppWebViewController? webViewController;
   WebResourceError? error;
   bool loading = true;
@@ -37,6 +41,7 @@ class StudyScreenState extends ConsumerState<StudyScreen> {
   @override
   void initState() {
     super.initState();
+    url = '${Env.studyUrl}/embed/lesson/${widget.lessonId}';
   }
 
   void onWebViewCreated(InAppWebViewController controller) {
@@ -55,7 +60,8 @@ class StudyScreenState extends ConsumerState<StudyScreen> {
       );
     }
     RouterJsChannel.register(context, controller);
-    controller.addJavaScriptHandler(handlerName: 'flutter_study_channel', callback: handleMessage);
+    AuthJsChannel.register(context, controller);
+    controller.addJavaScriptHandler(handlerName: 'flutter_study', callback: handleMessage);
   }
 
   @override
@@ -71,6 +77,7 @@ class StudyScreenState extends ConsumerState<StudyScreen> {
           Opacity(
             opacity: loading ? 0 : 1,
             child: InAppWebView(
+              gestureRecognizers: {Factory<VerticalDragGestureRecognizer>(() => VerticalDragGestureRecognizer())},
               initialSettings: InAppWebViewSettings(
                 useHybridComposition: false,
                 transparentBackground: true,

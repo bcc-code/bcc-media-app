@@ -166,11 +166,13 @@ class AppRouter extends _i20.RootStackRouter {
       );
     },
     StudyScreenRoute.name: (routeData) {
-      final args = routeData.argsAs<StudyScreenRouteArgs>(
-          orElse: () => const StudyScreenRouteArgs());
+      final args = routeData.argsAs<StudyScreenRouteArgs>();
       return _i20.CustomPage<void>(
         routeData: routeData,
-        child: _i12.StudyScreen(key: args.key),
+        child: _i12.StudyScreen(
+          key: args.key,
+          lessonId: args.lessonId,
+        ),
         transitionsBuilder: _i23.CustomTransitionsBuilders.slideUp,
         durationInMilliseconds: 400,
         reverseDurationInMilliseconds: 600,
@@ -628,24 +630,34 @@ class AutoLoginScreeenRoute extends _i20.PageRouteInfo<void> {
 /// generated route for
 /// [_i12.StudyScreen]
 class StudyScreenRoute extends _i20.PageRouteInfo<StudyScreenRouteArgs> {
-  StudyScreenRoute({_i21.Key? key})
-      : super(
+  StudyScreenRoute({
+    _i21.Key? key,
+    required String lessonId,
+  }) : super(
           StudyScreenRoute.name,
           path: 'study',
-          args: StudyScreenRouteArgs(key: key),
+          args: StudyScreenRouteArgs(
+            key: key,
+            lessonId: lessonId,
+          ),
         );
 
   static const String name = 'StudyScreenRoute';
 }
 
 class StudyScreenRouteArgs {
-  const StudyScreenRouteArgs({this.key});
+  const StudyScreenRouteArgs({
+    this.key,
+    required this.lessonId,
+  });
 
   final _i21.Key? key;
 
+  final String lessonId;
+
   @override
   String toString() {
-    return 'StudyScreenRouteArgs{key: $key}';
+    return 'StudyScreenRouteArgs{key: $key, lessonId: $lessonId}';
   }
 }
 

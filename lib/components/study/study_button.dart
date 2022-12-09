@@ -1,3 +1,4 @@
+import 'package:brunstadtv_app/graphql/queries/studies.graphql.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
@@ -8,7 +9,8 @@ import '../../helpers/svg_icons.dart';
 import '../pulse_animation.dart';
 
 class StudyMoreButton extends StatefulWidget {
-  const StudyMoreButton({super.key});
+  final Fragment$LessonProgressOverview progressOverview;
+  const StudyMoreButton({super.key, required this.progressOverview});
 
   @override
   State<StudyMoreButton> createState() => _StudyMoreButtonState();
@@ -27,6 +29,23 @@ class _StudyMoreButtonState extends State<StudyMoreButton> with SingleTickerProv
   void dispose() {
     _controller.dispose();
     super.dispose();
+  }
+
+  int get total => widget.progressOverview.progress.total;
+  int get completed => widget.progressOverview.progress.completed;
+
+  String get title {
+    if (completed < total) {
+      return '$completed / $total tasks completed';
+    }
+    return 'Discover more';
+  }
+
+  String get secondaryTitle {
+    if (completed < total) {
+      return 'Complete task and discover related resources';
+    }
+    return 'Find more inspiration and insight from related resources.';
   }
 
   @override
@@ -54,14 +73,14 @@ class _StudyMoreButtonState extends State<StudyMoreButton> with SingleTickerProv
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const Text(
-                      'Explore more',
+                    Text(
+                      title,
                       style: BtvTextStyles.title3,
                     ),
                     Padding(
-                      padding: EdgeInsets.only(top: 2),
+                      padding: const EdgeInsets.only(top: 2),
                       child: Text(
-                        'Tasks, scriptures and other related content',
+                        secondaryTitle,
                         overflow: TextOverflow.fade,
                         style: BtvTextStyles.caption1.copyWith(color: BtvColors.label3),
                       ),

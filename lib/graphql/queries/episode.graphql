@@ -20,6 +20,11 @@ query FetchEpisode($id: ID!) {
       audioLanguages
       subtitleLanguages
     }
+    lessons {
+      items {
+        id
+      }
+    }
     season {
       id
       title

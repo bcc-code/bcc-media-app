@@ -11,6 +11,7 @@ type Lesson {
     tasks(first: Int, offset: Int): TaskPagination! @goField(forceResolver: true)
     topic: StudyTopic! @goField(forceResolver: true)
     progress: TasksProgress! @goField(forceResolver: true)
+    episodes(first: Int, offset: Int): EpisodePagination! @goField(forceResolver: true)
 }
 
 type LessonPagination implements Pagination {
@@ -57,4 +58,35 @@ type TextTask implements Task {
     completed: Boolean! @goField(forceResolver: true)
 }
 
-scalar TaskAnswer
+type PosterTask implements Task {
+    id: ID!
+    title: String!
+    completed: Boolean! @goField(forceResolver: true)
+    image: String!
+}
+
+type QuoteTask implements Task {
+    id: ID!
+    title: String!
+    completed: Boolean! @goField(forceResolver: true)
+    image: String!
+}
+
+type VideoTask implements Task {
+    id: ID!
+    title: String!
+    completed: Boolean! @goField(forceResolver: true)
+    episode: Episode! @goField(forceResolver: true)
+    secondaryTitle: String
+    description: String
+}
+
+type LinkTask implements Task {
+    id: ID!
+    title: String!
+    completed: Boolean! @goField(forceResolver: true)
+    link: String!
+    image: String!
+    secondaryTitle: String
+    description: String
+}

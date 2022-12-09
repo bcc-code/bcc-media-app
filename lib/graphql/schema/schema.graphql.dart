@@ -278,6 +278,10 @@ const possibleTypesMap = {
   'Task': {
     'AlternativesTask',
     'TextTask',
+    'PosterTask',
+    'QuoteTask',
+    'VideoTask',
+    'LinkTask',
   },
   'Section': {
     'PosterSection',
