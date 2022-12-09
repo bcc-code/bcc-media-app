@@ -13,7 +13,7 @@ import '../../helpers/btv_colors.dart';
 import '../../helpers/btv_typography.dart';
 import '../../l10n/app_localizations.dart';
 import '../../models/analytics/search_performed.dart';
-import '../../models/analytics/search.dart';
+import '../../models/analytics/search_result_clicked.dart';
 import '../../providers/analytics.dart';
 import '../../providers/inherited_data.dart';
 
@@ -82,94 +82,84 @@ class _SearchResultsPageState extends ConsumerState<SearchResultsPage> {
     }
   }
 
-  void sendSearchItemClickedAnalytics(int index, Fragment$SearchResultItem$$EpisodeSearchItem item) {
-    ref.read(analyticsProvider).searchResultClicked(
-          SearchResultClickedEvent(
-            searchText: widget.searchInput,
-            elementPosition: index,
-            elementType: item.$__typename,
-            elementId: item.id,
-            group: 'Episodes',
-          ),
-        );
-  }
-
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder<Query$Search$search?>(
-      future: _resultFuture,
-      builder: (context, snapshot) {
-        if (snapshot.connectionState == ConnectionState.waiting) {
+    return InheritedData<SearchAnalytics>(
+      inheritedData: SearchAnalytics(searchText: widget.searchInput),
+      child: (context) => FutureBuilder<Query$Search$search?>(
+        future: _resultFuture,
+        builder: (context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return const Center(
+              child: SizedBox.square(
+                dimension: 50,
+                child: CircularProgressIndicator(),
+              ),
+            );
+          }
+          if (snapshot.hasData) {
+            var searchResults = snapshot.data!.result;
+            if (searchResults.isEmpty) {
+              return _getNoResultsInfoWidget(context);
+            } else {
+              final programs = searchResults.whereType<Fragment$SearchResultItem$$ShowSearchItem>().toList();
+              final episodes = searchResults.whereType<Fragment$SearchResultItem$$EpisodeSearchItem>().toList();
+              return ListView(
+                keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
+                children: [
+                  if (programs.isNotEmpty) ResultProgramsList(title: S.of(context).programsSection, items: programs),
+                  if (episodes.isNotEmpty)
+                    Container(
+                      padding: const EdgeInsets.only(top: 12, right: 16, left: 16),
+                      margin: const EdgeInsets.only(bottom: 8),
+                      child: Text(
+                        S.of(context).episodes,
+                        style: BtvTextStyles.title2,
+                      ),
+                    ),
+                  if (episodes.isNotEmpty)
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 16),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: episodes
+                            .mapIndexed(
+                              (index, e) => InheritedData<SearchItemAnalytics>(
+                                inheritedData: SearchItemAnalytics(position: index, type: e.$__typename, id: e.id, group: 'episodes'),
+                                child: (context) => GestureDetector(
+                                  behavior: HitTestBehavior.opaque,
+                                  onTap: () {
+                                    context.navigateTo(EpisodeScreenRoute(episodeId: e.id));
+                                    ref.read(analyticsProvider).searchResultClicked(context);
+                                  },
+                                  child: EpisodeListEpisode(
+                                    id: e.id,
+                                    title: e.title,
+                                    ageRating: e.ageRating,
+                                    duration: e.duration,
+                                    image: e.image,
+                                    showTitle: e.showTitle,
+                                  ),
+                                ),
+                              ),
+                            )
+                            .toList(),
+                      ),
+                    ),
+                ],
+              );
+            }
+          } else if (snapshot.hasError) {
+            return Text(snapshot.error.toString());
+          }
           return const Center(
             child: SizedBox.square(
               dimension: 50,
               child: CircularProgressIndicator(),
             ),
           );
-        }
-        if (snapshot.hasData) {
-          var searchResults = snapshot.data!.result;
-          if (searchResults.isEmpty) {
-            return _getNoResultsInfoWidget(context);
-          } else {
-            final programs = searchResults.whereType<Fragment$SearchResultItem$$ShowSearchItem>().toList();
-            final episodes = searchResults.whereType<Fragment$SearchResultItem$$EpisodeSearchItem>().toList();
-            return ListView(
-              keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
-              children: [
-                if (programs.isNotEmpty)
-                  InheritedData(
-                    inheritedData: SearchAnalytics(searchText: widget.searchInput),
-                    child: (context) => ResultProgramsList(title: S.of(context).programsSection, items: programs),
-                  ),
-                if (episodes.isNotEmpty)
-                  Container(
-                    padding: const EdgeInsets.only(top: 12, right: 16, left: 16),
-                    margin: const EdgeInsets.only(bottom: 8),
-                    child: Text(
-                      S.of(context).episodes,
-                      style: BtvTextStyles.title2,
-                    ),
-                  ),
-                if (episodes.isNotEmpty)
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 16),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: episodes
-                          .mapIndexed(
-                            (index, e) => GestureDetector(
-                              behavior: HitTestBehavior.opaque,
-                              onTap: () {
-                                context.navigateTo(EpisodeScreenRoute(episodeId: e.id));
-                                sendSearchItemClickedAnalytics(index, e);
-                              },
-                              child: EpisodeListEpisode(
-                                id: e.id,
-                                title: e.title,
-                                ageRating: e.ageRating,
-                                duration: e.duration,
-                                image: e.image,
-                                showTitle: e.showTitle,
-                              ),
-                            ),
-                          )
-                          .toList(),
-                    ),
-                  ),
-              ],
-            );
-          }
-        } else if (snapshot.hasError) {
-          return Text(snapshot.error.toString());
-        }
-        return const Center(
-          child: SizedBox.square(
-            dimension: 50,
-            child: CircularProgressIndicator(),
-          ),
-        );
-      },
+        },
+      ),
     );
   }
 

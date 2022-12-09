@@ -1,6 +1,6 @@
 import 'package:brunstadtv_app/components/loading_indicator.dart';
 import 'package:brunstadtv_app/helpers/utils.dart';
-import 'package:brunstadtv_app/models/analytics/search.dart';
+import 'package:brunstadtv_app/models/analytics/search_result_clicked.dart';
 import 'package:brunstadtv_app/providers/analytics.dart';
 import 'package:flutter/material.dart';
 import 'package:brunstadtv_app/graphql/queries/search.graphql.dart';
@@ -23,20 +23,6 @@ class ResultProgramsList extends ConsumerStatefulWidget {
 }
 
 class _ResultProgramsListState extends ConsumerState<ResultProgramsList> {
-  void sendSearchItemClickedAnalytics(BuildContext context, int index, Fragment$SearchResultItem$$ShowSearchItem item) {
-    final searchAnalytics = InheritedData.read<SearchAnalytics>(context);
-    if (searchAnalytics == null) return;
-    ref.read(analyticsProvider).searchResultClicked(
-          SearchResultClickedEvent(
-            searchText: searchAnalytics.searchText,
-            elementPosition: index,
-            elementType: item.$__typename,
-            elementId: item.id,
-            group: 'shows',
-          ),
-        );
-  }
-
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -56,9 +42,9 @@ class _ResultProgramsListState extends ConsumerState<ResultProgramsList> {
           itemCount: widget.items.length,
           itemBuilder: (BuildContext context, int index) {
             var item = widget.items[index];
-            return GestureDetector(
-              onTap: () => sendSearchItemClickedAnalytics(context, index, item),
-              child: _Program(item),
+            return InheritedData<SearchItemAnalytics>(
+              inheritedData: SearchItemAnalytics(position: index, type: item.$__typename, id: item.id, group: 'shows'),
+              child: (context) => _Program(item),
             );
           },
         ),
@@ -67,16 +53,16 @@ class _ResultProgramsListState extends ConsumerState<ResultProgramsList> {
   }
 }
 
-class _Program extends StatefulWidget {
+class _Program extends ConsumerStatefulWidget {
   final Fragment$SearchResultItem$$ShowSearchItem _item;
 
   const _Program(this._item);
 
   @override
-  State<_Program> createState() => _ProgramState();
+  ConsumerState<_Program> createState() => _ProgramState();
 }
 
-class _ProgramState extends State<_Program> {
+class _ProgramState extends ConsumerState<_Program> {
   static const _slideWidth = 140.0;
   Future? navigationFuture;
 
@@ -89,6 +75,7 @@ class _ProgramState extends State<_Program> {
           onTap: () {
             setState(() {
               navigationFuture = navigateToShowWithoutEpisodeId(context, widget._item.id);
+              ref.read(analyticsProvider).searchResultClicked(context);
             });
           },
           child: SizedBox(

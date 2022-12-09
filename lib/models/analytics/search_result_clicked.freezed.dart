@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
-part of 'search.dart';
+part of 'search_result_clicked.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -358,5 +358,180 @@ abstract class _SearchAnalytics implements SearchAnalytics {
   @override
   @JsonKey(ignore: true)
   _$$_SearchAnalyticsCopyWith<_$_SearchAnalytics> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+mixin _$SearchItemAnalytics {
+  int get position => throw _privateConstructorUsedError;
+  String get type => throw _privateConstructorUsedError;
+  String get id => throw _privateConstructorUsedError;
+  String get group => throw _privateConstructorUsedError;
+
+  @JsonKey(ignore: true)
+  $SearchItemAnalyticsCopyWith<SearchItemAnalytics> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $SearchItemAnalyticsCopyWith<$Res> {
+  factory $SearchItemAnalyticsCopyWith(
+          SearchItemAnalytics value, $Res Function(SearchItemAnalytics) then) =
+      _$SearchItemAnalyticsCopyWithImpl<$Res, SearchItemAnalytics>;
+  @useResult
+  $Res call({int position, String type, String id, String group});
+}
+
+/// @nodoc
+class _$SearchItemAnalyticsCopyWithImpl<$Res, $Val extends SearchItemAnalytics>
+    implements $SearchItemAnalyticsCopyWith<$Res> {
+  _$SearchItemAnalyticsCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? position = null,
+    Object? type = null,
+    Object? id = null,
+    Object? group = null,
+  }) {
+    return _then(_value.copyWith(
+      position: null == position
+          ? _value.position
+          : position // ignore: cast_nullable_to_non_nullable
+              as int,
+      type: null == type
+          ? _value.type
+          : type // ignore: cast_nullable_to_non_nullable
+              as String,
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
+      group: null == group
+          ? _value.group
+          : group // ignore: cast_nullable_to_non_nullable
+              as String,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$_SearchItemAnalyticsCopyWith<$Res>
+    implements $SearchItemAnalyticsCopyWith<$Res> {
+  factory _$$_SearchItemAnalyticsCopyWith(_$_SearchItemAnalytics value,
+          $Res Function(_$_SearchItemAnalytics) then) =
+      __$$_SearchItemAnalyticsCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({int position, String type, String id, String group});
+}
+
+/// @nodoc
+class __$$_SearchItemAnalyticsCopyWithImpl<$Res>
+    extends _$SearchItemAnalyticsCopyWithImpl<$Res, _$_SearchItemAnalytics>
+    implements _$$_SearchItemAnalyticsCopyWith<$Res> {
+  __$$_SearchItemAnalyticsCopyWithImpl(_$_SearchItemAnalytics _value,
+      $Res Function(_$_SearchItemAnalytics) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? position = null,
+    Object? type = null,
+    Object? id = null,
+    Object? group = null,
+  }) {
+    return _then(_$_SearchItemAnalytics(
+      position: null == position
+          ? _value.position
+          : position // ignore: cast_nullable_to_non_nullable
+              as int,
+      type: null == type
+          ? _value.type
+          : type // ignore: cast_nullable_to_non_nullable
+              as String,
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
+      group: null == group
+          ? _value.group
+          : group // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_SearchItemAnalytics implements _SearchItemAnalytics {
+  const _$_SearchItemAnalytics(
+      {required this.position,
+      required this.type,
+      required this.id,
+      required this.group});
+
+  @override
+  final int position;
+  @override
+  final String type;
+  @override
+  final String id;
+  @override
+  final String group;
+
+  @override
+  String toString() {
+    return 'SearchItemAnalytics(position: $position, type: $type, id: $id, group: $group)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_SearchItemAnalytics &&
+            (identical(other.position, position) ||
+                other.position == position) &&
+            (identical(other.type, type) || other.type == type) &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.group, group) || other.group == group));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, position, type, id, group);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_SearchItemAnalyticsCopyWith<_$_SearchItemAnalytics> get copyWith =>
+      __$$_SearchItemAnalyticsCopyWithImpl<_$_SearchItemAnalytics>(
+          this, _$identity);
+}
+
+abstract class _SearchItemAnalytics implements SearchItemAnalytics {
+  const factory _SearchItemAnalytics(
+      {required final int position,
+      required final String type,
+      required final String id,
+      required final String group}) = _$_SearchItemAnalytics;
+
+  @override
+  int get position;
+  @override
+  String get type;
+  @override
+  String get id;
+  @override
+  String get group;
+  @override
+  @JsonKey(ignore: true)
+  _$$_SearchItemAnalyticsCopyWith<_$_SearchItemAnalytics> get copyWith =>
       throw _privateConstructorUsedError;
 }

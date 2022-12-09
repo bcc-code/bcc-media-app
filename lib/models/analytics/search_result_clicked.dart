@@ -1,7 +1,7 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-part 'search.freezed.dart';
-part 'search.g.dart';
+part 'search_result_clicked.freezed.dart';
+part 'search_result_clicked.g.dart';
 
 @freezed
 class SearchResultClickedEvent with _$SearchResultClickedEvent {
@@ -21,4 +21,14 @@ class SearchAnalytics with _$SearchAnalytics {
   const factory SearchAnalytics({
     required String searchText,
   }) = _SearchAnalytics;
+}
+
+@freezed
+class SearchItemAnalytics with _$SearchItemAnalytics {
+  const factory SearchItemAnalytics({
+    required int position,
+    required String type,
+    required String id,
+    required String group,
+  }) = _SearchItemAnalytics;
 }
