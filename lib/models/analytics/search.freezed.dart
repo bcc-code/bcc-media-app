@@ -25,6 +25,7 @@ mixin _$SearchResultClickedEvent {
   int get elementPosition => throw _privateConstructorUsedError;
   String get elementType => throw _privateConstructorUsedError;
   String get elementId => throw _privateConstructorUsedError;
+  String get group => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -42,7 +43,8 @@ abstract class $SearchResultClickedEventCopyWith<$Res> {
       {String searchText,
       int elementPosition,
       String elementType,
-      String elementId});
+      String elementId,
+      String group});
 }
 
 /// @nodoc
@@ -63,6 +65,7 @@ class _$SearchResultClickedEventCopyWithImpl<$Res,
     Object? elementPosition = null,
     Object? elementType = null,
     Object? elementId = null,
+    Object? group = null,
   }) {
     return _then(_value.copyWith(
       searchText: null == searchText
@@ -81,6 +84,10 @@ class _$SearchResultClickedEventCopyWithImpl<$Res,
           ? _value.elementId
           : elementId // ignore: cast_nullable_to_non_nullable
               as String,
+      group: null == group
+          ? _value.group
+          : group // ignore: cast_nullable_to_non_nullable
+              as String,
     ) as $Val);
   }
 }
@@ -97,7 +104,8 @@ abstract class _$$_SectionClickedEventCopyWith<$Res>
       {String searchText,
       int elementPosition,
       String elementType,
-      String elementId});
+      String elementId,
+      String group});
 }
 
 /// @nodoc
@@ -115,6 +123,7 @@ class __$$_SectionClickedEventCopyWithImpl<$Res>
     Object? elementPosition = null,
     Object? elementType = null,
     Object? elementId = null,
+    Object? group = null,
   }) {
     return _then(_$_SectionClickedEvent(
       searchText: null == searchText
@@ -133,6 +142,10 @@ class __$$_SectionClickedEventCopyWithImpl<$Res>
           ? _value.elementId
           : elementId // ignore: cast_nullable_to_non_nullable
               as String,
+      group: null == group
+          ? _value.group
+          : group // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -144,7 +157,8 @@ class _$_SectionClickedEvent implements _SectionClickedEvent {
       {required this.searchText,
       required this.elementPosition,
       required this.elementType,
-      required this.elementId});
+      required this.elementId,
+      required this.group});
 
   factory _$_SectionClickedEvent.fromJson(Map<String, dynamic> json) =>
       _$$_SectionClickedEventFromJson(json);
@@ -157,10 +171,12 @@ class _$_SectionClickedEvent implements _SectionClickedEvent {
   final String elementType;
   @override
   final String elementId;
+  @override
+  final String group;
 
   @override
   String toString() {
-    return 'SearchResultClickedEvent(searchText: $searchText, elementPosition: $elementPosition, elementType: $elementType, elementId: $elementId)';
+    return 'SearchResultClickedEvent(searchText: $searchText, elementPosition: $elementPosition, elementType: $elementType, elementId: $elementId, group: $group)';
   }
 
   @override
@@ -175,13 +191,14 @@ class _$_SectionClickedEvent implements _SectionClickedEvent {
             (identical(other.elementType, elementType) ||
                 other.elementType == elementType) &&
             (identical(other.elementId, elementId) ||
-                other.elementId == elementId));
+                other.elementId == elementId) &&
+            (identical(other.group, group) || other.group == group));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
-      runtimeType, searchText, elementPosition, elementType, elementId);
+      runtimeType, searchText, elementPosition, elementType, elementId, group);
 
   @JsonKey(ignore: true)
   @override
@@ -203,7 +220,8 @@ abstract class _SectionClickedEvent implements SearchResultClickedEvent {
       {required final String searchText,
       required final int elementPosition,
       required final String elementType,
-      required final String elementId}) = _$_SectionClickedEvent;
+      required final String elementId,
+      required final String group}) = _$_SectionClickedEvent;
 
   factory _SectionClickedEvent.fromJson(Map<String, dynamic> json) =
       _$_SectionClickedEvent.fromJson;
@@ -217,6 +235,8 @@ abstract class _SectionClickedEvent implements SearchResultClickedEvent {
   @override
   String get elementId;
   @override
+  String get group;
+  @override
   @JsonKey(ignore: true)
   _$$_SectionClickedEventCopyWith<_$_SectionClickedEvent> get copyWith =>
       throw _privateConstructorUsedError;
@@ -224,7 +244,7 @@ abstract class _SectionClickedEvent implements SearchResultClickedEvent {
 
 /// @nodoc
 mixin _$SearchAnalytics {
-  String? get searchText => throw _privateConstructorUsedError;
+  String get searchText => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $SearchAnalyticsCopyWith<SearchAnalytics> get copyWith =>
@@ -237,7 +257,7 @@ abstract class $SearchAnalyticsCopyWith<$Res> {
           SearchAnalytics value, $Res Function(SearchAnalytics) then) =
       _$SearchAnalyticsCopyWithImpl<$Res, SearchAnalytics>;
   @useResult
-  $Res call({String? searchText});
+  $Res call({String searchText});
 }
 
 /// @nodoc
@@ -253,13 +273,13 @@ class _$SearchAnalyticsCopyWithImpl<$Res, $Val extends SearchAnalytics>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? searchText = freezed,
+    Object? searchText = null,
   }) {
     return _then(_value.copyWith(
-      searchText: freezed == searchText
+      searchText: null == searchText
           ? _value.searchText
           : searchText // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as String,
     ) as $Val);
   }
 }
@@ -272,7 +292,7 @@ abstract class _$$_SearchAnalyticsCopyWith<$Res>
       __$$_SearchAnalyticsCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String? searchText});
+  $Res call({String searchText});
 }
 
 /// @nodoc
@@ -286,13 +306,13 @@ class __$$_SearchAnalyticsCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? searchText = freezed,
+    Object? searchText = null,
   }) {
     return _then(_$_SearchAnalytics(
-      searchText: freezed == searchText
+      searchText: null == searchText
           ? _value.searchText
           : searchText // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as String,
     ));
   }
 }
@@ -303,7 +323,7 @@ class _$_SearchAnalytics implements _SearchAnalytics {
   const _$_SearchAnalytics({required this.searchText});
 
   @override
-  final String? searchText;
+  final String searchText;
 
   @override
   String toString() {
@@ -330,168 +350,13 @@ class _$_SearchAnalytics implements _SearchAnalytics {
 }
 
 abstract class _SearchAnalytics implements SearchAnalytics {
-  const factory _SearchAnalytics({required final String? searchText}) =
+  const factory _SearchAnalytics({required final String searchText}) =
       _$_SearchAnalytics;
 
   @override
-  String? get searchText;
+  String get searchText;
   @override
   @JsonKey(ignore: true)
   _$$_SearchAnalyticsCopyWith<_$_SearchAnalytics> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-mixin _$SearchItemAnalytics {
-  int get position => throw _privateConstructorUsedError;
-  String get type => throw _privateConstructorUsedError;
-  String get id => throw _privateConstructorUsedError;
-
-  @JsonKey(ignore: true)
-  $SearchItemAnalyticsCopyWith<SearchItemAnalytics> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class $SearchItemAnalyticsCopyWith<$Res> {
-  factory $SearchItemAnalyticsCopyWith(
-          SearchItemAnalytics value, $Res Function(SearchItemAnalytics) then) =
-      _$SearchItemAnalyticsCopyWithImpl<$Res, SearchItemAnalytics>;
-  @useResult
-  $Res call({int position, String type, String id});
-}
-
-/// @nodoc
-class _$SearchItemAnalyticsCopyWithImpl<$Res, $Val extends SearchItemAnalytics>
-    implements $SearchItemAnalyticsCopyWith<$Res> {
-  _$SearchItemAnalyticsCopyWithImpl(this._value, this._then);
-
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? position = null,
-    Object? type = null,
-    Object? id = null,
-  }) {
-    return _then(_value.copyWith(
-      position: null == position
-          ? _value.position
-          : position // ignore: cast_nullable_to_non_nullable
-              as int,
-      type: null == type
-          ? _value.type
-          : type // ignore: cast_nullable_to_non_nullable
-              as String,
-      id: null == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as String,
-    ) as $Val);
-  }
-}
-
-/// @nodoc
-abstract class _$$_SearchItemAnalyticsCopyWith<$Res>
-    implements $SearchItemAnalyticsCopyWith<$Res> {
-  factory _$$_SearchItemAnalyticsCopyWith(_$_SearchItemAnalytics value,
-          $Res Function(_$_SearchItemAnalytics) then) =
-      __$$_SearchItemAnalyticsCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call({int position, String type, String id});
-}
-
-/// @nodoc
-class __$$_SearchItemAnalyticsCopyWithImpl<$Res>
-    extends _$SearchItemAnalyticsCopyWithImpl<$Res, _$_SearchItemAnalytics>
-    implements _$$_SearchItemAnalyticsCopyWith<$Res> {
-  __$$_SearchItemAnalyticsCopyWithImpl(_$_SearchItemAnalytics _value,
-      $Res Function(_$_SearchItemAnalytics) _then)
-      : super(_value, _then);
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? position = null,
-    Object? type = null,
-    Object? id = null,
-  }) {
-    return _then(_$_SearchItemAnalytics(
-      position: null == position
-          ? _value.position
-          : position // ignore: cast_nullable_to_non_nullable
-              as int,
-      type: null == type
-          ? _value.type
-          : type // ignore: cast_nullable_to_non_nullable
-              as String,
-      id: null == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as String,
-    ));
-  }
-}
-
-/// @nodoc
-
-class _$_SearchItemAnalytics implements _SearchItemAnalytics {
-  const _$_SearchItemAnalytics(
-      {required this.position, required this.type, required this.id});
-
-  @override
-  final int position;
-  @override
-  final String type;
-  @override
-  final String id;
-
-  @override
-  String toString() {
-    return 'SearchItemAnalytics(position: $position, type: $type, id: $id)';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$_SearchItemAnalytics &&
-            (identical(other.position, position) ||
-                other.position == position) &&
-            (identical(other.type, type) || other.type == type) &&
-            (identical(other.id, id) || other.id == id));
-  }
-
-  @override
-  int get hashCode => Object.hash(runtimeType, position, type, id);
-
-  @JsonKey(ignore: true)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$_SearchItemAnalyticsCopyWith<_$_SearchItemAnalytics> get copyWith =>
-      __$$_SearchItemAnalyticsCopyWithImpl<_$_SearchItemAnalytics>(
-          this, _$identity);
-}
-
-abstract class _SearchItemAnalytics implements SearchItemAnalytics {
-  const factory _SearchItemAnalytics(
-      {required final int position,
-      required final String type,
-      required final String id}) = _$_SearchItemAnalytics;
-
-  @override
-  int get position;
-  @override
-  String get type;
-  @override
-  String get id;
-  @override
-  @JsonKey(ignore: true)
-  _$$_SearchItemAnalyticsCopyWith<_$_SearchItemAnalytics> get copyWith =>
       throw _privateConstructorUsedError;
 }

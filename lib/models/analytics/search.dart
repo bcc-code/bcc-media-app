@@ -10,6 +10,7 @@ class SearchResultClickedEvent with _$SearchResultClickedEvent {
     required int elementPosition,
     required String elementType,
     required String elementId,
+    required String group,
   }) = _SectionClickedEvent;
 
   factory SearchResultClickedEvent.fromJson(Map<String, dynamic> json) => _$SearchResultClickedEventFromJson(json);
@@ -18,15 +19,6 @@ class SearchResultClickedEvent with _$SearchResultClickedEvent {
 @freezed
 class SearchAnalytics with _$SearchAnalytics {
   const factory SearchAnalytics({
-    required String? searchText,
+    required String searchText,
   }) = _SearchAnalytics;
-}
-
-@freezed
-class SearchItemAnalytics with _$SearchItemAnalytics {
-  const factory SearchItemAnalytics({
-    required int position,
-    required String type,
-    required String id,
-  }) = _SearchItemAnalytics;
 }

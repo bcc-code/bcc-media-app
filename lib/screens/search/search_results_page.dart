@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:brunstadtv_app/helpers/debouncer.dart';
 import 'package:brunstadtv_app/router/router.gr.dart';
+import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -12,7 +13,9 @@ import '../../helpers/btv_colors.dart';
 import '../../helpers/btv_typography.dart';
 import '../../l10n/app_localizations.dart';
 import '../../models/analytics/search_performed.dart';
+import '../../models/analytics/search.dart';
 import '../../providers/analytics.dart';
+import '../../providers/inherited_data.dart';
 
 class SearchResultsPage extends ConsumerStatefulWidget {
   final String searchInput;
@@ -29,7 +32,6 @@ class _SearchResultsPageState extends ConsumerState<SearchResultsPage> {
 
   void setResultFuture() {
     final client = ref.read(gqlClientProvider);
-    final analytics = ref.read(analyticsProvider);
     if (widget.searchInput != '') {
       setState(() {
         _resultFuture = debouncer.run(
@@ -51,11 +53,11 @@ class _SearchResultsPageState extends ConsumerState<SearchResultsPage> {
                 }
                 final searchResult = value.parsedData?.search;
                 if (searchResult != null) {
-                  analytics.searchPerformed(SearchPerformedEvent(
-                    searchText: widget.searchInput,
-                    searchLatency: searchStopwatch.elapsedMilliseconds,
-                    searchResultCount: searchResult.hits,
-                  ));
+                  ref.read(analyticsProvider).searchPerformed(SearchPerformedEvent(
+                        searchText: widget.searchInput,
+                        searchLatency: searchStopwatch.elapsedMilliseconds,
+                        searchResultCount: searchResult.hits,
+                      ));
                 }
                 return searchResult;
               },
@@ -78,6 +80,18 @@ class _SearchResultsPageState extends ConsumerState<SearchResultsPage> {
     if (oldWidget.searchInput != widget.searchInput) {
       setResultFuture();
     }
+  }
+
+  void sendSearchItemClickedAnalytics(int index, Fragment$SearchResultItem$$EpisodeSearchItem item) {
+    ref.read(analyticsProvider).searchResultClicked(
+          SearchResultClickedEvent(
+            searchText: widget.searchInput,
+            elementPosition: index,
+            elementType: item.$__typename,
+            elementId: item.id,
+            group: 'Episodes',
+          ),
+        );
   }
 
   @override
@@ -103,7 +117,11 @@ class _SearchResultsPageState extends ConsumerState<SearchResultsPage> {
             return ListView(
               keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
               children: [
-                if (programs.isNotEmpty) ResultProgramsList(title: S.of(context).programsSection, items: programs),
+                if (programs.isNotEmpty)
+                  InheritedData(
+                    inheritedData: SearchAnalytics(searchText: widget.searchInput),
+                    child: (context) => ResultProgramsList(title: S.of(context).programsSection, items: programs),
+                  ),
                 if (episodes.isNotEmpty)
                   Container(
                     padding: const EdgeInsets.only(top: 12, right: 16, left: 16),
@@ -119,10 +137,13 @@ class _SearchResultsPageState extends ConsumerState<SearchResultsPage> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: episodes
-                          .map(
-                            (e) => GestureDetector(
+                          .mapIndexed(
+                            (index, e) => GestureDetector(
                               behavior: HitTestBehavior.opaque,
-                              onTap: () => context.navigateTo(EpisodeScreenRoute(episodeId: e.id)),
+                              onTap: () {
+                                context.navigateTo(EpisodeScreenRoute(episodeId: e.id));
+                                sendSearchItemClickedAnalytics(index, e);
+                              },
                               child: EpisodeListEpisode(
                                 id: e.id,
                                 title: e.title,

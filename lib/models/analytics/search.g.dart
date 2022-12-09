@@ -13,6 +13,7 @@ _$_SectionClickedEvent _$$_SectionClickedEventFromJson(
       elementPosition: json['elementPosition'] as int,
       elementType: json['elementType'] as String,
       elementId: json['elementId'] as String,
+      group: json['group'] as String,
     );
 
 Map<String, dynamic> _$$_SectionClickedEventToJson(
@@ -22,4 +23,5 @@ Map<String, dynamic> _$$_SectionClickedEventToJson(
       'elementPosition': instance.elementPosition,
       'elementType': instance.elementType,
       'elementId': instance.elementId,
+      'group': instance.group,
     };

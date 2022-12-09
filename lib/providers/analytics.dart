@@ -13,6 +13,7 @@ import 'package:rudder_sdk_flutter_platform_interface/platform.dart';
 import '../models/analytics/deep_link_opened.dart';
 import '../models/analytics/language_changed.dart';
 import '../models/analytics/search_performed.dart';
+import '../models/analytics/search.dart';
 import '../models/analytics/sections.dart';
 import '../models/analytics/content_shared.dart';
 
@@ -90,6 +91,10 @@ class Analytics {
       elementId: sectionItemAnalytics.id,
     );
     RudderController.instance.track('section_clicked', properties: getCommonData().putValue(map: event.toJson()));
+  }
+
+  void searchResultClicked(SearchResultClickedEvent event) {
+    RudderController.instance.track('searchresult_clicked', properties: getCommonData().putValue(map: event.toJson()));
   }
 
   void searchPerformed(SearchPerformedEvent event) {
