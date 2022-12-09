@@ -1,19 +1,28 @@
 import 'package:brunstadtv_app/components/loading_indicator.dart';
 import 'package:brunstadtv_app/helpers/utils.dart';
+import 'package:brunstadtv_app/models/analytics/search_result_clicked.dart';
+import 'package:brunstadtv_app/providers/analytics.dart';
 import 'package:flutter/material.dart';
 import 'package:brunstadtv_app/graphql/queries/search.graphql.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../helpers/btv_colors.dart';
 import '../helpers/btv_typography.dart';
+import '../providers/inherited_data.dart';
 import 'horizontal_slider.dart';
 import 'bordered_image_container.dart';
 
-class ResultProgramsList extends StatelessWidget {
+class ResultProgramsList extends ConsumerStatefulWidget {
   final String title;
   final List<Fragment$SearchResultItem$$ShowSearchItem> items;
 
   const ResultProgramsList({required this.title, required this.items});
 
+  @override
+  ConsumerState<ResultProgramsList> createState() => _ResultProgramsListState();
+}
+
+class _ResultProgramsListState extends ConsumerState<ResultProgramsList> {
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -23,17 +32,20 @@ class ResultProgramsList extends StatelessWidget {
           padding: const EdgeInsets.only(top: 12, right: 16, bottom: 8, left: 16),
           margin: const EdgeInsets.only(bottom: 8),
           child: Text(
-            title,
+            widget.title,
             style: BtvTextStyles.title2,
           ),
         ),
         HorizontalSlider(
           height: 140,
           padding: const EdgeInsets.only(left: 16, right: 16, bottom: 8),
-          itemCount: items.length,
+          itemCount: widget.items.length,
           itemBuilder: (BuildContext context, int index) {
-            var item = items[index];
-            return _Program(item);
+            var item = widget.items[index];
+            return InheritedData<SearchItemAnalytics>(
+              inheritedData: SearchItemAnalytics(position: index, type: item.$__typename, id: item.id, group: 'shows'),
+              child: (context) => _Program(item),
+            );
           },
         ),
       ],
@@ -41,16 +53,16 @@ class ResultProgramsList extends StatelessWidget {
   }
 }
 
-class _Program extends StatefulWidget {
+class _Program extends ConsumerStatefulWidget {
   final Fragment$SearchResultItem$$ShowSearchItem _item;
 
   const _Program(this._item);
 
   @override
-  State<_Program> createState() => _ProgramState();
+  ConsumerState<_Program> createState() => _ProgramState();
 }
 
-class _ProgramState extends State<_Program> {
+class _ProgramState extends ConsumerState<_Program> {
   static const _slideWidth = 140.0;
   Future? navigationFuture;
 
@@ -63,6 +75,7 @@ class _ProgramState extends State<_Program> {
           onTap: () {
             setState(() {
               navigationFuture = navigateToShowWithoutEpisodeId(context, widget._item.id);
+              ref.read(analyticsProvider).searchResultClicked(context);
             });
           },
           child: SizedBox(

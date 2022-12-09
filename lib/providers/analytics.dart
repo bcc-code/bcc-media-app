@@ -12,6 +12,8 @@ import 'package:rudder_sdk_flutter_platform_interface/platform.dart';
 
 import '../models/analytics/deep_link_opened.dart';
 import '../models/analytics/language_changed.dart';
+import '../models/analytics/search_performed.dart';
+import '../models/analytics/search_result_clicked.dart';
 import '../models/analytics/sections.dart';
 import '../models/analytics/content_shared.dart';
 
@@ -89,6 +91,33 @@ class Analytics {
       elementId: sectionItemAnalytics.id,
     );
     RudderController.instance.track('section_clicked', properties: getCommonData().putValue(map: event.toJson()));
+  }
+
+  void searchPerformed(SearchPerformedEvent event) {
+    RudderController.instance.track('search_performed', properties: getCommonData().putValue(map: event.toJson()));
+  }
+
+  void searchResultClicked(BuildContext context) {
+    final searchAnalytics = InheritedData.read<SearchAnalytics>(context);
+    if (searchAnalytics == null) {
+      FirebaseCrashlytics.instance.recordError(Exception('Missing SearchAnalytics.'), StackTrace.current);
+      return;
+    }
+    final searchItemAnalytics = InheritedData.read<SearchItemAnalytics>(context);
+    if (searchItemAnalytics == null) {
+      FirebaseCrashlytics.instance.recordError(Exception('Missing SearchItemAnalytics.'), StackTrace.current);
+      return;
+    }
+
+    final event = SearchResultClickedEvent(
+      searchText: searchAnalytics.searchText,
+      elementPosition: searchItemAnalytics.position,
+      elementType: searchItemAnalytics.type,
+      elementId: searchItemAnalytics.id,
+      group: searchItemAnalytics.group,
+    );
+
+    RudderController.instance.track('searchresult_clicked', properties: getCommonData().putValue(map: event.toJson()));
   }
 
   void deepLinkOpened(DeepLinkOpenedEvent event) {

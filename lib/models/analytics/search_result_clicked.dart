@@ -1,7 +1,7 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-part 'search.freezed.dart';
-part 'search.g.dart';
+part 'search_result_clicked.freezed.dart';
+part 'search_result_clicked.g.dart';
 
 @freezed
 class SearchResultClickedEvent with _$SearchResultClickedEvent {
@@ -10,6 +10,7 @@ class SearchResultClickedEvent with _$SearchResultClickedEvent {
     required int elementPosition,
     required String elementType,
     required String elementId,
+    required String group,
   }) = _SectionClickedEvent;
 
   factory SearchResultClickedEvent.fromJson(Map<String, dynamic> json) => _$SearchResultClickedEventFromJson(json);
@@ -18,7 +19,7 @@ class SearchResultClickedEvent with _$SearchResultClickedEvent {
 @freezed
 class SearchAnalytics with _$SearchAnalytics {
   const factory SearchAnalytics({
-    required String? searchText,
+    required String searchText,
   }) = _SearchAnalytics;
 }
 
@@ -28,5 +29,6 @@ class SearchItemAnalytics with _$SearchItemAnalytics {
     required int position,
     required String type,
     required String id,
+    required String group,
   }) = _SearchItemAnalytics;
 }
