@@ -40,21 +40,24 @@ class Input$LegacyIDLookupOptions {
     return result$data;
   }
 
-  CopyWith$Input$LegacyIDLookupOptions<Input$LegacyIDLookupOptions> get copyWith => CopyWith$Input$LegacyIDLookupOptions(
-        this,
-        (i) => i,
-      );
+  CopyWith$Input$LegacyIDLookupOptions<Input$LegacyIDLookupOptions>
+      get copyWith => CopyWith$Input$LegacyIDLookupOptions(
+            this,
+            (i) => i,
+          );
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) {
       return true;
     }
-    if (!(other is Input$LegacyIDLookupOptions) || runtimeType != other.runtimeType) {
+    if (!(other is Input$LegacyIDLookupOptions) ||
+        runtimeType != other.runtimeType) {
       return false;
     }
     final l$episodeID = episodeID;
     final lOther$episodeID = other.episodeID;
-    if (_$data.containsKey('episodeID') != other._$data.containsKey('episodeID')) {
+    if (_$data.containsKey('episodeID') !=
+        other._$data.containsKey('episodeID')) {
       return false;
     }
     if (l$episodeID != lOther$episodeID) {
@@ -62,7 +65,8 @@ class Input$LegacyIDLookupOptions {
     }
     final l$programID = programID;
     final lOther$programID = other.programID;
-    if (_$data.containsKey('programID') != other._$data.containsKey('programID')) {
+    if (_$data.containsKey('programID') !=
+        other._$data.containsKey('programID')) {
       return false;
     }
     if (l$programID != lOther$programID) {
@@ -88,7 +92,8 @@ abstract class CopyWith$Input$LegacyIDLookupOptions<TRes> {
     TRes Function(Input$LegacyIDLookupOptions) then,
   ) = _CopyWithImpl$Input$LegacyIDLookupOptions;
 
-  factory CopyWith$Input$LegacyIDLookupOptions.stub(TRes res) = _CopyWithStubImpl$Input$LegacyIDLookupOptions;
+  factory CopyWith$Input$LegacyIDLookupOptions.stub(TRes res) =
+      _CopyWithStubImpl$Input$LegacyIDLookupOptions;
 
   TRes call({
     int? episodeID,
@@ -96,7 +101,8 @@ abstract class CopyWith$Input$LegacyIDLookupOptions<TRes> {
   });
 }
 
-class _CopyWithImpl$Input$LegacyIDLookupOptions<TRes> implements CopyWith$Input$LegacyIDLookupOptions<TRes> {
+class _CopyWithImpl$Input$LegacyIDLookupOptions<TRes>
+    implements CopyWith$Input$LegacyIDLookupOptions<TRes> {
   _CopyWithImpl$Input$LegacyIDLookupOptions(
     this._instance,
     this._then,
@@ -119,7 +125,8 @@ class _CopyWithImpl$Input$LegacyIDLookupOptions<TRes> implements CopyWith$Input$
       }));
 }
 
-class _CopyWithStubImpl$Input$LegacyIDLookupOptions<TRes> implements CopyWith$Input$LegacyIDLookupOptions<TRes> {
+class _CopyWithStubImpl$Input$LegacyIDLookupOptions<TRes>
+    implements CopyWith$Input$LegacyIDLookupOptions<TRes> {
   _CopyWithStubImpl$Input$LegacyIDLookupOptions(this._res);
 
   TRes _res;
@@ -132,7 +139,8 @@ class _CopyWithStubImpl$Input$LegacyIDLookupOptions<TRes> implements CopyWith$In
 }
 
 class Input$EpisodeContext {
-  factory Input$EpisodeContext({String? collectionId}) => Input$EpisodeContext._({
+  factory Input$EpisodeContext({String? collectionId}) =>
+      Input$EpisodeContext._({
         if (collectionId != null) r'collectionId': collectionId,
       });
 
@@ -159,7 +167,8 @@ class Input$EpisodeContext {
     return result$data;
   }
 
-  CopyWith$Input$EpisodeContext<Input$EpisodeContext> get copyWith => CopyWith$Input$EpisodeContext(
+  CopyWith$Input$EpisodeContext<Input$EpisodeContext> get copyWith =>
+      CopyWith$Input$EpisodeContext(
         this,
         (i) => i,
       );
@@ -173,7 +182,8 @@ class Input$EpisodeContext {
     }
     final l$collectionId = collectionId;
     final lOther$collectionId = other.collectionId;
-    if (_$data.containsKey('collectionId') != other._$data.containsKey('collectionId')) {
+    if (_$data.containsKey('collectionId') !=
+        other._$data.containsKey('collectionId')) {
       return false;
     }
     if (l$collectionId != lOther$collectionId) {
@@ -185,7 +195,8 @@ class Input$EpisodeContext {
   @override
   int get hashCode {
     final l$collectionId = collectionId;
-    return Object.hashAll([_$data.containsKey('collectionId') ? l$collectionId : const {}]);
+    return Object.hashAll(
+        [_$data.containsKey('collectionId') ? l$collectionId : const {}]);
   }
 }
 
@@ -195,12 +206,14 @@ abstract class CopyWith$Input$EpisodeContext<TRes> {
     TRes Function(Input$EpisodeContext) then,
   ) = _CopyWithImpl$Input$EpisodeContext;
 
-  factory CopyWith$Input$EpisodeContext.stub(TRes res) = _CopyWithStubImpl$Input$EpisodeContext;
+  factory CopyWith$Input$EpisodeContext.stub(TRes res) =
+      _CopyWithStubImpl$Input$EpisodeContext;
 
   TRes call({String? collectionId});
 }
 
-class _CopyWithImpl$Input$EpisodeContext<TRes> implements CopyWith$Input$EpisodeContext<TRes> {
+class _CopyWithImpl$Input$EpisodeContext<TRes>
+    implements CopyWith$Input$EpisodeContext<TRes> {
   _CopyWithImpl$Input$EpisodeContext(
     this._instance,
     this._then,
@@ -212,13 +225,16 @@ class _CopyWithImpl$Input$EpisodeContext<TRes> implements CopyWith$Input$Episode
 
   static const _undefined = {};
 
-  TRes call({Object? collectionId = _undefined}) => _then(Input$EpisodeContext._({
+  TRes call({Object? collectionId = _undefined}) =>
+      _then(Input$EpisodeContext._({
         ..._instance._$data,
-        if (collectionId != _undefined) 'collectionId': (collectionId as String?),
+        if (collectionId != _undefined)
+          'collectionId': (collectionId as String?),
       }));
 }
 
-class _CopyWithStubImpl$Input$EpisodeContext<TRes> implements CopyWith$Input$EpisodeContext<TRes> {
+class _CopyWithStubImpl$Input$EpisodeContext<TRes>
+    implements CopyWith$Input$EpisodeContext<TRes> {
   _CopyWithStubImpl$Input$EpisodeContext(this._res);
 
   TRes _res;
@@ -250,24 +266,9 @@ const possibleTypesMap = {
     'EpisodeItem',
     'PageItem',
   },
-  'CalendarEntry': {
-    'SimpleCalendarEntry',
-    'EpisodeCalendarEntry',
-    'SeasonCalendarEntry',
-    'ShowCalendarEntry',
-  },
-  'SearchResultItem': {
-    'EpisodeSearchItem',
-    'SeasonSearchItem',
-    'ShowSearchItem',
-  },
-  'Task': {
-    'AlternativesTask',
-    'TextTask',
-    'PosterTask',
-    'QuoteTask',
-    'VideoTask',
-    'LinkTask',
+  'EpisodeContextUnion': {
+    'Season',
+    'ContextCollection',
   },
   'Section': {
     'PosterSection',
@@ -313,5 +314,9 @@ const possibleTypesMap = {
   'Task': {
     'AlternativesTask',
     'TextTask',
+    'PosterTask',
+    'QuoteTask',
+    'VideoTask',
+    'LinkTask',
   },
 };
