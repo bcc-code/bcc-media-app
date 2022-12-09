@@ -18,8 +18,8 @@ class AuthJsChannel {
   }
 
   dynamic handleMessage(List<dynamic> arguments) {
-    debugPrint('ADJKSDHJKADJKSDHJKASADJKSDHJKASADJKSDHJKASADJKSDHJKASADJKSDHJKASADJKSDHJKASADJKSDHJKASADJKSDHJKASAS');
     if (arguments[0] == 'get_access_token') {
+      debugPrint('delivering access token to js');
       return ref.read(authStateProvider).auth0AccessToken;
     }
   }

@@ -128,12 +128,8 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen> with AutoRouteAwa
           return result;
         },
       );
-      lessonProgressFuture = ref
-          .read(gqlClientProvider)
-          .query$GetEpisodeLessonProgress(
-              Options$Query$GetEpisodeLessonProgress(variables: Variables$Query$GetEpisodeLessonProgress(id: widget.episodeId.toString())))
-          .then(((value) => value.parsedData));
     });
+    loadLessonProgress();
     await episodeFuture;
     if (widget.autoplay) {
       if (scrollCompleter == null) {
@@ -144,6 +140,16 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen> with AutoRouteAwa
         });
       }
     }
+  }
+
+  void loadLessonProgress() {
+    setState(() {
+      lessonProgressFuture = ref
+          .read(gqlClientProvider)
+          .query$GetEpisodeLessonProgress(
+              Options$Query$GetEpisodeLessonProgress(variables: Variables$Query$GetEpisodeLessonProgress(id: widget.episodeId.toString())))
+          .then(((value) => value.parsedData));
+    });
   }
 
   Future setupPlayer() async {
@@ -389,8 +395,11 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen> with AutoRouteAwa
                                           padding: const EdgeInsets.only(top: 16),
                                           child: GestureDetector(
                                             behavior: HitTestBehavior.opaque,
-                                            onTap: () {
-                                              context.router.root.push(StudyScreenRoute(lessonId: data!.episode.lessons.items[0].id));
+                                            onTap: () async {
+                                              await context.router.root.push(StudyScreenRoute(lessonId: data!.episode.lessons.items[0].id));
+                                              if (mounted) {
+                                                loadLessonProgress();
+                                              }
                                             },
                                             child: StudyMoreButton(progressOverview: data!.episode.lessons.items[0]),
                                           ),
