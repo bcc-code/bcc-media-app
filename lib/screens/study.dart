@@ -78,10 +78,7 @@ class StudyScreenState extends ConsumerState<StudyScreen> {
             opacity: loading ? 0 : 1,
             child: InAppWebView(
               gestureRecognizers: {Factory<VerticalDragGestureRecognizer>(() => VerticalDragGestureRecognizer())},
-              initialSettings: InAppWebViewSettings(
-                useHybridComposition: false,
-                transparentBackground: true,
-              ),
+              initialSettings: InAppWebViewSettings(useHybridComposition: false, transparentBackground: true, verticalScrollBarEnabled: false),
               onWebViewCreated: onWebViewCreated,
               onConsoleMessage: (_, msg) => debugPrint(msg.message),
               onLoadStop: (controller, url) {

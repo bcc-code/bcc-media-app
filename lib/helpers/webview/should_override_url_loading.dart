@@ -4,7 +4,7 @@ import 'package:url_launcher/url_launcher.dart';
 
 Future<NavigationActionPolicy> Function(InAppWebViewController, NavigationAction)? shouldOverrideUrlLoading(String originalUrl) =>
     (controller, navigationAction) async {
-      if (navigationAction.isForMainFrame) return NavigationActionPolicy.ALLOW;
+      //if (navigationAction.isForMainFrame) return NavigationActionPolicy.ALLOW;
       var originalUri = Uri.tryParse(originalUrl);
       var navigationUri = navigationAction.request.url?.uriValue;
       if (originalUri != null &&
