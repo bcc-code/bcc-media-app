@@ -101,18 +101,20 @@ class Analytics {
     final searchAnalytics = InheritedData.read<SearchAnalytics>(context);
     if (searchAnalytics == null) {
       FirebaseCrashlytics.instance.recordError(Exception('Missing SearchAnalytics.'), StackTrace.current);
+      return;
     }
     final searchItemAnalytics = InheritedData.read<SearchItemAnalytics>(context);
     if (searchItemAnalytics == null) {
       FirebaseCrashlytics.instance.recordError(Exception('Missing SearchItemAnalytics.'), StackTrace.current);
+      return;
     }
 
     final event = SearchResultClickedEvent(
-      searchText: searchAnalytics!.searchText,
-      elementPosition: searchItemAnalytics!.position,
-      elementType: searchItemAnalytics!.type,
-      elementId: searchItemAnalytics!.id,
-      group: searchItemAnalytics!.group,
+      searchText: searchAnalytics.searchText,
+      elementPosition: searchItemAnalytics.position,
+      elementType: searchItemAnalytics.type,
+      elementId: searchItemAnalytics.id,
+      group: searchItemAnalytics.group,
     );
 
     RudderController.instance.track('searchresult_clicked', properties: getCommonData().putValue(map: event.toJson()));
