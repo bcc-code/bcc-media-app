@@ -8,7 +8,7 @@ import 'package:url_launcher/url_launcher_string.dart';
 
 import '../graphql/queries/page.graphql.dart';
 import '../helpers/btv_colors.dart';
-import '../helpers/webview/router_js_channel.dart';
+import '../helpers/webview/main_js_channel.dart';
 
 class WebSection extends StatefulWidget {
   final Fragment$Section$$WebSection data;
@@ -40,7 +40,7 @@ class _WebSectionState extends State<WebSection> {
         ),
       );
     }
-    RouterJsChannel.register(context, controller);
+    MainJsChannel.register(context, controller);
   }
 
   Widget _heightOrAspectRatio({double? height, required double aspectRatio, required Widget child}) {

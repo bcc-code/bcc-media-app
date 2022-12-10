@@ -1,6 +1,5 @@
 import 'package:brunstadtv_app/components/loading_generic.dart';
 import 'package:brunstadtv_app/helpers/btv_typography.dart';
-import 'package:brunstadtv_app/helpers/webview/auth_js_channel.dart';
 import 'package:brunstadtv_app/helpers/webview/should_override_url_loading.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/gestures.dart';
@@ -8,21 +7,21 @@ import 'package:flutter/material.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:url_launcher/url_launcher.dart';
-import 'package:url_launcher/url_launcher_string.dart';
 
 import '../components/custom_back_button.dart';
 import '../env/env.dart';
 import '../helpers/btv_buttons.dart';
 import '../helpers/btv_colors.dart';
 import '../helpers/svg_icons.dart';
-import '../helpers/webview/router_js_channel.dart';
+import '../helpers/webview/main_js_channel.dart';
 
 class StudyScreen extends ConsumerStatefulWidget {
+  final String episodeId;
   final String lessonId;
 
   StudyScreen({
     Key? key,
+    required this.episodeId,
     required this.lessonId,
   }) : super(key: key ?? GlobalKey<StudyScreenState>());
 
@@ -41,7 +40,7 @@ class StudyScreenState extends ConsumerState<StudyScreen> {
   @override
   void initState() {
     super.initState();
-    url = '${Env.studyUrl}/embed/lesson/${widget.lessonId}';
+    url = '${Env.studyUrl}/embed/episode/${widget.episodeId}/lesson/${widget.lessonId}';
   }
 
   void onWebViewCreated(InAppWebViewController controller) {
@@ -59,8 +58,7 @@ class StudyScreenState extends ConsumerState<StudyScreen> {
         ),
       );
     }
-    RouterJsChannel.register(context, controller);
-    AuthJsChannel.register(context, controller);
+    MainJsChannel.register(context, controller);
     controller.addJavaScriptHandler(handlerName: 'flutter_study', callback: handleMessage);
   }
 

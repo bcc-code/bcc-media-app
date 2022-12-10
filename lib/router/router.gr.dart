@@ -171,6 +171,7 @@ class AppRouter extends _i20.RootStackRouter {
         routeData: routeData,
         child: _i12.StudyScreen(
           key: args.key,
+          episodeId: args.episodeId,
           lessonId: args.lessonId,
         ),
         transitionsBuilder: _i23.CustomTransitionsBuilders.slideUp,
@@ -632,12 +633,14 @@ class AutoLoginScreeenRoute extends _i20.PageRouteInfo<void> {
 class StudyScreenRoute extends _i20.PageRouteInfo<StudyScreenRouteArgs> {
   StudyScreenRoute({
     _i21.Key? key,
+    required String episodeId,
     required String lessonId,
   }) : super(
           StudyScreenRoute.name,
           path: 'study',
           args: StudyScreenRouteArgs(
             key: key,
+            episodeId: episodeId,
             lessonId: lessonId,
           ),
         );
@@ -648,16 +651,19 @@ class StudyScreenRoute extends _i20.PageRouteInfo<StudyScreenRouteArgs> {
 class StudyScreenRouteArgs {
   const StudyScreenRouteArgs({
     this.key,
+    required this.episodeId,
     required this.lessonId,
   });
 
   final _i21.Key? key;
 
+  final String episodeId;
+
   final String lessonId;
 
   @override
   String toString() {
-    return 'StudyScreenRouteArgs{key: $key, lessonId: $lessonId}';
+    return 'StudyScreenRouteArgs{key: $key, episodeId: $episodeId, lessonId: $lessonId}';
   }
 }
 

@@ -28,6 +28,7 @@ import 'package:bccm_player/cast_button.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:brunstadtv_app/helpers/transparent_image.dart';
 import 'package:share_plus/share_plus.dart';
+import 'package:shimmer/shimmer.dart';
 
 import '../api/brunstadtv.dart';
 import '../components/bottom_sheet_select.dart';
@@ -386,17 +387,34 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen> with AutoRouteAwa
                                     const SizedBox(height: 14.5),
                                     Text(episode.description, style: BtvTextStyles.body2.copyWith(color: BtvColors.label3)),
                                     if (episode.lessons.items.isNotEmpty)
-                                      simpleFutureBuilder<Query$GetEpisodeLessonProgress?>(
-                                        future: lessonProgressFuture,
-                                        loading: () => const LoadingIndicator(),
-                                        error: (e) => const SizedBox.shrink(),
-                                        noData: () => const SizedBox.shrink(),
-                                        ready: (data) => Padding(
-                                          padding: const EdgeInsets.only(top: 16),
-                                          child: GestureDetector(
+                                      Padding(
+                                        padding: const EdgeInsets.only(top: 16),
+                                        child: simpleFutureBuilder<Query$GetEpisodeLessonProgress?>(
+                                          future: lessonProgressFuture,
+                                          loading: () => Stack(
+                                            children: [
+                                              StudyMoreButton(
+                                                  progressOverview: Fragment$LessonProgressOverview(
+                                                      $__typename: '',
+                                                      id: episode.lessons.items[0].id,
+                                                      progress: Fragment$LessonProgressOverview$progress($__typename: '', completed: 0, total: 0))),
+                                              Positioned.fill(
+                                                  child: Shimmer.fromColors(
+                                                      enabled: true,
+                                                      baseColor: BtvColors.background2,
+                                                      highlightColor: Color.lerp(BtvColors.background2, Colors.white, 0.1)!,
+                                                      child: Container(
+                                                          decoration:
+                                                              BoxDecoration(borderRadius: BorderRadius.circular(9), color: BtvColors.background2))))
+                                            ],
+                                          ),
+                                          error: (e) => const SizedBox.shrink(),
+                                          noData: () => const SizedBox.shrink(),
+                                          ready: (data) => GestureDetector(
                                             behavior: HitTestBehavior.opaque,
                                             onTap: () async {
-                                              await context.router.root.push(StudyScreenRoute(lessonId: data!.episode.lessons.items[0].id));
+                                              await context.router.root
+                                                  .push(StudyScreenRoute(episodeId: episode.id, lessonId: data!.episode.lessons.items[0].id));
                                               if (mounted) {
                                                 loadLessonProgress();
                                               }
