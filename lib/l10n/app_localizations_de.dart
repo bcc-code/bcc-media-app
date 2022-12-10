@@ -734,4 +734,7 @@ class SDe extends S {
 
   @override
   String get watchNow => 'Schaue es jetzt';
+
+  @override
+  String get exploreContent => 'Explore content';
 }

@@ -734,4 +734,7 @@ class SEs extends S {
 
   @override
   String get watchNow => 'Ver ahora';
+
+  @override
+  String get exploreContent => 'Explore content';
 }

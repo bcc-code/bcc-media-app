@@ -734,4 +734,7 @@ class SNb extends S {
 
   @override
   String get watchNow => 'Se nå';
+
+  @override
+  String get exploreContent => 'Explore content';
 }

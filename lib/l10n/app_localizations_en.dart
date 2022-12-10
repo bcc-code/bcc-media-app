@@ -26,7 +26,7 @@ class SEn extends S {
   String get loading => 'Loading';
 
   @override
-  String get loginPageDisplay1 => 'The most powerful message in the world';
+  String get loginPageDisplay1 => 'The most powerful\n message in the world';
 
   @override
   String get loginPageDisplay2 => 'Watch series, shows and films based on Christian values';
@@ -734,4 +734,7 @@ class SEn extends S {
 
   @override
   String get watchNow => 'Watch now';
+
+  @override
+  String get exploreContent => 'Explore content';
 }

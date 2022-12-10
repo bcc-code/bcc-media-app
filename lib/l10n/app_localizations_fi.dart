@@ -734,4 +734,7 @@ class SFi extends S {
 
   @override
   String get watchNow => 'Katso';
+
+  @override
+  String get exploreContent => 'Explore content';
 }

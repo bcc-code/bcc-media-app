@@ -734,4 +734,7 @@ class SRu extends S {
 
   @override
   String get watchNow => 'Смотреть сейчас';
+
+  @override
+  String get exploreContent => 'Explore content';
 }

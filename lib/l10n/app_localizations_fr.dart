@@ -734,4 +734,7 @@ class SFr extends S {
 
   @override
   String get watchNow => 'Regarder maintenant';
+
+  @override
+  String get exploreContent => 'Explore content';
 }

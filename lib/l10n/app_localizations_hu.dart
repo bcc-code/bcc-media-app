@@ -734,4 +734,7 @@ class SHu extends S {
 
   @override
   String get watchNow => 'Nézd meg most';
+
+  @override
+  String get exploreContent => 'Explore content';
 }

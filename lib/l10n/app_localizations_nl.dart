@@ -734,4 +734,7 @@ class SNl extends S {
 
   @override
   String get watchNow => 'Nu kijken';
+
+  @override
+  String get exploreContent => 'Explore content';
 }

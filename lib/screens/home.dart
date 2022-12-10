@@ -3,7 +3,6 @@ import 'dart:io';
 import 'dart:ui';
 
 import 'package:auto_route/auto_route.dart';
-import 'package:brunstadtv_app/components/sign_in_tooltip.dart';
 import 'package:brunstadtv_app/helpers/svg_icons.dart';
 import 'package:brunstadtv_app/helpers/utils.dart';
 import 'package:brunstadtv_app/helpers/version_number_utils.dart';
@@ -185,29 +184,6 @@ class _HomeScreenState extends ConsumerState<HomeScreen> with PageMixin {
                 }),
           ),
         ),
-        Positioned(
-          left: 7 + MediaQuery.of(context).padding.left,
-          top: 35 + MediaQuery.of(context).padding.top,
-          child: AnimatedSwitcher(
-            duration: const Duration(milliseconds: 500),
-            transitionBuilder: (Widget child, Animation<double> animation) {
-              return FadeTransition(opacity: animation, child: child);
-            },
-            child: !ref.read(authStateProvider).guestMode || tooltipDismissed
-                ? null
-                : Material(
-                    color: Colors.transparent,
-                    child: GestureDetector(
-                      onTap: () {
-                        setState(() => tooltipDismissed = true);
-                      },
-                      child: SignInTooltip(onClose: () {
-                        setState(() => tooltipDismissed = true);
-                      }),
-                    ),
-                  ),
-          ),
-        )
       ],
     );
   }

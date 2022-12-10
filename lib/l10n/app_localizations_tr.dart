@@ -734,4 +734,7 @@ class STr extends S {
 
   @override
   String get watchNow => 'Watch now';
+
+  @override
+  String get exploreContent => 'Explore content';
 }

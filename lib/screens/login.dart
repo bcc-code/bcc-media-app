@@ -91,24 +91,33 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Container(
-                    height: 220,
-                    margin: const EdgeInsets.only(bottom: 32),
-                    child: Image.asset('assets/images/Onboarding.png'),
+                    height: 220 * (MediaQuery.of(context).size.height / 600),
+                    margin: const EdgeInsets.only(top: 40, bottom: 30),
+                    child:
+                        Transform.scale(scale: 1.3 * (MediaQuery.of(context).size.height / 800), child: Image.asset('assets/images/Onboarding.png')),
                   ),
-                  Container(
-                    margin: const EdgeInsets.only(right: 38, bottom: 12, left: 38),
-                    child: Text(
-                      S.of(context).loginPageDisplay1,
-                      style: BtvTextStyles.title1,
-                      textAlign: TextAlign.center,
-                    ),
-                  ),
-                  Container(
-                    margin: const EdgeInsets.only(left: 38, bottom: 60, right: 38),
-                    child: Text(
-                      S.of(context).loginPageDisplay2,
-                      textAlign: TextAlign.center,
-                      style: BtvTextStyles.body1.copyWith(color: BtvColors.label3),
+                  Expanded(
+                    child: Container(
+                      alignment: Alignment.center,
+                      margin: EdgeInsets.only(right: 38, bottom: 12, left: 38),
+                      child: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Text(
+                            S.of(context).loginPageDisplay1,
+                            style: BtvTextStyles.title1,
+                            textAlign: TextAlign.center,
+                          ),
+                          Padding(
+                            padding: EdgeInsets.only(top: 12),
+                            child: Text(
+                              S.of(context).loginPageDisplay2,
+                              textAlign: TextAlign.center,
+                              style: BtvTextStyles.body1.copyWith(color: BtvColors.label3),
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                   Text(
@@ -128,16 +137,16 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                   Container(
                     margin: const EdgeInsets.only(bottom: 12),
                     child: BtvButton.large(
-                      onPressed: loginAction,
-                      labelText: S.of(context).signInButton,
+                      onPressed: () {
+                        context.router.popUntil((route) => false);
+                        context.router.push(const TabsRootScreenRoute());
+                      },
+                      labelText: S.of(context).exploreContent,
                     ),
                   ),
                   BtvButton.mediumSecondary(
-                    labelText: S.of(context).skipToPublicContent,
-                    onPressed: () {
-                      context.router.popUntil((route) => false);
-                      context.router.push(const TabsRootScreenRoute());
-                    },
+                    labelText: S.of(context).signInButton,
+                    onPressed: loginAction,
                   ).copyWith(
                     backgroundColor: Colors.transparent,
                     border: Border.all(color: Colors.transparent),

@@ -734,4 +734,7 @@ class SPt extends S {
 
   @override
   String get watchNow => 'Assistir agora';
+
+  @override
+  String get exploreContent => 'Explore content';
 }

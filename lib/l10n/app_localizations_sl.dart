@@ -734,4 +734,7 @@ class SSl extends S {
 
   @override
   String get watchNow => 'Glej zdaj';
+
+  @override
+  String get exploreContent => 'Explore content';
 }

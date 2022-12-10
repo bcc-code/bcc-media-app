@@ -734,4 +734,7 @@ class SPl extends S {
 
   @override
   String get watchNow => 'Oglądaj teraz';
+
+  @override
+  String get exploreContent => 'Explore content';
 }

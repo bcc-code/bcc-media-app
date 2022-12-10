@@ -164,7 +164,7 @@ abstract class S {
   /// Text displayed on login screen.
   ///
   /// In en, this message translates to:
-  /// **'The most powerful message in the world'**
+  /// **'The most powerful\n message in the world'**
   String get loginPageDisplay1;
 
   /// Text displayed on login screen.
@@ -1528,6 +1528,12 @@ abstract class S {
   /// In en, this message translates to:
   /// **'Watch now'**
   String get watchNow;
+
+  /// A button on the login page
+  ///
+  /// In en, this message translates to:
+  /// **'Explore content'**
+  String get exploreContent;
 }
 
 class _SDelegate extends LocalizationsDelegate<S> {
