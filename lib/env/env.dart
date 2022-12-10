@@ -11,5 +11,5 @@ class Env {
   static const brunstadtvApiEndpoint = 'https://api.brunstad.tv/query';
   static const npawAccountCode = _Secrets.npawAccountCode;
   static const rudderstackWriteKey = _Secrets.rudderstackWriteKey;
-  static final studyUrl = _Secrets.studyUrl.isNotEmpty ? _Secrets.studyUrl : 'https://web.brunstad.tv/study';
+  static final studyUrl = _Secrets.studyUrl.isNotEmpty ? _Secrets.studyUrl : 'https://web.brunstad.tv';
 }
