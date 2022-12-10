@@ -407,7 +407,7 @@ class STr extends S {
   String get thankYouSupportDescription => 'Tüm geri bildirimleri takdir ediyoruz ve sorunu en kısa sürede ele alacağız.';
 
   @override
-  String get sendFail => 'Couldn\'t send you message';
+  String get sendFail => 'Couldn\'t send your message';
 
   @override
   String get sendFailDescription => 'Bir şeyler yanlış gitti. İnternet bağlantınızı kontrol edip tekrar deneyin.';
@@ -526,22 +526,22 @@ class STr extends S {
   String get browserInstall => 'Bu URL\'yi açabilmek için lütfen web tarayıcısını kurun.';
 
   @override
-  String get share => 'Share';
+  String get share => 'Paylaş';
 
   @override
-  String get liveNow => 'Live now';
+  String get liveNow => 'Şimdi canlı';
 
   @override
   String get program => 'Program';
 
   @override
-  String get participateTab => 'Participate';
+  String get participateTab => 'Katıl';
 
   @override
-  String get tomorrow => 'Tomorrow';
+  String get tomorrow => 'Yarın';
 
   @override
-  String get readBy => 'Read by';
+  String get readBy => 'Okuyan';
 
   @override
   String pollAnswer(String answer) {
@@ -549,19 +549,19 @@ class STr extends S {
   }
 
   @override
-  String get broadcasts => 'Broadcasts';
+  String get broadcasts => 'Yayınlar';
 
   @override
-  String get quizAnswered => 'Answers submitted';
+  String get quizAnswered => 'Yanıtlar gönderildi';
 
   @override
-  String get quizNotEnabled => 'Quiz is not available at the moment. Please try again later.';
+  String get quizNotEnabled => 'Quiz şu anda kullanılamıyor. Lütfen daha sonra tekrar deneyiniz.';
 
   @override
-  String get calendar => 'Calendar';
+  String get calendar => 'Takvim';
 
   @override
-  String get noEvents => 'No scheduled transmissions';
+  String get noEvents => 'Bugün için planlanmış yayın yok';
 
   @override
   String get appUpdateTitle => 'Update required';
@@ -573,7 +573,7 @@ class STr extends S {
   String get appUpdateAccepted => 'Update';
 
   @override
-  String get donationNotAvailable => 'Donation is not available at the moment. Please try again later.';
+  String get donationNotAvailable => 'Şu anda bağış yapılamıyor. Lütfen daha sonra tekrar deneyiniz.';
 
   @override
   String posts(int postsCount) {
@@ -581,45 +581,45 @@ class STr extends S {
   }
 
   @override
-  String get copy => 'Copy';
+  String get copy => 'Kopyala';
 
   @override
-  String get reload => 'Reload';
+  String get reload => 'Yeniden yükle';
 
   @override
-  String get participantsTitle => 'Who is answering?';
+  String get participantsTitle => 'Kim cevap veriyor?';
 
   @override
-  String get participantsSubtitle => 'Select one or more participants.';
+  String get participantsSubtitle => 'Bir veya daha fazla katılımcı seçin.';
 
   @override
-  String get yourFamily => 'Your family';
+  String get yourFamily => 'Ailen';
 
   @override
-  String get yourTurn => 'Your turn';
+  String get yourTurn => 'Senin sıran';
 
   @override
-  String get fAQ => 'FAQ';
+  String get fAQ => 'SSS';
 
   @override
-  String get shareStart => 'Share from start';
+  String get shareStart => 'Baştan paylaş';
 
   @override
   String shareTime(String time) {
-    return 'Share from time $time';
+    return 'Share from $time';
   }
 
   @override
   String get loadContentError => 'Couldn\'t load content';
 
   @override
-  String get audioOnlyErrorDescription => 'Check internet connection and try again';
+  String get audioOnlyErrorDescription => 'İnternet bağlantısını kontrol edin ve tekrar deneyin';
 
   @override
-  String get privacyPolicy => 'Privacy Policy';
+  String get privacyPolicy => 'Gizlilik Politikası';
 
   @override
-  String get tokenError => 'We couldn\'t confirm your identity, most likely due to a network problem. Some features of the app may not work correctly.';
+  String get tokenError => 'Büyük olasılıkla bir ağ sorunu nedeniyle kimliğinizi doğrulayamadık. Uygulamanın bazı özellikleri düzgün çalışmayabilir.';
 
   @override
   String get categoriesTab => 'Categories';
@@ -703,13 +703,13 @@ class STr extends S {
   String get liveHeader => 'Canlı';
 
   @override
-  String get recentlyPublishedSection => 'Recently published';
+  String get recentlyPublishedSection => 'Son zamanlarda yayınlanmış';
 
   @override
-  String get exploreCategoriesSection => 'Explore categories';
+  String get exploreCategoriesSection => 'Kategorileri keşfedin';
 
   @override
-  String get programsSection => 'Programs';
+  String get programsSection => 'Programlar';
 
   @override
   String get episodesSection => 'Bölümler';
@@ -718,7 +718,7 @@ class STr extends S {
   String get categorySeries => 'Diziler';
 
   @override
-  String get categoryKids => 'Kids';
+  String get categoryKids => 'Çocuklar';
 
   @override
   String get categoryFilms => 'Filimler';
@@ -727,13 +727,13 @@ class STr extends S {
   String get categoryEvents => 'Etkinlikler';
 
   @override
-  String get categoryMusic => 'Music';
+  String get categoryMusic => 'Müzik';
 
   @override
-  String get noPlannedEvents => 'No planned events today';
+  String get noPlannedEvents => 'No events planned this day';
 
   @override
-  String get watchNow => 'Watch now';
+  String get watchNow => 'Şimdi izle';
 
   @override
   String get exploreContent => 'Explore content';

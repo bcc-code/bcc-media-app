@@ -1,25 +1,25 @@
 {
-  "loadingContent": "Loading content",
+  "loadingContent": "Carregando conteúdo",
   "@loadingContent": {
     "description": "Text displayed when page content is loading."
   },
-  "signInTooltip": "Sign in to watch more content",
+  "signInTooltip": "Faça login para assistir mais conteúdo",
   "@signInTooltip": {
     "description": "Text for tooltip displayed when a non-member user opens the home page."
   },
-  "skipToPublicContent": "Skip to watch public content",
+  "skipToPublicContent": "Pular para assistir ao conteúdo público",
   "@skipToPublicContent": {
     "description": "Text for button displayed on login screen to skip sign in and watch public content."
   },
-  "minutesShort": "min",
+  "minutesShort": "Min",
   "@minutesShort": {
     "description": "Text for minutes."
   },
-  "calendarThisWeek": "This week",
+  "calendarThisWeek": "Essa semana ",
   "@calendarThisWeek": {
     "description": "Text for This week."
   },
-  "calendarWeek": "week",
+  "calendarWeek": "Semana ",
   "@calendarWeek": {
     "description": "Text week."
   },
@@ -27,15 +27,15 @@
   "@loading": {
     "description": "Text to indicate loading state."
   },
-  "loginPageDisplay1": "The most powerful message in the world",
+  "loginPageDisplay1": "A mensagem mais poderosa do mundo",
   "@loginPageDisplay1": {
     "description": "Text displayed on login screen."
   },
-  "loginPageDisplay2": "Watch series, shows and films based on Christian values",
+  "loginPageDisplay2": "Assistir séries, programas e filmes baseados nos valores cristãos",
   "@loginPageDisplay2": {
     "description": "Text displayed on login screen."
   },
-  "loginPageDisplay3": "Produced by BCC Media",
+  "loginPageDisplay3": "Produzido por BCC Mídia ",
   "@loginPageDisplay3": {
     "description": "Text displayed on login screen."
   },
@@ -51,7 +51,7 @@
   "@profileTab": {
     "description": "Title of the profile page"
   },
-  "faq": "Frequently asked questions",
+  "faq": "Perguntas frequentes",
   "@faq": {
     "description": "Title of the FAQ page."
   },
@@ -195,7 +195,7 @@
   "@search": {
     "description": "Button to clear cache"
   },
-  "noResults": "No results found",
+  "noResults": "Nenhum resultado encontrado",
   "@noResults": {
     "description": "No search results."
   },
@@ -223,7 +223,7 @@
   "@queueLimitTitle": {
     "description": "Title of the alert to the user when attempt to add video to cast queue failed due to full queue."
   },
-  "queueLimitMessage": "You cannot have more than {elementCount} elements in queue.",
+  "queueLimitMessage": "Você não pode ter mais de {element Count} elementos na fila.",
   "@queueLimitMessage": {
     "description": "Error message to the user when attempt to add video to cast queue failed due to full queue.",
     "placeholders": {
@@ -284,7 +284,7 @@
   "@high": {
     "description": "High quality video option"
   },
-  "emptySearch": "You can search all content from BrunstadTV. Series, videos and episodes.",
+  "emptySearch": "Você pode pesquisar todo o conteúdo da BrunstadTV. Séries, vídeos e episódios.",
   "@emptySearch": {
     "description": "Message on search page when there is no search results."
   },
@@ -344,7 +344,7 @@
   "@uploadFileMessage": {
     "description": "Content of the dialog to confirm upload"
   },
-  "watchingWith": "You are watching with {numPeople} others",
+  "watchingWith": "Você está assistindo com mais {numPessoas} pessoas",
   "@watchingWith": {
     "description": "Info on live stream page",
     "placeholders": {
@@ -365,7 +365,7 @@
   "@post": {
     "description": "Button to post written testimony"
   },
-  "charactersLimit": "{charsLeft} of {charsTotal} characters left",
+  "charactersLimit": "{caracteres restantes} De {caracteres totais} caracteres restantes",
   "@charactersLimit": {
     "description": "Info about limit of characters in written testimony",
     "placeholders": {
@@ -469,7 +469,7 @@
   "@change": {
     "description": "Button text on interactive live avatar section"
   },
-  "recordingFailedTitle": "Couldn't record the video",
+  "recordingFailedTitle": "Não foi possível gravar o vídeo",
   "@recordingFailedTitle": {
     "description": "Title in alert dialog when recording fails"
   },
@@ -545,7 +545,7 @@
   "@thankYouSupportDescription": {
     "description": "Text on contact support confirmation page"
   },
-  "sendFail": "Couldn't send you message",
+  "sendFail": "Não foi possível enviar sua mensagem",
   "@sendFail": {
     "description": "General error message that sending failed"
   },
@@ -830,7 +830,7 @@
   "@shareStart": {
     "description": "Option on action sheet for sharing from start"
   },
-  "shareTime": "Share from time {time}",
+  "shareTime": "Share from {time}",
   "@shareTime": {
     "description": "Option on action sheet for sharing from time",
     "placeholders": {
@@ -999,7 +999,7 @@
   "@categoryMusic": {
     "description": "Category name"
   },
-  "noPlannedEvents": "Nenhum evento planejado hoje",
+  "noPlannedEvents": "No events planned this day",
   "@noPlannedEvents": {
     "description": "Information in tvguide"
   },

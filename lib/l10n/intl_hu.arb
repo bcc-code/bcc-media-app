@@ -163,7 +163,7 @@
   "@none": {
     "description": "Indicator on profile page that subtitles are disabled."
   },
-  "auto": "Auto",
+  "auto": "Autó",
   "@auto": {
     "description": "Indicator on profile page that audio and app language are chosen automatically."
   },
@@ -545,7 +545,7 @@
   "@thankYouSupportDescription": {
     "description": "Text on contact support confirmation page"
   },
-  "sendFail": "Neked nem em lehetett üzenetet küldeni",
+  "sendFail": "Nem sikerült elküldeni az üzenetedet",
   "@sendFail": {
     "description": "General error message that sending failed"
   },
@@ -732,7 +732,7 @@
   "@program": {
     "description": "Title of the program tab on live page."
   },
-  "participateTab": "Részt venni",
+  "participateTab": "Részvevők",
   "@participateTab": {
     "description": "Title of the participate tab on live page."
   },
@@ -999,7 +999,7 @@
   "@categoryMusic": {
     "description": "Category name"
   },
-  "noPlannedEvents": "Ma nincs tervezett esemény",
+  "noPlannedEvents": "Ezen a napon nincs tervezett esemény",
   "@noPlannedEvents": {
     "description": "Information in tvguide"
   },

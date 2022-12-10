@@ -5,34 +5,34 @@ class SRo extends S {
   SRo([String locale = 'ro']) : super(locale);
 
   @override
-  String get loadingContent => 'Loading content';
+  String get loadingContent => 'Conținutul se încarcă';
 
   @override
-  String get signInTooltip => 'Sign in to watch more content';
+  String get signInTooltip => 'Autentificați-vă pentru a viziona mai mult conținut';
 
   @override
-  String get skipToPublicContent => 'Skip to watch public content';
+  String get skipToPublicContent => 'Sări peste pentru a viziona conținut public';
 
   @override
   String get minutesShort => 'min';
 
   @override
-  String get calendarThisWeek => 'This week';
+  String get calendarThisWeek => 'Această săptămână';
 
   @override
-  String get calendarWeek => 'week';
+  String get calendarWeek => 'săptămână';
 
   @override
   String get loading => 'Se încarcă';
 
   @override
-  String get loginPageDisplay1 => 'The most powerful message in the world';
+  String get loginPageDisplay1 => 'Cel mai puternic mesaj din lume';
 
   @override
-  String get loginPageDisplay2 => 'Watch series, shows and films based on Christian values';
+  String get loginPageDisplay2 => 'Vezi seriale, emisiuni și filme bazate pe valori Creștine';
 
   @override
-  String get loginPageDisplay3 => 'Produced by BCC Media';
+  String get loginPageDisplay3 => 'Produs de BCC Media';
 
   @override
   String get liveTab => 'În direct';
@@ -44,10 +44,10 @@ class SRo extends S {
   String get profileTab => 'Profil';
 
   @override
-  String get faq => 'Frequently asked questions';
+  String get faq => 'Întrebări frecvente';
 
   @override
-  String get bccMediaCenter => 'BrunstadTV este un centru media necomercial care produce și distribuie conținut bazat pe valori pozitive și creștine.';
+  String get bccMediaCenter => 'BrunstadTV este un centru media necomercial care produce și distribuie conținut bazat pe valori pozitive și Creștine.';
 
   @override
   String get signInButton => 'Conectare';
@@ -152,10 +152,10 @@ class SRo extends S {
   String get search => 'Căutare';
 
   @override
-  String get noResults => 'No results found';
+  String get noResults => 'Nici un rezultat gasit';
 
   @override
-  String get doYouWantCast => 'Vrei să trimiți acest video prin Chromecast?';
+  String get doYouWantCast => 'Vrei să trimiți acest video prin Cast?';
 
   @override
   String get play => 'Redare';
@@ -174,7 +174,7 @@ class SRo extends S {
 
   @override
   String queueLimitMessage(int elementCount) {
-    return 'You cannot have more than $elementCount elements in queue.';
+    return 'Nu poți avea mai mult de $elementCount elemente în coadă.';
   }
 
   @override
@@ -217,7 +217,7 @@ class SRo extends S {
   String get high => 'Înaltă';
 
   @override
-  String get emptySearch => 'You can search all content from BrunstadTV. Series, videos and episodes.';
+  String get emptySearch => 'Poți căuta tot conținutul de pe BrunstadTV. Serii, videoclipuri și episoade.';
 
   @override
   String get back => 'Înapoi';
@@ -263,7 +263,7 @@ class SRo extends S {
 
   @override
   String watchingWith(int numPeople) {
-    return 'You are watching with $numPeople others';
+    return 'Vizionezi împreună cu alți $numPeople';
   }
 
   @override
@@ -277,7 +277,7 @@ class SRo extends S {
 
   @override
   String charactersLimit(int charsLeft, int charsTotal) {
-    return '$charsLeft of $charsTotal characters left';
+    return 'Au rămas $charsLeft din $charsTotal caractere';
   }
 
   @override
@@ -350,7 +350,7 @@ class SRo extends S {
   String get change => 'Modifică';
 
   @override
-  String get recordingFailedTitle => 'Couldn\'t record the video';
+  String get recordingFailedTitle => 'Nu s-a putut înregistra videoclipul';
 
   @override
   String get recordingFailedMessage => 'A apărut o eroare în timpul înregistrării videoului.';
@@ -407,7 +407,7 @@ class SRo extends S {
   String get thankYouSupportDescription => 'Apreciem toate feedback-urile și vom aborda problema cât de curând posibil.';
 
   @override
-  String get sendFail => 'Couldn\'t send you message';
+  String get sendFail => 'Nu am putut trimite mesajul dvs';
 
   @override
   String get sendFailDescription => 'Ceva n-a mers bine. Verifică conexiunea la internet și încearcă din nou.';
@@ -420,12 +420,12 @@ class SRo extends S {
 
   @override
   String newPostsMultiple(int postCount) {
-    return '$postCount new posts!';
+    return '$postCount postări noi!';
   }
 
   @override
   String newPostsSingle(int postCount) {
-    return '$postCount new post!';
+    return '$postCount postare nouă!';
   }
 
   @override
@@ -433,7 +433,7 @@ class SRo extends S {
 
   @override
   String availableFrom(String date) {
-    return 'Available $date';
+    return 'Disponibil de pe $date';
   }
 
   @override
@@ -447,7 +447,7 @@ class SRo extends S {
 
   @override
   String wellDoneDistance(int distanceInKM) {
-    return 'Well done! You have registered a total distance of $distanceInKM km';
+    return 'Bună treabă! Ai înregistrat o distanță totală de $distanceInKM km';
   }
 
   @override
@@ -455,12 +455,12 @@ class SRo extends S {
 
   @override
   String ranMore(int distanceInKM) {
-    return 'I went more than $distanceInKM km';
+    return 'Am parcurs mai mult de $distanceInKM km';
   }
 
   @override
   String moreThan(int distanceInKM) {
-    return 'More than $distanceInKM km';
+    return 'Peste $distanceInKM km';
   }
 
   @override
@@ -483,7 +483,7 @@ class SRo extends S {
 
   @override
   String timezoneInformation(String timeZone) {
-    return 'Tv guide timetable is in your local time: $timeZone';
+    return 'Programul ghidului Tv este afișat în ora ta locală: $timeZone';
   }
 
   @override
@@ -545,7 +545,7 @@ class SRo extends S {
 
   @override
   String pollAnswer(String answer) {
-    return 'You\'ve answered: $answer';
+    return 'Ai răspuns $answer';
   }
 
   @override
@@ -577,7 +577,7 @@ class SRo extends S {
 
   @override
   String posts(int postsCount) {
-    return '$postsCount Posts';
+    return '$postsCount postări';
   }
 
   @override
@@ -587,39 +587,39 @@ class SRo extends S {
   String get reload => 'Reîncarcă';
 
   @override
-  String get participantsTitle => 'Who is answering?';
+  String get participantsTitle => 'Cine răspunde?';
 
   @override
-  String get participantsSubtitle => 'Select one or more participants.';
+  String get participantsSubtitle => 'Alege unul sau mai mulți participanți.';
 
   @override
-  String get yourFamily => 'Your family';
+  String get yourFamily => 'Familia ta';
 
   @override
-  String get yourTurn => 'Your turn';
+  String get yourTurn => 'Tura ta';
 
   @override
-  String get fAQ => 'FAQ';
+  String get fAQ => 'Întrebări frecvente';
 
   @override
-  String get shareStart => 'Share from start';
+  String get shareStart => 'Distribuie de la început';
 
   @override
   String shareTime(String time) {
-    return 'Share from time $time';
+    return 'Distribuie de la $time';
   }
 
   @override
-  String get loadContentError => 'Couldn\'t load content';
+  String get loadContentError => 'Conținutul nu a putut fi încărcat';
 
   @override
-  String get audioOnlyErrorDescription => 'Check internet connection and try again';
+  String get audioOnlyErrorDescription => 'Verifică conexiunea la internet și încearcă din nou';
 
   @override
-  String get privacyPolicy => 'Privacy Policy';
+  String get privacyPolicy => 'Politica de Confidențialitate';
 
   @override
-  String get tokenError => 'We couldn\'t confirm your identity, most likely due to a network problem. Some features of the app may not work correctly.';
+  String get tokenError => 'Nu v-am putut confirma identitatea, cel mai probabil din cauza unei probleme de rețea. Este posibil ca unele funcții ale aplicației să nu funcționeze corect.';
 
   @override
   String get categoriesTab => 'Categorii';
@@ -703,13 +703,13 @@ class SRo extends S {
   String get liveHeader => 'În direct';
 
   @override
-  String get recentlyPublishedSection => 'Recently published';
+  String get recentlyPublishedSection => 'Apărute recent';
 
   @override
-  String get exploreCategoriesSection => 'Explore categories';
+  String get exploreCategoriesSection => 'Explorați categoriile';
 
   @override
-  String get programsSection => 'Programs';
+  String get programsSection => 'Programe';
 
   @override
   String get episodesSection => 'Episoade';
@@ -718,7 +718,7 @@ class SRo extends S {
   String get categorySeries => 'Episoade';
 
   @override
-  String get categoryKids => 'Kids';
+  String get categoryKids => 'Copii';
 
   @override
   String get categoryFilms => 'Filme';
@@ -727,13 +727,13 @@ class SRo extends S {
   String get categoryEvents => 'Evenimente';
 
   @override
-  String get categoryMusic => 'Music';
+  String get categoryMusic => 'Muzică';
 
   @override
-  String get noPlannedEvents => 'No planned events today';
+  String get noPlannedEvents => 'Astăzi nu sunt evenimente planificate';
 
   @override
-  String get watchNow => 'Watch now';
+  String get watchNow => 'Vezi acum';
 
   @override
   String get exploreContent => 'Explore content';

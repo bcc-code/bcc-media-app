@@ -1,9 +1,9 @@
 {
-  "loadingContent": "Loading content",
+  "loadingContent": "Inhalt laden",
   "@loadingContent": {
     "description": "Text displayed when page content is loading."
   },
-  "signInTooltip": "Sign in to watch more content",
+  "signInTooltip": "Melde dich an, um mehr Inhalt anzuschauen",
   "@signInTooltip": {
     "description": "Text for tooltip displayed when a non-member user opens the home page."
   },
@@ -545,7 +545,7 @@
   "@thankYouSupportDescription": {
     "description": "Text on contact support confirmation page"
   },
-  "sendFail": "Couldn't send you message",
+  "sendFail": "Couldn't send your message",
   "@sendFail": {
     "description": "General error message that sending failed"
   },
@@ -830,7 +830,7 @@
   "@shareStart": {
     "description": "Option on action sheet for sharing from start"
   },
-  "shareTime": "Share from time {time}",
+  "shareTime": "Share from {time}",
   "@shareTime": {
     "description": "Option on action sheet for sharing from time",
     "placeholders": {
@@ -999,7 +999,7 @@
   "@categoryMusic": {
     "description": "Category name"
   },
-  "noPlannedEvents": "Keine geplanten Veranstaltungen heute",
+  "noPlannedEvents": "No events planned this day",
   "@noPlannedEvents": {
     "description": "Information in tvguide"
   },

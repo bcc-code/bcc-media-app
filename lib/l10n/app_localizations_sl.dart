@@ -730,7 +730,7 @@ class SSl extends S {
   String get categoryMusic => 'Glasba';
 
   @override
-  String get noPlannedEvents => 'Ni načrtovanih dogodkov za danes';
+  String get noPlannedEvents => 'Za ta dan ni načrtovanih dogodkov';
 
   @override
   String get watchNow => 'Glej zdaj';

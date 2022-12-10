@@ -43,7 +43,7 @@
   "@liveTab": {
     "description": "Title of live page tab"
   },
-  "logOutButton": "Deconnexion",
+  "logOutButton": "Déconnexion",
   "@logOutButton": {
     "description": "Text displayed on Log out button"
   },
@@ -95,15 +95,15 @@
   "@ok": {
     "description": "Popup confirmation button"
   },
-  "loginFailedCheckNetwork": "Echec de la connexion. Vérifie ta connexion internet et retente à nouveau.",
+  "loginFailedCheckNetwork": "Échec de la connexion. Vérifie ta connexion internet et retente à nouveau.",
   "@loginFailedCheckNetwork": {
     "description": "Login error message"
   },
-  "loginFailedTryAgain": "Echec de la connexion. Merci de retenter plus tard.",
+  "loginFailedTryAgain": "Échec de la connexion. Merci de retenter plus tard.",
   "@loginFailedTryAgain": {
     "description": "Login error message"
   },
-  "soundLanguage": "Langage sonore",
+  "soundLanguage": "Langage audio",
   "@soundLanguage": {
     "description": "Settings item on profile page"
   },
@@ -127,7 +127,7 @@
   "@cantPlayVideo": {
     "description": "Error message for the user displayed when video playback attempt failed."
   },
-  "about": "A propos",
+  "about": "À propos",
   "@about": {
     "description": "Title of About page and item in profile page settings."
   },
@@ -135,7 +135,7 @@
   "@version": {
     "description": "Version ot the application on About page; followed by version number"
   },
-  "contactSupport": "Contactez le support",
+  "contactSupport": "Contacter le support",
   "@contactSupport": {
     "description": "Settings item on profile page"
   },
@@ -187,7 +187,7 @@
   "@seasons": {
     "description": "Followed by number of seasons in given series."
   },
-  "episodes": "Episodes",
+  "episodes": "Épisodes",
   "@episodes": {
     "description": "Followed by number of episodes in given series."
   },
@@ -195,7 +195,7 @@
   "@search": {
     "description": "Button to clear cache"
   },
-  "noResults": "Aucun résultat",
+  "noResults": "Aucun résultat trouvé",
   "@noResults": {
     "description": "No search results."
   },
@@ -324,7 +324,7 @@
   "@info": {
     "description": "Video info page title."
   },
-  "episode": "Episode",
+  "episode": "Épisode",
   "@episode": {
     "description": "Title of the tab on info page"
   },
@@ -481,7 +481,7 @@
   "@pollSubtitle": {
     "description": "The little title in poll"
   },
-  "writeHere": "Ecris ici",
+  "writeHere": "Écris ici",
   "@writeHere": {
     "description": "New post text field placeholder"
   },
@@ -525,7 +525,7 @@
   "@concernTextPlaceholder": {
     "description": "Placeholder text in text field on contact support page"
   },
-  "debugInfoExplanation": "Ton message incluera cette information, pour nous aider à mieux comprendre le problème.",
+  "debugInfoExplanation": "Ton message inclura cette information, pour nous aider à mieux comprendre le problème.",
   "@debugInfoExplanation": {
     "description": "Info about debug info usage on contact support page"
   },
@@ -887,7 +887,7 @@
   "@filmsTab": {
     "description": "Films Tab title"
   },
-  "eventsTab": "Evénements",
+  "eventsTab": "Événements",
   "@eventsTab": {
     "description": "Events Tab title"
   },
@@ -975,7 +975,7 @@
   "@programsSection": {
     "description": "Section in explore."
   },
-  "episodesSection": "Episodes",
+  "episodesSection": "Épisodes",
   "@episodesSection": {
     "description": "Section in explore."
   },
@@ -991,7 +991,7 @@
   "@categoryFilms": {
     "description": "Category name"
   },
-  "categoryEvents": "Evénements",
+  "categoryEvents": "Événements",
   "@categoryEvents": {
     "description": "Category name"
   },
@@ -999,7 +999,7 @@
   "@categoryMusic": {
     "description": "Category name"
   },
-  "noPlannedEvents": "Aucun événement prévu aujourd'hui",
+  "noPlannedEvents": "Aucun événement prévu ce jour",
   "@noPlannedEvents": {
     "description": "Information in tvguide"
   },

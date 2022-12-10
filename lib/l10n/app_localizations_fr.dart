@@ -38,7 +38,7 @@ class SFr extends S {
   String get liveTab => 'En direct';
 
   @override
-  String get logOutButton => 'Deconnexion';
+  String get logOutButton => 'Déconnexion';
 
   @override
   String get profileTab => 'Profil';
@@ -77,13 +77,13 @@ class SFr extends S {
   String get ok => 'OK';
 
   @override
-  String get loginFailedCheckNetwork => 'Echec de la connexion. Vérifie ta connexion internet et retente à nouveau.';
+  String get loginFailedCheckNetwork => 'Échec de la connexion. Vérifie ta connexion internet et retente à nouveau.';
 
   @override
-  String get loginFailedTryAgain => 'Echec de la connexion. Merci de retenter plus tard.';
+  String get loginFailedTryAgain => 'Échec de la connexion. Merci de retenter plus tard.';
 
   @override
-  String get soundLanguage => 'Langage sonore';
+  String get soundLanguage => 'Langage audio';
 
   @override
   String get subtitleLanguage => 'Langue des sous-titres';
@@ -101,13 +101,13 @@ class SFr extends S {
   String get cantPlayVideo => 'Tu ne peux pas lire cette vidéo maintenant.';
 
   @override
-  String get about => 'A propos';
+  String get about => 'À propos';
 
   @override
   String get version => 'Version';
 
   @override
-  String get contactSupport => 'Contactez le support';
+  String get contactSupport => 'Contacter le support';
 
   @override
   String get cancel => 'Annuler';
@@ -146,13 +146,13 @@ class SFr extends S {
   String get seasons => 'Saisons';
 
   @override
-  String get episodes => 'Episodes';
+  String get episodes => 'Épisodes';
 
   @override
   String get search => 'Rechercher';
 
   @override
-  String get noResults => 'Aucun résultat';
+  String get noResults => 'Aucun résultat trouvé';
 
   @override
   String get doYouWantCast => 'Veux-tu caster cette vidéo ?';
@@ -247,7 +247,7 @@ class SFr extends S {
   String get info => 'Information';
 
   @override
-  String get episode => 'Episode';
+  String get episode => 'Épisode';
 
   @override
   String get takePhoto => 'Prendre une photo';
@@ -359,7 +359,7 @@ class SFr extends S {
   String get pollSubtitle => 'Sondage';
 
   @override
-  String get writeHere => 'Ecris ici';
+  String get writeHere => 'Écris ici';
 
   @override
   String get feed => 'Flux';
@@ -392,7 +392,7 @@ class SFr extends S {
   String get concernTextPlaceholder => 'Décris le problème';
 
   @override
-  String get debugInfoExplanation => 'Ton message incluera cette information, pour nous aider à mieux comprendre le problème.';
+  String get debugInfoExplanation => 'Ton message inclura cette information, pour nous aider à mieux comprendre le problème.';
 
   @override
   String get send => 'Envoyer';
@@ -646,7 +646,7 @@ class SFr extends S {
   String get filmsTab => 'Films';
 
   @override
-  String get eventsTab => 'Evénements';
+  String get eventsTab => 'Événements';
 
   @override
   String get audioLanguage => 'Langue audio';
@@ -712,7 +712,7 @@ class SFr extends S {
   String get programsSection => 'Programmes';
 
   @override
-  String get episodesSection => 'Episodes';
+  String get episodesSection => 'Épisodes';
 
   @override
   String get categorySeries => 'Séries';
@@ -724,13 +724,13 @@ class SFr extends S {
   String get categoryFilms => 'Films';
 
   @override
-  String get categoryEvents => 'Evénements';
+  String get categoryEvents => 'Événements';
 
   @override
   String get categoryMusic => 'Musique';
 
   @override
-  String get noPlannedEvents => 'Aucun événement prévu aujourd\'hui';
+  String get noPlannedEvents => 'Aucun événement prévu ce jour';
 
   @override
   String get watchNow => 'Regarder maintenant';

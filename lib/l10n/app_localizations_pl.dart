@@ -407,7 +407,7 @@ class SPl extends S {
   String get thankYouSupportDescription => 'Doceniamy wszelkie informacje zwrotne i odniesiemy się do tego problemu tak szybko, jak to możliwe.';
 
   @override
-  String get sendFail => 'Couldn\'t send you message';
+  String get sendFail => 'Couldn\'t send your message';
 
   @override
   String get sendFailDescription => 'Coś poszło nie tak. Sprawdź swoje połączenie internetowe i spróbuj jeszcze raz.';
@@ -606,7 +606,7 @@ class SPl extends S {
 
   @override
   String shareTime(String time) {
-    return 'Share from time $time';
+    return 'Share from $time';
   }
 
   @override
@@ -730,7 +730,7 @@ class SPl extends S {
   String get categoryMusic => 'Muzyka';
 
   @override
-  String get noPlannedEvents => 'Brak zaplanowanych eventów na dzisiaj';
+  String get noPlannedEvents => 'No events planned this day';
 
   @override
   String get watchNow => 'Oglądaj teraz';

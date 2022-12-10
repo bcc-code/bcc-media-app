@@ -407,7 +407,7 @@ class SIt extends S {
   String get thankYouSupportDescription => 'We appreciate all feedback and we will address the issue as soon as possible.';
 
   @override
-  String get sendFail => 'Couldn\'t send you message';
+  String get sendFail => 'Couldn\'t send your message';
 
   @override
   String get sendFailDescription => 'Something went wrong. Check your internet connection and try again.';
@@ -606,7 +606,7 @@ class SIt extends S {
 
   @override
   String shareTime(String time) {
-    return 'Share from time $time';
+    return 'Share from $time';
   }
 
   @override
@@ -730,7 +730,7 @@ class SIt extends S {
   String get categoryMusic => 'Music';
 
   @override
-  String get noPlannedEvents => 'No planned events today';
+  String get noPlannedEvents => 'No events planned this day';
 
   @override
   String get watchNow => 'Watch now';

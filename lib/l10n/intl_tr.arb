@@ -545,7 +545,7 @@
   "@thankYouSupportDescription": {
     "description": "Text on contact support confirmation page"
   },
-  "sendFail": "Couldn't send you message",
+  "sendFail": "Couldn't send your message",
   "@sendFail": {
     "description": "General error message that sending failed"
   },
@@ -720,11 +720,11 @@
   "@browserInstall": {
     "description": "Message displayed when browser couldn't be opened on user's device."
   },
-  "share": "Share",
+  "share": "Paylaş",
   "@share": {
     "description": "Option name to share video."
   },
-  "liveNow": "Live now",
+  "liveNow": "Şimdi canlı",
   "@liveNow": {
     "description": "Call to action button on featured carousel."
   },
@@ -732,15 +732,15 @@
   "@program": {
     "description": "Title of the program tab on live page."
   },
-  "participateTab": "Participate",
+  "participateTab": "Katıl",
   "@participateTab": {
     "description": "Title of the participate tab on live page."
   },
-  "tomorrow": "Tomorrow",
+  "tomorrow": "Yarın",
   "@tomorrow": {
     "description": "Day of transmission in tv guide."
   },
-  "readBy": "Read by",
+  "readBy": "Okuyan",
   "@readBy": {
     "description": "Feed verse pre author text."
   },
@@ -753,23 +753,23 @@
       }
     }
   },
-  "broadcasts": "Broadcasts",
+  "broadcasts": "Yayınlar",
   "@broadcasts": {
     "description": "Title for tv guide collection on event page."
   },
-  "quizAnswered": "Answers submitted",
+  "quizAnswered": "Yanıtlar gönderildi",
   "@quizAnswered": {
     "description": "Text displayed on a button when all answers in quiz have been submitted."
   },
-  "quizNotEnabled": "Quiz is not available at the moment. Please try again later.",
+  "quizNotEnabled": "Quiz şu anda kullanılamıyor. Lütfen daha sonra tekrar deneyiniz.",
   "@quizNotEnabled": {
     "description": "Message on alert that appears when participate item is visible, but quiz is not enabled."
   },
-  "calendar": "Calendar",
+  "calendar": "Takvim",
   "@calendar": {
     "description": "Title of calendar page."
   },
-  "noEvents": "No scheduled transmissions",
+  "noEvents": "Bugün için planlanmış yayın yok",
   "@noEvents": {
     "description": "Info in calendar page that no transmissions are scheduled for selected day."
   },
@@ -785,7 +785,7 @@
   "@appUpdateAccepted": {
     "description": "Option that can be chosen by the user to update his application."
   },
-  "donationNotAvailable": "Donation is not available at the moment. Please try again later.",
+  "donationNotAvailable": "Şu anda bağış yapılamıyor. Lütfen daha sonra tekrar deneyiniz.",
   "@donationNotAvailable": {
     "description": "Message displayed when donation flow failed."
   },
@@ -798,39 +798,39 @@
       }
     }
   },
-  "copy": "Copy",
+  "copy": "Kopyala",
   "@copy": {
     "description": "Copy option for quotes, verses."
   },
-  "reload": "Reload",
+  "reload": "Yeniden yükle",
   "@reload": {
     "description": "Label on the button that allows to reload the player after error."
   },
-  "participantsTitle": "Who is answering?",
+  "participantsTitle": "Kim cevap veriyor?",
   "@participantsTitleTitle": {
     "description": "Title label on the participants list before quiz."
   },
-  "participantsSubtitle": "Select one or more participants.",
+  "participantsSubtitle": "Bir veya daha fazla katılımcı seçin.",
   "@participantsSubtitle": {
     "description": "Subtitle label on the participants list before quiz."
   },
-  "yourFamily": "Your family",
+  "yourFamily": "Ailen",
   "@yourFamily": {
     "description": "Title on page when user selects family members that take part in the quiz."
   },
-  "yourTurn": "Your turn",
+  "yourTurn": "Senin sıran",
   "@yourTurn": {
     "description": "Title on page informing user that other user will answer question in the next step."
   },
-  "fAQ": "FAQ",
+  "fAQ": "SSS",
   "@fAQ": {
     "description": "Title on FAQ page and item in profile page settings."
   },
-  "shareStart": "Share from start",
+  "shareStart": "Baştan paylaş",
   "@shareStart": {
     "description": "Option on action sheet for sharing from start"
   },
-  "shareTime": "Share from time {time}",
+  "shareTime": "Share from {time}",
   "@shareTime": {
     "description": "Option on action sheet for sharing from time",
     "placeholders": {
@@ -843,15 +843,15 @@
   "@loadContentError": {
     "description": "Error text when content couldn't be loaded."
   },
-  "audioOnlyErrorDescription": "Check internet connection and try again",
+  "audioOnlyErrorDescription": "İnternet bağlantısını kontrol edin ve tekrar deneyin",
   "@audioOnlyErrorDescription": {
     "description": "Error message when audio only fails to play"
   },
-  "privacyPolicy": "Privacy Policy",
+  "privacyPolicy": "Gizlilik Politikası",
   "@privacyPolicy": {
     "description": "Title on Privacy Policy page and item in profile page settings."
   },
-  "tokenError": "We couldn't confirm your identity, most likely due to a network problem. Some features of the app may not work correctly.",
+  "tokenError": "Büyük olasılıkla bir ağ sorunu nedeniyle kimliğinizi doğrulayamadık. Uygulamanın bazı özellikleri düzgün çalışmayabilir.",
   "@tokenError": {
     "description": "Message indicating that there is a problem with user's token, and some features may be broken because of this."
   },
@@ -963,15 +963,15 @@
   "@liveHeader": {
     "description": "Header of the Live Tab — the tab that contains the livestream player on AppleTV."
   },
-  "recentlyPublishedSection": "Recently published",
+  "recentlyPublishedSection": "Son zamanlarda yayınlanmış",
   "@recentlyPublishedSection": {
     "description": "Section in explore."
   },
-  "exploreCategoriesSection": "Explore categories",
+  "exploreCategoriesSection": "Kategorileri keşfedin",
   "@exploreCategoriesSection": {
     "description": "Section in explore."
   },
-  "programsSection": "Programs",
+  "programsSection": "Programlar",
   "@programsSection": {
     "description": "Section in explore."
   },
@@ -983,7 +983,7 @@
   "@categorySeries": {
     "description": "Category name"
   },
-  "categoryKids": "Kids",
+  "categoryKids": "Çocuklar",
   "@categoryKids": {
     "description": "Category name"
   },
@@ -995,15 +995,15 @@
   "@categoryEvents": {
     "description": "Category name"
   },
-  "categoryMusic": "Music",
+  "categoryMusic": "Müzik",
   "@categoryMusic": {
     "description": "Category name"
   },
-  "noPlannedEvents": "No planned events today",
+  "noPlannedEvents": "No events planned this day",
   "@noPlannedEvents": {
     "description": "Information in tvguide"
   },
-  "watchNow": "Watch now",
+  "watchNow": "Şimdi izle",
   "@watchNow": {
     "description": "Button on featured carousel"
   }

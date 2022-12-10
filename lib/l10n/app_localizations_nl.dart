@@ -407,7 +407,7 @@ class SNl extends S {
   String get thankYouSupportDescription => 'We stellen alle feedback op prijs en gaan er zo snel mogelijk mee aan de slag.';
 
   @override
-  String get sendFail => 'Je bericht kon niet worden verzonden';
+  String get sendFail => 'Couldn\'t send your message';
 
   @override
   String get sendFailDescription => 'Er is iets misgegaan. Controleer je internetverbinding en probeer het opnieuw.';
@@ -483,7 +483,7 @@ class SNl extends S {
 
   @override
   String timezoneInformation(String timeZone) {
-    return 'De tijden in de TV gids worden weergegeven in de lokale tijd van de tijdszone waarin je op dit moment bent: $timeZone';
+    return 'De tijden in de TV gids worden weergegeven in de lokale tijd van de tijdszone waarin je op dit moment bent';
   }
 
   @override
@@ -606,7 +606,7 @@ class SNl extends S {
 
   @override
   String shareTime(String time) {
-    return 'Delen van punt $time';
+    return 'Share from $time';
   }
 
   @override
@@ -730,7 +730,7 @@ class SNl extends S {
   String get categoryMusic => 'Muziek';
 
   @override
-  String get noPlannedEvents => 'Geen geplande evenementen vandaag';
+  String get noPlannedEvents => 'No events planned this day';
 
   @override
   String get watchNow => 'Nu kijken';

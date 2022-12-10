@@ -999,7 +999,7 @@
   "@categoryMusic": {
     "description": "Category name"
   },
-  "noPlannedEvents": "Ni načrtovanih dogodkov za danes",
+  "noPlannedEvents": "Za ta dan ni načrtovanih dogodkov",
   "@noPlannedEvents": {
     "description": "Information in tvguide"
   },

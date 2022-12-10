@@ -5,19 +5,19 @@ class SNb extends S {
   SNb([String locale = 'nb']) : super(locale);
 
   @override
-  String get loadingContent => 'Loading content';
+  String get loadingContent => 'Laster innhold';
 
   @override
-  String get signInTooltip => 'Sign in to watch more content';
+  String get signInTooltip => 'Logg inn for å se mer innhold';
 
   @override
-  String get skipToPublicContent => 'Skip to watch public content';
+  String get skipToPublicContent => 'Hopp over for å se offentlig innhold';
 
   @override
   String get minutesShort => 'min';
 
   @override
-  String get calendarThisWeek => 'This week';
+  String get calendarThisWeek => 'Denne uken';
 
   @override
   String get calendarWeek => 'uke';
@@ -26,13 +26,13 @@ class SNb extends S {
   String get loading => 'Laster';
 
   @override
-  String get loginPageDisplay1 => 'The most powerful message in the world';
+  String get loginPageDisplay1 => 'Det kraftigste budskapet i verden';
 
   @override
-  String get loginPageDisplay2 => 'Watch series, shows and films based on Christian values';
+  String get loginPageDisplay2 => 'Se serier, programmer og filmer basert på kristne verdier';
 
   @override
-  String get loginPageDisplay3 => 'Produced by BCC Media';
+  String get loginPageDisplay3 => 'Produsert av BCC Media';
 
   @override
   String get liveTab => 'Direkte';
@@ -44,7 +44,7 @@ class SNb extends S {
   String get profileTab => 'Min profil';
 
   @override
-  String get faq => 'Frequently asked questions';
+  String get faq => 'Ofte stilte spørsmål';
 
   @override
   String get bccMediaCenter => 'BrunstadTV er et ikke-kommersielt mediesenter som produserer og distribuerer innhold med positive og kristne verdier.';
@@ -174,7 +174,7 @@ class SNb extends S {
 
   @override
   String queueLimitMessage(int elementCount) {
-    return 'You cannot have more than $elementCount elements in queue.';
+    return 'Du kan ikke ha mer enn $elementCount elementer i køen.';
   }
 
   @override
@@ -606,7 +606,7 @@ class SNb extends S {
 
   @override
   String shareTime(String time) {
-    return 'Del fra tid $time';
+    return 'Del fra $time';
   }
 
   @override
@@ -730,7 +730,7 @@ class SNb extends S {
   String get categoryMusic => 'Musikk';
 
   @override
-  String get noPlannedEvents => 'Ingen planlagte hendelser i dag';
+  String get noPlannedEvents => 'Ingen planlagte hendelser denne dagen';
 
   @override
   String get watchNow => 'Se nå';

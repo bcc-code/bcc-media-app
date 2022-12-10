@@ -1,13 +1,13 @@
 {
-  "loadingContent": "Loading content",
+  "loadingContent": "Conținutul se încarcă",
   "@loadingContent": {
     "description": "Text displayed when page content is loading."
   },
-  "signInTooltip": "Sign in to watch more content",
+  "signInTooltip": "Autentificați-vă pentru a viziona mai mult conținut",
   "@signInTooltip": {
     "description": "Text for tooltip displayed when a non-member user opens the home page."
   },
-  "skipToPublicContent": "Skip to watch public content",
+  "skipToPublicContent": "Sări peste pentru a viziona conținut public",
   "@skipToPublicContent": {
     "description": "Text for button displayed on login screen to skip sign in and watch public content."
   },
@@ -15,11 +15,11 @@
   "@minutesShort": {
     "description": "Text for minutes."
   },
-  "calendarThisWeek": "This week",
+  "calendarThisWeek": "Această săptămână",
   "@calendarThisWeek": {
     "description": "Text for This week."
   },
-  "calendarWeek": "week",
+  "calendarWeek": "săptămână",
   "@calendarWeek": {
     "description": "Text week."
   },
@@ -27,15 +27,15 @@
   "@loading": {
     "description": "Text to indicate loading state."
   },
-  "loginPageDisplay1": "The most powerful message in the world",
+  "loginPageDisplay1": "Cel mai puternic mesaj din lume",
   "@loginPageDisplay1": {
     "description": "Text displayed on login screen."
   },
-  "loginPageDisplay2": "Watch series, shows and films based on Christian values",
+  "loginPageDisplay2": "Vezi seriale, emisiuni și filme bazate pe valori Creștine",
   "@loginPageDisplay2": {
     "description": "Text displayed on login screen."
   },
-  "loginPageDisplay3": "Produced by BCC Media",
+  "loginPageDisplay3": "Produs de BCC Media",
   "@loginPageDisplay3": {
     "description": "Text displayed on login screen."
   },
@@ -51,11 +51,11 @@
   "@profileTab": {
     "description": "Title of the profile page"
   },
-  "faq": "Frequently asked questions",
+  "faq": "Întrebări frecvente",
   "@faq": {
     "description": "Title of the FAQ page."
   },
-  "bccMediaCenter": "BrunstadTV este un centru media necomercial care produce și distribuie conținut bazat pe valori pozitive și creștine.",
+  "bccMediaCenter": "BrunstadTV este un centru media necomercial care produce și distribuie conținut bazat pe valori pozitive și Creștine.",
   "@bccMediaCenter": {
     "description": "Disclaimer on login page"
   },
@@ -195,11 +195,11 @@
   "@search": {
     "description": "Button to clear cache"
   },
-  "noResults": "No results found",
+  "noResults": "Nici un rezultat gasit",
   "@noResults": {
     "description": "No search results."
   },
-  "doYouWantCast": "Vrei să trimiți acest video prin Chromecast?",
+  "doYouWantCast": "Vrei să trimiți acest video prin Cast?",
   "@doYouWantCast": {
     "description": "Prompt displayed to the user"
   },
@@ -223,7 +223,7 @@
   "@queueLimitTitle": {
     "description": "Title of the alert to the user when attempt to add video to cast queue failed due to full queue."
   },
-  "queueLimitMessage": "You cannot have more than {elementCount} elements in queue.",
+  "queueLimitMessage": "Nu poți avea mai mult de {elementCount} elemente în coadă.",
   "@queueLimitMessage": {
     "description": "Error message to the user when attempt to add video to cast queue failed due to full queue.",
     "placeholders": {
@@ -284,7 +284,7 @@
   "@high": {
     "description": "High quality video option"
   },
-  "emptySearch": "You can search all content from BrunstadTV. Series, videos and episodes.",
+  "emptySearch": "Poți căuta tot conținutul de pe BrunstadTV. Serii, videoclipuri și episoade.",
   "@emptySearch": {
     "description": "Message on search page when there is no search results."
   },
@@ -344,7 +344,7 @@
   "@uploadFileMessage": {
     "description": "Content of the dialog to confirm upload"
   },
-  "watchingWith": "You are watching with {numPeople} others",
+  "watchingWith": "Vizionezi împreună cu alți {numPeople}",
   "@watchingWith": {
     "description": "Info on live stream page",
     "placeholders": {
@@ -365,7 +365,7 @@
   "@post": {
     "description": "Button to post written testimony"
   },
-  "charactersLimit": "{charsLeft} of {charsTotal} characters left",
+  "charactersLimit": "Au rămas {charsLeft} din {charsTotal} caractere",
   "@charactersLimit": {
     "description": "Info about limit of characters in written testimony",
     "placeholders": {
@@ -469,7 +469,7 @@
   "@change": {
     "description": "Button text on interactive live avatar section"
   },
-  "recordingFailedTitle": "Couldn't record the video",
+  "recordingFailedTitle": "Nu s-a putut înregistra videoclipul",
   "@recordingFailedTitle": {
     "description": "Title in alert dialog when recording fails"
   },
@@ -545,7 +545,7 @@
   "@thankYouSupportDescription": {
     "description": "Text on contact support confirmation page"
   },
-  "sendFail": "Couldn't send you message",
+  "sendFail": "Nu am putut trimite mesajul dvs",
   "@sendFail": {
     "description": "General error message that sending failed"
   },
@@ -561,7 +561,7 @@
   "@noNewPosts": {
     "description": "Text displayed on the button, when there are no new posts in the feed."
   },
-  "newPostsMultiple": "{postCount} new posts!",
+  "newPostsMultiple": "{postCount} postări noi!",
   "@newPostsMultiple": {
     "description": "Text displayed on the button, when there are number of new posts in the feed.",
     "placeholders": {
@@ -570,7 +570,7 @@
       }
     }
   },
-  "newPostsSingle": "{postCount} new post!",
+  "newPostsSingle": "{postCount} postare nouă!",
   "@newPostsSingle": {
     "description": "Text displayed on the button, when there is one new post in the feed.",
     "placeholders": {
@@ -583,7 +583,7 @@
   "@expired": {
     "description": "Info that episode is no longer available."
   },
-  "availableFrom": "Available {date}",
+  "availableFrom": "Disponibil de pe {date}",
   "@availableFrom": {
     "description": "Info that episode will be released at certain date.",
     "placeholders": {
@@ -604,7 +604,7 @@
   "@wellDone": {
     "description": "Text on running competition page."
   },
-  "wellDoneDistance": "Well done! You have registered a total distance of {distanceInKM} km",
+  "wellDoneDistance": "Bună treabă! Ai înregistrat o distanță totală de {distanceInKM} km",
   "@wellDoneDistance": {
     "description": "Text on running competition page.",
     "placeholders": {
@@ -617,7 +617,7 @@
   "@distanceRegistered": {
     "description": "Text on running competition page."
   },
-  "ranMore": "I went more than {distanceInKM} km",
+  "ranMore": "Am parcurs mai mult de {distanceInKM} km",
   "@ranMore": {
     "description": "Text on running competition page.",
     "placeholders": {
@@ -626,7 +626,7 @@
       }
     }
   },
-  "moreThan": "More than {distanceInKM} km",
+  "moreThan": "Peste {distanceInKM} km",
   "@moreThan": {
     "description": "Text on running competition page.",
     "placeholders": {
@@ -659,7 +659,7 @@
   "@firstPostTitle": {
     "description": "Text on feed page when feed is empty."
   },
-  "timezoneInformation": "Tv guide timetable is in your local time: {timeZone}",
+  "timezoneInformation": "Programul ghidului Tv este afișat în ora ta locală: {timeZone}",
   "@timezoneInformation": {
     "description": "TV guide footer info text.",
     "placeholders": {
@@ -744,7 +744,7 @@
   "@readBy": {
     "description": "Feed verse pre author text."
   },
-  "pollAnswer": "You've answered: {answer}",
+  "pollAnswer": "Ai răspuns {answer}",
   "@pollAnswer": {
     "description": "Snackbar label after user has chosen poll answer",
     "placeholders": {
@@ -789,7 +789,7 @@
   "@donationNotAvailable": {
     "description": "Message displayed when donation flow failed."
   },
-  "posts": "{postsCount} Posts",
+  "posts": "{postsCount} postări",
   "@posts": {
     "description": "Contributions to feed made by the users. Plural of post.",
     "placeholders": {
@@ -806,31 +806,31 @@
   "@reload": {
     "description": "Label on the button that allows to reload the player after error."
   },
-  "participantsTitle": "Who is answering?",
+  "participantsTitle": "Cine răspunde?",
   "@participantsTitleTitle": {
     "description": "Title label on the participants list before quiz."
   },
-  "participantsSubtitle": "Select one or more participants.",
+  "participantsSubtitle": "Alege unul sau mai mulți participanți.",
   "@participantsSubtitle": {
     "description": "Subtitle label on the participants list before quiz."
   },
-  "yourFamily": "Your family",
+  "yourFamily": "Familia ta",
   "@yourFamily": {
     "description": "Title on page when user selects family members that take part in the quiz."
   },
-  "yourTurn": "Your turn",
+  "yourTurn": "Tura ta",
   "@yourTurn": {
     "description": "Title on page informing user that other user will answer question in the next step."
   },
-  "fAQ": "FAQ",
+  "fAQ": "Întrebări frecvente",
   "@fAQ": {
     "description": "Title on FAQ page and item in profile page settings."
   },
-  "shareStart": "Share from start",
+  "shareStart": "Distribuie de la început",
   "@shareStart": {
     "description": "Option on action sheet for sharing from start"
   },
-  "shareTime": "Share from time {time}",
+  "shareTime": "Distribuie de la {time}",
   "@shareTime": {
     "description": "Option on action sheet for sharing from time",
     "placeholders": {
@@ -839,19 +839,19 @@
       }
     }
   },
-  "loadContentError": "Couldn't load content",
+  "loadContentError": "Conținutul nu a putut fi încărcat",
   "@loadContentError": {
     "description": "Error text when content couldn't be loaded."
   },
-  "audioOnlyErrorDescription": "Check internet connection and try again",
+  "audioOnlyErrorDescription": "Verifică conexiunea la internet și încearcă din nou",
   "@audioOnlyErrorDescription": {
     "description": "Error message when audio only fails to play"
   },
-  "privacyPolicy": "Privacy Policy",
+  "privacyPolicy": "Politica de Confidențialitate",
   "@privacyPolicy": {
     "description": "Title on Privacy Policy page and item in profile page settings."
   },
-  "tokenError": "We couldn't confirm your identity, most likely due to a network problem. Some features of the app may not work correctly.",
+  "tokenError": "Nu v-am putut confirma identitatea, cel mai probabil din cauza unei probleme de rețea. Este posibil ca unele funcții ale aplicației să nu funcționeze corect.",
   "@tokenError": {
     "description": "Message indicating that there is a problem with user's token, and some features may be broken because of this."
   },
@@ -963,15 +963,15 @@
   "@liveHeader": {
     "description": "Header of the Live Tab — the tab that contains the livestream player on AppleTV."
   },
-  "recentlyPublishedSection": "Recently published",
+  "recentlyPublishedSection": "Apărute recent",
   "@recentlyPublishedSection": {
     "description": "Section in explore."
   },
-  "exploreCategoriesSection": "Explore categories",
+  "exploreCategoriesSection": "Explorați categoriile",
   "@exploreCategoriesSection": {
     "description": "Section in explore."
   },
-  "programsSection": "Programs",
+  "programsSection": "Programe",
   "@programsSection": {
     "description": "Section in explore."
   },
@@ -983,7 +983,7 @@
   "@categorySeries": {
     "description": "Category name"
   },
-  "categoryKids": "Kids",
+  "categoryKids": "Copii",
   "@categoryKids": {
     "description": "Category name"
   },
@@ -995,15 +995,15 @@
   "@categoryEvents": {
     "description": "Category name"
   },
-  "categoryMusic": "Music",
+  "categoryMusic": "Muzică",
   "@categoryMusic": {
     "description": "Category name"
   },
-  "noPlannedEvents": "No planned events today",
+  "noPlannedEvents": "Astăzi nu sunt evenimente planificate",
   "@noPlannedEvents": {
     "description": "Information in tvguide"
   },
-  "watchNow": "Watch now",
+  "watchNow": "Vezi acum",
   "@watchNow": {
     "description": "Button on featured carousel"
   }

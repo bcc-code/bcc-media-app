@@ -5,34 +5,34 @@ class SFi extends S {
   SFi([String locale = 'fi']) : super(locale);
 
   @override
-  String get loadingContent => 'Loading content';
+  String get loadingContent => 'Hetkinen';
 
   @override
-  String get signInTooltip => 'Sign in to watch more content';
+  String get signInTooltip => 'Kirjautumalla näet lisää';
 
   @override
-  String get skipToPublicContent => 'Skip to watch public content';
+  String get skipToPublicContent => 'Ohita, ja katso vain julkista sisältöä';
 
   @override
   String get minutesShort => 'min';
 
   @override
-  String get calendarThisWeek => 'This week';
+  String get calendarThisWeek => 'Tällä viikolla';
 
   @override
-  String get calendarWeek => 'week';
+  String get calendarWeek => 'viikko';
 
   @override
   String get loading => 'Lataillaan';
 
   @override
-  String get loginPageDisplay1 => 'The most powerful message in the world';
+  String get loginPageDisplay1 => 'Kaikista vahvin sanoma';
 
   @override
-  String get loginPageDisplay2 => 'Watch series, shows and films based on Christian values';
+  String get loginPageDisplay2 => 'Katsele Kristillisten arvojen mukaisia videoita, esityksiä, ja sarjoja';
 
   @override
-  String get loginPageDisplay3 => 'Produced by BCC Media';
+  String get loginPageDisplay3 => 'BCC Median tuottama';
 
   @override
   String get liveTab => 'Live';
@@ -44,7 +44,7 @@ class SFi extends S {
   String get profileTab => 'Profiili';
 
   @override
-  String get faq => 'Frequently asked questions';
+  String get faq => 'Usein kysyttyä';
 
   @override
   String get bccMediaCenter => 'BrunstadTV on ei-kaupallinen kristillisten ja positiivisten arvojen mukaisen median tuottaja.';
@@ -174,7 +174,7 @@ class SFi extends S {
 
   @override
   String queueLimitMessage(int elementCount) {
-    return 'You cannot have more than $elementCount elements in queue.';
+    return 'Jonossa ei voi olle enempää kuin $elementCount juttua.';
   }
 
   @override
@@ -263,7 +263,7 @@ class SFi extends S {
 
   @override
   String watchingWith(int numPeople) {
-    return 'You are watching with $numPeople others';
+    return 'Sinä ja $numPeople muuta katselette tätä';
   }
 
   @override
@@ -277,7 +277,7 @@ class SFi extends S {
 
   @override
   String charactersLimit(int charsLeft, int charsTotal) {
-    return '$charsLeft of $charsTotal characters left';
+    return '$charsTotal merkistä $charsLeft jäljellä';
   }
 
   @override
@@ -407,7 +407,7 @@ class SFi extends S {
   String get thankYouSupportDescription => 'Arvostamme kovasti palautetta ja teemme parhaamme ongelman korjaamiseen.';
 
   @override
-  String get sendFail => 'Couldn\'t send you message';
+  String get sendFail => 'Lähettäminen epäonnistui';
 
   @override
   String get sendFailDescription => 'Jokin ei nyt toimi. Tarkista nettiyhteys ja kokeile uudelleen.';
@@ -420,12 +420,12 @@ class SFi extends S {
 
   @override
   String newPostsMultiple(int postCount) {
-    return '$postCount new posts!';
+    return '$postCount uutta viestiä!';
   }
 
   @override
   String newPostsSingle(int postCount) {
-    return '$postCount new post!';
+    return 'Uusi viesti!';
   }
 
   @override
@@ -433,7 +433,7 @@ class SFi extends S {
 
   @override
   String availableFrom(String date) {
-    return 'Available $date';
+    return 'Saatavilla $date';
   }
 
   @override
@@ -447,7 +447,7 @@ class SFi extends S {
 
   @override
   String wellDoneDistance(int distanceInKM) {
-    return 'Well done! You have registered a total distance of $distanceInKM km';
+    return 'Hienoa! Olet ilmoittanut yhteensä $distanceInKM km';
   }
 
   @override
@@ -455,12 +455,12 @@ class SFi extends S {
 
   @override
   String ranMore(int distanceInKM) {
-    return 'I went more than $distanceInKM km';
+    return 'Kuljin yli $distanceInKM km';
   }
 
   @override
   String moreThan(int distanceInKM) {
-    return 'More than $distanceInKM km';
+    return 'Yli $distanceInKM km';
   }
 
   @override
@@ -483,7 +483,7 @@ class SFi extends S {
 
   @override
   String timezoneInformation(String timeZone) {
-    return 'Tv guide timetable is in your local time: $timeZone';
+    return 'Kellonajat ovat sinun aikavyöhykettä: $timeZone';
   }
 
   @override
@@ -545,7 +545,7 @@ class SFi extends S {
 
   @override
   String pollAnswer(String answer) {
-    return 'You\'ve answered: $answer';
+    return 'Valitsit $answer';
   }
 
   @override
@@ -577,7 +577,7 @@ class SFi extends S {
 
   @override
   String posts(int postsCount) {
-    return '$postsCount Posts';
+    return '$postsCount viestiä';
   }
 
   @override
@@ -606,11 +606,11 @@ class SFi extends S {
 
   @override
   String shareTime(String time) {
-    return 'Share from time $time';
+    return 'Jaa video tästä kohtaa $time';
   }
 
   @override
-  String get loadContentError => 'Couldn\'t load content';
+  String get loadContentError => 'Sisällön nouto epäonnistui';
 
   @override
   String get audioOnlyErrorDescription => 'Tarkista nettiyhteys ja yritä uudelleen';
@@ -730,7 +730,7 @@ class SFi extends S {
   String get categoryMusic => 'Musiikki';
 
   @override
-  String get noPlannedEvents => 'Tänään ei tapahtumia tiedossa';
+  String get noPlannedEvents => 'Ei tapahtumia tänään';
 
   @override
   String get watchNow => 'Katso';

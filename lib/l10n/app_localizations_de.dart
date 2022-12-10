@@ -5,10 +5,10 @@ class SDe extends S {
   SDe([String locale = 'de']) : super(locale);
 
   @override
-  String get loadingContent => 'Loading content';
+  String get loadingContent => 'Inhalt laden';
 
   @override
-  String get signInTooltip => 'Sign in to watch more content';
+  String get signInTooltip => 'Melde dich an, um mehr Inhalt anzuschauen';
 
   @override
   String get skipToPublicContent => 'Skip to watch public content';
@@ -407,7 +407,7 @@ class SDe extends S {
   String get thankYouSupportDescription => 'Wir sind dankbar für jedes Feedback und wir werden uns so schnell wie möglich um das Anliegen kümmern.';
 
   @override
-  String get sendFail => 'Couldn\'t send you message';
+  String get sendFail => 'Couldn\'t send your message';
 
   @override
   String get sendFailDescription => 'Etwas lief schief. Bitte überprüfe deine Internetverbindung und versuche es noch einmal.';
@@ -606,7 +606,7 @@ class SDe extends S {
 
   @override
   String shareTime(String time) {
-    return 'Share from time $time';
+    return 'Share from $time';
   }
 
   @override
@@ -730,7 +730,7 @@ class SDe extends S {
   String get categoryMusic => 'Musik';
 
   @override
-  String get noPlannedEvents => 'Keine geplanten Veranstaltungen heute';
+  String get noPlannedEvents => 'No events planned this day';
 
   @override
   String get watchNow => 'Schaue es jetzt';

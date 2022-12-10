@@ -545,7 +545,7 @@
   "@thankYouSupportDescription": {
     "description": "Text on contact support confirmation page"
   },
-  "sendFail": "No pude enviarte mensaje",
+  "sendFail": "Tu mensaje no pudo ser enviado",
   "@sendFail": {
     "description": "General error message that sending failed"
   },
@@ -999,7 +999,7 @@
   "@categoryMusic": {
     "description": "Category name"
   },
-  "noPlannedEvents": "No hay eventos planeados",
+  "noPlannedEvents": "No hay eventos planificados para ese día",
   "@noPlannedEvents": {
     "description": "Information in tvguide"
   },

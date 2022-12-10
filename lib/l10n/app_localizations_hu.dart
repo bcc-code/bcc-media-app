@@ -128,7 +128,7 @@ class SHu extends S {
   String get none => 'Nincs';
 
   @override
-  String get auto => 'Auto';
+  String get auto => 'Autó';
 
   @override
   String get live => 'Élő';
@@ -407,7 +407,7 @@ class SHu extends S {
   String get thankYouSupportDescription => 'Nagyra értékeljük az összes visszajelzést, és a lehető leghamarabb megválaszoljuk a kérdést.';
 
   @override
-  String get sendFail => 'Neked nem em lehetett üzenetet küldeni';
+  String get sendFail => 'Nem sikerült elküldeni az üzenetedet';
 
   @override
   String get sendFailDescription => 'Valami nem sikerült. Vizsgáld meg az internett kapcsolatodat és próbáld újra.';
@@ -535,7 +535,7 @@ class SHu extends S {
   String get program => 'Program';
 
   @override
-  String get participateTab => 'Részt venni';
+  String get participateTab => 'Részvevők';
 
   @override
   String get tomorrow => 'Holnap';
@@ -730,7 +730,7 @@ class SHu extends S {
   String get categoryMusic => 'Zene';
 
   @override
-  String get noPlannedEvents => 'Ma nincs tervezett esemény';
+  String get noPlannedEvents => 'Ezen a napon nincs tervezett esemény';
 
   @override
   String get watchNow => 'Nézd meg most';

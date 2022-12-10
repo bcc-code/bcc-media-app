@@ -407,7 +407,7 @@ class SEs extends S {
   String get thankYouSupportDescription => 'Agradecemos todos los comentarios y abordaremos el problema lo antes posible.';
 
   @override
-  String get sendFail => 'No pude enviarte mensaje';
+  String get sendFail => 'Tu mensaje no pudo ser enviado';
 
   @override
   String get sendFailDescription => 'Algo salió mal. Verifique su conexión a Internet e intente nuevamente.';
@@ -730,7 +730,7 @@ class SEs extends S {
   String get categoryMusic => 'Música';
 
   @override
-  String get noPlannedEvents => 'No hay eventos planeados';
+  String get noPlannedEvents => 'No hay eventos planificados para ese día';
 
   @override
   String get watchNow => 'Ver ahora';

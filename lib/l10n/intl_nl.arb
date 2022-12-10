@@ -545,7 +545,7 @@
   "@thankYouSupportDescription": {
     "description": "Text on contact support confirmation page"
   },
-  "sendFail": "Je bericht kon niet worden verzonden",
+  "sendFail": "Couldn't send your message",
   "@sendFail": {
     "description": "General error message that sending failed"
   },
@@ -659,7 +659,7 @@
   "@firstPostTitle": {
     "description": "Text on feed page when feed is empty."
   },
-  "timezoneInformation": "De tijden in de TV gids worden weergegeven in de lokale tijd van de tijdszone waarin je op dit moment bent: {timeZone}",
+  "timezoneInformation": "De tijden in de TV gids worden weergegeven in de lokale tijd van de tijdszone waarin je op dit moment bent",
   "@timezoneInformation": {
     "description": "TV guide footer info text.",
     "placeholders": {
@@ -830,7 +830,7 @@
   "@shareStart": {
     "description": "Option on action sheet for sharing from start"
   },
-  "shareTime": "Delen van punt {time}",
+  "shareTime": "Share from {time}",
   "@shareTime": {
     "description": "Option on action sheet for sharing from time",
     "placeholders": {
@@ -999,7 +999,7 @@
   "@categoryMusic": {
     "description": "Category name"
   },
-  "noPlannedEvents": "Geen geplande evenementen vandaag",
+  "noPlannedEvents": "No events planned this day",
   "@noPlannedEvents": {
     "description": "Information in tvguide"
   },

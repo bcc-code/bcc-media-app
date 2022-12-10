@@ -5,34 +5,34 @@ class SPt extends S {
   SPt([String locale = 'pt']) : super(locale);
 
   @override
-  String get loadingContent => 'Loading content';
+  String get loadingContent => 'Carregando conteúdo';
 
   @override
-  String get signInTooltip => 'Sign in to watch more content';
+  String get signInTooltip => 'Faça login para assistir mais conteúdo';
 
   @override
-  String get skipToPublicContent => 'Skip to watch public content';
+  String get skipToPublicContent => 'Pular para assistir ao conteúdo público';
 
   @override
-  String get minutesShort => 'min';
+  String get minutesShort => 'Min';
 
   @override
-  String get calendarThisWeek => 'This week';
+  String get calendarThisWeek => 'Essa semana ';
 
   @override
-  String get calendarWeek => 'week';
+  String get calendarWeek => 'Semana ';
 
   @override
   String get loading => 'Carregando';
 
   @override
-  String get loginPageDisplay1 => 'The most powerful message in the world';
+  String get loginPageDisplay1 => 'A mensagem mais poderosa do mundo';
 
   @override
-  String get loginPageDisplay2 => 'Watch series, shows and films based on Christian values';
+  String get loginPageDisplay2 => 'Assistir séries, programas e filmes baseados nos valores cristãos';
 
   @override
-  String get loginPageDisplay3 => 'Produced by BCC Media';
+  String get loginPageDisplay3 => 'Produzido por BCC Mídia ';
 
   @override
   String get liveTab => 'Ao vivo. ';
@@ -44,7 +44,7 @@ class SPt extends S {
   String get profileTab => 'Perfil';
 
   @override
-  String get faq => 'Frequently asked questions';
+  String get faq => 'Perguntas frequentes';
 
   @override
   String get bccMediaCenter => 'BrunstadTV é um centro de mídia não comercial que produz e distribui conteúdo com base em valores positivos e cristãos.';
@@ -152,7 +152,7 @@ class SPt extends S {
   String get search => 'Busca';
 
   @override
-  String get noResults => 'No results found';
+  String get noResults => 'Nenhum resultado encontrado';
 
   @override
   String get doYouWantCast => 'Deseja transmitir este vídeo?';
@@ -174,7 +174,7 @@ class SPt extends S {
 
   @override
   String queueLimitMessage(int elementCount) {
-    return 'You cannot have more than $elementCount elements in queue.';
+    return 'Você não pode ter mais de {element Count} elementos na fila.';
   }
 
   @override
@@ -217,7 +217,7 @@ class SPt extends S {
   String get high => 'Alto';
 
   @override
-  String get emptySearch => 'You can search all content from BrunstadTV. Series, videos and episodes.';
+  String get emptySearch => 'Você pode pesquisar todo o conteúdo da BrunstadTV. Séries, vídeos e episódios.';
 
   @override
   String get back => 'Voltar';
@@ -263,7 +263,7 @@ class SPt extends S {
 
   @override
   String watchingWith(int numPeople) {
-    return 'You are watching with $numPeople others';
+    return 'Você está assistindo com mais {numPessoas} pessoas';
   }
 
   @override
@@ -277,7 +277,7 @@ class SPt extends S {
 
   @override
   String charactersLimit(int charsLeft, int charsTotal) {
-    return '$charsLeft of $charsTotal characters left';
+    return '{caracteres restantes} De {caracteres totais} caracteres restantes';
   }
 
   @override
@@ -350,7 +350,7 @@ class SPt extends S {
   String get change => 'Mudar';
 
   @override
-  String get recordingFailedTitle => 'Couldn\'t record the video';
+  String get recordingFailedTitle => 'Não foi possível gravar o vídeo';
 
   @override
   String get recordingFailedMessage => 'Ocorreu um erro ao tentar gravar o vídeo.';
@@ -407,7 +407,7 @@ class SPt extends S {
   String get thankYouSupportDescription => 'Agradecemos todos os comentários e abordaremos o problema o mais rápido possível.';
 
   @override
-  String get sendFail => 'Couldn\'t send you message';
+  String get sendFail => 'Não foi possível enviar sua mensagem';
 
   @override
   String get sendFailDescription => 'Algo deu errado. Verifique sua conexão com a internet e tente novamente.';
@@ -606,7 +606,7 @@ class SPt extends S {
 
   @override
   String shareTime(String time) {
-    return 'Share from time $time';
+    return 'Share from $time';
   }
 
   @override
@@ -730,7 +730,7 @@ class SPt extends S {
   String get categoryMusic => 'Música';
 
   @override
-  String get noPlannedEvents => 'Nenhum evento planejado hoje';
+  String get noPlannedEvents => 'No events planned this day';
 
   @override
   String get watchNow => 'Assistir agora';
