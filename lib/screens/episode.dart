@@ -37,6 +37,7 @@ import '../components/episode_details.dart';
 import '../components/episode_tab_selector.dart';
 import '../components/fade_indexed_stack.dart';
 import '../components/option_list.dart';
+import '../env/env.dart';
 import '../graphql/queries/studies.graphql.dart';
 import '../helpers/btv_buttons.dart';
 import '../helpers/btv_colors.dart';
@@ -386,7 +387,7 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen> with AutoRouteAwa
                                     ]),
                                     const SizedBox(height: 14.5),
                                     Text(episode.description, style: BtvTextStyles.body2.copyWith(color: BtvColors.label3)),
-                                    if (episode.lessons.items.isNotEmpty)
+                                    if (Env.enableStudy && episode.lessons.items.isNotEmpty)
                                       Padding(
                                         padding: const EdgeInsets.only(top: 16),
                                         child: simpleFutureBuilder<Query$GetEpisodeLessonProgress?>(
