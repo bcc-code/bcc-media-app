@@ -27,7 +27,7 @@
   "@loading": {
     "description": "Text to indicate loading state."
   },
-  "loginPageDisplay1": "Det kraftigste budskapet i verden",
+  "loginPageDisplay1": "Det kraftigste\nbudskapet i verden",
   "@loginPageDisplay1": {
     "description": "Text displayed on login screen."
   },
@@ -1006,5 +1006,9 @@
   "watchNow": "Se nå",
   "@watchNow": {
     "description": "Button on featured carousel"
+  },
+  "exploreContent": "Utforsk innhold",
+  "@exploreContent": {
+    "description": "A button on the login page"
   }
 }
