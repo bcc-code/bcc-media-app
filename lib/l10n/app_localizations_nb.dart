@@ -26,7 +26,7 @@ class SNb extends S {
   String get loading => 'Laster';
 
   @override
-  String get loginPageDisplay1 => 'Det kraftigste budskapet i verden';
+  String get loginPageDisplay1 => 'Det kraftigste\nbudskapet i verden';
 
   @override
   String get loginPageDisplay2 => 'Se serier, programmer og filmer basert på kristne verdier';
@@ -736,5 +736,5 @@ class SNb extends S {
   String get watchNow => 'Se nå';
 
   @override
-  String get exploreContent => 'Explore content';
+  String get exploreContent => 'Utforsk innhold';
 }
