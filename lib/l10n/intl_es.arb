@@ -27,7 +27,7 @@
   "@loading": {
     "description": "Text to indicate loading state."
   },
-  "loginPageDisplay1": "El mensaje más poderoso del mundo",
+  "loginPageDisplay1": "El mensaje más \npoderoso del mundo",
   "@loginPageDisplay1": {
     "description": "Text displayed on login screen."
   },
@@ -1006,5 +1006,9 @@
   "watchNow": "Ver ahora",
   "@watchNow": {
     "description": "Button on featured carousel"
+  },
+  "exploreContent": "Explora el contenido",
+  "@exploreContent": {
+    "description": "A button on the login page"
   }
 }

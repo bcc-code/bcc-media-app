@@ -7,11 +7,11 @@
   "@signInTooltip": {
     "description": "Text for tooltip displayed when a non-member user opens the home page."
   },
-  "skipToPublicContent": "Skip to watch public content",
+  "skipToPublicContent": "Überspringe, um öffentlichen Inhalt zu schauen",
   "@skipToPublicContent": {
     "description": "Text for button displayed on login screen to skip sign in and watch public content."
   },
-  "minutesShort": "min",
+  "minutesShort": "Min",
   "@minutesShort": {
     "description": "Text for minutes."
   },
@@ -27,15 +27,15 @@
   "@loading": {
     "description": "Text to indicate loading state."
   },
-  "loginPageDisplay1": "The most powerful message in the world",
+  "loginPageDisplay1": "Die mächtigste Botschaft der Welt",
   "@loginPageDisplay1": {
     "description": "Text displayed on login screen."
   },
-  "loginPageDisplay2": "Watch series, shows and films based on Christian values",
+  "loginPageDisplay2": "Schaue Serien, Shows und Filme basierend auf christlichen Werten",
   "@loginPageDisplay2": {
     "description": "Text displayed on login screen."
   },
-  "loginPageDisplay3": "Produced by BCC Media",
+  "loginPageDisplay3": "Produziert von BCC Media",
   "@loginPageDisplay3": {
     "description": "Text displayed on login screen."
   },
@@ -223,7 +223,7 @@
   "@queueLimitTitle": {
     "description": "Title of the alert to the user when attempt to add video to cast queue failed due to full queue."
   },
-  "queueLimitMessage": "You cannot have more than {elementCount} elements in queue.",
+  "queueLimitMessage": "Du kannst nicht mehr als {elementCount} Videos in der Warteschlange haben.",
   "@queueLimitMessage": {
     "description": "Error message to the user when attempt to add video to cast queue failed due to full queue.",
     "placeholders": {
@@ -344,7 +344,7 @@
   "@uploadFileMessage": {
     "description": "Content of the dialog to confirm upload"
   },
-  "watchingWith": "You are watching with {numPeople} others",
+  "watchingWith": "Du siehst mit {numPeople} anderen",
   "@watchingWith": {
     "description": "Info on live stream page",
     "placeholders": {
@@ -365,7 +365,7 @@
   "@post": {
     "description": "Button to post written testimony"
   },
-  "charactersLimit": "{charsLeft} of {charsTotal} characters left",
+  "charactersLimit": "{charsLeft} von {charsTotal} Zeichen übrig",
   "@charactersLimit": {
     "description": "Info about limit of characters in written testimony",
     "placeholders": {
@@ -545,7 +545,7 @@
   "@thankYouSupportDescription": {
     "description": "Text on contact support confirmation page"
   },
-  "sendFail": "Couldn't send your message",
+  "sendFail": "Deine Nachricht konnte nicht gesendet werden",
   "@sendFail": {
     "description": "General error message that sending failed"
   },
@@ -561,7 +561,7 @@
   "@noNewPosts": {
     "description": "Text displayed on the button, when there are no new posts in the feed."
   },
-  "newPostsMultiple": "{postCount} new posts!",
+  "newPostsMultiple": "{postCount} neue Posts!",
   "@newPostsMultiple": {
     "description": "Text displayed on the button, when there are number of new posts in the feed.",
     "placeholders": {
@@ -570,7 +570,7 @@
       }
     }
   },
-  "newPostsSingle": "{postCount} new post!",
+  "newPostsSingle": "Neuer Post!",
   "@newPostsSingle": {
     "description": "Text displayed on the button, when there is one new post in the feed.",
     "placeholders": {
@@ -583,7 +583,7 @@
   "@expired": {
     "description": "Info that episode is no longer available."
   },
-  "availableFrom": "Available {date}",
+  "availableFrom": "Verfügbar {date}",
   "@availableFrom": {
     "description": "Info that episode will be released at certain date.",
     "placeholders": {
@@ -604,7 +604,7 @@
   "@wellDone": {
     "description": "Text on running competition page."
   },
-  "wellDoneDistance": "Well done! You have registered a total distance of {distanceInKM} km",
+  "wellDoneDistance": "Gut gemacht! Du hast eine Gesamtstrecke von {distanceInKM} km registriert",
   "@wellDoneDistance": {
     "description": "Text on running competition page.",
     "placeholders": {
@@ -617,7 +617,7 @@
   "@distanceRegistered": {
     "description": "Text on running competition page."
   },
-  "ranMore": "I went more than {distanceInKM} km",
+  "ranMore": "Ich bin mehr als {distanceInKM} km gelaufen",
   "@ranMore": {
     "description": "Text on running competition page.",
     "placeholders": {
@@ -626,7 +626,7 @@
       }
     }
   },
-  "moreThan": "More than {distanceInKM} km",
+  "moreThan": "Mehr als {distanceInKM} km",
   "@moreThan": {
     "description": "Text on running competition page.",
     "placeholders": {
@@ -659,7 +659,7 @@
   "@firstPostTitle": {
     "description": "Text on feed page when feed is empty."
   },
-  "timezoneInformation": "Tv guide timetable is in your local time: {timeZone}",
+  "timezoneInformation": "Das Tv Programm ist deiner Ortszeit angepasst: {timeZone}",
   "@timezoneInformation": {
     "description": "TV guide footer info text.",
     "placeholders": {
@@ -744,7 +744,7 @@
   "@readBy": {
     "description": "Feed verse pre author text."
   },
-  "pollAnswer": "You've answered: {answer}",
+  "pollAnswer": "Du hast geantwortet {answer}",
   "@pollAnswer": {
     "description": "Snackbar label after user has chosen poll answer",
     "placeholders": {
@@ -830,7 +830,7 @@
   "@shareStart": {
     "description": "Option on action sheet for sharing from start"
   },
-  "shareTime": "Share from {time}",
+  "shareTime": "Teile von {time}",
   "@shareTime": {
     "description": "Option on action sheet for sharing from time",
     "placeholders": {
@@ -839,7 +839,7 @@
       }
     }
   },
-  "loadContentError": "Couldn't load content",
+  "loadContentError": "Konnte den Inhalt nicht laden",
   "@loadContentError": {
     "description": "Error text when content couldn't be loaded."
   },
@@ -999,12 +999,16 @@
   "@categoryMusic": {
     "description": "Category name"
   },
-  "noPlannedEvents": "No events planned this day",
+  "noPlannedEvents": "Keine Veranstaltungen an diesem Tag geplant",
   "@noPlannedEvents": {
     "description": "Information in tvguide"
   },
   "watchNow": "Schaue es jetzt",
   "@watchNow": {
     "description": "Button on featured carousel"
+  },
+  "exploreContent": "Entdecke den Inhalt",
+  "@exploreContent": {
+    "description": "A button on the login page"
   }
 }

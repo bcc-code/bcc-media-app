@@ -27,7 +27,7 @@
   "@loading": {
     "description": "Text to indicate loading state."
   },
-  "loginPageDisplay1": "A világ legerősebb üzenete",
+  "loginPageDisplay1": "A világ \nlegerősebb üzenete",
   "@loginPageDisplay1": {
     "description": "Text displayed on login screen."
   },
@@ -1006,5 +1006,9 @@
   "watchNow": "Nézd meg most",
   "@watchNow": {
     "description": "Button on featured carousel"
+  },
+  "exploreContent": "Tartalom felfedezése",
+  "@exploreContent": {
+    "description": "A button on the login page"
   }
 }

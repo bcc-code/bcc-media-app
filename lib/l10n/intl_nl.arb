@@ -27,7 +27,7 @@
   "@loading": {
     "description": "Text to indicate loading state."
   },
-  "loginPageDisplay1": "De krachtigste boodschap in de wereld",
+  "loginPageDisplay1": "De krachtigste \nboodschap in de wereld",
   "@loginPageDisplay1": {
     "description": "Text displayed on login screen."
   },
@@ -545,7 +545,7 @@
   "@thankYouSupportDescription": {
     "description": "Text on contact support confirmation page"
   },
-  "sendFail": "Couldn't send your message",
+  "sendFail": "Je bericht kon niet worden verzonden",
   "@sendFail": {
     "description": "General error message that sending failed"
   },
@@ -830,7 +830,7 @@
   "@shareStart": {
     "description": "Option on action sheet for sharing from start"
   },
-  "shareTime": "Share from {time}",
+  "shareTime": "Delen van punt {time}",
   "@shareTime": {
     "description": "Option on action sheet for sharing from time",
     "placeholders": {
@@ -999,12 +999,16 @@
   "@categoryMusic": {
     "description": "Category name"
   },
-  "noPlannedEvents": "No events planned this day",
+  "noPlannedEvents": "Geen evenementen gepland vandaag",
   "@noPlannedEvents": {
     "description": "Information in tvguide"
   },
   "watchNow": "Nu kijken",
   "@watchNow": {
     "description": "Button on featured carousel"
+  },
+  "exploreContent": "Inhoud verkennen",
+  "@exploreContent": {
+    "description": "A button on the login page"
   }
 }
