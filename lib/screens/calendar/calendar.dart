@@ -145,8 +145,8 @@ class _CalendarWidgetState extends ConsumerState<CalendarWidget> {
   }
 
   loadInputPeriodData() async {
-    var from = convertToIso8601(_focusedDay.subtract(const Duration(days: 31)));
-    var to = convertToIso8601(_focusedDay.add(const Duration(days: 31)));
+    var from = convertToIso8601(_focusedDay.subtract(const Duration(days: 40)));
+    var to = convertToIso8601(_focusedDay.add(const Duration(days: 40)));
     final client = ref.read(gqlClientProvider);
 
     _calendarPeriodFuture = client
