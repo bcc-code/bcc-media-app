@@ -20,7 +20,7 @@ publish_to: "none" # Remove this line if you wish to publish to pub.dev
 # so we kind of can't have more than 10 builds per day
 # Note: On play store the build number dots gets removed, so it
 # becomes a number in the millions range (2211301 for example).
-version: 4.0.3+2300003
+version: 4.0.3+2300004
 
 environment:
   sdk: ">=2.17.0 <3.0.0"
