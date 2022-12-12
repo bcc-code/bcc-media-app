@@ -24,7 +24,10 @@ A new Flutter plugin project.
   s.dependency 'YouboraLib', '6.6.22'
   s.dependency 'YouboraAVPlayerAdapter', '6.6.8'
   
+
+  
   #s.ios.vendored_frameworks = 'Frameworks/GoogleCast.xcframework'
+  s.dependency 'Protobuf', '~> 3.13'
   s.dependency 'google-cast-sdk-no-bluetooth', '~> 4.7.0'
 
 end
