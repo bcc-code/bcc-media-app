@@ -174,7 +174,8 @@ class SPt extends S {
 
   @override
   String queueLimitMessage(int elementCount) {
-    return 'Você não pode ter mais de {element Count} elementos na fila.';
+
+    return 'Você não pode ter mais de $elementCount elementos na fila.';
   }
 
   @override
@@ -263,7 +264,8 @@ class SPt extends S {
 
   @override
   String watchingWith(int numPeople) {
-    return 'Você está assistindo com mais {numPessoas} pessoas';
+
+    return 'Você está assistindo com mais $numPeople pessoas';
   }
 
   @override
@@ -277,7 +279,8 @@ class SPt extends S {
 
   @override
   String charactersLimit(int charsLeft, int charsTotal) {
-    return '{caracteres restantes} De {caracteres totais} caracteres restantes';
+
+    return '$charsLeft De $charsTotal caracteres restantes';
   }
 
   @override
@@ -420,11 +423,13 @@ class SPt extends S {
 
   @override
   String newPostsMultiple(int postCount) {
+
     return '$postCount new posts!';
   }
 
   @override
   String newPostsSingle(int postCount) {
+
     return '$postCount new post!';
   }
 
@@ -433,6 +438,7 @@ class SPt extends S {
 
   @override
   String availableFrom(String date) {
+
     return 'Available $date';
   }
 
@@ -447,6 +453,7 @@ class SPt extends S {
 
   @override
   String wellDoneDistance(int distanceInKM) {
+
     return 'Well done! You have registered a total distance of $distanceInKM km';
   }
 
@@ -455,11 +462,13 @@ class SPt extends S {
 
   @override
   String ranMore(int distanceInKM) {
+
     return 'I went more than $distanceInKM km';
   }
 
   @override
   String moreThan(int distanceInKM) {
+
     return 'More than $distanceInKM km';
   }
 
@@ -483,6 +492,7 @@ class SPt extends S {
 
   @override
   String timezoneInformation(String timeZone) {
+
     return 'Tv guide timetable is in your local time: $timeZone';
   }
 
@@ -545,6 +555,7 @@ class SPt extends S {
 
   @override
   String pollAnswer(String answer) {
+
     return 'You\'ve answered: $answer';
   }
 
@@ -577,6 +588,7 @@ class SPt extends S {
 
   @override
   String posts(int postsCount) {
+
     return '$postsCount Posts';
   }
 
@@ -606,6 +618,7 @@ class SPt extends S {
 
   @override
   String shareTime(String time) {
+
     return 'Share from $time';
   }
 

@@ -10,6 +10,8 @@ import 'package:package_info_plus/package_info_plus.dart';
 import 'package:rudder_sdk_flutter/RudderController.dart';
 import 'package:rudder_sdk_flutter_platform_interface/platform.dart';
 
+import '../models/analytics/audio_only_clicked.dart';
+import '../models/analytics/calendar_day_clicked.dart';
 import '../models/analytics/deep_link_opened.dart';
 import '../models/analytics/language_changed.dart';
 import '../models/analytics/search_performed.dart';
@@ -154,5 +156,14 @@ class Analytics {
 
   void screen(screenName, {Map<String, Object?>? properties}) {
     RudderController.instance.screen(screenName, properties: getCommonData().putValue(map: properties));
+  }
+
+  void audioOnlyClicked(AudioOnlyClickedEvent event) {
+    RudderController.instance.track('audioonly_clicked', properties: getCommonData().putValue(map: event.toJson()));
+  }
+
+  void calendarDayClicked(CalendarDayClickedEvent event) {
+    print(event);
+    RudderController.instance.track('calendarday_clicked', properties: getCommonData().putValue(map: event.toJson()));
   }
 }
