@@ -174,6 +174,7 @@ class SIt extends S {
 
   @override
   String queueLimitMessage(int elementCount) {
+
     return 'Non puoi avere più di $elementCount elementi in coda.';
   }
 
@@ -263,6 +264,7 @@ class SIt extends S {
 
   @override
   String watchingWith(int numPeople) {
+
     return 'Stai guardando con altri $numPeople';
   }
 
@@ -277,6 +279,7 @@ class SIt extends S {
 
   @override
   String charactersLimit(int charsLeft, int charsTotal) {
+
     return '$charsLeft di $charsTotal caratteri rimasti';
   }
 
@@ -420,11 +423,13 @@ class SIt extends S {
 
   @override
   String newPostsMultiple(int postCount) {
+
     return '$postCount nuovi post!';
   }
 
   @override
   String newPostsSingle(int postCount) {
+
     return '$postCount nuovi post!';
   }
 
@@ -433,7 +438,8 @@ class SIt extends S {
 
   @override
   String availableFrom(String date) {
-    return 'Disponibile${date}';
+
+    return 'Disponibile$date';
   }
 
   @override
@@ -447,6 +453,7 @@ class SIt extends S {
 
   @override
   String wellDoneDistance(int distanceInKM) {
+
     return 'Ben fatto! Hai registrato una distanza totale di $distanceInKM km';
   }
 
@@ -455,11 +462,13 @@ class SIt extends S {
 
   @override
   String ranMore(int distanceInKM) {
+
     return 'Ho percorso più di $distanceInKM km';
   }
 
   @override
   String moreThan(int distanceInKM) {
+
     return 'Più di $distanceInKM km';
   }
 
@@ -483,6 +492,7 @@ class SIt extends S {
 
   @override
   String timezoneInformation(String timeZone) {
+
     return 'L\'orario della guida Tv è nella tua ora locale: $timeZone';
   }
 
@@ -545,6 +555,7 @@ class SIt extends S {
 
   @override
   String pollAnswer(String answer) {
+
     return 'Hai risposto: $answer';
   }
 
@@ -577,6 +588,7 @@ class SIt extends S {
 
   @override
   String posts(int postsCount) {
+
     return '$postsCount Post';
   }
 
@@ -606,6 +618,7 @@ class SIt extends S {
 
   @override
   String shareTime(String time) {
+
     return 'Share from $time';
   }
 

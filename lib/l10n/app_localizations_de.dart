@@ -174,6 +174,7 @@ class SDe extends S {
 
   @override
   String queueLimitMessage(int elementCount) {
+
     return 'Du kannst nicht mehr als $elementCount Videos in der Warteschlange haben.';
   }
 
@@ -263,6 +264,7 @@ class SDe extends S {
 
   @override
   String watchingWith(int numPeople) {
+
     return 'Du siehst mit $numPeople anderen';
   }
 
@@ -277,6 +279,7 @@ class SDe extends S {
 
   @override
   String charactersLimit(int charsLeft, int charsTotal) {
+
     return '$charsLeft von $charsTotal Zeichen übrig';
   }
 
@@ -420,12 +423,14 @@ class SDe extends S {
 
   @override
   String newPostsMultiple(int postCount) {
+
     return '$postCount neue Posts!';
   }
 
   @override
   String newPostsSingle(int postCount) {
-    return 'Neuer Post!';
+
+    return '$postCount neuer Post!';
   }
 
   @override
@@ -433,6 +438,7 @@ class SDe extends S {
 
   @override
   String availableFrom(String date) {
+
     return 'Verfügbar $date';
   }
 
@@ -447,6 +453,7 @@ class SDe extends S {
 
   @override
   String wellDoneDistance(int distanceInKM) {
+
     return 'Gut gemacht! Du hast eine Gesamtstrecke von $distanceInKM km registriert';
   }
 
@@ -455,11 +462,13 @@ class SDe extends S {
 
   @override
   String ranMore(int distanceInKM) {
+
     return 'Ich bin mehr als $distanceInKM km gelaufen';
   }
 
   @override
   String moreThan(int distanceInKM) {
+
     return 'Mehr als $distanceInKM km';
   }
 
@@ -483,6 +492,7 @@ class SDe extends S {
 
   @override
   String timezoneInformation(String timeZone) {
+
     return 'Das Tv Programm ist deiner Ortszeit angepasst: $timeZone';
   }
 
@@ -545,6 +555,7 @@ class SDe extends S {
 
   @override
   String pollAnswer(String answer) {
+
     return 'Du hast geantwortet $answer';
   }
 
@@ -577,6 +588,7 @@ class SDe extends S {
 
   @override
   String posts(int postsCount) {
+
     return '$postsCount Posts';
   }
 
@@ -606,6 +618,7 @@ class SDe extends S {
 
   @override
   String shareTime(String time) {
+
     return 'Teile von $time';
   }
 

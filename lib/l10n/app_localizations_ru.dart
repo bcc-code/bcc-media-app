@@ -174,6 +174,7 @@ class SRu extends S {
 
   @override
   String queueLimitMessage(int elementCount) {
+
     return 'В очереди не может быть больше элементов, чем $elementCount.';
   }
 
@@ -263,6 +264,7 @@ class SRu extends S {
 
   @override
   String watchingWith(int numPeople) {
+
     return 'Вы смотрите с $numPeople другими';
   }
 
@@ -277,6 +279,7 @@ class SRu extends S {
 
   @override
   String charactersLimit(int charsLeft, int charsTotal) {
+
     return 'Осталось $charsLeft из $charsTotal символов';
   }
 
@@ -420,11 +423,13 @@ class SRu extends S {
 
   @override
   String newPostsMultiple(int postCount) {
+
     return '$postCount новых публикаций!';
   }
 
   @override
   String newPostsSingle(int postCount) {
+
     return '$postCount новых публикаций!';
   }
 
@@ -433,6 +438,7 @@ class SRu extends S {
 
   @override
   String availableFrom(String date) {
+
     return 'Доступно $date';
   }
 
@@ -447,6 +453,7 @@ class SRu extends S {
 
   @override
   String wellDoneDistance(int distanceInKM) {
+
     return 'Отлично сработано! Вы зарегистрировали общее расстояние $distanceInKM км';
   }
 
@@ -455,11 +462,13 @@ class SRu extends S {
 
   @override
   String ranMore(int distanceInKM) {
+
     return 'Я прошёл (ла) более $distanceInKM км';
   }
 
   @override
   String moreThan(int distanceInKM) {
+
     return 'Более $distanceInKM км';
   }
 
@@ -483,6 +492,7 @@ class SRu extends S {
 
   @override
   String timezoneInformation(String timeZone) {
+
     return 'Расписание телепрограммы указано по вашему местному времени: $timeZone';
   }
 
@@ -545,6 +555,7 @@ class SRu extends S {
 
   @override
   String pollAnswer(String answer) {
+
     return 'Вы ответили: $answer';
   }
 
@@ -577,6 +588,7 @@ class SRu extends S {
 
   @override
   String posts(int postsCount) {
+
     return '$postsCount Публикаций';
   }
 
@@ -606,6 +618,7 @@ class SRu extends S {
 
   @override
   String shareTime(String time) {
+
     return 'Поделиться с времени $time';
   }
 

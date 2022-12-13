@@ -174,6 +174,7 @@ class SPl extends S {
 
   @override
   String queueLimitMessage(int elementCount) {
+
     return 'Nie możesz mieć więcej niż $elementCount elementów w kolejce.';
   }
 
@@ -263,6 +264,7 @@ class SPl extends S {
 
   @override
   String watchingWith(int numPeople) {
+
     return 'Oglądasz razem z $numPeople innymi';
   }
 
@@ -277,6 +279,7 @@ class SPl extends S {
 
   @override
   String charactersLimit(int charsLeft, int charsTotal) {
+
     return 'Pozostało $charsLeft z $charsTotal liter';
   }
 
@@ -420,11 +423,13 @@ class SPl extends S {
 
   @override
   String newPostsMultiple(int postCount) {
+
     return '$postCount nowych postów!';
   }
 
   @override
   String newPostsSingle(int postCount) {
+
     return '$postCount nowy post!';
   }
 
@@ -433,6 +438,7 @@ class SPl extends S {
 
   @override
   String availableFrom(String date) {
+
     return 'Dostępne od $date';
   }
 
@@ -447,6 +453,7 @@ class SPl extends S {
 
   @override
   String wellDoneDistance(int distanceInKM) {
+
     return 'Dobra robota! Zarejestrowałeś w sumie przebycie $distanceInKM km';
   }
 
@@ -455,11 +462,13 @@ class SPl extends S {
 
   @override
   String ranMore(int distanceInKM) {
+
     return 'Przebyłem więcej niż $distanceInKM km';
   }
 
   @override
   String moreThan(int distanceInKM) {
+
     return 'Ponad $distanceInKM km';
   }
 
@@ -483,6 +492,7 @@ class SPl extends S {
 
   @override
   String timezoneInformation(String timeZone) {
+
     return 'Czasy w programie TV są przedstawione w twojej strefie czasowej: $timeZone';
   }
 
@@ -545,6 +555,7 @@ class SPl extends S {
 
   @override
   String pollAnswer(String answer) {
+
     return 'Odpowiedziałeś: $answer';
   }
 
@@ -577,6 +588,7 @@ class SPl extends S {
 
   @override
   String posts(int postsCount) {
+
     return '$postsCount Wpisów';
   }
 
@@ -606,6 +618,7 @@ class SPl extends S {
 
   @override
   String shareTime(String time) {
+
     return 'Udostępnij od $time';
   }
 

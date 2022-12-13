@@ -29,4 +29,6 @@ class Environments {
 class RouteMetaConstants {
   static const hideMiniPlayer = 'hide_mini_player';
   static const analyticsName = 'analytics_name';
+  static const settingsName = 'settings_name';
+  static const navTabRoute = 'nav_tab_route';
 }
