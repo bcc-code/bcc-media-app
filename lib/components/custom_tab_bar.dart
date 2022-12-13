@@ -130,6 +130,8 @@ class _CustomTabBarState extends ConsumerState<CustomTabBar> {
               searchState.clear();
             }
             widget.tabsRouter.stackRouterOfIndex(index)?.popUntilRoot();
+          } else {
+            sendAnalytics(index);
           }
           widget.tabsRouter.setActiveIndex(index);
         },
