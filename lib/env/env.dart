@@ -4,7 +4,7 @@ part '.env.dart';
 // Check if your .env.dart file is missing anything from the .env.dart.example file.
 
 class Env {
-  static const enableStudy = false;
+  static const enableStudy = _Secrets.enableStudy;
   static const auth0ClientId = 'CU6aNYSKaD6vpgFZvLJ9gvGAFnKRlpir';
   static const auth0Domain = 'login.bcc.no';
   static const auth0Audience = 'api.bcc.no';
