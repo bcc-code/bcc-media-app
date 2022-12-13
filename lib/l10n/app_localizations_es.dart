@@ -26,7 +26,7 @@ class SEs extends S {
   String get loading => 'Cargando';
 
   @override
-  String get loginPageDisplay1 => 'El mensaje más poderoso del mundo';
+  String get loginPageDisplay1 => 'El mensaje más \npoderoso del mundo';
 
   @override
   String get loginPageDisplay2 => 'Ver series, espectáculos y películas basadas en Valores cristianos';
@@ -736,5 +736,5 @@ class SEs extends S {
   String get watchNow => 'Ver ahora';
 
   @override
-  String get exploreContent => 'Explore content';
+  String get exploreContent => 'Explora el contenido';
 }

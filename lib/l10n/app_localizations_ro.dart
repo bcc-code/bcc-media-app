@@ -26,7 +26,7 @@ class SRo extends S {
   String get loading => 'Se încarcă';
 
   @override
-  String get loginPageDisplay1 => 'Cel mai puternic mesaj din lume';
+  String get loginPageDisplay1 => 'Cel mai puternic \nmesaj din lume';
 
   @override
   String get loginPageDisplay2 => 'Vezi seriale, emisiuni și filme bazate pe valori Creștine';
@@ -736,5 +736,5 @@ class SRo extends S {
   String get watchNow => 'Vezi acum';
 
   @override
-  String get exploreContent => 'Explore content';
+  String get exploreContent => 'Descoperă conținut';
 }

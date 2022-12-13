@@ -407,7 +407,7 @@ class SRu extends S {
   String get thankYouSupportDescription => 'Мы ценим все отзывы и постараемся решить эту проблему как можно скорее.';
 
   @override
-  String get sendFail => 'Couldn\'t send your message';
+  String get sendFail => 'Не удалось отправить ваше сообщение';
 
   @override
   String get sendFailDescription => 'Что-то пошло не так. Проверьте подключение к интернету и попробуйте еще раз.';
@@ -606,7 +606,7 @@ class SRu extends S {
 
   @override
   String shareTime(String time) {
-    return 'Share from $time';
+    return 'Поделиться с времени $time';
   }
 
   @override
@@ -730,11 +730,11 @@ class SRu extends S {
   String get categoryMusic => 'Музыка';
 
   @override
-  String get noPlannedEvents => 'No events planned this day';
+  String get noPlannedEvents => 'В этот день мероприятий не запланировано';
 
   @override
   String get watchNow => 'Смотреть сейчас';
 
   @override
-  String get exploreContent => 'Explore content';
+  String get exploreContent => 'Исследуйте контент';
 }

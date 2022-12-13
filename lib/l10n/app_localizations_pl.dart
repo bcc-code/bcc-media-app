@@ -5,34 +5,34 @@ class SPl extends S {
   SPl([String locale = 'pl']) : super(locale);
 
   @override
-  String get loadingContent => 'Loading content';
+  String get loadingContent => 'Ładuję zawartość';
 
   @override
-  String get signInTooltip => 'Sign in to watch more content';
+  String get signInTooltip => 'Zaloguj się, by móc oglądać więcej';
 
   @override
-  String get skipToPublicContent => 'Skip to watch public content';
+  String get skipToPublicContent => 'Pomiń, by obejrzeć publiczną zawartość';
 
   @override
   String get minutesShort => 'min';
 
   @override
-  String get calendarThisWeek => 'This week';
+  String get calendarThisWeek => 'W tym tygodniu';
 
   @override
-  String get calendarWeek => 'week';
+  String get calendarWeek => 'tydzień';
 
   @override
   String get loading => 'Ładuję';
 
   @override
-  String get loginPageDisplay1 => 'The most powerful message in the world';
+  String get loginPageDisplay1 => 'Najmocniejszy przekaz na świecie';
 
   @override
-  String get loginPageDisplay2 => 'Watch series, shows and films based on Christian values';
+  String get loginPageDisplay2 => 'Oglądaj seriale, produkcje i filmy bazujące na chrześcijańskich wartościach';
 
   @override
-  String get loginPageDisplay3 => 'Produced by BCC Media';
+  String get loginPageDisplay3 => 'Wyprodukowano przez BCC Media';
 
   @override
   String get liveTab => 'Na żywo';
@@ -44,7 +44,7 @@ class SPl extends S {
   String get profileTab => 'Profil';
 
   @override
-  String get faq => 'Frequently asked questions';
+  String get faq => 'Często zadawane pytania';
 
   @override
   String get bccMediaCenter => 'BrunstadTV jest niekomercyjnym domem medialnym tworzącym i rozpowszechniającym treści oparte na pozytywnych i chrześcijańskich wartościach.';
@@ -152,7 +152,7 @@ class SPl extends S {
   String get search => 'Szukaj';
 
   @override
-  String get noResults => 'No results found';
+  String get noResults => 'Brak wyników';
 
   @override
   String get doYouWantCast => 'Czy odtworzyć na Chromecast?';
@@ -174,7 +174,7 @@ class SPl extends S {
 
   @override
   String queueLimitMessage(int elementCount) {
-    return 'You cannot have more than $elementCount elements in queue.';
+    return 'Nie możesz mieć więcej niż $elementCount elementów w kolejce.';
   }
 
   @override
@@ -217,7 +217,7 @@ class SPl extends S {
   String get high => 'Wysoka';
 
   @override
-  String get emptySearch => 'You can search all content from BrunstadTV. Series, videos and episodes.';
+  String get emptySearch => 'Wyszukuj treści w BrunstadTV. Seriale, filmy i odcinki.';
 
   @override
   String get back => 'Wstecz';
@@ -263,7 +263,7 @@ class SPl extends S {
 
   @override
   String watchingWith(int numPeople) {
-    return 'You are watching with $numPeople others';
+    return 'Oglądasz razem z $numPeople innymi';
   }
 
   @override
@@ -277,7 +277,7 @@ class SPl extends S {
 
   @override
   String charactersLimit(int charsLeft, int charsTotal) {
-    return '$charsLeft of $charsTotal characters left';
+    return 'Pozostało $charsLeft z $charsTotal liter';
   }
 
   @override
@@ -350,7 +350,7 @@ class SPl extends S {
   String get change => 'Zmień';
 
   @override
-  String get recordingFailedTitle => 'Couldn\'t record the video';
+  String get recordingFailedTitle => 'Nie udało się nagrać filmu';
 
   @override
   String get recordingFailedMessage => 'Coś poszło nie tak przy próbie nagrywania filmu.';
@@ -407,7 +407,7 @@ class SPl extends S {
   String get thankYouSupportDescription => 'Doceniamy wszelkie informacje zwrotne i odniesiemy się do tego problemu tak szybko, jak to możliwe.';
 
   @override
-  String get sendFail => 'Couldn\'t send your message';
+  String get sendFail => 'Nie udało się wysłać wiadomości';
 
   @override
   String get sendFailDescription => 'Coś poszło nie tak. Sprawdź swoje połączenie internetowe i spróbuj jeszcze raz.';
@@ -420,12 +420,12 @@ class SPl extends S {
 
   @override
   String newPostsMultiple(int postCount) {
-    return '$postCount new posts!';
+    return '$postCount nowych postów!';
   }
 
   @override
   String newPostsSingle(int postCount) {
-    return '$postCount new post!';
+    return '$postCount nowy post!';
   }
 
   @override
@@ -433,7 +433,7 @@ class SPl extends S {
 
   @override
   String availableFrom(String date) {
-    return 'Available $date';
+    return 'Dostępne od $date';
   }
 
   @override
@@ -447,7 +447,7 @@ class SPl extends S {
 
   @override
   String wellDoneDistance(int distanceInKM) {
-    return 'Well done! You have registered a total distance of $distanceInKM km';
+    return 'Dobra robota! Zarejestrowałeś w sumie przebycie $distanceInKM km';
   }
 
   @override
@@ -455,12 +455,12 @@ class SPl extends S {
 
   @override
   String ranMore(int distanceInKM) {
-    return 'I went more than $distanceInKM km';
+    return 'Przebyłem więcej niż $distanceInKM km';
   }
 
   @override
   String moreThan(int distanceInKM) {
-    return 'More than $distanceInKM km';
+    return 'Ponad $distanceInKM km';
   }
 
   @override
@@ -483,7 +483,7 @@ class SPl extends S {
 
   @override
   String timezoneInformation(String timeZone) {
-    return 'Tv guide timetable is in your local time: $timeZone';
+    return 'Czasy w programie TV są przedstawione w twojej strefie czasowej: $timeZone';
   }
 
   @override
@@ -545,7 +545,7 @@ class SPl extends S {
 
   @override
   String pollAnswer(String answer) {
-    return 'You\'ve answered: $answer';
+    return 'Odpowiedziałeś: $answer';
   }
 
   @override
@@ -577,7 +577,7 @@ class SPl extends S {
 
   @override
   String posts(int postsCount) {
-    return '$postsCount Posts';
+    return '$postsCount Wpisów';
   }
 
   @override
@@ -606,11 +606,11 @@ class SPl extends S {
 
   @override
   String shareTime(String time) {
-    return 'Share from $time';
+    return 'Udostępnij od $time';
   }
 
   @override
-  String get loadContentError => 'Couldn\'t load content';
+  String get loadContentError => 'Nie udało się załadować treści';
 
   @override
   String get audioOnlyErrorDescription => 'Sprawdź połączenie internetowe i spróbuj ponownie';
@@ -730,11 +730,11 @@ class SPl extends S {
   String get categoryMusic => 'Muzyka';
 
   @override
-  String get noPlannedEvents => 'No events planned this day';
+  String get noPlannedEvents => 'Brak wydarzeń w tym dniu';
 
   @override
   String get watchNow => 'Oglądaj teraz';
 
   @override
-  String get exploreContent => 'Explore content';
+  String get exploreContent => 'Odkryj zawartość';
 }

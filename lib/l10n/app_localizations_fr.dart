@@ -26,7 +26,7 @@ class SFr extends S {
   String get loading => 'Chargement';
 
   @override
-  String get loginPageDisplay1 => 'Le message le plus puissant au monde';
+  String get loginPageDisplay1 => 'Le message le plus\n puissant au monde';
 
   @override
   String get loginPageDisplay2 => 'Regarde des séries, des émissions et des films basés sur les valeurs chrétiennes';
@@ -736,5 +736,5 @@ class SFr extends S {
   String get watchNow => 'Regarder maintenant';
 
   @override
-  String get exploreContent => 'Explore content';
+  String get exploreContent => 'Explorer le contenu';
 }

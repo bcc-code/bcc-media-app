@@ -26,7 +26,7 @@ class SHu extends S {
   String get loading => 'Betöltés';
 
   @override
-  String get loginPageDisplay1 => 'A világ legerősebb üzenete';
+  String get loginPageDisplay1 => 'A világ \nlegerősebb üzenete';
 
   @override
   String get loginPageDisplay2 => 'Keresztény értékeken alapuló sorozatok, műsorok és filmek megtekintése';
@@ -736,5 +736,5 @@ class SHu extends S {
   String get watchNow => 'Nézd meg most';
 
   @override
-  String get exploreContent => 'Explore content';
+  String get exploreContent => 'Tartalom felfedezése';
 }

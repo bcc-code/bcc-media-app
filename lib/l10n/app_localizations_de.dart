@@ -11,10 +11,10 @@ class SDe extends S {
   String get signInTooltip => 'Melde dich an, um mehr Inhalt anzuschauen';
 
   @override
-  String get skipToPublicContent => 'Skip to watch public content';
+  String get skipToPublicContent => 'Überspringe, um öffentlichen Inhalt zu schauen';
 
   @override
-  String get minutesShort => 'min';
+  String get minutesShort => 'Min';
 
   @override
   String get calendarThisWeek => 'Diese Woche';
@@ -26,13 +26,13 @@ class SDe extends S {
   String get loading => 'Lädt';
 
   @override
-  String get loginPageDisplay1 => 'The most powerful message in the world';
+  String get loginPageDisplay1 => 'Die mächtigste Botschaft der Welt';
 
   @override
-  String get loginPageDisplay2 => 'Watch series, shows and films based on Christian values';
+  String get loginPageDisplay2 => 'Schaue Serien, Shows und Filme basierend auf christlichen Werten';
 
   @override
-  String get loginPageDisplay3 => 'Produced by BCC Media';
+  String get loginPageDisplay3 => 'Produziert von BCC Media';
 
   @override
   String get liveTab => 'Live ';
@@ -174,7 +174,7 @@ class SDe extends S {
 
   @override
   String queueLimitMessage(int elementCount) {
-    return 'You cannot have more than $elementCount elements in queue.';
+    return 'Du kannst nicht mehr als $elementCount Videos in der Warteschlange haben.';
   }
 
   @override
@@ -263,7 +263,7 @@ class SDe extends S {
 
   @override
   String watchingWith(int numPeople) {
-    return 'You are watching with $numPeople others';
+    return 'Du siehst mit $numPeople anderen';
   }
 
   @override
@@ -277,7 +277,7 @@ class SDe extends S {
 
   @override
   String charactersLimit(int charsLeft, int charsTotal) {
-    return '$charsLeft of $charsTotal characters left';
+    return '$charsLeft von $charsTotal Zeichen übrig';
   }
 
   @override
@@ -407,7 +407,7 @@ class SDe extends S {
   String get thankYouSupportDescription => 'Wir sind dankbar für jedes Feedback und wir werden uns so schnell wie möglich um das Anliegen kümmern.';
 
   @override
-  String get sendFail => 'Couldn\'t send your message';
+  String get sendFail => 'Deine Nachricht konnte nicht gesendet werden';
 
   @override
   String get sendFailDescription => 'Etwas lief schief. Bitte überprüfe deine Internetverbindung und versuche es noch einmal.';
@@ -420,12 +420,12 @@ class SDe extends S {
 
   @override
   String newPostsMultiple(int postCount) {
-    return '$postCount new posts!';
+    return '$postCount neue Posts!';
   }
 
   @override
   String newPostsSingle(int postCount) {
-    return '$postCount new post!';
+    return 'Neuer Post!';
   }
 
   @override
@@ -433,7 +433,7 @@ class SDe extends S {
 
   @override
   String availableFrom(String date) {
-    return 'Available $date';
+    return 'Verfügbar $date';
   }
 
   @override
@@ -447,7 +447,7 @@ class SDe extends S {
 
   @override
   String wellDoneDistance(int distanceInKM) {
-    return 'Well done! You have registered a total distance of $distanceInKM km';
+    return 'Gut gemacht! Du hast eine Gesamtstrecke von $distanceInKM km registriert';
   }
 
   @override
@@ -455,12 +455,12 @@ class SDe extends S {
 
   @override
   String ranMore(int distanceInKM) {
-    return 'I went more than $distanceInKM km';
+    return 'Ich bin mehr als $distanceInKM km gelaufen';
   }
 
   @override
   String moreThan(int distanceInKM) {
-    return 'More than $distanceInKM km';
+    return 'Mehr als $distanceInKM km';
   }
 
   @override
@@ -483,7 +483,7 @@ class SDe extends S {
 
   @override
   String timezoneInformation(String timeZone) {
-    return 'Tv guide timetable is in your local time: $timeZone';
+    return 'Das Tv Programm ist deiner Ortszeit angepasst: $timeZone';
   }
 
   @override
@@ -545,7 +545,7 @@ class SDe extends S {
 
   @override
   String pollAnswer(String answer) {
-    return 'You\'ve answered: $answer';
+    return 'Du hast geantwortet $answer';
   }
 
   @override
@@ -606,11 +606,11 @@ class SDe extends S {
 
   @override
   String shareTime(String time) {
-    return 'Share from $time';
+    return 'Teile von $time';
   }
 
   @override
-  String get loadContentError => 'Couldn\'t load content';
+  String get loadContentError => 'Konnte den Inhalt nicht laden';
 
   @override
   String get audioOnlyErrorDescription => 'Überprüfe deine Internetverbindung und versuche es noch einmal';
@@ -730,11 +730,11 @@ class SDe extends S {
   String get categoryMusic => 'Musik';
 
   @override
-  String get noPlannedEvents => 'No events planned this day';
+  String get noPlannedEvents => 'Keine Veranstaltungen an diesem Tag geplant';
 
   @override
   String get watchNow => 'Schaue es jetzt';
 
   @override
-  String get exploreContent => 'Explore content';
+  String get exploreContent => 'Entdecke den Inhalt';
 }

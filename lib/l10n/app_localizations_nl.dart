@@ -26,7 +26,7 @@ class SNl extends S {
   String get loading => 'Laden';
 
   @override
-  String get loginPageDisplay1 => 'De krachtigste boodschap in de wereld';
+  String get loginPageDisplay1 => 'De krachtigste \nboodschap in de wereld';
 
   @override
   String get loginPageDisplay2 => 'Bekijk series, shows en films gebasseerd op Christelijke waarden';
@@ -407,7 +407,7 @@ class SNl extends S {
   String get thankYouSupportDescription => 'We stellen alle feedback op prijs en gaan er zo snel mogelijk mee aan de slag.';
 
   @override
-  String get sendFail => 'Couldn\'t send your message';
+  String get sendFail => 'Je bericht kon niet worden verzonden';
 
   @override
   String get sendFailDescription => 'Er is iets misgegaan. Controleer je internetverbinding en probeer het opnieuw.';
@@ -606,7 +606,7 @@ class SNl extends S {
 
   @override
   String shareTime(String time) {
-    return 'Share from $time';
+    return 'Delen van punt $time';
   }
 
   @override
@@ -730,11 +730,11 @@ class SNl extends S {
   String get categoryMusic => 'Muziek';
 
   @override
-  String get noPlannedEvents => 'No events planned this day';
+  String get noPlannedEvents => 'Geen evenementen gepland vandaag';
 
   @override
   String get watchNow => 'Nu kijken';
 
   @override
-  String get exploreContent => 'Explore content';
+  String get exploreContent => 'Inhoud verkennen';
 }

@@ -26,7 +26,7 @@ class SFi extends S {
   String get loading => 'Lataillaan';
 
   @override
-  String get loginPageDisplay1 => 'Kaikista vahvin sanoma';
+  String get loginPageDisplay1 => 'The most powerful\n message in the world';
 
   @override
   String get loginPageDisplay2 => 'Katsele Kristillisten arvojen mukaisia videoita, esityksiä, ja sarjoja';

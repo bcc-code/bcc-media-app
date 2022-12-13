@@ -26,7 +26,7 @@ class SSl extends S {
   String get loading => 'Nalaganje';
 
   @override
-  String get loginPageDisplay1 => 'Najmočnejše sporočilo na svetu';
+  String get loginPageDisplay1 => 'Najmočnejše \nsporočilo na svetu';
 
   @override
   String get loginPageDisplay2 => 'Oglej si serije in filme, narejene na podlagi krščanskih vrednot';
@@ -736,5 +736,5 @@ class SSl extends S {
   String get watchNow => 'Glej zdaj';
 
   @override
-  String get exploreContent => 'Explore content';
+  String get exploreContent => 'Razišči vsebino';
 }

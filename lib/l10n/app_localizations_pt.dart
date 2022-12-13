@@ -26,7 +26,7 @@ class SPt extends S {
   String get loading => 'Carregando';
 
   @override
-  String get loginPageDisplay1 => 'A mensagem mais poderosa do mundo';
+  String get loginPageDisplay1 => 'The most powerful\n message in the world';
 
   @override
   String get loginPageDisplay2 => 'Assistir séries, programas e filmes baseados nos valores cristãos';
