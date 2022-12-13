@@ -27,7 +27,7 @@
   "@loading": {
     "description": "Text to indicate loading state."
   },
-  "loginPageDisplay1": "Najmočnejše sporočilo na svetu",
+  "loginPageDisplay1": "Najmočnejše \nsporočilo na svetu",
   "@loginPageDisplay1": {
     "description": "Text displayed on login screen."
   },
@@ -1006,5 +1006,9 @@
   "watchNow": "Glej zdaj",
   "@watchNow": {
     "description": "Button on featured carousel"
+  },
+  "exploreContent": "Razišči vsebino",
+  "@exploreContent": {
+    "description": "A button on the login page"
   }
 }

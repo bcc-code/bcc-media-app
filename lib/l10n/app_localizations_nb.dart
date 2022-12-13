@@ -29,7 +29,8 @@ class SNb extends S {
   String get loginPageDisplay1 => 'Det kraftigste\nbudskapet i verden';
 
   @override
-  String get loginPageDisplay2 => 'Se serier, programmer og filmer basert på kristne verdier';
+  String get loginPageDisplay2 =>
+      'Se serier, programmer og filmer basert på kristne verdier';
 
   @override
   String get loginPageDisplay3 => 'Produsert av BCC Media';
@@ -47,7 +48,8 @@ class SNb extends S {
   String get faq => 'Ofte stilte spørsmål';
 
   @override
-  String get bccMediaCenter => 'BrunstadTV er et ikke-kommersielt mediesenter som produserer og distribuerer innhold med positive og kristne verdier.';
+  String get bccMediaCenter =>
+      'BrunstadTV er et ikke-kommersielt mediesenter som produserer og distribuerer innhold med positive og kristne verdier.';
 
   @override
   String get signInButton => 'Logg på';
@@ -59,7 +61,8 @@ class SNb extends S {
   String get loggedOutTitle => 'Logget ut';
 
   @override
-  String get loggedOutMessage => 'Du har blitt logget ut. Vennligst logg inn igjen.';
+  String get loggedOutMessage =>
+      'Du har blitt logget ut. Vennligst logg inn igjen.';
 
   @override
   String get mostWatched => 'Mest sett';
@@ -77,10 +80,12 @@ class SNb extends S {
   String get ok => 'OK';
 
   @override
-  String get loginFailedCheckNetwork => 'Det har oppstått en feil. Sjekk nettverksforbindelsen og prøv en gang til.';
+  String get loginFailedCheckNetwork =>
+      'Det har oppstått en feil. Sjekk nettverksforbindelsen og prøv en gang til.';
 
   @override
-  String get loginFailedTryAgain => 'Det har oppstått en feil. Prøv igjen senere.';
+  String get loginFailedTryAgain =>
+      'Det har oppstått en feil. Prøv igjen senere.';
 
   @override
   String get soundLanguage => 'Lydspråk';
@@ -174,7 +179,6 @@ class SNb extends S {
 
   @override
   String queueLimitMessage(int elementCount) {
-
     return 'Du kan ikke ha mer enn $elementCount elementer i køen.';
   }
 
@@ -185,7 +189,8 @@ class SNb extends S {
   String get tVLogin => 'TV Login';
 
   @override
-  String get tVLoginSuccessful => 'Du er nå logget inn, vennligst bekreft på TVen';
+  String get tVLoginSuccessful =>
+      'Du er nå logget inn, vennligst bekreft på TVen';
 
   @override
   String get seeMore => 'Se mer';
@@ -197,7 +202,8 @@ class SNb extends S {
   String get series => 'Serier';
 
   @override
-  String get livestreamMaintenance => 'Vi beklager, direktestrømmen er for tiden ikke tilgjengelig på grunn av vedlikehold. Prøv igjen senere';
+  String get livestreamMaintenance =>
+      'Vi beklager, direktestrømmen er for tiden ikke tilgjengelig på grunn av vedlikehold. Prøv igjen senere';
 
   @override
   String get homeTab => 'Hjem';
@@ -218,7 +224,8 @@ class SNb extends S {
   String get high => 'Høy';
 
   @override
-  String get emptySearch => 'Du kan søke på alt innhold fra BrunstadTV. Serier, filmer og episoder';
+  String get emptySearch =>
+      'Du kan søke på alt innhold fra BrunstadTV. Serier, filmer og episoder';
 
   @override
   String get back => 'Tilbake';
@@ -264,7 +271,6 @@ class SNb extends S {
 
   @override
   String watchingWith(int numPeople) {
-
     return 'Du ser på sammen med $numPeople andre';
   }
 
@@ -279,7 +285,6 @@ class SNb extends S {
 
   @override
   String charactersLimit(int charsLeft, int charsTotal) {
-
     return '$charsLeft av $charsTotal tegn igjen';
   }
 
@@ -305,7 +310,8 @@ class SNb extends S {
   String get recordingTipB => 'Pass på at ansiktet ditt er jevnt opplyst.';
 
   @override
-  String get recordingTipC => 'Tenk over hva du ønsker å si før du starter opptak.';
+  String get recordingTipC =>
+      'Tenk over hva du ønsker å si før du starter opptak.';
 
   @override
   String get recordingTipD => 'Snu telefonen i liggende retning';
@@ -323,25 +329,32 @@ class SNb extends S {
   String get next => 'Neste';
 
   @override
-  String get recordVideoCameraPermissionAlert => 'Du må gi kamera tillatelse i innstillinger for å kunne ta opp video.';
+  String get recordVideoCameraPermissionAlert =>
+      'Du må gi kamera tillatelse i innstillinger for å kunne ta opp video.';
 
   @override
-  String get recordVideoPhotosPermissionAlert => 'Du må gi kamerarull tillatelse i innstillinger for å kunne ta opp video.';
+  String get recordVideoPhotosPermissionAlert =>
+      'Du må gi kamerarull tillatelse i innstillinger for å kunne ta opp video.';
 
   @override
-  String get recordVideoStoragePermissionAlert => 'Du må gi lagring tillatelse i innstillinger for å kunne ta opp video.';
+  String get recordVideoStoragePermissionAlert =>
+      'Du må gi lagring tillatelse i innstillinger for å kunne ta opp video.';
 
   @override
-  String get recordVideoMicrophonePermissionAlert => 'Du må gi mikrofon tillatelse i innstillinger for å kunne ta opp video.';
+  String get recordVideoMicrophonePermissionAlert =>
+      'Du må gi mikrofon tillatelse i innstillinger for å kunne ta opp video.';
 
   @override
-  String get takePhotoStoragePermissionAlert => 'Du må gi lagring tillatelse i innstillinger for å kunne ta bilde.';
+  String get takePhotoStoragePermissionAlert =>
+      'Du må gi lagring tillatelse i innstillinger for å kunne ta bilde.';
 
   @override
-  String get takePhotoCameraPermissionAlert => 'Du må gi kamera tillatelse i innstillinger for å kunne ta bilde.';
+  String get takePhotoCameraPermissionAlert =>
+      'Du må gi kamera tillatelse i innstillinger for å kunne ta bilde.';
 
   @override
-  String get pickPhotoStoragePermissionAlert => 'Du må gi lagring tillatelse i innstillinger for å kunne velge bilder.';
+  String get pickPhotoStoragePermissionAlert =>
+      'Du må gi lagring tillatelse i innstillinger for å kunne velge bilder.';
 
   @override
   String get permissionsAlertTitle => 'Tillatelse trenges';
@@ -356,7 +369,8 @@ class SNb extends S {
   String get recordingFailedTitle => 'Kunne ikke ta opp video';
 
   @override
-  String get recordingFailedMessage => 'Noe gikk feil underveis i videoopptaket.';
+  String get recordingFailedMessage =>
+      'Noe gikk feil underveis i videoopptaket.';
 
   @override
   String get pollSubtitle => 'Avstemming';
@@ -368,16 +382,19 @@ class SNb extends S {
   String get feed => 'Feed';
 
   @override
-  String get atmosphereFeedDescription => 'Bidra i feeden ved å sende inn en hilsen, et vitnesbyrd eller et bilde fra der du er.';
+  String get atmosphereFeedDescription =>
+      'Bidra i feeden ved å sende inn en hilsen, et vitnesbyrd eller et bilde fra der du er.';
 
   @override
   String get information => 'Informasjon';
 
   @override
-  String get photoNotSupported => 'Ta og velge bilder er ikke støttet på denne enheten.';
+  String get photoNotSupported =>
+      'Ta og velge bilder er ikke støttet på denne enheten.';
 
   @override
-  String get answerFailed => 'Beklager! Vi kunne ikke sende inn svaret. Vennligst prøv igjen.';
+  String get answerFailed =>
+      'Beklager! Vi kunne ikke sende inn svaret. Vennligst prøv igjen.';
 
   @override
   String get question => 'Spørsmål';
@@ -395,7 +412,8 @@ class SNb extends S {
   String get concernTextPlaceholder => 'Beskriv problemet';
 
   @override
-  String get debugInfoExplanation => 'Meldingen din vil inneholde denne informasjonen for å hjelpe oss å forstå problemet bedre.';
+  String get debugInfoExplanation =>
+      'Meldingen din vil inneholde denne informasjonen for å hjelpe oss å forstå problemet bedre.';
 
   @override
   String get send => 'Send';
@@ -407,13 +425,15 @@ class SNb extends S {
   String get thankYouSupportTitle => 'Takk for din tilbakemelding!';
 
   @override
-  String get thankYouSupportDescription => 'Vi setter pris på alle tilbakemeldinger og vi vil se på problemet så snart som mulig.';
+  String get thankYouSupportDescription =>
+      'Vi setter pris på alle tilbakemeldinger og vi vil se på problemet så snart som mulig.';
 
   @override
   String get sendFail => 'Kunne ikke sende din melding';
 
   @override
-  String get sendFailDescription => 'Noe gikk galt. Sjekk internettforbindelsen din og prøv på nytt.';
+  String get sendFailDescription =>
+      'Noe gikk galt. Sjekk internettforbindelsen din og prøv på nytt.';
 
   @override
   String get today => 'I dag';
@@ -423,13 +443,11 @@ class SNb extends S {
 
   @override
   String newPostsMultiple(int postCount) {
-
     return '$postCount nye innlegg!';
   }
 
   @override
   String newPostsSingle(int postCount) {
-
     return '$postCount nytt innlegg!';
   }
 
@@ -438,7 +456,6 @@ class SNb extends S {
 
   @override
   String availableFrom(String date) {
-
     return 'Tilgjengelig $date';
   }
 
@@ -453,27 +470,26 @@ class SNb extends S {
 
   @override
   String wellDoneDistance(int distanceInKM) {
-
     return 'Bra jobbet! Du har registrert en total distanse på $distanceInKM km';
   }
 
   @override
-  String get distanceRegistered => 'Din distanse har blitt registrert. Fortsett under hvis du vil legge til en distanse til.';
+  String get distanceRegistered =>
+      'Din distanse har blitt registrert. Fortsett under hvis du vil legge til en distanse til.';
 
   @override
   String ranMore(int distanceInKM) {
-
     return 'Jeg gikk mer enn $distanceInKM km';
   }
 
   @override
   String moreThan(int distanceInKM) {
-
     return 'Mer enn $distanceInKM km';
   }
 
   @override
-  String get runningEffort => 'Fantastisk innsats! Skriv inn antallet kilometer du gikk under.';
+  String get runningEffort =>
+      'Fantastisk innsats! Skriv inn antallet kilometer du gikk under.';
 
   @override
   String get slideSelect => 'Sveip for å velge hvor lang turen din var';
@@ -488,11 +504,11 @@ class SNb extends S {
   String get profilePicture => 'Profilbilde';
 
   @override
-  String get firstPostTitle => 'Vær den første til å sende inn et bilde eller å skrive en melding';
+  String get firstPostTitle =>
+      'Vær den første til å sende inn et bilde eller å skrive en melding';
 
   @override
   String timezoneInformation(String timeZone) {
-
     return 'Tv-guide tidstabell er i din lokale tid: $timeZone';
   }
 
@@ -500,19 +516,22 @@ class SNb extends S {
   String get yourQuestion => 'Ditt spørsmål';
 
   @override
-  String get uploadingInquirySuccess => 'Vi gjør oppmerksom på at ikke alle svarene kan bli besvart i sendingen';
+  String get uploadingInquirySuccess =>
+      'Vi gjør oppmerksom på at ikke alle svarene kan bli besvart i sendingen';
 
   @override
   String get askQuestion => 'Still et spørsmål';
 
   @override
-  String get submitQuestionInfo => 'Ved å sende inn et spørsmål aksepterer du at dette kan bli brukt for senere publisering.';
+  String get submitQuestionInfo =>
+      'Ved å sende inn et spørsmål aksepterer du at dette kan bli brukt for senere publisering.';
 
   @override
   String get posting => 'Innsending';
 
   @override
-  String get submitPostInfo => 'Ved å sende inn et spørsmål aksepterer du at dette kan bli brukt for senere publisering. ';
+  String get submitPostInfo =>
+      'Ved å sende inn et spørsmål aksepterer du at dette kan bli brukt for senere publisering. ';
 
   @override
   String get cropImage => 'Beskjær bildet';
@@ -533,7 +552,8 @@ class SNb extends S {
   String get pollEnded => 'Avstemningen er slutt. Takk for dine svar.';
 
   @override
-  String get browserInstall => 'Vennligst installer nettleser for å kunne åpne denne URLen.';
+  String get browserInstall =>
+      'Vennligst installer nettleser for å kunne åpne denne URLen.';
 
   @override
   String get share => 'Del';
@@ -555,7 +575,6 @@ class SNb extends S {
 
   @override
   String pollAnswer(String answer) {
-
     return 'Du har svart: $answer';
   }
 
@@ -566,7 +585,8 @@ class SNb extends S {
   String get quizAnswered => 'Svar sendt';
 
   @override
-  String get quizNotEnabled => 'Quiz er ikke tilgjengelig for øyeblikket. Vennligst prøv igjen senere.';
+  String get quizNotEnabled =>
+      'Quiz er ikke tilgjengelig for øyeblikket. Vennligst prøv igjen senere.';
 
   @override
   String get calendar => 'Kalender';
@@ -578,17 +598,18 @@ class SNb extends S {
   String get appUpdateTitle => 'Krever oppdatering';
 
   @override
-  String get appUpdateRequest => 'Vennligst last ned den siste versjonen av appen for å få gleden av de siste funksjonene og feilrettingene.';
+  String get appUpdateRequest =>
+      'Vennligst last ned den siste versjonen av appen for å få gleden av de siste funksjonene og feilrettingene.';
 
   @override
   String get appUpdateAccepted => 'Oppdater';
 
   @override
-  String get donationNotAvailable => 'Donasjon er ikke tilgjengelig for øyeblikket. Vennligst prøv igjen senere.';
+  String get donationNotAvailable =>
+      'Donasjon er ikke tilgjengelig for øyeblikket. Vennligst prøv igjen senere.';
 
   @override
   String posts(int postsCount) {
-
     return '$postsCount Innlegg';
   }
 
@@ -618,7 +639,6 @@ class SNb extends S {
 
   @override
   String shareTime(String time) {
-
     return 'Del fra $time';
   }
 
@@ -626,13 +646,15 @@ class SNb extends S {
   String get loadContentError => 'Kunne ikke laste innhold';
 
   @override
-  String get audioOnlyErrorDescription => 'Sjekk nettverksforbindelsen og prøv en gang til';
+  String get audioOnlyErrorDescription =>
+      'Sjekk nettverksforbindelsen og prøv en gang til';
 
   @override
   String get privacyPolicy => 'Personvernerklæring';
 
   @override
-  String get tokenError => 'Vi kunne ikke bekrefte din identitet, mest sannsynlig på grunn av et nettverksproblem. Noen funksjoner i appen fungerer kanskje ikke som de skal.';
+  String get tokenError =>
+      'Vi kunne ikke bekrefte din identitet, mest sannsynlig på grunn av et nettverksproblem. Noen funksjoner i appen fungerer kanskje ikke som de skal.';
 
   @override
   String get categoriesTab => 'Kategorier';
@@ -644,13 +666,15 @@ class SNb extends S {
   String get confirmLogin => 'Bekreft innlogging';
 
   @override
-  String get scanInfo => 'Skann koden med telefonen din for å gå til påloggingssiden.';
+  String get scanInfo =>
+      'Skann koden med telefonen din for å gå til påloggingssiden.';
 
   @override
   String get validInfo => 'QR-koden er gyldig i 15 minutter.';
 
   @override
-  String get confirmInfo => 'Etter innlogging, klikk på knappen nedenfor for å bekrefte innlogging.';
+  String get confirmInfo =>
+      'Etter innlogging, klikk på knappen nedenfor for å bekrefte innlogging.';
 
   @override
   String get seriesTab => 'Serier';
@@ -668,13 +692,15 @@ class SNb extends S {
   String get subtitlesLanguage => 'Språk for undertekster';
 
   @override
-  String get removeFromRecentSearches => 'Vil du fjerne dette elementet fra siste søk?';
+  String get removeFromRecentSearches =>
+      'Vil du fjerne dette elementet fra siste søk?';
 
   @override
   String get noTransmissionToday => 'Ingen planlagte sendinger i dag';
 
   @override
-  String get livestreamMaintenanceTitle => 'Direktestrømmen er ikke tilgjengelig';
+  String get livestreamMaintenanceTitle =>
+      'Direktestrømmen er ikke tilgjengelig';
 
   @override
   String get start => 'Start';
@@ -689,10 +715,12 @@ class SNb extends S {
   String get errorTryAgain => 'Noe gikk galt, vennligst prøv igjen senere.';
 
   @override
-  String get reportProblem => 'Har du problemer med QR-koden - send oss en epost.';
+  String get reportProblem =>
+      'Har du problemer med QR-koden - send oss en epost.';
 
   @override
-  String get phoneReadingProblem => 'Hvis telefonen din ikke kan lese QR-koden send en epost med følgende informasjon til';
+  String get phoneReadingProblem =>
+      'Hvis telefonen din ikke kan lese QR-koden send en epost med følgende informasjon til';
 
   @override
   String get goTo => 'eller gå til';
@@ -710,7 +738,8 @@ class SNb extends S {
   String get authResponse1 => 'Vennligst logg inn på mobilen din med QR-kode.';
 
   @override
-  String get authResponse3 => 'Sjekk nettverksforbindelsen og prøv igjen senere.';
+  String get authResponse3 =>
+      'Sjekk nettverksforbindelsen og prøv igjen senere.';
 
   @override
   String get liveHeader => 'Direkte';

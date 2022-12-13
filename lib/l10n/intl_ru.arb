@@ -545,7 +545,7 @@
   "@thankYouSupportDescription": {
     "description": "Text on contact support confirmation page"
   },
-  "sendFail": "Couldn't send your message",
+  "sendFail": "Не удалось отправить ваше сообщение",
   "@sendFail": {
     "description": "General error message that sending failed"
   },
@@ -830,7 +830,7 @@
   "@shareStart": {
     "description": "Option on action sheet for sharing from start"
   },
-  "shareTime": "Share from {time}",
+  "shareTime": "Поделиться с времени {time}",
   "@shareTime": {
     "description": "Option on action sheet for sharing from time",
     "placeholders": {
@@ -999,12 +999,16 @@
   "@categoryMusic": {
     "description": "Category name"
   },
-  "noPlannedEvents": "No events planned this day",
+  "noPlannedEvents": "В этот день мероприятий не запланировано",
   "@noPlannedEvents": {
     "description": "Information in tvguide"
   },
   "watchNow": "Смотреть сейчас",
   "@watchNow": {
     "description": "Button on featured carousel"
+  },
+  "exploreContent": "Исследуйте контент",
+  "@exploreContent": {
+    "description": "A button on the login page"
   }
 }
