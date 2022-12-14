@@ -44,6 +44,8 @@ class _HomeScreenState extends ConsumerState<HomeScreen> with PageMixin {
   late ProviderSubscription<Future<Query$Application?>> _appConfigListener;
   bool tooltipDismissed = false;
   String loginError = '';
+  ScrollController? scrollController;
+
 
   @override
   void initState() {
@@ -176,6 +178,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> with PageMixin {
           body: SafeArea(
             top: false,
             child: BccmPage(
+              scrollController: scrollController,
                 pageFuture: pageResult.future,
                 onRefresh: ({bool? retry}) async {
                   setState(() {

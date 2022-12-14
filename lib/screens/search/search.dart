@@ -10,7 +10,6 @@ import '../../helpers/btv_colors.dart';
 import '../../helpers/btv_typography.dart';
 import '../../l10n/app_localizations.dart';
 import './search_results_page.dart';
-
 import '../../components/search_bar.dart';
 
 class SearchScreen extends ConsumerStatefulWidget {
@@ -26,6 +25,7 @@ class SearchScreenState extends ConsumerState<SearchScreen> {
   var focusing = false;
   String? _curSearchValue;
   late Future<Query$Page$page> pageFuture;
+  ScrollController? scrollController;
 
   clear() {
     _onSearchInputChanged(null);
@@ -95,6 +95,7 @@ class SearchScreenState extends ConsumerState<SearchScreen> {
       return SearchResultsPage(_curSearchValue!);
     } else {
       return BccmPage(
+        scrollController: scrollController,
         pageFuture: pageFuture,
         onRefresh: ({bool? retry}) async {
           setState(() {

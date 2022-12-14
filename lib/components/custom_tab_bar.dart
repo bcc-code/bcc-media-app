@@ -10,7 +10,9 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../helpers/btv_colors.dart';
 import '../helpers/btv_typography.dart';
+import '../helpers/event_bus.dart';
 import '../l10n/app_localizations.dart';
+import '../models/events/scroll_to_top.dart';
 
 const double _iconSize = 28;
 
@@ -87,8 +89,10 @@ class _CustomTabBarState extends ConsumerState<CustomTabBar> {
               if (widget.tabsRouter.activeIndex == index) {
                 final current = widget.tabsRouter.current;
                 widget.tabsRouter.stackRouterOfIndex(index)?.popUntilRoot();
+                globalEventBus.fire(ScrollToTopRequestEvent(TabsPage.values.elementAt(index).name));
               }
               widget.tabsRouter.setActiveIndex(index);
+
             },
             items: items),
       );

@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:brunstadtv_app/components/error_generic.dart';
 import 'package:brunstadtv_app/components/loading_generic.dart';
 import 'package:brunstadtv_app/components/loading_indicator.dart';
@@ -15,6 +17,7 @@ import '../helpers/btv_typography.dart';
 import '../l10n/app_localizations.dart';
 import '../helpers/btv_buttons.dart';
 import '../helpers/utils.dart';
+import '../models/events/scroll_to_top.dart';
 import '../models/pagination_status.dart';
 import '../providers/inherited_data.dart';
 import 'featured_section.dart';
@@ -29,6 +32,9 @@ import 'icon_grid_section.dart';
 import 'list_section.dart';
 import 'page_section.dart';
 import 'web_section.dart';
+import '../helpers/event_bus.dart';
+
+
 
 /// How close to the bottom of the page do you have to be before we load more items
 const kLoadMoreBottomScrollOffset = 300;
@@ -39,11 +45,14 @@ const kItemsToFetchForPagination = 20;
 class BccmPage extends ConsumerStatefulWidget {
   final Future<Query$Page$page> pageFuture;
   final Future Function({bool? retry}) onRefresh;
+  final ScrollController? scrollController;
 
   const BccmPage({
     super.key,
     required this.pageFuture,
     required this.onRefresh,
+    this.scrollController
+    
   });
 
   @override
@@ -53,8 +62,17 @@ class BccmPage extends ConsumerStatefulWidget {
 class _BccmPageState extends ConsumerState<BccmPage> {
   GlobalKey<State<FutureBuilder<Query$Page$page>>> futureBuilderKey = GlobalKey();
   Map<String, PaginationStatus<Fragment$ItemSectionItem>> paginationMap = {};
-  ScrollController scrollController = ScrollController();
   bool loadingBottomSectionItems = false;
+  late ScrollController scrollController;
+
+  @override
+  void initState() {
+    super.initState();
+    scrollController = widget.scrollController ?? ScrollController();
+    globalEventBus.on<ScrollToTopRequestEvent>().listen((event) {
+    TabsPage.values.byName(event.tab).name == event.tab ? scrollController.animateTo(0, duration: const Duration(milliseconds: 300), curve: Curves.decelerate) : null;
+    });
+  }
 
   Widget? _getSectionWidget(Fragment$Section s) {
     final extraItems = paginationMap[s.id]?.items;
