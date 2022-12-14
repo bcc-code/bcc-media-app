@@ -9,6 +9,11 @@ import '../helpers/constants.dart';
 
 class AnalyticsNavigatorObserver extends NavigatorObserver {
   bool _routeFilter(Route<dynamic> route) {
+    final routeData = route.settings.asOrNull<AutoRoutePage>()?.routeData;
+    if (routeData == null) return true;
+    if (routeData.meta[RouteMetaConstants.navTabRoute] != null && routeData.meta[RouteMetaConstants.navTabRoute]) {
+      return false;
+    }
     return true;
   }
 
@@ -18,7 +23,8 @@ class AnalyticsNavigatorObserver extends NavigatorObserver {
       return;
     }
     final ref = ProviderScope.containerOf(context);
-    Map<String, Object?> extraProperties = {};
+    Map<String, dynamic> extraProperties = {};
+    extraProperties['meta'] = <String, dynamic>{};
     final routeData = route.settings.asOrNull<AutoRoutePage>()?.routeData;
     if (routeData == null) return;
 
@@ -30,7 +36,11 @@ class AnalyticsNavigatorObserver extends NavigatorObserver {
     }
     var episodeRouteArgs = routeData.args.asOrNull<EpisodeScreenRouteArgs>();
     if (episodeRouteArgs != null) {
-      extraProperties['episodeId'] = episodeRouteArgs.episodeId;
+      extraProperties['meta']['episodeId'] = episodeRouteArgs.episodeId;
+    }
+
+    if (routeData.meta.containsKey(RouteMetaConstants.settingsName)) {
+      extraProperties['meta']['settings'] = routeData.meta[RouteMetaConstants.settingsName];
     }
 
     if (screenName != null) {

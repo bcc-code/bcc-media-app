@@ -328,18 +328,34 @@ class AppRouter extends _i20.RootStackRouter {
         _i20.RouteConfig(
           AppLanguageScreenRoute.name,
           path: '/app-language',
+          meta: <String, dynamic>{
+            'analytics_name': 'settings',
+            'settings_name': 'appLanguage',
+          },
         ),
         _i20.RouteConfig(
           AppAudioLanguageRoute.name,
           path: '/audio-language',
+          meta: <String, dynamic>{
+            'analytics_name': 'settings',
+            'settings_name': 'audioLanguage',
+          },
         ),
         _i20.RouteConfig(
           AppSubtitleLanguageRoute.name,
           path: '/subtitle-language',
+          meta: <String, dynamic>{
+            'analytics_name': 'settings',
+            'settings_name': 'subtitlesLanguage',
+          },
         ),
         _i20.RouteConfig(
           VideoQualityRoute.name,
           path: '/video-quality',
+          meta: <String, dynamic>{
+            'analytics_name': 'settings',
+            'settings_name': 'videoQuality',
+          },
         ),
         _i20.RouteConfig(
           ContactSupportRoute.name,
@@ -379,19 +395,19 @@ class AppRouter extends _i20.RootStackRouter {
               parent: TabsRootScreenRoute.name,
               meta: <String, dynamic>{
                 'hide_mini_player': true,
-                'analytics_name': 'livestream',
+                'nav_tab_route': true,
               },
             ),
             _i20.RouteConfig(
               SearchScreenWrapperRoute.name,
               path: 'search',
               parent: TabsRootScreenRoute.name,
-              meta: <String, dynamic>{'analytics_name': 'search'},
               children: [
                 _i20.RouteConfig(
                   SearchScreenRoute.name,
                   path: '',
                   parent: SearchScreenWrapperRoute.name,
+                  meta: <String, dynamic>{'nav_tab_route': true},
                 ),
                 _i20.RouteConfig(
                   EpisodeScreenRoute.name,
@@ -411,6 +427,7 @@ class AppRouter extends _i20.RootStackRouter {
               CalendarPageRoute.name,
               path: 'calendar',
               parent: TabsRootScreenRoute.name,
+              meta: <String, dynamic>{'nav_tab_route': true},
             ),
             _i20.RouteConfig(
               HomeScreenWrapperRoute.name,
@@ -421,7 +438,7 @@ class AppRouter extends _i20.RootStackRouter {
                   Home.name,
                   path: '',
                   parent: HomeScreenWrapperRoute.name,
-                  meta: <String, dynamic>{'analytics_name': 'home'},
+                  meta: <String, dynamic>{'nav_tab_route': true},
                 ),
                 _i20.RouteConfig(
                   EpisodeScreenRoute.name,
