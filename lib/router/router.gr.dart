@@ -396,6 +396,7 @@ class AppRouter extends _i20.RootStackRouter {
               meta: <String, dynamic>{
                 'hide_mini_player': true,
                 'nav_tab_route': true,
+                'analytics_name': 'livestream',
               },
             ),
             _i20.RouteConfig(
@@ -427,7 +428,10 @@ class AppRouter extends _i20.RootStackRouter {
               CalendarPageRoute.name,
               path: 'calendar',
               parent: TabsRootScreenRoute.name,
-              meta: <String, dynamic>{'nav_tab_route': true},
+              meta: <String, dynamic>{
+                'nav_tab_route': true,
+                'analytics_name': 'calendar',
+              },
             ),
             _i20.RouteConfig(
               HomeScreenWrapperRoute.name,

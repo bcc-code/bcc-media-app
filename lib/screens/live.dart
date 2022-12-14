@@ -227,7 +227,7 @@ class _LiveScreenState extends ConsumerState<LiveScreen> with AutoRouteAware {
               ],
             ),
           ),
-        const CalendarWidget(collapsed: true, parentPage: 'livestream')
+        const CalendarWidget(collapsed: true)
       ],
     );
   }

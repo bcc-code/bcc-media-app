@@ -16,6 +16,7 @@ import 'package:intl/intl.dart';
 
 import '../../helpers/btv_colors.dart';
 import '../../helpers/btv_typography.dart';
+import '../../helpers/constants.dart';
 import '../../l10n/app_localizations.dart';
 import '../../models/analytics/calendar_day_clicked.dart';
 import '../../providers/analytics.dart';
@@ -52,9 +53,8 @@ class _CalendarPageState extends ConsumerState<CalendarPage> {
 }
 
 class CalendarWidget extends ConsumerStatefulWidget {
-  const CalendarWidget({super.key, required this.collapsed, required this.parentPage});
+  const CalendarWidget({super.key, required this.collapsed});
 
-  final String parentPage;
   final bool collapsed;
 
   @override
@@ -265,13 +265,16 @@ class _CalendarWidgetState extends ConsumerState<CalendarWidget> {
                   _focusedDay = focusedDay;
                 });
                 loadSelectedDay();
-                ref.read(analyticsProvider).calendarDayClicked(
-                      CalendarDayClickedEvent(
-                        pageCode: widget.parentPage,
-                        calendarView: widget.collapsed ? 'week' : 'month',
-                        calendarDate: DateFormat('yyyy-MM-dd').format(selectedDay),
-                      ),
-                    );
+                final currentRoute = context.router.topRoute;
+                if (currentRoute.meta.containsKey(RouteMetaConstants.analyticsName)) {
+                  ref.read(analyticsProvider).calendarDayClicked(
+                        CalendarDayClickedEvent(
+                          pageCode: currentRoute.meta[RouteMetaConstants.analyticsName],
+                          calendarView: widget.collapsed ? 'week' : 'month',
+                          calendarDate: DateFormat('yyyy-MM-dd').format(selectedDay),
+                        ),
+                      );
+                }
               }
             },
             onPageChanged: (focusedDay) async {

@@ -163,7 +163,6 @@ class Analytics {
   }
 
   void calendarDayClicked(CalendarDayClickedEvent event) {
-    print(event);
     RudderController.instance.track('calendarday_clicked', properties: getCommonData().putValue(map: event.toJson()));
   }
 }
