@@ -48,7 +48,7 @@ class _CalendarPageState extends ConsumerState<CalendarPage> {
                 child: collapsed ? SvgPicture.string(SvgIcons.calendar_1_line) : SvgPicture.string(SvgIcons.calendar_2_lines),
               )),
         ]),
-        body: SingleChildScrollView(child: CalendarWidget(collapsed: collapsed, parentPage: 'calendar')));
+        body: SingleChildScrollView(child: CalendarWidget(collapsed: collapsed)));
   }
 }
 
