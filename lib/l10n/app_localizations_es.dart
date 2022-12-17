@@ -29,7 +29,8 @@ class SEs extends S {
   String get loginPageDisplay1 => 'El mensaje más \npoderoso del mundo';
 
   @override
-  String get loginPageDisplay2 => 'Ver series, espectáculos y películas basadas en Valores cristianos';
+  String get loginPageDisplay2 =>
+      'Ver series, espectáculos y películas basadas en Valores cristianos';
 
   @override
   String get loginPageDisplay3 => 'Producida por BCC Media';
@@ -47,7 +48,8 @@ class SEs extends S {
   String get faq => 'Preguntas frecuentes';
 
   @override
-  String get bccMediaCenter => 'BrunstadTV es un centro de medio audiovisuales no comercial, que produce contenido basado en valores positivos y en valores cristianos.';
+  String get bccMediaCenter =>
+      'BrunstadTV es un centro de medio audiovisuales no comercial, que produce contenido basado en valores positivos y en valores cristianos.';
 
   @override
   String get signInButton => 'Iniciar Sesión';
@@ -59,7 +61,8 @@ class SEs extends S {
   String get loggedOutTitle => 'Sesión cerrada';
 
   @override
-  String get loggedOutMessage => 'Tu sesión ha sido cerrada. Por favor inicia sesión nuevamente.';
+  String get loggedOutMessage =>
+      'Tu sesión ha sido cerrada. Por favor inicia sesión nuevamente.';
 
   @override
   String get mostWatched => 'Más vistos';
@@ -77,10 +80,12 @@ class SEs extends S {
   String get ok => 'Ok';
 
   @override
-  String get loginFailedCheckNetwork => 'La conexión ha fallado, revise su conexión a internet e inténtelo una vez más.';
+  String get loginFailedCheckNetwork =>
+      'La conexión ha fallado, revise su conexión a internet e inténtelo una vez más.';
 
   @override
-  String get loginFailedTryAgain => 'La conexión ha fallado. Por favor inténtelo más tarde.';
+  String get loginFailedTryAgain =>
+      'La conexión ha fallado. Por favor inténtelo más tarde.';
 
   @override
   String get soundLanguage => 'Lenguaje del audio';
@@ -92,13 +97,15 @@ class SEs extends S {
   String get appLanguage => 'Idioma de la Aplicación';
 
   @override
-  String get checkNetwork => 'Revise su conexión a internet e inténtelo más tarde.';
+  String get checkNetwork =>
+      'Revise su conexión a internet e inténtelo más tarde.';
 
   @override
   String get tryAgain => 'Por favor inténtelo de nuevo más tarde.';
 
   @override
-  String get cantPlayVideo => 'No puede reproducirse este video en este momento.';
+  String get cantPlayVideo =>
+      'No puede reproducirse este video en este momento.';
 
   @override
   String get about => 'Acerca de';
@@ -174,7 +181,6 @@ class SEs extends S {
 
   @override
   String queueLimitMessage(int elementCount) {
-
     return 'No puede tener más de $elementCount elementos en cola.';
   }
 
@@ -185,7 +191,8 @@ class SEs extends S {
   String get tVLogin => 'Inicio de sesión de TV';
 
   @override
-  String get tVLoginSuccessful => 'Inicio de sesión exitoso, confirme en la TV.';
+  String get tVLoginSuccessful =>
+      'Inicio de sesión exitoso, confirme en la TV.';
 
   @override
   String get seeMore => 'Ver más';
@@ -197,7 +204,8 @@ class SEs extends S {
   String get series => 'Series';
 
   @override
-  String get livestreamMaintenance => 'Lo sentimos, la transmisión en vivo se encuentra en mantenimiento. Por favor, inténtelo de nuevo más tarde.';
+  String get livestreamMaintenance =>
+      'Lo sentimos, la transmisión en vivo se encuentra en mantenimiento. Por favor, inténtelo de nuevo más tarde.';
 
   @override
   String get homeTab => 'Inicio';
@@ -218,7 +226,8 @@ class SEs extends S {
   String get high => 'Alta';
 
   @override
-  String get emptySearch => 'Puedes buscar todo el contenido de BrunstadTV, series, películas y episodios.';
+  String get emptySearch =>
+      'Puedes buscar todo el contenido de BrunstadTV, series, películas y episodios.';
 
   @override
   String get back => 'Atrás';
@@ -264,7 +273,6 @@ class SEs extends S {
 
   @override
   String watchingWith(int numPeople) {
-
     return 'Estás viendo junto a $numPeople';
   }
 
@@ -279,7 +287,6 @@ class SEs extends S {
 
   @override
   String charactersLimit(int charsLeft, int charsTotal) {
-
     return 'Quedan $charsLeft de $charsTotal caracteres';
   }
 
@@ -302,10 +309,12 @@ class SEs extends S {
   String get recordingTipA => 'Encuentra un lugar silencioso donde grabar.';
 
   @override
-  String get recordingTipB => 'Asegúrate de que tu cara completa esté bien iluminada.';
+  String get recordingTipB =>
+      'Asegúrate de que tu cara completa esté bien iluminada.';
 
   @override
-  String get recordingTipC => 'Piensa que quieres decir antes de comenzar a grabar.';
+  String get recordingTipC =>
+      'Piensa que quieres decir antes de comenzar a grabar.';
 
   @override
   String get recordingTipD => 'Coloca tu teléfono en posición horizontal.';
@@ -323,25 +332,32 @@ class SEs extends S {
   String get next => 'Siguiente';
 
   @override
-  String get recordVideoCameraPermissionAlert => 'Debe otorgar permiso a la cámara en la configuración para grabar videos.';
+  String get recordVideoCameraPermissionAlert =>
+      'Debe otorgar permiso a la cámara en la configuración para grabar videos.';
 
   @override
-  String get recordVideoPhotosPermissionAlert => 'Debe otorgar permiso al álbum en la configuración para grabar videos.';
+  String get recordVideoPhotosPermissionAlert =>
+      'Debe otorgar permiso al álbum en la configuración para grabar videos.';
 
   @override
-  String get recordVideoStoragePermissionAlert => 'Debe otorgar permiso al almacenamiento en la configuración para grabar videos.';
+  String get recordVideoStoragePermissionAlert =>
+      'Debe otorgar permiso al almacenamiento en la configuración para grabar videos.';
 
   @override
-  String get recordVideoMicrophonePermissionAlert => 'Debe otorgar permiso al microfono en la configuración para grabar videos.';
+  String get recordVideoMicrophonePermissionAlert =>
+      'Debe otorgar permiso al microfono en la configuración para grabar videos.';
 
   @override
-  String get takePhotoStoragePermissionAlert => 'Debe otorgar permiso al almacenamiento en la configuración para tomar fotografias.';
+  String get takePhotoStoragePermissionAlert =>
+      'Debe otorgar permiso al almacenamiento en la configuración para tomar fotografias.';
 
   @override
-  String get takePhotoCameraPermissionAlert => 'Debe otorgar permiso a la camara en la configuración para tomar fotografias.';
+  String get takePhotoCameraPermissionAlert =>
+      'Debe otorgar permiso a la camara en la configuración para tomar fotografias.';
 
   @override
-  String get pickPhotoStoragePermissionAlert => 'Debe otorgar permiso al almacenamiento en la configuración para seleccionar fotografias.';
+  String get pickPhotoStoragePermissionAlert =>
+      'Debe otorgar permiso al almacenamiento en la configuración para seleccionar fotografias.';
 
   @override
   String get permissionsAlertTitle => 'Permisos necesarios';
@@ -356,7 +372,8 @@ class SEs extends S {
   String get recordingFailedTitle => 'No se pudo grabar el video';
 
   @override
-  String get recordingFailedMessage => 'Algo no salio bien mientras se grababa el video.';
+  String get recordingFailedMessage =>
+      'Algo no salio bien mientras se grababa el video.';
 
   @override
   String get pollSubtitle => 'Votación';
@@ -368,16 +385,19 @@ class SEs extends S {
   String get feed => 'Feed';
 
   @override
-  String get atmosphereFeedDescription => 'Contribuye en la actividad del feed enviando un mensaje, testimonio o imagen, desde donde estés.';
+  String get atmosphereFeedDescription =>
+      'Contribuye en la actividad del feed enviando un mensaje, testimonio o imagen, desde donde estés.';
 
   @override
   String get information => 'Información';
 
   @override
-  String get photoNotSupported => 'Su dispositivo no soporta toma ni selección de fotografías.';
+  String get photoNotSupported =>
+      'Su dispositivo no soporta toma ni selección de fotografías.';
 
   @override
-  String get answerFailed => '¡Lo lamentamos! No fue posible enviar su respuesta. Por favor, inténtelo nuevamente.';
+  String get answerFailed =>
+      '¡Lo lamentamos! No fue posible enviar su respuesta. Por favor, inténtelo nuevamente.';
 
   @override
   String get question => 'Pregunta';
@@ -395,7 +415,8 @@ class SEs extends S {
   String get concernTextPlaceholder => 'Describa el problema';
 
   @override
-  String get debugInfoExplanation => 'Su mensaje incluirá esta información para ayudarnos a comprender mejor el problema.';
+  String get debugInfoExplanation =>
+      'Su mensaje incluirá esta información para ayudarnos a comprender mejor el problema.';
 
   @override
   String get send => 'Enviar';
@@ -407,13 +428,15 @@ class SEs extends S {
   String get thankYouSupportTitle => '¡Gracias por tus comentarios!';
 
   @override
-  String get thankYouSupportDescription => 'Agradecemos todos los comentarios y abordaremos el problema lo antes posible.';
+  String get thankYouSupportDescription =>
+      'Agradecemos todos los comentarios y abordaremos el problema lo antes posible.';
 
   @override
   String get sendFail => 'Tu mensaje no pudo ser enviado';
 
   @override
-  String get sendFailDescription => 'Algo salió mal. Verifique su conexión a Internet e intente nuevamente.';
+  String get sendFailDescription =>
+      'Algo salió mal. Verifique su conexión a Internet e intente nuevamente.';
 
   @override
   String get today => 'Hoy';
@@ -423,13 +446,11 @@ class SEs extends S {
 
   @override
   String newPostsMultiple(int postCount) {
-
     return '¡$postCount publicaciones nuevas!';
   }
 
   @override
   String newPostsSingle(int postCount) {
-
     return '¡$postCount nueva/s publicacion/es!';
   }
 
@@ -438,7 +459,6 @@ class SEs extends S {
 
   @override
   String availableFrom(String date) {
-
     return 'Disponible$date';
   }
 
@@ -453,27 +473,26 @@ class SEs extends S {
 
   @override
   String wellDoneDistance(int distanceInKM) {
-
     return '¡Bien hecho! Ha registrado una distancia total de $distanceInKM km';
   }
 
   @override
-  String get distanceRegistered => 'Su distancia ha sido registrada. Continúe abajo si desea enviar otra distasia.';
+  String get distanceRegistered =>
+      'Su distancia ha sido registrada. Continúe abajo si desea enviar otra distasia.';
 
   @override
   String ranMore(int distanceInKM) {
-
     return 'Recorrí más de $distanceInKM km';
   }
 
   @override
   String moreThan(int distanceInKM) {
-
     return 'Más de $distanceInKM km';
   }
 
   @override
-  String get runningEffort => '¡Increíble! A continuación escriba la cantidad de kilómetros que recorrió.';
+  String get runningEffort =>
+      '¡Increíble! A continuación escriba la cantidad de kilómetros que recorrió.';
 
   @override
   String get slideSelect => 'Deslice para seleccionar qué tan lejos fue';
@@ -492,7 +511,6 @@ class SEs extends S {
 
   @override
   String timezoneInformation(String timeZone) {
-
     return 'El horario de la guía de televisión está en su hora local: $timeZone';
   }
 
@@ -500,19 +518,22 @@ class SEs extends S {
   String get yourQuestion => 'Su pregunta';
 
   @override
-  String get uploadingInquirySuccess => 'Por favor, tenga en cuenta que todas las preguntas enviadas serán respondidas durante la transmisión.';
+  String get uploadingInquirySuccess =>
+      'Por favor, tenga en cuenta que todas las preguntas enviadas serán respondidas durante la transmisión.';
 
   @override
   String get askQuestion => 'Haga una pregunta';
 
   @override
-  String get submitQuestionInfo => 'Al enviar una pregunta, usted está aceptando que pueda ser utilizada para propósitos relacionados con la transmisión.';
+  String get submitQuestionInfo =>
+      'Al enviar una pregunta, usted está aceptando que pueda ser utilizada para propósitos relacionados con la transmisión.';
 
   @override
   String get posting => 'Publicando';
 
   @override
-  String get submitPostInfo => 'Al enviar una publicación o una foto, ud acepta que se puede utilizar para fines de transmisión. ';
+  String get submitPostInfo =>
+      'Al enviar una publicación o una foto, ud acepta que se puede utilizar para fines de transmisión. ';
 
   @override
   String get cropImage => 'Recortar imagen';
@@ -524,16 +545,20 @@ class SEs extends S {
   String get landscape => 'Panoramica';
 
   @override
-  String get pollSingleChoice => 'Solo tienes una oportunidad para elegir tu respuesta.';
+  String get pollSingleChoice =>
+      'Solo tienes una oportunidad para elegir tu respuesta.';
 
   @override
-  String get pollMultipleChoice => 'Tu respuesta puede ser modificada varias veces.';
+  String get pollMultipleChoice =>
+      'Tu respuesta puede ser modificada varias veces.';
 
   @override
-  String get pollEnded => 'La encuesta ha concluido. Muchas gracias por tus respuestas.';
+  String get pollEnded =>
+      'La encuesta ha concluido. Muchas gracias por tus respuestas.';
 
   @override
-  String get browserInstall => 'Instale un navegador web para poder abrir esta URL.';
+  String get browserInstall =>
+      'Instale un navegador web para poder abrir esta URL.';
 
   @override
   String get share => 'Compartir';
@@ -555,7 +580,6 @@ class SEs extends S {
 
   @override
   String pollAnswer(String answer) {
-
     return 'Has respondido:$answer';
   }
 
@@ -566,7 +590,8 @@ class SEs extends S {
   String get quizAnswered => 'Respuesta enviada';
 
   @override
-  String get quizNotEnabled => 'El cuestionario no esta disponible en estos momentos. Por favor, inténtelo mas tarde.';
+  String get quizNotEnabled =>
+      'El cuestionario no esta disponible en estos momentos. Por favor, inténtelo mas tarde.';
 
   @override
   String get calendar => 'Calendario';
@@ -578,17 +603,18 @@ class SEs extends S {
   String get appUpdateTitle => 'Se requiere la actualización';
 
   @override
-  String get appUpdateRequest => 'Por favor, Descargue la última version de la aplicación para disfrutar de las últimas funciones y correcciones de errores.';
+  String get appUpdateRequest =>
+      'Por favor, Descargue la última version de la aplicación para disfrutar de las últimas funciones y correcciones de errores.';
 
   @override
   String get appUpdateAccepted => 'Actualización';
 
   @override
-  String get donationNotAvailable => 'La donaciónes no está disponibles en este momento. Por favor, inténtelo de nuevo más tarde.';
+  String get donationNotAvailable =>
+      'La donaciónes no está disponibles en este momento. Por favor, inténtelo de nuevo más tarde.';
 
   @override
   String posts(int postsCount) {
-
     return '$postsCount Publicaciones';
   }
 
@@ -618,7 +644,6 @@ class SEs extends S {
 
   @override
   String shareTime(String time) {
-
     return 'Compartir desde $time';
   }
 
@@ -626,13 +651,15 @@ class SEs extends S {
   String get loadContentError => 'No se pudo cargar el contenido';
 
   @override
-  String get audioOnlyErrorDescription => 'Revisa tu conexión a internet e inténtalo otra vez';
+  String get audioOnlyErrorDescription =>
+      'Revisa tu conexión a internet e inténtalo otra vez';
 
   @override
   String get privacyPolicy => 'Políticas de privacidad';
 
   @override
-  String get tokenError => 'No pudimos confirmar su identidad, quizá debido a un problema de internet. Algunas características de la app quizá no funcionen correctamente.';
+  String get tokenError =>
+      'No pudimos confirmar su identidad, quizá debido a un problema de internet. Algunas características de la app quizá no funcionen correctamente.';
 
   @override
   String get categoriesTab => 'Categorías';
@@ -644,13 +671,15 @@ class SEs extends S {
   String get confirmLogin => 'Confirmar inicio de Sesión';
 
   @override
-  String get scanInfo => 'Escanea el código Qr con tu teléfono para acceder a la pagina de inicio de sesión.';
+  String get scanInfo =>
+      'Escanea el código Qr con tu teléfono para acceder a la pagina de inicio de sesión.';
 
   @override
   String get validInfo => 'El código QR es valido por 15 minutos.';
 
   @override
-  String get confirmInfo => 'Después de iniciar sesión correctamente en su dispositivo, haga click en el botón para confirmar el inicio de sesión.';
+  String get confirmInfo =>
+      'Después de iniciar sesión correctamente en su dispositivo, haga click en el botón para confirmar el inicio de sesión.';
 
   @override
   String get seriesTab => 'Series';
@@ -668,13 +697,15 @@ class SEs extends S {
   String get subtitlesLanguage => 'Idioma de subtitulos';
 
   @override
-  String get removeFromRecentSearches => '¿Desea eliminar este elemento de las búsquedas recientes?';
+  String get removeFromRecentSearches =>
+      '¿Desea eliminar este elemento de las búsquedas recientes?';
 
   @override
   String get noTransmissionToday => 'No hay transmisiónes programadas para hoy';
 
   @override
-  String get livestreamMaintenanceTitle => 'La transmisión en vivo no está disponible';
+  String get livestreamMaintenanceTitle =>
+      'La transmisión en vivo no está disponible';
 
   @override
   String get start => 'Comenzar';
@@ -689,10 +720,12 @@ class SEs extends S {
   String get errorTryAgain => 'Algo salio mal, por favor inténtelo nuevamente.';
 
   @override
-  String get reportProblem => 'En caso de algún problema, utilice el código QR para enviarnos un email.';
+  String get reportProblem =>
+      'En caso de algún problema, utilice el código QR para enviarnos un email.';
 
   @override
-  String get phoneReadingProblem => 'Si su teléfono no puede leer el código QR, envíenos un email con la siguiente información a';
+  String get phoneReadingProblem =>
+      'Si su teléfono no puede leer el código QR, envíenos un email con la siguiente información a';
 
   @override
   String get goTo => 'o ir a';
@@ -704,13 +737,16 @@ class SEs extends S {
   String get notLogged => 'Sesión no iniciada';
 
   @override
-  String get authResponse0 => 'Por favor utilizar un código QR nuevo para iniciar sesión.';
+  String get authResponse0 =>
+      'Por favor utilizar un código QR nuevo para iniciar sesión.';
 
   @override
-  String get authResponse1 => 'Por favor ingresa mediante tu telefono utilizando el código QR.';
+  String get authResponse1 =>
+      'Por favor ingresa mediante tu telefono utilizando el código QR.';
 
   @override
-  String get authResponse3 => 'Revise su conexión a internet e inténtelo más tarde.';
+  String get authResponse3 =>
+      'Revise su conexión a internet e inténtelo más tarde.';
 
   @override
   String get liveHeader => 'En Vivo';

@@ -8,10 +8,12 @@ class SHu extends S {
   String get loadingContent => 'Tartalom betöltése';
 
   @override
-  String get signInTooltip => 'További tartalmak megtekintéséhez jelentkezzél be';
+  String get signInTooltip =>
+      'További tartalmak megtekintéséhez jelentkezzél be';
 
   @override
-  String get skipToPublicContent => 'Ugrás a nyilvános tartalom megtekintéséhez';
+  String get skipToPublicContent =>
+      'Ugrás a nyilvános tartalom megtekintéséhez';
 
   @override
   String get minutesShort => 'perc';
@@ -29,7 +31,8 @@ class SHu extends S {
   String get loginPageDisplay1 => 'A világ \nlegerősebb üzenete';
 
   @override
-  String get loginPageDisplay2 => 'Keresztény értékeken alapuló sorozatok, műsorok és filmek megtekintése';
+  String get loginPageDisplay2 =>
+      'Keresztény értékeken alapuló sorozatok, műsorok és filmek megtekintése';
 
   @override
   String get loginPageDisplay3 => 'Készítette a BCC Media';
@@ -47,7 +50,8 @@ class SHu extends S {
   String get faq => 'Gyakran ismételt kérdések';
 
   @override
-  String get bccMediaCenter => 'BrunstadTV nem kereskedelmi média, hanem olyan tartalmakat állít elő és közvetít, amelyek pozitív és keresztény értékeken alapul.';
+  String get bccMediaCenter =>
+      'BrunstadTV nem kereskedelmi média, hanem olyan tartalmakat állít elő és közvetít, amelyek pozitív és keresztény értékeken alapul.';
 
   @override
   String get signInButton => 'Bejelentkezés';
@@ -77,7 +81,8 @@ class SHu extends S {
   String get ok => 'OK';
 
   @override
-  String get loginFailedCheckNetwork => 'Hibás bejelentkezés. Ellenőrizd a hálózati csatlakozásodat és próbálj újra.';
+  String get loginFailedCheckNetwork =>
+      'Hibás bejelentkezés. Ellenőrizd a hálózati csatlakozásodat és próbálj újra.';
 
   @override
   String get loginFailedTryAgain => 'Hibás bejelentkezés. Próbálj később újra.';
@@ -92,7 +97,8 @@ class SHu extends S {
   String get appLanguage => 'Applikáció nyelve';
 
   @override
-  String get checkNetwork => 'Ellenőrizd a hálózati csatlakozásodat és próbálj újra.';
+  String get checkNetwork =>
+      'Ellenőrizd a hálózati csatlakozásodat és próbálj újra.';
 
   @override
   String get tryAgain => 'Próbálj később újra.';
@@ -155,7 +161,8 @@ class SHu extends S {
   String get noResults => 'Nincs eredmény';
 
   @override
-  String get doYouWantCast => 'Szeretnéd ezt a videót Chromecasten keresztül közvetíteni?';
+  String get doYouWantCast =>
+      'Szeretnéd ezt a videót Chromecasten keresztül közvetíteni?';
 
   @override
   String get play => 'Lejátszás';
@@ -174,7 +181,6 @@ class SHu extends S {
 
   @override
   String queueLimitMessage(int elementCount) {
-
     return 'A várólistában nem lehet több, mint $elementCount elem.';
   }
 
@@ -197,7 +203,8 @@ class SHu extends S {
   String get series => 'Sorozatok';
 
   @override
-  String get livestreamMaintenance => 'Sajnáljuk, az élőadás jelenleg karbantartás alatt van. Próbálj később újra.';
+  String get livestreamMaintenance =>
+      'Sajnáljuk, az élőadás jelenleg karbantartás alatt van. Próbálj később újra.';
 
   @override
   String get homeTab => 'Főoldal';
@@ -218,7 +225,8 @@ class SHu extends S {
   String get high => 'Magas';
 
   @override
-  String get emptySearch => 'Itt kereshetsz a BrunstadTV minden tartalmára. Sorozatokra, filmekre és epizódokra.';
+  String get emptySearch =>
+      'Itt kereshetsz a BrunstadTV minden tartalmára. Sorozatokra, filmekre és epizódokra.';
 
   @override
   String get back => 'Vissza';
@@ -264,7 +272,6 @@ class SHu extends S {
 
   @override
   String watchingWith(int numPeople) {
-
     return 'Még $numPeople személlyel együtt nézed';
   }
 
@@ -279,7 +286,6 @@ class SHu extends S {
 
   @override
   String charactersLimit(int charsLeft, int charsTotal) {
-
     return '$charsLeft a $charsTotal karakterből van még hátra';
   }
 
@@ -302,10 +308,12 @@ class SHu extends S {
   String get recordingTipA => 'A felvételhez keress csendes helyet.';
 
   @override
-  String get recordingTipB => 'Győződjél meg arról, hogy az arcod egyenletesen meg legyen világítva.';
+  String get recordingTipB =>
+      'Győződjél meg arról, hogy az arcod egyenletesen meg legyen világítva.';
 
   @override
-  String get recordingTipC => 'Mielőtt elindítod a felvételt, gondold át, mit akarsz mondani.';
+  String get recordingTipC =>
+      'Mielőtt elindítod a felvételt, gondold át, mit akarsz mondani.';
 
   @override
   String get recordingTipD => 'Fordítsd a telefonod fekvő módra.';
@@ -323,25 +331,32 @@ class SHu extends S {
   String get next => 'Következő';
 
   @override
-  String get recordVideoCameraPermissionAlert => 'A videó rögzítéséhez engedélyezned kell a kamerát a beállításokban.';
+  String get recordVideoCameraPermissionAlert =>
+      'A videó rögzítéséhez engedélyezned kell a kamerát a beállításokban.';
 
   @override
-  String get recordVideoPhotosPermissionAlert => 'A video rögzítéséhez engedélyezned kell a képeidhez való hozzáférést a beállításokban.';
+  String get recordVideoPhotosPermissionAlert =>
+      'A video rögzítéséhez engedélyezned kell a képeidhez való hozzáférést a beállításokban.';
 
   @override
-  String get recordVideoStoragePermissionAlert => 'A videó rögzítéséhez tárolási engedélyt kell megadnod a beállításokban.';
+  String get recordVideoStoragePermissionAlert =>
+      'A videó rögzítéséhez tárolási engedélyt kell megadnod a beállításokban.';
 
   @override
-  String get recordVideoMicrophonePermissionAlert => 'A videó rögzítéséhez engedélyezned kell a mikrofont a beállításokban.';
+  String get recordVideoMicrophonePermissionAlert =>
+      'A videó rögzítéséhez engedélyezned kell a mikrofont a beállításokban.';
 
   @override
-  String get takePhotoStoragePermissionAlert => 'A fényképek kiválasztásához a tárolási engedélyt kell megadnod a beállításokban.';
+  String get takePhotoStoragePermissionAlert =>
+      'A fényképek kiválasztásához a tárolási engedélyt kell megadnod a beállításokban.';
 
   @override
-  String get takePhotoCameraPermissionAlert => 'A fényképezéshez engedélyezned kell a kamerát beállításokban.';
+  String get takePhotoCameraPermissionAlert =>
+      'A fényképezéshez engedélyezned kell a kamerát beállításokban.';
 
   @override
-  String get pickPhotoStoragePermissionAlert => 'A fényképek kiválasztásához a tárolási engedélyt kell megadnod a beállításokban.';
+  String get pickPhotoStoragePermissionAlert =>
+      'A fényképek kiválasztásához a tárolási engedélyt kell megadnod a beállításokban.';
 
   @override
   String get permissionsAlertTitle => 'Engedély szükséges';
@@ -356,7 +371,8 @@ class SHu extends S {
   String get recordingFailedTitle => 'Vídeófelvétel sikertelen';
 
   @override
-  String get recordingFailedMessage => 'Videófelvétel közben valami nem sikerült.';
+  String get recordingFailedMessage =>
+      'Videófelvétel közben valami nem sikerült.';
 
   @override
   String get pollSubtitle => 'Szavazás';
@@ -368,16 +384,19 @@ class SHu extends S {
   String get feed => 'Hírcsatorna';
 
   @override
-  String get atmosphereFeedDescription => 'Járj hozzá a hírcsatornához üzenet, bizonyságtétel vagy kép beküldésével, ahonnan éppen tartózkodsz.';
+  String get atmosphereFeedDescription =>
+      'Járj hozzá a hírcsatornához üzenet, bizonyságtétel vagy kép beküldésével, ahonnan éppen tartózkodsz.';
 
   @override
   String get information => 'Információ';
 
   @override
-  String get photoNotSupported => 'Fényképek készítése és kiválasztása nem támogatott a készülékeden.';
+  String get photoNotSupported =>
+      'Fényképek készítése és kiválasztása nem támogatott a készülékeden.';
 
   @override
-  String get answerFailed => 'Bocsánat! Képtelenek voltunk válaszolni. Próbáld újra.';
+  String get answerFailed =>
+      'Bocsánat! Képtelenek voltunk válaszolni. Próbáld újra.';
 
   @override
   String get question => 'Kérdés';
@@ -395,7 +414,8 @@ class SHu extends S {
   String get concernTextPlaceholder => 'Írd le a kérdésedet';
 
   @override
-  String get debugInfoExplanation => 'Az üzeneted tartalmazza ezeket az információkat, hogy jobban megértsük a problémát.';
+  String get debugInfoExplanation =>
+      'Az üzeneted tartalmazza ezeket az információkat, hogy jobban megértsük a problémát.';
 
   @override
   String get send => 'Küldés';
@@ -407,13 +427,15 @@ class SHu extends S {
   String get thankYouSupportTitle => 'Köszönjük visszajelzésedet!';
 
   @override
-  String get thankYouSupportDescription => 'Nagyra értékeljük az összes visszajelzést, és a lehető leghamarabb megválaszoljuk a kérdést.';
+  String get thankYouSupportDescription =>
+      'Nagyra értékeljük az összes visszajelzést, és a lehető leghamarabb megválaszoljuk a kérdést.';
 
   @override
   String get sendFail => 'Nem sikerült elküldeni az üzenetedet';
 
   @override
-  String get sendFailDescription => 'Valami nem sikerült. Vizsgáld meg az internett kapcsolatodat és próbáld újra.';
+  String get sendFailDescription =>
+      'Valami nem sikerült. Vizsgáld meg az internett kapcsolatodat és próbáld újra.';
 
   @override
   String get today => 'Ma';
@@ -423,13 +445,11 @@ class SHu extends S {
 
   @override
   String newPostsMultiple(int postCount) {
-
     return '$postCount új hozzászólás!';
   }
 
   @override
   String newPostsSingle(int postCount) {
-
     return '$postCount új hozzászólás!';
   }
 
@@ -438,7 +458,6 @@ class SHu extends S {
 
   @override
   String availableFrom(String date) {
-
     return 'Elérhető $date';
   }
 
@@ -453,27 +472,26 @@ class SHu extends S {
 
   @override
   String wellDoneDistance(int distanceInKM) {
-
     return 'Szép munka! Összesen $distanceInKM km távolságot teljesítettél';
   }
 
   @override
-  String get distanceRegistered => 'Regisztrálva lett a távolságod. Folytass lent, ha szeretnél további távolságokat megadni.';
+  String get distanceRegistered =>
+      'Regisztrálva lett a távolságod. Folytass lent, ha szeretnél további távolságokat megadni.';
 
   @override
   String ranMore(int distanceInKM) {
-
     return 'Több mint $distanceInKM kilométert futottam';
   }
 
   @override
   String moreThan(int distanceInKM) {
-
     return 'Több mint $distanceInKM km';
   }
 
   @override
-  String get runningEffort => 'Csodálatos erőfeszítés! Írd be az alul megtett kilométerek mennyiségét.';
+  String get runningEffort =>
+      'Csodálatos erőfeszítés! Írd be az alul megtett kilométerek mennyiségét.';
 
   @override
   String get slideSelect => 'Válaszd ki a megtett távolságot';
@@ -488,11 +506,11 @@ class SHu extends S {
   String get profilePicture => 'Profilkép';
 
   @override
-  String get firstPostTitle => 'Legyél az első, aki képet vagy üzenetet közzé tesz';
+  String get firstPostTitle =>
+      'Legyél az első, aki képet vagy üzenetet közzé tesz';
 
   @override
   String timezoneInformation(String timeZone) {
-
     return 'A Tv program időpontjai a helyi idő szerint jelenek meg: $timeZone';
   }
 
@@ -500,19 +518,22 @@ class SHu extends S {
   String get yourQuestion => 'A kérdésed';
 
   @override
-  String get uploadingInquirySuccess => 'Felhívjuk figyelmedet, hogy az adásban nem minden feltett kérdésre adnak választ.';
+  String get uploadingInquirySuccess =>
+      'Felhívjuk figyelmedet, hogy az adásban nem minden feltett kérdésre adnak választ.';
 
   @override
   String get askQuestion => 'Tegyél fel kérdést';
 
   @override
-  String get submitQuestionInfo => 'A kérdés beküldésével elfogadod, hogy azt adási célokra lehet felhasználni.';
+  String get submitQuestionInfo =>
+      'A kérdés beküldésével elfogadod, hogy azt adási célokra lehet felhasználni.';
 
   @override
   String get posting => 'Közzé tenni';
 
   @override
-  String get submitPostInfo => 'Hozzászólás vagy fotó beküldéseddel elfogadod, hogy azt adási célokra lehet felhasználni. ';
+  String get submitPostInfo =>
+      'Hozzászólás vagy fotó beküldéseddel elfogadod, hogy azt adási célokra lehet felhasználni. ';
 
   @override
   String get cropImage => 'Kép kivágása';
@@ -533,7 +554,8 @@ class SHu extends S {
   String get pollEnded => 'A szavazás ideje véget ért. Köszönjük válaszaidat.';
 
   @override
-  String get browserInstall => 'Kérjünk, telepítsd a webböngészőt az URL megnyitásához.';
+  String get browserInstall =>
+      'Kérjünk, telepítsd a webböngészőt az URL megnyitásához.';
 
   @override
   String get share => 'Megosztás';
@@ -555,7 +577,6 @@ class SHu extends S {
 
   @override
   String pollAnswer(String answer) {
-
     return '$answer válaszoltál';
   }
 
@@ -566,7 +587,8 @@ class SHu extends S {
   String get quizAnswered => 'Benyújtott válaszok';
 
   @override
-  String get quizNotEnabled => 'A kvíz jelenleg nem érhető el. Kérlek, próbáld újra később.';
+  String get quizNotEnabled =>
+      'A kvíz jelenleg nem érhető el. Kérlek, próbáld újra később.';
 
   @override
   String get calendar => 'Naptár';
@@ -578,17 +600,18 @@ class SHu extends S {
   String get appUpdateTitle => 'Frissítés szükséges';
 
   @override
-  String get appUpdateRequest => 'Kérjük, töltsd le a legújabb alkalmazást, hogy élvezhessd a legújabb funkciókat és hibajavításokat.';
+  String get appUpdateRequest =>
+      'Kérjük, töltsd le a legújabb alkalmazást, hogy élvezhessd a legújabb funkciókat és hibajavításokat.';
 
   @override
   String get appUpdateAccepted => 'Frissítés';
 
   @override
-  String get donationNotAvailable => 'A Donation jelenleg nem érhető el. Kérlek, próbáld újra később.';
+  String get donationNotAvailable =>
+      'A Donation jelenleg nem érhető el. Kérlek, próbáld újra később.';
 
   @override
   String posts(int postsCount) {
-
     return '$postsCount Hozzászólások';
   }
 
@@ -618,7 +641,6 @@ class SHu extends S {
 
   @override
   String shareTime(String time) {
-
     return 'Megosztás innentől $time';
   }
 
@@ -626,13 +648,15 @@ class SHu extends S {
   String get loadContentError => 'Nem sikerült betölteni a tartalmat';
 
   @override
-  String get audioOnlyErrorDescription => 'Ellenőrizd a hálózati csatlakozásodat és próbálj újra';
+  String get audioOnlyErrorDescription =>
+      'Ellenőrizd a hálózati csatlakozásodat és próbálj újra';
 
   @override
   String get privacyPolicy => 'Adatvédelmi szabályzat';
 
   @override
-  String get tokenError => 'Nem tudtuk megerősíteni a személyazonosságodat, valószínűleg hálózati probléma miatt. Előfordulhat, hogy az alkalmazás egyes funkciói nem működnek megfelelően.';
+  String get tokenError =>
+      'Nem tudtuk megerősíteni a személyazonosságodat, valószínűleg hálózati probléma miatt. Előfordulhat, hogy az alkalmazás egyes funkciói nem működnek megfelelően.';
 
   @override
   String get categoriesTab => 'Kategóriák';
@@ -644,13 +668,15 @@ class SHu extends S {
   String get confirmLogin => 'Bejelentkezés jóváhagyása';
 
   @override
-  String get scanInfo => 'Szkenneld be a kódot a telefonoddal és lépjél a jelentkezési oldalra.';
+  String get scanInfo =>
+      'Szkenneld be a kódot a telefonoddal és lépjél a jelentkezési oldalra.';
 
   @override
   String get validInfo => 'A QR kód 15 percig érvényes.';
 
   @override
-  String get confirmInfo => 'Sikeres bejelentkezés után a készülékeden klikkelj a lenti gombra a bejelentkezés jóváhagyásához.';
+  String get confirmInfo =>
+      'Sikeres bejelentkezés után a készülékeden klikkelj a lenti gombra a bejelentkezés jóváhagyásához.';
 
   @override
   String get seriesTab => 'Sorozatok';
@@ -668,7 +694,8 @@ class SHu extends S {
   String get subtitlesLanguage => 'Felírat nyelve';
 
   @override
-  String get removeFromRecentSearches => 'Törölni szeretnéd ezt az elemet az utolsó keresésekből?';
+  String get removeFromRecentSearches =>
+      'Törölni szeretnéd ezt az elemet az utolsó keresésekből?';
 
   @override
   String get noTransmissionToday => 'Mai napra nincs tervezett adás';
@@ -689,10 +716,12 @@ class SHu extends S {
   String get errorTryAgain => 'Valami nem sikerült, próbáld később újra.';
 
   @override
-  String get reportProblem => 'Ha problémád van, használd a lenti QR kódot e-mail küldéséhez.';
+  String get reportProblem =>
+      'Ha problémád van, használd a lenti QR kódot e-mail küldéséhez.';
 
   @override
-  String get phoneReadingProblem => 'Ha a telefonod nem tud QR kódot olvasni, küldjél nekük e-mailt következő információval';
+  String get phoneReadingProblem =>
+      'Ha a telefonod nem tud QR kódot olvasni, küldjél nekük e-mailt következő információval';
 
   @override
   String get goTo => 'vagy lépjél tovább';
@@ -710,7 +739,8 @@ class SHu extends S {
   String get authResponse1 => 'Jelentkezz be a mobilodon QR kóddal.';
 
   @override
-  String get authResponse3 => 'Ellenőrizd a hálózati kapcsolatodat és próbálj újra.';
+  String get authResponse3 =>
+      'Ellenőrizd a hálózati kapcsolatodat és próbálj újra.';
 
   @override
   String get liveHeader => 'Élő';
