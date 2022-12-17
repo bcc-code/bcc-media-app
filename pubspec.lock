@@ -37,42 +37,18 @@ packages:
     dependency: "direct main"
     description:
       name: app_links
-      sha256: d1b2cf9ad5568cc5b9036cb3f8c42705b4ada26c4ef57de75323186eafe36a0d
+      sha256: a669e117df216208daa42266366af59bf2d69fb0780d081715f7e064a1da4df2
       url: "https://pub.dev"
     source: hosted
-    version: "3.3.0"
-  app_links_macos:
-    dependency: transitive
-    description:
-      name: app_links_macos
-      sha256: "4cba12f66b74e9cbbd9a8d01671eb64cc09ffef52feceb85e617c2c4ca2b8e67"
-      url: "https://pub.dev"
-    source: hosted
-    version: "1.0.0"
+    version: "3.4.0"
   app_links_platform_interface:
     dependency: transitive
     description:
       name: app_links_platform_interface
-      sha256: "8bfdad6007218e8087a6a494abb16807b813a631ee36a15f2a1868fd9d82e569"
+      sha256: "1e4412668208b24a51bf8f084fcd92f5f4f749f7c59d00ba3d06d68e244398e3"
       url: "https://pub.dev"
     source: hosted
-    version: "1.0.2"
-  app_links_web:
-    dependency: transitive
-    description:
-      name: app_links_web
-      sha256: "4871af0bfe3c67f592a8e8b3539bde24e5c2bb763152d2ea1d837f3bba7f364b"
-      url: "https://pub.dev"
-    source: hosted
-    version: "1.0.0"
-  app_links_windows:
-    dependency: transitive
-    description:
-      name: app_links_windows
-      sha256: fb4eabe73e0536c8264ac37515dc8c118b76273f206c171d0e563e261777c94e
-      url: "https://pub.dev"
-    source: hosted
-    version: "1.0.1"
+    version: "1.1.0"
   args:
     dependency: transitive
     description:
@@ -220,10 +196,10 @@ packages:
     dependency: transitive
     description:
       name: chopper
-      sha256: "130852c9b29fafb7533fcae80ebd9e10e51f78e5ca26d2129d2f171989277436"
+      sha256: "27cfb2aa601f591b6d041528b4e15827231cf1774227485ba96928a0ebf26265"
       url: "https://pub.dev"
     source: hosted
-    version: "5.1.0"
+    version: "5.2.0"
   clock:
     dependency: transitive
     description:
@@ -1216,10 +1192,10 @@ packages:
     dependency: "direct main"
     description:
       name: restart_app
-      sha256: aedc26e3cfe2030faee767f9516c1c086795c4366b31a88134613fda67ae440b
+      sha256: "352a7f81ef808e12380c1e6e79b0c0df134bf6022a708bbddb777214f1f04659"
       url: "https://pub.dev"
     source: hosted
-    version: "1.1.1"
+    version: "1.1.1+1"
   riverpod:
     dependency: "direct main"
     description:

@@ -16,7 +16,10 @@ import 'package:intl/intl.dart';
 
 import '../../helpers/btv_colors.dart';
 import '../../helpers/btv_typography.dart';
+import '../../helpers/constants.dart';
 import '../../l10n/app_localizations.dart';
+import '../../models/analytics/calendar_day_clicked.dart';
+import '../../providers/analytics.dart';
 import '../../services/utils.dart';
 
 class CalendarPage extends ConsumerStatefulWidget {
@@ -211,6 +214,8 @@ class _CalendarWidgetState extends ConsumerState<CalendarWidget> {
             startingDayOfWeek: StartingDayOfWeek.monday,
             daysOfWeekStyle: DaysOfWeekStyle(
               dowTextFormatter: (date, locale) => DateFormat.E(locale).format(date)[0], //only display one letter
+              weekdayStyle: BtvTextStyles.caption1,
+              weekendStyle: BtvTextStyles.caption1,
             ),
             headerStyle: HeaderStyle(
               formatButtonVisible: false,
@@ -260,6 +265,16 @@ class _CalendarWidgetState extends ConsumerState<CalendarWidget> {
                   _focusedDay = focusedDay;
                 });
                 loadSelectedDay();
+                final currentRoute = context.router.topRoute;
+                if (currentRoute.meta.containsKey(RouteMetaConstants.analyticsName)) {
+                  ref.read(analyticsProvider).calendarDayClicked(
+                        CalendarDayClickedEvent(
+                          pageCode: currentRoute.meta[RouteMetaConstants.analyticsName],
+                          calendarView: widget.collapsed ? 'week' : 'month',
+                          calendarDate: DateFormat('yyyy-MM-dd').format(selectedDay),
+                        ),
+                      );
+                }
               }
             },
             onPageChanged: (focusedDay) async {
@@ -274,7 +289,7 @@ class _CalendarWidgetState extends ConsumerState<CalendarWidget> {
                 return Stack(
                   children: [
                     getEventHighlightFor(day),
-                    CenterText(Colors.white, day),
+                    CenterText(BtvColors.label1, day),
                   ],
                 );
               },
@@ -291,7 +306,7 @@ class _CalendarWidgetState extends ConsumerState<CalendarWidget> {
                       child: SizedBox(
                         width: 30,
                         height: 30,
-                        child: CenterText(Colors.grey, day),
+                        child: CenterText(BtvColors.label1.withOpacity(0.5), day),
                       ),
                     ),
                     getEventHighlightFor(day),

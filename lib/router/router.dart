@@ -162,6 +162,7 @@ const _specialRoutes = AutoRoute(
             meta: {
               RouteMetaConstants.hideMiniPlayer: true,
               RouteMetaConstants.navTabRoute: true,
+              RouteMetaConstants.analyticsName: 'livestream',
             },
             maintainState: true),
         MaterialRoute<void>(
@@ -182,7 +183,7 @@ const _specialRoutes = AutoRoute(
           name: 'CalendarPageRoute',
           page: CalendarPage,
           path: 'calendar',
-          meta: {RouteMetaConstants.navTabRoute: true},
+          meta: {RouteMetaConstants.navTabRoute: true, RouteMetaConstants.analyticsName: 'calendar'},
         ),
         CustomRoute<void>(name: 'HomeScreenWrapperRoute', page: EmptyRouterPage, path: '', children: [
           CustomRoute<void>(
