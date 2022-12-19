@@ -79,7 +79,7 @@ class EpisodeListEpisode extends StatelessWidget {
       ignoring: comingSoon,
       child: GestureDetector(
         behavior: HitTestBehavior.opaque,
-        onTap: () => context.navigateTo(EpisodeScreenRoute(episodeId: data.episodeId, autoplay: true)),
+        onTap: () => context.navigateTo(EpisodeScreenRoute(episodeId: data.episodeId, autoplay: data.lessonProgressOverview == null)),
         child: Stack(
           children: [
             if (data.highlighted == true)

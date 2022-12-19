@@ -70,9 +70,8 @@ class EpisodeScreen extends ConsumerStatefulWidget {
 
 class _EpisodeScreenState extends ConsumerState<EpisodeScreen> with AutoRouteAwareStateMixin<EpisodeScreen> {
   late Future<Query$FetchEpisode$episode?> episodeFuture;
-  late Future<Query$GetEpisodeLessonProgress?> lessonProgressFuture;
+  Future<Query$GetEpisodeLessonProgress?>? lessonProgressFuture;
   final scrollController = ScrollController();
-  bool settingUp = false;
   String? error;
   Completer? playerSetupCompleter;
   AnimationStatus? animationStatus;
@@ -178,9 +177,7 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen> with AutoRouteAwa
   Future setupPlayer() async {
     var castingNow = ref.read(isCasting);
     var playerProvider = castingNow ? castPlayerProvider : primaryPlayerProvider;
-    setState(() {
-      settingUp = true;
-    });
+
     var player = ref.read(playerProvider);
     if (player!.currentMediaItem?.metadata?.extras?['id'] == widget.episodeId.toString()) {
       return;
@@ -203,12 +200,6 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen> with AutoRouteAwa
       playerSetupCompleter = wrapInCompleter(
           playEpisode(playerId: player.playerId, episode: episode, autoplay: true, playbackPositionMs: startPositionSeconds * 1000)
               .timeout(const Duration(milliseconds: 12000)));
-    });
-    playerSetupCompleter?.future.then((value) {
-      if (!mounted) return;
-      setState(() {
-        settingUp = false;
-      });
     });
   }
 
@@ -351,7 +342,7 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen> with AutoRouteAwa
                       snapshot.data == null && snapshot.connectionState != ConnectionState.done) {
                     return _loading();
                   }
-
+                  debugPrint('snapshot.connectionState : ${snapshot.connectionState}');
                   return _episode(
                       player, displayPlayer, casting, player.playerId, snapshot.data!, snapshot.connectionState != ConnectionState.done, context);
                 },
@@ -380,6 +371,7 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen> with AutoRouteAwa
     return FutureBuilder(
         future: playerSetupCompleter?.future,
         builder: (context, playerSetupSnapshot) {
+          debugPrint(playerSetupSnapshot.connectionState.toString());
           return SingleChildScrollView(
             physics: const AlwaysScrollableScrollPhysics(),
             controller: scrollController,
@@ -395,7 +387,9 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen> with AutoRouteAwa
                             playerSetupSnapshot.connectionState != ConnectionState.waiting)
                           _playerError(episode, playerSetupSnapshot)
                         else
-                          !episodeIsCurrentItem(player.currentMediaItem) ? _playPoster(episode) : _player(displayPlayer, casting, primaryPlayerId),
+                          !episodeIsCurrentItem(player.currentMediaItem)
+                              ? _playPoster(episode, loading: playerSetupSnapshot.connectionState == ConnectionState.waiting)
+                              : _player(displayPlayer, casting, primaryPlayerId),
                         Container(
                           color: BtvColors.background2,
                           child: Column(
@@ -629,7 +623,7 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen> with AutoRouteAwa
     );
   }
 
-  AspectRatio _playPoster(Query$FetchEpisode$episode episode) {
+  AspectRatio _playPoster(Query$FetchEpisode$episode episode, {required bool loading}) {
     return AspectRatio(
         aspectRatio: 16 / 9,
         child: GestureDetector(
@@ -654,7 +648,7 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen> with AutoRouteAwa
                                   imageCacheHeight: (constraints.maxHeight * MediaQuery.of(context).devicePixelRatio).round()),
                             );
                           })),
-                Center(child: !settingUp ? SizedBox(width: 36, height: 36, child: SvgPicture.string(SvgIcons.play)) : const LoadingIndicator()),
+                Center(child: loading ? const LoadingIndicator() : SizedBox(width: 36, height: 36, child: SvgPicture.string(SvgIcons.play))),
               ],
             )));
   }
