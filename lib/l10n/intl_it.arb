@@ -425,47 +425,47 @@
   "@uploadingVideoSuccess": {
     "description": "Info in upload success page"
   },
-  "next": "Next",
+  "next": "Prossimo",
   "@next": {
     "description": "NEXT program in check in section"
   },
-  "recordVideoCameraPermissionAlert": "You have to grant camera permission in settings to record video.",
+  "recordVideoCameraPermissionAlert": "Devi autorizzare la videocamera nelle impostazioni per registrare video.",
   "@recordVideoCameraPermissionAlert": {
     "description": "Message in alert dialog informing about missing permission"
   },
-  "recordVideoPhotosPermissionAlert": "You have to grant photo album permission in settings to record video.",
+  "recordVideoPhotosPermissionAlert": "Devi autorizzare l'album fotografico nelle impostazioni per registrare video.",
   "@recordVideoPhotosPermissionAlert": {
     "description": "Message in alert dialog informing about missing permission"
   },
-  "recordVideoStoragePermissionAlert": "You have to grant storage permission in settings to record video.",
+  "recordVideoStoragePermissionAlert": "Devi autorizzare l'archiviazione nelle impostazioni per registrare video.",
   "@recordVideoStoragePermissionAlert": {
     "description": "Message in alert dialog informing about missing permission"
   },
-  "recordVideoMicrophonePermissionAlert": "You have to grant microphone permission in settings to record video.",
+  "recordVideoMicrophonePermissionAlert": "Devi autorizzare il microfono nelle impostazioni per registrare video.",
   "@recordVideoMicrophonePermissionAlert": {
     "description": "Message in alert dialog informing about missing permission"
   },
-  "takePhotoStoragePermissionAlert": "You have to grant storage permission in settings to take photo.",
+  "takePhotoStoragePermissionAlert": "Devi autorizzare l'archiviazione nelle impostazioni per scattare una foto.",
   "@takePhotoStoragePermissionAlert": {
     "description": "Message in alert dialog informing about missing permission"
   },
-  "takePhotoCameraPermissionAlert": "You have to grant camera permission in settings to take photo.",
+  "takePhotoCameraPermissionAlert": "Devi autorizzare la fotocamera nelle impostazioni per scattare una foto.",
   "@takePhotoCameraPermissionAlert": {
     "description": "Message in alert dialog informing about missing permission"
   },
-  "pickPhotoStoragePermissionAlert": "You have to grant storage permission in settings to pick photos.",
+  "pickPhotoStoragePermissionAlert": "Devi autorizzare l'archiviazione nelle impostazioni per scegliere le foto.",
   "@pickPhotoStoragePermissionAlert": {
     "description": "Message in alert dialog informing about missing permission"
   },
-  "permissionsAlertTitle": "Permissions needed",
+  "permissionsAlertTitle": "Autorizzazioni necessarie",
   "@permissionsAlertTitle": {
     "description": "Title of an alert dialog informing about missing permission"
   },
-  "add": "Add",
+  "add": "Aggiungi",
   "@add": {
     "description": "Button text on interactive live avatar section"
   },
-  "change": "Change",
+  "change": "Cambia",
   "@change": {
     "description": "Button text on interactive live avatar section"
   },
@@ -473,23 +473,23 @@
   "@recordingFailedTitle": {
     "description": "Title in alert dialog when recording fails"
   },
-  "recordingFailedMessage": "Something went wrong while trying to record the video.",
+  "recordingFailedMessage": "Qualcosa è andato storto durante il tentativo di registrare il video.",
   "@recordingFailedMessage": {
     "description": "Message in alert dialog when recording fails"
   },
-  "pollSubtitle": "Poll",
+  "pollSubtitle": "Sondaggio",
   "@pollSubtitle": {
     "description": "The little title in poll"
   },
-  "writeHere": "Write here",
+  "writeHere": "Scrivi qui",
   "@writeHere": {
     "description": "New post text field placeholder"
   },
-  "feed": "Feed",
+  "feed": "Alimenta",
   "@feed": {
     "description": "Feed page bar title"
   },
-  "atmosphereFeedDescription": "Contribute in the activity feed by sending in a message, testimony or picture from where you are.",
+  "atmosphereFeedDescription": "Contribuisci all'alimentazione delle attività inviando un messaggio, una testimonianza o un'immagine da dove ti trovi.",
   "@atmosphereFeedDescription": {
     "description": "Feed page description"
   },
@@ -497,19 +497,19 @@
   "@information": {
     "description": "Feed information item title"
   },
-  "photoNotSupported": "Taking and picking photo are not supported on your device.",
+  "photoNotSupported": "Lo scatto e la selezione di foto non sono supportati sul tuo dispositivo.",
   "@photoNotSupported": {
     "description": "Alert displayed when phone can't take photo or pick photo from storage."
   },
-  "answerFailed": "Sorry! We were unable to send the answer. Please, try again.",
+  "answerFailed": "Scusa! Non siamo in grado di inviare la risposta. Per favore riprova.",
   "@answerFailed": {
     "description": "Message displayed when user's answer hasn't' been sent'."
   },
-  "question": "Question",
+  "question": "Domanda",
   "@question": {
     "description": "Title of the question page"
   },
-  "notificationChannelPlayerName": "Player",
+  "notificationChannelPlayerName": "Partecipante",
   "@notificationChannelPlayerName": {
     "description": "Notification channel name in Android settings"
   },
@@ -517,47 +517,47 @@
   "@now": {
     "description": "Tv guide now playing label"
   },
-  "createPost": "Create post",
+  "createPost": "Crea un post",
   "@createPost": {
     "description": "Button to start text testimony and title on create post page"
   },
-  "concernTextPlaceholder": "Describe the issue",
+  "concernTextPlaceholder": "Descrivi il problema",
   "@concernTextPlaceholder": {
     "description": "Placeholder text in text field on contact support page"
   },
-  "debugInfoExplanation": "Your message will include this information, to help us better understand the issue.",
+  "debugInfoExplanation": "Il tuo messaggio includerà queste informazioni, per aiutarci a comprendere meglio il problema.",
   "@debugInfoExplanation": {
     "description": "Info about debug info usage on contact support page"
   },
-  "send": "Send",
+  "send": "Invia",
   "@send": {
     "description": "General button to send a form"
   },
-  "sending": "Sending",
+  "sending": "Invio",
   "@sending": {
     "description": "General sending action indicator"
   },
-  "thankYouSupportTitle": "Thank you for your feedback!",
+  "thankYouSupportTitle": "Grazie per il tuo commento!",
   "@thankYouSupportTitle": {
     "description": "Text on contact support confirmation page"
   },
-  "thankYouSupportDescription": "We appreciate all feedback and we will address the issue as soon as possible.",
+  "thankYouSupportDescription": "Apprezziamo tutti i riscontri e risolveremo il problema il prima possibile.",
   "@thankYouSupportDescription": {
     "description": "Text on contact support confirmation page"
   },
-  "sendFail": "Couldn't send your message",
+  "sendFail": "Impossibile inviare il messaggio",
   "@sendFail": {
     "description": "General error message that sending failed"
   },
-  "sendFailDescription": "Something went wrong. Check your internet connection and try again.",
+  "sendFailDescription": "Qualcosa è andato storto. Controlla la tua connessione Internet e riprova.",
   "@sendFailDescription": {
     "description": "General error message that sending failed"
   },
-  "today": "Today",
+  "today": "Oggi",
   "@today": {
     "description": "First category in tv guide"
   },
-  "noNewPosts": "No new posts",
+  "noNewPosts": "Nessun nuovo post",
   "@noNewPosts": {
     "description": "Text displayed on the button, when there are no new posts in the feed."
   },
@@ -830,7 +830,7 @@
   "@shareStart": {
     "description": "Option on action sheet for sharing from start"
   },
-  "shareTime": "Share from {time}",
+  "shareTime": "Condividi dall'ora {time}",
   "@shareTime": {
     "description": "Option on action sheet for sharing from time",
     "placeholders": {
@@ -839,7 +839,7 @@
       }
     }
   },
-  "loadContentError": "Couldn't load content",
+  "loadContentError": "Impossibile caricare il contenuto",
   "@loadContentError": {
     "description": "Error text when content couldn't be loaded."
   },
@@ -999,11 +999,11 @@
   "@categoryMusic": {
     "description": "Category name"
   },
-  "noPlannedEvents": "No events planned this day",
+  "noPlannedEvents": "Nessun evento in programma per questo giorno",
   "@noPlannedEvents": {
     "description": "Information in tvguide"
   },
-  "watchNow": "Watch now",
+  "watchNow": "Guarda adesso",
   "@watchNow": {
     "description": "Button on featured carousel"
   },

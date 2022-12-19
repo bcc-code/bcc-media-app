@@ -59,7 +59,7 @@
   "@bccMediaCenter": {
     "description": "Disclaimer on login page"
   },
-  "signInButton": "Logg på",
+  "signInButton": "Logg inn",
   "@signInButton": {
     "description": "Text displayed on Sign in button"
   },
@@ -111,11 +111,11 @@
   "@subtitleLanguage": {
     "description": "Settings item on profile page"
   },
-  "appLanguage": "App språk",
+  "appLanguage": "App-språk",
   "@appLanguage": {
     "description": "Settings item on profile page"
   },
-  "checkNetwork": "Sjekk nettverksforbindelsen og prøv en gang til",
+  "checkNetwork": "Sjekk nettverksforbindelsen og prøv igjen.",
   "@checkNetwork": {
     "description": "Error message for the user displayed in many contexts."
   },
@@ -195,7 +195,7 @@
   "@search": {
     "description": "Button to clear cache"
   },
-  "noResults": "Ingen resultater",
+  "noResults": "Ingen resultater funnet",
   "@noResults": {
     "description": "No search results."
   },
@@ -256,7 +256,7 @@
   "@series": {
     "description": "Title of the tab on info page"
   },
-  "livestreamMaintenance": "Vi beklager, direktestrømmen er for tiden ikke tilgjengelig på grunn av vedlikehold. Prøv igjen senere",
+  "livestreamMaintenance": "Vi beklager, direktestrømmen er for tiden ikke tilgjengelig på grunn av vedlikehold. Prøv igjen senere.",
   "@livestreamMaintenance": {
     "description": "Message displayed over overlay when livestream is under maintenance."
   },

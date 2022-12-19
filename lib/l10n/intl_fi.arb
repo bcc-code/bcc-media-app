@@ -27,7 +27,7 @@
   "@loading": {
     "description": "Text to indicate loading state."
   },
-  "loginPageDisplay1": "The most powerful\n message in the world",
+  "loginPageDisplay1": "Kaikista maailman sanomista voimakkain",
   "@loginPageDisplay1": {
     "description": "Text displayed on login screen."
   },
@@ -570,7 +570,7 @@
       }
     }
   },
-  "newPostsSingle": "{postCount} uusi viesti!",
+  "newPostsSingle": "Uusi viesti!",
   "@newPostsSingle": {
     "description": "Text displayed on the button, when there is one new post in the feed.",
     "placeholders": {
@@ -1007,7 +1007,7 @@
   "@watchNow": {
     "description": "Button on featured carousel"
   },
-  "exploreContent": "Explore content",
+  "exploreContent": "Tutustu sisältöön",
   "@exploreContent": {
     "description": "A button on the login page"
   }
