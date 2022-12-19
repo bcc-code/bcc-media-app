@@ -570,7 +570,7 @@
       }
     }
   },
-  "newPostsSingle": "Neuer Post!",
+  "newPostsSingle": "{postCount} neue Posts!",
   "@newPostsSingle": {
     "description": "Text displayed on the button, when there is one new post in the feed.",
     "placeholders": {

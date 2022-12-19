@@ -29,8 +29,7 @@ class SSl extends S {
   String get loginPageDisplay1 => 'Najmočnejše \nsporočilo na svetu';
 
   @override
-  String get loginPageDisplay2 =>
-      'Oglej si serije in filme, narejene na podlagi krščanskih vrednot';
+  String get loginPageDisplay2 => 'Oglej si serije in filme, narejene na podlagi krščanskih vrednot';
 
   @override
   String get loginPageDisplay3 => 'Produkcija: BCC Media';
@@ -48,8 +47,7 @@ class SSl extends S {
   String get faq => 'Pogosta vprašanja';
 
   @override
-  String get bccMediaCenter =>
-      'BrunstadTV je nekomercialen medijski center, ki proizvaja in razširja vsebino, ki temelji na pozitivnih krščanskih vrednotah.';
+  String get bccMediaCenter => 'BrunstadTV je nekomercialen medijski center, ki proizvaja in razširja vsebino, ki temelji na pozitivnih krščanskih vrednotah.';
 
   @override
   String get signInButton => 'Vpis';
@@ -61,8 +59,7 @@ class SSl extends S {
   String get loggedOutTitle => 'Odjavljen';
 
   @override
-  String get loggedOutMessage =>
-      'Odjavili ste se. Prosim, ponovno se prijavite.';
+  String get loggedOutMessage => 'Odjavili ste se. Prosim, ponovno se prijavite.';
 
   @override
   String get mostWatched => 'Najbolj gledano';
@@ -80,12 +77,10 @@ class SSl extends S {
   String get ok => 'OK';
 
   @override
-  String get loginFailedCheckNetwork =>
-      'Napaka pri prijavi. Preverite internetno povezavo in poskusite znova.';
+  String get loginFailedCheckNetwork => 'Napaka pri prijavi. Preverite internetno povezavo in poskusite znova.';
 
   @override
-  String get loginFailedTryAgain =>
-      'Napaka pri prijavi. Prosim, poskusite znova kasneje.';
+  String get loginFailedTryAgain => 'Napaka pri prijavi. Prosim, poskusite znova kasneje.';
 
   @override
   String get soundLanguage => 'Jezik zvoka';
@@ -97,8 +92,7 @@ class SSl extends S {
   String get appLanguage => 'Jezik aplikacije';
 
   @override
-  String get checkNetwork =>
-      'Preverite svojo internetno povezavo in poskusite znova.';
+  String get checkNetwork => 'Preverite svojo internetno povezavo in poskusite znova.';
 
   @override
   String get tryAgain => 'Prosim, poskusite znova kasneje.';
@@ -190,8 +184,7 @@ class SSl extends S {
   String get tVLogin => 'TV prijava';
 
   @override
-  String get tVLoginSuccessful =>
-      'Prijava je bila uspešna, prosim potrdite jo na TV.';
+  String get tVLoginSuccessful => 'Prijava je bila uspešna, prosim potrdite jo na TV.';
 
   @override
   String get seeMore => 'Več';
@@ -203,8 +196,7 @@ class SSl extends S {
   String get series => 'Serije';
 
   @override
-  String get livestreamMaintenance =>
-      'Zaradi vzdrževalnih del neposredni prenos trenutno ni na voljo. Prosimo, poskusite ponovno kasneje.';
+  String get livestreamMaintenance => 'Zaradi vzdrževalnih del neposredni prenos trenutno ni na voljo. Prosimo, poskusite ponovno kasneje.';
 
   @override
   String get homeTab => 'Domov';
@@ -225,8 +217,7 @@ class SSl extends S {
   String get high => 'Visoka';
 
   @override
-  String get emptySearch =>
-      'Iščete lahko po vsej vsebini od BrunstadTV. Serije, filmi in deli.';
+  String get emptySearch => 'Iščete lahko po vsej vsebini od BrunstadTV. Serije, filmi in deli.';
 
   @override
   String get back => 'Nazaj';
@@ -311,8 +302,7 @@ class SSl extends S {
   String get recordingTipB => 'Poskrbi, da je tvoj obraz enakomerno osvetljen.';
 
   @override
-  String get recordingTipC =>
-      'Pomisli kaj hočeš povedati, preden začneš snemati.';
+  String get recordingTipC => 'Pomisli kaj hočeš povedati, preden začneš snemati.';
 
   @override
   String get recordingTipD => 'Postavi telefon v ležeči način.';
@@ -330,32 +320,25 @@ class SSl extends S {
   String get next => 'Sledi';
 
   @override
-  String get recordVideoCameraPermissionAlert =>
-      'V nastavitvah je potrebno omogočiti dovoljenje kamere za snemanje videoposnetka.';
+  String get recordVideoCameraPermissionAlert => 'V nastavitvah je potrebno omogočiti dovoljenje kamere za snemanje videoposnetka.';
 
   @override
-  String get recordVideoPhotosPermissionAlert =>
-      'V nastavitvah je potrebno omogočiti dovoljenje galerije za snemanje videoposnetka.';
+  String get recordVideoPhotosPermissionAlert => 'V nastavitvah je potrebno omogočiti dovoljenje galerije za snemanje videoposnetka.';
 
   @override
-  String get recordVideoStoragePermissionAlert =>
-      'V nastavitvah je potrebno omogočiti dovoljenje shrambe za snemanje videoposnetka.';
+  String get recordVideoStoragePermissionAlert => 'V nastavitvah je potrebno omogočiti dovoljenje shrambe za snemanje videoposnetka.';
 
   @override
-  String get recordVideoMicrophonePermissionAlert =>
-      'V nastavitvah je potrebno omogočiti dovoljenje mikrofona za snemanje videoposnetka.';
+  String get recordVideoMicrophonePermissionAlert => 'V nastavitvah je potrebno omogočiti dovoljenje mikrofona za snemanje videoposnetka.';
 
   @override
-  String get takePhotoStoragePermissionAlert =>
-      'V nastavitvah je potrebno omogočiti dovoljenje shrambe za zajem fotografije.';
+  String get takePhotoStoragePermissionAlert => 'V nastavitvah je potrebno omogočiti dovoljenje shrambe za zajem fotografije.';
 
   @override
-  String get takePhotoCameraPermissionAlert =>
-      'V nastavitvah je potrebno omogočiti dovoljenje kamere za zajem fotografije.';
+  String get takePhotoCameraPermissionAlert => 'V nastavitvah je potrebno omogočiti dovoljenje kamere za zajem fotografije.';
 
   @override
-  String get pickPhotoStoragePermissionAlert =>
-      'V nastavitvah je potrebno omogočiti dovoljenje shrambe za izbiro fotografij.';
+  String get pickPhotoStoragePermissionAlert => 'V nastavitvah je potrebno omogočiti dovoljenje shrambe za izbiro fotografij.';
 
   @override
   String get permissionsAlertTitle => 'Potrebna so dovoljenja';
@@ -370,8 +353,7 @@ class SSl extends S {
   String get recordingFailedTitle => 'Videposnetka ni bilo mogoče posneti';
 
   @override
-  String get recordingFailedMessage =>
-      'Prišlo je do napake pri snemanju videoposnetka.';
+  String get recordingFailedMessage => 'Prišlo je do napake pri snemanju videoposnetka.';
 
   @override
   String get pollSubtitle => 'Anketa';
@@ -383,19 +365,16 @@ class SSl extends S {
   String get feed => 'Prispevki';
 
   @override
-  String get atmosphereFeedDescription =>
-      'Sodeluj pri prispevkih, tako da pošlješ sporočilo, pričevanje ali sliko od tam, kjer si.';
+  String get atmosphereFeedDescription => 'Sodeluj pri prispevkih, tako da pošlješ sporočilo, pričevanje ali sliko od tam, kjer si.';
 
   @override
   String get information => 'Informacije';
 
   @override
-  String get photoNotSupported =>
-      'Zajem in izbira fotografij nista podprta na tvojem telefonu.';
+  String get photoNotSupported => 'Zajem in izbira fotografij nista podprta na tvojem telefonu.';
 
   @override
-  String get answerFailed =>
-      'Se opravičujemo! Odgovora ni bilo mogoče poslati. Prosim, poskusi znova.';
+  String get answerFailed => 'Se opravičujemo! Odgovora ni bilo mogoče poslati. Prosim, poskusi znova.';
 
   @override
   String get question => 'Vprašanje';
@@ -413,8 +392,7 @@ class SSl extends S {
   String get concernTextPlaceholder => 'Opiši težavo';
 
   @override
-  String get debugInfoExplanation =>
-      'Tvoje sporočilo bo vsebovalo to informacijo. To nam bo pomagalo, da bomo bolje razumeli težavo.';
+  String get debugInfoExplanation => 'Tvoje sporočilo bo vsebovalo to informacijo. To nam bo pomagalo, da bomo bolje razumeli težavo.';
 
   @override
   String get send => 'Pošlji';
@@ -426,15 +404,13 @@ class SSl extends S {
   String get thankYouSupportTitle => 'Hvala za povratno sporočilo!';
 
   @override
-  String get thankYouSupportDescription =>
-      'Cenimo vsa povratna sporočila in težave bomo rešili v najkrajšem možnem času.';
+  String get thankYouSupportDescription => 'Cenimo vsa povratna sporočila in težave bomo rešili v najkrajšem možnem času.';
 
   @override
   String get sendFail => 'Sporočila ni bilo mogoče poslati';
 
   @override
-  String get sendFailDescription =>
-      'Nekaj je šlo narobe. Preveri svojo internetno povezavo in poskusi znova.';
+  String get sendFailDescription => 'Nekaj je šlo narobe. Preveri svojo internetno povezavo in poskusi znova.';
 
   @override
   String get today => 'Danes';
@@ -475,8 +451,7 @@ class SSl extends S {
   }
 
   @override
-  String get distanceRegistered =>
-      'Tvoja razdalja je bila registrirana. Nadaljuj spodaj, če hočeš oddati drugo razdaljo.';
+  String get distanceRegistered => 'Tvoja razdalja je bila registrirana. Nadaljuj spodaj, če hočeš oddati drugo razdaljo.';
 
   @override
   String ranMore(int distanceInKM) {
@@ -489,8 +464,7 @@ class SSl extends S {
   }
 
   @override
-  String get runningEffort =>
-      'Izjemen dosežek! Spodaj vpiši število kilometrov, ki si jih dosegel.';
+  String get runningEffort => 'Izjemen dosežek! Spodaj vpiši število kilometrov, ki si jih dosegel.';
 
   @override
   String get slideSelect => 'Podrsaj, da izbereš razdaljo';
@@ -516,22 +490,19 @@ class SSl extends S {
   String get yourQuestion => 'Tvoje vprašanje';
 
   @override
-  String get uploadingInquirySuccess =>
-      'Na vsa poslana vprašanja bomo odgovorili v prenosu.';
+  String get uploadingInquirySuccess => 'Na vsa poslana vprašanja bomo odgovorili v prenosu.';
 
   @override
   String get askQuestion => 'Postavi vprašanje';
 
   @override
-  String get submitQuestionInfo =>
-      'S poslanim vprašanjem se strinjaš, da se vprašanje lahko uporabi za potrebe prenosov.';
+  String get submitQuestionInfo => 'S poslanim vprašanjem se strinjaš, da se vprašanje lahko uporabi za potrebe prenosov.';
 
   @override
   String get posting => 'Objavljanje';
 
   @override
-  String get submitPostInfo =>
-      'S poslanim sporočilom ali sliko se strinjaš, da se to uporabi za potrebe prenosov. ';
+  String get submitPostInfo => 'S poslanim sporočilom ali sliko se strinjaš, da se to uporabi za potrebe prenosov. ';
 
   @override
   String get cropImage => 'Obreži sliko';
@@ -552,8 +523,7 @@ class SSl extends S {
   String get pollEnded => 'Anketa se je končala. Hvala za tvoje odgovore.';
 
   @override
-  String get browserInstall =>
-      'Prosim naloži brskalnik, da lahko odpreš ta URL.';
+  String get browserInstall => 'Prosim naloži brskalnik, da lahko odpreš ta URL.';
 
   @override
   String get share => 'Deli';
@@ -585,8 +555,7 @@ class SSl extends S {
   String get quizAnswered => 'Odgovor je poslan';
 
   @override
-  String get quizNotEnabled =>
-      'Trenutno kviz ni na voljo. Prosim poskusi znova kasneje.';
+  String get quizNotEnabled => 'Trenutno kviz ni na voljo. Prosim poskusi znova kasneje.';
 
   @override
   String get calendar => 'Koledar';
@@ -598,15 +567,13 @@ class SSl extends S {
   String get appUpdateTitle => 'Potrebna posodobitev';
 
   @override
-  String get appUpdateRequest =>
-      'Prosim prenesi zadnjo verzijo aplikacije, da dobiš najnovejše dodatke in izboljšave.';
+  String get appUpdateRequest => 'Prosim prenesi zadnjo verzijo aplikacije, da dobiš najnovejše dodatke in izboljšave.';
 
   @override
   String get appUpdateAccepted => 'Posodobitev';
 
   @override
-  String get donationNotAvailable =>
-      'Donacija trenutno ni na voljo. Prosim poskusi znova kasneje.';
+  String get donationNotAvailable => 'Donacija trenutno ni na voljo. Prosim poskusi znova kasneje.';
 
   @override
   String posts(int postsCount) {
@@ -646,15 +613,13 @@ class SSl extends S {
   String get loadContentError => 'Nalaganje vsebine ni uspelo';
 
   @override
-  String get audioOnlyErrorDescription =>
-      'Preveri internetno povezavo in poskusi znova';
+  String get audioOnlyErrorDescription => 'Preveri internetno povezavo in poskusi znova';
 
   @override
   String get privacyPolicy => 'Pravilnik o zasebnosti';
 
   @override
-  String get tokenError =>
-      'Ne moremo potrditi tvoje identitete, verjetno zaradi internetnih težav. Nekatere funkcije aplikacije mogoče ne bodo delovale pravilno.';
+  String get tokenError => 'Ne moremo potrditi tvoje identitete, verjetno zaradi internetnih težav. Nekatere funkcije aplikacije mogoče ne bodo delovale pravilno.';
 
   @override
   String get categoriesTab => 'Kategorije';
@@ -666,15 +631,13 @@ class SSl extends S {
   String get confirmLogin => 'Potrdi prijavo';
 
   @override
-  String get scanInfo =>
-      'Za vstop do strani s prijavo, skenirajte kodo s svojim telefonom.';
+  String get scanInfo => 'Za vstop do strani s prijavo, skenirajte kodo s svojim telefonom.';
 
   @override
   String get validInfo => 'QR-koda je veljavna 15 minut.';
 
   @override
-  String get confirmInfo =>
-      'Po uspešni prijavi na svoji napravi pritisnite na spodnji gumb za potrditev prijave.';
+  String get confirmInfo => 'Po uspešni prijavi na svoji napravi pritisnite na spodnji gumb za potrditev prijave.';
 
   @override
   String get seriesTab => 'Serije';
@@ -692,8 +655,7 @@ class SSl extends S {
   String get subtitlesLanguage => 'Jezik podnapisov';
 
   @override
-  String get removeFromRecentSearches =>
-      'Ali želite odstraniti ta element iz nedavnih iskanj?';
+  String get removeFromRecentSearches => 'Ali želite odstraniti ta element iz nedavnih iskanj?';
 
   @override
   String get noTransmissionToday => 'Danes ni načrtovanih prenosov';
@@ -714,12 +676,10 @@ class SSl extends S {
   String get errorTryAgain => 'Prišlo je do napake, prosim poskusi znova.';
 
   @override
-  String get reportProblem =>
-      'V primeru težav uporabite spodnjo QR-kodo in pošljite mail.';
+  String get reportProblem => 'V primeru težav uporabite spodnjo QR-kodo in pošljite mail.';
 
   @override
-  String get phoneReadingProblem =>
-      'Če telefon ne podpira branja QR-kode, pošljite mail s sledečimi informacijami na';
+  String get phoneReadingProblem => 'Če telefon ne podpira branja QR-kode, pošljite mail s sledečimi informacijami na';
 
   @override
   String get goTo => 'ali pojdi na';
@@ -734,12 +694,10 @@ class SSl extends S {
   String get authResponse0 => 'Za prijavo uporabite novo QR-kodo.';
 
   @override
-  String get authResponse1 =>
-      'Prosim, prijavite se na mobilni napravi z uporabo QR-kode.';
+  String get authResponse1 => 'Prosim, prijavite se na mobilni napravi z uporabo QR-kode.';
 
   @override
-  String get authResponse3 =>
-      'Preverite svojo internetno povezavo in poskusite ponovno kasneje.';
+  String get authResponse3 => 'Preverite svojo internetno povezavo in poskusite ponovno kasneje.';
 
   @override
   String get liveHeader => 'V živo';
