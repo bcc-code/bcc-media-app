@@ -15,6 +15,18 @@ class LessonProgressTree extends ConsumerWidget {
   final int total;
   const LessonProgressTree({super.key, required this.completed, required this.total});
 
+  double get completedFraction => completed / max(1, total);
+
+  SvgPicture get treeWidget {
+    if (completedFraction == 1) {
+      return SvgPicture.string(height: double.infinity, SvgIcons.taskTreeLarge);
+    } else if (completedFraction >= 0.5) {
+      return SvgPicture.string(height: double.infinity, SvgIcons.taskTreeMedium);
+    } else {
+      return SvgPicture.string(height: double.infinity, SvgIcons.taskTreeSmall);
+    }
+  }
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return Stack(
@@ -42,7 +54,7 @@ class LessonProgressTree extends ConsumerWidget {
                 painter: ArcPainter(
               gradient: BtvGradients.greenYellow,
               strokeWidth: 3,
-              progress: completed / max(1, total),
+              progress: completedFraction,
             )),
           ),
         ),
@@ -53,7 +65,7 @@ class LessonProgressTree extends ConsumerWidget {
                 return BtvGradients.greenYellow.createShader(bounds);
               },
               blendMode: BlendMode.srcATop,
-              child: SvgPicture.string(height: double.infinity, SvgIcons.taskTreeLarge)),
+              child: treeWidget),
         ),
       ],
     );
