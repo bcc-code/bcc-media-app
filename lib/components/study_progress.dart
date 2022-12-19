@@ -4,9 +4,11 @@ import 'dart:math';
 import 'package:brunstadtv_app/graphql/queries/studies.graphql.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_svg/svg.dart';
 
 import '../helpers/btv_colors.dart';
 import '../helpers/btv_gradients.dart';
+import '../helpers/svg_icons.dart';
 
 class LessonProgressTree extends ConsumerWidget {
   final int completed;
@@ -15,54 +17,45 @@ class LessonProgressTree extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return Container(
-      padding: const EdgeInsets.only(left: 16),
-      alignment: Alignment.centerRight,
-      child: Container(
-        width: 40,
-        height: 40,
-        decoration: const BoxDecoration(
-          shape: BoxShape.circle,
-          color: BtvColors.separatorOnLight,
-        ),
-        child: Stack(
-          alignment: Alignment.center,
-          children: [
-            Positioned.fill(
-              child: Container(
-                padding: const EdgeInsets.all(4),
-                child: CustomPaint(
-                  painter: ArcPainter(
-                    gradient: const SweepGradient(
-                      startAngle: 3 * math.pi / 2,
-                      endAngle: 7 * math.pi / 2,
-                      tileMode: TileMode.repeated,
-                      colors: [
-                        Color.fromRGBO(255, 255, 255, 0.5),
-                        Color.fromRGBO(255, 255, 255, 0.05),
-                      ],
-                    ),
-                    strokeWidth: 2,
-                  ),
-                ),
+    return Stack(
+      alignment: Alignment.center,
+      children: [
+        Positioned.fill(
+          child: CustomPaint(
+            painter: ArcPainter(
+              gradient: const SweepGradient(
+                startAngle: 3 * math.pi / 2,
+                endAngle: 7 * math.pi / 2,
+                tileMode: TileMode.repeated,
+                colors: [
+                  Color.fromRGBO(255, 255, 255, 0.5),
+                  Color.fromRGBO(255, 255, 255, 0.05),
+                ],
               ),
+              strokeWidth: 2,
             ),
-            Positioned.fill(
-              child: Container(
-                padding: const EdgeInsets.all(4),
-                child: OverflowBox(
-                  child: CustomPaint(
-                      painter: ArcPainter(
-                    gradient: BtvGradients.greenYellow,
-                    strokeWidth: 3,
-                    progress: completed / max(1, total),
-                  )),
-                ),
-              ),
-            ),
-          ],
+          ),
         ),
-      ),
+        Positioned.fill(
+          child: OverflowBox(
+            child: CustomPaint(
+                painter: ArcPainter(
+              gradient: BtvGradients.greenYellow,
+              strokeWidth: 3,
+              progress: completed / max(1, total),
+            )),
+          ),
+        ),
+        Padding(
+          padding: EdgeInsets.all(8),
+          child: ShaderMask(
+              shaderCallback: (bounds) {
+                return BtvGradients.greenYellow.createShader(bounds);
+              },
+              blendMode: BlendMode.srcATop,
+              child: SvgPicture.string(height: double.infinity, SvgIcons.taskTreeLarge)),
+        ),
+      ],
     );
   }
 }

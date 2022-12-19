@@ -189,9 +189,24 @@ class EpisodeListEpisode extends StatelessWidget {
                     ),
                   ),
                   if (Env.enableStudy && data.lessonProgressOverview != null)
-                    LessonProgressTree(
-                      completed: data.lessonProgressOverview!.progress.completed,
-                      total: data.lessonProgressOverview!.progress.total,
+                    Container(
+                      padding: const EdgeInsets.only(left: 16),
+                      alignment: Alignment.centerRight,
+                      child: Container(
+                        width: 40,
+                        height: 40,
+                        decoration: const BoxDecoration(
+                          shape: BoxShape.circle,
+                          color: BtvColors.separatorOnLight,
+                        ),
+                        child: Padding(
+                          padding: EdgeInsets.all(4),
+                          child: LessonProgressTree(
+                            completed: data.lessonProgressOverview!.progress.completed,
+                            total: data.lessonProgressOverview!.progress.total,
+                          ),
+                        ),
+                      ),
                     )
                 ],
               ),

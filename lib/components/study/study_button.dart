@@ -7,6 +7,7 @@ import '../../helpers/btv_gradients.dart';
 import '../../helpers/btv_typography.dart';
 import '../../helpers/svg_icons.dart';
 import '../pulse_animation.dart';
+import '../study_progress.dart';
 
 class StudyMoreButton extends StatefulWidget {
   final Fragment$LessonProgressOverview progressOverview;
@@ -128,14 +129,13 @@ class _StudyMoreButtonState extends State<StudyMoreButton> with SingleTickerProv
 
   Container studyProgress() {
     return Container(
-      margin: const EdgeInsets.only(right: 16),
-      width: 40,
-      child: ShaderMask(
-          shaderCallback: (bounds) {
-            return BtvGradients.greenYellow.createShader(bounds);
-          },
-          blendMode: BlendMode.srcATop,
-          child: SvgPicture.string(SvgIcons.taskTreeLarge)),
+      margin: const EdgeInsets.only(right: 12),
+      width: 42,
+      height: 42,
+      child: LessonProgressTree(
+        completed: widget.progressOverview.progress.completed,
+        total: widget.progressOverview.progress.total,
+      ),
     );
   }
 
