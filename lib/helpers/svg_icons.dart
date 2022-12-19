@@ -1,4 +1,11 @@
 class SvgIcons {
+  static const avatar = '''
+<svg width="45" height="48" viewBox="0 0 45 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+<circle cx="22.5" cy="15" r="12.5" stroke="#6EB0E6" stroke-width="5"/>
+<path d="M42.5 47.5C42.5 36.4543 33.5457 27.5 22.5 27.5C11.4543 27.5 2.5 36.4543 2.5 47.5" stroke="#6EB0E6" stroke-width="5"/>
+</svg>
+''';
+
   static const chevronDown = '''
 <svg width="12" height="8" viewBox="0 0 12 8" fill="none" xmlns="http://www.w3.org/2000/svg">
 <path d="M11 1.5L6 6.5L1 1.5" stroke="white" stroke-width="1.5"/>

@@ -84,7 +84,7 @@ class _ContactSupportState extends ConsumerState<ContactSupport> {
                     future: sendSupportEmailFuture,
                     builder: (BuildContext context, AsyncSnapshot<bool> snapshot) {
                       if (snapshot.hasData) {
-                        return snapshot.data! ? _SuccessPage() : _FailurePage(onTryAgain: onTryAgain);
+                        return _SuccessPage();
                       } else if (snapshot.hasError) {
                         return _FailurePage(onTryAgain: onTryAgain);
                       }

@@ -97,16 +97,6 @@ class _HomeScreenState extends ConsumerState<HomeScreen> with PageMixin {
     }
   }
 
-  Future<void> loginAction(BuildContext context) async {
-    final success = await ref.read(authStateProvider.notifier).login();
-    if (success) {
-      context.router.root.popUntil((route) => false);
-      context.router.root.push(const TabsRootScreenRoute());
-    } else {
-      loginError = 'Login failed';
-    }
-  }
-
   Future<Query$Page$page> getHomePage() async {
     final api = ref.read(apiProvider);
     return ref.read(appConfigProvider).then((value) {
@@ -142,11 +132,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> with PageMixin {
               child: GestureDetector(
                   behavior: HitTestBehavior.opaque,
                   onTap: () {
-                    if (ref.read(authStateProvider).guestMode) {
-                      loginAction(context);
-                    } else {
-                      context.router.pushNamed('/profile');
-                    }
+                    context.router.pushNamed('/profile');
                   },
                   child: Padding(
                       padding: const EdgeInsets.only(left: 18, top: 12, bottom: 12, right: 32),
