@@ -7,13 +7,14 @@ Future<NavigationActionPolicy> Function(InAppWebViewController, NavigationAction
       //if (navigationAction.isForMainFrame) return NavigationActionPolicy.ALLOW;
       var originalUri = Uri.tryParse(originalUrl);
       var navigationUri = navigationAction.request.url?.uriValue;
-      if (originalUri != null &&
-          navigationAction.request.url?.host == originalUri.host &&
-          navigationAction.request.url?.queryParameters['launch_url'] != 'true') {
+      if (navigationAction.request.url?.queryParameters['load_in_app']?.toLowerCase() == 'true' ||
+          originalUri != null &&
+              navigationAction.request.url?.host == originalUri.host &&
+              navigationAction.request.url?.queryParameters['launch_url'] != 'true') {
         return NavigationActionPolicy.ALLOW;
       }
 
-      if (navigationUri != null && await canLaunchUrl(navigationUri)) {
+      if (navigationUri != null && navigationAction.request.url?.queryParameters['launch_url'] == 'true' && await canLaunchUrl(navigationUri)) {
         await launchUrl(navigationUri, mode: LaunchMode.externalApplication);
         return NavigationActionPolicy.CANCEL;
       }
