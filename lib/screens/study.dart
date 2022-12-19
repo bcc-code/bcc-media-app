@@ -1,4 +1,5 @@
 import 'package:brunstadtv_app/components/loading_generic.dart';
+import 'package:brunstadtv_app/graphql/client.dart';
 import 'package:brunstadtv_app/helpers/btv_typography.dart';
 import 'package:brunstadtv_app/helpers/webview/should_override_url_loading.dart';
 import 'package:flutter/foundation.dart';
@@ -10,6 +11,7 @@ import 'package:flutter_svg/svg.dart';
 
 import '../components/custom_back_button.dart';
 import '../env/env.dart';
+import '../graphql/queries/studies.graphql.dart';
 import '../helpers/btv_buttons.dart';
 import '../helpers/btv_colors.dart';
 import '../helpers/svg_icons.dart';
@@ -30,7 +32,7 @@ class StudyScreen extends ConsumerStatefulWidget {
 }
 
 class StudyScreenState extends ConsumerState<StudyScreen> {
-  String pageTitle = 'Matthew 1, 2';
+  String pageTitle = '';
   late String url;
   InAppWebViewController? webViewController;
   WebResourceError? error;
@@ -41,6 +43,16 @@ class StudyScreenState extends ConsumerState<StudyScreen> {
   void initState() {
     super.initState();
     url = '${Env.studyUrl}/embed/episode/${widget.episodeId}/lesson/${widget.lessonId}';
+    getTitle();
+  }
+
+  Future getTitle() async {
+    final value = await ref
+        .read(gqlClientProvider)
+        .query$GetLessonTitle(Options$Query$GetLessonTitle(variables: Variables$Query$GetLessonTitle(id: widget.lessonId)));
+    setState(() {
+      pageTitle = value.parsedData?.studyLesson.title ?? '';
+    });
   }
 
   void onWebViewCreated(InAppWebViewController controller) {

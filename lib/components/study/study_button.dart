@@ -135,7 +135,7 @@ class _StudyMoreButtonState extends State<StudyMoreButton> with SingleTickerProv
             return BtvGradients.greenYellow.createShader(bounds);
           },
           blendMode: BlendMode.srcATop,
-          child: SvgPicture.string(SvgIcons.temporaryTree)),
+          child: SvgPicture.string(SvgIcons.taskTreeLarge)),
     );
   }
 

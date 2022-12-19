@@ -48,7 +48,7 @@ class SvgIcons {
 </svg>
 ''';
 
-  static const temporaryTree = '''<svg width="44" height="44" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+  static const taskTreeLarge = '''<svg width="44" height="44" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
 <path d="M42.2449 21.7451C42.2449 32.7908 33.2906 41.7451 22.2449 41.7451C11.1992 41.7451 2.24493 32.7908 2.24493 21.7451C2.24493 11.0347 10.6638 2.29071 21.2449 1.76968C21.5762 1.75337 21.9096 1.74512 22.2449 1.74512C22.5803 1.74512 22.9137 1.75337 23.2449 1.76968C33.826 2.29071 42.2449 11.0347 42.2449 21.7451Z" stroke="url(#paint0_linear_7591_90106)" stroke-width="3"/>
 <path fill-rule="evenodd" clip-rule="evenodd" d="M23.2449 11.7451C26.2282 11.7451 28.7029 13.9224 29.1668 16.7745C31.0243 17.8534 32.2449 19.6771 32.2449 21.7451C32.2449 25.0588 29.1109 27.7451 25.2449 27.7451C24.9054 27.7451 24.5715 27.7244 24.2449 27.6844V31.7451C24.2449 32.8497 23.3495 33.7451 22.2449 33.7451C21.1404 33.7451 20.2449 32.8497 20.2449 31.7451V27.5846C19.7634 27.6896 19.2612 27.7451 18.7449 27.7451C15.1551 27.7451 12.2449 25.0588 12.2449 21.7451C12.2449 18.8076 14.5318 16.3632 17.5517 15.846C18.3462 13.4631 20.595 11.7451 23.2449 11.7451Z" fill="url(#paint1_linear_7591_90106)"/>
 <defs>
@@ -57,6 +57,45 @@ class SvgIcons {
 <stop offset="1" stop-color="#FDCF48"/>
 </linearGradient>
 <linearGradient id="paint1_linear_7591_90106" x1="2.24493" y1="22.7451" x2="24.1454" y2="42.6546" gradientUnits="userSpaceOnUse">
+<stop stop-color="#70C5BD"/>
+<stop offset="1" stop-color="#FDCF48"/>
+</linearGradient>
+</defs>
+</svg>
+''';
+
+  static const taskTreeMedium = '''<svg width="44" height="44" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M42.2449 21.7451C42.2449 32.7908 33.2906 41.7451 22.2449 41.7451C11.1992 41.7451 2.24493 32.7908 2.24493 21.7451C2.24493 11.0347 10.6638 2.29071 21.2449 1.76968C21.5762 1.75337 21.9096 1.74512 22.2449 1.74512C22.5803 1.74512 22.9137 1.75337 23.2449 1.76968C33.826 2.29071 42.2449 11.0347 42.2449 21.7451Z" stroke="url(#paint0_linear_7591_90106)" stroke-width="3"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M23.2449 11.7451C26.2282 11.7451 28.7029 13.9224 29.1668 16.7745C31.0243 17.8534 32.2449 19.6771 32.2449 21.7451C32.2449 25.0588 29.1109 27.7451 25.2449 27.7451C24.9054 27.7451 24.5715 27.7244 24.2449 27.6844V31.7451C24.2449 32.8497 23.3495 33.7451 22.2449 33.7451C21.1404 33.7451 20.2449 32.8497 20.2449 31.7451V27.5846C19.7634 27.6896 19.2612 27.7451 18.7449 27.7451C15.1551 27.7451 12.2449 25.0588 12.2449 21.7451C12.2449 18.8076 14.5318 16.3632 17.5517 15.846C18.3462 13.4631 20.595 11.7451 23.2449 11.7451Z" fill="url(#paint1_linear_7591_90106)"/>
+<defs>
+<linearGradient id="paint0_linear_7591_90106" x1="-17.7551" y1="21.7451" x2="22.2449" y2="61.7451" gradientUnits="userSpaceOnUse">
+<stop stop-color="#70C5BD"/>
+<stop offset="1" stop-color="#FDCF48"/>
+</linearGradient>
+<linearGradient id="paint1_linear_7591_90106" x1="2.24493" y1="22.7451" x2="24.1454" y2="42.6546" gradientUnits="userSpaceOnUse">
+<stop stop-color="#70C5BD"/>
+<stop offset="1" stop-color="#FDCF48"/>
+</linearGradient>
+</defs>
+</svg>
+''';
+
+  static const taskTreeSmall = '''<svg width="9" height="10" viewBox="0 0 9 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path fill-rule="evenodd" clip-rule="evenodd" d="M2.52591 3.93499C1.85407 3.34371 1.0676 3.07015 0.505801 3.17843C0.47056 3.74923 0.841738 4.49374 1.51294 5.08446C2.11361 5.61311 2.80591 5.88778 3.34735 5.86265C2.97667 5.52836 2.27347 4.85878 2.10097 4.55739C2.32366 4.81272 2.88646 5.33219 3.52397 5.58979C3.4575 5.06306 3.10235 4.44232 2.52591 3.93499Z" fill="url(#paint0_linear_7957_72636)"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M5.22868 2.68568C5.78896 1.66754 6.62926 0.987106 7.36316 0.872211C7.65805 1.55375 7.53268 2.62695 6.97278 3.64439C6.47112 4.556 5.74498 5.19687 5.07172 5.40348C5.37699 4.83267 5.94225 3.70313 6.02031 3.25857C5.86085 3.66821 5.40267 4.54967 4.7381 5.14494C4.58781 4.4725 4.74833 3.55857 5.22868 2.68568Z" fill="url(#paint1_linear_7957_72636)"/>
+<path d="M3.86153 7.24011C3.86153 7.62609 3.70042 8.30344 3.53968 8.86303C3.41542 9.29559 3.46849 9.67152 3.91854 9.67132C4.50864 9.67106 5.04975 9.08929 4.93009 8.51145C4.77857 7.77971 4.63176 7.01691 4.63176 6.82674C4.63176 6.58321 4.5114 5.98755 4.41984 5.58009C4.38985 5.44663 4.27081 5.35303 4.13402 5.35303C3.97073 5.35303 3.83858 5.48525 3.84065 5.64853C3.8465 6.11015 3.86153 6.76537 3.86153 7.24011Z" fill="url(#paint2_linear_7957_72636)"/>
+<defs>
+<linearGradient id="paint0_linear_7957_72636" x1="1.00718" y1="5.66035" x2="3.54067" y2="4.3219" gradientUnits="userSpaceOnUse">
+<stop stop-color="#70C5BD"/>
+<stop offset="0.494792" stop-color="#B5CA83"/>
+<stop offset="1" stop-color="#FDCF48"/>
+</linearGradient>
+<linearGradient id="paint1_linear_7957_72636" x1="7.84407" y1="4.12484" x2="4.1599" y2="3.60618" gradientUnits="userSpaceOnUse">
+<stop stop-color="#70C5BD"/>
+<stop offset="0.494792" stop-color="#B5CA83"/>
+<stop offset="1" stop-color="#FDCF48"/>
+</linearGradient>
+<linearGradient id="paint2_linear_7957_72636" x1="2.74905" y1="7.51217" x2="5.3769" y2="8.40379" gradientUnits="userSpaceOnUse">
 <stop stop-color="#70C5BD"/>
 <stop offset="1" stop-color="#FDCF48"/>
 </linearGradient>

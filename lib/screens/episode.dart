@@ -16,7 +16,9 @@ import 'package:brunstadtv_app/helpers/navigation_override.dart';
 import 'package:brunstadtv_app/helpers/svg_icons.dart';
 import 'package:brunstadtv_app/providers/analytics.dart';
 import 'package:brunstadtv_app/router/router.gr.dart';
+import 'package:brunstadtv_app/screens/live.dart';
 import 'package:brunstadtv_app/services/utils.dart';
+import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/material.dart';
 import 'package:bccm_player/bccm_player.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -29,6 +31,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:brunstadtv_app/helpers/transparent_image.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:shimmer/shimmer.dart';
+import 'package:collection/collection.dart';
 
 import '../api/brunstadtv.dart';
 import '../components/bottom_sheet_select.dart';
@@ -75,7 +78,8 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen> with AutoRouteAwa
   StreamSubscription? chromecastSubscription;
   int selectedTab = 0;
   String? selectedSeasonId;
-  Map<String, List<EpisodeListEpisodeData>?>? seasonsMap;
+  Map<String, List<EpisodeListEpisodeData>?> seasonsMap = {};
+  Map<String, Fragment$EpisodeLessonProgressOverview> lessonProgressMap = {};
 
   @override
   void didUpdateWidget(old) {
@@ -108,12 +112,13 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen> with AutoRouteAwa
         (result) {
           final episodeSeason = result?.season;
           if (mounted && episodeSeason != null) {
+            loadLessonProgressForSeason(episodeSeason.id);
             setState(() {
               seasonsMap = <String, List<EpisodeListEpisodeData>?>{};
               for (var season in result!.season!.$show.seasons.items) {
-                seasonsMap![season.id] = null;
+                seasonsMap[season.id] = null;
               }
-              seasonsMap![episodeSeason.id] = episodeSeason.episodes.items.map((ep) {
+              seasonsMap[episodeSeason.id] = episodeSeason.episodes.items.map((ep) {
                 return EpisodeListEpisodeData(
                     episodeId: ep.id,
                     ageRating: ep.ageRating,
@@ -130,8 +135,9 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen> with AutoRouteAwa
           return result;
         },
       );
+      lessonProgressFuture = loadLessonsForEpisode();
     });
-    loadLessonProgress();
+
     await episodeFuture;
     if (widget.autoplay) {
       if (scrollCompleter == null) {
@@ -144,14 +150,26 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen> with AutoRouteAwa
     }
   }
 
-  void loadLessonProgress() {
-    setState(() {
-      lessonProgressFuture = ref
-          .read(gqlClientProvider)
-          .query$GetEpisodeLessonProgress(
-              Options$Query$GetEpisodeLessonProgress(variables: Variables$Query$GetEpisodeLessonProgress(id: widget.episodeId.toString())))
-          .then(((value) => value.parsedData));
-    });
+  Future<Query$GetEpisodeLessonProgress?> loadLessonsForEpisode() async {
+    final value = await ref.read(gqlClientProvider).query$GetEpisodeLessonProgress(
+        Options$Query$GetEpisodeLessonProgress(variables: Variables$Query$GetEpisodeLessonProgress(id: widget.episodeId.toString())));
+    return value.parsedData;
+  }
+
+  Future<Query$GetEpisodeLessonProgress?> loadLessonProgressForSeason(String id) async {
+    final value = await ref
+        .read(gqlClientProvider)
+        .query$GetSeasonLessonProgress(Options$Query$GetSeasonLessonProgress(variables: Variables$Query$GetSeasonLessonProgress(id: id)));
+    if (!mounted) return null;
+    final season = value.parsedData?.season;
+
+    if (season != null) {
+      setState(() {
+        for (var element in season.episodes.items) {
+          lessonProgressMap[element.id] = element;
+        }
+      });
+    }
   }
 
   Future setupPlayer() async {
@@ -417,7 +435,9 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen> with AutoRouteAwa
                                               await context.router.root
                                                   .push(StudyScreenRoute(episodeId: episode.id, lessonId: data!.episode.lessons.items[0].id));
                                               if (mounted) {
-                                                loadLessonProgress();
+                                                setState(() {
+                                                  lessonProgressFuture = loadLessonsForEpisode();
+                                                });
                                               }
                                             },
                                             child: StudyMoreButton(progressOverview: data!.episode.lessons.items[0]),
@@ -505,10 +525,14 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen> with AutoRouteAwa
     setState(() {
       selectedSeasonId = id;
     });
+    var api = ref.read(apiProvider);
     var season = await ref.read(apiProvider).getSeasonEpisodes(id);
     if (mounted && season != null) {
+      if (season.episodes.items.any((element) => element.lessons.total > 0)) {
+        loadLessonProgressForSeason(season.id);
+      }
       setState(() {
-        seasonsMap?[id] = season.episodes.items
+        seasonsMap[id] = season.episodes.items
             .map((ep) => EpisodeListEpisodeData(
                 episodeId: ep.id,
                 ageRating: ep.ageRating,
@@ -516,6 +540,7 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen> with AutoRouteAwa
                 duration: ep.duration,
                 title: ep.title,
                 image: ep.image,
+                lessonProgressOverview: lessonProgressMap[ep.id]?.lessons.items.firstOrNull,
                 seasonNumber: season.number,
                 episodeNumber: ep.number))
             .toList();
@@ -538,13 +563,18 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen> with AutoRouteAwa
                     selectedId: selectedSeasonId!),
               ),
         Builder(builder: (context) {
-          if (seasonsMap?[selectedSeasonId] == null) {
+          if (seasonsMap[selectedSeasonId] == null) {
             return const SizedBox(
                 height: 1000,
                 child: Align(alignment: Alignment.topCenter, child: Padding(padding: EdgeInsets.only(top: 16), child: LoadingIndicator())));
           } else {
             return SeasonEpisodeList(
-                items: seasonsMap![selectedSeasonId]!.map((e) => e.episodeId == widget.episodeId ? e.copyWith(highlighted: true) : e).toList());
+                items: seasonsMap[selectedSeasonId]!
+                    .map((e) => e.copyWith(lessonProgressOverview: lessonProgressMap[e.episodeId]?.lessons.items.firstOrNull))
+                    .map(
+                      (e) => e.episodeId == widget.episodeId ? e.copyWith(highlighted: true) : e,
+                    )
+                    .toList());
           }
         }),
       ],

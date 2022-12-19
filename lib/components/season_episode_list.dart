@@ -1,10 +1,14 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:brunstadtv_app/components/study_progress.dart';
+import 'package:brunstadtv_app/graphql/queries/studies.graphql.dart';
+import 'package:brunstadtv_app/helpers/btv_gradients.dart';
 import 'package:brunstadtv_app/helpers/btv_typography.dart';
 import 'package:brunstadtv_app/router/router.gr.dart';
 import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:intl/intl.dart';
 
+import '../env/env.dart';
 import '../graphql/queries/search.graphql.dart';
 import '../helpers/btv_colors.dart';
 import '../helpers/utils.dart';
@@ -13,6 +17,7 @@ import '../services/utils.dart';
 import 'bordered_image_container.dart';
 import 'episode_duration.dart';
 import 'watched_badge.dart';
+import 'dart:math' as math;
 
 part 'season_episode_list.freezed.dart';
 
@@ -52,6 +57,7 @@ class EpisodeListEpisodeData with _$EpisodeListEpisodeData {
     required String? image,
     int? seasonNumber,
     int? episodeNumber,
+    Fragment$LessonProgressOverview? lessonProgressOverview,
     required String? publishDate,
     required String ageRating,
     required int duration,
@@ -181,7 +187,12 @@ class EpisodeListEpisode extends StatelessWidget {
                         ],
                       ),
                     ),
-                  )
+                  ),
+                  if (Env.enableStudy && data.lessonProgressOverview != null)
+                    LessonProgressTree(
+                      completed: data.lessonProgressOverview!.progress.completed,
+                      total: data.lessonProgressOverview!.progress.total,
+                    )
                 ],
               ),
             ),

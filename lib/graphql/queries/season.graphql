@@ -5,6 +5,9 @@ query GetSeasonEpisodes($id: ID!) {
     episodes {
       items {
         id
+        lessons {
+          total
+        }
         ...SeasonListEpisode
       }
     }
