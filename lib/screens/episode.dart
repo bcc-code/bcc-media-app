@@ -48,6 +48,7 @@ import '../helpers/btv_typography.dart';
 import '../helpers/utils.dart';
 import '../l10n/app_localizations.dart';
 import '../models/analytics/content_shared.dart';
+import '../providers/auth_state.dart';
 
 class EpisodePageArguments {
   int episodeId;
@@ -264,11 +265,32 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen> with AutoRouteAwa
       ),
     ];
 
+    bool accessibleToEveryone = true; // how do we know?
+
     showModalBottomSheet(
       useRootNavigator: true,
       context: context,
       builder: (ctx) => BottomSheetSelect(
         title: S.of(context).share,
+        description: accessibleToEveryone
+            ? null
+            : Padding(
+                padding: EdgeInsets.only(bottom: 16),
+                child: Row(
+                  children: [
+                    Padding(padding: EdgeInsets.all(4), child: SvgPicture.string(SvgIcons.infoCircle)),
+                    Expanded(
+                      child: Padding(
+                        padding: EdgeInsets.only(left: 8, right: 16),
+                        child: Text(
+                          'This video is only accessible to users that are logged in to the app.',
+                          style: BtvTextStyles.caption1.copyWith(color: BtvColors.label2),
+                        ),
+                      ),
+                    )
+                  ],
+                ),
+              ),
         selectedId: 'fromStart',
         items: options,
         showSelection: false,

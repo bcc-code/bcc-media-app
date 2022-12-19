@@ -6,6 +6,14 @@ class SvgIcons {
 </svg>
 ''';
 
+  static const infoCircle = '''
+<svg width="18" height="19" viewBox="0 0 18 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+<circle cx="9" cy="9.53662" r="7.5" stroke="#E63C62" stroke-width="2.25"/>
+<path d="M9 7.28662V5.03662" stroke="#E63C62" stroke-width="2.25"/>
+<path d="M9 14.0366V8.78662" stroke="#E63C62" stroke-width="2.25"/>
+</svg>
+''';
+
   static const chevronDown = '''
 <svg width="12" height="8" viewBox="0 0 12 8" fill="none" xmlns="http://www.w3.org/2000/svg">
 <path d="M11 1.5L6 6.5L1 1.5" stroke="white" stroke-width="1.5"/>
