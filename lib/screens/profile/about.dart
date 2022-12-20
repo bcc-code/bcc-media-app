@@ -1,6 +1,7 @@
 import 'package:brunstadtv_app/components/developer_options.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:url_launcher/url_launcher.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 
 import '../../components/custom_back_button.dart';
@@ -69,11 +70,14 @@ class _AboutScreenState extends State<AboutScreen> {
                         textAlign: TextAlign.center,
                       ),
                     ),
-                    const Text(
-                      'www.brunstad.tv',
-                      style: BtvTextStyles.body2,
-                      textAlign: TextAlign.center,
-                    ),
+                    const InkWell(
+                      onTap: _launchUrl,
+                      child: Text(
+                        'about.bcc.media',
+                        style: BtvTextStyles.body2,
+                        textAlign: TextAlign.center,
+                      ),
+                    )
                   ],
                 ),
               ),
@@ -95,4 +99,9 @@ class _AboutScreenState extends State<AboutScreen> {
       ),
     );
   }
+}
+
+final Uri _url = Uri.parse('https://about.bcc.media');
+Future<void> _launchUrl() async {
+  await launchUrl(_url, mode: LaunchMode.externalApplication); // We do not particularly care if this fails.
 }
