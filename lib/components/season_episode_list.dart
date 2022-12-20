@@ -73,10 +73,10 @@ class EpisodeListEpisode extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final comingSoon = isComingSoon(data.publishDate);
+    final unavailable = isUnavailable(data.publishDate);
     final publishDateTime = data.publishDate != null ? DateTime.tryParse(data.publishDate!) : null;
     return IgnorePointer(
-      ignoring: comingSoon,
+      ignoring: unavailable,
       child: GestureDetector(
         behavior: HitTestBehavior.opaque,
         onTap: () => context.navigateTo(EpisodeScreenRoute(episodeId: data.episodeId, autoplay: data.lessonProgressOverview == null)),
@@ -98,13 +98,13 @@ class EpisodeListEpisode extends StatelessWidget {
                   Stack(
                     clipBehavior: Clip.none,
                     children: [
-                      comingSoon
+                      unavailable
                           ? Opacity(
                               opacity: 0.5,
                               child: BorderedImageContainer(width: 128, imageUrl: data.image),
                             )
                           : BorderedImageContainer(width: 128, imageUrl: data.image),
-                      if (comingSoon)
+                      if (unavailable)
                         Positioned.fill(
                           child: Container(
                             decoration: const BoxDecoration(
@@ -140,7 +140,7 @@ class EpisodeListEpisode extends StatelessWidget {
                   const SizedBox(width: 16),
                   Expanded(
                     child: Opacity(
-                      opacity: comingSoon ? 0.5 : 1,
+                      opacity: unavailable ? 0.5 : 1,
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
@@ -174,7 +174,7 @@ class EpisodeListEpisode extends StatelessWidget {
                                     style: BtvTextStyles.caption2.copyWith(color: BtvColors.onTint, height: 1.1),
                                   ),
                                 ),
-                              if (comingSoon && publishDateTime != null)
+                              if (unavailable && publishDateTime != null)
                                 Expanded(
                                   child: Text(
                                     S.of(context).availableFrom(DateFormat(DateFormat.YEAR_MONTH_DAY).format(publishDateTime)),
@@ -188,7 +188,7 @@ class EpisodeListEpisode extends StatelessWidget {
                       ),
                     ),
                   ),
-                  if (Env.enableStudy && data.lessonProgressOverview != null)
+                  if (Env.enableStudy && data.lessonProgressOverview != null && !unavailable)
                     Container(
                       padding: const EdgeInsets.only(left: 16),
                       alignment: Alignment.centerRight,

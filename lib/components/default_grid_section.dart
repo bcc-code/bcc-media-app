@@ -144,13 +144,13 @@ class _GridEpisodeItem extends StatelessWidget {
         child: Stack(
           clipBehavior: Clip.none,
           children: [
-            isComingSoon(episode.publishDate)
+            isUnavailable(episode.publishDate)
                 ? Opacity(
                     opacity: 0.5,
                     child: BorderedImageContainer(imageUrl: sectionItem.image),
                   )
                 : BorderedImageContainer(imageUrl: sectionItem.image),
-            if (isComingSoon(episode.publishDate))
+            if (isUnavailable(episode.publishDate))
               Container(
                 width: double.infinity,
                 height: double.infinity,
@@ -168,7 +168,7 @@ class _GridEpisodeItem extends StatelessWidget {
                   child: WatchProgressIndicator(totalDuration: episode.duration, watchedDuration: episode.progress!),
                 ),
               )
-            else if (!isComingSoon(episode.publishDate))
+            else if (!isUnavailable(episode.publishDate))
               Align(
                 alignment: Alignment.bottomCenter,
                 child: Container(

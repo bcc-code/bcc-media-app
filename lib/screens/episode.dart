@@ -155,6 +155,12 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen> with AutoRouteAwa
   Future<Query$GetEpisodeLessonProgress?> loadLessonsForEpisode() async {
     final value = await ref.read(gqlClientProvider).query$GetEpisodeLessonProgress(
         Options$Query$GetEpisodeLessonProgress(variables: Variables$Query$GetEpisodeLessonProgress(id: widget.episodeId.toString())));
+    final lessonProgress = value.parsedData?.episode;
+    if (lessonProgress != null) {
+      setState(() {
+        lessonProgressMap[widget.episodeId] = lessonProgress;
+      });
+    }
     return value.parsedData;
   }
 
