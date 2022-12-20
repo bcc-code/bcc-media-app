@@ -5,7 +5,7 @@
    <application
         android:label="BrunstadTV"
         android:name="${applicationName}"
-        android:icon="@mipmap/ic_launcher">
+        android:icon="@drawable/icon_circle">
 
        <meta-data android:name="com.google.android.gms.cast.framework.OPTIONS_PROVIDER_CLASS_NAME"
            android:value="media.bcc.bccm_player.CastOptionsProvider"/>
