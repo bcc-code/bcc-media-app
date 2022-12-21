@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools">
     <uses-permission android:name="android.permission.INTERNET"/>
    <application
-        android:label="BrunstadTV"
+        android:label="BCC Media"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher_round">
 
@@ -36,6 +36,8 @@
                 <action android:name="android.intent.action.VIEW" />
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
+                <data android:scheme="http" android:host="bcc.media" />
+                <data android:scheme="https" android:host="bcc.media" />
                 <data android:scheme="http" android:host="brunstad.tv" />
                 <data android:scheme="https" />
             </intent-filter>

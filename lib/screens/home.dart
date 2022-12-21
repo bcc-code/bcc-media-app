@@ -87,7 +87,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> with PageMixin {
                       if (Platform.isIOS) {
                         launchUrlString('itms-apps://itunes.apple.com', mode: LaunchMode.externalApplication);
                       } else if (Platform.isAndroid) {
-                        launchUrlString('market://search?q=brunstadtv', mode: LaunchMode.externalApplication);
+                        launchUrlString('market://details?id=tv.brunstad.app', mode: LaunchMode.externalApplication);
                       }
                     },
                     labelText: S.of(context).appUpdateAccepted)

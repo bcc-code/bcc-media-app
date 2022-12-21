@@ -294,7 +294,7 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen> with AutoRouteAwa
         items: options,
         showSelection: false,
         onSelectionChanged: (id) {
-          var episodeUrl = 'https://brunstad.tv/episode/${widget.episodeId}';
+          var episodeUrl = 'https://bcc.media/episode/${widget.episodeId}';
           if (id == 'fromStart') {
             Share.share(episodeUrl);
           } else {

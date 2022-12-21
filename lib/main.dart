@@ -170,7 +170,7 @@ void $main({required FirebaseOptions? firebaseOptions}) async {
             theme: ThemeData(),
             darkTheme: createTheme(),
             themeMode: ThemeMode.dark,
-            title: 'BrunstadTV',
+            title: 'BCC Media',
             routerDelegate: appRouter.delegate(
               initialDeepLink: deepLink,
               initialRoutes: initialRoutes,

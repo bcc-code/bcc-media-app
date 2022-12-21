@@ -85,25 +85,25 @@ android {
         prod {
             dimension "env"
             applicationIdSuffix ""
-            manifestPlaceholders = [appName: "BrunstadTV"]
+            manifestPlaceholders = [appName: "BCC Media"]
             flutter.target "lib/main_prod.dart"
         }
         dev {
             dimension "env"
             applicationIdSuffix ".dev"
-            manifestPlaceholders = [appName: "DEV BrunstadTV"]
+            manifestPlaceholders = [appName: "DEV BCC Media"]
             flutter.target "lib/main_dev.dart"
         }
         v4_prod {
             dimension "env"
             applicationIdSuffix ".v4"
-            manifestPlaceholders = [appName: "BrunstadTV v4"]
+            manifestPlaceholders = [appName: "BCC Media v4"]
             flutter.target "lib/main_v4_prod.dart"
         }
         v4_dev {
             dimension "env"
             applicationIdSuffix ".v4.dev"
-            manifestPlaceholders = [appName: "DEV BrunstadTV v4"]
+            manifestPlaceholders = [appName: "DEV BCC Media v4"]
             flutter.target "lib/main_v4_dev.dart"
         }
     }
