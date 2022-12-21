@@ -295,10 +295,18 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen> with AutoRouteAwa
         showSelection: false,
         onSelectionChanged: (id) {
           var episodeUrl = 'https://bcc.media/episode/${widget.episodeId}';
+          final Size size = MediaQuery.of(context).size;
+          final pos = Rect.fromLTWH(0, 0, size.width, size.height / 2);
           if (id == 'fromStart') {
-            Share.share(episodeUrl);
+            Share.share(
+              episodeUrl,
+              sharePositionOrigin: pos,
+            );
           } else {
-            Share.share('$episodeUrl?t=$currentPosSeconds');
+            Share.share(
+              '$episodeUrl?t=$currentPosSeconds',
+              sharePositionOrigin: pos,
+            );
           }
           ref.read(analyticsProvider).contentShared(ContentSharedEvent(
                 pageCode: 'episode',
