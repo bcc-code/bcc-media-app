@@ -44,7 +44,7 @@ class _ContactSupportState extends ConsumerState<ContactSupport> {
   }
 
   void onTryAgain() {
-    setState(() => isOnInputPage = false);
+    setState(() => isOnInputPage = true);
   }
 
   void onContentChanged(content_) {
@@ -52,6 +52,7 @@ class _ContactSupportState extends ConsumerState<ContactSupport> {
   }
 
   void onSend() {
+    FocusManager.instance.primaryFocus?.unfocus();
     setState(() => isOnInputPage = false);
   }
 
@@ -78,19 +79,23 @@ class _ContactSupportState extends ConsumerState<ContactSupport> {
         body: SafeArea(
           child: Container(
             padding: const EdgeInsets.all(16),
-            child: isOnInputPage
-                ? _InputPage(deviceInfo: deviceInfo, onContentChanged: onContentChanged)
-                : FutureBuilder<bool>(
-                    future: sendSupportEmailFuture,
-                    builder: (BuildContext context, AsyncSnapshot<bool> snapshot) {
-                      if (snapshot.hasData) {
-                        return _SuccessPage();
-                      } else if (snapshot.hasError) {
-                        return _FailurePage(onTryAgain: onTryAgain);
-                      }
-                      return sendingIndicator;
-                    },
-                  ),
+            child: IndexedStack(
+              index: isOnInputPage ? 0 : 1,
+              children: [
+                _InputPage(deviceInfo: deviceInfo, onContentChanged: onContentChanged),
+                FutureBuilder<bool>(
+                  future: sendSupportEmailFuture,
+                  builder: (BuildContext context, AsyncSnapshot<bool> snapshot) {
+                    if (snapshot.hasData) {
+                      return _SuccessPage();
+                    } else if (snapshot.hasError) {
+                      return _FailurePage(onTryAgain: onTryAgain);
+                    }
+                    return sendingIndicator;
+                  },
+                ),
+              ],
+            ),
           ),
         ),
       ),
@@ -196,6 +201,10 @@ class _ContactSupportState extends ConsumerState<ContactSupport> {
     print('HTML: $deviceInfoHtml');
     var sendResult = await ref.read(gqlClientProvider).mutate$sendSupportEmail(Options$Mutation$sendSupportEmail(
         variables: Variables$Mutation$sendSupportEmail(title: title, content: '', html: '<p>$content</p>$deviceInfoHtml')));
+    if (sendResult.exception != null) {
+      throw ErrorDescription(sendResult.exception.toString());
+    }
+
     return sendResult.data?['sendSupportEmail'] ?? false;
   }
 }
