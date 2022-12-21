@@ -23,11 +23,12 @@ class Profile extends ConsumerStatefulWidget {
 class _ProfileState extends ConsumerState<Profile> {
   List<OptionButton> get _supportButtons {
     return [
-      OptionButton(
-          optionName: S.of(context).contactSupport,
-          onPressed: () {
-            context.router.push(const ContactSupportRoute());
-          }),
+      if (!ref.read(authStateProvider).guestMode)
+        OptionButton(
+            optionName: S.of(context).contactSupport,
+            onPressed: () {
+              context.router.push(const ContactSupportRoute());
+            }),
       OptionButton(
           optionName: S.of(context).about,
           onPressed: () {
