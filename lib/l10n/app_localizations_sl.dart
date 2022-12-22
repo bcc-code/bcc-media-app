@@ -47,7 +47,7 @@ class SSl extends S {
   String get faq => 'Pogosta vprašanja';
 
   @override
-  String get bccMediaCenter => 'BrunstadTV je nekomercialen medijski center, ki proizvaja in razširja vsebino, ki temelji na pozitivnih krščanskih vrednotah.';
+  String get bccMediaCenter => 'BCC Media is a media foundation in the BCC federation that produces and distributes content with positive and Christian values.';
 
   @override
   String get signInButton => 'Vpis';
@@ -217,7 +217,7 @@ class SSl extends S {
   String get high => 'Visoka';
 
   @override
-  String get emptySearch => 'Iščete lahko po vsej vsebini od BrunstadTV. Serije, filmi in deli.';
+  String get emptySearch => 'Iščete lahko po vsej vsebini od BCC Media. Serije, filmi in deli.';
 
   @override
   String get back => 'Nazaj';

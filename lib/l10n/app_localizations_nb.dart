@@ -47,7 +47,7 @@ class SNb extends S {
   String get faq => 'Ofte stilte spørsmål';
 
   @override
-  String get bccMediaCenter => 'BrunstadTV er et ikke-kommersielt mediesenter som produserer og distribuerer innhold med positive og kristne verdier.';
+  String get bccMediaCenter => 'BCC Media er en mediestiftelse i BCC-forbundet som produserer og distribuerer innhold med positive og kristne verdier.';
 
   @override
   String get signInButton => 'Logg inn';
@@ -217,7 +217,7 @@ class SNb extends S {
   String get high => 'Høy';
 
   @override
-  String get emptySearch => 'Du kan søke på alt innhold fra BrunstadTV. Serier, filmer og episoder';
+  String get emptySearch => 'Du kan søke på alt innhold fra BCC Media. Serier, filmer og episoder.';
 
   @override
   String get back => 'Tilbake';

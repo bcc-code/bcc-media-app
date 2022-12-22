@@ -47,7 +47,7 @@ class SHu extends S {
   String get faq => 'Gyakran ismételt kérdések';
 
   @override
-  String get bccMediaCenter => 'BrunstadTV nem kereskedelmi média, hanem olyan tartalmakat állít elő és közvetít, amelyek pozitív és keresztény értékeken alapul.';
+  String get bccMediaCenter => 'A BCC Media a BCC szövetség médiaalapítványa, amely pozitív és keresztény értékeket tartalmazó tartalmakat gyárt és terjeszt.';
 
   @override
   String get signInButton => 'Bejelentkezés';
@@ -217,7 +217,7 @@ class SHu extends S {
   String get high => 'Magas';
 
   @override
-  String get emptySearch => 'Itt kereshetsz a BrunstadTV minden tartalmára. Sorozatokra, filmekre és epizódokra.';
+  String get emptySearch => 'You can search all content from BCC Media. Series, videos and episodes.';
 
   @override
   String get back => 'Vissza';

@@ -47,7 +47,7 @@ class SFi extends S {
   String get faq => 'Usein kysyttyä';
 
   @override
-  String get bccMediaCenter => 'BrunstadTV on ei-kaupallinen kristillisten ja positiivisten arvojen mukaisen median tuottaja.';
+  String get bccMediaCenter => 'BCC Media is a media foundation in the BCC federation that produces and distributes content with positive and Christian values.';
 
   @override
   String get signInButton => 'Kirjaudu sisään';
@@ -217,7 +217,7 @@ class SFi extends S {
   String get high => 'Laadukas';
 
   @override
-  String get emptySearch => 'Täältä voit hakea mitä tahansa BrunstadTV:n sisältöä; sarjoja, elokuvia, ja jaksoja.';
+  String get emptySearch => 'You can search all content from BCC Media. Series, videos and episodes.';
 
   @override
   String get back => 'Takaisin';
@@ -425,7 +425,7 @@ class SFi extends S {
 
   @override
   String newPostsSingle(int postCount) {
-    return 'Uusi viesti!';
+    return '$postCount uutta viestiä!';
   }
 
   @override
