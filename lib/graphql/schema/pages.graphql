@@ -37,6 +37,11 @@ enum SectionSize {
     medium
 }
 
+enum CardSectionSize {
+    large
+    mini
+}
+
 enum GridSectionSize {
     half
 }
@@ -72,11 +77,27 @@ type DefaultSection implements Section & ItemSection {
     items(first: Int, offset: Int): SectionItemPagination! @goField(forceResolver: true)
 }
 
+type CardSection implements Section & ItemSection {
+    id: ID!
+    metadata: ItemSectionMetadata
+    title: String
+    size: CardSectionSize!
+    items(first: Int, offset: Int): SectionItemPagination! @goField(forceResolver: true)
+}
+
 type ListSection implements Section & ItemSection {
     id: ID!
     metadata: ItemSectionMetadata
     title: String
     size: SectionSize!
+    items(first: Int, offset: Int): SectionItemPagination! @goField(forceResolver: true)
+}
+
+type CardListSection implements Section & ItemSection {
+    id: ID!
+    metadata: ItemSectionMetadata
+    title: String
+    size: CardSectionSize!
     items(first: Int, offset: Int): SectionItemPagination! @goField(forceResolver: true)
 }
 
@@ -162,9 +183,27 @@ type ContextCollection {
     ): SectionItemPagination @goField(forceResolver: true)
 }
 
+enum LinkType {
+    text
+    audio
+    video
+    other
+}
+
 type Link {
     id: ID!
     url: String!
+    title: String!
+    description: String
+    type: LinkType!
+    image(style: ImageStyle): String @goField(forceResolver: true)
+}
+
+type LinkPagination implements Pagination {
+    total: Int!
+    first: Int!
+    offset: Int!
+    items: [Link!]!
 }
 
 union SectionItemType = Show | Season | Episode | Page | Link

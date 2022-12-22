@@ -12,6 +12,7 @@ type Lesson {
     topic: StudyTopic! @goField(forceResolver: true)
     progress: TasksProgress! @goField(forceResolver: true)
     episodes(first: Int, offset: Int): EpisodePagination! @goField(forceResolver: true)
+    links(first: Int, offset: Int): LinkPagination! @goField(forceResolver: true)
 }
 
 type LessonPagination implements Pagination {
@@ -85,8 +86,7 @@ type LinkTask implements Task {
     id: ID!
     title: String!
     completed: Boolean! @goField(forceResolver: true)
-    link: String!
-    image: String!
+    link: Link! @goField(forceResolver: true)
     secondaryTitle: String
     description: String
 }

@@ -11,6 +11,7 @@ import 'package:brunstadtv_app/components/season_episode_list.dart';
 import 'package:brunstadtv_app/components/feature_badge.dart';
 import 'package:brunstadtv_app/components/study/study_button.dart';
 import 'package:brunstadtv_app/graphql/client.dart';
+import 'package:brunstadtv_app/graphql/schema/items.graphql.dart';
 import 'package:brunstadtv_app/graphql/schema/pages.graphql.dart';
 import 'package:brunstadtv_app/helpers/navigation_override.dart';
 import 'package:brunstadtv_app/helpers/svg_icons.dart';
@@ -240,7 +241,7 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen> with AutoRouteAwa
     animation?.addStatusListener(onAnimationStatus);
   }
 
-  void shareVideo() {
+  void shareVideo(Query$FetchEpisode$episode episode) {
     final casting = ref.watch(isCasting);
     final playerProvider = casting ? castPlayerProvider : primaryPlayerProvider;
     final player = ref.watch(playerProvider);
@@ -271,7 +272,7 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen> with AutoRouteAwa
       context: context,
       builder: (ctx) => BottomSheetSelect(
         title: S.of(context).share,
-        description: accessibleToEveryone
+        description: episode.shareRestriction == Enum$ShareRestriction.public
             ? null
             : Padding(
                 padding: EdgeInsets.only(bottom: 16),
@@ -417,7 +418,7 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen> with AutoRouteAwa
                                     Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
                                       Expanded(child: Text(episode.title, style: BtvTextStyles.title1)),
                                       GestureDetector(
-                                        onTap: shareVideo,
+                                        onTap: () => shareVideo(episode),
                                         child: Padding(
                                           padding: const EdgeInsets.only(top: 4, left: 16),
                                           child: SvgPicture.string(SvgIcons.share, color: BtvColors.label3),

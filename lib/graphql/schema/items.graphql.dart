@@ -74,6 +74,34 @@ Enum$EpisodeType fromJson$Enum$EpisodeType(String value) {
   }
 }
 
+enum Enum$ShareRestriction { registered, members, public, $unknown }
+
+String toJson$Enum$ShareRestriction(Enum$ShareRestriction e) {
+  switch (e) {
+    case Enum$ShareRestriction.registered:
+      return r'registered';
+    case Enum$ShareRestriction.members:
+      return r'members';
+    case Enum$ShareRestriction.public:
+      return r'public';
+    case Enum$ShareRestriction.$unknown:
+      return r'$unknown';
+  }
+}
+
+Enum$ShareRestriction fromJson$Enum$ShareRestriction(String value) {
+  switch (value) {
+    case r'registered':
+      return Enum$ShareRestriction.registered;
+    case r'members':
+      return Enum$ShareRestriction.members;
+    case r'public':
+      return Enum$ShareRestriction.public;
+    default:
+      return Enum$ShareRestriction.$unknown;
+  }
+}
+
 enum Enum$StreamType { hls_ts, hls_cmaf, dash, $unknown }
 
 String toJson$Enum$StreamType(Enum$StreamType e) {

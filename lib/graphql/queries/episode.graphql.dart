@@ -1322,6 +1322,13 @@ const documentNodeQueryFetchEpisode = DocumentNode(definitions: [
             selectionSet: null,
           ),
           FieldNode(
+            name: NameNode(value: 'shareRestriction'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
             name: NameNode(value: 'ageRating'),
             alias: null,
             arguments: [],
@@ -1747,6 +1754,7 @@ class Query$FetchEpisode$episode {
     this.image,
     required this.duration,
     this.progress,
+    required this.shareRestriction,
     required this.ageRating,
     this.relatedItems,
     required this.streams,
@@ -1764,6 +1772,7 @@ class Query$FetchEpisode$episode {
     final l$image = json['image'];
     final l$duration = json['duration'];
     final l$progress = json['progress'];
+    final l$shareRestriction = json['shareRestriction'];
     final l$ageRating = json['ageRating'];
     final l$relatedItems = json['relatedItems'];
     final l$streams = json['streams'];
@@ -1779,6 +1788,8 @@ class Query$FetchEpisode$episode {
       image: (l$image as String?),
       duration: (l$duration as int),
       progress: (l$progress as int?),
+      shareRestriction:
+          fromJson$Enum$ShareRestriction((l$shareRestriction as String)),
       ageRating: (l$ageRating as String),
       relatedItems: l$relatedItems == null
           ? null
@@ -1814,6 +1825,8 @@ class Query$FetchEpisode$episode {
 
   final int? progress;
 
+  final Enum$ShareRestriction shareRestriction;
+
   final String ageRating;
 
   final Query$FetchEpisode$episode$relatedItems? relatedItems;
@@ -1844,6 +1857,9 @@ class Query$FetchEpisode$episode {
     _resultData['duration'] = l$duration;
     final l$progress = progress;
     _resultData['progress'] = l$progress;
+    final l$shareRestriction = shareRestriction;
+    _resultData['shareRestriction'] =
+        toJson$Enum$ShareRestriction(l$shareRestriction);
     final l$ageRating = ageRating;
     _resultData['ageRating'] = l$ageRating;
     final l$relatedItems = relatedItems;
@@ -1869,6 +1885,7 @@ class Query$FetchEpisode$episode {
     final l$image = image;
     final l$duration = duration;
     final l$progress = progress;
+    final l$shareRestriction = shareRestriction;
     final l$ageRating = ageRating;
     final l$relatedItems = relatedItems;
     final l$streams = streams;
@@ -1884,6 +1901,7 @@ class Query$FetchEpisode$episode {
       l$image,
       l$duration,
       l$progress,
+      l$shareRestriction,
       l$ageRating,
       l$relatedItems,
       Object.hashAll(l$streams.map((v) => v)),
@@ -1940,6 +1958,11 @@ class Query$FetchEpisode$episode {
     final l$progress = progress;
     final lOther$progress = other.progress;
     if (l$progress != lOther$progress) {
+      return false;
+    }
+    final l$shareRestriction = shareRestriction;
+    final lOther$shareRestriction = other.shareRestriction;
+    if (l$shareRestriction != lOther$shareRestriction) {
       return false;
     }
     final l$ageRating = ageRating;
@@ -2010,6 +2033,7 @@ abstract class CopyWith$Query$FetchEpisode$episode<TRes> {
     String? image,
     int? duration,
     int? progress,
+    Enum$ShareRestriction? shareRestriction,
     String? ageRating,
     Query$FetchEpisode$episode$relatedItems? relatedItems,
     List<Query$FetchEpisode$episode$streams>? streams,
@@ -2050,6 +2074,7 @@ class _CopyWithImpl$Query$FetchEpisode$episode<TRes>
     Object? image = _undefined,
     Object? duration = _undefined,
     Object? progress = _undefined,
+    Object? shareRestriction = _undefined,
     Object? ageRating = _undefined,
     Object? relatedItems = _undefined,
     Object? streams = _undefined,
@@ -2076,6 +2101,10 @@ class _CopyWithImpl$Query$FetchEpisode$episode<TRes>
             : (duration as int),
         progress:
             progress == _undefined ? _instance.progress : (progress as int?),
+        shareRestriction:
+            shareRestriction == _undefined || shareRestriction == null
+                ? _instance.shareRestriction
+                : (shareRestriction as Enum$ShareRestriction),
         ageRating: ageRating == _undefined || ageRating == null
             ? _instance.ageRating
             : (ageRating as String),
@@ -2146,6 +2175,7 @@ class _CopyWithStubImpl$Query$FetchEpisode$episode<TRes>
     String? image,
     int? duration,
     int? progress,
+    Enum$ShareRestriction? shareRestriction,
     String? ageRating,
     Query$FetchEpisode$episode$relatedItems? relatedItems,
     List<Query$FetchEpisode$episode$streams>? streams,

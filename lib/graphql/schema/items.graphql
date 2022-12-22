@@ -60,6 +60,12 @@ enum EpisodeType {
 
 union EpisodeContextUnion = Season | ContextCollection
 
+enum ShareRestriction {
+    registered
+    members
+    public
+}
+
 type Episode {
     id: ID!
     type: EpisodeType!
@@ -89,6 +95,7 @@ type Episode {
     images: [Image!]!
     number: Int
     lessons(first: Int, offset: Int): LessonPagination! @goField(forceResolver: true)
+    shareRestriction: ShareRestriction! @goField(forceResolver: true)
 }
 
 type EpisodePagination implements Pagination {

@@ -8,6 +8,7 @@ query FetchEpisode($id: ID!) {
     image
     duration
     progress
+    shareRestriction
     ageRating
     relatedItems {
       items {
