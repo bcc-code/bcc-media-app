@@ -13,12 +13,13 @@ class SpecialRoutesGuard extends AutoRouteGuard {
   @override
   void onNavigation(NavigationResolver resolver, StackRouter router) {
     final route = resolver.route.children![0];
-    var uri = Uri.tryParse('https://app.bcc.media/${route.stringMatch}');
+    var uri = Uri.tryParse('https://web.brunstad.tv/${route.stringMatch}');
 
     ProviderContainer? ref;
     if (router.navigatorKey.currentContext != null) {
       ref = ProviderScope.containerOf(router.navigatorKey.currentContext!, listen: false);
     }
+
     if (route.segments[0] == 'tvlogin' && uri != null) {
       launchUrl(uri, mode: LaunchMode.externalApplication);
     }
