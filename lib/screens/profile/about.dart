@@ -73,7 +73,7 @@ class _AboutScreenState extends State<AboutScreen> {
                     const InkWell(
                       onTap: _launchUrl,
                       child: Text(
-                        'about.bcc.media',
+                        'bcc.media',
                         style: BtvTextStyles.body2,
                         textAlign: TextAlign.center,
                       ),
@@ -101,7 +101,7 @@ class _AboutScreenState extends State<AboutScreen> {
   }
 }
 
-final Uri _url = Uri.parse('https://about.bcc.media');
+final Uri _url = Uri.parse('https://bcc.media');
 Future<void> _launchUrl() async {
   await launchUrl(_url, mode: LaunchMode.externalApplication); // We do not particularly care if this fails.
 }
