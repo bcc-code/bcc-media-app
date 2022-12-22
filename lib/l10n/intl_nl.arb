@@ -55,7 +55,7 @@
   "@faq": {
     "description": "Title of the FAQ page."
   },
-  "bccMediaCenter": "BrunstadTV is een niet-commerciëel mediahuis, dat content gebaseerd op positieve en Christelijke waarden produceert en distribueert.",
+  "bccMediaCenter": "BCC Media is een media-stichting binnen de BCC-federatie, welke content met positieve en christelijke waarden produceert en verspreidt.",
   "@bccMediaCenter": {
     "description": "Disclaimer on login page"
   },
@@ -284,7 +284,7 @@
   "@high": {
     "description": "High quality video option"
   },
-  "emptySearch": "U kunt zoeken op alle inhoud van BrunstadTV. TV series, films en afleveringen.",
+  "emptySearch": "U kunt zoeken op alle inhoud van BCC Media. TV series, films en afleveringen.",
   "@emptySearch": {
     "description": "Message on search page when there is no search results."
   },

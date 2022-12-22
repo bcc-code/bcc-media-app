@@ -55,7 +55,7 @@
   "@faq": {
     "description": "Title of the FAQ page."
   },
-  "bccMediaCenter": "BrunstadTV é um centro de mídia não comercial que produz e distribui conteúdo com base em valores positivos e cristãos.",
+  "bccMediaCenter": "A BCC Media é uma fundação de mídia da federação BCC que produz e distribui conteúdo com valores positivos e cristãos.",
   "@bccMediaCenter": {
     "description": "Disclaimer on login page"
   },
@@ -284,7 +284,7 @@
   "@high": {
     "description": "High quality video option"
   },
-  "emptySearch": "Você pode pesquisar todo o conteúdo da BrunstadTV. Séries, vídeos e episódios.",
+  "emptySearch": "Você pode pesquisar todo o conteúdo da BCC Media. Séries, vídeos e episódios.",
   "@emptySearch": {
     "description": "Message on search page when there is no search results."
   },
@@ -583,7 +583,7 @@
   "@expired": {
     "description": "Info that episode is no longer available."
   },
-  "availableFrom": "Available {date}",
+  "availableFrom": "Disponível {date}",
   "@availableFrom": {
     "description": "Info that episode will be released at certain date.",
     "placeholders": {
@@ -830,7 +830,7 @@
   "@shareStart": {
     "description": "Option on action sheet for sharing from start"
   },
-  "shareTime": "Share from {time}",
+  "shareTime": "Compartilhar de {time}",
   "@shareTime": {
     "description": "Option on action sheet for sharing from time",
     "placeholders": {
@@ -839,7 +839,7 @@
       }
     }
   },
-  "loadContentError": "Couldn't load content",
+  "loadContentError": "Não foi possível carregar o conteúdo",
   "@loadContentError": {
     "description": "Error text when content couldn't be loaded."
   },
@@ -999,7 +999,7 @@
   "@categoryMusic": {
     "description": "Category name"
   },
-  "noPlannedEvents": "No events planned this day",
+  "noPlannedEvents": "Nenhum evento planejado para este dia",
   "@noPlannedEvents": {
     "description": "Information in tvguide"
   },
@@ -1007,7 +1007,7 @@
   "@watchNow": {
     "description": "Button on featured carousel"
   },
-  "exploreContent": "Explore content",
+  "exploreContent": "Explorar conteúdo",
   "@exploreContent": {
     "description": "A button on the login page"
   }
