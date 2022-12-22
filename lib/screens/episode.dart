@@ -294,7 +294,7 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen> with AutoRouteAwa
         items: options,
         showSelection: false,
         onSelectionChanged: (id) {
-          var episodeUrl = 'https://bcc.media/episode/${widget.episodeId}';
+          var episodeUrl = 'https://app.bcc.media/episode/${widget.episodeId}';
           final Size size = MediaQuery.of(context).size;
           final pos = Rect.fromLTWH(0, 0, size.width, size.height / 2);
           if (id == 'fromStart') {
