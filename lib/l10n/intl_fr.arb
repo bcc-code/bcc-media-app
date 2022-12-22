@@ -55,7 +55,7 @@
   "@faq": {
     "description": "Title of the FAQ page."
   },
-  "bccMediaCenter": "BrunstadTV est un média à caractère non lucratif qui produit et distribue du contenu basé sur des valeurs positives et chrétiennes.",
+  "bccMediaCenter": "BCC Media est une fondation médiatique de la fédération BCC qui produit et distribue des contenus aux valeurs positives et chrétiennes.",
   "@bccMediaCenter": {
     "description": "Disclaimer on login page"
   },
@@ -284,7 +284,7 @@
   "@high": {
     "description": "High quality video option"
   },
-  "emptySearch": "Tu peux faire une recherche sur tout le contenu de BrunstadTV. Séries, films et épisodes.",
+  "emptySearch": "You can search all content from BCC Media. Series, videos and episodes.",
   "@emptySearch": {
     "description": "Message on search page when there is no search results."
   },

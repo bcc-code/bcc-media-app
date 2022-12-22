@@ -47,7 +47,7 @@ class SEs extends S {
   String get faq => 'Preguntas frecuentes';
 
   @override
-  String get bccMediaCenter => 'BrunstadTV es un centro de medio audiovisuales no comercial, que produce contenido basado en valores positivos y en valores cristianos.';
+  String get bccMediaCenter => 'BCC Media es una fundación de medios de la federación BCC que produce y distribuye contenido con valores positivos y cristianos.';
 
   @override
   String get signInButton => 'Iniciar Sesión';
@@ -217,7 +217,7 @@ class SEs extends S {
   String get high => 'Alta';
 
   @override
-  String get emptySearch => 'Puedes buscar todo el contenido de BrunstadTV, series, películas y episodios.';
+  String get emptySearch => 'Puedes buscar todo el contenido de BCC Media, series, películas y episodios.';
 
   @override
   String get back => 'Atrás';

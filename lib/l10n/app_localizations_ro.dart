@@ -47,7 +47,7 @@ class SRo extends S {
   String get faq => 'Întrebări frecvente';
 
   @override
-  String get bccMediaCenter => 'BrunstadTV este un centru media necomercial care produce și distribuie conținut bazat pe valori pozitive și Creștine.';
+  String get bccMediaCenter => 'BCC Media is a media foundation in the BCC federation that produces and distributes content with positive and Christian values.';
 
   @override
   String get signInButton => 'Conectare';
@@ -217,7 +217,7 @@ class SRo extends S {
   String get high => 'Înaltă';
 
   @override
-  String get emptySearch => 'Poți căuta tot conținutul de pe BrunstadTV. Serii, videoclipuri și episoade.';
+  String get emptySearch => 'You can search all content from BCC Media. Series, videos and episodes.';
 
   @override
   String get back => 'Înapoi';

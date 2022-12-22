@@ -55,7 +55,7 @@
   "@faq": {
     "description": "Title of the FAQ page."
   },
-  "bccMediaCenter": "BrunstadTV on ei-kaupallinen kristillisten ja positiivisten arvojen mukaisen median tuottaja.",
+  "bccMediaCenter": "BCC Media is a media foundation in the BCC federation that produces and distributes content with positive and Christian values.",
   "@bccMediaCenter": {
     "description": "Disclaimer on login page"
   },
@@ -284,7 +284,7 @@
   "@high": {
     "description": "High quality video option"
   },
-  "emptySearch": "Täältä voit hakea mitä tahansa BrunstadTV:n sisältöä; sarjoja, elokuvia, ja jaksoja.",
+  "emptySearch": "You can search all content from BCC Media. Series, videos and episodes.",
   "@emptySearch": {
     "description": "Message on search page when there is no search results."
   },
@@ -570,7 +570,7 @@
       }
     }
   },
-  "newPostsSingle": "Uusi viesti!",
+  "newPostsSingle": "{postCount} uutta viestiä!",
   "@newPostsSingle": {
     "description": "Text displayed on the button, when there is one new post in the feed.",
     "placeholders": {

@@ -206,7 +206,7 @@ abstract class S {
   /// Disclaimer on login page
   ///
   /// In en, this message translates to:
-  /// **'BrunstadTV is a non-commercial media center producing and distributing content based on positive and Christian values.'**
+  /// **'BCC Media is a media foundation in the BCC federation that produces and distributes content with positive and Christian values.'**
   String get bccMediaCenter;
 
   /// Text displayed on Sign in button
@@ -542,7 +542,7 @@ abstract class S {
   /// Message on search page when there is no search results.
   ///
   /// In en, this message translates to:
-  /// **'You can search all content from BrunstadTV. Series, videos and episodes.'**
+  /// **'You can search all content from BCC Media. Series, videos and episodes.'**
   String get emptySearch;
 
   /// General back button to navigate back

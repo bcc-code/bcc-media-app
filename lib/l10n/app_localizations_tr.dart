@@ -47,7 +47,7 @@ class STr extends S {
   String get faq => 'Sıkça Sorulan Sorular';
 
   @override
-  String get bccMediaCenter => 'BrunstadTV, pozitif ve Hıristiyan değerlere dayalı içerik üreten ve yayınlayan, ticari olmayan bir medya merkezidir.';
+  String get bccMediaCenter => 'BCC Media is a media foundation in the BCC federation that produces and distributes content with positive and Christian values.';
 
   @override
   String get signInButton => 'Giriş';
@@ -217,7 +217,7 @@ class STr extends S {
   String get high => 'Yüksek';
 
   @override
-  String get emptySearch => 'BrunstadTV\'den tüm içeriği arayabilirsiniz. Diziler, videolar ve bölümler.';
+  String get emptySearch => 'You can search all content from BCC Media. Series, videos and episodes.';
 
   @override
   String get back => 'Geri';

@@ -47,7 +47,7 @@ class SPt extends S {
   String get faq => 'Perguntas frequentes';
 
   @override
-  String get bccMediaCenter => 'BrunstadTV é um centro de mídia não comercial que produz e distribui conteúdo com base em valores positivos e cristãos.';
+  String get bccMediaCenter => 'A BCC Media é uma fundação de mídia da federação BCC que produz e distribui conteúdo com valores positivos e cristãos.';
 
   @override
   String get signInButton => 'Entrar';
@@ -217,7 +217,7 @@ class SPt extends S {
   String get high => 'Alto';
 
   @override
-  String get emptySearch => 'Você pode pesquisar todo o conteúdo da BrunstadTV. Séries, vídeos e episódios.';
+  String get emptySearch => 'Você pode pesquisar todo o conteúdo da BCC Media. Séries, vídeos e episódios.';
 
   @override
   String get back => 'Voltar';
@@ -433,7 +433,7 @@ class SPt extends S {
 
   @override
   String availableFrom(String date) {
-    return 'Available $date';
+    return 'Disponível $date';
   }
 
   @override
@@ -606,11 +606,11 @@ class SPt extends S {
 
   @override
   String shareTime(String time) {
-    return 'Share from $time';
+    return 'Compartilhar de $time';
   }
 
   @override
-  String get loadContentError => 'Couldn\'t load content';
+  String get loadContentError => 'Não foi possível carregar o conteúdo';
 
   @override
   String get audioOnlyErrorDescription => 'Verifique a conexão com a Internet e tente novamente';
@@ -730,11 +730,11 @@ class SPt extends S {
   String get categoryMusic => 'Música';
 
   @override
-  String get noPlannedEvents => 'No events planned this day';
+  String get noPlannedEvents => 'Nenhum evento planejado para este dia';
 
   @override
   String get watchNow => 'Assistir agora';
 
   @override
-  String get exploreContent => 'Explore content';
+  String get exploreContent => 'Explorar conteúdo';
 }
