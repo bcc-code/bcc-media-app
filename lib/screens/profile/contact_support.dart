@@ -36,6 +36,7 @@ class _ContactSupportState extends ConsumerState<ContactSupport> {
   List<ListItem>? deviceInfo;
   String title = '';
   String content = '';
+  Future<bool>? sendSupportEmailFuture;
 
   @override
   void initState() {
@@ -53,7 +54,10 @@ class _ContactSupportState extends ConsumerState<ContactSupport> {
 
   void onSend() {
     FocusManager.instance.primaryFocus?.unfocus();
-    setState(() => isOnInputPage = false);
+    setState(() {
+      sendSupportEmailFuture = sendSupportEmail();
+      isOnInputPage = false;
+    });
   }
 
   @override
@@ -195,7 +199,7 @@ class _ContactSupportState extends ConsumerState<ContactSupport> {
     ''';
   }
 
-  Future<bool> get sendSupportEmailFuture async {
+  Future<bool> sendSupportEmail() async {
     print('Title: $title');
     print('Content: $content');
     print('HTML: $deviceInfoHtml');
