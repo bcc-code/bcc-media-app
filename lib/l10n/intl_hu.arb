@@ -284,7 +284,7 @@
   "@high": {
     "description": "High quality video option"
   },
-  "emptySearch": "You can search all content from BCC Media. Series, videos and episodes.",
+  "emptySearch": "A BCC Media összes tartalmában kereshetsz. Sorozatok, videók és epizódok.",
   "@emptySearch": {
     "description": "Message on search page when there is no search results."
   },

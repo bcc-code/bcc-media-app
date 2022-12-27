@@ -217,7 +217,7 @@ class SHu extends S {
   String get high => 'Magas';
 
   @override
-  String get emptySearch => 'You can search all content from BCC Media. Series, videos and episodes.';
+  String get emptySearch => 'A BCC Media összes tartalmában kereshetsz. Sorozatok, videók és epizódok.';
 
   @override
   String get back => 'Vissza';

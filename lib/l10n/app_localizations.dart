@@ -5,6 +5,8 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:intl/intl.dart' as intl;
 
+import 'app_localizations_bg.dart';
+import 'app_localizations_da.dart';
 import 'app_localizations_de.dart';
 import 'app_localizations_en.dart';
 import 'app_localizations_es.dart';
@@ -102,6 +104,8 @@ abstract class S {
 
   /// A list of this localizations delegate's supported locales.
   static const List<Locale> supportedLocales = <Locale>[
+    Locale('bg'),
+    Locale('da'),
     Locale('de'),
     Locale('en'),
     Locale('es'),
@@ -1545,7 +1549,7 @@ class _SDelegate extends LocalizationsDelegate<S> {
   }
 
   @override
-  bool isSupported(Locale locale) => <String>['de', 'en', 'es', 'fi', 'fr', 'hu', 'it', 'nb', 'nl', 'pl', 'pt', 'ro', 'ru', 'sl', 'tr'].contains(locale.languageCode);
+  bool isSupported(Locale locale) => <String>['bg', 'da', 'de', 'en', 'es', 'fi', 'fr', 'hu', 'it', 'nb', 'nl', 'pl', 'pt', 'ro', 'ru', 'sl', 'tr'].contains(locale.languageCode);
 
   @override
   bool shouldReload(_SDelegate old) => false;
@@ -1556,6 +1560,8 @@ S lookupS(Locale locale) {
 
   // Lookup logic when only language code is specified.
   switch (locale.languageCode) {
+    case 'bg': return SBg();
+    case 'da': return SDa();
     case 'de': return SDe();
     case 'en': return SEn();
     case 'es': return SEs();

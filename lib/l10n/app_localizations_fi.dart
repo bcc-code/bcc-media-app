@@ -47,7 +47,7 @@ class SFi extends S {
   String get faq => 'Usein kysyttyä';
 
   @override
-  String get bccMediaCenter => 'BCC Media is a media foundation in the BCC federation that produces and distributes content with positive and Christian values.';
+  String get bccMediaCenter => 'BCC Media on BCC Liiton mediayksikkö. Se tuottaa ja toimittaa positiivista Kristillisten arvojen mukaista sisältöä.';
 
   @override
   String get signInButton => 'Kirjaudu sisään';
@@ -217,7 +217,7 @@ class SFi extends S {
   String get high => 'Laadukas';
 
   @override
-  String get emptySearch => 'You can search all content from BCC Media. Series, videos and episodes.';
+  String get emptySearch => 'Täältä voit hakea mitä tahansa BCC Median sisältöä; sarjoja, elokuvia, ja jaksoja.';
 
   @override
   String get back => 'Takaisin';

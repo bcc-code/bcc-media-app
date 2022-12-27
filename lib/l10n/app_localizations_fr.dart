@@ -217,7 +217,7 @@ class SFr extends S {
   String get high => 'Haute';
 
   @override
-  String get emptySearch => 'You can search all content from BCC Media. Series, videos and episodes.';
+  String get emptySearch => 'Tu peux faire une recherche sur tout le contenu de BCC Media. Séries, vidéos et épisodes.';
 
   @override
   String get back => 'Retour';
