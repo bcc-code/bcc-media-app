@@ -200,9 +200,6 @@ class _ContactSupportState extends ConsumerState<ContactSupport> {
   }
 
   Future<bool> sendSupportEmail() async {
-    print('Title: $title');
-    print('Content: $content');
-    print('HTML: $deviceInfoHtml');
     var sendResult = await ref.read(gqlClientProvider).mutate$sendSupportEmail(Options$Mutation$sendSupportEmail(
         variables: Variables$Mutation$sendSupportEmail(title: title, content: '', html: '<p>$content</p>$deviceInfoHtml')));
     if (sendResult.exception != null) {
