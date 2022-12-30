@@ -2,6 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:brunstadtv_app/graphql/client.dart';
 import 'package:brunstadtv_app/graphql/queries/me.graphql.dart';
 import 'package:brunstadtv_app/helpers/btv_typography.dart';
+import 'package:brunstadtv_app/helpers/navigation_utils.dart';
 import 'package:brunstadtv_app/providers/auth_state.dart';
 import 'package:brunstadtv_app/providers/analytics.dart';
 import 'package:brunstadtv_app/providers/settings.dart';
@@ -79,7 +80,7 @@ class _AppRootState extends ConsumerState<AppRoot> {
       //context.router.navigate();
       if (message.data.containsKey('deep_link') && message.data['deep_link'] is String) {
         String path = message.data['deep_link'];
-        navigatorContext?.router.navigateNamed(path, includePrefixMatches: true);
+        navigatorContext?.router.navigateNamedFromRoot(path);
       }
     } else if (message.data['action'] == 'clear_cache') {
       // TODO: implement cache clearing

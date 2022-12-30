@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:brunstadtv_app/helpers/navigation_utils.dart';
 import 'package:brunstadtv_app/providers/settings.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/material.dart';
@@ -33,7 +34,7 @@ class MainJsChannel {
 
   bool _navigate(List<dynamic> arguments) {
     if (arguments[1] is String) {
-      router.navigateNamed(arguments[1]);
+      router.navigateNamedFromRoot(arguments[1]);
       return true;
     } else {
       FirebaseCrashlytics.instance.recordError(Exception('Tried to navigate with invalid argument: ${arguments[1]}'), StackTrace.current);
