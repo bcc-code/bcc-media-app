@@ -139,23 +139,20 @@ void $main({required FirebaseOptions? firebaseOptions}) async {
         );
   });
 
-  String? deepLink = deepLinkUri != null ? uriStringWithoutHost(deepLinkUri) : null;
+  String? deepLink;
   List<PageRouteInfo<dynamic>>? initialRoutes;
-  if (deepLink == null) {
-    if (!authLoadingCompleter.isCompleted) {
-      initialRoutes = [const AutoLoginScreeenRoute()];
-    } else if (deepLink == null) {
-      final authenticated = await authLoadingCompleter.future;
-      if (authenticated) {
-        initialRoutes = [const TabsRootScreenRoute()];
-      } else {
-        initialRoutes = [LoginScreenRoute()];
-      }
+  if (!authLoadingCompleter.isCompleted) {
+    initialRoutes = [const AutoLoginScreeenRoute()];
+  } else if (deepLinkUri != null) {
+    deepLink = uriStringWithoutHost(deepLinkUri);
+  } else {
+    final authenticated = await authLoadingCompleter.future;
+    if (authenticated) {
+      initialRoutes = [const TabsRootScreenRoute()];
+    } else {
+      initialRoutes = [LoginScreenRoute()];
     }
   }
-
-  print('initialDeepLink: $deepLink');
-  print('initialRoute: $deepLink');
 
   final app = UncontrolledProviderScope(
     container: providerContainer,

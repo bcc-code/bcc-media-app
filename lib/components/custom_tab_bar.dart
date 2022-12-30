@@ -88,7 +88,7 @@ class _CustomTabBarState extends ConsumerState<CustomTabBar> {
       BottomNavigationBarItem(label: S.of(context).homeTab, icon: _icon(icons['home_default']), activeIcon: _icon(icons['home_selected'])),
       BottomNavigationBarItem(label: S.of(context).search, icon: _icon(icons['search_default']), activeIcon: _icon(icons['search_selected'])),
     ];
-
+    debugPrint('guestMode ${ref.watch(authStateProvider).guestMode}');
     if (!ref.watch(authStateProvider).guestMode) {
       items.addAll([
         BottomNavigationBarItem(label: S.of(context).liveTab, icon: _icon(icons['live_default']), activeIcon: _icon(icons['live_selected'])),

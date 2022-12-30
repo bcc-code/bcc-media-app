@@ -265,8 +265,6 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen> with AutoRouteAwa
       ),
     ];
 
-    bool accessibleToEveryone = true; // how do we know?
-
     showModalBottomSheet(
       useRootNavigator: true,
       context: context,

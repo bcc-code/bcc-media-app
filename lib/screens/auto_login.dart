@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:app_links/app_links.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:brunstadtv_app/api/brunstadtv.dart';
 import 'package:brunstadtv_app/providers/app_config.dart';
@@ -10,6 +11,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../components/loading_indicator.dart';
 import '../helpers/btv_colors.dart';
 import '../helpers/btv_typography.dart';
+import '../helpers/navigation_utils.dart';
 import '../helpers/utils.dart';
 import '../l10n/app_localizations.dart';
 import '../router/router.gr.dart';
@@ -35,24 +37,33 @@ class _AutoLoginScreeenState extends ConsumerState<AutoLoginScreeen> {
     load();
   }
 
-  void load() {
+  void load() async {
     final hasCredentials = ref.read(authStateProvider).auth0AccessToken != null;
+    final deepLinkUri = await AppLinks().getInitialAppLink();
     if (hasCredentials) {
       WidgetsBinding.instance.scheduleFrameCallback((d) {
-        context.router.replaceAll([const TabsRootScreenRoute()]);
+        navigate(deepLinkUri: deepLinkUri);
       });
     } else {
       setState(() {
         authFuture = ref.read(authStateProvider.notifier).load().then((_) {
-          final hasCredentials = ref.read(authStateProvider).auth0AccessToken != null;
-          if (!hasCredentials) {
-            context.router.replaceAll([LoginScreenRoute()]);
-            return;
-          } else {
-            context.router.replaceAll([const TabsRootScreenRoute()]);
-          }
+          navigate(deepLinkUri: deepLinkUri);
         });
       });
+    }
+  }
+
+  void navigate({Uri? deepLinkUri}) {
+    if (!mounted) return;
+    if (deepLinkUri != null) {
+      context.router.navigateNamedFromRoot(uriStringWithoutHost(deepLinkUri));
+      return;
+    }
+    final hasCredentials = ref.read(authStateProvider).auth0AccessToken != null;
+    if (!hasCredentials) {
+      context.router.replaceAll([LoginScreenRoute()]);
+    } else {
+      context.router.replaceAll([const TabsRootScreenRoute()]);
     }
   }
 

@@ -50,6 +50,7 @@ class AnalyticsNavigatorObserver extends NavigatorObserver {
 
   @override
   void didPush(Route<dynamic> route, Route<dynamic>? previousRoute) {
+    debugPrint('didPush ${route.settings.name}');
     super.didPush(route, previousRoute);
     if (_routeFilter(route)) {
       _sendScreenView(route);
@@ -58,6 +59,7 @@ class AnalyticsNavigatorObserver extends NavigatorObserver {
 
   @override
   void didReplace({Route<dynamic>? newRoute, Route<dynamic>? oldRoute}) {
+    debugPrint('didReplace ${newRoute?.settings.name}');
     super.didReplace(newRoute: newRoute, oldRoute: oldRoute);
     if (newRoute != null && _routeFilter(newRoute)) {
       _sendScreenView(newRoute);
@@ -66,6 +68,7 @@ class AnalyticsNavigatorObserver extends NavigatorObserver {
 
   @override
   void didPop(Route<dynamic> route, Route<dynamic>? previousRoute) {
+    debugPrint('didPop ${route.settings.name}');
     super.didPop(route, previousRoute);
     if (previousRoute != null && _routeFilter(previousRoute) && _routeFilter(route)) {
       _sendScreenView(previousRoute);

@@ -31,11 +31,13 @@ class _AppRootState extends ConsumerState<AppRoot> {
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
+    debugPrint('app_root didChangeDependencies');
     final gqlClient = ref.read(gqlClientProvider);
     final analytics = ref.read(analyticsProvider);
     final settingsNotifier = ref.read(settingsProvider.notifier);
     authSubscription?.close();
     authSubscription = ref.listenManual<AuthState>(authStateProvider, (previous, next) {
+      debugPrint('authSubscription');
       if (previous?.auth0AccessToken != null && next.auth0AccessToken == null) {
         settingsNotifier.setAnalyticsId(null);
         widget.navigatorKey.currentContext?.router.root.navigate(LoginScreenRoute());
