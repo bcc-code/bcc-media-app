@@ -1,6 +1,7 @@
 import 'package:brunstadtv_app/components/loading_generic.dart';
 import 'package:brunstadtv_app/graphql/client.dart';
 import 'package:brunstadtv_app/helpers/btv_typography.dart';
+import 'package:brunstadtv_app/helpers/constants.dart';
 import 'package:brunstadtv_app/helpers/webview/should_override_url_loading.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/gestures.dart';
@@ -8,6 +9,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../components/custom_back_button.dart';
 import '../env/env.dart';
@@ -33,7 +35,7 @@ class StudyScreen extends ConsumerStatefulWidget {
 
 class StudyScreenState extends ConsumerState<StudyScreen> {
   String pageTitle = '';
-  late String url;
+  String url = '';
   InAppWebViewController? webViewController;
   WebResourceError? error;
   bool loading = true;
@@ -42,7 +44,6 @@ class StudyScreenState extends ConsumerState<StudyScreen> {
   @override
   void initState() {
     super.initState();
-    url = '${Env.studyUrl}/embed/episode/${widget.episodeId}/lesson/${widget.lessonId}';
     getTitle();
   }
 
@@ -55,10 +56,14 @@ class StudyScreenState extends ConsumerState<StudyScreen> {
     });
   }
 
-  void onWebViewCreated(InAppWebViewController controller) {
+  void onWebViewCreated(InAppWebViewController controller) async {
     setState(() {
       webViewController = controller;
     });
+    MainJsChannel.register(context, controller);
+    controller.addJavaScriptHandler(handlerName: 'flutter_study', callback: handleMessage);
+    final webUrl = await getWebUrl();
+    url = '$webUrl/embed/episode/${widget.episodeId}/lesson/${widget.lessonId}';
     final uri = Uri.tryParse(url);
     if (uri != null) {
       webViewController?.loadUrl(
@@ -70,8 +75,6 @@ class StudyScreenState extends ConsumerState<StudyScreen> {
         ),
       );
     }
-    MainJsChannel.register(context, controller);
-    controller.addJavaScriptHandler(handlerName: 'flutter_study', callback: handleMessage);
   }
 
   @override

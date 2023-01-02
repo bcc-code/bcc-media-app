@@ -18,7 +18,8 @@ class DeveloperOptions extends ConsumerWidget {
       selectedId: 'fromStart',
       items: [Option(id: 'override_env', title: 'Override environment')],
       showSelection: false,
-      onSelectionChanged: (id) {
+      onSelectionChanged: (id) async {
+        var currentEnvOverride = (await SharedPreferences.getInstance()).getString(PrefKeys.envOverride);
         if (id == 'override_env') {
           WidgetsBinding.instance.scheduleFrameCallback((d) {
             showDialog(
@@ -27,17 +28,22 @@ class DeveloperOptions extends ConsumerWidget {
                 builder: (context) {
                   return SimpleDialog(
                     title: const Text(
-                      'Choose environment',
+                      'Choose environment override',
                       style: BtvTextStyles.title3,
                     ),
-                    children: ['dev', 'staging', 'prod']
+                    children: [EnvironmentOverride.none, EnvironmentOverride.dev, EnvironmentOverride.sta, EnvironmentOverride.prod]
                         .map((env) => SimpleDialogOption(
                               onPressed: () async {
                                 var prefs = await SharedPreferences.getInstance();
                                 await prefs.setString(PrefKeys.envOverride, env);
                                 Restart.restartApp();
                               },
-                              child: Text(env),
+                              child: currentEnvOverride != env
+                                  ? Text(env)
+                                  : Text(
+                                      env,
+                                      style: BtvTextStyles.body1.copyWith(fontWeight: FontWeight.bold),
+                                    ),
                             ))
                         .toList(),
                   );
