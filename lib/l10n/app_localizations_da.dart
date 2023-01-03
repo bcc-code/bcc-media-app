@@ -38,16 +38,16 @@ class SDa extends S {
   String get liveTab => 'Live';
 
   @override
-  String get logOutButton => 'Log out';
+  String get logOutButton => 'Log ud';
 
   @override
-  String get profileTab => 'Profile';
+  String get profileTab => 'Profil';
 
   @override
   String get faq => 'Frequently asked questions';
 
   @override
-  String get bccMediaCenter => 'BCC Media is a media foundation in the BCC federation that produces and distributes content with positive and Christian values.';
+  String get bccMediaCenter => 'BCC Media er en mediefond i BCC-forbundet, der producerer og distribuerer indhold med positive og kristne værdier.';
 
   @override
   String get signInButton => 'Sign in';
@@ -62,13 +62,13 @@ class SDa extends S {
   String get loggedOutMessage => 'You have been logged out. Please log in again.';
 
   @override
-  String get mostWatched => 'Most watched';
+  String get mostWatched => 'Mest sete';
 
   @override
-  String get mostRecent => 'Most recent';
+  String get mostRecent => 'Seneste';
 
   @override
-  String get latelyPublished => 'Lately published';
+  String get latelyPublished => 'Sidst publiceret';
 
   @override
   String get anErrorOccurred => 'An error occurred';
@@ -448,4 +448,68 @@ class SDa extends S {
 
   @override
   String get exploreContent => 'Explore content';
+
+  @override
+  String get taskCompleted => 'task completed';
+
+  @override
+  String get tasksCompleted => 'tasks completed';
+
+  @override
+  String get studyCompleteTaskDescription => 'Complete tasks and discover related resources';
+
+  @override
+  String get discoverMore => 'Discover more';
+
+  @override
+  String get studyDiscoverMoreDescription => 'Find more inspiration and insight from related resources';
+
+  @override
+  String get watchAgain => 'Watch again';
+
+  @override
+  String get continueToTaskIn => 'Continue to task in';
+
+  @override
+  String get continueToTasksIn => 'Continue to tasks in';
+
+  @override
+  String get studyLessonCompleted => 'lesson completed';
+
+  @override
+  String get studyLessonsCompleted => 'lessons completed';
+
+  @override
+  String get continueStudy => 'Continue study';
+
+  @override
+  String get startStudy => 'Start study';
+
+  @override
+  String get achievementFirstDescription => 'Great job on completing the video and earning your first progress achievement.';
+
+  @override
+  String achievementStudyTopic(String name) {
+    return 'Great job on completing the study topic $name';
+  }
+
+  @override
+  String videoCount(int count) {
+    return '$count videos';
+  }
+
+  @override
+  String taskCount(int count) {
+    return '$count tasks';
+  }
+
+  @override
+  String posterCount(int count) {
+    return '$count posters';
+  }
+
+  @override
+  String resourceCount(int count) {
+    return '$count resources';
+  }
 }

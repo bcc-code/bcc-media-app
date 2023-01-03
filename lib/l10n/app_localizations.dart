@@ -201,7 +201,7 @@ abstract class S {
   /// **'Profile'**
   String get profileTab;
 
-  /// Title of the FAQ page.
+  /// Long title of the FAQ page.
   ///
   /// In en, this message translates to:
   /// **'Frequently asked questions'**
@@ -489,7 +489,7 @@ abstract class S {
   /// **'See more'**
   String get seeMore;
 
-  /// Button on explore page to navigete to audience page
+  /// Button to see all of some collection.
   ///
   /// In en, this message translates to:
   /// **'See all'**
@@ -992,6 +992,114 @@ abstract class S {
   /// In en, this message translates to:
   /// **'Explore content'**
   String get exploreContent;
+
+  /// SINGULAR. Note the lowercase T, because its inserted after a count: '0/1 task completed'.
+  ///
+  /// In en, this message translates to:
+  /// **'task completed'**
+  String get taskCompleted;
+
+  /// PLURAL. Note the lowercase T, because its inserted after the count: '2/5 tasks completed'.
+  ///
+  /// In en, this message translates to:
+  /// **'tasks completed'**
+  String get tasksCompleted;
+
+  /// Description to open the study tasks for this episode. Currently shows below '0/1 tasks completed'.
+  ///
+  /// In en, this message translates to:
+  /// **'Complete tasks and discover related resources'**
+  String get studyCompleteTaskDescription;
+
+  /// Generic button text.
+  ///
+  /// In en, this message translates to:
+  /// **'Discover more'**
+  String get discoverMore;
+
+  /// Description to open the related resources for this episode.
+  ///
+  /// In en, this message translates to:
+  /// **'Find more inspiration and insight from related resources'**
+  String get studyDiscoverMoreDescription;
+
+  /// Short button text to watch the video again.
+  ///
+  /// In en, this message translates to:
+  /// **'Watch again'**
+  String get watchAgain;
+
+  /// SINGULAR. Button with text 'Continue to task in X'. Can click it to open tasks immediately, otherwise X will count down (10, 9, 8...) and automatically redirect you to the tasks.
+  ///
+  /// In en, this message translates to:
+  /// **'Continue to task in'**
+  String get continueToTaskIn;
+
+  /// PLURAL. Button with text 'Continue to tasks in X'. Can click it to open tasks immediately, otherwise X will count down (10, 9, 8...) and automatically redirect you to the tasks.
+  ///
+  /// In en, this message translates to:
+  /// **'Continue to tasks in'**
+  String get continueToTasksIn;
+
+  /// SINGULAR. Note the lowercase L, because prepended with a number: '1 lesson completed'.
+  ///
+  /// In en, this message translates to:
+  /// **'lesson completed'**
+  String get studyLessonCompleted;
+
+  /// PLURAL. Note the lowercase L, because prepended with a number: '20 lessons completed'.
+  ///
+  /// In en, this message translates to:
+  /// **'lessons completed'**
+  String get studyLessonsCompleted;
+
+  /// Button.
+  ///
+  /// In en, this message translates to:
+  /// **'Continue study'**
+  String get continueStudy;
+
+  /// Button.
+  ///
+  /// In en, this message translates to:
+  /// **'Start study'**
+  String get startStudy;
+
+  /// Description displayed in a popup when earning the first achievement badge.
+  ///
+  /// In en, this message translates to:
+  /// **'Great job on completing the video and earning your first progress achievement.'**
+  String get achievementFirstDescription;
+
+  /// REMEMBER: Include, but do not translate variables like {name} here. Description displayed in a popup when done with a study topic.
+  ///
+  /// In en, this message translates to:
+  /// **'Great job on completing the study topic {name}'**
+  String achievementStudyTopic(String name);
+
+  /// REMEMBER: Include, but do not translate variables like {count} here. Keep it very short. Generic, number of videos. Currently used for study topic overviews.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} videos'**
+  String videoCount(int count);
+
+  /// REMEMBER: Include, but do not translate variables like {count} here. Keep it very short. Generic, number of tasks. Currently used for study topic overviews.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} tasks'**
+  String taskCount(int count);
+
+  /// REMEMBER: Include, but do not translate variables like {count} here. Keep it very short. Generic, number of posters. Currently used for study topic overviews.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} posters'**
+  String posterCount(int count);
+
+  /// REMEMBER: Include, but do not translate variables like {count} here. Keep it very short. Generic, number of resources. Currently used for study topic overviews.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} resources'**
+  String resourceCount(int count);
 }
 
 class _SDelegate extends LocalizationsDelegate<S> {

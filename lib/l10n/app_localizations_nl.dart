@@ -448,4 +448,68 @@ class SNl extends S {
 
   @override
   String get exploreContent => 'Inhoud verkennen';
+
+  @override
+  String get taskCompleted => 'task completed';
+
+  @override
+  String get tasksCompleted => 'tasks completed';
+
+  @override
+  String get studyCompleteTaskDescription => 'Complete tasks and discover related resources';
+
+  @override
+  String get discoverMore => 'Discover more';
+
+  @override
+  String get studyDiscoverMoreDescription => 'Find more inspiration and insight from related resources';
+
+  @override
+  String get watchAgain => 'Nogmaals kijken';
+
+  @override
+  String get continueToTaskIn => 'Continue to task in';
+
+  @override
+  String get continueToTasksIn => 'Continue to tasks in';
+
+  @override
+  String get studyLessonCompleted => 'lesson completed';
+
+  @override
+  String get studyLessonsCompleted => 'lessons completed';
+
+  @override
+  String get continueStudy => 'Continue study';
+
+  @override
+  String get startStudy => 'Start study';
+
+  @override
+  String get achievementFirstDescription => 'Great job on completing the video and earning your first progress achievement.';
+
+  @override
+  String achievementStudyTopic(String name) {
+    return 'Great job on completing the study topic $name';
+  }
+
+  @override
+  String videoCount(int count) {
+    return '$count videos';
+  }
+
+  @override
+  String taskCount(int count) {
+    return '$count tasks';
+  }
+
+  @override
+  String posterCount(int count) {
+    return '$count posters';
+  }
+
+  @override
+  String resourceCount(int count) {
+    return '$count resources';
+  }
 }
