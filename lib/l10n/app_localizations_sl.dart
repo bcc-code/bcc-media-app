@@ -47,7 +47,7 @@ class SSl extends S {
   String get faq => 'Pogosta vprašanja';
 
   @override
-  String get bccMediaCenter => 'BCC Media is a media foundation in the BCC federation that produces and distributes content with positive and Christian values.';
+  String get bccMediaCenter => 'BCC Media je medijska fundacija v BCC zvezi, ki proizvaja in širi vsebino s pozitivnimi in krščanskimi vrednotami.';
 
   @override
   String get signInButton => 'Vpis';
@@ -217,7 +217,7 @@ class SSl extends S {
   String get high => 'Visoka';
 
   @override
-  String get emptySearch => 'Iščete lahko po vsej vsebini od BCC Media. Serije, filmi in deli.';
+  String get emptySearch => 'Iščeš lahko po vsej vsebini od BCC Media. Serije, filmi in deli.';
 
   @override
   String get back => 'Nazaj';

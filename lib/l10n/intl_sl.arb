@@ -55,7 +55,7 @@
   "@faq": {
     "description": "Title of the FAQ page."
   },
-  "bccMediaCenter": "BCC Media is a media foundation in the BCC federation that produces and distributes content with positive and Christian values.",
+  "bccMediaCenter": "BCC Media je medijska fundacija v BCC zvezi, ki proizvaja in širi vsebino s pozitivnimi in krščanskimi vrednotami.",
   "@bccMediaCenter": {
     "description": "Disclaimer on login page"
   },
@@ -284,7 +284,7 @@
   "@high": {
     "description": "High quality video option"
   },
-  "emptySearch": "Iščete lahko po vsej vsebini od BCC Media. Serije, filmi in deli.",
+  "emptySearch": "Iščeš lahko po vsej vsebini od BCC Media. Serije, filmi in deli.",
   "@emptySearch": {
     "description": "Message on search page when there is no search results."
   },
