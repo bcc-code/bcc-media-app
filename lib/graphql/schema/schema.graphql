@@ -102,6 +102,13 @@ type QueryRoot{
     minScore: Int
   ): SearchResult!
 
+  pendingAchievements: [Achievement!]!
+
+  achievement(id: ID!): Achievement!
+
+  achievementGroup(id: ID!): AchievementGroup!
+  achievementGroups(first: Int, offset: Int): AchievementGroupPagination!
+
   studyTopic(id: ID!): StudyTopic!
   studyLesson(id: ID!): Lesson!
 
@@ -133,4 +140,6 @@ type MutationRoot {
 
   sendEpisodeFeedback(episodeId: ID!, message: String, rating: Int): ID!
   updateEpisodeFeedback(id: ID!, message: String, rating: Int): ID!
+
+  confirmAchievement(id: ID!): Boolean!
 }

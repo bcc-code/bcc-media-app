@@ -18,6 +18,7 @@ import 'package:brunstadtv_app/screens/search/search.dart';
 import 'package:brunstadtv_app/screens/study.dart';
 
 import '../helpers/custom_transitions.dart';
+import '../screens/achievements.dart';
 import '../screens/episode.dart';
 import '../screens/page.dart';
 import 'special_routes_guard.dart';
@@ -146,11 +147,18 @@ const _specialRoutes = AutoRoute(
     CustomRoute(page: AutoLoginScreeen, path: 'auto-login'),
     CustomRoute<void>(
         page: StudyScreen,
-        path: 'study',
+        path: 'study-lesson',
         durationInMilliseconds: 400,
         reverseDurationInMilliseconds: 600,
         transitionsBuilder: CustomTransitionsBuilders.slideUp,
-        meta: {RouteMetaConstants.analyticsName: 'study'}),
+        meta: {RouteMetaConstants.analyticsName: 'study-lesson'}),
+    CustomRoute<void>(
+        page: AchievementsScreen,
+        path: '/achievements',
+        durationInMilliseconds: 400,
+        reverseDurationInMilliseconds: 600,
+        transitionsBuilder: CustomTransitionsBuilders.slideUp,
+        meta: {RouteMetaConstants.analyticsName: 'achievements'}),
     CustomRoute<void>(
       page: TabsRootScreen,
       path: '/',

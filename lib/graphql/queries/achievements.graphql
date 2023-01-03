@@ -1,0 +1,26 @@
+query getAchievementGroups {
+  achievementGroups {
+    items {
+      title
+      achievements {
+        items {
+          title
+          image
+          achieved
+        }
+      }
+    }
+  }
+}
+
+query getPendingAchievements {
+  pendingAchievements {
+    id
+    title
+    image
+  }
+}
+
+mutation confirmAchievement($id: ID!) {
+  confirmAchievement(id: $id)
+}

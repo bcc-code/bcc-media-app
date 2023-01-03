@@ -254,6 +254,8 @@ const possibleTypesMap = {
     'SectionPagination',
     'LinkPagination',
     'SectionItemPagination',
+    'AchievementPagination',
+    'AchievementGroupPagination',
   },
   'EpisodeContextUnion': {
     'Season',
