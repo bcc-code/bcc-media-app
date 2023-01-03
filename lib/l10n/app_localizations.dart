@@ -501,12 +501,6 @@ abstract class S {
   /// **'Series'**
   String get series;
 
-  /// Message displayed over overlay when livestream is under maintenance.
-  ///
-  /// In en, this message translates to:
-  /// **'We\'re sorry, livestream is currently under maintenance. Please try again later.'**
-  String get livestreamMaintenance;
-
   /// Title of the home page
   ///
   /// In en, this message translates to:
@@ -633,12 +627,6 @@ abstract class S {
   /// **'Do you want to upload this file?'**
   String get uploadFileMessage;
 
-  /// Info on live stream page
-  ///
-  /// In en, this message translates to:
-  /// **'You are watching with {numPeople} others'**
-  String watchingWith(int numPeople);
-
   /// Message during file upload
   ///
   /// In en, this message translates to:
@@ -651,71 +639,11 @@ abstract class S {
   /// **'Upload failed'**
   String get uploadFail;
 
-  /// Button to post written testimony
-  ///
-  /// In en, this message translates to:
-  /// **'Post'**
-  String get post;
-
-  /// Info about limit of characters in written testimony
+  /// Info about limit of characters in a text field
   ///
   /// In en, this message translates to:
   /// **'{charsLeft} of {charsTotal} characters left'**
   String charactersLimit(int charsLeft, int charsTotal);
-
-  /// Info in upload success page
-  ///
-  /// In en, this message translates to:
-  /// **'Your post has been sent in.'**
-  String get uploadingPostSuccess;
-
-  /// Record testimony guideline page info
-  ///
-  /// In en, this message translates to:
-  /// **'Record your video with your phone.'**
-  String get testimonyInfo;
-
-  /// Title on recording tip page page
-  ///
-  /// In en, this message translates to:
-  /// **'Your video'**
-  String get yourVideo;
-
-  /// Button to record testimony
-  ///
-  /// In en, this message translates to:
-  /// **'Record'**
-  String get record;
-
-  /// Record testimony guideline page tip list title
-  ///
-  /// In en, this message translates to:
-  /// **'A few tips to get a good recording'**
-  String get recordingTips;
-
-  /// Record testimony guideline page tip list item
-  ///
-  /// In en, this message translates to:
-  /// **'Find a quiet place to record.'**
-  String get recordingTipA;
-
-  /// Record testimony guideline page tip list item
-  ///
-  /// In en, this message translates to:
-  /// **'Make sure that your face is evenly lit.'**
-  String get recordingTipB;
-
-  /// Record testimony guideline page tip list item
-  ///
-  /// In en, this message translates to:
-  /// **'Think about what you want to say before you start recording.'**
-  String get recordingTipC;
-
-  /// Record testimony guideline page tip list item
-  ///
-  /// In en, this message translates to:
-  /// **'Turn your phone in landscape mode.'**
-  String get recordingTipD;
 
   /// Title in upload success page
   ///
@@ -729,95 +657,23 @@ abstract class S {
   /// **'Thank you for your contribution!'**
   String get thankYouForContribution;
 
-  /// Info in upload success page
-  ///
-  /// In en, this message translates to:
-  /// **'Your video has been sent in.'**
-  String get uploadingVideoSuccess;
-
   /// NEXT program in check in section
   ///
   /// In en, this message translates to:
   /// **'Next'**
   String get next;
 
-  /// Message in alert dialog informing about missing permission
-  ///
-  /// In en, this message translates to:
-  /// **'You have to grant camera permission in settings to record video.'**
-  String get recordVideoCameraPermissionAlert;
-
-  /// Message in alert dialog informing about missing permission
-  ///
-  /// In en, this message translates to:
-  /// **'You have to grant photo album permission in settings to record video.'**
-  String get recordVideoPhotosPermissionAlert;
-
-  /// Message in alert dialog informing about missing permission
-  ///
-  /// In en, this message translates to:
-  /// **'You have to grant storage permission in settings to record video.'**
-  String get recordVideoStoragePermissionAlert;
-
-  /// Message in alert dialog informing about missing permission
-  ///
-  /// In en, this message translates to:
-  /// **'You have to grant microphone permission in settings to record video.'**
-  String get recordVideoMicrophonePermissionAlert;
-
-  /// Message in alert dialog informing about missing permission
-  ///
-  /// In en, this message translates to:
-  /// **'You have to grant storage permission in settings to take photo.'**
-  String get takePhotoStoragePermissionAlert;
-
-  /// Message in alert dialog informing about missing permission
-  ///
-  /// In en, this message translates to:
-  /// **'You have to grant camera permission in settings to take photo.'**
-  String get takePhotoCameraPermissionAlert;
-
-  /// Message in alert dialog informing about missing permission
-  ///
-  /// In en, this message translates to:
-  /// **'You have to grant storage permission in settings to pick photos.'**
-  String get pickPhotoStoragePermissionAlert;
-
-  /// Title of an alert dialog informing about missing permission
-  ///
-  /// In en, this message translates to:
-  /// **'Permissions needed'**
-  String get permissionsAlertTitle;
-
-  /// Button text on interactive live avatar section
+  /// Button text
   ///
   /// In en, this message translates to:
   /// **'Add'**
   String get add;
 
-  /// Button text on interactive live avatar section
+  /// Button text
   ///
   /// In en, this message translates to:
   /// **'Change'**
   String get change;
-
-  /// Title in alert dialog when recording fails
-  ///
-  /// In en, this message translates to:
-  /// **'Couldn\'t record the video'**
-  String get recordingFailedTitle;
-
-  /// Message in alert dialog when recording fails
-  ///
-  /// In en, this message translates to:
-  /// **'Something went wrong while trying to record the video.'**
-  String get recordingFailedMessage;
-
-  /// The little title in poll
-  ///
-  /// In en, this message translates to:
-  /// **'Poll'**
-  String get pollSubtitle;
 
   /// New post text field placeholder
   ///
@@ -831,29 +687,11 @@ abstract class S {
   /// **'Feed'**
   String get feed;
 
-  /// Feed page description
-  ///
-  /// In en, this message translates to:
-  /// **'Contribute in the activity feed by sending in a message, testimony or picture from where you are.'**
-  String get atmosphereFeedDescription;
-
   /// Feed information item title
   ///
   /// In en, this message translates to:
   /// **'Information'**
   String get information;
-
-  /// Alert displayed when phone can't take photo or pick photo from storage.
-  ///
-  /// In en, this message translates to:
-  /// **'Taking and picking photo are not supported on your device.'**
-  String get photoNotSupported;
-
-  /// Message displayed when user's answer hasn't' been sent'.
-  ///
-  /// In en, this message translates to:
-  /// **'Sorry! We were unable to send the answer. Please, try again.'**
-  String get answerFailed;
 
   /// Title of the question page
   ///
@@ -861,23 +699,11 @@ abstract class S {
   /// **'Question'**
   String get question;
 
-  /// Notification channel name in Android settings
-  ///
-  /// In en, this message translates to:
-  /// **'Player'**
-  String get notificationChannelPlayerName;
-
   /// Tv guide now playing label
   ///
   /// In en, this message translates to:
   /// **'Now'**
   String get now;
-
-  /// Button to start text testimony and title on create post page
-  ///
-  /// In en, this message translates to:
-  /// **'Create post'**
-  String get createPost;
 
   /// Placeholder text in text field on contact support page
   ///
@@ -933,25 +759,7 @@ abstract class S {
   /// **'Today'**
   String get today;
 
-  /// Text displayed on the button, when there are no new posts in the feed.
-  ///
-  /// In en, this message translates to:
-  /// **'No new posts'**
-  String get noNewPosts;
-
-  /// Text displayed on the button, when there are number of new posts in the feed.
-  ///
-  /// In en, this message translates to:
-  /// **'{postCount} new posts!'**
-  String newPostsMultiple(int postCount);
-
-  /// Text displayed on the button, when there is one new post in the feed.
-  ///
-  /// In en, this message translates to:
-  /// **'{postCount} new post!'**
-  String newPostsSingle(int postCount);
-
-  /// Info that episode is no longer available.
+  /// Label that something is no longer available.
   ///
   /// In en, this message translates to:
   /// **'Expired'**
@@ -963,65 +771,17 @@ abstract class S {
   /// **'Available {date}'**
   String availableFrom(String date);
 
-  /// Text on running competition page.
-  ///
-  /// In en, this message translates to:
-  /// **'How far did you go?'**
-  String get howFar;
-
-  /// Submit button on running competition page.
+  /// Submit button.
   ///
   /// In en, this message translates to:
   /// **'Submit'**
   String get submit;
 
-  /// Text on running competition page.
+  /// Positive message that may be used e.g. after completing some action.
   ///
   /// In en, this message translates to:
   /// **'Well done!'**
   String get wellDone;
-
-  /// Text on running competition page.
-  ///
-  /// In en, this message translates to:
-  /// **'Well done! You have registered a total distance of {distanceInKM} km'**
-  String wellDoneDistance(int distanceInKM);
-
-  /// Text on running competition page.
-  ///
-  /// In en, this message translates to:
-  /// **'Your distance has been registered. Continue below if you want to submit another distance.'**
-  String get distanceRegistered;
-
-  /// Text on running competition page.
-  ///
-  /// In en, this message translates to:
-  /// **'I went more than {distanceInKM} km'**
-  String ranMore(int distanceInKM);
-
-  /// Text on running competition page.
-  ///
-  /// In en, this message translates to:
-  /// **'More than {distanceInKM} km'**
-  String moreThan(int distanceInKM);
-
-  /// Text on running competition page.
-  ///
-  /// In en, this message translates to:
-  /// **'Amazing effort! Type the amount of kilometers you went below.'**
-  String get runningEffort;
-
-  /// Text on running competition page.
-  ///
-  /// In en, this message translates to:
-  /// **'Slide to select how far you went'**
-  String get slideSelect;
-
-  /// Text on running competition page.
-  ///
-  /// In en, this message translates to:
-  /// **'Submit another distance'**
-  String get submitAnotherDistance;
 
   /// Button on profile page to edit profile picture.
   ///
@@ -1035,119 +795,23 @@ abstract class S {
   /// **'Profile picture'**
   String get profilePicture;
 
-  /// Text on feed page when feed is empty.
-  ///
-  /// In en, this message translates to:
-  /// **'Be the first to post a picture or message'**
-  String get firstPostTitle;
-
   /// TV guide footer info text.
   ///
   /// In en, this message translates to:
   /// **'Tv guide timetable is in your local time: {timeZone}'**
   String timezoneInformation(String timeZone);
 
-  /// Title on ask question page
-  ///
-  /// In en, this message translates to:
-  /// **'Your question'**
-  String get yourQuestion;
-
-  /// Info in upload question success page
-  ///
-  /// In en, this message translates to:
-  /// **'Please note that not all submitted questions are answered in the broadcast.'**
-  String get uploadingInquirySuccess;
-
-  /// Ask question text field placeholder
-  ///
-  /// In en, this message translates to:
-  /// **'Ask a question'**
-  String get askQuestion;
-
-  /// Disclaimer on ask question page
-  ///
-  /// In en, this message translates to:
-  /// **'By submitting a question you accept that it can be used for broadcast purposes.'**
-  String get submitQuestionInfo;
-
-  /// Information about ongoing posting process
-  ///
-  /// In en, this message translates to:
-  /// **'Posting'**
-  String get posting;
-
-  /// Disclaimer on text testimony page
-  ///
-  /// In en, this message translates to:
-  /// **'By submitting a post or photo you accept that it can be used for broadcast purposes. '**
-  String get submitPostInfo;
-
-  /// Image crop page title
-  ///
-  /// In en, this message translates to:
-  /// **'Crop image'**
-  String get cropImage;
-
-  /// Image crop mode
-  ///
-  /// In en, this message translates to:
-  /// **'Square'**
-  String get square;
-
-  /// Image crop mode
-  ///
-  /// In en, this message translates to:
-  /// **'Landscape'**
-  String get landscape;
-
-  /// Desciption of the poll type. States that user can change the answer only once.
-  ///
-  /// In en, this message translates to:
-  /// **'You may select your answer only once.'**
-  String get pollSingleChoice;
-
-  /// Desciption of the poll type. States that user can change the answer multiple times.
-  ///
-  /// In en, this message translates to:
-  /// **'You may change your answer multiple times.'**
-  String get pollMultipleChoice;
-
-  /// Message displayed when poll has been closed by administrator.
-  ///
-  /// In en, this message translates to:
-  /// **'The poll section has ended. Thank you for your responses.'**
-  String get pollEnded;
-
-  /// Message displayed when browser couldn't be opened on user's device.
-  ///
-  /// In en, this message translates to:
-  /// **'Please install web browser to be able to open this URL.'**
-  String get browserInstall;
-
-  /// Option name to share video.
+  /// Generic.
   ///
   /// In en, this message translates to:
   /// **'Share'**
   String get share;
 
-  /// Call to action button on featured carousel.
+  /// Generic, short. Used in buttons, badges, etc to indicate that an item is playing on the livestream now.
   ///
   /// In en, this message translates to:
   /// **'Live now'**
   String get liveNow;
-
-  /// Title of the program tab on live page.
-  ///
-  /// In en, this message translates to:
-  /// **'Program'**
-  String get program;
-
-  /// Title of the participate tab on live page.
-  ///
-  /// In en, this message translates to:
-  /// **'Participate'**
-  String get participateTab;
 
   /// Day of transmission in tv guide.
   ///
@@ -1161,29 +825,11 @@ abstract class S {
   /// **'Read by'**
   String get readBy;
 
-  /// Snackbar label after user has chosen poll answer
-  ///
-  /// In en, this message translates to:
-  /// **'You\'ve answered: {answer}'**
-  String pollAnswer(String answer);
-
-  /// Title for tv guide collection on event page.
+  /// Title for live broadcasts.
   ///
   /// In en, this message translates to:
   /// **'Broadcasts'**
   String get broadcasts;
-
-  /// Text displayed on a button when all answers in quiz have been submitted.
-  ///
-  /// In en, this message translates to:
-  /// **'Answers submitted'**
-  String get quizAnswered;
-
-  /// Message on alert that appears when participate item is visible, but quiz is not enabled.
-  ///
-  /// In en, this message translates to:
-  /// **'Quiz is not available at the moment. Please try again later.'**
-  String get quizNotEnabled;
 
   /// Title of calendar page.
   ///
@@ -1215,19 +861,7 @@ abstract class S {
   /// **'Update'**
   String get appUpdateAccepted;
 
-  /// Message displayed when donation flow failed.
-  ///
-  /// In en, this message translates to:
-  /// **'Donation is not available at the moment. Please try again later.'**
-  String get donationNotAvailable;
-
-  /// Contributions to feed made by the users. Plural of post.
-  ///
-  /// In en, this message translates to:
-  /// **'{postsCount} Posts'**
-  String posts(int postsCount);
-
-  /// Copy option for quotes, verses.
+  /// Small 'copy' button to copy to clipboard for quotes, verses, and similar.
   ///
   /// In en, this message translates to:
   /// **'Copy'**
@@ -1238,30 +872,6 @@ abstract class S {
   /// In en, this message translates to:
   /// **'Reload'**
   String get reload;
-
-  /// No description provided for @participantsTitle.
-  ///
-  /// In en, this message translates to:
-  /// **'Who is answering?'**
-  String get participantsTitle;
-
-  /// Subtitle label on the participants list before quiz.
-  ///
-  /// In en, this message translates to:
-  /// **'Select one or more participants.'**
-  String get participantsSubtitle;
-
-  /// Title on page when user selects family members that take part in the quiz.
-  ///
-  /// In en, this message translates to:
-  /// **'Your family'**
-  String get yourFamily;
-
-  /// Title on page informing user that other user will answer question in the next step.
-  ///
-  /// In en, this message translates to:
-  /// **'Your turn'**
-  String get yourTurn;
 
   /// Title on FAQ page and item in profile page settings.
   ///
@@ -1287,59 +897,17 @@ abstract class S {
   /// **'Couldn\'t load content'**
   String get loadContentError;
 
-  /// Error message when audio only fails to play
-  ///
-  /// In en, this message translates to:
-  /// **'Check internet connection and try again'**
-  String get audioOnlyErrorDescription;
-
   /// Title on Privacy Policy page and item in profile page settings.
   ///
   /// In en, this message translates to:
   /// **'Privacy Policy'**
   String get privacyPolicy;
 
-  /// Message indicating that there is a problem with user's token, and some features may be broken because of this.
-  ///
-  /// In en, this message translates to:
-  /// **'We couldn\'t confirm your identity, most likely due to a network problem. Some features of the app may not work correctly.'**
-  String get tokenError;
-
   /// Title of the Categories Tab
   ///
   /// In en, this message translates to:
   /// **'Categories'**
   String get categoriesTab;
-
-  /// Title of the Settings Tab
-  ///
-  /// In en, this message translates to:
-  /// **'Settings'**
-  String get settingsTab;
-
-  /// Prompt that asks the user to confirm his log-in
-  ///
-  /// In en, this message translates to:
-  /// **'Confirm login'**
-  String get confirmLogin;
-
-  /// Text that informs the user that the QR code can be scanned to enter the login page. Used on AppleTV.
-  ///
-  /// In en, this message translates to:
-  /// **'Scan code with your phone to enter login page.'**
-  String get scanInfo;
-
-  /// Message that informs the user for how long the QR Code will be valid.
-  ///
-  /// In en, this message translates to:
-  /// **'QR Code is valid for 15 minutes.'**
-  String get validInfo;
-
-  /// Message that asks the user to click the button in order to proceed after successful login.
-  ///
-  /// In en, this message translates to:
-  /// **'After successful login on your device click button below to confirm your login.'**
-  String get confirmInfo;
 
   /// Series Tab title
   ///
@@ -1383,24 +951,6 @@ abstract class S {
   /// **'No scheduled transmission for today'**
   String get noTransmissionToday;
 
-  /// Message that informs the user, that the livestream is unavailable.
-  ///
-  /// In en, this message translates to:
-  /// **'Live stream is not available'**
-  String get livestreamMaintenanceTitle;
-
-  /// Word used while displaying information about the beggining of a video or an event in tv guide.
-  ///
-  /// In en, this message translates to:
-  /// **'Start'**
-  String get start;
-
-  /// Label that indicates the user is looking at Transmission schedule
-  ///
-  /// In en, this message translates to:
-  /// **'Transmission schedule'**
-  String get transmissionSchedule;
-
   /// Featured videos collection header
   ///
   /// In en, this message translates to:
@@ -1413,113 +963,17 @@ abstract class S {
   /// **'Something went wrong, please try again later.'**
   String get errorTryAgain;
 
-  /// Message indicating that whenever the user wants to report a problem, they can scan the QR code to send an email to support.
-  ///
-  /// In en, this message translates to:
-  /// **'In case of any problems use QR code below to send us an email.'**
-  String get reportProblem;
-
-  /// Message explaining that if the user's phone can't scan the QR code, they can send the support e-mail with information listed after this message.
-  ///
-  /// In en, this message translates to:
-  /// **'If your phone can\'t read QR code send us an email with following info to'**
-  String get phoneReadingProblem;
-
-  /// Message used to point the user to the shortened URL in case they can't use the QR code to log-in. This is used on AppleTV.
-  ///
-  /// In en, this message translates to:
-  /// **'or go to'**
-  String get goTo;
-
-  /// Text that entices the user to watch the livestream.
-  ///
-  /// In en, this message translates to:
-  /// **'Watch BrunstadTV live'**
-  String get watchBrunstad;
-
-  /// Text that informs the user, that they are not logged in.
-  ///
-  /// In en, this message translates to:
-  /// **'Not logged in'**
-  String get notLogged;
-
-  /// Authentication response displayed to the user when an old QR code was used. Asking them to use a new one if they want to log in.
-  ///
-  /// In en, this message translates to:
-  /// **'Please use new QR code to log in.'**
-  String get authResponse0;
-
-  /// Message displayed to the user when they tried to proceed with the log-in on AppleTv without first logging through their mobile device.
-  ///
-  /// In en, this message translates to:
-  /// **'Please log in on your mobile using QR code.'**
-  String get authResponse1;
-
-  /// Message that indicates there was an error during Authentication process. Asking the user to check their network connection and try again.
-  ///
-  /// In en, this message translates to:
-  /// **'Check your network connection and please try again later.'**
-  String get authResponse3;
-
   /// Header of the Live Tab — the tab that contains the livestream player on AppleTV.
   ///
   /// In en, this message translates to:
   /// **'Live'**
   String get liveHeader;
 
-  /// Section in explore.
-  ///
-  /// In en, this message translates to:
-  /// **'Recently published'**
-  String get recentlyPublishedSection;
-
-  /// Section in explore.
-  ///
-  /// In en, this message translates to:
-  /// **'Explore categories'**
-  String get exploreCategoriesSection;
-
-  /// Section in explore.
+  /// Section in search.
   ///
   /// In en, this message translates to:
   /// **'Programs'**
   String get programsSection;
-
-  /// Section in explore.
-  ///
-  /// In en, this message translates to:
-  /// **'Episodes'**
-  String get episodesSection;
-
-  /// Category name
-  ///
-  /// In en, this message translates to:
-  /// **'Series'**
-  String get categorySeries;
-
-  /// Category name
-  ///
-  /// In en, this message translates to:
-  /// **'Kids'**
-  String get categoryKids;
-
-  /// Category name
-  ///
-  /// In en, this message translates to:
-  /// **'Films'**
-  String get categoryFilms;
-
-  /// Category name
-  ///
-  /// In en, this message translates to:
-  /// **'Events'**
-  String get categoryEvents;
-
-  /// Category name
-  ///
-  /// In en, this message translates to:
-  /// **'Music'**
-  String get categoryMusic;
 
   /// Information in tvguide
   ///

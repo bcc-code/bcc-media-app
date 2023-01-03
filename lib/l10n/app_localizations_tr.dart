@@ -196,9 +196,6 @@ class STr extends S {
   String get series => 'Diziler';
 
   @override
-  String get livestreamMaintenance => 'Üzgünüz, canlı yayın şu anda bakımda. Lütfen daha sonra tekrar deneyiniz.';
-
-  @override
   String get homeTab => 'Başlangıç';
 
   @override
@@ -262,50 +259,15 @@ class STr extends S {
   String get uploadFileMessage => 'Bu dosyayı yüklemek istiyor musunuz?';
 
   @override
-  String watchingWith(int numPeople) {
-    return 'Diğer $numPeople kişiyle birlikte izliyorsunuz';
-  }
-
-  @override
   String get uploading => 'Yükleniyor';
 
   @override
   String get uploadFail => 'Yükleme başarısız';
 
   @override
-  String get post => 'Gönderi';
-
-  @override
   String charactersLimit(int charsLeft, int charsTotal) {
     return '$charsLeft / $charsTotal karakter kaldı';
   }
-
-  @override
-  String get uploadingPostSuccess => 'Yayınınız gönderildi.';
-
-  @override
-  String get testimonyInfo => 'Videonuzu telefonunuzla kaydedin.';
-
-  @override
-  String get yourVideo => 'Video kaydın';
-
-  @override
-  String get record => 'Kaydet';
-
-  @override
-  String get recordingTips => 'İyi bir kayıt için birkaç ipucu';
-
-  @override
-  String get recordingTipA => 'Kaydetmek için sessiz bir yer bulun.';
-
-  @override
-  String get recordingTipB => 'Yüzünüzün eşit şekilde yandığından emin olun.';
-
-  @override
-  String get recordingTipC => 'Kayda başlamadan önce ne söylemek istediğinizi düşünün.';
-
-  @override
-  String get recordingTipD => 'Telefonunuzu yatay moda çevirin.';
 
   @override
   String get thankYou => 'Teşekkür ederim!';
@@ -314,34 +276,7 @@ class STr extends S {
   String get thankYouForContribution => 'Katkın için teşekkürler!';
 
   @override
-  String get uploadingVideoSuccess => 'Video kaydın gönderildi.';
-
-  @override
   String get next => 'Sonraki';
-
-  @override
-  String get recordVideoCameraPermissionAlert => 'Video kaydetmek için ayarlarda kamera izni vermelisiniz.';
-
-  @override
-  String get recordVideoPhotosPermissionAlert => 'Video kaydetmek için ayarlarda kamera izni vermelisiniz.';
-
-  @override
-  String get recordVideoStoragePermissionAlert => 'Video kaydetmek için ayarlarda depolama izni vermelisiniz.';
-
-  @override
-  String get recordVideoMicrophonePermissionAlert => 'Video kaydetmek için ayarlarda mikrofon izni vermelisiniz.';
-
-  @override
-  String get takePhotoStoragePermissionAlert => 'Fotoğraf seçmek için ayarlarda depolama izni vermelisiniz.';
-
-  @override
-  String get takePhotoCameraPermissionAlert => 'Fotoğraf çekmek için ayarlarda kamera izni vermelisiniz.';
-
-  @override
-  String get pickPhotoStoragePermissionAlert => 'Fotoğraf seçmek için ayarlarda depolama izni vermelisiniz.';
-
-  @override
-  String get permissionsAlertTitle => 'İzinler gerekli';
 
   @override
   String get add => 'Ekle';
@@ -350,43 +285,19 @@ class STr extends S {
   String get change => 'Değiştir';
 
   @override
-  String get recordingFailedTitle => 'Video kaydedilemedi';
-
-  @override
-  String get recordingFailedMessage => 'Videoyu kaydetmeye çalışırken bir şeyler ters gitti.';
-
-  @override
-  String get pollSubtitle => 'Anket';
-
-  @override
   String get writeHere => 'Buraya yaz';
 
   @override
   String get feed => 'Besleme';
 
   @override
-  String get atmosphereFeedDescription => 'Bulunduğunuz yerden mesaj, tanıklık veya resim göndererek etkinlik akışına katkıda bulunun.';
-
-  @override
   String get information => 'Bilgi';
-
-  @override
-  String get photoNotSupported => 'Fotoğraf çekme ve çekme cihazınızda desteklenmiyor.';
-
-  @override
-  String get answerFailed => 'Üzgünüz! Cevabı gönderemedik. Lütfen tekrar deneyin.';
 
   @override
   String get question => 'Soru';
 
   @override
-  String get notificationChannelPlayerName => 'Oynatıcı';
-
-  @override
   String get now => 'Şimdi';
-
-  @override
-  String get createPost => 'Gönderi oluştur';
 
   @override
   String get concernTextPlaceholder => 'Sorunu tanımlayın';
@@ -416,19 +327,6 @@ class STr extends S {
   String get today => 'Bugün';
 
   @override
-  String get noNewPosts => 'Yeni mesaj yok';
-
-  @override
-  String newPostsMultiple(int postCount) {
-    return '$postCount yeni gönderi!';
-  }
-
-  @override
-  String newPostsSingle(int postCount) {
-    return '$postCount yeni gönderi!';
-  }
-
-  @override
   String get expired => 'Süresi doldu';
 
   @override
@@ -437,40 +335,10 @@ class STr extends S {
   }
 
   @override
-  String get howFar => 'Ne kadar ileri gittin?';
-
-  @override
   String get submit => 'Gönder';
 
   @override
   String get wellDone => 'Aferin!';
-
-  @override
-  String wellDoneDistance(int distanceInKM) {
-    return 'Aferin! Toplam $distanceInKM km mesafe kaydettiniz';
-  }
-
-  @override
-  String get distanceRegistered => 'Mesafeniz kaydedildi. Başka bir mesafe göndermek istiyorsanız aşağıya devam edin.';
-
-  @override
-  String ranMore(int distanceInKM) {
-    return '$distanceInKM km\'den fazla yol gittim';
-  }
-
-  @override
-  String moreThan(int distanceInKM) {
-    return '$distanceInKM km\'den fazla';
-  }
-
-  @override
-  String get runningEffort => 'İnanılmaz çaba! Aşağıya kat ettiğiniz kilometreyi yazın.';
-
-  @override
-  String get slideSelect => 'Ne kadar ileri gittiğinizi seçmek için kaydırın';
-
-  @override
-  String get submitAnotherDistance => 'Başka bir mesafe gönderin';
 
   @override
   String get editPicture => 'Resmi düzenle';
@@ -479,51 +347,9 @@ class STr extends S {
   String get profilePicture => 'Profil fotoğrafı';
 
   @override
-  String get firstPostTitle => 'İlk resim veya mesaj gönderen siz olun';
-
-  @override
   String timezoneInformation(String timeZone) {
     return 'Tv rehberi zaman çizelgesi yerel saatinize göredir: $timeZone';
   }
-
-  @override
-  String get yourQuestion => 'Senin sorun';
-
-  @override
-  String get uploadingInquirySuccess => 'Lütfen gönderilen tüm soruların yayında yanıtlanmadığını unutmayın.';
-
-  @override
-  String get askQuestion => 'Soru sor';
-
-  @override
-  String get submitQuestionInfo => 'Bir soru göndererek, onun yayın amaçlı kullanılabileceğini kabul etmiş olursunuz.';
-
-  @override
-  String get posting => 'Gönderi';
-
-  @override
-  String get submitPostInfo => 'Bir post ya da fotoğraf göndererek, onun yayın amaçlı kullanılabileceğini kabul etmiş olursunuz. ';
-
-  @override
-  String get cropImage => 'Görüntüyü kırp';
-
-  @override
-  String get square => 'Kare';
-
-  @override
-  String get landscape => 'Manzara';
-
-  @override
-  String get pollSingleChoice => 'Cevabınızı yalnızca bir kez seçebilirsiniz.';
-
-  @override
-  String get pollMultipleChoice => 'Cevabınızı birden çok kez değiştirebilirsiniz.';
-
-  @override
-  String get pollEnded => 'Anket bölümü sona erdi. Cevaplarınız için teşekkür ederim.';
-
-  @override
-  String get browserInstall => 'Bu URL\'yi açabilmek için lütfen web tarayıcısını kurun.';
 
   @override
   String get share => 'Paylaş';
@@ -532,30 +358,13 @@ class STr extends S {
   String get liveNow => 'Şimdi canlı';
 
   @override
-  String get program => 'Program';
-
-  @override
-  String get participateTab => 'Katıl';
-
-  @override
   String get tomorrow => 'Yarın';
 
   @override
   String get readBy => 'Okuyan';
 
   @override
-  String pollAnswer(String answer) {
-    return 'Şu yanıtı verdiniz: $answer';
-  }
-
-  @override
   String get broadcasts => 'Yayınlar';
-
-  @override
-  String get quizAnswered => 'Yanıtlar gönderildi';
-
-  @override
-  String get quizNotEnabled => 'Quiz şu anda kullanılamıyor. Lütfen daha sonra tekrar deneyiniz.';
 
   @override
   String get calendar => 'Takvim';
@@ -573,30 +382,10 @@ class STr extends S {
   String get appUpdateAccepted => 'Güncelleme';
 
   @override
-  String get donationNotAvailable => 'Şu anda bağış yapılamıyor. Lütfen daha sonra tekrar deneyiniz.';
-
-  @override
-  String posts(int postsCount) {
-    return '$postsCount Gönderi';
-  }
-
-  @override
   String get copy => 'Kopyala';
 
   @override
   String get reload => 'Yeniden yükle';
-
-  @override
-  String get participantsTitle => 'Kim cevap veriyor?';
-
-  @override
-  String get participantsSubtitle => 'Bir veya daha fazla katılımcı seçin.';
-
-  @override
-  String get yourFamily => 'Ailen';
-
-  @override
-  String get yourTurn => 'Senin sıran';
 
   @override
   String get fAQ => 'SSS';
@@ -613,31 +402,10 @@ class STr extends S {
   String get loadContentError => 'İçerik yüklenemedi';
 
   @override
-  String get audioOnlyErrorDescription => 'İnternet bağlantısını kontrol edin ve tekrar deneyin';
-
-  @override
   String get privacyPolicy => 'Gizlilik Politikası';
 
   @override
-  String get tokenError => 'Büyük olasılıkla bir ağ sorunu nedeniyle kimliğinizi doğrulayamadık. Uygulamanın bazı özellikleri düzgün çalışmayabilir.';
-
-  @override
   String get categoriesTab => 'Kategoriler';
-
-  @override
-  String get settingsTab => 'Ayarlar';
-
-  @override
-  String get confirmLogin => 'Girişi onayla';
-
-  @override
-  String get scanInfo => 'Giriş sayfasına girmek için kodu telefonunuzla tarayın.';
-
-  @override
-  String get validInfo => 'QR Kodu 15 dakika geçerlidir.';
-
-  @override
-  String get confirmInfo => 'Cihazınızda başarılı bir şekilde oturum açtıktan sonra, girişinizi onaylamak için aşağıdaki düğmeye tıklayın.';
 
   @override
   String get seriesTab => 'Diziler';
@@ -661,73 +429,16 @@ class STr extends S {
   String get noTransmissionToday => 'Bugün için planlanmış yayın yok';
 
   @override
-  String get livestreamMaintenanceTitle => 'Canlı yayın mevcut değil';
-
-  @override
-  String get start => 'Başlat';
-
-  @override
-  String get transmissionSchedule => 'Yayın programı';
-
-  @override
   String get featured => 'Öne çıkan';
 
   @override
   String get errorTryAgain => 'Bir şeyler yanlış oldu. Lütfen sonra tekrar deneyiniz.';
 
   @override
-  String get reportProblem => 'Herhangi bir sorun olması durumunda, bize bir e-posta göndermek için aşağıdaki QR kodunu kullanın.';
-
-  @override
-  String get phoneReadingProblem => 'Telefonunuz QR kodunu okuyamıyorsa, aşağıdaki bilgileri içeren bir e-posta gönderin';
-
-  @override
-  String get goTo => 'veya şuraya git';
-
-  @override
-  String get watchBrunstad => 'Brunstad TV Canlı Yayını İzle';
-
-  @override
-  String get notLogged => 'Oturum açılmadı';
-
-  @override
-  String get authResponse0 => 'Giriş için lütfen QR kodunu kullanınız.';
-
-  @override
-  String get authResponse1 => 'Mobil olarak giriş için lütfen QR kodunu kullanınız.';
-
-  @override
-  String get authResponse3 => 'Ağ bağlantınızı kontrol edip tekrar giriş yapmayı deneyin.';
-
-  @override
   String get liveHeader => 'Canlı';
 
   @override
-  String get recentlyPublishedSection => 'Son zamanlarda yayınlanmış';
-
-  @override
-  String get exploreCategoriesSection => 'Kategorileri keşfedin';
-
-  @override
   String get programsSection => 'Programlar';
-
-  @override
-  String get episodesSection => 'Bölümler';
-
-  @override
-  String get categorySeries => 'Diziler';
-
-  @override
-  String get categoryKids => 'Çocuklar';
-
-  @override
-  String get categoryFilms => 'Filimler';
-
-  @override
-  String get categoryEvents => 'Etkinlikler';
-
-  @override
-  String get categoryMusic => 'Müzik';
 
   @override
   String get noPlannedEvents => 'Bu gün planlanmış bir etkinlik yok';

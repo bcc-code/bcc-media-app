@@ -196,9 +196,6 @@ class SDe extends S {
   String get series => 'Serien';
 
   @override
-  String get livestreamMaintenance => 'Wir entschuldigen uns, aber der Livestream wird gerade gewartet. Bitte versuche es später noch einmal.';
-
-  @override
   String get homeTab => 'Home';
 
   @override
@@ -262,50 +259,15 @@ class SDe extends S {
   String get uploadFileMessage => 'Möchtest du diese Datei hochladen?';
 
   @override
-  String watchingWith(int numPeople) {
-    return 'Du siehst mit $numPeople anderen';
-  }
-
-  @override
   String get uploading => 'Hochladen';
 
   @override
   String get uploadFail => 'Hochladen fehlgeschlagen';
 
   @override
-  String get post => 'Poste';
-
-  @override
   String charactersLimit(int charsLeft, int charsTotal) {
     return '$charsLeft von $charsTotal Zeichen übrig';
   }
-
-  @override
-  String get uploadingPostSuccess => 'Dein Post wurde gesendet.';
-
-  @override
-  String get testimonyInfo => 'Nimm ein Video mit deinem Handy auf.';
-
-  @override
-  String get yourVideo => 'Dein Video';
-
-  @override
-  String get record => 'Aufnahme';
-
-  @override
-  String get recordingTips => 'Ein paar Tipps für eine gute Aufnahme';
-
-  @override
-  String get recordingTipA => 'Finde einen ruhigen Ort fürs aufnehmen.';
-
-  @override
-  String get recordingTipB => 'Stell sicher, dass dein Gesicht gleichmäßig beleuchtet ist.';
-
-  @override
-  String get recordingTipC => 'Denke darüber nach was du sagen möchtest, bevor du aufnimmst.';
-
-  @override
-  String get recordingTipD => 'Schalte dein Handy in den Querformatmodus.';
 
   @override
   String get thankYou => 'Vielen Dank!';
@@ -314,34 +276,7 @@ class SDe extends S {
   String get thankYouForContribution => 'Danke für deinen Beitrag!';
 
   @override
-  String get uploadingVideoSuccess => 'Dein Video wurde eingeschickt.';
-
-  @override
   String get next => 'Weiter';
-
-  @override
-  String get recordVideoCameraPermissionAlert => 'Du musst in den Einstellungen die Kameraberechtigung zulassen, um Videos aufnehmen zu können.';
-
-  @override
-  String get recordVideoPhotosPermissionAlert => 'Du musst in den Einstellungen den Zugriff auf deine Fotos zulassen, um Videos aufnehmen zu können.';
-
-  @override
-  String get recordVideoStoragePermissionAlert => 'Du musst in den Einstellungen die Speicherberechtigung genehmigen, um ein Video aufzunehmen.';
-
-  @override
-  String get recordVideoMicrophonePermissionAlert => 'Du musst in den Einstellungen den Zugriff aufs Mikrofon einstellen, um ein Video aufzunehmen.';
-
-  @override
-  String get takePhotoStoragePermissionAlert => 'Du musst in den Einstellungen die Speicherberechtigung genehmigen, um ein Foto zu machen.';
-
-  @override
-  String get takePhotoCameraPermissionAlert => 'Du musst in den Einstellungen die Kameraberechtigung zulassen, um Fotos aufnehmen zu können.';
-
-  @override
-  String get pickPhotoStoragePermissionAlert => 'Du musst in den Einstellungen die Speicherberechtigung zulassen, um Fotos auswählen zu können.';
-
-  @override
-  String get permissionsAlertTitle => 'Erlaubnis erforderlich';
 
   @override
   String get add => 'Hinzufügen';
@@ -350,43 +285,19 @@ class SDe extends S {
   String get change => 'Ändern';
 
   @override
-  String get recordingFailedTitle => 'Das Video konnte nicht aufgenommen werden';
-
-  @override
-  String get recordingFailedMessage => 'Beim Versuch, das Video aufzunehmen, ist etwas schiefgegangen.';
-
-  @override
-  String get pollSubtitle => 'Umfrage';
-
-  @override
   String get writeHere => 'Schreibe hier';
 
   @override
   String get feed => 'Feed';
 
   @override
-  String get atmosphereFeedDescription => 'Nehme am Aktivitätsfeed teil, indem du eine Nachricht, ein Zeugnis oder ein Bild von deinem Standort aus einsendest.';
-
-  @override
   String get information => 'Information';
-
-  @override
-  String get photoNotSupported => 'Fotos auswählen und machen wird auf deinem Gerät nicht unterstützt.';
-
-  @override
-  String get answerFailed => 'Tut uns leid! Wir konnten die Antwort nicht senden. Bitte versuche es noch einmal.';
 
   @override
   String get question => 'Frage';
 
   @override
-  String get notificationChannelPlayerName => 'Player';
-
-  @override
   String get now => 'Jetzt';
-
-  @override
-  String get createPost => 'Einen Post erstellen';
 
   @override
   String get concernTextPlaceholder => 'Beschreibe dein Anliegen';
@@ -416,19 +327,6 @@ class SDe extends S {
   String get today => 'Heute';
 
   @override
-  String get noNewPosts => 'Keine neuen Posts';
-
-  @override
-  String newPostsMultiple(int postCount) {
-    return '$postCount neue Posts!';
-  }
-
-  @override
-  String newPostsSingle(int postCount) {
-    return '$postCount neue Posts!';
-  }
-
-  @override
   String get expired => 'Abgelaufen';
 
   @override
@@ -437,40 +335,10 @@ class SDe extends S {
   }
 
   @override
-  String get howFar => 'Wie weit bist du gekommen?';
-
-  @override
   String get submit => 'Bestätige';
 
   @override
   String get wellDone => 'Gut gemacht!';
-
-  @override
-  String wellDoneDistance(int distanceInKM) {
-    return 'Gut gemacht! Du hast eine Gesamtstrecke von $distanceInKM km registriert';
-  }
-
-  @override
-  String get distanceRegistered => 'Deine Distanz wurde registriert. Fortsetze weiter unten, wenn du eine weitere Distanz eintragen möchtest.';
-
-  @override
-  String ranMore(int distanceInKM) {
-    return 'Ich bin mehr als $distanceInKM km gelaufen';
-  }
-
-  @override
-  String moreThan(int distanceInKM) {
-    return 'Mehr als $distanceInKM km';
-  }
-
-  @override
-  String get runningEffort => 'Super Einsatz! Trage unten die Anzahl Kilometer ein, die du gelaufen bist.';
-
-  @override
-  String get slideSelect => 'Streiche, um zu sehen, wie weit du gegangen bist';
-
-  @override
-  String get submitAnotherDistance => 'Bestätige eine neue Distanz';
 
   @override
   String get editPicture => 'Bild bearbeiten';
@@ -479,51 +347,9 @@ class SDe extends S {
   String get profilePicture => 'Profilbild';
 
   @override
-  String get firstPostTitle => 'Sei der Erste, der ein Bild oder eine Nachricht postet';
-
-  @override
   String timezoneInformation(String timeZone) {
     return 'Das Tv Programm ist deiner Ortszeit angepasst: $timeZone';
   }
-
-  @override
-  String get yourQuestion => 'Deine Frage';
-
-  @override
-  String get uploadingInquirySuccess => 'Bitte beachte, dass nicht alle eingereichten Fragen in der Sendung beantwortet werden.';
-
-  @override
-  String get askQuestion => 'Stelle eine Frage';
-
-  @override
-  String get submitQuestionInfo => 'Mit dem Absenden einer Frage akzeptierst du, dass diese für Sendezwecke verwendet werden kann.';
-
-  @override
-  String get posting => 'Einsenden';
-
-  @override
-  String get submitPostInfo => 'Mit dem Senden eines Posts oder eines Fotos akzeptierst du, dass diese für Sendezwecke verwendet werden kann. ';
-
-  @override
-  String get cropImage => 'Bild zuschneiden';
-
-  @override
-  String get square => 'Quadrat';
-
-  @override
-  String get landscape => 'Landschaft';
-
-  @override
-  String get pollSingleChoice => 'Du darfst deine Antwort nur einmal auswählen.';
-
-  @override
-  String get pollMultipleChoice => 'Du darfst deine Antwort mehrmals abändern.';
-
-  @override
-  String get pollEnded => 'Die Umfrage ist beendet. Danke für deine Antworten.';
-
-  @override
-  String get browserInstall => 'Bitte installiere den Internetbrowser, um diese URL zu öffnen.';
 
   @override
   String get share => 'Teilen';
@@ -532,30 +358,13 @@ class SDe extends S {
   String get liveNow => 'Jetzt live';
 
   @override
-  String get program => 'Programm';
-
-  @override
-  String get participateTab => 'Teilnehmen';
-
-  @override
   String get tomorrow => 'Morgen';
 
   @override
   String get readBy => 'Gelesen von';
 
   @override
-  String pollAnswer(String answer) {
-    return 'Du hast geantwortet $answer';
-  }
-
-  @override
   String get broadcasts => 'Sendungen';
-
-  @override
-  String get quizAnswered => 'Antworten bestätigt';
-
-  @override
-  String get quizNotEnabled => 'Das Quiz ist im Moment nicht verfügbar. Bitte versuche es später noch einmal.';
 
   @override
   String get calendar => 'Kalender';
@@ -573,30 +382,10 @@ class SDe extends S {
   String get appUpdateAccepted => 'Update';
 
   @override
-  String get donationNotAvailable => 'Das Spenden ist im Moment nicht möglich. Borte versuche es später noch einmal.';
-
-  @override
-  String posts(int postsCount) {
-    return '$postsCount Posts';
-  }
-
-  @override
   String get copy => 'Kopieren';
 
   @override
   String get reload => 'Nochmals laden';
-
-  @override
-  String get participantsTitle => 'Wer antwortet?';
-
-  @override
-  String get participantsSubtitle => 'Wähle einen oder mehrere Teilnehmer.';
-
-  @override
-  String get yourFamily => 'Deine Familie';
-
-  @override
-  String get yourTurn => 'Du bist dran';
 
   @override
   String get fAQ => 'FAQ';
@@ -613,31 +402,10 @@ class SDe extends S {
   String get loadContentError => 'Konnte den Inhalt nicht laden';
 
   @override
-  String get audioOnlyErrorDescription => 'Überprüfe deine Internetverbindung und versuche es noch einmal';
-
-  @override
   String get privacyPolicy => 'Datenschutz';
 
   @override
-  String get tokenError => 'Wir konnten deine Identität nicht bestätigen, wahrscheinlich aufgrund eines Netzwerkproblems. Einige Funktionen der App könnten nicht funktionieren.';
-
-  @override
   String get categoriesTab => 'Kategorien';
-
-  @override
-  String get settingsTab => 'Einstellungen';
-
-  @override
-  String get confirmLogin => 'Einloggen bestätigen';
-
-  @override
-  String get scanInfo => 'Scanne den QR-Code mit deinem Handy um zur Anmeldeseite zu gelangen.';
-
-  @override
-  String get validInfo => 'Der QR-Code ist für 15 Minuten gültig.';
-
-  @override
-  String get confirmInfo => 'Klicke untenstehenden Button nach erfolgreichem Einloggen auf deinem Gerät.';
 
   @override
   String get seriesTab => 'Serien';
@@ -661,73 +429,16 @@ class SDe extends S {
   String get noTransmissionToday => 'Keine geplante Übertragung für heute';
 
   @override
-  String get livestreamMaintenanceTitle => 'Der Livestream ist nicht verfügbar';
-
-  @override
-  String get start => 'Start';
-
-  @override
-  String get transmissionSchedule => 'Zeitplan der Übertragung';
-
-  @override
   String get featured => 'Empfohlen';
 
   @override
   String get errorTryAgain => 'Etwas ist schief gelaufen, bitte versuche es später noch einmal.';
 
   @override
-  String get reportProblem => 'Falls du Probleme hast benutze den QR-Code unten um uns eine E-Mail zu senden.';
-
-  @override
-  String get phoneReadingProblem => 'Falls dein Handy keine QR-Codes lesen kann, sende uns eine E-Mail mit folgenden Infos an';
-
-  @override
-  String get goTo => 'oder gehe zu';
-
-  @override
-  String get watchBrunstad => 'BrunstadTV live schauen';
-
-  @override
-  String get notLogged => 'Nicht eingeloggt';
-
-  @override
-  String get authResponse0 => 'Bitte nutze einen neuen QR-Code um dich einzuloggen.';
-
-  @override
-  String get authResponse1 => 'Bitte logge dich auf deinem Handy mit Hilfe eines QR Codes ein.';
-
-  @override
-  String get authResponse3 => 'Überprüfen deine Netzwerkverbindung und versuche es später erneut.';
-
-  @override
   String get liveHeader => 'Live ';
 
   @override
-  String get recentlyPublishedSection => 'Zuletzt hinzugefügt';
-
-  @override
-  String get exploreCategoriesSection => 'Entdecke die Kategorien';
-
-  @override
   String get programsSection => 'Programme';
-
-  @override
-  String get episodesSection => 'Folgen';
-
-  @override
-  String get categorySeries => 'Serien';
-
-  @override
-  String get categoryKids => 'Kinder';
-
-  @override
-  String get categoryFilms => 'Filme';
-
-  @override
-  String get categoryEvents => 'Ereignisse';
-
-  @override
-  String get categoryMusic => 'Musik';
 
   @override
   String get noPlannedEvents => 'Keine Veranstaltungen an diesem Tag geplant';

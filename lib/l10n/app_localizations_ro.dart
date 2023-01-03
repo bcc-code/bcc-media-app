@@ -196,9 +196,6 @@ class SRo extends S {
   String get series => 'Episoade';
 
   @override
-  String get livestreamMaintenance => 'Ne pare rău, se lucrează la transmisia în direct și nu este disponibilă momentan. Te rugăm să încerci din nou mai târziu.';
-
-  @override
   String get homeTab => 'Acasă';
 
   @override
@@ -262,50 +259,15 @@ class SRo extends S {
   String get uploadFileMessage => 'Vrei să încarci acest fișier?';
 
   @override
-  String watchingWith(int numPeople) {
-    return 'Vizionezi împreună cu alți $numPeople';
-  }
-
-  @override
   String get uploading => 'Se încarcă';
 
   @override
   String get uploadFail => 'Încărcarea a eșuat';
 
   @override
-  String get post => 'Trimite';
-
-  @override
   String charactersLimit(int charsLeft, int charsTotal) {
     return 'Au rămas $charsLeft din $charsTotal caractere';
   }
-
-  @override
-  String get uploadingPostSuccess => 'Postarea ta a fost trimisă.';
-
-  @override
-  String get testimonyInfo => 'Înregistrează video-ul cu telefonul.';
-
-  @override
-  String get yourVideo => 'Filmarea ta';
-
-  @override
-  String get record => 'Înregistrează';
-
-  @override
-  String get recordingTips => 'Câteva sfaturi pentru o înregistrare bună';
-
-  @override
-  String get recordingTipA => 'Găsește un loc liniștit pentru a înregistra.';
-
-  @override
-  String get recordingTipB => 'Asigură-te că fața ta este luminată uniform.';
-
-  @override
-  String get recordingTipC => 'Gândește-te la ce vrei să spui înainte de începerea înregistrării.';
-
-  @override
-  String get recordingTipD => 'Întoarce telefonul în modul peisaj.';
 
   @override
   String get thankYou => 'Mulțumim!';
@@ -314,34 +276,7 @@ class SRo extends S {
   String get thankYouForContribution => 'Mulțumim pentru contribuție!';
 
   @override
-  String get uploadingVideoSuccess => 'Filmarea ta a fost trimisă.';
-
-  @override
   String get next => 'Urmează';
-
-  @override
-  String get recordVideoCameraPermissionAlert => 'Trebuie să acorzi permisiune camerei din setări pentru a înregistra videouri.';
-
-  @override
-  String get recordVideoPhotosPermissionAlert => 'Trebuie să acorzi permisiune albumului foto din setări pentru a înregistra videouri.';
-
-  @override
-  String get recordVideoStoragePermissionAlert => 'Trebuie să acorzi permisiune de stocare din setări pentru a înregistra videouri.';
-
-  @override
-  String get recordVideoMicrophonePermissionAlert => 'Trebuie să acorzi permisiune microfonului din setări pentru a înregistra videouri.';
-
-  @override
-  String get takePhotoStoragePermissionAlert => 'Trebuie să acorzi permisiune de stocare din setări pentru a face poze.';
-
-  @override
-  String get takePhotoCameraPermissionAlert => 'Trebuie să acorzi permisiune camerei din setări pentru a face poze.';
-
-  @override
-  String get pickPhotoStoragePermissionAlert => 'Trebuie să acorzi permisiune de stocare din setări pentru a alege poze.';
-
-  @override
-  String get permissionsAlertTitle => 'Permisiuni necesare';
 
   @override
   String get add => 'Adaugă';
@@ -350,43 +285,19 @@ class SRo extends S {
   String get change => 'Modifică';
 
   @override
-  String get recordingFailedTitle => 'Nu s-a putut înregistra videoclipul';
-
-  @override
-  String get recordingFailedMessage => 'A apărut o eroare în timpul înregistrării videoului.';
-
-  @override
-  String get pollSubtitle => 'Sondaj';
-
-  @override
   String get writeHere => 'Scrie aici';
 
   @override
   String get feed => 'Feed';
 
   @override
-  String get atmosphereFeedDescription => 'Contribuie la fluxul de activitate trimițând un mesaj, mărturie sau o poză de unde te afli.';
-
-  @override
   String get information => 'Detalii';
-
-  @override
-  String get photoNotSupported => 'Fotografierea și alegerea pozei nu sunt acceptate pe dispozitivul tău.';
-
-  @override
-  String get answerFailed => 'Ne pare rău! Nu am putut trimite răspunsul. Te rugăm să încerci din nou.';
 
   @override
   String get question => 'Întrebare';
 
   @override
-  String get notificationChannelPlayerName => 'Player';
-
-  @override
   String get now => 'Acum';
-
-  @override
-  String get createPost => 'Creare postare';
 
   @override
   String get concernTextPlaceholder => 'Descrie problema';
@@ -416,19 +327,6 @@ class SRo extends S {
   String get today => 'Astăzi';
 
   @override
-  String get noNewPosts => 'Nici o postare nouă';
-
-  @override
-  String newPostsMultiple(int postCount) {
-    return '$postCount postări noi!';
-  }
-
-  @override
-  String newPostsSingle(int postCount) {
-    return '$postCount postare nouă!';
-  }
-
-  @override
   String get expired => 'Expirat';
 
   @override
@@ -437,40 +335,10 @@ class SRo extends S {
   }
 
   @override
-  String get howFar => 'Ce distanță ai parcurs?';
-
-  @override
   String get submit => 'Trimite';
 
   @override
   String get wellDone => 'Bună treabă!';
-
-  @override
-  String wellDoneDistance(int distanceInKM) {
-    return 'Bună treabă! Ai înregistrat o distanță totală de $distanceInKM km';
-  }
-
-  @override
-  String get distanceRegistered => 'Distanța ta a fost înregistrată. Continuă mai jos dacă dorești să adaugi o nouă distanță.';
-
-  @override
-  String ranMore(int distanceInKM) {
-    return 'Am parcurs mai mult de $distanceInKM km';
-  }
-
-  @override
-  String moreThan(int distanceInKM) {
-    return 'Peste $distanceInKM km';
-  }
-
-  @override
-  String get runningEffort => 'Efort uimitor! Tastează mai jos numărul de kilometri pe care i-ai parcurs.';
-
-  @override
-  String get slideSelect => 'Glisează pentru a selecta cât ai parcurs';
-
-  @override
-  String get submitAnotherDistance => 'Înregistrează o nouă distanță';
 
   @override
   String get editPicture => 'Editează poza';
@@ -479,51 +347,9 @@ class SRo extends S {
   String get profilePicture => 'Poză de profil';
 
   @override
-  String get firstPostTitle => 'Fii primul care postează o imagine sau un mesaj';
-
-  @override
   String timezoneInformation(String timeZone) {
     return 'Programul ghidului Tv este afișat în ora ta locală: $timeZone';
   }
-
-  @override
-  String get yourQuestion => 'Întrebarea ta';
-
-  @override
-  String get uploadingInquirySuccess => 'Te rog să reții că nu toate întrebările trimise sunt răspunse în timpul transmisiunii.';
-
-  @override
-  String get askQuestion => 'Pune o întrebare';
-
-  @override
-  String get submitQuestionInfo => 'Prin trimiterea unei întrebări, accepți să se poată utiliza în scopurile difuzării.';
-
-  @override
-  String get posting => 'Se postează';
-
-  @override
-  String get submitPostInfo => 'Prin trimiterea unei postări sau poze, accepți să se poată utiliza în scopurile difuzării. ';
-
-  @override
-  String get cropImage => 'Decupează poza';
-
-  @override
-  String get square => 'Pătrat';
-
-  @override
-  String get landscape => 'Peisaj';
-
-  @override
-  String get pollSingleChoice => 'Poți selecta răspunsul tău o singură dată.';
-
-  @override
-  String get pollMultipleChoice => 'Poți schimba răspunsul de mai multe ori.';
-
-  @override
-  String get pollEnded => 'Chestionarul s-a încheiat. Mulțumim pentru răspunsuri.';
-
-  @override
-  String get browserInstall => 'Te rugăm să instalezi un browser web pentru a putea deschide această adresă URL.';
 
   @override
   String get share => 'Distribuie';
@@ -532,30 +358,13 @@ class SRo extends S {
   String get liveNow => 'Acum în direct';
 
   @override
-  String get program => 'Program';
-
-  @override
-  String get participateTab => 'Participă';
-
-  @override
   String get tomorrow => 'Mâine';
 
   @override
   String get readBy => 'Citit de';
 
   @override
-  String pollAnswer(String answer) {
-    return 'Ai răspuns $answer';
-  }
-
-  @override
   String get broadcasts => 'Transmisii';
-
-  @override
-  String get quizAnswered => 'Răspunsuri trimise';
-
-  @override
-  String get quizNotEnabled => 'Testul nu este disponibil momentan. Te rugăm să încerci mai târziu.';
 
   @override
   String get calendar => 'Calendar';
@@ -573,30 +382,10 @@ class SRo extends S {
   String get appUpdateAccepted => 'Actualizare';
 
   @override
-  String get donationNotAvailable => 'Donarea nu este disponibilă momentan. Te rugăm să încerci mai târziu.';
-
-  @override
-  String posts(int postsCount) {
-    return '$postsCount postări';
-  }
-
-  @override
   String get copy => 'Copiere';
 
   @override
   String get reload => 'Reîncarcă';
-
-  @override
-  String get participantsTitle => 'Cine răspunde?';
-
-  @override
-  String get participantsSubtitle => 'Alege unul sau mai mulți participanți.';
-
-  @override
-  String get yourFamily => 'Familia ta';
-
-  @override
-  String get yourTurn => 'Tura ta';
 
   @override
   String get fAQ => 'Întrebări frecvente';
@@ -613,31 +402,10 @@ class SRo extends S {
   String get loadContentError => 'Conținutul nu a putut fi încărcat';
 
   @override
-  String get audioOnlyErrorDescription => 'Verifică conexiunea la internet și încearcă din nou';
-
-  @override
   String get privacyPolicy => 'Politica de Confidențialitate';
 
   @override
-  String get tokenError => 'Nu v-am putut confirma identitatea, cel mai probabil din cauza unei probleme de rețea. Este posibil ca unele funcții ale aplicației să nu funcționeze corect.';
-
-  @override
   String get categoriesTab => 'Categorii';
-
-  @override
-  String get settingsTab => 'Setări';
-
-  @override
-  String get confirmLogin => 'Confirmă conectarea';
-
-  @override
-  String get scanInfo => 'Scanează codul cu telefonul pentru a accesa pagina de autentificare.';
-
-  @override
-  String get validInfo => 'Codul QR este valabil 15 minute.';
-
-  @override
-  String get confirmInfo => 'După conectarea cu succes pe dispozitiv, apasă pe butonul de mai jos pentru a confirma conectarea.';
 
   @override
   String get seriesTab => 'Episoade';
@@ -661,73 +429,16 @@ class SRo extends S {
   String get noTransmissionToday => 'Nicio transmisie programată pentru astăzi';
 
   @override
-  String get livestreamMaintenanceTitle => 'Transmisia în direct nu este disponibilă';
-
-  @override
-  String get start => 'Începe';
-
-  @override
-  String get transmissionSchedule => 'Programul transmisiilor';
-
-  @override
   String get featured => 'Recomandate';
 
   @override
   String get errorTryAgain => 'A apărut o eroare, te rugăm să încerci din nou mai târziu.';
 
   @override
-  String get reportProblem => 'În cazul unei probleme, folosește codul QR pentru a ne trimite un e-mail.';
-
-  @override
-  String get phoneReadingProblem => 'Dacă telefonul tău nu citește codul QR, trimite-ne e-mail cu aceste informații la';
-
-  @override
-  String get goTo => 'sau mergi la';
-
-  @override
-  String get watchBrunstad => 'Urmărește BrunstadTV în direct';
-
-  @override
-  String get notLogged => 'Deconectat';
-
-  @override
-  String get authResponse0 => 'Te rugăm să folosești un nou cod QR pentru conectare.';
-
-  @override
-  String get authResponse1 => 'Te rugăm să te conectezi pe mobil folosind codul QR.';
-
-  @override
-  String get authResponse3 => 'Verifică conexiunea la internet și încearcă din nou.';
-
-  @override
   String get liveHeader => 'În direct';
 
   @override
-  String get recentlyPublishedSection => 'Apărute recent';
-
-  @override
-  String get exploreCategoriesSection => 'Explorați categoriile';
-
-  @override
   String get programsSection => 'Programe';
-
-  @override
-  String get episodesSection => 'Episoade';
-
-  @override
-  String get categorySeries => 'Episoade';
-
-  @override
-  String get categoryKids => 'Copii';
-
-  @override
-  String get categoryFilms => 'Filme';
-
-  @override
-  String get categoryEvents => 'Evenimente';
-
-  @override
-  String get categoryMusic => 'Muzică';
 
   @override
   String get noPlannedEvents => 'Astăzi nu sunt evenimente planificate';

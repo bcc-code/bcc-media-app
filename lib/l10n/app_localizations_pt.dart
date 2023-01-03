@@ -196,9 +196,6 @@ class SPt extends S {
   String get series => 'Séries';
 
   @override
-  String get livestreamMaintenance => 'Lamentamos, a transmissão ao vivo está atualmente em manutenção. Por favor, tente novamente mais tarde.';
-
-  @override
   String get homeTab => 'Início';
 
   @override
@@ -262,50 +259,15 @@ class SPt extends S {
   String get uploadFileMessage => 'Deseja baixar este arquivo?';
 
   @override
-  String watchingWith(int numPeople) {
-    return 'Você está assistindo com mais {numPessoas} pessoas';
-  }
-
-  @override
   String get uploading => 'Enviando';
 
   @override
   String get uploadFail => 'Falha no envio';
 
   @override
-  String get post => 'Postar';
-
-  @override
   String charactersLimit(int charsLeft, int charsTotal) {
     return '$charsLeft de $charsTotal caracteres restantes';
   }
-
-  @override
-  String get uploadingPostSuccess => 'Sua postagem foi enviada.';
-
-  @override
-  String get testimonyInfo => 'Grave seu vídeo com o seu celular.';
-
-  @override
-  String get yourVideo => 'Seu vídeo';
-
-  @override
-  String get record => 'Gravar';
-
-  @override
-  String get recordingTips => 'Algumas dicas para obter uma boa gravação';
-
-  @override
-  String get recordingTipA => 'Encontre um local tranquilo para gravar.';
-
-  @override
-  String get recordingTipB => 'Verifique se o seu rosto está uniformemente iluminado.';
-
-  @override
-  String get recordingTipC => 'Pense no que você quer dizer antes de começar a gravar.';
-
-  @override
-  String get recordingTipD => 'Vire seu celular no modo de paisagem.';
 
   @override
   String get thankYou => 'Obrigada!';
@@ -314,34 +276,7 @@ class SPt extends S {
   String get thankYouForContribution => 'Obrigado pela sua contribuição!';
 
   @override
-  String get uploadingVideoSuccess => 'Seu vídeo foi enviado.';
-
-  @override
   String get next => 'Próximo';
-
-  @override
-  String get recordVideoCameraPermissionAlert => 'Você precisa conceder permissão da câmera nas configurações para gravar vídeo.';
-
-  @override
-  String get recordVideoPhotosPermissionAlert => 'Você precisa conceder permissão ao álbum de fotos nas configurações para gravar vídeo.';
-
-  @override
-  String get recordVideoStoragePermissionAlert => 'Você precisa conceder permissão de armazenamento nas configurações para gravar vídeo.';
-
-  @override
-  String get recordVideoMicrophonePermissionAlert => 'Você precisa conceder permissão de microfone nas configurações para gravar vídeo.';
-
-  @override
-  String get takePhotoStoragePermissionAlert => 'Você precisa conceder permissão de armazenamento nas configurações para tirar uma foto.';
-
-  @override
-  String get takePhotoCameraPermissionAlert => 'Você precisa conceder permissão da câmera nas configurações para tirar uma foto.';
-
-  @override
-  String get pickPhotoStoragePermissionAlert => 'Você precisa conceder permissão de armazenamento nas configurações para escolher fotos.';
-
-  @override
-  String get permissionsAlertTitle => 'Permissões necessárias';
 
   @override
   String get add => 'Adicionar';
@@ -350,43 +285,19 @@ class SPt extends S {
   String get change => 'Mudar';
 
   @override
-  String get recordingFailedTitle => 'Não foi possível gravar o vídeo';
-
-  @override
-  String get recordingFailedMessage => 'Ocorreu um erro ao tentar gravar o vídeo.';
-
-  @override
-  String get pollSubtitle => 'Vote';
-
-  @override
   String get writeHere => 'Escreva aqui';
 
   @override
   String get feed => 'Feed';
 
   @override
-  String get atmosphereFeedDescription => 'Contribua no feed de atividades enviando uma mensagem, testemunho ou foto de onde você está.';
-
-  @override
   String get information => 'Informação';
-
-  @override
-  String get photoNotSupported => 'Tirar e escolher uma foto não é suportado no seu dispositivo.';
-
-  @override
-  String get answerFailed => 'Desculpa! Não foi possível enviar a resposta. Por favor, tente novamente.';
 
   @override
   String get question => 'Questão';
 
   @override
-  String get notificationChannelPlayerName => 'Player';
-
-  @override
   String get now => 'Agora';
-
-  @override
-  String get createPost => 'Criar postagem';
 
   @override
   String get concernTextPlaceholder => 'Descreva o problema';
@@ -416,19 +327,6 @@ class SPt extends S {
   String get today => 'Hoje';
 
   @override
-  String get noNewPosts => 'Não há novas postagens';
-
-  @override
-  String newPostsMultiple(int postCount) {
-    return '$postCount novas postagens ';
-  }
-
-  @override
-  String newPostsSingle(int postCount) {
-    return 'Nova postagem!';
-  }
-
-  @override
   String get expired => 'Expirado';
 
   @override
@@ -437,40 +335,10 @@ class SPt extends S {
   }
 
   @override
-  String get howFar => 'Até onde você foi?';
-
-  @override
   String get submit => 'Enviar';
 
   @override
   String get wellDone => 'Bem feito!';
-
-  @override
-  String wellDoneDistance(int distanceInKM) {
-    return 'Bem feito! Você registrou uma distância total de $distanceInKM km';
-  }
-
-  @override
-  String get distanceRegistered => 'Sua distância foi registrada. Continue abaixo se desejar enviar outra distância.';
-
-  @override
-  String ranMore(int distanceInKM) {
-    return 'Eu fui mais de $distanceInKM km';
-  }
-
-  @override
-  String moreThan(int distanceInKM) {
-    return 'Mais de $distanceInKM km';
-  }
-
-  @override
-  String get runningEffort => 'Esforço incrível! Digite a quantidade de quilômetros que você percorreu abaixo.';
-
-  @override
-  String get slideSelect => 'Deslize para selecionar até onde você foi';
-
-  @override
-  String get submitAnotherDistance => 'Enviar outra distância';
 
   @override
   String get editPicture => 'Editar imagem';
@@ -479,51 +347,9 @@ class SPt extends S {
   String get profilePicture => 'Foto de perfil';
 
   @override
-  String get firstPostTitle => 'Seja o primeiro a postar uma foto ou mensagem';
-
-  @override
   String timezoneInformation(String timeZone) {
     return 'O horário do guia de Tv está no seu horário local: $timeZone';
   }
-
-  @override
-  String get yourQuestion => 'Sua pergunta';
-
-  @override
-  String get uploadingInquirySuccess => 'Observe que nem todas as perguntas enviadas são respondidas na transmissão.';
-
-  @override
-  String get askQuestion => 'Faça uma pergunta';
-
-  @override
-  String get submitQuestionInfo => 'Ao enviar uma pergunta, você concorda que ela pode ser usada para fins de transmissão.';
-
-  @override
-  String get posting => 'Postar';
-
-  @override
-  String get submitPostInfo => 'Ao enviar uma postagem ou foto, você concorda que ela pode ser usada para fins de transmissão. ';
-
-  @override
-  String get cropImage => 'Cortar imagem';
-
-  @override
-  String get square => 'Quadrado';
-
-  @override
-  String get landscape => 'Panorama';
-
-  @override
-  String get pollSingleChoice => 'Você pode selecionar sua resposta apenas uma vez.';
-
-  @override
-  String get pollMultipleChoice => 'Você pode alterar sua resposta várias vezes.';
-
-  @override
-  String get pollEnded => 'A seção de enquete terminou. Obrigado por suas respostas.';
-
-  @override
-  String get browserInstall => 'Por favor, instale o navegador da web para poder abrir este URL.';
 
   @override
   String get share => 'Compartilhar';
@@ -532,30 +358,13 @@ class SPt extends S {
   String get liveNow => 'Ao vivo agora';
 
   @override
-  String get program => 'Programa';
-
-  @override
-  String get participateTab => 'Participar';
-
-  @override
   String get tomorrow => 'Amanhã';
 
   @override
   String get readBy => 'Lido por';
 
   @override
-  String pollAnswer(String answer) {
-    return 'Você respondeu: $answer';
-  }
-
-  @override
   String get broadcasts => 'Transmissão';
-
-  @override
-  String get quizAnswered => 'Respostas enviadas';
-
-  @override
-  String get quizNotEnabled => 'O Quiz não está disponível no momento. Por favor, tente novamente mais tarde.';
 
   @override
   String get calendar => 'Calendário';
@@ -573,30 +382,10 @@ class SPt extends S {
   String get appUpdateAccepted => 'Atualizar';
 
   @override
-  String get donationNotAvailable => 'A doação não está disponível no momento. Por favor, tente novamente mais tarde.';
-
-  @override
-  String posts(int postsCount) {
-    return '$postsCount Publicações';
-  }
-
-  @override
   String get copy => 'Cópia';
 
   @override
   String get reload => 'Recarregar';
-
-  @override
-  String get participantsTitle => 'Quem está respondendo?';
-
-  @override
-  String get participantsSubtitle => 'Selecione um ou mais participantes.';
-
-  @override
-  String get yourFamily => 'Sua família';
-
-  @override
-  String get yourTurn => 'Sua vez';
 
   @override
   String get fAQ => 'Perguntas frequentes';
@@ -613,31 +402,10 @@ class SPt extends S {
   String get loadContentError => 'Não foi possível carregar o conteúdo';
 
   @override
-  String get audioOnlyErrorDescription => 'Verifique a conexão com a Internet e tente novamente';
-
-  @override
   String get privacyPolicy => 'Política de privacidade';
 
   @override
-  String get tokenError => 'Não foi possível confirmar sua identidade, provavelmente devido a um problema de rede. Alguns recursos do aplicativo podem não funcionar corretamente.';
-
-  @override
   String get categoriesTab => 'Categorias';
-
-  @override
-  String get settingsTab => 'Configurações.';
-
-  @override
-  String get confirmLogin => 'Confirmar login';
-
-  @override
-  String get scanInfo => 'Digitalize o código com o seu telefone para entrar na página de login.';
-
-  @override
-  String get validInfo => 'O código QR é válido por 15 minutos.';
-
-  @override
-  String get confirmInfo => 'Após o login bem-sucedido no seu dispositivo, clique no botão abaixo para confirmar seu login.';
 
   @override
   String get seriesTab => 'Séries';
@@ -661,73 +429,16 @@ class SPt extends S {
   String get noTransmissionToday => 'Nenhuma transmissão programada para hoje';
 
   @override
-  String get livestreamMaintenanceTitle => 'A transmissão ao vivo não está disponível';
-
-  @override
-  String get start => 'Começar';
-
-  @override
-  String get transmissionSchedule => 'Horário de transmissão';
-
-  @override
   String get featured => 'Destaque';
 
   @override
   String get errorTryAgain => 'Ocorreu um erro. Tente novamente mais tarde.';
 
   @override
-  String get reportProblem => 'Em caso de qualquer problema, use o código QR abaixo para nos enviar um e-mail.';
-
-  @override
-  String get phoneReadingProblem => 'Se o seu telefone não conseguir ler o código QR, envie-nos um e-mail com as seguintes informações para';
-
-  @override
-  String get goTo => 'ou vá para';
-
-  @override
-  String get watchBrunstad => 'Assista BrunstadTV ao vivo';
-
-  @override
-  String get notLogged => 'Não está logado';
-
-  @override
-  String get authResponse0 => 'Por favor use o novo código QR para logar.';
-
-  @override
-  String get authResponse1 => 'Por favor faça o login no seu celular usando o código QR.';
-
-  @override
-  String get authResponse3 => 'Verifique sua conexão de rede e tente mais tarde.';
-
-  @override
   String get liveHeader => 'Ao vivo. ';
 
   @override
-  String get recentlyPublishedSection => 'Publicado recentemente';
-
-  @override
-  String get exploreCategoriesSection => 'Explorar categorias';
-
-  @override
   String get programsSection => 'Programas';
-
-  @override
-  String get episodesSection => 'Episódios';
-
-  @override
-  String get categorySeries => 'Séries';
-
-  @override
-  String get categoryKids => 'Crianças';
-
-  @override
-  String get categoryFilms => 'Filmes';
-
-  @override
-  String get categoryEvents => 'Eventos';
-
-  @override
-  String get categoryMusic => 'Música';
 
   @override
   String get noPlannedEvents => 'Nenhum evento planejado para este dia';
