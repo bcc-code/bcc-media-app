@@ -339,13 +339,13 @@ abstract class S {
   /// **'Cancel'**
   String get cancel;
 
-  /// Title on Up next feature.
+  /// Title indiciating what's next on the livestream.
   ///
   /// In en, this message translates to:
   /// **'Up next'**
   String get upNext;
 
-  /// General Done button. User confirms that action completed sucessfully.
+  /// Generic Done button, for example to dismiss a page after completing an action.
   ///
   /// In en, this message translates to:
   /// **'Done'**
@@ -381,19 +381,19 @@ abstract class S {
   /// **'Live'**
   String get live;
 
-  /// Title of the Player settings activity tab in Android
+  /// Generic.
   ///
   /// In en, this message translates to:
   /// **'Subtitles'**
   String get subtitles;
 
-  /// Title of the Player settings activity tab in Android
+  /// Generic.
   ///
   /// In en, this message translates to:
   /// **'Audio'**
   String get audio;
 
-  /// Title of the Player settings activity tab in Android
+  /// Generic.
   ///
   /// In en, this message translates to:
   /// **'Quality'**
