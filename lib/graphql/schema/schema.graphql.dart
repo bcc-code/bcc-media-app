@@ -244,28 +244,18 @@ class _CopyWithStubImpl$Input$EpisodeContext<TRes>
 
 const possibleTypesMap = {
   'Pagination': {
-    'SeasonPagination',
-    'EpisodePagination',
+    'AchievementPagination',
+    'AchievementGroupPagination',
     'CollectionItemPagination',
     'QuestionPagination',
     'FAQCategoryPagination',
-    'LessonPagination',
-    'TaskPagination',
+    'SeasonPagination',
+    'EpisodePagination',
     'SectionPagination',
     'LinkPagination',
     'SectionItemPagination',
-    'AchievementPagination',
-    'AchievementGroupPagination',
-  },
-  'EpisodeContextUnion': {
-    'Season',
-    'ContextCollection',
-  },
-  'CollectionItem': {
-    'ShowItem',
-    'SeasonItem',
-    'EpisodeItem',
-    'PageItem',
+    'LessonPagination',
+    'TaskPagination',
   },
   'CalendarEntry': {
     'SimpleCalendarEntry',
@@ -273,18 +263,15 @@ const possibleTypesMap = {
     'SeasonCalendarEntry',
     'ShowCalendarEntry',
   },
-  'SearchResultItem': {
-    'EpisodeSearchItem',
-    'SeasonSearchItem',
-    'ShowSearchItem',
+  'CollectionItem': {
+    'ShowItem',
+    'SeasonItem',
+    'EpisodeItem',
+    'PageItem',
   },
-  'Task': {
-    'AlternativesTask',
-    'TextTask',
-    'PosterTask',
-    'QuoteTask',
-    'VideoTask',
-    'LinkTask',
+  'EpisodeContextUnion': {
+    'Season',
+    'ContextCollection',
   },
   'Section': {
     'PosterSection',
@@ -325,5 +312,18 @@ const possibleTypesMap = {
     'Episode',
     'Page',
     'Link',
+  },
+  'SearchResultItem': {
+    'EpisodeSearchItem',
+    'SeasonSearchItem',
+    'ShowSearchItem',
+  },
+  'Task': {
+    'AlternativesTask',
+    'TextTask',
+    'PosterTask',
+    'QuoteTask',
+    'VideoTask',
+    'LinkTask',
   },
 };

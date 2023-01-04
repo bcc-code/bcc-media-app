@@ -30,21 +30,31 @@ class DefaultGridSection extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       margin: const EdgeInsets.symmetric(horizontal: 16),
-      child: GridSectionList(size: data.gridSize, sectionItems: data.items.items),
+      child: GridSectionList(
+        size: data.gridSize,
+        sectionItems: data.items.items,
+        showSecondaryTitle: data.metadata?.secondaryTitles ?? true,
+      ),
     );
   }
 }
 
 class GridSectionList extends StatelessWidget {
-  const GridSectionList({super.key, required this.size, required this.sectionItems});
+  const GridSectionList({
+    super.key,
+    required this.size,
+    required this.sectionItems,
+    this.showSecondaryTitle = true,
+  });
 
   final Enum$GridSectionSize size;
   final List<Fragment$GridSectionItem> sectionItems;
+  final bool showSecondaryTitle;
 
   Widget getItemWidget(Fragment$GridSectionItem sectionItem) {
     var episode = sectionItem.item.asOrNull<Fragment$GridSectionItem$item$$Episode>();
     if (episode != null) {
-      return _GridEpisodeItem(sectionItem: sectionItem, episode: episode);
+      return _GridEpisodeItem(sectionItem: sectionItem, episode: episode, showSecondaryTitle: showSecondaryTitle);
     }
     var show = sectionItem.item.asOrNull<Fragment$GridSectionItem$item$$Show>();
     if (show != null) {
@@ -88,7 +98,9 @@ class GridSectionList extends StatelessWidget {
 class _GridEpisodeItem extends StatelessWidget {
   final Fragment$GridSectionItem sectionItem;
   final Fragment$GridSectionItem$item$$Episode episode;
-  _GridEpisodeItem({required this.sectionItem, required this.episode});
+  final bool showSecondaryTitle;
+
+  _GridEpisodeItem({required this.sectionItem, required this.episode, required this.showSecondaryTitle});
 
   // TODO: Remove these temp variables
   bool get watched => episode.progress != null && episode.progress! > episode.duration * 0.9;
@@ -101,27 +113,28 @@ class _GridEpisodeItem extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         sectionItemImage(),
-        Row(
-          children: [
-            if (episode.season != null)
-              Flexible(
-                child: Container(
-                  margin: const EdgeInsets.only(right: 4),
-                  child: Text(
-                    episode.season!.$show.title.replaceAll(' ', '\u{000A0}'),
-                    maxLines: 1,
-                    overflow: TextOverflow.ellipsis,
-                    style: BtvTextStyles.caption2.copyWith(color: BtvColors.tint1),
+        if (showSecondaryTitle)
+          Row(
+            children: [
+              if (episode.season != null)
+                Flexible(
+                  child: Container(
+                    margin: const EdgeInsets.only(right: 4),
+                    child: Text(
+                      episode.season!.$show.title.replaceAll(' ', '\u{000A0}'),
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                      style: BtvTextStyles.caption2.copyWith(color: BtvColors.tint1),
+                    ),
                   ),
                 ),
-              ),
-            if (episode.season != null)
-              Text(
-                '${S.of(context).seasonLetter}${episode.season!.number}:${S.of(context).episodeLetter}${episode.number}',
-                style: BtvTextStyles.caption2,
-              ),
-          ],
-        ),
+              if (episode.season != null)
+                Text(
+                  '${S.of(context).seasonLetter}${episode.season!.number}:${S.of(context).episodeLetter}${episode.number}',
+                  style: BtvTextStyles.caption2,
+                ),
+            ],
+          ),
         Container(
           margin: const EdgeInsets.only(bottom: 2),
           child: Text(

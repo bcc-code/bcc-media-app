@@ -12,14 +12,23 @@ import '../providers/inherited_data.dart';
 import 'bordered_image_container.dart';
 
 class EpisodeListEpisode extends StatelessWidget {
-  const EpisodeListEpisode(
-      {super.key, required this.id, required this.title, this.image, this.showTitle, required this.ageRating, required this.duration});
+  const EpisodeListEpisode({
+    super.key,
+    required this.id,
+    required this.title,
+    this.image,
+    this.showTitle,
+    required this.ageRating,
+    required this.duration,
+    required this.showSecondaryTitle,
+  });
   final String id;
   final String title;
   final String? image;
   final String? showTitle;
   final String ageRating;
   final int duration;
+  final bool showSecondaryTitle;
 
   @override
   Widget build(BuildContext context) {
@@ -35,7 +44,7 @@ class EpisodeListEpisode extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                if (showTitle != null)
+                if (showSecondaryTitle && showTitle != null)
                   Container(
                     margin: const EdgeInsets.only(bottom: 4),
                     child: Text(

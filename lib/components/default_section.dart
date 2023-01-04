@@ -41,7 +41,11 @@ class DefaultSection extends StatelessWidget {
         var item = items[index];
         Widget? widget;
         if (item.item is Fragment$Section$$DefaultSection$items$items$item$$Episode) {
-          widget = _DefaultEpisodeItem(sectionItem: item, size: data.size);
+          widget = _DefaultEpisodeItem(
+            sectionItem: item,
+            size: data.size,
+            showSecondaryTitle: data.metadata?.secondaryTitles ?? true,
+          );
         } else if (item.item is Fragment$Section$$DefaultSection$items$items$item$$Show) {
           widget = _DefaultShowItem(sectionItem: item, size: data.size);
         }
@@ -61,9 +65,10 @@ class DefaultSection extends StatelessWidget {
 class _DefaultEpisodeItem extends StatelessWidget {
   final Fragment$Section$$DefaultSection$items$items sectionItem;
   final Fragment$Section$$DefaultSection$items$items$item$$Episode episode;
+  final bool showSecondaryTitle;
   final Enum$SectionSize size;
 
-  _DefaultEpisodeItem({required this.sectionItem, required this.size})
+  _DefaultEpisodeItem({required this.sectionItem, required this.size, required this.showSecondaryTitle})
       : episode = sectionItem.item as Fragment$Section$$DefaultSection$items$items$item$$Episode;
 
   bool get watched => episode.progress != null && episode.progress! > episode.duration * 0.9;
@@ -81,30 +86,31 @@ class _DefaultEpisodeItem extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           sectionItemImage(),
-          Container(
-            margin: const EdgeInsets.only(bottom: 2),
-            child: Row(
-              children: [
-                if (episode.season != null)
-                  Flexible(
-                    child: Container(
-                      margin: const EdgeInsets.only(right: 4),
-                      child: Text(
-                        episode.season!.$show.title.replaceAll(' ', '\u{000A0}'),
-                        maxLines: 1,
-                        overflow: TextOverflow.ellipsis,
-                        style: BtvTextStyles.caption2.copyWith(color: BtvColors.tint1),
+          if (showSecondaryTitle)
+            Container(
+              margin: const EdgeInsets.only(bottom: 2),
+              child: Row(
+                children: [
+                  if (episode.season != null)
+                    Flexible(
+                      child: Container(
+                        margin: const EdgeInsets.only(right: 4),
+                        child: Text(
+                          episode.season!.$show.title.replaceAll(' ', '\u{000A0}'),
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                          style: BtvTextStyles.caption2.copyWith(color: BtvColors.tint1),
+                        ),
                       ),
                     ),
-                  ),
-                /* if (productionDate != null)
+                  /* if (productionDate != null)
                   Text(
                     productionDate,
                     style: BtvTextStyles.caption2,
                   ), */
-              ],
+                ],
+              ),
             ),
-          ),
           Text(
             sectionItem.title,
             maxLines: 2,
