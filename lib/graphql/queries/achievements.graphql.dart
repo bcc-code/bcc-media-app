@@ -2182,19 +2182,21 @@ class Mutation$confirmAchievement {
     final l$confirmAchievement = json['confirmAchievement'];
     final l$$__typename = json['__typename'];
     return Mutation$confirmAchievement(
-      confirmAchievement: (l$confirmAchievement as bool),
+      confirmAchievement:
+          Mutation$confirmAchievement$confirmAchievement.fromJson(
+              (l$confirmAchievement as Map<String, dynamic>)),
       $__typename: (l$$__typename as String),
     );
   }
 
-  final bool confirmAchievement;
+  final Mutation$confirmAchievement$confirmAchievement confirmAchievement;
 
   final String $__typename;
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
     final l$confirmAchievement = confirmAchievement;
-    _resultData['confirmAchievement'] = l$confirmAchievement;
+    _resultData['confirmAchievement'] = l$confirmAchievement.toJson();
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -2252,9 +2254,11 @@ abstract class CopyWith$Mutation$confirmAchievement<TRes> {
       _CopyWithStubImpl$Mutation$confirmAchievement;
 
   TRes call({
-    bool? confirmAchievement,
+    Mutation$confirmAchievement$confirmAchievement? confirmAchievement,
     String? $__typename,
   });
+  CopyWith$Mutation$confirmAchievement$confirmAchievement<TRes>
+      get confirmAchievement;
 }
 
 class _CopyWithImpl$Mutation$confirmAchievement<TRes>
@@ -2278,11 +2282,18 @@ class _CopyWithImpl$Mutation$confirmAchievement<TRes>
         confirmAchievement:
             confirmAchievement == _undefined || confirmAchievement == null
                 ? _instance.confirmAchievement
-                : (confirmAchievement as bool),
+                : (confirmAchievement
+                    as Mutation$confirmAchievement$confirmAchievement),
         $__typename: $__typename == _undefined || $__typename == null
             ? _instance.$__typename
             : ($__typename as String),
       ));
+  CopyWith$Mutation$confirmAchievement$confirmAchievement<TRes>
+      get confirmAchievement {
+    final local$confirmAchievement = _instance.confirmAchievement;
+    return CopyWith$Mutation$confirmAchievement$confirmAchievement(
+        local$confirmAchievement, (e) => call(confirmAchievement: e));
+  }
 }
 
 class _CopyWithStubImpl$Mutation$confirmAchievement<TRes>
@@ -2292,10 +2303,13 @@ class _CopyWithStubImpl$Mutation$confirmAchievement<TRes>
   TRes _res;
 
   call({
-    bool? confirmAchievement,
+    Mutation$confirmAchievement$confirmAchievement? confirmAchievement,
     String? $__typename,
   }) =>
       _res;
+  CopyWith$Mutation$confirmAchievement$confirmAchievement<TRes>
+      get confirmAchievement =>
+          CopyWith$Mutation$confirmAchievement$confirmAchievement.stub(_res);
 }
 
 const documentNodeMutationconfirmAchievement = DocumentNode(definitions: [
@@ -2544,4 +2558,83 @@ class Mutation$confirmAchievement$Widget
             result,
           ),
         );
+}
+
+class Mutation$confirmAchievement$confirmAchievement {
+  Mutation$confirmAchievement$confirmAchievement();
+
+  factory Mutation$confirmAchievement$confirmAchievement.fromJson(
+      Map<String, dynamic> json) {
+    return Mutation$confirmAchievement$confirmAchievement();
+  }
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    return Object.hashAll([]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (!(other is Mutation$confirmAchievement$confirmAchievement) ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Mutation$confirmAchievement$confirmAchievement
+    on Mutation$confirmAchievement$confirmAchievement {
+  CopyWith$Mutation$confirmAchievement$confirmAchievement<
+          Mutation$confirmAchievement$confirmAchievement>
+      get copyWith => CopyWith$Mutation$confirmAchievement$confirmAchievement(
+            this,
+            (i) => i,
+          );
+}
+
+abstract class CopyWith$Mutation$confirmAchievement$confirmAchievement<TRes> {
+  factory CopyWith$Mutation$confirmAchievement$confirmAchievement(
+    Mutation$confirmAchievement$confirmAchievement instance,
+    TRes Function(Mutation$confirmAchievement$confirmAchievement) then,
+  ) = _CopyWithImpl$Mutation$confirmAchievement$confirmAchievement;
+
+  factory CopyWith$Mutation$confirmAchievement$confirmAchievement.stub(
+          TRes res) =
+      _CopyWithStubImpl$Mutation$confirmAchievement$confirmAchievement;
+
+  TRes call();
+}
+
+class _CopyWithImpl$Mutation$confirmAchievement$confirmAchievement<TRes>
+    implements CopyWith$Mutation$confirmAchievement$confirmAchievement<TRes> {
+  _CopyWithImpl$Mutation$confirmAchievement$confirmAchievement(
+    this._instance,
+    this._then,
+  );
+
+  final Mutation$confirmAchievement$confirmAchievement _instance;
+
+  final TRes Function(Mutation$confirmAchievement$confirmAchievement) _then;
+
+  static const _undefined = {};
+
+  TRes call() => _then(Mutation$confirmAchievement$confirmAchievement());
+}
+
+class _CopyWithStubImpl$Mutation$confirmAchievement$confirmAchievement<TRes>
+    implements CopyWith$Mutation$confirmAchievement$confirmAchievement<TRes> {
+  _CopyWithStubImpl$Mutation$confirmAchievement$confirmAchievement(this._res);
+
+  TRes _res;
+
+  call() => _res;
 }

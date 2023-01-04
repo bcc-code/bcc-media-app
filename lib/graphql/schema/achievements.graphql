@@ -3,6 +3,7 @@ type Achievement {
     title: String!
     image: String
     achieved: Boolean! @goField(forceResolver: true)
+    achievedAt: Date @goField(forceResolver: true)
     group: AchievementGroup @goField(forceResolver: true)
 }
 
@@ -24,4 +25,8 @@ type AchievementGroupPagination implements Pagination {
     first: Int!
     total: Int!
     items: [AchievementGroup!]!
+}
+
+type ConfirmAchievementResult {
+    success: Boolean!
 }
