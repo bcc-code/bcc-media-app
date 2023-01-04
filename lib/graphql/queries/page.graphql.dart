@@ -4911,6 +4911,13 @@ const fragmentDefinitionSection = FragmentDefinitionNode(
                           selectionSet: null,
                         ),
                         FieldNode(
+                          name: NameNode(value: 'description'),
+                          alias: null,
+                          arguments: [],
+                          directives: [],
+                          selectionSet: null,
+                        ),
+                        FieldNode(
                           name: NameNode(value: 'image'),
                           alias: null,
                           arguments: [],
@@ -24128,6 +24135,7 @@ class Fragment$Section$$CardSection$items$items$item$$StudyTopic
     required this.$__typename,
     required this.id,
     required this.title,
+    required this.description,
     this.image,
     required this.tasksProgress,
   });
@@ -24137,12 +24145,14 @@ class Fragment$Section$$CardSection$items$items$item$$StudyTopic
     final l$$__typename = json['__typename'];
     final l$id = json['id'];
     final l$title = json['title'];
+    final l$description = json['description'];
     final l$image = json['image'];
     final l$tasksProgress = json['tasksProgress'];
     return Fragment$Section$$CardSection$items$items$item$$StudyTopic(
       $__typename: (l$$__typename as String),
       id: (l$id as String),
       title: (l$title as String),
+      description: (l$description as String),
       image: (l$image as String?),
       tasksProgress:
           Fragment$Section$$CardSection$items$items$item$$StudyTopic$tasksProgress
@@ -24155,6 +24165,8 @@ class Fragment$Section$$CardSection$items$items$item$$StudyTopic
   final String id;
 
   final String title;
+
+  final String description;
 
   final String? image;
 
@@ -24169,6 +24181,8 @@ class Fragment$Section$$CardSection$items$items$item$$StudyTopic
     _resultData['id'] = l$id;
     final l$title = title;
     _resultData['title'] = l$title;
+    final l$description = description;
+    _resultData['description'] = l$description;
     final l$image = image;
     _resultData['image'] = l$image;
     final l$tasksProgress = tasksProgress;
@@ -24181,12 +24195,14 @@ class Fragment$Section$$CardSection$items$items$item$$StudyTopic
     final l$$__typename = $__typename;
     final l$id = id;
     final l$title = title;
+    final l$description = description;
     final l$image = image;
     final l$tasksProgress = tasksProgress;
     return Object.hashAll([
       l$$__typename,
       l$id,
       l$title,
+      l$description,
       l$image,
       l$tasksProgress,
     ]);
@@ -24215,6 +24231,11 @@ class Fragment$Section$$CardSection$items$items$item$$StudyTopic
     final l$title = title;
     final lOther$title = other.title;
     if (l$title != lOther$title) {
+      return false;
+    }
+    final l$description = description;
+    final lOther$description = other.description;
+    if (l$description != lOther$description) {
       return false;
     }
     final l$image = image;
@@ -24258,6 +24279,7 @@ abstract class CopyWith$Fragment$Section$$CardSection$items$items$item$$StudyTop
     String? $__typename,
     String? id,
     String? title,
+    String? description,
     String? image,
     Fragment$Section$$CardSection$items$items$item$$StudyTopic$tasksProgress?
         tasksProgress,
@@ -24287,6 +24309,7 @@ class _CopyWithImpl$Fragment$Section$$CardSection$items$items$item$$StudyTopic<
     Object? $__typename = _undefined,
     Object? id = _undefined,
     Object? title = _undefined,
+    Object? description = _undefined,
     Object? image = _undefined,
     Object? tasksProgress = _undefined,
   }) =>
@@ -24298,6 +24321,9 @@ class _CopyWithImpl$Fragment$Section$$CardSection$items$items$item$$StudyTopic<
         title: title == _undefined || title == null
             ? _instance.title
             : (title as String),
+        description: description == _undefined || description == null
+            ? _instance.description
+            : (description as String),
         image: image == _undefined ? _instance.image : (image as String?),
         tasksProgress: tasksProgress == _undefined || tasksProgress == null
             ? _instance.tasksProgress
@@ -24326,6 +24352,7 @@ class _CopyWithStubImpl$Fragment$Section$$CardSection$items$items$item$$StudyTop
     String? $__typename,
     String? id,
     String? title,
+    String? description,
     String? image,
     Fragment$Section$$CardSection$items$items$item$$StudyTopic$tasksProgress?
         tasksProgress,

@@ -171,6 +171,7 @@ fragment Section on Section {
           ... on StudyTopic {
             id
             title
+            description
             image
             tasksProgress: progress {
               completed

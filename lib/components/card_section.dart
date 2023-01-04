@@ -1,12 +1,10 @@
-import 'package:brunstadtv_app/components/study_topic_card_large.dart';
 import 'package:brunstadtv_app/components/study_topic_card_mini.dart';
 import 'package:brunstadtv_app/graphql/schema/pages.graphql.dart';
 import 'package:brunstadtv_app/helpers/utils.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_markdown/flutter_markdown.dart';
 
 import '../graphql/queries/page.graphql.dart';
-import '../services/utils.dart';
+import 'study_topic_card_large.dart';
 
 class CardSection extends StatelessWidget {
   final Fragment$Section$$CardSection data;
@@ -21,7 +19,7 @@ class CardSection extends StatelessWidget {
           studyTopic: studyTopic,
         );
       } else if (data.cardSize == Enum$CardSectionSize.large) {
-        //return StudyTopicCardLarge();
+        //return StudyTopicCardLarge(studyTopic: studyTopic);
       }
     }
 
