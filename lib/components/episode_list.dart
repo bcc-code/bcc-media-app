@@ -20,7 +20,7 @@ class EpisodeListEpisode extends StatelessWidget {
     this.showTitle,
     required this.ageRating,
     required this.duration,
-    required this.showSecondaryTitle,
+    this.showSecondaryTitle = true,
   });
   final String id;
   final String title;
