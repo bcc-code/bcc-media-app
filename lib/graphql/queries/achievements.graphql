@@ -36,5 +36,7 @@ query getPendingAchievements {
 }
 
 mutation confirmAchievement($id: ID!) {
-  confirmAchievement(id: $id)
+  confirmAchievement(id: $id) {
+    success
+  }
 }

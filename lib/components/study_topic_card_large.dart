@@ -6,8 +6,8 @@ import 'package:flutter_svg/svg.dart';
 import '../helpers/btv_colors.dart';
 import '../helpers/svg_icons.dart';
 
-class StudyThemeCard extends StatelessWidget {
-  StudyThemeCard({super.key});
+class StudyTopicCardLarge extends StatelessWidget {
+  StudyTopicCardLarge({super.key});
 
   @override
   Widget build(BuildContext context) {

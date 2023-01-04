@@ -163,6 +163,24 @@ fragment Section on Section {
       }
     }
   }
+  ... on CardSection {
+    cardSize: size
+    items(first: $first, offset: $offset) {
+      items {
+        item {
+          ... on StudyTopic {
+            id
+            title
+            image
+            tasksProgress: progress {
+              completed
+              total
+            }
+          }
+        }
+      }
+    }
+  }
   __typename
 }
 

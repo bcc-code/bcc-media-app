@@ -813,6 +813,1375 @@ class _CopyWithStubImpl$Fragment$EpisodeLessonProgressOverview$lessons<TRes>
   items(_fn) => _res;
 }
 
+class Variables$Query$GetStudyTopicLessonStatuses {
+  factory Variables$Query$GetStudyTopicLessonStatuses({
+    required String id,
+    required int first,
+  }) =>
+      Variables$Query$GetStudyTopicLessonStatuses._({
+        r'id': id,
+        r'first': first,
+      });
+
+  Variables$Query$GetStudyTopicLessonStatuses._(this._$data);
+
+  factory Variables$Query$GetStudyTopicLessonStatuses.fromJson(
+      Map<String, dynamic> data) {
+    final result$data = <String, dynamic>{};
+    final l$id = data['id'];
+    result$data['id'] = (l$id as String);
+    final l$first = data['first'];
+    result$data['first'] = (l$first as int);
+    return Variables$Query$GetStudyTopicLessonStatuses._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  String get id => (_$data['id'] as String);
+  int get first => (_$data['first'] as int);
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    final l$id = id;
+    result$data['id'] = l$id;
+    final l$first = first;
+    result$data['first'] = l$first;
+    return result$data;
+  }
+
+  CopyWith$Variables$Query$GetStudyTopicLessonStatuses<
+          Variables$Query$GetStudyTopicLessonStatuses>
+      get copyWith => CopyWith$Variables$Query$GetStudyTopicLessonStatuses(
+            this,
+            (i) => i,
+          );
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (!(other is Variables$Query$GetStudyTopicLessonStatuses) ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$id = id;
+    final lOther$id = other.id;
+    if (l$id != lOther$id) {
+      return false;
+    }
+    final l$first = first;
+    final lOther$first = other.first;
+    if (l$first != lOther$first) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$id = id;
+    final l$first = first;
+    return Object.hashAll([
+      l$id,
+      l$first,
+    ]);
+  }
+}
+
+abstract class CopyWith$Variables$Query$GetStudyTopicLessonStatuses<TRes> {
+  factory CopyWith$Variables$Query$GetStudyTopicLessonStatuses(
+    Variables$Query$GetStudyTopicLessonStatuses instance,
+    TRes Function(Variables$Query$GetStudyTopicLessonStatuses) then,
+  ) = _CopyWithImpl$Variables$Query$GetStudyTopicLessonStatuses;
+
+  factory CopyWith$Variables$Query$GetStudyTopicLessonStatuses.stub(TRes res) =
+      _CopyWithStubImpl$Variables$Query$GetStudyTopicLessonStatuses;
+
+  TRes call({
+    String? id,
+    int? first,
+  });
+}
+
+class _CopyWithImpl$Variables$Query$GetStudyTopicLessonStatuses<TRes>
+    implements CopyWith$Variables$Query$GetStudyTopicLessonStatuses<TRes> {
+  _CopyWithImpl$Variables$Query$GetStudyTopicLessonStatuses(
+    this._instance,
+    this._then,
+  );
+
+  final Variables$Query$GetStudyTopicLessonStatuses _instance;
+
+  final TRes Function(Variables$Query$GetStudyTopicLessonStatuses) _then;
+
+  static const _undefined = {};
+
+  TRes call({
+    Object? id = _undefined,
+    Object? first = _undefined,
+  }) =>
+      _then(Variables$Query$GetStudyTopicLessonStatuses._({
+        ..._instance._$data,
+        if (id != _undefined && id != null) 'id': (id as String),
+        if (first != _undefined && first != null) 'first': (first as int),
+      }));
+}
+
+class _CopyWithStubImpl$Variables$Query$GetStudyTopicLessonStatuses<TRes>
+    implements CopyWith$Variables$Query$GetStudyTopicLessonStatuses<TRes> {
+  _CopyWithStubImpl$Variables$Query$GetStudyTopicLessonStatuses(this._res);
+
+  TRes _res;
+
+  call({
+    String? id,
+    int? first,
+  }) =>
+      _res;
+}
+
+class Query$GetStudyTopicLessonStatuses {
+  Query$GetStudyTopicLessonStatuses({
+    required this.studyTopic,
+    required this.$__typename,
+  });
+
+  factory Query$GetStudyTopicLessonStatuses.fromJson(
+      Map<String, dynamic> json) {
+    final l$studyTopic = json['studyTopic'];
+    final l$$__typename = json['__typename'];
+    return Query$GetStudyTopicLessonStatuses(
+      studyTopic: Query$GetStudyTopicLessonStatuses$studyTopic.fromJson(
+          (l$studyTopic as Map<String, dynamic>)),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final Query$GetStudyTopicLessonStatuses$studyTopic studyTopic;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$studyTopic = studyTopic;
+    _resultData['studyTopic'] = l$studyTopic.toJson();
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$studyTopic = studyTopic;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$studyTopic,
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (!(other is Query$GetStudyTopicLessonStatuses) ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$studyTopic = studyTopic;
+    final lOther$studyTopic = other.studyTopic;
+    if (l$studyTopic != lOther$studyTopic) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Query$GetStudyTopicLessonStatuses
+    on Query$GetStudyTopicLessonStatuses {
+  CopyWith$Query$GetStudyTopicLessonStatuses<Query$GetStudyTopicLessonStatuses>
+      get copyWith => CopyWith$Query$GetStudyTopicLessonStatuses(
+            this,
+            (i) => i,
+          );
+}
+
+abstract class CopyWith$Query$GetStudyTopicLessonStatuses<TRes> {
+  factory CopyWith$Query$GetStudyTopicLessonStatuses(
+    Query$GetStudyTopicLessonStatuses instance,
+    TRes Function(Query$GetStudyTopicLessonStatuses) then,
+  ) = _CopyWithImpl$Query$GetStudyTopicLessonStatuses;
+
+  factory CopyWith$Query$GetStudyTopicLessonStatuses.stub(TRes res) =
+      _CopyWithStubImpl$Query$GetStudyTopicLessonStatuses;
+
+  TRes call({
+    Query$GetStudyTopicLessonStatuses$studyTopic? studyTopic,
+    String? $__typename,
+  });
+  CopyWith$Query$GetStudyTopicLessonStatuses$studyTopic<TRes> get studyTopic;
+}
+
+class _CopyWithImpl$Query$GetStudyTopicLessonStatuses<TRes>
+    implements CopyWith$Query$GetStudyTopicLessonStatuses<TRes> {
+  _CopyWithImpl$Query$GetStudyTopicLessonStatuses(
+    this._instance,
+    this._then,
+  );
+
+  final Query$GetStudyTopicLessonStatuses _instance;
+
+  final TRes Function(Query$GetStudyTopicLessonStatuses) _then;
+
+  static const _undefined = {};
+
+  TRes call({
+    Object? studyTopic = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(Query$GetStudyTopicLessonStatuses(
+        studyTopic: studyTopic == _undefined || studyTopic == null
+            ? _instance.studyTopic
+            : (studyTopic as Query$GetStudyTopicLessonStatuses$studyTopic),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+  CopyWith$Query$GetStudyTopicLessonStatuses$studyTopic<TRes> get studyTopic {
+    final local$studyTopic = _instance.studyTopic;
+    return CopyWith$Query$GetStudyTopicLessonStatuses$studyTopic(
+        local$studyTopic, (e) => call(studyTopic: e));
+  }
+}
+
+class _CopyWithStubImpl$Query$GetStudyTopicLessonStatuses<TRes>
+    implements CopyWith$Query$GetStudyTopicLessonStatuses<TRes> {
+  _CopyWithStubImpl$Query$GetStudyTopicLessonStatuses(this._res);
+
+  TRes _res;
+
+  call({
+    Query$GetStudyTopicLessonStatuses$studyTopic? studyTopic,
+    String? $__typename,
+  }) =>
+      _res;
+  CopyWith$Query$GetStudyTopicLessonStatuses$studyTopic<TRes> get studyTopic =>
+      CopyWith$Query$GetStudyTopicLessonStatuses$studyTopic.stub(_res);
+}
+
+const documentNodeQueryGetStudyTopicLessonStatuses = DocumentNode(definitions: [
+  OperationDefinitionNode(
+    type: OperationType.query,
+    name: NameNode(value: 'GetStudyTopicLessonStatuses'),
+    variableDefinitions: [
+      VariableDefinitionNode(
+        variable: VariableNode(name: NameNode(value: 'id')),
+        type: NamedTypeNode(
+          name: NameNode(value: 'ID'),
+          isNonNull: true,
+        ),
+        defaultValue: DefaultValueNode(value: null),
+        directives: [],
+      ),
+      VariableDefinitionNode(
+        variable: VariableNode(name: NameNode(value: 'first')),
+        type: NamedTypeNode(
+          name: NameNode(value: 'Int'),
+          isNonNull: true,
+        ),
+        defaultValue: DefaultValueNode(value: null),
+        directives: [],
+      ),
+    ],
+    directives: [],
+    selectionSet: SelectionSetNode(selections: [
+      FieldNode(
+        name: NameNode(value: 'studyTopic'),
+        alias: null,
+        arguments: [
+          ArgumentNode(
+            name: NameNode(value: 'id'),
+            value: VariableNode(name: NameNode(value: 'id')),
+          )
+        ],
+        directives: [],
+        selectionSet: SelectionSetNode(selections: [
+          FieldNode(
+            name: NameNode(value: 'lessons'),
+            alias: null,
+            arguments: [
+              ArgumentNode(
+                name: NameNode(value: 'first'),
+                value: VariableNode(name: NameNode(value: 'first')),
+              )
+            ],
+            directives: [],
+            selectionSet: SelectionSetNode(selections: [
+              FieldNode(
+                name: NameNode(value: 'items'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: SelectionSetNode(selections: [
+                  FieldNode(
+                    name: NameNode(value: 'id'),
+                    alias: null,
+                    arguments: [],
+                    directives: [],
+                    selectionSet: null,
+                  ),
+                  FieldNode(
+                    name: NameNode(value: 'completed'),
+                    alias: null,
+                    arguments: [],
+                    directives: [],
+                    selectionSet: null,
+                  ),
+                  FieldNode(
+                    name: NameNode(value: 'episodes'),
+                    alias: null,
+                    arguments: [
+                      ArgumentNode(
+                        name: NameNode(value: 'first'),
+                        value: IntValueNode(value: '1'),
+                      )
+                    ],
+                    directives: [],
+                    selectionSet: SelectionSetNode(selections: [
+                      FieldNode(
+                        name: NameNode(value: 'items'),
+                        alias: null,
+                        arguments: [],
+                        directives: [],
+                        selectionSet: SelectionSetNode(selections: [
+                          FieldNode(
+                            name: NameNode(value: 'id'),
+                            alias: null,
+                            arguments: [],
+                            directives: [],
+                            selectionSet: null,
+                          ),
+                          FieldNode(
+                            name: NameNode(value: '__typename'),
+                            alias: null,
+                            arguments: [],
+                            directives: [],
+                            selectionSet: null,
+                          ),
+                        ]),
+                      ),
+                      FieldNode(
+                        name: NameNode(value: '__typename'),
+                        alias: null,
+                        arguments: [],
+                        directives: [],
+                        selectionSet: null,
+                      ),
+                    ]),
+                  ),
+                  FieldNode(
+                    name: NameNode(value: '__typename'),
+                    alias: null,
+                    arguments: [],
+                    directives: [],
+                    selectionSet: null,
+                  ),
+                ]),
+              ),
+              FieldNode(
+                name: NameNode(value: '__typename'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null,
+              ),
+            ]),
+          ),
+          FieldNode(
+            name: NameNode(value: '__typename'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+        ]),
+      ),
+      FieldNode(
+        name: NameNode(value: '__typename'),
+        alias: null,
+        arguments: [],
+        directives: [],
+        selectionSet: null,
+      ),
+    ]),
+  ),
+]);
+Query$GetStudyTopicLessonStatuses _parserFn$Query$GetStudyTopicLessonStatuses(
+        Map<String, dynamic> data) =>
+    Query$GetStudyTopicLessonStatuses.fromJson(data);
+
+class Options$Query$GetStudyTopicLessonStatuses
+    extends graphql.QueryOptions<Query$GetStudyTopicLessonStatuses> {
+  Options$Query$GetStudyTopicLessonStatuses({
+    String? operationName,
+    required Variables$Query$GetStudyTopicLessonStatuses variables,
+    graphql.FetchPolicy? fetchPolicy,
+    graphql.ErrorPolicy? errorPolicy,
+    graphql.CacheRereadPolicy? cacheRereadPolicy,
+    Object? optimisticResult,
+    Duration? pollInterval,
+    graphql.Context? context,
+  }) : super(
+          variables: variables.toJson(),
+          operationName: operationName,
+          fetchPolicy: fetchPolicy,
+          errorPolicy: errorPolicy,
+          cacheRereadPolicy: cacheRereadPolicy,
+          optimisticResult: optimisticResult,
+          pollInterval: pollInterval,
+          context: context,
+          document: documentNodeQueryGetStudyTopicLessonStatuses,
+          parserFn: _parserFn$Query$GetStudyTopicLessonStatuses,
+        );
+}
+
+class WatchOptions$Query$GetStudyTopicLessonStatuses
+    extends graphql.WatchQueryOptions<Query$GetStudyTopicLessonStatuses> {
+  WatchOptions$Query$GetStudyTopicLessonStatuses({
+    String? operationName,
+    required Variables$Query$GetStudyTopicLessonStatuses variables,
+    graphql.FetchPolicy? fetchPolicy,
+    graphql.ErrorPolicy? errorPolicy,
+    graphql.CacheRereadPolicy? cacheRereadPolicy,
+    Object? optimisticResult,
+    graphql.Context? context,
+    Duration? pollInterval,
+    bool? eagerlyFetchResults,
+    bool carryForwardDataOnException = true,
+    bool fetchResults = false,
+  }) : super(
+          variables: variables.toJson(),
+          operationName: operationName,
+          fetchPolicy: fetchPolicy,
+          errorPolicy: errorPolicy,
+          cacheRereadPolicy: cacheRereadPolicy,
+          optimisticResult: optimisticResult,
+          context: context,
+          document: documentNodeQueryGetStudyTopicLessonStatuses,
+          pollInterval: pollInterval,
+          eagerlyFetchResults: eagerlyFetchResults,
+          carryForwardDataOnException: carryForwardDataOnException,
+          fetchResults: fetchResults,
+          parserFn: _parserFn$Query$GetStudyTopicLessonStatuses,
+        );
+}
+
+class FetchMoreOptions$Query$GetStudyTopicLessonStatuses
+    extends graphql.FetchMoreOptions {
+  FetchMoreOptions$Query$GetStudyTopicLessonStatuses({
+    required graphql.UpdateQuery updateQuery,
+    required Variables$Query$GetStudyTopicLessonStatuses variables,
+  }) : super(
+          updateQuery: updateQuery,
+          variables: variables.toJson(),
+          document: documentNodeQueryGetStudyTopicLessonStatuses,
+        );
+}
+
+extension ClientExtension$Query$GetStudyTopicLessonStatuses
+    on graphql.GraphQLClient {
+  Future<graphql.QueryResult<Query$GetStudyTopicLessonStatuses>>
+      query$GetStudyTopicLessonStatuses(
+              Options$Query$GetStudyTopicLessonStatuses options) async =>
+          await this.query(options);
+  graphql.ObservableQuery<Query$GetStudyTopicLessonStatuses>
+      watchQuery$GetStudyTopicLessonStatuses(
+              WatchOptions$Query$GetStudyTopicLessonStatuses options) =>
+          this.watchQuery(options);
+  void writeQuery$GetStudyTopicLessonStatuses({
+    required Query$GetStudyTopicLessonStatuses data,
+    required Variables$Query$GetStudyTopicLessonStatuses variables,
+    bool broadcast = true,
+  }) =>
+      this.writeQuery(
+        graphql.Request(
+          operation: graphql.Operation(
+              document: documentNodeQueryGetStudyTopicLessonStatuses),
+          variables: variables.toJson(),
+        ),
+        data: data.toJson(),
+        broadcast: broadcast,
+      );
+  Query$GetStudyTopicLessonStatuses? readQuery$GetStudyTopicLessonStatuses({
+    required Variables$Query$GetStudyTopicLessonStatuses variables,
+    bool optimistic = true,
+  }) {
+    final result = this.readQuery(
+      graphql.Request(
+        operation: graphql.Operation(
+            document: documentNodeQueryGetStudyTopicLessonStatuses),
+        variables: variables.toJson(),
+      ),
+      optimistic: optimistic,
+    );
+    return result == null
+        ? null
+        : Query$GetStudyTopicLessonStatuses.fromJson(result);
+  }
+}
+
+graphql_flutter.QueryHookResult<Query$GetStudyTopicLessonStatuses>
+    useQuery$GetStudyTopicLessonStatuses(
+            Options$Query$GetStudyTopicLessonStatuses options) =>
+        graphql_flutter.useQuery(options);
+graphql.ObservableQuery<Query$GetStudyTopicLessonStatuses>
+    useWatchQuery$GetStudyTopicLessonStatuses(
+            WatchOptions$Query$GetStudyTopicLessonStatuses options) =>
+        graphql_flutter.useWatchQuery(options);
+
+class Query$GetStudyTopicLessonStatuses$Widget
+    extends graphql_flutter.Query<Query$GetStudyTopicLessonStatuses> {
+  Query$GetStudyTopicLessonStatuses$Widget({
+    widgets.Key? key,
+    required Options$Query$GetStudyTopicLessonStatuses options,
+    required graphql_flutter.QueryBuilder<Query$GetStudyTopicLessonStatuses>
+        builder,
+  }) : super(
+          key: key,
+          options: options,
+          builder: builder,
+        );
+}
+
+class Query$GetStudyTopicLessonStatuses$studyTopic {
+  Query$GetStudyTopicLessonStatuses$studyTopic({
+    required this.lessons,
+    required this.$__typename,
+  });
+
+  factory Query$GetStudyTopicLessonStatuses$studyTopic.fromJson(
+      Map<String, dynamic> json) {
+    final l$lessons = json['lessons'];
+    final l$$__typename = json['__typename'];
+    return Query$GetStudyTopicLessonStatuses$studyTopic(
+      lessons: Query$GetStudyTopicLessonStatuses$studyTopic$lessons.fromJson(
+          (l$lessons as Map<String, dynamic>)),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final Query$GetStudyTopicLessonStatuses$studyTopic$lessons lessons;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$lessons = lessons;
+    _resultData['lessons'] = l$lessons.toJson();
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$lessons = lessons;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$lessons,
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (!(other is Query$GetStudyTopicLessonStatuses$studyTopic) ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$lessons = lessons;
+    final lOther$lessons = other.lessons;
+    if (l$lessons != lOther$lessons) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Query$GetStudyTopicLessonStatuses$studyTopic
+    on Query$GetStudyTopicLessonStatuses$studyTopic {
+  CopyWith$Query$GetStudyTopicLessonStatuses$studyTopic<
+          Query$GetStudyTopicLessonStatuses$studyTopic>
+      get copyWith => CopyWith$Query$GetStudyTopicLessonStatuses$studyTopic(
+            this,
+            (i) => i,
+          );
+}
+
+abstract class CopyWith$Query$GetStudyTopicLessonStatuses$studyTopic<TRes> {
+  factory CopyWith$Query$GetStudyTopicLessonStatuses$studyTopic(
+    Query$GetStudyTopicLessonStatuses$studyTopic instance,
+    TRes Function(Query$GetStudyTopicLessonStatuses$studyTopic) then,
+  ) = _CopyWithImpl$Query$GetStudyTopicLessonStatuses$studyTopic;
+
+  factory CopyWith$Query$GetStudyTopicLessonStatuses$studyTopic.stub(TRes res) =
+      _CopyWithStubImpl$Query$GetStudyTopicLessonStatuses$studyTopic;
+
+  TRes call({
+    Query$GetStudyTopicLessonStatuses$studyTopic$lessons? lessons,
+    String? $__typename,
+  });
+  CopyWith$Query$GetStudyTopicLessonStatuses$studyTopic$lessons<TRes>
+      get lessons;
+}
+
+class _CopyWithImpl$Query$GetStudyTopicLessonStatuses$studyTopic<TRes>
+    implements CopyWith$Query$GetStudyTopicLessonStatuses$studyTopic<TRes> {
+  _CopyWithImpl$Query$GetStudyTopicLessonStatuses$studyTopic(
+    this._instance,
+    this._then,
+  );
+
+  final Query$GetStudyTopicLessonStatuses$studyTopic _instance;
+
+  final TRes Function(Query$GetStudyTopicLessonStatuses$studyTopic) _then;
+
+  static const _undefined = {};
+
+  TRes call({
+    Object? lessons = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(Query$GetStudyTopicLessonStatuses$studyTopic(
+        lessons: lessons == _undefined || lessons == null
+            ? _instance.lessons
+            : (lessons as Query$GetStudyTopicLessonStatuses$studyTopic$lessons),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+  CopyWith$Query$GetStudyTopicLessonStatuses$studyTopic$lessons<TRes>
+      get lessons {
+    final local$lessons = _instance.lessons;
+    return CopyWith$Query$GetStudyTopicLessonStatuses$studyTopic$lessons(
+        local$lessons, (e) => call(lessons: e));
+  }
+}
+
+class _CopyWithStubImpl$Query$GetStudyTopicLessonStatuses$studyTopic<TRes>
+    implements CopyWith$Query$GetStudyTopicLessonStatuses$studyTopic<TRes> {
+  _CopyWithStubImpl$Query$GetStudyTopicLessonStatuses$studyTopic(this._res);
+
+  TRes _res;
+
+  call({
+    Query$GetStudyTopicLessonStatuses$studyTopic$lessons? lessons,
+    String? $__typename,
+  }) =>
+      _res;
+  CopyWith$Query$GetStudyTopicLessonStatuses$studyTopic$lessons<TRes>
+      get lessons =>
+          CopyWith$Query$GetStudyTopicLessonStatuses$studyTopic$lessons.stub(
+              _res);
+}
+
+class Query$GetStudyTopicLessonStatuses$studyTopic$lessons {
+  Query$GetStudyTopicLessonStatuses$studyTopic$lessons({
+    required this.items,
+    required this.$__typename,
+  });
+
+  factory Query$GetStudyTopicLessonStatuses$studyTopic$lessons.fromJson(
+      Map<String, dynamic> json) {
+    final l$items = json['items'];
+    final l$$__typename = json['__typename'];
+    return Query$GetStudyTopicLessonStatuses$studyTopic$lessons(
+      items: (l$items as List<dynamic>)
+          .map((e) => Query$GetStudyTopicLessonStatuses$studyTopic$lessons$items
+              .fromJson((e as Map<String, dynamic>)))
+          .toList(),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final List<Query$GetStudyTopicLessonStatuses$studyTopic$lessons$items> items;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$items = items;
+    _resultData['items'] = l$items.map((e) => e.toJson()).toList();
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$items = items;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      Object.hashAll(l$items.map((v) => v)),
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (!(other is Query$GetStudyTopicLessonStatuses$studyTopic$lessons) ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$items = items;
+    final lOther$items = other.items;
+    if (l$items.length != lOther$items.length) {
+      return false;
+    }
+    for (int i = 0; i < l$items.length; i++) {
+      final l$items$entry = l$items[i];
+      final lOther$items$entry = lOther$items[i];
+      if (l$items$entry != lOther$items$entry) {
+        return false;
+      }
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Query$GetStudyTopicLessonStatuses$studyTopic$lessons
+    on Query$GetStudyTopicLessonStatuses$studyTopic$lessons {
+  CopyWith$Query$GetStudyTopicLessonStatuses$studyTopic$lessons<
+          Query$GetStudyTopicLessonStatuses$studyTopic$lessons>
+      get copyWith =>
+          CopyWith$Query$GetStudyTopicLessonStatuses$studyTopic$lessons(
+            this,
+            (i) => i,
+          );
+}
+
+abstract class CopyWith$Query$GetStudyTopicLessonStatuses$studyTopic$lessons<
+    TRes> {
+  factory CopyWith$Query$GetStudyTopicLessonStatuses$studyTopic$lessons(
+    Query$GetStudyTopicLessonStatuses$studyTopic$lessons instance,
+    TRes Function(Query$GetStudyTopicLessonStatuses$studyTopic$lessons) then,
+  ) = _CopyWithImpl$Query$GetStudyTopicLessonStatuses$studyTopic$lessons;
+
+  factory CopyWith$Query$GetStudyTopicLessonStatuses$studyTopic$lessons.stub(
+          TRes res) =
+      _CopyWithStubImpl$Query$GetStudyTopicLessonStatuses$studyTopic$lessons;
+
+  TRes call({
+    List<Query$GetStudyTopicLessonStatuses$studyTopic$lessons$items>? items,
+    String? $__typename,
+  });
+  TRes items(
+      Iterable<Query$GetStudyTopicLessonStatuses$studyTopic$lessons$items> Function(
+              Iterable<
+                  CopyWith$Query$GetStudyTopicLessonStatuses$studyTopic$lessons$items<
+                      Query$GetStudyTopicLessonStatuses$studyTopic$lessons$items>>)
+          _fn);
+}
+
+class _CopyWithImpl$Query$GetStudyTopicLessonStatuses$studyTopic$lessons<TRes>
+    implements
+        CopyWith$Query$GetStudyTopicLessonStatuses$studyTopic$lessons<TRes> {
+  _CopyWithImpl$Query$GetStudyTopicLessonStatuses$studyTopic$lessons(
+    this._instance,
+    this._then,
+  );
+
+  final Query$GetStudyTopicLessonStatuses$studyTopic$lessons _instance;
+
+  final TRes Function(Query$GetStudyTopicLessonStatuses$studyTopic$lessons)
+      _then;
+
+  static const _undefined = {};
+
+  TRes call({
+    Object? items = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(Query$GetStudyTopicLessonStatuses$studyTopic$lessons(
+        items: items == _undefined || items == null
+            ? _instance.items
+            : (items as List<
+                Query$GetStudyTopicLessonStatuses$studyTopic$lessons$items>),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+  TRes items(
+          Iterable<Query$GetStudyTopicLessonStatuses$studyTopic$lessons$items> Function(
+                  Iterable<
+                      CopyWith$Query$GetStudyTopicLessonStatuses$studyTopic$lessons$items<
+                          Query$GetStudyTopicLessonStatuses$studyTopic$lessons$items>>)
+              _fn) =>
+      call(
+          items: _fn(_instance.items.map((e) =>
+              CopyWith$Query$GetStudyTopicLessonStatuses$studyTopic$lessons$items(
+                e,
+                (i) => i,
+              ))).toList());
+}
+
+class _CopyWithStubImpl$Query$GetStudyTopicLessonStatuses$studyTopic$lessons<
+        TRes>
+    implements
+        CopyWith$Query$GetStudyTopicLessonStatuses$studyTopic$lessons<TRes> {
+  _CopyWithStubImpl$Query$GetStudyTopicLessonStatuses$studyTopic$lessons(
+      this._res);
+
+  TRes _res;
+
+  call({
+    List<Query$GetStudyTopicLessonStatuses$studyTopic$lessons$items>? items,
+    String? $__typename,
+  }) =>
+      _res;
+  items(_fn) => _res;
+}
+
+class Query$GetStudyTopicLessonStatuses$studyTopic$lessons$items {
+  Query$GetStudyTopicLessonStatuses$studyTopic$lessons$items({
+    required this.id,
+    required this.completed,
+    required this.episodes,
+    required this.$__typename,
+  });
+
+  factory Query$GetStudyTopicLessonStatuses$studyTopic$lessons$items.fromJson(
+      Map<String, dynamic> json) {
+    final l$id = json['id'];
+    final l$completed = json['completed'];
+    final l$episodes = json['episodes'];
+    final l$$__typename = json['__typename'];
+    return Query$GetStudyTopicLessonStatuses$studyTopic$lessons$items(
+      id: (l$id as String),
+      completed: (l$completed as bool),
+      episodes:
+          Query$GetStudyTopicLessonStatuses$studyTopic$lessons$items$episodes
+              .fromJson((l$episodes as Map<String, dynamic>)),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final String id;
+
+  final bool completed;
+
+  final Query$GetStudyTopicLessonStatuses$studyTopic$lessons$items$episodes
+      episodes;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$id = id;
+    _resultData['id'] = l$id;
+    final l$completed = completed;
+    _resultData['completed'] = l$completed;
+    final l$episodes = episodes;
+    _resultData['episodes'] = l$episodes.toJson();
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$id = id;
+    final l$completed = completed;
+    final l$episodes = episodes;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$id,
+      l$completed,
+      l$episodes,
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (!(other
+            is Query$GetStudyTopicLessonStatuses$studyTopic$lessons$items) ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$id = id;
+    final lOther$id = other.id;
+    if (l$id != lOther$id) {
+      return false;
+    }
+    final l$completed = completed;
+    final lOther$completed = other.completed;
+    if (l$completed != lOther$completed) {
+      return false;
+    }
+    final l$episodes = episodes;
+    final lOther$episodes = other.episodes;
+    if (l$episodes != lOther$episodes) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Query$GetStudyTopicLessonStatuses$studyTopic$lessons$items
+    on Query$GetStudyTopicLessonStatuses$studyTopic$lessons$items {
+  CopyWith$Query$GetStudyTopicLessonStatuses$studyTopic$lessons$items<
+          Query$GetStudyTopicLessonStatuses$studyTopic$lessons$items>
+      get copyWith =>
+          CopyWith$Query$GetStudyTopicLessonStatuses$studyTopic$lessons$items(
+            this,
+            (i) => i,
+          );
+}
+
+abstract class CopyWith$Query$GetStudyTopicLessonStatuses$studyTopic$lessons$items<
+    TRes> {
+  factory CopyWith$Query$GetStudyTopicLessonStatuses$studyTopic$lessons$items(
+    Query$GetStudyTopicLessonStatuses$studyTopic$lessons$items instance,
+    TRes Function(Query$GetStudyTopicLessonStatuses$studyTopic$lessons$items)
+        then,
+  ) = _CopyWithImpl$Query$GetStudyTopicLessonStatuses$studyTopic$lessons$items;
+
+  factory CopyWith$Query$GetStudyTopicLessonStatuses$studyTopic$lessons$items.stub(
+          TRes res) =
+      _CopyWithStubImpl$Query$GetStudyTopicLessonStatuses$studyTopic$lessons$items;
+
+  TRes call({
+    String? id,
+    bool? completed,
+    Query$GetStudyTopicLessonStatuses$studyTopic$lessons$items$episodes?
+        episodes,
+    String? $__typename,
+  });
+  CopyWith$Query$GetStudyTopicLessonStatuses$studyTopic$lessons$items$episodes<
+      TRes> get episodes;
+}
+
+class _CopyWithImpl$Query$GetStudyTopicLessonStatuses$studyTopic$lessons$items<
+        TRes>
+    implements
+        CopyWith$Query$GetStudyTopicLessonStatuses$studyTopic$lessons$items<
+            TRes> {
+  _CopyWithImpl$Query$GetStudyTopicLessonStatuses$studyTopic$lessons$items(
+    this._instance,
+    this._then,
+  );
+
+  final Query$GetStudyTopicLessonStatuses$studyTopic$lessons$items _instance;
+
+  final TRes Function(
+      Query$GetStudyTopicLessonStatuses$studyTopic$lessons$items) _then;
+
+  static const _undefined = {};
+
+  TRes call({
+    Object? id = _undefined,
+    Object? completed = _undefined,
+    Object? episodes = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(Query$GetStudyTopicLessonStatuses$studyTopic$lessons$items(
+        id: id == _undefined || id == null ? _instance.id : (id as String),
+        completed: completed == _undefined || completed == null
+            ? _instance.completed
+            : (completed as bool),
+        episodes: episodes == _undefined || episodes == null
+            ? _instance.episodes
+            : (episodes
+                as Query$GetStudyTopicLessonStatuses$studyTopic$lessons$items$episodes),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+  CopyWith$Query$GetStudyTopicLessonStatuses$studyTopic$lessons$items$episodes<
+      TRes> get episodes {
+    final local$episodes = _instance.episodes;
+    return CopyWith$Query$GetStudyTopicLessonStatuses$studyTopic$lessons$items$episodes(
+        local$episodes, (e) => call(episodes: e));
+  }
+}
+
+class _CopyWithStubImpl$Query$GetStudyTopicLessonStatuses$studyTopic$lessons$items<
+        TRes>
+    implements
+        CopyWith$Query$GetStudyTopicLessonStatuses$studyTopic$lessons$items<
+            TRes> {
+  _CopyWithStubImpl$Query$GetStudyTopicLessonStatuses$studyTopic$lessons$items(
+      this._res);
+
+  TRes _res;
+
+  call({
+    String? id,
+    bool? completed,
+    Query$GetStudyTopicLessonStatuses$studyTopic$lessons$items$episodes?
+        episodes,
+    String? $__typename,
+  }) =>
+      _res;
+  CopyWith$Query$GetStudyTopicLessonStatuses$studyTopic$lessons$items$episodes<
+          TRes>
+      get episodes =>
+          CopyWith$Query$GetStudyTopicLessonStatuses$studyTopic$lessons$items$episodes
+              .stub(_res);
+}
+
+class Query$GetStudyTopicLessonStatuses$studyTopic$lessons$items$episodes {
+  Query$GetStudyTopicLessonStatuses$studyTopic$lessons$items$episodes({
+    required this.items,
+    required this.$__typename,
+  });
+
+  factory Query$GetStudyTopicLessonStatuses$studyTopic$lessons$items$episodes.fromJson(
+      Map<String, dynamic> json) {
+    final l$items = json['items'];
+    final l$$__typename = json['__typename'];
+    return Query$GetStudyTopicLessonStatuses$studyTopic$lessons$items$episodes(
+      items: (l$items as List<dynamic>)
+          .map((e) =>
+              Query$GetStudyTopicLessonStatuses$studyTopic$lessons$items$episodes$items
+                  .fromJson((e as Map<String, dynamic>)))
+          .toList(),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final List<
+          Query$GetStudyTopicLessonStatuses$studyTopic$lessons$items$episodes$items>
+      items;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$items = items;
+    _resultData['items'] = l$items.map((e) => e.toJson()).toList();
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$items = items;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      Object.hashAll(l$items.map((v) => v)),
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (!(other
+            is Query$GetStudyTopicLessonStatuses$studyTopic$lessons$items$episodes) ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$items = items;
+    final lOther$items = other.items;
+    if (l$items.length != lOther$items.length) {
+      return false;
+    }
+    for (int i = 0; i < l$items.length; i++) {
+      final l$items$entry = l$items[i];
+      final lOther$items$entry = lOther$items[i];
+      if (l$items$entry != lOther$items$entry) {
+        return false;
+      }
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Query$GetStudyTopicLessonStatuses$studyTopic$lessons$items$episodes
+    on Query$GetStudyTopicLessonStatuses$studyTopic$lessons$items$episodes {
+  CopyWith$Query$GetStudyTopicLessonStatuses$studyTopic$lessons$items$episodes<
+          Query$GetStudyTopicLessonStatuses$studyTopic$lessons$items$episodes>
+      get copyWith =>
+          CopyWith$Query$GetStudyTopicLessonStatuses$studyTopic$lessons$items$episodes(
+            this,
+            (i) => i,
+          );
+}
+
+abstract class CopyWith$Query$GetStudyTopicLessonStatuses$studyTopic$lessons$items$episodes<
+    TRes> {
+  factory CopyWith$Query$GetStudyTopicLessonStatuses$studyTopic$lessons$items$episodes(
+    Query$GetStudyTopicLessonStatuses$studyTopic$lessons$items$episodes
+        instance,
+    TRes Function(
+            Query$GetStudyTopicLessonStatuses$studyTopic$lessons$items$episodes)
+        then,
+  ) = _CopyWithImpl$Query$GetStudyTopicLessonStatuses$studyTopic$lessons$items$episodes;
+
+  factory CopyWith$Query$GetStudyTopicLessonStatuses$studyTopic$lessons$items$episodes.stub(
+          TRes res) =
+      _CopyWithStubImpl$Query$GetStudyTopicLessonStatuses$studyTopic$lessons$items$episodes;
+
+  TRes call({
+    List<Query$GetStudyTopicLessonStatuses$studyTopic$lessons$items$episodes$items>?
+        items,
+    String? $__typename,
+  });
+  TRes items(
+      Iterable<Query$GetStudyTopicLessonStatuses$studyTopic$lessons$items$episodes$items> Function(
+              Iterable<
+                  CopyWith$Query$GetStudyTopicLessonStatuses$studyTopic$lessons$items$episodes$items<
+                      Query$GetStudyTopicLessonStatuses$studyTopic$lessons$items$episodes$items>>)
+          _fn);
+}
+
+class _CopyWithImpl$Query$GetStudyTopicLessonStatuses$studyTopic$lessons$items$episodes<
+        TRes>
+    implements
+        CopyWith$Query$GetStudyTopicLessonStatuses$studyTopic$lessons$items$episodes<
+            TRes> {
+  _CopyWithImpl$Query$GetStudyTopicLessonStatuses$studyTopic$lessons$items$episodes(
+    this._instance,
+    this._then,
+  );
+
+  final Query$GetStudyTopicLessonStatuses$studyTopic$lessons$items$episodes
+      _instance;
+
+  final TRes Function(
+          Query$GetStudyTopicLessonStatuses$studyTopic$lessons$items$episodes)
+      _then;
+
+  static const _undefined = {};
+
+  TRes call({
+    Object? items = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(Query$GetStudyTopicLessonStatuses$studyTopic$lessons$items$episodes(
+        items: items == _undefined || items == null
+            ? _instance.items
+            : (items as List<
+                Query$GetStudyTopicLessonStatuses$studyTopic$lessons$items$episodes$items>),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+  TRes items(
+          Iterable<Query$GetStudyTopicLessonStatuses$studyTopic$lessons$items$episodes$items> Function(
+                  Iterable<
+                      CopyWith$Query$GetStudyTopicLessonStatuses$studyTopic$lessons$items$episodes$items<
+                          Query$GetStudyTopicLessonStatuses$studyTopic$lessons$items$episodes$items>>)
+              _fn) =>
+      call(
+          items: _fn(_instance.items.map((e) =>
+              CopyWith$Query$GetStudyTopicLessonStatuses$studyTopic$lessons$items$episodes$items(
+                e,
+                (i) => i,
+              ))).toList());
+}
+
+class _CopyWithStubImpl$Query$GetStudyTopicLessonStatuses$studyTopic$lessons$items$episodes<
+        TRes>
+    implements
+        CopyWith$Query$GetStudyTopicLessonStatuses$studyTopic$lessons$items$episodes<
+            TRes> {
+  _CopyWithStubImpl$Query$GetStudyTopicLessonStatuses$studyTopic$lessons$items$episodes(
+      this._res);
+
+  TRes _res;
+
+  call({
+    List<Query$GetStudyTopicLessonStatuses$studyTopic$lessons$items$episodes$items>?
+        items,
+    String? $__typename,
+  }) =>
+      _res;
+  items(_fn) => _res;
+}
+
+class Query$GetStudyTopicLessonStatuses$studyTopic$lessons$items$episodes$items {
+  Query$GetStudyTopicLessonStatuses$studyTopic$lessons$items$episodes$items({
+    required this.id,
+    required this.$__typename,
+  });
+
+  factory Query$GetStudyTopicLessonStatuses$studyTopic$lessons$items$episodes$items.fromJson(
+      Map<String, dynamic> json) {
+    final l$id = json['id'];
+    final l$$__typename = json['__typename'];
+    return Query$GetStudyTopicLessonStatuses$studyTopic$lessons$items$episodes$items(
+      id: (l$id as String),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final String id;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$id = id;
+    _resultData['id'] = l$id;
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$id = id;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$id,
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (!(other
+            is Query$GetStudyTopicLessonStatuses$studyTopic$lessons$items$episodes$items) ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$id = id;
+    final lOther$id = other.id;
+    if (l$id != lOther$id) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Query$GetStudyTopicLessonStatuses$studyTopic$lessons$items$episodes$items
+    on Query$GetStudyTopicLessonStatuses$studyTopic$lessons$items$episodes$items {
+  CopyWith$Query$GetStudyTopicLessonStatuses$studyTopic$lessons$items$episodes$items<
+          Query$GetStudyTopicLessonStatuses$studyTopic$lessons$items$episodes$items>
+      get copyWith =>
+          CopyWith$Query$GetStudyTopicLessonStatuses$studyTopic$lessons$items$episodes$items(
+            this,
+            (i) => i,
+          );
+}
+
+abstract class CopyWith$Query$GetStudyTopicLessonStatuses$studyTopic$lessons$items$episodes$items<
+    TRes> {
+  factory CopyWith$Query$GetStudyTopicLessonStatuses$studyTopic$lessons$items$episodes$items(
+    Query$GetStudyTopicLessonStatuses$studyTopic$lessons$items$episodes$items
+        instance,
+    TRes Function(
+            Query$GetStudyTopicLessonStatuses$studyTopic$lessons$items$episodes$items)
+        then,
+  ) = _CopyWithImpl$Query$GetStudyTopicLessonStatuses$studyTopic$lessons$items$episodes$items;
+
+  factory CopyWith$Query$GetStudyTopicLessonStatuses$studyTopic$lessons$items$episodes$items.stub(
+          TRes res) =
+      _CopyWithStubImpl$Query$GetStudyTopicLessonStatuses$studyTopic$lessons$items$episodes$items;
+
+  TRes call({
+    String? id,
+    String? $__typename,
+  });
+}
+
+class _CopyWithImpl$Query$GetStudyTopicLessonStatuses$studyTopic$lessons$items$episodes$items<
+        TRes>
+    implements
+        CopyWith$Query$GetStudyTopicLessonStatuses$studyTopic$lessons$items$episodes$items<
+            TRes> {
+  _CopyWithImpl$Query$GetStudyTopicLessonStatuses$studyTopic$lessons$items$episodes$items(
+    this._instance,
+    this._then,
+  );
+
+  final Query$GetStudyTopicLessonStatuses$studyTopic$lessons$items$episodes$items
+      _instance;
+
+  final TRes Function(
+          Query$GetStudyTopicLessonStatuses$studyTopic$lessons$items$episodes$items)
+      _then;
+
+  static const _undefined = {};
+
+  TRes call({
+    Object? id = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(
+          Query$GetStudyTopicLessonStatuses$studyTopic$lessons$items$episodes$items(
+        id: id == _undefined || id == null ? _instance.id : (id as String),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+}
+
+class _CopyWithStubImpl$Query$GetStudyTopicLessonStatuses$studyTopic$lessons$items$episodes$items<
+        TRes>
+    implements
+        CopyWith$Query$GetStudyTopicLessonStatuses$studyTopic$lessons$items$episodes$items<
+            TRes> {
+  _CopyWithStubImpl$Query$GetStudyTopicLessonStatuses$studyTopic$lessons$items$episodes$items(
+      this._res);
+
+  TRes _res;
+
+  call({
+    String? id,
+    String? $__typename,
+  }) =>
+      _res;
+}
+
 class Variables$Query$GetEpisodeLessonProgress {
   factory Variables$Query$GetEpisodeLessonProgress({required String id}) =>
       Variables$Query$GetEpisodeLessonProgress._({

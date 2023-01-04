@@ -8,6 +8,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../helpers/btv_colors.dart';
 import '../helpers/btv_typography.dart';
+import '../helpers/navigation_utils.dart';
 import '../providers/inherited_data.dart';
 import 'horizontal_slider.dart';
 import 'bordered_image_container.dart';

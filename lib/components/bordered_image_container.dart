@@ -6,6 +6,7 @@ import '../helpers/image_utils.dart';
 
 class BorderedImageContainer extends StatelessWidget {
   final String? imageUrl;
+  final BorderRadiusGeometry? borderRadius;
   final double? height;
   final double? width;
   final EdgeInsetsGeometry margin;
@@ -20,6 +21,7 @@ class BorderedImageContainer extends StatelessWidget {
     this.margin = EdgeInsets.zero,
     this.padding = EdgeInsets.zero,
     this.child,
+    this.borderRadius,
   });
 
   @override
@@ -29,7 +31,7 @@ class BorderedImageContainer extends StatelessWidget {
         height: height ?? double.infinity,
         margin: margin,
         foregroundDecoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(6),
+          borderRadius: borderRadius ?? BorderRadius.circular(6),
           border: Border.all(
             width: 1,
             color: BtvColors.onTint.withOpacity(0.1),
@@ -44,7 +46,7 @@ class BorderedImageContainer extends StatelessWidget {
             final imageWidth = (constraints.maxWidth * MediaQuery.of(context).devicePixelRatio).round();
             final imageUri = imageUrl == null ? null : getImageUri(imageUrl!, width: imageWidth, height: imageHeight);
             return ClipRRect(
-              borderRadius: BorderRadius.circular(6),
+              borderRadius: borderRadius ?? BorderRadius.circular(6),
               child: SizedBox(
                 height: constraints.maxHeight,
                 child: imageUri == null

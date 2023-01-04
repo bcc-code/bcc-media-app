@@ -2339,7 +2339,22 @@ const documentNodeMutationconfirmAchievement = DocumentNode(definitions: [
           )
         ],
         directives: [],
-        selectionSet: null,
+        selectionSet: SelectionSetNode(selections: [
+          FieldNode(
+            name: NameNode(value: 'success'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
+            name: NameNode(value: '__typename'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+        ]),
       ),
       FieldNode(
         name: NameNode(value: '__typename'),
@@ -2561,21 +2576,42 @@ class Mutation$confirmAchievement$Widget
 }
 
 class Mutation$confirmAchievement$confirmAchievement {
-  Mutation$confirmAchievement$confirmAchievement();
+  Mutation$confirmAchievement$confirmAchievement({
+    required this.success,
+    required this.$__typename,
+  });
 
   factory Mutation$confirmAchievement$confirmAchievement.fromJson(
       Map<String, dynamic> json) {
-    return Mutation$confirmAchievement$confirmAchievement();
+    final l$success = json['success'];
+    final l$$__typename = json['__typename'];
+    return Mutation$confirmAchievement$confirmAchievement(
+      success: (l$success as bool),
+      $__typename: (l$$__typename as String),
+    );
   }
+
+  final bool success;
+
+  final String $__typename;
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
+    final l$success = success;
+    _resultData['success'] = l$success;
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
     return _resultData;
   }
 
   @override
   int get hashCode {
-    return Object.hashAll([]);
+    final l$success = success;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$success,
+      l$$__typename,
+    ]);
   }
 
   @override
@@ -2585,6 +2621,16 @@ class Mutation$confirmAchievement$confirmAchievement {
     }
     if (!(other is Mutation$confirmAchievement$confirmAchievement) ||
         runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$success = success;
+    final lOther$success = other.success;
+    if (l$success != lOther$success) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
       return false;
     }
     return true;
@@ -2611,7 +2657,10 @@ abstract class CopyWith$Mutation$confirmAchievement$confirmAchievement<TRes> {
           TRes res) =
       _CopyWithStubImpl$Mutation$confirmAchievement$confirmAchievement;
 
-  TRes call();
+  TRes call({
+    bool? success,
+    String? $__typename,
+  });
 }
 
 class _CopyWithImpl$Mutation$confirmAchievement$confirmAchievement<TRes>
@@ -2627,7 +2676,18 @@ class _CopyWithImpl$Mutation$confirmAchievement$confirmAchievement<TRes>
 
   static const _undefined = {};
 
-  TRes call() => _then(Mutation$confirmAchievement$confirmAchievement());
+  TRes call({
+    Object? success = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(Mutation$confirmAchievement$confirmAchievement(
+        success: success == _undefined || success == null
+            ? _instance.success
+            : (success as bool),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
 }
 
 class _CopyWithStubImpl$Mutation$confirmAchievement$confirmAchievement<TRes>
@@ -2636,5 +2696,9 @@ class _CopyWithStubImpl$Mutation$confirmAchievement$confirmAchievement<TRes>
 
   TRes _res;
 
-  call() => _res;
+  call({
+    bool? success,
+    String? $__typename,
+  }) =>
+      _res;
 }

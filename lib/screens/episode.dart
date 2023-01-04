@@ -9,7 +9,6 @@ import 'package:brunstadtv_app/components/error_generic.dart';
 import 'package:brunstadtv_app/components/loading_indicator.dart';
 import 'package:brunstadtv_app/components/season_episode_list.dart';
 import 'package:brunstadtv_app/components/feature_badge.dart';
-import 'package:brunstadtv_app/components/study/study_button.dart';
 import 'package:brunstadtv_app/graphql/client.dart';
 import 'package:brunstadtv_app/graphql/schema/items.graphql.dart';
 import 'package:brunstadtv_app/graphql/schema/pages.graphql.dart';
@@ -17,9 +16,7 @@ import 'package:brunstadtv_app/helpers/navigation_override.dart';
 import 'package:brunstadtv_app/helpers/svg_icons.dart';
 import 'package:brunstadtv_app/providers/analytics.dart';
 import 'package:brunstadtv_app/router/router.gr.dart';
-import 'package:brunstadtv_app/screens/live.dart';
 import 'package:brunstadtv_app/services/utils.dart';
-import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/material.dart';
 import 'package:bccm_player/bccm_player.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -30,7 +27,6 @@ import 'package:brunstadtv_app/providers/video_state.dart';
 import 'package:bccm_player/cast_button.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:brunstadtv_app/helpers/transparent_image.dart';
-import 'package:graphql/client.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:shimmer/shimmer.dart';
 import 'package:collection/collection.dart';
@@ -43,6 +39,7 @@ import '../components/episode_tab_selector.dart';
 import '../components/error_no_access.dart';
 import '../components/fade_indexed_stack.dart';
 import '../components/option_list.dart';
+import '../components/study_button.dart';
 import '../env/env.dart';
 import '../graphql/queries/studies.graphql.dart';
 import '../helpers/btv_buttons.dart';
@@ -51,7 +48,6 @@ import '../helpers/btv_typography.dart';
 import '../helpers/utils.dart';
 import '../l10n/app_localizations.dart';
 import '../models/analytics/content_shared.dart';
-import '../providers/auth_state.dart';
 
 class EpisodePageArguments {
   int episodeId;
@@ -439,7 +435,8 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen> with AutoRouteAwa
                                             child: Text(episodeNumberFormatted, style: BtvTextStyles.caption1.copyWith(color: BtvColors.label4)))
                                     ]),
                                     const SizedBox(height: 14.5),
-                                    Text(episode.description, style: BtvTextStyles.body2.copyWith(color: BtvColors.label3)),
+                                    if (episode.description.isNotEmpty)
+                                      Text(episode.description, style: BtvTextStyles.body2.copyWith(color: BtvColors.label3)),
                                     if (Env.enableStudy && episode.lessons.items.isNotEmpty)
                                       Padding(
                                         padding: const EdgeInsets.only(top: 16),
