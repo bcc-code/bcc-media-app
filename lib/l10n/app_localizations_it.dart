@@ -331,7 +331,7 @@ class SIt extends S {
 
   @override
   String availableFrom(String date) {
-    return 'Disponibile${date}';
+    return 'Disponibile$date';
   }
 
   @override

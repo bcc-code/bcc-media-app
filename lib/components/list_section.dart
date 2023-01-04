@@ -31,6 +31,7 @@ class ListSection extends StatelessWidget {
                   duration: kv.value.duration,
                   title: kv.value.title,
                   image: kv.value.image,
+                  showSecondaryTitle: data.metadata?.secondaryTitles ?? true,
                 ),
               ),
             )
