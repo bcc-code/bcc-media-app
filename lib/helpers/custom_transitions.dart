@@ -1,6 +1,7 @@
 // a class that holds a preset of
 // common route transition builder
 import 'package:auto_route/auto_route.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
 class CustomTransitionsBuilders {
@@ -24,12 +25,30 @@ class CustomTransitionsBuilders {
     if (animation.status == AnimationStatus.reverse) {
       curvedAnimation = CurvedAnimation(parent: animation, curve: Curves.easeInExpo);
     }
+    double? dragDistance;
     return SlideTransition(
       position: Tween<Offset>(
         begin: const Offset(1.0, 0.0),
         end: Offset.zero,
       ).animate(curvedAnimation),
-      child: child,
+      child: GestureDetector(
+        onHorizontalDragStart: (details) {
+          dragDistance = 0;
+        },
+        onHorizontalDragUpdate: (details) {
+          if (dragDistance != null && details.primaryDelta! > -1) {
+            dragDistance = dragDistance! + details.primaryDelta!;
+          } else {
+            dragDistance = null;
+          }
+        },
+        onHorizontalDragEnd: (details) {
+          if (dragDistance != null && dragDistance! >= 100) {
+            Navigator.pop(context);
+          }
+        },
+        child: child,
+      ),
     );
   }
 
