@@ -1065,6 +1065,12 @@ abstract class S {
   /// **'Start study'**
   String get startStudy;
 
+  /// Shown after completing tasks related to a video.
+  ///
+  /// In en, this message translates to:
+  /// **'Great job on completing the video.'**
+  String get videoCompletedText;
+
   /// Description displayed in a popup when earning the first achievement badge.
   ///
   /// In en, this message translates to:
@@ -1100,6 +1106,18 @@ abstract class S {
   /// In en, this message translates to:
   /// **'{count} resources'**
   String resourceCount(int count);
+
+  /// Generic button text.
+  ///
+  /// In en, this message translates to:
+  /// **'Continue'**
+  String get continueButton;
+
+  /// Generic. Used as page title, etc.
+  ///
+  /// In en, this message translates to:
+  /// **'Achievements'**
+  String get achievements;
 }
 
 class _SDelegate extends LocalizationsDelegate<S> {

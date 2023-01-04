@@ -1,5 +1,8 @@
+import 'package:brunstadtv_app/components/achivement_dialog.dart';
+import 'package:brunstadtv_app/components/dialog_with_image.dart';
 import 'package:brunstadtv_app/components/loading_generic.dart';
 import 'package:brunstadtv_app/graphql/client.dart';
+import 'package:brunstadtv_app/graphql/queries/achievements.graphql.dart';
 import 'package:brunstadtv_app/helpers/btv_typography.dart';
 import 'package:brunstadtv_app/helpers/constants.dart';
 import 'package:brunstadtv_app/helpers/webview/should_override_url_loading.dart';
@@ -18,6 +21,7 @@ import '../helpers/btv_buttons.dart';
 import '../helpers/btv_colors.dart';
 import '../helpers/svg_icons.dart';
 import '../helpers/webview/main_js_channel.dart';
+import '../l10n/app_localizations.dart';
 
 class StudyScreen extends ConsumerStatefulWidget {
   final String episodeId;
@@ -106,54 +110,40 @@ class StudyScreenState extends ConsumerState<StudyScreen> {
     );
   }
 
-  void handleMessage(List<dynamic> arguments) {
+  Future handleMessage(List<dynamic> arguments) async {
     if (arguments[0] == 'tasks_completed') {
-      showDialog(
-        barrierDismissible: false,
-        context: context,
-        builder: (context) => const _WellDoneDialog(),
-      );
+      handleTasksCompleted();
     }
   }
-}
 
-class _WellDoneDialog extends StatelessWidget {
-  const _WellDoneDialog();
+  Future handleTasksCompleted() async {
+    final navigatorContext = Navigator.of(context).context;
+    final gqlClient = ref.read(gqlClientProvider);
+    final achievements = await gqlClient.query$getPendingAchievements();
 
-  @override
-  Widget build(BuildContext context) {
-    return Dialog(
-      insetPadding: const EdgeInsets.all(16),
-      child: Container(
-        padding: const EdgeInsets.only(left: 32, right: 32, top: 40, bottom: 32),
-        width: double.infinity,
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            const Text('Well done!', style: BtvTextStyles.headline1),
-            Text('Great job on completing the video.', style: BtvTextStyles.caption1.copyWith(color: BtvColors.label3)),
-            Padding(
-              padding: const EdgeInsets.symmetric(vertical: 24),
-              child: SvgPicture.string(SvgIcons.tasksCompleted),
-            ),
-            Text(
-              'Watch the episode again and explore other available resources to deepen your understanding.',
-              textAlign: TextAlign.center,
-              style: BtvTextStyles.caption1.copyWith(color: BtvColors.label3),
-            ),
-            Container(
-              padding: const EdgeInsets.only(top: 24),
-              width: double.infinity,
-              child: BtvButton.large(
-                onPressed: () {
-                  Navigator.pop(context);
-                },
-                labelText: 'Ok',
-              ),
-            ),
-          ],
+    if (achievements.parsedData?.pendingAchievements.isNotEmpty != true) {
+      await showDialog(
+        barrierDismissible: false,
+        context: navigatorContext,
+        builder: (context) => DialogWithImage(
+          image: SvgPicture.string(SvgIcons.tasksCompleted),
+          title: S.of(context).wellDone,
+          description: S.of(context).videoCompletedText,
+          dismissButtonText: S.of(context).continueButton,
         ),
-      ),
-    );
+      );
+    }
+
+    for (final achievement in achievements.parsedData!.pendingAchievements) {
+      await showDialog(
+        barrierDismissible: false,
+        context: navigatorContext,
+        builder: (context) => AchievementDialog(
+          achievement: achievement,
+          dismissButtonText: S.of(context).continueButton,
+        ),
+      );
+      //gqlClient.mutate$confirmAchievement(Options$Mutation$confirmAchievement(variables: Variables$Mutation$confirmAchievement(id: achievement.id)));
+    }
   }
 }

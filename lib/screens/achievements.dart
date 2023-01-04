@@ -1,6 +1,8 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:brunstadtv_app/components/loading_generic.dart';
-import 'package:brunstadtv_app/components/study_progess_achievements.dart';
+import 'package:brunstadtv_app/components/achievement_group_section.dart';
 import 'package:brunstadtv_app/graphql/client.dart';
+import 'package:brunstadtv_app/graphql/queries/achievements.graphql.dart';
 import 'package:brunstadtv_app/helpers/btv_typography.dart';
 import 'package:brunstadtv_app/helpers/constants.dart';
 import 'package:brunstadtv_app/helpers/webview/should_override_url_loading.dart';
@@ -13,12 +15,16 @@ import 'package:flutter_svg/svg.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../components/custom_back_button.dart';
+import '../components/error_generic.dart';
+import '../components/page_section.dart';
 import '../env/env.dart';
 import '../graphql/queries/studies.graphql.dart';
 import '../helpers/btv_buttons.dart';
 import '../helpers/btv_colors.dart';
 import '../helpers/svg_icons.dart';
 import '../helpers/webview/main_js_channel.dart';
+import '../l10n/app_localizations.dart';
+import '../router/router.gr.dart';
 
 class AchievementsScreen extends ConsumerStatefulWidget {
   const AchievementsScreen({
@@ -30,12 +36,8 @@ class AchievementsScreen extends ConsumerStatefulWidget {
 }
 
 class AchievementsScreenState extends ConsumerState<AchievementsScreen> {
-  String pageTitle = '';
-  String url = '';
   InAppWebViewController? webViewController;
-  WebResourceError? error;
   bool loading = false;
-  double? height;
 
   @override
   void initState() {
@@ -48,8 +50,47 @@ class AchievementsScreenState extends ConsumerState<AchievementsScreen> {
         appBar: AppBar(
           leadingWidth: 92,
           leading: const CustomBackButton(),
-          title: Text(pageTitle),
+          title: Text(S.of(context).achievements),
         ),
-        body: loading ? const LoadingGeneric() : StudyProgressAchievements());
+        body: Query$getAchievementGroups$Widget(
+          builder: ((result, {fetchMore, refetch}) {
+            if (result.isLoading) {
+              return LoadingGeneric();
+            } else if (result.hasException || result.parsedData == null) {
+              return ErrorGeneric(
+                  details: result.exception?.toString(),
+                  onRetry: () {
+                    if (refetch != null) refetch();
+                  });
+            }
+            return ListView(
+              children: result.parsedData!.achievementGroups.items.map(
+                (achievementGroup) {
+                  return PageSection(
+                    title: achievementGroup.title,
+                    rightSlot: GestureDetector(
+                      onTap: () {
+                        context.router.navigate(AchievementGroupScreenRoute(groupId: achievementGroup.id));
+                      },
+                      child: Align(
+                        alignment: Alignment.bottomRight,
+                        child: Row(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            const Text('See All', style: BtvTextStyles.button2),
+                            SvgPicture.string(SvgIcons.right),
+                          ],
+                        ),
+                      ),
+                    ),
+                    child: AchievementGroupSection(
+                      achievementGroup: achievementGroup,
+                    ),
+                  );
+                },
+              ).toList(),
+            );
+          }),
+        ));
   }
 }

@@ -486,6 +486,9 @@ class SPt extends S {
   String get startStudy => 'Start study';
 
   @override
+  String get videoCompletedText => 'Great job on completing the video.';
+
+  @override
   String get achievementFirstDescription => 'Great job on completing the video and earning your first progress achievement.';
 
   @override
@@ -512,4 +515,10 @@ class SPt extends S {
   String resourceCount(int count) {
     return '$count resources';
   }
+
+  @override
+  String get continueButton => 'Continue';
+
+  @override
+  String get achievements => 'Achievements';
 }

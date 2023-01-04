@@ -655,6 +655,10 @@
   "@startStudy": {
     "description": "Button."
   },
+  "videoCompletedText": "Great job on completing the video.",
+  "@videoCompletedText": {
+    "description": "Shown after completing tasks related to a video."
+  },
   "achievementFirstDescription": "Great job on completing the video and earning your first progress achievement.",
   "@achievementFirstDescription": {
     "description": "Description displayed in a popup when earning the first achievement badge."
@@ -703,5 +707,13 @@
         "type": "int"
       }
     }
+  },
+  "continueButton": "Continue",
+  "@continueButton": {
+    "description": "Generic button text."
+  },
+  "achievements": "Achievements",
+  "@achievements": {
+    "description": "Generic. Used as page title, etc."
   }
 }

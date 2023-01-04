@@ -18,6 +18,7 @@ import 'package:brunstadtv_app/screens/search/search.dart';
 import 'package:brunstadtv_app/screens/study.dart';
 
 import '../helpers/custom_transitions.dart';
+import '../screens/achievement_group.dart';
 import '../screens/achievements.dart';
 import '../screens/episode.dart';
 import '../screens/page.dart';
@@ -159,6 +160,15 @@ const _specialRoutes = AutoRoute(
         reverseDurationInMilliseconds: 600,
         transitionsBuilder: CustomTransitionsBuilders.slideUp,
         meta: {RouteMetaConstants.analyticsName: 'achievements'}),
+    CustomRoute<void>(
+        page: AchievementGroupScreen,
+        path: '/achievement-group/:groupId',
+        durationInMilliseconds: 400,
+        reverseDurationInMilliseconds: 600,
+        transitionsBuilder: CustomTransitionsBuilders.slideUp,
+        meta: {
+          RouteMetaConstants.analyticsName: 'achievement-group',
+        }),
     CustomRoute<void>(
       page: TabsRootScreen,
       path: '/',
