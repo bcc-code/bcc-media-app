@@ -31,18 +31,20 @@ class CustomTransitionsBuilders {
         begin: const Offset(1.0, 0.0),
         end: Offset.zero,
       ).animate(curvedAnimation),
-      child: GestureDetector(
-        onHorizontalDragStart: (details) {
-          dragDistance = 0;
+      child: Listener(
+        onPointerDown: (event) {
+          if (event.position.dx <= 35) {
+            dragDistance = 0;
+          }
         },
-        onHorizontalDragUpdate: (details) {
-          if (dragDistance != null && details.primaryDelta! > -1) {
-            dragDistance = dragDistance! + details.primaryDelta!;
+        onPointerMove: (event) {
+          if (dragDistance != null && event.delta.dx > -1) {
+            dragDistance = dragDistance! + event.delta.dx;
           } else {
             dragDistance = null;
           }
         },
-        onHorizontalDragEnd: (details) {
+        onPointerUp: (event) {
           if (dragDistance != null && dragDistance! >= 100) {
             Navigator.pop(context);
           }
