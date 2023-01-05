@@ -19,7 +19,7 @@ class CardSection extends StatelessWidget {
           studyTopic: studyTopic,
         );
       } else if (data.cardSize == Enum$CardSectionSize.large) {
-        //return StudyTopicCardLarge(studyTopic: studyTopic);
+        return StudyTopicCardLarge(studyTopic: studyTopic);
       }
     }
 
@@ -28,6 +28,6 @@ class CardSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(padding: const EdgeInsets.symmetric(horizontal: 16), child: getCardWidget(data.items.items.first));
+    return Padding(padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12), child: getCardWidget(data.items.items.first));
   }
 }

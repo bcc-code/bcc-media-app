@@ -4,6 +4,7 @@ import 'package:brunstadtv_app/components/shiny_clipper.dart';
 import 'package:brunstadtv_app/components/study_progress.dart';
 import 'package:brunstadtv_app/helpers/btv_gradients.dart';
 import 'package:brunstadtv_app/helpers/btv_typography.dart';
+import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 
 import 'package:brunstadtv_app/graphql/queries/studies.graphql.dart';
@@ -38,6 +39,8 @@ class _StudyTopicCardMiniState extends State<StudyTopicCardMini> {
     super.dispose();
   }
 
+  String? get imageUrl => widget.studyTopic.images.firstWhereOrNull((element) => element.style == 'icon')?.url;
+
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -62,7 +65,16 @@ class _StudyTopicCardMiniState extends State<StudyTopicCardMini> {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                Padding(padding: const EdgeInsets.only(right: 16), child: imageWidget()),
+                Padding(
+                    padding: const EdgeInsets.only(right: 16),
+                    child: SizedBox(
+                      width: 60,
+                      height: 60,
+                      child: BorderedImageContainer(
+                        borderRadius: BorderRadius.circular(12),
+                        imageUrl: imageUrl,
+                      ),
+                    )),
                 Expanded(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -124,17 +136,6 @@ class _StudyTopicCardMiniState extends State<StudyTopicCardMini> {
                 noData: () => const SizedBox.shrink(),
                 ready: (d) => const SizedBox.shrink()),
         ],
-      ),
-    );
-  }
-
-  Widget imageWidget() {
-    return SizedBox(
-      width: 60,
-      height: 60,
-      child: BorderedImageContainer(
-        borderRadius: BorderRadius.circular(12),
-        imageUrl: widget.studyTopic.image,
       ),
     );
   }

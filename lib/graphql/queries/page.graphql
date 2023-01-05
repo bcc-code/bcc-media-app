@@ -65,6 +65,7 @@ fragment ItemSection on ItemSection {
 fragment Section on Section {
   id
   title
+  description
   ... on ItemSection {
     ...ItemSection
     ... on PosterSection {
@@ -172,7 +173,10 @@ fragment Section on Section {
             id
             title
             description
-            image
+            images {
+              style
+              url
+            }
             tasksProgress: progress {
               completed
               total

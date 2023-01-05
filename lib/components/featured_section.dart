@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:brunstadtv_app/components/section_item_click_wrapper.dart';
 import 'package:flutter/material.dart';
 
@@ -24,7 +26,7 @@ class FeaturedSection extends StatelessWidget {
   Widget build(BuildContext context) {
     return LayoutBuilder(builder: (context, constraints) {
       const marginX = 2.0;
-      final viewportFraction = (constraints.maxWidth - (32 - 2 * marginX)) / constraints.maxWidth;
+      final viewportFraction = (constraints.maxWidth - (32 - 2 * marginX)) / max(1, constraints.maxWidth);
       final sectionItems = data.items.items;
       return Padding(
         padding: const EdgeInsets.only(top: 16),

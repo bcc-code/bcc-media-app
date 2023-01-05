@@ -581,6 +581,7 @@ class Query$FetchMoreItemsForItemSection$section implements Fragment$Section {
   Query$FetchMoreItemsForItemSection$section({
     required this.id,
     this.title,
+    this.description,
     required this.$__typename,
   });
 
@@ -642,10 +643,12 @@ class Query$FetchMoreItemsForItemSection$section implements Fragment$Section {
       default:
         final l$id = json['id'];
         final l$title = json['title'];
+        final l$description = json['description'];
         final l$$__typename = json['__typename'];
         return Query$FetchMoreItemsForItemSection$section(
           id: (l$id as String),
           title: (l$title as String?),
+          description: (l$description as String?),
           $__typename: (l$$__typename as String),
         );
     }
@@ -655,6 +658,8 @@ class Query$FetchMoreItemsForItemSection$section implements Fragment$Section {
 
   final String? title;
 
+  final String? description;
+
   final String $__typename;
 
   Map<String, dynamic> toJson() {
@@ -663,6 +668,8 @@ class Query$FetchMoreItemsForItemSection$section implements Fragment$Section {
     _resultData['id'] = l$id;
     final l$title = title;
     _resultData['title'] = l$title;
+    final l$description = description;
+    _resultData['description'] = l$description;
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -672,10 +679,12 @@ class Query$FetchMoreItemsForItemSection$section implements Fragment$Section {
   int get hashCode {
     final l$id = id;
     final l$title = title;
+    final l$description = description;
     final l$$__typename = $__typename;
     return Object.hashAll([
       l$id,
       l$title,
+      l$description,
       l$$__typename,
     ]);
   }
@@ -697,6 +706,11 @@ class Query$FetchMoreItemsForItemSection$section implements Fragment$Section {
     final l$title = title;
     final lOther$title = other.title;
     if (l$title != lOther$title) {
+      return false;
+    }
+    final l$description = description;
+    final lOther$description = other.description;
+    if (l$description != lOther$description) {
       return false;
     }
     final l$$__typename = $__typename;
@@ -730,6 +744,7 @@ abstract class CopyWith$Query$FetchMoreItemsForItemSection$section<TRes> {
   TRes call({
     String? id,
     String? title,
+    String? description,
     String? $__typename,
   });
 }
@@ -750,11 +765,15 @@ class _CopyWithImpl$Query$FetchMoreItemsForItemSection$section<TRes>
   TRes call({
     Object? id = _undefined,
     Object? title = _undefined,
+    Object? description = _undefined,
     Object? $__typename = _undefined,
   }) =>
       _then(Query$FetchMoreItemsForItemSection$section(
         id: id == _undefined || id == null ? _instance.id : (id as String),
         title: title == _undefined ? _instance.title : (title as String?),
+        description: description == _undefined
+            ? _instance.description
+            : (description as String?),
         $__typename: $__typename == _undefined || $__typename == null
             ? _instance.$__typename
             : ($__typename as String),
@@ -770,6 +789,7 @@ class _CopyWithStubImpl$Query$FetchMoreItemsForItemSection$section<TRes>
   call({
     String? id,
     String? title,
+    String? description,
     String? $__typename,
   }) =>
       _res;
@@ -783,6 +803,7 @@ class Query$FetchMoreItemsForItemSection$section$$PosterSection
   Query$FetchMoreItemsForItemSection$section$$PosterSection({
     required this.id,
     this.title,
+    this.description,
     required this.$__typename,
     this.metadata,
     required this.items,
@@ -793,6 +814,7 @@ class Query$FetchMoreItemsForItemSection$section$$PosterSection
       Map<String, dynamic> json) {
     final l$id = json['id'];
     final l$title = json['title'];
+    final l$description = json['description'];
     final l$$__typename = json['__typename'];
     final l$metadata = json['metadata'];
     final l$items = json['items'];
@@ -800,6 +822,7 @@ class Query$FetchMoreItemsForItemSection$section$$PosterSection
     return Query$FetchMoreItemsForItemSection$section$$PosterSection(
       id: (l$id as String),
       title: (l$title as String?),
+      description: (l$description as String?),
       $__typename: (l$$__typename as String),
       metadata: l$metadata == null
           ? null
@@ -814,6 +837,8 @@ class Query$FetchMoreItemsForItemSection$section$$PosterSection
   final String id;
 
   final String? title;
+
+  final String? description;
 
   final String $__typename;
 
@@ -830,6 +855,8 @@ class Query$FetchMoreItemsForItemSection$section$$PosterSection
     _resultData['id'] = l$id;
     final l$title = title;
     _resultData['title'] = l$title;
+    final l$description = description;
+    _resultData['description'] = l$description;
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     final l$metadata = metadata;
@@ -845,6 +872,7 @@ class Query$FetchMoreItemsForItemSection$section$$PosterSection
   int get hashCode {
     final l$id = id;
     final l$title = title;
+    final l$description = description;
     final l$$__typename = $__typename;
     final l$metadata = metadata;
     final l$items = items;
@@ -852,6 +880,7 @@ class Query$FetchMoreItemsForItemSection$section$$PosterSection
     return Object.hashAll([
       l$id,
       l$title,
+      l$description,
       l$$__typename,
       l$metadata,
       l$items,
@@ -876,6 +905,11 @@ class Query$FetchMoreItemsForItemSection$section$$PosterSection
     final l$title = title;
     final lOther$title = other.title;
     if (l$title != lOther$title) {
+      return false;
+    }
+    final l$description = description;
+    final lOther$description = other.description;
+    if (l$description != lOther$description) {
       return false;
     }
     final l$$__typename = $__typename;
@@ -928,6 +962,7 @@ abstract class CopyWith$Query$FetchMoreItemsForItemSection$section$$PosterSectio
   TRes call({
     String? id,
     String? title,
+    String? description,
     String? $__typename,
     Query$FetchMoreItemsForItemSection$section$$PosterSection$metadata?
         metadata,
@@ -960,6 +995,7 @@ class _CopyWithImpl$Query$FetchMoreItemsForItemSection$section$$PosterSection<
   TRes call({
     Object? id = _undefined,
     Object? title = _undefined,
+    Object? description = _undefined,
     Object? $__typename = _undefined,
     Object? metadata = _undefined,
     Object? items = _undefined,
@@ -968,6 +1004,9 @@ class _CopyWithImpl$Query$FetchMoreItemsForItemSection$section$$PosterSection<
       _then(Query$FetchMoreItemsForItemSection$section$$PosterSection(
         id: id == _undefined || id == null ? _instance.id : (id as String),
         title: title == _undefined ? _instance.title : (title as String?),
+        description: description == _undefined
+            ? _instance.description
+            : (description as String?),
         $__typename: $__typename == _undefined || $__typename == null
             ? _instance.$__typename
             : ($__typename as String),
@@ -1014,6 +1053,7 @@ class _CopyWithStubImpl$Query$FetchMoreItemsForItemSection$section$$PosterSectio
   call({
     String? id,
     String? title,
+    String? description,
     String? $__typename,
     Query$FetchMoreItemsForItemSection$section$$PosterSection$metadata?
         metadata,
@@ -3095,6 +3135,7 @@ class Query$FetchMoreItemsForItemSection$section$$FeaturedSection
   Query$FetchMoreItemsForItemSection$section$$FeaturedSection({
     required this.id,
     this.title,
+    this.description,
     required this.$__typename,
     this.metadata,
     required this.items,
@@ -3105,6 +3146,7 @@ class Query$FetchMoreItemsForItemSection$section$$FeaturedSection
       Map<String, dynamic> json) {
     final l$id = json['id'];
     final l$title = json['title'];
+    final l$description = json['description'];
     final l$$__typename = json['__typename'];
     final l$metadata = json['metadata'];
     final l$items = json['items'];
@@ -3112,6 +3154,7 @@ class Query$FetchMoreItemsForItemSection$section$$FeaturedSection
     return Query$FetchMoreItemsForItemSection$section$$FeaturedSection(
       id: (l$id as String),
       title: (l$title as String?),
+      description: (l$description as String?),
       $__typename: (l$$__typename as String),
       metadata: l$metadata == null
           ? null
@@ -3126,6 +3169,8 @@ class Query$FetchMoreItemsForItemSection$section$$FeaturedSection
   final String id;
 
   final String? title;
+
+  final String? description;
 
   final String $__typename;
 
@@ -3142,6 +3187,8 @@ class Query$FetchMoreItemsForItemSection$section$$FeaturedSection
     _resultData['id'] = l$id;
     final l$title = title;
     _resultData['title'] = l$title;
+    final l$description = description;
+    _resultData['description'] = l$description;
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     final l$metadata = metadata;
@@ -3157,6 +3204,7 @@ class Query$FetchMoreItemsForItemSection$section$$FeaturedSection
   int get hashCode {
     final l$id = id;
     final l$title = title;
+    final l$description = description;
     final l$$__typename = $__typename;
     final l$metadata = metadata;
     final l$items = items;
@@ -3164,6 +3212,7 @@ class Query$FetchMoreItemsForItemSection$section$$FeaturedSection
     return Object.hashAll([
       l$id,
       l$title,
+      l$description,
       l$$__typename,
       l$metadata,
       l$items,
@@ -3189,6 +3238,11 @@ class Query$FetchMoreItemsForItemSection$section$$FeaturedSection
     final l$title = title;
     final lOther$title = other.title;
     if (l$title != lOther$title) {
+      return false;
+    }
+    final l$description = description;
+    final lOther$description = other.description;
+    if (l$description != lOther$description) {
       return false;
     }
     final l$$__typename = $__typename;
@@ -3241,6 +3295,7 @@ abstract class CopyWith$Query$FetchMoreItemsForItemSection$section$$FeaturedSect
   TRes call({
     String? id,
     String? title,
+    String? description,
     String? $__typename,
     Query$FetchMoreItemsForItemSection$section$$FeaturedSection$metadata?
         metadata,
@@ -3273,6 +3328,7 @@ class _CopyWithImpl$Query$FetchMoreItemsForItemSection$section$$FeaturedSection<
   TRes call({
     Object? id = _undefined,
     Object? title = _undefined,
+    Object? description = _undefined,
     Object? $__typename = _undefined,
     Object? metadata = _undefined,
     Object? items = _undefined,
@@ -3281,6 +3337,9 @@ class _CopyWithImpl$Query$FetchMoreItemsForItemSection$section$$FeaturedSection<
       _then(Query$FetchMoreItemsForItemSection$section$$FeaturedSection(
         id: id == _undefined || id == null ? _instance.id : (id as String),
         title: title == _undefined ? _instance.title : (title as String?),
+        description: description == _undefined
+            ? _instance.description
+            : (description as String?),
         $__typename: $__typename == _undefined || $__typename == null
             ? _instance.$__typename
             : ($__typename as String),
@@ -3327,6 +3386,7 @@ class _CopyWithStubImpl$Query$FetchMoreItemsForItemSection$section$$FeaturedSect
   call({
     String? id,
     String? title,
+    String? description,
     String? $__typename,
     Query$FetchMoreItemsForItemSection$section$$FeaturedSection$metadata?
         metadata,
@@ -5016,6 +5076,7 @@ class Query$FetchMoreItemsForItemSection$section$$DefaultSection
   Query$FetchMoreItemsForItemSection$section$$DefaultSection({
     required this.id,
     this.title,
+    this.description,
     required this.$__typename,
     this.metadata,
     required this.items,
@@ -5026,6 +5087,7 @@ class Query$FetchMoreItemsForItemSection$section$$DefaultSection
       Map<String, dynamic> json) {
     final l$id = json['id'];
     final l$title = json['title'];
+    final l$description = json['description'];
     final l$$__typename = json['__typename'];
     final l$metadata = json['metadata'];
     final l$items = json['items'];
@@ -5033,6 +5095,7 @@ class Query$FetchMoreItemsForItemSection$section$$DefaultSection
     return Query$FetchMoreItemsForItemSection$section$$DefaultSection(
       id: (l$id as String),
       title: (l$title as String?),
+      description: (l$description as String?),
       $__typename: (l$$__typename as String),
       metadata: l$metadata == null
           ? null
@@ -5047,6 +5110,8 @@ class Query$FetchMoreItemsForItemSection$section$$DefaultSection
   final String id;
 
   final String? title;
+
+  final String? description;
 
   final String $__typename;
 
@@ -5063,6 +5128,8 @@ class Query$FetchMoreItemsForItemSection$section$$DefaultSection
     _resultData['id'] = l$id;
     final l$title = title;
     _resultData['title'] = l$title;
+    final l$description = description;
+    _resultData['description'] = l$description;
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     final l$metadata = metadata;
@@ -5078,6 +5145,7 @@ class Query$FetchMoreItemsForItemSection$section$$DefaultSection
   int get hashCode {
     final l$id = id;
     final l$title = title;
+    final l$description = description;
     final l$$__typename = $__typename;
     final l$metadata = metadata;
     final l$items = items;
@@ -5085,6 +5153,7 @@ class Query$FetchMoreItemsForItemSection$section$$DefaultSection
     return Object.hashAll([
       l$id,
       l$title,
+      l$description,
       l$$__typename,
       l$metadata,
       l$items,
@@ -5110,6 +5179,11 @@ class Query$FetchMoreItemsForItemSection$section$$DefaultSection
     final l$title = title;
     final lOther$title = other.title;
     if (l$title != lOther$title) {
+      return false;
+    }
+    final l$description = description;
+    final lOther$description = other.description;
+    if (l$description != lOther$description) {
       return false;
     }
     final l$$__typename = $__typename;
@@ -5162,6 +5236,7 @@ abstract class CopyWith$Query$FetchMoreItemsForItemSection$section$$DefaultSecti
   TRes call({
     String? id,
     String? title,
+    String? description,
     String? $__typename,
     Query$FetchMoreItemsForItemSection$section$$DefaultSection$metadata?
         metadata,
@@ -5194,6 +5269,7 @@ class _CopyWithImpl$Query$FetchMoreItemsForItemSection$section$$DefaultSection<
   TRes call({
     Object? id = _undefined,
     Object? title = _undefined,
+    Object? description = _undefined,
     Object? $__typename = _undefined,
     Object? metadata = _undefined,
     Object? items = _undefined,
@@ -5202,6 +5278,9 @@ class _CopyWithImpl$Query$FetchMoreItemsForItemSection$section$$DefaultSection<
       _then(Query$FetchMoreItemsForItemSection$section$$DefaultSection(
         id: id == _undefined || id == null ? _instance.id : (id as String),
         title: title == _undefined ? _instance.title : (title as String?),
+        description: description == _undefined
+            ? _instance.description
+            : (description as String?),
         $__typename: $__typename == _undefined || $__typename == null
             ? _instance.$__typename
             : ($__typename as String),
@@ -5248,6 +5327,7 @@ class _CopyWithStubImpl$Query$FetchMoreItemsForItemSection$section$$DefaultSecti
   call({
     String? id,
     String? title,
+    String? description,
     String? $__typename,
     Query$FetchMoreItemsForItemSection$section$$DefaultSection$metadata?
         metadata,
@@ -7332,6 +7412,7 @@ class Query$FetchMoreItemsForItemSection$section$$CardSection
   Query$FetchMoreItemsForItemSection$section$$CardSection({
     required this.id,
     this.title,
+    this.description,
     required this.$__typename,
     this.metadata,
     required this.items,
@@ -7342,6 +7423,7 @@ class Query$FetchMoreItemsForItemSection$section$$CardSection
       Map<String, dynamic> json) {
     final l$id = json['id'];
     final l$title = json['title'];
+    final l$description = json['description'];
     final l$$__typename = json['__typename'];
     final l$metadata = json['metadata'];
     final l$items = json['items'];
@@ -7349,6 +7431,7 @@ class Query$FetchMoreItemsForItemSection$section$$CardSection
     return Query$FetchMoreItemsForItemSection$section$$CardSection(
       id: (l$id as String),
       title: (l$title as String?),
+      description: (l$description as String?),
       $__typename: (l$$__typename as String),
       metadata: l$metadata == null
           ? null
@@ -7363,6 +7446,8 @@ class Query$FetchMoreItemsForItemSection$section$$CardSection
   final String id;
 
   final String? title;
+
+  final String? description;
 
   final String $__typename;
 
@@ -7379,6 +7464,8 @@ class Query$FetchMoreItemsForItemSection$section$$CardSection
     _resultData['id'] = l$id;
     final l$title = title;
     _resultData['title'] = l$title;
+    final l$description = description;
+    _resultData['description'] = l$description;
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     final l$metadata = metadata;
@@ -7394,6 +7481,7 @@ class Query$FetchMoreItemsForItemSection$section$$CardSection
   int get hashCode {
     final l$id = id;
     final l$title = title;
+    final l$description = description;
     final l$$__typename = $__typename;
     final l$metadata = metadata;
     final l$items = items;
@@ -7401,6 +7489,7 @@ class Query$FetchMoreItemsForItemSection$section$$CardSection
     return Object.hashAll([
       l$id,
       l$title,
+      l$description,
       l$$__typename,
       l$metadata,
       l$items,
@@ -7425,6 +7514,11 @@ class Query$FetchMoreItemsForItemSection$section$$CardSection
     final l$title = title;
     final lOther$title = other.title;
     if (l$title != lOther$title) {
+      return false;
+    }
+    final l$description = description;
+    final lOther$description = other.description;
+    if (l$description != lOther$description) {
       return false;
     }
     final l$$__typename = $__typename;
@@ -7476,6 +7570,7 @@ abstract class CopyWith$Query$FetchMoreItemsForItemSection$section$$CardSection<
   TRes call({
     String? id,
     String? title,
+    String? description,
     String? $__typename,
     Query$FetchMoreItemsForItemSection$section$$CardSection$metadata? metadata,
     Query$FetchMoreItemsForItemSection$section$$CardSection$items? items,
@@ -7506,6 +7601,7 @@ class _CopyWithImpl$Query$FetchMoreItemsForItemSection$section$$CardSection<
   TRes call({
     Object? id = _undefined,
     Object? title = _undefined,
+    Object? description = _undefined,
     Object? $__typename = _undefined,
     Object? metadata = _undefined,
     Object? items = _undefined,
@@ -7514,6 +7610,9 @@ class _CopyWithImpl$Query$FetchMoreItemsForItemSection$section$$CardSection<
       _then(Query$FetchMoreItemsForItemSection$section$$CardSection(
         id: id == _undefined || id == null ? _instance.id : (id as String),
         title: title == _undefined ? _instance.title : (title as String?),
+        description: description == _undefined
+            ? _instance.description
+            : (description as String?),
         $__typename: $__typename == _undefined || $__typename == null
             ? _instance.$__typename
             : ($__typename as String),
@@ -7559,6 +7658,7 @@ class _CopyWithStubImpl$Query$FetchMoreItemsForItemSection$section$$CardSection<
   call({
     String? id,
     String? title,
+    String? description,
     String? $__typename,
     Query$FetchMoreItemsForItemSection$section$$CardSection$metadata? metadata,
     Query$FetchMoreItemsForItemSection$section$$CardSection$items? items,
@@ -9222,6 +9322,7 @@ class Query$FetchMoreItemsForItemSection$section$$ListSection
   Query$FetchMoreItemsForItemSection$section$$ListSection({
     required this.id,
     this.title,
+    this.description,
     required this.$__typename,
     this.metadata,
     required this.items,
@@ -9231,12 +9332,14 @@ class Query$FetchMoreItemsForItemSection$section$$ListSection
       Map<String, dynamic> json) {
     final l$id = json['id'];
     final l$title = json['title'];
+    final l$description = json['description'];
     final l$$__typename = json['__typename'];
     final l$metadata = json['metadata'];
     final l$items = json['items'];
     return Query$FetchMoreItemsForItemSection$section$$ListSection(
       id: (l$id as String),
       title: (l$title as String?),
+      description: (l$description as String?),
       $__typename: (l$$__typename as String),
       metadata: l$metadata == null
           ? null
@@ -9251,6 +9354,8 @@ class Query$FetchMoreItemsForItemSection$section$$ListSection
 
   final String? title;
 
+  final String? description;
+
   final String $__typename;
 
   final Query$FetchMoreItemsForItemSection$section$$ListSection$metadata?
@@ -9264,6 +9369,8 @@ class Query$FetchMoreItemsForItemSection$section$$ListSection
     _resultData['id'] = l$id;
     final l$title = title;
     _resultData['title'] = l$title;
+    final l$description = description;
+    _resultData['description'] = l$description;
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     final l$metadata = metadata;
@@ -9277,12 +9384,14 @@ class Query$FetchMoreItemsForItemSection$section$$ListSection
   int get hashCode {
     final l$id = id;
     final l$title = title;
+    final l$description = description;
     final l$$__typename = $__typename;
     final l$metadata = metadata;
     final l$items = items;
     return Object.hashAll([
       l$id,
       l$title,
+      l$description,
       l$$__typename,
       l$metadata,
       l$items,
@@ -9306,6 +9415,11 @@ class Query$FetchMoreItemsForItemSection$section$$ListSection
     final l$title = title;
     final lOther$title = other.title;
     if (l$title != lOther$title) {
+      return false;
+    }
+    final l$description = description;
+    final lOther$description = other.description;
+    if (l$description != lOther$description) {
       return false;
     }
     final l$$__typename = $__typename;
@@ -9352,6 +9466,7 @@ abstract class CopyWith$Query$FetchMoreItemsForItemSection$section$$ListSection<
   TRes call({
     String? id,
     String? title,
+    String? description,
     String? $__typename,
     Query$FetchMoreItemsForItemSection$section$$ListSection$metadata? metadata,
     Query$FetchMoreItemsForItemSection$section$$ListSection$items? items,
@@ -9381,6 +9496,7 @@ class _CopyWithImpl$Query$FetchMoreItemsForItemSection$section$$ListSection<
   TRes call({
     Object? id = _undefined,
     Object? title = _undefined,
+    Object? description = _undefined,
     Object? $__typename = _undefined,
     Object? metadata = _undefined,
     Object? items = _undefined,
@@ -9388,6 +9504,9 @@ class _CopyWithImpl$Query$FetchMoreItemsForItemSection$section$$ListSection<
       _then(Query$FetchMoreItemsForItemSection$section$$ListSection(
         id: id == _undefined || id == null ? _instance.id : (id as String),
         title: title == _undefined ? _instance.title : (title as String?),
+        description: description == _undefined
+            ? _instance.description
+            : (description as String?),
         $__typename: $__typename == _undefined || $__typename == null
             ? _instance.$__typename
             : ($__typename as String),
@@ -9430,6 +9549,7 @@ class _CopyWithStubImpl$Query$FetchMoreItemsForItemSection$section$$ListSection<
   call({
     String? id,
     String? title,
+    String? description,
     String? $__typename,
     Query$FetchMoreItemsForItemSection$section$$ListSection$metadata? metadata,
     Query$FetchMoreItemsForItemSection$section$$ListSection$items? items,
@@ -11501,6 +11621,7 @@ class Query$FetchMoreItemsForItemSection$section$$CardListSection
   Query$FetchMoreItemsForItemSection$section$$CardListSection({
     required this.id,
     this.title,
+    this.description,
     required this.$__typename,
     this.metadata,
     required this.items,
@@ -11510,12 +11631,14 @@ class Query$FetchMoreItemsForItemSection$section$$CardListSection
       Map<String, dynamic> json) {
     final l$id = json['id'];
     final l$title = json['title'];
+    final l$description = json['description'];
     final l$$__typename = json['__typename'];
     final l$metadata = json['metadata'];
     final l$items = json['items'];
     return Query$FetchMoreItemsForItemSection$section$$CardListSection(
       id: (l$id as String),
       title: (l$title as String?),
+      description: (l$description as String?),
       $__typename: (l$$__typename as String),
       metadata: l$metadata == null
           ? null
@@ -11530,6 +11653,8 @@ class Query$FetchMoreItemsForItemSection$section$$CardListSection
 
   final String? title;
 
+  final String? description;
+
   final String $__typename;
 
   final Query$FetchMoreItemsForItemSection$section$$CardListSection$metadata?
@@ -11543,6 +11668,8 @@ class Query$FetchMoreItemsForItemSection$section$$CardListSection
     _resultData['id'] = l$id;
     final l$title = title;
     _resultData['title'] = l$title;
+    final l$description = description;
+    _resultData['description'] = l$description;
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     final l$metadata = metadata;
@@ -11556,12 +11683,14 @@ class Query$FetchMoreItemsForItemSection$section$$CardListSection
   int get hashCode {
     final l$id = id;
     final l$title = title;
+    final l$description = description;
     final l$$__typename = $__typename;
     final l$metadata = metadata;
     final l$items = items;
     return Object.hashAll([
       l$id,
       l$title,
+      l$description,
       l$$__typename,
       l$metadata,
       l$items,
@@ -11586,6 +11715,11 @@ class Query$FetchMoreItemsForItemSection$section$$CardListSection
     final l$title = title;
     final lOther$title = other.title;
     if (l$title != lOther$title) {
+      return false;
+    }
+    final l$description = description;
+    final lOther$description = other.description;
+    if (l$description != lOther$description) {
       return false;
     }
     final l$$__typename = $__typename;
@@ -11633,6 +11767,7 @@ abstract class CopyWith$Query$FetchMoreItemsForItemSection$section$$CardListSect
   TRes call({
     String? id,
     String? title,
+    String? description,
     String? $__typename,
     Query$FetchMoreItemsForItemSection$section$$CardListSection$metadata?
         metadata,
@@ -11664,6 +11799,7 @@ class _CopyWithImpl$Query$FetchMoreItemsForItemSection$section$$CardListSection<
   TRes call({
     Object? id = _undefined,
     Object? title = _undefined,
+    Object? description = _undefined,
     Object? $__typename = _undefined,
     Object? metadata = _undefined,
     Object? items = _undefined,
@@ -11671,6 +11807,9 @@ class _CopyWithImpl$Query$FetchMoreItemsForItemSection$section$$CardListSection<
       _then(Query$FetchMoreItemsForItemSection$section$$CardListSection(
         id: id == _undefined || id == null ? _instance.id : (id as String),
         title: title == _undefined ? _instance.title : (title as String?),
+        description: description == _undefined
+            ? _instance.description
+            : (description as String?),
         $__typename: $__typename == _undefined || $__typename == null
             ? _instance.$__typename
             : ($__typename as String),
@@ -11714,6 +11853,7 @@ class _CopyWithStubImpl$Query$FetchMoreItemsForItemSection$section$$CardListSect
   call({
     String? id,
     String? title,
+    String? description,
     String? $__typename,
     Query$FetchMoreItemsForItemSection$section$$CardListSection$metadata?
         metadata,
@@ -12184,6 +12324,7 @@ class Query$FetchMoreItemsForItemSection$section$$DefaultGridSection
   Query$FetchMoreItemsForItemSection$section$$DefaultGridSection({
     required this.id,
     this.title,
+    this.description,
     required this.$__typename,
     this.metadata,
     required this.items,
@@ -12194,6 +12335,7 @@ class Query$FetchMoreItemsForItemSection$section$$DefaultGridSection
       Map<String, dynamic> json) {
     final l$id = json['id'];
     final l$title = json['title'];
+    final l$description = json['description'];
     final l$$__typename = json['__typename'];
     final l$metadata = json['metadata'];
     final l$items = json['items'];
@@ -12201,6 +12343,7 @@ class Query$FetchMoreItemsForItemSection$section$$DefaultGridSection
     return Query$FetchMoreItemsForItemSection$section$$DefaultGridSection(
       id: (l$id as String),
       title: (l$title as String?),
+      description: (l$description as String?),
       $__typename: (l$$__typename as String),
       metadata: l$metadata == null
           ? null
@@ -12216,6 +12359,8 @@ class Query$FetchMoreItemsForItemSection$section$$DefaultGridSection
   final String id;
 
   final String? title;
+
+  final String? description;
 
   final String $__typename;
 
@@ -12233,6 +12378,8 @@ class Query$FetchMoreItemsForItemSection$section$$DefaultGridSection
     _resultData['id'] = l$id;
     final l$title = title;
     _resultData['title'] = l$title;
+    final l$description = description;
+    _resultData['description'] = l$description;
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     final l$metadata = metadata;
@@ -12248,6 +12395,7 @@ class Query$FetchMoreItemsForItemSection$section$$DefaultGridSection
   int get hashCode {
     final l$id = id;
     final l$title = title;
+    final l$description = description;
     final l$$__typename = $__typename;
     final l$metadata = metadata;
     final l$items = items;
@@ -12255,6 +12403,7 @@ class Query$FetchMoreItemsForItemSection$section$$DefaultGridSection
     return Object.hashAll([
       l$id,
       l$title,
+      l$description,
       l$$__typename,
       l$metadata,
       l$items,
@@ -12280,6 +12429,11 @@ class Query$FetchMoreItemsForItemSection$section$$DefaultGridSection
     final l$title = title;
     final lOther$title = other.title;
     if (l$title != lOther$title) {
+      return false;
+    }
+    final l$description = description;
+    final lOther$description = other.description;
+    if (l$description != lOther$description) {
       return false;
     }
     final l$$__typename = $__typename;
@@ -12333,6 +12487,7 @@ abstract class CopyWith$Query$FetchMoreItemsForItemSection$section$$DefaultGridS
   TRes call({
     String? id,
     String? title,
+    String? description,
     String? $__typename,
     Query$FetchMoreItemsForItemSection$section$$DefaultGridSection$metadata?
         metadata,
@@ -12366,6 +12521,7 @@ class _CopyWithImpl$Query$FetchMoreItemsForItemSection$section$$DefaultGridSecti
   TRes call({
     Object? id = _undefined,
     Object? title = _undefined,
+    Object? description = _undefined,
     Object? $__typename = _undefined,
     Object? metadata = _undefined,
     Object? items = _undefined,
@@ -12374,6 +12530,9 @@ class _CopyWithImpl$Query$FetchMoreItemsForItemSection$section$$DefaultGridSecti
       _then(Query$FetchMoreItemsForItemSection$section$$DefaultGridSection(
         id: id == _undefined || id == null ? _instance.id : (id as String),
         title: title == _undefined ? _instance.title : (title as String?),
+        description: description == _undefined
+            ? _instance.description
+            : (description as String?),
         $__typename: $__typename == _undefined || $__typename == null
             ? _instance.$__typename
             : ($__typename as String),
@@ -12420,6 +12579,7 @@ class _CopyWithStubImpl$Query$FetchMoreItemsForItemSection$section$$DefaultGridS
   call({
     String? id,
     String? title,
+    String? description,
     String? $__typename,
     Query$FetchMoreItemsForItemSection$section$$DefaultGridSection$metadata?
         metadata,
@@ -14535,6 +14695,7 @@ class Query$FetchMoreItemsForItemSection$section$$PosterGridSection
   Query$FetchMoreItemsForItemSection$section$$PosterGridSection({
     required this.id,
     this.title,
+    this.description,
     required this.$__typename,
     this.metadata,
     required this.items,
@@ -14545,6 +14706,7 @@ class Query$FetchMoreItemsForItemSection$section$$PosterGridSection
       Map<String, dynamic> json) {
     final l$id = json['id'];
     final l$title = json['title'];
+    final l$description = json['description'];
     final l$$__typename = json['__typename'];
     final l$metadata = json['metadata'];
     final l$items = json['items'];
@@ -14552,6 +14714,7 @@ class Query$FetchMoreItemsForItemSection$section$$PosterGridSection
     return Query$FetchMoreItemsForItemSection$section$$PosterGridSection(
       id: (l$id as String),
       title: (l$title as String?),
+      description: (l$description as String?),
       $__typename: (l$$__typename as String),
       metadata: l$metadata == null
           ? null
@@ -14566,6 +14729,8 @@ class Query$FetchMoreItemsForItemSection$section$$PosterGridSection
   final String id;
 
   final String? title;
+
+  final String? description;
 
   final String $__typename;
 
@@ -14583,6 +14748,8 @@ class Query$FetchMoreItemsForItemSection$section$$PosterGridSection
     _resultData['id'] = l$id;
     final l$title = title;
     _resultData['title'] = l$title;
+    final l$description = description;
+    _resultData['description'] = l$description;
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     final l$metadata = metadata;
@@ -14598,6 +14765,7 @@ class Query$FetchMoreItemsForItemSection$section$$PosterGridSection
   int get hashCode {
     final l$id = id;
     final l$title = title;
+    final l$description = description;
     final l$$__typename = $__typename;
     final l$metadata = metadata;
     final l$items = items;
@@ -14605,6 +14773,7 @@ class Query$FetchMoreItemsForItemSection$section$$PosterGridSection
     return Object.hashAll([
       l$id,
       l$title,
+      l$description,
       l$$__typename,
       l$metadata,
       l$items,
@@ -14630,6 +14799,11 @@ class Query$FetchMoreItemsForItemSection$section$$PosterGridSection
     final l$title = title;
     final lOther$title = other.title;
     if (l$title != lOther$title) {
+      return false;
+    }
+    final l$description = description;
+    final lOther$description = other.description;
+    if (l$description != lOther$description) {
       return false;
     }
     final l$$__typename = $__typename;
@@ -14682,6 +14856,7 @@ abstract class CopyWith$Query$FetchMoreItemsForItemSection$section$$PosterGridSe
   TRes call({
     String? id,
     String? title,
+    String? description,
     String? $__typename,
     Query$FetchMoreItemsForItemSection$section$$PosterGridSection$metadata?
         metadata,
@@ -14714,6 +14889,7 @@ class _CopyWithImpl$Query$FetchMoreItemsForItemSection$section$$PosterGridSectio
   TRes call({
     Object? id = _undefined,
     Object? title = _undefined,
+    Object? description = _undefined,
     Object? $__typename = _undefined,
     Object? metadata = _undefined,
     Object? items = _undefined,
@@ -14722,6 +14898,9 @@ class _CopyWithImpl$Query$FetchMoreItemsForItemSection$section$$PosterGridSectio
       _then(Query$FetchMoreItemsForItemSection$section$$PosterGridSection(
         id: id == _undefined || id == null ? _instance.id : (id as String),
         title: title == _undefined ? _instance.title : (title as String?),
+        description: description == _undefined
+            ? _instance.description
+            : (description as String?),
         $__typename: $__typename == _undefined || $__typename == null
             ? _instance.$__typename
             : ($__typename as String),
@@ -14768,6 +14947,7 @@ class _CopyWithStubImpl$Query$FetchMoreItemsForItemSection$section$$PosterGridSe
   call({
     String? id,
     String? title,
+    String? description,
     String? $__typename,
     Query$FetchMoreItemsForItemSection$section$$PosterGridSection$metadata?
         metadata,
@@ -16882,6 +17062,7 @@ class Query$FetchMoreItemsForItemSection$section$$IconGridSection
   Query$FetchMoreItemsForItemSection$section$$IconGridSection({
     required this.id,
     this.title,
+    this.description,
     required this.$__typename,
     this.metadata,
     required this.items,
@@ -16892,6 +17073,7 @@ class Query$FetchMoreItemsForItemSection$section$$IconGridSection
       Map<String, dynamic> json) {
     final l$id = json['id'];
     final l$title = json['title'];
+    final l$description = json['description'];
     final l$$__typename = json['__typename'];
     final l$metadata = json['metadata'];
     final l$items = json['items'];
@@ -16899,6 +17081,7 @@ class Query$FetchMoreItemsForItemSection$section$$IconGridSection
     return Query$FetchMoreItemsForItemSection$section$$IconGridSection(
       id: (l$id as String),
       title: (l$title as String?),
+      description: (l$description as String?),
       $__typename: (l$$__typename as String),
       metadata: l$metadata == null
           ? null
@@ -16913,6 +17096,8 @@ class Query$FetchMoreItemsForItemSection$section$$IconGridSection
   final String id;
 
   final String? title;
+
+  final String? description;
 
   final String $__typename;
 
@@ -16929,6 +17114,8 @@ class Query$FetchMoreItemsForItemSection$section$$IconGridSection
     _resultData['id'] = l$id;
     final l$title = title;
     _resultData['title'] = l$title;
+    final l$description = description;
+    _resultData['description'] = l$description;
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     final l$metadata = metadata;
@@ -16944,6 +17131,7 @@ class Query$FetchMoreItemsForItemSection$section$$IconGridSection
   int get hashCode {
     final l$id = id;
     final l$title = title;
+    final l$description = description;
     final l$$__typename = $__typename;
     final l$metadata = metadata;
     final l$items = items;
@@ -16951,6 +17139,7 @@ class Query$FetchMoreItemsForItemSection$section$$IconGridSection
     return Object.hashAll([
       l$id,
       l$title,
+      l$description,
       l$$__typename,
       l$metadata,
       l$items,
@@ -16976,6 +17165,11 @@ class Query$FetchMoreItemsForItemSection$section$$IconGridSection
     final l$title = title;
     final lOther$title = other.title;
     if (l$title != lOther$title) {
+      return false;
+    }
+    final l$description = description;
+    final lOther$description = other.description;
+    if (l$description != lOther$description) {
       return false;
     }
     final l$$__typename = $__typename;
@@ -17028,6 +17222,7 @@ abstract class CopyWith$Query$FetchMoreItemsForItemSection$section$$IconGridSect
   TRes call({
     String? id,
     String? title,
+    String? description,
     String? $__typename,
     Query$FetchMoreItemsForItemSection$section$$IconGridSection$metadata?
         metadata,
@@ -17060,6 +17255,7 @@ class _CopyWithImpl$Query$FetchMoreItemsForItemSection$section$$IconGridSection<
   TRes call({
     Object? id = _undefined,
     Object? title = _undefined,
+    Object? description = _undefined,
     Object? $__typename = _undefined,
     Object? metadata = _undefined,
     Object? items = _undefined,
@@ -17068,6 +17264,9 @@ class _CopyWithImpl$Query$FetchMoreItemsForItemSection$section$$IconGridSection<
       _then(Query$FetchMoreItemsForItemSection$section$$IconGridSection(
         id: id == _undefined || id == null ? _instance.id : (id as String),
         title: title == _undefined ? _instance.title : (title as String?),
+        description: description == _undefined
+            ? _instance.description
+            : (description as String?),
         $__typename: $__typename == _undefined || $__typename == null
             ? _instance.$__typename
             : ($__typename as String),
@@ -17114,6 +17313,7 @@ class _CopyWithStubImpl$Query$FetchMoreItemsForItemSection$section$$IconGridSect
   call({
     String? id,
     String? title,
+    String? description,
     String? $__typename,
     Query$FetchMoreItemsForItemSection$section$$IconGridSection$metadata?
         metadata,
@@ -19226,6 +19426,7 @@ class Query$FetchMoreItemsForItemSection$section$$IconSection
   Query$FetchMoreItemsForItemSection$section$$IconSection({
     required this.id,
     this.title,
+    this.description,
     required this.$__typename,
     this.metadata,
     required this.items,
@@ -19235,12 +19436,14 @@ class Query$FetchMoreItemsForItemSection$section$$IconSection
       Map<String, dynamic> json) {
     final l$id = json['id'];
     final l$title = json['title'];
+    final l$description = json['description'];
     final l$$__typename = json['__typename'];
     final l$metadata = json['metadata'];
     final l$items = json['items'];
     return Query$FetchMoreItemsForItemSection$section$$IconSection(
       id: (l$id as String),
       title: (l$title as String?),
+      description: (l$description as String?),
       $__typename: (l$$__typename as String),
       metadata: l$metadata == null
           ? null
@@ -19255,6 +19458,8 @@ class Query$FetchMoreItemsForItemSection$section$$IconSection
 
   final String? title;
 
+  final String? description;
+
   final String $__typename;
 
   final Query$FetchMoreItemsForItemSection$section$$IconSection$metadata?
@@ -19268,6 +19473,8 @@ class Query$FetchMoreItemsForItemSection$section$$IconSection
     _resultData['id'] = l$id;
     final l$title = title;
     _resultData['title'] = l$title;
+    final l$description = description;
+    _resultData['description'] = l$description;
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     final l$metadata = metadata;
@@ -19281,12 +19488,14 @@ class Query$FetchMoreItemsForItemSection$section$$IconSection
   int get hashCode {
     final l$id = id;
     final l$title = title;
+    final l$description = description;
     final l$$__typename = $__typename;
     final l$metadata = metadata;
     final l$items = items;
     return Object.hashAll([
       l$id,
       l$title,
+      l$description,
       l$$__typename,
       l$metadata,
       l$items,
@@ -19310,6 +19519,11 @@ class Query$FetchMoreItemsForItemSection$section$$IconSection
     final l$title = title;
     final lOther$title = other.title;
     if (l$title != lOther$title) {
+      return false;
+    }
+    final l$description = description;
+    final lOther$description = other.description;
+    if (l$description != lOther$description) {
       return false;
     }
     final l$$__typename = $__typename;
@@ -19356,6 +19570,7 @@ abstract class CopyWith$Query$FetchMoreItemsForItemSection$section$$IconSection<
   TRes call({
     String? id,
     String? title,
+    String? description,
     String? $__typename,
     Query$FetchMoreItemsForItemSection$section$$IconSection$metadata? metadata,
     Query$FetchMoreItemsForItemSection$section$$IconSection$items? items,
@@ -19385,6 +19600,7 @@ class _CopyWithImpl$Query$FetchMoreItemsForItemSection$section$$IconSection<
   TRes call({
     Object? id = _undefined,
     Object? title = _undefined,
+    Object? description = _undefined,
     Object? $__typename = _undefined,
     Object? metadata = _undefined,
     Object? items = _undefined,
@@ -19392,6 +19608,9 @@ class _CopyWithImpl$Query$FetchMoreItemsForItemSection$section$$IconSection<
       _then(Query$FetchMoreItemsForItemSection$section$$IconSection(
         id: id == _undefined || id == null ? _instance.id : (id as String),
         title: title == _undefined ? _instance.title : (title as String?),
+        description: description == _undefined
+            ? _instance.description
+            : (description as String?),
         $__typename: $__typename == _undefined || $__typename == null
             ? _instance.$__typename
             : ($__typename as String),
@@ -19434,6 +19653,7 @@ class _CopyWithStubImpl$Query$FetchMoreItemsForItemSection$section$$IconSection<
   call({
     String? id,
     String? title,
+    String? description,
     String? $__typename,
     Query$FetchMoreItemsForItemSection$section$$IconSection$metadata? metadata,
     Query$FetchMoreItemsForItemSection$section$$IconSection$items? items,
@@ -19895,6 +20115,7 @@ class Query$FetchMoreItemsForItemSection$section$$LabelSection
   Query$FetchMoreItemsForItemSection$section$$LabelSection({
     required this.id,
     this.title,
+    this.description,
     required this.$__typename,
     this.metadata,
     required this.items,
@@ -19904,12 +20125,14 @@ class Query$FetchMoreItemsForItemSection$section$$LabelSection
       Map<String, dynamic> json) {
     final l$id = json['id'];
     final l$title = json['title'];
+    final l$description = json['description'];
     final l$$__typename = json['__typename'];
     final l$metadata = json['metadata'];
     final l$items = json['items'];
     return Query$FetchMoreItemsForItemSection$section$$LabelSection(
       id: (l$id as String),
       title: (l$title as String?),
+      description: (l$description as String?),
       $__typename: (l$$__typename as String),
       metadata: l$metadata == null
           ? null
@@ -19924,6 +20147,8 @@ class Query$FetchMoreItemsForItemSection$section$$LabelSection
 
   final String? title;
 
+  final String? description;
+
   final String $__typename;
 
   final Query$FetchMoreItemsForItemSection$section$$LabelSection$metadata?
@@ -19937,6 +20162,8 @@ class Query$FetchMoreItemsForItemSection$section$$LabelSection
     _resultData['id'] = l$id;
     final l$title = title;
     _resultData['title'] = l$title;
+    final l$description = description;
+    _resultData['description'] = l$description;
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     final l$metadata = metadata;
@@ -19950,12 +20177,14 @@ class Query$FetchMoreItemsForItemSection$section$$LabelSection
   int get hashCode {
     final l$id = id;
     final l$title = title;
+    final l$description = description;
     final l$$__typename = $__typename;
     final l$metadata = metadata;
     final l$items = items;
     return Object.hashAll([
       l$id,
       l$title,
+      l$description,
       l$$__typename,
       l$metadata,
       l$items,
@@ -19979,6 +20208,11 @@ class Query$FetchMoreItemsForItemSection$section$$LabelSection
     final l$title = title;
     final lOther$title = other.title;
     if (l$title != lOther$title) {
+      return false;
+    }
+    final l$description = description;
+    final lOther$description = other.description;
+    if (l$description != lOther$description) {
       return false;
     }
     final l$$__typename = $__typename;
@@ -20026,6 +20260,7 @@ abstract class CopyWith$Query$FetchMoreItemsForItemSection$section$$LabelSection
   TRes call({
     String? id,
     String? title,
+    String? description,
     String? $__typename,
     Query$FetchMoreItemsForItemSection$section$$LabelSection$metadata? metadata,
     Query$FetchMoreItemsForItemSection$section$$LabelSection$items? items,
@@ -20056,6 +20291,7 @@ class _CopyWithImpl$Query$FetchMoreItemsForItemSection$section$$LabelSection<
   TRes call({
     Object? id = _undefined,
     Object? title = _undefined,
+    Object? description = _undefined,
     Object? $__typename = _undefined,
     Object? metadata = _undefined,
     Object? items = _undefined,
@@ -20063,6 +20299,9 @@ class _CopyWithImpl$Query$FetchMoreItemsForItemSection$section$$LabelSection<
       _then(Query$FetchMoreItemsForItemSection$section$$LabelSection(
         id: id == _undefined || id == null ? _instance.id : (id as String),
         title: title == _undefined ? _instance.title : (title as String?),
+        description: description == _undefined
+            ? _instance.description
+            : (description as String?),
         $__typename: $__typename == _undefined || $__typename == null
             ? _instance.$__typename
             : ($__typename as String),
@@ -20106,6 +20345,7 @@ class _CopyWithStubImpl$Query$FetchMoreItemsForItemSection$section$$LabelSection
   call({
     String? id,
     String? title,
+    String? description,
     String? $__typename,
     Query$FetchMoreItemsForItemSection$section$$LabelSection$metadata? metadata,
     Query$FetchMoreItemsForItemSection$section$$LabelSection$items? items,
@@ -20570,6 +20810,7 @@ class Query$FetchMoreItemsForItemSection$section$$WebSection
   Query$FetchMoreItemsForItemSection$section$$WebSection({
     required this.id,
     this.title,
+    this.description,
     required this.$__typename,
     required this.authentication,
     required this.widthRatio,
@@ -20581,6 +20822,7 @@ class Query$FetchMoreItemsForItemSection$section$$WebSection
       Map<String, dynamic> json) {
     final l$id = json['id'];
     final l$title = json['title'];
+    final l$description = json['description'];
     final l$$__typename = json['__typename'];
     final l$authentication = json['authentication'];
     final l$widthRatio = json['widthRatio'];
@@ -20589,6 +20831,7 @@ class Query$FetchMoreItemsForItemSection$section$$WebSection
     return Query$FetchMoreItemsForItemSection$section$$WebSection(
       id: (l$id as String),
       title: (l$title as String?),
+      description: (l$description as String?),
       $__typename: (l$$__typename as String),
       authentication: (l$authentication as bool),
       widthRatio: (l$widthRatio as num).toDouble(),
@@ -20600,6 +20843,8 @@ class Query$FetchMoreItemsForItemSection$section$$WebSection
   final String id;
 
   final String? title;
+
+  final String? description;
 
   final String $__typename;
 
@@ -20617,6 +20862,8 @@ class Query$FetchMoreItemsForItemSection$section$$WebSection
     _resultData['id'] = l$id;
     final l$title = title;
     _resultData['title'] = l$title;
+    final l$description = description;
+    _resultData['description'] = l$description;
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     final l$authentication = authentication;
@@ -20634,6 +20881,7 @@ class Query$FetchMoreItemsForItemSection$section$$WebSection
   int get hashCode {
     final l$id = id;
     final l$title = title;
+    final l$description = description;
     final l$$__typename = $__typename;
     final l$authentication = authentication;
     final l$widthRatio = widthRatio;
@@ -20642,6 +20890,7 @@ class Query$FetchMoreItemsForItemSection$section$$WebSection
     return Object.hashAll([
       l$id,
       l$title,
+      l$description,
       l$$__typename,
       l$authentication,
       l$widthRatio,
@@ -20667,6 +20916,11 @@ class Query$FetchMoreItemsForItemSection$section$$WebSection
     final l$title = title;
     final lOther$title = other.title;
     if (l$title != lOther$title) {
+      return false;
+    }
+    final l$description = description;
+    final lOther$description = other.description;
+    if (l$description != lOther$description) {
       return false;
     }
     final l$$__typename = $__typename;
@@ -20723,6 +20977,7 @@ abstract class CopyWith$Query$FetchMoreItemsForItemSection$section$$WebSection<
   TRes call({
     String? id,
     String? title,
+    String? description,
     String? $__typename,
     bool? authentication,
     double? widthRatio,
@@ -20749,6 +21004,7 @@ class _CopyWithImpl$Query$FetchMoreItemsForItemSection$section$$WebSection<TRes>
   TRes call({
     Object? id = _undefined,
     Object? title = _undefined,
+    Object? description = _undefined,
     Object? $__typename = _undefined,
     Object? authentication = _undefined,
     Object? widthRatio = _undefined,
@@ -20758,6 +21014,9 @@ class _CopyWithImpl$Query$FetchMoreItemsForItemSection$section$$WebSection<TRes>
       _then(Query$FetchMoreItemsForItemSection$section$$WebSection(
         id: id == _undefined || id == null ? _instance.id : (id as String),
         title: title == _undefined ? _instance.title : (title as String?),
+        description: description == _undefined
+            ? _instance.description
+            : (description as String?),
         $__typename: $__typename == _undefined || $__typename == null
             ? _instance.$__typename
             : ($__typename as String),
@@ -20784,6 +21043,7 @@ class _CopyWithStubImpl$Query$FetchMoreItemsForItemSection$section$$WebSection<
   call({
     String? id,
     String? title,
+    String? description,
     String? $__typename,
     bool? authentication,
     double? widthRatio,
@@ -20800,6 +21060,7 @@ class Query$FetchMoreItemsForItemSection$section$$MessageSection
   Query$FetchMoreItemsForItemSection$section$$MessageSection({
     required this.id,
     this.title,
+    this.description,
     required this.$__typename,
     this.messages,
   });
@@ -20808,11 +21069,13 @@ class Query$FetchMoreItemsForItemSection$section$$MessageSection
       Map<String, dynamic> json) {
     final l$id = json['id'];
     final l$title = json['title'];
+    final l$description = json['description'];
     final l$$__typename = json['__typename'];
     final l$messages = json['messages'];
     return Query$FetchMoreItemsForItemSection$section$$MessageSection(
       id: (l$id as String),
       title: (l$title as String?),
+      description: (l$description as String?),
       $__typename: (l$$__typename as String),
       messages: (l$messages as List<dynamic>?)
           ?.map((e) =>
@@ -20826,6 +21089,8 @@ class Query$FetchMoreItemsForItemSection$section$$MessageSection
 
   final String? title;
 
+  final String? description;
+
   final String $__typename;
 
   final List<
@@ -20838,6 +21103,8 @@ class Query$FetchMoreItemsForItemSection$section$$MessageSection
     _resultData['id'] = l$id;
     final l$title = title;
     _resultData['title'] = l$title;
+    final l$description = description;
+    _resultData['description'] = l$description;
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     final l$messages = messages;
@@ -20849,11 +21116,13 @@ class Query$FetchMoreItemsForItemSection$section$$MessageSection
   int get hashCode {
     final l$id = id;
     final l$title = title;
+    final l$description = description;
     final l$$__typename = $__typename;
     final l$messages = messages;
     return Object.hashAll([
       l$id,
       l$title,
+      l$description,
       l$$__typename,
       l$messages == null ? null : Object.hashAll(l$messages.map((v) => v)),
     ]);
@@ -20877,6 +21146,11 @@ class Query$FetchMoreItemsForItemSection$section$$MessageSection
     final l$title = title;
     final lOther$title = other.title;
     if (l$title != lOther$title) {
+      return false;
+    }
+    final l$description = description;
+    final lOther$description = other.description;
+    if (l$description != lOther$description) {
       return false;
     }
     final l$$__typename = $__typename;
@@ -20930,6 +21204,7 @@ abstract class CopyWith$Query$FetchMoreItemsForItemSection$section$$MessageSecti
   TRes call({
     String? id,
     String? title,
+    String? description,
     String? $__typename,
     List<Query$FetchMoreItemsForItemSection$section$$MessageSection$messages>?
         messages,
@@ -20962,12 +21237,16 @@ class _CopyWithImpl$Query$FetchMoreItemsForItemSection$section$$MessageSection<
   TRes call({
     Object? id = _undefined,
     Object? title = _undefined,
+    Object? description = _undefined,
     Object? $__typename = _undefined,
     Object? messages = _undefined,
   }) =>
       _then(Query$FetchMoreItemsForItemSection$section$$MessageSection(
         id: id == _undefined || id == null ? _instance.id : (id as String),
         title: title == _undefined ? _instance.title : (title as String?),
+        description: description == _undefined
+            ? _instance.description
+            : (description as String?),
         $__typename: $__typename == _undefined || $__typename == null
             ? _instance.$__typename
             : ($__typename as String),
@@ -21003,6 +21282,7 @@ class _CopyWithStubImpl$Query$FetchMoreItemsForItemSection$section$$MessageSecti
   call({
     String? id,
     String? title,
+    String? description,
     String? $__typename,
     List<Query$FetchMoreItemsForItemSection$section$$MessageSection$messages>?
         messages,
@@ -21390,7 +21670,7 @@ class Query$FetchMoreItemsForItemSection$section$$CardSection$items$items$item$$
     required this.id,
     required this.title,
     required this.description,
-    this.image,
+    required this.images,
     required this.tasksProgress,
   });
 
@@ -21400,14 +21680,18 @@ class Query$FetchMoreItemsForItemSection$section$$CardSection$items$items$item$$
     final l$id = json['id'];
     final l$title = json['title'];
     final l$description = json['description'];
-    final l$image = json['image'];
+    final l$images = json['images'];
     final l$tasksProgress = json['tasksProgress'];
     return Query$FetchMoreItemsForItemSection$section$$CardSection$items$items$item$$StudyTopic(
       $__typename: (l$$__typename as String),
       id: (l$id as String),
       title: (l$title as String),
       description: (l$description as String),
-      image: (l$image as String?),
+      images: (l$images as List<dynamic>)
+          .map((e) =>
+              Query$FetchMoreItemsForItemSection$section$$CardSection$items$items$item$$StudyTopic$images
+                  .fromJson((e as Map<String, dynamic>)))
+          .toList(),
       tasksProgress:
           Query$FetchMoreItemsForItemSection$section$$CardSection$items$items$item$$StudyTopic$tasksProgress
               .fromJson((l$tasksProgress as Map<String, dynamic>)),
@@ -21422,7 +21706,9 @@ class Query$FetchMoreItemsForItemSection$section$$CardSection$items$items$item$$
 
   final String description;
 
-  final String? image;
+  final List<
+          Query$FetchMoreItemsForItemSection$section$$CardSection$items$items$item$$StudyTopic$images>
+      images;
 
   final Query$FetchMoreItemsForItemSection$section$$CardSection$items$items$item$$StudyTopic$tasksProgress
       tasksProgress;
@@ -21437,8 +21723,8 @@ class Query$FetchMoreItemsForItemSection$section$$CardSection$items$items$item$$
     _resultData['title'] = l$title;
     final l$description = description;
     _resultData['description'] = l$description;
-    final l$image = image;
-    _resultData['image'] = l$image;
+    final l$images = images;
+    _resultData['images'] = l$images.map((e) => e.toJson()).toList();
     final l$tasksProgress = tasksProgress;
     _resultData['tasksProgress'] = l$tasksProgress.toJson();
     return _resultData;
@@ -21450,14 +21736,14 @@ class Query$FetchMoreItemsForItemSection$section$$CardSection$items$items$item$$
     final l$id = id;
     final l$title = title;
     final l$description = description;
-    final l$image = image;
+    final l$images = images;
     final l$tasksProgress = tasksProgress;
     return Object.hashAll([
       l$$__typename,
       l$id,
       l$title,
       l$description,
-      l$image,
+      Object.hashAll(l$images.map((v) => v)),
       l$tasksProgress,
     ]);
   }
@@ -21492,10 +21778,17 @@ class Query$FetchMoreItemsForItemSection$section$$CardSection$items$items$item$$
     if (l$description != lOther$description) {
       return false;
     }
-    final l$image = image;
-    final lOther$image = other.image;
-    if (l$image != lOther$image) {
+    final l$images = images;
+    final lOther$images = other.images;
+    if (l$images.length != lOther$images.length) {
       return false;
+    }
+    for (int i = 0; i < l$images.length; i++) {
+      final l$images$entry = l$images[i];
+      final lOther$images$entry = lOther$images[i];
+      if (l$images$entry != lOther$images$entry) {
+        return false;
+      }
     }
     final l$tasksProgress = tasksProgress;
     final lOther$tasksProgress = other.tasksProgress;
@@ -21536,10 +21829,17 @@ abstract class CopyWith$Query$FetchMoreItemsForItemSection$section$$CardSection$
     String? id,
     String? title,
     String? description,
-    String? image,
+    List<Query$FetchMoreItemsForItemSection$section$$CardSection$items$items$item$$StudyTopic$images>?
+        images,
     Query$FetchMoreItemsForItemSection$section$$CardSection$items$items$item$$StudyTopic$tasksProgress?
         tasksProgress,
   });
+  TRes images(
+      Iterable<Query$FetchMoreItemsForItemSection$section$$CardSection$items$items$item$$StudyTopic$images> Function(
+              Iterable<
+                  CopyWith$Query$FetchMoreItemsForItemSection$section$$CardSection$items$items$item$$StudyTopic$images<
+                      Query$FetchMoreItemsForItemSection$section$$CardSection$items$items$item$$StudyTopic$images>>)
+          _fn);
   CopyWith$Query$FetchMoreItemsForItemSection$section$$CardSection$items$items$item$$StudyTopic$tasksProgress<
       TRes> get tasksProgress;
 }
@@ -21568,7 +21868,7 @@ class _CopyWithImpl$Query$FetchMoreItemsForItemSection$section$$CardSection$item
     Object? id = _undefined,
     Object? title = _undefined,
     Object? description = _undefined,
-    Object? image = _undefined,
+    Object? images = _undefined,
     Object? tasksProgress = _undefined,
   }) =>
       _then(
@@ -21583,12 +21883,27 @@ class _CopyWithImpl$Query$FetchMoreItemsForItemSection$section$$CardSection$item
         description: description == _undefined || description == null
             ? _instance.description
             : (description as String),
-        image: image == _undefined ? _instance.image : (image as String?),
+        images: images == _undefined || images == null
+            ? _instance.images
+            : (images as List<
+                Query$FetchMoreItemsForItemSection$section$$CardSection$items$items$item$$StudyTopic$images>),
         tasksProgress: tasksProgress == _undefined || tasksProgress == null
             ? _instance.tasksProgress
             : (tasksProgress
                 as Query$FetchMoreItemsForItemSection$section$$CardSection$items$items$item$$StudyTopic$tasksProgress),
       ));
+  TRes images(
+          Iterable<Query$FetchMoreItemsForItemSection$section$$CardSection$items$items$item$$StudyTopic$images> Function(
+                  Iterable<
+                      CopyWith$Query$FetchMoreItemsForItemSection$section$$CardSection$items$items$item$$StudyTopic$images<
+                          Query$FetchMoreItemsForItemSection$section$$CardSection$items$items$item$$StudyTopic$images>>)
+              _fn) =>
+      call(
+          images: _fn(_instance.images.map((e) =>
+              CopyWith$Query$FetchMoreItemsForItemSection$section$$CardSection$items$items$item$$StudyTopic$images(
+                e,
+                (i) => i,
+              ))).toList());
   CopyWith$Query$FetchMoreItemsForItemSection$section$$CardSection$items$items$item$$StudyTopic$tasksProgress<
       TRes> get tasksProgress {
     final local$tasksProgress = _instance.tasksProgress;
@@ -21612,16 +21927,183 @@ class _CopyWithStubImpl$Query$FetchMoreItemsForItemSection$section$$CardSection$
     String? id,
     String? title,
     String? description,
-    String? image,
+    List<Query$FetchMoreItemsForItemSection$section$$CardSection$items$items$item$$StudyTopic$images>?
+        images,
     Query$FetchMoreItemsForItemSection$section$$CardSection$items$items$item$$StudyTopic$tasksProgress?
         tasksProgress,
   }) =>
       _res;
+  images(_fn) => _res;
   CopyWith$Query$FetchMoreItemsForItemSection$section$$CardSection$items$items$item$$StudyTopic$tasksProgress<
           TRes>
       get tasksProgress =>
           CopyWith$Query$FetchMoreItemsForItemSection$section$$CardSection$items$items$item$$StudyTopic$tasksProgress
               .stub(_res);
+}
+
+class Query$FetchMoreItemsForItemSection$section$$CardSection$items$items$item$$StudyTopic$images
+    implements
+        Fragment$Section$$CardSection$items$items$item$$StudyTopic$images {
+  Query$FetchMoreItemsForItemSection$section$$CardSection$items$items$item$$StudyTopic$images({
+    required this.style,
+    required this.url,
+    required this.$__typename,
+  });
+
+  factory Query$FetchMoreItemsForItemSection$section$$CardSection$items$items$item$$StudyTopic$images.fromJson(
+      Map<String, dynamic> json) {
+    final l$style = json['style'];
+    final l$url = json['url'];
+    final l$$__typename = json['__typename'];
+    return Query$FetchMoreItemsForItemSection$section$$CardSection$items$items$item$$StudyTopic$images(
+      style: (l$style as String),
+      url: (l$url as String),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final String style;
+
+  final String url;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$style = style;
+    _resultData['style'] = l$style;
+    final l$url = url;
+    _resultData['url'] = l$url;
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$style = style;
+    final l$url = url;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$style,
+      l$url,
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (!(other
+            is Query$FetchMoreItemsForItemSection$section$$CardSection$items$items$item$$StudyTopic$images) ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$style = style;
+    final lOther$style = other.style;
+    if (l$style != lOther$style) {
+      return false;
+    }
+    final l$url = url;
+    final lOther$url = other.url;
+    if (l$url != lOther$url) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Query$FetchMoreItemsForItemSection$section$$CardSection$items$items$item$$StudyTopic$images
+    on Query$FetchMoreItemsForItemSection$section$$CardSection$items$items$item$$StudyTopic$images {
+  CopyWith$Query$FetchMoreItemsForItemSection$section$$CardSection$items$items$item$$StudyTopic$images<
+          Query$FetchMoreItemsForItemSection$section$$CardSection$items$items$item$$StudyTopic$images>
+      get copyWith =>
+          CopyWith$Query$FetchMoreItemsForItemSection$section$$CardSection$items$items$item$$StudyTopic$images(
+            this,
+            (i) => i,
+          );
+}
+
+abstract class CopyWith$Query$FetchMoreItemsForItemSection$section$$CardSection$items$items$item$$StudyTopic$images<
+    TRes> {
+  factory CopyWith$Query$FetchMoreItemsForItemSection$section$$CardSection$items$items$item$$StudyTopic$images(
+    Query$FetchMoreItemsForItemSection$section$$CardSection$items$items$item$$StudyTopic$images
+        instance,
+    TRes Function(
+            Query$FetchMoreItemsForItemSection$section$$CardSection$items$items$item$$StudyTopic$images)
+        then,
+  ) = _CopyWithImpl$Query$FetchMoreItemsForItemSection$section$$CardSection$items$items$item$$StudyTopic$images;
+
+  factory CopyWith$Query$FetchMoreItemsForItemSection$section$$CardSection$items$items$item$$StudyTopic$images.stub(
+          TRes res) =
+      _CopyWithStubImpl$Query$FetchMoreItemsForItemSection$section$$CardSection$items$items$item$$StudyTopic$images;
+
+  TRes call({
+    String? style,
+    String? url,
+    String? $__typename,
+  });
+}
+
+class _CopyWithImpl$Query$FetchMoreItemsForItemSection$section$$CardSection$items$items$item$$StudyTopic$images<
+        TRes>
+    implements
+        CopyWith$Query$FetchMoreItemsForItemSection$section$$CardSection$items$items$item$$StudyTopic$images<
+            TRes> {
+  _CopyWithImpl$Query$FetchMoreItemsForItemSection$section$$CardSection$items$items$item$$StudyTopic$images(
+    this._instance,
+    this._then,
+  );
+
+  final Query$FetchMoreItemsForItemSection$section$$CardSection$items$items$item$$StudyTopic$images
+      _instance;
+
+  final TRes Function(
+          Query$FetchMoreItemsForItemSection$section$$CardSection$items$items$item$$StudyTopic$images)
+      _then;
+
+  static const _undefined = {};
+
+  TRes call({
+    Object? style = _undefined,
+    Object? url = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(
+          Query$FetchMoreItemsForItemSection$section$$CardSection$items$items$item$$StudyTopic$images(
+        style: style == _undefined || style == null
+            ? _instance.style
+            : (style as String),
+        url: url == _undefined || url == null ? _instance.url : (url as String),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+}
+
+class _CopyWithStubImpl$Query$FetchMoreItemsForItemSection$section$$CardSection$items$items$item$$StudyTopic$images<
+        TRes>
+    implements
+        CopyWith$Query$FetchMoreItemsForItemSection$section$$CardSection$items$items$item$$StudyTopic$images<
+            TRes> {
+  _CopyWithStubImpl$Query$FetchMoreItemsForItemSection$section$$CardSection$items$items$item$$StudyTopic$images(
+      this._res);
+
+  TRes _res;
+
+  call({
+    String? style,
+    String? url,
+    String? $__typename,
+  }) =>
+      _res;
 }
 
 class Query$FetchMoreItemsForItemSection$section$$CardSection$items$items$item$$StudyTopic$tasksProgress

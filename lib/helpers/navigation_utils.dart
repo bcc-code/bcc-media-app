@@ -56,12 +56,21 @@ Future<dynamic>? navigateToShowWithoutEpisodeId(BuildContext context, String sho
 }
 
 Future<dynamic>? navigateToStudyTopic(BuildContext context, String topicId) async {
+  // TODO: nothing is as permanent as a temporary solution lol
   debugPrint('navigateToShowWithoutEpisodeId');
   final navigationOverride = NavigationOverride.of(context);
   final router = context.router;
-  final result = await ProviderScope.containerOf(context, listen: false).read(gqlClientProvider).query$GetStudyTopicLessonStatuses(
-      Options$Query$GetStudyTopicLessonStatuses(variables: Variables$Query$GetStudyTopicLessonStatuses(id: topicId, first: 100)));
-  var episodeId = result.parsedData?.studyTopic.lessons.items.firstWhereOrNull((el) => !el.completed)?.episodes.items.firstOrNull?.id;
+  final result = await ProviderScope.containerOf(context, listen: false)
+      .read(gqlClientProvider)
+      .query$GetStudyTopicLessonStatuses(Options$Query$GetStudyTopicLessonStatuses(
+        variables: Variables$Query$GetStudyTopicLessonStatuses(id: topicId, first: 100),
+      ));
+  var episodeId = result.parsedData?.studyTopic.lessons.items
+      .firstWhereOrNull((el) => !el.completed && el.episodes.items.firstOrNull?.id == false) // waiting for episode.locked to be exposed
+      ?.episodes
+      .items
+      .firstOrNull
+      ?.id;
   episodeId ??= result.parsedData?.studyTopic.lessons.items.firstOrNull?.episodes.items.firstOrNull?.id;
   if (episodeId == null) {
     throw ErrorHint('Failed finding an episode to navigate to for topic $topicId');
