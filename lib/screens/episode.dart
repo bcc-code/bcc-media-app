@@ -124,6 +124,7 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen> with AutoRouteAwa
                     ageRating: ep.ageRating,
                     duration: ep.duration,
                     publishDate: ep.publishDate,
+                    locked: ep.locked,
                     title: ep.title,
                     image: ep.image,
                     seasonNumber: episodeSeason.number,
@@ -570,6 +571,7 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen> with AutoRouteAwa
         seasonsMap[id] = season.episodes.items
             .map((ep) => EpisodeListEpisodeData(
                 episodeId: ep.id,
+                locked: ep.locked,
                 ageRating: ep.ageRating,
                 publishDate: ep.publishDate,
                 duration: ep.duration,

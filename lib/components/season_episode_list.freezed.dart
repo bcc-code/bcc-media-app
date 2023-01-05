@@ -18,6 +18,7 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$EpisodeListEpisodeData {
   String get episodeId => throw _privateConstructorUsedError;
   String get title => throw _privateConstructorUsedError;
+  bool get locked => throw _privateConstructorUsedError;
   bool? get highlighted => throw _privateConstructorUsedError;
   String? get image => throw _privateConstructorUsedError;
   int? get seasonNumber => throw _privateConstructorUsedError;
@@ -42,6 +43,7 @@ abstract class $EpisodeListEpisodeDataCopyWith<$Res> {
   $Res call(
       {String episodeId,
       String title,
+      bool locked,
       bool? highlighted,
       String? image,
       int? seasonNumber,
@@ -68,6 +70,7 @@ class _$EpisodeListEpisodeDataCopyWithImpl<$Res,
   $Res call({
     Object? episodeId = null,
     Object? title = null,
+    Object? locked = null,
     Object? highlighted = freezed,
     Object? image = freezed,
     Object? seasonNumber = freezed,
@@ -86,6 +89,10 @@ class _$EpisodeListEpisodeDataCopyWithImpl<$Res,
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
               as String,
+      locked: null == locked
+          ? _value.locked
+          : locked // ignore: cast_nullable_to_non_nullable
+              as bool,
       highlighted: freezed == highlighted
           ? _value.highlighted
           : highlighted // ignore: cast_nullable_to_non_nullable
@@ -133,6 +140,7 @@ abstract class _$$_EpisodeListEpisodeCopyWith<$Res>
   $Res call(
       {String episodeId,
       String title,
+      bool locked,
       bool? highlighted,
       String? image,
       int? seasonNumber,
@@ -156,6 +164,7 @@ class __$$_EpisodeListEpisodeCopyWithImpl<$Res>
   $Res call({
     Object? episodeId = null,
     Object? title = null,
+    Object? locked = null,
     Object? highlighted = freezed,
     Object? image = freezed,
     Object? seasonNumber = freezed,
@@ -174,6 +183,10 @@ class __$$_EpisodeListEpisodeCopyWithImpl<$Res>
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
               as String,
+      locked: null == locked
+          ? _value.locked
+          : locked // ignore: cast_nullable_to_non_nullable
+              as bool,
       highlighted: freezed == highlighted
           ? _value.highlighted
           : highlighted // ignore: cast_nullable_to_non_nullable
@@ -216,6 +229,7 @@ class _$_EpisodeListEpisode implements _EpisodeListEpisode {
   const _$_EpisodeListEpisode(
       {required this.episodeId,
       required this.title,
+      required this.locked,
       this.highlighted,
       required this.image,
       this.seasonNumber,
@@ -229,6 +243,8 @@ class _$_EpisodeListEpisode implements _EpisodeListEpisode {
   final String episodeId;
   @override
   final String title;
+  @override
+  final bool locked;
   @override
   final bool? highlighted;
   @override
@@ -248,7 +264,7 @@ class _$_EpisodeListEpisode implements _EpisodeListEpisode {
 
   @override
   String toString() {
-    return 'EpisodeListEpisodeData(episodeId: $episodeId, title: $title, highlighted: $highlighted, image: $image, seasonNumber: $seasonNumber, episodeNumber: $episodeNumber, lessonProgressOverview: $lessonProgressOverview, publishDate: $publishDate, ageRating: $ageRating, duration: $duration)';
+    return 'EpisodeListEpisodeData(episodeId: $episodeId, title: $title, locked: $locked, highlighted: $highlighted, image: $image, seasonNumber: $seasonNumber, episodeNumber: $episodeNumber, lessonProgressOverview: $lessonProgressOverview, publishDate: $publishDate, ageRating: $ageRating, duration: $duration)';
   }
 
   @override
@@ -259,6 +275,7 @@ class _$_EpisodeListEpisode implements _EpisodeListEpisode {
             (identical(other.episodeId, episodeId) ||
                 other.episodeId == episodeId) &&
             (identical(other.title, title) || other.title == title) &&
+            (identical(other.locked, locked) || other.locked == locked) &&
             (identical(other.highlighted, highlighted) ||
                 other.highlighted == highlighted) &&
             (identical(other.image, image) || other.image == image) &&
@@ -281,6 +298,7 @@ class _$_EpisodeListEpisode implements _EpisodeListEpisode {
       runtimeType,
       episodeId,
       title,
+      locked,
       highlighted,
       image,
       seasonNumber,
@@ -302,6 +320,7 @@ abstract class _EpisodeListEpisode implements EpisodeListEpisodeData {
   const factory _EpisodeListEpisode(
       {required final String episodeId,
       required final String title,
+      required final bool locked,
       final bool? highlighted,
       required final String? image,
       final int? seasonNumber,
@@ -315,6 +334,8 @@ abstract class _EpisodeListEpisode implements EpisodeListEpisodeData {
   String get episodeId;
   @override
   String get title;
+  @override
+  bool get locked;
   @override
   bool? get highlighted;
   @override

@@ -640,6 +640,10 @@ class Query$FetchMoreItemsForItemSection$section implements Fragment$Section {
         return Query$FetchMoreItemsForItemSection$section$$MessageSection
             .fromJson(json);
 
+      case "PageDetailsSection":
+        return Query$FetchMoreItemsForItemSection$section$$PageDetailsSection
+            .fromJson(json);
+
       default:
         final l$id = json['id'];
         final l$title = json['title'];
@@ -22269,6 +22273,187 @@ class _CopyWithStubImpl$Query$FetchMoreItemsForItemSection$section$$CardSection$
   call({
     int? completed,
     int? total,
+    String? $__typename,
+  }) =>
+      _res;
+}
+
+class Query$FetchMoreItemsForItemSection$section$$PageDetailsSection
+    implements
+        Fragment$Section$$PageDetailsSection,
+        Query$FetchMoreItemsForItemSection$section {
+  Query$FetchMoreItemsForItemSection$section$$PageDetailsSection({
+    required this.id,
+    this.title,
+    this.description,
+    required this.$__typename,
+  });
+
+  factory Query$FetchMoreItemsForItemSection$section$$PageDetailsSection.fromJson(
+      Map<String, dynamic> json) {
+    final l$id = json['id'];
+    final l$title = json['title'];
+    final l$description = json['description'];
+    final l$$__typename = json['__typename'];
+    return Query$FetchMoreItemsForItemSection$section$$PageDetailsSection(
+      id: (l$id as String),
+      title: (l$title as String?),
+      description: (l$description as String?),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final String id;
+
+  final String? title;
+
+  final String? description;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$id = id;
+    _resultData['id'] = l$id;
+    final l$title = title;
+    _resultData['title'] = l$title;
+    final l$description = description;
+    _resultData['description'] = l$description;
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$id = id;
+    final l$title = title;
+    final l$description = description;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$id,
+      l$title,
+      l$description,
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (!(other
+            is Query$FetchMoreItemsForItemSection$section$$PageDetailsSection) ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$id = id;
+    final lOther$id = other.id;
+    if (l$id != lOther$id) {
+      return false;
+    }
+    final l$title = title;
+    final lOther$title = other.title;
+    if (l$title != lOther$title) {
+      return false;
+    }
+    final l$description = description;
+    final lOther$description = other.description;
+    if (l$description != lOther$description) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Query$FetchMoreItemsForItemSection$section$$PageDetailsSection
+    on Query$FetchMoreItemsForItemSection$section$$PageDetailsSection {
+  CopyWith$Query$FetchMoreItemsForItemSection$section$$PageDetailsSection<
+          Query$FetchMoreItemsForItemSection$section$$PageDetailsSection>
+      get copyWith =>
+          CopyWith$Query$FetchMoreItemsForItemSection$section$$PageDetailsSection(
+            this,
+            (i) => i,
+          );
+}
+
+abstract class CopyWith$Query$FetchMoreItemsForItemSection$section$$PageDetailsSection<
+    TRes> {
+  factory CopyWith$Query$FetchMoreItemsForItemSection$section$$PageDetailsSection(
+    Query$FetchMoreItemsForItemSection$section$$PageDetailsSection instance,
+    TRes Function(
+            Query$FetchMoreItemsForItemSection$section$$PageDetailsSection)
+        then,
+  ) = _CopyWithImpl$Query$FetchMoreItemsForItemSection$section$$PageDetailsSection;
+
+  factory CopyWith$Query$FetchMoreItemsForItemSection$section$$PageDetailsSection.stub(
+          TRes res) =
+      _CopyWithStubImpl$Query$FetchMoreItemsForItemSection$section$$PageDetailsSection;
+
+  TRes call({
+    String? id,
+    String? title,
+    String? description,
+    String? $__typename,
+  });
+}
+
+class _CopyWithImpl$Query$FetchMoreItemsForItemSection$section$$PageDetailsSection<
+        TRes>
+    implements
+        CopyWith$Query$FetchMoreItemsForItemSection$section$$PageDetailsSection<
+            TRes> {
+  _CopyWithImpl$Query$FetchMoreItemsForItemSection$section$$PageDetailsSection(
+    this._instance,
+    this._then,
+  );
+
+  final Query$FetchMoreItemsForItemSection$section$$PageDetailsSection
+      _instance;
+
+  final TRes Function(
+      Query$FetchMoreItemsForItemSection$section$$PageDetailsSection) _then;
+
+  static const _undefined = {};
+
+  TRes call({
+    Object? id = _undefined,
+    Object? title = _undefined,
+    Object? description = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(Query$FetchMoreItemsForItemSection$section$$PageDetailsSection(
+        id: id == _undefined || id == null ? _instance.id : (id as String),
+        title: title == _undefined ? _instance.title : (title as String?),
+        description: description == _undefined
+            ? _instance.description
+            : (description as String?),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+}
+
+class _CopyWithStubImpl$Query$FetchMoreItemsForItemSection$section$$PageDetailsSection<
+        TRes>
+    implements
+        CopyWith$Query$FetchMoreItemsForItemSection$section$$PageDetailsSection<
+            TRes> {
+  _CopyWithStubImpl$Query$FetchMoreItemsForItemSection$section$$PageDetailsSection(
+      this._res);
+
+  TRes _res;
+
+  call({
+    String? id,
+    String? title,
+    String? description,
     String? $__typename,
   }) =>
       _res;

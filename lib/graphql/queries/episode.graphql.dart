@@ -14,6 +14,7 @@ class Fragment$SeasonListEpisode {
     required this.publishDate,
     required this.ageRating,
     required this.duration,
+    required this.locked,
     required this.$__typename,
   });
 
@@ -25,6 +26,7 @@ class Fragment$SeasonListEpisode {
     final l$publishDate = json['publishDate'];
     final l$ageRating = json['ageRating'];
     final l$duration = json['duration'];
+    final l$locked = json['locked'];
     final l$$__typename = json['__typename'];
     return Fragment$SeasonListEpisode(
       id: (l$id as String),
@@ -34,6 +36,7 @@ class Fragment$SeasonListEpisode {
       publishDate: (l$publishDate as String),
       ageRating: (l$ageRating as String),
       duration: (l$duration as int),
+      locked: (l$locked as bool),
       $__typename: (l$$__typename as String),
     );
   }
@@ -51,6 +54,8 @@ class Fragment$SeasonListEpisode {
   final String ageRating;
 
   final int duration;
+
+  final bool locked;
 
   final String $__typename;
 
@@ -70,6 +75,8 @@ class Fragment$SeasonListEpisode {
     _resultData['ageRating'] = l$ageRating;
     final l$duration = duration;
     _resultData['duration'] = l$duration;
+    final l$locked = locked;
+    _resultData['locked'] = l$locked;
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -84,6 +91,7 @@ class Fragment$SeasonListEpisode {
     final l$publishDate = publishDate;
     final l$ageRating = ageRating;
     final l$duration = duration;
+    final l$locked = locked;
     final l$$__typename = $__typename;
     return Object.hashAll([
       l$id,
@@ -93,6 +101,7 @@ class Fragment$SeasonListEpisode {
       l$publishDate,
       l$ageRating,
       l$duration,
+      l$locked,
       l$$__typename,
     ]);
   }
@@ -141,6 +150,11 @@ class Fragment$SeasonListEpisode {
     if (l$duration != lOther$duration) {
       return false;
     }
+    final l$locked = locked;
+    final lOther$locked = other.locked;
+    if (l$locked != lOther$locked) {
+      return false;
+    }
     final l$$__typename = $__typename;
     final lOther$$__typename = other.$__typename;
     if (l$$__typename != lOther$$__typename) {
@@ -176,6 +190,7 @@ abstract class CopyWith$Fragment$SeasonListEpisode<TRes> {
     String? publishDate,
     String? ageRating,
     int? duration,
+    bool? locked,
     String? $__typename,
   });
 }
@@ -201,6 +216,7 @@ class _CopyWithImpl$Fragment$SeasonListEpisode<TRes>
     Object? publishDate = _undefined,
     Object? ageRating = _undefined,
     Object? duration = _undefined,
+    Object? locked = _undefined,
     Object? $__typename = _undefined,
   }) =>
       _then(Fragment$SeasonListEpisode(
@@ -219,6 +235,9 @@ class _CopyWithImpl$Fragment$SeasonListEpisode<TRes>
         duration: duration == _undefined || duration == null
             ? _instance.duration
             : (duration as int),
+        locked: locked == _undefined || locked == null
+            ? _instance.locked
+            : (locked as bool),
         $__typename: $__typename == _undefined || $__typename == null
             ? _instance.$__typename
             : ($__typename as String),
@@ -239,6 +258,7 @@ class _CopyWithStubImpl$Fragment$SeasonListEpisode<TRes>
     String? publishDate,
     String? ageRating,
     int? duration,
+    bool? locked,
     String? $__typename,
   }) =>
       _res;
@@ -297,6 +317,13 @@ const fragmentDefinitionSeasonListEpisode = FragmentDefinitionNode(
     ),
     FieldNode(
       name: NameNode(value: 'duration'),
+      alias: null,
+      arguments: [],
+      directives: [],
+      selectionSet: null,
+    ),
+    FieldNode(
+      name: NameNode(value: 'locked'),
       alias: null,
       arguments: [],
       directives: [],

@@ -827,6 +827,7 @@ class Query$GetSeasonEpisodes$season$episodes$items
     required this.publishDate,
     required this.ageRating,
     required this.duration,
+    required this.locked,
     required this.$__typename,
   });
 
@@ -840,6 +841,7 @@ class Query$GetSeasonEpisodes$season$episodes$items
     final l$publishDate = json['publishDate'];
     final l$ageRating = json['ageRating'];
     final l$duration = json['duration'];
+    final l$locked = json['locked'];
     final l$$__typename = json['__typename'];
     return Query$GetSeasonEpisodes$season$episodes$items(
       id: (l$id as String),
@@ -851,6 +853,7 @@ class Query$GetSeasonEpisodes$season$episodes$items
       publishDate: (l$publishDate as String),
       ageRating: (l$ageRating as String),
       duration: (l$duration as int),
+      locked: (l$locked as bool),
       $__typename: (l$$__typename as String),
     );
   }
@@ -870,6 +873,8 @@ class Query$GetSeasonEpisodes$season$episodes$items
   final String ageRating;
 
   final int duration;
+
+  final bool locked;
 
   final String $__typename;
 
@@ -891,6 +896,8 @@ class Query$GetSeasonEpisodes$season$episodes$items
     _resultData['ageRating'] = l$ageRating;
     final l$duration = duration;
     _resultData['duration'] = l$duration;
+    final l$locked = locked;
+    _resultData['locked'] = l$locked;
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -906,6 +913,7 @@ class Query$GetSeasonEpisodes$season$episodes$items
     final l$publishDate = publishDate;
     final l$ageRating = ageRating;
     final l$duration = duration;
+    final l$locked = locked;
     final l$$__typename = $__typename;
     return Object.hashAll([
       l$id,
@@ -916,6 +924,7 @@ class Query$GetSeasonEpisodes$season$episodes$items
       l$publishDate,
       l$ageRating,
       l$duration,
+      l$locked,
       l$$__typename,
     ]);
   }
@@ -969,6 +978,11 @@ class Query$GetSeasonEpisodes$season$episodes$items
     if (l$duration != lOther$duration) {
       return false;
     }
+    final l$locked = locked;
+    final lOther$locked = other.locked;
+    if (l$locked != lOther$locked) {
+      return false;
+    }
     final l$$__typename = $__typename;
     final lOther$$__typename = other.$__typename;
     if (l$$__typename != lOther$$__typename) {
@@ -1007,6 +1021,7 @@ abstract class CopyWith$Query$GetSeasonEpisodes$season$episodes$items<TRes> {
     String? publishDate,
     String? ageRating,
     int? duration,
+    bool? locked,
     String? $__typename,
   });
   CopyWith$Query$GetSeasonEpisodes$season$episodes$items$lessons<TRes>
@@ -1035,6 +1050,7 @@ class _CopyWithImpl$Query$GetSeasonEpisodes$season$episodes$items<TRes>
     Object? publishDate = _undefined,
     Object? ageRating = _undefined,
     Object? duration = _undefined,
+    Object? locked = _undefined,
     Object? $__typename = _undefined,
   }) =>
       _then(Query$GetSeasonEpisodes$season$episodes$items(
@@ -1057,6 +1073,9 @@ class _CopyWithImpl$Query$GetSeasonEpisodes$season$episodes$items<TRes>
         duration: duration == _undefined || duration == null
             ? _instance.duration
             : (duration as int),
+        locked: locked == _undefined || locked == null
+            ? _instance.locked
+            : (locked as bool),
         $__typename: $__typename == _undefined || $__typename == null
             ? _instance.$__typename
             : ($__typename as String),
@@ -1084,6 +1103,7 @@ class _CopyWithStubImpl$Query$GetSeasonEpisodes$season$episodes$items<TRes>
     String? publishDate,
     String? ageRating,
     int? duration,
+    bool? locked,
     String? $__typename,
   }) =>
       _res;
