@@ -1167,6 +1167,13 @@ const documentNodeQueryGetStudyTopicLessonStatuses = DocumentNode(definitions: [
                             selectionSet: null,
                           ),
                           FieldNode(
+                            name: NameNode(value: 'publishDate'),
+                            alias: null,
+                            arguments: [],
+                            directives: [],
+                            selectionSet: null,
+                          ),
+                          FieldNode(
                             name: NameNode(value: '__typename'),
                             alias: null,
                             arguments: [],
@@ -2042,20 +2049,25 @@ class _CopyWithStubImpl$Query$GetStudyTopicLessonStatuses$studyTopic$lessons$ite
 class Query$GetStudyTopicLessonStatuses$studyTopic$lessons$items$episodes$items {
   Query$GetStudyTopicLessonStatuses$studyTopic$lessons$items$episodes$items({
     required this.id,
+    required this.publishDate,
     required this.$__typename,
   });
 
   factory Query$GetStudyTopicLessonStatuses$studyTopic$lessons$items$episodes$items.fromJson(
       Map<String, dynamic> json) {
     final l$id = json['id'];
+    final l$publishDate = json['publishDate'];
     final l$$__typename = json['__typename'];
     return Query$GetStudyTopicLessonStatuses$studyTopic$lessons$items$episodes$items(
       id: (l$id as String),
+      publishDate: (l$publishDate as String),
       $__typename: (l$$__typename as String),
     );
   }
 
   final String id;
+
+  final String publishDate;
 
   final String $__typename;
 
@@ -2063,6 +2075,8 @@ class Query$GetStudyTopicLessonStatuses$studyTopic$lessons$items$episodes$items 
     final _resultData = <String, dynamic>{};
     final l$id = id;
     _resultData['id'] = l$id;
+    final l$publishDate = publishDate;
+    _resultData['publishDate'] = l$publishDate;
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -2071,9 +2085,11 @@ class Query$GetStudyTopicLessonStatuses$studyTopic$lessons$items$episodes$items 
   @override
   int get hashCode {
     final l$id = id;
+    final l$publishDate = publishDate;
     final l$$__typename = $__typename;
     return Object.hashAll([
       l$id,
+      l$publishDate,
       l$$__typename,
     ]);
   }
@@ -2091,6 +2107,11 @@ class Query$GetStudyTopicLessonStatuses$studyTopic$lessons$items$episodes$items 
     final l$id = id;
     final lOther$id = other.id;
     if (l$id != lOther$id) {
+      return false;
+    }
+    final l$publishDate = publishDate;
+    final lOther$publishDate = other.publishDate;
+    if (l$publishDate != lOther$publishDate) {
       return false;
     }
     final l$$__typename = $__typename;
@@ -2129,6 +2150,7 @@ abstract class CopyWith$Query$GetStudyTopicLessonStatuses$studyTopic$lessons$ite
 
   TRes call({
     String? id,
+    String? publishDate,
     String? $__typename,
   });
 }
@@ -2154,11 +2176,15 @@ class _CopyWithImpl$Query$GetStudyTopicLessonStatuses$studyTopic$lessons$items$e
 
   TRes call({
     Object? id = _undefined,
+    Object? publishDate = _undefined,
     Object? $__typename = _undefined,
   }) =>
       _then(
           Query$GetStudyTopicLessonStatuses$studyTopic$lessons$items$episodes$items(
         id: id == _undefined || id == null ? _instance.id : (id as String),
+        publishDate: publishDate == _undefined || publishDate == null
+            ? _instance.publishDate
+            : (publishDate as String),
         $__typename: $__typename == _undefined || $__typename == null
             ? _instance.$__typename
             : ($__typename as String),
@@ -2177,6 +2203,7 @@ class _CopyWithStubImpl$Query$GetStudyTopicLessonStatuses$studyTopic$lessons$ite
 
   call({
     String? id,
+    String? publishDate,
     String? $__typename,
   }) =>
       _res;

@@ -3,6 +3,7 @@ type StudyTopic {
     title: String!
     description: String!
     image(style: ImageStyle): String @goField(forceResolver: true)
+    images: [Image!]!
     lessons(first: Int, offset: Int): LessonPagination! @goField(forceResolver: true)
     progress: TasksProgress! @goField(forceResolver: true)
 }

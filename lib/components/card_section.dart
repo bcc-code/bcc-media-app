@@ -19,7 +19,7 @@ class CardSection extends StatelessWidget {
           studyTopic: studyTopic,
         );
       } else if (data.cardSize == Enum$CardSectionSize.large) {
-        //return StudyTopicCardLarge(studyTopic: studyTopic);
+        return StudyTopicCardLarge(studyTopic: studyTopic);
       }
     }
 

@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:brunstadtv_app/helpers/btv_typography.dart';
 import 'package:flutter/material.dart';
 
@@ -36,7 +38,7 @@ class WatchProgressIndicator extends StatelessWidget {
                     ),
                   ),
                   FractionallySizedBox(
-                    widthFactor: watchedDuration / totalDuration,
+                    widthFactor: watchedDuration / max(1, totalDuration),
                     child: Container(
                       decoration: BoxDecoration(
                         color: Colors.white,

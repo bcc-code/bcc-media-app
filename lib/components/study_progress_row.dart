@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 
 import '../../helpers/btv_colors.dart';
@@ -43,7 +45,7 @@ class StudyProgressRow extends StatelessWidget {
                 ),
               ),
               FractionallySizedBox(
-                widthFactor: completed / total,
+                widthFactor: completed / max(1, total),
                 child: Container(
                   height: 6,
                   decoration: BoxDecoration(

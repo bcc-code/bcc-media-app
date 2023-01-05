@@ -4918,11 +4918,33 @@ const fragmentDefinitionSection = FragmentDefinitionNode(
                           selectionSet: null,
                         ),
                         FieldNode(
-                          name: NameNode(value: 'image'),
+                          name: NameNode(value: 'images'),
                           alias: null,
                           arguments: [],
                           directives: [],
-                          selectionSet: null,
+                          selectionSet: SelectionSetNode(selections: [
+                            FieldNode(
+                              name: NameNode(value: 'style'),
+                              alias: null,
+                              arguments: [],
+                              directives: [],
+                              selectionSet: null,
+                            ),
+                            FieldNode(
+                              name: NameNode(value: 'url'),
+                              alias: null,
+                              arguments: [],
+                              directives: [],
+                              selectionSet: null,
+                            ),
+                            FieldNode(
+                              name: NameNode(value: '__typename'),
+                              alias: null,
+                              arguments: [],
+                              directives: [],
+                              selectionSet: null,
+                            ),
+                          ]),
                         ),
                         FieldNode(
                           name: NameNode(value: 'progress'),
@@ -24136,7 +24158,7 @@ class Fragment$Section$$CardSection$items$items$item$$StudyTopic
     required this.id,
     required this.title,
     required this.description,
-    this.image,
+    required this.images,
     required this.tasksProgress,
   });
 
@@ -24146,14 +24168,18 @@ class Fragment$Section$$CardSection$items$items$item$$StudyTopic
     final l$id = json['id'];
     final l$title = json['title'];
     final l$description = json['description'];
-    final l$image = json['image'];
+    final l$images = json['images'];
     final l$tasksProgress = json['tasksProgress'];
     return Fragment$Section$$CardSection$items$items$item$$StudyTopic(
       $__typename: (l$$__typename as String),
       id: (l$id as String),
       title: (l$title as String),
       description: (l$description as String),
-      image: (l$image as String?),
+      images: (l$images as List<dynamic>)
+          .map((e) =>
+              Fragment$Section$$CardSection$items$items$item$$StudyTopic$images
+                  .fromJson((e as Map<String, dynamic>)))
+          .toList(),
       tasksProgress:
           Fragment$Section$$CardSection$items$items$item$$StudyTopic$tasksProgress
               .fromJson((l$tasksProgress as Map<String, dynamic>)),
@@ -24168,7 +24194,8 @@ class Fragment$Section$$CardSection$items$items$item$$StudyTopic
 
   final String description;
 
-  final String? image;
+  final List<Fragment$Section$$CardSection$items$items$item$$StudyTopic$images>
+      images;
 
   final Fragment$Section$$CardSection$items$items$item$$StudyTopic$tasksProgress
       tasksProgress;
@@ -24183,8 +24210,8 @@ class Fragment$Section$$CardSection$items$items$item$$StudyTopic
     _resultData['title'] = l$title;
     final l$description = description;
     _resultData['description'] = l$description;
-    final l$image = image;
-    _resultData['image'] = l$image;
+    final l$images = images;
+    _resultData['images'] = l$images.map((e) => e.toJson()).toList();
     final l$tasksProgress = tasksProgress;
     _resultData['tasksProgress'] = l$tasksProgress.toJson();
     return _resultData;
@@ -24196,14 +24223,14 @@ class Fragment$Section$$CardSection$items$items$item$$StudyTopic
     final l$id = id;
     final l$title = title;
     final l$description = description;
-    final l$image = image;
+    final l$images = images;
     final l$tasksProgress = tasksProgress;
     return Object.hashAll([
       l$$__typename,
       l$id,
       l$title,
       l$description,
-      l$image,
+      Object.hashAll(l$images.map((v) => v)),
       l$tasksProgress,
     ]);
   }
@@ -24238,10 +24265,17 @@ class Fragment$Section$$CardSection$items$items$item$$StudyTopic
     if (l$description != lOther$description) {
       return false;
     }
-    final l$image = image;
-    final lOther$image = other.image;
-    if (l$image != lOther$image) {
+    final l$images = images;
+    final lOther$images = other.images;
+    if (l$images.length != lOther$images.length) {
       return false;
+    }
+    for (int i = 0; i < l$images.length; i++) {
+      final l$images$entry = l$images[i];
+      final lOther$images$entry = lOther$images[i];
+      if (l$images$entry != lOther$images$entry) {
+        return false;
+      }
     }
     final l$tasksProgress = tasksProgress;
     final lOther$tasksProgress = other.tasksProgress;
@@ -24280,10 +24314,17 @@ abstract class CopyWith$Fragment$Section$$CardSection$items$items$item$$StudyTop
     String? id,
     String? title,
     String? description,
-    String? image,
+    List<Fragment$Section$$CardSection$items$items$item$$StudyTopic$images>?
+        images,
     Fragment$Section$$CardSection$items$items$item$$StudyTopic$tasksProgress?
         tasksProgress,
   });
+  TRes images(
+      Iterable<Fragment$Section$$CardSection$items$items$item$$StudyTopic$images> Function(
+              Iterable<
+                  CopyWith$Fragment$Section$$CardSection$items$items$item$$StudyTopic$images<
+                      Fragment$Section$$CardSection$items$items$item$$StudyTopic$images>>)
+          _fn);
   CopyWith$Fragment$Section$$CardSection$items$items$item$$StudyTopic$tasksProgress<
       TRes> get tasksProgress;
 }
@@ -24310,7 +24351,7 @@ class _CopyWithImpl$Fragment$Section$$CardSection$items$items$item$$StudyTopic<
     Object? id = _undefined,
     Object? title = _undefined,
     Object? description = _undefined,
-    Object? image = _undefined,
+    Object? images = _undefined,
     Object? tasksProgress = _undefined,
   }) =>
       _then(Fragment$Section$$CardSection$items$items$item$$StudyTopic(
@@ -24324,12 +24365,27 @@ class _CopyWithImpl$Fragment$Section$$CardSection$items$items$item$$StudyTopic<
         description: description == _undefined || description == null
             ? _instance.description
             : (description as String),
-        image: image == _undefined ? _instance.image : (image as String?),
+        images: images == _undefined || images == null
+            ? _instance.images
+            : (images as List<
+                Fragment$Section$$CardSection$items$items$item$$StudyTopic$images>),
         tasksProgress: tasksProgress == _undefined || tasksProgress == null
             ? _instance.tasksProgress
             : (tasksProgress
                 as Fragment$Section$$CardSection$items$items$item$$StudyTopic$tasksProgress),
       ));
+  TRes images(
+          Iterable<Fragment$Section$$CardSection$items$items$item$$StudyTopic$images> Function(
+                  Iterable<
+                      CopyWith$Fragment$Section$$CardSection$items$items$item$$StudyTopic$images<
+                          Fragment$Section$$CardSection$items$items$item$$StudyTopic$images>>)
+              _fn) =>
+      call(
+          images: _fn(_instance.images.map((e) =>
+              CopyWith$Fragment$Section$$CardSection$items$items$item$$StudyTopic$images(
+                e,
+                (i) => i,
+              ))).toList());
   CopyWith$Fragment$Section$$CardSection$items$items$item$$StudyTopic$tasksProgress<
       TRes> get tasksProgress {
     final local$tasksProgress = _instance.tasksProgress;
@@ -24353,16 +24409,178 @@ class _CopyWithStubImpl$Fragment$Section$$CardSection$items$items$item$$StudyTop
     String? id,
     String? title,
     String? description,
-    String? image,
+    List<Fragment$Section$$CardSection$items$items$item$$StudyTopic$images>?
+        images,
     Fragment$Section$$CardSection$items$items$item$$StudyTopic$tasksProgress?
         tasksProgress,
   }) =>
       _res;
+  images(_fn) => _res;
   CopyWith$Fragment$Section$$CardSection$items$items$item$$StudyTopic$tasksProgress<
           TRes>
       get tasksProgress =>
           CopyWith$Fragment$Section$$CardSection$items$items$item$$StudyTopic$tasksProgress
               .stub(_res);
+}
+
+class Fragment$Section$$CardSection$items$items$item$$StudyTopic$images {
+  Fragment$Section$$CardSection$items$items$item$$StudyTopic$images({
+    required this.style,
+    required this.url,
+    required this.$__typename,
+  });
+
+  factory Fragment$Section$$CardSection$items$items$item$$StudyTopic$images.fromJson(
+      Map<String, dynamic> json) {
+    final l$style = json['style'];
+    final l$url = json['url'];
+    final l$$__typename = json['__typename'];
+    return Fragment$Section$$CardSection$items$items$item$$StudyTopic$images(
+      style: (l$style as String),
+      url: (l$url as String),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final String style;
+
+  final String url;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$style = style;
+    _resultData['style'] = l$style;
+    final l$url = url;
+    _resultData['url'] = l$url;
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$style = style;
+    final l$url = url;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$style,
+      l$url,
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (!(other
+            is Fragment$Section$$CardSection$items$items$item$$StudyTopic$images) ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$style = style;
+    final lOther$style = other.style;
+    if (l$style != lOther$style) {
+      return false;
+    }
+    final l$url = url;
+    final lOther$url = other.url;
+    if (l$url != lOther$url) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Fragment$Section$$CardSection$items$items$item$$StudyTopic$images
+    on Fragment$Section$$CardSection$items$items$item$$StudyTopic$images {
+  CopyWith$Fragment$Section$$CardSection$items$items$item$$StudyTopic$images<
+          Fragment$Section$$CardSection$items$items$item$$StudyTopic$images>
+      get copyWith =>
+          CopyWith$Fragment$Section$$CardSection$items$items$item$$StudyTopic$images(
+            this,
+            (i) => i,
+          );
+}
+
+abstract class CopyWith$Fragment$Section$$CardSection$items$items$item$$StudyTopic$images<
+    TRes> {
+  factory CopyWith$Fragment$Section$$CardSection$items$items$item$$StudyTopic$images(
+    Fragment$Section$$CardSection$items$items$item$$StudyTopic$images instance,
+    TRes Function(
+            Fragment$Section$$CardSection$items$items$item$$StudyTopic$images)
+        then,
+  ) = _CopyWithImpl$Fragment$Section$$CardSection$items$items$item$$StudyTopic$images;
+
+  factory CopyWith$Fragment$Section$$CardSection$items$items$item$$StudyTopic$images.stub(
+          TRes res) =
+      _CopyWithStubImpl$Fragment$Section$$CardSection$items$items$item$$StudyTopic$images;
+
+  TRes call({
+    String? style,
+    String? url,
+    String? $__typename,
+  });
+}
+
+class _CopyWithImpl$Fragment$Section$$CardSection$items$items$item$$StudyTopic$images<
+        TRes>
+    implements
+        CopyWith$Fragment$Section$$CardSection$items$items$item$$StudyTopic$images<
+            TRes> {
+  _CopyWithImpl$Fragment$Section$$CardSection$items$items$item$$StudyTopic$images(
+    this._instance,
+    this._then,
+  );
+
+  final Fragment$Section$$CardSection$items$items$item$$StudyTopic$images
+      _instance;
+
+  final TRes Function(
+      Fragment$Section$$CardSection$items$items$item$$StudyTopic$images) _then;
+
+  static const _undefined = {};
+
+  TRes call({
+    Object? style = _undefined,
+    Object? url = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(Fragment$Section$$CardSection$items$items$item$$StudyTopic$images(
+        style: style == _undefined || style == null
+            ? _instance.style
+            : (style as String),
+        url: url == _undefined || url == null ? _instance.url : (url as String),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+}
+
+class _CopyWithStubImpl$Fragment$Section$$CardSection$items$items$item$$StudyTopic$images<
+        TRes>
+    implements
+        CopyWith$Fragment$Section$$CardSection$items$items$item$$StudyTopic$images<
+            TRes> {
+  _CopyWithStubImpl$Fragment$Section$$CardSection$items$items$item$$StudyTopic$images(
+      this._res);
+
+  TRes _res;
+
+  call({
+    String? style,
+    String? url,
+    String? $__typename,
+  }) =>
+      _res;
 }
 
 class Fragment$Section$$CardSection$items$items$item$$StudyTopic$tasksProgress {

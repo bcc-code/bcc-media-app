@@ -172,7 +172,10 @@ fragment Section on Section {
             id
             title
             description
-            image
+            images {
+              style
+              url
+            }
             tasksProgress: progress {
               completed
               total
