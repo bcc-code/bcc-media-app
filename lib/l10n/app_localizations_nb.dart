@@ -456,69 +456,81 @@ class SNb extends S {
   String get tasksCompleted => 'oppgaver fullført';
 
   @override
-  String get studyCompleteTaskDescription => 'Complete tasks and discover related resources';
+  String get studyCompleteTaskDescription => 'Fullfør oppgaver og få tilgang til relatert innhold';
 
   @override
-  String get discoverMore => 'Discover more';
+  String get discoverMore => 'Oppdag mer';
 
   @override
-  String get studyDiscoverMoreDescription => 'Find more inspiration and insight from related resources';
+  String get studyDiscoverMoreDescription => 'Finn mer inspirasjon og innsikt fra relatert innhold';
 
   @override
   String get watchAgain => 'Se igjen';
 
   @override
-  String get continueToTaskIn => 'Continue to task in';
+  String get continueToTaskIn => 'Fortsett å jobbe i';
 
   @override
-  String get continueToTasksIn => 'Continue to tasks in';
+  String get continueToTasksIn => 'Fortsett med oppgaver i';
 
   @override
-  String get studyLessonCompleted => 'lesson completed';
+  String get studyLessonCompleted => 'leksjon fullført';
 
   @override
-  String get studyLessonsCompleted => 'lessons completed';
+  String get studyLessonsCompleted => 'leksjoner fullført';
 
   @override
-  String get continueStudy => 'Continue study';
+  String get continueStudy => 'Fortsett studie';
 
   @override
-  String get startStudy => 'Start study';
+  String get startStudy => 'Start studie';
 
   @override
-  String get videoCompletedText => 'Great job on completing the video.';
+  String get videoCompletedText => 'Gratulerer med å fullføre videoen.';
 
   @override
-  String get achievementFirstDescription => 'Great job on completing the video and earning your first progress achievement.';
+  String get achievementFirstDescription => 'Gratulerer med å ha å ha fullført videoen og gjennomført din første måloppnåelse.';
 
   @override
   String achievementStudyTopic(String name) {
-    return 'Great job on completing the study topic $name';
+    return 'Gratulerer med å fullføre studietema $name';
   }
 
   @override
   String videoCount(int count) {
-    return '$count videos';
+    return '$count videoer';
   }
 
   @override
   String taskCount(int count) {
-    return '$count tasks';
+    return '$count oppgaver';
   }
 
   @override
   String posterCount(int count) {
-    return '$count posters';
+    return '$count plakater';
   }
 
   @override
   String resourceCount(int count) {
-    return '$count resources';
+    return '$count innholdsressurser';
   }
 
   @override
-  String get continueButton => 'Continue';
+  String get continueButton => 'Fortsett';
 
   @override
-  String get achievements => 'Achievements';
+  String get achievements => 'Prestasjoner';
+
+  @override
+  String get oops => 'Uups!';
+
+  @override
+  String get dontHaveAccess => 'You do not have access to this content.';
+
+  @override
+  String get mustBeLoggedIn => 'Du må være logget inn for å se dette innholdet';
+
+  @override
+  String get plentyOfOtherContent => 'Don\'t worry, there\'s still plenty of content to enjoy!';
 }

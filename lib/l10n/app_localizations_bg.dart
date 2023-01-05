@@ -521,4 +521,16 @@ class SBg extends S {
 
   @override
   String get achievements => 'Achievements';
+
+  @override
+  String get oops => 'Oops!';
+
+  @override
+  String get dontHaveAccess => 'You do not have access to this content.';
+
+  @override
+  String get mustBeLoggedIn => 'You need to be logged in to watch this content';
+
+  @override
+  String get plentyOfOtherContent => 'Don\'t worry, there\'s still plenty of content to enjoy!';
 }

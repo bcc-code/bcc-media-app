@@ -486,7 +486,7 @@ class SFr extends S {
   String get startStudy => 'Commencer l\'étude';
 
   @override
-  String get videoCompletedText => 'Great job on completing the video.';
+  String get videoCompletedText => 'Bravo ! Tu as regardé toute la vidéo.';
 
   @override
   String get achievementFirstDescription => 'Bravo ! Tu as terminé la vidéo et obtenu ton premier progrès.';
@@ -517,8 +517,20 @@ class SFr extends S {
   }
 
   @override
-  String get continueButton => 'Continue';
+  String get continueButton => 'Continuer';
 
   @override
-  String get achievements => 'Achievements';
+  String get achievements => 'Réalisations';
+
+  @override
+  String get oops => 'Oups !';
+
+  @override
+  String get dontHaveAccess => 'You do not have access to this content.';
+
+  @override
+  String get mustBeLoggedIn => 'Tu dois être connecté pour regarder ce contenu';
+
+  @override
+  String get plentyOfOtherContent => 'Don\'t worry, there\'s still plenty of content to enjoy!';
 }

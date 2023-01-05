@@ -521,4 +521,16 @@ class SNl extends S {
 
   @override
   String get achievements => 'Achievements';
+
+  @override
+  String get oops => 'Oeps!';
+
+  @override
+  String get dontHaveAccess => 'You do not have access to this content.';
+
+  @override
+  String get mustBeLoggedIn => 'Je moet ingelogd zijn om dit te kunnen bekijken';
+
+  @override
+  String get plentyOfOtherContent => 'Don\'t worry, there\'s still plenty of content to enjoy!';
 }

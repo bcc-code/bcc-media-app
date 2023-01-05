@@ -517,8 +517,20 @@ class SHu extends S {
   }
 
   @override
-  String get continueButton => 'Continue';
+  String get continueButton => 'Folytatás';
 
   @override
   String get achievements => 'Achievements';
+
+  @override
+  String get oops => 'Uups!';
+
+  @override
+  String get dontHaveAccess => 'You do not have access to this content.';
+
+  @override
+  String get mustBeLoggedIn => 'Be kell jelentkezned, hogy megnézhesd ezt a tartalmat';
+
+  @override
+  String get plentyOfOtherContent => 'Don\'t worry, there\'s still plenty of content to enjoy!';
 }

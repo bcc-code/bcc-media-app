@@ -655,6 +655,10 @@
   "@startStudy": {
     "description": "Button."
   },
+  "videoCompletedText": "Great job on completing the video.",
+  "@videoCompletedText": {
+    "description": "Shown after completing tasks related to a video."
+  },
   "achievementFirstDescription": "Great job on completing the video and earning your first progress achievement.",
   "@achievementFirstDescription": {
     "description": "Description displayed in a popup when earning the first achievement badge."
@@ -703,5 +707,29 @@
         "type": "int"
       }
     }
+  },
+  "continueButton": "Continue",
+  "@continueButton": {
+    "description": "Generic button text."
+  },
+  "achievements": "Achievements",
+  "@achievements": {
+    "description": "Generic. Used as page title, etc."
+  },
+  "oops": "Oops!",
+  "@oops": {
+    "description": "An informal title on some error screens."
+  },
+  "dontHaveAccess": "You do not have access to this content.",
+  "@dontHaveAccess": {
+    "description": "Error message when you open a link to content you dont have access to."
+  },
+  "mustBeLoggedIn": "You need to be logged in to watch this content",
+  "@mustBeLoggedIn": {
+    "description": "Error message when you open a link to content you dont have access to, and you are not logged in."
+  },
+  "plentyOfOtherContent": "Don't worry, there's still plenty of content to enjoy!",
+  "@plentyOfOtherContent": {
+    "description": "Shown on an error page indiciating you dont have access to the content, right above a button that takes you back."
   }
 }

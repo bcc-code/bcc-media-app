@@ -1,13 +1,7 @@
-import 'package:brunstadtv_app/helpers/transparent_image.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 
 import '../graphql/queries/achievements.graphql.dart';
-import '../helpers/btv_buttons.dart';
-import '../helpers/btv_colors.dart';
-import '../helpers/btv_typography.dart';
 import '../helpers/image_utils.dart';
-import '../l10n/app_localizations.dart';
 import 'dialog_with_image.dart';
 
 class AchievementDialog extends StatelessWidget {

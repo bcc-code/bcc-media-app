@@ -47,7 +47,7 @@ class SIt extends S {
   String get faq => 'Domande frequenti';
 
   @override
-  String get bccMediaCenter => 'BCC Media is a media foundation in the BCC federation that produces and distributes content with positive and Christian values.';
+  String get bccMediaCenter => 'BCC Media è una fondazione mediatica della federazione BCC che produce e distribuisce contenuti con valori positivi e cristiani.';
 
   @override
   String get signInButton => '7 / 5000\nRegistrati';
@@ -214,7 +214,7 @@ class SIt extends S {
   String get high => 'Alta';
 
   @override
-  String get emptySearch => 'You can search all content from BCC Media. Series, videos and episodes.';
+  String get emptySearch => 'Puoi cercare tutti i contenuti in BCC Media. Serie, video ed episodi.';
 
   @override
   String get back => 'Indietro';
@@ -450,75 +450,87 @@ class SIt extends S {
   String get exploreContent => 'Esplora i contenuti';
 
   @override
-  String get taskCompleted => 'task completed';
+  String get taskCompleted => 'compito completato';
 
   @override
-  String get tasksCompleted => 'tasks completed';
+  String get tasksCompleted => 'compiti completati';
 
   @override
-  String get studyCompleteTaskDescription => 'Complete tasks and discover related resources';
+  String get studyCompleteTaskDescription => 'Completa le attività e scopri le risorse correlate';
 
   @override
-  String get discoverMore => 'Discover more';
+  String get discoverMore => 'Scopri di più';
 
   @override
-  String get studyDiscoverMoreDescription => 'Find more inspiration and insight from related resources';
+  String get studyDiscoverMoreDescription => 'Trova più ispirazione e spunti dalle risorse correlate';
 
   @override
   String get watchAgain => 'Guarda di nuovo';
 
   @override
-  String get continueToTaskIn => 'Continue to task in';
+  String get continueToTaskIn => 'Continua a eseguire l\'attività';
 
   @override
-  String get continueToTasksIn => 'Continue to tasks in';
+  String get continueToTasksIn => 'Continua con le attività in';
 
   @override
-  String get studyLessonCompleted => 'lesson completed';
+  String get studyLessonCompleted => 'lezione completata';
 
   @override
-  String get studyLessonsCompleted => 'lessons completed';
+  String get studyLessonsCompleted => 'lezioni completate';
 
   @override
-  String get continueStudy => 'Continue study';
+  String get continueStudy => 'Continua a studiare';
 
   @override
-  String get startStudy => 'Start study';
+  String get startStudy => 'Inizia a studiare';
 
   @override
-  String get videoCompletedText => 'Great job on completing the video.';
+  String get videoCompletedText => 'Ottimo lavoro nel completare il video.';
 
   @override
-  String get achievementFirstDescription => 'Great job on completing the video and earning your first progress achievement.';
+  String get achievementFirstDescription => 'Ottimo lavoro nell\'aver completato il video e aver ottenuto il tuo primo obiettivo di avanzamento.';
 
   @override
   String achievementStudyTopic(String name) {
-    return 'Great job on completing the study topic $name';
+    return 'Ottimo lavoro nel completare l\'argomento di studio $name';
   }
 
   @override
   String videoCount(int count) {
-    return '$count videos';
+    return '$count video';
   }
 
   @override
   String taskCount(int count) {
-    return '$count tasks';
+    return '$count compiti';
   }
 
   @override
   String posterCount(int count) {
-    return '$count posters';
+    return '$count poster';
   }
 
   @override
   String resourceCount(int count) {
-    return '$count resources';
+    return '$count risorse';
   }
 
   @override
-  String get continueButton => 'Continue';
+  String get continueButton => 'Continua';
 
   @override
-  String get achievements => 'Achievements';
+  String get achievements => 'Risultati';
+
+  @override
+  String get oops => 'Oops!';
+
+  @override
+  String get dontHaveAccess => 'You do not have access to this content.';
+
+  @override
+  String get mustBeLoggedIn => 'Devi essere loggato per guardare questo contenuto';
+
+  @override
+  String get plentyOfOtherContent => 'Don\'t worry, there\'s still plenty of content to enjoy!';
 }

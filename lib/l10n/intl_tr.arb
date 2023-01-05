@@ -55,7 +55,7 @@
   "@faq": {
     "description": "Long title of the FAQ page."
   },
-  "bccMediaCenter": "BCC Media is a media foundation in the BCC federation that produces and distributes content with positive and Christian values.",
+  "bccMediaCenter": "BCC Media, BCC federasyonunda pozitif ve Hristiyan değerlere sahip içerik üreten ve dağıtan bir medya kuruluşudur.",
   "@bccMediaCenter": {
     "description": "Disclaimer on login page"
   },
@@ -280,7 +280,7 @@
   "@high": {
     "description": "High quality video option"
   },
-  "emptySearch": "You can search all content from BCC Media. Series, videos and episodes.",
+  "emptySearch": "BCC Media'daki tüm içeriği arayabilirsiniz. Diziler, videolar ve bölümler.",
   "@emptySearch": {
     "description": "Message on search page when there is no search results."
   },
@@ -655,6 +655,10 @@
   "@startStudy": {
     "description": "Button."
   },
+  "videoCompletedText": "Videoyu tamamlamada harika bir iş çıkardınız.",
+  "@videoCompletedText": {
+    "description": "Shown after completing tasks related to a video."
+  },
   "achievementFirstDescription": "Videoyu tamamlama ve ilk ilerleme başarınızı kazanma konusunda harika bir iş çıkardın.",
   "@achievementFirstDescription": {
     "description": "Description displayed in a popup when earning the first achievement badge."
@@ -703,5 +707,29 @@
         "type": "int"
       }
     }
+  },
+  "continueButton": "Devam et",
+  "@continueButton": {
+    "description": "Generic button text."
+  },
+  "achievements": "Başarılar",
+  "@achievements": {
+    "description": "Generic. Used as page title, etc."
+  },
+  "oops": "Hata!",
+  "@oops": {
+    "description": "An informal title on some error screens."
+  },
+  "dontHaveAccess": "You do not have access to this content.",
+  "@dontHaveAccess": {
+    "description": "Error message when you open a link to content you dont have access to."
+  },
+  "mustBeLoggedIn": "Bu içeriği izlemek için giriş yapmalısınız",
+  "@mustBeLoggedIn": {
+    "description": "Error message when you open a link to content you dont have access to, and you are not logged in."
+  },
+  "plentyOfOtherContent": "Don't worry, there's still plenty of content to enjoy!",
+  "@plentyOfOtherContent": {
+    "description": "Shown on an error page indiciating you dont have access to the content, right above a button that takes you back."
   }
 }

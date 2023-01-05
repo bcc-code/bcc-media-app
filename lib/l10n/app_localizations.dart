@@ -1118,6 +1118,30 @@ abstract class S {
   /// In en, this message translates to:
   /// **'Achievements'**
   String get achievements;
+
+  /// An informal title on some error screens.
+  ///
+  /// In en, this message translates to:
+  /// **'Oops!'**
+  String get oops;
+
+  /// Error message when you open a link to content you dont have access to.
+  ///
+  /// In en, this message translates to:
+  /// **'You do not have access to this content.'**
+  String get dontHaveAccess;
+
+  /// Error message when you open a link to content you dont have access to, and you are not logged in.
+  ///
+  /// In en, this message translates to:
+  /// **'You need to be logged in to watch this content'**
+  String get mustBeLoggedIn;
+
+  /// Shown on an error page indiciating you dont have access to the content, right above a button that takes you back.
+  ///
+  /// In en, this message translates to:
+  /// **'Don\'t worry, there\'s still plenty of content to enjoy!'**
+  String get plentyOfOtherContent;
 }
 
 class _SDelegate extends LocalizationsDelegate<S> {

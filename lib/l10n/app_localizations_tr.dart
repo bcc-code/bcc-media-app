@@ -47,7 +47,7 @@ class STr extends S {
   String get faq => 'Sıkça Sorulan Sorular';
 
   @override
-  String get bccMediaCenter => 'BCC Media is a media foundation in the BCC federation that produces and distributes content with positive and Christian values.';
+  String get bccMediaCenter => 'BCC Media, BCC federasyonunda pozitif ve Hristiyan değerlere sahip içerik üreten ve dağıtan bir medya kuruluşudur.';
 
   @override
   String get signInButton => 'Giriş';
@@ -214,7 +214,7 @@ class STr extends S {
   String get high => 'Yüksek';
 
   @override
-  String get emptySearch => 'You can search all content from BCC Media. Series, videos and episodes.';
+  String get emptySearch => 'BCC Media\'daki tüm içeriği arayabilirsiniz. Diziler, videolar ve bölümler.';
 
   @override
   String get back => 'Geri';
@@ -486,7 +486,7 @@ class STr extends S {
   String get startStudy => 'Çalışmaya başla';
 
   @override
-  String get videoCompletedText => 'Great job on completing the video.';
+  String get videoCompletedText => 'Videoyu tamamlamada harika bir iş çıkardınız.';
 
   @override
   String get achievementFirstDescription => 'Videoyu tamamlama ve ilk ilerleme başarınızı kazanma konusunda harika bir iş çıkardın.';
@@ -517,8 +517,20 @@ class STr extends S {
   }
 
   @override
-  String get continueButton => 'Continue';
+  String get continueButton => 'Devam et';
 
   @override
-  String get achievements => 'Achievements';
+  String get achievements => 'Başarılar';
+
+  @override
+  String get oops => 'Hata!';
+
+  @override
+  String get dontHaveAccess => 'You do not have access to this content.';
+
+  @override
+  String get mustBeLoggedIn => 'Bu içeriği izlemek için giriş yapmalısınız';
+
+  @override
+  String get plentyOfOtherContent => 'Don\'t worry, there\'s still plenty of content to enjoy!';
 }

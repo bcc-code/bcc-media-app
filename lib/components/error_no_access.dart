@@ -24,16 +24,14 @@ class ErrorNoAccess extends ConsumerWidget {
                     Container(
                       margin: const EdgeInsets.only(bottom: 8),
                       child: Text(
-                        'Oops!',
+                        S.of(context).oops,
                         style: BtvTextStyles.headline2,
                       ),
                     ),
                     Container(
                       margin: const EdgeInsets.only(bottom: 16),
                       child: Text(
-                        ref.read(authStateProvider).guestMode
-                            ? 'You need to be logged in to watch this content.'
-                            : 'You do not have access to this content.',
+                        ref.read(authStateProvider).guestMode ? S.of(context).mustBeLoggedIn : S.of(context).dontHaveAccess,
                         textAlign: TextAlign.center,
                         style: BtvTextStyles.body1.copyWith(color: BtvColors.onTint),
                       ),
@@ -43,8 +41,7 @@ class ErrorNoAccess extends ConsumerWidget {
               ),
               Column(
                 children: [
-                  Text("Don't worry, there's still plenty of content to enjoy!",
-                      textAlign: TextAlign.center, style: BtvTextStyles.body1.copyWith(color: BtvColors.onTint)),
+                  Text(S.of(context).plentyOfOtherContent, textAlign: TextAlign.center, style: BtvTextStyles.body1.copyWith(color: BtvColors.onTint)),
                   Container(
                     padding: EdgeInsets.only(top: 24, bottom: 28),
                     width: double.infinity,

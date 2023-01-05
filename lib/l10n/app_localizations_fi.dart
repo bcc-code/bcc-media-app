@@ -486,7 +486,7 @@ class SFi extends S {
   String get startStudy => 'Aloita opinto';
 
   @override
-  String get videoCompletedText => 'Great job on completing the video.';
+  String get videoCompletedText => 'Hienoa, katsoit videon loppuun.';
 
   @override
   String get achievementFirstDescription => 'Ensimmäinen saavutus - katsoit videon. Hieno homma!';
@@ -517,8 +517,20 @@ class SFi extends S {
   }
 
   @override
-  String get continueButton => 'Continue';
+  String get continueButton => 'Jatka';
 
   @override
-  String get achievements => 'Achievements';
+  String get achievements => 'Saavutukset';
+
+  @override
+  String get oops => 'Hupsista!';
+
+  @override
+  String get dontHaveAccess => 'You do not have access to this content.';
+
+  @override
+  String get mustBeLoggedIn => 'Tämän katsominen vaatii kirjautumista';
+
+  @override
+  String get plentyOfOtherContent => 'Don\'t worry, there\'s still plenty of content to enjoy!';
 }

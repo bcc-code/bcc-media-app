@@ -486,7 +486,7 @@ class SSl extends S {
   String get startStudy => 'Začni preučevanje';
 
   @override
-  String get videoCompletedText => 'Great job on completing the video.';
+  String get videoCompletedText => 'Bravo! Prišel si do konca videoposnetka.';
 
   @override
   String get achievementFirstDescription => 'Bravo! Prišel si do konca videoposnetka in zaslužil svoj prvi dosežek.';
@@ -517,8 +517,20 @@ class SSl extends S {
   }
 
   @override
-  String get continueButton => 'Continue';
+  String get continueButton => 'Nadaljuj';
 
   @override
-  String get achievements => 'Achievements';
+  String get achievements => 'Dosežki';
+
+  @override
+  String get oops => 'Oops!';
+
+  @override
+  String get dontHaveAccess => 'You do not have access to this content.';
+
+  @override
+  String get mustBeLoggedIn => 'Za ogled te vsebine moraš biti prijavljen';
+
+  @override
+  String get plentyOfOtherContent => 'Don\'t worry, there\'s still plenty of content to enjoy!';
 }

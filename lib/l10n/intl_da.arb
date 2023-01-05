@@ -1,13 +1,13 @@
 {
-  "loadingContent": "Loading content",
+  "loadingContent": "Indlæser indhold",
   "@loadingContent": {
     "description": "Text displayed when page content is loading."
   },
-  "signInTooltip": "Sign in to watch more content",
+  "signInTooltip": "Log ind for at se mere indhold",
   "@signInTooltip": {
     "description": "Text for tooltip displayed when a non-member user opens the home page."
   },
-  "skipToPublicContent": "Skip to watch public content",
+  "skipToPublicContent": "Spring over for at se offentligt indhold",
   "@skipToPublicContent": {
     "description": "Text for button displayed on login screen to skip sign in and watch public content."
   },
@@ -15,27 +15,27 @@
   "@minutesShort": {
     "description": "Text for minutes."
   },
-  "calendarThisWeek": "This week",
+  "calendarThisWeek": "Denne uge",
   "@calendarThisWeek": {
     "description": "Text for This week."
   },
-  "calendarWeek": "week",
+  "calendarWeek": "uge",
   "@calendarWeek": {
     "description": "Text week."
   },
-  "loading": "Loading",
+  "loading": "Indlæser",
   "@loading": {
     "description": "Text to indicate loading state."
   },
-  "loginPageDisplay1": "The most powerful\n message in the world",
+  "loginPageDisplay1": "Det kraftigste budskab i verden",
   "@loginPageDisplay1": {
     "description": "Text displayed on login screen."
   },
-  "loginPageDisplay2": "Watch series, shows and films based on Christian values",
+  "loginPageDisplay2": "Se serier, shows og film baseret på kristne værdier",
   "@loginPageDisplay2": {
     "description": "Text displayed on login screen."
   },
-  "loginPageDisplay3": "Produced by BCC Media",
+  "loginPageDisplay3": "Produceret af BCC Media",
   "@loginPageDisplay3": {
     "description": "Text displayed on login screen."
   },
@@ -51,7 +51,7 @@
   "@profileTab": {
     "description": "Title of the profile page"
   },
-  "faq": "Frequently asked questions",
+  "faq": "Ofte stillede spørgsmål",
   "@faq": {
     "description": "Long title of the FAQ page."
   },
@@ -195,7 +195,7 @@
   "@search": {
     "description": "Button to clear cache"
   },
-  "noResults": "No results found",
+  "noResults": "Ingen resultater fundet",
   "@noResults": {
     "description": "No search results."
   },
@@ -207,11 +207,11 @@
   "@play": {
     "description": "Option in prompt dialog."
   },
-  "castQueue": "Casting kø",
+  "castQueue": "Cast listen",
   "@castQueue": {
     "description": "Queue page title"
   },
-  "options": "Muligheder",
+  "options": "Valgmuligheder",
   "@options": {
     "description": "Options dialog title"
   },
@@ -219,11 +219,11 @@
   "@remove": {
     "description": "Option in options dialog"
   },
-  "queueLimitTitle": "Begrænset",
+  "queueLimitTitle": "Begrænsning",
   "@queueLimitTitle": {
     "description": "Title of the alert to the user when attempt to add video to cast queue failed due to full queue."
   },
-  "queueLimitMessage": "You cannot have more than {elementCount} elements in queue.",
+  "queueLimitMessage": "Du kan ikke have mere end {elementCount} elementer i kø.",
   "@queueLimitMessage": {
     "description": "Error message to the user when attempt to add video to cast queue failed due to full queue.",
     "placeholders": {
@@ -240,15 +240,15 @@
   "@tVLogin": {
     "description": "Title of the TV login alert"
   },
-  "tVLoginSuccessful": "Log in successful, please confirm on TV.",
+  "tVLoginSuccessful": "Indlogningen lykkedes, bekræft venligst på TV.\n",
   "@tVLoginSuccessful": {
     "description": "Message of the TV login alert"
   },
-  "seeMore": "See more",
+  "seeMore": "Se mere",
   "@seeMore": {
     "description": "Button on featured item to navigete to page with player"
   },
-  "seeAll": "See all",
+  "seeAll": "Se alle",
   "@seeAll": {
     "description": "Button to see all of some collection."
   },
@@ -260,15 +260,15 @@
   "@homeTab": {
     "description": "Title of the home page"
   },
-  "sortBy": "Sort by",
+  "sortBy": "Sorter efter",
   "@sortBy": {
     "description": "Sorting criteria selector"
   },
-  "videoQuality": "Video quality",
+  "videoQuality": "Videokvalitet",
   "@videoQuality": {
     "description": "Settings item in profile page for Android."
   },
-  "low": "Low",
+  "low": "Lav",
   "@low": {
     "description": "Low quality video option"
   },
@@ -276,15 +276,15 @@
   "@medium": {
     "description": "Medium quality video option"
   },
-  "high": "High",
+  "high": "Høj",
   "@high": {
     "description": "High quality video option"
   },
-  "emptySearch": "You can search all content from BCC Media. Series, videos and episodes.",
+  "emptySearch": "Du kan søge i alt indhold fra BCC Media. Serier, film og episoder.",
   "@emptySearch": {
     "description": "Message on search page when there is no search results."
   },
-  "back": "Back",
+  "back": "Tilbage",
   "@back": {
     "description": "General back button to navigate back"
   },
@@ -312,7 +312,7 @@
   "@videos": {
     "description": "Followed by number of videos"
   },
-  "moreInfo": "More information",
+  "moreInfo": "Mere information",
   "@moreInfo": {
     "description": "Option in action sheet for the video that triggers info page for the video."
   },
@@ -324,31 +324,31 @@
   "@episode": {
     "description": "Title of the tab on info page"
   },
-  "takePhoto": "Take a photo",
+  "takePhoto": "Tag et billede",
   "@takePhoto": {
     "description": "Option in menu"
   },
-  "pickPhoto": "Pick from gallery",
+  "pickPhoto": "Vælg fra galleri",
   "@pickPhoto": {
     "description": "Option in menu"
   },
-  "uploadFileTitle": "Upload file",
+  "uploadFileTitle": "Upload fil",
   "@uploadFileTitle": {
     "description": "Title of the dialog to confirm upload"
   },
-  "uploadFileMessage": "Do you want to upload this file?",
+  "uploadFileMessage": "Vil du uploade denne fil?",
   "@uploadFileMessage": {
     "description": "Content of the dialog to confirm upload"
   },
-  "uploading": "Uploading",
+  "uploading": "Uploader",
   "@uploading": {
     "description": "Message during file upload"
   },
-  "uploadFail": "Upload failed",
+  "uploadFail": "Upload mislykkedes",
   "@uploadFail": {
     "description": "Upload result message"
   },
-  "charactersLimit": "{charsLeft} of {charsTotal} characters left",
+  "charactersLimit": "{charsLeft} af {charsTotal} tegn tilbage",
   "@charactersLimit": {
     "description": "Info about limit of characters in a text field",
     "placeholders": {
@@ -360,27 +360,27 @@
       }
     }
   },
-  "thankYou": "Thank you!",
+  "thankYou": "Mange tak!",
   "@thankYou": {
     "description": "Title in upload success page"
   },
-  "thankYouForContribution": "Thank you for your contribution!",
+  "thankYouForContribution": "Tak for dit bidrag!",
   "@thankYouForContribution": {
     "description": "Title in upload success page"
   },
-  "next": "Next",
+  "next": "Næste",
   "@next": {
     "description": "NEXT program in check in section"
   },
-  "add": "Add",
+  "add": "Tilføj",
   "@add": {
     "description": "Button text"
   },
-  "change": "Change",
+  "change": "Ændre",
   "@change": {
     "description": "Button text"
   },
-  "writeHere": "Write here",
+  "writeHere": "Skriv her",
   "@writeHere": {
     "description": "New post text field placeholder"
   },
@@ -392,7 +392,7 @@
   "@information": {
     "description": "Feed information item title"
   },
-  "question": "Question",
+  "question": "Spørgsmål",
   "@question": {
     "description": "Title of the question page"
   },
@@ -400,11 +400,11 @@
   "@now": {
     "description": "Tv guide now playing label"
   },
-  "concernTextPlaceholder": "Describe the issue",
+  "concernTextPlaceholder": "Beskriv problemet",
   "@concernTextPlaceholder": {
     "description": "Placeholder text in text field on contact support page"
   },
-  "debugInfoExplanation": "Your message will include this information, to help us better understand the issue.",
+  "debugInfoExplanation": "Din besked vil indeholde disse oplysninger for at hjælpe os med at forstå problemet bedre.",
   "@debugInfoExplanation": {
     "description": "Info about debug info usage on contact support page"
   },
@@ -412,27 +412,27 @@
   "@send": {
     "description": "General button to send a form"
   },
-  "sending": "Sending",
+  "sending": "Sender",
   "@sending": {
     "description": "General sending action indicator"
   },
-  "thankYouSupportTitle": "Thank you for your feedback!",
+  "thankYouSupportTitle": "Tak for din feedback!",
   "@thankYouSupportTitle": {
     "description": "Text on contact support confirmation page"
   },
-  "thankYouSupportDescription": "We appreciate all feedback and we will address the issue as soon as possible.",
+  "thankYouSupportDescription": "Vi sætter pris på al feedback, og vi vil løse problemet så hurtigt som muligt.",
   "@thankYouSupportDescription": {
     "description": "Text on contact support confirmation page"
   },
-  "sendFail": "Couldn't send your message",
+  "sendFail": "Kunne ikke sende din besked",
   "@sendFail": {
     "description": "General error message that sending failed"
   },
-  "sendFailDescription": "Something went wrong. Check your internet connection and try again.",
+  "sendFailDescription": "Kunne gik galt. Tjek din internetforbindelse og prøv igen.",
   "@sendFailDescription": {
     "description": "General error message that sending failed"
   },
-  "today": "Today",
+  "today": "I dag",
   "@today": {
     "description": "First category in tv guide"
   },
@@ -440,7 +440,7 @@
   "@expired": {
     "description": "Label that something is no longer available."
   },
-  "availableFrom": "Available {date}",
+  "availableFrom": "Tilgængelig {date}\n",
   "@availableFrom": {
     "description": "Info that episode will be released at certain date.",
     "placeholders": {
@@ -449,23 +449,23 @@
       }
     }
   },
-  "submit": "Submit",
+  "submit": "Indsend",
   "@submit": {
     "description": "Submit button."
   },
-  "wellDone": "Well done!",
+  "wellDone": "Godt klaret!",
   "@wellDone": {
     "description": "Positive message that may be used e.g. after completing some action."
   },
-  "editPicture": "Edit picture",
+  "editPicture": "Rediger billede",
   "@editPicture": {
     "description": "Button on profile page to edit profile picture."
   },
-  "profilePicture": "Profile picture",
+  "profilePicture": "Profilbillede",
   "@profilePicture": {
     "description": "Text on edit profile page."
   },
-  "timezoneInformation": "Tv guide timetable is in your local time: {timeZone}",
+  "timezoneInformation": "Tv-guidens tidsplan er i din lokale tid: {timeZone}",
   "@timezoneInformation": {
     "description": "TV guide footer info text.",
     "placeholders": {
@@ -474,31 +474,31 @@
       }
     }
   },
-  "share": "Share",
+  "share": "Del",
   "@share": {
     "description": "Generic."
   },
-  "liveNow": "Live now",
+  "liveNow": "Live nu",
   "@liveNow": {
     "description": "Generic, short. Used in buttons, badges, etc to indicate that an item is playing on the livestream now."
   },
-  "tomorrow": "Tomorrow",
+  "tomorrow": "I morgen",
   "@tomorrow": {
     "description": "Day of transmission in tv guide."
   },
-  "readBy": "Read by",
+  "readBy": "Læst af",
   "@readBy": {
     "description": "Feed verse pre author text."
   },
-  "broadcasts": "Broadcasts",
+  "broadcasts": "Sendinger",
   "@broadcasts": {
     "description": "Title for live broadcasts."
   },
-  "calendar": "Calendar",
+  "calendar": "Kalender",
   "@calendar": {
     "description": "Title of calendar page."
   },
-  "noEvents": "No scheduled transmissions",
+  "noEvents": "Ingen planlagte sendinger",
   "@noEvents": {
     "description": "Info in calendar page that no transmissions are scheduled for selected day."
   },
@@ -514,11 +514,11 @@
   "@appUpdateAccepted": {
     "description": "Option that can be chosen by the user to update his application."
   },
-  "copy": "Copy",
+  "copy": "Kopier",
   "@copy": {
     "description": "Small 'copy' button to copy to clipboard for quotes, verses, and similar."
   },
-  "reload": "Reload",
+  "reload": "Genindlæs\n",
   "@reload": {
     "description": "Label on the button that allows to reload the player after error."
   },
@@ -526,11 +526,11 @@
   "@fAQ": {
     "description": "Title on FAQ page and item in profile page settings."
   },
-  "shareStart": "Share from start",
+  "shareStart": "Del fra starten ",
   "@shareStart": {
     "description": "Option on action sheet for sharing from start"
   },
-  "shareTime": "Share from {time}",
+  "shareTime": "Del fra {time}",
   "@shareTime": {
     "description": "Option on action sheet for sharing from time",
     "placeholders": {
@@ -539,11 +539,11 @@
       }
     }
   },
-  "loadContentError": "Couldn't load content",
+  "loadContentError": "Ikke ikke indlæse indhold",
   "@loadContentError": {
     "description": "Error text when content couldn't be loaded."
   },
-  "privacyPolicy": "Privacy Policy",
+  "privacyPolicy": "Fortrolighedspolitik",
   "@privacyPolicy": {
     "description": "Title on Privacy Policy page and item in profile page settings."
   },
@@ -591,75 +591,79 @@
   "@liveHeader": {
     "description": "Header of the Live Tab — the tab that contains the livestream player on AppleTV."
   },
-  "programsSection": "Programs",
+  "programsSection": "Programmer",
   "@programsSection": {
     "description": "Section in search."
   },
-  "noPlannedEvents": "No events planned this day",
+  "noPlannedEvents": "Ingen begivenheder planlagt denne dag",
   "@noPlannedEvents": {
     "description": "Information in tvguide"
   },
-  "watchNow": "Watch now",
+  "watchNow": "Se nu",
   "@watchNow": {
     "description": "Button on featured carousel"
   },
-  "exploreContent": "Explore content",
+  "exploreContent": "Udforsk indhold",
   "@exploreContent": {
     "description": "A button on the login page"
   },
-  "taskCompleted": "task completed",
+  "taskCompleted": "Opgave udført",
   "@taskCompleted": {
     "description": "SINGULAR. Note the lowercase T, because its inserted after a count: '0/1 task completed'."
   },
-  "tasksCompleted": "tasks completed",
+  "tasksCompleted": "Opgaver udført",
   "@tasksCompleted": {
     "description": "PLURAL. Note the lowercase T, because its inserted after the count: '2/5 tasks completed'."
   },
-  "studyCompleteTaskDescription": "Complete tasks and discover related resources",
+  "studyCompleteTaskDescription": "Fuldfør opgaver og opdag relateret indhold",
   "@studyCompleteTaskDescription": {
     "description": "Description to open the study tasks for this episode. Currently shows below '0/1 tasks completed'."
   },
-  "discoverMore": "Discover more",
+  "discoverMore": "Opdag mere",
   "@discoverMore": {
     "description": "Generic button text."
   },
-  "studyDiscoverMoreDescription": "Find more inspiration and insight from related resources",
+  "studyDiscoverMoreDescription": "Find mere inspiration fra relateret indhold\n",
   "@studyDiscoverMoreDescription": {
     "description": "Description to open the related resources for this episode."
   },
-  "watchAgain": "Watch again",
+  "watchAgain": "Se igen",
   "@watchAgain": {
     "description": "Short button text to watch the video again."
   },
-  "continueToTaskIn": "Continue to task in",
+  "continueToTaskIn": "Fortsæt med opgaven ",
   "@continueToTaskIn": {
     "description": "SINGULAR. Button with text 'Continue to task in X'. Can click it to open tasks immediately, otherwise X will count down (10, 9, 8...) and automatically redirect you to the tasks."
   },
-  "continueToTasksIn": "Continue to tasks in",
+  "continueToTasksIn": "Fortsæt med opgaverne ",
   "@continueToTasksIn": {
     "description": "PLURAL. Button with text 'Continue to tasks in X'. Can click it to open tasks immediately, otherwise X will count down (10, 9, 8...) and automatically redirect you to the tasks."
   },
-  "studyLessonCompleted": "lesson completed",
+  "studyLessonCompleted": "Lektion udført",
   "@studyLessonCompleted": {
     "description": "SINGULAR. Note the lowercase L, because prepended with a number: '1 lesson completed'."
   },
-  "studyLessonsCompleted": "lessons completed",
+  "studyLessonsCompleted": "Lektioner udført",
   "@studyLessonsCompleted": {
     "description": "PLURAL. Note the lowercase L, because prepended with a number: '20 lessons completed'."
   },
-  "continueStudy": "Continue study",
+  "continueStudy": "Fortsæt",
   "@continueStudy": {
     "description": "Button."
   },
-  "startStudy": "Start study",
+  "startStudy": "Start",
   "@startStudy": {
     "description": "Button."
   },
-  "achievementFirstDescription": "Great job on completing the video and earning your first progress achievement.",
+  "videoCompletedText": "Godt arbejde med at se hele videoen.\n",
+  "@videoCompletedText": {
+    "description": "Shown after completing tasks related to a video."
+  },
+  "achievementFirstDescription": "Godt arbejde med at se hele videoen og få din første streak.\n",
   "@achievementFirstDescription": {
     "description": "Description displayed in a popup when earning the first achievement badge."
   },
-  "achievementStudyTopic": "Great job on completing the study topic {name}",
+  "achievementStudyTopic": "Godt arbejdet med at udføre temaet {name}",
   "@achievementStudyTopic": {
     "description": "REMEMBER: Include, but do not translate variables like {name} here. Description displayed in a popup when done with a study topic.",
     "placeholders": {
@@ -668,7 +672,7 @@
       }
     }
   },
-  "videoCount": "{count} videos",
+  "videoCount": "{count} film",
   "@videoCount": {
     "description": "REMEMBER: Include, but do not translate variables like {count} here. Keep it very short. Generic, number of videos. Currently used for study topic overviews.",
     "placeholders": {
@@ -677,7 +681,7 @@
       }
     }
   },
-  "taskCount": "{count} tasks",
+  "taskCount": "{count} opgaver\n",
   "@taskCount": {
     "description": "REMEMBER: Include, but do not translate variables like {count} here. Keep it very short. Generic, number of tasks. Currently used for study topic overviews.",
     "placeholders": {
@@ -686,7 +690,7 @@
       }
     }
   },
-  "posterCount": "{count} posters",
+  "posterCount": "{count} plakater\n",
   "@posterCount": {
     "description": "REMEMBER: Include, but do not translate variables like {count} here. Keep it very short. Generic, number of posters. Currently used for study topic overviews.",
     "placeholders": {
@@ -695,7 +699,7 @@
       }
     }
   },
-  "resourceCount": "{count} resources",
+  "resourceCount": "{count} indhold\n",
   "@resourceCount": {
     "description": "REMEMBER: Include, but do not translate variables like {count} here. Keep it very short. Generic, number of resources. Currently used for study topic overviews.",
     "placeholders": {
@@ -703,5 +707,29 @@
         "type": "int"
       }
     }
+  },
+  "continueButton": "Fortsæt",
+  "@continueButton": {
+    "description": "Generic button text."
+  },
+  "achievements": "Streaks",
+  "@achievements": {
+    "description": "Generic. Used as page title, etc."
+  },
+  "oops": "Ups!",
+  "@oops": {
+    "description": "An informal title on some error screens."
+  },
+  "dontHaveAccess": "You do not have access to this content.",
+  "@dontHaveAccess": {
+    "description": "Error message when you open a link to content you dont have access to."
+  },
+  "mustBeLoggedIn": "Du må være logget ind for at se dette indhold",
+  "@mustBeLoggedIn": {
+    "description": "Error message when you open a link to content you dont have access to, and you are not logged in."
+  },
+  "plentyOfOtherContent": "Don't worry, there's still plenty of content to enjoy!",
+  "@plentyOfOtherContent": {
+    "description": "Shown on an error page indiciating you dont have access to the content, right above a button that takes you back."
   }
 }
