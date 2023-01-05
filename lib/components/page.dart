@@ -56,19 +56,19 @@ class _BccmPageState extends ConsumerState<BccmPage> {
     final extraItems = paginationMap[s.id]?.items;
     final iconSection = s.asOrNull<Fragment$Section$$IconSection>();
     if (iconSection != null) {
-      return PageSection(title: iconSection.title, child: IconSection(iconSection));
+      return PageSection.fromFragment(iconSection, child: IconSection(iconSection));
     }
     final labelSection = s.asOrNull<Fragment$Section$$LabelSection>();
     if (labelSection != null) {
-      return PageSection(title: labelSection.title, child: LabelSection(labelSection));
+      return PageSection.fromFragment(labelSection, child: LabelSection(labelSection));
     }
     final defaultSection = s.asOrNull<Fragment$Section$$DefaultSection>();
     if (defaultSection != null) {
-      return PageSection(title: defaultSection.title, child: DefaultSection(defaultSection));
+      return PageSection.fromFragment(defaultSection, child: DefaultSection(defaultSection));
     }
     final posterSection = s.asOrNull<Fragment$Section$$PosterSection>();
     if (posterSection != null) {
-      return PageSection(title: posterSection.title, child: PosterSection(posterSection));
+      return PageSection.fromFragment(posterSection, child: PosterSection(posterSection));
     }
     var defaultGridSection = s.asOrNull<Fragment$Section$$DefaultGridSection>();
     if (defaultGridSection != null) {
@@ -78,7 +78,7 @@ class _BccmPageState extends ConsumerState<BccmPage> {
           ...(extraItems?.whereType<Fragment$Section$$DefaultGridSection$items$items>().toList() ?? [])
         ]),
       );
-      return PageSection(title: defaultGridSection.title, child: DefaultGridSection(defaultGridSection));
+      return PageSection.fromFragment(defaultGridSection, child: DefaultGridSection(defaultGridSection));
     }
     var posterGridSection = s.asOrNull<Fragment$Section$$PosterGridSection>();
     if (posterGridSection != null) {
@@ -86,34 +86,34 @@ class _BccmPageState extends ConsumerState<BccmPage> {
         items: posterGridSection.items.copyWith(
             items: [...posterGridSection.items.items, ...(extraItems?.whereType<Fragment$Section$$PosterGridSection$items$items>().toList() ?? [])]),
       );
-      return PageSection(title: posterGridSection.title, child: PosterGridSection(posterGridSection));
+      return PageSection.fromFragment(posterGridSection, child: PosterGridSection(posterGridSection));
     }
     final featuredSection = s.asOrNull<Fragment$Section$$FeaturedSection>();
     if (featuredSection != null) {
-      return PageSection(title: featuredSection.title, child: FeaturedSection(featuredSection));
+      return PageSection.fromFragment(featuredSection, child: FeaturedSection(featuredSection));
     }
     final iconGridSection = s.asOrNull<Fragment$Section$$IconGridSection>();
     if (iconGridSection != null) {
-      return PageSection(title: iconGridSection.title, child: IconGridSection(iconGridSection));
+      return PageSection.fromFragment(iconGridSection, child: IconGridSection(iconGridSection));
     }
     var listSection = s.asOrNull<Fragment$Section$$ListSection>();
     if (listSection != null) {
       listSection = listSection.copyWith(
           items: listSection.items
               .copyWith(items: [...listSection.items.items, ...(extraItems?.whereType<Fragment$Section$$ListSection$items$items>().toList() ?? [])]));
-      return PageSection(title: listSection.title, child: ListSection(listSection));
+      return PageSection.fromFragment(listSection, child: ListSection(listSection));
     }
     final webSection = s.asOrNull<Fragment$Section$$WebSection>();
     if (webSection != null) {
-      return PageSection(title: webSection.title, child: WebSection(webSection));
+      return PageSection.fromFragment(webSection, child: WebSection(webSection));
     }
     final messageSection = s.asOrNull<Fragment$Section$$MessageSection>();
     if (messageSection != null) {
-      return Padding(padding: const EdgeInsets.only(top: 4), child: PageSection(title: messageSection.title, child: MessageSection(messageSection)));
+      return Padding(padding: const EdgeInsets.only(top: 4), child: PageSection.fromFragment(messageSection, child: MessageSection(messageSection)));
     }
     final cardSection = s.asOrNull<Fragment$Section$$CardSection>();
     if (cardSection != null && cardSection.items.items.isNotEmpty) {
-      return Padding(padding: const EdgeInsets.only(top: 4), child: PageSection(title: cardSection.title, child: CardSection(cardSection)));
+      return Padding(padding: const EdgeInsets.only(top: 4), child: PageSection.fromFragment(cardSection, child: CardSection(cardSection)));
     }
     return null;
   }
