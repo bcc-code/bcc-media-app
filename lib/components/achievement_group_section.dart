@@ -8,7 +8,7 @@ import '../graphql/queries/achievements.graphql.dart';
 import '../helpers/btv_colors.dart';
 import '../helpers/btv_typography.dart';
 import '../helpers/svg_icons.dart';
-import 'achivement_dialog.dart';
+import 'achievement_dialog.dart';
 import 'grid_row.dart';
 
 class AchievementGroupSection extends StatelessWidget {

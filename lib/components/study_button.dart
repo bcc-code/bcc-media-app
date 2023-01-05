@@ -6,8 +6,9 @@ import '../../helpers/btv_colors.dart';
 import '../../helpers/btv_gradients.dart';
 import '../../helpers/btv_typography.dart';
 import '../../helpers/svg_icons.dart';
-import '../pulse_animation.dart';
-import '../study_progress.dart';
+import './pulse_animation.dart';
+import './shiny_clipper.dart';
+import './study_progress.dart';
 
 class StudyMoreButton extends StatefulWidget {
   final Fragment$LessonProgressOverview progressOverview;
@@ -135,13 +136,16 @@ class _StudyMoreButtonState extends State<StudyMoreButton> with SingleTickerProv
       child: LessonProgressTree(
         completed: widget.progressOverview.progress.completed,
         total: widget.progressOverview.progress.total,
+        outerStrokeWidth: 3,
+        innerStrokeWidth: 1.7,
+        arcToTreePadding: 8,
       ),
     );
   }
 
   Container circleButton() {
     return Container(
-        decoration: BoxDecoration(color: Color(0xFF3D4E63), borderRadius: BorderRadius.circular(45)),
+        decoration: BoxDecoration(color: const Color(0xFF3D4E63), borderRadius: BorderRadius.circular(45)),
         foregroundDecoration: BoxDecoration(border: Border.all(color: BtvColors.separatorOnLight, width: 1), borderRadius: BorderRadius.circular(45)),
         width: 38,
         height: 38,
@@ -150,71 +154,5 @@ class _StudyMoreButtonState extends State<StudyMoreButton> with SingleTickerProv
           SvgIcons.chevronRight,
           height: 11,
         )));
-  }
-}
-
-class ShinyClipper extends CustomClipper<Path> {
-  // Generated from svg with https://itchylabs.com/tools/path-to-bezier/
-  // Slightly modified
-  @override
-  Path getClip(Size size) {
-    Path path = Path();
-    final double xScaling = size.width / 150;
-    const double yScaling = 1;
-    path.lineTo(48.1429 * xScaling, 24.7451 * yScaling);
-    path.cubicTo(
-      16.9429 * xScaling,
-      50.7451 * yScaling,
-      3.14288 * xScaling,
-      81.5785 * yScaling,
-      0.142883 * xScaling,
-      93.7451 * yScaling,
-    );
-    path.cubicTo(
-      0.142883 * xScaling,
-      93.7451 * yScaling,
-      208.643 * xScaling,
-      93.7451 * yScaling,
-      208.643 * xScaling,
-      93.7451 * yScaling,
-    );
-    path.cubicTo(
-      208.643 * xScaling,
-      93.7451 * yScaling,
-      208.643 * xScaling,
-      -24.7549 * yScaling,
-      208.643 * xScaling,
-      -24.7549 * yScaling,
-    );
-    path.cubicTo(
-      208.643 * xScaling,
-      -24.7549 * yScaling,
-      88.1429 * xScaling,
-      -24.7549 * yScaling,
-      88.1429 * xScaling,
-      -24.7549 * yScaling,
-    );
-    path.cubicTo(
-      87.8095 * xScaling,
-      -19.0882 * yScaling,
-      79.3429 * xScaling,
-      -1.25488 * yScaling,
-      48.1429 * xScaling,
-      24.7451 * yScaling,
-    );
-    path.cubicTo(
-      48.1429 * xScaling,
-      24.7451 * yScaling,
-      48.1429 * xScaling,
-      24.7451 * yScaling,
-      48.1429 * xScaling,
-      24.7451 * yScaling,
-    );
-    return path;
-  }
-
-  @override
-  bool shouldReclip(covariant CustomClipper<Path> oldClipper) {
-    return true;
   }
 }

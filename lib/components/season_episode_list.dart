@@ -200,10 +200,13 @@ class EpisodeListEpisode extends StatelessWidget {
                           color: BtvColors.separatorOnLight,
                         ),
                         child: Padding(
-                          padding: EdgeInsets.all(4),
+                          padding: const EdgeInsets.all(4),
                           child: LessonProgressTree(
                             completed: data.lessonProgressOverview!.progress.completed,
                             total: data.lessonProgressOverview!.progress.total,
+                            outerStrokeWidth: 2,
+                            innerStrokeWidth: 1.7,
+                            arcToTreePadding: 7,
                           ),
                         ),
                       ),

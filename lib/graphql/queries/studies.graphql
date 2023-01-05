@@ -15,6 +15,22 @@ fragment EpisodeLessonProgressOverview on Episode {
   }
 }
 
+query GetStudyTopicLessonStatuses($id: ID!, $first: Int!) {
+  studyTopic(id: $id) {
+    lessons(first: $first) {
+      items {
+        id
+        completed
+        episodes(first: 1) {
+          items {
+            id
+          }
+        }
+      }
+    }
+  }
+}
+
 query GetEpisodeLessonProgress($id: ID!) {
   episode(id: $id) {
     ...EpisodeLessonProgressOverview

@@ -1,55 +1,53 @@
+import 'package:brunstadtv_app/components/study_progress_row.dart';
 import 'package:brunstadtv_app/helpers/btv_buttons.dart';
 import 'package:brunstadtv_app/helpers/btv_typography.dart';
+import 'package:brunstadtv_app/helpers/image_utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
+import '../graphql/queries/page.graphql.dart';
 import '../helpers/btv_colors.dart';
 import '../helpers/svg_icons.dart';
+import '../l10n/app_localizations.dart';
 
-class StudyThemeCard extends StatelessWidget {
-  StudyThemeCard({super.key});
+class StudyTopicCardLarge extends StatelessWidget {
+  final Fragment$Section$$CardSection$items$items$item$$StudyTopic studyTopic;
+  StudyTopicCardLarge({super.key, required this.studyTopic});
 
   @override
   Widget build(BuildContext context) {
-    final title = 'Letter to the Hebrews';
-    final description = 'What is the relevance of Judaism in the Letter to the Hebrews, and for us personally?';
     return ClipRRect(
       borderRadius: BorderRadius.circular(12),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         mainAxisSize: MainAxisSize.min,
         children: [
-          const SizedBox(
-            height: 200,
-            width: double.infinity,
-            child: Image(
-              image: NetworkImage('https://flutter.github.io/assets-for-api-docs/assets/widgets/owl.jpg'),
-              fit: BoxFit.cover,
-              alignment: Alignment.topCenter,
-            ),
+          AspectRatio(
+            aspectRatio: 16 / 9,
+            child: studyTopic.image == null ? const SizedBox.shrink() : simpleFadeInImage(url: studyTopic.image!),
           ),
           Container(
             color: BtvColors.separatorOnLight,
             padding: const EdgeInsets.all(18).copyWith(top: 12),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
-              // crossAxisAlignment: CrossAxisAlignment.stretch,
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Container(
-                  width: double.infinity,
-                  margin: const EdgeInsets.only(bottom: 8),
-                  child: Text(
-                    title,
-                    style: BtvTextStyles.title1,
-                    textAlign: TextAlign.left,
+                Text(
+                  studyTopic.title,
+                  textAlign: TextAlign.left,
+                  style: BtvTextStyles.title1,
+                ),
+                if (studyTopic.description.isNotEmpty)
+                  Padding(
+                    padding: const EdgeInsets.only(top: 8),
+                    child: Text(
+                      studyTopic.description,
+                      textAlign: TextAlign.left,
+                      style: BtvTextStyles.body2.copyWith(color: BtvColors.label2),
+                    ),
                   ),
-                ),
-                Container(
-                  width: double.infinity,
-                  margin: const EdgeInsets.only(bottom: 24),
-                  child: Text(description, style: BtvTextStyles.body2.copyWith(color: BtvColors.label2)),
-                ),
-                Container(
+                /* Container(
                   margin: const EdgeInsets.only(bottom: 12),
                   width: double.infinity,
                   child: Row(
@@ -77,12 +75,16 @@ class StudyThemeCard extends StatelessWidget {
                       ),
                     ],
                   ),
-                ),
-                Align(
+                ), */
+                Padding(
+                    padding: const EdgeInsets.only(top: 24),
+                    child: StudyProgressRow(completed: studyTopic.tasksProgress.completed, total: studyTopic.tasksProgress.total)),
+                Container(
+                  padding: const EdgeInsets.only(top: 10),
                   alignment: Alignment.centerRight,
                   child: BtvButton.smallSecondary(
                     onPressed: () {},
-                    labelText: 'Continue study',
+                    labelText: studyTopic.tasksProgress.completed > 0 ? S.of(context).continueStudy : S.of(context).startStudy,
                     imagePath: 'assets/icons/Play.png',
                   ),
                 )

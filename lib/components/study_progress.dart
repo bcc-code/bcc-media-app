@@ -1,19 +1,28 @@
 import 'dart:math' as math;
 import 'dart:math';
 
-import 'package:brunstadtv_app/graphql/queries/studies.graphql.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/svg.dart';
-
-import '../helpers/btv_colors.dart';
 import '../helpers/btv_gradients.dart';
 import '../helpers/svg_icons.dart';
+
+enum LessonProgressTreeVariant { border2, border3 }
 
 class LessonProgressTree extends ConsumerWidget {
   final int completed;
   final int total;
-  const LessonProgressTree({super.key, required this.completed, required this.total});
+  final double innerStrokeWidth;
+  final double outerStrokeWidth;
+  final double arcToTreePadding;
+  const LessonProgressTree({
+    super.key,
+    required this.completed,
+    required this.total,
+    required this.innerStrokeWidth,
+    required this.outerStrokeWidth,
+    required this.arcToTreePadding,
+  });
 
   double get completedFraction => completed / max(1, total);
 
@@ -44,7 +53,7 @@ class LessonProgressTree extends ConsumerWidget {
                   Color.fromRGBO(255, 255, 255, 0.05),
                 ],
               ),
-              strokeWidth: 2,
+              strokeWidth: innerStrokeWidth,
             ),
           ),
         ),
@@ -53,13 +62,13 @@ class LessonProgressTree extends ConsumerWidget {
             child: CustomPaint(
                 painter: ArcPainter(
               gradient: BtvGradients.greenYellow,
-              strokeWidth: 3,
+              strokeWidth: outerStrokeWidth,
               progress: completedFraction,
             )),
           ),
         ),
         Padding(
-          padding: EdgeInsets.all(8),
+          padding: EdgeInsets.all(arcToTreePadding),
           child: ShaderMask(
               shaderCallback: (bounds) {
                 return BtvGradients.greenYellow.createShader(bounds);

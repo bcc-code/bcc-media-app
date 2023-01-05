@@ -99,20 +99,6 @@ Future<dynamic>? handleSectionItemClick(BuildContext context, Fragment$ItemSecti
   return null;
 }
 
-Future<dynamic>? navigateToShowWithoutEpisodeId(BuildContext context, String showId) async {
-  debugPrint('navigateToShowWithoutEpisodeId');
-  final navigationOverride = NavigationOverride.of(context);
-  final router = context.router;
-  final result = await ProviderScope.containerOf(context, listen: false)
-      .read(gqlClientProvider)
-      .query$getDefaultEpisodeForShow(Options$Query$getDefaultEpisodeForShow(variables: Variables$Query$getDefaultEpisodeForShow(showId: showId)));
-  final episodeId = result?.parsedData?.$show.defaultEpisode.id;
-  if (episodeId == null) {
-    throw ErrorHint('Failed getting defaultEpisodeId for show $showId');
-  }
-  return overrideAwareNavigation(navigationOverride, router, EpisodeScreenRoute(episodeId: episodeId));
-}
-
 Completer<T> wrapInCompleter<T>(Future<T> future) {
   final completer = Completer<T>();
   future.then(completer.complete).catchError(completer.completeError);

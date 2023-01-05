@@ -1,10 +1,14 @@
 import 'package:brunstadtv_app/helpers/transparent_image.dart';
 import 'package:flutter/material.dart';
 
-const Map<ImageCropMode, String> _imageCropModeQueryParam = {ImageCropMode.faces: 'faces'};
+const Map<ImageCropMode, String> _imageCropModeQueryParam = {
+  ImageCropMode.faces: 'faces',
+  ImageCropMode.center: 'center',
+};
 
 enum ImageCropMode {
   faces,
+  center,
 }
 
 Uri? getImageUri(String image, {int? width, int? height, ImageCropMode cropMode = ImageCropMode.faces}) {

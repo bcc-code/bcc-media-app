@@ -1,4 +1,4 @@
-import 'package:brunstadtv_app/components/achivement_dialog.dart';
+import 'package:brunstadtv_app/components/achievement_dialog.dart';
 import 'package:brunstadtv_app/components/dialog_with_image.dart';
 import 'package:brunstadtv_app/components/loading_generic.dart';
 import 'package:brunstadtv_app/graphql/client.dart';

@@ -22,7 +22,7 @@ class AchievementDialog extends StatelessWidget {
     return DialogWithImage(
       image: image == null ? const SizedBox.shrink() : SizedBox(height: 180, child: simpleFadeInImage(url: image)),
       title: achievement.title,
-      description: S.of(context).videoCompletedText,
+      description: '',
       dismissButtonText: dismissButtonText,
     );
   }

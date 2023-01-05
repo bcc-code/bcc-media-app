@@ -325,5 +325,6 @@ const possibleTypesMap = {
     'Episode',
     'Page',
     'Link',
+    'StudyTopic',
   },
 };

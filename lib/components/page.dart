@@ -1,6 +1,5 @@
 import 'package:brunstadtv_app/components/error_generic.dart';
 import 'package:brunstadtv_app/components/loading_generic.dart';
-import 'package:brunstadtv_app/components/loading_indicator.dart';
 import 'package:brunstadtv_app/graphql/client.dart';
 import 'package:brunstadtv_app/graphql/queries/sections.graphql.dart';
 import 'package:brunstadtv_app/helpers/sections.dart';
@@ -10,13 +9,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../graphql/queries/page.graphql.dart';
-import '../helpers/btv_colors.dart';
-import '../helpers/btv_typography.dart';
-import '../l10n/app_localizations.dart';
-import '../helpers/btv_buttons.dart';
 import '../helpers/utils.dart';
 import '../models/pagination_status.dart';
 import '../providers/inherited_data.dart';
+import 'card_section.dart';
 import 'featured_section.dart';
 import 'default_grid_section.dart';
 import 'message_section.dart';
@@ -114,6 +110,10 @@ class _BccmPageState extends ConsumerState<BccmPage> {
     final messageSection = s.asOrNull<Fragment$Section$$MessageSection>();
     if (messageSection != null) {
       return Padding(padding: const EdgeInsets.only(top: 4), child: PageSection(title: messageSection.title, child: MessageSection(messageSection)));
+    }
+    final cardSection = s.asOrNull<Fragment$Section$$CardSection>();
+    if (cardSection != null && cardSection.items.items.isNotEmpty) {
+      return Padding(padding: const EdgeInsets.only(top: 4), child: PageSection(title: cardSection.title, child: CardSection(cardSection)));
     }
     return null;
   }

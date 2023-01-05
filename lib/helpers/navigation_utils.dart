@@ -1,4 +1,14 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:collection/collection.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+
+import '../graphql/client.dart';
+import '../graphql/queries/episode.graphql.dart';
+import '../graphql/queries/studies.graphql.dart';
+import '../router/router.gr.dart';
+import 'navigation_override.dart';
+import 'utils.dart';
 
 extension StackRouterCustomNavigation on StackRouter {
   void navigateNamedFromRoot(String path) {
@@ -29,4 +39,32 @@ String uriStringWithoutHost(Uri uri) {
     result += '#${uri.fragment}';
   }
   return result;
+}
+
+Future<dynamic>? navigateToShowWithoutEpisodeId(BuildContext context, String showId) async {
+  debugPrint('navigateToShowWithoutEpisodeId');
+  final navigationOverride = NavigationOverride.of(context);
+  final router = context.router;
+  final result = await ProviderScope.containerOf(context, listen: false)
+      .read(gqlClientProvider)
+      .query$getDefaultEpisodeForShow(Options$Query$getDefaultEpisodeForShow(variables: Variables$Query$getDefaultEpisodeForShow(showId: showId)));
+  final episodeId = result?.parsedData?.$show.defaultEpisode.id;
+  if (episodeId == null) {
+    throw ErrorHint('Failed getting defaultEpisodeId for show $showId');
+  }
+  return overrideAwareNavigation(navigationOverride, router, EpisodeScreenRoute(episodeId: episodeId));
+}
+
+Future<dynamic>? navigateToStudyTopic(BuildContext context, String topicId) async {
+  debugPrint('navigateToShowWithoutEpisodeId');
+  final navigationOverride = NavigationOverride.of(context);
+  final router = context.router;
+  final result = await ProviderScope.containerOf(context, listen: false).read(gqlClientProvider).query$GetStudyTopicLessonStatuses(
+      Options$Query$GetStudyTopicLessonStatuses(variables: Variables$Query$GetStudyTopicLessonStatuses(id: topicId, first: 100)));
+  var episodeId = result.parsedData?.studyTopic.lessons.items.firstWhereOrNull((el) => !el.completed)?.episodes.items.firstOrNull?.id;
+  episodeId ??= result.parsedData?.studyTopic.lessons.items.firstOrNull?.episodes.items.firstOrNull?.id;
+  if (episodeId == null) {
+    throw ErrorHint('Failed finding an episode to navigate to for topic $topicId');
+  }
+  return overrideAwareNavigation(navigationOverride, router, EpisodeScreenRoute(episodeId: episodeId));
 }
