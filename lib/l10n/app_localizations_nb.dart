@@ -450,10 +450,10 @@ class SNb extends S {
   String get exploreContent => 'Utforsk innhold';
 
   @override
-  String get taskCompleted => 'task completed';
+  String get taskCompleted => 'oppgave fullført';
 
   @override
-  String get tasksCompleted => 'tasks completed';
+  String get tasksCompleted => 'oppgaver fullført';
 
   @override
   String get studyCompleteTaskDescription => 'Complete tasks and discover related resources';

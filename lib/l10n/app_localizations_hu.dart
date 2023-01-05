@@ -450,70 +450,70 @@ class SHu extends S {
   String get exploreContent => 'Tartalom felfedezése';
 
   @override
-  String get taskCompleted => 'task completed';
+  String get taskCompleted => 'feladat elvégezve';
 
   @override
-  String get tasksCompleted => 'tasks completed';
+  String get tasksCompleted => 'feladatok elvégezve';
 
   @override
-  String get studyCompleteTaskDescription => 'Complete tasks and discover related resources';
+  String get studyCompleteTaskDescription => 'Feladatok elvégzése és a kapcsolódó erőforrások felfedezése';
 
   @override
-  String get discoverMore => 'Discover more';
+  String get discoverMore => 'Fedezz fel többet';
 
   @override
-  String get studyDiscoverMoreDescription => 'Find more inspiration and insight from related resources';
+  String get studyDiscoverMoreDescription => 'További inspiráció és betekintés a kapcsolódó forrásokból';
 
   @override
   String get watchAgain => 'Nézd meg újra';
 
   @override
-  String get continueToTaskIn => 'Continue to task in';
+  String get continueToTaskIn => 'Folytasd a feladatot';
 
   @override
-  String get continueToTasksIn => 'Continue to tasks in';
+  String get continueToTasksIn => 'Tovább a feladatokhoz';
 
   @override
-  String get studyLessonCompleted => 'lesson completed';
+  String get studyLessonCompleted => 'lecke befejezve';
 
   @override
-  String get studyLessonsCompleted => 'lessons completed';
+  String get studyLessonsCompleted => 'leckék befejezve';
 
   @override
-  String get continueStudy => 'Continue study';
+  String get continueStudy => 'Tanulmányozás folytatása';
 
   @override
-  String get startStudy => 'Start study';
+  String get startStudy => 'Tanulmányozás megkezdése';
 
   @override
   String get videoCompletedText => 'Great job on completing the video.';
 
   @override
-  String get achievementFirstDescription => 'Great job on completing the video and earning your first progress achievement.';
+  String get achievementFirstDescription => 'Szép munka, hogy befejezted a videót és megszerezted az első előrehaladási eredményedet.';
 
   @override
   String achievementStudyTopic(String name) {
-    return 'Great job on completing the study topic $name';
+    return 'Nagyszerű munka a tanulmányi téma befejezésében $name';
   }
 
   @override
   String videoCount(int count) {
-    return '$count videos';
+    return '$count videók';
   }
 
   @override
   String taskCount(int count) {
-    return '$count tasks';
+    return '$count feladatok';
   }
 
   @override
   String posterCount(int count) {
-    return '$count posters';
+    return '$count poszterek';
   }
 
   @override
   String resourceCount(int count) {
-    return '$count resources';
+    return '$count források';
   }
 
   @override

@@ -50,16 +50,16 @@ class SDa extends S {
   String get bccMediaCenter => 'BCC Media er en mediefond i BCC-forbundet, der producerer og distribuerer indhold med positive og kristne værdier.';
 
   @override
-  String get signInButton => 'Sign in';
+  String get signInButton => 'Log ind';
 
   @override
-  String get tryAgainButton => 'Try again';
+  String get tryAgainButton => 'Prøv igen';
 
   @override
-  String get loggedOutTitle => 'Logged out';
+  String get loggedOutTitle => 'Logget ud';
 
   @override
-  String get loggedOutMessage => 'You have been logged out. Please log in again.';
+  String get loggedOutMessage => 'Du er blevet logget ud. Venligst log ind igen.';
 
   @override
   String get mostWatched => 'Mest sete';
@@ -71,61 +71,61 @@ class SDa extends S {
   String get latelyPublished => 'Sidst publiceret';
 
   @override
-  String get anErrorOccurred => 'An error occurred';
+  String get anErrorOccurred => 'Der er sket en fejl';
 
   @override
   String get ok => 'OK';
 
   @override
-  String get loginFailedCheckNetwork => 'Login failed. Check your network connection and try again.';
+  String get loginFailedCheckNetwork => 'Login mislykkedes. Tjek din netværksforbindelse, og prøv igen.';
 
   @override
-  String get loginFailedTryAgain => 'Login failed. Please try again later.';
+  String get loginFailedTryAgain => 'Login mislykkedes. Prøv igen senere.';
 
   @override
-  String get soundLanguage => 'Sound language';
+  String get soundLanguage => 'Lydsprog';
 
   @override
-  String get subtitleLanguage => 'Subtitle language';
+  String get subtitleLanguage => 'Undertekster';
 
   @override
-  String get appLanguage => 'App language';
+  String get appLanguage => 'App-sprog';
 
   @override
-  String get checkNetwork => 'Check your network connection and try again.';
+  String get checkNetwork => 'Tjek din netværksforbindelse, og prøv igen.';
 
   @override
-  String get tryAgain => 'Please try again later.';
+  String get tryAgain => 'Prøv igen senere.';
 
   @override
-  String get cantPlayVideo => 'You can\'t play this video now.';
+  String get cantPlayVideo => 'Du kan ikke afspille denne video nu.';
 
   @override
-  String get about => 'About';
+  String get about => 'Om';
 
   @override
   String get version => 'Version';
 
   @override
-  String get contactSupport => 'Contact support';
+  String get contactSupport => 'Kontakt support';
 
   @override
-  String get cancel => 'Cancel';
+  String get cancel => 'Annuller';
 
   @override
-  String get upNext => 'Up next';
+  String get upNext => 'Næste';
 
   @override
-  String get done => 'Done';
+  String get done => 'Færdig';
 
   @override
-  String get playerSettings => 'Player settings';
+  String get playerSettings => 'Afspillerindstillinger';
 
   @override
-  String get settings => 'Settings';
+  String get settings => 'Indstillinger';
 
   @override
-  String get none => 'None';
+  String get none => 'Ingen';
 
   @override
   String get auto => 'Auto';
@@ -134,43 +134,43 @@ class SDa extends S {
   String get live => 'Live';
 
   @override
-  String get subtitles => 'Subtitles';
+  String get subtitles => 'Undertekster';
 
   @override
   String get audio => 'Audio';
 
   @override
-  String get quality => 'Quality';
+  String get quality => 'Kvalitet';
 
   @override
-  String get seasons => 'Seasons';
+  String get seasons => 'Sæsoner';
 
   @override
-  String get episodes => 'Episodes';
+  String get episodes => 'Episoder \n';
 
   @override
-  String get search => 'Search';
+  String get search => 'Søg';
 
   @override
   String get noResults => 'No results found';
 
   @override
-  String get doYouWantCast => 'Do you want to cast this video?';
+  String get doYouWantCast => 'Vil du caste denne video?\n';
 
   @override
-  String get play => 'Play';
+  String get play => 'Afspil';
 
   @override
-  String get castQueue => 'Cast queue';
+  String get castQueue => 'Casting kø';
 
   @override
-  String get options => 'Options';
+  String get options => 'Muligheder';
 
   @override
-  String get remove => 'Remove';
+  String get remove => 'Fjern';
 
   @override
-  String get queueLimitTitle => 'Limit';
+  String get queueLimitTitle => 'Begrænset';
 
   @override
   String queueLimitMessage(int elementCount) {
@@ -178,7 +178,7 @@ class SDa extends S {
   }
 
   @override
-  String get recentSearches => 'Recent Searches';
+  String get recentSearches => 'Seneste søgninger';
 
   @override
   String get tVLogin => 'TV Login';
@@ -193,10 +193,10 @@ class SDa extends S {
   String get seeAll => 'See all';
 
   @override
-  String get series => 'Series';
+  String get series => 'Serier';
 
   @override
-  String get homeTab => 'Home';
+  String get homeTab => 'Hjem';
 
   @override
   String get sortBy => 'Sort by';
@@ -232,10 +232,10 @@ class SDa extends S {
   String get ztoA => 'Z-A';
 
   @override
-  String get shortFilms => 'Short films';
+  String get shortFilms => 'Kortfilm';
 
   @override
-  String get videos => 'Videos';
+  String get videos => 'Film';
 
   @override
   String get moreInfo => 'More information';
@@ -297,7 +297,7 @@ class SDa extends S {
   String get question => 'Question';
 
   @override
-  String get now => 'Now';
+  String get now => 'Nu';
 
   @override
   String get concernTextPlaceholder => 'Describe the issue';
@@ -327,7 +327,7 @@ class SDa extends S {
   String get today => 'Today';
 
   @override
-  String get expired => 'Expired';
+  String get expired => 'Udløbet';
 
   @override
   String availableFrom(String date) {
@@ -373,13 +373,13 @@ class SDa extends S {
   String get noEvents => 'No scheduled transmissions';
 
   @override
-  String get appUpdateTitle => 'Update required';
+  String get appUpdateTitle => 'Opdatering nødvendig';
 
   @override
-  String get appUpdateRequest => 'Please download the latest app to enjoy all the latest features and bug fixes.';
+  String get appUpdateRequest => 'Download venligst den seneste app for at tage alle de nyeste funktioner og fejlrettelser i brug.';
 
   @override
-  String get appUpdateAccepted => 'Update';
+  String get appUpdateAccepted => 'Opdater';
 
   @override
   String get copy => 'Copy';
@@ -405,34 +405,34 @@ class SDa extends S {
   String get privacyPolicy => 'Privacy Policy';
 
   @override
-  String get categoriesTab => 'Categories';
+  String get categoriesTab => 'Kategorier';
 
   @override
-  String get seriesTab => 'Series';
+  String get seriesTab => 'Serier';
 
   @override
-  String get filmsTab => 'Films';
+  String get filmsTab => 'Film';
 
   @override
   String get eventsTab => 'Events';
 
   @override
-  String get audioLanguage => 'Audio language';
+  String get audioLanguage => 'Audio sprog';
 
   @override
-  String get subtitlesLanguage => 'Subtitles language';
+  String get subtitlesLanguage => 'Undertekster';
 
   @override
-  String get removeFromRecentSearches => 'Do you want to remove this element from recent searches?';
+  String get removeFromRecentSearches => 'Vil du fjerne dette element fra de seneste søgninger?';
 
   @override
-  String get noTransmissionToday => 'No scheduled transmission for today';
+  String get noTransmissionToday => 'Ingen planlagt sending i dag\n';
 
   @override
   String get featured => 'Featured';
 
   @override
-  String get errorTryAgain => 'Something went wrong, please try again later.';
+  String get errorTryAgain => 'Noget gik galt, prøv venligst igen senere.';
 
   @override
   String get liveHeader => 'Live';

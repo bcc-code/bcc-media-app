@@ -607,11 +607,11 @@
   "@exploreContent": {
     "description": "A button on the login page"
   },
-  "taskCompleted": "task completed",
+  "taskCompleted": "oppgave fullført",
   "@taskCompleted": {
     "description": "SINGULAR. Note the lowercase T, because its inserted after a count: '0/1 task completed'."
   },
-  "tasksCompleted": "tasks completed",
+  "tasksCompleted": "oppgaver fullført",
   "@tasksCompleted": {
     "description": "PLURAL. Note the lowercase T, because its inserted after the count: '2/5 tasks completed'."
   },

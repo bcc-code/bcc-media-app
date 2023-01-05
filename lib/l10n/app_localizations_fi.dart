@@ -450,70 +450,70 @@ class SFi extends S {
   String get exploreContent => 'Tutustu sisältöön';
 
   @override
-  String get taskCompleted => 'task completed';
+  String get taskCompleted => 'tehtävä suoritettu';
 
   @override
-  String get tasksCompleted => 'tasks completed';
+  String get tasksCompleted => 'tehtävää suoritettu';
 
   @override
-  String get studyCompleteTaskDescription => 'Complete tasks and discover related resources';
+  String get studyCompleteTaskDescription => 'Suorita tehtäviä ja löydä siihen liittyvää sisältöä';
 
   @override
-  String get discoverMore => 'Discover more';
+  String get discoverMore => 'Löydä lisää';
 
   @override
-  String get studyDiscoverMoreDescription => 'Find more inspiration and insight from related resources';
+  String get studyDiscoverMoreDescription => 'Löydä aiheeseen liittyvää inspiroivaa ja valaisevaa sisältöä';
 
   @override
   String get watchAgain => 'Katso uudelleen';
 
   @override
-  String get continueToTaskIn => 'Continue to task in';
+  String get continueToTaskIn => 'Tehtävän jatkoon';
 
   @override
-  String get continueToTasksIn => 'Continue to tasks in';
+  String get continueToTasksIn => 'Tehtävien jatkoon';
 
   @override
-  String get studyLessonCompleted => 'lesson completed';
+  String get studyLessonCompleted => 'oppitunti suoritettu';
 
   @override
-  String get studyLessonsCompleted => 'lessons completed';
+  String get studyLessonsCompleted => 'oppituntia suoritettu';
 
   @override
-  String get continueStudy => 'Continue study';
+  String get continueStudy => 'Jatka opintoa';
 
   @override
-  String get startStudy => 'Start study';
+  String get startStudy => 'Aloita opinto';
 
   @override
   String get videoCompletedText => 'Great job on completing the video.';
 
   @override
-  String get achievementFirstDescription => 'Great job on completing the video and earning your first progress achievement.';
+  String get achievementFirstDescription => 'Ensimmäinen saavutus - katsoit videon. Hieno homma!';
 
   @override
   String achievementStudyTopic(String name) {
-    return 'Great job on completing the study topic $name';
+    return 'Hieno homma. Olet suorittanut opintokokonaisuuden $name';
   }
 
   @override
   String videoCount(int count) {
-    return '$count videos';
+    return '$count videota';
   }
 
   @override
   String taskCount(int count) {
-    return '$count tasks';
+    return '$count tehtäviä';
   }
 
   @override
   String posterCount(int count) {
-    return '$count posters';
+    return '$count julistetta';
   }
 
   @override
   String resourceCount(int count) {
-    return '$count resources';
+    return '$count sisältöpakettia';
   }
 
   @override

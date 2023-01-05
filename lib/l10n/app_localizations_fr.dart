@@ -450,70 +450,70 @@ class SFr extends S {
   String get exploreContent => 'Explorer le contenu';
 
   @override
-  String get taskCompleted => 'task completed';
+  String get taskCompleted => 'tâche terminée';
 
   @override
-  String get tasksCompleted => 'tasks completed';
+  String get tasksCompleted => 'tâches terminées';
 
   @override
-  String get studyCompleteTaskDescription => 'Complete tasks and discover related resources';
+  String get studyCompleteTaskDescription => 'Effectuer des tâches et découvrir des ressources connexes';
 
   @override
-  String get discoverMore => 'Discover more';
+  String get discoverMore => 'Découvrir plus';
 
   @override
-  String get studyDiscoverMoreDescription => 'Find more inspiration and insight from related resources';
+  String get studyDiscoverMoreDescription => 'Trouver plus d\'inspiration et d\'idées dans les ressources connexes';
 
   @override
   String get watchAgain => 'Regarder à nouveau';
 
   @override
-  String get continueToTaskIn => 'Continue to task in';
+  String get continueToTaskIn => 'Poursuivre la tâche dans';
 
   @override
-  String get continueToTasksIn => 'Continue to tasks in';
+  String get continueToTasksIn => 'Poursuivre les tâches dans';
 
   @override
-  String get studyLessonCompleted => 'lesson completed';
+  String get studyLessonCompleted => 'leçon terminée';
 
   @override
-  String get studyLessonsCompleted => 'lessons completed';
+  String get studyLessonsCompleted => 'leçons terminées';
 
   @override
-  String get continueStudy => 'Continue study';
+  String get continueStudy => 'Continuer l\'étude';
 
   @override
-  String get startStudy => 'Start study';
+  String get startStudy => 'Commencer l\'étude';
 
   @override
   String get videoCompletedText => 'Great job on completing the video.';
 
   @override
-  String get achievementFirstDescription => 'Great job on completing the video and earning your first progress achievement.';
+  String get achievementFirstDescription => 'Bravo ! Tu as terminé la vidéo et obtenu ton premier progrès.';
 
   @override
   String achievementStudyTopic(String name) {
-    return 'Great job on completing the study topic $name';
+    return 'Bravo ! Tu as terminé le sujet d\'étude $name';
   }
 
   @override
   String videoCount(int count) {
-    return '$count videos';
+    return '$count vidéos';
   }
 
   @override
   String taskCount(int count) {
-    return '$count tasks';
+    return '$count tâches';
   }
 
   @override
   String posterCount(int count) {
-    return '$count posters';
+    return '$count affiches';
   }
 
   @override
   String resourceCount(int count) {
-    return '$count resources';
+    return '$count ressources';
   }
 
   @override

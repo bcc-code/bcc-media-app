@@ -607,23 +607,23 @@
   "@exploreContent": {
     "description": "A button on the login page"
   },
-  "taskCompleted": "task completed",
+  "taskCompleted": "görev tamamlandı",
   "@taskCompleted": {
     "description": "SINGULAR. Note the lowercase T, because its inserted after a count: '0/1 task completed'."
   },
-  "tasksCompleted": "tasks completed",
+  "tasksCompleted": "görevler tamamlandı",
   "@tasksCompleted": {
     "description": "PLURAL. Note the lowercase T, because its inserted after the count: '2/5 tasks completed'."
   },
-  "studyCompleteTaskDescription": "Complete tasks and discover related resources",
+  "studyCompleteTaskDescription": "Görevleri tamamlayın ve ilgili kaynakları keşfedin",
   "@studyCompleteTaskDescription": {
     "description": "Description to open the study tasks for this episode. Currently shows below '0/1 tasks completed'."
   },
-  "discoverMore": "Discover more",
+  "discoverMore": "Daha fazlasını keşfet",
   "@discoverMore": {
     "description": "Generic button text."
   },
-  "studyDiscoverMoreDescription": "Find more inspiration and insight from related resources",
+  "studyDiscoverMoreDescription": "İlgili kaynaklardan daha fazla ilham ve fikir edinin",
   "@studyDiscoverMoreDescription": {
     "description": "Description to open the related resources for this episode."
   },
@@ -631,35 +631,35 @@
   "@watchAgain": {
     "description": "Short button text to watch the video again."
   },
-  "continueToTaskIn": "Continue to task in",
+  "continueToTaskIn": "Göreve devam et",
   "@continueToTaskIn": {
     "description": "SINGULAR. Button with text 'Continue to task in X'. Can click it to open tasks immediately, otherwise X will count down (10, 9, 8...) and automatically redirect you to the tasks."
   },
-  "continueToTasksIn": "Continue to tasks in",
+  "continueToTasksIn": "Görevlere devam et",
   "@continueToTasksIn": {
     "description": "PLURAL. Button with text 'Continue to tasks in X'. Can click it to open tasks immediately, otherwise X will count down (10, 9, 8...) and automatically redirect you to the tasks."
   },
-  "studyLessonCompleted": "lesson completed",
+  "studyLessonCompleted": "ders tamamlandı",
   "@studyLessonCompleted": {
     "description": "SINGULAR. Note the lowercase L, because prepended with a number: '1 lesson completed'."
   },
-  "studyLessonsCompleted": "lessons completed",
+  "studyLessonsCompleted": "dersler tamamlandı",
   "@studyLessonsCompleted": {
     "description": "PLURAL. Note the lowercase L, because prepended with a number: '20 lessons completed'."
   },
-  "continueStudy": "Continue study",
+  "continueStudy": "Çalışmaya devam et",
   "@continueStudy": {
     "description": "Button."
   },
-  "startStudy": "Start study",
+  "startStudy": "Çalışmaya başla",
   "@startStudy": {
     "description": "Button."
   },
-  "achievementFirstDescription": "Great job on completing the video and earning your first progress achievement.",
+  "achievementFirstDescription": "Videoyu tamamlama ve ilk ilerleme başarınızı kazanma konusunda harika bir iş çıkardın.",
   "@achievementFirstDescription": {
     "description": "Description displayed in a popup when earning the first achievement badge."
   },
-  "achievementStudyTopic": "Great job on completing the study topic {name}",
+  "achievementStudyTopic": "{name} çalışma konusunu tamamlama konusunda harika bir iş çıkardın",
   "@achievementStudyTopic": {
     "description": "REMEMBER: Include, but do not translate variables like {name} here. Description displayed in a popup when done with a study topic.",
     "placeholders": {
@@ -668,7 +668,7 @@
       }
     }
   },
-  "videoCount": "{count} videos",
+  "videoCount": "{count} video",
   "@videoCount": {
     "description": "REMEMBER: Include, but do not translate variables like {count} here. Keep it very short. Generic, number of videos. Currently used for study topic overviews.",
     "placeholders": {
@@ -677,7 +677,7 @@
       }
     }
   },
-  "taskCount": "{count} tasks",
+  "taskCount": "{count} görev",
   "@taskCount": {
     "description": "REMEMBER: Include, but do not translate variables like {count} here. Keep it very short. Generic, number of tasks. Currently used for study topic overviews.",
     "placeholders": {
@@ -686,7 +686,7 @@
       }
     }
   },
-  "posterCount": "{count} posters",
+  "posterCount": "{count} poster",
   "@posterCount": {
     "description": "REMEMBER: Include, but do not translate variables like {count} here. Keep it very short. Generic, number of posters. Currently used for study topic overviews.",
     "placeholders": {
@@ -695,7 +695,7 @@
       }
     }
   },
-  "resourceCount": "{count} resources",
+  "resourceCount": "{count} kaynak",
   "@resourceCount": {
     "description": "REMEMBER: Include, but do not translate variables like {count} here. Keep it very short. Generic, number of resources. Currently used for study topic overviews.",
     "placeholders": {

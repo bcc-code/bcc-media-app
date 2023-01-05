@@ -223,7 +223,7 @@
   "@queueLimitTitle": {
     "description": "Title of the alert to the user when attempt to add video to cast queue failed due to full queue."
   },
-  "queueLimitMessage": "Você não pode ter mais de {elementCount} elementos na fila.",
+  "queueLimitMessage": "Você não pode ter mais de {element Count} elementos na fila.",
   "@queueLimitMessage": {
     "description": "Error message to the user when attempt to add video to cast queue failed due to full queue.",
     "placeholders": {

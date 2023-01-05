@@ -465,7 +465,7 @@
   "@profilePicture": {
     "description": "Text on edit profile page."
   },
-  "timezoneInformation": "De tijden in de TV gids worden weergegeven in de lokale tijd van de tijdszone waarin je op dit moment bent: {timeZone}",
+  "timezoneInformation": "De tijden in de TV gids worden weergegeven in de lokale tijd van de tijdszone waarin je op dit moment bent",
   "@timezoneInformation": {
     "description": "TV guide footer info text.",
     "placeholders": {

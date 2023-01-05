@@ -607,23 +607,23 @@
   "@exploreContent": {
     "description": "A button on the login page"
   },
-  "taskCompleted": "task completed",
+  "taskCompleted": "naloga opravljena",
   "@taskCompleted": {
     "description": "SINGULAR. Note the lowercase T, because its inserted after a count: '0/1 task completed'."
   },
-  "tasksCompleted": "tasks completed",
+  "tasksCompleted": "naloge opravljene",
   "@tasksCompleted": {
     "description": "PLURAL. Note the lowercase T, because its inserted after the count: '2/5 tasks completed'."
   },
-  "studyCompleteTaskDescription": "Complete tasks and discover related resources",
+  "studyCompleteTaskDescription": "Dokončaj naloge in odkrij s tem povezane vire",
   "@studyCompleteTaskDescription": {
     "description": "Description to open the study tasks for this episode. Currently shows below '0/1 tasks completed'."
   },
-  "discoverMore": "Discover more",
+  "discoverMore": "Odkrij več",
   "@discoverMore": {
     "description": "Generic button text."
   },
-  "studyDiscoverMoreDescription": "Find more inspiration and insight from related resources",
+  "studyDiscoverMoreDescription": "Najdi več navdiha in vpogleda iz povezanih virov",
   "@studyDiscoverMoreDescription": {
     "description": "Description to open the related resources for this episode."
   },
@@ -631,35 +631,35 @@
   "@watchAgain": {
     "description": "Short button text to watch the video again."
   },
-  "continueToTaskIn": "Continue to task in",
+  "continueToTaskIn": "Nadaljuj na nalogo v",
   "@continueToTaskIn": {
     "description": "SINGULAR. Button with text 'Continue to task in X'. Can click it to open tasks immediately, otherwise X will count down (10, 9, 8...) and automatically redirect you to the tasks."
   },
-  "continueToTasksIn": "Continue to tasks in",
+  "continueToTasksIn": "Nadaljuj na naloge v",
   "@continueToTasksIn": {
     "description": "PLURAL. Button with text 'Continue to tasks in X'. Can click it to open tasks immediately, otherwise X will count down (10, 9, 8...) and automatically redirect you to the tasks."
   },
-  "studyLessonCompleted": "lesson completed",
+  "studyLessonCompleted": "lekcija dokončana",
   "@studyLessonCompleted": {
     "description": "SINGULAR. Note the lowercase L, because prepended with a number: '1 lesson completed'."
   },
-  "studyLessonsCompleted": "lessons completed",
+  "studyLessonsCompleted": "lekcije dokončane",
   "@studyLessonsCompleted": {
     "description": "PLURAL. Note the lowercase L, because prepended with a number: '20 lessons completed'."
   },
-  "continueStudy": "Continue study",
+  "continueStudy": "Nadaljuj preučevanje",
   "@continueStudy": {
     "description": "Button."
   },
-  "startStudy": "Start study",
+  "startStudy": "Začni preučevanje",
   "@startStudy": {
     "description": "Button."
   },
-  "achievementFirstDescription": "Great job on completing the video and earning your first progress achievement.",
+  "achievementFirstDescription": "Bravo! Prišel si do konca videoposnetka in zaslužil svoj prvi dosežek.",
   "@achievementFirstDescription": {
     "description": "Description displayed in a popup when earning the first achievement badge."
   },
-  "achievementStudyTopic": "Great job on completing the study topic {name}",
+  "achievementStudyTopic": "Bravo! Dokončal si temo {name}",
   "@achievementStudyTopic": {
     "description": "REMEMBER: Include, but do not translate variables like {name} here. Description displayed in a popup when done with a study topic.",
     "placeholders": {
@@ -668,7 +668,7 @@
       }
     }
   },
-  "videoCount": "{count} videos",
+  "videoCount": "{count} videoposnetki",
   "@videoCount": {
     "description": "REMEMBER: Include, but do not translate variables like {count} here. Keep it very short. Generic, number of videos. Currently used for study topic overviews.",
     "placeholders": {
@@ -677,7 +677,7 @@
       }
     }
   },
-  "taskCount": "{count} tasks",
+  "taskCount": "{count} naloge",
   "@taskCount": {
     "description": "REMEMBER: Include, but do not translate variables like {count} here. Keep it very short. Generic, number of tasks. Currently used for study topic overviews.",
     "placeholders": {
@@ -686,7 +686,7 @@
       }
     }
   },
-  "posterCount": "{count} posters",
+  "posterCount": "{count} posterji",
   "@posterCount": {
     "description": "REMEMBER: Include, but do not translate variables like {count} here. Keep it very short. Generic, number of posters. Currently used for study topic overviews.",
     "placeholders": {
@@ -695,7 +695,7 @@
       }
     }
   },
-  "resourceCount": "{count} resources",
+  "resourceCount": "{count} viri",
   "@resourceCount": {
     "description": "REMEMBER: Include, but do not translate variables like {count} here. Keep it very short. Generic, number of resources. Currently used for study topic overviews.",
     "placeholders": {
