@@ -26,13 +26,13 @@ String getAgeGroup(int? age) {
   if (age >= 65) {
     return '65+';
   } else if (age >= 51) {
-    return '51 - 65';
+    return '51 - 64';
   } else if (age >= 37) {
     return '37 - 50';
   } else if (age >= 26) {
     return '26 - 36';
   } else if (age >= 19) {
-    return '19 - 26';
+    return '19 - 25';
   } else if (age >= 13) {
     return '13 - 18';
   } else if (age >= 10) {
