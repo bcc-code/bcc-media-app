@@ -1,6 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:brunstadtv_app/components/loading_generic.dart';
-import 'package:brunstadtv_app/components/achievement_group_section.dart';
+import 'package:brunstadtv_app/components/achievement_list.dart';
 import 'package:brunstadtv_app/graphql/client.dart';
 import 'package:brunstadtv_app/graphql/queries/achievements.graphql.dart';
 import 'package:brunstadtv_app/helpers/btv_typography.dart';
@@ -17,6 +17,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import '../components/custom_back_button.dart';
 import '../components/error_generic.dart';
 import '../components/page_section.dart';
+import '../components/see_more.dart';
 import '../env/env.dart';
 import '../graphql/queries/studies.graphql.dart';
 import '../helpers/btv_buttons.dart';
@@ -53,38 +54,26 @@ class AchievementsScreenState extends ConsumerState<AchievementsScreen> {
           title: Text(S.of(context).achievements),
         ),
         body: Query$getAchievementGroups$Widget(
+          options: Options$Query$getAchievementGroups(variables: Variables$Query$getAchievementGroups(first: 100, achievementsFirst: 6)),
           builder: ((result, {fetchMore, refetch}) {
             if (result.isLoading) {
-              return LoadingGeneric();
+              return const LoadingGeneric();
             } else if (result.hasException || result.parsedData == null) {
               return ErrorGeneric(
-                  details: result.exception?.toString(),
-                  onRetry: () {
-                    if (refetch != null) refetch();
-                  });
+                details: result.exception?.toString(),
+                onRetry: () {
+                  if (refetch != null) refetch();
+                },
+              );
             }
             return ListView(
               children: result.parsedData!.achievementGroups.items.map(
                 (achievementGroup) {
                   return PageSection(
                     title: achievementGroup.title,
-                    rightSlot: GestureDetector(
-                      onTap: () {
-                        context.router.navigate(AchievementGroupScreenRoute(groupId: achievementGroup.id));
-                      },
-                      child: Align(
-                        alignment: Alignment.bottomRight,
-                        child: Row(
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            const Text('See All', style: BtvTextStyles.button2),
-                            SvgPicture.string(SvgIcons.right),
-                          ],
-                        ),
-                      ),
-                    ),
-                    child: AchievementGroupSection(
-                      achievementGroup: achievementGroup,
+                    rightSlot: SeeMoreSlot(onTap: () => context.router.navigate(AchievementGroupScreenRoute(groupId: achievementGroup.id))),
+                    child: AchievementList(
+                      achievements: achievementGroup.achievements.items,
                     ),
                   );
                 },

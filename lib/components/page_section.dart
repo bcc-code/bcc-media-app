@@ -47,16 +47,9 @@ class PageSection extends StatelessWidget {
               right: 16,
               bottom: 8,
             ),
-            child: Row(
-              children: [
-                Expanded(
-                  child: Text(
-                    description!,
-                    style: BtvTextStyles.body2.copyWith(color: BtvColors.label3),
-                  ),
-                ),
-                if (rightSlot != null) rightSlot!
-              ],
+            child: Text(
+              description!,
+              style: BtvTextStyles.body2.copyWith(color: BtvColors.label3),
             ),
           ),
         child,

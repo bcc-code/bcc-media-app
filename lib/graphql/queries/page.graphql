@@ -186,6 +186,13 @@ fragment Section on Section {
       }
     }
   }
+  ... on PageDetailsSection {
+    title
+    description
+  }
+  ... on AchievementSection {
+    __typename
+  }
   __typename
 }
 

@@ -1,29 +1,30 @@
-fragment AchievementTitleImage on Achievement {
+fragment Achievement on Achievement {
   id
   title
+  description
+  achieved
   image
 }
 
 fragment AchievementGroup on AchievementGroup {
   id
   title
-  achievements {
+  achievements(first: $achievementsFirst) {
     items {
-      ...AchievementTitleImage
-      achieved
+      ...Achievement
     }
   }
 }
 
-query getAchievementGroups {
-  achievementGroups {
+query getAchievementGroups($first: Int!, $achievementsFirst: Int!) {
+  achievementGroups(first: $first) {
     items {
       ...AchievementGroup
     }
   }
 }
 
-query getAchievementGroup($id: ID!) {
+query getAchievementGroup($id: ID!, $achievementsFirst: Int!) {
   achievementGroup(id: $id) {
     ...AchievementGroup
   }
@@ -31,7 +32,7 @@ query getAchievementGroup($id: ID!) {
 
 query getPendingAchievements {
   pendingAchievements {
-    ...AchievementTitleImage
+    ...Achievement
   }
 }
 

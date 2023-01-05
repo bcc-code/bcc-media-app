@@ -8,12 +8,12 @@ import '../l10n/app_localizations.dart';
 
 class DialogWithImage extends StatelessWidget {
   const DialogWithImage(
-      {super.key, required this.image, required this.title, required this.description, this.dismissButtonText, this.slotBeforeDismissButton});
+      {super.key, required this.image, required this.title, this.description, this.dismissButtonText, this.slotBeforeDismissButton});
 
   final Widget image;
   final Widget? slotBeforeDismissButton;
   final String title;
-  final String description;
+  final String? description;
   final String? dismissButtonText;
 
   @override
@@ -35,8 +35,15 @@ class DialogWithImage extends StatelessWidget {
               style: BtvTextStyles.headline2,
               textAlign: TextAlign.center,
             ),
-            const SizedBox(height: 4),
-            Text(description, style: BtvTextStyles.caption1.copyWith(color: BtvColors.label3)),
+            if (description?.isNotEmpty == true)
+              Padding(
+                padding: const EdgeInsets.only(top: 4),
+                child: Text(
+                  description!,
+                  style: BtvTextStyles.caption1.copyWith(color: BtvColors.label3),
+                  textAlign: TextAlign.center,
+                ),
+              ),
             const SizedBox(height: 24),
             if (slotBeforeDismissButton != null) slotBeforeDismissButton!,
             SizedBox(

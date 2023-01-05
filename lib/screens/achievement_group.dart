@@ -1,7 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:brunstadtv_app/components/error_generic.dart';
 import 'package:brunstadtv_app/components/loading_generic.dart';
-import 'package:brunstadtv_app/components/achievement_group_section.dart';
+import 'package:brunstadtv_app/components/achievement_list.dart';
 import 'package:brunstadtv_app/graphql/client.dart';
 import 'package:brunstadtv_app/graphql/queries/achievements.graphql.dart';
 import 'package:brunstadtv_app/helpers/btv_typography.dart';
@@ -57,7 +57,7 @@ class AchievementGroupState extends ConsumerState<AchievementGroupScreen> {
   @override
   Widget build(BuildContext context) {
     return Query$getAchievementGroup$Widget(
-        options: Options$Query$getAchievementGroup(variables: Variables$Query$getAchievementGroup(id: widget.groupId)),
+        options: Options$Query$getAchievementGroup(variables: Variables$Query$getAchievementGroup(id: widget.groupId, achievementsFirst: 100)),
         builder: (result, {fetchMore, refetch}) {
           return Scaffold(
             appBar: AppBar(
@@ -73,8 +73,8 @@ class AchievementGroupState extends ConsumerState<AchievementGroupScreen> {
                   if (refetch != null) refetch();
                 });
               }
-              return AchievementGroupSection(
-                achievementGroup: result.parsedData!.achievementGroup,
+              return AchievementList(
+                achievements: result.parsedData!.achievementGroup.achievements.items,
               );
             }),
           );

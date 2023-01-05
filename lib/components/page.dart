@@ -1,9 +1,13 @@
+import 'package:auto_route/auto_route.dart';
+import 'package:brunstadtv_app/components/achievement_section.dart';
 import 'package:brunstadtv_app/components/error_generic.dart';
 import 'package:brunstadtv_app/components/loading_generic.dart';
+import 'package:brunstadtv_app/components/see_more.dart';
 import 'package:brunstadtv_app/graphql/client.dart';
 import 'package:brunstadtv_app/graphql/queries/sections.graphql.dart';
 import 'package:brunstadtv_app/helpers/sections.dart';
 import 'package:brunstadtv_app/models/analytics/sections.dart';
+import 'package:brunstadtv_app/router/router.gr.dart';
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -12,10 +16,12 @@ import '../graphql/queries/page.graphql.dart';
 import '../helpers/utils.dart';
 import '../models/pagination_status.dart';
 import '../providers/inherited_data.dart';
+import 'achievement_list.dart';
 import 'card_section.dart';
 import 'featured_section.dart';
 import 'default_grid_section.dart';
 import 'message_section.dart';
+import 'page_details_section.dart';
 import 'poster_grid_section.dart';
 import 'icon_section.dart';
 import 'label_section.dart';
@@ -114,6 +120,23 @@ class _BccmPageState extends ConsumerState<BccmPage> {
     final cardSection = s.asOrNull<Fragment$Section$$CardSection>();
     if (cardSection != null && cardSection.items.items.isNotEmpty) {
       return Padding(padding: const EdgeInsets.only(top: 4), child: PageSection.fromFragment(cardSection, child: CardSection(cardSection)));
+    }
+    final pageDetailsSection = s.asOrNull<Fragment$Section$$PageDetailsSection>();
+    if (pageDetailsSection != null) {
+      return Padding(
+          padding: const EdgeInsets.only(top: 4), child: PageSection.fromFragment(pageDetailsSection, child: PageDetailsSection(pageDetailsSection)));
+    }
+    final achievementsSection = s.asOrNull<Fragment$Section$$AchievementSection>();
+    if (achievementsSection != null) {
+      return Padding(
+        padding: const EdgeInsets.only(top: 4),
+        child: PageSection(
+          title: achievementsSection.title,
+          description: achievementsSection.description,
+          rightSlot: SeeMoreSlot(onTap: () => context.router.navigate(const AchievementsScreenRoute())),
+          child: AchievementSection(achievementsSection),
+        ),
+      );
     }
     return null;
   }

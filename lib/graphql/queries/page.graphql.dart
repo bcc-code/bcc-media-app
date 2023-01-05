@@ -3920,6 +3920,12 @@ class Fragment$Section {
       case "MessageSection":
         return Fragment$Section$$MessageSection.fromJson(json);
 
+      case "PageDetailsSection":
+        return Fragment$Section$$PageDetailsSection.fromJson(json);
+
+      case "AchievementSection":
+        return Fragment$Section$$AchievementSection.fromJson(json);
+
       default:
         final l$id = json['id'];
         final l$title = json['title'];
@@ -5045,6 +5051,54 @@ const fragmentDefinitionSection = FragmentDefinitionNode(
           directives: [],
           selectionSet: null,
         ),
+      ]),
+    ),
+    InlineFragmentNode(
+      typeCondition: TypeConditionNode(
+          on: NamedTypeNode(
+        name: NameNode(value: 'PageDetailsSection'),
+        isNonNull: false,
+      )),
+      directives: [],
+      selectionSet: SelectionSetNode(selections: [
+        FieldNode(
+          name: NameNode(value: 'title'),
+          alias: null,
+          arguments: [],
+          directives: [],
+          selectionSet: null,
+        ),
+        FieldNode(
+          name: NameNode(value: 'description'),
+          alias: null,
+          arguments: [],
+          directives: [],
+          selectionSet: null,
+        ),
+        FieldNode(
+          name: NameNode(value: '__typename'),
+          alias: null,
+          arguments: [],
+          directives: [],
+          selectionSet: null,
+        ),
+      ]),
+    ),
+    InlineFragmentNode(
+      typeCondition: TypeConditionNode(
+          on: NamedTypeNode(
+        name: NameNode(value: 'AchievementSection'),
+        isNonNull: false,
+      )),
+      directives: [],
+      selectionSet: SelectionSetNode(selections: [
+        FieldNode(
+          name: NameNode(value: '__typename'),
+          alias: null,
+          arguments: [],
+          directives: [],
+          selectionSet: null,
+        )
       ]),
     ),
     FieldNode(
@@ -25031,6 +25085,332 @@ class _CopyWithStubImpl$Fragment$Section$$CardSection$items$items$item$$StudyTop
   call({
     int? completed,
     int? total,
+    String? $__typename,
+  }) =>
+      _res;
+}
+
+class Fragment$Section$$PageDetailsSection implements Fragment$Section {
+  Fragment$Section$$PageDetailsSection({
+    required this.id,
+    this.title,
+    this.description,
+    required this.$__typename,
+  });
+
+  factory Fragment$Section$$PageDetailsSection.fromJson(
+      Map<String, dynamic> json) {
+    final l$id = json['id'];
+    final l$title = json['title'];
+    final l$description = json['description'];
+    final l$$__typename = json['__typename'];
+    return Fragment$Section$$PageDetailsSection(
+      id: (l$id as String),
+      title: (l$title as String?),
+      description: (l$description as String?),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final String id;
+
+  final String? title;
+
+  final String? description;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$id = id;
+    _resultData['id'] = l$id;
+    final l$title = title;
+    _resultData['title'] = l$title;
+    final l$description = description;
+    _resultData['description'] = l$description;
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$id = id;
+    final l$title = title;
+    final l$description = description;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$id,
+      l$title,
+      l$description,
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (!(other is Fragment$Section$$PageDetailsSection) ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$id = id;
+    final lOther$id = other.id;
+    if (l$id != lOther$id) {
+      return false;
+    }
+    final l$title = title;
+    final lOther$title = other.title;
+    if (l$title != lOther$title) {
+      return false;
+    }
+    final l$description = description;
+    final lOther$description = other.description;
+    if (l$description != lOther$description) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Fragment$Section$$PageDetailsSection
+    on Fragment$Section$$PageDetailsSection {
+  CopyWith$Fragment$Section$$PageDetailsSection<
+          Fragment$Section$$PageDetailsSection>
+      get copyWith => CopyWith$Fragment$Section$$PageDetailsSection(
+            this,
+            (i) => i,
+          );
+}
+
+abstract class CopyWith$Fragment$Section$$PageDetailsSection<TRes> {
+  factory CopyWith$Fragment$Section$$PageDetailsSection(
+    Fragment$Section$$PageDetailsSection instance,
+    TRes Function(Fragment$Section$$PageDetailsSection) then,
+  ) = _CopyWithImpl$Fragment$Section$$PageDetailsSection;
+
+  factory CopyWith$Fragment$Section$$PageDetailsSection.stub(TRes res) =
+      _CopyWithStubImpl$Fragment$Section$$PageDetailsSection;
+
+  TRes call({
+    String? id,
+    String? title,
+    String? description,
+    String? $__typename,
+  });
+}
+
+class _CopyWithImpl$Fragment$Section$$PageDetailsSection<TRes>
+    implements CopyWith$Fragment$Section$$PageDetailsSection<TRes> {
+  _CopyWithImpl$Fragment$Section$$PageDetailsSection(
+    this._instance,
+    this._then,
+  );
+
+  final Fragment$Section$$PageDetailsSection _instance;
+
+  final TRes Function(Fragment$Section$$PageDetailsSection) _then;
+
+  static const _undefined = {};
+
+  TRes call({
+    Object? id = _undefined,
+    Object? title = _undefined,
+    Object? description = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(Fragment$Section$$PageDetailsSection(
+        id: id == _undefined || id == null ? _instance.id : (id as String),
+        title: title == _undefined ? _instance.title : (title as String?),
+        description: description == _undefined
+            ? _instance.description
+            : (description as String?),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+}
+
+class _CopyWithStubImpl$Fragment$Section$$PageDetailsSection<TRes>
+    implements CopyWith$Fragment$Section$$PageDetailsSection<TRes> {
+  _CopyWithStubImpl$Fragment$Section$$PageDetailsSection(this._res);
+
+  TRes _res;
+
+  call({
+    String? id,
+    String? title,
+    String? description,
+    String? $__typename,
+  }) =>
+      _res;
+}
+
+class Fragment$Section$$AchievementSection implements Fragment$Section {
+  Fragment$Section$$AchievementSection({
+    required this.id,
+    this.title,
+    this.description,
+    required this.$__typename,
+  });
+
+  factory Fragment$Section$$AchievementSection.fromJson(
+      Map<String, dynamic> json) {
+    final l$id = json['id'];
+    final l$title = json['title'];
+    final l$description = json['description'];
+    final l$$__typename = json['__typename'];
+    return Fragment$Section$$AchievementSection(
+      id: (l$id as String),
+      title: (l$title as String?),
+      description: (l$description as String?),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final String id;
+
+  final String? title;
+
+  final String? description;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$id = id;
+    _resultData['id'] = l$id;
+    final l$title = title;
+    _resultData['title'] = l$title;
+    final l$description = description;
+    _resultData['description'] = l$description;
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$id = id;
+    final l$title = title;
+    final l$description = description;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$id,
+      l$title,
+      l$description,
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (!(other is Fragment$Section$$AchievementSection) ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$id = id;
+    final lOther$id = other.id;
+    if (l$id != lOther$id) {
+      return false;
+    }
+    final l$title = title;
+    final lOther$title = other.title;
+    if (l$title != lOther$title) {
+      return false;
+    }
+    final l$description = description;
+    final lOther$description = other.description;
+    if (l$description != lOther$description) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Fragment$Section$$AchievementSection
+    on Fragment$Section$$AchievementSection {
+  CopyWith$Fragment$Section$$AchievementSection<
+          Fragment$Section$$AchievementSection>
+      get copyWith => CopyWith$Fragment$Section$$AchievementSection(
+            this,
+            (i) => i,
+          );
+}
+
+abstract class CopyWith$Fragment$Section$$AchievementSection<TRes> {
+  factory CopyWith$Fragment$Section$$AchievementSection(
+    Fragment$Section$$AchievementSection instance,
+    TRes Function(Fragment$Section$$AchievementSection) then,
+  ) = _CopyWithImpl$Fragment$Section$$AchievementSection;
+
+  factory CopyWith$Fragment$Section$$AchievementSection.stub(TRes res) =
+      _CopyWithStubImpl$Fragment$Section$$AchievementSection;
+
+  TRes call({
+    String? id,
+    String? title,
+    String? description,
+    String? $__typename,
+  });
+}
+
+class _CopyWithImpl$Fragment$Section$$AchievementSection<TRes>
+    implements CopyWith$Fragment$Section$$AchievementSection<TRes> {
+  _CopyWithImpl$Fragment$Section$$AchievementSection(
+    this._instance,
+    this._then,
+  );
+
+  final Fragment$Section$$AchievementSection _instance;
+
+  final TRes Function(Fragment$Section$$AchievementSection) _then;
+
+  static const _undefined = {};
+
+  TRes call({
+    Object? id = _undefined,
+    Object? title = _undefined,
+    Object? description = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(Fragment$Section$$AchievementSection(
+        id: id == _undefined || id == null ? _instance.id : (id as String),
+        title: title == _undefined ? _instance.title : (title as String?),
+        description: description == _undefined
+            ? _instance.description
+            : (description as String?),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+}
+
+class _CopyWithStubImpl$Fragment$Section$$AchievementSection<TRes>
+    implements CopyWith$Fragment$Section$$AchievementSection<TRes> {
+  _CopyWithStubImpl$Fragment$Section$$AchievementSection(this._res);
+
+  TRes _res;
+
+  call({
+    String? id,
+    String? title,
+    String? description,
     String? $__typename,
   }) =>
       _res;

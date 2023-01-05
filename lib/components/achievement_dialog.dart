@@ -13,7 +13,7 @@ import 'dialog_with_image.dart';
 class AchievementDialog extends StatelessWidget {
   const AchievementDialog({super.key, required this.achievement, this.dismissButtonText});
 
-  final Fragment$AchievementTitleImage achievement;
+  final Fragment$Achievement achievement;
   final String? dismissButtonText;
 
   @override
@@ -22,7 +22,7 @@ class AchievementDialog extends StatelessWidget {
     return DialogWithImage(
       image: image == null ? const SizedBox.shrink() : SizedBox(height: 180, child: simpleFadeInImage(url: image)),
       title: achievement.title,
-      description: '',
+      description: achievement.description,
       dismissButtonText: dismissButtonText,
     );
   }
