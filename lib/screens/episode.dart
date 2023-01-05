@@ -27,6 +27,7 @@ import 'package:brunstadtv_app/providers/video_state.dart';
 import 'package:bccm_player/cast_button.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:brunstadtv_app/helpers/transparent_image.dart';
+import 'package:graphql/client.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:shimmer/shimmer.dart';
 import 'package:collection/collection.dart';
@@ -340,9 +341,11 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen> with AutoRouteAwa
               body: Builder(
                 builder: (context) {
                   if (snapshot.hasError && snapshot.connectionState == ConnectionState.done) {
-                    var gqlErrorText = snapshot.error.asOrNull<ErrorDescription>()?.value.firstOrNull.asOrNull<String>();
-                    if (gqlErrorText?.contains('do not have access') == true) {
-                      return ErrorNoAccess();
+                    var operationException = snapshot.error.asOrNull<OperationException>();
+                    if (operationException?.graphqlErrors.any(
+                            (err) => err.extensions?['code'] == ApiErrorCodes.noAccess || err.extensions?['code'] == ApiErrorCodes.notPublished) ==
+                        true) {
+                      return const ErrorNoAccess();
                     }
                     return ErrorGeneric(onRetry: () => loadEpisode());
                   }

@@ -17,6 +17,12 @@ import '../graphql/queries/application.graphql.dart';
 import '../graphql/queries/progress.graphql.dart';
 import '../graphql/schema/items.graphql.dart';
 
+class ApiErrorCodes {
+  ApiErrorCodes._();
+  static const String noAccess = 'item/no-access';
+  static const String notPublished = 'item/not-published';
+}
+
 class Api {
   final String? accessToken;
   final GraphQLClient gqlClient;
@@ -29,8 +35,8 @@ class Api {
         variables: Variables$Query$FetchEpisode(id: id),
       ),
     );
-    if (result.hasException) {
-      throw ErrorDescription(result.exception.toString());
+    if (result.exception != null) {
+      throw result.exception!;
     }
     var episode = result.parsedData?.episode;
     if (episode == null) return null;

@@ -1,16 +1,18 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:brunstadtv_app/providers/auth_state.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../helpers/btv_buttons.dart';
 import '../helpers/btv_colors.dart';
 import '../helpers/btv_typography.dart';
 import '../l10n/app_localizations.dart';
 
-class ErrorNoAccess extends StatelessWidget {
+class ErrorNoAccess extends ConsumerWidget {
   const ErrorNoAccess({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) => Center(
+  Widget build(BuildContext context, WidgetRef ref) => Center(
         child: Container(
           padding: const EdgeInsets.symmetric(horizontal: 24),
           child: Column(
@@ -29,7 +31,9 @@ class ErrorNoAccess extends StatelessWidget {
                     Container(
                       margin: const EdgeInsets.only(bottom: 16),
                       child: Text(
-                        'You need to be logged in to watch this content.',
+                        ref.read(authStateProvider).guestMode
+                            ? 'You need to be logged in to watch this content.'
+                            : 'You do not have access to this content.',
                         textAlign: TextAlign.center,
                         style: BtvTextStyles.body1.copyWith(color: BtvColors.onTint),
                       ),
