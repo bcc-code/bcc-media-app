@@ -71,6 +71,7 @@ type Episode {
     type: EpisodeType!
     legacyID: ID
     legacyProgramID: ID
+    locked: Boolean! @goField(forceResolver: true)
     publishDate: Date!
     productionDate: Date!
     productionDateInTitle: Boolean!

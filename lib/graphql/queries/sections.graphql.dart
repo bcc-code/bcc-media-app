@@ -21671,7 +21671,7 @@ class Query$FetchMoreItemsForItemSection$section$$CardSection$items$items$item$$
     required this.title,
     required this.description,
     required this.images,
-    required this.tasksProgress,
+    required this.lessonsProgress,
   });
 
   factory Query$FetchMoreItemsForItemSection$section$$CardSection$items$items$item$$StudyTopic.fromJson(
@@ -21681,7 +21681,7 @@ class Query$FetchMoreItemsForItemSection$section$$CardSection$items$items$item$$
     final l$title = json['title'];
     final l$description = json['description'];
     final l$images = json['images'];
-    final l$tasksProgress = json['tasksProgress'];
+    final l$lessonsProgress = json['lessonsProgress'];
     return Query$FetchMoreItemsForItemSection$section$$CardSection$items$items$item$$StudyTopic(
       $__typename: (l$$__typename as String),
       id: (l$id as String),
@@ -21692,9 +21692,9 @@ class Query$FetchMoreItemsForItemSection$section$$CardSection$items$items$item$$
               Query$FetchMoreItemsForItemSection$section$$CardSection$items$items$item$$StudyTopic$images
                   .fromJson((e as Map<String, dynamic>)))
           .toList(),
-      tasksProgress:
-          Query$FetchMoreItemsForItemSection$section$$CardSection$items$items$item$$StudyTopic$tasksProgress
-              .fromJson((l$tasksProgress as Map<String, dynamic>)),
+      lessonsProgress:
+          Query$FetchMoreItemsForItemSection$section$$CardSection$items$items$item$$StudyTopic$lessonsProgress
+              .fromJson((l$lessonsProgress as Map<String, dynamic>)),
     );
   }
 
@@ -21710,8 +21710,8 @@ class Query$FetchMoreItemsForItemSection$section$$CardSection$items$items$item$$
           Query$FetchMoreItemsForItemSection$section$$CardSection$items$items$item$$StudyTopic$images>
       images;
 
-  final Query$FetchMoreItemsForItemSection$section$$CardSection$items$items$item$$StudyTopic$tasksProgress
-      tasksProgress;
+  final Query$FetchMoreItemsForItemSection$section$$CardSection$items$items$item$$StudyTopic$lessonsProgress
+      lessonsProgress;
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
@@ -21725,8 +21725,8 @@ class Query$FetchMoreItemsForItemSection$section$$CardSection$items$items$item$$
     _resultData['description'] = l$description;
     final l$images = images;
     _resultData['images'] = l$images.map((e) => e.toJson()).toList();
-    final l$tasksProgress = tasksProgress;
-    _resultData['tasksProgress'] = l$tasksProgress.toJson();
+    final l$lessonsProgress = lessonsProgress;
+    _resultData['lessonsProgress'] = l$lessonsProgress.toJson();
     return _resultData;
   }
 
@@ -21737,14 +21737,14 @@ class Query$FetchMoreItemsForItemSection$section$$CardSection$items$items$item$$
     final l$title = title;
     final l$description = description;
     final l$images = images;
-    final l$tasksProgress = tasksProgress;
+    final l$lessonsProgress = lessonsProgress;
     return Object.hashAll([
       l$$__typename,
       l$id,
       l$title,
       l$description,
       Object.hashAll(l$images.map((v) => v)),
-      l$tasksProgress,
+      l$lessonsProgress,
     ]);
   }
 
@@ -21790,9 +21790,9 @@ class Query$FetchMoreItemsForItemSection$section$$CardSection$items$items$item$$
         return false;
       }
     }
-    final l$tasksProgress = tasksProgress;
-    final lOther$tasksProgress = other.tasksProgress;
-    if (l$tasksProgress != lOther$tasksProgress) {
+    final l$lessonsProgress = lessonsProgress;
+    final lOther$lessonsProgress = other.lessonsProgress;
+    if (l$lessonsProgress != lOther$lessonsProgress) {
       return false;
     }
     return true;
@@ -21831,8 +21831,8 @@ abstract class CopyWith$Query$FetchMoreItemsForItemSection$section$$CardSection$
     String? description,
     List<Query$FetchMoreItemsForItemSection$section$$CardSection$items$items$item$$StudyTopic$images>?
         images,
-    Query$FetchMoreItemsForItemSection$section$$CardSection$items$items$item$$StudyTopic$tasksProgress?
-        tasksProgress,
+    Query$FetchMoreItemsForItemSection$section$$CardSection$items$items$item$$StudyTopic$lessonsProgress?
+        lessonsProgress,
   });
   TRes images(
       Iterable<Query$FetchMoreItemsForItemSection$section$$CardSection$items$items$item$$StudyTopic$images> Function(
@@ -21840,8 +21840,8 @@ abstract class CopyWith$Query$FetchMoreItemsForItemSection$section$$CardSection$
                   CopyWith$Query$FetchMoreItemsForItemSection$section$$CardSection$items$items$item$$StudyTopic$images<
                       Query$FetchMoreItemsForItemSection$section$$CardSection$items$items$item$$StudyTopic$images>>)
           _fn);
-  CopyWith$Query$FetchMoreItemsForItemSection$section$$CardSection$items$items$item$$StudyTopic$tasksProgress<
-      TRes> get tasksProgress;
+  CopyWith$Query$FetchMoreItemsForItemSection$section$$CardSection$items$items$item$$StudyTopic$lessonsProgress<
+      TRes> get lessonsProgress;
 }
 
 class _CopyWithImpl$Query$FetchMoreItemsForItemSection$section$$CardSection$items$items$item$$StudyTopic<
@@ -21869,7 +21869,7 @@ class _CopyWithImpl$Query$FetchMoreItemsForItemSection$section$$CardSection$item
     Object? title = _undefined,
     Object? description = _undefined,
     Object? images = _undefined,
-    Object? tasksProgress = _undefined,
+    Object? lessonsProgress = _undefined,
   }) =>
       _then(
           Query$FetchMoreItemsForItemSection$section$$CardSection$items$items$item$$StudyTopic(
@@ -21887,10 +21887,11 @@ class _CopyWithImpl$Query$FetchMoreItemsForItemSection$section$$CardSection$item
             ? _instance.images
             : (images as List<
                 Query$FetchMoreItemsForItemSection$section$$CardSection$items$items$item$$StudyTopic$images>),
-        tasksProgress: tasksProgress == _undefined || tasksProgress == null
-            ? _instance.tasksProgress
-            : (tasksProgress
-                as Query$FetchMoreItemsForItemSection$section$$CardSection$items$items$item$$StudyTopic$tasksProgress),
+        lessonsProgress: lessonsProgress == _undefined ||
+                lessonsProgress == null
+            ? _instance.lessonsProgress
+            : (lessonsProgress
+                as Query$FetchMoreItemsForItemSection$section$$CardSection$items$items$item$$StudyTopic$lessonsProgress),
       ));
   TRes images(
           Iterable<Query$FetchMoreItemsForItemSection$section$$CardSection$items$items$item$$StudyTopic$images> Function(
@@ -21904,11 +21905,11 @@ class _CopyWithImpl$Query$FetchMoreItemsForItemSection$section$$CardSection$item
                 e,
                 (i) => i,
               ))).toList());
-  CopyWith$Query$FetchMoreItemsForItemSection$section$$CardSection$items$items$item$$StudyTopic$tasksProgress<
-      TRes> get tasksProgress {
-    final local$tasksProgress = _instance.tasksProgress;
-    return CopyWith$Query$FetchMoreItemsForItemSection$section$$CardSection$items$items$item$$StudyTopic$tasksProgress(
-        local$tasksProgress, (e) => call(tasksProgress: e));
+  CopyWith$Query$FetchMoreItemsForItemSection$section$$CardSection$items$items$item$$StudyTopic$lessonsProgress<
+      TRes> get lessonsProgress {
+    final local$lessonsProgress = _instance.lessonsProgress;
+    return CopyWith$Query$FetchMoreItemsForItemSection$section$$CardSection$items$items$item$$StudyTopic$lessonsProgress(
+        local$lessonsProgress, (e) => call(lessonsProgress: e));
   }
 }
 
@@ -21929,15 +21930,15 @@ class _CopyWithStubImpl$Query$FetchMoreItemsForItemSection$section$$CardSection$
     String? description,
     List<Query$FetchMoreItemsForItemSection$section$$CardSection$items$items$item$$StudyTopic$images>?
         images,
-    Query$FetchMoreItemsForItemSection$section$$CardSection$items$items$item$$StudyTopic$tasksProgress?
-        tasksProgress,
+    Query$FetchMoreItemsForItemSection$section$$CardSection$items$items$item$$StudyTopic$lessonsProgress?
+        lessonsProgress,
   }) =>
       _res;
   images(_fn) => _res;
-  CopyWith$Query$FetchMoreItemsForItemSection$section$$CardSection$items$items$item$$StudyTopic$tasksProgress<
+  CopyWith$Query$FetchMoreItemsForItemSection$section$$CardSection$items$items$item$$StudyTopic$lessonsProgress<
           TRes>
-      get tasksProgress =>
-          CopyWith$Query$FetchMoreItemsForItemSection$section$$CardSection$items$items$item$$StudyTopic$tasksProgress
+      get lessonsProgress =>
+          CopyWith$Query$FetchMoreItemsForItemSection$section$$CardSection$items$items$item$$StudyTopic$lessonsProgress
               .stub(_res);
 }
 
@@ -22106,21 +22107,21 @@ class _CopyWithStubImpl$Query$FetchMoreItemsForItemSection$section$$CardSection$
       _res;
 }
 
-class Query$FetchMoreItemsForItemSection$section$$CardSection$items$items$item$$StudyTopic$tasksProgress
+class Query$FetchMoreItemsForItemSection$section$$CardSection$items$items$item$$StudyTopic$lessonsProgress
     implements
-        Fragment$Section$$CardSection$items$items$item$$StudyTopic$tasksProgress {
-  Query$FetchMoreItemsForItemSection$section$$CardSection$items$items$item$$StudyTopic$tasksProgress({
+        Fragment$Section$$CardSection$items$items$item$$StudyTopic$lessonsProgress {
+  Query$FetchMoreItemsForItemSection$section$$CardSection$items$items$item$$StudyTopic$lessonsProgress({
     required this.completed,
     required this.total,
     required this.$__typename,
   });
 
-  factory Query$FetchMoreItemsForItemSection$section$$CardSection$items$items$item$$StudyTopic$tasksProgress.fromJson(
+  factory Query$FetchMoreItemsForItemSection$section$$CardSection$items$items$item$$StudyTopic$lessonsProgress.fromJson(
       Map<String, dynamic> json) {
     final l$completed = json['completed'];
     final l$total = json['total'];
     final l$$__typename = json['__typename'];
-    return Query$FetchMoreItemsForItemSection$section$$CardSection$items$items$item$$StudyTopic$tasksProgress(
+    return Query$FetchMoreItemsForItemSection$section$$CardSection$items$items$item$$StudyTopic$lessonsProgress(
       completed: (l$completed as int),
       total: (l$total as int),
       $__typename: (l$$__typename as String),
@@ -22162,7 +22163,7 @@ class Query$FetchMoreItemsForItemSection$section$$CardSection$items$items$item$$
       return true;
     }
     if (!(other
-            is Query$FetchMoreItemsForItemSection$section$$CardSection$items$items$item$$StudyTopic$tasksProgress) ||
+            is Query$FetchMoreItemsForItemSection$section$$CardSection$items$items$item$$StudyTopic$lessonsProgress) ||
         runtimeType != other.runtimeType) {
       return false;
     }
@@ -22185,30 +22186,30 @@ class Query$FetchMoreItemsForItemSection$section$$CardSection$items$items$item$$
   }
 }
 
-extension UtilityExtension$Query$FetchMoreItemsForItemSection$section$$CardSection$items$items$item$$StudyTopic$tasksProgress
-    on Query$FetchMoreItemsForItemSection$section$$CardSection$items$items$item$$StudyTopic$tasksProgress {
-  CopyWith$Query$FetchMoreItemsForItemSection$section$$CardSection$items$items$item$$StudyTopic$tasksProgress<
-          Query$FetchMoreItemsForItemSection$section$$CardSection$items$items$item$$StudyTopic$tasksProgress>
+extension UtilityExtension$Query$FetchMoreItemsForItemSection$section$$CardSection$items$items$item$$StudyTopic$lessonsProgress
+    on Query$FetchMoreItemsForItemSection$section$$CardSection$items$items$item$$StudyTopic$lessonsProgress {
+  CopyWith$Query$FetchMoreItemsForItemSection$section$$CardSection$items$items$item$$StudyTopic$lessonsProgress<
+          Query$FetchMoreItemsForItemSection$section$$CardSection$items$items$item$$StudyTopic$lessonsProgress>
       get copyWith =>
-          CopyWith$Query$FetchMoreItemsForItemSection$section$$CardSection$items$items$item$$StudyTopic$tasksProgress(
+          CopyWith$Query$FetchMoreItemsForItemSection$section$$CardSection$items$items$item$$StudyTopic$lessonsProgress(
             this,
             (i) => i,
           );
 }
 
-abstract class CopyWith$Query$FetchMoreItemsForItemSection$section$$CardSection$items$items$item$$StudyTopic$tasksProgress<
+abstract class CopyWith$Query$FetchMoreItemsForItemSection$section$$CardSection$items$items$item$$StudyTopic$lessonsProgress<
     TRes> {
-  factory CopyWith$Query$FetchMoreItemsForItemSection$section$$CardSection$items$items$item$$StudyTopic$tasksProgress(
-    Query$FetchMoreItemsForItemSection$section$$CardSection$items$items$item$$StudyTopic$tasksProgress
+  factory CopyWith$Query$FetchMoreItemsForItemSection$section$$CardSection$items$items$item$$StudyTopic$lessonsProgress(
+    Query$FetchMoreItemsForItemSection$section$$CardSection$items$items$item$$StudyTopic$lessonsProgress
         instance,
     TRes Function(
-            Query$FetchMoreItemsForItemSection$section$$CardSection$items$items$item$$StudyTopic$tasksProgress)
+            Query$FetchMoreItemsForItemSection$section$$CardSection$items$items$item$$StudyTopic$lessonsProgress)
         then,
-  ) = _CopyWithImpl$Query$FetchMoreItemsForItemSection$section$$CardSection$items$items$item$$StudyTopic$tasksProgress;
+  ) = _CopyWithImpl$Query$FetchMoreItemsForItemSection$section$$CardSection$items$items$item$$StudyTopic$lessonsProgress;
 
-  factory CopyWith$Query$FetchMoreItemsForItemSection$section$$CardSection$items$items$item$$StudyTopic$tasksProgress.stub(
+  factory CopyWith$Query$FetchMoreItemsForItemSection$section$$CardSection$items$items$item$$StudyTopic$lessonsProgress.stub(
           TRes res) =
-      _CopyWithStubImpl$Query$FetchMoreItemsForItemSection$section$$CardSection$items$items$item$$StudyTopic$tasksProgress;
+      _CopyWithStubImpl$Query$FetchMoreItemsForItemSection$section$$CardSection$items$items$item$$StudyTopic$lessonsProgress;
 
   TRes call({
     int? completed,
@@ -22217,21 +22218,21 @@ abstract class CopyWith$Query$FetchMoreItemsForItemSection$section$$CardSection$
   });
 }
 
-class _CopyWithImpl$Query$FetchMoreItemsForItemSection$section$$CardSection$items$items$item$$StudyTopic$tasksProgress<
+class _CopyWithImpl$Query$FetchMoreItemsForItemSection$section$$CardSection$items$items$item$$StudyTopic$lessonsProgress<
         TRes>
     implements
-        CopyWith$Query$FetchMoreItemsForItemSection$section$$CardSection$items$items$item$$StudyTopic$tasksProgress<
+        CopyWith$Query$FetchMoreItemsForItemSection$section$$CardSection$items$items$item$$StudyTopic$lessonsProgress<
             TRes> {
-  _CopyWithImpl$Query$FetchMoreItemsForItemSection$section$$CardSection$items$items$item$$StudyTopic$tasksProgress(
+  _CopyWithImpl$Query$FetchMoreItemsForItemSection$section$$CardSection$items$items$item$$StudyTopic$lessonsProgress(
     this._instance,
     this._then,
   );
 
-  final Query$FetchMoreItemsForItemSection$section$$CardSection$items$items$item$$StudyTopic$tasksProgress
+  final Query$FetchMoreItemsForItemSection$section$$CardSection$items$items$item$$StudyTopic$lessonsProgress
       _instance;
 
   final TRes Function(
-          Query$FetchMoreItemsForItemSection$section$$CardSection$items$items$item$$StudyTopic$tasksProgress)
+          Query$FetchMoreItemsForItemSection$section$$CardSection$items$items$item$$StudyTopic$lessonsProgress)
       _then;
 
   static const _undefined = {};
@@ -22242,7 +22243,7 @@ class _CopyWithImpl$Query$FetchMoreItemsForItemSection$section$$CardSection$item
     Object? $__typename = _undefined,
   }) =>
       _then(
-          Query$FetchMoreItemsForItemSection$section$$CardSection$items$items$item$$StudyTopic$tasksProgress(
+          Query$FetchMoreItemsForItemSection$section$$CardSection$items$items$item$$StudyTopic$lessonsProgress(
         completed: completed == _undefined || completed == null
             ? _instance.completed
             : (completed as int),
@@ -22255,12 +22256,12 @@ class _CopyWithImpl$Query$FetchMoreItemsForItemSection$section$$CardSection$item
       ));
 }
 
-class _CopyWithStubImpl$Query$FetchMoreItemsForItemSection$section$$CardSection$items$items$item$$StudyTopic$tasksProgress<
+class _CopyWithStubImpl$Query$FetchMoreItemsForItemSection$section$$CardSection$items$items$item$$StudyTopic$lessonsProgress<
         TRes>
     implements
-        CopyWith$Query$FetchMoreItemsForItemSection$section$$CardSection$items$items$item$$StudyTopic$tasksProgress<
+        CopyWith$Query$FetchMoreItemsForItemSection$section$$CardSection$items$items$item$$StudyTopic$lessonsProgress<
             TRes> {
-  _CopyWithStubImpl$Query$FetchMoreItemsForItemSection$section$$CardSection$items$items$item$$StudyTopic$tasksProgress(
+  _CopyWithStubImpl$Query$FetchMoreItemsForItemSection$section$$CardSection$items$items$item$$StudyTopic$lessonsProgress(
       this._res);
 
   TRes _res;

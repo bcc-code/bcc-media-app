@@ -300,6 +300,8 @@ const possibleTypesMap = {
     'LabelSection',
     'MessageSection',
     'WebSection',
+    'AchievementSection',
+    'PageDetailsSection',
   },
   'ItemSection': {
     'PosterSection',

@@ -24,7 +24,7 @@ query GetStudyTopicLessonStatuses($id: ID!, $first: Int!) {
         episodes(first: 1) {
           items {
             id
-            publishDate
+            locked
           }
         }
       }

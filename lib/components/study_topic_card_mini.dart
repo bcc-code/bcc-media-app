@@ -87,8 +87,8 @@ class _StudyTopicCardMiniState extends State<StudyTopicCardMini> {
                         ),
                       ),
                       StudyProgressRow(
-                        completed: widget.studyTopic.tasksProgress.completed,
-                        total: widget.studyTopic.tasksProgress.total,
+                        completed: widget.studyTopic.lessonsProgress.completed,
+                        total: widget.studyTopic.lessonsProgress.total,
                       ),
                     ],
                   ),

@@ -64,7 +64,8 @@ class _StudyTopicCardLargeState extends State<StudyTopicCardLarge> {
                       ),
                     Padding(
                         padding: const EdgeInsets.only(top: 24),
-                        child: StudyProgressRow(completed: widget.studyTopic.tasksProgress.completed, total: widget.studyTopic.tasksProgress.total)),
+                        child:
+                            StudyProgressRow(completed: widget.studyTopic.lessonsProgress.completed, total: widget.studyTopic.lessonsProgress.total)),
                     Container(
                       padding: const EdgeInsets.only(top: 10),
                       alignment: Alignment.centerRight,
@@ -72,7 +73,7 @@ class _StudyTopicCardLargeState extends State<StudyTopicCardLarge> {
                         onPressed: () => setState(() {
                           navigationFuture = navigateToStudyTopic(context, widget.studyTopic.id);
                         }),
-                        labelText: widget.studyTopic.tasksProgress.completed > 0 ? S.of(context).continueStudy : S.of(context).startStudy,
+                        labelText: widget.studyTopic.lessonsProgress.completed > 0 ? S.of(context).continueStudy : S.of(context).startStudy,
                         imagePath: 'assets/icons/Play.png',
                       ),
                     )

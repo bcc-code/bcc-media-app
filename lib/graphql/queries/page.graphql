@@ -177,7 +177,7 @@ fragment Section on Section {
               style
               url
             }
-            tasksProgress: progress {
+            lessonsProgress: progress {
               completed
               total
             }

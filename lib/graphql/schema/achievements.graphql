@@ -1,6 +1,7 @@
 type Achievement {
     id: ID!
     title: String!
+    description: String
     image: String
     achieved: Boolean! @goField(forceResolver: true)
     achievedAt: Date @goField(forceResolver: true)

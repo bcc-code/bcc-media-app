@@ -4975,7 +4975,7 @@ const fragmentDefinitionSection = FragmentDefinitionNode(
                         ),
                         FieldNode(
                           name: NameNode(value: 'progress'),
-                          alias: NameNode(value: 'tasksProgress'),
+                          alias: NameNode(value: 'lessonsProgress'),
                           arguments: [],
                           directives: [],
                           selectionSet: SelectionSetNode(selections: [
@@ -24446,7 +24446,7 @@ class Fragment$Section$$CardSection$items$items$item$$StudyTopic
     required this.title,
     required this.description,
     required this.images,
-    required this.tasksProgress,
+    required this.lessonsProgress,
   });
 
   factory Fragment$Section$$CardSection$items$items$item$$StudyTopic.fromJson(
@@ -24456,7 +24456,7 @@ class Fragment$Section$$CardSection$items$items$item$$StudyTopic
     final l$title = json['title'];
     final l$description = json['description'];
     final l$images = json['images'];
-    final l$tasksProgress = json['tasksProgress'];
+    final l$lessonsProgress = json['lessonsProgress'];
     return Fragment$Section$$CardSection$items$items$item$$StudyTopic(
       $__typename: (l$$__typename as String),
       id: (l$id as String),
@@ -24467,9 +24467,9 @@ class Fragment$Section$$CardSection$items$items$item$$StudyTopic
               Fragment$Section$$CardSection$items$items$item$$StudyTopic$images
                   .fromJson((e as Map<String, dynamic>)))
           .toList(),
-      tasksProgress:
-          Fragment$Section$$CardSection$items$items$item$$StudyTopic$tasksProgress
-              .fromJson((l$tasksProgress as Map<String, dynamic>)),
+      lessonsProgress:
+          Fragment$Section$$CardSection$items$items$item$$StudyTopic$lessonsProgress
+              .fromJson((l$lessonsProgress as Map<String, dynamic>)),
     );
   }
 
@@ -24484,8 +24484,8 @@ class Fragment$Section$$CardSection$items$items$item$$StudyTopic
   final List<Fragment$Section$$CardSection$items$items$item$$StudyTopic$images>
       images;
 
-  final Fragment$Section$$CardSection$items$items$item$$StudyTopic$tasksProgress
-      tasksProgress;
+  final Fragment$Section$$CardSection$items$items$item$$StudyTopic$lessonsProgress
+      lessonsProgress;
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
@@ -24499,8 +24499,8 @@ class Fragment$Section$$CardSection$items$items$item$$StudyTopic
     _resultData['description'] = l$description;
     final l$images = images;
     _resultData['images'] = l$images.map((e) => e.toJson()).toList();
-    final l$tasksProgress = tasksProgress;
-    _resultData['tasksProgress'] = l$tasksProgress.toJson();
+    final l$lessonsProgress = lessonsProgress;
+    _resultData['lessonsProgress'] = l$lessonsProgress.toJson();
     return _resultData;
   }
 
@@ -24511,14 +24511,14 @@ class Fragment$Section$$CardSection$items$items$item$$StudyTopic
     final l$title = title;
     final l$description = description;
     final l$images = images;
-    final l$tasksProgress = tasksProgress;
+    final l$lessonsProgress = lessonsProgress;
     return Object.hashAll([
       l$$__typename,
       l$id,
       l$title,
       l$description,
       Object.hashAll(l$images.map((v) => v)),
-      l$tasksProgress,
+      l$lessonsProgress,
     ]);
   }
 
@@ -24564,9 +24564,9 @@ class Fragment$Section$$CardSection$items$items$item$$StudyTopic
         return false;
       }
     }
-    final l$tasksProgress = tasksProgress;
-    final lOther$tasksProgress = other.tasksProgress;
-    if (l$tasksProgress != lOther$tasksProgress) {
+    final l$lessonsProgress = lessonsProgress;
+    final lOther$lessonsProgress = other.lessonsProgress;
+    if (l$lessonsProgress != lOther$lessonsProgress) {
       return false;
     }
     return true;
@@ -24603,8 +24603,8 @@ abstract class CopyWith$Fragment$Section$$CardSection$items$items$item$$StudyTop
     String? description,
     List<Fragment$Section$$CardSection$items$items$item$$StudyTopic$images>?
         images,
-    Fragment$Section$$CardSection$items$items$item$$StudyTopic$tasksProgress?
-        tasksProgress,
+    Fragment$Section$$CardSection$items$items$item$$StudyTopic$lessonsProgress?
+        lessonsProgress,
   });
   TRes images(
       Iterable<Fragment$Section$$CardSection$items$items$item$$StudyTopic$images> Function(
@@ -24612,8 +24612,8 @@ abstract class CopyWith$Fragment$Section$$CardSection$items$items$item$$StudyTop
                   CopyWith$Fragment$Section$$CardSection$items$items$item$$StudyTopic$images<
                       Fragment$Section$$CardSection$items$items$item$$StudyTopic$images>>)
           _fn);
-  CopyWith$Fragment$Section$$CardSection$items$items$item$$StudyTopic$tasksProgress<
-      TRes> get tasksProgress;
+  CopyWith$Fragment$Section$$CardSection$items$items$item$$StudyTopic$lessonsProgress<
+      TRes> get lessonsProgress;
 }
 
 class _CopyWithImpl$Fragment$Section$$CardSection$items$items$item$$StudyTopic<
@@ -24639,7 +24639,7 @@ class _CopyWithImpl$Fragment$Section$$CardSection$items$items$item$$StudyTopic<
     Object? title = _undefined,
     Object? description = _undefined,
     Object? images = _undefined,
-    Object? tasksProgress = _undefined,
+    Object? lessonsProgress = _undefined,
   }) =>
       _then(Fragment$Section$$CardSection$items$items$item$$StudyTopic(
         $__typename: $__typename == _undefined || $__typename == null
@@ -24656,10 +24656,11 @@ class _CopyWithImpl$Fragment$Section$$CardSection$items$items$item$$StudyTopic<
             ? _instance.images
             : (images as List<
                 Fragment$Section$$CardSection$items$items$item$$StudyTopic$images>),
-        tasksProgress: tasksProgress == _undefined || tasksProgress == null
-            ? _instance.tasksProgress
-            : (tasksProgress
-                as Fragment$Section$$CardSection$items$items$item$$StudyTopic$tasksProgress),
+        lessonsProgress: lessonsProgress == _undefined ||
+                lessonsProgress == null
+            ? _instance.lessonsProgress
+            : (lessonsProgress
+                as Fragment$Section$$CardSection$items$items$item$$StudyTopic$lessonsProgress),
       ));
   TRes images(
           Iterable<Fragment$Section$$CardSection$items$items$item$$StudyTopic$images> Function(
@@ -24673,11 +24674,11 @@ class _CopyWithImpl$Fragment$Section$$CardSection$items$items$item$$StudyTopic<
                 e,
                 (i) => i,
               ))).toList());
-  CopyWith$Fragment$Section$$CardSection$items$items$item$$StudyTopic$tasksProgress<
-      TRes> get tasksProgress {
-    final local$tasksProgress = _instance.tasksProgress;
-    return CopyWith$Fragment$Section$$CardSection$items$items$item$$StudyTopic$tasksProgress(
-        local$tasksProgress, (e) => call(tasksProgress: e));
+  CopyWith$Fragment$Section$$CardSection$items$items$item$$StudyTopic$lessonsProgress<
+      TRes> get lessonsProgress {
+    final local$lessonsProgress = _instance.lessonsProgress;
+    return CopyWith$Fragment$Section$$CardSection$items$items$item$$StudyTopic$lessonsProgress(
+        local$lessonsProgress, (e) => call(lessonsProgress: e));
   }
 }
 
@@ -24698,15 +24699,15 @@ class _CopyWithStubImpl$Fragment$Section$$CardSection$items$items$item$$StudyTop
     String? description,
     List<Fragment$Section$$CardSection$items$items$item$$StudyTopic$images>?
         images,
-    Fragment$Section$$CardSection$items$items$item$$StudyTopic$tasksProgress?
-        tasksProgress,
+    Fragment$Section$$CardSection$items$items$item$$StudyTopic$lessonsProgress?
+        lessonsProgress,
   }) =>
       _res;
   images(_fn) => _res;
-  CopyWith$Fragment$Section$$CardSection$items$items$item$$StudyTopic$tasksProgress<
+  CopyWith$Fragment$Section$$CardSection$items$items$item$$StudyTopic$lessonsProgress<
           TRes>
-      get tasksProgress =>
-          CopyWith$Fragment$Section$$CardSection$items$items$item$$StudyTopic$tasksProgress
+      get lessonsProgress =>
+          CopyWith$Fragment$Section$$CardSection$items$items$item$$StudyTopic$lessonsProgress
               .stub(_res);
 }
 
@@ -24870,19 +24871,19 @@ class _CopyWithStubImpl$Fragment$Section$$CardSection$items$items$item$$StudyTop
       _res;
 }
 
-class Fragment$Section$$CardSection$items$items$item$$StudyTopic$tasksProgress {
-  Fragment$Section$$CardSection$items$items$item$$StudyTopic$tasksProgress({
+class Fragment$Section$$CardSection$items$items$item$$StudyTopic$lessonsProgress {
+  Fragment$Section$$CardSection$items$items$item$$StudyTopic$lessonsProgress({
     required this.completed,
     required this.total,
     required this.$__typename,
   });
 
-  factory Fragment$Section$$CardSection$items$items$item$$StudyTopic$tasksProgress.fromJson(
+  factory Fragment$Section$$CardSection$items$items$item$$StudyTopic$lessonsProgress.fromJson(
       Map<String, dynamic> json) {
     final l$completed = json['completed'];
     final l$total = json['total'];
     final l$$__typename = json['__typename'];
-    return Fragment$Section$$CardSection$items$items$item$$StudyTopic$tasksProgress(
+    return Fragment$Section$$CardSection$items$items$item$$StudyTopic$lessonsProgress(
       completed: (l$completed as int),
       total: (l$total as int),
       $__typename: (l$$__typename as String),
@@ -24924,7 +24925,7 @@ class Fragment$Section$$CardSection$items$items$item$$StudyTopic$tasksProgress {
       return true;
     }
     if (!(other
-            is Fragment$Section$$CardSection$items$items$item$$StudyTopic$tasksProgress) ||
+            is Fragment$Section$$CardSection$items$items$item$$StudyTopic$lessonsProgress) ||
         runtimeType != other.runtimeType) {
       return false;
     }
@@ -24947,30 +24948,30 @@ class Fragment$Section$$CardSection$items$items$item$$StudyTopic$tasksProgress {
   }
 }
 
-extension UtilityExtension$Fragment$Section$$CardSection$items$items$item$$StudyTopic$tasksProgress
-    on Fragment$Section$$CardSection$items$items$item$$StudyTopic$tasksProgress {
-  CopyWith$Fragment$Section$$CardSection$items$items$item$$StudyTopic$tasksProgress<
-          Fragment$Section$$CardSection$items$items$item$$StudyTopic$tasksProgress>
+extension UtilityExtension$Fragment$Section$$CardSection$items$items$item$$StudyTopic$lessonsProgress
+    on Fragment$Section$$CardSection$items$items$item$$StudyTopic$lessonsProgress {
+  CopyWith$Fragment$Section$$CardSection$items$items$item$$StudyTopic$lessonsProgress<
+          Fragment$Section$$CardSection$items$items$item$$StudyTopic$lessonsProgress>
       get copyWith =>
-          CopyWith$Fragment$Section$$CardSection$items$items$item$$StudyTopic$tasksProgress(
+          CopyWith$Fragment$Section$$CardSection$items$items$item$$StudyTopic$lessonsProgress(
             this,
             (i) => i,
           );
 }
 
-abstract class CopyWith$Fragment$Section$$CardSection$items$items$item$$StudyTopic$tasksProgress<
+abstract class CopyWith$Fragment$Section$$CardSection$items$items$item$$StudyTopic$lessonsProgress<
     TRes> {
-  factory CopyWith$Fragment$Section$$CardSection$items$items$item$$StudyTopic$tasksProgress(
-    Fragment$Section$$CardSection$items$items$item$$StudyTopic$tasksProgress
+  factory CopyWith$Fragment$Section$$CardSection$items$items$item$$StudyTopic$lessonsProgress(
+    Fragment$Section$$CardSection$items$items$item$$StudyTopic$lessonsProgress
         instance,
     TRes Function(
-            Fragment$Section$$CardSection$items$items$item$$StudyTopic$tasksProgress)
+            Fragment$Section$$CardSection$items$items$item$$StudyTopic$lessonsProgress)
         then,
-  ) = _CopyWithImpl$Fragment$Section$$CardSection$items$items$item$$StudyTopic$tasksProgress;
+  ) = _CopyWithImpl$Fragment$Section$$CardSection$items$items$item$$StudyTopic$lessonsProgress;
 
-  factory CopyWith$Fragment$Section$$CardSection$items$items$item$$StudyTopic$tasksProgress.stub(
+  factory CopyWith$Fragment$Section$$CardSection$items$items$item$$StudyTopic$lessonsProgress.stub(
           TRes res) =
-      _CopyWithStubImpl$Fragment$Section$$CardSection$items$items$item$$StudyTopic$tasksProgress;
+      _CopyWithStubImpl$Fragment$Section$$CardSection$items$items$item$$StudyTopic$lessonsProgress;
 
   TRes call({
     int? completed,
@@ -24979,21 +24980,21 @@ abstract class CopyWith$Fragment$Section$$CardSection$items$items$item$$StudyTop
   });
 }
 
-class _CopyWithImpl$Fragment$Section$$CardSection$items$items$item$$StudyTopic$tasksProgress<
+class _CopyWithImpl$Fragment$Section$$CardSection$items$items$item$$StudyTopic$lessonsProgress<
         TRes>
     implements
-        CopyWith$Fragment$Section$$CardSection$items$items$item$$StudyTopic$tasksProgress<
+        CopyWith$Fragment$Section$$CardSection$items$items$item$$StudyTopic$lessonsProgress<
             TRes> {
-  _CopyWithImpl$Fragment$Section$$CardSection$items$items$item$$StudyTopic$tasksProgress(
+  _CopyWithImpl$Fragment$Section$$CardSection$items$items$item$$StudyTopic$lessonsProgress(
     this._instance,
     this._then,
   );
 
-  final Fragment$Section$$CardSection$items$items$item$$StudyTopic$tasksProgress
+  final Fragment$Section$$CardSection$items$items$item$$StudyTopic$lessonsProgress
       _instance;
 
   final TRes Function(
-          Fragment$Section$$CardSection$items$items$item$$StudyTopic$tasksProgress)
+          Fragment$Section$$CardSection$items$items$item$$StudyTopic$lessonsProgress)
       _then;
 
   static const _undefined = {};
@@ -25004,7 +25005,7 @@ class _CopyWithImpl$Fragment$Section$$CardSection$items$items$item$$StudyTopic$t
     Object? $__typename = _undefined,
   }) =>
       _then(
-          Fragment$Section$$CardSection$items$items$item$$StudyTopic$tasksProgress(
+          Fragment$Section$$CardSection$items$items$item$$StudyTopic$lessonsProgress(
         completed: completed == _undefined || completed == null
             ? _instance.completed
             : (completed as int),
@@ -25017,12 +25018,12 @@ class _CopyWithImpl$Fragment$Section$$CardSection$items$items$item$$StudyTopic$t
       ));
 }
 
-class _CopyWithStubImpl$Fragment$Section$$CardSection$items$items$item$$StudyTopic$tasksProgress<
+class _CopyWithStubImpl$Fragment$Section$$CardSection$items$items$item$$StudyTopic$lessonsProgress<
         TRes>
     implements
-        CopyWith$Fragment$Section$$CardSection$items$items$item$$StudyTopic$tasksProgress<
+        CopyWith$Fragment$Section$$CardSection$items$items$item$$StudyTopic$lessonsProgress<
             TRes> {
-  _CopyWithStubImpl$Fragment$Section$$CardSection$items$items$item$$StudyTopic$tasksProgress(
+  _CopyWithStubImpl$Fragment$Section$$CardSection$items$items$item$$StudyTopic$lessonsProgress(
       this._res);
 
   TRes _res;

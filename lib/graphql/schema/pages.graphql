@@ -181,6 +181,18 @@ type WebSection implements Section {
     authentication: Boolean!
 }
 
+type AchievementSection implements Section {
+    id: ID!
+    title: String
+    description: String
+}
+
+type PageDetailsSection implements Section {
+    id: ID!
+    title: String
+    description: String
+}
+
 type Collection {
     id: ID!
     slug: String

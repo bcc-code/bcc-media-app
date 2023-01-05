@@ -66,7 +66,7 @@ Future<dynamic>? navigateToStudyTopic(BuildContext context, String topicId) asyn
         variables: Variables$Query$GetStudyTopicLessonStatuses(id: topicId, first: 100),
       ));
   var episodeId = result.parsedData?.studyTopic.lessons.items
-      .firstWhereOrNull((el) => !el.completed && el.episodes.items.firstOrNull?.id == false) // waiting for episode.locked to be exposed
+      .firstWhereOrNull((el) => !el.completed && el.episodes.items.firstOrNull?.locked == false)
       ?.episodes
       .items
       .firstOrNull
