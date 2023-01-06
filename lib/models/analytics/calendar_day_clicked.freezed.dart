@@ -35,43 +35,39 @@ mixin _$CalendarDayClickedEvent {
 abstract class $CalendarDayClickedEventCopyWith<$Res> {
   factory $CalendarDayClickedEventCopyWith(CalendarDayClickedEvent value,
           $Res Function(CalendarDayClickedEvent) then) =
-      _$CalendarDayClickedEventCopyWithImpl<$Res, CalendarDayClickedEvent>;
-  @useResult
+      _$CalendarDayClickedEventCopyWithImpl<$Res>;
   $Res call({String pageCode, String calendarView, String calendarDate});
 }
 
 /// @nodoc
-class _$CalendarDayClickedEventCopyWithImpl<$Res,
-        $Val extends CalendarDayClickedEvent>
+class _$CalendarDayClickedEventCopyWithImpl<$Res>
     implements $CalendarDayClickedEventCopyWith<$Res> {
   _$CalendarDayClickedEventCopyWithImpl(this._value, this._then);
 
+  final CalendarDayClickedEvent _value;
   // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
+  final $Res Function(CalendarDayClickedEvent) _then;
 
-  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? pageCode = null,
-    Object? calendarView = null,
-    Object? calendarDate = null,
+    Object? pageCode = freezed,
+    Object? calendarView = freezed,
+    Object? calendarDate = freezed,
   }) {
     return _then(_value.copyWith(
-      pageCode: null == pageCode
+      pageCode: pageCode == freezed
           ? _value.pageCode
           : pageCode // ignore: cast_nullable_to_non_nullable
               as String,
-      calendarView: null == calendarView
+      calendarView: calendarView == freezed
           ? _value.calendarView
           : calendarView // ignore: cast_nullable_to_non_nullable
               as String,
-      calendarDate: null == calendarDate
+      calendarDate: calendarDate == freezed
           ? _value.calendarDate
           : calendarDate // ignore: cast_nullable_to_non_nullable
               as String,
-    ) as $Val);
+    ));
   }
 }
 
@@ -82,36 +78,37 @@ abstract class _$$_CalendarDayClickedEventCopyWith<$Res>
           $Res Function(_$_CalendarDayClickedEvent) then) =
       __$$_CalendarDayClickedEventCopyWithImpl<$Res>;
   @override
-  @useResult
   $Res call({String pageCode, String calendarView, String calendarDate});
 }
 
 /// @nodoc
 class __$$_CalendarDayClickedEventCopyWithImpl<$Res>
-    extends _$CalendarDayClickedEventCopyWithImpl<$Res,
-        _$_CalendarDayClickedEvent>
+    extends _$CalendarDayClickedEventCopyWithImpl<$Res>
     implements _$$_CalendarDayClickedEventCopyWith<$Res> {
   __$$_CalendarDayClickedEventCopyWithImpl(_$_CalendarDayClickedEvent _value,
       $Res Function(_$_CalendarDayClickedEvent) _then)
-      : super(_value, _then);
+      : super(_value, (v) => _then(v as _$_CalendarDayClickedEvent));
 
-  @pragma('vm:prefer-inline')
+  @override
+  _$_CalendarDayClickedEvent get _value =>
+      super._value as _$_CalendarDayClickedEvent;
+
   @override
   $Res call({
-    Object? pageCode = null,
-    Object? calendarView = null,
-    Object? calendarDate = null,
+    Object? pageCode = freezed,
+    Object? calendarView = freezed,
+    Object? calendarDate = freezed,
   }) {
     return _then(_$_CalendarDayClickedEvent(
-      pageCode: null == pageCode
+      pageCode: pageCode == freezed
           ? _value.pageCode
           : pageCode // ignore: cast_nullable_to_non_nullable
               as String,
-      calendarView: null == calendarView
+      calendarView: calendarView == freezed
           ? _value.calendarView
           : calendarView // ignore: cast_nullable_to_non_nullable
               as String,
-      calendarDate: null == calendarDate
+      calendarDate: calendarDate == freezed
           ? _value.calendarDate
           : calendarDate // ignore: cast_nullable_to_non_nullable
               as String,
@@ -147,22 +144,23 @@ class _$_CalendarDayClickedEvent implements _CalendarDayClickedEvent {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_CalendarDayClickedEvent &&
-            (identical(other.pageCode, pageCode) ||
-                other.pageCode == pageCode) &&
-            (identical(other.calendarView, calendarView) ||
-                other.calendarView == calendarView) &&
-            (identical(other.calendarDate, calendarDate) ||
-                other.calendarDate == calendarDate));
+            const DeepCollectionEquality().equals(other.pageCode, pageCode) &&
+            const DeepCollectionEquality()
+                .equals(other.calendarView, calendarView) &&
+            const DeepCollectionEquality()
+                .equals(other.calendarDate, calendarDate));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, pageCode, calendarView, calendarDate);
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(pageCode),
+      const DeepCollectionEquality().hash(calendarView),
+      const DeepCollectionEquality().hash(calendarDate));
 
   @JsonKey(ignore: true)
   @override
-  @pragma('vm:prefer-inline')
   _$$_CalendarDayClickedEventCopyWith<_$_CalendarDayClickedEvent>
       get copyWith =>
           __$$_CalendarDayClickedEventCopyWithImpl<_$_CalendarDayClickedEvent>(

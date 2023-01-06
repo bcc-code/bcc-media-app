@@ -145,6 +145,15 @@ const _specialRoutes = AutoRoute(
       durationInMilliseconds: 500,
       reverseDurationInMilliseconds: 500,
     ),
+    CustomRoute<void>(
+      page: EpisodeScreen,
+      name: 'EmbedScreen',
+      path: '/embed/:episodeId',
+      durationInMilliseconds: 300,
+      reverseDurationInMilliseconds: 300,
+      transitionsBuilder: CustomTransitionsBuilders.slideLeft,
+      meta: {RouteMetaConstants.analyticsName: 'episode'},
+    ),
     CustomRoute(page: AutoLoginScreeen, path: 'auto-login'),
     CustomRoute<void>(
         page: StudyScreen,

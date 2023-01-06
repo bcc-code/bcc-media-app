@@ -1,5 +1,7 @@
+import 'package:brunstadtv_app/components/error_generic.dart';
 import 'package:brunstadtv_app/components/loading_indicator.dart';
 import 'package:brunstadtv_app/graphql/queries/achievements.graphql.dart';
+import 'package:brunstadtv_app/helpers/utils.dart';
 import 'package:flutter/material.dart';
 
 import 'achievement_dialog.dart';
@@ -28,15 +30,27 @@ class AchievementSection extends StatelessWidget {
       ),
       builder: (result, {refetch, fetchMore}) {
         if (result.isLoading) {
-          return const SizedBox(width: double.infinity, child: LoadingIndicator());
+          return Container(
+            padding: const EdgeInsets.only(left: 16, top: 12, bottom: 12),
+            alignment: Alignment.centerLeft,
+            child: const LoadingIndicator(),
+          );
+        } else if (result.hasException || result.parsedData == null) {
+          var errorCode =
+              result.exception?.graphqlErrors.map((el) => el.extensions?['code'].asOrNull<String>()).firstWhere((element) => element != null);
+          return Padding(
+            padding: const EdgeInsets.all(16).copyWith(top: 6),
+            child: Text('Failed to load achievements. ${errorCode == null ? '' : 'Error code: $errorCode'}'),
+          );
         }
         var tempAchievements = result.parsedData?.achievementGroups.items
             .map((group) => group.achievements.items.where((element) => element.achieved))
             .expand((element) => element)
             .toList();
-        tempAchievements ??=
-            result.parsedData?.achievementGroups.items.map((group) => group.achievements.items).expand((element) => element).toList();
-
+        if (tempAchievements?.isNotEmpty != true) {
+          tempAchievements =
+              result.parsedData?.achievementGroups.items.map((group) => group.achievements.items).expand((element) => element).take(10).toList();
+        }
         if (tempAchievements?.isNotEmpty != true) {
           return const SizedBox.shrink();
         }

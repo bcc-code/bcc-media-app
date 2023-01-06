@@ -59,8 +59,14 @@ class EpisodeScreen extends ConsumerStatefulWidget {
   final String episodeId;
   final bool autoplay;
   final int? queryParamStartPosition;
-  const EpisodeScreen(
-      {super.key, @PathParam() required this.episodeId, @QueryParam() this.autoplay = false, @QueryParam('t') this.queryParamStartPosition});
+  final bool? hideBottomSection;
+  const EpisodeScreen({
+    super.key,
+    @PathParam() required this.episodeId,
+    @QueryParam() this.autoplay = false,
+    @QueryParam('t') this.queryParamStartPosition,
+    @QueryParam('hide_bottom_section') this.hideBottomSection,
+  });
 
   @override
   ConsumerState<EpisodeScreen> createState() => _EpisodeScreenState();
@@ -497,60 +503,61 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen> with AutoRouteAwa
                               )))
                   ],
                 ),
-                DefaultTabController(
-                    length: 2,
-                    child: Builder(
-                      builder: (context) => Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Container(
-                              decoration: const BoxDecoration(
-                                border: Border(bottom: BorderSide(width: 1, color: BtvColors.separatorOnLight)),
-                              ),
-                              child: Padding(
-                                  padding: const EdgeInsets.all(16),
-                                  child: EpisodeTabSelector(
-                                      onSelectionChange: (val) {
-                                        setState(() {
-                                          DefaultTabController.of(context)!.animateTo(val);
-                                        });
-                                      },
-                                      selectedId: '',
-                                      selectedIndex: DefaultTabController.of(context)!.index,
-                                      tabs: [
-                                        Option(id: 'episodes', title: (S.of(context).episodes.toUpperCase())),
-                                        Option(id: 'details', title: 'Details'),
-                                      ]))),
-                          Builder(builder: (context) {
-                            return GestureDetector(
-                              behavior: HitTestBehavior.opaque,
-                              onHorizontalDragUpdate: (details) {
-                                // Note: Sensitivity is integer used when you don't want to mess up vertical drag
-                                var controller = DefaultTabController.of(context);
-                                if (controller == null) return;
-                                int sensitivity = 16;
-                                if (details.delta.dx > sensitivity && controller.index > 0) {
-                                  setState(() {
-                                    controller.animateTo(controller.index - 1);
-                                  });
-                                } else if (details.delta.dx < -sensitivity && controller.index + 1 < controller.length) {
-                                  setState(() {
-                                    controller.animateTo(controller.index + 1);
-                                  });
-                                }
-                              },
-                              child: FadeIndexedStack(
-                                index: DefaultTabController.of(context)!.index,
-                                children: [
-                                  if (episode.season != null) _seasonEpisodeList(episode) else _relatedItems(episode),
-                                  EpisodeDetails(episode.id)
-                                ],
-                              ),
-                            );
-                          }),
-                        ],
-                      ),
-                    )),
+                if (widget.hideBottomSection != true && !unlistedButPartOfASeason(episode))
+                  DefaultTabController(
+                      length: 2,
+                      child: Builder(
+                        builder: (context) => Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Container(
+                                decoration: const BoxDecoration(
+                                  border: Border(bottom: BorderSide(width: 1, color: BtvColors.separatorOnLight)),
+                                ),
+                                child: Padding(
+                                    padding: const EdgeInsets.all(16),
+                                    child: EpisodeTabSelector(
+                                        onSelectionChange: (val) {
+                                          setState(() {
+                                            DefaultTabController.of(context)!.animateTo(val);
+                                          });
+                                        },
+                                        selectedId: '',
+                                        selectedIndex: DefaultTabController.of(context)!.index,
+                                        tabs: [
+                                          Option(id: 'episodes', title: (S.of(context).episodes.toUpperCase())),
+                                          Option(id: 'details', title: 'Details'),
+                                        ]))),
+                            Builder(builder: (context) {
+                              return GestureDetector(
+                                behavior: HitTestBehavior.opaque,
+                                onHorizontalDragUpdate: (details) {
+                                  // Note: Sensitivity is integer used when you don't want to mess up vertical drag
+                                  var controller = DefaultTabController.of(context);
+                                  if (controller == null) return;
+                                  int sensitivity = 16;
+                                  if (details.delta.dx > sensitivity && controller.index > 0) {
+                                    setState(() {
+                                      controller.animateTo(controller.index - 1);
+                                    });
+                                  } else if (details.delta.dx < -sensitivity && controller.index + 1 < controller.length) {
+                                    setState(() {
+                                      controller.animateTo(controller.index + 1);
+                                    });
+                                  }
+                                },
+                                child: FadeIndexedStack(
+                                  index: DefaultTabController.of(context)!.index,
+                                  children: [
+                                    if (episode.season != null) _seasonEpisodeList(episode) else _relatedItems(episode),
+                                    EpisodeDetails(episode.id)
+                                  ],
+                                ),
+                              );
+                            }),
+                          ],
+                        ),
+                      )),
               ],
             ),
           );
@@ -583,6 +590,10 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen> with AutoRouteAwa
             .toList();
       });
     }
+  }
+
+  bool unlistedButPartOfASeason(Query$FetchEpisode$episode episode) {
+    return episode.season?.$show.seasons.items.any((s) => s.id == episode.season?.id) == false;
   }
 
   Widget _seasonEpisodeList(Query$FetchEpisode$episode episode) {
@@ -740,6 +751,10 @@ class _DropDownSelect extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    if (items.isEmpty) {
+      return const SizedBox.shrink();
+    }
+    final selectedItem = items.firstWhereOrNull((element) => element.id == selectedId);
     return GestureDetector(
       behavior: HitTestBehavior.opaque,
       onTap: () {
@@ -760,10 +775,11 @@ class _DropDownSelect extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Text(
-            items.firstWhere((element) => element.id == selectedId).title.toUpperCase(),
-            style: BtvTextStyles.button2.copyWith(color: BtvColors.label1),
-          ),
+          if (selectedItem != null)
+            Text(
+              selectedItem.title.toUpperCase(),
+              style: BtvTextStyles.button2.copyWith(color: BtvColors.label1),
+            ),
           Padding(
             padding: const EdgeInsets.only(left: 6),
             child: Center(

@@ -20,6 +20,7 @@ import '../graphql/queries/studies.graphql.dart';
 import '../helpers/btv_buttons.dart';
 import '../helpers/btv_colors.dart';
 import '../helpers/svg_icons.dart';
+import '../helpers/utils.dart';
 import '../helpers/webview/main_js_channel.dart';
 import '../l10n/app_localizations.dart';
 
@@ -39,16 +40,17 @@ class StudyScreen extends ConsumerStatefulWidget {
 
 class StudyScreenState extends ConsumerState<StudyScreen> {
   String pageTitle = '';
-  String url = '';
   InAppWebViewController? webViewController;
   WebResourceError? error;
-  bool loading = true;
+  bool firstLoadDone = false;
   double? height;
+  Future<String>? initialUrlFuture;
 
   @override
   void initState() {
     super.initState();
     getTitle();
+    initialUrlFuture = getWebUrl().then((webHost) => '$webHost/embed/episode/${widget.episodeId}/lesson/${widget.lessonId}');
   }
 
   Future getTitle() async {
@@ -61,24 +63,11 @@ class StudyScreenState extends ConsumerState<StudyScreen> {
   }
 
   void onWebViewCreated(InAppWebViewController controller) async {
+    MainJsChannel.register(context, controller);
+    controller.addJavaScriptHandler(handlerName: 'flutter_study', callback: handleMessage);
     setState(() {
       webViewController = controller;
     });
-    MainJsChannel.register(context, controller);
-    controller.addJavaScriptHandler(handlerName: 'flutter_study', callback: handleMessage);
-    final webUrl = await getWebUrl();
-    url = '$webUrl/embed/episode/${widget.episodeId}/lesson/${widget.lessonId}';
-    final uri = Uri.tryParse(url);
-    if (uri != null) {
-      webViewController?.loadUrl(
-        urlRequest: URLRequest(
-          url: WebUri.uri(uri),
-          allowsCellularAccess: true,
-          allowsConstrainedNetworkAccess: true,
-          allowsExpensiveNetworkAccess: true,
-        ),
-      );
-    }
   }
 
   @override
@@ -92,19 +81,34 @@ class StudyScreenState extends ConsumerState<StudyScreen> {
       body: Stack(
         children: [
           Opacity(
-            opacity: loading ? 0 : 1,
-            child: InAppWebView(
-              gestureRecognizers: {Factory<VerticalDragGestureRecognizer>(() => VerticalDragGestureRecognizer())},
-              initialSettings: InAppWebViewSettings(useHybridComposition: false, transparentBackground: true, verticalScrollBarEnabled: false),
-              onWebViewCreated: onWebViewCreated,
-              onConsoleMessage: (_, msg) => debugPrint(msg.message),
-              onLoadStop: (controller, url) {
-                Future.delayed(const Duration(seconds: 0), () => setState(() => loading = false));
-              },
-              shouldOverrideUrlLoading: shouldOverrideUrlLoading(url),
+            opacity: firstLoadDone ? 1 : 0,
+            child: simpleFutureBuilder<String>(
+              future: initialUrlFuture,
+              loading: () => const SizedBox.expand(),
+              ready: (initialUrl) => InAppWebView(
+                initialUrlRequest: URLRequest(
+                  url: WebUri.uri(Uri.parse(initialUrl)),
+                  allowsCellularAccess: true,
+                  allowsConstrainedNetworkAccess: true,
+                  allowsExpensiveNetworkAccess: true,
+                ),
+                gestureRecognizers: {Factory<VerticalDragGestureRecognizer>(() => VerticalDragGestureRecognizer())},
+                initialSettings: InAppWebViewSettings(
+                  useHybridComposition: false,
+                  transparentBackground: true,
+                  verticalScrollBarEnabled: false,
+                  useShouldOverrideUrlLoading: true,
+                ),
+                onWebViewCreated: onWebViewCreated,
+                onConsoleMessage: (_, msg) => debugPrint(msg.message),
+                onLoadStop: (controller, url) {
+                  setState(() => firstLoadDone = true);
+                },
+                shouldOverrideUrlLoading: shouldOverrideUrlLoading(initialUrl),
+              ),
             ),
           ),
-          if (loading) const LoadingGeneric()
+          if (!firstLoadDone) const LoadingGeneric()
         ],
       ),
     );

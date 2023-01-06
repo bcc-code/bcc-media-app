@@ -18,6 +18,6 @@ Future<NavigationActionPolicy> Function(InAppWebViewController, NavigationAction
         await launchUrl(navigationUri, mode: LaunchMode.externalApplication);
         return NavigationActionPolicy.CANCEL;
       }
-      debugPrint("Error: Couldn't launch the url in the view.");
+      debugPrint("Error: Couldn't open URL as it didnt pass the security check (shouldOverrideUrlLoading): ${navigationUri?.toString()}");
       return NavigationActionPolicy.CANCEL;
     };

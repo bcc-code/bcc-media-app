@@ -24,6 +24,8 @@ class MainJsChannel {
   Object? handleMessage(List<dynamic> arguments) {
     if (arguments[0] == 'navigate') {
       return _navigate(arguments);
+    } else if (arguments[0] == 'push') {
+      return _push(arguments);
     } else if (arguments[0] == 'get_access_token') {
       return _getAccessToken(arguments);
     } else if (arguments[0] == 'get_locale') {
@@ -38,6 +40,16 @@ class MainJsChannel {
       return true;
     } else {
       FirebaseCrashlytics.instance.recordError(Exception('Tried to navigate with invalid argument: ${arguments[1]}'), StackTrace.current);
+      return false;
+    }
+  }
+
+  bool _push(List<dynamic> arguments) {
+    if (arguments[1] is String) {
+      router.pushNamed(arguments[1], includePrefixMatches: true);
+      return true;
+    } else {
+      FirebaseCrashlytics.instance.recordError(Exception('Tried to push with invalid argument: ${arguments[1]}'), StackTrace.current);
       return false;
     }
   }

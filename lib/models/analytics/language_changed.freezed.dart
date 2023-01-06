@@ -34,44 +34,40 @@ mixin _$LanguageChangedEvent {
 abstract class $LanguageChangedEventCopyWith<$Res> {
   factory $LanguageChangedEventCopyWith(LanguageChangedEvent value,
           $Res Function(LanguageChangedEvent) then) =
-      _$LanguageChangedEventCopyWithImpl<$Res, LanguageChangedEvent>;
-  @useResult
+      _$LanguageChangedEventCopyWithImpl<$Res>;
   $Res call(
       {String? languageFrom, String languageTo, String languageChangeType});
 }
 
 /// @nodoc
-class _$LanguageChangedEventCopyWithImpl<$Res,
-        $Val extends LanguageChangedEvent>
+class _$LanguageChangedEventCopyWithImpl<$Res>
     implements $LanguageChangedEventCopyWith<$Res> {
   _$LanguageChangedEventCopyWithImpl(this._value, this._then);
 
+  final LanguageChangedEvent _value;
   // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
+  final $Res Function(LanguageChangedEvent) _then;
 
-  @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? languageFrom = freezed,
-    Object? languageTo = null,
-    Object? languageChangeType = null,
+    Object? languageTo = freezed,
+    Object? languageChangeType = freezed,
   }) {
     return _then(_value.copyWith(
-      languageFrom: freezed == languageFrom
+      languageFrom: languageFrom == freezed
           ? _value.languageFrom
           : languageFrom // ignore: cast_nullable_to_non_nullable
               as String?,
-      languageTo: null == languageTo
+      languageTo: languageTo == freezed
           ? _value.languageTo
           : languageTo // ignore: cast_nullable_to_non_nullable
               as String,
-      languageChangeType: null == languageChangeType
+      languageChangeType: languageChangeType == freezed
           ? _value.languageChangeType
           : languageChangeType // ignore: cast_nullable_to_non_nullable
               as String,
-    ) as $Val);
+    ));
   }
 }
 
@@ -82,36 +78,37 @@ abstract class _$$_LanguageChangedEventCopyWith<$Res>
           $Res Function(_$_LanguageChangedEvent) then) =
       __$$_LanguageChangedEventCopyWithImpl<$Res>;
   @override
-  @useResult
   $Res call(
       {String? languageFrom, String languageTo, String languageChangeType});
 }
 
 /// @nodoc
 class __$$_LanguageChangedEventCopyWithImpl<$Res>
-    extends _$LanguageChangedEventCopyWithImpl<$Res, _$_LanguageChangedEvent>
+    extends _$LanguageChangedEventCopyWithImpl<$Res>
     implements _$$_LanguageChangedEventCopyWith<$Res> {
   __$$_LanguageChangedEventCopyWithImpl(_$_LanguageChangedEvent _value,
       $Res Function(_$_LanguageChangedEvent) _then)
-      : super(_value, _then);
+      : super(_value, (v) => _then(v as _$_LanguageChangedEvent));
 
-  @pragma('vm:prefer-inline')
+  @override
+  _$_LanguageChangedEvent get _value => super._value as _$_LanguageChangedEvent;
+
   @override
   $Res call({
     Object? languageFrom = freezed,
-    Object? languageTo = null,
-    Object? languageChangeType = null,
+    Object? languageTo = freezed,
+    Object? languageChangeType = freezed,
   }) {
     return _then(_$_LanguageChangedEvent(
-      languageFrom: freezed == languageFrom
+      languageFrom: languageFrom == freezed
           ? _value.languageFrom
           : languageFrom // ignore: cast_nullable_to_non_nullable
               as String?,
-      languageTo: null == languageTo
+      languageTo: languageTo == freezed
           ? _value.languageTo
           : languageTo // ignore: cast_nullable_to_non_nullable
               as String,
-      languageChangeType: null == languageChangeType
+      languageChangeType: languageChangeType == freezed
           ? _value.languageChangeType
           : languageChangeType // ignore: cast_nullable_to_non_nullable
               as String,
@@ -147,22 +144,24 @@ class _$_LanguageChangedEvent implements _LanguageChangedEvent {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_LanguageChangedEvent &&
-            (identical(other.languageFrom, languageFrom) ||
-                other.languageFrom == languageFrom) &&
-            (identical(other.languageTo, languageTo) ||
-                other.languageTo == languageTo) &&
-            (identical(other.languageChangeType, languageChangeType) ||
-                other.languageChangeType == languageChangeType));
+            const DeepCollectionEquality()
+                .equals(other.languageFrom, languageFrom) &&
+            const DeepCollectionEquality()
+                .equals(other.languageTo, languageTo) &&
+            const DeepCollectionEquality()
+                .equals(other.languageChangeType, languageChangeType));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, languageFrom, languageTo, languageChangeType);
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(languageFrom),
+      const DeepCollectionEquality().hash(languageTo),
+      const DeepCollectionEquality().hash(languageChangeType));
 
   @JsonKey(ignore: true)
   @override
-  @pragma('vm:prefer-inline')
   _$$_LanguageChangedEventCopyWith<_$_LanguageChangedEvent> get copyWith =>
       __$$_LanguageChangedEventCopyWithImpl<_$_LanguageChangedEvent>(
           this, _$identity);
