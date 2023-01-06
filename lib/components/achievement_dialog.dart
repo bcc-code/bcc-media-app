@@ -35,7 +35,9 @@ class _AchievementDialogState extends State<AchievementDialog> {
   Widget build(BuildContext context) {
     final image = widget.achievement.image;
     return DialogWithImage(
-      image: image == null ? const SizedBox.shrink() : SizedBox(height: 180, child: simpleFadeInImage(url: image)),
+      image: image == null
+          ? const SizedBox.shrink()
+          : SizedBox(height: 180, child: simpleFadeInImage(url: image, duration: const Duration(milliseconds: 100))),
       title: widget.achievement.title,
       description: widget.achievement.description,
       dismissButtonText: widget.dismissButtonText,
