@@ -73,8 +73,12 @@ class _CalendarWidgetState extends ConsumerState<CalendarWidget> {
   final kFirstDay = DateTime(DateTime.now().year - (5 * pow(10, 4)) as int, DateTime.now().month, DateTime.now().day);
   final kLastDay = DateTime(DateTime.now().year + 5 * pow(10, 4) as int, DateTime.now().month, DateTime.now().day);
 
-  _CalendarWidgetState() {
+  @override
+  initState() {
+    super.initState();
     utcOffset = getFormattedUtcOffset();
+    loadInputPeriodData();
+    loadSelectedDay();
   }
 
   List<DateTime> _getEventsForDay(DateTime day) {
@@ -204,13 +208,6 @@ class _CalendarWidgetState extends ConsumerState<CalendarWidget> {
       }
       return value.parsedData?.calendar;
     });
-  }
-
-  @override
-  void initState() {
-    loadInputPeriodData();
-    loadSelectedDay();
-    super.initState();
   }
 
   @override
