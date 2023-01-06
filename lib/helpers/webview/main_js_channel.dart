@@ -68,7 +68,8 @@ class MainJsChannel {
 
   Future<bool> _shareImage(List<dynamic> arguments) async {
     if (arguments[1] is String) {
-      downloadAndShareImage(arguments[1]);
+      await downloadAndShareImage(arguments[1]);
+      return true;
     } else {
       FirebaseCrashlytics.instance.recordError(Exception('shareImage: Invalid argument: ${arguments[1]}'), StackTrace.current);
     }
