@@ -76,7 +76,7 @@ class StudyScreenState extends ConsumerState<StudyScreen> {
       appBar: AppBar(
         leadingWidth: 92,
         leading: const CustomBackButton(),
-        title: Text(pageTitle),
+        //title: Text(pageTitle),
       ),
       body: Stack(
         children: [
