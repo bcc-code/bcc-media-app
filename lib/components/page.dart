@@ -123,8 +123,7 @@ class _BccmPageState extends ConsumerState<BccmPage> {
     }
     final pageDetailsSection = s.asOrNull<Fragment$Section$$PageDetailsSection>();
     if (pageDetailsSection != null) {
-      return Padding(
-          padding: const EdgeInsets.only(top: 4), child: PageSection.fromFragment(pageDetailsSection, child: PageDetailsSection(pageDetailsSection)));
+      return Padding(padding: const EdgeInsets.only(top: 4), child: PageDetailsSection(pageDetailsSection));
     }
     final achievementsSection = s.asOrNull<Fragment$Section$$AchievementSection>();
     if (achievementsSection != null) {
