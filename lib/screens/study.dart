@@ -147,7 +147,7 @@ class StudyScreenState extends ConsumerState<StudyScreen> {
           dismissButtonText: S.of(context).continueButton,
         ),
       );
-      //gqlClient.mutate$confirmAchievement(Options$Mutation$confirmAchievement(variables: Variables$Mutation$confirmAchievement(id: achievement.id)));
+      gqlClient.mutate$confirmAchievement(Options$Mutation$confirmAchievement(variables: Variables$Mutation$confirmAchievement(id: achievement.id)));
     }
   }
 }

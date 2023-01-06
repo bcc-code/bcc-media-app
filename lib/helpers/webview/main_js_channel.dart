@@ -70,10 +70,8 @@ class MainJsChannel {
     if (arguments[1] is String) {
       await downloadAndShareImage(arguments[1]);
       return true;
-    } else {
-      FirebaseCrashlytics.instance.recordError(Exception('shareImage: Invalid argument: ${arguments[1]}'), StackTrace.current);
     }
-    FirebaseCrashlytics.instance.recordError(Exception('shareImage: Failed to share image with argument: ${arguments[1]}'), StackTrace.current);
+    FirebaseCrashlytics.instance.recordError(Exception('shareImage: Invalid argument: ${arguments[1]}'), StackTrace.current);
     return false;
   }
 }
