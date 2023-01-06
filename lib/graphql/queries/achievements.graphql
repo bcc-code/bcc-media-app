@@ -4,6 +4,7 @@ fragment Achievement on Achievement {
   description
   achieved
   image
+  achievedAt
 }
 
 fragment AchievementGroup on AchievementGroup {

@@ -74,7 +74,7 @@ class _StudyTopicCardLargeState extends State<StudyTopicCardLarge> {
                           navigationFuture = navigateToStudyTopic(context, widget.studyTopic.id);
                         }),
                         labelText: widget.studyTopic.lessonsProgress.completed > 0 ? S.of(context).continueStudy : S.of(context).startStudy,
-                        imagePath: 'assets/icons/Play.png',
+                        image: Image.asset('assets/icons/Play.png'),
                       ),
                     )
                   ],

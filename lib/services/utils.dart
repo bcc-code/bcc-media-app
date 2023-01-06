@@ -106,3 +106,8 @@ Widget? getFeaturedTag({required String? publishDate}) {
   }
   return null;
 }
+
+Rect iPadSharePositionOrigin(BuildContext context) {
+  final Size size = MediaQuery.of(context).size;
+  return Rect.fromLTWH(0, 0, size.width, size.height / 2);
+}

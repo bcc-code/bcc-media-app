@@ -11,6 +11,7 @@ class Fragment$Achievement {
     this.description,
     required this.achieved,
     this.image,
+    this.achievedAt,
     required this.$__typename,
   });
 
@@ -20,6 +21,7 @@ class Fragment$Achievement {
     final l$description = json['description'];
     final l$achieved = json['achieved'];
     final l$image = json['image'];
+    final l$achievedAt = json['achievedAt'];
     final l$$__typename = json['__typename'];
     return Fragment$Achievement(
       id: (l$id as String),
@@ -27,6 +29,7 @@ class Fragment$Achievement {
       description: (l$description as String?),
       achieved: (l$achieved as bool),
       image: (l$image as String?),
+      achievedAt: (l$achievedAt as String?),
       $__typename: (l$$__typename as String),
     );
   }
@@ -40,6 +43,8 @@ class Fragment$Achievement {
   final bool achieved;
 
   final String? image;
+
+  final String? achievedAt;
 
   final String $__typename;
 
@@ -55,6 +60,8 @@ class Fragment$Achievement {
     _resultData['achieved'] = l$achieved;
     final l$image = image;
     _resultData['image'] = l$image;
+    final l$achievedAt = achievedAt;
+    _resultData['achievedAt'] = l$achievedAt;
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -67,6 +74,7 @@ class Fragment$Achievement {
     final l$description = description;
     final l$achieved = achieved;
     final l$image = image;
+    final l$achievedAt = achievedAt;
     final l$$__typename = $__typename;
     return Object.hashAll([
       l$id,
@@ -74,6 +82,7 @@ class Fragment$Achievement {
       l$description,
       l$achieved,
       l$image,
+      l$achievedAt,
       l$$__typename,
     ]);
   }
@@ -111,6 +120,11 @@ class Fragment$Achievement {
     if (l$image != lOther$image) {
       return false;
     }
+    final l$achievedAt = achievedAt;
+    final lOther$achievedAt = other.achievedAt;
+    if (l$achievedAt != lOther$achievedAt) {
+      return false;
+    }
     final l$$__typename = $__typename;
     final lOther$$__typename = other.$__typename;
     if (l$$__typename != lOther$$__typename) {
@@ -143,6 +157,7 @@ abstract class CopyWith$Fragment$Achievement<TRes> {
     String? description,
     bool? achieved,
     String? image,
+    String? achievedAt,
     String? $__typename,
   });
 }
@@ -166,6 +181,7 @@ class _CopyWithImpl$Fragment$Achievement<TRes>
     Object? description = _undefined,
     Object? achieved = _undefined,
     Object? image = _undefined,
+    Object? achievedAt = _undefined,
     Object? $__typename = _undefined,
   }) =>
       _then(Fragment$Achievement(
@@ -180,6 +196,9 @@ class _CopyWithImpl$Fragment$Achievement<TRes>
             ? _instance.achieved
             : (achieved as bool),
         image: image == _undefined ? _instance.image : (image as String?),
+        achievedAt: achievedAt == _undefined
+            ? _instance.achievedAt
+            : (achievedAt as String?),
         $__typename: $__typename == _undefined || $__typename == null
             ? _instance.$__typename
             : ($__typename as String),
@@ -198,6 +217,7 @@ class _CopyWithStubImpl$Fragment$Achievement<TRes>
     String? description,
     bool? achieved,
     String? image,
+    String? achievedAt,
     String? $__typename,
   }) =>
       _res;
@@ -242,6 +262,13 @@ const fragmentDefinitionAchievement = FragmentDefinitionNode(
     ),
     FieldNode(
       name: NameNode(value: 'image'),
+      alias: null,
+      arguments: [],
+      directives: [],
+      selectionSet: null,
+    ),
+    FieldNode(
+      name: NameNode(value: 'achievedAt'),
       alias: null,
       arguments: [],
       directives: [],

@@ -110,12 +110,12 @@ class _FeaturedItem extends StatelessWidget {
                 ),
                 false
                     ? BtvButton.smallRed(
-                        imagePath: 'assets/icons/Play.png',
+                        image: Image.asset('assets/icons/Play.png'),
                         labelText: S.of(context).liveNow,
                         onPressed: () {},
                       )
                     : BtvButton.smallSecondary(
-                        imagePath: 'assets/icons/Play.png',
+                        image: Image.asset('assets/icons/Play.png'),
                         labelText: S.of(context).watchNow,
                         onPressed: () {
                           handleSectionItemClick(context, sectionItem.item);
