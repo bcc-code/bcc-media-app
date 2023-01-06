@@ -66,12 +66,16 @@ class _CalendarWidgetState extends ConsumerState<CalendarWidget> {
   DateTime? _selectedDay = DateTime.now();
   Future<Query$CalendarPeriod$calendar$period?>? _calendarPeriodFuture;
   Future<Query$CalendarDay$calendar?>? _selectedDayFuture;
-
+  late String utcOffset;
   HashSet<DateTime> activeDaysPeriod = HashSet<DateTime>();
   List<String> eventsPeriod = [];
 
   final kFirstDay = DateTime(DateTime.now().year - (5 * pow(10, 4)) as int, DateTime.now().month, DateTime.now().day);
   final kLastDay = DateTime(DateTime.now().year + 5 * pow(10, 4) as int, DateTime.now().month, DateTime.now().day);
+
+  _CalendarWidgetState() {
+    utcOffset = getFormattedUtcOffset();
+  }
 
   List<DateTime> _getEventsForDay(DateTime day) {
     List<DateTime> result = [];
@@ -94,6 +98,13 @@ class _CalendarWidgetState extends ConsumerState<CalendarWidget> {
     return ((dayOfDec28 - dec28.weekday + 10) / 7).floor();
   }
 
+  String getFormattedUtcOffset() {
+    final timeZoneOffset = DateTime.now().timeZoneOffset;
+    final hours = timeZoneOffset.inHours.toString().padLeft(2, '0');
+    final minutes = (timeZoneOffset.inMinutes % 60).toString().padLeft(2, '0');
+    return '$hours:$minutes';
+  }
+
   /// Calculates week number from a date as per https://en.wikipedia.org/wiki/ISO_week_date#Calculation
   /// https://stackoverflow.com/questions/49393231/how-to-get-day-of-year-week-of-year-from-a-datetime-dart-object/54129275#54129275
   int _getWeekNumber(DateTime date) {
@@ -109,7 +120,8 @@ class _CalendarWidgetState extends ConsumerState<CalendarWidget> {
 
   String convertToIso8601(DateTime time) {
     //need to have a manual convert because the default method have a special 's' -> :sssZ
-    return DateFormat("yyyy-MM-ddTHH:mm:ss'Z'").format(time);
+    final localDateTime = DateFormat('yyyy-MM-ddTHH:mm:ss').format(time);
+    return '$localDateTime+$utcOffset';
   }
 
   //HH:mm
@@ -163,7 +175,7 @@ class _CalendarWidgetState extends ConsumerState<CalendarWidget> {
       if (value.hasException) {
         throw ErrorDescription(value.exception.toString());
       }
-      List<DateTime>? activeDaysList111 = value.parsedData?.calendar?.period.activeDays.map((e) => DateTime.parse(e)).toList();
+      List<DateTime>? activeDaysList111 = value.parsedData?.calendar?.period.activeDays.map((e) => DateTime.parse(e).toLocal()).toList();
 
       setState(() {
         activeDaysPeriod = HashSet.from(activeDaysList111 ?? []);
