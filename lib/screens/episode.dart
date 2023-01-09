@@ -455,6 +455,7 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen> with AutoRouteAwa
                                               StudyMoreButton(
                                                   progressOverview: Fragment$LessonProgressOverview(
                                                       $__typename: '',
+                                                      locked: false,
                                                       id: episode.lessons.items[0].id,
                                                       progress: Fragment$LessonProgressOverview$progress($__typename: '', completed: 0, total: 0))),
                                               Positioned.fill(
@@ -472,6 +473,7 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen> with AutoRouteAwa
                                           ready: (data) => GestureDetector(
                                             behavior: HitTestBehavior.opaque,
                                             onTap: () async {
+                                              if (data!.episode.lessons.items[0].locked) return;
                                               await context.router.root
                                                   .push(StudyScreenRoute(episodeId: episode.id, lessonId: data!.episode.lessons.items[0].id));
                                               if (mounted) {

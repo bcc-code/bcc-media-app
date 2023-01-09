@@ -6,6 +6,7 @@ import '../../helpers/btv_colors.dart';
 import '../../helpers/btv_gradients.dart';
 import '../../helpers/btv_typography.dart';
 import '../../helpers/svg_icons.dart';
+import '../l10n/app_localizations.dart';
 import './pulse_animation.dart';
 import './shiny_clipper.dart';
 import './study_progress.dart';
@@ -38,93 +39,100 @@ class _StudyMoreButtonState extends State<StudyMoreButton> with SingleTickerProv
 
   String get title {
     if (completed < total) {
-      return '$completed / $total tasks completed';
+      final plural = total > 1;
+      return '$completed/$total ${!plural ? S.of(context).taskCompleted : S.of(context).tasksCompleted}';
     }
-    return 'Discover more';
+    return S.of(context).discoverMore;
   }
 
   String get secondaryTitle {
-    if (completed < total) {
-      return 'Complete task and discover related resources';
+    if (widget.progressOverview.locked) {
+      return S.of(context).completePreviousTasks;
     }
-    return 'Find more inspiration and insight from related resources.';
+    if (completed < total) {
+      return S.of(context).studyCompleteTaskDescription;
+    }
+    return S.of(context).studyDiscoverMoreDescription;
   }
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      children: [
-        Container(
-          clipBehavior: Clip.antiAlias,
-          padding: const EdgeInsets.all(12),
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(12),
-            color: BtvColors.tint1.withAlpha((255 * 0.1).round()),
-          ),
-          foregroundDecoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(12),
-            border: Border.all(color: BtvColors.separatorOnLight, width: 1),
-          ),
-          child: Row(
-            mainAxisSize: MainAxisSize.min,
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              studyProgress(),
-              Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      title,
-                      style: BtvTextStyles.title3,
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(top: 2),
-                      child: Text(
-                        secondaryTitle,
-                        overflow: TextOverflow.fade,
-                        style: BtvTextStyles.caption1.copyWith(color: BtvColors.label3),
+    return Opacity(
+      opacity: widget.progressOverview.locked ? 0.6 : 1,
+      child: Stack(
+        children: [
+          Container(
+            clipBehavior: Clip.antiAlias,
+            padding: const EdgeInsets.all(12),
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(12),
+              color: BtvColors.tint1.withAlpha((255 * 0.1).round()),
+            ),
+            foregroundDecoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(12),
+              border: Border.all(color: BtvColors.separatorOnLight, width: 1),
+            ),
+            child: Row(
+              mainAxisSize: MainAxisSize.min,
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                studyProgress(),
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        title,
+                        style: BtvTextStyles.title3,
                       ),
-                    ),
-                  ],
+                      Padding(
+                        padding: const EdgeInsets.only(top: 2),
+                        child: Text(
+                          secondaryTitle,
+                          overflow: TextOverflow.fade,
+                          style: BtvTextStyles.caption1.copyWith(color: BtvColors.label3),
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(left: 16),
-                child: Stack(
-                  children: [
-                    const Positioned.fill(child: PulseAnimation()),
-                    circleButton(),
-                  ],
-                ),
-              )
-            ],
+                Padding(
+                  padding: const EdgeInsets.only(left: 16),
+                  child: Stack(
+                    children: [
+                      if (!widget.progressOverview.locked) const Positioned.fill(child: PulseAnimation()),
+                      circleButton(),
+                    ],
+                  ),
+                )
+              ],
+            ),
           ),
-        ),
-        Positioned.fill(
-          child: LayoutBuilder(builder: (context, constraints) {
-            return Padding(
-              padding: EdgeInsets.only(left: constraints.maxWidth * 0.6),
-              child: ClipRRect(
-                borderRadius: BorderRadius.circular(12),
-                child: ClipPath(
-                  clipper: ShinyClipper(),
-                  child: Container(
-                    decoration: BoxDecoration(
-                      gradient: const LinearGradient(
-                        begin: Alignment.topCenter,
-                        end: Alignment.bottomCenter,
-                        colors: [Color(0xffccddff), Color(0xffedf2fd), Color(0x00ccddff)],
-                      ).scale(0.1),
+          Positioned.fill(
+            child: LayoutBuilder(builder: (context, constraints) {
+              return Padding(
+                padding: EdgeInsets.only(left: constraints.maxWidth * 0.6),
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(12),
+                  child: ClipPath(
+                    clipper: ShinyClipper(),
+                    child: Container(
+                      decoration: BoxDecoration(
+                        gradient: const LinearGradient(
+                          begin: Alignment.topCenter,
+                          end: Alignment.bottomCenter,
+                          colors: [Color(0xffccddff), Color(0xffedf2fd), Color(0x00ccddff)],
+                        ).scale(0.1),
+                      ),
                     ),
                   ),
                 ),
-              ),
-            );
-          }),
-        )
-      ],
+              );
+            }),
+          )
+        ],
+      ),
     );
   }
 

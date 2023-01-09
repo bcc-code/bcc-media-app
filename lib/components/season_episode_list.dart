@@ -189,24 +189,27 @@ class EpisodeListEpisode extends StatelessWidget {
                     ),
                   ),
                   if (Env.enableStudy && data.lessonProgressOverview != null && !data.locked)
-                    Container(
-                      padding: const EdgeInsets.only(left: 16),
-                      alignment: Alignment.centerRight,
+                    Opacity(
+                      opacity: data.lessonProgressOverview!.locked ? 0.2 : 1,
                       child: Container(
-                        width: 40,
-                        height: 40,
-                        decoration: const BoxDecoration(
-                          shape: BoxShape.circle,
-                          color: BtvColors.separatorOnLight,
-                        ),
-                        child: Padding(
-                          padding: const EdgeInsets.all(4),
-                          child: LessonProgressTree(
-                            completed: data.lessonProgressOverview!.progress.completed,
-                            total: data.lessonProgressOverview!.progress.total,
-                            outerStrokeWidth: 2,
-                            innerStrokeWidth: 1.7,
-                            arcToTreePadding: 7,
+                        padding: const EdgeInsets.only(left: 16),
+                        alignment: Alignment.centerRight,
+                        child: Container(
+                          width: 40,
+                          height: 40,
+                          decoration: const BoxDecoration(
+                            shape: BoxShape.circle,
+                            color: BtvColors.separatorOnLight,
+                          ),
+                          child: Padding(
+                            padding: const EdgeInsets.all(4),
+                            child: LessonProgressTree(
+                              completed: data.lessonProgressOverview!.progress.completed,
+                              total: data.lessonProgressOverview!.progress.total,
+                              outerStrokeWidth: 2,
+                              innerStrokeWidth: 1.7,
+                              arcToTreePadding: 7,
+                            ),
                           ),
                         ),
                       ),

@@ -623,6 +623,10 @@
   "@discoverMore": {
     "description": "Generic button text."
   },
+  "completePreviousTasks": "Complete previous tasks to unlock",
+  "@completePreviousTasks": {
+    "description": "Shown on a locked button, short explanation why the button is locked."
+  },
   "studyDiscoverMoreDescription": "İlgili kaynaklardan daha fazla ilham ve fikir edinin",
   "@studyDiscoverMoreDescription": {
     "description": "Description to open the related resources for this episode."

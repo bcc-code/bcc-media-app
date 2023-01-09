@@ -462,6 +462,9 @@ class SFi extends S {
   String get discoverMore => 'Löydä lisää';
 
   @override
+  String get completePreviousTasks => 'Complete previous tasks to unlock';
+
+  @override
   String get studyDiscoverMoreDescription => 'Löydä aiheeseen liittyvää inspiroivaa ja valaisevaa sisältöä';
 
   @override
@@ -526,11 +529,11 @@ class SFi extends S {
   String get oops => 'Hupsista!';
 
   @override
-  String get dontHaveAccess => 'You do not have access to this content.';
+  String get dontHaveAccess => 'Sinulla ei ole oikeutta tähän sisältöön.';
 
   @override
   String get mustBeLoggedIn => 'Tämän katsominen vaatii kirjautumista';
 
   @override
-  String get plentyOfOtherContent => 'Don\'t worry, there\'s still plenty of content to enjoy!';
+  String get plentyOfOtherContent => 'Mutta ei syytä huoleen. On edelleen paljon mitä voit katsella.';
 }

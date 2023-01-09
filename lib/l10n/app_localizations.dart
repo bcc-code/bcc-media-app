@@ -1017,6 +1017,12 @@ abstract class S {
   /// **'Discover more'**
   String get discoverMore;
 
+  /// Shown on a locked button, short explanation why the button is locked.
+  ///
+  /// In en, this message translates to:
+  /// **'Complete previous tasks to unlock'**
+  String get completePreviousTasks;
+
   /// Description to open the related resources for this episode.
   ///
   /// In en, this message translates to:

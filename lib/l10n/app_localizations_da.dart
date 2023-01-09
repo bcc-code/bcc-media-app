@@ -462,6 +462,9 @@ class SDa extends S {
   String get discoverMore => 'Opdag mere';
 
   @override
+  String get completePreviousTasks => 'Complete previous tasks to unlock';
+
+  @override
   String get studyDiscoverMoreDescription => 'Find mere inspiration fra relateret indhold\n';
 
   @override

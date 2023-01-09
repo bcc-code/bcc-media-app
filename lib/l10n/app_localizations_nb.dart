@@ -116,7 +116,7 @@ class SNb extends S {
   String get upNext => 'Neste';
 
   @override
-  String get done => 'Utført';
+  String get done => 'Ferdig';
 
   @override
   String get playerSettings => 'Innstilling for videoavspiller';
@@ -161,7 +161,7 @@ class SNb extends S {
   String get play => 'Spill av';
 
   @override
-  String get castQueue => 'Legg til i kø';
+  String get castQueue => 'Kø';
 
   @override
   String get options => 'Alternativer';
@@ -338,7 +338,7 @@ class SNb extends S {
   String get submit => 'Send inn';
 
   @override
-  String get wellDone => 'Bra jobbet!';
+  String get wellDone => 'Bra gjort!';
 
   @override
   String get editPicture => 'Rediger bilde';
@@ -462,6 +462,9 @@ class SNb extends S {
   String get discoverMore => 'Oppdag mer';
 
   @override
+  String get completePreviousTasks => 'Complete previous tasks to unlock';
+
+  @override
   String get studyDiscoverMoreDescription => 'Finn mer inspirasjon og innsikt fra relatert innhold';
 
   @override
@@ -486,10 +489,10 @@ class SNb extends S {
   String get startStudy => 'Start studie';
 
   @override
-  String get videoCompletedText => 'Gratulerer med å fullføre videoen.';
+  String get videoCompletedText => 'Gratulerer med å ha fullført videoen.';
 
   @override
-  String get achievementFirstDescription => 'Gratulerer med å ha å ha fullført videoen og gjennomført din første måloppnåelse.';
+  String get achievementFirstDescription => 'Gratulerer med å ha fullført videoen og fått ditt første prestasjonsmerke.';
 
   @override
   String achievementStudyTopic(String name) {
@@ -526,11 +529,11 @@ class SNb extends S {
   String get oops => 'Uups!';
 
   @override
-  String get dontHaveAccess => 'You do not have access to this content.';
+  String get dontHaveAccess => 'Du har ikke tilgang til dette innholdet.';
 
   @override
   String get mustBeLoggedIn => 'Du må være logget inn for å se dette innholdet';
 
   @override
-  String get plentyOfOtherContent => 'Don\'t worry, there\'s still plenty of content to enjoy!';
+  String get plentyOfOtherContent => 'Fortvil ikke, det er fortsatt mye innhold du kan se!';
 }

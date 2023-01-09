@@ -462,6 +462,9 @@ class SFr extends S {
   String get discoverMore => 'Découvrir plus';
 
   @override
+  String get completePreviousTasks => 'Complete previous tasks to unlock';
+
+  @override
   String get studyDiscoverMoreDescription => 'Trouver plus d\'inspiration et d\'idées dans les ressources connexes';
 
   @override
@@ -526,11 +529,11 @@ class SFr extends S {
   String get oops => 'Oups !';
 
   @override
-  String get dontHaveAccess => 'You do not have access to this content.';
+  String get dontHaveAccess => 'Tu n\'as pas accès à ce contenu.';
 
   @override
   String get mustBeLoggedIn => 'Tu dois être connecté pour regarder ce contenu';
 
   @override
-  String get plentyOfOtherContent => 'Don\'t worry, there\'s still plenty of content to enjoy!';
+  String get plentyOfOtherContent => 'Pas d\'inquiétude ! Il reste beaucoup de contenus à apprécier !';
 }

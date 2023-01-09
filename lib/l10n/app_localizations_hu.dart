@@ -462,6 +462,9 @@ class SHu extends S {
   String get discoverMore => 'Fedezz fel többet';
 
   @override
+  String get completePreviousTasks => 'Complete previous tasks to unlock';
+
+  @override
   String get studyDiscoverMoreDescription => 'További inspiráció és betekintés a kapcsolódó forrásokból';
 
   @override
@@ -486,7 +489,7 @@ class SHu extends S {
   String get startStudy => 'Tanulmányozás megkezdése';
 
   @override
-  String get videoCompletedText => 'Great job on completing the video.';
+  String get videoCompletedText => 'Nagyszerű munka a tanulmányi téma befejezésében.';
 
   @override
   String get achievementFirstDescription => 'Szép munka, hogy befejezted a videót és megszerezted az első előrehaladási eredményedet.';
@@ -520,17 +523,17 @@ class SHu extends S {
   String get continueButton => 'Folytatás';
 
   @override
-  String get achievements => 'Achievements';
+  String get achievements => 'Eredmények';
 
   @override
   String get oops => 'Uups!';
 
   @override
-  String get dontHaveAccess => 'You do not have access to this content.';
+  String get dontHaveAccess => 'Ehhez a tartalomhoz nincs hozzáférésed.';
 
   @override
   String get mustBeLoggedIn => 'Be kell jelentkezned, hogy megnézhesd ezt a tartalmat';
 
   @override
-  String get plentyOfOtherContent => 'Don\'t worry, there\'s still plenty of content to enjoy!';
+  String get plentyOfOtherContent => 'Ne aggódj, még rengeteg más tartalmat is élvezhetsz!';
 }

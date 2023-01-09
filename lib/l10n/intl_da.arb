@@ -623,6 +623,10 @@
   "@discoverMore": {
     "description": "Generic button text."
   },
+  "completePreviousTasks": "Complete previous tasks to unlock",
+  "@completePreviousTasks": {
+    "description": "Shown on a locked button, short explanation why the button is locked."
+  },
   "studyDiscoverMoreDescription": "Find mere inspiration fra relateret indhold\n",
   "@studyDiscoverMoreDescription": {
     "description": "Description to open the related resources for this episode."

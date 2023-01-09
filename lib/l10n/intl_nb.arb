@@ -147,7 +147,7 @@
   "@upNext": {
     "description": "Title indiciating what's next on the livestream."
   },
-  "done": "Utført",
+  "done": "Ferdig",
   "@done": {
     "description": "Generic Done button, for example to dismiss a page after completing an action."
   },
@@ -207,7 +207,7 @@
   "@play": {
     "description": "Option in prompt dialog."
   },
-  "castQueue": "Legg til i kø",
+  "castQueue": "Kø",
   "@castQueue": {
     "description": "Queue page title"
   },
@@ -453,7 +453,7 @@
   "@submit": {
     "description": "Submit button."
   },
-  "wellDone": "Bra jobbet!",
+  "wellDone": "Bra gjort!",
   "@wellDone": {
     "description": "Positive message that may be used e.g. after completing some action."
   },
@@ -623,6 +623,10 @@
   "@discoverMore": {
     "description": "Generic button text."
   },
+  "completePreviousTasks": "Complete previous tasks to unlock",
+  "@completePreviousTasks": {
+    "description": "Shown on a locked button, short explanation why the button is locked."
+  },
   "studyDiscoverMoreDescription": "Finn mer inspirasjon og innsikt fra relatert innhold",
   "@studyDiscoverMoreDescription": {
     "description": "Description to open the related resources for this episode."
@@ -655,11 +659,11 @@
   "@startStudy": {
     "description": "Button."
   },
-  "videoCompletedText": "Gratulerer med å fullføre videoen.",
+  "videoCompletedText": "Gratulerer med å ha fullført videoen.",
   "@videoCompletedText": {
     "description": "Shown after completing tasks related to a video."
   },
-  "achievementFirstDescription": "Gratulerer med å ha å ha fullført videoen og gjennomført din første måloppnåelse.",
+  "achievementFirstDescription": "Gratulerer med å ha fullført videoen og fått ditt første prestasjonsmerke.",
   "@achievementFirstDescription": {
     "description": "Description displayed in a popup when earning the first achievement badge."
   },
@@ -720,7 +724,7 @@
   "@oops": {
     "description": "An informal title on some error screens."
   },
-  "dontHaveAccess": "You do not have access to this content.",
+  "dontHaveAccess": "Du har ikke tilgang til dette innholdet.",
   "@dontHaveAccess": {
     "description": "Error message when you open a link to content you dont have access to."
   },
@@ -728,7 +732,7 @@
   "@mustBeLoggedIn": {
     "description": "Error message when you open a link to content you dont have access to, and you are not logged in."
   },
-  "plentyOfOtherContent": "Don't worry, there's still plenty of content to enjoy!",
+  "plentyOfOtherContent": "Fortvil ikke, det er fortsatt mye innhold du kan se!",
   "@plentyOfOtherContent": {
     "description": "Shown on an error page indiciating you dont have access to the content, right above a button that takes you back."
   }

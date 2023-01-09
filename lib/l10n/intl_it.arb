@@ -623,6 +623,10 @@
   "@discoverMore": {
     "description": "Generic button text."
   },
+  "completePreviousTasks": "Complete previous tasks to unlock",
+  "@completePreviousTasks": {
+    "description": "Shown on a locked button, short explanation why the button is locked."
+  },
   "studyDiscoverMoreDescription": "Trova più ispirazione e spunti dalle risorse correlate",
   "@studyDiscoverMoreDescription": {
     "description": "Description to open the related resources for this episode."
@@ -720,7 +724,7 @@
   "@oops": {
     "description": "An informal title on some error screens."
   },
-  "dontHaveAccess": "You do not have access to this content.",
+  "dontHaveAccess": "Non hai accesso a questo contenuto",
   "@dontHaveAccess": {
     "description": "Error message when you open a link to content you dont have access to."
   },
@@ -728,7 +732,7 @@
   "@mustBeLoggedIn": {
     "description": "Error message when you open a link to content you dont have access to, and you are not logged in."
   },
-  "plentyOfOtherContent": "Don't worry, there's still plenty of content to enjoy!",
+  "plentyOfOtherContent": "Non preoccuparti, ci sono ancora molti altri contenuti con cui divertirti!",
   "@plentyOfOtherContent": {
     "description": "Shown on an error page indiciating you dont have access to the content, right above a button that takes you back."
   }
