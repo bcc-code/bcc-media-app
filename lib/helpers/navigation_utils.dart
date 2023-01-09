@@ -11,11 +11,12 @@ import 'navigation_override.dart';
 import 'utils.dart';
 
 extension StackRouterCustomNavigation on StackRouter {
-  void navigateNamedFromRoot(String path) {
+  Future navigateNamedFromRoot(String path) {
     var result = root.matcher.match(path, includePrefixMatches: true);
     if (result != null) {
-      navigateAll(result);
+      return navigateAll(result);
     }
+    return Future.value();
   }
 }
 

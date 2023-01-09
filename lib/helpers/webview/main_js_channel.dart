@@ -37,24 +37,18 @@ class MainJsChannel {
     return null;
   }
 
-  bool _navigate(List<dynamic> arguments) {
+  Future _navigate(List<dynamic> arguments) {
     if (arguments[1] is String) {
-      router.navigateNamedFromRoot(arguments[1]);
-      return true;
-    } else {
-      FirebaseCrashlytics.instance.recordError(Exception('Tried to navigate with invalid argument: ${arguments[1]}'), StackTrace.current);
-      return false;
+      return router.navigateNamedFromRoot(arguments[1]);
     }
+    throw Exception('Tried to navigate with invalid argument: ${arguments[1]}');
   }
 
-  bool _push(List<dynamic> arguments) {
+  Future _push(List<dynamic> arguments) async {
     if (arguments[1] is String) {
-      router.pushNamed(arguments[1], includePrefixMatches: true);
-      return true;
-    } else {
-      FirebaseCrashlytics.instance.recordError(Exception('Tried to push with invalid argument: ${arguments[1]}'), StackTrace.current);
-      return false;
+      return router.pushNamed(arguments[1], includePrefixMatches: true);
     }
+    throw Exception('Tried to push with invalid argument: ${arguments[1]}');
   }
 
   String? _getAccessToken(List<dynamic> arguments) {
