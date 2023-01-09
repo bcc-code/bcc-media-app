@@ -84,7 +84,7 @@ class AchievementShareRender extends StatelessWidget {
 
   String? get formattedAchievedAt {
     if (achievement.achievedAt == null) return null;
-    var dateTime = DateTime.tryParse('2022-01-06T01:22:43.345Z');
+    var dateTime = DateTime.tryParse(achievement.achievedAt!);
     if (dateTime == null) return null;
     return DateFormat.yMMMMd().format(dateTime);
   }
