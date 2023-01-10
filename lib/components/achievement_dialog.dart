@@ -51,7 +51,7 @@ class _AchievementDialogState extends State<AchievementDialog> {
               child: BtvButton.smallSecondary(
                 onPressed: () async {
                   //
-                  final navigatorContext = Navigator.of(context).context;
+                  final sharePositionOrigin = iPadSharePositionOrigin(context);
                   setState(() {
                     processingShare = true;
                   });
@@ -66,9 +66,11 @@ class _AchievementDialogState extends State<AchievementDialog> {
 
                   if (image != null) {
                     final file = XFile.fromData(image, mimeType: 'image/png');
-                    Share.shareXFiles([file],
-                        text: '''I've unlocked this achievement badge in the BCC Media app.\nhttps://app.bcc.media/studies''',
-                        sharePositionOrigin: iPadSharePositionOrigin(navigatorContext));
+                    Share.shareXFiles(
+                      [file],
+                      text: '''I've unlocked this achievement badge in the BCC Media app.\nhttps://app.bcc.media/studies''',
+                      sharePositionOrigin: sharePositionOrigin,
+                    );
                   }
                   setState(() {
                     processingShare = false;

@@ -2,6 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:brunstadtv_app/helpers/navigation_utils.dart';
 import 'package:brunstadtv_app/providers/settings.dart';
 import 'package:brunstadtv_app/services/share_image.dart';
+import 'package:brunstadtv_app/services/utils.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
@@ -62,7 +63,12 @@ class MainJsChannel {
 
   Future<bool> _shareImage(List<dynamic> arguments) async {
     if (arguments[1] is String) {
-      await downloadAndShareImage(arguments[1]);
+      final context = router.navigatorKey.currentState?.context;
+      if (context == null) {
+        FirebaseCrashlytics.instance.recordError(Exception('shareImage: context is null'), StackTrace.current);
+        return false;
+      }
+      await downloadAndShareImage(arguments[1], sharePositionOrigin: iPadSharePositionOrigin(context));
       return true;
     }
     FirebaseCrashlytics.instance.recordError(Exception('shareImage: Invalid argument: ${arguments[1]}'), StackTrace.current);
