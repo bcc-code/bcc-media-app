@@ -45,7 +45,7 @@ String? getFormattedProductionDate(String? prodDate) {
   return DateFormat('dd. MMM y').format(parsedDateTime);
 }
 
-bool isComingSoon(String? publishDate) {
+bool isUnavailable(String? publishDate) {
   if (publishDate == null) {
     return false;
   }
@@ -54,6 +54,17 @@ bool isComingSoon(String? publishDate) {
     return false;
   }
   return DateTime.now().isBefore(parsedDateTime);
+}
+
+bool isComingSoon(String? publishDate) {
+  if (publishDate == null) {
+    return false;
+  }
+  final publishDateTime = DateTime.tryParse(publishDate);
+  if (publishDateTime == null) {
+    return false;
+  }
+  return DateTime.now().isBefore(publishDateTime) && DateTime.now().add(const Duration(days: 2)).isAfter(publishDateTime);
 }
 
 // Parse color from hex string in the formats "aabbcc", "#aabbcc", "ffaabbcc", "#ffaabbcc"
@@ -94,4 +105,9 @@ Widget? getFeaturedTag({required String? publishDate}) {
     );
   }
   return null;
+}
+
+Rect iPadSharePositionOrigin(BuildContext context) {
+  final Size size = MediaQuery.of(context).size;
+  return Rect.fromLTWH(0, 0, size.width, size.height / 2);
 }

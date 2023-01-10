@@ -7,12 +7,10 @@ import 'package:graphql/client.dart';
 import 'package:http/http.dart';
 import 'package:http/retry.dart';
 
-import '../env/env.dart';
-
 final gqlClientProvider = Provider<GraphQLClient>((ref) {
   final settings = ref.watch(settingsProvider);
   debugPrint('envOverride: ${settings.envOverride}');
-  final httpLink = HttpLink(apiEnvUrls[settings.envOverride] ?? apiEnvUrls[Environments.prod]!,
+  final httpLink = HttpLink(apiEnvUrls[settings.envOverride] ?? apiEnvUrls[EnvironmentOverride.none]!,
       defaultHeaders: {
         'Accept-Language': settings.appLanguage.languageCode,
       },

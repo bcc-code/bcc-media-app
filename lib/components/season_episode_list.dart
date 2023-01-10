@@ -1,10 +1,14 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:brunstadtv_app/components/study_progress.dart';
+import 'package:brunstadtv_app/graphql/queries/studies.graphql.dart';
+import 'package:brunstadtv_app/helpers/btv_gradients.dart';
 import 'package:brunstadtv_app/helpers/btv_typography.dart';
 import 'package:brunstadtv_app/router/router.gr.dart';
 import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:intl/intl.dart';
 
+import '../env/env.dart';
 import '../graphql/queries/search.graphql.dart';
 import '../helpers/btv_colors.dart';
 import '../helpers/utils.dart';
@@ -13,6 +17,7 @@ import '../services/utils.dart';
 import 'bordered_image_container.dart';
 import 'episode_duration.dart';
 import 'watched_badge.dart';
+import 'dart:math' as math;
 
 part 'season_episode_list.freezed.dart';
 
@@ -48,10 +53,12 @@ class EpisodeListEpisodeData with _$EpisodeListEpisodeData {
   const factory EpisodeListEpisodeData({
     required String episodeId,
     required String title,
+    required bool locked,
     bool? highlighted,
     required String? image,
     int? seasonNumber,
     int? episodeNumber,
+    Fragment$LessonProgressOverview? lessonProgressOverview,
     required String? publishDate,
     required String ageRating,
     required int duration,
@@ -67,13 +74,12 @@ class EpisodeListEpisode extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final comingSoon = isComingSoon(data.publishDate);
     final publishDateTime = data.publishDate != null ? DateTime.tryParse(data.publishDate!) : null;
     return IgnorePointer(
-      ignoring: comingSoon,
+      ignoring: data.locked,
       child: GestureDetector(
         behavior: HitTestBehavior.opaque,
-        onTap: () => context.navigateTo(EpisodeScreenRoute(episodeId: data.episodeId, autoplay: true)),
+        onTap: () => context.navigateTo(EpisodeScreenRoute(episodeId: data.episodeId, autoplay: data.lessonProgressOverview == null)),
         child: Stack(
           children: [
             if (data.highlighted == true)
@@ -92,13 +98,13 @@ class EpisodeListEpisode extends StatelessWidget {
                   Stack(
                     clipBehavior: Clip.none,
                     children: [
-                      comingSoon
+                      data.locked
                           ? Opacity(
                               opacity: 0.5,
                               child: BorderedImageContainer(width: 128, imageUrl: data.image),
                             )
                           : BorderedImageContainer(width: 128, imageUrl: data.image),
-                      if (comingSoon)
+                      if (data.locked)
                         Positioned.fill(
                           child: Container(
                             decoration: const BoxDecoration(
@@ -134,7 +140,7 @@ class EpisodeListEpisode extends StatelessWidget {
                   const SizedBox(width: 16),
                   Expanded(
                     child: Opacity(
-                      opacity: comingSoon ? 0.5 : 1,
+                      opacity: data.locked ? 0.5 : 1,
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
@@ -168,7 +174,7 @@ class EpisodeListEpisode extends StatelessWidget {
                                     style: BtvTextStyles.caption2.copyWith(color: BtvColors.onTint, height: 1.1),
                                   ),
                                 ),
-                              if (comingSoon && publishDateTime != null)
+                              if (data.locked && publishDateTime != null)
                                 Expanded(
                                   child: Text(
                                     S.of(context).availableFrom(DateFormat(DateFormat.YEAR_MONTH_DAY).format(publishDateTime)),
@@ -181,7 +187,33 @@ class EpisodeListEpisode extends StatelessWidget {
                         ],
                       ),
                     ),
-                  )
+                  ),
+                  if (Env.enableStudy && data.lessonProgressOverview != null && !data.locked)
+                    Opacity(
+                      opacity: data.lessonProgressOverview!.locked ? 0.2 : 1,
+                      child: Container(
+                        padding: const EdgeInsets.only(left: 16),
+                        alignment: Alignment.centerRight,
+                        child: Container(
+                          width: 40,
+                          height: 40,
+                          decoration: const BoxDecoration(
+                            shape: BoxShape.circle,
+                            color: BtvColors.separatorOnLight,
+                          ),
+                          child: Padding(
+                            padding: const EdgeInsets.all(4),
+                            child: LessonProgressTree(
+                              completed: data.lessonProgressOverview!.progress.completed,
+                              total: data.lessonProgressOverview!.progress.total,
+                              outerStrokeWidth: 2,
+                              innerStrokeWidth: 1.7,
+                              arcToTreePadding: 7,
+                            ),
+                          ),
+                        ),
+                      ),
+                    )
                 ],
               ),
             ),

@@ -138,6 +138,7 @@ class _TabsRootScreenState extends ConsumerState<TabsRootScreen> with AutoRouteA
       const HomeScreenWrapperRoute(),
       SearchScreenWrapperRoute(children: [SearchScreenRoute(key: GlobalKey<SearchScreenState>())]),
     ];
+    debugPrint('guestMode ${ref.watch(authStateProvider).guestMode}');
     if (!ref.watch(authStateProvider).guestMode) {
       routes.addAll([
         const LiveScreenRoute(),

@@ -18,6 +18,8 @@ import '../helpers/btv_colors.dart';
 import '../helpers/btv_typography.dart';
 import '../helpers/svg_icons.dart';
 import '../l10n/app_localizations.dart';
+import '../models/analytics/audio_only_clicked.dart';
+import '../providers/analytics.dart';
 import '../providers/chromecast.dart';
 import 'calendar/calendar.dart';
 
@@ -174,6 +176,7 @@ class _LiveScreenState extends ConsumerState<LiveScreen> with AutoRouteAware {
                 setState(() {
                   audioOnly = !value;
                 });
+                ref.read(analyticsProvider).audioOnlyClicked(AudioOnlyClickedEvent(audioOnly: !value));
               },
             ),
           ),

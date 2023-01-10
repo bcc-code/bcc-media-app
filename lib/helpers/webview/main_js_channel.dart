@@ -1,5 +1,8 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:brunstadtv_app/helpers/navigation_utils.dart';
 import 'package:brunstadtv_app/providers/settings.dart';
+import 'package:brunstadtv_app/services/share_image.dart';
+import 'package:brunstadtv_app/services/utils.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
@@ -23,22 +26,30 @@ class MainJsChannel {
   Object? handleMessage(List<dynamic> arguments) {
     if (arguments[0] == 'navigate') {
       return _navigate(arguments);
+    } else if (arguments[0] == 'push') {
+      return _push(arguments);
     } else if (arguments[0] == 'get_access_token') {
       return _getAccessToken(arguments);
     } else if (arguments[0] == 'get_locale') {
       return _getLocale(arguments);
+    } else if (arguments[0] == 'share_image') {
+      return _shareImage(arguments);
     }
     return null;
   }
 
-  bool _navigate(List<dynamic> arguments) {
+  Future _navigate(List<dynamic> arguments) {
     if (arguments[1] is String) {
-      router.navigateNamed(arguments[1]);
-      return true;
-    } else {
-      FirebaseCrashlytics.instance.recordError(Exception('Tried to navigate with invalid argument: ${arguments[1]}'), StackTrace.current);
-      return false;
+      return router.navigateNamedFromRoot(arguments[1]);
     }
+    throw Exception('Tried to navigate with invalid argument: ${arguments[1]}');
+  }
+
+  Future _push(List<dynamic> arguments) async {
+    if (arguments[1] is String) {
+      return router.pushNamed(arguments[1], includePrefixMatches: true);
+    }
+    throw Exception('Tried to push with invalid argument: ${arguments[1]}');
   }
 
   String? _getAccessToken(List<dynamic> arguments) {
@@ -48,5 +59,19 @@ class MainJsChannel {
 
   String _getLocale(List arguments) {
     return ref.read(settingsProvider).appLanguage.languageCode;
+  }
+
+  Future<bool> _shareImage(List<dynamic> arguments) async {
+    if (arguments[1] is String) {
+      final context = router.navigatorKey.currentState?.context;
+      if (context == null) {
+        FirebaseCrashlytics.instance.recordError(Exception('shareImage: context is null'), StackTrace.current);
+        return false;
+      }
+      await downloadAndShareImage(arguments[1], sharePositionOrigin: iPadSharePositionOrigin(context));
+      return true;
+    }
+    FirebaseCrashlytics.instance.recordError(Exception('shareImage: Invalid argument: ${arguments[1]}'), StackTrace.current);
+    return false;
   }
 }

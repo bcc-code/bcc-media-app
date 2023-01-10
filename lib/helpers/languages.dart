@@ -68,6 +68,14 @@ const languages = [
     code: 'tr',
     nativeName: 'Türkçe',
   ),
+  LanguageInfo(
+    code: 'da',
+    nativeName: 'Dansk',
+  ),
+  LanguageInfo(
+    code: 'bg',
+    nativeName: 'български',
+  ),
 ];
 
 String? getLanguageName(String? languageCode) {

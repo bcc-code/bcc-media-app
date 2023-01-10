@@ -9,6 +9,11 @@ import '../helpers/constants.dart';
 
 class AnalyticsNavigatorObserver extends NavigatorObserver {
   bool _routeFilter(Route<dynamic> route) {
+    final routeData = route.settings.asOrNull<AutoRoutePage>()?.routeData;
+    if (routeData == null) return true;
+    if (routeData.meta[RouteMetaConstants.navTabRoute] != null && routeData.meta[RouteMetaConstants.navTabRoute]) {
+      return false;
+    }
     return true;
   }
 
@@ -18,7 +23,8 @@ class AnalyticsNavigatorObserver extends NavigatorObserver {
       return;
     }
     final ref = ProviderScope.containerOf(context);
-    Map<String, Object?> extraProperties = {};
+    Map<String, dynamic> extraProperties = {};
+    extraProperties['meta'] = <String, dynamic>{};
     final routeData = route.settings.asOrNull<AutoRoutePage>()?.routeData;
     if (routeData == null) return;
 
@@ -30,7 +36,11 @@ class AnalyticsNavigatorObserver extends NavigatorObserver {
     }
     var episodeRouteArgs = routeData.args.asOrNull<EpisodeScreenRouteArgs>();
     if (episodeRouteArgs != null) {
-      extraProperties['episodeId'] = episodeRouteArgs.episodeId;
+      extraProperties['meta']['episodeId'] = episodeRouteArgs.episodeId;
+    }
+
+    if (routeData.meta.containsKey(RouteMetaConstants.settingsName)) {
+      extraProperties['meta']['settings'] = routeData.meta[RouteMetaConstants.settingsName];
     }
 
     if (screenName != null) {
@@ -40,6 +50,7 @@ class AnalyticsNavigatorObserver extends NavigatorObserver {
 
   @override
   void didPush(Route<dynamic> route, Route<dynamic>? previousRoute) {
+    debugPrint('didPush ${route.settings.name}');
     super.didPush(route, previousRoute);
     if (_routeFilter(route)) {
       _sendScreenView(route);
@@ -48,6 +59,7 @@ class AnalyticsNavigatorObserver extends NavigatorObserver {
 
   @override
   void didReplace({Route<dynamic>? newRoute, Route<dynamic>? oldRoute}) {
+    debugPrint('didReplace ${newRoute?.settings.name}');
     super.didReplace(newRoute: newRoute, oldRoute: oldRoute);
     if (newRoute != null && _routeFilter(newRoute)) {
       _sendScreenView(newRoute);
@@ -56,6 +68,7 @@ class AnalyticsNavigatorObserver extends NavigatorObserver {
 
   @override
   void didPop(Route<dynamic> route, Route<dynamic>? previousRoute) {
+    debugPrint('didPop ${route.settings.name}');
     super.didPop(route, previousRoute);
     if (previousRoute != null && _routeFilter(previousRoute) && _routeFilter(route)) {
       _sendScreenView(previousRoute);

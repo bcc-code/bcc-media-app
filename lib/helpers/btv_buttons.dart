@@ -5,7 +5,7 @@ import 'btv_colors.dart';
 import 'btv_typography.dart';
 
 class BtvButton extends StatelessWidget {
-  final String? imagePath;
+  final Widget? image;
   final String labelText;
   final VoidCallback onPressed;
   final EdgeInsetsGeometry padding;
@@ -21,7 +21,7 @@ class BtvButton extends StatelessWidget {
     required this.onPressed,
     required this.labelText,
     this.backgroundColor = Colors.transparent,
-    this.imagePath,
+    this.image,
     this.imageDimension = 24,
     this.border,
     this.gap = 6,
@@ -34,7 +34,7 @@ class BtvButton extends StatelessWidget {
     VoidCallback? onPressed,
     String? labelText,
     Color? backgroundColor,
-    String? imagePath,
+    Widget? image,
     double? imageDimension,
     BoxBorder? border,
     double? gap,
@@ -46,7 +46,7 @@ class BtvButton extends StatelessWidget {
       onPressed: onPressed ?? this.onPressed,
       labelText: labelText ?? this.labelText,
       backgroundColor: backgroundColor ?? this.backgroundColor,
-      imagePath: imagePath ?? this.imagePath,
+      image: image ?? this.image,
       imageDimension: imageDimension ?? this.imageDimension,
       border: border ?? this.border,
       gap: gap ?? this.gap,
@@ -59,12 +59,12 @@ class BtvButton extends StatelessWidget {
   factory BtvButton.small({
     required VoidCallback onPressed,
     required String labelText,
-    String? imagePath,
+    Widget? image,
   }) {
     return BtvButton(
       onPressed: onPressed,
       labelText: labelText,
-      imagePath: imagePath,
+      image: image,
       backgroundColor: BtvColors.tint1,
       padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
       border: Border.all(color: BtvColors.onTint.withOpacity(0.2), width: 1),
@@ -76,9 +76,9 @@ class BtvButton extends StatelessWidget {
   factory BtvButton.smallSecondary({
     required VoidCallback onPressed,
     required String labelText,
-    String? imagePath,
+    Widget? image,
   }) {
-    return BtvButton.small(onPressed: onPressed, labelText: labelText, imagePath: imagePath).copyWith(
+    return BtvButton.small(onPressed: onPressed, labelText: labelText, image: image).copyWith(
       backgroundColor: BtvColors.separatorOnLight,
       border: Border.all(color: BtvColors.separatorOnLight, width: 1),
     );
@@ -87,25 +87,25 @@ class BtvButton extends StatelessWidget {
   factory BtvButton.smallGreen({
     required VoidCallback onPressed,
     required String labelText,
-    String? imagePath,
+    Widget? image,
   }) {
-    return BtvButton.small(onPressed: onPressed, labelText: labelText, imagePath: imagePath).copyWith(backgroundColor: BtvColors.tint3);
+    return BtvButton.small(onPressed: onPressed, labelText: labelText, image: image).copyWith(backgroundColor: BtvColors.tint3);
   }
 
   factory BtvButton.smallRed({
     required VoidCallback onPressed,
     required String labelText,
-    String? imagePath,
+    Widget? image,
   }) {
-    return BtvButton.small(onPressed: onPressed, labelText: labelText, imagePath: imagePath).copyWith(backgroundColor: BtvColors.tint2);
+    return BtvButton.small(onPressed: onPressed, labelText: labelText, image: image).copyWith(backgroundColor: BtvColors.tint2);
   }
 
   factory BtvButton.smallDisabled({
     required VoidCallback onPressed,
     required String labelText,
-    String? imagePath,
+    Widget? image,
   }) {
-    return BtvButton.small(onPressed: onPressed, labelText: labelText, imagePath: imagePath).copyWith(
+    return BtvButton.small(onPressed: onPressed, labelText: labelText, image: image).copyWith(
       backgroundColor: BtvColors.background1,
       border: Border.all(color: BtvColors.separatorOnLight, width: 1),
       textStyle: BtvTextStyles.button1.copyWith(color: BtvColors.label4),
@@ -115,12 +115,12 @@ class BtvButton extends StatelessWidget {
   factory BtvButton.medium({
     required VoidCallback onPressed,
     required String labelText,
-    String? imagePath,
+    Widget? image,
   }) {
     return BtvButton(
       onPressed: onPressed,
       labelText: labelText,
-      imagePath: imagePath,
+      image: image,
       backgroundColor: BtvColors.tint1,
       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 8),
       border: Border.all(color: BtvColors.onTint.withOpacity(0.2), width: 1),
@@ -132,25 +132,25 @@ class BtvButton extends StatelessWidget {
   factory BtvButton.mediumGreen({
     required VoidCallback onPressed,
     required String labelText,
-    String? imagePath,
+    Widget? image,
   }) {
-    return BtvButton.medium(onPressed: onPressed, labelText: labelText, imagePath: imagePath).copyWith(backgroundColor: BtvColors.tint3);
+    return BtvButton.medium(onPressed: onPressed, labelText: labelText, image: image).copyWith(backgroundColor: BtvColors.tint3);
   }
 
   factory BtvButton.mediumRed({
     required VoidCallback onPressed,
     required String labelText,
-    String? imagePath,
+    Widget? image,
   }) {
-    return BtvButton.medium(onPressed: onPressed, labelText: labelText, imagePath: imagePath).copyWith(backgroundColor: BtvColors.tint2);
+    return BtvButton.medium(onPressed: onPressed, labelText: labelText, image: image).copyWith(backgroundColor: BtvColors.tint2);
   }
 
   factory BtvButton.mediumSecondary({
     required VoidCallback onPressed,
     required String labelText,
-    String? imagePath,
+    Widget? image,
   }) {
-    return BtvButton.medium(onPressed: onPressed, labelText: labelText, imagePath: imagePath).copyWith(
+    return BtvButton.medium(onPressed: onPressed, labelText: labelText, image: image).copyWith(
       backgroundColor: BtvColors.separatorOnLight,
       border: Border.all(color: BtvColors.separatorOnLight.withOpacity(0.1), width: 1),
     );
@@ -159,9 +159,9 @@ class BtvButton extends StatelessWidget {
   factory BtvButton.mediumDisabled({
     required VoidCallback onPressed,
     required String labelText,
-    String? imagePath,
+    Widget? image,
   }) {
-    return BtvButton.medium(onPressed: onPressed, labelText: labelText, imagePath: imagePath).copyWith(
+    return BtvButton.medium(onPressed: onPressed, labelText: labelText, image: image).copyWith(
       backgroundColor: BtvColors.background1,
       border: Border.all(color: BtvColors.separatorOnLight, width: 1),
       textStyle: BtvTextStyles.button1.copyWith(color: BtvColors.label4),
@@ -171,12 +171,12 @@ class BtvButton extends StatelessWidget {
   factory BtvButton.large({
     required VoidCallback onPressed,
     required String labelText,
-    String? imagePath,
+    Widget? image,
   }) {
     return BtvButton(
       onPressed: onPressed,
       labelText: labelText,
-      imagePath: imagePath,
+      image: image,
       backgroundColor: BtvColors.tint1,
       padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
       border: Border.all(color: BtvColors.onTint.withOpacity(0.2), width: 1),
@@ -189,25 +189,25 @@ class BtvButton extends StatelessWidget {
   factory BtvButton.largeGreen({
     required VoidCallback onPressed,
     required String labelText,
-    String? imagePath,
+    Widget? image,
   }) {
-    return BtvButton.large(onPressed: onPressed, labelText: labelText, imagePath: imagePath).copyWith(backgroundColor: BtvColors.tint3);
+    return BtvButton.large(onPressed: onPressed, labelText: labelText, image: image).copyWith(backgroundColor: BtvColors.tint3);
   }
 
   factory BtvButton.largeRed({
     required VoidCallback onPressed,
     required String labelText,
-    String? imagePath,
+    Widget? image,
   }) {
-    return BtvButton.large(onPressed: onPressed, labelText: labelText, imagePath: imagePath).copyWith(backgroundColor: BtvColors.tint2);
+    return BtvButton.large(onPressed: onPressed, labelText: labelText, image: image).copyWith(backgroundColor: BtvColors.tint2);
   }
 
   factory BtvButton.largeSecondary({
     required VoidCallback onPressed,
     required String labelText,
-    String? imagePath,
+    Widget? image,
   }) {
-    return BtvButton.large(onPressed: onPressed, labelText: labelText, imagePath: imagePath).copyWith(
+    return BtvButton.large(onPressed: onPressed, labelText: labelText, image: image).copyWith(
       backgroundColor: BtvColors.separatorOnLight,
       border: Border.all(color: BtvColors.separatorOnLight.withOpacity(0.1), width: 1),
     );
@@ -216,9 +216,9 @@ class BtvButton extends StatelessWidget {
   factory BtvButton.largeDisabled({
     required VoidCallback onPressed,
     required String labelText,
-    String? imagePath,
+    Widget? image,
   }) {
-    return BtvButton.large(onPressed: onPressed, labelText: labelText, imagePath: imagePath).copyWith(
+    return BtvButton.large(onPressed: onPressed, labelText: labelText, image: image).copyWith(
       backgroundColor: BtvColors.background1,
       border: Border.all(color: BtvColors.separatorOnLight, width: 1),
       textStyle: BtvTextStyles.button1.copyWith(color: BtvColors.label4),
@@ -242,10 +242,10 @@ class BtvButton extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            if (imagePath != null)
+            if (image != null)
               Container(
                 margin: EdgeInsets.only(right: gap),
-                child: Image.asset(imagePath!, width: imageDimension, height: imageDimension),
+                child: SizedBox(width: imageDimension, height: imageDimension, child: image),
               ),
             Text(
               labelText,

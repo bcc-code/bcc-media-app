@@ -36,6 +36,7 @@ class _ContactSupportState extends ConsumerState<ContactSupport> {
   List<ListItem>? deviceInfo;
   String title = '';
   String content = '';
+  Future<bool>? sendSupportEmailFuture;
 
   @override
   void initState() {
@@ -44,7 +45,7 @@ class _ContactSupportState extends ConsumerState<ContactSupport> {
   }
 
   void onTryAgain() {
-    setState(() => isOnInputPage = false);
+    setState(() => isOnInputPage = true);
   }
 
   void onContentChanged(content_) {
@@ -52,7 +53,11 @@ class _ContactSupportState extends ConsumerState<ContactSupport> {
   }
 
   void onSend() {
-    setState(() => isOnInputPage = false);
+    FocusManager.instance.primaryFocus?.unfocus();
+    setState(() {
+      sendSupportEmailFuture = sendSupportEmail();
+      isOnInputPage = false;
+    });
   }
 
   @override
@@ -78,19 +83,23 @@ class _ContactSupportState extends ConsumerState<ContactSupport> {
         body: SafeArea(
           child: Container(
             padding: const EdgeInsets.all(16),
-            child: isOnInputPage
-                ? _InputPage(deviceInfo: deviceInfo, onContentChanged: onContentChanged)
-                : FutureBuilder<bool>(
-                    future: sendSupportEmailFuture,
-                    builder: (BuildContext context, AsyncSnapshot<bool> snapshot) {
-                      if (snapshot.hasData) {
-                        return snapshot.data! ? _SuccessPage() : _FailurePage(onTryAgain: onTryAgain);
-                      } else if (snapshot.hasError) {
-                        return _FailurePage(onTryAgain: onTryAgain);
-                      }
-                      return sendingIndicator;
-                    },
-                  ),
+            child: IndexedStack(
+              index: isOnInputPage ? 0 : 1,
+              children: [
+                _InputPage(deviceInfo: deviceInfo, onContentChanged: onContentChanged),
+                FutureBuilder<bool>(
+                  future: sendSupportEmailFuture,
+                  builder: (BuildContext context, AsyncSnapshot<bool> snapshot) {
+                    if (snapshot.hasData) {
+                      return _SuccessPage();
+                    } else if (snapshot.hasError) {
+                      return _FailurePage(onTryAgain: onTryAgain);
+                    }
+                    return sendingIndicator;
+                  },
+                ),
+              ],
+            ),
           ),
         ),
       ),
@@ -190,12 +199,13 @@ class _ContactSupportState extends ConsumerState<ContactSupport> {
     ''';
   }
 
-  Future<bool> get sendSupportEmailFuture async {
-    print('Title: $title');
-    print('Content: $content');
-    print('HTML: $deviceInfoHtml');
+  Future<bool> sendSupportEmail() async {
     var sendResult = await ref.read(gqlClientProvider).mutate$sendSupportEmail(Options$Mutation$sendSupportEmail(
         variables: Variables$Mutation$sendSupportEmail(title: title, content: '', html: '<p>$content</p>$deviceInfoHtml')));
+    if (sendResult.exception != null) {
+      throw ErrorDescription(sendResult.exception.toString());
+    }
+
     return sendResult.data?['sendSupportEmail'] ?? false;
   }
 }

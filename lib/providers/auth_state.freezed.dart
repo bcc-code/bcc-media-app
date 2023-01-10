@@ -29,8 +29,7 @@ mixin _$AuthState {
 /// @nodoc
 abstract class $AuthStateCopyWith<$Res> {
   factory $AuthStateCopyWith(AuthState value, $Res Function(AuthState) then) =
-      _$AuthStateCopyWithImpl<$Res, AuthState>;
-  @useResult
+      _$AuthStateCopyWithImpl<$Res>;
   $Res call(
       {UserProfile? user,
       String? auth0AccessToken,
@@ -39,16 +38,13 @@ abstract class $AuthStateCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$AuthStateCopyWithImpl<$Res, $Val extends AuthState>
-    implements $AuthStateCopyWith<$Res> {
+class _$AuthStateCopyWithImpl<$Res> implements $AuthStateCopyWith<$Res> {
   _$AuthStateCopyWithImpl(this._value, this._then);
 
+  final AuthState _value;
   // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
+  final $Res Function(AuthState) _then;
 
-  @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? user = freezed,
@@ -57,23 +53,23 @@ class _$AuthStateCopyWithImpl<$Res, $Val extends AuthState>
     Object? idToken = freezed,
   }) {
     return _then(_value.copyWith(
-      user: freezed == user
+      user: user == freezed
           ? _value.user
           : user // ignore: cast_nullable_to_non_nullable
               as UserProfile?,
-      auth0AccessToken: freezed == auth0AccessToken
+      auth0AccessToken: auth0AccessToken == freezed
           ? _value.auth0AccessToken
           : auth0AccessToken // ignore: cast_nullable_to_non_nullable
               as String?,
-      expiresAt: freezed == expiresAt
+      expiresAt: expiresAt == freezed
           ? _value.expiresAt
           : expiresAt // ignore: cast_nullable_to_non_nullable
               as DateTime?,
-      idToken: freezed == idToken
+      idToken: idToken == freezed
           ? _value.idToken
           : idToken // ignore: cast_nullable_to_non_nullable
               as String?,
-    ) as $Val);
+    ));
   }
 }
 
@@ -82,7 +78,6 @@ abstract class _$$_AuthCopyWith<$Res> implements $AuthStateCopyWith<$Res> {
   factory _$$_AuthCopyWith(_$_Auth value, $Res Function(_$_Auth) then) =
       __$$_AuthCopyWithImpl<$Res>;
   @override
-  @useResult
   $Res call(
       {UserProfile? user,
       String? auth0AccessToken,
@@ -91,12 +86,14 @@ abstract class _$$_AuthCopyWith<$Res> implements $AuthStateCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$_AuthCopyWithImpl<$Res> extends _$AuthStateCopyWithImpl<$Res, _$_Auth>
+class __$$_AuthCopyWithImpl<$Res> extends _$AuthStateCopyWithImpl<$Res>
     implements _$$_AuthCopyWith<$Res> {
   __$$_AuthCopyWithImpl(_$_Auth _value, $Res Function(_$_Auth) _then)
-      : super(_value, _then);
+      : super(_value, (v) => _then(v as _$_Auth));
 
-  @pragma('vm:prefer-inline')
+  @override
+  _$_Auth get _value => super._value as _$_Auth;
+
   @override
   $Res call({
     Object? user = freezed,
@@ -105,19 +102,19 @@ class __$$_AuthCopyWithImpl<$Res> extends _$AuthStateCopyWithImpl<$Res, _$_Auth>
     Object? idToken = freezed,
   }) {
     return _then(_$_Auth(
-      user: freezed == user
+      user: user == freezed
           ? _value.user
           : user // ignore: cast_nullable_to_non_nullable
               as UserProfile?,
-      auth0AccessToken: freezed == auth0AccessToken
+      auth0AccessToken: auth0AccessToken == freezed
           ? _value.auth0AccessToken
           : auth0AccessToken // ignore: cast_nullable_to_non_nullable
               as String?,
-      expiresAt: freezed == expiresAt
+      expiresAt: expiresAt == freezed
           ? _value.expiresAt
           : expiresAt // ignore: cast_nullable_to_non_nullable
               as DateTime?,
-      idToken: freezed == idToken
+      idToken: idToken == freezed
           ? _value.idToken
           : idToken // ignore: cast_nullable_to_non_nullable
               as String?,
@@ -151,21 +148,23 @@ class _$_Auth extends _Auth {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_Auth &&
-            (identical(other.user, user) || other.user == user) &&
-            (identical(other.auth0AccessToken, auth0AccessToken) ||
-                other.auth0AccessToken == auth0AccessToken) &&
-            (identical(other.expiresAt, expiresAt) ||
-                other.expiresAt == expiresAt) &&
-            (identical(other.idToken, idToken) || other.idToken == idToken));
+            const DeepCollectionEquality().equals(other.user, user) &&
+            const DeepCollectionEquality()
+                .equals(other.auth0AccessToken, auth0AccessToken) &&
+            const DeepCollectionEquality().equals(other.expiresAt, expiresAt) &&
+            const DeepCollectionEquality().equals(other.idToken, idToken));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, user, auth0AccessToken, expiresAt, idToken);
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(user),
+      const DeepCollectionEquality().hash(auth0AccessToken),
+      const DeepCollectionEquality().hash(expiresAt),
+      const DeepCollectionEquality().hash(idToken));
 
   @JsonKey(ignore: true)
   @override
-  @pragma('vm:prefer-inline')
   _$$_AuthCopyWith<_$_Auth> get copyWith =>
       __$$_AuthCopyWithImpl<_$_Auth>(this, _$identity);
 }

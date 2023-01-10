@@ -4,6 +4,7 @@ import 'package:alice/alice.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:bccm_player/playback_platform_pigeon.g.dart';
 import 'package:bccm_player/playback_service_interface.dart';
+import 'package:brunstadtv_app/graphql/client.dart';
 import 'package:brunstadtv_app/helpers/btv_colors.dart';
 import 'package:brunstadtv_app/helpers/btv_typography.dart';
 import 'package:brunstadtv_app/helpers/constants.dart';
@@ -27,6 +28,7 @@ import 'package:brunstadtv_app/providers/playback_api.dart';
 import 'package:brunstadtv_app/providers/playback_listener.dart';
 import 'package:brunstadtv_app/router/router.gr.dart';
 import 'package:brunstadtv_app/providers/auth_state.dart';
+import 'package:graphql_flutter/graphql_flutter.dart';
 import 'package:intl/intl.dart';
 import 'package:intl/intl_standalone.dart';
 import 'package:on_screen_ruler/on_screen_ruler.dart';
@@ -139,53 +141,53 @@ void $main({required FirebaseOptions? firebaseOptions}) async {
         );
   });
 
-  String? deepLink = deepLinkUri != null ? uriStringWithoutHost(deepLinkUri) : null;
+  String? deepLink;
   List<PageRouteInfo<dynamic>>? initialRoutes;
-  if (deepLink == null) {
-    if (!authLoadingCompleter.isCompleted) {
-      initialRoutes = [const AutoLoginScreeenRoute()];
-    } else if (deepLink == null) {
-      final authenticated = await authLoadingCompleter.future;
-      if (authenticated) {
-        initialRoutes = [const TabsRootScreenRoute()];
-      } else {
-        initialRoutes = [LoginScreenRoute()];
-      }
+  if (!authLoadingCompleter.isCompleted) {
+    initialRoutes = [const AutoLoginScreeenRoute()];
+  } else if (deepLinkUri != null) {
+    deepLink = uriStringWithoutHost(deepLinkUri);
+  } else {
+    final authenticated = await authLoadingCompleter.future;
+    if (authenticated) {
+      initialRoutes = [const TabsRootScreenRoute()];
+    } else {
+      initialRoutes = [LoginScreenRoute()];
     }
   }
-
-  print('initialDeepLink: $deepLink');
-  print('initialRoute: $deepLink');
 
   final app = UncontrolledProviderScope(
     container: providerContainer,
     child: Consumer(
-        builder: (context, ref, w) => MaterialApp.router(
-            localizationsDelegates: S.localizationsDelegates,
-            localeResolutionCallback: (locale, supportedLocales) {
-              return locale?.languageCode == 'no' ? const Locale('nb') : locale;
-            },
-            supportedLocales: S.supportedLocales,
-            locale: ref.watch(settingsProvider).appLanguage,
-            theme: ThemeData(),
-            darkTheme: createTheme(),
-            themeMode: ThemeMode.dark,
-            title: 'BrunstadTV',
-            routerDelegate: appRouter.delegate(
-              initialDeepLink: deepLink,
-              initialRoutes: initialRoutes,
-              navigatorObservers: () => [AnalyticsNavigatorObserver()],
-            ),
-            routeInformationParser: appRouter.defaultRouteParser(includePrefixMatches: true),
-            builder: (BuildContext context, Widget? child) {
-              return MediaQuery(
-                data: MediaQuery.of(context).copyWith(textScaleFactor: 1.0),
-                child: AppRoot(
-                  navigatorKey: navigatorKey,
-                  child: !kDebugMode ? child : OnScreenRulerWidget(gridColor: Colors.white60.withOpacity(0.1), child: child!),
-                ),
-              );
-            })),
+        builder: (context, ref, w) => GraphQLProvider(
+              client: ValueNotifier(ref.watch(gqlClientProvider)),
+              child: MaterialApp.router(
+                  localizationsDelegates: S.localizationsDelegates,
+                  localeResolutionCallback: (locale, supportedLocales) {
+                    return locale?.languageCode == 'no' ? const Locale('nb') : locale;
+                  },
+                  supportedLocales: S.supportedLocales,
+                  locale: ref.watch(settingsProvider).appLanguage,
+                  theme: ThemeData(),
+                  darkTheme: createTheme(),
+                  themeMode: ThemeMode.dark,
+                  title: 'BCC Media',
+                  routerDelegate: appRouter.delegate(
+                    initialDeepLink: deepLink,
+                    initialRoutes: initialRoutes,
+                    navigatorObservers: () => [AnalyticsNavigatorObserver()],
+                  ),
+                  routeInformationParser: appRouter.defaultRouteParser(includePrefixMatches: true),
+                  builder: (BuildContext context, Widget? child) {
+                    return MediaQuery(
+                      data: MediaQuery.of(context).copyWith(textScaleFactor: 1.0),
+                      child: AppRoot(
+                        navigatorKey: navigatorKey,
+                        child: !kDebugMode ? child : OnScreenRulerWidget(gridColor: Colors.white60.withOpacity(0.1), child: child!),
+                      ),
+                    );
+                  }),
+            )),
   );
 
   runApp(!kDebugMode ? app : InteractiveViewer(maxScale: 10, child: app));

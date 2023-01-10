@@ -14,6 +14,7 @@ class BottomSheetSelectResult {
 class BottomSheetSelect extends StatefulWidget {
   final String selectedId;
   final String title;
+  final Widget? description;
   final List<Option> items;
   final bool showSelection;
   final void Function(String id) onSelectionChanged;
@@ -21,6 +22,7 @@ class BottomSheetSelect extends StatefulWidget {
   const BottomSheetSelect({
     Key? key,
     required this.title,
+    this.description,
     required this.items,
     required this.selectedId,
     this.showSelection = true,
@@ -69,6 +71,7 @@ class _BottomSheetSelectState extends State<BottomSheetSelect> {
                   style: BtvTextStyles.title3,
                 ),
               ),
+              if (widget.description != null) widget.description!,
               Container(
                 margin: const EdgeInsets.only(bottom: 16),
                 child: OptionList(

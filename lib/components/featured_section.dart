@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:brunstadtv_app/components/section_item_click_wrapper.dart';
 import 'package:flutter/material.dart';
 
@@ -24,7 +26,7 @@ class FeaturedSection extends StatelessWidget {
   Widget build(BuildContext context) {
     return LayoutBuilder(builder: (context, constraints) {
       const marginX = 2.0;
-      final viewportFraction = (constraints.maxWidth - (32 - 2 * marginX)) / constraints.maxWidth;
+      final viewportFraction = (constraints.maxWidth - (32 - 2 * marginX)) / max(1, constraints.maxWidth);
       final sectionItems = data.items.items;
       return Padding(
         padding: const EdgeInsets.only(top: 16),
@@ -108,12 +110,12 @@ class _FeaturedItem extends StatelessWidget {
                 ),
                 false
                     ? BtvButton.smallRed(
-                        imagePath: 'assets/icons/Play.png',
+                        image: Image.asset('assets/icons/Play.png'),
                         labelText: S.of(context).liveNow,
                         onPressed: () {},
                       )
                     : BtvButton.smallSecondary(
-                        imagePath: 'assets/icons/Play.png',
+                        image: Image.asset('assets/icons/Play.png'),
                         labelText: S.of(context).watchNow,
                         onPressed: () {
                           handleSectionItemClick(context, sectionItem.item);
@@ -161,7 +163,7 @@ class _GradientImage extends StatelessWidget {
           }
           final imageHeight = (constraints.maxHeight * MediaQuery.of(context).devicePixelRatio).round();
           final imageWidth = (constraints.maxWidth * MediaQuery.of(context).devicePixelRatio).round();
-          final imageUri = image == null ? null : getImageUri(image!, width: imageWidth, height: imageHeight);
+          final imageUri = image == null ? null : getImageUri(image!, width: imageWidth, height: imageHeight, cropMode: ImageCropMode.center);
           return ClipRRect(
             borderRadius: BorderRadius.circular(6),
             child: SizedBox(

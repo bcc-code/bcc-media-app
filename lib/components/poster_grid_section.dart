@@ -29,9 +29,12 @@ class PosterGridSection extends StatelessWidget {
 
   Widget getItemWidget(Fragment$Section$$PosterGridSection$items$items sectionItem) {
     if (sectionItem.item is Fragment$Section$$PosterGridSection$items$items$item$$Episode) {
-      return _GridEpisodeItem(sectionItem);
+      return _GridEpisodeItem(
+        sectionItem: sectionItem,
+        showSecondaryTitle: data.metadata?.secondaryTitles ?? true,
+      );
     } else if (sectionItem.item is Fragment$Section$$PosterGridSection$items$items$item$$Show) {
-      return _GridShowItem(sectionItem);
+      return _GridShowItem(sectionItem: sectionItem);
     }
     return const SizedBox();
   }
@@ -78,12 +81,14 @@ class PosterGridSection extends StatelessWidget {
 class _GridEpisodeItem extends StatelessWidget {
   final Fragment$Section$$PosterGridSection$items$items sectionItem;
   final Fragment$Section$$PosterGridSection$items$items$item$$Episode episode;
+  final bool showSecondaryTitle;
 
   bool get watched => episode.progress != null && episode.progress! > episode.duration * 0.9;
   bool isLive = false;
   bool isNewItem = false;
 
-  _GridEpisodeItem(this.sectionItem) : episode = sectionItem.item as Fragment$Section$$PosterGridSection$items$items$item$$Episode;
+  _GridEpisodeItem({required this.sectionItem, required this.showSecondaryTitle})
+      : episode = sectionItem.item as Fragment$Section$$PosterGridSection$items$items$item$$Episode;
 
   @override
   Widget build(BuildContext context) {
@@ -91,27 +96,28 @@ class _GridEpisodeItem extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         sectionItemImage(context),
-        Row(
-          children: [
-            if (episode.season != null)
-              Flexible(
-                child: Container(
-                  margin: const EdgeInsets.only(right: 4),
-                  child: Text(
-                    episode.season!.$show.title.replaceAll(' ', '\u{000A0}'),
-                    maxLines: 1,
-                    overflow: TextOverflow.ellipsis,
-                    style: BtvTextStyles.caption2.copyWith(color: BtvColors.tint1),
+        if (showSecondaryTitle)
+          Row(
+            children: [
+              if (episode.season != null)
+                Flexible(
+                  child: Container(
+                    margin: const EdgeInsets.only(right: 4),
+                    child: Text(
+                      episode.season!.$show.title.replaceAll(' ', '\u{000A0}'),
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                      style: BtvTextStyles.caption2.copyWith(color: BtvColors.tint1),
+                    ),
                   ),
                 ),
-              ),
-            if (episode.season != null)
-              Text(
-                '${S.of(context).seasonLetter}${episode.season!.number}:${S.of(context).episodeLetter}${episode.number}',
-                style: BtvTextStyles.caption2,
-              ),
-          ],
-        ),
+              if (episode.season != null)
+                Text(
+                  '${S.of(context).seasonLetter}${episode.season!.number}:${S.of(context).episodeLetter}${episode.number}',
+                  style: BtvTextStyles.caption2,
+                ),
+            ],
+          ),
         Container(
           margin: const EdgeInsets.only(bottom: 2),
           child: Text(
@@ -134,13 +140,13 @@ class _GridEpisodeItem extends StatelessWidget {
         child: Stack(
           clipBehavior: Clip.none,
           children: [
-            isComingSoon(episode.publishDate)
+            isUnavailable(episode.publishDate)
                 ? Opacity(
                     opacity: 0.5,
                     child: BorderedImageContainer(imageUrl: sectionItem.image),
                   )
                 : BorderedImageContainer(imageUrl: sectionItem.image),
-            if (isComingSoon(episode.publishDate))
+            if (isUnavailable(episode.publishDate))
               Container(
                 width: double.infinity,
                 height: double.infinity,
@@ -158,7 +164,7 @@ class _GridEpisodeItem extends StatelessWidget {
                   child: WatchProgressIndicator(totalDuration: episode.duration, watchedDuration: episode.progress!),
                 ),
               )
-            else if (!isComingSoon(episode.publishDate))
+            else if (!isUnavailable(episode.publishDate))
               Align(
                 alignment: Alignment.bottomCenter,
                 child: Container(
@@ -193,7 +199,7 @@ class _GridShowItem extends StatelessWidget {
   // TODO: Remove this
   bool hasNewEpisodes = false;
 
-  _GridShowItem(this.sectionItem) : show = sectionItem.item as Fragment$Section$$PosterGridSection$items$items$item$$Show;
+  _GridShowItem({required this.sectionItem}) : show = sectionItem.item as Fragment$Section$$PosterGridSection$items$items$item$$Show;
 
   @override
   Widget build(BuildContext context) {

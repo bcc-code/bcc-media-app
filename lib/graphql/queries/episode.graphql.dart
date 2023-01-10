@@ -14,6 +14,7 @@ class Fragment$SeasonListEpisode {
     required this.publishDate,
     required this.ageRating,
     required this.duration,
+    required this.locked,
     required this.$__typename,
   });
 
@@ -25,6 +26,7 @@ class Fragment$SeasonListEpisode {
     final l$publishDate = json['publishDate'];
     final l$ageRating = json['ageRating'];
     final l$duration = json['duration'];
+    final l$locked = json['locked'];
     final l$$__typename = json['__typename'];
     return Fragment$SeasonListEpisode(
       id: (l$id as String),
@@ -34,6 +36,7 @@ class Fragment$SeasonListEpisode {
       publishDate: (l$publishDate as String),
       ageRating: (l$ageRating as String),
       duration: (l$duration as int),
+      locked: (l$locked as bool),
       $__typename: (l$$__typename as String),
     );
   }
@@ -51,6 +54,8 @@ class Fragment$SeasonListEpisode {
   final String ageRating;
 
   final int duration;
+
+  final bool locked;
 
   final String $__typename;
 
@@ -70,6 +75,8 @@ class Fragment$SeasonListEpisode {
     _resultData['ageRating'] = l$ageRating;
     final l$duration = duration;
     _resultData['duration'] = l$duration;
+    final l$locked = locked;
+    _resultData['locked'] = l$locked;
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -84,6 +91,7 @@ class Fragment$SeasonListEpisode {
     final l$publishDate = publishDate;
     final l$ageRating = ageRating;
     final l$duration = duration;
+    final l$locked = locked;
     final l$$__typename = $__typename;
     return Object.hashAll([
       l$id,
@@ -93,6 +101,7 @@ class Fragment$SeasonListEpisode {
       l$publishDate,
       l$ageRating,
       l$duration,
+      l$locked,
       l$$__typename,
     ]);
   }
@@ -141,6 +150,11 @@ class Fragment$SeasonListEpisode {
     if (l$duration != lOther$duration) {
       return false;
     }
+    final l$locked = locked;
+    final lOther$locked = other.locked;
+    if (l$locked != lOther$locked) {
+      return false;
+    }
     final l$$__typename = $__typename;
     final lOther$$__typename = other.$__typename;
     if (l$$__typename != lOther$$__typename) {
@@ -176,6 +190,7 @@ abstract class CopyWith$Fragment$SeasonListEpisode<TRes> {
     String? publishDate,
     String? ageRating,
     int? duration,
+    bool? locked,
     String? $__typename,
   });
 }
@@ -201,6 +216,7 @@ class _CopyWithImpl$Fragment$SeasonListEpisode<TRes>
     Object? publishDate = _undefined,
     Object? ageRating = _undefined,
     Object? duration = _undefined,
+    Object? locked = _undefined,
     Object? $__typename = _undefined,
   }) =>
       _then(Fragment$SeasonListEpisode(
@@ -219,6 +235,9 @@ class _CopyWithImpl$Fragment$SeasonListEpisode<TRes>
         duration: duration == _undefined || duration == null
             ? _instance.duration
             : (duration as int),
+        locked: locked == _undefined || locked == null
+            ? _instance.locked
+            : (locked as bool),
         $__typename: $__typename == _undefined || $__typename == null
             ? _instance.$__typename
             : ($__typename as String),
@@ -239,6 +258,7 @@ class _CopyWithStubImpl$Fragment$SeasonListEpisode<TRes>
     String? publishDate,
     String? ageRating,
     int? duration,
+    bool? locked,
     String? $__typename,
   }) =>
       _res;
@@ -297,6 +317,13 @@ const fragmentDefinitionSeasonListEpisode = FragmentDefinitionNode(
     ),
     FieldNode(
       name: NameNode(value: 'duration'),
+      alias: null,
+      arguments: [],
+      directives: [],
+      selectionSet: null,
+    ),
+    FieldNode(
+      name: NameNode(value: 'locked'),
       alias: null,
       arguments: [],
       directives: [],
@@ -1322,6 +1349,13 @@ const documentNodeQueryFetchEpisode = DocumentNode(definitions: [
             selectionSet: null,
           ),
           FieldNode(
+            name: NameNode(value: 'shareRestriction'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
             name: NameNode(value: 'ageRating'),
             alias: null,
             arguments: [],
@@ -1747,6 +1781,7 @@ class Query$FetchEpisode$episode {
     this.image,
     required this.duration,
     this.progress,
+    required this.shareRestriction,
     required this.ageRating,
     this.relatedItems,
     required this.streams,
@@ -1764,6 +1799,7 @@ class Query$FetchEpisode$episode {
     final l$image = json['image'];
     final l$duration = json['duration'];
     final l$progress = json['progress'];
+    final l$shareRestriction = json['shareRestriction'];
     final l$ageRating = json['ageRating'];
     final l$relatedItems = json['relatedItems'];
     final l$streams = json['streams'];
@@ -1779,6 +1815,8 @@ class Query$FetchEpisode$episode {
       image: (l$image as String?),
       duration: (l$duration as int),
       progress: (l$progress as int?),
+      shareRestriction:
+          fromJson$Enum$ShareRestriction((l$shareRestriction as String)),
       ageRating: (l$ageRating as String),
       relatedItems: l$relatedItems == null
           ? null
@@ -1814,6 +1852,8 @@ class Query$FetchEpisode$episode {
 
   final int? progress;
 
+  final Enum$ShareRestriction shareRestriction;
+
   final String ageRating;
 
   final Query$FetchEpisode$episode$relatedItems? relatedItems;
@@ -1844,6 +1884,9 @@ class Query$FetchEpisode$episode {
     _resultData['duration'] = l$duration;
     final l$progress = progress;
     _resultData['progress'] = l$progress;
+    final l$shareRestriction = shareRestriction;
+    _resultData['shareRestriction'] =
+        toJson$Enum$ShareRestriction(l$shareRestriction);
     final l$ageRating = ageRating;
     _resultData['ageRating'] = l$ageRating;
     final l$relatedItems = relatedItems;
@@ -1869,6 +1912,7 @@ class Query$FetchEpisode$episode {
     final l$image = image;
     final l$duration = duration;
     final l$progress = progress;
+    final l$shareRestriction = shareRestriction;
     final l$ageRating = ageRating;
     final l$relatedItems = relatedItems;
     final l$streams = streams;
@@ -1884,6 +1928,7 @@ class Query$FetchEpisode$episode {
       l$image,
       l$duration,
       l$progress,
+      l$shareRestriction,
       l$ageRating,
       l$relatedItems,
       Object.hashAll(l$streams.map((v) => v)),
@@ -1940,6 +1985,11 @@ class Query$FetchEpisode$episode {
     final l$progress = progress;
     final lOther$progress = other.progress;
     if (l$progress != lOther$progress) {
+      return false;
+    }
+    final l$shareRestriction = shareRestriction;
+    final lOther$shareRestriction = other.shareRestriction;
+    if (l$shareRestriction != lOther$shareRestriction) {
       return false;
     }
     final l$ageRating = ageRating;
@@ -2010,6 +2060,7 @@ abstract class CopyWith$Query$FetchEpisode$episode<TRes> {
     String? image,
     int? duration,
     int? progress,
+    Enum$ShareRestriction? shareRestriction,
     String? ageRating,
     Query$FetchEpisode$episode$relatedItems? relatedItems,
     List<Query$FetchEpisode$episode$streams>? streams,
@@ -2050,6 +2101,7 @@ class _CopyWithImpl$Query$FetchEpisode$episode<TRes>
     Object? image = _undefined,
     Object? duration = _undefined,
     Object? progress = _undefined,
+    Object? shareRestriction = _undefined,
     Object? ageRating = _undefined,
     Object? relatedItems = _undefined,
     Object? streams = _undefined,
@@ -2076,6 +2128,10 @@ class _CopyWithImpl$Query$FetchEpisode$episode<TRes>
             : (duration as int),
         progress:
             progress == _undefined ? _instance.progress : (progress as int?),
+        shareRestriction:
+            shareRestriction == _undefined || shareRestriction == null
+                ? _instance.shareRestriction
+                : (shareRestriction as Enum$ShareRestriction),
         ageRating: ageRating == _undefined || ageRating == null
             ? _instance.ageRating
             : (ageRating as String),
@@ -2146,6 +2202,7 @@ class _CopyWithStubImpl$Query$FetchEpisode$episode<TRes>
     String? image,
     int? duration,
     int? progress,
+    Enum$ShareRestriction? shareRestriction,
     String? ageRating,
     Query$FetchEpisode$episode$relatedItems? relatedItems,
     List<Query$FetchEpisode$episode$streams>? streams,

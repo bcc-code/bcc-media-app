@@ -62,7 +62,7 @@ class SectionItemClickWrapper extends ConsumerWidget {
           },
           onTap: () {
             var episode = item.asOrNull<Fragment$ItemSectionItem$item$$Episode>();
-            if (isComingSoon(episode?.publishDate)) {
+            if (isUnavailable(episode?.publishDate)) {
               return;
             }
             handleSectionItemClick(context, item);

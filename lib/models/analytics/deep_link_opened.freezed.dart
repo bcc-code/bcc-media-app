@@ -34,42 +34,39 @@ mixin _$DeepLinkOpenedEvent {
 abstract class $DeepLinkOpenedEventCopyWith<$Res> {
   factory $DeepLinkOpenedEventCopyWith(
           DeepLinkOpenedEvent value, $Res Function(DeepLinkOpenedEvent) then) =
-      _$DeepLinkOpenedEventCopyWithImpl<$Res, DeepLinkOpenedEvent>;
-  @useResult
+      _$DeepLinkOpenedEventCopyWithImpl<$Res>;
   $Res call({String url, String source, String campaignId});
 }
 
 /// @nodoc
-class _$DeepLinkOpenedEventCopyWithImpl<$Res, $Val extends DeepLinkOpenedEvent>
+class _$DeepLinkOpenedEventCopyWithImpl<$Res>
     implements $DeepLinkOpenedEventCopyWith<$Res> {
   _$DeepLinkOpenedEventCopyWithImpl(this._value, this._then);
 
+  final DeepLinkOpenedEvent _value;
   // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
+  final $Res Function(DeepLinkOpenedEvent) _then;
 
-  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? url = null,
-    Object? source = null,
-    Object? campaignId = null,
+    Object? url = freezed,
+    Object? source = freezed,
+    Object? campaignId = freezed,
   }) {
     return _then(_value.copyWith(
-      url: null == url
+      url: url == freezed
           ? _value.url
           : url // ignore: cast_nullable_to_non_nullable
               as String,
-      source: null == source
+      source: source == freezed
           ? _value.source
           : source // ignore: cast_nullable_to_non_nullable
               as String,
-      campaignId: null == campaignId
+      campaignId: campaignId == freezed
           ? _value.campaignId
           : campaignId // ignore: cast_nullable_to_non_nullable
               as String,
-    ) as $Val);
+    ));
   }
 }
 
@@ -80,35 +77,36 @@ abstract class _$$_DeepLinkOpenedEventCopyWith<$Res>
           $Res Function(_$_DeepLinkOpenedEvent) then) =
       __$$_DeepLinkOpenedEventCopyWithImpl<$Res>;
   @override
-  @useResult
   $Res call({String url, String source, String campaignId});
 }
 
 /// @nodoc
 class __$$_DeepLinkOpenedEventCopyWithImpl<$Res>
-    extends _$DeepLinkOpenedEventCopyWithImpl<$Res, _$_DeepLinkOpenedEvent>
+    extends _$DeepLinkOpenedEventCopyWithImpl<$Res>
     implements _$$_DeepLinkOpenedEventCopyWith<$Res> {
   __$$_DeepLinkOpenedEventCopyWithImpl(_$_DeepLinkOpenedEvent _value,
       $Res Function(_$_DeepLinkOpenedEvent) _then)
-      : super(_value, _then);
+      : super(_value, (v) => _then(v as _$_DeepLinkOpenedEvent));
 
-  @pragma('vm:prefer-inline')
+  @override
+  _$_DeepLinkOpenedEvent get _value => super._value as _$_DeepLinkOpenedEvent;
+
   @override
   $Res call({
-    Object? url = null,
-    Object? source = null,
-    Object? campaignId = null,
+    Object? url = freezed,
+    Object? source = freezed,
+    Object? campaignId = freezed,
   }) {
     return _then(_$_DeepLinkOpenedEvent(
-      url: null == url
+      url: url == freezed
           ? _value.url
           : url // ignore: cast_nullable_to_non_nullable
               as String,
-      source: null == source
+      source: source == freezed
           ? _value.source
           : source // ignore: cast_nullable_to_non_nullable
               as String,
-      campaignId: null == campaignId
+      campaignId: campaignId == freezed
           ? _value.campaignId
           : campaignId // ignore: cast_nullable_to_non_nullable
               as String,
@@ -142,19 +140,22 @@ class _$_DeepLinkOpenedEvent implements _DeepLinkOpenedEvent {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_DeepLinkOpenedEvent &&
-            (identical(other.url, url) || other.url == url) &&
-            (identical(other.source, source) || other.source == source) &&
-            (identical(other.campaignId, campaignId) ||
-                other.campaignId == campaignId));
+            const DeepCollectionEquality().equals(other.url, url) &&
+            const DeepCollectionEquality().equals(other.source, source) &&
+            const DeepCollectionEquality()
+                .equals(other.campaignId, campaignId));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, url, source, campaignId);
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(url),
+      const DeepCollectionEquality().hash(source),
+      const DeepCollectionEquality().hash(campaignId));
 
   @JsonKey(ignore: true)
   @override
-  @pragma('vm:prefer-inline')
   _$$_DeepLinkOpenedEventCopyWith<_$_DeepLinkOpenedEvent> get copyWith =>
       __$$_DeepLinkOpenedEventCopyWithImpl<_$_DeepLinkOpenedEvent>(
           this, _$identity);

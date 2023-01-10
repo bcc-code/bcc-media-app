@@ -1,28 +1,28 @@
-import 'dart:async';
-
+import 'package:auto_route/auto_route.dart';
+import 'package:brunstadtv_app/components/achievement_section.dart';
 import 'package:brunstadtv_app/components/error_generic.dart';
 import 'package:brunstadtv_app/components/loading_generic.dart';
-import 'package:brunstadtv_app/components/loading_indicator.dart';
+import 'package:brunstadtv_app/components/see_more.dart';
 import 'package:brunstadtv_app/graphql/client.dart';
 import 'package:brunstadtv_app/graphql/queries/sections.graphql.dart';
 import 'package:brunstadtv_app/helpers/sections.dart';
 import 'package:brunstadtv_app/models/analytics/sections.dart';
+import 'package:brunstadtv_app/router/router.gr.dart';
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../graphql/queries/page.graphql.dart';
-import '../helpers/btv_colors.dart';
-import '../helpers/btv_typography.dart';
-import '../l10n/app_localizations.dart';
-import '../helpers/btv_buttons.dart';
 import '../helpers/utils.dart';
 import '../models/events/scroll_to_top.dart';
 import '../models/pagination_status.dart';
 import '../providers/inherited_data.dart';
+import 'achievement_list.dart';
+import 'card_section.dart';
 import 'featured_section.dart';
 import 'default_grid_section.dart';
 import 'message_section.dart';
+import 'page_details_section.dart';
 import 'poster_grid_section.dart';
 import 'icon_section.dart';
 import 'label_section.dart';
@@ -78,19 +78,19 @@ class _BccmPageState extends ConsumerState<BccmPage> {
     final extraItems = paginationMap[s.id]?.items;
     final iconSection = s.asOrNull<Fragment$Section$$IconSection>();
     if (iconSection != null) {
-      return PageSection(title: iconSection.title, child: IconSection(iconSection));
+      return PageSection.fromFragment(iconSection, child: IconSection(iconSection));
     }
     final labelSection = s.asOrNull<Fragment$Section$$LabelSection>();
     if (labelSection != null) {
-      return PageSection(title: labelSection.title, child: LabelSection(labelSection));
+      return PageSection.fromFragment(labelSection, child: LabelSection(labelSection));
     }
     final defaultSection = s.asOrNull<Fragment$Section$$DefaultSection>();
     if (defaultSection != null) {
-      return PageSection(title: defaultSection.title, child: DefaultSection(defaultSection));
+      return PageSection.fromFragment(defaultSection, child: DefaultSection(defaultSection));
     }
     final posterSection = s.asOrNull<Fragment$Section$$PosterSection>();
     if (posterSection != null) {
-      return PageSection(title: posterSection.title, child: PosterSection(posterSection));
+      return PageSection.fromFragment(posterSection, child: PosterSection(posterSection));
     }
     var defaultGridSection = s.asOrNull<Fragment$Section$$DefaultGridSection>();
     if (defaultGridSection != null) {
@@ -100,7 +100,7 @@ class _BccmPageState extends ConsumerState<BccmPage> {
           ...(extraItems?.whereType<Fragment$Section$$DefaultGridSection$items$items>().toList() ?? [])
         ]),
       );
-      return PageSection(title: defaultGridSection.title, child: DefaultGridSection(defaultGridSection));
+      return PageSection.fromFragment(defaultGridSection, child: DefaultGridSection(defaultGridSection));
     }
     var posterGridSection = s.asOrNull<Fragment$Section$$PosterGridSection>();
     if (posterGridSection != null) {
@@ -108,30 +108,50 @@ class _BccmPageState extends ConsumerState<BccmPage> {
         items: posterGridSection.items.copyWith(
             items: [...posterGridSection.items.items, ...(extraItems?.whereType<Fragment$Section$$PosterGridSection$items$items>().toList() ?? [])]),
       );
-      return PageSection(title: posterGridSection.title, child: PosterGridSection(posterGridSection));
+      return PageSection.fromFragment(posterGridSection, child: PosterGridSection(posterGridSection));
     }
     final featuredSection = s.asOrNull<Fragment$Section$$FeaturedSection>();
     if (featuredSection != null) {
-      return PageSection(title: featuredSection.title, child: FeaturedSection(featuredSection));
+      return PageSection.fromFragment(featuredSection, child: FeaturedSection(featuredSection));
     }
     final iconGridSection = s.asOrNull<Fragment$Section$$IconGridSection>();
     if (iconGridSection != null) {
-      return PageSection(title: iconGridSection.title, child: IconGridSection(iconGridSection));
+      return PageSection.fromFragment(iconGridSection, child: IconGridSection(iconGridSection));
     }
     var listSection = s.asOrNull<Fragment$Section$$ListSection>();
     if (listSection != null) {
       listSection = listSection.copyWith(
           items: listSection.items
               .copyWith(items: [...listSection.items.items, ...(extraItems?.whereType<Fragment$Section$$ListSection$items$items>().toList() ?? [])]));
-      return PageSection(title: listSection.title, child: ListSection(listSection));
+      return PageSection.fromFragment(listSection, child: ListSection(listSection));
     }
     final webSection = s.asOrNull<Fragment$Section$$WebSection>();
     if (webSection != null) {
-      return PageSection(title: webSection.title, child: WebSection(webSection));
+      return PageSection.fromFragment(webSection, child: WebSection(webSection));
     }
     final messageSection = s.asOrNull<Fragment$Section$$MessageSection>();
     if (messageSection != null) {
-      return Padding(padding: const EdgeInsets.only(top: 4), child: PageSection(title: messageSection.title, child: MessageSection(messageSection)));
+      return Padding(padding: const EdgeInsets.only(top: 4), child: PageSection.fromFragment(messageSection, child: MessageSection(messageSection)));
+    }
+    final cardSection = s.asOrNull<Fragment$Section$$CardSection>();
+    if (cardSection != null && cardSection.items.items.isNotEmpty) {
+      return Padding(padding: const EdgeInsets.only(top: 4), child: PageSection.fromFragment(cardSection, child: CardSection(cardSection)));
+    }
+    final pageDetailsSection = s.asOrNull<Fragment$Section$$PageDetailsSection>();
+    if (pageDetailsSection != null) {
+      return Padding(padding: const EdgeInsets.only(top: 4), child: PageDetailsSection(pageDetailsSection));
+    }
+    final achievementsSection = s.asOrNull<Fragment$Section$$AchievementSection>();
+    if (achievementsSection != null) {
+      return Padding(
+        padding: const EdgeInsets.only(top: 4),
+        child: PageSection(
+          title: achievementsSection.title,
+          description: achievementsSection.description,
+          rightSlot: SeeMoreSlot(onTap: () => context.router.navigate(const AchievementsScreenRoute())),
+          child: AchievementSection(achievementsSection),
+        ),
+      );
     }
     return null;
   }

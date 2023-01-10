@@ -28,38 +28,34 @@ mixin _$WatchProgressUpdatedEvent {
 abstract class $WatchProgressUpdatedEventCopyWith<$Res> {
   factory $WatchProgressUpdatedEventCopyWith(WatchProgressUpdatedEvent value,
           $Res Function(WatchProgressUpdatedEvent) then) =
-      _$WatchProgressUpdatedEventCopyWithImpl<$Res, WatchProgressUpdatedEvent>;
-  @useResult
+      _$WatchProgressUpdatedEventCopyWithImpl<$Res>;
   $Res call({String episodeId, int? progress});
 }
 
 /// @nodoc
-class _$WatchProgressUpdatedEventCopyWithImpl<$Res,
-        $Val extends WatchProgressUpdatedEvent>
+class _$WatchProgressUpdatedEventCopyWithImpl<$Res>
     implements $WatchProgressUpdatedEventCopyWith<$Res> {
   _$WatchProgressUpdatedEventCopyWithImpl(this._value, this._then);
 
+  final WatchProgressUpdatedEvent _value;
   // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
+  final $Res Function(WatchProgressUpdatedEvent) _then;
 
-  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? episodeId = null,
+    Object? episodeId = freezed,
     Object? progress = freezed,
   }) {
     return _then(_value.copyWith(
-      episodeId: null == episodeId
+      episodeId: episodeId == freezed
           ? _value.episodeId
           : episodeId // ignore: cast_nullable_to_non_nullable
               as String,
-      progress: freezed == progress
+      progress: progress == freezed
           ? _value.progress
           : progress // ignore: cast_nullable_to_non_nullable
               as int?,
-    ) as $Val);
+    ));
   }
 }
 
@@ -71,32 +67,33 @@ abstract class _$$_WatchProgressUpdatedEventCopyWith<$Res>
           $Res Function(_$_WatchProgressUpdatedEvent) then) =
       __$$_WatchProgressUpdatedEventCopyWithImpl<$Res>;
   @override
-  @useResult
   $Res call({String episodeId, int? progress});
 }
 
 /// @nodoc
 class __$$_WatchProgressUpdatedEventCopyWithImpl<$Res>
-    extends _$WatchProgressUpdatedEventCopyWithImpl<$Res,
-        _$_WatchProgressUpdatedEvent>
+    extends _$WatchProgressUpdatedEventCopyWithImpl<$Res>
     implements _$$_WatchProgressUpdatedEventCopyWith<$Res> {
   __$$_WatchProgressUpdatedEventCopyWithImpl(
       _$_WatchProgressUpdatedEvent _value,
       $Res Function(_$_WatchProgressUpdatedEvent) _then)
-      : super(_value, _then);
+      : super(_value, (v) => _then(v as _$_WatchProgressUpdatedEvent));
 
-  @pragma('vm:prefer-inline')
+  @override
+  _$_WatchProgressUpdatedEvent get _value =>
+      super._value as _$_WatchProgressUpdatedEvent;
+
   @override
   $Res call({
-    Object? episodeId = null,
+    Object? episodeId = freezed,
     Object? progress = freezed,
   }) {
     return _then(_$_WatchProgressUpdatedEvent(
-      episodeId: null == episodeId
+      episodeId: episodeId == freezed
           ? _value.episodeId
           : episodeId // ignore: cast_nullable_to_non_nullable
               as String,
-      progress: freezed == progress
+      progress: progress == freezed
           ? _value.progress
           : progress // ignore: cast_nullable_to_non_nullable
               as int?,
@@ -125,18 +122,18 @@ class _$_WatchProgressUpdatedEvent implements _WatchProgressUpdatedEvent {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_WatchProgressUpdatedEvent &&
-            (identical(other.episodeId, episodeId) ||
-                other.episodeId == episodeId) &&
-            (identical(other.progress, progress) ||
-                other.progress == progress));
+            const DeepCollectionEquality().equals(other.episodeId, episodeId) &&
+            const DeepCollectionEquality().equals(other.progress, progress));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, episodeId, progress);
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(episodeId),
+      const DeepCollectionEquality().hash(progress));
 
   @JsonKey(ignore: true)
   @override
-  @pragma('vm:prefer-inline')
   _$$_WatchProgressUpdatedEventCopyWith<_$_WatchProgressUpdatedEvent>
       get copyWith => __$$_WatchProgressUpdatedEventCopyWithImpl<
           _$_WatchProgressUpdatedEvent>(this, _$identity);

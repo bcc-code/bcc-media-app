@@ -4,6 +4,8 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 
 class CustomTransitionsBuilders {
+  static double? dragDistance;
+
   const CustomTransitionsBuilders._();
   static Widget slideUp(BuildContext context, Animation<double> animation, Animation<double> secondaryAnimation, Widget child) {
     var curvedAnimation = CurvedAnimation(parent: animation, curve: Curves.easeOutExpo);
@@ -29,7 +31,30 @@ class CustomTransitionsBuilders {
         begin: const Offset(1.0, 0.0),
         end: Offset.zero,
       ).animate(curvedAnimation),
-      child: child,
+      child: Listener(
+        onPointerDown: (event) {
+          if (event.position.dx <= 35) {
+            dragDistance = 0;
+          }
+        },
+        onPointerMove: (event) {
+          if (dragDistance != null && event.delta.dx > -1) {
+            dragDistance = dragDistance! + event.delta.dx;
+          } else {
+            dragDistance = null;
+          }
+        },
+        onPointerUp: (event) {
+          if (dragDistance != null && dragDistance! >= 100) {
+            Navigator.maybePop(context);
+          }
+          dragDistance = null;
+        },
+        onPointerCancel: (event) {
+          dragDistance = null;
+        },
+        child: child,
+      ),
     );
   }
 

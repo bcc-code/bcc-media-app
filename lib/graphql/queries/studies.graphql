@@ -1,5 +1,6 @@
 fragment LessonProgressOverview on Lesson {
   id
+  locked
   progress {
     total
     completed
@@ -7,9 +8,27 @@ fragment LessonProgressOverview on Lesson {
 }
 
 fragment EpisodeLessonProgressOverview on Episode {
+  id
   lessons {
     items {
       ...LessonProgressOverview
+    }
+  }
+}
+
+query GetStudyTopicLessonStatuses($id: ID!, $first: Int!) {
+  studyTopic(id: $id) {
+    lessons(first: $first) {
+      items {
+        id
+        completed
+        episodes(first: 1) {
+          items {
+            id
+            locked
+          }
+        }
+      }
     }
   }
 }
@@ -18,11 +37,28 @@ query GetEpisodeLessonProgress($id: ID!) {
   episode(id: $id) {
     ...EpisodeLessonProgressOverview
     season {
+      id
       episodes {
         items {
           ...EpisodeLessonProgressOverview
         }
       }
     }
+  }
+}
+query GetSeasonLessonProgress($id: ID!) {
+  season(id: $id) {
+    episodes {
+      items {
+        ...EpisodeLessonProgressOverview
+      }
+    }
+  }
+}
+
+query GetLessonTitle($id: ID!) {
+  studyLesson(id: $id) {
+    id
+    title
   }
 }

@@ -2,6 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:brunstadtv_app/graphql/client.dart';
 import 'package:brunstadtv_app/graphql/queries/me.graphql.dart';
 import 'package:brunstadtv_app/helpers/btv_typography.dart';
+import 'package:brunstadtv_app/helpers/navigation_utils.dart';
 import 'package:brunstadtv_app/providers/auth_state.dart';
 import 'package:brunstadtv_app/providers/analytics.dart';
 import 'package:brunstadtv_app/providers/settings.dart';
@@ -31,11 +32,13 @@ class _AppRootState extends ConsumerState<AppRoot> {
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
+    debugPrint('app_root didChangeDependencies');
     final gqlClient = ref.read(gqlClientProvider);
     final analytics = ref.read(analyticsProvider);
     final settingsNotifier = ref.read(settingsProvider.notifier);
     authSubscription?.close();
     authSubscription = ref.listenManual<AuthState>(authStateProvider, (previous, next) {
+      debugPrint('authSubscription');
       if (previous?.auth0AccessToken != null && next.auth0AccessToken == null) {
         settingsNotifier.setAnalyticsId(null);
         widget.navigatorKey.currentContext?.router.root.navigate(LoginScreenRoute());
@@ -77,7 +80,7 @@ class _AppRootState extends ConsumerState<AppRoot> {
       //context.router.navigate();
       if (message.data.containsKey('deep_link') && message.data['deep_link'] is String) {
         String path = message.data['deep_link'];
-        navigatorContext?.router.navigateNamed(path, includePrefixMatches: true);
+        navigatorContext?.router.navigateNamedFromRoot(path);
       }
     } else if (message.data['action'] == 'clear_cache') {
       // TODO: implement cache clearing

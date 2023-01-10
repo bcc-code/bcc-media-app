@@ -13,7 +13,10 @@ import '../helpers/btv_typography.dart';
 import '../helpers/event_bus.dart';
 import '../l10n/app_localizations.dart';
 import '../models/events/scroll_to_top.dart';
+import '../providers/analytics.dart';
+import '../providers/app_config.dart';
 
+final _indexToNameMap = ['home', 'search', 'livestream', 'calendar'];
 const double _iconSize = 28;
 
 class CustomTabBar extends ConsumerStatefulWidget {
@@ -62,13 +65,32 @@ class _CustomTabBarState extends ConsumerState<CustomTabBar> {
     return Padding(padding: EdgeInsets.only(top: 2, bottom: useMaterial ? 2 : 0), child: SizedBox(height: _iconSize, child: image));
   }
 
+  void sendAnalytics(int index) {
+    if (index < 0 || index > _indexToNameMap.length - 1) return;
+    final tabName = _indexToNameMap[index];
+    final appConfig = ref.read(appConfigProvider);
+    appConfig.then((value) {
+      String? pageCode;
+      if (tabName == 'home') {
+        pageCode = value?.application.page?.code;
+      } else if (tabName == 'search') {
+        pageCode = value?.application.searchPage?.code;
+      }
+      Map<String, dynamic> extraProperties = {};
+      if (pageCode != null) {
+        extraProperties['pageCode'] = pageCode;
+      }
+      ref.read(analyticsProvider).screen(tabName, properties: extraProperties);
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     var items = [
       BottomNavigationBarItem(label: S.of(context).homeTab, icon: _icon(icons['home_default']), activeIcon: _icon(icons['home_selected'])),
       BottomNavigationBarItem(label: S.of(context).search, icon: _icon(icons['search_default']), activeIcon: _icon(icons['search_selected'])),
     ];
-
+    debugPrint('guestMode ${ref.watch(authStateProvider).guestMode}');
     if (!ref.watch(authStateProvider).guestMode) {
       items.addAll([
         BottomNavigationBarItem(label: S.of(context).liveTab, icon: _icon(icons['live_default']), activeIcon: _icon(icons['live_selected'])),
@@ -90,9 +112,10 @@ class _CustomTabBarState extends ConsumerState<CustomTabBar> {
                 final current = widget.tabsRouter.current;
                 widget.tabsRouter.stackRouterOfIndex(index)?.popUntilRoot();
                 globalEventBus.fire(ScrollToTopRequestEvent(TabsPage.values.elementAt(index).name));
+              } else {
+                sendAnalytics(index);
               }
               widget.tabsRouter.setActiveIndex(index);
-
             },
             items: items),
       );
@@ -110,6 +133,8 @@ class _CustomTabBarState extends ConsumerState<CustomTabBar> {
               searchState.clear();
             }
             widget.tabsRouter.stackRouterOfIndex(index)?.popUntilRoot();
+          } else {
+            sendAnalytics(index);
           }
           widget.tabsRouter.setActiveIndex(index);
         },

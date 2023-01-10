@@ -1,9 +1,11 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:brunstadtv_app/helpers/btv_buttons.dart';
+import 'package:brunstadtv_app/helpers/svg_icons.dart';
 import 'package:brunstadtv_app/providers/auth_state.dart';
 import 'package:brunstadtv_app/providers/settings.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 import '../../components/custom_back_button.dart';
@@ -21,11 +23,12 @@ class Profile extends ConsumerStatefulWidget {
 class _ProfileState extends ConsumerState<Profile> {
   List<OptionButton> get _supportButtons {
     return [
-      OptionButton(
-          optionName: S.of(context).contactSupport,
-          onPressed: () {
-            context.router.push(const ContactSupportRoute());
-          }),
+      if (!ref.read(authStateProvider).guestMode)
+        OptionButton(
+            optionName: S.of(context).contactSupport,
+            onPressed: () {
+              context.router.push(const ContactSupportRoute());
+            }),
       OptionButton(
           optionName: S.of(context).about,
           onPressed: () {
@@ -70,6 +73,16 @@ class _ProfileState extends ConsumerState<Profile> {
     ];
   }
 
+  Future<void> loginAction(BuildContext context) async {
+    final success = await ref.read(authStateProvider.notifier).login();
+    if (success) {
+      context.router.root.popUntil((route) => false);
+      context.router.root.push(const TabsRootScreenRoute());
+    } else {
+      //loginError = 'Login failed';
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -87,16 +100,28 @@ class _ProfileState extends ConsumerState<Profile> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: <Widget>[
-                const Avatar(),
+                if (!ref.read(authStateProvider).guestMode)
+                  const Avatar()
+                else
+                  Padding(
+                    padding: EdgeInsets.only(top: 24, bottom: 16),
+                    child: Padding(padding: EdgeInsets.all(6), child: SvgPicture.string(SvgIcons.avatar)),
+                  ),
                 Container(
                   margin: const EdgeInsets.only(bottom: 24),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      BtvButton.smallSecondary(
-                        onPressed: () => ref.read(authStateProvider.notifier).logout(),
-                        labelText: S.of(context).logOutButton,
-                      ),
+                      if (!ref.read(authStateProvider).guestMode)
+                        BtvButton.smallSecondary(
+                          onPressed: () => ref.read(authStateProvider.notifier).logout(),
+                          labelText: S.of(context).logOutButton,
+                        )
+                      else
+                        BtvButton.small(
+                          onPressed: () => loginAction(context),
+                          labelText: S.of(context).signInButton,
+                        )
                     ],
                   ),
                 ),

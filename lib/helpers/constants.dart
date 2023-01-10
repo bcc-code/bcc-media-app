@@ -1,3 +1,5 @@
+import 'package:shared_preferences/shared_preferences.dart';
+
 import '../env/env.dart';
 
 const bundleIdentifier = 'tv.brunstad.app';
@@ -15,18 +17,37 @@ class PrefKeys {
 }
 
 const apiEnvUrls = <String, String>{
-  Environments.dev: 'https://api.dev.brunstad.tv/query',
-  Environments.staging: 'https://api.sta.brunstad.tv/query',
-  Environments.prod: 'https://api.brunstad.tv/query',
+  EnvironmentOverride.none: Env.brunstadtvApiEndpoint,
+  EnvironmentOverride.dev: 'https://api.dev.brunstad.tv/query',
+  EnvironmentOverride.sta: 'https://api.sta.brunstad.tv/query',
+  EnvironmentOverride.prod: 'https://api.brunstad.tv/query',
 };
 
-class Environments {
+final webEnvUrls = <String, String>{
+  EnvironmentOverride.none: Env.webUrl,
+  EnvironmentOverride.dev: 'https://web.dev.brunstad.tv',
+  EnvironmentOverride.sta: 'https://web.sta.brunstad.tv',
+  EnvironmentOverride.prod: 'https://app.bcc.media',
+};
+
+Future getWebUrl() async {
+  final sharedPrefs = await SharedPreferences.getInstance();
+  final envOverride = sharedPrefs.getString(PrefKeys.envOverride);
+  final webUrl = webEnvUrls[envOverride] ?? webEnvUrls[EnvironmentOverride.none]!;
+  return webUrl;
+}
+
+class EnvironmentOverride {
+  EnvironmentOverride._();
   static const dev = 'dev';
-  static const staging = 'staging';
+  static const sta = 'sta';
   static const prod = 'prod';
+  static const none = 'none';
 }
 
 class RouteMetaConstants {
   static const hideMiniPlayer = 'hide_mini_player';
   static const analyticsName = 'analytics_name';
+  static const settingsName = 'settings_name';
+  static const navTabRoute = 'nav_tab_route';
 }

@@ -1,0 +1,44 @@
+fragment Achievement on Achievement {
+  id
+  title
+  description
+  achieved
+  image
+  achievedAt
+}
+
+fragment AchievementGroup on AchievementGroup {
+  id
+  title
+  achievements(first: $achievementsFirst) {
+    items {
+      ...Achievement
+    }
+  }
+}
+
+query getAchievementGroups($first: Int!, $achievementsFirst: Int!) {
+  achievementGroups(first: $first) {
+    items {
+      ...AchievementGroup
+    }
+  }
+}
+
+query getAchievementGroup($id: ID!, $achievementsFirst: Int!) {
+  achievementGroup(id: $id) {
+    ...AchievementGroup
+  }
+}
+
+query getPendingAchievements {
+  pendingAchievements {
+    ...Achievement
+  }
+}
+
+mutation confirmAchievement($id: ID!) {
+  confirmAchievement(id: $id) {
+    success
+  }
+}

@@ -47,7 +47,7 @@ class SEn extends S {
   String get faq => 'Frequently asked questions';
 
   @override
-  String get bccMediaCenter => 'BrunstadTV is a non-commercial media center producing and distributing content based on positive and Christian values.';
+  String get bccMediaCenter => 'BCC Media is a media foundation in the BCC federation that produces and distributes content with positive and Christian values.';
 
   @override
   String get signInButton => 'Sign in';
@@ -196,9 +196,6 @@ class SEn extends S {
   String get series => 'Series';
 
   @override
-  String get livestreamMaintenance => 'We\'re sorry, livestream is currently under maintenance. Please try again later.';
-
-  @override
   String get homeTab => 'Home';
 
   @override
@@ -217,7 +214,7 @@ class SEn extends S {
   String get high => 'High';
 
   @override
-  String get emptySearch => 'You can search all content from BrunstadTV. Series, videos and episodes.';
+  String get emptySearch => 'You can search all content from BCC Media. Series, videos and episodes.';
 
   @override
   String get back => 'Back';
@@ -262,50 +259,15 @@ class SEn extends S {
   String get uploadFileMessage => 'Do you want to upload this file?';
 
   @override
-  String watchingWith(int numPeople) {
-    return 'You are watching with $numPeople others';
-  }
-
-  @override
   String get uploading => 'Uploading';
 
   @override
   String get uploadFail => 'Upload failed';
 
   @override
-  String get post => 'Post';
-
-  @override
   String charactersLimit(int charsLeft, int charsTotal) {
     return '$charsLeft of $charsTotal characters left';
   }
-
-  @override
-  String get uploadingPostSuccess => 'Your post has been sent in.';
-
-  @override
-  String get testimonyInfo => 'Record your video with your phone.';
-
-  @override
-  String get yourVideo => 'Your video';
-
-  @override
-  String get record => 'Record';
-
-  @override
-  String get recordingTips => 'A few tips to get a good recording';
-
-  @override
-  String get recordingTipA => 'Find a quiet place to record.';
-
-  @override
-  String get recordingTipB => 'Make sure that your face is evenly lit.';
-
-  @override
-  String get recordingTipC => 'Think about what you want to say before you start recording.';
-
-  @override
-  String get recordingTipD => 'Turn your phone in landscape mode.';
 
   @override
   String get thankYou => 'Thank you!';
@@ -314,34 +276,7 @@ class SEn extends S {
   String get thankYouForContribution => 'Thank you for your contribution!';
 
   @override
-  String get uploadingVideoSuccess => 'Your video has been sent in.';
-
-  @override
   String get next => 'Next';
-
-  @override
-  String get recordVideoCameraPermissionAlert => 'You have to grant camera permission in settings to record video.';
-
-  @override
-  String get recordVideoPhotosPermissionAlert => 'You have to grant photo album permission in settings to record video.';
-
-  @override
-  String get recordVideoStoragePermissionAlert => 'You have to grant storage permission in settings to record video.';
-
-  @override
-  String get recordVideoMicrophonePermissionAlert => 'You have to grant microphone permission in settings to record video.';
-
-  @override
-  String get takePhotoStoragePermissionAlert => 'You have to grant storage permission in settings to take photo.';
-
-  @override
-  String get takePhotoCameraPermissionAlert => 'You have to grant camera permission in settings to take photo.';
-
-  @override
-  String get pickPhotoStoragePermissionAlert => 'You have to grant storage permission in settings to pick photos.';
-
-  @override
-  String get permissionsAlertTitle => 'Permissions needed';
 
   @override
   String get add => 'Add';
@@ -350,43 +285,19 @@ class SEn extends S {
   String get change => 'Change';
 
   @override
-  String get recordingFailedTitle => 'Couldn\'t record the video';
-
-  @override
-  String get recordingFailedMessage => 'Something went wrong while trying to record the video.';
-
-  @override
-  String get pollSubtitle => 'Poll';
-
-  @override
   String get writeHere => 'Write here';
 
   @override
   String get feed => 'Feed';
 
   @override
-  String get atmosphereFeedDescription => 'Contribute in the activity feed by sending in a message, testimony or picture from where you are.';
-
-  @override
   String get information => 'Information';
-
-  @override
-  String get photoNotSupported => 'Taking and picking photo are not supported on your device.';
-
-  @override
-  String get answerFailed => 'Sorry! We were unable to send the answer. Please, try again.';
 
   @override
   String get question => 'Question';
 
   @override
-  String get notificationChannelPlayerName => 'Player';
-
-  @override
   String get now => 'Now';
-
-  @override
-  String get createPost => 'Create post';
 
   @override
   String get concernTextPlaceholder => 'Describe the issue';
@@ -416,19 +327,6 @@ class SEn extends S {
   String get today => 'Today';
 
   @override
-  String get noNewPosts => 'No new posts';
-
-  @override
-  String newPostsMultiple(int postCount) {
-    return '$postCount new posts!';
-  }
-
-  @override
-  String newPostsSingle(int postCount) {
-    return '$postCount new post!';
-  }
-
-  @override
   String get expired => 'Expired';
 
   @override
@@ -437,40 +335,10 @@ class SEn extends S {
   }
 
   @override
-  String get howFar => 'How far did you go?';
-
-  @override
   String get submit => 'Submit';
 
   @override
   String get wellDone => 'Well done!';
-
-  @override
-  String wellDoneDistance(int distanceInKM) {
-    return 'Well done! You have registered a total distance of $distanceInKM km';
-  }
-
-  @override
-  String get distanceRegistered => 'Your distance has been registered. Continue below if you want to submit another distance.';
-
-  @override
-  String ranMore(int distanceInKM) {
-    return 'I went more than $distanceInKM km';
-  }
-
-  @override
-  String moreThan(int distanceInKM) {
-    return 'More than $distanceInKM km';
-  }
-
-  @override
-  String get runningEffort => 'Amazing effort! Type the amount of kilometers you went below.';
-
-  @override
-  String get slideSelect => 'Slide to select how far you went';
-
-  @override
-  String get submitAnotherDistance => 'Submit another distance';
 
   @override
   String get editPicture => 'Edit picture';
@@ -479,51 +347,9 @@ class SEn extends S {
   String get profilePicture => 'Profile picture';
 
   @override
-  String get firstPostTitle => 'Be the first to post a picture or message';
-
-  @override
   String timezoneInformation(String timeZone) {
     return 'Tv guide timetable is in your local time: $timeZone';
   }
-
-  @override
-  String get yourQuestion => 'Your question';
-
-  @override
-  String get uploadingInquirySuccess => 'Please note that not all submitted questions are answered in the broadcast.';
-
-  @override
-  String get askQuestion => 'Ask a question';
-
-  @override
-  String get submitQuestionInfo => 'By submitting a question you accept that it can be used for broadcast purposes.';
-
-  @override
-  String get posting => 'Posting';
-
-  @override
-  String get submitPostInfo => 'By submitting a post or photo you accept that it can be used for broadcast purposes. ';
-
-  @override
-  String get cropImage => 'Crop image';
-
-  @override
-  String get square => 'Square';
-
-  @override
-  String get landscape => 'Landscape';
-
-  @override
-  String get pollSingleChoice => 'You may select your answer only once.';
-
-  @override
-  String get pollMultipleChoice => 'You may change your answer multiple times.';
-
-  @override
-  String get pollEnded => 'The poll section has ended. Thank you for your responses.';
-
-  @override
-  String get browserInstall => 'Please install web browser to be able to open this URL.';
 
   @override
   String get share => 'Share';
@@ -532,30 +358,13 @@ class SEn extends S {
   String get liveNow => 'Live now';
 
   @override
-  String get program => 'Program';
-
-  @override
-  String get participateTab => 'Participate';
-
-  @override
   String get tomorrow => 'Tomorrow';
 
   @override
   String get readBy => 'Read by';
 
   @override
-  String pollAnswer(String answer) {
-    return 'You\'ve answered: $answer';
-  }
-
-  @override
   String get broadcasts => 'Broadcasts';
-
-  @override
-  String get quizAnswered => 'Answers submitted';
-
-  @override
-  String get quizNotEnabled => 'Quiz is not available at the moment. Please try again later.';
 
   @override
   String get calendar => 'Calendar';
@@ -573,30 +382,10 @@ class SEn extends S {
   String get appUpdateAccepted => 'Update';
 
   @override
-  String get donationNotAvailable => 'Donation is not available at the moment. Please try again later.';
-
-  @override
-  String posts(int postsCount) {
-    return '$postsCount Posts';
-  }
-
-  @override
   String get copy => 'Copy';
 
   @override
   String get reload => 'Reload';
-
-  @override
-  String get participantsTitle => 'Who is answering?';
-
-  @override
-  String get participantsSubtitle => 'Select one or more participants.';
-
-  @override
-  String get yourFamily => 'Your family';
-
-  @override
-  String get yourTurn => 'Your turn';
 
   @override
   String get fAQ => 'FAQ';
@@ -613,31 +402,10 @@ class SEn extends S {
   String get loadContentError => 'Couldn\'t load content';
 
   @override
-  String get audioOnlyErrorDescription => 'Check internet connection and try again';
-
-  @override
   String get privacyPolicy => 'Privacy Policy';
 
   @override
-  String get tokenError => 'We couldn\'t confirm your identity, most likely due to a network problem. Some features of the app may not work correctly.';
-
-  @override
   String get categoriesTab => 'Categories';
-
-  @override
-  String get settingsTab => 'Settings';
-
-  @override
-  String get confirmLogin => 'Confirm login';
-
-  @override
-  String get scanInfo => 'Scan code with your phone to enter login page.';
-
-  @override
-  String get validInfo => 'QR Code is valid for 15 minutes.';
-
-  @override
-  String get confirmInfo => 'After successful login on your device click button below to confirm your login.';
 
   @override
   String get seriesTab => 'Series';
@@ -661,73 +429,16 @@ class SEn extends S {
   String get noTransmissionToday => 'No scheduled transmission for today';
 
   @override
-  String get livestreamMaintenanceTitle => 'Live stream is not available';
-
-  @override
-  String get start => 'Start';
-
-  @override
-  String get transmissionSchedule => 'Transmission schedule';
-
-  @override
   String get featured => 'Featured';
 
   @override
   String get errorTryAgain => 'Something went wrong, please try again later.';
 
   @override
-  String get reportProblem => 'In case of any problems use QR code below to send us an email.';
-
-  @override
-  String get phoneReadingProblem => 'If your phone can\'t read QR code send us an email with following info to';
-
-  @override
-  String get goTo => 'or go to';
-
-  @override
-  String get watchBrunstad => 'Watch BrunstadTV live';
-
-  @override
-  String get notLogged => 'Not logged in';
-
-  @override
-  String get authResponse0 => 'Please use new QR code to log in.';
-
-  @override
-  String get authResponse1 => 'Please log in on your mobile using QR code.';
-
-  @override
-  String get authResponse3 => 'Check your network connection and please try again later.';
-
-  @override
   String get liveHeader => 'Live';
 
   @override
-  String get recentlyPublishedSection => 'Recently published';
-
-  @override
-  String get exploreCategoriesSection => 'Explore categories';
-
-  @override
   String get programsSection => 'Programs';
-
-  @override
-  String get episodesSection => 'Episodes';
-
-  @override
-  String get categorySeries => 'Series';
-
-  @override
-  String get categoryKids => 'Kids';
-
-  @override
-  String get categoryFilms => 'Films';
-
-  @override
-  String get categoryEvents => 'Events';
-
-  @override
-  String get categoryMusic => 'Music';
 
   @override
   String get noPlannedEvents => 'No events planned this day';
@@ -737,4 +448,92 @@ class SEn extends S {
 
   @override
   String get exploreContent => 'Explore content';
+
+  @override
+  String get taskCompleted => 'task completed';
+
+  @override
+  String get tasksCompleted => 'tasks completed';
+
+  @override
+  String get studyCompleteTaskDescription => 'Complete tasks and discover related resources';
+
+  @override
+  String get discoverMore => 'Discover more';
+
+  @override
+  String get completePreviousTasks => 'Complete previous tasks to unlock';
+
+  @override
+  String get studyDiscoverMoreDescription => 'Find more inspiration and insight from related resources';
+
+  @override
+  String get watchAgain => 'Watch again';
+
+  @override
+  String get continueToTaskIn => 'Continue to task in';
+
+  @override
+  String get continueToTasksIn => 'Continue to tasks in';
+
+  @override
+  String get studyLessonCompleted => 'lesson completed';
+
+  @override
+  String get studyLessonsCompleted => 'lessons completed';
+
+  @override
+  String get continueStudy => 'Continue study';
+
+  @override
+  String get startStudy => 'Start study';
+
+  @override
+  String get videoCompletedText => 'Great job on completing the video.';
+
+  @override
+  String get achievementFirstDescription => 'Great job on completing the video and earning your first progress achievement.';
+
+  @override
+  String achievementStudyTopic(String name) {
+    return 'Great job on completing the study topic $name';
+  }
+
+  @override
+  String videoCount(int count) {
+    return '$count videos';
+  }
+
+  @override
+  String taskCount(int count) {
+    return '$count tasks';
+  }
+
+  @override
+  String posterCount(int count) {
+    return '$count posters';
+  }
+
+  @override
+  String resourceCount(int count) {
+    return '$count resources';
+  }
+
+  @override
+  String get continueButton => 'Continue';
+
+  @override
+  String get achievements => 'Achievements';
+
+  @override
+  String get oops => 'Oops!';
+
+  @override
+  String get dontHaveAccess => 'You do not have access to this content.';
+
+  @override
+  String get mustBeLoggedIn => 'You need to be logged in to watch this content';
+
+  @override
+  String get plentyOfOtherContent => 'Don\'t worry, there\'s still plenty of content to enjoy!';
 }

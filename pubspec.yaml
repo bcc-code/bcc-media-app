@@ -1,5 +1,5 @@
 name: brunstadtv_app
-description: The app for browsing content from BrunstadTV
+description: The app for browsing content from BCC Media
 
 # The following line prevents the package from being accidentally published to
 # pub.dev using `flutter pub publish`. This is preferred for private packages.
@@ -16,11 +16,10 @@ publish_to: "none" # Remove this line if you wish to publish to pub.dev
 # Read more about iOS versioning at
 # https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html
 
-# major.minor.patch+YY.MM.DDx where the x is an additional number
-# so we kind of can't have more than 10 builds per day
-# Note: On play store the build number dots gets removed, so it
-# becomes a number in the millions range (2211301 for example).
-version: 4.0.3+22.12.103
+# major.minor.patch+xxxxxxx
+# Note: On play store, any dots in the build
+# number (i.e. the number after +) gets removed
+version: 4.0.8+2300016
 
 environment:
   sdk: ">=2.17.0 <3.0.0"
@@ -115,7 +114,7 @@ flutter:
   # included with your application, so that you can use the icons in
   # the material Icons class.
   uses-material-design: true
-
+  # generate: true
   fonts:
     - family: Barlow
       fonts:

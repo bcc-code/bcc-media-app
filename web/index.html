@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
   <!--
     If you are serving your web app in a path other than the root, change the
@@ -23,13 +24,13 @@
   <!-- iOS meta tags & icons -->
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
-  <meta name="apple-mobile-web-app-title" content="BrunstadTV">
+  <meta name="apple-mobile-web-app-title" content="BCC Media">
   <link rel="apple-touch-icon" href="icons/Icon-192.png">
 
   <!-- Favicon -->
-  <link rel="icon" type="image/png" href="favicon.png"/>
+  <link rel="icon" type="image/png" href="favicon.png" />
 
-  <title>BrunstadTV</title>
+  <title>BCC Media</title>
   <link rel="manifest" href="manifest.json">
 
   <script>
@@ -39,17 +40,18 @@
   <!-- This script adds the flutter initialization JS code -->
   <script src="flutter.js" defer></script>
 </head>
+
 <body>
   <script>
-    window.addEventListener('load', function(ev) {
+    window.addEventListener('load', function (ev) {
       // Download main.dart.js
       _flutter.loader.loadEntrypoint({
         serviceWorker: {
           serviceWorkerVersion: serviceWorkerVersion,
         }
-      }).then(function(engineInitializer) {
+      }).then(function (engineInitializer) {
         return engineInitializer.initializeEngine();
-      }).then(function(appRunner) {
+      }).then(function (appRunner) {
         return appRunner.runApp();
       });
     });
@@ -72,7 +74,7 @@
       div.style.display = "none";
 
       let button = document.createElement("button");
-      button.innerHTML="Exit player";
+      button.innerHTML = "Exit player";
       button.onclick = () => {
         console.log("remove player clicked")
         div.remove();
@@ -84,4 +86,5 @@
     setTimeout(createPlayerView, 5000);
   </script>
 </body>
+
 </html>

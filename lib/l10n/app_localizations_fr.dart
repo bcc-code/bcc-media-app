@@ -26,7 +26,7 @@ class SFr extends S {
   String get loading => 'Chargement';
 
   @override
-  String get loginPageDisplay1 => 'Le message le plus puissant au monde';
+  String get loginPageDisplay1 => 'Le message le plus\n puissant au monde';
 
   @override
   String get loginPageDisplay2 => 'Regarde des séries, des émissions et des films basés sur les valeurs chrétiennes';
@@ -47,7 +47,7 @@ class SFr extends S {
   String get faq => 'Foire aux Questions';
 
   @override
-  String get bccMediaCenter => 'BrunstadTV est un média à caractère non lucratif qui produit et distribue du contenu basé sur des valeurs positives et chrétiennes.';
+  String get bccMediaCenter => 'BCC Media est une fondation médiatique de la fédération BCC qui produit et distribue des contenus aux valeurs positives et chrétiennes.';
 
   @override
   String get signInButton => 'Se connecter';
@@ -196,9 +196,6 @@ class SFr extends S {
   String get series => 'Séries';
 
   @override
-  String get livestreamMaintenance => 'Désolés, la diffusion en direct est en maintenance pour le moment. Merci de retenter plus tard.';
-
-  @override
   String get homeTab => 'Accueil';
 
   @override
@@ -217,7 +214,7 @@ class SFr extends S {
   String get high => 'Haute';
 
   @override
-  String get emptySearch => 'Tu peux faire une recherche sur tout le contenu de BrunstadTV. Séries, films et épisodes.';
+  String get emptySearch => 'Tu peux faire une recherche sur tout le contenu de BCC Media. Séries, vidéos et épisodes.';
 
   @override
   String get back => 'Retour';
@@ -262,50 +259,15 @@ class SFr extends S {
   String get uploadFileMessage => 'Veux-tu télécharger ce fichier ?';
 
   @override
-  String watchingWith(int numPeople) {
-    return 'Tu regardes avec $numPeople autres personnes';
-  }
-
-  @override
   String get uploading => 'Téléchargement';
 
   @override
   String get uploadFail => 'Echec du téléchargement';
 
   @override
-  String get post => 'Publier';
-
-  @override
   String charactersLimit(int charsLeft, int charsTotal) {
     return '$charsLeft sur $charsTotal caractères restants';
   }
-
-  @override
-  String get uploadingPostSuccess => 'Ta contribution a été envoyée.';
-
-  @override
-  String get testimonyInfo => 'Enregistre ta vidéo avec ton téléphone.';
-
-  @override
-  String get yourVideo => 'Ta vidéo';
-
-  @override
-  String get record => 'Enregistrer';
-
-  @override
-  String get recordingTips => 'Quelques recommandations pour avoir un bel enregistrement';
-
-  @override
-  String get recordingTipA => 'Trouve un endroit calme pour t\'enregistrer.';
-
-  @override
-  String get recordingTipB => 'Veille à ce que ton visage soit éclairé de manière uniforme.';
-
-  @override
-  String get recordingTipC => 'Pense à ce que tu souhaites dire avant de commencer l\'enregistrement.';
-
-  @override
-  String get recordingTipD => 'Mettez votre téléphone en mode paysage.';
 
   @override
   String get thankYou => 'Merci beaucoup !';
@@ -314,34 +276,7 @@ class SFr extends S {
   String get thankYouForContribution => 'Merci pour ta contribution !';
 
   @override
-  String get uploadingVideoSuccess => 'Ta vidéo a été envoyée.';
-
-  @override
   String get next => 'Suivant';
-
-  @override
-  String get recordVideoCameraPermissionAlert => 'Tu dois autoriser l\'utilisation de la caméra dans les paramètres d\'enregistrement vidéo.';
-
-  @override
-  String get recordVideoPhotosPermissionAlert => 'Tu dois autoriser l\'utilisation de la galerie dans les paramètres d\'enregistrement vidéo.';
-
-  @override
-  String get recordVideoStoragePermissionAlert => 'Tu dois autoriser l\'utilisation du stockage dans les paramètres pour enregistrer des vidéos.';
-
-  @override
-  String get recordVideoMicrophonePermissionAlert => 'Tu dois autoriser l\'utilisation du micro dans les paramètres pour enregistrer des vidéos.';
-
-  @override
-  String get takePhotoStoragePermissionAlert => 'Tu dois autoriser l\'utilisation du stockage dans les paramètres pour prendre des photos.';
-
-  @override
-  String get takePhotoCameraPermissionAlert => 'Tu dois autoriser l\'utilisation de la caméra dans les paramètres pour prendre une photo.';
-
-  @override
-  String get pickPhotoStoragePermissionAlert => 'Tu dois autoriser l\'utilisation du stockage dans les paramètres pour choisir des photos.';
-
-  @override
-  String get permissionsAlertTitle => 'Autorisations nécessaires';
 
   @override
   String get add => 'Ajouter';
@@ -350,43 +285,19 @@ class SFr extends S {
   String get change => 'Modifier';
 
   @override
-  String get recordingFailedTitle => 'Vidéo non enregistrée';
-
-  @override
-  String get recordingFailedMessage => 'Erreur lors de l\'enregistrement de la vidéo.';
-
-  @override
-  String get pollSubtitle => 'Sondage';
-
-  @override
   String get writeHere => 'Écris ici';
 
   @override
   String get feed => 'Flux';
 
   @override
-  String get atmosphereFeedDescription => 'Contribue dans le flux, en envoyant un message, un témoignage ou une photo prise là où tu te trouves.';
-
-  @override
   String get information => 'Information';
-
-  @override
-  String get photoNotSupported => 'Cet appareil ne prend pas en charge la prise ou la sélection de photos.';
-
-  @override
-  String get answerFailed => 'Désolé ! Ta réponse n\'a pas été envoyée. Merci de réessayer.';
 
   @override
   String get question => 'Question';
 
   @override
-  String get notificationChannelPlayerName => 'Lecteur';
-
-  @override
   String get now => 'Maintenant';
-
-  @override
-  String get createPost => 'Créer une publication';
 
   @override
   String get concernTextPlaceholder => 'Décris le problème';
@@ -416,19 +327,6 @@ class SFr extends S {
   String get today => 'Aujourd\'hui';
 
   @override
-  String get noNewPosts => 'Aucune nouvelle publication';
-
-  @override
-  String newPostsMultiple(int postCount) {
-    return '$postCount nouvelles publications !';
-  }
-
-  @override
-  String newPostsSingle(int postCount) {
-    return '$postCount nouvelle publication !';
-  }
-
-  @override
   String get expired => 'Expiré';
 
   @override
@@ -437,40 +335,10 @@ class SFr extends S {
   }
 
   @override
-  String get howFar => 'Quelle distance as-tu parcourue ?';
-
-  @override
   String get submit => 'Envoyer';
 
   @override
   String get wellDone => 'Bien joué !';
-
-  @override
-  String wellDoneDistance(int distanceInKM) {
-    return 'Bien joué ! Tu as enregistré une distance totale de $distanceInKM km';
-  }
-
-  @override
-  String get distanceRegistered => 'Ta distance a été enregistrée. Continue ci-dessous si tu souhaites enregistrer une nouvelle distance.';
-
-  @override
-  String ranMore(int distanceInKM) {
-    return 'J\'ai marché plus de $distanceInKM km';
-  }
-
-  @override
-  String moreThan(int distanceInKM) {
-    return 'Plus de $distanceInKM km';
-  }
-
-  @override
-  String get runningEffort => 'Quel effort impressionnant ! Inscris le nombre de kilomètres parcourus ci-dessous.';
-
-  @override
-  String get slideSelect => 'Fais défiler le menu déroulant pour choisir la distance parcourue';
-
-  @override
-  String get submitAnotherDistance => 'Ajouter une autre distance';
 
   @override
   String get editPicture => 'Modifier l\'image';
@@ -479,51 +347,9 @@ class SFr extends S {
   String get profilePicture => 'Photo de profil';
 
   @override
-  String get firstPostTitle => 'Sois le premier à envoyer une photo ou un message';
-
-  @override
   String timezoneInformation(String timeZone) {
     return 'Le calendrier du guide TV s\'affiche selon l\'heure locale : $timeZone';
   }
-
-  @override
-  String get yourQuestion => 'Ta question';
-
-  @override
-  String get uploadingInquirySuccess => 'Nous attirons l\'attention sur le fait que nous ne répondrons pas à toutes les questions posées pendant l\'émission.';
-
-  @override
-  String get askQuestion => 'Poser une question';
-
-  @override
-  String get submitQuestionInfo => 'En posant une question, tu acceptes qu\'elle soit utilisée dans le cadre de l\'émission.';
-
-  @override
-  String get posting => 'Envoyer';
-
-  @override
-  String get submitPostInfo => 'En postant un message ou une photo, tu acceptes son utilisation dans le cadre de l\'émission. ';
-
-  @override
-  String get cropImage => 'Recouper l\'image';
-
-  @override
-  String get square => 'Carré';
-
-  @override
-  String get landscape => 'Paysage';
-
-  @override
-  String get pollSingleChoice => 'Tu ne peux sélectionner qu\'une seule réponse à la fois.';
-
-  @override
-  String get pollMultipleChoice => 'Tu peux modifier ta réponse plusieurs fois.';
-
-  @override
-  String get pollEnded => 'Le sondage est clos. Merci pour tes réponses.';
-
-  @override
-  String get browserInstall => 'Merci d\'installer un navigateur Web pour pouvoir ouvrir cet URL.';
 
   @override
   String get share => 'Partager';
@@ -532,30 +358,13 @@ class SFr extends S {
   String get liveNow => 'En direct maintenant';
 
   @override
-  String get program => 'Programme';
-
-  @override
-  String get participateTab => 'Participer';
-
-  @override
   String get tomorrow => 'Demain';
 
   @override
   String get readBy => 'Lu par';
 
   @override
-  String pollAnswer(String answer) {
-    return 'Tu as répondu : $answer';
-  }
-
-  @override
   String get broadcasts => 'Transmissions';
-
-  @override
-  String get quizAnswered => 'Réponses envoyées';
-
-  @override
-  String get quizNotEnabled => 'Le quiz n\'est pas disponible pour le moment. Merci de retenter plus tard.';
 
   @override
   String get calendar => 'Calendrier';
@@ -573,30 +382,10 @@ class SFr extends S {
   String get appUpdateAccepted => 'Mettre à jour';
 
   @override
-  String get donationNotAvailable => 'Il n\'est pas possible de faire un don pour le moment. Merci de retenter plus tard.';
-
-  @override
-  String posts(int postsCount) {
-    return '$postsCount Publications';
-  }
-
-  @override
   String get copy => 'Copier';
 
   @override
   String get reload => 'Recharger';
-
-  @override
-  String get participantsTitle => 'Qui répond ?';
-
-  @override
-  String get participantsSubtitle => 'Sélectionne un ou plusieurs participants.';
-
-  @override
-  String get yourFamily => 'Ta famille';
-
-  @override
-  String get yourTurn => 'Ton tour';
 
   @override
   String get fAQ => 'FAQ';
@@ -613,31 +402,10 @@ class SFr extends S {
   String get loadContentError => 'Impossible de charger le contenu';
 
   @override
-  String get audioOnlyErrorDescription => 'Vérifie ta connexion internet et retente à nouveau';
-
-  @override
   String get privacyPolicy => 'Politique de confidentialité';
 
   @override
-  String get tokenError => 'Nous n\'avons pas pu confirmer ton identité, probablement en raison d\'un problème de réseau. Certaines fonctionnalités de l\'application peuvent ne pas fonctionner correctement.';
-
-  @override
   String get categoriesTab => 'Catégories';
-
-  @override
-  String get settingsTab => 'Paramètres';
-
-  @override
-  String get confirmLogin => 'Confirme la connexion';
-
-  @override
-  String get scanInfo => 'Scanne le code avec ton téléphone pour accéder à la page de connexion.';
-
-  @override
-  String get validInfo => 'Le QR code est valable 15 minutes.';
-
-  @override
-  String get confirmInfo => 'Après une connexion réussie sur ton appareil, clique sur le bouton ci-dessous pour confirmer ta connexion.';
 
   @override
   String get seriesTab => 'Séries';
@@ -661,73 +429,16 @@ class SFr extends S {
   String get noTransmissionToday => 'Aucune transmission prévue aujourd\'hui';
 
   @override
-  String get livestreamMaintenanceTitle => 'La diffusion en direct n\'est pas disponible';
-
-  @override
-  String get start => 'Démarrer';
-
-  @override
-  String get transmissionSchedule => 'Horaires de transmission';
-
-  @override
   String get featured => 'Recommandé';
 
   @override
   String get errorTryAgain => 'Une erreur est survenue, merci de réessayer plus tard.';
 
   @override
-  String get reportProblem => 'En cas de problème, utilise le QR code ci-dessous pour nous envoyer un mail.';
-
-  @override
-  String get phoneReadingProblem => 'Si ton téléphone ne parvient pas à lire le QR code, envoie-nous un mail avec l\'information suivante à';
-
-  @override
-  String get goTo => 'ou va sur';
-
-  @override
-  String get watchBrunstad => 'Regarde BrunstadTV en direct';
-
-  @override
-  String get notLogged => 'Non connecté';
-
-  @override
-  String get authResponse0 => 'Merci d\'utiliser un nouveau QR code pour la connexion.';
-
-  @override
-  String get authResponse1 => 'Merci de te connecter sur ton portable en utilisant un QR code.';
-
-  @override
-  String get authResponse3 => 'Vérifie ta connexion internet et retente plus tard, merci.';
-
-  @override
   String get liveHeader => 'En direct';
 
   @override
-  String get recentlyPublishedSection => 'Publié récemment';
-
-  @override
-  String get exploreCategoriesSection => 'Explorer les catégories';
-
-  @override
   String get programsSection => 'Programmes';
-
-  @override
-  String get episodesSection => 'Épisodes';
-
-  @override
-  String get categorySeries => 'Séries';
-
-  @override
-  String get categoryKids => 'Enfants';
-
-  @override
-  String get categoryFilms => 'Films';
-
-  @override
-  String get categoryEvents => 'Événements';
-
-  @override
-  String get categoryMusic => 'Musique';
 
   @override
   String get noPlannedEvents => 'Aucun événement prévu ce jour';
@@ -736,5 +447,93 @@ class SFr extends S {
   String get watchNow => 'Regarder maintenant';
 
   @override
-  String get exploreContent => 'Explore content';
+  String get exploreContent => 'Explorer le contenu';
+
+  @override
+  String get taskCompleted => 'tâche terminée';
+
+  @override
+  String get tasksCompleted => 'tâches terminées';
+
+  @override
+  String get studyCompleteTaskDescription => 'Effectuer des tâches et découvrir des ressources connexes';
+
+  @override
+  String get discoverMore => 'Découvrir plus';
+
+  @override
+  String get completePreviousTasks => 'Complete previous tasks to unlock';
+
+  @override
+  String get studyDiscoverMoreDescription => 'Trouver plus d\'inspiration et d\'idées dans les ressources connexes';
+
+  @override
+  String get watchAgain => 'Regarder à nouveau';
+
+  @override
+  String get continueToTaskIn => 'Poursuivre la tâche dans';
+
+  @override
+  String get continueToTasksIn => 'Poursuivre les tâches dans';
+
+  @override
+  String get studyLessonCompleted => 'leçon terminée';
+
+  @override
+  String get studyLessonsCompleted => 'leçons terminées';
+
+  @override
+  String get continueStudy => 'Continuer l\'étude';
+
+  @override
+  String get startStudy => 'Commencer l\'étude';
+
+  @override
+  String get videoCompletedText => 'Bravo ! Tu as regardé toute la vidéo.';
+
+  @override
+  String get achievementFirstDescription => 'Bravo ! Tu as terminé la vidéo et obtenu ton premier progrès.';
+
+  @override
+  String achievementStudyTopic(String name) {
+    return 'Bravo ! Tu as terminé le sujet d\'étude $name';
+  }
+
+  @override
+  String videoCount(int count) {
+    return '$count vidéos';
+  }
+
+  @override
+  String taskCount(int count) {
+    return '$count tâches';
+  }
+
+  @override
+  String posterCount(int count) {
+    return '$count affiches';
+  }
+
+  @override
+  String resourceCount(int count) {
+    return '$count ressources';
+  }
+
+  @override
+  String get continueButton => 'Continuer';
+
+  @override
+  String get achievements => 'Réalisations';
+
+  @override
+  String get oops => 'Oups !';
+
+  @override
+  String get dontHaveAccess => 'Tu n\'as pas accès à ce contenu.';
+
+  @override
+  String get mustBeLoggedIn => 'Tu dois être connecté pour regarder ce contenu';
+
+  @override
+  String get plentyOfOtherContent => 'Pas d\'inquiétude ! Il reste beaucoup de contenus à apprécier !';
 }

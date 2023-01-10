@@ -133,7 +133,7 @@ class AVPlayerBccmPlayerView: NSObject, FlutterPlatformView {
             playerViewController.view.frame = _view.frame
             playerViewController.showsPlaybackControls = true
             playerViewController.delegate = _playerController
-            playerViewController.exitsFullScreenWhenPlaybackEnds = false
+            playerViewController.exitsFullScreenWhenPlaybackEnds = true
             playerViewController.allowsPictureInPicturePlayback = true
             playerViewController.updatesNowPlayingInfoCenter = false
             if #available(iOS 14.2, *) {

@@ -19,8 +19,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo.png" translatesAutoresizingMaskIntoConstraints="NO" id="rh1-6b-OLy">
-                                <rect key="frame" x="0.0" y="272.5" width="320" height="23"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="logo.png" translatesAutoresizingMaskIntoConstraints="NO" id="rh1-6b-OLy">
+                                <rect key="frame" x="14" y="264" width="292" height="40"/>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" red="0.050980392156862744" green="0.086274509803921567" blue="0.13725490196078433" alpha="1" colorSpace="calibratedRGB"/>
@@ -34,10 +34,10 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XAI-xm-WK6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="349" y="339"/>
+            <point key="canvasLocation" x="348.75" y="338.02816901408448"/>
         </scene>
     </scenes>
     <resources>
-        <image name="logo.png" width="624" height="141"/>
+        <image name="logo.png" width="240.75" height="37"/>
     </resources>
 </document>

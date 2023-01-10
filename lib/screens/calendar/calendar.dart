@@ -16,7 +16,10 @@ import 'package:intl/intl.dart';
 
 import '../../helpers/btv_colors.dart';
 import '../../helpers/btv_typography.dart';
+import '../../helpers/constants.dart';
 import '../../l10n/app_localizations.dart';
+import '../../models/analytics/calendar_day_clicked.dart';
+import '../../providers/analytics.dart';
 import '../../services/utils.dart';
 
 class CalendarPage extends ConsumerStatefulWidget {
@@ -63,12 +66,20 @@ class _CalendarWidgetState extends ConsumerState<CalendarWidget> {
   DateTime? _selectedDay = DateTime.now();
   Future<Query$CalendarPeriod$calendar$period?>? _calendarPeriodFuture;
   Future<Query$CalendarDay$calendar?>? _selectedDayFuture;
-
+  late String utcOffset;
   HashSet<DateTime> activeDaysPeriod = HashSet<DateTime>();
   List<String> eventsPeriod = [];
 
   final kFirstDay = DateTime(DateTime.now().year - (5 * pow(10, 4)) as int, DateTime.now().month, DateTime.now().day);
   final kLastDay = DateTime(DateTime.now().year + 5 * pow(10, 4) as int, DateTime.now().month, DateTime.now().day);
+
+  @override
+  initState() {
+    super.initState();
+    utcOffset = getFormattedUtcOffset();
+    loadInputPeriodData();
+    loadSelectedDay();
+  }
 
   List<DateTime> _getEventsForDay(DateTime day) {
     List<DateTime> result = [];
@@ -91,6 +102,13 @@ class _CalendarWidgetState extends ConsumerState<CalendarWidget> {
     return ((dayOfDec28 - dec28.weekday + 10) / 7).floor();
   }
 
+  String getFormattedUtcOffset() {
+    final timeZoneOffset = DateTime.now().timeZoneOffset;
+    final hours = timeZoneOffset.inHours.toString().padLeft(2, '0');
+    final minutes = (timeZoneOffset.inMinutes % 60).toString().padLeft(2, '0');
+    return '$hours:$minutes';
+  }
+
   /// Calculates week number from a date as per https://en.wikipedia.org/wiki/ISO_week_date#Calculation
   /// https://stackoverflow.com/questions/49393231/how-to-get-day-of-year-week-of-year-from-a-datetime-dart-object/54129275#54129275
   int _getWeekNumber(DateTime date) {
@@ -106,7 +124,8 @@ class _CalendarWidgetState extends ConsumerState<CalendarWidget> {
 
   String convertToIso8601(DateTime time) {
     //need to have a manual convert because the default method have a special 's' -> :sssZ
-    return DateFormat("yyyy-MM-ddTHH:mm:ss'Z'").format(time);
+    final localDateTime = DateFormat('yyyy-MM-ddTHH:mm:ss').format(time);
+    return '$localDateTime+$utcOffset';
   }
 
   //HH:mm
@@ -145,8 +164,8 @@ class _CalendarWidgetState extends ConsumerState<CalendarWidget> {
   }
 
   loadInputPeriodData() async {
-    var from = convertToIso8601(_focusedDay.subtract(const Duration(days: 31)));
-    var to = convertToIso8601(_focusedDay.add(const Duration(days: 31)));
+    var from = convertToIso8601(_focusedDay.subtract(const Duration(days: 40)));
+    var to = convertToIso8601(_focusedDay.add(const Duration(days: 40)));
     final client = ref.read(gqlClientProvider);
 
     _calendarPeriodFuture = client
@@ -160,7 +179,7 @@ class _CalendarWidgetState extends ConsumerState<CalendarWidget> {
       if (value.hasException) {
         throw ErrorDescription(value.exception.toString());
       }
-      List<DateTime>? activeDaysList111 = value.parsedData?.calendar?.period.activeDays.map((e) => DateTime.parse(e)).toList();
+      List<DateTime>? activeDaysList111 = value.parsedData?.calendar?.period.activeDays.map((e) => DateTime.parse(e).toLocal()).toList();
 
       setState(() {
         activeDaysPeriod = HashSet.from(activeDaysList111 ?? []);
@@ -192,13 +211,6 @@ class _CalendarWidgetState extends ConsumerState<CalendarWidget> {
   }
 
   @override
-  void initState() {
-    loadInputPeriodData();
-    loadSelectedDay();
-    super.initState();
-  }
-
-  @override
   Widget build(BuildContext context) {
     return Column(
       children: [
@@ -211,6 +223,8 @@ class _CalendarWidgetState extends ConsumerState<CalendarWidget> {
             startingDayOfWeek: StartingDayOfWeek.monday,
             daysOfWeekStyle: DaysOfWeekStyle(
               dowTextFormatter: (date, locale) => DateFormat.E(locale).format(date)[0], //only display one letter
+              weekdayStyle: BtvTextStyles.caption1,
+              weekendStyle: BtvTextStyles.caption1,
             ),
             headerStyle: HeaderStyle(
               formatButtonVisible: false,
@@ -260,6 +274,16 @@ class _CalendarWidgetState extends ConsumerState<CalendarWidget> {
                   _focusedDay = focusedDay;
                 });
                 loadSelectedDay();
+                final currentRoute = context.router.topRoute;
+                if (currentRoute.meta.containsKey(RouteMetaConstants.analyticsName)) {
+                  ref.read(analyticsProvider).calendarDayClicked(
+                        CalendarDayClickedEvent(
+                          pageCode: currentRoute.meta[RouteMetaConstants.analyticsName],
+                          calendarView: widget.collapsed ? 'week' : 'month',
+                          calendarDate: DateFormat('yyyy-MM-dd').format(selectedDay),
+                        ),
+                      );
+                }
               }
             },
             onPageChanged: (focusedDay) async {
@@ -274,7 +298,7 @@ class _CalendarWidgetState extends ConsumerState<CalendarWidget> {
                 return Stack(
                   children: [
                     getEventHighlightFor(day),
-                    CenterText(Colors.white, day),
+                    CenterText(BtvColors.label1, day),
                   ],
                 );
               },
@@ -291,7 +315,7 @@ class _CalendarWidgetState extends ConsumerState<CalendarWidget> {
                       child: SizedBox(
                         width: 30,
                         height: 30,
-                        child: CenterText(Colors.grey, day),
+                        child: CenterText(BtvColors.label1.withOpacity(0.5), day),
                       ),
                     ),
                     getEventHighlightFor(day),
@@ -500,7 +524,7 @@ class _EntriesSlot extends StatelessWidget {
             return GestureDetector(
               behavior: HitTestBehavior.opaque,
               onTapUp: (details) {
-                if (episode != null && episode.episode != null && !isComingSoon(episode.episode!.publishDate)) {
+                if (episode != null && episode.episode != null && !isUnavailable(episode.episode!.publishDate)) {
                   context.router.navigate(
                     HomeScreenWrapperRoute(children: [
                       EpisodeScreenRoute(episodeId: episode.episode!.id),
@@ -517,7 +541,7 @@ class _EntriesSlot extends StatelessWidget {
                   ),
                 ),
                 child: Opacity(
-                  opacity: episode?.episode != null && !isComingSoon(episode?.episode!.publishDate) ? 1 : 0.7,
+                  opacity: episode?.episode != null && !isUnavailable(episode?.episode!.publishDate) ? 1 : 0.7,
                   child: Row(
                     children: [
                       Padding(

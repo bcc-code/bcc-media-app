@@ -27,7 +27,7 @@
   "@loading": {
     "description": "Text to indicate loading state."
   },
-  "loginPageDisplay1": "Kaikista vahvin sanoma",
+  "loginPageDisplay1": "Kaikista maailman sanomista voimakkain",
   "@loginPageDisplay1": {
     "description": "Text displayed on login screen."
   },
@@ -53,9 +53,9 @@
   },
   "faq": "Usein kysyttyä",
   "@faq": {
-    "description": "Title of the FAQ page."
+    "description": "Long title of the FAQ page."
   },
-  "bccMediaCenter": "BrunstadTV on ei-kaupallinen kristillisten ja positiivisten arvojen mukaisen median tuottaja.",
+  "bccMediaCenter": "BCC Media on BCC Liiton mediayksikkö. Se tuottaa ja toimittaa positiivista Kristillisten arvojen mukaista sisältöä.",
   "@bccMediaCenter": {
     "description": "Disclaimer on login page"
   },
@@ -145,11 +145,11 @@
   },
   "upNext": "Tulossa",
   "@upNext": {
-    "description": "Title on Up next feature."
+    "description": "Title indiciating what's next on the livestream."
   },
   "done": "Valmis",
   "@done": {
-    "description": "General Done button. User confirms that action completed sucessfully."
+    "description": "Generic Done button, for example to dismiss a page after completing an action."
   },
   "playerSettings": "Soittimen asetukset",
   "@playerSettings": {
@@ -173,15 +173,15 @@
   },
   "subtitles": "Tekstitys",
   "@subtitles": {
-    "description": "Title of the Player settings activity tab in Android"
+    "description": "Generic."
   },
   "audio": "Ääni",
   "@audio": {
-    "description": "Title of the Player settings activity tab in Android"
+    "description": "Generic."
   },
   "quality": "Laatu",
   "@quality": {
-    "description": "Title of the Player settings activity tab in Android"
+    "description": "Generic."
   },
   "seasons": "Tuotantokaudet",
   "@seasons": {
@@ -250,15 +250,11 @@
   },
   "seeAll": "Näytä kaikki",
   "@seeAll": {
-    "description": "Button on explore page to navigete to audience page"
+    "description": "Button to see all of some collection."
   },
   "series": "Sarjat",
   "@series": {
     "description": "Title of the tab on info page"
-  },
-  "livestreamMaintenance": "Suoratoisto on juuri korjattavana. Pahoittelemme. Koita myöhemmin uudelleen.",
-  "@livestreamMaintenance": {
-    "description": "Message displayed over overlay when livestream is under maintenance."
   },
   "homeTab": "Etusivu",
   "@homeTab": {
@@ -284,7 +280,7 @@
   "@high": {
     "description": "High quality video option"
   },
-  "emptySearch": "Täältä voit hakea mitä tahansa BrunstadTV:n sisältöä; sarjoja, elokuvia, ja jaksoja.",
+  "emptySearch": "Täältä voit hakea mitä tahansa BCC Median sisältöä; sarjoja, elokuvia, ja jaksoja.",
   "@emptySearch": {
     "description": "Message on search page when there is no search results."
   },
@@ -344,15 +340,6 @@
   "@uploadFileMessage": {
     "description": "Content of the dialog to confirm upload"
   },
-  "watchingWith": "Sinä ja {numPeople} muuta katselette tätä",
-  "@watchingWith": {
-    "description": "Info on live stream page",
-    "placeholders": {
-      "numPeople": {
-        "type": "int"
-      }
-    }
-  },
   "uploading": "Lähetetään",
   "@uploading": {
     "description": "Message during file upload"
@@ -361,13 +348,9 @@
   "@uploadFail": {
     "description": "Upload result message"
   },
-  "post": "Lähetä",
-  "@post": {
-    "description": "Button to post written testimony"
-  },
   "charactersLimit": "{charsTotal} merkistä {charsLeft} jäljellä",
   "@charactersLimit": {
-    "description": "Info about limit of characters in written testimony",
+    "description": "Info about limit of characters in a text field",
     "placeholders": {
       "charsLeft": {
         "type": "int"
@@ -377,42 +360,6 @@
       }
     }
   },
-  "uploadingPostSuccess": "Viestisi on toimitettu.",
-  "@uploadingPostSuccess": {
-    "description": "Info in upload success page"
-  },
-  "testimonyInfo": "Kuvaa video kännykällä.",
-  "@testimonyInfo": {
-    "description": "Record testimony guideline page info"
-  },
-  "yourVideo": "Videosi",
-  "@yourVideo": {
-    "description": "Title on recording tip page page"
-  },
-  "record": "Kuvaa",
-  "@record": {
-    "description": "Button to record testimony"
-  },
-  "recordingTips": "Vinkkejä hyvän videon kuvaamiseen",
-  "@recordingTips": {
-    "description": "Record testimony guideline page tip list title"
-  },
-  "recordingTipA": "Kuvaa hiljaisessa ympäristössä.",
-  "@recordingTipA": {
-    "description": "Record testimony guideline page tip list item"
-  },
-  "recordingTipB": "Huolehdi tasaisesta valaistuksesta kasvoille.",
-  "@recordingTipB": {
-    "description": "Record testimony guideline page tip list item"
-  },
-  "recordingTipC": "Ajattele ensin mitä aiot sanoa - kuvaa vasta sitten.",
-  "@recordingTipC": {
-    "description": "Record testimony guideline page tip list item"
-  },
-  "recordingTipD": "Pidä puhelinta vaaka-asennossa.",
-  "@recordingTipD": {
-    "description": "Record testimony guideline page tip list item"
-  },
   "thankYou": "Kiitoksia!",
   "@thankYou": {
     "description": "Title in upload success page"
@@ -421,65 +368,17 @@
   "@thankYouForContribution": {
     "description": "Title in upload success page"
   },
-  "uploadingVideoSuccess": "Videosi on toimitettu.",
-  "@uploadingVideoSuccess": {
-    "description": "Info in upload success page"
-  },
   "next": "Seuraava",
   "@next": {
     "description": "NEXT program in check in section"
   },
-  "recordVideoCameraPermissionAlert": "Anna sovellukselle oikeus käyttää kameraa videon kuvaamiseen.",
-  "@recordVideoCameraPermissionAlert": {
-    "description": "Message in alert dialog informing about missing permission"
-  },
-  "recordVideoPhotosPermissionAlert": "Anna sovellukselle oikeus käyttää kuva-albumia videon kuvaamista varten.",
-  "@recordVideoPhotosPermissionAlert": {
-    "description": "Message in alert dialog informing about missing permission"
-  },
-  "recordVideoStoragePermissionAlert": "Anna sovellukselle oikeus käyttää tallennustilaa videon kuvaamista varten.",
-  "@recordVideoStoragePermissionAlert": {
-    "description": "Message in alert dialog informing about missing permission"
-  },
-  "recordVideoMicrophonePermissionAlert": "Videon kuvaaminen vaatii oikeuden käyttää mikrofonia.",
-  "@recordVideoMicrophonePermissionAlert": {
-    "description": "Message in alert dialog informing about missing permission"
-  },
-  "takePhotoStoragePermissionAlert": "Kuvan ottamiseen tarvitaan oikeus käyttää tallennustilaa.",
-  "@takePhotoStoragePermissionAlert": {
-    "description": "Message in alert dialog informing about missing permission"
-  },
-  "takePhotoCameraPermissionAlert": "Kuvan ottamiseen tarvitaan oikeus käyttää kameraa.",
-  "@takePhotoCameraPermissionAlert": {
-    "description": "Message in alert dialog informing about missing permission"
-  },
-  "pickPhotoStoragePermissionAlert": "Anna sovellukselle oikeus käyttää tallennustilaa jotta voidaan valita kuvia.",
-  "@pickPhotoStoragePermissionAlert": {
-    "description": "Message in alert dialog informing about missing permission"
-  },
-  "permissionsAlertTitle": "Tarvitaan käyttöoikeuksia",
-  "@permissionsAlertTitle": {
-    "description": "Title of an alert dialog informing about missing permission"
-  },
   "add": "Lisää",
   "@add": {
-    "description": "Button text on interactive live avatar section"
+    "description": "Button text"
   },
   "change": "Vaihda",
   "@change": {
-    "description": "Button text on interactive live avatar section"
-  },
-  "recordingFailedTitle": "Videon ottaminen epäonnistui",
-  "@recordingFailedTitle": {
-    "description": "Title in alert dialog when recording fails"
-  },
-  "recordingFailedMessage": "Jotain meni pieleen videon kuvaamisessa.",
-  "@recordingFailedMessage": {
-    "description": "Message in alert dialog when recording fails"
-  },
-  "pollSubtitle": "Kysely",
-  "@pollSubtitle": {
-    "description": "The little title in poll"
+    "description": "Button text"
   },
   "writeHere": "Kirjoita tähän",
   "@writeHere": {
@@ -489,37 +388,17 @@
   "@feed": {
     "description": "Feed page bar title"
   },
-  "atmosphereFeedDescription": "Osallistu viestivirtaan lähettämällä viesti, kuva, tai todistus. Missä oletkin.",
-  "@atmosphereFeedDescription": {
-    "description": "Feed page description"
-  },
   "information": "Tiedot",
   "@information": {
     "description": "Feed information item title"
-  },
-  "photoNotSupported": "Kuvien ottaminen tai valitseminen ei onnistu laitteellasi.",
-  "@photoNotSupported": {
-    "description": "Alert displayed when phone can't take photo or pick photo from storage."
-  },
-  "answerFailed": "Vastauksen lähettäminen epäonnistui. Yritä uudelleen.",
-  "@answerFailed": {
-    "description": "Message displayed when user's answer hasn't' been sent'."
   },
   "question": "Kysymys",
   "@question": {
     "description": "Title of the question page"
   },
-  "notificationChannelPlayerName": "Soitin",
-  "@notificationChannelPlayerName": {
-    "description": "Notification channel name in Android settings"
-  },
   "now": "Nyt",
   "@now": {
     "description": "Tv guide now playing label"
-  },
-  "createPost": "Luo viesti",
-  "@createPost": {
-    "description": "Button to start text testimony and title on create post page"
   },
   "concernTextPlaceholder": "Kerro ongelmasta",
   "@concernTextPlaceholder": {
@@ -557,31 +436,9 @@
   "@today": {
     "description": "First category in tv guide"
   },
-  "noNewPosts": "Ei uusia viestejä",
-  "@noNewPosts": {
-    "description": "Text displayed on the button, when there are no new posts in the feed."
-  },
-  "newPostsMultiple": "{postCount} uutta viestiä!",
-  "@newPostsMultiple": {
-    "description": "Text displayed on the button, when there are number of new posts in the feed.",
-    "placeholders": {
-      "postCount": {
-        "type": "int"
-      }
-    }
-  },
-  "newPostsSingle": "Uusi viesti!",
-  "@newPostsSingle": {
-    "description": "Text displayed on the button, when there is one new post in the feed.",
-    "placeholders": {
-      "postCount": {
-        "type": "int"
-      }
-    }
-  },
   "expired": "Vanhentunut",
   "@expired": {
-    "description": "Info that episode is no longer available."
+    "description": "Label that something is no longer available."
   },
   "availableFrom": "Saatavilla {date}",
   "@availableFrom": {
@@ -592,60 +449,13 @@
       }
     }
   },
-  "howFar": "Kuinka pitkän matkan kuljit?",
-  "@howFar": {
-    "description": "Text on running competition page."
-  },
   "submit": "Lähetä",
   "@submit": {
-    "description": "Submit button on running competition page."
+    "description": "Submit button."
   },
   "wellDone": "Hyvin tehty!",
   "@wellDone": {
-    "description": "Text on running competition page."
-  },
-  "wellDoneDistance": "Hienoa! Olet ilmoittanut yhteensä {distanceInKM} km",
-  "@wellDoneDistance": {
-    "description": "Text on running competition page.",
-    "placeholders": {
-      "distanceInKM": {
-        "type": "int"
-      }
-    }
-  },
-  "distanceRegistered": "Ilmoittamasi matka on tallennettu. Tuossa alempana voit lisätä vielä muita lenkkejä.",
-  "@distanceRegistered": {
-    "description": "Text on running competition page."
-  },
-  "ranMore": "Kuljin yli {distanceInKM} km",
-  "@ranMore": {
-    "description": "Text on running competition page.",
-    "placeholders": {
-      "distanceInKM": {
-        "type": "int"
-      }
-    }
-  },
-  "moreThan": "Yli {distanceInKM} km",
-  "@moreThan": {
-    "description": "Text on running competition page.",
-    "placeholders": {
-      "distanceInKM": {
-        "type": "int"
-      }
-    }
-  },
-  "runningEffort": "Hyvä suoritus! Kirjaa kulkemasi matka tuohon alas.",
-  "@runningEffort": {
-    "description": "Text on running competition page."
-  },
-  "slideSelect": "Säädä matkaa palkkia liu'uttamalla",
-  "@slideSelect": {
-    "description": "Text on running competition page."
-  },
-  "submitAnotherDistance": "Lisää toinen lenkki",
-  "@submitAnotherDistance": {
-    "description": "Text on running competition page."
+    "description": "Positive message that may be used e.g. after completing some action."
   },
   "editPicture": "Muokkaa kuvaa",
   "@editPicture": {
@@ -654,10 +464,6 @@
   "profilePicture": "Profiilikuva",
   "@profilePicture": {
     "description": "Text on edit profile page."
-  },
-  "firstPostTitle": "Ole ensimmäinen joka jakaa kuvan tai viestin",
-  "@firstPostTitle": {
-    "description": "Text on feed page when feed is empty."
   },
   "timezoneInformation": "Kellonajat ovat sinun aikavyöhykettä: {timeZone}",
   "@timezoneInformation": {
@@ -668,73 +474,13 @@
       }
     }
   },
-  "yourQuestion": "Kysymyksesi",
-  "@yourQuestion": {
-    "description": "Title on ask question page"
-  },
-  "uploadingInquirySuccess": "Huomaathan, että kaikkiin kysymyksiin ei lähetyksessä vastata.",
-  "@uploadingInquirySuccess": {
-    "description": "Info in upload question success page"
-  },
-  "askQuestion": "Kysy jotain",
-  "@askQuestion": {
-    "description": "Ask question text field placeholder"
-  },
-  "submitQuestionInfo": "Kysymällä jotain hyväksyt myös että kysymys voidaan julkaista.",
-  "@submitQuestionInfo": {
-    "description": "Disclaimer on ask question page"
-  },
-  "posting": "Lähetetään",
-  "@posting": {
-    "description": "Information about ongoing posting process"
-  },
-  "submitPostInfo": "Lähettämällä kuvan tai tekstin hyväksyt myös että se voidaan julkaista. ",
-  "@submitPostInfo": {
-    "description": "Disclaimer on text testimony page"
-  },
-  "cropImage": "Rajaa kuvaa",
-  "@cropImage": {
-    "description": "Image crop page title"
-  },
-  "square": "Neliö",
-  "@square": {
-    "description": "Image crop mode"
-  },
-  "landscape": "Vaakakuva",
-  "@landscape": {
-    "description": "Image crop mode"
-  },
-  "pollSingleChoice": "Vastauksen voi valita vain kerran.",
-  "@pollSingleChoice": {
-    "description": "Desciption of the poll type. States that user can change the answer only once."
-  },
-  "pollMultipleChoice": "Vastausta voi muuttaa.",
-  "@pollMultipleChoice": {
-    "description": "Desciption of the poll type. States that user can change the answer multiple times."
-  },
-  "pollEnded": "Valintakysely on valmis. Kiitos vastauksista.",
-  "@pollEnded": {
-    "description": "Message displayed when poll has been closed by administrator."
-  },
-  "browserInstall": "Selain ei aukea. Voitko asentaa sellaisen jos se puuttuu.",
-  "@browserInstall": {
-    "description": "Message displayed when browser couldn't be opened on user's device."
-  },
   "share": "Jaa",
   "@share": {
-    "description": "Option name to share video."
+    "description": "Generic."
   },
   "liveNow": "Jetzt live",
   "@liveNow": {
-    "description": "Call to action button on featured carousel."
-  },
-  "program": "Ohjelma",
-  "@program": {
-    "description": "Title of the program tab on live page."
-  },
-  "participateTab": "Osallistu",
-  "@participateTab": {
-    "description": "Title of the participate tab on live page."
+    "description": "Generic, short. Used in buttons, badges, etc to indicate that an item is playing on the livestream now."
   },
   "tomorrow": "Huomenna",
   "@tomorrow": {
@@ -744,26 +490,9 @@
   "@readBy": {
     "description": "Feed verse pre author text."
   },
-  "pollAnswer": "Valitsit {answer}",
-  "@pollAnswer": {
-    "description": "Snackbar label after user has chosen poll answer",
-    "placeholders": {
-      "answer": {
-        "type": "String"
-      }
-    }
-  },
   "broadcasts": "Lähetykset",
   "@broadcasts": {
-    "description": "Title for tv guide collection on event page."
-  },
-  "quizAnswered": "Vastaukset toimitettu",
-  "@quizAnswered": {
-    "description": "Text displayed on a button when all answers in quiz have been submitted."
-  },
-  "quizNotEnabled": "Kyselyyn ei voi vastata juuri nyt. Yritä toiste.",
-  "@quizNotEnabled": {
-    "description": "Message on alert that appears when participate item is visible, but quiz is not enabled."
+    "description": "Title for live broadcasts."
   },
   "calendar": "Kalenteri",
   "@calendar": {
@@ -785,42 +514,13 @@
   "@appUpdateAccepted": {
     "description": "Option that can be chosen by the user to update his application."
   },
-  "donationNotAvailable": "Juuri nyt ei voi lahjoittaa. Yritä myöhemmin uudelleen.",
-  "@donationNotAvailable": {
-    "description": "Message displayed when donation flow failed."
-  },
-  "posts": "{postsCount} viestiä",
-  "@posts": {
-    "description": "Contributions to feed made by the users. Plural of post.",
-    "placeholders": {
-      "postsCount": {
-        "type": "int"
-      }
-    }
-  },
   "copy": "Kopioi",
   "@copy": {
-    "description": "Copy option for quotes, verses."
+    "description": "Small 'copy' button to copy to clipboard for quotes, verses, and similar."
   },
   "reload": "Uusi yritys",
   "@reload": {
     "description": "Label on the button that allows to reload the player after error."
-  },
-  "participantsTitle": "Kuka vastaa?",
-  "@participantsTitleTitle": {
-    "description": "Title label on the participants list before quiz."
-  },
-  "participantsSubtitle": "Valitse yksi tai useampi osallistuja.",
-  "@participantsSubtitle": {
-    "description": "Subtitle label on the participants list before quiz."
-  },
-  "yourFamily": "Perheesi",
-  "@yourFamily": {
-    "description": "Title on page when user selects family members that take part in the quiz."
-  },
-  "yourTurn": "Sinun vuorosi",
-  "@yourTurn": {
-    "description": "Title on page informing user that other user will answer question in the next step."
   },
   "fAQ": "UKK",
   "@fAQ": {
@@ -843,41 +543,13 @@
   "@loadContentError": {
     "description": "Error text when content couldn't be loaded."
   },
-  "audioOnlyErrorDescription": "Tarkista nettiyhteys ja yritä uudelleen",
-  "@audioOnlyErrorDescription": {
-    "description": "Error message when audio only fails to play"
-  },
   "privacyPolicy": "Tietosuojakäytäntö",
   "@privacyPolicy": {
     "description": "Title on Privacy Policy page and item in profile page settings."
   },
-  "tokenError": "Nettiongelman vuoksi emme voi varmistaa kuka olet. Tämän vuoksi et voi vielä käyttää kaikkia ominaisuuksia.",
-  "@tokenError": {
-    "description": "Message indicating that there is a problem with user's token, and some features may be broken because of this."
-  },
   "categoriesTab": "Luokat",
   "@categoriesTab": {
     "description": "Title of the Categories Tab"
-  },
-  "settingsTab": "Asetukset",
-  "@settingsTab": {
-    "description": "Title of the Settings Tab"
-  },
-  "confirmLogin": "Vahvista kirjautuminen",
-  "@confirmLogin": {
-    "description": "Prompt that asks the user to confirm his log-in"
-  },
-  "scanInfo": "Koodin kuvaaminen kännykällä vie sinut kirjautumissivulle.",
-  "@scanInfo": {
-    "description": "Text that informs the user that the QR code can be scanned to enter the login page. Used on AppleTV."
-  },
-  "validInfo": "QR-koodi on voimassa 15 minuuttia.",
-  "@validInfo": {
-    "description": "Message that informs the user for how long the QR Code will be valid."
-  },
-  "confirmInfo": "Kirjaudu sisään kännykällä. Vahvista sitten kirjautuminen alla olevasta painikkeesta.",
-  "@confirmInfo": {
-    "description": "Message that asks the user to click the button in order to proceed after successful login."
   },
   "seriesTab": "Sarjat",
   "@seriesTab": {
@@ -907,18 +579,6 @@
   "@noTransmissionToday": {
     "description": "Messages that informs the user, that there are no schedules transmission for today."
   },
-  "livestreamMaintenanceTitle": "Suoratoistoa ei nyt ole",
-  "@livestreamMaintenanceTitle": {
-    "description": "Message that informs the user, that the livestream is unavailable."
-  },
-  "start": "Alkaa",
-  "@start": {
-    "description": "Word used while displaying information about the beggining of a video or an event in tv guide."
-  },
-  "transmissionSchedule": "Lähetysten aikataulu",
-  "@transmissionSchedule": {
-    "description": "Label that indicates the user is looking at Transmission schedule"
-  },
   "featured": "Ajankohtaista",
   "@featured": {
     "description": "Featured videos collection header"
@@ -927,77 +587,13 @@
   "@errorTryAgain": {
     "description": "Message that informs the user, that there was an error. Then politely asks the user to try again later."
   },
-  "reportProblem": "Ongelmatilanteessa lähetä tämän QR-koodin avulla meille sähköpostia.",
-  "@reportProblem": {
-    "description": "Message indicating that whenever the user wants to report a problem, they can scan the QR code to send an email to support."
-  },
-  "phoneReadingProblem": "Jos et onnistu käyttämään QR-koodia, lähetä meille sähköpostia seuraavin tiedoin",
-  "@phoneReadingProblem": {
-    "description": "Message explaining that if the user's phone can't scan the QR code, they can send the support e-mail with information listed after this message."
-  },
-  "goTo": "vaihtoehtoisesti mene",
-  "@goTo": {
-    "description": "Message used to point the user to the shortened URL in case they can't use the QR code to log-in. This is used on AppleTV."
-  },
-  "watchBrunstad": "Seuraa BrunstadTV lähetystä",
-  "@watchBrunstad": {
-    "description": "Text that entices the user to watch the livestream."
-  },
-  "notLogged": "Ei kirjautuneena",
-  "@notLogged": {
-    "description": "Text that informs the user, that they are not logged in."
-  },
-  "authResponse0": "Käytä uutta QR-koodia kirjautumiseen.",
-  "@authResponse0": {
-    "description": "Authentication response displayed to the user when an old QR code was used. Asking them to use a new one if they want to log in."
-  },
-  "authResponse1": "Kirjaudu kännykällä QR-koodin avulla.",
-  "@authResponse1": {
-    "description": "Message displayed to the user when they tried to proceed with the log-in on AppleTv without first logging through their mobile device."
-  },
-  "authResponse3": "Tarkista nettiyhteys ja kokeile sitten uudelleen.",
-  "@authResponse3": {
-    "description": "Message that indicates there was an error during Authentication process. Asking the user to check their network connection and try again."
-  },
   "liveHeader": "Live",
   "@liveHeader": {
     "description": "Header of the Live Tab — the tab that contains the livestream player on AppleTV."
   },
-  "recentlyPublishedSection": "Vastikään julkaistu",
-  "@recentlyPublishedSection": {
-    "description": "Section in explore."
-  },
-  "exploreCategoriesSection": "Selaile eri aiheita",
-  "@exploreCategoriesSection": {
-    "description": "Section in explore."
-  },
   "programsSection": "Ohjelmat",
   "@programsSection": {
-    "description": "Section in explore."
-  },
-  "episodesSection": "Jaksoa",
-  "@episodesSection": {
-    "description": "Section in explore."
-  },
-  "categorySeries": "Sarjat",
-  "@categorySeries": {
-    "description": "Category name"
-  },
-  "categoryKids": "Lapset",
-  "@categoryKids": {
-    "description": "Category name"
-  },
-  "categoryFilms": "Filmit",
-  "@categoryFilms": {
-    "description": "Category name"
-  },
-  "categoryEvents": "Tapahtumat",
-  "@categoryEvents": {
-    "description": "Category name"
-  },
-  "categoryMusic": "Musiikki",
-  "@categoryMusic": {
-    "description": "Category name"
+    "description": "Section in search."
   },
   "noPlannedEvents": "Ei tapahtumia tänään",
   "@noPlannedEvents": {
@@ -1006,5 +602,138 @@
   "watchNow": "Katso",
   "@watchNow": {
     "description": "Button on featured carousel"
+  },
+  "exploreContent": "Tutustu sisältöön",
+  "@exploreContent": {
+    "description": "A button on the login page"
+  },
+  "taskCompleted": "tehtävä suoritettu",
+  "@taskCompleted": {
+    "description": "SINGULAR. Note the lowercase T, because its inserted after a count: '0/1 task completed'."
+  },
+  "tasksCompleted": "tehtävää suoritettu",
+  "@tasksCompleted": {
+    "description": "PLURAL. Note the lowercase T, because its inserted after the count: '2/5 tasks completed'."
+  },
+  "studyCompleteTaskDescription": "Suorita tehtäviä ja löydä siihen liittyvää sisältöä",
+  "@studyCompleteTaskDescription": {
+    "description": "Description to open the study tasks for this episode. Currently shows below '0/1 tasks completed'."
+  },
+  "discoverMore": "Löydä lisää",
+  "@discoverMore": {
+    "description": "Generic button text."
+  },
+  "completePreviousTasks": "Complete previous tasks to unlock",
+  "@completePreviousTasks": {
+    "description": "Shown on a locked button, short explanation why the button is locked."
+  },
+  "studyDiscoverMoreDescription": "Löydä aiheeseen liittyvää inspiroivaa ja valaisevaa sisältöä",
+  "@studyDiscoverMoreDescription": {
+    "description": "Description to open the related resources for this episode."
+  },
+  "watchAgain": "Katso uudelleen",
+  "@watchAgain": {
+    "description": "Short button text to watch the video again."
+  },
+  "continueToTaskIn": "Tehtävän jatkoon",
+  "@continueToTaskIn": {
+    "description": "SINGULAR. Button with text 'Continue to task in X'. Can click it to open tasks immediately, otherwise X will count down (10, 9, 8...) and automatically redirect you to the tasks."
+  },
+  "continueToTasksIn": "Tehtävien jatkoon",
+  "@continueToTasksIn": {
+    "description": "PLURAL. Button with text 'Continue to tasks in X'. Can click it to open tasks immediately, otherwise X will count down (10, 9, 8...) and automatically redirect you to the tasks."
+  },
+  "studyLessonCompleted": "oppitunti suoritettu",
+  "@studyLessonCompleted": {
+    "description": "SINGULAR. Note the lowercase L, because prepended with a number: '1 lesson completed'."
+  },
+  "studyLessonsCompleted": "oppituntia suoritettu",
+  "@studyLessonsCompleted": {
+    "description": "PLURAL. Note the lowercase L, because prepended with a number: '20 lessons completed'."
+  },
+  "continueStudy": "Jatka opintoa",
+  "@continueStudy": {
+    "description": "Button."
+  },
+  "startStudy": "Aloita opinto",
+  "@startStudy": {
+    "description": "Button."
+  },
+  "videoCompletedText": "Hienoa, katsoit videon loppuun.",
+  "@videoCompletedText": {
+    "description": "Shown after completing tasks related to a video."
+  },
+  "achievementFirstDescription": "Ensimmäinen saavutus - katsoit videon. Hieno homma!",
+  "@achievementFirstDescription": {
+    "description": "Description displayed in a popup when earning the first achievement badge."
+  },
+  "achievementStudyTopic": "Hieno homma. Olet suorittanut opintokokonaisuuden {name}",
+  "@achievementStudyTopic": {
+    "description": "REMEMBER: Include, but do not translate variables like {name} here. Description displayed in a popup when done with a study topic.",
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "videoCount": "{count} videota",
+  "@videoCount": {
+    "description": "REMEMBER: Include, but do not translate variables like {count} here. Keep it very short. Generic, number of videos. Currently used for study topic overviews.",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "taskCount": "{count} tehtäviä",
+  "@taskCount": {
+    "description": "REMEMBER: Include, but do not translate variables like {count} here. Keep it very short. Generic, number of tasks. Currently used for study topic overviews.",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "posterCount": "{count} julistetta",
+  "@posterCount": {
+    "description": "REMEMBER: Include, but do not translate variables like {count} here. Keep it very short. Generic, number of posters. Currently used for study topic overviews.",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "resourceCount": "{count} sisältöpakettia",
+  "@resourceCount": {
+    "description": "REMEMBER: Include, but do not translate variables like {count} here. Keep it very short. Generic, number of resources. Currently used for study topic overviews.",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "continueButton": "Jatka",
+  "@continueButton": {
+    "description": "Generic button text."
+  },
+  "achievements": "Saavutukset",
+  "@achievements": {
+    "description": "Generic. Used as page title, etc."
+  },
+  "oops": "Hupsista!",
+  "@oops": {
+    "description": "An informal title on some error screens."
+  },
+  "dontHaveAccess": "Sinulla ei ole oikeutta tähän sisältöön.",
+  "@dontHaveAccess": {
+    "description": "Error message when you open a link to content you dont have access to."
+  },
+  "mustBeLoggedIn": "Tämän katsominen vaatii kirjautumista",
+  "@mustBeLoggedIn": {
+    "description": "Error message when you open a link to content you dont have access to, and you are not logged in."
+  },
+  "plentyOfOtherContent": "Mutta ei syytä huoleen. On edelleen paljon mitä voit katsella.",
+  "@plentyOfOtherContent": {
+    "description": "Shown on an error page indiciating you dont have access to the content, right above a button that takes you back."
   }
 }

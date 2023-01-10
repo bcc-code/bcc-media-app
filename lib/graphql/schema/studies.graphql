@@ -1,17 +1,31 @@
 type StudyTopic {
     id: ID!
     title: String!
+    description: String!
+    image(style: ImageStyle): String @goField(forceResolver: true)
+    images: [Image!]!
     lessons(first: Int, offset: Int): LessonPagination! @goField(forceResolver: true)
-    progress: TasksProgress! @goField(forceResolver: true)
+
+    progress: LessonsProgress! @goField(forceResolver: true)
 }
 
 type Lesson {
     id: ID!
     title: String!
+    description: String!
+    image(style: ImageStyle): String @goField(forceResolver: true)
     tasks(first: Int, offset: Int): TaskPagination! @goField(forceResolver: true)
     topic: StudyTopic! @goField(forceResolver: true)
-    progress: TasksProgress! @goField(forceResolver: true)
     episodes(first: Int, offset: Int): EpisodePagination! @goField(forceResolver: true)
+    links(first: Int, offset: Int): LinkPagination! @goField(forceResolver: true)
+
+    progress: TasksProgress! @goField(forceResolver: true)
+
+    completed: Boolean! @goField(forceResolver: true)
+    locked: Boolean! @goField(forceResolver: true)
+
+    previous: Lesson @goField(forceResolver: true)
+    next: Lesson @goField(forceResolver: true)
 }
 
 type LessonPagination implements Pagination {
@@ -24,7 +38,13 @@ type LessonPagination implements Pagination {
 interface Task {
     id: ID!
     title: String!
+
     completed: Boolean!
+}
+
+type LessonsProgress {
+    total: Int!
+    completed: Int!
 }
 
 type TasksProgress {
@@ -85,8 +105,7 @@ type LinkTask implements Task {
     id: ID!
     title: String!
     completed: Boolean! @goField(forceResolver: true)
-    link: String!
-    image: String!
+    link: Link! @goField(forceResolver: true)
     secondaryTitle: String
     description: String
 }

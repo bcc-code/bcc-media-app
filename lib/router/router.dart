@@ -18,6 +18,8 @@ import 'package:brunstadtv_app/screens/search/search.dart';
 import 'package:brunstadtv_app/screens/study.dart';
 
 import '../helpers/custom_transitions.dart';
+import '../screens/achievement_group.dart';
+import '../screens/achievements.dart';
 import '../screens/episode.dart';
 import '../screens/page.dart';
 import 'special_routes_guard.dart';
@@ -85,6 +87,7 @@ const _specialRoutes = AutoRoute(
       durationInMilliseconds: 400,
       reverseDurationInMilliseconds: 600,
       transitionsBuilder: CustomTransitionsBuilders.slideUp,
+      meta: {RouteMetaConstants.analyticsName: 'settings', RouteMetaConstants.settingsName: 'appLanguage'},
     ),
     CustomRoute<void>(
       page: AppAudioLanguage,
@@ -92,6 +95,7 @@ const _specialRoutes = AutoRoute(
       durationInMilliseconds: 400,
       reverseDurationInMilliseconds: 600,
       transitionsBuilder: CustomTransitionsBuilders.slideUp,
+      meta: {RouteMetaConstants.analyticsName: 'settings', RouteMetaConstants.settingsName: 'audioLanguage'},
     ),
     CustomRoute<void>(
       page: AppSubtitleLanguage,
@@ -99,6 +103,7 @@ const _specialRoutes = AutoRoute(
       durationInMilliseconds: 400,
       reverseDurationInMilliseconds: 600,
       transitionsBuilder: CustomTransitionsBuilders.slideUp,
+      meta: {RouteMetaConstants.analyticsName: 'settings', RouteMetaConstants.settingsName: 'subtitlesLanguage'},
     ),
     CustomRoute<void>(
       page: VideoQuality,
@@ -106,6 +111,7 @@ const _specialRoutes = AutoRoute(
       durationInMilliseconds: 400,
       reverseDurationInMilliseconds: 600,
       transitionsBuilder: CustomTransitionsBuilders.slideUp,
+      meta: {RouteMetaConstants.analyticsName: 'settings', RouteMetaConstants.settingsName: 'videoQuality'},
     ),
     CustomRoute<void>(
       page: ContactSupport,
@@ -139,14 +145,39 @@ const _specialRoutes = AutoRoute(
       durationInMilliseconds: 500,
       reverseDurationInMilliseconds: 500,
     ),
+    CustomRoute<void>(
+      page: EpisodeScreen,
+      name: 'EmbedScreen',
+      path: '/embed/:episodeId',
+      durationInMilliseconds: 300,
+      reverseDurationInMilliseconds: 300,
+      transitionsBuilder: CustomTransitionsBuilders.slideLeft,
+      meta: {RouteMetaConstants.analyticsName: 'episode'},
+    ),
     CustomRoute(page: AutoLoginScreeen, path: 'auto-login'),
     CustomRoute<void>(
         page: StudyScreen,
-        path: 'study',
+        path: 'study-lesson',
         durationInMilliseconds: 400,
         reverseDurationInMilliseconds: 600,
         transitionsBuilder: CustomTransitionsBuilders.slideUp,
-        meta: {RouteMetaConstants.analyticsName: 'study'}),
+        meta: {RouteMetaConstants.analyticsName: 'study-lesson'}),
+    CustomRoute<void>(
+        page: AchievementsScreen,
+        path: '/achievements',
+        durationInMilliseconds: 400,
+        reverseDurationInMilliseconds: 600,
+        transitionsBuilder: CustomTransitionsBuilders.slideUp,
+        meta: {RouteMetaConstants.analyticsName: 'achievements'}),
+    CustomRoute<void>(
+        page: AchievementGroupScreen,
+        path: '/achievement-group/:groupId',
+        durationInMilliseconds: 400,
+        reverseDurationInMilliseconds: 600,
+        transitionsBuilder: CustomTransitionsBuilders.slideUp,
+        meta: {
+          RouteMetaConstants.analyticsName: 'achievement-group',
+        }),
     CustomRoute<void>(
       page: TabsRootScreen,
       path: '/',
@@ -155,16 +186,32 @@ const _specialRoutes = AutoRoute(
         MaterialRoute<void>(
             page: LiveScreen,
             path: 'live',
-            meta: {RouteMetaConstants.hideMiniPlayer: true, RouteMetaConstants.analyticsName: 'livestream'},
+            meta: {
+              RouteMetaConstants.hideMiniPlayer: true,
+              RouteMetaConstants.navTabRoute: true,
+              RouteMetaConstants.analyticsName: 'livestream',
+            },
             maintainState: true),
         MaterialRoute<void>(
           name: 'SearchScreenWrapperRoute',
           page: EmptyRouterPage,
           path: 'search',
-          children: [MaterialRoute<void>(page: SearchScreen, path: ''), _episodeScreenRoute, _pageScreenRoute],
-          meta: {RouteMetaConstants.analyticsName: 'search'},
+          children: [
+            MaterialRoute<void>(
+              page: SearchScreen,
+              path: '',
+              meta: {RouteMetaConstants.navTabRoute: true},
+            ),
+            _episodeScreenRoute,
+            _pageScreenRoute,
+          ],
         ),
-        MaterialRoute<void>(name: 'CalendarPageRoute', page: CalendarPage, path: 'calendar'),
+        MaterialRoute<void>(
+          name: 'CalendarPageRoute',
+          page: CalendarPage,
+          path: 'calendar',
+          meta: {RouteMetaConstants.navTabRoute: true, RouteMetaConstants.analyticsName: 'calendar'},
+        ),
         CustomRoute<void>(name: 'HomeScreenWrapperRoute', page: EmptyRouterPage, path: '', children: [
           CustomRoute<void>(
             page: HomeScreen,
@@ -172,7 +219,7 @@ const _specialRoutes = AutoRoute(
             name: 'home',
             initial: true,
             maintainState: true,
-            meta: {RouteMetaConstants.analyticsName: 'home'},
+            meta: {RouteMetaConstants.navTabRoute: true},
           ),
           _episodeScreenRoute,
           _pageScreenRoute,

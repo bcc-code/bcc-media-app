@@ -9,8 +9,8 @@ import 'package:brunstadtv_app/components/error_generic.dart';
 import 'package:brunstadtv_app/components/loading_indicator.dart';
 import 'package:brunstadtv_app/components/season_episode_list.dart';
 import 'package:brunstadtv_app/components/feature_badge.dart';
-import 'package:brunstadtv_app/components/study/study_button.dart';
 import 'package:brunstadtv_app/graphql/client.dart';
+import 'package:brunstadtv_app/graphql/schema/items.graphql.dart';
 import 'package:brunstadtv_app/graphql/schema/pages.graphql.dart';
 import 'package:brunstadtv_app/helpers/navigation_override.dart';
 import 'package:brunstadtv_app/helpers/svg_icons.dart';
@@ -27,16 +27,20 @@ import 'package:brunstadtv_app/providers/video_state.dart';
 import 'package:bccm_player/cast_button.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:brunstadtv_app/helpers/transparent_image.dart';
+import 'package:graphql/client.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:shimmer/shimmer.dart';
+import 'package:collection/collection.dart';
 
 import '../api/brunstadtv.dart';
 import '../components/bottom_sheet_select.dart';
 import '../components/custom_back_button.dart';
 import '../components/episode_details.dart';
 import '../components/episode_tab_selector.dart';
+import '../components/error_no_access.dart';
 import '../components/fade_indexed_stack.dart';
 import '../components/option_list.dart';
+import '../components/study_button.dart';
 import '../env/env.dart';
 import '../graphql/queries/studies.graphql.dart';
 import '../helpers/btv_buttons.dart';
@@ -55,8 +59,14 @@ class EpisodeScreen extends ConsumerStatefulWidget {
   final String episodeId;
   final bool autoplay;
   final int? queryParamStartPosition;
-  const EpisodeScreen(
-      {super.key, @PathParam() required this.episodeId, @QueryParam() this.autoplay = false, @QueryParam('t') this.queryParamStartPosition});
+  final bool? hideBottomSection;
+  const EpisodeScreen({
+    super.key,
+    @PathParam() required this.episodeId,
+    @QueryParam() this.autoplay = false,
+    @QueryParam('t') this.queryParamStartPosition,
+    @QueryParam('hide_bottom_section') this.hideBottomSection,
+  });
 
   @override
   ConsumerState<EpisodeScreen> createState() => _EpisodeScreenState();
@@ -64,9 +74,8 @@ class EpisodeScreen extends ConsumerStatefulWidget {
 
 class _EpisodeScreenState extends ConsumerState<EpisodeScreen> with AutoRouteAwareStateMixin<EpisodeScreen> {
   late Future<Query$FetchEpisode$episode?> episodeFuture;
-  late Future<Query$GetEpisodeLessonProgress?> lessonProgressFuture;
+  Future<Query$GetEpisodeLessonProgress?>? lessonProgressFuture;
   final scrollController = ScrollController();
-  bool settingUp = false;
   String? error;
   Completer? playerSetupCompleter;
   AnimationStatus? animationStatus;
@@ -75,7 +84,8 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen> with AutoRouteAwa
   StreamSubscription? chromecastSubscription;
   int selectedTab = 0;
   String? selectedSeasonId;
-  Map<String, List<EpisodeListEpisodeData>?>? seasonsMap;
+  Map<String, List<EpisodeListEpisodeData>?> seasonsMap = {};
+  Map<String, Fragment$EpisodeLessonProgressOverview> lessonProgressMap = {};
 
   @override
   void didUpdateWidget(old) {
@@ -108,17 +118,19 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen> with AutoRouteAwa
         (result) {
           final episodeSeason = result?.season;
           if (mounted && episodeSeason != null) {
+            loadLessonProgressForSeason(episodeSeason.id);
             setState(() {
               seasonsMap = <String, List<EpisodeListEpisodeData>?>{};
               for (var season in result!.season!.$show.seasons.items) {
-                seasonsMap![season.id] = null;
+                seasonsMap[season.id] = null;
               }
-              seasonsMap![episodeSeason.id] = episodeSeason.episodes.items.map((ep) {
+              seasonsMap[episodeSeason.id] = episodeSeason.episodes.items.map((ep) {
                 return EpisodeListEpisodeData(
                     episodeId: ep.id,
                     ageRating: ep.ageRating,
                     duration: ep.duration,
                     publishDate: ep.publishDate,
+                    locked: ep.locked,
                     title: ep.title,
                     image: ep.image,
                     seasonNumber: episodeSeason.number,
@@ -130,8 +142,9 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen> with AutoRouteAwa
           return result;
         },
       );
+      lessonProgressFuture = loadLessonsForEpisode();
     });
-    loadLessonProgress();
+
     await episodeFuture;
     if (widget.autoplay) {
       if (scrollCompleter == null) {
@@ -144,22 +157,38 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen> with AutoRouteAwa
     }
   }
 
-  void loadLessonProgress() {
-    setState(() {
-      lessonProgressFuture = ref
-          .read(gqlClientProvider)
-          .query$GetEpisodeLessonProgress(
-              Options$Query$GetEpisodeLessonProgress(variables: Variables$Query$GetEpisodeLessonProgress(id: widget.episodeId.toString())))
-          .then(((value) => value.parsedData));
-    });
+  Future<Query$GetEpisodeLessonProgress?> loadLessonsForEpisode() async {
+    final value = await ref.read(gqlClientProvider).query$GetEpisodeLessonProgress(
+        Options$Query$GetEpisodeLessonProgress(variables: Variables$Query$GetEpisodeLessonProgress(id: widget.episodeId.toString())));
+    final lessonProgress = value.parsedData?.episode;
+    if (lessonProgress != null) {
+      setState(() {
+        lessonProgressMap[widget.episodeId] = lessonProgress;
+      });
+    }
+    return value.parsedData;
+  }
+
+  Future<Query$GetEpisodeLessonProgress?> loadLessonProgressForSeason(String id) async {
+    final value = await ref
+        .read(gqlClientProvider)
+        .query$GetSeasonLessonProgress(Options$Query$GetSeasonLessonProgress(variables: Variables$Query$GetSeasonLessonProgress(id: id)));
+    if (!mounted) return null;
+    final season = value.parsedData?.season;
+
+    if (season != null) {
+      setState(() {
+        for (var element in season.episodes.items) {
+          lessonProgressMap[element.id] = element;
+        }
+      });
+    }
   }
 
   Future setupPlayer() async {
     var castingNow = ref.read(isCasting);
     var playerProvider = castingNow ? castPlayerProvider : primaryPlayerProvider;
-    setState(() {
-      settingUp = true;
-    });
+
     var player = ref.read(playerProvider);
     if (player!.currentMediaItem?.metadata?.extras?['id'] == widget.episodeId.toString()) {
       return;
@@ -182,12 +211,6 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen> with AutoRouteAwa
       playerSetupCompleter = wrapInCompleter(
           playEpisode(playerId: player.playerId, episode: episode, autoplay: true, playbackPositionMs: startPositionSeconds * 1000)
               .timeout(const Duration(milliseconds: 12000)));
-    });
-    playerSetupCompleter?.future.then((value) {
-      if (!mounted) return;
-      setState(() {
-        settingUp = false;
-      });
     });
   }
 
@@ -222,7 +245,7 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen> with AutoRouteAwa
     animation?.addStatusListener(onAnimationStatus);
   }
 
-  void shareVideo() {
+  void shareVideo(Query$FetchEpisode$episode episode) {
     final casting = ref.watch(isCasting);
     final playerProvider = casting ? castPlayerProvider : primaryPlayerProvider;
     final player = ref.watch(playerProvider);
@@ -251,15 +274,40 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen> with AutoRouteAwa
       context: context,
       builder: (ctx) => BottomSheetSelect(
         title: S.of(context).share,
+        description: episode.shareRestriction == Enum$ShareRestriction.public
+            ? null
+            : Padding(
+                padding: EdgeInsets.only(bottom: 16),
+                child: Row(
+                  children: [
+                    Padding(padding: EdgeInsets.all(4), child: SvgPicture.string(SvgIcons.infoCircle)),
+                    Expanded(
+                      child: Padding(
+                        padding: EdgeInsets.only(left: 8, right: 16),
+                        child: Text(
+                          'This video is only accessible to users that are logged in to the app.',
+                          style: BtvTextStyles.caption1.copyWith(color: BtvColors.label2),
+                        ),
+                      ),
+                    )
+                  ],
+                ),
+              ),
         selectedId: 'fromStart',
         items: options,
         showSelection: false,
         onSelectionChanged: (id) {
-          var episodeUrl = 'https://brunstad.tv/episode/${widget.episodeId}';
+          var episodeUrl = 'https://app.bcc.media/episode/${widget.episodeId}';
           if (id == 'fromStart') {
-            Share.share(episodeUrl);
+            Share.share(
+              episodeUrl,
+              sharePositionOrigin: iPadSharePositionOrigin(context),
+            );
           } else {
-            Share.share('$episodeUrl?t=$currentPosSeconds');
+            Share.share(
+              '$episodeUrl?t=$currentPosSeconds',
+              sharePositionOrigin: iPadSharePositionOrigin(context),
+            );
           }
           ref.read(analyticsProvider).contentShared(ContentSharedEvent(
                 pageCode: 'episode',
@@ -298,6 +346,12 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen> with AutoRouteAwa
               body: Builder(
                 builder: (context) {
                   if (snapshot.hasError && snapshot.connectionState == ConnectionState.done) {
+                    var operationException = snapshot.error.asOrNull<OperationException>();
+                    if (operationException?.graphqlErrors.any(
+                            (err) => err.extensions?['code'] == ApiErrorCodes.noAccess || err.extensions?['code'] == ApiErrorCodes.notPublished) ==
+                        true) {
+                      return const ErrorNoAccess();
+                    }
                     return ErrorGeneric(onRetry: () => loadEpisode());
                   }
                   if (player == null ||
@@ -305,7 +359,7 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen> with AutoRouteAwa
                       snapshot.data == null && snapshot.connectionState != ConnectionState.done) {
                     return _loading();
                   }
-
+                  debugPrint('snapshot.connectionState : ${snapshot.connectionState}');
                   return _episode(
                       player, displayPlayer, casting, player.playerId, snapshot.data!, snapshot.connectionState != ConnectionState.done, context);
                 },
@@ -334,6 +388,7 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen> with AutoRouteAwa
     return FutureBuilder(
         future: playerSetupCompleter?.future,
         builder: (context, playerSetupSnapshot) {
+          debugPrint(playerSetupSnapshot.connectionState.toString());
           return SingleChildScrollView(
             physics: const AlwaysScrollableScrollPhysics(),
             controller: scrollController,
@@ -349,7 +404,9 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen> with AutoRouteAwa
                             playerSetupSnapshot.connectionState != ConnectionState.waiting)
                           _playerError(episode, playerSetupSnapshot)
                         else
-                          !episodeIsCurrentItem(player.currentMediaItem) ? _playPoster(episode) : _player(displayPlayer, casting, primaryPlayerId),
+                          !episodeIsCurrentItem(player.currentMediaItem)
+                              ? _playPoster(episode, loading: playerSetupSnapshot.connectionState == ConnectionState.waiting)
+                              : _player(displayPlayer, casting, primaryPlayerId),
                         Container(
                           color: BtvColors.background2,
                           child: Column(
@@ -363,7 +420,7 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen> with AutoRouteAwa
                                     Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
                                       Expanded(child: Text(episode.title, style: BtvTextStyles.title1)),
                                       GestureDetector(
-                                        onTap: shareVideo,
+                                        onTap: () => shareVideo(episode),
                                         child: Padding(
                                           padding: const EdgeInsets.only(top: 4, left: 16),
                                           child: SvgPicture.string(SvgIcons.share, color: BtvColors.label3),
@@ -386,7 +443,8 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen> with AutoRouteAwa
                                             child: Text(episodeNumberFormatted, style: BtvTextStyles.caption1.copyWith(color: BtvColors.label4)))
                                     ]),
                                     const SizedBox(height: 14.5),
-                                    Text(episode.description, style: BtvTextStyles.body2.copyWith(color: BtvColors.label3)),
+                                    if (episode.description.isNotEmpty)
+                                      Text(episode.description, style: BtvTextStyles.body2.copyWith(color: BtvColors.label3)),
                                     if (Env.enableStudy && episode.lessons.items.isNotEmpty)
                                       Padding(
                                         padding: const EdgeInsets.only(top: 16),
@@ -397,6 +455,7 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen> with AutoRouteAwa
                                               StudyMoreButton(
                                                   progressOverview: Fragment$LessonProgressOverview(
                                                       $__typename: '',
+                                                      locked: false,
                                                       id: episode.lessons.items[0].id,
                                                       progress: Fragment$LessonProgressOverview$progress($__typename: '', completed: 0, total: 0))),
                                               Positioned.fill(
@@ -414,10 +473,13 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen> with AutoRouteAwa
                                           ready: (data) => GestureDetector(
                                             behavior: HitTestBehavior.opaque,
                                             onTap: () async {
+                                              if (data!.episode.lessons.items[0].locked) return;
                                               await context.router.root
                                                   .push(StudyScreenRoute(episodeId: episode.id, lessonId: data!.episode.lessons.items[0].id));
                                               if (mounted) {
-                                                loadLessonProgress();
+                                                setState(() {
+                                                  lessonProgressFuture = loadLessonsForEpisode();
+                                                });
                                               }
                                             },
                                             child: StudyMoreButton(progressOverview: data!.episode.lessons.items[0]),
@@ -441,60 +503,61 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen> with AutoRouteAwa
                               )))
                   ],
                 ),
-                DefaultTabController(
-                    length: 2,
-                    child: Builder(
-                      builder: (context) => Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Container(
-                              decoration: const BoxDecoration(
-                                border: Border(bottom: BorderSide(width: 1, color: BtvColors.separatorOnLight)),
-                              ),
-                              child: Padding(
-                                  padding: const EdgeInsets.all(16),
-                                  child: EpisodeTabSelector(
-                                      onSelectionChange: (val) {
-                                        setState(() {
-                                          DefaultTabController.of(context)!.animateTo(val);
-                                        });
-                                      },
-                                      selectedId: '',
-                                      selectedIndex: DefaultTabController.of(context)!.index,
-                                      tabs: [
-                                        Option(id: 'episodes', title: (S.of(context).episodes.toUpperCase())),
-                                        Option(id: 'details', title: 'Details'),
-                                      ]))),
-                          Builder(builder: (context) {
-                            return GestureDetector(
-                              behavior: HitTestBehavior.opaque,
-                              onHorizontalDragUpdate: (details) {
-                                // Note: Sensitivity is integer used when you don't want to mess up vertical drag
-                                var controller = DefaultTabController.of(context);
-                                if (controller == null) return;
-                                int sensitivity = 16;
-                                if (details.delta.dx > sensitivity && controller.index > 0) {
-                                  setState(() {
-                                    controller.animateTo(controller.index - 1);
-                                  });
-                                } else if (details.delta.dx < -sensitivity && controller.index + 1 < controller.length) {
-                                  setState(() {
-                                    controller.animateTo(controller.index + 1);
-                                  });
-                                }
-                              },
-                              child: FadeIndexedStack(
-                                index: DefaultTabController.of(context)!.index,
-                                children: [
-                                  if (episode.season != null) _seasonEpisodeList(episode) else _relatedItems(episode),
-                                  EpisodeDetails(episode.id)
-                                ],
-                              ),
-                            );
-                          }),
-                        ],
-                      ),
-                    )),
+                if (widget.hideBottomSection != true && !unlistedButPartOfASeason(episode))
+                  DefaultTabController(
+                      length: 2,
+                      child: Builder(
+                        builder: (context) => Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Container(
+                                decoration: const BoxDecoration(
+                                  border: Border(bottom: BorderSide(width: 1, color: BtvColors.separatorOnLight)),
+                                ),
+                                child: Padding(
+                                    padding: const EdgeInsets.all(16),
+                                    child: EpisodeTabSelector(
+                                        onSelectionChange: (val) {
+                                          setState(() {
+                                            DefaultTabController.of(context)!.animateTo(val);
+                                          });
+                                        },
+                                        selectedId: '',
+                                        selectedIndex: DefaultTabController.of(context)!.index,
+                                        tabs: [
+                                          Option(id: 'episodes', title: (S.of(context).episodes.toUpperCase())),
+                                          Option(id: 'details', title: 'Details'),
+                                        ]))),
+                            Builder(builder: (context) {
+                              return GestureDetector(
+                                behavior: HitTestBehavior.opaque,
+                                onHorizontalDragUpdate: (details) {
+                                  // Note: Sensitivity is integer used when you don't want to mess up vertical drag
+                                  var controller = DefaultTabController.of(context);
+                                  if (controller == null) return;
+                                  int sensitivity = 16;
+                                  if (details.delta.dx > sensitivity && controller.index > 0) {
+                                    setState(() {
+                                      controller.animateTo(controller.index - 1);
+                                    });
+                                  } else if (details.delta.dx < -sensitivity && controller.index + 1 < controller.length) {
+                                    setState(() {
+                                      controller.animateTo(controller.index + 1);
+                                    });
+                                  }
+                                },
+                                child: FadeIndexedStack(
+                                  index: DefaultTabController.of(context)!.index,
+                                  children: [
+                                    if (episode.season != null) _seasonEpisodeList(episode) else _relatedItems(episode),
+                                    EpisodeDetails(episode.id)
+                                  ],
+                                ),
+                              );
+                            }),
+                          ],
+                        ),
+                      )),
               ],
             ),
           );
@@ -505,22 +568,32 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen> with AutoRouteAwa
     setState(() {
       selectedSeasonId = id;
     });
+    var api = ref.read(apiProvider);
     var season = await ref.read(apiProvider).getSeasonEpisodes(id);
     if (mounted && season != null) {
+      if (season.episodes.items.any((element) => element.lessons.total > 0)) {
+        loadLessonProgressForSeason(season.id);
+      }
       setState(() {
-        seasonsMap?[id] = season.episodes.items
+        seasonsMap[id] = season.episodes.items
             .map((ep) => EpisodeListEpisodeData(
                 episodeId: ep.id,
+                locked: ep.locked,
                 ageRating: ep.ageRating,
                 publishDate: ep.publishDate,
                 duration: ep.duration,
                 title: ep.title,
                 image: ep.image,
+                lessonProgressOverview: lessonProgressMap[ep.id]?.lessons.items.firstOrNull,
                 seasonNumber: season.number,
                 episodeNumber: ep.number))
             .toList();
       });
     }
+  }
+
+  bool unlistedButPartOfASeason(Query$FetchEpisode$episode episode) {
+    return episode.season?.$show.seasons.items.any((s) => s.id == episode.season?.id) == false;
   }
 
   Widget _seasonEpisodeList(Query$FetchEpisode$episode episode) {
@@ -538,13 +611,18 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen> with AutoRouteAwa
                     selectedId: selectedSeasonId!),
               ),
         Builder(builder: (context) {
-          if (seasonsMap?[selectedSeasonId] == null) {
+          if (seasonsMap[selectedSeasonId] == null) {
             return const SizedBox(
                 height: 1000,
                 child: Align(alignment: Alignment.topCenter, child: Padding(padding: EdgeInsets.only(top: 16), child: LoadingIndicator())));
           } else {
             return SeasonEpisodeList(
-                items: seasonsMap![selectedSeasonId]!.map((e) => e.episodeId == widget.episodeId ? e.copyWith(highlighted: true) : e).toList());
+                items: seasonsMap[selectedSeasonId]!
+                    .map((e) => e.copyWith(lessonProgressOverview: lessonProgressMap[e.episodeId]?.lessons.items.firstOrNull))
+                    .map(
+                      (e) => e.episodeId == widget.episodeId ? e.copyWith(highlighted: true) : e,
+                    )
+                    .toList());
           }
         }),
       ],
@@ -571,7 +649,7 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen> with AutoRouteAwa
     );
   }
 
-  AspectRatio _playPoster(Query$FetchEpisode$episode episode) {
+  AspectRatio _playPoster(Query$FetchEpisode$episode episode, {required bool loading}) {
     return AspectRatio(
         aspectRatio: 16 / 9,
         child: GestureDetector(
@@ -596,7 +674,7 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen> with AutoRouteAwa
                                   imageCacheHeight: (constraints.maxHeight * MediaQuery.of(context).devicePixelRatio).round()),
                             );
                           })),
-                Center(child: !settingUp ? SizedBox(width: 36, height: 36, child: SvgPicture.string(SvgIcons.play)) : const LoadingIndicator()),
+                Center(child: loading ? const LoadingIndicator() : SizedBox(width: 36, height: 36, child: SvgPicture.string(SvgIcons.play))),
               ],
             )));
   }
@@ -673,6 +751,10 @@ class _DropDownSelect extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    if (items.isEmpty) {
+      return const SizedBox.shrink();
+    }
+    final selectedItem = items.firstWhereOrNull((element) => element.id == selectedId);
     return GestureDetector(
       behavior: HitTestBehavior.opaque,
       onTap: () {
@@ -693,10 +775,11 @@ class _DropDownSelect extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Text(
-            items.firstWhere((element) => element.id == selectedId).title.toUpperCase(),
-            style: BtvTextStyles.button2.copyWith(color: BtvColors.label1),
-          ),
+          if (selectedItem != null)
+            Text(
+              selectedItem.title.toUpperCase(),
+              style: BtvTextStyles.button2.copyWith(color: BtvColors.label1),
+            ),
           Padding(
             padding: const EdgeInsets.only(left: 6),
             child: Center(

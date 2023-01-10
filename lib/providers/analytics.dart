@@ -10,6 +10,8 @@ import 'package:package_info_plus/package_info_plus.dart';
 import 'package:rudder_sdk_flutter/RudderController.dart';
 import 'package:rudder_sdk_flutter_platform_interface/platform.dart';
 
+import '../models/analytics/audio_only_clicked.dart';
+import '../models/analytics/calendar_day_clicked.dart';
 import '../models/analytics/deep_link_opened.dart';
 import '../models/analytics/language_changed.dart';
 import '../models/analytics/search_performed.dart';
@@ -24,13 +26,13 @@ String getAgeGroup(int? age) {
   if (age >= 65) {
     return '65+';
   } else if (age >= 51) {
-    return '51 - 65';
+    return '51 - 64';
   } else if (age >= 37) {
     return '37 - 50';
   } else if (age >= 26) {
     return '26 - 36';
   } else if (age >= 19) {
-    return '19 - 26';
+    return '19 - 25';
   } else if (age >= 13) {
     return '13 - 18';
   } else if (age >= 10) {
@@ -154,5 +156,13 @@ class Analytics {
 
   void screen(screenName, {Map<String, Object?>? properties}) {
     RudderController.instance.screen(screenName, properties: getCommonData().putValue(map: properties));
+  }
+
+  void audioOnlyClicked(AudioOnlyClickedEvent event) {
+    RudderController.instance.track('audioonly_clicked', properties: getCommonData().putValue(map: event.toJson()));
+  }
+
+  void calendarDayClicked(CalendarDayClickedEvent event) {
+    RudderController.instance.track('calendarday_clicked', properties: getCommonData().putValue(map: event.toJson()));
   }
 }

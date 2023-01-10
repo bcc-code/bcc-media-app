@@ -22,6 +22,30 @@ Enum$SectionSize fromJson$Enum$SectionSize(String value) {
   }
 }
 
+enum Enum$CardSectionSize { large, mini, $unknown }
+
+String toJson$Enum$CardSectionSize(Enum$CardSectionSize e) {
+  switch (e) {
+    case Enum$CardSectionSize.large:
+      return r'large';
+    case Enum$CardSectionSize.mini:
+      return r'mini';
+    case Enum$CardSectionSize.$unknown:
+      return r'$unknown';
+  }
+}
+
+Enum$CardSectionSize fromJson$Enum$CardSectionSize(String value) {
+  switch (value) {
+    case r'large':
+      return Enum$CardSectionSize.large;
+    case r'mini':
+      return Enum$CardSectionSize.mini;
+    default:
+      return Enum$CardSectionSize.$unknown;
+  }
+}
+
 enum Enum$GridSectionSize { half, $unknown }
 
 String toJson$Enum$GridSectionSize(Enum$GridSectionSize e) {
@@ -39,5 +63,37 @@ Enum$GridSectionSize fromJson$Enum$GridSectionSize(String value) {
       return Enum$GridSectionSize.half;
     default:
       return Enum$GridSectionSize.$unknown;
+  }
+}
+
+enum Enum$LinkType { text, audio, video, other, $unknown }
+
+String toJson$Enum$LinkType(Enum$LinkType e) {
+  switch (e) {
+    case Enum$LinkType.text:
+      return r'text';
+    case Enum$LinkType.audio:
+      return r'audio';
+    case Enum$LinkType.video:
+      return r'video';
+    case Enum$LinkType.other:
+      return r'other';
+    case Enum$LinkType.$unknown:
+      return r'$unknown';
+  }
+}
+
+Enum$LinkType fromJson$Enum$LinkType(String value) {
+  switch (value) {
+    case r'text':
+      return Enum$LinkType.text;
+    case r'audio':
+      return Enum$LinkType.audio;
+    case r'video':
+      return Enum$LinkType.video;
+    case r'other':
+      return Enum$LinkType.other;
+    default:
+      return Enum$LinkType.$unknown;
   }
 }

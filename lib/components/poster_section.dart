@@ -48,7 +48,11 @@ class PosterSection extends StatelessWidget {
         var item = items[index];
         Widget? widget;
         if (item.item is Fragment$Section$$PosterSection$items$items$item$$Episode) {
-          widget = _PosterEpisodeItem(sectionItem: item, size: data.size);
+          widget = _PosterEpisodeItem(
+            sectionItem: item,
+            size: data.size,
+            showSecondaryTitle: data.metadata?.secondaryTitles ?? true,
+          );
         } else if (item.item is Fragment$Section$$PosterSection$items$items$item$$Show) {
           widget = _PosterShowItem(sectionItem: item, size: data.size);
         }
@@ -63,23 +67,12 @@ class PosterSection extends StatelessWidget {
       },
     );
   }
-
-  List<Widget> get sectionItems {
-    final sectionItemsList = <Widget>[];
-    for (var item in data.items.items) {
-      if (item.item is Fragment$Section$$PosterSection$items$items$item$$Episode) {
-        sectionItemsList.add(_PosterEpisodeItem(sectionItem: item, size: data.size));
-      } else if (item.item is Fragment$Section$$PosterSection$items$items$item$$Show) {
-        sectionItemsList.add(_PosterShowItem(sectionItem: item, size: data.size));
-      }
-    }
-    return sectionItemsList;
-  }
 }
 
 class _PosterEpisodeItem extends StatelessWidget {
   final Fragment$Section$$PosterSection$items$items sectionItem;
   final Fragment$Section$$PosterSection$items$items$item$$Episode episode;
+  final bool showSecondaryTitle;
   final Enum$SectionSize size;
 
   bool get watched => episode.progress != null && episode.progress! > episode.duration * 0.9;
@@ -89,6 +82,7 @@ class _PosterEpisodeItem extends StatelessWidget {
   _PosterEpisodeItem({
     required this.sectionItem,
     required this.size,
+    required this.showSecondaryTitle,
   }) : episode = sectionItem.item as Fragment$Section$$PosterSection$items$items$item$$Episode;
 
   @override
@@ -101,30 +95,31 @@ class _PosterEpisodeItem extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           sectionItemImage(context),
-          Container(
-            margin: const EdgeInsets.only(bottom: 2),
-            child: Row(
-              children: [
-                if (episode.season != null)
-                  Expanded(
-                    child: Container(
-                      margin: const EdgeInsets.only(right: 4),
-                      child: Text(
-                        episode.season!.$show.title.replaceAll(' ', '\u{000A0}'),
-                        maxLines: 1,
-                        overflow: TextOverflow.ellipsis,
-                        style: BtvTextStyles.caption2.copyWith(color: BtvColors.tint1),
+          if (showSecondaryTitle)
+            Container(
+              margin: const EdgeInsets.only(bottom: 2),
+              child: Row(
+                children: [
+                  if (episode.season != null)
+                    Expanded(
+                      child: Container(
+                        margin: const EdgeInsets.only(right: 4),
+                        child: Text(
+                          episode.season!.$show.title.replaceAll(' ', '\u{000A0}'),
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                          style: BtvTextStyles.caption2.copyWith(color: BtvColors.tint1),
+                        ),
                       ),
                     ),
-                  ),
-                /* if (productionDate != null)
+                  /* if (productionDate != null)
                   Text(
                     productionDate,
                     style: BtvTextStyles.caption2,
                   ), */
-              ],
+                ],
+              ),
             ),
-          ),
           Text(
             sectionItem.title,
             overflow: TextOverflow.ellipsis,
@@ -144,13 +139,13 @@ class _PosterEpisodeItem extends StatelessWidget {
       child: Stack(
         clipBehavior: Clip.none,
         children: [
-          isComingSoon(episode.publishDate)
+          isUnavailable(episode.publishDate)
               ? Opacity(
                   opacity: 0.5,
                   child: BorderedImageContainer(imageUrl: sectionItem.image),
                 )
               : BorderedImageContainer(imageUrl: sectionItem.image),
-          if (isComingSoon(episode.publishDate))
+          if (isUnavailable(episode.publishDate))
             Container(
               width: double.infinity,
               height: double.infinity,
@@ -168,7 +163,7 @@ class _PosterEpisodeItem extends StatelessWidget {
                 child: WatchProgressIndicator(totalDuration: episode.duration, watchedDuration: episode.progress!),
               ),
             )
-          else if (!isComingSoon(episode.publishDate))
+          else if (!isUnavailable(episode.publishDate))
             Align(
               alignment: Alignment.bottomCenter,
               child: Container(

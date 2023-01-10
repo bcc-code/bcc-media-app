@@ -1,13 +1,13 @@
 {
-  "loadingContent": "Loading content",
+  "loadingContent": "Contenuto in caricamento",
   "@loadingContent": {
     "description": "Text displayed when page content is loading."
   },
-  "signInTooltip": "Sign in to watch more content",
+  "signInTooltip": "Accedi per vedere altri contenuti",
   "@signInTooltip": {
     "description": "Text for tooltip displayed when a non-member user opens the home page."
   },
-  "skipToPublicContent": "Skip to watch public content",
+  "skipToPublicContent": "Vai alla visualizzazione di contenuti pubblici",
   "@skipToPublicContent": {
     "description": "Text for button displayed on login screen to skip sign in and watch public content."
   },
@@ -15,27 +15,27 @@
   "@minutesShort": {
     "description": "Text for minutes."
   },
-  "calendarThisWeek": "This week",
+  "calendarThisWeek": "Questa settimana",
   "@calendarThisWeek": {
     "description": "Text for This week."
   },
-  "calendarWeek": "week",
+  "calendarWeek": "settimana",
   "@calendarWeek": {
     "description": "Text week."
   },
-  "loading": "Loading",
+  "loading": "In fase di caricamento",
   "@loading": {
     "description": "Text to indicate loading state."
   },
-  "loginPageDisplay1": "The most powerful message in the world",
+  "loginPageDisplay1": "Il più potente\nmessaggio nel mondo",
   "@loginPageDisplay1": {
     "description": "Text displayed on login screen."
   },
-  "loginPageDisplay2": "Watch series, shows and films based on Christian values",
+  "loginPageDisplay2": "Guarda serie, spettacoli e film basati sui valori cristiani",
   "@loginPageDisplay2": {
     "description": "Text displayed on login screen."
   },
-  "loginPageDisplay3": "Produced by BCC Media",
+  "loginPageDisplay3": "Prodotto da BCC Media",
   "@loginPageDisplay3": {
     "description": "Text displayed on login screen."
   },
@@ -51,11 +51,11 @@
   "@profileTab": {
     "description": "Title of the profile page"
   },
-  "faq": "Frequently asked questions",
+  "faq": "Domande frequenti",
   "@faq": {
-    "description": "Title of the FAQ page."
+    "description": "Long title of the FAQ page."
   },
-  "bccMediaCenter": "BrunstadTV è un centro multimediale non-commerciale che produce e distribuisce contenuti basati su valori positivi e cristiani.",
+  "bccMediaCenter": "BCC Media è una fondazione mediatica della federazione BCC che produce e distribuisce contenuti con valori positivi e cristiani.",
   "@bccMediaCenter": {
     "description": "Disclaimer on login page"
   },
@@ -107,7 +107,7 @@
   "@soundLanguage": {
     "description": "Settings item on profile page"
   },
-  "subtitleLanguage": "Subtitle language",
+  "subtitleLanguage": "Lingua dei sottotitoli",
   "@subtitleLanguage": {
     "description": "Settings item on profile page"
   },
@@ -115,15 +115,15 @@
   "@appLanguage": {
     "description": "Settings item on profile page"
   },
-  "checkNetwork": "Check your network connection and try again.",
+  "checkNetwork": "Controlla la tua connessione di rete e riprova.",
   "@checkNetwork": {
     "description": "Error message for the user displayed in many contexts."
   },
-  "tryAgain": "Please try again later.",
+  "tryAgain": "Per favore riprova più tardi.",
   "@tryAgain": {
     "description": "Error message for the user displayed in many contexts."
   },
-  "cantPlayVideo": "You can't play this video now.",
+  "cantPlayVideo": "Non puoi riprodurre questo video ora.",
   "@cantPlayVideo": {
     "description": "Error message for the user displayed when video playback attempt failed."
   },
@@ -145,13 +145,13 @@
   },
   "upNext": "Al prossimo",
   "@upNext": {
-    "description": "Title on Up next feature."
+    "description": "Title indiciating what's next on the livestream."
   },
-  "done": "Done",
+  "done": "Fatto",
   "@done": {
-    "description": "General Done button. User confirms that action completed sucessfully."
+    "description": "Generic Done button, for example to dismiss a page after completing an action."
   },
-  "playerSettings": "Player settings",
+  "playerSettings": "Impostazioni del lettore",
   "@playerSettings": {
     "description": "Title of the Player settings activity in Android"
   },
@@ -171,19 +171,19 @@
   "@live": {
     "description": "Title of the live stream"
   },
-  "subtitles": "Subtitles",
+  "subtitles": "Sottotitoli",
   "@subtitles": {
-    "description": "Title of the Player settings activity tab in Android"
+    "description": "Generic."
   },
   "audio": "Audio",
   "@audio": {
-    "description": "Title of the Player settings activity tab in Android"
+    "description": "Generic."
   },
-  "quality": "Quality",
+  "quality": "Qualità",
   "@quality": {
-    "description": "Title of the Player settings activity tab in Android"
+    "description": "Generic."
   },
-  "seasons": "Seasons",
+  "seasons": "Stagioni",
   "@seasons": {
     "description": "Followed by number of seasons in given series."
   },
@@ -191,7 +191,7 @@
   "@episodes": {
     "description": "Followed by number of episodes in given series."
   },
-  "search": "Search",
+  "search": "Cerca",
   "@search": {
     "description": "Button to clear cache"
   },
@@ -199,7 +199,7 @@
   "@noResults": {
     "description": "No search results."
   },
-  "doYouWantCast": "Do you want to cast this video?",
+  "doYouWantCast": "Vuoi lanciare questo video?",
   "@doYouWantCast": {
     "description": "Prompt displayed to the user"
   },
@@ -207,23 +207,23 @@
   "@play": {
     "description": "Option in prompt dialog."
   },
-  "castQueue": "Cast queue",
+  "castQueue": "Coda di trasmissione",
   "@castQueue": {
     "description": "Queue page title"
   },
-  "options": "Options",
+  "options": "Opzioni",
   "@options": {
     "description": "Options dialog title"
   },
-  "remove": "Remove",
+  "remove": "Rimuovi",
   "@remove": {
     "description": "Option in options dialog"
   },
-  "queueLimitTitle": "Limit",
+  "queueLimitTitle": "Limite",
   "@queueLimitTitle": {
     "description": "Title of the alert to the user when attempt to add video to cast queue failed due to full queue."
   },
-  "queueLimitMessage": "You cannot have more than {elementCount} elements in queue.",
+  "queueLimitMessage": "Non puoi avere più di {elementCount} elementi in coda.",
   "@queueLimitMessage": {
     "description": "Error message to the user when attempt to add video to cast queue failed due to full queue.",
     "placeholders": {
@@ -240,55 +240,51 @@
   "@tVLogin": {
     "description": "Title of the TV login alert"
   },
-  "tVLoginSuccessful": "Log in successful, please confirm on TV.",
+  "tVLoginSuccessful": "Accesso riuscito, conferma su TV.",
   "@tVLoginSuccessful": {
     "description": "Message of the TV login alert"
   },
-  "seeMore": "See more",
+  "seeMore": "Vedi di più",
   "@seeMore": {
     "description": "Button on featured item to navigete to page with player"
   },
-  "seeAll": "See all",
+  "seeAll": "Vedi tutto",
   "@seeAll": {
-    "description": "Button on explore page to navigete to audience page"
+    "description": "Button to see all of some collection."
   },
   "series": "Serie",
   "@series": {
     "description": "Title of the tab on info page"
   },
-  "livestreamMaintenance": "We're sorry, livestream is currently under maintenance. Please try again later.",
-  "@livestreamMaintenance": {
-    "description": "Message displayed over overlay when livestream is under maintenance."
-  },
   "homeTab": "Home",
   "@homeTab": {
     "description": "Title of the home page"
   },
-  "sortBy": "Sort by",
+  "sortBy": "Ordina per",
   "@sortBy": {
     "description": "Sorting criteria selector"
   },
-  "videoQuality": "Video quality",
+  "videoQuality": "Qualità video",
   "@videoQuality": {
     "description": "Settings item in profile page for Android."
   },
-  "low": "Low",
+  "low": "Bassa",
   "@low": {
     "description": "Low quality video option"
   },
-  "medium": "Medium",
+  "medium": "Media",
   "@medium": {
     "description": "Medium quality video option"
   },
-  "high": "High",
+  "high": "Alta",
   "@high": {
     "description": "High quality video option"
   },
-  "emptySearch": "Puoi cercare tutti i contenuti di BrunstadTV. Serie, film ed episodi.",
+  "emptySearch": "Puoi cercare tutti i contenuti in BCC Media. Serie, video ed episodi.",
   "@emptySearch": {
     "description": "Message on search page when there is no search results."
   },
-  "back": "Back",
+  "back": "Indietro",
   "@back": {
     "description": "General back button to navigate back"
   },
@@ -316,11 +312,11 @@
   "@videos": {
     "description": "Followed by number of videos"
   },
-  "moreInfo": "More information",
+  "moreInfo": "Ulteriori informazioni",
   "@moreInfo": {
     "description": "Option in action sheet for the video that triggers info page for the video."
   },
-  "info": "Information",
+  "info": "Informazioni",
   "@info": {
     "description": "Video info page title."
   },
@@ -328,46 +324,33 @@
   "@episode": {
     "description": "Title of the tab on info page"
   },
-  "takePhoto": "Take a photo",
+  "takePhoto": "Fai una foto",
   "@takePhoto": {
     "description": "Option in menu"
   },
-  "pickPhoto": "Pick from gallery",
+  "pickPhoto": "Scegli dalla galleria",
   "@pickPhoto": {
     "description": "Option in menu"
   },
-  "uploadFileTitle": "Upload file",
+  "uploadFileTitle": "Carica file",
   "@uploadFileTitle": {
     "description": "Title of the dialog to confirm upload"
   },
-  "uploadFileMessage": "Do you want to upload this file?",
+  "uploadFileMessage": "Vuoi caricare questo file?",
   "@uploadFileMessage": {
     "description": "Content of the dialog to confirm upload"
   },
-  "watchingWith": "You are watching with {numPeople} others",
-  "@watchingWith": {
-    "description": "Info on live stream page",
-    "placeholders": {
-      "numPeople": {
-        "type": "int"
-      }
-    }
-  },
-  "uploading": "Uploading",
+  "uploading": "Caricamento in corso",
   "@uploading": {
     "description": "Message during file upload"
   },
-  "uploadFail": "Upload failed",
+  "uploadFail": "Caricamento fallito",
   "@uploadFail": {
     "description": "Upload result message"
   },
-  "post": "Post",
-  "@post": {
-    "description": "Button to post written testimony"
-  },
-  "charactersLimit": "{charsLeft} of {charsTotal} characters left",
+  "charactersLimit": "{charsLeft} di {charsTotal} caratteri rimasti",
   "@charactersLimit": {
-    "description": "Info about limit of characters in written testimony",
+    "description": "Info about limit of characters in a text field",
     "placeholders": {
       "charsLeft": {
         "type": "int"
@@ -377,213 +360,87 @@
       }
     }
   },
-  "uploadingPostSuccess": "Your post has been sent in.",
-  "@uploadingPostSuccess": {
-    "description": "Info in upload success page"
-  },
-  "testimonyInfo": "Record your video with your phone.",
-  "@testimonyInfo": {
-    "description": "Record testimony guideline page info"
-  },
-  "yourVideo": "Your video",
-  "@yourVideo": {
-    "description": "Title on recording tip page page"
-  },
-  "record": "Record",
-  "@record": {
-    "description": "Button to record testimony"
-  },
-  "recordingTips": "A few tips to get a good recording",
-  "@recordingTips": {
-    "description": "Record testimony guideline page tip list title"
-  },
-  "recordingTipA": "Find a quiet place to record.",
-  "@recordingTipA": {
-    "description": "Record testimony guideline page tip list item"
-  },
-  "recordingTipB": "Make sure that your face is evenly lit.",
-  "@recordingTipB": {
-    "description": "Record testimony guideline page tip list item"
-  },
-  "recordingTipC": "Think about what you want to say before you start recording.",
-  "@recordingTipC": {
-    "description": "Record testimony guideline page tip list item"
-  },
-  "recordingTipD": "Turn your phone in landscape mode.",
-  "@recordingTipD": {
-    "description": "Record testimony guideline page tip list item"
-  },
-  "thankYou": "Thank you!",
+  "thankYou": "Grazie!",
   "@thankYou": {
     "description": "Title in upload success page"
   },
-  "thankYouForContribution": "Thank you for your contribution!",
+  "thankYouForContribution": "Grazie per il tuo contributo!",
   "@thankYouForContribution": {
     "description": "Title in upload success page"
   },
-  "uploadingVideoSuccess": "Your video has been sent in.",
-  "@uploadingVideoSuccess": {
-    "description": "Info in upload success page"
-  },
-  "next": "Next",
+  "next": "Prossimo",
   "@next": {
     "description": "NEXT program in check in section"
   },
-  "recordVideoCameraPermissionAlert": "You have to grant camera permission in settings to record video.",
-  "@recordVideoCameraPermissionAlert": {
-    "description": "Message in alert dialog informing about missing permission"
-  },
-  "recordVideoPhotosPermissionAlert": "You have to grant photo album permission in settings to record video.",
-  "@recordVideoPhotosPermissionAlert": {
-    "description": "Message in alert dialog informing about missing permission"
-  },
-  "recordVideoStoragePermissionAlert": "You have to grant storage permission in settings to record video.",
-  "@recordVideoStoragePermissionAlert": {
-    "description": "Message in alert dialog informing about missing permission"
-  },
-  "recordVideoMicrophonePermissionAlert": "You have to grant microphone permission in settings to record video.",
-  "@recordVideoMicrophonePermissionAlert": {
-    "description": "Message in alert dialog informing about missing permission"
-  },
-  "takePhotoStoragePermissionAlert": "You have to grant storage permission in settings to take photo.",
-  "@takePhotoStoragePermissionAlert": {
-    "description": "Message in alert dialog informing about missing permission"
-  },
-  "takePhotoCameraPermissionAlert": "You have to grant camera permission in settings to take photo.",
-  "@takePhotoCameraPermissionAlert": {
-    "description": "Message in alert dialog informing about missing permission"
-  },
-  "pickPhotoStoragePermissionAlert": "You have to grant storage permission in settings to pick photos.",
-  "@pickPhotoStoragePermissionAlert": {
-    "description": "Message in alert dialog informing about missing permission"
-  },
-  "permissionsAlertTitle": "Permissions needed",
-  "@permissionsAlertTitle": {
-    "description": "Title of an alert dialog informing about missing permission"
-  },
-  "add": "Add",
+  "add": "Aggiungi",
   "@add": {
-    "description": "Button text on interactive live avatar section"
+    "description": "Button text"
   },
-  "change": "Change",
+  "change": "Cambia",
   "@change": {
-    "description": "Button text on interactive live avatar section"
+    "description": "Button text"
   },
-  "recordingFailedTitle": "Coulnd't record the video",
-  "@recordingFailedTitle": {
-    "description": "Title in alert dialog when recording fails"
-  },
-  "recordingFailedMessage": "Something went wrong while trying to record the video.",
-  "@recordingFailedMessage": {
-    "description": "Message in alert dialog when recording fails"
-  },
-  "pollSubtitle": "Poll",
-  "@pollSubtitle": {
-    "description": "The little title in poll"
-  },
-  "writeHere": "Write here",
+  "writeHere": "Scrivi qui",
   "@writeHere": {
     "description": "New post text field placeholder"
   },
-  "feed": "Feed",
+  "feed": "Alimenta",
   "@feed": {
     "description": "Feed page bar title"
   },
-  "atmosphereFeedDescription": "Contribute in the activity feed by sending in a message, testimony or picture from where you are.",
-  "@atmosphereFeedDescription": {
-    "description": "Feed page description"
-  },
-  "information": "Information",
+  "information": "Informazioni",
   "@information": {
     "description": "Feed information item title"
   },
-  "photoNotSupported": "Taking and picking photo are not supported on your device.",
-  "@photoNotSupported": {
-    "description": "Alert displayed when phone can't take photo or pick photo from storage."
-  },
-  "answerFailed": "Sorry! We were unable to send the answer. Please, try again.",
-  "@answerFailed": {
-    "description": "Message displayed when user's answer hasn't' been sent'."
-  },
-  "question": "Question",
+  "question": "Domanda",
   "@question": {
     "description": "Title of the question page"
-  },
-  "notificationChannelPlayerName": "Player",
-  "@notificationChannelPlayerName": {
-    "description": "Notification channel name in Android settings"
   },
   "now": "Adesso",
   "@now": {
     "description": "Tv guide now playing label"
   },
-  "createPost": "Create post",
-  "@createPost": {
-    "description": "Button to start text testimony and title on create post page"
-  },
-  "concernTextPlaceholder": "Describe the issue",
+  "concernTextPlaceholder": "Descrivi il problema",
   "@concernTextPlaceholder": {
     "description": "Placeholder text in text field on contact support page"
   },
-  "debugInfoExplanation": "Your message will include this information, to help us better understand the issue.",
+  "debugInfoExplanation": "Il tuo messaggio includerà queste informazioni, per aiutarci a comprendere meglio il problema.",
   "@debugInfoExplanation": {
     "description": "Info about debug info usage on contact support page"
   },
-  "send": "Send",
+  "send": "Invia",
   "@send": {
     "description": "General button to send a form"
   },
-  "sending": "Sending",
+  "sending": "Invio",
   "@sending": {
     "description": "General sending action indicator"
   },
-  "thankYouSupportTitle": "Thank you for your feedback!",
+  "thankYouSupportTitle": "Grazie per il tuo commento!",
   "@thankYouSupportTitle": {
     "description": "Text on contact support confirmation page"
   },
-  "thankYouSupportDescription": "We appreciate all feedback and we will address the issue as soon as possible.",
+  "thankYouSupportDescription": "Apprezziamo tutti i riscontri e risolveremo il problema il prima possibile.",
   "@thankYouSupportDescription": {
     "description": "Text on contact support confirmation page"
   },
-  "sendFail": "Couldn't send your message",
+  "sendFail": "Impossibile inviare il messaggio",
   "@sendFail": {
     "description": "General error message that sending failed"
   },
-  "sendFailDescription": "Something went wrong. Check your internet connection and try again.",
+  "sendFailDescription": "Qualcosa è andato storto. Controlla la tua connessione Internet e riprova.",
   "@sendFailDescription": {
     "description": "General error message that sending failed"
   },
-  "today": "Today",
+  "today": "Oggi",
   "@today": {
     "description": "First category in tv guide"
   },
-  "noNewPosts": "No new posts",
-  "@noNewPosts": {
-    "description": "Text displayed on the button, when there are no new posts in the feed."
-  },
-  "newPostsMultiple": "{postCount} new posts!",
-  "@newPostsMultiple": {
-    "description": "Text displayed on the button, when there are number of new posts in the feed.",
-    "placeholders": {
-      "postCount": {
-        "type": "int"
-      }
-    }
-  },
-  "newPostsSingle": "{postCount} new post!",
-  "@newPostsSingle": {
-    "description": "Text displayed on the button, when there is one new post in the feed.",
-    "placeholders": {
-      "postCount": {
-        "type": "int"
-      }
-    }
-  },
   "expired": "Scaduto",
   "@expired": {
-    "description": "Info that episode is no longer available."
+    "description": "Label that something is no longer available."
   },
-  "availableFrom": "Available {date}",
+  "availableFrom": "Disponibile{date}",
   "@availableFrom": {
     "description": "Info that episode will be released at certain date.",
     "placeholders": {
@@ -592,74 +449,23 @@
       }
     }
   },
-  "howFar": "How far did you go?",
-  "@howFar": {
-    "description": "Text on running competition page."
-  },
-  "submit": "Submit",
+  "submit": "Invia",
   "@submit": {
-    "description": "Submit button on running competition page."
+    "description": "Submit button."
   },
-  "wellDone": "Well done!",
+  "wellDone": "Ben fatto!",
   "@wellDone": {
-    "description": "Text on running competition page."
+    "description": "Positive message that may be used e.g. after completing some action."
   },
-  "wellDoneDistance": "Well done! You have registered a total distance of {distanceInKM} km",
-  "@wellDoneDistance": {
-    "description": "Text on running competition page.",
-    "placeholders": {
-      "distanceInKM": {
-        "type": "int"
-      }
-    }
-  },
-  "distanceRegistered": "Your distance has been registered. Continue below if you want to submit another distance.",
-  "@distanceRegistered": {
-    "description": "Text on running competition page."
-  },
-  "ranMore": "I went more than {distanceInKM} km",
-  "@ranMore": {
-    "description": "Text on running competition page.",
-    "placeholders": {
-      "distanceInKM": {
-        "type": "int"
-      }
-    }
-  },
-  "moreThan": "More than {distanceInKM} km",
-  "@moreThan": {
-    "description": "Text on running competition page.",
-    "placeholders": {
-      "distanceInKM": {
-        "type": "int"
-      }
-    }
-  },
-  "runningEffort": "Amazing effort! Type the amount of kilometers you went below.",
-  "@runningEffort": {
-    "description": "Text on running competition page."
-  },
-  "slideSelect": "Slide to select how far you went",
-  "@slideSelect": {
-    "description": "Text on running competition page."
-  },
-  "submitAnotherDistance": "Submit another distance",
-  "@submitAnotherDistance": {
-    "description": "Text on running competition page."
-  },
-  "editPicture": "Edit picture",
+  "editPicture": "Modifica immagine",
   "@editPicture": {
     "description": "Button on profile page to edit profile picture."
   },
-  "profilePicture": "Profile picture",
+  "profilePicture": "Immagine del profilo",
   "@profilePicture": {
     "description": "Text on edit profile page."
   },
-  "firstPostTitle": "Be the first to post a picture or message",
-  "@firstPostTitle": {
-    "description": "Text on feed page when feed is empty."
-  },
-  "timezoneInformation": "Tv guide timetable is in your local time: {timeZone}",
+  "timezoneInformation": "L'orario della guida Tv è nella tua ora locale: {timeZone}",
   "@timezoneInformation": {
     "description": "TV guide footer info text.",
     "placeholders": {
@@ -668,108 +474,31 @@
       }
     }
   },
-  "yourQuestion": "Your question",
-  "@yourQuestion": {
-    "description": "Title on ask question page"
-  },
-  "uploadingInquirySuccess": "Please note that not all submitted questions are answered in the broadcast.",
-  "@uploadingInquirySuccess": {
-    "description": "Info in upload question success page"
-  },
-  "askQuestion": "Ask a question",
-  "@askQuestion": {
-    "description": "Ask question text field placeholder"
-  },
-  "submitQuestionInfo": "By submitting a question you accept that it can be used for broadcast purposes.",
-  "@submitQuestionInfo": {
-    "description": "Disclaimer on ask question page"
-  },
-  "posting": "Posting",
-  "@posting": {
-    "description": "Information about ongoing posting process"
-  },
-  "submitPostInfo": "By submitting a post or photo you accept that it can be used for broadcast purposes. ",
-  "@submitPostInfo": {
-    "description": "Disclaimer on text testimony page"
-  },
-  "cropImage": "Crop image",
-  "@cropImage": {
-    "description": "Image crop page title"
-  },
-  "square": "Square",
-  "@square": {
-    "description": "Image crop mode"
-  },
-  "landscape": "Landscape",
-  "@landscape": {
-    "description": "Image crop mode"
-  },
-  "pollSingleChoice": "You may select your answer only once.",
-  "@pollSingleChoice": {
-    "description": "Desciption of the poll type. States that user can change the answer only once."
-  },
-  "pollMultipleChoice": "You may change your answer multiple times.",
-  "@pollMultipleChoice": {
-    "description": "Desciption of the poll type. States that user can change the answer multiple times."
-  },
-  "pollEnded": "The poll section has ended. Thank you for your responses.",
-  "@pollEnded": {
-    "description": "Message displayed when poll has been closed by administrator."
-  },
-  "browserInstall": "Please install web browser to be able to open this URL.",
-  "@browserInstall": {
-    "description": "Message displayed when browser couldn't be opened on user's device."
-  },
-  "share": "Share",
+  "share": "Condividi",
   "@share": {
-    "description": "Option name to share video."
+    "description": "Generic."
   },
-  "liveNow": "Live now",
+  "liveNow": "In onda adesso",
   "@liveNow": {
-    "description": "Call to action button on featured carousel."
+    "description": "Generic, short. Used in buttons, badges, etc to indicate that an item is playing on the livestream now."
   },
-  "program": "Program",
-  "@program": {
-    "description": "Title of the program tab on live page."
-  },
-  "participateTab": "Participate",
-  "@participateTab": {
-    "description": "Title of the participate tab on live page."
-  },
-  "tomorrow": "Tomorrow",
+  "tomorrow": "Domani",
   "@tomorrow": {
     "description": "Day of transmission in tv guide."
   },
-  "readBy": "Read by",
+  "readBy": "Leggi da",
   "@readBy": {
     "description": "Feed verse pre author text."
   },
-  "pollAnswer": "You've answered: {answer}",
-  "@pollAnswer": {
-    "description": "Snackbar label after user has chosen poll answer",
-    "placeholders": {
-      "answer": {
-        "type": "String"
-      }
-    }
-  },
-  "broadcasts": "Broadcasts",
+  "broadcasts": "Trasmissioni",
   "@broadcasts": {
-    "description": "Title for tv guide collection on event page."
+    "description": "Title for live broadcasts."
   },
-  "quizAnswered": "Answers submitted",
-  "@quizAnswered": {
-    "description": "Text displayed on a button when all answers in quiz have been submitted."
-  },
-  "quizNotEnabled": "Quiz is not available at the moment. Please try again later.",
-  "@quizNotEnabled": {
-    "description": "Message on alert that appears when participate item is visible, but quiz is not enabled."
-  },
-  "calendar": "Calendar",
+  "calendar": "Calendario",
   "@calendar": {
     "description": "Title of calendar page."
   },
-  "noEvents": "No scheduled transmissions",
+  "noEvents": "Nessuna trasmissione programmata",
   "@noEvents": {
     "description": "Info in calendar page that no transmissions are scheduled for selected day."
   },
@@ -785,52 +514,23 @@
   "@appUpdateAccepted": {
     "description": "Option that can be chosen by the user to update his application."
   },
-  "donationNotAvailable": "Donation is not available at the moment. Please try again later.",
-  "@donationNotAvailable": {
-    "description": "Message displayed when donation flow failed."
-  },
-  "posts": "{postsCount} Posts",
-  "@posts": {
-    "description": "Contributions to feed made by the users. Plural of post.",
-    "placeholders": {
-      "postsCount": {
-        "type": "int"
-      }
-    }
-  },
-  "copy": "Copy",
+  "copy": "Copia",
   "@copy": {
-    "description": "Copy option for quotes, verses."
+    "description": "Small 'copy' button to copy to clipboard for quotes, verses, and similar."
   },
-  "reload": "Reload",
+  "reload": "Ricarica",
   "@reload": {
     "description": "Label on the button that allows to reload the player after error."
-  },
-  "participantsTitle": "Who is answering?",
-  "@participantsTitleTitle": {
-    "description": "Title label on the participants list before quiz."
-  },
-  "participantsSubtitle": "Select one or more participants.",
-  "@participantsSubtitle": {
-    "description": "Subtitle label on the participants list before quiz."
-  },
-  "yourFamily": "Your family",
-  "@yourFamily": {
-    "description": "Title on page when user selects family members that take part in the quiz."
-  },
-  "yourTurn": "Your turn",
-  "@yourTurn": {
-    "description": "Title on page informing user that other user will answer question in the next step."
   },
   "fAQ": "FAQ",
   "@fAQ": {
     "description": "Title on FAQ page and item in profile page settings."
   },
-  "shareStart": "Share from start",
+  "shareStart": "Condividi dall'inizio",
   "@shareStart": {
     "description": "Option on action sheet for sharing from start"
   },
-  "shareTime": "Share from {time}",
+  "shareTime": "Condividi dall'ora {time}",
   "@shareTime": {
     "description": "Option on action sheet for sharing from time",
     "placeholders": {
@@ -839,45 +539,17 @@
       }
     }
   },
-  "loadContentError": "Couldn't load content",
+  "loadContentError": "Impossibile caricare il contenuto",
   "@loadContentError": {
     "description": "Error text when content couldn't be loaded."
   },
-  "audioOnlyErrorDescription": "Check internet connection and try again",
-  "@audioOnlyErrorDescription": {
-    "description": "Error message when audio only fails to play"
-  },
-  "privacyPolicy": "Privacy Policy",
+  "privacyPolicy": "Informativa sulla privacy",
   "@privacyPolicy": {
     "description": "Title on Privacy Policy page and item in profile page settings."
-  },
-  "tokenError": "We couldn't confirm your identity, most likely due to a network problem. Some features of the app may not work correctly.",
-  "@tokenError": {
-    "description": "Message indicating that there is a problem with user's token, and some features may be broken because of this."
   },
   "categoriesTab": "Categorie",
   "@categoriesTab": {
     "description": "Title of the Categories Tab"
-  },
-  "settingsTab": "Impostazioni",
-  "@settingsTab": {
-    "description": "Title of the Settings Tab"
-  },
-  "confirmLogin": "Conferma l'accesso",
-  "@confirmLogin": {
-    "description": "Prompt that asks the user to confirm his log-in"
-  },
-  "scanInfo": "Scansiona il codice con il tuo telefono per accedere alla pagina di accesso.",
-  "@scanInfo": {
-    "description": "Text that informs the user that the QR code can be scanned to enter the login page. Used on AppleTV."
-  },
-  "validInfo": "Il codice QR è valido per 15 minuti.",
-  "@validInfo": {
-    "description": "Message that informs the user for how long the QR Code will be valid."
-  },
-  "confirmInfo": "Dopo aver effettuato correttamente l'accesso sul tuo dispositivo, fai clic sul pulsante in basso per confermare il tuo accesso.",
-  "@confirmInfo": {
-    "description": "Message that asks the user to click the button in order to proceed after successful login."
   },
   "seriesTab": "Serie",
   "@seriesTab": {
@@ -907,18 +579,6 @@
   "@noTransmissionToday": {
     "description": "Messages that informs the user, that there are no schedules transmission for today."
   },
-  "livestreamMaintenanceTitle": "La trasmissione in diretta non è disponibile",
-  "@livestreamMaintenanceTitle": {
-    "description": "Message that informs the user, that the livestream is unavailable."
-  },
-  "start": "Avvia",
-  "@start": {
-    "description": "Word used while displaying information about the beggining of a video or an event in tv guide."
-  },
-  "transmissionSchedule": "Programma delle trasmissioni",
-  "@transmissionSchedule": {
-    "description": "Label that indicates the user is looking at Transmission schedule"
-  },
   "featured": "Consigliato",
   "@featured": {
     "description": "Featured videos collection header"
@@ -927,84 +587,153 @@
   "@errorTryAgain": {
     "description": "Message that informs the user, that there was an error. Then politely asks the user to try again later."
   },
-  "reportProblem": "In caso di problemi usa il codice QR qui sotto per inviarci un'e-mail.",
-  "@reportProblem": {
-    "description": "Message indicating that whenever the user wants to report a problem, they can scan the QR code to send an email to support."
-  },
-  "phoneReadingProblem": "Se il tuo telefono non riesce a leggere il codice QR, inviaci un'e-mail con le seguenti informazioni a",
-  "@phoneReadingProblem": {
-    "description": "Message explaining that if the user's phone can't scan the QR code, they can send the support e-mail with information listed after this message."
-  },
-  "goTo": "o vai a",
-  "@goTo": {
-    "description": "Message used to point the user to the shortened URL in case they can't use the QR code to log-in. This is used on AppleTV."
-  },
-  "watchBrunstad": "Guarda BrunstadTV in diretta",
-  "@watchBrunstad": {
-    "description": "Text that entices the user to watch the livestream."
-  },
-  "notLogged": "Non sei collegato",
-  "@notLogged": {
-    "description": "Text that informs the user, that they are not logged in."
-  },
-  "authResponse0": "Si prega di utilizzare il nuovo codice QR per accedere.",
-  "@authResponse0": {
-    "description": "Authentication response displayed to the user when an old QR code was used. Asking them to use a new one if they want to log in."
-  },
-  "authResponse1": "Accedi sul tuo cellulare utilizzando il codice QR.",
-  "@authResponse1": {
-    "description": "Message displayed to the user when they tried to proceed with the log-in on AppleTv without first logging through their mobile device."
-  },
-  "authResponse3": "Controlla la tua connessione di rete e riprova più tardi.",
-  "@authResponse3": {
-    "description": "Message that indicates there was an error during Authentication process. Asking the user to check their network connection and try again."
-  },
   "liveHeader": "Diretta",
   "@liveHeader": {
     "description": "Header of the Live Tab — the tab that contains the livestream player on AppleTV."
   },
-  "recentlyPublishedSection": "Recently published",
-  "@recentlyPublishedSection": {
-    "description": "Section in explore."
-  },
-  "exploreCategoriesSection": "Explore categories",
-  "@exploreCategoriesSection": {
-    "description": "Section in explore."
-  },
-  "programsSection": "Programs",
+  "programsSection": "Programmi",
   "@programsSection": {
-    "description": "Section in explore."
+    "description": "Section in search."
   },
-  "episodesSection": "Episodi",
-  "@episodesSection": {
-    "description": "Section in explore."
-  },
-  "categorySeries": "Serie",
-  "@categorySeries": {
-    "description": "Category name"
-  },
-  "categoryKids": "Kids",
-  "@categoryKids": {
-    "description": "Category name"
-  },
-  "categoryFilms": "Film",
-  "@categoryFilms": {
-    "description": "Category name"
-  },
-  "categoryEvents": "Eventi",
-  "@categoryEvents": {
-    "description": "Category name"
-  },
-  "categoryMusic": "Music",
-  "@categoryMusic": {
-    "description": "Category name"
-  },
-  "noPlannedEvents": "No events planned this day",
+  "noPlannedEvents": "Nessun evento in programma per questo giorno",
   "@noPlannedEvents": {
     "description": "Information in tvguide"
   },
-  "watchNow": "Watch now",
+  "watchNow": "Guarda adesso",
   "@watchNow": {
     "description": "Button on featured carousel"
+  },
+  "exploreContent": "Esplora i contenuti",
+  "@exploreContent": {
+    "description": "A button on the login page"
+  },
+  "taskCompleted": "compito completato",
+  "@taskCompleted": {
+    "description": "SINGULAR. Note the lowercase T, because its inserted after a count: '0/1 task completed'."
+  },
+  "tasksCompleted": "compiti completati",
+  "@tasksCompleted": {
+    "description": "PLURAL. Note the lowercase T, because its inserted after the count: '2/5 tasks completed'."
+  },
+  "studyCompleteTaskDescription": "Completa le attività e scopri le risorse correlate",
+  "@studyCompleteTaskDescription": {
+    "description": "Description to open the study tasks for this episode. Currently shows below '0/1 tasks completed'."
+  },
+  "discoverMore": "Scopri di più",
+  "@discoverMore": {
+    "description": "Generic button text."
+  },
+  "completePreviousTasks": "Complete previous tasks to unlock",
+  "@completePreviousTasks": {
+    "description": "Shown on a locked button, short explanation why the button is locked."
+  },
+  "studyDiscoverMoreDescription": "Trova più ispirazione e spunti dalle risorse correlate",
+  "@studyDiscoverMoreDescription": {
+    "description": "Description to open the related resources for this episode."
+  },
+  "watchAgain": "Guarda di nuovo",
+  "@watchAgain": {
+    "description": "Short button text to watch the video again."
+  },
+  "continueToTaskIn": "Continua a eseguire l'attività",
+  "@continueToTaskIn": {
+    "description": "SINGULAR. Button with text 'Continue to task in X'. Can click it to open tasks immediately, otherwise X will count down (10, 9, 8...) and automatically redirect you to the tasks."
+  },
+  "continueToTasksIn": "Continua con le attività in",
+  "@continueToTasksIn": {
+    "description": "PLURAL. Button with text 'Continue to tasks in X'. Can click it to open tasks immediately, otherwise X will count down (10, 9, 8...) and automatically redirect you to the tasks."
+  },
+  "studyLessonCompleted": "lezione completata",
+  "@studyLessonCompleted": {
+    "description": "SINGULAR. Note the lowercase L, because prepended with a number: '1 lesson completed'."
+  },
+  "studyLessonsCompleted": "lezioni completate",
+  "@studyLessonsCompleted": {
+    "description": "PLURAL. Note the lowercase L, because prepended with a number: '20 lessons completed'."
+  },
+  "continueStudy": "Continua a studiare",
+  "@continueStudy": {
+    "description": "Button."
+  },
+  "startStudy": "Inizia a studiare",
+  "@startStudy": {
+    "description": "Button."
+  },
+  "videoCompletedText": "Ottimo lavoro nel completare il video.",
+  "@videoCompletedText": {
+    "description": "Shown after completing tasks related to a video."
+  },
+  "achievementFirstDescription": "Ottimo lavoro nell'aver completato il video e aver ottenuto il tuo primo obiettivo di avanzamento.",
+  "@achievementFirstDescription": {
+    "description": "Description displayed in a popup when earning the first achievement badge."
+  },
+  "achievementStudyTopic": "Ottimo lavoro nel completare l'argomento di studio {name}",
+  "@achievementStudyTopic": {
+    "description": "REMEMBER: Include, but do not translate variables like {name} here. Description displayed in a popup when done with a study topic.",
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "videoCount": "{count} video",
+  "@videoCount": {
+    "description": "REMEMBER: Include, but do not translate variables like {count} here. Keep it very short. Generic, number of videos. Currently used for study topic overviews.",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "taskCount": "{count} compiti",
+  "@taskCount": {
+    "description": "REMEMBER: Include, but do not translate variables like {count} here. Keep it very short. Generic, number of tasks. Currently used for study topic overviews.",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "posterCount": "{count} poster",
+  "@posterCount": {
+    "description": "REMEMBER: Include, but do not translate variables like {count} here. Keep it very short. Generic, number of posters. Currently used for study topic overviews.",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "resourceCount": "{count} risorse",
+  "@resourceCount": {
+    "description": "REMEMBER: Include, but do not translate variables like {count} here. Keep it very short. Generic, number of resources. Currently used for study topic overviews.",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "continueButton": "Continua",
+  "@continueButton": {
+    "description": "Generic button text."
+  },
+  "achievements": "Risultati",
+  "@achievements": {
+    "description": "Generic. Used as page title, etc."
+  },
+  "oops": "Oops!",
+  "@oops": {
+    "description": "An informal title on some error screens."
+  },
+  "dontHaveAccess": "Non hai accesso a questo contenuto",
+  "@dontHaveAccess": {
+    "description": "Error message when you open a link to content you dont have access to."
+  },
+  "mustBeLoggedIn": "Devi essere loggato per guardare questo contenuto",
+  "@mustBeLoggedIn": {
+    "description": "Error message when you open a link to content you dont have access to, and you are not logged in."
+  },
+  "plentyOfOtherContent": "Non preoccuparti, ci sono ancora molti altri contenuti con cui divertirti!",
+  "@plentyOfOtherContent": {
+    "description": "Shown on an error page indiciating you dont have access to the content, right above a button that takes you back."
   }
 }

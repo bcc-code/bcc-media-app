@@ -13,4 +13,9 @@ class BtvGradients {
     end: Alignment.bottomRight,
     colors: [Color(0xff6fc5bd), Color(0xfffccf48)],
   );
+  static const LinearGradient purpleTransparent = LinearGradient(
+    begin: Alignment.topLeft,
+    end: Alignment.bottomRight,
+    colors: [Color.fromRGBO(253, 161, 255, 0.2), Color.fromRGBO(0, 0, 0, 0)],
+  );
 }

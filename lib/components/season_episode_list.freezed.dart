@@ -18,10 +18,13 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$EpisodeListEpisodeData {
   String get episodeId => throw _privateConstructorUsedError;
   String get title => throw _privateConstructorUsedError;
+  bool get locked => throw _privateConstructorUsedError;
   bool? get highlighted => throw _privateConstructorUsedError;
   String? get image => throw _privateConstructorUsedError;
   int? get seasonNumber => throw _privateConstructorUsedError;
   int? get episodeNumber => throw _privateConstructorUsedError;
+  Fragment$LessonProgressOverview? get lessonProgressOverview =>
+      throw _privateConstructorUsedError;
   String? get publishDate => throw _privateConstructorUsedError;
   String get ageRating => throw _privateConstructorUsedError;
   int get duration => throw _privateConstructorUsedError;
@@ -35,82 +38,90 @@ mixin _$EpisodeListEpisodeData {
 abstract class $EpisodeListEpisodeDataCopyWith<$Res> {
   factory $EpisodeListEpisodeDataCopyWith(EpisodeListEpisodeData value,
           $Res Function(EpisodeListEpisodeData) then) =
-      _$EpisodeListEpisodeDataCopyWithImpl<$Res, EpisodeListEpisodeData>;
-  @useResult
+      _$EpisodeListEpisodeDataCopyWithImpl<$Res>;
   $Res call(
       {String episodeId,
       String title,
+      bool locked,
       bool? highlighted,
       String? image,
       int? seasonNumber,
       int? episodeNumber,
+      Fragment$LessonProgressOverview? lessonProgressOverview,
       String? publishDate,
       String ageRating,
       int duration});
 }
 
 /// @nodoc
-class _$EpisodeListEpisodeDataCopyWithImpl<$Res,
-        $Val extends EpisodeListEpisodeData>
+class _$EpisodeListEpisodeDataCopyWithImpl<$Res>
     implements $EpisodeListEpisodeDataCopyWith<$Res> {
   _$EpisodeListEpisodeDataCopyWithImpl(this._value, this._then);
 
+  final EpisodeListEpisodeData _value;
   // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
+  final $Res Function(EpisodeListEpisodeData) _then;
 
-  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? episodeId = null,
-    Object? title = null,
+    Object? episodeId = freezed,
+    Object? title = freezed,
+    Object? locked = freezed,
     Object? highlighted = freezed,
     Object? image = freezed,
     Object? seasonNumber = freezed,
     Object? episodeNumber = freezed,
+    Object? lessonProgressOverview = freezed,
     Object? publishDate = freezed,
-    Object? ageRating = null,
-    Object? duration = null,
+    Object? ageRating = freezed,
+    Object? duration = freezed,
   }) {
     return _then(_value.copyWith(
-      episodeId: null == episodeId
+      episodeId: episodeId == freezed
           ? _value.episodeId
           : episodeId // ignore: cast_nullable_to_non_nullable
               as String,
-      title: null == title
+      title: title == freezed
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
               as String,
-      highlighted: freezed == highlighted
+      locked: locked == freezed
+          ? _value.locked
+          : locked // ignore: cast_nullable_to_non_nullable
+              as bool,
+      highlighted: highlighted == freezed
           ? _value.highlighted
           : highlighted // ignore: cast_nullable_to_non_nullable
               as bool?,
-      image: freezed == image
+      image: image == freezed
           ? _value.image
           : image // ignore: cast_nullable_to_non_nullable
               as String?,
-      seasonNumber: freezed == seasonNumber
+      seasonNumber: seasonNumber == freezed
           ? _value.seasonNumber
           : seasonNumber // ignore: cast_nullable_to_non_nullable
               as int?,
-      episodeNumber: freezed == episodeNumber
+      episodeNumber: episodeNumber == freezed
           ? _value.episodeNumber
           : episodeNumber // ignore: cast_nullable_to_non_nullable
               as int?,
-      publishDate: freezed == publishDate
+      lessonProgressOverview: lessonProgressOverview == freezed
+          ? _value.lessonProgressOverview
+          : lessonProgressOverview // ignore: cast_nullable_to_non_nullable
+              as Fragment$LessonProgressOverview?,
+      publishDate: publishDate == freezed
           ? _value.publishDate
           : publishDate // ignore: cast_nullable_to_non_nullable
               as String?,
-      ageRating: null == ageRating
+      ageRating: ageRating == freezed
           ? _value.ageRating
           : ageRating // ignore: cast_nullable_to_non_nullable
               as String,
-      duration: null == duration
+      duration: duration == freezed
           ? _value.duration
           : duration // ignore: cast_nullable_to_non_nullable
               as int,
-    ) as $Val);
+    ));
   }
 }
 
@@ -121,14 +132,15 @@ abstract class _$$_EpisodeListEpisodeCopyWith<$Res>
           $Res Function(_$_EpisodeListEpisode) then) =
       __$$_EpisodeListEpisodeCopyWithImpl<$Res>;
   @override
-  @useResult
   $Res call(
       {String episodeId,
       String title,
+      bool locked,
       bool? highlighted,
       String? image,
       int? seasonNumber,
       int? episodeNumber,
+      Fragment$LessonProgressOverview? lessonProgressOverview,
       String? publishDate,
       String ageRating,
       int duration});
@@ -136,59 +148,71 @@ abstract class _$$_EpisodeListEpisodeCopyWith<$Res>
 
 /// @nodoc
 class __$$_EpisodeListEpisodeCopyWithImpl<$Res>
-    extends _$EpisodeListEpisodeDataCopyWithImpl<$Res, _$_EpisodeListEpisode>
+    extends _$EpisodeListEpisodeDataCopyWithImpl<$Res>
     implements _$$_EpisodeListEpisodeCopyWith<$Res> {
   __$$_EpisodeListEpisodeCopyWithImpl(
       _$_EpisodeListEpisode _value, $Res Function(_$_EpisodeListEpisode) _then)
-      : super(_value, _then);
+      : super(_value, (v) => _then(v as _$_EpisodeListEpisode));
 
-  @pragma('vm:prefer-inline')
+  @override
+  _$_EpisodeListEpisode get _value => super._value as _$_EpisodeListEpisode;
+
   @override
   $Res call({
-    Object? episodeId = null,
-    Object? title = null,
+    Object? episodeId = freezed,
+    Object? title = freezed,
+    Object? locked = freezed,
     Object? highlighted = freezed,
     Object? image = freezed,
     Object? seasonNumber = freezed,
     Object? episodeNumber = freezed,
+    Object? lessonProgressOverview = freezed,
     Object? publishDate = freezed,
-    Object? ageRating = null,
-    Object? duration = null,
+    Object? ageRating = freezed,
+    Object? duration = freezed,
   }) {
     return _then(_$_EpisodeListEpisode(
-      episodeId: null == episodeId
+      episodeId: episodeId == freezed
           ? _value.episodeId
           : episodeId // ignore: cast_nullable_to_non_nullable
               as String,
-      title: null == title
+      title: title == freezed
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
               as String,
-      highlighted: freezed == highlighted
+      locked: locked == freezed
+          ? _value.locked
+          : locked // ignore: cast_nullable_to_non_nullable
+              as bool,
+      highlighted: highlighted == freezed
           ? _value.highlighted
           : highlighted // ignore: cast_nullable_to_non_nullable
               as bool?,
-      image: freezed == image
+      image: image == freezed
           ? _value.image
           : image // ignore: cast_nullable_to_non_nullable
               as String?,
-      seasonNumber: freezed == seasonNumber
+      seasonNumber: seasonNumber == freezed
           ? _value.seasonNumber
           : seasonNumber // ignore: cast_nullable_to_non_nullable
               as int?,
-      episodeNumber: freezed == episodeNumber
+      episodeNumber: episodeNumber == freezed
           ? _value.episodeNumber
           : episodeNumber // ignore: cast_nullable_to_non_nullable
               as int?,
-      publishDate: freezed == publishDate
+      lessonProgressOverview: lessonProgressOverview == freezed
+          ? _value.lessonProgressOverview
+          : lessonProgressOverview // ignore: cast_nullable_to_non_nullable
+              as Fragment$LessonProgressOverview?,
+      publishDate: publishDate == freezed
           ? _value.publishDate
           : publishDate // ignore: cast_nullable_to_non_nullable
               as String?,
-      ageRating: null == ageRating
+      ageRating: ageRating == freezed
           ? _value.ageRating
           : ageRating // ignore: cast_nullable_to_non_nullable
               as String,
-      duration: null == duration
+      duration: duration == freezed
           ? _value.duration
           : duration // ignore: cast_nullable_to_non_nullable
               as int,
@@ -202,10 +226,12 @@ class _$_EpisodeListEpisode implements _EpisodeListEpisode {
   const _$_EpisodeListEpisode(
       {required this.episodeId,
       required this.title,
+      required this.locked,
       this.highlighted,
       required this.image,
       this.seasonNumber,
       this.episodeNumber,
+      this.lessonProgressOverview,
       required this.publishDate,
       required this.ageRating,
       required this.duration});
@@ -215,6 +241,8 @@ class _$_EpisodeListEpisode implements _EpisodeListEpisode {
   @override
   final String title;
   @override
+  final bool locked;
+  @override
   final bool? highlighted;
   @override
   final String? image;
@@ -222,6 +250,8 @@ class _$_EpisodeListEpisode implements _EpisodeListEpisode {
   final int? seasonNumber;
   @override
   final int? episodeNumber;
+  @override
+  final Fragment$LessonProgressOverview? lessonProgressOverview;
   @override
   final String? publishDate;
   @override
@@ -231,7 +261,7 @@ class _$_EpisodeListEpisode implements _EpisodeListEpisode {
 
   @override
   String toString() {
-    return 'EpisodeListEpisodeData(episodeId: $episodeId, title: $title, highlighted: $highlighted, image: $image, seasonNumber: $seasonNumber, episodeNumber: $episodeNumber, publishDate: $publishDate, ageRating: $ageRating, duration: $duration)';
+    return 'EpisodeListEpisodeData(episodeId: $episodeId, title: $title, locked: $locked, highlighted: $highlighted, image: $image, seasonNumber: $seasonNumber, episodeNumber: $episodeNumber, lessonProgressOverview: $lessonProgressOverview, publishDate: $publishDate, ageRating: $ageRating, duration: $duration)';
   }
 
   @override
@@ -239,31 +269,41 @@ class _$_EpisodeListEpisode implements _EpisodeListEpisode {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_EpisodeListEpisode &&
-            (identical(other.episodeId, episodeId) ||
-                other.episodeId == episodeId) &&
-            (identical(other.title, title) || other.title == title) &&
-            (identical(other.highlighted, highlighted) ||
-                other.highlighted == highlighted) &&
-            (identical(other.image, image) || other.image == image) &&
-            (identical(other.seasonNumber, seasonNumber) ||
-                other.seasonNumber == seasonNumber) &&
-            (identical(other.episodeNumber, episodeNumber) ||
-                other.episodeNumber == episodeNumber) &&
-            (identical(other.publishDate, publishDate) ||
-                other.publishDate == publishDate) &&
-            (identical(other.ageRating, ageRating) ||
-                other.ageRating == ageRating) &&
-            (identical(other.duration, duration) ||
-                other.duration == duration));
+            const DeepCollectionEquality().equals(other.episodeId, episodeId) &&
+            const DeepCollectionEquality().equals(other.title, title) &&
+            const DeepCollectionEquality().equals(other.locked, locked) &&
+            const DeepCollectionEquality()
+                .equals(other.highlighted, highlighted) &&
+            const DeepCollectionEquality().equals(other.image, image) &&
+            const DeepCollectionEquality()
+                .equals(other.seasonNumber, seasonNumber) &&
+            const DeepCollectionEquality()
+                .equals(other.episodeNumber, episodeNumber) &&
+            const DeepCollectionEquality()
+                .equals(other.lessonProgressOverview, lessonProgressOverview) &&
+            const DeepCollectionEquality()
+                .equals(other.publishDate, publishDate) &&
+            const DeepCollectionEquality().equals(other.ageRating, ageRating) &&
+            const DeepCollectionEquality().equals(other.duration, duration));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, episodeId, title, highlighted,
-      image, seasonNumber, episodeNumber, publishDate, ageRating, duration);
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(episodeId),
+      const DeepCollectionEquality().hash(title),
+      const DeepCollectionEquality().hash(locked),
+      const DeepCollectionEquality().hash(highlighted),
+      const DeepCollectionEquality().hash(image),
+      const DeepCollectionEquality().hash(seasonNumber),
+      const DeepCollectionEquality().hash(episodeNumber),
+      const DeepCollectionEquality().hash(lessonProgressOverview),
+      const DeepCollectionEquality().hash(publishDate),
+      const DeepCollectionEquality().hash(ageRating),
+      const DeepCollectionEquality().hash(duration));
 
   @JsonKey(ignore: true)
   @override
-  @pragma('vm:prefer-inline')
   _$$_EpisodeListEpisodeCopyWith<_$_EpisodeListEpisode> get copyWith =>
       __$$_EpisodeListEpisodeCopyWithImpl<_$_EpisodeListEpisode>(
           this, _$identity);
@@ -273,10 +313,12 @@ abstract class _EpisodeListEpisode implements EpisodeListEpisodeData {
   const factory _EpisodeListEpisode(
       {required final String episodeId,
       required final String title,
+      required final bool locked,
       final bool? highlighted,
       required final String? image,
       final int? seasonNumber,
       final int? episodeNumber,
+      final Fragment$LessonProgressOverview? lessonProgressOverview,
       required final String? publishDate,
       required final String ageRating,
       required final int duration}) = _$_EpisodeListEpisode;
@@ -286,6 +328,8 @@ abstract class _EpisodeListEpisode implements EpisodeListEpisodeData {
   @override
   String get title;
   @override
+  bool get locked;
+  @override
   bool? get highlighted;
   @override
   String? get image;
@@ -293,6 +337,8 @@ abstract class _EpisodeListEpisode implements EpisodeListEpisodeData {
   int? get seasonNumber;
   @override
   int? get episodeNumber;
+  @override
+  Fragment$LessonProgressOverview? get lessonProgressOverview;
   @override
   String? get publishDate;
   @override

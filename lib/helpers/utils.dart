@@ -40,23 +40,27 @@ String getFormattedAgeRating(String ageRating) {
 FutureBuilder simpleFutureBuilder<T>(
     {required Future<T>? future,
     required Widget Function() loading,
-    required Widget Function(Object?) error,
-    required Widget Function() noData,
-    required Widget Function(T) ready}) {
+    required Widget Function(T) ready,
+    Widget Function(Object?)? error,
+    Widget Function()? noData}) {
+  loadingWidget() => loading();
+  readyWidget(T data) => ready(data);
+  errorWidget(Object? err) => error != null ? error(err) : const SizedBox.shrink();
+  noDataWidget() => noData != null ? noData() : errorWidget(null);
   return FutureBuilder<T>(
       future: future,
       builder: (context, snapshot) {
         if (snapshot.connectionState != ConnectionState.done) {
-          return loading();
+          return loadingWidget();
         }
         if (snapshot.hasError) {
-          return error(snapshot.error);
+          return errorWidget(snapshot.error);
         }
         final data = snapshot.data;
         if (data != null) {
-          return ready(data);
+          return readyWidget(data);
         } else {
-          return noData();
+          return noDataWidget();
         }
       });
 }
@@ -97,20 +101,6 @@ Future<dynamic>? handleSectionItemClick(BuildContext context, Fragment$ItemSecti
   }
 
   return null;
-}
-
-Future<dynamic>? navigateToShowWithoutEpisodeId(BuildContext context, String showId) async {
-  debugPrint('navigateToShowWithoutEpisodeId');
-  final navigationOverride = NavigationOverride.of(context);
-  final router = context.router;
-  final result = await ProviderScope.containerOf(context, listen: false)
-      .read(gqlClientProvider)
-      .query$getDefaultEpisodeForShow(Options$Query$getDefaultEpisodeForShow(variables: Variables$Query$getDefaultEpisodeForShow(showId: showId)));
-  final episodeId = result?.parsedData?.$show.defaultEpisode.id;
-  if (episodeId == null) {
-    throw ErrorHint('Failed getting defaultEpisodeId for show $showId');
-  }
-  return overrideAwareNavigation(navigationOverride, router, EpisodeScreenRoute(episodeId: episodeId));
 }
 
 Completer<T> wrapInCompleter<T>(Future<T> future) {

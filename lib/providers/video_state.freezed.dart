@@ -29,8 +29,7 @@ mixin _$Player {
 /// @nodoc
 abstract class $PlayerCopyWith<$Res> {
   factory $PlayerCopyWith(Player value, $Res Function(Player) then) =
-      _$PlayerCopyWithImpl<$Res, Player>;
-  @useResult
+      _$PlayerCopyWithImpl<$Res>;
   $Res call(
       {String playerId,
       MediaItem? currentMediaItem,
@@ -40,46 +39,43 @@ abstract class $PlayerCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$PlayerCopyWithImpl<$Res, $Val extends Player>
-    implements $PlayerCopyWith<$Res> {
+class _$PlayerCopyWithImpl<$Res> implements $PlayerCopyWith<$Res> {
   _$PlayerCopyWithImpl(this._value, this._then);
 
+  final Player _value;
   // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
+  final $Res Function(Player) _then;
 
-  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? playerId = null,
+    Object? playerId = freezed,
     Object? currentMediaItem = freezed,
     Object? playbackPositionMs = freezed,
-    Object? playbackState = null,
-    Object? isInPipMode = null,
+    Object? playbackState = freezed,
+    Object? isInPipMode = freezed,
   }) {
     return _then(_value.copyWith(
-      playerId: null == playerId
+      playerId: playerId == freezed
           ? _value.playerId
           : playerId // ignore: cast_nullable_to_non_nullable
               as String,
-      currentMediaItem: freezed == currentMediaItem
+      currentMediaItem: currentMediaItem == freezed
           ? _value.currentMediaItem
           : currentMediaItem // ignore: cast_nullable_to_non_nullable
               as MediaItem?,
-      playbackPositionMs: freezed == playbackPositionMs
+      playbackPositionMs: playbackPositionMs == freezed
           ? _value.playbackPositionMs
           : playbackPositionMs // ignore: cast_nullable_to_non_nullable
               as int?,
-      playbackState: null == playbackState
+      playbackState: playbackState == freezed
           ? _value.playbackState
           : playbackState // ignore: cast_nullable_to_non_nullable
               as PlaybackState,
-      isInPipMode: null == isInPipMode
+      isInPipMode: isInPipMode == freezed
           ? _value.isInPipMode
           : isInPipMode // ignore: cast_nullable_to_non_nullable
               as bool,
-    ) as $Val);
+    ));
   }
 }
 
@@ -88,7 +84,6 @@ abstract class _$$_PlayerCopyWith<$Res> implements $PlayerCopyWith<$Res> {
   factory _$$_PlayerCopyWith(_$_Player value, $Res Function(_$_Player) then) =
       __$$_PlayerCopyWithImpl<$Res>;
   @override
-  @useResult
   $Res call(
       {String playerId,
       MediaItem? currentMediaItem,
@@ -98,39 +93,40 @@ abstract class _$$_PlayerCopyWith<$Res> implements $PlayerCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$_PlayerCopyWithImpl<$Res>
-    extends _$PlayerCopyWithImpl<$Res, _$_Player>
+class __$$_PlayerCopyWithImpl<$Res> extends _$PlayerCopyWithImpl<$Res>
     implements _$$_PlayerCopyWith<$Res> {
   __$$_PlayerCopyWithImpl(_$_Player _value, $Res Function(_$_Player) _then)
-      : super(_value, _then);
+      : super(_value, (v) => _then(v as _$_Player));
 
-  @pragma('vm:prefer-inline')
+  @override
+  _$_Player get _value => super._value as _$_Player;
+
   @override
   $Res call({
-    Object? playerId = null,
+    Object? playerId = freezed,
     Object? currentMediaItem = freezed,
     Object? playbackPositionMs = freezed,
-    Object? playbackState = null,
-    Object? isInPipMode = null,
+    Object? playbackState = freezed,
+    Object? isInPipMode = freezed,
   }) {
     return _then(_$_Player(
-      playerId: null == playerId
+      playerId: playerId == freezed
           ? _value.playerId
           : playerId // ignore: cast_nullable_to_non_nullable
               as String,
-      currentMediaItem: freezed == currentMediaItem
+      currentMediaItem: currentMediaItem == freezed
           ? _value.currentMediaItem
           : currentMediaItem // ignore: cast_nullable_to_non_nullable
               as MediaItem?,
-      playbackPositionMs: freezed == playbackPositionMs
+      playbackPositionMs: playbackPositionMs == freezed
           ? _value.playbackPositionMs
           : playbackPositionMs // ignore: cast_nullable_to_non_nullable
               as int?,
-      playbackState: null == playbackState
+      playbackState: playbackState == freezed
           ? _value.playbackState
           : playbackState // ignore: cast_nullable_to_non_nullable
               as PlaybackState,
-      isInPipMode: null == isInPipMode
+      isInPipMode: isInPipMode == freezed
           ? _value.isInPipMode
           : isInPipMode // ignore: cast_nullable_to_non_nullable
               as bool,
@@ -171,25 +167,28 @@ class _$_Player implements _Player {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_Player &&
-            (identical(other.playerId, playerId) ||
-                other.playerId == playerId) &&
-            (identical(other.currentMediaItem, currentMediaItem) ||
-                other.currentMediaItem == currentMediaItem) &&
-            (identical(other.playbackPositionMs, playbackPositionMs) ||
-                other.playbackPositionMs == playbackPositionMs) &&
-            (identical(other.playbackState, playbackState) ||
-                other.playbackState == playbackState) &&
-            (identical(other.isInPipMode, isInPipMode) ||
-                other.isInPipMode == isInPipMode));
+            const DeepCollectionEquality().equals(other.playerId, playerId) &&
+            const DeepCollectionEquality()
+                .equals(other.currentMediaItem, currentMediaItem) &&
+            const DeepCollectionEquality()
+                .equals(other.playbackPositionMs, playbackPositionMs) &&
+            const DeepCollectionEquality()
+                .equals(other.playbackState, playbackState) &&
+            const DeepCollectionEquality()
+                .equals(other.isInPipMode, isInPipMode));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, playerId, currentMediaItem,
-      playbackPositionMs, playbackState, isInPipMode);
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(playerId),
+      const DeepCollectionEquality().hash(currentMediaItem),
+      const DeepCollectionEquality().hash(playbackPositionMs),
+      const DeepCollectionEquality().hash(playbackState),
+      const DeepCollectionEquality().hash(isInPipMode));
 
   @JsonKey(ignore: true)
   @override
-  @pragma('vm:prefer-inline')
   _$$_PlayerCopyWith<_$_Player> get copyWith =>
       __$$_PlayerCopyWithImpl<_$_Player>(this, _$identity);
 }

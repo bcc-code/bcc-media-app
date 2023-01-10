@@ -1,7 +1,14 @@
-const Map<ImageCropMode, String> _imageCropModeQueryParam = {ImageCropMode.faces: 'faces'};
+import 'package:brunstadtv_app/helpers/transparent_image.dart';
+import 'package:flutter/material.dart';
+
+const Map<ImageCropMode, String> _imageCropModeQueryParam = {
+  ImageCropMode.faces: 'faces',
+  ImageCropMode.center: 'center',
+};
 
 enum ImageCropMode {
   faces,
+  center,
 }
 
 Uri? getImageUri(String image, {int? width, int? height, ImageCropMode cropMode = ImageCropMode.faces}) {
@@ -25,3 +32,14 @@ Uri? getImageUri(String image, {int? width, int? height, ImageCropMode cropMode 
       scheme: originalUri.scheme,
       queryParameters: newQueryParams);
 }
+
+Widget simpleFadeInImage({required String url, Duration? duration}) => LayoutBuilder(
+      builder: (context, constraints) {
+        return FadeInImage.memoryNetwork(
+            fit: BoxFit.cover,
+            placeholder: kTransparentImage,
+            image: url,
+            fadeInDuration: const Duration(milliseconds: 400),
+            imageCacheHeight: (constraints.maxHeight * MediaQuery.of(context).devicePixelRatio).round());
+      },
+    );

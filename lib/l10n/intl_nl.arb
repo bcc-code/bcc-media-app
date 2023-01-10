@@ -27,7 +27,7 @@
   "@loading": {
     "description": "Text to indicate loading state."
   },
-  "loginPageDisplay1": "De krachtigste boodschap in de wereld",
+  "loginPageDisplay1": "De krachtigste \nboodschap in de wereld",
   "@loginPageDisplay1": {
     "description": "Text displayed on login screen."
   },
@@ -53,9 +53,9 @@
   },
   "faq": "Vaak gestelde vragen",
   "@faq": {
-    "description": "Title of the FAQ page."
+    "description": "Long title of the FAQ page."
   },
-  "bccMediaCenter": "BrunstadTV is een niet-commerciëel mediahuis, dat content gebaseerd op positieve en Christelijke waarden produceert en distribueert.",
+  "bccMediaCenter": "BCC Media is een media-stichting binnen de BCC-federatie, welke content met positieve en christelijke waarden produceert en verspreidt.",
   "@bccMediaCenter": {
     "description": "Disclaimer on login page"
   },
@@ -145,11 +145,11 @@
   },
   "upNext": "Volgende",
   "@upNext": {
-    "description": "Title on Up next feature."
+    "description": "Title indiciating what's next on the livestream."
   },
   "done": "Klaar",
   "@done": {
-    "description": "General Done button. User confirms that action completed sucessfully."
+    "description": "Generic Done button, for example to dismiss a page after completing an action."
   },
   "playerSettings": "Instellingen player",
   "@playerSettings": {
@@ -173,15 +173,15 @@
   },
   "subtitles": "Ondertitels",
   "@subtitles": {
-    "description": "Title of the Player settings activity tab in Android"
+    "description": "Generic."
   },
   "audio": "Audio",
   "@audio": {
-    "description": "Title of the Player settings activity tab in Android"
+    "description": "Generic."
   },
   "quality": "Kwaliteit",
   "@quality": {
-    "description": "Title of the Player settings activity tab in Android"
+    "description": "Generic."
   },
   "seasons": "Seizoenen",
   "@seasons": {
@@ -250,15 +250,11 @@
   },
   "seeAll": "Toon alles",
   "@seeAll": {
-    "description": "Button on explore page to navigete to audience page"
+    "description": "Button to see all of some collection."
   },
   "series": "Series",
   "@series": {
     "description": "Title of the tab on info page"
-  },
-  "livestreamMaintenance": "Op dit moment wordt er onderhoud gepleegd aan de live stream. Onze excuses voor het ongemak. Probeer het later nog eens.",
-  "@livestreamMaintenance": {
-    "description": "Message displayed over overlay when livestream is under maintenance."
   },
   "homeTab": "Home",
   "@homeTab": {
@@ -284,7 +280,7 @@
   "@high": {
     "description": "High quality video option"
   },
-  "emptySearch": "U kunt zoeken op alle inhoud van BrunstadTV. TV series, films en afleveringen.",
+  "emptySearch": "U kunt zoeken op alle inhoud van BCC Media. TV series, films en afleveringen.",
   "@emptySearch": {
     "description": "Message on search page when there is no search results."
   },
@@ -344,15 +340,6 @@
   "@uploadFileMessage": {
     "description": "Content of the dialog to confirm upload"
   },
-  "watchingWith": "U kijkt met {numPeople} anderen",
-  "@watchingWith": {
-    "description": "Info on live stream page",
-    "placeholders": {
-      "numPeople": {
-        "type": "int"
-      }
-    }
-  },
   "uploading": "Aan het uploaden",
   "@uploading": {
     "description": "Message during file upload"
@@ -361,13 +348,9 @@
   "@uploadFail": {
     "description": "Upload result message"
   },
-  "post": "Verzend",
-  "@post": {
-    "description": "Button to post written testimony"
-  },
   "charactersLimit": "{charsLeft} of {charsTotal} tekens over",
   "@charactersLimit": {
-    "description": "Info about limit of characters in written testimony",
+    "description": "Info about limit of characters in a text field",
     "placeholders": {
       "charsLeft": {
         "type": "int"
@@ -377,42 +360,6 @@
       }
     }
   },
-  "uploadingPostSuccess": "Je bericht is verzonden.",
-  "@uploadingPostSuccess": {
-    "description": "Info in upload success page"
-  },
-  "testimonyInfo": "Neem je video op met je telefoon.",
-  "@testimonyInfo": {
-    "description": "Record testimony guideline page info"
-  },
-  "yourVideo": "Je opname",
-  "@yourVideo": {
-    "description": "Title on recording tip page page"
-  },
-  "record": "Opnemen",
-  "@record": {
-    "description": "Button to record testimony"
-  },
-  "recordingTips": "Een paar tips voor een goede opname",
-  "@recordingTips": {
-    "description": "Record testimony guideline page tip list title"
-  },
-  "recordingTipA": "Kies een rustige plek wanneer u opneemt.",
-  "@recordingTipA": {
-    "description": "Record testimony guideline page tip list item"
-  },
-  "recordingTipB": "Zorg ervoor dat uw gezicht gelijkmatig verlicht is.",
-  "@recordingTipB": {
-    "description": "Record testimony guideline page tip list item"
-  },
-  "recordingTipC": "Denk na over wat u wilt zeggen voordat u begint met opnemen.",
-  "@recordingTipC": {
-    "description": "Record testimony guideline page tip list item"
-  },
-  "recordingTipD": "Wijzig uw telefoon naar landscape modus.",
-  "@recordingTipD": {
-    "description": "Record testimony guideline page tip list item"
-  },
   "thankYou": "Hartelijk dank!",
   "@thankYou": {
     "description": "Title in upload success page"
@@ -421,65 +368,17 @@
   "@thankYouForContribution": {
     "description": "Title in upload success page"
   },
-  "uploadingVideoSuccess": "Je opname is verzonden.",
-  "@uploadingVideoSuccess": {
-    "description": "Info in upload success page"
-  },
   "next": "Volgende",
   "@next": {
     "description": "NEXT program in check in section"
   },
-  "recordVideoCameraPermissionAlert": "Geef in de instelling je camera toestemming om video's op te nemen.",
-  "@recordVideoCameraPermissionAlert": {
-    "description": "Message in alert dialog informing about missing permission"
-  },
-  "recordVideoPhotosPermissionAlert": "Geef in de instellingen je fotoalbum toestemming om video's op te nemen.",
-  "@recordVideoPhotosPermissionAlert": {
-    "description": "Message in alert dialog informing about missing permission"
-  },
-  "recordVideoStoragePermissionAlert": "Geef in de instellingen je opslag toestemming om video's op te nemen.",
-  "@recordVideoStoragePermissionAlert": {
-    "description": "Message in alert dialog informing about missing permission"
-  },
-  "recordVideoMicrophonePermissionAlert": "Geef in de instellingen je microfoon toestemming om video's op te nemen.",
-  "@recordVideoMicrophonePermissionAlert": {
-    "description": "Message in alert dialog informing about missing permission"
-  },
-  "takePhotoStoragePermissionAlert": "Geef in de instellingen je opslag toestemming om foto's te nemen.",
-  "@takePhotoStoragePermissionAlert": {
-    "description": "Message in alert dialog informing about missing permission"
-  },
-  "takePhotoCameraPermissionAlert": "Geef in de instellingen je camera toestemming om foto's te nemen.",
-  "@takePhotoCameraPermissionAlert": {
-    "description": "Message in alert dialog informing about missing permission"
-  },
-  "pickPhotoStoragePermissionAlert": "Wijzig je instellingen om foto's te kunnen selecteren.",
-  "@pickPhotoStoragePermissionAlert": {
-    "description": "Message in alert dialog informing about missing permission"
-  },
-  "permissionsAlertTitle": "Autorisatie vereist",
-  "@permissionsAlertTitle": {
-    "description": "Title of an alert dialog informing about missing permission"
-  },
   "add": "Voeg toe",
   "@add": {
-    "description": "Button text on interactive live avatar section"
+    "description": "Button text"
   },
   "change": "Wijzig",
   "@change": {
-    "description": "Button text on interactive live avatar section"
-  },
-  "recordingFailedTitle": "De filmopname is mislukt",
-  "@recordingFailedTitle": {
-    "description": "Title in alert dialog when recording fails"
-  },
-  "recordingFailedMessage": "Er is iets mis gegaan bij het opnemen van de film.",
-  "@recordingFailedMessage": {
-    "description": "Message in alert dialog when recording fails"
-  },
-  "pollSubtitle": "Poll",
-  "@pollSubtitle": {
-    "description": "The little title in poll"
+    "description": "Button text"
   },
   "writeHere": "Schrijf hier",
   "@writeHere": {
@@ -489,37 +388,17 @@
   "@feed": {
     "description": "Feed page bar title"
   },
-  "atmosphereFeedDescription": "Draag bij aan de activiteitenfeed door een bericht, getuigenis of foto in te sturen van waar je bent.",
-  "@atmosphereFeedDescription": {
-    "description": "Feed page description"
-  },
   "information": "Informatie",
   "@information": {
     "description": "Feed information item title"
-  },
-  "photoNotSupported": "Het maken en selecteren van een foto wordt niet ondersteund door je apparaat.",
-  "@photoNotSupported": {
-    "description": "Alert displayed when phone can't take photo or pick photo from storage."
-  },
-  "answerFailed": "Helaas is het niet gelukt je antwoord te verzenden. Probeer het nog een keer.",
-  "@answerFailed": {
-    "description": "Message displayed when user's answer hasn't' been sent'."
   },
   "question": "Vraag",
   "@question": {
     "description": "Title of the question page"
   },
-  "notificationChannelPlayerName": "Mediaspeler",
-  "@notificationChannelPlayerName": {
-    "description": "Notification channel name in Android settings"
-  },
   "now": "Nu",
   "@now": {
     "description": "Tv guide now playing label"
-  },
-  "createPost": "Bericht aanmaken",
-  "@createPost": {
-    "description": "Button to start text testimony and title on create post page"
   },
   "concernTextPlaceholder": "Beschrijf het probleem",
   "@concernTextPlaceholder": {
@@ -545,7 +424,7 @@
   "@thankYouSupportDescription": {
     "description": "Text on contact support confirmation page"
   },
-  "sendFail": "Couldn't send your message",
+  "sendFail": "Je bericht kon niet worden verzonden",
   "@sendFail": {
     "description": "General error message that sending failed"
   },
@@ -557,31 +436,9 @@
   "@today": {
     "description": "First category in tv guide"
   },
-  "noNewPosts": "Geen nieuwe berichten",
-  "@noNewPosts": {
-    "description": "Text displayed on the button, when there are no new posts in the feed."
-  },
-  "newPostsMultiple": "{postCount} nieuwe berichten!",
-  "@newPostsMultiple": {
-    "description": "Text displayed on the button, when there are number of new posts in the feed.",
-    "placeholders": {
-      "postCount": {
-        "type": "int"
-      }
-    }
-  },
-  "newPostsSingle": "{postCount} nieuw bericht!",
-  "@newPostsSingle": {
-    "description": "Text displayed on the button, when there is one new post in the feed.",
-    "placeholders": {
-      "postCount": {
-        "type": "int"
-      }
-    }
-  },
   "expired": "Verlopen",
   "@expired": {
-    "description": "Info that episode is no longer available."
+    "description": "Label that something is no longer available."
   },
   "availableFrom": "Beschikbaar {date}",
   "@availableFrom": {
@@ -592,60 +449,13 @@
       }
     }
   },
-  "howFar": "Welke afstand heb je afgelegd?",
-  "@howFar": {
-    "description": "Text on running competition page."
-  },
   "submit": "Invoeren",
   "@submit": {
-    "description": "Submit button on running competition page."
+    "description": "Submit button."
   },
   "wellDone": "Goed gedaan!",
   "@wellDone": {
-    "description": "Text on running competition page."
-  },
-  "wellDoneDistance": "Goed gedaan! Je hebt in totaal {distanceInKM} km geregistreerd",
-  "@wellDoneDistance": {
-    "description": "Text on running competition page.",
-    "placeholders": {
-      "distanceInKM": {
-        "type": "int"
-      }
-    }
-  },
-  "distanceRegistered": "Je afstand is geregistreerd. Hieronder kun je eventueel een nieuwe afstand invoeren.",
-  "@distanceRegistered": {
-    "description": "Text on running competition page."
-  },
-  "ranMore": "Ik liep meer dan {distanceInKM} km",
-  "@ranMore": {
-    "description": "Text on running competition page.",
-    "placeholders": {
-      "distanceInKM": {
-        "type": "int"
-      }
-    }
-  },
-  "moreThan": "Meer dan {distanceInKM} km",
-  "@moreThan": {
-    "description": "Text on running competition page.",
-    "placeholders": {
-      "distanceInKM": {
-        "type": "int"
-      }
-    }
-  },
-  "runningEffort": "Wat een geweldige prestatie! Noteer hier onder het aantal afgelegde km.",
-  "@runningEffort": {
-    "description": "Text on running competition page."
-  },
-  "slideSelect": "Schuif om te selecteren welke afstand je hebt afgelegd",
-  "@slideSelect": {
-    "description": "Text on running competition page."
-  },
-  "submitAnotherDistance": "Voer nog een afstand in",
-  "@submitAnotherDistance": {
-    "description": "Text on running competition page."
+    "description": "Positive message that may be used e.g. after completing some action."
   },
   "editPicture": "Bewerk foto",
   "@editPicture": {
@@ -654,10 +464,6 @@
   "profilePicture": "Profielfoto",
   "@profilePicture": {
     "description": "Text on edit profile page."
-  },
-  "firstPostTitle": "Plaats als eerste een foto of bericht",
-  "@firstPostTitle": {
-    "description": "Text on feed page when feed is empty."
   },
   "timezoneInformation": "De tijden in de TV gids worden weergegeven in de lokale tijd van de tijdszone waarin je op dit moment bent",
   "@timezoneInformation": {
@@ -668,73 +474,13 @@
       }
     }
   },
-  "yourQuestion": "Je vraag",
-  "@yourQuestion": {
-    "description": "Title on ask question page"
-  },
-  "uploadingInquirySuccess": "Houd er rekening mee dat niet alle gestelde vragen in de uitzending worden beantwoord.",
-  "@uploadingInquirySuccess": {
-    "description": "Info in upload question success page"
-  },
-  "askQuestion": "Stel een vraag",
-  "@askQuestion": {
-    "description": "Ask question text field placeholder"
-  },
-  "submitQuestionInfo": "Door een vraag in te dienen, accepteert u dat deze kan worden gebruikt voor uitzenddoeleinden.",
-  "@submitQuestionInfo": {
-    "description": "Disclaimer on ask question page"
-  },
-  "posting": "Verzenden",
-  "@posting": {
-    "description": "Information about ongoing posting process"
-  },
-  "submitPostInfo": "Bij het aanleveren van een foto of een bijdrage, accepteert u dat deze kan worden gebruikt voor uitzenddoeleinden. ",
-  "@submitPostInfo": {
-    "description": "Disclaimer on text testimony page"
-  },
-  "cropImage": "Pas afbeelding aan",
-  "@cropImage": {
-    "description": "Image crop page title"
-  },
-  "square": "Vierkant",
-  "@square": {
-    "description": "Image crop mode"
-  },
-  "landscape": "Horizontaal",
-  "@landscape": {
-    "description": "Image crop mode"
-  },
-  "pollSingleChoice": "Je kan je antwoord maar één keer selecteren.",
-  "@pollSingleChoice": {
-    "description": "Desciption of the poll type. States that user can change the answer only once."
-  },
-  "pollMultipleChoice": "Je mag je antwoord meerdere keren wijzigen.",
-  "@pollMultipleChoice": {
-    "description": "Desciption of the poll type. States that user can change the answer multiple times."
-  },
-  "pollEnded": "De enquete is gestopt. Bedankt voor je antwoorden.",
-  "@pollEnded": {
-    "description": "Message displayed when poll has been closed by administrator."
-  },
-  "browserInstall": "Installeer een webbrowser om deze URL te kunnen openen",
-  "@browserInstall": {
-    "description": "Message displayed when browser couldn't be opened on user's device."
-  },
   "share": "Deel",
   "@share": {
-    "description": "Option name to share video."
+    "description": "Generic."
   },
   "liveNow": "Nu live",
   "@liveNow": {
-    "description": "Call to action button on featured carousel."
-  },
-  "program": "Programma",
-  "@program": {
-    "description": "Title of the program tab on live page."
-  },
-  "participateTab": "Deelnemen",
-  "@participateTab": {
-    "description": "Title of the participate tab on live page."
+    "description": "Generic, short. Used in buttons, badges, etc to indicate that an item is playing on the livestream now."
   },
   "tomorrow": "Morgen",
   "@tomorrow": {
@@ -744,26 +490,9 @@
   "@readBy": {
     "description": "Feed verse pre author text."
   },
-  "pollAnswer": "Je hebt geantwoord {answer}",
-  "@pollAnswer": {
-    "description": "Snackbar label after user has chosen poll answer",
-    "placeholders": {
-      "answer": {
-        "type": "String"
-      }
-    }
-  },
   "broadcasts": "Uitzending",
   "@broadcasts": {
-    "description": "Title for tv guide collection on event page."
-  },
-  "quizAnswered": "Antwoord ingezonden",
-  "@quizAnswered": {
-    "description": "Text displayed on a button when all answers in quiz have been submitted."
-  },
-  "quizNotEnabled": "De quiz is op dit moment niet beschikbaar. Probeer het later nog eens.",
-  "@quizNotEnabled": {
-    "description": "Message on alert that appears when participate item is visible, but quiz is not enabled."
+    "description": "Title for live broadcasts."
   },
   "calendar": "Kalender",
   "@calendar": {
@@ -785,42 +514,13 @@
   "@appUpdateAccepted": {
     "description": "Option that can be chosen by the user to update his application."
   },
-  "donationNotAvailable": "Doneren is op dit moment niet mogelijk. Probeer het later nog eens.",
-  "@donationNotAvailable": {
-    "description": "Message displayed when donation flow failed."
-  },
-  "posts": "{postsCount} Berichten",
-  "@posts": {
-    "description": "Contributions to feed made by the users. Plural of post.",
-    "placeholders": {
-      "postsCount": {
-        "type": "int"
-      }
-    }
-  },
   "copy": "Kopie",
   "@copy": {
-    "description": "Copy option for quotes, verses."
+    "description": "Small 'copy' button to copy to clipboard for quotes, verses, and similar."
   },
   "reload": "Opnieuw laden",
   "@reload": {
     "description": "Label on the button that allows to reload the player after error."
-  },
-  "participantsTitle": "Wie antwoord?",
-  "@participantsTitleTitle": {
-    "description": "Title label on the participants list before quiz."
-  },
-  "participantsSubtitle": "Selecteer een of meerdere deelnemers.",
-  "@participantsSubtitle": {
-    "description": "Subtitle label on the participants list before quiz."
-  },
-  "yourFamily": "Jouw familie",
-  "@yourFamily": {
-    "description": "Title on page when user selects family members that take part in the quiz."
-  },
-  "yourTurn": "Jouw beurt",
-  "@yourTurn": {
-    "description": "Title on page informing user that other user will answer question in the next step."
   },
   "fAQ": "FAQ",
   "@fAQ": {
@@ -830,7 +530,7 @@
   "@shareStart": {
     "description": "Option on action sheet for sharing from start"
   },
-  "shareTime": "Share from {time}",
+  "shareTime": "Delen van punt {time}",
   "@shareTime": {
     "description": "Option on action sheet for sharing from time",
     "placeholders": {
@@ -843,41 +543,13 @@
   "@loadContentError": {
     "description": "Error text when content couldn't be loaded."
   },
-  "audioOnlyErrorDescription": "Controleer uw internetverbinding en probeer opnieuw",
-  "@audioOnlyErrorDescription": {
-    "description": "Error message when audio only fails to play"
-  },
   "privacyPolicy": "Privacybeleid",
   "@privacyPolicy": {
     "description": "Title on Privacy Policy page and item in profile page settings."
   },
-  "tokenError": "We konden uw identiteit niet bevestigen, waarschijnlijk door een netwerkprobleem. Sommige functies van de app werken mogelijk niet correct.",
-  "@tokenError": {
-    "description": "Message indicating that there is a problem with user's token, and some features may be broken because of this."
-  },
   "categoriesTab": "Categorieën",
   "@categoriesTab": {
     "description": "Title of the Categories Tab"
-  },
-  "settingsTab": "Instellingen",
-  "@settingsTab": {
-    "description": "Title of the Settings Tab"
-  },
-  "confirmLogin": "Bevestig login",
-  "@confirmLogin": {
-    "description": "Prompt that asks the user to confirm his log-in"
-  },
-  "scanInfo": "Scan de code met je mobiel voor login.",
-  "@scanInfo": {
-    "description": "Text that informs the user that the QR code can be scanned to enter the login page. Used on AppleTV."
-  },
-  "validInfo": "De QR code is 15 minuten geldig.",
-  "@validInfo": {
-    "description": "Message that informs the user for how long the QR Code will be valid."
-  },
-  "confirmInfo": "Klik na het inloggen op onderstaande knop om inloggen te bevestigen.",
-  "@confirmInfo": {
-    "description": "Message that asks the user to click the button in order to proceed after successful login."
   },
   "seriesTab": "Series",
   "@seriesTab": {
@@ -907,18 +579,6 @@
   "@noTransmissionToday": {
     "description": "Messages that informs the user, that there are no schedules transmission for today."
   },
-  "livestreamMaintenanceTitle": "Live stream is niet beschikbaar",
-  "@livestreamMaintenanceTitle": {
-    "description": "Message that informs the user, that the livestream is unavailable."
-  },
-  "start": "Start",
-  "@start": {
-    "description": "Word used while displaying information about the beggining of a video or an event in tv guide."
-  },
-  "transmissionSchedule": "Programma overzicht",
-  "@transmissionSchedule": {
-    "description": "Label that indicates the user is looking at Transmission schedule"
-  },
   "featured": "Aanbevolen",
   "@featured": {
     "description": "Featured videos collection header"
@@ -927,84 +587,153 @@
   "@errorTryAgain": {
     "description": "Message that informs the user, that there was an error. Then politely asks the user to try again later."
   },
-  "reportProblem": "Bij problemen kunt u onderstaande QR code scannen voor het verzenden van een e-mail.",
-  "@reportProblem": {
-    "description": "Message indicating that whenever the user wants to report a problem, they can scan the QR code to send an email to support."
-  },
-  "phoneReadingProblem": "Mocht uw telefoon de QR code niet kunnen lezen, stuur ons een e-mail met de volgende informatie naar",
-  "@phoneReadingProblem": {
-    "description": "Message explaining that if the user's phone can't scan the QR code, they can send the support e-mail with information listed after this message."
-  },
-  "goTo": "of ga naar",
-  "@goTo": {
-    "description": "Message used to point the user to the shortened URL in case they can't use the QR code to log-in. This is used on AppleTV."
-  },
-  "watchBrunstad": "Volg BrunstadTV live",
-  "@watchBrunstad": {
-    "description": "Text that entices the user to watch the livestream."
-  },
-  "notLogged": "Niet ingelogd",
-  "@notLogged": {
-    "description": "Text that informs the user, that they are not logged in."
-  },
-  "authResponse0": "Gebruik een nieuwe QR code om in te loggen.",
-  "@authResponse0": {
-    "description": "Authentication response displayed to the user when an old QR code was used. Asking them to use a new one if they want to log in."
-  },
-  "authResponse1": "Gebruik de QR code om in te loggen op je mobiel.",
-  "@authResponse1": {
-    "description": "Message displayed to the user when they tried to proceed with the log-in on AppleTv without first logging through their mobile device."
-  },
-  "authResponse3": "Controleer je netwerkverbinding en probeer het later opnieuw.",
-  "@authResponse3": {
-    "description": "Message that indicates there was an error during Authentication process. Asking the user to check their network connection and try again."
-  },
   "liveHeader": "Live",
   "@liveHeader": {
     "description": "Header of the Live Tab — the tab that contains the livestream player on AppleTV."
   },
-  "recentlyPublishedSection": "Onlangs verschenen",
-  "@recentlyPublishedSection": {
-    "description": "Section in explore."
-  },
-  "exploreCategoriesSection": "Verken categorieën",
-  "@exploreCategoriesSection": {
-    "description": "Section in explore."
-  },
   "programsSection": "Programma's",
   "@programsSection": {
-    "description": "Section in explore."
+    "description": "Section in search."
   },
-  "episodesSection": "Afleveringen",
-  "@episodesSection": {
-    "description": "Section in explore."
-  },
-  "categorySeries": "Series",
-  "@categorySeries": {
-    "description": "Category name"
-  },
-  "categoryKids": "Kids",
-  "@categoryKids": {
-    "description": "Category name"
-  },
-  "categoryFilms": "Films",
-  "@categoryFilms": {
-    "description": "Category name"
-  },
-  "categoryEvents": "Evenementen",
-  "@categoryEvents": {
-    "description": "Category name"
-  },
-  "categoryMusic": "Muziek",
-  "@categoryMusic": {
-    "description": "Category name"
-  },
-  "noPlannedEvents": "No events planned this day",
+  "noPlannedEvents": "Geen evenementen gepland vandaag",
   "@noPlannedEvents": {
     "description": "Information in tvguide"
   },
   "watchNow": "Nu kijken",
   "@watchNow": {
     "description": "Button on featured carousel"
+  },
+  "exploreContent": "Inhoud verkennen",
+  "@exploreContent": {
+    "description": "A button on the login page"
+  },
+  "taskCompleted": "taak afgerond",
+  "@taskCompleted": {
+    "description": "SINGULAR. Note the lowercase T, because its inserted after a count: '0/1 task completed'."
+  },
+  "tasksCompleted": "taken afgerond",
+  "@tasksCompleted": {
+    "description": "PLURAL. Note the lowercase T, because its inserted after the count: '2/5 tasks completed'."
+  },
+  "studyCompleteTaskDescription": "Rond taken af en ontdek gerelateerde bronnen",
+  "@studyCompleteTaskDescription": {
+    "description": "Description to open the study tasks for this episode. Currently shows below '0/1 tasks completed'."
+  },
+  "discoverMore": "Ontdek meer",
+  "@discoverMore": {
+    "description": "Generic button text."
+  },
+  "completePreviousTasks": "Complete previous tasks to unlock",
+  "@completePreviousTasks": {
+    "description": "Shown on a locked button, short explanation why the button is locked."
+  },
+  "studyDiscoverMoreDescription": "Ontdek meer inspiratie en inzicht vanuit gerelateerde bronnen",
+  "@studyDiscoverMoreDescription": {
+    "description": "Description to open the related resources for this episode."
+  },
+  "watchAgain": "Nogmaals kijken",
+  "@watchAgain": {
+    "description": "Short button text to watch the video again."
+  },
+  "continueToTaskIn": "Doorgaan naar de taak in",
+  "@continueToTaskIn": {
+    "description": "SINGULAR. Button with text 'Continue to task in X'. Can click it to open tasks immediately, otherwise X will count down (10, 9, 8...) and automatically redirect you to the tasks."
+  },
+  "continueToTasksIn": "Doorgaan naar de taken in",
+  "@continueToTasksIn": {
+    "description": "PLURAL. Button with text 'Continue to tasks in X'. Can click it to open tasks immediately, otherwise X will count down (10, 9, 8...) and automatically redirect you to the tasks."
+  },
+  "studyLessonCompleted": "les afgerond",
+  "@studyLessonCompleted": {
+    "description": "SINGULAR. Note the lowercase L, because prepended with a number: '1 lesson completed'."
+  },
+  "studyLessonsCompleted": "lessen afgerond",
+  "@studyLessonsCompleted": {
+    "description": "PLURAL. Note the lowercase L, because prepended with a number: '20 lessons completed'."
+  },
+  "continueStudy": "Doorgaan met studie",
+  "@continueStudy": {
+    "description": "Button."
+  },
+  "startStudy": "Start studie",
+  "@startStudy": {
+    "description": "Button."
+  },
+  "videoCompletedText": "Goed gedaan, video afgerond.",
+  "@videoCompletedText": {
+    "description": "Shown after completing tasks related to a video."
+  },
+  "achievementFirstDescription": "Gefeliciteerd met het afronden van de video en het bereiken van je eerste doel.",
+  "@achievementFirstDescription": {
+    "description": "Description displayed in a popup when earning the first achievement badge."
+  },
+  "achievementStudyTopic": "Goed gedaan, je eerste study topic {name} afgerond",
+  "@achievementStudyTopic": {
+    "description": "REMEMBER: Include, but do not translate variables like {name} here. Description displayed in a popup when done with a study topic.",
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "videoCount": "{count} video's",
+  "@videoCount": {
+    "description": "REMEMBER: Include, but do not translate variables like {count} here. Keep it very short. Generic, number of videos. Currently used for study topic overviews.",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "taskCount": "{count} taken",
+  "@taskCount": {
+    "description": "REMEMBER: Include, but do not translate variables like {count} here. Keep it very short. Generic, number of tasks. Currently used for study topic overviews.",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "posterCount": "{count} posters",
+  "@posterCount": {
+    "description": "REMEMBER: Include, but do not translate variables like {count} here. Keep it very short. Generic, number of posters. Currently used for study topic overviews.",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "resourceCount": "{count} bronnen",
+  "@resourceCount": {
+    "description": "REMEMBER: Include, but do not translate variables like {count} here. Keep it very short. Generic, number of resources. Currently used for study topic overviews.",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "continueButton": "Doorgaan",
+  "@continueButton": {
+    "description": "Generic button text."
+  },
+  "achievements": "Prestaties",
+  "@achievements": {
+    "description": "Generic. Used as page title, etc."
+  },
+  "oops": "Oeps!",
+  "@oops": {
+    "description": "An informal title on some error screens."
+  },
+  "dontHaveAccess": "Je hebt geen toegang tot deze content.",
+  "@dontHaveAccess": {
+    "description": "Error message when you open a link to content you dont have access to."
+  },
+  "mustBeLoggedIn": "Je moet ingelogd zijn om dit te kunnen bekijken",
+  "@mustBeLoggedIn": {
+    "description": "Error message when you open a link to content you dont have access to, and you are not logged in."
+  },
+  "plentyOfOtherContent": "Geen zorgen, er is nog steeds veel content om van te genieten!",
+  "@plentyOfOtherContent": {
+    "description": "Shown on an error page indiciating you dont have access to the content, right above a button that takes you back."
   }
 }
