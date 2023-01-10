@@ -42,7 +42,10 @@ class _AchievementDialogState extends State<AchievementDialog> {
       description: widget.achievement.description,
       dismissButtonText: widget.dismissButtonText,
       slotBeforeDismissButton: !widget.achievement.achieved
-          ? null
+          ? const Padding(
+              padding: EdgeInsets.only(bottom: 24),
+              child: Text('Not achieved'),
+            )
           : Padding(
               padding: const EdgeInsets.only(bottom: 24),
               child: BtvButton.smallSecondary(
