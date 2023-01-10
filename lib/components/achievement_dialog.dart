@@ -41,38 +41,40 @@ class _AchievementDialogState extends State<AchievementDialog> {
       title: widget.achievement.title,
       description: widget.achievement.description,
       dismissButtonText: widget.dismissButtonText,
-      slotBeforeDismissButton: Padding(
-        padding: const EdgeInsets.only(bottom: 24),
-        child: BtvButton.smallSecondary(
-          onPressed: () async {
-            //
-            final navigatorContext = Navigator.of(context).context;
-            setState(() {
-              processingShare = true;
-            });
-            final achievementImageData = await downloadImage(widget.achievement.image!);
+      slotBeforeDismissButton: !widget.achievement.achieved
+          ? null
+          : Padding(
+              padding: const EdgeInsets.only(bottom: 24),
+              child: BtvButton.smallSecondary(
+                onPressed: () async {
+                  //
+                  final navigatorContext = Navigator.of(context).context;
+                  setState(() {
+                    processingShare = true;
+                  });
+                  final achievementImageData = await downloadImage(widget.achievement.image!);
 
-            var image = await createImageFromWidget(
-              AchievementShareRender(achievement: widget.achievement, imageBytes: achievementImageData.bodyBytes),
-              wait: const Duration(milliseconds: 500),
-              imageSize: const Size(800, 700),
-              logicalSize: const Size(400, 350),
-            );
+                  var image = await createImageFromWidget(
+                    AchievementShareRender(achievement: widget.achievement, imageBytes: achievementImageData.bodyBytes),
+                    wait: const Duration(milliseconds: 500),
+                    imageSize: const Size(800, 700),
+                    logicalSize: const Size(400, 350),
+                  );
 
-            if (image != null) {
-              final file = XFile.fromData(image, mimeType: 'image/png');
-              Share.shareXFiles([file],
-                  text: '''I've unlocked this achievement badge in the BCC Media app.\nhttps://app.bcc.media/studies''',
-                  sharePositionOrigin: iPadSharePositionOrigin(navigatorContext));
-            }
-            setState(() {
-              processingShare = false;
-            });
-          },
-          labelText: S.of(context).share,
-          image: processingShare ? LoadingIndicator() : SvgPicture.string(SvgIcons.share),
-        ),
-      ),
+                  if (image != null) {
+                    final file = XFile.fromData(image, mimeType: 'image/png');
+                    Share.shareXFiles([file],
+                        text: '''I've unlocked this achievement badge in the BCC Media app.\nhttps://app.bcc.media/studies''',
+                        sharePositionOrigin: iPadSharePositionOrigin(navigatorContext));
+                  }
+                  setState(() {
+                    processingShare = false;
+                  });
+                },
+                labelText: S.of(context).share,
+                image: processingShare ? LoadingIndicator() : SvgPicture.string(SvgIcons.share),
+              ),
+            ),
     );
   }
 }
