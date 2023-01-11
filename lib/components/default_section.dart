@@ -2,6 +2,7 @@ import 'package:brunstadtv_app/components/section_item_click_wrapper.dart';
 import 'package:brunstadtv_app/models/analytics/sections.dart';
 import 'package:flutter/material.dart';
 
+import '../graphql/queries/calendar_episode_entries.graphql.dart';
 import '../helpers/btv_colors.dart';
 import '../helpers/btv_typography.dart';
 import '../l10n/app_localizations.dart';
@@ -22,8 +23,9 @@ const Map<Enum$SectionSize, Size> imageSize = {
 
 class DefaultSection extends StatelessWidget {
   final Fragment$Section$$DefaultSection data;
+  final Fragment$Episode? curLiveEpisode;
 
-  const DefaultSection(this.data, {super.key});
+  const DefaultSection(this.data, this.curLiveEpisode, {super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -45,6 +47,7 @@ class DefaultSection extends StatelessWidget {
             sectionItem: item,
             size: data.size,
             showSecondaryTitle: data.metadata?.secondaryTitles ?? true,
+            isLive: (item.item as Fragment$ItemSectionItem$item$$Episode).id == curLiveEpisode?.id,
           );
         } else if (item.item is Fragment$Section$$DefaultSection$items$items$item$$Show) {
           widget = _DefaultShowItem(sectionItem: item, size: data.size);
@@ -67,13 +70,16 @@ class _DefaultEpisodeItem extends StatelessWidget {
   final Fragment$Section$$DefaultSection$items$items$item$$Episode episode;
   final bool showSecondaryTitle;
   final Enum$SectionSize size;
+  final bool isLive;
 
-  _DefaultEpisodeItem({required this.sectionItem, required this.size, required this.showSecondaryTitle})
-      : episode = sectionItem.item as Fragment$Section$$DefaultSection$items$items$item$$Episode;
+  _DefaultEpisodeItem({
+    required this.sectionItem,
+    required this.size,
+    required this.showSecondaryTitle,
+    this.isLive = false,
+  }) : episode = sectionItem.item as Fragment$Section$$DefaultSection$items$items$item$$Episode;
 
   bool get watched => episode.progress != null && episode.progress! > episode.duration * 0.9;
-
-  bool isLive = false;
 
   bool isNewItem = false;
 
@@ -122,6 +128,7 @@ class _DefaultEpisodeItem extends StatelessWidget {
   }
 
   Widget sectionItemImage() {
+    final featuredTag = getFeaturedTag(publishDate: episode.publishDate, isLive: isLive);
     return Container(
       margin: const EdgeInsets.only(bottom: 4),
       width: imageSize[size]!.width,
@@ -168,12 +175,16 @@ class _DefaultEpisodeItem extends StatelessWidget {
                 ),
               ),
             ),
-          if (getFeaturedTag(publishDate: episode.publishDate) != null)
-            Positioned(
-              top: -4,
-              right: -4,
-              child: getFeaturedTag(publishDate: episode.publishDate)!,
+          Positioned(
+            top: -4,
+            right: -4,
+            child: AnimatedOpacity(
+              opacity: featuredTag != null ? 1 : 0,
+              duration: const Duration(milliseconds: 700),
+              curve: Curves.easeInOut,
+              child: featuredTag,
             ),
+          ),
         ],
       ),
     );
