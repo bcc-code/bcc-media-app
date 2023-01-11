@@ -2,6 +2,7 @@ import 'package:brunstadtv_app/components/section_item_click_wrapper.dart';
 import 'package:brunstadtv_app/models/analytics/sections.dart';
 import 'package:flutter/material.dart';
 
+import '../graphql/queries/calendar_episode_entries.graphql.dart';
 import '../helpers/btv_colors.dart';
 import '../helpers/btv_typography.dart';
 import '../helpers/utils.dart';
@@ -26,8 +27,9 @@ const Map<Enum$SectionSize, double> sliderHeight = {
 
 class PosterSection extends StatelessWidget {
   final Fragment$Section$$PosterSection data;
+  final Fragment$Episode? curLiveEpisode;
 
-  const PosterSection(this.data, {super.key});
+  const PosterSection(this.data, this.curLiveEpisode, {super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -52,6 +54,7 @@ class PosterSection extends StatelessWidget {
             sectionItem: item,
             size: data.size,
             showSecondaryTitle: data.metadata?.secondaryTitles ?? true,
+            isLive: curLiveEpisode?.id == item.id,
           );
         } else if (item.item is Fragment$Section$$PosterSection$items$items$item$$Show) {
           widget = _PosterShowItem(sectionItem: item, size: data.size);
@@ -74,15 +77,16 @@ class _PosterEpisodeItem extends StatelessWidget {
   final Fragment$Section$$PosterSection$items$items$item$$Episode episode;
   final bool showSecondaryTitle;
   final Enum$SectionSize size;
+  final bool isLive;
 
   bool get watched => episode.progress != null && episode.progress! > episode.duration * 0.9;
-  final bool isLive = false;
   final bool isNewItem = false;
 
   _PosterEpisodeItem({
     required this.sectionItem,
     required this.size,
     required this.showSecondaryTitle,
+    required this.isLive,
   }) : episode = sectionItem.item as Fragment$Section$$PosterSection$items$items$item$$Episode;
 
   @override
@@ -132,6 +136,7 @@ class _PosterEpisodeItem extends StatelessWidget {
   }
 
   Widget sectionItemImage(BuildContext context) {
+    final featuredTag = getFeaturedTag(publishDate: episode.publishDate, isLive: isLive);
     return Container(
       margin: const EdgeInsets.only(bottom: 4),
       width: imageSize[size]!.width,
@@ -178,12 +183,16 @@ class _PosterEpisodeItem extends StatelessWidget {
                 ),
               ),
             ),
-          if (getFeaturedTag(publishDate: episode.publishDate) != null)
-            Positioned(
-              top: -4,
-              right: -4,
-              child: getFeaturedTag(publishDate: episode.publishDate)!,
+          Positioned(
+            top: -4,
+            right: -4,
+            child: AnimatedOpacity(
+              opacity: featuredTag != null ? 1 : 0,
+              duration: const Duration(milliseconds: 700),
+              curve: Curves.easeInOut,
+              child: featuredTag,
             ),
+          ),
         ],
       ),
     );

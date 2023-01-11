@@ -5,6 +5,10 @@ import 'package:intl/intl.dart';
 import '../components/feature_badge.dart';
 import '../helpers/btv_colors.dart';
 
+class Globals {
+  static final utcOffset = _getUtcOffset();
+}
+
 String getFormattedDuration(int durSeconds, {bool padFirstSegment = false}) {
   final duration = Duration(seconds: durSeconds);
 
@@ -85,8 +89,7 @@ Color? getColorFromHex(String hexString) {
   return Color(color);
 }
 
-Widget? getFeaturedTag({required String? publishDate}) {
-  bool isLive = false;
+Widget? getFeaturedTag({required String? publishDate, bool isLive = false}) {
   bool isNewItem = false;
   if (isLive) {
     return const FeatureBadge(
@@ -110,4 +113,26 @@ Widget? getFeaturedTag({required String? publishDate}) {
 Rect iPadSharePositionOrigin(BuildContext context) {
   final Size size = MediaQuery.of(context).size;
   return Rect.fromLTWH(0, 0, size.width, size.height / 2);
+}
+
+/// Get current UTC offset in the format 'hh:mm'
+String _getUtcOffset() {
+  final timeZoneOffset = DateTime.now().timeZoneOffset;
+  final hours = timeZoneOffset.inHours.toString().padLeft(2, '0');
+  final minutes = (timeZoneOffset.inMinutes % 60).toString().padLeft(2, '0');
+  return '$hours:$minutes';
+}
+
+/// Get date in ISO8601 format with UTC offset
+String getFormattedDateTime(DateTime date) {
+  final localDateTime = DateFormat('yyyy-MM-ddTHH:mm:ss').format(date);
+  return '$localDateTime+${Globals.utcOffset}';
+}
+
+/// Check if startTime < Now < endTime
+bool isLiveNow(String startTime, String endTime) {
+  final now = DateTime.now().add(Duration(hours: 4, minutes: 25));
+  final end = DateTime.parse(endTime).toLocal();
+  final start = DateTime.parse(startTime).toLocal();
+  return end.isAfter(now) && start.isBefore(now);
 }

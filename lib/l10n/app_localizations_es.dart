@@ -331,7 +331,7 @@ class SEs extends S {
 
   @override
   String availableFrom(String date) {
-    return 'Disponible${date}';
+    return 'Disponible$date';
   }
 
   @override

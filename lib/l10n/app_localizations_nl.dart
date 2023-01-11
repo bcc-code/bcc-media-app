@@ -348,7 +348,7 @@ class SNl extends S {
 
   @override
   String timezoneInformation(String timeZone) {
-    return 'De tijden in de TV gids worden weergegeven in de lokale tijd van de tijdszone waarin je op dit moment bent';
+    return 'De tijden in de TV gids worden weergegeven in de lokale tijd van de tijdszone waarin je op dit moment bent: $timeZone';
   }
 
   @override

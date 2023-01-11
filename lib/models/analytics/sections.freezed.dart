@@ -40,7 +40,8 @@ mixin _$SectionClickedEvent {
 abstract class $SectionClickedEventCopyWith<$Res> {
   factory $SectionClickedEventCopyWith(
           SectionClickedEvent value, $Res Function(SectionClickedEvent) then) =
-      _$SectionClickedEventCopyWithImpl<$Res>;
+      _$SectionClickedEventCopyWithImpl<$Res, SectionClickedEvent>;
+  @useResult
   $Res call(
       {String sectionId,
       String? sectionName,
@@ -54,64 +55,66 @@ abstract class $SectionClickedEventCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$SectionClickedEventCopyWithImpl<$Res>
+class _$SectionClickedEventCopyWithImpl<$Res, $Val extends SectionClickedEvent>
     implements $SectionClickedEventCopyWith<$Res> {
   _$SectionClickedEventCopyWithImpl(this._value, this._then);
 
-  final SectionClickedEvent _value;
   // ignore: unused_field
-  final $Res Function(SectionClickedEvent) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? sectionId = freezed,
+    Object? sectionId = null,
     Object? sectionName = freezed,
-    Object? sectionPosition = freezed,
-    Object? sectionType = freezed,
+    Object? sectionPosition = null,
+    Object? sectionType = null,
     Object? elementName = freezed,
-    Object? elementPosition = freezed,
-    Object? elementType = freezed,
-    Object? elementId = freezed,
+    Object? elementPosition = null,
+    Object? elementType = null,
+    Object? elementId = null,
     Object? pageCode = freezed,
   }) {
     return _then(_value.copyWith(
-      sectionId: sectionId == freezed
+      sectionId: null == sectionId
           ? _value.sectionId
           : sectionId // ignore: cast_nullable_to_non_nullable
               as String,
-      sectionName: sectionName == freezed
+      sectionName: freezed == sectionName
           ? _value.sectionName
           : sectionName // ignore: cast_nullable_to_non_nullable
               as String?,
-      sectionPosition: sectionPosition == freezed
+      sectionPosition: null == sectionPosition
           ? _value.sectionPosition
           : sectionPosition // ignore: cast_nullable_to_non_nullable
               as int,
-      sectionType: sectionType == freezed
+      sectionType: null == sectionType
           ? _value.sectionType
           : sectionType // ignore: cast_nullable_to_non_nullable
               as String,
-      elementName: elementName == freezed
+      elementName: freezed == elementName
           ? _value.elementName
           : elementName // ignore: cast_nullable_to_non_nullable
               as String?,
-      elementPosition: elementPosition == freezed
+      elementPosition: null == elementPosition
           ? _value.elementPosition
           : elementPosition // ignore: cast_nullable_to_non_nullable
               as int,
-      elementType: elementType == freezed
+      elementType: null == elementType
           ? _value.elementType
           : elementType // ignore: cast_nullable_to_non_nullable
               as String,
-      elementId: elementId == freezed
+      elementId: null == elementId
           ? _value.elementId
           : elementId // ignore: cast_nullable_to_non_nullable
               as String,
-      pageCode: pageCode == freezed
+      pageCode: freezed == pageCode
           ? _value.pageCode
           : pageCode // ignore: cast_nullable_to_non_nullable
               as String?,
-    ));
+    ) as $Val);
   }
 }
 
@@ -122,6 +125,7 @@ abstract class _$$_SectionClickedEventCopyWith<$Res>
           $Res Function(_$_SectionClickedEvent) then) =
       __$$_SectionClickedEventCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call(
       {String sectionId,
       String? sectionName,
@@ -136,61 +140,59 @@ abstract class _$$_SectionClickedEventCopyWith<$Res>
 
 /// @nodoc
 class __$$_SectionClickedEventCopyWithImpl<$Res>
-    extends _$SectionClickedEventCopyWithImpl<$Res>
+    extends _$SectionClickedEventCopyWithImpl<$Res, _$_SectionClickedEvent>
     implements _$$_SectionClickedEventCopyWith<$Res> {
   __$$_SectionClickedEventCopyWithImpl(_$_SectionClickedEvent _value,
       $Res Function(_$_SectionClickedEvent) _then)
-      : super(_value, (v) => _then(v as _$_SectionClickedEvent));
+      : super(_value, _then);
 
-  @override
-  _$_SectionClickedEvent get _value => super._value as _$_SectionClickedEvent;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? sectionId = freezed,
+    Object? sectionId = null,
     Object? sectionName = freezed,
-    Object? sectionPosition = freezed,
-    Object? sectionType = freezed,
+    Object? sectionPosition = null,
+    Object? sectionType = null,
     Object? elementName = freezed,
-    Object? elementPosition = freezed,
-    Object? elementType = freezed,
-    Object? elementId = freezed,
+    Object? elementPosition = null,
+    Object? elementType = null,
+    Object? elementId = null,
     Object? pageCode = freezed,
   }) {
     return _then(_$_SectionClickedEvent(
-      sectionId: sectionId == freezed
+      sectionId: null == sectionId
           ? _value.sectionId
           : sectionId // ignore: cast_nullable_to_non_nullable
               as String,
-      sectionName: sectionName == freezed
+      sectionName: freezed == sectionName
           ? _value.sectionName
           : sectionName // ignore: cast_nullable_to_non_nullable
               as String?,
-      sectionPosition: sectionPosition == freezed
+      sectionPosition: null == sectionPosition
           ? _value.sectionPosition
           : sectionPosition // ignore: cast_nullable_to_non_nullable
               as int,
-      sectionType: sectionType == freezed
+      sectionType: null == sectionType
           ? _value.sectionType
           : sectionType // ignore: cast_nullable_to_non_nullable
               as String,
-      elementName: elementName == freezed
+      elementName: freezed == elementName
           ? _value.elementName
           : elementName // ignore: cast_nullable_to_non_nullable
               as String?,
-      elementPosition: elementPosition == freezed
+      elementPosition: null == elementPosition
           ? _value.elementPosition
           : elementPosition // ignore: cast_nullable_to_non_nullable
               as int,
-      elementType: elementType == freezed
+      elementType: null == elementType
           ? _value.elementType
           : elementType // ignore: cast_nullable_to_non_nullable
               as String,
-      elementId: elementId == freezed
+      elementId: null == elementId
           ? _value.elementId
           : elementId // ignore: cast_nullable_to_non_nullable
               as String,
-      pageCode: pageCode == freezed
+      pageCode: freezed == pageCode
           ? _value.pageCode
           : pageCode // ignore: cast_nullable_to_non_nullable
               as String?,
@@ -244,39 +246,43 @@ class _$_SectionClickedEvent implements _SectionClickedEvent {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_SectionClickedEvent &&
-            const DeepCollectionEquality().equals(other.sectionId, sectionId) &&
-            const DeepCollectionEquality()
-                .equals(other.sectionName, sectionName) &&
-            const DeepCollectionEquality()
-                .equals(other.sectionPosition, sectionPosition) &&
-            const DeepCollectionEquality()
-                .equals(other.sectionType, sectionType) &&
-            const DeepCollectionEquality()
-                .equals(other.elementName, elementName) &&
-            const DeepCollectionEquality()
-                .equals(other.elementPosition, elementPosition) &&
-            const DeepCollectionEquality()
-                .equals(other.elementType, elementType) &&
-            const DeepCollectionEquality().equals(other.elementId, elementId) &&
-            const DeepCollectionEquality().equals(other.pageCode, pageCode));
+            (identical(other.sectionId, sectionId) ||
+                other.sectionId == sectionId) &&
+            (identical(other.sectionName, sectionName) ||
+                other.sectionName == sectionName) &&
+            (identical(other.sectionPosition, sectionPosition) ||
+                other.sectionPosition == sectionPosition) &&
+            (identical(other.sectionType, sectionType) ||
+                other.sectionType == sectionType) &&
+            (identical(other.elementName, elementName) ||
+                other.elementName == elementName) &&
+            (identical(other.elementPosition, elementPosition) ||
+                other.elementPosition == elementPosition) &&
+            (identical(other.elementType, elementType) ||
+                other.elementType == elementType) &&
+            (identical(other.elementId, elementId) ||
+                other.elementId == elementId) &&
+            (identical(other.pageCode, pageCode) ||
+                other.pageCode == pageCode));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      const DeepCollectionEquality().hash(sectionId),
-      const DeepCollectionEquality().hash(sectionName),
-      const DeepCollectionEquality().hash(sectionPosition),
-      const DeepCollectionEquality().hash(sectionType),
-      const DeepCollectionEquality().hash(elementName),
-      const DeepCollectionEquality().hash(elementPosition),
-      const DeepCollectionEquality().hash(elementType),
-      const DeepCollectionEquality().hash(elementId),
-      const DeepCollectionEquality().hash(pageCode));
+      sectionId,
+      sectionName,
+      sectionPosition,
+      sectionType,
+      elementName,
+      elementPosition,
+      elementType,
+      elementId,
+      pageCode);
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$_SectionClickedEventCopyWith<_$_SectionClickedEvent> get copyWith =>
       __$$_SectionClickedEventCopyWithImpl<_$_SectionClickedEvent>(
           this, _$identity);
@@ -345,50 +351,53 @@ mixin _$SectionAnalytics {
 abstract class $SectionAnalyticsCopyWith<$Res> {
   factory $SectionAnalyticsCopyWith(
           SectionAnalytics value, $Res Function(SectionAnalytics) then) =
-      _$SectionAnalyticsCopyWithImpl<$Res>;
+      _$SectionAnalyticsCopyWithImpl<$Res, SectionAnalytics>;
+  @useResult
   $Res call(
       {String? pageCode, String id, String? name, int position, String type});
 }
 
 /// @nodoc
-class _$SectionAnalyticsCopyWithImpl<$Res>
+class _$SectionAnalyticsCopyWithImpl<$Res, $Val extends SectionAnalytics>
     implements $SectionAnalyticsCopyWith<$Res> {
   _$SectionAnalyticsCopyWithImpl(this._value, this._then);
 
-  final SectionAnalytics _value;
   // ignore: unused_field
-  final $Res Function(SectionAnalytics) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? pageCode = freezed,
-    Object? id = freezed,
+    Object? id = null,
     Object? name = freezed,
-    Object? position = freezed,
-    Object? type = freezed,
+    Object? position = null,
+    Object? type = null,
   }) {
     return _then(_value.copyWith(
-      pageCode: pageCode == freezed
+      pageCode: freezed == pageCode
           ? _value.pageCode
           : pageCode // ignore: cast_nullable_to_non_nullable
               as String?,
-      id: id == freezed
+      id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String,
-      name: name == freezed
+      name: freezed == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String?,
-      position: position == freezed
+      position: null == position
           ? _value.position
           : position // ignore: cast_nullable_to_non_nullable
               as int,
-      type: type == freezed
+      type: null == type
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
               as String,
-    ));
+    ) as $Val);
   }
 }
 
@@ -399,47 +408,46 @@ abstract class _$$_SectionAnalyticsCopyWith<$Res>
           _$_SectionAnalytics value, $Res Function(_$_SectionAnalytics) then) =
       __$$_SectionAnalyticsCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call(
       {String? pageCode, String id, String? name, int position, String type});
 }
 
 /// @nodoc
 class __$$_SectionAnalyticsCopyWithImpl<$Res>
-    extends _$SectionAnalyticsCopyWithImpl<$Res>
+    extends _$SectionAnalyticsCopyWithImpl<$Res, _$_SectionAnalytics>
     implements _$$_SectionAnalyticsCopyWith<$Res> {
   __$$_SectionAnalyticsCopyWithImpl(
       _$_SectionAnalytics _value, $Res Function(_$_SectionAnalytics) _then)
-      : super(_value, (v) => _then(v as _$_SectionAnalytics));
+      : super(_value, _then);
 
-  @override
-  _$_SectionAnalytics get _value => super._value as _$_SectionAnalytics;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? pageCode = freezed,
-    Object? id = freezed,
+    Object? id = null,
     Object? name = freezed,
-    Object? position = freezed,
-    Object? type = freezed,
+    Object? position = null,
+    Object? type = null,
   }) {
     return _then(_$_SectionAnalytics(
-      pageCode: pageCode == freezed
+      pageCode: freezed == pageCode
           ? _value.pageCode
           : pageCode // ignore: cast_nullable_to_non_nullable
               as String?,
-      id: id == freezed
+      id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String,
-      name: name == freezed
+      name: freezed == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String?,
-      position: position == freezed
+      position: null == position
           ? _value.position
           : position // ignore: cast_nullable_to_non_nullable
               as int,
-      type: type == freezed
+      type: null == type
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
               as String,
@@ -478,24 +486,22 @@ class _$_SectionAnalytics implements _SectionAnalytics {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_SectionAnalytics &&
-            const DeepCollectionEquality().equals(other.pageCode, pageCode) &&
-            const DeepCollectionEquality().equals(other.id, id) &&
-            const DeepCollectionEquality().equals(other.name, name) &&
-            const DeepCollectionEquality().equals(other.position, position) &&
-            const DeepCollectionEquality().equals(other.type, type));
+            (identical(other.pageCode, pageCode) ||
+                other.pageCode == pageCode) &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.name, name) || other.name == name) &&
+            (identical(other.position, position) ||
+                other.position == position) &&
+            (identical(other.type, type) || other.type == type));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(pageCode),
-      const DeepCollectionEquality().hash(id),
-      const DeepCollectionEquality().hash(name),
-      const DeepCollectionEquality().hash(position),
-      const DeepCollectionEquality().hash(type));
+  int get hashCode =>
+      Object.hash(runtimeType, pageCode, id, name, position, type);
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$_SectionAnalyticsCopyWith<_$_SectionAnalytics> get copyWith =>
       __$$_SectionAnalyticsCopyWithImpl<_$_SectionAnalytics>(this, _$identity);
 }
@@ -540,44 +546,48 @@ mixin _$SectionItemAnalytics {
 abstract class $SectionItemAnalyticsCopyWith<$Res> {
   factory $SectionItemAnalyticsCopyWith(SectionItemAnalytics value,
           $Res Function(SectionItemAnalytics) then) =
-      _$SectionItemAnalyticsCopyWithImpl<$Res>;
+      _$SectionItemAnalyticsCopyWithImpl<$Res, SectionItemAnalytics>;
+  @useResult
   $Res call({int position, String type, String id, String? name});
 }
 
 /// @nodoc
-class _$SectionItemAnalyticsCopyWithImpl<$Res>
+class _$SectionItemAnalyticsCopyWithImpl<$Res,
+        $Val extends SectionItemAnalytics>
     implements $SectionItemAnalyticsCopyWith<$Res> {
   _$SectionItemAnalyticsCopyWithImpl(this._value, this._then);
 
-  final SectionItemAnalytics _value;
   // ignore: unused_field
-  final $Res Function(SectionItemAnalytics) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? position = freezed,
-    Object? type = freezed,
-    Object? id = freezed,
+    Object? position = null,
+    Object? type = null,
+    Object? id = null,
     Object? name = freezed,
   }) {
     return _then(_value.copyWith(
-      position: position == freezed
+      position: null == position
           ? _value.position
           : position // ignore: cast_nullable_to_non_nullable
               as int,
-      type: type == freezed
+      type: null == type
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
               as String,
-      id: id == freezed
+      id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String,
-      name: name == freezed
+      name: freezed == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String?,
-    ));
+    ) as $Val);
   }
 }
 
@@ -588,41 +598,40 @@ abstract class _$$_SectionItemAnalyticsCopyWith<$Res>
           $Res Function(_$_SectionItemAnalytics) then) =
       __$$_SectionItemAnalyticsCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call({int position, String type, String id, String? name});
 }
 
 /// @nodoc
 class __$$_SectionItemAnalyticsCopyWithImpl<$Res>
-    extends _$SectionItemAnalyticsCopyWithImpl<$Res>
+    extends _$SectionItemAnalyticsCopyWithImpl<$Res, _$_SectionItemAnalytics>
     implements _$$_SectionItemAnalyticsCopyWith<$Res> {
   __$$_SectionItemAnalyticsCopyWithImpl(_$_SectionItemAnalytics _value,
       $Res Function(_$_SectionItemAnalytics) _then)
-      : super(_value, (v) => _then(v as _$_SectionItemAnalytics));
+      : super(_value, _then);
 
-  @override
-  _$_SectionItemAnalytics get _value => super._value as _$_SectionItemAnalytics;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? position = freezed,
-    Object? type = freezed,
-    Object? id = freezed,
+    Object? position = null,
+    Object? type = null,
+    Object? id = null,
     Object? name = freezed,
   }) {
     return _then(_$_SectionItemAnalytics(
-      position: position == freezed
+      position: null == position
           ? _value.position
           : position // ignore: cast_nullable_to_non_nullable
               as int,
-      type: type == freezed
+      type: null == type
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
               as String,
-      id: id == freezed
+      id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String,
-      name: name == freezed
+      name: freezed == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String?,
@@ -658,22 +667,19 @@ class _$_SectionItemAnalytics implements _SectionItemAnalytics {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_SectionItemAnalytics &&
-            const DeepCollectionEquality().equals(other.position, position) &&
-            const DeepCollectionEquality().equals(other.type, type) &&
-            const DeepCollectionEquality().equals(other.id, id) &&
-            const DeepCollectionEquality().equals(other.name, name));
+            (identical(other.position, position) ||
+                other.position == position) &&
+            (identical(other.type, type) || other.type == type) &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.name, name) || other.name == name));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(position),
-      const DeepCollectionEquality().hash(type),
-      const DeepCollectionEquality().hash(id),
-      const DeepCollectionEquality().hash(name));
+  int get hashCode => Object.hash(runtimeType, position, type, id, name);
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$_SectionItemAnalyticsCopyWith<_$_SectionItemAnalytics> get copyWith =>
       __$$_SectionItemAnalyticsCopyWithImpl<_$_SectionItemAnalytics>(
           this, _$identity);

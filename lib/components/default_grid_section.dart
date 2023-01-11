@@ -3,6 +3,7 @@ import 'package:brunstadtv_app/models/analytics/sections.dart';
 import 'package:brunstadtv_app/providers/inherited_data.dart';
 import 'package:flutter/material.dart';
 
+import '../graphql/queries/calendar_episode_entries.graphql.dart';
 import '../graphql/queries/page.graphql.dart';
 import '../graphql/schema/pages.graphql.dart';
 import '../helpers/btv_colors.dart';
@@ -23,8 +24,9 @@ const Map<Enum$GridSectionSize, int> _columnSize = {
 
 class DefaultGridSection extends StatelessWidget {
   final Fragment$Section$$DefaultGridSection data;
+  final Fragment$Episode? curLiveEpisode;
 
-  const DefaultGridSection(this.data, {super.key});
+  const DefaultGridSection(this.data, this.curLiveEpisode, {super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -34,6 +36,7 @@ class DefaultGridSection extends StatelessWidget {
         size: data.gridSize,
         sectionItems: data.items.items,
         showSecondaryTitle: data.metadata?.secondaryTitles ?? true,
+        curLiveEpisode: curLiveEpisode,
       ),
     );
   }
@@ -45,16 +48,23 @@ class GridSectionList extends StatelessWidget {
     required this.size,
     required this.sectionItems,
     this.showSecondaryTitle = true,
+    this.curLiveEpisode,
   });
 
   final Enum$GridSectionSize size;
   final List<Fragment$GridSectionItem> sectionItems;
   final bool showSecondaryTitle;
+  final Fragment$Episode? curLiveEpisode;
 
   Widget getItemWidget(Fragment$GridSectionItem sectionItem) {
     var episode = sectionItem.item.asOrNull<Fragment$GridSectionItem$item$$Episode>();
     if (episode != null) {
-      return _GridEpisodeItem(sectionItem: sectionItem, episode: episode, showSecondaryTitle: showSecondaryTitle);
+      return _GridEpisodeItem(
+        sectionItem: sectionItem,
+        episode: episode,
+        showSecondaryTitle: showSecondaryTitle,
+        isLive: sectionItem.id == curLiveEpisode?.id,
+      );
     }
     var show = sectionItem.item.asOrNull<Fragment$GridSectionItem$item$$Show>();
     if (show != null) {
@@ -99,12 +109,12 @@ class _GridEpisodeItem extends StatelessWidget {
   final Fragment$GridSectionItem sectionItem;
   final Fragment$GridSectionItem$item$$Episode episode;
   final bool showSecondaryTitle;
+  final bool isLive;
 
-  _GridEpisodeItem({required this.sectionItem, required this.episode, required this.showSecondaryTitle});
+  _GridEpisodeItem({required this.sectionItem, required this.episode, required this.showSecondaryTitle, this.isLive = false});
 
   // TODO: Remove these temp variables
   bool get watched => episode.progress != null && episode.progress! > episode.duration * 0.9;
-  bool isLive = false;
   bool isNewItem = false;
 
   @override
@@ -149,6 +159,7 @@ class _GridEpisodeItem extends StatelessWidget {
   }
 
   Widget sectionItemImage() {
+    final featuredTag = getFeaturedTag(publishDate: episode.publishDate, isLive: isLive);
     return Container(
       margin: const EdgeInsets.only(bottom: 4),
       width: double.infinity,
@@ -196,12 +207,16 @@ class _GridEpisodeItem extends StatelessWidget {
                   ),
                 ),
               ),
-            if (getFeaturedTag(publishDate: episode.publishDate) != null)
-              Positioned(
-                top: -4,
-                right: -4,
-                child: getFeaturedTag(publishDate: episode.publishDate)!,
+            Positioned(
+              top: -4,
+              right: -4,
+              child: AnimatedOpacity(
+                opacity: featuredTag != null ? 1 : 0,
+                duration: const Duration(milliseconds: 700),
+                curve: Curves.easeInOut,
+                child: featuredTag,
               ),
+            ),
           ],
         ),
       ),

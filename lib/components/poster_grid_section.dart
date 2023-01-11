@@ -1,6 +1,7 @@
 import 'package:brunstadtv_app/components/section_item_click_wrapper.dart';
 import 'package:flutter/material.dart';
 
+import '../graphql/queries/calendar_episode_entries.graphql.dart';
 import '../graphql/queries/page.graphql.dart';
 import '../graphql/schema/pages.graphql.dart';
 import '../helpers/btv_colors.dart';
@@ -24,14 +25,16 @@ const Map<Enum$GridSectionSize, int> _columnSize = {
 
 class PosterGridSection extends StatelessWidget {
   final Fragment$Section$$PosterGridSection data;
+  final Fragment$Episode? curLiveEpisode;
 
-  const PosterGridSection(this.data, {super.key});
+  const PosterGridSection(this.data, this.curLiveEpisode, {super.key});
 
   Widget getItemWidget(Fragment$Section$$PosterGridSection$items$items sectionItem) {
     if (sectionItem.item is Fragment$Section$$PosterGridSection$items$items$item$$Episode) {
       return _GridEpisodeItem(
         sectionItem: sectionItem,
         showSecondaryTitle: data.metadata?.secondaryTitles ?? true,
+        isLive: sectionItem.id == curLiveEpisode?.id,
       );
     } else if (sectionItem.item is Fragment$Section$$PosterGridSection$items$items$item$$Show) {
       return _GridShowItem(sectionItem: sectionItem);
@@ -82,12 +85,12 @@ class _GridEpisodeItem extends StatelessWidget {
   final Fragment$Section$$PosterGridSection$items$items sectionItem;
   final Fragment$Section$$PosterGridSection$items$items$item$$Episode episode;
   final bool showSecondaryTitle;
+  final bool isLive;
 
   bool get watched => episode.progress != null && episode.progress! > episode.duration * 0.9;
-  bool isLive = false;
   bool isNewItem = false;
 
-  _GridEpisodeItem({required this.sectionItem, required this.showSecondaryTitle})
+  _GridEpisodeItem({required this.sectionItem, required this.showSecondaryTitle, this.isLive = false})
       : episode = sectionItem.item as Fragment$Section$$PosterGridSection$items$items$item$$Episode;
 
   @override
@@ -132,6 +135,7 @@ class _GridEpisodeItem extends StatelessWidget {
   }
 
   Widget sectionItemImage(BuildContext context) {
+    final featuredTag = getFeaturedTag(publishDate: episode.publishDate, isLive: isLive);
     return Container(
       margin: const EdgeInsets.only(bottom: 4),
       width: double.infinity,
@@ -179,12 +183,16 @@ class _GridEpisodeItem extends StatelessWidget {
                   ),
                 ),
               ),
-            if (getFeaturedTag(publishDate: episode.publishDate) != null)
-              Positioned(
-                top: -4,
-                right: -4,
-                child: getFeaturedTag(publishDate: episode.publishDate)!,
+            Positioned(
+              top: -4,
+              right: -4,
+              child: AnimatedOpacity(
+                opacity: featuredTag != null ? 1 : 0,
+                duration: const Duration(milliseconds: 700),
+                curve: Curves.easeInOut,
+                child: featuredTag,
               ),
+            ),
           ],
         ),
       ),

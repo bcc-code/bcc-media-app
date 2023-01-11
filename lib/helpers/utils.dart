@@ -4,6 +4,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:brunstadtv_app/graphql/client.dart';
 import 'package:brunstadtv_app/graphql/queries/episode.graphql.dart';
 import 'package:brunstadtv_app/providers/analytics.dart';
+import 'package:brunstadtv_app/providers/todays_calendar_entries.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:package_info_plus/package_info_plus.dart';
@@ -82,6 +83,10 @@ Future<dynamic>? handleSectionItemClick(BuildContext context, Fragment$ItemSecti
   final router = context.router;
   var episodeItem = item.asOrNull<Fragment$ItemSectionItem$item$$Episode>();
   if (episodeItem != null) {
+    final curLiveEpisodeId = ref.read(currentLiveEpisode).valueOrNull?.episode?.id;
+    if (curLiveEpisodeId == episodeItem.id) {
+      return overrideAwareNavigation(navigationOverride, router, const LiveScreenRoute());
+    }
     return overrideAwareNavigation(navigationOverride, router, EpisodeScreenRoute(episodeId: episodeItem.id));
   }
 

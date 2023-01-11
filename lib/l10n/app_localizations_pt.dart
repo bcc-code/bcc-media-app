@@ -174,7 +174,7 @@ class SPt extends S {
 
   @override
   String queueLimitMessage(int elementCount) {
-    return 'Você não pode ter mais de {element Count} elementos na fila.';
+    return 'Você não pode ter mais de $elementCount elementos na fila.';
   }
 
   @override

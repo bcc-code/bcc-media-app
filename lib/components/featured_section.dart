@@ -1,13 +1,13 @@
 import 'dart:math';
 
+import 'package:auto_route/auto_route.dart';
 import 'package:brunstadtv_app/components/section_item_click_wrapper.dart';
+import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 
-import 'package:auto_route/auto_route.dart';
+import '../graphql/queries/calendar_episode_entries.graphql.dart';
 import '../l10n/app_localizations.dart';
 import '../models/analytics/sections.dart';
-import '../providers/inherited_data.dart';
-import '../router/router.gr.dart';
 
 import '../graphql/queries/page.graphql.dart';
 import '../helpers/btv_colors.dart';
@@ -16,18 +16,46 @@ import '../helpers/btv_buttons.dart';
 import '../helpers/btv_typography.dart';
 import '../helpers/image_utils.dart';
 import '../helpers/transparent_image.dart';
+import '../router/router.gr.dart';
 
 class FeaturedSection extends StatelessWidget {
   final Fragment$Section$$FeaturedSection data;
+  final Fragment$Episode? curLiveEpisode;
 
-  const FeaturedSection(this.data, {super.key});
+  const FeaturedSection(this.data, this.curLiveEpisode, {super.key});
+
+  List<Fragment$Section$$FeaturedSection$items$items> getItemsWithLiveItem(List<Fragment$Section$$FeaturedSection$items$items> items) {
+    if (data.metadata == null || curLiveEpisode == null) {
+      return items;
+    }
+    if (data.metadata!.prependLiveElement || true) {
+      return [
+        Fragment$Section$$FeaturedSection$items$items(
+          id: curLiveEpisode!.id,
+          title: curLiveEpisode!.title,
+          image: curLiveEpisode!.image,
+          description: curLiveEpisode!.description,
+          $__typename: 'SectionItem',
+          item: Fragment$Section$$FeaturedSection$items$items$item$$Episode(
+            id: curLiveEpisode!.id,
+            duration: 0,
+            progress: 0,
+            publishDate: '',
+            $__typename: 'Episode',
+          ),
+        ),
+        ...items.where((item) => item.id != curLiveEpisode!.id)
+      ];
+    }
+    return items;
+  }
 
   @override
   Widget build(BuildContext context) {
     return LayoutBuilder(builder: (context, constraints) {
       const marginX = 2.0;
       final viewportFraction = (constraints.maxWidth - (32 - 2 * marginX)) / max(1, constraints.maxWidth);
-      final sectionItems = data.items.items;
+      final sectionItems = getItemsWithLiveItem(data.items.items);
       return Padding(
         padding: const EdgeInsets.only(top: 16),
         child: SizedBox(
@@ -44,6 +72,7 @@ class FeaturedSection extends StatelessWidget {
                 child: _FeaturedItem(
                   sectionItem: item,
                   margin: const EdgeInsets.symmetric(horizontal: marginX),
+                  isLive: item.id == curLiveEpisode?.id,
                 ),
               );
             },
@@ -57,10 +86,12 @@ class FeaturedSection extends StatelessWidget {
 class _FeaturedItem extends StatelessWidget {
   final Fragment$Section$$FeaturedSection$items$items sectionItem;
   final EdgeInsetsGeometry? margin;
+  final bool isLive;
 
   const _FeaturedItem({
     required this.sectionItem,
     this.margin = const EdgeInsets.all(0),
+    this.isLive = false,
   });
 
   @override
@@ -108,11 +139,13 @@ class _FeaturedItem extends StatelessWidget {
                     style: BtvTextStyles.body2.copyWith(color: BtvColors.label2),
                   ),
                 ),
-                false
+                isLive
                     ? BtvButton.smallRed(
                         image: Image.asset('assets/icons/Play.png'),
                         labelText: S.of(context).liveNow,
-                        onPressed: () {},
+                        onPressed: () {
+                          handleSectionItemClick(context, sectionItem.item);
+                        },
                       )
                     : BtvButton.smallSecondary(
                         image: Image.asset('assets/icons/Play.png'),

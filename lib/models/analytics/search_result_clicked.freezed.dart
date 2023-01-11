@@ -37,7 +37,8 @@ mixin _$SearchResultClickedEvent {
 abstract class $SearchResultClickedEventCopyWith<$Res> {
   factory $SearchResultClickedEventCopyWith(SearchResultClickedEvent value,
           $Res Function(SearchResultClickedEvent) then) =
-      _$SearchResultClickedEventCopyWithImpl<$Res>;
+      _$SearchResultClickedEventCopyWithImpl<$Res, SearchResultClickedEvent>;
+  @useResult
   $Res call(
       {String searchText,
       int elementPosition,
@@ -47,44 +48,47 @@ abstract class $SearchResultClickedEventCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$SearchResultClickedEventCopyWithImpl<$Res>
+class _$SearchResultClickedEventCopyWithImpl<$Res,
+        $Val extends SearchResultClickedEvent>
     implements $SearchResultClickedEventCopyWith<$Res> {
   _$SearchResultClickedEventCopyWithImpl(this._value, this._then);
 
-  final SearchResultClickedEvent _value;
   // ignore: unused_field
-  final $Res Function(SearchResultClickedEvent) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? searchText = freezed,
-    Object? elementPosition = freezed,
-    Object? elementType = freezed,
-    Object? elementId = freezed,
-    Object? group = freezed,
+    Object? searchText = null,
+    Object? elementPosition = null,
+    Object? elementType = null,
+    Object? elementId = null,
+    Object? group = null,
   }) {
     return _then(_value.copyWith(
-      searchText: searchText == freezed
+      searchText: null == searchText
           ? _value.searchText
           : searchText // ignore: cast_nullable_to_non_nullable
               as String,
-      elementPosition: elementPosition == freezed
+      elementPosition: null == elementPosition
           ? _value.elementPosition
           : elementPosition // ignore: cast_nullable_to_non_nullable
               as int,
-      elementType: elementType == freezed
+      elementType: null == elementType
           ? _value.elementType
           : elementType // ignore: cast_nullable_to_non_nullable
               as String,
-      elementId: elementId == freezed
+      elementId: null == elementId
           ? _value.elementId
           : elementId // ignore: cast_nullable_to_non_nullable
               as String,
-      group: group == freezed
+      group: null == group
           ? _value.group
           : group // ignore: cast_nullable_to_non_nullable
               as String,
-    ));
+    ) as $Val);
   }
 }
 
@@ -95,6 +99,7 @@ abstract class _$$_SectionClickedEventCopyWith<$Res>
           $Res Function(_$_SectionClickedEvent) then) =
       __$$_SectionClickedEventCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call(
       {String searchText,
       int elementPosition,
@@ -105,41 +110,39 @@ abstract class _$$_SectionClickedEventCopyWith<$Res>
 
 /// @nodoc
 class __$$_SectionClickedEventCopyWithImpl<$Res>
-    extends _$SearchResultClickedEventCopyWithImpl<$Res>
+    extends _$SearchResultClickedEventCopyWithImpl<$Res, _$_SectionClickedEvent>
     implements _$$_SectionClickedEventCopyWith<$Res> {
   __$$_SectionClickedEventCopyWithImpl(_$_SectionClickedEvent _value,
       $Res Function(_$_SectionClickedEvent) _then)
-      : super(_value, (v) => _then(v as _$_SectionClickedEvent));
+      : super(_value, _then);
 
-  @override
-  _$_SectionClickedEvent get _value => super._value as _$_SectionClickedEvent;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? searchText = freezed,
-    Object? elementPosition = freezed,
-    Object? elementType = freezed,
-    Object? elementId = freezed,
-    Object? group = freezed,
+    Object? searchText = null,
+    Object? elementPosition = null,
+    Object? elementType = null,
+    Object? elementId = null,
+    Object? group = null,
   }) {
     return _then(_$_SectionClickedEvent(
-      searchText: searchText == freezed
+      searchText: null == searchText
           ? _value.searchText
           : searchText // ignore: cast_nullable_to_non_nullable
               as String,
-      elementPosition: elementPosition == freezed
+      elementPosition: null == elementPosition
           ? _value.elementPosition
           : elementPosition // ignore: cast_nullable_to_non_nullable
               as int,
-      elementType: elementType == freezed
+      elementType: null == elementType
           ? _value.elementType
           : elementType // ignore: cast_nullable_to_non_nullable
               as String,
-      elementId: elementId == freezed
+      elementId: null == elementId
           ? _value.elementId
           : elementId // ignore: cast_nullable_to_non_nullable
               as String,
-      group: group == freezed
+      group: null == group
           ? _value.group
           : group // ignore: cast_nullable_to_non_nullable
               as String,
@@ -181,28 +184,25 @@ class _$_SectionClickedEvent implements _SectionClickedEvent {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_SectionClickedEvent &&
-            const DeepCollectionEquality()
-                .equals(other.searchText, searchText) &&
-            const DeepCollectionEquality()
-                .equals(other.elementPosition, elementPosition) &&
-            const DeepCollectionEquality()
-                .equals(other.elementType, elementType) &&
-            const DeepCollectionEquality().equals(other.elementId, elementId) &&
-            const DeepCollectionEquality().equals(other.group, group));
+            (identical(other.searchText, searchText) ||
+                other.searchText == searchText) &&
+            (identical(other.elementPosition, elementPosition) ||
+                other.elementPosition == elementPosition) &&
+            (identical(other.elementType, elementType) ||
+                other.elementType == elementType) &&
+            (identical(other.elementId, elementId) ||
+                other.elementId == elementId) &&
+            (identical(other.group, group) || other.group == group));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(searchText),
-      const DeepCollectionEquality().hash(elementPosition),
-      const DeepCollectionEquality().hash(elementType),
-      const DeepCollectionEquality().hash(elementId),
-      const DeepCollectionEquality().hash(group));
+      runtimeType, searchText, elementPosition, elementType, elementId, group);
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$_SectionClickedEventCopyWith<_$_SectionClickedEvent> get copyWith =>
       __$$_SectionClickedEventCopyWithImpl<_$_SectionClickedEvent>(
           this, _$identity);
@@ -255,29 +255,32 @@ mixin _$SearchAnalytics {
 abstract class $SearchAnalyticsCopyWith<$Res> {
   factory $SearchAnalyticsCopyWith(
           SearchAnalytics value, $Res Function(SearchAnalytics) then) =
-      _$SearchAnalyticsCopyWithImpl<$Res>;
+      _$SearchAnalyticsCopyWithImpl<$Res, SearchAnalytics>;
+  @useResult
   $Res call({String searchText});
 }
 
 /// @nodoc
-class _$SearchAnalyticsCopyWithImpl<$Res>
+class _$SearchAnalyticsCopyWithImpl<$Res, $Val extends SearchAnalytics>
     implements $SearchAnalyticsCopyWith<$Res> {
   _$SearchAnalyticsCopyWithImpl(this._value, this._then);
 
-  final SearchAnalytics _value;
   // ignore: unused_field
-  final $Res Function(SearchAnalytics) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? searchText = freezed,
+    Object? searchText = null,
   }) {
     return _then(_value.copyWith(
-      searchText: searchText == freezed
+      searchText: null == searchText
           ? _value.searchText
           : searchText // ignore: cast_nullable_to_non_nullable
               as String,
-    ));
+    ) as $Val);
   }
 }
 
@@ -288,26 +291,25 @@ abstract class _$$_SearchAnalyticsCopyWith<$Res>
           _$_SearchAnalytics value, $Res Function(_$_SearchAnalytics) then) =
       __$$_SearchAnalyticsCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call({String searchText});
 }
 
 /// @nodoc
 class __$$_SearchAnalyticsCopyWithImpl<$Res>
-    extends _$SearchAnalyticsCopyWithImpl<$Res>
+    extends _$SearchAnalyticsCopyWithImpl<$Res, _$_SearchAnalytics>
     implements _$$_SearchAnalyticsCopyWith<$Res> {
   __$$_SearchAnalyticsCopyWithImpl(
       _$_SearchAnalytics _value, $Res Function(_$_SearchAnalytics) _then)
-      : super(_value, (v) => _then(v as _$_SearchAnalytics));
+      : super(_value, _then);
 
-  @override
-  _$_SearchAnalytics get _value => super._value as _$_SearchAnalytics;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? searchText = freezed,
+    Object? searchText = null,
   }) {
     return _then(_$_SearchAnalytics(
-      searchText: searchText == freezed
+      searchText: null == searchText
           ? _value.searchText
           : searchText // ignore: cast_nullable_to_non_nullable
               as String,
@@ -333,16 +335,16 @@ class _$_SearchAnalytics implements _SearchAnalytics {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_SearchAnalytics &&
-            const DeepCollectionEquality()
-                .equals(other.searchText, searchText));
+            (identical(other.searchText, searchText) ||
+                other.searchText == searchText));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(searchText));
+  int get hashCode => Object.hash(runtimeType, searchText);
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$_SearchAnalyticsCopyWith<_$_SearchAnalytics> get copyWith =>
       __$$_SearchAnalyticsCopyWithImpl<_$_SearchAnalytics>(this, _$identity);
 }
@@ -375,44 +377,47 @@ mixin _$SearchItemAnalytics {
 abstract class $SearchItemAnalyticsCopyWith<$Res> {
   factory $SearchItemAnalyticsCopyWith(
           SearchItemAnalytics value, $Res Function(SearchItemAnalytics) then) =
-      _$SearchItemAnalyticsCopyWithImpl<$Res>;
+      _$SearchItemAnalyticsCopyWithImpl<$Res, SearchItemAnalytics>;
+  @useResult
   $Res call({int position, String type, String id, String group});
 }
 
 /// @nodoc
-class _$SearchItemAnalyticsCopyWithImpl<$Res>
+class _$SearchItemAnalyticsCopyWithImpl<$Res, $Val extends SearchItemAnalytics>
     implements $SearchItemAnalyticsCopyWith<$Res> {
   _$SearchItemAnalyticsCopyWithImpl(this._value, this._then);
 
-  final SearchItemAnalytics _value;
   // ignore: unused_field
-  final $Res Function(SearchItemAnalytics) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? position = freezed,
-    Object? type = freezed,
-    Object? id = freezed,
-    Object? group = freezed,
+    Object? position = null,
+    Object? type = null,
+    Object? id = null,
+    Object? group = null,
   }) {
     return _then(_value.copyWith(
-      position: position == freezed
+      position: null == position
           ? _value.position
           : position // ignore: cast_nullable_to_non_nullable
               as int,
-      type: type == freezed
+      type: null == type
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
               as String,
-      id: id == freezed
+      id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String,
-      group: group == freezed
+      group: null == group
           ? _value.group
           : group // ignore: cast_nullable_to_non_nullable
               as String,
-    ));
+    ) as $Val);
   }
 }
 
@@ -423,41 +428,40 @@ abstract class _$$_SearchItemAnalyticsCopyWith<$Res>
           $Res Function(_$_SearchItemAnalytics) then) =
       __$$_SearchItemAnalyticsCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call({int position, String type, String id, String group});
 }
 
 /// @nodoc
 class __$$_SearchItemAnalyticsCopyWithImpl<$Res>
-    extends _$SearchItemAnalyticsCopyWithImpl<$Res>
+    extends _$SearchItemAnalyticsCopyWithImpl<$Res, _$_SearchItemAnalytics>
     implements _$$_SearchItemAnalyticsCopyWith<$Res> {
   __$$_SearchItemAnalyticsCopyWithImpl(_$_SearchItemAnalytics _value,
       $Res Function(_$_SearchItemAnalytics) _then)
-      : super(_value, (v) => _then(v as _$_SearchItemAnalytics));
+      : super(_value, _then);
 
-  @override
-  _$_SearchItemAnalytics get _value => super._value as _$_SearchItemAnalytics;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? position = freezed,
-    Object? type = freezed,
-    Object? id = freezed,
-    Object? group = freezed,
+    Object? position = null,
+    Object? type = null,
+    Object? id = null,
+    Object? group = null,
   }) {
     return _then(_$_SearchItemAnalytics(
-      position: position == freezed
+      position: null == position
           ? _value.position
           : position // ignore: cast_nullable_to_non_nullable
               as int,
-      type: type == freezed
+      type: null == type
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
               as String,
-      id: id == freezed
+      id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String,
-      group: group == freezed
+      group: null == group
           ? _value.group
           : group // ignore: cast_nullable_to_non_nullable
               as String,
@@ -493,22 +497,19 @@ class _$_SearchItemAnalytics implements _SearchItemAnalytics {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_SearchItemAnalytics &&
-            const DeepCollectionEquality().equals(other.position, position) &&
-            const DeepCollectionEquality().equals(other.type, type) &&
-            const DeepCollectionEquality().equals(other.id, id) &&
-            const DeepCollectionEquality().equals(other.group, group));
+            (identical(other.position, position) ||
+                other.position == position) &&
+            (identical(other.type, type) || other.type == type) &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.group, group) || other.group == group));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(position),
-      const DeepCollectionEquality().hash(type),
-      const DeepCollectionEquality().hash(id),
-      const DeepCollectionEquality().hash(group));
+  int get hashCode => Object.hash(runtimeType, position, type, id, group);
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$_SearchItemAnalyticsCopyWith<_$_SearchItemAnalytics> get copyWith =>
       __$$_SearchItemAnalyticsCopyWithImpl<_$_SearchItemAnalytics>(
           this, _$identity);
