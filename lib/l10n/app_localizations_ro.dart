@@ -462,6 +462,9 @@ class SRo extends S {
   String get discoverMore => 'Discover more';
 
   @override
+  String get completePreviousTasks => 'Complete previous tasks to unlock';
+
+  @override
   String get studyDiscoverMoreDescription => 'Find more inspiration and insight from related resources';
 
   @override

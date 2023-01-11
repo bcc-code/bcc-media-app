@@ -462,6 +462,9 @@ class SIt extends S {
   String get discoverMore => 'Scopri di più';
 
   @override
+  String get completePreviousTasks => 'Complete previous tasks to unlock';
+
+  @override
   String get studyDiscoverMoreDescription => 'Trova più ispirazione e spunti dalle risorse correlate';
 
   @override
@@ -526,11 +529,11 @@ class SIt extends S {
   String get oops => 'Oops!';
 
   @override
-  String get dontHaveAccess => 'You do not have access to this content.';
+  String get dontHaveAccess => 'Non hai accesso a questo contenuto';
 
   @override
   String get mustBeLoggedIn => 'Devi essere loggato per guardare questo contenuto';
 
   @override
-  String get plentyOfOtherContent => 'Don\'t worry, there\'s still plenty of content to enjoy!';
+  String get plentyOfOtherContent => 'Non preoccuparti, ci sono ancora molti altri contenuti con cui divertirti!';
 }

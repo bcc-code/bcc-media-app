@@ -462,6 +462,9 @@ class SSl extends S {
   String get discoverMore => 'Odkrij več';
 
   @override
+  String get completePreviousTasks => 'Complete previous tasks to unlock';
+
+  @override
   String get studyDiscoverMoreDescription => 'Najdi več navdiha in vpogleda iz povezanih virov';
 
   @override
@@ -526,11 +529,11 @@ class SSl extends S {
   String get oops => 'Oops!';
 
   @override
-  String get dontHaveAccess => 'You do not have access to this content.';
+  String get dontHaveAccess => 'Do te vsebina nimaš dostopa.';
 
   @override
   String get mustBeLoggedIn => 'Za ogled te vsebine moraš biti prijavljen';
 
   @override
-  String get plentyOfOtherContent => 'Don\'t worry, there\'s still plenty of content to enjoy!';
+  String get plentyOfOtherContent => 'Brez skrbi, na voljo je dovolj druge vsebine!';
 }

@@ -462,6 +462,9 @@ class STr extends S {
   String get discoverMore => 'Daha fazlasını keşfet';
 
   @override
+  String get completePreviousTasks => 'Complete previous tasks to unlock';
+
+  @override
   String get studyDiscoverMoreDescription => 'İlgili kaynaklardan daha fazla ilham ve fikir edinin';
 
   @override

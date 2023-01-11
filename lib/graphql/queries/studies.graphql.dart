@@ -6,16 +6,19 @@ import 'package:graphql_flutter/graphql_flutter.dart' as graphql_flutter;
 class Fragment$LessonProgressOverview {
   Fragment$LessonProgressOverview({
     required this.id,
+    required this.locked,
     required this.progress,
     required this.$__typename,
   });
 
   factory Fragment$LessonProgressOverview.fromJson(Map<String, dynamic> json) {
     final l$id = json['id'];
+    final l$locked = json['locked'];
     final l$progress = json['progress'];
     final l$$__typename = json['__typename'];
     return Fragment$LessonProgressOverview(
       id: (l$id as String),
+      locked: (l$locked as bool),
       progress: Fragment$LessonProgressOverview$progress.fromJson(
           (l$progress as Map<String, dynamic>)),
       $__typename: (l$$__typename as String),
@@ -23,6 +26,8 @@ class Fragment$LessonProgressOverview {
   }
 
   final String id;
+
+  final bool locked;
 
   final Fragment$LessonProgressOverview$progress progress;
 
@@ -32,6 +37,8 @@ class Fragment$LessonProgressOverview {
     final _resultData = <String, dynamic>{};
     final l$id = id;
     _resultData['id'] = l$id;
+    final l$locked = locked;
+    _resultData['locked'] = l$locked;
     final l$progress = progress;
     _resultData['progress'] = l$progress.toJson();
     final l$$__typename = $__typename;
@@ -42,10 +49,12 @@ class Fragment$LessonProgressOverview {
   @override
   int get hashCode {
     final l$id = id;
+    final l$locked = locked;
     final l$progress = progress;
     final l$$__typename = $__typename;
     return Object.hashAll([
       l$id,
+      l$locked,
       l$progress,
       l$$__typename,
     ]);
@@ -63,6 +72,11 @@ class Fragment$LessonProgressOverview {
     final l$id = id;
     final lOther$id = other.id;
     if (l$id != lOther$id) {
+      return false;
+    }
+    final l$locked = locked;
+    final lOther$locked = other.locked;
+    if (l$locked != lOther$locked) {
       return false;
     }
     final l$progress = progress;
@@ -99,6 +113,7 @@ abstract class CopyWith$Fragment$LessonProgressOverview<TRes> {
 
   TRes call({
     String? id,
+    bool? locked,
     Fragment$LessonProgressOverview$progress? progress,
     String? $__typename,
   });
@@ -120,11 +135,15 @@ class _CopyWithImpl$Fragment$LessonProgressOverview<TRes>
 
   TRes call({
     Object? id = _undefined,
+    Object? locked = _undefined,
     Object? progress = _undefined,
     Object? $__typename = _undefined,
   }) =>
       _then(Fragment$LessonProgressOverview(
         id: id == _undefined || id == null ? _instance.id : (id as String),
+        locked: locked == _undefined || locked == null
+            ? _instance.locked
+            : (locked as bool),
         progress: progress == _undefined || progress == null
             ? _instance.progress
             : (progress as Fragment$LessonProgressOverview$progress),
@@ -147,6 +166,7 @@ class _CopyWithStubImpl$Fragment$LessonProgressOverview<TRes>
 
   call({
     String? id,
+    bool? locked,
     Fragment$LessonProgressOverview$progress? progress,
     String? $__typename,
   }) =>
@@ -166,6 +186,13 @@ const fragmentDefinitionLessonProgressOverview = FragmentDefinitionNode(
   selectionSet: SelectionSetNode(selections: [
     FieldNode(
       name: NameNode(value: 'id'),
+      alias: null,
+      arguments: [],
+      directives: [],
+      selectionSet: null,
+    ),
+    FieldNode(
+      name: NameNode(value: 'locked'),
       alias: null,
       arguments: [],
       directives: [],

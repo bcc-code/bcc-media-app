@@ -450,60 +450,63 @@ class SNl extends S {
   String get exploreContent => 'Inhoud verkennen';
 
   @override
-  String get taskCompleted => 'task completed';
+  String get taskCompleted => 'taak afgerond';
 
   @override
-  String get tasksCompleted => 'tasks completed';
+  String get tasksCompleted => 'taken afgerond';
 
   @override
-  String get studyCompleteTaskDescription => 'Complete tasks and discover related resources';
+  String get studyCompleteTaskDescription => 'Rond taken af en ontdek gerelateerde bronnen';
 
   @override
-  String get discoverMore => 'Discover more';
+  String get discoverMore => 'Ontdek meer';
 
   @override
-  String get studyDiscoverMoreDescription => 'Find more inspiration and insight from related resources';
+  String get completePreviousTasks => 'Complete previous tasks to unlock';
+
+  @override
+  String get studyDiscoverMoreDescription => 'Ontdek meer inspiratie en inzicht vanuit gerelateerde bronnen';
 
   @override
   String get watchAgain => 'Nogmaals kijken';
 
   @override
-  String get continueToTaskIn => 'Continue to task in';
+  String get continueToTaskIn => 'Doorgaan naar de taak in';
 
   @override
-  String get continueToTasksIn => 'Continue to tasks in';
+  String get continueToTasksIn => 'Doorgaan naar de taken in';
 
   @override
-  String get studyLessonCompleted => 'lesson completed';
+  String get studyLessonCompleted => 'les afgerond';
 
   @override
-  String get studyLessonsCompleted => 'lessons completed';
+  String get studyLessonsCompleted => 'lessen afgerond';
 
   @override
-  String get continueStudy => 'Continue study';
+  String get continueStudy => 'Doorgaan met studie';
 
   @override
-  String get startStudy => 'Start study';
+  String get startStudy => 'Start studie';
 
   @override
-  String get videoCompletedText => 'Great job on completing the video.';
+  String get videoCompletedText => 'Goed gedaan, video afgerond.';
 
   @override
-  String get achievementFirstDescription => 'Great job on completing the video and earning your first progress achievement.';
+  String get achievementFirstDescription => 'Gefeliciteerd met het afronden van de video en het bereiken van je eerste doel.';
 
   @override
   String achievementStudyTopic(String name) {
-    return 'Great job on completing the study topic $name';
+    return 'Goed gedaan, je eerste study topic $name afgerond';
   }
 
   @override
   String videoCount(int count) {
-    return '$count videos';
+    return '$count video\'s';
   }
 
   @override
   String taskCount(int count) {
-    return '$count tasks';
+    return '$count taken';
   }
 
   @override
@@ -513,24 +516,24 @@ class SNl extends S {
 
   @override
   String resourceCount(int count) {
-    return '$count resources';
+    return '$count bronnen';
   }
 
   @override
-  String get continueButton => 'Continue';
+  String get continueButton => 'Doorgaan';
 
   @override
-  String get achievements => 'Achievements';
+  String get achievements => 'Prestaties';
 
   @override
   String get oops => 'Oeps!';
 
   @override
-  String get dontHaveAccess => 'You do not have access to this content.';
+  String get dontHaveAccess => 'Je hebt geen toegang tot deze content.';
 
   @override
   String get mustBeLoggedIn => 'Je moet ingelogd zijn om dit te kunnen bekijken';
 
   @override
-  String get plentyOfOtherContent => 'Don\'t worry, there\'s still plenty of content to enjoy!';
+  String get plentyOfOtherContent => 'Geen zorgen, er is nog steeds veel content om van te genieten!';
 }

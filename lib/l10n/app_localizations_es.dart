@@ -450,50 +450,53 @@ class SEs extends S {
   String get exploreContent => 'Explora el contenido';
 
   @override
-  String get taskCompleted => 'task completed';
+  String get taskCompleted => 'tarea terminada';
 
   @override
-  String get tasksCompleted => 'tasks completed';
+  String get tasksCompleted => 'tareas terminadas';
 
   @override
-  String get studyCompleteTaskDescription => 'Complete tasks and discover related resources';
+  String get studyCompleteTaskDescription => 'Completa tareas y descubre recursos relacionados';
 
   @override
-  String get discoverMore => 'Discover more';
+  String get discoverMore => 'Descubrir más';
 
   @override
-  String get studyDiscoverMoreDescription => 'Find more inspiration and insight from related resources';
+  String get completePreviousTasks => 'Complete previous tasks to unlock';
+
+  @override
+  String get studyDiscoverMoreDescription => 'Encuentre más inspiración e información de recursos relacionados';
 
   @override
   String get watchAgain => 'Ver de nuevo';
 
   @override
-  String get continueToTaskIn => 'Continue to task in';
+  String get continueToTaskIn => 'Continuar con la tarea';
 
   @override
-  String get continueToTasksIn => 'Continue to tasks in';
+  String get continueToTasksIn => 'Continuar a tareas';
 
   @override
-  String get studyLessonCompleted => 'lesson completed';
+  String get studyLessonCompleted => 'lección completada';
 
   @override
-  String get studyLessonsCompleted => 'lessons completed';
+  String get studyLessonsCompleted => 'Lecciones completadas';
 
   @override
-  String get continueStudy => 'Continue study';
+  String get continueStudy => 'Continuar con el estudio';
 
   @override
-  String get startStudy => 'Start study';
+  String get startStudy => 'Empezar a estudiar';
 
   @override
-  String get videoCompletedText => 'Great job on completing the video.';
+  String get videoCompletedText => 'Buen trabajo completando el video.';
 
   @override
-  String get achievementFirstDescription => 'Great job on completing the video and earning your first progress achievement.';
+  String get achievementFirstDescription => 'Buen trabajo completando el video y obtener tu primer logro de progreso.';
 
   @override
   String achievementStudyTopic(String name) {
-    return 'Great job on completing the study topic $name';
+    return 'Buen trabajo completando el tema de estudio $name';
   }
 
   @override
@@ -503,7 +506,7 @@ class SEs extends S {
 
   @override
   String taskCount(int count) {
-    return '$count tasks';
+    return '$count tareas';
   }
 
   @override
@@ -513,24 +516,24 @@ class SEs extends S {
 
   @override
   String resourceCount(int count) {
-    return '$count resources';
+    return '$count recursos';
   }
 
   @override
-  String get continueButton => 'Continue';
+  String get continueButton => 'Continúe';
 
   @override
-  String get achievements => 'Achievements';
+  String get achievements => 'Logros';
 
   @override
   String get oops => 'Oops!';
 
   @override
-  String get dontHaveAccess => 'You do not have access to this content.';
+  String get dontHaveAccess => 'Tú no tienes acceso a este contenido.';
 
   @override
   String get mustBeLoggedIn => 'Debes iniciar sesión para ver este contenido';
 
   @override
-  String get plentyOfOtherContent => 'Don\'t worry, there\'s still plenty of content to enjoy!';
+  String get plentyOfOtherContent => '¡No te preocupes, todavía hay mucho contenido para disfrutar!';
 }

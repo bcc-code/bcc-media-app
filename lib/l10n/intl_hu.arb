@@ -623,6 +623,10 @@
   "@discoverMore": {
     "description": "Generic button text."
   },
+  "completePreviousTasks": "Complete previous tasks to unlock",
+  "@completePreviousTasks": {
+    "description": "Shown on a locked button, short explanation why the button is locked."
+  },
   "studyDiscoverMoreDescription": "További inspiráció és betekintés a kapcsolódó forrásokból",
   "@studyDiscoverMoreDescription": {
     "description": "Description to open the related resources for this episode."
@@ -655,7 +659,7 @@
   "@startStudy": {
     "description": "Button."
   },
-  "videoCompletedText": "Great job on completing the video.",
+  "videoCompletedText": "Nagyszerű munka a tanulmányi téma befejezésében.",
   "@videoCompletedText": {
     "description": "Shown after completing tasks related to a video."
   },
@@ -712,7 +716,7 @@
   "@continueButton": {
     "description": "Generic button text."
   },
-  "achievements": "Achievements",
+  "achievements": "Eredmények",
   "@achievements": {
     "description": "Generic. Used as page title, etc."
   },
@@ -720,7 +724,7 @@
   "@oops": {
     "description": "An informal title on some error screens."
   },
-  "dontHaveAccess": "You do not have access to this content.",
+  "dontHaveAccess": "Ehhez a tartalomhoz nincs hozzáférésed.",
   "@dontHaveAccess": {
     "description": "Error message when you open a link to content you dont have access to."
   },
@@ -728,7 +732,7 @@
   "@mustBeLoggedIn": {
     "description": "Error message when you open a link to content you dont have access to, and you are not logged in."
   },
-  "plentyOfOtherContent": "Don't worry, there's still plenty of content to enjoy!",
+  "plentyOfOtherContent": "Ne aggódj, még rengeteg más tartalmat is élvezhetsz!",
   "@plentyOfOtherContent": {
     "description": "Shown on an error page indiciating you dont have access to the content, right above a button that takes you back."
   }
