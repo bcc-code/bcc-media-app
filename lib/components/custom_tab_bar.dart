@@ -110,8 +110,10 @@ class _CustomTabBarState extends ConsumerState<CustomTabBar> {
               // here we switch between tabs
               if (widget.tabsRouter.activeIndex == index) {
                 final current = widget.tabsRouter.current;
+                if (widget.tabsRouter.stackRouterOfIndex(index)?.stack.length == 1) {
+                  globalEventBus.fire(ScrollToTopRequestEvent(TabsPage.values.elementAt(index).name));
+                }
                 widget.tabsRouter.stackRouterOfIndex(index)?.popUntilRoot();
-                globalEventBus.fire(ScrollToTopRequestEvent(TabsPage.values.elementAt(index).name));
               } else {
                 sendAnalytics(index);
               }
