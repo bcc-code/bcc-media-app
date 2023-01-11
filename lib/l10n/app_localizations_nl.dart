@@ -462,7 +462,7 @@ class SNl extends S {
   String get discoverMore => 'Ontdek meer';
 
   @override
-  String get completePreviousTasks => 'Complete previous tasks to unlock';
+  String get completePreviousTasks => 'Voltooi de vorige taken om deze te kunnen openen';
 
   @override
   String get studyDiscoverMoreDescription => 'Ontdek meer inspiratie en inzicht vanuit gerelateerde bronnen';
@@ -536,4 +536,7 @@ class SNl extends S {
 
   @override
   String get plentyOfOtherContent => 'Geen zorgen, er is nog steeds veel content om van te genieten!';
+
+  @override
+  String get notAchieved => 'Not achieved';
 }

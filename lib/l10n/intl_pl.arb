@@ -55,7 +55,7 @@
   "@faq": {
     "description": "Long title of the FAQ page."
   },
-  "bccMediaCenter": "BCC Media is a media foundation in the BCC federation that produces and distributes content with positive and Christian values.",
+  "bccMediaCenter": "BCC Media to fundacja medialna w federacji BCC, która zajmuje się produkcją i dystrybucją treści o charakterze pozytywnym i chrześcijańskim.",
   "@bccMediaCenter": {
     "description": "Disclaimer on login page"
   },
@@ -280,7 +280,7 @@
   "@high": {
     "description": "High quality video option"
   },
-  "emptySearch": "You can search all content from BCC Media. Series, videos and episodes.",
+  "emptySearch": "Możesz przeszukać wszystkie treści z BCC Media. Seriale, filmiki oraz odcinki.",
   "@emptySearch": {
     "description": "Message on search page when there is no search results."
   },
@@ -607,67 +607,67 @@
   "@exploreContent": {
     "description": "A button on the login page"
   },
-  "taskCompleted": "task completed",
+  "taskCompleted": "ukończono zadanie",
   "@taskCompleted": {
     "description": "SINGULAR. Note the lowercase T, because its inserted after a count: '0/1 task completed'."
   },
-  "tasksCompleted": "tasks completed",
+  "tasksCompleted": "ukończono zadania",
   "@tasksCompleted": {
     "description": "PLURAL. Note the lowercase T, because its inserted after the count: '2/5 tasks completed'."
   },
-  "studyCompleteTaskDescription": "Complete tasks and discover related resources",
+  "studyCompleteTaskDescription": "Ukończ zadania i odkryj powiązane materiały",
   "@studyCompleteTaskDescription": {
     "description": "Description to open the study tasks for this episode. Currently shows below '0/1 tasks completed'."
   },
-  "discoverMore": "Discover more",
+  "discoverMore": "Odkryj więcej",
   "@discoverMore": {
     "description": "Generic button text."
   },
-  "completePreviousTasks": "Complete previous tasks to unlock",
+  "completePreviousTasks": "Ukończ poprzednie zadania, by odblokować",
   "@completePreviousTasks": {
     "description": "Shown on a locked button, short explanation why the button is locked."
   },
-  "studyDiscoverMoreDescription": "Find more inspiration and insight from related resources",
+  "studyDiscoverMoreDescription": "Znajdź więcej inspiracji i wiedzy wśród powiązanych materiałów",
   "@studyDiscoverMoreDescription": {
     "description": "Description to open the related resources for this episode."
   },
-  "watchAgain": "Watch again",
+  "watchAgain": "Obejrzyj ponownie",
   "@watchAgain": {
     "description": "Short button text to watch the video again."
   },
-  "continueToTaskIn": "Continue to task in",
+  "continueToTaskIn": "Przejdź do zadania",
   "@continueToTaskIn": {
     "description": "SINGULAR. Button with text 'Continue to task in X'. Can click it to open tasks immediately, otherwise X will count down (10, 9, 8...) and automatically redirect you to the tasks."
   },
-  "continueToTasksIn": "Continue to tasks in",
+  "continueToTasksIn": "Przejdź do zadań",
   "@continueToTasksIn": {
     "description": "PLURAL. Button with text 'Continue to tasks in X'. Can click it to open tasks immediately, otherwise X will count down (10, 9, 8...) and automatically redirect you to the tasks."
   },
-  "studyLessonCompleted": "lesson completed",
+  "studyLessonCompleted": "lekcja ukończona",
   "@studyLessonCompleted": {
     "description": "SINGULAR. Note the lowercase L, because prepended with a number: '1 lesson completed'."
   },
-  "studyLessonsCompleted": "lessons completed",
+  "studyLessonsCompleted": "lekcje ukończone",
   "@studyLessonsCompleted": {
     "description": "PLURAL. Note the lowercase L, because prepended with a number: '20 lessons completed'."
   },
-  "continueStudy": "Continue study",
+  "continueStudy": "Kontynuuj naukę",
   "@continueStudy": {
     "description": "Button."
   },
-  "startStudy": "Start study",
+  "startStudy": "Rozpocznij naukę",
   "@startStudy": {
     "description": "Button."
   },
-  "videoCompletedText": "Great job on completing the video.",
+  "videoCompletedText": "Gratulacje! Skończyłeś wideo.",
   "@videoCompletedText": {
     "description": "Shown after completing tasks related to a video."
   },
-  "achievementFirstDescription": "Great job on completing the video and earning your first progress achievement.",
+  "achievementFirstDescription": "Gratulacje obejrzenia wideo oraz zdobycia pierwszej nagrody progresu.",
   "@achievementFirstDescription": {
     "description": "Description displayed in a popup when earning the first achievement badge."
   },
-  "achievementStudyTopic": "Great job on completing the study topic {name}",
+  "achievementStudyTopic": "Gratulacje ukończenia lekcji w temacie {name}",
   "@achievementStudyTopic": {
     "description": "REMEMBER: Include, but do not translate variables like {name} here. Description displayed in a popup when done with a study topic.",
     "placeholders": {
@@ -676,7 +676,7 @@
       }
     }
   },
-  "videoCount": "{count} videos",
+  "videoCount": "{count} filmów/y",
   "@videoCount": {
     "description": "REMEMBER: Include, but do not translate variables like {count} here. Keep it very short. Generic, number of videos. Currently used for study topic overviews.",
     "placeholders": {
@@ -685,7 +685,7 @@
       }
     }
   },
-  "taskCount": "{count} tasks",
+  "taskCount": "{count} zadania/ń",
   "@taskCount": {
     "description": "REMEMBER: Include, but do not translate variables like {count} here. Keep it very short. Generic, number of tasks. Currently used for study topic overviews.",
     "placeholders": {
@@ -694,7 +694,7 @@
       }
     }
   },
-  "posterCount": "{count} posters",
+  "posterCount": "{count} plakaty/ów",
   "@posterCount": {
     "description": "REMEMBER: Include, but do not translate variables like {count} here. Keep it very short. Generic, number of posters. Currently used for study topic overviews.",
     "placeholders": {
@@ -703,7 +703,7 @@
       }
     }
   },
-  "resourceCount": "{count} resources",
+  "resourceCount": "{count} materiały/ów",
   "@resourceCount": {
     "description": "REMEMBER: Include, but do not translate variables like {count} here. Keep it very short. Generic, number of resources. Currently used for study topic overviews.",
     "placeholders": {
@@ -712,27 +712,27 @@
       }
     }
   },
-  "continueButton": "Continue",
+  "continueButton": "Kontynuuj",
   "@continueButton": {
     "description": "Generic button text."
   },
-  "achievements": "Achievements",
+  "achievements": "Osiągnięcia",
   "@achievements": {
     "description": "Generic. Used as page title, etc."
   },
-  "oops": "Oops!",
+  "oops": "Ups!",
   "@oops": {
     "description": "An informal title on some error screens."
   },
-  "dontHaveAccess": "You do not have access to this content.",
+  "dontHaveAccess": "Nie masz dostępu do tej zawartości.",
   "@dontHaveAccess": {
     "description": "Error message when you open a link to content you dont have access to."
   },
-  "mustBeLoggedIn": "You need to be logged in to watch this content",
+  "mustBeLoggedIn": "Musisz być zalogowany, by obejrzeć tę zawartość",
   "@mustBeLoggedIn": {
     "description": "Error message when you open a link to content you dont have access to, and you are not logged in."
   },
-  "plentyOfOtherContent": "Don't worry, there's still plenty of content to enjoy!",
+  "plentyOfOtherContent": "Nic się nie martw, mamy dla ciebie mnóstwo innych materiałów!",
   "@plentyOfOtherContent": {
     "description": "Shown on an error page indiciating you dont have access to the content, right above a button that takes you back."
   }

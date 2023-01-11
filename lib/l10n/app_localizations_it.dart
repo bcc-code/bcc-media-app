@@ -462,7 +462,7 @@ class SIt extends S {
   String get discoverMore => 'Scopri di più';
 
   @override
-  String get completePreviousTasks => 'Complete previous tasks to unlock';
+  String get completePreviousTasks => 'Completa le attività precedenti per sbloccare';
 
   @override
   String get studyDiscoverMoreDescription => 'Trova più ispirazione e spunti dalle risorse correlate';
@@ -536,4 +536,7 @@ class SIt extends S {
 
   @override
   String get plentyOfOtherContent => 'Non preoccuparti, ci sono ancora molti altri contenuti con cui divertirti!';
+
+  @override
+  String get notAchieved => 'Not achieved';
 }

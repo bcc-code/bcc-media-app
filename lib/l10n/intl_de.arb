@@ -607,67 +607,67 @@
   "@exploreContent": {
     "description": "A button on the login page"
   },
-  "taskCompleted": "task completed",
+  "taskCompleted": "Aufgabe abgeschlossen",
   "@taskCompleted": {
     "description": "SINGULAR. Note the lowercase T, because its inserted after a count: '0/1 task completed'."
   },
-  "tasksCompleted": "tasks completed",
+  "tasksCompleted": "Aufgaben abgeschlossen",
   "@tasksCompleted": {
     "description": "PLURAL. Note the lowercase T, because its inserted after the count: '2/5 tasks completed'."
   },
-  "studyCompleteTaskDescription": "Complete tasks and discover related resources",
+  "studyCompleteTaskDescription": "Mache die Aufgaben und entdecke ähnlichen Inhalt",
   "@studyCompleteTaskDescription": {
     "description": "Description to open the study tasks for this episode. Currently shows below '0/1 tasks completed'."
   },
-  "discoverMore": "Discover more",
+  "discoverMore": "Entdecke mehr",
   "@discoverMore": {
     "description": "Generic button text."
   },
-  "completePreviousTasks": "Complete previous tasks to unlock",
+  "completePreviousTasks": "Beende vorherige Aufgaben, um freizuschalten",
   "@completePreviousTasks": {
     "description": "Shown on a locked button, short explanation why the button is locked."
   },
-  "studyDiscoverMoreDescription": "Find more inspiration and insight from related resources",
+  "studyDiscoverMoreDescription": "Finde mehr Inspiration und Einblicke von ähnlichem Inhalt",
   "@studyDiscoverMoreDescription": {
     "description": "Description to open the related resources for this episode."
   },
-  "watchAgain": "Watch again",
+  "watchAgain": "Schaue noch ein Mal",
   "@watchAgain": {
     "description": "Short button text to watch the video again."
   },
-  "continueToTaskIn": "Continue to task in",
+  "continueToTaskIn": "Mache weiter mit der Aufgabe in",
   "@continueToTaskIn": {
     "description": "SINGULAR. Button with text 'Continue to task in X'. Can click it to open tasks immediately, otherwise X will count down (10, 9, 8...) and automatically redirect you to the tasks."
   },
-  "continueToTasksIn": "Continue to tasks in",
+  "continueToTasksIn": "Mache weiter mit den Aufgaben in",
   "@continueToTasksIn": {
     "description": "PLURAL. Button with text 'Continue to tasks in X'. Can click it to open tasks immediately, otherwise X will count down (10, 9, 8...) and automatically redirect you to the tasks."
   },
-  "studyLessonCompleted": "lesson completed",
+  "studyLessonCompleted": "Lektion abgeschlossen",
   "@studyLessonCompleted": {
     "description": "SINGULAR. Note the lowercase L, because prepended with a number: '1 lesson completed'."
   },
-  "studyLessonsCompleted": "lessons completed",
+  "studyLessonsCompleted": "Lektion abgeschlossen",
   "@studyLessonsCompleted": {
     "description": "PLURAL. Note the lowercase L, because prepended with a number: '20 lessons completed'."
   },
-  "continueStudy": "Continue study",
+  "continueStudy": "Untersuchung fortsetzen",
   "@continueStudy": {
     "description": "Button."
   },
-  "startStudy": "Start study",
+  "startStudy": "Untersuchung starten",
   "@startStudy": {
     "description": "Button."
   },
-  "videoCompletedText": "Great job on completing the video.",
+  "videoCompletedText": "Gute Arbeit! Du hast das Video geschaut.",
   "@videoCompletedText": {
     "description": "Shown after completing tasks related to a video."
   },
-  "achievementFirstDescription": "Great job on completing the video and earning your first progress achievement.",
+  "achievementFirstDescription": "Gut gemacht, du hasst das Video abgeschlossen und dein erstes Ziel erreicht.",
   "@achievementFirstDescription": {
     "description": "Description displayed in a popup when earning the first achievement badge."
   },
-  "achievementStudyTopic": "Great job on completing the study topic {name}",
+  "achievementStudyTopic": "Gut gemacht, du hast das erste Thema {name} abgeschlossen",
   "@achievementStudyTopic": {
     "description": "REMEMBER: Include, but do not translate variables like {name} here. Description displayed in a popup when done with a study topic.",
     "placeholders": {
@@ -676,7 +676,7 @@
       }
     }
   },
-  "videoCount": "{count} videos",
+  "videoCount": "{count} Filme",
   "@videoCount": {
     "description": "REMEMBER: Include, but do not translate variables like {count} here. Keep it very short. Generic, number of videos. Currently used for study topic overviews.",
     "placeholders": {
@@ -685,7 +685,7 @@
       }
     }
   },
-  "taskCount": "{count} tasks",
+  "taskCount": "{count} Aufgaben",
   "@taskCount": {
     "description": "REMEMBER: Include, but do not translate variables like {count} here. Keep it very short. Generic, number of tasks. Currently used for study topic overviews.",
     "placeholders": {
@@ -694,7 +694,7 @@
       }
     }
   },
-  "posterCount": "{count} posters",
+  "posterCount": "{count} Poster",
   "@posterCount": {
     "description": "REMEMBER: Include, but do not translate variables like {count} here. Keep it very short. Generic, number of posters. Currently used for study topic overviews.",
     "placeholders": {
@@ -703,7 +703,7 @@
       }
     }
   },
-  "resourceCount": "{count} resources",
+  "resourceCount": "{count} Inhalt",
   "@resourceCount": {
     "description": "REMEMBER: Include, but do not translate variables like {count} here. Keep it very short. Generic, number of resources. Currently used for study topic overviews.",
     "placeholders": {
@@ -712,27 +712,27 @@
       }
     }
   },
-  "continueButton": "Continue",
+  "continueButton": "Weiter",
   "@continueButton": {
     "description": "Generic button text."
   },
-  "achievements": "Achievements",
+  "achievements": "Erfolge",
   "@achievements": {
     "description": "Generic. Used as page title, etc."
   },
-  "oops": "Oops!",
+  "oops": "Ups!",
   "@oops": {
     "description": "An informal title on some error screens."
   },
-  "dontHaveAccess": "You do not have access to this content.",
+  "dontHaveAccess": "Du hast keinen Zugang zu diesem Inhalt.",
   "@dontHaveAccess": {
     "description": "Error message when you open a link to content you dont have access to."
   },
-  "mustBeLoggedIn": "You need to be logged in to watch this content",
+  "mustBeLoggedIn": "Du musst angemeldet sein, um diesen Inhalt zu schauen",
   "@mustBeLoggedIn": {
     "description": "Error message when you open a link to content you dont have access to, and you are not logged in."
   },
-  "plentyOfOtherContent": "Don't worry, there's still plenty of content to enjoy!",
+  "plentyOfOtherContent": "Keine Sorge, es gibt noch genug anderen Inhalt zu sehen!",
   "@plentyOfOtherContent": {
     "description": "Shown on an error page indiciating you dont have access to the content, right above a button that takes you back."
   }
