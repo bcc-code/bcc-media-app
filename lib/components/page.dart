@@ -14,10 +14,9 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../graphql/queries/page.graphql.dart';
 import '../helpers/utils.dart';
-import '../models/events/scroll_to_top.dart';
+import 'package:brunstadtv_app/models/events/scroll_to_top.dart' as tab;
 import '../models/pagination_status.dart';
 import '../providers/inherited_data.dart';
-import 'achievement_list.dart';
 import 'card_section.dart';
 import 'featured_section.dart';
 import 'default_grid_section.dart';
@@ -64,15 +63,6 @@ class _BccmPageState extends ConsumerState<BccmPage> {
   Map<String, PaginationStatus<Fragment$ItemSectionItem>> paginationMap = {};
   bool loadingBottomSectionItems = false;
   late ScrollController scrollController;
-
-  @override
-  void initState() {
-    super.initState();
-    scrollController = widget.scrollController ?? ScrollController();
-    globalEventBus.on<ScrollToTopRequestEvent>().listen((event) {
-    TabsPage.values.byName(event.tab).name == event.tab ? scrollController.animateTo(0, duration: const Duration(milliseconds: 300), curve: Curves.decelerate) : null;
-    });
-  }
 
   Widget? _getSectionWidget(Fragment$Section s) {
     final extraItems = paginationMap[s.id]?.items;

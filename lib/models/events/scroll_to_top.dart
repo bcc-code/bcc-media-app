@@ -3,7 +3,7 @@ class ScrollToTopRequestEvent {
   ScrollToTopRequestEvent(this.tab);
 }
 
-enum TabsPage {
+enum Tab {
   home,
   search,
   live, 

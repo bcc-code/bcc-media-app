@@ -1,9 +1,11 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:brunstadtv_app/api/brunstadtv.dart';
 import 'package:brunstadtv_app/components/page.dart';
+import 'package:brunstadtv_app/helpers/event_bus.dart';
 import 'package:brunstadtv_app/providers/app_config.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:brunstadtv_app/models/events/scroll_to_top.dart' as tab;
 
 import '../../graphql/queries/page.graphql.dart';
 import '../../helpers/btv_colors.dart';
@@ -44,6 +46,10 @@ class SearchScreenState extends ConsumerState<SearchScreen> {
     super.initState();
     processQueryParam();
     pageFuture = getSearchPage();
+
+    globalEventBus.on<tab.ScrollToTopRequestEvent>().listen((event) {
+    event.tab == 'search' ? scrollController?.animateTo(0, duration: const Duration(milliseconds: 300), curve: Curves.decelerate) : null;
+    });
   }
 
   @override
