@@ -64,7 +64,7 @@ void $main({required FirebaseOptions? firebaseOptions}) async {
 
   if (firebaseOptions != null && !kDebugMode) {
     FlutterError.onError = (errorDetails) {
-      FirebaseCrashlytics.instance.recordFlutterFatalError(errorDetails);
+      FirebaseCrashlytics.instance.recordFlutterError(errorDetails);
     };
     // Pass all uncaught asynchronous errors that aren't handled by the Flutter framework to Crashlytics
     PlatformDispatcher.instance.onError = (error, stack) {
