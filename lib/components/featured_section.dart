@@ -33,7 +33,7 @@ class _FeaturedSectionState extends ConsumerState<FeaturedSection> {
     if (widget.data.metadata == null || curLiveEpisode == null) {
       return items;
     }
-    if (widget.data.metadata!.prependLiveElement || true) {
+    if (widget.data.metadata!.prependLiveElement) {
       return [
         Fragment$Section$$FeaturedSection$items$items(
           id: curLiveEpisode!.id,
