@@ -462,7 +462,7 @@ class SDa extends S {
   String get discoverMore => 'Opdag mere';
 
   @override
-  String get completePreviousTasks => 'Complete previous tasks to unlock';
+  String get completePreviousTasks => 'Fuldfør tidligere opgaver for at låse op';
 
   @override
   String get studyDiscoverMoreDescription => 'Find mere inspiration fra relateret indhold\n';
@@ -529,11 +529,14 @@ class SDa extends S {
   String get oops => 'Ups!';
 
   @override
-  String get dontHaveAccess => 'You do not have access to this content.';
+  String get dontHaveAccess => 'Du har ikke adgang til dette indhold';
 
   @override
   String get mustBeLoggedIn => 'Du må være logget ind for at se dette indhold';
 
   @override
-  String get plentyOfOtherContent => 'Don\'t worry, there\'s still plenty of content to enjoy!';
+  String get plentyOfOtherContent => 'Bare rolig, der er stadig masser af andet indhold at se!';
+
+  @override
+  String get notAchieved => 'Not achieved';
 }
