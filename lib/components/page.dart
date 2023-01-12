@@ -59,7 +59,6 @@ class _BccmPageState extends ConsumerState<BccmPage> {
   Map<String, PaginationStatus<Fragment$ItemSectionItem>> paginationMap = {};
   ScrollController scrollController = ScrollController();
   bool loadingBottomSectionItems = false;
-  Fragment$Episode? curLiveEpisode;
 
   Widget? _getSectionWidget(Fragment$Section s) {
     final extraItems = paginationMap[s.id]?.items;
@@ -73,11 +72,11 @@ class _BccmPageState extends ConsumerState<BccmPage> {
     }
     final defaultSection = s.asOrNull<Fragment$Section$$DefaultSection>();
     if (defaultSection != null) {
-      return PageSection.fromFragment(defaultSection, child: DefaultSection(defaultSection, curLiveEpisode));
+      return PageSection.fromFragment(defaultSection, child: DefaultSection(defaultSection));
     }
     final posterSection = s.asOrNull<Fragment$Section$$PosterSection>();
     if (posterSection != null) {
-      return PageSection.fromFragment(posterSection, child: PosterSection(posterSection, curLiveEpisode));
+      return PageSection.fromFragment(posterSection, child: PosterSection(posterSection));
     }
     var defaultGridSection = s.asOrNull<Fragment$Section$$DefaultGridSection>();
     if (defaultGridSection != null) {
@@ -87,7 +86,7 @@ class _BccmPageState extends ConsumerState<BccmPage> {
           ...(extraItems?.whereType<Fragment$Section$$DefaultGridSection$items$items>().toList() ?? [])
         ]),
       );
-      return PageSection.fromFragment(defaultGridSection, child: DefaultGridSection(defaultGridSection, curLiveEpisode));
+      return PageSection.fromFragment(defaultGridSection, child: DefaultGridSection(defaultGridSection));
     }
     var posterGridSection = s.asOrNull<Fragment$Section$$PosterGridSection>();
     if (posterGridSection != null) {
@@ -95,11 +94,11 @@ class _BccmPageState extends ConsumerState<BccmPage> {
         items: posterGridSection.items.copyWith(
             items: [...posterGridSection.items.items, ...(extraItems?.whereType<Fragment$Section$$PosterGridSection$items$items>().toList() ?? [])]),
       );
-      return PageSection.fromFragment(posterGridSection, child: PosterGridSection(posterGridSection, curLiveEpisode));
+      return PageSection.fromFragment(posterGridSection, child: PosterGridSection(posterGridSection));
     }
     final featuredSection = s.asOrNull<Fragment$Section$$FeaturedSection>();
     if (featuredSection != null) {
-      return PageSection.fromFragment(featuredSection, child: FeaturedSection(featuredSection, curLiveEpisode));
+      return PageSection.fromFragment(featuredSection, child: FeaturedSection(featuredSection));
     }
     final iconGridSection = s.asOrNull<Fragment$Section$$IconGridSection>();
     if (iconGridSection != null) {
@@ -237,19 +236,9 @@ class _BccmPageState extends ConsumerState<BccmPage> {
     });
   }
 
-  void setCurLiveEpisode(Fragment$Episode? episode) {
-    if (curLiveEpisode != episode) {
-      setState(() => curLiveEpisode = episode);
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
-    ref.listen<AsyncValue<Fragment$CalendarDayEntries$entries$$EpisodeCalendarEntry?>>(currentLiveEpisode, (prevEntry, curEntry) {
-      curEntry.whenData((episodeEntry) => setCurLiveEpisode(episodeEntry?.episode));
-    });
-
-    print('>> Rebuilding...');
+    print('>> PAGE Rebuilding...');
 
     return FutureBuilder<Query$Page$page>(
       key: futureBuilderKey,

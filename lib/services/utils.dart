@@ -131,7 +131,7 @@ String getFormattedDateTime(DateTime date) {
 
 /// Check if startTime < Now < endTime
 bool isLiveNow(String startTime, String endTime) {
-  final now = DateTime.now().add(Duration(hours: 4, minutes: 25));
+  final now = DateTime.now();
   final end = DateTime.parse(endTime).toLocal();
   final start = DateTime.parse(startTime).toLocal();
   return end.isAfter(now) && start.isBefore(now);

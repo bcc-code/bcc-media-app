@@ -6,22 +6,21 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../services/utils.dart';
 
-final _timerProvider = StreamProvider.family<int, Duration>((ref, Duration duration) async* {
-  var counter = 0;
+final _timerProvider = StreamProvider.family<void, Duration>((ref, Duration duration) async* {
   while (true) {
-    yield counter++;
+    yield 1;
     await Future.delayed(duration);
   }
 });
 
-final todaysCalendarEpisodes = FutureProvider<Query$CalendarDayEpisodeEntries$calendar?>((ref) async {
+final todaysCalendarEpisodesProvider = FutureProvider<Query$CalendarDayEpisodeEntries$calendar?>((ref) async {
   await ref.watch(_timerProvider(const Duration(minutes: 30)).future);
-  return await ref.read(apiProvider).getCalendarDayEpisodes(DateTime.now().add(Duration(hours: 4, minutes: 25)));
+  return await ref.read(apiProvider).getCalendarDayEpisodes(DateTime.now());
 });
 
-final currentLiveEpisode = FutureProvider<Fragment$CalendarDayEntries$entries$$EpisodeCalendarEntry?>((ref) async {
+final currentLiveEpisodeProvider = FutureProvider<Fragment$CalendarDayEntries$entries$$EpisodeCalendarEntry?>((ref) async {
   await ref.watch(_timerProvider(const Duration(seconds: 5)).future);
-  final todaysEpisodes = await ref.watch(todaysCalendarEpisodes.future);
+  final todaysEpisodes = await ref.watch(todaysCalendarEpisodesProvider.future);
   if (todaysEpisodes == null) {
     return null;
   }

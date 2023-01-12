@@ -2,12 +2,14 @@ import 'package:brunstadtv_app/components/section_item_click_wrapper.dart';
 import 'package:brunstadtv_app/models/analytics/sections.dart';
 import 'package:brunstadtv_app/providers/inherited_data.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../graphql/queries/calendar_episode_entries.graphql.dart';
 import '../graphql/queries/page.graphql.dart';
 import '../graphql/schema/pages.graphql.dart';
 import '../helpers/btv_colors.dart';
 import '../l10n/app_localizations.dart';
+import '../providers/todays_calendar_entries.dart';
 import '../services/utils.dart';
 import '../helpers/btv_typography.dart';
 import '../helpers/utils.dart';
@@ -24,9 +26,8 @@ const Map<Enum$GridSectionSize, int> _columnSize = {
 
 class DefaultGridSection extends StatelessWidget {
   final Fragment$Section$$DefaultGridSection data;
-  final Fragment$Episode? curLiveEpisode;
 
-  const DefaultGridSection(this.data, this.curLiveEpisode, {super.key});
+  const DefaultGridSection(this.data, {super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -36,25 +37,29 @@ class DefaultGridSection extends StatelessWidget {
         size: data.gridSize,
         sectionItems: data.items.items,
         showSecondaryTitle: data.metadata?.secondaryTitles ?? true,
-        curLiveEpisode: curLiveEpisode,
       ),
     );
   }
 }
 
-class GridSectionList extends StatelessWidget {
+class GridSectionList extends ConsumerStatefulWidget {
   const GridSectionList({
     super.key,
     required this.size,
     required this.sectionItems,
     this.showSecondaryTitle = true,
-    this.curLiveEpisode,
   });
 
   final Enum$GridSectionSize size;
   final List<Fragment$GridSectionItem> sectionItems;
   final bool showSecondaryTitle;
-  final Fragment$Episode? curLiveEpisode;
+
+  @override
+  ConsumerState<GridSectionList> createState() => _GridSectionListState();
+}
+
+class _GridSectionListState extends ConsumerState<GridSectionList> {
+  Fragment$Episode? curLiveEpisode;
 
   Widget getItemWidget(Fragment$GridSectionItem sectionItem) {
     var episode = sectionItem.item.asOrNull<Fragment$GridSectionItem$item$$Episode>();
@@ -62,7 +67,7 @@ class GridSectionList extends StatelessWidget {
       return _GridEpisodeItem(
         sectionItem: sectionItem,
         episode: episode,
-        showSecondaryTitle: showSecondaryTitle,
+        showSecondaryTitle: widget.showSecondaryTitle,
         isLive: sectionItem.id == curLiveEpisode?.id,
       );
     }
@@ -75,8 +80,16 @@ class GridSectionList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final colSize = _columnSize[size] ?? _columnSize[Enum$GridSectionSize.half]!;
-    final items = sectionItems
+    ref.listen<AsyncValue<Fragment$CalendarDayEntries$entries$$EpisodeCalendarEntry?>>(currentLiveEpisodeProvider, (prevEntry, curEntry) {
+      curEntry.whenData((episodeEntry) {
+        if (episodeEntry?.episode != curLiveEpisode) {
+          setState(() => curLiveEpisode = episodeEntry?.episode);
+        }
+      });
+    });
+
+    final colSize = _columnSize[widget.size] ?? _columnSize[Enum$GridSectionSize.half]!;
+    final items = widget.sectionItems
         .where((element) => element.item is Fragment$GridSectionItem$item$$Episode || element.item is Fragment$GridSectionItem$item$$Show)
         .toList();
     final rowSize = (items.length / colSize).ceil();
@@ -159,7 +172,6 @@ class _GridEpisodeItem extends StatelessWidget {
   }
 
   Widget sectionItemImage() {
-    final featuredTag = getFeaturedTag(publishDate: episode.publishDate, isLive: isLive);
     return Container(
       margin: const EdgeInsets.only(bottom: 4),
       width: double.infinity,
@@ -207,16 +219,12 @@ class _GridEpisodeItem extends StatelessWidget {
                   ),
                 ),
               ),
-            Positioned(
-              top: -4,
-              right: -4,
-              child: AnimatedOpacity(
-                opacity: featuredTag != null ? 1 : 0,
-                duration: const Duration(milliseconds: 700),
-                curve: Curves.easeInOut,
-                child: featuredTag,
+            if (getFeaturedTag(publishDate: episode.publishDate, isLive: isLive) != null)
+              Positioned(
+                top: -4,
+                right: -4,
+                child: getFeaturedTag(publishDate: episode.publishDate, isLive: isLive)!,
               ),
-            ),
           ],
         ),
       ),

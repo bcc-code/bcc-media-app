@@ -1,9 +1,8 @@
 import 'dart:math';
 
-import 'package:auto_route/auto_route.dart';
 import 'package:brunstadtv_app/components/section_item_click_wrapper.dart';
-import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../graphql/queries/calendar_episode_entries.graphql.dart';
 import '../l10n/app_localizations.dart';
@@ -16,19 +15,25 @@ import '../helpers/btv_buttons.dart';
 import '../helpers/btv_typography.dart';
 import '../helpers/image_utils.dart';
 import '../helpers/transparent_image.dart';
-import '../router/router.gr.dart';
+import '../providers/todays_calendar_entries.dart';
 
-class FeaturedSection extends StatelessWidget {
+class FeaturedSection extends ConsumerStatefulWidget {
   final Fragment$Section$$FeaturedSection data;
-  final Fragment$Episode? curLiveEpisode;
 
-  const FeaturedSection(this.data, this.curLiveEpisode, {super.key});
+  const FeaturedSection(this.data, {super.key});
+
+  @override
+  ConsumerState<FeaturedSection> createState() => _FeaturedSectionState();
+}
+
+class _FeaturedSectionState extends ConsumerState<FeaturedSection> {
+  Fragment$Episode? curLiveEpisode;
 
   List<Fragment$Section$$FeaturedSection$items$items> getItemsWithLiveItem(List<Fragment$Section$$FeaturedSection$items$items> items) {
-    if (data.metadata == null || curLiveEpisode == null) {
+    if (widget.data.metadata == null || curLiveEpisode == null) {
       return items;
     }
-    if (data.metadata!.prependLiveElement || true) {
+    if (widget.data.metadata!.prependLiveElement || true) {
       return [
         Fragment$Section$$FeaturedSection$items$items(
           id: curLiveEpisode!.id,
@@ -52,10 +57,18 @@ class FeaturedSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    ref.listen<AsyncValue<Fragment$CalendarDayEntries$entries$$EpisodeCalendarEntry?>>(currentLiveEpisodeProvider, (prevEntry, curEntry) {
+      curEntry.whenData((episodeEntry) {
+        if (episodeEntry?.episode != curLiveEpisode) {
+          setState(() => curLiveEpisode = episodeEntry?.episode);
+        }
+      });
+    });
+
     return LayoutBuilder(builder: (context, constraints) {
       const marginX = 2.0;
       final viewportFraction = (constraints.maxWidth - (32 - 2 * marginX)) / max(1, constraints.maxWidth);
-      final sectionItems = getItemsWithLiveItem(data.items.items);
+      final sectionItems = getItemsWithLiveItem(widget.data.items.items);
       return Padding(
         padding: const EdgeInsets.only(top: 16),
         child: SizedBox(

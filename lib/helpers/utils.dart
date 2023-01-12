@@ -83,7 +83,7 @@ Future<dynamic>? handleSectionItemClick(BuildContext context, Fragment$ItemSecti
   final router = context.router;
   var episodeItem = item.asOrNull<Fragment$ItemSectionItem$item$$Episode>();
   if (episodeItem != null) {
-    final curLiveEpisodeId = ref.read(currentLiveEpisode).valueOrNull?.episode?.id;
+    final curLiveEpisodeId = ref.read(currentLiveEpisodeProvider).valueOrNull?.episode?.id;
     if (curLiveEpisodeId == episodeItem.id) {
       return overrideAwareNavigation(navigationOverride, router, const LiveScreenRoute());
     }

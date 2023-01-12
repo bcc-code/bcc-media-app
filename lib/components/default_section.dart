@@ -1,11 +1,13 @@
 import 'package:brunstadtv_app/components/section_item_click_wrapper.dart';
 import 'package:brunstadtv_app/models/analytics/sections.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../graphql/queries/calendar_episode_entries.graphql.dart';
 import '../helpers/btv_colors.dart';
 import '../helpers/btv_typography.dart';
 import '../l10n/app_localizations.dart';
+import '../providers/todays_calendar_entries.dart';
 import '../services/utils.dart';
 import 'bordered_image_container.dart';
 import 'horizontal_slider.dart';
@@ -21,44 +23,58 @@ const Map<Enum$SectionSize, Size> imageSize = {
   Enum$SectionSize.medium: Size(240, 146),
 };
 
-class DefaultSection extends StatelessWidget {
+class DefaultSection extends ConsumerStatefulWidget {
   final Fragment$Section$$DefaultSection data;
-  final Fragment$Episode? curLiveEpisode;
 
-  const DefaultSection(this.data, this.curLiveEpisode, {super.key});
+  const DefaultSection(this.data, {super.key});
+
+  @override
+  ConsumerState<DefaultSection> createState() => _DefaultSectionState();
+}
+
+class _DefaultSectionState extends ConsumerState<DefaultSection> {
+  Fragment$Episode? curLiveEpisode;
 
   @override
   Widget build(BuildContext context) {
-    final items = data.items.items
+    ref.listen<AsyncValue<Fragment$CalendarDayEntries$entries$$EpisodeCalendarEntry?>>(currentLiveEpisodeProvider, (prevEntry, curEntry) {
+      curEntry.whenData((episodeEntry) {
+        if (episodeEntry?.episode != curLiveEpisode) {
+          setState(() => curLiveEpisode = episodeEntry?.episode);
+        }
+      });
+    });
+
+    final items = widget.data.items.items
         .where((element) =>
             element.item is Fragment$Section$$DefaultSection$items$items$item$$Episode ||
             element.item is Fragment$Section$$DefaultSection$items$items$item$$Show)
         .toList();
     return HorizontalSlider(
-      height: data.size == Enum$SectionSize.small ? 156 : 222,
+      height: widget.data.size == Enum$SectionSize.small ? 156 : 222,
       clipBehaviour: Clip.none,
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
       itemCount: items.length,
       itemBuilder: (BuildContext context, int index) {
         var item = items[index];
-        Widget? widget;
+        Widget? sectionItemWidget;
         if (item.item is Fragment$Section$$DefaultSection$items$items$item$$Episode) {
-          widget = _DefaultEpisodeItem(
+          sectionItemWidget = _DefaultEpisodeItem(
             sectionItem: item,
-            size: data.size,
-            showSecondaryTitle: data.metadata?.secondaryTitles ?? true,
+            size: widget.data.size,
+            showSecondaryTitle: widget.data.metadata?.secondaryTitles ?? true,
             isLive: (item.item as Fragment$ItemSectionItem$item$$Episode).id == curLiveEpisode?.id,
           );
         } else if (item.item is Fragment$Section$$DefaultSection$items$items$item$$Show) {
-          widget = _DefaultShowItem(sectionItem: item, size: data.size);
+          sectionItemWidget = _DefaultShowItem(sectionItem: item, size: widget.data.size);
         }
-        if (widget == null) {
+        if (sectionItemWidget == null) {
           return const SizedBox.shrink();
         }
         return SectionItemClickWrapper(
           item: item.item,
           analytics: SectionItemAnalytics(id: item.id, position: index, type: item.$__typename, name: item.title),
-          child: widget,
+          child: sectionItemWidget,
         );
       },
     );
@@ -128,7 +144,6 @@ class _DefaultEpisodeItem extends StatelessWidget {
   }
 
   Widget sectionItemImage() {
-    final featuredTag = getFeaturedTag(publishDate: episode.publishDate, isLive: isLive);
     return Container(
       margin: const EdgeInsets.only(bottom: 4),
       width: imageSize[size]!.width,
@@ -175,16 +190,12 @@ class _DefaultEpisodeItem extends StatelessWidget {
                 ),
               ),
             ),
-          Positioned(
-            top: -4,
-            right: -4,
-            child: AnimatedOpacity(
-              opacity: featuredTag != null ? 1 : 0,
-              duration: const Duration(milliseconds: 700),
-              curve: Curves.easeInOut,
-              child: featuredTag,
+          if (getFeaturedTag(publishDate: episode.publishDate, isLive: isLive) != null)
+            Positioned(
+              top: -4,
+              right: -4,
+              child: getFeaturedTag(publishDate: episode.publishDate, isLive: isLive)!,
             ),
-          ),
         ],
       ),
     );
