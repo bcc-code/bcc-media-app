@@ -159,7 +159,7 @@ class _PosterEpisodeItem extends StatelessWidget {
       child: Stack(
         clipBehavior: Clip.none,
         children: [
-          isUnavailable(episode.publishDate)
+          isUnavailable(episode.publishDate) && !isLive
               ? Opacity(
                   opacity: 0.5,
                   child: BorderedImageContainer(imageUrl: sectionItem.image),
