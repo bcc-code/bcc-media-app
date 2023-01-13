@@ -47,7 +47,7 @@ class SRu extends S {
   String get faq => 'Часто задаваемые вопросы';
 
   @override
-  String get bccMediaCenter => 'BCC Media is a media foundation in the BCC federation that produces and distributes content with positive and Christian values.';
+  String get bccMediaCenter => 'BCC Media — это медиа-фонд в организации BCC, который производит и распространяет контент с позитивными и христианскими ценностями.';
 
   @override
   String get signInButton => 'Войти';
@@ -214,7 +214,7 @@ class SRu extends S {
   String get high => 'Высокое';
 
   @override
-  String get emptySearch => 'You can search all content from BCC Media. Series, videos and episodes.';
+  String get emptySearch => 'Вы можете искать по всему контенту от BCC Media. Серии, фильмы и эпизоды.';
 
   @override
   String get back => 'Назад';
@@ -450,90 +450,93 @@ class SRu extends S {
   String get exploreContent => 'Исследуйте контент';
 
   @override
-  String get taskCompleted => 'task completed';
+  String get taskCompleted => 'Задание выполнено';
 
   @override
-  String get tasksCompleted => 'tasks completed';
+  String get tasksCompleted => 'Задания выполнены';
 
   @override
-  String get studyCompleteTaskDescription => 'Complete tasks and discover related resources';
+  String get studyCompleteTaskDescription => 'Выполняйте задания и открывайте соответствующие ресурсы';
 
   @override
-  String get discoverMore => 'Discover more';
+  String get discoverMore => 'Узнать больше';
 
   @override
-  String get completePreviousTasks => 'Complete previous tasks to unlock';
+  String get completePreviousTasks => 'Выполните предыдущие задания, чтобы разблокировать';
 
   @override
-  String get studyDiscoverMoreDescription => 'Find more inspiration and insight from related resources';
+  String get studyDiscoverMoreDescription => 'Получите больше вдохновения и информации из соответствующих ресурсов';
 
   @override
-  String get watchAgain => 'Watch again';
+  String get watchAgain => 'Посмотреть еще раз';
 
   @override
-  String get continueToTaskIn => 'Continue to task in';
+  String get continueToTaskIn => 'Продолжить задание в';
 
   @override
-  String get continueToTasksIn => 'Continue to tasks in';
+  String get continueToTasksIn => 'Продолжайте выполнять задания в';
 
   @override
-  String get studyLessonCompleted => 'lesson completed';
+  String get studyLessonCompleted => 'урок завершен';
 
   @override
-  String get studyLessonsCompleted => 'lessons completed';
+  String get studyLessonsCompleted => 'уроки завершены';
 
   @override
-  String get continueStudy => 'Continue study';
+  String get continueStudy => 'Продолжить обучение';
 
   @override
-  String get startStudy => 'Start study';
+  String get startStudy => 'Начать обучение';
 
   @override
-  String get videoCompletedText => 'Great job on completing the video.';
+  String get videoCompletedText => 'Отличная работа по завершенному видео.';
 
   @override
-  String get achievementFirstDescription => 'Great job on completing the video and earning your first progress achievement.';
+  String get achievementFirstDescription => 'Отличная работа по завершенному видео и получению первого достижения.';
 
   @override
   String achievementStudyTopic(String name) {
-    return 'Great job on completing the study topic $name';
+    return 'Отличная работа по завершению темы исследования $name';
   }
 
   @override
   String videoCount(int count) {
-    return '$count videos';
+    return '$count видео';
   }
 
   @override
   String taskCount(int count) {
-    return '$count tasks';
+    return '$count заданий';
   }
 
   @override
   String posterCount(int count) {
-    return '$count posters';
+    return '$count постер(ов)\n';
   }
 
   @override
   String resourceCount(int count) {
-    return '$count resources';
+    return '$count ресурсов';
   }
 
   @override
-  String get continueButton => 'Continue';
+  String get continueButton => 'Продолжить';
 
   @override
-  String get achievements => 'Achievements';
+  String get achievements => 'Достижения';
 
   @override
-  String get oops => 'Oops!';
+  String get oops => 'Ой!';
 
   @override
-  String get dontHaveAccess => 'You do not have access to this content.';
+  String get dontHaveAccess => 'У вас нет доступа к этому контенту.';
 
   @override
-  String get mustBeLoggedIn => 'You need to be logged in to watch this content';
+  String get mustBeLoggedIn => 'Вы должны войти в систему, чтобы смотреть этот контент';
 
   @override
-  String get plentyOfOtherContent => 'Don\'t worry, there\'s still plenty of content to enjoy!';
+  String get plentyOfOtherContent => 'Не волнуйтесь, впереди еще много интересного!';
+
+  @override
+  String get notAchieved => 'Not achieved';
 }

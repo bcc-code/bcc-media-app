@@ -1148,6 +1148,12 @@ abstract class S {
   /// In en, this message translates to:
   /// **'Don\'t worry, there\'s still plenty of content to enjoy!'**
   String get plentyOfOtherContent;
+
+  /// A label indicating that this achievement has not been achieved yet.
+  ///
+  /// In en, this message translates to:
+  /// **'Not achieved'**
+  String get notAchieved;
 }
 
 class _SDelegate extends LocalizationsDelegate<S> {

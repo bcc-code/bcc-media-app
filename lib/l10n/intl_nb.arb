@@ -623,7 +623,7 @@
   "@discoverMore": {
     "description": "Generic button text."
   },
-  "completePreviousTasks": "Complete previous tasks to unlock",
+  "completePreviousTasks": "Fullfør tidligere oppgaver for å låse opp",
   "@completePreviousTasks": {
     "description": "Shown on a locked button, short explanation why the button is locked."
   },

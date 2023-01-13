@@ -462,7 +462,7 @@ class SFi extends S {
   String get discoverMore => 'Löydä lisää';
 
   @override
-  String get completePreviousTasks => 'Complete previous tasks to unlock';
+  String get completePreviousTasks => 'Avaa suorittamalla edellinen tehtävä';
 
   @override
   String get studyDiscoverMoreDescription => 'Löydä aiheeseen liittyvää inspiroivaa ja valaisevaa sisältöä';
@@ -536,4 +536,7 @@ class SFi extends S {
 
   @override
   String get plentyOfOtherContent => 'Mutta ei syytä huoleen. On edelleen paljon mitä voit katsella.';
+
+  @override
+  String get notAchieved => 'Not achieved';
 }
