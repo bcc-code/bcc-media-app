@@ -1,11 +1,11 @@
 class ScrollToTopRequestEvent {
-  String tab;
-  ScrollToTopRequestEvent(this.tab);
+  final NavTab tab;
+  const ScrollToTopRequestEvent(this.tab);
 }
 
-enum Tab {
+enum NavTab {
   home,
   search,
-  live, 
-  calendar
+  live,
+  calendar,
 }

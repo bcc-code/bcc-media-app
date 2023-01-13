@@ -12,7 +12,7 @@ import '../helpers/btv_colors.dart';
 import '../helpers/btv_typography.dart';
 import '../helpers/event_bus.dart';
 import '../l10n/app_localizations.dart';
-import '../models/events/scroll_to_top.dart' as tab;
+import '../models/events/scroll_to_top.dart';
 import '../providers/analytics.dart';
 import '../providers/app_config.dart';
 
@@ -111,7 +111,7 @@ class _CustomTabBarState extends ConsumerState<CustomTabBar> {
               if (widget.tabsRouter.activeIndex == index) {
                 final current = widget.tabsRouter.current;
                 if (widget.tabsRouter.stackRouterOfIndex(index)?.stack.length == 1) {
-                  globalEventBus.fire(tab.ScrollToTopRequestEvent(tab.Tab.values.elementAt(index).name));
+                  globalEventBus.fire(ScrollToTopRequestEvent(NavTab.values.elementAt(index)));
                 } else {
                   widget.tabsRouter.stackRouterOfIndex(index)?.popUntilRoot();
                 }

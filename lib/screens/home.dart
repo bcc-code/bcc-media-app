@@ -3,14 +3,13 @@ import 'dart:io';
 import 'dart:ui';
 
 import 'package:auto_route/auto_route.dart';
-import 'package:brunstadtv_app/helpers/event_bus.dart';
 import 'package:brunstadtv_app/helpers/svg_icons.dart';
 import 'package:brunstadtv_app/helpers/utils.dart';
 import 'package:brunstadtv_app/helpers/version_number_utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import 'package:brunstadtv_app/models/events/scroll_to_top.dart' as tab;
+import '../models/events/scroll_to_top.dart';
 import 'package:bccm_player/cast_button.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:package_info_plus/package_info_plus.dart';
@@ -39,8 +38,6 @@ class _HomeScreenState extends ConsumerState<HomeScreen> with PageMixin {
   late ProviderSubscription<Future<Query$Application?>> _appConfigListener;
   bool tooltipDismissed = false;
   String loginError = '';
-  ScrollController? scrollController;
-
 
   @override
   void initState() {
@@ -49,10 +46,6 @@ class _HomeScreenState extends ConsumerState<HomeScreen> with PageMixin {
     showDialogIfOldAppVersion();
     _appConfigListener = ref.listenManual<Future<Query$Application?>>(appConfigProvider, (prev, next) async {
       showDialogIfOldAppVersion();
-    });
-
-    globalEventBus.on<tab.ScrollToTopRequestEvent>().listen((event) {
-    event.tab == 'home' ? scrollController?.animateTo(0, duration: const Duration(milliseconds: 300), curve: Curves.decelerate) : null;
     });
   }
 
@@ -163,13 +156,14 @@ class _HomeScreenState extends ConsumerState<HomeScreen> with PageMixin {
           body: SafeArea(
             top: false,
             child: BccmPage(
-              scrollController: scrollController,
-                pageFuture: pageResult.future,
-                onRefresh: ({bool? retry}) async {
-                  setState(() {
-                    pageResult = wrapInCompleter(retry == true ? getHomeAndAppConfig() : getHomePage());
-                  });
-                }),
+              pageFuture: pageResult.future,
+              onRefresh: ({bool? retry}) async {
+                setState(() {
+                  pageResult = wrapInCompleter(retry == true ? getHomeAndAppConfig() : getHomePage());
+                });
+              },
+              navTabPage: NavTab.home,
+            ),
           ),
         ),
       ],
