@@ -6,6 +6,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../graphql/client.dart';
 import '../graphql/queries/episode.graphql.dart';
 import '../graphql/queries/studies.graphql.dart';
+import '../providers/analytics.dart';
 import '../router/router.gr.dart';
 import 'navigation_override.dart';
 import 'utils.dart';
@@ -58,6 +59,11 @@ Future<dynamic>? navigateToShowWithoutEpisodeId(BuildContext context, String sho
 
 Future<dynamic>? navigateToStudyTopic(BuildContext context, String topicId) async {
   // TODO: nothing is as permanent as a temporary solution lol
+
+  final ref = ProviderScope.containerOf(context, listen: false);
+  final analytics = ref.read(analyticsProvider);
+  analytics.sectionItemClicked(context);
+
   debugPrint('navigateToShowWithoutEpisodeId');
   final navigationOverride = NavigationOverride.of(context);
   final router = context.router;
