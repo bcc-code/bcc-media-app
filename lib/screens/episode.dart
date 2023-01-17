@@ -6,6 +6,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:bccm_player/playback_platform_pigeon.g.dart';
 import 'package:brunstadtv_app/components/default_grid_section.dart';
 import 'package:brunstadtv_app/components/error_generic.dart';
+import 'package:brunstadtv_app/components/loading_generic.dart';
 import 'package:brunstadtv_app/components/loading_indicator.dart';
 import 'package:brunstadtv_app/components/season_episode_list.dart';
 import 'package:brunstadtv_app/components/feature_badge.dart';
@@ -249,6 +250,7 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen> with AutoRouteAwa
     final casting = ref.watch(isCasting);
     final playerProvider = casting ? castPlayerProvider : primaryPlayerProvider;
     final player = ref.watch(playerProvider);
+
     final currentPosSeconds = ((player?.playbackPositionMs ?? 0) / 1000).round();
     final formattedPosition = getFormattedDuration(currentPosSeconds, padFirstSegment: true);
 
@@ -256,6 +258,14 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen> with AutoRouteAwa
       ref.read(playbackApiProvider).pause(player.playerId);
     }
 
+    showModalBottomSheet(
+      useRootNavigator: true,
+      context: context,
+      builder: (ctx) => _shareVideoProcess(ctx, episode, currentPosSeconds, formattedPosition),
+    );
+  }
+
+  Widget _shareVideoProcess(BuildContext ctx, Query$FetchEpisode$episode episode, int currentPosSeconds, String formattedPosition) {
     var options = [
       Option(
         id: 'fromStart',
@@ -269,55 +279,111 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen> with AutoRouteAwa
       ),
     ];
 
-    showModalBottomSheet(
-      useRootNavigator: true,
-      context: context,
-      builder: (ctx) => BottomSheetSelect(
-        title: S.of(context).share,
-        description: episode.shareRestriction == Enum$ShareRestriction.public
-            ? null
-            : Padding(
-                padding: EdgeInsets.only(bottom: 16),
-                child: Row(
-                  children: [
-                    Padding(padding: EdgeInsets.all(4), child: SvgPicture.string(SvgIcons.infoCircle)),
-                    Expanded(
-                      child: Padding(
-                        padding: EdgeInsets.only(left: 8, right: 16),
-                        child: Text(
-                          'This video is only accessible to users that are logged in to the app.',
-                          style: BtvTextStyles.caption1.copyWith(color: BtvColors.label2),
-                        ),
+    var builder = BottomSheetSelect(
+      title: S.of(context).share,
+      description: episode.shareRestriction == Enum$ShareRestriction.public
+          ? null
+          : Padding(
+              padding: EdgeInsets.only(bottom: 16),
+              child: Row(
+                children: [
+                  Padding(padding: EdgeInsets.all(4), child: SvgPicture.string(SvgIcons.infoCircle)),
+                  Expanded(
+                    child: Padding(
+                      padding: EdgeInsets.only(left: 8, right: 16),
+                      child: Text(
+                        'This video is only accessible to users that are logged in to the app.',
+                        style: BtvTextStyles.caption1.copyWith(color: BtvColors.label2),
                       ),
-                    )
-                  ],
-                ),
+                    ),
+                  )
+                ],
               ),
-        selectedId: 'fromStart',
-        items: options,
-        showSelection: false,
-        onSelectionChanged: (id) {
-          var episodeUrl = 'https://app.bcc.media/episode/${widget.episodeId}';
+            ),
+      selectedId: 'fromStart',
+      items: options,
+      showSelection: false,
+      onSelectionChanged: (id) {
+        var episodeUrl = 'https://app.bcc.media/episode/${widget.episodeId}';
+
+        // showModalBottomSheet(
+        //   context: context,
+        //   builder: (BuildContext context) {
+        //     return Center(
+        //       child: LoadingGeneric(),
+        //     );
+        //   },
+        // );
+
+        // AbsorbPointer(
+        //     child: Stack(children: <Widget>[
+        //   Positioned(
+        //     top: 0,
+        //     left: 0,
+        //     right: 0,
+        //     bottom: 0,
+        //     child: CircularProgressIndicator(color: Colors.yellow),
+        //   ),
+        // ]));
+
+        Future _shareFuture = Future(() async {
+          showModalBottomSheet(
+            context: context,
+            builder: (BuildContext context) {
+              return Center(
+                child: LoadingGeneric(),
+              );
+            },
+          );
+          // Future.delayed(Duration(seconds: 4), () async {
           if (id == 'fromStart') {
-            Share.share(
+            await Share.share(
               episodeUrl,
               sharePositionOrigin: iPadSharePositionOrigin(context),
             );
+            print("finished fromStart");
           } else {
-            Share.share(
+            await Share.share(
               '$episodeUrl?t=$currentPosSeconds',
               sharePositionOrigin: iPadSharePositionOrigin(context),
             );
+            print("finished fromRANDOM");
           }
-          ref.read(analyticsProvider).contentShared(ContentSharedEvent(
-                pageCode: 'episode',
-                elementType: 'episode',
-                elementId: widget.episodeId,
-                position: id == 'fromStart' ? null : currentPosSeconds,
-              ));
-        },
-      ),
+          // });
+        });
+
+        Future.delayed(Duration(milliseconds: 200), () async {
+          Navigator.pop(context);
+        });
+
+        // _shareFuture.whenComplete(() => Navigator.pop(context));
+
+        // _shareFuture.then((value) => Navigator.pop(context));
+
+        // Future shareFuture = Future.delayed(Duration(seconds: 2), () async {
+        //   if (id == 'fromStart') {
+        //     await Share.share(
+        //       episodeUrl,
+        //       sharePositionOrigin: iPadSharePositionOrigin(context),
+        //     );
+        //   } else {
+        //     await Share.share(
+        //       '$episodeUrl?t=$currentPosSeconds',
+        //       sharePositionOrigin: iPadSharePositionOrigin(context),
+        //     );
+        //   }
+        //   Navigator.pop(context);
+        // });
+
+        ref.read(analyticsProvider).contentShared(ContentSharedEvent(
+              pageCode: 'episode',
+              elementType: 'episode',
+              elementId: widget.episodeId,
+              position: id == 'fromStart' ? null : currentPosSeconds,
+            ));
+      },
     );
+    return builder;
   }
 
   @override
@@ -368,6 +434,7 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen> with AutoRouteAwa
   }
 
   Widget _loading() {
+    print("_loading triggered !!!!!!!!!!!!!!!!!!!!!");
     return Column(
       children: [
         AspectRatio(aspectRatio: 16 / 9, child: Container(color: BtvColors.background2)),
@@ -475,7 +542,7 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen> with AutoRouteAwa
                                             onTap: () async {
                                               if (data!.episode.lessons.items[0].locked) return;
                                               await context.router.root
-                                                  .push(StudyScreenRoute(episodeId: episode.id, lessonId: data!.episode.lessons.items[0].id));
+                                                  .push(StudyScreenRoute(episodeId: episode.id, lessonId: data.episode.lessons.items[0].id));
                                               if (mounted) {
                                                 setState(() {
                                                   lessonProgressFuture = loadLessonsForEpisode();
