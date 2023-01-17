@@ -284,13 +284,13 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen> with AutoRouteAwa
       description: episode.shareRestriction == Enum$ShareRestriction.public
           ? null
           : Padding(
-              padding: EdgeInsets.only(bottom: 16),
+              padding: const EdgeInsets.only(bottom: 16),
               child: Row(
                 children: [
-                  Padding(padding: EdgeInsets.all(4), child: SvgPicture.string(SvgIcons.infoCircle)),
+                  Padding(padding: const EdgeInsets.all(4), child: SvgPicture.string(SvgIcons.infoCircle)),
                   Expanded(
                     child: Padding(
-                      padding: EdgeInsets.only(left: 8, right: 16),
+                      padding: const EdgeInsets.only(left: 8, right: 16),
                       child: Text(
                         'This video is only accessible to users that are logged in to the app.',
                         style: BtvTextStyles.caption1.copyWith(color: BtvColors.label2),
@@ -306,74 +306,29 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen> with AutoRouteAwa
       onSelectionChanged: (id) {
         var episodeUrl = 'https://app.bcc.media/episode/${widget.episodeId}';
 
-        // showModalBottomSheet(
-        //   context: context,
-        //   builder: (BuildContext context) {
-        //     return Center(
-        //       child: LoadingGeneric(),
-        //     );
-        //   },
-        // );
-
-        // AbsorbPointer(
-        //     child: Stack(children: <Widget>[
-        //   Positioned(
-        //     top: 0,
-        //     left: 0,
-        //     right: 0,
-        //     bottom: 0,
-        //     child: CircularProgressIndicator(color: Colors.yellow),
-        //   ),
-        // ]));
-
-        Future _shareFuture = Future(() async {
+        Future shareFuture = Future(() async {
           showModalBottomSheet(
             context: context,
             builder: (BuildContext context) {
-              return Center(
+              return const Center(
                 child: LoadingGeneric(),
               );
             },
           );
-          // Future.delayed(Duration(seconds: 4), () async {
           if (id == 'fromStart') {
             await Share.share(
               episodeUrl,
               sharePositionOrigin: iPadSharePositionOrigin(context),
             );
-            print("finished fromStart");
           } else {
             await Share.share(
               '$episodeUrl?t=$currentPosSeconds',
               sharePositionOrigin: iPadSharePositionOrigin(context),
             );
-            print("finished fromRANDOM");
           }
-          // });
         });
 
-        Future.delayed(Duration(milliseconds: 200), () async {
-          Navigator.pop(context);
-        });
-
-        // _shareFuture.whenComplete(() => Navigator.pop(context));
-
-        // _shareFuture.then((value) => Navigator.pop(context));
-
-        // Future shareFuture = Future.delayed(Duration(seconds: 2), () async {
-        //   if (id == 'fromStart') {
-        //     await Share.share(
-        //       episodeUrl,
-        //       sharePositionOrigin: iPadSharePositionOrigin(context),
-        //     );
-        //   } else {
-        //     await Share.share(
-        //       '$episodeUrl?t=$currentPosSeconds',
-        //       sharePositionOrigin: iPadSharePositionOrigin(context),
-        //     );
-        //   }
-        //   Navigator.pop(context);
-        // });
+        shareFuture.then((value) => Navigator.pop(context));
 
         ref.read(analyticsProvider).contentShared(ContentSharedEvent(
               pageCode: 'episode',
@@ -434,7 +389,6 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen> with AutoRouteAwa
   }
 
   Widget _loading() {
-    print("_loading triggered !!!!!!!!!!!!!!!!!!!!!");
     return Column(
       children: [
         AspectRatio(aspectRatio: 16 / 9, child: Container(color: BtvColors.background2)),
