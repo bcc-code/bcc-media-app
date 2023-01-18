@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:auto_route/auto_route.dart';
 import 'package:brunstadtv_app/helpers/utils.dart';
+import 'package:brunstadtv_app/models/scroll_screen.dart';
 import 'package:brunstadtv_app/providers/auth_state.dart';
 import 'package:brunstadtv_app/screens/search/search.dart';
 import 'package:flutter/cupertino.dart';
@@ -10,9 +11,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../helpers/btv_colors.dart';
 import '../helpers/btv_typography.dart';
-import '../helpers/event_bus.dart';
 import '../l10n/app_localizations.dart';
-import '../models/events/scroll_to_top.dart';
 import '../providers/analytics.dart';
 import '../providers/app_config.dart';
 
@@ -109,11 +108,14 @@ class _CustomTabBarState extends ConsumerState<CustomTabBar> {
             onTap: (index) {
               // here we switch between tabs
               if (widget.tabsRouter.activeIndex == index) {
-                final current = widget.tabsRouter.current;
-                if (widget.tabsRouter.stackRouterOfIndex(index)?.stack.length == 1) {
-                  globalEventBus.fire(ScrollToTopRequestEvent(NavTab.values.elementAt(index)));
+                final stackRouterOfIndex = widget.tabsRouter.stackRouterOfIndex(index);
+                if (stackRouterOfIndex?.stack.length == 1) {
+                  final screenState = widget.tabsRouter.topPage?.child.key?.asOrNull<GlobalKey>()?.currentState.asOrNull<ScrollScreen>();
+                  if (screenState != null) {
+                    screenState.scrollToTop();
+                  }
                 } else {
-                  widget.tabsRouter.stackRouterOfIndex(index)?.popUntilRoot();
+                  stackRouterOfIndex?.popUntilRoot();
                 }
               } else {
                 sendAnalytics(index);

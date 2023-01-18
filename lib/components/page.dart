@@ -14,7 +14,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../graphql/queries/page.graphql.dart';
 import '../helpers/utils.dart';
-import '../models/events/scroll_to_top.dart';
 import '../models/pagination_status.dart';
 import '../providers/inherited_data.dart';
 import 'card_section.dart';
@@ -31,7 +30,6 @@ import 'icon_grid_section.dart';
 import 'list_section.dart';
 import 'page_section.dart';
 import 'web_section.dart';
-import '../helpers/event_bus.dart';
 
 /// How close to the bottom of the page do you have to be before we load more items
 const kLoadMoreBottomScrollOffset = 300;
@@ -42,39 +40,26 @@ const kItemsToFetchForPagination = 20;
 class BccmPage extends ConsumerStatefulWidget {
   final Future<Query$Page$page> pageFuture;
   final Future Function({bool? retry}) onRefresh;
-  final NavTab? navTabPage; // If this page is one of the main pages shown on the navigation tabs, listen to 'scroll to top' event .
+  final ScrollController? scrollController;
 
   const BccmPage({
     super.key,
     required this.pageFuture,
     required this.onRefresh,
-    this.navTabPage,
+    this.scrollController,
   });
 
   @override
-  ConsumerState<BccmPage> createState() => _BccmPageState();
+  ConsumerState<BccmPage> createState() => _BccmPageState(scrollController ?? ScrollController());
 }
 
 class _BccmPageState extends ConsumerState<BccmPage> {
   GlobalKey<State<FutureBuilder<Query$Page$page>>> futureBuilderKey = GlobalKey();
   Map<String, PaginationStatus<Fragment$ItemSectionItem>> paginationMap = {};
   bool loadingBottomSectionItems = false;
-  final scrollController = ScrollController();
+  final ScrollController scrollController;
 
-  @override
-  void initState() {
-    super.initState();
-    setScrollToTopListener();
-  }
-
-  void setScrollToTopListener() {
-    if (widget.navTabPage != null) {
-      globalEventBus
-          .on<ScrollToTopRequestEvent>()
-          .where((event) => event.tab == widget.navTabPage)
-          .listen((_) => scrollController.animateTo(0, duration: const Duration(milliseconds: 500), curve: Curves.decelerate));
-    }
-  }
+  _BccmPageState(this.scrollController);
 
   Widget? _getSectionWidget(Fragment$Section s) {
     final extraItems = paginationMap[s.id]?.items;

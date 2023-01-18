@@ -6,10 +6,10 @@ import 'package:auto_route/auto_route.dart';
 import 'package:brunstadtv_app/helpers/svg_icons.dart';
 import 'package:brunstadtv_app/helpers/utils.dart';
 import 'package:brunstadtv_app/helpers/version_number_utils.dart';
+import 'package:brunstadtv_app/models/scroll_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../models/events/scroll_to_top.dart';
 import 'package:bccm_player/cast_button.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:package_info_plus/package_info_plus.dart';
@@ -28,16 +28,17 @@ import '../providers/app_config.dart';
 final logo = Image.asset('assets/images/logo.png');
 
 class HomeScreen extends ConsumerStatefulWidget {
-  const HomeScreen({Key? key}) : super(key: key);
+  HomeScreen({Key? key}) : super(key: key ?? GlobalKey<HomeScreenState>());
 
   @override
-  ConsumerState<HomeScreen> createState() => _HomeScreenState();
+  ConsumerState<HomeScreen> createState() => HomeScreenState();
 }
 
-class _HomeScreenState extends ConsumerState<HomeScreen> with PageMixin {
+class HomeScreenState extends ConsumerState<HomeScreen> with PageMixin implements ScrollScreen {
   late ProviderSubscription<Future<Query$Application?>> _appConfigListener;
   bool tooltipDismissed = false;
   String loginError = '';
+  final pageScrollController = ScrollController();
 
   @override
   void initState() {
@@ -47,6 +48,11 @@ class _HomeScreenState extends ConsumerState<HomeScreen> with PageMixin {
     _appConfigListener = ref.listenManual<Future<Query$Application?>>(appConfigProvider, (prev, next) async {
       showDialogIfOldAppVersion();
     });
+  }
+
+  @override
+  void scrollToTop() {
+    pageScrollController.animateTo(0, duration: const Duration(milliseconds: 500), curve: Curves.decelerate);
   }
 
   @override
@@ -162,7 +168,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> with PageMixin {
                   pageResult = wrapInCompleter(retry == true ? getHomeAndAppConfig() : getHomePage());
                 });
               },
-              navTabPage: NavTab.home,
+              scrollController: pageScrollController,
             ),
           ),
         ),
