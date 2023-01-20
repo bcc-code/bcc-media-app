@@ -59,11 +59,6 @@ Future<dynamic>? navigateToShowWithoutEpisodeId(BuildContext context, String sho
 
 Future<dynamic>? navigateToStudyTopic(BuildContext context, String topicId) async {
   // TODO: nothing is as permanent as a temporary solution lol
-
-  final ref = ProviderScope.containerOf(context, listen: false);
-  final analytics = ref.read(analyticsProvider);
-  analytics.sectionItemClicked(context);
-
   debugPrint('navigateToShowWithoutEpisodeId');
   final navigationOverride = NavigationOverride.of(context);
   final router = context.router;
@@ -82,5 +77,10 @@ Future<dynamic>? navigateToStudyTopic(BuildContext context, String topicId) asyn
   if (episodeId == null) {
     throw ErrorHint('Failed finding an episode to navigate to for topic $topicId');
   }
+
+  final ref = ProviderScope.containerOf(context, listen: false);
+  final analytics = ref.read(analyticsProvider);
+  analytics.sectionItemClicked(context);
+
   return overrideAwareNavigation(navigationOverride, router, EpisodeScreenRoute(episodeId: episodeId));
 }
