@@ -175,7 +175,7 @@ packages:
       sha256: "59e08b0079bb75f7e27392498e26339387c1089c6bd58525a14eb8508637277b"
       url: "https://pub.dev"
     source: hosted
-    version: "8.4.2"
+    version: "8.4.3"
   characters:
     dependency: transitive
     description:
@@ -399,7 +399,7 @@ packages:
       sha256: "9c05f1024086568b3fd99c2e7c6382443d5024b612538b20ccfc867be0b5c16a"
       url: "https://pub.dev"
     source: hosted
-    version: "3.0.9"
+    version: "3.0.10"
   firebase_crashlytics_platform_interface:
     dependency: transitive
     description:
@@ -439,7 +439,7 @@ packages:
       sha256: e00102509bff080d004e7e82fc15b97d8369be64fe4ea0224d133acc38998d1f
       url: "https://pub.dev"
     source: hosted
-    version: "0.9.0+9"
+    version: "0.9.0+10"
   firebase_performance_platform_interface:
     dependency: transitive
     description:
@@ -469,6 +469,13 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+  flutter_dotenv:
+    dependency: transitive
+    description:
+      name: flutter_dotenv
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "5.0.2"
   flutter_hooks:
     dependency: transitive
     description:
@@ -883,7 +890,7 @@ packages:
       sha256: "52e38f7e1143ef39daf532117d6b8f8f617bf4bcd6044ed8c29040d20d269630"
       url: "https://pub.dev"
     source: hosted
-    version: "1.0.3"
+    version: "1.0.4"
   mockito:
     dependency: "direct main"
     description:
@@ -1027,7 +1034,7 @@ packages:
       sha256: "2a97e7fbb7ae9dcd0dfc1220a78e9ec3e71da691912e617e8715ff2a13086ae8"
       url: "https://pub.dev"
     source: hosted
-    version: "2.0.6"
+    version: "2.0.7"
   path_provider_platform_interface:
     dependency: transitive
     description:
@@ -1195,7 +1202,7 @@ packages:
       sha256: "647e2c5738f57b2e634b46f47eed32c025c19a33ed398f7fffec9750b2252652"
       url: "https://pub.dev"
     source: hosted
-    version: "2.1.1"
+    version: "2.2.0"
   rudder_plugin_ios:
     dependency: transitive
     description:
@@ -1203,7 +1210,7 @@ packages:
       sha256: "89f115d147aa0b4f9de4e05ea8eab00fcbc9f0f5bc153f6aa610c396ebd445b9"
       url: "https://pub.dev"
     source: hosted
-    version: "2.1.1"
+    version: "2.2.0"
   rudder_plugin_web:
     dependency: transitive
     description:
@@ -1211,7 +1218,7 @@ packages:
       sha256: "1c633b20e7443a1706df3c34740f74e141d1553b098d7fe41af56002cc2b1adb"
       url: "https://pub.dev"
     source: hosted
-    version: "2.1.2"
+    version: "2.2.0"
   rudder_sdk_flutter:
     dependency: "direct main"
     description:
@@ -1219,7 +1226,7 @@ packages:
       sha256: "5392d7c7a00c77da63000605e8e91851cb2c148e8e7077a9d138c5a493904fba"
       url: "https://pub.dev"
     source: hosted
-    version: "2.2.0"
+    version: "2.3.0"
   rudder_sdk_flutter_platform_interface:
     dependency: "direct main"
     description:
@@ -1227,7 +1234,7 @@ packages:
       sha256: "2ac4d911b871326dfd2bee5b56e1dc2500ab9d819fff924481f6924b6fc0cb21"
       url: "https://pub.dev"
     source: hosted
-    version: "2.2.0"
+    version: "2.3.0"
   rxdart:
     dependency: transitive
     description:
@@ -1275,7 +1282,7 @@ packages:
       sha256: "76917b7d4b9526b2ba416808a7eb9fb2863c1a09cf63ec85f1453da240fa818a"
       url: "https://pub.dev"
     source: hosted
-    version: "2.0.15"
+    version: "2.0.16"
   shared_preferences_android:
     dependency: transitive
     description:
@@ -1284,12 +1291,11 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.0.14"
-  shared_preferences_ios:
+  shared_preferences_foundation:
     dependency: transitive
     description:
-      name: shared_preferences_ios
-      sha256: "585a14cefec7da8c9c2fb8cd283a3bb726b4155c0952afe6a0caaa7b2272de34"
-      url: "https://pub.dev"
+      name: shared_preferences_foundation
+      url: "https://pub.dartlang.org"
     source: hosted
     version: "2.1.1"
   shared_preferences_linux:
@@ -1300,14 +1306,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.1.2"
-  shared_preferences_macos:
-    dependency: transitive
-    description:
-      name: shared_preferences_macos
-      sha256: "81b6a60b2d27020eb0fc41f4cebc91353047309967901a79ee8203e40c42ed46"
-      url: "https://pub.dev"
-    source: hosted
-    version: "2.0.5"
   shared_preferences_platform_interface:
     dependency: transitive
     description:
@@ -1584,7 +1582,7 @@ packages:
       sha256: "3a969ddcc204a3e34e863d204b29c0752716f78b6f9cc8235083208d268a4ccd"
       url: "https://pub.dev"
     source: hosted
-    version: "2.2.0"
+    version: "2.0.0"
   webview_flutter:
     dependency: "direct main"
     description:
@@ -1632,7 +1630,7 @@ packages:
       sha256: "11541eedefbcaec9de35aa82650b695297ce668662bbd6e3911a7fabdbde589f"
       url: "https://pub.dev"
     source: hosted
-    version: "0.2.0+2"
+    version: "0.2.0+3"
   xml:
     dependency: transitive
     description:
