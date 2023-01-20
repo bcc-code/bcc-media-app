@@ -16,7 +16,6 @@ import '../graphql/queries/page.graphql.dart';
 import '../helpers/utils.dart';
 import '../models/pagination_status.dart';
 import '../providers/inherited_data.dart';
-import 'achievement_list.dart';
 import 'card_section.dart';
 import 'featured_section.dart';
 import 'default_grid_section.dart';
@@ -41,22 +40,26 @@ const kItemsToFetchForPagination = 20;
 class BccmPage extends ConsumerStatefulWidget {
   final Future<Query$Page$page> pageFuture;
   final Future Function({bool? retry}) onRefresh;
+  final ScrollController? scrollController;
 
   const BccmPage({
     super.key,
     required this.pageFuture,
     required this.onRefresh,
+    this.scrollController,
   });
 
   @override
-  ConsumerState<BccmPage> createState() => _BccmPageState();
+  ConsumerState<BccmPage> createState() => _BccmPageState(scrollController ?? ScrollController());
 }
 
 class _BccmPageState extends ConsumerState<BccmPage> {
   GlobalKey<State<FutureBuilder<Query$Page$page>>> futureBuilderKey = GlobalKey();
   Map<String, PaginationStatus<Fragment$ItemSectionItem>> paginationMap = {};
-  ScrollController scrollController = ScrollController();
   bool loadingBottomSectionItems = false;
+  final ScrollController scrollController;
+
+  _BccmPageState(this.scrollController);
 
   Widget? _getSectionWidget(Fragment$Section s) {
     final extraItems = paginationMap[s.id]?.items;

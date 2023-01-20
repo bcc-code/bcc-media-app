@@ -149,9 +149,11 @@ class AppRouter extends _i22.RootStackRouter {
       );
     },
     PublicHomeRoute.name: (routeData) {
+      final args = routeData.argsAs<PublicHomeRouteArgs>(
+          orElse: () => const PublicHomeRouteArgs());
       return _i22.CustomPage<void>(
         routeData: routeData,
-        child: const _i10.HomeScreen(),
+        child: _i10.HomeScreen(key: args.key),
         maintainState: false,
         durationInMilliseconds: 500,
         reverseDurationInMilliseconds: 500,
@@ -342,9 +344,10 @@ class AppRouter extends _i22.RootStackRouter {
       );
     },
     Home.name: (routeData) {
+      final args = routeData.argsAs<HomeArgs>(orElse: () => const HomeArgs());
       return _i22.CustomPage<void>(
         routeData: routeData,
-        child: const _i10.HomeScreen(),
+        child: _i10.HomeScreen(key: args.key),
         opaque: true,
         barrierDismissible: false,
       );
@@ -704,14 +707,26 @@ class FAQRoute extends _i22.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i10.HomeScreen]
-class PublicHomeRoute extends _i22.PageRouteInfo<void> {
-  const PublicHomeRoute()
+class PublicHomeRoute extends _i22.PageRouteInfo<PublicHomeRouteArgs> {
+  PublicHomeRoute({_i23.Key? key})
       : super(
           PublicHomeRoute.name,
           path: '/public-home',
+          args: PublicHomeRouteArgs(key: key),
         );
 
   static const String name = 'PublicHomeRoute';
+}
+
+class PublicHomeRouteArgs {
+  const PublicHomeRouteArgs({this.key});
+
+  final _i23.Key? key;
+
+  @override
+  String toString() {
+    return 'PublicHomeRouteArgs{key: $key}';
+  }
 }
 
 /// generated route for
@@ -1071,14 +1086,26 @@ class PageScreenRouteArgs {
 
 /// generated route for
 /// [_i10.HomeScreen]
-class Home extends _i22.PageRouteInfo<void> {
-  const Home()
+class Home extends _i22.PageRouteInfo<HomeArgs> {
+  Home({_i23.Key? key})
       : super(
           Home.name,
           path: '',
+          args: HomeArgs(key: key),
         );
 
   static const String name = 'Home';
+}
+
+class HomeArgs {
+  const HomeArgs({this.key});
+
+  final _i23.Key? key;
+
+  @override
+  String toString() {
+    return 'HomeArgs{key: $key}';
+  }
 }
 
 /// generated route for

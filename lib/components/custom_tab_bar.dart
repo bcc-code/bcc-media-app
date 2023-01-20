@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:auto_route/auto_route.dart';
 import 'package:brunstadtv_app/helpers/utils.dart';
+import 'package:brunstadtv_app/models/scroll_screen.dart';
 import 'package:brunstadtv_app/providers/auth_state.dart';
 import 'package:brunstadtv_app/screens/search/search.dart';
 import 'package:flutter/cupertino.dart';
@@ -107,8 +108,15 @@ class _CustomTabBarState extends ConsumerState<CustomTabBar> {
             onTap: (index) {
               // here we switch between tabs
               if (widget.tabsRouter.activeIndex == index) {
-                final current = widget.tabsRouter.current;
-                widget.tabsRouter.stackRouterOfIndex(index)?.popUntilRoot();
+                final stackRouterOfIndex = widget.tabsRouter.stackRouterOfIndex(index);
+                if (stackRouterOfIndex?.stack.length == 1) {
+                  final screenState = widget.tabsRouter.topPage?.child.key?.asOrNull<GlobalKey>()?.currentState.asOrNull<ScrollScreen>();
+                  if (screenState != null) {
+                    screenState.scrollToTop();
+                  }
+                } else {
+                  stackRouterOfIndex?.popUntilRoot();
+                }
               } else {
                 sendAnalytics(index);
               }
