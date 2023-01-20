@@ -23,35 +23,22 @@ const Map<Enum$SectionSize, Size> imageSize = {
   Enum$SectionSize.medium: Size(240, 146),
 };
 
-class DefaultSection extends ConsumerStatefulWidget {
+class DefaultSection extends ConsumerWidget {
   final Fragment$Section$$DefaultSection data;
 
   const DefaultSection(this.data, {super.key});
 
   @override
-  ConsumerState<DefaultSection> createState() => _DefaultSectionState();
-}
+  Widget build(BuildContext context, WidgetRef ref) {
+    Fragment$Episode? curLiveEpisode = ref.watch(currentLiveEpisodeProvider)?.episode;
 
-class _DefaultSectionState extends ConsumerState<DefaultSection> {
-  Fragment$Episode? curLiveEpisode;
-
-  @override
-  Widget build(BuildContext context) {
-    ref.listen<AsyncValue<Fragment$CalendarDayEntries$entries$$EpisodeCalendarEntry?>>(currentLiveEpisodeProvider, (prevEntry, curEntry) {
-      curEntry.whenData((episodeEntry) {
-        if (episodeEntry?.episode != curLiveEpisode) {
-          setState(() => curLiveEpisode = episodeEntry?.episode);
-        }
-      });
-    });
-
-    final items = widget.data.items.items
+    final items = data.items.items
         .where((element) =>
             element.item is Fragment$Section$$DefaultSection$items$items$item$$Episode ||
             element.item is Fragment$Section$$DefaultSection$items$items$item$$Show)
         .toList();
     return HorizontalSlider(
-      height: widget.data.size == Enum$SectionSize.small ? 156 : 222,
+      height: data.size == Enum$SectionSize.small ? 156 : 222,
       clipBehaviour: Clip.none,
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
       itemCount: items.length,
@@ -61,12 +48,12 @@ class _DefaultSectionState extends ConsumerState<DefaultSection> {
         if (item.item is Fragment$Section$$DefaultSection$items$items$item$$Episode) {
           sectionItemWidget = _DefaultEpisodeItem(
             sectionItem: item,
-            size: widget.data.size,
-            showSecondaryTitle: widget.data.metadata?.secondaryTitles ?? true,
+            size: data.size,
+            showSecondaryTitle: data.metadata?.secondaryTitles ?? true,
             isLive: (item.item as Fragment$ItemSectionItem$item$$Episode).id == curLiveEpisode?.id,
           );
         } else if (item.item is Fragment$Section$$DefaultSection$items$items$item$$Show) {
-          sectionItemWidget = _DefaultShowItem(sectionItem: item, size: widget.data.size);
+          sectionItemWidget = _DefaultShowItem(sectionItem: item, size: data.size);
         }
         if (sectionItemWidget == null) {
           return const SizedBox.shrink();

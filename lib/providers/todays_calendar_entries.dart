@@ -18,7 +18,7 @@ final todaysCalendarEpisodesProvider = FutureProvider<Query$CalendarDayEpisodeEn
   return await ref.read(apiProvider).getCalendarDayEpisodes(DateTime.now());
 });
 
-final currentLiveEpisodeProvider = FutureProvider<Fragment$CalendarDayEntries$entries$$EpisodeCalendarEntry?>((ref) async {
+final currentLiveEpisodeFutureProvider = FutureProvider<Fragment$CalendarDayEntries$entries$$EpisodeCalendarEntry?>((ref) async {
   await ref.watch(_timerProvider(const Duration(seconds: 5)).future);
   final todaysEpisodes = await ref.watch(todaysCalendarEpisodesProvider.future);
   if (todaysEpisodes == null) {
@@ -30,4 +30,8 @@ final currentLiveEpisodeProvider = FutureProvider<Fragment$CalendarDayEntries$en
     }
   }
   return null;
+});
+
+final currentLiveEpisodeProvider = StateProvider<Fragment$CalendarDayEntries$entries$$EpisodeCalendarEntry?>((ref) {
+  return ref.watch(currentLiveEpisodeFutureProvider).valueOrNull;
 });

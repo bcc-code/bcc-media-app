@@ -1,6 +1,5 @@
 import 'package:brunstadtv_app/components/section_item_click_wrapper.dart';
 import 'package:brunstadtv_app/models/analytics/sections.dart';
-import 'package:brunstadtv_app/providers/inherited_data.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -42,7 +41,7 @@ class DefaultGridSection extends StatelessWidget {
   }
 }
 
-class GridSectionList extends ConsumerStatefulWidget {
+class GridSectionList extends ConsumerWidget {
   const GridSectionList({
     super.key,
     required this.size,
@@ -54,20 +53,13 @@ class GridSectionList extends ConsumerStatefulWidget {
   final List<Fragment$GridSectionItem> sectionItems;
   final bool showSecondaryTitle;
 
-  @override
-  ConsumerState<GridSectionList> createState() => _GridSectionListState();
-}
-
-class _GridSectionListState extends ConsumerState<GridSectionList> {
-  Fragment$Episode? curLiveEpisode;
-
-  Widget getItemWidget(Fragment$GridSectionItem sectionItem) {
+  Widget getItemWidget(Fragment$GridSectionItem sectionItem, Fragment$Episode? curLiveEpisode) {
     var episode = sectionItem.item.asOrNull<Fragment$GridSectionItem$item$$Episode>();
     if (episode != null) {
       return _GridEpisodeItem(
         sectionItem: sectionItem,
         episode: episode,
-        showSecondaryTitle: widget.showSecondaryTitle,
+        showSecondaryTitle: showSecondaryTitle,
         isLive: sectionItem.id == curLiveEpisode?.id,
       );
     }
@@ -79,17 +71,11 @@ class _GridSectionListState extends ConsumerState<GridSectionList> {
   }
 
   @override
-  Widget build(BuildContext context) {
-    ref.listen<AsyncValue<Fragment$CalendarDayEntries$entries$$EpisodeCalendarEntry?>>(currentLiveEpisodeProvider, (prevEntry, curEntry) {
-      curEntry.whenData((episodeEntry) {
-        if (episodeEntry?.episode != curLiveEpisode) {
-          setState(() => curLiveEpisode = episodeEntry?.episode);
-        }
-      });
-    });
+  Widget build(BuildContext context, WidgetRef ref) {
+    Fragment$Episode? curLiveEpisode = ref.watch(currentLiveEpisodeProvider)?.episode;
 
-    final colSize = _columnSize[widget.size] ?? _columnSize[Enum$GridSectionSize.half]!;
-    final items = widget.sectionItems
+    final colSize = _columnSize[size] ?? _columnSize[Enum$GridSectionSize.half]!;
+    final items = sectionItems
         .where((element) => element.item is Fragment$GridSectionItem$item$$Episode || element.item is Fragment$GridSectionItem$item$$Show)
         .toList();
     final rowSize = (items.length / colSize).ceil();
@@ -103,7 +89,7 @@ class _GridSectionListState extends ConsumerState<GridSectionList> {
           return SectionItemClickWrapper(
             item: kv.value.item,
             analytics: SectionItemAnalytics(id: kv.value.id, position: kv.key, type: kv.value.$__typename, name: kv.value.title),
-            child: getItemWidget(kv.value),
+            child: getItemWidget(kv.value, curLiveEpisode),
           );
         }).toList(),
         colSize: colSize,

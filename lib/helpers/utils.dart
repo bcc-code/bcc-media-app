@@ -1,8 +1,6 @@
 import 'dart:async';
 
 import 'package:auto_route/auto_route.dart';
-import 'package:brunstadtv_app/graphql/client.dart';
-import 'package:brunstadtv_app/graphql/queries/episode.graphql.dart';
 import 'package:brunstadtv_app/providers/analytics.dart';
 import 'package:brunstadtv_app/providers/todays_calendar_entries.dart';
 import 'package:flutter/widgets.dart';
@@ -83,7 +81,7 @@ Future<dynamic>? handleSectionItemClick(BuildContext context, Fragment$ItemSecti
   final router = context.router;
   var episodeItem = item.asOrNull<Fragment$ItemSectionItem$item$$Episode>();
   if (episodeItem != null) {
-    final curLiveEpisodeId = ref.read(currentLiveEpisodeProvider).valueOrNull?.episode?.id;
+    final curLiveEpisodeId = ref.read(currentLiveEpisodeProvider)?.episode?.id;
     if (curLiveEpisodeId == episodeItem.id) {
       return overrideAwareNavigation(navigationOverride, router, const LiveScreenRoute());
     }

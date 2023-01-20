@@ -6,7 +6,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../graphql/queries/calendar_episode_entries.graphql.dart';
 import '../helpers/btv_colors.dart';
 import '../helpers/btv_typography.dart';
-import '../helpers/utils.dart';
 import '../graphql/queries/page.graphql.dart';
 import '../graphql/schema/pages.graphql.dart';
 import '../providers/todays_calendar_entries.dart';
@@ -27,38 +26,25 @@ const Map<Enum$SectionSize, double> sliderHeight = {
   Enum$SectionSize.medium: 400,
 };
 
-class PosterSection extends ConsumerStatefulWidget {
+class PosterSection extends ConsumerWidget {
   final Fragment$Section$$PosterSection data;
 
   const PosterSection(this.data, {super.key});
 
   @override
-  ConsumerState<PosterSection> createState() => _PosterSectionState();
-}
+  Widget build(BuildContext context, WidgetRef ref) {
+    Fragment$Episode? curLiveEpisode = ref.watch(currentLiveEpisodeProvider)?.episode;
 
-class _PosterSectionState extends ConsumerState<PosterSection> {
-  Fragment$Episode? curLiveEpisode;
-
-  @override
-  Widget build(BuildContext context) {
-    ref.listen<AsyncValue<Fragment$CalendarDayEntries$entries$$EpisodeCalendarEntry?>>(currentLiveEpisodeProvider, (prevEntry, curEntry) {
-      curEntry.whenData((episodeEntry) {
-        if (episodeEntry?.episode != curLiveEpisode) {
-          setState(() => curLiveEpisode = episodeEntry?.episode);
-        }
-      });
-    });
-
-    if (widget.data.size == Enum$SectionSize.$unknown) {
+    if (data.size == Enum$SectionSize.$unknown) {
       return const SizedBox.shrink();
     }
-    var items = widget.data.items.items
+    var items = data.items.items
         .where((element) =>
             element.item is Fragment$Section$$PosterSection$items$items$item$$Episode ||
             element.item is Fragment$Section$$PosterSection$items$items$item$$Show)
         .toList();
     return HorizontalSlider(
-      height: sliderHeight[widget.data.size]!,
+      height: sliderHeight[data.size]!,
       clipBehaviour: Clip.none,
       padding: const EdgeInsets.symmetric(horizontal: 16),
       itemCount: items.length,
@@ -68,12 +54,12 @@ class _PosterSectionState extends ConsumerState<PosterSection> {
         if (item.item is Fragment$Section$$PosterSection$items$items$item$$Episode) {
           sectionItemWidget = _PosterEpisodeItem(
             sectionItem: item,
-            size: widget.data.size,
-            showSecondaryTitle: widget.data.metadata?.secondaryTitles ?? true,
+            size: data.size,
+            showSecondaryTitle: data.metadata?.secondaryTitles ?? true,
             isLive: curLiveEpisode?.id == item.id,
           );
         } else if (item.item is Fragment$Section$$PosterSection$items$items$item$$Show) {
-          sectionItemWidget = _PosterShowItem(sectionItem: item, size: widget.data.size);
+          sectionItemWidget = _PosterShowItem(sectionItem: item, size: data.size);
         }
         if (sectionItemWidget == null) {
           return const SizedBox.shrink();

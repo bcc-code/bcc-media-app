@@ -7,7 +7,6 @@ import '../graphql/queries/page.graphql.dart';
 import '../graphql/schema/pages.graphql.dart';
 import '../helpers/btv_colors.dart';
 import '../helpers/btv_typography.dart';
-import '../helpers/utils.dart';
 import '../l10n/app_localizations.dart';
 import '../models/analytics/sections.dart';
 import '../providers/todays_calendar_entries.dart';
@@ -25,23 +24,19 @@ const Map<Enum$GridSectionSize, int> _columnSize = {
   Enum$GridSectionSize.half: 2,
 };
 
-class PosterGridSection extends ConsumerStatefulWidget {
+class PosterGridSection extends ConsumerWidget {
   final Fragment$Section$$PosterGridSection data;
 
   const PosterGridSection(this.data, {super.key});
 
-  @override
-  ConsumerState<PosterGridSection> createState() => _PosterGridSectionState();
-}
-
-class _PosterGridSectionState extends ConsumerState<PosterGridSection> {
-  Fragment$Episode? curLiveEpisode;
-
-  Widget getItemWidget(Fragment$Section$$PosterGridSection$items$items sectionItem) {
+  Widget getItemWidget(
+    Fragment$Section$$PosterGridSection$items$items sectionItem,
+    Fragment$Episode? curLiveEpisode,
+  ) {
     if (sectionItem.item is Fragment$Section$$PosterGridSection$items$items$item$$Episode) {
       return _GridEpisodeItem(
         sectionItem: sectionItem,
-        showSecondaryTitle: widget.data.metadata?.secondaryTitles ?? true,
+        showSecondaryTitle: data.metadata?.secondaryTitles ?? true,
         isLive: sectionItem.id == curLiveEpisode?.id,
       );
     } else if (sectionItem.item is Fragment$Section$$PosterGridSection$items$items$item$$Show) {
@@ -51,18 +46,12 @@ class _PosterGridSectionState extends ConsumerState<PosterGridSection> {
   }
 
   @override
-  Widget build(BuildContext context) {
-    ref.listen<AsyncValue<Fragment$CalendarDayEntries$entries$$EpisodeCalendarEntry?>>(currentLiveEpisodeProvider, (prevEntry, curEntry) {
-      curEntry.whenData((episodeEntry) {
-        if (episodeEntry?.episode != curLiveEpisode) {
-          setState(() => curLiveEpisode = episodeEntry?.episode);
-        }
-      });
-    });
+  Widget build(BuildContext context, WidgetRef ref) {
+    Fragment$Episode? curLiveEpisode = ref.watch(currentLiveEpisodeProvider)?.episode;
 
-    final colSize = _columnSize[widget.data.gridSize] ?? _columnSize[Enum$GridSectionSize.half]!;
+    final colSize = _columnSize[data.gridSize] ?? _columnSize[Enum$GridSectionSize.half]!;
 
-    final items = widget.data.items.items
+    final items = data.items.items
         .where((element) =>
             element.item is Fragment$Section$$PosterGridSection$items$items$item$$Episode ||
             element.item is Fragment$Section$$PosterGridSection$items$items$item$$Show)
@@ -79,7 +68,7 @@ class _PosterGridSectionState extends ConsumerState<PosterGridSection> {
           return SectionItemClickWrapper(
             item: kv.value.item,
             analytics: SectionItemAnalytics(id: kv.value.id, position: kv.key, type: kv.value.$__typename, name: kv.value.title),
-            child: getItemWidget(kv.value),
+            child: getItemWidget(kv.value, curLiveEpisode),
           );
         }).toList(),
         colSize: colSize,

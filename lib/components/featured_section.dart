@@ -17,23 +17,19 @@ import '../helpers/image_utils.dart';
 import '../helpers/transparent_image.dart';
 import '../providers/todays_calendar_entries.dart';
 
-class FeaturedSection extends ConsumerStatefulWidget {
+class FeaturedSection extends ConsumerWidget {
   final Fragment$Section$$FeaturedSection data;
 
   const FeaturedSection(this.data, {super.key});
 
-  @override
-  ConsumerState<FeaturedSection> createState() => _FeaturedSectionState();
-}
-
-class _FeaturedSectionState extends ConsumerState<FeaturedSection> {
-  Fragment$Episode? curLiveEpisode;
-
-  List<Fragment$Section$$FeaturedSection$items$items> getItemsWithLiveItem(List<Fragment$Section$$FeaturedSection$items$items> items) {
-    if (widget.data.metadata == null || curLiveEpisode == null) {
+  List<Fragment$Section$$FeaturedSection$items$items> getItemsWithLiveItem(
+    List<Fragment$Section$$FeaturedSection$items$items> items,
+    Fragment$Episode? curLiveEpisode,
+  ) {
+    if (data.metadata == null || curLiveEpisode == null) {
       return items;
     }
-    if (widget.data.metadata!.prependLiveElement) {
+    if (data.metadata!.prependLiveElement) {
       return [
         Fragment$Section$$FeaturedSection$items$items(
           id: curLiveEpisode!.id,
@@ -56,19 +52,13 @@ class _FeaturedSectionState extends ConsumerState<FeaturedSection> {
   }
 
   @override
-  Widget build(BuildContext context) {
-    ref.listen<AsyncValue<Fragment$CalendarDayEntries$entries$$EpisodeCalendarEntry?>>(currentLiveEpisodeProvider, (prevEntry, curEntry) {
-      curEntry.whenData((episodeEntry) {
-        if (episodeEntry?.episode != curLiveEpisode) {
-          setState(() => curLiveEpisode = episodeEntry?.episode);
-        }
-      });
-    });
+  Widget build(BuildContext context, WidgetRef ref) {
+    Fragment$Episode? curLiveEpisode = ref.watch(currentLiveEpisodeProvider)?.episode;
 
     return LayoutBuilder(builder: (context, constraints) {
       const marginX = 2.0;
       final viewportFraction = (constraints.maxWidth - (32 - 2 * marginX)) / max(1, constraints.maxWidth);
-      final sectionItems = getItemsWithLiveItem(widget.data.items.items);
+      final sectionItems = getItemsWithLiveItem(data.items.items, curLiveEpisode);
       return Padding(
         padding: const EdgeInsets.only(top: 16),
         child: SizedBox(
