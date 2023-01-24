@@ -90,11 +90,9 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen> with AutoRouteAwa
   @override
   void didUpdateWidget(old) {
     super.didUpdateWidget(old);
+    scrollCompleter = wrapInCompleter(scrollController.animateTo(0, duration: const Duration(milliseconds: 600), curve: Curves.easeOutExpo));
     if (old.episodeId == widget.episodeId) return;
     loadEpisode();
-    setState(() {
-      scrollCompleter = wrapInCompleter(scrollController.animateTo(0, duration: const Duration(milliseconds: 600), curve: Curves.easeOutExpo));
-    });
   }
 
   @override
@@ -108,7 +106,7 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen> with AutoRouteAwa
       var episode = await episodeFuture;
       if (!mounted || episode == null) return;
 
-      playEpisode(playerId: player!.playerId, autoplay: false, episode: episode, playbackPositionMs: event.playbackPositionMs);
+      playEpisode(playerId: player!.playerId, autoplay: widget.autoplay, episode: episode, playbackPositionMs: event.playbackPositionMs);
     });
   }
 
@@ -209,7 +207,7 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen> with AutoRouteAwa
 
     setState(() {
       playerSetupCompleter = wrapInCompleter(
-          playEpisode(playerId: player.playerId, episode: episode, autoplay: true, playbackPositionMs: startPositionSeconds * 1000)
+          playEpisode(playerId: player.playerId, episode: episode, autoplay: widget.autoplay, playbackPositionMs: startPositionSeconds * 1000)
               .timeout(const Duration(milliseconds: 12000)));
     });
   }
