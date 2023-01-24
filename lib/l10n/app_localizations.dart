@@ -1154,6 +1154,12 @@ abstract class S {
   /// In en, this message translates to:
   /// **'Not achieved'**
   String get notAchieved;
+
+  /// A tab name on the episode page which has some extra details about the episode: release date, age rating, etc.
+  ///
+  /// In en, this message translates to:
+  /// **'Details'**
+  String get details;
 }
 
 class _SDelegate extends LocalizationsDelegate<S> {
