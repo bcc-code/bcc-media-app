@@ -2,6 +2,7 @@ import UIKit
 import Flutter
 import FirebaseCore
 import AVKit
+import bccm_player
 
 @UIApplicationMain
 @objc class AppDelegate: FlutterAppDelegate {
@@ -51,17 +52,21 @@ import AVKit
         return flutterResult
     }
     
+    
     override func application(_ application: UIApplication,
                      supportedInterfaceOrientationsFor window: UIWindow?) -> UIInterfaceOrientationMask {
-
+        debugPrint("supportedInterfaceOrientationsFor")
+        if (StaticState.shared.transitioningToFullscreen) {
+            return .landscapeLeft
+        }
         if fetchCurrentVC(self.window?.rootViewController) is AVPlayerViewController {
             return .allButUpsideDown
         }
-        return .portrait
+        return .allButUpsideDown
     }
 
     func fetchCurrentVC(_ viewController: UIViewController?) -> UIViewController? {
-
+        debugPrint("viewController: " + viewController.debugDescription)
         if let tabBarController = viewController as? UITabBarController {
             return fetchCurrentVC(tabBarController.selectedViewController)
         }

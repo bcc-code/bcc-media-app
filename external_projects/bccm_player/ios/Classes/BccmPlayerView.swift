@@ -63,8 +63,6 @@ class AVPlayerBccmPlayerView: NSObject, FlutterPlatformView {
         _playerController = playerController
         super.init()
 
-        // iOS views can be created here
-
         createNativeView()
         if #available(iOS 13.0, *) {
             NotificationCenter.default.addObserver(self, selector: #selector(willResignActive), name: UIScene.didEnterBackgroundNotification, object: nil)
@@ -76,13 +74,11 @@ class AVPlayerBccmPlayerView: NSObject, FlutterPlatformView {
     }
     
     @objc func willResignActive(_ notification: Notification) {
-        // code to execute
         print ("willResignActive")
         reset()
     }
     
     @objc func willBecomeActive(_ notification: Notification) {
-        // code to execute
         print ("willBecomeActive")
         createNativeView()
         perform(#selector(pipFix), with: nil, afterDelay: 1)
@@ -101,8 +97,6 @@ class AVPlayerBccmPlayerView: NSObject, FlutterPlatformView {
         }
         playerViewController = nil
         print("deinit playerview done")
-
-        //_playerController?.player?.pause()
     }
 
     func createNativeView() {
@@ -129,22 +123,24 @@ class AVPlayerBccmPlayerView: NSObject, FlutterPlatformView {
         }
         
         if let playerViewController = playerViewController {
-            //let player = AVPlayer(url: URL(string: _url)!)
             playerViewController.view.frame = _view.frame
             playerViewController.showsPlaybackControls = true
             playerViewController.delegate = _playerController
             playerViewController.exitsFullScreenWhenPlaybackEnds = true
             playerViewController.allowsPictureInPicturePlayback = true
             playerViewController.updatesNowPlayingInfoCenter = false
+            if #available(iOS 16.0, *) {
+                var speeds = AVPlaybackSpeed.systemDefaultSpeeds;
+                speeds.append(AVPlaybackSpeed(rate: 0.75, localizedName: "0.75x"))
+                speeds.sort { $0.rate < $1.rate }
+                playerViewController.speeds = speeds
+            }
             if #available(iOS 14.2, *) {
                 playerViewController.canStartPictureInPictureAutomaticallyFromInline = true
             }
-    //
-    //        let pipController = AVPictureInPictureController(playerLayer: playerViewController.view.layer as! AVPlayerLayer)
+            
             
             _view.addSubview(playerViewController.view)
-            //_view.addSubview(nativeLabel)
-
             _playerController.takeOwnership(playerViewController)
         }
     }
@@ -168,24 +164,4 @@ class AVPlayerBccmPlayerView: NSObject, FlutterPlatformView {
         playerViewController = nil
     }
     
-    var vc: UIViewController? = nil
-    
-    
-    func asdplayerViewControllerWillStartPictureInPicture(_ playerViewController: AVPlayerViewController) {
-        let viewController = (UIApplication.shared.delegate?.window??.rootViewController)!
-        vc = UIViewController()
-        let nativeLabel = UILabel()
-        nativeLabel.text = "Showing in pip"
-        nativeLabel.textColor = UIColor.white
-        nativeLabel.textAlignment = .center
-        nativeLabel.frame = CGRect(x: 0, y: 0, width: 180, height: 48.0)
-        nativeLabel.center = CGPoint(x: viewController.view.frame.size.width  / 2,
-                                     y: viewController.view.frame.size.height / 2)
-        vc?.view.addSubview(nativeLabel)
-        vc?.modalPresentationStyle = .fullScreen //or .overFullScreen for transparency
-        viewController.present(vc!, animated: true, completion: nil)
-    }
-    func asdplayerViewControllerWillStopPictureInPicture(_ playerViewController: AVPlayerViewController) {
-        vc?.dismiss(animated: false)
-    }
 }

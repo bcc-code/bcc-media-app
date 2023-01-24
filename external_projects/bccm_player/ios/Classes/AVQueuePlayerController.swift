@@ -70,6 +70,32 @@ public class AVQueuePlayerController: NSObject, PlayerController, AVPlayerViewCo
         }
     }
     
+    
+    
+    public func playerViewController(_ playerViewController: AVPlayerViewController, willBeginFullScreenPresentationWithAnimationCoordinator coordinator: UIViewControllerTransitionCoordinator) {
+        print("willBeginFullScreenPresentationWithAnimationCoordinator")
+        StaticState.shared.transitioningToFullscreen = true
+        
+        if #available(iOS 16.0, *) {
+            playerViewController.setNeedsUpdateOfSupportedInterfaceOrientations()
+        }
+        //DeviceOrientation.shared.set(orientation: .landscapeRight)
+        
+        coordinator.animate(alongsideTransition: { _ in  }, completion: {
+                    _ in
+            StaticState.shared.transitioningToFullscreen = false
+                if #available(iOS 16.0, *) {
+                    playerViewController.setNeedsUpdateOfSupportedInterfaceOrientations()
+                }
+            debugPrint("portrait:"  + DeviceOrientation.shared.isPortrait.description)
+                if UIScreen.main.bounds.width < UIScreen.main.bounds.height {
+                    debugPrint("portrait")
+                    
+                   //DeviceOrientation.shared.set(orientation: .landscapeRight)
+                }
+        })
+    }
+    
     public func playerViewControllerWillStartPictureInPicture(_ playerViewController: AVPlayerViewController) {
         print("bccm: audiosession category willstart: " + AVAudioSession.sharedInstance().category.rawValue)
         registerPipController(playerViewController)
@@ -220,6 +246,23 @@ public class AVQueuePlayerController: NSObject, PlayerController, AVPlayerViewCo
 //            pipController = nil
 //        }
         playerViewController.player = player
+        observers.append(playerViewController.observe(\.videoBounds, options: [.old, .new]) {
+            (value, change) in
+            print("videoBounds changed")
+            if let oldValue = change.oldValue, oldValue != CGRect.zero, let newValue = change.newValue {
+                // no need to track the initial bounds change, and only changes
+                if !oldValue.equalTo(CGRect.zero), !oldValue.equalTo(newValue) {
+                    print("videoBounds changed really")
+                    if newValue.size.height < UIScreen.main.bounds.height {
+                       print("videoBounds normal screen")
+                    } else {
+                        debugPrint("videbounds portrait:"  + DeviceOrientation.shared.isPortrait.description)
+                       DeviceOrientation.shared.set(orientation: .landscapeRight)
+                       print("videoBounds fullscreen")
+                    }
+                }
+            }
+        });
     }
     
     func createPlayerItem(_ mediaItem: MediaItem, _ completion: @escaping (AVPlayerItem?) -> Void ) {
