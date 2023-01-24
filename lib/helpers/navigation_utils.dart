@@ -6,6 +6,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../graphql/client.dart';
 import '../graphql/queries/episode.graphql.dart';
 import '../graphql/queries/studies.graphql.dart';
+import '../providers/analytics.dart';
 import '../router/router.gr.dart';
 import 'navigation_override.dart';
 import 'utils.dart';
@@ -76,5 +77,10 @@ Future<dynamic>? navigateToStudyTopic(BuildContext context, String topicId) asyn
   if (episodeId == null) {
     throw ErrorHint('Failed finding an episode to navigate to for topic $topicId');
   }
+
+  final ref = ProviderScope.containerOf(context, listen: false);
+  final analytics = ref.read(analyticsProvider);
+  analytics.sectionItemClicked(context);
+
   return overrideAwareNavigation(navigationOverride, router, EpisodeScreenRoute(episodeId: episodeId));
 }
