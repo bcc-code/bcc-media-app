@@ -106,7 +106,7 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen> with AutoRouteAwa
       var episode = await episodeFuture;
       if (!mounted || episode == null) return;
 
-      playEpisode(playerId: player!.playerId, autoplay: widget.autoplay, episode: episode, playbackPositionMs: event.playbackPositionMs);
+      playEpisode(playerId: player!.playerId, autoplay: false, episode: episode, playbackPositionMs: event.playbackPositionMs);
     });
   }
 
@@ -207,7 +207,7 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen> with AutoRouteAwa
 
     setState(() {
       playerSetupCompleter = wrapInCompleter(
-          playEpisode(playerId: player.playerId, episode: episode, autoplay: widget.autoplay, playbackPositionMs: startPositionSeconds * 1000)
+          playEpisode(playerId: player.playerId, episode: episode, autoplay: true, playbackPositionMs: startPositionSeconds * 1000)
               .timeout(const Duration(milliseconds: 12000)));
     });
   }
