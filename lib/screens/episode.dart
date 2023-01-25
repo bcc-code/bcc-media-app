@@ -90,11 +90,9 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen> with AutoRouteAwa
   @override
   void didUpdateWidget(old) {
     super.didUpdateWidget(old);
+    scrollCompleter = wrapInCompleter(scrollController.animateTo(0, duration: const Duration(milliseconds: 600), curve: Curves.easeOutExpo));
     if (old.episodeId == widget.episodeId) return;
     loadEpisode();
-    setState(() {
-      scrollCompleter = wrapInCompleter(scrollController.animateTo(0, duration: const Duration(milliseconds: 600), curve: Curves.easeOutExpo));
-    });
   }
 
   @override
