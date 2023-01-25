@@ -136,6 +136,12 @@ class AVPlayerBccmPlayerView: NSObject, FlutterPlatformView {
             playerViewController.exitsFullScreenWhenPlaybackEnds = true
             playerViewController.allowsPictureInPicturePlayback = true
             playerViewController.updatesNowPlayingInfoCenter = false
+            if #available(iOS 16.0, *) {
+                var speeds = AVPlaybackSpeed.systemDefaultSpeeds;
+                speeds.append(AVPlaybackSpeed(rate: 0.75, localizedName: "0.75x"))
+                speeds.sort { $0.rate < $1.rate }
+                playerViewController.speeds = speeds
+            }
             if #available(iOS 14.2, *) {
                 playerViewController.canStartPictureInPictureAutomaticallyFromInline = true
             }

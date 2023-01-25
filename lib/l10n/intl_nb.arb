@@ -207,7 +207,7 @@
   "@play": {
     "description": "Option in prompt dialog."
   },
-  "castQueue": "Kø",
+  "castQueue": "Legg til i kø",
   "@castQueue": {
     "description": "Queue page title"
   },
@@ -219,7 +219,7 @@
   "@remove": {
     "description": "Option in options dialog"
   },
-  "queueLimitTitle": "Købegrensing Title",
+  "queueLimitTitle": "Købegrensing",
   "@queueLimitTitle": {
     "description": "Title of the alert to the user when attempt to add video to cast queue failed due to full queue."
   },
@@ -232,15 +232,15 @@
       }
     }
   },
-  "recentSearches": "Siste søk",
+  "recentSearches": "Nylige søk",
   "@recentSearches": {
     "description": "Recent searches list title."
   },
-  "tVLogin": "TV Login",
+  "tVLogin": "TV-innlogging",
   "@tVLogin": {
     "description": "Title of the TV login alert"
   },
-  "tVLoginSuccessful": "Du er nå logget inn, vennligst bekreft på TVen",
+  "tVLoginSuccessful": "Du er nå logget inn, vennligst bekreft på TV-en",
   "@tVLoginSuccessful": {
     "description": "Message of the TV login alert"
   },
@@ -248,7 +248,7 @@
   "@seeMore": {
     "description": "Button on featured item to navigete to page with player"
   },
-  "seeAll": "Se alle",
+  "seeAll": "Se alt",
   "@seeAll": {
     "description": "Button to see all of some collection."
   },
@@ -264,7 +264,7 @@
   "@sortBy": {
     "description": "Sorting criteria selector"
   },
-  "videoQuality": "Video kvalitet",
+  "videoQuality": "Videokvalitet",
   "@videoQuality": {
     "description": "Settings item in profile page for Android."
   },
@@ -308,7 +308,7 @@
   "@shortFilms": {
     "description": "Title of the films collection."
   },
-  "videos": "Filmer",
+  "videos": "Videoer",
   "@videos": {
     "description": "Followed by number of videos"
   },
@@ -328,7 +328,7 @@
   "@takePhoto": {
     "description": "Option in menu"
   },
-  "pickPhoto": "Hent fra galleri",
+  "pickPhoto": "Velg fra galleri",
   "@pickPhoto": {
     "description": "Option in menu"
   },
@@ -465,7 +465,7 @@
   "@profilePicture": {
     "description": "Text on edit profile page."
   },
-  "timezoneInformation": "Tv-guide tidstabell er i din lokale tid: {timeZone}",
+  "timezoneInformation": "Tidspunkter er oppgitt i din lokaltid: {timeZone}",
   "@timezoneInformation": {
     "description": "TV guide footer info text.",
     "placeholders": {
@@ -667,7 +667,7 @@
   "@achievementFirstDescription": {
     "description": "Description displayed in a popup when earning the first achievement badge."
   },
-  "achievementStudyTopic": "Gratulerer med å fullføre studietema {name}",
+  "achievementStudyTopic": "Gratulerer med å ha fullført bibelstudiet {name}",
   "@achievementStudyTopic": {
     "description": "REMEMBER: Include, but do not translate variables like {name} here. Description displayed in a popup when done with a study topic.",
     "placeholders": {
@@ -735,5 +735,13 @@
   "plentyOfOtherContent": "Fortvil ikke, det er fortsatt mye innhold du kan se!",
   "@plentyOfOtherContent": {
     "description": "Shown on an error page indiciating you dont have access to the content, right above a button that takes you back."
+  },
+  "notAchieved": "Ikke oppnådd ennå",
+  "@notAchieved": {
+    "description": "A label indicating that this achievement has not been achieved yet."
+  },
+  "details": "Detaljer",
+  "@details": {
+    "description": "A tab name on the episode page which has some extra details about the episode: release date, age rating, etc."
   }
 }

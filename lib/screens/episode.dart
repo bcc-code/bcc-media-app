@@ -524,7 +524,7 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen> with AutoRouteAwa
                                         selectedIndex: DefaultTabController.of(context)!.index,
                                         tabs: [
                                           Option(id: 'episodes', title: (S.of(context).episodes.toUpperCase())),
-                                          Option(id: 'details', title: 'Details'),
+                                          Option(id: 'details', title: (S.of(context).details.toUpperCase())),
                                         ]))),
                             Builder(builder: (context) {
                               return GestureDetector(
