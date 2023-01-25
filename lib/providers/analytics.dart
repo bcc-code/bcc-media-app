@@ -1,6 +1,8 @@
 import 'package:auth0_flutter/auth0_flutter.dart';
 import 'package:brunstadtv_app/env/env.dart';
+import 'package:brunstadtv_app/graphql/queries/achievements.graphql.dart';
 import 'package:brunstadtv_app/helpers/utils.dart';
+import 'package:brunstadtv_app/models/analytics/achievement_clicked.dart';
 import 'package:brunstadtv_app/providers/inherited_data.dart';
 import 'package:brunstadtv_app/providers/settings.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
@@ -10,6 +12,7 @@ import 'package:package_info_plus/package_info_plus.dart';
 import 'package:rudder_sdk_flutter/RudderController.dart';
 import 'package:rudder_sdk_flutter_platform_interface/platform.dart';
 
+import '../models/analytics/achievement_shared.dart';
 import '../models/analytics/audio_only_clicked.dart';
 import '../models/analytics/calendar_day_clicked.dart';
 import '../models/analytics/deep_link_opened.dart';
@@ -132,6 +135,14 @@ class Analytics {
 
   void contentShared(ContentSharedEvent event) {
     RudderController.instance.track('content_shared', properties: getCommonData().putValue(map: event.toJson()));
+  }
+
+  void achievementClicked(AchievementClickedEvent event) {
+    RudderController.instance.track('achievement_clicked', properties: getCommonData().putValue(map: event.toJson()));
+  }
+
+  void achievementShared(AchievementSharedEvent event) {
+    RudderController.instance.track('achievement_shared', properties: getCommonData().putValue(map: event.toJson()));
   }
 
   void identify(UserProfile profile, String analyticsId) {

@@ -4,6 +4,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:brunstadtv_app/graphql/client.dart';
 import 'package:brunstadtv_app/graphql/queries/episode.graphql.dart';
 import 'package:brunstadtv_app/providers/analytics.dart';
+import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:package_info_plus/package_info_plus.dart';
@@ -124,5 +125,13 @@ class ConditionalParentWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return condition ? conditionalBuilder(child) : child;
+  }
+}
+
+void tryCatchRecordError(dynamic Function() fn) {
+  try {
+    fn();
+  } catch (e) {
+    FirebaseCrashlytics.instance.recordError(e, StackTrace.current);
   }
 }

@@ -536,4 +536,10 @@ class SHu extends S {
 
   @override
   String get plentyOfOtherContent => 'Ne aggódj, még rengeteg más tartalmat is élvezhetsz!';
+
+  @override
+  String get notAchieved => 'Not achieved';
+
+  @override
+  String get details => 'Details';
 }

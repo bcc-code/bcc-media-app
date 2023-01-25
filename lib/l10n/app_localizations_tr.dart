@@ -536,4 +536,10 @@ class STr extends S {
 
   @override
   String get plentyOfOtherContent => 'Don\'t worry, there\'s still plenty of content to enjoy!';
+
+  @override
+  String get notAchieved => 'Not achieved';
+
+  @override
+  String get details => 'Details';
 }

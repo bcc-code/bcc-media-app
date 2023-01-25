@@ -450,90 +450,96 @@ class SDe extends S {
   String get exploreContent => 'Entdecke den Inhalt';
 
   @override
-  String get taskCompleted => 'task completed';
+  String get taskCompleted => 'Aufgabe abgeschlossen';
 
   @override
-  String get tasksCompleted => 'tasks completed';
+  String get tasksCompleted => 'Aufgaben abgeschlossen';
 
   @override
-  String get studyCompleteTaskDescription => 'Complete tasks and discover related resources';
+  String get studyCompleteTaskDescription => 'Mache die Aufgaben und entdecke ähnlichen Inhalt';
 
   @override
-  String get discoverMore => 'Discover more';
+  String get discoverMore => 'Entdecke mehr';
 
   @override
-  String get completePreviousTasks => 'Complete previous tasks to unlock';
+  String get completePreviousTasks => 'Beende vorherige Aufgaben, um freizuschalten';
 
   @override
-  String get studyDiscoverMoreDescription => 'Find more inspiration and insight from related resources';
+  String get studyDiscoverMoreDescription => 'Finde mehr Inspiration und Einblicke von ähnlichem Inhalt';
 
   @override
-  String get watchAgain => 'Watch again';
+  String get watchAgain => 'Schaue noch ein Mal';
 
   @override
-  String get continueToTaskIn => 'Continue to task in';
+  String get continueToTaskIn => 'Mache weiter mit der Aufgabe in';
 
   @override
-  String get continueToTasksIn => 'Continue to tasks in';
+  String get continueToTasksIn => 'Mache weiter mit den Aufgaben in';
 
   @override
-  String get studyLessonCompleted => 'lesson completed';
+  String get studyLessonCompleted => 'Lektion abgeschlossen';
 
   @override
-  String get studyLessonsCompleted => 'lessons completed';
+  String get studyLessonsCompleted => 'Lektion abgeschlossen';
 
   @override
-  String get continueStudy => 'Continue study';
+  String get continueStudy => 'Untersuchung fortsetzen';
 
   @override
-  String get startStudy => 'Start study';
+  String get startStudy => 'Untersuchung starten';
 
   @override
-  String get videoCompletedText => 'Great job on completing the video.';
+  String get videoCompletedText => 'Gute Arbeit! Du hast das Video geschaut.';
 
   @override
-  String get achievementFirstDescription => 'Great job on completing the video and earning your first progress achievement.';
+  String get achievementFirstDescription => 'Gut gemacht, du hasst das Video abgeschlossen und dein erstes Ziel erreicht.';
 
   @override
   String achievementStudyTopic(String name) {
-    return 'Great job on completing the study topic $name';
+    return 'Gut gemacht, du hast das erste Thema $name abgeschlossen';
   }
 
   @override
   String videoCount(int count) {
-    return '$count videos';
+    return '$count Filme';
   }
 
   @override
   String taskCount(int count) {
-    return '$count tasks';
+    return '$count Aufgaben';
   }
 
   @override
   String posterCount(int count) {
-    return '$count posters';
+    return '$count Poster';
   }
 
   @override
   String resourceCount(int count) {
-    return '$count resources';
+    return '$count Inhalt';
   }
 
   @override
-  String get continueButton => 'Continue';
+  String get continueButton => 'Weiter';
 
   @override
-  String get achievements => 'Achievements';
+  String get achievements => 'Erfolge';
 
   @override
-  String get oops => 'Oops!';
+  String get oops => 'Ups!';
 
   @override
-  String get dontHaveAccess => 'You do not have access to this content.';
+  String get dontHaveAccess => 'Du hast keinen Zugang zu diesem Inhalt.';
 
   @override
-  String get mustBeLoggedIn => 'You need to be logged in to watch this content';
+  String get mustBeLoggedIn => 'Du musst angemeldet sein, um diesen Inhalt zu schauen';
 
   @override
-  String get plentyOfOtherContent => 'Don\'t worry, there\'s still plenty of content to enjoy!';
+  String get plentyOfOtherContent => 'Keine Sorge, es gibt noch genug anderen Inhalt zu sehen!';
+
+  @override
+  String get notAchieved => 'Not achieved';
+
+  @override
+  String get details => 'Details';
 }

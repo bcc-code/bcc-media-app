@@ -462,7 +462,7 @@ class SFr extends S {
   String get discoverMore => 'Découvrir plus';
 
   @override
-  String get completePreviousTasks => 'Complete previous tasks to unlock';
+  String get completePreviousTasks => 'Terminer les tâches précédentes pour débloquer';
 
   @override
   String get studyDiscoverMoreDescription => 'Trouver plus d\'inspiration et d\'idées dans les ressources connexes';
@@ -536,4 +536,10 @@ class SFr extends S {
 
   @override
   String get plentyOfOtherContent => 'Pas d\'inquiétude ! Il reste beaucoup de contenus à apprécier !';
+
+  @override
+  String get notAchieved => 'Not achieved';
+
+  @override
+  String get details => 'Details';
 }

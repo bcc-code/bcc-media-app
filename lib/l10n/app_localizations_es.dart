@@ -536,4 +536,10 @@ class SEs extends S {
 
   @override
   String get plentyOfOtherContent => '¡No te preocupes, todavía hay mucho contenido para disfrutar!';
+
+  @override
+  String get notAchieved => 'Not achieved';
+
+  @override
+  String get details => 'Details';
 }

@@ -462,7 +462,7 @@ class SNb extends S {
   String get discoverMore => 'Oppdag mer';
 
   @override
-  String get completePreviousTasks => 'Complete previous tasks to unlock';
+  String get completePreviousTasks => 'Fullfør tidligere oppgaver for å låse opp';
 
   @override
   String get studyDiscoverMoreDescription => 'Finn mer inspirasjon og innsikt fra relatert innhold';
@@ -536,4 +536,10 @@ class SNb extends S {
 
   @override
   String get plentyOfOtherContent => 'Fortvil ikke, det er fortsatt mye innhold du kan se!';
+
+  @override
+  String get notAchieved => 'Not achieved';
+
+  @override
+  String get details => 'Details';
 }

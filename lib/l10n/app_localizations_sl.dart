@@ -462,7 +462,7 @@ class SSl extends S {
   String get discoverMore => 'Odkrij več';
 
   @override
-  String get completePreviousTasks => 'Complete previous tasks to unlock';
+  String get completePreviousTasks => 'Da odkleneš, moraš dokončati prejšnje naloge';
 
   @override
   String get studyDiscoverMoreDescription => 'Najdi več navdiha in vpogleda iz povezanih virov';
@@ -536,4 +536,10 @@ class SSl extends S {
 
   @override
   String get plentyOfOtherContent => 'Brez skrbi, na voljo je dovolj druge vsebine!';
+
+  @override
+  String get notAchieved => 'Not achieved';
+
+  @override
+  String get details => 'Details';
 }
