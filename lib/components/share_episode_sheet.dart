@@ -34,6 +34,8 @@ class ShareEpisodeSheet extends ConsumerStatefulWidget {
 }
 
 class _ShareEpisodeSheetState extends ConsumerState<ShareEpisodeSheet> {
+  bool loading = false;
+
   @override
   Widget build(BuildContext context) {
     var options = [
@@ -48,42 +50,41 @@ class _ShareEpisodeSheetState extends ConsumerState<ShareEpisodeSheet> {
         icon: SvgPicture.string(SvgIcons.location, color: BtvColors.onTint),
       ),
     ];
-    return BottomSheetSelect(
-      title: S.of(context).share,
-      description: widget.episode.shareRestriction == Enum$ShareRestriction.public
-          ? null
-          : Padding(
-              padding: const EdgeInsets.only(bottom: 16),
-              child: Row(
-                children: [
-                  Padding(padding: const EdgeInsets.all(4), child: SvgPicture.string(SvgIcons.infoCircle)),
-                  Expanded(
-                    child: Padding(
-                      padding: const EdgeInsets.only(left: 8, right: 16),
-                      child: Text(
-                        'This video is only accessible to users that are logged in to the app.',
-                        style: BtvTextStyles.caption1.copyWith(color: BtvColors.label2),
+    if (loading) {
+      return const Center(child: LoadingGeneric());
+    } else {
+      return BottomSheetSelect(
+        title: S.of(context).share,
+        description: widget.episode.shareRestriction == Enum$ShareRestriction.public
+            ? null
+            : Padding(
+                padding: const EdgeInsets.only(bottom: 16),
+                child: Row(
+                  children: [
+                    Padding(padding: const EdgeInsets.all(4), child: SvgPicture.string(SvgIcons.infoCircle)),
+                    Expanded(
+                      child: Padding(
+                        padding: const EdgeInsets.only(left: 8, right: 16),
+                        child: Text(
+                          'This video is only accessible to users that are logged in to the app.',
+                          style: BtvTextStyles.caption1.copyWith(color: BtvColors.label2),
+                        ),
                       ),
-                    ),
-                  )
-                ],
+                    )
+                  ],
+                ),
               ),
-            ),
-      selectedId: 'fromStart',
-      items: options,
-      showSelection: false,
-      onSelectionChanged: (id) {
-        var episodeUrl = 'https://app.bcc.media/episode/${widget.episodeId}';
+        selectedId: 'fromStart',
+        items: options,
+        showSelection: false,
+        popOnChange: false,
+        onSelectionChanged: (id) async {
+          setState(() {
+            loading = true;
+          });
+          var episodeUrl = 'https://app.bcc.media/episode/${widget.episodeId}';
+          final navigator = Navigator.of(context);
 
-        Future shareFuture = Future(() async {
-          showModalBottomSheet(
-            context: context,
-            builder: (BuildContext context) {
-              return const Center(
-                child: LoadingGeneric(),
-              );
-            },
-          );
           if (id == 'fromStart') {
             await Share.share(
               episodeUrl,
@@ -95,17 +96,19 @@ class _ShareEpisodeSheetState extends ConsumerState<ShareEpisodeSheet> {
               sharePositionOrigin: iPadSharePositionOrigin(context),
             );
           }
-        });
 
-        shareFuture.then((value) => Navigator.pop(context));
+          navigator.maybePop();
 
-        ref.read(analyticsProvider).contentShared(ContentSharedEvent(
-              pageCode: 'episode',
-              elementType: 'episode',
-              elementId: widget.episodeId,
-              position: id == 'fromStart' ? null : widget.currentPosSeconds,
-            ));
-      },
-    );
+          ref.read(analyticsProvider).contentShared(
+                ContentSharedEvent(
+                  pageCode: 'episode',
+                  elementType: 'episode',
+                  elementId: widget.episodeId,
+                  position: id == 'fromStart' ? null : widget.currentPosSeconds,
+                ),
+              );
+        },
+      );
+    }
   }
 }
