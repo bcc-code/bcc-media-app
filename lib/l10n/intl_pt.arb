@@ -348,7 +348,7 @@
   "@uploadFail": {
     "description": "Upload result message"
   },
-  "charactersLimit": "{caracteres restantes} De {caracteres totais} caracteres restantes",
+  "charactersLimit": "{charsLeft} De {charsTotal} caracteres restantes",
   "@charactersLimit": {
     "description": "Info about limit of characters in a text field",
     "placeholders": {
@@ -440,7 +440,7 @@
   "@expired": {
     "description": "Label that something is no longer available."
   },
-  "availableFrom": "Disponível ",
+  "availableFrom": "Disponível {date}",
   "@availableFrom": {
     "description": "Info that episode will be released at certain date.",
     "placeholders": {
@@ -530,7 +530,7 @@
   "@shareStart": {
     "description": "Option on action sheet for sharing from start"
   },
-  "shareTime": "Compartilhar de",
+  "shareTime": "Compartilhar de {time}",
   "@shareTime": {
     "description": "Option on action sheet for sharing from time",
     "placeholders": {
@@ -676,7 +676,7 @@
       }
     }
   },
-  "videoCount": "Vídeos",
+  "videoCount": "{count} vídeos",
   "@videoCount": {
     "description": "REMEMBER: Include, but do not translate variables like {count} here. Keep it very short. Generic, number of videos. Currently used for study topic overviews.",
     "placeholders": {
@@ -685,7 +685,7 @@
       }
     }
   },
-  "taskCount": "Tarefas",
+  "taskCount": "{count} tarefas",
   "@taskCount": {
     "description": "REMEMBER: Include, but do not translate variables like {count} here. Keep it very short. Generic, number of tasks. Currently used for study topic overviews.",
     "placeholders": {
@@ -694,7 +694,7 @@
       }
     }
   },
-  "posterCount": "Postagens",
+  "posterCount": "{count} postagens",
   "@posterCount": {
     "description": "REMEMBER: Include, but do not translate variables like {count} here. Keep it very short. Generic, number of posters. Currently used for study topic overviews.",
     "placeholders": {
@@ -703,7 +703,7 @@
       }
     }
   },
-  "resourceCount": "Recursos",
+  "resourceCount": "{count} recursos",
   "@resourceCount": {
     "description": "REMEMBER: Include, but do not translate variables like {count} here. Keep it very short. Generic, number of resources. Currently used for study topic overviews.",
     "placeholders": {

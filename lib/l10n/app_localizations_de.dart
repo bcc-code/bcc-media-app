@@ -538,7 +538,7 @@ class SDe extends S {
   String get plentyOfOtherContent => 'Keine Sorge, es gibt noch genug anderen Inhalt zu sehen!';
 
   @override
-  String get notAchieved => 'Not achieved';
+  String get notAchieved => 'Nicht erreicht';
 
   @override
   String get details => 'Details';

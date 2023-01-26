@@ -541,5 +541,5 @@ class SRo extends S {
   String get notAchieved => 'Not achieved';
 
   @override
-  String get details => 'Details';
+  String get details => 'Detalii';
 }

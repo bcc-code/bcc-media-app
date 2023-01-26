@@ -736,7 +736,7 @@
   "@plentyOfOtherContent": {
     "description": "Shown on an error page indiciating you dont have access to the content, right above a button that takes you back."
   },
-  "notAchieved": "Not achieved",
+  "notAchieved": "Nie osiągnięte",
   "@notAchieved": {
     "description": "A label indicating that this achievement has not been achieved yet."
   },

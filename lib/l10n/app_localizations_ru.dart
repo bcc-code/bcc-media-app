@@ -56,10 +56,10 @@ class SRu extends S {
   String get tryAgainButton => 'Попробовать еще раз';
 
   @override
-  String get loggedOutTitle => 'Не залогинен';
+  String get loggedOutTitle => 'Вы вышли из аккаунта';
 
   @override
-  String get loggedOutMessage => 'Вы вышли из системы. Пожалуйста, войдите снова.';
+  String get loggedOutMessage => 'Вы вышли из аккаунта. Пожалуйста, войдите снова.';
 
   @override
   String get mostWatched => 'Самое просматриваемое';
@@ -110,7 +110,7 @@ class SRu extends S {
   String get contactSupport => 'Связаться с поддержкой';
 
   @override
-  String get cancel => 'Отменить';
+  String get cancel => 'Отмена';
 
   @override
   String get upNext => 'К следующему';
@@ -178,7 +178,7 @@ class SRu extends S {
   }
 
   @override
-  String get recentSearches => 'Недавние поиски';
+  String get recentSearches => 'Недавние запросы';
 
   @override
   String get tVLogin => 'ТВ Логин';
@@ -214,7 +214,7 @@ class SRu extends S {
   String get high => 'Высокое';
 
   @override
-  String get emptySearch => 'Вы можете искать по всему контенту от BCC Media. Серии, фильмы и эпизоды.';
+  String get emptySearch => 'Вы можете выполнять поиск по всему контенту от BCC Media. Передачи, фильмы и эпизоды.';
 
   @override
   String get back => 'Назад';
@@ -423,7 +423,7 @@ class SRu extends S {
   String get subtitlesLanguage => 'Язык субтитров';
 
   @override
-  String get removeFromRecentSearches => 'Хотите удалить этот элемент из последних поисков?';
+  String get removeFromRecentSearches => 'Желаете удалить этот элемент из последних запросов?';
 
   @override
   String get noTransmissionToday => 'Нет запланированной трансляции на сегодня';
@@ -450,10 +450,10 @@ class SRu extends S {
   String get exploreContent => 'Исследуйте контент';
 
   @override
-  String get taskCompleted => 'Задание выполнено';
+  String get taskCompleted => 'задание выполнено';
 
   @override
-  String get tasksCompleted => 'Задания выполнены';
+  String get tasksCompleted => 'заданий выполнено';
 
   @override
   String get studyCompleteTaskDescription => 'Выполняйте задания и открывайте соответствующие ресурсы';
@@ -468,7 +468,7 @@ class SRu extends S {
   String get studyDiscoverMoreDescription => 'Получите больше вдохновения и информации из соответствующих ресурсов';
 
   @override
-  String get watchAgain => 'Посмотреть еще раз';
+  String get watchAgain => 'Посмотрите еще раз';
 
   @override
   String get continueToTaskIn => 'Продолжить задание в';
@@ -483,20 +483,20 @@ class SRu extends S {
   String get studyLessonsCompleted => 'уроки завершены';
 
   @override
-  String get continueStudy => 'Продолжить обучение';
+  String get continueStudy => 'Продолжить изучение';
 
   @override
-  String get startStudy => 'Начать обучение';
+  String get startStudy => 'Начать изучение';
 
   @override
-  String get videoCompletedText => 'Отличная работа по завершенному видео.';
+  String get videoCompletedText => 'Отличная работа, просмотр видео завершен.';
 
   @override
-  String get achievementFirstDescription => 'Отличная работа по завершенному видео и получению первого достижения.';
+  String get achievementFirstDescription => 'Отличная работа, вы завершили видео и получили первое достижение.';
 
   @override
   String achievementStudyTopic(String name) {
-    return 'Отличная работа по завершению темы исследования $name';
+    return 'Отличная работа по завершению темы изучения $name';
   }
 
   @override
@@ -538,8 +538,8 @@ class SRu extends S {
   String get plentyOfOtherContent => 'Не волнуйтесь, впереди еще много интересного!';
 
   @override
-  String get notAchieved => 'Not achieved';
+  String get notAchieved => 'Не достигнуто';
 
   @override
-  String get details => 'Details';
+  String get details => 'Подробности';
 }

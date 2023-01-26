@@ -89,6 +89,7 @@ dependencies:
   flutter_inappwebview: ^6.0.0-beta.20
   app_links: ^3.3.0
   jwt_decoder: ^2.0.1
+  web_socket_channel: 2.0.0
   #smooth: any
 
 dev_dependencies:

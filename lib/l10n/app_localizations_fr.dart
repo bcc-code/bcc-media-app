@@ -538,8 +538,8 @@ class SFr extends S {
   String get plentyOfOtherContent => 'Pas d\'inquiétude ! Il reste beaucoup de contenus à apprécier !';
 
   @override
-  String get notAchieved => 'Not achieved';
+  String get notAchieved => 'Non atteint';
 
   @override
-  String get details => 'Details';
+  String get details => 'Détails';
 }

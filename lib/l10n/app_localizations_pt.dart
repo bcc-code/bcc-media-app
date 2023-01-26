@@ -47,7 +47,7 @@ class SPt extends S {
   String get faq => 'Perguntas frequentes';
 
   @override
-  String get bccMediaCenter => 'A BCC Media é uma fundação de mídia da federação BCC que produz e distribui conteúdo com valores positivos e cristãos.';
+  String get bccMediaCenter => 'BCC Mídia é uma fundação de mídia da federação BCC que produz e distribui conteúdo com valores positivos e cristãos.';
 
   @override
   String get signInButton => 'Entrar';
@@ -174,7 +174,7 @@ class SPt extends S {
 
   @override
   String queueLimitMessage(int elementCount) {
-    return 'Você não pode ter mais de {element Count} elementos na fila.';
+    return 'Você não pode ter mais de $elementCount elementos na fila.';
   }
 
   @override
@@ -266,7 +266,7 @@ class SPt extends S {
 
   @override
   String charactersLimit(int charsLeft, int charsTotal) {
-    return '$charsLeft de $charsTotal caracteres restantes';
+    return '$charsLeft De $charsTotal caracteres restantes';
   }
 
   @override
@@ -376,7 +376,7 @@ class SPt extends S {
   String get appUpdateTitle => 'Atualização necessária';
 
   @override
-  String get appUpdateRequest => 'Por favor, baixe o aplicativo mais recente para desfrutar de todos os recursos e correções de bugs mais recentes.';
+  String get appUpdateRequest => 'Por favor, baixe o aplicativo mais recente para desfrutar de todos os recursos e correções de erros mais recentes.';
 
   @override
   String get appUpdateAccepted => 'Atualizar';
@@ -450,96 +450,96 @@ class SPt extends S {
   String get exploreContent => 'Explorar conteúdo';
 
   @override
-  String get taskCompleted => 'task completed';
+  String get taskCompleted => 'tarefa completa';
 
   @override
-  String get tasksCompleted => 'tasks completed';
+  String get tasksCompleted => 'tarefas concluídas';
 
   @override
-  String get studyCompleteTaskDescription => 'Complete tasks and discover related resources';
+  String get studyCompleteTaskDescription => 'Conclua tarefas e descubra recursos relacionados';
 
   @override
-  String get discoverMore => 'Discover more';
+  String get discoverMore => 'Descubra mais ';
 
   @override
-  String get completePreviousTasks => 'Complete previous tasks to unlock';
+  String get completePreviousTasks => 'Complete as tarefas anteriores para desbloquear';
 
   @override
-  String get studyDiscoverMoreDescription => 'Find more inspiration and insight from related resources';
+  String get studyDiscoverMoreDescription => 'Encontre mais inspiração e conhecimentos de recursos relacionados';
 
   @override
   String get watchAgain => 'Ver de novo ';
 
   @override
-  String get continueToTaskIn => 'Continue to task in';
+  String get continueToTaskIn => 'Continuar a tarefa em';
 
   @override
-  String get continueToTasksIn => 'Continue to tasks in';
+  String get continueToTasksIn => 'Continuar as tarefas em';
 
   @override
-  String get studyLessonCompleted => 'lesson completed';
+  String get studyLessonCompleted => 'lição concluída';
 
   @override
-  String get studyLessonsCompleted => 'lessons completed';
+  String get studyLessonsCompleted => 'lições concluídas';
 
   @override
-  String get continueStudy => 'Continue study';
+  String get continueStudy => 'Continuar estudo ';
 
   @override
-  String get startStudy => 'Start study';
+  String get startStudy => 'Começar estudo';
 
   @override
-  String get videoCompletedText => 'Great job on completing the video.';
+  String get videoCompletedText => 'Ótimo trabalho na conclusão do vídeo.';
 
   @override
-  String get achievementFirstDescription => 'Great job on completing the video and earning your first progress achievement.';
+  String get achievementFirstDescription => 'Ótimo trabalho ao concluir o vídeo e obter sua primeira conquista de progresso.';
 
   @override
   String achievementStudyTopic(String name) {
-    return 'Great job on completing the study topic $name';
+    return 'Ótimo trabalho ao concluir o tópico de estudo $name';
   }
 
   @override
   String videoCount(int count) {
-    return '$count videos';
+    return '$count vídeos';
   }
 
   @override
   String taskCount(int count) {
-    return '$count tasks';
+    return '$count tarefas';
   }
 
   @override
   String posterCount(int count) {
-    return '$count posters';
+    return '$count postagens';
   }
 
   @override
   String resourceCount(int count) {
-    return '$count resources';
+    return '$count recursos';
   }
 
   @override
-  String get continueButton => 'Continue';
+  String get continueButton => 'Continuar';
 
   @override
-  String get achievements => 'Achievements';
+  String get achievements => 'Conquistas';
 
   @override
   String get oops => 'Oops! ';
 
   @override
-  String get dontHaveAccess => 'You do not have access to this content.';
+  String get dontHaveAccess => 'Você não tem acesso a esse conteúdo.';
 
   @override
   String get mustBeLoggedIn => 'Você precisa estar logado para assistir a este conteúdo';
 
   @override
-  String get plentyOfOtherContent => 'Don\'t worry, there\'s still plenty of content to enjoy!';
+  String get plentyOfOtherContent => 'Não se preocupe, ainda há muito conteúdo para aproveitar!';
 
   @override
-  String get notAchieved => 'Not achieved';
+  String get notAchieved => 'Não alcançado';
 
   @override
-  String get details => 'Details';
+  String get details => 'Detalhes ';
 }

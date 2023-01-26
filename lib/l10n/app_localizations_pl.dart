@@ -538,8 +538,8 @@ class SPl extends S {
   String get plentyOfOtherContent => 'Nic się nie martw, mamy dla ciebie mnóstwo innych materiałów!';
 
   @override
-  String get notAchieved => 'Not achieved';
+  String get notAchieved => 'Nie osiągnięte';
 
   @override
-  String get details => 'Details';
+  String get details => 'Szczegóły';
 }

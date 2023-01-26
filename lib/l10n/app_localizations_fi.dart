@@ -5,7 +5,7 @@ class SFi extends S {
   SFi([String locale = 'fi']) : super(locale);
 
   @override
-  String get loadingContent => 'Hetkinen';
+  String get loadingContent => 'Sisältöä ladataan';
 
   @override
   String get signInTooltip => 'Kirjautumalla näet lisää';
@@ -23,10 +23,10 @@ class SFi extends S {
   String get calendarWeek => 'viikko';
 
   @override
-  String get loading => 'Lataillaan';
+  String get loading => 'Ladataan';
 
   @override
-  String get loginPageDisplay1 => 'Kaikista maailman sanomista voimakkain';
+  String get loginPageDisplay1 => 'Kaikista maailman\n sanomista voimakkain';
 
   @override
   String get loginPageDisplay2 => 'Katsele Kristillisten arvojen mukaisia videoita, esityksiä, ja sarjoja';
@@ -101,7 +101,7 @@ class SFi extends S {
   String get cantPlayVideo => 'Tätä videota ei voi nyt toistaa.';
 
   @override
-  String get about => 'Tietoja';
+  String get about => 'Tietoa';
 
   @override
   String get version => 'Versio';
@@ -143,10 +143,10 @@ class SFi extends S {
   String get quality => 'Laatu';
 
   @override
-  String get seasons => 'Tuotantokaudet';
+  String get seasons => 'Tuotantokautta';
 
   @override
-  String get episodes => 'Jaksoa';
+  String get episodes => 'Jaksoja';
 
   @override
   String get search => 'Haku';
@@ -164,7 +164,7 @@ class SFi extends S {
   String get castQueue => 'Toista kaikki isolle ruudulle';
 
   @override
-  String get options => 'Valinnat';
+  String get options => 'Asetukset';
 
   @override
   String get remove => 'Poista';
@@ -235,13 +235,13 @@ class SFi extends S {
   String get shortFilms => 'Lyhytfilmit';
 
   @override
-  String get videos => 'Videota';
+  String get videos => 'Videot';
 
   @override
-  String get moreInfo => 'Tarkempia tietoja';
+  String get moreInfo => 'Lisätietoja';
 
   @override
-  String get info => 'Tiedot';
+  String get info => 'Tietoa';
 
   @override
   String get episode => 'Jakso';
@@ -291,7 +291,7 @@ class SFi extends S {
   String get feed => 'Syöte';
 
   @override
-  String get information => 'Tiedot';
+  String get information => 'Tietoa';
 
   @override
   String get question => 'Kysymys';
@@ -300,10 +300,10 @@ class SFi extends S {
   String get now => 'Nyt';
 
   @override
-  String get concernTextPlaceholder => 'Kerro ongelmasta';
+  String get concernTextPlaceholder => 'Kuvaile ongelmaa';
 
   @override
-  String get debugInfoExplanation => 'Palautteesi sisältää myös seuraavat tiedot auttamaan meitä paremmin ymmärtämään ongelmaa.';
+  String get debugInfoExplanation => 'Palautteesi sisältää myös seuraavat tiedot, jotta ymmärrämme ongelman paremmin.';
 
   @override
   String get send => 'Lähetä';
@@ -315,7 +315,7 @@ class SFi extends S {
   String get thankYouSupportTitle => 'Kiitos palautteesta!';
 
   @override
-  String get thankYouSupportDescription => 'Arvostamme kovasti palautetta ja teemme parhaamme ongelman korjaamiseen.';
+  String get thankYouSupportDescription => 'Arvostamme kovasti palautetta ja teemme parhaamme ongelman korjaamiseksi.';
 
   @override
   String get sendFail => 'Lähettäminen epäonnistui';
@@ -348,14 +348,14 @@ class SFi extends S {
 
   @override
   String timezoneInformation(String timeZone) {
-    return 'Kellonajat ovat sinun aikavyöhykettä: $timeZone';
+    return 'Kellonajat noudattavat aikavyöhykettäsi: $timeZone';
   }
 
   @override
   String get share => 'Jaa';
 
   @override
-  String get liveNow => 'Jetzt live';
+  String get liveNow => 'Suorana nyt';
 
   @override
   String get tomorrow => 'Huomenna';
@@ -376,7 +376,7 @@ class SFi extends S {
   String get appUpdateTitle => 'Päivitys on tarpeen';
 
   @override
-  String get appUpdateRequest => 'Päivitä sovellus. Siinä on uusia juttuja ja vikoja on korjattu.';
+  String get appUpdateRequest => 'Päivitä sovellus. Siinä on uusia ominaisuuksia ja vikoja on korjattu.';
 
   @override
   String get appUpdateAccepted => 'Päivitä';
@@ -399,7 +399,7 @@ class SFi extends S {
   }
 
   @override
-  String get loadContentError => 'Sisällön nouto epäonnistui';
+  String get loadContentError => 'Sisällön lataaminen epäonnistui';
 
   @override
   String get privacyPolicy => 'Tietosuojakäytäntö';
@@ -506,7 +506,7 @@ class SFi extends S {
 
   @override
   String taskCount(int count) {
-    return '$count tehtäviä';
+    return '$count tehtävää';
   }
 
   @override
@@ -535,11 +535,11 @@ class SFi extends S {
   String get mustBeLoggedIn => 'Tämän katsominen vaatii kirjautumista';
 
   @override
-  String get plentyOfOtherContent => 'Mutta ei syytä huoleen. On edelleen paljon mitä voit katsella.';
+  String get plentyOfOtherContent => 'Mutta ei syytä huoleen. On edelleen paljon katsottavaa!';
 
   @override
-  String get notAchieved => 'Not achieved';
+  String get notAchieved => 'Ei saavutettu';
 
   @override
-  String get details => 'Details';
+  String get details => 'Lisätietoa';
 }
