@@ -30,7 +30,7 @@ import 'package:brunstadtv_app/router/router.gr.dart';
 import 'package:brunstadtv_app/providers/auth_state.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
 import 'package:intl/intl.dart';
-import 'package:intl/intl_standalone.dart';
+import 'package:intl/intl_standalone.dart' if (dart.library.html) 'package:intl/intl_browser.dart';
 import 'package:on_screen_ruler/on_screen_ruler.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -108,10 +108,12 @@ void $main({required FirebaseOptions? firebaseOptions}) async {
   providerContainer.read(settingsProvider.notifier).load();
   providerContainer.read(chromecastListenerProvider);
   providerContainer.read(appConfigProvider);
-  providerContainer.read(playbackApiProvider).getChromecastState().then((value) {
-    providerContainer.read(isCasting.notifier).state = value?.connectionState == CastConnectionState.connected;
-    providerContainer.read(castPlayerProvider.notifier).setMediaItem(value?.mediaItem);
-  });
+  if (kIsWeb) {
+    providerContainer.read(playbackApiProvider).getChromecastState().then((value) {
+      providerContainer.read(isCasting.notifier).state = value?.connectionState == CastConnectionState.connected;
+      providerContainer.read(castPlayerProvider.notifier).setMediaItem(value?.mediaItem);
+    });
+  }
   providerContainer.read(analyticsProvider);
 
   if (Env.npawAccountCode != '') {
@@ -190,7 +192,7 @@ void $main({required FirebaseOptions? firebaseOptions}) async {
             )),
   );
 
-  runApp(!kDebugMode ? app : InteractiveViewer(maxScale: 10, child: app));
+  runApp((!kDebugMode || kIsWeb) ? app : InteractiveViewer(maxScale: 10, child: app));
 }
 
 ThemeData createTheme() {
@@ -234,7 +236,7 @@ ThemeData createTheme() {
 }
 
 Future<String?> getDefaultLocale() async {
-  final String systemLocale = await findSystemLocale();
+  final String systemLocale = kIsWeb ? await findSystemLocale() : await findSystemLocale();
   final verifiedLocale = Intl.verifiedLocale(systemLocale, NumberFormat.localeExists, onFailure: (String _) => 'en');
   if (verifiedLocale != null) {
     final locale = Intl.shortLocale(verifiedLocale);

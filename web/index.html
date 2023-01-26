@@ -39,6 +39,19 @@
   </script>
   <!-- This script adds the flutter initialization JS code -->
   <script src="flutter.js" defer></script>
+  
+  <!--
+    Rudderstack
+    https://www.rudderstack.com/docs/sources/event-streams/sdks/rudderstack-flutter-sdk/flutter-v2/#installing-the-sdk-for-the-web
+  -->
+  <script type="text/javascript">
+    const rudderWriteKey = '';
+    const rudderPlaneUrl = 'https://rs.bcc.media/';
+    !function(){var e=window.rudderanalytics=window.rudderanalytics||[];e.methods=["load","page","track","identify","alias","group","ready","reset","getAnonymousId","setAnonymousId","getUserId","getUserTraits","getGroupId","getGroupTraits","startSession","endSession","getSessionId"],e.factory=function(t){return function(){var r=Array.prototype.slice.call(arguments);return r.unshift(t),e.push(r),e}};for(var t=0;t<e.methods.length;t++){var r=e.methods[t];e[r]=e.factory(r)}e.loadJS=function(e,t){var r=document.createElement("script");r.type="text/javascript",r.async=!0,r.src="https://cdn.rudderlabs.com/v1.1/rudder-analytics.min.js";var a=document.getElementsByTagName("script")[0];a.parentNode.insertBefore(r,a)},e.loadJS(),
+    e.load(rudderWriteKey, rudderPlaneUrl),
+    e.page()}();  
+  </script>
+
 </head>
 
 <body>
@@ -61,6 +74,7 @@
   <script src="https://www.gstatic.com/cv/js/sender/v1/cast_sender.js?loadCastFramework=1"></script>
   <script src="https://brunstad.tv/static/video.js/video.min.js"></script>
   <script src="https://brunstad.tv/static/js/videojs-create-player.js"></script>
+  <script src="https://cdn.auth0.com/js/auth0-spa-js/1.13/auth0-spa-js.production.js"></script>
   <script src="/assets/packages/flutter_inappwebview/assets/web/web_support.js"></script>
   <script>
     //window.createVideoJsPlayer = (...args) => console.log(args)

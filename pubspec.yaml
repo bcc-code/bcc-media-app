@@ -88,6 +88,8 @@ dependencies:
   restart_app: ^1.1.1
   flutter_inappwebview: ^6.0.0-beta.20
   app_links: ^3.3.0
+  auth0_flutter_web: 0.0.1-alpha.6
+  universal_io: ^2.0.4
   #smooth: any
 
 dev_dependencies:

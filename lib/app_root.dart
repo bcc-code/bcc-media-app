@@ -11,6 +11,8 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import 'models/auth_state.dart';
+
 class AppRoot extends ConsumerStatefulWidget {
   const AppRoot({super.key, required this.child, required this.navigatorKey});
 
