@@ -8,6 +8,7 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:jwt_decoder/jwt_decoder.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:rudder_sdk_flutter/RudderController.dart';
 
@@ -28,7 +29,12 @@ class AuthStateNotifier extends StateNotifier<AuthState> {
   Timer? refreshTimer;
 
   void setStateBasedOnCredentials(Credentials result) {
-    state = state.copyWith(auth0AccessToken: result.accessToken, idToken: result.idToken, user: result.user, expiresAt: result.expiresAt);
+    final accessTokenExpiry = (JwtDecoder.decode(result.accessToken)['exp'] as Object?).asOrNull<int>();
+    if (accessTokenExpiry == null) {
+      throw Exception('AuthState: expiry is null: $accessTokenExpiry');
+    }
+    final expiry = DateTime.fromMillisecondsSinceEpoch(accessTokenExpiry * 1000, isUtc: true);
+    state = state.copyWith(auth0AccessToken: result.accessToken, idToken: result.idToken, user: result.user, expiresAt: expiry);
   }
 
   Future<AuthState?> getExistingAndEnsureNotExpired() async {
@@ -36,7 +42,7 @@ class AuthStateNotifier extends StateNotifier<AuthState> {
       return null;
     }
     if (state.expiresAt!.isBefore(DateTime.now())) {
-      await load();
+      await load(force: true);
     }
     if (state.expiresAt!.isBefore(DateTime.now())) {
       throw Exception('Auth state is still expired after attempting to renew.');
@@ -44,10 +50,11 @@ class AuthStateNotifier extends StateNotifier<AuthState> {
     return state;
   }
 
-  Future<bool> load() async {
+  Future<bool> load({bool force = false}) async {
     try {
       Stopwatch stopwatch = Stopwatch()..start();
-      final result = await _auth0.credentialsManager.credentials(minTtl: kMinimumCredentialsTTL.inSeconds);
+      final result =
+          await _auth0.credentialsManager.credentials(minTtl: force ? const Duration(hours: 23).inSeconds : kMinimumCredentialsTTL.inSeconds);
       print('credentials() took ${stopwatch.elapsedMilliseconds}ms');
       setStateBasedOnCredentials(result);
       return true;

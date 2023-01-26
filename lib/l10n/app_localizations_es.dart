@@ -331,7 +331,7 @@ class SEs extends S {
 
   @override
   String availableFrom(String date) {
-    return 'Disponible${date}';
+    return 'Disponible$date';
   }
 
   @override
@@ -462,7 +462,7 @@ class SEs extends S {
   String get discoverMore => 'Descubrir más';
 
   @override
-  String get completePreviousTasks => 'Complete previous tasks to unlock';
+  String get completePreviousTasks => 'Completa las tareas previas para desbloquear';
 
   @override
   String get studyDiscoverMoreDescription => 'Encuentre más inspiración e información de recursos relacionados';
@@ -538,5 +538,8 @@ class SEs extends S {
   String get plentyOfOtherContent => '¡No te preocupes, todavía hay mucho contenido para disfrutar!';
 
   @override
-  String get notAchieved => 'Not achieved';
+  String get notAchieved => 'No logrado';
+
+  @override
+  String get details => 'Detalles';
 }

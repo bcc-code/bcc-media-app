@@ -55,7 +55,7 @@
   "@faq": {
     "description": "Long title of the FAQ page."
   },
-  "bccMediaCenter": "A BCC Media é uma fundação de mídia da federação BCC que produz e distribui conteúdo com valores positivos e cristãos.",
+  "bccMediaCenter": "BCC Mídia é uma fundação de mídia da federação BCC que produz e distribui conteúdo com valores positivos e cristãos.",
   "@bccMediaCenter": {
     "description": "Disclaimer on login page"
   },
@@ -223,7 +223,7 @@
   "@queueLimitTitle": {
     "description": "Title of the alert to the user when attempt to add video to cast queue failed due to full queue."
   },
-  "queueLimitMessage": "Você não pode ter mais de {element Count} elementos na fila.",
+  "queueLimitMessage": "Você não pode ter mais de {elementCount} elementos na fila.",
   "@queueLimitMessage": {
     "description": "Error message to the user when attempt to add video to cast queue failed due to full queue.",
     "placeholders": {
@@ -348,7 +348,7 @@
   "@uploadFail": {
     "description": "Upload result message"
   },
-  "charactersLimit": "{charsLeft} de {charsTotal} caracteres restantes",
+  "charactersLimit": "{charsLeft} De {charsTotal} caracteres restantes",
   "@charactersLimit": {
     "description": "Info about limit of characters in a text field",
     "placeholders": {
@@ -506,7 +506,7 @@
   "@appUpdateTitle": {
     "description": "Title of the message displayed to the user when application is too old and should be updated in a timely manner."
   },
-  "appUpdateRequest": "Por favor, baixe o aplicativo mais recente para desfrutar de todos os recursos e correções de bugs mais recentes.",
+  "appUpdateRequest": "Por favor, baixe o aplicativo mais recente para desfrutar de todos os recursos e correções de erros mais recentes.",
   "@appUpdateRequest": {
     "description": "Message displayed to the user when application is too old and should be updated in a timely manner."
   },
@@ -607,27 +607,27 @@
   "@exploreContent": {
     "description": "A button on the login page"
   },
-  "taskCompleted": "task completed",
+  "taskCompleted": "tarefa completa",
   "@taskCompleted": {
     "description": "SINGULAR. Note the lowercase T, because its inserted after a count: '0/1 task completed'."
   },
-  "tasksCompleted": "tasks completed",
+  "tasksCompleted": "tarefas concluídas",
   "@tasksCompleted": {
     "description": "PLURAL. Note the lowercase T, because its inserted after the count: '2/5 tasks completed'."
   },
-  "studyCompleteTaskDescription": "Complete tasks and discover related resources",
+  "studyCompleteTaskDescription": "Conclua tarefas e descubra recursos relacionados",
   "@studyCompleteTaskDescription": {
     "description": "Description to open the study tasks for this episode. Currently shows below '0/1 tasks completed'."
   },
-  "discoverMore": "Discover more",
+  "discoverMore": "Descubra mais ",
   "@discoverMore": {
     "description": "Generic button text."
   },
-  "completePreviousTasks": "Complete previous tasks to unlock",
+  "completePreviousTasks": "Complete as tarefas anteriores para desbloquear",
   "@completePreviousTasks": {
     "description": "Shown on a locked button, short explanation why the button is locked."
   },
-  "studyDiscoverMoreDescription": "Find more inspiration and insight from related resources",
+  "studyDiscoverMoreDescription": "Encontre mais inspiração e conhecimentos de recursos relacionados",
   "@studyDiscoverMoreDescription": {
     "description": "Description to open the related resources for this episode."
   },
@@ -635,39 +635,39 @@
   "@watchAgain": {
     "description": "Short button text to watch the video again."
   },
-  "continueToTaskIn": "Continue to task in",
+  "continueToTaskIn": "Continuar a tarefa em",
   "@continueToTaskIn": {
     "description": "SINGULAR. Button with text 'Continue to task in X'. Can click it to open tasks immediately, otherwise X will count down (10, 9, 8...) and automatically redirect you to the tasks."
   },
-  "continueToTasksIn": "Continue to tasks in",
+  "continueToTasksIn": "Continuar as tarefas em",
   "@continueToTasksIn": {
     "description": "PLURAL. Button with text 'Continue to tasks in X'. Can click it to open tasks immediately, otherwise X will count down (10, 9, 8...) and automatically redirect you to the tasks."
   },
-  "studyLessonCompleted": "lesson completed",
+  "studyLessonCompleted": "lição concluída",
   "@studyLessonCompleted": {
     "description": "SINGULAR. Note the lowercase L, because prepended with a number: '1 lesson completed'."
   },
-  "studyLessonsCompleted": "lessons completed",
+  "studyLessonsCompleted": "lições concluídas",
   "@studyLessonsCompleted": {
     "description": "PLURAL. Note the lowercase L, because prepended with a number: '20 lessons completed'."
   },
-  "continueStudy": "Continue study",
+  "continueStudy": "Continuar estudo ",
   "@continueStudy": {
     "description": "Button."
   },
-  "startStudy": "Start study",
+  "startStudy": "Começar estudo",
   "@startStudy": {
     "description": "Button."
   },
-  "videoCompletedText": "Great job on completing the video.",
+  "videoCompletedText": "Ótimo trabalho na conclusão do vídeo.",
   "@videoCompletedText": {
     "description": "Shown after completing tasks related to a video."
   },
-  "achievementFirstDescription": "Great job on completing the video and earning your first progress achievement.",
+  "achievementFirstDescription": "Ótimo trabalho ao concluir o vídeo e obter sua primeira conquista de progresso.",
   "@achievementFirstDescription": {
     "description": "Description displayed in a popup when earning the first achievement badge."
   },
-  "achievementStudyTopic": "Great job on completing the study topic {name}",
+  "achievementStudyTopic": "Ótimo trabalho ao concluir o tópico de estudo {name}",
   "@achievementStudyTopic": {
     "description": "REMEMBER: Include, but do not translate variables like {name} here. Description displayed in a popup when done with a study topic.",
     "placeholders": {
@@ -676,7 +676,7 @@
       }
     }
   },
-  "videoCount": "{count} videos",
+  "videoCount": "{count} vídeos",
   "@videoCount": {
     "description": "REMEMBER: Include, but do not translate variables like {count} here. Keep it very short. Generic, number of videos. Currently used for study topic overviews.",
     "placeholders": {
@@ -685,7 +685,7 @@
       }
     }
   },
-  "taskCount": "{count} tasks",
+  "taskCount": "{count} tarefas",
   "@taskCount": {
     "description": "REMEMBER: Include, but do not translate variables like {count} here. Keep it very short. Generic, number of tasks. Currently used for study topic overviews.",
     "placeholders": {
@@ -694,7 +694,7 @@
       }
     }
   },
-  "posterCount": "{count} posters",
+  "posterCount": "{count} postagens",
   "@posterCount": {
     "description": "REMEMBER: Include, but do not translate variables like {count} here. Keep it very short. Generic, number of posters. Currently used for study topic overviews.",
     "placeholders": {
@@ -703,7 +703,7 @@
       }
     }
   },
-  "resourceCount": "{count} resources",
+  "resourceCount": "{count} recursos",
   "@resourceCount": {
     "description": "REMEMBER: Include, but do not translate variables like {count} here. Keep it very short. Generic, number of resources. Currently used for study topic overviews.",
     "placeholders": {
@@ -712,11 +712,11 @@
       }
     }
   },
-  "continueButton": "Continue",
+  "continueButton": "Continuar",
   "@continueButton": {
     "description": "Generic button text."
   },
-  "achievements": "Achievements",
+  "achievements": "Conquistas",
   "@achievements": {
     "description": "Generic. Used as page title, etc."
   },
@@ -724,7 +724,7 @@
   "@oops": {
     "description": "An informal title on some error screens."
   },
-  "dontHaveAccess": "You do not have access to this content.",
+  "dontHaveAccess": "Você não tem acesso a esse conteúdo.",
   "@dontHaveAccess": {
     "description": "Error message when you open a link to content you dont have access to."
   },
@@ -732,8 +732,16 @@
   "@mustBeLoggedIn": {
     "description": "Error message when you open a link to content you dont have access to, and you are not logged in."
   },
-  "plentyOfOtherContent": "Don't worry, there's still plenty of content to enjoy!",
+  "plentyOfOtherContent": "Não se preocupe, ainda há muito conteúdo para aproveitar!",
   "@plentyOfOtherContent": {
     "description": "Shown on an error page indiciating you dont have access to the content, right above a button that takes you back."
+  },
+  "notAchieved": "Não alcançado",
+  "@notAchieved": {
+    "description": "A label indicating that this achievement has not been achieved yet."
+  },
+  "details": "Detalhes ",
+  "@details": {
+    "description": "A tab name on the episode page which has some extra details about the episode: release date, age rating, etc."
   }
 }

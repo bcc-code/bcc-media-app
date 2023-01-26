@@ -87,11 +87,9 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen> with AutoRouteAwa
   @override
   void didUpdateWidget(old) {
     super.didUpdateWidget(old);
+    scrollCompleter = wrapInCompleter(scrollController.animateTo(0, duration: const Duration(milliseconds: 600), curve: Curves.easeOutExpo));
     if (old.episodeId == widget.episodeId) return;
     loadEpisode();
-    setState(() {
-      scrollCompleter = wrapInCompleter(scrollController.animateTo(0, duration: const Duration(milliseconds: 600), curve: Curves.easeOutExpo));
-    });
   }
 
   @override
@@ -469,7 +467,7 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen> with AutoRouteAwa
                                         selectedIndex: DefaultTabController.of(context)!.index,
                                         tabs: [
                                           Option(id: 'episodes', title: (S.of(context).episodes.toUpperCase())),
-                                          Option(id: 'details', title: 'Details'),
+                                          Option(id: 'details', title: (S.of(context).details.toUpperCase())),
                                         ]))),
                             Builder(builder: (context) {
                               return GestureDetector(

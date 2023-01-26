@@ -735,5 +735,13 @@
   "plentyOfOtherContent": "Bare rolig, der er stadig masser af andet indhold at se!",
   "@plentyOfOtherContent": {
     "description": "Shown on an error page indiciating you dont have access to the content, right above a button that takes you back."
+  },
+  "notAchieved": "Ikke opnået",
+  "@notAchieved": {
+    "description": "A label indicating that this achievement has not been achieved yet."
+  },
+  "details": "Detaljer",
+  "@details": {
+    "description": "A tab name on the episode page which has some extra details about the episode: release date, age rating, etc."
   }
 }

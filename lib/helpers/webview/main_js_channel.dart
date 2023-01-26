@@ -5,6 +5,7 @@ import 'package:brunstadtv_app/services/share_image.dart';
 import 'package:brunstadtv_app/services/utils.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -34,6 +35,8 @@ class MainJsChannel {
       return _getLocale(arguments);
     } else if (arguments[0] == 'share_image') {
       return _shareImage(arguments);
+    } else if (arguments[0] == 'haptic_feedback') {
+      return _hapticFeedback(arguments);
     }
     return null;
   }
@@ -59,6 +62,28 @@ class MainJsChannel {
 
   String _getLocale(List arguments) {
     return ref.read(settingsProvider).appLanguage.languageCode;
+  }
+
+  Future _hapticFeedback(List<dynamic> arguments) {
+    if (arguments[1] is! String) {
+      throw Exception('hapticFeedback: first argument isnt string: ${arguments[1]}');
+    }
+
+    final type = arguments[1] as String;
+    switch (type) {
+      case 'vibrate':
+        return HapticFeedback.vibrate();
+      case 'lightImpact':
+        return HapticFeedback.lightImpact();
+      case 'mediumImpact':
+        return HapticFeedback.mediumImpact();
+      case 'heavyImpact':
+        return HapticFeedback.heavyImpact();
+      case 'selectionClick':
+        return HapticFeedback.selectionClick();
+    }
+
+    throw Exception('hapticFeedback: invalid argument ${arguments[1]}');
   }
 
   Future<bool> _shareImage(List<dynamic> arguments) async {
