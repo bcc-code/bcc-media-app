@@ -20,13 +20,11 @@ class ShareEpisodeSheet extends ConsumerStatefulWidget {
     Key? key,
     required this.episode,
     required this.currentPosSeconds,
-    required this.formattedPosition,
     required this.episodeId,
   }) : super(key: key);
 
   final Query$FetchEpisode$episode episode;
   final int currentPosSeconds;
-  final String formattedPosition;
   final String episodeId;
 
   @override
@@ -46,7 +44,7 @@ class _ShareEpisodeSheetState extends ConsumerState<ShareEpisodeSheet> {
       ),
       Option(
         id: 'fromTime',
-        title: S.of(context).shareTime(widget.formattedPosition),
+        title: S.of(context).shareTime(getFormattedDuration(widget.currentPosSeconds, padFirstSegment: true)),
         icon: SvgPicture.string(SvgIcons.location, color: BtvColors.onTint),
       ),
     ];

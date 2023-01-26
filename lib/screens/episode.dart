@@ -245,7 +245,6 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen> with AutoRouteAwa
     final playerProvider = casting ? castPlayerProvider : primaryPlayerProvider;
     final player = ref.watch(playerProvider);
     final currentPosSeconds = ((player?.playbackPositionMs ?? 0) / 1000).round();
-    final formattedPosition = getFormattedDuration(currentPosSeconds, padFirstSegment: true);
     if (player != null) {
       ref.read(playbackApiProvider).pause(player.playerId);
     }
@@ -255,7 +254,6 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen> with AutoRouteAwa
       builder: (ctx) => ShareEpisodeSheet(
         episode: episode,
         currentPosSeconds: currentPosSeconds,
-        formattedPosition: formattedPosition,
         episodeId: widget.episodeId,
       ),
     );
