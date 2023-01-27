@@ -52,7 +52,7 @@ class HomeScreenState extends ConsumerState<HomeScreen> with PageMixin implement
 
   @override
   void scrollToTop() {
-    pageScrollController.animateTo(0, duration: const Duration(milliseconds: 500), curve: Curves.decelerate);
+    pageScrollController.animateTo(0, duration: const Duration(milliseconds: 500), curve: Curves.easeOutExpo);
   }
 
   @override
