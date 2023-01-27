@@ -34,34 +34,38 @@ mixin _$AchievementClickedEvent {
 abstract class $AchievementClickedEventCopyWith<$Res> {
   factory $AchievementClickedEventCopyWith(AchievementClickedEvent value,
           $Res Function(AchievementClickedEvent) then) =
-      _$AchievementClickedEventCopyWithImpl<$Res>;
+      _$AchievementClickedEventCopyWithImpl<$Res, AchievementClickedEvent>;
+  @useResult
   $Res call({int elementPosition, String elementTitle});
 }
 
 /// @nodoc
-class _$AchievementClickedEventCopyWithImpl<$Res>
+class _$AchievementClickedEventCopyWithImpl<$Res,
+        $Val extends AchievementClickedEvent>
     implements $AchievementClickedEventCopyWith<$Res> {
   _$AchievementClickedEventCopyWithImpl(this._value, this._then);
 
-  final AchievementClickedEvent _value;
   // ignore: unused_field
-  final $Res Function(AchievementClickedEvent) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? elementPosition = freezed,
-    Object? elementTitle = freezed,
+    Object? elementPosition = null,
+    Object? elementTitle = null,
   }) {
     return _then(_value.copyWith(
-      elementPosition: elementPosition == freezed
+      elementPosition: null == elementPosition
           ? _value.elementPosition
           : elementPosition // ignore: cast_nullable_to_non_nullable
               as int,
-      elementTitle: elementTitle == freezed
+      elementTitle: null == elementTitle
           ? _value.elementTitle
           : elementTitle // ignore: cast_nullable_to_non_nullable
               as String,
-    ));
+    ) as $Val);
   }
 }
 
@@ -72,32 +76,31 @@ abstract class _$$_AchievementClickedEventCopyWith<$Res>
           $Res Function(_$_AchievementClickedEvent) then) =
       __$$_AchievementClickedEventCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call({int elementPosition, String elementTitle});
 }
 
 /// @nodoc
 class __$$_AchievementClickedEventCopyWithImpl<$Res>
-    extends _$AchievementClickedEventCopyWithImpl<$Res>
+    extends _$AchievementClickedEventCopyWithImpl<$Res,
+        _$_AchievementClickedEvent>
     implements _$$_AchievementClickedEventCopyWith<$Res> {
   __$$_AchievementClickedEventCopyWithImpl(_$_AchievementClickedEvent _value,
       $Res Function(_$_AchievementClickedEvent) _then)
-      : super(_value, (v) => _then(v as _$_AchievementClickedEvent));
+      : super(_value, _then);
 
-  @override
-  _$_AchievementClickedEvent get _value =>
-      super._value as _$_AchievementClickedEvent;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? elementPosition = freezed,
-    Object? elementTitle = freezed,
+    Object? elementPosition = null,
+    Object? elementTitle = null,
   }) {
     return _then(_$_AchievementClickedEvent(
-      elementPosition: elementPosition == freezed
+      elementPosition: null == elementPosition
           ? _value.elementPosition
           : elementPosition // ignore: cast_nullable_to_non_nullable
               as int,
-      elementTitle: elementTitle == freezed
+      elementTitle: null == elementTitle
           ? _value.elementTitle
           : elementTitle // ignore: cast_nullable_to_non_nullable
               as String,
@@ -129,21 +132,19 @@ class _$_AchievementClickedEvent implements _AchievementClickedEvent {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_AchievementClickedEvent &&
-            const DeepCollectionEquality()
-                .equals(other.elementPosition, elementPosition) &&
-            const DeepCollectionEquality()
-                .equals(other.elementTitle, elementTitle));
+            (identical(other.elementPosition, elementPosition) ||
+                other.elementPosition == elementPosition) &&
+            (identical(other.elementTitle, elementTitle) ||
+                other.elementTitle == elementTitle));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(elementPosition),
-      const DeepCollectionEquality().hash(elementTitle));
+  int get hashCode => Object.hash(runtimeType, elementPosition, elementTitle);
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$_AchievementClickedEventCopyWith<_$_AchievementClickedEvent>
       get copyWith =>
           __$$_AchievementClickedEventCopyWithImpl<_$_AchievementClickedEvent>(

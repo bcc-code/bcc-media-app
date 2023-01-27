@@ -107,6 +107,7 @@ class ExoPlayerController(private val context: Context) : PlayerController() {
                 .setPreferredAudioLanguage(appConfigState?.audioLanguage)
                 .setPreferredTextLanguage(appConfigState?.subtitleLanguage).build()
         youboraPlugin.options.username = appConfigState?.analyticsId;
+        youboraPlugin.options.contentCustomDimension1 = if(appConfigState?.sessionId != null) appConfigState.sessionId.toString() else null;
     }
 
     private fun setBasicYouboraOptions(options: Options, config: PlaybackPlatformApi.NpawConfig?) {

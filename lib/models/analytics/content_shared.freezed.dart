@@ -35,45 +35,48 @@ mixin _$ContentSharedEvent {
 abstract class $ContentSharedEventCopyWith<$Res> {
   factory $ContentSharedEventCopyWith(
           ContentSharedEvent value, $Res Function(ContentSharedEvent) then) =
-      _$ContentSharedEventCopyWithImpl<$Res>;
+      _$ContentSharedEventCopyWithImpl<$Res, ContentSharedEvent>;
+  @useResult
   $Res call(
       {String pageCode, String elementType, String elementId, int? position});
 }
 
 /// @nodoc
-class _$ContentSharedEventCopyWithImpl<$Res>
+class _$ContentSharedEventCopyWithImpl<$Res, $Val extends ContentSharedEvent>
     implements $ContentSharedEventCopyWith<$Res> {
   _$ContentSharedEventCopyWithImpl(this._value, this._then);
 
-  final ContentSharedEvent _value;
   // ignore: unused_field
-  final $Res Function(ContentSharedEvent) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? pageCode = freezed,
-    Object? elementType = freezed,
-    Object? elementId = freezed,
+    Object? pageCode = null,
+    Object? elementType = null,
+    Object? elementId = null,
     Object? position = freezed,
   }) {
     return _then(_value.copyWith(
-      pageCode: pageCode == freezed
+      pageCode: null == pageCode
           ? _value.pageCode
           : pageCode // ignore: cast_nullable_to_non_nullable
               as String,
-      elementType: elementType == freezed
+      elementType: null == elementType
           ? _value.elementType
           : elementType // ignore: cast_nullable_to_non_nullable
               as String,
-      elementId: elementId == freezed
+      elementId: null == elementId
           ? _value.elementId
           : elementId // ignore: cast_nullable_to_non_nullable
               as String,
-      position: position == freezed
+      position: freezed == position
           ? _value.position
           : position // ignore: cast_nullable_to_non_nullable
               as int?,
-    ));
+    ) as $Val);
   }
 }
 
@@ -84,42 +87,41 @@ abstract class _$$_ContentSharedEventCopyWith<$Res>
           $Res Function(_$_ContentSharedEvent) then) =
       __$$_ContentSharedEventCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call(
       {String pageCode, String elementType, String elementId, int? position});
 }
 
 /// @nodoc
 class __$$_ContentSharedEventCopyWithImpl<$Res>
-    extends _$ContentSharedEventCopyWithImpl<$Res>
+    extends _$ContentSharedEventCopyWithImpl<$Res, _$_ContentSharedEvent>
     implements _$$_ContentSharedEventCopyWith<$Res> {
   __$$_ContentSharedEventCopyWithImpl(
       _$_ContentSharedEvent _value, $Res Function(_$_ContentSharedEvent) _then)
-      : super(_value, (v) => _then(v as _$_ContentSharedEvent));
+      : super(_value, _then);
 
-  @override
-  _$_ContentSharedEvent get _value => super._value as _$_ContentSharedEvent;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? pageCode = freezed,
-    Object? elementType = freezed,
-    Object? elementId = freezed,
+    Object? pageCode = null,
+    Object? elementType = null,
+    Object? elementId = null,
     Object? position = freezed,
   }) {
     return _then(_$_ContentSharedEvent(
-      pageCode: pageCode == freezed
+      pageCode: null == pageCode
           ? _value.pageCode
           : pageCode // ignore: cast_nullable_to_non_nullable
               as String,
-      elementType: elementType == freezed
+      elementType: null == elementType
           ? _value.elementType
           : elementType // ignore: cast_nullable_to_non_nullable
               as String,
-      elementId: elementId == freezed
+      elementId: null == elementId
           ? _value.elementId
           : elementId // ignore: cast_nullable_to_non_nullable
               as String,
-      position: position == freezed
+      position: freezed == position
           ? _value.position
           : position // ignore: cast_nullable_to_non_nullable
               as int?,
@@ -158,24 +160,24 @@ class _$_ContentSharedEvent implements _ContentSharedEvent {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_ContentSharedEvent &&
-            const DeepCollectionEquality().equals(other.pageCode, pageCode) &&
-            const DeepCollectionEquality()
-                .equals(other.elementType, elementType) &&
-            const DeepCollectionEquality().equals(other.elementId, elementId) &&
-            const DeepCollectionEquality().equals(other.position, position));
+            (identical(other.pageCode, pageCode) ||
+                other.pageCode == pageCode) &&
+            (identical(other.elementType, elementType) ||
+                other.elementType == elementType) &&
+            (identical(other.elementId, elementId) ||
+                other.elementId == elementId) &&
+            (identical(other.position, position) ||
+                other.position == position));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(pageCode),
-      const DeepCollectionEquality().hash(elementType),
-      const DeepCollectionEquality().hash(elementId),
-      const DeepCollectionEquality().hash(position));
+  int get hashCode =>
+      Object.hash(runtimeType, pageCode, elementType, elementId, position);
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$_ContentSharedEventCopyWith<_$_ContentSharedEvent> get copyWith =>
       __$$_ContentSharedEventCopyWithImpl<_$_ContentSharedEvent>(
           this, _$identity);
