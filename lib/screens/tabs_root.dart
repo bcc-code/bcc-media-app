@@ -146,17 +146,18 @@ class _TabsRootScreenState extends ConsumerState<TabsRootScreen> with AutoRouteA
       ]);
     }
     return AutoTabsRouter(
-        navigatorObservers: () => [HeroController()],
-        routes: routes,
-        builder: (context, child, animation) {
-          final tabsRouter = AutoTabsRouter.of(context);
-          return Theme(
-            data: Theme.of(context).copyWith(bottomSheetTheme: const BottomSheetThemeData(backgroundColor: Colors.transparent)),
-            child: Scaffold(
-                body: Padding(padding: EdgeInsets.only(bottom: _shouldHideMiniPlayer(context) ? 0 : kMiniPlayerHeight), child: child),
-                bottomSheet: BottomSheetMiniPlayer(hidden: _shouldHideMiniPlayer(context)),
-                bottomNavigationBar: CustomTabBar(tabsRouter: tabsRouter)),
-          );
-        });
+      navigatorObservers: () => [HeroController()],
+      routes: routes,
+      builder: (context, child, animation) {
+        final tabsRouter = AutoTabsRouter.of(context);
+        return Theme(
+          data: Theme.of(context).copyWith(bottomSheetTheme: const BottomSheetThemeData(backgroundColor: Colors.transparent)),
+          child: Scaffold(
+              body: Padding(padding: EdgeInsets.only(bottom: _shouldHideMiniPlayer(context) ? 0 : kMiniPlayerHeight), child: child),
+              bottomSheet: BottomSheetMiniPlayer(hidden: _shouldHideMiniPlayer(context)),
+              bottomNavigationBar: CustomTabBar(tabsRouter: tabsRouter)),
+        );
+      },
+    );
   }
 }
