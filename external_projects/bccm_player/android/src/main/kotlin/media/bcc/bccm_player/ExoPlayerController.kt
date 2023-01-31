@@ -40,7 +40,7 @@ class ExoPlayerController(private val context: Context) : PlayerController() {
                     if (_currentPlayerView == null) {
                         setRendererDisabled(true);
                         val activity = BccmPlayerPluginSingleton.activityState.value;
-                        Log.d("bccm", "FLAG_KEEP_SCREEN_ON added")
+                        Log.d("bccm", "FLAG_KEEP_SCREEN_ON cleared")
                         activity?.window?.clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
                     }
                 }
@@ -48,7 +48,7 @@ class ExoPlayerController(private val context: Context) : PlayerController() {
                 Log.d("bccm", "Enabling video, playerView attached")
                 setRendererDisabled(false);
                 val activity = BccmPlayerPluginSingleton.activityState.value;
-                Log.d("bccm", "FLAG_KEEP_SCREEN_ON cleared")
+                Log.d("bccm", "FLAG_KEEP_SCREEN_ON added")
                 activity?.window?.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
             }
         }
@@ -107,6 +107,7 @@ class ExoPlayerController(private val context: Context) : PlayerController() {
                 .setPreferredAudioLanguage(appConfigState?.audioLanguage)
                 .setPreferredTextLanguage(appConfigState?.subtitleLanguage).build()
         youboraPlugin.options.username = appConfigState?.analyticsId;
+        youboraPlugin.options.contentCustomDimension1 = if(appConfigState?.sessionId != null) appConfigState.sessionId.toString() else null;
     }
 
     private fun setBasicYouboraOptions(options: Options, config: PlaybackPlatformApi.NpawConfig?) {

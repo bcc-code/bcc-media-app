@@ -1,4 +1,6 @@
 import 'package:brunstadtv_app/components/bottom_sheet_select.dart';
+import 'package:brunstadtv_app/providers/auth_state.dart';
+import 'package:brunstadtv_app/providers/settings.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:restart_app/restart_app.dart';
@@ -11,45 +13,89 @@ import 'option_list.dart';
 class DeveloperOptions extends ConsumerWidget {
   const DeveloperOptions({super.key});
 
+  void showOverrideEnvModal(BuildContext context) async {
+    var currentEnvOverride = (await SharedPreferences.getInstance()).getString(PrefKeys.envOverride);
+    // ignore: use_build_context_synchronously
+    showDialog(
+      useRootNavigator: true,
+      context: context,
+      builder: (context) {
+        return SimpleDialog(
+          title: const Text(
+            'Choose environment override',
+            style: BtvTextStyles.title3,
+          ),
+          children: [EnvironmentOverride.none, EnvironmentOverride.dev, EnvironmentOverride.sta, EnvironmentOverride.prod]
+              .map((env) => SimpleDialogOption(
+                    onPressed: () async {
+                      var prefs = await SharedPreferences.getInstance();
+                      await prefs.setString(PrefKeys.envOverride, env);
+                      Restart.restartApp();
+                    },
+                    child: currentEnvOverride != env
+                        ? Text(env)
+                        : Text(
+                            env,
+                            style: BtvTextStyles.body1.copyWith(fontWeight: FontWeight.bold),
+                          ),
+                  ))
+              .toList(),
+        );
+      },
+    );
+  }
+
+  void showTechnicalDetails(BuildContext context, WidgetRef ref) async {
+    var auth = ref.read(authStateProvider);
+    var settings = ref.read(settingsProvider);
+    showDialog(
+      useRootNavigator: true,
+      context: context,
+      builder: (context) {
+        return SimpleDialog(
+          title: const Text(
+            'Technical details',
+            style: BtvTextStyles.title3,
+          ),
+          children: [
+            SelectionArea(
+              child: Container(
+                padding: const EdgeInsets.symmetric(horizontal: 16),
+                alignment: Alignment.topLeft,
+                child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+                  TextField(controller: TextEditingController()..text = 'auth.idToken: ${auth.idToken}'),
+                  TextField(controller: TextEditingController()..text = 'auth.accessToken: ${auth.idToken}'),
+                  const SizedBox(height: 8),
+                  Text('auth.expiresAt: ${auth.expiresAt}'),
+                  Text('session_id: ${settings.sessionId}'),
+                  Text('analytics_id (private): ${settings.analyticsId}'),
+                ]),
+              ),
+            )
+          ],
+        );
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return BottomSheetSelect(
       title: 'Developer options',
       selectedId: 'fromStart',
-      items: [Option(id: 'override_env', title: 'Override environment')],
+      items: [Option(id: 'override_env', title: 'Override environment'), Option(id: 'show_technical_details', title: 'Show technical details')],
       showSelection: false,
       onSelectionChanged: (id) async {
-        var currentEnvOverride = (await SharedPreferences.getInstance()).getString(PrefKeys.envOverride);
-        if (id == 'override_env') {
-          WidgetsBinding.instance.scheduleFrameCallback((d) {
-            showDialog(
-                useRootNavigator: true,
-                context: context,
-                builder: (context) {
-                  return SimpleDialog(
-                    title: const Text(
-                      'Choose environment override',
-                      style: BtvTextStyles.title3,
-                    ),
-                    children: [EnvironmentOverride.none, EnvironmentOverride.dev, EnvironmentOverride.sta, EnvironmentOverride.prod]
-                        .map((env) => SimpleDialogOption(
-                              onPressed: () async {
-                                var prefs = await SharedPreferences.getInstance();
-                                await prefs.setString(PrefKeys.envOverride, env);
-                                Restart.restartApp();
-                              },
-                              child: currentEnvOverride != env
-                                  ? Text(env)
-                                  : Text(
-                                      env,
-                                      style: BtvTextStyles.body1.copyWith(fontWeight: FontWeight.bold),
-                                    ),
-                            ))
-                        .toList(),
-                  );
-                });
-          });
-        }
+        WidgetsBinding.instance.scheduleFrameCallback((d) {
+          switch (id) {
+            case 'override_env':
+              showOverrideEnvModal(context);
+              break;
+            case 'show_technical_details':
+              showTechnicalDetails(context, ref);
+              break;
+          }
+        });
       },
     );
   }

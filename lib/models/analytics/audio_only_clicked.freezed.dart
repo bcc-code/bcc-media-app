@@ -33,29 +33,33 @@ mixin _$AudioOnlyClickedEvent {
 abstract class $AudioOnlyClickedEventCopyWith<$Res> {
   factory $AudioOnlyClickedEventCopyWith(AudioOnlyClickedEvent value,
           $Res Function(AudioOnlyClickedEvent) then) =
-      _$AudioOnlyClickedEventCopyWithImpl<$Res>;
+      _$AudioOnlyClickedEventCopyWithImpl<$Res, AudioOnlyClickedEvent>;
+  @useResult
   $Res call({bool audioOnly});
 }
 
 /// @nodoc
-class _$AudioOnlyClickedEventCopyWithImpl<$Res>
+class _$AudioOnlyClickedEventCopyWithImpl<$Res,
+        $Val extends AudioOnlyClickedEvent>
     implements $AudioOnlyClickedEventCopyWith<$Res> {
   _$AudioOnlyClickedEventCopyWithImpl(this._value, this._then);
 
-  final AudioOnlyClickedEvent _value;
   // ignore: unused_field
-  final $Res Function(AudioOnlyClickedEvent) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? audioOnly = freezed,
+    Object? audioOnly = null,
   }) {
     return _then(_value.copyWith(
-      audioOnly: audioOnly == freezed
+      audioOnly: null == audioOnly
           ? _value.audioOnly
           : audioOnly // ignore: cast_nullable_to_non_nullable
               as bool,
-    ));
+    ) as $Val);
   }
 }
 
@@ -66,27 +70,25 @@ abstract class _$$_AudioOnlyClickedEventCopyWith<$Res>
           $Res Function(_$_AudioOnlyClickedEvent) then) =
       __$$_AudioOnlyClickedEventCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call({bool audioOnly});
 }
 
 /// @nodoc
 class __$$_AudioOnlyClickedEventCopyWithImpl<$Res>
-    extends _$AudioOnlyClickedEventCopyWithImpl<$Res>
+    extends _$AudioOnlyClickedEventCopyWithImpl<$Res, _$_AudioOnlyClickedEvent>
     implements _$$_AudioOnlyClickedEventCopyWith<$Res> {
   __$$_AudioOnlyClickedEventCopyWithImpl(_$_AudioOnlyClickedEvent _value,
       $Res Function(_$_AudioOnlyClickedEvent) _then)
-      : super(_value, (v) => _then(v as _$_AudioOnlyClickedEvent));
+      : super(_value, _then);
 
-  @override
-  _$_AudioOnlyClickedEvent get _value =>
-      super._value as _$_AudioOnlyClickedEvent;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? audioOnly = freezed,
+    Object? audioOnly = null,
   }) {
     return _then(_$_AudioOnlyClickedEvent(
-      audioOnly: audioOnly == freezed
+      audioOnly: null == audioOnly
           ? _value.audioOnly
           : audioOnly // ignore: cast_nullable_to_non_nullable
               as bool,
@@ -115,16 +117,17 @@ class _$_AudioOnlyClickedEvent implements _AudioOnlyClickedEvent {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_AudioOnlyClickedEvent &&
-            const DeepCollectionEquality().equals(other.audioOnly, audioOnly));
+            (identical(other.audioOnly, audioOnly) ||
+                other.audioOnly == audioOnly));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(audioOnly));
+  int get hashCode => Object.hash(runtimeType, audioOnly);
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$_AudioOnlyClickedEventCopyWith<_$_AudioOnlyClickedEvent> get copyWith =>
       __$$_AudioOnlyClickedEventCopyWithImpl<_$_AudioOnlyClickedEvent>(
           this, _$identity);

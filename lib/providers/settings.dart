@@ -16,6 +16,7 @@ class Settings with _$Settings {
     String? audioLanguage,
     String? subtitleLanguage,
     String? analyticsId,
+    int? sessionId,
     String? envOverride,
   }) = _Settings;
 }
@@ -27,6 +28,7 @@ extension on Settings {
       audioLanguage: audioLanguage,
       subtitleLanguage: subtitleLanguage,
       analyticsId: analyticsId,
+      sessionId: sessionId,
     );
   }
 }
@@ -38,14 +40,16 @@ class SettingsService extends StateNotifier<Settings> {
 
   final Future<SharedPreferences> prefsF = SharedPreferences.getInstance();
 
-  Future<void> load() async {
+  Future<void> init() async {
     var prefs = await prefsF;
     state = state.copyWith(
-        appLanguage: Locale(prefs.getString(PrefKeys.appLanguage) ?? 'en'),
-        audioLanguage: prefs.getString(PrefKeys.audioLanguage),
-        subtitleLanguage: prefs.getString(PrefKeys.subtitleLanguage),
-        analyticsId: prefs.getString(PrefKeys.analyticsId),
-        envOverride: prefs.getString(PrefKeys.envOverride));
+      appLanguage: Locale(prefs.getString(PrefKeys.appLanguage) ?? 'en'),
+      audioLanguage: prefs.getString(PrefKeys.audioLanguage),
+      subtitleLanguage: prefs.getString(PrefKeys.subtitleLanguage),
+      analyticsId: prefs.getString(PrefKeys.analyticsId),
+      envOverride: prefs.getString(PrefKeys.envOverride),
+      sessionId: (DateTime.now().millisecondsSinceEpoch / 1000).round(),
+    );
   }
 
   Future<void> setAppLanguage(String code) async {
@@ -61,6 +65,12 @@ class SettingsService extends StateNotifier<Settings> {
     var prefs = await prefsF;
     prefs.setString(PrefKeys.audioLanguage, code);
     state = state.copyWith(audioLanguage: code);
+  }
+
+  void refreshSessionId() {
+    final newSessionId = (DateTime.now().millisecondsSinceEpoch / 1000).round();
+    debugPrint('Session_id: ${state.sessionId} -> $newSessionId');
+    state = state.copyWith(sessionId: newSessionId);
   }
 
   Future<void> setSubtitleLanguage(String? code) async {

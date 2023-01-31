@@ -7,12 +7,14 @@ import 'package:auto_route/auto_route.dart';
 import 'package:device_info_plus/device_info_plus.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:package_info_plus/package_info_plus.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../graphql/client.dart';
 import '../../graphql/queries/send_support_email.graphql.dart';
 import '../../helpers/btv_buttons.dart';
 import '../../helpers/btv_colors.dart';
 import '../../helpers/btv_typography.dart';
+import '../../helpers/constants.dart';
 import '../../helpers/utils.dart';
 import '../../l10n/app_localizations.dart';
 import '../../providers/auth_state.dart';
@@ -109,6 +111,7 @@ class _ContactSupportState extends ConsumerState<ContactSupport> {
   Future setDeviceInfo() async {
     String? device, manufacturer, os, screenSize, appVer, userId;
 
+    final sharedPrefs = await SharedPreferences.getInstance();
     PackageInfo packageInfo = await PackageInfo.fromPlatform();
     final screenWidth = WidgetsBinding.instance.window.physicalSize.width.toInt().toString();
     final screenHeight = WidgetsBinding.instance.window.physicalSize.height.toInt().toString();
@@ -137,6 +140,10 @@ class _ContactSupportState extends ConsumerState<ContactSupport> {
       ListItem(
         title: 'Device',
         content: device,
+      ),
+      ListItem(
+        title: 'Environment override',
+        content: sharedPrefs.getString(PrefKeys.envOverride),
       ),
       ListItem(
         title: 'Manufacturer',

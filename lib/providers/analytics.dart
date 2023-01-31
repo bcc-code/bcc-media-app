@@ -22,6 +22,8 @@ import '../models/analytics/search_result_clicked.dart';
 import '../models/analytics/sections.dart';
 import '../models/analytics/content_shared.dart';
 
+const kMinimumSessionTimeout = Duration(minutes: 30);
+
 String getAgeGroup(int? age) {
   if (age == null) {
     return 'UNKNOWN';
@@ -51,7 +53,8 @@ final analyticsProvider = Provider<Analytics>((ref) {
 
 class Analytics {
   PackageInfo? packageInfo;
-  Ref ref;
+  final Ref ref;
+  DateTime _lastAlive = DateTime.now();
 
   Analytics({required this.ref}) {
     final RudderController controller = RudderController.instance;
@@ -63,15 +66,35 @@ class Analytics {
     PackageInfo.fromPlatform().then((value) => packageInfo = value);
   }
 
-  RudderProperty getCommonData() {
-    return RudderProperty.fromMap({
-      'channel': 'mobile',
-      'appLanguage': ref.read(settingsProvider).appLanguage.languageCode,
-      'releaseVersion': packageInfo == null ? null : formatAppVersion(packageInfo!),
-    });
+  void checkSession() {
+    final now = DateTime.now();
+    final shouldRefreshSession = now.difference(_lastAlive) > kMinimumSessionTimeout;
+
+    if (shouldRefreshSession) {
+      print('Analytics: Session dead, refreshing sessionId. Now: ${now.toIso8601String()}, lastAlive: ${_lastAlive.toIso8601String()}.');
+      ref.read(settingsProvider.notifier).refreshSessionId();
+    }
+    _lastAlive = now;
+    debugPrint('checkSession _lastAlive: $_lastAlive');
   }
 
-  void track() {}
+  void heyJustHereToTellYouIBelieveTheSessionIsStillAlive() {
+    _lastAlive = DateTime.now();
+    debugPrint('bump _lastAlive: $_lastAlive');
+  }
+
+  RudderProperty getCommonData() {
+    checkSession();
+    final settings = ref.read(settingsProvider);
+    var commonData = RudderProperty.fromMap({
+      'channel': 'mobile',
+      'appLanguage': settings.appLanguage.languageCode,
+      'releaseVersion': packageInfo == null ? null : formatAppVersion(packageInfo!),
+      'sessionId': settings.sessionId
+    });
+
+    return commonData;
+  }
 
   void sectionItemClicked(BuildContext context) {
     var sectionAnalytics = InheritedData.read<SectionAnalytics>(context);
