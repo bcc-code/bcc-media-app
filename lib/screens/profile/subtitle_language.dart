@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../components/option_list.dart';
-import '../../helpers/btv_colors.dart';
-import '../../helpers/languages.dart';
+import '../../helpers/languages_subtitle.dart';
 import '../../l10n/app_localizations.dart';
 import '../../models/analytics/language_changed.dart';
 import '../../providers/analytics.dart';
@@ -20,19 +19,20 @@ class _AppSubtitleLanguageState extends ConsumerState<AppSubtitleLanguage> {
   @override
   void initState() {
     super.initState();
-    selected = ref.read(settingsProvider).subtitleLanguage;
+    selected = ref.read(settingsProvider).subtitleLanguage ?? noneLanguageCode;
   }
 
   void _onSelectionChanged(String id) {
-    ref.read(analyticsProvider).languageChanged(LanguageChangedEvent(
-          languageFrom: selected,
-          languageTo: id,
-          languageChangeType: 'subtitle',
-        ));
     setState(() {
       selected = id;
     });
-    ref.read(settingsProvider.notifier).setSubtitleLanguage(id);
+    final storableId = id == noneLanguageCode ? null : id;
+    ref.read(analyticsProvider).languageChanged(LanguageChangedEvent(
+          languageFrom: selected,
+          languageTo: storableId ?? '',
+          languageChangeType: 'subtitle',
+        ));
+    ref.read(settingsProvider.notifier).setSubtitleLanguage(storableId);
   }
 
   @override
@@ -53,7 +53,7 @@ class _AppSubtitleLanguageState extends ConsumerState<AppSubtitleLanguage> {
                 Padding(
                   padding: const EdgeInsets.all(16).copyWith(bottom: 100),
                   child: OptionList(
-                    optionData: languages.map((l) => Option(id: l.code, title: l.nativeName)).toList(),
+                    optionData: subtitleLanguages.map((l) => Option(id: l.code, title: l.nativeName)).toList(),
                     currentSelection: selected,
                     onSelectionChange: _onSelectionChanged,
                   ),

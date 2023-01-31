@@ -63,9 +63,13 @@ class SettingsService extends StateNotifier<Settings> {
     state = state.copyWith(audioLanguage: code);
   }
 
-  Future<void> setSubtitleLanguage(String code) async {
+  Future<void> setSubtitleLanguage(String? code) async {
     var prefs = await prefsF;
-    prefs.setString(PrefKeys.subtitleLanguage, code);
+    if (code == null) {
+      prefs.remove(PrefKeys.subtitleLanguage);
+    } else {
+      prefs.setString(PrefKeys.subtitleLanguage, code);
+    }
     state = state.copyWith(subtitleLanguage: code);
   }
 
