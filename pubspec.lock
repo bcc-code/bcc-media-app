@@ -65,22 +65,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.10.0"
-  auth0_flutter:
-    dependency: "direct main"
-    description:
-      name: auth0_flutter
-      sha256: fa6f9ed5c8650611c033cf8e18f24f4a1d0617c54bf78bc2609f3f65e279f1dd
-      url: "https://pub.dev"
-    source: hosted
-    version: "1.0.2"
-  auth0_flutter_platform_interface:
-    dependency: transitive
-    description:
-      name: auth0_flutter_platform_interface
-      sha256: "91244dcf3ba5acfc1823b38e7f1ca4e459d35abdc7d9d9e19f1bccfc241ee41b"
-      url: "https://pub.dev"
-    source: hosted
-    version: "1.0.1"
   auto_route:
     dependency: "direct main"
     description:
@@ -469,6 +453,22 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+  flutter_appauth:
+    dependency: "direct main"
+    description:
+      name: flutter_appauth
+      sha256: cbb075ec8fa11d3241cff5e4c20db8aa0732cc0d0bbb3f59b2172d23782dfc0b
+      url: "https://pub.dev"
+    source: hosted
+    version: "4.2.1"
+  flutter_appauth_platform_interface:
+    dependency: transitive
+    description:
+      name: flutter_appauth_platform_interface
+      sha256: "7b0c6e19e6b9a33098c6a14fb64aca62fccaefd40eccba1c4974d9a9d1fbe95a"
+      url: "https://pub.dev"
+    source: hosted
+    version: "5.2.0"
   flutter_dotenv:
     dependency: transitive
     description:
