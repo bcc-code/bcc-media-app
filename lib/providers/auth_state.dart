@@ -2,7 +2,6 @@ import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
 
-import 'package:brunstadtv_app/api/brunstadtv.dart';
 import 'package:brunstadtv_app/helpers/utils.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
@@ -14,7 +13,6 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:jwt_decoder/jwt_decoder.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:rudder_sdk_flutter/RudderController.dart';
-import 'package:http/http.dart' as http;
 import 'package:url_launcher/url_launcher.dart';
 
 import '../env/env.dart';
@@ -119,10 +117,11 @@ class AuthStateNotifier extends StateNotifier<AuthState> {
   Future logout({bool manual = true}) async {
     await _clearCredentials();
     if (Platform.isAndroid && manual) {
+      final PackageInfo info = await PackageInfo.fromPlatform();
       final url = Uri.https(
         Env.auth0Domain,
         '/v2/logout',
-        {'client_id': Env.auth0ClientId, 'returnTo': 'tv.brunstad.app://logout-callback'},
+        {'client_id': Env.auth0ClientId, 'returnTo': '${info.packageName}://logout-callback'},
       );
       // Log out of auth0.
       // Couldn't get the callback url to work properly with iOS in-app-browser
