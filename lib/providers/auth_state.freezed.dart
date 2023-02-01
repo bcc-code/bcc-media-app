@@ -16,7 +16,7 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$AuthState {
-  UserProfile? get user => throw _privateConstructorUsedError;
+  Auth0IdToken? get user => throw _privateConstructorUsedError;
   String? get auth0AccessToken => throw _privateConstructorUsedError;
   DateTime? get expiresAt => throw _privateConstructorUsedError;
   String? get idToken => throw _privateConstructorUsedError;
@@ -32,7 +32,7 @@ abstract class $AuthStateCopyWith<$Res> {
       _$AuthStateCopyWithImpl<$Res, AuthState>;
   @useResult
   $Res call(
-      {UserProfile? user,
+      {Auth0IdToken? user,
       String? auth0AccessToken,
       DateTime? expiresAt,
       String? idToken});
@@ -60,7 +60,7 @@ class _$AuthStateCopyWithImpl<$Res, $Val extends AuthState>
       user: freezed == user
           ? _value.user
           : user // ignore: cast_nullable_to_non_nullable
-              as UserProfile?,
+              as Auth0IdToken?,
       auth0AccessToken: freezed == auth0AccessToken
           ? _value.auth0AccessToken
           : auth0AccessToken // ignore: cast_nullable_to_non_nullable
@@ -84,7 +84,7 @@ abstract class _$$_AuthCopyWith<$Res> implements $AuthStateCopyWith<$Res> {
   @override
   @useResult
   $Res call(
-      {UserProfile? user,
+      {Auth0IdToken? user,
       String? auth0AccessToken,
       DateTime? expiresAt,
       String? idToken});
@@ -108,7 +108,7 @@ class __$$_AuthCopyWithImpl<$Res> extends _$AuthStateCopyWithImpl<$Res, _$_Auth>
       user: freezed == user
           ? _value.user
           : user // ignore: cast_nullable_to_non_nullable
-              as UserProfile?,
+              as Auth0IdToken?,
       auth0AccessToken: freezed == auth0AccessToken
           ? _value.auth0AccessToken
           : auth0AccessToken // ignore: cast_nullable_to_non_nullable
@@ -133,7 +133,7 @@ class _$_Auth extends _Auth {
       : super._();
 
   @override
-  final UserProfile? user;
+  final Auth0IdToken? user;
   @override
   final String? auth0AccessToken;
   @override
@@ -172,14 +172,14 @@ class _$_Auth extends _Auth {
 
 abstract class _Auth extends AuthState {
   const factory _Auth(
-      {final UserProfile? user,
+      {final Auth0IdToken? user,
       final String? auth0AccessToken,
       final DateTime? expiresAt,
       final String? idToken}) = _$_Auth;
   const _Auth._() : super._();
 
   @override
-  UserProfile? get user;
+  Auth0IdToken? get user;
   @override
   String? get auth0AccessToken;
   @override

@@ -1,8 +1,8 @@
-import 'package:auth0_flutter/auth0_flutter.dart';
 import 'package:brunstadtv_app/env/env.dart';
 import 'package:brunstadtv_app/graphql/queries/achievements.graphql.dart';
 import 'package:brunstadtv_app/helpers/utils.dart';
 import 'package:brunstadtv_app/models/analytics/achievement_clicked.dart';
+import 'package:brunstadtv_app/models/auth/auth0_id_token.dart';
 import 'package:brunstadtv_app/providers/inherited_data.dart';
 import 'package:brunstadtv_app/providers/settings.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
@@ -168,7 +168,7 @@ class Analytics {
     RudderController.instance.track('achievement_shared', properties: getCommonData().putValue(map: event.toJson()));
   }
 
-  void identify(UserProfile profile, String analyticsId) {
+  void identify(Auth0IdToken profile, String analyticsId) {
     ref.read(settingsProvider.notifier).setAnalyticsId(analyticsId);
     final traits = RudderTraits();
 
@@ -179,8 +179,8 @@ class Analytics {
       age = (ageDuration.inDays / 365.25).floor();
       traits.put('ageGroup', getAgeGroup(age));
     }
-    traits.put('country', profile.customClaims?['https://login.bcc.no/claims/CountryIso2Code']);
-    traits.put('churchId', profile.customClaims?['https://login.bcc.no/claims/churchId']?.toString());
+    traits.put('country', profile.countryIso2Code);
+    traits.put('churchId', profile.churchId.toString());
     if (profile.gender != null) {
       traits.putGender(profile.gender!);
     }
