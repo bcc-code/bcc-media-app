@@ -14,6 +14,7 @@ import 'package:jwt_decoder/jwt_decoder.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:rudder_sdk_flutter/RudderController.dart';
 import 'package:http/http.dart' as http;
+import 'package:url_launcher/url_launcher.dart';
 
 import '../env/env.dart';
 import '../helpers/constants.dart';
@@ -113,30 +114,23 @@ class AuthStateNotifier extends StateNotifier<AuthState> {
     );
   }
 
-  Future<bool> logoutFederated() async {
-    final url = Uri.https(
-      'https://${Env.auth0Domain}',
-      '/v2/logout',
-      {'client_id': Env.auth0ClientId, 'federated': ''},
-    );
-
-    final response = await http.get(
-      url,
-      headers: {'Authorization': 'Bearer ${state.auth0AccessToken}'},
-    );
-
-    print(
-      'logout: ${response.request} ${response.statusCode} ${response.body}',
-    );
-    return response.statusCode == 200;
-  }
-
   Future logout({bool federated = true}) async {
-    await _clearCredentials();
-
-    if (federated) {
-      await logoutFederated();
+    try {
+      if (federated) {
+        final url = Uri.https(
+          Env.auth0Domain,
+          '/v2/logout',
+          {'client_id': Env.auth0ClientId, 'returnTo': 'tv.brunstad.app://login-callback'},
+        );
+        await launchUrl(url, mode: LaunchMode.externalApplication);
+      }
+    } catch (e, st) {
+      FirebaseCrashlytics.instance.recordError(e, st);
     }
+    await _clearCredentials();
+    state = const AuthState();
+    FirebaseMessaging.instance.deleteToken();
+    RudderController.instance.reset();
 
     return;
   }
