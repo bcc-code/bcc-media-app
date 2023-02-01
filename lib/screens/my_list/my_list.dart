@@ -1,7 +1,9 @@
 import 'package:brunstadtv_app/helpers/btv_colors.dart';
 import 'package:brunstadtv_app/helpers/btv_typography.dart';
+import 'package:brunstadtv_app/helpers/svg_icons.dart';
 import 'package:brunstadtv_app/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class MyList extends StatelessWidget {
   const MyList({Key? key}) : super(key: key);
@@ -19,7 +21,7 @@ class MyList extends StatelessWidget {
             mainAxisSize: MainAxisSize.max,
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Image.asset('assets/icons/4x/Testimony_Selected.png', gaplessPlayback: true),
+              SvgPicture.string(SvgIcons.heart),
               Text(S.of(context).doYouKnowTitle, style: BtvTextStyles.headline1),
               Padding(
                 padding: EdgeInsets.only(top: 12, bottom: 42),
@@ -43,7 +45,7 @@ class MyList extends StatelessWidget {
                   S.of(context).exploreContent,
                   style: BtvTextStyles.button1.copyWith(color: BtvColors.onTint),
                 ),
-              )
+              ),
             ],
           ),
         ),
