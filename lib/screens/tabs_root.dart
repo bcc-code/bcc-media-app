@@ -9,6 +9,7 @@ import 'package:brunstadtv_app/helpers/utils.dart';
 import 'package:brunstadtv_app/providers/auth_state.dart';
 import 'package:brunstadtv_app/providers/chromecast.dart';
 import 'package:brunstadtv_app/providers/settings.dart';
+import 'package:brunstadtv_app/screens/my_list/my_list.dart';
 import 'package:brunstadtv_app/screens/search/search.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
@@ -142,6 +143,7 @@ class _TabsRootScreenState extends ConsumerState<TabsRootScreen> with AutoRouteA
     if (!ref.watch(authStateProvider).guestMode) {
       routes.addAll([
         const LiveScreenRoute(),
+        const MyListRoute(),
         const CalendarPageRoute(),
       ]);
     }

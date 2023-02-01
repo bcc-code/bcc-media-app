@@ -743,5 +743,19 @@
   "details": "Details",
   "@details": {
     "description": "A tab name on the episode page which has some extra details about the episode: release date, age rating, etc."
+  },
+  "myList": "My List",
+  "@myList": {
+    "description": "Recent liked list Tab"
+  },
+  "doYouKnowTitle": "Do you know?",
+  "@doYouKnow": {
+    "description": "Do you know question"
+  },
+  "doYouKnowContent": "You can add your facourite shows to \"My List\" by tapping the heart.",
+  "@doYouKnowContent": {
+    "description": "You can add your facourite shows to \"My List\" by tapping the heart."
   }
+
+  
 }
