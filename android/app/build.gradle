@@ -59,11 +59,6 @@ android {
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
         multiDexEnabled true
-        /*manifestPlaceholders += [
-            'appAuthRedirectScheme': 'tv.brunstad.app'
-        ]*/
-
-        manifestPlaceholders += [auth0Domain: "@string/com_auth0_domain", auth0Scheme: "@string/com_auth0_scheme"]
     }
 
     signingConfigs {
@@ -85,26 +80,38 @@ android {
         prod {
             dimension "env"
             applicationIdSuffix ""
-            manifestPlaceholders = [appName: "BCC Media"]
+            manifestPlaceholders += [
+                appName: "BCC Media",
+                appAuthRedirectScheme: 'tv.brunstad.app'
+            ]
             flutter.target "lib/main_prod.dart"
         }
         dev {
             dimension "env"
             applicationIdSuffix ".dev"
-            manifestPlaceholders = [appName: "DEV BCC Media"]
             flutter.target "lib/main_dev.dart"
+            manifestPlaceholders += [
+                appName: "DEV BCC Media",
+                appAuthRedirectScheme: 'tv.brunstad.app.dev'
+            ]
         }
         v4_prod {
             dimension "env"
             applicationIdSuffix ".v4"
-            manifestPlaceholders = [appName: "BCC Media v4"]
             flutter.target "lib/main_v4_prod.dart"
+            manifestPlaceholders += [
+                appName: "BCC Media v4",
+                appAuthRedirectScheme: 'tv.brunstad.app.v4'
+            ]
         }
         v4_dev {
             dimension "env"
             applicationIdSuffix ".v4.dev"
-            manifestPlaceholders = [appName: "DEV BCC Media v4"]
             flutter.target "lib/main_v4_dev.dart"
+            manifestPlaceholders += [
+                appName: "DEV BCC Media v4",
+                appAuthRedirectScheme: 'tv.brunstad.app.v4.dev'
+            ]
         }
     }
 }

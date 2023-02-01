@@ -10,7 +10,7 @@ class Avatar extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final imageUrl = ref.read(authStateProvider).user?.pictureUrl.toString();
+    final imageUrl = ref.read(authStateProvider).user?.picture.toString();
     final name = ref.read(authStateProvider).user?.name;
     const avatarWidth = 100.0;
 
