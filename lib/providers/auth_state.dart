@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'dart:convert';
+import 'dart:io';
 
 import 'package:brunstadtv_app/api/brunstadtv.dart';
 import 'package:brunstadtv_app/helpers/utils.dart';
@@ -72,6 +73,7 @@ class AuthStateNotifier extends StateNotifier<AuthState> {
       idToken: idToken,
       user: _parseIdToken(idToken),
       expiresAt: expiry,
+      signedOutManually: null,
     );
     return true;
   }
@@ -114,21 +116,21 @@ class AuthStateNotifier extends StateNotifier<AuthState> {
     );
   }
 
-  Future logout({bool federated = true}) async {
-    try {
-      if (federated) {
-        final url = Uri.https(
-          Env.auth0Domain,
-          '/v2/logout',
-          {'client_id': Env.auth0ClientId, 'returnTo': 'tv.brunstad.app://login-callback'},
-        );
-        await launchUrl(url, mode: LaunchMode.externalApplication);
-      }
-    } catch (e, st) {
-      FirebaseCrashlytics.instance.recordError(e, st);
-    }
+  Future logout({bool manual = true}) async {
     await _clearCredentials();
-    state = const AuthState();
+    if (Platform.isAndroid && manual) {
+      final url = Uri.https(
+        Env.auth0Domain,
+        '/v2/logout',
+        {'client_id': Env.auth0ClientId, 'returnTo': 'tv.brunstad.app://logout-callback'},
+      );
+      // Log out of auth0.
+      // Couldn't get the callback url to work properly with iOS in-app-browser
+      // And with externalApplication on iOS, the callback url doesn't open automatically,
+      // the user has to click "Open".
+      await launchUrl(url, mode: LaunchMode.externalApplication);
+    }
+    state = AuthState(signedOutManually: manual);
     FirebaseMessaging.instance.deleteToken();
     RudderController.instance.reset();
 
@@ -143,6 +145,7 @@ class AuthStateNotifier extends StateNotifier<AuthState> {
         '${info.packageName}://login-callback',
         issuer: 'https://${Env.auth0Domain}',
         scopes: ['openid', 'profile', 'offline_access', 'church', 'country'],
+        promptValues: state.signedOutManually == true ? ['login'] : null,
         additionalParameters: {'audience': Env.auth0Audience},
       );
 
@@ -152,7 +155,7 @@ class AuthStateNotifier extends StateNotifier<AuthState> {
 
       await _setStateBasedOnResponse(result!);
     } catch (e, st) {
-      logout(federated: false);
+      logout(manual: false);
       debugPrint(e.toString());
       FirebaseCrashlytics.instance.recordError(e, st);
       return false;
@@ -190,11 +193,11 @@ class AuthStateNotifier extends StateNotifier<AuthState> {
     ]);
 
     state = state.copyWith(
-      auth0AccessToken: accessToken,
-      idToken: idToken,
-      user: _parseIdToken(idToken),
-      expiresAt: _getAccessTokenExpiry(accessToken),
-    );
+        auth0AccessToken: accessToken,
+        idToken: idToken,
+        user: _parseIdToken(idToken),
+        expiresAt: _getAccessTokenExpiry(accessToken),
+        signedOutManually: false);
   }
 }
 
@@ -207,6 +210,7 @@ class AuthState with _$AuthState {
     String? auth0AccessToken,
     DateTime? expiresAt,
     String? idToken,
+    bool? signedOutManually,
   }) = _Auth;
 
   bool get guestMode => auth0AccessToken == null;
