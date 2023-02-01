@@ -120,10 +120,6 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                       ),
                     ),
                   ),
-                  Text(
-                    S.of(context).loginPageDisplay3,
-                    style: BtvTextStyles.caption1.copyWith(color: BtvColors.label3),
-                  )
                 ],
               ),
             ),
