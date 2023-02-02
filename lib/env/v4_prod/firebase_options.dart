@@ -56,11 +56,11 @@ class DefaultFirebaseOptions {
   );
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyCNfLOJ4j-39lPecPyv0h4j-FB8NMY-zXA',
-    appId: '1:459822980184:android:cd8465ea983f8fad4efe2d',
-    messagingSenderId: '459822980184',
-    projectId: 'bcc-media-test',
-    storageBucket: 'bcc-media-test.appspot.com',
+    apiKey: 'AIzaSyCIie1N55IWsXPLupVCMuSGhdY-YPJ2V5o',
+    appId: '1:617519323732:android:616f5b1f0070b70e89ebc1',
+    messagingSenderId: '617519323732',
+    projectId: 'btv-platform-prod-2',
+    storageBucket: 'btv-platform-prod-2.appspot.com',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
