@@ -161,7 +161,7 @@ class SNb extends S {
   String get play => 'Spill av';
 
   @override
-  String get castQueue => 'Kø';
+  String get castQueue => 'Legg til i kø';
 
   @override
   String get options => 'Alternativer';
@@ -170,7 +170,7 @@ class SNb extends S {
   String get remove => 'Fjern';
 
   @override
-  String get queueLimitTitle => 'Købegrensing Title';
+  String get queueLimitTitle => 'Købegrensing';
 
   @override
   String queueLimitMessage(int elementCount) {
@@ -178,19 +178,19 @@ class SNb extends S {
   }
 
   @override
-  String get recentSearches => 'Siste søk';
+  String get recentSearches => 'Nylige søk';
 
   @override
-  String get tVLogin => 'TV Login';
+  String get tVLogin => 'TV-innlogging';
 
   @override
-  String get tVLoginSuccessful => 'Du er nå logget inn, vennligst bekreft på TVen';
+  String get tVLoginSuccessful => 'Du er nå logget inn, vennligst bekreft på TV-en';
 
   @override
   String get seeMore => 'Se mer';
 
   @override
-  String get seeAll => 'Se alle';
+  String get seeAll => 'Se alt';
 
   @override
   String get series => 'Serier';
@@ -202,7 +202,7 @@ class SNb extends S {
   String get sortBy => 'Sorter etter';
 
   @override
-  String get videoQuality => 'Video kvalitet';
+  String get videoQuality => 'Videokvalitet';
 
   @override
   String get low => 'Lav';
@@ -235,7 +235,7 @@ class SNb extends S {
   String get shortFilms => 'Kortfilmer';
 
   @override
-  String get videos => 'Filmer';
+  String get videos => 'Videoer';
 
   @override
   String get moreInfo => 'Mer informasjon';
@@ -250,7 +250,7 @@ class SNb extends S {
   String get takePhoto => 'Ta et bilde';
 
   @override
-  String get pickPhoto => 'Hent fra galleri';
+  String get pickPhoto => 'Velg fra galleri';
 
   @override
   String get uploadFileTitle => 'Last opp fil';
@@ -348,7 +348,7 @@ class SNb extends S {
 
   @override
   String timezoneInformation(String timeZone) {
-    return 'Tv-guide tidstabell er i din lokale tid: $timeZone';
+    return 'Tidspunkter er oppgitt i din lokaltid: $timeZone';
   }
 
   @override
@@ -496,7 +496,7 @@ class SNb extends S {
 
   @override
   String achievementStudyTopic(String name) {
-    return 'Gratulerer med å fullføre studietema $name';
+    return 'Gratulerer med å ha fullført bibelstudiet $name';
   }
 
   @override
@@ -538,5 +538,8 @@ class SNb extends S {
   String get plentyOfOtherContent => 'Fortvil ikke, det er fortsatt mye innhold du kan se!';
 
   @override
-  String get notAchieved => 'Not achieved';
+  String get notAchieved => 'Ikke oppnådd ennå';
+
+  @override
+  String get details => 'Detaljer';
 }

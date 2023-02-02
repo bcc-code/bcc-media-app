@@ -611,7 +611,7 @@
   "@taskCompleted": {
     "description": "SINGULAR. Note the lowercase T, because its inserted after a count: '0/1 task completed'."
   },
-  "tasksCompleted": "feladatok elvégezve",
+  "tasksCompleted": "feladat elvégezve",
   "@tasksCompleted": {
     "description": "PLURAL. Note the lowercase T, because its inserted after the count: '2/5 tasks completed'."
   },
@@ -623,7 +623,7 @@
   "@discoverMore": {
     "description": "Generic button text."
   },
-  "completePreviousTasks": "Complete previous tasks to unlock",
+  "completePreviousTasks": "Fejezd be a korábbi feladatokat a feloldáshoz",
   "@completePreviousTasks": {
     "description": "Shown on a locked button, short explanation why the button is locked."
   },
@@ -685,7 +685,7 @@
       }
     }
   },
-  "taskCount": "{count} feladatok",
+  "taskCount": "{count} feladat",
   "@taskCount": {
     "description": "REMEMBER: Include, but do not translate variables like {count} here. Keep it very short. Generic, number of tasks. Currently used for study topic overviews.",
     "placeholders": {
@@ -735,5 +735,13 @@
   "plentyOfOtherContent": "Ne aggódj, még rengeteg más tartalmat is élvezhetsz!",
   "@plentyOfOtherContent": {
     "description": "Shown on an error page indiciating you dont have access to the content, right above a button that takes you back."
+  },
+  "notAchieved": "Nem teljesült",
+  "@notAchieved": {
+    "description": "A label indicating that this achievement has not been achieved yet."
+  },
+  "details": "Részletek",
+  "@details": {
+    "description": "A tab name on the episode page which has some extra details about the episode: release date, age rating, etc."
   }
 }

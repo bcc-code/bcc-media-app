@@ -39,11 +39,12 @@ class _BottomSheetMiniPlayerState extends ConsumerState<BottomSheetMiniPlayer> {
     }
 
     return AnimatedAlign(
-        duration: const Duration(milliseconds: 200),
-        curve: Curves.easeOutQuart,
-        alignment: Alignment.topCenter,
-        heightFactor: widget.hidden ? 0 : 1,
-        child: widget.hidden || player == null ? _buildDummy() : _buildMiniPlayer(player));
+      duration: const Duration(milliseconds: 200),
+      curve: Curves.easeOutQuart,
+      alignment: Alignment.topCenter,
+      heightFactor: widget.hidden ? 0 : 1,
+      child: widget.hidden || player == null ? _buildDummy() : _buildMiniPlayer(player),
+    );
   }
 
   Widget _buildMiniPlayer(Player player) {

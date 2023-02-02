@@ -34,7 +34,9 @@
             "cwd": "${workspaceFolder}",
             "args": [
                 "--flavor",
-                "v4_prod"
+                "v4_prod",
+                "--web-port",
+                "3001"
             ], // Remember to change the "program" property too
             "program": "lib/main_v4_prod.dart"
         },

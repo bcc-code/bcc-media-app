@@ -33,29 +33,33 @@ mixin _$AchievementSharedEvent {
 abstract class $AchievementSharedEventCopyWith<$Res> {
   factory $AchievementSharedEventCopyWith(AchievementSharedEvent value,
           $Res Function(AchievementSharedEvent) then) =
-      _$AchievementSharedEventCopyWithImpl<$Res>;
+      _$AchievementSharedEventCopyWithImpl<$Res, AchievementSharedEvent>;
+  @useResult
   $Res call({String elementTitle});
 }
 
 /// @nodoc
-class _$AchievementSharedEventCopyWithImpl<$Res>
+class _$AchievementSharedEventCopyWithImpl<$Res,
+        $Val extends AchievementSharedEvent>
     implements $AchievementSharedEventCopyWith<$Res> {
   _$AchievementSharedEventCopyWithImpl(this._value, this._then);
 
-  final AchievementSharedEvent _value;
   // ignore: unused_field
-  final $Res Function(AchievementSharedEvent) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? elementTitle = freezed,
+    Object? elementTitle = null,
   }) {
     return _then(_value.copyWith(
-      elementTitle: elementTitle == freezed
+      elementTitle: null == elementTitle
           ? _value.elementTitle
           : elementTitle // ignore: cast_nullable_to_non_nullable
               as String,
-    ));
+    ) as $Val);
   }
 }
 
@@ -66,27 +70,26 @@ abstract class _$$_AchievementSharedEventCopyWith<$Res>
           $Res Function(_$_AchievementSharedEvent) then) =
       __$$_AchievementSharedEventCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call({String elementTitle});
 }
 
 /// @nodoc
 class __$$_AchievementSharedEventCopyWithImpl<$Res>
-    extends _$AchievementSharedEventCopyWithImpl<$Res>
+    extends _$AchievementSharedEventCopyWithImpl<$Res,
+        _$_AchievementSharedEvent>
     implements _$$_AchievementSharedEventCopyWith<$Res> {
   __$$_AchievementSharedEventCopyWithImpl(_$_AchievementSharedEvent _value,
       $Res Function(_$_AchievementSharedEvent) _then)
-      : super(_value, (v) => _then(v as _$_AchievementSharedEvent));
+      : super(_value, _then);
 
-  @override
-  _$_AchievementSharedEvent get _value =>
-      super._value as _$_AchievementSharedEvent;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? elementTitle = freezed,
+    Object? elementTitle = null,
   }) {
     return _then(_$_AchievementSharedEvent(
-      elementTitle: elementTitle == freezed
+      elementTitle: null == elementTitle
           ? _value.elementTitle
           : elementTitle // ignore: cast_nullable_to_non_nullable
               as String,
@@ -115,17 +118,17 @@ class _$_AchievementSharedEvent implements _AchievementSharedEvent {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_AchievementSharedEvent &&
-            const DeepCollectionEquality()
-                .equals(other.elementTitle, elementTitle));
+            (identical(other.elementTitle, elementTitle) ||
+                other.elementTitle == elementTitle));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType, const DeepCollectionEquality().hash(elementTitle));
+  int get hashCode => Object.hash(runtimeType, elementTitle);
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$_AchievementSharedEventCopyWith<_$_AchievementSharedEvent> get copyWith =>
       __$$_AchievementSharedEventCopyWithImpl<_$_AchievementSharedEvent>(
           this, _$identity);

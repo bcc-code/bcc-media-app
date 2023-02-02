@@ -43,6 +43,7 @@ class _AppRootState extends ConsumerState<AppRoot> {
       debugPrint('authSubscription');
       if (previous?.auth0AccessToken != null && next.auth0AccessToken == null) {
         settingsNotifier.setAnalyticsId(null);
+        settingsNotifier.refreshSessionId();
         widget.navigatorKey.currentContext?.router.root.navigate(LoginScreenRoute());
       } else if (next.auth0AccessToken != null && next.user != null) {
         gqlClient.query$me().then((value) {
@@ -86,7 +87,6 @@ class _AppRootState extends ConsumerState<AppRoot> {
       }
     } else if (message.data['action'] == 'clear_cache') {
       // TODO: implement cache clearing
-
     }
   }
 

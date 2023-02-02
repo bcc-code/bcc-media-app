@@ -539,4 +539,7 @@ class SBg extends S {
 
   @override
   String get notAchieved => 'Not achieved';
+
+  @override
+  String get details => 'Details';
 }

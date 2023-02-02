@@ -11,7 +11,7 @@ abstract class AuthStateNotifier implements StateNotifier<AuthState> {
 
   Future<bool> load();
 
-  Future logout({bool federated = true});
+  Future logout({bool manual = true});
 
   Future<bool> login();
 

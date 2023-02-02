@@ -34,39 +34,43 @@ mixin _$SearchPerformedEvent {
 abstract class $SearchPerformedEventCopyWith<$Res> {
   factory $SearchPerformedEventCopyWith(SearchPerformedEvent value,
           $Res Function(SearchPerformedEvent) then) =
-      _$SearchPerformedEventCopyWithImpl<$Res>;
+      _$SearchPerformedEventCopyWithImpl<$Res, SearchPerformedEvent>;
+  @useResult
   $Res call({String searchText, int searchLatency, int searchResultCount});
 }
 
 /// @nodoc
-class _$SearchPerformedEventCopyWithImpl<$Res>
+class _$SearchPerformedEventCopyWithImpl<$Res,
+        $Val extends SearchPerformedEvent>
     implements $SearchPerformedEventCopyWith<$Res> {
   _$SearchPerformedEventCopyWithImpl(this._value, this._then);
 
-  final SearchPerformedEvent _value;
   // ignore: unused_field
-  final $Res Function(SearchPerformedEvent) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? searchText = freezed,
-    Object? searchLatency = freezed,
-    Object? searchResultCount = freezed,
+    Object? searchText = null,
+    Object? searchLatency = null,
+    Object? searchResultCount = null,
   }) {
     return _then(_value.copyWith(
-      searchText: searchText == freezed
+      searchText: null == searchText
           ? _value.searchText
           : searchText // ignore: cast_nullable_to_non_nullable
               as String,
-      searchLatency: searchLatency == freezed
+      searchLatency: null == searchLatency
           ? _value.searchLatency
           : searchLatency // ignore: cast_nullable_to_non_nullable
               as int,
-      searchResultCount: searchResultCount == freezed
+      searchResultCount: null == searchResultCount
           ? _value.searchResultCount
           : searchResultCount // ignore: cast_nullable_to_non_nullable
               as int,
-    ));
+    ) as $Val);
   }
 }
 
@@ -77,36 +81,35 @@ abstract class _$$_SearchPerformedEventCopyWith<$Res>
           $Res Function(_$_SearchPerformedEvent) then) =
       __$$_SearchPerformedEventCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call({String searchText, int searchLatency, int searchResultCount});
 }
 
 /// @nodoc
 class __$$_SearchPerformedEventCopyWithImpl<$Res>
-    extends _$SearchPerformedEventCopyWithImpl<$Res>
+    extends _$SearchPerformedEventCopyWithImpl<$Res, _$_SearchPerformedEvent>
     implements _$$_SearchPerformedEventCopyWith<$Res> {
   __$$_SearchPerformedEventCopyWithImpl(_$_SearchPerformedEvent _value,
       $Res Function(_$_SearchPerformedEvent) _then)
-      : super(_value, (v) => _then(v as _$_SearchPerformedEvent));
+      : super(_value, _then);
 
-  @override
-  _$_SearchPerformedEvent get _value => super._value as _$_SearchPerformedEvent;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? searchText = freezed,
-    Object? searchLatency = freezed,
-    Object? searchResultCount = freezed,
+    Object? searchText = null,
+    Object? searchLatency = null,
+    Object? searchResultCount = null,
   }) {
     return _then(_$_SearchPerformedEvent(
-      searchText: searchText == freezed
+      searchText: null == searchText
           ? _value.searchText
           : searchText // ignore: cast_nullable_to_non_nullable
               as String,
-      searchLatency: searchLatency == freezed
+      searchLatency: null == searchLatency
           ? _value.searchLatency
           : searchLatency // ignore: cast_nullable_to_non_nullable
               as int,
-      searchResultCount: searchResultCount == freezed
+      searchResultCount: null == searchResultCount
           ? _value.searchResultCount
           : searchResultCount // ignore: cast_nullable_to_non_nullable
               as int,
@@ -142,24 +145,22 @@ class _$_SearchPerformedEvent implements _SearchPerformedEvent {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_SearchPerformedEvent &&
-            const DeepCollectionEquality()
-                .equals(other.searchText, searchText) &&
-            const DeepCollectionEquality()
-                .equals(other.searchLatency, searchLatency) &&
-            const DeepCollectionEquality()
-                .equals(other.searchResultCount, searchResultCount));
+            (identical(other.searchText, searchText) ||
+                other.searchText == searchText) &&
+            (identical(other.searchLatency, searchLatency) ||
+                other.searchLatency == searchLatency) &&
+            (identical(other.searchResultCount, searchResultCount) ||
+                other.searchResultCount == searchResultCount));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(searchText),
-      const DeepCollectionEquality().hash(searchLatency),
-      const DeepCollectionEquality().hash(searchResultCount));
+  int get hashCode =>
+      Object.hash(runtimeType, searchText, searchLatency, searchResultCount);
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$_SearchPerformedEventCopyWith<_$_SearchPerformedEvent> get copyWith =>
       __$$_SearchPerformedEventCopyWithImpl<_$_SearchPerformedEvent>(
           this, _$identity);
