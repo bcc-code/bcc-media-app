@@ -64,12 +64,12 @@ class DefaultFirebaseOptions {
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyBFLWpDkch9VbHVf7hMzw2ElDwn1K59VKs',
-    appId: '1:459822980184:ios:54ca766b4f071c554efe2d',
-    messagingSenderId: '459822980184',
-    projectId: 'bcc-media-test',
-    storageBucket: 'bcc-media-test.appspot.com',
-    iosClientId: '459822980184-8baat8ca3mkaqbt9253bduibf98cmrl9.apps.googleusercontent.com',
-    iosBundleId: 'tv.brunstad.app',
+    apiKey: 'AIzaSyCV5dcov2D9S2b9wjTzkKDQRTWnqMUhcAU',
+    appId: '1:617519323732:ios:198104f61299020989ebc1',
+    messagingSenderId: '617519323732',
+    projectId: 'btv-platform-prod-2',
+    storageBucket: 'btv-platform-prod-2.appspot.com',
+    iosClientId: '617519323732-mbtsbp371mrgl5psa0uobgsob3e1q0es.apps.googleusercontent.com',
+    iosBundleId: 'tv.brunstad.app.v4',
   );
 }
