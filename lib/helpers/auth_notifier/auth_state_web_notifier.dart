@@ -11,10 +11,9 @@ import '../../models/auth_state.dart';
 import 'auth_state_notifier_interface.dart';
 
 final _auth0 = createAuth0Client(Auth0ClientOptions(
-  domain: Env.auth0Domain,
-  client_id: Env.auth0ClientId,
-  // cacheLocation: 'localStorage',
-));
+    domain: Env.auth0Domain, client_id: Env.auth0ClientId, audience: Env.auth0Audience, scope: 'openid profile offline_access church country'
+    // cacheLocation: 'localStorage',
+    ));
 
 class AuthStateWebNotifier extends StateNotifier<AuthState> implements AuthStateNotifier {
   AuthStateWebNotifier() : super(const AuthState());
@@ -57,8 +56,9 @@ class AuthStateWebNotifier extends StateNotifier<AuthState> implements AuthState
 
   @override
   Future logout({bool federated = true}) async {
+    state = const AuthState();
     final auth0 = await _auth0;
-    auth0.logout();
+    auth0.logout(options: LogoutOptions(localOnly: true));
   }
 
   @override
@@ -67,7 +67,7 @@ class AuthStateWebNotifier extends StateNotifier<AuthState> implements AuthState
     await auth0.loginWithPopup(
       options: PopupLoginOptions(
         audience: Env.auth0Audience,
-        scope: 'openid:profile:offline_access:church:country',
+        scope: 'openid profile offline_access church country',
       ),
     );
     await setStateFromResult(auth0);
