@@ -9,7 +9,7 @@ import 'package:brunstadtv_app/helpers/btv_typography.dart';
 import 'package:brunstadtv_app/helpers/navigation_utils.dart';
 import 'package:brunstadtv_app/providers/app_config.dart';
 import 'package:brunstadtv_app/providers/analytics.dart';
-import 'package:brunstadtv_app/providers/auth_state.dart';
+import 'package:brunstadtv_app/providers/auth_state/auth_state.dart';
 import 'package:brunstadtv_app/providers/settings.dart';
 import 'package:brunstadtv_app/providers/video_state.dart';
 import 'package:brunstadtv_app/router/analytics_observer.dart';

@@ -1,4 +1,3 @@
-import 'package:auth0_flutter/auth0_flutter.dart';
 import 'package:brunstadtv_app/models/auth/auth0_id_token.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 

@@ -1,5 +1,5 @@
 import 'package:brunstadtv_app/components/bottom_sheet_select.dart';
-import 'package:brunstadtv_app/providers/auth_state.dart';
+import 'package:brunstadtv_app/providers/auth_state/auth_state.dart';
 import 'package:brunstadtv_app/providers/settings.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';

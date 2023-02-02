@@ -1,23 +1,23 @@
-import 'package:auth0_flutter/auth0_flutter.dart' show UserProfile;
 import 'package:auth0_flutter_web/auth0_flutter_web.dart';
 import 'package:brunstadtv_app/models/auth/auth0_id_token.dart';
-import 'package:firebase_crashlytics/firebase_crashlytics.dart';
-import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:package_info_plus/package_info_plus.dart';
-import 'package:rudder_sdk_flutter/RudderController.dart';
 
-import '../../env/env.dart';
-import '../../models/auth_state.dart';
-import 'auth_state_notifier_interface.dart';
+import '../../../env/env.dart';
+import '../../../models/auth_state.dart';
+import '../auth_state.dart';
+
+// Careful. This line is very important,
+// but because it's conditionally imported (see auth_state_notifier_interface.dart)
+// IDEs don't show any errors when you remove it..
+AuthStateNotifier getPlatformSpecificAuthStateNotifier() => AuthStateNotifierWeb();
 
 final _auth0 = createAuth0Client(Auth0ClientOptions(
     domain: Env.auth0Domain, client_id: Env.auth0ClientId, audience: Env.auth0Audience, scope: 'openid profile offline_access church country'
     // cacheLocation: 'localStorage',
     ));
 
-class AuthStateWebNotifier extends StateNotifier<AuthState> implements AuthStateNotifier {
-  AuthStateWebNotifier() : super(const AuthState());
+class AuthStateNotifierWeb extends StateNotifier<AuthState> implements AuthStateNotifier {
+  AuthStateNotifierWeb() : super(const AuthState());
 
   @override
   Future<AuthState?> getExistingAndEnsureNotExpired() async {
@@ -75,5 +75,3 @@ class AuthStateWebNotifier extends StateNotifier<AuthState> implements AuthState
     return true;
   }
 }
-
-AuthStateNotifier getAuthStateNotifier() => AuthStateWebNotifier();

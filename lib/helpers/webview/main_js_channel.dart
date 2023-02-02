@@ -9,7 +9,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../providers/auth_state.dart';
+import '../../providers/auth_state/auth_state.dart';
 
 class MainJsChannel {
   final ProviderContainer ref;

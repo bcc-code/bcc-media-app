@@ -9,36 +9,33 @@ import 'package:flutter/material.dart';
 import 'package:flutter_appauth/flutter_appauth.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
-import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:jwt_decoder/jwt_decoder.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:rudder_sdk_flutter/RudderController.dart';
 import 'package:universal_io/io.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-import '../env/env.dart';
-import '../helpers/auth_notifier/auth_state_notifier_interface.dart';
-import '../helpers/auth_notifier/auth_state_web_notifier.dart';
-import '../helpers/constants.dart';
-import '../models/auth/auth0_id_token.dart';
-import '../models/auth_state.dart';
+import '../../../env/env.dart';
+import '../../../helpers/constants.dart';
+import '../../../models/auth/auth0_id_token.dart';
+import '../../../models/auth_state.dart';
+import '../auth_state.dart';
 
-const kMinimumCredentialsTTL = Duration(hours: 1);
+// Careful. This line is very important,
+// but because it's conditionally imported (see auth_state_notifier_interface.dart)
+// IDEs don't show any errors when you remove it..
+AuthStateNotifier getPlatformSpecificAuthStateNotifier() => AuthStateNotifierMobile();
 
 const FlutterAppAuth appAuth = FlutterAppAuth();
 const FlutterSecureStorage secureStorage = FlutterSecureStorage();
 
-final authStateProvider = StateNotifierProvider<AuthStateNotifier, AuthState>((ref) {
-  if (kIsWeb) {
-    return AuthStateWebNotifier();
-  }
-  return MobileAuthStateNotifier();
-});
+const kMinimumCredentialsTTL = Duration(hours: 1);
 
-class MobileAuthStateNotifier extends StateNotifier<AuthState> implements AuthStateNotifier {
-  MobileAuthStateNotifier() : super(const AuthState());
+class AuthStateNotifierMobile extends StateNotifier<AuthState> implements AuthStateNotifier {
+  AuthStateNotifierMobile() : super(const AuthState());
   Timer? refreshTimer;
 
+  @override
   Future<AuthState?> getExistingAndEnsureNotExpired() async {
     if (state.expiresAt == null || state.auth0AccessToken == null) {
       return null;

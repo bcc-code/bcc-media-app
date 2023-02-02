@@ -17,7 +17,7 @@ import '../../helpers/btv_typography.dart';
 import '../../helpers/constants.dart';
 import '../../helpers/utils.dart';
 import '../../l10n/app_localizations.dart';
-import '../../providers/auth_state.dart';
+import '../../providers/auth_state/auth_state.dart';
 
 class ContactSupport extends ConsumerStatefulWidget {
   const ContactSupport({super.key});
