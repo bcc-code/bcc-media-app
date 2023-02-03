@@ -9,12 +9,11 @@ import 'package:brunstadtv_app/components/error_generic.dart';
 import 'package:brunstadtv_app/components/loading_indicator.dart';
 import 'package:brunstadtv_app/components/season_episode_list.dart';
 import 'package:brunstadtv_app/components/feature_badge.dart';
+import 'package:brunstadtv_app/components/share_episode_sheet.dart';
 import 'package:brunstadtv_app/graphql/client.dart';
-import 'package:brunstadtv_app/graphql/schema/items.graphql.dart';
 import 'package:brunstadtv_app/graphql/schema/pages.graphql.dart';
 import 'package:brunstadtv_app/helpers/navigation_override.dart';
 import 'package:brunstadtv_app/helpers/svg_icons.dart';
-import 'package:brunstadtv_app/providers/analytics.dart';
 import 'package:brunstadtv_app/router/router.gr.dart';
 import 'package:brunstadtv_app/services/utils.dart';
 import 'package:flutter/material.dart';
@@ -28,7 +27,6 @@ import 'package:bccm_player/cast_button.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:brunstadtv_app/helpers/transparent_image.dart';
 import 'package:graphql/client.dart';
-import 'package:share_plus/share_plus.dart';
 import 'package:shimmer/shimmer.dart';
 import 'package:collection/collection.dart';
 
@@ -48,7 +46,6 @@ import '../helpers/btv_colors.dart';
 import '../helpers/btv_typography.dart';
 import '../helpers/utils.dart';
 import '../l10n/app_localizations.dart';
-import '../models/analytics/content_shared.dart';
 
 class EpisodePageArguments {
   int episodeId;
@@ -90,11 +87,9 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen> with AutoRouteAwa
   @override
   void didUpdateWidget(old) {
     super.didUpdateWidget(old);
+    scrollCompleter = wrapInCompleter(scrollController.animateTo(0, duration: const Duration(milliseconds: 600), curve: Curves.easeOutExpo));
     if (old.episodeId == widget.episodeId) return;
     loadEpisode();
-    setState(() {
-      scrollCompleter = wrapInCompleter(scrollController.animateTo(0, duration: const Duration(milliseconds: 600), curve: Curves.easeOutExpo));
-    });
   }
 
   @override
@@ -250,72 +245,16 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen> with AutoRouteAwa
     final playerProvider = casting ? castPlayerProvider : primaryPlayerProvider;
     final player = ref.watch(playerProvider);
     final currentPosSeconds = ((player?.playbackPositionMs ?? 0) / 1000).round();
-    final formattedPosition = getFormattedDuration(currentPosSeconds, padFirstSegment: true);
-
     if (player != null) {
       ref.read(playbackApiProvider).pause(player.playerId);
     }
-
-    var options = [
-      Option(
-        id: 'fromStart',
-        title: S.of(context).shareStart,
-        icon: SvgPicture.string(SvgIcons.share, color: BtvColors.onTint),
-      ),
-      Option(
-        id: 'fromTime',
-        title: S.of(context).shareTime(formattedPosition),
-        icon: SvgPicture.string(SvgIcons.location, color: BtvColors.onTint),
-      ),
-    ];
-
     showModalBottomSheet(
       useRootNavigator: true,
       context: context,
-      builder: (ctx) => BottomSheetSelect(
-        title: S.of(context).share,
-        description: episode.shareRestriction == Enum$ShareRestriction.public
-            ? null
-            : Padding(
-                padding: EdgeInsets.only(bottom: 16),
-                child: Row(
-                  children: [
-                    Padding(padding: EdgeInsets.all(4), child: SvgPicture.string(SvgIcons.infoCircle)),
-                    Expanded(
-                      child: Padding(
-                        padding: EdgeInsets.only(left: 8, right: 16),
-                        child: Text(
-                          'This video is only accessible to users that are logged in to the app.',
-                          style: BtvTextStyles.caption1.copyWith(color: BtvColors.label2),
-                        ),
-                      ),
-                    )
-                  ],
-                ),
-              ),
-        selectedId: 'fromStart',
-        items: options,
-        showSelection: false,
-        onSelectionChanged: (id) {
-          var episodeUrl = 'https://app.bcc.media/episode/${widget.episodeId}';
-          if (id == 'fromStart') {
-            Share.share(
-              episodeUrl,
-              sharePositionOrigin: iPadSharePositionOrigin(context),
-            );
-          } else {
-            Share.share(
-              '$episodeUrl?t=$currentPosSeconds',
-              sharePositionOrigin: iPadSharePositionOrigin(context),
-            );
-          }
-          ref.read(analyticsProvider).contentShared(ContentSharedEvent(
-                pageCode: 'episode',
-                elementType: 'episode',
-                elementId: widget.episodeId,
-                position: id == 'fromStart' ? null : currentPosSeconds,
-              ));
-        },
+      builder: (ctx) => ShareEpisodeSheet(
+        episode: episode,
+        currentPosSeconds: currentPosSeconds,
+        episodeId: widget.episodeId,
       ),
     );
   }
@@ -475,7 +414,7 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen> with AutoRouteAwa
                                             onTap: () async {
                                               if (data!.episode.lessons.items[0].locked) return;
                                               await context.router.root
-                                                  .push(StudyScreenRoute(episodeId: episode.id, lessonId: data!.episode.lessons.items[0].id));
+                                                  .push(StudyScreenRoute(episodeId: episode.id, lessonId: data.episode.lessons.items[0].id));
                                               if (mounted) {
                                                 setState(() {
                                                   lessonProgressFuture = loadLessonsForEpisode();
@@ -526,7 +465,7 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen> with AutoRouteAwa
                                         selectedIndex: DefaultTabController.of(context)!.index,
                                         tabs: [
                                           Option(id: 'episodes', title: (S.of(context).episodes.toUpperCase())),
-                                          Option(id: 'details', title: 'Details'),
+                                          Option(id: 'details', title: (S.of(context).details.toUpperCase())),
                                         ]))),
                             Builder(builder: (context) {
                               return GestureDetector(

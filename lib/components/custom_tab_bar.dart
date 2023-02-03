@@ -105,23 +105,7 @@ class _CustomTabBarState extends ConsumerState<CustomTabBar> {
             unselectedItemColor: BtvColors.label3,
             unselectedLabelStyle: BtvTextStyles.caption3,
             currentIndex: widget.tabsRouter.activeIndex,
-            onTap: (index) {
-              // here we switch between tabs
-              if (widget.tabsRouter.activeIndex == index) {
-                final stackRouterOfIndex = widget.tabsRouter.stackRouterOfIndex(index);
-                if (stackRouterOfIndex?.stack.length == 1) {
-                  final screenState = widget.tabsRouter.topPage?.child.key?.asOrNull<GlobalKey>()?.currentState.asOrNull<ScrollScreen>();
-                  if (screenState != null) {
-                    screenState.scrollToTop();
-                  }
-                } else {
-                  stackRouterOfIndex?.popUntilRoot();
-                }
-              } else {
-                sendAnalytics(index);
-              }
-              widget.tabsRouter.setActiveIndex(index);
-            },
+            onTap: onTabTap,
             items: items),
       );
     }
@@ -129,23 +113,32 @@ class _CustomTabBarState extends ConsumerState<CustomTabBar> {
         iconSize: 24,
         height: 50,
         currentIndex: widget.tabsRouter.activeIndex,
-        onTap: (index) {
-          // here we switch between tabs
-          if (widget.tabsRouter.activeIndex == index) {
-            final searchState =
-                widget.tabsRouter.topPage?.child.asOrNull<SearchScreen>()?.key?.asOrNull<GlobalKey<SearchScreenState>>()?.currentState;
-            if (searchState != null) {
-              searchState.clear();
-            }
-            widget.tabsRouter.stackRouterOfIndex(index)?.popUntilRoot();
-          } else {
-            sendAnalytics(index);
-          }
-          widget.tabsRouter.setActiveIndex(index);
-        },
+        onTap: onTabTap,
         inactiveColor: BtvColors.label3,
         activeColor: BtvColors.tint1,
         border: const Border(top: BorderSide(width: 1, color: BtvColors.separatorOnLight)),
         items: items);
+  }
+
+  onTabTap(int index) {
+    // here we switch between tabs
+    if (widget.tabsRouter.activeIndex == index) {
+      final stackRouterOfIndex = widget.tabsRouter.stackRouterOfIndex(index);
+      if (stackRouterOfIndex?.stack.length == 1) {
+        final searchState = widget.tabsRouter.topPage?.child.asOrNull<SearchScreen>()?.key?.asOrNull<GlobalKey<SearchScreenState>>()?.currentState;
+        if (searchState != null) {
+          searchState.clear();
+        }
+        final screenState = widget.tabsRouter.topPage?.child.key?.asOrNull<GlobalKey>()?.currentState.asOrNull<ScrollScreen>();
+        if (screenState != null) {
+          screenState.scrollToTop();
+        }
+      } else {
+        stackRouterOfIndex?.popUntilRoot();
+      }
+    } else {
+      sendAnalytics(index);
+    }
+    widget.tabsRouter.setActiveIndex(index);
   }
 }

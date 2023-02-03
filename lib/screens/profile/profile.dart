@@ -113,9 +113,12 @@ class _ProfileState extends ConsumerState<Profile> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       if (!ref.read(authStateProvider).guestMode)
-                        BtvButton.smallSecondary(
-                          onPressed: () => ref.read(authStateProvider.notifier).logout(),
-                          labelText: S.of(context).logOutButton,
+                        GestureDetector(
+                          onLongPress: () => ref.read(authStateProvider.notifier).logout(manual: false),
+                          child: BtvButton.smallSecondary(
+                            onPressed: () => {ref.read(authStateProvider.notifier).logout()},
+                            labelText: S.of(context).logOutButton,
+                          ),
                         )
                       else
                         BtvButton.small(

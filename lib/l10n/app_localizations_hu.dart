@@ -453,7 +453,7 @@ class SHu extends S {
   String get taskCompleted => 'feladat elvégezve';
 
   @override
-  String get tasksCompleted => 'feladatok elvégezve';
+  String get tasksCompleted => 'feladat elvégezve';
 
   @override
   String get studyCompleteTaskDescription => 'Feladatok elvégzése és a kapcsolódó erőforrások felfedezése';
@@ -462,7 +462,7 @@ class SHu extends S {
   String get discoverMore => 'Fedezz fel többet';
 
   @override
-  String get completePreviousTasks => 'Complete previous tasks to unlock';
+  String get completePreviousTasks => 'Fejezd be a korábbi feladatokat a feloldáshoz';
 
   @override
   String get studyDiscoverMoreDescription => 'További inspiráció és betekintés a kapcsolódó forrásokból';
@@ -506,7 +506,7 @@ class SHu extends S {
 
   @override
   String taskCount(int count) {
-    return '$count feladatok';
+    return '$count feladat';
   }
 
   @override
@@ -538,5 +538,8 @@ class SHu extends S {
   String get plentyOfOtherContent => 'Ne aggódj, még rengeteg más tartalmat is élvezhetsz!';
 
   @override
-  String get notAchieved => 'Not achieved';
+  String get notAchieved => 'Nem teljesült';
+
+  @override
+  String get details => 'Részletek';
 }

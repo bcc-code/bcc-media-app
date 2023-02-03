@@ -1,8 +1,8 @@
-import 'package:auth0_flutter/auth0_flutter.dart';
 import 'package:brunstadtv_app/env/env.dart';
 import 'package:brunstadtv_app/graphql/queries/achievements.graphql.dart';
 import 'package:brunstadtv_app/helpers/utils.dart';
 import 'package:brunstadtv_app/models/analytics/achievement_clicked.dart';
+import 'package:brunstadtv_app/models/auth/auth0_id_token.dart';
 import 'package:brunstadtv_app/providers/inherited_data.dart';
 import 'package:brunstadtv_app/providers/settings.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
@@ -21,6 +21,8 @@ import '../models/analytics/search_performed.dart';
 import '../models/analytics/search_result_clicked.dart';
 import '../models/analytics/sections.dart';
 import '../models/analytics/content_shared.dart';
+
+const kMinimumSessionTimeout = Duration(minutes: 30);
 
 String getAgeGroup(int? age) {
   if (age == null) {
@@ -51,7 +53,8 @@ final analyticsProvider = Provider<Analytics>((ref) {
 
 class Analytics {
   PackageInfo? packageInfo;
-  Ref ref;
+  final Ref ref;
+  DateTime _lastAlive = DateTime.now();
 
   Analytics({required this.ref}) {
     final RudderController controller = RudderController.instance;
@@ -63,15 +66,35 @@ class Analytics {
     PackageInfo.fromPlatform().then((value) => packageInfo = value);
   }
 
-  RudderProperty getCommonData() {
-    return RudderProperty.fromMap({
-      'channel': 'mobile',
-      'appLanguage': ref.read(settingsProvider).appLanguage.languageCode,
-      'releaseVersion': packageInfo == null ? null : formatAppVersion(packageInfo!),
-    });
+  void checkSession() {
+    final now = DateTime.now();
+    final shouldRefreshSession = now.difference(_lastAlive) > kMinimumSessionTimeout;
+
+    if (shouldRefreshSession) {
+      print('Analytics: Session dead, refreshing sessionId. Now: ${now.toIso8601String()}, lastAlive: ${_lastAlive.toIso8601String()}.');
+      ref.read(settingsProvider.notifier).refreshSessionId();
+    }
+    _lastAlive = now;
+    debugPrint('checkSession _lastAlive: $_lastAlive');
   }
 
-  void track() {}
+  void heyJustHereToTellYouIBelieveTheSessionIsStillAlive() {
+    _lastAlive = DateTime.now();
+    debugPrint('bump _lastAlive: $_lastAlive');
+  }
+
+  RudderProperty getCommonData() {
+    checkSession();
+    final settings = ref.read(settingsProvider);
+    var commonData = RudderProperty.fromMap({
+      'channel': 'mobile',
+      'appLanguage': settings.appLanguage.languageCode,
+      'releaseVersion': packageInfo == null ? null : formatAppVersion(packageInfo!),
+      'sessionId': settings.sessionId
+    });
+
+    return commonData;
+  }
 
   void sectionItemClicked(BuildContext context) {
     var sectionAnalytics = InheritedData.read<SectionAnalytics>(context);
@@ -145,7 +168,7 @@ class Analytics {
     RudderController.instance.track('achievement_shared', properties: getCommonData().putValue(map: event.toJson()));
   }
 
-  void identify(UserProfile profile, String analyticsId) {
+  void identify(Auth0IdToken profile, String analyticsId) {
     ref.read(settingsProvider.notifier).setAnalyticsId(analyticsId);
     final traits = RudderTraits();
 
@@ -156,8 +179,8 @@ class Analytics {
       age = (ageDuration.inDays / 365.25).floor();
       traits.put('ageGroup', getAgeGroup(age));
     }
-    traits.put('country', profile.customClaims?['https://login.bcc.no/claims/CountryIso2Code']);
-    traits.put('churchId', profile.customClaims?['https://login.bcc.no/claims/churchId']?.toString());
+    traits.put('country', profile.countryIso2Code);
+    traits.put('churchId', profile.churchId.toString());
     if (profile.gender != null) {
       traits.putGender(profile.gender!);
     }

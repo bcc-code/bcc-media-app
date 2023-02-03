@@ -27,39 +27,40 @@ class BorderedImageContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-        width: width ?? double.infinity,
-        height: height ?? double.infinity,
-        margin: margin,
-        foregroundDecoration: BoxDecoration(
-          borderRadius: borderRadius ?? BorderRadius.circular(6),
-          border: Border.all(
-            width: 1,
-            color: BtvColors.onTint.withOpacity(0.1),
-          ),
+      width: width ?? double.infinity,
+      height: height ?? double.infinity,
+      margin: margin,
+      foregroundDecoration: BoxDecoration(
+        borderRadius: borderRadius ?? BorderRadius.circular(6),
+        border: Border.all(
+          width: 1,
+          color: BtvColors.onTint.withOpacity(0.1),
         ),
-        child: LayoutBuilder(
-          builder: (context, BoxConstraints constraints) {
-            if (imageUrl == null) {
-              return const SizedBox.shrink();
-            }
-            final imageHeight = (constraints.maxHeight * MediaQuery.of(context).devicePixelRatio).round();
-            final imageWidth = (constraints.maxWidth * MediaQuery.of(context).devicePixelRatio).round();
-            final imageUri = imageUrl == null ? null : getImageUri(imageUrl!, width: imageWidth, height: imageHeight);
-            return ClipRRect(
-              borderRadius: borderRadius ?? BorderRadius.circular(6),
-              child: SizedBox(
-                height: constraints.maxHeight,
-                child: imageUri == null
-                    ? null
-                    : FadeInImage.memoryNetwork(
-                        fit: BoxFit.cover,
-                        placeholder: kTransparentImage,
-                        image: imageUri.toString(),
-                        fadeInDuration: const Duration(milliseconds: 400),
-                        imageCacheHeight: (constraints.maxHeight * MediaQuery.of(context).devicePixelRatio).round()),
-              ),
-            );
-          },
-        ));
+      ),
+      child: LayoutBuilder(
+        builder: (context, BoxConstraints constraints) {
+          if (imageUrl == null) {
+            return const SizedBox.shrink();
+          }
+          final imageHeight = (constraints.maxHeight * MediaQuery.of(context).devicePixelRatio).round();
+          final imageWidth = (constraints.maxWidth * MediaQuery.of(context).devicePixelRatio).round();
+          final imageUri = imageUrl == null ? null : getImageUri(imageUrl!, width: imageWidth, height: imageHeight);
+          return ClipRRect(
+            borderRadius: borderRadius ?? BorderRadius.circular(6),
+            child: SizedBox(
+              height: constraints.maxHeight,
+              child: imageUri == null
+                  ? null
+                  : FadeInImage.memoryNetwork(
+                      fit: BoxFit.cover,
+                      placeholder: kTransparentImage,
+                      image: imageUri.toString(),
+                      fadeInDuration: const Duration(milliseconds: 400),
+                      imageCacheHeight: (constraints.maxHeight * MediaQuery.of(context).devicePixelRatio).round()),
+            ),
+          );
+        },
+      ),
+    );
   }
 }

@@ -1,23 +1,30 @@
 import 'dart:async';
+import 'dart:convert';
+import 'dart:io';
 
-import 'package:auth0_flutter/auth0_flutter.dart';
-import 'package:brunstadtv_app/api/brunstadtv.dart';
 import 'package:brunstadtv_app/helpers/utils.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_appauth/flutter_appauth.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:jwt_decoder/jwt_decoder.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:rudder_sdk_flutter/RudderController.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../env/env.dart';
+import '../helpers/constants.dart';
+import '../models/auth/auth0_id_token.dart';
 
 part 'auth_state.freezed.dart';
 
-const kMinimumCredentialsTTL = Duration(hours: 1, minutes: 59);
+const kMinimumCredentialsTTL = Duration(hours: 1);
 
-final Auth0 _auth0 = Auth0("https://${Env.auth0Domain}", Env.auth0ClientId);
+const FlutterAppAuth appAuth = FlutterAppAuth();
+const FlutterSecureStorage secureStorage = FlutterSecureStorage();
 
 final authStateProvider = StateNotifierProvider<AuthStateNotifier, AuthState>((ref) {
   return AuthStateNotifier();
@@ -27,66 +34,169 @@ class AuthStateNotifier extends StateNotifier<AuthState> {
   AuthStateNotifier() : super(const AuthState());
   Timer? refreshTimer;
 
-  void setStateBasedOnCredentials(Credentials result) {
-    state = state.copyWith(auth0AccessToken: result.accessToken, idToken: result.idToken, user: result.user, expiresAt: result.expiresAt);
-  }
-
   Future<AuthState?> getExistingAndEnsureNotExpired() async {
     if (state.expiresAt == null || state.auth0AccessToken == null) {
       return null;
     }
-    if (state.expiresAt!.isBefore(DateTime.now())) {
-      await load();
+    if (state.expiresAt!.difference(DateTime.now()) < kMinimumCredentialsTTL) {
+      await refresh();
     }
-    if (state.expiresAt!.isBefore(DateTime.now())) {
+    if (state.expiresAt!.difference(DateTime.now()) < kMinimumCredentialsTTL) {
       throw Exception('Auth state is still expired after attempting to renew.');
     }
     return state;
   }
 
-  Future<bool> load() async {
-    try {
-      Stopwatch stopwatch = Stopwatch()..start();
-      final result = await _auth0.credentialsManager.credentials(minTtl: kMinimumCredentialsTTL.inSeconds);
-      print('credentials() took ${stopwatch.elapsedMilliseconds}ms');
-      setStateBasedOnCredentials(result);
-      return true;
-    } catch (e) {
-      FirebaseCrashlytics.instance.recordError(e, StackTrace.current);
-      final cause = e.asOrNull<CredentialsManagerException>()?.code;
-      if (cause == 'RENEW_FAILED') {
-        rethrow;
-      } else {
-        logout(federated: false);
-      }
+  Future<bool> loadFromStorage() async {
+    final accessToken = await secureStorage.read(key: SecureStorageKeys.accessToken);
+    final idToken = await secureStorage.read(key: SecureStorageKeys.idToken);
+
+    if (accessToken == null || idToken == null) {
       return false;
     }
+    DateTime? expiry;
+    try {
+      expiry = _getAccessTokenExpiry(accessToken);
+    } catch (e, s) {
+      FirebaseCrashlytics.instance.recordError(e, s);
+      logout();
+      return false;
+    }
+    final ttl = expiry.difference(DateTime.now());
+    if (ttl < kMinimumCredentialsTTL) {
+      return refresh();
+    }
+    state = state.copyWith(
+      auth0AccessToken: accessToken,
+      idToken: idToken,
+      user: _parseIdToken(idToken),
+      expiresAt: expiry,
+      signedOutManually: null,
+    );
+    return true;
   }
 
-  Future logout({bool federated = true}) async {
-    RudderController.instance.reset();
-    final PackageInfo info = await PackageInfo.fromPlatform();
-    if (federated) {
-      await _auth0.webAuthentication(scheme: info.packageName).logout();
+  Future<bool> refresh() async {
+    final refreshToken = await secureStorage.read(key: SecureStorageKeys.refreshToken);
+
+    if (refreshToken == null) {
+      return false;
     }
-    await _auth0.credentialsManager.clearCredentials();
-    state = const AuthState();
+
+    final PackageInfo info = await PackageInfo.fromPlatform();
+    try {
+      final TokenResponse? result = await appAuth.token(
+        TokenRequest(
+          Env.auth0ClientId,
+          '${info.packageName}://login-callback',
+          issuer: 'https://${Env.auth0Domain}',
+          refreshToken: refreshToken,
+          additionalParameters: {'audience': Env.auth0Audience},
+        ),
+      );
+      _setStateBasedOnResponse(result!);
+    } catch (e, s) {
+      FirebaseCrashlytics.instance.recordError(e, StackTrace.current);
+      print('error on Refresh Token: $e - stack: $s');
+      // logOut() possibly
+      return false;
+    }
+    return true;
+  }
+
+  Future _clearCredentials() async {
+    await Future.wait(
+      [
+        secureStorage.delete(key: SecureStorageKeys.refreshToken),
+        secureStorage.delete(key: SecureStorageKeys.accessToken),
+        secureStorage.delete(key: SecureStorageKeys.idToken),
+      ],
+    );
+  }
+
+  Future logout({bool manual = true}) async {
+    await _clearCredentials();
+    if (Platform.isAndroid && manual) {
+      final PackageInfo info = await PackageInfo.fromPlatform();
+      final url = Uri.https(
+        Env.auth0Domain,
+        '/v2/logout',
+        {'client_id': Env.auth0ClientId, 'returnTo': '${info.packageName}://logout-callback'},
+      );
+      // Log out of auth0.
+      // Couldn't get the callback url to work properly with iOS in-app-browser
+      // And with externalApplication on iOS, the callback url doesn't open automatically,
+      // the user has to click "Open".
+      await launchUrl(url, mode: LaunchMode.externalApplication);
+    }
+    state = AuthState(signedOutManually: manual);
     FirebaseMessaging.instance.deleteToken();
+    RudderController.instance.reset();
+
+    return;
   }
 
   Future<bool> login() async {
+    final PackageInfo info = await PackageInfo.fromPlatform();
     try {
-      final PackageInfo info = await PackageInfo.fromPlatform();
-      final result = await _auth0.webAuthentication(scheme: info.packageName).login(
-        audience: Env.auth0Audience,
-        scopes: {'openid', 'profile', 'offline_access', 'church', 'country'},
+      final authorizationTokenRequest = AuthorizationTokenRequest(
+        Env.auth0ClientId,
+        '${info.packageName}://login-callback',
+        issuer: 'https://${Env.auth0Domain}',
+        scopes: ['openid', 'profile', 'offline_access', 'church', 'country'],
+        promptValues: state.signedOutManually == true ? ['login'] : null,
+        additionalParameters: {'audience': Env.auth0Audience},
       );
-      setStateBasedOnCredentials(result);
-      return true;
-    } catch (e) {
-      logout(federated: false);
+
+      final AuthorizationTokenResponse? result = await appAuth.authorizeAndExchangeCode(
+        authorizationTokenRequest,
+      );
+
+      await _setStateBasedOnResponse(result!);
+    } catch (e, st) {
+      logout(manual: false);
+      debugPrint(e.toString());
+      FirebaseCrashlytics.instance.recordError(e, st);
       return false;
     }
+    return true;
+  }
+
+  Future<void> _setStateBasedOnResponse(TokenResponse? result) async {
+    final accessToken = result?.accessToken;
+    final idToken = result?.idToken;
+    final refreshToken = result?.idToken;
+    if (accessToken == null || idToken == null || refreshToken == null) {
+      throw Exception([
+        'Invalid token response',
+        'result null: ${result == null}',
+        'accessToken null: ${accessToken == null}',
+        'idToken null: ${idToken == null}',
+        'refreshToken null: ${refreshToken == null}',
+      ]);
+    }
+
+    await Future.wait([
+      secureStorage.write(
+        key: SecureStorageKeys.refreshToken,
+        value: refreshToken,
+      ),
+      secureStorage.write(
+        key: SecureStorageKeys.idToken,
+        value: idToken,
+      ),
+      secureStorage.write(
+        key: SecureStorageKeys.accessToken,
+        value: accessToken,
+      )
+    ]);
+
+    state = state.copyWith(
+        auth0AccessToken: accessToken,
+        idToken: idToken,
+        user: _parseIdToken(idToken),
+        expiresAt: _getAccessTokenExpiry(accessToken),
+        signedOutManually: false);
   }
 }
 
@@ -95,11 +205,36 @@ class AuthState with _$AuthState {
   const AuthState._();
 
   const factory AuthState({
-    UserProfile? user,
+    Auth0IdToken? user,
     String? auth0AccessToken,
     DateTime? expiresAt,
     String? idToken,
+    bool? signedOutManually,
   }) = _Auth;
 
   bool get guestMode => auth0AccessToken == null;
+}
+
+Auth0IdToken _parseIdToken(String idToken) {
+  final parts = idToken.split(r'.');
+  assert(parts.length == 3);
+
+  final Map<String, dynamic> json = jsonDecode(
+    utf8.decode(
+      base64Url.decode(
+        base64Url.normalize(parts[1]),
+      ),
+    ),
+  );
+
+  return Auth0IdToken.fromJson(json);
+}
+
+DateTime _getAccessTokenExpiry(String accessToken) {
+  final accessTokenExpiry = (JwtDecoder.decode(accessToken)['exp'] as Object?).asOrNull<int>();
+  if (accessTokenExpiry == null) {
+    throw Exception('AuthState: expiry is null: $accessTokenExpiry');
+  }
+  final expiry = DateTime.fromMillisecondsSinceEpoch(accessTokenExpiry * 1000, isUtc: true);
+  return expiry;
 }

@@ -47,7 +47,8 @@ class SNl extends S {
   String get faq => 'Vaak gestelde vragen';
 
   @override
-  String get bccMediaCenter => 'BCC Media is een media-stichting binnen de BCC-federatie, welke content met positieve en christelijke waarden produceert en verspreidt.';
+  String get bccMediaCenter =>
+      'BCC Media is een media-stichting binnen de BCC-federatie, welke content met positieve en christelijke waarden produceert en verspreidt.';
 
   @override
   String get signInButton => 'Log in';
@@ -348,7 +349,7 @@ class SNl extends S {
 
   @override
   String timezoneInformation(String timeZone) {
-    return 'De tijden in de TV gids worden weergegeven in de lokale tijd van de tijdszone waarin je op dit moment bent: $timeZone';
+    return 'De tijden in de TV gids worden weergegeven in de lokale tijd: $timeZone';
   }
 
   @override
@@ -538,5 +539,8 @@ class SNl extends S {
   String get plentyOfOtherContent => 'Geen zorgen, er is nog steeds veel content om van te genieten!';
 
   @override
-  String get notAchieved => 'Not achieved';
+  String get notAchieved => 'Niet gehaald';
+
+  @override
+  String get details => 'Details';
 }

@@ -1,11 +1,13 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:collection/collection.dart';
+import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../graphql/client.dart';
 import '../graphql/queries/episode.graphql.dart';
 import '../graphql/queries/studies.graphql.dart';
+import '../providers/analytics.dart';
 import '../router/router.gr.dart';
 import 'navigation_override.dart';
 import 'utils.dart';
@@ -56,14 +58,17 @@ Future<dynamic>? navigateToShowWithoutEpisodeId(BuildContext context, String sho
   return overrideAwareNavigation(navigationOverride, router, EpisodeScreenRoute(episodeId: episodeId));
 }
 
-Future<dynamic>? navigateToStudyTopic(BuildContext context, String topicId) async {
+Future<bool>? navigateToStudyTopic(BuildContext context, String topicId) async {
   // TODO: nothing is as permanent as a temporary solution lol
   debugPrint('navigateToShowWithoutEpisodeId');
   final navigationOverride = NavigationOverride.of(context);
   final router = context.router;
-  final result = await ProviderScope.containerOf(context, listen: false)
-      .read(gqlClientProvider)
-      .query$GetStudyTopicLessonStatuses(Options$Query$GetStudyTopicLessonStatuses(
+  final ref = ProviderScope.containerOf(context, listen: false);
+  tryCatchRecordError(() {
+    final analytics = ref.read(analyticsProvider);
+    analytics.sectionItemClicked(context);
+  });
+  final result = await ref.read(gqlClientProvider).query$GetStudyTopicLessonStatuses(Options$Query$GetStudyTopicLessonStatuses(
         variables: Variables$Query$GetStudyTopicLessonStatuses(id: topicId, first: 100),
       ));
   var episodeId = result.parsedData?.studyTopic.lessons.items
@@ -72,9 +77,15 @@ Future<dynamic>? navigateToStudyTopic(BuildContext context, String topicId) asyn
       .items
       .firstOrNull
       ?.id;
-  episodeId ??= result.parsedData?.studyTopic.lessons.items.firstOrNull?.episodes.items.firstOrNull?.id;
+  episodeId ??= result.parsedData?.studyTopic.lessons.items
+      .lastWhereOrNull((el) => el.episodes.items.firstOrNull?.locked == false)
+      ?.episodes
+      .items
+      .firstOrNull
+      ?.id;
   if (episodeId == null) {
     throw ErrorHint('Failed finding an episode to navigate to for topic $topicId');
   }
-  return overrideAwareNavigation(navigationOverride, router, EpisodeScreenRoute(episodeId: episodeId));
+  await overrideAwareNavigation(navigationOverride, router, EpisodeScreenRoute(episodeId: episodeId));
+  return true;
 }

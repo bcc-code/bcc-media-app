@@ -18,6 +18,7 @@ class BottomSheetSelect extends StatefulWidget {
   final List<Option> items;
   final bool showSelection;
   final void Function(String id) onSelectionChanged;
+  final bool popOnChange;
 
   const BottomSheetSelect({
     Key? key,
@@ -27,6 +28,7 @@ class BottomSheetSelect extends StatefulWidget {
     required this.selectedId,
     this.showSelection = true,
     required this.onSelectionChanged,
+    this.popOnChange = true,
   }) : super(key: key);
 
   @override
@@ -83,10 +85,11 @@ class _BottomSheetSelectState extends State<BottomSheetSelect> {
                       localSelectedId = val;
                     });
                     widget.onSelectionChanged(val);
-                    Navigator.pop(context, BottomSheetSelectResult(cancelled: false));
+                    if (widget.popOnChange) {
+                      Navigator.pop(context, BottomSheetSelectResult(cancelled: false));
+                    }
                   },
                   margin: const EdgeInsets.all(0),
-                  enableDivider: false,
                 ),
               ),
               SizedBox(

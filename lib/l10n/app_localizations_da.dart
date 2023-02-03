@@ -538,5 +538,8 @@ class SDa extends S {
   String get plentyOfOtherContent => 'Bare rolig, der er stadig masser af andet indhold at se!';
 
   @override
-  String get notAchieved => 'Not achieved';
+  String get notAchieved => 'Ikke opnået';
+
+  @override
+  String get details => 'Detaljer';
 }

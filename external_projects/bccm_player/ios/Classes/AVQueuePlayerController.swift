@@ -160,8 +160,9 @@ public class AVQueuePlayerController: NSObject, PlayerController, AVPlayerViewCo
     }
 
     public func updateAppConfig(appConfig: AppConfig?) {
-        self.appConfig = appConfig
+        self.appConfig = appConfig;
         self.youboraPlugin.options.username = appConfig?.analyticsId;
+        self.youboraPlugin.options.contentCustomDimension1 = appConfig?.sessionId != nil ? appConfig?.sessionId?.stringValue : nil;
     }
     
     public func replaceCurrentMediaItem(_ mediaItem: MediaItem, autoplay: NSNumber?, completion:  @escaping (FlutterError?) -> ()) {

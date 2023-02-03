@@ -46,7 +46,7 @@ class _AutoLoginScreeenState extends ConsumerState<AutoLoginScreeen> {
       });
     } else {
       setState(() {
-        authFuture = ref.read(authStateProvider.notifier).load().then((_) {
+        authFuture = ref.read(authStateProvider.notifier).loadFromStorage().then((_) {
           navigate(deepLinkUri: deepLinkUri);
         });
       });

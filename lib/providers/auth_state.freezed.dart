@@ -16,31 +16,25 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$AuthState {
-  UserProfile? get user => throw _privateConstructorUsedError;
+  Auth0IdToken? get user => throw _privateConstructorUsedError;
   String? get auth0AccessToken => throw _privateConstructorUsedError;
   DateTime? get expiresAt => throw _privateConstructorUsedError;
   String? get idToken => throw _privateConstructorUsedError;
+  bool? get signedOutManually => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
-  $AuthStateCopyWith<AuthState> get copyWith =>
-      throw _privateConstructorUsedError;
+  $AuthStateCopyWith<AuthState> get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
 abstract class $AuthStateCopyWith<$Res> {
-  factory $AuthStateCopyWith(AuthState value, $Res Function(AuthState) then) =
-      _$AuthStateCopyWithImpl<$Res, AuthState>;
+  factory $AuthStateCopyWith(AuthState value, $Res Function(AuthState) then) = _$AuthStateCopyWithImpl<$Res, AuthState>;
   @useResult
-  $Res call(
-      {UserProfile? user,
-      String? auth0AccessToken,
-      DateTime? expiresAt,
-      String? idToken});
+  $Res call({Auth0IdToken? user, String? auth0AccessToken, DateTime? expiresAt, String? idToken, bool? signedOutManually});
 }
 
 /// @nodoc
-class _$AuthStateCopyWithImpl<$Res, $Val extends AuthState>
-    implements $AuthStateCopyWith<$Res> {
+class _$AuthStateCopyWithImpl<$Res, $Val extends AuthState> implements $AuthStateCopyWith<$Res> {
   _$AuthStateCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
@@ -55,12 +49,13 @@ class _$AuthStateCopyWithImpl<$Res, $Val extends AuthState>
     Object? auth0AccessToken = freezed,
     Object? expiresAt = freezed,
     Object? idToken = freezed,
+    Object? signedOutManually = freezed,
   }) {
     return _then(_value.copyWith(
       user: freezed == user
           ? _value.user
           : user // ignore: cast_nullable_to_non_nullable
-              as UserProfile?,
+              as Auth0IdToken?,
       auth0AccessToken: freezed == auth0AccessToken
           ? _value.auth0AccessToken
           : auth0AccessToken // ignore: cast_nullable_to_non_nullable
@@ -73,28 +68,25 @@ class _$AuthStateCopyWithImpl<$Res, $Val extends AuthState>
           ? _value.idToken
           : idToken // ignore: cast_nullable_to_non_nullable
               as String?,
+      signedOutManually: freezed == signedOutManually
+          ? _value.signedOutManually
+          : signedOutManually // ignore: cast_nullable_to_non_nullable
+              as bool?,
     ) as $Val);
   }
 }
 
 /// @nodoc
 abstract class _$$_AuthCopyWith<$Res> implements $AuthStateCopyWith<$Res> {
-  factory _$$_AuthCopyWith(_$_Auth value, $Res Function(_$_Auth) then) =
-      __$$_AuthCopyWithImpl<$Res>;
+  factory _$$_AuthCopyWith(_$_Auth value, $Res Function(_$_Auth) then) = __$$_AuthCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call(
-      {UserProfile? user,
-      String? auth0AccessToken,
-      DateTime? expiresAt,
-      String? idToken});
+  $Res call({Auth0IdToken? user, String? auth0AccessToken, DateTime? expiresAt, String? idToken, bool? signedOutManually});
 }
 
 /// @nodoc
-class __$$_AuthCopyWithImpl<$Res> extends _$AuthStateCopyWithImpl<$Res, _$_Auth>
-    implements _$$_AuthCopyWith<$Res> {
-  __$$_AuthCopyWithImpl(_$_Auth _value, $Res Function(_$_Auth) _then)
-      : super(_value, _then);
+class __$$_AuthCopyWithImpl<$Res> extends _$AuthStateCopyWithImpl<$Res, _$_Auth> implements _$$_AuthCopyWith<$Res> {
+  __$$_AuthCopyWithImpl(_$_Auth _value, $Res Function(_$_Auth) _then) : super(_value, _then);
 
   @pragma('vm:prefer-inline')
   @override
@@ -103,12 +95,13 @@ class __$$_AuthCopyWithImpl<$Res> extends _$AuthStateCopyWithImpl<$Res, _$_Auth>
     Object? auth0AccessToken = freezed,
     Object? expiresAt = freezed,
     Object? idToken = freezed,
+    Object? signedOutManually = freezed,
   }) {
     return _then(_$_Auth(
       user: freezed == user
           ? _value.user
           : user // ignore: cast_nullable_to_non_nullable
-              as UserProfile?,
+              as Auth0IdToken?,
       auth0AccessToken: freezed == auth0AccessToken
           ? _value.auth0AccessToken
           : auth0AccessToken // ignore: cast_nullable_to_non_nullable
@@ -121,6 +114,10 @@ class __$$_AuthCopyWithImpl<$Res> extends _$AuthStateCopyWithImpl<$Res, _$_Auth>
           ? _value.idToken
           : idToken // ignore: cast_nullable_to_non_nullable
               as String?,
+      signedOutManually: freezed == signedOutManually
+          ? _value.signedOutManually
+          : signedOutManually // ignore: cast_nullable_to_non_nullable
+              as bool?,
     ));
   }
 }
@@ -128,22 +125,22 @@ class __$$_AuthCopyWithImpl<$Res> extends _$AuthStateCopyWithImpl<$Res, _$_Auth>
 /// @nodoc
 
 class _$_Auth extends _Auth {
-  const _$_Auth(
-      {this.user, this.auth0AccessToken, this.expiresAt, this.idToken})
-      : super._();
+  const _$_Auth({this.user, this.auth0AccessToken, this.expiresAt, this.idToken, this.signedOutManually}) : super._();
 
   @override
-  final UserProfile? user;
+  final Auth0IdToken? user;
   @override
   final String? auth0AccessToken;
   @override
   final DateTime? expiresAt;
   @override
   final String? idToken;
+  @override
+  final bool? signedOutManually;
 
   @override
   String toString() {
-    return 'AuthState(user: $user, auth0AccessToken: $auth0AccessToken, expiresAt: $expiresAt, idToken: $idToken)';
+    return 'AuthState(user: $user, auth0AccessToken: $auth0AccessToken, expiresAt: $expiresAt, idToken: $idToken, signedOutManually: $signedOutManually)';
   }
 
   @override
@@ -152,40 +149,40 @@ class _$_Auth extends _Auth {
         (other.runtimeType == runtimeType &&
             other is _$_Auth &&
             (identical(other.user, user) || other.user == user) &&
-            (identical(other.auth0AccessToken, auth0AccessToken) ||
-                other.auth0AccessToken == auth0AccessToken) &&
-            (identical(other.expiresAt, expiresAt) ||
-                other.expiresAt == expiresAt) &&
-            (identical(other.idToken, idToken) || other.idToken == idToken));
+            (identical(other.auth0AccessToken, auth0AccessToken) || other.auth0AccessToken == auth0AccessToken) &&
+            (identical(other.expiresAt, expiresAt) || other.expiresAt == expiresAt) &&
+            (identical(other.idToken, idToken) || other.idToken == idToken) &&
+            (identical(other.signedOutManually, signedOutManually) || other.signedOutManually == signedOutManually));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, user, auth0AccessToken, expiresAt, idToken);
+  int get hashCode => Object.hash(runtimeType, user, auth0AccessToken, expiresAt, idToken, signedOutManually);
 
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_AuthCopyWith<_$_Auth> get copyWith =>
-      __$$_AuthCopyWithImpl<_$_Auth>(this, _$identity);
+  _$$_AuthCopyWith<_$_Auth> get copyWith => __$$_AuthCopyWithImpl<_$_Auth>(this, _$identity);
 }
 
 abstract class _Auth extends AuthState {
   const factory _Auth(
-      {final UserProfile? user,
+      {final Auth0IdToken? user,
       final String? auth0AccessToken,
       final DateTime? expiresAt,
-      final String? idToken}) = _$_Auth;
+      final String? idToken,
+      final bool? signedOutManually}) = _$_Auth;
   const _Auth._() : super._();
 
   @override
-  UserProfile? get user;
+  Auth0IdToken? get user;
   @override
   String? get auth0AccessToken;
   @override
   DateTime? get expiresAt;
   @override
   String? get idToken;
+  @override
+  bool? get signedOutManually;
   @override
   @JsonKey(ignore: true)
   _$$_AuthCopyWith<_$_Auth> get copyWith => throw _privateConstructorUsedError;

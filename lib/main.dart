@@ -3,11 +3,9 @@ import 'dart:async';
 import 'package:alice/alice.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:bccm_player/playback_platform_pigeon.g.dart';
-import 'package:bccm_player/playback_service_interface.dart';
 import 'package:brunstadtv_app/graphql/client.dart';
 import 'package:brunstadtv_app/helpers/btv_colors.dart';
 import 'package:brunstadtv_app/helpers/btv_typography.dart';
-import 'package:brunstadtv_app/helpers/constants.dart';
 import 'package:brunstadtv_app/helpers/navigation_utils.dart';
 import 'package:brunstadtv_app/providers/app_config.dart';
 import 'package:brunstadtv_app/providers/analytics.dart';
@@ -33,8 +31,6 @@ import 'package:intl/intl.dart';
 import 'package:intl/intl_standalone.dart';
 import 'package:on_screen_ruler/on_screen_ruler.dart';
 import 'package:package_info_plus/package_info_plus.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-import 'dart:ui' as ui;
 import 'package:app_links/app_links.dart';
 
 import 'app_root.dart';
@@ -104,8 +100,8 @@ void $main({required FirebaseOptions? firebaseOptions}) async {
   alice.setNavigatorKey(navigatorKey);
   var providerContainer = ProviderContainer();
   PlaybackListenerPigeon.setup(PlaybackListener(ref: providerContainer));
-  final authLoadingCompleter = wrapInCompleter(providerContainer.read(authStateProvider.notifier).load());
-  providerContainer.read(settingsProvider.notifier).load();
+  final authLoadingCompleter = wrapInCompleter(providerContainer.read(authStateProvider.notifier).loadFromStorage());
+  providerContainer.read(settingsProvider.notifier).init();
   providerContainer.read(chromecastListenerProvider);
   providerContainer.read(appConfigProvider);
   providerContainer.read(playbackApiProvider).getChromecastState().then((value) {
@@ -113,6 +109,11 @@ void $main({required FirebaseOptions? firebaseOptions}) async {
     providerContainer.read(castPlayerProvider.notifier).setMediaItem(value?.mediaItem);
   });
   providerContainer.read(analyticsProvider);
+  providerContainer.listen<Player?>(primaryPlayerProvider, (_, next) {
+    if (next?.currentMediaItem != null && next?.playbackState == PlaybackState.playing) {
+      providerContainer.read(analyticsProvider).heyJustHereToTellYouIBelieveTheSessionIsStillAlive();
+    }
+  });
 
   if (Env.npawAccountCode != '') {
     PackageInfo.fromPlatform().then(

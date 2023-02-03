@@ -1,5 +1,5 @@
 {
-  "loadingContent": "Hetkinen",
+  "loadingContent": "Sisältöä ladataan",
   "@loadingContent": {
     "description": "Text displayed when page content is loading."
   },
@@ -23,11 +23,11 @@
   "@calendarWeek": {
     "description": "Text week."
   },
-  "loading": "Lataillaan",
+  "loading": "Ladataan",
   "@loading": {
     "description": "Text to indicate loading state."
   },
-  "loginPageDisplay1": "Kaikista maailman sanomista voimakkain",
+  "loginPageDisplay1": "Kaikista maailman\n sanomista voimakkain",
   "@loginPageDisplay1": {
     "description": "Text displayed on login screen."
   },
@@ -127,7 +127,7 @@
   "@cantPlayVideo": {
     "description": "Error message for the user displayed when video playback attempt failed."
   },
-  "about": "Tietoja",
+  "about": "Tietoa",
   "@about": {
     "description": "Title of About page and item in profile page settings."
   },
@@ -183,11 +183,11 @@
   "@quality": {
     "description": "Generic."
   },
-  "seasons": "Tuotantokaudet",
+  "seasons": "Tuotantokautta",
   "@seasons": {
     "description": "Followed by number of seasons in given series."
   },
-  "episodes": "Jaksoa",
+  "episodes": "Jaksoja",
   "@episodes": {
     "description": "Followed by number of episodes in given series."
   },
@@ -211,7 +211,7 @@
   "@castQueue": {
     "description": "Queue page title"
   },
-  "options": "Valinnat",
+  "options": "Asetukset",
   "@options": {
     "description": "Options dialog title"
   },
@@ -308,15 +308,15 @@
   "@shortFilms": {
     "description": "Title of the films collection."
   },
-  "videos": "Videota",
+  "videos": "Videot",
   "@videos": {
     "description": "Followed by number of videos"
   },
-  "moreInfo": "Tarkempia tietoja",
+  "moreInfo": "Lisätietoja",
   "@moreInfo": {
     "description": "Option in action sheet for the video that triggers info page for the video."
   },
-  "info": "Tiedot",
+  "info": "Tietoa",
   "@info": {
     "description": "Video info page title."
   },
@@ -388,7 +388,7 @@
   "@feed": {
     "description": "Feed page bar title"
   },
-  "information": "Tiedot",
+  "information": "Tietoa",
   "@information": {
     "description": "Feed information item title"
   },
@@ -400,11 +400,11 @@
   "@now": {
     "description": "Tv guide now playing label"
   },
-  "concernTextPlaceholder": "Kerro ongelmasta",
+  "concernTextPlaceholder": "Kuvaile ongelmaa",
   "@concernTextPlaceholder": {
     "description": "Placeholder text in text field on contact support page"
   },
-  "debugInfoExplanation": "Palautteesi sisältää myös seuraavat tiedot auttamaan meitä paremmin ymmärtämään ongelmaa.",
+  "debugInfoExplanation": "Palautteesi sisältää myös seuraavat tiedot, jotta ymmärrämme ongelman paremmin.",
   "@debugInfoExplanation": {
     "description": "Info about debug info usage on contact support page"
   },
@@ -420,7 +420,7 @@
   "@thankYouSupportTitle": {
     "description": "Text on contact support confirmation page"
   },
-  "thankYouSupportDescription": "Arvostamme kovasti palautetta ja teemme parhaamme ongelman korjaamiseen.",
+  "thankYouSupportDescription": "Arvostamme kovasti palautetta ja teemme parhaamme ongelman korjaamiseksi.",
   "@thankYouSupportDescription": {
     "description": "Text on contact support confirmation page"
   },
@@ -465,7 +465,7 @@
   "@profilePicture": {
     "description": "Text on edit profile page."
   },
-  "timezoneInformation": "Kellonajat ovat sinun aikavyöhykettä: {timeZone}",
+  "timezoneInformation": "Kellonajat noudattavat aikavyöhykettäsi: {timeZone}",
   "@timezoneInformation": {
     "description": "TV guide footer info text.",
     "placeholders": {
@@ -478,7 +478,7 @@
   "@share": {
     "description": "Generic."
   },
-  "liveNow": "Jetzt live",
+  "liveNow": "Suorana nyt",
   "@liveNow": {
     "description": "Generic, short. Used in buttons, badges, etc to indicate that an item is playing on the livestream now."
   },
@@ -506,7 +506,7 @@
   "@appUpdateTitle": {
     "description": "Title of the message displayed to the user when application is too old and should be updated in a timely manner."
   },
-  "appUpdateRequest": "Päivitä sovellus. Siinä on uusia juttuja ja vikoja on korjattu.",
+  "appUpdateRequest": "Päivitä sovellus. Siinä on uusia ominaisuuksia ja vikoja on korjattu.",
   "@appUpdateRequest": {
     "description": "Message displayed to the user when application is too old and should be updated in a timely manner."
   },
@@ -539,7 +539,7 @@
       }
     }
   },
-  "loadContentError": "Sisällön nouto epäonnistui",
+  "loadContentError": "Sisällön lataaminen epäonnistui",
   "@loadContentError": {
     "description": "Error text when content couldn't be loaded."
   },
@@ -685,7 +685,7 @@
       }
     }
   },
-  "taskCount": "{count} tehtäviä",
+  "taskCount": "{count} tehtävää",
   "@taskCount": {
     "description": "REMEMBER: Include, but do not translate variables like {count} here. Keep it very short. Generic, number of tasks. Currently used for study topic overviews.",
     "placeholders": {
@@ -732,8 +732,16 @@
   "@mustBeLoggedIn": {
     "description": "Error message when you open a link to content you dont have access to, and you are not logged in."
   },
-  "plentyOfOtherContent": "Mutta ei syytä huoleen. On edelleen paljon mitä voit katsella.",
+  "plentyOfOtherContent": "Mutta ei syytä huoleen. On edelleen paljon katsottavaa!",
   "@plentyOfOtherContent": {
     "description": "Shown on an error page indiciating you dont have access to the content, right above a button that takes you back."
+  },
+  "notAchieved": "Ei saavutettu",
+  "@notAchieved": {
+    "description": "A label indicating that this achievement has not been achieved yet."
+  },
+  "details": "Lisätietoa",
+  "@details": {
+    "description": "A tab name on the episode page which has some extra details about the episode: release date, age rating, etc."
   }
 }

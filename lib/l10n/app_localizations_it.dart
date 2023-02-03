@@ -538,5 +538,8 @@ class SIt extends S {
   String get plentyOfOtherContent => 'Non preoccuparti, ci sono ancora molti altri contenuti con cui divertirti!';
 
   @override
-  String get notAchieved => 'Not achieved';
+  String get notAchieved => 'Non raggiunto';
+
+  @override
+  String get details => 'Dettagli';
 }

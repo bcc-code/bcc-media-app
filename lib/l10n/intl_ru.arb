@@ -67,11 +67,11 @@
   "@tryAgainButton": {
     "description": "Button on error alert that lets user to retry failed action"
   },
-  "loggedOutTitle": "Не залогинен",
+  "loggedOutTitle": "Вы вышли из аккаунта",
   "@loggedOutTitle": {
     "description": "Title of the alert message that is shown when user is logged out automatically."
   },
-  "loggedOutMessage": "Вы вышли из системы. Пожалуйста, войдите снова.",
+  "loggedOutMessage": "Вы вышли из аккаунта. Пожалуйста, войдите снова.",
   "@loggedOutMessage": {
     "description": "Text of the alert message that is shown when user is logged out automatically."
   },
@@ -139,7 +139,7 @@
   "@contactSupport": {
     "description": "Settings item on profile page"
   },
-  "cancel": "Отменить",
+  "cancel": "Отмена",
   "@cancel": {
     "description": "General cancel action button"
   },
@@ -232,7 +232,7 @@
       }
     }
   },
-  "recentSearches": "Недавние поиски",
+  "recentSearches": "Недавние запросы",
   "@recentSearches": {
     "description": "Recent searches list title."
   },
@@ -280,7 +280,7 @@
   "@high": {
     "description": "High quality video option"
   },
-  "emptySearch": "Вы можете искать по всему контенту от BCC Media. Серии, фильмы и эпизоды.",
+  "emptySearch": "Вы можете выполнять поиск по всему контенту от BCC Media. Передачи, фильмы и эпизоды.",
   "@emptySearch": {
     "description": "Message on search page when there is no search results."
   },
@@ -571,7 +571,7 @@
   "@subtitlesLanguage": {
     "description": "Label indicating that the Subtitles Language can be changed here."
   },
-  "removeFromRecentSearches": "Хотите удалить этот элемент из последних поисков?",
+  "removeFromRecentSearches": "Желаете удалить этот элемент из последних запросов?",
   "@removeFromRecentSearches": {
     "description": "Prompt that asks the user wheter they are certain, that they want to remove the element from recent searches."
   },
@@ -607,11 +607,11 @@
   "@exploreContent": {
     "description": "A button on the login page"
   },
-  "taskCompleted": "Задание выполнено",
+  "taskCompleted": "задание выполнено",
   "@taskCompleted": {
     "description": "SINGULAR. Note the lowercase T, because its inserted after a count: '0/1 task completed'."
   },
-  "tasksCompleted": "Задания выполнены",
+  "tasksCompleted": "заданий выполнено",
   "@tasksCompleted": {
     "description": "PLURAL. Note the lowercase T, because its inserted after the count: '2/5 tasks completed'."
   },
@@ -631,7 +631,7 @@
   "@studyDiscoverMoreDescription": {
     "description": "Description to open the related resources for this episode."
   },
-  "watchAgain": "Посмотреть еще раз",
+  "watchAgain": "Посмотрите еще раз",
   "@watchAgain": {
     "description": "Short button text to watch the video again."
   },
@@ -651,23 +651,23 @@
   "@studyLessonsCompleted": {
     "description": "PLURAL. Note the lowercase L, because prepended with a number: '20 lessons completed'."
   },
-  "continueStudy": "Продолжить обучение",
+  "continueStudy": "Продолжить изучение",
   "@continueStudy": {
     "description": "Button."
   },
-  "startStudy": "Начать обучение",
+  "startStudy": "Начать изучение",
   "@startStudy": {
     "description": "Button."
   },
-  "videoCompletedText": "Отличная работа по завершенному видео.",
+  "videoCompletedText": "Отличная работа, просмотр видео завершен.",
   "@videoCompletedText": {
     "description": "Shown after completing tasks related to a video."
   },
-  "achievementFirstDescription": "Отличная работа по завершенному видео и получению первого достижения.",
+  "achievementFirstDescription": "Отличная работа, вы завершили видео и получили первое достижение.",
   "@achievementFirstDescription": {
     "description": "Description displayed in a popup when earning the first achievement badge."
   },
-  "achievementStudyTopic": "Отличная работа по завершению темы исследования {name}",
+  "achievementStudyTopic": "Отличная работа по завершению темы изучения {name}",
   "@achievementStudyTopic": {
     "description": "REMEMBER: Include, but do not translate variables like {name} here. Description displayed in a popup when done with a study topic.",
     "placeholders": {
@@ -735,5 +735,13 @@
   "plentyOfOtherContent": "Не волнуйтесь, впереди еще много интересного!",
   "@plentyOfOtherContent": {
     "description": "Shown on an error page indiciating you dont have access to the content, right above a button that takes you back."
+  },
+  "notAchieved": "Не достигнуто",
+  "@notAchieved": {
+    "description": "A label indicating that this achievement has not been achieved yet."
+  },
+  "details": "Подробности",
+  "@details": {
+    "description": "A tab name on the episode page which has some extra details about the episode: release date, age rating, etc."
   }
 }

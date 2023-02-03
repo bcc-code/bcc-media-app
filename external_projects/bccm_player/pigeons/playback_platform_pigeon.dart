@@ -70,6 +70,7 @@ class AppConfig {
   late String? audioLanguage;
   late String? subtitleLanguage;
   late String? analyticsId;
+  late int? sessionId;
 }
 
 class User {

@@ -538,5 +538,8 @@ class SSl extends S {
   String get plentyOfOtherContent => 'Brez skrbi, na voljo je dovolj druge vsebine!';
 
   @override
-  String get notAchieved => 'Not achieved';
+  String get notAchieved => 'Ni dosežen';
+
+  @override
+  String get details => 'Podrobnosti';
 }
