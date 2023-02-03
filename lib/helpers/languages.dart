@@ -3,8 +3,13 @@ import 'dart:ui';
 class LanguageInfo {
   final Locale locale;
   final String nativeName;
+  final String englishName;
 
-  const LanguageInfo({required this.locale, required this.nativeName});
+  const LanguageInfo({
+    required this.locale,
+    required this.nativeName,
+    required this.englishName,
+  });
 }
 
 class LanguageCodes {
@@ -36,90 +41,112 @@ const languages = {
   LanguageCodes.de: LanguageInfo(
     locale: Locale('de'),
     nativeName: 'Deutsch',
+    englishName: 'German',
   ),
   LanguageCodes.en: LanguageInfo(
     locale: Locale('en'),
     nativeName: 'English',
+    englishName: 'English',
   ),
   LanguageCodes.es: LanguageInfo(
     locale: Locale('es'),
     nativeName: 'Español',
+    englishName: 'Spanish',
   ),
   LanguageCodes.fi: LanguageInfo(
     locale: Locale('fi'),
     nativeName: 'Suomi',
+    englishName: 'Finnish',
   ),
   LanguageCodes.fr: LanguageInfo(
     locale: Locale('fr'),
     nativeName: 'Français',
+    englishName: 'French',
   ),
   LanguageCodes.hr: LanguageInfo(
     locale: Locale('hr'),
     nativeName: 'Hrvatski',
+    englishName: 'Croatian',
   ),
   LanguageCodes.hu: LanguageInfo(
     locale: Locale('hu'),
     nativeName: 'Magyar',
+    englishName: 'Hungarian',
   ),
   LanguageCodes.it: LanguageInfo(
     locale: Locale('it'),
     nativeName: 'Italiano',
+    englishName: 'Italian',
   ),
   LanguageCodes.ml: LanguageInfo(
     locale: Locale('ml'),
     nativeName: 'മലയാളം',
+    englishName: 'Malayalam',
   ),
   LanguageCodes.nl: LanguageInfo(
     locale: Locale('nl'),
     nativeName: 'Nederlands',
+    englishName: 'Dutch',
   ),
   LanguageCodes.no: LanguageInfo(
     locale: Locale('no'),
     nativeName: 'Norsk',
+    englishName: 'Norwegian',
   ),
   LanguageCodes.pl: LanguageInfo(
     locale: Locale('pl'),
     nativeName: 'Polski',
+    englishName: 'Polish',
   ),
   LanguageCodes.pt: LanguageInfo(
     locale: Locale('pt'),
     nativeName: 'Português',
+    englishName: 'Portuguese',
   ),
   LanguageCodes.ro: LanguageInfo(
     locale: Locale('ro'),
     nativeName: 'Română',
+    englishName: 'Romanian',
   ),
   LanguageCodes.ru: LanguageInfo(
     locale: Locale('ru'),
     nativeName: 'Pусский',
+    englishName: 'Russian',
   ),
   LanguageCodes.sl: LanguageInfo(
     locale: Locale('sl'),
     nativeName: 'Slovenščina',
+    englishName: 'Slovenian',
   ),
   LanguageCodes.ta: LanguageInfo(
     locale: Locale('ta'),
     nativeName: 'தமிழ்',
+    englishName: 'Tamil',
   ),
   LanguageCodes.tr: LanguageInfo(
     locale: Locale('tr'),
     nativeName: 'Türkçe',
+    englishName: 'Turkish',
   ),
   LanguageCodes.da: LanguageInfo(
     locale: Locale('da'),
     nativeName: 'Dansk',
+    englishName: 'Danish',
   ),
   LanguageCodes.bg: LanguageInfo(
     locale: Locale('bg'),
     nativeName: 'български',
+    englishName: 'Bulgarian',
   ),
   LanguageCodes.zh: LanguageInfo(
     locale: Locale('zh'),
     nativeName: '中文',
+    englishName: 'Chinese',
   ),
   LanguageCodes.zh_HK: LanguageInfo(
     locale: Locale('zh', 'HK'),
     nativeName: '粵語',
+    englishName: 'Cantonese',
   ),
 };
 

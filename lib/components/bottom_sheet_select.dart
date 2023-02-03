@@ -91,7 +91,6 @@ class _BottomSheetSelectState extends State<BottomSheetSelect> {
                     }
                   },
                   margin: const EdgeInsets.all(0),
-                  enableDivider: false,
                 ),
               ),
               SizedBox(

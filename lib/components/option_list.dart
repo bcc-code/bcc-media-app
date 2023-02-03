@@ -11,6 +11,7 @@ class OptionList extends StatelessWidget {
   final EdgeInsetsGeometry margin;
   final bool enableDivider;
   final bool showSelection;
+  final Color backgroundColor;
   final bool showNoneOption;
 
   const OptionList({
@@ -18,10 +19,11 @@ class OptionList extends StatelessWidget {
     required this.optionData,
     required this.currentSelection,
     required this.onSelectionChange,
-    this.enableDivider = true,
+    this.enableDivider = false,
     this.showSelection = true,
     this.showNoneOption = false,
     this.margin = const EdgeInsets.only(top: 16, left: 16, right: 16),
+    this.backgroundColor = BtvColors.background2,
   });
 
   @override
@@ -35,7 +37,7 @@ class OptionList extends StatelessWidget {
 
     return DecoratedBox(
       decoration: BoxDecoration(
-        color: BtvColors.background2,
+        color: backgroundColor,
         borderRadius: BorderRadius.circular(12),
       ),
       child: ListView.separated(
@@ -67,7 +69,8 @@ class OptionList extends StatelessWidget {
       ignoring: option.disabled,
       child: Container(
         foregroundDecoration: option.disabled ? BoxDecoration(color: BtvColors.background1.withAlpha(100)) : null,
-        child: InkWell(
+        child: GestureDetector(
+          behavior: HitTestBehavior.opaque,
           onTapDown: (e) {
             onSelectionChange(option.id);
           },
