@@ -281,7 +281,6 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen> with AutoRouteAwa
                     child: SizedBox(width: 24, child: CastButton()),
                   ),
                 ],
-                flexibleSpace: Container(child: Text((player?.playerId).toString())),
               ),
               body: Builder(
                 builder: (context) {
