@@ -16,6 +16,7 @@ import 'package:brunstadtv_app/helpers/navigation_override.dart';
 import 'package:brunstadtv_app/helpers/svg_icons.dart';
 import 'package:brunstadtv_app/router/router.gr.dart';
 import 'package:brunstadtv_app/services/utils.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:bccm_player/bccm_player.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -271,38 +272,42 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen> with AutoRouteAwa
           var displayPlayer = animationStatus != AnimationStatus.forward && snapshot.hasData;
 
           return Scaffold(
-              appBar: AppBar(
-                leadingWidth: 92,
-                leading: const CustomBackButton(),
-                title: Text(snapshot.data?.season?.$show.title ?? snapshot.data?.title ?? ''),
-                actions: const [
-                  Padding(
-                    padding: EdgeInsets.only(left: 16, right: 16.0),
-                    child: SizedBox(width: 24, child: CastButton()),
-                  ),
-                ],
-              ),
-              body: Builder(
-                builder: (context) {
-                  if (snapshot.hasError && snapshot.connectionState == ConnectionState.done) {
-                    var operationException = snapshot.error.asOrNull<OperationException>();
-                    if (operationException?.graphqlErrors.any(
-                            (err) => err.extensions?['code'] == ApiErrorCodes.noAccess || err.extensions?['code'] == ApiErrorCodes.notPublished) ==
-                        true) {
-                      return const ErrorNoAccess();
+            appBar: AppBar(
+              leadingWidth: 92,
+              leading: const CustomBackButton(),
+              title: Text(snapshot.data?.season?.$show.title ?? snapshot.data?.title ?? ''),
+              actions: const [
+                Padding(
+                  padding: EdgeInsets.only(left: 16, right: 16.0),
+                  child: SizedBox(width: 24, child: CastButton()),
+                ),
+              ],
+            ),
+            body: ConditionalParentWidget(
+                condition: kIsWeb,
+                conditionalBuilder: (child) => Padding(padding: EdgeInsets.symmetric(horizontal: 300), child: child),
+                child: Builder(
+                  builder: (context) {
+                    if (snapshot.hasError && snapshot.connectionState == ConnectionState.done) {
+                      var operationException = snapshot.error.asOrNull<OperationException>();
+                      if (operationException?.graphqlErrors.any(
+                              (err) => err.extensions?['code'] == ApiErrorCodes.noAccess || err.extensions?['code'] == ApiErrorCodes.notPublished) ==
+                          true) {
+                        return const ErrorNoAccess();
+                      }
+                      return ErrorGeneric(onRetry: () => loadEpisode());
                     }
-                    return ErrorGeneric(onRetry: () => loadEpisode());
-                  }
-                  if (player == null ||
-                      animationStatus == AnimationStatus.forward ||
-                      snapshot.data == null && snapshot.connectionState != ConnectionState.done) {
-                    return _loading();
-                  }
-                  debugPrint('snapshot.connectionState : ${snapshot.connectionState}');
-                  return _episode(
-                      player, displayPlayer, casting, player.playerId, snapshot.data!, snapshot.connectionState != ConnectionState.done, context);
-                },
-              ));
+                    if (player == null ||
+                        animationStatus == AnimationStatus.forward ||
+                        snapshot.data == null && snapshot.connectionState != ConnectionState.done) {
+                      return _loading();
+                    }
+                    debugPrint('snapshot.connectionState : ${snapshot.connectionState}');
+                    return _episode(
+                        player, displayPlayer, casting, player.playerId, snapshot.data!, snapshot.connectionState != ConnectionState.done, context);
+                  },
+                )),
+          );
         });
   }
 
