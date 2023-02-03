@@ -172,7 +172,7 @@ packages:
     dependency: transitive
     description:
       name: built_value
-      sha256: "59e08b0079bb75f7e27392498e26339387c1089c6bd58525a14eb8508637277b"
+      sha256: "169565c8ad06adb760c3645bf71f00bff161b00002cace266cad42c5d22a7725"
       url: "https://pub.dev"
     source: hosted
     version: "8.4.3"
@@ -396,7 +396,7 @@ packages:
     dependency: "direct main"
     description:
       name: firebase_crashlytics
-      sha256: "9c05f1024086568b3fd99c2e7c6382443d5024b612538b20ccfc867be0b5c16a"
+      sha256: "44097397c471f7bbc25b676c5aff8208bbd5ad84314fb4ae46e497e8b485e738"
       url: "https://pub.dev"
     source: hosted
     version: "3.0.10"
@@ -436,7 +436,7 @@ packages:
     dependency: "direct main"
     description:
       name: firebase_performance
-      sha256: e00102509bff080d004e7e82fc15b97d8369be64fe4ea0224d133acc38998d1f
+      sha256: "3e95c1e22d56e68f3983fc84bc8eb4509a9403c615a52a0a791122d34730aa20"
       url: "https://pub.dev"
     source: hosted
     version: "0.9.0+10"
@@ -473,7 +473,8 @@ packages:
     dependency: transitive
     description:
       name: flutter_dotenv
-      url: "https://pub.dartlang.org"
+      sha256: d9283d92059a22e9834bc0a31336658ffba77089fb6f3cc36751f1fc7c6661a3
+      url: "https://pub.dev"
     source: hosted
     version: "5.0.2"
   flutter_hooks:
@@ -887,7 +888,7 @@ packages:
     dependency: transitive
     description:
       name: mime
-      sha256: "52e38f7e1143ef39daf532117d6b8f8f617bf4bcd6044ed8c29040d20d269630"
+      sha256: e4ff8e8564c03f255408decd16e7899da1733852a9110a58fe6d1b817684a63e
       url: "https://pub.dev"
     source: hosted
     version: "1.0.4"
@@ -1031,7 +1032,7 @@ packages:
     dependency: transitive
     description:
       name: path_provider_macos
-      sha256: "2a97e7fbb7ae9dcd0dfc1220a78e9ec3e71da691912e617e8715ff2a13086ae8"
+      sha256: cd57cb98a30ce9d12fdd1896d9d3b0517ce689f942de6ccd2708cd39b3d18a7c
       url: "https://pub.dev"
     source: hosted
     version: "2.0.7"
@@ -1199,7 +1200,7 @@ packages:
     dependency: transitive
     description:
       name: rudder_plugin_android
-      sha256: "647e2c5738f57b2e634b46f47eed32c025c19a33ed398f7fffec9750b2252652"
+      sha256: "45849a42ec8b87a8b9a7d29aa1e4f26e9653c73c4d82d320b9bd8080aaccae06"
       url: "https://pub.dev"
     source: hosted
     version: "2.2.0"
@@ -1207,7 +1208,7 @@ packages:
     dependency: transitive
     description:
       name: rudder_plugin_ios
-      sha256: "89f115d147aa0b4f9de4e05ea8eab00fcbc9f0f5bc153f6aa610c396ebd445b9"
+      sha256: "07d3f1af3db5dbc9a8d6697e622fdfacffa7d604923c94fa2003aaba54c5f298"
       url: "https://pub.dev"
     source: hosted
     version: "2.2.0"
@@ -1215,7 +1216,7 @@ packages:
     dependency: transitive
     description:
       name: rudder_plugin_web
-      sha256: "1c633b20e7443a1706df3c34740f74e141d1553b098d7fe41af56002cc2b1adb"
+      sha256: "04f8f8a7b114aede3a673c4f88043f5ce63bd4ddbd3893cb5df1789d6d672580"
       url: "https://pub.dev"
     source: hosted
     version: "2.2.0"
@@ -1223,7 +1224,7 @@ packages:
     dependency: "direct main"
     description:
       name: rudder_sdk_flutter
-      sha256: "5392d7c7a00c77da63000605e8e91851cb2c148e8e7077a9d138c5a493904fba"
+      sha256: "22547ae558562fff9beef6bd2e8c945c5cde18a035b3fa6f32c6cc2cab59d01f"
       url: "https://pub.dev"
     source: hosted
     version: "2.3.0"
@@ -1231,7 +1232,7 @@ packages:
     dependency: "direct main"
     description:
       name: rudder_sdk_flutter_platform_interface
-      sha256: "2ac4d911b871326dfd2bee5b56e1dc2500ab9d819fff924481f6924b6fc0cb21"
+      sha256: "186e8b68dd887e98b81cd2f352cf326527e3c904e1ca90ae6877ecb4374ac02b"
       url: "https://pub.dev"
     source: hosted
     version: "2.3.0"
@@ -1279,7 +1280,7 @@ packages:
     dependency: "direct main"
     description:
       name: shared_preferences
-      sha256: "76917b7d4b9526b2ba416808a7eb9fb2863c1a09cf63ec85f1453da240fa818a"
+      sha256: "95688ad7fc320f8566f28e2ee91b6743c10b433ccc262f6469f3007f2aa62e78"
       url: "https://pub.dev"
     source: hosted
     version: "2.0.16"
@@ -1295,9 +1296,10 @@ packages:
     dependency: transitive
     description:
       name: shared_preferences_foundation
-      url: "https://pub.dartlang.org"
+      sha256: "2b55c18636a4edc529fa5cd44c03d3f3100c00513f518c5127c951978efcccd0"
+      url: "https://pub.dev"
     source: hosted
-    version: "2.1.1"
+    version: "2.1.3"
   shared_preferences_linux:
     dependency: transitive
     description:
@@ -1579,7 +1581,7 @@ packages:
     dependency: transitive
     description:
       name: web_socket_channel
-      sha256: "3a969ddcc204a3e34e863d204b29c0752716f78b6f9cc8235083208d268a4ccd"
+      sha256: "500e6014efebd305a30ebf1c6006d13faa82dcd85c7a2a7793679a64ed69ec48"
       url: "https://pub.dev"
     source: hosted
     version: "2.0.0"
@@ -1627,7 +1629,7 @@ packages:
     dependency: transitive
     description:
       name: xdg_directories
-      sha256: "11541eedefbcaec9de35aa82650b695297ce668662bbd6e3911a7fabdbde589f"
+      sha256: bd512f03919aac5f1313eb8249f223bacf4927031bf60b02601f81f687689e86
       url: "https://pub.dev"
     source: hosted
     version: "0.2.0+3"
