@@ -51,11 +51,14 @@ class _AppAudioLanguageState extends ConsumerState<AppAudioLanguage> {
             child: Column(
               children: [
                 Padding(
-                    padding: const EdgeInsets.all(16).copyWith(bottom: 100),
-                    child: OptionList(
-                        optionData: languages.map((l) => Option(id: l.code, title: l.nativeName)).toList(),
-                        currentSelection: selected,
-                        onSelectionChange: _onSelectionChanged))
+                  padding: const EdgeInsets.all(16).copyWith(bottom: 100),
+                  child: OptionList(
+                    optionData: languages.map((l) => Option(id: l.code, title: l.nativeName, subTitle: l.englishName)).toList(),
+                    currentSelection: selected,
+                    backgroundColor: Colors.transparent,
+                    onSelectionChange: _onSelectionChanged,
+                  ),
+                )
               ],
             ),
           ),

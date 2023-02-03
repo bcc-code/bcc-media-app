@@ -53,9 +53,10 @@ class _AppSubtitleLanguageState extends ConsumerState<AppSubtitleLanguage> {
                 Padding(
                   padding: const EdgeInsets.all(16).copyWith(bottom: 100),
                   child: OptionList(
-                    optionData: languages.map((l) => Option(id: l.code, title: l.nativeName)).toList(),
+                    optionData: languages.map((l) => Option(id: l.code, title: l.nativeName, subTitle: l.englishName)).toList(),
                     currentSelection: selected,
                     onSelectionChange: _onSelectionChanged,
+                    backgroundColor: Colors.transparent,
                   ),
                 ),
               ],
