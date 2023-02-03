@@ -102,6 +102,7 @@ class _TabsRootScreenState extends ConsumerState<TabsRootScreen> with AutoRouteA
 
   bool _shouldHideMiniPlayer(BuildContext context) {
     final router = context.watchRouter;
+    final currentRouteMatch = router.currentSegments.last;
     Player? player;
     if (ref.watch(isCasting)) {
       player = ref.watch(castPlayerProvider);
@@ -111,23 +112,28 @@ class _TabsRootScreenState extends ConsumerState<TabsRootScreen> with AutoRouteA
     if (player == null || player.currentMediaItem == null) {
       return true;
     }
-    if (router.currentSegments.last.meta.containsKey('hide_mini_player')) {
+    if (currentRouteMatch.meta.containsKey('hide_mini_player')) {
       return true;
     }
     if (player.isInPipMode) {
       return true;
     }
 
-    final currentEpisodePageArgs = (router.currentSegments.last.args as Object?).asOrNull<EpisodeScreenRouteArgs>();
+    if (currentRouteMatch.name == EpisodeScreenRoute.name) {
+      final currentEpisodePageArgsId = currentRouteMatch.pathParams.optString('episodeId');
+      final autoplayQueryParam = currentRouteMatch.queryParams.get('autoplay', false);
+      final currentEpisodePageArgsAutoplay =
+          (autoplayQueryParam == true) || (autoplayQueryParam is String && autoplayQueryParam.toLowerCase() == 'true');
 
-    if (currentEpisodePageArgs?.autoplay == true) {
-      return true;
-    }
+      if (currentEpisodePageArgsAutoplay == true) {
+        return true;
+      }
 
-    final episodeId = player.currentMediaItem?.metadata?.extras?['id']?.asOrNull<String>();
+      final episodeId = player.currentMediaItem?.metadata?.extras?['id']?.asOrNull<String>();
 
-    if (episodeId != null && currentEpisodePageArgs != null && currentEpisodePageArgs.episodeId == episodeId) {
-      return true;
+      if (episodeId != null && currentEpisodePageArgsId != null && currentEpisodePageArgsId == episodeId) {
+        return true;
+      }
     }
     return false;
   }
