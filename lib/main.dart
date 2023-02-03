@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:alice/alice.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:bccm_player/playback_platform_pigeon.g.dart';
+import 'package:bccm_player/playback_service_interface.dart';
 import 'package:brunstadtv_app/graphql/client.dart';
 import 'package:brunstadtv_app/helpers/btv_colors.dart';
 import 'package:brunstadtv_app/helpers/btv_typography.dart';
@@ -100,7 +101,7 @@ void $main({required FirebaseOptions? firebaseOptions}) async {
 
   alice.setNavigatorKey(navigatorKey);
   var providerContainer = ProviderContainer();
-  PlaybackListenerPigeon.setup(PlaybackListener(ref: providerContainer));
+  PlaybackPlatformInterface.instance.setPlaybackListener(PlaybackListener(ref: providerContainer));
   final authLoadingCompleter = wrapInCompleter(providerContainer.read(authStateProvider.notifier).load());
   providerContainer.read(settingsProvider.notifier).init();
   providerContainer.read(chromecastListenerProvider);

@@ -21,19 +21,6 @@ class BccmPlayer extends StatefulWidget {
 
 class _BccmPlayerState extends State<BccmPlayer> {
   bool _hidePlayer = false;
-  void playVideoWeb(BuildContext context) {
-    /* 
-    final v = html.window.document.getElementById('videoab');
-    if(v != null) {
-      v.style.display='block';
-      createVideoJsPlayer('videoab', Options(
-        src: SrcOptions(
-          src: 'something',
-          type: 'application/x-mpegURL'
-        )
-      ));
-    } */
-  }
 
   void playVideoNative(BuildContext context) {
     setState(() {
@@ -47,17 +34,8 @@ class _BccmPlayerState extends State<BccmPlayer> {
       return const BccmCastPlayer();
     }
     if (kIsWeb) {
-      return Container(
-          color: Colors.blueAccent,
-          child: SizedBox(
-            width: 100,
-            height: 100,
-            child: ElevatedButton(
-                onPressed: () {
-                  playVideoWeb(context);
-                },
-                child: const Text('Play')),
-          ));
+      return AspectRatio(aspectRatio: 16 / 9, child: HtmlElementView(viewType: 'bccm-player'));
+      return Container(color: Colors.blueAccent, child: SizedBox(width: 100, height: 100));
     }
     return Column(
       children: [
@@ -85,8 +63,7 @@ class _BccmPlayerState extends State<BccmPlayer> {
           Column(
             children: [
               //SizedBox(height: 100, child: AndroidNativeText(widget: widget)),
-              AspectRatio(
-                  aspectRatio: 16 / 9, child: AndroidPlayer(id: widget.id)),
+              AspectRatio(aspectRatio: 16 / 9, child: AndroidPlayer(id: widget.id)),
             ],
           )
       ],
