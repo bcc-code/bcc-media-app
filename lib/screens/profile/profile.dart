@@ -9,7 +9,6 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 import '../../components/custom_back_button.dart';
 import '../../helpers/languages.dart';
-import '../../helpers/languages_subtitle.dart';
 import '../../l10n/app_localizations.dart';
 import '../../router/router.gr.dart';
 import './avatar.dart';
@@ -66,7 +65,7 @@ class _ProfileState extends ConsumerState<Profile> {
           }),
       OptionButton(
           optionName: S.of(context).subtitleLanguage,
-          currentSelection: getSubtitleLanguageName(settings.subtitleLanguage),
+          currentSelection: settings.subtitleLanguage == null ? S.of(context).none : getLanguageName(settings.subtitleLanguage),
           onPressed: () {
             context.router.push(const AppSubtitleLanguageRoute());
           })
