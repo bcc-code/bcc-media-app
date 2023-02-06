@@ -30,26 +30,28 @@ class OptionList extends StatelessWidget {
         color: backgroundColor,
         borderRadius: BorderRadius.circular(12),
       ),
-      child: ListView.separated(
-        physics: const NeverScrollableScrollPhysics(),
-        cacheExtent: 100000,
-        shrinkWrap: true,
-        itemCount: optionData.length,
-        itemBuilder: (context, index) {
-          final option = optionData[index];
-          final isOptionSelected = currentSelection != null && showSelection && (currentSelection!.isNotEmpty && currentSelection == option.id);
-          return _getOption(option, isOptionSelected);
-        },
-        separatorBuilder: (context, index) {
-          return Visibility(
-            visible: enableDivider,
-            child: const Divider(
-              height: 1,
-              thickness: 1,
-              indent: 16,
-            ),
-          );
-        },
+      child: ScrollConfiguration(
+        behavior: const ScrollBehavior().copyWith(overscroll: false), // Disable over-scroll glow effect
+        child: ListView.separated(
+          cacheExtent: 100000,
+          shrinkWrap: true,
+          itemCount: optionData.length,
+          itemBuilder: (context, index) {
+            final option = optionData[index];
+            final isOptionSelected = currentSelection != null && showSelection && (currentSelection!.isNotEmpty && currentSelection == option.id);
+            return _getOption(option, isOptionSelected);
+          },
+          separatorBuilder: (context, index) {
+            return Visibility(
+              visible: enableDivider,
+              child: const Divider(
+                height: 1,
+                thickness: 1,
+                indent: 16,
+              ),
+            );
+          },
+        ),
       ),
     );
   }
@@ -120,4 +122,12 @@ class Option {
     this.icon,
     this.subTitle,
   });
+}
+
+// Remove glow when over-scrolled
+class CustomScrollBehavior extends ScrollBehavior {
+  @override
+  Widget buildOverscrollIndicator(BuildContext context, Widget child, ScrollableDetails details) {
+    return child;
+  }
 }

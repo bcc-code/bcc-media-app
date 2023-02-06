@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../components/option_list.dart';
-import '../../helpers/btv_colors.dart';
 import '../../helpers/languages.dart';
 import '../../l10n/app_localizations.dart';
 import '../../models/analytics/language_changed.dart';
@@ -43,24 +42,13 @@ class _AppSubtitleLanguageState extends ConsumerState<AppSubtitleLanguage> {
         title: Text(S.of(context).subtitleLanguage),
       ),
       body: SafeArea(
-        child: Container(
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(15),
-          ),
-          child: SingleChildScrollView(
-            child: Column(
-              children: [
-                Padding(
-                  padding: const EdgeInsets.all(16).copyWith(bottom: 100),
-                  child: OptionList(
-                    optionData: languages.map((l) => Option(id: l.code, title: l.nativeName, subTitle: l.englishName)).toList(),
-                    currentSelection: selected,
-                    onSelectionChange: _onSelectionChanged,
-                    backgroundColor: Colors.transparent,
-                  ),
-                ),
-              ],
-            ),
+        child: Padding(
+          padding: const EdgeInsets.all(16),
+          child: OptionList(
+            optionData: languages.map((l) => Option(id: l.code, title: l.nativeName, subTitle: l.englishName)).toList(),
+            currentSelection: selected,
+            onSelectionChange: _onSelectionChanged,
+            backgroundColor: Colors.transparent,
           ),
         ),
       ),

@@ -43,24 +43,13 @@ class _AppAudioLanguageState extends ConsumerState<AppAudioLanguage> {
         title: Text(S.of(context).audioLanguage),
       ),
       body: SafeArea(
-        child: Container(
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(15),
-          ),
-          child: SingleChildScrollView(
-            child: Column(
-              children: [
-                Padding(
-                  padding: const EdgeInsets.all(16).copyWith(bottom: 100),
-                  child: OptionList(
-                    optionData: languages.map((l) => Option(id: l.code, title: l.nativeName, subTitle: l.englishName)).toList(),
-                    currentSelection: selected,
-                    backgroundColor: Colors.transparent,
-                    onSelectionChange: _onSelectionChanged,
-                  ),
-                )
-              ],
-            ),
+        child: Padding(
+          padding: const EdgeInsets.all(16),
+          child: OptionList(
+            optionData: languages.map((l) => Option(id: l.code, title: l.nativeName, subTitle: l.englishName)).toList(),
+            currentSelection: selected,
+            backgroundColor: Colors.transparent,
+            onSelectionChange: _onSelectionChanged,
           ),
         ),
       ),
