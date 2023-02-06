@@ -13,6 +13,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:jwt_decoder/jwt_decoder.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:rudder_sdk_flutter/RudderController.dart';
+import 'package:synchronized/synchronized.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../env/env.dart';
@@ -23,16 +24,22 @@ part 'auth_state.freezed.dart';
 
 const kMinimumCredentialsTTL = Duration(hours: 1);
 
-const FlutterAppAuth appAuth = FlutterAppAuth();
-const FlutterSecureStorage secureStorage = FlutterSecureStorage();
-
 final authStateProvider = StateNotifierProvider<AuthStateNotifier, AuthState>((ref) {
   return AuthStateNotifier();
 });
 
 class AuthStateNotifier extends StateNotifier<AuthState> {
   AuthStateNotifier() : super(const AuthState());
-  Timer? refreshTimer;
+  final appAuthLock = Lock();
+  final FlutterAppAuth _appAuth = const FlutterAppAuth();
+  final FlutterSecureStorage _secureStorage = const FlutterSecureStorage();
+
+  Future<T> _syncAppAuth<T>(Future<T> Function() call) {
+    return appAuthLock.synchronized(
+      () => call(),
+      timeout: const Duration(seconds: 10),
+    );
+  }
 
   Future<AuthState?> getExistingAndEnsureNotExpired() async {
     if (state.expiresAt == null || state.auth0AccessToken == null) {
@@ -48,8 +55,8 @@ class AuthStateNotifier extends StateNotifier<AuthState> {
   }
 
   Future<bool> loadFromStorage() async {
-    final accessToken = await secureStorage.read(key: SecureStorageKeys.accessToken);
-    final idToken = await secureStorage.read(key: SecureStorageKeys.idToken);
+    final accessToken = await _secureStorage.read(key: SecureStorageKeys.accessToken);
+    final idToken = await _secureStorage.read(key: SecureStorageKeys.idToken);
 
     if (accessToken == null || idToken == null) {
       return false;
@@ -64,7 +71,7 @@ class AuthStateNotifier extends StateNotifier<AuthState> {
     }
     final ttl = expiry.difference(DateTime.now());
     if (ttl < kMinimumCredentialsTTL) {
-      return refresh();
+      return await refresh();
     }
     state = state.copyWith(
       auth0AccessToken: accessToken,
@@ -77,7 +84,7 @@ class AuthStateNotifier extends StateNotifier<AuthState> {
   }
 
   Future<bool> refresh() async {
-    final refreshToken = await secureStorage.read(key: SecureStorageKeys.refreshToken);
+    final refreshToken = await _secureStorage.read(key: SecureStorageKeys.refreshToken);
 
     if (refreshToken == null) {
       return false;
@@ -85,13 +92,15 @@ class AuthStateNotifier extends StateNotifier<AuthState> {
 
     final PackageInfo info = await PackageInfo.fromPlatform();
     try {
-      final TokenResponse? result = await appAuth.token(
-        TokenRequest(
-          Env.auth0ClientId,
-          '${info.packageName}://login-callback',
-          issuer: 'https://${Env.auth0Domain}',
-          refreshToken: refreshToken,
-          additionalParameters: {'audience': Env.auth0Audience},
+      final TokenResponse? result = await _syncAppAuth(
+        () => _appAuth.token(
+          TokenRequest(
+            Env.auth0ClientId,
+            '${info.packageName}://login-callback',
+            issuer: 'https://${Env.auth0Domain}',
+            refreshToken: refreshToken,
+            additionalParameters: {'audience': Env.auth0Audience},
+          ),
         ),
       );
       _setStateBasedOnResponse(result!);
@@ -107,9 +116,9 @@ class AuthStateNotifier extends StateNotifier<AuthState> {
   Future _clearCredentials() async {
     await Future.wait(
       [
-        secureStorage.delete(key: SecureStorageKeys.refreshToken),
-        secureStorage.delete(key: SecureStorageKeys.accessToken),
-        secureStorage.delete(key: SecureStorageKeys.idToken),
+        _secureStorage.delete(key: SecureStorageKeys.refreshToken),
+        _secureStorage.delete(key: SecureStorageKeys.accessToken),
+        _secureStorage.delete(key: SecureStorageKeys.idToken),
       ],
     );
   }
@@ -148,8 +157,8 @@ class AuthStateNotifier extends StateNotifier<AuthState> {
         additionalParameters: {'audience': Env.auth0Audience},
       );
 
-      final AuthorizationTokenResponse? result = await appAuth.authorizeAndExchangeCode(
-        authorizationTokenRequest,
+      final AuthorizationTokenResponse? result = await _syncAppAuth(
+        () => _appAuth.authorizeAndExchangeCode(authorizationTokenRequest),
       );
 
       await _setStateBasedOnResponse(result!);
@@ -177,15 +186,15 @@ class AuthStateNotifier extends StateNotifier<AuthState> {
     }
 
     await Future.wait([
-      secureStorage.write(
+      _secureStorage.write(
         key: SecureStorageKeys.refreshToken,
         value: refreshToken,
       ),
-      secureStorage.write(
+      _secureStorage.write(
         key: SecureStorageKeys.idToken,
         value: idToken,
       ),
-      secureStorage.write(
+      _secureStorage.write(
         key: SecureStorageKeys.accessToken,
         value: accessToken,
       )
