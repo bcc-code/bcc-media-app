@@ -174,7 +174,7 @@ class AuthStateNotifier extends StateNotifier<AuthState> {
   Future<void> _setStateBasedOnResponse(TokenResponse? result) async {
     final accessToken = result?.accessToken;
     final idToken = result?.idToken;
-    final refreshToken = result?.idToken;
+    final refreshToken = result?.refreshToken;
     if (accessToken == null || idToken == null || refreshToken == null) {
       throw Exception([
         'Invalid token response',
