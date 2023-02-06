@@ -25,14 +25,14 @@ part 'auth_state.freezed.dart';
 const kMinimumCredentialsTTL = Duration(hours: 1);
 
 final authStateProvider = StateNotifierProvider<AuthStateNotifier, AuthState>((ref) {
-  return AuthStateNotifier();
+  return AuthStateNotifier(const FlutterAppAuth(), const FlutterSecureStorage());
 });
 
 class AuthStateNotifier extends StateNotifier<AuthState> {
-  AuthStateNotifier() : super(const AuthState());
+  AuthStateNotifier(this._appAuth, this._secureStorage) : super(const AuthState());
   final appAuthLock = Lock();
-  final FlutterAppAuth _appAuth = const FlutterAppAuth();
-  final FlutterSecureStorage _secureStorage = const FlutterSecureStorage();
+  final FlutterAppAuth _appAuth;
+  final FlutterSecureStorage _secureStorage;
 
   Future<T> _syncAppAuth<T>(Future<T> Function() call) {
     return appAuthLock.synchronized(
@@ -103,7 +103,7 @@ class AuthStateNotifier extends StateNotifier<AuthState> {
           ),
         ),
       );
-      _setStateBasedOnResponse(result!);
+      await _setStateBasedOnResponse(result!);
     } catch (e, s) {
       FirebaseCrashlytics.instance.recordError(e, StackTrace.current);
       print('error on Refresh Token: $e - stack: $s');
@@ -174,7 +174,7 @@ class AuthStateNotifier extends StateNotifier<AuthState> {
   Future<void> _setStateBasedOnResponse(TokenResponse? result) async {
     final accessToken = result?.accessToken;
     final idToken = result?.idToken;
-    final refreshToken = result?.idToken;
+    final refreshToken = result?.refreshToken;
     if (accessToken == null || idToken == null || refreshToken == null) {
       throw Exception([
         'Invalid token response',
