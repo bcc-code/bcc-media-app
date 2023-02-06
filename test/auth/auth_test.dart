@@ -35,7 +35,8 @@ void main() {
       final secureStorage = MockFlutterSecureStorage();
       when(secureStorage.read(key: SecureStorageKeys.refreshToken)).thenAnswer((_) async => 'refresh token');
 
-      final tomorrowEpoch = (DateTime.now().add(const Duration(days: 1)).millisecondsSinceEpoch / 1000).round();
+      final customExpiry = DateTime.now().add(const Duration(days: 5));
+      final tomorrowEpoch = (customExpiry.millisecondsSinceEpoch / 1000).round();
       final fakeAccessTokenJwt =
           'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.${base64UrlEncode(utf8.encode('{"exp": $tomorrowEpoch}'))}.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c';
 
@@ -43,7 +44,7 @@ void main() {
       when(mockAppAuth.token(any)).thenAnswer((_) async => TokenResponse(
             fakeAccessTokenJwt,
             fakeAccessTokenJwt,
-            DateTime.now().add(const Duration(days: 1)),
+            customExpiry,
             fakeIdTokenJwt,
             'tokenType',
             null,
