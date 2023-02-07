@@ -42,25 +42,14 @@ class _AppSubtitleLanguageState extends ConsumerState<AppSubtitleLanguage> {
         title: Text(S.of(context).subtitleLanguage),
       ),
       body: SafeArea(
-        child: Container(
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(15),
-          ),
-          child: SingleChildScrollView(
-            child: Column(
-              children: [
-                Padding(
-                  padding: const EdgeInsets.all(16).copyWith(bottom: 100),
-                  child: OptionList(
-                    optionData: languages.entries.map((e) => Option(id: e.key, title: e.value.nativeName, subTitle: e.value.englishName)).toList(),
-                    currentSelection: selected,
-                    onSelectionChange: _onSelectionChanged,
-                    backgroundColor: Colors.transparent,
-                    showNoneOption: true,
-                  ),
-                ),
-              ],
-            ),
+        child: Padding(
+          padding: const EdgeInsets.all(16),
+          child: OptionList(
+            optionData: languages.entries.map((e) => Option(id: e.key, title: e.value.nativeName, subTitle: e.value.englishName)).toList(),
+            currentSelection: selected,
+            onSelectionChange: _onSelectionChanged,
+            backgroundColor: Colors.transparent,
+            showNoneOption: true,
           ),
         ),
       ),
