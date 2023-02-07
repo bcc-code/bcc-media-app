@@ -27,7 +27,7 @@ class FeaturedSection extends StatelessWidget {
       final viewportFraction = (constraints.maxWidth - (32 - 2 * marginX)) / max(1, constraints.maxWidth);
       final sectionItems = data.items.items.where((e) {
         final episode = e.item.asOrNull<Fragment$ItemSectionItem$item$$Episode>();
-        return episode == null ? true : !isComingSoon(episode.publishDate);
+        return episode == null || !episode.locked;
       }).toList();
       return Padding(
         padding: const EdgeInsets.only(top: 16),
