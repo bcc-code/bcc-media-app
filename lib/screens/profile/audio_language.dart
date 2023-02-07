@@ -17,7 +17,8 @@ class AppAudioLanguage extends ConsumerStatefulWidget {
 class _AppAudioLanguageState extends ConsumerState<AppAudioLanguage> {
   late String? selected;
 
-  void _onSelectionChanged(String id) {
+  void _onSelectionChanged(String? id) {
+    if (id == null) return;
     ref.read(analyticsProvider).languageChanged(LanguageChangedEvent(
           languageFrom: selected,
           languageTo: id,
@@ -53,7 +54,7 @@ class _AppAudioLanguageState extends ConsumerState<AppAudioLanguage> {
                 Padding(
                   padding: const EdgeInsets.all(16).copyWith(bottom: 100),
                   child: OptionList(
-                    optionData: languages.map((l) => Option(id: l.code, title: l.nativeName, subTitle: l.englishName)).toList(),
+                    optionData: languages.entries.map((e) => Option(id: e.key, title: e.value.nativeName, subTitle: e.value.englishName)).toList(),
                     currentSelection: selected,
                     backgroundColor: Colors.transparent,
                     onSelectionChange: _onSelectionChanged,
