@@ -1,15 +1,11 @@
 import 'package:brunstadtv_app/api/brunstadtv.dart';
 import 'package:brunstadtv_app/helpers/event_bus.dart';
 import 'package:brunstadtv_app/models/events/watch_progress.dart';
-import 'package:brunstadtv_app/services/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../graphql/queries/page.graphql.dart';
-import '../helpers/svg_icons.dart';
 import '../helpers/utils.dart';
 import '../models/analytics/sections.dart';
 import '../providers/inherited_data.dart';
@@ -62,7 +58,7 @@ class SectionItemClickWrapper extends ConsumerWidget {
           },
           onTap: () {
             var episode = item.asOrNull<Fragment$ItemSectionItem$item$$Episode>();
-            if (isUnavailable(episode?.publishDate)) {
+            if (episode?.locked == true) {
               return;
             }
             handleSectionItemClick(context, item);

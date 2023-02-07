@@ -2190,6 +2190,7 @@ class Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item
     required this.$__typename,
     required this.id,
     required this.duration,
+    required this.locked,
     this.progress,
     required this.publishDate,
     required this.productionDate,
@@ -2201,6 +2202,7 @@ class Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item
     final l$$__typename = json['__typename'];
     final l$id = json['id'];
     final l$duration = json['duration'];
+    final l$locked = json['locked'];
     final l$progress = json['progress'];
     final l$publishDate = json['publishDate'];
     final l$productionDate = json['productionDate'];
@@ -2209,6 +2211,7 @@ class Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item
       $__typename: (l$$__typename as String),
       id: (l$id as String),
       duration: (l$duration as int),
+      locked: (l$locked as bool),
       progress: (l$progress as int?),
       publishDate: (l$publishDate as String),
       productionDate: (l$productionDate as String),
@@ -2224,6 +2227,8 @@ class Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item
   final String id;
 
   final int duration;
+
+  final bool locked;
 
   final int? progress;
 
@@ -2242,6 +2247,8 @@ class Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item
     _resultData['id'] = l$id;
     final l$duration = duration;
     _resultData['duration'] = l$duration;
+    final l$locked = locked;
+    _resultData['locked'] = l$locked;
     final l$progress = progress;
     _resultData['progress'] = l$progress;
     final l$publishDate = publishDate;
@@ -2258,6 +2265,7 @@ class Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item
     final l$$__typename = $__typename;
     final l$id = id;
     final l$duration = duration;
+    final l$locked = locked;
     final l$progress = progress;
     final l$publishDate = publishDate;
     final l$productionDate = productionDate;
@@ -2266,6 +2274,7 @@ class Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item
       l$$__typename,
       l$id,
       l$duration,
+      l$locked,
       l$progress,
       l$publishDate,
       l$productionDate,
@@ -2296,6 +2305,11 @@ class Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item
     final l$duration = duration;
     final lOther$duration = other.duration;
     if (l$duration != lOther$duration) {
+      return false;
+    }
+    final l$locked = locked;
+    final lOther$locked = other.locked;
+    if (l$locked != lOther$locked) {
       return false;
     }
     final l$progress = progress;
@@ -2351,6 +2365,7 @@ abstract class CopyWith$Query$FetchMoreItemsForItemSection$section$$PosterSectio
     String? $__typename,
     String? id,
     int? duration,
+    bool? locked,
     int? progress,
     String? publishDate,
     String? productionDate,
@@ -2384,6 +2399,7 @@ class _CopyWithImpl$Query$FetchMoreItemsForItemSection$section$$PosterSection$it
     Object? $__typename = _undefined,
     Object? id = _undefined,
     Object? duration = _undefined,
+    Object? locked = _undefined,
     Object? progress = _undefined,
     Object? publishDate = _undefined,
     Object? productionDate = _undefined,
@@ -2398,6 +2414,9 @@ class _CopyWithImpl$Query$FetchMoreItemsForItemSection$section$$PosterSection$it
         duration: duration == _undefined || duration == null
             ? _instance.duration
             : (duration as int),
+        locked: locked == _undefined || locked == null
+            ? _instance.locked
+            : (locked as bool),
         progress:
             progress == _undefined ? _instance.progress : (progress as int?),
         publishDate: publishDate == _undefined || publishDate == null
@@ -2436,6 +2455,7 @@ class _CopyWithStubImpl$Query$FetchMoreItemsForItemSection$section$$PosterSectio
     String? $__typename,
     String? id,
     int? duration,
+    bool? locked,
     int? progress,
     String? publishDate,
     String? productionDate,
@@ -4547,6 +4567,7 @@ class Query$FetchMoreItemsForItemSection$section$$FeaturedSection$items$items$it
     required this.$__typename,
     required this.id,
     required this.duration,
+    required this.locked,
     this.progress,
     required this.publishDate,
   });
@@ -4556,12 +4577,14 @@ class Query$FetchMoreItemsForItemSection$section$$FeaturedSection$items$items$it
     final l$$__typename = json['__typename'];
     final l$id = json['id'];
     final l$duration = json['duration'];
+    final l$locked = json['locked'];
     final l$progress = json['progress'];
     final l$publishDate = json['publishDate'];
     return Query$FetchMoreItemsForItemSection$section$$FeaturedSection$items$items$item$$Episode(
       $__typename: (l$$__typename as String),
       id: (l$id as String),
       duration: (l$duration as int),
+      locked: (l$locked as bool),
       progress: (l$progress as int?),
       publishDate: (l$publishDate as String),
     );
@@ -4572,6 +4595,8 @@ class Query$FetchMoreItemsForItemSection$section$$FeaturedSection$items$items$it
   final String id;
 
   final int duration;
+
+  final bool locked;
 
   final int? progress;
 
@@ -4585,6 +4610,8 @@ class Query$FetchMoreItemsForItemSection$section$$FeaturedSection$items$items$it
     _resultData['id'] = l$id;
     final l$duration = duration;
     _resultData['duration'] = l$duration;
+    final l$locked = locked;
+    _resultData['locked'] = l$locked;
     final l$progress = progress;
     _resultData['progress'] = l$progress;
     final l$publishDate = publishDate;
@@ -4597,12 +4624,14 @@ class Query$FetchMoreItemsForItemSection$section$$FeaturedSection$items$items$it
     final l$$__typename = $__typename;
     final l$id = id;
     final l$duration = duration;
+    final l$locked = locked;
     final l$progress = progress;
     final l$publishDate = publishDate;
     return Object.hashAll([
       l$$__typename,
       l$id,
       l$duration,
+      l$locked,
       l$progress,
       l$publishDate,
     ]);
@@ -4631,6 +4660,11 @@ class Query$FetchMoreItemsForItemSection$section$$FeaturedSection$items$items$it
     final l$duration = duration;
     final lOther$duration = other.duration;
     if (l$duration != lOther$duration) {
+      return false;
+    }
+    final l$locked = locked;
+    final lOther$locked = other.locked;
+    if (l$locked != lOther$locked) {
       return false;
     }
     final l$progress = progress;
@@ -4676,6 +4710,7 @@ abstract class CopyWith$Query$FetchMoreItemsForItemSection$section$$FeaturedSect
     String? $__typename,
     String? id,
     int? duration,
+    bool? locked,
     int? progress,
     String? publishDate,
   });
@@ -4704,6 +4739,7 @@ class _CopyWithImpl$Query$FetchMoreItemsForItemSection$section$$FeaturedSection$
     Object? $__typename = _undefined,
     Object? id = _undefined,
     Object? duration = _undefined,
+    Object? locked = _undefined,
     Object? progress = _undefined,
     Object? publishDate = _undefined,
   }) =>
@@ -4716,6 +4752,9 @@ class _CopyWithImpl$Query$FetchMoreItemsForItemSection$section$$FeaturedSection$
         duration: duration == _undefined || duration == null
             ? _instance.duration
             : (duration as int),
+        locked: locked == _undefined || locked == null
+            ? _instance.locked
+            : (locked as bool),
         progress:
             progress == _undefined ? _instance.progress : (progress as int?),
         publishDate: publishDate == _undefined || publishDate == null
@@ -4738,6 +4777,7 @@ class _CopyWithStubImpl$Query$FetchMoreItemsForItemSection$section$$FeaturedSect
     String? $__typename,
     String? id,
     int? duration,
+    bool? locked,
     int? progress,
     String? publishDate,
   }) =>
@@ -6467,6 +6507,7 @@ class Query$FetchMoreItemsForItemSection$section$$DefaultSection$items$items$ite
     required this.$__typename,
     required this.id,
     required this.duration,
+    required this.locked,
     this.progress,
     required this.publishDate,
     required this.productionDate,
@@ -6478,6 +6519,7 @@ class Query$FetchMoreItemsForItemSection$section$$DefaultSection$items$items$ite
     final l$$__typename = json['__typename'];
     final l$id = json['id'];
     final l$duration = json['duration'];
+    final l$locked = json['locked'];
     final l$progress = json['progress'];
     final l$publishDate = json['publishDate'];
     final l$productionDate = json['productionDate'];
@@ -6486,6 +6528,7 @@ class Query$FetchMoreItemsForItemSection$section$$DefaultSection$items$items$ite
       $__typename: (l$$__typename as String),
       id: (l$id as String),
       duration: (l$duration as int),
+      locked: (l$locked as bool),
       progress: (l$progress as int?),
       publishDate: (l$publishDate as String),
       productionDate: (l$productionDate as String),
@@ -6501,6 +6544,8 @@ class Query$FetchMoreItemsForItemSection$section$$DefaultSection$items$items$ite
   final String id;
 
   final int duration;
+
+  final bool locked;
 
   final int? progress;
 
@@ -6519,6 +6564,8 @@ class Query$FetchMoreItemsForItemSection$section$$DefaultSection$items$items$ite
     _resultData['id'] = l$id;
     final l$duration = duration;
     _resultData['duration'] = l$duration;
+    final l$locked = locked;
+    _resultData['locked'] = l$locked;
     final l$progress = progress;
     _resultData['progress'] = l$progress;
     final l$publishDate = publishDate;
@@ -6535,6 +6582,7 @@ class Query$FetchMoreItemsForItemSection$section$$DefaultSection$items$items$ite
     final l$$__typename = $__typename;
     final l$id = id;
     final l$duration = duration;
+    final l$locked = locked;
     final l$progress = progress;
     final l$publishDate = publishDate;
     final l$productionDate = productionDate;
@@ -6543,6 +6591,7 @@ class Query$FetchMoreItemsForItemSection$section$$DefaultSection$items$items$ite
       l$$__typename,
       l$id,
       l$duration,
+      l$locked,
       l$progress,
       l$publishDate,
       l$productionDate,
@@ -6573,6 +6622,11 @@ class Query$FetchMoreItemsForItemSection$section$$DefaultSection$items$items$ite
     final l$duration = duration;
     final lOther$duration = other.duration;
     if (l$duration != lOther$duration) {
+      return false;
+    }
+    final l$locked = locked;
+    final lOther$locked = other.locked;
+    if (l$locked != lOther$locked) {
       return false;
     }
     final l$progress = progress;
@@ -6628,6 +6682,7 @@ abstract class CopyWith$Query$FetchMoreItemsForItemSection$section$$DefaultSecti
     String? $__typename,
     String? id,
     int? duration,
+    bool? locked,
     int? progress,
     String? publishDate,
     String? productionDate,
@@ -6661,6 +6716,7 @@ class _CopyWithImpl$Query$FetchMoreItemsForItemSection$section$$DefaultSection$i
     Object? $__typename = _undefined,
     Object? id = _undefined,
     Object? duration = _undefined,
+    Object? locked = _undefined,
     Object? progress = _undefined,
     Object? publishDate = _undefined,
     Object? productionDate = _undefined,
@@ -6675,6 +6731,9 @@ class _CopyWithImpl$Query$FetchMoreItemsForItemSection$section$$DefaultSection$i
         duration: duration == _undefined || duration == null
             ? _instance.duration
             : (duration as int),
+        locked: locked == _undefined || locked == null
+            ? _instance.locked
+            : (locked as bool),
         progress:
             progress == _undefined ? _instance.progress : (progress as int?),
         publishDate: publishDate == _undefined || publishDate == null
@@ -6713,6 +6772,7 @@ class _CopyWithStubImpl$Query$FetchMoreItemsForItemSection$section$$DefaultSecti
     String? $__typename,
     String? id,
     int? duration,
+    bool? locked,
     int? progress,
     String? publishDate,
     String? productionDate,
@@ -8793,6 +8853,7 @@ class Query$FetchMoreItemsForItemSection$section$$CardSection$items$items$item$$
     required this.$__typename,
     required this.id,
     required this.duration,
+    required this.locked,
     this.progress,
     required this.publishDate,
   });
@@ -8802,12 +8863,14 @@ class Query$FetchMoreItemsForItemSection$section$$CardSection$items$items$item$$
     final l$$__typename = json['__typename'];
     final l$id = json['id'];
     final l$duration = json['duration'];
+    final l$locked = json['locked'];
     final l$progress = json['progress'];
     final l$publishDate = json['publishDate'];
     return Query$FetchMoreItemsForItemSection$section$$CardSection$items$items$item$$Episode(
       $__typename: (l$$__typename as String),
       id: (l$id as String),
       duration: (l$duration as int),
+      locked: (l$locked as bool),
       progress: (l$progress as int?),
       publishDate: (l$publishDate as String),
     );
@@ -8818,6 +8881,8 @@ class Query$FetchMoreItemsForItemSection$section$$CardSection$items$items$item$$
   final String id;
 
   final int duration;
+
+  final bool locked;
 
   final int? progress;
 
@@ -8831,6 +8896,8 @@ class Query$FetchMoreItemsForItemSection$section$$CardSection$items$items$item$$
     _resultData['id'] = l$id;
     final l$duration = duration;
     _resultData['duration'] = l$duration;
+    final l$locked = locked;
+    _resultData['locked'] = l$locked;
     final l$progress = progress;
     _resultData['progress'] = l$progress;
     final l$publishDate = publishDate;
@@ -8843,12 +8910,14 @@ class Query$FetchMoreItemsForItemSection$section$$CardSection$items$items$item$$
     final l$$__typename = $__typename;
     final l$id = id;
     final l$duration = duration;
+    final l$locked = locked;
     final l$progress = progress;
     final l$publishDate = publishDate;
     return Object.hashAll([
       l$$__typename,
       l$id,
       l$duration,
+      l$locked,
       l$progress,
       l$publishDate,
     ]);
@@ -8877,6 +8946,11 @@ class Query$FetchMoreItemsForItemSection$section$$CardSection$items$items$item$$
     final l$duration = duration;
     final lOther$duration = other.duration;
     if (l$duration != lOther$duration) {
+      return false;
+    }
+    final l$locked = locked;
+    final lOther$locked = other.locked;
+    if (l$locked != lOther$locked) {
       return false;
     }
     final l$progress = progress;
@@ -8922,6 +8996,7 @@ abstract class CopyWith$Query$FetchMoreItemsForItemSection$section$$CardSection$
     String? $__typename,
     String? id,
     int? duration,
+    bool? locked,
     int? progress,
     String? publishDate,
   });
@@ -8950,6 +9025,7 @@ class _CopyWithImpl$Query$FetchMoreItemsForItemSection$section$$CardSection$item
     Object? $__typename = _undefined,
     Object? id = _undefined,
     Object? duration = _undefined,
+    Object? locked = _undefined,
     Object? progress = _undefined,
     Object? publishDate = _undefined,
   }) =>
@@ -8962,6 +9038,9 @@ class _CopyWithImpl$Query$FetchMoreItemsForItemSection$section$$CardSection$item
         duration: duration == _undefined || duration == null
             ? _instance.duration
             : (duration as int),
+        locked: locked == _undefined || locked == null
+            ? _instance.locked
+            : (locked as bool),
         progress:
             progress == _undefined ? _instance.progress : (progress as int?),
         publishDate: publishDate == _undefined || publishDate == null
@@ -8984,6 +9063,7 @@ class _CopyWithStubImpl$Query$FetchMoreItemsForItemSection$section$$CardSection$
     String? $__typename,
     String? id,
     int? duration,
+    bool? locked,
     int? progress,
     String? publishDate,
   }) =>
@@ -10679,6 +10759,7 @@ class Query$FetchMoreItemsForItemSection$section$$ListSection$items$items$item$$
     required this.$__typename,
     required this.id,
     required this.duration,
+    required this.locked,
     this.progress,
     required this.publishDate,
     required this.title,
@@ -10692,6 +10773,7 @@ class Query$FetchMoreItemsForItemSection$section$$ListSection$items$items$item$$
     final l$$__typename = json['__typename'];
     final l$id = json['id'];
     final l$duration = json['duration'];
+    final l$locked = json['locked'];
     final l$progress = json['progress'];
     final l$publishDate = json['publishDate'];
     final l$title = json['title'];
@@ -10702,6 +10784,7 @@ class Query$FetchMoreItemsForItemSection$section$$ListSection$items$items$item$$
       $__typename: (l$$__typename as String),
       id: (l$id as String),
       duration: (l$duration as int),
+      locked: (l$locked as bool),
       progress: (l$progress as int?),
       publishDate: (l$publishDate as String),
       title: (l$title as String),
@@ -10719,6 +10802,8 @@ class Query$FetchMoreItemsForItemSection$section$$ListSection$items$items$item$$
   final String id;
 
   final int duration;
+
+  final bool locked;
 
   final int? progress;
 
@@ -10741,6 +10826,8 @@ class Query$FetchMoreItemsForItemSection$section$$ListSection$items$items$item$$
     _resultData['id'] = l$id;
     final l$duration = duration;
     _resultData['duration'] = l$duration;
+    final l$locked = locked;
+    _resultData['locked'] = l$locked;
     final l$progress = progress;
     _resultData['progress'] = l$progress;
     final l$publishDate = publishDate;
@@ -10761,6 +10848,7 @@ class Query$FetchMoreItemsForItemSection$section$$ListSection$items$items$item$$
     final l$$__typename = $__typename;
     final l$id = id;
     final l$duration = duration;
+    final l$locked = locked;
     final l$progress = progress;
     final l$publishDate = publishDate;
     final l$title = title;
@@ -10771,6 +10859,7 @@ class Query$FetchMoreItemsForItemSection$section$$ListSection$items$items$item$$
       l$$__typename,
       l$id,
       l$duration,
+      l$locked,
       l$progress,
       l$publishDate,
       l$title,
@@ -10803,6 +10892,11 @@ class Query$FetchMoreItemsForItemSection$section$$ListSection$items$items$item$$
     final l$duration = duration;
     final lOther$duration = other.duration;
     if (l$duration != lOther$duration) {
+      return false;
+    }
+    final l$locked = locked;
+    final lOther$locked = other.locked;
+    if (l$locked != lOther$locked) {
       return false;
     }
     final l$progress = progress;
@@ -10868,6 +10962,7 @@ abstract class CopyWith$Query$FetchMoreItemsForItemSection$section$$ListSection$
     String? $__typename,
     String? id,
     int? duration,
+    bool? locked,
     int? progress,
     String? publishDate,
     String? title,
@@ -10903,6 +10998,7 @@ class _CopyWithImpl$Query$FetchMoreItemsForItemSection$section$$ListSection$item
     Object? $__typename = _undefined,
     Object? id = _undefined,
     Object? duration = _undefined,
+    Object? locked = _undefined,
     Object? progress = _undefined,
     Object? publishDate = _undefined,
     Object? title = _undefined,
@@ -10919,6 +11015,9 @@ class _CopyWithImpl$Query$FetchMoreItemsForItemSection$section$$ListSection$item
         duration: duration == _undefined || duration == null
             ? _instance.duration
             : (duration as int),
+        locked: locked == _undefined || locked == null
+            ? _instance.locked
+            : (locked as bool),
         progress:
             progress == _undefined ? _instance.progress : (progress as int?),
         publishDate: publishDate == _undefined || publishDate == null
@@ -10961,6 +11060,7 @@ class _CopyWithStubImpl$Query$FetchMoreItemsForItemSection$section$$ListSection$
     String? $__typename,
     String? id,
     int? duration,
+    bool? locked,
     int? progress,
     String? publishDate,
     String? title,
@@ -13728,6 +13828,7 @@ class Query$FetchMoreItemsForItemSection$section$$DefaultGridSection$items$items
     required this.$__typename,
     required this.id,
     required this.duration,
+    required this.locked,
     this.progress,
     required this.publishDate,
     this.number,
@@ -13739,6 +13840,7 @@ class Query$FetchMoreItemsForItemSection$section$$DefaultGridSection$items$items
     final l$$__typename = json['__typename'];
     final l$id = json['id'];
     final l$duration = json['duration'];
+    final l$locked = json['locked'];
     final l$progress = json['progress'];
     final l$publishDate = json['publishDate'];
     final l$number = json['number'];
@@ -13747,6 +13849,7 @@ class Query$FetchMoreItemsForItemSection$section$$DefaultGridSection$items$items
       $__typename: (l$$__typename as String),
       id: (l$id as String),
       duration: (l$duration as int),
+      locked: (l$locked as bool),
       progress: (l$progress as int?),
       publishDate: (l$publishDate as String),
       number: (l$number as int?),
@@ -13762,6 +13865,8 @@ class Query$FetchMoreItemsForItemSection$section$$DefaultGridSection$items$items
   final String id;
 
   final int duration;
+
+  final bool locked;
 
   final int? progress;
 
@@ -13780,6 +13885,8 @@ class Query$FetchMoreItemsForItemSection$section$$DefaultGridSection$items$items
     _resultData['id'] = l$id;
     final l$duration = duration;
     _resultData['duration'] = l$duration;
+    final l$locked = locked;
+    _resultData['locked'] = l$locked;
     final l$progress = progress;
     _resultData['progress'] = l$progress;
     final l$publishDate = publishDate;
@@ -13796,6 +13903,7 @@ class Query$FetchMoreItemsForItemSection$section$$DefaultGridSection$items$items
     final l$$__typename = $__typename;
     final l$id = id;
     final l$duration = duration;
+    final l$locked = locked;
     final l$progress = progress;
     final l$publishDate = publishDate;
     final l$number = number;
@@ -13804,6 +13912,7 @@ class Query$FetchMoreItemsForItemSection$section$$DefaultGridSection$items$items
       l$$__typename,
       l$id,
       l$duration,
+      l$locked,
       l$progress,
       l$publishDate,
       l$number,
@@ -13834,6 +13943,11 @@ class Query$FetchMoreItemsForItemSection$section$$DefaultGridSection$items$items
     final l$duration = duration;
     final lOther$duration = other.duration;
     if (l$duration != lOther$duration) {
+      return false;
+    }
+    final l$locked = locked;
+    final lOther$locked = other.locked;
+    if (l$locked != lOther$locked) {
       return false;
     }
     final l$progress = progress;
@@ -13889,6 +14003,7 @@ abstract class CopyWith$Query$FetchMoreItemsForItemSection$section$$DefaultGridS
     String? $__typename,
     String? id,
     int? duration,
+    bool? locked,
     int? progress,
     String? publishDate,
     int? number,
@@ -13922,6 +14037,7 @@ class _CopyWithImpl$Query$FetchMoreItemsForItemSection$section$$DefaultGridSecti
     Object? $__typename = _undefined,
     Object? id = _undefined,
     Object? duration = _undefined,
+    Object? locked = _undefined,
     Object? progress = _undefined,
     Object? publishDate = _undefined,
     Object? number = _undefined,
@@ -13936,6 +14052,9 @@ class _CopyWithImpl$Query$FetchMoreItemsForItemSection$section$$DefaultGridSecti
         duration: duration == _undefined || duration == null
             ? _instance.duration
             : (duration as int),
+        locked: locked == _undefined || locked == null
+            ? _instance.locked
+            : (locked as bool),
         progress:
             progress == _undefined ? _instance.progress : (progress as int?),
         publishDate: publishDate == _undefined || publishDate == null
@@ -13972,6 +14091,7 @@ class _CopyWithStubImpl$Query$FetchMoreItemsForItemSection$section$$DefaultGridS
     String? $__typename,
     String? id,
     int? duration,
+    bool? locked,
     int? progress,
     String? publishDate,
     int? number,
@@ -16095,6 +16215,7 @@ class Query$FetchMoreItemsForItemSection$section$$PosterGridSection$items$items$
     required this.$__typename,
     required this.id,
     required this.duration,
+    required this.locked,
     this.progress,
     required this.publishDate,
     this.number,
@@ -16106,6 +16227,7 @@ class Query$FetchMoreItemsForItemSection$section$$PosterGridSection$items$items$
     final l$$__typename = json['__typename'];
     final l$id = json['id'];
     final l$duration = json['duration'];
+    final l$locked = json['locked'];
     final l$progress = json['progress'];
     final l$publishDate = json['publishDate'];
     final l$number = json['number'];
@@ -16114,6 +16236,7 @@ class Query$FetchMoreItemsForItemSection$section$$PosterGridSection$items$items$
       $__typename: (l$$__typename as String),
       id: (l$id as String),
       duration: (l$duration as int),
+      locked: (l$locked as bool),
       progress: (l$progress as int?),
       publishDate: (l$publishDate as String),
       number: (l$number as int?),
@@ -16129,6 +16252,8 @@ class Query$FetchMoreItemsForItemSection$section$$PosterGridSection$items$items$
   final String id;
 
   final int duration;
+
+  final bool locked;
 
   final int? progress;
 
@@ -16147,6 +16272,8 @@ class Query$FetchMoreItemsForItemSection$section$$PosterGridSection$items$items$
     _resultData['id'] = l$id;
     final l$duration = duration;
     _resultData['duration'] = l$duration;
+    final l$locked = locked;
+    _resultData['locked'] = l$locked;
     final l$progress = progress;
     _resultData['progress'] = l$progress;
     final l$publishDate = publishDate;
@@ -16163,6 +16290,7 @@ class Query$FetchMoreItemsForItemSection$section$$PosterGridSection$items$items$
     final l$$__typename = $__typename;
     final l$id = id;
     final l$duration = duration;
+    final l$locked = locked;
     final l$progress = progress;
     final l$publishDate = publishDate;
     final l$number = number;
@@ -16171,6 +16299,7 @@ class Query$FetchMoreItemsForItemSection$section$$PosterGridSection$items$items$
       l$$__typename,
       l$id,
       l$duration,
+      l$locked,
       l$progress,
       l$publishDate,
       l$number,
@@ -16201,6 +16330,11 @@ class Query$FetchMoreItemsForItemSection$section$$PosterGridSection$items$items$
     final l$duration = duration;
     final lOther$duration = other.duration;
     if (l$duration != lOther$duration) {
+      return false;
+    }
+    final l$locked = locked;
+    final lOther$locked = other.locked;
+    if (l$locked != lOther$locked) {
       return false;
     }
     final l$progress = progress;
@@ -16256,6 +16390,7 @@ abstract class CopyWith$Query$FetchMoreItemsForItemSection$section$$PosterGridSe
     String? $__typename,
     String? id,
     int? duration,
+    bool? locked,
     int? progress,
     String? publishDate,
     int? number,
@@ -16289,6 +16424,7 @@ class _CopyWithImpl$Query$FetchMoreItemsForItemSection$section$$PosterGridSectio
     Object? $__typename = _undefined,
     Object? id = _undefined,
     Object? duration = _undefined,
+    Object? locked = _undefined,
     Object? progress = _undefined,
     Object? publishDate = _undefined,
     Object? number = _undefined,
@@ -16303,6 +16439,9 @@ class _CopyWithImpl$Query$FetchMoreItemsForItemSection$section$$PosterGridSectio
         duration: duration == _undefined || duration == null
             ? _instance.duration
             : (duration as int),
+        locked: locked == _undefined || locked == null
+            ? _instance.locked
+            : (locked as bool),
         progress:
             progress == _undefined ? _instance.progress : (progress as int?),
         publishDate: publishDate == _undefined || publishDate == null
@@ -16339,6 +16478,7 @@ class _CopyWithStubImpl$Query$FetchMoreItemsForItemSection$section$$PosterGridSe
     String? $__typename,
     String? id,
     int? duration,
+    bool? locked,
     int? progress,
     String? publishDate,
     int? number,
@@ -18459,6 +18599,7 @@ class Query$FetchMoreItemsForItemSection$section$$IconGridSection$items$items$it
     required this.$__typename,
     required this.id,
     required this.duration,
+    required this.locked,
     this.progress,
     required this.publishDate,
     this.number,
@@ -18470,6 +18611,7 @@ class Query$FetchMoreItemsForItemSection$section$$IconGridSection$items$items$it
     final l$$__typename = json['__typename'];
     final l$id = json['id'];
     final l$duration = json['duration'];
+    final l$locked = json['locked'];
     final l$progress = json['progress'];
     final l$publishDate = json['publishDate'];
     final l$number = json['number'];
@@ -18478,6 +18620,7 @@ class Query$FetchMoreItemsForItemSection$section$$IconGridSection$items$items$it
       $__typename: (l$$__typename as String),
       id: (l$id as String),
       duration: (l$duration as int),
+      locked: (l$locked as bool),
       progress: (l$progress as int?),
       publishDate: (l$publishDate as String),
       number: (l$number as int?),
@@ -18493,6 +18636,8 @@ class Query$FetchMoreItemsForItemSection$section$$IconGridSection$items$items$it
   final String id;
 
   final int duration;
+
+  final bool locked;
 
   final int? progress;
 
@@ -18511,6 +18656,8 @@ class Query$FetchMoreItemsForItemSection$section$$IconGridSection$items$items$it
     _resultData['id'] = l$id;
     final l$duration = duration;
     _resultData['duration'] = l$duration;
+    final l$locked = locked;
+    _resultData['locked'] = l$locked;
     final l$progress = progress;
     _resultData['progress'] = l$progress;
     final l$publishDate = publishDate;
@@ -18527,6 +18674,7 @@ class Query$FetchMoreItemsForItemSection$section$$IconGridSection$items$items$it
     final l$$__typename = $__typename;
     final l$id = id;
     final l$duration = duration;
+    final l$locked = locked;
     final l$progress = progress;
     final l$publishDate = publishDate;
     final l$number = number;
@@ -18535,6 +18683,7 @@ class Query$FetchMoreItemsForItemSection$section$$IconGridSection$items$items$it
       l$$__typename,
       l$id,
       l$duration,
+      l$locked,
       l$progress,
       l$publishDate,
       l$number,
@@ -18565,6 +18714,11 @@ class Query$FetchMoreItemsForItemSection$section$$IconGridSection$items$items$it
     final l$duration = duration;
     final lOther$duration = other.duration;
     if (l$duration != lOther$duration) {
+      return false;
+    }
+    final l$locked = locked;
+    final lOther$locked = other.locked;
+    if (l$locked != lOther$locked) {
       return false;
     }
     final l$progress = progress;
@@ -18620,6 +18774,7 @@ abstract class CopyWith$Query$FetchMoreItemsForItemSection$section$$IconGridSect
     String? $__typename,
     String? id,
     int? duration,
+    bool? locked,
     int? progress,
     String? publishDate,
     int? number,
@@ -18653,6 +18808,7 @@ class _CopyWithImpl$Query$FetchMoreItemsForItemSection$section$$IconGridSection$
     Object? $__typename = _undefined,
     Object? id = _undefined,
     Object? duration = _undefined,
+    Object? locked = _undefined,
     Object? progress = _undefined,
     Object? publishDate = _undefined,
     Object? number = _undefined,
@@ -18667,6 +18823,9 @@ class _CopyWithImpl$Query$FetchMoreItemsForItemSection$section$$IconGridSection$
         duration: duration == _undefined || duration == null
             ? _instance.duration
             : (duration as int),
+        locked: locked == _undefined || locked == null
+            ? _instance.locked
+            : (locked as bool),
         progress:
             progress == _undefined ? _instance.progress : (progress as int?),
         publishDate: publishDate == _undefined || publishDate == null
@@ -18703,6 +18862,7 @@ class _CopyWithStubImpl$Query$FetchMoreItemsForItemSection$section$$IconGridSect
     String? $__typename,
     String? id,
     int? duration,
+    bool? locked,
     int? progress,
     String? publishDate,
     int? number,

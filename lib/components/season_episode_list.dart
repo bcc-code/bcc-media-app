@@ -129,11 +129,11 @@ class EpisodeListEpisode extends StatelessWidget {
                             ),
                           ),
                         )),
-                      if (getFeaturedTag(publishDate: data.publishDate) != null)
+                      if (getFeaturedTag(publishDate: data.publishDate, locked: data.locked) != null)
                         Positioned(
                           top: -4,
                           right: -4,
-                          child: getFeaturedTag(publishDate: data.publishDate)!,
+                          child: getFeaturedTag(publishDate: data.publishDate, locked: data.locked)!,
                         ),
                     ],
                   ),
