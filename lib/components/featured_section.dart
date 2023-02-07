@@ -3,11 +3,8 @@ import 'dart:math';
 import 'package:brunstadtv_app/components/section_item_click_wrapper.dart';
 import 'package:flutter/material.dart';
 
-import 'package:auto_route/auto_route.dart';
 import '../l10n/app_localizations.dart';
 import '../models/analytics/sections.dart';
-import '../providers/inherited_data.dart';
-import '../router/router.gr.dart';
 
 import '../graphql/queries/page.graphql.dart';
 import '../helpers/btv_colors.dart';
@@ -16,6 +13,7 @@ import '../helpers/btv_buttons.dart';
 import '../helpers/btv_typography.dart';
 import '../helpers/image_utils.dart';
 import '../helpers/transparent_image.dart';
+import '../services/utils.dart';
 
 class FeaturedSection extends StatelessWidget {
   final Fragment$Section$$FeaturedSection data;
@@ -27,7 +25,10 @@ class FeaturedSection extends StatelessWidget {
     return LayoutBuilder(builder: (context, constraints) {
       const marginX = 2.0;
       final viewportFraction = (constraints.maxWidth - (32 - 2 * marginX)) / max(1, constraints.maxWidth);
-      final sectionItems = data.items.items;
+      final sectionItems = data.items.items.where((e) {
+        final episode = e.item.asOrNull<Fragment$ItemSectionItem$item$$Episode>();
+        return episode == null || !episode.locked;
+      }).toList();
       return Padding(
         padding: const EdgeInsets.only(top: 16),
         child: SizedBox(
