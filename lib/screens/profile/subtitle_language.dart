@@ -22,16 +22,16 @@ class _AppSubtitleLanguageState extends ConsumerState<AppSubtitleLanguage> {
     selected = ref.read(settingsProvider).subtitleLanguage;
   }
 
-  void _onSelectionChanged(String id) {
-    ref.read(analyticsProvider).languageChanged(LanguageChangedEvent(
-          languageFrom: selected,
-          languageTo: id,
-          languageChangeType: 'subtitle',
-        ));
+  void _onSelectionChanged(String? id) {
     setState(() {
       selected = id;
     });
     ref.read(settingsProvider.notifier).setSubtitleLanguage(id);
+    ref.read(analyticsProvider).languageChanged(LanguageChangedEvent(
+          languageFrom: selected,
+          languageTo: id ?? '',
+          languageChangeType: 'subtitle',
+        ));
   }
 
   @override
@@ -45,10 +45,11 @@ class _AppSubtitleLanguageState extends ConsumerState<AppSubtitleLanguage> {
         child: Padding(
           padding: const EdgeInsets.all(16),
           child: OptionList(
-            optionData: languages.map((l) => Option(id: l.code, title: l.nativeName, subTitle: l.englishName)).toList(),
+            optionData: languages.entries.map((e) => Option(id: e.key, title: e.value.nativeName, subTitle: e.value.englishName)).toList(),
             currentSelection: selected,
             onSelectionChange: _onSelectionChanged,
             backgroundColor: Colors.transparent,
+            showNoneOption: true,
           ),
         ),
       ),

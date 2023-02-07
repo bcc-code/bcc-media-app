@@ -80,6 +80,7 @@ class _BottomSheetSelectState extends State<BottomSheetSelect> {
                   currentSelection: localSelectedId,
                   showSelection: widget.showSelection,
                   onSelectionChange: (val) {
+                    if (val == null) return;
                     setState(() {
                       localSelectedId = val;
                     });

@@ -36,7 +36,8 @@ class _VideoQualityState extends State<VideoQuality> {
 
   String selected = 'Medium';
 
-  void _onSelectionChanged(String id) {
+  void _onSelectionChanged(String? id) {
+    if (id == null) return;
     setState(() {
       selected = id;
     });
