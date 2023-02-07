@@ -45,7 +45,7 @@ final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 
 /// There is 1 main() per environment, e.g. main_dev.dart
 /// This function runs on all of them
-void $main({required FirebaseOptions? firebaseOptions}) async {
+Future<void> $main({required FirebaseOptions? firebaseOptions}) async {
   WidgetsFlutterBinding.ensureInitialized();
   if (firebaseOptions != null) {
     try {

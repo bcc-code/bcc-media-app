@@ -16,6 +16,17 @@
             "program": "lib/main_prod.dart"
         },
         {
+            "name": "prod (integration test)",
+            "request": "launch",
+            "type": "dart",
+            "cwd": "${workspaceFolder}",
+            "args": [
+                "--flavor",
+                "prod"
+            ], // Remember to change the "program" property too
+            "program": "test_integration/main_test.dart"
+        },
+        {
             "name": "prod (release)",
             "request": "launch",
             "type": "dart",
