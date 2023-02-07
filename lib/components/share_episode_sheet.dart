@@ -90,7 +90,7 @@ class _ShareEpisodeSheetState extends ConsumerState<ShareEpisodeSheet> {
             );
           } else {
             await Share.share(
-              '$episodeUrl?t=$widget.currentPosSeconds',
+              '$episodeUrl?t=${widget.currentPosSeconds}',
               sharePositionOrigin: iPadSharePositionOrigin(context),
             );
           }
