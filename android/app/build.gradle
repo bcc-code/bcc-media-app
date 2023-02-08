@@ -59,6 +59,7 @@ android {
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
         multiDexEnabled true
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
     signingConfigs {
@@ -136,6 +137,7 @@ dependencies {
     implementation "androidx.media3:media3-test-utils:$media3_version"
     implementation "androidx.media3:media3-session:$media3_version"
     implementation "androidx.media3:media3-ui:$media3_version"
+    testImplementation "junit:junit:4.13.2"
 }
 
 apply plugin: 'com.google.firebase.crashlytics'

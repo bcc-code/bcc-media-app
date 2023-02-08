@@ -678,6 +678,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.1.1"
+  googleapis_auth:
+    dependency: transitive
+    description:
+      name: googleapis_auth
+      sha256: "127b1bbd32170ab8312f503bd57f1d654d8e4039ddfbc63c027d3f7ade0eff74"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.3.1"
   gql:
     dependency: transitive
     description:
@@ -774,6 +782,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.2.0"
+  grpc:
+    dependency: transitive
+    description:
+      name: grpc
+      sha256: a73c16e4f6a4a819be892bb2c73cc1d0b00e36095f69b0738cc91a733e3d27ba
+      url: "https://pub.dev"
+    source: hosted
+    version: "3.1.0"
   hive:
     dependency: "direct main"
     description:
@@ -790,6 +806,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.13.5"
+  http2:
+    dependency: transitive
+    description:
+      name: http2
+      sha256: "58805ebc6513eed3b98ee0a455a8357e61d187bf2e0fdc1e53120770f78de258"
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.0.1"
   http_multi_server:
     dependency: transitive
     description:
@@ -1075,6 +1099,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.1.3"
+  patrol:
+    dependency: "direct dev"
+    description:
+      name: patrol
+      sha256: "7e46c7a2e3f9012ed6e8651247cb7980d48ae0d8aac6269422f3872d33c46608"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.10.8"
   permission_handler:
     dependency: transitive
     description:
@@ -1163,6 +1195,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "4.2.4"
+  protobuf:
+    dependency: transitive
+    description:
+      name: protobuf
+      sha256: "01dd9bd0fa02548bf2ceee13545d4a0ec6046459d847b6b061d8a27237108a08"
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.1.0"
   provider:
     dependency: "direct main"
     description:

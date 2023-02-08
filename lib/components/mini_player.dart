@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:brunstadtv_app/helpers/transparent_image.dart';
 
 import '../helpers/btv_typography.dart';
+import '../helpers/widget_keys.dart';
 
 const double kMiniPlayerHeight = 62;
 
@@ -85,6 +86,7 @@ class MiniPlayer extends StatelessWidget {
                     ),
                   ),
                 Text(
+                  key: WidgetKeys.miniPlayerTitle,
                   title,
                   overflow: TextOverflow.ellipsis,
                   style: BtvTextStyles.caption1.copyWith(color: BtvColors.label1),
