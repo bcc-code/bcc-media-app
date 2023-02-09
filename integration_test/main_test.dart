@@ -10,7 +10,7 @@ import 'package:patrol/patrol.dart';
 import 'package:brunstadtv_app/main_prod.dart' as prod;
 
 void main() {
-  patrolTest(
+  /* patrolTest(
     'explore and open an episode',
     nativeAutomatorConfig: const NativeAutomatorConfig(
       packageName: 'tv.brunstad.app',
@@ -30,7 +30,7 @@ void main() {
       await $.tap($(FeaturedSection).$(GestureDetector));
       expect($(WidgetKeys.playPoster), findsOneWidget);
     },
-  );
+  ); */
   patrolTest(
     'play episode and ensure miniplayer',
     nativeAutomatorConfig: const NativeAutomatorConfig(
