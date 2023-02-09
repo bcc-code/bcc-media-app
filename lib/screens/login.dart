@@ -143,6 +143,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                     ),
                   ),
                   BtvButton.mediumSecondary(
+                    key: WidgetKeys.signInButton,
                     labelText: S.of(context).signInButton,
                     onPressed: loginAction,
                   ).copyWith(

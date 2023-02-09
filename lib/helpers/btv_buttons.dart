@@ -44,7 +44,7 @@ class BtvButton extends StatelessWidget {
     EdgeInsetsGeometry? padding,
   }) {
     return BtvButton(
-      key: key,
+      key: key ?? this.key,
       onPressed: onPressed ?? this.onPressed,
       labelText: labelText ?? this.labelText,
       backgroundColor: backgroundColor ?? this.backgroundColor,

@@ -11,6 +11,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../helpers/btv_colors.dart';
 import '../helpers/btv_typography.dart';
+import '../helpers/widget_keys.dart';
 import '../l10n/app_localizations.dart';
 import '../providers/analytics.dart';
 import '../providers/app_config.dart';
@@ -60,8 +61,8 @@ class _CustomTabBarState extends ConsumerState<CustomTabBar> {
     super.didChangeDependencies();
   }
 
-  Widget _icon(Image? image) {
-    return Padding(padding: EdgeInsets.only(top: 2, bottom: useMaterial ? 2 : 0), child: SizedBox(height: _iconSize, child: image));
+  Widget _icon(Image? image, {Key? key}) {
+    return Padding(key: key, padding: EdgeInsets.only(top: 2, bottom: useMaterial ? 2 : 0), child: SizedBox(height: _iconSize, child: image));
   }
 
   void sendAnalytics(int index) {
@@ -92,7 +93,11 @@ class _CustomTabBarState extends ConsumerState<CustomTabBar> {
     debugPrint('guestMode ${ref.watch(authStateProvider).guestMode}');
     if (!ref.watch(authStateProvider).guestMode) {
       items.addAll([
-        BottomNavigationBarItem(label: S.of(context).liveTab, icon: _icon(icons['live_default']), activeIcon: _icon(icons['live_selected'])),
+        BottomNavigationBarItem(
+          label: S.of(context).liveTab,
+          icon: _icon(key: WidgetKeys.liveTabButton, icons['live_default']),
+          activeIcon: _icon(key: WidgetKeys.liveTabButton, icons['live_selected']),
+        ),
         BottomNavigationBarItem(label: S.of(context).calendar, icon: _icon(icons['calendar_default']), activeIcon: _icon(icons['calendar_selected'])),
       ]);
     }

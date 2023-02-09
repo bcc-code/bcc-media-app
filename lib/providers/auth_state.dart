@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:brunstadtv_app/helpers/utils.dart';
+import 'package:clock/clock.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
@@ -25,11 +26,15 @@ part 'auth_state.freezed.dart';
 const kMinimumCredentialsTTL = Duration(hours: 1);
 
 final authStateProvider = StateNotifierProvider<AuthStateNotifier, AuthState>((ref) {
-  return AuthStateNotifier(const FlutterAppAuth(), const FlutterSecureStorage());
+  return AuthStateNotifier(appAuth: const FlutterAppAuth(), secureStorage: const FlutterSecureStorage());
 });
 
 class AuthStateNotifier extends StateNotifier<AuthState> {
-  AuthStateNotifier(this._appAuth, this._secureStorage) : super(const AuthState());
+  AuthStateNotifier({required FlutterAppAuth appAuth, required FlutterSecureStorage secureStorage})
+      : _appAuth = appAuth,
+        _secureStorage = secureStorage,
+        super(const AuthState());
+
   final appAuthLock = Lock();
   final FlutterAppAuth _appAuth;
   final FlutterSecureStorage _secureStorage;
@@ -45,10 +50,10 @@ class AuthStateNotifier extends StateNotifier<AuthState> {
     if (state.expiresAt == null || state.auth0AccessToken == null) {
       return null;
     }
-    if (state.expiresAt!.difference(DateTime.now()) < kMinimumCredentialsTTL) {
+    if (state.expiresAt!.difference(clock.now()) < kMinimumCredentialsTTL) {
       await refresh();
     }
-    if (state.expiresAt!.difference(DateTime.now()) < kMinimumCredentialsTTL) {
+    if (state.expiresAt!.difference(clock.now()) < kMinimumCredentialsTTL) {
       throw Exception('Auth state is still expired after attempting to renew.');
     }
     return state;
@@ -69,8 +74,7 @@ class AuthStateNotifier extends StateNotifier<AuthState> {
       logout();
       return false;
     }
-    final ttl = expiry.difference(DateTime.now());
-    if (ttl < kMinimumCredentialsTTL) {
+    if (expiry.difference(clock.now()) < kMinimumCredentialsTTL) {
       return await refresh();
     }
     state = state.copyWith(

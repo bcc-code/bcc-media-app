@@ -1,71 +1,10 @@
-import 'package:bccm_player/bccm_player.dart';
-import 'package:brunstadtv_app/components/featured_section.dart';
-import 'package:brunstadtv_app/helpers/utils.dart';
-import 'package:brunstadtv_app/helpers/widget_keys.dart';
-import 'package:brunstadtv_app/l10n/app_localizations.dart';
-import 'package:brunstadtv_app/main.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_test/flutter_test.dart';
-import 'package:patrol/patrol.dart';
-import 'package:brunstadtv_app/main_prod.dart' as prod;
+
+import 'tests/episode_test.dart' as episode_test;
+import 'tests/login_test.dart' as login_test;
 
 void main() {
-  /* patrolTest(
-    'explore and open an episode',
-    nativeAutomatorConfig: const NativeAutomatorConfig(
-      packageName: 'tv.brunstad.app',
-      bundleId: 'tv.brunstad.app',
-    ),
-    nativeAutomation: true,
-    ($) async {
-      await $.tester.runAsync(prod.main);
-      await $.tester.pumpAndSettle();
-
-      final context = navigatorKey.currentContext;
-      if (context == null) {
-        throw Exception('Context was null');
-      }
-
-      await $.tap($(WidgetKeys.exploreButton));
-      await $.tap($(FeaturedSection).$(GestureDetector));
-      expect($(WidgetKeys.playPoster), findsOneWidget);
-    },
-  ); */
-  patrolTest(
-    'play episode and ensure miniplayer',
-    nativeAutomatorConfig: const NativeAutomatorConfig(
-      packageName: 'tv.brunstad.app',
-      bundleId: 'tv.brunstad.app',
-    ),
-    nativeAutomation: true,
-    ($) async {
-      await $.tester.runAsync(prod.main);
-      await $.tester.pumpAndSettle();
-
-      final context = navigatorKey.currentContext;
-      if (context == null) {
-        throw Exception('Context was null');
-      }
-
-      // Explore and click a section item
-      await $.tap($(WidgetKeys.exploreButton));
-      await $.tap($(FeaturedSection).$(GestureDetector));
-      expect($(WidgetKeys.playPoster), findsOneWidget);
-
-      // Store episode title
-      final episodeTitle = $(WidgetKeys.episodePageEpisodeTitle).text;
-      assert(episodeTitle != null);
-
-      // Start playback and wait until player is visible
-      await $(WidgetKeys.playPoster).$(GestureDetector).tap();
-      await $(BccmPlayer).waitUntilVisible();
-
-      // Go back and ensure miniplayer
-      await $.tap($(WidgetKeys.backButton));
-      expect($(WidgetKeys.bottomSheetMiniPlayer), findsOneWidget);
-
-      // Ensure title same as on episode page
-      assert($(WidgetKeys.bottomSheetMiniPlayer).$(WidgetKeys.miniPlayerTitle).text == episodeTitle);
-    },
-  );
+  episode_test.main();
+  runApp(Container());
+  login_test.main();
 }
