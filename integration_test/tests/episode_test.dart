@@ -17,6 +17,10 @@ void main() {
     nativeAutomation: true,
     ($) async {
       await $.tester.runAsync(prod.main);
+      if (await $.native.isPermissionDialogVisible(timeout: const Duration(seconds: 5))) {
+        await $.native.grantPermissionWhenInUse();
+      }
+      await $.native.tap(Selector(textContains: 'Allow'));
       await $.tester.pumpAndSettle();
 
       final context = navigatorKey.currentContext;
