@@ -172,6 +172,7 @@ Future<void> $main({required FirebaseOptions? firebaseOptions}) async {
                   theme: ThemeData(),
                   darkTheme: createTheme(),
                   themeMode: ThemeMode.dark,
+                  debugShowCheckedModeBanner: false,
                   title: 'BCC Media',
                   routerDelegate: appRouter.delegate(
                     initialDeepLink: deepLink,

@@ -4,6 +4,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:brunstadtv_app/helpers/utils.dart';
 import 'package:brunstadtv_app/models/scroll_screen.dart';
 import 'package:brunstadtv_app/providers/auth_state.dart';
+import 'package:brunstadtv_app/providers/device_info.dart';
 import 'package:brunstadtv_app/screens/search/search.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -33,7 +34,7 @@ class CustomTabBar extends ConsumerStatefulWidget {
 
 class _CustomTabBarState extends ConsumerState<CustomTabBar> {
   late final Map<String, Image> icons;
-  final useMaterial = Platform.isAndroid;
+  get useMaterial => Platform.isAndroid && ref.watch(isPhysicalDeviceProvider).asData?.valueOrNull != false;
 
   @override
   void initState() {
@@ -50,6 +51,7 @@ class _CustomTabBarState extends ConsumerState<CustomTabBar> {
       'calendar_default': Image.asset('assets/icons/Calendar_Default.png', gaplessPlayback: true),
       'calendar_selected': Image.asset('assets/icons/Calendar_Selected.png', gaplessPlayback: true),
     };
+
     super.initState();
   }
 

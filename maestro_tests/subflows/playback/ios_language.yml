@@ -1,0 +1,8 @@
+appId: tv.brunstad.app
+---
+- tapOn:
+    id: "More Controls"
+- tapOn: "Languages"
+- assertVisible:
+    text: ".*German.*"
+    #selected: true

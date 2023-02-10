@@ -69,6 +69,7 @@ class CustomBackButton extends StatelessWidget {
                   alignment: Alignment.centerLeft,
                   child: Text(
                     pageTitle,
+                    semanticsLabel: S.of(context).back,
                     overflow: TextOverflow.ellipsis,
                     style: BtvTextStyles.button2.copyWith(height: 1),
                   ),
