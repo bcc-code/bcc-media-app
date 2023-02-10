@@ -1,0 +1,1 @@
+output.browserAppId = PLATFORM == 'ios' ? 'com.apple.mobilesafari' : 'com.android.chrome';

@@ -51,7 +51,7 @@ void main() {
             null,
           ));
 
-      final auth = AuthStateNotifier(mockAppAuth, secureStorage);
+      final auth = AuthStateNotifier(appAuth: mockAppAuth, secureStorage: secureStorage);
       auth.state = AuthState(
         auth0AccessToken: 'something',
         expiresAt: DateTime.now(),

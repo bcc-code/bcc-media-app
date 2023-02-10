@@ -161,6 +161,9 @@ class SFi extends S {
   String get play => 'Toista';
 
   @override
+  String get pause => 'Pause';
+
+  @override
   String get castQueue => 'Toista kaikki isolle ruudulle';
 
   @override

@@ -12,6 +12,7 @@ import 'package:flutter_svg/svg.dart';
 
 import '../helpers/btv_colors.dart';
 import '../helpers/btv_typography.dart';
+import '../helpers/widget_keys.dart';
 import '../l10n/app_localizations.dart';
 import '../screens/page.dart';
 
@@ -25,7 +26,7 @@ String? getLocalizedRouteName(S localizations, Type route) {
 }
 
 class CustomBackButton extends StatelessWidget {
-  const CustomBackButton({super.key, this.color, this.onPressed});
+  const CustomBackButton({Key? key, this.color, this.onPressed}) : super(key: key ?? WidgetKeys.backButton);
 
   final Color? color;
 
@@ -68,6 +69,7 @@ class CustomBackButton extends StatelessWidget {
                   alignment: Alignment.centerLeft,
                   child: Text(
                     pageTitle,
+                    semanticsLabel: S.of(context).back,
                     overflow: TextOverflow.ellipsis,
                     style: BtvTextStyles.button2.copyWith(height: 1),
                   ),

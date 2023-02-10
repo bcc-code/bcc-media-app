@@ -161,6 +161,9 @@ class SEn extends S {
   String get play => 'Play';
 
   @override
+  String get pause => 'Pause';
+
+  @override
   String get castQueue => 'Cast queue';
 
   @override

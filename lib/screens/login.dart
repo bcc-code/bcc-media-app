@@ -9,6 +9,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../helpers/btv_buttons.dart';
 import '../helpers/btv_colors.dart';
+import '../helpers/widget_keys.dart';
 import '../l10n/app_localizations.dart';
 
 class LoginScreen extends ConsumerStatefulWidget {
@@ -133,6 +134,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                   Container(
                     margin: const EdgeInsets.only(bottom: 12),
                     child: BtvButton.large(
+                      key: WidgetKeys.exploreButton,
                       onPressed: () {
                         context.router.popUntil((route) => false);
                         context.router.push(const TabsRootScreenRoute());
@@ -141,6 +143,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                     ),
                   ),
                   BtvButton.mediumSecondary(
+                    key: WidgetKeys.signInButton,
                     labelText: S.of(context).signInButton,
                     onPressed: loginAction,
                   ).copyWith(

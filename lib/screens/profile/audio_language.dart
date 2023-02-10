@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import '../../components/custom_back_button.dart';
 import '../../components/option_list.dart';
 import '../../helpers/languages.dart';
 import '../../l10n/app_localizations.dart';
@@ -41,6 +42,9 @@ class _AppAudioLanguageState extends ConsumerState<AppAudioLanguage> {
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
+        toolbarHeight: 44,
+        leadingWidth: 92,
+        leading: const CustomBackButton(),
         title: Text(S.of(context).audioLanguage),
       ),
       body: SafeArea(
