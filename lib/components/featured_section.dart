@@ -2,7 +2,9 @@ import 'dart:math';
 
 import 'package:brunstadtv_app/components/section_item_click_wrapper.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../graphql/queries/calendar_episode_entries.graphql.dart';
 import '../l10n/app_localizations.dart';
 import '../models/analytics/sections.dart';
 
@@ -13,22 +15,55 @@ import '../helpers/btv_buttons.dart';
 import '../helpers/btv_typography.dart';
 import '../helpers/image_utils.dart';
 import '../helpers/transparent_image.dart';
-import '../services/utils.dart';
+import '../providers/todays_calendar_entries.dart';
 
-class FeaturedSection extends StatelessWidget {
+class FeaturedSection extends ConsumerWidget {
   final Fragment$Section$$FeaturedSection data;
 
   const FeaturedSection(this.data, {super.key});
 
+  List<Fragment$Section$$FeaturedSection$items$items> getItemsWithLiveItem(
+    List<Fragment$Section$$FeaturedSection$items$items> items,
+    Fragment$Episode? curLiveEpisode,
+  ) {
+    if (data.metadata == null || curLiveEpisode == null) {
+      return items;
+    }
+    if (data.metadata!.prependLiveElement) {
+      return [
+        Fragment$Section$$FeaturedSection$items$items(
+          id: curLiveEpisode!.id,
+          title: curLiveEpisode!.title,
+          image: curLiveEpisode!.image,
+          description: curLiveEpisode!.description,
+          $__typename: 'SectionItem',
+          item: Fragment$Section$$FeaturedSection$items$items$item$$Episode(
+            id: curLiveEpisode!.id,
+            duration: 0,
+            progress: 0,
+            publishDate: '',
+            $__typename: 'Episode',
+            locked: false,
+          ),
+        ),
+        ...items.where((item) => item.id != curLiveEpisode!.id)
+      ];
+    }
+    return items;
+  }
+
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    Fragment$Episode? curLiveEpisode = ref.watch(currentLiveEpisodeProvider)?.episode;
+
     return LayoutBuilder(builder: (context, constraints) {
       const marginX = 2.0;
       final viewportFraction = (constraints.maxWidth - (32 - 2 * marginX)) / max(1, constraints.maxWidth);
-      final sectionItems = data.items.items.where((e) {
+      final filteredItems = data.items.items.where((e) {
         final episode = e.item.asOrNull<Fragment$ItemSectionItem$item$$Episode>();
         return episode == null || !episode.locked;
       }).toList();
+      final sectionItems = getItemsWithLiveItem(filteredItems, curLiveEpisode);
       return Padding(
         padding: const EdgeInsets.only(top: 16),
         child: SizedBox(
@@ -45,6 +80,7 @@ class FeaturedSection extends StatelessWidget {
                 child: _FeaturedItem(
                   sectionItem: item,
                   margin: const EdgeInsets.symmetric(horizontal: marginX),
+                  isLive: item.id == curLiveEpisode?.id,
                 ),
               );
             },
@@ -58,10 +94,12 @@ class FeaturedSection extends StatelessWidget {
 class _FeaturedItem extends StatelessWidget {
   final Fragment$Section$$FeaturedSection$items$items sectionItem;
   final EdgeInsetsGeometry? margin;
+  final bool isLive;
 
   const _FeaturedItem({
     required this.sectionItem,
     this.margin = const EdgeInsets.all(0),
+    this.isLive = false,
   });
 
   @override
@@ -109,11 +147,13 @@ class _FeaturedItem extends StatelessWidget {
                     style: BtvTextStyles.body2.copyWith(color: BtvColors.label2),
                   ),
                 ),
-                false
+                isLive
                     ? BtvButton.smallRed(
                         image: Image.asset('assets/icons/Play.png'),
                         labelText: S.of(context).liveNow,
-                        onPressed: () {},
+                        onPressed: () {
+                          handleSectionItemClick(context, sectionItem.item);
+                        },
                       )
                     : BtvButton.smallSecondary(
                         image: Image.asset('assets/icons/Play.png'),

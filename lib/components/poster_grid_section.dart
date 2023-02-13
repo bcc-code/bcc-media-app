@@ -1,13 +1,15 @@
 import 'package:brunstadtv_app/components/section_item_click_wrapper.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../graphql/queries/calendar_episode_entries.graphql.dart';
 import '../graphql/queries/page.graphql.dart';
 import '../graphql/schema/pages.graphql.dart';
 import '../helpers/btv_colors.dart';
 import '../helpers/btv_typography.dart';
-import '../helpers/utils.dart';
 import '../l10n/app_localizations.dart';
 import '../models/analytics/sections.dart';
+import '../providers/todays_calendar_entries.dart';
 import '../services/utils.dart';
 import 'feature_badge.dart';
 import 'episode_duration.dart';
@@ -22,16 +24,20 @@ const Map<Enum$GridSectionSize, int> _columnSize = {
   Enum$GridSectionSize.half: 2,
 };
 
-class PosterGridSection extends StatelessWidget {
+class PosterGridSection extends ConsumerWidget {
   final Fragment$Section$$PosterGridSection data;
 
   const PosterGridSection(this.data, {super.key});
 
-  Widget getItemWidget(Fragment$Section$$PosterGridSection$items$items sectionItem) {
+  Widget getItemWidget(
+    Fragment$Section$$PosterGridSection$items$items sectionItem,
+    Fragment$Episode? curLiveEpisode,
+  ) {
     if (sectionItem.item is Fragment$Section$$PosterGridSection$items$items$item$$Episode) {
       return _GridEpisodeItem(
         sectionItem: sectionItem,
         showSecondaryTitle: data.metadata?.secondaryTitles ?? true,
+        isLive: sectionItem.id == curLiveEpisode?.id,
       );
     } else if (sectionItem.item is Fragment$Section$$PosterGridSection$items$items$item$$Show) {
       return _GridShowItem(sectionItem: sectionItem);
@@ -40,7 +46,9 @@ class PosterGridSection extends StatelessWidget {
   }
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    Fragment$Episode? curLiveEpisode = ref.watch(currentLiveEpisodeProvider)?.episode;
+
     final colSize = _columnSize[data.gridSize] ?? _columnSize[Enum$GridSectionSize.half]!;
 
     final items = data.items.items
@@ -60,7 +68,7 @@ class PosterGridSection extends StatelessWidget {
           return SectionItemClickWrapper(
             item: kv.value.item,
             analytics: SectionItemAnalytics(id: kv.value.id, position: kv.key, type: kv.value.$__typename, name: kv.value.title),
-            child: getItemWidget(kv.value),
+            child: getItemWidget(kv.value, curLiveEpisode),
           );
         }).toList(),
         colSize: colSize,
@@ -82,12 +90,12 @@ class _GridEpisodeItem extends StatelessWidget {
   final Fragment$Section$$PosterGridSection$items$items sectionItem;
   final Fragment$Section$$PosterGridSection$items$items$item$$Episode episode;
   final bool showSecondaryTitle;
+  final bool isLive;
 
   bool get watched => episode.progress != null && episode.progress! > episode.duration * 0.9;
-  bool isLive = false;
   bool isNewItem = false;
 
-  _GridEpisodeItem({required this.sectionItem, required this.showSecondaryTitle})
+  _GridEpisodeItem({required this.sectionItem, required this.showSecondaryTitle, this.isLive = false})
       : episode = sectionItem.item as Fragment$Section$$PosterGridSection$items$items$item$$Episode;
 
   @override
@@ -140,7 +148,7 @@ class _GridEpisodeItem extends StatelessWidget {
         child: Stack(
           clipBehavior: Clip.none,
           children: [
-            episode.locked
+            episode.locked && !isLive
                 ? Opacity(
                     opacity: 0.5,
                     child: BorderedImageContainer(imageUrl: sectionItem.image),
@@ -179,11 +187,11 @@ class _GridEpisodeItem extends StatelessWidget {
                   ),
                 ),
               ),
-            if (getFeaturedTag(publishDate: episode.publishDate, locked: episode.locked) != null)
+            if (getFeaturedTag(publishDate: episode.publishDate, locked: episode.locked, isLive: isLive) != null)
               Positioned(
                 top: -4,
                 right: -4,
-                child: getFeaturedTag(publishDate: episode.publishDate, locked: episode.locked)!,
+                child: getFeaturedTag(publishDate: episode.publishDate, locked: episode.locked, isLive: isLive)!,
               ),
           ],
         ),
