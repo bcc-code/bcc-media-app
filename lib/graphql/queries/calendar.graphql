@@ -29,6 +29,7 @@ fragment CalendarDay on CalendarDay {
       episode {
         id
         publishDate
+        locked
         __typename
       }
       id

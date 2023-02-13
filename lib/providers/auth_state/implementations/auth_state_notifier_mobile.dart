@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:convert';
 
 import 'package:brunstadtv_app/helpers/utils.dart';
+import 'package:clock/clock.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/foundation.dart';
@@ -12,6 +13,7 @@ import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:jwt_decoder/jwt_decoder.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:rudder_sdk_flutter/RudderController.dart';
+import 'package:synchronized/synchronized.dart';
 import 'package:universal_io/io.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -24,7 +26,8 @@ import '../auth_state.dart';
 // Careful. This line is very important,
 // but because it's conditionally imported (see auth_state_notifier_interface.dart)
 // IDEs don't show any errors when you remove it..
-AuthStateNotifier getPlatformSpecificAuthStateNotifier() => AuthStateNotifierMobile();
+AuthStateNotifier getPlatformSpecificAuthStateNotifier() =>
+    AuthStateNotifierMobile(appAuth: const FlutterAppAuth(), secureStorage: const FlutterSecureStorage());
 
 const FlutterAppAuth appAuth = FlutterAppAuth();
 const FlutterSecureStorage secureStorage = FlutterSecureStorage();
@@ -32,18 +35,31 @@ const FlutterSecureStorage secureStorage = FlutterSecureStorage();
 const kMinimumCredentialsTTL = Duration(hours: 1);
 
 class AuthStateNotifierMobile extends StateNotifier<AuthState> implements AuthStateNotifier {
-  AuthStateNotifierMobile() : super(const AuthState());
-  Timer? refreshTimer;
+  AuthStateNotifierMobile({required FlutterAppAuth appAuth, required FlutterSecureStorage secureStorage})
+      : _appAuth = appAuth,
+        _secureStorage = secureStorage,
+        super(const AuthState());
+
+  final appAuthLock = Lock();
+  final FlutterAppAuth _appAuth;
+  final FlutterSecureStorage _secureStorage;
+
+  Future<T> _syncAppAuth<T>(Future<T> Function() call) {
+    return appAuthLock.synchronized(
+      () => call(),
+      timeout: const Duration(seconds: 10),
+    );
+  }
 
   @override
   Future<AuthState?> getExistingAndEnsureNotExpired() async {
     if (state.expiresAt == null || state.auth0AccessToken == null) {
       return null;
     }
-    if (state.expiresAt!.difference(DateTime.now()) < kMinimumCredentialsTTL) {
+    if (state.expiresAt!.difference(clock.now()) < kMinimumCredentialsTTL) {
       await refresh();
     }
-    if (state.expiresAt!.difference(DateTime.now()) < kMinimumCredentialsTTL) {
+    if (state.expiresAt!.difference(clock.now()) < kMinimumCredentialsTTL) {
       throw Exception('Auth state is still expired after attempting to renew.');
     }
     return state;
@@ -51,8 +67,8 @@ class AuthStateNotifierMobile extends StateNotifier<AuthState> implements AuthSt
 
   @override
   Future<bool> load() async {
-    final accessToken = await secureStorage.read(key: SecureStorageKeys.accessToken);
-    final idToken = await secureStorage.read(key: SecureStorageKeys.idToken);
+    final accessToken = await _secureStorage.read(key: SecureStorageKeys.accessToken);
+    final idToken = await _secureStorage.read(key: SecureStorageKeys.idToken);
 
     if (accessToken == null || idToken == null) {
       return false;
@@ -65,9 +81,8 @@ class AuthStateNotifierMobile extends StateNotifier<AuthState> implements AuthSt
       logout();
       return false;
     }
-    final ttl = expiry.difference(DateTime.now());
-    if (ttl < kMinimumCredentialsTTL) {
-      return refresh();
+    if (expiry.difference(clock.now()) < kMinimumCredentialsTTL) {
+      return await refresh();
     }
     state = state.copyWith(
       auth0AccessToken: accessToken,
@@ -80,7 +95,7 @@ class AuthStateNotifierMobile extends StateNotifier<AuthState> implements AuthSt
   }
 
   Future<bool> refresh() async {
-    final refreshToken = await secureStorage.read(key: SecureStorageKeys.refreshToken);
+    final refreshToken = await _secureStorage.read(key: SecureStorageKeys.refreshToken);
 
     if (refreshToken == null) {
       return false;
@@ -88,16 +103,18 @@ class AuthStateNotifierMobile extends StateNotifier<AuthState> implements AuthSt
 
     final PackageInfo info = await PackageInfo.fromPlatform();
     try {
-      final TokenResponse? result = await appAuth.token(
-        TokenRequest(
-          Env.auth0ClientId,
-          '${info.packageName}://login-callback',
-          issuer: 'https://${Env.auth0Domain}',
-          refreshToken: refreshToken,
-          additionalParameters: {'audience': Env.auth0Audience},
+      final TokenResponse? result = await _syncAppAuth(
+        () => _appAuth.token(
+          TokenRequest(
+            Env.auth0ClientId,
+            '${info.packageName}://login-callback',
+            issuer: 'https://${Env.auth0Domain}',
+            refreshToken: refreshToken,
+            additionalParameters: {'audience': Env.auth0Audience},
+          ),
         ),
       );
-      _setStateBasedOnResponse(result!);
+      await _setStateBasedOnResponse(result!);
     } catch (e, s) {
       FirebaseCrashlytics.instance.recordError(e, StackTrace.current);
       print('error on Refresh Token: $e - stack: $s');
@@ -110,9 +127,9 @@ class AuthStateNotifierMobile extends StateNotifier<AuthState> implements AuthSt
   Future _clearCredentials() async {
     await Future.wait(
       [
-        secureStorage.delete(key: SecureStorageKeys.refreshToken),
-        secureStorage.delete(key: SecureStorageKeys.accessToken),
-        secureStorage.delete(key: SecureStorageKeys.idToken),
+        _secureStorage.delete(key: SecureStorageKeys.refreshToken),
+        _secureStorage.delete(key: SecureStorageKeys.accessToken),
+        _secureStorage.delete(key: SecureStorageKeys.idToken),
       ],
     );
   }
@@ -153,11 +170,11 @@ class AuthStateNotifierMobile extends StateNotifier<AuthState> implements AuthSt
         additionalParameters: {'audience': Env.auth0Audience},
       );
 
-      final AuthorizationTokenResponse? result = await appAuth.authorizeAndExchangeCode(
-        authorizationTokenRequest,
+      final AuthorizationTokenResponse? result = await _syncAppAuth(
+        () => _appAuth.authorizeAndExchangeCode(authorizationTokenRequest),
       );
 
-      await _setStateBasedOnResponse(result!);
+      await _setStateBasedOnResponse(result!, isLogin: true);
     } catch (e, st) {
       logout(manual: false);
       debugPrint(e.toString());
@@ -167,33 +184,37 @@ class AuthStateNotifierMobile extends StateNotifier<AuthState> implements AuthSt
     return true;
   }
 
-  Future<void> _setStateBasedOnResponse(TokenResponse? result) async {
+  Future<void> _setStateBasedOnResponse(TokenResponse? result, {bool isLogin = false}) async {
     final accessToken = result?.accessToken;
     final idToken = result?.idToken;
-    final refreshToken = result?.idToken;
-    if (accessToken == null || idToken == null || refreshToken == null) {
+    final refreshToken = result?.refreshToken;
+    if (accessToken == null || idToken == null) {
       throw Exception([
         'Invalid token response',
         'result null: ${result == null}',
         'accessToken null: ${accessToken == null}',
         'idToken null: ${idToken == null}',
-        'refreshToken null: ${refreshToken == null}',
+        'refreshToken null: ${refreshToken == null}'
       ]);
+    }
+    if (isLogin && refreshToken == null) {
+      FirebaseCrashlytics.instance.recordError(Exception('Refresh token missing on login'), StackTrace.current);
     }
 
     await Future.wait([
-      secureStorage.write(
-        key: SecureStorageKeys.refreshToken,
-        value: refreshToken,
-      ),
-      secureStorage.write(
+      _secureStorage.write(
         key: SecureStorageKeys.idToken,
         value: idToken,
       ),
-      secureStorage.write(
+      _secureStorage.write(
         key: SecureStorageKeys.accessToken,
         value: accessToken,
-      )
+      ),
+      if (refreshToken != null)
+        _secureStorage.write(
+          key: SecureStorageKeys.refreshToken,
+          value: refreshToken,
+        ),
     ]);
 
     state = state.copyWith(

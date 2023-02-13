@@ -1,4 +1,5 @@
 PODS:
+  - _NIODataStructures (2.40.0)
   - app_links (0.0.1):
     - Flutter
   - AppAuth (1.6.0):
@@ -9,10 +10,17 @@ PODS:
     - AppAuth/Core
   - bccm_player (0.0.1):
     - Flutter
-    - google-cast-sdk-no-bluetooth (~> 4.7.0)
-    - Protobuf (~> 3.13)
     - YouboraAVPlayerAdapter (= 6.6.8)
     - YouboraLib (= 6.6.22)
+  - CGRPCZlib (1.8.0)
+  - CNIOAtomics (2.40.0)
+  - CNIOBoringSSL (2.19.0)
+  - CNIOBoringSSLShims (2.19.0):
+    - CNIOBoringSSL (= 2.19.0)
+  - CNIODarwin (2.40.0)
+  - CNIOHTTPParser (2.40.0)
+  - CNIOLinux (2.40.0)
+  - CNIOWindows (2.40.0)
   - connectivity_plus (0.0.1):
     - Flutter
     - ReachabilitySwift
@@ -103,11 +111,6 @@ PODS:
     - Flutter
   - flutter_secure_storage (6.0.0):
     - Flutter
-  - google-cast-sdk-no-bluetooth (4.7.0):
-    - google-cast-sdk-no-bluetooth/Core (= 4.7.0)
-    - Protobuf (~> 3.13)
-  - google-cast-sdk-no-bluetooth/Core (4.7.0):
-    - Protobuf (~> 3.13)
   - GoogleDataTransport (9.2.0):
     - GoogleUtilities/Environment (~> 7.7)
     - nanopb (< 2.30910.0, >= 2.30908.0)
@@ -132,6 +135,18 @@ PODS:
     - GoogleUtilities/Logger
   - GoogleUtilities/UserDefaults (7.10.0):
     - GoogleUtilities/Logger
+  - gRPC-Swift (1.8.0):
+    - CGRPCZlib (= 1.8.0)
+    - Logging (< 2.0.0, >= 1.4.0)
+    - SwiftNIO (< 3.0.0, >= 2.32.0)
+    - SwiftNIOExtras (< 2.0.0, >= 1.4.0)
+    - SwiftNIOHTTP2 (< 2.0.0, >= 1.22.0)
+    - SwiftNIOSSL (< 3.0.0, >= 2.14.0)
+    - SwiftNIOTransportServices (< 2.0.0, >= 1.11.1)
+    - SwiftProtobuf (< 2.0.0, >= 1.19.0)
+  - integration_test (0.0.1):
+    - Flutter
+  - Logging (1.4.0)
   - nanopb (2.30909.0):
     - nanopb/decode (= 2.30909.0)
     - nanopb/encode (= 2.30909.0)
@@ -145,10 +160,12 @@ PODS:
   - path_provider_foundation (0.0.1):
     - Flutter
     - FlutterMacOS
+  - patrol (0.0.1):
+    - Flutter
+    - gRPC-Swift (~> 1.8.0)
   - permission_handler_apple (9.0.4):
     - Flutter
   - PromisesObjC (2.1.1)
-  - Protobuf (3.21.11)
   - ReachabilitySwift (5.0.0)
   - Rudder (1.8.0)
   - rudder_plugin_ios (0.0.1):
@@ -161,6 +178,137 @@ PODS:
   - shared_preferences_foundation (0.0.1):
     - Flutter
     - FlutterMacOS
+  - SwiftNIO (2.40.0):
+    - _NIODataStructures (= 2.40.0)
+    - CNIOAtomics (= 2.40.0)
+    - CNIODarwin (= 2.40.0)
+    - CNIOLinux (= 2.40.0)
+    - CNIOWindows (= 2.40.0)
+    - SwiftNIOConcurrencyHelpers (= 2.40.0)
+    - SwiftNIOCore (= 2.40.0)
+    - SwiftNIOEmbedded (= 2.40.0)
+    - SwiftNIOPosix (= 2.40.0)
+  - SwiftNIOConcurrencyHelpers (2.40.0):
+    - CNIOAtomics (= 2.40.0)
+  - SwiftNIOCore (2.40.0):
+    - CNIOAtomics (= 2.40.0)
+    - CNIOLinux (= 2.40.0)
+    - SwiftNIOConcurrencyHelpers (= 2.40.0)
+  - SwiftNIOEmbedded (2.40.0):
+    - _NIODataStructures (= 2.40.0)
+    - CNIOAtomics (= 2.40.0)
+    - CNIOLinux (= 2.40.0)
+    - SwiftNIOConcurrencyHelpers (= 2.40.0)
+    - SwiftNIOCore (= 2.40.0)
+  - SwiftNIOExtras (1.11.0):
+    - _NIODataStructures (< 3, >= 2.32.0)
+    - CNIOAtomics (< 3, >= 2.32.0)
+    - CNIODarwin (< 3, >= 2.32.0)
+    - CNIOLinux (< 3, >= 2.32.0)
+    - CNIOWindows (< 3, >= 2.32.0)
+    - SwiftNIO (< 3, >= 2.32.0)
+    - SwiftNIOConcurrencyHelpers (< 3, >= 2.32.0)
+    - SwiftNIOCore (< 3, >= 2.32.0)
+    - SwiftNIOEmbedded (< 3, >= 2.32.0)
+    - SwiftNIOPosix (< 3, >= 2.32.0)
+  - SwiftNIOFoundationCompat (2.40.0):
+    - _NIODataStructures (= 2.40.0)
+    - CNIOAtomics (= 2.40.0)
+    - CNIODarwin (= 2.40.0)
+    - CNIOLinux (= 2.40.0)
+    - CNIOWindows (= 2.40.0)
+    - SwiftNIO (= 2.40.0)
+    - SwiftNIOConcurrencyHelpers (= 2.40.0)
+    - SwiftNIOCore (= 2.40.0)
+    - SwiftNIOEmbedded (= 2.40.0)
+    - SwiftNIOPosix (= 2.40.0)
+  - SwiftNIOHPACK (1.22.0):
+    - _NIODataStructures (< 3, >= 2.35.0)
+    - CNIOAtomics (< 3, >= 2.35.0)
+    - CNIODarwin (< 3, >= 2.35.0)
+    - CNIOHTTPParser (< 3, >= 2.35.0)
+    - CNIOLinux (< 3, >= 2.35.0)
+    - CNIOWindows (< 3, >= 2.35.0)
+    - SwiftNIO (< 3, >= 2.35.0)
+    - SwiftNIOConcurrencyHelpers (< 3, >= 2.35.0)
+    - SwiftNIOCore (< 3, >= 2.35.0)
+    - SwiftNIOEmbedded (< 3, >= 2.35.0)
+    - SwiftNIOHTTP1 (< 3, >= 2.35.0)
+    - SwiftNIOPosix (< 3, >= 2.35.0)
+  - SwiftNIOHTTP1 (2.40.0):
+    - _NIODataStructures (= 2.40.0)
+    - CNIOAtomics (= 2.40.0)
+    - CNIODarwin (= 2.40.0)
+    - CNIOHTTPParser (= 2.40.0)
+    - CNIOLinux (= 2.40.0)
+    - CNIOWindows (= 2.40.0)
+    - SwiftNIO (= 2.40.0)
+    - SwiftNIOConcurrencyHelpers (= 2.40.0)
+    - SwiftNIOCore (= 2.40.0)
+    - SwiftNIOEmbedded (= 2.40.0)
+    - SwiftNIOPosix (= 2.40.0)
+  - SwiftNIOHTTP2 (1.22.0):
+    - _NIODataStructures (< 3, >= 2.35.0)
+    - CNIOAtomics (< 3, >= 2.35.0)
+    - CNIODarwin (< 3, >= 2.35.0)
+    - CNIOHTTPParser (< 3, >= 2.35.0)
+    - CNIOLinux (< 3, >= 2.35.0)
+    - CNIOWindows (< 3, >= 2.35.0)
+    - SwiftNIO (< 3, >= 2.35.0)
+    - SwiftNIOConcurrencyHelpers (< 3, >= 2.35.0)
+    - SwiftNIOCore (< 3, >= 2.35.0)
+    - SwiftNIOEmbedded (< 3, >= 2.35.0)
+    - SwiftNIOHPACK (= 1.22.0)
+    - SwiftNIOHTTP1 (< 3, >= 2.35.0)
+    - SwiftNIOPosix (< 3, >= 2.35.0)
+    - SwiftNIOTLS (< 3, >= 2.35.0)
+  - SwiftNIOPosix (2.40.0):
+    - _NIODataStructures (= 2.40.0)
+    - CNIOAtomics (= 2.40.0)
+    - CNIODarwin (= 2.40.0)
+    - CNIOLinux (= 2.40.0)
+    - CNIOWindows (= 2.40.0)
+    - SwiftNIOConcurrencyHelpers (= 2.40.0)
+    - SwiftNIOCore (= 2.40.0)
+  - SwiftNIOSSL (2.19.0):
+    - _NIODataStructures (< 3, >= 2.32.0)
+    - CNIOAtomics (< 3, >= 2.32.0)
+    - CNIOBoringSSL (= 2.19.0)
+    - CNIOBoringSSLShims (= 2.19.0)
+    - CNIODarwin (< 3, >= 2.32.0)
+    - CNIOLinux (< 3, >= 2.32.0)
+    - CNIOWindows (< 3, >= 2.32.0)
+    - SwiftNIO (< 3, >= 2.32.0)
+    - SwiftNIOConcurrencyHelpers (< 3, >= 2.32.0)
+    - SwiftNIOCore (< 3, >= 2.32.0)
+    - SwiftNIOEmbedded (< 3, >= 2.32.0)
+    - SwiftNIOPosix (< 3, >= 2.32.0)
+    - SwiftNIOTLS (< 3, >= 2.32.0)
+  - SwiftNIOTLS (2.40.0):
+    - _NIODataStructures (= 2.40.0)
+    - CNIOAtomics (= 2.40.0)
+    - CNIODarwin (= 2.40.0)
+    - CNIOLinux (= 2.40.0)
+    - CNIOWindows (= 2.40.0)
+    - SwiftNIO (= 2.40.0)
+    - SwiftNIOConcurrencyHelpers (= 2.40.0)
+    - SwiftNIOCore (= 2.40.0)
+    - SwiftNIOEmbedded (= 2.40.0)
+    - SwiftNIOPosix (= 2.40.0)
+  - SwiftNIOTransportServices (1.12.0):
+    - _NIODataStructures (< 3, >= 2.32.0)
+    - CNIOAtomics (< 3, >= 2.32.0)
+    - CNIODarwin (< 3, >= 2.32.0)
+    - CNIOLinux (< 3, >= 2.32.0)
+    - CNIOWindows (< 3, >= 2.32.0)
+    - SwiftNIO (< 3, >= 2.32.0)
+    - SwiftNIOConcurrencyHelpers (< 3, >= 2.32.0)
+    - SwiftNIOCore (< 3, >= 2.32.0)
+    - SwiftNIOEmbedded (< 3, >= 2.32.0)
+    - SwiftNIOFoundationCompat (< 3, >= 2.32.0)
+    - SwiftNIOPosix (< 3, >= 2.32.0)
+    - SwiftNIOTLS (< 3, >= 2.32.0)
+  - SwiftProtobuf (1.20.3)
   - url_launcher_ios (0.0.1):
     - Flutter
   - webview_flutter_wkwebview (0.0.1):
@@ -186,9 +334,11 @@ DEPENDENCIES:
   - flutter_inappwebview (from `.symlinks/plugins/flutter_inappwebview/ios`)
   - flutter_local_notifications (from `.symlinks/plugins/flutter_local_notifications/ios`)
   - flutter_secure_storage (from `.symlinks/plugins/flutter_secure_storage/ios`)
+  - integration_test (from `.symlinks/plugins/integration_test/ios`)
   - open_filex (from `.symlinks/plugins/open_filex/ios`)
   - package_info_plus (from `.symlinks/plugins/package_info_plus/ios`)
   - path_provider_foundation (from `.symlinks/plugins/path_provider_foundation/ios`)
+  - patrol (from `.symlinks/plugins/patrol/ios`)
   - permission_handler_apple (from `.symlinks/plugins/permission_handler_apple/ios`)
   - rudder_plugin_ios (from `.symlinks/plugins/rudder_plugin_ios/ios`)
   - sensors_plus (from `.symlinks/plugins/sensors_plus/ios`)
@@ -199,7 +349,16 @@ DEPENDENCIES:
 
 SPEC REPOS:
   trunk:
+    - _NIODataStructures
     - AppAuth
+    - CGRPCZlib
+    - CNIOAtomics
+    - CNIOBoringSSL
+    - CNIOBoringSSLShims
+    - CNIODarwin
+    - CNIOHTTPParser
+    - CNIOLinux
+    - CNIOWindows
     - Firebase
     - FirebaseABTesting
     - FirebaseCore
@@ -209,15 +368,29 @@ SPEC REPOS:
     - FirebaseMessaging
     - FirebasePerformance
     - FirebaseRemoteConfig
-    - google-cast-sdk-no-bluetooth
     - GoogleDataTransport
     - GoogleUtilities
+    - gRPC-Swift
+    - Logging
     - nanopb
     - OrderedSet
     - PromisesObjC
-    - Protobuf
     - ReachabilitySwift
     - Rudder
+    - SwiftNIO
+    - SwiftNIOConcurrencyHelpers
+    - SwiftNIOCore
+    - SwiftNIOEmbedded
+    - SwiftNIOExtras
+    - SwiftNIOFoundationCompat
+    - SwiftNIOHPACK
+    - SwiftNIOHTTP1
+    - SwiftNIOHTTP2
+    - SwiftNIOPosix
+    - SwiftNIOSSL
+    - SwiftNIOTLS
+    - SwiftNIOTransportServices
+    - SwiftProtobuf
     - YouboraAVPlayerAdapter
     - YouboraLib
 
@@ -248,12 +421,16 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/flutter_local_notifications/ios"
   flutter_secure_storage:
     :path: ".symlinks/plugins/flutter_secure_storage/ios"
+  integration_test:
+    :path: ".symlinks/plugins/integration_test/ios"
   open_filex:
     :path: ".symlinks/plugins/open_filex/ios"
   package_info_plus:
     :path: ".symlinks/plugins/package_info_plus/ios"
   path_provider_foundation:
     :path: ".symlinks/plugins/path_provider_foundation/ios"
+  patrol:
+    :path: ".symlinks/plugins/patrol/ios"
   permission_handler_apple:
     :path: ".symlinks/plugins/permission_handler_apple/ios"
   rudder_plugin_ios:
@@ -270,9 +447,18 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/webview_flutter_wkwebview/ios"
 
 SPEC CHECKSUMS:
+  _NIODataStructures: 3d45d8e70a1d17a15b1dc59d102c63dbc0525ffd
   app_links: ab4ba54d10a13d45825336bc9707b5eadee81191
   AppAuth: 8fca6b5563a5baef2c04bee27538025e4ceb2add
-  bccm_player: 831799da31ebb311e1f9c9c00d1ae8b648cbe808
+  bccm_player: 0629994846024330859f6b7752d712e32cb05041
+  CGRPCZlib: 298dd3237ba4bd7b3eed109e7080ff3324b7d9c9
+  CNIOAtomics: 8edf08644e5e6fa0f021c239be9e8beb1cd9ef18
+  CNIOBoringSSL: 2c9c96c2e95f15e83fb8d26b9738d939cc39ae33
+  CNIOBoringSSLShims: c5c9346e7bbd1040f4f8793a35441dda7487539a
+  CNIODarwin: 93850990d29f2626b05306c6c9309f9be0d74c2f
+  CNIOHTTPParser: 8ce395236fa1d09ac3b4f4bcfba79b849b2ac684
+  CNIOLinux: 62e3505f50de558c393dc2f273dde71dcce518da
+  CNIOWindows: 3047f2d8165848a3936a0a755fee27c6b5ee479b
   connectivity_plus: 413a8857dd5d9f1c399a39130850d02fe0feaf7e
   device_info_plus: e5c5da33f982a436e103237c0c85f9031142abed
   Firebase: f92fc551ead69c94168d36c2b26188263860acd9
@@ -293,28 +479,44 @@ SPEC CHECKSUMS:
   flutter_inappwebview: 4fe74e5e65809c3d363febfd9e2b21aa79bb0f1c
   flutter_local_notifications: 0c0b1ae97e741e1521e4c1629a459d04b9aec743
   flutter_secure_storage: 23fc622d89d073675f2eaa109381aefbcf5a49be
-  google-cast-sdk-no-bluetooth: 5313156110d6e71fa336f6d742f1ee641e91fdca
   GoogleDataTransport: 1c8145da7117bd68bbbed00cf304edb6a24de00f
   GoogleUtilities: bad72cb363809015b1f7f19beb1f1cd23c589f95
+  gRPC-Swift: 74adcaaa62ac5e0a018938840328cb1fdfb09e7b
+  integration_test: a1e7d09bd98eca2fc37aefd79d4f41ad37bdbbe5
+  Logging: beeb016c9c80cf77042d62e83495816847ef108b
   nanopb: b552cce312b6c8484180ef47159bc0f65a1f0431
   open_filex: 6e26e659846ec990262224a12ef1c528bb4edbe4
   OrderedSet: aaeb196f7fef5a9edf55d89760da9176ad40b93c
   package_info_plus: 6c92f08e1f853dc01228d6f553146438dafcd14e
   path_provider_foundation: 37748e03f12783f9de2cb2c4eadfaa25fe6d4852
+  patrol: a7622350c42b3a944962fbfe052d07e3691789e5
   permission_handler_apple: 44366e37eaf29454a1e7b1b7d736c2cceaeb17ce
   PromisesObjC: ab77feca74fa2823e7af4249b8326368e61014cb
-  Protobuf: 3acb308a1e208605afd50866b98ec220141bcb8c
   ReachabilitySwift: 985039c6f7b23a1da463388634119492ff86c825
   Rudder: 0a5272646aa3b89295526cea2bf54d092044848a
   rudder_plugin_ios: 7f1dbab9c58ef9db8547c29e1335b9144656019b
   sensors_plus: 5717760720f7e6acd96fdbd75b7428f5ad755ec2
   share_plus: 056a1e8ac890df3e33cb503afffaf1e9b4fbae68
   shared_preferences_foundation: 297b3ebca31b34ec92be11acd7fb0ba932c822ca
+  SwiftNIO: 829958aab300642625091f82fc2f49cb7cf4ef24
+  SwiftNIOConcurrencyHelpers: 697370136789b1074e4535eaae75cbd7f900370e
+  SwiftNIOCore: 473fdfe746534d7aa25766916459eeaf6f92ef49
+  SwiftNIOEmbedded: ffcb5147db67d9686c8366b7f8427b36132f2c8a
+  SwiftNIOExtras: 481f74d6bf0b0ef699905ed66439cb019c4975c9
+  SwiftNIOFoundationCompat: b9cdbea4806e4a12e9f66d9696fa3b98c4c3232b
+  SwiftNIOHPACK: e7d3ff5bd671528adfb11cd4e0c84ddfdc3c4453
+  SwiftNIOHTTP1: ef56706550a1dc135ea69d65215b9941e643c23b
+  SwiftNIOHTTP2: cc81d7a6ba70d2ddc5376f471904b27ef5d2b7b8
+  SwiftNIOPosix: b49af4bdbecaadfadd5c93dfe28594d6722b75e4
+  SwiftNIOSSL: d153c5a6fc5b2301b0519b4c4d037a9414212da6
+  SwiftNIOTLS: 598af547490133e9aac52aed0c23c4a90c31dcfc
+  SwiftNIOTransportServices: 0b2b407819d82eb63af558c5396e33c945759503
+  SwiftProtobuf: b02b5075dcf60c9f5f403000b3b0c202a11b6ae1
   url_launcher_ios: ae1517e5e344f5544fb090b079e11f399dfbe4d2
   webview_flutter_wkwebview: b7e70ef1ddded7e69c796c7390ee74180182971f
   YouboraAVPlayerAdapter: bc898a61e09c667202a77491b677a42dfa0adc04
   YouboraLib: fc65b030ac93499f8beb3f5daa10deb3879fb2d2
 
-PODFILE CHECKSUM: 4e8f8b2be68aeea4c0d5beb6ff1e79fface1d048
+PODFILE CHECKSUM: 7ac4b7895c7f489aade54b8432b752045b5b6dc5
 
 COCOAPODS: 1.11.3

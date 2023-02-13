@@ -32,6 +32,7 @@ fragment ItemSectionItem on SectionItem {
     ... on Episode {
       id
       duration
+      locked
       progress
       publishDate
     }

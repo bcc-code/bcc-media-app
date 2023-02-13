@@ -7,6 +7,8 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:intl/intl.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import '../helpers/languages.dart';
+
 part 'settings.freezed.dart';
 
 @freezed
@@ -56,8 +58,7 @@ class SettingsService extends StateNotifier<Settings> {
     var prefs = await prefsF;
 
     prefs.setString(PrefKeys.appLanguage, code);
-    state = state.copyWith(appLanguage: Locale(code));
-
+    state = state.copyWith(appLanguage: getLocale(code) ?? const Locale('en'));
     // update the rest of the app
   }
 
@@ -73,9 +74,13 @@ class SettingsService extends StateNotifier<Settings> {
     state = state.copyWith(sessionId: newSessionId);
   }
 
-  Future<void> setSubtitleLanguage(String code) async {
+  Future<void> setSubtitleLanguage(String? code) async {
     var prefs = await prefsF;
-    prefs.setString(PrefKeys.subtitleLanguage, code);
+    if (code == null) {
+      prefs.remove(PrefKeys.subtitleLanguage);
+    } else {
+      prefs.setString(PrefKeys.subtitleLanguage, code);
+    }
     state = state.copyWith(subtitleLanguage: code);
   }
 

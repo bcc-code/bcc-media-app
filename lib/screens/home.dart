@@ -138,6 +138,7 @@ class HomeScreenState extends ConsumerState<HomeScreen> with PageMixin implement
                       padding: const EdgeInsets.only(left: 18, top: 12, bottom: 12, right: 32),
                       child: SvgPicture.string(
                         SvgIcons.profile,
+                        semanticsLabel: S.of(context).profileTab,
                       ))),
             ),
             actions: [

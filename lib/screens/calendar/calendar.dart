@@ -66,7 +66,6 @@ class _CalendarWidgetState extends ConsumerState<CalendarWidget> {
   DateTime? _selectedDay = DateTime.now();
   Future<Query$CalendarPeriod$calendar$period?>? _calendarPeriodFuture;
   Future<Query$CalendarDay$calendar?>? _selectedDayFuture;
-  late String utcOffset;
   HashSet<DateTime> activeDaysPeriod = HashSet<DateTime>();
   List<String> eventsPeriod = [];
 
@@ -76,7 +75,6 @@ class _CalendarWidgetState extends ConsumerState<CalendarWidget> {
   @override
   initState() {
     super.initState();
-    utcOffset = getFormattedUtcOffset();
     loadInputPeriodData();
     loadSelectedDay();
   }
@@ -102,13 +100,6 @@ class _CalendarWidgetState extends ConsumerState<CalendarWidget> {
     return ((dayOfDec28 - dec28.weekday + 10) / 7).floor();
   }
 
-  String getFormattedUtcOffset() {
-    final timeZoneOffset = DateTime.now().timeZoneOffset;
-    final hours = timeZoneOffset.inHours.toString().padLeft(2, '0');
-    final minutes = (timeZoneOffset.inMinutes % 60).toString().padLeft(2, '0');
-    return '$hours:$minutes';
-  }
-
   /// Calculates week number from a date as per https://en.wikipedia.org/wiki/ISO_week_date#Calculation
   /// https://stackoverflow.com/questions/49393231/how-to-get-day-of-year-week-of-year-from-a-datetime-dart-object/54129275#54129275
   int _getWeekNumber(DateTime date) {
@@ -121,15 +112,6 @@ class _CalendarWidgetState extends ConsumerState<CalendarWidget> {
     }
     return woy;
   }
-
-  String convertToIso8601(DateTime time) {
-    //need to have a manual convert because the default method have a special 's' -> :sssZ
-    final localDateTime = DateFormat('yyyy-MM-ddTHH:mm:ss').format(time);
-    return '$localDateTime+$utcOffset';
-  }
-
-  //HH:mm
-  //{DateFormat('HH:mm').format(DateTime.parse(entriesList[i].start))}
 
   String convertToIso8601inDays(DateTime time) {
     return DateFormat('yyyy-MM-dd').format(time);
@@ -164,8 +146,8 @@ class _CalendarWidgetState extends ConsumerState<CalendarWidget> {
   }
 
   loadInputPeriodData() async {
-    var from = convertToIso8601(_focusedDay.subtract(const Duration(days: 40)));
-    var to = convertToIso8601(_focusedDay.add(const Duration(days: 40)));
+    var from = getFormattedDateTime(_focusedDay.subtract(const Duration(days: 40)));
+    var to = getFormattedDateTime(_focusedDay.add(const Duration(days: 40)));
     final client = ref.read(gqlClientProvider);
 
     _calendarPeriodFuture = client
@@ -197,7 +179,7 @@ class _CalendarWidgetState extends ConsumerState<CalendarWidget> {
   loadSelectedDay() {
     final client = ref.read(gqlClientProvider);
     _selectedDayFuture = client
-        .query$CalendarDay(Options$Query$CalendarDay(variables: Variables$Query$CalendarDay(date: convertToIso8601(_selectedDay!))))
+        .query$CalendarDay(Options$Query$CalendarDay(variables: Variables$Query$CalendarDay(date: getFormattedDateTime(_selectedDay!))))
         .onError((error, stackTrace) {
       1;
       print('ERROR: $error');
@@ -507,12 +489,6 @@ class _EntriesSlot extends StatelessWidget {
     return '$hour $minutes'.trim();
   }
 
-  bool isHappeningNow(Fragment$CalendarDay$entries entry) {
-    var endStr = DateTime.parse(entry.end).toLocal();
-    var stStr = DateTime.parse(entry.start).toLocal();
-    return endStr.isAfter(DateTime.now()) && stStr.isBefore(DateTime.now());
-  }
-
   @override
   Widget build(BuildContext context) {
     var entriesList = _calendarDay?.day.entries;
@@ -524,10 +500,10 @@ class _EntriesSlot extends StatelessWidget {
             return GestureDetector(
               behavior: HitTestBehavior.opaque,
               onTapUp: (details) {
-                if (episode != null && episode.episode != null && !isUnavailable(episode.episode!.publishDate)) {
+                if (episode?.episode?.locked == false) {
                   context.router.navigate(
                     HomeScreenWrapperRoute(children: [
-                      EpisodeScreenRoute(episodeId: episode.episode!.id),
+                      EpisodeScreenRoute(episodeId: episode!.episode!.id),
                     ]),
                   );
                 }
@@ -535,13 +511,13 @@ class _EntriesSlot extends StatelessWidget {
               child: Container(
                 padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 16),
                 decoration: BoxDecoration(
-                  color: isHappeningNow(entry) ? BtvColors.tint2.withOpacity(0.1) : null,
+                  color: isLiveNow(entry.start, entry.end) ? BtvColors.tint2.withOpacity(0.1) : null,
                   border: Border(
-                    left: isHappeningNow(entry) ? const BorderSide(color: BtvColors.tint2, width: 4) : const BorderSide(width: 4),
+                    left: isLiveNow(entry.start, entry.end) ? const BorderSide(color: BtvColors.tint2, width: 4) : const BorderSide(width: 4),
                   ),
                 ),
                 child: Opacity(
-                  opacity: episode?.episode != null && !isUnavailable(episode?.episode!.publishDate) ? 1 : 0.7,
+                  opacity: episode?.episode?.locked == false ? 1 : 0.7,
                   child: Row(
                     children: [
                       Padding(
@@ -550,7 +526,9 @@ class _EntriesSlot extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              isHappeningNow(entry) ? S.of(context).now : DateFormat('HH:mm').format(DateTime.parse(entry.start).toLocal()),
+                              isLiveNow(entry.start, entry.end)
+                                  ? S.of(context).now
+                                  : DateFormat('HH:mm').format(DateTime.parse(entry.start).toLocal()),
                               style: BtvTextStyles.title3,
                             ),
                             const SizedBox(height: 4),
@@ -570,7 +548,7 @@ class _EntriesSlot extends StatelessWidget {
                             Text(
                               entry.description,
                               overflow: TextOverflow.ellipsis,
-                              style: BtvTextStyles.caption1.copyWith(color: isHappeningNow(entry) ? BtvColors.tint2 : BtvColors.tint1),
+                              style: BtvTextStyles.caption1.copyWith(color: isLiveNow(entry.start, entry.end) ? BtvColors.tint2 : BtvColors.tint1),
                             ),
                           ],
                         ),

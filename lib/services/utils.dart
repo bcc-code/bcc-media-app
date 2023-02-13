@@ -56,7 +56,7 @@ bool isUnavailable(String? publishDate) {
   return DateTime.now().isBefore(parsedDateTime);
 }
 
-bool isComingSoon(String? publishDate) {
+bool isComingSoon({required String? publishDate, required bool locked}) {
   if (publishDate == null) {
     return false;
   }
@@ -64,7 +64,7 @@ bool isComingSoon(String? publishDate) {
   if (publishDateTime == null) {
     return false;
   }
-  return DateTime.now().isBefore(publishDateTime) && DateTime.now().add(const Duration(days: 2)).isAfter(publishDateTime);
+  return locked && DateTime.now().add(const Duration(days: 2)).isAfter(publishDateTime);
 }
 
 // Parse color from hex string in the formats "aabbcc", "#aabbcc", "ffaabbcc", "#ffaabbcc"
@@ -85,15 +85,14 @@ Color? getColorFromHex(String hexString) {
   return Color(color);
 }
 
-Widget? getFeaturedTag({required String? publishDate}) {
-  bool isLive = false;
+Widget? getFeaturedTag({required String? publishDate, required bool locked, bool isLive = false}) {
   bool isNewItem = false;
   if (isLive) {
     return const FeatureBadge(
       label: 'Live now',
       color: BtvColors.tint2,
     );
-  } else if (isComingSoon(publishDate)) {
+  } else if (isComingSoon(publishDate: publishDate, locked: locked)) {
     return const FeatureBadge(
       label: 'Coming soon',
       color: BtvColors.background2,
@@ -110,4 +109,26 @@ Widget? getFeaturedTag({required String? publishDate}) {
 Rect iPadSharePositionOrigin(BuildContext context) {
   final Size size = MediaQuery.of(context).size;
   return Rect.fromLTWH(0, 0, size.width, size.height / 2);
+}
+
+/// Get current UTC offset in the format 'hh:mm'
+String getUtcOffset() {
+  final timeZoneOffset = DateTime.now().timeZoneOffset;
+  final hours = timeZoneOffset.inHours.toString().padLeft(2, '0');
+  final minutes = (timeZoneOffset.inMinutes % 60).toString().padLeft(2, '0');
+  return '$hours:$minutes';
+}
+
+/// Get date in ISO8601 format with UTC offset
+String getFormattedDateTime(DateTime date) {
+  final localDateTime = DateFormat('yyyy-MM-ddTHH:mm:ss').format(date);
+  return '$localDateTime+${getUtcOffset()}';
+}
+
+/// Check if startTime < Now < endTime
+bool isLiveNow(String startTime, String endTime) {
+  final now = DateTime.now();
+  final end = DateTime.parse(endTime).toLocal();
+  final start = DateTime.parse(startTime).toLocal();
+  return end.isAfter(now) && start.isBefore(now);
 }

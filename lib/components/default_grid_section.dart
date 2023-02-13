@@ -1,12 +1,14 @@
 import 'package:brunstadtv_app/components/section_item_click_wrapper.dart';
 import 'package:brunstadtv_app/models/analytics/sections.dart';
-import 'package:brunstadtv_app/providers/inherited_data.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../graphql/queries/calendar_episode_entries.graphql.dart';
 import '../graphql/queries/page.graphql.dart';
 import '../graphql/schema/pages.graphql.dart';
 import '../helpers/btv_colors.dart';
 import '../l10n/app_localizations.dart';
+import '../providers/todays_calendar_entries.dart';
 import '../services/utils.dart';
 import '../helpers/btv_typography.dart';
 import '../helpers/utils.dart';
@@ -39,7 +41,7 @@ class DefaultGridSection extends StatelessWidget {
   }
 }
 
-class GridSectionList extends StatelessWidget {
+class GridSectionList extends ConsumerWidget {
   const GridSectionList({
     super.key,
     required this.size,
@@ -51,10 +53,15 @@ class GridSectionList extends StatelessWidget {
   final List<Fragment$GridSectionItem> sectionItems;
   final bool showSecondaryTitle;
 
-  Widget getItemWidget(Fragment$GridSectionItem sectionItem) {
+  Widget getItemWidget(Fragment$GridSectionItem sectionItem, Fragment$Episode? curLiveEpisode) {
     var episode = sectionItem.item.asOrNull<Fragment$GridSectionItem$item$$Episode>();
     if (episode != null) {
-      return _GridEpisodeItem(sectionItem: sectionItem, episode: episode, showSecondaryTitle: showSecondaryTitle);
+      return _GridEpisodeItem(
+        sectionItem: sectionItem,
+        episode: episode,
+        showSecondaryTitle: showSecondaryTitle,
+        isLive: sectionItem.id == curLiveEpisode?.id,
+      );
     }
     var show = sectionItem.item.asOrNull<Fragment$GridSectionItem$item$$Show>();
     if (show != null) {
@@ -64,7 +71,9 @@ class GridSectionList extends StatelessWidget {
   }
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    Fragment$Episode? curLiveEpisode = ref.watch(currentLiveEpisodeProvider)?.episode;
+
     final colSize = _columnSize[size] ?? _columnSize[Enum$GridSectionSize.half]!;
     final items = sectionItems
         .where((element) => element.item is Fragment$GridSectionItem$item$$Episode || element.item is Fragment$GridSectionItem$item$$Show)
@@ -80,7 +89,7 @@ class GridSectionList extends StatelessWidget {
           return SectionItemClickWrapper(
             item: kv.value.item,
             analytics: SectionItemAnalytics(id: kv.value.id, position: kv.key, type: kv.value.$__typename, name: kv.value.title),
-            child: getItemWidget(kv.value),
+            child: getItemWidget(kv.value, curLiveEpisode),
           );
         }).toList(),
         colSize: colSize,
@@ -99,12 +108,12 @@ class _GridEpisodeItem extends StatelessWidget {
   final Fragment$GridSectionItem sectionItem;
   final Fragment$GridSectionItem$item$$Episode episode;
   final bool showSecondaryTitle;
+  final bool isLive;
 
-  _GridEpisodeItem({required this.sectionItem, required this.episode, required this.showSecondaryTitle});
+  _GridEpisodeItem({required this.sectionItem, required this.episode, required this.showSecondaryTitle, this.isLive = false});
 
   // TODO: Remove these temp variables
   bool get watched => episode.progress != null && episode.progress! > episode.duration * 0.9;
-  bool isLive = false;
   bool isNewItem = false;
 
   @override
@@ -157,13 +166,13 @@ class _GridEpisodeItem extends StatelessWidget {
         child: Stack(
           clipBehavior: Clip.none,
           children: [
-            isUnavailable(episode.publishDate)
+            episode.locked && !isLive
                 ? Opacity(
                     opacity: 0.5,
                     child: BorderedImageContainer(imageUrl: sectionItem.image),
                   )
                 : BorderedImageContainer(imageUrl: sectionItem.image),
-            if (isUnavailable(episode.publishDate))
+            if (episode.locked)
               Container(
                 width: double.infinity,
                 height: double.infinity,
@@ -181,7 +190,7 @@ class _GridEpisodeItem extends StatelessWidget {
                   child: WatchProgressIndicator(totalDuration: episode.duration, watchedDuration: episode.progress!),
                 ),
               )
-            else if (!isUnavailable(episode.publishDate))
+            else if (!episode.locked)
               Align(
                 alignment: Alignment.bottomCenter,
                 child: Container(
@@ -196,11 +205,11 @@ class _GridEpisodeItem extends StatelessWidget {
                   ),
                 ),
               ),
-            if (getFeaturedTag(publishDate: episode.publishDate) != null)
+            if (getFeaturedTag(publishDate: episode.publishDate, locked: episode.locked, isLive: isLive) != null)
               Positioned(
                 top: -4,
                 right: -4,
-                child: getFeaturedTag(publishDate: episode.publishDate)!,
+                child: getFeaturedTag(publishDate: episode.publishDate, locked: episode.locked, isLive: isLive)!,
               ),
           ],
         ),

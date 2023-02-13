@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:brunstadtv_app/graphql/queries/calendar_episode_entries.graphql.dart';
 import 'package:brunstadtv_app/graphql/queries/page.graphql.dart';
 import 'package:brunstadtv_app/helpers/utils.dart';
 import 'package:brunstadtv_app/providers/auth_state/auth_state.dart';
@@ -16,6 +17,7 @@ import '../graphql/client.dart';
 import '../graphql/queries/application.graphql.dart';
 import '../graphql/queries/progress.graphql.dart';
 import '../graphql/schema/items.graphql.dart';
+import '../services/utils.dart';
 
 class ApiErrorCodes {
   ApiErrorCodes._();
@@ -113,6 +115,21 @@ class Api {
         .mutate$setEpisodeProgress(Options$Mutation$setEpisodeProgress(
             variables: Variables$Mutation$setEpisodeProgress(id: episodeId, progress: progress?.finiteOrNull()?.round())))
         .then((value) => debugPrint('set progress to: ${value.parsedData?.setEpisodeProgress.progress.toString()}'));
+  }
+
+  Future<Query$CalendarDayEpisodeEntries$calendar?> getCalendarDayEpisodes(DateTime date) {
+    return gqlClient
+        .query$CalendarDayEpisodeEntries(
+            Options$Query$CalendarDayEpisodeEntries(variables: Variables$Query$CalendarDayEpisodeEntries(date: getFormattedDateTime(date))))
+        .then((result) {
+      if (result.hasException) {
+        throw result.exception!;
+      }
+      if (result.parsedData == null) {
+        throw ErrorDescription('Calender data for today is null.');
+      }
+      return result.parsedData!.calendar;
+    });
   }
 }
 

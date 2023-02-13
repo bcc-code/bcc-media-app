@@ -161,6 +161,9 @@ class SDe extends S {
   String get play => 'Abspielen';
 
   @override
+  String get pause => 'Pause';
+
+  @override
   String get castQueue => 'Wiedergabeliste streamen';
 
   @override

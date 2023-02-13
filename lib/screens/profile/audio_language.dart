@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import '../../components/custom_back_button.dart';
 import '../../components/option_list.dart';
 import '../../helpers/languages.dart';
 import '../../l10n/app_localizations.dart';
@@ -17,7 +18,8 @@ class AppAudioLanguage extends ConsumerStatefulWidget {
 class _AppAudioLanguageState extends ConsumerState<AppAudioLanguage> {
   late String? selected;
 
-  void _onSelectionChanged(String id) {
+  void _onSelectionChanged(String? id) {
+    if (id == null) return;
     ref.read(analyticsProvider).languageChanged(LanguageChangedEvent(
           languageFrom: selected,
           languageTo: id,
@@ -40,24 +42,19 @@ class _AppAudioLanguageState extends ConsumerState<AppAudioLanguage> {
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
+        toolbarHeight: 44,
+        leadingWidth: 92,
+        leading: const CustomBackButton(),
         title: Text(S.of(context).audioLanguage),
       ),
       body: SafeArea(
-        child: Container(
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(15),
-          ),
-          child: SingleChildScrollView(
-            child: Column(
-              children: [
-                Padding(
-                    padding: const EdgeInsets.all(16).copyWith(bottom: 100),
-                    child: OptionList(
-                        optionData: languages.map((l) => Option(id: l.code, title: l.nativeName)).toList(),
-                        currentSelection: selected,
-                        onSelectionChange: _onSelectionChanged))
-              ],
-            ),
+        child: Padding(
+          padding: const EdgeInsets.all(16),
+          child: OptionList(
+            optionData: languages.entries.map((e) => Option(id: e.key, title: e.value.nativeName, subTitle: e.value.englishName)).toList(),
+            currentSelection: selected,
+            backgroundColor: Colors.transparent,
+            onSelectionChange: _onSelectionChanged,
           ),
         ),
       ),

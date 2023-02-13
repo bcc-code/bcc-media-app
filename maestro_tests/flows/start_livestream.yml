@@ -1,0 +1,13 @@
+# flow.yaml
+
+appId: tv.brunstad.app
+---
+- runScript: ../.env.js
+- runScript: ../init.js
+- runFlow: ../subflows/login.yml
+- tapOn: Live.*
+- tapOn:
+    point: "50%,20%"
+- tapOn: Home.*
+- assertVisible: .*BrunstadTV.*
+- assertVisible: Pause

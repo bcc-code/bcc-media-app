@@ -161,6 +161,9 @@ class SRu extends S {
   String get play => 'Играть';
 
   @override
+  String get pause => 'Pause';
+
+  @override
   String get castQueue => 'Показывать очередь';
 
   @override

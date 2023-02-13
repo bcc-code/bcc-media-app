@@ -17,7 +17,8 @@ class AppLanguageScreen extends ConsumerStatefulWidget {
 class _AppLanguageScreenState extends ConsumerState<AppLanguageScreen> {
   late String selected;
 
-  Future<void> _onSelectionChanged(String id) async {
+  Future<void> _onSelectionChanged(String? id) async {
+    if (id == null) return;
     ref.read(analyticsProvider).languageChanged(LanguageChangedEvent(
           languageFrom: selected,
           languageTo: id,
@@ -44,23 +45,13 @@ class _AppLanguageScreenState extends ConsumerState<AppLanguageScreen> {
         title: Text(S.of(context).appLanguage),
       ),
       body: SafeArea(
-        child: Container(
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(15),
-          ),
-          child: SingleChildScrollView(
-            child: Column(
-              children: [
-                Padding(
-                  padding: const EdgeInsets.all(16).copyWith(bottom: 100),
-                  child: OptionList(
-                    optionData: languages.map((l) => Option(id: l.code, title: l.nativeName)).toList(),
-                    currentSelection: selected,
-                    onSelectionChange: _onSelectionChanged,
-                  ),
-                )
-              ],
-            ),
+        child: Padding(
+          padding: const EdgeInsets.all(16),
+          child: OptionList(
+            optionData: appLanuageCodes.map((l) => Option(id: l, title: languages[l]!.nativeName, subTitle: languages[l]!.englishName)).toList(),
+            currentSelection: selected,
+            onSelectionChange: _onSelectionChanged,
+            backgroundColor: Colors.transparent,
           ),
         ),
       ),
