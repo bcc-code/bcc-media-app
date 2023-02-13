@@ -1,4 +1,4 @@
-import 'dart:io';
+import 'package:universal_io/io.dart';
 
 import 'package:brunstadtv_app/env/env.dart';
 import 'package:brunstadtv_app/helpers/widget_keys.dart';

@@ -1,4 +1,4 @@
-import 'dart:io';
+import 'package:universal_io/io.dart';
 import 'package:flutter/widgets.dart';
 import 'package:http/http.dart';
 import 'package:share_plus/share_plus.dart';

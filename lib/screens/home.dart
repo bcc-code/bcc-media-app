@@ -1,5 +1,5 @@
 import 'dart:async';
-import 'dart:io';
+import 'package:universal_io/io.dart';
 import 'dart:ui';
 
 import 'package:auto_route/auto_route.dart';
@@ -62,6 +62,7 @@ class HomeScreenState extends ConsumerState<HomeScreen> with PageMixin implement
   }
 
   void showDialogIfOldAppVersion() async {
+    Platform.isAndroid ? 1 : 2;
     final appConfig = await ref.read(appConfigProvider);
     if (appConfig == null) return;
     final packageInfo = await PackageInfo.fromPlatform();

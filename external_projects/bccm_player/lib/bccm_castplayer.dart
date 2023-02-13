@@ -1,4 +1,4 @@
-import 'dart:io';
+import 'package:universal_io/io.dart';
 
 import 'package:bccm_player/playback_service_interface.dart';
 import 'package:flutter/foundation.dart';
@@ -27,12 +27,8 @@ class _BccmPlayerState extends State<BccmCastPlayer> {
         child: AspectRatio(
             aspectRatio: 16 / 9,
             child: Container(
-              decoration:
-                  const BoxDecoration(color: Color.fromARGB(255, 29, 40, 56)),
-              child: SvgPicture.asset('assets/images/chromecast_bg.svg',
-                  fit: BoxFit.cover,
-                  package: 'bccm_player',
-                  semanticsLabel: 'Casting'),
+              decoration: const BoxDecoration(color: Color.fromARGB(255, 29, 40, 56)),
+              child: SvgPicture.asset('assets/images/chromecast_bg.svg', fit: BoxFit.cover, package: 'bccm_player', semanticsLabel: 'Casting'),
             )),
       ),
     );
@@ -48,12 +44,8 @@ class _BccmPlayerState extends State<BccmCastPlayer> {
               child: AspectRatio(
                   aspectRatio: 16 / 9,
                   child: Container(
-                    decoration: const BoxDecoration(
-                        color: Color.fromARGB(255, 29, 40, 56)),
-                    child: SvgPicture.asset('assets/images/chromecast_bg.svg',
-                        fit: BoxFit.cover,
-                        package: 'bccm_player',
-                        semanticsLabel: 'Casting'),
+                    decoration: const BoxDecoration(color: Color.fromARGB(255, 29, 40, 56)),
+                    child: SvgPicture.asset('assets/images/chromecast_bg.svg', fit: BoxFit.cover, package: 'bccm_player', semanticsLabel: 'Casting'),
                   )),
             ),
           ),
@@ -62,9 +54,7 @@ class _BccmPlayerState extends State<BccmCastPlayer> {
             children: [
               const Text('test'),
               //SizedBox(height: 100, child: AndroidNativeText(widget: widget)),
-              AspectRatio(
-                  aspectRatio: 16 / 9,
-                  child: AndroidCastPlayer(widget: widget)),
+              AspectRatio(aspectRatio: 16 / 9, child: AndroidCastPlayer(widget: widget)),
             ],
           )
       ],

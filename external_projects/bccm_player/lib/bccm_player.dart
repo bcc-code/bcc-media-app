@@ -1,4 +1,4 @@
-import 'dart:io';
+import 'package:universal_io/io.dart';
 
 import 'package:bccm_player/bccm_castplayer.dart';
 import 'package:bccm_player/playback_service_interface.dart';
