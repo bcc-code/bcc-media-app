@@ -106,12 +106,10 @@ Future<void> $main({required FirebaseOptions? firebaseOptions}) async {
   providerContainer.read(settingsProvider.notifier).init();
   providerContainer.read(chromecastListenerProvider);
   providerContainer.read(appConfigProvider);
-  if (kIsWeb) {
-    providerContainer.read(playbackApiProvider).getChromecastState().then((value) {
-      providerContainer.read(isCasting.notifier).state = value?.connectionState == CastConnectionState.connected;
-      providerContainer.read(castPlayerProvider.notifier).setMediaItem(value?.mediaItem);
-    });
-  }
+  providerContainer.read(playbackApiProvider).getChromecastState().then((value) {
+    providerContainer.read(isCasting.notifier).state = value?.connectionState == CastConnectionState.connected;
+    providerContainer.read(castPlayerProvider.notifier).setMediaItem(value?.mediaItem);
+  });
   providerContainer.read(analyticsProvider);
   providerContainer.listen<Player?>(primaryPlayerProvider, (_, next) {
     if (next?.currentMediaItem != null && next?.playbackState == PlaybackState.playing) {
