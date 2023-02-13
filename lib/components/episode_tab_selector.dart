@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 
 import '../helpers/btv_colors.dart';
 import '../helpers/btv_typography.dart';
-import '../l10n/app_localizations.dart';
 import 'option_list.dart';
 
 class EpisodeTabSelector extends StatelessWidget {

@@ -45,6 +45,7 @@ class OptionButton extends StatelessWidget {
   final VoidCallback onPressed;
 
   const OptionButton({
+    super.key,
     required this.optionName,
     required this.onPressed,
     this.currentSelection,

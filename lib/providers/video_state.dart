@@ -3,7 +3,6 @@ import 'dart:async';
 import 'package:bccm_player/playback_platform_pigeon.g.dart';
 import 'package:riverpod/riverpod.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:brunstadtv_app/helpers/utils.dart';
 
 part 'video_state.freezed.dart';
 

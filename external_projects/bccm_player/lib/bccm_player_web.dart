@@ -3,8 +3,6 @@
 // package as the core of your plugin.
 // ignore: avoid_web_libraries_in_flutter
 import 'dart:html' as html show window;
-import 'dart:html';
-import 'dart:ui' as ui;
 
 import 'package:bccm_player/playback_platform_pigeon.g.dart' as pigeon;
 import 'package:bccm_player/playback_service_interface.dart';

@@ -91,9 +91,9 @@ class _GridEpisodeItem extends StatelessWidget {
   final Fragment$Section$$PosterGridSection$items$items$item$$Episode episode;
   final bool showSecondaryTitle;
   final bool isLive;
+  final bool isNewItem = false;
 
   bool get watched => episode.progress != null && episode.progress! > episode.duration * 0.9;
-  bool isNewItem = false;
 
   _GridEpisodeItem({required this.sectionItem, required this.showSecondaryTitle, this.isLive = false})
       : episode = sectionItem.item as Fragment$Section$$PosterGridSection$items$items$item$$Episode;
@@ -205,7 +205,7 @@ class _GridShowItem extends StatelessWidget {
   final Fragment$Section$$PosterGridSection$items$items$item$$Show show;
 
   // TODO: Remove this
-  bool hasNewEpisodes = false;
+  final bool hasNewEpisodes = false;
 
   _GridShowItem({required this.sectionItem}) : show = sectionItem.item as Fragment$Section$$PosterGridSection$items$items$item$$Show;
 

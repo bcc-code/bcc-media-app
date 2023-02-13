@@ -85,7 +85,7 @@ class _AchievementDialogState extends ConsumerState<AchievementDialog> {
                   });
                 },
                 labelText: S.of(context).share,
-                image: processingShare ? LoadingIndicator() : SvgPicture.string(SvgIcons.share),
+                image: processingShare ? const LoadingIndicator() : SvgPicture.string(SvgIcons.share),
               ),
             ),
     );

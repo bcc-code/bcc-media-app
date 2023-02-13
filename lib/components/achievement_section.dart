@@ -1,7 +1,5 @@
-import 'package:brunstadtv_app/components/error_generic.dart';
 import 'package:brunstadtv_app/components/loading_indicator.dart';
 import 'package:brunstadtv_app/graphql/queries/achievements.graphql.dart';
-import 'package:brunstadtv_app/helpers/utils.dart';
 import 'package:flutter/material.dart';
 
 import 'achievement_dialog.dart';

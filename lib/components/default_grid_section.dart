@@ -110,11 +110,11 @@ class _GridEpisodeItem extends StatelessWidget {
   final bool showSecondaryTitle;
   final bool isLive;
 
-  _GridEpisodeItem({required this.sectionItem, required this.episode, required this.showSecondaryTitle, this.isLive = false});
+  const _GridEpisodeItem({required this.sectionItem, required this.episode, required this.showSecondaryTitle, this.isLive = false});
 
   // TODO: Remove these temp variables
   bool get watched => episode.progress != null && episode.progress! > episode.duration * 0.9;
-  bool isNewItem = false;
+  final bool isNewItem = false;
 
   @override
   Widget build(BuildContext context) {
@@ -221,10 +221,10 @@ class _GridEpisodeItem extends StatelessWidget {
 class _GridShowItem extends StatelessWidget {
   final Fragment$GridSectionItem sectionItem;
   final Fragment$GridSectionItem$item$$Show show;
-  _GridShowItem({required this.sectionItem, required this.show});
+  const _GridShowItem({required this.sectionItem, required this.show});
 
   // TODO: Remove this
-  bool hasNewEpisodes = false;
+  final bool hasNewEpisodes = false;
 
   @override
   Widget build(BuildContext context) {

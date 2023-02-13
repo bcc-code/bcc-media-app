@@ -93,7 +93,6 @@ class _PosterEpisodeItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final productionDate = getFormattedProductionDate(episode.productionDate);
     return Container(
       margin: const EdgeInsets.symmetric(vertical: 12),
       width: imageSize[size]!.width,
@@ -201,7 +200,7 @@ class _PosterShowItem extends StatelessWidget {
   final Fragment$Section$$PosterSection$items$items$item$$Show show;
   final Enum$SectionSize size;
 
-  bool hasNewEpisodes = false;
+  final bool hasNewEpisodes = false;
 
   _PosterShowItem({
     required this.sectionItem,

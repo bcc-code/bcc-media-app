@@ -1,7 +1,6 @@
 import 'dart:async';
 
 import 'package:bccm_player/chromecast_pigeon.g.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 final chromecastListenerProvider = Provider<ChromecastListener>((c) {

@@ -66,7 +66,7 @@ class CategoryButton extends StatelessWidget {
               ),
             ),
             Padding(
-              padding: EdgeInsets.only(top: 4),
+              padding: const EdgeInsets.only(top: 4),
               child: Text(
                 label,
                 textAlign: TextAlign.center,

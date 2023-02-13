@@ -18,7 +18,6 @@ class SearchBar extends StatefulWidget {
 class _SearchBarState extends State<SearchBar> {
   late TextEditingController _fieldController;
   late FocusNode focusNode;
-  bool _focusing = false;
 
   @override
   void initState() {

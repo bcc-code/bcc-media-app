@@ -1,5 +1,4 @@
 import 'package:brunstadtv_app/env/env.dart';
-import 'package:brunstadtv_app/graphql/queries/achievements.graphql.dart';
 import 'package:brunstadtv_app/helpers/utils.dart';
 import 'package:brunstadtv_app/models/analytics/achievement_clicked.dart';
 import 'package:brunstadtv_app/models/auth/auth0_id_token.dart';

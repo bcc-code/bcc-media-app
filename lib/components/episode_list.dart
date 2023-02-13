@@ -1,14 +1,9 @@
-import 'package:auto_route/auto_route.dart';
 import 'package:brunstadtv_app/helpers/btv_typography.dart';
-import 'package:brunstadtv_app/models/analytics/sections.dart';
-import 'package:brunstadtv_app/router/router.gr.dart';
 import 'package:flutter/material.dart';
 
 import '../helpers/btv_colors.dart';
 import '../helpers/utils.dart';
 import '../l10n/app_localizations.dart';
-import '../providers/analytics.dart';
-import '../providers/inherited_data.dart';
 import 'bordered_image_container.dart';
 
 class EpisodeListEpisode extends StatelessWidget {

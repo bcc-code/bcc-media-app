@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import '../graphql/queries/page.graphql.dart';
 import '../helpers/btv_colors.dart';
 import '../helpers/btv_typography.dart';
-import '../helpers/utils.dart';
 import '../models/analytics/sections.dart';
 import 'horizontal_slider.dart';
 

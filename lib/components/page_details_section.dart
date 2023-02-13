@@ -1,10 +1,8 @@
 import 'package:brunstadtv_app/helpers/btv_typography.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_markdown/flutter_markdown.dart';
 
 import '../graphql/queries/page.graphql.dart';
 import '../helpers/btv_colors.dart';
-import '../services/utils.dart';
 
 class PageDetailsSection extends StatelessWidget {
   final Fragment$Section$$PageDetailsSection data;

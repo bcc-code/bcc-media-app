@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 
 import '../graphql/queries/page.graphql.dart';
 import '../graphql/schema/pages.graphql.dart';
-import '../helpers/utils.dart';
 import 'grid_row.dart';
 import 'category_button.dart';
 

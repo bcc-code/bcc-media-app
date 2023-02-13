@@ -2,10 +2,9 @@ import 'package:auto_route/auto_route.dart';
 import 'package:brunstadtv_app/graphql/queries/episode.graphql.dart';
 import 'package:brunstadtv_app/graphql/queries/redirect.graphql.dart';
 import 'package:brunstadtv_app/helpers/navigation_utils.dart';
-import 'package:brunstadtv_app/router/router.gr.dart';
+import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:url_launcher/url_launcher.dart';
-import 'package:url_launcher/url_launcher_string.dart';
 
 import '../graphql/client.dart';
 
@@ -95,13 +94,14 @@ class SpecialRoutesGuard extends AutoRouteGuard {
         if (value.parsedData == null) {
           final legacyType = legacyEpisodeId != null ? 'episode' : 'program';
           final id = legacyEpisodeId ?? legacyProgramId;
-          print('Could not find new episode id from legacy $legacyType id: "$id"');
+          FirebaseCrashlytics.instance.recordError(Exception('Could not find new episode id from legacy $legacyType id: "$id"'), StackTrace.current);
           return null;
         }
         return value.parsedData!.legacyIDLookup.id;
       },
     ).catchError((error) {
-      print(error);
+      FirebaseCrashlytics.instance.recordError(Exception(error.toString()), StackTrace.current);
+      return null;
     });
   }
 }

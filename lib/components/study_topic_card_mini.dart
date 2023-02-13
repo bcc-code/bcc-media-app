@@ -1,13 +1,9 @@
 import 'package:brunstadtv_app/components/bordered_image_container.dart';
-import 'package:brunstadtv_app/components/pulse_animation.dart';
 import 'package:brunstadtv_app/components/shiny_clipper.dart';
-import 'package:brunstadtv_app/components/study_progress.dart';
-import 'package:brunstadtv_app/helpers/btv_gradients.dart';
 import 'package:brunstadtv_app/helpers/btv_typography.dart';
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 
-import 'package:brunstadtv_app/graphql/queries/studies.graphql.dart';
 import 'package:flutter_svg/svg.dart';
 
 import '../../helpers/btv_colors.dart';

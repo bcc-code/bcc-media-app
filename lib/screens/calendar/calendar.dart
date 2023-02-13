@@ -45,7 +45,7 @@ class _CalendarPageState extends ConsumerState<CalendarPage> {
               },
               child: Padding(
                 padding: const EdgeInsets.only(right: 16),
-                child: collapsed ? SvgPicture.string(SvgIcons.calendar_1_line) : SvgPicture.string(SvgIcons.calendar_2_lines),
+                child: collapsed ? SvgPicture.string(SvgIcons.calendar1Line) : SvgPicture.string(SvgIcons.calendar2Lines),
               )),
         ]),
         body: SingleChildScrollView(child: CalendarWidget(collapsed: collapsed)));

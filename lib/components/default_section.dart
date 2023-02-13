@@ -84,11 +84,10 @@ class _DefaultEpisodeItem extends StatelessWidget {
 
   bool get watched => episode.progress != null && episode.progress! > episode.duration * 0.9;
 
-  bool isNewItem = false;
+  final bool isNewItem = false;
 
   @override
   Widget build(BuildContext context) {
-    final productionDate = getFormattedProductionDate(episode.productionDate);
     return SizedBox(
       width: imageSize[size]!.width,
       child: Column(
@@ -192,10 +191,10 @@ class _DefaultEpisodeItem extends StatelessWidget {
 class _DefaultShowItem extends StatelessWidget {
   final Fragment$Section$$DefaultSection$items$items sectionItem;
   final Fragment$Section$$DefaultSection$items$items$item$$Show show;
-  Enum$SectionSize size;
+  final Enum$SectionSize size;
 
   // TODO: Remove this
-  bool hasNewEpisodes = false;
+  final bool hasNewEpisodes = false;
 
   _DefaultShowItem({required this.sectionItem, required this.size})
       : show = sectionItem.item as Fragment$Section$$DefaultSection$items$items$item$$Show;

@@ -1,6 +1,5 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:collection/collection.dart';
-import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -51,7 +50,7 @@ Future<dynamic>? navigateToShowWithoutEpisodeId(BuildContext context, String sho
   final result = await ProviderScope.containerOf(context, listen: false)
       .read(gqlClientProvider)
       .query$getDefaultEpisodeForShow(Options$Query$getDefaultEpisodeForShow(variables: Variables$Query$getDefaultEpisodeForShow(showId: showId)));
-  final episodeId = result?.parsedData?.$show.defaultEpisode.id;
+  final episodeId = result.parsedData?.$show.defaultEpisode.id;
   if (episodeId == null) {
     throw ErrorHint('Failed getting defaultEpisodeId for show $showId');
   }

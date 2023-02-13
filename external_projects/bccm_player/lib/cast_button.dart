@@ -1,6 +1,5 @@
 import 'package:universal_io/io.dart';
 
-import 'package:bccm_player/playback_service_interface.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 

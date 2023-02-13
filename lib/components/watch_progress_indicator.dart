@@ -10,7 +10,8 @@ class WatchProgressIndicator extends StatelessWidget {
   final int totalDuration;
   final int watchedDuration;
 
-  WatchProgressIndicator({
+  const WatchProgressIndicator({
+    super.key,
     required this.totalDuration,
     required this.watchedDuration,
   });

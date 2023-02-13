@@ -15,7 +15,6 @@ import 'package:brunstadtv_app/graphql/schema/pages.graphql.dart';
 import 'package:brunstadtv_app/helpers/navigation_override.dart';
 import 'package:brunstadtv_app/helpers/svg_icons.dart';
 import 'package:brunstadtv_app/router/router.gr.dart';
-import 'package:brunstadtv_app/services/utils.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:bccm_player/bccm_player.dart';
@@ -166,11 +165,11 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen> with AutoRouteAwa
     return value.parsedData;
   }
 
-  Future<Query$GetEpisodeLessonProgress?> loadLessonProgressForSeason(String id) async {
+  Future<void> loadLessonProgressForSeason(String id) async {
     final value = await ref
         .read(gqlClientProvider)
         .query$GetSeasonLessonProgress(Options$Query$GetSeasonLessonProgress(variables: Variables$Query$GetSeasonLessonProgress(id: id)));
-    if (!mounted) return null;
+    if (!mounted) return;
     final season = value.parsedData?.season;
 
     if (season != null) {
@@ -286,7 +285,7 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen> with AutoRouteAwa
             ),
             body: ConditionalParentWidget(
                 condition: kIsWeb,
-                conditionalBuilder: (child) => Padding(padding: EdgeInsets.symmetric(horizontal: 300), child: child),
+                conditionalBuilder: (child) => Padding(padding: const EdgeInsets.symmetric(horizontal: 300), child: child),
                 child: Builder(
                   builder: (context) {
                     if (snapshot.hasError && snapshot.connectionState == ConnectionState.done) {
@@ -464,11 +463,11 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen> with AutoRouteAwa
                                     child: EpisodeTabSelector(
                                         onSelectionChange: (val) {
                                           setState(() {
-                                            DefaultTabController.of(context)!.animateTo(val);
+                                            DefaultTabController.of(context).animateTo(val);
                                           });
                                         },
                                         selectedId: '',
-                                        selectedIndex: DefaultTabController.of(context)!.index,
+                                        selectedIndex: DefaultTabController.of(context).index,
                                         tabs: [
                                           Option(id: 'episodes', title: (S.of(context).episodes.toUpperCase())),
                                           Option(id: 'details', title: (S.of(context).details.toUpperCase())),
@@ -478,7 +477,7 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen> with AutoRouteAwa
                                 behavior: HitTestBehavior.opaque,
                                 onHorizontalDragUpdate: (details) {
                                   // Note: Sensitivity is integer used when you don't want to mess up vertical drag
-                                  var controller = DefaultTabController.of(context);
+                                  var controller = DefaultTabController.maybeOf(context);
                                   if (controller == null) return;
                                   int sensitivity = 16;
                                   if (details.delta.dx > sensitivity && controller.index > 0) {
@@ -492,7 +491,7 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen> with AutoRouteAwa
                                   }
                                 },
                                 child: FadeIndexedStack(
-                                  index: DefaultTabController.of(context)!.index,
+                                  index: DefaultTabController.of(context).index,
                                   children: [
                                     if (episode.season != null) _seasonEpisodeList(episode) else _relatedItems(episode),
                                     EpisodeDetails(episode.id)
@@ -513,7 +512,6 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen> with AutoRouteAwa
     setState(() {
       selectedSeasonId = id;
     });
-    var api = ref.read(apiProvider);
     var season = await ref.read(apiProvider).getSeasonEpisodes(id);
     if (mounted && season != null) {
       if (season.episodes.items.any((element) => element.lessons.total > 0)) {

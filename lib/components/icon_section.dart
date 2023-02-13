@@ -1,5 +1,4 @@
 import 'package:brunstadtv_app/components/section_item_click_wrapper.dart';
-import 'package:brunstadtv_app/helpers/utils.dart';
 import 'package:flutter/material.dart';
 
 import '../models/analytics/sections.dart';

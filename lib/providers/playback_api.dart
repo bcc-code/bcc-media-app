@@ -1,7 +1,5 @@
 import 'package:bccm_player/playback_platform_pigeon.g.dart';
-import 'package:bccm_player/playback_service.dart';
 import 'package:bccm_player/playback_service_interface.dart';
-import 'package:brunstadtv_app/api/brunstadtv.dart';
 import 'package:brunstadtv_app/graphql/queries/episode.graphql.dart';
 import 'package:brunstadtv_app/graphql/schema/items.graphql.dart';
 import 'package:collection/collection.dart';

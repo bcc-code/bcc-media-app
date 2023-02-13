@@ -17,7 +17,7 @@ class ResultProgramsList extends ConsumerStatefulWidget {
   final String title;
   final List<Fragment$SearchResultItem$$ShowSearchItem> items;
 
-  const ResultProgramsList({required this.title, required this.items});
+  const ResultProgramsList({super.key, required this.title, required this.items});
 
   @override
   ConsumerState<ResultProgramsList> createState() => _ResultProgramsListState();
