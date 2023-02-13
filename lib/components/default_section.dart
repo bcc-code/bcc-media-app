@@ -1,10 +1,13 @@
 import 'package:brunstadtv_app/components/section_item_click_wrapper.dart';
 import 'package:brunstadtv_app/models/analytics/sections.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../graphql/queries/calendar_episode_entries.graphql.dart';
 import '../helpers/btv_colors.dart';
 import '../helpers/btv_typography.dart';
 import '../l10n/app_localizations.dart';
+import '../providers/todays_calendar_entries.dart';
 import '../services/utils.dart';
 import 'bordered_image_container.dart';
 import 'horizontal_slider.dart';
@@ -20,13 +23,15 @@ const Map<Enum$SectionSize, Size> imageSize = {
   Enum$SectionSize.medium: Size(240, 146),
 };
 
-class DefaultSection extends StatelessWidget {
+class DefaultSection extends ConsumerWidget {
   final Fragment$Section$$DefaultSection data;
 
   const DefaultSection(this.data, {super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    Fragment$Episode? curLiveEpisode = ref.watch(currentLiveEpisodeProvider)?.episode;
+
     final items = data.items.items
         .where((element) =>
             element.item is Fragment$Section$$DefaultSection$items$items$item$$Episode ||
@@ -39,23 +44,24 @@ class DefaultSection extends StatelessWidget {
       itemCount: items.length,
       itemBuilder: (BuildContext context, int index) {
         var item = items[index];
-        Widget? widget;
+        Widget? sectionItemWidget;
         if (item.item is Fragment$Section$$DefaultSection$items$items$item$$Episode) {
-          widget = _DefaultEpisodeItem(
+          sectionItemWidget = _DefaultEpisodeItem(
             sectionItem: item,
             size: data.size,
             showSecondaryTitle: data.metadata?.secondaryTitles ?? true,
+            isLive: (item.item as Fragment$ItemSectionItem$item$$Episode).id == curLiveEpisode?.id,
           );
         } else if (item.item is Fragment$Section$$DefaultSection$items$items$item$$Show) {
-          widget = _DefaultShowItem(sectionItem: item, size: data.size);
+          sectionItemWidget = _DefaultShowItem(sectionItem: item, size: data.size);
         }
-        if (widget == null) {
+        if (sectionItemWidget == null) {
           return const SizedBox.shrink();
         }
         return SectionItemClickWrapper(
           item: item.item,
           analytics: SectionItemAnalytics(id: item.id, position: index, type: item.$__typename, name: item.title),
-          child: widget,
+          child: sectionItemWidget,
         );
       },
     );
@@ -67,13 +73,16 @@ class _DefaultEpisodeItem extends StatelessWidget {
   final Fragment$Section$$DefaultSection$items$items$item$$Episode episode;
   final bool showSecondaryTitle;
   final Enum$SectionSize size;
+  final bool isLive;
 
-  _DefaultEpisodeItem({required this.sectionItem, required this.size, required this.showSecondaryTitle})
-      : episode = sectionItem.item as Fragment$Section$$DefaultSection$items$items$item$$Episode;
+  _DefaultEpisodeItem({
+    required this.sectionItem,
+    required this.size,
+    required this.showSecondaryTitle,
+    this.isLive = false,
+  }) : episode = sectionItem.item as Fragment$Section$$DefaultSection$items$items$item$$Episode;
 
   bool get watched => episode.progress != null && episode.progress! > episode.duration * 0.9;
-
-  bool isLive = false;
 
   bool isNewItem = false;
 
@@ -129,7 +138,7 @@ class _DefaultEpisodeItem extends StatelessWidget {
       child: Stack(
         clipBehavior: Clip.none,
         children: [
-          episode.locked
+          episode.locked && !isLive
               ? Opacity(
                   opacity: 0.5,
                   child: BorderedImageContainer(imageUrl: sectionItem.image),
@@ -168,11 +177,11 @@ class _DefaultEpisodeItem extends StatelessWidget {
                 ),
               ),
             ),
-          if (getFeaturedTag(publishDate: episode.publishDate, locked: episode.locked) != null)
+          if (getFeaturedTag(publishDate: episode.publishDate, locked: episode.locked, isLive: isLive) != null)
             Positioned(
               top: -4,
               right: -4,
-              child: getFeaturedTag(publishDate: episode.publishDate, locked: episode.locked)!,
+              child: getFeaturedTag(publishDate: episode.publishDate, locked: episode.locked, isLive: isLive)!,
             ),
         ],
       ),

@@ -12,10 +12,12 @@ import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../graphql/queries/calendar_episode_entries.graphql.dart';
 import '../graphql/queries/page.graphql.dart';
 import '../helpers/utils.dart';
 import '../models/pagination_status.dart';
 import '../providers/inherited_data.dart';
+import '../providers/todays_calendar_entries.dart';
 import 'card_section.dart';
 import 'featured_section.dart';
 import 'default_grid_section.dart';
