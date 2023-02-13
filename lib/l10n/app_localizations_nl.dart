@@ -47,8 +47,7 @@ class SNl extends S {
   String get faq => 'Vaak gestelde vragen';
 
   @override
-  String get bccMediaCenter =>
-      'BCC Media is een media-stichting binnen de BCC-federatie, welke content met positieve en christelijke waarden produceert en verspreidt.';
+  String get bccMediaCenter => 'BCC Media is een media-stichting binnen de BCC-federatie, welke content met positieve en christelijke waarden produceert en verspreidt.';
 
   @override
   String get signInButton => 'Log in';
