@@ -193,8 +193,8 @@ Future<void> $main({required FirebaseOptions? firebaseOptions}) async {
                   }),
             )),
   );
-
-  runApp((!kDebugMode || kIsWeb) ? app : InteractiveViewer(maxScale: 10, child: app));
+  final maybeWrappedApp = kDebugMode && !kIsWeb ? InteractiveViewer(maxScale: 10, child: app) : app;
+  runApp(maybeWrappedApp);
 }
 
 ThemeData createTheme() {
@@ -238,7 +238,7 @@ ThemeData createTheme() {
 }
 
 Future<String?> getDefaultLocale() async {
-  final String systemLocale = kIsWeb ? await findSystemLocale() : await findSystemLocale();
+  final String systemLocale = await findSystemLocale();
   final verifiedLocale = Intl.verifiedLocale(systemLocale, NumberFormat.localeExists, onFailure: (String _) => 'en');
   if (verifiedLocale != null) {
     final locale = Intl.shortLocale(verifiedLocale);
