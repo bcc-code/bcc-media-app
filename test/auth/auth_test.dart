@@ -10,7 +10,8 @@
 import 'dart:convert';
 
 import 'package:brunstadtv_app/helpers/constants.dart';
-import 'package:brunstadtv_app/providers/auth_state.dart';
+import 'package:brunstadtv_app/models/auth_state.dart';
+import 'package:brunstadtv_app/providers/auth_state/implementations/auth_state_notifier_mobile.dart';
 import 'package:flutter_appauth/flutter_appauth.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -29,7 +30,7 @@ import '../utils/basic_init.dart';
 class MockTokenRequest extends Mock implements TokenRequest {}
 
 void main() {
-  group('Authentication', () {
+  group('Mobile authentication (AuthStateNotifierMobile)', () {
     test('Refresh when old', () async {
       basicInit();
       final secureStorage = MockFlutterSecureStorage();
@@ -51,7 +52,7 @@ void main() {
             null,
           ));
 
-      final auth = AuthStateNotifier(appAuth: mockAppAuth, secureStorage: secureStorage);
+      final auth = AuthStateNotifierMobile(appAuth: mockAppAuth, secureStorage: secureStorage);
       auth.state = AuthState(
         auth0AccessToken: 'something',
         expiresAt: DateTime.now(),

@@ -4,7 +4,7 @@ import 'package:app_links/app_links.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:brunstadtv_app/api/brunstadtv.dart';
 import 'package:brunstadtv_app/providers/app_config.dart';
-import 'package:brunstadtv_app/providers/auth_state.dart';
+import 'package:brunstadtv_app/providers/auth_state/auth_state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -46,7 +46,7 @@ class _AutoLoginScreeenState extends ConsumerState<AutoLoginScreeen> {
       });
     } else {
       setState(() {
-        authFuture = ref.read(authStateProvider.notifier).loadFromStorage().then((_) {
+        authFuture = ref.read(authStateProvider.notifier).load().then((_) {
           navigate(deepLinkUri: deepLinkUri);
         });
       });

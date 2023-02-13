@@ -12,6 +12,8 @@ abstract class PlaybackPlatformInterface extends PlatformInterface {
   static PlaybackPlatformInterface _instance = PlaybackService();
   static PlaybackPlatformInterface get instance => _instance;
 
+  static Object? playerHtmlElement;
+
   /// Platform-specific implementations should set this with their own
   /// platform-specific class that extends [PlaybackPlatformInterface] when
   /// they register themselves.
@@ -32,8 +34,7 @@ abstract class PlaybackPlatformInterface extends PlatformInterface {
     throw UnimplementedError('setPrimary() has not been implemented.');
   }
 
-  Future<void> replaceCurrentMediaItem(String playerId, MediaItem mediaItem,
-      {bool? playbackPositionFromPrimary, bool? autoplay = true}) {
+  Future<void> replaceCurrentMediaItem(String playerId, MediaItem mediaItem, {bool? playbackPositionFromPrimary, bool? autoplay = true}) {
     throw UnimplementedError('setUrl() has not been implemented.');
   }
 
@@ -46,8 +47,7 @@ abstract class PlaybackPlatformInterface extends PlatformInterface {
   }
 
   void openExpandedCastController() {
-    throw UnimplementedError(
-        'openExpandedCastController() has not been implemented.');
+    throw UnimplementedError('openExpandedCastController() has not been implemented.');
   }
 
   void openCastDialog() {

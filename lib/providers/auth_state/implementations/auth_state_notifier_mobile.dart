@@ -1,36 +1,41 @@
 import 'dart:async';
 import 'dart:convert';
-import 'dart:io';
 
 import 'package:brunstadtv_app/helpers/utils.dart';
 import 'package:clock/clock.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_appauth/flutter_appauth.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
-import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:jwt_decoder/jwt_decoder.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:rudder_sdk_flutter/RudderController.dart';
 import 'package:synchronized/synchronized.dart';
+import 'package:universal_io/io.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-import '../env/env.dart';
-import '../helpers/constants.dart';
-import '../models/auth/auth0_id_token.dart';
+import '../../../env/env.dart';
+import '../../../helpers/constants.dart';
+import '../../../models/auth/auth0_id_token.dart';
+import '../../../models/auth_state.dart';
+import '../auth_state.dart';
 
-part 'auth_state.freezed.dart';
+// Careful. This line is very important,
+// but because it's conditionally imported (see auth_state_notifier_interface.dart)
+// IDEs don't show any errors when you remove it..
+AuthStateNotifier getPlatformSpecificAuthStateNotifier() =>
+    AuthStateNotifierMobile(appAuth: const FlutterAppAuth(), secureStorage: const FlutterSecureStorage());
+
+const FlutterAppAuth appAuth = FlutterAppAuth();
+const FlutterSecureStorage secureStorage = FlutterSecureStorage();
 
 const kMinimumCredentialsTTL = Duration(hours: 1);
 
-final authStateProvider = StateNotifierProvider<AuthStateNotifier, AuthState>((ref) {
-  return AuthStateNotifier(appAuth: const FlutterAppAuth(), secureStorage: const FlutterSecureStorage());
-});
-
-class AuthStateNotifier extends StateNotifier<AuthState> {
-  AuthStateNotifier({required FlutterAppAuth appAuth, required FlutterSecureStorage secureStorage})
+class AuthStateNotifierMobile extends StateNotifier<AuthState> implements AuthStateNotifier {
+  AuthStateNotifierMobile({required FlutterAppAuth appAuth, required FlutterSecureStorage secureStorage})
       : _appAuth = appAuth,
         _secureStorage = secureStorage,
         super(const AuthState());
@@ -46,6 +51,7 @@ class AuthStateNotifier extends StateNotifier<AuthState> {
     );
   }
 
+  @override
   Future<AuthState?> getExistingAndEnsureNotExpired() async {
     if (state.expiresAt == null || state.auth0AccessToken == null) {
       return null;
@@ -59,7 +65,8 @@ class AuthStateNotifier extends StateNotifier<AuthState> {
     return state;
   }
 
-  Future<bool> loadFromStorage() async {
+  @override
+  Future<bool> load() async {
     final accessToken = await _secureStorage.read(key: SecureStorageKeys.accessToken);
     final idToken = await _secureStorage.read(key: SecureStorageKeys.idToken);
 
@@ -127,6 +134,7 @@ class AuthStateNotifier extends StateNotifier<AuthState> {
     );
   }
 
+  @override
   Future logout({bool manual = true}) async {
     await _clearCredentials();
     if (Platform.isAndroid && manual) {
@@ -149,6 +157,7 @@ class AuthStateNotifier extends StateNotifier<AuthState> {
     return;
   }
 
+  @override
   Future<bool> login() async {
     final PackageInfo info = await PackageInfo.fromPlatform();
     try {
@@ -215,21 +224,6 @@ class AuthStateNotifier extends StateNotifier<AuthState> {
         expiresAt: _getAccessTokenExpiry(accessToken),
         signedOutManually: false);
   }
-}
-
-@freezed
-class AuthState with _$AuthState {
-  const AuthState._();
-
-  const factory AuthState({
-    Auth0IdToken? user,
-    String? auth0AccessToken,
-    DateTime? expiresAt,
-    String? idToken,
-    bool? signedOutManually,
-  }) = _Auth;
-
-  bool get guestMode => auth0AccessToken == null;
 }
 
 Auth0IdToken _parseIdToken(String idToken) {

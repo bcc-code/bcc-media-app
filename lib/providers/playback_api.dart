@@ -8,7 +8,7 @@ import 'package:collection/collection.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 final playbackApiProvider = Provider<PlaybackPlatformInterface>((ref) {
-  return PlaybackService();
+  return PlaybackPlatformInterface.instance;
 });
 
 MediaItem _mapEpisode(Query$FetchEpisode$episode episode) {

@@ -39,6 +39,13 @@
   </script>
   <!-- This script adds the flutter initialization JS code -->
   <script src="flutter.js" defer></script>
+
+  <!--
+    Rudderstack
+    https://www.rudderstack.com/docs/sources/event-streams/sdks/rudderstack-flutter-sdk/flutter-v2/#installing-the-sdk-for-the-web
+  -->
+  <script type="text/javascript" src="https://static.bcc.media/rs.min.js"></script>
+
 </head>
 
 <body>
@@ -56,22 +63,21 @@
       });
     });
   </script>
-  <link rel="stylesheet" href="https://brunstad.tv/static/video.js/video-js.min.css" />
-  <link rel="stylesheet" href="https://brunstad.tv/static/css/videojs-brunstadtv-skin.css" />
-  <script src="https://www.gstatic.com/cv/js/sender/v1/cast_sender.js?loadCastFramework=1"></script>
-  <script src="https://brunstad.tv/static/video.js/video.min.js"></script>
-  <script src="https://brunstad.tv/static/js/videojs-create-player.js"></script>
+  <script src="/bccm-video-player/bccm-video-player.umd.js"></script>
+  <script src="https://cdn.auth0.com/js/auth0-spa-js/1.13/auth0-spa-js.production.js"></script>
+  <script src="/assets/packages/flutter_inappwebview/assets/web/web_support.js"></script>
+  <div id="primary-player-wrapper" style="display: none;"></div>
   <script>
     //window.createVideoJsPlayer = (...args) => console.log(args)
 
     let createPlayerView = () => {
       let div = document.createElement("div");
-      div.id = "videoab";
-      div.style.width = "1000px";
-      div.style.height = "750px";
-      div.style.position = "absolute";
+      div.id = "primary_player";
+      div.style.width = "100%";
+      div.style.height = "100%";
+      /* div.style.position = "absolute";
       div.style.left = "calc(50% - 500px)"
-      div.style.display = "none";
+      div.style.display = "none"; */
 
       let button = document.createElement("button");
       button.innerHTML = "Exit player";
@@ -81,7 +87,7 @@
         createPlayerView();
       }
       div.appendChild(button);
-      document.body.appendChild(div);
+      document.getElementById('primary-player-wrapper').appendChild(div);
     }
     setTimeout(createPlayerView, 5000);
   </script>

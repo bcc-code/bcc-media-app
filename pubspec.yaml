@@ -87,8 +87,10 @@ dependencies:
   restart_app: ^1.1.1
   flutter_inappwebview: ^6.0.0-beta.20
   app_links: ^3.3.0
-  jwt_decoder: ^2.0.1
+  auth0_flutter_web: 0.0.1-alpha.6
+  universal_io: ^2.0.4
   web_socket_channel: 2.0.0
+  jwt_decoder: ^2.0.1
   flutter_appauth: ^4.2.1
   synchronized: ^3.0.1
   clock: ^1.1.1

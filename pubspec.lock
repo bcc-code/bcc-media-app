@@ -73,6 +73,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.10.0"
+  auth0_flutter_web:
+    dependency: "direct main"
+    description:
+      name: auth0_flutter_web
+      sha256: e180417c0b166406674a48744c7fc1861deb7942f55154ee2efbd34640ad0878
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.0.1-alpha.6"
   auto_route:
     dependency: "direct main"
     description:
@@ -1560,6 +1568,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.3.1"
+  universal_io:
+    dependency: "direct main"
+    description:
+      name: universal_io
+      sha256: "79f78ddad839ee3aae3ec7c01eb4575faf0d5c860f8e5223bc9f9c17f7f03cef"
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.0.4"
   url_launcher:
     dependency: "direct main"
     description:
