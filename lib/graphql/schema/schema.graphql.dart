@@ -244,24 +244,22 @@ class _CopyWithStubImpl$Input$EpisodeContext<TRes>
 
 const possibleTypesMap = {
   'Pagination': {
-    'AchievementPagination',
-    'AchievementGroupPagination',
+    'SeasonPagination',
+    'EpisodePagination',
     'CollectionItemPagination',
     'QuestionPagination',
     'FAQCategoryPagination',
-    'SeasonPagination',
-    'EpisodePagination',
+    'LessonPagination',
+    'TaskPagination',
     'SectionPagination',
     'LinkPagination',
     'SectionItemPagination',
-    'LessonPagination',
-    'TaskPagination',
+    'AchievementPagination',
+    'AchievementGroupPagination',
   },
-  'CalendarEntry': {
-    'SimpleCalendarEntry',
-    'EpisodeCalendarEntry',
-    'SeasonCalendarEntry',
-    'ShowCalendarEntry',
+  'EpisodeContextUnion': {
+    'Season',
+    'ContextCollection',
   },
   'CollectionItem': {
     'ShowItem',
@@ -269,9 +267,24 @@ const possibleTypesMap = {
     'EpisodeItem',
     'PageItem',
   },
-  'EpisodeContextUnion': {
-    'Season',
-    'ContextCollection',
+  'CalendarEntry': {
+    'SimpleCalendarEntry',
+    'EpisodeCalendarEntry',
+    'SeasonCalendarEntry',
+    'ShowCalendarEntry',
+  },
+  'SearchResultItem': {
+    'EpisodeSearchItem',
+    'SeasonSearchItem',
+    'ShowSearchItem',
+  },
+  'Task': {
+    'AlternativesTask',
+    'TextTask',
+    'PosterTask',
+    'QuoteTask',
+    'VideoTask',
+    'LinkTask',
   },
   'Section': {
     'PosterSection',
@@ -315,18 +328,5 @@ const possibleTypesMap = {
     'Page',
     'Link',
     'StudyTopic',
-  },
-  'SearchResultItem': {
-    'EpisodeSearchItem',
-    'SeasonSearchItem',
-    'ShowSearchItem',
-  },
-  'Task': {
-    'AlternativesTask',
-    'TextTask',
-    'PosterTask',
-    'QuoteTask',
-    'VideoTask',
-    'LinkTask',
   },
 };
