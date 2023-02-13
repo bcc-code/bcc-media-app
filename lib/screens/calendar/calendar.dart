@@ -166,6 +166,7 @@ class _CalendarWidgetState extends ConsumerState<CalendarWidget> {
       setState(() {
         activeDaysPeriod = HashSet.from(activeDaysList111 ?? []);
         eventsPeriod = [];
+        // TODO: refactor to use map() etc.
         value.parsedData?.calendar?.period.events.forEach((element) {
           eventsPeriod.addAll(expandStartNEndDate(element.start, element.end));
         });
