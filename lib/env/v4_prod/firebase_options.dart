@@ -16,7 +16,9 @@ import 'package:flutter/foundation.dart' show defaultTargetPlatform, kIsWeb, Tar
 class DefaultFirebaseOptions {
   static FirebaseOptions get currentPlatform {
     if (kIsWeb) {
-      return web;
+      throw UnsupportedError(
+          'Use prod instead of v4_prod',
+        );
     }
     switch (defaultTargetPlatform) {
       case TargetPlatform.android:
@@ -44,16 +46,6 @@ class DefaultFirebaseOptions {
         );
     }
   }
-
-  static const FirebaseOptions web = FirebaseOptions(
-    apiKey: 'AIzaSyCeHQZV2K_sJ6iAgK9YfiEn0lfswnMKWHk',
-    appId: '1:459822980184:web:4f4b3ec1f913943a4efe2d',
-    messagingSenderId: '459822980184',
-    projectId: 'bcc-media-test',
-    authDomain: 'bcc-media-test.firebaseapp.com',
-    storageBucket: 'bcc-media-test.appspot.com',
-    measurementId: 'G-385FC6FYFN',
-  );
 
   static const FirebaseOptions android = FirebaseOptions(
     apiKey: 'AIzaSyCIie1N55IWsXPLupVCMuSGhdY-YPJ2V5o',
