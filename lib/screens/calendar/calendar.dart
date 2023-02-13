@@ -500,10 +500,10 @@ class _EntriesSlot extends StatelessWidget {
             return GestureDetector(
               behavior: HitTestBehavior.opaque,
               onTapUp: (details) {
-                if (episode != null && episode.episode != null && !isUnavailable(episode.episode!.publishDate)) {
+                if (episode?.episode?.locked == false) {
                   context.router.navigate(
                     HomeScreenWrapperRoute(children: [
-                      EpisodeScreenRoute(episodeId: episode.episode!.id),
+                      EpisodeScreenRoute(episodeId: episode!.episode!.id),
                     ]),
                   );
                 }
@@ -517,7 +517,7 @@ class _EntriesSlot extends StatelessWidget {
                   ),
                 ),
                 child: Opacity(
-                  opacity: episode?.episode != null && !isUnavailable(episode?.episode!.publishDate) ? 1 : 0.7,
+                  opacity: episode?.episode?.locked == false ? 1 : 0.7,
                   child: Row(
                     children: [
                       Padding(

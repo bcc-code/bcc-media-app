@@ -166,13 +166,13 @@ class _GridEpisodeItem extends StatelessWidget {
         child: Stack(
           clipBehavior: Clip.none,
           children: [
-            isUnavailable(episode.publishDate) && !isLive
+            episode.locked && !isLive
                 ? Opacity(
                     opacity: 0.5,
                     child: BorderedImageContainer(imageUrl: sectionItem.image),
                   )
                 : BorderedImageContainer(imageUrl: sectionItem.image),
-            if (isUnavailable(episode.publishDate))
+            if (episode.locked)
               Container(
                 width: double.infinity,
                 height: double.infinity,
@@ -190,7 +190,7 @@ class _GridEpisodeItem extends StatelessWidget {
                   child: WatchProgressIndicator(totalDuration: episode.duration, watchedDuration: episode.progress!),
                 ),
               )
-            else if (!isUnavailable(episode.publishDate))
+            else if (!episode.locked)
               Align(
                 alignment: Alignment.bottomCenter,
                 child: Container(
@@ -205,11 +205,11 @@ class _GridEpisodeItem extends StatelessWidget {
                   ),
                 ),
               ),
-            if (getFeaturedTag(publishDate: episode.publishDate, isLive: isLive) != null)
+            if (getFeaturedTag(publishDate: episode.publishDate, locked: episode.locked, isLive: isLive) != null)
               Positioned(
                 top: -4,
                 right: -4,
-                child: getFeaturedTag(publishDate: episode.publishDate, isLive: isLive)!,
+                child: getFeaturedTag(publishDate: episode.publishDate, locked: episode.locked, isLive: isLive)!,
               ),
           ],
         ),

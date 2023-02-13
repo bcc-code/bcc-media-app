@@ -2,15 +2,17 @@ import 'package:flutter/material.dart';
 
 import '../helpers/btv_colors.dart';
 import '../helpers/btv_typography.dart';
+import '../l10n/app_localizations.dart';
 
 class OptionList extends StatelessWidget {
   final List<Option> optionData;
   final String? currentSelection;
-  final void Function(String) onSelectionChange;
+  final void Function(String?) onSelectionChange;
   final EdgeInsetsGeometry margin;
   final bool enableDivider;
   final bool showSelection;
   final Color backgroundColor;
+  final bool showNoneOption;
 
   const OptionList({
     super.key,
@@ -19,37 +21,47 @@ class OptionList extends StatelessWidget {
     required this.onSelectionChange,
     this.enableDivider = false,
     this.showSelection = true,
+    this.showNoneOption = false,
     this.margin = const EdgeInsets.only(top: 16, left: 16, right: 16),
     this.backgroundColor = BtvColors.background2,
   });
 
   @override
   Widget build(BuildContext context) {
+    List<Option> optionData = showNoneOption
+        ? [
+            Option(id: null, title: S.of(context).none),
+            ...this.optionData,
+          ]
+        : this.optionData;
+
     return DecoratedBox(
       decoration: BoxDecoration(
         color: backgroundColor,
         borderRadius: BorderRadius.circular(12),
       ),
-      child: ListView.separated(
-        physics: const NeverScrollableScrollPhysics(),
-        cacheExtent: 100000,
-        shrinkWrap: true,
-        itemCount: optionData.length,
-        itemBuilder: (context, index) {
-          final option = optionData[index];
-          final isOptionSelected = currentSelection != null && showSelection && (currentSelection!.isNotEmpty && currentSelection == option.id);
-          return _getOption(option, isOptionSelected);
-        },
-        separatorBuilder: (context, index) {
-          return Visibility(
-            visible: enableDivider,
-            child: const Divider(
-              height: 1,
-              thickness: 1,
-              indent: 16,
-            ),
-          );
-        },
+      child: ScrollConfiguration(
+        behavior: const ScrollBehavior().copyWith(overscroll: false), // Disable over-scroll glow effect
+        child: ListView.separated(
+          cacheExtent: 100000,
+          shrinkWrap: true,
+          itemCount: optionData.length,
+          itemBuilder: (context, index) {
+            final option = optionData[index];
+            final isOptionSelected = showSelection && currentSelection == option.id;
+            return _getOption(option, isOptionSelected);
+          },
+          separatorBuilder: (context, index) {
+            return Visibility(
+              visible: enableDivider,
+              child: const Divider(
+                height: 1,
+                thickness: 1,
+                indent: 16,
+              ),
+            );
+          },
+        ),
       ),
     );
   }
@@ -107,7 +119,7 @@ class OptionList extends StatelessWidget {
 }
 
 class Option {
-  final String id;
+  final String? id;
   final String title;
   final Widget? icon;
   bool disabled;

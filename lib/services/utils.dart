@@ -56,7 +56,7 @@ bool isUnavailable(String? publishDate) {
   return DateTime.now().isBefore(parsedDateTime);
 }
 
-bool isComingSoon(String? publishDate) {
+bool isComingSoon({required String? publishDate, required bool locked}) {
   if (publishDate == null) {
     return false;
   }
@@ -64,7 +64,7 @@ bool isComingSoon(String? publishDate) {
   if (publishDateTime == null) {
     return false;
   }
-  return DateTime.now().isBefore(publishDateTime) && DateTime.now().add(const Duration(days: 2)).isAfter(publishDateTime);
+  return locked && DateTime.now().add(const Duration(days: 2)).isAfter(publishDateTime);
 }
 
 // Parse color from hex string in the formats "aabbcc", "#aabbcc", "ffaabbcc", "#ffaabbcc"
@@ -85,14 +85,14 @@ Color? getColorFromHex(String hexString) {
   return Color(color);
 }
 
-Widget? getFeaturedTag({required String? publishDate, bool isLive = false}) {
+Widget? getFeaturedTag({required String? publishDate, required bool locked, bool isLive = false}) {
   bool isNewItem = false;
   if (isLive) {
     return const FeatureBadge(
       label: 'Live now',
       color: BtvColors.tint2,
     );
-  } else if (isComingSoon(publishDate)) {
+  } else if (isComingSoon(publishDate: publishDate, locked: locked)) {
     return const FeatureBadge(
       label: 'Coming soon',
       color: BtvColors.background2,

@@ -161,6 +161,9 @@ class SEs extends S {
   String get play => 'Reproducir';
 
   @override
+  String get pause => 'Pause';
+
+  @override
   String get castQueue => 'Emitir cola de reproducción';
 
   @override

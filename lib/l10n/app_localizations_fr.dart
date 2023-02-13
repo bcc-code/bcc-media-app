@@ -161,6 +161,9 @@ class SFr extends S {
   String get play => 'Lire';
 
   @override
+  String get pause => 'Pause';
+
+  @override
   String get castQueue => 'File d\'attente du Chromecast';
 
   @override

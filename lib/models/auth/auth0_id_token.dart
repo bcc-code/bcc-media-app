@@ -5,7 +5,7 @@ part 'auth0_id_token.g.dart';
 
 @JsonSerializable()
 class Auth0IdToken {
-  Auth0IdToken({
+  const Auth0IdToken({
     required this.nickname,
     required this.name,
     required this.picture,

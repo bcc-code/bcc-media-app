@@ -43,6 +43,7 @@ class FeaturedSection extends ConsumerWidget {
             progress: 0,
             publishDate: '',
             $__typename: 'Episode',
+            locked: false,
           ),
         ),
         ...items.where((item) => item.id != curLiveEpisode!.id)
@@ -58,7 +59,11 @@ class FeaturedSection extends ConsumerWidget {
     return LayoutBuilder(builder: (context, constraints) {
       const marginX = 2.0;
       final viewportFraction = (constraints.maxWidth - (32 - 2 * marginX)) / max(1, constraints.maxWidth);
-      final sectionItems = getItemsWithLiveItem(data.items.items, curLiveEpisode);
+      final filteredItems = data.items.items.where((e) {
+        final episode = e.item.asOrNull<Fragment$ItemSectionItem$item$$Episode>();
+        return episode == null || !episode.locked;
+      }).toList();
+      final sectionItems = getItemsWithLiveItem(filteredItems, curLiveEpisode);
       return Padding(
         padding: const EdgeInsets.only(top: 16),
         child: SizedBox(

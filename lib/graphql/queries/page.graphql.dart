@@ -743,6 +743,7 @@ class Fragment$GridSectionItem$item$$Episode
     required this.$__typename,
     required this.id,
     required this.duration,
+    required this.locked,
     this.progress,
     required this.publishDate,
     this.number,
@@ -754,6 +755,7 @@ class Fragment$GridSectionItem$item$$Episode
     final l$$__typename = json['__typename'];
     final l$id = json['id'];
     final l$duration = json['duration'];
+    final l$locked = json['locked'];
     final l$progress = json['progress'];
     final l$publishDate = json['publishDate'];
     final l$number = json['number'];
@@ -762,6 +764,7 @@ class Fragment$GridSectionItem$item$$Episode
       $__typename: (l$$__typename as String),
       id: (l$id as String),
       duration: (l$duration as int),
+      locked: (l$locked as bool),
       progress: (l$progress as int?),
       publishDate: (l$publishDate as String),
       number: (l$number as int?),
@@ -777,6 +780,8 @@ class Fragment$GridSectionItem$item$$Episode
   final String id;
 
   final int duration;
+
+  final bool locked;
 
   final int? progress;
 
@@ -794,6 +799,8 @@ class Fragment$GridSectionItem$item$$Episode
     _resultData['id'] = l$id;
     final l$duration = duration;
     _resultData['duration'] = l$duration;
+    final l$locked = locked;
+    _resultData['locked'] = l$locked;
     final l$progress = progress;
     _resultData['progress'] = l$progress;
     final l$publishDate = publishDate;
@@ -810,6 +817,7 @@ class Fragment$GridSectionItem$item$$Episode
     final l$$__typename = $__typename;
     final l$id = id;
     final l$duration = duration;
+    final l$locked = locked;
     final l$progress = progress;
     final l$publishDate = publishDate;
     final l$number = number;
@@ -818,6 +826,7 @@ class Fragment$GridSectionItem$item$$Episode
       l$$__typename,
       l$id,
       l$duration,
+      l$locked,
       l$progress,
       l$publishDate,
       l$number,
@@ -847,6 +856,11 @@ class Fragment$GridSectionItem$item$$Episode
     final l$duration = duration;
     final lOther$duration = other.duration;
     if (l$duration != lOther$duration) {
+      return false;
+    }
+    final l$locked = locked;
+    final lOther$locked = other.locked;
+    if (l$locked != lOther$locked) {
       return false;
     }
     final l$progress = progress;
@@ -896,6 +910,7 @@ abstract class CopyWith$Fragment$GridSectionItem$item$$Episode<TRes> {
     String? $__typename,
     String? id,
     int? duration,
+    bool? locked,
     int? progress,
     String? publishDate,
     int? number,
@@ -921,6 +936,7 @@ class _CopyWithImpl$Fragment$GridSectionItem$item$$Episode<TRes>
     Object? $__typename = _undefined,
     Object? id = _undefined,
     Object? duration = _undefined,
+    Object? locked = _undefined,
     Object? progress = _undefined,
     Object? publishDate = _undefined,
     Object? number = _undefined,
@@ -934,6 +950,9 @@ class _CopyWithImpl$Fragment$GridSectionItem$item$$Episode<TRes>
         duration: duration == _undefined || duration == null
             ? _instance.duration
             : (duration as int),
+        locked: locked == _undefined || locked == null
+            ? _instance.locked
+            : (locked as bool),
         progress:
             progress == _undefined ? _instance.progress : (progress as int?),
         publishDate: publishDate == _undefined || publishDate == null
@@ -964,6 +983,7 @@ class _CopyWithStubImpl$Fragment$GridSectionItem$item$$Episode<TRes>
     String? $__typename,
     String? id,
     int? duration,
+    bool? locked,
     int? progress,
     String? publishDate,
     int? number,
@@ -1896,6 +1916,13 @@ const fragmentDefinitionItemSectionItem = FragmentDefinitionNode(
               selectionSet: null,
             ),
             FieldNode(
+              name: NameNode(value: 'locked'),
+              alias: null,
+              arguments: [],
+              directives: [],
+              selectionSet: null,
+            ),
+            FieldNode(
               name: NameNode(value: 'progress'),
               alias: null,
               arguments: [],
@@ -2388,6 +2415,7 @@ class Fragment$ItemSectionItem$item$$Episode
     required this.$__typename,
     required this.id,
     required this.duration,
+    required this.locked,
     this.progress,
     required this.publishDate,
   });
@@ -2397,12 +2425,14 @@ class Fragment$ItemSectionItem$item$$Episode
     final l$$__typename = json['__typename'];
     final l$id = json['id'];
     final l$duration = json['duration'];
+    final l$locked = json['locked'];
     final l$progress = json['progress'];
     final l$publishDate = json['publishDate'];
     return Fragment$ItemSectionItem$item$$Episode(
       $__typename: (l$$__typename as String),
       id: (l$id as String),
       duration: (l$duration as int),
+      locked: (l$locked as bool),
       progress: (l$progress as int?),
       publishDate: (l$publishDate as String),
     );
@@ -2413,6 +2443,8 @@ class Fragment$ItemSectionItem$item$$Episode
   final String id;
 
   final int duration;
+
+  final bool locked;
 
   final int? progress;
 
@@ -2426,6 +2458,8 @@ class Fragment$ItemSectionItem$item$$Episode
     _resultData['id'] = l$id;
     final l$duration = duration;
     _resultData['duration'] = l$duration;
+    final l$locked = locked;
+    _resultData['locked'] = l$locked;
     final l$progress = progress;
     _resultData['progress'] = l$progress;
     final l$publishDate = publishDate;
@@ -2438,12 +2472,14 @@ class Fragment$ItemSectionItem$item$$Episode
     final l$$__typename = $__typename;
     final l$id = id;
     final l$duration = duration;
+    final l$locked = locked;
     final l$progress = progress;
     final l$publishDate = publishDate;
     return Object.hashAll([
       l$$__typename,
       l$id,
       l$duration,
+      l$locked,
       l$progress,
       l$publishDate,
     ]);
@@ -2471,6 +2507,11 @@ class Fragment$ItemSectionItem$item$$Episode
     final l$duration = duration;
     final lOther$duration = other.duration;
     if (l$duration != lOther$duration) {
+      return false;
+    }
+    final l$locked = locked;
+    final lOther$locked = other.locked;
+    if (l$locked != lOther$locked) {
       return false;
     }
     final l$progress = progress;
@@ -2510,6 +2551,7 @@ abstract class CopyWith$Fragment$ItemSectionItem$item$$Episode<TRes> {
     String? $__typename,
     String? id,
     int? duration,
+    bool? locked,
     int? progress,
     String? publishDate,
   });
@@ -2532,6 +2574,7 @@ class _CopyWithImpl$Fragment$ItemSectionItem$item$$Episode<TRes>
     Object? $__typename = _undefined,
     Object? id = _undefined,
     Object? duration = _undefined,
+    Object? locked = _undefined,
     Object? progress = _undefined,
     Object? publishDate = _undefined,
   }) =>
@@ -2543,6 +2586,9 @@ class _CopyWithImpl$Fragment$ItemSectionItem$item$$Episode<TRes>
         duration: duration == _undefined || duration == null
             ? _instance.duration
             : (duration as int),
+        locked: locked == _undefined || locked == null
+            ? _instance.locked
+            : (locked as bool),
         progress:
             progress == _undefined ? _instance.progress : (progress as int?),
         publishDate: publishDate == _undefined || publishDate == null
@@ -2561,6 +2607,7 @@ class _CopyWithStubImpl$Fragment$ItemSectionItem$item$$Episode<TRes>
     String? $__typename,
     String? id,
     int? duration,
+    bool? locked,
     int? progress,
     String? publishDate,
   }) =>
@@ -6400,6 +6447,7 @@ class Fragment$Section$$PosterSection$items$items$item$$Episode
     required this.$__typename,
     required this.id,
     required this.duration,
+    required this.locked,
     this.progress,
     required this.publishDate,
     required this.productionDate,
@@ -6411,6 +6459,7 @@ class Fragment$Section$$PosterSection$items$items$item$$Episode
     final l$$__typename = json['__typename'];
     final l$id = json['id'];
     final l$duration = json['duration'];
+    final l$locked = json['locked'];
     final l$progress = json['progress'];
     final l$publishDate = json['publishDate'];
     final l$productionDate = json['productionDate'];
@@ -6419,6 +6468,7 @@ class Fragment$Section$$PosterSection$items$items$item$$Episode
       $__typename: (l$$__typename as String),
       id: (l$id as String),
       duration: (l$duration as int),
+      locked: (l$locked as bool),
       progress: (l$progress as int?),
       publishDate: (l$publishDate as String),
       productionDate: (l$productionDate as String),
@@ -6434,6 +6484,8 @@ class Fragment$Section$$PosterSection$items$items$item$$Episode
   final String id;
 
   final int duration;
+
+  final bool locked;
 
   final int? progress;
 
@@ -6452,6 +6504,8 @@ class Fragment$Section$$PosterSection$items$items$item$$Episode
     _resultData['id'] = l$id;
     final l$duration = duration;
     _resultData['duration'] = l$duration;
+    final l$locked = locked;
+    _resultData['locked'] = l$locked;
     final l$progress = progress;
     _resultData['progress'] = l$progress;
     final l$publishDate = publishDate;
@@ -6468,6 +6522,7 @@ class Fragment$Section$$PosterSection$items$items$item$$Episode
     final l$$__typename = $__typename;
     final l$id = id;
     final l$duration = duration;
+    final l$locked = locked;
     final l$progress = progress;
     final l$publishDate = publishDate;
     final l$productionDate = productionDate;
@@ -6476,6 +6531,7 @@ class Fragment$Section$$PosterSection$items$items$item$$Episode
       l$$__typename,
       l$id,
       l$duration,
+      l$locked,
       l$progress,
       l$publishDate,
       l$productionDate,
@@ -6505,6 +6561,11 @@ class Fragment$Section$$PosterSection$items$items$item$$Episode
     final l$duration = duration;
     final lOther$duration = other.duration;
     if (l$duration != lOther$duration) {
+      return false;
+    }
+    final l$locked = locked;
+    final lOther$locked = other.locked;
+    if (l$locked != lOther$locked) {
       return false;
     }
     final l$progress = progress;
@@ -6558,6 +6619,7 @@ abstract class CopyWith$Fragment$Section$$PosterSection$items$items$item$$Episod
     String? $__typename,
     String? id,
     int? duration,
+    bool? locked,
     int? progress,
     String? publishDate,
     String? productionDate,
@@ -6588,6 +6650,7 @@ class _CopyWithImpl$Fragment$Section$$PosterSection$items$items$item$$Episode<
     Object? $__typename = _undefined,
     Object? id = _undefined,
     Object? duration = _undefined,
+    Object? locked = _undefined,
     Object? progress = _undefined,
     Object? publishDate = _undefined,
     Object? productionDate = _undefined,
@@ -6601,6 +6664,9 @@ class _CopyWithImpl$Fragment$Section$$PosterSection$items$items$item$$Episode<
         duration: duration == _undefined || duration == null
             ? _instance.duration
             : (duration as int),
+        locked: locked == _undefined || locked == null
+            ? _instance.locked
+            : (locked as bool),
         progress:
             progress == _undefined ? _instance.progress : (progress as int?),
         publishDate: publishDate == _undefined || publishDate == null
@@ -6639,6 +6705,7 @@ class _CopyWithStubImpl$Fragment$Section$$PosterSection$items$items$item$$Episod
     String? $__typename,
     String? id,
     int? duration,
+    bool? locked,
     int? progress,
     String? publishDate,
     String? productionDate,
@@ -8597,6 +8664,7 @@ class Fragment$Section$$FeaturedSection$items$items$item$$Episode
     required this.$__typename,
     required this.id,
     required this.duration,
+    required this.locked,
     this.progress,
     required this.publishDate,
   });
@@ -8606,12 +8674,14 @@ class Fragment$Section$$FeaturedSection$items$items$item$$Episode
     final l$$__typename = json['__typename'];
     final l$id = json['id'];
     final l$duration = json['duration'];
+    final l$locked = json['locked'];
     final l$progress = json['progress'];
     final l$publishDate = json['publishDate'];
     return Fragment$Section$$FeaturedSection$items$items$item$$Episode(
       $__typename: (l$$__typename as String),
       id: (l$id as String),
       duration: (l$duration as int),
+      locked: (l$locked as bool),
       progress: (l$progress as int?),
       publishDate: (l$publishDate as String),
     );
@@ -8622,6 +8692,8 @@ class Fragment$Section$$FeaturedSection$items$items$item$$Episode
   final String id;
 
   final int duration;
+
+  final bool locked;
 
   final int? progress;
 
@@ -8635,6 +8707,8 @@ class Fragment$Section$$FeaturedSection$items$items$item$$Episode
     _resultData['id'] = l$id;
     final l$duration = duration;
     _resultData['duration'] = l$duration;
+    final l$locked = locked;
+    _resultData['locked'] = l$locked;
     final l$progress = progress;
     _resultData['progress'] = l$progress;
     final l$publishDate = publishDate;
@@ -8647,12 +8721,14 @@ class Fragment$Section$$FeaturedSection$items$items$item$$Episode
     final l$$__typename = $__typename;
     final l$id = id;
     final l$duration = duration;
+    final l$locked = locked;
     final l$progress = progress;
     final l$publishDate = publishDate;
     return Object.hashAll([
       l$$__typename,
       l$id,
       l$duration,
+      l$locked,
       l$progress,
       l$publishDate,
     ]);
@@ -8681,6 +8757,11 @@ class Fragment$Section$$FeaturedSection$items$items$item$$Episode
     final l$duration = duration;
     final lOther$duration = other.duration;
     if (l$duration != lOther$duration) {
+      return false;
+    }
+    final l$locked = locked;
+    final lOther$locked = other.locked;
+    if (l$locked != lOther$locked) {
       return false;
     }
     final l$progress = progress;
@@ -8724,6 +8805,7 @@ abstract class CopyWith$Fragment$Section$$FeaturedSection$items$items$item$$Epis
     String? $__typename,
     String? id,
     int? duration,
+    bool? locked,
     int? progress,
     String? publishDate,
   });
@@ -8750,6 +8832,7 @@ class _CopyWithImpl$Fragment$Section$$FeaturedSection$items$items$item$$Episode<
     Object? $__typename = _undefined,
     Object? id = _undefined,
     Object? duration = _undefined,
+    Object? locked = _undefined,
     Object? progress = _undefined,
     Object? publishDate = _undefined,
   }) =>
@@ -8761,6 +8844,9 @@ class _CopyWithImpl$Fragment$Section$$FeaturedSection$items$items$item$$Episode<
         duration: duration == _undefined || duration == null
             ? _instance.duration
             : (duration as int),
+        locked: locked == _undefined || locked == null
+            ? _instance.locked
+            : (locked as bool),
         progress:
             progress == _undefined ? _instance.progress : (progress as int?),
         publishDate: publishDate == _undefined || publishDate == null
@@ -8783,6 +8869,7 @@ class _CopyWithStubImpl$Fragment$Section$$FeaturedSection$items$items$item$$Epis
     String? $__typename,
     String? id,
     int? duration,
+    bool? locked,
     int? progress,
     String? publishDate,
   }) =>
@@ -10364,6 +10451,7 @@ class Fragment$Section$$DefaultSection$items$items$item$$Episode
     required this.$__typename,
     required this.id,
     required this.duration,
+    required this.locked,
     this.progress,
     required this.publishDate,
     required this.productionDate,
@@ -10375,6 +10463,7 @@ class Fragment$Section$$DefaultSection$items$items$item$$Episode
     final l$$__typename = json['__typename'];
     final l$id = json['id'];
     final l$duration = json['duration'];
+    final l$locked = json['locked'];
     final l$progress = json['progress'];
     final l$publishDate = json['publishDate'];
     final l$productionDate = json['productionDate'];
@@ -10383,6 +10472,7 @@ class Fragment$Section$$DefaultSection$items$items$item$$Episode
       $__typename: (l$$__typename as String),
       id: (l$id as String),
       duration: (l$duration as int),
+      locked: (l$locked as bool),
       progress: (l$progress as int?),
       publishDate: (l$publishDate as String),
       productionDate: (l$productionDate as String),
@@ -10398,6 +10488,8 @@ class Fragment$Section$$DefaultSection$items$items$item$$Episode
   final String id;
 
   final int duration;
+
+  final bool locked;
 
   final int? progress;
 
@@ -10416,6 +10508,8 @@ class Fragment$Section$$DefaultSection$items$items$item$$Episode
     _resultData['id'] = l$id;
     final l$duration = duration;
     _resultData['duration'] = l$duration;
+    final l$locked = locked;
+    _resultData['locked'] = l$locked;
     final l$progress = progress;
     _resultData['progress'] = l$progress;
     final l$publishDate = publishDate;
@@ -10432,6 +10526,7 @@ class Fragment$Section$$DefaultSection$items$items$item$$Episode
     final l$$__typename = $__typename;
     final l$id = id;
     final l$duration = duration;
+    final l$locked = locked;
     final l$progress = progress;
     final l$publishDate = publishDate;
     final l$productionDate = productionDate;
@@ -10440,6 +10535,7 @@ class Fragment$Section$$DefaultSection$items$items$item$$Episode
       l$$__typename,
       l$id,
       l$duration,
+      l$locked,
       l$progress,
       l$publishDate,
       l$productionDate,
@@ -10470,6 +10566,11 @@ class Fragment$Section$$DefaultSection$items$items$item$$Episode
     final l$duration = duration;
     final lOther$duration = other.duration;
     if (l$duration != lOther$duration) {
+      return false;
+    }
+    final l$locked = locked;
+    final lOther$locked = other.locked;
+    if (l$locked != lOther$locked) {
       return false;
     }
     final l$progress = progress;
@@ -10523,6 +10624,7 @@ abstract class CopyWith$Fragment$Section$$DefaultSection$items$items$item$$Episo
     String? $__typename,
     String? id,
     int? duration,
+    bool? locked,
     int? progress,
     String? publishDate,
     String? productionDate,
@@ -10553,6 +10655,7 @@ class _CopyWithImpl$Fragment$Section$$DefaultSection$items$items$item$$Episode<
     Object? $__typename = _undefined,
     Object? id = _undefined,
     Object? duration = _undefined,
+    Object? locked = _undefined,
     Object? progress = _undefined,
     Object? publishDate = _undefined,
     Object? productionDate = _undefined,
@@ -10566,6 +10669,9 @@ class _CopyWithImpl$Fragment$Section$$DefaultSection$items$items$item$$Episode<
         duration: duration == _undefined || duration == null
             ? _instance.duration
             : (duration as int),
+        locked: locked == _undefined || locked == null
+            ? _instance.locked
+            : (locked as bool),
         progress:
             progress == _undefined ? _instance.progress : (progress as int?),
         publishDate: publishDate == _undefined || publishDate == null
@@ -10604,6 +10710,7 @@ class _CopyWithStubImpl$Fragment$Section$$DefaultSection$items$items$item$$Episo
     String? $__typename,
     String? id,
     int? duration,
+    bool? locked,
     int? progress,
     String? publishDate,
     String? productionDate,
@@ -12530,6 +12637,7 @@ class Fragment$Section$$CardSection$items$items$item$$Episode
     required this.$__typename,
     required this.id,
     required this.duration,
+    required this.locked,
     this.progress,
     required this.publishDate,
   });
@@ -12539,12 +12647,14 @@ class Fragment$Section$$CardSection$items$items$item$$Episode
     final l$$__typename = json['__typename'];
     final l$id = json['id'];
     final l$duration = json['duration'];
+    final l$locked = json['locked'];
     final l$progress = json['progress'];
     final l$publishDate = json['publishDate'];
     return Fragment$Section$$CardSection$items$items$item$$Episode(
       $__typename: (l$$__typename as String),
       id: (l$id as String),
       duration: (l$duration as int),
+      locked: (l$locked as bool),
       progress: (l$progress as int?),
       publishDate: (l$publishDate as String),
     );
@@ -12555,6 +12665,8 @@ class Fragment$Section$$CardSection$items$items$item$$Episode
   final String id;
 
   final int duration;
+
+  final bool locked;
 
   final int? progress;
 
@@ -12568,6 +12680,8 @@ class Fragment$Section$$CardSection$items$items$item$$Episode
     _resultData['id'] = l$id;
     final l$duration = duration;
     _resultData['duration'] = l$duration;
+    final l$locked = locked;
+    _resultData['locked'] = l$locked;
     final l$progress = progress;
     _resultData['progress'] = l$progress;
     final l$publishDate = publishDate;
@@ -12580,12 +12694,14 @@ class Fragment$Section$$CardSection$items$items$item$$Episode
     final l$$__typename = $__typename;
     final l$id = id;
     final l$duration = duration;
+    final l$locked = locked;
     final l$progress = progress;
     final l$publishDate = publishDate;
     return Object.hashAll([
       l$$__typename,
       l$id,
       l$duration,
+      l$locked,
       l$progress,
       l$publishDate,
     ]);
@@ -12613,6 +12729,11 @@ class Fragment$Section$$CardSection$items$items$item$$Episode
     final l$duration = duration;
     final lOther$duration = other.duration;
     if (l$duration != lOther$duration) {
+      return false;
+    }
+    final l$locked = locked;
+    final lOther$locked = other.locked;
+    if (l$locked != lOther$locked) {
       return false;
     }
     final l$progress = progress;
@@ -12655,6 +12776,7 @@ abstract class CopyWith$Fragment$Section$$CardSection$items$items$item$$Episode<
     String? $__typename,
     String? id,
     int? duration,
+    bool? locked,
     int? progress,
     String? publishDate,
   });
@@ -12680,6 +12802,7 @@ class _CopyWithImpl$Fragment$Section$$CardSection$items$items$item$$Episode<
     Object? $__typename = _undefined,
     Object? id = _undefined,
     Object? duration = _undefined,
+    Object? locked = _undefined,
     Object? progress = _undefined,
     Object? publishDate = _undefined,
   }) =>
@@ -12691,6 +12814,9 @@ class _CopyWithImpl$Fragment$Section$$CardSection$items$items$item$$Episode<
         duration: duration == _undefined || duration == null
             ? _instance.duration
             : (duration as int),
+        locked: locked == _undefined || locked == null
+            ? _instance.locked
+            : (locked as bool),
         progress:
             progress == _undefined ? _instance.progress : (progress as int?),
         publishDate: publishDate == _undefined || publishDate == null
@@ -12712,6 +12838,7 @@ class _CopyWithStubImpl$Fragment$Section$$CardSection$items$items$item$$Episode<
     String? $__typename,
     String? id,
     int? duration,
+    bool? locked,
     int? progress,
     String? publishDate,
   }) =>
@@ -14259,6 +14386,7 @@ class Fragment$Section$$ListSection$items$items$item$$Episode
     required this.$__typename,
     required this.id,
     required this.duration,
+    required this.locked,
     this.progress,
     required this.publishDate,
     required this.title,
@@ -14272,6 +14400,7 @@ class Fragment$Section$$ListSection$items$items$item$$Episode
     final l$$__typename = json['__typename'];
     final l$id = json['id'];
     final l$duration = json['duration'];
+    final l$locked = json['locked'];
     final l$progress = json['progress'];
     final l$publishDate = json['publishDate'];
     final l$title = json['title'];
@@ -14282,6 +14411,7 @@ class Fragment$Section$$ListSection$items$items$item$$Episode
       $__typename: (l$$__typename as String),
       id: (l$id as String),
       duration: (l$duration as int),
+      locked: (l$locked as bool),
       progress: (l$progress as int?),
       publishDate: (l$publishDate as String),
       title: (l$title as String),
@@ -14299,6 +14429,8 @@ class Fragment$Section$$ListSection$items$items$item$$Episode
   final String id;
 
   final int duration;
+
+  final bool locked;
 
   final int? progress;
 
@@ -14320,6 +14452,8 @@ class Fragment$Section$$ListSection$items$items$item$$Episode
     _resultData['id'] = l$id;
     final l$duration = duration;
     _resultData['duration'] = l$duration;
+    final l$locked = locked;
+    _resultData['locked'] = l$locked;
     final l$progress = progress;
     _resultData['progress'] = l$progress;
     final l$publishDate = publishDate;
@@ -14340,6 +14474,7 @@ class Fragment$Section$$ListSection$items$items$item$$Episode
     final l$$__typename = $__typename;
     final l$id = id;
     final l$duration = duration;
+    final l$locked = locked;
     final l$progress = progress;
     final l$publishDate = publishDate;
     final l$title = title;
@@ -14350,6 +14485,7 @@ class Fragment$Section$$ListSection$items$items$item$$Episode
       l$$__typename,
       l$id,
       l$duration,
+      l$locked,
       l$progress,
       l$publishDate,
       l$title,
@@ -14381,6 +14517,11 @@ class Fragment$Section$$ListSection$items$items$item$$Episode
     final l$duration = duration;
     final lOther$duration = other.duration;
     if (l$duration != lOther$duration) {
+      return false;
+    }
+    final l$locked = locked;
+    final lOther$locked = other.locked;
+    if (l$locked != lOther$locked) {
       return false;
     }
     final l$progress = progress;
@@ -14443,6 +14584,7 @@ abstract class CopyWith$Fragment$Section$$ListSection$items$items$item$$Episode<
     String? $__typename,
     String? id,
     int? duration,
+    bool? locked,
     int? progress,
     String? publishDate,
     String? title,
@@ -14474,6 +14616,7 @@ class _CopyWithImpl$Fragment$Section$$ListSection$items$items$item$$Episode<
     Object? $__typename = _undefined,
     Object? id = _undefined,
     Object? duration = _undefined,
+    Object? locked = _undefined,
     Object? progress = _undefined,
     Object? publishDate = _undefined,
     Object? title = _undefined,
@@ -14489,6 +14632,9 @@ class _CopyWithImpl$Fragment$Section$$ListSection$items$items$item$$Episode<
         duration: duration == _undefined || duration == null
             ? _instance.duration
             : (duration as int),
+        locked: locked == _undefined || locked == null
+            ? _instance.locked
+            : (locked as bool),
         progress:
             progress == _undefined ? _instance.progress : (progress as int?),
         publishDate: publishDate == _undefined || publishDate == null
@@ -14530,6 +14676,7 @@ class _CopyWithStubImpl$Fragment$Section$$ListSection$items$items$item$$Episode<
     String? $__typename,
     String? id,
     int? duration,
+    bool? locked,
     int? progress,
     String? publishDate,
     String? title,
@@ -17070,6 +17217,7 @@ class Fragment$Section$$DefaultGridSection$items$items$item$$Episode
     required this.$__typename,
     required this.id,
     required this.duration,
+    required this.locked,
     this.progress,
     required this.publishDate,
     this.number,
@@ -17081,6 +17229,7 @@ class Fragment$Section$$DefaultGridSection$items$items$item$$Episode
     final l$$__typename = json['__typename'];
     final l$id = json['id'];
     final l$duration = json['duration'];
+    final l$locked = json['locked'];
     final l$progress = json['progress'];
     final l$publishDate = json['publishDate'];
     final l$number = json['number'];
@@ -17089,6 +17238,7 @@ class Fragment$Section$$DefaultGridSection$items$items$item$$Episode
       $__typename: (l$$__typename as String),
       id: (l$id as String),
       duration: (l$duration as int),
+      locked: (l$locked as bool),
       progress: (l$progress as int?),
       publishDate: (l$publishDate as String),
       number: (l$number as int?),
@@ -17104,6 +17254,8 @@ class Fragment$Section$$DefaultGridSection$items$items$item$$Episode
   final String id;
 
   final int duration;
+
+  final bool locked;
 
   final int? progress;
 
@@ -17122,6 +17274,8 @@ class Fragment$Section$$DefaultGridSection$items$items$item$$Episode
     _resultData['id'] = l$id;
     final l$duration = duration;
     _resultData['duration'] = l$duration;
+    final l$locked = locked;
+    _resultData['locked'] = l$locked;
     final l$progress = progress;
     _resultData['progress'] = l$progress;
     final l$publishDate = publishDate;
@@ -17138,6 +17292,7 @@ class Fragment$Section$$DefaultGridSection$items$items$item$$Episode
     final l$$__typename = $__typename;
     final l$id = id;
     final l$duration = duration;
+    final l$locked = locked;
     final l$progress = progress;
     final l$publishDate = publishDate;
     final l$number = number;
@@ -17146,6 +17301,7 @@ class Fragment$Section$$DefaultGridSection$items$items$item$$Episode
       l$$__typename,
       l$id,
       l$duration,
+      l$locked,
       l$progress,
       l$publishDate,
       l$number,
@@ -17176,6 +17332,11 @@ class Fragment$Section$$DefaultGridSection$items$items$item$$Episode
     final l$duration = duration;
     final lOther$duration = other.duration;
     if (l$duration != lOther$duration) {
+      return false;
+    }
+    final l$locked = locked;
+    final lOther$locked = other.locked;
+    if (l$locked != lOther$locked) {
       return false;
     }
     final l$progress = progress;
@@ -17230,6 +17391,7 @@ abstract class CopyWith$Fragment$Section$$DefaultGridSection$items$items$item$$E
     String? $__typename,
     String? id,
     int? duration,
+    bool? locked,
     int? progress,
     String? publishDate,
     int? number,
@@ -17262,6 +17424,7 @@ class _CopyWithImpl$Fragment$Section$$DefaultGridSection$items$items$item$$Episo
     Object? $__typename = _undefined,
     Object? id = _undefined,
     Object? duration = _undefined,
+    Object? locked = _undefined,
     Object? progress = _undefined,
     Object? publishDate = _undefined,
     Object? number = _undefined,
@@ -17275,6 +17438,9 @@ class _CopyWithImpl$Fragment$Section$$DefaultGridSection$items$items$item$$Episo
         duration: duration == _undefined || duration == null
             ? _instance.duration
             : (duration as int),
+        locked: locked == _undefined || locked == null
+            ? _instance.locked
+            : (locked as bool),
         progress:
             progress == _undefined ? _instance.progress : (progress as int?),
         publishDate: publishDate == _undefined || publishDate == null
@@ -17311,6 +17477,7 @@ class _CopyWithStubImpl$Fragment$Section$$DefaultGridSection$items$items$item$$E
     String? $__typename,
     String? id,
     int? duration,
+    bool? locked,
     int? progress,
     String? publishDate,
     int? number,
@@ -19293,6 +19460,7 @@ class Fragment$Section$$PosterGridSection$items$items$item$$Episode
     required this.$__typename,
     required this.id,
     required this.duration,
+    required this.locked,
     this.progress,
     required this.publishDate,
     this.number,
@@ -19304,6 +19472,7 @@ class Fragment$Section$$PosterGridSection$items$items$item$$Episode
     final l$$__typename = json['__typename'];
     final l$id = json['id'];
     final l$duration = json['duration'];
+    final l$locked = json['locked'];
     final l$progress = json['progress'];
     final l$publishDate = json['publishDate'];
     final l$number = json['number'];
@@ -19312,6 +19481,7 @@ class Fragment$Section$$PosterGridSection$items$items$item$$Episode
       $__typename: (l$$__typename as String),
       id: (l$id as String),
       duration: (l$duration as int),
+      locked: (l$locked as bool),
       progress: (l$progress as int?),
       publishDate: (l$publishDate as String),
       number: (l$number as int?),
@@ -19327,6 +19497,8 @@ class Fragment$Section$$PosterGridSection$items$items$item$$Episode
   final String id;
 
   final int duration;
+
+  final bool locked;
 
   final int? progress;
 
@@ -19345,6 +19517,8 @@ class Fragment$Section$$PosterGridSection$items$items$item$$Episode
     _resultData['id'] = l$id;
     final l$duration = duration;
     _resultData['duration'] = l$duration;
+    final l$locked = locked;
+    _resultData['locked'] = l$locked;
     final l$progress = progress;
     _resultData['progress'] = l$progress;
     final l$publishDate = publishDate;
@@ -19361,6 +19535,7 @@ class Fragment$Section$$PosterGridSection$items$items$item$$Episode
     final l$$__typename = $__typename;
     final l$id = id;
     final l$duration = duration;
+    final l$locked = locked;
     final l$progress = progress;
     final l$publishDate = publishDate;
     final l$number = number;
@@ -19369,6 +19544,7 @@ class Fragment$Section$$PosterGridSection$items$items$item$$Episode
       l$$__typename,
       l$id,
       l$duration,
+      l$locked,
       l$progress,
       l$publishDate,
       l$number,
@@ -19399,6 +19575,11 @@ class Fragment$Section$$PosterGridSection$items$items$item$$Episode
     final l$duration = duration;
     final lOther$duration = other.duration;
     if (l$duration != lOther$duration) {
+      return false;
+    }
+    final l$locked = locked;
+    final lOther$locked = other.locked;
+    if (l$locked != lOther$locked) {
       return false;
     }
     final l$progress = progress;
@@ -19452,6 +19633,7 @@ abstract class CopyWith$Fragment$Section$$PosterGridSection$items$items$item$$Ep
     String? $__typename,
     String? id,
     int? duration,
+    bool? locked,
     int? progress,
     String? publishDate,
     int? number,
@@ -19483,6 +19665,7 @@ class _CopyWithImpl$Fragment$Section$$PosterGridSection$items$items$item$$Episod
     Object? $__typename = _undefined,
     Object? id = _undefined,
     Object? duration = _undefined,
+    Object? locked = _undefined,
     Object? progress = _undefined,
     Object? publishDate = _undefined,
     Object? number = _undefined,
@@ -19496,6 +19679,9 @@ class _CopyWithImpl$Fragment$Section$$PosterGridSection$items$items$item$$Episod
         duration: duration == _undefined || duration == null
             ? _instance.duration
             : (duration as int),
+        locked: locked == _undefined || locked == null
+            ? _instance.locked
+            : (locked as bool),
         progress:
             progress == _undefined ? _instance.progress : (progress as int?),
         publishDate: publishDate == _undefined || publishDate == null
@@ -19532,6 +19718,7 @@ class _CopyWithStubImpl$Fragment$Section$$PosterGridSection$items$items$item$$Ep
     String? $__typename,
     String? id,
     int? duration,
+    bool? locked,
     int? progress,
     String? publishDate,
     int? number,
@@ -21507,6 +21694,7 @@ class Fragment$Section$$IconGridSection$items$items$item$$Episode
     required this.$__typename,
     required this.id,
     required this.duration,
+    required this.locked,
     this.progress,
     required this.publishDate,
     this.number,
@@ -21518,6 +21706,7 @@ class Fragment$Section$$IconGridSection$items$items$item$$Episode
     final l$$__typename = json['__typename'];
     final l$id = json['id'];
     final l$duration = json['duration'];
+    final l$locked = json['locked'];
     final l$progress = json['progress'];
     final l$publishDate = json['publishDate'];
     final l$number = json['number'];
@@ -21526,6 +21715,7 @@ class Fragment$Section$$IconGridSection$items$items$item$$Episode
       $__typename: (l$$__typename as String),
       id: (l$id as String),
       duration: (l$duration as int),
+      locked: (l$locked as bool),
       progress: (l$progress as int?),
       publishDate: (l$publishDate as String),
       number: (l$number as int?),
@@ -21541,6 +21731,8 @@ class Fragment$Section$$IconGridSection$items$items$item$$Episode
   final String id;
 
   final int duration;
+
+  final bool locked;
 
   final int? progress;
 
@@ -21559,6 +21751,8 @@ class Fragment$Section$$IconGridSection$items$items$item$$Episode
     _resultData['id'] = l$id;
     final l$duration = duration;
     _resultData['duration'] = l$duration;
+    final l$locked = locked;
+    _resultData['locked'] = l$locked;
     final l$progress = progress;
     _resultData['progress'] = l$progress;
     final l$publishDate = publishDate;
@@ -21575,6 +21769,7 @@ class Fragment$Section$$IconGridSection$items$items$item$$Episode
     final l$$__typename = $__typename;
     final l$id = id;
     final l$duration = duration;
+    final l$locked = locked;
     final l$progress = progress;
     final l$publishDate = publishDate;
     final l$number = number;
@@ -21583,6 +21778,7 @@ class Fragment$Section$$IconGridSection$items$items$item$$Episode
       l$$__typename,
       l$id,
       l$duration,
+      l$locked,
       l$progress,
       l$publishDate,
       l$number,
@@ -21613,6 +21809,11 @@ class Fragment$Section$$IconGridSection$items$items$item$$Episode
     final l$duration = duration;
     final lOther$duration = other.duration;
     if (l$duration != lOther$duration) {
+      return false;
+    }
+    final l$locked = locked;
+    final lOther$locked = other.locked;
+    if (l$locked != lOther$locked) {
       return false;
     }
     final l$progress = progress;
@@ -21666,6 +21867,7 @@ abstract class CopyWith$Fragment$Section$$IconGridSection$items$items$item$$Epis
     String? $__typename,
     String? id,
     int? duration,
+    bool? locked,
     int? progress,
     String? publishDate,
     int? number,
@@ -21696,6 +21898,7 @@ class _CopyWithImpl$Fragment$Section$$IconGridSection$items$items$item$$Episode<
     Object? $__typename = _undefined,
     Object? id = _undefined,
     Object? duration = _undefined,
+    Object? locked = _undefined,
     Object? progress = _undefined,
     Object? publishDate = _undefined,
     Object? number = _undefined,
@@ -21709,6 +21912,9 @@ class _CopyWithImpl$Fragment$Section$$IconGridSection$items$items$item$$Episode<
         duration: duration == _undefined || duration == null
             ? _instance.duration
             : (duration as int),
+        locked: locked == _undefined || locked == null
+            ? _instance.locked
+            : (locked as bool),
         progress:
             progress == _undefined ? _instance.progress : (progress as int?),
         publishDate: publishDate == _undefined || publishDate == null
@@ -21745,6 +21951,7 @@ class _CopyWithStubImpl$Fragment$Section$$IconGridSection$items$items$item$$Epis
     String? $__typename,
     String? id,
     int? duration,
+    bool? locked,
     int? progress,
     String? publishDate,
     int? number,

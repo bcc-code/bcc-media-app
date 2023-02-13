@@ -1,0 +1,11 @@
+appId: tv.brunstad.app
+---
+- runFlow:
+    when:
+      true: ${PLATFORM == 'ios'}
+    file: login/login_ios.yml
+
+- runFlow:
+    when:
+      true: ${PLATFORM == 'android'}
+    file: login/login_android.yml

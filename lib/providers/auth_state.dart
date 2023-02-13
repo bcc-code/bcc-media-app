@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:brunstadtv_app/helpers/utils.dart';
+import 'package:clock/clock.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
@@ -25,14 +26,18 @@ part 'auth_state.freezed.dart';
 const kMinimumCredentialsTTL = Duration(hours: 1);
 
 final authStateProvider = StateNotifierProvider<AuthStateNotifier, AuthState>((ref) {
-  return AuthStateNotifier();
+  return AuthStateNotifier(appAuth: const FlutterAppAuth(), secureStorage: const FlutterSecureStorage());
 });
 
 class AuthStateNotifier extends StateNotifier<AuthState> {
-  AuthStateNotifier() : super(const AuthState());
+  AuthStateNotifier({required FlutterAppAuth appAuth, required FlutterSecureStorage secureStorage})
+      : _appAuth = appAuth,
+        _secureStorage = secureStorage,
+        super(const AuthState());
+
   final appAuthLock = Lock();
-  final FlutterAppAuth _appAuth = const FlutterAppAuth();
-  final FlutterSecureStorage _secureStorage = const FlutterSecureStorage();
+  final FlutterAppAuth _appAuth;
+  final FlutterSecureStorage _secureStorage;
 
   Future<T> _syncAppAuth<T>(Future<T> Function() call) {
     return appAuthLock.synchronized(
@@ -45,10 +50,10 @@ class AuthStateNotifier extends StateNotifier<AuthState> {
     if (state.expiresAt == null || state.auth0AccessToken == null) {
       return null;
     }
-    if (state.expiresAt!.difference(DateTime.now()) < kMinimumCredentialsTTL) {
+    if (state.expiresAt!.difference(clock.now()) < kMinimumCredentialsTTL) {
       await refresh();
     }
-    if (state.expiresAt!.difference(DateTime.now()) < kMinimumCredentialsTTL) {
+    if (state.expiresAt!.difference(clock.now()) < kMinimumCredentialsTTL) {
       throw Exception('Auth state is still expired after attempting to renew.');
     }
     return state;
@@ -69,8 +74,7 @@ class AuthStateNotifier extends StateNotifier<AuthState> {
       logout();
       return false;
     }
-    final ttl = expiry.difference(DateTime.now());
-    if (ttl < kMinimumCredentialsTTL) {
+    if (expiry.difference(clock.now()) < kMinimumCredentialsTTL) {
       return await refresh();
     }
     state = state.copyWith(
@@ -103,7 +107,7 @@ class AuthStateNotifier extends StateNotifier<AuthState> {
           ),
         ),
       );
-      _setStateBasedOnResponse(result!);
+      await _setStateBasedOnResponse(result!);
     } catch (e, s) {
       FirebaseCrashlytics.instance.recordError(e, StackTrace.current);
       print('error on Refresh Token: $e - stack: $s');
@@ -161,7 +165,7 @@ class AuthStateNotifier extends StateNotifier<AuthState> {
         () => _appAuth.authorizeAndExchangeCode(authorizationTokenRequest),
       );
 
-      await _setStateBasedOnResponse(result!);
+      await _setStateBasedOnResponse(result!, isLogin: true);
     } catch (e, st) {
       logout(manual: false);
       debugPrint(e.toString());
@@ -171,25 +175,24 @@ class AuthStateNotifier extends StateNotifier<AuthState> {
     return true;
   }
 
-  Future<void> _setStateBasedOnResponse(TokenResponse? result) async {
+  Future<void> _setStateBasedOnResponse(TokenResponse? result, {bool isLogin = false}) async {
     final accessToken = result?.accessToken;
     final idToken = result?.idToken;
-    final refreshToken = result?.idToken;
-    if (accessToken == null || idToken == null || refreshToken == null) {
+    final refreshToken = result?.refreshToken;
+    if (accessToken == null || idToken == null) {
       throw Exception([
         'Invalid token response',
         'result null: ${result == null}',
         'accessToken null: ${accessToken == null}',
         'idToken null: ${idToken == null}',
-        'refreshToken null: ${refreshToken == null}',
+        'refreshToken null: ${refreshToken == null}'
       ]);
+    }
+    if (isLogin && refreshToken == null) {
+      FirebaseCrashlytics.instance.recordError(Exception('Refresh token missing on login'), StackTrace.current);
     }
 
     await Future.wait([
-      _secureStorage.write(
-        key: SecureStorageKeys.refreshToken,
-        value: refreshToken,
-      ),
       _secureStorage.write(
         key: SecureStorageKeys.idToken,
         value: idToken,
@@ -197,7 +200,12 @@ class AuthStateNotifier extends StateNotifier<AuthState> {
       _secureStorage.write(
         key: SecureStorageKeys.accessToken,
         value: accessToken,
-      )
+      ),
+      if (refreshToken != null)
+        _secureStorage.write(
+          key: SecureStorageKeys.refreshToken,
+          value: refreshToken,
+        ),
     ]);
 
     state = state.copyWith(

@@ -1,0 +1,30 @@
+# flow.yaml
+
+appId: tv.brunstad.app
+---
+- launchApp:
+    appId: com.apple.mobilesafari
+    clearState: true
+    clearKeychain: true # optional: clear *entire* iOS keychain
+    stopApp: true # optional (true by default): stop the app before launching it
+- launchApp:
+    appId: "tv.brunstad.app"
+    clearState: true
+    clearKeychain: true # optional: clear *entire* iOS keychain
+    stopApp: true # optional (true by default): stop the app before launching it
+- tapOn:
+    text: Allow
+    optional: true
+- tapOn: "Sign in"
+- tapOn:
+    text: Continue
+    optional: true
+- tapOn: "Email"
+- inputText: ${output.env.LOGIN_EMAIL}
+- tapOn: "Password"
+- inputText: ${output.env.LOGIN_PASSWORD}
+- pressKey: Enter
+- assertVisible: "Home"
+- assertVisible: "Search"
+- assertVisible: "Live"
+- assertVisible: "Calendar"

@@ -161,6 +161,9 @@ class SHu extends S {
   String get play => 'Lejátszás';
 
   @override
+  String get pause => 'Pause';
+
+  @override
   String get castQueue => 'Lejátszási listát közvetíteni';
 
   @override

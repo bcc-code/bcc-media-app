@@ -161,6 +161,9 @@ class STr extends S {
   String get play => 'Oynat';
 
   @override
+  String get pause => 'Pause';
+
+  @override
   String get castQueue => 'Yayın sırası';
 
   @override
