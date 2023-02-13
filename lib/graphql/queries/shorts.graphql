@@ -12,7 +12,7 @@
 # final hlsUrl = result.parsedData.episode.streams.getBestStreamUrl();
 
 query GetEpisodesForShorts($first: Int!, $offset: Int!) {
-  collection(slug: "shorts_proof-of-concept") {
+  collection(slug: "shorts-proof-of-concept") {
     items(first: $first, offset: $offset) {
       items {
         ...ShortsEpisode

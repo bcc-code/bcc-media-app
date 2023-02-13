@@ -776,7 +776,7 @@ const documentNodeQueryGetEpisodesForShorts = DocumentNode(definitions: [
           ArgumentNode(
             name: NameNode(value: 'slug'),
             value: StringValueNode(
-              value: 'shorts_proof-of-concept',
+              value: 'shorts-proof-of-concept',
               isBlock: false,
             ),
           )
