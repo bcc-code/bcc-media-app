@@ -23,18 +23,26 @@ mixin _$AuthState {
   bool? get signedOutManually => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
-  $AuthStateCopyWith<AuthState> get copyWith => throw _privateConstructorUsedError;
+  $AuthStateCopyWith<AuthState> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
 abstract class $AuthStateCopyWith<$Res> {
-  factory $AuthStateCopyWith(AuthState value, $Res Function(AuthState) then) = _$AuthStateCopyWithImpl<$Res, AuthState>;
+  factory $AuthStateCopyWith(AuthState value, $Res Function(AuthState) then) =
+      _$AuthStateCopyWithImpl<$Res, AuthState>;
   @useResult
-  $Res call({Auth0IdToken? user, String? auth0AccessToken, DateTime? expiresAt, String? idToken, bool? signedOutManually});
+  $Res call(
+      {Auth0IdToken? user,
+      String? auth0AccessToken,
+      DateTime? expiresAt,
+      String? idToken,
+      bool? signedOutManually});
 }
 
 /// @nodoc
-class _$AuthStateCopyWithImpl<$Res, $Val extends AuthState> implements $AuthStateCopyWith<$Res> {
+class _$AuthStateCopyWithImpl<$Res, $Val extends AuthState>
+    implements $AuthStateCopyWith<$Res> {
   _$AuthStateCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
@@ -78,15 +86,23 @@ class _$AuthStateCopyWithImpl<$Res, $Val extends AuthState> implements $AuthStat
 
 /// @nodoc
 abstract class _$$_AuthCopyWith<$Res> implements $AuthStateCopyWith<$Res> {
-  factory _$$_AuthCopyWith(_$_Auth value, $Res Function(_$_Auth) then) = __$$_AuthCopyWithImpl<$Res>;
+  factory _$$_AuthCopyWith(_$_Auth value, $Res Function(_$_Auth) then) =
+      __$$_AuthCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({Auth0IdToken? user, String? auth0AccessToken, DateTime? expiresAt, String? idToken, bool? signedOutManually});
+  $Res call(
+      {Auth0IdToken? user,
+      String? auth0AccessToken,
+      DateTime? expiresAt,
+      String? idToken,
+      bool? signedOutManually});
 }
 
 /// @nodoc
-class __$$_AuthCopyWithImpl<$Res> extends _$AuthStateCopyWithImpl<$Res, _$_Auth> implements _$$_AuthCopyWith<$Res> {
-  __$$_AuthCopyWithImpl(_$_Auth _value, $Res Function(_$_Auth) _then) : super(_value, _then);
+class __$$_AuthCopyWithImpl<$Res> extends _$AuthStateCopyWithImpl<$Res, _$_Auth>
+    implements _$$_AuthCopyWith<$Res> {
+  __$$_AuthCopyWithImpl(_$_Auth _value, $Res Function(_$_Auth) _then)
+      : super(_value, _then);
 
   @pragma('vm:prefer-inline')
   @override
@@ -125,7 +141,13 @@ class __$$_AuthCopyWithImpl<$Res> extends _$AuthStateCopyWithImpl<$Res, _$_Auth>
 /// @nodoc
 
 class _$_Auth extends _Auth {
-  const _$_Auth({this.user, this.auth0AccessToken, this.expiresAt, this.idToken, this.signedOutManually}) : super._();
+  const _$_Auth(
+      {this.user,
+      this.auth0AccessToken,
+      this.expiresAt,
+      this.idToken,
+      this.signedOutManually})
+      : super._();
 
   @override
   final Auth0IdToken? user;
@@ -149,19 +171,24 @@ class _$_Auth extends _Auth {
         (other.runtimeType == runtimeType &&
             other is _$_Auth &&
             (identical(other.user, user) || other.user == user) &&
-            (identical(other.auth0AccessToken, auth0AccessToken) || other.auth0AccessToken == auth0AccessToken) &&
-            (identical(other.expiresAt, expiresAt) || other.expiresAt == expiresAt) &&
+            (identical(other.auth0AccessToken, auth0AccessToken) ||
+                other.auth0AccessToken == auth0AccessToken) &&
+            (identical(other.expiresAt, expiresAt) ||
+                other.expiresAt == expiresAt) &&
             (identical(other.idToken, idToken) || other.idToken == idToken) &&
-            (identical(other.signedOutManually, signedOutManually) || other.signedOutManually == signedOutManually));
+            (identical(other.signedOutManually, signedOutManually) ||
+                other.signedOutManually == signedOutManually));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, user, auth0AccessToken, expiresAt, idToken, signedOutManually);
+  int get hashCode => Object.hash(runtimeType, user, auth0AccessToken,
+      expiresAt, idToken, signedOutManually);
 
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_AuthCopyWith<_$_Auth> get copyWith => __$$_AuthCopyWithImpl<_$_Auth>(this, _$identity);
+  _$$_AuthCopyWith<_$_Auth> get copyWith =>
+      __$$_AuthCopyWithImpl<_$_Auth>(this, _$identity);
 }
 
 abstract class _Auth extends AuthState {

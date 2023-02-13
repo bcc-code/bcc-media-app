@@ -1,0 +1,40 @@
+# Shorts
+# A "short" (😝) guidance on how to use:
+
+# GetEpisodesForShorts() to get the list of episodes and their titles.
+# Do something like final episodes = result.parsedData.collection.items.items.whereType<Fragment$ShortsEpisode$$EpisodeItem>();
+# This would filter out anything that isn't episodes.
+
+# When you are going to play an episode,
+# call GetStreamsForEpisode(), to get a list of streams.
+
+# Then, because we use the BasicStream fragment here, we can do:
+# final hlsUrl = result.parsedData.episode.streams.getBestStreamUrl();
+
+query GetEpisodesForShorts($first: Int!, $offset: Int!) {
+  collection(id: "shorts_proof-of-concept") {
+    items(first: $first, offset: $offset) {
+      items {
+        ...ShortsEpisode
+      }
+    }
+  }
+}
+
+query GetStreamsForEpisode($id: ID!) {
+  episode(id: $id) {
+    duration
+    streams {
+      ...BasicStream
+    }
+  }
+}
+
+fragment ShortsEpisode on CollectionItem {
+  ... on EpisodeItem {
+    episode {
+      id
+      title
+    }
+  }
+}

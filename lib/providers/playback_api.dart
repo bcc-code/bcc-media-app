@@ -13,7 +13,7 @@ final playbackApiProvider = Provider<PlaybackPlatformInterface>((ref) {
 
 MediaItem _mapEpisode(Query$FetchEpisode$episode episode) {
   return MediaItem(
-      url: episode.getBestStreamUrl(),
+      url: episode.streams.getBestStreamUrl(),
       mimeType: 'application/x-mpegURL',
       metadata: MediaMetadata(title: episode.title, artist: episode.season?.$show.title, artworkUri: episode.image, extras: {
         'id': episode.id.toString(),
@@ -35,10 +35,10 @@ Future queueEpisode({required String playerId, required Query$FetchEpisode$episo
   PlaybackPlatformInterface.instance.queueMediaItem(playerId, mediaItem);
 }
 
-extension StreamUrlExtension on Query$FetchEpisode$episode {
+extension StreamUrlExtension on List<Fragment$BasicStream> {
   String getBestStreamUrl() {
-    var streamUrl = streams.firstWhereOrNull((element) => element.type == Enum$StreamType.hls_cmaf || element.type == Enum$StreamType.hls_ts)?.url;
-    streamUrl ??= streams.first.url;
+    var streamUrl = firstWhereOrNull((element) => element.type == Enum$StreamType.hls_cmaf || element.type == Enum$StreamType.hls_ts)?.url;
+    streamUrl ??= first.url;
     return streamUrl;
   }
 }

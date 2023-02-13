@@ -16,8 +16,7 @@ query FetchEpisode($id: ID!) {
       }
     }
     streams {
-      type
-      url
+      ...BasicStream
       audioLanguages
       subtitleLanguages
     }
@@ -47,6 +46,12 @@ query FetchEpisode($id: ID!) {
       }
     }
   }
+}
+
+fragment BasicStream on Stream {
+  id
+  url
+  type
 }
 
 fragment SeasonListEpisode on Episode {

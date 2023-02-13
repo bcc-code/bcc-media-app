@@ -5,6 +5,243 @@ import 'package:graphql/client.dart' as graphql;
 import 'package:graphql_flutter/graphql_flutter.dart' as graphql_flutter;
 import 'page.graphql.dart';
 
+class Fragment$BasicStream {
+  Fragment$BasicStream({
+    required this.id,
+    required this.url,
+    required this.type,
+    required this.$__typename,
+  });
+
+  factory Fragment$BasicStream.fromJson(Map<String, dynamic> json) {
+    final l$id = json['id'];
+    final l$url = json['url'];
+    final l$type = json['type'];
+    final l$$__typename = json['__typename'];
+    return Fragment$BasicStream(
+      id: (l$id as String),
+      url: (l$url as String),
+      type: fromJson$Enum$StreamType((l$type as String)),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final String id;
+
+  final String url;
+
+  final Enum$StreamType type;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$id = id;
+    _resultData['id'] = l$id;
+    final l$url = url;
+    _resultData['url'] = l$url;
+    final l$type = type;
+    _resultData['type'] = toJson$Enum$StreamType(l$type);
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$id = id;
+    final l$url = url;
+    final l$type = type;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$id,
+      l$url,
+      l$type,
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (!(other is Fragment$BasicStream) || runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$id = id;
+    final lOther$id = other.id;
+    if (l$id != lOther$id) {
+      return false;
+    }
+    final l$url = url;
+    final lOther$url = other.url;
+    if (l$url != lOther$url) {
+      return false;
+    }
+    final l$type = type;
+    final lOther$type = other.type;
+    if (l$type != lOther$type) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Fragment$BasicStream on Fragment$BasicStream {
+  CopyWith$Fragment$BasicStream<Fragment$BasicStream> get copyWith =>
+      CopyWith$Fragment$BasicStream(
+        this,
+        (i) => i,
+      );
+}
+
+abstract class CopyWith$Fragment$BasicStream<TRes> {
+  factory CopyWith$Fragment$BasicStream(
+    Fragment$BasicStream instance,
+    TRes Function(Fragment$BasicStream) then,
+  ) = _CopyWithImpl$Fragment$BasicStream;
+
+  factory CopyWith$Fragment$BasicStream.stub(TRes res) =
+      _CopyWithStubImpl$Fragment$BasicStream;
+
+  TRes call({
+    String? id,
+    String? url,
+    Enum$StreamType? type,
+    String? $__typename,
+  });
+}
+
+class _CopyWithImpl$Fragment$BasicStream<TRes>
+    implements CopyWith$Fragment$BasicStream<TRes> {
+  _CopyWithImpl$Fragment$BasicStream(
+    this._instance,
+    this._then,
+  );
+
+  final Fragment$BasicStream _instance;
+
+  final TRes Function(Fragment$BasicStream) _then;
+
+  static const _undefined = {};
+
+  TRes call({
+    Object? id = _undefined,
+    Object? url = _undefined,
+    Object? type = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(Fragment$BasicStream(
+        id: id == _undefined || id == null ? _instance.id : (id as String),
+        url: url == _undefined || url == null ? _instance.url : (url as String),
+        type: type == _undefined || type == null
+            ? _instance.type
+            : (type as Enum$StreamType),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+}
+
+class _CopyWithStubImpl$Fragment$BasicStream<TRes>
+    implements CopyWith$Fragment$BasicStream<TRes> {
+  _CopyWithStubImpl$Fragment$BasicStream(this._res);
+
+  TRes _res;
+
+  call({
+    String? id,
+    String? url,
+    Enum$StreamType? type,
+    String? $__typename,
+  }) =>
+      _res;
+}
+
+const fragmentDefinitionBasicStream = FragmentDefinitionNode(
+  name: NameNode(value: 'BasicStream'),
+  typeCondition: TypeConditionNode(
+      on: NamedTypeNode(
+    name: NameNode(value: 'Stream'),
+    isNonNull: false,
+  )),
+  directives: [],
+  selectionSet: SelectionSetNode(selections: [
+    FieldNode(
+      name: NameNode(value: 'id'),
+      alias: null,
+      arguments: [],
+      directives: [],
+      selectionSet: null,
+    ),
+    FieldNode(
+      name: NameNode(value: 'url'),
+      alias: null,
+      arguments: [],
+      directives: [],
+      selectionSet: null,
+    ),
+    FieldNode(
+      name: NameNode(value: 'type'),
+      alias: null,
+      arguments: [],
+      directives: [],
+      selectionSet: null,
+    ),
+    FieldNode(
+      name: NameNode(value: '__typename'),
+      alias: null,
+      arguments: [],
+      directives: [],
+      selectionSet: null,
+    ),
+  ]),
+);
+const documentNodeFragmentBasicStream = DocumentNode(definitions: [
+  fragmentDefinitionBasicStream,
+]);
+
+extension ClientExtension$Fragment$BasicStream on graphql.GraphQLClient {
+  void writeFragment$BasicStream({
+    required Fragment$BasicStream data,
+    required Map<String, dynamic> idFields,
+    bool broadcast = true,
+  }) =>
+      this.writeFragment(
+        graphql.FragmentRequest(
+          idFields: idFields,
+          fragment: const graphql.Fragment(
+            fragmentName: 'BasicStream',
+            document: documentNodeFragmentBasicStream,
+          ),
+        ),
+        data: data.toJson(),
+        broadcast: broadcast,
+      );
+  Fragment$BasicStream? readFragment$BasicStream({
+    required Map<String, dynamic> idFields,
+    bool optimistic = true,
+  }) {
+    final result = this.readFragment(
+      graphql.FragmentRequest(
+        idFields: idFields,
+        fragment: const graphql.Fragment(
+          fragmentName: 'BasicStream',
+          document: documentNodeFragmentBasicStream,
+        ),
+      ),
+      optimistic: optimistic,
+    );
+    return result == null ? null : Fragment$BasicStream.fromJson(result);
+  }
+}
+
 class Fragment$SeasonListEpisode {
   Fragment$SeasonListEpisode({
     required this.id,
@@ -1402,19 +1639,9 @@ const documentNodeQueryFetchEpisode = DocumentNode(definitions: [
             arguments: [],
             directives: [],
             selectionSet: SelectionSetNode(selections: [
-              FieldNode(
-                name: NameNode(value: 'type'),
-                alias: null,
-                arguments: [],
+              FragmentSpreadNode(
+                name: NameNode(value: 'BasicStream'),
                 directives: [],
-                selectionSet: null,
-              ),
-              FieldNode(
-                name: NameNode(value: 'url'),
-                alias: null,
-                arguments: [],
-                directives: [],
-                selectionSet: null,
               ),
               FieldNode(
                 name: NameNode(value: 'audioLanguages'),
@@ -1644,6 +1871,7 @@ const documentNodeQueryFetchEpisode = DocumentNode(definitions: [
   ),
   fragmentDefinitionGridSectionItem,
   fragmentDefinitionItemSectionItem,
+  fragmentDefinitionBasicStream,
   fragmentDefinitionSeasonListEpisode,
 ]);
 Query$FetchEpisode _parserFn$Query$FetchEpisode(Map<String, dynamic> data) =>
@@ -2375,74 +2603,83 @@ class _CopyWithStubImpl$Query$FetchEpisode$episode$relatedItems<TRes>
   items(_fn) => _res;
 }
 
-class Query$FetchEpisode$episode$streams {
+class Query$FetchEpisode$episode$streams implements Fragment$BasicStream {
   Query$FetchEpisode$episode$streams({
-    required this.type,
+    required this.id,
     required this.url,
+    required this.type,
+    required this.$__typename,
     required this.audioLanguages,
     required this.subtitleLanguages,
-    required this.$__typename,
   });
 
   factory Query$FetchEpisode$episode$streams.fromJson(
       Map<String, dynamic> json) {
-    final l$type = json['type'];
+    final l$id = json['id'];
     final l$url = json['url'];
+    final l$type = json['type'];
+    final l$$__typename = json['__typename'];
     final l$audioLanguages = json['audioLanguages'];
     final l$subtitleLanguages = json['subtitleLanguages'];
-    final l$$__typename = json['__typename'];
     return Query$FetchEpisode$episode$streams(
-      type: fromJson$Enum$StreamType((l$type as String)),
+      id: (l$id as String),
       url: (l$url as String),
+      type: fromJson$Enum$StreamType((l$type as String)),
+      $__typename: (l$$__typename as String),
       audioLanguages: (l$audioLanguages as List<dynamic>)
           .map((e) => (e as String))
           .toList(),
       subtitleLanguages: (l$subtitleLanguages as List<dynamic>)
           .map((e) => (e as String))
           .toList(),
-      $__typename: (l$$__typename as String),
     );
   }
 
-  final Enum$StreamType type;
+  final String id;
 
   final String url;
+
+  final Enum$StreamType type;
+
+  final String $__typename;
 
   final List<String> audioLanguages;
 
   final List<String> subtitleLanguages;
 
-  final String $__typename;
-
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
-    final l$type = type;
-    _resultData['type'] = toJson$Enum$StreamType(l$type);
+    final l$id = id;
+    _resultData['id'] = l$id;
     final l$url = url;
     _resultData['url'] = l$url;
+    final l$type = type;
+    _resultData['type'] = toJson$Enum$StreamType(l$type);
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
     final l$audioLanguages = audioLanguages;
     _resultData['audioLanguages'] = l$audioLanguages.map((e) => e).toList();
     final l$subtitleLanguages = subtitleLanguages;
     _resultData['subtitleLanguages'] =
         l$subtitleLanguages.map((e) => e).toList();
-    final l$$__typename = $__typename;
-    _resultData['__typename'] = l$$__typename;
     return _resultData;
   }
 
   @override
   int get hashCode {
-    final l$type = type;
+    final l$id = id;
     final l$url = url;
+    final l$type = type;
+    final l$$__typename = $__typename;
     final l$audioLanguages = audioLanguages;
     final l$subtitleLanguages = subtitleLanguages;
-    final l$$__typename = $__typename;
     return Object.hashAll([
-      l$type,
+      l$id,
       l$url,
+      l$type,
+      l$$__typename,
       Object.hashAll(l$audioLanguages.map((v) => v)),
       Object.hashAll(l$subtitleLanguages.map((v) => v)),
-      l$$__typename,
     ]);
   }
 
@@ -2455,14 +2692,24 @@ class Query$FetchEpisode$episode$streams {
         runtimeType != other.runtimeType) {
       return false;
     }
-    final l$type = type;
-    final lOther$type = other.type;
-    if (l$type != lOther$type) {
+    final l$id = id;
+    final lOther$id = other.id;
+    if (l$id != lOther$id) {
       return false;
     }
     final l$url = url;
     final lOther$url = other.url;
     if (l$url != lOther$url) {
+      return false;
+    }
+    final l$type = type;
+    final lOther$type = other.type;
+    if (l$type != lOther$type) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
       return false;
     }
     final l$audioLanguages = audioLanguages;
@@ -2489,11 +2736,6 @@ class Query$FetchEpisode$episode$streams {
         return false;
       }
     }
-    final l$$__typename = $__typename;
-    final lOther$$__typename = other.$__typename;
-    if (l$$__typename != lOther$$__typename) {
-      return false;
-    }
     return true;
   }
 }
@@ -2518,11 +2760,12 @@ abstract class CopyWith$Query$FetchEpisode$episode$streams<TRes> {
       _CopyWithStubImpl$Query$FetchEpisode$episode$streams;
 
   TRes call({
-    Enum$StreamType? type,
+    String? id,
     String? url,
+    Enum$StreamType? type,
+    String? $__typename,
     List<String>? audioLanguages,
     List<String>? subtitleLanguages,
-    String? $__typename,
   });
 }
 
@@ -2540,17 +2783,22 @@ class _CopyWithImpl$Query$FetchEpisode$episode$streams<TRes>
   static const _undefined = {};
 
   TRes call({
-    Object? type = _undefined,
+    Object? id = _undefined,
     Object? url = _undefined,
+    Object? type = _undefined,
+    Object? $__typename = _undefined,
     Object? audioLanguages = _undefined,
     Object? subtitleLanguages = _undefined,
-    Object? $__typename = _undefined,
   }) =>
       _then(Query$FetchEpisode$episode$streams(
+        id: id == _undefined || id == null ? _instance.id : (id as String),
+        url: url == _undefined || url == null ? _instance.url : (url as String),
         type: type == _undefined || type == null
             ? _instance.type
             : (type as Enum$StreamType),
-        url: url == _undefined || url == null ? _instance.url : (url as String),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
         audioLanguages: audioLanguages == _undefined || audioLanguages == null
             ? _instance.audioLanguages
             : (audioLanguages as List<String>),
@@ -2558,9 +2806,6 @@ class _CopyWithImpl$Query$FetchEpisode$episode$streams<TRes>
             subtitleLanguages == _undefined || subtitleLanguages == null
                 ? _instance.subtitleLanguages
                 : (subtitleLanguages as List<String>),
-        $__typename: $__typename == _undefined || $__typename == null
-            ? _instance.$__typename
-            : ($__typename as String),
       ));
 }
 
@@ -2571,11 +2816,12 @@ class _CopyWithStubImpl$Query$FetchEpisode$episode$streams<TRes>
   TRes _res;
 
   call({
-    Enum$StreamType? type,
+    String? id,
     String? url,
+    Enum$StreamType? type,
+    String? $__typename,
     List<String>? audioLanguages,
     List<String>? subtitleLanguages,
-    String? $__typename,
   }) =>
       _res;
 }
