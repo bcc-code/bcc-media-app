@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:bccm_player/playback_platform_pigeon.g.dart';
 import 'package:brunstadtv_app/helpers/utils.dart';
+import 'package:brunstadtv_app/helpers/widget_keys.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:brunstadtv_app/providers/chromecast.dart';
@@ -69,6 +70,7 @@ class _BottomSheetMiniPlayerState extends ConsumerState<BottomSheetMiniPlayer> {
         }
       },
       child: MiniPlayer(
+        key: WidgetKeys.bottomSheetMiniPlayer,
         secondaryTitle: artist,
         title: title ?? '',
         artworkUri: artworkUri ?? 'https://source.unsplash.com/random/1600x900/?fruit',

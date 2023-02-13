@@ -46,6 +46,7 @@ import '../helpers/btv_buttons.dart';
 import '../helpers/btv_colors.dart';
 import '../helpers/btv_typography.dart';
 import '../helpers/utils.dart';
+import '../helpers/widget_keys.dart';
 import '../l10n/app_localizations.dart';
 
 class EpisodePageArguments {
@@ -362,7 +363,7 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen> with AutoRouteAwa
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
-                                      Expanded(child: Text(episode.title, style: BtvTextStyles.title1)),
+                                      Expanded(child: Text(key: WidgetKeys.episodePageEpisodeTitle, episode.title, style: BtvTextStyles.title1)),
                                       GestureDetector(
                                         onTap: () => shareVideo(episode),
                                         child: Padding(
@@ -595,6 +596,7 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen> with AutoRouteAwa
 
   AspectRatio _playPoster(Query$FetchEpisode$episode episode, {required bool loading}) {
     return AspectRatio(
+        key: WidgetKeys.playPoster,
         aspectRatio: 16 / 9,
         child: GestureDetector(
             behavior: HitTestBehavior.opaque,

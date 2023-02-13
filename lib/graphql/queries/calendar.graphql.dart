@@ -340,6 +340,13 @@ const fragmentDefinitionCalendarDay = FragmentDefinitionNode(
                   selectionSet: null,
                 ),
                 FieldNode(
+                  name: NameNode(value: 'locked'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null,
+                ),
+                FieldNode(
                   name: NameNode(value: '__typename'),
                   alias: null,
                   arguments: [],
@@ -1103,6 +1110,7 @@ class Fragment$CalendarDay$entries$$EpisodeCalendarEntry$episode {
   Fragment$CalendarDay$entries$$EpisodeCalendarEntry$episode({
     required this.id,
     required this.publishDate,
+    required this.locked,
     required this.$__typename,
   });
 
@@ -1110,10 +1118,12 @@ class Fragment$CalendarDay$entries$$EpisodeCalendarEntry$episode {
       Map<String, dynamic> json) {
     final l$id = json['id'];
     final l$publishDate = json['publishDate'];
+    final l$locked = json['locked'];
     final l$$__typename = json['__typename'];
     return Fragment$CalendarDay$entries$$EpisodeCalendarEntry$episode(
       id: (l$id as String),
       publishDate: (l$publishDate as String),
+      locked: (l$locked as bool),
       $__typename: (l$$__typename as String),
     );
   }
@@ -1121,6 +1131,8 @@ class Fragment$CalendarDay$entries$$EpisodeCalendarEntry$episode {
   final String id;
 
   final String publishDate;
+
+  final bool locked;
 
   final String $__typename;
 
@@ -1130,6 +1142,8 @@ class Fragment$CalendarDay$entries$$EpisodeCalendarEntry$episode {
     _resultData['id'] = l$id;
     final l$publishDate = publishDate;
     _resultData['publishDate'] = l$publishDate;
+    final l$locked = locked;
+    _resultData['locked'] = l$locked;
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -1139,10 +1153,12 @@ class Fragment$CalendarDay$entries$$EpisodeCalendarEntry$episode {
   int get hashCode {
     final l$id = id;
     final l$publishDate = publishDate;
+    final l$locked = locked;
     final l$$__typename = $__typename;
     return Object.hashAll([
       l$id,
       l$publishDate,
+      l$locked,
       l$$__typename,
     ]);
   }
@@ -1165,6 +1181,11 @@ class Fragment$CalendarDay$entries$$EpisodeCalendarEntry$episode {
     final l$publishDate = publishDate;
     final lOther$publishDate = other.publishDate;
     if (l$publishDate != lOther$publishDate) {
+      return false;
+    }
+    final l$locked = locked;
+    final lOther$locked = other.locked;
+    if (l$locked != lOther$locked) {
       return false;
     }
     final l$$__typename = $__typename;
@@ -1202,6 +1223,7 @@ abstract class CopyWith$Fragment$CalendarDay$entries$$EpisodeCalendarEntry$episo
   TRes call({
     String? id,
     String? publishDate,
+    bool? locked,
     String? $__typename,
   });
 }
@@ -1226,6 +1248,7 @@ class _CopyWithImpl$Fragment$CalendarDay$entries$$EpisodeCalendarEntry$episode<
   TRes call({
     Object? id = _undefined,
     Object? publishDate = _undefined,
+    Object? locked = _undefined,
     Object? $__typename = _undefined,
   }) =>
       _then(Fragment$CalendarDay$entries$$EpisodeCalendarEntry$episode(
@@ -1233,6 +1256,9 @@ class _CopyWithImpl$Fragment$CalendarDay$entries$$EpisodeCalendarEntry$episode<
         publishDate: publishDate == _undefined || publishDate == null
             ? _instance.publishDate
             : (publishDate as String),
+        locked: locked == _undefined || locked == null
+            ? _instance.locked
+            : (locked as bool),
         $__typename: $__typename == _undefined || $__typename == null
             ? _instance.$__typename
             : ($__typename as String),
@@ -1252,6 +1278,7 @@ class _CopyWithStubImpl$Fragment$CalendarDay$entries$$EpisodeCalendarEntry$episo
   call({
     String? id,
     String? publishDate,
+    bool? locked,
     String? $__typename,
   }) =>
       _res;

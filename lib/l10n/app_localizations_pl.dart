@@ -161,6 +161,9 @@ class SPl extends S {
   String get play => 'Odtwarzaj';
 
   @override
+  String get pause => 'Pause';
+
+  @override
   String get castQueue => 'Chromecast';
 
   @override

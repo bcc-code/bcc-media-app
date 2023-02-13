@@ -161,6 +161,9 @@ class SNb extends S {
   String get play => 'Spill av';
 
   @override
+  String get pause => 'Pause';
+
+  @override
   String get castQueue => 'Legg til i kø';
 
   @override

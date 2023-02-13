@@ -161,6 +161,9 @@ class SRo extends S {
   String get play => 'Redare';
 
   @override
+  String get pause => 'Pause';
+
+  @override
   String get castQueue => 'Lista de redare';
 
   @override

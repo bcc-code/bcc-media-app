@@ -161,6 +161,9 @@ class SPt extends S {
   String get play => 'Play';
 
   @override
+  String get pause => 'Pause';
+
+  @override
   String get castQueue => 'Fila de transmissão';
 
   @override

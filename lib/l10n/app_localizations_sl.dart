@@ -161,6 +161,9 @@ class SSl extends S {
   String get play => 'Predvajaj';
 
   @override
+  String get pause => 'Pause';
+
+  @override
   String get castQueue => 'Predvajaj čakalno vrsto';
 
   @override

@@ -435,6 +435,12 @@ abstract class S {
   /// **'Play'**
   String get play;
 
+  /// A button to pause the video.
+  ///
+  /// In en, this message translates to:
+  /// **'Pause'**
+  String get pause;
+
   /// Queue page title
   ///
   /// In en, this message translates to:

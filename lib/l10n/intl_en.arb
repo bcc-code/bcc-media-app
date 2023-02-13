@@ -207,6 +207,10 @@
   "@play": {
     "description": "Option in prompt dialog."
   },
+  "pause": "Pause",
+  "@pause": {
+    "description": "A button to pause the video."
+  },
   "castQueue": "Cast queue",
   "@castQueue": {
     "description": "Queue page title"

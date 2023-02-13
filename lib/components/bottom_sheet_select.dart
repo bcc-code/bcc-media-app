@@ -74,13 +74,13 @@ class _BottomSheetSelectState extends State<BottomSheetSelect> {
                 ),
               ),
               if (widget.description != null) widget.description!,
-              Container(
-                margin: const EdgeInsets.only(bottom: 16),
+              Flexible(
                 child: OptionList(
                   optionData: widget.items,
                   currentSelection: localSelectedId,
                   showSelection: widget.showSelection,
                   onSelectionChange: (val) {
+                    if (val == null) return;
                     setState(() {
                       localSelectedId = val;
                     });
@@ -90,10 +90,10 @@ class _BottomSheetSelectState extends State<BottomSheetSelect> {
                     }
                   },
                   margin: const EdgeInsets.all(0),
-                  enableDivider: false,
                 ),
               ),
-              SizedBox(
+              Container(
+                margin: const EdgeInsets.only(top: 16),
                 width: double.infinity,
                 height: 52.1,
                 child: TextButton(

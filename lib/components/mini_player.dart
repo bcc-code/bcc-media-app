@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:brunstadtv_app/helpers/transparent_image.dart';
 
 import '../helpers/btv_typography.dart';
+import '../helpers/widget_keys.dart';
+import '../l10n/app_localizations.dart';
 
 const double kMiniPlayerHeight = 62;
 
@@ -79,13 +81,16 @@ class MiniPlayer extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.only(bottom: 4.0),
                     child: Text(
-                      overflow: TextOverflow.ellipsis,
                       secondaryTitle!,
+                      semanticsLabel: secondaryTitle!,
+                      overflow: TextOverflow.ellipsis,
                       style: BtvTextStyles.caption2.copyWith(color: BtvColors.tint1),
                     ),
                   ),
                 Text(
                   title,
+                  semanticsLabel: title,
+                  key: WidgetKeys.miniPlayerTitle,
                   overflow: TextOverflow.ellipsis,
                   style: BtvTextStyles.caption1.copyWith(color: BtvColors.label1),
                 ),
@@ -102,8 +107,8 @@ class MiniPlayer extends StatelessWidget {
                 margin: const EdgeInsets.only(left: 16),
                 height: 36,
                 child: isPlaying
-                    ? Image.asset(height: 24, 'assets/icons/Pause.png', gaplessPlayback: true)
-                    : Image.asset(height: 24, 'assets/icons/Play.png', gaplessPlayback: true),
+                    ? Image.asset(semanticLabel: S.of(context).pause, height: 24, 'assets/icons/Pause.png', gaplessPlayback: true)
+                    : Image.asset(semanticLabel: S.of(context).play, height: 24, 'assets/icons/Play.png', gaplessPlayback: true),
               ),
             ),
           if (hideCloseButton != true)

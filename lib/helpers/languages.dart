@@ -1,84 +1,185 @@
-import 'package:collection/collection.dart';
+import 'dart:ui';
 
 class LanguageInfo {
-  final String code;
+  final Locale locale;
   final String nativeName;
+  final String englishName;
 
-  const LanguageInfo({required this.code, required this.nativeName});
+  const LanguageInfo({
+    required this.locale,
+    required this.nativeName,
+    required this.englishName,
+  });
 }
 
-const languages = [
-  LanguageInfo(
-    code: 'de',
+class LanguageCodes {
+  static const de = 'de';
+  static const en = 'en';
+  static const es = 'es';
+  static const fi = 'fi';
+  static const fr = 'fr';
+  static const hr = 'hr';
+  static const hu = 'hu';
+  static const it = 'it';
+  static const ml = 'ml';
+  static const nl = 'nl';
+  static const no = 'no';
+  static const pl = 'pl';
+  static const pt = 'pt';
+  static const ro = 'ro';
+  static const ru = 'ru';
+  static const sl = 'sl';
+  static const ta = 'ta';
+  static const tr = 'tr';
+  static const da = 'da';
+  static const bg = 'bg';
+  static const zh = 'zh';
+  static const zh_HK = 'zh-HK';
+}
+
+const languages = {
+  LanguageCodes.de: LanguageInfo(
+    locale: Locale(LanguageCodes.de),
     nativeName: 'Deutsch',
+    englishName: 'German',
   ),
-  LanguageInfo(
-    code: 'en',
+  LanguageCodes.en: LanguageInfo(
+    locale: Locale(LanguageCodes.en),
     nativeName: 'English',
+    englishName: 'English',
   ),
-  LanguageInfo(
-    code: 'es',
+  LanguageCodes.es: LanguageInfo(
+    locale: Locale(LanguageCodes.es),
     nativeName: 'Español',
+    englishName: 'Spanish',
   ),
-  LanguageInfo(
-    code: 'fi',
+  LanguageCodes.fi: LanguageInfo(
+    locale: Locale(LanguageCodes.fi),
     nativeName: 'Suomi',
+    englishName: 'Finnish',
   ),
-  LanguageInfo(
-    code: 'fr',
+  LanguageCodes.fr: LanguageInfo(
+    locale: Locale(LanguageCodes.fr),
     nativeName: 'Français',
+    englishName: 'French',
   ),
-  LanguageInfo(
-    code: 'hu',
+  LanguageCodes.hr: LanguageInfo(
+    locale: Locale(LanguageCodes.hr),
+    nativeName: 'Hrvatski',
+    englishName: 'Croatian',
+  ),
+  LanguageCodes.hu: LanguageInfo(
+    locale: Locale(LanguageCodes.hu),
     nativeName: 'Magyar',
+    englishName: 'Hungarian',
   ),
-  LanguageInfo(
-    code: 'it',
+  LanguageCodes.it: LanguageInfo(
+    locale: Locale(LanguageCodes.it),
     nativeName: 'Italiano',
+    englishName: 'Italian',
   ),
-  LanguageInfo(
-    code: 'nl',
+  LanguageCodes.ml: LanguageInfo(
+    locale: Locale(LanguageCodes.ml),
+    nativeName: 'മലയാളം',
+    englishName: 'Malayalam',
+  ),
+  LanguageCodes.nl: LanguageInfo(
+    locale: Locale(LanguageCodes.nl),
     nativeName: 'Nederlands',
+    englishName: 'Dutch',
   ),
-  LanguageInfo(
-    code: 'no',
+  LanguageCodes.no: LanguageInfo(
+    locale: Locale(LanguageCodes.no),
     nativeName: 'Norsk',
+    englishName: 'Norwegian',
   ),
-  LanguageInfo(
-    code: 'pl',
+  LanguageCodes.pl: LanguageInfo(
+    locale: Locale(LanguageCodes.pl),
     nativeName: 'Polski',
+    englishName: 'Polish',
   ),
-  LanguageInfo(
-    code: 'pt',
+  LanguageCodes.pt: LanguageInfo(
+    locale: Locale(LanguageCodes.pt),
     nativeName: 'Português',
+    englishName: 'Portuguese',
   ),
-  LanguageInfo(
-    code: 'ro',
+  LanguageCodes.ro: LanguageInfo(
+    locale: Locale(LanguageCodes.ro),
     nativeName: 'Română',
+    englishName: 'Romanian',
   ),
-  LanguageInfo(
-    code: 'ru',
+  LanguageCodes.ru: LanguageInfo(
+    locale: Locale(LanguageCodes.ru),
     nativeName: 'Pусский',
+    englishName: 'Russian',
   ),
-  LanguageInfo(
-    code: 'sl',
+  LanguageCodes.sl: LanguageInfo(
+    locale: Locale(LanguageCodes.sl),
     nativeName: 'Slovenščina',
+    englishName: 'Slovenian',
   ),
-  LanguageInfo(
-    code: 'tr',
+  LanguageCodes.ta: LanguageInfo(
+    locale: Locale(LanguageCodes.ta),
+    nativeName: 'தமிழ்',
+    englishName: 'Tamil',
+  ),
+  LanguageCodes.tr: LanguageInfo(
+    locale: Locale(LanguageCodes.tr),
     nativeName: 'Türkçe',
+    englishName: 'Turkish',
   ),
-  LanguageInfo(
-    code: 'da',
+  LanguageCodes.da: LanguageInfo(
+    locale: Locale(LanguageCodes.da),
     nativeName: 'Dansk',
+    englishName: 'Danish',
   ),
-  LanguageInfo(
-    code: 'bg',
+  LanguageCodes.bg: LanguageInfo(
+    locale: Locale(LanguageCodes.bg),
     nativeName: 'български',
+    englishName: 'Bulgarian',
   ),
+  LanguageCodes.zh: LanguageInfo(
+    locale: Locale(LanguageCodes.zh),
+    nativeName: '中文',
+    englishName: 'Chinese',
+  ),
+  LanguageCodes.zh_HK: LanguageInfo(
+    locale: Locale('zh', 'HK'),
+    nativeName: '粵語',
+    englishName: 'Cantonese',
+  ),
+};
+
+final appLanuageCodes = [
+  LanguageCodes.de,
+  LanguageCodes.en,
+  LanguageCodes.es,
+  LanguageCodes.fi,
+  LanguageCodes.fr,
+  LanguageCodes.hu,
+  LanguageCodes.it,
+  LanguageCodes.nl,
+  LanguageCodes.no,
+  LanguageCodes.pl,
+  LanguageCodes.pt,
+  LanguageCodes.ro,
+  LanguageCodes.ru,
+  LanguageCodes.sl,
+  LanguageCodes.tr,
+  LanguageCodes.da,
+  LanguageCodes.bg,
 ];
 
 String? getLanguageName(String? languageCode) {
-  if (languageCode == null) return null;
-  return languages.firstWhereOrNull((l) => l.code == languageCode)?.nativeName;
+  if (languageCode == null) {
+    return null;
+  }
+  return languages[languageCode]?.nativeName;
+}
+
+Locale? getLocale(String? languageCode) {
+  if (languageCode == null) {
+    return null;
+  }
+  return languages[languageCode]?.locale;
 }

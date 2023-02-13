@@ -161,6 +161,9 @@ class SNl extends S {
   String get play => 'Afspelen';
 
   @override
+  String get pause => 'Pause';
+
+  @override
   String get castQueue => 'Lijst verwijderen';
 
   @override
