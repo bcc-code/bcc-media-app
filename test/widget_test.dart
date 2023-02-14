@@ -6,9 +6,6 @@
 // tree, read text, and verify that the values of widget properties are correct.
 
 import 'package:flutter/material.dart';
-import 'package:flutter_test/flutter_test.dart';
-
-import 'package:brunstadtv_app/screens/home.dart';
 import 'package:mockito/mockito.dart';
 
 class MockNavigatorObserver extends Mock implements NavigatorObserver {}

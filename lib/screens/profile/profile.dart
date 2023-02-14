@@ -107,8 +107,8 @@ class _ProfileState extends ConsumerState<Profile> {
                   const Avatar()
                 else
                   Padding(
-                    padding: EdgeInsets.only(top: 24, bottom: 16),
-                    child: Padding(padding: EdgeInsets.all(6), child: SvgPicture.string(SvgIcons.avatar)),
+                    padding: const EdgeInsets.only(top: 24, bottom: 16),
+                    child: Padding(padding: const EdgeInsets.all(6), child: SvgPicture.string(SvgIcons.avatar)),
                   ),
                 Container(
                   margin: const EdgeInsets.only(bottom: 24),
