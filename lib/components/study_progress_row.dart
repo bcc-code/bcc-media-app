@@ -2,9 +2,9 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 
-import '../../helpers/btv_colors.dart';
-import '../../helpers/btv_gradients.dart';
-import '../../helpers/btv_typography.dart';
+import '../theme/bccm_colors.dart';
+import '../theme/bccm_gradients.dart';
+import '../theme/bccm_typography.dart';
 import './study_progress.dart';
 
 class StudyProgressRow extends StatelessWidget {
@@ -31,7 +31,7 @@ class StudyProgressRow extends StatelessWidget {
           padding: const EdgeInsets.only(left: 6, right: 12),
           child: Text(
             '$completed/$total',
-            style: BtvTextStyles.caption1.copyWith(color: BtvColors.label1),
+            style: BccmTextStyles.caption1.copyWith(color: BccmColors.label1),
           ),
         ),
         Expanded(
@@ -40,7 +40,7 @@ class StudyProgressRow extends StatelessWidget {
               Container(
                 height: 6,
                 decoration: BoxDecoration(
-                  color: BtvColors.separatorOnLight,
+                  color: BccmColors.separatorOnLight,
                   borderRadius: BorderRadius.circular(4),
                 ),
               ),
@@ -49,7 +49,7 @@ class StudyProgressRow extends StatelessWidget {
                 child: Container(
                   height: 6,
                   decoration: BoxDecoration(
-                    gradient: BtvGradients.greenYellow,
+                    gradient: BccmGradients.greenYellow,
                     borderRadius: BorderRadius.circular(4),
                   ),
                 ),

@@ -6,11 +6,11 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../graphql/queries/calendar_episode_entries.graphql.dart';
 import '../graphql/queries/page.graphql.dart';
 import '../graphql/schema/pages.graphql.dart';
-import '../helpers/btv_colors.dart';
+import '../theme/bccm_colors.dart';
 import '../l10n/app_localizations.dart';
 import '../providers/todays_calendar_entries.dart';
 import '../services/utils.dart';
-import '../helpers/btv_typography.dart';
+import '../theme/bccm_typography.dart';
 import '../helpers/utils.dart';
 import 'feature_badge.dart';
 import 'episode_duration.dart';
@@ -133,14 +133,14 @@ class _GridEpisodeItem extends StatelessWidget {
                       episode.season!.$show.title.replaceAll(' ', '\u{000A0}'),
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
-                      style: BtvTextStyles.caption2.copyWith(color: BtvColors.tint1),
+                      style: BccmTextStyles.caption2.copyWith(color: BccmColors.tint1),
                     ),
                   ),
                 ),
               if (episode.season != null)
                 Text(
                   '${S.of(context).seasonLetter}${episode.season!.number}:${S.of(context).episodeLetter}${episode.number}',
-                  style: BtvTextStyles.caption2,
+                  style: BccmTextStyles.caption2,
                 ),
             ],
           ),
@@ -150,7 +150,7 @@ class _GridEpisodeItem extends StatelessWidget {
             sectionItem.title,
             maxLines: 2,
             overflow: TextOverflow.ellipsis,
-            style: BtvTextStyles.caption1.copyWith(color: BtvColors.label1),
+            style: BccmTextStyles.caption1.copyWith(color: BccmColors.label1),
           ),
         ),
       ],
@@ -238,12 +238,12 @@ class _GridShowItem extends StatelessWidget {
             sectionItem.title,
             maxLines: 2,
             overflow: TextOverflow.ellipsis,
-            style: BtvTextStyles.caption1.copyWith(color: BtvColors.label1),
+            style: BccmTextStyles.caption1.copyWith(color: BccmColors.label1),
           ),
         ),
         Text(
           '${show.seasonCount} ${S.of(context).seasons} - ${show.episodeCount} ${S.of(context).episodes}',
-          style: BtvTextStyles.caption2,
+          style: BccmTextStyles.caption2,
         )
       ],
     );
@@ -265,7 +265,7 @@ class _GridShowItem extends StatelessWidget {
                 right: -4,
                 child: FeatureBadge(
                   label: 'New Episodes',
-                  color: BtvColors.tint2,
+                  color: BccmColors.tint2,
                 ),
               ),
           ],

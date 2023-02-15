@@ -10,8 +10,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../helpers/btv_colors.dart';
-import '../helpers/btv_typography.dart';
+import '../theme/bccm_colors.dart';
+import '../theme/bccm_typography.dart';
 import '../helpers/widget_keys.dart';
 import '../l10n/app_localizations.dart';
 import '../providers/analytics.dart';
@@ -106,11 +106,11 @@ class _CustomTabBarState extends ConsumerState<CustomTabBar> {
 
     if (useMaterial) {
       return Container(
-        decoration: const BoxDecoration(border: Border(top: BorderSide(width: 1, color: BtvColors.separatorOnLight))),
+        decoration: const BoxDecoration(border: Border(top: BorderSide(width: 1, color: BccmColors.separatorOnLight))),
         child: BottomNavigationBar(
             type: BottomNavigationBarType.fixed,
-            unselectedItemColor: BtvColors.label3,
-            unselectedLabelStyle: BtvTextStyles.caption3,
+            unselectedItemColor: BccmColors.label3,
+            unselectedLabelStyle: BccmTextStyles.caption3,
             currentIndex: widget.tabsRouter.activeIndex,
             onTap: onTabTap,
             items: items),
@@ -121,9 +121,9 @@ class _CustomTabBarState extends ConsumerState<CustomTabBar> {
         height: 50,
         currentIndex: widget.tabsRouter.activeIndex,
         onTap: onTabTap,
-        inactiveColor: BtvColors.label3,
-        activeColor: BtvColors.tint1,
-        border: const Border(top: BorderSide(width: 1, color: BtvColors.separatorOnLight)),
+        inactiveColor: BccmColors.label3,
+        activeColor: BccmColors.tint1,
+        border: const Border(top: BorderSide(width: 1, color: BccmColors.separatorOnLight)),
         items: items);
   }
 

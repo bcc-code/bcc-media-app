@@ -6,7 +6,7 @@ import 'package:brunstadtv_app/screens/search/search.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
-import '../helpers/btv_typography.dart';
+import '../theme/bccm_typography.dart';
 import '../helpers/widget_keys.dart';
 import '../l10n/app_localizations.dart';
 import '../screens/page.dart';
@@ -67,7 +67,7 @@ class CustomBackButton extends StatelessWidget {
                     pageTitle,
                     semanticsLabel: S.of(context).back,
                     overflow: TextOverflow.ellipsis,
-                    style: BtvTextStyles.button2.copyWith(height: 1),
+                    style: BccmTextStyles.button2.copyWith(height: 1),
                   ),
                 ),
               ),

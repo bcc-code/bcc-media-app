@@ -1,7 +1,7 @@
 import 'package:flutter/widgets.dart';
 
-class BtvGradients {
-  BtvGradients._();
+class BccmGradients {
+  BccmGradients._();
 
   static const LinearGradient blueRed = LinearGradient(
     begin: Alignment.topLeft,

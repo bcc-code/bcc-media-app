@@ -4,8 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../graphql/queries/calendar_episode_entries.graphql.dart';
-import '../helpers/btv_colors.dart';
-import '../helpers/btv_typography.dart';
+import '../theme/bccm_colors.dart';
+import '../theme/bccm_typography.dart';
 import '../l10n/app_localizations.dart';
 import '../providers/todays_calendar_entries.dart';
 import '../services/utils.dart';
@@ -107,7 +107,7 @@ class _DefaultEpisodeItem extends StatelessWidget {
                           episode.season!.$show.title.replaceAll(' ', '\u{000A0}'),
                           maxLines: 1,
                           overflow: TextOverflow.ellipsis,
-                          style: BtvTextStyles.caption2.copyWith(color: BtvColors.tint1),
+                          style: BccmTextStyles.caption2.copyWith(color: BccmColors.tint1),
                         ),
                       ),
                     ),
@@ -122,7 +122,7 @@ class _DefaultEpisodeItem extends StatelessWidget {
           Text(
             sectionItem.title,
             maxLines: 2,
-            style: BtvTextStyles.caption1.copyWith(color: BtvColors.label1),
+            style: BccmTextStyles.caption1.copyWith(color: BccmColors.label1),
           )
         ],
       ),
@@ -211,12 +211,12 @@ class _DefaultShowItem extends StatelessWidget {
             margin: const EdgeInsets.only(bottom: 2),
             child: Text(
               sectionItem.title,
-              style: BtvTextStyles.caption1.copyWith(color: BtvColors.label1),
+              style: BccmTextStyles.caption1.copyWith(color: BccmColors.label1),
             ),
           ),
           Text(
             '${show.seasonCount} ${S.of(context).seasons} - ${show.episodeCount} ${S.of(context).episodes}',
-            style: BtvTextStyles.caption2,
+            style: BccmTextStyles.caption2,
           )
         ],
       ),
@@ -238,7 +238,7 @@ class _DefaultShowItem extends StatelessWidget {
               right: -4,
               child: FeatureBadge(
                 label: 'New Episodes',
-                color: BtvColors.tint2,
+                color: BccmColors.tint2,
               ),
             ),
         ],
