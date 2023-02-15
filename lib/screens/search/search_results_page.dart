@@ -7,7 +7,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../graphql/client.dart';
 import '../../graphql/queries/search.graphql.dart';
-import '../../components/episode_list.dart';
+import '../../components/episode_list_episode.dart';
 import '../../components/result_programs_list.dart';
 import '../../theme/bccm_colors.dart';
 import '../../theme/bccm_typography.dart';
