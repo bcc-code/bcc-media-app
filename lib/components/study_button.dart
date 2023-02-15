@@ -2,8 +2,8 @@ import 'package:brunstadtv_app/graphql/queries/studies.graphql.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
-import '../../helpers/btv_colors.dart';
-import '../../helpers/btv_typography.dart';
+import '../theme/bccm_colors.dart';
+import '../theme/bccm_typography.dart';
 import '../../helpers/svg_icons.dart';
 import '../l10n/app_localizations.dart';
 import './pulse_animation.dart';
@@ -65,11 +65,11 @@ class _StudyMoreButtonState extends State<StudyMoreButton> with SingleTickerProv
             padding: const EdgeInsets.all(12),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(12),
-              color: BtvColors.tint1.withAlpha((255 * 0.1).round()),
+              color: BccmColors.tint1.withAlpha((255 * 0.1).round()),
             ),
             foregroundDecoration: BoxDecoration(
               borderRadius: BorderRadius.circular(12),
-              border: Border.all(color: BtvColors.separatorOnLight, width: 1),
+              border: Border.all(color: BccmColors.separatorOnLight, width: 1),
             ),
             child: Row(
               mainAxisSize: MainAxisSize.min,
@@ -83,14 +83,14 @@ class _StudyMoreButtonState extends State<StudyMoreButton> with SingleTickerProv
                     children: [
                       Text(
                         title,
-                        style: BtvTextStyles.title3,
+                        style: BccmTextStyles.title3,
                       ),
                       Padding(
                         padding: const EdgeInsets.only(top: 2),
                         child: Text(
                           secondaryTitle,
                           overflow: TextOverflow.fade,
-                          style: BtvTextStyles.caption1.copyWith(color: BtvColors.label3),
+                          style: BccmTextStyles.caption1.copyWith(color: BccmColors.label3),
                         ),
                       ),
                     ],
@@ -153,7 +153,8 @@ class _StudyMoreButtonState extends State<StudyMoreButton> with SingleTickerProv
   Container circleButton() {
     return Container(
         decoration: BoxDecoration(color: const Color(0xFF3D4E63), borderRadius: BorderRadius.circular(45)),
-        foregroundDecoration: BoxDecoration(border: Border.all(color: BtvColors.separatorOnLight, width: 1), borderRadius: BorderRadius.circular(45)),
+        foregroundDecoration:
+            BoxDecoration(border: Border.all(color: BccmColors.separatorOnLight, width: 1), borderRadius: BorderRadius.circular(45)),
         width: 38,
         height: 38,
         child: Center(

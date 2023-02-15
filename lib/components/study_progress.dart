@@ -4,7 +4,7 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/svg.dart';
-import '../helpers/btv_gradients.dart';
+import '../theme/bccm_gradients.dart';
 import '../helpers/svg_icons.dart';
 
 enum LessonProgressTreeVariant { border2, border3 }
@@ -61,7 +61,7 @@ class LessonProgressTree extends ConsumerWidget {
           child: OverflowBox(
             child: CustomPaint(
                 painter: ArcPainter(
-              gradient: BtvGradients.greenYellow,
+              gradient: BccmGradients.greenYellow,
               strokeWidth: outerStrokeWidth,
               progress: completedFraction,
             )),
@@ -71,7 +71,7 @@ class LessonProgressTree extends ConsumerWidget {
           padding: EdgeInsets.all(arcToTreePadding),
           child: ShaderMask(
               shaderCallback: (bounds) {
-                return BtvGradients.greenYellow.createShader(bounds);
+                return BccmGradients.greenYellow.createShader(bounds);
               },
               blendMode: BlendMode.srcATop,
               child: treeWidget),

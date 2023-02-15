@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:brunstadtv_app/helpers/transparent_image.dart';
 
-import '../helpers/btv_colors.dart';
+import '../theme/bccm_colors.dart';
 import '../helpers/image_utils.dart';
 
 class BorderedImageContainer extends StatelessWidget {
@@ -34,7 +34,7 @@ class BorderedImageContainer extends StatelessWidget {
         borderRadius: borderRadius ?? BorderRadius.circular(6),
         border: Border.all(
           width: 1,
-          color: BtvColors.onTint.withOpacity(0.1),
+          color: BccmColors.onTint.withOpacity(0.1),
         ),
       ),
       child: LayoutBuilder(

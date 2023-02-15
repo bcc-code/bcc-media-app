@@ -6,7 +6,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:restart_app/restart_app.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import '../helpers/btv_typography.dart';
+import '../theme/bccm_typography.dart';
 import '../helpers/constants.dart';
 import 'option_list.dart';
 
@@ -23,7 +23,7 @@ class DeveloperOptions extends ConsumerWidget {
         return SimpleDialog(
           title: const Text(
             'Choose environment override',
-            style: BtvTextStyles.title3,
+            style: BccmTextStyles.title3,
           ),
           children: [EnvironmentOverride.none, EnvironmentOverride.dev, EnvironmentOverride.sta, EnvironmentOverride.prod]
               .map((env) => SimpleDialogOption(
@@ -36,7 +36,7 @@ class DeveloperOptions extends ConsumerWidget {
                         ? Text(env)
                         : Text(
                             env,
-                            style: BtvTextStyles.body1.copyWith(fontWeight: FontWeight.bold),
+                            style: BccmTextStyles.body1.copyWith(fontWeight: FontWeight.bold),
                           ),
                   ))
               .toList(),
@@ -55,7 +55,7 @@ class DeveloperOptions extends ConsumerWidget {
         return SimpleDialog(
           title: const Text(
             'Technical details',
-            style: BtvTextStyles.title3,
+            style: BccmTextStyles.title3,
           ),
           children: [
             SelectionArea(

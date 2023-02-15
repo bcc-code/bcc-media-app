@@ -1,6 +1,6 @@
 import 'dart:ui';
 
-class BtvColors {
+class BccmColors {
   static const Color tint1 = Color(0xff6EB0E6);
   static const Color tint2 = Color(0xffE63C62);
   static const Color tint3 = Color(0xff71D2A4);

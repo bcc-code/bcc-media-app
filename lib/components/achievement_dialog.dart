@@ -1,4 +1,4 @@
-import 'package:brunstadtv_app/helpers/btv_gradients.dart';
+import 'package:brunstadtv_app/theme/bccm_gradients.dart';
 import 'package:brunstadtv_app/models/analytics/achievement_shared.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/foundation.dart';
@@ -10,8 +10,8 @@ import 'package:share_plus/share_plus.dart';
 
 import '../graphql/queries/achievements.graphql.dart';
 import '../helpers/btv_buttons.dart';
-import '../helpers/btv_colors.dart';
-import '../helpers/btv_typography.dart';
+import '../theme/bccm_colors.dart';
+import '../theme/bccm_typography.dart';
 import '../helpers/image_utils.dart';
 import '../helpers/svg_icons.dart';
 import '../l10n/app_localizations.dart';
@@ -112,12 +112,12 @@ class AchievementShareRender extends StatelessWidget {
         body: Container(
           width: 400,
           height: 350,
-          color: BtvColors.background2,
+          color: BccmColors.background2,
           child: Stack(
             children: [
               Positioned.fill(
                 child: Container(
-                  decoration: const BoxDecoration(gradient: BtvGradients.purpleTransparent),
+                  decoration: const BoxDecoration(gradient: BccmGradients.purpleTransparent),
                 ),
               ),
               SizedBox(
@@ -137,12 +137,12 @@ class AchievementShareRender extends StatelessWidget {
                         padding: const EdgeInsets.only(bottom: 4),
                         child: Text(
                           formattedAchievedAt!,
-                          style: BtvTextStyles.body2.copyWith(color: BtvColors.label3),
+                          style: BccmTextStyles.body2.copyWith(color: BccmColors.label3),
                         ),
                       ),
                     Text(
                       achievement.title,
-                      style: BtvTextStyles.headline2,
+                      style: BccmTextStyles.headline2,
                       textAlign: TextAlign.center,
                     ),
                   ],

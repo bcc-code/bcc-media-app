@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../helpers/btv_colors.dart';
-import '../helpers/btv_typography.dart';
+import '../theme/bccm_colors.dart';
+import '../theme/bccm_typography.dart';
 import '../l10n/app_localizations.dart';
 
 class OptionList extends StatelessWidget {
@@ -23,7 +23,7 @@ class OptionList extends StatelessWidget {
     this.showSelection = true,
     this.showNoneOption = false,
     this.margin = const EdgeInsets.only(top: 16, left: 16, right: 16),
-    this.backgroundColor = BtvColors.background2,
+    this.backgroundColor = BccmColors.background2,
   });
 
   @override
@@ -70,7 +70,7 @@ class OptionList extends StatelessWidget {
     return IgnorePointer(
       ignoring: option.disabled,
       child: Container(
-        foregroundDecoration: option.disabled ? BoxDecoration(color: BtvColors.background1.withAlpha(100)) : null,
+        foregroundDecoration: option.disabled ? BoxDecoration(color: BccmColors.background1.withAlpha(100)) : null,
         child: GestureDetector(
           behavior: HitTestBehavior.opaque,
           onTapDown: (e) {
@@ -94,14 +94,14 @@ class OptionList extends StatelessWidget {
                     children: [
                       Text(
                         option.title,
-                        style: BtvTextStyles.title3,
+                        style: BccmTextStyles.title3,
                       ),
                       (option.subTitle != null)
                           ? Container(
                               margin: const EdgeInsets.only(top: 2),
                               child: Text(
                                 option.subTitle as String,
-                                style: BtvTextStyles.caption1.copyWith(color: const Color.fromRGBO(235, 235, 245, 0.6)),
+                                style: BccmTextStyles.caption1.copyWith(color: const Color.fromRGBO(235, 235, 245, 0.6)),
                               ),
                             )
                           : const SizedBox.shrink(),

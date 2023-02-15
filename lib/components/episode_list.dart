@@ -1,7 +1,7 @@
-import 'package:brunstadtv_app/helpers/btv_typography.dart';
+import 'package:brunstadtv_app/theme/bccm_typography.dart';
 import 'package:flutter/material.dart';
 
-import '../helpers/btv_colors.dart';
+import '../theme/bccm_colors.dart';
 import '../helpers/utils.dart';
 import '../l10n/app_localizations.dart';
 import 'bordered_image_container.dart';
@@ -44,7 +44,7 @@ class EpisodeListEpisode extends StatelessWidget {
                     margin: const EdgeInsets.only(bottom: 4),
                     child: Text(
                       showTitle!,
-                      style: BtvTextStyles.caption2.copyWith(color: BtvColors.tint1),
+                      style: BccmTextStyles.caption2.copyWith(color: BccmColors.tint1),
                     ),
                   ),
                 Flexible(
@@ -52,7 +52,7 @@ class EpisodeListEpisode extends StatelessWidget {
                     margin: const EdgeInsets.only(bottom: 6),
                     child: Text(
                       title,
-                      style: BtvTextStyles.caption1.copyWith(color: BtvColors.label1),
+                      style: BccmTextStyles.caption1.copyWith(color: BccmColors.label1),
                     ),
                   ),
                 ),
@@ -65,21 +65,21 @@ class EpisodeListEpisode extends StatelessWidget {
                         height: 16,
                         padding: const EdgeInsets.only(right: 4, bottom: 2, left: 4),
                         decoration: BoxDecoration(
-                          color: BtvColors.background2,
+                          color: BccmColors.background2,
                           border: Border.all(
                             width: 1,
-                            color: BtvColors.separatorOnLight,
+                            color: BccmColors.separatorOnLight,
                           ),
                           borderRadius: const BorderRadius.all(Radius.circular(8)),
                         ),
                         child: Text(
                           getFormattedAgeRating(ageRating),
-                          style: BtvTextStyles.caption2.copyWith(color: BtvColors.onTint, height: 1.1),
+                          style: BccmTextStyles.caption2.copyWith(color: BccmColors.onTint, height: 1.1),
                         ),
                       ),
                     Text(
                       '${Duration(seconds: duration).inMinutes} ${S.of(context).minutesShort}',
-                      style: BtvTextStyles.caption2.copyWith(color: BtvColors.label3),
+                      style: BccmTextStyles.caption2.copyWith(color: BccmColors.label3),
                     )
                   ],
                 )

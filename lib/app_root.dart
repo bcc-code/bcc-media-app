@@ -1,7 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:brunstadtv_app/graphql/client.dart';
 import 'package:brunstadtv_app/graphql/queries/me.graphql.dart';
-import 'package:brunstadtv_app/helpers/btv_typography.dart';
+import 'package:brunstadtv_app/theme/bccm_typography.dart';
 import 'package:brunstadtv_app/helpers/navigation_utils.dart';
 import 'package:brunstadtv_app/providers/analytics.dart';
 import 'package:brunstadtv_app/providers/settings.dart';
@@ -75,7 +75,7 @@ class _AppRootState extends ConsumerState<AppRoot> {
             return SimpleDialog(
                 title: Text(
               notification.title ?? '',
-              style: BtvTextStyles.title3,
+              style: BccmTextStyles.title3,
             ));
           });
     }

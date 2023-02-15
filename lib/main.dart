@@ -5,8 +5,9 @@ import 'package:auto_route/auto_route.dart';
 import 'package:bccm_player/playback_platform_pigeon.g.dart';
 import 'package:bccm_player/playback_service_interface.dart';
 import 'package:brunstadtv_app/graphql/client.dart';
-import 'package:brunstadtv_app/helpers/btv_colors.dart';
-import 'package:brunstadtv_app/helpers/btv_typography.dart';
+import 'package:brunstadtv_app/theme/bccm_colors.dart';
+import 'package:brunstadtv_app/theme/bccm_theme.dart';
+import 'package:brunstadtv_app/theme/bccm_typography.dart';
 import 'package:brunstadtv_app/helpers/navigation_utils.dart';
 import 'package:brunstadtv_app/providers/app_config.dart';
 import 'package:brunstadtv_app/providers/analytics.dart';
@@ -171,7 +172,7 @@ Future<void> $main({required FirebaseOptions? firebaseOptions}) async {
                   supportedLocales: S.supportedLocales,
                   locale: ref.watch(settingsProvider).appLanguage,
                   theme: ThemeData(),
-                  darkTheme: createTheme(),
+                  darkTheme: appTheme(),
                   themeMode: ThemeMode.dark,
                   debugShowCheckedModeBanner: false,
                   title: 'BCC Media',
@@ -194,45 +195,6 @@ Future<void> $main({required FirebaseOptions? firebaseOptions}) async {
   );
   final maybeWrappedApp = kDebugMode && !kIsWeb ? InteractiveViewer(maxScale: 10, child: app) : app;
   runApp(maybeWrappedApp);
-}
-
-ThemeData createTheme() {
-  return ThemeData(
-    //useMaterial3: true,
-    cupertinoOverrideTheme: const CupertinoThemeData(
-        barBackgroundColor: BtvColors.background1, textTheme: CupertinoTextThemeData(tabLabelTextStyle: BtvTextStyles.caption3)),
-    brightness: Brightness.dark,
-    colorScheme: ColorScheme.fromSeed(brightness: Brightness.dark, seedColor: BtvColors.tint1).copyWith(background: BtvColors.background2),
-    fontFamily: 'Barlow',
-    canvasColor: BtvColors.background1,
-    highlightColor: BtvColors.background2.withOpacity(0.5),
-    splashColor: BtvColors.background2.withOpacity(1),
-    progressIndicatorTheme: const ProgressIndicatorThemeData(color: BtvColors.tint1),
-    appBarTheme: AppBarTheme(
-        titleTextStyle: BtvTextStyles.title3.copyWith(height: 1),
-        toolbarTextStyle: BtvTextStyles.button2,
-        centerTitle: true,
-        elevation: 0,
-        toolbarHeight: 44,
-        iconTheme: const IconThemeData(color: BtvColors.tint1),
-        backgroundColor: BtvColors.background1),
-    dialogTheme: const DialogTheme(
-      backgroundColor: BtvColors.background2,
-      contentTextStyle: BtvTextStyles.body1,
-      titleTextStyle: BtvTextStyles.title3,
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(16))),
-    ),
-    scaffoldBackgroundColor: BtvColors.background1,
-    bottomNavigationBarTheme: BottomNavigationBarThemeData(
-        selectedItemColor: BtvColors.tint1,
-        elevation: 0,
-        selectedLabelStyle: BtvTextStyles.caption3.copyWith(color: BtvColors.tint1),
-        unselectedLabelStyle: BtvTextStyles.caption3),
-    typography: Typography.material2021().copyWith(
-        white: Typography.material2021()
-            .white
-            .copyWith(headlineMedium: BtvTextStyles.headline2, bodyLarge: BtvTextStyles.body1, bodyMedium: BtvTextStyles.body2)),
-  );
 }
 
 Future<String?> getDefaultLocale() async {
