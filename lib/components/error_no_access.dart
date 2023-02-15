@@ -43,7 +43,7 @@ class ErrorNoAccess extends ConsumerWidget {
                 children: [
                   Text(S.of(context).plentyOfOtherContent, textAlign: TextAlign.center, style: BtvTextStyles.body1.copyWith(color: BtvColors.onTint)),
                   Container(
-                    padding: EdgeInsets.only(top: 24, bottom: 28),
+                    padding: const EdgeInsets.only(top: 24, bottom: 28),
                     width: double.infinity,
                     child: BtvButton.large(
                       labelText: S.of(context).exploreContent,

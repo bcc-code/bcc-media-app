@@ -4,7 +4,6 @@ import 'package:brunstadtv_app/graphql/queries/calendar_episode_entries.graphql.
 import 'package:brunstadtv_app/graphql/queries/page.graphql.dart';
 import 'package:brunstadtv_app/helpers/utils.dart';
 import 'package:brunstadtv_app/providers/auth_state/auth_state.dart';
-import 'package:collection/collection.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/material.dart';
 import 'package:graphql/client.dart';
@@ -16,7 +15,6 @@ import 'package:http/http.dart' as http;
 import '../graphql/client.dart';
 import '../graphql/queries/application.graphql.dart';
 import '../graphql/queries/progress.graphql.dart';
-import '../graphql/schema/items.graphql.dart';
 import '../services/utils.dart';
 
 class ApiErrorCodes {

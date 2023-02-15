@@ -32,13 +32,13 @@ class FeaturedSection extends ConsumerWidget {
     if (data.metadata!.prependLiveElement) {
       return [
         Fragment$Section$$FeaturedSection$items$items(
-          id: curLiveEpisode!.id,
-          title: curLiveEpisode!.title,
-          image: curLiveEpisode!.image,
-          description: curLiveEpisode!.description,
+          id: curLiveEpisode.id,
+          title: curLiveEpisode.title,
+          image: curLiveEpisode.image,
+          description: curLiveEpisode.description,
           $__typename: 'SectionItem',
           item: Fragment$Section$$FeaturedSection$items$items$item$$Episode(
-            id: curLiveEpisode!.id,
+            id: curLiveEpisode.id,
             duration: 0,
             progress: 0,
             publishDate: '',
@@ -46,7 +46,7 @@ class FeaturedSection extends ConsumerWidget {
             locked: false,
           ),
         ),
-        ...items.where((item) => item.id != curLiveEpisode!.id)
+        ...items.where((item) => item.id != curLiveEpisode.id)
       ];
     }
     return items;

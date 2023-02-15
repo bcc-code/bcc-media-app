@@ -62,7 +62,7 @@ class MiniPlayer extends StatelessWidget {
             child: ClipRRect(
                 borderRadius: BorderRadius.circular(4),
                 child: FadeInImage.memoryNetwork(
-                  fadeInDuration: Duration(milliseconds: 200),
+                  fadeInDuration: const Duration(milliseconds: 200),
                   placeholder: kTransparentImage,
                   fit: BoxFit.fill,
                   image: artworkUri ?? 'https://static.bcc.media/images/placeholder.jpg',

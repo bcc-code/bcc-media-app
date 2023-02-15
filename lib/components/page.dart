@@ -12,12 +12,10 @@ import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../graphql/queries/calendar_episode_entries.graphql.dart';
 import '../graphql/queries/page.graphql.dart';
 import '../helpers/utils.dart';
 import '../models/pagination_status.dart';
 import '../providers/inherited_data.dart';
-import '../providers/todays_calendar_entries.dart';
 import 'card_section.dart';
 import 'featured_section.dart';
 import 'default_grid_section.dart';
@@ -52,16 +50,20 @@ class BccmPage extends ConsumerStatefulWidget {
   });
 
   @override
-  ConsumerState<BccmPage> createState() => _BccmPageState(scrollController ?? ScrollController());
+  ConsumerState<BccmPage> createState() => _BccmPageState();
 }
 
 class _BccmPageState extends ConsumerState<BccmPage> {
   GlobalKey<State<FutureBuilder<Query$Page$page>>> futureBuilderKey = GlobalKey();
   Map<String, PaginationStatus<Fragment$ItemSectionItem>> paginationMap = {};
   bool loadingBottomSectionItems = false;
-  final ScrollController scrollController;
+  late ScrollController scrollController;
 
-  _BccmPageState(this.scrollController);
+  @override
+  void initState() {
+    super.initState();
+    scrollController = widget.scrollController ?? ScrollController();
+  }
 
   Widget? _getSectionWidget(Fragment$Section s) {
     final extraItems = paginationMap[s.id]?.items;

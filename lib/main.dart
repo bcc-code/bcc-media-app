@@ -40,7 +40,6 @@ import 'env/env.dart';
 import 'helpers/utils.dart';
 import 'l10n/app_localizations.dart';
 import 'models/analytics/deep_link_opened.dart';
-import 'models/auth_state.dart';
 
 final Alice alice = Alice(showNotification: true);
 final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
@@ -203,10 +202,9 @@ ThemeData createTheme() {
     cupertinoOverrideTheme: const CupertinoThemeData(
         barBackgroundColor: BtvColors.background1, textTheme: CupertinoTextThemeData(tabLabelTextStyle: BtvTextStyles.caption3)),
     brightness: Brightness.dark,
-    colorScheme: ColorScheme.fromSeed(brightness: Brightness.dark, seedColor: BtvColors.tint1),
+    colorScheme: ColorScheme.fromSeed(brightness: Brightness.dark, seedColor: BtvColors.tint1).copyWith(background: BtvColors.background2),
     fontFamily: 'Barlow',
     canvasColor: BtvColors.background1,
-    backgroundColor: BtvColors.background2,
     highlightColor: BtvColors.background2.withOpacity(0.5),
     splashColor: BtvColors.background2.withOpacity(1),
     progressIndicatorTheme: const ProgressIndicatorThemeData(color: BtvColors.tint1),

@@ -100,7 +100,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                   Expanded(
                     child: Container(
                       alignment: Alignment.center,
-                      margin: EdgeInsets.only(right: 38, bottom: 12, left: 38),
+                      margin: const EdgeInsets.only(right: 38, bottom: 12, left: 38),
                       child: Column(
                         mainAxisSize: MainAxisSize.min,
                         children: [
@@ -110,7 +110,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                             textAlign: TextAlign.center,
                           ),
                           Padding(
-                            padding: EdgeInsets.only(top: 12),
+                            padding: const EdgeInsets.only(top: 12),
                             child: Text(
                               S.of(context).loginPageDisplay2,
                               textAlign: TextAlign.center,

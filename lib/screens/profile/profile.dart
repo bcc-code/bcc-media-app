@@ -15,6 +15,8 @@ import './avatar.dart';
 import '../../components/setting_list.dart';
 
 class Profile extends ConsumerStatefulWidget {
+  const Profile({super.key});
+
   @override
   ConsumerState<Profile> createState() => _ProfileState();
 }
@@ -39,12 +41,14 @@ class _ProfileState extends ConsumerState<Profile> {
   List<OptionButton> get _termsAndPrivacyOptions {
     return [
       OptionButton(
-          optionName: S.of(context).privacyPolicy,
-          currentSelection: '(external page)',
-          onPressed: () {
-            launchUrlString('https://bcc.media/privacy');
-            // TODO: Terms & conditions
-          }),
+        optionName: S.of(context).privacyPolicy,
+        currentSelection: '(external page)',
+        onPressed: () {
+          launchUrlString('https://bcc.media/privacy');
+        },
+      ),
+
+      // TODO: Terms & conditions
     ];
   }
 
@@ -74,7 +78,7 @@ class _ProfileState extends ConsumerState<Profile> {
 
   Future<void> loginAction(BuildContext context) async {
     final success = await ref.read(authStateProvider.notifier).login();
-    if (success) {
+    if (success && context.mounted) {
       context.router.root.popUntil((route) => false);
       context.router.root.push(const TabsRootScreenRoute());
     } else {
@@ -103,8 +107,8 @@ class _ProfileState extends ConsumerState<Profile> {
                   const Avatar()
                 else
                   Padding(
-                    padding: EdgeInsets.only(top: 24, bottom: 16),
-                    child: Padding(padding: EdgeInsets.all(6), child: SvgPicture.string(SvgIcons.avatar)),
+                    padding: const EdgeInsets.only(top: 24, bottom: 16),
+                    child: Padding(padding: const EdgeInsets.all(6), child: SvgPicture.string(SvgIcons.avatar)),
                   ),
                 Container(
                   margin: const EdgeInsets.only(bottom: 24),

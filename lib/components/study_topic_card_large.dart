@@ -4,12 +4,10 @@ import 'package:brunstadtv_app/helpers/btv_typography.dart';
 import 'package:brunstadtv_app/helpers/image_utils.dart';
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 
 import '../graphql/queries/page.graphql.dart';
 import '../helpers/btv_colors.dart';
 import '../helpers/navigation_utils.dart';
-import '../helpers/svg_icons.dart';
 import '../helpers/utils.dart';
 import '../l10n/app_localizations.dart';
 import 'loading_indicator.dart';
@@ -98,39 +96,6 @@ class _StudyTopicCardLargeState extends State<StudyTopicCardLarge> {
               error: (e) => const SizedBox.shrink(),
               noData: () => const SizedBox.shrink(),
               ready: (d) => const SizedBox.shrink()),
-      ],
-    );
-  }
-
-  final _divider = SizedBox(
-    height: 18,
-    child: VerticalDivider(
-      color: BtvColors.separatorOnLight.withOpacity(0.1),
-      width: 9,
-      thickness: 1,
-    ),
-  );
-}
-
-class _InfoLabel extends StatelessWidget {
-  final Widget icon;
-  final String label;
-
-  const _InfoLabel({required this.icon, required this.label});
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      mainAxisSize: MainAxisSize.min,
-      crossAxisAlignment: CrossAxisAlignment.center,
-      children: [
-        Container(margin: const EdgeInsets.only(right: 2), child: icon),
-        Flexible(
-          child: Text(
-            label,
-            style: BtvTextStyles.caption3.copyWith(color: BtvColors.label3),
-          ),
-        )
       ],
     );
   }

@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../helpers/btv_colors.dart';
-
 class PulseCircle extends AnimatedWidget {
   const PulseCircle({super.key, required Animation<double> animation}) : super(listenable: animation);
 

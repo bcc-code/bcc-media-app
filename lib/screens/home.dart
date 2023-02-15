@@ -67,10 +67,7 @@ class HomeScreenState extends ConsumerState<HomeScreen> with PageMixin implement
     final packageInfo = await PackageInfo.fromPlatform();
     final minVersionNumber = appConfig.application.clientVersion;
     final currentVersionNumber = packageInfo.version;
-    debugPrint(minVersionNumber);
-    debugPrint('minVersionNumber ${getExtendedVersionNumber(minVersionNumber)}');
-    debugPrint('currentVersionNumber ${getExtendedVersionNumber(currentVersionNumber)}');
-    if (getExtendedVersionNumber(minVersionNumber) > getExtendedVersionNumber(currentVersionNumber)) {
+    if (getExtendedVersionNumber(minVersionNumber) > getExtendedVersionNumber(currentVersionNumber) && context.mounted) {
       showDialog(
           context: context,
           builder: (context) {

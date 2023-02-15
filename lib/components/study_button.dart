@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
 import '../../helpers/btv_colors.dart';
-import '../../helpers/btv_gradients.dart';
 import '../../helpers/btv_typography.dart';
 import '../../helpers/svg_icons.dart';
 import '../l10n/app_localizations.dart';

@@ -6,7 +6,7 @@ import 'package:bccm_player/cast_button.dart';
 import 'package:bccm_player/playback_platform_pigeon.g.dart';
 import 'package:brunstadtv_app/api/brunstadtv.dart';
 import 'package:brunstadtv_app/components/live_mini_player.dart';
-import 'package:brunstadtv_app/router/router.gr.dart';
+import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:brunstadtv_app/providers/playback_api.dart';
@@ -133,10 +133,10 @@ class _LiveScreenState extends ConsumerState<LiveScreen> with AutoRouteAware {
     }();
 
     await setupCompleter?.future.timeout(const Duration(milliseconds: 10000), onTimeout: () {
-      debugPrint("bccm: TIMEOUT ${DateTime.now()}");
       setStateIfMounted(() {
         error = 'Something might have gone wrong (timeout).';
       });
+      FirebaseCrashlytics.instance.recordError(Exception('Player load timeout ${DateTime.now()}'), StackTrace.current);
     }).catchError((err) {
       error = 'Something went wrong. Technical details: $err.';
     });

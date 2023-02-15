@@ -1,16 +1,11 @@
-import 'dart:math';
-import 'dart:ui';
-
 import 'package:auto_route/auto_route.dart';
 import 'package:brunstadtv_app/helpers/svg_icons.dart';
 import 'package:brunstadtv_app/helpers/utils.dart';
-import 'package:brunstadtv_app/router/router.gr.dart';
 import 'package:brunstadtv_app/screens/home.dart';
 import 'package:brunstadtv_app/screens/search/search.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
-import '../helpers/btv_colors.dart';
 import '../helpers/btv_typography.dart';
 import '../helpers/widget_keys.dart';
 import '../l10n/app_localizations.dart';
@@ -23,6 +18,7 @@ String? getLocalizedRouteName(S localizations, Type route) {
     case HomeScreen:
       return localizations.homeTab;
   }
+  return null;
 }
 
 class CustomBackButton extends StatelessWidget {

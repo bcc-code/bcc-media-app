@@ -34,7 +34,7 @@ class LanguageCodes {
   static const da = 'da';
   static const bg = 'bg';
   static const zh = 'zh';
-  static const zh_HK = 'zh-HK';
+  static const zhHK = 'zh-HK';
 }
 
 const languages = {
@@ -143,7 +143,7 @@ const languages = {
     nativeName: '中文',
     englishName: 'Chinese',
   ),
-  LanguageCodes.zh_HK: LanguageInfo(
+  LanguageCodes.zhHK: LanguageInfo(
     locale: Locale('zh', 'HK'),
     nativeName: '粵語',
     englishName: 'Cantonese',

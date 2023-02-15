@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:riverpod/riverpod.dart';
 
 import 'btv_colors.dart';
 import 'btv_typography.dart';

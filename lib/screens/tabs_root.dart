@@ -1,7 +1,6 @@
 import 'dart:async';
 
 import 'package:auto_route/auto_route.dart';
-import 'package:brunstadtv_app/components/loading_indicator.dart';
 import 'package:brunstadtv_app/components/mini_player.dart';
 import 'package:brunstadtv_app/graphql/client.dart';
 import 'package:brunstadtv_app/graphql/queries/devices.graphql.dart';
