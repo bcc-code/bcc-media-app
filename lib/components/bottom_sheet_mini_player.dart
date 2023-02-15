@@ -9,7 +9,7 @@ import 'package:brunstadtv_app/providers/playback_api.dart';
 import 'package:brunstadtv_app/providers/video_state.dart';
 import 'package:brunstadtv_app/router/router.gr.dart';
 
-import '../helpers/btv_colors.dart';
+import '../theme/bccm_colors.dart';
 import '../providers/fun.dart';
 import 'mini_player.dart';
 
@@ -104,7 +104,7 @@ class _BottomSheetMiniPlayerState extends ConsumerState<BottomSheetMiniPlayer> {
     return Container(
         height: kMiniPlayerHeight,
         width: MediaQuery.of(context).size.width,
-        color: BtvColors.background2,
+        color: BccmColors.background2,
         padding: const EdgeInsets.symmetric(
           horizontal: 16,
           vertical: 12,

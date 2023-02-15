@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
-import '../helpers/btv_typography.dart';
+import '../theme/bccm_typography.dart';
 import '../helpers/svg_icons.dart';
 import '../l10n/app_localizations.dart';
 
@@ -19,7 +19,7 @@ class SeeMoreSlot extends StatelessWidget {
         child: Row(
           mainAxisSize: MainAxisSize.min,
           children: [
-            Text(S.of(context).seeMore, style: BtvTextStyles.button2),
+            Text(S.of(context).seeMore, style: BccmTextStyles.button2),
             SvgPicture.string(SvgIcons.right),
           ],
         ),

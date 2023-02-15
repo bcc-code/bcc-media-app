@@ -5,7 +5,7 @@ import 'package:url_launcher/url_launcher.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 
 import '../../components/custom_back_button.dart';
-import '../../helpers/btv_typography.dart';
+import '../../theme/bccm_typography.dart';
 import '../../helpers/utils.dart';
 import '../../l10n/app_localizations.dart';
 
@@ -66,7 +66,7 @@ class _AboutScreenState extends State<AboutScreen> {
                       margin: const EdgeInsets.symmetric(vertical: 16),
                       child: Text(
                         S.of(context).bccMediaCenter,
-                        style: BtvTextStyles.body2,
+                        style: BccmTextStyles.body2,
                         textAlign: TextAlign.center,
                       ),
                     ),
@@ -74,7 +74,7 @@ class _AboutScreenState extends State<AboutScreen> {
                       onTap: _launchUrl,
                       child: Text(
                         'bcc.media',
-                        style: BtvTextStyles.body2,
+                        style: BccmTextStyles.body2,
                         textAlign: TextAlign.center,
                       ),
                     )
@@ -87,7 +87,7 @@ class _AboutScreenState extends State<AboutScreen> {
                   return snapshot.hasData
                       ? SelectableText(
                           '${S.of(context).version}: ${snapshot.data!}',
-                          style: BtvTextStyles.caption1,
+                          style: BccmTextStyles.caption1,
                           textAlign: TextAlign.center,
                         )
                       : const Text('');

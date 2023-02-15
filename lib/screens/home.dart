@@ -17,10 +17,10 @@ import 'package:url_launcher/url_launcher_string.dart';
 import '../api/brunstadtv.dart';
 import '../graphql/queries/application.graphql.dart';
 import '../helpers/btv_buttons.dart';
-import '../helpers/btv_colors.dart';
+import '../theme/bccm_colors.dart';
 import '../components/page.dart';
 import '../graphql/queries/page.graphql.dart';
-import '../helpers/btv_typography.dart';
+import '../theme/bccm_typography.dart';
 import '../helpers/page_mixin.dart';
 import '../l10n/app_localizations.dart';
 import '../providers/app_config.dart';
@@ -74,7 +74,7 @@ class HomeScreenState extends ConsumerState<HomeScreen> with PageMixin implement
             return SimpleDialog(
               title: Text(
                 S.of(context).appUpdateTitle,
-                style: BtvTextStyles.title3,
+                style: BccmTextStyles.title3,
               ),
               contentPadding: const EdgeInsets.all(24).copyWith(top: 8),
               children: [
@@ -151,7 +151,7 @@ class HomeScreenState extends ConsumerState<HomeScreen> with PageMixin implement
                 child: Container(
                   decoration: const BoxDecoration(
                       gradient: LinearGradient(
-                          begin: Alignment.topCenter, end: Alignment.bottomCenter, colors: [BtvColors.background1, Colors.transparent])),
+                          begin: Alignment.topCenter, end: Alignment.bottomCenter, colors: [BccmColors.background1, Colors.transparent])),
                   height: 1000,
                 ),
               ),
