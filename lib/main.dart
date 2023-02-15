@@ -5,6 +5,8 @@ import 'package:auto_route/auto_route.dart';
 import 'package:bccm_player/playback_platform_pigeon.g.dart';
 import 'package:bccm_player/playback_service_interface.dart';
 import 'package:brunstadtv_app/graphql/client.dart';
+import 'package:brunstadtv_app/providers/router_provider.dart';
+import 'package:brunstadtv_app/services/deeplink_service.dart';
 import 'package:brunstadtv_app/theme/bccm_colors.dart';
 import 'package:brunstadtv_app/theme/bccm_theme.dart';
 import 'package:brunstadtv_app/theme/bccm_typography.dart';
@@ -40,7 +42,6 @@ import 'background_tasks.dart';
 import 'env/env.dart';
 import 'helpers/utils.dart';
 import 'l10n/app_localizations.dart';
-import 'models/analytics/deep_link_opened.dart';
 
 final Alice alice = Alice(showNotification: true);
 final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
@@ -49,18 +50,64 @@ final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 /// This function runs on all of them
 Future<void> $main({required FirebaseOptions? firebaseOptions}) async {
   WidgetsFlutterBinding.ensureInitialized();
+
   if (firebaseOptions != null) {
-    try {
-      await Firebase.initializeApp(
-        options: firebaseOptions,
-      );
-    } catch (e) {
-      debugPrint(e.toString());
-    }
-    FirebaseMessaging.onBackgroundMessage(onFirebaseBackgroundMessage);
+    initFirebase(firebaseOptions);
   }
 
-  if (firebaseOptions != null && !kDebugMode) {
+  configureSystemUI();
+
+  final appRouter = AppRouter(specialRoutesGuard: SpecialRoutesGuard(), navigatorKey: navigatorKey);
+  final providerContainer = await initProviderContainer([
+    rootRouterProvider.overrideWithValue(appRouter),
+  ]);
+  final routerDelegate = await getRouterDelegate(providerContainer, appRouter);
+
+  final app = UncontrolledProviderScope(
+    container: providerContainer,
+    child: Consumer(
+      builder: (context, ref, w) => GraphQLProvider(
+        client: ValueNotifier(ref.watch(gqlClientProvider)),
+        child: MaterialApp.router(
+            localizationsDelegates: S.localizationsDelegates,
+            localeResolutionCallback: (locale, supportedLocales) {
+              return locale?.languageCode == 'no' ? const Locale('nb') : locale;
+            },
+            supportedLocales: S.supportedLocales,
+            locale: ref.watch(settingsProvider).appLanguage,
+            theme: ThemeData(),
+            darkTheme: appTheme(),
+            themeMode: ThemeMode.dark,
+            debugShowCheckedModeBanner: false,
+            title: 'BCC Media',
+            routerDelegate: routerDelegate,
+            routeInformationParser: appRouter.defaultRouteParser(includePrefixMatches: true),
+            builder: (BuildContext context, Widget? child) {
+              return MediaQuery(
+                data: MediaQuery.of(context).copyWith(textScaleFactor: 1.0),
+                child: AppRoot(
+                  navigatorKey: navigatorKey,
+                  child: !kDebugMode ? child : OnScreenRulerWidget(gridColor: Colors.white60.withOpacity(0.1), child: child!),
+                ),
+              );
+            }),
+      ),
+    ),
+  );
+  final maybeWrappedApp = kDebugMode && !kIsWeb ? InteractiveViewer(maxScale: 10, child: app) : app;
+  runApp(maybeWrappedApp);
+}
+
+Future initFirebase(FirebaseOptions firebaseOptions) async {
+  try {
+    await Firebase.initializeApp(
+      options: firebaseOptions,
+    );
+  } catch (e) {
+    debugPrint(e.toString());
+  }
+
+  if (!kDebugMode) {
     FlutterError.onError = (errorDetails) {
       FirebaseCrashlytics.instance.recordFlutterError(errorDetails);
     };
@@ -70,19 +117,11 @@ Future<void> $main({required FirebaseOptions? firebaseOptions}) async {
       return true;
     };
   }
-/* 
-  String? envOverride;
-  try {
-    final sharedPrefs = await SharedPreferences.getInstance().timeout(const Duration(milliseconds: 200));
-    envOverride = sharedPrefs.getString(PrefKeys.envOverride);
-  } on TimeoutException catch (e) {
-    print('env override failed, timeout.');
-  } on Exception catch (e) {
-    print('env override failed: $e');
-  } */
 
-  PaintingBinding.instance.imageCache.maximumSizeBytes = 1024 * 1024 * 50;
+  FirebaseMessaging.onBackgroundMessage(onFirebaseBackgroundMessage);
+}
 
+void configureSystemUI() {
   SystemChrome.setSystemUIOverlayStyle(
     const SystemUiOverlayStyle(
       statusBarColor: Colors.transparent,
@@ -96,30 +135,23 @@ Future<void> $main({required FirebaseOptions? firebaseOptions}) async {
   SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
   ]);
+}
 
-  final appRouter = AppRouter(specialRoutesGuard: SpecialRoutesGuard(), navigatorKey: navigatorKey);
-
-  alice.setNavigatorKey(navigatorKey);
-  var providerContainer = ProviderContainer();
-  PlaybackPlatformInterface.instance.setPlaybackListener(PlaybackListener(ref: providerContainer));
-  final authLoadingCompleter = wrapInCompleter(providerContainer.read(authStateProvider.notifier).load());
-  providerContainer.read(settingsProvider.notifier).init();
-  providerContainer.read(chromecastListenerProvider);
-  providerContainer.read(appConfigProvider);
-  providerContainer.read(playbackApiProvider).getChromecastState().then((value) {
-    providerContainer.read(isCasting.notifier).state = value?.connectionState == CastConnectionState.connected;
-    providerContainer.read(castPlayerProvider.notifier).setMediaItem(value?.mediaItem);
-  });
-  providerContainer.read(analyticsProvider);
-  providerContainer.listen<Player?>(primaryPlayerProvider, (_, next) {
+Future initPlayback(Ref ref) async {
+  PlaybackPlatformInterface.instance.setPlaybackListener(PlaybackListener(ref: ref));
+  ref.listen<Player?>(primaryPlayerProvider, (_, next) {
     if (next?.currentMediaItem != null && next?.playbackState == PlaybackState.playing) {
-      providerContainer.read(analyticsProvider).heyJustHereToTellYouIBelieveTheSessionIsStillAlive();
+      ref.read(analyticsProvider).heyJustHereToTellYouIBelieveTheSessionIsStillAlive();
     }
+  });
+  ref.read(playbackApiProvider).getChromecastState().then((value) {
+    ref.read(isCasting.notifier).state = value?.connectionState == CastConnectionState.connected;
+    ref.read(castPlayerProvider.notifier).setMediaItem(value?.mediaItem);
   });
 
   if (Env.npawAccountCode != '') {
     PackageInfo.fromPlatform().then(
-      (packageInfo) => providerContainer.read(playbackApiProvider).setNpawConfig(
+      (packageInfo) => ref.read(playbackApiProvider).setNpawConfig(
             NpawConfig(
               accountCode: Env.npawAccountCode,
               appName: 'mobile',
@@ -128,22 +160,23 @@ Future<void> $main({required FirebaseOptions? firebaseOptions}) async {
           ),
     );
   }
+}
 
-  Intl.defaultLocale = await getDefaultLocale();
+Future<ProviderContainer> initProviderContainer(List<Override> overrides) async {
+  var providerContainer = ProviderContainer(overrides: overrides);
+  providerContainer.read(settingsProvider.notifier).init();
+  providerContainer.read(chromecastListenerProvider);
+  providerContainer.read(appConfigProvider);
+  providerContainer.read(analyticsProvider);
+  providerContainer.read(deepLinkServiceProvider);
+  return providerContainer;
+}
 
+Future<AutoRouterDelegate> getRouterDelegate(ProviderContainer providerContainer, AppRouter appRouter) async {
+  final authLoadingCompleter = wrapInCompleter(providerContainer.read(authStateProvider.notifier).load());
   final appLinks = AppLinks();
-  final deepLinkUri = await appLinks.getInitialAppLink();
-  appLinks.uriLinkStream.listen((uri) {
-    appRouter.navigateNamedFromRoot(uriStringWithoutHost(uri));
-    providerContainer.read(analyticsProvider).deepLinkOpened(
-          DeepLinkOpenedEvent(
-            url: uri.toString(),
-            source: uri.queryParameters['cs'] ?? '',
-            campaignId: uri.queryParameters['cid'] ?? '',
-          ),
-        );
-  });
 
+  final deepLinkUri = await appLinks.getInitialAppLink();
   String? deepLink;
   List<PageRouteInfo<dynamic>>? initialRoutes;
   if (!authLoadingCompleter.isCompleted) {
@@ -158,43 +191,16 @@ Future<void> $main({required FirebaseOptions? firebaseOptions}) async {
       initialRoutes = [LoginScreenRoute()];
     }
   }
-
-  final app = UncontrolledProviderScope(
-    container: providerContainer,
-    child: Consumer(
-        builder: (context, ref, w) => GraphQLProvider(
-              client: ValueNotifier(ref.watch(gqlClientProvider)),
-              child: MaterialApp.router(
-                  localizationsDelegates: S.localizationsDelegates,
-                  localeResolutionCallback: (locale, supportedLocales) {
-                    return locale?.languageCode == 'no' ? const Locale('nb') : locale;
-                  },
-                  supportedLocales: S.supportedLocales,
-                  locale: ref.watch(settingsProvider).appLanguage,
-                  theme: ThemeData(),
-                  darkTheme: appTheme(),
-                  themeMode: ThemeMode.dark,
-                  debugShowCheckedModeBanner: false,
-                  title: 'BCC Media',
-                  routerDelegate: appRouter.delegate(
-                    initialDeepLink: deepLink,
-                    initialRoutes: initialRoutes,
-                    navigatorObservers: () => [AnalyticsNavigatorObserver()],
-                  ),
-                  routeInformationParser: appRouter.defaultRouteParser(includePrefixMatches: true),
-                  builder: (BuildContext context, Widget? child) {
-                    return MediaQuery(
-                      data: MediaQuery.of(context).copyWith(textScaleFactor: 1.0),
-                      child: AppRoot(
-                        navigatorKey: navigatorKey,
-                        child: !kDebugMode ? child : OnScreenRulerWidget(gridColor: Colors.white60.withOpacity(0.1), child: child!),
-                      ),
-                    );
-                  }),
-            )),
+  return appRouter.delegate(
+    initialDeepLink: deepLink,
+    initialRoutes: initialRoutes,
+    navigatorObservers: () => [AnalyticsNavigatorObserver()],
   );
-  final maybeWrappedApp = kDebugMode && !kIsWeb ? InteractiveViewer(maxScale: 10, child: app) : app;
-  runApp(maybeWrappedApp);
+}
+
+Future init() async {
+  PaintingBinding.instance.imageCache.maximumSizeBytes = 1024 * 1024 * 50;
+  Intl.defaultLocale = await getDefaultLocale();
 }
 
 Future<String?> getDefaultLocale() async {

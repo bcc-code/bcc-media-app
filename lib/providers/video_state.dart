@@ -6,7 +6,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'video_state.freezed.dart';
 
-StateNotifierProvider<PlayerNotifier, Player?>? getPlayerProvider(ProviderContainer ref, String playerId) {
+StateNotifierProvider<PlayerNotifier, Player?>? getPlayerProvider(Ref ref, String playerId) {
   // TODO: proper list etc
   if (playerId == 'chromecast') {
     return castPlayerProvider;
