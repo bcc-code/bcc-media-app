@@ -21,7 +21,7 @@ import 'package:bccm_player/bccm_player.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:brunstadtv_app/graphql/queries/episode.graphql.dart';
 import 'package:brunstadtv_app/providers/chromecast.dart';
-import 'package:brunstadtv_app/providers/playback_api.dart';
+import 'package:brunstadtv_app/services/playback_service.dart';
 import 'package:brunstadtv_app/providers/video_state.dart';
 import 'package:bccm_player/cast_button.dart';
 import 'package:flutter_svg/svg.dart';
@@ -104,7 +104,9 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen> with AutoRouteAwa
       var episode = await episodeFuture;
       if (!mounted || episode == null) return;
 
-      playEpisode(playerId: player!.playerId, autoplay: false, episode: episode, playbackPositionMs: event.playbackPositionMs);
+      ref
+          .read(playbackServiceProvider)
+          .playEpisode(playerId: player!.playerId, autoplay: false, episode: episode, playbackPositionMs: event.playbackPositionMs);
     });
   }
 
@@ -205,8 +207,11 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen> with AutoRouteAwa
 
     setState(() {
       playerSetupCompleter = wrapInCompleter(
-          playEpisode(playerId: player.playerId, episode: episode, autoplay: true, playbackPositionMs: startPositionSeconds * 1000)
-              .timeout(const Duration(milliseconds: 12000)));
+        ref
+            .read(playbackServiceProvider)
+            .playEpisode(playerId: player.playerId, episode: episode, autoplay: true, playbackPositionMs: startPositionSeconds * 1000)
+            .timeout(const Duration(milliseconds: 12000)),
+      );
     });
   }
 

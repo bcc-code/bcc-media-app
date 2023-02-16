@@ -9,7 +9,7 @@ import 'package:brunstadtv_app/components/live_mini_player.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:brunstadtv_app/providers/playback_api.dart';
+import 'package:brunstadtv_app/services/playback_service.dart';
 import 'package:brunstadtv_app/providers/video_state.dart';
 import 'package:flutter_svg/svg.dart' show SvgPicture;
 import 'package:flutter_svg_provider/flutter_svg_provider.dart';
