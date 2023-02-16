@@ -29,9 +29,6 @@ import '../auth_state.dart';
 AuthStateNotifier getPlatformSpecificAuthStateNotifier() =>
     AuthStateNotifierMobile(appAuth: const FlutterAppAuth(), secureStorage: const FlutterSecureStorage());
 
-const FlutterAppAuth appAuth = FlutterAppAuth();
-const FlutterSecureStorage secureStorage = FlutterSecureStorage();
-
 const kMinimumCredentialsTTL = Duration(hours: 1);
 
 class AuthStateNotifierMobile extends StateNotifier<AuthState> implements AuthStateNotifier {

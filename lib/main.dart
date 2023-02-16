@@ -33,7 +33,7 @@ final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 
 /// This function is called from the flavor-specific entrypoints
 /// E.g. main_dev.dart, main_prod.dart
-Future<void> $main({required FirebaseOptions? firebaseOptions}) async {
+Future<void> $main({required FirebaseOptions? firebaseOptions, List<Override>? providerOverrides}) async {
   WidgetsFlutterBinding.ensureInitialized();
 
   await setDefaults();
@@ -45,6 +45,7 @@ Future<void> $main({required FirebaseOptions? firebaseOptions}) async {
   final appRouter = AppRouter(specialRoutesGuard: SpecialRoutesGuard(), navigatorKey: navigatorKey);
   final providerContainer = await initProviderContainer([
     rootRouterProvider.overrideWithValue(appRouter),
+    if (providerOverrides != null) ...providerOverrides,
   ]);
   final routerDelegate = await getRouterDelegate(providerContainer, appRouter);
 
