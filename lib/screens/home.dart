@@ -1,4 +1,6 @@
 import 'dart:async';
+import 'package:brunstadtv_app/router/router.gr.dart';
+import 'package:brunstadtv_app/screens/shorts/shorts_main.dart';
 import 'package:universal_io/io.dart';
 import 'dart:ui';
 
@@ -171,6 +173,19 @@ class HomeScreenState extends ConsumerState<HomeScreen> with PageMixin implement
               },
               scrollController: pageScrollController,
             ),
+          ),
+          floatingActionButton: FloatingActionButton(
+            child: const Icon(Icons.token_outlined),
+            onPressed: () {
+              context.router.navigate(const ShortsMainRoute());
+              // Navigator.push(
+              //   context,
+              //   MaterialPageRoute<void>(
+              //     builder: (context) => const ShortsMain(),
+              //   ),
+              // );
+              // context.router.push(const )
+            },
           ),
         ),
       ],
