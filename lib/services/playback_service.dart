@@ -17,25 +17,33 @@ final playbackApiProvider = Provider<PlaybackPlatformInterface>((ref) {
 });
 
 final playbackServiceProvider = Provider<PlaybackService>((ref) {
-  return PlaybackService(ref: ref);
+  return PlaybackService(
+    ref: ref,
+    playbackApi: ref.watch(playbackApiProvider),
+    analyticsService: ref.watch(analyticsProvider),
+  );
 });
 
 class PlaybackService {
+  PlaybackPlatformInterface playbackApi;
+  Analytics analyticsService;
   Ref ref;
-  PlaybackService({required this.ref}) {
+
+  PlaybackService({
+    required this.playbackApi,
+    required this.analyticsService,
+    required this.ref,
+  }) {
     _init();
   }
 
   Future _init() async {
-    final playbackApi = ref.read(playbackApiProvider);
-    final analytics = ref.read(analyticsProvider);
-
     playbackApi.setPlaybackListener(PlaybackListener(ref: ref));
 
     // Keep the analytics session alive while playing stuff.
     ref.listen<Player?>(primaryPlayerProvider, (_, next) {
       if (next?.currentMediaItem != null && next?.playbackState == PlaybackState.playing) {
-        analytics.heyJustHereToTellYouIBelieveTheSessionIsStillAlive();
+        analyticsService.heyJustHereToTellYouIBelieveTheSessionIsStillAlive();
       }
     });
 
@@ -75,12 +83,12 @@ class PlaybackService {
   Future playEpisode({required String playerId, required Query$FetchEpisode$episode episode, bool? autoplay, int? playbackPositionMs}) async {
     var mediaItem = _mapEpisode(episode);
     mediaItem.playbackStartPositionMs = playbackPositionMs?.toDouble();
-    await ref.read(playbackApiProvider).replaceCurrentMediaItem(playerId, mediaItem, autoplay: autoplay);
+    await playbackApi.replaceCurrentMediaItem(playerId, mediaItem, autoplay: autoplay);
   }
 
   Future queueEpisode({required String playerId, required Query$FetchEpisode$episode episode}) async {
     var mediaItem = _mapEpisode(episode);
-    ref.read(playbackApiProvider).queueMediaItem(playerId, mediaItem);
+    playbackApi.queueMediaItem(playerId, mediaItem);
   }
 }
 
