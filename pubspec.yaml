@@ -94,6 +94,7 @@ dependencies:
   flutter_appauth: ^4.2.1
   synchronized: ^3.0.1
   clock: ^1.1.1
+  flutter_hooks: ^0.18.5+1
   #smooth: any
 
 dev_dependencies:

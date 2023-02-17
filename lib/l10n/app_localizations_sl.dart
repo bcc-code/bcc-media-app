@@ -545,4 +545,7 @@ class SSl extends S {
 
   @override
   String get details => 'Podrobnosti';
+
+  @override
+  String get selectSeason => 'Select season';
 }

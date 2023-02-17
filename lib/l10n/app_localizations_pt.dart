@@ -545,4 +545,7 @@ class SPt extends S {
 
   @override
   String get details => 'Detalhes ';
+
+  @override
+  String get selectSeason => 'Select season';
 }

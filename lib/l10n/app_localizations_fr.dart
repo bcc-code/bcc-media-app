@@ -545,4 +545,7 @@ class SFr extends S {
 
   @override
   String get details => 'Détails';
+
+  @override
+  String get selectSeason => 'Select season';
 }
