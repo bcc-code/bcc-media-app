@@ -27,7 +27,7 @@ class _CastButtonState extends State<CastButton> {
         creationParams: <String, dynamic>{},
         creationParamsCodec: StandardMessageCodec(),
       );
-    } else if (Platform.isIOS) {
+    } else if (Platform.isIOS && const String.fromEnvironment('IS_MAESTRO_TEST', defaultValue: 'false') != 'true') {
       return const UiKitView(viewType: 'bccm_player/cast_button');
     }
     return Container();

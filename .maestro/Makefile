@@ -3,7 +3,7 @@ ios-setup:
 	xcrun simctl boot "iPhone 14" || ((xcrun simctl create "iPhone 14" "iPhone 14") && (xcrun simctl boot "iPhone 14"))
 	make ios-install
 ios-build:
-	flutter build ios -t lib/main_prod.dart --flavor prod --debug --simulator
+	flutter build ios -t lib/main_prod.dart --flavor prod --debug --simulator --dart-define=IS_MAESTRO_TEST=true 
 ios-install:
 	xcrun simctl install Booted ../build/ios/iphonesimulator/Runner.app
 ios-sim-reset:
@@ -14,7 +14,7 @@ android-setup:
 	make android-build
 	make android-install
 android-build:
-	flutter build apk -t lib/main_prod.dart --flavor prod --debug
+	flutter build apk -t lib/main_prod.dart --flavor prod --debug --dart-define=IS_MAESTRO_TEST=true
 android-install:
 	adb install ../build/app/outputs/flutter-apk/app-prod-debug.apk
 
