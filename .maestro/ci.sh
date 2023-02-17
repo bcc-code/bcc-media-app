@@ -9,4 +9,5 @@ export PATH="$PATH":"$HOME/.maestro/bin"
 #run maestro e2e tests
 envsubst < flows/scripts/.env.js.template > flows/scripts/.env.js
 make ios-build
-maestro cloud -e PLATFORM=ios --apiKey $MAESTRO_API_KEY ../build/ios/iphonesimulator/Runner.app flows/
+maestro cloud -e PLATFORM=ios --apiKey $MAESTRO_API_KEY ../build/ios/iphonesimulator/Runner.app flows/ || exit 1
+exit 0
