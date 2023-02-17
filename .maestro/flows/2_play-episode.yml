@@ -2,13 +2,13 @@
 
 appId: tv.brunstad.app
 ---
-- runScript: ../.env.js
-- runScript: ../init.js
+- runScript: scripts/.env.js
+- runScript: scripts/init.js
 - launchApp: tv.brunstad.app
 - runFlow:
     when:
       visible: Sign in
-    file: ../subflows/login.yml
+    file: subflows/login.yml
 - openLink: "tv.brunstad.app:///episode/769"
 - tapOn:
     text: Open
