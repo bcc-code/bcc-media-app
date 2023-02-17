@@ -14,9 +14,10 @@ class ShortsEpisode extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Stack(
-      fit: StackFit.expand,
       children: [
-        ShortsVideo(episode: episode),
+        ShortsVideo(
+          id: episode.id,
+        ),
         VideoDescription(id: episode.id, title: episode.title),
       ],
     );

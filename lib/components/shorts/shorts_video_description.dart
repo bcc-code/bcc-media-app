@@ -14,12 +14,14 @@ class VideoDescription extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
+    return Positioned(
+      bottom: 0.0,
+      left: 0.0,
       child: Container(
         height: 120.0,
-        padding: EdgeInsets.only(left: 20.0),
+        padding: const EdgeInsets.only(left: 40.0),
         child: Padding(
-          padding: const EdgeInsets.symmetric(vertical: 40.0),
+          padding: const EdgeInsets.symmetric(vertical: 20.0),
           child: Column(
             mainAxisSize: MainAxisSize.min,
             mainAxisAlignment: MainAxisAlignment.end,
@@ -32,10 +34,10 @@ class VideoDescription extends StatelessWidget {
               const SizedBox(
                 height: 7,
               ),
-              Text(
-                '${title}',
-                style: BtvTextStyles.body1.copyWith(color: BtvColors.onTint),
-              ),
+              // Text(
+              //   '${title}',
+              //   style: BtvTextStyles.body1.copyWith(color: BtvColors.onTint),
+              // ),
               SizedBox(
                 //for overflowing text
                 width: MediaQuery.of(context).size.width * 0.75,
