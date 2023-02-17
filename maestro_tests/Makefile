@@ -1,5 +1,6 @@
 ios-setup:
 	make ios-build
+	xcrun simctl boot "iPhone 14" || ((xcrun simctl create "iPhone 14" "iPhone 14") && (xcrun simctl boot "iPhone 14"))
 	make ios-install
 ios-build:
 	flutter build ios -t lib/main_prod.dart --flavor prod --debug --simulator

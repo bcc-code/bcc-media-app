@@ -2,18 +2,10 @@
 
 appId: tv.brunstad.app
 ---
-#- launchApp:
-#appId: com.android.chrome
-#clearState: true
-#    clearKeychain: true # optional: clear *entire* iOS keychain
-#   stopApp: true # optional (true by default): stop the app before launching it
 - launchApp:
-    appId: "tv.brunstad.app"
+    appId: com.android.chrome
     clearState: true
-    clearKeychain: true # optional: clear *entire* iOS keychain
     stopApp: true # optional (true by default): stop the app before launching it
-- tapOn: "Sign in"
-
 # Chrome asks for privacy stuff on the first time you open it
 - tapOn:
     text: Accept & continue
@@ -21,8 +13,19 @@ appId: tv.brunstad.app
 - tapOn:
     text: No thanks
     optional: true
+- tapOn:
+    text: Close app
+    optional: true
+- extendedWaitUntil:
+    visible: .*Search.* # Same input as in assertVisible or tapOn
+
+- launchApp: tv.brunstad.app
+- tapOn: "Sign in"
 
 # Login
+- tapOn:
+    text: Close app
+    optional: true
 - tapOn:
     id: "1-email"
     optional: true

@@ -7,11 +7,7 @@ appId: tv.brunstad.app
     clearState: true
     clearKeychain: true # optional: clear *entire* iOS keychain
     stopApp: true # optional (true by default): stop the app before launching it
-- launchApp:
-    appId: "tv.brunstad.app"
-    clearState: true
-    clearKeychain: true # optional: clear *entire* iOS keychain
-    stopApp: true # optional (true by default): stop the app before launching it
+- launchApp: tv.brunstad.app
 - tapOn:
     text: Allow
     optional: true
