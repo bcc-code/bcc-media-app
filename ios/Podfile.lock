@@ -10,8 +10,6 @@ PODS:
     - AppAuth/Core
   - bccm_player (0.0.1):
     - Flutter
-    - google-cast-sdk-no-bluetooth (~> 4.7.0)
-    - Protobuf (~> 3.13)
     - YouboraAVPlayerAdapter (= 6.6.8)
     - YouboraLib (= 6.6.22)
   - CGRPCZlib (1.8.0)
@@ -113,11 +111,6 @@ PODS:
     - Flutter
   - flutter_secure_storage (6.0.0):
     - Flutter
-  - google-cast-sdk-no-bluetooth (4.7.0):
-    - google-cast-sdk-no-bluetooth/Core (= 4.7.0)
-    - Protobuf (~> 3.13)
-  - google-cast-sdk-no-bluetooth/Core (4.7.0):
-    - Protobuf (~> 3.13)
   - GoogleDataTransport (9.2.0):
     - GoogleUtilities/Environment (~> 7.7)
     - nanopb (< 2.30910.0, >= 2.30908.0)
@@ -173,7 +166,6 @@ PODS:
   - permission_handler_apple (9.0.4):
     - Flutter
   - PromisesObjC (2.1.1)
-  - Protobuf (3.21.12)
   - ReachabilitySwift (5.0.0)
   - Rudder (1.8.0)
   - rudder_plugin_ios (0.0.1):
@@ -376,7 +368,6 @@ SPEC REPOS:
     - FirebaseMessaging
     - FirebasePerformance
     - FirebaseRemoteConfig
-    - google-cast-sdk-no-bluetooth
     - GoogleDataTransport
     - GoogleUtilities
     - gRPC-Swift
@@ -384,7 +375,6 @@ SPEC REPOS:
     - nanopb
     - OrderedSet
     - PromisesObjC
-    - Protobuf
     - ReachabilitySwift
     - Rudder
     - SwiftNIO
@@ -460,7 +450,7 @@ SPEC CHECKSUMS:
   _NIODataStructures: 3d45d8e70a1d17a15b1dc59d102c63dbc0525ffd
   app_links: ab4ba54d10a13d45825336bc9707b5eadee81191
   AppAuth: 8fca6b5563a5baef2c04bee27538025e4ceb2add
-  bccm_player: 831799da31ebb311e1f9c9c00d1ae8b648cbe808
+  bccm_player: 0629994846024330859f6b7752d712e32cb05041
   CGRPCZlib: 298dd3237ba4bd7b3eed109e7080ff3324b7d9c9
   CNIOAtomics: 8edf08644e5e6fa0f021c239be9e8beb1cd9ef18
   CNIOBoringSSL: 2c9c96c2e95f15e83fb8d26b9738d939cc39ae33
@@ -489,7 +479,6 @@ SPEC CHECKSUMS:
   flutter_inappwebview: 4fe74e5e65809c3d363febfd9e2b21aa79bb0f1c
   flutter_local_notifications: 0c0b1ae97e741e1521e4c1629a459d04b9aec743
   flutter_secure_storage: 23fc622d89d073675f2eaa109381aefbcf5a49be
-  google-cast-sdk-no-bluetooth: 5313156110d6e71fa336f6d742f1ee641e91fdca
   GoogleDataTransport: 1c8145da7117bd68bbbed00cf304edb6a24de00f
   GoogleUtilities: bad72cb363809015b1f7f19beb1f1cd23c589f95
   gRPC-Swift: 74adcaaa62ac5e0a018938840328cb1fdfb09e7b
@@ -503,7 +492,6 @@ SPEC CHECKSUMS:
   patrol: a7622350c42b3a944962fbfe052d07e3691789e5
   permission_handler_apple: 44366e37eaf29454a1e7b1b7d736c2cceaeb17ce
   PromisesObjC: ab77feca74fa2823e7af4249b8326368e61014cb
-  Protobuf: 120350fc38646e2dedc26f49ecba778184ea1de2
   ReachabilitySwift: 985039c6f7b23a1da463388634119492ff86c825
   Rudder: 0a5272646aa3b89295526cea2bf54d092044848a
   rudder_plugin_ios: 7f1dbab9c58ef9db8547c29e1335b9144656019b
