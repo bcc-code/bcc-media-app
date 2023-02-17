@@ -1,4 +1,0 @@
-memoryLeaks:
-  enabled: true
-appSize:
-  enabled: true
