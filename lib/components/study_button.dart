@@ -16,7 +16,7 @@ import './study_progress.dart';
 
 class StudyMoreButton extends HookWidget {
   const StudyMoreButton({super.key, required this.progressOverviewFuture, required this.onNavigateBack});
-  final Future<Fragment$EpisodeLessonProgressOverview?>? progressOverviewFuture;
+  final Future<Query$GetEpisodeLessonProgress?>? progressOverviewFuture;
   final void Function() onNavigateBack;
 
   String title(Fragment$LessonProgressOverview progressOverview, BuildContext context) {
@@ -42,18 +42,20 @@ class StudyMoreButton extends HookWidget {
   @override
   Widget build(BuildContext context) {
     final future = useFuture(progressOverviewFuture);
+    debugPrint(hashCode.toString());
+    debugPrint(future.toString());
     if (future.connectionState == ConnectionState.waiting) {
       return buildLoadingWidget();
     } else if (future.hasError || future.data == null) {
       return const SizedBox.shrink();
     }
 
-    final episode = future.data!;
-    final lesson = future.data!.lessons.items[0];
+    final episode = future.data!.episode;
+    final lesson = episode.lessons.items[0];
     return GestureDetector(
       behavior: HitTestBehavior.opaque,
       onTap: () async {
-        await context.router.root.push(StudyScreenRoute(episodeId: lesson.id, lessonId: episode.id));
+        await context.router.root.push(StudyScreenRoute(episodeId: episode.id, lessonId: lesson.id));
         onNavigateBack();
       },
       child: Opacity(
@@ -167,7 +169,7 @@ class StudyMoreButton extends HookWidget {
   Widget buildLoadingWidget() {
     return Container(
       clipBehavior: Clip.antiAlias,
-      padding: const EdgeInsets.all(12),
+      padding: const EdgeInsets.all(23),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(12),
         color: BccmColors.tint1.withAlpha((255 * 0.1).round()),

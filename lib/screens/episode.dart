@@ -246,9 +246,9 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen> with AutoRouteAwa
   }
 
   void shareVideo(Query$FetchEpisode$episode episode) {
-    final casting = ref.watch(isCasting);
+    final casting = ref.read(isCasting);
     final playerProvider = casting ? castPlayerProvider : primaryPlayerProvider;
-    final player = ref.watch(playerProvider);
+    final player = ref.read(playerProvider);
     final currentPosSeconds = ((player?.playbackPositionMs ?? 0) / 1000).round();
     if (player != null) {
       ref.read(playbackApiProvider).pause(player.playerId);
@@ -322,10 +322,11 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen> with AutoRouteAwa
       children: [
         AspectRatio(aspectRatio: 16 / 9, child: Container(color: BccmColors.background2)),
         Expanded(
-            child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [const LoadingIndicator(), const SizedBox(height: 12), Text(S.of(context).loading, style: BccmTextStyles.body2)],
-        ))
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [const LoadingIndicator(), const SizedBox(height: 12), Text(S.of(context).loading, style: BccmTextStyles.body2)],
+          ),
+        ),
       ],
     );
   }
@@ -363,7 +364,7 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen> with AutoRouteAwa
                               )
                             : Builder(builder: (context) {
                                 if (displayPlayer) {
-                                  return BccmPlayer(id: casting ? 'chromecast' : primaryPlayerId);
+                                  return BccmPlayer(id: player.playerId);
                                 } else {
                                   return const AspectRatio(
                                     aspectRatio: 16 / 9,
@@ -383,7 +384,7 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen> with AutoRouteAwa
                   if (episodeLoading)
                     Positioned.fill(
                       child: Container(
-                        color: BccmColors.background2,
+                        color: BccmColors.background1,
                         child: const Center(
                           child: LoadingIndicator(),
                         ),
@@ -472,7 +473,7 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen> with AutoRouteAwa
                   Padding(
                     padding: const EdgeInsets.only(top: 16),
                     child: StudyMoreButton(
-                      progressOverviewFuture: lessonProgressFuture?.then((value) => value?.episode),
+                      progressOverviewFuture: lessonProgressFuture,
                       onNavigateBack: () {
                         setState(() {
                           lessonProgressFuture = loadLessonsForEpisode();
