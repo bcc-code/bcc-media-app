@@ -63,6 +63,19 @@ fragment ItemSection on ItemSection {
   }
 }
 
+fragment EpisodeShow on Episode {
+  season {
+    show {
+      title
+    }
+  }
+}
+
+fragment ShowCounts on Show {
+  episodeCount
+  seasonCount
+}
+
 fragment Section on Section {
   id
   title
@@ -75,16 +88,11 @@ fragment Section on Section {
         items {
           item {
             ... on Show {
-              episodeCount
-              seasonCount
+              ...ShowCounts
             }
             ... on Episode {
+              ...EpisodeShow
               productionDate
-              season {
-                show {
-                  title
-                }
-              }
             }
             __typename
           }
@@ -105,16 +113,11 @@ fragment Section on Section {
         items {
           item {
             ... on Show {
-              episodeCount
-              seasonCount
+              ...ShowCounts
             }
             ... on Episode {
+              ...EpisodeShow
               productionDate
-              season {
-                show {
-                  title
-                }
-              }
             }
             __typename
           }
@@ -137,11 +140,7 @@ fragment Section on Section {
               title
               ageRating
               image
-              season {
-                show {
-                  title
-                }
-              }
+              ...EpisodeShow
             }
           }
         }

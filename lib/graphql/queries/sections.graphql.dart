@@ -438,6 +438,8 @@ const documentNodeQueryFetchMoreItemsForItemSection =
   fragmentDefinitionSection,
   fragmentDefinitionItemSection,
   fragmentDefinitionItemSectionItem,
+  fragmentDefinitionShowCounts,
+  fragmentDefinitionEpisodeShow,
   fragmentDefinitionGridSectionItem,
 ]);
 Query$FetchMoreItemsForItemSection _parserFn$Query$FetchMoreItemsForItemSection(
@@ -2185,6 +2187,7 @@ class Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item
     implements
         Fragment$Section$$PosterSection$items$items$item$$Episode,
         Fragment$ItemSectionItem$item$$Episode,
+        Fragment$EpisodeShow,
         Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item {
   Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Episode({
     required this.$__typename,
@@ -2193,8 +2196,8 @@ class Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item
     required this.locked,
     this.progress,
     required this.publishDate,
-    required this.productionDate,
     this.season,
+    required this.productionDate,
   });
 
   factory Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Episode.fromJson(
@@ -2205,8 +2208,8 @@ class Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item
     final l$locked = json['locked'];
     final l$progress = json['progress'];
     final l$publishDate = json['publishDate'];
-    final l$productionDate = json['productionDate'];
     final l$season = json['season'];
+    final l$productionDate = json['productionDate'];
     return Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Episode(
       $__typename: (l$$__typename as String),
       id: (l$id as String),
@@ -2214,11 +2217,11 @@ class Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item
       locked: (l$locked as bool),
       progress: (l$progress as int?),
       publishDate: (l$publishDate as String),
-      productionDate: (l$productionDate as String),
       season: l$season == null
           ? null
           : Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Episode$season
               .fromJson((l$season as Map<String, dynamic>)),
+      productionDate: (l$productionDate as String),
     );
   }
 
@@ -2234,10 +2237,10 @@ class Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item
 
   final String publishDate;
 
-  final String productionDate;
-
   final Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Episode$season?
       season;
+
+  final String productionDate;
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
@@ -2253,10 +2256,10 @@ class Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item
     _resultData['progress'] = l$progress;
     final l$publishDate = publishDate;
     _resultData['publishDate'] = l$publishDate;
-    final l$productionDate = productionDate;
-    _resultData['productionDate'] = l$productionDate;
     final l$season = season;
     _resultData['season'] = l$season?.toJson();
+    final l$productionDate = productionDate;
+    _resultData['productionDate'] = l$productionDate;
     return _resultData;
   }
 
@@ -2268,8 +2271,8 @@ class Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item
     final l$locked = locked;
     final l$progress = progress;
     final l$publishDate = publishDate;
-    final l$productionDate = productionDate;
     final l$season = season;
+    final l$productionDate = productionDate;
     return Object.hashAll([
       l$$__typename,
       l$id,
@@ -2277,8 +2280,8 @@ class Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item
       l$locked,
       l$progress,
       l$publishDate,
-      l$productionDate,
       l$season,
+      l$productionDate,
     ]);
   }
 
@@ -2322,14 +2325,14 @@ class Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item
     if (l$publishDate != lOther$publishDate) {
       return false;
     }
-    final l$productionDate = productionDate;
-    final lOther$productionDate = other.productionDate;
-    if (l$productionDate != lOther$productionDate) {
-      return false;
-    }
     final l$season = season;
     final lOther$season = other.season;
     if (l$season != lOther$season) {
+      return false;
+    }
+    final l$productionDate = productionDate;
+    final lOther$productionDate = other.productionDate;
+    if (l$productionDate != lOther$productionDate) {
       return false;
     }
     return true;
@@ -2368,9 +2371,9 @@ abstract class CopyWith$Query$FetchMoreItemsForItemSection$section$$PosterSectio
     bool? locked,
     int? progress,
     String? publishDate,
-    String? productionDate,
     Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Episode$season?
         season,
+    String? productionDate,
   });
   CopyWith$Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Episode$season<
       TRes> get season;
@@ -2402,8 +2405,8 @@ class _CopyWithImpl$Query$FetchMoreItemsForItemSection$section$$PosterSection$it
     Object? locked = _undefined,
     Object? progress = _undefined,
     Object? publishDate = _undefined,
-    Object? productionDate = _undefined,
     Object? season = _undefined,
+    Object? productionDate = _undefined,
   }) =>
       _then(
           Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Episode(
@@ -2422,13 +2425,13 @@ class _CopyWithImpl$Query$FetchMoreItemsForItemSection$section$$PosterSection$it
         publishDate: publishDate == _undefined || publishDate == null
             ? _instance.publishDate
             : (publishDate as String),
-        productionDate: productionDate == _undefined || productionDate == null
-            ? _instance.productionDate
-            : (productionDate as String),
         season: season == _undefined
             ? _instance.season
             : (season
                 as Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Episode$season?),
+        productionDate: productionDate == _undefined || productionDate == null
+            ? _instance.productionDate
+            : (productionDate as String),
       ));
   CopyWith$Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Episode$season<
       TRes> get season {
@@ -2458,9 +2461,9 @@ class _CopyWithStubImpl$Query$FetchMoreItemsForItemSection$section$$PosterSectio
     bool? locked,
     int? progress,
     String? publishDate,
-    String? productionDate,
     Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Episode$season?
         season,
+    String? productionDate,
   }) =>
       _res;
   CopyWith$Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Episode$season<
@@ -2474,6 +2477,7 @@ class Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item
     implements
         Fragment$Section$$PosterSection$items$items$item$$Show,
         Fragment$ItemSectionItem$item$$Show,
+        Fragment$ShowCounts,
         Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item {
   Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Show({
     required this.$__typename,
@@ -2844,7 +2848,8 @@ class _CopyWithStubImpl$Query$FetchMoreItemsForItemSection$section$$PosterSectio
 
 class Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Episode$season
     implements
-        Fragment$Section$$PosterSection$items$items$item$$Episode$season {
+        Fragment$Section$$PosterSection$items$items$item$$Episode$season,
+        Fragment$EpisodeShow$season {
   Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Episode$season({
     required this.$show,
     required this.$__typename,
@@ -3010,7 +3015,8 @@ class _CopyWithStubImpl$Query$FetchMoreItemsForItemSection$section$$PosterSectio
 
 class Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Episode$season$show
     implements
-        Fragment$Section$$PosterSection$items$items$item$$Episode$season$show {
+        Fragment$Section$$PosterSection$items$items$item$$Episode$season$show,
+        Fragment$EpisodeShow$season$show {
   Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Episode$season$show({
     required this.title,
     required this.$__typename,
@@ -6502,6 +6508,7 @@ class Query$FetchMoreItemsForItemSection$section$$DefaultSection$items$items$ite
     implements
         Fragment$Section$$DefaultSection$items$items$item$$Episode,
         Fragment$ItemSectionItem$item$$Episode,
+        Fragment$EpisodeShow,
         Query$FetchMoreItemsForItemSection$section$$DefaultSection$items$items$item {
   Query$FetchMoreItemsForItemSection$section$$DefaultSection$items$items$item$$Episode({
     required this.$__typename,
@@ -6510,8 +6517,8 @@ class Query$FetchMoreItemsForItemSection$section$$DefaultSection$items$items$ite
     required this.locked,
     this.progress,
     required this.publishDate,
-    required this.productionDate,
     this.season,
+    required this.productionDate,
   });
 
   factory Query$FetchMoreItemsForItemSection$section$$DefaultSection$items$items$item$$Episode.fromJson(
@@ -6522,8 +6529,8 @@ class Query$FetchMoreItemsForItemSection$section$$DefaultSection$items$items$ite
     final l$locked = json['locked'];
     final l$progress = json['progress'];
     final l$publishDate = json['publishDate'];
-    final l$productionDate = json['productionDate'];
     final l$season = json['season'];
+    final l$productionDate = json['productionDate'];
     return Query$FetchMoreItemsForItemSection$section$$DefaultSection$items$items$item$$Episode(
       $__typename: (l$$__typename as String),
       id: (l$id as String),
@@ -6531,11 +6538,11 @@ class Query$FetchMoreItemsForItemSection$section$$DefaultSection$items$items$ite
       locked: (l$locked as bool),
       progress: (l$progress as int?),
       publishDate: (l$publishDate as String),
-      productionDate: (l$productionDate as String),
       season: l$season == null
           ? null
           : Query$FetchMoreItemsForItemSection$section$$DefaultSection$items$items$item$$Episode$season
               .fromJson((l$season as Map<String, dynamic>)),
+      productionDate: (l$productionDate as String),
     );
   }
 
@@ -6551,10 +6558,10 @@ class Query$FetchMoreItemsForItemSection$section$$DefaultSection$items$items$ite
 
   final String publishDate;
 
-  final String productionDate;
-
   final Query$FetchMoreItemsForItemSection$section$$DefaultSection$items$items$item$$Episode$season?
       season;
+
+  final String productionDate;
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
@@ -6570,10 +6577,10 @@ class Query$FetchMoreItemsForItemSection$section$$DefaultSection$items$items$ite
     _resultData['progress'] = l$progress;
     final l$publishDate = publishDate;
     _resultData['publishDate'] = l$publishDate;
-    final l$productionDate = productionDate;
-    _resultData['productionDate'] = l$productionDate;
     final l$season = season;
     _resultData['season'] = l$season?.toJson();
+    final l$productionDate = productionDate;
+    _resultData['productionDate'] = l$productionDate;
     return _resultData;
   }
 
@@ -6585,8 +6592,8 @@ class Query$FetchMoreItemsForItemSection$section$$DefaultSection$items$items$ite
     final l$locked = locked;
     final l$progress = progress;
     final l$publishDate = publishDate;
-    final l$productionDate = productionDate;
     final l$season = season;
+    final l$productionDate = productionDate;
     return Object.hashAll([
       l$$__typename,
       l$id,
@@ -6594,8 +6601,8 @@ class Query$FetchMoreItemsForItemSection$section$$DefaultSection$items$items$ite
       l$locked,
       l$progress,
       l$publishDate,
-      l$productionDate,
       l$season,
+      l$productionDate,
     ]);
   }
 
@@ -6639,14 +6646,14 @@ class Query$FetchMoreItemsForItemSection$section$$DefaultSection$items$items$ite
     if (l$publishDate != lOther$publishDate) {
       return false;
     }
-    final l$productionDate = productionDate;
-    final lOther$productionDate = other.productionDate;
-    if (l$productionDate != lOther$productionDate) {
-      return false;
-    }
     final l$season = season;
     final lOther$season = other.season;
     if (l$season != lOther$season) {
+      return false;
+    }
+    final l$productionDate = productionDate;
+    final lOther$productionDate = other.productionDate;
+    if (l$productionDate != lOther$productionDate) {
       return false;
     }
     return true;
@@ -6685,9 +6692,9 @@ abstract class CopyWith$Query$FetchMoreItemsForItemSection$section$$DefaultSecti
     bool? locked,
     int? progress,
     String? publishDate,
-    String? productionDate,
     Query$FetchMoreItemsForItemSection$section$$DefaultSection$items$items$item$$Episode$season?
         season,
+    String? productionDate,
   });
   CopyWith$Query$FetchMoreItemsForItemSection$section$$DefaultSection$items$items$item$$Episode$season<
       TRes> get season;
@@ -6719,8 +6726,8 @@ class _CopyWithImpl$Query$FetchMoreItemsForItemSection$section$$DefaultSection$i
     Object? locked = _undefined,
     Object? progress = _undefined,
     Object? publishDate = _undefined,
-    Object? productionDate = _undefined,
     Object? season = _undefined,
+    Object? productionDate = _undefined,
   }) =>
       _then(
           Query$FetchMoreItemsForItemSection$section$$DefaultSection$items$items$item$$Episode(
@@ -6739,13 +6746,13 @@ class _CopyWithImpl$Query$FetchMoreItemsForItemSection$section$$DefaultSection$i
         publishDate: publishDate == _undefined || publishDate == null
             ? _instance.publishDate
             : (publishDate as String),
-        productionDate: productionDate == _undefined || productionDate == null
-            ? _instance.productionDate
-            : (productionDate as String),
         season: season == _undefined
             ? _instance.season
             : (season
                 as Query$FetchMoreItemsForItemSection$section$$DefaultSection$items$items$item$$Episode$season?),
+        productionDate: productionDate == _undefined || productionDate == null
+            ? _instance.productionDate
+            : (productionDate as String),
       ));
   CopyWith$Query$FetchMoreItemsForItemSection$section$$DefaultSection$items$items$item$$Episode$season<
       TRes> get season {
@@ -6775,9 +6782,9 @@ class _CopyWithStubImpl$Query$FetchMoreItemsForItemSection$section$$DefaultSecti
     bool? locked,
     int? progress,
     String? publishDate,
-    String? productionDate,
     Query$FetchMoreItemsForItemSection$section$$DefaultSection$items$items$item$$Episode$season?
         season,
+    String? productionDate,
   }) =>
       _res;
   CopyWith$Query$FetchMoreItemsForItemSection$section$$DefaultSection$items$items$item$$Episode$season<
@@ -6791,6 +6798,7 @@ class Query$FetchMoreItemsForItemSection$section$$DefaultSection$items$items$ite
     implements
         Fragment$Section$$DefaultSection$items$items$item$$Show,
         Fragment$ItemSectionItem$item$$Show,
+        Fragment$ShowCounts,
         Query$FetchMoreItemsForItemSection$section$$DefaultSection$items$items$item {
   Query$FetchMoreItemsForItemSection$section$$DefaultSection$items$items$item$$Show({
     required this.$__typename,
@@ -7161,7 +7169,8 @@ class _CopyWithStubImpl$Query$FetchMoreItemsForItemSection$section$$DefaultSecti
 
 class Query$FetchMoreItemsForItemSection$section$$DefaultSection$items$items$item$$Episode$season
     implements
-        Fragment$Section$$DefaultSection$items$items$item$$Episode$season {
+        Fragment$Section$$DefaultSection$items$items$item$$Episode$season,
+        Fragment$EpisodeShow$season {
   Query$FetchMoreItemsForItemSection$section$$DefaultSection$items$items$item$$Episode$season({
     required this.$show,
     required this.$__typename,
@@ -7327,7 +7336,8 @@ class _CopyWithStubImpl$Query$FetchMoreItemsForItemSection$section$$DefaultSecti
 
 class Query$FetchMoreItemsForItemSection$section$$DefaultSection$items$items$item$$Episode$season$show
     implements
-        Fragment$Section$$DefaultSection$items$items$item$$Episode$season$show {
+        Fragment$Section$$DefaultSection$items$items$item$$Episode$season$show,
+        Fragment$EpisodeShow$season$show {
   Query$FetchMoreItemsForItemSection$section$$DefaultSection$items$items$item$$Episode$season$show({
     required this.title,
     required this.$__typename,
@@ -10754,6 +10764,7 @@ class Query$FetchMoreItemsForItemSection$section$$ListSection$items$items$item$$
     implements
         Fragment$Section$$ListSection$items$items$item$$Episode,
         Fragment$ItemSectionItem$item$$Episode,
+        Fragment$EpisodeShow,
         Query$FetchMoreItemsForItemSection$section$$ListSection$items$items$item {
   Query$FetchMoreItemsForItemSection$section$$ListSection$items$items$item$$Episode({
     required this.$__typename,
@@ -11410,7 +11421,9 @@ class _CopyWithStubImpl$Query$FetchMoreItemsForItemSection$section$$ListSection$
 }
 
 class Query$FetchMoreItemsForItemSection$section$$ListSection$items$items$item$$Episode$season
-    implements Fragment$Section$$ListSection$items$items$item$$Episode$season {
+    implements
+        Fragment$Section$$ListSection$items$items$item$$Episode$season,
+        Fragment$EpisodeShow$season {
   Query$FetchMoreItemsForItemSection$section$$ListSection$items$items$item$$Episode$season({
     required this.$show,
     required this.$__typename,
@@ -11576,7 +11589,8 @@ class _CopyWithStubImpl$Query$FetchMoreItemsForItemSection$section$$ListSection$
 
 class Query$FetchMoreItemsForItemSection$section$$ListSection$items$items$item$$Episode$season$show
     implements
-        Fragment$Section$$ListSection$items$items$item$$Episode$season$show {
+        Fragment$Section$$ListSection$items$items$item$$Episode$season$show,
+        Fragment$EpisodeShow$season$show {
   Query$FetchMoreItemsForItemSection$section$$ListSection$items$items$item$$Episode$season$show({
     required this.title,
     required this.$__typename,

@@ -24,8 +24,7 @@ import 'page_details_section.dart';
 import 'poster_grid_section.dart';
 import 'icon_section.dart';
 import 'label_section.dart';
-import 'poster_section.dart';
-import 'default_section.dart';
+import 'horizontal_section.dart';
 import 'icon_grid_section.dart';
 import 'list_section.dart';
 import 'page_section.dart';
@@ -77,11 +76,11 @@ class _BccmPageState extends ConsumerState<BccmPage> {
     }
     final defaultSection = s.asOrNull<Fragment$Section$$DefaultSection>();
     if (defaultSection != null) {
-      return PageSection.fromFragment(defaultSection, child: DefaultSection(defaultSection));
+      return PageSection.fromFragment(defaultSection, child: HorizontalSection(defaultSection));
     }
     final posterSection = s.asOrNull<Fragment$Section$$PosterSection>();
     if (posterSection != null) {
-      return PageSection.fromFragment(posterSection, child: PosterSection(posterSection));
+      return PageSection.fromFragment(posterSection, child: HorizontalSection(posterSection));
     }
     var defaultGridSection = s.asOrNull<Fragment$Section$$DefaultGridSection>();
     if (defaultGridSection != null) {

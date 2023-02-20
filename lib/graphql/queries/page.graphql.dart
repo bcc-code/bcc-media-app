@@ -3780,6 +3780,709 @@ class _CopyWithStubImpl$Fragment$ItemSection$items<TRes>
   items(_fn) => _res;
 }
 
+class Fragment$EpisodeShow {
+  Fragment$EpisodeShow({
+    this.season,
+    required this.$__typename,
+  });
+
+  factory Fragment$EpisodeShow.fromJson(Map<String, dynamic> json) {
+    final l$season = json['season'];
+    final l$$__typename = json['__typename'];
+    return Fragment$EpisodeShow(
+      season: l$season == null
+          ? null
+          : Fragment$EpisodeShow$season.fromJson(
+              (l$season as Map<String, dynamic>)),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final Fragment$EpisodeShow$season? season;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$season = season;
+    _resultData['season'] = l$season?.toJson();
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$season = season;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$season,
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (!(other is Fragment$EpisodeShow) || runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$season = season;
+    final lOther$season = other.season;
+    if (l$season != lOther$season) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Fragment$EpisodeShow on Fragment$EpisodeShow {
+  CopyWith$Fragment$EpisodeShow<Fragment$EpisodeShow> get copyWith =>
+      CopyWith$Fragment$EpisodeShow(
+        this,
+        (i) => i,
+      );
+}
+
+abstract class CopyWith$Fragment$EpisodeShow<TRes> {
+  factory CopyWith$Fragment$EpisodeShow(
+    Fragment$EpisodeShow instance,
+    TRes Function(Fragment$EpisodeShow) then,
+  ) = _CopyWithImpl$Fragment$EpisodeShow;
+
+  factory CopyWith$Fragment$EpisodeShow.stub(TRes res) =
+      _CopyWithStubImpl$Fragment$EpisodeShow;
+
+  TRes call({
+    Fragment$EpisodeShow$season? season,
+    String? $__typename,
+  });
+  CopyWith$Fragment$EpisodeShow$season<TRes> get season;
+}
+
+class _CopyWithImpl$Fragment$EpisodeShow<TRes>
+    implements CopyWith$Fragment$EpisodeShow<TRes> {
+  _CopyWithImpl$Fragment$EpisodeShow(
+    this._instance,
+    this._then,
+  );
+
+  final Fragment$EpisodeShow _instance;
+
+  final TRes Function(Fragment$EpisodeShow) _then;
+
+  static const _undefined = {};
+
+  TRes call({
+    Object? season = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(Fragment$EpisodeShow(
+        season: season == _undefined
+            ? _instance.season
+            : (season as Fragment$EpisodeShow$season?),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+  CopyWith$Fragment$EpisodeShow$season<TRes> get season {
+    final local$season = _instance.season;
+    return local$season == null
+        ? CopyWith$Fragment$EpisodeShow$season.stub(_then(_instance))
+        : CopyWith$Fragment$EpisodeShow$season(
+            local$season, (e) => call(season: e));
+  }
+}
+
+class _CopyWithStubImpl$Fragment$EpisodeShow<TRes>
+    implements CopyWith$Fragment$EpisodeShow<TRes> {
+  _CopyWithStubImpl$Fragment$EpisodeShow(this._res);
+
+  TRes _res;
+
+  call({
+    Fragment$EpisodeShow$season? season,
+    String? $__typename,
+  }) =>
+      _res;
+  CopyWith$Fragment$EpisodeShow$season<TRes> get season =>
+      CopyWith$Fragment$EpisodeShow$season.stub(_res);
+}
+
+const fragmentDefinitionEpisodeShow = FragmentDefinitionNode(
+  name: NameNode(value: 'EpisodeShow'),
+  typeCondition: TypeConditionNode(
+      on: NamedTypeNode(
+    name: NameNode(value: 'Episode'),
+    isNonNull: false,
+  )),
+  directives: [],
+  selectionSet: SelectionSetNode(selections: [
+    FieldNode(
+      name: NameNode(value: 'season'),
+      alias: null,
+      arguments: [],
+      directives: [],
+      selectionSet: SelectionSetNode(selections: [
+        FieldNode(
+          name: NameNode(value: 'show'),
+          alias: null,
+          arguments: [],
+          directives: [],
+          selectionSet: SelectionSetNode(selections: [
+            FieldNode(
+              name: NameNode(value: 'title'),
+              alias: null,
+              arguments: [],
+              directives: [],
+              selectionSet: null,
+            ),
+            FieldNode(
+              name: NameNode(value: '__typename'),
+              alias: null,
+              arguments: [],
+              directives: [],
+              selectionSet: null,
+            ),
+          ]),
+        ),
+        FieldNode(
+          name: NameNode(value: '__typename'),
+          alias: null,
+          arguments: [],
+          directives: [],
+          selectionSet: null,
+        ),
+      ]),
+    ),
+    FieldNode(
+      name: NameNode(value: '__typename'),
+      alias: null,
+      arguments: [],
+      directives: [],
+      selectionSet: null,
+    ),
+  ]),
+);
+const documentNodeFragmentEpisodeShow = DocumentNode(definitions: [
+  fragmentDefinitionEpisodeShow,
+]);
+
+extension ClientExtension$Fragment$EpisodeShow on graphql.GraphQLClient {
+  void writeFragment$EpisodeShow({
+    required Fragment$EpisodeShow data,
+    required Map<String, dynamic> idFields,
+    bool broadcast = true,
+  }) =>
+      this.writeFragment(
+        graphql.FragmentRequest(
+          idFields: idFields,
+          fragment: const graphql.Fragment(
+            fragmentName: 'EpisodeShow',
+            document: documentNodeFragmentEpisodeShow,
+          ),
+        ),
+        data: data.toJson(),
+        broadcast: broadcast,
+      );
+  Fragment$EpisodeShow? readFragment$EpisodeShow({
+    required Map<String, dynamic> idFields,
+    bool optimistic = true,
+  }) {
+    final result = this.readFragment(
+      graphql.FragmentRequest(
+        idFields: idFields,
+        fragment: const graphql.Fragment(
+          fragmentName: 'EpisodeShow',
+          document: documentNodeFragmentEpisodeShow,
+        ),
+      ),
+      optimistic: optimistic,
+    );
+    return result == null ? null : Fragment$EpisodeShow.fromJson(result);
+  }
+}
+
+class Fragment$EpisodeShow$season {
+  Fragment$EpisodeShow$season({
+    required this.$show,
+    required this.$__typename,
+  });
+
+  factory Fragment$EpisodeShow$season.fromJson(Map<String, dynamic> json) {
+    final l$$show = json['show'];
+    final l$$__typename = json['__typename'];
+    return Fragment$EpisodeShow$season(
+      $show: Fragment$EpisodeShow$season$show.fromJson(
+          (l$$show as Map<String, dynamic>)),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final Fragment$EpisodeShow$season$show $show;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$$show = $show;
+    _resultData['show'] = l$$show.toJson();
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$$show = $show;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$$show,
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (!(other is Fragment$EpisodeShow$season) ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$$show = $show;
+    final lOther$$show = other.$show;
+    if (l$$show != lOther$$show) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Fragment$EpisodeShow$season
+    on Fragment$EpisodeShow$season {
+  CopyWith$Fragment$EpisodeShow$season<Fragment$EpisodeShow$season>
+      get copyWith => CopyWith$Fragment$EpisodeShow$season(
+            this,
+            (i) => i,
+          );
+}
+
+abstract class CopyWith$Fragment$EpisodeShow$season<TRes> {
+  factory CopyWith$Fragment$EpisodeShow$season(
+    Fragment$EpisodeShow$season instance,
+    TRes Function(Fragment$EpisodeShow$season) then,
+  ) = _CopyWithImpl$Fragment$EpisodeShow$season;
+
+  factory CopyWith$Fragment$EpisodeShow$season.stub(TRes res) =
+      _CopyWithStubImpl$Fragment$EpisodeShow$season;
+
+  TRes call({
+    Fragment$EpisodeShow$season$show? $show,
+    String? $__typename,
+  });
+  CopyWith$Fragment$EpisodeShow$season$show<TRes> get $show;
+}
+
+class _CopyWithImpl$Fragment$EpisodeShow$season<TRes>
+    implements CopyWith$Fragment$EpisodeShow$season<TRes> {
+  _CopyWithImpl$Fragment$EpisodeShow$season(
+    this._instance,
+    this._then,
+  );
+
+  final Fragment$EpisodeShow$season _instance;
+
+  final TRes Function(Fragment$EpisodeShow$season) _then;
+
+  static const _undefined = {};
+
+  TRes call({
+    Object? $show = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(Fragment$EpisodeShow$season(
+        $show: $show == _undefined || $show == null
+            ? _instance.$show
+            : ($show as Fragment$EpisodeShow$season$show),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+  CopyWith$Fragment$EpisodeShow$season$show<TRes> get $show {
+    final local$$show = _instance.$show;
+    return CopyWith$Fragment$EpisodeShow$season$show(
+        local$$show, (e) => call($show: e));
+  }
+}
+
+class _CopyWithStubImpl$Fragment$EpisodeShow$season<TRes>
+    implements CopyWith$Fragment$EpisodeShow$season<TRes> {
+  _CopyWithStubImpl$Fragment$EpisodeShow$season(this._res);
+
+  TRes _res;
+
+  call({
+    Fragment$EpisodeShow$season$show? $show,
+    String? $__typename,
+  }) =>
+      _res;
+  CopyWith$Fragment$EpisodeShow$season$show<TRes> get $show =>
+      CopyWith$Fragment$EpisodeShow$season$show.stub(_res);
+}
+
+class Fragment$EpisodeShow$season$show {
+  Fragment$EpisodeShow$season$show({
+    required this.title,
+    required this.$__typename,
+  });
+
+  factory Fragment$EpisodeShow$season$show.fromJson(Map<String, dynamic> json) {
+    final l$title = json['title'];
+    final l$$__typename = json['__typename'];
+    return Fragment$EpisodeShow$season$show(
+      title: (l$title as String),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final String title;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$title = title;
+    _resultData['title'] = l$title;
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$title = title;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$title,
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (!(other is Fragment$EpisodeShow$season$show) ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$title = title;
+    final lOther$title = other.title;
+    if (l$title != lOther$title) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Fragment$EpisodeShow$season$show
+    on Fragment$EpisodeShow$season$show {
+  CopyWith$Fragment$EpisodeShow$season$show<Fragment$EpisodeShow$season$show>
+      get copyWith => CopyWith$Fragment$EpisodeShow$season$show(
+            this,
+            (i) => i,
+          );
+}
+
+abstract class CopyWith$Fragment$EpisodeShow$season$show<TRes> {
+  factory CopyWith$Fragment$EpisodeShow$season$show(
+    Fragment$EpisodeShow$season$show instance,
+    TRes Function(Fragment$EpisodeShow$season$show) then,
+  ) = _CopyWithImpl$Fragment$EpisodeShow$season$show;
+
+  factory CopyWith$Fragment$EpisodeShow$season$show.stub(TRes res) =
+      _CopyWithStubImpl$Fragment$EpisodeShow$season$show;
+
+  TRes call({
+    String? title,
+    String? $__typename,
+  });
+}
+
+class _CopyWithImpl$Fragment$EpisodeShow$season$show<TRes>
+    implements CopyWith$Fragment$EpisodeShow$season$show<TRes> {
+  _CopyWithImpl$Fragment$EpisodeShow$season$show(
+    this._instance,
+    this._then,
+  );
+
+  final Fragment$EpisodeShow$season$show _instance;
+
+  final TRes Function(Fragment$EpisodeShow$season$show) _then;
+
+  static const _undefined = {};
+
+  TRes call({
+    Object? title = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(Fragment$EpisodeShow$season$show(
+        title: title == _undefined || title == null
+            ? _instance.title
+            : (title as String),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+}
+
+class _CopyWithStubImpl$Fragment$EpisodeShow$season$show<TRes>
+    implements CopyWith$Fragment$EpisodeShow$season$show<TRes> {
+  _CopyWithStubImpl$Fragment$EpisodeShow$season$show(this._res);
+
+  TRes _res;
+
+  call({
+    String? title,
+    String? $__typename,
+  }) =>
+      _res;
+}
+
+class Fragment$ShowCounts {
+  Fragment$ShowCounts({
+    required this.episodeCount,
+    required this.seasonCount,
+    required this.$__typename,
+  });
+
+  factory Fragment$ShowCounts.fromJson(Map<String, dynamic> json) {
+    final l$episodeCount = json['episodeCount'];
+    final l$seasonCount = json['seasonCount'];
+    final l$$__typename = json['__typename'];
+    return Fragment$ShowCounts(
+      episodeCount: (l$episodeCount as int),
+      seasonCount: (l$seasonCount as int),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final int episodeCount;
+
+  final int seasonCount;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$episodeCount = episodeCount;
+    _resultData['episodeCount'] = l$episodeCount;
+    final l$seasonCount = seasonCount;
+    _resultData['seasonCount'] = l$seasonCount;
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$episodeCount = episodeCount;
+    final l$seasonCount = seasonCount;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$episodeCount,
+      l$seasonCount,
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (!(other is Fragment$ShowCounts) || runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$episodeCount = episodeCount;
+    final lOther$episodeCount = other.episodeCount;
+    if (l$episodeCount != lOther$episodeCount) {
+      return false;
+    }
+    final l$seasonCount = seasonCount;
+    final lOther$seasonCount = other.seasonCount;
+    if (l$seasonCount != lOther$seasonCount) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Fragment$ShowCounts on Fragment$ShowCounts {
+  CopyWith$Fragment$ShowCounts<Fragment$ShowCounts> get copyWith =>
+      CopyWith$Fragment$ShowCounts(
+        this,
+        (i) => i,
+      );
+}
+
+abstract class CopyWith$Fragment$ShowCounts<TRes> {
+  factory CopyWith$Fragment$ShowCounts(
+    Fragment$ShowCounts instance,
+    TRes Function(Fragment$ShowCounts) then,
+  ) = _CopyWithImpl$Fragment$ShowCounts;
+
+  factory CopyWith$Fragment$ShowCounts.stub(TRes res) =
+      _CopyWithStubImpl$Fragment$ShowCounts;
+
+  TRes call({
+    int? episodeCount,
+    int? seasonCount,
+    String? $__typename,
+  });
+}
+
+class _CopyWithImpl$Fragment$ShowCounts<TRes>
+    implements CopyWith$Fragment$ShowCounts<TRes> {
+  _CopyWithImpl$Fragment$ShowCounts(
+    this._instance,
+    this._then,
+  );
+
+  final Fragment$ShowCounts _instance;
+
+  final TRes Function(Fragment$ShowCounts) _then;
+
+  static const _undefined = {};
+
+  TRes call({
+    Object? episodeCount = _undefined,
+    Object? seasonCount = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(Fragment$ShowCounts(
+        episodeCount: episodeCount == _undefined || episodeCount == null
+            ? _instance.episodeCount
+            : (episodeCount as int),
+        seasonCount: seasonCount == _undefined || seasonCount == null
+            ? _instance.seasonCount
+            : (seasonCount as int),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+}
+
+class _CopyWithStubImpl$Fragment$ShowCounts<TRes>
+    implements CopyWith$Fragment$ShowCounts<TRes> {
+  _CopyWithStubImpl$Fragment$ShowCounts(this._res);
+
+  TRes _res;
+
+  call({
+    int? episodeCount,
+    int? seasonCount,
+    String? $__typename,
+  }) =>
+      _res;
+}
+
+const fragmentDefinitionShowCounts = FragmentDefinitionNode(
+  name: NameNode(value: 'ShowCounts'),
+  typeCondition: TypeConditionNode(
+      on: NamedTypeNode(
+    name: NameNode(value: 'Show'),
+    isNonNull: false,
+  )),
+  directives: [],
+  selectionSet: SelectionSetNode(selections: [
+    FieldNode(
+      name: NameNode(value: 'episodeCount'),
+      alias: null,
+      arguments: [],
+      directives: [],
+      selectionSet: null,
+    ),
+    FieldNode(
+      name: NameNode(value: 'seasonCount'),
+      alias: null,
+      arguments: [],
+      directives: [],
+      selectionSet: null,
+    ),
+    FieldNode(
+      name: NameNode(value: '__typename'),
+      alias: null,
+      arguments: [],
+      directives: [],
+      selectionSet: null,
+    ),
+  ]),
+);
+const documentNodeFragmentShowCounts = DocumentNode(definitions: [
+  fragmentDefinitionShowCounts,
+]);
+
+extension ClientExtension$Fragment$ShowCounts on graphql.GraphQLClient {
+  void writeFragment$ShowCounts({
+    required Fragment$ShowCounts data,
+    required Map<String, dynamic> idFields,
+    bool broadcast = true,
+  }) =>
+      this.writeFragment(
+        graphql.FragmentRequest(
+          idFields: idFields,
+          fragment: const graphql.Fragment(
+            fragmentName: 'ShowCounts',
+            document: documentNodeFragmentShowCounts,
+          ),
+        ),
+        data: data.toJson(),
+        broadcast: broadcast,
+      );
+  Fragment$ShowCounts? readFragment$ShowCounts({
+    required Map<String, dynamic> idFields,
+    bool optimistic = true,
+  }) {
+    final result = this.readFragment(
+      graphql.FragmentRequest(
+        idFields: idFields,
+        fragment: const graphql.Fragment(
+          fragmentName: 'ShowCounts',
+          document: documentNodeFragmentShowCounts,
+        ),
+      ),
+      optimistic: optimistic,
+    );
+    return result == null ? null : Fragment$ShowCounts.fromJson(result);
+  }
+}
+
 class Variables$Fragment$Section {
   factory Variables$Fragment$Section({
     int? first,
@@ -4217,19 +4920,9 @@ const fragmentDefinitionSection = FragmentDefinitionNode(
                           )),
                           directives: [],
                           selectionSet: SelectionSetNode(selections: [
-                            FieldNode(
-                              name: NameNode(value: 'episodeCount'),
-                              alias: null,
-                              arguments: [],
+                            FragmentSpreadNode(
+                              name: NameNode(value: 'ShowCounts'),
                               directives: [],
-                              selectionSet: null,
-                            ),
-                            FieldNode(
-                              name: NameNode(value: 'seasonCount'),
-                              alias: null,
-                              arguments: [],
-                              directives: [],
-                              selectionSet: null,
                             ),
                             FieldNode(
                               name: NameNode(value: '__typename'),
@@ -4248,49 +4941,16 @@ const fragmentDefinitionSection = FragmentDefinitionNode(
                           )),
                           directives: [],
                           selectionSet: SelectionSetNode(selections: [
+                            FragmentSpreadNode(
+                              name: NameNode(value: 'EpisodeShow'),
+                              directives: [],
+                            ),
                             FieldNode(
                               name: NameNode(value: 'productionDate'),
                               alias: null,
                               arguments: [],
                               directives: [],
                               selectionSet: null,
-                            ),
-                            FieldNode(
-                              name: NameNode(value: 'season'),
-                              alias: null,
-                              arguments: [],
-                              directives: [],
-                              selectionSet: SelectionSetNode(selections: [
-                                FieldNode(
-                                  name: NameNode(value: 'show'),
-                                  alias: null,
-                                  arguments: [],
-                                  directives: [],
-                                  selectionSet: SelectionSetNode(selections: [
-                                    FieldNode(
-                                      name: NameNode(value: 'title'),
-                                      alias: null,
-                                      arguments: [],
-                                      directives: [],
-                                      selectionSet: null,
-                                    ),
-                                    FieldNode(
-                                      name: NameNode(value: '__typename'),
-                                      alias: null,
-                                      arguments: [],
-                                      directives: [],
-                                      selectionSet: null,
-                                    ),
-                                  ]),
-                                ),
-                                FieldNode(
-                                  name: NameNode(value: '__typename'),
-                                  alias: null,
-                                  arguments: [],
-                                  directives: [],
-                                  selectionSet: null,
-                                ),
-                              ]),
                             ),
                             FieldNode(
                               name: NameNode(value: '__typename'),
@@ -4457,19 +5117,9 @@ const fragmentDefinitionSection = FragmentDefinitionNode(
                           )),
                           directives: [],
                           selectionSet: SelectionSetNode(selections: [
-                            FieldNode(
-                              name: NameNode(value: 'episodeCount'),
-                              alias: null,
-                              arguments: [],
+                            FragmentSpreadNode(
+                              name: NameNode(value: 'ShowCounts'),
                               directives: [],
-                              selectionSet: null,
-                            ),
-                            FieldNode(
-                              name: NameNode(value: 'seasonCount'),
-                              alias: null,
-                              arguments: [],
-                              directives: [],
-                              selectionSet: null,
                             ),
                             FieldNode(
                               name: NameNode(value: '__typename'),
@@ -4488,49 +5138,16 @@ const fragmentDefinitionSection = FragmentDefinitionNode(
                           )),
                           directives: [],
                           selectionSet: SelectionSetNode(selections: [
+                            FragmentSpreadNode(
+                              name: NameNode(value: 'EpisodeShow'),
+                              directives: [],
+                            ),
                             FieldNode(
                               name: NameNode(value: 'productionDate'),
                               alias: null,
                               arguments: [],
                               directives: [],
                               selectionSet: null,
-                            ),
-                            FieldNode(
-                              name: NameNode(value: 'season'),
-                              alias: null,
-                              arguments: [],
-                              directives: [],
-                              selectionSet: SelectionSetNode(selections: [
-                                FieldNode(
-                                  name: NameNode(value: 'show'),
-                                  alias: null,
-                                  arguments: [],
-                                  directives: [],
-                                  selectionSet: SelectionSetNode(selections: [
-                                    FieldNode(
-                                      name: NameNode(value: 'title'),
-                                      alias: null,
-                                      arguments: [],
-                                      directives: [],
-                                      selectionSet: null,
-                                    ),
-                                    FieldNode(
-                                      name: NameNode(value: '__typename'),
-                                      alias: null,
-                                      arguments: [],
-                                      directives: [],
-                                      selectionSet: null,
-                                    ),
-                                  ]),
-                                ),
-                                FieldNode(
-                                  name: NameNode(value: '__typename'),
-                                  alias: null,
-                                  arguments: [],
-                                  directives: [],
-                                  selectionSet: null,
-                                ),
-                              ]),
                             ),
                             FieldNode(
                               name: NameNode(value: '__typename'),
@@ -4708,42 +5325,9 @@ const fragmentDefinitionSection = FragmentDefinitionNode(
                               directives: [],
                               selectionSet: null,
                             ),
-                            FieldNode(
-                              name: NameNode(value: 'season'),
-                              alias: null,
-                              arguments: [],
+                            FragmentSpreadNode(
+                              name: NameNode(value: 'EpisodeShow'),
                               directives: [],
-                              selectionSet: SelectionSetNode(selections: [
-                                FieldNode(
-                                  name: NameNode(value: 'show'),
-                                  alias: null,
-                                  arguments: [],
-                                  directives: [],
-                                  selectionSet: SelectionSetNode(selections: [
-                                    FieldNode(
-                                      name: NameNode(value: 'title'),
-                                      alias: null,
-                                      arguments: [],
-                                      directives: [],
-                                      selectionSet: null,
-                                    ),
-                                    FieldNode(
-                                      name: NameNode(value: '__typename'),
-                                      alias: null,
-                                      arguments: [],
-                                      directives: [],
-                                      selectionSet: null,
-                                    ),
-                                  ]),
-                                ),
-                                FieldNode(
-                                  name: NameNode(value: '__typename'),
-                                  alias: null,
-                                  arguments: [],
-                                  directives: [],
-                                  selectionSet: null,
-                                ),
-                              ]),
                             ),
                             FieldNode(
                               name: NameNode(value: '__typename'),
@@ -5161,6 +5745,8 @@ const documentNodeFragmentSection = DocumentNode(definitions: [
   fragmentDefinitionSection,
   fragmentDefinitionItemSection,
   fragmentDefinitionItemSectionItem,
+  fragmentDefinitionShowCounts,
+  fragmentDefinitionEpisodeShow,
   fragmentDefinitionGridSectionItem,
 ]);
 
@@ -6442,6 +7028,7 @@ class _CopyWithStubImpl$Fragment$Section$$PosterSection$items$items$item$$Page<
 class Fragment$Section$$PosterSection$items$items$item$$Episode
     implements
         Fragment$ItemSectionItem$item$$Episode,
+        Fragment$EpisodeShow,
         Fragment$Section$$PosterSection$items$items$item {
   Fragment$Section$$PosterSection$items$items$item$$Episode({
     required this.$__typename,
@@ -6450,8 +7037,8 @@ class Fragment$Section$$PosterSection$items$items$item$$Episode
     required this.locked,
     this.progress,
     required this.publishDate,
-    required this.productionDate,
     this.season,
+    required this.productionDate,
   });
 
   factory Fragment$Section$$PosterSection$items$items$item$$Episode.fromJson(
@@ -6462,8 +7049,8 @@ class Fragment$Section$$PosterSection$items$items$item$$Episode
     final l$locked = json['locked'];
     final l$progress = json['progress'];
     final l$publishDate = json['publishDate'];
-    final l$productionDate = json['productionDate'];
     final l$season = json['season'];
+    final l$productionDate = json['productionDate'];
     return Fragment$Section$$PosterSection$items$items$item$$Episode(
       $__typename: (l$$__typename as String),
       id: (l$id as String),
@@ -6471,11 +7058,11 @@ class Fragment$Section$$PosterSection$items$items$item$$Episode
       locked: (l$locked as bool),
       progress: (l$progress as int?),
       publishDate: (l$publishDate as String),
-      productionDate: (l$productionDate as String),
       season: l$season == null
           ? null
           : Fragment$Section$$PosterSection$items$items$item$$Episode$season
               .fromJson((l$season as Map<String, dynamic>)),
+      productionDate: (l$productionDate as String),
     );
   }
 
@@ -6491,10 +7078,10 @@ class Fragment$Section$$PosterSection$items$items$item$$Episode
 
   final String publishDate;
 
-  final String productionDate;
-
   final Fragment$Section$$PosterSection$items$items$item$$Episode$season?
       season;
+
+  final String productionDate;
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
@@ -6510,10 +7097,10 @@ class Fragment$Section$$PosterSection$items$items$item$$Episode
     _resultData['progress'] = l$progress;
     final l$publishDate = publishDate;
     _resultData['publishDate'] = l$publishDate;
-    final l$productionDate = productionDate;
-    _resultData['productionDate'] = l$productionDate;
     final l$season = season;
     _resultData['season'] = l$season?.toJson();
+    final l$productionDate = productionDate;
+    _resultData['productionDate'] = l$productionDate;
     return _resultData;
   }
 
@@ -6525,8 +7112,8 @@ class Fragment$Section$$PosterSection$items$items$item$$Episode
     final l$locked = locked;
     final l$progress = progress;
     final l$publishDate = publishDate;
-    final l$productionDate = productionDate;
     final l$season = season;
+    final l$productionDate = productionDate;
     return Object.hashAll([
       l$$__typename,
       l$id,
@@ -6534,8 +7121,8 @@ class Fragment$Section$$PosterSection$items$items$item$$Episode
       l$locked,
       l$progress,
       l$publishDate,
-      l$productionDate,
       l$season,
+      l$productionDate,
     ]);
   }
 
@@ -6578,14 +7165,14 @@ class Fragment$Section$$PosterSection$items$items$item$$Episode
     if (l$publishDate != lOther$publishDate) {
       return false;
     }
-    final l$productionDate = productionDate;
-    final lOther$productionDate = other.productionDate;
-    if (l$productionDate != lOther$productionDate) {
-      return false;
-    }
     final l$season = season;
     final lOther$season = other.season;
     if (l$season != lOther$season) {
+      return false;
+    }
+    final l$productionDate = productionDate;
+    final lOther$productionDate = other.productionDate;
+    if (l$productionDate != lOther$productionDate) {
       return false;
     }
     return true;
@@ -6622,8 +7209,8 @@ abstract class CopyWith$Fragment$Section$$PosterSection$items$items$item$$Episod
     bool? locked,
     int? progress,
     String? publishDate,
-    String? productionDate,
     Fragment$Section$$PosterSection$items$items$item$$Episode$season? season,
+    String? productionDate,
   });
   CopyWith$Fragment$Section$$PosterSection$items$items$item$$Episode$season<
       TRes> get season;
@@ -6653,8 +7240,8 @@ class _CopyWithImpl$Fragment$Section$$PosterSection$items$items$item$$Episode<
     Object? locked = _undefined,
     Object? progress = _undefined,
     Object? publishDate = _undefined,
-    Object? productionDate = _undefined,
     Object? season = _undefined,
+    Object? productionDate = _undefined,
   }) =>
       _then(Fragment$Section$$PosterSection$items$items$item$$Episode(
         $__typename: $__typename == _undefined || $__typename == null
@@ -6672,13 +7259,13 @@ class _CopyWithImpl$Fragment$Section$$PosterSection$items$items$item$$Episode<
         publishDate: publishDate == _undefined || publishDate == null
             ? _instance.publishDate
             : (publishDate as String),
-        productionDate: productionDate == _undefined || productionDate == null
-            ? _instance.productionDate
-            : (productionDate as String),
         season: season == _undefined
             ? _instance.season
             : (season
                 as Fragment$Section$$PosterSection$items$items$item$$Episode$season?),
+        productionDate: productionDate == _undefined || productionDate == null
+            ? _instance.productionDate
+            : (productionDate as String),
       ));
   CopyWith$Fragment$Section$$PosterSection$items$items$item$$Episode$season<
       TRes> get season {
@@ -6708,8 +7295,8 @@ class _CopyWithStubImpl$Fragment$Section$$PosterSection$items$items$item$$Episod
     bool? locked,
     int? progress,
     String? publishDate,
-    String? productionDate,
     Fragment$Section$$PosterSection$items$items$item$$Episode$season? season,
+    String? productionDate,
   }) =>
       _res;
   CopyWith$Fragment$Section$$PosterSection$items$items$item$$Episode$season<
@@ -6722,6 +7309,7 @@ class _CopyWithStubImpl$Fragment$Section$$PosterSection$items$items$item$$Episod
 class Fragment$Section$$PosterSection$items$items$item$$Show
     implements
         Fragment$ItemSectionItem$item$$Show,
+        Fragment$ShowCounts,
         Fragment$Section$$PosterSection$items$items$item {
   Fragment$Section$$PosterSection$items$items$item$$Show({
     required this.$__typename,
@@ -7078,7 +7666,8 @@ class _CopyWithStubImpl$Fragment$Section$$PosterSection$items$items$item$$Show$d
       _res;
 }
 
-class Fragment$Section$$PosterSection$items$items$item$$Episode$season {
+class Fragment$Section$$PosterSection$items$items$item$$Episode$season
+    implements Fragment$EpisodeShow$season {
   Fragment$Section$$PosterSection$items$items$item$$Episode$season({
     required this.$show,
     required this.$__typename,
@@ -7239,7 +7828,8 @@ class _CopyWithStubImpl$Fragment$Section$$PosterSection$items$items$item$$Episod
               .stub(_res);
 }
 
-class Fragment$Section$$PosterSection$items$items$item$$Episode$season$show {
+class Fragment$Section$$PosterSection$items$items$item$$Episode$season$show
+    implements Fragment$EpisodeShow$season$show {
   Fragment$Section$$PosterSection$items$items$item$$Episode$season$show({
     required this.title,
     required this.$__typename,
@@ -10446,6 +11036,7 @@ class _CopyWithStubImpl$Fragment$Section$$DefaultSection$items$items$item$$Page<
 class Fragment$Section$$DefaultSection$items$items$item$$Episode
     implements
         Fragment$ItemSectionItem$item$$Episode,
+        Fragment$EpisodeShow,
         Fragment$Section$$DefaultSection$items$items$item {
   Fragment$Section$$DefaultSection$items$items$item$$Episode({
     required this.$__typename,
@@ -10454,8 +11045,8 @@ class Fragment$Section$$DefaultSection$items$items$item$$Episode
     required this.locked,
     this.progress,
     required this.publishDate,
-    required this.productionDate,
     this.season,
+    required this.productionDate,
   });
 
   factory Fragment$Section$$DefaultSection$items$items$item$$Episode.fromJson(
@@ -10466,8 +11057,8 @@ class Fragment$Section$$DefaultSection$items$items$item$$Episode
     final l$locked = json['locked'];
     final l$progress = json['progress'];
     final l$publishDate = json['publishDate'];
-    final l$productionDate = json['productionDate'];
     final l$season = json['season'];
+    final l$productionDate = json['productionDate'];
     return Fragment$Section$$DefaultSection$items$items$item$$Episode(
       $__typename: (l$$__typename as String),
       id: (l$id as String),
@@ -10475,11 +11066,11 @@ class Fragment$Section$$DefaultSection$items$items$item$$Episode
       locked: (l$locked as bool),
       progress: (l$progress as int?),
       publishDate: (l$publishDate as String),
-      productionDate: (l$productionDate as String),
       season: l$season == null
           ? null
           : Fragment$Section$$DefaultSection$items$items$item$$Episode$season
               .fromJson((l$season as Map<String, dynamic>)),
+      productionDate: (l$productionDate as String),
     );
   }
 
@@ -10495,10 +11086,10 @@ class Fragment$Section$$DefaultSection$items$items$item$$Episode
 
   final String publishDate;
 
-  final String productionDate;
-
   final Fragment$Section$$DefaultSection$items$items$item$$Episode$season?
       season;
+
+  final String productionDate;
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
@@ -10514,10 +11105,10 @@ class Fragment$Section$$DefaultSection$items$items$item$$Episode
     _resultData['progress'] = l$progress;
     final l$publishDate = publishDate;
     _resultData['publishDate'] = l$publishDate;
-    final l$productionDate = productionDate;
-    _resultData['productionDate'] = l$productionDate;
     final l$season = season;
     _resultData['season'] = l$season?.toJson();
+    final l$productionDate = productionDate;
+    _resultData['productionDate'] = l$productionDate;
     return _resultData;
   }
 
@@ -10529,8 +11120,8 @@ class Fragment$Section$$DefaultSection$items$items$item$$Episode
     final l$locked = locked;
     final l$progress = progress;
     final l$publishDate = publishDate;
-    final l$productionDate = productionDate;
     final l$season = season;
+    final l$productionDate = productionDate;
     return Object.hashAll([
       l$$__typename,
       l$id,
@@ -10538,8 +11129,8 @@ class Fragment$Section$$DefaultSection$items$items$item$$Episode
       l$locked,
       l$progress,
       l$publishDate,
-      l$productionDate,
       l$season,
+      l$productionDate,
     ]);
   }
 
@@ -10583,14 +11174,14 @@ class Fragment$Section$$DefaultSection$items$items$item$$Episode
     if (l$publishDate != lOther$publishDate) {
       return false;
     }
-    final l$productionDate = productionDate;
-    final lOther$productionDate = other.productionDate;
-    if (l$productionDate != lOther$productionDate) {
-      return false;
-    }
     final l$season = season;
     final lOther$season = other.season;
     if (l$season != lOther$season) {
+      return false;
+    }
+    final l$productionDate = productionDate;
+    final lOther$productionDate = other.productionDate;
+    if (l$productionDate != lOther$productionDate) {
       return false;
     }
     return true;
@@ -10627,8 +11218,8 @@ abstract class CopyWith$Fragment$Section$$DefaultSection$items$items$item$$Episo
     bool? locked,
     int? progress,
     String? publishDate,
-    String? productionDate,
     Fragment$Section$$DefaultSection$items$items$item$$Episode$season? season,
+    String? productionDate,
   });
   CopyWith$Fragment$Section$$DefaultSection$items$items$item$$Episode$season<
       TRes> get season;
@@ -10658,8 +11249,8 @@ class _CopyWithImpl$Fragment$Section$$DefaultSection$items$items$item$$Episode<
     Object? locked = _undefined,
     Object? progress = _undefined,
     Object? publishDate = _undefined,
-    Object? productionDate = _undefined,
     Object? season = _undefined,
+    Object? productionDate = _undefined,
   }) =>
       _then(Fragment$Section$$DefaultSection$items$items$item$$Episode(
         $__typename: $__typename == _undefined || $__typename == null
@@ -10677,13 +11268,13 @@ class _CopyWithImpl$Fragment$Section$$DefaultSection$items$items$item$$Episode<
         publishDate: publishDate == _undefined || publishDate == null
             ? _instance.publishDate
             : (publishDate as String),
-        productionDate: productionDate == _undefined || productionDate == null
-            ? _instance.productionDate
-            : (productionDate as String),
         season: season == _undefined
             ? _instance.season
             : (season
                 as Fragment$Section$$DefaultSection$items$items$item$$Episode$season?),
+        productionDate: productionDate == _undefined || productionDate == null
+            ? _instance.productionDate
+            : (productionDate as String),
       ));
   CopyWith$Fragment$Section$$DefaultSection$items$items$item$$Episode$season<
       TRes> get season {
@@ -10713,8 +11304,8 @@ class _CopyWithStubImpl$Fragment$Section$$DefaultSection$items$items$item$$Episo
     bool? locked,
     int? progress,
     String? publishDate,
-    String? productionDate,
     Fragment$Section$$DefaultSection$items$items$item$$Episode$season? season,
+    String? productionDate,
   }) =>
       _res;
   CopyWith$Fragment$Section$$DefaultSection$items$items$item$$Episode$season<
@@ -10727,6 +11318,7 @@ class _CopyWithStubImpl$Fragment$Section$$DefaultSection$items$items$item$$Episo
 class Fragment$Section$$DefaultSection$items$items$item$$Show
     implements
         Fragment$ItemSectionItem$item$$Show,
+        Fragment$ShowCounts,
         Fragment$Section$$DefaultSection$items$items$item {
   Fragment$Section$$DefaultSection$items$items$item$$Show({
     required this.$__typename,
@@ -11084,7 +11676,8 @@ class _CopyWithStubImpl$Fragment$Section$$DefaultSection$items$items$item$$Show$
       _res;
 }
 
-class Fragment$Section$$DefaultSection$items$items$item$$Episode$season {
+class Fragment$Section$$DefaultSection$items$items$item$$Episode$season
+    implements Fragment$EpisodeShow$season {
   Fragment$Section$$DefaultSection$items$items$item$$Episode$season({
     required this.$show,
     required this.$__typename,
@@ -11245,7 +11838,8 @@ class _CopyWithStubImpl$Fragment$Section$$DefaultSection$items$items$item$$Episo
               .stub(_res);
 }
 
-class Fragment$Section$$DefaultSection$items$items$item$$Episode$season$show {
+class Fragment$Section$$DefaultSection$items$items$item$$Episode$season$show
+    implements Fragment$EpisodeShow$season$show {
   Fragment$Section$$DefaultSection$items$items$item$$Episode$season$show({
     required this.title,
     required this.$__typename,
@@ -14381,6 +14975,7 @@ class _CopyWithStubImpl$Fragment$Section$$ListSection$items$items$item$$Page<
 class Fragment$Section$$ListSection$items$items$item$$Episode
     implements
         Fragment$ItemSectionItem$item$$Episode,
+        Fragment$EpisodeShow,
         Fragment$Section$$ListSection$items$items$item {
   Fragment$Section$$ListSection$items$items$item$$Episode({
     required this.$__typename,
@@ -15009,7 +15604,8 @@ class _CopyWithStubImpl$Fragment$Section$$ListSection$items$items$item$$Show$def
       _res;
 }
 
-class Fragment$Section$$ListSection$items$items$item$$Episode$season {
+class Fragment$Section$$ListSection$items$items$item$$Episode$season
+    implements Fragment$EpisodeShow$season {
   Fragment$Section$$ListSection$items$items$item$$Episode$season({
     required this.$show,
     required this.$__typename,
@@ -15167,7 +15763,8 @@ class _CopyWithStubImpl$Fragment$Section$$ListSection$items$items$item$$Episode$
               .stub(_res);
 }
 
-class Fragment$Section$$ListSection$items$items$item$$Episode$season$show {
+class Fragment$Section$$ListSection$items$items$item$$Episode$season$show
+    implements Fragment$EpisodeShow$season$show {
   Fragment$Section$$ListSection$items$items$item$$Episode$season$show({
     required this.title,
     required this.$__typename,
@@ -26017,6 +26614,8 @@ const documentNodeQueryPage = DocumentNode(definitions: [
   fragmentDefinitionSection,
   fragmentDefinitionItemSection,
   fragmentDefinitionItemSectionItem,
+  fragmentDefinitionShowCounts,
+  fragmentDefinitionEpisodeShow,
   fragmentDefinitionGridSectionItem,
 ]);
 Query$Page _parserFn$Query$Page(Map<String, dynamic> data) =>
