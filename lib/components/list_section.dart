@@ -3,7 +3,7 @@ import 'package:brunstadtv_app/models/analytics/sections.dart';
 import 'package:flutter/material.dart';
 
 import '../graphql/queries/page.graphql.dart';
-import 'episode_list.dart';
+import 'episode_list_episode.dart';
 
 class ListSection extends StatelessWidget {
   final Fragment$Section$$ListSection data;
@@ -32,6 +32,8 @@ class ListSection extends StatelessWidget {
                   title: kv.value.title,
                   image: kv.value.image,
                   showSecondaryTitle: data.metadata?.secondaryTitles ?? true,
+                  publishDate: kv.value.publishDate,
+                  locked: kv.value.locked,
                 ),
               ),
             )

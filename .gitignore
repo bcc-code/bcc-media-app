@@ -56,5 +56,5 @@ SchemePreActions.h
 # they get copied here by a prebuild script, see copy-script.sh
 ios/Runner/firebase_app_id_file.json
 ios/Runner/GoogleService-Info.plist
-maestro_tests/reports
+.maestro/reports
 .env.js

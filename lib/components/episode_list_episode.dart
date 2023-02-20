@@ -1,12 +1,16 @@
 import 'package:brunstadtv_app/theme/bccm_typography.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../graphql/queries/calendar_episode_entries.graphql.dart';
 import '../theme/bccm_colors.dart';
 import '../helpers/utils.dart';
 import '../l10n/app_localizations.dart';
+import '../providers/todays_calendar_entries.dart';
+import '../services/utils.dart';
 import 'bordered_image_container.dart';
 
-class EpisodeListEpisode extends StatelessWidget {
+class EpisodeListEpisode extends ConsumerWidget {
   const EpisodeListEpisode({
     super.key,
     required this.id,
@@ -16,6 +20,8 @@ class EpisodeListEpisode extends StatelessWidget {
     required this.ageRating,
     required this.duration,
     this.showSecondaryTitle = true,
+    this.publishDate,
+    this.locked = false,
   });
   final String id;
   final String title;
@@ -24,9 +30,13 @@ class EpisodeListEpisode extends StatelessWidget {
   final String ageRating;
   final int duration;
   final bool showSecondaryTitle;
+  final String? publishDate;
+  final bool locked;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    Fragment$Episode? curLiveEpisode = ref.watch(currentLiveEpisodeProvider)?.episode;
+
     return Container(
       height: 98,
       margin: const EdgeInsets.only(bottom: 4),
@@ -34,7 +44,10 @@ class EpisodeListEpisode extends StatelessWidget {
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          BorderedImageContainer(imageUrl: image, width: 128, margin: const EdgeInsets.only(right: 16)),
+          Container(
+            margin: const EdgeInsets.only(right: 16),
+            child: sectionItemImage(isLive: curLiveEpisode?.id == id),
+          ),
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -53,6 +66,8 @@ class EpisodeListEpisode extends StatelessWidget {
                     child: Text(
                       title,
                       style: BccmTextStyles.caption1.copyWith(color: BccmColors.label1),
+                      maxLines: 2,
+                      overflow: TextOverflow.ellipsis,
                     ),
                   ),
                 ),
@@ -87,6 +102,42 @@ class EpisodeListEpisode extends StatelessWidget {
             ),
           )
         ],
+      ),
+    );
+  }
+
+  Widget sectionItemImage({required bool isLive}) {
+    return AspectRatio(
+      aspectRatio: 16 / 9,
+      child: SizedBox(
+        width: 128,
+        child: Stack(
+          clipBehavior: Clip.none,
+          children: [
+            locked && !isLive
+                ? Opacity(
+                    opacity: 0.5,
+                    child: BorderedImageContainer(imageUrl: image),
+                  )
+                : BorderedImageContainer(imageUrl: image),
+            if (locked)
+              Container(
+                width: double.infinity,
+                height: double.infinity,
+                decoration: const BoxDecoration(
+                  image: DecorationImage(
+                    image: AssetImage('assets/icons/Wait.png'),
+                  ),
+                ),
+              ),
+            if (getFeaturedTag(publishDate: publishDate, locked: locked, isLive: isLive) != null)
+              Positioned(
+                top: -4,
+                right: -4,
+                child: getFeaturedTag(publishDate: publishDate, locked: locked, isLive: isLive)!,
+              ),
+          ],
+        ),
       ),
     );
   }

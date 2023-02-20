@@ -10,7 +10,7 @@ import '../helpers/debouncer.dart';
 final playbackListenerProvider = Provider<PlaybackListener>((_) => throw UnimplementedError());
 
 class PlaybackListener implements PlaybackListenerPigeon {
-  ProviderContainer ref;
+  Ref ref;
   Debouncer progressDebouncer = Debouncer(milliseconds: 1000);
 
   PlaybackListener({required this.ref});
