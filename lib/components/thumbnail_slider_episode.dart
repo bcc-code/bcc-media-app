@@ -4,16 +4,16 @@ import '../graphql/queries/page.graphql.dart';
 
 import '../theme/bccm_colors.dart';
 import '../theme/bccm_typography.dart';
-import 'section_episode_thumbnail.dart';
+import 'episode_thumbnail.dart';
 
-class HorizontalSectionEpisode extends StatelessWidget {
+class ThumbnailSliderEpisode extends StatelessWidget {
   final Fragment$ItemSectionItem sectionItem;
   final Fragment$ItemSectionItem$item$$Episode episode;
   final bool showSecondaryTitle;
   final Size imageSize;
   final bool isLive;
 
-  const HorizontalSectionEpisode({
+  const ThumbnailSliderEpisode({
     super.key,
     required this.sectionItem,
     required this.episode,
@@ -33,7 +33,7 @@ class HorizontalSectionEpisode extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          SectionEpisodeThumbnail(
+          EpisodeThumbnail(
             episode: episode,
             image: sectionItem.image,
             imageSize: imageSize,

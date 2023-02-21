@@ -5,24 +5,23 @@ import '../l10n/app_localizations.dart';
 
 import '../theme/bccm_colors.dart';
 import '../theme/bccm_typography.dart';
-import '../helpers/utils.dart';
-import 'section_show_thumbnail.dart';
+import 'show_thumbnail.dart';
 
-class HorizontalSectionShow extends StatelessWidget {
+class ThumbnailSliderShow extends StatelessWidget {
   final Fragment$ItemSectionItem sectionItem;
   final Fragment$ItemSectionItem$item$$Show show;
   final Size imageSize;
-  final bool showEpisodeCounts;
+  final bool showSeasonEpisodeCounts;
 
   // TODO: Remove this
   final bool hasNewEpisodes = false;
 
-  const HorizontalSectionShow({
+  const ThumbnailSliderShow({
     super.key,
     required this.sectionItem,
     required this.show,
     required this.imageSize,
-    required this.showEpisodeCounts,
+    required this.showSeasonEpisodeCounts,
   });
 
   @override
@@ -32,7 +31,7 @@ class HorizontalSectionShow extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          SectionShowThumbnail(
+          ShowThumbnail(
             imageSize: imageSize,
             sectionItem: sectionItem,
             hasNewEpisodes: hasNewEpisodes,
@@ -44,7 +43,7 @@ class HorizontalSectionShow extends StatelessWidget {
               style: BccmTextStyles.caption1.copyWith(color: BccmColors.label1),
             ),
           ),
-          if (showEpisodeCounts)
+          if (showSeasonEpisodeCounts)
             Text(
               '${show.seasonCount} ${S.of(context).seasons} - ${show.episodeCount} ${S.of(context).episodes}',
               style: BccmTextStyles.caption2,

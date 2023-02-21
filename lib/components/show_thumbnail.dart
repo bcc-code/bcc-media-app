@@ -6,8 +6,8 @@ import '../theme/bccm_colors.dart';
 import 'bordered_image_container.dart';
 import 'feature_badge.dart';
 
-class SectionShowThumbnail extends StatelessWidget {
-  const SectionShowThumbnail({
+class ShowThumbnail extends StatelessWidget {
+  const ShowThumbnail({
     super.key,
     required this.sectionItem,
     required this.imageSize,

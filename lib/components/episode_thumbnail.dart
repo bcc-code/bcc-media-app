@@ -8,8 +8,8 @@ import 'episode_duration.dart';
 import 'watch_progress_indicator.dart';
 import 'watched_badge.dart';
 
-class SectionEpisodeThumbnail extends StatelessWidget {
-  const SectionEpisodeThumbnail({
+class EpisodeThumbnail extends StatelessWidget {
+  const EpisodeThumbnail({
     super.key,
     required this.episode,
     required this.image,
