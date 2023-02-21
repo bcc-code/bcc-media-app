@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:brunstadtv_app/components/loading_generic.dart';
 import 'package:brunstadtv_app/components/shorts/shorts_episode_main.dart';
 import 'package:brunstadtv_app/graphql/queries/shorts.graphql.dart';
+import 'package:brunstadtv_app/helpers/btv_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -50,16 +51,37 @@ class _ShortsMainState extends ConsumerState<ShortsMain> {
                   itemCount: data.length,
                   scrollDirection: Axis.vertical,
                   itemBuilder: (context, index) {
-                    return ShortsEpisode(episode: data[index]);
+                    return ShortsEpisode(
+                      episode: data[index],
+                    );
                   },
                 ),
-                // Center(
+                Positioned(
+                  top: 20.0,
+                  left: 40.0,
+                  child: IconButton(
+                    icon: Icon(Icons.arrow_back_ios_new_outlined),
+                    onPressed: () {
+                      Navigator.of(context).pop();
+                    },
+                  ),
+                ),
+                // GestureDetector(
+                //   onTapDown: (_) {
+                //     Navigator.of(context).pop();
+                //   },
                 //   child: SafeArea(
-                //     child: ElevatedButton(
-                //       onPressed: () {
-                //         Navigator.pop(context);
-                //       },
-                //       child: const Text("Back"),
+                //     child: Positioned(
+                //       top: 20.0,
+                //       left: 20.0,
+                //       // child: ImageIcon(AssetImage('assets/icons/Close.png'), size: 30)
+                //       child: Column(
+                //         children: const <Widget>[
+                //           Text('Go Back'),
+
+                //           ImageIcon(AssetImage('assets/icons/Close.png'), size: 30),
+                //         ],
+                //       ),
                 //     ),
                 //   ),
                 // ),

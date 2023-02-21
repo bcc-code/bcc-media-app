@@ -1,76 +1,38 @@
-import 'dart:async';
-
 import 'package:brunstadtv_app/components/loading_generic.dart';
 import 'package:brunstadtv_app/components/loading_indicator.dart';
-import 'package:brunstadtv_app/graphql/client.dart';
-import 'package:brunstadtv_app/graphql/queries/calendar_episode_entries.graphql.dart';
-import 'package:brunstadtv_app/helpers/btv_typography.dart';
-import 'package:brunstadtv_app/helpers/btv_colors.dart';
-import 'package:brunstadtv_app/providers/playback_api.dart';
-
-import 'package:brunstadtv_app/graphql/queries/episode.graphql.dart';
-import 'package:brunstadtv_app/graphql/queries/shorts.graphql.dart';
 import 'package:flutter/material.dart';
 import 'package:video_player/video_player.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class ShortsVideo extends StatefulWidget {
-  const ShortsVideo({Key? key, required this.id}) : super(key: key);
-  final String id;
-
-  @override
-  State<ShortsVideo> createState() => _ShortsVideoState();
-}
-
-class _ShortsVideoState extends State<ShortsVideo> {
-  @override
-  Widget build(BuildContext context) {
-    return GestureDetector(
-      // onTap: () {
-      //   setState(() {
-      //     isVideoPlaying = !isVideoPlaying;
-      //   });
-      //   isVideoPlaying ? _controller.play() : _controller.pause();
-      // },
-      child: Query$GetStreamsForEpisode$Widget(
-          options: Options$Query$GetStreamsForEpisode(
-            variables: Variables$Query$GetStreamsForEpisode(id: widget.id),
-          ),
-          builder: (result, {refetch, fetchMore}) {
-            if (result.parsedData == null) return const LoadingGeneric();
-            result.parsedData?.episode.duration;
-            final bestURL = result.parsedData!.episode.streams.getBestStreamUrl();
-            const testURL = 'https://flutter.github.io/assets-for-api-docs/assets/videos/bee.mp4';
-
-            return VideoStream(testURL: testURL, bestURL: bestURL); //another Future Builder
-          }),
-    );
-  }
-}
-
-class VideoStream extends StatefulWidget {
-  const VideoStream({
+class ShortsVideoStreamPlayer extends StatefulWidget {
+  const ShortsVideoStreamPlayer({
     Key? key,
     required this.testURL,
     required this.bestURL,
+    required this.duration,
   }) : super(key: key);
 
   final String testURL;
   final String bestURL;
+  final Duration? duration;
 
   @override
-  State<VideoStream> createState() => _VideoStreamState();
+  State<ShortsVideoStreamPlayer> createState() => _ShortsVideoStreamPlayerState();
 }
 
-class _VideoStreamState extends State<VideoStream> {
+class _ShortsVideoStreamPlayerState extends State<ShortsVideoStreamPlayer> with SingleTickerProviderStateMixin {
   late VideoPlayerController _controller;
   Future<bool>? loadFuture;
   bool isVideoPlaying = false;
+  bool isVideoMuted = false;
+  double opacityLevel = 1.0;
+
+  late AnimationController _animationController;
 
   @override
   initState() {
     super.initState();
     loadFuture = loadVideo();
+    _animationController = AnimationController(vsync: this, duration: const Duration(milliseconds: 450));
   }
 
   @override
@@ -80,13 +42,17 @@ class _VideoStreamState extends State<VideoStream> {
   }
 
   Future<bool> loadVideo() async {
-    print('EnterED:    started');
     setState(() {
       _controller = VideoPlayerController.network(widget.bestURL, formatHint: VideoFormat.hls);
     });
     await _controller.initialize();
     await _controller.play();
-    isVideoPlaying = true;
+    setState(() {
+      isVideoPlaying = true;
+    });
+    await _controller.setLooping(true);
+    await _controller.seekTo(widget.duration!);
+
     return true;
   }
 
@@ -96,24 +62,74 @@ class _VideoStreamState extends State<VideoStream> {
         future: loadFuture,
         builder: (BuildContext context, AsyncSnapshot<bool> snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
-            return const Center(child: LoadingGeneric());
+            return const LoadingGeneric();
           }
-          return Column(
-            children: [
-              (_controller.value.isInitialized)
-                  ? Expanded(child: VideoPlayer(_controller))
-                  : Column(
-                      children: [const LoadingIndicator(), const Text('waiting for video to load')],
+
+          return GestureDetector(
+            onTapDown: (_) {
+              if (isVideoPlaying) {
+                _controller.pause();
+              } else {
+                _controller.play();
+              }
+              setState(() {
+                isVideoPlaying = !isVideoPlaying;
+              });
+            },
+            child: Stack(
+              children: [
+                (_controller.value.isInitialized)
+                    ? Container(
+                        width: double.infinity,
+                        height: double.infinity,
+                        child: AspectRatio(
+                          aspectRatio: 16 / 9,
+                          child: VideoPlayer(_controller),
+                        ),
+                      )
+                    : Positioned(
+                        left: 40,
+                        top: 100,
+                        child: Column(
+                          children: [const LoadingIndicator(), const Text('The Controller of the Video Player is not Initialized')],
+                        ),
+                      ),
+                // Center(
+                //   child: Text('$isVideoPlaying'),
+                // ),
+                Center(
+                  child: AnimatedOpacity(
+                    opacity: opacityLevel,
+                    duration: const Duration(seconds: 2),
+                    child: Icon(
+                      isVideoPlaying ? Icons.pause_sharp : Icons.play_arrow,
+                      size: 50,
+                      color: Colors.amber,
                     ),
-              Text(
-                'URL:   ${widget.testURL}',
-                style: BtvTextStyles.body1.copyWith(color: BtvColors.tint3),
-              ),
-              Text(
-                'BEST URL:   ${widget.bestURL}',
-                style: BtvTextStyles.body1.copyWith(color: BtvColors.tint2),
-              )
-            ],
+                  ),
+                ),
+                Positioned(
+                  right: 20,
+                  bottom: 20,
+                  child: IconButton(
+                    icon: Icon(isVideoMuted ? Icons.speaker_notes_off_outlined : Icons.speaker_notes),
+                    onPressed: () {
+                      setState(() {
+                        isVideoMuted = !isVideoMuted;
+                      });
+                    },
+                  ),
+                  // child: TextButton.icon(
+                  //     onPressed: () {
+                  //       setState(() {
+                  //         isVideoMuted = !isVideoMuted;
+                  //       });
+                  //     },
+                  //     icon: Icon(isVideoMuted ? Icons.speaker_notes_off_outlined : Icons.speaker_notes),
+                  //     label: Text('')),
+                )
+              ],
+            ),
           );
         });
   }
