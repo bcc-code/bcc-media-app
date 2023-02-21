@@ -4,6 +4,7 @@ import 'dart:async';
 
 import 'package:auto_route/auto_route.dart';
 import 'package:bccm_player/playback_platform_pigeon.g.dart';
+import 'package:brunstadtv_app/components/episode/episode_info.dart';
 import 'package:brunstadtv_app/components/episode/episode_related.dart';
 import 'package:brunstadtv_app/components/episode/episode_season.dart';
 import 'package:brunstadtv_app/components/episode/player_poster.dart';
@@ -259,7 +260,6 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen> with AutoRouteAwa
       builder: (ctx) => ShareEpisodeSheet(
         episode: episode,
         currentPosSeconds: currentPosSeconds,
-        episodeId: widget.episodeId,
       ),
     );
   }
@@ -378,7 +378,24 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen> with AutoRouteAwa
                                   );
                                 }
                               }),
-                      episodeInfo(episode),
+                      EpisodeInfo(
+                        episode,
+                        onShareVideoTapped: () => shareVideo(episode),
+                        extraChildren: [
+                          if (Env.enableStudy && episode.lessons.items.isNotEmpty)
+                            Padding(
+                              padding: const EdgeInsets.only(top: 16),
+                              child: StudyMoreButton(
+                                progressOverviewFuture: lessonProgressFuture,
+                                onNavigateBack: () {
+                                  setState(() {
+                                    lessonProgressFuture = loadLessonsForEpisode();
+                                  });
+                                },
+                              ),
+                            ),
+                        ],
+                      ),
                     ],
                   ),
                   if (episodeLoading)
@@ -416,76 +433,6 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen> with AutoRouteAwa
           ),
         );
       },
-    );
-  }
-
-  Container episodeInfo(Query$FetchEpisode$episode episode) {
-    const showEpisodeNumber = false;
-    final episodeNumberFormatted = '${S.of(context).seasonLetter}${episode.season?.number}:${S.of(context).episodeLetter}${episode.number}';
-
-    return Container(
-      color: BccmColors.background2,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Row(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Expanded(child: Text(key: WidgetKeys.episodePageEpisodeTitle, episode.title, style: BccmTextStyles.title1)),
-                    GestureDetector(
-                      onTap: () => shareVideo(episode),
-                      child: Padding(
-                        padding: const EdgeInsets.only(top: 4, left: 16),
-                        child: SvgPicture.string(SvgIcons.share, color: BccmColors.label3),
-                      ),
-                    ),
-                  ],
-                ),
-                const SizedBox(height: 4),
-                Row(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.only(top: 3, right: 4),
-                      child: FeatureBadge(
-                        label: getFormattedAgeRating(episode.ageRating),
-                        color: BccmColors.background2,
-                      ),
-                    ),
-                    if (episode.season?.$show.title != null)
-                      Center(
-                        child: Text(episode.season!.$show.title, style: BccmTextStyles.caption1.copyWith(color: BccmColors.tint1)),
-                      ),
-                    if (showEpisodeNumber)
-                      Padding(
-                          padding: const EdgeInsets.only(left: 4),
-                          child: Text(episodeNumberFormatted, style: BccmTextStyles.caption1.copyWith(color: BccmColors.label4)))
-                  ],
-                ),
-                const SizedBox(height: 14.5),
-                if (episode.description.isNotEmpty) Text(episode.description, style: BccmTextStyles.body2.copyWith(color: BccmColors.label3)),
-                if (Env.enableStudy && episode.lessons.items.isNotEmpty)
-                  Padding(
-                    padding: const EdgeInsets.only(top: 16),
-                    child: StudyMoreButton(
-                      progressOverviewFuture: lessonProgressFuture,
-                      onNavigateBack: () {
-                        setState(() {
-                          lessonProgressFuture = loadLessonsForEpisode();
-                        });
-                      },
-                    ),
-                  ),
-              ],
-            ),
-          )
-        ],
-      ),
     );
   }
 
