@@ -35,12 +35,19 @@ fragment ItemSectionItem on SectionItem {
       locked
       progress
       publishDate
+      season {
+        show {
+          title
+        }
+      }
     }
     ... on Show {
+      id
       defaultEpisode {
         id
       }
-      id
+      episodeCount
+      seasonCount
     }
     __typename
   }
@@ -63,19 +70,6 @@ fragment ItemSection on ItemSection {
   }
 }
 
-fragment EpisodeShow on Episode {
-  season {
-    show {
-      title
-    }
-  }
-}
-
-fragment ShowCounts on Show {
-  episodeCount
-  seasonCount
-}
-
 fragment Section on Section {
   id
   title
@@ -87,11 +81,7 @@ fragment Section on Section {
       items(first: $first, offset: $offset) {
         items {
           item {
-            ... on Show {
-              ...ShowCounts
-            }
             ... on Episode {
-              ...EpisodeShow
               productionDate
             }
             __typename
@@ -112,11 +102,7 @@ fragment Section on Section {
       items(first: $first, offset: $offset) {
         items {
           item {
-            ... on Show {
-              ...ShowCounts
-            }
             ... on Episode {
-              ...EpisodeShow
               productionDate
             }
             __typename
@@ -140,7 +126,6 @@ fragment Section on Section {
               title
               ageRating
               image
-              ...EpisodeShow
             }
           }
         }

@@ -17,17 +17,16 @@ class HorizontalSectionShow extends StatelessWidget {
   // TODO: Remove this
   final bool hasNewEpisodes = false;
 
-  HorizontalSectionShow({
+  const HorizontalSectionShow({
     super.key,
     required this.sectionItem,
+    required this.show,
     required this.imageSize,
     required this.showEpisodeCounts,
-  }) : show = sectionItem.item as Fragment$ItemSectionItem$item$$Show;
+  });
 
   @override
   Widget build(BuildContext context) {
-    final showCounts = show.asOrNull<Fragment$ShowCounts>();
-
     return SizedBox(
       width: imageSize.width,
       child: Column(
@@ -45,9 +44,9 @@ class HorizontalSectionShow extends StatelessWidget {
               style: BccmTextStyles.caption1.copyWith(color: BccmColors.label1),
             ),
           ),
-          if (showEpisodeCounts && showCounts != null)
+          if (showEpisodeCounts)
             Text(
-              '${showCounts.seasonCount} ${S.of(context).seasons} - ${showCounts.episodeCount} ${S.of(context).episodes}',
+              '${show.seasonCount} ${S.of(context).seasons} - ${show.episodeCount} ${S.of(context).episodes}',
               style: BccmTextStyles.caption2,
             )
         ],

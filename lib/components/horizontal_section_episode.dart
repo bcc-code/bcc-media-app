@@ -4,7 +4,6 @@ import '../graphql/queries/page.graphql.dart';
 
 import '../theme/bccm_colors.dart';
 import '../theme/bccm_typography.dart';
-import '../helpers/utils.dart';
 import 'section_episode_thumbnail.dart';
 
 class HorizontalSectionEpisode extends StatelessWidget {
@@ -14,21 +13,20 @@ class HorizontalSectionEpisode extends StatelessWidget {
   final Size imageSize;
   final bool isLive;
 
-  HorizontalSectionEpisode({
+  const HorizontalSectionEpisode({
     super.key,
     required this.sectionItem,
+    required this.episode,
     required this.imageSize,
     required this.showSecondaryTitle,
     this.isLive = false,
-  }) : episode = sectionItem.item as Fragment$ItemSectionItem$item$$Episode;
-
-  bool get watched => episode.progress != null && episode.progress! > episode.duration * 0.9;
+  });
 
   final bool isNewItem = false;
 
   @override
   Widget build(BuildContext context) {
-    final show = episode.asOrNull<Fragment$EpisodeShow>()?.season?.$show;
+    final show = episode.season?.$show;
 
     return SizedBox(
       width: imageSize.width,
@@ -36,10 +34,10 @@ class HorizontalSectionEpisode extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           SectionEpisodeThumbnail(
+            episode: episode,
+            image: sectionItem.image,
             imageSize: imageSize,
             isLive: isLive,
-            sectionItem: sectionItem,
-            watched: watched,
           ),
           if (showSecondaryTitle)
             Container(

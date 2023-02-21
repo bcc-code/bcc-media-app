@@ -9,19 +9,20 @@ import 'watch_progress_indicator.dart';
 import 'watched_badge.dart';
 
 class SectionEpisodeThumbnail extends StatelessWidget {
-  SectionEpisodeThumbnail({
+  const SectionEpisodeThumbnail({
     super.key,
-    required this.sectionItem,
+    required this.episode,
+    required this.image,
     required this.imageSize,
     required this.isLive,
-    required this.watched,
-  }) : episode = sectionItem.item as Fragment$ItemSectionItem$item$$Episode;
+  });
 
-  final Fragment$ItemSectionItem sectionItem;
+  final Fragment$ItemSectionItem$item$$Episode episode;
+  final String? image;
   final Size imageSize;
   final bool isLive;
-  final Fragment$ItemSectionItem$item$$Episode episode;
-  final bool watched;
+
+  bool get watched => episode.progress != null && episode.progress! > episode.duration * 0.9;
 
   @override
   Widget build(BuildContext context) {
@@ -35,9 +36,9 @@ class SectionEpisodeThumbnail extends StatelessWidget {
           episode.locked && !isLive
               ? Opacity(
                   opacity: 0.5,
-                  child: BorderedImageContainer(imageUrl: sectionItem.image),
+                  child: BorderedImageContainer(imageUrl: image),
                 )
-              : BorderedImageContainer(imageUrl: sectionItem.image),
+              : BorderedImageContainer(imageUrl: image),
           if (episode.locked)
             Container(
               width: double.infinity,

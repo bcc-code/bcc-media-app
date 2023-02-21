@@ -13,24 +13,21 @@ import 'horizontal_section_show.dart';
 import 'horizontal_slider.dart';
 import 'section_item_click_wrapper.dart';
 
-const Map<Enum$SectionSize, Size> _defaultImageSize = {
-  Enum$SectionSize.small: Size(140, 80),
-  Enum$SectionSize.medium: Size(240, 146),
+class _HorizontalSectionSize {
+  final Size imageSize;
+  final double sectionHeight;
+
+  const _HorizontalSectionSize({required this.imageSize, required this.sectionHeight});
+}
+
+const Map<Enum$SectionSize, _HorizontalSectionSize> _defaultSectionSize = {
+  Enum$SectionSize.small: _HorizontalSectionSize(imageSize: Size(140, 80), sectionHeight: 156),
+  Enum$SectionSize.medium: _HorizontalSectionSize(imageSize: Size(240, 146), sectionHeight: 222),
 };
 
-const Map<Enum$SectionSize, double> _defaultSliderHeight = {
-  Enum$SectionSize.small: 156,
-  Enum$SectionSize.medium: 222,
-};
-
-const Map<Enum$SectionSize, Size> _posterImageSize = {
-  Enum$SectionSize.small: Size(140, 208),
-  Enum$SectionSize.medium: Size(230, 340),
-};
-
-const Map<Enum$SectionSize, double> _posterSliderHeight = {
-  Enum$SectionSize.small: 284,
-  Enum$SectionSize.medium: 416,
+const Map<Enum$SectionSize, _HorizontalSectionSize> _posterSectionSize = {
+  Enum$SectionSize.small: _HorizontalSectionSize(imageSize: Size(140, 208), sectionHeight: 284),
+  Enum$SectionSize.medium: _HorizontalSectionSize(imageSize: Size(230, 340), sectionHeight: 416),
 };
 
 class HorizontalSection extends ConsumerWidget {
@@ -42,23 +39,17 @@ class HorizontalSection extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     Fragment$Episode? curLiveEpisode = ref.watch(currentLiveEpisodeProvider)?.episode;
 
-    Enum$SectionSize? size;
-    Size? imageSize;
-    double? sliderHeight;
+    _HorizontalSectionSize? sectionSize;
 
     final defaultData = data.asOrNull<Fragment$Section$$DefaultSection>();
     final posterData = data.asOrNull<Fragment$Section$$PosterSection>();
     if (defaultData != null) {
-      size = defaultData.size;
-      imageSize = _defaultImageSize[size];
-      sliderHeight = _defaultSliderHeight[size];
+      sectionSize = _defaultSectionSize[defaultData.size];
     } else if (posterData != null) {
-      size = posterData.size;
-      imageSize = _posterImageSize[size];
-      sliderHeight = _posterSliderHeight[size];
+      sectionSize = _posterSectionSize[posterData.size];
     }
 
-    if (size == null || size == Enum$SectionSize.$unknown || sliderHeight == null || imageSize == null) {
+    if (sectionSize == null) {
       return const SizedBox.shrink();
     }
 
@@ -66,24 +57,28 @@ class HorizontalSection extends ConsumerWidget {
         .where((element) => element.item is Fragment$ItemSectionItem$item$$Episode || element.item is Fragment$ItemSectionItem$item$$Show)
         .toList();
     return HorizontalSlider(
-      height: sliderHeight,
+      height: sectionSize.sectionHeight,
       clipBehaviour: Clip.none,
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
       itemCount: items.length,
       itemBuilder: (BuildContext context, int index) {
-        var item = items[index];
+        final item = items[index];
+        final episodeItem = item.item.asOrNull<Fragment$ItemSectionItem$item$$Episode>();
+        final showItem = item.item.asOrNull<Fragment$ItemSectionItem$item$$Show>();
         Widget? sectionItemWidget;
-        if (item.item is Fragment$ItemSectionItem$item$$Episode) {
+        if (episodeItem != null) {
           sectionItemWidget = HorizontalSectionEpisode(
             sectionItem: item,
-            imageSize: imageSize!,
+            episode: episodeItem,
+            imageSize: sectionSize!.imageSize,
             showSecondaryTitle: data.metadata?.secondaryTitles ?? true,
-            isLive: (item.item as Fragment$ItemSectionItem$item$$Episode).id == curLiveEpisode?.id,
+            isLive: episodeItem.id == curLiveEpisode?.id,
           );
-        } else if (item.item is Fragment$ItemSectionItem$item$$Show) {
+        } else if (showItem != null) {
           sectionItemWidget = HorizontalSectionShow(
             sectionItem: item,
-            imageSize: imageSize!,
+            show: showItem,
+            imageSize: sectionSize!.imageSize,
             showEpisodeCounts: defaultData != null,
           );
         }
