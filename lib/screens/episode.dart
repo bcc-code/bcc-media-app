@@ -3,6 +3,7 @@
 import 'dart:async';
 
 import 'package:auto_route/auto_route.dart';
+import 'package:bccm_player/chromecast_pigeon.g.dart';
 import 'package:bccm_player/playback_platform_pigeon.g.dart';
 import 'package:brunstadtv_app/components/episode/episode_info.dart';
 import 'package:brunstadtv_app/components/episode/episode_related.dart';
@@ -19,6 +20,7 @@ import 'package:brunstadtv_app/router/router.gr.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:bccm_player/bccm_player.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:brunstadtv_app/graphql/queries/episode.graphql.dart';
 import 'package:brunstadtv_app/providers/chromecast.dart';
@@ -27,6 +29,7 @@ import 'package:brunstadtv_app/providers/video_state.dart';
 import 'package:bccm_player/cast_button.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:graphql/client.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:shimmer/shimmer.dart';
 import 'package:collection/collection.dart';
 
@@ -53,7 +56,7 @@ class EpisodePageArguments {
   EpisodePageArguments(this.episodeId);
 }
 
-class EpisodeScreen extends ConsumerStatefulWidget {
+class EpisodeScreen extends StatefulHookConsumerWidget {
   final String episodeId;
   final bool autoplay;
   final int? queryParamStartPosition;
@@ -79,7 +82,6 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen> with AutoRouteAwa
   AnimationStatus? routeAnimationStatus;
   Completer? scrollCompleter;
   Animation? animation;
-  StreamSubscription? chromecastSubscription;
   int selectedTab = 0;
   String? selectedSeasonId;
   Map<String, List<EpisodeListEpisodeData>?> seasonsMap = {};
@@ -98,16 +100,6 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen> with AutoRouteAwa
     super.initState();
 
     loadEpisode();
-
-    chromecastSubscription = ref.read(chromecastListenerProvider).on<CastSessionUnavailable>().listen((event) async {
-      var player = ref.read(primaryPlayerProvider);
-      var episode = await episodeFuture;
-      if (!mounted || episode == null) return;
-
-      ref
-          .read(playbackServiceProvider)
-          .playEpisode(playerId: player!.playerId, autoplay: false, episode: episode, playbackPositionMs: event.playbackPositionMs);
-    });
   }
 
   Future loadEpisode() async {
@@ -226,13 +218,6 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen> with AutoRouteAwa
     return mediaItem?.metadata?.extras?['id'] == widget.episodeId;
   }
 
-  @override
-  void dispose() {
-    //animation?.removeStatusListener(onAnimationStatus); // trying without it, possibly disposed automatically
-    chromecastSubscription?.cancel();
-    super.dispose();
-  }
-
   void onRouteAnimationStatus(AnimationStatus status) {
     setStateIfMounted(() {
       routeAnimationStatus = status;
@@ -264,8 +249,23 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen> with AutoRouteAwa
     );
   }
 
+  void handleCastSessionUnavailable(CastSessionUnavailable event) async {
+    var player = ref.read(primaryPlayerProvider);
+    var episode = await episodeFuture;
+    if (!mounted || episode == null) return;
+
+    ref.read(playbackServiceProvider).playEpisode(
+          playerId: player!.playerId,
+          autoplay: false,
+          episode: episode,
+          playbackPositionMs: event.playbackPositionMs,
+        );
+  }
+
   @override
   Widget build(BuildContext context) {
+    ref.watch(chromecastListenerProvider).useListenerHook<CastSessionUnavailable>(handleCastSessionUnavailable);
+
     return FutureBuilder<Query$FetchEpisode$episode?>(
       future: episodeFuture,
       builder: (context, snapshot) {
