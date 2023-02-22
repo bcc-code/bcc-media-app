@@ -409,7 +409,7 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen> with AutoRouteAwa
                     ),
                 ],
               ),
-              if (widget.hideBottomSection != true && !unlistedButPartOfASeason(episode))
+              if (widget.hideBottomSection != true && (!_isUnlisted(episode) || _isStandalone(episode)))
                 EpisodeTabs(
                   tabs: [
                     Option(id: 'episodes', title: (S.of(context).episodes.toUpperCase())),
@@ -463,7 +463,11 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen> with AutoRouteAwa
     }
   }
 
-  bool unlistedButPartOfASeason(Query$FetchEpisode$episode episode) {
+  bool _isStandalone(Query$FetchEpisode$episode episode) {
+    return episode.season == null;
+  }
+
+  bool _isUnlisted(Query$FetchEpisode$episode episode) {
     return episode.season?.$show.seasons.items.any((s) => s.id == episode.season?.id) == false;
   }
 }
