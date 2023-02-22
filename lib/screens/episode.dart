@@ -76,7 +76,7 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen> with AutoRouteAwa
   final scrollController = ScrollController();
   String? error;
   Completer? playerSetupCompleter;
-  AnimationStatus? animationStatus;
+  AnimationStatus? routeAnimationStatus;
   Completer? scrollCompleter;
   Animation? animation;
   StreamSubscription? chromecastSubscription;
@@ -233,9 +233,9 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen> with AutoRouteAwa
     super.dispose();
   }
 
-  void onAnimationStatus(AnimationStatus status) {
+  void onRouteAnimationStatus(AnimationStatus status) {
     setStateIfMounted(() {
-      animationStatus = status;
+      routeAnimationStatus = status;
     });
   }
 
@@ -243,7 +243,7 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen> with AutoRouteAwa
   void didChangeDependencies() {
     super.didChangeDependencies();
     animation = ModalRoute.of(context)?.animation;
-    animation?.addStatusListener(onAnimationStatus);
+    animation?.addStatusListener(onRouteAnimationStatus);
   }
 
   void shareVideo(Query$FetchEpisode$episode episode) {
@@ -266,15 +266,9 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen> with AutoRouteAwa
 
   @override
   Widget build(BuildContext context) {
-    final casting = ref.watch(isCasting);
-    var playerProvider = casting ? castPlayerProvider : primaryPlayerProvider;
-    var player = ref.watch(playerProvider);
-
     return FutureBuilder<Query$FetchEpisode$episode?>(
       future: episodeFuture,
       builder: (context, snapshot) {
-        var displayPlayer = animationStatus != AnimationStatus.forward && snapshot.hasData;
-
         return Scaffold(
           appBar: AppBar(
             leadingWidth: 92,
@@ -293,22 +287,19 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen> with AutoRouteAwa
             child: Builder(
               builder: (context) {
                 if (snapshot.hasError && snapshot.connectionState == ConnectionState.done) {
-                  var operationException = snapshot.error.asOrNull<OperationException>();
-                  if (operationException?.graphqlErrors
-                          .any((err) => err.extensions?['code'] == ApiErrorCodes.noAccess || err.extensions?['code'] == ApiErrorCodes.notPublished) ==
-                      true) {
+                  var noAccess = snapshot.error
+                      .asOrNull<OperationException>()
+                      ?.graphqlErrors
+                      .any((err) => err.extensions?['code'] == ApiErrorCodes.noAccess || err.extensions?['code'] == ApiErrorCodes.notPublished);
+                  if (noAccess == true) {
                     return const ErrorNoAccess();
                   }
                   return ErrorGeneric(onRetry: () => loadEpisode());
                 }
-                if (player == null ||
-                    animationStatus == AnimationStatus.forward ||
-                    snapshot.data == null && snapshot.connectionState != ConnectionState.done) {
+                if (routeAnimationStatus == AnimationStatus.forward || snapshot.data == null && snapshot.connectionState != ConnectionState.done) {
                   return _loading();
                 }
-                debugPrint('snapshot.connectionState : ${snapshot.connectionState}');
-                return _episode(
-                    player, displayPlayer, casting, player.playerId, snapshot.data!, snapshot.connectionState != ConnectionState.done, context);
+                return _episode(snapshot.data!, snapshot.connectionState != ConnectionState.done);
               },
             ),
           ),
@@ -324,19 +315,25 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen> with AutoRouteAwa
         Expanded(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
-            children: [const LoadingIndicator(), const SizedBox(height: 12), Text(S.of(context).loading, style: BccmTextStyles.body2)],
+            children: [
+              const LoadingIndicator(),
+              const SizedBox(height: 12),
+              Text(S.of(context).loading, style: BccmTextStyles.body2),
+            ],
           ),
         ),
       ],
     );
   }
 
-  Widget _episode(Player player, bool displayPlayer, bool casting, String primaryPlayerId, Query$FetchEpisode$episode episode, bool episodeLoading,
-      BuildContext context) {
+  Widget _episode(Query$FetchEpisode$episode episode, bool episodeLoading) {
+    final casting = ref.watch(isCasting);
+    var playerProvider = casting ? castPlayerProvider : primaryPlayerProvider;
+    var player = ref.watch(playerProvider);
+    if (player == null) return const SizedBox.shrink();
     return FutureBuilder(
       future: playerSetupCompleter?.future,
       builder: (context, playerSetupSnapshot) {
-        debugPrint(playerSetupSnapshot.connectionState.toString());
         return SingleChildScrollView(
           physics: const AlwaysScrollableScrollPhysics(),
           controller: scrollController,
@@ -354,30 +351,26 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen> with AutoRouteAwa
                           imageUrl: episode.image,
                           onRetry: setupPlayer,
                         )
+                      else if (!episodeIsCurrentItem(player.currentMediaItem))
+                        PlayerPoster(
+                          imageUrl: episode.image,
+                          setupPlayer: setupPlayer,
+                          loading: playerSetupSnapshot.connectionState == ConnectionState.waiting,
+                          imageOpacity: scrollCompleter?.isCompleted == false ? 0 : 0.5,
+                        )
+                      else if (routeAnimationStatus == AnimationStatus.forward)
+                        const AspectRatio(
+                          aspectRatio: 16 / 9,
+                          child: Center(
+                            child: SizedBox(
+                              width: 40,
+                              height: 40,
+                              child: CircularProgressIndicator(),
+                            ),
+                          ),
+                        )
                       else
-                        !episodeIsCurrentItem(player.currentMediaItem)
-                            ? PlayerPoster(
-                                imageUrl: episode.image,
-                                setupPlayer: setupPlayer,
-                                loading: playerSetupSnapshot.connectionState == ConnectionState.waiting,
-                                imageOpacity: scrollCompleter?.isCompleted == false ? 0 : 0.5,
-                              )
-                            : Builder(builder: (context) {
-                                if (displayPlayer) {
-                                  return BccmPlayer(id: player.playerId);
-                                } else {
-                                  return const AspectRatio(
-                                    aspectRatio: 16 / 9,
-                                    child: Center(
-                                      child: SizedBox(
-                                        width: 40,
-                                        height: 40,
-                                        child: CircularProgressIndicator(),
-                                      ),
-                                    ),
-                                  );
-                                }
-                              }),
+                        BccmPlayer(id: player.playerId),
                       EpisodeInfo(
                         episode,
                         onShareVideoTapped: () => shareVideo(episode),

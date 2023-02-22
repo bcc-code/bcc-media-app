@@ -36,7 +36,6 @@ class EpisodeTabs extends HookWidget {
           onHorizontalDragUpdate: (details) {
             // Note: Sensitivity is integer used when you don't want to mess up vertical drag
             int sensitivity = 12;
-            debugPrint(details.delta.dx.toString());
             if (details.delta.dx > sensitivity && index.value > 0) {
               index.value--;
             } else if (details.delta.dx < -sensitivity && index.value + 1 < tabs.length) {
