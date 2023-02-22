@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../graphql/schema/pages.graphql.dart';
-import '../graphql/queries/calendar_episode_entries.graphql.dart';
-import '../graphql/queries/page.graphql.dart';
+import '../../../graphql/schema/pages.graphql.dart';
+import '../../../graphql/queries/calendar_episode_entries.graphql.dart';
+import '../../../graphql/queries/page.graphql.dart';
 
-import '../providers/todays_calendar_entries.dart';
-import '../helpers/utils.dart';
-import '../models/analytics/sections.dart';
+import '../../../providers/todays_calendar_entries.dart';
+import '../../../helpers/utils.dart';
+import '../../../models/analytics/sections.dart';
 import 'thumbnail_slider_episode.dart';
 import 'thumbnail_slider_show.dart';
-import 'horizontal_slider.dart';
-import 'section_item_click_wrapper.dart';
+import '../../horizontal_slider.dart';
+import '../../section_item_click_wrapper.dart';
 
 class ThumbnailSliderSize {
   final Size imageSize;
@@ -22,7 +22,7 @@ class ThumbnailSliderSize {
 
 class ItemSectionThumbnailSlider extends ConsumerWidget {
   final Fragment$ItemSection data;
-  final ThumbnailSliderSize? sliderSize;
+  final ThumbnailSliderSize sliderSize;
   final bool displaySeasonEpisodeCountsForShows;
 
   const ItemSectionThumbnailSlider({
@@ -33,21 +33,21 @@ class ItemSectionThumbnailSlider extends ConsumerWidget {
   });
 
   factory ItemSectionThumbnailSlider.fromDefaultSection(Fragment$Section$$DefaultSection data) {
-    ThumbnailSliderSize? sliderSize;
+    ThumbnailSliderSize sliderSize;
     switch (data.size) {
-      case Enum$SectionSize.small:
-        sliderSize = const ThumbnailSliderSize(
-          imageSize: Size(140, 80),
-          sectionHeight: 156,
-        );
-        break;
       case Enum$SectionSize.medium:
         sliderSize = const ThumbnailSliderSize(
           imageSize: Size(240, 146),
           sectionHeight: 222,
         );
         break;
+      case Enum$SectionSize.small:
       default:
+        sliderSize = const ThumbnailSliderSize(
+          imageSize: Size(140, 80),
+          sectionHeight: 156,
+        );
+        break;
     }
     return ItemSectionThumbnailSlider(
       data: data,
@@ -57,21 +57,21 @@ class ItemSectionThumbnailSlider extends ConsumerWidget {
   }
 
   factory ItemSectionThumbnailSlider.fromPosterSection(Fragment$Section$$PosterSection data) {
-    ThumbnailSliderSize? sliderSize;
+    ThumbnailSliderSize sliderSize;
     switch (data.size) {
-      case Enum$SectionSize.small:
-        sliderSize = const ThumbnailSliderSize(
-          imageSize: Size(140, 208),
-          sectionHeight: 284,
-        );
-        break;
       case Enum$SectionSize.medium:
         sliderSize = const ThumbnailSliderSize(
           imageSize: Size(230, 340),
           sectionHeight: 416,
         );
         break;
+      case Enum$SectionSize.small:
       default:
+        sliderSize = const ThumbnailSliderSize(
+          imageSize: Size(140, 208),
+          sectionHeight: 284,
+        );
+        break;
     }
     return ItemSectionThumbnailSlider(
       data: data,
@@ -84,15 +84,11 @@ class ItemSectionThumbnailSlider extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     Fragment$Episode? curLiveEpisode = ref.watch(currentLiveEpisodeProvider)?.episode;
 
-    if (sliderSize == null) {
-      return const SizedBox.shrink();
-    }
-
     final items = data.items.items
         .where((element) => element.item is Fragment$ItemSectionItem$item$$Episode || element.item is Fragment$ItemSectionItem$item$$Show)
         .toList();
     return HorizontalSlider(
-      height: sliderSize!.sectionHeight,
+      height: sliderSize.sectionHeight,
       clipBehaviour: Clip.none,
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
       itemCount: items.length,
@@ -105,7 +101,7 @@ class ItemSectionThumbnailSlider extends ConsumerWidget {
           sectionItemWidget = ThumbnailSliderEpisode(
             sectionItem: item,
             episode: episodeItem,
-            imageSize: sliderSize!.imageSize,
+            imageSize: sliderSize.imageSize,
             showSecondaryTitle: data.metadata?.secondaryTitles ?? true,
             isLive: episodeItem.id == curLiveEpisode?.id,
           );
@@ -113,7 +109,7 @@ class ItemSectionThumbnailSlider extends ConsumerWidget {
           sectionItemWidget = ThumbnailSliderShow(
             sectionItem: item,
             show: showItem,
-            imageSize: sliderSize!.imageSize,
+            imageSize: sliderSize.imageSize,
             showSeasonEpisodeCounts: displaySeasonEpisodeCountsForShows,
           );
         }

@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
-import '../graphql/queries/page.graphql.dart';
+import '../../../graphql/queries/page.graphql.dart';
 
-import '../theme/bccm_colors.dart';
-import 'bordered_image_container.dart';
-import 'feature_badge.dart';
+import '../../../theme/bccm_colors.dart';
+import '../../bordered_image_container.dart';
+import '../../feature_badge.dart';
 
 class ShowThumbnail extends StatelessWidget {
   const ShowThumbnail({

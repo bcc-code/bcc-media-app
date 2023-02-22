@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
-import '../graphql/queries/page.graphql.dart';
-import '../l10n/app_localizations.dart';
+import '../../../graphql/queries/page.graphql.dart';
+import '../../../l10n/app_localizations.dart';
 
-import '../theme/bccm_colors.dart';
-import '../theme/bccm_typography.dart';
-import 'show_thumbnail.dart';
+import '../../../theme/bccm_colors.dart';
+import '../../../theme/bccm_typography.dart';
+import '../thumbnail/show_thumbnail.dart';
 
 class ThumbnailSliderShow extends StatelessWidget {
   final Fragment$ItemSectionItem sectionItem;

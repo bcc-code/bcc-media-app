@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 
-import '../graphql/queries/page.graphql.dart';
+import '../../../graphql/queries/page.graphql.dart';
 
-import '../services/utils.dart';
-import 'bordered_image_container.dart';
-import 'episode_duration.dart';
-import 'watch_progress_indicator.dart';
-import 'watched_badge.dart';
+import '../../../services/utils.dart';
+import '../../bordered_image_container.dart';
+import '../../episode_duration.dart';
+import '../../watch_progress_indicator.dart';
+import '../../watched_badge.dart';
 
 class EpisodeThumbnail extends StatelessWidget {
   const EpisodeThumbnail({

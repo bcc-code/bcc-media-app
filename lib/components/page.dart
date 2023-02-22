@@ -24,7 +24,7 @@ import 'page_details_section.dart';
 import 'poster_grid_section.dart';
 import 'icon_section.dart';
 import 'label_section.dart';
-import 'item_section_thumbnail_slider.dart';
+import 'sections/thumbnail_slider/item_section_thumbnail_slider.dart';
 import 'icon_grid_section.dart';
 import 'list_section.dart';
 import 'page_section.dart';

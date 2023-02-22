@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
-import '../graphql/queries/page.graphql.dart';
+import '../../../graphql/queries/page.graphql.dart';
 
-import '../theme/bccm_colors.dart';
-import '../theme/bccm_typography.dart';
-import 'episode_thumbnail.dart';
+import '../../../theme/bccm_colors.dart';
+import '../../../theme/bccm_typography.dart';
+import '../thumbnail/episode_thumbnail.dart';
 
 class ThumbnailSliderEpisode extends StatelessWidget {
   final Fragment$ItemSectionItem sectionItem;
