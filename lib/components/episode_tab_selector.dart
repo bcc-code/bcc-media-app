@@ -5,10 +5,9 @@ import '../theme/bccm_typography.dart';
 import 'option_list.dart';
 
 class EpisodeTabSelector extends StatelessWidget {
-  const EpisodeTabSelector({super.key, required this.tabs, required this.selectedId, required this.selectedIndex, required this.onSelectionChange});
+  const EpisodeTabSelector({super.key, required this.tabs, required this.selectedIndex, required this.onSelectionChange});
 
   final List<Option> tabs;
-  final String selectedId;
   final int selectedIndex;
   final void Function(int id) onSelectionChange;
 
@@ -18,15 +17,24 @@ class EpisodeTabSelector extends StatelessWidget {
       builder: (context, constraints) => ConstrainedBox(
         constraints: BoxConstraints.tightFor(width: (constraints.maxWidth)),
         child: SingleChildScrollView(
-            scrollDirection: Axis.horizontal,
-            child: Row(
-                children: tabs
-                    .map((tab) => Padding(
-                        padding: const EdgeInsets.only(right: 8),
-                        child: TabButton(tab.title, selected: selectedIndex == tabs.indexOf(tab), onTap: () {
-                          onSelectionChange(tabs.indexOf(tab));
-                        })))
-                    .toList())),
+          scrollDirection: Axis.horizontal,
+          child: Row(
+            children: tabs
+                .map(
+                  (tab) => Padding(
+                    padding: const EdgeInsets.only(right: 8),
+                    child: TabButton(
+                      tab.title,
+                      selected: selectedIndex == tabs.indexOf(tab),
+                      onTap: () {
+                        onSelectionChange(tabs.indexOf(tab));
+                      },
+                    ),
+                  ),
+                )
+                .toList(),
+          ),
+        ),
       ),
     );
   }
