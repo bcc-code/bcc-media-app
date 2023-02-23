@@ -17,6 +17,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 import '../api/brunstadtv.dart';
+import '../env/env.dart';
 import '../graphql/queries/application.graphql.dart';
 import '../helpers/btv_buttons.dart';
 import '../helpers/btv_colors.dart';
@@ -174,7 +175,7 @@ class HomeScreenState extends ConsumerState<HomeScreen> with PageMixin implement
               scrollController: pageScrollController,
             ),
           ),
-          floatingActionButton: FloatingActionButton(
+          floatingActionButton: !Env.enableShorts ? null : FloatingActionButton(
             child: const Icon(Icons.token_outlined),
             onPressed: () => context.router.navigate(const ShortsMainRoute()),
           ),

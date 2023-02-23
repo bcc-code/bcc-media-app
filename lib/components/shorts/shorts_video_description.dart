@@ -21,21 +21,21 @@ class VideoDescription extends StatelessWidget {
     return Positioned(
       bottom: -10,
       left: 0.0,
-      child: Container(
-        constraints: BoxConstraints(maxWidth: MediaQuery.of(context).size.width * 0.8),
-        height: MediaQuery.of(context).size.height * 0.2,
-        padding: const EdgeInsets.only(left: 30.0),
-        child: Align(
-          alignment: Alignment.topLeft,
-          child: GestureDetector(
-            onTap: () async {
-              SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
-              await context.router.pushNamed('/embed/$episodeId?autoplay=true&t=${duration!.inSeconds.toString()}', includePrefixMatches: true);
-              SystemChrome.setPreferredOrientations([DeviceOrientation.landscapeRight]);
-            },
+      child: GestureDetector(
+        behavior: HitTestBehavior.opaque,
+        onTap: () async {
+          SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
+          await context.router.pushNamed('/embed/$episodeId?autoplay=true&t=${duration!.inSeconds.toString()}', includePrefixMatches: true);
+          SystemChrome.setPreferredOrientations([DeviceOrientation.landscapeRight]);
+        },
+        child: Container(
+          constraints: BoxConstraints(maxWidth: MediaQuery.of(context).size.width * 0.8),
+          height: MediaQuery.of(context).size.height * 0.2,
+          padding: const EdgeInsets.only(left: 30.0),
+          child: Align(
+            alignment: Alignment.topLeft,
             child: Text(
               overflow: TextOverflow.ellipsis,
-              // softWrap: true,
               maxLines: 2,
               title,
               style: BtvTextStyles.body1.copyWith(color: BtvColors.onTint),

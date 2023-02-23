@@ -25,11 +25,11 @@ class ShortsEpisode extends StatelessWidget {
           final Duration durationStartUp = Duration(
             seconds: ((result.parsedData?.episode.duration)! * 0.3).toInt(),
           );
-          final utl = result.parsedData!.episode.streams.getBestStreamUrl();
+          final url = result.parsedData!.episode.streams.getBestStreamUrl();
 
           return Stack(
             children: <Widget>[
-              ShortsVideoStreamPlayer(url: utl, episodeId: episode.id, duration: durationStartUp),
+              ShortsVideoStreamPlayer(url: url, episodeId: episode.id, duration: durationStartUp),
               VideoDescription(episodeId: episode.id, title: episode.title, duration: durationStartUp),
             ],
           );

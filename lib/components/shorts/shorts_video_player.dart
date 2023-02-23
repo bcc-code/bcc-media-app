@@ -24,7 +24,7 @@ class ShortsVideoStreamPlayer extends StatefulWidget {
 }
 
 class _ShortsVideoStreamPlayerState extends State<ShortsVideoStreamPlayer> {
-  late VideoPlayerController _controller;
+  VideoPlayerController? _controller;
   Future<bool>? loadFuture;
   bool isVideoPlaying = false;
   bool isVideoMuted = false;
@@ -43,16 +43,18 @@ class _ShortsVideoStreamPlayerState extends State<ShortsVideoStreamPlayer> {
   }
 
   Future<bool> loadVideo() async {
+    _controller?.dispose();
     setState(() {
       _controller = VideoPlayerController.network(widget.url, formatHint: VideoFormat.hls);
     });
-    await _controller.initialize();
-    await _controller.play();
+
+    await _controller?.initialize();
+    await _controller?.play();
     setState(() {
       isVideoPlaying = true;
     });
-    await _controller.setLooping(true);
-    await _controller.seekTo(widget.duration!);
+    await _controller?.setLooping(true);
+    await _controller?.seekTo(widget.duration!);
 
     return true;
   }
@@ -69,9 +71,9 @@ class _ShortsVideoStreamPlayerState extends State<ShortsVideoStreamPlayer> {
           return GestureDetector(
             onTapDown: (_) {
               if (isVideoPlaying) {
-                _controller.pause();
+                _controller?.pause();
               } else {
-                _controller.play();
+                _controller?.play();
               }
               setState(() {
                 isVideoPlaying = !isVideoPlaying;
@@ -80,28 +82,27 @@ class _ShortsVideoStreamPlayerState extends State<ShortsVideoStreamPlayer> {
             },
             child: Stack(
               children: [
-                (_controller.value.isInitialized)
-                    ? SizedBox(
-                        width: double.infinity,
-                        height: double.infinity,
-                        child: AspectRatio(
-                          aspectRatio: 16 / 9,
-                          child: VideoPlayer(_controller),
-                        ),
-                      )
-                    : Positioned(
-                        left: 40,
-                        top: 100,
-                        child: Column(
-                          children: const [LoadingIndicator(), Text('The Controller of the Video Player is not Initialized')],
-                        ),
-                      ),
+                if (_controller?.value.isInitialized == true)
+                  Center(
+                    child: AspectRatio(
+                      aspectRatio: 16 / 9,
+                      child: VideoPlayer(_controller!),
+                    ),
+                  )
+                else
+                  Positioned(
+                    left: 40,
+                    top: 100,
+                    child: Column(
+                      children: const [LoadingIndicator(), Text('The Controller of the Video Player is not Initialized')],
+                    ),
+                  ),
                 FadingPlayButton(opacityLevel: opacityLevel, isVideoPlaying: isVideoPlaying),
                 Positioned(
                   right: 20,
                   bottom: 80,
                   child: IconButton(
-                    icon: const Icon(Icons.accessible_forward_rounded),
+                    icon: const Icon(Icons.offline_share),
                     iconSize: 40,
                     onPressed: () async {
                       SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
@@ -120,7 +121,7 @@ class _ShortsVideoStreamPlayerState extends State<ShortsVideoStreamPlayer> {
                     icon: Icon(isVideoMuted ? Icons.speaker_notes : Icons.speaker_notes_off_outlined),
                     onPressed: () {
                       setState(() {
-                        _controller.setVolume(isVideoMuted ? 1.0 : 0.0);
+                        _controller?.setVolume(isVideoMuted ? 1.0 : 0.0);
                         isVideoMuted = !isVideoMuted;
                       });
                     },
@@ -134,7 +135,7 @@ class _ShortsVideoStreamPlayerState extends State<ShortsVideoStreamPlayer> {
 
   @override
   void dispose() {
-    _controller.dispose();
+    _controller?.dispose();
     super.dispose();
   }
 }

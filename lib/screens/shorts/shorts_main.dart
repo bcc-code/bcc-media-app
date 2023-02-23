@@ -24,6 +24,7 @@ class _ShortsMainState extends ConsumerState<ShortsMain> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.black,
       body: Query$GetEpisodesForShorts$Widget(
         options: Options$Query$GetEpisodesForShorts(
           variables: Variables$Query$GetEpisodesForShorts(first: 30, offset: 0),
