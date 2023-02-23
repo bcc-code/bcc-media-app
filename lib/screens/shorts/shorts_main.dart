@@ -1,16 +1,9 @@
-import 'dart:async';
-
 import 'package:brunstadtv_app/components/loading_generic.dart';
 import 'package:brunstadtv_app/components/shorts/shorts_episode_main.dart';
 import 'package:brunstadtv_app/graphql/queries/shorts.graphql.dart';
-import 'package:brunstadtv_app/helpers/btv_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:get_it/get_it.dart';
-import 'package:graphql/client.dart';
-import 'package:stacked/stacked.dart';
-import 'package:video_player/video_player.dart';
 
 class ShortsMain extends ConsumerStatefulWidget {
   const ShortsMain({Key? key}) : super(key: key);
@@ -66,25 +59,6 @@ class _ShortsMainState extends ConsumerState<ShortsMain> {
                     },
                   ),
                 ),
-                // GestureDetector(
-                //   onTapDown: (_) {
-                //     Navigator.of(context).pop();
-                //   },
-                //   child: SafeArea(
-                //     child: Positioned(
-                //       top: 20.0,
-                //       left: 20.0,
-                //       // child: ImageIcon(AssetImage('assets/icons/Close.png'), size: 30)
-                //       child: Column(
-                //         children: const <Widget>[
-                //           Text('Go Back'),
-
-                //           ImageIcon(AssetImage('assets/icons/Close.png'), size: 30),
-                //         ],
-                //       ),
-                //     ),
-                //   ),
-                // ),
               ],
             );
           }

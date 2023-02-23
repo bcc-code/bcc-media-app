@@ -29,7 +29,6 @@ class VideoDescription extends StatelessWidget {
           alignment: Alignment.topLeft,
           child: GestureDetector(
             onTap: () async {
-              debugPrint('EpisodeScreenRoute');
               SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
               await context.router.pushNamed('/embed/$episodeId?autoplay=true&t=${duration!.inSeconds.toString()}', includePrefixMatches: true);
               SystemChrome.setPreferredOrientations([DeviceOrientation.landscapeRight]);
