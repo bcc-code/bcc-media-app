@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../../graphql/queries/page.graphql.dart';
 
+import '../../../models/episode_thumbnail_data.dart';
 import '../../../theme/bccm_colors.dart';
 import '../../../theme/bccm_typography.dart';
 import '../thumbnail/episode_thumbnail.dart';
@@ -33,9 +34,14 @@ class ThumbnailSliderEpisode extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          EpisodeThumbnail(
-            episode: episode,
-            image: sectionItem.image,
+          EpisodeThumbnail.withSize(
+            episode: EpisodeThumbnailData(
+              duration: episode.duration,
+              locked: episode.locked,
+              progress: episode.progress,
+              publishDate: episode.publishDate,
+              image: sectionItem.image,
+            ),
             imageSize: imageSize,
             isLive: isLive,
           ),
