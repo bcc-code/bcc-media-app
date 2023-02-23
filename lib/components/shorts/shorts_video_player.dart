@@ -1,38 +1,39 @@
 import 'package:brunstadtv_app/components/loading_generic.dart';
+import 'package:auto_route/auto_route.dart';
+
 import 'package:brunstadtv_app/components/loading_indicator.dart';
+import 'package:brunstadtv_app/components/shorts/fading_play_button.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:video_player/video_player.dart';
 
 class ShortsVideoStreamPlayer extends StatefulWidget {
   const ShortsVideoStreamPlayer({
     Key? key,
-    required this.testURL,
-    required this.bestURL,
+    required this.url,
     required this.duration,
+    required this.episodeId,
   }) : super(key: key);
 
-  final String testURL;
-  final String bestURL;
+  final String url;
   final Duration? duration;
+  final String episodeId;
 
   @override
   State<ShortsVideoStreamPlayer> createState() => _ShortsVideoStreamPlayerState();
 }
 
-class _ShortsVideoStreamPlayerState extends State<ShortsVideoStreamPlayer> with SingleTickerProviderStateMixin {
+class _ShortsVideoStreamPlayerState extends State<ShortsVideoStreamPlayer> {
   late VideoPlayerController _controller;
   Future<bool>? loadFuture;
   bool isVideoPlaying = false;
   bool isVideoMuted = false;
   double opacityLevel = 1.0;
 
-  late AnimationController _animationController;
-
   @override
   initState() {
     super.initState();
     loadFuture = loadVideo();
-    _animationController = AnimationController(vsync: this, duration: const Duration(milliseconds: 450));
   }
 
   @override
@@ -43,7 +44,7 @@ class _ShortsVideoStreamPlayerState extends State<ShortsVideoStreamPlayer> with 
 
   Future<bool> loadVideo() async {
     setState(() {
-      _controller = VideoPlayerController.network(widget.bestURL, formatHint: VideoFormat.hls);
+      _controller = VideoPlayerController.network(widget.url, formatHint: VideoFormat.hls);
     });
     await _controller.initialize();
     await _controller.play();
@@ -74,6 +75,7 @@ class _ShortsVideoStreamPlayerState extends State<ShortsVideoStreamPlayer> with 
               }
               setState(() {
                 isVideoPlaying = !isVideoPlaying;
+                opacityLevel = isVideoPlaying ? 0.0 : 1.0;
               });
             },
             child: Stack(
@@ -94,40 +96,45 @@ class _ShortsVideoStreamPlayerState extends State<ShortsVideoStreamPlayer> with 
                           children: [const LoadingIndicator(), const Text('The Controller of the Video Player is not Initialized')],
                         ),
                       ),
-                // Center(
-                //   child: Text('$isVideoPlaying'),
-                // ),
-                Center(
-                  child: AnimatedOpacity(
-                    opacity: opacityLevel,
-                    duration: const Duration(seconds: 2),
-                    child: Icon(
-                      isVideoPlaying ? Icons.pause_sharp : Icons.play_arrow,
-                      size: 50,
-                      color: Colors.amber,
-                    ),
+                FadingPlayButton(opacityLevel: opacityLevel, isVideoPlaying: isVideoPlaying),
+                Positioned(
+                  right: 20,
+                  bottom: 80,
+                  child: IconButton(
+                    icon: Icon(Icons.accessible_forward_rounded),
+                    iconSize: 40,
+                    onPressed: () async {
+                      SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
+                      await context.router.pushNamed('/embed/${widget.episodeId}?autoplay=true&t=${widget.duration!.inSeconds.toString()}',
+                          includePrefixMatches: true);
+                      if (!mounted) return;
+                      SystemChrome.setPreferredOrientations([DeviceOrientation.landscapeRight]);
+                      // context.router.navigateNamedFromRoot('/episode/${widget.episodeId}?autoplay=true');
+
+                      // context.router.navigate(EpisodeScreenRoute(episodeId: widget.episodeId, autoplay: true, hideBottomSection: true));
+                      // context.router.navigateNamedFromRoot('/episode/$widget.episodeId?autoplay=true');
+                      // context.navigateTo(ShortsMainRoute(children: [EpisodeScreenRoute(episodeId: widget.episodeId)]));
+                      // context.router.navigate(HomeScreenWrapperRoute(children: [EpisodeScreenRoute(episodeId: widget.episodeId)]));
+// HomeScreenWrapperRoute(children: [EpisodeScreenRoute(episodeId: id)]))
+                      // context.router.popAndPush(EpisodeScreenRoute(episodeId: widget.episodeId, autoplay: true, hideBottomSection: true));
+                      // overrideAwareNavigation(NavigationOverride.of(context), context.router, EpisodeScreenRoute(episodeId: widget.episodeId));
+                    },
                   ),
                 ),
                 Positioned(
                   right: 20,
                   bottom: 20,
                   child: IconButton(
-                    icon: Icon(isVideoMuted ? Icons.speaker_notes_off_outlined : Icons.speaker_notes),
+                    iconSize: 40,
+                    icon: Icon(isVideoMuted ? Icons.speaker_notes : Icons.speaker_notes_off_outlined),
                     onPressed: () {
                       setState(() {
+                        _controller.setVolume(isVideoMuted ? 1.0 : 0.0);
                         isVideoMuted = !isVideoMuted;
                       });
                     },
                   ),
-                  // child: TextButton.icon(
-                  //     onPressed: () {
-                  //       setState(() {
-                  //         isVideoMuted = !isVideoMuted;
-                  //       });
-                  //     },
-                  //     icon: Icon(isVideoMuted ? Icons.speaker_notes_off_outlined : Icons.speaker_notes),
-                  //     label: Text('')),
-                )
+                ),
               ],
             ),
           );

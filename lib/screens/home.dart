@@ -176,16 +176,7 @@ class HomeScreenState extends ConsumerState<HomeScreen> with PageMixin implement
           ),
           floatingActionButton: FloatingActionButton(
             child: const Icon(Icons.token_outlined),
-            onPressed: () {
-              context.router.navigate(const ShortsMainRoute());
-              // Navigator.push(
-              //   context,
-              //   MaterialPageRoute<void>(
-              //     builder: (context) => const ShortsMain(),
-              //   ),
-              // );
-              // context.router.push(const )
-            },
+            onPressed: () => context.router.navigate(const ShortsMainRoute()),
           ),
         ),
       ],

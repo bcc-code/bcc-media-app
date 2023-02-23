@@ -180,12 +180,15 @@ const _specialRoutes = AutoRoute(
           RouteMetaConstants.analyticsName: 'achievement-group',
         }),
     CustomRoute<void>(
-      page: ShortsMain,
-      path: '/shorts',
-      durationInMilliseconds: 400,
-      reverseDurationInMilliseconds: 300,
-      transitionsBuilder: CustomTransitionsBuilders.slideUp,
-    ),
+        name: 'ShortsMainRoute',
+        page: ShortsMain,
+        path: '/shorts',
+        durationInMilliseconds: 400,
+        reverseDurationInMilliseconds: 300,
+        transitionsBuilder: CustomTransitionsBuilders.slideLeft,
+        children: [
+          _episodeScreenRoute,
+        ]),
     CustomRoute<void>(
       page: TabsRootScreen,
       path: '/',
