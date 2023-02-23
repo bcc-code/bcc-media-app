@@ -53,7 +53,7 @@ class _ShortsMainState extends ConsumerState<ShortsMain> {
                   top: 20.0,
                   left: 40.0,
                   child: IconButton(
-                    icon: Icon(Icons.arrow_back_ios_new_outlined),
+                    icon: const Icon(Icons.arrow_back_ios_new_outlined),
                     onPressed: () {
                       Navigator.of(context).pop();
                     },

@@ -81,7 +81,7 @@ class _ShortsVideoStreamPlayerState extends State<ShortsVideoStreamPlayer> {
             child: Stack(
               children: [
                 (_controller.value.isInitialized)
-                    ? Container(
+                    ? SizedBox(
                         width: double.infinity,
                         height: double.infinity,
                         child: AspectRatio(
@@ -93,7 +93,7 @@ class _ShortsVideoStreamPlayerState extends State<ShortsVideoStreamPlayer> {
                         left: 40,
                         top: 100,
                         child: Column(
-                          children: [const LoadingIndicator(), const Text('The Controller of the Video Player is not Initialized')],
+                          children: const [LoadingIndicator(), Text('The Controller of the Video Player is not Initialized')],
                         ),
                       ),
                 FadingPlayButton(opacityLevel: opacityLevel, isVideoPlaying: isVideoPlaying),
@@ -101,7 +101,7 @@ class _ShortsVideoStreamPlayerState extends State<ShortsVideoStreamPlayer> {
                   right: 20,
                   bottom: 80,
                   child: IconButton(
-                    icon: Icon(Icons.accessible_forward_rounded),
+                    icon: const Icon(Icons.accessible_forward_rounded),
                     iconSize: 40,
                     onPressed: () async {
                       SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
@@ -109,15 +109,6 @@ class _ShortsVideoStreamPlayerState extends State<ShortsVideoStreamPlayer> {
                           includePrefixMatches: true);
                       if (!mounted) return;
                       SystemChrome.setPreferredOrientations([DeviceOrientation.landscapeRight]);
-                      // context.router.navigateNamedFromRoot('/episode/${widget.episodeId}?autoplay=true');
-
-                      // context.router.navigate(EpisodeScreenRoute(episodeId: widget.episodeId, autoplay: true, hideBottomSection: true));
-                      // context.router.navigateNamedFromRoot('/episode/$widget.episodeId?autoplay=true');
-                      // context.navigateTo(ShortsMainRoute(children: [EpisodeScreenRoute(episodeId: widget.episodeId)]));
-                      // context.router.navigate(HomeScreenWrapperRoute(children: [EpisodeScreenRoute(episodeId: widget.episodeId)]));
-// HomeScreenWrapperRoute(children: [EpisodeScreenRoute(episodeId: id)]))
-                      // context.router.popAndPush(EpisodeScreenRoute(episodeId: widget.episodeId, autoplay: true, hideBottomSection: true));
-                      // overrideAwareNavigation(NavigationOverride.of(context), context.router, EpisodeScreenRoute(episodeId: widget.episodeId));
                     },
                   ),
                 ),

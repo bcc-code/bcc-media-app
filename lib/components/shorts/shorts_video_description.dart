@@ -37,7 +37,7 @@ class VideoDescription extends StatelessWidget {
               overflow: TextOverflow.ellipsis,
               // softWrap: true,
               maxLines: 2,
-              '$title',
+              title,
               style: BtvTextStyles.body1.copyWith(color: BtvColors.onTint),
             ),
           ),
