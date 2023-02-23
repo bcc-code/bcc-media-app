@@ -1,17 +1,16 @@
-import 'package:auto_route/auto_route.dart';
-import 'package:brunstadtv_app/helpers/btv_typography.dart';
-import 'package:brunstadtv_app/models/analytics/sections.dart';
-import 'package:brunstadtv_app/router/router.gr.dart';
+import 'package:brunstadtv_app/theme/bccm_typography.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../helpers/btv_colors.dart';
+import '../graphql/queries/calendar_episode_entries.graphql.dart';
+import '../models/episode_thumbnail_data.dart';
+import '../theme/bccm_colors.dart';
 import '../helpers/utils.dart';
 import '../l10n/app_localizations.dart';
-import '../providers/analytics.dart';
-import '../providers/inherited_data.dart';
-import 'bordered_image_container.dart';
+import '../providers/todays_calendar_entries.dart';
+import 'sections/thumbnail/episode_thumbnail.dart';
 
-class EpisodeListEpisode extends StatelessWidget {
+class EpisodeListEpisode extends ConsumerWidget {
   const EpisodeListEpisode({
     super.key,
     required this.id,
@@ -21,6 +20,9 @@ class EpisodeListEpisode extends StatelessWidget {
     required this.ageRating,
     required this.duration,
     this.showSecondaryTitle = true,
+    this.locked = false,
+    this.progress,
+    this.publishDate,
   });
   final String id;
   final String title;
@@ -29,9 +31,14 @@ class EpisodeListEpisode extends StatelessWidget {
   final String ageRating;
   final int duration;
   final bool showSecondaryTitle;
+  final bool locked;
+  final int? progress;
+  final String? publishDate;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    Fragment$Episode? curLiveEpisode = ref.watch(currentLiveEpisodeProvider)?.episode;
+
     return Container(
       height: 98,
       margin: const EdgeInsets.only(bottom: 4),
@@ -39,7 +46,21 @@ class EpisodeListEpisode extends StatelessWidget {
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          BorderedImageContainer(imageUrl: image, width: 128, margin: const EdgeInsets.only(right: 16)),
+          Container(
+            margin: const EdgeInsets.only(right: 16),
+            child: EpisodeThumbnail.withWidth(
+              episode: EpisodeThumbnailData(
+                progress: progress,
+                duration: duration,
+                locked: locked,
+                image: image,
+                publishDate: publishDate,
+              ),
+              imageWidth: 128,
+              aspectRatio: 16 / 9,
+              isLive: curLiveEpisode?.id == id,
+            ),
+          ),
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -49,7 +70,7 @@ class EpisodeListEpisode extends StatelessWidget {
                     margin: const EdgeInsets.only(bottom: 4),
                     child: Text(
                       showTitle!,
-                      style: BtvTextStyles.caption2.copyWith(color: BtvColors.tint1),
+                      style: BccmTextStyles.caption2.copyWith(color: BccmColors.tint1),
                     ),
                   ),
                 Flexible(
@@ -57,7 +78,9 @@ class EpisodeListEpisode extends StatelessWidget {
                     margin: const EdgeInsets.only(bottom: 6),
                     child: Text(
                       title,
-                      style: BtvTextStyles.caption1.copyWith(color: BtvColors.label1),
+                      style: BccmTextStyles.caption1.copyWith(color: BccmColors.label1),
+                      maxLines: 2,
+                      overflow: TextOverflow.ellipsis,
                     ),
                   ),
                 ),
@@ -70,21 +93,21 @@ class EpisodeListEpisode extends StatelessWidget {
                         height: 16,
                         padding: const EdgeInsets.only(right: 4, bottom: 2, left: 4),
                         decoration: BoxDecoration(
-                          color: BtvColors.background2,
+                          color: BccmColors.background2,
                           border: Border.all(
                             width: 1,
-                            color: BtvColors.separatorOnLight,
+                            color: BccmColors.separatorOnLight,
                           ),
                           borderRadius: const BorderRadius.all(Radius.circular(8)),
                         ),
                         child: Text(
                           getFormattedAgeRating(ageRating),
-                          style: BtvTextStyles.caption2.copyWith(color: BtvColors.onTint, height: 1.1),
+                          style: BccmTextStyles.caption2.copyWith(color: BccmColors.onTint, height: 1.1),
                         ),
                       ),
                     Text(
                       '${Duration(seconds: duration).inMinutes} ${S.of(context).minutesShort}',
-                      style: BtvTextStyles.caption2.copyWith(color: BtvColors.label3),
+                      style: BccmTextStyles.caption2.copyWith(color: BccmColors.label3),
                     )
                   ],
                 )

@@ -64,7 +64,7 @@ class AppRouter extends _i23.RootStackRouter {
     ProfileRoute.name: (routeData) {
       return _i23.CustomPage<void>(
         routeData: routeData,
-        child: _i2.Profile(),
+        child: const _i2.Profile(),
         transitionsBuilder: _i26.CustomTransitionsBuilders.slideUp,
         durationInMilliseconds: 400,
         reverseDurationInMilliseconds: 600,

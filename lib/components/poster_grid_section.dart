@@ -5,8 +5,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../graphql/queries/calendar_episode_entries.graphql.dart';
 import '../graphql/queries/page.graphql.dart';
 import '../graphql/schema/pages.graphql.dart';
-import '../helpers/btv_colors.dart';
-import '../helpers/btv_typography.dart';
+import '../theme/bccm_colors.dart';
+import '../theme/bccm_typography.dart';
 import '../l10n/app_localizations.dart';
 import '../models/analytics/sections.dart';
 import '../providers/todays_calendar_entries.dart';
@@ -91,9 +91,9 @@ class _GridEpisodeItem extends StatelessWidget {
   final Fragment$Section$$PosterGridSection$items$items$item$$Episode episode;
   final bool showSecondaryTitle;
   final bool isLive;
+  final bool isNewItem = false;
 
   bool get watched => episode.progress != null && episode.progress! > episode.duration * 0.9;
-  bool isNewItem = false;
 
   _GridEpisodeItem({required this.sectionItem, required this.showSecondaryTitle, this.isLive = false})
       : episode = sectionItem.item as Fragment$Section$$PosterGridSection$items$items$item$$Episode;
@@ -115,14 +115,14 @@ class _GridEpisodeItem extends StatelessWidget {
                       episode.season!.$show.title.replaceAll(' ', '\u{000A0}'),
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
-                      style: BtvTextStyles.caption2.copyWith(color: BtvColors.tint1),
+                      style: BccmTextStyles.caption2.copyWith(color: BccmColors.tint1),
                     ),
                   ),
                 ),
               if (episode.season != null)
                 Text(
                   '${S.of(context).seasonLetter}${episode.season!.number}:${S.of(context).episodeLetter}${episode.number}',
-                  style: BtvTextStyles.caption2,
+                  style: BccmTextStyles.caption2,
                 ),
             ],
           ),
@@ -132,7 +132,7 @@ class _GridEpisodeItem extends StatelessWidget {
             sectionItem.title,
             maxLines: 2,
             overflow: TextOverflow.ellipsis,
-            style: BtvTextStyles.caption1.copyWith(color: BtvColors.label1),
+            style: BccmTextStyles.caption1.copyWith(color: BccmColors.label1),
           ),
         ),
       ],
@@ -205,7 +205,7 @@ class _GridShowItem extends StatelessWidget {
   final Fragment$Section$$PosterGridSection$items$items$item$$Show show;
 
   // TODO: Remove this
-  bool hasNewEpisodes = false;
+  final bool hasNewEpisodes = false;
 
   _GridShowItem({required this.sectionItem}) : show = sectionItem.item as Fragment$Section$$PosterGridSection$items$items$item$$Show;
 
@@ -221,12 +221,12 @@ class _GridShowItem extends StatelessWidget {
             sectionItem.title,
             maxLines: 2,
             overflow: TextOverflow.ellipsis,
-            style: BtvTextStyles.caption1.copyWith(color: BtvColors.label1),
+            style: BccmTextStyles.caption1.copyWith(color: BccmColors.label1),
           ),
         ),
         Text(
           '${show.seasonCount} ${S.of(context).seasons} - ${show.episodeCount} ${S.of(context).episodes}',
-          style: BtvTextStyles.caption2,
+          style: BccmTextStyles.caption2,
         )
       ],
     );
@@ -248,7 +248,7 @@ class _GridShowItem extends StatelessWidget {
                 right: -4,
                 child: FeatureBadge(
                   label: 'New Episodes',
-                  color: BtvColors.tint2,
+                  color: BccmColors.tint2,
                 ),
               ),
           ],

@@ -4,8 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../helpers/btv_buttons.dart';
-import '../helpers/btv_colors.dart';
-import '../helpers/btv_typography.dart';
+import '../theme/bccm_colors.dart';
+import '../theme/bccm_typography.dart';
 import '../l10n/app_localizations.dart';
 
 class ErrorNoAccess extends ConsumerWidget {
@@ -25,7 +25,7 @@ class ErrorNoAccess extends ConsumerWidget {
                       margin: const EdgeInsets.only(bottom: 8),
                       child: Text(
                         S.of(context).oops,
-                        style: BtvTextStyles.headline2,
+                        style: BccmTextStyles.headline2,
                       ),
                     ),
                     Container(
@@ -33,7 +33,7 @@ class ErrorNoAccess extends ConsumerWidget {
                       child: Text(
                         ref.read(authStateProvider).guestMode ? S.of(context).mustBeLoggedIn : S.of(context).dontHaveAccess,
                         textAlign: TextAlign.center,
-                        style: BtvTextStyles.body1.copyWith(color: BtvColors.onTint),
+                        style: BccmTextStyles.body1.copyWith(color: BccmColors.onTint),
                       ),
                     ),
                   ],
@@ -41,9 +41,10 @@ class ErrorNoAccess extends ConsumerWidget {
               ),
               Column(
                 children: [
-                  Text(S.of(context).plentyOfOtherContent, textAlign: TextAlign.center, style: BtvTextStyles.body1.copyWith(color: BtvColors.onTint)),
+                  Text(S.of(context).plentyOfOtherContent,
+                      textAlign: TextAlign.center, style: BccmTextStyles.body1.copyWith(color: BccmColors.onTint)),
                   Container(
-                    padding: EdgeInsets.only(top: 24, bottom: 28),
+                    padding: const EdgeInsets.only(top: 24, bottom: 28),
                     width: double.infinity,
                     child: BtvButton.large(
                       labelText: S.of(context).exploreContent,

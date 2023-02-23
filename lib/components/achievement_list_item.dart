@@ -2,8 +2,8 @@ import 'package:brunstadtv_app/helpers/image_utils.dart';
 import 'package:flutter/material.dart';
 
 import '../graphql/queries/achievements.graphql.dart';
-import '../helpers/btv_colors.dart';
-import '../helpers/btv_typography.dart';
+import '../theme/bccm_colors.dart';
+import '../theme/bccm_typography.dart';
 
 class AchievementListItem extends StatelessWidget {
   final Fragment$Achievement item;
@@ -24,7 +24,7 @@ class AchievementListItem extends StatelessWidget {
             ),
             Text(
               item.title,
-              style: BtvTextStyles.caption2.copyWith(color: BtvColors.label3),
+              style: BccmTextStyles.caption2.copyWith(color: BccmColors.label3),
               textAlign: TextAlign.center,
             ),
           ],

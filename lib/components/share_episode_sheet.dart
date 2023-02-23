@@ -3,8 +3,8 @@ import 'package:brunstadtv_app/components/loading_generic.dart';
 import 'package:brunstadtv_app/components/option_list.dart';
 import 'package:brunstadtv_app/graphql/queries/episode.graphql.dart';
 import 'package:brunstadtv_app/graphql/schema/items.graphql.dart';
-import 'package:brunstadtv_app/helpers/btv_colors.dart';
-import 'package:brunstadtv_app/helpers/btv_typography.dart';
+import 'package:brunstadtv_app/theme/bccm_colors.dart';
+import 'package:brunstadtv_app/theme/bccm_typography.dart';
 import 'package:brunstadtv_app/helpers/svg_icons.dart';
 import 'package:brunstadtv_app/l10n/app_localizations.dart';
 import 'package:brunstadtv_app/models/analytics/content_shared.dart';
@@ -40,12 +40,12 @@ class _ShareEpisodeSheetState extends ConsumerState<ShareEpisodeSheet> {
       Option(
         id: 'fromStart',
         title: S.of(context).shareStart,
-        icon: SvgPicture.string(SvgIcons.share, color: BtvColors.onTint),
+        icon: SvgPicture.string(SvgIcons.share, color: BccmColors.onTint),
       ),
       Option(
         id: 'fromTime',
         title: S.of(context).shareTime(getFormattedDuration(widget.currentPosSeconds, padFirstSegment: true)),
-        icon: SvgPicture.string(SvgIcons.location, color: BtvColors.onTint),
+        icon: SvgPicture.string(SvgIcons.location, color: BccmColors.onTint),
       ),
     ];
     if (loading) {
@@ -65,7 +65,7 @@ class _ShareEpisodeSheetState extends ConsumerState<ShareEpisodeSheet> {
                         padding: const EdgeInsets.only(left: 8, right: 16),
                         child: Text(
                           'This video is only accessible to users that are logged in to the app.',
-                          style: BtvTextStyles.caption1.copyWith(color: BtvColors.label2),
+                          style: BccmTextStyles.caption1.copyWith(color: BccmColors.label2),
                         ),
                       ),
                     )

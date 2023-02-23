@@ -7,10 +7,10 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../graphql/client.dart';
 import '../../graphql/queries/search.graphql.dart';
-import '../../components/episode_list.dart';
+import '../../components/episode_list_episode.dart';
 import '../../components/result_programs_list.dart';
-import '../../helpers/btv_colors.dart';
-import '../../helpers/btv_typography.dart';
+import '../../theme/bccm_colors.dart';
+import '../../theme/bccm_typography.dart';
 import '../../l10n/app_localizations.dart';
 import '../../models/analytics/search_performed.dart';
 import '../../models/analytics/search_result_clicked.dart';
@@ -123,7 +123,7 @@ class _SearchResultsPageState extends ConsumerState<SearchResultsPage> {
                       margin: const EdgeInsets.only(bottom: 8),
                       child: Text(
                         S.of(context).episodes,
-                        style: BtvTextStyles.title2,
+                        style: BccmTextStyles.title2,
                       ),
                     ),
                   if (episodes.isNotEmpty)
@@ -180,7 +180,7 @@ class _SearchResultsPageState extends ConsumerState<SearchResultsPage> {
             Text(
               S.of(context).noResults,
               textAlign: TextAlign.center,
-              style: BtvTextStyles.body1.copyWith(color: BtvColors.label3),
+              style: BccmTextStyles.body1.copyWith(color: BccmColors.label3),
             )
           ],
         ),

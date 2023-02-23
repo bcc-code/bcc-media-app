@@ -1,9 +1,4 @@
-import 'package:bccm_player/bccm_player.dart';
-import 'package:flutter/foundation.dart';
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
-import 'package:flutter/services.dart';
 
 class DebugApp extends StatelessWidget {
   const DebugApp({super.key, this.playerId});
@@ -58,15 +53,14 @@ class _MyHomePageState extends State<MyHomePage> {
     return Stack(children: [
       Scaffold(
         appBar: AppBar(
-          
           title: Text(widget.title),
         ),
-        body:  RefreshIndicator(
-              onRefresh: () => Future.delayed(Duration(milliseconds: 200)),
-              child: ListView(
-                  physics: BouncingScrollPhysics(
-                      parent: AlwaysScrollableScrollPhysics()),
-                  children: [SizedBox(height:10000, child: Container(color: Colors.green))],)),
+        body: RefreshIndicator(
+            onRefresh: () => Future.delayed(const Duration(milliseconds: 200)),
+            child: ListView(
+              physics: const BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
+              children: [SizedBox(height: 10000, child: Container(color: Colors.green))],
+            )),
       ),
     ]);
   }

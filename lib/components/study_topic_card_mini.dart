@@ -1,16 +1,12 @@
 import 'package:brunstadtv_app/components/bordered_image_container.dart';
-import 'package:brunstadtv_app/components/pulse_animation.dart';
 import 'package:brunstadtv_app/components/shiny_clipper.dart';
-import 'package:brunstadtv_app/components/study_progress.dart';
-import 'package:brunstadtv_app/helpers/btv_gradients.dart';
-import 'package:brunstadtv_app/helpers/btv_typography.dart';
+import 'package:brunstadtv_app/theme/bccm_typography.dart';
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 
-import 'package:brunstadtv_app/graphql/queries/studies.graphql.dart';
 import 'package:flutter_svg/svg.dart';
 
-import '../../helpers/btv_colors.dart';
+import '../theme/bccm_colors.dart';
 import '../../helpers/svg_icons.dart';
 import '../graphql/queries/page.graphql.dart';
 import '../helpers/navigation_utils.dart';
@@ -54,11 +50,11 @@ class _StudyTopicCardMiniState extends State<StudyTopicCardMini> {
             padding: const EdgeInsets.all(12),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(12),
-              color: BtvColors.tint1.withAlpha((255 * 0.1).round()),
+              color: BccmColors.tint1.withAlpha((255 * 0.1).round()),
             ),
             foregroundDecoration: BoxDecoration(
               borderRadius: BorderRadius.circular(12),
-              border: Border.all(color: BtvColors.separatorOnLight, width: 1),
+              border: Border.all(color: BccmColors.separatorOnLight, width: 1),
             ),
             child: Row(
               mainAxisSize: MainAxisSize.min,
@@ -83,7 +79,7 @@ class _StudyTopicCardMiniState extends State<StudyTopicCardMini> {
                         padding: const EdgeInsets.only(bottom: 8),
                         child: Text(
                           widget.studyTopic.title,
-                          style: BtvTextStyles.title3,
+                          style: BccmTextStyles.title3,
                         ),
                       ),
                       StudyProgressRow(
@@ -97,7 +93,7 @@ class _StudyTopicCardMiniState extends State<StudyTopicCardMini> {
                   padding: const EdgeInsets.only(left: 20),
                   child: SvgPicture.string(
                     SvgIcons.chevronRight,
-                    color: BtvColors.label3,
+                    color: BccmColors.label3,
                     width: 9,
                     height: 17,
                   ),
@@ -131,7 +127,7 @@ class _StudyTopicCardMiniState extends State<StudyTopicCardMini> {
             simpleFutureBuilder(
                 future: navigationFuture!,
                 loading: () =>
-                    Positioned.fill(child: Container(color: BtvColors.background1.withOpacity(0.5), child: const Center(child: LoadingIndicator()))),
+                    Positioned.fill(child: Container(color: BccmColors.background1.withOpacity(0.5), child: const Center(child: LoadingIndicator()))),
                 error: (e) => const SizedBox.shrink(),
                 noData: () => const SizedBox.shrink(),
                 ready: (d) => const SizedBox.shrink()),

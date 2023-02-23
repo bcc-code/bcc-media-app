@@ -29,28 +29,48 @@ import '../utils/basic_init.dart';
 
 class MockTokenRequest extends Mock implements TokenRequest {}
 
+TokenResponse mockTokenResponse({required DateTime expiresAt}) {
+  final tomorrowEpoch = (expiresAt.millisecondsSinceEpoch / 1000).round();
+  final fakeAccessTokenJwt =
+      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.${base64UrlEncode(utf8.encode('{"exp": $tomorrowEpoch}'))}.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c';
+
+  return TokenResponse(
+    fakeAccessTokenJwt,
+    fakeAccessTokenJwt,
+    expiresAt,
+    fakeIdTokenJwt,
+    'tokenType',
+    null,
+    null,
+  );
+}
+
 void main() {
   group('Mobile authentication (AuthStateNotifierMobile)', () {
+    test('Dont refresh when not old', () async {
+      basicInit();
+      final secureStorage = MockFlutterSecureStorage();
+      when(secureStorage.read(key: SecureStorageKeys.refreshToken)).thenAnswer((_) async => 'refresh token');
+
+      final mockAppAuth = MockFlutterAppAuth();
+
+      final auth = AuthStateNotifierMobile(appAuth: MockFlutterAppAuth(), secureStorage: secureStorage);
+      auth.state = AuthState(
+        auth0AccessToken: 'something',
+        expiresAt: DateTime.now().add(const Duration(days: 1)),
+      );
+
+      final response = await auth.getExistingAndEnsureNotExpired();
+      verifyNever(mockAppAuth.token(any));
+      assert(response?.auth0AccessToken == 'something', 'Access token must be the same  value');
+    });
     test('Refresh when old', () async {
       basicInit();
       final secureStorage = MockFlutterSecureStorage();
       when(secureStorage.read(key: SecureStorageKeys.refreshToken)).thenAnswer((_) async => 'refresh token');
 
-      final customExpiry = DateTime.now().add(const Duration(days: 5));
-      final tomorrowEpoch = (customExpiry.millisecondsSinceEpoch / 1000).round();
-      final fakeAccessTokenJwt =
-          'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.${base64UrlEncode(utf8.encode('{"exp": $tomorrowEpoch}'))}.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c';
-
       final mockAppAuth = MockFlutterAppAuth();
-      when(mockAppAuth.token(any)).thenAnswer((_) async => TokenResponse(
-            fakeAccessTokenJwt,
-            fakeAccessTokenJwt,
-            customExpiry,
-            fakeIdTokenJwt,
-            'tokenType',
-            null,
-            null,
-          ));
+      when(mockAppAuth.token(any)).thenAnswer((_) async => mockTokenResponse(expiresAt: DateTime.now().add(const Duration(days: 1))));
 
       final auth = AuthStateNotifierMobile(appAuth: mockAppAuth, secureStorage: secureStorage);
       auth.state = AuthState(

@@ -15,14 +15,13 @@ import 'package:brunstadtv_app/graphql/schema/pages.graphql.dart';
 import 'package:brunstadtv_app/helpers/navigation_override.dart';
 import 'package:brunstadtv_app/helpers/svg_icons.dart';
 import 'package:brunstadtv_app/router/router.gr.dart';
-import 'package:brunstadtv_app/services/utils.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:bccm_player/bccm_player.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:brunstadtv_app/graphql/queries/episode.graphql.dart';
 import 'package:brunstadtv_app/providers/chromecast.dart';
-import 'package:brunstadtv_app/providers/playback_api.dart';
+import 'package:brunstadtv_app/services/playback_service.dart';
 import 'package:brunstadtv_app/providers/video_state.dart';
 import 'package:bccm_player/cast_button.dart';
 import 'package:flutter_svg/svg.dart';
@@ -43,8 +42,8 @@ import '../components/study_button.dart';
 import '../env/env.dart';
 import '../graphql/queries/studies.graphql.dart';
 import '../helpers/btv_buttons.dart';
-import '../helpers/btv_colors.dart';
-import '../helpers/btv_typography.dart';
+import '../theme/bccm_colors.dart';
+import '../theme/bccm_typography.dart';
 import '../helpers/utils.dart';
 import '../helpers/widget_keys.dart';
 import '../l10n/app_localizations.dart';
@@ -105,7 +104,9 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen> with AutoRouteAwa
       var episode = await episodeFuture;
       if (!mounted || episode == null) return;
 
-      playEpisode(playerId: player!.playerId, autoplay: false, episode: episode, playbackPositionMs: event.playbackPositionMs);
+      ref
+          .read(playbackServiceProvider)
+          .playEpisode(playerId: player!.playerId, autoplay: false, episode: episode, playbackPositionMs: event.playbackPositionMs);
     });
   }
 
@@ -166,11 +167,11 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen> with AutoRouteAwa
     return value.parsedData;
   }
 
-  Future<Query$GetEpisodeLessonProgress?> loadLessonProgressForSeason(String id) async {
+  Future<void> loadLessonProgressForSeason(String id) async {
     final value = await ref
         .read(gqlClientProvider)
         .query$GetSeasonLessonProgress(Options$Query$GetSeasonLessonProgress(variables: Variables$Query$GetSeasonLessonProgress(id: id)));
-    if (!mounted) return null;
+    if (!mounted) return;
     final season = value.parsedData?.season;
 
     if (season != null) {
@@ -206,8 +207,11 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen> with AutoRouteAwa
 
     setState(() {
       playerSetupCompleter = wrapInCompleter(
-          playEpisode(playerId: player.playerId, episode: episode, autoplay: true, playbackPositionMs: startPositionSeconds * 1000)
-              .timeout(const Duration(milliseconds: 12000)));
+        ref
+            .read(playbackServiceProvider)
+            .playEpisode(playerId: player.playerId, episode: episode, autoplay: true, playbackPositionMs: startPositionSeconds * 1000)
+            .timeout(const Duration(milliseconds: 12000)),
+      );
     });
   }
 
@@ -286,7 +290,7 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen> with AutoRouteAwa
             ),
             body: ConditionalParentWidget(
                 condition: kIsWeb,
-                conditionalBuilder: (child) => Padding(padding: EdgeInsets.symmetric(horizontal: 300), child: child),
+                conditionalBuilder: (child) => Padding(padding: const EdgeInsets.symmetric(horizontal: 300), child: child),
                 child: Builder(
                   builder: (context) {
                     if (snapshot.hasError && snapshot.connectionState == ConnectionState.done) {
@@ -315,11 +319,11 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen> with AutoRouteAwa
   Widget _loading() {
     return Column(
       children: [
-        AspectRatio(aspectRatio: 16 / 9, child: Container(color: BtvColors.background2)),
+        AspectRatio(aspectRatio: 16 / 9, child: Container(color: BccmColors.background2)),
         Expanded(
             child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: [const LoadingIndicator(), const SizedBox(height: 12), Text(S.of(context).loading, style: BtvTextStyles.body2)],
+          children: [const LoadingIndicator(), const SizedBox(height: 12), Text(S.of(context).loading, style: BccmTextStyles.body2)],
         ))
       ],
     );
@@ -353,7 +357,7 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen> with AutoRouteAwa
                               ? _playPoster(episode, loading: playerSetupSnapshot.connectionState == ConnectionState.waiting)
                               : _player(displayPlayer, casting, primaryPlayerId),
                         Container(
-                          color: BtvColors.background2,
+                          color: BccmColors.background2,
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
@@ -363,12 +367,12 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen> with AutoRouteAwa
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
-                                      Expanded(child: Text(key: WidgetKeys.episodePageEpisodeTitle, episode.title, style: BtvTextStyles.title1)),
+                                      Expanded(child: Text(key: WidgetKeys.episodePageEpisodeTitle, episode.title, style: BccmTextStyles.title1)),
                                       GestureDetector(
                                         onTap: () => shareVideo(episode),
                                         child: Padding(
                                           padding: const EdgeInsets.only(top: 4, left: 16),
-                                          child: SvgPicture.string(SvgIcons.share, color: BtvColors.label3),
+                                          child: SvgPicture.string(SvgIcons.share, color: BccmColors.label3),
                                         ),
                                       ),
                                     ]),
@@ -376,20 +380,20 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen> with AutoRouteAwa
                                     Row(crossAxisAlignment: CrossAxisAlignment.center, children: [
                                       Padding(
                                         padding: const EdgeInsets.only(top: 3, right: 4),
-                                        child: FeatureBadge(label: getFormattedAgeRating(episode.ageRating), color: BtvColors.background2),
+                                        child: FeatureBadge(label: getFormattedAgeRating(episode.ageRating), color: BccmColors.background2),
                                       ),
                                       if (episode.season?.$show.title != null)
                                         Center(
-                                          child: Text(episode.season!.$show.title, style: BtvTextStyles.caption1.copyWith(color: BtvColors.tint1)),
+                                          child: Text(episode.season!.$show.title, style: BccmTextStyles.caption1.copyWith(color: BccmColors.tint1)),
                                         ),
                                       if (showEpisodeNumber)
                                         Padding(
                                             padding: const EdgeInsets.only(left: 4),
-                                            child: Text(episodeNumberFormatted, style: BtvTextStyles.caption1.copyWith(color: BtvColors.label4)))
+                                            child: Text(episodeNumberFormatted, style: BccmTextStyles.caption1.copyWith(color: BccmColors.label4)))
                                     ]),
                                     const SizedBox(height: 14.5),
                                     if (episode.description.isNotEmpty)
-                                      Text(episode.description, style: BtvTextStyles.body2.copyWith(color: BtvColors.label3)),
+                                      Text(episode.description, style: BccmTextStyles.body2.copyWith(color: BccmColors.label3)),
                                     if (Env.enableStudy && episode.lessons.items.isNotEmpty)
                                       Padding(
                                         padding: const EdgeInsets.only(top: 16),
@@ -406,11 +410,11 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen> with AutoRouteAwa
                                               Positioned.fill(
                                                   child: Shimmer.fromColors(
                                                       enabled: true,
-                                                      baseColor: BtvColors.background2,
-                                                      highlightColor: Color.lerp(BtvColors.background2, Colors.white, 0.1)!,
+                                                      baseColor: BccmColors.background2,
+                                                      highlightColor: Color.lerp(BccmColors.background2, Colors.white, 0.1)!,
                                                       child: Container(
                                                           decoration:
-                                                              BoxDecoration(borderRadius: BorderRadius.circular(9), color: BtvColors.background2))))
+                                                              BoxDecoration(borderRadius: BorderRadius.circular(9), color: BccmColors.background2))))
                                             ],
                                           ),
                                           error: (e) => const SizedBox.shrink(),
@@ -442,7 +446,7 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen> with AutoRouteAwa
                     if (episodeLoading)
                       Positioned.fill(
                           child: Container(
-                              color: BtvColors.background2,
+                              color: BccmColors.background2,
                               child: const Center(
                                 child: LoadingIndicator(),
                               )))
@@ -457,18 +461,18 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen> with AutoRouteAwa
                           children: [
                             Container(
                                 decoration: const BoxDecoration(
-                                  border: Border(bottom: BorderSide(width: 1, color: BtvColors.separatorOnLight)),
+                                  border: Border(bottom: BorderSide(width: 1, color: BccmColors.separatorOnLight)),
                                 ),
                                 child: Padding(
                                     padding: const EdgeInsets.all(16),
                                     child: EpisodeTabSelector(
                                         onSelectionChange: (val) {
                                           setState(() {
-                                            DefaultTabController.of(context)!.animateTo(val);
+                                            DefaultTabController.of(context).animateTo(val);
                                           });
                                         },
                                         selectedId: '',
-                                        selectedIndex: DefaultTabController.of(context)!.index,
+                                        selectedIndex: DefaultTabController.of(context).index,
                                         tabs: [
                                           Option(id: 'episodes', title: (S.of(context).episodes.toUpperCase())),
                                           Option(id: 'details', title: (S.of(context).details.toUpperCase())),
@@ -478,7 +482,7 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen> with AutoRouteAwa
                                 behavior: HitTestBehavior.opaque,
                                 onHorizontalDragUpdate: (details) {
                                   // Note: Sensitivity is integer used when you don't want to mess up vertical drag
-                                  var controller = DefaultTabController.of(context);
+                                  var controller = DefaultTabController.maybeOf(context);
                                   if (controller == null) return;
                                   int sensitivity = 16;
                                   if (details.delta.dx > sensitivity && controller.index > 0) {
@@ -492,7 +496,7 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen> with AutoRouteAwa
                                   }
                                 },
                                 child: FadeIndexedStack(
-                                  index: DefaultTabController.of(context)!.index,
+                                  index: DefaultTabController.of(context).index,
                                   children: [
                                     if (episode.season != null) _seasonEpisodeList(episode) else _relatedItems(episode),
                                     EpisodeDetails(episode.id)
@@ -513,7 +517,6 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen> with AutoRouteAwa
     setState(() {
       selectedSeasonId = id;
     });
-    var api = ref.read(apiProvider);
     var season = await ref.read(apiProvider).getSeasonEpisodes(id);
     if (mounted && season != null) {
       if (season.episodes.items.any((element) => element.lessons.total > 0)) {
@@ -662,12 +665,12 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen> with AutoRouteAwa
                         Text(
                           S.of(context).anErrorOccurred,
                           textAlign: TextAlign.center,
-                          style: BtvTextStyles.title3,
+                          style: BccmTextStyles.title3,
                         ),
                         Text(
                           S.of(context).checkNetwork,
                           textAlign: TextAlign.center,
-                          style: BtvTextStyles.body2,
+                          style: BccmTextStyles.body2,
                         ),
                         Padding(
                           padding: const EdgeInsets.only(top: 16),
@@ -724,7 +727,7 @@ class _DropDownSelect extends StatelessWidget {
           if (selectedItem != null)
             Text(
               selectedItem.title.toUpperCase(),
-              style: BtvTextStyles.button2.copyWith(color: BtvColors.label1),
+              style: BccmTextStyles.button2.copyWith(color: BccmColors.label1),
             ),
           Padding(
             padding: const EdgeInsets.only(left: 6),

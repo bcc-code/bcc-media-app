@@ -12,8 +12,8 @@ import 'package:shared_preferences/shared_preferences.dart';
 import '../../graphql/client.dart';
 import '../../graphql/queries/send_support_email.graphql.dart';
 import '../../helpers/btv_buttons.dart';
-import '../../helpers/btv_colors.dart';
-import '../../helpers/btv_typography.dart';
+import '../../theme/bccm_colors.dart';
+import '../../theme/bccm_typography.dart';
 import '../../helpers/constants.dart';
 import '../../helpers/utils.dart';
 import '../../l10n/app_localizations.dart';
@@ -185,7 +185,7 @@ class _ContactSupportState extends ConsumerState<ContactSupport> {
           ),
           Text(
             S.of(context).sending,
-            style: BtvTextStyles.body1,
+            style: BccmTextStyles.body1,
           ),
         ],
       ),
@@ -250,7 +250,7 @@ class _InputPageState extends State<_InputPage> {
         padding: const EdgeInsets.only(bottom: 32),
         child: Text(
           S.of(context).contactSupport,
-          style: BtvTextStyles.headline1,
+          style: BccmTextStyles.headline1,
         ),
       ),
       _TextFieldInput(
@@ -260,7 +260,7 @@ class _InputPageState extends State<_InputPage> {
         padding: const EdgeInsets.only(top: 20, bottom: 10),
         child: Text(
           S.of(context).debugInfoExplanation,
-          style: BtvTextStyles.body2.copyWith(color: BtvColors.label1),
+          style: BccmTextStyles.body2.copyWith(color: BccmColors.label1),
         ),
       ),
       widget.deviceInfo != null ? _DeviceInfoList(data: widget.deviceInfo!) : Text('${S.of(context).loading}...'),
@@ -283,24 +283,24 @@ class _TextFieldInput extends StatelessWidget {
         textAlign: TextAlign.start,
         keyboardType: TextInputType.multiline,
         textInputAction: TextInputAction.newline,
-        style: BtvTextStyles.body1.copyWith(color: BtvColors.label1),
+        style: BccmTextStyles.body1.copyWith(color: BccmColors.label1),
         decoration: InputDecoration(
           hintText: S.of(context).concernTextPlaceholder,
-          hintStyle: BtvTextStyles.body1,
+          hintStyle: BccmTextStyles.body1,
           filled: true,
-          fillColor: BtvColors.background2,
+          fillColor: BccmColors.background2,
           enabledBorder: const OutlineInputBorder(
             borderRadius: BorderRadius.all(Radius.circular(6.0)),
             borderSide: BorderSide(
               width: 1,
-              color: BtvColors.background1,
+              color: BccmColors.background1,
             ),
           ),
           focusedBorder: const OutlineInputBorder(
               borderRadius: BorderRadius.all(Radius.circular(6.0)),
               borderSide: BorderSide(
                 width: 1,
-                color: BtvColors.tint1,
+                color: BccmColors.tint1,
               )),
           contentPadding: const EdgeInsets.all(16),
         ),
@@ -335,7 +335,7 @@ class _DeviceInfoList extends StatelessWidget {
                       fit: FlexFit.tight,
                       child: Text(
                         item.title,
-                        style: BtvTextStyles.body2,
+                        style: BccmTextStyles.body2,
                       ),
                     ),
                     Flexible(
@@ -343,7 +343,7 @@ class _DeviceInfoList extends StatelessWidget {
                       child: Text(
                         item.content ?? 'N/A',
                         textAlign: TextAlign.right,
-                        style: BtvTextStyles.body2.copyWith(color: BtvColors.label1),
+                        style: BccmTextStyles.body2.copyWith(color: BccmColors.label1),
                       ),
                     ),
                   ],
@@ -351,7 +351,7 @@ class _DeviceInfoList extends StatelessWidget {
               ),
               const Divider(
                 height: 1,
-                color: BtvColors.separatorOnLight,
+                color: BccmColors.separatorOnLight,
               ),
             ],
           ),
@@ -373,13 +373,13 @@ class _SuccessPage extends StatelessWidget {
               Text(
                 S.of(context).thankYouSupportTitle,
                 textAlign: TextAlign.center,
-                style: BtvTextStyles.headline1,
+                style: BccmTextStyles.headline1,
               ),
               const SizedBox(height: 12),
               Text(
                 S.of(context).thankYouSupportDescription,
                 textAlign: TextAlign.center,
-                style: BtvTextStyles.body1.copyWith(color: BtvColors.label3),
+                style: BccmTextStyles.body1.copyWith(color: BccmColors.label3),
               ),
             ],
           ),
@@ -410,13 +410,13 @@ class _FailurePage extends StatelessWidget {
               Text(
                 S.of(context).sendFail,
                 textAlign: TextAlign.center,
-                style: BtvTextStyles.headline1,
+                style: BccmTextStyles.headline1,
               ),
               const SizedBox(height: 12),
               Text(
                 S.of(context).sendFailDescription,
                 textAlign: TextAlign.center,
-                style: BtvTextStyles.body1.copyWith(color: BtvColors.label3),
+                style: BccmTextStyles.body1.copyWith(color: BccmColors.label3),
               ),
             ],
           ),

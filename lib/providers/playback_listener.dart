@@ -1,23 +1,16 @@
-import 'dart:async';
-
-import 'package:bccm_player/chromecast_pigeon.g.dart';
-
 import 'package:bccm_player/playback_platform_pigeon.g.dart';
 import 'package:brunstadtv_app/api/brunstadtv.dart';
-import 'package:brunstadtv_app/graphql/client.dart';
-import 'package:brunstadtv_app/graphql/queries/progress.graphql.dart';
 import 'package:brunstadtv_app/helpers/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:brunstadtv_app/providers/video_state.dart';
 
-import '../graphql/queries/devices.graphql.dart';
 import '../helpers/debouncer.dart';
 
 final playbackListenerProvider = Provider<PlaybackListener>((_) => throw UnimplementedError());
 
 class PlaybackListener implements PlaybackListenerPigeon {
-  ProviderContainer ref;
+  Ref ref;
   Debouncer progressDebouncer = Debouncer(milliseconds: 1000);
 
   PlaybackListener({required this.ref});
@@ -53,7 +46,7 @@ class PlaybackListener implements PlaybackListenerPigeon {
     ref.read(playerProvider.notifier).setPlaybackPosition(positionMs);
     final episodeId = player?.currentMediaItem?.metadata?.extras?['id']?.asOrNull<String>();
     if (episodeId != null && positionMs != null) {
-      progressDebouncer.run(() => ref.read(apiProvider).updateProgress(episodeId: episodeId, progress: (positionMs ?? 0) / 1000));
+      progressDebouncer.run(() => ref.read(apiProvider).updateProgress(episodeId: episodeId, progress: positionMs / 1000));
     }
   }
 
@@ -70,7 +63,7 @@ class PlaybackListener implements PlaybackListenerPigeon {
 
     final episodeId = player?.currentMediaItem?.metadata?.extras?['id']?.asOrNull<String>();
     if (event.isPlaying && positionMs != null && episodeId != null) {
-      progressDebouncer.run(() => ref.read(apiProvider).updateProgress(episodeId: episodeId, progress: (positionMs ?? 0) / 1000));
+      progressDebouncer.run(() => ref.read(apiProvider).updateProgress(episodeId: episodeId, progress: positionMs / 1000));
     }
   }
 }

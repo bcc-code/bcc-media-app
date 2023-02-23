@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../helpers/btv_buttons.dart';
-import '../helpers/btv_colors.dart';
-import '../helpers/btv_typography.dart';
+import '../theme/bccm_colors.dart';
+import '../theme/bccm_typography.dart';
 import '../l10n/app_localizations.dart';
 
 class ErrorGeneric extends StatelessWidget {
@@ -26,7 +25,7 @@ class ErrorGeneric extends StatelessWidget {
                       margin: const EdgeInsets.only(bottom: 8),
                       child: Text(
                         S.of(context).loadContentError,
-                        style: BtvTextStyles.title1,
+                        style: BccmTextStyles.title1,
                       ),
                     ),
                     Container(
@@ -34,7 +33,7 @@ class ErrorGeneric extends StatelessWidget {
                       child: Text(
                         S.of(context).checkNetwork,
                         textAlign: TextAlign.center,
-                        style: BtvTextStyles.body1.copyWith(color: BtvColors.label3),
+                        style: BccmTextStyles.body1.copyWith(color: BccmColors.label3),
                       ),
                     ),
                     BtvButton.medium(
@@ -51,7 +50,7 @@ class ErrorGeneric extends StatelessWidget {
                     tilePadding: EdgeInsets.zero,
                     title: const Text(
                       'Technical details',
-                      style: BtvTextStyles.title3,
+                      style: BccmTextStyles.title3,
                     ),
                     children: [
                       SelectableText(

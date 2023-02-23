@@ -2,9 +2,8 @@ import 'package:brunstadtv_app/components/section_item_click_wrapper.dart';
 import 'package:flutter/material.dart';
 
 import '../graphql/queries/page.graphql.dart';
-import '../helpers/btv_colors.dart';
-import '../helpers/btv_typography.dart';
-import '../helpers/utils.dart';
+import '../theme/bccm_colors.dart';
+import '../theme/bccm_typography.dart';
 import '../models/analytics/sections.dart';
 import 'horizontal_slider.dart';
 
@@ -47,14 +46,14 @@ class _LabelItem extends StatelessWidget {
       decoration: BoxDecoration(
         border: Border.all(
           width: 1,
-          color: BtvColors.separatorOnLight,
+          color: BccmColors.separatorOnLight,
         ),
         borderRadius: BorderRadius.circular(24),
-        color: BtvColors.background2,
+        color: BccmColors.background2,
       ),
       child: Text(
         sectionItem.title,
-        style: BtvTextStyles.body2.copyWith(color: BtvColors.label1),
+        style: BccmTextStyles.body2.copyWith(color: BccmColors.label1),
       ),
     );
   }

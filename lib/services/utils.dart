@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
 import '../components/feature_badge.dart';
-import '../helpers/btv_colors.dart';
+import '../theme/bccm_colors.dart';
 
 String getFormattedDuration(int durSeconds, {bool padFirstSegment = false}) {
   final duration = Duration(seconds: durSeconds);
@@ -90,17 +90,17 @@ Widget? getFeaturedTag({required String? publishDate, required bool locked, bool
   if (isLive) {
     return const FeatureBadge(
       label: 'Live now',
-      color: BtvColors.tint2,
+      color: BccmColors.tint2,
     );
   } else if (isComingSoon(publishDate: publishDate, locked: locked)) {
     return const FeatureBadge(
       label: 'Coming soon',
-      color: BtvColors.background2,
+      color: BccmColors.background2,
     );
   } else if (isNewItem) {
     return const FeatureBadge(
       label: 'New',
-      color: BtvColors.tint2,
+      color: BccmColors.tint2,
     );
   }
   return null;

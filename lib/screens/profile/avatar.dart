@@ -1,9 +1,9 @@
-import 'package:brunstadtv_app/helpers/btv_typography.dart';
+import 'package:brunstadtv_app/theme/bccm_typography.dart';
 import 'package:brunstadtv_app/providers/auth_state/auth_state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../helpers/btv_colors.dart';
+import '../../theme/bccm_colors.dart';
 
 class Avatar extends ConsumerWidget {
   const Avatar({Key? key}) : super(key: key);
@@ -25,7 +25,7 @@ class Avatar extends ConsumerWidget {
               height: avatarWidth,
               decoration: BoxDecoration(
                 border: Border.all(
-                  color: BtvColors.background2,
+                  color: BccmColors.background2,
                   width: 2,
                 ),
                 borderRadius: const BorderRadius.all(Radius.circular(avatarWidth / 2)),
@@ -43,7 +43,7 @@ class Avatar extends ConsumerWidget {
           ),
           Text(
             name ?? '',
-            style: BtvTextStyles.title1,
+            style: BccmTextStyles.title1,
           ),
         ],
       ),

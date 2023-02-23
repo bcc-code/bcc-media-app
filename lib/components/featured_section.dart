@@ -9,10 +9,10 @@ import '../l10n/app_localizations.dart';
 import '../models/analytics/sections.dart';
 
 import '../graphql/queries/page.graphql.dart';
-import '../helpers/btv_colors.dart';
+import '../theme/bccm_colors.dart';
 import '../helpers/utils.dart';
 import '../helpers/btv_buttons.dart';
-import '../helpers/btv_typography.dart';
+import '../theme/bccm_typography.dart';
 import '../helpers/image_utils.dart';
 import '../helpers/transparent_image.dart';
 import '../providers/todays_calendar_entries.dart';
@@ -32,13 +32,13 @@ class FeaturedSection extends ConsumerWidget {
     if (data.metadata!.prependLiveElement) {
       return [
         Fragment$Section$$FeaturedSection$items$items(
-          id: curLiveEpisode!.id,
-          title: curLiveEpisode!.title,
-          image: curLiveEpisode!.image,
-          description: curLiveEpisode!.description,
+          id: curLiveEpisode.id,
+          title: curLiveEpisode.title,
+          image: curLiveEpisode.image,
+          description: curLiveEpisode.description,
           $__typename: 'SectionItem',
           item: Fragment$Section$$FeaturedSection$items$items$item$$Episode(
-            id: curLiveEpisode!.id,
+            id: curLiveEpisode.id,
             duration: 0,
             progress: 0,
             publishDate: '',
@@ -46,7 +46,7 @@ class FeaturedSection extends ConsumerWidget {
             locked: false,
           ),
         ),
-        ...items.where((item) => item.id != curLiveEpisode!.id)
+        ...items.where((item) => item.id != curLiveEpisode.id)
       ];
     }
     return items;
@@ -119,8 +119,8 @@ class _FeaturedItem extends StatelessWidget {
                 begin: Alignment.topCenter,
                 end: Alignment.bottomCenter,
                 colors: [
-                  BtvColors.background1.withOpacity(0),
-                  BtvColors.background1,
+                  BccmColors.background1.withOpacity(0),
+                  BccmColors.background1,
                 ],
                 stops: const [0, 0.36],
               ),
@@ -134,7 +134,7 @@ class _FeaturedItem extends StatelessWidget {
                   child: Text(
                     sectionItem.title,
                     textAlign: TextAlign.center,
-                    style: BtvTextStyles.title1,
+                    style: BccmTextStyles.title1,
                   ),
                 ),
                 Container(
@@ -144,7 +144,7 @@ class _FeaturedItem extends StatelessWidget {
                     maxLines: 2,
                     overflow: TextOverflow.ellipsis,
                     textAlign: TextAlign.center,
-                    style: BtvTextStyles.body2.copyWith(color: BtvColors.label2),
+                    style: BccmTextStyles.body2.copyWith(color: BccmColors.label2),
                   ),
                 ),
                 isLive
@@ -184,16 +184,16 @@ class _GradientImage extends StatelessWidget {
         height: height,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(12),
-          color: BtvColors.background2,
+          color: BccmColors.background2,
         ),
         foregroundDecoration: BoxDecoration(
           gradient: LinearGradient(
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
             colors: [
-              BtvColors.background1.withOpacity(0.23),
+              BccmColors.background1.withOpacity(0.23),
               const Color.fromRGBO(26, 37, 53, 0),
-              BtvColors.background1,
+              BccmColors.background1,
             ],
             stops: const [0, 0.5, 1],
           ),

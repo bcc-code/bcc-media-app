@@ -6,16 +6,16 @@ import 'package:bccm_player/cast_button.dart';
 import 'package:bccm_player/playback_platform_pigeon.g.dart';
 import 'package:brunstadtv_app/api/brunstadtv.dart';
 import 'package:brunstadtv_app/components/live_mini_player.dart';
-import 'package:brunstadtv_app/router/router.gr.dart';
+import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:brunstadtv_app/providers/playback_api.dart';
+import 'package:brunstadtv_app/services/playback_service.dart';
 import 'package:brunstadtv_app/providers/video_state.dart';
 import 'package:flutter_svg/svg.dart' show SvgPicture;
 import 'package:flutter_svg_provider/flutter_svg_provider.dart';
 import 'package:brunstadtv_app/helpers/transparent_image.dart';
-import '../helpers/btv_colors.dart';
-import '../helpers/btv_typography.dart';
+import '../theme/bccm_colors.dart';
+import '../theme/bccm_typography.dart';
 import '../helpers/svg_icons.dart';
 import '../l10n/app_localizations.dart';
 import '../models/analytics/audio_only_clicked.dart';
@@ -133,10 +133,10 @@ class _LiveScreenState extends ConsumerState<LiveScreen> with AutoRouteAware {
     }();
 
     await setupCompleter?.future.timeout(const Duration(milliseconds: 10000), onTimeout: () {
-      debugPrint("bccm: TIMEOUT ${DateTime.now()}");
       setStateIfMounted(() {
         error = 'Something might have gone wrong (timeout).';
       });
+      FirebaseCrashlytics.instance.recordError(Exception('Player load timeout ${DateTime.now()}'), StackTrace.current);
     }).catchError((err) {
       error = 'Something went wrong. Technical details: $err.';
     });
@@ -165,11 +165,11 @@ class _LiveScreenState extends ConsumerState<LiveScreen> with AutoRouteAware {
           Padding(
             padding: const EdgeInsets.only(right: 8),
             child: Switch(
-              inactiveTrackColor: BtvColors.tint2,
-              inactiveThumbColor: BtvColors.label1,
+              inactiveTrackColor: BccmColors.tint2,
+              inactiveThumbColor: BccmColors.label1,
               inactiveThumbImage: const Svg('assets/icons/headphones.svg', size: Size(12, 12)),
-              activeColor: BtvColors.label1,
-              activeTrackColor: BtvColors.tint1,
+              activeColor: BccmColors.label1,
+              activeTrackColor: BccmColors.tint1,
               activeThumbImage: const Svg('assets/icons/play_alt.svg', size: Size(9, 9)),
               value: !audioOnly,
               onChanged: (value) {
@@ -211,7 +211,7 @@ class _LiveScreenState extends ConsumerState<LiveScreen> with AutoRouteAware {
       children: [
         if (episodeInfo != null)
           Container(
-            color: BtvColors.background2,
+            color: BccmColors.background2,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -220,7 +220,7 @@ class _LiveScreenState extends ConsumerState<LiveScreen> with AutoRouteAware {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: const [
-                      Text('Episode title', style: BtvTextStyles.title2),
+                      Text('Episode title', style: BccmTextStyles.title2),
                     ],
                   ),
                 )

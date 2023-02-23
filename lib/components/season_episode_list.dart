@@ -1,23 +1,19 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:brunstadtv_app/components/study_progress.dart';
 import 'package:brunstadtv_app/graphql/queries/studies.graphql.dart';
-import 'package:brunstadtv_app/helpers/btv_gradients.dart';
-import 'package:brunstadtv_app/helpers/btv_typography.dart';
+import 'package:brunstadtv_app/theme/bccm_typography.dart';
 import 'package:brunstadtv_app/router/router.gr.dart';
 import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:intl/intl.dart';
 
 import '../env/env.dart';
-import '../graphql/queries/search.graphql.dart';
-import '../helpers/btv_colors.dart';
+import '../theme/bccm_colors.dart';
 import '../helpers/utils.dart';
 import '../l10n/app_localizations.dart';
 import '../services/utils.dart';
 import 'bordered_image_container.dart';
 import 'episode_duration.dart';
-import 'watched_badge.dart';
-import 'dart:math' as math;
 
 part 'season_episode_list.freezed.dart';
 
@@ -39,7 +35,7 @@ class SeasonEpisodeList extends StatelessWidget {
             margin: const EdgeInsets.only(bottom: 8),
             child: Text(
               title!,
-              style: BtvTextStyles.title2,
+              style: BccmTextStyles.title2,
             ),
           ),
         ...items.map((ep) => EpisodeListEpisode(data: ep))
@@ -86,7 +82,7 @@ class EpisodeListEpisode extends StatelessWidget {
               Positioned.fill(
                 child: Container(
                   decoration: BoxDecoration(
-                      border: const Border(left: BorderSide(color: BtvColors.tint2, width: 4)), color: BtvColors.tint2.withOpacity(0.1)),
+                      border: const Border(left: BorderSide(color: BccmColors.tint2, width: 4)), color: BccmColors.tint2.withOpacity(0.1)),
                 ),
               ),
             Container(
@@ -149,7 +145,7 @@ class EpisodeListEpisode extends StatelessWidget {
                               margin: const EdgeInsets.only(bottom: 6),
                               child: Text(
                                 data.title,
-                                style: BtvTextStyles.caption1.copyWith(color: BtvColors.label1),
+                                style: BccmTextStyles.caption1.copyWith(color: BccmColors.label1),
                               ),
                             ),
                           ),
@@ -162,16 +158,16 @@ class EpisodeListEpisode extends StatelessWidget {
                                   height: 16,
                                   padding: const EdgeInsets.only(right: 4, bottom: 2, left: 4),
                                   decoration: BoxDecoration(
-                                    color: BtvColors.background2,
+                                    color: BccmColors.background2,
                                     border: Border.all(
                                       width: 1,
-                                      color: BtvColors.separatorOnLight,
+                                      color: BccmColors.separatorOnLight,
                                     ),
                                     borderRadius: const BorderRadius.all(Radius.circular(8)),
                                   ),
                                   child: Text(
                                     getFormattedAgeRating(data.ageRating),
-                                    style: BtvTextStyles.caption2.copyWith(color: BtvColors.onTint, height: 1.1),
+                                    style: BccmTextStyles.caption2.copyWith(color: BccmColors.onTint, height: 1.1),
                                   ),
                                 ),
                               if (data.locked && publishDateTime != null)
@@ -179,7 +175,7 @@ class EpisodeListEpisode extends StatelessWidget {
                                   child: Text(
                                     S.of(context).availableFrom(DateFormat(DateFormat.YEAR_MONTH_DAY).format(publishDateTime)),
                                     overflow: TextOverflow.fade,
-                                    style: BtvTextStyles.caption2.copyWith(color: BtvColors.label3),
+                                    style: BccmTextStyles.caption2.copyWith(color: BccmColors.label3),
                                   ),
                                 )
                             ],
@@ -199,7 +195,7 @@ class EpisodeListEpisode extends StatelessWidget {
                           height: 40,
                           decoration: const BoxDecoration(
                             shape: BoxShape.circle,
-                            color: BtvColors.separatorOnLight,
+                            color: BccmColors.separatorOnLight,
                           ),
                           child: Padding(
                             padding: const EdgeInsets.all(4),

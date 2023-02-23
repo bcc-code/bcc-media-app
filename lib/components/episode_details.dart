@@ -5,8 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl/intl.dart';
 
-import '../l10n/app_localizations.dart';
-
 class _InfoItem extends StatelessWidget {
   const _InfoItem({required this.title, required this.text});
 
@@ -29,7 +27,7 @@ class _InfoItem extends StatelessWidget {
               style: const TextStyle(
                 color: Color(0xfffefefe),
                 fontSize: 17,
-                fontFamily: "Barlow",
+                fontFamily: 'Barlow',
                 fontWeight: FontWeight.w700,
               ),
             ),
@@ -42,7 +40,7 @@ class _InfoItem extends StatelessWidget {
               style: const TextStyle(
                 color: Color(0xff707c8e),
                 fontSize: 16,
-                fontFamily: "Barlow",
+                fontFamily: 'Barlow',
                 fontWeight: FontWeight.w500,
               ),
             ),
@@ -89,7 +87,6 @@ class _EpisodeDetailsState extends ConsumerState<EpisodeDetails> {
           final locale = Localizations.localeOf(context).languageCode;
 
           final publishDate = DateTime.tryParse(episode.publishDate);
-          final availableFrom = DateTime.tryParse(episode.availableFrom);
           final availableTo = DateTime.tryParse(episode.availableTo);
 
           return Container(

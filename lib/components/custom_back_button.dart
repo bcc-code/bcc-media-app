@@ -1,17 +1,12 @@
-import 'dart:math';
-import 'dart:ui';
-
 import 'package:auto_route/auto_route.dart';
 import 'package:brunstadtv_app/helpers/svg_icons.dart';
 import 'package:brunstadtv_app/helpers/utils.dart';
-import 'package:brunstadtv_app/router/router.gr.dart';
 import 'package:brunstadtv_app/screens/home.dart';
 import 'package:brunstadtv_app/screens/search/search.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
-import '../helpers/btv_colors.dart';
-import '../helpers/btv_typography.dart';
+import '../theme/bccm_typography.dart';
 import '../helpers/widget_keys.dart';
 import '../l10n/app_localizations.dart';
 import '../screens/page.dart';
@@ -23,6 +18,7 @@ String? getLocalizedRouteName(S localizations, Type route) {
     case HomeScreen:
       return localizations.homeTab;
   }
+  return null;
 }
 
 class CustomBackButton extends StatelessWidget {
@@ -71,7 +67,7 @@ class CustomBackButton extends StatelessWidget {
                     pageTitle,
                     semanticsLabel: S.of(context).back,
                     overflow: TextOverflow.ellipsis,
-                    style: BtvTextStyles.button2.copyWith(height: 1),
+                    style: BccmTextStyles.button2.copyWith(height: 1),
                   ),
                 ),
               ),

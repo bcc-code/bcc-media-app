@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 
 import '../helpers/btv_buttons.dart';
-import '../helpers/btv_colors.dart';
-import '../helpers/btv_typography.dart';
+import '../theme/bccm_colors.dart';
+import '../theme/bccm_typography.dart';
 import '../l10n/app_localizations.dart';
 
 class DialogWithImage extends StatelessWidget {
@@ -32,7 +31,7 @@ class DialogWithImage extends StatelessWidget {
             ),
             Text(
               title,
-              style: BtvTextStyles.headline2,
+              style: BccmTextStyles.headline2,
               textAlign: TextAlign.center,
             ),
             if (description?.isNotEmpty == true)
@@ -40,7 +39,7 @@ class DialogWithImage extends StatelessWidget {
                 padding: const EdgeInsets.only(top: 4),
                 child: Text(
                   description!,
-                  style: BtvTextStyles.caption1.copyWith(color: BtvColors.label3),
+                  style: BccmTextStyles.caption1.copyWith(color: BccmColors.label3),
                   textAlign: TextAlign.center,
                 ),
               ),

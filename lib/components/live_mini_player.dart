@@ -1,15 +1,11 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:brunstadtv_app/helpers/utils.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:brunstadtv_app/providers/chromecast.dart';
-import 'package:brunstadtv_app/providers/playback_api.dart';
+import 'package:brunstadtv_app/services/playback_service.dart';
 import 'package:brunstadtv_app/providers/video_state.dart';
 import 'package:brunstadtv_app/router/router.gr.dart';
-import 'package:brunstadtv_app/helpers/transparent_image.dart';
 
-import '../providers/fun.dart';
 import '../screens/live.dart';
 import 'mini_player.dart';
 
@@ -80,7 +76,6 @@ class _LiveMiniPlayerState extends ConsumerState<LiveMiniPlayer> {
     return GestureDetector(
       behavior: HitTestBehavior.opaque,
       onTap: () {
-        var id = player?.currentMediaItem?.metadata?.extras?['id'].asOrNull<String>();
         context.router.navigate(const LiveScreenRoute());
       },
       child: MiniPlayer(

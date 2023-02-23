@@ -2,13 +2,13 @@ import 'dart:async';
 import 'dart:math';
 
 import 'package:auto_route/auto_route.dart';
-import 'package:brunstadtv_app/helpers/btv_typography.dart';
+import 'package:brunstadtv_app/theme/bccm_typography.dart';
 import 'package:brunstadtv_app/providers/auth_state/auth_state.dart';
 import 'package:brunstadtv_app/router/router.gr.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../helpers/btv_buttons.dart';
-import '../helpers/btv_colors.dart';
+import '../theme/bccm_colors.dart';
 import '../helpers/widget_keys.dart';
 import '../l10n/app_localizations.dart';
 
@@ -100,21 +100,21 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                   Expanded(
                     child: Container(
                       alignment: Alignment.center,
-                      margin: EdgeInsets.only(right: 38, bottom: 12, left: 38),
+                      margin: const EdgeInsets.only(right: 38, bottom: 12, left: 38),
                       child: Column(
                         mainAxisSize: MainAxisSize.min,
                         children: [
                           Text(
                             S.of(context).loginPageDisplay1,
-                            style: BtvTextStyles.title1,
+                            style: BccmTextStyles.title1,
                             textAlign: TextAlign.center,
                           ),
                           Padding(
-                            padding: EdgeInsets.only(top: 12),
+                            padding: const EdgeInsets.only(top: 12),
                             child: Text(
                               S.of(context).loginPageDisplay2,
                               textAlign: TextAlign.center,
-                              style: BtvTextStyles.body1.copyWith(color: BtvColors.label3),
+                              style: BccmTextStyles.body1.copyWith(color: BccmColors.label3),
                             ),
                           ),
                         ],

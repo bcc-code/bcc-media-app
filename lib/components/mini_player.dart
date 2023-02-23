@@ -1,9 +1,9 @@
 import 'package:brunstadtv_app/components/loading_indicator.dart';
-import 'package:brunstadtv_app/helpers/btv_colors.dart';
+import 'package:brunstadtv_app/theme/bccm_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:brunstadtv_app/helpers/transparent_image.dart';
 
-import '../helpers/btv_typography.dart';
+import '../theme/bccm_typography.dart';
 import '../helpers/widget_keys.dart';
 import '../l10n/app_localizations.dart';
 
@@ -38,7 +38,7 @@ class MiniPlayer extends StatelessWidget {
     return Container(
       height: kMiniPlayerHeight,
       width: MediaQuery.of(context).size.width,
-      color: BtvColors.background2,
+      color: BccmColors.background2,
       padding: const EdgeInsets.symmetric(
         horizontal: 16,
         vertical: 12,
@@ -55,14 +55,14 @@ class MiniPlayer extends StatelessWidget {
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(4),
               border: Border.all(
-                color: BtvColors.onTint.withOpacity(0.01),
+                color: BccmColors.onTint.withOpacity(0.01),
                 width: 1,
               ),
             ),
             child: ClipRRect(
                 borderRadius: BorderRadius.circular(4),
                 child: FadeInImage.memoryNetwork(
-                  fadeInDuration: Duration(milliseconds: 200),
+                  fadeInDuration: const Duration(milliseconds: 200),
                   placeholder: kTransparentImage,
                   fit: BoxFit.fill,
                   image: artworkUri ?? 'https://static.bcc.media/images/placeholder.jpg',
@@ -84,7 +84,7 @@ class MiniPlayer extends StatelessWidget {
                       secondaryTitle!,
                       semanticsLabel: secondaryTitle!,
                       overflow: TextOverflow.ellipsis,
-                      style: BtvTextStyles.caption2.copyWith(color: BtvColors.tint1),
+                      style: BccmTextStyles.caption2.copyWith(color: BccmColors.tint1),
                     ),
                   ),
                 Text(
@@ -92,7 +92,7 @@ class MiniPlayer extends StatelessWidget {
                   semanticsLabel: title,
                   key: WidgetKeys.miniPlayerTitle,
                   overflow: TextOverflow.ellipsis,
-                  style: BtvTextStyles.caption1.copyWith(color: BtvColors.label1),
+                  style: BccmTextStyles.caption1.copyWith(color: BccmColors.label1),
                 ),
               ],
             ),

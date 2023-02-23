@@ -26,9 +26,9 @@ A new Flutter plugin project.
   
 
   
-  s.ios.vendored_frameworks = 'Frameworks/GoogleCast.xcframework'
-  #s.dependency 'Protobuf', '~> 3.13'
-  #s.dependency 'google-cast-sdk-no-bluetooth', '~> 4.7.0'
+  #s.ios.vendored_frameworks = 'Frameworks/GoogleCast.xcframework'
+  s.dependency 'Protobuf', '~> 3.13'
+  s.dependency 'google-cast-sdk-no-bluetooth', '~> 4.7.0'
 
 end
 
