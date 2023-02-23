@@ -17,26 +17,6 @@ class ShortsEpisode extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // Duration durationStartUp = const Duration();
-    // return Stack(
-    //   children: [
-    //     Query$GetStreamsForEpisode$Widget(
-    //         options: Options$Query$GetStreamsForEpisode(
-    //           variables: Variables$Query$GetStreamsForEpisode(id: episode.id),
-    //         ),
-    //         builder: (result, {refetch, fetchMore}) {
-    //           if (result.parsedData == null) return const LoadingGeneric();
-    //           final Duration durationStartUp = Duration(
-    //             seconds: ((result.parsedData?.episode.duration)! * 0.3).toInt(),
-    //           );
-    //           final utl = result.parsedData!.episode.streams.getBestStreamUrl();
-
-    //           return ShortsVideoStreamPlayer(url: utl, episodeId: episode.id, duration: durationStartUp); //Original Video Player
-    //           // return ChewieVideoPlayer(testURL: testURL, bestURL: bestURL, duration: durationStartUp); //Chewie Video Player
-    //         }),
-    //     VideoDescription(episodeId: episode.id, title: episode.title, duration: Duration()),
-    //   ],
-    // );
     return Query$GetStreamsForEpisode$Widget(
         options: Options$Query$GetStreamsForEpisode(
           variables: Variables$Query$GetStreamsForEpisode(id: episode.id),
@@ -50,7 +30,7 @@ class ShortsEpisode extends StatelessWidget {
 
           return Stack(
             children: <Widget>[
-              // ShortsVideoStreamPlayer(url: utl, episodeId: episode.id, duration: durationStartUp),
+              ShortsVideoStreamPlayer(url: utl, episodeId: episode.id, duration: durationStartUp),
               VideoDescription(episodeId: episode.id, title: episode.title, duration: durationStartUp),
             ],
           );
