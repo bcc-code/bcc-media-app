@@ -25,8 +25,16 @@ class PlayerPoster extends StatelessWidget {
       child: GestureDetector(
         behavior: HitTestBehavior.opaque,
         onTap: () {
+          debugPrint('asdkljasd');
+          debugPrint('asdkljasd');
+          debugPrint('asdkljasd');
+          debugPrint('asdkljasd');
+          debugPrint('asdkljasd');
+          debugPrint('asdkljasd');
+          debugPrint('asdkljasd');
           setupPlayer();
         },
+        onHorizontalDragUpdate: (e) => debugPrint('aaa'),
         child: Stack(
           children: [
             AspectRatio(

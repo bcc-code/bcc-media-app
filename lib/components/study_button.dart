@@ -15,8 +15,8 @@ import './shiny_clipper.dart';
 import './study_progress.dart';
 
 class StudyMoreButton extends HookWidget {
-  const StudyMoreButton({super.key, required this.progressOverviewFuture, required this.onNavigateBack});
-  final Future<Query$GetEpisodeLessonProgress?>? progressOverviewFuture;
+  const StudyMoreButton({super.key, required this.lessonProgressFuture, required this.onNavigateBack});
+  final Future<Query$GetEpisodeLessonProgress?> lessonProgressFuture;
   final void Function() onNavigateBack;
 
   String title(Fragment$LessonProgressOverview progressOverview, BuildContext context) {
@@ -41,11 +41,14 @@ class StudyMoreButton extends HookWidget {
 
   @override
   Widget build(BuildContext context) {
-    final future = useFuture(progressOverviewFuture);
-    debugPrint(hashCode.toString());
-    debugPrint(future.toString());
+    final delayedFuture = useMemoized(
+      () => Future.delayed(const Duration(milliseconds: 300), () async => await lessonProgressFuture),
+      [lessonProgressFuture],
+    );
+    final future = useFuture(delayedFuture);
+
     if (future.connectionState == ConnectionState.waiting) {
-      return buildLoadingWidget();
+      return const _LoadingWidget();
     } else if (future.hasError || future.data == null) {
       return const SizedBox.shrink();
     }
@@ -165,11 +168,16 @@ class StudyMoreButton extends HookWidget {
       ),
     );
   }
+}
 
-  Widget buildLoadingWidget() {
+class _LoadingWidget extends StatelessWidget {
+  const _LoadingWidget();
+
+  @override
+  Widget build(BuildContext context) {
     return Container(
       clipBehavior: Clip.antiAlias,
-      padding: const EdgeInsets.all(23),
+      padding: const EdgeInsets.all(24),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(12),
         color: BccmColors.tint1.withAlpha((255 * 0.1).round()),

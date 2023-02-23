@@ -172,7 +172,10 @@ class AppRouter extends _i22.RootStackRouter {
                   false,
                 ),
                 queryParamStartPosition: queryParams.optInt('t'),
-                hideBottomSection: queryParams.optBool('hide_bottom_section'),
+                hideBottomSection: queryParams.getBool(
+                  'hide_bottom_section',
+                  false,
+                ),
               ));
       return _i22.CustomPage<void>(
         routeData: routeData,
@@ -307,7 +310,10 @@ class AppRouter extends _i22.RootStackRouter {
                   false,
                 ),
                 queryParamStartPosition: queryParams.optInt('t'),
-                hideBottomSection: queryParams.optBool('hide_bottom_section'),
+                hideBottomSection: queryParams.getBool(
+                  'hide_bottom_section',
+                  false,
+                ),
               ));
       return _i22.CustomPage<void>(
         routeData: routeData,
@@ -737,7 +743,7 @@ class EmbedScreen extends _i22.PageRouteInfo<EmbedScreenArgs> {
     required String episodeId,
     bool autoplay = false,
     int? queryParamStartPosition,
-    bool? hideBottomSection,
+    bool hideBottomSection = false,
   }) : super(
           EmbedScreen.name,
           path: '/embed/:episodeId',
@@ -765,7 +771,7 @@ class EmbedScreenArgs {
     required this.episodeId,
     this.autoplay = false,
     this.queryParamStartPosition,
-    this.hideBottomSection,
+    this.hideBottomSection = false,
   });
 
   final _i23.Key? key;
@@ -776,7 +782,7 @@ class EmbedScreenArgs {
 
   final int? queryParamStartPosition;
 
-  final bool? hideBottomSection;
+  final bool hideBottomSection;
 
   @override
   String toString() {
@@ -1002,7 +1008,7 @@ class EpisodeScreenRoute extends _i22.PageRouteInfo<EpisodeScreenRouteArgs> {
     required String episodeId,
     bool autoplay = false,
     int? queryParamStartPosition,
-    bool? hideBottomSection,
+    bool hideBottomSection = false,
   }) : super(
           EpisodeScreenRoute.name,
           path: 'episode/:episodeId',
@@ -1030,7 +1036,7 @@ class EpisodeScreenRouteArgs {
     required this.episodeId,
     this.autoplay = false,
     this.queryParamStartPosition,
-    this.hideBottomSection,
+    this.hideBottomSection = false,
   });
 
   final _i23.Key? key;
@@ -1041,7 +1047,7 @@ class EpisodeScreenRouteArgs {
 
   final int? queryParamStartPosition;
 
-  final bool? hideBottomSection;
+  final bool hideBottomSection;
 
   @override
   String toString() {

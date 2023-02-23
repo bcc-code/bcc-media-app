@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:brunstadtv_app/graphql/queries/calendar_episode_entries.graphql.dart';
 import 'package:brunstadtv_app/graphql/queries/page.graphql.dart';
+import 'package:brunstadtv_app/graphql/queries/studies.graphql.dart';
 import 'package:brunstadtv_app/helpers/utils.dart';
 import 'package:brunstadtv_app/providers/auth_state/auth_state.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
@@ -57,6 +58,17 @@ class Api {
     if (season == null) return null;
 
     return season;
+  }
+
+  Future<Query$GetEpisodeLessonProgress?> loadLessonProgressForEpisode(String id) async {
+    final value = await gqlClient.query$GetEpisodeLessonProgress(
+      Options$Query$GetEpisodeLessonProgress(
+        variables: Variables$Query$GetEpisodeLessonProgress(
+          id: id,
+        ),
+      ),
+    );
+    return value.parsedData;
   }
 
   Future<Query$Page$page> getPage(String code) async {

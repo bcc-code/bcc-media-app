@@ -3,7 +3,6 @@
 import 'dart:async';
 
 import 'package:auto_route/auto_route.dart';
-import 'package:bccm_player/chromecast_pigeon.g.dart';
 import 'package:bccm_player/playback_platform_pigeon.g.dart';
 import 'package:brunstadtv_app/components/episode/episode_info.dart';
 import 'package:brunstadtv_app/components/episode/episode_related.dart';
@@ -11,36 +10,25 @@ import 'package:brunstadtv_app/components/episode/episode_season.dart';
 import 'package:brunstadtv_app/components/episode/player_poster.dart';
 import 'package:brunstadtv_app/components/error_generic.dart';
 import 'package:brunstadtv_app/components/loading_indicator.dart';
-import 'package:brunstadtv_app/components/season_episode_list.dart';
-import 'package:brunstadtv_app/components/feature_badge.dart';
 import 'package:brunstadtv_app/components/share_episode_sheet.dart';
-import 'package:brunstadtv_app/graphql/client.dart';
-import 'package:brunstadtv_app/helpers/svg_icons.dart';
-import 'package:brunstadtv_app/router/router.gr.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:bccm_player/bccm_player.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:brunstadtv_app/graphql/queries/episode.graphql.dart';
 import 'package:brunstadtv_app/providers/chromecast.dart';
 import 'package:brunstadtv_app/services/playback_service.dart';
 import 'package:brunstadtv_app/providers/video_state.dart';
 import 'package:bccm_player/cast_button.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:graphql/client.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:shimmer/shimmer.dart';
-import 'package:collection/collection.dart';
 
 import '../api/brunstadtv.dart';
 import '../components/custom_back_button.dart';
 import '../components/episode/episode_tabs.dart';
 import '../components/episode/player_error.dart';
 import '../components/episode_details.dart';
-import '../components/episode_tab_selector.dart';
 import '../components/error_no_access.dart';
-import '../components/fade_indexed_stack.dart';
 import '../components/option_list.dart';
 import '../components/study_button.dart';
 import '../env/env.dart';
@@ -48,7 +36,6 @@ import '../graphql/queries/studies.graphql.dart';
 import '../theme/bccm_colors.dart';
 import '../theme/bccm_typography.dart';
 import '../helpers/utils.dart';
-import '../helpers/widget_keys.dart';
 import '../l10n/app_localizations.dart';
 
 class EpisodePageArguments {
@@ -60,13 +47,13 @@ class EpisodeScreen extends StatefulHookConsumerWidget {
   final String episodeId;
   final bool autoplay;
   final int? queryParamStartPosition;
-  final bool? hideBottomSection;
+  final bool hideBottomSection;
   const EpisodeScreen({
     super.key,
     @PathParam() required this.episodeId,
     @QueryParam() this.autoplay = false,
     @QueryParam('t') this.queryParamStartPosition,
-    @QueryParam('hide_bottom_section') this.hideBottomSection,
+    @QueryParam('hide_bottom_section') this.hideBottomSection = false,
   });
 
   @override
@@ -74,200 +61,34 @@ class EpisodeScreen extends StatefulHookConsumerWidget {
 }
 
 class _EpisodeScreenState extends ConsumerState<EpisodeScreen> with AutoRouteAwareStateMixin<EpisodeScreen> {
-  late Future<Query$FetchEpisode$episode?> episodeFuture;
-  Future<Query$GetEpisodeLessonProgress?>? lessonProgressFuture;
-  final scrollController = ScrollController();
-  String? error;
-  Completer? playerSetupCompleter;
-  AnimationStatus? routeAnimationStatus;
-  Completer? scrollCompleter;
-  Animation? animation;
-  int selectedTab = 0;
-  String? selectedSeasonId;
-  Map<String, List<EpisodeListEpisodeData>?> seasonsMap = {};
-  Map<String, Fragment$EpisodeLessonProgressOverview> lessonProgressMap = {};
-
-  @override
-  void didUpdateWidget(old) {
-    super.didUpdateWidget(old);
-    scrollCompleter = wrapInCompleter(scrollController.animateTo(0, duration: const Duration(milliseconds: 600), curve: Curves.easeOutExpo));
-    if (old.episodeId == widget.episodeId) return;
-    loadEpisode();
-  }
-
-  @override
-  void initState() {
-    super.initState();
-
-    loadEpisode();
-  }
-
-  Future loadEpisode() async {
-    setState(() {
-      episodeFuture = ref.read(apiProvider).fetchEpisode(widget.episodeId.toString()).then(
-        (result) {
-          final episodeSeason = result?.season;
-          if (mounted && episodeSeason != null) {
-            loadLessonProgressForSeason(episodeSeason.id);
-            setState(() {
-              seasonsMap = <String, List<EpisodeListEpisodeData>?>{};
-              for (var season in result!.season!.$show.seasons.items) {
-                seasonsMap[season.id] = null;
-              }
-              seasonsMap[episodeSeason.id] = episodeSeason.episodes.items.map((ep) {
-                return EpisodeListEpisodeData(
-                    episodeId: ep.id,
-                    ageRating: ep.ageRating,
-                    duration: ep.duration,
-                    publishDate: ep.publishDate,
-                    locked: ep.locked,
-                    title: ep.title,
-                    image: ep.image,
-                    seasonNumber: episodeSeason.number,
-                    episodeNumber: ep.number);
-              }).toList();
-            });
-          }
-          if (mounted) setState(() => selectedSeasonId = result?.season?.id);
-          return result;
-        },
-      );
-      lessonProgressFuture = loadLessonsForEpisode();
-    });
-
-    await episodeFuture;
-    if (widget.autoplay) {
-      if (scrollCompleter == null) {
-        setupPlayer();
-      } else {
-        scrollCompleter!.future.whenComplete(() {
-          setupPlayer();
-        });
-      }
-    }
-  }
-
-  Future<Query$GetEpisodeLessonProgress?> loadLessonsForEpisode() async {
-    final value = await ref.read(gqlClientProvider).query$GetEpisodeLessonProgress(
-        Options$Query$GetEpisodeLessonProgress(variables: Variables$Query$GetEpisodeLessonProgress(id: widget.episodeId.toString())));
-    final lessonProgress = value.parsedData?.episode;
-    if (lessonProgress != null) {
-      setState(() {
-        lessonProgressMap[widget.episodeId] = lessonProgress;
-      });
-    }
-    return value.parsedData;
-  }
-
-  Future<void> loadLessonProgressForSeason(String id) async {
-    final value = await ref
-        .read(gqlClientProvider)
-        .query$GetSeasonLessonProgress(Options$Query$GetSeasonLessonProgress(variables: Variables$Query$GetSeasonLessonProgress(id: id)));
-    if (!mounted) return;
-    final season = value.parsedData?.season;
-
-    if (season != null) {
-      setState(() {
-        for (var element in season.episodes.items) {
-          lessonProgressMap[element.id] = element;
-        }
-      });
-    }
-  }
-
-  Future setupPlayer() async {
-    var castingNow = ref.read(isCasting);
-    var playerProvider = castingNow ? castPlayerProvider : primaryPlayerProvider;
-
-    var player = ref.read(playerProvider);
-    if (player!.currentMediaItem?.metadata?.extras?['id'] == widget.episodeId.toString()) {
-      return;
-    }
-
-    var episode = await episodeFuture;
-    if (!mounted || episode == null) return;
-
-    var startPositionSeconds = 0;
-    if (widget.queryParamStartPosition != null && widget.queryParamStartPosition! >= 0) {
-      startPositionSeconds = widget.queryParamStartPosition!;
-    } else {
-      startPositionSeconds = (episode.progress ?? 0);
-      if (startPositionSeconds > episode.duration * 0.9) {
-        startPositionSeconds = 0;
-      }
-    }
-
-    setState(() {
-      playerSetupCompleter = wrapInCompleter(
-        ref
-            .read(playbackServiceProvider)
-            .playEpisode(playerId: player.playerId, episode: episode, autoplay: true, playbackPositionMs: startPositionSeconds * 1000)
-            .timeout(const Duration(milliseconds: 12000)),
-      );
-    });
-  }
-
-  void setStateIfMounted(void Function() fn) {
-    if (!mounted) {
-      return;
-    }
-    setState(fn);
-  }
-
-  bool episodeIsCurrentItem(MediaItem? mediaItem) {
-    return mediaItem?.metadata?.extras?['id'] == widget.episodeId;
-  }
-
-  void onRouteAnimationStatus(AnimationStatus status) {
-    setStateIfMounted(() {
-      routeAnimationStatus = status;
-    });
-  }
-
-  @override
-  void didChangeDependencies() {
-    super.didChangeDependencies();
-    animation = ModalRoute.of(context)?.animation;
-    animation?.addStatusListener(onRouteAnimationStatus);
-  }
-
-  void shareVideo(Query$FetchEpisode$episode episode) {
-    final casting = ref.read(isCasting);
-    final playerProvider = casting ? castPlayerProvider : primaryPlayerProvider;
-    final player = ref.read(playerProvider);
-    final currentPosSeconds = ((player?.playbackPositionMs ?? 0) / 1000).round();
-    if (player != null) {
-      ref.read(playbackApiProvider).pause(player.playerId);
-    }
-    showModalBottomSheet(
-      useRootNavigator: true,
-      context: context,
-      builder: (ctx) => ShareEpisodeSheet(
-        episode: episode,
-        currentPosSeconds: currentPosSeconds,
-      ),
-    );
-  }
-
-  void handleCastSessionUnavailable(CastSessionUnavailable event) async {
-    var player = ref.read(primaryPlayerProvider);
-    var episode = await episodeFuture;
-    if (!mounted || episode == null) return;
-
-    ref.read(playbackServiceProvider).playEpisode(
-          playerId: player!.playerId,
-          autoplay: false,
-          episode: episode,
-          playbackPositionMs: event.playbackPositionMs,
-        );
-  }
-
   @override
   Widget build(BuildContext context) {
-    ref.watch(chromecastListenerProvider).useListenerHook<CastSessionUnavailable>(handleCastSessionUnavailable);
+    // Listen to route animation status
+    final scrollController = useScrollController();
+    final modalRoute = ModalRoute.of(context);
+    final routeAnimationStatus = useState<AnimationStatus?>(null);
+    useEffect(() {
+      void routeAnimationStatusListener(AnimationStatus status) {
+        routeAnimationStatus.value = status;
+      }
+
+      modalRoute?.animation?.addStatusListener(routeAnimationStatusListener);
+      return () => modalRoute?.animation?.removeStatusListener(routeAnimationStatusListener);
+    }, [modalRoute]);
+
+    // Fetch the episode when needed
+    final episodeFuture = useState<Future<Query$FetchEpisode$episode?>?>(null);
+    fetchCurrentEpisode() {
+      episodeFuture.value = ref.read(apiProvider).fetchEpisode(widget.episodeId.toString());
+    }
+
+    useEffect(() {
+      fetchCurrentEpisode();
+      return null;
+    }, [widget.episodeId, widget.queryParamStartPosition]);
 
     return FutureBuilder<Query$FetchEpisode$episode?>(
-      future: episodeFuture,
+      future: episodeFuture.value,
       builder: (context, snapshot) {
         return Scaffold(
           appBar: AppBar(
@@ -294,12 +115,19 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen> with AutoRouteAwa
                   if (noAccess == true) {
                     return const ErrorNoAccess();
                   }
-                  return ErrorGeneric(onRetry: () => loadEpisode());
+                  return ErrorGeneric(onRetry: fetchCurrentEpisode);
                 }
-                if (routeAnimationStatus == AnimationStatus.forward || snapshot.data == null && snapshot.connectionState != ConnectionState.done) {
-                  return _loading();
+                if (routeAnimationStatus.value == AnimationStatus.forward ||
+                    snapshot.data == null && snapshot.connectionState != ConnectionState.done) {
+                  return _LoadingWidget(context: context);
                 }
-                return _episode(snapshot.data!, snapshot.connectionState != ConnectionState.done);
+                return _EpisodeDisplay(
+                  parentState: this,
+                  episode: snapshot.data!,
+                  episodeLoading: snapshot.connectionState != ConnectionState.done,
+                  hideBottomSection: widget.hideBottomSection,
+                  scrollController: scrollController,
+                );
               },
             ),
           ),
@@ -307,8 +135,15 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen> with AutoRouteAwa
       },
     );
   }
+}
 
-  Widget _loading() {
+class _LoadingWidget extends StatelessWidget {
+  const _LoadingWidget({required this.context});
+
+  final BuildContext context;
+
+  @override
+  Widget build(BuildContext context) {
     return Column(
       children: [
         AspectRatio(aspectRatio: 16 / 9, child: Container(color: BccmColors.background2)),
@@ -325,14 +160,70 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen> with AutoRouteAwa
       ],
     );
   }
+}
 
-  Widget _episode(Query$FetchEpisode$episode episode, bool episodeLoading) {
+class _EpisodeDisplay extends HookConsumerWidget {
+  const _EpisodeDisplay({
+    required this.parentState,
+    required this.episode,
+    required this.episodeLoading,
+    required this.hideBottomSection,
+    required this.scrollController,
+  });
+
+  final _EpisodeScreenState parentState;
+  final Query$FetchEpisode$episode episode;
+  final bool episodeLoading;
+  final bool hideBottomSection;
+  final ScrollController scrollController;
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final isMounted = useIsMounted();
     final casting = ref.watch(isCasting);
     var playerProvider = casting ? castPlayerProvider : primaryPlayerProvider;
     var player = ref.watch(playerProvider);
     if (player == null) return const SizedBox.shrink();
+
+    final playerSetupFuture = useState<Future?>(null);
+    Future setupPlayer() {
+      return playerSetupFuture.value = setupPlayerForEpisode(episode, ref: ref);
+    }
+
+    // Fetch lesson progress
+    final lessonProgressFuture = useState<Future<Query$GetEpisodeLessonProgress?>?>(null);
+    final hasStudy = episode.lessons.items.isNotEmpty;
+    useEffect(() {
+      if (!hasStudy) return null;
+      lessonProgressFuture.value = ref.read(apiProvider).loadLessonProgressForEpisode(episode.id);
+      return null;
+      // ignore: exhaustive_keys
+    }, [episode.id]);
+
+    // Scroll to top when relevant
+    final scrollCompleter = useState<Completer<void>?>(null);
+    useEffect(() {
+      if (!scrollController.hasClients) return;
+      scrollCompleter.value = wrapInCompleter(
+        scrollController.animateTo(0, duration: const Duration(milliseconds: 600), curve: Curves.easeOutExpo),
+      );
+      return null;
+      // ignore: exhaustive_keys
+    }, [parentState.widget.episodeId, hideBottomSection, parentState.widget.queryParamStartPosition]);
+
+    // Start playing when chromecast disconnects
+    ref.watch(chromecastListenerProvider).useListenerHook<CastSessionUnavailable>((event) {
+      var player = ref.read(primaryPlayerProvider);
+      ref.read(playbackServiceProvider).playEpisode(
+            playerId: player!.playerId,
+            autoplay: false,
+            episode: episode,
+            playbackPositionMs: event.playbackPositionMs,
+          );
+    });
+
     return FutureBuilder(
-      future: playerSetupCompleter?.future,
+      future: playerSetupFuture.value,
       builder: (context, playerSetupSnapshot) {
         return SingleChildScrollView(
           physics: const AlwaysScrollableScrollPhysics(),
@@ -356,69 +247,56 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen> with AutoRouteAwa
                           imageUrl: episode.image,
                           setupPlayer: setupPlayer,
                           loading: playerSetupSnapshot.connectionState == ConnectionState.waiting,
-                          imageOpacity: scrollCompleter?.isCompleted == false ? 0 : 0.5,
-                        )
-                      else if (routeAnimationStatus == AnimationStatus.forward)
-                        const AspectRatio(
-                          aspectRatio: 16 / 9,
-                          child: Center(
-                            child: SizedBox(
-                              width: 40,
-                              height: 40,
-                              child: CircularProgressIndicator(),
-                            ),
-                          ),
+                          imageOpacity: scrollCompleter.value?.isCompleted == false ? 0 : 0.5,
                         )
                       else
                         BccmPlayer(id: player.playerId),
                       EpisodeInfo(
                         episode,
-                        onShareVideoTapped: () => shareVideo(episode),
+                        onShareVideoTapped: () => shareVideo(context, ref, episode),
                         extraChildren: [
-                          if (Env.enableStudy && episode.lessons.items.isNotEmpty)
+                          if (Env.enableStudy && hasStudy && lessonProgressFuture.value != null)
                             Padding(
                               padding: const EdgeInsets.only(top: 16),
                               child: StudyMoreButton(
-                                progressOverviewFuture: lessonProgressFuture,
-                                onNavigateBack: () {
-                                  setState(() {
-                                    lessonProgressFuture = loadLessonsForEpisode();
-                                  });
-                                },
-                              ),
+                                  lessonProgressFuture: lessonProgressFuture.value!,
+                                  onNavigateBack: () {
+                                    if (!isMounted()) return;
+                                    lessonProgressFuture.value = ref.read(apiProvider).loadLessonProgressForEpisode(episode.id);
+                                  }),
                             ),
                         ],
                       ),
                     ],
                   ),
-                  if (episodeLoading)
-                    Positioned.fill(
-                      child: Container(
-                        color: BccmColors.background1,
-                        child: const Center(
-                          child: LoadingIndicator(),
+                  Positioned.fill(
+                    child: IgnorePointer(
+                      child: AnimatedContainer(
+                        duration: episodeLoading ? Duration.zero : const Duration(milliseconds: 600),
+                        curve: Curves.easeOutExpo,
+                        color: BccmColors.background1.withOpacity(episodeLoading ? 1 : 0),
+                        child: Center(
+                          child: !episodeLoading ? null : const LoadingIndicator(),
                         ),
                       ),
                     ),
+                  ),
                 ],
               ),
-              if (widget.hideBottomSection != true && (!_isUnlisted(episode) || _isStandalone(episode)))
+              if (hideBottomSection != true && (!_isUnlisted(episode) || _isStandalone(episode)))
                 EpisodeTabs(
                   tabs: [
                     Option(id: 'episodes', title: (S.of(context).episodes.toUpperCase())),
                     Option(id: 'details', title: (S.of(context).details.toUpperCase())),
                   ],
                   children: [
-                    if (episode.season == null)
-                      EpisodeRelated(episode: episode)
-                    else
+                    if (episode.season != null)
                       EpisodeSeason(
-                        episode: episode,
-                        selectedSeasonId: selectedSeasonId,
-                        onSeasonSelected: onSeasonSelected,
-                        seasons: seasonsMap,
-                        lessonProgress: lessonProgressMap,
-                      ),
+                        episodeId: parentState.widget.episodeId,
+                        season: episode.season!,
+                      )
+                    else
+                      EpisodeRelated(episode: episode),
                     EpisodeDetails(episode.id)
                   ],
                 ),
@@ -429,31 +307,49 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen> with AutoRouteAwa
     );
   }
 
-  Future onSeasonSelected(String id) async {
-    setState(() {
-      selectedSeasonId = id;
-    });
-    var season = await ref.read(apiProvider).getSeasonEpisodes(id);
-    if (mounted && season != null) {
-      if (season.episodes.items.any((element) => element.lessons.total > 0)) {
-        loadLessonProgressForSeason(season.id);
-      }
-      setState(() {
-        seasonsMap[id] = season.episodes.items
-            .map((ep) => EpisodeListEpisodeData(
-                episodeId: ep.id,
-                locked: ep.locked,
-                ageRating: ep.ageRating,
-                publishDate: ep.publishDate,
-                duration: ep.duration,
-                title: ep.title,
-                image: ep.image,
-                lessonProgressOverview: lessonProgressMap[ep.id]?.lessons.items.firstOrNull,
-                seasonNumber: season.number,
-                episodeNumber: ep.number))
-            .toList();
-      });
+  bool episodeIsCurrentItem(MediaItem? mediaItem) {
+    return mediaItem?.metadata?.extras?['id'] == episode.id;
+  }
+
+  Future setupPlayerForEpisode(Query$FetchEpisode$episode episode, {required WidgetRef ref}) async {
+    var castingNow = ref.read(isCasting);
+    var playerProvider = castingNow ? castPlayerProvider : primaryPlayerProvider;
+
+    var player = ref.read(playerProvider);
+    if (player!.currentMediaItem?.metadata?.extras?['id'] == parentState.widget.episodeId.toString()) {
+      return;
     }
+
+    var startPositionSeconds = (episode.progress ?? 0);
+    if (parentState.widget.queryParamStartPosition != null && parentState.widget.queryParamStartPosition! >= 0) {
+      startPositionSeconds = parentState.widget.queryParamStartPosition!;
+    }
+    if (startPositionSeconds > episode.duration * 0.9) {
+      startPositionSeconds = 0;
+    }
+
+    return ref
+        .read(playbackServiceProvider)
+        .playEpisode(playerId: player.playerId, episode: episode, autoplay: true, playbackPositionMs: startPositionSeconds * 1000)
+        .timeout(const Duration(milliseconds: 12000));
+  }
+
+  void shareVideo(BuildContext context, WidgetRef ref, Query$FetchEpisode$episode episode) {
+    final casting = ref.read(isCasting);
+    final playerProvider = casting ? castPlayerProvider : primaryPlayerProvider;
+    final player = ref.read(playerProvider);
+    final currentPosSeconds = ((player?.playbackPositionMs ?? 0) / 1000).round();
+    if (player != null) {
+      ref.read(playbackApiProvider).pause(player.playerId);
+    }
+    showModalBottomSheet(
+      useRootNavigator: true,
+      context: context,
+      builder: (ctx) => ShareEpisodeSheet(
+        episode: episode,
+        currentPosSeconds: currentPosSeconds,
+      ),
+    );
   }
 
   bool _isStandalone(Query$FetchEpisode$episode episode) {
