@@ -4,7 +4,6 @@ import 'dart:async';
 
 import 'package:auto_route/auto_route.dart';
 import 'package:bccm_player/playback_platform_pigeon.g.dart';
-import 'package:brunstadtv_app/components/default_grid_section.dart';
 import 'package:brunstadtv_app/components/error_generic.dart';
 import 'package:brunstadtv_app/components/loading_indicator.dart';
 import 'package:brunstadtv_app/components/season_episode_list.dart';
@@ -38,6 +37,7 @@ import '../components/episode_tab_selector.dart';
 import '../components/error_no_access.dart';
 import '../components/fade_indexed_stack.dart';
 import '../components/option_list.dart';
+import '../components/sections/thumbnail_grid/item_section_thumbnail_grid.dart';
 import '../components/study_button.dart';
 import '../env/env.dart';
 import '../graphql/queries/studies.graphql.dart';
@@ -587,7 +587,7 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen> with AutoRouteAwa
               padding: const EdgeInsets.all(16),
               child: NavigationOverride(
                 pushInsteadOfReplace: true,
-                child: GridSectionList(size: Enum$GridSectionSize.half, sectionItems: episode.relatedItems!.items),
+                child: GridSectionList(gridSize: Enum$GridSectionSize.half, sectionItems: episode.relatedItems!.items),
               ),
             );
           }

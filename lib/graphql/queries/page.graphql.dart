@@ -4177,6 +4177,562 @@ class _CopyWithStubImpl$Fragment$ItemSection$items<TRes>
   items(_fn) => _res;
 }
 
+class Variables$Fragment$GridSection {
+  factory Variables$Fragment$GridSection({
+    int? first,
+    int? offset,
+  }) =>
+      Variables$Fragment$GridSection._({
+        if (first != null) r'first': first,
+        if (offset != null) r'offset': offset,
+      });
+
+  Variables$Fragment$GridSection._(this._$data);
+
+  factory Variables$Fragment$GridSection.fromJson(Map<String, dynamic> data) {
+    final result$data = <String, dynamic>{};
+    if (data.containsKey('first')) {
+      final l$first = data['first'];
+      result$data['first'] = (l$first as int?);
+    }
+    if (data.containsKey('offset')) {
+      final l$offset = data['offset'];
+      result$data['offset'] = (l$offset as int?);
+    }
+    return Variables$Fragment$GridSection._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  int? get first => (_$data['first'] as int?);
+  int? get offset => (_$data['offset'] as int?);
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    if (_$data.containsKey('first')) {
+      final l$first = first;
+      result$data['first'] = l$first;
+    }
+    if (_$data.containsKey('offset')) {
+      final l$offset = offset;
+      result$data['offset'] = l$offset;
+    }
+    return result$data;
+  }
+
+  CopyWith$Variables$Fragment$GridSection<Variables$Fragment$GridSection>
+      get copyWith => CopyWith$Variables$Fragment$GridSection(
+            this,
+            (i) => i,
+          );
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (!(other is Variables$Fragment$GridSection) ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$first = first;
+    final lOther$first = other.first;
+    if (_$data.containsKey('first') != other._$data.containsKey('first')) {
+      return false;
+    }
+    if (l$first != lOther$first) {
+      return false;
+    }
+    final l$offset = offset;
+    final lOther$offset = other.offset;
+    if (_$data.containsKey('offset') != other._$data.containsKey('offset')) {
+      return false;
+    }
+    if (l$offset != lOther$offset) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$first = first;
+    final l$offset = offset;
+    return Object.hashAll([
+      _$data.containsKey('first') ? l$first : const {},
+      _$data.containsKey('offset') ? l$offset : const {},
+    ]);
+  }
+}
+
+abstract class CopyWith$Variables$Fragment$GridSection<TRes> {
+  factory CopyWith$Variables$Fragment$GridSection(
+    Variables$Fragment$GridSection instance,
+    TRes Function(Variables$Fragment$GridSection) then,
+  ) = _CopyWithImpl$Variables$Fragment$GridSection;
+
+  factory CopyWith$Variables$Fragment$GridSection.stub(TRes res) =
+      _CopyWithStubImpl$Variables$Fragment$GridSection;
+
+  TRes call({
+    int? first,
+    int? offset,
+  });
+}
+
+class _CopyWithImpl$Variables$Fragment$GridSection<TRes>
+    implements CopyWith$Variables$Fragment$GridSection<TRes> {
+  _CopyWithImpl$Variables$Fragment$GridSection(
+    this._instance,
+    this._then,
+  );
+
+  final Variables$Fragment$GridSection _instance;
+
+  final TRes Function(Variables$Fragment$GridSection) _then;
+
+  static const _undefined = {};
+
+  TRes call({
+    Object? first = _undefined,
+    Object? offset = _undefined,
+  }) =>
+      _then(Variables$Fragment$GridSection._({
+        ..._instance._$data,
+        if (first != _undefined) 'first': (first as int?),
+        if (offset != _undefined) 'offset': (offset as int?),
+      }));
+}
+
+class _CopyWithStubImpl$Variables$Fragment$GridSection<TRes>
+    implements CopyWith$Variables$Fragment$GridSection<TRes> {
+  _CopyWithStubImpl$Variables$Fragment$GridSection(this._res);
+
+  TRes _res;
+
+  call({
+    int? first,
+    int? offset,
+  }) =>
+      _res;
+}
+
+class Fragment$GridSection {
+  Fragment$GridSection({
+    required this.gridSize,
+    required this.items,
+    required this.$__typename,
+  });
+
+  factory Fragment$GridSection.fromJson(Map<String, dynamic> json) {
+    final l$gridSize = json['gridSize'];
+    final l$items = json['items'];
+    final l$$__typename = json['__typename'];
+    return Fragment$GridSection(
+      gridSize: fromJson$Enum$GridSectionSize((l$gridSize as String)),
+      items: Fragment$GridSection$items.fromJson(
+          (l$items as Map<String, dynamic>)),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final Enum$GridSectionSize gridSize;
+
+  final Fragment$GridSection$items items;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$gridSize = gridSize;
+    _resultData['gridSize'] = toJson$Enum$GridSectionSize(l$gridSize);
+    final l$items = items;
+    _resultData['items'] = l$items.toJson();
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$gridSize = gridSize;
+    final l$items = items;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$gridSize,
+      l$items,
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (!(other is Fragment$GridSection) || runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$gridSize = gridSize;
+    final lOther$gridSize = other.gridSize;
+    if (l$gridSize != lOther$gridSize) {
+      return false;
+    }
+    final l$items = items;
+    final lOther$items = other.items;
+    if (l$items != lOther$items) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Fragment$GridSection on Fragment$GridSection {
+  CopyWith$Fragment$GridSection<Fragment$GridSection> get copyWith =>
+      CopyWith$Fragment$GridSection(
+        this,
+        (i) => i,
+      );
+}
+
+abstract class CopyWith$Fragment$GridSection<TRes> {
+  factory CopyWith$Fragment$GridSection(
+    Fragment$GridSection instance,
+    TRes Function(Fragment$GridSection) then,
+  ) = _CopyWithImpl$Fragment$GridSection;
+
+  factory CopyWith$Fragment$GridSection.stub(TRes res) =
+      _CopyWithStubImpl$Fragment$GridSection;
+
+  TRes call({
+    Enum$GridSectionSize? gridSize,
+    Fragment$GridSection$items? items,
+    String? $__typename,
+  });
+  CopyWith$Fragment$GridSection$items<TRes> get items;
+}
+
+class _CopyWithImpl$Fragment$GridSection<TRes>
+    implements CopyWith$Fragment$GridSection<TRes> {
+  _CopyWithImpl$Fragment$GridSection(
+    this._instance,
+    this._then,
+  );
+
+  final Fragment$GridSection _instance;
+
+  final TRes Function(Fragment$GridSection) _then;
+
+  static const _undefined = {};
+
+  TRes call({
+    Object? gridSize = _undefined,
+    Object? items = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(Fragment$GridSection(
+        gridSize: gridSize == _undefined || gridSize == null
+            ? _instance.gridSize
+            : (gridSize as Enum$GridSectionSize),
+        items: items == _undefined || items == null
+            ? _instance.items
+            : (items as Fragment$GridSection$items),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+  CopyWith$Fragment$GridSection$items<TRes> get items {
+    final local$items = _instance.items;
+    return CopyWith$Fragment$GridSection$items(
+        local$items, (e) => call(items: e));
+  }
+}
+
+class _CopyWithStubImpl$Fragment$GridSection<TRes>
+    implements CopyWith$Fragment$GridSection<TRes> {
+  _CopyWithStubImpl$Fragment$GridSection(this._res);
+
+  TRes _res;
+
+  call({
+    Enum$GridSectionSize? gridSize,
+    Fragment$GridSection$items? items,
+    String? $__typename,
+  }) =>
+      _res;
+  CopyWith$Fragment$GridSection$items<TRes> get items =>
+      CopyWith$Fragment$GridSection$items.stub(_res);
+}
+
+const fragmentDefinitionGridSection = FragmentDefinitionNode(
+  name: NameNode(value: 'GridSection'),
+  typeCondition: TypeConditionNode(
+      on: NamedTypeNode(
+    name: NameNode(value: 'GridSection'),
+    isNonNull: false,
+  )),
+  directives: [],
+  selectionSet: SelectionSetNode(selections: [
+    FieldNode(
+      name: NameNode(value: 'size'),
+      alias: NameNode(value: 'gridSize'),
+      arguments: [],
+      directives: [],
+      selectionSet: null,
+    ),
+    FieldNode(
+      name: NameNode(value: 'items'),
+      alias: null,
+      arguments: [
+        ArgumentNode(
+          name: NameNode(value: 'first'),
+          value: VariableNode(name: NameNode(value: 'first')),
+        ),
+        ArgumentNode(
+          name: NameNode(value: 'offset'),
+          value: VariableNode(name: NameNode(value: 'offset')),
+        ),
+      ],
+      directives: [],
+      selectionSet: SelectionSetNode(selections: [
+        FieldNode(
+          name: NameNode(value: 'items'),
+          alias: null,
+          arguments: [],
+          directives: [],
+          selectionSet: SelectionSetNode(selections: [
+            FragmentSpreadNode(
+              name: NameNode(value: 'GridSectionItem'),
+              directives: [],
+            ),
+            FieldNode(
+              name: NameNode(value: '__typename'),
+              alias: null,
+              arguments: [],
+              directives: [],
+              selectionSet: null,
+            ),
+          ]),
+        ),
+        FieldNode(
+          name: NameNode(value: '__typename'),
+          alias: null,
+          arguments: [],
+          directives: [],
+          selectionSet: null,
+        ),
+      ]),
+    ),
+    FieldNode(
+      name: NameNode(value: '__typename'),
+      alias: null,
+      arguments: [],
+      directives: [],
+      selectionSet: null,
+    ),
+  ]),
+);
+const documentNodeFragmentGridSection = DocumentNode(definitions: [
+  fragmentDefinitionGridSection,
+  fragmentDefinitionGridSectionItem,
+  fragmentDefinitionItemSectionItem,
+]);
+
+extension ClientExtension$Fragment$GridSection on graphql.GraphQLClient {
+  void writeFragment$GridSection({
+    required Fragment$GridSection data,
+    required Map<String, dynamic> idFields,
+    Variables$Fragment$GridSection? variables,
+    bool broadcast = true,
+  }) =>
+      this.writeFragment(
+        graphql.FragmentRequest(
+          idFields: idFields,
+          fragment: const graphql.Fragment(
+            fragmentName: 'GridSection',
+            document: documentNodeFragmentGridSection,
+          ),
+          variables: variables?.toJson() ?? const {},
+        ),
+        data: data.toJson(),
+        broadcast: broadcast,
+      );
+  Fragment$GridSection? readFragment$GridSection({
+    required Map<String, dynamic> idFields,
+    Variables$Fragment$GridSection? variables,
+    bool optimistic = true,
+  }) {
+    final result = this.readFragment(
+      graphql.FragmentRequest(
+        idFields: idFields,
+        fragment: const graphql.Fragment(
+          fragmentName: 'GridSection',
+          document: documentNodeFragmentGridSection,
+        ),
+        variables: variables?.toJson() ?? const {},
+      ),
+      optimistic: optimistic,
+    );
+    return result == null ? null : Fragment$GridSection.fromJson(result);
+  }
+}
+
+class Fragment$GridSection$items {
+  Fragment$GridSection$items({
+    required this.items,
+    required this.$__typename,
+  });
+
+  factory Fragment$GridSection$items.fromJson(Map<String, dynamic> json) {
+    final l$items = json['items'];
+    final l$$__typename = json['__typename'];
+    return Fragment$GridSection$items(
+      items: (l$items as List<dynamic>)
+          .map((e) =>
+              Fragment$GridSectionItem.fromJson((e as Map<String, dynamic>)))
+          .toList(),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final List<Fragment$GridSectionItem> items;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$items = items;
+    _resultData['items'] = l$items.map((e) => e.toJson()).toList();
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$items = items;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      Object.hashAll(l$items.map((v) => v)),
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (!(other is Fragment$GridSection$items) ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$items = items;
+    final lOther$items = other.items;
+    if (l$items.length != lOther$items.length) {
+      return false;
+    }
+    for (int i = 0; i < l$items.length; i++) {
+      final l$items$entry = l$items[i];
+      final lOther$items$entry = lOther$items[i];
+      if (l$items$entry != lOther$items$entry) {
+        return false;
+      }
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Fragment$GridSection$items
+    on Fragment$GridSection$items {
+  CopyWith$Fragment$GridSection$items<Fragment$GridSection$items>
+      get copyWith => CopyWith$Fragment$GridSection$items(
+            this,
+            (i) => i,
+          );
+}
+
+abstract class CopyWith$Fragment$GridSection$items<TRes> {
+  factory CopyWith$Fragment$GridSection$items(
+    Fragment$GridSection$items instance,
+    TRes Function(Fragment$GridSection$items) then,
+  ) = _CopyWithImpl$Fragment$GridSection$items;
+
+  factory CopyWith$Fragment$GridSection$items.stub(TRes res) =
+      _CopyWithStubImpl$Fragment$GridSection$items;
+
+  TRes call({
+    List<Fragment$GridSectionItem>? items,
+    String? $__typename,
+  });
+  TRes items(
+      Iterable<Fragment$GridSectionItem> Function(
+              Iterable<
+                  CopyWith$Fragment$GridSectionItem<Fragment$GridSectionItem>>)
+          _fn);
+}
+
+class _CopyWithImpl$Fragment$GridSection$items<TRes>
+    implements CopyWith$Fragment$GridSection$items<TRes> {
+  _CopyWithImpl$Fragment$GridSection$items(
+    this._instance,
+    this._then,
+  );
+
+  final Fragment$GridSection$items _instance;
+
+  final TRes Function(Fragment$GridSection$items) _then;
+
+  static const _undefined = {};
+
+  TRes call({
+    Object? items = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(Fragment$GridSection$items(
+        items: items == _undefined || items == null
+            ? _instance.items
+            : (items as List<Fragment$GridSectionItem>),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+  TRes items(
+          Iterable<Fragment$GridSectionItem> Function(
+                  Iterable<
+                      CopyWith$Fragment$GridSectionItem<
+                          Fragment$GridSectionItem>>)
+              _fn) =>
+      call(
+          items:
+              _fn(_instance.items.map((e) => CopyWith$Fragment$GridSectionItem(
+                    e,
+                    (i) => i,
+                  ))).toList());
+}
+
+class _CopyWithStubImpl$Fragment$GridSection$items<TRes>
+    implements CopyWith$Fragment$GridSection$items<TRes> {
+  _CopyWithStubImpl$Fragment$GridSection$items(this._res);
+
+  TRes _res;
+
+  call({
+    List<Fragment$GridSectionItem>? items,
+    String? $__typename,
+  }) =>
+      _res;
+  items(_fn) => _res;
+}
+
 class Variables$Fragment$Section {
   factory Variables$Fragment$Section({
     int? first,
@@ -4846,55 +5402,9 @@ const fragmentDefinitionSection = FragmentDefinitionNode(
           )),
           directives: [],
           selectionSet: SelectionSetNode(selections: [
-            FieldNode(
-              name: NameNode(value: 'size'),
-              alias: NameNode(value: 'gridSize'),
-              arguments: [],
+            FragmentSpreadNode(
+              name: NameNode(value: 'GridSection'),
               directives: [],
-              selectionSet: null,
-            ),
-            FieldNode(
-              name: NameNode(value: 'items'),
-              alias: null,
-              arguments: [
-                ArgumentNode(
-                  name: NameNode(value: 'first'),
-                  value: VariableNode(name: NameNode(value: 'first')),
-                ),
-                ArgumentNode(
-                  name: NameNode(value: 'offset'),
-                  value: VariableNode(name: NameNode(value: 'offset')),
-                ),
-              ],
-              directives: [],
-              selectionSet: SelectionSetNode(selections: [
-                FieldNode(
-                  name: NameNode(value: 'items'),
-                  alias: null,
-                  arguments: [],
-                  directives: [],
-                  selectionSet: SelectionSetNode(selections: [
-                    FragmentSpreadNode(
-                      name: NameNode(value: 'GridSectionItem'),
-                      directives: [],
-                    ),
-                    FieldNode(
-                      name: NameNode(value: '__typename'),
-                      alias: null,
-                      arguments: [],
-                      directives: [],
-                      selectionSet: null,
-                    ),
-                  ]),
-                ),
-                FieldNode(
-                  name: NameNode(value: '__typename'),
-                  alias: null,
-                  arguments: [],
-                  directives: [],
-                  selectionSet: null,
-                ),
-              ]),
             ),
             FieldNode(
               name: NameNode(value: '__typename'),
@@ -5385,6 +5895,7 @@ const documentNodeFragmentSection = DocumentNode(definitions: [
   fragmentDefinitionSection,
   fragmentDefinitionItemSection,
   fragmentDefinitionItemSectionItem,
+  fragmentDefinitionGridSection,
   fragmentDefinitionGridSectionItem,
 ]);
 
@@ -16988,7 +17499,7 @@ class _CopyWithStubImpl$Fragment$Section$$CardListSection$items<TRes>
 }
 
 class Fragment$Section$$DefaultGridSection
-    implements Fragment$ItemSection, Fragment$Section {
+    implements Fragment$ItemSection, Fragment$GridSection, Fragment$Section {
   Fragment$Section$$DefaultGridSection({
     required this.id,
     this.title,
@@ -17448,7 +17959,7 @@ class _CopyWithStubImpl$Fragment$Section$$DefaultGridSection$metadata<TRes>
 }
 
 class Fragment$Section$$DefaultGridSection$items
-    implements Fragment$ItemSection$items {
+    implements Fragment$ItemSection$items, Fragment$GridSection$items {
   Fragment$Section$$DefaultGridSection$items({
     required this.offset,
     required this.first,
@@ -19237,7 +19748,7 @@ class _CopyWithStubImpl$Fragment$Section$$DefaultGridSection$items$items$item$$S
 }
 
 class Fragment$Section$$PosterGridSection
-    implements Fragment$ItemSection, Fragment$Section {
+    implements Fragment$ItemSection, Fragment$GridSection, Fragment$Section {
   Fragment$Section$$PosterGridSection({
     required this.id,
     this.title,
@@ -19696,7 +20207,7 @@ class _CopyWithStubImpl$Fragment$Section$$PosterGridSection$metadata<TRes>
 }
 
 class Fragment$Section$$PosterGridSection$items
-    implements Fragment$ItemSection$items {
+    implements Fragment$ItemSection$items, Fragment$GridSection$items {
   Fragment$Section$$PosterGridSection$items({
     required this.offset,
     required this.first,
@@ -21482,7 +21993,7 @@ class _CopyWithStubImpl$Fragment$Section$$PosterGridSection$items$items$item$$Sh
 }
 
 class Fragment$Section$$IconGridSection
-    implements Fragment$ItemSection, Fragment$Section {
+    implements Fragment$ItemSection, Fragment$GridSection, Fragment$Section {
   Fragment$Section$$IconGridSection({
     required this.id,
     this.title,
@@ -21940,7 +22451,7 @@ class _CopyWithStubImpl$Fragment$Section$$IconGridSection$metadata<TRes>
 }
 
 class Fragment$Section$$IconGridSection$items
-    implements Fragment$ItemSection$items {
+    implements Fragment$ItemSection$items, Fragment$GridSection$items {
   Fragment$Section$$IconGridSection$items({
     required this.offset,
     required this.first,
@@ -27071,6 +27582,7 @@ const documentNodeQueryPage = DocumentNode(definitions: [
   fragmentDefinitionSection,
   fragmentDefinitionItemSection,
   fragmentDefinitionItemSectionItem,
+  fragmentDefinitionGridSection,
   fragmentDefinitionGridSectionItem,
 ]);
 Query$Page _parserFn$Query$Page(Map<String, dynamic> data) =>

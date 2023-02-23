@@ -55,7 +55,7 @@ class _IconGridSectionList extends StatelessWidget {
               ),
             )
             .toList(),
-        colSize: colSize,
+        columnCount: colSize,
       );
     });
     return ListView.builder(

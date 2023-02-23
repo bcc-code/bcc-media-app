@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class GridRow extends StatelessWidget {
-  final int colSize;
+  final int columnCount;
   final List<Widget> items;
   final EdgeInsetsGeometry? margin;
   final double gap;
@@ -9,7 +9,7 @@ class GridRow extends StatelessWidget {
   const GridRow({
     super.key,
     required this.items,
-    required this.colSize,
+    required this.columnCount,
     this.margin,
     this.gap = 16.0,
   });
@@ -23,7 +23,7 @@ class GridRow extends StatelessWidget {
       }
     }
 
-    var missingColumns = colSize - items.length;
+    var missingColumns = columnCount - items.length;
     if (missingColumns > 0) {
       newItems.addAll(
         List<Widget>.generate(missingColumns, (_) => const Spacer()),
