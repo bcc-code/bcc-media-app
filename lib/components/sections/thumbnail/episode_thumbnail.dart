@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../graphql/queries/page.graphql.dart';
-
+import '../../../models/episode_thumbnail_data.dart';
 import '../../../services/utils.dart';
 import '../../bordered_image_container.dart';
 import '../../episode_duration.dart';
@@ -9,18 +8,45 @@ import '../../watch_progress_indicator.dart';
 import '../../watched_badge.dart';
 
 class EpisodeThumbnail extends StatelessWidget {
+  final EpisodeThumbnailData episode;
+  final double imageWidth;
+  final double imageHeight;
+  final bool isLive;
+
   const EpisodeThumbnail({
     super.key,
     required this.episode,
-    required this.image,
-    required this.imageSize,
-    required this.isLive,
+    required this.imageWidth,
+    required this.imageHeight,
+    this.isLive = false,
   });
 
-  final Fragment$ItemSectionItem$item$$Episode episode;
-  final String? image;
-  final Size imageSize;
-  final bool isLive;
+  factory EpisodeThumbnail.withSize({
+    required EpisodeThumbnailData episode,
+    required Size imageSize,
+    bool isLive = false,
+  }) {
+    return EpisodeThumbnail(
+      episode: episode,
+      imageWidth: imageSize.width,
+      imageHeight: imageSize.height,
+      isLive: isLive,
+    );
+  }
+
+  factory EpisodeThumbnail.withWidth({
+    required EpisodeThumbnailData episode,
+    required double imageWidth,
+    required double aspectRatio,
+    bool isLive = false,
+  }) {
+    return EpisodeThumbnail(
+      imageWidth: imageWidth,
+      imageHeight: imageWidth / aspectRatio,
+      isLive: isLive,
+      episode: episode,
+    );
+  }
 
   bool get watched => episode.progress != null && episode.progress! > episode.duration * 0.9;
 
@@ -28,17 +54,17 @@ class EpisodeThumbnail extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       margin: const EdgeInsets.only(bottom: 4),
-      width: imageSize.width,
-      height: imageSize.height,
+      width: imageWidth,
+      height: imageHeight,
       child: Stack(
         clipBehavior: Clip.none,
         children: [
           episode.locked && !isLive
               ? Opacity(
                   opacity: 0.5,
-                  child: BorderedImageContainer(imageUrl: image),
+                  child: BorderedImageContainer(imageUrl: episode.image),
                 )
-              : BorderedImageContainer(imageUrl: image),
+              : BorderedImageContainer(imageUrl: episode.image),
           if (episode.locked)
             Container(
               width: double.infinity,

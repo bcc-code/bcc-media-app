@@ -3,12 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../graphql/queries/calendar_episode_entries.graphql.dart';
+import '../models/episode_thumbnail_data.dart';
 import '../theme/bccm_colors.dart';
 import '../helpers/utils.dart';
 import '../l10n/app_localizations.dart';
 import '../providers/todays_calendar_entries.dart';
-import '../services/utils.dart';
-import 'bordered_image_container.dart';
+import 'sections/thumbnail/episode_thumbnail.dart';
 
 class EpisodeListEpisode extends ConsumerWidget {
   const EpisodeListEpisode({
@@ -20,8 +20,9 @@ class EpisodeListEpisode extends ConsumerWidget {
     required this.ageRating,
     required this.duration,
     this.showSecondaryTitle = true,
-    this.publishDate,
     this.locked = false,
+    this.progress,
+    this.publishDate,
   });
   final String id;
   final String title;
@@ -30,8 +31,9 @@ class EpisodeListEpisode extends ConsumerWidget {
   final String ageRating;
   final int duration;
   final bool showSecondaryTitle;
-  final String? publishDate;
   final bool locked;
+  final int? progress;
+  final String? publishDate;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -46,7 +48,18 @@ class EpisodeListEpisode extends ConsumerWidget {
         children: [
           Container(
             margin: const EdgeInsets.only(right: 16),
-            child: sectionItemImage(isLive: curLiveEpisode?.id == id),
+            child: EpisodeThumbnail.withWidth(
+              episode: EpisodeThumbnailData(
+                progress: progress,
+                duration: duration,
+                locked: locked,
+                image: image,
+                publishDate: publishDate,
+              ),
+              imageWidth: 128,
+              aspectRatio: 16 / 9,
+              isLive: curLiveEpisode?.id == id,
+            ),
           ),
           Expanded(
             child: Column(
@@ -102,42 +115,6 @@ class EpisodeListEpisode extends ConsumerWidget {
             ),
           )
         ],
-      ),
-    );
-  }
-
-  Widget sectionItemImage({required bool isLive}) {
-    return AspectRatio(
-      aspectRatio: 16 / 9,
-      child: SizedBox(
-        width: 128,
-        child: Stack(
-          clipBehavior: Clip.none,
-          children: [
-            locked && !isLive
-                ? Opacity(
-                    opacity: 0.5,
-                    child: BorderedImageContainer(imageUrl: image),
-                  )
-                : BorderedImageContainer(imageUrl: image),
-            if (locked)
-              Container(
-                width: double.infinity,
-                height: double.infinity,
-                decoration: const BoxDecoration(
-                  image: DecorationImage(
-                    image: AssetImage('assets/icons/Wait.png'),
-                  ),
-                ),
-              ),
-            if (getFeaturedTag(publishDate: publishDate, locked: locked, isLive: isLive) != null)
-              Positioned(
-                top: -4,
-                right: -4,
-                child: getFeaturedTag(publishDate: publishDate, locked: locked, isLive: isLive)!,
-              ),
-          ],
-        ),
       ),
     );
   }

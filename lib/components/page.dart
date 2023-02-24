@@ -26,7 +26,7 @@ import 'icon_section.dart';
 import 'label_section.dart';
 import 'sections/thumbnail_slider/item_section_thumbnail_slider.dart';
 import 'icon_grid_section.dart';
-import 'list_section.dart';
+import 'sections/list_section.dart';
 import 'page_section.dart';
 import 'web_section.dart';
 
