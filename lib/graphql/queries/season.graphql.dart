@@ -287,35 +287,6 @@ const documentNodeQueryGetSeasonEpisodes = DocumentNode(definitions: [
                 arguments: [],
                 directives: [],
                 selectionSet: SelectionSetNode(selections: [
-                  FieldNode(
-                    name: NameNode(value: 'id'),
-                    alias: null,
-                    arguments: [],
-                    directives: [],
-                    selectionSet: null,
-                  ),
-                  FieldNode(
-                    name: NameNode(value: 'lessons'),
-                    alias: null,
-                    arguments: [],
-                    directives: [],
-                    selectionSet: SelectionSetNode(selections: [
-                      FieldNode(
-                        name: NameNode(value: 'total'),
-                        alias: null,
-                        arguments: [],
-                        directives: [],
-                        selectionSet: null,
-                      ),
-                      FieldNode(
-                        name: NameNode(value: '__typename'),
-                        alias: null,
-                        arguments: [],
-                        directives: [],
-                        selectionSet: null,
-                      ),
-                    ]),
-                  ),
                   FragmentSpreadNode(
                     name: NameNode(value: 'SeasonListEpisode'),
                     directives: [],
@@ -672,14 +643,14 @@ class Query$GetSeasonEpisodes$season$episodes {
     final l$$__typename = json['__typename'];
     return Query$GetSeasonEpisodes$season$episodes(
       items: (l$items as List<dynamic>)
-          .map((e) => Query$GetSeasonEpisodes$season$episodes$items.fromJson(
-              (e as Map<String, dynamic>)))
+          .map((e) =>
+              Fragment$SeasonListEpisode.fromJson((e as Map<String, dynamic>)))
           .toList(),
       $__typename: (l$$__typename as String),
     );
   }
 
-  final List<Query$GetSeasonEpisodes$season$episodes$items> items;
+  final List<Fragment$SeasonListEpisode> items;
 
   final String $__typename;
 
@@ -752,14 +723,14 @@ abstract class CopyWith$Query$GetSeasonEpisodes$season$episodes<TRes> {
       _CopyWithStubImpl$Query$GetSeasonEpisodes$season$episodes;
 
   TRes call({
-    List<Query$GetSeasonEpisodes$season$episodes$items>? items,
+    List<Fragment$SeasonListEpisode>? items,
     String? $__typename,
   });
   TRes items(
-      Iterable<Query$GetSeasonEpisodes$season$episodes$items> Function(
+      Iterable<Fragment$SeasonListEpisode> Function(
               Iterable<
-                  CopyWith$Query$GetSeasonEpisodes$season$episodes$items<
-                      Query$GetSeasonEpisodes$season$episodes$items>>)
+                  CopyWith$Fragment$SeasonListEpisode<
+                      Fragment$SeasonListEpisode>>)
           _fn);
 }
 
@@ -783,20 +754,20 @@ class _CopyWithImpl$Query$GetSeasonEpisodes$season$episodes<TRes>
       _then(Query$GetSeasonEpisodes$season$episodes(
         items: items == _undefined || items == null
             ? _instance.items
-            : (items as List<Query$GetSeasonEpisodes$season$episodes$items>),
+            : (items as List<Fragment$SeasonListEpisode>),
         $__typename: $__typename == _undefined || $__typename == null
             ? _instance.$__typename
             : ($__typename as String),
       ));
   TRes items(
-          Iterable<Query$GetSeasonEpisodes$season$episodes$items> Function(
+          Iterable<Fragment$SeasonListEpisode> Function(
                   Iterable<
-                      CopyWith$Query$GetSeasonEpisodes$season$episodes$items<
-                          Query$GetSeasonEpisodes$season$episodes$items>>)
+                      CopyWith$Fragment$SeasonListEpisode<
+                          Fragment$SeasonListEpisode>>)
               _fn) =>
       call(
-          items: _fn(_instance.items.map(
-              (e) => CopyWith$Query$GetSeasonEpisodes$season$episodes$items(
+          items: _fn(
+              _instance.items.map((e) => CopyWith$Fragment$SeasonListEpisode(
                     e,
                     (i) => i,
                   ))).toList());
@@ -809,441 +780,9 @@ class _CopyWithStubImpl$Query$GetSeasonEpisodes$season$episodes<TRes>
   TRes _res;
 
   call({
-    List<Query$GetSeasonEpisodes$season$episodes$items>? items,
+    List<Fragment$SeasonListEpisode>? items,
     String? $__typename,
   }) =>
       _res;
   items(_fn) => _res;
-}
-
-class Query$GetSeasonEpisodes$season$episodes$items
-    implements Fragment$SeasonListEpisode {
-  Query$GetSeasonEpisodes$season$episodes$items({
-    required this.id,
-    required this.lessons,
-    this.image,
-    this.number,
-    required this.title,
-    required this.publishDate,
-    required this.ageRating,
-    required this.duration,
-    required this.locked,
-    required this.$__typename,
-  });
-
-  factory Query$GetSeasonEpisodes$season$episodes$items.fromJson(
-      Map<String, dynamic> json) {
-    final l$id = json['id'];
-    final l$lessons = json['lessons'];
-    final l$image = json['image'];
-    final l$number = json['number'];
-    final l$title = json['title'];
-    final l$publishDate = json['publishDate'];
-    final l$ageRating = json['ageRating'];
-    final l$duration = json['duration'];
-    final l$locked = json['locked'];
-    final l$$__typename = json['__typename'];
-    return Query$GetSeasonEpisodes$season$episodes$items(
-      id: (l$id as String),
-      lessons: Query$GetSeasonEpisodes$season$episodes$items$lessons.fromJson(
-          (l$lessons as Map<String, dynamic>)),
-      image: (l$image as String?),
-      number: (l$number as int?),
-      title: (l$title as String),
-      publishDate: (l$publishDate as String),
-      ageRating: (l$ageRating as String),
-      duration: (l$duration as int),
-      locked: (l$locked as bool),
-      $__typename: (l$$__typename as String),
-    );
-  }
-
-  final String id;
-
-  final Query$GetSeasonEpisodes$season$episodes$items$lessons lessons;
-
-  final String? image;
-
-  final int? number;
-
-  final String title;
-
-  final String publishDate;
-
-  final String ageRating;
-
-  final int duration;
-
-  final bool locked;
-
-  final String $__typename;
-
-  Map<String, dynamic> toJson() {
-    final _resultData = <String, dynamic>{};
-    final l$id = id;
-    _resultData['id'] = l$id;
-    final l$lessons = lessons;
-    _resultData['lessons'] = l$lessons.toJson();
-    final l$image = image;
-    _resultData['image'] = l$image;
-    final l$number = number;
-    _resultData['number'] = l$number;
-    final l$title = title;
-    _resultData['title'] = l$title;
-    final l$publishDate = publishDate;
-    _resultData['publishDate'] = l$publishDate;
-    final l$ageRating = ageRating;
-    _resultData['ageRating'] = l$ageRating;
-    final l$duration = duration;
-    _resultData['duration'] = l$duration;
-    final l$locked = locked;
-    _resultData['locked'] = l$locked;
-    final l$$__typename = $__typename;
-    _resultData['__typename'] = l$$__typename;
-    return _resultData;
-  }
-
-  @override
-  int get hashCode {
-    final l$id = id;
-    final l$lessons = lessons;
-    final l$image = image;
-    final l$number = number;
-    final l$title = title;
-    final l$publishDate = publishDate;
-    final l$ageRating = ageRating;
-    final l$duration = duration;
-    final l$locked = locked;
-    final l$$__typename = $__typename;
-    return Object.hashAll([
-      l$id,
-      l$lessons,
-      l$image,
-      l$number,
-      l$title,
-      l$publishDate,
-      l$ageRating,
-      l$duration,
-      l$locked,
-      l$$__typename,
-    ]);
-  }
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) {
-      return true;
-    }
-    if (!(other is Query$GetSeasonEpisodes$season$episodes$items) ||
-        runtimeType != other.runtimeType) {
-      return false;
-    }
-    final l$id = id;
-    final lOther$id = other.id;
-    if (l$id != lOther$id) {
-      return false;
-    }
-    final l$lessons = lessons;
-    final lOther$lessons = other.lessons;
-    if (l$lessons != lOther$lessons) {
-      return false;
-    }
-    final l$image = image;
-    final lOther$image = other.image;
-    if (l$image != lOther$image) {
-      return false;
-    }
-    final l$number = number;
-    final lOther$number = other.number;
-    if (l$number != lOther$number) {
-      return false;
-    }
-    final l$title = title;
-    final lOther$title = other.title;
-    if (l$title != lOther$title) {
-      return false;
-    }
-    final l$publishDate = publishDate;
-    final lOther$publishDate = other.publishDate;
-    if (l$publishDate != lOther$publishDate) {
-      return false;
-    }
-    final l$ageRating = ageRating;
-    final lOther$ageRating = other.ageRating;
-    if (l$ageRating != lOther$ageRating) {
-      return false;
-    }
-    final l$duration = duration;
-    final lOther$duration = other.duration;
-    if (l$duration != lOther$duration) {
-      return false;
-    }
-    final l$locked = locked;
-    final lOther$locked = other.locked;
-    if (l$locked != lOther$locked) {
-      return false;
-    }
-    final l$$__typename = $__typename;
-    final lOther$$__typename = other.$__typename;
-    if (l$$__typename != lOther$$__typename) {
-      return false;
-    }
-    return true;
-  }
-}
-
-extension UtilityExtension$Query$GetSeasonEpisodes$season$episodes$items
-    on Query$GetSeasonEpisodes$season$episodes$items {
-  CopyWith$Query$GetSeasonEpisodes$season$episodes$items<
-          Query$GetSeasonEpisodes$season$episodes$items>
-      get copyWith => CopyWith$Query$GetSeasonEpisodes$season$episodes$items(
-            this,
-            (i) => i,
-          );
-}
-
-abstract class CopyWith$Query$GetSeasonEpisodes$season$episodes$items<TRes> {
-  factory CopyWith$Query$GetSeasonEpisodes$season$episodes$items(
-    Query$GetSeasonEpisodes$season$episodes$items instance,
-    TRes Function(Query$GetSeasonEpisodes$season$episodes$items) then,
-  ) = _CopyWithImpl$Query$GetSeasonEpisodes$season$episodes$items;
-
-  factory CopyWith$Query$GetSeasonEpisodes$season$episodes$items.stub(
-          TRes res) =
-      _CopyWithStubImpl$Query$GetSeasonEpisodes$season$episodes$items;
-
-  TRes call({
-    String? id,
-    Query$GetSeasonEpisodes$season$episodes$items$lessons? lessons,
-    String? image,
-    int? number,
-    String? title,
-    String? publishDate,
-    String? ageRating,
-    int? duration,
-    bool? locked,
-    String? $__typename,
-  });
-  CopyWith$Query$GetSeasonEpisodes$season$episodes$items$lessons<TRes>
-      get lessons;
-}
-
-class _CopyWithImpl$Query$GetSeasonEpisodes$season$episodes$items<TRes>
-    implements CopyWith$Query$GetSeasonEpisodes$season$episodes$items<TRes> {
-  _CopyWithImpl$Query$GetSeasonEpisodes$season$episodes$items(
-    this._instance,
-    this._then,
-  );
-
-  final Query$GetSeasonEpisodes$season$episodes$items _instance;
-
-  final TRes Function(Query$GetSeasonEpisodes$season$episodes$items) _then;
-
-  static const _undefined = {};
-
-  TRes call({
-    Object? id = _undefined,
-    Object? lessons = _undefined,
-    Object? image = _undefined,
-    Object? number = _undefined,
-    Object? title = _undefined,
-    Object? publishDate = _undefined,
-    Object? ageRating = _undefined,
-    Object? duration = _undefined,
-    Object? locked = _undefined,
-    Object? $__typename = _undefined,
-  }) =>
-      _then(Query$GetSeasonEpisodes$season$episodes$items(
-        id: id == _undefined || id == null ? _instance.id : (id as String),
-        lessons: lessons == _undefined || lessons == null
-            ? _instance.lessons
-            : (lessons
-                as Query$GetSeasonEpisodes$season$episodes$items$lessons),
-        image: image == _undefined ? _instance.image : (image as String?),
-        number: number == _undefined ? _instance.number : (number as int?),
-        title: title == _undefined || title == null
-            ? _instance.title
-            : (title as String),
-        publishDate: publishDate == _undefined || publishDate == null
-            ? _instance.publishDate
-            : (publishDate as String),
-        ageRating: ageRating == _undefined || ageRating == null
-            ? _instance.ageRating
-            : (ageRating as String),
-        duration: duration == _undefined || duration == null
-            ? _instance.duration
-            : (duration as int),
-        locked: locked == _undefined || locked == null
-            ? _instance.locked
-            : (locked as bool),
-        $__typename: $__typename == _undefined || $__typename == null
-            ? _instance.$__typename
-            : ($__typename as String),
-      ));
-  CopyWith$Query$GetSeasonEpisodes$season$episodes$items$lessons<TRes>
-      get lessons {
-    final local$lessons = _instance.lessons;
-    return CopyWith$Query$GetSeasonEpisodes$season$episodes$items$lessons(
-        local$lessons, (e) => call(lessons: e));
-  }
-}
-
-class _CopyWithStubImpl$Query$GetSeasonEpisodes$season$episodes$items<TRes>
-    implements CopyWith$Query$GetSeasonEpisodes$season$episodes$items<TRes> {
-  _CopyWithStubImpl$Query$GetSeasonEpisodes$season$episodes$items(this._res);
-
-  TRes _res;
-
-  call({
-    String? id,
-    Query$GetSeasonEpisodes$season$episodes$items$lessons? lessons,
-    String? image,
-    int? number,
-    String? title,
-    String? publishDate,
-    String? ageRating,
-    int? duration,
-    bool? locked,
-    String? $__typename,
-  }) =>
-      _res;
-  CopyWith$Query$GetSeasonEpisodes$season$episodes$items$lessons<TRes>
-      get lessons =>
-          CopyWith$Query$GetSeasonEpisodes$season$episodes$items$lessons.stub(
-              _res);
-}
-
-class Query$GetSeasonEpisodes$season$episodes$items$lessons {
-  Query$GetSeasonEpisodes$season$episodes$items$lessons({
-    required this.total,
-    required this.$__typename,
-  });
-
-  factory Query$GetSeasonEpisodes$season$episodes$items$lessons.fromJson(
-      Map<String, dynamic> json) {
-    final l$total = json['total'];
-    final l$$__typename = json['__typename'];
-    return Query$GetSeasonEpisodes$season$episodes$items$lessons(
-      total: (l$total as int),
-      $__typename: (l$$__typename as String),
-    );
-  }
-
-  final int total;
-
-  final String $__typename;
-
-  Map<String, dynamic> toJson() {
-    final _resultData = <String, dynamic>{};
-    final l$total = total;
-    _resultData['total'] = l$total;
-    final l$$__typename = $__typename;
-    _resultData['__typename'] = l$$__typename;
-    return _resultData;
-  }
-
-  @override
-  int get hashCode {
-    final l$total = total;
-    final l$$__typename = $__typename;
-    return Object.hashAll([
-      l$total,
-      l$$__typename,
-    ]);
-  }
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) {
-      return true;
-    }
-    if (!(other is Query$GetSeasonEpisodes$season$episodes$items$lessons) ||
-        runtimeType != other.runtimeType) {
-      return false;
-    }
-    final l$total = total;
-    final lOther$total = other.total;
-    if (l$total != lOther$total) {
-      return false;
-    }
-    final l$$__typename = $__typename;
-    final lOther$$__typename = other.$__typename;
-    if (l$$__typename != lOther$$__typename) {
-      return false;
-    }
-    return true;
-  }
-}
-
-extension UtilityExtension$Query$GetSeasonEpisodes$season$episodes$items$lessons
-    on Query$GetSeasonEpisodes$season$episodes$items$lessons {
-  CopyWith$Query$GetSeasonEpisodes$season$episodes$items$lessons<
-          Query$GetSeasonEpisodes$season$episodes$items$lessons>
-      get copyWith =>
-          CopyWith$Query$GetSeasonEpisodes$season$episodes$items$lessons(
-            this,
-            (i) => i,
-          );
-}
-
-abstract class CopyWith$Query$GetSeasonEpisodes$season$episodes$items$lessons<
-    TRes> {
-  factory CopyWith$Query$GetSeasonEpisodes$season$episodes$items$lessons(
-    Query$GetSeasonEpisodes$season$episodes$items$lessons instance,
-    TRes Function(Query$GetSeasonEpisodes$season$episodes$items$lessons) then,
-  ) = _CopyWithImpl$Query$GetSeasonEpisodes$season$episodes$items$lessons;
-
-  factory CopyWith$Query$GetSeasonEpisodes$season$episodes$items$lessons.stub(
-          TRes res) =
-      _CopyWithStubImpl$Query$GetSeasonEpisodes$season$episodes$items$lessons;
-
-  TRes call({
-    int? total,
-    String? $__typename,
-  });
-}
-
-class _CopyWithImpl$Query$GetSeasonEpisodes$season$episodes$items$lessons<TRes>
-    implements
-        CopyWith$Query$GetSeasonEpisodes$season$episodes$items$lessons<TRes> {
-  _CopyWithImpl$Query$GetSeasonEpisodes$season$episodes$items$lessons(
-    this._instance,
-    this._then,
-  );
-
-  final Query$GetSeasonEpisodes$season$episodes$items$lessons _instance;
-
-  final TRes Function(Query$GetSeasonEpisodes$season$episodes$items$lessons)
-      _then;
-
-  static const _undefined = {};
-
-  TRes call({
-    Object? total = _undefined,
-    Object? $__typename = _undefined,
-  }) =>
-      _then(Query$GetSeasonEpisodes$season$episodes$items$lessons(
-        total: total == _undefined || total == null
-            ? _instance.total
-            : (total as int),
-        $__typename: $__typename == _undefined || $__typename == null
-            ? _instance.$__typename
-            : ($__typename as String),
-      ));
-}
-
-class _CopyWithStubImpl$Query$GetSeasonEpisodes$season$episodes$items$lessons<
-        TRes>
-    implements
-        CopyWith$Query$GetSeasonEpisodes$season$episodes$items$lessons<TRes> {
-  _CopyWithStubImpl$Query$GetSeasonEpisodes$season$episodes$items$lessons(
-      this._res);
-
-  TRes _res;
-
-  call({
-    int? total,
-    String? $__typename,
-  }) =>
-      _res;
 }

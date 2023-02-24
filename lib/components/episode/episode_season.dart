@@ -4,6 +4,7 @@ import 'package:brunstadtv_app/components/loading_indicator.dart';
 import 'package:brunstadtv_app/components/option_list.dart';
 import 'package:brunstadtv_app/components/season_episode_list.dart';
 import 'package:brunstadtv_app/graphql/queries/episode.graphql.dart';
+import 'package:brunstadtv_app/helpers/utils.dart';
 import 'package:brunstadtv_app/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:collection/collection.dart';
@@ -16,10 +17,16 @@ import '../../graphql/client.dart';
 import '../dropdown_select.dart';
 
 class EpisodeSeason extends HookConsumerWidget {
-  const EpisodeSeason({super.key, required this.episodeId, required this.season});
+  const EpisodeSeason({
+    super.key,
+    required this.episodeId,
+    required this.season,
+    required this.onEpisodeTap,
+  });
 
   final String episodeId;
   final Query$FetchEpisode$episode$season season;
+  final void Function() onEpisodeTap; // TODO: implement
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -27,6 +34,47 @@ class EpisodeSeason extends HookConsumerWidget {
     final episodesCache = useState<Map<String, List<EpisodeListEpisodeData>?>>({});
     final lessonProgressCache = useState<Map<String, Fragment$EpisodeLessonProgressOverview>>({});
     final isMounted = useIsMounted();
+
+    Future<void> loadLessonProgressForSeason(String id) async {
+      final value = await ref
+          .read(gqlClientProvider)
+          .query$GetSeasonLessonProgress(Options$Query$GetSeasonLessonProgress(variables: Variables$Query$GetSeasonLessonProgress(id: id)));
+      final season = value.parsedData?.season;
+      if (!isMounted() || season == null) return;
+      var cacheCopy = {...lessonProgressCache.value};
+      for (var element in season.episodes.items) {
+        cacheCopy[element.id] = element;
+      }
+      lessonProgressCache.value = cacheCopy;
+    }
+
+    Future onSeasonSelected(String id) async {
+      selectedSeasonId.value = id;
+      var season = await ref.read(apiProvider).getSeasonEpisodes(id);
+      if (!isMounted() || season == null) return;
+      if (season.episodes.items.any((element) => element.lessons.total > 0)) {
+        loadLessonProgressForSeason(season.id);
+      }
+      final cacheCopy = {...episodesCache.value};
+      cacheCopy[season.id] = season.episodes.items
+          .map(
+            (ep) => EpisodeListEpisodeData(
+              //TODO: fromEpisodeSeason
+              episodeId: ep.id,
+              locked: ep.locked,
+              ageRating: ep.ageRating,
+              publishDate: ep.publishDate,
+              duration: ep.duration,
+              title: ep.title,
+              image: ep.image,
+              lessonProgressOverview: lessonProgressCache.value[ep.id]?.lessons.items.firstOrNull,
+              seasonNumber: season.number,
+              episodeNumber: ep.number,
+            ),
+          )
+          .toList();
+      episodesCache.value = cacheCopy;
+    }
 
     useEffect(() {
       episodesCache.value = {
@@ -43,51 +91,12 @@ class EpisodeSeason extends HookConsumerWidget {
               episodeNumber: ep.number);
         }).toList()
       };
+      if (true == season.episodes.items.any((element) => element.lessons.total > 0)) {
+        loadLessonProgressForSeason(season.id);
+      }
       return null;
       // ignore: exhaustive_keys
     }, [season]);
-
-    Future<void> loadLessonProgressForSeason(String id) async {
-      final value = await ref
-          .read(gqlClientProvider)
-          .query$GetSeasonLessonProgress(Options$Query$GetSeasonLessonProgress(variables: Variables$Query$GetSeasonLessonProgress(id: id)));
-      final season = value.parsedData?.season;
-      if (!isMounted() || season == null) return;
-      var cache = lessonProgressCache.value;
-      for (var element in season.episodes.items) {
-        cache[element.id] = element;
-      }
-      lessonProgressCache.value = cache;
-    }
-
-    Future onSeasonSelected(String id) async {
-      selectedSeasonId.value = id;
-      var season = await ref.read(apiProvider).getSeasonEpisodes(id);
-      if (isMounted() && season != null) {
-        if (season.episodes.items.any((element) => element.lessons.total > 0)) {
-          loadLessonProgressForSeason(season.id);
-        }
-        final cacheCopy = {...episodesCache.value};
-        cacheCopy[season.id] = season.episodes.items
-            .map(
-              (ep) => EpisodeListEpisodeData(
-                //TODO: fromEpisodeSeason
-                episodeId: ep.id,
-                locked: ep.locked,
-                ageRating: ep.ageRating,
-                publishDate: ep.publishDate,
-                duration: ep.duration,
-                title: ep.title,
-                image: ep.image,
-                lessonProgressOverview: lessonProgressCache.value[ep.id]?.lessons.items.firstOrNull,
-                seasonNumber: season.number,
-                episodeNumber: ep.number,
-              ),
-            )
-            .toList();
-        episodesCache.value = cacheCopy;
-      }
-    }
 
     final episodes = episodesCache.value[selectedSeasonId.value];
 

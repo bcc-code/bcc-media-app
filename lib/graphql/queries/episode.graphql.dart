@@ -252,6 +252,7 @@ class Fragment$SeasonListEpisode {
     required this.ageRating,
     required this.duration,
     required this.locked,
+    required this.lessons,
     required this.$__typename,
   });
 
@@ -264,6 +265,7 @@ class Fragment$SeasonListEpisode {
     final l$ageRating = json['ageRating'];
     final l$duration = json['duration'];
     final l$locked = json['locked'];
+    final l$lessons = json['lessons'];
     final l$$__typename = json['__typename'];
     return Fragment$SeasonListEpisode(
       id: (l$id as String),
@@ -274,6 +276,8 @@ class Fragment$SeasonListEpisode {
       ageRating: (l$ageRating as String),
       duration: (l$duration as int),
       locked: (l$locked as bool),
+      lessons: Fragment$SeasonListEpisode$lessons.fromJson(
+          (l$lessons as Map<String, dynamic>)),
       $__typename: (l$$__typename as String),
     );
   }
@@ -293,6 +297,8 @@ class Fragment$SeasonListEpisode {
   final int duration;
 
   final bool locked;
+
+  final Fragment$SeasonListEpisode$lessons lessons;
 
   final String $__typename;
 
@@ -314,6 +320,8 @@ class Fragment$SeasonListEpisode {
     _resultData['duration'] = l$duration;
     final l$locked = locked;
     _resultData['locked'] = l$locked;
+    final l$lessons = lessons;
+    _resultData['lessons'] = l$lessons.toJson();
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -329,6 +337,7 @@ class Fragment$SeasonListEpisode {
     final l$ageRating = ageRating;
     final l$duration = duration;
     final l$locked = locked;
+    final l$lessons = lessons;
     final l$$__typename = $__typename;
     return Object.hashAll([
       l$id,
@@ -339,6 +348,7 @@ class Fragment$SeasonListEpisode {
       l$ageRating,
       l$duration,
       l$locked,
+      l$lessons,
       l$$__typename,
     ]);
   }
@@ -392,6 +402,11 @@ class Fragment$SeasonListEpisode {
     if (l$locked != lOther$locked) {
       return false;
     }
+    final l$lessons = lessons;
+    final lOther$lessons = other.lessons;
+    if (l$lessons != lOther$lessons) {
+      return false;
+    }
     final l$$__typename = $__typename;
     final lOther$$__typename = other.$__typename;
     if (l$$__typename != lOther$$__typename) {
@@ -428,8 +443,10 @@ abstract class CopyWith$Fragment$SeasonListEpisode<TRes> {
     String? ageRating,
     int? duration,
     bool? locked,
+    Fragment$SeasonListEpisode$lessons? lessons,
     String? $__typename,
   });
+  CopyWith$Fragment$SeasonListEpisode$lessons<TRes> get lessons;
 }
 
 class _CopyWithImpl$Fragment$SeasonListEpisode<TRes>
@@ -454,6 +471,7 @@ class _CopyWithImpl$Fragment$SeasonListEpisode<TRes>
     Object? ageRating = _undefined,
     Object? duration = _undefined,
     Object? locked = _undefined,
+    Object? lessons = _undefined,
     Object? $__typename = _undefined,
   }) =>
       _then(Fragment$SeasonListEpisode(
@@ -475,10 +493,18 @@ class _CopyWithImpl$Fragment$SeasonListEpisode<TRes>
         locked: locked == _undefined || locked == null
             ? _instance.locked
             : (locked as bool),
+        lessons: lessons == _undefined || lessons == null
+            ? _instance.lessons
+            : (lessons as Fragment$SeasonListEpisode$lessons),
         $__typename: $__typename == _undefined || $__typename == null
             ? _instance.$__typename
             : ($__typename as String),
       ));
+  CopyWith$Fragment$SeasonListEpisode$lessons<TRes> get lessons {
+    final local$lessons = _instance.lessons;
+    return CopyWith$Fragment$SeasonListEpisode$lessons(
+        local$lessons, (e) => call(lessons: e));
+  }
 }
 
 class _CopyWithStubImpl$Fragment$SeasonListEpisode<TRes>
@@ -496,9 +522,12 @@ class _CopyWithStubImpl$Fragment$SeasonListEpisode<TRes>
     String? ageRating,
     int? duration,
     bool? locked,
+    Fragment$SeasonListEpisode$lessons? lessons,
     String? $__typename,
   }) =>
       _res;
+  CopyWith$Fragment$SeasonListEpisode$lessons<TRes> get lessons =>
+      CopyWith$Fragment$SeasonListEpisode$lessons.stub(_res);
 }
 
 const fragmentDefinitionSeasonListEpisode = FragmentDefinitionNode(
@@ -567,6 +596,35 @@ const fragmentDefinitionSeasonListEpisode = FragmentDefinitionNode(
       selectionSet: null,
     ),
     FieldNode(
+      name: NameNode(value: 'id'),
+      alias: null,
+      arguments: [],
+      directives: [],
+      selectionSet: null,
+    ),
+    FieldNode(
+      name: NameNode(value: 'lessons'),
+      alias: null,
+      arguments: [],
+      directives: [],
+      selectionSet: SelectionSetNode(selections: [
+        FieldNode(
+          name: NameNode(value: 'total'),
+          alias: null,
+          arguments: [],
+          directives: [],
+          selectionSet: null,
+        ),
+        FieldNode(
+          name: NameNode(value: '__typename'),
+          alias: null,
+          arguments: [],
+          directives: [],
+          selectionSet: null,
+        ),
+      ]),
+    ),
+    FieldNode(
       name: NameNode(value: '__typename'),
       alias: null,
       arguments: [],
@@ -612,6 +670,133 @@ extension ClientExtension$Fragment$SeasonListEpisode on graphql.GraphQLClient {
     );
     return result == null ? null : Fragment$SeasonListEpisode.fromJson(result);
   }
+}
+
+class Fragment$SeasonListEpisode$lessons {
+  Fragment$SeasonListEpisode$lessons({
+    required this.total,
+    required this.$__typename,
+  });
+
+  factory Fragment$SeasonListEpisode$lessons.fromJson(
+      Map<String, dynamic> json) {
+    final l$total = json['total'];
+    final l$$__typename = json['__typename'];
+    return Fragment$SeasonListEpisode$lessons(
+      total: (l$total as int),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final int total;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$total = total;
+    _resultData['total'] = l$total;
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$total = total;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$total,
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (!(other is Fragment$SeasonListEpisode$lessons) ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$total = total;
+    final lOther$total = other.total;
+    if (l$total != lOther$total) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Fragment$SeasonListEpisode$lessons
+    on Fragment$SeasonListEpisode$lessons {
+  CopyWith$Fragment$SeasonListEpisode$lessons<
+          Fragment$SeasonListEpisode$lessons>
+      get copyWith => CopyWith$Fragment$SeasonListEpisode$lessons(
+            this,
+            (i) => i,
+          );
+}
+
+abstract class CopyWith$Fragment$SeasonListEpisode$lessons<TRes> {
+  factory CopyWith$Fragment$SeasonListEpisode$lessons(
+    Fragment$SeasonListEpisode$lessons instance,
+    TRes Function(Fragment$SeasonListEpisode$lessons) then,
+  ) = _CopyWithImpl$Fragment$SeasonListEpisode$lessons;
+
+  factory CopyWith$Fragment$SeasonListEpisode$lessons.stub(TRes res) =
+      _CopyWithStubImpl$Fragment$SeasonListEpisode$lessons;
+
+  TRes call({
+    int? total,
+    String? $__typename,
+  });
+}
+
+class _CopyWithImpl$Fragment$SeasonListEpisode$lessons<TRes>
+    implements CopyWith$Fragment$SeasonListEpisode$lessons<TRes> {
+  _CopyWithImpl$Fragment$SeasonListEpisode$lessons(
+    this._instance,
+    this._then,
+  );
+
+  final Fragment$SeasonListEpisode$lessons _instance;
+
+  final TRes Function(Fragment$SeasonListEpisode$lessons) _then;
+
+  static const _undefined = {};
+
+  TRes call({
+    Object? total = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(Fragment$SeasonListEpisode$lessons(
+        total: total == _undefined || total == null
+            ? _instance.total
+            : (total as int),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+}
+
+class _CopyWithStubImpl$Fragment$SeasonListEpisode$lessons<TRes>
+    implements CopyWith$Fragment$SeasonListEpisode$lessons<TRes> {
+  _CopyWithStubImpl$Fragment$SeasonListEpisode$lessons(this._res);
+
+  TRes _res;
+
+  call({
+    int? total,
+    String? $__typename,
+  }) =>
+      _res;
 }
 
 class Fragment$EpisodeDetails {
