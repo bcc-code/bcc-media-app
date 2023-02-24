@@ -1,6 +1,4 @@
 import 'package:brunstadtv_app/components/feature_badge.dart';
-import 'package:brunstadtv_app/components/study_button.dart';
-import 'package:brunstadtv_app/env/env.dart';
 import 'package:brunstadtv_app/graphql/queries/episode.graphql.dart';
 import 'package:brunstadtv_app/helpers/svg_icons.dart';
 import 'package:brunstadtv_app/helpers/utils.dart';

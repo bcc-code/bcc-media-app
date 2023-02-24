@@ -1,5 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:brunstadtv_app/components/study_progress.dart';
+import 'package:brunstadtv_app/graphql/queries/episode.graphql.dart';
 import 'package:brunstadtv_app/graphql/queries/studies.graphql.dart';
 import 'package:brunstadtv_app/theme/bccm_typography.dart';
 import 'package:brunstadtv_app/router/router.gr.dart';
@@ -19,7 +20,7 @@ part 'season_episode_list.freezed.dart';
 
 class SeasonEpisodeList extends StatelessWidget {
   final String? title;
-  final List<EpisodeListEpisodeData> items;
+  final List<SeasonEpisodeListEpisodeData> items;
   final String? selectedId;
 
   const SeasonEpisodeList({super.key, this.title, this.selectedId, required this.items});
@@ -38,44 +39,37 @@ class SeasonEpisodeList extends StatelessWidget {
               style: BccmTextStyles.title2,
             ),
           ),
-        ...items.map((ep) => EpisodeListEpisode(data: ep))
+        ...items.map((ep) => _Episode(data: ep))
       ],
     );
   }
 }
 
 @freezed
-class EpisodeListEpisodeData with _$EpisodeListEpisodeData {
-  const factory EpisodeListEpisodeData({
-    required String episodeId,
-    required String title,
-    required bool locked,
-    bool? highlighted,
-    required String? image,
+class SeasonEpisodeListEpisodeData with _$SeasonEpisodeListEpisodeData {
+  const factory SeasonEpisodeListEpisodeData({
+    required Fragment$SeasonListEpisode episode,
     int? seasonNumber,
-    int? episodeNumber,
     Fragment$LessonProgressOverview? lessonProgressOverview,
-    required String? publishDate,
-    required String ageRating,
-    required int duration,
-  }) = _EpisodeListEpisode;
+    bool? highlighted,
+  }) = _SeasonEpisodeListEpisodeData;
 }
 
-class EpisodeListEpisode extends StatelessWidget {
-  final EpisodeListEpisodeData data;
-  const EpisodeListEpisode({
+class _Episode extends StatelessWidget {
+  final SeasonEpisodeListEpisodeData data;
+  const _Episode({
     super.key,
     required this.data,
   });
 
   @override
   Widget build(BuildContext context) {
-    final publishDateTime = data.publishDate != null ? DateTime.tryParse(data.publishDate!) : null;
+    final publishDateTime = DateTime.tryParse(data.episode.publishDate);
     return IgnorePointer(
-      ignoring: data.locked,
+      ignoring: data.episode.locked,
       child: GestureDetector(
         behavior: HitTestBehavior.opaque,
-        onTap: () => context.navigateTo(EpisodeScreenRoute(episodeId: data.episodeId, autoplay: true)),
+        onTap: () => context.navigateTo(EpisodeScreenRoute(episodeId: data.episode.id, autoplay: true)),
         child: Stack(
           children: [
             if (data.highlighted == true)
@@ -94,13 +88,13 @@ class EpisodeListEpisode extends StatelessWidget {
                   Stack(
                     clipBehavior: Clip.none,
                     children: [
-                      data.locked
+                      data.episode.locked
                           ? Opacity(
                               opacity: 0.5,
-                              child: BorderedImageContainer(width: 128, imageUrl: data.image),
+                              child: BorderedImageContainer(width: 128, imageUrl: data.episode.image),
                             )
-                          : BorderedImageContainer(width: 128, imageUrl: data.image),
-                      if (data.locked)
+                          : BorderedImageContainer(width: 128, imageUrl: data.episode.image),
+                      if (data.episode.locked)
                         Positioned.fill(
                           child: Container(
                             decoration: const BoxDecoration(
@@ -120,23 +114,23 @@ class EpisodeListEpisode extends StatelessWidget {
                             child: Row(
                               children: [
                                 const Spacer(),
-                                EpisodeDuration(duration: getFormattedDuration(data.duration)),
+                                EpisodeDuration(duration: getFormattedDuration(data.episode.duration)),
                               ],
                             ),
                           ),
                         )),
-                      if (getFeaturedTag(publishDate: data.publishDate, locked: data.locked) != null)
+                      if (getFeaturedTag(publishDate: data.episode.publishDate, locked: data.episode.locked) != null)
                         Positioned(
                           top: -4,
                           right: -4,
-                          child: getFeaturedTag(publishDate: data.publishDate, locked: data.locked)!,
+                          child: getFeaturedTag(publishDate: data.episode.publishDate, locked: data.episode.locked)!,
                         ),
                     ],
                   ),
                   const SizedBox(width: 16),
                   Expanded(
                     child: Opacity(
-                      opacity: data.locked ? 0.5 : 1,
+                      opacity: data.episode.locked ? 0.5 : 1,
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
@@ -144,7 +138,7 @@ class EpisodeListEpisode extends StatelessWidget {
                             child: Container(
                               margin: const EdgeInsets.only(bottom: 6),
                               child: Text(
-                                data.title,
+                                data.episode.title,
                                 style: BccmTextStyles.caption1.copyWith(color: BccmColors.label1),
                               ),
                             ),
@@ -152,7 +146,7 @@ class EpisodeListEpisode extends StatelessWidget {
                           Row(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              if (data.ageRating != 'A')
+                              if (data.episode.ageRating != 'A')
                                 Container(
                                   margin: const EdgeInsets.only(right: 6),
                                   height: 16,
@@ -166,11 +160,11 @@ class EpisodeListEpisode extends StatelessWidget {
                                     borderRadius: const BorderRadius.all(Radius.circular(8)),
                                   ),
                                   child: Text(
-                                    getFormattedAgeRating(data.ageRating),
+                                    getFormattedAgeRating(data.episode.ageRating),
                                     style: BccmTextStyles.caption2.copyWith(color: BccmColors.onTint, height: 1.1),
                                   ),
                                 ),
-                              if (data.locked && publishDateTime != null)
+                              if (data.episode.locked && publishDateTime != null)
                                 Expanded(
                                   child: Text(
                                     S.of(context).availableFrom(DateFormat(DateFormat.YEAR_MONTH_DAY).format(publishDateTime)),
@@ -184,7 +178,7 @@ class EpisodeListEpisode extends StatelessWidget {
                       ),
                     ),
                   ),
-                  if (Env.enableStudy && data.lessonProgressOverview != null && !data.locked)
+                  if (Env.enableStudy && data.lessonProgressOverview != null && !data.episode.locked)
                     Opacity(
                       opacity: data.lessonProgressOverview!.locked ? 0.2 : 1,
                       child: Container(

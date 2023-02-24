@@ -1,10 +1,7 @@
-import 'dart:collection';
-
 import 'package:brunstadtv_app/components/loading_indicator.dart';
 import 'package:brunstadtv_app/components/option_list.dart';
 import 'package:brunstadtv_app/components/season_episode_list.dart';
 import 'package:brunstadtv_app/graphql/queries/episode.graphql.dart';
-import 'package:brunstadtv_app/helpers/utils.dart';
 import 'package:brunstadtv_app/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:collection/collection.dart';
@@ -30,8 +27,8 @@ class EpisodeSeason extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final selectedSeasonId = useState(season!.id);
-    final episodesCache = useState<Map<String, List<EpisodeListEpisodeData>?>>({});
+    final selectedSeasonId = useState(season.id);
+    final episodesCache = useState<Map<String, List<SeasonEpisodeListEpisodeData>?>>({});
     final lessonProgressCache = useState<Map<String, Fragment$EpisodeLessonProgressOverview>>({});
     final isMounted = useIsMounted();
 
@@ -58,18 +55,11 @@ class EpisodeSeason extends HookConsumerWidget {
       final cacheCopy = {...episodesCache.value};
       cacheCopy[season.id] = season.episodes.items
           .map(
-            (ep) => EpisodeListEpisodeData(
+            (ep) => SeasonEpisodeListEpisodeData(
               //TODO: fromEpisodeSeason
-              episodeId: ep.id,
-              locked: ep.locked,
-              ageRating: ep.ageRating,
-              publishDate: ep.publishDate,
-              duration: ep.duration,
-              title: ep.title,
-              image: ep.image,
+              episode: ep,
               lessonProgressOverview: lessonProgressCache.value[ep.id]?.lessons.items.firstOrNull,
               seasonNumber: season.number,
-              episodeNumber: ep.number,
             ),
           )
           .toList();
@@ -79,16 +69,10 @@ class EpisodeSeason extends HookConsumerWidget {
     useEffect(() {
       episodesCache.value = {
         season.id: season.episodes.items.map((ep) {
-          return EpisodeListEpisodeData(
-              episodeId: ep.id,
-              ageRating: ep.ageRating,
-              duration: ep.duration,
-              publishDate: ep.publishDate,
-              locked: ep.locked,
-              title: ep.title,
-              image: ep.image,
-              seasonNumber: season.number,
-              episodeNumber: ep.number);
+          return SeasonEpisodeListEpisodeData(
+            seasonNumber: season.number,
+            episode: ep,
+          );
         }).toList()
       };
       if (true == season.episodes.items.any((element) => element.lessons.total > 0)) {
@@ -108,7 +92,7 @@ class EpisodeSeason extends HookConsumerWidget {
           child: DropDownSelect(
             title: S.of(context).selectSeason,
             onSelectionChanged: onSeasonSelected,
-            items: season!.$show.seasons.items.map((e) => Option(id: e.id, title: e.title)).toList(),
+            items: season.$show.seasons.items.map((e) => Option(id: e.id, title: e.title)).toList(),
             selectedId: selectedSeasonId.value,
           ),
         ),
@@ -121,8 +105,8 @@ class EpisodeSeason extends HookConsumerWidget {
             items: episodes
                 .map(
                   (e) => e.copyWith(
-                    lessonProgressOverview: lessonProgressCache.value[e.episodeId]?.lessons.items.firstOrNull,
-                    highlighted: e.episodeId == episodeId,
+                    lessonProgressOverview: lessonProgressCache.value[e.episode.id]?.lessons.items.firstOrNull,
+                    highlighted: e.episode.id == episodeId,
                   ),
                 )
                 .toList(),
