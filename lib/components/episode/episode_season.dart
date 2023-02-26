@@ -23,7 +23,7 @@ class EpisodeSeason extends HookConsumerWidget {
 
   final String episodeId;
   final Query$FetchEpisode$episode$season season;
-  final void Function() onEpisodeTap; // TODO: implement
+  final void Function(String id) onEpisodeTap; // TODO: implement
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -98,10 +98,18 @@ class EpisodeSeason extends HookConsumerWidget {
         ),
         if (episodes == null)
           const SizedBox(
-              height: 1000,
-              child: Align(alignment: Alignment.topCenter, child: Padding(padding: EdgeInsets.only(top: 16), child: LoadingIndicator())))
+            height: 1000,
+            child: Align(
+              alignment: Alignment.topCenter,
+              child: Padding(
+                padding: EdgeInsets.only(top: 16),
+                child: LoadingIndicator(),
+              ),
+            ),
+          )
         else
           SeasonEpisodeList(
+            onEpisodeTap: onEpisodeTap,
             items: episodes
                 .map(
                   (e) => e.copyWith(

@@ -10,6 +10,7 @@ import 'package:brunstadtv_app/components/episode/player_poster.dart';
 import 'package:brunstadtv_app/components/error_generic.dart';
 import 'package:brunstadtv_app/components/loading_indicator.dart';
 import 'package:brunstadtv_app/components/share_episode_sheet.dart';
+import 'package:brunstadtv_app/router/router.gr.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:bccm_player/bccm_player.dart';
@@ -105,15 +106,12 @@ class EpisodeScreen extends HookConsumerWidget {
               }
               return ErrorGeneric(onRetry: fetchCurrentEpisode);
             }
-            if (routeAnimationStatus.value == AnimationStatus.forward ||
-                episodeSnapshot.data == null && episodeSnapshot.connectionState != ConnectionState.done) {
+            if (episodeSnapshot.data == null || routeAnimationStatus.value == AnimationStatus.forward) {
               return _LoadingWidget(context: context);
             }
             return _EpisodeDisplay(
               screenParams: this,
-              episode: episodeSnapshot.data!,
-              episodeLoading: episodeSnapshot.connectionState != ConnectionState.done,
-              hideBottomSection: hideBottomSection,
+              episodeFuture: episodeFuture.value,
               scrollController: scrollController,
             );
           },
@@ -151,25 +149,23 @@ class _LoadingWidget extends StatelessWidget {
 class _EpisodeDisplay extends HookConsumerWidget {
   const _EpisodeDisplay({
     required this.screenParams,
-    required this.episode,
-    required this.episodeLoading,
-    required this.hideBottomSection,
+    required this.episodeFuture,
     required this.scrollController,
   });
 
   final EpisodeScreen screenParams;
-  final Query$FetchEpisode$episode episode;
-  final bool episodeLoading;
-  final bool hideBottomSection;
+  final Future<Query$FetchEpisode$episode?>? episodeFuture;
   final ScrollController scrollController;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final isMounted = useIsMounted();
+    final episodeSnapshot = useFuture(episodeFuture);
+    final episode = episodeSnapshot.data;
     final casting = ref.watch(isCasting);
     var playerProvider = casting ? castPlayerProvider : primaryPlayerProvider;
     var player = ref.watch(playerProvider);
-    if (player == null) return const SizedBox.shrink();
+    if (player == null || episode == null) return const SizedBox.shrink();
 
     final playerSetupFuture = useState<Future?>(null);
     Future setupPlayer() {
@@ -177,9 +173,10 @@ class _EpisodeDisplay extends HookConsumerWidget {
     }
 
     final playerSetupSnapshot = useFuture(playerSetupFuture.value);
+    final episodeIsCurrentItem = player.currentMediaItem?.metadata?.extras?['id'] == episode.id;
 
     useEffect(() {
-      if (screenParams.autoplay && !episodeIsCurrentItem(player.currentMediaItem)) {
+      if (screenParams.autoplay && !episodeIsCurrentItem) {
         setupPlayer();
       }
       return null;
@@ -196,6 +193,8 @@ class _EpisodeDisplay extends HookConsumerWidget {
 
     // Scroll to top when relevant
     final scrollCompleter = useState<Completer<void>?>(null);
+    final isScrolling = scrollCompleter.value?.isCompleted == false;
+
     void scrollToTop() {
       scrollCompleter.value = wrapInCompleter(
         scrollController.animateTo(0, duration: const Duration(milliseconds: 600), curve: Curves.easeOutExpo),
@@ -203,10 +202,10 @@ class _EpisodeDisplay extends HookConsumerWidget {
     }
 
     useEffect(() {
-      if (!scrollController.hasClients) return;
+      if (!scrollController.hasClients || isScrolling) return;
       scrollToTop();
       return null;
-    }, [screenParams.episodeId, hideBottomSection, screenParams.queryParamStartPosition]);
+    }, [screenParams.hideBottomSection, screenParams.queryParamStartPosition]);
 
     // Start playing when chromecast disconnects
     ref.watch(chromecastListenerProvider).useListenerHook<CastSessionUnavailable>((event) {
@@ -219,9 +218,7 @@ class _EpisodeDisplay extends HookConsumerWidget {
           );
     });
 
-    final settingUpWhileScrolling = playerSetupSnapshot.connectionState == ConnectionState.waiting && scrollCompleter.value?.isCompleted == false;
-    final showLoading =
-        episodeLoading || playerSetupSnapshot.connectionState == ConnectionState.waiting || scrollCompleter.value?.isCompleted == false;
+    final showLoading = (episodeSnapshot.connectionState == ConnectionState.waiting) || isScrolling;
 
     return SingleChildScrollView(
       physics: const AlwaysScrollableScrollPhysics(),
@@ -233,19 +230,17 @@ class _EpisodeDisplay extends HookConsumerWidget {
             children: [
               Column(
                 children: [
-                  if (!episodeIsCurrentItem(player.currentMediaItem) &&
-                      playerSetupSnapshot.hasError &&
-                      playerSetupSnapshot.connectionState != ConnectionState.waiting)
+                  if (!episodeIsCurrentItem && playerSetupSnapshot.hasError && playerSetupSnapshot.connectionState != ConnectionState.waiting)
                     PlayerError(
                       imageUrl: episode.image,
                       onRetry: setupPlayer,
                     )
-                  else if (!episodeIsCurrentItem(player.currentMediaItem) || showLoading)
+                  else if (!episodeIsCurrentItem || showLoading)
                     PlayerPoster(
                       imageUrl: episode.image,
                       setupPlayer: setupPlayer,
                       loading: playerSetupSnapshot.connectionState == ConnectionState.waiting,
-                      imageOpacity: episodeLoading ? 0 : 0.5,
+                      imageOpacity: episodeSnapshot.connectionState == ConnectionState.waiting ? 0 : 0.5,
                     )
                   else
                     BccmPlayer(id: player.playerId),
@@ -257,11 +252,12 @@ class _EpisodeDisplay extends HookConsumerWidget {
                         Padding(
                           padding: const EdgeInsets.only(top: 16),
                           child: StudyMoreButton(
-                              lessonProgressFuture: lessonProgressFuture.value!,
-                              onNavigateBack: () {
-                                if (!isMounted()) return;
-                                lessonProgressFuture.value = ref.read(apiProvider).loadLessonProgressForEpisode(episode.id);
-                              }),
+                            lessonProgressFuture: lessonProgressFuture.value!,
+                            onNavigateBack: () {
+                              if (!isMounted()) return;
+                              lessonProgressFuture.value = ref.read(apiProvider).loadLessonProgressForEpisode(episode.id);
+                            },
+                          ),
                         ),
                     ],
                   ),
@@ -283,7 +279,7 @@ class _EpisodeDisplay extends HookConsumerWidget {
               ),
             ],
           ),
-          if (hideBottomSection != true && (!_isUnlisted(episode) || _isStandalone(episode)))
+          if (screenParams.hideBottomSection != true && (!_isUnlisted(episode) || _isStandalone(episode)))
             EpisodeTabs(
               tabs: [
                 Option(id: 'episodes', title: (S.of(context).episodes.toUpperCase())),
@@ -294,7 +290,10 @@ class _EpisodeDisplay extends HookConsumerWidget {
                   EpisodeSeason(
                     episodeId: screenParams.episodeId,
                     season: episode.season!,
-                    onEpisodeTap: scrollToTop,
+                    onEpisodeTap: (tappedEpisodeId) {
+                      context.navigateTo(EpisodeScreenRoute(episodeId: tappedEpisodeId, autoplay: true));
+                      scrollToTop();
+                    },
                   )
                 else
                   EpisodeRelated(episode: episode),
@@ -304,10 +303,6 @@ class _EpisodeDisplay extends HookConsumerWidget {
         ],
       ),
     );
-  }
-
-  bool episodeIsCurrentItem(MediaItem? mediaItem) {
-    return mediaItem?.metadata?.extras?['id'] == episode.id;
   }
 
   Future setupPlayerForEpisode(Query$FetchEpisode$episode episode, {required WidgetRef ref}) async {
