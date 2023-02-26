@@ -218,7 +218,7 @@ class _EpisodeDisplay extends HookConsumerWidget {
           );
     });
 
-    final showLoading = (episodeSnapshot.connectionState == ConnectionState.waiting) || isScrolling;
+    final showLoadingOverlay = (episodeSnapshot.connectionState == ConnectionState.waiting);
 
     return SingleChildScrollView(
       physics: const AlwaysScrollableScrollPhysics(),
@@ -235,12 +235,11 @@ class _EpisodeDisplay extends HookConsumerWidget {
                       imageUrl: episode.image,
                       onRetry: setupPlayer,
                     )
-                  else if (!episodeIsCurrentItem || showLoading)
+                  else if (!episodeIsCurrentItem || showLoadingOverlay)
                     PlayerPoster(
                       imageUrl: episode.image,
                       setupPlayer: setupPlayer,
                       loading: playerSetupSnapshot.connectionState == ConnectionState.waiting,
-                      imageOpacity: episodeSnapshot.connectionState == ConnectionState.waiting ? 0 : 0.5,
                     )
                   else
                     BccmPlayer(id: player.playerId),
@@ -267,11 +266,11 @@ class _EpisodeDisplay extends HookConsumerWidget {
                 child: Builder(builder: (context) {
                   return IgnorePointer(
                     child: AnimatedContainer(
-                      duration: showLoading ? Duration.zero : const Duration(milliseconds: 600),
+                      duration: showLoadingOverlay ? Duration.zero : const Duration(milliseconds: 600),
                       curve: Curves.easeOutExpo,
-                      color: BccmColors.background1.withOpacity(showLoading ? 1 : 0),
+                      color: BccmColors.background1.withOpacity(showLoadingOverlay ? 1 : 0),
                       child: Center(
-                        child: showLoading ? const LoadingIndicator() : null,
+                        child: showLoadingOverlay ? const LoadingIndicator() : null,
                       ),
                     ),
                   );
@@ -291,7 +290,9 @@ class _EpisodeDisplay extends HookConsumerWidget {
                     episodeId: screenParams.episodeId,
                     season: episode.season!,
                     onEpisodeTap: (tappedEpisodeId) {
-                      context.navigateTo(EpisodeScreenRoute(episodeId: tappedEpisodeId, autoplay: true));
+                      if (tappedEpisodeId != episode.id) {
+                        context.navigateTo(EpisodeScreenRoute(episodeId: tappedEpisodeId, autoplay: true));
+                      }
                       scrollToTop();
                     },
                   )

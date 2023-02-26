@@ -10,12 +10,10 @@ class PlayerPoster extends StatelessWidget {
     required this.imageUrl,
     required this.loading,
     required this.setupPlayer,
-    this.imageOpacity = 0.5,
   });
 
   final String? imageUrl;
   final bool loading;
-  final double imageOpacity;
   final void Function() setupPlayer;
 
   @override
@@ -36,8 +34,9 @@ class PlayerPoster extends StatelessWidget {
                   : LayoutBuilder(
                       builder: (context, constraints) {
                         return Opacity(
-                          opacity: imageOpacity,
+                          opacity: 0.5,
                           child: FadeInImage.memoryNetwork(
+                            key: Key('player_poster_$imageUrl'),
                             fit: BoxFit.cover,
                             placeholder: kTransparentImage,
                             image: imageUrl!,
