@@ -70,6 +70,16 @@ fragment ItemSection on ItemSection {
   }
 }
 
+
+fragment GridSection on GridSection {
+  gridSize: size
+  items(first: $first, offset: $offset) {
+    items {
+      ...GridSectionItem
+    }
+  }
+}
+
 fragment Section on Section {
   id
   title
@@ -111,12 +121,7 @@ fragment Section on Section {
       }
     }
     ... on GridSection {
-      gridSize: size
-      items(first: $first, offset: $offset) {
-        items {
-          ...GridSectionItem
-        }
-      }
+      ...GridSection
     }
     ... on ListSection {
       items(first: $first, offset: $offset) {

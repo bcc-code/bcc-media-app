@@ -31,7 +31,7 @@ class ThumbnailSliderShow extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          ShowThumbnail(
+          ShowThumbnail.withSize(
             imageSize: imageSize,
             sectionItem: sectionItem,
             hasNewEpisodes: hasNewEpisodes,
