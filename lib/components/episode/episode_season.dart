@@ -8,9 +8,7 @@ import 'package:collection/collection.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-import '../../../graphql/queries/studies.graphql.dart';
 import '../../api/brunstadtv.dart';
-import '../../graphql/client.dart';
 import '../../providers/lesson_progress_provider.dart';
 import '../dropdown_select.dart';
 
@@ -69,8 +67,6 @@ class EpisodeSeason extends HookConsumerWidget {
     }, [season]);
 
     final episodes = episodesCache.value[selectedSeasonId.value];
-
-    debugPrint('episode_season rebuild');
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
