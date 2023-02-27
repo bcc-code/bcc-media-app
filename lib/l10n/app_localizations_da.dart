@@ -545,4 +545,7 @@ class SDa extends S {
 
   @override
   String get details => 'Detaljer';
+
+  @override
+  String get selectSeason => 'Select season';
 }

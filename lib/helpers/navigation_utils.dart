@@ -59,7 +59,7 @@ Future<dynamic>? navigateToShowWithoutEpisodeId(BuildContext context, String sho
 
 Future<bool>? navigateToStudyTopic(BuildContext context, String topicId) async {
   // TODO: nothing is as permanent as a temporary solution lol
-  debugPrint('navigateToShowWithoutEpisodeId');
+  debugPrint('navigateToStudyTopic');
   final navigationOverride = NavigationOverride.of(context);
   final router = context.router;
   final ref = ProviderScope.containerOf(context, listen: false);

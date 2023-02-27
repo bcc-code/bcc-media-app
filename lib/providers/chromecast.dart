@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:bccm_player/chromecast_pigeon.g.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 final chromecastListenerProvider = Provider<ChromecastListener>((c) {
@@ -23,6 +24,14 @@ class ChromecastListener implements ChromecastPigeon {
     } else {
       return streamController.stream.where((event) => event is T).cast<T>();
     }
+  }
+
+  void useListenerHook<T>(void Function(T event)? onData) {
+    final castSessionUnavailable = on<T>();
+    useEffect(() {
+      final subscription = castSessionUnavailable.listen(onData);
+      return () => subscription.cancel();
+    }, [castSessionUnavailable]);
   }
 
   @override

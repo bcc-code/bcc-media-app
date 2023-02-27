@@ -545,4 +545,7 @@ class SRu extends S {
 
   @override
   String get details => 'Подробности';
+
+  @override
+  String get selectSeason => 'Select season';
 }

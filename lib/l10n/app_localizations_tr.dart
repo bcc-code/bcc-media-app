@@ -545,4 +545,7 @@ class STr extends S {
 
   @override
   String get details => 'Detaylar';
+
+  @override
+  String get selectSeason => 'Select season';
 }

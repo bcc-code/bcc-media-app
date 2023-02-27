@@ -95,7 +95,6 @@ class StudyScreenState extends ConsumerState<StudyScreen> {
                   useShouldOverrideUrlLoading: true,
                 ),
                 onWebViewCreated: onWebViewCreated,
-                onConsoleMessage: (_, msg) => debugPrint(msg.message),
                 onLoadStop: (controller, url) {
                   setState(() => firstLoadDone = true);
                 },

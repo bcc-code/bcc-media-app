@@ -80,7 +80,6 @@ class Analytics {
 
   void heyJustHereToTellYouIBelieveTheSessionIsStillAlive() {
     _lastAlive = DateTime.now();
-    debugPrint('bump _lastAlive: $_lastAlive');
   }
 
   RudderProperty getCommonData() {

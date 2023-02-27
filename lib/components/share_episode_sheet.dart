@@ -20,12 +20,10 @@ class ShareEpisodeSheet extends ConsumerStatefulWidget {
     Key? key,
     required this.episode,
     required this.currentPosSeconds,
-    required this.episodeId,
   }) : super(key: key);
 
   final Query$FetchEpisode$episode episode;
   final int currentPosSeconds;
-  final String episodeId;
 
   @override
   ConsumerState<ShareEpisodeSheet> createState() => _ShareEpisodeSheetState();
@@ -80,7 +78,7 @@ class _ShareEpisodeSheetState extends ConsumerState<ShareEpisodeSheet> {
           setState(() {
             loading = true;
           });
-          var episodeUrl = 'https://app.bcc.media/episode/${widget.episodeId}';
+          var episodeUrl = 'https://app.bcc.media/episode/${widget.episode.id}';
           final navigator = Navigator.of(context);
 
           if (id == 'fromStart') {
@@ -101,7 +99,7 @@ class _ShareEpisodeSheetState extends ConsumerState<ShareEpisodeSheet> {
                 ContentSharedEvent(
                   pageCode: 'episode',
                   elementType: 'episode',
-                  elementId: widget.episodeId,
+                  elementId: widget.episode.id,
                   position: id == 'fromStart' ? null : widget.currentPosSeconds,
                 ),
               );

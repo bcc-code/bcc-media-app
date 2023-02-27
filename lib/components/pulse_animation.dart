@@ -53,7 +53,7 @@ class _PulseAnimationState extends State<PulseAnimation> with SingleTickerProvid
     _controller.addStatusListener((status) {
       if (status == AnimationStatus.completed) {
         Future.delayed(const Duration(milliseconds: 1000), () {
-          _controller.forward(from: 0.0);
+          if (mounted) _controller.forward(from: 0.0);
         });
       }
     });

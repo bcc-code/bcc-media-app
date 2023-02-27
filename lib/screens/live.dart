@@ -121,7 +121,7 @@ class _LiveScreenState extends ConsumerState<LiveScreen> with AutoRouteAware {
         if (!mounted) return;
         debugPrint('bccm: setupCompleter watch loop ${DateTime.now()}');
         if (isCorrectItem(ref.read(playerProvider)?.currentMediaItem)) {
-          debugPrint('bccm: isCorrectItem ${DateTime.now()} !!!!!!!!!!!!!!!!!');
+          debugPrint('bccm: isCorrectItem ${DateTime.now()}');
           setupCompleter?.complete();
           setStateIfMounted(() {
             error = null;

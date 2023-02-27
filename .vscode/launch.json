@@ -31,6 +31,22 @@
             "program": "test_integration/main_test.dart"
         },
         {
+            "name": "prod (profile)",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "profile",
+            "args": [
+                "--flavor",
+                "prod",
+                "--web-port",
+                "3001",
+                "--web-renderer",
+                "canvaskit"
+            ], // Remember to change the "program" property too
+            "cwd": "${workspaceFolder}",
+            "program": "lib/main_prod.dart"
+        },
+        {
             "name": "prod (release)",
             "request": "launch",
             "type": "dart",

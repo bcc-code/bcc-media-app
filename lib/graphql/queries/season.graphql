@@ -4,10 +4,6 @@ query GetSeasonEpisodes($id: ID!) {
     number
     episodes {
       items {
-        id
-        lessons {
-          total
-        }
         ...SeasonListEpisode
       }
     }

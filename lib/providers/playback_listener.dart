@@ -52,8 +52,6 @@ class PlaybackListener implements PlaybackListenerPigeon {
 
   @override
   void onPlayerStateUpdate(PlayerState event) {
-    debugPrint('onPlayerStateUpdate');
-
     var playerProvider = getPlayerProvider(ref, event.playerId);
     if (playerProvider == null) return;
     var player = ref.read(playerProvider);

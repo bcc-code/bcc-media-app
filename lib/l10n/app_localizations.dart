@@ -1166,6 +1166,12 @@ abstract class S {
   /// In en, this message translates to:
   /// **'Details'**
   String get details;
+
+  /// A title prompting to select a season from the list.
+  ///
+  /// In en, this message translates to:
+  /// **'Select season'**
+  String get selectSeason;
 }
 
 class _SDelegate extends LocalizationsDelegate<S> {
