@@ -11,6 +11,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import '../../../graphql/queries/studies.graphql.dart';
 import '../../api/brunstadtv.dart';
 import '../../graphql/client.dart';
+import '../../providers/lesson_progress_provider.dart';
 import '../dropdown_select.dart';
 
 class EpisodeSeason extends HookConsumerWidget {
@@ -29,28 +30,14 @@ class EpisodeSeason extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final selectedSeasonId = useState(season.id);
     final episodesCache = useState<Map<String, List<SeasonEpisodeListEpisodeData>?>>({});
-    final lessonProgressCache = useState<Map<String, Fragment$EpisodeLessonProgressOverview>>({});
     final isMounted = useIsMounted();
-
-    Future<void> loadLessonProgressForSeason(String id) async {
-      final value = await ref
-          .read(gqlClientProvider)
-          .query$GetSeasonLessonProgress(Options$Query$GetSeasonLessonProgress(variables: Variables$Query$GetSeasonLessonProgress(id: id)));
-      final season = value.parsedData?.season;
-      if (!isMounted() || season == null) return;
-      var cacheCopy = {...lessonProgressCache.value};
-      for (var element in season.episodes.items) {
-        cacheCopy[element.id] = element;
-      }
-      lessonProgressCache.value = cacheCopy;
-    }
 
     Future onSeasonSelected(String id) async {
       selectedSeasonId.value = id;
       var season = await ref.read(apiProvider).getSeasonEpisodes(id);
       if (!isMounted() || season == null) return;
       if (season.episodes.items.any((element) => element.lessons.total > 0)) {
-        loadLessonProgressForSeason(season.id);
+        ref.read(lessonProgressCacheProvider.notifier).loadLessonProgressForSeason(season.id);
       }
       final cacheCopy = {...episodesCache.value};
       cacheCopy[season.id] = season.episodes.items
@@ -58,7 +45,6 @@ class EpisodeSeason extends HookConsumerWidget {
             (ep) => SeasonEpisodeListEpisodeData(
               //TODO: fromEpisodeSeason
               episode: ep,
-              lessonProgressOverview: lessonProgressCache.value[ep.id]?.lessons.items.firstOrNull,
               seasonNumber: season.number,
             ),
           )
@@ -76,13 +62,15 @@ class EpisodeSeason extends HookConsumerWidget {
         }).toList()
       };
       if (true == season.episodes.items.any((element) => element.lessons.total > 0)) {
-        loadLessonProgressForSeason(season.id);
+        ref.read(lessonProgressCacheProvider.notifier).loadLessonProgressForSeason(season.id);
       }
       return null;
       // ignore: exhaustive_keys
     }, [season]);
 
     final episodes = episodesCache.value[selectedSeasonId.value];
+
+    debugPrint('episode_season rebuild');
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -113,7 +101,7 @@ class EpisodeSeason extends HookConsumerWidget {
             items: episodes
                 .map(
                   (e) => e.copyWith(
-                    lessonProgressOverview: lessonProgressCache.value[e.episode.id]?.lessons.items.firstOrNull,
+                    lessonProgressOverview: ref.watch(lessonProgressProvider(e.episode.id))?.lessons.items.firstOrNull,
                     highlighted: e.episode.id == episodeId,
                   ),
                 )

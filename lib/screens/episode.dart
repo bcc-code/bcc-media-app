@@ -10,6 +10,7 @@ import 'package:brunstadtv_app/components/episode/player_poster.dart';
 import 'package:brunstadtv_app/components/error_generic.dart';
 import 'package:brunstadtv_app/components/loading_indicator.dart';
 import 'package:brunstadtv_app/components/share_episode_sheet.dart';
+import 'package:brunstadtv_app/providers/lesson_progress_provider.dart';
 import 'package:brunstadtv_app/router/router.gr.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -187,7 +188,7 @@ class _EpisodeDisplay extends HookConsumerWidget {
     final hasStudy = episode.lessons.items.isNotEmpty;
     useEffect(() {
       if (!hasStudy) return null;
-      lessonProgressFuture.value = ref.read(apiProvider).loadLessonProgressForEpisode(episode.id);
+      lessonProgressFuture.value = ref.read(lessonProgressCacheProvider.notifier).loadLessonProgressForEpisode(episode.id);
       return null;
     }, [episode.id]);
 
@@ -254,7 +255,7 @@ class _EpisodeDisplay extends HookConsumerWidget {
                             lessonProgressFuture: lessonProgressFuture.value!,
                             onNavigateBack: () {
                               if (!isMounted()) return;
-                              lessonProgressFuture.value = ref.read(apiProvider).loadLessonProgressForEpisode(episode.id);
+                              lessonProgressFuture.value = ref.read(lessonProgressCacheProvider.notifier).loadLessonProgressForEpisode(episode.id);
                             },
                           ),
                         ),
