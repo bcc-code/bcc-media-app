@@ -72,6 +72,7 @@ class _AppRootState extends ConsumerState<AppRoot> {
   }
 
   void _handleMessage(RemoteMessage message, {bool? openedFromBackground}) {
+    debugPrint('message: ${message.data}');
     var navigatorContext = widget.navigatorKey.currentState?.context;
     var notification = message.notification;
     if (openedFromBackground != true && notification != null && message.data['show_in_app'] == true && navigatorContext != null) {
