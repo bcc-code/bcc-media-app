@@ -1,4 +1,4 @@
-import 'package:brunstadtv_app/components/default_grid_section.dart';
+import 'package:brunstadtv_app/components/sections/thumbnail_grid/thumbnail_grid.dart';
 import 'package:brunstadtv_app/graphql/queries/episode.graphql.dart';
 import 'package:brunstadtv_app/graphql/schema/pages.graphql.dart';
 import 'package:brunstadtv_app/helpers/navigation_override.dart';
@@ -22,7 +22,7 @@ class EpisodeRelated extends StatelessWidget {
           padding: const EdgeInsets.all(16),
           child: NavigationOverride(
             pushInsteadOfReplace: true,
-            child: GridSectionList(size: Enum$GridSectionSize.half, sectionItems: episode.relatedItems!.items),
+            child: ThumbnailGrid(gridSize: Enum$GridSectionSize.half, sectionItems: episode.relatedItems!.items),
           ),
         )
       ],

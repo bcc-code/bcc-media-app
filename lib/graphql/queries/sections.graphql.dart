@@ -438,6 +438,7 @@ const documentNodeQueryFetchMoreItemsForItemSection =
   fragmentDefinitionSection,
   fragmentDefinitionItemSection,
   fragmentDefinitionItemSectionItem,
+  fragmentDefinitionGridSection,
   fragmentDefinitionGridSectionItem,
 ]);
 Query$FetchMoreItemsForItemSection _parserFn$Query$FetchMoreItemsForItemSection(
@@ -13271,6 +13272,7 @@ class Query$FetchMoreItemsForItemSection$section$$DefaultGridSection
     implements
         Fragment$Section$$DefaultGridSection,
         Fragment$ItemSection,
+        Fragment$GridSection,
         Query$FetchMoreItemsForItemSection$section {
   Query$FetchMoreItemsForItemSection$section$$DefaultGridSection({
     required this.id,
@@ -13784,7 +13786,8 @@ class _CopyWithStubImpl$Query$FetchMoreItemsForItemSection$section$$DefaultGridS
 class Query$FetchMoreItemsForItemSection$section$$DefaultGridSection$items
     implements
         Fragment$Section$$DefaultGridSection$items,
-        Fragment$ItemSection$items {
+        Fragment$ItemSection$items,
+        Fragment$GridSection$items {
   Query$FetchMoreItemsForItemSection$section$$DefaultGridSection$items({
     required this.offset,
     required this.first,
@@ -15664,6 +15667,7 @@ class Query$FetchMoreItemsForItemSection$section$$PosterGridSection
     implements
         Fragment$Section$$PosterGridSection,
         Fragment$ItemSection,
+        Fragment$GridSection,
         Query$FetchMoreItemsForItemSection$section {
   Query$FetchMoreItemsForItemSection$section$$PosterGridSection({
     required this.id,
@@ -16174,7 +16178,8 @@ class _CopyWithStubImpl$Query$FetchMoreItemsForItemSection$section$$PosterGridSe
 class Query$FetchMoreItemsForItemSection$section$$PosterGridSection$items
     implements
         Fragment$Section$$PosterGridSection$items,
-        Fragment$ItemSection$items {
+        Fragment$ItemSection$items,
+        Fragment$GridSection$items {
   Query$FetchMoreItemsForItemSection$section$$PosterGridSection$items({
     required this.offset,
     required this.first,
@@ -18053,6 +18058,7 @@ class Query$FetchMoreItemsForItemSection$section$$IconGridSection
     implements
         Fragment$Section$$IconGridSection,
         Fragment$ItemSection,
+        Fragment$GridSection,
         Query$FetchMoreItemsForItemSection$section {
   Query$FetchMoreItemsForItemSection$section$$IconGridSection({
     required this.id,
@@ -18562,7 +18568,8 @@ class _CopyWithStubImpl$Query$FetchMoreItemsForItemSection$section$$IconGridSect
 class Query$FetchMoreItemsForItemSection$section$$IconGridSection$items
     implements
         Fragment$Section$$IconGridSection$items,
-        Fragment$ItemSection$items {
+        Fragment$ItemSection$items,
+        Fragment$GridSection$items {
   Query$FetchMoreItemsForItemSection$section$$IconGridSection$items({
     required this.offset,
     required this.first,
