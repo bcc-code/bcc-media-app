@@ -37,7 +37,7 @@ import '../components/episode_tab_selector.dart';
 import '../components/error_no_access.dart';
 import '../components/fade_indexed_stack.dart';
 import '../components/option_list.dart';
-import '../components/sections/thumbnail_grid/item_section_thumbnail_grid.dart';
+import '../components/sections/thumbnail_grid/thumbnail_grid.dart';
 import '../components/study_button.dart';
 import '../env/env.dart';
 import '../graphql/queries/studies.graphql.dart';
@@ -587,7 +587,7 @@ class _EpisodeScreenState extends ConsumerState<EpisodeScreen> with AutoRouteAwa
               padding: const EdgeInsets.all(16),
               child: NavigationOverride(
                 pushInsteadOfReplace: true,
-                child: GridSectionList(gridSize: Enum$GridSectionSize.half, sectionItems: episode.relatedItems!.items),
+                child: ThumbnailGrid(gridSize: Enum$GridSectionSize.half, sectionItems: episode.relatedItems!.items),
               ),
             );
           }
