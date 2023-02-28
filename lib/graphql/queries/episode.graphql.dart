@@ -10,7 +10,7 @@ class Fragment$BasicStream {
     required this.id,
     required this.url,
     required this.type,
-    required this.$__typename,
+    this.$__typename = 'Stream',
   });
 
   factory Fragment$BasicStream.fromJson(Map<String, dynamic> json) {
@@ -129,7 +129,7 @@ class _CopyWithImpl$Fragment$BasicStream<TRes>
 
   final TRes Function(Fragment$BasicStream) _then;
 
-  static const _undefined = {};
+  static const _undefined = <dynamic, dynamic>{};
 
   TRes call({
     Object? id = _undefined,
@@ -253,7 +253,7 @@ class Fragment$SeasonListEpisode {
     required this.duration,
     required this.locked,
     required this.lessons,
-    required this.$__typename,
+    this.$__typename = 'Episode',
   });
 
   factory Fragment$SeasonListEpisode.fromJson(Map<String, dynamic> json) {
@@ -460,7 +460,7 @@ class _CopyWithImpl$Fragment$SeasonListEpisode<TRes>
 
   final TRes Function(Fragment$SeasonListEpisode) _then;
 
-  static const _undefined = {};
+  static const _undefined = <dynamic, dynamic>{};
 
   TRes call({
     Object? id = _undefined,
@@ -675,7 +675,7 @@ extension ClientExtension$Fragment$SeasonListEpisode on graphql.GraphQLClient {
 class Fragment$SeasonListEpisode$lessons {
   Fragment$SeasonListEpisode$lessons({
     required this.total,
-    required this.$__typename,
+    this.$__typename = 'LessonPagination',
   });
 
   factory Fragment$SeasonListEpisode$lessons.fromJson(
@@ -770,7 +770,7 @@ class _CopyWithImpl$Fragment$SeasonListEpisode$lessons<TRes>
 
   final TRes Function(Fragment$SeasonListEpisode$lessons) _then;
 
-  static const _undefined = {};
+  static const _undefined = <dynamic, dynamic>{};
 
   TRes call({
     Object? total = _undefined,
@@ -808,7 +808,7 @@ class Fragment$EpisodeDetails {
     required this.ageRating,
     required this.audioLanguages,
     this.season,
-    required this.$__typename,
+    this.$__typename = 'Episode',
   });
 
   factory Fragment$EpisodeDetails.fromJson(Map<String, dynamic> json) {
@@ -997,7 +997,7 @@ class _CopyWithImpl$Fragment$EpisodeDetails<TRes>
 
   final TRes Function(Fragment$EpisodeDetails) _then;
 
-  static const _undefined = {};
+  static const _undefined = <dynamic, dynamic>{};
 
   TRes call({
     Object? id = _undefined,
@@ -1202,7 +1202,7 @@ extension ClientExtension$Fragment$EpisodeDetails on graphql.GraphQLClient {
 class Fragment$EpisodeDetails$season {
   Fragment$EpisodeDetails$season({
     required this.$show,
-    required this.$__typename,
+    this.$__typename = 'Season',
   });
 
   factory Fragment$EpisodeDetails$season.fromJson(Map<String, dynamic> json) {
@@ -1297,7 +1297,7 @@ class _CopyWithImpl$Fragment$EpisodeDetails$season<TRes>
 
   final TRes Function(Fragment$EpisodeDetails$season) _then;
 
-  static const _undefined = {};
+  static const _undefined = <dynamic, dynamic>{};
 
   TRes call({
     Object? $show = _undefined,
@@ -1336,7 +1336,7 @@ class _CopyWithStubImpl$Fragment$EpisodeDetails$season<TRes>
 class Fragment$EpisodeDetails$season$show {
   Fragment$EpisodeDetails$season$show({
     required this.description,
-    required this.$__typename,
+    this.$__typename = 'Show',
   });
 
   factory Fragment$EpisodeDetails$season$show.fromJson(
@@ -1431,7 +1431,7 @@ class _CopyWithImpl$Fragment$EpisodeDetails$season$show<TRes>
 
   final TRes Function(Fragment$EpisodeDetails$season$show) _then;
 
-  static const _undefined = {};
+  static const _undefined = <dynamic, dynamic>{};
 
   TRes call({
     Object? description = _undefined,
@@ -1537,7 +1537,7 @@ class _CopyWithImpl$Variables$Query$FetchEpisode<TRes>
 
   final TRes Function(Variables$Query$FetchEpisode) _then;
 
-  static const _undefined = {};
+  static const _undefined = <dynamic, dynamic>{};
 
   TRes call({Object? id = _undefined}) => _then(Variables$Query$FetchEpisode._({
         ..._instance._$data,
@@ -1557,7 +1557,7 @@ class _CopyWithStubImpl$Variables$Query$FetchEpisode<TRes>
 class Query$FetchEpisode {
   Query$FetchEpisode({
     required this.episode,
-    required this.$__typename,
+    this.$__typename = 'QueryRoot',
   });
 
   factory Query$FetchEpisode.fromJson(Map<String, dynamic> json) {
@@ -1650,7 +1650,7 @@ class _CopyWithImpl$Query$FetchEpisode<TRes>
 
   final TRes Function(Query$FetchEpisode) _then;
 
-  static const _undefined = {};
+  static const _undefined = <dynamic, dynamic>{};
 
   TRes call({
     Object? episode = _undefined,
@@ -2200,7 +2200,7 @@ class Query$FetchEpisode$episode {
     required this.streams,
     required this.lessons,
     this.season,
-    required this.$__typename,
+    this.$__typename = 'Episode',
   });
 
   factory Query$FetchEpisode$episode.fromJson(Map<String, dynamic> json) {
@@ -2503,7 +2503,7 @@ class _CopyWithImpl$Query$FetchEpisode$episode<TRes>
 
   final TRes Function(Query$FetchEpisode$episode) _then;
 
-  static const _undefined = {};
+  static const _undefined = <dynamic, dynamic>{};
 
   TRes call({
     Object? id = _undefined,
@@ -2636,7 +2636,7 @@ class _CopyWithStubImpl$Query$FetchEpisode$episode<TRes>
 class Query$FetchEpisode$episode$relatedItems {
   Query$FetchEpisode$episode$relatedItems({
     required this.items,
-    required this.$__typename,
+    this.$__typename = 'SectionItemPagination',
   });
 
   factory Query$FetchEpisode$episode$relatedItems.fromJson(
@@ -2746,7 +2746,7 @@ class _CopyWithImpl$Query$FetchEpisode$episode$relatedItems<TRes>
 
   final TRes Function(Query$FetchEpisode$episode$relatedItems) _then;
 
-  static const _undefined = {};
+  static const _undefined = <dynamic, dynamic>{};
 
   TRes call({
     Object? items = _undefined,
@@ -2793,7 +2793,7 @@ class Query$FetchEpisode$episode$streams implements Fragment$BasicStream {
     required this.id,
     required this.url,
     required this.type,
-    required this.$__typename,
+    this.$__typename = 'Stream',
     required this.audioLanguages,
     required this.subtitleLanguages,
   });
@@ -2965,7 +2965,7 @@ class _CopyWithImpl$Query$FetchEpisode$episode$streams<TRes>
 
   final TRes Function(Query$FetchEpisode$episode$streams) _then;
 
-  static const _undefined = {};
+  static const _undefined = <dynamic, dynamic>{};
 
   TRes call({
     Object? id = _undefined,
@@ -3014,7 +3014,7 @@ class _CopyWithStubImpl$Query$FetchEpisode$episode$streams<TRes>
 class Query$FetchEpisode$episode$lessons {
   Query$FetchEpisode$episode$lessons({
     required this.items,
-    required this.$__typename,
+    this.$__typename = 'LessonPagination',
   });
 
   factory Query$FetchEpisode$episode$lessons.fromJson(
@@ -3125,7 +3125,7 @@ class _CopyWithImpl$Query$FetchEpisode$episode$lessons<TRes>
 
   final TRes Function(Query$FetchEpisode$episode$lessons) _then;
 
-  static const _undefined = {};
+  static const _undefined = <dynamic, dynamic>{};
 
   TRes call({
     Object? items = _undefined,
@@ -3170,7 +3170,7 @@ class _CopyWithStubImpl$Query$FetchEpisode$episode$lessons<TRes>
 class Query$FetchEpisode$episode$lessons$items {
   Query$FetchEpisode$episode$lessons$items({
     required this.id,
-    required this.$__typename,
+    this.$__typename = 'Lesson',
   });
 
   factory Query$FetchEpisode$episode$lessons$items.fromJson(
@@ -3265,7 +3265,7 @@ class _CopyWithImpl$Query$FetchEpisode$episode$lessons$items<TRes>
 
   final TRes Function(Query$FetchEpisode$episode$lessons$items) _then;
 
-  static const _undefined = {};
+  static const _undefined = <dynamic, dynamic>{};
 
   TRes call({
     Object? id = _undefined,
@@ -3299,7 +3299,7 @@ class Query$FetchEpisode$episode$season {
     required this.number,
     required this.episodes,
     required this.$show,
-    required this.$__typename,
+    this.$__typename = 'Season',
   });
 
   factory Query$FetchEpisode$episode$season.fromJson(
@@ -3453,7 +3453,7 @@ class _CopyWithImpl$Query$FetchEpisode$episode$season<TRes>
 
   final TRes Function(Query$FetchEpisode$episode$season) _then;
 
-  static const _undefined = {};
+  static const _undefined = <dynamic, dynamic>{};
 
   TRes call({
     Object? id = _undefined,
@@ -3518,7 +3518,7 @@ class _CopyWithStubImpl$Query$FetchEpisode$episode$season<TRes>
 class Query$FetchEpisode$episode$season$episodes {
   Query$FetchEpisode$episode$season$episodes({
     required this.items,
-    required this.$__typename,
+    this.$__typename = 'EpisodePagination',
   });
 
   factory Query$FetchEpisode$episode$season$episodes.fromJson(
@@ -3629,7 +3629,7 @@ class _CopyWithImpl$Query$FetchEpisode$episode$season$episodes<TRes>
 
   final TRes Function(Query$FetchEpisode$episode$season$episodes) _then;
 
-  static const _undefined = {};
+  static const _undefined = <dynamic, dynamic>{};
 
   TRes call({
     Object? items = _undefined,
@@ -3676,7 +3676,7 @@ class Query$FetchEpisode$episode$season$show {
     required this.title,
     required this.type,
     required this.seasons,
-    required this.$__typename,
+    this.$__typename = 'Show',
   });
 
   factory Query$FetchEpisode$episode$season$show.fromJson(
@@ -3801,7 +3801,7 @@ class _CopyWithImpl$Query$FetchEpisode$episode$season$show<TRes>
 
   final TRes Function(Query$FetchEpisode$episode$season$show) _then;
 
-  static const _undefined = {};
+  static const _undefined = <dynamic, dynamic>{};
 
   TRes call({
     Object? title = _undefined,
@@ -3850,7 +3850,7 @@ class _CopyWithStubImpl$Query$FetchEpisode$episode$season$show<TRes>
 class Query$FetchEpisode$episode$season$show$seasons {
   Query$FetchEpisode$episode$season$show$seasons({
     required this.items,
-    required this.$__typename,
+    this.$__typename = 'SeasonPagination',
   });
 
   factory Query$FetchEpisode$episode$season$show$seasons.fromJson(
@@ -3963,7 +3963,7 @@ class _CopyWithImpl$Query$FetchEpisode$episode$season$show$seasons<TRes>
 
   final TRes Function(Query$FetchEpisode$episode$season$show$seasons) _then;
 
-  static const _undefined = {};
+  static const _undefined = <dynamic, dynamic>{};
 
   TRes call({
     Object? items = _undefined,
@@ -4010,7 +4010,7 @@ class Query$FetchEpisode$episode$season$show$seasons$items {
   Query$FetchEpisode$episode$season$show$seasons$items({
     required this.id,
     required this.title,
-    required this.$__typename,
+    this.$__typename = 'Season',
   });
 
   factory Query$FetchEpisode$episode$season$show$seasons$items.fromJson(
@@ -4124,7 +4124,7 @@ class _CopyWithImpl$Query$FetchEpisode$episode$season$show$seasons$items<TRes>
   final TRes Function(Query$FetchEpisode$episode$season$show$seasons$items)
       _then;
 
-  static const _undefined = {};
+  static const _undefined = <dynamic, dynamic>{};
 
   TRes call({
     Object? id = _undefined,
@@ -4273,7 +4273,7 @@ class _CopyWithImpl$Variables$Query$legacyIDLookup<TRes>
 
   final TRes Function(Variables$Query$legacyIDLookup) _then;
 
-  static const _undefined = {};
+  static const _undefined = <dynamic, dynamic>{};
 
   TRes call({
     Object? episodeId = _undefined,
@@ -4302,7 +4302,7 @@ class _CopyWithStubImpl$Variables$Query$legacyIDLookup<TRes>
 class Query$legacyIDLookup {
   Query$legacyIDLookup({
     required this.legacyIDLookup,
-    required this.$__typename,
+    this.$__typename = 'QueryRoot',
   });
 
   factory Query$legacyIDLookup.fromJson(Map<String, dynamic> json) {
@@ -4395,7 +4395,7 @@ class _CopyWithImpl$Query$legacyIDLookup<TRes>
 
   final TRes Function(Query$legacyIDLookup) _then;
 
-  static const _undefined = {};
+  static const _undefined = <dynamic, dynamic>{};
 
   TRes call({
     Object? legacyIDLookup = _undefined,
@@ -4634,7 +4634,7 @@ class Query$legacyIDLookup$Widget
 class Query$legacyIDLookup$legacyIDLookup {
   Query$legacyIDLookup$legacyIDLookup({
     required this.id,
-    required this.$__typename,
+    this.$__typename = 'LegacyIDLookup',
   });
 
   factory Query$legacyIDLookup$legacyIDLookup.fromJson(
@@ -4729,7 +4729,7 @@ class _CopyWithImpl$Query$legacyIDLookup$legacyIDLookup<TRes>
 
   final TRes Function(Query$legacyIDLookup$legacyIDLookup) _then;
 
-  static const _undefined = {};
+  static const _undefined = <dynamic, dynamic>{};
 
   TRes call({
     Object? id = _undefined,
@@ -4833,7 +4833,7 @@ class _CopyWithImpl$Variables$Query$EpisodeDetails<TRes>
 
   final TRes Function(Variables$Query$EpisodeDetails) _then;
 
-  static const _undefined = {};
+  static const _undefined = <dynamic, dynamic>{};
 
   TRes call({Object? id = _undefined}) =>
       _then(Variables$Query$EpisodeDetails._({
@@ -4854,7 +4854,7 @@ class _CopyWithStubImpl$Variables$Query$EpisodeDetails<TRes>
 class Query$EpisodeDetails {
   Query$EpisodeDetails({
     required this.episode,
-    required this.$__typename,
+    this.$__typename = 'QueryRoot',
   });
 
   factory Query$EpisodeDetails.fromJson(Map<String, dynamic> json) {
@@ -4947,7 +4947,7 @@ class _CopyWithImpl$Query$EpisodeDetails<TRes>
 
   final TRes Function(Query$EpisodeDetails) _then;
 
-  static const _undefined = {};
+  static const _undefined = <dynamic, dynamic>{};
 
   TRes call({
     Object? episode = _undefined,
@@ -5241,7 +5241,7 @@ class _CopyWithImpl$Variables$Query$getDefaultEpisodeForShow<TRes>
 
   final TRes Function(Variables$Query$getDefaultEpisodeForShow) _then;
 
-  static const _undefined = {};
+  static const _undefined = <dynamic, dynamic>{};
 
   TRes call({Object? showId = _undefined}) =>
       _then(Variables$Query$getDefaultEpisodeForShow._({
@@ -5263,7 +5263,7 @@ class _CopyWithStubImpl$Variables$Query$getDefaultEpisodeForShow<TRes>
 class Query$getDefaultEpisodeForShow {
   Query$getDefaultEpisodeForShow({
     required this.$show,
-    required this.$__typename,
+    this.$__typename = 'QueryRoot',
   });
 
   factory Query$getDefaultEpisodeForShow.fromJson(Map<String, dynamic> json) {
@@ -5358,7 +5358,7 @@ class _CopyWithImpl$Query$getDefaultEpisodeForShow<TRes>
 
   final TRes Function(Query$getDefaultEpisodeForShow) _then;
 
-  static const _undefined = {};
+  static const _undefined = <dynamic, dynamic>{};
 
   TRes call({
     Object? $show = _undefined,
@@ -5603,7 +5603,7 @@ class Query$getDefaultEpisodeForShow$Widget
 class Query$getDefaultEpisodeForShow$show {
   Query$getDefaultEpisodeForShow$show({
     required this.defaultEpisode,
-    required this.$__typename,
+    this.$__typename = 'Show',
   });
 
   factory Query$getDefaultEpisodeForShow$show.fromJson(
@@ -5702,7 +5702,7 @@ class _CopyWithImpl$Query$getDefaultEpisodeForShow$show<TRes>
 
   final TRes Function(Query$getDefaultEpisodeForShow$show) _then;
 
-  static const _undefined = {};
+  static const _undefined = <dynamic, dynamic>{};
 
   TRes call({
     Object? defaultEpisode = _undefined,
@@ -5745,7 +5745,7 @@ class _CopyWithStubImpl$Query$getDefaultEpisodeForShow$show<TRes>
 class Query$getDefaultEpisodeForShow$show$defaultEpisode {
   Query$getDefaultEpisodeForShow$show$defaultEpisode({
     required this.id,
-    required this.$__typename,
+    this.$__typename = 'Episode',
   });
 
   factory Query$getDefaultEpisodeForShow$show$defaultEpisode.fromJson(
@@ -5844,7 +5844,7 @@ class _CopyWithImpl$Query$getDefaultEpisodeForShow$show$defaultEpisode<TRes>
 
   final TRes Function(Query$getDefaultEpisodeForShow$show$defaultEpisode) _then;
 
-  static const _undefined = {};
+  static const _undefined = <dynamic, dynamic>{};
 
   TRes call({
     Object? id = _undefined,

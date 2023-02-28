@@ -112,7 +112,7 @@ class _CopyWithImpl$Input$LegacyIDLookupOptions<TRes>
 
   final TRes Function(Input$LegacyIDLookupOptions) _then;
 
-  static const _undefined = {};
+  static const _undefined = <dynamic, dynamic>{};
 
   TRes call({
     Object? episodeID = _undefined,
@@ -223,7 +223,7 @@ class _CopyWithImpl$Input$EpisodeContext<TRes>
 
   final TRes Function(Input$EpisodeContext) _then;
 
-  static const _undefined = {};
+  static const _undefined = <dynamic, dynamic>{};
 
   TRes call({Object? collectionId = _undefined}) =>
       _then(Input$EpisodeContext._({
@@ -242,30 +242,20 @@ class _CopyWithStubImpl$Input$EpisodeContext<TRes>
   call({String? collectionId}) => _res;
 }
 
-const possibleTypesMap = {
+const possibleTypesMap = <String, Set<String>>{
   'Pagination': {
-    'SeasonPagination',
-    'EpisodePagination',
+    'AchievementPagination',
+    'AchievementGroupPagination',
     'CollectionItemPagination',
     'QuestionPagination',
     'FAQCategoryPagination',
-    'LessonPagination',
-    'TaskPagination',
+    'SeasonPagination',
+    'EpisodePagination',
     'SectionPagination',
     'LinkPagination',
     'SectionItemPagination',
-    'AchievementPagination',
-    'AchievementGroupPagination',
-  },
-  'EpisodeContextUnion': {
-    'Season',
-    'ContextCollection',
-  },
-  'CollectionItem': {
-    'ShowItem',
-    'SeasonItem',
-    'EpisodeItem',
-    'PageItem',
+    'LessonPagination',
+    'TaskPagination',
   },
   'CalendarEntry': {
     'SimpleCalendarEntry',
@@ -273,18 +263,15 @@ const possibleTypesMap = {
     'SeasonCalendarEntry',
     'ShowCalendarEntry',
   },
-  'SearchResultItem': {
-    'EpisodeSearchItem',
-    'SeasonSearchItem',
-    'ShowSearchItem',
+  'CollectionItem': {
+    'ShowItem',
+    'SeasonItem',
+    'EpisodeItem',
+    'PageItem',
   },
-  'Task': {
-    'AlternativesTask',
-    'TextTask',
-    'PosterTask',
-    'QuoteTask',
-    'VideoTask',
-    'LinkTask',
+  'EpisodeContextUnion': {
+    'Season',
+    'ContextCollection',
   },
   'Section': {
     'PosterSection',
@@ -328,5 +315,18 @@ const possibleTypesMap = {
     'Page',
     'Link',
     'StudyTopic',
+  },
+  'SearchResultItem': {
+    'EpisodeSearchItem',
+    'SeasonSearchItem',
+    'ShowSearchItem',
+  },
+  'Task': {
+    'AlternativesTask',
+    'TextTask',
+    'PosterTask',
+    'QuoteTask',
+    'VideoTask',
+    'LinkTask',
   },
 };

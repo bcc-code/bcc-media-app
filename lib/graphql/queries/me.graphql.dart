@@ -6,7 +6,7 @@ import 'package:graphql_flutter/graphql_flutter.dart' as graphql_flutter;
 class Query$me {
   Query$me({
     required this.me,
-    required this.$__typename,
+    this.$__typename = 'QueryRoot',
   });
 
   factory Query$me.fromJson(Map<String, dynamic> json) {
@@ -95,7 +95,7 @@ class _CopyWithImpl$Query$me<TRes> implements CopyWith$Query$me<TRes> {
 
   final TRes Function(Query$me) _then;
 
-  static const _undefined = {};
+  static const _undefined = <dynamic, dynamic>{};
 
   TRes call({
     Object? me = _undefined,
@@ -290,7 +290,7 @@ class Query$me$Widget extends graphql_flutter.Query<Query$me> {
 class Query$me$me {
   Query$me$me({
     required this.analytics,
-    required this.$__typename,
+    this.$__typename = 'User',
   });
 
   factory Query$me$me.fromJson(Map<String, dynamic> json) {
@@ -380,7 +380,7 @@ class _CopyWithImpl$Query$me$me<TRes> implements CopyWith$Query$me$me<TRes> {
 
   final TRes Function(Query$me$me) _then;
 
-  static const _undefined = {};
+  static const _undefined = <dynamic, dynamic>{};
 
   TRes call({
     Object? analytics = _undefined,
@@ -419,7 +419,7 @@ class _CopyWithStubImpl$Query$me$me<TRes>
 class Query$me$me$analytics {
   Query$me$me$analytics({
     required this.anonymousId,
-    required this.$__typename,
+    this.$__typename = 'Analytics',
   });
 
   factory Query$me$me$analytics.fromJson(Map<String, dynamic> json) {
@@ -510,7 +510,7 @@ class _CopyWithImpl$Query$me$me$analytics<TRes>
 
   final TRes Function(Query$me$me$analytics) _then;
 
-  static const _undefined = {};
+  static const _undefined = <dynamic, dynamic>{};
 
   TRes call({
     Object? anonymousId = _undefined,
