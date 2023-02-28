@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../helpers/date_time.dart';
-import '../../../helpers/ui/ui.dart';
+import '../../../helpers/ui/ui_utils.dart';
 import '../../../models/episode_thumbnail_data.dart';
 import '../../bordered_image_container.dart';
 import '../../episode_duration.dart';

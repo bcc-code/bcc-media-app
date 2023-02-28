@@ -8,7 +8,7 @@ import 'package:intl/intl.dart';
 
 import '../env/env.dart';
 import '../helpers/date_time.dart';
-import '../helpers/ui/ui.dart';
+import '../helpers/ui/ui_utils.dart';
 import '../theme/bccm_colors.dart';
 import '../helpers/utils.dart';
 import '../l10n/app_localizations.dart';
