@@ -6,7 +6,7 @@ import '../../../graphql/queries/calendar_episode_entries.graphql.dart';
 import '../../../graphql/queries/page.graphql.dart';
 
 import '../../../providers/todays_calendar_entries.dart';
-import '../../../helpers/utils.dart';
+import '../../../helpers/extensions.dart';
 import '../../../models/analytics/sections.dart';
 import 'thumbnail_slider_episode.dart';
 import 'thumbnail_slider_show.dart';

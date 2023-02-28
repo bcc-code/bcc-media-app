@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:brunstadtv_app/graphql/queries/page.graphql.dart';
-import 'package:brunstadtv_app/helpers/watch_progress.dart';
+import 'package:brunstadtv_app/helpers/ui/watch_progress.dart';
 import 'package:flutter/material.dart';
 
 import '../models/events/watch_progress.dart';

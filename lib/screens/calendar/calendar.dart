@@ -3,9 +3,8 @@ import 'dart:collection';
 import 'dart:math';
 import 'package:brunstadtv_app/graphql/client.dart';
 import 'package:brunstadtv_app/graphql/queries/calendar.graphql.dart';
-import 'package:brunstadtv_app/helpers/string_utils.dart';
-import 'package:brunstadtv_app/helpers/svg_icons.dart';
-import 'package:brunstadtv_app/helpers/utils.dart';
+import 'package:brunstadtv_app/helpers/ui/svg_icons.dart';
+import 'package:brunstadtv_app/helpers/extensions.dart';
 import 'package:brunstadtv_app/router/router.gr.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter/material.dart';
@@ -14,13 +13,14 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:table_calendar/table_calendar.dart';
 import 'package:intl/intl.dart';
 
+import '../../helpers/date_time.dart';
+import '../../helpers/episode_state.dart';
 import '../../theme/bccm_colors.dart';
 import '../../theme/bccm_typography.dart';
 import '../../helpers/constants.dart';
 import '../../l10n/app_localizations.dart';
 import '../../models/analytics/calendar_day_clicked.dart';
 import '../../providers/analytics.dart';
-import '../../services/utils.dart';
 
 class CalendarPage extends ConsumerStatefulWidget {
   const CalendarPage({super.key});

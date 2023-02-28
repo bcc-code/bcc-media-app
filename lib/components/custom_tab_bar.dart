@@ -1,7 +1,7 @@
 import 'package:universal_io/io.dart';
 
 import 'package:auto_route/auto_route.dart';
-import 'package:brunstadtv_app/helpers/utils.dart';
+import 'package:brunstadtv_app/helpers/extensions.dart';
 import 'package:brunstadtv_app/models/scroll_screen.dart';
 import 'package:brunstadtv_app/providers/auth_state/auth_state.dart';
 import 'package:brunstadtv_app/providers/device_info.dart';

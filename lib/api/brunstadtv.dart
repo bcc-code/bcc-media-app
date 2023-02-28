@@ -3,7 +3,7 @@ import 'dart:convert';
 import 'package:brunstadtv_app/graphql/queries/calendar_episode_entries.graphql.dart';
 import 'package:brunstadtv_app/graphql/queries/page.graphql.dart';
 import 'package:brunstadtv_app/graphql/queries/studies.graphql.dart';
-import 'package:brunstadtv_app/helpers/utils.dart';
+import 'package:brunstadtv_app/helpers/extensions.dart';
 import 'package:brunstadtv_app/providers/auth_state/auth_state.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/material.dart';
@@ -16,7 +16,7 @@ import 'package:http/http.dart' as http;
 import '../graphql/client.dart';
 import '../graphql/queries/application.graphql.dart';
 import '../graphql/queries/progress.graphql.dart';
-import '../services/utils.dart';
+import '../helpers/date_time.dart';
 
 class ApiErrorCodes {
   ApiErrorCodes._();

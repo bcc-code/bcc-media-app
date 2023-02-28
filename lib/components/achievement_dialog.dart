@@ -9,16 +9,16 @@ import 'package:intl/intl.dart';
 import 'package:share_plus/share_plus.dart';
 
 import '../graphql/queries/achievements.graphql.dart';
-import '../helpers/btv_buttons.dart';
+import '../helpers/ui/btv_buttons.dart';
 import '../theme/bccm_colors.dart';
 import '../theme/bccm_typography.dart';
-import '../helpers/image_utils.dart';
-import '../helpers/svg_icons.dart';
+import '../helpers/ui/image.dart';
+import '../helpers/ui/svg_icons.dart';
 import '../l10n/app_localizations.dart';
 import '../providers/analytics.dart';
-import '../services/share_image.dart';
-import '../services/utils.dart';
-import '../services/widget_to_image.dart';
+import '../helpers/share_image.dart';
+import '../helpers/utils.dart';
+import '../helpers/ui/widget_to_image.dart';
 import 'dialog_with_image.dart';
 import 'loading_indicator.dart';
 

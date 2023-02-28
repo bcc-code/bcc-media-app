@@ -15,7 +15,7 @@ import 'package:auto_route/auto_route.dart' as _i22;
 import 'package:auto_route/empty_router_widgets.dart' as _i17;
 import 'package:flutter/material.dart' as _i23;
 
-import '../helpers/custom_transitions.dart' as _i25;
+import '../helpers/navigation/custom_transitions.dart' as _i25;
 import '../screens/achievement_group.dart' as _i15;
 import '../screens/achievements.dart' as _i14;
 import '../screens/auto_login.dart' as _i12;

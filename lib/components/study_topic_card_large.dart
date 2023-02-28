@@ -1,13 +1,13 @@
 import 'package:brunstadtv_app/components/study_progress_row.dart';
-import 'package:brunstadtv_app/helpers/btv_buttons.dart';
+import 'package:brunstadtv_app/helpers/ui/btv_buttons.dart';
 import 'package:brunstadtv_app/theme/bccm_typography.dart';
-import 'package:brunstadtv_app/helpers/image_utils.dart';
+import 'package:brunstadtv_app/helpers/ui/image.dart';
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 
 import '../graphql/queries/page.graphql.dart';
 import '../theme/bccm_colors.dart';
-import '../helpers/navigation_utils.dart';
+import '../helpers/navigation/navigation_utils.dart';
 import '../helpers/utils.dart';
 import '../l10n/app_localizations.dart';
 import 'loading_indicator.dart';

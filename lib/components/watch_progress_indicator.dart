@@ -3,8 +3,8 @@ import 'dart:math';
 import 'package:brunstadtv_app/theme/bccm_typography.dart';
 import 'package:flutter/material.dart';
 
+import '../helpers/date_time.dart';
 import '../theme/bccm_colors.dart';
-import '../services/utils.dart';
 
 class WatchProgressIndicator extends StatelessWidget {
   final int totalDuration;

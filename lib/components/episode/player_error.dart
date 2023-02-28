@@ -1,5 +1,5 @@
-import 'package:brunstadtv_app/helpers/btv_buttons.dart';
-import 'package:brunstadtv_app/helpers/transparent_image.dart';
+import 'package:brunstadtv_app/helpers/ui/btv_buttons.dart';
+import 'package:brunstadtv_app/helpers/ui/transparent_image.dart';
 import 'package:brunstadtv_app/l10n/app_localizations.dart';
 import 'package:brunstadtv_app/theme/bccm_typography.dart';
 import 'package:flutter/material.dart';

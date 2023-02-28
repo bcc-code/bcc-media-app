@@ -5,8 +5,8 @@ import 'package:url_launcher/url_launcher.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 
 import '../../components/custom_back_button.dart';
+import '../../helpers/version.dart';
 import '../../theme/bccm_typography.dart';
-import '../../helpers/utils.dart';
 import '../../l10n/app_localizations.dart';
 
 class AboutScreen extends StatefulWidget {

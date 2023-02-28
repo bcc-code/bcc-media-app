@@ -1,6 +1,6 @@
 import 'package:brunstadtv_app/components/study_topic_card_mini.dart';
 import 'package:brunstadtv_app/graphql/schema/pages.graphql.dart';
-import 'package:brunstadtv_app/helpers/utils.dart';
+import 'package:brunstadtv_app/helpers/extensions.dart';
 import 'package:brunstadtv_app/models/analytics/sections.dart';
 import 'package:flutter/material.dart';
 

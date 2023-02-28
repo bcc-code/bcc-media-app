@@ -1,6 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:brunstadtv_app/components/section_item_click_wrapper.dart';
-import 'package:brunstadtv_app/helpers/navigation_utils.dart';
+import 'package:brunstadtv_app/helpers/navigation/navigation_utils.dart';
 import 'package:brunstadtv_app/l10n/app_localizations.dart';
 import 'package:brunstadtv_app/main.dart';
 import 'package:flutter/material.dart';

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
 
 import '../graphql/queries/page.graphql.dart';
-import '../services/utils.dart';
+import '../helpers/ui/ui.dart';
 
 class MessageSection extends StatelessWidget {
   final Fragment$Section$$MessageSection data;

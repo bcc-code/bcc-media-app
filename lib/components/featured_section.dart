@@ -5,16 +5,17 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../graphql/queries/calendar_episode_entries.graphql.dart';
+import '../helpers/navigation/navigation_utils.dart';
 import '../l10n/app_localizations.dart';
 import '../models/analytics/sections.dart';
 
 import '../graphql/queries/page.graphql.dart';
 import '../theme/bccm_colors.dart';
-import '../helpers/utils.dart';
-import '../helpers/btv_buttons.dart';
+import '../helpers/extensions.dart';
+import '../helpers/ui/btv_buttons.dart';
 import '../theme/bccm_typography.dart';
-import '../helpers/image_utils.dart';
-import '../helpers/transparent_image.dart';
+import '../helpers/ui/image.dart';
+import '../helpers/ui/transparent_image.dart';
 import '../providers/todays_calendar_entries.dart';
 
 class FeaturedSection extends ConsumerWidget {

@@ -5,7 +5,6 @@ import 'package:brunstadtv_app/components/loading_generic.dart';
 import 'package:brunstadtv_app/components/see_more.dart';
 import 'package:brunstadtv_app/graphql/client.dart';
 import 'package:brunstadtv_app/graphql/queries/sections.graphql.dart';
-import 'package:brunstadtv_app/helpers/sections.dart';
 import 'package:brunstadtv_app/models/analytics/sections.dart';
 import 'package:brunstadtv_app/router/router.gr.dart';
 import 'package:collection/collection.dart';
@@ -13,7 +12,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../graphql/queries/page.graphql.dart';
-import '../helpers/utils.dart';
+import '../helpers/extensions.dart';
+import '../helpers/ui/sections.dart';
 import '../models/pagination_status.dart';
 import '../providers/inherited_data.dart';
 import 'card_section.dart';

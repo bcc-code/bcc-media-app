@@ -1,6 +1,5 @@
 import 'package:brunstadtv_app/components/general_app_bar.dart';
 import 'package:brunstadtv_app/components/loading_indicator.dart';
-import 'package:brunstadtv_app/helpers/string_utils.dart';
 import 'package:flutter/material.dart';
 import 'package:universal_io/io.dart';
 import 'package:auto_route/auto_route.dart';
@@ -11,13 +10,14 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../graphql/client.dart';
 import '../../graphql/queries/send_support_email.graphql.dart';
-import '../../helpers/btv_buttons.dart';
+import '../../helpers/ui/btv_buttons.dart';
+import '../../helpers/version.dart';
 import '../../theme/bccm_colors.dart';
 import '../../theme/bccm_typography.dart';
 import '../../helpers/constants.dart';
-import '../../helpers/utils.dart';
 import '../../l10n/app_localizations.dart';
 import '../../providers/auth_state/auth_state.dart';
+import '../../helpers/extensions.dart';
 
 class ContactSupport extends ConsumerStatefulWidget {
   const ContactSupport({super.key});
