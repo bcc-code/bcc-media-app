@@ -70,6 +70,15 @@ public class AVQueuePlayerController: NSObject, PlayerController, AVPlayerViewCo
         }
     }
     
+    public func playerViewController(_ playerViewController: AVPlayerViewController, willBeginFullScreenPresentationWithAnimationCoordinator coordinator: UIViewControllerTransitionCoordinator) {
+        // Disable animations while transitioning to fullscreen, because it sometimes does a 360deg spin.
+        UIView.setAnimationsEnabled(false)
+        coordinator.animate(alongsideTransition: { _ in  }, completion: {
+                    _ in
+            UIView.setAnimationsEnabled(true)    
+        })
+    }
+    
     public func playerViewControllerWillStartPictureInPicture(_ playerViewController: AVPlayerViewController) {
         print("bccm: audiosession category willstart: " + AVAudioSession.sharedInstance().category.rawValue)
         registerPipController(playerViewController)

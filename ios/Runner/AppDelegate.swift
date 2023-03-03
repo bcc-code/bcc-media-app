@@ -54,8 +54,8 @@ import AVKit
     override func application(_ application: UIApplication,
                      supportedInterfaceOrientationsFor window: UIWindow?) -> UIInterfaceOrientationMask {
 
-        if fetchCurrentVC(self.window?.rootViewController) is AVPlayerViewController {
-            return .allButUpsideDown
+        if fetchCurrentVC(self.window?.rootViewController).debugDescription.contains("AVFullScreenViewController") {
+            return .landscape
         }
         return .portrait
     }
@@ -69,7 +69,7 @@ import AVKit
         if let navigationController = viewController as? UINavigationController{
             return fetchCurrentVC(navigationController.visibleViewController)
         }
-
+        
         if let viewController = viewController?.presentedViewController {
             return fetchCurrentVC(viewController)
         }
