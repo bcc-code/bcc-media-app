@@ -64,12 +64,15 @@ type AlternativesTask implements Task {
     title: String!
     completed: Boolean! @goField(forceResolver: true)
     alternatives: [Alternative!]! @goField(forceResolver: true)
+    competitionMode: Boolean!
+    locked: Boolean! @goField(forceResolver: true)
 }
 
 type Alternative {
     id: ID!
     title: String!
-    isCorrect: Boolean!
+    isCorrect: Boolean
+    selected: Boolean!
 }
 
 type TextTask implements Task {
