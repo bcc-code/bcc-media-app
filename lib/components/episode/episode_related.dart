@@ -1,7 +1,7 @@
 import 'package:brunstadtv_app/components/sections/thumbnail_grid/thumbnail_grid.dart';
 import 'package:brunstadtv_app/graphql/queries/episode.graphql.dart';
 import 'package:brunstadtv_app/graphql/schema/pages.graphql.dart';
-import 'package:brunstadtv_app/helpers/navigation_override.dart';
+import 'package:brunstadtv_app/helpers/navigation/navigation_override.dart';
 import 'package:flutter/material.dart';
 
 class EpisodeRelated extends StatelessWidget {

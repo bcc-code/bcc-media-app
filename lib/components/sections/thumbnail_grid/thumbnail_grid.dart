@@ -4,7 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../graphql/queries/calendar_episode_entries.graphql.dart';
 import '../../../graphql/queries/page.graphql.dart';
 import '../../../graphql/schema/pages.graphql.dart';
-import '../../../helpers/utils.dart';
+import '../../../helpers/extensions.dart';
 import '../../../models/analytics/sections.dart';
 import '../../../providers/todays_calendar_entries.dart';
 import '../../grid_row.dart';

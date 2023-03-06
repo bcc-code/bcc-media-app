@@ -8,7 +8,7 @@ class Fragment$LessonProgressOverview {
     required this.id,
     required this.locked,
     required this.progress,
-    required this.$__typename,
+    this.$__typename = 'Lesson',
   });
 
   factory Fragment$LessonProgressOverview.fromJson(Map<String, dynamic> json) {
@@ -131,7 +131,7 @@ class _CopyWithImpl$Fragment$LessonProgressOverview<TRes>
 
   final TRes Function(Fragment$LessonProgressOverview) _then;
 
-  static const _undefined = {};
+  static const _undefined = <dynamic, dynamic>{};
 
   TRes call({
     Object? id = _undefined,
@@ -282,7 +282,7 @@ class Fragment$LessonProgressOverview$progress {
   Fragment$LessonProgressOverview$progress({
     required this.total,
     required this.completed,
-    required this.$__typename,
+    this.$__typename = 'TasksProgress',
   });
 
   factory Fragment$LessonProgressOverview$progress.fromJson(
@@ -391,7 +391,7 @@ class _CopyWithImpl$Fragment$LessonProgressOverview$progress<TRes>
 
   final TRes Function(Fragment$LessonProgressOverview$progress) _then;
 
-  static const _undefined = {};
+  static const _undefined = <dynamic, dynamic>{};
 
   TRes call({
     Object? total = _undefined,
@@ -429,7 +429,7 @@ class Fragment$EpisodeLessonProgressOverview {
   Fragment$EpisodeLessonProgressOverview({
     required this.id,
     required this.lessons,
-    required this.$__typename,
+    this.$__typename = 'Episode',
   });
 
   factory Fragment$EpisodeLessonProgressOverview.fromJson(
@@ -540,7 +540,7 @@ class _CopyWithImpl$Fragment$EpisodeLessonProgressOverview<TRes>
 
   final TRes Function(Fragment$EpisodeLessonProgressOverview) _then;
 
-  static const _undefined = {};
+  static const _undefined = <dynamic, dynamic>{};
 
   TRes call({
     Object? id = _undefined,
@@ -686,7 +686,7 @@ extension ClientExtension$Fragment$EpisodeLessonProgressOverview
 class Fragment$EpisodeLessonProgressOverview$lessons {
   Fragment$EpisodeLessonProgressOverview$lessons({
     required this.items,
-    required this.$__typename,
+    this.$__typename = 'LessonPagination',
   });
 
   factory Fragment$EpisodeLessonProgressOverview$lessons.fromJson(
@@ -798,7 +798,7 @@ class _CopyWithImpl$Fragment$EpisodeLessonProgressOverview$lessons<TRes>
 
   final TRes Function(Fragment$EpisodeLessonProgressOverview$lessons) _then;
 
-  static const _undefined = {};
+  static const _undefined = <dynamic, dynamic>{};
 
   TRes call({
     Object? items = _undefined,
@@ -940,7 +940,7 @@ class _CopyWithImpl$Variables$Query$GetStudyTopicLessonStatuses<TRes>
 
   final TRes Function(Variables$Query$GetStudyTopicLessonStatuses) _then;
 
-  static const _undefined = {};
+  static const _undefined = <dynamic, dynamic>{};
 
   TRes call({
     Object? id = _undefined,
@@ -969,7 +969,7 @@ class _CopyWithStubImpl$Variables$Query$GetStudyTopicLessonStatuses<TRes>
 class Query$GetStudyTopicLessonStatuses {
   Query$GetStudyTopicLessonStatuses({
     required this.studyTopic,
-    required this.$__typename,
+    this.$__typename = 'QueryRoot',
   });
 
   factory Query$GetStudyTopicLessonStatuses.fromJson(
@@ -1065,7 +1065,7 @@ class _CopyWithImpl$Query$GetStudyTopicLessonStatuses<TRes>
 
   final TRes Function(Query$GetStudyTopicLessonStatuses) _then;
 
-  static const _undefined = {};
+  static const _undefined = <dynamic, dynamic>{};
 
   TRes call({
     Object? studyTopic = _undefined,
@@ -1395,7 +1395,7 @@ class Query$GetStudyTopicLessonStatuses$Widget
 class Query$GetStudyTopicLessonStatuses$studyTopic {
   Query$GetStudyTopicLessonStatuses$studyTopic({
     required this.lessons,
-    required this.$__typename,
+    this.$__typename = 'StudyTopic',
   });
 
   factory Query$GetStudyTopicLessonStatuses$studyTopic.fromJson(
@@ -1493,7 +1493,7 @@ class _CopyWithImpl$Query$GetStudyTopicLessonStatuses$studyTopic<TRes>
 
   final TRes Function(Query$GetStudyTopicLessonStatuses$studyTopic) _then;
 
-  static const _undefined = {};
+  static const _undefined = <dynamic, dynamic>{};
 
   TRes call({
     Object? lessons = _undefined,
@@ -1535,7 +1535,7 @@ class _CopyWithStubImpl$Query$GetStudyTopicLessonStatuses$studyTopic<TRes>
 class Query$GetStudyTopicLessonStatuses$studyTopic$lessons {
   Query$GetStudyTopicLessonStatuses$studyTopic$lessons({
     required this.items,
-    required this.$__typename,
+    this.$__typename = 'LessonPagination',
   });
 
   factory Query$GetStudyTopicLessonStatuses$studyTopic$lessons.fromJson(
@@ -1651,7 +1651,7 @@ class _CopyWithImpl$Query$GetStudyTopicLessonStatuses$studyTopic$lessons<TRes>
   final TRes Function(Query$GetStudyTopicLessonStatuses$studyTopic$lessons)
       _then;
 
-  static const _undefined = {};
+  static const _undefined = <dynamic, dynamic>{};
 
   TRes call({
     Object? items = _undefined,
@@ -1702,7 +1702,7 @@ class Query$GetStudyTopicLessonStatuses$studyTopic$lessons$items {
     required this.id,
     required this.completed,
     required this.episodes,
-    required this.$__typename,
+    this.$__typename = 'Lesson',
   });
 
   factory Query$GetStudyTopicLessonStatuses$studyTopic$lessons$items.fromJson(
@@ -1840,7 +1840,7 @@ class _CopyWithImpl$Query$GetStudyTopicLessonStatuses$studyTopic$lessons$items<
   final TRes Function(
       Query$GetStudyTopicLessonStatuses$studyTopic$lessons$items) _then;
 
-  static const _undefined = {};
+  static const _undefined = <dynamic, dynamic>{};
 
   TRes call({
     Object? id = _undefined,
@@ -1897,7 +1897,7 @@ class _CopyWithStubImpl$Query$GetStudyTopicLessonStatuses$studyTopic$lessons$ite
 class Query$GetStudyTopicLessonStatuses$studyTopic$lessons$items$episodes {
   Query$GetStudyTopicLessonStatuses$studyTopic$lessons$items$episodes({
     required this.items,
-    required this.$__typename,
+    this.$__typename = 'EpisodePagination',
   });
 
   factory Query$GetStudyTopicLessonStatuses$studyTopic$lessons$items$episodes.fromJson(
@@ -2025,7 +2025,7 @@ class _CopyWithImpl$Query$GetStudyTopicLessonStatuses$studyTopic$lessons$items$e
           Query$GetStudyTopicLessonStatuses$studyTopic$lessons$items$episodes)
       _then;
 
-  static const _undefined = {};
+  static const _undefined = <dynamic, dynamic>{};
 
   TRes call({
     Object? items = _undefined,
@@ -2077,7 +2077,7 @@ class Query$GetStudyTopicLessonStatuses$studyTopic$lessons$items$episodes$items 
   Query$GetStudyTopicLessonStatuses$studyTopic$lessons$items$episodes$items({
     required this.id,
     required this.locked,
-    required this.$__typename,
+    this.$__typename = 'Episode',
   });
 
   factory Query$GetStudyTopicLessonStatuses$studyTopic$lessons$items$episodes$items.fromJson(
@@ -2199,7 +2199,7 @@ class _CopyWithImpl$Query$GetStudyTopicLessonStatuses$studyTopic$lessons$items$e
           Query$GetStudyTopicLessonStatuses$studyTopic$lessons$items$episodes$items)
       _then;
 
-  static const _undefined = {};
+  static const _undefined = <dynamic, dynamic>{};
 
   TRes call({
     Object? id = _undefined,
@@ -2315,7 +2315,7 @@ class _CopyWithImpl$Variables$Query$GetEpisodeLessonProgress<TRes>
 
   final TRes Function(Variables$Query$GetEpisodeLessonProgress) _then;
 
-  static const _undefined = {};
+  static const _undefined = <dynamic, dynamic>{};
 
   TRes call({Object? id = _undefined}) =>
       _then(Variables$Query$GetEpisodeLessonProgress._({
@@ -2336,7 +2336,7 @@ class _CopyWithStubImpl$Variables$Query$GetEpisodeLessonProgress<TRes>
 class Query$GetEpisodeLessonProgress {
   Query$GetEpisodeLessonProgress({
     required this.episode,
-    required this.$__typename,
+    this.$__typename = 'QueryRoot',
   });
 
   factory Query$GetEpisodeLessonProgress.fromJson(Map<String, dynamic> json) {
@@ -2431,7 +2431,7 @@ class _CopyWithImpl$Query$GetEpisodeLessonProgress<TRes>
 
   final TRes Function(Query$GetEpisodeLessonProgress) _then;
 
-  static const _undefined = {};
+  static const _undefined = <dynamic, dynamic>{};
 
   TRes call({
     Object? episode = _undefined,
@@ -2718,7 +2718,7 @@ class Query$GetEpisodeLessonProgress$episode
   Query$GetEpisodeLessonProgress$episode({
     required this.id,
     required this.lessons,
-    required this.$__typename,
+    this.$__typename = 'Episode',
     this.season,
   });
 
@@ -2848,7 +2848,7 @@ class _CopyWithImpl$Query$GetEpisodeLessonProgress$episode<TRes>
 
   final TRes Function(Query$GetEpisodeLessonProgress$episode) _then;
 
-  static const _undefined = {};
+  static const _undefined = <dynamic, dynamic>{};
 
   TRes call({
     Object? id = _undefined,
@@ -2907,7 +2907,7 @@ class Query$GetEpisodeLessonProgress$episode$lessons
     implements Fragment$EpisodeLessonProgressOverview$lessons {
   Query$GetEpisodeLessonProgress$episode$lessons({
     required this.items,
-    required this.$__typename,
+    this.$__typename = 'LessonPagination',
   });
 
   factory Query$GetEpisodeLessonProgress$episode$lessons.fromJson(
@@ -3019,7 +3019,7 @@ class _CopyWithImpl$Query$GetEpisodeLessonProgress$episode$lessons<TRes>
 
   final TRes Function(Query$GetEpisodeLessonProgress$episode$lessons) _then;
 
-  static const _undefined = {};
+  static const _undefined = <dynamic, dynamic>{};
 
   TRes call({
     Object? items = _undefined,
@@ -3065,7 +3065,7 @@ class Query$GetEpisodeLessonProgress$episode$season {
   Query$GetEpisodeLessonProgress$episode$season({
     required this.id,
     required this.episodes,
-    required this.$__typename,
+    this.$__typename = 'Season',
   });
 
   factory Query$GetEpisodeLessonProgress$episode$season.fromJson(
@@ -3178,7 +3178,7 @@ class _CopyWithImpl$Query$GetEpisodeLessonProgress$episode$season<TRes>
 
   final TRes Function(Query$GetEpisodeLessonProgress$episode$season) _then;
 
-  static const _undefined = {};
+  static const _undefined = <dynamic, dynamic>{};
 
   TRes call({
     Object? id = _undefined,
@@ -3224,7 +3224,7 @@ class _CopyWithStubImpl$Query$GetEpisodeLessonProgress$episode$season<TRes>
 class Query$GetEpisodeLessonProgress$episode$season$episodes {
   Query$GetEpisodeLessonProgress$episode$season$episodes({
     required this.items,
-    required this.$__typename,
+    this.$__typename = 'EpisodePagination',
   });
 
   factory Query$GetEpisodeLessonProgress$episode$season$episodes.fromJson(
@@ -3340,7 +3340,7 @@ class _CopyWithImpl$Query$GetEpisodeLessonProgress$episode$season$episodes<TRes>
   final TRes Function(Query$GetEpisodeLessonProgress$episode$season$episodes)
       _then;
 
-  static const _undefined = {};
+  static const _undefined = <dynamic, dynamic>{};
 
   TRes call({
     Object? items = _undefined,
@@ -3464,7 +3464,7 @@ class _CopyWithImpl$Variables$Query$GetSeasonLessonProgress<TRes>
 
   final TRes Function(Variables$Query$GetSeasonLessonProgress) _then;
 
-  static const _undefined = {};
+  static const _undefined = <dynamic, dynamic>{};
 
   TRes call({Object? id = _undefined}) =>
       _then(Variables$Query$GetSeasonLessonProgress._({
@@ -3485,7 +3485,7 @@ class _CopyWithStubImpl$Variables$Query$GetSeasonLessonProgress<TRes>
 class Query$GetSeasonLessonProgress {
   Query$GetSeasonLessonProgress({
     required this.season,
-    required this.$__typename,
+    this.$__typename = 'QueryRoot',
   });
 
   factory Query$GetSeasonLessonProgress.fromJson(Map<String, dynamic> json) {
@@ -3580,7 +3580,7 @@ class _CopyWithImpl$Query$GetSeasonLessonProgress<TRes>
 
   final TRes Function(Query$GetSeasonLessonProgress) _then;
 
-  static const _undefined = {};
+  static const _undefined = <dynamic, dynamic>{};
 
   TRes call({
     Object? season = _undefined,
@@ -3839,7 +3839,7 @@ class Query$GetSeasonLessonProgress$Widget
 class Query$GetSeasonLessonProgress$season {
   Query$GetSeasonLessonProgress$season({
     required this.episodes,
-    required this.$__typename,
+    this.$__typename = 'Season',
   });
 
   factory Query$GetSeasonLessonProgress$season.fromJson(
@@ -3936,7 +3936,7 @@ class _CopyWithImpl$Query$GetSeasonLessonProgress$season<TRes>
 
   final TRes Function(Query$GetSeasonLessonProgress$season) _then;
 
-  static const _undefined = {};
+  static const _undefined = <dynamic, dynamic>{};
 
   TRes call({
     Object? episodes = _undefined,
@@ -3975,7 +3975,7 @@ class _CopyWithStubImpl$Query$GetSeasonLessonProgress$season<TRes>
 class Query$GetSeasonLessonProgress$season$episodes {
   Query$GetSeasonLessonProgress$season$episodes({
     required this.items,
-    required this.$__typename,
+    this.$__typename = 'EpisodePagination',
   });
 
   factory Query$GetSeasonLessonProgress$season$episodes.fromJson(
@@ -4087,7 +4087,7 @@ class _CopyWithImpl$Query$GetSeasonLessonProgress$season$episodes<TRes>
 
   final TRes Function(Query$GetSeasonLessonProgress$season$episodes) _then;
 
-  static const _undefined = {};
+  static const _undefined = <dynamic, dynamic>{};
 
   TRes call({
     Object? items = _undefined,
@@ -4206,7 +4206,7 @@ class _CopyWithImpl$Variables$Query$GetLessonTitle<TRes>
 
   final TRes Function(Variables$Query$GetLessonTitle) _then;
 
-  static const _undefined = {};
+  static const _undefined = <dynamic, dynamic>{};
 
   TRes call({Object? id = _undefined}) =>
       _then(Variables$Query$GetLessonTitle._({
@@ -4227,7 +4227,7 @@ class _CopyWithStubImpl$Variables$Query$GetLessonTitle<TRes>
 class Query$GetLessonTitle {
   Query$GetLessonTitle({
     required this.studyLesson,
-    required this.$__typename,
+    this.$__typename = 'QueryRoot',
   });
 
   factory Query$GetLessonTitle.fromJson(Map<String, dynamic> json) {
@@ -4320,7 +4320,7 @@ class _CopyWithImpl$Query$GetLessonTitle<TRes>
 
   final TRes Function(Query$GetLessonTitle) _then;
 
-  static const _undefined = {};
+  static const _undefined = <dynamic, dynamic>{};
 
   TRes call({
     Object? studyLesson = _undefined,
@@ -4548,7 +4548,7 @@ class Query$GetLessonTitle$studyLesson {
   Query$GetLessonTitle$studyLesson({
     required this.id,
     required this.title,
-    required this.$__typename,
+    this.$__typename = 'Lesson',
   });
 
   factory Query$GetLessonTitle$studyLesson.fromJson(Map<String, dynamic> json) {
@@ -4655,7 +4655,7 @@ class _CopyWithImpl$Query$GetLessonTitle$studyLesson<TRes>
 
   final TRes Function(Query$GetLessonTitle$studyLesson) _then;
 
-  static const _undefined = {};
+  static const _undefined = <dynamic, dynamic>{};
 
   TRes call({
     Object? id = _undefined,

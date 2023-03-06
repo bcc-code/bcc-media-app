@@ -22,6 +22,9 @@ class Fragment$SearchResultItem {
       case "ShowSearchItem":
         return Fragment$SearchResultItem$$ShowSearchItem.fromJson(json);
 
+      case "SeasonSearchItem":
+        return Fragment$SearchResultItem$$SeasonSearchItem.fromJson(json);
+
       default:
         final l$collection = json['collection'];
         final l$id = json['id'];
@@ -183,7 +186,7 @@ class _CopyWithImpl$Fragment$SearchResultItem<TRes>
 
   final TRes Function(Fragment$SearchResultItem) _then;
 
-  static const _undefined = {};
+  static const _undefined = <dynamic, dynamic>{};
 
   TRes call({
     Object? collection = _undefined,
@@ -389,43 +392,51 @@ extension ClientExtension$Fragment$SearchResultItem on graphql.GraphQLClient {
 class Fragment$SearchResultItem$$EpisodeSearchItem
     implements Fragment$SearchResultItem {
   Fragment$SearchResultItem$$EpisodeSearchItem({
+    this.showTitle,
+    required this.ageRating,
+    required this.duration,
+    this.$__typename = 'EpisodeSearchItem',
     required this.collection,
     required this.id,
     this.legacyID,
     required this.title,
     this.description,
     this.image,
-    required this.$__typename,
-    this.showTitle,
-    required this.ageRating,
-    required this.duration,
   });
 
   factory Fragment$SearchResultItem$$EpisodeSearchItem.fromJson(
       Map<String, dynamic> json) {
+    final l$showTitle = json['showTitle'];
+    final l$ageRating = json['ageRating'];
+    final l$duration = json['duration'];
+    final l$$__typename = json['__typename'];
     final l$collection = json['collection'];
     final l$id = json['id'];
     final l$legacyID = json['legacyID'];
     final l$title = json['title'];
     final l$description = json['description'];
     final l$image = json['image'];
-    final l$$__typename = json['__typename'];
-    final l$showTitle = json['showTitle'];
-    final l$ageRating = json['ageRating'];
-    final l$duration = json['duration'];
     return Fragment$SearchResultItem$$EpisodeSearchItem(
+      showTitle: (l$showTitle as String?),
+      ageRating: (l$ageRating as String),
+      duration: (l$duration as int),
+      $__typename: (l$$__typename as String),
       collection: (l$collection as String),
       id: (l$id as String),
       legacyID: (l$legacyID as String?),
       title: (l$title as String),
       description: (l$description as String?),
       image: (l$image as String?),
-      $__typename: (l$$__typename as String),
-      showTitle: (l$showTitle as String?),
-      ageRating: (l$ageRating as String),
-      duration: (l$duration as int),
     );
   }
+
+  final String? showTitle;
+
+  final String ageRating;
+
+  final int duration;
+
+  final String $__typename;
 
   final String collection;
 
@@ -439,16 +450,16 @@ class Fragment$SearchResultItem$$EpisodeSearchItem
 
   final String? image;
 
-  final String $__typename;
-
-  final String? showTitle;
-
-  final String ageRating;
-
-  final int duration;
-
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
+    final l$showTitle = showTitle;
+    _resultData['showTitle'] = l$showTitle;
+    final l$ageRating = ageRating;
+    _resultData['ageRating'] = l$ageRating;
+    final l$duration = duration;
+    _resultData['duration'] = l$duration;
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
     final l$collection = collection;
     _resultData['collection'] = l$collection;
     final l$id = id;
@@ -461,40 +472,32 @@ class Fragment$SearchResultItem$$EpisodeSearchItem
     _resultData['description'] = l$description;
     final l$image = image;
     _resultData['image'] = l$image;
-    final l$$__typename = $__typename;
-    _resultData['__typename'] = l$$__typename;
-    final l$showTitle = showTitle;
-    _resultData['showTitle'] = l$showTitle;
-    final l$ageRating = ageRating;
-    _resultData['ageRating'] = l$ageRating;
-    final l$duration = duration;
-    _resultData['duration'] = l$duration;
     return _resultData;
   }
 
   @override
   int get hashCode {
+    final l$showTitle = showTitle;
+    final l$ageRating = ageRating;
+    final l$duration = duration;
+    final l$$__typename = $__typename;
     final l$collection = collection;
     final l$id = id;
     final l$legacyID = legacyID;
     final l$title = title;
     final l$description = description;
     final l$image = image;
-    final l$$__typename = $__typename;
-    final l$showTitle = showTitle;
-    final l$ageRating = ageRating;
-    final l$duration = duration;
     return Object.hashAll([
+      l$showTitle,
+      l$ageRating,
+      l$duration,
+      l$$__typename,
       l$collection,
       l$id,
       l$legacyID,
       l$title,
       l$description,
       l$image,
-      l$$__typename,
-      l$showTitle,
-      l$ageRating,
-      l$duration,
     ]);
   }
 
@@ -505,6 +508,26 @@ class Fragment$SearchResultItem$$EpisodeSearchItem
     }
     if (!(other is Fragment$SearchResultItem$$EpisodeSearchItem) ||
         runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$showTitle = showTitle;
+    final lOther$showTitle = other.showTitle;
+    if (l$showTitle != lOther$showTitle) {
+      return false;
+    }
+    final l$ageRating = ageRating;
+    final lOther$ageRating = other.ageRating;
+    if (l$ageRating != lOther$ageRating) {
+      return false;
+    }
+    final l$duration = duration;
+    final lOther$duration = other.duration;
+    if (l$duration != lOther$duration) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
       return false;
     }
     final l$collection = collection;
@@ -535,26 +558,6 @@ class Fragment$SearchResultItem$$EpisodeSearchItem
     final l$image = image;
     final lOther$image = other.image;
     if (l$image != lOther$image) {
-      return false;
-    }
-    final l$$__typename = $__typename;
-    final lOther$$__typename = other.$__typename;
-    if (l$$__typename != lOther$$__typename) {
-      return false;
-    }
-    final l$showTitle = showTitle;
-    final lOther$showTitle = other.showTitle;
-    if (l$showTitle != lOther$showTitle) {
-      return false;
-    }
-    final l$ageRating = ageRating;
-    final lOther$ageRating = other.ageRating;
-    if (l$ageRating != lOther$ageRating) {
-      return false;
-    }
-    final l$duration = duration;
-    final lOther$duration = other.duration;
-    if (l$duration != lOther$duration) {
       return false;
     }
     return true;
@@ -581,16 +584,16 @@ abstract class CopyWith$Fragment$SearchResultItem$$EpisodeSearchItem<TRes> {
       _CopyWithStubImpl$Fragment$SearchResultItem$$EpisodeSearchItem;
 
   TRes call({
+    String? showTitle,
+    String? ageRating,
+    int? duration,
+    String? $__typename,
     String? collection,
     String? id,
     String? legacyID,
     String? title,
     String? description,
     String? image,
-    String? $__typename,
-    String? showTitle,
-    String? ageRating,
-    int? duration,
   });
 }
 
@@ -605,21 +608,33 @@ class _CopyWithImpl$Fragment$SearchResultItem$$EpisodeSearchItem<TRes>
 
   final TRes Function(Fragment$SearchResultItem$$EpisodeSearchItem) _then;
 
-  static const _undefined = {};
+  static const _undefined = <dynamic, dynamic>{};
 
   TRes call({
+    Object? showTitle = _undefined,
+    Object? ageRating = _undefined,
+    Object? duration = _undefined,
+    Object? $__typename = _undefined,
     Object? collection = _undefined,
     Object? id = _undefined,
     Object? legacyID = _undefined,
     Object? title = _undefined,
     Object? description = _undefined,
     Object? image = _undefined,
-    Object? $__typename = _undefined,
-    Object? showTitle = _undefined,
-    Object? ageRating = _undefined,
-    Object? duration = _undefined,
   }) =>
       _then(Fragment$SearchResultItem$$EpisodeSearchItem(
+        showTitle: showTitle == _undefined
+            ? _instance.showTitle
+            : (showTitle as String?),
+        ageRating: ageRating == _undefined || ageRating == null
+            ? _instance.ageRating
+            : (ageRating as String),
+        duration: duration == _undefined || duration == null
+            ? _instance.duration
+            : (duration as int),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
         collection: collection == _undefined || collection == null
             ? _instance.collection
             : (collection as String),
@@ -633,18 +648,6 @@ class _CopyWithImpl$Fragment$SearchResultItem$$EpisodeSearchItem<TRes>
             ? _instance.description
             : (description as String?),
         image: image == _undefined ? _instance.image : (image as String?),
-        $__typename: $__typename == _undefined || $__typename == null
-            ? _instance.$__typename
-            : ($__typename as String),
-        showTitle: showTitle == _undefined
-            ? _instance.showTitle
-            : (showTitle as String?),
-        ageRating: ageRating == _undefined || ageRating == null
-            ? _instance.ageRating
-            : (ageRating as String),
-        duration: duration == _undefined || duration == null
-            ? _instance.duration
-            : (duration as int),
       ));
 }
 
@@ -655,16 +658,16 @@ class _CopyWithStubImpl$Fragment$SearchResultItem$$EpisodeSearchItem<TRes>
   TRes _res;
 
   call({
+    String? showTitle,
+    String? ageRating,
+    int? duration,
+    String? $__typename,
     String? collection,
     String? id,
     String? legacyID,
     String? title,
     String? description,
     String? image,
-    String? $__typename,
-    String? showTitle,
-    String? ageRating,
-    int? duration,
   }) =>
       _res;
 }
@@ -672,16 +675,239 @@ class _CopyWithStubImpl$Fragment$SearchResultItem$$EpisodeSearchItem<TRes>
 class Fragment$SearchResultItem$$ShowSearchItem
     implements Fragment$SearchResultItem {
   Fragment$SearchResultItem$$ShowSearchItem({
+    this.$__typename = 'ShowSearchItem',
     required this.collection,
     required this.id,
     this.legacyID,
     required this.title,
     this.description,
     this.image,
-    required this.$__typename,
   });
 
   factory Fragment$SearchResultItem$$ShowSearchItem.fromJson(
+      Map<String, dynamic> json) {
+    final l$$__typename = json['__typename'];
+    final l$collection = json['collection'];
+    final l$id = json['id'];
+    final l$legacyID = json['legacyID'];
+    final l$title = json['title'];
+    final l$description = json['description'];
+    final l$image = json['image'];
+    return Fragment$SearchResultItem$$ShowSearchItem(
+      $__typename: (l$$__typename as String),
+      collection: (l$collection as String),
+      id: (l$id as String),
+      legacyID: (l$legacyID as String?),
+      title: (l$title as String),
+      description: (l$description as String?),
+      image: (l$image as String?),
+    );
+  }
+
+  final String $__typename;
+
+  final String collection;
+
+  final String id;
+
+  final String? legacyID;
+
+  final String title;
+
+  final String? description;
+
+  final String? image;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    final l$collection = collection;
+    _resultData['collection'] = l$collection;
+    final l$id = id;
+    _resultData['id'] = l$id;
+    final l$legacyID = legacyID;
+    _resultData['legacyID'] = l$legacyID;
+    final l$title = title;
+    _resultData['title'] = l$title;
+    final l$description = description;
+    _resultData['description'] = l$description;
+    final l$image = image;
+    _resultData['image'] = l$image;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$$__typename = $__typename;
+    final l$collection = collection;
+    final l$id = id;
+    final l$legacyID = legacyID;
+    final l$title = title;
+    final l$description = description;
+    final l$image = image;
+    return Object.hashAll([
+      l$$__typename,
+      l$collection,
+      l$id,
+      l$legacyID,
+      l$title,
+      l$description,
+      l$image,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (!(other is Fragment$SearchResultItem$$ShowSearchItem) ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    final l$collection = collection;
+    final lOther$collection = other.collection;
+    if (l$collection != lOther$collection) {
+      return false;
+    }
+    final l$id = id;
+    final lOther$id = other.id;
+    if (l$id != lOther$id) {
+      return false;
+    }
+    final l$legacyID = legacyID;
+    final lOther$legacyID = other.legacyID;
+    if (l$legacyID != lOther$legacyID) {
+      return false;
+    }
+    final l$title = title;
+    final lOther$title = other.title;
+    if (l$title != lOther$title) {
+      return false;
+    }
+    final l$description = description;
+    final lOther$description = other.description;
+    if (l$description != lOther$description) {
+      return false;
+    }
+    final l$image = image;
+    final lOther$image = other.image;
+    if (l$image != lOther$image) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Fragment$SearchResultItem$$ShowSearchItem
+    on Fragment$SearchResultItem$$ShowSearchItem {
+  CopyWith$Fragment$SearchResultItem$$ShowSearchItem<
+          Fragment$SearchResultItem$$ShowSearchItem>
+      get copyWith => CopyWith$Fragment$SearchResultItem$$ShowSearchItem(
+            this,
+            (i) => i,
+          );
+}
+
+abstract class CopyWith$Fragment$SearchResultItem$$ShowSearchItem<TRes> {
+  factory CopyWith$Fragment$SearchResultItem$$ShowSearchItem(
+    Fragment$SearchResultItem$$ShowSearchItem instance,
+    TRes Function(Fragment$SearchResultItem$$ShowSearchItem) then,
+  ) = _CopyWithImpl$Fragment$SearchResultItem$$ShowSearchItem;
+
+  factory CopyWith$Fragment$SearchResultItem$$ShowSearchItem.stub(TRes res) =
+      _CopyWithStubImpl$Fragment$SearchResultItem$$ShowSearchItem;
+
+  TRes call({
+    String? $__typename,
+    String? collection,
+    String? id,
+    String? legacyID,
+    String? title,
+    String? description,
+    String? image,
+  });
+}
+
+class _CopyWithImpl$Fragment$SearchResultItem$$ShowSearchItem<TRes>
+    implements CopyWith$Fragment$SearchResultItem$$ShowSearchItem<TRes> {
+  _CopyWithImpl$Fragment$SearchResultItem$$ShowSearchItem(
+    this._instance,
+    this._then,
+  );
+
+  final Fragment$SearchResultItem$$ShowSearchItem _instance;
+
+  final TRes Function(Fragment$SearchResultItem$$ShowSearchItem) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? $__typename = _undefined,
+    Object? collection = _undefined,
+    Object? id = _undefined,
+    Object? legacyID = _undefined,
+    Object? title = _undefined,
+    Object? description = _undefined,
+    Object? image = _undefined,
+  }) =>
+      _then(Fragment$SearchResultItem$$ShowSearchItem(
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+        collection: collection == _undefined || collection == null
+            ? _instance.collection
+            : (collection as String),
+        id: id == _undefined || id == null ? _instance.id : (id as String),
+        legacyID:
+            legacyID == _undefined ? _instance.legacyID : (legacyID as String?),
+        title: title == _undefined || title == null
+            ? _instance.title
+            : (title as String),
+        description: description == _undefined
+            ? _instance.description
+            : (description as String?),
+        image: image == _undefined ? _instance.image : (image as String?),
+      ));
+}
+
+class _CopyWithStubImpl$Fragment$SearchResultItem$$ShowSearchItem<TRes>
+    implements CopyWith$Fragment$SearchResultItem$$ShowSearchItem<TRes> {
+  _CopyWithStubImpl$Fragment$SearchResultItem$$ShowSearchItem(this._res);
+
+  TRes _res;
+
+  call({
+    String? $__typename,
+    String? collection,
+    String? id,
+    String? legacyID,
+    String? title,
+    String? description,
+    String? image,
+  }) =>
+      _res;
+}
+
+class Fragment$SearchResultItem$$SeasonSearchItem
+    implements Fragment$SearchResultItem {
+  Fragment$SearchResultItem$$SeasonSearchItem({
+    required this.collection,
+    required this.id,
+    this.legacyID,
+    required this.title,
+    this.description,
+    this.image,
+    this.$__typename = 'SeasonSearchItem',
+  });
+
+  factory Fragment$SearchResultItem$$SeasonSearchItem.fromJson(
       Map<String, dynamic> json) {
     final l$collection = json['collection'];
     final l$id = json['id'];
@@ -690,7 +916,7 @@ class Fragment$SearchResultItem$$ShowSearchItem
     final l$description = json['description'];
     final l$image = json['image'];
     final l$$__typename = json['__typename'];
-    return Fragment$SearchResultItem$$ShowSearchItem(
+    return Fragment$SearchResultItem$$SeasonSearchItem(
       collection: (l$collection as String),
       id: (l$id as String),
       legacyID: (l$legacyID as String?),
@@ -759,7 +985,7 @@ class Fragment$SearchResultItem$$ShowSearchItem
     if (identical(this, other)) {
       return true;
     }
-    if (!(other is Fragment$SearchResultItem$$ShowSearchItem) ||
+    if (!(other is Fragment$SearchResultItem$$SeasonSearchItem) ||
         runtimeType != other.runtimeType) {
       return false;
     }
@@ -802,24 +1028,24 @@ class Fragment$SearchResultItem$$ShowSearchItem
   }
 }
 
-extension UtilityExtension$Fragment$SearchResultItem$$ShowSearchItem
-    on Fragment$SearchResultItem$$ShowSearchItem {
-  CopyWith$Fragment$SearchResultItem$$ShowSearchItem<
-          Fragment$SearchResultItem$$ShowSearchItem>
-      get copyWith => CopyWith$Fragment$SearchResultItem$$ShowSearchItem(
+extension UtilityExtension$Fragment$SearchResultItem$$SeasonSearchItem
+    on Fragment$SearchResultItem$$SeasonSearchItem {
+  CopyWith$Fragment$SearchResultItem$$SeasonSearchItem<
+          Fragment$SearchResultItem$$SeasonSearchItem>
+      get copyWith => CopyWith$Fragment$SearchResultItem$$SeasonSearchItem(
             this,
             (i) => i,
           );
 }
 
-abstract class CopyWith$Fragment$SearchResultItem$$ShowSearchItem<TRes> {
-  factory CopyWith$Fragment$SearchResultItem$$ShowSearchItem(
-    Fragment$SearchResultItem$$ShowSearchItem instance,
-    TRes Function(Fragment$SearchResultItem$$ShowSearchItem) then,
-  ) = _CopyWithImpl$Fragment$SearchResultItem$$ShowSearchItem;
+abstract class CopyWith$Fragment$SearchResultItem$$SeasonSearchItem<TRes> {
+  factory CopyWith$Fragment$SearchResultItem$$SeasonSearchItem(
+    Fragment$SearchResultItem$$SeasonSearchItem instance,
+    TRes Function(Fragment$SearchResultItem$$SeasonSearchItem) then,
+  ) = _CopyWithImpl$Fragment$SearchResultItem$$SeasonSearchItem;
 
-  factory CopyWith$Fragment$SearchResultItem$$ShowSearchItem.stub(TRes res) =
-      _CopyWithStubImpl$Fragment$SearchResultItem$$ShowSearchItem;
+  factory CopyWith$Fragment$SearchResultItem$$SeasonSearchItem.stub(TRes res) =
+      _CopyWithStubImpl$Fragment$SearchResultItem$$SeasonSearchItem;
 
   TRes call({
     String? collection,
@@ -832,18 +1058,18 @@ abstract class CopyWith$Fragment$SearchResultItem$$ShowSearchItem<TRes> {
   });
 }
 
-class _CopyWithImpl$Fragment$SearchResultItem$$ShowSearchItem<TRes>
-    implements CopyWith$Fragment$SearchResultItem$$ShowSearchItem<TRes> {
-  _CopyWithImpl$Fragment$SearchResultItem$$ShowSearchItem(
+class _CopyWithImpl$Fragment$SearchResultItem$$SeasonSearchItem<TRes>
+    implements CopyWith$Fragment$SearchResultItem$$SeasonSearchItem<TRes> {
+  _CopyWithImpl$Fragment$SearchResultItem$$SeasonSearchItem(
     this._instance,
     this._then,
   );
 
-  final Fragment$SearchResultItem$$ShowSearchItem _instance;
+  final Fragment$SearchResultItem$$SeasonSearchItem _instance;
 
-  final TRes Function(Fragment$SearchResultItem$$ShowSearchItem) _then;
+  final TRes Function(Fragment$SearchResultItem$$SeasonSearchItem) _then;
 
-  static const _undefined = {};
+  static const _undefined = <dynamic, dynamic>{};
 
   TRes call({
     Object? collection = _undefined,
@@ -854,7 +1080,7 @@ class _CopyWithImpl$Fragment$SearchResultItem$$ShowSearchItem<TRes>
     Object? image = _undefined,
     Object? $__typename = _undefined,
   }) =>
-      _then(Fragment$SearchResultItem$$ShowSearchItem(
+      _then(Fragment$SearchResultItem$$SeasonSearchItem(
         collection: collection == _undefined || collection == null
             ? _instance.collection
             : (collection as String),
@@ -874,9 +1100,9 @@ class _CopyWithImpl$Fragment$SearchResultItem$$ShowSearchItem<TRes>
       ));
 }
 
-class _CopyWithStubImpl$Fragment$SearchResultItem$$ShowSearchItem<TRes>
-    implements CopyWith$Fragment$SearchResultItem$$ShowSearchItem<TRes> {
-  _CopyWithStubImpl$Fragment$SearchResultItem$$ShowSearchItem(this._res);
+class _CopyWithStubImpl$Fragment$SearchResultItem$$SeasonSearchItem<TRes>
+    implements CopyWith$Fragment$SearchResultItem$$SeasonSearchItem<TRes> {
+  _CopyWithStubImpl$Fragment$SearchResultItem$$SeasonSearchItem(this._res);
 
   TRes _res;
 
@@ -1019,7 +1245,7 @@ class _CopyWithImpl$Variables$Query$Search<TRes>
 
   final TRes Function(Variables$Query$Search) _then;
 
-  static const _undefined = {};
+  static const _undefined = <dynamic, dynamic>{};
 
   TRes call({
     Object? queryString = _undefined,
@@ -1052,7 +1278,7 @@ class _CopyWithStubImpl$Variables$Query$Search<TRes>
 class Query$Search {
   Query$Search({
     required this.search,
-    required this.$__typename,
+    this.$__typename = 'QueryRoot',
   });
 
   factory Query$Search.fromJson(Map<String, dynamic> json) {
@@ -1141,7 +1367,7 @@ class _CopyWithImpl$Query$Search<TRes> implements CopyWith$Query$Search<TRes> {
 
   final TRes Function(Query$Search) _then;
 
-  static const _undefined = {};
+  static const _undefined = <dynamic, dynamic>{};
 
   TRes call({
     Object? search = _undefined,
@@ -1411,7 +1637,7 @@ class Query$Search$search {
     required this.hits,
     required this.page,
     required this.result,
-    required this.$__typename,
+    this.$__typename = 'SearchResult',
   });
 
   factory Query$Search$search.fromJson(Map<String, dynamic> json) {
@@ -1546,7 +1772,7 @@ class _CopyWithImpl$Query$Search$search<TRes>
 
   final TRes Function(Query$Search$search) _then;
 
-  static const _undefined = {};
+  static const _undefined = <dynamic, dynamic>{};
 
   TRes call({
     Object? hits = _undefined,

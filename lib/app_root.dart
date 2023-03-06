@@ -3,7 +3,7 @@ import 'package:brunstadtv_app/graphql/client.dart';
 import 'package:brunstadtv_app/graphql/queries/me.graphql.dart';
 import 'package:brunstadtv_app/theme/bccm_theme.dart';
 import 'package:brunstadtv_app/theme/bccm_typography.dart';
-import 'package:brunstadtv_app/helpers/navigation_utils.dart';
+import 'package:brunstadtv_app/helpers/navigation/navigation_utils.dart';
 import 'package:brunstadtv_app/providers/analytics.dart';
 import 'package:brunstadtv_app/providers/settings.dart';
 import 'package:brunstadtv_app/router/router.gr.dart';

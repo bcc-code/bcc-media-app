@@ -1,6 +1,6 @@
 import 'package:brunstadtv_app/components/loading_indicator.dart';
-import 'package:brunstadtv_app/helpers/svg_icons.dart';
-import 'package:brunstadtv_app/helpers/transparent_image.dart';
+import 'package:brunstadtv_app/helpers/ui/svg_icons.dart';
+import 'package:brunstadtv_app/helpers/ui/transparent_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 

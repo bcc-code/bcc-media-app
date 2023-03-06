@@ -82,7 +82,7 @@ class _CopyWithImpl$Variables$Query$GetSeasonEpisodes<TRes>
 
   final TRes Function(Variables$Query$GetSeasonEpisodes) _then;
 
-  static const _undefined = {};
+  static const _undefined = <dynamic, dynamic>{};
 
   TRes call({Object? id = _undefined}) =>
       _then(Variables$Query$GetSeasonEpisodes._({
@@ -103,7 +103,7 @@ class _CopyWithStubImpl$Variables$Query$GetSeasonEpisodes<TRes>
 class Query$GetSeasonEpisodes {
   Query$GetSeasonEpisodes({
     required this.season,
-    required this.$__typename,
+    this.$__typename = 'QueryRoot',
   });
 
   factory Query$GetSeasonEpisodes.fromJson(Map<String, dynamic> json) {
@@ -197,7 +197,7 @@ class _CopyWithImpl$Query$GetSeasonEpisodes<TRes>
 
   final TRes Function(Query$GetSeasonEpisodes) _then;
 
-  static const _undefined = {};
+  static const _undefined = <dynamic, dynamic>{};
 
   TRes call({
     Object? season = _undefined,
@@ -464,7 +464,7 @@ class Query$GetSeasonEpisodes$season {
     required this.id,
     required this.number,
     required this.episodes,
-    required this.$__typename,
+    this.$__typename = 'Season',
   });
 
   factory Query$GetSeasonEpisodes$season.fromJson(Map<String, dynamic> json) {
@@ -587,7 +587,7 @@ class _CopyWithImpl$Query$GetSeasonEpisodes$season<TRes>
 
   final TRes Function(Query$GetSeasonEpisodes$season) _then;
 
-  static const _undefined = {};
+  static const _undefined = <dynamic, dynamic>{};
 
   TRes call({
     Object? id = _undefined,
@@ -634,7 +634,7 @@ class _CopyWithStubImpl$Query$GetSeasonEpisodes$season<TRes>
 class Query$GetSeasonEpisodes$season$episodes {
   Query$GetSeasonEpisodes$season$episodes({
     required this.items,
-    required this.$__typename,
+    this.$__typename = 'EpisodePagination',
   });
 
   factory Query$GetSeasonEpisodes$season$episodes.fromJson(
@@ -745,7 +745,7 @@ class _CopyWithImpl$Query$GetSeasonEpisodes$season$episodes<TRes>
 
   final TRes Function(Query$GetSeasonEpisodes$season$episodes) _then;
 
-  static const _undefined = {};
+  static const _undefined = <dynamic, dynamic>{};
 
   TRes call({
     Object? items = _undefined,

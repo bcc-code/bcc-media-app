@@ -1,11 +1,11 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:bccm_player/playback_platform_pigeon.g.dart';
-import 'package:brunstadtv_app/helpers/utils.dart';
+import 'package:brunstadtv_app/helpers/extensions.dart';
 import 'package:brunstadtv_app/helpers/widget_keys.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:brunstadtv_app/providers/chromecast.dart';
-import 'package:brunstadtv_app/services/playback_service.dart';
+import 'package:brunstadtv_app/providers/playback_service.dart';
 import 'package:brunstadtv_app/providers/video_state.dart';
 import 'package:brunstadtv_app/router/router.gr.dart';
 

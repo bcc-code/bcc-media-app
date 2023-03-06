@@ -6,7 +6,8 @@ import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../graphql/queries/page.graphql.dart';
-import '../helpers/utils.dart';
+import '../helpers/extensions.dart';
+import '../helpers/navigation/navigation_utils.dart';
 import '../models/analytics/sections.dart';
 import '../providers/inherited_data.dart';
 import 'bottom_sheet_select.dart';

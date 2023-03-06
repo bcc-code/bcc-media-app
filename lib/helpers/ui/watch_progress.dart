@@ -1,11 +1,11 @@
 import 'dart:async';
 
 import 'package:brunstadtv_app/graphql/queries/page.graphql.dart';
-import 'package:brunstadtv_app/helpers/utils.dart';
+import 'package:brunstadtv_app/helpers/extensions.dart';
 import 'package:flutter/material.dart';
 
-import '../models/events/watch_progress.dart';
-import 'event_bus.dart';
+import '../../models/events/watch_progress.dart';
+import '../event_bus.dart';
 
 mixin WatchProgressOverrides<T extends StatefulWidget> on State<T> {
   StreamSubscription? _watchProgressChanged;

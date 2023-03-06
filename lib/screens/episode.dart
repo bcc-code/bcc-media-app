@@ -2,7 +2,6 @@
 import 'dart:async';
 
 import 'package:auto_route/auto_route.dart';
-import 'package:bccm_player/playback_platform_pigeon.g.dart';
 import 'package:brunstadtv_app/components/episode/episode_info.dart';
 import 'package:brunstadtv_app/components/episode/episode_related.dart';
 import 'package:brunstadtv_app/components/episode/episode_season.dart';
@@ -18,7 +17,7 @@ import 'package:bccm_player/bccm_player.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:brunstadtv_app/graphql/queries/episode.graphql.dart';
 import 'package:brunstadtv_app/providers/chromecast.dart';
-import 'package:brunstadtv_app/services/playback_service.dart';
+import 'package:brunstadtv_app/providers/playback_service.dart';
 import 'package:brunstadtv_app/providers/video_state.dart';
 import 'package:bccm_player/cast_button.dart';
 import 'package:graphql/client.dart';
@@ -34,9 +33,11 @@ import '../components/option_list.dart';
 import '../components/study_button.dart';
 import '../env/env.dart';
 import '../graphql/queries/studies.graphql.dart';
+import '../helpers/ui/conditional_parent.dart';
 import '../theme/bccm_colors.dart';
 import '../theme/bccm_typography.dart';
 import '../helpers/utils.dart';
+import '../helpers/extensions.dart';
 import '../l10n/app_localizations.dart';
 
 class EpisodeScreen extends HookConsumerWidget {

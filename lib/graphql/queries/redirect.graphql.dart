@@ -80,7 +80,7 @@ class _CopyWithImpl$Variables$Query$GetRedirectUrl<TRes>
 
   final TRes Function(Variables$Query$GetRedirectUrl) _then;
 
-  static const _undefined = {};
+  static const _undefined = <dynamic, dynamic>{};
 
   TRes call({Object? id = _undefined}) =>
       _then(Variables$Query$GetRedirectUrl._({
@@ -101,7 +101,7 @@ class _CopyWithStubImpl$Variables$Query$GetRedirectUrl<TRes>
 class Query$GetRedirectUrl {
   Query$GetRedirectUrl({
     required this.redirect,
-    required this.$__typename,
+    this.$__typename = 'QueryRoot',
   });
 
   factory Query$GetRedirectUrl.fromJson(Map<String, dynamic> json) {
@@ -194,7 +194,7 @@ class _CopyWithImpl$Query$GetRedirectUrl<TRes>
 
   final TRes Function(Query$GetRedirectUrl) _then;
 
-  static const _undefined = {};
+  static const _undefined = <dynamic, dynamic>{};
 
   TRes call({
     Object? redirect = _undefined,
@@ -414,7 +414,7 @@ class Query$GetRedirectUrl$Widget
 class Query$GetRedirectUrl$redirect {
   Query$GetRedirectUrl$redirect({
     required this.url,
-    required this.$__typename,
+    this.$__typename = 'RedirectLink',
   });
 
   factory Query$GetRedirectUrl$redirect.fromJson(Map<String, dynamic> json) {
@@ -507,7 +507,7 @@ class _CopyWithImpl$Query$GetRedirectUrl$redirect<TRes>
 
   final TRes Function(Query$GetRedirectUrl$redirect) _then;
 
-  static const _undefined = {};
+  static const _undefined = <dynamic, dynamic>{};
 
   TRes call({
     Object? url = _undefined,

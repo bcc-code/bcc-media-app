@@ -1,18 +1,17 @@
-import 'package:auto_route/auto_route.dart';
 import 'package:brunstadtv_app/components/study_progress.dart';
 import 'package:brunstadtv_app/graphql/queries/episode.graphql.dart';
 import 'package:brunstadtv_app/graphql/queries/studies.graphql.dart';
 import 'package:brunstadtv_app/theme/bccm_typography.dart';
-import 'package:brunstadtv_app/router/router.gr.dart';
 import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:intl/intl.dart';
 
 import '../env/env.dart';
+import '../helpers/date_time.dart';
+import '../helpers/ui/ui_utils.dart';
 import '../theme/bccm_colors.dart';
 import '../helpers/utils.dart';
 import '../l10n/app_localizations.dart';
-import '../services/utils.dart';
 import 'bordered_image_container.dart';
 import 'episode_duration.dart';
 
