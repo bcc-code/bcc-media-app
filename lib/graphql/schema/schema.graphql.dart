@@ -256,6 +256,7 @@ const possibleTypesMap = <String, Set<String>>{
     'SectionItemPagination',
     'LessonPagination',
     'TaskPagination',
+    'SurveyQuestionPagination',
   },
   'CalendarEntry': {
     'SimpleCalendarEntry',
@@ -328,5 +329,9 @@ const possibleTypesMap = <String, Set<String>>{
     'QuoteTask',
     'VideoTask',
     'LinkTask',
+  },
+  'SurveyQuestion': {
+    'SurveyTextQuestion',
+    'SurveyRatingQuestion',
   },
 };

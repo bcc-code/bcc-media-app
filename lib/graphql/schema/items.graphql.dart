@@ -50,6 +50,30 @@ Enum$ShowType fromJson$Enum$ShowType(String value) {
   }
 }
 
+enum Enum$Status { published, unlisted, $unknown }
+
+String toJson$Enum$Status(Enum$Status e) {
+  switch (e) {
+    case Enum$Status.published:
+      return r'published';
+    case Enum$Status.unlisted:
+      return r'unlisted';
+    case Enum$Status.$unknown:
+      return r'$unknown';
+  }
+}
+
+Enum$Status fromJson$Enum$Status(String value) {
+  switch (value) {
+    case r'published':
+      return Enum$Status.published;
+    case r'unlisted':
+      return Enum$Status.unlisted;
+    default:
+      return Enum$Status.$unknown;
+  }
+}
+
 enum Enum$EpisodeType { episode, standalone, $unknown }
 
 String toJson$Enum$EpisodeType(Enum$EpisodeType e) {
