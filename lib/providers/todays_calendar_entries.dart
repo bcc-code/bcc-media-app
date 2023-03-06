@@ -2,10 +2,10 @@ import 'dart:async';
 
 import 'package:brunstadtv_app/api/brunstadtv.dart';
 import 'package:brunstadtv_app/graphql/queries/calendar_episode_entries.graphql.dart';
-import 'package:brunstadtv_app/helpers/utils.dart';
+import 'package:brunstadtv_app/helpers/extensions.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../services/utils.dart';
+import '../helpers/episode_state.dart';
 
 final _timerProvider = StreamProvider.family<void, Duration>((ref, Duration duration) async* {
   while (true) {

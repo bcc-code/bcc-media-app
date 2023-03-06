@@ -545,4 +545,7 @@ class SNl extends S {
 
   @override
   String get details => 'Details';
+
+  @override
+  String get selectSeason => 'Select season';
 }

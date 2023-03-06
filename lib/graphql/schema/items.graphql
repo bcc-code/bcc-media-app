@@ -9,9 +9,15 @@ enum ShowType {
     series
 }
 
+enum Status {
+    published
+    unlisted
+}
+
 type Show {
     id: ID!
     legacyID: ID
+    status: Status!
     type: ShowType!
     title: String!
     description: String!
@@ -31,6 +37,7 @@ type Show {
 type Season {
     id: ID!
     legacyID: ID
+    status: Status!
     ageRating: String!
     title: String!
     description: String!
@@ -68,6 +75,8 @@ enum ShareRestriction {
 
 type Episode {
     id: ID!
+    uuid: String!
+    status: Status!
     type: EpisodeType!
     legacyID: ID
     legacyProgramID: ID

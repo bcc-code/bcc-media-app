@@ -3,7 +3,6 @@ import 'package:bccm_player/playback_service_interface.dart';
 import 'package:brunstadtv_app/env/env.dart';
 import 'package:brunstadtv_app/graphql/queries/episode.graphql.dart';
 import 'package:brunstadtv_app/graphql/schema/items.graphql.dart';
-import 'package:brunstadtv_app/helpers/utils.dart';
 import 'package:brunstadtv_app/providers/analytics.dart';
 import 'package:brunstadtv_app/providers/chromecast.dart';
 import 'package:brunstadtv_app/providers/playback_listener.dart';
@@ -11,6 +10,8 @@ import 'package:brunstadtv_app/providers/video_state.dart';
 import 'package:collection/collection.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:package_info_plus/package_info_plus.dart';
+
+import '../helpers/version.dart';
 
 final playbackApiProvider = Provider<PlaybackPlatformInterface>((ref) {
   return PlaybackPlatformInterface.instance;

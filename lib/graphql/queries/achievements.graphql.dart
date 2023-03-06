@@ -12,7 +12,7 @@ class Fragment$Achievement {
     required this.achieved,
     this.image,
     this.achievedAt,
-    required this.$__typename,
+    this.$__typename = 'Achievement',
   });
 
   factory Fragment$Achievement.fromJson(Map<String, dynamic> json) {
@@ -173,7 +173,7 @@ class _CopyWithImpl$Fragment$Achievement<TRes>
 
   final TRes Function(Fragment$Achievement) _then;
 
-  static const _undefined = {};
+  static const _undefined = <dynamic, dynamic>{};
 
   TRes call({
     Object? id = _undefined,
@@ -411,7 +411,7 @@ class _CopyWithImpl$Variables$Fragment$AchievementGroup<TRes>
 
   final TRes Function(Variables$Fragment$AchievementGroup) _then;
 
-  static const _undefined = {};
+  static const _undefined = <dynamic, dynamic>{};
 
   TRes call({Object? achievementsFirst = _undefined}) =>
       _then(Variables$Fragment$AchievementGroup._({
@@ -435,7 +435,7 @@ class Fragment$AchievementGroup {
     required this.id,
     required this.title,
     required this.achievements,
-    required this.$__typename,
+    this.$__typename = 'AchievementGroup',
   });
 
   factory Fragment$AchievementGroup.fromJson(Map<String, dynamic> json) {
@@ -558,7 +558,7 @@ class _CopyWithImpl$Fragment$AchievementGroup<TRes>
 
   final TRes Function(Fragment$AchievementGroup) _then;
 
-  static const _undefined = {};
+  static const _undefined = <dynamic, dynamic>{};
 
   TRes call({
     Object? id = _undefined,
@@ -720,7 +720,7 @@ extension ClientExtension$Fragment$AchievementGroup on graphql.GraphQLClient {
 class Fragment$AchievementGroup$achievements {
   Fragment$AchievementGroup$achievements({
     required this.items,
-    required this.$__typename,
+    this.$__typename = 'AchievementPagination',
   });
 
   factory Fragment$AchievementGroup$achievements.fromJson(
@@ -829,7 +829,7 @@ class _CopyWithImpl$Fragment$AchievementGroup$achievements<TRes>
 
   final TRes Function(Fragment$AchievementGroup$achievements) _then;
 
-  static const _undefined = {};
+  static const _undefined = <dynamic, dynamic>{};
 
   TRes call({
     Object? items = _undefined,
@@ -968,7 +968,7 @@ class _CopyWithImpl$Variables$Query$getAchievementGroups<TRes>
 
   final TRes Function(Variables$Query$getAchievementGroups) _then;
 
-  static const _undefined = {};
+  static const _undefined = <dynamic, dynamic>{};
 
   TRes call({
     Object? first = _undefined,
@@ -998,7 +998,7 @@ class _CopyWithStubImpl$Variables$Query$getAchievementGroups<TRes>
 class Query$getAchievementGroups {
   Query$getAchievementGroups({
     required this.achievementGroups,
-    required this.$__typename,
+    this.$__typename = 'QueryRoot',
   });
 
   factory Query$getAchievementGroups.fromJson(Map<String, dynamic> json) {
@@ -1094,7 +1094,7 @@ class _CopyWithImpl$Query$getAchievementGroups<TRes>
 
   final TRes Function(Query$getAchievementGroups) _then;
 
-  static const _undefined = {};
+  static const _undefined = <dynamic, dynamic>{};
 
   TRes call({
     Object? achievementGroups = _undefined,
@@ -1346,7 +1346,7 @@ class Query$getAchievementGroups$Widget
 class Query$getAchievementGroups$achievementGroups {
   Query$getAchievementGroups$achievementGroups({
     required this.items,
-    required this.$__typename,
+    this.$__typename = 'AchievementGroupPagination',
   });
 
   factory Query$getAchievementGroups$achievementGroups.fromJson(
@@ -1457,7 +1457,7 @@ class _CopyWithImpl$Query$getAchievementGroups$achievementGroups<TRes>
 
   final TRes Function(Query$getAchievementGroups$achievementGroups) _then;
 
-  static const _undefined = {};
+  static const _undefined = <dynamic, dynamic>{};
 
   TRes call({
     Object? items = _undefined,
@@ -1599,7 +1599,7 @@ class _CopyWithImpl$Variables$Query$getAchievementGroup<TRes>
 
   final TRes Function(Variables$Query$getAchievementGroup) _then;
 
-  static const _undefined = {};
+  static const _undefined = <dynamic, dynamic>{};
 
   TRes call({
     Object? id = _undefined,
@@ -1629,7 +1629,7 @@ class _CopyWithStubImpl$Variables$Query$getAchievementGroup<TRes>
 class Query$getAchievementGroup {
   Query$getAchievementGroup({
     required this.achievementGroup,
-    required this.$__typename,
+    this.$__typename = 'QueryRoot',
   });
 
   factory Query$getAchievementGroup.fromJson(Map<String, dynamic> json) {
@@ -1724,7 +1724,7 @@ class _CopyWithImpl$Query$getAchievementGroup<TRes>
 
   final TRes Function(Query$getAchievementGroup) _then;
 
-  static const _undefined = {};
+  static const _undefined = <dynamic, dynamic>{};
 
   TRes call({
     Object? achievementGroup = _undefined,
@@ -1958,7 +1958,7 @@ class Query$getAchievementGroup$Widget
 class Query$getPendingAchievements {
   Query$getPendingAchievements({
     required this.pendingAchievements,
-    required this.$__typename,
+    this.$__typename = 'QueryRoot',
   });
 
   factory Query$getPendingAchievements.fromJson(Map<String, dynamic> json) {
@@ -2066,7 +2066,7 @@ class _CopyWithImpl$Query$getPendingAchievements<TRes>
 
   final TRes Function(Query$getPendingAchievements) _then;
 
-  static const _undefined = {};
+  static const _undefined = <dynamic, dynamic>{};
 
   TRes call({
     Object? pendingAchievements = _undefined,
@@ -2348,7 +2348,7 @@ class _CopyWithImpl$Variables$Mutation$confirmAchievement<TRes>
 
   final TRes Function(Variables$Mutation$confirmAchievement) _then;
 
-  static const _undefined = {};
+  static const _undefined = <dynamic, dynamic>{};
 
   TRes call({Object? id = _undefined}) =>
       _then(Variables$Mutation$confirmAchievement._({
@@ -2369,7 +2369,7 @@ class _CopyWithStubImpl$Variables$Mutation$confirmAchievement<TRes>
 class Mutation$confirmAchievement {
   Mutation$confirmAchievement({
     required this.confirmAchievement,
-    required this.$__typename,
+    this.$__typename = 'MutationRoot',
   });
 
   factory Mutation$confirmAchievement.fromJson(Map<String, dynamic> json) {
@@ -2466,7 +2466,7 @@ class _CopyWithImpl$Mutation$confirmAchievement<TRes>
 
   final TRes Function(Mutation$confirmAchievement) _then;
 
-  static const _undefined = {};
+  static const _undefined = <dynamic, dynamic>{};
 
   TRes call({
     Object? confirmAchievement = _undefined,
@@ -2772,7 +2772,7 @@ class Mutation$confirmAchievement$Widget
 class Mutation$confirmAchievement$confirmAchievement {
   Mutation$confirmAchievement$confirmAchievement({
     required this.success,
-    required this.$__typename,
+    this.$__typename = 'ConfirmAchievementResult',
   });
 
   factory Mutation$confirmAchievement$confirmAchievement.fromJson(
@@ -2868,7 +2868,7 @@ class _CopyWithImpl$Mutation$confirmAchievement$confirmAchievement<TRes>
 
   final TRes Function(Mutation$confirmAchievement$confirmAchievement) _then;
 
-  static const _undefined = {};
+  static const _undefined = <dynamic, dynamic>{};
 
   TRes call({
     Object? success = _undefined,

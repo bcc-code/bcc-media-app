@@ -545,4 +545,7 @@ class SFi extends S {
 
   @override
   String get details => 'Lisätietoa';
+
+  @override
+  String get selectSeason => 'Select season';
 }

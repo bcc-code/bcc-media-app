@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../helpers/btv_buttons.dart';
+import '../helpers/ui/btv_buttons.dart';
 import '../theme/bccm_colors.dart';
 import '../theme/bccm_typography.dart';
 import '../l10n/app_localizations.dart';

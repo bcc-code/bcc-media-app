@@ -545,4 +545,7 @@ class SRo extends S {
 
   @override
   String get details => 'Detalii';
+
+  @override
+  String get selectSeason => 'Select season';
 }

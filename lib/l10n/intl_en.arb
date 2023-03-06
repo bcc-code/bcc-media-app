@@ -747,5 +747,9 @@
   "details": "Details",
   "@details": {
     "description": "A tab name on the episode page which has some extra details about the episode: release date, age rating, etc."
+  },
+  "selectSeason": "Select season",
+  "@selectSeason": {
+    "description": "A title prompting to select a season from the list."
   }
 }

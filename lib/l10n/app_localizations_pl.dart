@@ -545,4 +545,7 @@ class SPl extends S {
 
   @override
   String get details => 'Szczegóły';
+
+  @override
+  String get selectSeason => 'Select season';
 }

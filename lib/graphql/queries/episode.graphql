@@ -63,6 +63,10 @@ fragment SeasonListEpisode on Episode {
   ageRating
   duration
   locked
+  id
+  lessons {
+    total
+  }
 }
 
 query legacyIDLookup($episodeId: Int, $programId: Int) {

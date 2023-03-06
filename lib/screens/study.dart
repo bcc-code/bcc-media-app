@@ -14,7 +14,7 @@ import 'package:flutter_svg/svg.dart';
 
 import '../components/custom_back_button.dart';
 import '../graphql/queries/studies.graphql.dart';
-import '../helpers/svg_icons.dart';
+import '../helpers/ui/svg_icons.dart';
 import '../helpers/utils.dart';
 import '../helpers/webview/main_js_channel.dart';
 import '../l10n/app_localizations.dart';
@@ -95,7 +95,6 @@ class StudyScreenState extends ConsumerState<StudyScreen> {
                   useShouldOverrideUrlLoading: true,
                 ),
                 onWebViewCreated: onWebViewCreated,
-                onConsoleMessage: (_, msg) => debugPrint(msg.message),
                 onLoadStop: (controller, url) {
                   setState(() => firstLoadDone = true);
                 },

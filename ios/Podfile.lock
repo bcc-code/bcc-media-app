@@ -10,7 +10,7 @@ PODS:
     - AppAuth/Core
   - bccm_player (0.0.1):
     - Flutter
-    - google-cast-sdk-no-bluetooth (~> 4.7.0)
+    - google-cast-sdk-dynamic-xcframework-no-bluetooth (= 4.7.1)
     - Protobuf (~> 3.13)
     - YouboraAVPlayerAdapter (= 6.6.8)
     - YouboraLib (= 6.6.22)
@@ -113,11 +113,7 @@ PODS:
     - Flutter
   - flutter_secure_storage (6.0.0):
     - Flutter
-  - google-cast-sdk-no-bluetooth (4.7.0):
-    - google-cast-sdk-no-bluetooth/Core (= 4.7.0)
-    - Protobuf (~> 3.13)
-  - google-cast-sdk-no-bluetooth/Core (4.7.0):
-    - Protobuf (~> 3.13)
+  - google-cast-sdk-dynamic-xcframework-no-bluetooth (4.7.1)
   - GoogleDataTransport (9.2.0):
     - GoogleUtilities/Environment (~> 7.7)
     - nanopb (< 2.30910.0, >= 2.30908.0)
@@ -376,7 +372,7 @@ SPEC REPOS:
     - FirebaseMessaging
     - FirebasePerformance
     - FirebaseRemoteConfig
-    - google-cast-sdk-no-bluetooth
+    - google-cast-sdk-dynamic-xcframework-no-bluetooth
     - GoogleDataTransport
     - GoogleUtilities
     - gRPC-Swift
@@ -460,7 +456,7 @@ SPEC CHECKSUMS:
   _NIODataStructures: 3d45d8e70a1d17a15b1dc59d102c63dbc0525ffd
   app_links: ab4ba54d10a13d45825336bc9707b5eadee81191
   AppAuth: 8fca6b5563a5baef2c04bee27538025e4ceb2add
-  bccm_player: 831799da31ebb311e1f9c9c00d1ae8b648cbe808
+  bccm_player: cdd4162150f1f33a039232b9f6ce89dc42fbe2f5
   CGRPCZlib: 298dd3237ba4bd7b3eed109e7080ff3324b7d9c9
   CNIOAtomics: 8edf08644e5e6fa0f021c239be9e8beb1cd9ef18
   CNIOBoringSSL: 2c9c96c2e95f15e83fb8d26b9738d939cc39ae33
@@ -489,7 +485,7 @@ SPEC CHECKSUMS:
   flutter_inappwebview: 4fe74e5e65809c3d363febfd9e2b21aa79bb0f1c
   flutter_local_notifications: 0c0b1ae97e741e1521e4c1629a459d04b9aec743
   flutter_secure_storage: 23fc622d89d073675f2eaa109381aefbcf5a49be
-  google-cast-sdk-no-bluetooth: 5313156110d6e71fa336f6d742f1ee641e91fdca
+  google-cast-sdk-dynamic-xcframework-no-bluetooth: 1fa9e267df3fd6f8a1c6e3345142ca5286297968
   GoogleDataTransport: 1c8145da7117bd68bbbed00cf304edb6a24de00f
   GoogleUtilities: bad72cb363809015b1f7f19beb1f1cd23c589f95
   gRPC-Swift: 74adcaaa62ac5e0a018938840328cb1fdfb09e7b

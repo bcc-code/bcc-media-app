@@ -1,7 +1,7 @@
 import 'package:universal_io/io.dart';
 
 import 'package:auto_route/auto_route.dart';
-import 'package:brunstadtv_app/helpers/utils.dart';
+import 'package:brunstadtv_app/helpers/extensions.dart';
 import 'package:brunstadtv_app/models/scroll_screen.dart';
 import 'package:brunstadtv_app/providers/auth_state/auth_state.dart';
 import 'package:brunstadtv_app/providers/device_info.dart';
@@ -92,8 +92,9 @@ class _CustomTabBarState extends ConsumerState<CustomTabBar> {
       BottomNavigationBarItem(label: S.of(context).homeTab, icon: _icon(icons['home_default']), activeIcon: _icon(icons['home_selected'])),
       BottomNavigationBarItem(label: S.of(context).search, icon: _icon(icons['search_default']), activeIcon: _icon(icons['search_selected'])),
     ];
-    debugPrint('guestMode ${ref.watch(authStateProvider).guestMode}');
-    if (!ref.watch(authStateProvider).guestMode) {
+    final guestMode = ref.watch(authStateProvider.select((value) => value.guestMode));
+    debugPrint('custom_tab_bar rebuild. guestMode: $guestMode');
+    if (!guestMode) {
       items.addAll([
         BottomNavigationBarItem(
           label: S.of(context).liveTab,
@@ -108,23 +109,25 @@ class _CustomTabBarState extends ConsumerState<CustomTabBar> {
       return Container(
         decoration: const BoxDecoration(border: Border(top: BorderSide(width: 1, color: BccmColors.separatorOnLight))),
         child: BottomNavigationBar(
-            type: BottomNavigationBarType.fixed,
-            unselectedItemColor: BccmColors.label3,
-            unselectedLabelStyle: BccmTextStyles.caption3,
-            currentIndex: widget.tabsRouter.activeIndex,
-            onTap: onTabTap,
-            items: items),
+          type: BottomNavigationBarType.fixed,
+          unselectedItemColor: BccmColors.label3,
+          unselectedLabelStyle: BccmTextStyles.caption3,
+          currentIndex: widget.tabsRouter.activeIndex,
+          onTap: onTabTap,
+          items: items,
+        ),
       );
     }
     return CupertinoTabBar(
-        iconSize: 24,
-        height: 50,
-        currentIndex: widget.tabsRouter.activeIndex,
-        onTap: onTabTap,
-        inactiveColor: BccmColors.label3,
-        activeColor: BccmColors.tint1,
-        border: const Border(top: BorderSide(width: 1, color: BccmColors.separatorOnLight)),
-        items: items);
+      iconSize: 24,
+      height: 50,
+      currentIndex: widget.tabsRouter.activeIndex,
+      onTap: onTabTap,
+      inactiveColor: BccmColors.label3,
+      activeColor: BccmColors.tint1,
+      border: const Border(top: BorderSide(width: 1, color: BccmColors.separatorOnLight)),
+      items: items,
+    );
   }
 
   onTabTap(int index) {

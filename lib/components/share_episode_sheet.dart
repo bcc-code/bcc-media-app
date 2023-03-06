@@ -5,27 +5,27 @@ import 'package:brunstadtv_app/graphql/queries/episode.graphql.dart';
 import 'package:brunstadtv_app/graphql/schema/items.graphql.dart';
 import 'package:brunstadtv_app/theme/bccm_colors.dart';
 import 'package:brunstadtv_app/theme/bccm_typography.dart';
-import 'package:brunstadtv_app/helpers/svg_icons.dart';
+import 'package:brunstadtv_app/helpers/ui/svg_icons.dart';
 import 'package:brunstadtv_app/l10n/app_localizations.dart';
 import 'package:brunstadtv_app/models/analytics/content_shared.dart';
 import 'package:brunstadtv_app/providers/analytics.dart';
-import 'package:brunstadtv_app/services/utils.dart';
+import 'package:brunstadtv_app/helpers/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:share_plus/share_plus.dart';
+
+import '../helpers/date_time.dart';
 
 class ShareEpisodeSheet extends ConsumerStatefulWidget {
   const ShareEpisodeSheet({
     Key? key,
     required this.episode,
     required this.currentPosSeconds,
-    required this.episodeId,
   }) : super(key: key);
 
   final Query$FetchEpisode$episode episode;
   final int currentPosSeconds;
-  final String episodeId;
 
   @override
   ConsumerState<ShareEpisodeSheet> createState() => _ShareEpisodeSheetState();
@@ -80,7 +80,7 @@ class _ShareEpisodeSheetState extends ConsumerState<ShareEpisodeSheet> {
           setState(() {
             loading = true;
           });
-          var episodeUrl = 'https://app.bcc.media/episode/${widget.episodeId}';
+          var episodeUrl = 'https://app.bcc.media/episode/${widget.episode.id}';
           final navigator = Navigator.of(context);
 
           if (id == 'fromStart') {
@@ -101,7 +101,7 @@ class _ShareEpisodeSheetState extends ConsumerState<ShareEpisodeSheet> {
                 ContentSharedEvent(
                   pageCode: 'episode',
                   elementType: 'episode',
-                  elementId: widget.episodeId,
+                  elementId: widget.episode.id,
                   position: id == 'fromStart' ? null : widget.currentPosSeconds,
                 ),
               );

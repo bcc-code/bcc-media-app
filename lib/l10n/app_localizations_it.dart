@@ -545,4 +545,7 @@ class SIt extends S {
 
   @override
   String get details => 'Dettagli';
+
+  @override
+  String get selectSeason => 'Select season';
 }

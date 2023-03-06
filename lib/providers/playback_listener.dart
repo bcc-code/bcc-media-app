@@ -1,6 +1,6 @@
 import 'package:bccm_player/playback_platform_pigeon.g.dart';
 import 'package:brunstadtv_app/api/brunstadtv.dart';
-import 'package:brunstadtv_app/helpers/utils.dart';
+import 'package:brunstadtv_app/helpers/extensions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:brunstadtv_app/providers/video_state.dart';
@@ -52,8 +52,6 @@ class PlaybackListener implements PlaybackListenerPigeon {
 
   @override
   void onPlayerStateUpdate(PlayerState event) {
-    debugPrint('onPlayerStateUpdate');
-
     var playerProvider = getPlayerProvider(ref, event.playerId);
     if (playerProvider == null) return;
     var player = ref.read(playerProvider);

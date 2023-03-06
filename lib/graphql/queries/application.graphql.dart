@@ -6,7 +6,7 @@ import 'package:graphql_flutter/graphql_flutter.dart' as graphql_flutter;
 class Query$Application {
   Query$Application({
     required this.application,
-    required this.$__typename,
+    this.$__typename = 'QueryRoot',
   });
 
   factory Query$Application.fromJson(Map<String, dynamic> json) {
@@ -99,7 +99,7 @@ class _CopyWithImpl$Query$Application<TRes>
 
   final TRes Function(Query$Application) _then;
 
-  static const _undefined = {};
+  static const _undefined = <dynamic, dynamic>{};
 
   TRes call({
     Object? application = _undefined,
@@ -334,7 +334,7 @@ class Query$Application$application {
     required this.clientVersion,
     this.page,
     this.searchPage,
-    required this.$__typename,
+    this.$__typename = 'Application',
   });
 
   factory Query$Application$application.fromJson(Map<String, dynamic> json) {
@@ -463,7 +463,7 @@ class _CopyWithImpl$Query$Application$application<TRes>
 
   final TRes Function(Query$Application$application) _then;
 
-  static const _undefined = {};
+  static const _undefined = <dynamic, dynamic>{};
 
   TRes call({
     Object? clientVersion = _undefined,
@@ -525,7 +525,7 @@ class _CopyWithStubImpl$Query$Application$application<TRes>
 class Query$Application$application$page {
   Query$Application$application$page({
     required this.code,
-    required this.$__typename,
+    this.$__typename = 'Page',
   });
 
   factory Query$Application$application$page.fromJson(
@@ -620,7 +620,7 @@ class _CopyWithImpl$Query$Application$application$page<TRes>
 
   final TRes Function(Query$Application$application$page) _then;
 
-  static const _undefined = {};
+  static const _undefined = <dynamic, dynamic>{};
 
   TRes call({
     Object? code = _undefined,
@@ -652,7 +652,7 @@ class _CopyWithStubImpl$Query$Application$application$page<TRes>
 class Query$Application$application$searchPage {
   Query$Application$application$searchPage({
     required this.code,
-    required this.$__typename,
+    this.$__typename = 'Page',
   });
 
   factory Query$Application$application$searchPage.fromJson(
@@ -747,7 +747,7 @@ class _CopyWithImpl$Query$Application$application$searchPage<TRes>
 
   final TRes Function(Query$Application$application$searchPage) _then;
 
-  static const _undefined = {};
+  static const _undefined = <dynamic, dynamic>{};
 
   TRes call({
     Object? code = _undefined,

@@ -545,4 +545,7 @@ class SHu extends S {
 
   @override
   String get details => 'Részletek';
+
+  @override
+  String get selectSeason => 'Select season';
 }

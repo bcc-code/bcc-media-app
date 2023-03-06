@@ -545,4 +545,7 @@ class SEs extends S {
 
   @override
   String get details => 'Detalles';
+
+  @override
+  String get selectSeason => 'Select season';
 }

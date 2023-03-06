@@ -1,10 +1,8 @@
 import 'package:brunstadtv_app/env/env.dart';
-import 'package:brunstadtv_app/helpers/utils.dart';
 import 'package:brunstadtv_app/models/analytics/achievement_clicked.dart';
 import 'package:brunstadtv_app/models/auth/auth0_id_token.dart';
 import 'package:brunstadtv_app/providers/inherited_data.dart';
 import 'package:brunstadtv_app/providers/settings.dart';
-import 'package:brunstadtv_app/providers/video_state.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -12,6 +10,7 @@ import 'package:package_info_plus/package_info_plus.dart';
 import 'package:rudder_sdk_flutter/RudderController.dart';
 import 'package:rudder_sdk_flutter_platform_interface/platform.dart';
 
+import '../helpers/version.dart';
 import '../models/analytics/achievement_shared.dart';
 import '../models/analytics/audio_only_clicked.dart';
 import '../models/analytics/calendar_day_clicked.dart';
@@ -80,7 +79,6 @@ class Analytics {
 
   void heyJustHereToTellYouIBelieveTheSessionIsStillAlive() {
     _lastAlive = DateTime.now();
-    debugPrint('bump _lastAlive: $_lastAlive');
   }
 
   RudderProperty getCommonData() {
