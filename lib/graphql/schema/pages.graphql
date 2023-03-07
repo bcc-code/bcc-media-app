@@ -220,7 +220,7 @@ enum LinkType {
 
 type Link {
     id: ID!
-    url: String!
+    url: String! @goField(forceResolver: true)
     title: String!
     description: String
     type: LinkType!

@@ -1,4 +1,4 @@
-import 'package:brunstadtv_app/helpers/image_utils.dart';
+import 'package:brunstadtv_app/helpers/ui/image.dart';
 import 'package:flutter/material.dart';
 
 import '../graphql/queries/achievements.graphql.dart';

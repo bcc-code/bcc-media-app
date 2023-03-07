@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:brunstadtv_app/helpers/transparent_image.dart';
+import 'package:brunstadtv_app/helpers/ui/transparent_image.dart';
 
 import '../theme/bccm_colors.dart';
-import '../helpers/image_utils.dart';
+import '../helpers/ui/image.dart';
 
 class BorderedImageContainer extends StatelessWidget {
   final String? imageUrl;

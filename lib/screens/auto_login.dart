@@ -11,7 +11,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../components/loading_indicator.dart';
 import '../theme/bccm_colors.dart';
 import '../theme/bccm_typography.dart';
-import '../helpers/navigation_utils.dart';
+import '../helpers/navigation/navigation_utils.dart';
 import '../helpers/utils.dart';
 import '../l10n/app_localizations.dart';
 import '../router/router.gr.dart';

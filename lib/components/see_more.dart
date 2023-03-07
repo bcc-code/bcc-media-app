@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
 import '../theme/bccm_typography.dart';
-import '../helpers/svg_icons.dart';
+import '../helpers/ui/svg_icons.dart';
 import '../l10n/app_localizations.dart';
 
 class SeeMoreSlot extends StatelessWidget {

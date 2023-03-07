@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../theme/bccm_colors.dart';
-import '../theme/bccm_typography.dart';
+import '../../theme/bccm_colors.dart';
+import '../../theme/bccm_typography.dart';
 
 class BtvButton extends StatelessWidget {
   final Widget? image;

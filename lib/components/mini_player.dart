@@ -1,7 +1,7 @@
 import 'package:brunstadtv_app/components/loading_indicator.dart';
 import 'package:brunstadtv_app/theme/bccm_colors.dart';
 import 'package:flutter/material.dart';
-import 'package:brunstadtv_app/helpers/transparent_image.dart';
+import 'package:brunstadtv_app/helpers/ui/transparent_image.dart';
 
 import '../theme/bccm_typography.dart';
 import '../helpers/widget_keys.dart';

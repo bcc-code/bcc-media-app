@@ -17,7 +17,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:brunstadtv_app/graphql/queries/episode.graphql.dart';
-import 'package:brunstadtv_app/services/playback_service.dart';
+import 'package:brunstadtv_app/providers/playback_service.dart';
 import 'package:graphql/client.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -31,9 +31,11 @@ import '../components/option_list.dart';
 import '../components/study_button.dart';
 import '../env/env.dart';
 import '../graphql/queries/studies.graphql.dart';
+import '../helpers/ui/conditional_parent.dart';
 import '../theme/bccm_colors.dart';
 import '../theme/bccm_typography.dart';
 import '../helpers/utils.dart';
+import '../helpers/extensions.dart';
 import '../l10n/app_localizations.dart';
 
 class EpisodeScreen extends HookConsumerWidget {

@@ -17,7 +17,7 @@ import 'package:brunstadtv_app/screens/profile/profile.dart';
 import 'package:brunstadtv_app/screens/search/search.dart';
 import 'package:brunstadtv_app/screens/study.dart';
 
-import '../helpers/custom_transitions.dart';
+import '../helpers/navigation/custom_transitions.dart';
 import '../screens/achievement_group.dart';
 import '../screens/achievements.dart';
 import '../screens/episode.dart';

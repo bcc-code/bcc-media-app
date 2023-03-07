@@ -1,4 +1,4 @@
-import 'package:brunstadtv_app/helpers/utils.dart';
+import 'package:brunstadtv_app/helpers/extensions.dart';
 import 'package:flutter/widgets.dart';
 
 class InheritedData<T> extends InheritedWidget {

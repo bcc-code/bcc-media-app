@@ -1,5 +1,4 @@
 import 'package:bccm_player/bccm_player.dart';
-import 'package:bccm_player/bccm_player.dart';
 import 'package:brunstadtv_app/helpers/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';

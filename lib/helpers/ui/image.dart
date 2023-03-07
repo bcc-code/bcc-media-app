@@ -1,4 +1,4 @@
-import 'package:brunstadtv_app/helpers/transparent_image.dart';
+import 'package:brunstadtv_app/helpers/ui/transparent_image.dart';
 import 'package:flutter/material.dart';
 
 const Map<ImageCropMode, String> _imageCropModeQueryParam = {
