@@ -1,6 +1,4 @@
-import 'package:universal_io/io.dart';
-
-import 'package:bccm_player/playback_platform_interface.dart';
+import 'package:bccm_player/bccm_player.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
@@ -20,44 +18,18 @@ class _BccmPlayerState extends State<BccmCastPlayer> {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        PlaybackPlatformInterface.instance.openExpandedCastController();
+        BccmPlayerInterface.instance.openExpandedCastController();
       },
       splashColor: Colors.transparent,
       child: ClipRect(
         child: AspectRatio(
-            aspectRatio: 16 / 9,
-            child: Container(
-              decoration: const BoxDecoration(color: Color.fromARGB(255, 29, 40, 56)),
-              child: SvgPicture.asset('assets/images/chromecast_bg.svg', fit: BoxFit.cover, package: 'bccm_player', semanticsLabel: 'Casting'),
-            )),
-      ),
-    );
-    return Column(
-      children: [
-        if (Platform.isIOS)
-          InkWell(
-            onTap: () {
-              PlaybackPlatformInterface.instance.openExpandedCastController();
-            },
-            splashColor: Colors.transparent,
-            child: ClipRect(
-              child: AspectRatio(
-                  aspectRatio: 16 / 9,
-                  child: Container(
-                    decoration: const BoxDecoration(color: Color.fromARGB(255, 29, 40, 56)),
-                    child: SvgPicture.asset('assets/images/chromecast_bg.svg', fit: BoxFit.cover, package: 'bccm_player', semanticsLabel: 'Casting'),
-                  )),
-            ),
+          aspectRatio: 16 / 9,
+          child: Container(
+            decoration: const BoxDecoration(color: Color.fromARGB(255, 29, 40, 56)),
+            child: SvgPicture.asset('assets/images/chromecast_bg.svg', fit: BoxFit.cover, package: 'bccm_player', semanticsLabel: 'Casting'),
           ),
-        if (Platform.isAndroid)
-          Column(
-            children: [
-              const Text('test'),
-              //SizedBox(height: 100, child: AndroidNativeText(widget: widget)),
-              AspectRatio(aspectRatio: 16 / 9, child: AndroidCastPlayer(widget: widget)),
-            ],
-          )
-      ],
+        ),
+      ),
     );
   }
 }

@@ -1,9 +1,9 @@
-import 'package:bccm_player/src/playback_platform_pigeon.g.dart';
+import 'package:bccm_player/src/pigeon/playback_platform_pigeon.g.dart';
 import 'package:bccm_player/plugins/riverpod.dart';
 import 'package:flutter/material.dart';
 import 'package:riverpod/riverpod.dart';
 import '../../utils/debouncer.dart';
-import '../../utils/various.dart';
+import '../../utils/extensions.dart';
 import 'bccm_api.dart';
 
 class BccmPlaybackListener implements PlaybackListenerPigeon {

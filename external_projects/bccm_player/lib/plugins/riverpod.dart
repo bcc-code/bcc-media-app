@@ -1,14 +1,14 @@
-import 'package:bccm_player/playback_platform_interface.dart';
+import 'package:bccm_player/src/playback_platform_interface.dart';
 import 'package:bccm_player/plugins/riverpod.dart';
 import 'package:bccm_player/src/plugins/riverpod/provider_playback_listener.dart';
 import 'package:riverpod/riverpod.dart';
 
-import '../src/chromecast_events.dart';
-import '../src/playback_platform_pigeon.g.dart';
+import '../src/native/chromecast_events.dart';
+import '../src/pigeon/playback_platform_pigeon.g.dart';
 export '../src/plugins/riverpod/providers/chromecast_provider.dart';
 export '../src/plugins/riverpod/providers/player_provider.dart';
 
-extension RiverpodX on PlaybackPlatformInterface {
+extension RiverpodX on BccmPlayerInterface {
   void addRiverpod(Ref ref) {
     // Add listener to update player states
     addPlaybackListener(RiverpodPlaybackListener(ref: ref));
@@ -31,7 +31,7 @@ extension RiverpodX on PlaybackPlatformInterface {
     });
 
     // Get and set chromecast state
-    PlaybackPlatformInterface.instance.getChromecastState().then((value) {
+    BccmPlayerInterface.instance.getChromecastState().then((value) {
       if (disposeCalled) return;
       ref.read(isCasting.notifier).state = value?.connectionState == CastConnectionState.connected;
       ref.read(castPlayerProvider.notifier).setMediaItem(value?.mediaItem);

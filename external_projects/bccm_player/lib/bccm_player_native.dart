@@ -1,18 +1,16 @@
-import 'package:bccm_player/chromecast_pigeon.g.dart';
-import 'package:bccm_player/playback_listener.dart';
-import 'package:bccm_player/src/chromecast_pigeon_listener.dart';
-import 'package:bccm_player/src/playback_platform_pigeon.g.dart';
-import 'package:bccm_player/playback_platform_interface.dart';
+import 'package:bccm_player/src/pigeon/chromecast_pigeon.g.dart';
+import 'package:bccm_player/src/native/root_pigeon_playback_listener.dart';
+import 'package:bccm_player/src/native/chromecast_pigeon_listener.dart';
+import 'package:bccm_player/src/pigeon/playback_platform_pigeon.g.dart';
+import 'package:bccm_player/src/playback_platform_interface.dart';
 
-/// An implementation of [BccmPlayerPlatform] that uses method channels.
-class PlaybackPlatformMobile extends PlaybackPlatformInterface {
-  /// The method channel used to interact with the native platform.
-
+/// An implementation of [BccmPlayerPlatform] that uses pigeon.
+class BccmPlayerNative extends BccmPlayerInterface {
   final PlaybackPlatformPigeon _pigeon = PlaybackPlatformPigeon();
   final RootPigeonPlaybackListener _rootPlaybackListener = RootPigeonPlaybackListener();
   final ChromecastPigeonListener _chromecastListener = ChromecastPigeonListener();
 
-  PlaybackPlatformMobile() {
+  BccmPlayerNative() {
     ChromecastPigeon.setup(_chromecastListener);
     PlaybackListenerPigeon.setup(_rootPlaybackListener);
   }

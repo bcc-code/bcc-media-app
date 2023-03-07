@@ -1,5 +1,4 @@
-export 'src/playback_platform_pigeon.g.dart' if (dart.library.html) 'bccm_player_web.dart' show PlaybackListenerPigeon;
-import 'package:bccm_player/src/playback_platform_pigeon.g.dart';
+import '../pigeon/playback_platform_pigeon.g.dart';
 
 class RootPigeonPlaybackListener implements PlaybackListenerPigeon {
   RootPigeonPlaybackListener();

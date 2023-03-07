@@ -1,6 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:bccm_player/bccm_player.dart';
-import 'package:bccm_player/playback_platform_interface.dart';
+import 'package:bccm_player/bccm_player.dart';
 import 'package:bccm_player/plugins/riverpod.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -42,7 +42,7 @@ class _LiveMiniPlayerState extends ConsumerState<LiveMiniPlayer> {
         widget.onStartRequest();
       },
       onPauseTap: () {
-        PlaybackPlatformInterface.instance.pause(player.playerId);
+        BccmPlayerInterface.instance.pause(player.playerId);
       },
     );
   }
@@ -85,10 +85,10 @@ class _LiveMiniPlayerState extends ConsumerState<LiveMiniPlayer> {
         isPlaying: playbackState == PlaybackState.playing,
         hideCloseButton: true,
         onPlayTap: () {
-          PlaybackPlatformInterface.instance.play(player!.playerId);
+          BccmPlayerInterface.instance.play(player!.playerId);
         },
         onPauseTap: () {
-          PlaybackPlatformInterface.instance.pause(player!.playerId);
+          BccmPlayerInterface.instance.pause(player!.playerId);
         },
       ),
     );

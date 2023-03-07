@@ -1,5 +1,5 @@
 import 'package:bccm_player/bccm_player.dart';
-import 'package:bccm_player/playback_platform_interface.dart';
+import 'package:bccm_player/bccm_player.dart';
 import 'package:bccm_player/plugins/bcc_media.dart';
 import 'package:bccm_player/plugins/riverpod.dart';
 import 'package:brunstadtv_app/env/env.dart';
@@ -16,13 +16,13 @@ import '../api/brunstadtv.dart';
 final playbackServiceProvider = Provider<PlaybackService>((ref) {
   return PlaybackService(
     ref: ref,
-    playbackApi: PlaybackPlatformInterface.instance,
+    playbackApi: BccmPlayerInterface.instance,
     analyticsService: ref.watch(analyticsProvider),
   );
 });
 
 class PlaybackService {
-  PlaybackPlatformInterface playbackApi;
+  BccmPlayerInterface playbackApi;
   Analytics analyticsService;
   Ref ref;
 

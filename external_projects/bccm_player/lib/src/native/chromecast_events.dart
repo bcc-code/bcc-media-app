@@ -1,4 +1,4 @@
-import '../chromecast_pigeon.g.dart';
+import '../pigeon/chromecast_pigeon.g.dart';
 
 extension ChromecastStreamExtensions on Stream<ChromecastEvent> {
   Stream<T> on<T extends ChromecastEvent>() {

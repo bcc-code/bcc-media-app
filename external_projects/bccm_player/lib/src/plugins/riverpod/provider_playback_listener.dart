@@ -1,8 +1,8 @@
 import 'package:bccm_player/src/plugins/riverpod/providers/player_provider.dart';
 import '../../state/player_state_notifier.dart';
-import 'package:bccm_player/src/playback_platform_pigeon.g.dart';
+import 'package:bccm_player/src/pigeon/playback_platform_pigeon.g.dart';
 import 'package:riverpod/riverpod.dart';
-import '../../utils/various.dart';
+import '../../utils/extensions.dart';
 
 class RiverpodPlaybackListener implements PlaybackListenerPigeon {
   Ref ref;

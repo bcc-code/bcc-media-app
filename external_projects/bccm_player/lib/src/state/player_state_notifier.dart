@@ -1,7 +1,6 @@
 import 'dart:async';
 
-import 'package:bccm_player/src/playback_platform_pigeon.g.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:bccm_player/src/pigeon/playback_platform_pigeon.g.dart';
 import 'package:state_notifier/state_notifier.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
@@ -11,14 +10,12 @@ class PlayerStateNotifier extends StateNotifier<PlayerState> {
   final void Function()? onDispose;
 
   PlayerStateNotifier({PlayerState? player, this.onDispose}) : super(player ?? const PlayerState(playerId: 'unknown')) {
-    /* const oneSec = Duration(seconds: 1);
-    Timer.periodic(oneSec, (Timer t) {
+    Timer.periodic(const Duration(seconds: 1), (Timer t) {
       if (!mounted) return t.cancel();
-      final s = state;
-      if (s != null && s.playbackPositionMs != null && s.playbackState == PlaybackState.playing) {
-        state = state.copyWith(playbackPositionMs: s.playbackPositionMs! + 1000);
+      if (state.playbackPositionMs != null && state.playbackState == PlaybackState.playing) {
+        state = state.copyWith(playbackPositionMs: state.playbackPositionMs! + 1000);
       }
-    }); */
+    });
   }
 
   @override

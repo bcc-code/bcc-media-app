@@ -1,6 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:bccm_player/bccm_player.dart';
-import 'package:bccm_player/playback_platform_interface.dart';
+import 'package:bccm_player/bccm_player.dart';
 import 'package:bccm_player/plugins/riverpod.dart';
 import 'package:brunstadtv_app/helpers/utils.dart';
 import 'package:brunstadtv_app/helpers/widget_keys.dart';
@@ -75,13 +75,13 @@ class _BottomSheetMiniPlayerState extends ConsumerState<BottomSheetMiniPlayer> {
         artworkUri: artworkUri ?? 'https://source.unsplash.com/random/1600x900/?fruit',
         isPlaying: playbackState == PlaybackState.playing,
         onPlayTap: () {
-          PlaybackPlatformInterface.instance.play(player.playerId);
+          BccmPlayerInterface.instance.play(player.playerId);
         },
         onPauseTap: () {
-          PlaybackPlatformInterface.instance.pause(player.playerId);
+          BccmPlayerInterface.instance.pause(player.playerId);
         },
         onCloseTap: () {
-          PlaybackPlatformInterface.instance.stop(player.playerId, true);
+          BccmPlayerInterface.instance.stop(player.playerId, true);
         },
       ),
     );

@@ -2,7 +2,7 @@
 import 'dart:async';
 
 import 'package:auto_route/auto_route.dart';
-import 'package:bccm_player/playback_platform_interface.dart';
+import 'package:bccm_player/bccm_player.dart';
 import 'package:bccm_player/plugins/riverpod.dart';
 import 'package:brunstadtv_app/components/episode/episode_info.dart';
 import 'package:brunstadtv_app/components/episode/episode_related.dart';
@@ -15,11 +15,9 @@ import 'package:brunstadtv_app/providers/lesson_progress_provider.dart';
 import 'package:brunstadtv_app/router/router.gr.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:bccm_player/bccm_player.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:brunstadtv_app/graphql/queries/episode.graphql.dart';
 import 'package:brunstadtv_app/services/playback_service.dart';
-import 'package:bccm_player/cast_button.dart';
 import 'package:graphql/client.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -87,7 +85,7 @@ class EpisodeScreen extends HookConsumerWidget {
         actions: const [
           Padding(
             padding: EdgeInsets.only(left: 16, right: 16.0),
-            child: SizedBox(width: 24, child: CastButton()),
+            child: SizedBox(width: 24, child: BccmCastButton()),
           ),
         ],
       ),
@@ -339,7 +337,7 @@ class _EpisodeDisplay extends HookConsumerWidget {
     final player = ref.read(playerProvider);
     final currentPosSeconds = ((player?.playbackPositionMs ?? 0) / 1000).round();
     if (player != null) {
-      PlaybackPlatformInterface.instance.pause(player.playerId);
+      BccmPlayerInterface.instance.pause(player.playerId);
     }
     showModalBottomSheet(
       useRootNavigator: true,

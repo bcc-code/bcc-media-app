@@ -1,11 +1,11 @@
-import 'package:bccm_player/playback_platform_mobile.dart';
-import 'package:bccm_player/src/playback_platform_pigeon.g.dart';
-import 'package:bccm_player/playback_platform_interface.dart';
+import 'package:bccm_player/bccm_player_native.dart';
+import 'package:bccm_player/src/pigeon/playback_platform_pigeon.g.dart';
+import 'package:bccm_player/src/playback_platform_interface.dart';
 import 'package:bccm_player/src/state/plugin_state_notifier.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:plugin_platform_interface/plugin_platform_interface.dart';
 
-class MockBccmPlayerPlatform with MockPlatformInterfaceMixin implements PlaybackPlatformInterface {
+class MockBccmPlayerPlatform with MockPlatformInterfaceMixin implements BccmPlayerInterface {
   @override
   chromecastEventStream() => const Stream.empty();
 
@@ -97,9 +97,9 @@ class MockBccmPlayerPlatform with MockPlatformInterfaceMixin implements Playback
 }
 
 void main() {
-  final PlaybackPlatformInterface initialPlatform = PlaybackPlatformInterface.instance;
+  final BccmPlayerInterface initialPlatform = BccmPlayerInterface.instance;
 
-  test('$PlaybackPlatformMobile is the default instance', () {
-    expect(initialPlatform, isInstanceOf<PlaybackPlatformMobile>());
+  test('$BccmPlayerNative is the default instance', () {
+    expect(initialPlatform, isInstanceOf<BccmPlayerNative>());
   });
 }

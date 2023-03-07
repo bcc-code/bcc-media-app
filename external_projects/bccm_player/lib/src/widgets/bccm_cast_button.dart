@@ -3,16 +3,16 @@ import 'package:universal_io/io.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-class CastButton extends StatefulWidget {
-  const CastButton({super.key});
+class BccmCastButton extends StatefulWidget {
+  const BccmCastButton({super.key});
 
   final methodChannel = const MethodChannel('bccm_player/cast_button');
 
   @override
-  State<CastButton> createState() => _CastButtonState();
+  State<BccmCastButton> createState() => _BccmCastButtonState();
 }
 
-class _CastButtonState extends State<CastButton> {
+class _BccmCastButtonState extends State<BccmCastButton> {
   @override
   void initState() {
     super.initState();

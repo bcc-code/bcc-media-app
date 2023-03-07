@@ -1,7 +1,7 @@
 import 'dart:async';
 
-import '../chromecast_pigeon.g.dart';
-import 'chromecast_events.dart';
+import 'chromecast_pigeon.g.dart';
+import '../native/chromecast_events.dart';
 
 class ChromecastPigeonListener implements ChromecastPigeon {
   ChromecastPigeonListener();

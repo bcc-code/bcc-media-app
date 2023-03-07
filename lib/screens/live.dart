@@ -2,8 +2,6 @@ import 'dart:async';
 
 import 'package:auto_route/auto_route.dart';
 import 'package:bccm_player/bccm_player.dart';
-import 'package:bccm_player/cast_button.dart';
-import 'package:bccm_player/playback_platform_interface.dart';
 import 'package:bccm_player/plugins/riverpod.dart';
 import 'package:brunstadtv_app/api/brunstadtv.dart';
 import 'package:brunstadtv_app/components/live_mini_player.dart';
@@ -80,7 +78,7 @@ class _LiveScreenState extends ConsumerState<LiveScreen> with AutoRouteAware {
         this.liveUrl = liveUrl;
       });
 
-      await PlaybackPlatformInterface.instance.replaceCurrentMediaItem(
+      await BccmPlayerInterface.instance.replaceCurrentMediaItem(
           player.playerId,
           autoplay: true,
           MediaItem(url: liveUrl.streamUrl, mimeType: 'application/x-mpegURL', isLive: true, metadata: ref.read(liveMetadataProvider)));
@@ -157,7 +155,7 @@ class _LiveScreenState extends ConsumerState<LiveScreen> with AutoRouteAware {
         actions: [
           const Padding(
             padding: EdgeInsets.only(right: 2.0),
-            child: SizedBox(width: 24, child: CastButton()),
+            child: SizedBox(width: 24, child: BccmCastButton()),
           ),
           Padding(
             padding: const EdgeInsets.only(right: 8),

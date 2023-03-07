@@ -1,7 +1,3 @@
-import 'dart:math';
-
-import 'package:flutter/cupertino.dart';
-
 import '../../../state/player_state_notifier.dart';
 import 'package:bccm_player/src/plugins/riverpod/providers/plugin_state_provider.dart';
 import 'package:riverpod/riverpod.dart';
