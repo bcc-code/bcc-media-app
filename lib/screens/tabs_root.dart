@@ -1,19 +1,18 @@
 import 'dart:async';
 
 import 'package:auto_route/auto_route.dart';
+import 'package:bccm_player/bccm_player.dart';
+import 'package:bccm_player/plugins/riverpod.dart';
 import 'package:brunstadtv_app/components/mini_player.dart';
 import 'package:brunstadtv_app/graphql/client.dart';
 import 'package:brunstadtv_app/graphql/queries/devices.graphql.dart';
 import 'package:brunstadtv_app/helpers/utils.dart';
 import 'package:brunstadtv_app/providers/auth_state/auth_state.dart';
-import 'package:brunstadtv_app/providers/chromecast.dart';
 import 'package:brunstadtv_app/providers/settings.dart';
 import 'package:brunstadtv_app/screens/search/search.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:brunstadtv_app/services/playback_service.dart';
-import 'package:brunstadtv_app/providers/video_state.dart';
 import 'package:brunstadtv_app/router/router.gr.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
@@ -33,11 +32,6 @@ class _TabsRootScreenState extends ConsumerState<TabsRootScreen> with AutoRouteA
   @override
   void initState() {
     super.initState();
-    ref.read(playbackApiProvider).newPlayer().then((playerId) {
-      var player = Player(playerId: playerId);
-      ref.read(playbackApiProvider).setPrimary(playerId);
-      ref.read(primaryPlayerProvider.notifier).setState(player);
-    });
     initFcm();
   }
 
@@ -101,7 +95,7 @@ class _TabsRootScreenState extends ConsumerState<TabsRootScreen> with AutoRouteA
   bool _shouldHideMiniPlayer(BuildContext context) {
     final router = context.watchRouter;
     final currentRouteMatch = router.currentSegments.last;
-    final StateNotifierProvider<PlayerNotifier, Player?>? playerProvider;
+    final StateNotifierProvider<PlayerStateNotifier, PlayerState?>? playerProvider;
     if (ref.watch(isCasting)) {
       playerProvider = castPlayerProvider;
     } else {

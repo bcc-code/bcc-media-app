@@ -16,9 +16,7 @@ import 'package:brunstadtv_app/theme/bccm_theme.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:brunstadtv_app/providers/chromecast.dart';
 import 'package:brunstadtv_app/services/playback_service.dart';
 import 'package:brunstadtv_app/router/router.gr.dart';
 import 'package:intl/intl.dart';
@@ -94,7 +92,6 @@ Future<String?> getDefaultLocale() async {
 Future<ProviderContainer> initProviderContainer(List<Override> overrides) async {
   var providerContainer = ProviderContainer(overrides: overrides);
   providerContainer.read(settingsProvider.notifier).init();
-  providerContainer.read(chromecastListenerProvider);
   providerContainer.read(appConfigProvider);
   providerContainer.read(analyticsProvider);
   providerContainer.read(deepLinkServiceProvider);

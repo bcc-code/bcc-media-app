@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:bccm_player/plugins/bcc_media.dart';
 import 'package:brunstadtv_app/graphql/queries/calendar_episode_entries.graphql.dart';
 import 'package:brunstadtv_app/graphql/queries/page.graphql.dart';
 import 'package:brunstadtv_app/graphql/queries/studies.graphql.dart';
@@ -24,7 +25,7 @@ class ApiErrorCodes {
   static const String notPublished = 'item/not-published';
 }
 
-class Api {
+class Api implements BccmApi {
   final String? accessToken;
   final GraphQLClient gqlClient;
 
@@ -120,6 +121,7 @@ class Api {
     return LivestreamUrl.fromJson(body);
   }
 
+  @override
   Future updateProgress({required String episodeId, required double? progress}) async {
     return gqlClient
         .mutate$setEpisodeProgress(Options$Mutation$setEpisodeProgress(

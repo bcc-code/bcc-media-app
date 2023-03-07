@@ -81,7 +81,7 @@ class _AutoLoginScreeenState extends ConsumerState<AutoLoginScreeen> {
   Widget error(BuildContext context) => Scaffold(
         body: SafeArea(
           child: Padding(
-            padding: EdgeInsets.all(16),
+            padding: const EdgeInsets.all(16),
             child: Stack(
               children: [
                 Positioned(

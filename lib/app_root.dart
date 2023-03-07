@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:bccm_player/playback_platform_interface.dart';
 import 'package:brunstadtv_app/graphql/client.dart';
 import 'package:brunstadtv_app/graphql/queries/me.graphql.dart';
 import 'package:brunstadtv_app/theme/bccm_theme.dart';
@@ -35,6 +36,10 @@ class _AppRootState extends ConsumerState<AppRoot> {
   void initState() {
     super.initState();
     _setupFcmListeners();
+    PlaybackPlatformInterface.instance.newPlayer().then((value) {
+      if (!mounted) return;
+      PlaybackPlatformInterface.instance.setPrimary(value);
+    });
   }
 
   @override

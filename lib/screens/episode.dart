@@ -2,7 +2,8 @@
 import 'dart:async';
 
 import 'package:auto_route/auto_route.dart';
-import 'package:bccm_player/playback_platform_pigeon.g.dart';
+import 'package:bccm_player/playback_platform_interface.dart';
+import 'package:bccm_player/plugins/riverpod.dart';
 import 'package:brunstadtv_app/components/episode/episode_info.dart';
 import 'package:brunstadtv_app/components/episode/episode_related.dart';
 import 'package:brunstadtv_app/components/episode/episode_season.dart';
@@ -17,9 +18,7 @@ import 'package:flutter/material.dart';
 import 'package:bccm_player/bccm_player.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:brunstadtv_app/graphql/queries/episode.graphql.dart';
-import 'package:brunstadtv_app/providers/chromecast.dart';
 import 'package:brunstadtv_app/services/playback_service.dart';
-import 'package:brunstadtv_app/providers/video_state.dart';
 import 'package:bccm_player/cast_button.dart';
 import 'package:graphql/client.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -209,15 +208,19 @@ class _EpisodeDisplay extends HookConsumerWidget {
     }, [screenParams.hideBottomSection, screenParams.queryParamStartPosition]);
 
     // Start playing when chromecast disconnects
-    ref.watch(chromecastListenerProvider).useListenerHook<CastSessionUnavailable>((event) {
-      var player = ref.read(primaryPlayerProvider);
-      ref.read(playbackServiceProvider).playEpisode(
-            playerId: player!.playerId,
-            autoplay: false,
-            episode: episode,
-            playbackPositionMs: event.playbackPositionMs,
-          );
-    });
+    final castSessionUnavailableStream = ref.watch(chromecastEventStreamProvider).on<CastSessionUnavailable>();
+    useEffect(() {
+      final subscription = castSessionUnavailableStream.listen((event) {
+        var player = ref.read(primaryPlayerProvider);
+        ref.read(playbackServiceProvider).playEpisode(
+              playerId: player!.playerId,
+              autoplay: false,
+              episode: episode,
+              playbackPositionMs: event.playbackPositionMs,
+            );
+      });
+      return () => subscription.cancel();
+    }, [castSessionUnavailableStream]);
 
     final showLoadingOverlay = (episodeSnapshot.connectionState == ConnectionState.waiting);
 
@@ -336,7 +339,7 @@ class _EpisodeDisplay extends HookConsumerWidget {
     final player = ref.read(playerProvider);
     final currentPosSeconds = ((player?.playbackPositionMs ?? 0) / 1000).round();
     if (player != null) {
-      ref.read(playbackApiProvider).pause(player.playerId);
+      PlaybackPlatformInterface.instance.pause(player.playerId);
     }
     showModalBottomSheet(
       useRootNavigator: true,

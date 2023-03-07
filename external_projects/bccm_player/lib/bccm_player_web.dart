@@ -4,8 +4,9 @@
 // ignore: avoid_web_libraries_in_flutter
 import 'dart:html' as html show window;
 
-import 'package:bccm_player/playback_platform_pigeon.g.dart' as pigeon;
-import 'package:bccm_player/playback_service_interface.dart';
+import 'package:bccm_player/src/chromecast_events.dart';
+import 'package:bccm_player/src/playback_platform_pigeon.g.dart' as pigeon;
+import 'package:bccm_player/playback_platform_interface.dart';
 import 'package:bccm_player/web/web_player.dart';
 import 'package:flutter_web_plugins/flutter_web_plugins.dart';
 
@@ -17,6 +18,9 @@ class BccmPlayerWeb extends PlaybackPlatformInterface {
   static void registerWith(Registrar registrar) {
     PlaybackPlatformInterface.instance = BccmPlayerWeb();
   }
+
+  @override
+  chromecastEventStream() => const Stream.empty();
 
   /// Returns a [String] containing the version of the platform.
   @override
@@ -62,7 +66,7 @@ class BccmPlayerWeb extends PlaybackPlatformInterface {
   }
 
   @override
-  Future<void> setPlaybackListener(pigeon.PlaybackListenerPigeon listener) async {
+  Future<void> addPlaybackListener(pigeon.PlaybackListenerPigeon listener) async {
     addListener(listener);
   }
 

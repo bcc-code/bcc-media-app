@@ -119,7 +119,7 @@ class _CopyWithImpl$Variables$Mutation$sendSupportEmail<TRes>
 
   final TRes Function(Variables$Mutation$sendSupportEmail) _then;
 
-  static const _undefined = {};
+  static const _undefined = <dynamic, dynamic>{};
 
   TRes call({
     Object? title = _undefined,
@@ -152,7 +152,7 @@ class _CopyWithStubImpl$Variables$Mutation$sendSupportEmail<TRes>
 class Mutation$sendSupportEmail {
   Mutation$sendSupportEmail({
     required this.sendSupportEmail,
-    required this.$__typename,
+    this.$__typename = 'MutationRoot',
   });
 
   factory Mutation$sendSupportEmail.fromJson(Map<String, dynamic> json) {
@@ -245,7 +245,7 @@ class _CopyWithImpl$Mutation$sendSupportEmail<TRes>
 
   final TRes Function(Mutation$sendSupportEmail) _then;
 
-  static const _undefined = {};
+  static const _undefined = <dynamic, dynamic>{};
 
   TRes call({
     Object? sendSupportEmail = _undefined,

@@ -1,10 +1,10 @@
 import 'dart:html' as html;
 import 'dart:html';
-import 'package:bccm_player/playback_platform_pigeon.g.dart';
+import 'package:bccm_player/src/playback_platform_pigeon.g.dart';
 import 'package:js/js.dart';
 import 'dart:ui' as ui;
 
-import '../playback_service_interface.dart';
+import '../playback_platform_interface.dart';
 
 @JS()
 external void bccmCreatePlayer(Element element, Options options);

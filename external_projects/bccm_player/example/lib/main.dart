@@ -1,8 +1,6 @@
-import 'package:bccm_player/playback_service.dart';
+import 'package:bccm_player/playback_platform_interface.dart';
 import 'package:flutter/material.dart';
 import 'dart:async';
-
-import 'package:flutter/services.dart';
 
 void main() {
   runApp(const MyApp());
@@ -16,8 +14,8 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  String _platformVersion = 'Unknown';
-  final _bccmPlayerPlugin = PlaybackService();
+  String? _playerId;
+  final _bccmPlayerPlugin = PlaybackPlatformInterface.instance;
 
   @override
   void initState() {
@@ -27,23 +25,10 @@ class _MyAppState extends State<MyApp> {
 
   // Platform messages are asynchronous, so we initialize in an async method.
   Future<void> initPlatformState() async {
-    String platformVersion;
-    // Platform messages may fail, so we use a try/catch PlatformException.
-    // We also handle the message potentially returning null.
-    try {
-      platformVersion =
-          await _bccmPlayerPlugin.getPlatformVersion() ?? 'Unknown platform version';
-    } on PlatformException {
-      platformVersion = 'Failed to get platform version.';
-    }
-
-    // If the widget was removed from the tree while the asynchronous platform
-    // message was in flight, we want to discard the reply rather than calling
-    // setState to update our non-existent appearance.
-    if (!mounted) return;
+    String playerId = await _bccmPlayerPlugin.newPlayer();
 
     setState(() {
-      _platformVersion = platformVersion;
+      _playerId = playerId;
     });
   }
 
@@ -55,7 +40,7 @@ class _MyAppState extends State<MyApp> {
           title: const Text('Plugin example app'),
         ),
         body: Center(
-          child: Text('Running on: $_platformVersion\n'),
+          child: Text(_playerId ?? 'Player id not set'),
         ),
       ),
     );

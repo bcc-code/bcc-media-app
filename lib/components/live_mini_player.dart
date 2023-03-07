@@ -1,9 +1,9 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:bccm_player/bccm_player.dart';
+import 'package:bccm_player/playback_platform_interface.dart';
+import 'package:bccm_player/plugins/riverpod.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:brunstadtv_app/providers/chromecast.dart';
-import 'package:brunstadtv_app/services/playback_service.dart';
-import 'package:brunstadtv_app/providers/video_state.dart';
 import 'package:brunstadtv_app/router/router.gr.dart';
 
 import '../screens/live.dart';
@@ -26,7 +26,7 @@ class _LiveMiniPlayerState extends ConsumerState<LiveMiniPlayer> {
 
   bool waitingForMediaItemToBeCorrect = false;
 
-  Widget _emptyPlayer(Player player) {
+  Widget _emptyPlayer(PlayerState player) {
     var metadata = ref.read(liveMetadataProvider);
     return MiniPlayer(
       secondaryTitle: metadata.artist,
@@ -42,14 +42,14 @@ class _LiveMiniPlayerState extends ConsumerState<LiveMiniPlayer> {
         widget.onStartRequest();
       },
       onPauseTap: () {
-        ref.read(playbackApiProvider).pause(player.playerId);
+        PlaybackPlatformInterface.instance.pause(player.playerId);
       },
     );
   }
 
   @override
   Widget build(BuildContext context) {
-    Player? player;
+    PlayerState? player;
     if (ref.watch(isCasting)) {
       player = ref.watch(castPlayerProvider);
     } else {
@@ -85,10 +85,10 @@ class _LiveMiniPlayerState extends ConsumerState<LiveMiniPlayer> {
         isPlaying: playbackState == PlaybackState.playing,
         hideCloseButton: true,
         onPlayTap: () {
-          ref.read(playbackApiProvider).play(player!.playerId);
+          PlaybackPlatformInterface.instance.play(player!.playerId);
         },
         onPauseTap: () {
-          ref.read(playbackApiProvider).pause(player!.playerId);
+          PlaybackPlatformInterface.instance.pause(player!.playerId);
         },
       ),
     );

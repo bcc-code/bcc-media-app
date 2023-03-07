@@ -3,14 +3,13 @@ import 'dart:async';
 import 'package:auto_route/auto_route.dart';
 import 'package:bccm_player/bccm_player.dart';
 import 'package:bccm_player/cast_button.dart';
-import 'package:bccm_player/playback_platform_pigeon.g.dart';
+import 'package:bccm_player/playback_platform_interface.dart';
+import 'package:bccm_player/plugins/riverpod.dart';
 import 'package:brunstadtv_app/api/brunstadtv.dart';
 import 'package:brunstadtv_app/components/live_mini_player.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:brunstadtv_app/services/playback_service.dart';
-import 'package:brunstadtv_app/providers/video_state.dart';
 import 'package:flutter_svg/svg.dart' show SvgPicture;
 import 'package:flutter_svg_provider/flutter_svg_provider.dart';
 import 'package:brunstadtv_app/helpers/transparent_image.dart';
@@ -20,7 +19,6 @@ import '../helpers/svg_icons.dart';
 import '../l10n/app_localizations.dart';
 import '../models/analytics/audio_only_clicked.dart';
 import '../providers/analytics.dart';
-import '../providers/chromecast.dart';
 import 'calendar/calendar.dart';
 
 final liveMetadataProvider = Provider<MediaMetadata>((ref) {
@@ -74,7 +72,6 @@ class _LiveScreenState extends ConsumerState<LiveScreen> with AutoRouteAware {
         throw ErrorDescription('player cant be null');
       }
 
-      var playbackApi = ref.read(playbackApiProvider);
       var liveUrl = await ref.read(apiProvider).fetchLiveUrl();
 
       if (!mounted) return;
@@ -83,7 +80,7 @@ class _LiveScreenState extends ConsumerState<LiveScreen> with AutoRouteAware {
         this.liveUrl = liveUrl;
       });
 
-      await playbackApi.replaceCurrentMediaItem(
+      await PlaybackPlatformInterface.instance.replaceCurrentMediaItem(
           player.playerId,
           autoplay: true,
           MediaItem(url: liveUrl.streamUrl, mimeType: 'application/x-mpegURL', isLive: true, metadata: ref.read(liveMetadataProvider)));
@@ -110,7 +107,7 @@ class _LiveScreenState extends ConsumerState<LiveScreen> with AutoRouteAware {
     setState(fn);
   }
 
-  Future ensurePlayingWithinReasonableTime(StateNotifierProvider<PlayerNotifier, Player?> playerProvider) async {
+  Future ensurePlayingWithinReasonableTime(StateNotifierProvider<PlayerStateNotifier, PlayerState?> playerProvider) async {
     setStateIfMounted(() {
       setupCompleter = Completer();
     });
@@ -232,11 +229,11 @@ class _LiveScreenState extends ConsumerState<LiveScreen> with AutoRouteAware {
     );
   }
 
-  Widget _player(Player player) {
+  Widget _player(PlayerState player) {
     return BccmPlayer(id: player.playerId);
   }
 
-  Widget _playPoster(Player player) {
+  Widget _playPoster(PlayerState player) {
     return GestureDetector(
       behavior: HitTestBehavior.opaque,
       //excludeFromSemantics: true,

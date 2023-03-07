@@ -1,9 +1,7 @@
-import 'package:auto_route/auto_route.dart';
 import 'package:brunstadtv_app/components/study_progress.dart';
 import 'package:brunstadtv_app/graphql/queries/episode.graphql.dart';
 import 'package:brunstadtv_app/graphql/queries/studies.graphql.dart';
 import 'package:brunstadtv_app/theme/bccm_typography.dart';
-import 'package:brunstadtv_app/router/router.gr.dart';
 import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:intl/intl.dart';

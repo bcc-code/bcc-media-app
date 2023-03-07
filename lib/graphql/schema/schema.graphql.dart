@@ -112,7 +112,7 @@ class _CopyWithImpl$Input$LegacyIDLookupOptions<TRes>
 
   final TRes Function(Input$LegacyIDLookupOptions) _then;
 
-  static const _undefined = {};
+  static const _undefined = <dynamic, dynamic>{};
 
   TRes call({
     Object? episodeID = _undefined,
@@ -223,7 +223,7 @@ class _CopyWithImpl$Input$EpisodeContext<TRes>
 
   final TRes Function(Input$EpisodeContext) _then;
 
-  static const _undefined = {};
+  static const _undefined = <dynamic, dynamic>{};
 
   TRes call({Object? collectionId = _undefined}) =>
       _then(Input$EpisodeContext._({
@@ -242,7 +242,7 @@ class _CopyWithStubImpl$Input$EpisodeContext<TRes>
   call({String? collectionId}) => _res;
 }
 
-const possibleTypesMap = {
+const possibleTypesMap = <String, Set<String>>{
   'Pagination': {
     'SeasonPagination',
     'EpisodePagination',

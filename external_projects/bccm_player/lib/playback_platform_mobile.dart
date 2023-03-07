@@ -1,40 +1,42 @@
-import 'package:bccm_player/playback_platform_pigeon.g.dart';
-import 'package:bccm_player/playback_service_interface.dart';
-import 'package:flutter/foundation.dart';
-import 'package:flutter/services.dart';
+import 'package:bccm_player/chromecast_pigeon.g.dart';
+import 'package:bccm_player/playback_listener.dart';
+import 'package:bccm_player/src/chromecast_pigeon_listener.dart';
+import 'package:bccm_player/src/playback_platform_pigeon.g.dart';
+import 'package:bccm_player/playback_platform_interface.dart';
 
 /// An implementation of [BccmPlayerPlatform] that uses method channels.
-class PlaybackService extends PlaybackPlatformInterface {
+class PlaybackPlatformMobile extends PlaybackPlatformInterface {
   /// The method channel used to interact with the native platform.
-  @visibleForTesting
-  final methodChannel = const MethodChannel('bccm_player');
 
   final PlaybackPlatformPigeon _pigeon = PlaybackPlatformPigeon();
-  final List<PlaybackListenerPigeon> listeners = [];
+  final RootPigeonPlaybackListener _rootPlaybackListener = RootPigeonPlaybackListener();
+  final ChromecastPigeonListener _chromecastListener = ChromecastPigeonListener();
 
-  @override
-  Future<String?> getPlatformVersion() async {
-    final version =
-        await methodChannel.invokeMethod<String>('getPlatformVersion');
-    return version;
+  PlaybackPlatformMobile() {
+    ChromecastPigeon.setup(_chromecastListener);
+    PlaybackListenerPigeon.setup(_rootPlaybackListener);
   }
 
   @override
-  Future<String> newPlayer({String? url}) {
-    return _pigeon.newPlayer(url);
+  chromecastEventStream() => _chromecastListener.stream();
+
+  @override
+  Future<String> newPlayer({String? url}) async {
+    final playerId = await _pigeon.newPlayer(url);
+    stateNotifier.addPlayerNotifier(playerId);
+    return playerId;
   }
 
   @override
   Future<bool> setPrimary(String id) async {
     await _pigeon.setPrimary(id);
+    stateNotifier.setPrimaryPlayer(id);
     return true;
   }
 
   @override
-  Future<void> replaceCurrentMediaItem(String playerId, MediaItem mediaItem,
-      {bool? playbackPositionFromPrimary, bool? autoplay = true}) async {
-    await _pigeon.replaceCurrentMediaItem(
-        playerId, mediaItem, playbackPositionFromPrimary, autoplay);
+  Future<void> replaceCurrentMediaItem(String playerId, MediaItem mediaItem, {bool? playbackPositionFromPrimary, bool? autoplay = true}) async {
+    await _pigeon.replaceCurrentMediaItem(playerId, mediaItem, playbackPositionFromPrimary, autoplay);
   }
 
   @override
@@ -58,8 +60,8 @@ class PlaybackService extends PlaybackPlatformInterface {
   }
 
   @override
-  Future<void> setPlaybackListener(PlaybackListenerPigeon listener) async {
-    PlaybackListenerPigeon.setup(listener);
+  Future<void> addPlaybackListener(PlaybackListenerPigeon listener) async {
+    _rootPlaybackListener.addListener(listener);
   }
 
   @override

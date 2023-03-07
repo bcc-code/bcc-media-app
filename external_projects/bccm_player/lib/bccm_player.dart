@@ -1,12 +1,17 @@
 import 'package:universal_io/io.dart';
 
 import 'package:bccm_player/bccm_castplayer.dart';
-import 'package:bccm_player/playback_service_interface.dart';
+import 'package:bccm_player/playback_platform_interface.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
+
+export 'src/playback_platform_pigeon.g.dart' show MediaItem, MediaMetadata, AppConfig, NpawConfig, CastConnectionState;
+export 'src/state/player_state_notifier.dart';
+export 'src/state/plugin_state_notifier.dart';
+export 'src/chromecast_events.dart';
 
 enum PlayerType { betterPlayer, videoPlayer, native }
 

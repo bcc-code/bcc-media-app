@@ -1,12 +1,14 @@
-import 'package:bccm_player/playback_platform_pigeon.g.dart';
-import 'package:bccm_player/playback_service.dart';
-import 'package:bccm_player/playback_service_interface.dart';
+import 'package:bccm_player/playback_platform_mobile.dart';
+import 'package:bccm_player/src/playback_platform_pigeon.g.dart';
+import 'package:bccm_player/playback_platform_interface.dart';
+import 'package:bccm_player/src/state/plugin_state_notifier.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:plugin_platform_interface/plugin_platform_interface.dart';
 
-class MockBccmPlayerPlatform
-    with MockPlatformInterfaceMixin
-    implements PlaybackPlatformInterface {
+class MockBccmPlayerPlatform with MockPlatformInterfaceMixin implements PlaybackPlatformInterface {
+  @override
+  chromecastEventStream() => const Stream.empty();
+
   @override
   Future<ChromecastState> getChromecastState() {
     // TODO: implement getChromecastState
@@ -32,8 +34,7 @@ class MockBccmPlayerPlatform
   }
 
   @override
-  Future<void> replaceCurrentMediaItem(String playerId, MediaItem mediaItem,
-      {bool? playbackPositionFromPrimary, bool? autoplay}) {
+  Future<void> replaceCurrentMediaItem(String playerId, MediaItem mediaItem, {bool? playbackPositionFromPrimary, bool? autoplay}) {
     // TODO: implement replaceCurrentMediaItem
     throw UnimplementedError();
   }
@@ -70,7 +71,7 @@ class MockBccmPlayerPlatform
   }
 
   @override
-  Future<void> setPlaybackListener(PlaybackListenerPigeon listener) {
+  Future<void> addPlaybackListener(PlaybackListenerPigeon listener) {
     // TODO: implement setPlaybackListener
     throw UnimplementedError();
   }
@@ -89,20 +90,16 @@ class MockBccmPlayerPlatform
   void setPlayerViewVisibility(int viewId, bool visible) {
     // TODO: implement setPlayerViewVisibility
   }
+
+  @override
+  // TODO: implement stateNotifier
+  PlayerPluginStateNotifier get stateNotifier => throw UnimplementedError();
 }
 
 void main() {
-  final PlaybackPlatformInterface initialPlatform = PlaybackService();
+  final PlaybackPlatformInterface initialPlatform = PlaybackPlatformInterface.instance;
 
-  test('$PlaybackService is the default instance', () {
-    expect(initialPlatform, isInstanceOf<PlaybackService>());
-  });
-
-  test('getPlatformVersion', () async {
-    PlaybackService bccmPlayerPlugin = PlaybackService();
-    MockBccmPlayerPlatform fakePlatform = MockBccmPlayerPlatform();
-    PlaybackPlatformInterface.instance = fakePlatform;
-
-    expect(await bccmPlayerPlugin.getPlatformVersion(), '42');
+  test('$PlaybackPlatformMobile is the default instance', () {
+    expect(initialPlatform, isInstanceOf<PlaybackPlatformMobile>());
   });
 }
