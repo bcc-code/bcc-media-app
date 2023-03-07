@@ -16,6 +16,7 @@ import 'package:http/http.dart' as http;
 import '../graphql/client.dart';
 import '../graphql/queries/application.graphql.dart';
 import '../graphql/queries/progress.graphql.dart';
+import '../graphql/queries/survey.graphql.dart';
 import '../helpers/date_time.dart';
 
 class ApiErrorCodes {
@@ -139,6 +140,18 @@ class Api {
         throw ErrorDescription('Calender data for today is null.');
       }
       return result.parsedData!.calendar;
+    });
+  }
+
+  Future<List<Fragment$Survey>> getSurveys() {
+    return gqlClient.query$getSurveys().then((result) {
+      if (result.hasException) {
+        throw result.exception!;
+      }
+      if (result.parsedData == null) {
+        throw ErrorDescription('Survey data is null.');
+      }
+      return result.parsedData!.surveys;
     });
   }
 }
