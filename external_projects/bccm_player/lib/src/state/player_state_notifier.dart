@@ -24,8 +24,6 @@ class PlayerStateNotifier extends StateNotifier<PlayerState> {
   @override
   void dispose() {
     onDispose?.call();
-    debugPrint('$onDispose');
-    debugPrint('$state');
     super.dispose();
   }
 
