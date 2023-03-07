@@ -19,6 +19,7 @@ import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
 import '../components/bottom_sheet_mini_player.dart';
 import '../components/custom_tab_bar.dart';
+import '../components/surveys/snackbars_survey.dart';
 
 class TabsRootScreen extends ConsumerStatefulWidget {
   static const route = '/';
@@ -160,7 +161,13 @@ class _TabsRootScreenState extends ConsumerState<TabsRootScreen> with AutoRouteA
           data: Theme.of(context).copyWith(bottomSheetTheme: const BottomSheetThemeData(backgroundColor: Colors.transparent)),
           child: Scaffold(
               body: Padding(padding: EdgeInsets.only(bottom: _shouldHideMiniPlayer(context) ? 0 : kMiniPlayerHeight), child: child),
-              bottomSheet: BottomSheetMiniPlayer(hidden: _shouldHideMiniPlayer(context)),
+              bottomSheet: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  const SnackbarsSurvey(),
+                  BottomSheetMiniPlayer(hidden: _shouldHideMiniPlayer(context)),
+                ],
+              ),
               bottomNavigationBar: CustomTabBar(tabsRouter: tabsRouter)),
         );
       },

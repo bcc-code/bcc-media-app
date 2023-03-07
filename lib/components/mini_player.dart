@@ -2,7 +2,9 @@ import 'package:brunstadtv_app/components/loading_indicator.dart';
 import 'package:brunstadtv_app/theme/bccm_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:brunstadtv_app/helpers/ui/transparent_image.dart';
+import 'package:flutter_svg/svg.dart';
 
+import '../helpers/ui/svg_icons.dart';
 import '../theme/bccm_typography.dart';
 import '../helpers/widget_keys.dart';
 import '../l10n/app_localizations.dart';
@@ -118,7 +120,7 @@ class MiniPlayer extends StatelessWidget {
               child: Container(
                 margin: const EdgeInsets.only(left: 7),
                 height: 36,
-                child: Image.asset(width: 32, height: 16, 'assets/icons/Close.png', gaplessPlayback: true),
+                child: SvgPicture.string(SvgIcons.close),
               ),
             ),
         ],
