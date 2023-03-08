@@ -14,6 +14,7 @@ class BtvButton extends StatelessWidget {
   final Color backgroundColor;
   final BoxBorder? border;
   final TextStyle textStyle;
+  final bool disabled;
 
   const BtvButton({
     super.key,
@@ -27,6 +28,7 @@ class BtvButton extends StatelessWidget {
     this.textStyle = BccmTextStyles.button2,
     this.borderRadius = 20,
     this.padding = const EdgeInsets.all(0),
+    this.disabled = false,
   });
 
   BtvButton copyWith({
@@ -41,6 +43,7 @@ class BtvButton extends StatelessWidget {
     TextStyle? textStyle,
     double? borderRadius,
     EdgeInsetsGeometry? padding,
+    bool? disabled,
   }) {
     return BtvButton(
       key: key ?? this.key,
@@ -54,6 +57,7 @@ class BtvButton extends StatelessWidget {
       textStyle: textStyle ?? this.textStyle,
       borderRadius: borderRadius ?? this.borderRadius,
       padding: padding ?? this.padding,
+      disabled: disabled ?? this.disabled,
     );
   }
 
@@ -62,6 +66,7 @@ class BtvButton extends StatelessWidget {
     required VoidCallback onPressed,
     required String labelText,
     Widget? image,
+    bool disabled = false,
   }) {
     return BtvButton(
       key: key,
@@ -73,6 +78,7 @@ class BtvButton extends StatelessWidget {
       border: Border.all(color: BccmColors.onTint.withOpacity(0.2), width: 1),
       imageDimension: 20,
       textStyle: BccmTextStyles.button1.copyWith(color: BccmColors.label1),
+      disabled: disabled,
     );
   }
 
@@ -81,8 +87,15 @@ class BtvButton extends StatelessWidget {
     required VoidCallback onPressed,
     required String labelText,
     Widget? image,
+    bool disabled = false,
   }) {
-    return BtvButton.small(key: key, onPressed: onPressed, labelText: labelText, image: image).copyWith(
+    return BtvButton.small(
+      key: key,
+      onPressed: onPressed,
+      labelText: labelText,
+      image: image,
+      disabled: disabled,
+    ).copyWith(
       backgroundColor: BccmColors.separatorOnLight,
       border: Border.all(color: BccmColors.separatorOnLight, width: 1),
     );
@@ -93,8 +106,15 @@ class BtvButton extends StatelessWidget {
     required VoidCallback onPressed,
     required String labelText,
     Widget? image,
+    bool disabled = false,
   }) {
-    return BtvButton.small(key: key, onPressed: onPressed, labelText: labelText, image: image).copyWith(backgroundColor: BccmColors.tint3);
+    return BtvButton.small(
+      key: key,
+      onPressed: onPressed,
+      labelText: labelText,
+      image: image,
+      disabled: disabled,
+    ).copyWith(backgroundColor: BccmColors.tint3);
   }
 
   factory BtvButton.smallRed({
@@ -102,21 +122,15 @@ class BtvButton extends StatelessWidget {
     required VoidCallback onPressed,
     required String labelText,
     Widget? image,
+    bool disabled = false,
   }) {
-    return BtvButton.small(key: key, onPressed: onPressed, labelText: labelText, image: image).copyWith(backgroundColor: BccmColors.tint2);
-  }
-
-  factory BtvButton.smallDisabled({
-    Key? key,
-    required VoidCallback onPressed,
-    required String labelText,
-    Widget? image,
-  }) {
-    return BtvButton.small(key: key, onPressed: onPressed, labelText: labelText, image: image).copyWith(
-      backgroundColor: BccmColors.background1,
-      border: Border.all(color: BccmColors.separatorOnLight, width: 1),
-      textStyle: BccmTextStyles.button1.copyWith(color: BccmColors.label4),
-    );
+    return BtvButton.small(
+      key: key,
+      onPressed: onPressed,
+      labelText: labelText,
+      image: image,
+      disabled: disabled,
+    ).copyWith(backgroundColor: BccmColors.tint2);
   }
 
   factory BtvButton.medium({
@@ -124,6 +138,7 @@ class BtvButton extends StatelessWidget {
     required VoidCallback onPressed,
     required String labelText,
     Widget? image,
+    bool disabled = false,
   }) {
     return BtvButton(
       key: key,
@@ -135,6 +150,7 @@ class BtvButton extends StatelessWidget {
       border: Border.all(color: BccmColors.onTint.withOpacity(0.2), width: 1),
       imageDimension: 20,
       textStyle: BccmTextStyles.button1.copyWith(color: BccmColors.label1),
+      disabled: disabled,
     );
   }
 
@@ -143,8 +159,15 @@ class BtvButton extends StatelessWidget {
     required VoidCallback onPressed,
     required String labelText,
     Widget? image,
+    bool disabled = false,
   }) {
-    return BtvButton.medium(key: key, onPressed: onPressed, labelText: labelText, image: image).copyWith(backgroundColor: BccmColors.tint3);
+    return BtvButton.medium(
+      key: key,
+      onPressed: onPressed,
+      labelText: labelText,
+      image: image,
+      disabled: disabled,
+    ).copyWith(backgroundColor: BccmColors.tint3);
   }
 
   factory BtvButton.mediumRed({
@@ -152,8 +175,15 @@ class BtvButton extends StatelessWidget {
     required VoidCallback onPressed,
     required String labelText,
     Widget? image,
+    bool disabled = false,
   }) {
-    return BtvButton.medium(key: key, onPressed: onPressed, labelText: labelText, image: image).copyWith(backgroundColor: BccmColors.tint2);
+    return BtvButton.medium(
+      key: key,
+      onPressed: onPressed,
+      labelText: labelText,
+      image: image,
+      disabled: disabled,
+    ).copyWith(backgroundColor: BccmColors.tint2);
   }
 
   factory BtvButton.mediumSecondary({
@@ -161,23 +191,17 @@ class BtvButton extends StatelessWidget {
     required VoidCallback onPressed,
     required String labelText,
     Widget? image,
+    bool disabled = false,
   }) {
-    return BtvButton.medium(key: key, onPressed: onPressed, labelText: labelText, image: image).copyWith(
+    return BtvButton.medium(
+      key: key,
+      onPressed: onPressed,
+      labelText: labelText,
+      image: image,
+      disabled: disabled,
+    ).copyWith(
       backgroundColor: BccmColors.separatorOnLight,
       border: Border.all(color: BccmColors.separatorOnLight.withOpacity(0.1), width: 1),
-    );
-  }
-
-  factory BtvButton.mediumDisabled({
-    Key? key,
-    required VoidCallback onPressed,
-    required String labelText,
-    Widget? image,
-  }) {
-    return BtvButton.medium(key: key, onPressed: onPressed, labelText: labelText, image: image).copyWith(
-      backgroundColor: BccmColors.background1,
-      border: Border.all(color: BccmColors.separatorOnLight, width: 1),
-      textStyle: BccmTextStyles.button1.copyWith(color: BccmColors.label4),
     );
   }
 
@@ -186,6 +210,7 @@ class BtvButton extends StatelessWidget {
     required VoidCallback onPressed,
     required String labelText,
     Widget? image,
+    bool disabled = false,
   }) {
     return BtvButton(
       key: key,
@@ -198,6 +223,7 @@ class BtvButton extends StatelessWidget {
       borderRadius: 24,
       imageDimension: 20,
       textStyle: BccmTextStyles.button1.copyWith(color: BccmColors.label1),
+      disabled: disabled,
     );
   }
 
@@ -206,8 +232,15 @@ class BtvButton extends StatelessWidget {
     required VoidCallback onPressed,
     required String labelText,
     Widget? image,
+    bool disabled = false,
   }) {
-    return BtvButton.large(key: key, onPressed: onPressed, labelText: labelText, image: image).copyWith(backgroundColor: BccmColors.tint3);
+    return BtvButton.large(
+      key: key,
+      onPressed: onPressed,
+      labelText: labelText,
+      image: image,
+      disabled: disabled,
+    ).copyWith(backgroundColor: BccmColors.tint3);
   }
 
   factory BtvButton.largeRed({
@@ -215,8 +248,15 @@ class BtvButton extends StatelessWidget {
     required VoidCallback onPressed,
     required String labelText,
     Widget? image,
+    bool disabled = false,
   }) {
-    return BtvButton.large(key: key, onPressed: onPressed, labelText: labelText, image: image).copyWith(backgroundColor: BccmColors.tint2);
+    return BtvButton.large(
+      key: key,
+      onPressed: onPressed,
+      labelText: labelText,
+      image: image,
+      disabled: disabled,
+    ).copyWith(backgroundColor: BccmColors.tint2);
   }
 
   factory BtvButton.largeSecondary({
@@ -224,54 +264,55 @@ class BtvButton extends StatelessWidget {
     required VoidCallback onPressed,
     required String labelText,
     Widget? image,
+    bool disabled = false,
   }) {
-    return BtvButton.large(key: key, onPressed: onPressed, labelText: labelText, image: image).copyWith(
+    return BtvButton.large(
+      key: key,
+      onPressed: onPressed,
+      labelText: labelText,
+      image: image,
+      disabled: disabled,
+    ).copyWith(
       backgroundColor: BccmColors.separatorOnLight,
       border: Border.all(color: BccmColors.separatorOnLight.withOpacity(0.1), width: 1),
     );
   }
 
-  factory BtvButton.largeDisabled({
-    Key? key,
-    required VoidCallback onPressed,
-    required String labelText,
-    Widget? image,
-  }) {
-    return BtvButton.large(key: key, onPressed: onPressed, labelText: labelText, image: image).copyWith(
-      backgroundColor: BccmColors.background1,
-      border: Border.all(color: BccmColors.separatorOnLight, width: 1),
-      textStyle: BccmTextStyles.button1.copyWith(color: BccmColors.label4),
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      behavior: HitTestBehavior.opaque,
-      onTap: onPressed,
-      child: Container(
-        padding: padding,
-        decoration: BoxDecoration(
-          border: border,
-          borderRadius: BorderRadius.circular(borderRadius),
-          color: backgroundColor,
-        ),
-        child: Row(
-          mainAxisSize: MainAxisSize.min,
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            if (image != null)
-              Container(
-                margin: EdgeInsets.only(right: gap),
-                child: SizedBox(width: imageDimension, height: imageDimension, child: image),
-              ),
-            Text(
-              labelText,
-              textAlign: TextAlign.center,
-              style: textStyle,
-            )
-          ],
+    final disabledBorder = Border.all(color: BccmColors.separatorOnLight, width: 1);
+    const disabledBackgroundColor = BccmColors.background1;
+    const disabledTextColor = BccmColors.label4;
+
+    return IgnorePointer(
+      ignoring: disabled,
+      child: GestureDetector(
+        behavior: HitTestBehavior.opaque,
+        onTap: onPressed,
+        child: Container(
+          padding: padding,
+          decoration: BoxDecoration(
+            border: disabled ? disabledBorder : border,
+            borderRadius: BorderRadius.circular(borderRadius),
+            color: disabled ? disabledBackgroundColor : backgroundColor,
+          ),
+          child: Row(
+            mainAxisSize: MainAxisSize.min,
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              if (image != null)
+                Container(
+                  margin: EdgeInsets.only(right: gap),
+                  child: SizedBox(width: imageDimension, height: imageDimension, child: image),
+                ),
+              Text(
+                labelText,
+                textAlign: TextAlign.center,
+                style: textStyle.copyWith(color: disabled ? disabledTextColor : textStyle.color),
+              )
+            ],
+          ),
         ),
       ),
     );
