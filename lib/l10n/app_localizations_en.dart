@@ -77,6 +77,9 @@ class SEn extends S {
   String get ok => 'OK';
 
   @override
+  String get open => 'Open';
+
+  @override
   String get loginFailedCheckNetwork => 'Login failed. Check your network connection and try again.';
 
   @override
@@ -150,6 +153,9 @@ class SEn extends S {
 
   @override
   String get search => 'Search';
+
+  @override
+  String get sendFeedback => 'Send Feedback';
 
   @override
   String get noResults => 'No results found';

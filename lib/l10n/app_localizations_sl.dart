@@ -77,6 +77,9 @@ class SSl extends S {
   String get ok => 'OK';
 
   @override
+  String get open => 'Open';
+
+  @override
   String get loginFailedCheckNetwork => 'Napaka pri prijavi. Preverite internetno povezavo in poskusite znova.';
 
   @override
@@ -150,6 +153,9 @@ class SSl extends S {
 
   @override
   String get search => 'Išči';
+
+  @override
+  String get sendFeedback => 'Send Feedback';
 
   @override
   String get noResults => 'Ni najdenih rezultatov';

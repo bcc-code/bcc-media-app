@@ -77,6 +77,9 @@ class SFi extends S {
   String get ok => 'OK';
 
   @override
+  String get open => 'Open';
+
+  @override
   String get loginFailedCheckNetwork => 'Kirjautuminen epäonnistui. Tarkista nettiyhteys ja koita uudelleen.';
 
   @override
@@ -150,6 +153,9 @@ class SFi extends S {
 
   @override
   String get search => 'Haku';
+
+  @override
+  String get sendFeedback => 'Send Feedback';
 
   @override
   String get noResults => 'Mitään ei löytynyt';

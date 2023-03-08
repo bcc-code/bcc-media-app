@@ -95,6 +95,10 @@
   "@ok": {
     "description": "Popup confirmation button"
   },
+  "open": "Open",
+  "@open": {
+    "description": "Open button"
+  },
   "loginFailedCheckNetwork": "Login failed. Check your network connection and try again.",
   "@loginFailedCheckNetwork": {
     "description": "Login error message"
@@ -194,6 +198,10 @@
   "search": "Search",
   "@search": {
     "description": "Button to clear cache"
+  },
+  "sendFeedback": "Send Feedback",
+  "@sendFeedback": {
+    "description": "Button to submit feedback(Survey)"
   },
   "noResults": "No results found",
   "@noResults": {

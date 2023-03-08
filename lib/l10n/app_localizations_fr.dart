@@ -77,6 +77,9 @@ class SFr extends S {
   String get ok => 'OK';
 
   @override
+  String get open => 'Open';
+
+  @override
   String get loginFailedCheckNetwork => 'Échec de la connexion. Vérifie ta connexion internet et retente à nouveau.';
 
   @override
@@ -150,6 +153,9 @@ class SFr extends S {
 
   @override
   String get search => 'Rechercher';
+
+  @override
+  String get sendFeedback => 'Send Feedback';
 
   @override
   String get noResults => 'Aucun résultat trouvé';

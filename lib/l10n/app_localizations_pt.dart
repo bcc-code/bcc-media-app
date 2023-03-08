@@ -77,6 +77,9 @@ class SPt extends S {
   String get ok => 'Ok';
 
   @override
+  String get open => 'Open';
+
+  @override
   String get loginFailedCheckNetwork => 'Falha na autenticação. Verifique sua conexão de rede e tente novamente.';
 
   @override
@@ -150,6 +153,9 @@ class SPt extends S {
 
   @override
   String get search => 'Busca';
+
+  @override
+  String get sendFeedback => 'Send Feedback';
 
   @override
   String get noResults => 'Nenhum resultado encontrado';

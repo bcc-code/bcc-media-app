@@ -77,6 +77,9 @@ class SIt extends S {
   String get ok => 'OK';
 
   @override
+  String get open => 'Open';
+
+  @override
   String get loginFailedCheckNetwork => 'Accesso fallito. Controlla la tua connessione di rete e riprova.';
 
   @override
@@ -150,6 +153,9 @@ class SIt extends S {
 
   @override
   String get search => 'Cerca';
+
+  @override
+  String get sendFeedback => 'Send Feedback';
 
   @override
   String get noResults => 'Nessun risultato';

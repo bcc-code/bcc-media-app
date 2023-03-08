@@ -77,6 +77,9 @@ class SNl extends S {
   String get ok => 'Ok';
 
   @override
+  String get open => 'Open';
+
+  @override
   String get loginFailedCheckNetwork => 'Er ging iets mis bij het inloggen. Controleer je netwerkverbinding en probeer het opnieuw.';
 
   @override
@@ -150,6 +153,9 @@ class SNl extends S {
 
   @override
   String get search => 'Zoeken';
+
+  @override
+  String get sendFeedback => 'Send Feedback';
 
   @override
   String get noResults => 'Geen resultaten';

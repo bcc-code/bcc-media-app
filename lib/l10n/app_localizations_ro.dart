@@ -77,6 +77,9 @@ class SRo extends S {
   String get ok => 'Bine';
 
   @override
+  String get open => 'Open';
+
+  @override
   String get loginFailedCheckNetwork => 'Conectarea a eșuat. Verifică conexiunea la internet și încearcă din nou.';
 
   @override
@@ -150,6 +153,9 @@ class SRo extends S {
 
   @override
   String get search => 'Căutare';
+
+  @override
+  String get sendFeedback => 'Send Feedback';
 
   @override
   String get noResults => 'Nici un rezultat gasit';

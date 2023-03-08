@@ -77,6 +77,9 @@ class SEs extends S {
   String get ok => 'Ok';
 
   @override
+  String get open => 'Open';
+
+  @override
   String get loginFailedCheckNetwork => 'La conexión ha fallado, revise su conexión a internet e inténtelo una vez más.';
 
   @override
@@ -150,6 +153,9 @@ class SEs extends S {
 
   @override
   String get search => 'Buscar';
+
+  @override
+  String get sendFeedback => 'Send Feedback';
 
   @override
   String get noResults => 'Sin resultados';

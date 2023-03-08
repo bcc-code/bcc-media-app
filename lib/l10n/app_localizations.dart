@@ -267,6 +267,12 @@ abstract class S {
   /// **'OK'**
   String get ok;
 
+  /// Open button
+  ///
+  /// In en, this message translates to:
+  /// **'Open'**
+  String get open;
+
   /// Login error message
   ///
   /// In en, this message translates to:
@@ -416,6 +422,12 @@ abstract class S {
   /// In en, this message translates to:
   /// **'Search'**
   String get search;
+
+  /// Button to submit feedback(Survey)
+  ///
+  /// In en, this message translates to:
+  /// **'Send Feedback'**
+  String get sendFeedback;
 
   /// No search results.
   ///

@@ -77,6 +77,9 @@ class SRu extends S {
   String get ok => 'ОК';
 
   @override
+  String get open => 'Open';
+
+  @override
   String get loginFailedCheckNetwork => 'Ошибка входа. Проверьте подключение к сети и попробуйте снова.';
 
   @override
@@ -150,6 +153,9 @@ class SRu extends S {
 
   @override
   String get search => 'Поиск';
+
+  @override
+  String get sendFeedback => 'Send Feedback';
 
   @override
   String get noResults => 'Результатов не найдено';

@@ -77,6 +77,9 @@ class SNb extends S {
   String get ok => 'OK';
 
   @override
+  String get open => 'Open';
+
+  @override
   String get loginFailedCheckNetwork => 'Det har oppstått en feil. Sjekk nettverksforbindelsen og prøv en gang til.';
 
   @override
@@ -150,6 +153,9 @@ class SNb extends S {
 
   @override
   String get search => 'Søk';
+
+  @override
+  String get sendFeedback => 'Send Feedback';
 
   @override
   String get noResults => 'Ingen resultater funnet';

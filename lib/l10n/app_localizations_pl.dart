@@ -77,6 +77,9 @@ class SPl extends S {
   String get ok => 'OK';
 
   @override
+  String get open => 'Open';
+
+  @override
   String get loginFailedCheckNetwork => 'Logowanie nie powiodło się. Sprawdź połączenie z Internetem i spróbuj ponownie.';
 
   @override
@@ -150,6 +153,9 @@ class SPl extends S {
 
   @override
   String get search => 'Szukaj';
+
+  @override
+  String get sendFeedback => 'Send Feedback';
 
   @override
   String get noResults => 'Brak wyników';

@@ -77,6 +77,9 @@ class SHu extends S {
   String get ok => 'OK';
 
   @override
+  String get open => 'Open';
+
+  @override
   String get loginFailedCheckNetwork => 'Hibás bejelentkezés. Ellenőrizd a hálózati csatlakozásodat és próbálj újra.';
 
   @override
@@ -150,6 +153,9 @@ class SHu extends S {
 
   @override
   String get search => 'Keresés';
+
+  @override
+  String get sendFeedback => 'Send Feedback';
 
   @override
   String get noResults => 'Nincs eredmény';

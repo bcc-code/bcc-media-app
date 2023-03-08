@@ -77,6 +77,9 @@ class SDa extends S {
   String get ok => 'OK';
 
   @override
+  String get open => 'Open';
+
+  @override
   String get loginFailedCheckNetwork => 'Login mislykkedes. Tjek din netværksforbindelse, og prøv igen.';
 
   @override
@@ -150,6 +153,9 @@ class SDa extends S {
 
   @override
   String get search => 'Søg';
+
+  @override
+  String get sendFeedback => 'Send Feedback';
 
   @override
   String get noResults => 'Ingen resultater fundet';

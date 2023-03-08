@@ -77,6 +77,9 @@ class STr extends S {
   String get ok => 'Tamam';
 
   @override
+  String get open => 'Open';
+
+  @override
   String get loginFailedCheckNetwork => 'Giriş başarısız. Ağ bağlantınızı kontrol edip tekrar deneyin.';
 
   @override
@@ -150,6 +153,9 @@ class STr extends S {
 
   @override
   String get search => 'Ara';
+
+  @override
+  String get sendFeedback => 'Send Feedback';
 
   @override
   String get noResults => 'Sonuç bulunamadı';
