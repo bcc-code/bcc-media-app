@@ -8,6 +8,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import '../../components/text_field_input.dart';
 import '../../graphql/client.dart';
 import '../../graphql/queries/send_support_email.graphql.dart';
 import '../../helpers/ui/btv_buttons.dart';
@@ -253,8 +254,12 @@ class _InputPageState extends State<_InputPage> {
           style: BccmTextStyles.headline1,
         ),
       ),
-      _TextFieldInput(
-        textController: textController,
+      Container(
+        margin: const EdgeInsets.only(top: 8),
+        child: TextFieldInput(
+          controller: textController,
+          hintText: S.of(context).concernTextPlaceholder,
+        ),
       ),
       Padding(
         padding: const EdgeInsets.only(top: 20, bottom: 10),
@@ -265,48 +270,6 @@ class _InputPageState extends State<_InputPage> {
       ),
       widget.deviceInfo != null ? _DeviceInfoList(data: widget.deviceInfo!) : Text('${S.of(context).loading}...'),
     ]));
-  }
-}
-
-class _TextFieldInput extends StatelessWidget {
-  final TextEditingController textController;
-
-  const _TextFieldInput({required this.textController});
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      margin: const EdgeInsets.only(top: 8),
-      child: TextField(
-        minLines: 9,
-        maxLines: 13,
-        textAlign: TextAlign.start,
-        keyboardType: TextInputType.multiline,
-        textInputAction: TextInputAction.newline,
-        style: BccmTextStyles.body1.copyWith(color: BccmColors.label1),
-        decoration: InputDecoration(
-          hintText: S.of(context).concernTextPlaceholder,
-          hintStyle: BccmTextStyles.body1,
-          filled: true,
-          fillColor: BccmColors.background2,
-          enabledBorder: const OutlineInputBorder(
-            borderRadius: BorderRadius.all(Radius.circular(6.0)),
-            borderSide: BorderSide(
-              width: 1,
-              color: BccmColors.background1,
-            ),
-          ),
-          focusedBorder: const OutlineInputBorder(
-              borderRadius: BorderRadius.all(Radius.circular(6.0)),
-              borderSide: BorderSide(
-                width: 1,
-                color: BccmColors.tint1,
-              )),
-          contentPadding: const EdgeInsets.all(16),
-        ),
-        controller: textController,
-      ),
-    );
   }
 }
 
