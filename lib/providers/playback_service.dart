@@ -65,7 +65,7 @@ class PlaybackService {
         metadata: MediaMetadata(title: episode.title, artist: episode.season?.$show.title, artworkUri: episode.image, extras: {
           'id': episode.id.toString(),
           'npaw.content.id': episode.id,
-          'npaw.content.tvShow': episode.season?.$show.title,
+          'npaw.content.tvShow': episode.season?.$show.id,
           'npaw.content.season': episode.season?.title,
           'npaw.content.episodeTitle': episode.title,
         }));
