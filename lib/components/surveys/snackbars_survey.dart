@@ -7,8 +7,10 @@ import 'package:flutter_svg/svg.dart';
 
 import '../../graphql/queries/survey.graphql.dart';
 import '../../helpers/ui/btv_buttons.dart';
+import '../../l10n/app_localizations.dart';
 import '../../providers/surveys.dart';
 import '../../theme/bccm_typography.dart';
+import 'bottom_sheet/bottom_sheet_survey.dart';
 
 class SnackbarsSurvey extends ConsumerWidget {
   const SnackbarsSurvey({super.key});
@@ -38,6 +40,18 @@ class _Snackbar extends StatelessWidget {
 
   const _Snackbar(this.survey);
 
+  openBottomSheet(context) {
+    showModalBottomSheet(
+      context: context,
+      useRootNavigator: true,
+      isScrollControlled: true,
+      useSafeArea: true,
+      builder: (context) {
+        return BottomSheetSurvey(survey);
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -63,7 +77,10 @@ class _Snackbar extends StatelessWidget {
             Expanded(child: Text(survey.title, style: BccmTextStyles.title3)),
             Container(
               margin: const EdgeInsets.only(right: 8),
-              child: BtvButton.small(labelText: 'Open', onPressed: () => {}),
+              child: BtvButton.small(
+                labelText: S.of(context).open,
+                onPressed: () => openBottomSheet(context),
+              ),
             ),
             SvgPicture.string(SvgIcons.close),
           ],
