@@ -1,5 +1,4 @@
 import 'package:brunstadtv_app/graphql/queries/studies.graphql.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../graphql/client.dart';
