@@ -63,7 +63,7 @@ class AuthStateNotifierWeb extends StateNotifier<AuthState> implements AuthState
   }
 
   @override
-  Future<bool> login() async {
+  Future<bool> login({String? connection}) async {
     final auth0 = await _auth0;
     await auth0.loginWithPopup(
       options: PopupLoginOptions(

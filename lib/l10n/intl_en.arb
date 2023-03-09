@@ -63,6 +63,26 @@
   "@signInButton": {
     "description": "Text displayed on Sign in button"
   },
+  "signUpButton": "Sign up now",
+  "@signUpButton": {
+    "description": "Button to start the sign up process"
+  },
+  "signUpTitle": "Sign up",
+  "@signUpTitle": {
+    "description": "Title on the sign up page"
+  },
+  "signUpDescription": "Get access to more content and better features by creating an account.",
+  "@signUpDescription": {
+    "description": "A description on the sign up page explaining why you would want to sign up"
+  },
+  "signUpAgreePrivacyPolicy": "By creating an account, you agree to our <a>Privacy Policy</a>.",
+  "@signUpAgreePrivacyPolicy": {
+    "description": "REMEMBER: Keep the <a> and </a> tags, but translate the 'Privacy Policy' inside."
+  },
+  "setPassword": "Set password",
+  "@setPassword": {
+    "description": "Title for the 'Set password' page of the signup process."
+  },
   "tryAgainButton": "Try again",
   "@tryAgainButton": {
     "description": "Button on error alert that lets user to retry failed action"
@@ -609,7 +629,11 @@
   },
   "exploreContent": "Explore content",
   "@exploreContent": {
-    "description": "A button on the login page"
+    "description": "A button"
+  },
+  "explorePublicContent": "Explore public content",
+  "@explorePublicContent": {
+    "description": "A button on the welcome page"
   },
   "taskCompleted": "task completed",
   "@taskCompleted": {
@@ -720,9 +744,26 @@
   "@continueButton": {
     "description": "Generic button text."
   },
+  "registerButton": "Register",
+  "@registerButton": {
+    "description": "Generic button text."
+  },
   "achievements": "Achievements",
   "@achievements": {
     "description": "Generic. Used as page title, etc."
+  },
+  "passwordConditionLength": "Minimum {n} characters",
+  "@passwordConditionLength": {
+    "description": "REMINDER: Do NOT touch variables (like {n}). Password condition, shown when signing up.",
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "passwordConditionComplexity": "Must contain lower case, uppercase and numbers.",
+  "@passwordConditionComplexity": {
+    "description": "Password condition, shown when signing up."
   },
   "oops": "Oops!",
   "@oops": {

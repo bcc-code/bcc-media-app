@@ -53,6 +53,21 @@ class SFi extends S {
   String get signInButton => 'Kirjaudu sisään';
 
   @override
+  String get signUpButton => 'Sign up now';
+
+  @override
+  String get signUpTitle => 'Sign up';
+
+  @override
+  String get signUpDescription => 'Get access to more content and better features by creating an account.';
+
+  @override
+  String get signUpAgreePrivacyPolicy => 'By creating an account, you agree to our <a>Privacy Policy</a>.';
+
+  @override
+  String get setPassword => 'Set password';
+
+  @override
   String get tryAgainButton => 'Koita uudelleen';
 
   @override
@@ -453,6 +468,9 @@ class SFi extends S {
   String get exploreContent => 'Tutustu sisältöön';
 
   @override
+  String get explorePublicContent => 'Explore public content';
+
+  @override
   String get taskCompleted => 'tehtävä suoritettu';
 
   @override
@@ -526,7 +544,18 @@ class SFi extends S {
   String get continueButton => 'Jatka';
 
   @override
+  String get registerButton => 'Register';
+
+  @override
   String get achievements => 'Saavutukset';
+
+  @override
+  String passwordConditionLength(int n) {
+    return 'Minimum $n characters';
+  }
+
+  @override
+  String get passwordConditionComplexity => 'Must contain lower case, uppercase and numbers.';
 
   @override
   String get oops => 'Hupsista!';

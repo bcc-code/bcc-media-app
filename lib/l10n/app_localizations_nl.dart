@@ -53,6 +53,21 @@ class SNl extends S {
   String get signInButton => 'Log in';
 
   @override
+  String get signUpButton => 'Sign up now';
+
+  @override
+  String get signUpTitle => 'Sign up';
+
+  @override
+  String get signUpDescription => 'Get access to more content and better features by creating an account.';
+
+  @override
+  String get signUpAgreePrivacyPolicy => 'By creating an account, you agree to our <a>Privacy Policy</a>.';
+
+  @override
+  String get setPassword => 'Set password';
+
+  @override
   String get tryAgainButton => 'Probeer opnieuw';
 
   @override
@@ -83,13 +98,13 @@ class SNl extends S {
   String get loginFailedTryAgain => 'Er ging iets mis bij het inloggen. Probeer het later opnieuw.';
 
   @override
-  String get soundLanguage => 'Geluidstaal';
+  String get soundLanguage => 'Taal geluid';
 
   @override
-  String get subtitleLanguage => 'Taal ondertitels';
+  String get subtitleLanguage => 'Taal ondertiteling';
 
   @override
-  String get appLanguage => 'Taal voor app';
+  String get appLanguage => 'Taal app';
 
   @override
   String get checkNetwork => 'Controleer je netwerkverbinding en probeer opnieuw';
@@ -420,10 +435,10 @@ class SNl extends S {
   String get eventsTab => 'Evenementen';
 
   @override
-  String get audioLanguage => 'Geluidstaal';
+  String get audioLanguage => 'Taal geluid';
 
   @override
-  String get subtitlesLanguage => 'Taal ondertitels';
+  String get subtitlesLanguage => 'Taal ondertiteling';
 
   @override
   String get removeFromRecentSearches => 'Wilt u dit element verwijderen uit het overzicht met recente zoekopdrachten?';
@@ -451,6 +466,9 @@ class SNl extends S {
 
   @override
   String get exploreContent => 'Inhoud verkennen';
+
+  @override
+  String get explorePublicContent => 'Explore public content';
 
   @override
   String get taskCompleted => 'taak afgerond';
@@ -526,7 +544,18 @@ class SNl extends S {
   String get continueButton => 'Doorgaan';
 
   @override
+  String get registerButton => 'Register';
+
+  @override
   String get achievements => 'Prestaties';
+
+  @override
+  String passwordConditionLength(int n) {
+    return 'Minimum $n characters';
+  }
+
+  @override
+  String get passwordConditionComplexity => 'Must contain lower case, uppercase and numbers.';
 
   @override
   String get oops => 'Oeps!';

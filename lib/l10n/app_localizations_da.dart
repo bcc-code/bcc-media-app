@@ -53,6 +53,21 @@ class SDa extends S {
   String get signInButton => 'Log ind';
 
   @override
+  String get signUpButton => 'Sign up now';
+
+  @override
+  String get signUpTitle => 'Sign up';
+
+  @override
+  String get signUpDescription => 'Get access to more content and better features by creating an account.';
+
+  @override
+  String get signUpAgreePrivacyPolicy => 'By creating an account, you agree to our <a>Privacy Policy</a>.';
+
+  @override
+  String get setPassword => 'Set password';
+
+  @override
   String get tryAgainButton => 'Prøv igen';
 
   @override
@@ -453,6 +468,9 @@ class SDa extends S {
   String get exploreContent => 'Udforsk indhold';
 
   @override
+  String get explorePublicContent => 'Explore public content';
+
+  @override
   String get taskCompleted => 'Opgave udført';
 
   @override
@@ -526,7 +544,18 @@ class SDa extends S {
   String get continueButton => 'Fortsæt';
 
   @override
+  String get registerButton => 'Register';
+
+  @override
   String get achievements => 'Streaks';
+
+  @override
+  String passwordConditionLength(int n) {
+    return 'Minimum $n characters';
+  }
+
+  @override
+  String get passwordConditionComplexity => 'Must contain lower case, uppercase and numbers.';
 
   @override
   String get oops => 'Ups!';

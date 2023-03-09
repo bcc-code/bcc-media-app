@@ -53,6 +53,21 @@ class SFr extends S {
   String get signInButton => 'Se connecter';
 
   @override
+  String get signUpButton => 'Sign up now';
+
+  @override
+  String get signUpTitle => 'Sign up';
+
+  @override
+  String get signUpDescription => 'Get access to more content and better features by creating an account.';
+
+  @override
+  String get signUpAgreePrivacyPolicy => 'By creating an account, you agree to our <a>Privacy Policy</a>.';
+
+  @override
+  String get setPassword => 'Set password';
+
+  @override
   String get tryAgainButton => 'Essayer à nouveau';
 
   @override
@@ -453,6 +468,9 @@ class SFr extends S {
   String get exploreContent => 'Explorer le contenu';
 
   @override
+  String get explorePublicContent => 'Explore public content';
+
+  @override
   String get taskCompleted => 'tâche terminée';
 
   @override
@@ -526,7 +544,18 @@ class SFr extends S {
   String get continueButton => 'Continuer';
 
   @override
+  String get registerButton => 'Register';
+
+  @override
   String get achievements => 'Réalisations';
+
+  @override
+  String passwordConditionLength(int n) {
+    return 'Minimum $n characters';
+  }
+
+  @override
+  String get passwordConditionComplexity => 'Must contain lower case, uppercase and numbers.';
 
   @override
   String get oops => 'Oups !';

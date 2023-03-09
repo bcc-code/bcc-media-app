@@ -249,7 +249,8 @@ class BtvButton extends StatelessWidget {
     return GestureDetector(
       behavior: HitTestBehavior.opaque,
       onTap: onPressed,
-      child: Container(
+      child: AnimatedContainer(
+        duration: Duration(milliseconds: 100),
         padding: padding,
         decoration: BoxDecoration(
           border: border,

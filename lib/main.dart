@@ -115,7 +115,7 @@ Future<AutoRouterDelegate> getRouterDelegate(ProviderContainer providerContainer
     if (authenticated) {
       initialRoutes = [const TabsRootScreenRoute()];
     } else {
-      initialRoutes = [LoginScreenRoute()];
+      initialRoutes = [OnboardingScreenRoute()];
     }
   }
   return appRouter.delegate(

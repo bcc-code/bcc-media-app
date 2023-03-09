@@ -53,6 +53,21 @@ class SSl extends S {
   String get signInButton => 'Vpis';
 
   @override
+  String get signUpButton => 'Sign up now';
+
+  @override
+  String get signUpTitle => 'Sign up';
+
+  @override
+  String get signUpDescription => 'Get access to more content and better features by creating an account.';
+
+  @override
+  String get signUpAgreePrivacyPolicy => 'By creating an account, you agree to our <a>Privacy Policy</a>.';
+
+  @override
+  String get setPassword => 'Set password';
+
+  @override
   String get tryAgainButton => 'Poskusite znova';
 
   @override
@@ -453,6 +468,9 @@ class SSl extends S {
   String get exploreContent => 'Razišči vsebino';
 
   @override
+  String get explorePublicContent => 'Explore public content';
+
+  @override
   String get taskCompleted => 'naloga opravljena';
 
   @override
@@ -526,7 +544,18 @@ class SSl extends S {
   String get continueButton => 'Nadaljuj';
 
   @override
+  String get registerButton => 'Register';
+
+  @override
   String get achievements => 'Dosežki';
+
+  @override
+  String passwordConditionLength(int n) {
+    return 'Minimum $n characters';
+  }
+
+  @override
+  String get passwordConditionComplexity => 'Must contain lower case, uppercase and numbers.';
 
   @override
   String get oops => 'Oops!';

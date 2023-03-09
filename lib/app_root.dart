@@ -55,7 +55,7 @@ class _AppRootState extends ConsumerState<AppRoot> {
       if (previous?.auth0AccessToken != null && next.auth0AccessToken == null) {
         settingsNotifier.setAnalyticsId(null);
         settingsNotifier.refreshSessionId();
-        widget.navigatorKey.currentContext?.router.root.navigate(LoginScreenRoute());
+        widget.navigatorKey.currentContext?.router.root.navigate(OnboardingScreenRoute());
       } else if (next.auth0AccessToken != null && next.user != null) {
         gqlClient.query$me().then((value) {
           if (value.exception != null) {

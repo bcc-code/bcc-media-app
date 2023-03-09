@@ -53,6 +53,21 @@ class SPt extends S {
   String get signInButton => 'Entrar';
 
   @override
+  String get signUpButton => 'Sign up now';
+
+  @override
+  String get signUpTitle => 'Sign up';
+
+  @override
+  String get signUpDescription => 'Get access to more content and better features by creating an account.';
+
+  @override
+  String get signUpAgreePrivacyPolicy => 'By creating an account, you agree to our <a>Privacy Policy</a>.';
+
+  @override
+  String get setPassword => 'Set password';
+
+  @override
   String get tryAgainButton => 'Tente novamente';
 
   @override
@@ -453,6 +468,9 @@ class SPt extends S {
   String get exploreContent => 'Explorar conteúdo';
 
   @override
+  String get explorePublicContent => 'Explore public content';
+
+  @override
   String get taskCompleted => 'tarefa completa';
 
   @override
@@ -526,7 +544,18 @@ class SPt extends S {
   String get continueButton => 'Continuar';
 
   @override
+  String get registerButton => 'Register';
+
+  @override
   String get achievements => 'Conquistas';
+
+  @override
+  String passwordConditionLength(int n) {
+    return 'Minimum $n characters';
+  }
+
+  @override
+  String get passwordConditionComplexity => 'Must contain lower case, uppercase and numbers.';
 
   @override
   String get oops => 'Oops! ';

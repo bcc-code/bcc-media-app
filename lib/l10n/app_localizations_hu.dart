@@ -53,6 +53,21 @@ class SHu extends S {
   String get signInButton => 'Bejelentkezés';
 
   @override
+  String get signUpButton => 'Sign up now';
+
+  @override
+  String get signUpTitle => 'Sign up';
+
+  @override
+  String get signUpDescription => 'Get access to more content and better features by creating an account.';
+
+  @override
+  String get signUpAgreePrivacyPolicy => 'By creating an account, you agree to our <a>Privacy Policy</a>.';
+
+  @override
+  String get setPassword => 'Set password';
+
+  @override
   String get tryAgainButton => 'Próbálj újra';
 
   @override
@@ -453,13 +468,16 @@ class SHu extends S {
   String get exploreContent => 'Tartalom felfedezése';
 
   @override
+  String get explorePublicContent => 'Explore public content';
+
+  @override
   String get taskCompleted => 'feladat elvégezve';
 
   @override
-  String get tasksCompleted => 'feladat elvégezve';
+  String get tasksCompleted => 'feladatből elvégezve';
 
   @override
-  String get studyCompleteTaskDescription => 'Feladatok elvégzése és a kapcsolódó erőforrások felfedezése';
+  String get studyCompleteTaskDescription => 'Feladatok elvégzése és a kapcsolódó tartalom felfedezése';
 
   @override
   String get discoverMore => 'Fedezz fel többet';
@@ -468,7 +486,7 @@ class SHu extends S {
   String get completePreviousTasks => 'Fejezd be a korábbi feladatokat a feloldáshoz';
 
   @override
-  String get studyDiscoverMoreDescription => 'További inspiráció és betekintés a kapcsolódó forrásokból';
+  String get studyDiscoverMoreDescription => 'További inspiráció és betekintés kapcsolódó tartalmakból';
 
   @override
   String get watchAgain => 'Nézd meg újra';
@@ -526,7 +544,18 @@ class SHu extends S {
   String get continueButton => 'Folytatás';
 
   @override
+  String get registerButton => 'Register';
+
+  @override
   String get achievements => 'Eredmények';
+
+  @override
+  String passwordConditionLength(int n) {
+    return 'Minimum $n characters';
+  }
+
+  @override
+  String get passwordConditionComplexity => 'Must contain lower case, uppercase and numbers.';
 
   @override
   String get oops => 'Uups!';

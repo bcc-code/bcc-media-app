@@ -6,6 +6,7 @@ import 'package:flutter/services.dart';
 
 class BccmTheme {
   BccmTheme._();
+
   static ThemeData getThemeData() {
     return ThemeData(
       //useMaterial3: true,
@@ -27,6 +28,11 @@ class BccmTheme {
       splashColor: BccmColors.background2.withOpacity(1),
       progressIndicatorTheme: const ProgressIndicatorThemeData(
         color: BccmColors.tint1,
+      ),
+      switchTheme: SwitchThemeData(
+        trackColor:
+            MaterialStateProperty.resolveWith((state) => state.contains(MaterialState.selected) ? BccmColors.tint1 : BccmColors.separatorOnLight),
+        thumbColor: MaterialStateProperty.resolveWith((state) => BccmColors.onTint),
       ),
       appBarTheme: AppBarTheme(
         titleTextStyle: BccmTextStyles.title3.copyWith(height: 1),

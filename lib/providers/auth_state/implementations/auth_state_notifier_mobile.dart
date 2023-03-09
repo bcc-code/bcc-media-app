@@ -155,16 +155,20 @@ class AuthStateNotifierMobile extends StateNotifier<AuthState> implements AuthSt
   }
 
   @override
-  Future<bool> login() async {
+  Future<bool> login({String? connection}) async {
     final PackageInfo info = await PackageInfo.fromPlatform();
     try {
+      var additionalParameters = {'audience': Env.auth0Audience};
+      if (connection != null) {
+        additionalParameters['connection'] = connection;
+      }
       final authorizationTokenRequest = AuthorizationTokenRequest(
         Env.auth0ClientId,
         '${info.packageName}://login-callback',
         issuer: 'https://${Env.auth0Domain}',
         scopes: ['openid', 'profile', 'offline_access', 'church', 'country'],
         promptValues: state.signedOutManually == true ? ['login'] : null,
-        additionalParameters: {'audience': Env.auth0Audience},
+        additionalParameters: additionalParameters,
       );
 
       final AuthorizationTokenResponse? result = await _syncAppAuth(
