@@ -100,7 +100,6 @@ dependencies:
   flutter_hooks: ^0.18.5+1
   hooks_riverpod: ^2.2.0
   flutter_hooks_lint_plugin: ^0.6.1
-  local_hero: ^0.2.0
   email_validator: ^2.1.17
   #smooth: any
 

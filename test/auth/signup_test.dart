@@ -1,36 +1,12 @@
-import 'dart:convert';
-
-import 'package:brunstadtv_app/components/onboarding/signup_password_page.dart';
+import 'package:brunstadtv_app/components/onboarding/pages/signup_password_page.dart';
 import 'package:brunstadtv_app/helpers/ui/btv_buttons.dart';
 import 'package:brunstadtv_app/helpers/widget_keys.dart';
 import 'package:brunstadtv_app/l10n/app_localizations.dart';
 import 'package:brunstadtv_app/theme/bccm_colors.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_appauth/flutter_appauth.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-import 'package:mockito/mockito.dart';
-
-import '../utils/tokens.dart';
 import '../utils/basic_init.dart';
-
-class MockTokenRequest extends Mock implements TokenRequest {}
-
-TokenResponse mockTokenResponse({required DateTime expiresAt}) {
-  final tomorrowEpoch = (expiresAt.millisecondsSinceEpoch / 1000).round();
-  final fakeAccessTokenJwt =
-      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.${base64UrlEncode(utf8.encode('{"exp": $tomorrowEpoch}'))}.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c';
-
-  return TokenResponse(
-    fakeAccessTokenJwt,
-    fakeAccessTokenJwt,
-    expiresAt,
-    fakeIdTokenJwt,
-    'tokenType',
-    null,
-    null,
-  );
-}
 
 void main() {
   group('Signup tests', () {
@@ -63,6 +39,8 @@ void main() {
           ),
         ),
       ));
+
+      await t.tap(find.byKey(WidgetKeys.privacyPolicyAgreeSwitch));
 
       await t.pumpAndSettle();
       expectNeutral('Minimum 8 characters');

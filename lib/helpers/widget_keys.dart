@@ -5,6 +5,7 @@ typedef K = WidgetKeys;
 class WidgetKeys {
   const WidgetKeys._();
 
+  static const privacyPolicyAgreeSwitch = Key('privacyPolicyAgreeSwitch');
   static const registerButton = Key('registerButton');
   static const exploreButton = Key('exploreButton');
   static const playPoster = Key('playPoster');

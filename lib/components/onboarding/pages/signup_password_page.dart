@@ -5,14 +5,13 @@ import 'package:brunstadtv_app/l10n/app_localizations_en.dart';
 import 'package:brunstadtv_app/theme/bccm_colors.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:universal_io/io.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 
-import '../../helpers/widget_keys.dart';
-import '../../l10n/app_localizations.dart';
-import '../../theme/bccm_typography.dart';
+import '../../../helpers/widget_keys.dart';
+import '../../../l10n/app_localizations.dart';
+import '../../../theme/bccm_typography.dart';
 
 class Condition {
   Condition({required this.title, required this.fulfilled});
@@ -42,9 +41,9 @@ class SignupPasswordPage extends HookWidget {
     required this.passwordFocusNode,
   });
 
+  final PageController pageController;
   final TextEditingController passwordTextController;
   final FocusNode passwordFocusNode;
-  final PageController pageController;
 
   @override
   Widget build(BuildContext context) {
@@ -57,6 +56,49 @@ class SignupPasswordPage extends HookWidget {
     return SignupPageWrapper(
       title: S.of(context).setPassword,
       description: 'Choose a password for your account.',
+      body: [
+        const SizedBox(height: 48),
+        Padding(
+          padding: const EdgeInsets.only(bottom: 10),
+          child: Text(
+            'Choose a password',
+            style: BccmTextStyles.caption1.copyWith(color: BccmColors.label2),
+          ),
+        ),
+        Form(
+          key: formKey.value,
+          child: PasswordTextField(
+            focusNode: passwordFocusNode,
+            controller: passwordTextController,
+          ),
+        ),
+        Container(
+          padding: const EdgeInsets.only(top: 10),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              ...conditions.map(
+                (c) => Padding(
+                  padding: const EdgeInsets.only(bottom: 2),
+                  child: RichText(
+                    text: TextSpan(
+                      style: BccmTextStyles.caption1.copyWith(color: c.fulfilled ? BccmColors.tint3 : BccmColors.label3),
+                      children: [
+                        const WidgetSpan(child: SizedBox(width: 5)),
+                        const TextSpan(text: '\u2022'),
+                        const WidgetSpan(child: SizedBox(width: 5)),
+                        TextSpan(
+                          text: c.title,
+                        )
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ],
       bottomArea: [
         Container(
           padding: const EdgeInsets.only(bottom: 16),
@@ -68,6 +110,7 @@ class SignupPasswordPage extends HookWidget {
                   Transform.scale(
                     scale: 1,
                     child: Switch.adaptive(
+                      key: WidgetKeys.privacyPolicyAgreeSwitch,
                       activeColor: Platform.isIOS ? BccmColors.tint1 : null,
                       value: privacyPolicyAgreed.value,
                       onChanged: (value) => privacyPolicyAgreed.value = value,
@@ -111,49 +154,6 @@ class SignupPasswordPage extends HookWidget {
             ],
           ),
         )
-      ],
-      children: [
-        const SizedBox(height: 48),
-        Padding(
-          padding: const EdgeInsets.only(bottom: 10),
-          child: Text(
-            'Choose a password',
-            style: BccmTextStyles.caption1.copyWith(color: BccmColors.label2),
-          ),
-        ),
-        Form(
-          key: formKey.value,
-          child: PasswordTextField(
-            focusNode: passwordFocusNode,
-            controller: passwordTextController,
-          ),
-        ),
-        Container(
-          padding: const EdgeInsets.only(top: 10),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              ...conditions.map(
-                (c) => Padding(
-                  padding: const EdgeInsets.only(bottom: 2),
-                  child: RichText(
-                    text: TextSpan(
-                      style: BccmTextStyles.caption1.copyWith(color: c.fulfilled ? BccmColors.tint3 : BccmColors.label3),
-                      children: [
-                        const WidgetSpan(child: SizedBox(width: 5)),
-                        const TextSpan(text: '\u2022'),
-                        const WidgetSpan(child: SizedBox(width: 5)),
-                        TextSpan(
-                          text: c.title,
-                        )
-                      ],
-                    ),
-                  ),
-                ),
-              ),
-            ],
-          ),
-        ),
       ],
     );
   }
