@@ -64,7 +64,7 @@ class DeveloperOptions extends ConsumerWidget {
                 alignment: Alignment.topLeft,
                 child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
                   TextField(controller: TextEditingController()..text = 'auth.idToken: ${auth.idToken}'),
-                  TextField(controller: TextEditingController()..text = 'auth.accessToken: ${auth.idToken}'),
+                  TextField(controller: TextEditingController()..text = 'auth.accessToken: ${auth.auth0AccessToken}'),
                   const SizedBox(height: 8),
                   Text('auth.expiresAt: ${auth.expiresAt}'),
                   Text('session_id: ${settings.sessionId}'),

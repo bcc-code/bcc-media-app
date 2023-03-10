@@ -8,7 +8,6 @@ class BccmDecorations {
   static final textFormField = InputDecoration(
     filled: true,
     isDense: true,
-    hintText: 'Type in first name',
     fillColor: BccmColors.background2,
     border: OutlineInputBorder(borderRadius: BorderRadius.circular(6), borderSide: BorderSide.none),
     contentPadding: const EdgeInsets.all(12),

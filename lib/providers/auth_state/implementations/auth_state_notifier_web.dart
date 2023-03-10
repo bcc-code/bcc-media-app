@@ -1,5 +1,5 @@
 import 'package:auth0_flutter_web/auth0_flutter_web.dart';
-import 'package:brunstadtv_app/models/auth/auth0_id_token.dart';
+import 'package:brunstadtv_app/models/auth0/auth0_id_token.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../env/env.dart';

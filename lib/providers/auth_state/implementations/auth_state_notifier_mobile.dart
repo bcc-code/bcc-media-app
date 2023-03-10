@@ -19,7 +19,7 @@ import 'package:url_launcher/url_launcher.dart';
 
 import '../../../env/env.dart';
 import '../../../helpers/constants.dart';
-import '../../../models/auth/auth0_id_token.dart';
+import '../../../models/auth0/auth0_id_token.dart';
 import '../../../models/auth_state.dart';
 import '../auth_state.dart';
 
@@ -166,7 +166,7 @@ class AuthStateNotifierMobile extends StateNotifier<AuthState> implements AuthSt
         Env.auth0ClientId,
         '${info.packageName}://login-callback',
         issuer: 'https://${Env.auth0Domain}',
-        scopes: ['openid', 'profile', 'offline_access', 'church', 'country'],
+        scopes: ['openid', 'profile', 'offline_access', 'church', 'country', 'email'],
         promptValues: state.signedOutManually == true ? ['login'] : null,
         additionalParameters: additionalParameters,
       );

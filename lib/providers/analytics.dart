@@ -1,6 +1,6 @@
 import 'package:brunstadtv_app/env/env.dart';
 import 'package:brunstadtv_app/models/analytics/achievement_clicked.dart';
-import 'package:brunstadtv_app/models/auth/auth0_id_token.dart';
+import 'package:brunstadtv_app/models/auth0/auth0_id_token.dart';
 import 'package:brunstadtv_app/providers/inherited_data.dart';
 import 'package:brunstadtv_app/providers/settings.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';

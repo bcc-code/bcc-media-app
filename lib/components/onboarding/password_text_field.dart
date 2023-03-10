@@ -8,14 +8,11 @@ import '../../theme/bccm_colors.dart';
 import '../../theme/bccm_typography.dart';
 
 class PasswordTextField extends HookWidget {
-  const PasswordTextField({
-    super.key,
-    required this.focusNode,
-    required this.controller,
-  });
+  const PasswordTextField({super.key, required this.focusNode, required this.controller, this.onEditingComplete});
 
   final FocusNode focusNode;
   final TextEditingController controller;
+  final void Function()? onEditingComplete;
 
   @override
   Widget build(BuildContext context) {
@@ -23,12 +20,14 @@ class PasswordTextField extends HookWidget {
     return TextField(
       focusNode: focusNode,
       controller: controller,
+      autofillHints: const [AutofillHints.password],
       style: BccmTextStyles.body2.copyWith(color: BccmColors.label1),
       cursorColor: BccmColors.tint1,
       cursorWidth: 1,
       maxLength: 100,
       maxLengthEnforcement: MaxLengthEnforcement.enforced,
       buildCounter: (context, {required currentLength, required isFocused, maxLength}) => null,
+      onEditingComplete: onEditingComplete,
       obscureText: obscureText.value,
       decoration: InputDecoration(
         filled: true,

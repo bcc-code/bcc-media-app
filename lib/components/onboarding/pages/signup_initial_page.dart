@@ -15,13 +15,13 @@ class SignupInitialPage extends HookWidget {
     required this.pageController,
     required this.emailTextController,
     required this.emailFocusNode,
-    required this.passwordFocusNode,
+    required this.nextFocusNode,
   });
 
   final PageController pageController;
   final TextEditingController emailTextController;
   final FocusNode emailFocusNode;
-  final FocusNode passwordFocusNode;
+  final FocusNode nextFocusNode;
 
   @override
   Widget build(BuildContext context) {
@@ -29,6 +29,14 @@ class SignupInitialPage extends HookWidget {
     useListenable(emailFocusNode);
     useListenable(emailTextController);
     final formKey = useState(GlobalKey<FormState>());
+    nextPage() {
+      if (!formKey.value.currentState!.validate()) {
+        return;
+      }
+      pageController.nextPage(duration: const Duration(milliseconds: 500), curve: Curves.easeOutExpo);
+      nextFocusNode.requestFocus();
+    }
+
     return SignupPageWrapper(
       body: [
         Padding(
@@ -65,6 +73,7 @@ class SignupInitialPage extends HookWidget {
           child: EmailTextField(
             emailFocusNode: emailFocusNode,
             emailTextController: emailTextController,
+            onEditingComplete: nextPage,
           ),
         )
       ],
@@ -78,13 +87,7 @@ class SignupInitialPage extends HookWidget {
                   labelText: S.of(context).continueButton,
                 )
               : BtvButton.large(
-                  onPressed: () {
-                    if (!formKey.value.currentState!.validate()) {
-                      return;
-                    }
-                    pageController.nextPage(duration: const Duration(milliseconds: 500), curve: Curves.easeOutExpo);
-                    passwordFocusNode.requestFocus();
-                  },
+                  onPressed: nextPage,
                   labelText: S.of(context).continueButton,
                 ),
         )

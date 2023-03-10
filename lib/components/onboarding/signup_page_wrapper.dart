@@ -19,22 +19,31 @@ class SignupPageWrapper extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                  if (title != null)
-                    Padding(
-                      padding: const EdgeInsets.only(bottom: 8),
-                      child: Text(title!, style: BccmTextStyles.headline1),
+              child: LayoutBuilder(builder: (context, constraints) {
+                return SingleChildScrollView(
+                  child: ConstrainedBox(
+                    constraints: BoxConstraints(minWidth: constraints.maxWidth, minHeight: constraints.maxHeight),
+                    child: IntrinsicHeight(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: <Widget>[
+                          if (title != null)
+                            Padding(
+                              padding: const EdgeInsets.only(bottom: 8),
+                              child: Text(title!, style: BccmTextStyles.headline1),
+                            ),
+                          if (description != null)
+                            Text(
+                              description!,
+                              style: BccmTextStyles.body1.copyWith(color: BccmColors.label3),
+                            ),
+                          ...body
+                        ],
+                      ),
                     ),
-                  if (description != null)
-                    Text(
-                      description!,
-                      style: BccmTextStyles.body1.copyWith(color: BccmColors.label3),
-                    ),
-                  ...body
-                ],
-              ),
+                  ),
+                );
+              }),
             ),
             ...?bottomArea
           ],

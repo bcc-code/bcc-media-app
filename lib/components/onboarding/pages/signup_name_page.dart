@@ -19,7 +19,7 @@ class SignupNamePage extends HookWidget {
     required this.firstNameFocusNode,
     required this.lastNameController,
     required this.lastNameFocusNode,
-    required this.birthDateFocusNode,
+    required this.nextFocusNode,
   });
 
   final PageController pageController;
@@ -27,7 +27,7 @@ class SignupNamePage extends HookWidget {
   final FocusNode firstNameFocusNode;
   final TextEditingController lastNameController;
   final FocusNode lastNameFocusNode;
-  final FocusNode birthDateFocusNode;
+  final FocusNode nextFocusNode;
 
   @override
   Widget build(BuildContext context) {
@@ -41,7 +41,7 @@ class SignupNamePage extends HookWidget {
         return;
       }
       pageController.nextPage(duration: const Duration(milliseconds: 500), curve: Curves.easeOutExpo);
-      birthDateFocusNode.requestFocus();
+      nextFocusNode.requestFocus();
     }
 
     return Form(
@@ -58,13 +58,14 @@ class SignupNamePage extends HookWidget {
             ),
           ),
           TextFormField(
+            autofillHints: const [AutofillHints.givenName],
             controller: firstNameController,
             focusNode: firstNameFocusNode,
             autovalidateMode: AutovalidateMode.disabled,
             style: BccmTextStyles.body2.copyWith(color: BccmColors.label1),
             cursorColor: BccmColors.tint1,
             cursorWidth: 1,
-            decoration: BccmDecorations.textFormField,
+            decoration: BccmDecorations.textFormField.copyWith(hintText: 'Type in first name'),
             onEditingComplete: () => lastNameFocusNode.requestFocus(),
           ),
           Padding(
@@ -75,30 +76,49 @@ class SignupNamePage extends HookWidget {
             ),
           ),
           TextFormField(
+            autofillHints: const [AutofillHints.familyName],
             controller: lastNameController,
             focusNode: lastNameFocusNode,
             autovalidateMode: AutovalidateMode.disabled,
             style: BccmTextStyles.body2.copyWith(color: BccmColors.label1),
             cursorColor: BccmColors.tint1,
             cursorWidth: 1,
-            decoration: BccmDecorations.textFormField,
+            decoration: BccmDecorations.textFormField.copyWith(hintText: 'Type in last name'),
             onEditingComplete: nextPage,
           ),
         ],
         bottomArea: [
-          Focus(
-            child: Container(
-              padding: const EdgeInsets.only(bottom: 16),
-              width: double.infinity,
-              child: firstNameController.value.text.isBlank || lastNameController.value.text.isBlank
-                  ? BtvButton.largeDisabled(
-                      onPressed: () {},
-                      labelText: S.of(context).continueButton,
-                    )
-                  : BtvButton.large(
-                      onPressed: nextPage,
-                      labelText: S.of(context).continueButton,
+          Container(
+            padding: const EdgeInsets.only(top: 16, bottom: 16),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                Row(
+                  children: [
+                    Expanded(
+                      child: BtvButton.largeSecondary(
+                        onPressed: () {
+                          pageController.previousPage(duration: const Duration(milliseconds: 500), curve: Curves.easeOutExpo);
+                          FocusManager.instance.primaryFocus?.unfocus();
+                        },
+                        labelText: S.of(context).back,
+                      ),
                     ),
+                    const SizedBox(width: 12),
+                    Expanded(
+                      child: firstNameController.value.text.isBlank || lastNameController.value.text.isBlank
+                          ? BtvButton.largeDisabled(
+                              onPressed: () {},
+                              labelText: S.of(context).continueButton,
+                            )
+                          : BtvButton.large(
+                              onPressed: nextPage,
+                              labelText: S.of(context).continueButton,
+                            ),
+                    )
+                  ],
+                ),
+              ],
             ),
           )
         ],

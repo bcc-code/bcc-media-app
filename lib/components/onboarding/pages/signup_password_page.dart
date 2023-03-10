@@ -1,15 +1,10 @@
 import 'package:brunstadtv_app/components/onboarding/password_text_field.dart';
 import 'package:brunstadtv_app/components/onboarding/signup_page_wrapper.dart';
 import 'package:brunstadtv_app/helpers/ui/btv_buttons.dart';
-import 'package:brunstadtv_app/l10n/app_localizations_en.dart';
 import 'package:brunstadtv_app/theme/bccm_colors.dart';
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
-import 'package:universal_io/io.dart';
-import 'package:url_launcher/url_launcher_string.dart';
 
-import '../../../helpers/widget_keys.dart';
 import '../../../l10n/app_localizations.dart';
 import '../../../theme/bccm_typography.dart';
 
@@ -39,19 +34,27 @@ class SignupPasswordPage extends HookWidget {
     required this.pageController,
     required this.passwordTextController,
     required this.passwordFocusNode,
+    required this.nextFocusNode,
   });
 
   final PageController pageController;
   final TextEditingController passwordTextController;
   final FocusNode passwordFocusNode;
+  final FocusNode nextFocusNode;
 
   @override
   Widget build(BuildContext context) {
     useAutomaticKeepAlive();
     useListenable(passwordTextController);
-    final privacyPolicyAgreed = useState(false);
     final formKey = useState(GlobalKey<FormState>());
     final conditions = getConditions(context, passwordTextController.text);
+
+    void nextPage() {
+      if (!conditions.every((c) => c.fulfilled)) return;
+      pageController.nextPage(duration: const Duration(milliseconds: 500), curve: Curves.easeOutExpo);
+      passwordFocusNode.unfocus();
+      nextFocusNode.requestFocus();
+    }
 
     return SignupPageWrapper(
       title: S.of(context).setPassword,
@@ -70,10 +73,11 @@ class SignupPasswordPage extends HookWidget {
           child: PasswordTextField(
             focusNode: passwordFocusNode,
             controller: passwordTextController,
+            onEditingComplete: nextPage,
           ),
         ),
         Container(
-          padding: const EdgeInsets.only(top: 10),
+          padding: const EdgeInsets.only(bottom: 18, top: 10),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -101,26 +105,10 @@ class SignupPasswordPage extends HookWidget {
       ],
       bottomArea: [
         Container(
-          padding: const EdgeInsets.only(bottom: 16),
+          padding: const EdgeInsets.only(top: 16, bottom: 16),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              Row(
-                children: [
-                  Transform.scale(
-                    scale: 1,
-                    child: Switch.adaptive(
-                      key: WidgetKeys.privacyPolicyAgreeSwitch,
-                      activeColor: Platform.isIOS ? BccmColors.tint1 : null,
-                      value: privacyPolicyAgreed.value,
-                      onChanged: (value) => privacyPolicyAgreed.value = value,
-                    ),
-                  ),
-                  const SizedBox(width: 12),
-                  const Expanded(child: _PrivacyPolicyAgreeText())
-                ],
-              ),
-              const SizedBox(height: 12),
               Row(
                 children: [
                   Expanded(
@@ -134,19 +122,14 @@ class SignupPasswordPage extends HookWidget {
                   ),
                   const SizedBox(width: 12),
                   Expanded(
-                    child: conditions.any((c) => !c.fulfilled) || !privacyPolicyAgreed.value
+                    child: conditions.any((c) => !c.fulfilled)
                         ? BtvButton.largeDisabled(
-                            key: WidgetKeys.registerButton,
                             onPressed: () {},
-                            labelText: S.of(context).registerButton,
+                            labelText: S.of(context).continueButton,
                           )
                         : BtvButton.large(
-                            key: WidgetKeys.registerButton,
-                            onPressed: () {
-                              pageController.nextPage(duration: const Duration(milliseconds: 500), curve: Curves.easeOutExpo);
-                              passwordFocusNode.unfocus();
-                            },
-                            labelText: S.of(context).registerButton,
+                            onPressed: nextPage,
+                            labelText: S.of(context).continueButton,
                           ),
                   )
                 ],
@@ -155,39 +138,6 @@ class SignupPasswordPage extends HookWidget {
           ),
         )
       ],
-    );
-  }
-}
-
-class _PrivacyPolicyAgreeText extends StatelessWidget {
-  const _PrivacyPolicyAgreeText();
-
-  @override
-  Widget build(BuildContext context) {
-    final textParts = RegExp(r'(?<start>.+)<a>(?<link>.+)<\/a>(?<end>.+)');
-    var match = textParts.firstMatch(S.of(context).signUpAgreePrivacyPolicy);
-    match ??= textParts.firstMatch(SEn().signUpAgreePrivacyPolicy)!;
-    match.namedGroup('start');
-    return RichText(
-      softWrap: true,
-      text: TextSpan(style: BccmTextStyles.caption1.copyWith(color: BccmColors.label4), children: [
-        TextSpan(text: match.namedGroup('start')),
-        TextSpan(
-          text: match.namedGroup('link'),
-          style: BccmTextStyles.caption1.copyWith(
-            color: BccmColors.tint1,
-            decoration: TextDecoration.underline,
-          ),
-          recognizer: TapGestureRecognizer()
-            ..onTap = () {
-              launchUrlString(
-                'https://bcc.media/privacy',
-                mode: LaunchMode.externalApplication,
-              );
-            },
-        ),
-        TextSpan(text: match.namedGroup('end')),
-      ]),
     );
   }
 }

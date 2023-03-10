@@ -11,16 +11,19 @@ class EmailTextField extends StatelessWidget {
     super.key,
     required this.emailFocusNode,
     required this.emailTextController,
+    required this.onEditingComplete,
   });
 
   final FocusNode emailFocusNode;
   final TextEditingController emailTextController;
+  final void Function() onEditingComplete;
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
       focusNode: emailFocusNode,
       controller: emailTextController,
+      autofillHints: const [AutofillHints.email],
       validator: (email) {
         if (email != null && !EmailValidator.validate(email)) {
           return 'Invalid email';
@@ -31,6 +34,7 @@ class EmailTextField extends StatelessWidget {
       style: BccmTextStyles.body2.copyWith(color: BccmColors.label1),
       cursorColor: BccmColors.tint1,
       cursorWidth: 1,
+      onEditingComplete: onEditingComplete,
       decoration: InputDecoration(
         filled: true,
         isDense: true,

@@ -101,6 +101,7 @@ dependencies:
   hooks_riverpod: ^2.2.0
   flutter_hooks_lint_plugin: ^0.6.1
   email_validator: ^2.1.17
+  open_mail_app: ^0.4.5
   #smooth: any
 
 dev_dependencies:
