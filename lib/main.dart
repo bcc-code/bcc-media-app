@@ -37,7 +37,7 @@ Future<void> $main({required FirebaseOptions? firebaseOptions, List<Override>? p
   await setDefaults();
 
   if (firebaseOptions != null) {
-    initFirebase(firebaseOptions);
+    await initFirebase(firebaseOptions);
   }
 
   final appRouter = AppRouter(specialRoutesGuard: SpecialRoutesGuard(), navigatorKey: navigatorKey);
