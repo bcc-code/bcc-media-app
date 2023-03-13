@@ -1,4 +1,4 @@
-import 'package:brunstadtv_app/components/onboarding/signup_page_wrapper.dart';
+import 'package:brunstadtv_app/components/onboarding/onboarding_page_wrapper.dart';
 import 'package:brunstadtv_app/helpers/ui/btv_buttons.dart';
 import 'package:brunstadtv_app/theme/bccm_colors.dart';
 import 'package:flutter/material.dart';
@@ -17,7 +17,7 @@ class SignupVerifyEmailPage extends HookWidget {
   @override
   Widget build(BuildContext context) {
     final isMounted = useIsMounted();
-    return SignupPageWrapper(
+    return OnboardingPageWrapper(
       body: [
         Expanded(
           child: DefaultTextStyle(

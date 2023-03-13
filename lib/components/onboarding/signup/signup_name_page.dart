@@ -1,4 +1,4 @@
-import 'package:brunstadtv_app/components/onboarding/signup_page_wrapper.dart';
+import 'package:brunstadtv_app/components/onboarding/onboarding_page_wrapper.dart';
 import 'package:brunstadtv_app/helpers/extensions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
@@ -46,7 +46,7 @@ class SignupNamePage extends HookWidget {
 
     return Form(
       key: formKey.value,
-      child: SignupPageWrapper(
+      child: OnboardingPageWrapper(
         title: 'Your name',
         description: "What's your name?",
         body: [

@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import '../../theme/bccm_colors.dart';
 import '../../theme/bccm_typography.dart';
 
-class SignupPageWrapper extends StatelessWidget {
-  const SignupPageWrapper({super.key, required this.body, this.bottomArea, this.title, this.description});
+class OnboardingPageWrapper extends StatelessWidget {
+  const OnboardingPageWrapper({super.key, required this.body, this.bottomArea, this.title, this.description});
 
   final List<Widget> body;
   final List<Widget>? bottomArea;

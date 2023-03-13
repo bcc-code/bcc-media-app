@@ -7,7 +7,12 @@ import 'package:flutter_svg/svg.dart';
 import '../../helpers/ui/svg_icons.dart';
 
 class SocialAuthButtons extends ConsumerWidget {
-  const SocialAuthButtons({super.key});
+  SocialAuthButtons({
+    super.key,
+    void Function(Future<bool>)? onLogin,
+  }) : onLogin = onLogin ?? ((_) => {});
+
+  final void Function(Future<bool>) onLogin;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -15,7 +20,7 @@ class SocialAuthButtons extends ConsumerWidget {
       spacing: 12,
       children: [
         GestureDetector(
-          onTap: () => ref.read(authStateProvider.notifier).login(connection: 'apple'),
+          onTap: () => onLogin(ref.read(authStateProvider.notifier).login(connection: 'apple')),
           child: Container(
             width: 48,
             height: 48,
@@ -35,7 +40,7 @@ class SocialAuthButtons extends ConsumerWidget {
         ),
         GestureDetector(
           behavior: HitTestBehavior.opaque,
-          onTap: () => ref.read(authStateProvider.notifier).login(connection: 'google-oauth2'),
+          onTap: () => onLogin(ref.read(authStateProvider.notifier).login(connection: 'google-oauth2')),
           child: Container(
             width: 48,
             height: 48,
@@ -45,7 +50,7 @@ class SocialAuthButtons extends ConsumerWidget {
         ),
         GestureDetector(
           behavior: HitTestBehavior.opaque,
-          onTap: () => ref.read(authStateProvider.notifier).login(),
+          onTap: () => onLogin(ref.read(authStateProvider.notifier).login()),
           child: Container(
             width: 48,
             height: 48,

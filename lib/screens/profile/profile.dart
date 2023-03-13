@@ -88,6 +88,7 @@ class _ProfileState extends ConsumerState<Profile> {
 
   @override
   Widget build(BuildContext context) {
+    final user = ref.read(authStateProvider).user;
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
@@ -103,7 +104,7 @@ class _ProfileState extends ConsumerState<Profile> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: <Widget>[
-                if (!ref.read(authStateProvider).guestMode)
+                if (ref.read(authStateProvider).user == null)
                   const Avatar()
                 else
                   Padding(
@@ -115,7 +116,7 @@ class _ProfileState extends ConsumerState<Profile> {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      if (!ref.read(authStateProvider).guestMode)
+                      if (user != null)
                         GestureDetector(
                           onLongPress: () => ref.read(authStateProvider.notifier).logout(manual: false),
                           child: BtvButton.smallSecondary(

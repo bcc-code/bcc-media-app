@@ -1,4 +1,5 @@
-import 'package:brunstadtv_app/components/onboarding/signup_page_wrapper.dart';
+import 'package:brunstadtv_app/components/onboarding/onboarding_page_wrapper.dart';
+import 'package:brunstadtv_app/helpers/extensions.dart';
 import 'package:brunstadtv_app/helpers/ui/btv_buttons.dart';
 import 'package:brunstadtv_app/screens/onboarding/social_auth_buttons.dart';
 import 'package:brunstadtv_app/theme/bccm_colors.dart';
@@ -9,19 +10,23 @@ import '../../../l10n/app_localizations.dart';
 import '../../../theme/bccm_typography.dart';
 import '../email_text_field.dart';
 
-class SignupInitialPage extends HookWidget {
-  const SignupInitialPage({
+class LoginInitialPage extends HookWidget {
+  const LoginInitialPage({
     super.key,
     required this.pageController,
+    required this.onLogin,
     required this.emailTextController,
     required this.emailFocusNode,
-    required this.nextFocusNode,
+    required this.passwordTextController,
+    required this.passwordFocusNode,
   });
 
   final PageController pageController;
+  final void Function() onLogin;
   final TextEditingController emailTextController;
   final FocusNode emailFocusNode;
-  final FocusNode nextFocusNode;
+  final TextEditingController passwordTextController;
+  final FocusNode passwordFocusNode;
 
   @override
   Widget build(BuildContext context) {
@@ -33,11 +38,10 @@ class SignupInitialPage extends HookWidget {
       if (!formKey.value.currentState!.validate()) {
         return;
       }
-      pageController.nextPage(duration: const Duration(milliseconds: 500), curve: Curves.easeOutExpo);
-      nextFocusNode.requestFocus();
+      onLogin();
     }
 
-    return SignupPageWrapper(
+    return OnboardingPageWrapper(
       body: [
         Padding(
           padding: const EdgeInsets.only(bottom: 8),
@@ -81,7 +85,7 @@ class SignupInitialPage extends HookWidget {
         Container(
           padding: const EdgeInsets.only(bottom: 16),
           width: double.infinity,
-          child: emailTextController.value.text == ''
+          child: emailTextController.value.text.isBlank || passwordTextController.value.text.isBlank
               ? BtvButton.largeDisabled(
                   onPressed: () {},
                   labelText: S.of(context).continueButton,

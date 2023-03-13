@@ -1,4 +1,4 @@
-import 'package:brunstadtv_app/components/onboarding/pages/signup_password_page.dart';
+import 'package:brunstadtv_app/components/onboarding/signup/signup_password_page.dart';
 import 'package:brunstadtv_app/helpers/ui/btv_buttons.dart';
 import 'package:brunstadtv_app/helpers/widget_keys.dart';
 import 'package:brunstadtv_app/l10n/app_localizations.dart';
@@ -36,6 +36,7 @@ void main() {
             pageController: page,
             passwordTextController: passwordController,
             passwordFocusNode: focusNode,
+            nextFocusNode: FocusNode(),
           ),
         ),
       ));

@@ -1,5 +1,5 @@
 import 'package:brunstadtv_app/components/onboarding/password_text_field.dart';
-import 'package:brunstadtv_app/components/onboarding/signup_page_wrapper.dart';
+import 'package:brunstadtv_app/components/onboarding/onboarding_page_wrapper.dart';
 import 'package:brunstadtv_app/helpers/ui/btv_buttons.dart';
 import 'package:brunstadtv_app/theme/bccm_colors.dart';
 import 'package:flutter/material.dart';
@@ -56,7 +56,7 @@ class SignupPasswordPage extends HookWidget {
       nextFocusNode.requestFocus();
     }
 
-    return SignupPageWrapper(
+    return OnboardingPageWrapper(
       title: S.of(context).setPassword,
       description: 'Choose a password for your account.',
       body: [

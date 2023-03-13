@@ -1,4 +1,4 @@
-import 'package:brunstadtv_app/components/onboarding/signup_page_wrapper.dart';
+import 'package:brunstadtv_app/components/onboarding/onboarding_page_wrapper.dart';
 import 'package:brunstadtv_app/helpers/extensions.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
@@ -52,7 +52,7 @@ class SignupBirthDatePage extends HookWidget {
 
     return Form(
       key: formKey.value,
-      child: SignupPageWrapper(
+      child: OnboardingPageWrapper(
         title: 'Birth date',
         description: 'We use your birth date to give you a more tailored experience.',
         body: [
