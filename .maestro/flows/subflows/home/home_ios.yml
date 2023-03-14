@@ -1,0 +1,6 @@
+appId: tv.brunstad.app
+---
+- pressKey: home
+- assertVisible:
+    text: Home screen icons
+    optional: true

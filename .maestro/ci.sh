@@ -13,5 +13,5 @@ flutter doctor -v
 # build the app for the simulator
 make ios-build
 
-maestro cloud -e PLATFORM=ios --apiKey $MAESTRO_API_KEY ../build/ios/iphonesimulator/Runner.app flows/ || exit 1
+maestro cloud --apiKey $MAESTRO_API_KEY -e PLATFORM=ios --exclude-tags=no-cloud ../build/ios/iphonesimulator/Runner.app flows/ || exit 1
 exit 0

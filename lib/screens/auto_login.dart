@@ -38,19 +38,12 @@ class _AutoLoginScreeenState extends ConsumerState<AutoLoginScreeen> {
   }
 
   void load() async {
-    final hasCredentials = ref.read(authStateProvider).auth0AccessToken != null;
     final deepLinkUri = await AppLinks().getInitialAppLink();
-    if (hasCredentials) {
-      WidgetsBinding.instance.scheduleFrameCallback((d) {
-        navigate(deepLinkUri: deepLinkUri);
-      });
-    } else {
-      setState(() {
-        authFuture = ref.read(authStateProvider.notifier).load().then((_) {
-          navigate(deepLinkUri: deepLinkUri);
-        });
-      });
-    }
+    authFuture = ref.read(authStateProvider.notifier).load();
+    authFuture!.then((_) {
+      debugPrint('navigate(deepLinkUri: $deepLinkUri)');
+      navigate(deepLinkUri: deepLinkUri);
+    });
   }
 
   void navigate({Uri? deepLinkUri}) {
@@ -135,8 +128,8 @@ class _AutoLoginScreeenState extends ConsumerState<AutoLoginScreeen> {
                           minimumSize: const Size.fromHeight(50),
                         ),
                         onPressed: (() {
+                          reloadAppConfig(ref);
                           load();
-                          ref.read(appConfigProvider.notifier).state = ref.read(apiProvider).queryAppConfig();
                         }),
                         child: Text(
                           S.of(context).tryAgainButton,

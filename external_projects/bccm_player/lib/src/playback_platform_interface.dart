@@ -59,6 +59,10 @@ abstract class BccmPlayerInterface extends PlatformInterface {
     throw UnimplementedError('addPlaybackListener() has not been implemented.');
   }
 
+  Future<void> removePlaybackListener(PlaybackListenerPigeon listener) async {
+    throw UnimplementedError('removePlaybackListener() has not been implemented.');
+  }
+
   void play(String playerId) {
     throw UnimplementedError('play() has not been implemented.');
   }

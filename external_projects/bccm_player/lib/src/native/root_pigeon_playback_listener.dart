@@ -8,6 +8,10 @@ class RootPigeonPlaybackListener implements PlaybackListenerPigeon {
     _listeners.add(listener);
   }
 
+  void removeListener(PlaybackListenerPigeon listener) {
+    _listeners.remove(listener);
+  }
+
   @override
   void onIsPlayingChanged(IsPlayingChangedEvent event) {
     for (var listener in _listeners) {

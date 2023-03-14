@@ -45,13 +45,15 @@ Future<void> $main({required FirebaseOptions? firebaseOptions, List<Override>? p
     rootRouterProvider.overrideWithValue(appRouter),
     if (providerOverrides != null) ...providerOverrides,
   ]);
-  final routerDelegate = await getRouterDelegate(providerContainer, appRouter);
 
   final app = UncontrolledProviderScope(
     container: providerContainer,
     child: AppRoot(
       navigatorKey: navigatorKey,
-      routerDelegate: routerDelegate,
+      routerDelegate: appRouter.delegate(
+        initialRoutes: [const AutoLoginScreeenRoute()],
+        navigatorObservers: () => [AnalyticsNavigatorObserver()],
+      ),
       appRouter: appRouter,
     ),
   );
@@ -97,30 +99,4 @@ Future<ProviderContainer> initProviderContainer(List<Override> overrides) async 
   providerContainer.read(deepLinkServiceProvider);
   providerContainer.read(playbackServiceProvider);
   return providerContainer;
-}
-
-Future<AutoRouterDelegate> getRouterDelegate(ProviderContainer providerContainer, AppRouter appRouter) async {
-  final authLoadingCompleter = wrapInCompleter(providerContainer.read(authStateProvider.notifier).load());
-  final appLinks = AppLinks();
-
-  final deepLinkUri = await appLinks.getInitialAppLink();
-  String? deepLink;
-  List<PageRouteInfo<dynamic>>? initialRoutes;
-  if (!authLoadingCompleter.isCompleted) {
-    initialRoutes = [const AutoLoginScreeenRoute()];
-  } else if (deepLinkUri != null) {
-    deepLink = uriStringWithoutHost(deepLinkUri);
-  } else {
-    final authenticated = await authLoadingCompleter.future;
-    if (authenticated) {
-      initialRoutes = [const TabsRootScreenRoute()];
-    } else {
-      initialRoutes = [LoginScreenRoute()];
-    }
-  }
-  return appRouter.delegate(
-    initialDeepLink: deepLink,
-    initialRoutes: initialRoutes,
-    navigatorObservers: () => [AnalyticsNavigatorObserver()],
-  );
 }
