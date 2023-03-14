@@ -10,8 +10,8 @@ appId: tv.brunstad.app
 - openLink: "https://app.bcc.media/r/donation"
 - assertVisible: "Donation App"
 - launchApp:
-  appId: "tv.brunstad.app"
-  stopApp: false
+    appId: "tv.brunstad.app"
+    stopApp: false
 - assertNotVisible: .*Something went wrong.*
 - assertVisible: .*Home.*
 # Stopped 2
