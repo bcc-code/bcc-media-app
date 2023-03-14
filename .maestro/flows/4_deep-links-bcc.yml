@@ -5,11 +5,18 @@ appId: tv.brunstad.app
 # Login
 - stopApp: tv.brunstad.app
 - runFlow: subflows/login.yml
-# Stopped 1
+# Stopped 1 - Redirect
+- stopApp: tv.brunstad.app
+- openLink: "https://app.bcc.media/r/donation"
+- assertVisible: "Donation App"
+- launchApp: tv.brunstad.app
+- assertNotVisible: .*Something went wrong.*
+- assertVisible: .*Home.*
+# Stopped 2
 - stopApp: tv.brunstad.app
 - openLink: "https://app.bcc.media/episode/769"
 - assertVisible: .*Joseph.*
-# Stopped 2
+# Stopped 3
 - stopApp: tv.brunstad.app
 - openLink: "https://app.bcc.media/live"
 - assertVisible: Today,.*
