@@ -19,14 +19,19 @@ class SpecialRoutesGuard extends AutoRouteGuard {
       ref = ProviderScope.containerOf(router.navigatorKey.currentContext!, listen: false);
     }
 
-    if (route.segments[0] == 'tvlogin' && uri != null) {
-      launchUrl(uri, mode: LaunchMode.externalApplication);
+    if (route.segments.isEmpty) {
+      return resolver.next(true);
     }
 
-    if (ref != null && route.segments[0] == 'r') {
+    if (route.segments[0] == 'tvlogin') {
+      if (uri != null) {
+        launchUrl(uri, mode: LaunchMode.externalApplication);
+      }
+      return resolver.next(false);
+    } else if (route.segments[0] == 'r') {
       final code = route.pathParams.getString('code', '');
       print('Redirect code: $code');
-      if (code != '') {
+      if (code != '' && ref != null) {
         ref
             .read(gqlClientProvider)
             .query$GetRedirectUrl(Options$Query$GetRedirectUrl(
@@ -44,6 +49,7 @@ class SpecialRoutesGuard extends AutoRouteGuard {
           },
         );
       }
+      return resolver.next(false);
     } else if (route.segments[0] == 'series') {
       final legacyEpisodeId = int.tryParse(route.pathParams.get('legacyEpisodeId'));
       if (ref != null && legacyEpisodeId != null) {
@@ -54,6 +60,7 @@ class SpecialRoutesGuard extends AutoRouteGuard {
           }
         });
       }
+      return resolver.next(false);
     } else if (route.segments[0] == 'program') {
       final legacyProgramId = int.tryParse(route.pathParams.get('legacyProgramId'));
       if (ref != null && legacyProgramId != null) {
@@ -64,7 +71,9 @@ class SpecialRoutesGuard extends AutoRouteGuard {
           }
         });
       }
+      return resolver.next(false);
     }
+    resolver.next(true);
   }
 
   Future<String?>? _getEpisodeId(

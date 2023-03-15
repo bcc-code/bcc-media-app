@@ -42,34 +42,6 @@ const _pageScreenRoute = CustomRoute<void>(
     reverseDurationInMilliseconds: 300,
     transitionsBuilder: CustomTransitionsBuilders.slideLeft);
 
-const _specialRoutes = AutoRoute(
-  page: EmptyRouterPage,
-  path: '/',
-  guards: [SpecialRoutesGuard],
-  children: [
-    AutoRoute<void>(
-      page: EmptyRouterPage,
-      name: 'RedirectRoute',
-      path: 'r/:code',
-    ),
-    AutoRoute<void>(
-      page: EmptyRouterPage,
-      name: 'TvLoginRoute',
-      path: 'tvlogin/*',
-    ),
-    AutoRoute<void>(
-      page: EmptyRouterPage,
-      name: 'LegacyEpisodeRoute',
-      path: 'series/:legacyEpisodeId',
-    ),
-    AutoRoute<void>(
-      page: EmptyRouterPage,
-      name: 'LegacyProgramRoute',
-      path: 'program/:legacyProgramId',
-    ),
-  ],
-);
-
 @MaterialAutoRouter(
   routes: [
     MaterialRoute<void>(page: LoginScreen, path: 'login', meta: {RouteMetaConstants.analyticsName: 'login'}),
@@ -180,9 +152,29 @@ const _specialRoutes = AutoRoute(
         }),
     CustomRoute<void>(
       page: TabsRootScreen,
+      guards: [SpecialRoutesGuard],
       path: '/',
-      guards: [],
       children: [
+        AutoRoute<void>(
+          page: EmptyRouterPage,
+          name: 'RedirectRoute',
+          path: 'r/:code',
+        ),
+        AutoRoute<void>(
+          page: EmptyRouterPage,
+          name: 'TvLoginRoute',
+          path: 'tvlogin/*',
+        ),
+        AutoRoute<void>(
+          page: EmptyRouterPage,
+          name: 'LegacyEpisodeRoute',
+          path: 'series/:legacyEpisodeId',
+        ),
+        AutoRoute<void>(
+          page: EmptyRouterPage,
+          name: 'LegacyProgramRoute',
+          path: 'program/:legacyProgramId',
+        ),
         MaterialRoute<void>(
             page: LiveScreen,
             path: 'live',
@@ -226,7 +218,6 @@ const _specialRoutes = AutoRoute(
         ]),
       ],
     ),
-    _specialRoutes,
   ],
 )
 class $AppRouter {}

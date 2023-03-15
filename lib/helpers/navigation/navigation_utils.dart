@@ -16,10 +16,10 @@ import '../utils.dart';
 import '../extensions.dart';
 
 extension StackRouterCustomNavigation on StackRouter {
-  Future navigateNamedFromRoot(String path) {
+  Future navigateNamedFromRoot(String path, {OnNavigationFailure? onFailure}) {
     var result = root.matcher.match(path, includePrefixMatches: true);
     if (result != null) {
-      return navigateAll(result);
+      return navigateAll(result, onFailure: onFailure);
     }
     return Future.value();
   }

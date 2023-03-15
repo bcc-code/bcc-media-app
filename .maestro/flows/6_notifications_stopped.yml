@@ -1,0 +1,30 @@
+appId: tv.brunstad.app
+tags:
+  - no-cloud
+---
+- runScript: scripts/.env.js
+- runScript: scripts/init.js
+# Login
+- stopApp: tv.brunstad.app
+- runFlow: subflows/login.yml
+# deep_link_donation
+- stopApp: tv.brunstad.app
+- runFlow:
+    file: subflows/notification.yml
+    env:
+      CONTAINING: deep_link_donation
+- assertVisible: "Donation App"
+# deep_link_live
+- stopApp: tv.brunstad.app
+- runFlow:
+    file: subflows/notification.yml
+    env:
+      CONTAINING: deep_link_live
+- assertVisible: Today,.*
+# deep_link_live
+- stopApp: tv.brunstad.app
+- runFlow:
+    file: subflows/notification.yml
+    env:
+      CONTAINING: deep_link_episode
+- assertVisible: .*Joseph.*

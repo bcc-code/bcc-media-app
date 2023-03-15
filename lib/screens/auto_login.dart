@@ -48,15 +48,22 @@ class _AutoLoginScreeenState extends ConsumerState<AutoLoginScreeen> {
 
   void navigate({Uri? deepLinkUri}) {
     if (!mounted) return;
+    final router = context.router;
     if (deepLinkUri != null) {
-      context.router.navigateNamedFromRoot(uriStringWithoutHost(deepLinkUri));
+      router.replaceAll([const TabsRootScreenRoute()]);
+      router.navigateNamedFromRoot(
+        uriStringWithoutHost(deepLinkUri),
+        onFailure: (f) {
+          router.navigateNamedFromRoot('/');
+        },
+      );
       return;
     }
     final hasCredentials = ref.read(authStateProvider).auth0AccessToken != null;
     if (!hasCredentials) {
-      context.router.replaceAll([LoginScreenRoute()]);
+      router.replaceAll([LoginScreenRoute()]);
     } else {
-      context.router.replaceAll([const TabsRootScreenRoute()]);
+      router.replaceAll([const TabsRootScreenRoute()]);
     }
   }
 

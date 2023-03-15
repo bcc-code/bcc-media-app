@@ -120,6 +120,7 @@ class _AppRootState extends ConsumerState<AppRoot> {
     var initialMessage = await FirebaseMessaging.instance.getInitialMessage();
 
     if (initialMessage != null) {
+      debugPrint(initialMessage.data.toString());
       _handleMessageOpenedFromBackground(initialMessage);
     }
 

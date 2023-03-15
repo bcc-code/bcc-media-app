@@ -254,8 +254,26 @@ class AppRouter extends _i22.RootStackRouter {
         barrierDismissible: false,
       );
     },
-    EmptyRouterPageRoute.name: (routeData) {
-      return _i22.MaterialPageX<dynamic>(
+    RedirectRoute.name: (routeData) {
+      return _i22.MaterialPageX<void>(
+        routeData: routeData,
+        child: const _i17.EmptyRouterPage(),
+      );
+    },
+    TvLoginRoute.name: (routeData) {
+      return _i22.MaterialPageX<void>(
+        routeData: routeData,
+        child: const _i17.EmptyRouterPage(),
+      );
+    },
+    LegacyEpisodeRoute.name: (routeData) {
+      return _i22.MaterialPageX<void>(
+        routeData: routeData,
+        child: const _i17.EmptyRouterPage(),
+      );
+    },
+    LegacyProgramRoute.name: (routeData) {
+      return _i22.MaterialPageX<void>(
         routeData: routeData,
         child: const _i17.EmptyRouterPage(),
       );
@@ -358,30 +376,6 @@ class AppRouter extends _i22.RootStackRouter {
         barrierDismissible: false,
       );
     },
-    RedirectRoute.name: (routeData) {
-      return _i22.MaterialPageX<void>(
-        routeData: routeData,
-        child: const _i17.EmptyRouterPage(),
-      );
-    },
-    TvLoginRoute.name: (routeData) {
-      return _i22.MaterialPageX<void>(
-        routeData: routeData,
-        child: const _i17.EmptyRouterPage(),
-      );
-    },
-    LegacyEpisodeRoute.name: (routeData) {
-      return _i22.MaterialPageX<void>(
-        routeData: routeData,
-        child: const _i17.EmptyRouterPage(),
-      );
-    },
-    LegacyProgramRoute.name: (routeData) {
-      return _i22.MaterialPageX<void>(
-        routeData: routeData,
-        child: const _i17.EmptyRouterPage(),
-      );
-    },
   };
 
   @override
@@ -474,7 +468,28 @@ class AppRouter extends _i22.RootStackRouter {
         _i22.RouteConfig(
           TabsRootScreenRoute.name,
           path: '/',
+          guards: [specialRoutesGuard],
           children: [
+            _i22.RouteConfig(
+              RedirectRoute.name,
+              path: 'r/:code',
+              parent: TabsRootScreenRoute.name,
+            ),
+            _i22.RouteConfig(
+              TvLoginRoute.name,
+              path: 'tvlogin/*',
+              parent: TabsRootScreenRoute.name,
+            ),
+            _i22.RouteConfig(
+              LegacyEpisodeRoute.name,
+              path: 'series/:legacyEpisodeId',
+              parent: TabsRootScreenRoute.name,
+            ),
+            _i22.RouteConfig(
+              LegacyProgramRoute.name,
+              path: 'program/:legacyProgramId',
+              parent: TabsRootScreenRoute.name,
+            ),
             _i22.RouteConfig(
               LiveScreenRoute.name,
               path: 'live',
@@ -543,33 +558,6 @@ class AppRouter extends _i22.RootStackRouter {
                   usesPathAsKey: true,
                 ),
               ],
-            ),
-          ],
-        ),
-        _i22.RouteConfig(
-          EmptyRouterPageRoute.name,
-          path: '/',
-          guards: [specialRoutesGuard],
-          children: [
-            _i22.RouteConfig(
-              RedirectRoute.name,
-              path: 'r/:code',
-              parent: EmptyRouterPageRoute.name,
-            ),
-            _i22.RouteConfig(
-              TvLoginRoute.name,
-              path: 'tvlogin/*',
-              parent: EmptyRouterPageRoute.name,
-            ),
-            _i22.RouteConfig(
-              LegacyEpisodeRoute.name,
-              path: 'series/:legacyEpisodeId',
-              parent: EmptyRouterPageRoute.name,
-            ),
-            _i22.RouteConfig(
-              LegacyProgramRoute.name,
-              path: 'program/:legacyProgramId',
-              parent: EmptyRouterPageRoute.name,
             ),
           ],
         ),
@@ -904,15 +892,50 @@ class TabsRootScreenRoute extends _i22.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i17.EmptyRouterPage]
-class EmptyRouterPageRoute extends _i22.PageRouteInfo<void> {
-  const EmptyRouterPageRoute({List<_i22.PageRouteInfo>? children})
+class RedirectRoute extends _i22.PageRouteInfo<void> {
+  const RedirectRoute()
       : super(
-          EmptyRouterPageRoute.name,
-          path: '/',
-          initialChildren: children,
+          RedirectRoute.name,
+          path: 'r/:code',
         );
 
-  static const String name = 'EmptyRouterPageRoute';
+  static const String name = 'RedirectRoute';
+}
+
+/// generated route for
+/// [_i17.EmptyRouterPage]
+class TvLoginRoute extends _i22.PageRouteInfo<void> {
+  const TvLoginRoute()
+      : super(
+          TvLoginRoute.name,
+          path: 'tvlogin/*',
+        );
+
+  static const String name = 'TvLoginRoute';
+}
+
+/// generated route for
+/// [_i17.EmptyRouterPage]
+class LegacyEpisodeRoute extends _i22.PageRouteInfo<void> {
+  const LegacyEpisodeRoute()
+      : super(
+          LegacyEpisodeRoute.name,
+          path: 'series/:legacyEpisodeId',
+        );
+
+  static const String name = 'LegacyEpisodeRoute';
+}
+
+/// generated route for
+/// [_i17.EmptyRouterPage]
+class LegacyProgramRoute extends _i22.PageRouteInfo<void> {
+  const LegacyProgramRoute()
+      : super(
+          LegacyProgramRoute.name,
+          path: 'program/:legacyProgramId',
+        );
+
+  static const String name = 'LegacyProgramRoute';
 }
 
 /// generated route for
@@ -1112,52 +1135,4 @@ class HomeArgs {
   String toString() {
     return 'HomeArgs{key: $key}';
   }
-}
-
-/// generated route for
-/// [_i17.EmptyRouterPage]
-class RedirectRoute extends _i22.PageRouteInfo<void> {
-  const RedirectRoute()
-      : super(
-          RedirectRoute.name,
-          path: 'r/:code',
-        );
-
-  static const String name = 'RedirectRoute';
-}
-
-/// generated route for
-/// [_i17.EmptyRouterPage]
-class TvLoginRoute extends _i22.PageRouteInfo<void> {
-  const TvLoginRoute()
-      : super(
-          TvLoginRoute.name,
-          path: 'tvlogin/*',
-        );
-
-  static const String name = 'TvLoginRoute';
-}
-
-/// generated route for
-/// [_i17.EmptyRouterPage]
-class LegacyEpisodeRoute extends _i22.PageRouteInfo<void> {
-  const LegacyEpisodeRoute()
-      : super(
-          LegacyEpisodeRoute.name,
-          path: 'series/:legacyEpisodeId',
-        );
-
-  static const String name = 'LegacyEpisodeRoute';
-}
-
-/// generated route for
-/// [_i17.EmptyRouterPage]
-class LegacyProgramRoute extends _i22.PageRouteInfo<void> {
-  const LegacyProgramRoute()
-      : super(
-          LegacyProgramRoute.name,
-          path: 'program/:legacyProgramId',
-        );
-
-  static const String name = 'LegacyProgramRoute';
 }
