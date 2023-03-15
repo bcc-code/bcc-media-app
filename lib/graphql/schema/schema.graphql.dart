@@ -244,8 +244,10 @@ class _CopyWithStubImpl$Input$EpisodeContext<TRes>
 
 const possibleTypesMap = <String, Set<String>>{
   'Pagination': {
+    'SurveyQuestionPagination',
     'SeasonPagination',
     'EpisodePagination',
+    'UserCollectionEntryPagination',
     'CollectionItemPagination',
     'QuestionPagination',
     'FAQCategoryPagination',
@@ -256,11 +258,18 @@ const possibleTypesMap = <String, Set<String>>{
     'SectionItemPagination',
     'AchievementPagination',
     'AchievementGroupPagination',
-    'SurveyQuestionPagination',
+  },
+  'SurveyQuestion': {
+    'SurveyTextQuestion',
+    'SurveyRatingQuestion',
   },
   'EpisodeContextUnion': {
     'Season',
     'ContextCollection',
+  },
+  'UserCollectionEntryItem': {
+    'Show',
+    'Episode',
   },
   'CollectionItem': {
     'ShowItem',
@@ -279,6 +288,7 @@ const possibleTypesMap = <String, Set<String>>{
     'SeasonSearchItem',
     'ShowSearchItem',
   },
+  'Prompt': {'SurveyPrompt'},
   'Task': {
     'AlternativesTask',
     'TextTask',
@@ -329,9 +339,5 @@ const possibleTypesMap = <String, Set<String>>{
     'Page',
     'Link',
     'StudyTopic',
-  },
-  'SurveyQuestion': {
-    'SurveyTextQuestion',
-    'SurveyRatingQuestion',
   },
 };
