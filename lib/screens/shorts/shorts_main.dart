@@ -4,6 +4,7 @@ import 'package:brunstadtv_app/graphql/queries/shorts.graphql.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:graphql_flutter/graphql_flutter.dart';
 
 class ShortsMain extends ConsumerStatefulWidget {
   const ShortsMain({Key? key}) : super(key: key);
@@ -27,6 +28,8 @@ class _ShortsMainState extends ConsumerState<ShortsMain> {
       backgroundColor: Colors.black,
       body: Query$GetEpisodesForShorts$Widget(
         options: Options$Query$GetEpisodesForShorts(
+          cacheRereadPolicy: CacheRereadPolicy.ignoreAll,
+          fetchPolicy: FetchPolicy.networkOnly,
           variables: Variables$Query$GetEpisodesForShorts(first: 30, offset: 0),
         ),
         builder: (result, {refetch, fetchMore}) {

@@ -5,6 +5,7 @@ import 'package:brunstadtv_app/graphql/queries/shorts.graphql.dart';
 import 'package:brunstadtv_app/providers/playback_service.dart';
 
 import 'package:flutter/material.dart';
+import 'package:graphql/client.dart';
 
 class ShortsEpisode extends StatelessWidget {
   const ShortsEpisode({
@@ -18,6 +19,8 @@ class ShortsEpisode extends StatelessWidget {
   Widget build(BuildContext context) {
     return Query$GetStreamsForEpisode$Widget(
         options: Options$Query$GetStreamsForEpisode(
+          cacheRereadPolicy: CacheRereadPolicy.ignoreAll,
+          fetchPolicy: FetchPolicy.networkOnly,
           variables: Variables$Query$GetStreamsForEpisode(id: episode.id),
         ),
         builder: (result, {refetch, fetchMore}) {
