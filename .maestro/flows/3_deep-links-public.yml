@@ -1,0 +1,38 @@
+appId: tv.brunstad.app
+---
+- launchApp:
+    appId: tv.brunstad.app
+    clearState: true
+- runScript: scripts/.env.js
+- runScript: scripts/init.js
+# Stopped 1
+- stopApp: tv.brunstad.app
+- openLink: "https://app.bcc.media/episode/769"
+- assertVisible: .*Joseph.*
+# Stopped 2
+- stopApp: tv.brunstad.app
+- openLink: "https://app.bcc.media/search"
+- tapOn:
+    text: Search
+    index: 0
+- assertVisible: You can search.*
+# Backgrounded 1
+- runFlow: subflows/home.yml
+- openLink: "https://app.bcc.media/episode/769"
+- assertVisible: .*Joseph.*
+# Backgrounded 2
+- runFlow: subflows/home.yml
+- openLink: "https://app.bcc.media/search"
+- tapOn:
+    text: Search
+    index: 0
+- assertVisible: You can search.*
+# Foreground 1
+- openLink: "https://app.bcc.media/episode/769"
+- assertVisible: .*Joseph.*
+# Foreground 2
+- openLink: "https://app.bcc.media/search"
+- tapOn:
+    text: Search
+    index: 0
+- assertVisible: You can search.*

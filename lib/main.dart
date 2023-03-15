@@ -17,7 +17,6 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:brunstadtv_app/providers/chromecast.dart';
 import 'package:brunstadtv_app/providers/playback_service.dart';
 import 'package:brunstadtv_app/router/router.gr.dart';
 import 'package:intl/intl.dart';
@@ -38,7 +37,7 @@ Future<void> $main({required FirebaseOptions? firebaseOptions, List<Override>? p
   await setDefaults();
 
   if (firebaseOptions != null) {
-    initFirebase(firebaseOptions);
+    await initFirebase(firebaseOptions);
   }
 
   final appRouter = AppRouter(specialRoutesGuard: SpecialRoutesGuard(), navigatorKey: navigatorKey);
@@ -46,13 +45,15 @@ Future<void> $main({required FirebaseOptions? firebaseOptions, List<Override>? p
     rootRouterProvider.overrideWithValue(appRouter),
     if (providerOverrides != null) ...providerOverrides,
   ]);
-  final routerDelegate = await getRouterDelegate(providerContainer, appRouter);
 
   final app = UncontrolledProviderScope(
     container: providerContainer,
     child: AppRoot(
       navigatorKey: navigatorKey,
-      routerDelegate: routerDelegate,
+      routerDelegate: appRouter.delegate(
+        initialRoutes: [const AutoLoginScreeenRoute()],
+        navigatorObservers: () => [AnalyticsNavigatorObserver()],
+      ),
       appRouter: appRouter,
     ),
   );
@@ -93,36 +94,9 @@ Future<String?> getDefaultLocale() async {
 Future<ProviderContainer> initProviderContainer(List<Override> overrides) async {
   var providerContainer = ProviderContainer(overrides: overrides);
   providerContainer.read(settingsProvider.notifier).init();
-  providerContainer.read(chromecastListenerProvider);
   providerContainer.read(appConfigProvider);
   providerContainer.read(analyticsProvider);
   providerContainer.read(deepLinkServiceProvider);
   providerContainer.read(playbackServiceProvider);
   return providerContainer;
-}
-
-Future<AutoRouterDelegate> getRouterDelegate(ProviderContainer providerContainer, AppRouter appRouter) async {
-  final authLoadingCompleter = wrapInCompleter(providerContainer.read(authStateProvider.notifier).load());
-  final appLinks = AppLinks();
-
-  final deepLinkUri = await appLinks.getInitialAppLink();
-  String? deepLink;
-  List<PageRouteInfo<dynamic>>? initialRoutes;
-  if (!authLoadingCompleter.isCompleted) {
-    initialRoutes = [const AutoLoginScreeenRoute()];
-  } else if (deepLinkUri != null) {
-    deepLink = uriStringWithoutHost(deepLinkUri);
-  } else {
-    final authenticated = await authLoadingCompleter.future;
-    if (authenticated) {
-      initialRoutes = [const TabsRootScreenRoute()];
-    } else {
-      initialRoutes = [LoginScreenRoute()];
-    }
-  }
-  return appRouter.delegate(
-    initialDeepLink: deepLink,
-    initialRoutes: initialRoutes,
-    navigatorObservers: () => [AnalyticsNavigatorObserver()],
-  );
 }

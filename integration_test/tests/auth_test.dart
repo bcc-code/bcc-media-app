@@ -1,19 +1,14 @@
 import 'package:brunstadtv_app/env/prod/firebase_options.dart';
-import 'package:brunstadtv_app/helpers/widget_keys.dart';
 import 'package:brunstadtv_app/main.dart';
 import 'package:brunstadtv_app/providers/auth_state/auth_state.dart';
 import 'package:brunstadtv_app/providers/auth_state/implementations/auth_state_notifier_mobile.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_appauth/flutter_appauth.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
-import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 import 'package:patrol/patrol.dart';
 import '../../test/auth/auth_test.mocks.dart';
 import '../common/context.dart';
-import '../common/exceptions.dart';
 import '../common/login.dart';
-import 'package:brunstadtv_app/main_prod.dart' as prod;
 
 import 'package:clock/clock.dart';
 /* 

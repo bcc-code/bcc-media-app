@@ -19,7 +19,7 @@ publish_to: "none" # Remove this line if you wish to publish to pub.dev
 # major.minor.patch+xxxxxxx
 # Note: On play store, any dots in the build
 # number (i.e. the number after +) gets removed
-version: 4.2.0+2300033
+version: 4.2.3+2300036
 
 environment:
   sdk: ">=2.17.0 <3.0.0"
@@ -75,7 +75,7 @@ dependencies:
   firebase_crashlytics: ^3.0.4
   flutter_svg_provider:
     git:
-      url: git@github.com:andreasgan/flutter_svg_provider.git
+      url: https://github.com/andreasgan/flutter_svg_provider.git
       ref: fix/deps
   on_screen_ruler: ^0.0.1
   url_launcher: ^6.1.6
