@@ -1,6 +1,6 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:brunstadtv_app/helpers/btv_colors.dart';
-import 'package:brunstadtv_app/helpers/btv_typography.dart';
+import 'package:brunstadtv_app/theme/bccm_colors.dart';
+import 'package:brunstadtv_app/theme/bccm_typography.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -38,7 +38,7 @@ class VideoDescription extends StatelessWidget {
               overflow: TextOverflow.ellipsis,
               maxLines: 2,
               title,
-              style: BtvTextStyles.body1.copyWith(color: BtvColors.onTint),
+              style: BccmTextStyles.body1.copyWith(color: BccmColors.onTint),
             ),
           ),
         ),

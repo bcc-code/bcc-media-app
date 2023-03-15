@@ -2,7 +2,7 @@ import 'package:brunstadtv_app/components/loading_generic.dart';
 import 'package:brunstadtv_app/components/shorts/shorts_video_description.dart';
 import 'package:brunstadtv_app/components/shorts/shorts_video_player.dart';
 import 'package:brunstadtv_app/graphql/queries/shorts.graphql.dart';
-import 'package:brunstadtv_app/providers/playback_api.dart';
+import 'package:brunstadtv_app/providers/playback_service.dart';
 
 import 'package:flutter/material.dart';
 
