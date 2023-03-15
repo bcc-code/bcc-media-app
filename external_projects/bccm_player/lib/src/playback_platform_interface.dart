@@ -15,7 +15,7 @@ abstract class BccmPlayerInterface extends PlatformInterface {
   static BccmPlayerInterface get instance => _instance;
   static Object? playerHtmlElement;
 
-  final PlayerPluginStateNotifier stateNotifier = PlayerPluginStateNotifier();
+  final PlayerPluginStateNotifier stateNotifier = PlayerPluginStateNotifier(keepAlive: true);
 
   Stream<ChromecastEvent> chromecastEventStream();
 
