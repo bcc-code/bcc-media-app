@@ -23,6 +23,9 @@ class SPt extends S {
   String get calendarWeek => 'Semana ';
 
   @override
+  String get close => 'Close';
+
+  @override
   String get loading => 'Carregando';
 
   @override
@@ -331,6 +334,9 @@ class SPt extends S {
 
   @override
   String get sendFailDescription => 'Algo deu errado. Verifique sua conexão com a internet e tente novamente.';
+
+  @override
+  String get sendSuccessDescription => 'Something went wrong. Check your internet connection and try again.';
 
   @override
   String get today => 'Hoje';

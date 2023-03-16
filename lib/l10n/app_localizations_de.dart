@@ -23,6 +23,9 @@ class SDe extends S {
   String get calendarWeek => 'Woche';
 
   @override
+  String get close => 'Close';
+
+  @override
   String get loading => 'Lädt';
 
   @override
@@ -331,6 +334,9 @@ class SDe extends S {
 
   @override
   String get sendFailDescription => 'Etwas lief schief. Bitte überprüfe deine Internetverbindung und versuche es noch einmal.';
+
+  @override
+  String get sendSuccessDescription => 'Something went wrong. Check your internet connection and try again.';
 
   @override
   String get today => 'Heute';

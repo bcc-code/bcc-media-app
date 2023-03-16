@@ -23,6 +23,9 @@ class SRu extends S {
   String get calendarWeek => 'неделя';
 
   @override
+  String get close => 'Close';
+
+  @override
   String get loading => 'Загрузка';
 
   @override
@@ -331,6 +334,9 @@ class SRu extends S {
 
   @override
   String get sendFailDescription => 'Что-то пошло не так. Проверьте подключение к интернету и попробуйте еще раз.';
+
+  @override
+  String get sendSuccessDescription => 'Something went wrong. Check your internet connection and try again.';
 
   @override
   String get today => 'Сегодня';

@@ -23,6 +23,9 @@ class STr extends S {
   String get calendarWeek => 'hafta';
 
   @override
+  String get close => 'Close';
+
+  @override
   String get loading => 'Yükleniyor';
 
   @override
@@ -331,6 +334,9 @@ class STr extends S {
 
   @override
   String get sendFailDescription => 'Bir şeyler yanlış gitti. İnternet bağlantınızı kontrol edip tekrar deneyin.';
+
+  @override
+  String get sendSuccessDescription => 'Something went wrong. Check your internet connection and try again.';
 
   @override
   String get today => 'Bugün';

@@ -23,6 +23,9 @@ class SFi extends S {
   String get calendarWeek => 'viikko';
 
   @override
+  String get close => 'Close';
+
+  @override
   String get loading => 'Ladataan';
 
   @override
@@ -331,6 +334,9 @@ class SFi extends S {
 
   @override
   String get sendFailDescription => 'Jokin ei nyt toimi. Tarkista nettiyhteys ja kokeile uudelleen.';
+
+  @override
+  String get sendSuccessDescription => 'Something went wrong. Check your internet connection and try again.';
 
   @override
   String get today => 'Tänään';

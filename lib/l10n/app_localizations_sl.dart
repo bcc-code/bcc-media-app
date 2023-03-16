@@ -23,6 +23,9 @@ class SSl extends S {
   String get calendarWeek => 'teden';
 
   @override
+  String get close => 'Close';
+
+  @override
   String get loading => 'Nalaganje';
 
   @override
@@ -331,6 +334,9 @@ class SSl extends S {
 
   @override
   String get sendFailDescription => 'Nekaj je šlo narobe. Preveri svojo internetno povezavo in poskusi znova.';
+
+  @override
+  String get sendSuccessDescription => 'Something went wrong. Check your internet connection and try again.';
 
   @override
   String get today => 'Danes';

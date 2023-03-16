@@ -23,6 +23,9 @@ class SPl extends S {
   String get calendarWeek => 'tydzień';
 
   @override
+  String get close => 'Close';
+
+  @override
   String get loading => 'Ładuję';
 
   @override
@@ -331,6 +334,9 @@ class SPl extends S {
 
   @override
   String get sendFailDescription => 'Coś poszło nie tak. Sprawdź swoje połączenie internetowe i spróbuj jeszcze raz.';
+
+  @override
+  String get sendSuccessDescription => 'Something went wrong. Check your internet connection and try again.';
 
   @override
   String get today => 'Dzisiaj';

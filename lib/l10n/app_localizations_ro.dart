@@ -23,6 +23,9 @@ class SRo extends S {
   String get calendarWeek => 'săptămână';
 
   @override
+  String get close => 'Close';
+
+  @override
   String get loading => 'Se încarcă';
 
   @override
@@ -331,6 +334,9 @@ class SRo extends S {
 
   @override
   String get sendFailDescription => 'Ceva n-a mers bine. Verifică conexiunea la internet și încearcă din nou.';
+
+  @override
+  String get sendSuccessDescription => 'Something went wrong. Check your internet connection and try again.';
 
   @override
   String get today => 'Astăzi';

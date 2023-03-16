@@ -23,6 +23,9 @@ class SHu extends S {
   String get calendarWeek => 'hét';
 
   @override
+  String get close => 'Close';
+
+  @override
   String get loading => 'Betöltés';
 
   @override
@@ -331,6 +334,9 @@ class SHu extends S {
 
   @override
   String get sendFailDescription => 'Valami nem sikerült. Vizsgáld meg az internett kapcsolatodat és próbáld újra.';
+
+  @override
+  String get sendSuccessDescription => 'Something went wrong. Check your internet connection and try again.';
 
   @override
   String get today => 'Ma';

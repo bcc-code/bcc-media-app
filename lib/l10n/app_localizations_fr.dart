@@ -23,6 +23,9 @@ class SFr extends S {
   String get calendarWeek => 'semaine';
 
   @override
+  String get close => 'Close';
+
+  @override
   String get loading => 'Chargement';
 
   @override
@@ -331,6 +334,9 @@ class SFr extends S {
 
   @override
   String get sendFailDescription => 'Une erreur est survenue. Vérifie ta connexion internet et réessaye.';
+
+  @override
+  String get sendSuccessDescription => 'Something went wrong. Check your internet connection and try again.';
 
   @override
   String get today => 'Aujourd\'hui';

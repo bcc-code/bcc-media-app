@@ -23,6 +23,9 @@ class SNb extends S {
   String get calendarWeek => 'uke';
 
   @override
+  String get close => 'Close';
+
+  @override
   String get loading => 'Laster';
 
   @override
@@ -331,6 +334,9 @@ class SNb extends S {
 
   @override
   String get sendFailDescription => 'Noe gikk galt. Sjekk internettforbindelsen din og prøv på nytt.';
+
+  @override
+  String get sendSuccessDescription => 'Something went wrong. Check your internet connection and try again.';
 
   @override
   String get today => 'I dag';

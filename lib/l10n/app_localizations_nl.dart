@@ -23,6 +23,9 @@ class SNl extends S {
   String get calendarWeek => 'week';
 
   @override
+  String get close => 'Close';
+
+  @override
   String get loading => 'Laden';
 
   @override
@@ -331,6 +334,9 @@ class SNl extends S {
 
   @override
   String get sendFailDescription => 'Er is iets misgegaan. Controleer je internetverbinding en probeer het opnieuw.';
+
+  @override
+  String get sendSuccessDescription => 'Something went wrong. Check your internet connection and try again.';
 
   @override
   String get today => 'Vandaag';

@@ -159,6 +159,12 @@ abstract class S {
   /// **'week'**
   String get calendarWeek;
 
+  /// Text displayed on 'Close' button
+  ///
+  /// In en, this message translates to:
+  /// **'Close'**
+  String get close;
+
   /// Text to indicate loading state.
   ///
   /// In en, this message translates to:
@@ -770,6 +776,12 @@ abstract class S {
   /// In en, this message translates to:
   /// **'Something went wrong. Check your internet connection and try again.'**
   String get sendFailDescription;
+
+  /// We appreciate your feedback.
+  ///
+  /// In en, this message translates to:
+  /// **'Something went wrong. Check your internet connection and try again.'**
+  String get sendSuccessDescription;
 
   /// First category in tv guide
   ///

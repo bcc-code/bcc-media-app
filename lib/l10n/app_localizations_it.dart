@@ -23,6 +23,9 @@ class SIt extends S {
   String get calendarWeek => 'settimana';
 
   @override
+  String get close => 'Close';
+
+  @override
   String get loading => 'In fase di caricamento';
 
   @override
@@ -331,6 +334,9 @@ class SIt extends S {
 
   @override
   String get sendFailDescription => 'Qualcosa è andato storto. Controlla la tua connessione Internet e riprova.';
+
+  @override
+  String get sendSuccessDescription => 'Something went wrong. Check your internet connection and try again.';
 
   @override
   String get today => 'Oggi';

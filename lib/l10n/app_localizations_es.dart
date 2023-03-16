@@ -23,6 +23,9 @@ class SEs extends S {
   String get calendarWeek => 'semana';
 
   @override
+  String get close => 'Close';
+
+  @override
   String get loading => 'Cargando';
 
   @override
@@ -331,6 +334,9 @@ class SEs extends S {
 
   @override
   String get sendFailDescription => 'Algo salió mal. Verifique su conexión a Internet e intente nuevamente.';
+
+  @override
+  String get sendSuccessDescription => 'Something went wrong. Check your internet connection and try again.';
 
   @override
   String get today => 'Hoy';

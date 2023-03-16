@@ -23,6 +23,9 @@ class SDa extends S {
   String get calendarWeek => 'uge';
 
   @override
+  String get close => 'Close';
+
+  @override
   String get loading => 'Indlæser';
 
   @override
@@ -331,6 +334,9 @@ class SDa extends S {
 
   @override
   String get sendFailDescription => 'Kunne gik galt. Tjek din internetforbindelse og prøv igen.';
+
+  @override
+  String get sendSuccessDescription => 'Something went wrong. Check your internet connection and try again.';
 
   @override
   String get today => 'I dag';
