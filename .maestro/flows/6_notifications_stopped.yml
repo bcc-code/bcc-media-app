@@ -21,7 +21,7 @@ tags:
     env:
       CONTAINING: deep_link_live
 - assertVisible: Today,.*
-# deep_link_live
+# deep_link_episode
 - stopApp: tv.brunstad.app
 - runFlow:
     file: subflows/notification.yml

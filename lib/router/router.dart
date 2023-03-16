@@ -126,7 +126,6 @@ const _pageScreenRoute = CustomRoute<void>(
       transitionsBuilder: CustomTransitionsBuilders.slideLeft,
       meta: {RouteMetaConstants.analyticsName: 'episode'},
     ),
-    CustomRoute(page: AutoLoginScreeen, path: 'auto-login'),
     CustomRoute<void>(
         page: StudyScreen,
         path: 'study-lesson',

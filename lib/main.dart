@@ -50,10 +50,6 @@ Future<void> $main({required FirebaseOptions? firebaseOptions, List<Override>? p
     container: providerContainer,
     child: AppRoot(
       navigatorKey: navigatorKey,
-      routerDelegate: appRouter.delegate(
-        initialRoutes: [const AutoLoginScreeenRoute()],
-        navigatorObservers: () => [AnalyticsNavigatorObserver()],
-      ),
       appRouter: appRouter,
     ),
   );

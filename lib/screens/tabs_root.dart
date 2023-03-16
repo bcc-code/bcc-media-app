@@ -10,6 +10,7 @@ import 'package:brunstadtv_app/helpers/extensions.dart';
 import 'package:brunstadtv_app/providers/auth_state/auth_state.dart';
 import 'package:brunstadtv_app/providers/settings.dart';
 import 'package:brunstadtv_app/screens/search/search.dart';
+import 'package:collection/collection.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -94,7 +95,15 @@ class _TabsRootScreenState extends ConsumerState<TabsRootScreen> with AutoRouteA
 
   bool _shouldHideMiniPlayer(BuildContext context) {
     final router = context.watchRouter;
-    final currentRouteMatch = router.currentSegments.last;
+    final currentRouteMatch = router.currentSegments.lastOrNull;
+    if (currentRouteMatch == null) {
+      debugPrint('router.currentSegments empty');
+      debugPrint(router.currentPath.toString());
+      debugPrint(router.currentSegments.toString());
+      debugPrint(router.currentUrl.toString());
+      debugPrint(router.currentChild.toString());
+      return true;
+    }
     final StateNotifierProvider<PlayerStateNotifier, PlayerState?>? playerProvider;
     if (ref.watch(isCasting)) {
       playerProvider = castPlayerProvider;

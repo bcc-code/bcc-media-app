@@ -23,6 +23,18 @@ Future initFirebase(FirebaseOptions firebaseOptions) async {
       FirebaseCrashlytics.instance.recordError(error, stack, fatal: true);
       return true;
     };
+  } else {
+    FlutterError.onError = (errorDetails) {
+      FirebaseCrashlytics.instance.recordFlutterError(errorDetails);
+      debugPrint(errorDetails.toStringShort());
+      debugPrint(errorDetails.toString());
+    };
+    // Pass all uncaught asynchronous errors that aren't handled by the Flutter framework to Crashlytics
+    PlatformDispatcher.instance.onError = (error, stack) {
+      debugPrint(error.toString());
+      debugPrint(stack.toString());
+      return true;
+    };
   }
 
   FirebaseMessaging.onBackgroundMessage(onFirebaseBackgroundMessage);

@@ -16,64 +16,36 @@ import '../helpers/utils.dart';
 import '../l10n/app_localizations.dart';
 import '../router/router.gr.dart';
 
-class AutoLoginScreeen extends ConsumerStatefulWidget {
-  const AutoLoginScreeen({super.key});
+class AuthLoadingScreen extends ConsumerStatefulWidget {
+  const AuthLoadingScreen({
+    super.key,
+    required this.child,
+    required this.authFuture,
+    required this.onRetry,
+    required this.onLogout,
+  });
+  final Widget child;
+  final Future<void>? authFuture;
+  final void Function() onRetry;
+  final void Function() onLogout;
 
   @override
   ConsumerState<ConsumerStatefulWidget> createState() => _AutoLoginScreeenState();
 }
 
-class _AutoLoginScreeenState extends ConsumerState<AutoLoginScreeen> {
-  Future<void>? authFuture;
-
+class _AutoLoginScreeenState extends ConsumerState<AuthLoadingScreen> {
   @override
   void initState() {
     super.initState();
   }
 
   @override
-  void didChangeDependencies() {
-    super.didChangeDependencies();
-    load();
-  }
-
-  void load() async {
-    final deepLinkUri = await AppLinks().getInitialAppLink();
-    authFuture = ref.read(authStateProvider.notifier).load();
-    authFuture!.then((_) {
-      debugPrint('navigate(deepLinkUri: $deepLinkUri)');
-      navigate(deepLinkUri: deepLinkUri);
-    });
-  }
-
-  void navigate({Uri? deepLinkUri}) {
-    if (!mounted) return;
-    final router = context.router;
-    if (deepLinkUri != null) {
-      router.replaceAll([const TabsRootScreenRoute()]);
-      router.navigateNamedFromRoot(
-        uriStringWithoutHost(deepLinkUri),
-        onFailure: (f) {
-          router.navigateNamedFromRoot('/');
-        },
-      );
-      return;
-    }
-    final hasCredentials = ref.read(authStateProvider).auth0AccessToken != null;
-    if (!hasCredentials) {
-      router.replaceAll([LoginScreenRoute()]);
-    } else {
-      router.replaceAll([const TabsRootScreenRoute()]);
-    }
-  }
-
-  @override
   Widget build(BuildContext context) {
     return simpleFutureBuilder<void>(
-      future: authFuture,
+      future: widget.authFuture,
       error: (e) => error(context),
       noData: () => loading(context),
-      ready: (_) => loading(context),
+      ready: (_) => widget.child,
       loading: () => loading(context),
     );
   }
@@ -91,9 +63,7 @@ class _AutoLoginScreeenState extends ConsumerState<AutoLoginScreeen> {
                       alignment: Alignment.centerLeft,
                       child: GestureDetector(
                         behavior: HitTestBehavior.opaque,
-                        onTap: () {
-                          ref.read(authStateProvider.notifier).logout();
-                        },
+                        onTap: widget.onLogout,
                         child: SizedBox(
                           height: 24,
                           width: 56,
@@ -134,10 +104,7 @@ class _AutoLoginScreeenState extends ConsumerState<AutoLoginScreeen> {
                           ),
                           minimumSize: const Size.fromHeight(50),
                         ),
-                        onPressed: (() {
-                          reloadAppConfig(ref);
-                          load();
-                        }),
+                        onPressed: widget.onRetry,
                         child: Text(
                           S.of(context).tryAgainButton,
                           style: BccmTextStyles.button1.copyWith(color: BccmColors.onTint),

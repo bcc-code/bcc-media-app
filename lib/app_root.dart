@@ -1,7 +1,13 @@
+import 'dart:math';
+
+import 'package:app_links/app_links.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:bccm_player/bccm_player.dart';
 import 'package:brunstadtv_app/graphql/client.dart';
 import 'package:brunstadtv_app/graphql/queries/me.graphql.dart';
+import 'package:brunstadtv_app/providers/app_config.dart';
+import 'package:brunstadtv_app/router/analytics_observer.dart';
+import 'package:brunstadtv_app/screens/auto_login.dart';
 import 'package:brunstadtv_app/theme/bccm_theme.dart';
 import 'package:brunstadtv_app/theme/bccm_typography.dart';
 import 'package:brunstadtv_app/helpers/navigation/navigation_utils.dart';
@@ -20,11 +26,10 @@ import 'models/auth_state.dart';
 import 'providers/auth_state/auth_state.dart';
 
 class AppRoot extends ConsumerStatefulWidget {
-  const AppRoot({super.key, required this.navigatorKey, required this.appRouter, required this.routerDelegate});
+  const AppRoot({super.key, required this.navigatorKey, required this.appRouter});
 
   final GlobalKey<NavigatorState> navigatorKey;
   final AppRouter appRouter;
-  final AutoRouterDelegate routerDelegate;
 
   @override
   ConsumerState<ConsumerStatefulWidget> createState() => _AppRootState();
@@ -32,6 +37,8 @@ class AppRoot extends ConsumerStatefulWidget {
 
 class _AppRootState extends ConsumerState<AppRoot> {
   ProviderSubscription? authSubscription;
+  Future? authFuture;
+
   @override
   void initState() {
     super.initState();
@@ -49,6 +56,7 @@ class _AppRootState extends ConsumerState<AppRoot> {
     final gqlClient = ref.read(gqlClientProvider);
     final analytics = ref.read(analyticsProvider);
     final settingsNotifier = ref.read(settingsProvider.notifier);
+    loadAuth();
     authSubscription?.close();
     authSubscription = ref.listenManual<AuthState>(authStateProvider, (previous, next) {
       debugPrint('authSubscription');
@@ -76,6 +84,53 @@ class _AppRootState extends ConsumerState<AppRoot> {
     super.dispose();
   }
 
+  void loadAuth() async {
+    final deepLinkUri = await AppLinks().getInitialAppLink();
+    setState(() {
+      authFuture = ref.read(authStateProvider.notifier).load();
+    });
+    authFuture!.then((_) async {
+      WidgetsBinding.instance.scheduleFrameCallback((d) {
+        debugPrint('navigate(deepLinkUri: $deepLinkUri)');
+        navigateAfterInitialAuth(deepLinkUri: deepLinkUri);
+        Future.delayed(const Duration(milliseconds: 500), () {
+          handleInitialNotification();
+        });
+      });
+    });
+  }
+
+  void navigateAfterInitialAuth({Uri? deepLinkUri}) {
+    final router = widget.appRouter;
+    if (!mounted) return;
+    if (deepLinkUri != null) {
+      router.replaceAll([const TabsRootScreenRoute()]);
+      router.navigateNamedFromRoot(
+        uriStringWithoutHost(deepLinkUri),
+        onFailure: (f) {
+          router.navigateNamedFromRoot('/');
+        },
+      );
+      return;
+    }
+    final hasCredentials = ref.read(authStateProvider).auth0AccessToken != null;
+    debugPrint('hasCredentials $hasCredentials');
+    if (!hasCredentials) {
+      router.replaceAll([LoginScreenRoute()]);
+    } else {
+      router.replaceAll([const TabsRootScreenRoute()]);
+    }
+    print('navigateAfterInitialAuth DONE');
+  }
+
+  Future handleInitialNotification() async {
+    var initialMessage = await FirebaseMessaging.instance.getInitialMessage();
+    if (initialMessage != null) {
+      debugPrint(initialMessage.data.toString());
+      _handleMessageOpenedFromBackground(initialMessage);
+    }
+  }
+
   void _handleMessage(RemoteMessage message, {bool? openedFromBackground}) {
     debugPrint('message: ${message.data}');
     var navigatorContext = widget.navigatorKey.currentState?.context;
@@ -95,7 +150,11 @@ class _AppRootState extends ConsumerState<AppRoot> {
       //context.router.navigate();
       if (message.data.containsKey('deep_link') && message.data['deep_link'] is String) {
         String path = message.data['deep_link'];
-        navigatorContext?.router.navigateNamedFromRoot(path);
+        debugPrint('navigating to deep_link from notification: $path');
+        debugPrint('navigatorContext: $navigatorContext');
+        WidgetsBinding.instance.scheduleFrameCallback((d) {
+          widget.appRouter.navigateNamedFromRoot(path);
+        });
       }
     } else if (message.data['action'] == 'clear_cache') {
       // TODO: implement cache clearing
@@ -117,13 +176,6 @@ class _AppRootState extends ConsumerState<AppRoot> {
       }
     });
 
-    var initialMessage = await FirebaseMessaging.instance.getInitialMessage();
-
-    if (initialMessage != null) {
-      debugPrint(initialMessage.data.toString());
-      _handleMessageOpenedFromBackground(initialMessage);
-    }
-
     FirebaseMessaging.onMessageOpenedApp.listen((message) => _handleMessageOpenedFromBackground(message));
   }
 
@@ -143,12 +195,31 @@ class _AppRootState extends ConsumerState<AppRoot> {
           themeMode: ThemeMode.dark,
           debugShowCheckedModeBanner: false,
           title: 'BCC Media',
-          routerDelegate: widget.routerDelegate,
+          routerDelegate: widget.appRouter.delegate(
+            initialRoutes: [LoginScreenRoute()],
+            navigatorObservers: () => [AnalyticsNavigatorObserver()],
+          ),
           routeInformationParser: widget.appRouter.defaultRouteParser(includePrefixMatches: true),
           builder: (BuildContext context, Widget? child) {
             return MediaQuery(
               data: MediaQuery.of(context).copyWith(textScaleFactor: 1.0),
-              child: !kDebugMode ? child! : OnScreenRulerWidget(gridColor: Colors.white60.withOpacity(0.1), child: child!),
+              child: AuthLoadingScreen(
+                authFuture: authFuture,
+                onRetry: () {
+                  reloadAppConfig(ref);
+                  loadAuth();
+                },
+                onLogout: () async {
+                  await ref.read(authStateProvider.notifier).logout();
+                  loadAuth();
+                },
+                child: !kDebugMode
+                    ? child!
+                    : OnScreenRulerWidget(
+                        gridColor: Colors.white60.withOpacity(0.1),
+                        child: child!,
+                      ),
+              ),
             );
           }),
     );
