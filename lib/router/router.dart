@@ -22,7 +22,6 @@ import '../screens/achievement_group.dart';
 import '../screens/achievements.dart';
 import '../screens/episode.dart';
 import '../screens/page.dart';
-import 'special_routes_guard.dart';
 import '../screens/tabs_root.dart';
 
 const _episodeScreenRoute = CustomRoute<void>(
@@ -44,7 +43,8 @@ const _pageScreenRoute = CustomRoute<void>(
 
 @MaterialAutoRouter(
   routes: [
-    MaterialRoute<void>(page: LoginScreen, path: 'login', meta: {RouteMetaConstants.analyticsName: 'login'}),
+    AutoRoute<void>(page: AutoLoginScreen, path: '/auto-login'),
+    MaterialRoute<void>(page: LoginScreen, path: '/login', meta: {RouteMetaConstants.analyticsName: 'login'}),
     CustomRoute<void>(
         opaque: false,
         durationInMilliseconds: 400,
@@ -151,29 +151,8 @@ const _pageScreenRoute = CustomRoute<void>(
         }),
     CustomRoute<void>(
       page: TabsRootScreen,
-      guards: [SpecialRoutesGuard],
       path: '/',
       children: [
-        AutoRoute<void>(
-          page: EmptyRouterPage,
-          name: 'RedirectRoute',
-          path: 'r/:code',
-        ),
-        AutoRoute<void>(
-          page: EmptyRouterPage,
-          name: 'TvLoginRoute',
-          path: 'tvlogin/*',
-        ),
-        AutoRoute<void>(
-          page: EmptyRouterPage,
-          name: 'LegacyEpisodeRoute',
-          path: 'series/:legacyEpisodeId',
-        ),
-        AutoRoute<void>(
-          page: EmptyRouterPage,
-          name: 'LegacyProgramRoute',
-          path: 'program/:legacyProgramId',
-        ),
         MaterialRoute<void>(
             page: LiveScreen,
             path: 'live',

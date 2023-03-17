@@ -1,16 +1,12 @@
 import 'dart:async';
 
 import 'package:alice/alice.dart';
-import 'package:auto_route/auto_route.dart';
+import 'package:brunstadtv_app/providers/notification_service.dart';
 import 'package:brunstadtv_app/providers/router_provider.dart';
 import 'package:brunstadtv_app/providers/deeplink_service.dart';
-import 'package:brunstadtv_app/helpers/navigation/navigation_utils.dart';
 import 'package:brunstadtv_app/providers/app_config.dart';
 import 'package:brunstadtv_app/providers/analytics.dart';
-import 'package:brunstadtv_app/providers/auth_state/auth_state.dart';
 import 'package:brunstadtv_app/providers/settings.dart';
-import 'package:brunstadtv_app/router/analytics_observer.dart';
-import 'package:brunstadtv_app/router/special_routes_guard.dart';
 import 'package:brunstadtv_app/helpers/firebase.dart';
 import 'package:brunstadtv_app/theme/bccm_theme.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -21,10 +17,8 @@ import 'package:brunstadtv_app/providers/playback_service.dart';
 import 'package:brunstadtv_app/router/router.gr.dart';
 import 'package:intl/intl.dart';
 import 'package:intl/intl_standalone.dart' if (dart.library.html) 'package:intl/intl_browser.dart';
-import 'package:app_links/app_links.dart';
 
 import 'app_root.dart';
-import 'helpers/utils.dart';
 
 final Alice alice = Alice(showNotification: true);
 final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
@@ -40,7 +34,7 @@ Future<void> $main({required FirebaseOptions? firebaseOptions, List<Override>? p
     await initFirebase(firebaseOptions);
   }
 
-  final appRouter = AppRouter(specialRoutesGuard: SpecialRoutesGuard(), navigatorKey: navigatorKey);
+  final appRouter = AppRouter(navigatorKey);
   final providerContainer = await initProviderContainer([
     rootRouterProvider.overrideWithValue(appRouter),
     if (providerOverrides != null) ...providerOverrides,
@@ -93,6 +87,7 @@ Future<ProviderContainer> initProviderContainer(List<Override> overrides) async 
   providerContainer.read(appConfigProvider);
   providerContainer.read(analyticsProvider);
   providerContainer.read(deepLinkServiceProvider);
+  providerContainer.read(notificationServiceProvider);
   providerContainer.read(playbackServiceProvider);
   return providerContainer;
 }

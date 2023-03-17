@@ -2,13 +2,14 @@ import 'dart:async';
 
 import 'package:app_links/app_links.dart';
 import 'package:auto_route/auto_route.dart';
-import 'package:brunstadtv_app/api/brunstadtv.dart';
+import 'package:brunstadtv_app/helpers/event_bus.dart';
 import 'package:brunstadtv_app/providers/app_config.dart';
 import 'package:brunstadtv_app/providers/auth_state/auth_state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../components/loading_indicator.dart';
+import '../models/events/app_ready.dart';
 import '../theme/bccm_colors.dart';
 import '../theme/bccm_typography.dart';
 import '../helpers/navigation/navigation_utils.dart';
@@ -16,36 +17,65 @@ import '../helpers/utils.dart';
 import '../l10n/app_localizations.dart';
 import '../router/router.gr.dart';
 
-class AuthLoadingScreen extends ConsumerStatefulWidget {
-  const AuthLoadingScreen({
-    super.key,
-    required this.child,
-    required this.authFuture,
-    required this.onRetry,
-    required this.onLogout,
-  });
-  final Widget child;
-  final Future<void>? authFuture;
-  final void Function() onRetry;
-  final void Function() onLogout;
+class AutoLoginScreen extends ConsumerStatefulWidget {
+  const AutoLoginScreen({super.key});
 
   @override
   ConsumerState<ConsumerStatefulWidget> createState() => _AutoLoginScreeenState();
 }
 
-class _AutoLoginScreeenState extends ConsumerState<AuthLoadingScreen> {
+class _AutoLoginScreeenState extends ConsumerState<AutoLoginScreen> {
+  Future<void>? authFuture;
+
   @override
   void initState() {
     super.initState();
   }
 
   @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    load();
+  }
+
+  void load() async {
+    final deepLinkUri = await AppLinks().getInitialAppLink();
+    authFuture = ref.read(authStateProvider.notifier).load();
+    authFuture!.then((_) {
+      debugPrint('navigate(deepLinkUri: $deepLinkUri)');
+      navigate(deepLinkUri: deepLinkUri);
+      globalEventBus.fire(AppReadyEvent());
+    });
+  }
+
+  void navigate({Uri? deepLinkUri}) {
+    if (!mounted) return;
+    final router = context.router;
+    if (deepLinkUri != null) {
+      router.replaceAll([const TabsRootScreenRoute()]);
+      router.navigateNamedFromRoot(
+        uriStringWithoutHost(deepLinkUri),
+        onFailure: (f) {
+          router.navigateNamedFromRoot('/');
+        },
+      );
+      return;
+    }
+    final hasCredentials = ref.read(authStateProvider).auth0AccessToken != null;
+    if (!hasCredentials) {
+      router.replaceAll([LoginScreenRoute()]);
+    } else {
+      router.replaceAll([const TabsRootScreenRoute()]);
+    }
+  }
+
+  @override
   Widget build(BuildContext context) {
     return simpleFutureBuilder<void>(
-      future: widget.authFuture,
+      future: authFuture,
       error: (e) => error(context),
       noData: () => loading(context),
-      ready: (_) => widget.child,
+      ready: (_) => loading(context),
       loading: () => loading(context),
     );
   }
@@ -63,7 +93,9 @@ class _AutoLoginScreeenState extends ConsumerState<AuthLoadingScreen> {
                       alignment: Alignment.centerLeft,
                       child: GestureDetector(
                         behavior: HitTestBehavior.opaque,
-                        onTap: widget.onLogout,
+                        onTap: () {
+                          ref.read(authStateProvider.notifier).logout();
+                        },
                         child: SizedBox(
                           height: 24,
                           width: 56,
@@ -104,7 +136,10 @@ class _AutoLoginScreeenState extends ConsumerState<AuthLoadingScreen> {
                           ),
                           minimumSize: const Size.fromHeight(50),
                         ),
-                        onPressed: widget.onRetry,
+                        onPressed: (() {
+                          reloadAppConfig(ref);
+                          load();
+                        }),
                         child: Text(
                           S.of(context).tryAgainButton,
                           style: BccmTextStyles.button1.copyWith(color: BccmColors.onTint),

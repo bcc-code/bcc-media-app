@@ -25,7 +25,6 @@ Future initFirebase(FirebaseOptions firebaseOptions) async {
     };
   } else {
     FlutterError.onError = (errorDetails) {
-      FirebaseCrashlytics.instance.recordFlutterError(errorDetails);
       debugPrint(errorDetails.toStringShort());
       debugPrint(errorDetails.toString());
     };
