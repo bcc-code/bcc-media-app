@@ -6,6 +6,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:restart_app/restart_app.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import '../providers/notification_service.dart';
 import '../theme/bccm_typography.dart';
 import '../helpers/constants.dart';
 import 'option_list.dart';
@@ -48,6 +49,7 @@ class DeveloperOptions extends ConsumerWidget {
   void showTechnicalDetails(BuildContext context, WidgetRef ref) async {
     var auth = ref.read(authStateProvider);
     var settings = ref.read(settingsProvider);
+    var notificationService = ref.read(notificationServiceProvider);
     showDialog(
       useRootNavigator: true,
       context: context,
@@ -68,7 +70,7 @@ class DeveloperOptions extends ConsumerWidget {
                   const Text('accessToken: '),
                   TextField(controller: TextEditingController()..text = auth.auth0AccessToken.toString()),
                   const Text('fcmToken: '),
-                  TextField(controller: TextEditingController()..text = auth.auth0AccessToken.toString()),
+                  TextField(controller: TextEditingController()..text = notificationService.fcmToken.toString()),
                   const SizedBox(height: 8),
                   Text('auth.expiresAt: ${auth.expiresAt}'),
                   Text('session_id: ${settings.sessionId}'),
