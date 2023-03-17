@@ -1,0 +1,46 @@
+query getPrompts {
+    prompts {
+        ...Prompt
+    }
+}
+
+fragment Prompt on Prompt {
+    id
+    title
+    from
+    to
+    ... on SurveyPrompt {
+        survey {
+            ...Survey
+        }
+    }
+}
+
+fragment Survey on Survey {
+  id
+  title
+  description
+  questions {
+    items {
+      ...SurveyQuestion
+    }
+  }
+}
+
+fragment SurveyQuestion on SurveyQuestion {
+  id
+  title
+  description
+  ... on SurveyRatingQuestion {
+    __typename
+  }
+  ... on SurveyTextQuestion {
+    __typename
+  }
+}
+
+mutation answerSurveyQuestion($id: UUID!, $answer: String!) {
+  answerSurveyQuestion(id: $id, answer: $answer) {
+    id
+  }
+}
