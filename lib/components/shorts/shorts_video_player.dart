@@ -26,7 +26,7 @@ class ShortsVideoStreamPlayer extends StatefulWidget {
 class _ShortsVideoStreamPlayerState extends State<ShortsVideoStreamPlayer> {
   VideoPlayerController? _controller;
   Future<bool>? loadFuture;
-  bool isVideoPlaying = false;
+  late bool isVideoPlaying;
   bool isVideoMuted = false;
   double opacityLevel = 1.0;
 
@@ -49,9 +49,9 @@ class _ShortsVideoStreamPlayerState extends State<ShortsVideoStreamPlayer> {
     });
 
     await _controller?.initialize();
-    await _controller?.play();
+    // await _controller?.play();
     setState(() {
-      isVideoPlaying = true;
+      isVideoPlaying = _controller!.value.isPlaying;
     });
     await _controller?.setLooping(true);
     await _controller?.seekTo(widget.duration!);
