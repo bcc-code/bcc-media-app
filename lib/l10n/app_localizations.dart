@@ -351,6 +351,30 @@ abstract class S {
   /// **'Cancel'**
   String get cancel;
 
+  /// Title text for cancel confirmation dialog.
+  ///
+  /// In en, this message translates to:
+  /// **'Are you sure you want to cancel?'**
+  String get cancelConfirmation;
+
+  /// Description for cancel confirmation dialog.
+  ///
+  /// In en, this message translates to:
+  /// **'Any unsaved changes will be lost.'**
+  String get cancelConfirmationDescription;
+
+  /// Text for back button.
+  ///
+  /// In en, this message translates to:
+  /// **'Go back'**
+  String get goBack;
+
+  /// Confirm cancel.
+  ///
+  /// In en, this message translates to:
+  /// **'Yes, Cancel'**
+  String get yesCancel;
+
   /// Title indiciating what's next on the livestream.
   ///
   /// In en, this message translates to:
@@ -777,10 +801,10 @@ abstract class S {
   /// **'Something went wrong. Check your internet connection and try again.'**
   String get sendFailDescription;
 
-  /// We appreciate your feedback.
+  /// General message when sending is successful
   ///
   /// In en, this message translates to:
-  /// **'Something went wrong. Check your internet connection and try again.'**
+  /// **'We appreciate your feedback.'**
   String get sendSuccessDescription;
 
   /// First category in tv guide

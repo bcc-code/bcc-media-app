@@ -151,6 +151,22 @@
   "@cancel": {
     "description": "General cancel action button"
   },
+  "cancelConfirmation": "Are you sure you want to cancel?",
+  "@cancelConfirmation": {
+    "description": "Title text for cancel confirmation dialog."
+  },
+  "cancelConfirmationDescription": "Any unsaved changes will be lost.",
+  "@cancelConfirmationDescription": {
+    "description": "Description for cancel confirmation dialog."
+  },
+  "goBack": "Go back",
+  "@goBack": {
+    "description": "Text for back button."
+  },
+  "yesCancel": "Yes, Cancel",
+  "@yesCancel": {
+    "description": "Confirm cancel."
+  },
   "upNext": "Up next",
   "@upNext": {
     "description": "Title indiciating what's next on the livestream."

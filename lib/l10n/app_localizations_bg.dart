@@ -119,6 +119,18 @@ class SBg extends S {
   String get cancel => 'Cancel';
 
   @override
+  String get cancelConfirmation => 'Are you sure you want to cancel?';
+
+  @override
+  String get cancelConfirmationDescription => 'Any unsaved changes will be lost.';
+
+  @override
+  String get goBack => 'Go back';
+
+  @override
+  String get yesCancel => 'Yes, Cancel';
+
+  @override
   String get upNext => 'Up next';
 
   @override
@@ -336,7 +348,7 @@ class SBg extends S {
   String get sendFailDescription => 'Something went wrong. Check your internet connection and try again.';
 
   @override
-  String get sendSuccessDescription => 'Something went wrong. Check your internet connection and try again.';
+  String get sendSuccessDescription => 'We appreciate your feedback.';
 
   @override
   String get today => 'Today';

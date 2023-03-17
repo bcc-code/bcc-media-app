@@ -119,6 +119,18 @@ class SDa extends S {
   String get cancel => 'Annuller';
 
   @override
+  String get cancelConfirmation => 'Are you sure you want to cancel?';
+
+  @override
+  String get cancelConfirmationDescription => 'Any unsaved changes will be lost.';
+
+  @override
+  String get goBack => 'Go back';
+
+  @override
+  String get yesCancel => 'Yes, Cancel';
+
+  @override
   String get upNext => 'Næste';
 
   @override
@@ -336,7 +348,7 @@ class SDa extends S {
   String get sendFailDescription => 'Kunne gik galt. Tjek din internetforbindelse og prøv igen.';
 
   @override
-  String get sendSuccessDescription => 'Something went wrong. Check your internet connection and try again.';
+  String get sendSuccessDescription => 'We appreciate your feedback.';
 
   @override
   String get today => 'I dag';

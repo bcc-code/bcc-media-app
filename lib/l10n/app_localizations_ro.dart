@@ -119,6 +119,18 @@ class SRo extends S {
   String get cancel => 'Anulare';
 
   @override
+  String get cancelConfirmation => 'Are you sure you want to cancel?';
+
+  @override
+  String get cancelConfirmationDescription => 'Any unsaved changes will be lost.';
+
+  @override
+  String get goBack => 'Go back';
+
+  @override
+  String get yesCancel => 'Yes, Cancel';
+
+  @override
   String get upNext => 'Urmează';
 
   @override
@@ -336,7 +348,7 @@ class SRo extends S {
   String get sendFailDescription => 'Ceva n-a mers bine. Verifică conexiunea la internet și încearcă din nou.';
 
   @override
-  String get sendSuccessDescription => 'Something went wrong. Check your internet connection and try again.';
+  String get sendSuccessDescription => 'We appreciate your feedback.';
 
   @override
   String get today => 'Astăzi';
