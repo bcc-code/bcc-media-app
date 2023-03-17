@@ -27,7 +27,7 @@ class _TabsRootScreenState extends ConsumerState<TabsRootScreen> with AutoRouteA
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-    ref.read(notificationServiceProvider).requestPermissionAndSetup();
+    ref.watch(notificationServiceProvider).requestPermissionAndSetup();
   }
 
   @override
@@ -40,10 +40,6 @@ class _TabsRootScreenState extends ConsumerState<TabsRootScreen> with AutoRouteA
     final currentRouteMatch = router.currentSegments.lastOrNull;
     if (currentRouteMatch == null) {
       debugPrint('router.currentSegments empty');
-      debugPrint(router.currentPath.toString());
-      debugPrint(router.currentSegments.toString());
-      debugPrint(router.currentUrl.toString());
-      debugPrint(router.currentChild.toString());
       return true;
     }
     final StateNotifierProvider<PlayerStateNotifier, PlayerState?>? playerProvider;
