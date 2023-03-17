@@ -18,7 +18,7 @@ import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
 import '../components/bottom_sheet_mini_player.dart';
 import '../components/custom_tab_bar.dart';
-import '../components/surveys/snackbars_survey.dart';
+import '../components/prompts/prompts.dart';
 
 class TabsRootScreen extends ConsumerStatefulWidget {
   static const route = '/';
@@ -158,7 +158,7 @@ class _TabsRootScreenState extends ConsumerState<TabsRootScreen> with AutoRouteA
               bottomSheet: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  const SnackbarsSurvey(),
+                  const Prompts(),
                   BottomSheetMiniPlayer(hidden: _shouldHideMiniPlayer(context)),
                 ],
               ),
