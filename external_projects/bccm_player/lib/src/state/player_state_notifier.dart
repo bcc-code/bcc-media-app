@@ -8,8 +8,9 @@ part 'player_state_notifier.freezed.dart';
 
 class PlayerStateNotifier extends StateNotifier<PlayerState> {
   final void Function()? onDispose;
+  final bool keepAlive;
 
-  PlayerStateNotifier({PlayerState? player, this.onDispose}) : super(player ?? const PlayerState(playerId: 'unknown')) {
+  PlayerStateNotifier({PlayerState? player, this.onDispose, required this.keepAlive}) : super(player ?? const PlayerState(playerId: 'unknown')) {
     Timer.periodic(const Duration(seconds: 1), (Timer t) {
       if (!mounted) return t.cancel();
       if (state.playbackPositionMs != null && state.playbackState == PlaybackState.playing) {
@@ -19,9 +20,13 @@ class PlayerStateNotifier extends StateNotifier<PlayerState> {
   }
 
   @override
-  void dispose() {
-    onDispose?.call();
-    super.dispose();
+  // ignore: must_call_super
+  void dispose({bool? force}) {
+    // prevents riverpods StateNotifierProvider from disposing it
+    if (!keepAlive || force == true) {
+      onDispose?.call();
+      super.dispose();
+    }
   }
 
   void setMediaItem(MediaItem? mediaItem) {

@@ -7,6 +7,10 @@ export 'package:bccm_player/src/plugins/riverpod/providers/player_provider.dart'
 extension RiverpodX on BccmPlayerInterface {
   void addRiverpod(Ref ref) {
     // Add listener to update player states
-    addPlaybackListener(RiverpodPlaybackListener(ref: ref));
+    final listener = RiverpodPlaybackListener(ref: ref);
+    addPlaybackListener(listener);
+    ref.onDispose(() {
+      removePlaybackListener(listener);
+    });
   }
 }

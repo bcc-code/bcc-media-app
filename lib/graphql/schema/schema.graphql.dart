@@ -247,6 +247,7 @@ const possibleTypesMap = <String, Set<String>>{
     'SurveyQuestionPagination',
     'SeasonPagination',
     'EpisodePagination',
+    'UserCollectionEntryPagination',
     'CollectionItemPagination',
     'QuestionPagination',
     'FAQCategoryPagination',
@@ -266,6 +267,10 @@ const possibleTypesMap = <String, Set<String>>{
     'Season',
     'ContextCollection',
   },
+  'UserCollectionEntryItem': {
+    'Show',
+    'Episode',
+  },
   'CollectionItem': {
     'ShowItem',
     'SeasonItem',
@@ -283,6 +288,7 @@ const possibleTypesMap = <String, Set<String>>{
     'SeasonSearchItem',
     'ShowSearchItem',
   },
+  'Prompt': {'SurveyPrompt'},
   'Task': {
     'AlternativesTask',
     'TextTask',

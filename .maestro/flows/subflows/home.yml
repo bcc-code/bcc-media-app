@@ -1,0 +1,6 @@
+appId: tv.brunstad.app
+---
+- runFlow:
+    when:
+      true: ${PLATFORM == 'ios'}
+    file: home/home_ios.yml

@@ -21,8 +21,18 @@ type MutationRoot {
 
     answerSurveyQuestion(id: UUID!, answer: String!): AnswerSurveyQuestionResult!
     updateSurveyQuestionAnswer(key: String!, answer: String!): AnswerSurveyQuestionResult!
+
+    addEpisodeToMyList(episodeId: ID!): AddToCollectionResult!
+    addShowToMyList(showId: ID!): AddToCollectionResult!
+
+    removeEntryFromMyList(entryId: UUID!): UserCollection!
 }
 
 type AnswerSurveyQuestionResult {
     id: String!
+}
+
+type AddToCollectionResult {
+    entryId: UUID!
+    collection: UserCollection! @goField(forceResolver: true)
 }

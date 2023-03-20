@@ -25,7 +25,6 @@ import '../screens/achievements.dart';
 import '../screens/episode.dart';
 import '../screens/page.dart';
 import '../screens/onboarding/signup.dart';
-import 'special_routes_guard.dart';
 import '../screens/tabs_root.dart';
 
 const _episodeScreenRoute = CustomRoute<void>(
@@ -53,37 +52,10 @@ Route<T> modalSheetBuilder<T>(BuildContext context, Widget child, CustomPage<T> 
   );
 }
 
-const _specialRoutes = AutoRoute(
-  page: EmptyRouterPage,
-  path: '/',
-  guards: [SpecialRoutesGuard],
-  children: [
-    AutoRoute<void>(
-      page: EmptyRouterPage,
-      name: 'RedirectRoute',
-      path: 'r/:code',
-    ),
-    AutoRoute<void>(
-      page: EmptyRouterPage,
-      name: 'TvLoginRoute',
-      path: 'tvlogin/*',
-    ),
-    AutoRoute<void>(
-      page: EmptyRouterPage,
-      name: 'LegacyEpisodeRoute',
-      path: 'series/:legacyEpisodeId',
-    ),
-    AutoRoute<void>(
-      page: EmptyRouterPage,
-      name: 'LegacyProgramRoute',
-      path: 'program/:legacyProgramId',
-    ),
-  ],
-);
-
 @MaterialAutoRouter(
   routes: [
-    MaterialRoute<void>(page: OnboardingScreen, path: 'login', meta: {RouteMetaConstants.analyticsName: 'login'}),
+    AutoRoute<void>(page: AutoLoginScreen, path: '/auto-login'),
+    MaterialRoute<void>(page: OnboardingScreen, path: '/login', meta: {RouteMetaConstants.analyticsName: 'login'}),
     CustomRoute<void>(
       customRouteBuilder: modalSheetBuilder,
       page: SignupScreen,
@@ -171,7 +143,6 @@ const _specialRoutes = AutoRoute(
       transitionsBuilder: CustomTransitionsBuilders.slideLeft,
       meta: {RouteMetaConstants.analyticsName: 'episode'},
     ),
-    CustomRoute(page: AutoLoginScreeen, path: 'auto-login'),
     CustomRoute<void>(
         page: StudyScreen,
         path: 'study-lesson',
@@ -198,7 +169,6 @@ const _specialRoutes = AutoRoute(
     CustomRoute<void>(
       page: TabsRootScreen,
       path: '/',
-      guards: [],
       children: [
         MaterialRoute<void>(
             page: LiveScreen,
@@ -243,7 +213,6 @@ const _specialRoutes = AutoRoute(
         ]),
       ],
     ),
-    _specialRoutes,
   ],
 )
 class $AppRouter {}

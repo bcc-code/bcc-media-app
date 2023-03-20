@@ -12,50 +12,51 @@
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:auto_route/auto_route.dart' as _i23;
-import 'package:auto_route/empty_router_widgets.dart' as _i18;
+import 'package:auto_route/empty_router_widgets.dart' as _i19;
 import 'package:flutter/material.dart' as _i24;
 
-import '../helpers/navigation/custom_transitions.dart' as _i27;
+import '../helpers/navigation/custom_transitions.dart' as _i26;
 import '../screens/achievement_group.dart' as _i16;
 import '../screens/achievements.dart' as _i15;
-import '../screens/auto_login.dart' as _i13;
+import '../screens/auto_login.dart' as _i1;
 import '../screens/calendar/calendar.dart' as _i20;
-import '../screens/episode.dart' as _i12;
-import '../screens/home.dart' as _i11;
-import '../screens/live.dart' as _i19;
-import '../screens/onboarding/onboarding.dart' as _i1;
-import '../screens/onboarding/signup.dart' as _i2;
+import '../screens/episode.dart' as _i13;
+import '../screens/home.dart' as _i12;
+import '../screens/live.dart' as _i18;
+import '../screens/onboarding/onboarding.dart' as _i2;
+import '../screens/onboarding/signup.dart' as _i3;
 import '../screens/page.dart' as _i22;
-import '../screens/profile/about.dart' as _i9;
-import '../screens/profile/app_language.dart' as _i4;
-import '../screens/profile/audio_language.dart' as _i5;
-import '../screens/profile/contact_support.dart' as _i8;
-import '../screens/profile/faq.dart' as _i10;
-import '../screens/profile/profile.dart' as _i3;
-import '../screens/profile/subtitle_language.dart' as _i6;
-import '../screens/profile/video_quality.dart' as _i7;
+import '../screens/profile/about.dart' as _i10;
+import '../screens/profile/app_language.dart' as _i5;
+import '../screens/profile/audio_language.dart' as _i6;
+import '../screens/profile/contact_support.dart' as _i9;
+import '../screens/profile/faq.dart' as _i11;
+import '../screens/profile/profile.dart' as _i4;
+import '../screens/profile/subtitle_language.dart' as _i7;
+import '../screens/profile/video_quality.dart' as _i8;
 import '../screens/search/search.dart' as _i21;
 import '../screens/study.dart' as _i14;
 import '../screens/tabs_root.dart' as _i17;
-import 'router.dart' as _i26;
-import 'special_routes_guard.dart' as _i25;
+import 'router.dart' as _i25;
 
 class AppRouter extends _i23.RootStackRouter {
-  AppRouter({
-    _i24.GlobalKey<_i24.NavigatorState>? navigatorKey,
-    required this.specialRoutesGuard,
-  }) : super(navigatorKey);
-
-  final _i25.SpecialRoutesGuard specialRoutesGuard;
+  AppRouter([_i24.GlobalKey<_i24.NavigatorState>? navigatorKey])
+      : super(navigatorKey);
 
   @override
   final Map<String, _i23.PageFactory> pagesMap = {
+    AutoLoginScreenRoute.name: (routeData) {
+      return _i23.MaterialPageX<void>(
+        routeData: routeData,
+        child: const _i1.AutoLoginScreen(),
+      );
+    },
     OnboardingScreenRoute.name: (routeData) {
       final args = routeData.argsAs<OnboardingScreenRouteArgs>(
           orElse: () => const OnboardingScreenRouteArgs());
       return _i23.MaterialPageX<void>(
         routeData: routeData,
-        child: _i1.OnboardingScreen(
+        child: _i2.OnboardingScreen(
           key: args.key,
           loginError: args.loginError,
           onResult: args.onResult,
@@ -65,8 +66,8 @@ class AppRouter extends _i23.RootStackRouter {
     SignupScreenRoute.name: (routeData) {
       return _i23.CustomPage<void>(
         routeData: routeData,
-        child: const _i2.SignupScreen(),
-        customRouteBuilder: _i26.modalSheetBuilder,
+        child: const _i3.SignupScreen(),
+        customRouteBuilder: _i25.modalSheetBuilder,
         opaque: true,
         barrierDismissible: false,
       );
@@ -74,8 +75,8 @@ class AppRouter extends _i23.RootStackRouter {
     ProfileRoute.name: (routeData) {
       return _i23.CustomPage<void>(
         routeData: routeData,
-        child: const _i3.Profile(),
-        transitionsBuilder: _i27.CustomTransitionsBuilders.slideUp,
+        child: const _i4.Profile(),
+        transitionsBuilder: _i26.CustomTransitionsBuilders.slideUp,
         durationInMilliseconds: 400,
         reverseDurationInMilliseconds: 600,
         opaque: false,
@@ -85,8 +86,8 @@ class AppRouter extends _i23.RootStackRouter {
     AppLanguageScreenRoute.name: (routeData) {
       return _i23.CustomPage<void>(
         routeData: routeData,
-        child: const _i4.AppLanguageScreen(),
-        transitionsBuilder: _i27.CustomTransitionsBuilders.slideUp,
+        child: const _i5.AppLanguageScreen(),
+        transitionsBuilder: _i26.CustomTransitionsBuilders.slideUp,
         durationInMilliseconds: 400,
         reverseDurationInMilliseconds: 600,
         opaque: true,
@@ -96,8 +97,8 @@ class AppRouter extends _i23.RootStackRouter {
     AppAudioLanguageRoute.name: (routeData) {
       return _i23.CustomPage<void>(
         routeData: routeData,
-        child: const _i5.AppAudioLanguage(),
-        transitionsBuilder: _i27.CustomTransitionsBuilders.slideUp,
+        child: const _i6.AppAudioLanguage(),
+        transitionsBuilder: _i26.CustomTransitionsBuilders.slideUp,
         durationInMilliseconds: 400,
         reverseDurationInMilliseconds: 600,
         opaque: true,
@@ -107,8 +108,8 @@ class AppRouter extends _i23.RootStackRouter {
     AppSubtitleLanguageRoute.name: (routeData) {
       return _i23.CustomPage<void>(
         routeData: routeData,
-        child: const _i6.AppSubtitleLanguage(),
-        transitionsBuilder: _i27.CustomTransitionsBuilders.slideUp,
+        child: const _i7.AppSubtitleLanguage(),
+        transitionsBuilder: _i26.CustomTransitionsBuilders.slideUp,
         durationInMilliseconds: 400,
         reverseDurationInMilliseconds: 600,
         opaque: true,
@@ -118,8 +119,8 @@ class AppRouter extends _i23.RootStackRouter {
     VideoQualityRoute.name: (routeData) {
       return _i23.CustomPage<void>(
         routeData: routeData,
-        child: const _i7.VideoQuality(),
-        transitionsBuilder: _i27.CustomTransitionsBuilders.slideUp,
+        child: const _i8.VideoQuality(),
+        transitionsBuilder: _i26.CustomTransitionsBuilders.slideUp,
         durationInMilliseconds: 400,
         reverseDurationInMilliseconds: 600,
         opaque: true,
@@ -129,8 +130,8 @@ class AppRouter extends _i23.RootStackRouter {
     ContactSupportRoute.name: (routeData) {
       return _i23.CustomPage<void>(
         routeData: routeData,
-        child: const _i8.ContactSupport(),
-        transitionsBuilder: _i27.CustomTransitionsBuilders.slideUp,
+        child: const _i9.ContactSupport(),
+        transitionsBuilder: _i26.CustomTransitionsBuilders.slideUp,
         durationInMilliseconds: 400,
         reverseDurationInMilliseconds: 600,
         opaque: true,
@@ -140,8 +141,8 @@ class AppRouter extends _i23.RootStackRouter {
     AboutScreenRoute.name: (routeData) {
       return _i23.CustomPage<void>(
         routeData: routeData,
-        child: const _i9.AboutScreen(),
-        transitionsBuilder: _i27.CustomTransitionsBuilders.slideUp,
+        child: const _i10.AboutScreen(),
+        transitionsBuilder: _i26.CustomTransitionsBuilders.slideUp,
         durationInMilliseconds: 400,
         reverseDurationInMilliseconds: 600,
         opaque: true,
@@ -151,8 +152,8 @@ class AppRouter extends _i23.RootStackRouter {
     FAQRoute.name: (routeData) {
       return _i23.CustomPage<void>(
         routeData: routeData,
-        child: const _i10.FAQ(),
-        transitionsBuilder: _i27.CustomTransitionsBuilders.slideLeft,
+        child: const _i11.FAQ(),
+        transitionsBuilder: _i26.CustomTransitionsBuilders.slideLeft,
         durationInMilliseconds: 400,
         reverseDurationInMilliseconds: 600,
         opaque: true,
@@ -164,7 +165,7 @@ class AppRouter extends _i23.RootStackRouter {
           orElse: () => const PublicHomeRouteArgs());
       return _i23.CustomPage<void>(
         routeData: routeData,
-        child: _i11.HomeScreen(key: args.key),
+        child: _i12.HomeScreen(key: args.key),
         maintainState: false,
         durationInMilliseconds: 500,
         reverseDurationInMilliseconds: 500,
@@ -190,24 +191,16 @@ class AppRouter extends _i23.RootStackRouter {
               ));
       return _i23.CustomPage<void>(
         routeData: routeData,
-        child: _i12.EpisodeScreen(
+        child: _i13.EpisodeScreen(
           key: args.key,
           episodeId: args.episodeId,
           autoplay: args.autoplay,
           queryParamStartPosition: args.queryParamStartPosition,
           hideBottomSection: args.hideBottomSection,
         ),
-        transitionsBuilder: _i27.CustomTransitionsBuilders.slideLeft,
+        transitionsBuilder: _i26.CustomTransitionsBuilders.slideLeft,
         durationInMilliseconds: 300,
         reverseDurationInMilliseconds: 300,
-        opaque: true,
-        barrierDismissible: false,
-      );
-    },
-    AutoLoginScreeenRoute.name: (routeData) {
-      return _i23.CustomPage<dynamic>(
-        routeData: routeData,
-        child: const _i13.AutoLoginScreeen(),
         opaque: true,
         barrierDismissible: false,
       );
@@ -221,7 +214,7 @@ class AppRouter extends _i23.RootStackRouter {
           episodeId: args.episodeId,
           lessonId: args.lessonId,
         ),
-        transitionsBuilder: _i27.CustomTransitionsBuilders.slideUp,
+        transitionsBuilder: _i26.CustomTransitionsBuilders.slideUp,
         durationInMilliseconds: 400,
         reverseDurationInMilliseconds: 600,
         opaque: true,
@@ -232,7 +225,7 @@ class AppRouter extends _i23.RootStackRouter {
       return _i23.CustomPage<void>(
         routeData: routeData,
         child: const _i15.AchievementsScreen(),
-        transitionsBuilder: _i27.CustomTransitionsBuilders.slideUp,
+        transitionsBuilder: _i26.CustomTransitionsBuilders.slideUp,
         durationInMilliseconds: 400,
         reverseDurationInMilliseconds: 600,
         opaque: true,
@@ -250,7 +243,7 @@ class AppRouter extends _i23.RootStackRouter {
           key: args.key,
           groupId: args.groupId,
         ),
-        transitionsBuilder: _i27.CustomTransitionsBuilders.slideUp,
+        transitionsBuilder: _i26.CustomTransitionsBuilders.slideUp,
         durationInMilliseconds: 400,
         reverseDurationInMilliseconds: 600,
         opaque: true,
@@ -265,22 +258,16 @@ class AppRouter extends _i23.RootStackRouter {
         barrierDismissible: false,
       );
     },
-    EmptyRouterPageRoute.name: (routeData) {
-      return _i23.MaterialPageX<dynamic>(
-        routeData: routeData,
-        child: const _i18.EmptyRouterPage(),
-      );
-    },
     LiveScreenRoute.name: (routeData) {
       return _i23.MaterialPageX<void>(
         routeData: routeData,
-        child: const _i19.LiveScreen(),
+        child: const _i18.LiveScreen(),
       );
     },
     SearchScreenWrapperRoute.name: (routeData) {
       return _i23.MaterialPageX<void>(
         routeData: routeData,
-        child: const _i18.EmptyRouterPage(),
+        child: const _i19.EmptyRouterPage(),
       );
     },
     CalendarPageRoute.name: (routeData) {
@@ -292,7 +279,7 @@ class AppRouter extends _i23.RootStackRouter {
     HomeScreenWrapperRoute.name: (routeData) {
       return _i23.CustomPage<void>(
         routeData: routeData,
-        child: const _i18.EmptyRouterPage(),
+        child: const _i19.EmptyRouterPage(),
         opaque: true,
         barrierDismissible: false,
       );
@@ -328,14 +315,14 @@ class AppRouter extends _i23.RootStackRouter {
               ));
       return _i23.CustomPage<void>(
         routeData: routeData,
-        child: _i12.EpisodeScreen(
+        child: _i13.EpisodeScreen(
           key: args.key,
           episodeId: args.episodeId,
           autoplay: args.autoplay,
           queryParamStartPosition: args.queryParamStartPosition,
           hideBottomSection: args.hideBottomSection,
         ),
-        transitionsBuilder: _i27.CustomTransitionsBuilders.slideLeft,
+        transitionsBuilder: _i26.CustomTransitionsBuilders.slideLeft,
         durationInMilliseconds: 300,
         reverseDurationInMilliseconds: 300,
         opaque: true,
@@ -353,7 +340,7 @@ class AppRouter extends _i23.RootStackRouter {
           key: args.key,
           pageCode: args.pageCode,
         ),
-        transitionsBuilder: _i27.CustomTransitionsBuilders.slideLeft,
+        transitionsBuilder: _i26.CustomTransitionsBuilders.slideLeft,
         durationInMilliseconds: 300,
         reverseDurationInMilliseconds: 300,
         opaque: true,
@@ -364,33 +351,9 @@ class AppRouter extends _i23.RootStackRouter {
       final args = routeData.argsAs<HomeArgs>(orElse: () => const HomeArgs());
       return _i23.CustomPage<void>(
         routeData: routeData,
-        child: _i11.HomeScreen(key: args.key),
+        child: _i12.HomeScreen(key: args.key),
         opaque: true,
         barrierDismissible: false,
-      );
-    },
-    RedirectRoute.name: (routeData) {
-      return _i23.MaterialPageX<void>(
-        routeData: routeData,
-        child: const _i18.EmptyRouterPage(),
-      );
-    },
-    TvLoginRoute.name: (routeData) {
-      return _i23.MaterialPageX<void>(
-        routeData: routeData,
-        child: const _i18.EmptyRouterPage(),
-      );
-    },
-    LegacyEpisodeRoute.name: (routeData) {
-      return _i23.MaterialPageX<void>(
-        routeData: routeData,
-        child: const _i18.EmptyRouterPage(),
-      );
-    },
-    LegacyProgramRoute.name: (routeData) {
-      return _i23.MaterialPageX<void>(
-        routeData: routeData,
-        child: const _i18.EmptyRouterPage(),
       );
     },
   };
@@ -398,8 +361,12 @@ class AppRouter extends _i23.RootStackRouter {
   @override
   List<_i23.RouteConfig> get routes => [
         _i23.RouteConfig(
+          AutoLoginScreenRoute.name,
+          path: '/auto-login',
+        ),
+        _i23.RouteConfig(
           OnboardingScreenRoute.name,
-          path: 'login',
+          path: '/login',
           meta: <String, dynamic>{'analytics_name': 'login'},
         ),
         _i23.RouteConfig(
@@ -467,10 +434,6 @@ class AppRouter extends _i23.RootStackRouter {
           EmbedScreen.name,
           path: '/embed/:episodeId',
           meta: <String, dynamic>{'analytics_name': 'episode'},
-        ),
-        _i23.RouteConfig(
-          AutoLoginScreeenRoute.name,
-          path: 'auto-login',
         ),
         _i23.RouteConfig(
           StudyScreenRoute.name,
@@ -562,38 +525,23 @@ class AppRouter extends _i23.RootStackRouter {
             ),
           ],
         ),
-        _i23.RouteConfig(
-          EmptyRouterPageRoute.name,
-          path: '/',
-          guards: [specialRoutesGuard],
-          children: [
-            _i23.RouteConfig(
-              RedirectRoute.name,
-              path: 'r/:code',
-              parent: EmptyRouterPageRoute.name,
-            ),
-            _i23.RouteConfig(
-              TvLoginRoute.name,
-              path: 'tvlogin/*',
-              parent: EmptyRouterPageRoute.name,
-            ),
-            _i23.RouteConfig(
-              LegacyEpisodeRoute.name,
-              path: 'series/:legacyEpisodeId',
-              parent: EmptyRouterPageRoute.name,
-            ),
-            _i23.RouteConfig(
-              LegacyProgramRoute.name,
-              path: 'program/:legacyProgramId',
-              parent: EmptyRouterPageRoute.name,
-            ),
-          ],
-        ),
       ];
 }
 
 /// generated route for
-/// [_i1.OnboardingScreen]
+/// [_i1.AutoLoginScreen]
+class AutoLoginScreenRoute extends _i23.PageRouteInfo<void> {
+  const AutoLoginScreenRoute()
+      : super(
+          AutoLoginScreenRoute.name,
+          path: '/auto-login',
+        );
+
+  static const String name = 'AutoLoginScreenRoute';
+}
+
+/// generated route for
+/// [_i2.OnboardingScreen]
 class OnboardingScreenRoute
     extends _i23.PageRouteInfo<OnboardingScreenRouteArgs> {
   OnboardingScreenRoute({
@@ -602,7 +550,7 @@ class OnboardingScreenRoute
     void Function(bool)? onResult,
   }) : super(
           OnboardingScreenRoute.name,
-          path: 'login',
+          path: '/login',
           args: OnboardingScreenRouteArgs(
             key: key,
             loginError: loginError,
@@ -633,7 +581,7 @@ class OnboardingScreenRouteArgs {
 }
 
 /// generated route for
-/// [_i2.SignupScreen]
+/// [_i3.SignupScreen]
 class SignupScreenRoute extends _i23.PageRouteInfo<void> {
   const SignupScreenRoute()
       : super(
@@ -645,7 +593,7 @@ class SignupScreenRoute extends _i23.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i3.Profile]
+/// [_i4.Profile]
 class ProfileRoute extends _i23.PageRouteInfo<void> {
   const ProfileRoute()
       : super(
@@ -657,7 +605,7 @@ class ProfileRoute extends _i23.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i4.AppLanguageScreen]
+/// [_i5.AppLanguageScreen]
 class AppLanguageScreenRoute extends _i23.PageRouteInfo<void> {
   const AppLanguageScreenRoute()
       : super(
@@ -669,7 +617,7 @@ class AppLanguageScreenRoute extends _i23.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i5.AppAudioLanguage]
+/// [_i6.AppAudioLanguage]
 class AppAudioLanguageRoute extends _i23.PageRouteInfo<void> {
   const AppAudioLanguageRoute()
       : super(
@@ -681,7 +629,7 @@ class AppAudioLanguageRoute extends _i23.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i6.AppSubtitleLanguage]
+/// [_i7.AppSubtitleLanguage]
 class AppSubtitleLanguageRoute extends _i23.PageRouteInfo<void> {
   const AppSubtitleLanguageRoute()
       : super(
@@ -693,7 +641,7 @@ class AppSubtitleLanguageRoute extends _i23.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i7.VideoQuality]
+/// [_i8.VideoQuality]
 class VideoQualityRoute extends _i23.PageRouteInfo<void> {
   const VideoQualityRoute()
       : super(
@@ -705,7 +653,7 @@ class VideoQualityRoute extends _i23.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i8.ContactSupport]
+/// [_i9.ContactSupport]
 class ContactSupportRoute extends _i23.PageRouteInfo<void> {
   const ContactSupportRoute()
       : super(
@@ -717,7 +665,7 @@ class ContactSupportRoute extends _i23.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i9.AboutScreen]
+/// [_i10.AboutScreen]
 class AboutScreenRoute extends _i23.PageRouteInfo<void> {
   const AboutScreenRoute()
       : super(
@@ -729,7 +677,7 @@ class AboutScreenRoute extends _i23.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i10.FAQ]
+/// [_i11.FAQ]
 class FAQRoute extends _i23.PageRouteInfo<void> {
   const FAQRoute()
       : super(
@@ -741,7 +689,7 @@ class FAQRoute extends _i23.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i11.HomeScreen]
+/// [_i12.HomeScreen]
 class PublicHomeRoute extends _i23.PageRouteInfo<PublicHomeRouteArgs> {
   PublicHomeRoute({_i24.Key? key})
       : super(
@@ -765,7 +713,7 @@ class PublicHomeRouteArgs {
 }
 
 /// generated route for
-/// [_i12.EpisodeScreen]
+/// [_i13.EpisodeScreen]
 class EmbedScreen extends _i23.PageRouteInfo<EmbedScreenArgs> {
   EmbedScreen({
     _i24.Key? key,
@@ -817,18 +765,6 @@ class EmbedScreenArgs {
   String toString() {
     return 'EmbedScreenArgs{key: $key, episodeId: $episodeId, autoplay: $autoplay, queryParamStartPosition: $queryParamStartPosition, hideBottomSection: $hideBottomSection}';
   }
-}
-
-/// generated route for
-/// [_i13.AutoLoginScreeen]
-class AutoLoginScreeenRoute extends _i23.PageRouteInfo<void> {
-  const AutoLoginScreeenRoute()
-      : super(
-          AutoLoginScreeenRoute.name,
-          path: 'auto-login',
-        );
-
-  static const String name = 'AutoLoginScreeenRoute';
 }
 
 /// generated route for
@@ -932,20 +868,7 @@ class TabsRootScreenRoute extends _i23.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i18.EmptyRouterPage]
-class EmptyRouterPageRoute extends _i23.PageRouteInfo<void> {
-  const EmptyRouterPageRoute({List<_i23.PageRouteInfo>? children})
-      : super(
-          EmptyRouterPageRoute.name,
-          path: '/',
-          initialChildren: children,
-        );
-
-  static const String name = 'EmptyRouterPageRoute';
-}
-
-/// generated route for
-/// [_i19.LiveScreen]
+/// [_i18.LiveScreen]
 class LiveScreenRoute extends _i23.PageRouteInfo<void> {
   const LiveScreenRoute()
       : super(
@@ -957,7 +880,7 @@ class LiveScreenRoute extends _i23.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i18.EmptyRouterPage]
+/// [_i19.EmptyRouterPage]
 class SearchScreenWrapperRoute extends _i23.PageRouteInfo<void> {
   const SearchScreenWrapperRoute({List<_i23.PageRouteInfo>? children})
       : super(
@@ -982,7 +905,7 @@ class CalendarPageRoute extends _i23.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i18.EmptyRouterPage]
+/// [_i19.EmptyRouterPage]
 class HomeScreenWrapperRoute extends _i23.PageRouteInfo<void> {
   const HomeScreenWrapperRoute({List<_i23.PageRouteInfo>? children})
       : super(
@@ -1030,7 +953,7 @@ class SearchScreenRouteArgs {
 }
 
 /// generated route for
-/// [_i12.EpisodeScreen]
+/// [_i13.EpisodeScreen]
 class EpisodeScreenRoute extends _i23.PageRouteInfo<EpisodeScreenRouteArgs> {
   EpisodeScreenRoute({
     _i24.Key? key,
@@ -1120,7 +1043,7 @@ class PageScreenRouteArgs {
 }
 
 /// generated route for
-/// [_i11.HomeScreen]
+/// [_i12.HomeScreen]
 class Home extends _i23.PageRouteInfo<HomeArgs> {
   Home({_i24.Key? key})
       : super(
@@ -1141,52 +1064,4 @@ class HomeArgs {
   String toString() {
     return 'HomeArgs{key: $key}';
   }
-}
-
-/// generated route for
-/// [_i18.EmptyRouterPage]
-class RedirectRoute extends _i23.PageRouteInfo<void> {
-  const RedirectRoute()
-      : super(
-          RedirectRoute.name,
-          path: 'r/:code',
-        );
-
-  static const String name = 'RedirectRoute';
-}
-
-/// generated route for
-/// [_i18.EmptyRouterPage]
-class TvLoginRoute extends _i23.PageRouteInfo<void> {
-  const TvLoginRoute()
-      : super(
-          TvLoginRoute.name,
-          path: 'tvlogin/*',
-        );
-
-  static const String name = 'TvLoginRoute';
-}
-
-/// generated route for
-/// [_i18.EmptyRouterPage]
-class LegacyEpisodeRoute extends _i23.PageRouteInfo<void> {
-  const LegacyEpisodeRoute()
-      : super(
-          LegacyEpisodeRoute.name,
-          path: 'series/:legacyEpisodeId',
-        );
-
-  static const String name = 'LegacyEpisodeRoute';
-}
-
-/// generated route for
-/// [_i18.EmptyRouterPage]
-class LegacyProgramRoute extends _i23.PageRouteInfo<void> {
-  const LegacyProgramRoute()
-      : super(
-          LegacyProgramRoute.name,
-          path: 'program/:legacyProgramId',
-        );
-
-  static const String name = 'LegacyProgramRoute';
 }

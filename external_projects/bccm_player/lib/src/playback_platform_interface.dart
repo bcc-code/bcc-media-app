@@ -15,7 +15,7 @@ abstract class BccmPlayerInterface extends PlatformInterface {
   static BccmPlayerInterface get instance => _instance;
   static Object? playerHtmlElement;
 
-  final PlayerPluginStateNotifier stateNotifier = PlayerPluginStateNotifier();
+  final PlayerPluginStateNotifier stateNotifier = PlayerPluginStateNotifier(keepAlive: true);
 
   Stream<ChromecastEvent> chromecastEventStream();
 
@@ -57,6 +57,10 @@ abstract class BccmPlayerInterface extends PlatformInterface {
 
   Future<void> addPlaybackListener(PlaybackListenerPigeon listener) async {
     throw UnimplementedError('addPlaybackListener() has not been implemented.');
+  }
+
+  Future<void> removePlaybackListener(PlaybackListenerPigeon listener) async {
+    throw UnimplementedError('removePlaybackListener() has not been implemented.');
   }
 
   void play(String playerId) {
