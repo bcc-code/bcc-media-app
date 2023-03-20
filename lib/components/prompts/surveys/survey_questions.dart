@@ -49,7 +49,6 @@ class _SurveyFormState extends State<SurveyForm> {
         surveyAnswers[id] = answer;
       }
     });
-    print('surveyAnswers: $surveyAnswers');
   }
 
   void onSendFeedback() {
@@ -79,7 +78,6 @@ class _SurveyFormState extends State<SurveyForm> {
                     return SurveyQuestionText(
                       question: question,
                       onAnswerChanged: (answer) {
-                        print('>>> Answer: "${answer.trim()}"');
                         updateAnswer(
                           question.id,
                           answer.trim().isEmpty ? null : SurveyAnswerText(id: question.id, answer: answer),
