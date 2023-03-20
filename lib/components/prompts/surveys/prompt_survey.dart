@@ -25,9 +25,8 @@ class PromptSurvey extends StatelessWidget {
       useRootNavigator: true,
       isScrollControlled: true,
       useSafeArea: true,
-      builder: (context) {
-        return BottomSheetSurvey(prompt);
-      },
+      isDismissible: true,
+      builder: (context) => BottomSheetSurvey(prompt),
     );
   }
 

@@ -21,16 +21,29 @@ class BottomSheetSurvey extends StatelessWidget {
 
   const BottomSheetSurvey(this.prompt, {super.key});
 
-  void close(BuildContext context) {
+  void onClose(BuildContext context) {
     Navigator.pop(context);
+  }
+
+  void onCancel(BuildContext context) {
+    Future<bool?> isCancelConfirmed = showDialog(
+      context: context,
+      builder: (context) => const DialogConfirmCancel(),
+    );
+    isCancelConfirmed.then((cancelConfirmed) {
+      if (cancelConfirmed == true) {
+        onClose(context);
+      }
+    });
   }
 
   @override
   Widget build(BuildContext context) {
-    return AnimatedPadding(
-      padding: MediaQuery.of(context).viewInsets,
-      duration: const Duration(milliseconds: 200),
-      curve: Curves.easeInOut,
+    return WillPopScope(
+      onWillPop: () async {
+        onCancel(context);
+        return false;
+      },
       child: Container(
         decoration: const BoxDecoration(
           color: BccmColors.background1,
@@ -70,7 +83,11 @@ class BottomSheetSurvey extends StatelessWidget {
               Flexible(
                 child: AnimatedSwitcher(
                   duration: const Duration(milliseconds: 200),
-                  child: _BottomSheetBody(survey: prompt.survey, onClose: () => close(context)),
+                  child: _BottomSheetBody(
+                    survey: prompt.survey,
+                    onClose: () => onClose(context),
+                    onCancel: () => onCancel(context),
+                  ),
                 ),
               ),
             ],
@@ -84,8 +101,9 @@ class BottomSheetSurvey extends StatelessWidget {
 class _BottomSheetBody extends ConsumerStatefulWidget {
   final Fragment$Survey survey;
   final VoidCallback onClose;
+  final VoidCallback onCancel;
 
-  const _BottomSheetBody({required this.survey, required this.onClose});
+  const _BottomSheetBody({required this.survey, required this.onClose, required this.onCancel});
 
   @override
   ConsumerState<_BottomSheetBody> createState() => _BottomSheetBodyState();
@@ -95,22 +113,6 @@ class _BottomSheetBodyState extends ConsumerState<_BottomSheetBody> {
   List<SurveyAnswer>? surveyAnswers;
 
   SurveyState surveyState = SurveyState.form;
-
-  void closeSurvey() {
-    Navigator.pop(context);
-  }
-
-  void onCancelSurvey() {
-    Future<bool?> isCancelConfirmed = showDialog(
-      context: context,
-      builder: (context) => const DialogConfirmCancel(),
-    );
-    isCancelConfirmed.then((cancelConfirmed) {
-      if (cancelConfirmed == true) {
-        closeSurvey();
-      }
-    });
-  }
 
   void submitSurvey(List<SurveyAnswer> answers) {
     final api = ref.read(apiProvider);
@@ -152,7 +154,7 @@ class _BottomSheetBodyState extends ConsumerState<_BottomSheetBody> {
         return SurveyForm(
           surveyQuestions: widget.survey.questions.items,
           onSubmit: onSubmitSurvey,
-          onCancel: onCancelSurvey,
+          onCancel: widget.onCancel,
         );
       case SurveyState.sending:
         return _Sending();
@@ -160,7 +162,7 @@ class _BottomSheetBodyState extends ConsumerState<_BottomSheetBody> {
         return _Success(onClose: widget.onClose);
       case SurveyState.failure:
         return _Failure(
-          onCancel: onCancelSurvey,
+          onCancel: widget.onCancel,
           onTryAgain: onTryAgain,
         );
       default:

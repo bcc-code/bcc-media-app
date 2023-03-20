@@ -9,7 +9,7 @@ import '../../graphql/queries/prompts.graphql.dart';
 import '../../models/survey.dart';
 import '../../providers/prompts.dart';
 import '../../providers/surveys.dart';
-import './surveys/survey_prompt.dart';
+import 'surveys/prompt_survey.dart';
 
 class Prompts extends ConsumerStatefulWidget {
   const Prompts({super.key});

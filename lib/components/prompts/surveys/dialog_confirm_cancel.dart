@@ -12,7 +12,7 @@ class DialogConfirmCancel extends StatelessWidget {
     Navigator.pop(context, false);
   }
 
-  void onCancel(context) {
+  void onCancelConfirmed(context) {
     Navigator.pop(context, true);
   }
 
@@ -20,7 +20,6 @@ class DialogConfirmCancel extends StatelessWidget {
   Widget build(BuildContext context) {
     return Center(
       child: Container(
-        // height: 242,
         width: 343,
         decoration: BoxDecoration(
           color: BccmColors.background2,
@@ -54,7 +53,7 @@ class DialogConfirmCancel extends StatelessWidget {
                 ),
                 const SizedBox(width: 16),
                 BtvButton.largeRed(
-                  onPressed: () => onCancel(context),
+                  onPressed: () => onCancelConfirmed(context),
                   labelText: S.of(context).yesCancel,
                 ),
               ],
