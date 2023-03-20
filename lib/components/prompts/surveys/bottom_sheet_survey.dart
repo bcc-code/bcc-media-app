@@ -9,6 +9,7 @@ import '../../../../helpers/ui/btv_buttons.dart';
 import '../../../../l10n/app_localizations.dart';
 import '../../../../theme/bccm_colors.dart';
 import '../../../../theme/bccm_typography.dart';
+import '../../../providers/prompts.dart';
 import '../../loading_indicator.dart';
 import 'dialog_confirm_cancel.dart';
 import 'survey_questions.dart';
@@ -69,7 +70,7 @@ class BottomSheetSurvey extends StatelessWidget {
               Flexible(
                 child: AnimatedSwitcher(
                   duration: const Duration(milliseconds: 200),
-                  child: _BottomSheetBody(surveyQuestions: prompt.survey.questions.items, onClose: () => close(context)),
+                  child: _BottomSheetBody(survey: prompt.survey, onClose: () => close(context)),
                 ),
               ),
             ],
@@ -81,10 +82,10 @@ class BottomSheetSurvey extends StatelessWidget {
 }
 
 class _BottomSheetBody extends ConsumerStatefulWidget {
-  final List<Fragment$SurveyQuestion> surveyQuestions;
+  final Fragment$Survey survey;
   final VoidCallback onClose;
 
-  const _BottomSheetBody({required this.surveyQuestions, required this.onClose});
+  const _BottomSheetBody({required this.survey, required this.onClose});
 
   @override
   ConsumerState<_BottomSheetBody> createState() => _BottomSheetBodyState();
@@ -112,7 +113,8 @@ class _BottomSheetBodyState extends ConsumerState<_BottomSheetBody> {
   }
 
   void submitSurvey(List<SurveyAnswer> answers) {
-    var api = ref.read(apiProvider);
+    final api = ref.read(apiProvider);
+    final completedSurveysNotifier = ref.read(completedSurveysProvider.notifier);
     List<Future> futures = [];
     for (var answer in answers) {
       if (answer is SurveyAnswerRating) {
@@ -124,6 +126,7 @@ class _BottomSheetBodyState extends ConsumerState<_BottomSheetBody> {
     setState(() => surveyState = SurveyState.sending);
     Future.wait(futures, eagerError: true).then((value) {
       setState(() => surveyState = SurveyState.success);
+      completedSurveysNotifier.addSurvey(widget.survey.id);
     }).onError((error, stackTrace) {
       setState(() => surveyState = SurveyState.failure);
       FirebaseCrashlytics.instance.recordError(error, stackTrace);
@@ -147,7 +150,7 @@ class _BottomSheetBodyState extends ConsumerState<_BottomSheetBody> {
     switch (surveyState) {
       case SurveyState.form:
         return SurveyForm(
-          surveyQuestions: widget.surveyQuestions,
+          surveyQuestions: widget.survey.questions.items,
           onSubmit: onSubmitSurvey,
           onCancel: onCancelSurvey,
         );

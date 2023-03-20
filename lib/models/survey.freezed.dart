@@ -168,7 +168,7 @@ CompletedSurvey _$CompletedSurveyFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$CompletedSurvey {
   String get id => throw _privateConstructorUsedError;
-  DateTime get completionTime => throw _privateConstructorUsedError;
+  DateTime get expiry => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -182,7 +182,7 @@ abstract class $CompletedSurveyCopyWith<$Res> {
           CompletedSurvey value, $Res Function(CompletedSurvey) then) =
       _$CompletedSurveyCopyWithImpl<$Res, CompletedSurvey>;
   @useResult
-  $Res call({String id, DateTime completionTime});
+  $Res call({String id, DateTime expiry});
 }
 
 /// @nodoc
@@ -199,16 +199,16 @@ class _$CompletedSurveyCopyWithImpl<$Res, $Val extends CompletedSurvey>
   @override
   $Res call({
     Object? id = null,
-    Object? completionTime = null,
+    Object? expiry = null,
   }) {
     return _then(_value.copyWith(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String,
-      completionTime: null == completionTime
-          ? _value.completionTime
-          : completionTime // ignore: cast_nullable_to_non_nullable
+      expiry: null == expiry
+          ? _value.expiry
+          : expiry // ignore: cast_nullable_to_non_nullable
               as DateTime,
     ) as $Val);
   }
@@ -222,7 +222,7 @@ abstract class _$$_CompletedSurveyCopyWith<$Res>
       __$$_CompletedSurveyCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String id, DateTime completionTime});
+  $Res call({String id, DateTime expiry});
 }
 
 /// @nodoc
@@ -237,16 +237,16 @@ class __$$_CompletedSurveyCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = null,
-    Object? completionTime = null,
+    Object? expiry = null,
   }) {
     return _then(_$_CompletedSurvey(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String,
-      completionTime: null == completionTime
-          ? _value.completionTime
-          : completionTime // ignore: cast_nullable_to_non_nullable
+      expiry: null == expiry
+          ? _value.expiry
+          : expiry // ignore: cast_nullable_to_non_nullable
               as DateTime,
     ));
   }
@@ -255,7 +255,7 @@ class __$$_CompletedSurveyCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$_CompletedSurvey implements _CompletedSurvey {
-  const _$_CompletedSurvey({required this.id, required this.completionTime});
+  const _$_CompletedSurvey({required this.id, required this.expiry});
 
   factory _$_CompletedSurvey.fromJson(Map<String, dynamic> json) =>
       _$$_CompletedSurveyFromJson(json);
@@ -263,11 +263,11 @@ class _$_CompletedSurvey implements _CompletedSurvey {
   @override
   final String id;
   @override
-  final DateTime completionTime;
+  final DateTime expiry;
 
   @override
   String toString() {
-    return 'CompletedSurvey(id: $id, completionTime: $completionTime)';
+    return 'CompletedSurvey(id: $id, expiry: $expiry)';
   }
 
   @override
@@ -276,13 +276,12 @@ class _$_CompletedSurvey implements _CompletedSurvey {
         (other.runtimeType == runtimeType &&
             other is _$_CompletedSurvey &&
             (identical(other.id, id) || other.id == id) &&
-            (identical(other.completionTime, completionTime) ||
-                other.completionTime == completionTime));
+            (identical(other.expiry, expiry) || other.expiry == expiry));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, id, completionTime);
+  int get hashCode => Object.hash(runtimeType, id, expiry);
 
   @JsonKey(ignore: true)
   @override
@@ -301,7 +300,7 @@ class _$_CompletedSurvey implements _CompletedSurvey {
 abstract class _CompletedSurvey implements CompletedSurvey {
   const factory _CompletedSurvey(
       {required final String id,
-      required final DateTime completionTime}) = _$_CompletedSurvey;
+      required final DateTime expiry}) = _$_CompletedSurvey;
 
   factory _CompletedSurvey.fromJson(Map<String, dynamic> json) =
       _$_CompletedSurvey.fromJson;
@@ -309,7 +308,7 @@ abstract class _CompletedSurvey implements CompletedSurvey {
   @override
   String get id;
   @override
-  DateTime get completionTime;
+  DateTime get expiry;
   @override
   @JsonKey(ignore: true)
   _$$_CompletedSurveyCopyWith<_$_CompletedSurvey> get copyWith =>

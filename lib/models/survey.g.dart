@@ -21,11 +21,11 @@ Map<String, dynamic> _$$_CompletedSurveysToJson(_$_CompletedSurveys instance) =>
 _$_CompletedSurvey _$$_CompletedSurveyFromJson(Map<String, dynamic> json) =>
     _$_CompletedSurvey(
       id: json['id'] as String,
-      completionTime: DateTime.parse(json['completionTime'] as String),
+      expiry: DateTime.parse(json['expiry'] as String),
     );
 
 Map<String, dynamic> _$$_CompletedSurveyToJson(_$_CompletedSurvey instance) =>
     <String, dynamic>{
       'id': instance.id,
-      'completionTime': instance.completionTime.toIso8601String(),
+      'expiry': instance.expiry.toIso8601String(),
     };

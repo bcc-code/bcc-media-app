@@ -6,7 +6,6 @@ part 'survey.g.dart';
 @freezed
 class CompletedSurveys with _$CompletedSurveys {
   const factory CompletedSurveys(List<CompletedSurvey> completedSurveys) = _CompletedSurveys;
-
   factory CompletedSurveys.fromJson(Map<String, dynamic> json) => _$CompletedSurveysFromJson(json);
 }
 
@@ -14,7 +13,7 @@ class CompletedSurveys with _$CompletedSurveys {
 class CompletedSurvey with _$CompletedSurvey {
   const factory CompletedSurvey({
     required String id,
-    required DateTime completionTime,
+    required DateTime expiry,
   }) = _CompletedSurvey;
 
   factory CompletedSurvey.fromJson(Map<String, dynamic> json) => _$CompletedSurveyFromJson(json);

@@ -21,20 +21,18 @@ class Prompts extends ConsumerStatefulWidget {
 class _PromptsState extends ConsumerState<Prompts> {
   final List<String> closedPrompts = [];
 
-  @override
-  void initState() {
-    super.initState();
-    CompletedSurveys parsed = CompletedSurveys.fromJson(jsonDecode('{"completedSurveys": [{"id": "1", "completionTime": "${DateTime.now()}"}]}'));
-    print(parsed);
-  }
-
   void close(String promptId) {
     setState(() => closedPrompts.add(promptId));
+  }
+
+  bool isOutdatedSurvey(Fragment$Prompt$$SurveyPrompt surveyPrompt, List<CompletedSurvey> completedSurveys) {
+    return completedSurveys.where((survey) => survey.id == surveyPrompt.survey.id).isNotEmpty;
   }
 
   @override
   Widget build(BuildContext context) {
     final prompts = ref.watch(promptsProvider);
+    final completedSurveys = ref.watch(completedSurveysProvider).valueOrNull ?? [];
 
     return prompts.when(
       error: (error, stackTrace) {
@@ -42,13 +40,14 @@ class _PromptsState extends ConsumerState<Prompts> {
         return const SizedBox.shrink();
       },
       loading: () => const SizedBox.shrink(),
-      data: (promptItems) {
+      data: (prompts) {
+        final openPrompts = prompts.whereNot((prompt) => closedPrompts.contains(prompt.id));
         return Column(
           mainAxisSize: MainAxisSize.min,
-          children: promptItems.whereNot((prompt) => closedPrompts.contains(prompt.id)).map(
+          children: openPrompts.map(
             (prompt) {
               final surveyPrompt = prompt.asOrNull<Fragment$Prompt$$SurveyPrompt>();
-              if (surveyPrompt != null) {
+              if (surveyPrompt != null && !isOutdatedSurvey(surveyPrompt, completedSurveys)) {
                 return PromptSurvey(prompt: surveyPrompt, onClose: () => close(surveyPrompt.id));
               }
               return const SizedBox.shrink();
