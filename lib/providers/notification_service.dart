@@ -113,7 +113,7 @@ class NotificationService {
             ));
           });
     } else if (openedFromBackground && message.data['action'] == 'deep_link') {
-      if (message.data.containsKey('deep_link') && message.data['deep_link'] is String) {
+      if (message.data['deep_link'] is String) {
         String path = message.data['deep_link'];
         debugPrint('navigating to deep_link from notification: $path');
         debugPrint('router in notification handler: ${context!.router.currentPath} ${context.router.currentSegments}');
