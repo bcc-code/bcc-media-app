@@ -320,6 +320,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.1.17"
+  events_emitter:
+    dependency: transitive
+    description:
+      name: events_emitter
+      sha256: a075477bdf9c8c0c31bb7c7b7bdd357b4486c34f30163119f96de4e7f54abeff
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.5.2"
   fake_async:
     dependency: transitive
     description:
@@ -1569,6 +1577,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.2.0"
+  unleash_proxy_client_flutter:
+    dependency: "direct main"
+    description:
+      name: unleash_proxy_client_flutter
+      sha256: ec2d471973a6399d9fa0c8ab98f5aa3a10514bd6ed830769a74cb7994d25284e
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.0.2"
   url_launcher:
     dependency: "direct main"
     description:

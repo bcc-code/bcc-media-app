@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:math';
 
 import 'package:auto_route/auto_route.dart';
+import 'package:brunstadtv_app/providers/feature_flags.dart';
 import 'package:brunstadtv_app/screens/onboarding/signup.dart';
 import 'package:brunstadtv_app/theme/bccm_typography.dart';
 import 'package:brunstadtv_app/providers/auth_state/auth_state.dart';
@@ -75,6 +76,7 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final signupEnabled = ref.watch(featureFlagsProvider.select((value) => value.signup));
     return CupertinoScaffold(
       body: Scaffold(
         appBar: AppBar(
@@ -128,7 +130,7 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
                 ),
               ),
               Padding(
-                padding: EdgeInsets.symmetric(horizontal: 16, vertical: max(16, MediaQuery.of(context).padding.bottom)),
+                padding: EdgeInsets.symmetric(horizontal: 16, vertical: max(36, MediaQuery.of(context).padding.bottom)),
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -143,23 +145,29 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
                         onPressed: loginAction,
                       ),
                     ),
-                    Builder(builder: (context) {
-                      return Container(
-                        margin: const EdgeInsets.only(bottom: 12),
-                        child: BtvButton.largeSecondary(
-                          key: WidgetKeys.signUpButton,
-                          onPressed: () {
-                            CupertinoScaffold.showCupertinoModalBottomSheet(
-                              context: context,
-                              builder: (context) => const SignupScreen(),
-                              enableDrag: false,
-                              duration: const Duration(milliseconds: 250),
-                            );
-                          },
-                          labelText: S.of(context).signUpButton,
-                        ),
-                      );
-                    }),
+                    AnimatedSwitcher(
+                      duration: const Duration(milliseconds: 200),
+                      child: !signupEnabled
+                          ? null
+                          : Builder(builder: (context) {
+                              return Container(
+                                margin: const EdgeInsets.only(bottom: 12),
+                                width: double.infinity,
+                                child: BtvButton.largeSecondary(
+                                  key: WidgetKeys.signUpButton,
+                                  onPressed: () {
+                                    CupertinoScaffold.showCupertinoModalBottomSheet(
+                                      context: context,
+                                      builder: (context) => const SignupScreen(),
+                                      enableDrag: false,
+                                      duration: const Duration(milliseconds: 250),
+                                    );
+                                  },
+                                  labelText: S.of(context).signUpButton,
+                                ),
+                              );
+                            }),
+                    ),
                     BtvButton.mediumSecondary(
                       key: WidgetKeys.exploreButton,
                       labelText: S.of(context).explorePublicContent,

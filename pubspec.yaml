@@ -102,6 +102,7 @@ dependencies:
   flutter_hooks_lint_plugin: ^0.6.1
   email_validator: ^2.1.17
   open_mail_app: ^0.4.5
+  unleash_proxy_client_flutter: ^1.0.2
   #smooth: any
 
 dev_dependencies:

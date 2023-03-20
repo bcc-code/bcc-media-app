@@ -1,5 +1,6 @@
 import 'package:brunstadtv_app/components/bottom_sheet_select.dart';
 import 'package:brunstadtv_app/providers/auth_state/auth_state.dart';
+import 'package:brunstadtv_app/providers/feature_flags.dart';
 import 'package:brunstadtv_app/providers/settings.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -52,28 +53,31 @@ class DeveloperOptions extends ConsumerWidget {
       useRootNavigator: true,
       context: context,
       builder: (context) {
-        return SimpleDialog(
-          title: const Text(
-            'Technical details',
-            style: BccmTextStyles.title3,
-          ),
-          children: [
-            SelectionArea(
-              child: Container(
-                padding: const EdgeInsets.symmetric(horizontal: 16),
-                alignment: Alignment.topLeft,
-                child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-                  TextField(controller: TextEditingController()..text = 'auth.idToken: ${auth.idToken}'),
-                  TextField(controller: TextEditingController()..text = 'auth.accessToken: ${auth.auth0AccessToken}'),
-                  const SizedBox(height: 8),
-                  Text('auth.expiresAt: ${auth.expiresAt}'),
-                  Text('session_id: ${settings.sessionId}'),
-                  Text('analytics_id (private): ${settings.analyticsId}'),
-                ]),
-              ),
-            )
-          ],
-        );
+        return Consumer(builder: (context, ref, child) {
+          return SimpleDialog(
+            title: const Text(
+              'Technical details',
+              style: BccmTextStyles.title3,
+            ),
+            children: [
+              SelectionArea(
+                child: Container(
+                  padding: const EdgeInsets.symmetric(horizontal: 16),
+                  alignment: Alignment.topLeft,
+                  child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+                    TextField(controller: TextEditingController()..text = 'auth.idToken: ${auth.idToken}'),
+                    TextField(controller: TextEditingController()..text = 'auth.accessToken: ${auth.auth0AccessToken}'),
+                    const SizedBox(height: 8),
+                    Text('auth.expiresAt: ${auth.expiresAt}'),
+                    Text('session_id: ${settings.sessionId}'),
+                    Text('analytics_id (private): ${settings.analyticsId}'),
+                    Text('featureFlags: ${ref.watch(featureFlagsProvider)}'),
+                  ]),
+                ),
+              )
+            ],
+          );
+        });
       },
     );
   }

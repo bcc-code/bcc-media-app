@@ -56,7 +56,7 @@ class LoginInitialPage extends HookWidget {
           style: BccmTextStyles.body1.copyWith(color: BccmColors.label3),
         ),
         const SizedBox(height: 48),
-        const Center(child: SocialAuthButtons()),
+        Center(child: SocialAuthButtons()),
         const SizedBox(height: 24),
         Center(
           child: Text(

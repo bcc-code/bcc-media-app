@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:alice/alice.dart';
 import 'package:auto_route/auto_route.dart';
+import 'package:brunstadtv_app/providers/unleash.dart';
 import 'package:brunstadtv_app/providers/router_provider.dart';
 import 'package:brunstadtv_app/providers/deeplink_service.dart';
 import 'package:brunstadtv_app/helpers/navigation/navigation_utils.dart';
@@ -14,6 +15,7 @@ import 'package:brunstadtv_app/router/special_routes_guard.dart';
 import 'package:brunstadtv_app/helpers/firebase.dart';
 import 'package:brunstadtv_app/theme/bccm_theme.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -96,6 +98,15 @@ Future<ProviderContainer> initProviderContainer(List<Override> overrides) async 
   providerContainer.read(analyticsProvider);
   providerContainer.read(deepLinkServiceProvider);
   providerContainer.read(playbackServiceProvider);
+  try {
+    await providerContainer.read(unleashProvider.future).timeout(const Duration(milliseconds: 300));
+  } catch (e, st) {
+    if (e is TimeoutException) {
+      debugPrint('Timeout: Unleash not ready, continuing boot.');
+    } else {
+      FirebaseCrashlytics.instance.recordError(e, st);
+    }
+  }
   return providerContainer;
 }
 
