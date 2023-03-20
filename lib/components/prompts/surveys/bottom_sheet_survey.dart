@@ -44,53 +44,57 @@ class BottomSheetSurvey extends StatelessWidget {
         onCancel(context);
         return false;
       },
-      child: Container(
-        decoration: const BoxDecoration(
-          color: BccmColors.background1,
-          borderRadius: BorderRadius.only(
-            topLeft: Radius.circular(16),
-            topRight: Radius.circular(16),
+      child: AnimatedPadding(
+        padding: MediaQuery.of(context).viewInsets,
+        duration: const Duration(milliseconds: 200),
+        child: Container(
+          decoration: const BoxDecoration(
+            color: BccmColors.background1,
+            borderRadius: BorderRadius.only(
+              topLeft: Radius.circular(16),
+              topRight: Radius.circular(16),
+            ),
           ),
-        ),
-        child: Padding(
-          padding: const EdgeInsets.only(left: 16, right: 16, top: 8, bottom: 32),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Container(
-                margin: const EdgeInsets.only(bottom: 16),
-                child: UnconstrainedBox(
-                  child: Container(
-                    height: 5,
-                    width: 40,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(100),
-                      color: BccmColors.label4,
+          child: Padding(
+            padding: const EdgeInsets.only(left: 16, right: 16, top: 8, bottom: 32),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Container(
+                  margin: const EdgeInsets.only(bottom: 16),
+                  child: UnconstrainedBox(
+                    child: Container(
+                      height: 5,
+                      width: 40,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(100),
+                        color: BccmColors.label4,
+                      ),
                     ),
                   ),
                 ),
-              ),
-              Container(
-                margin: const EdgeInsets.only(bottom: 16),
-                child: Text(
-                  prompt.survey.title,
-                  textAlign: TextAlign.center,
-                  style: BccmTextStyles.title3,
-                ),
-              ),
-              Flexible(
-                child: AnimatedSwitcher(
-                  duration: const Duration(milliseconds: 200),
-                  child: _BottomSheetBody(
-                    survey: prompt.survey,
-                    onClose: () => onClose(context),
-                    onCancel: () => onCancel(context),
+                Container(
+                  margin: const EdgeInsets.only(bottom: 16),
+                  child: Text(
+                    prompt.survey.title,
+                    textAlign: TextAlign.center,
+                    style: BccmTextStyles.title3,
                   ),
                 ),
-              ),
-            ],
+                Flexible(
+                  child: AnimatedSwitcher(
+                    duration: const Duration(milliseconds: 200),
+                    child: _BottomSheetBody(
+                      survey: prompt.survey,
+                      onClose: () => onClose(context),
+                      onCancel: () => onCancel(context),
+                    ),
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
       ),

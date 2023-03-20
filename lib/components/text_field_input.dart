@@ -5,6 +5,7 @@ import '../theme/bccm_typography.dart';
 
 class TextFieldInput extends StatelessWidget {
   final TextEditingController controller;
+  final bool autoFocus;
   final String? hintText;
   final int minLines;
   final int maxLines;
@@ -15,6 +16,7 @@ class TextFieldInput extends StatelessWidget {
     this.minLines = 9,
     this.maxLines = 13,
     this.hintText,
+    this.autoFocus = false,
   });
 
   @override
@@ -47,6 +49,7 @@ class TextFieldInput extends StatelessWidget {
         contentPadding: const EdgeInsets.all(16),
       ),
       controller: controller,
+      autofocus: autoFocus,
     );
   }
 }

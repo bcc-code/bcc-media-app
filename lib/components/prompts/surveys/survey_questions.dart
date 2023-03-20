@@ -1,3 +1,4 @@
+import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 
 import '../../../theme/bccm_colors.dart';
@@ -40,6 +41,15 @@ class SurveyForm extends StatefulWidget {
 
 class _SurveyFormState extends State<SurveyForm> {
   final Map<String, SurveyAnswer> surveyAnswers = {};
+  bool showOnlyFirstQuestion = false;
+
+  @override
+  void initState() {
+    super.initState();
+    if (widget.surveyQuestions.isNotEmpty && widget.surveyQuestions.first is Fragment$SurveyQuestion$$SurveyRatingQuestion) {
+      showOnlyFirstQuestion = true;
+    }
+  }
 
   void updateAnswer(String id, SurveyAnswer? answer) {
     setState(() {
@@ -65,13 +75,19 @@ class _SurveyFormState extends State<SurveyForm> {
             child: Column(
               mainAxisSize: MainAxisSize.min,
               crossAxisAlignment: CrossAxisAlignment.start,
-              children: widget.surveyQuestions.map(
-                (question) {
+              children: widget.surveyQuestions.mapIndexed(
+                (index, question) {
+                  if (index > 0 && showOnlyFirstQuestion) {
+                    return const SizedBox.shrink();
+                  }
                   if (question is Fragment$SurveyQuestion$$SurveyRatingQuestion) {
                     return SurveyQuestionRating(
                       question: question,
                       onRatingChanged: (rating) {
                         updateAnswer(question.id, SurveyAnswerRating(id: question.id, rating: rating));
+                        if (showOnlyFirstQuestion) {
+                          setState(() => showOnlyFirstQuestion = false);
+                        }
                       },
                     );
                   } else if (question is Fragment$SurveyQuestion$$SurveyTextQuestion) {
@@ -83,6 +99,7 @@ class _SurveyFormState extends State<SurveyForm> {
                           answer.trim().isEmpty ? null : SurveyAnswerText(id: question.id, answer: answer),
                         );
                       },
+                      autoFocus: index == 0 || (index == 1 && widget.surveyQuestions[0] is Fragment$SurveyQuestion$$SurveyRatingQuestion),
                     );
                   }
                   return const SizedBox.shrink();
@@ -157,11 +174,13 @@ class SurveyQuestionRating extends StatelessWidget {
 class SurveyQuestionText extends StatefulWidget {
   final Fragment$SurveyQuestion$$SurveyTextQuestion question;
   final Function(String) onAnswerChanged;
+  final bool autoFocus;
 
   const SurveyQuestionText({
     super.key,
     required this.question,
     required this.onAnswerChanged,
+    this.autoFocus = false,
   });
 
   @override
@@ -199,9 +218,10 @@ class _SurveyQuestionTextState extends State<SurveyQuestionText> {
               ),
             ),
           TextFieldInput(
-            controller: textController,
             minLines: 7,
             maxLines: 10,
+            controller: textController,
+            autoFocus: widget.autoFocus,
           ),
         ],
       ),
