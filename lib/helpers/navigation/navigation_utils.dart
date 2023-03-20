@@ -11,29 +11,41 @@ import '../../graphql/queries/studies.graphql.dart';
 import '../../providers/analytics.dart';
 import '../../providers/todays_calendar_entries.dart';
 import '../../router/router.gr.dart';
+import '../special_routes.dart';
 import 'navigation_override.dart';
 import '../utils.dart';
 import '../extensions.dart';
 
 extension StackRouterCustomNavigation on StackRouter {
-  Future navigateNamedFromRoot(String path) {
+  Future navigateNamedFromRoot(String path, {OnNavigationFailure? onFailure}) async {
+    final context = navigatorKey.currentState?.context;
+    debugPrint('navigateNamedFromRoot, navigatorKey: ${navigatorKey.currentState?.context}, using context: $context');
+    // ignore: use_build_context_synchronously
+    if (context != null && await SpecialRoutesHandler.handle(context, path)) {
+      debugPrint('Route handled by SpecialRoutesHandler');
+      return;
+    }
     var result = root.matcher.match(path, includePrefixMatches: true);
     if (result != null) {
-      return navigateAll(result);
+      return navigateAll(result, onFailure: onFailure);
     }
     return Future.value();
   }
 }
 
 extension ToQueryString on Parameters {
-  String toQueryStringWithQuestionMark() {
-    if (isEmpty) {
-      return '';
-    }
-    var queryString = '?';
-    queryString += rawMap.entries.map((kv) => '${kv.key}=${kv.value}').join('&');
-    return queryString;
+  String toQueryString() {
+    return mapToQueryString(rawMap);
   }
+}
+
+String mapToQueryString(Map<String, dynamic> rawMap) {
+  if (rawMap.isEmpty) {
+    return '';
+  }
+  var queryString = '?';
+  queryString += rawMap.entries.map((kv) => '${kv.key}=${kv.value}').join('&');
+  return queryString;
 }
 
 String uriStringWithoutHost(Uri uri) {

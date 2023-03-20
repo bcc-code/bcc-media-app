@@ -1,6 +1,8 @@
 appId: tv.brunstad.app
 ---
 - pressKey: home
+# Had issues with a race condition after clicking home and then doing deep linking quickly after.
+# So this assert is just a hack to make maestro wait a few seconds.
 - assertVisible:
-    text: Home screen icons
+    text: Some text that doesnt exist
     optional: true

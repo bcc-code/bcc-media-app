@@ -39,9 +39,17 @@ appId: tv.brunstad.app
 - runFlow: subflows/home.yml
 - openLink: "https://app.bcc.media/live"
 - assertVisible: Today,.*
-# Foreground 1
+# Foreground 1 - Redirect
+- openLink: "https://app.bcc.media/r/donation"
+- assertVisible: "Donation App"
+- launchApp:
+    appId: "tv.brunstad.app"
+    stopApp: false
+- assertNotVisible: .*Something went wrong.*
+- assertVisible: .*Home.*
+# Foreground 2
 - openLink: "https://app.bcc.media/episode/769"
 - assertVisible: .*Joseph.*
-# Foreground 2
+# Foreground 3
 - openLink: "https://app.bcc.media/live"
 - assertVisible: Today,.*
