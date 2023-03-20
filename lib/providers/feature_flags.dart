@@ -10,14 +10,15 @@ final featureFlagsProvider = StateNotifierProvider<FeatureFlagsNotifier, Feature
 });
 
 class FeatureFlagsNotifier extends StateNotifier<FeatureFlags> {
-  final UnleashClient client;
+  final UnleashClient? client;
   FeatureFlagsNotifier(this.client) : super(getFlagsFromUnleash(client)) {
     _update();
-    client.on('update', (_) => _update());
-    client.on('ready', (_) => _update(readyOverride: true));
+    client?.on('update', (_) => _update());
+    client?.on('ready', (_) => _update(readyOverride: true));
   }
 
-  static FeatureFlags getFlagsFromUnleash(UnleashClient client) {
+  static FeatureFlags getFlagsFromUnleash(UnleashClient? client) {
+    if (client == null) return const FeatureFlags();
     return FeatureFlags(
       signup: client.isEnabled('public-signup'),
     );

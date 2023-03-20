@@ -1,23 +1,25 @@
-import 'dart:async';
-
-import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/foundation.dart';
 import 'package:riverpod/riverpod.dart';
-import 'package:unleash_proxy_client_flutter/toggle_config.dart';
 import 'package:unleash_proxy_client_flutter/unleash_context.dart';
 import 'package:unleash_proxy_client_flutter/unleash_proxy_client_flutter.dart';
-import 'package:unleash_proxy_client_flutter/variant.dart';
 
 import '../env/env.dart';
 import 'auth_state/auth_state.dart';
 
-final unleashProvider = FutureProvider<UnleashClient>((ref) async {
+final unleashProvider = FutureProvider<UnleashClient?>((ref) async {
   final unleash = ref.watch(unleashRawProvider);
-  await unleash.start();
+  if (unleash == null) return null;
+  try {
+    await unleash.start();
+  } catch (e, st) {
+    FlutterError.reportError(FlutterErrorDetails(exception: e, stack: st));
+    return null;
+  }
   return unleash;
 });
 
-final unleashRawProvider = Provider<UnleashClient>((ref) {
+final unleashRawProvider = Provider<UnleashClient?>((ref) {
+  if (Env.unleashClientKey.isEmpty) return null;
   final client = UnleashClient(
     url: Uri.parse(Env.unleashProxyUrl),
     clientKey: Env.unleashClientKey,
@@ -26,10 +28,13 @@ final unleashRawProvider = Provider<UnleashClient>((ref) {
   );
   client.on(
     'error',
-    (err) => FlutterError.reportError(FlutterErrorDetails(
-      exception: Exception(err),
-      context: ErrorDescription('Unleash got error $err'),
-    )),
+    (err) => FlutterError.reportError(
+      FlutterErrorDetails(
+        exception: Exception(err),
+        context: ErrorDescription('Unleash got error $err'),
+        stack: StackTrace.current,
+      ),
+    ),
   );
   client.on('update', (_) => debugPrint('Unleash refresh'));
   ref.listen(
