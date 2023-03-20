@@ -9,7 +9,7 @@ import '../../../../helpers/ui/btv_buttons.dart';
 import '../../../../l10n/app_localizations.dart';
 import '../../../../theme/bccm_colors.dart';
 import '../../../../theme/bccm_typography.dart';
-import '../../../providers/prompts.dart';
+import '../../../providers/surveys.dart';
 import '../../loading_indicator.dart';
 import 'dialog_confirm_cancel.dart';
 import 'survey_questions.dart';

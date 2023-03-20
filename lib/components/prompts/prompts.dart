@@ -1,14 +1,14 @@
-import 'dart:convert';
-
-import 'package:brunstadtv_app/helpers/extensions.dart';
-import 'package:collection/collection.dart';
-import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:collection/collection.dart';
 
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:firebase_crashlytics/firebase_crashlytics.dart';
+
+import '../../helpers/extensions.dart';
 import '../../graphql/queries/prompts.graphql.dart';
 import '../../models/survey.dart';
 import '../../providers/prompts.dart';
+import '../../providers/surveys.dart';
 import './surveys/survey_prompt.dart';
 
 class Prompts extends ConsumerStatefulWidget {
@@ -21,11 +21,11 @@ class Prompts extends ConsumerStatefulWidget {
 class _PromptsState extends ConsumerState<Prompts> {
   final List<String> closedPrompts = [];
 
-  void close(String promptId) {
+  void closePrompt(String promptId) {
     setState(() => closedPrompts.add(promptId));
   }
 
-  bool isOutdatedSurvey(Fragment$Prompt$$SurveyPrompt surveyPrompt, List<CompletedSurvey> completedSurveys) {
+  bool isCompletedSurvey(List<CompletedSurvey> completedSurveys, Fragment$Prompt$$SurveyPrompt surveyPrompt) {
     return completedSurveys.where((survey) => survey.id == surveyPrompt.survey.id).isNotEmpty;
   }
 
@@ -35,11 +35,6 @@ class _PromptsState extends ConsumerState<Prompts> {
     final completedSurveys = ref.watch(completedSurveysProvider).valueOrNull ?? [];
 
     return prompts.when(
-      error: (error, stackTrace) {
-        FirebaseCrashlytics.instance.recordError(error, stackTrace);
-        return const SizedBox.shrink();
-      },
-      loading: () => const SizedBox.shrink(),
       data: (prompts) {
         final openPrompts = prompts.whereNot((prompt) => closedPrompts.contains(prompt.id));
         return Column(
@@ -47,14 +42,19 @@ class _PromptsState extends ConsumerState<Prompts> {
           children: openPrompts.map(
             (prompt) {
               final surveyPrompt = prompt.asOrNull<Fragment$Prompt$$SurveyPrompt>();
-              if (surveyPrompt != null && !isOutdatedSurvey(surveyPrompt, completedSurveys)) {
-                return PromptSurvey(prompt: surveyPrompt, onClose: () => close(surveyPrompt.id));
+              if (surveyPrompt != null && !isCompletedSurvey(completedSurveys, surveyPrompt)) {
+                return PromptSurvey(prompt: surveyPrompt, onClose: () => closePrompt(surveyPrompt.id));
               }
               return const SizedBox.shrink();
             },
           ).toList(),
         );
       },
+      error: (error, stackTrace) {
+        FirebaseCrashlytics.instance.recordError(error, stackTrace);
+        return const SizedBox.shrink();
+      },
+      loading: () => const SizedBox.shrink(),
     );
   }
 }
