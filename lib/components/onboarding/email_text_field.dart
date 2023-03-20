@@ -2,11 +2,12 @@ import 'package:brunstadtv_app/helpers/ui/svg_icons.dart';
 import 'package:brunstadtv_app/theme/bccm_colors.dart';
 import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_svg/svg.dart';
 
 import '../../theme/bccm_typography.dart';
 
-class EmailTextField extends StatelessWidget {
+class EmailTextField extends HookWidget {
   const EmailTextField({
     super.key,
     required this.emailFocusNode,
@@ -20,6 +21,7 @@ class EmailTextField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    useListenable(emailTextController);
     return TextFormField(
       focusNode: emailFocusNode,
       controller: emailTextController,
@@ -43,13 +45,18 @@ class EmailTextField extends StatelessWidget {
         border: OutlineInputBorder(borderRadius: BorderRadius.circular(6), borderSide: BorderSide.none),
         contentPadding: const EdgeInsets.all(12),
         suffixIconConstraints: const BoxConstraints(minHeight: 24, minWidth: 24),
-        suffixIcon: Padding(
-          padding: const EdgeInsets.only(right: 12),
-          child: SvgPicture.string(
-            SvgIcons.clearXIcon,
-            theme: const SvgTheme(currentColor: BccmColors.label3),
-          ),
-        ),
+        suffixIcon: emailTextController.text.isEmpty
+            ? null
+            : GestureDetector(
+                onTap: () => emailTextController.value = TextEditingValue.empty,
+                child: Padding(
+                  padding: const EdgeInsets.only(right: 12),
+                  child: SvgPicture.string(
+                    SvgIcons.clearXIcon,
+                    theme: const SvgTheme(currentColor: BccmColors.label3),
+                  ),
+                ),
+              ),
         focusedBorder: OutlineInputBorder(
           borderSide: const BorderSide(color: BccmColors.tint1, width: 1),
           borderRadius: BorderRadius.circular(6),
