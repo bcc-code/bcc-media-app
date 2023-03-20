@@ -94,6 +94,12 @@ class MockBccmPlayerPlatform with MockPlatformInterfaceMixin implements BccmPlay
   @override
   // TODO: implement stateNotifier
   PlayerPluginStateNotifier get stateNotifier => throw UnimplementedError();
+
+  @override
+  Future<void> removePlaybackListener(PlaybackListenerPigeon listener) {
+    // TODO: implement removePlaybackListener
+    throw UnimplementedError();
+  }
 }
 
 void main() {

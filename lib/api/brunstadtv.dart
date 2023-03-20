@@ -178,6 +178,30 @@ class Api implements BccmApi {
   Future<String> sendSurveyAnswerRating(String id, int rating) {
     return sendSurveyAnswerText(id, rating.toString());
   }
+
+  Future<String?> legacyIdLookup({
+    int? legacyEpisodeId,
+    int? legacyProgramId,
+  }) async {
+    assert(legacyEpisodeId != null || legacyProgramId != null, 'Either legacyEpisodeId or legacyProgramId must be set.');
+    assert(legacyEpisodeId == null || legacyProgramId == null, "LegacyEpisodeId and legacyProgramId can't be set at the same time.");
+    final variables = Variables$Query$legacyIDLookup(
+      episodeId: legacyEpisodeId,
+      programId: legacyProgramId,
+    );
+    final value = await gqlClient.query$legacyIDLookup(Options$Query$legacyIDLookup(variables: variables));
+    if (value.hasException) {
+      FirebaseCrashlytics.instance.recordError(value.exception, StackTrace.current);
+      return null;
+    }
+    if (value.parsedData == null) {
+      final legacyType = legacyEpisodeId != null ? 'episode' : 'program';
+      final id = legacyEpisodeId ?? legacyProgramId;
+      FirebaseCrashlytics.instance.recordError(Exception('Could not find new episode id from legacy $legacyType id: "$id"'), StackTrace.current);
+      return null;
+    }
+    return value.parsedData!.legacyIDLookup.id;
+  }
 }
 
 final apiProvider = Provider<Api>((ref) {

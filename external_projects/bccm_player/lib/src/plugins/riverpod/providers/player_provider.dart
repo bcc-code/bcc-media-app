@@ -14,6 +14,6 @@ final castPlayerProvider = StateNotifierProvider<PlayerStateNotifier, PlayerStat
 
 final primaryPlayerProvider = StateNotifierProvider<PlayerStateNotifier, PlayerState?>((ref) {
   final playerId = ref.watch(pluginStateProvider.select((value) => value.primaryPlayerId));
-  if (playerId == null) return PlayerStateNotifier();
+  if (playerId == null) return PlayerStateNotifier(keepAlive: false);
   return ref.watch(playerProviderFor(playerId).notifier);
 });
