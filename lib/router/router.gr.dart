@@ -50,14 +50,20 @@ class AppRouter extends _i22.RootStackRouter {
       );
     },
     LoginScreenRoute.name: (routeData) {
+      final queryParams = routeData.queryParams;
       final args = routeData.argsAs<LoginScreenRouteArgs>(
-          orElse: () => const LoginScreenRouteArgs());
+          orElse: () => LoginScreenRouteArgs(
+                  auto: queryParams.getBool(
+                'auto',
+                false,
+              )));
       return _i22.MaterialPageX<void>(
         routeData: routeData,
         child: _i2.LoginScreen(
           key: args.key,
           loginError: args.loginError,
           onResult: args.onResult,
+          auto: args.auto,
         ),
       );
     },
@@ -531,6 +537,7 @@ class LoginScreenRoute extends _i22.PageRouteInfo<LoginScreenRouteArgs> {
     _i23.Key? key,
     String? loginError,
     void Function(bool)? onResult,
+    bool auto = false,
   }) : super(
           LoginScreenRoute.name,
           path: '/login',
@@ -538,7 +545,9 @@ class LoginScreenRoute extends _i22.PageRouteInfo<LoginScreenRouteArgs> {
             key: key,
             loginError: loginError,
             onResult: onResult,
+            auto: auto,
           ),
+          rawQueryParams: {'auto': auto},
         );
 
   static const String name = 'LoginScreenRoute';
@@ -549,6 +558,7 @@ class LoginScreenRouteArgs {
     this.key,
     this.loginError,
     this.onResult,
+    this.auto = false,
   });
 
   final _i23.Key? key;
@@ -557,9 +567,11 @@ class LoginScreenRouteArgs {
 
   final void Function(bool)? onResult;
 
+  final bool auto;
+
   @override
   String toString() {
-    return 'LoginScreenRouteArgs{key: $key, loginError: $loginError, onResult: $onResult}';
+    return 'LoginScreenRouteArgs{key: $key, loginError: $loginError, onResult: $onResult, auto: $auto}';
   }
 }
 
