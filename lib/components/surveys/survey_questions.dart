@@ -1,12 +1,12 @@
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 
-import '../../../theme/bccm_colors.dart';
-import '../../../theme/bccm_typography.dart';
-import '../../../../graphql/queries/prompts.graphql.dart';
-import '../../../../helpers/ui/btv_buttons.dart';
-import '../../../../l10n/app_localizations.dart';
-import '../../text_field_input.dart';
+import '../../theme/bccm_colors.dart';
+import '../../theme/bccm_typography.dart';
+import '../../../graphql/queries/prompts.graphql.dart';
+import '../../../helpers/ui/btv_buttons.dart';
+import '../../../l10n/app_localizations.dart';
+import '../text_field_input.dart';
 import 'rating_bar.dart';
 
 abstract class SurveyAnswer {}

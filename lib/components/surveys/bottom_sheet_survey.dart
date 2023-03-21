@@ -3,14 +3,14 @@ import 'package:flutter/material.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../../../api/brunstadtv.dart';
-import '../../../../graphql/queries/prompts.graphql.dart';
-import '../../../../helpers/ui/btv_buttons.dart';
-import '../../../../l10n/app_localizations.dart';
-import '../../../../theme/bccm_colors.dart';
-import '../../../../theme/bccm_typography.dart';
-import '../../../providers/surveys.dart';
-import '../../loading_indicator.dart';
+import '../../../api/brunstadtv.dart';
+import '../../../graphql/queries/prompts.graphql.dart';
+import '../../../helpers/ui/btv_buttons.dart';
+import '../../../l10n/app_localizations.dart';
+import '../../../theme/bccm_colors.dart';
+import '../../../theme/bccm_typography.dart';
+import '../../providers/surveys.dart';
+import '../loading_indicator.dart';
 import 'dialog_confirm_cancel.dart';
 import 'survey_questions.dart';
 

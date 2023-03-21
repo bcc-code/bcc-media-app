@@ -2,14 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:collection/collection.dart';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 
 import '../../helpers/extensions.dart';
 import '../../graphql/queries/prompts.graphql.dart';
 import '../../models/survey.dart';
 import '../../providers/prompts.dart';
 import '../../providers/surveys.dart';
-import 'surveys/prompt_survey.dart';
+import 'prompt_survey.dart';
 
 class Prompts extends ConsumerStatefulWidget {
   const Prompts({super.key});
@@ -50,10 +49,7 @@ class _PromptsState extends ConsumerState<Prompts> {
           ).toList(),
         );
       },
-      error: (error, stackTrace) {
-        FirebaseCrashlytics.instance.recordError(error, stackTrace);
-        return const SizedBox.shrink();
-      },
+      error: (error, stackTrace) => const SizedBox.shrink(),
       loading: () => const SizedBox.shrink(),
     );
   }

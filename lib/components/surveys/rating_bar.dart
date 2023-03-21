@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
-import '../../../../helpers/ui/svg_icons.dart';
-import '../../../../theme/bccm_colors.dart';
+import '../../../helpers/ui/svg_icons.dart';
+import '../../../theme/bccm_colors.dart';
 
 class RatingBar extends StatefulWidget {
   final void Function(int)? onRatingChanged;
@@ -33,7 +33,7 @@ class _RatingBarState extends State<RatingBar> {
         itemBuilder: (context, index) {
           return GestureDetector(
             onTap: () => changeRating(index),
-            child: RatingStar(curRating != null && index <= curRating!),
+            child: _RatingStar(curRating != null && index <= curRating!),
           );
         },
         separatorBuilder: (context, index) => const SizedBox(width: 4),
@@ -45,9 +45,9 @@ class _RatingBarState extends State<RatingBar> {
   }
 }
 
-class RatingStar extends StatelessWidget {
+class _RatingStar extends StatelessWidget {
   final bool isFilled;
-  const RatingStar(this.isFilled, {super.key});
+  const _RatingStar(this.isFilled, {super.key});
 
   @override
   Widget build(BuildContext context) {

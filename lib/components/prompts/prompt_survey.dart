@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
-import '../../../graphql/queries/prompts.graphql.dart';
-import '../../../helpers/ui/btv_buttons.dart';
-import '../../../helpers/ui/svg_icons.dart';
-import '../../../l10n/app_localizations.dart';
-import '../../../theme/bccm_colors.dart';
-import '../../../theme/bccm_typography.dart';
-import './bottom_sheet_survey.dart';
+import '../../graphql/queries/prompts.graphql.dart';
+import '../../helpers/ui/btv_buttons.dart';
+import '../../helpers/ui/svg_icons.dart';
+import '../../l10n/app_localizations.dart';
+import '../../theme/bccm_colors.dart';
+import '../../theme/bccm_typography.dart';
+import '../surveys/bottom_sheet_survey.dart';
 
 class PromptSurvey extends StatelessWidget {
   final Fragment$Prompt$$SurveyPrompt prompt;

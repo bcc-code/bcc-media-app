@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
-import '../../../../helpers/ui/btv_buttons.dart';
-import '../../../../l10n/app_localizations.dart';
-import '../../../../theme/bccm_colors.dart';
-import '../../../../theme/bccm_typography.dart';
+import '../../../helpers/ui/btv_buttons.dart';
+import '../../../l10n/app_localizations.dart';
+import '../../../theme/bccm_colors.dart';
+import '../../../theme/bccm_typography.dart';
 
 class DialogConfirmCancel extends StatelessWidget {
   const DialogConfirmCancel({super.key});
