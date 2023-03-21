@@ -40,7 +40,10 @@ class MiniPlayer extends StatelessWidget {
     return Container(
       height: kMiniPlayerHeight,
       width: MediaQuery.of(context).size.width,
-      color: BccmColors.background2,
+      decoration: const BoxDecoration(
+        color: BccmColors.background2,
+        border: Border(top: BorderSide(color: BccmColors.separatorOnLight, width: 1)),
+      ),
       padding: const EdgeInsets.symmetric(
         horizontal: 16,
         vertical: 12,
