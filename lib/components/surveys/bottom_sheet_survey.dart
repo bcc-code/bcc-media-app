@@ -26,6 +26,10 @@ class BottomSheetSurvey extends StatelessWidget {
   }
 
   void onCancel(BuildContext context) {
+    final curFocusScope =
+        FocusScope.of(context); // Fix glitch with keyboard popping up and down quickly when survey is closed by interacting with the dialog.
+    curFocusScope.unfocus();
+
     Future<bool?> isCancelConfirmed = showDialog(
       context: context,
       builder: (context) => const DialogConfirmCancel(),
@@ -33,6 +37,8 @@ class BottomSheetSurvey extends StatelessWidget {
     isCancelConfirmed.then((cancelConfirmed) {
       if (cancelConfirmed == true) {
         onClose(context);
+      } else {
+        curFocusScope.requestFocus();
       }
     });
   }
