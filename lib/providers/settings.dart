@@ -96,7 +96,7 @@ class SettingsService extends StateNotifier<Settings> {
 
 final settingsProvider = StateNotifierProvider<SettingsService, Settings>((ref) {
   final settingsService = SettingsService(ref, const Settings(appLanguage: Locale('en')));
-  settingsService.addListener(fireImmediately: true, (state) {
+  settingsService.addListener(fireImmediately: false, (state) {
     BccmPlayerInterface.instance.setAppConfig(state.toAppConfig());
   });
   settingsService.addListener(fireImmediately: false, (state) {
