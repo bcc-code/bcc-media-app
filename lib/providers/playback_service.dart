@@ -29,11 +29,15 @@ class PlaybackService {
     required this.playbackApi,
     required this.analyticsService,
     required this.ref,
-  }) {
-    _init();
-  }
+  });
 
-  Future _init() async {
+  Future init() async {
+    await playbackApi.setNpawConfig(
+      NpawConfig(
+        accountCode: Env.npawAccountCode,
+        appName: 'mobile',
+      ),
+    );
     playbackApi.addRiverpod(ref);
     playbackApi.addPlaybackListener(BccmPlaybackListener(ref: ref, apiProvider: apiProvider));
 

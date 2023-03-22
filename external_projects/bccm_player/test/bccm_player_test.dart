@@ -66,11 +66,6 @@ class MockBccmPlayerPlatform with MockPlatformInterfaceMixin implements BccmPlay
   }
 
   @override
-  void setNpawConfig(NpawConfig? config) {
-    // TODO: implement setNpawConfig
-  }
-
-  @override
   Future<void> addPlaybackListener(PlaybackListenerPigeon listener) {
     // TODO: implement setPlaybackListener
     throw UnimplementedError();
@@ -82,7 +77,7 @@ class MockBccmPlayerPlatform with MockPlatformInterfaceMixin implements BccmPlay
   }
 
   @override
-  void setAppConfig(AppConfig? config) {
+  Future setAppConfig(AppConfig? config) async {
     // TODO: implement setAppConfig
   }
 

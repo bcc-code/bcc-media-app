@@ -90,7 +90,7 @@ Future<ProviderContainer> initProviderContainer(List<Override> overrides) async 
   providerContainer.read(analyticsProvider);
   providerContainer.read(deepLinkServiceProvider);
   providerContainer.read(notificationServiceProvider);
-  providerContainer.read(playbackServiceProvider);
+  await providerContainer.read(playbackServiceProvider).init();
   try {
     await providerContainer.read(unleashProvider.future).timeout(const Duration(milliseconds: 300));
   } catch (e, st) {
