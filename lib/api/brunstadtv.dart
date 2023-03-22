@@ -125,6 +125,7 @@ class Api implements BccmApi {
 
   @override
   Future updateProgress({required String episodeId, required double? progress}) async {
+    if (episodeId == 'livestream') return;
     return gqlClient
         .mutate$setEpisodeProgress(Options$Mutation$setEpisodeProgress(
             variables: Variables$Mutation$setEpisodeProgress(id: episodeId, progress: progress?.finiteOrNull()?.round())))

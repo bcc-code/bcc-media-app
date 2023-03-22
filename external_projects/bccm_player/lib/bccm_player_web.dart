@@ -76,7 +76,7 @@ class BccmPlayerWeb extends BccmPlayerInterface {
   }
 
   @override
-  void setNpawConfig(pigeon.NpawConfig? config) {
+  Future setNpawConfig(pigeon.NpawConfig? config) async {
     return;
   }
 

@@ -65,11 +65,12 @@ class ExoPlayerController(private val context: Context) : PlayerController() {
         player = BccmForwardingPlayer(this)
 
         val youboraOptions = Options()
-        setBasicYouboraOptions(youboraOptions, BccmPlayerPluginSingleton.npawConfigState.value)
         youboraOptions.isAutoDetectBackground = false
         youboraOptions.userObfuscateIp = true
         youboraOptions.isEnabled = false
         youboraOptions.isParseManifest = true
+        setBasicYouboraOptions(youboraOptions, BccmPlayerPluginSingleton.npawConfigState.value)
+
         // app.https missing?
 
         youboraPlugin = Plugin(youboraOptions, context)
