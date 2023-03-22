@@ -1,10 +1,13 @@
 import 'package:auto_route/auto_route.dart';
 
-import 'package:brunstadtv_app/providers/playback_service.dart';
 import 'package:brunstadtv_app/providers/shorts_videos_service.dart';
 import 'package:flutter/services.dart';
-import 'package:brunstadtv_app/providers/video_state.dart';
-import 'package:brunstadtv_app/providers/chromecast.dart';
+import 'package:bccm_player/bccm_player.dart';
+import 'package:auto_route/auto_route.dart';
+import 'package:bccm_player/bccm_player.dart';
+import 'package:bccm_player/plugins/riverpod.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -40,7 +43,7 @@ class _VideoPlayerScreenState extends ConsumerState<ShortsVideoPlayerScreen> {
 
   @override
   Widget build(BuildContext context) {
-    Player? player;
+    PlayerState? player;
     if (ref.watch(isCasting)) {
       player = ref.watch(castPlayerProvider);
     } else {
@@ -161,7 +164,8 @@ class ForwardButton extends StatelessWidget {
 
           await context.router.pushNamed('/embed/${widget.shortsVideo.id}?autoplay=true&t=${widget.controller.value.duration.inSeconds.toString()}',
               includePrefixMatches: true);
-          ref.read(playbackApiProvider).stop(playerId, true);
+          BccmPlayerInterface.instance.stop(playerId, true);
+          // ref.read(playbackApiProvider).stop(playerId, true);
 
           if (!mounted) return;
           SystemChrome.setPreferredOrientations([DeviceOrientation.landscapeRight]);
@@ -196,7 +200,8 @@ class VideoDescription extends ConsumerWidget {
           SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
 
           await context.router.pushNamed(urlLink ?? '/embed/$episodeId?autoplay=true', includePrefixMatches: true);
-          ref.read(playbackApiProvider).stop(playerId, true);
+          BccmPlayerInterface.instance.stop(playerId, true);
+          // ref.read(playbackApiProvider).stop(playerId, true);
           SystemChrome.setPreferredOrientations([DeviceOrientation.landscapeRight]);
         },
         child: Container(
