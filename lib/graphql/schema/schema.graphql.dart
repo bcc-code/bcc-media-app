@@ -244,24 +244,32 @@ class _CopyWithStubImpl$Input$EpisodeContext<TRes>
 
 const possibleTypesMap = <String, Set<String>>{
   'Pagination': {
-    'AchievementPagination',
-    'AchievementGroupPagination',
+    'SurveyQuestionPagination',
+    'SeasonPagination',
+    'EpisodePagination',
+    'UserCollectionEntryPagination',
     'CollectionItemPagination',
     'QuestionPagination',
     'FAQCategoryPagination',
-    'SeasonPagination',
-    'EpisodePagination',
+    'LessonPagination',
+    'TaskPagination',
     'SectionPagination',
     'LinkPagination',
     'SectionItemPagination',
-    'LessonPagination',
-    'TaskPagination',
+    'AchievementPagination',
+    'AchievementGroupPagination',
   },
-  'CalendarEntry': {
-    'SimpleCalendarEntry',
-    'EpisodeCalendarEntry',
-    'SeasonCalendarEntry',
-    'ShowCalendarEntry',
+  'SurveyQuestion': {
+    'SurveyTextQuestion',
+    'SurveyRatingQuestion',
+  },
+  'EpisodeContextUnion': {
+    'Season',
+    'ContextCollection',
+  },
+  'UserCollectionEntryItem': {
+    'Show',
+    'Episode',
   },
   'CollectionItem': {
     'ShowItem',
@@ -269,9 +277,25 @@ const possibleTypesMap = <String, Set<String>>{
     'EpisodeItem',
     'PageItem',
   },
-  'EpisodeContextUnion': {
-    'Season',
-    'ContextCollection',
+  'CalendarEntry': {
+    'SimpleCalendarEntry',
+    'EpisodeCalendarEntry',
+    'SeasonCalendarEntry',
+    'ShowCalendarEntry',
+  },
+  'SearchResultItem': {
+    'EpisodeSearchItem',
+    'SeasonSearchItem',
+    'ShowSearchItem',
+  },
+  'Prompt': {'SurveyPrompt'},
+  'Task': {
+    'AlternativesTask',
+    'TextTask',
+    'PosterTask',
+    'QuoteTask',
+    'VideoTask',
+    'LinkTask',
   },
   'Section': {
     'PosterSection',
@@ -315,18 +339,5 @@ const possibleTypesMap = <String, Set<String>>{
     'Page',
     'Link',
     'StudyTopic',
-  },
-  'SearchResultItem': {
-    'EpisodeSearchItem',
-    'SeasonSearchItem',
-    'ShowSearchItem',
-  },
-  'Task': {
-    'AlternativesTask',
-    'TextTask',
-    'PosterTask',
-    'QuoteTask',
-    'VideoTask',
-    'LinkTask',
   },
 };

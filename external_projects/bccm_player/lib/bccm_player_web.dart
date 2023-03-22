@@ -1,29 +1,23 @@
 // In order to *not* need this ignore, consider extracting the "web" version
 // of your plugin as a separate package, instead of inlining it in the same
 // package as the core of your plugin.
-// ignore: avoid_web_libraries_in_flutter
-import 'dart:html' as html show window;
 
-import 'package:bccm_player/playback_platform_pigeon.g.dart' as pigeon;
-import 'package:bccm_player/playback_service_interface.dart';
-import 'package:bccm_player/web/web_player.dart';
+import 'package:bccm_player/src/pigeon/playback_platform_pigeon.g.dart' as pigeon;
+import 'package:bccm_player/src/playback_platform_interface.dart';
 import 'package:flutter_web_plugins/flutter_web_plugins.dart';
+import 'src/web/web_player.dart';
 
 /// A web implementation of the BccmPlayerPlatform of the BccmPlayer plugin.
-class BccmPlayerWeb extends PlaybackPlatformInterface {
+class BccmPlayerWeb extends BccmPlayerInterface {
   /// Constructs a BccmPlayerWeb
   BccmPlayerWeb();
 
   static void registerWith(Registrar registrar) {
-    PlaybackPlatformInterface.instance = BccmPlayerWeb();
+    BccmPlayerInterface.instance = BccmPlayerWeb();
   }
 
-  /// Returns a [String] containing the version of the platform.
   @override
-  Future<String?> getPlatformVersion() async {
-    final version = html.window.navigator.userAgent;
-    return version;
-  }
+  chromecastEventStream() => const Stream.empty();
 
   @override
   Future<String> newPlayer({String? url}) async {
@@ -62,7 +56,7 @@ class BccmPlayerWeb extends PlaybackPlatformInterface {
   }
 
   @override
-  Future<void> setPlaybackListener(pigeon.PlaybackListenerPigeon listener) async {
+  Future<void> addPlaybackListener(pigeon.PlaybackListenerPigeon listener) async {
     addListener(listener);
   }
 
@@ -82,7 +76,7 @@ class BccmPlayerWeb extends PlaybackPlatformInterface {
   }
 
   @override
-  void setNpawConfig(pigeon.NpawConfig? config) {
+  Future setNpawConfig(pigeon.NpawConfig? config) async {
     return;
   }
 

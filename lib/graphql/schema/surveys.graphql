@@ -2,8 +2,6 @@ type Survey {
     id: UUID!
     title: String!
     description: String
-    from: Date!
-    to: Date!
     questions(first: Int, offset: Int): SurveyQuestionPagination! @goField(forceResolver: true)
 }
 

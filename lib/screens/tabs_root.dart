@@ -1,21 +1,15 @@
-import 'dart:async';
-
 import 'package:auto_route/auto_route.dart';
+import 'package:bccm_player/bccm_player.dart';
+import 'package:bccm_player/plugins/riverpod.dart';
 import 'package:brunstadtv_app/components/mini_player.dart';
-import 'package:brunstadtv_app/graphql/client.dart';
-import 'package:brunstadtv_app/graphql/queries/devices.graphql.dart';
 import 'package:brunstadtv_app/helpers/extensions.dart';
 import 'package:brunstadtv_app/providers/auth_state/auth_state.dart';
-import 'package:brunstadtv_app/providers/chromecast.dart';
-import 'package:brunstadtv_app/providers/settings.dart';
+import 'package:brunstadtv_app/providers/notification_service.dart';
 import 'package:brunstadtv_app/screens/search/search.dart';
-import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:brunstadtv_app/providers/playback_service.dart';
-import 'package:brunstadtv_app/providers/video_state.dart';
 import 'package:brunstadtv_app/router/router.gr.dart';
-import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
 import '../components/bottom_sheet_mini_player.dart';
 import '../components/custom_tab_bar.dart';
@@ -31,66 +25,9 @@ class TabsRootScreen extends ConsumerStatefulWidget {
 
 class _TabsRootScreenState extends ConsumerState<TabsRootScreen> with AutoRouteAware {
   @override
-  void initState() {
-    super.initState();
-    ref.read(playbackApiProvider).newPlayer().then((playerId) {
-      var player = Player(playerId: playerId);
-      ref.read(playbackApiProvider).setPrimary(playerId);
-      ref.read(primaryPlayerProvider.notifier).setState(player);
-    });
-    initFcm();
-  }
-
-  StreamSubscription? fcmSubscription;
-  ProviderSubscription? settingsSubscription;
-
-  Future initFcm() async {
-    var result = await FirebaseMessaging.instance.requestPermission();
-    print(result.toString());
-    var token = await FirebaseMessaging.instance.getToken();
-    FirebaseMessaging.instance.setForegroundNotificationPresentationOptions(alert: false, badge: false, sound: true);
-
-    settingsSubscription = ref.listenManual<Settings>(settingsProvider, (old, value) async {
-      var token = await FirebaseMessaging.instance.getToken();
-      if (token != null && old?.appLanguage != value.appLanguage) {
-        setDeviceToken(token);
-      }
-    });
-
-    if (token != null) {
-      if (!mounted) {
-        return;
-      }
-      await setDeviceToken(token);
-    }
-
-    fcmSubscription = FirebaseMessaging.instance.onTokenRefresh.listen((fcmToken) {
-      if (!mounted) {
-        return;
-      }
-      setDeviceToken(fcmToken);
-      print('fcm token refreshed: $fcmToken');
-
-      const storage = FlutterSecureStorage();
-      storage.write(key: 'fcm_token', value: fcmToken);
-      print('fcm token refreshed and stored: $fcmToken');
-    });
-    fcmSubscription?.onError((err) {
-      print('error onTokenRefresh');
-    });
-  }
-
-  Future setDeviceToken(String token) async {
-    var result = await ref.read(gqlClientProvider).mutate$SetDeviceToken(Options$Mutation$SetDeviceToken(
-        variables: Variables$Mutation$SetDeviceToken(token: token, languages: [ref.read(settingsProvider).appLanguage.languageCode])));
-    return result;
-  }
-
-  @override
-  void dispose() {
-    fcmSubscription?.cancel();
-    settingsSubscription?.close();
-    super.dispose();
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    ref.watch(notificationServiceProvider).requestPermissionAndSetup();
   }
 
   @override
@@ -100,8 +37,12 @@ class _TabsRootScreenState extends ConsumerState<TabsRootScreen> with AutoRouteA
 
   bool _shouldHideMiniPlayer(BuildContext context) {
     final router = context.watchRouter;
-    final currentRouteMatch = router.currentSegments.last;
-    final StateNotifierProvider<PlayerNotifier, Player?>? playerProvider;
+    final currentRouteMatch = router.currentSegments.lastOrNull;
+    if (currentRouteMatch == null) {
+      debugPrint('router.currentSegments empty');
+      return true;
+    }
+    final StateNotifierProvider<PlayerStateNotifier, PlayerState?>? playerProvider;
     if (ref.watch(isCasting)) {
       playerProvider = castPlayerProvider;
     } else {

@@ -1,4 +1,4 @@
-import 'package:bccm_player/playback_platform_pigeon.g.dart';
+import 'package:bccm_player/src/pigeon/playback_platform_pigeon.g.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
 

@@ -122,7 +122,7 @@ class _CalendarWidgetState extends ConsumerState<CalendarWidget> {
     DateTime startDate = DateTime.parse(first);
     DateTime endDate = DateTime.parse(last);
     final dayCount = endDate.difference(startDate).inDays + 1;
-
+    if (dayCount <= 0) return [];
     return List.generate(dayCount, (index) => convertToIso8601inDays(startDate.add(Duration(days: (index)))));
   }
 

@@ -1,6 +1,5 @@
-import 'package:bccm_player/playback_platform_pigeon.g.dart';
+import 'package:bccm_player/bccm_player.dart';
 import 'package:brunstadtv_app/helpers/constants.dart';
-import 'package:brunstadtv_app/providers/playback_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -98,8 +97,7 @@ class SettingsService extends StateNotifier<Settings> {
 final settingsProvider = StateNotifierProvider<SettingsService, Settings>((ref) {
   final settingsService = SettingsService(ref, const Settings(appLanguage: Locale('en')));
   settingsService.addListener(fireImmediately: false, (state) {
-    if (!ref.exists(playbackApiProvider)) return;
-    ref.read(playbackApiProvider).setAppConfig(state.toAppConfig());
+    BccmPlayerInterface.instance.setAppConfig(state.toAppConfig());
   });
   settingsService.addListener(fireImmediately: false, (state) {
     Intl.defaultLocale = state.appLanguage.toLanguageTag();

@@ -120,6 +120,10 @@ type QueryRoot{
 
   me: User!
 
+  myList: UserCollection!
+
+  userCollection(id: UUID!): UserCollection!
+
   config: Config!
 
   profiles: [Profile!]!
@@ -127,5 +131,5 @@ type QueryRoot{
 
   legacyIDLookup(options: LegacyIDLookupOptions): LegacyIDLookup!
 
-  surveys: [Survey!]!
+  prompts: [Prompt!]!
 }

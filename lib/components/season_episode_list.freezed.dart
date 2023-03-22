@@ -16,9 +16,9 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$SeasonEpisodeListEpisodeData {
-  SeasonListEpisode get episode => throw _privateConstructorUsedError;
+  Fragment$SeasonListEpisode get episode => throw _privateConstructorUsedError;
   int? get seasonNumber => throw _privateConstructorUsedError;
-  LessonProgressOverview? get lessonProgressOverview =>
+  Fragment$LessonProgressOverview? get lessonProgressOverview =>
       throw _privateConstructorUsedError;
   bool? get highlighted => throw _privateConstructorUsedError;
 
@@ -36,9 +36,9 @@ abstract class $SeasonEpisodeListEpisodeDataCopyWith<$Res> {
           SeasonEpisodeListEpisodeData>;
   @useResult
   $Res call(
-      {SeasonListEpisode episode,
+      {Fragment$SeasonListEpisode episode,
       int? seasonNumber,
-      LessonProgressOverview? lessonProgressOverview,
+      Fragment$LessonProgressOverview? lessonProgressOverview,
       bool? highlighted});
 }
 
@@ -56,16 +56,16 @@ class _$SeasonEpisodeListEpisodeDataCopyWithImpl<$Res,
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? episode = freezed,
+    Object? episode = null,
     Object? seasonNumber = freezed,
     Object? lessonProgressOverview = freezed,
     Object? highlighted = freezed,
   }) {
     return _then(_value.copyWith(
-      episode: freezed == episode
+      episode: null == episode
           ? _value.episode
           : episode // ignore: cast_nullable_to_non_nullable
-              as SeasonListEpisode,
+              as Fragment$SeasonListEpisode,
       seasonNumber: freezed == seasonNumber
           ? _value.seasonNumber
           : seasonNumber // ignore: cast_nullable_to_non_nullable
@@ -73,7 +73,7 @@ class _$SeasonEpisodeListEpisodeDataCopyWithImpl<$Res,
       lessonProgressOverview: freezed == lessonProgressOverview
           ? _value.lessonProgressOverview
           : lessonProgressOverview // ignore: cast_nullable_to_non_nullable
-              as LessonProgressOverview?,
+              as Fragment$LessonProgressOverview?,
       highlighted: freezed == highlighted
           ? _value.highlighted
           : highlighted // ignore: cast_nullable_to_non_nullable
@@ -92,9 +92,9 @@ abstract class _$$_SeasonEpisodeListEpisodeDataCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {SeasonListEpisode episode,
+      {Fragment$SeasonListEpisode episode,
       int? seasonNumber,
-      LessonProgressOverview? lessonProgressOverview,
+      Fragment$LessonProgressOverview? lessonProgressOverview,
       bool? highlighted});
 }
 
@@ -111,16 +111,16 @@ class __$$_SeasonEpisodeListEpisodeDataCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? episode = freezed,
+    Object? episode = null,
     Object? seasonNumber = freezed,
     Object? lessonProgressOverview = freezed,
     Object? highlighted = freezed,
   }) {
     return _then(_$_SeasonEpisodeListEpisodeData(
-      episode: freezed == episode
+      episode: null == episode
           ? _value.episode
           : episode // ignore: cast_nullable_to_non_nullable
-              as SeasonListEpisode,
+              as Fragment$SeasonListEpisode,
       seasonNumber: freezed == seasonNumber
           ? _value.seasonNumber
           : seasonNumber // ignore: cast_nullable_to_non_nullable
@@ -128,7 +128,7 @@ class __$$_SeasonEpisodeListEpisodeDataCopyWithImpl<$Res>
       lessonProgressOverview: freezed == lessonProgressOverview
           ? _value.lessonProgressOverview
           : lessonProgressOverview // ignore: cast_nullable_to_non_nullable
-              as LessonProgressOverview?,
+              as Fragment$LessonProgressOverview?,
       highlighted: freezed == highlighted
           ? _value.highlighted
           : highlighted // ignore: cast_nullable_to_non_nullable
@@ -147,11 +147,11 @@ class _$_SeasonEpisodeListEpisodeData implements _SeasonEpisodeListEpisodeData {
       this.highlighted});
 
   @override
-  final SeasonListEpisode episode;
+  final Fragment$SeasonListEpisode episode;
   @override
   final int? seasonNumber;
   @override
-  final LessonProgressOverview? lessonProgressOverview;
+  final Fragment$LessonProgressOverview? lessonProgressOverview;
   @override
   final bool? highlighted;
 
@@ -165,22 +165,18 @@ class _$_SeasonEpisodeListEpisodeData implements _SeasonEpisodeListEpisodeData {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_SeasonEpisodeListEpisodeData &&
-            const DeepCollectionEquality().equals(other.episode, episode) &&
+            (identical(other.episode, episode) || other.episode == episode) &&
             (identical(other.seasonNumber, seasonNumber) ||
                 other.seasonNumber == seasonNumber) &&
-            const DeepCollectionEquality()
-                .equals(other.lessonProgressOverview, lessonProgressOverview) &&
+            (identical(other.lessonProgressOverview, lessonProgressOverview) ||
+                other.lessonProgressOverview == lessonProgressOverview) &&
             (identical(other.highlighted, highlighted) ||
                 other.highlighted == highlighted));
   }
 
   @override
   int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(episode),
-      seasonNumber,
-      const DeepCollectionEquality().hash(lessonProgressOverview),
-      highlighted);
+      runtimeType, episode, seasonNumber, lessonProgressOverview, highlighted);
 
   @JsonKey(ignore: true)
   @override
@@ -193,17 +189,17 @@ class _$_SeasonEpisodeListEpisodeData implements _SeasonEpisodeListEpisodeData {
 abstract class _SeasonEpisodeListEpisodeData
     implements SeasonEpisodeListEpisodeData {
   const factory _SeasonEpisodeListEpisodeData(
-      {required final SeasonListEpisode episode,
+      {required final Fragment$SeasonListEpisode episode,
       final int? seasonNumber,
-      final LessonProgressOverview? lessonProgressOverview,
+      final Fragment$LessonProgressOverview? lessonProgressOverview,
       final bool? highlighted}) = _$_SeasonEpisodeListEpisodeData;
 
   @override
-  SeasonListEpisode get episode;
+  Fragment$SeasonListEpisode get episode;
   @override
   int? get seasonNumber;
   @override
-  LessonProgressOverview? get lessonProgressOverview;
+  Fragment$LessonProgressOverview? get lessonProgressOverview;
   @override
   bool? get highlighted;
   @override

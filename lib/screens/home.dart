@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'package:brunstadtv_app/router/router.gr.dart';
 import 'package:brunstadtv_app/screens/shorts/shorts_main.dart';
+import 'package:bccm_player/bccm_player.dart';
 import 'package:universal_io/io.dart';
 import 'dart:ui';
 
@@ -11,8 +12,6 @@ import 'package:brunstadtv_app/helpers/version.dart';
 import 'package:brunstadtv_app/models/scroll_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-
-import 'package:bccm_player/cast_button.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:url_launcher/url_launcher_string.dart';
@@ -109,7 +108,7 @@ class HomeScreenState extends ConsumerState<HomeScreen> with PageMixin implement
   }
 
   Future<Query$Page$page> getHomeAndAppConfig() async {
-    ref.read(appConfigProvider.notifier).state = ref.read(apiProvider).queryAppConfig();
+    reloadAppConfig(ref);
     return getHomePage();
   }
 
@@ -144,7 +143,7 @@ class HomeScreenState extends ConsumerState<HomeScreen> with PageMixin implement
             actions: [
               Padding(
                 padding: const EdgeInsets.only(right: 16.0),
-                child: ConstrainedBox(constraints: BoxConstraints.loose(const Size(24, 24)), child: const CastButton()),
+                child: ConstrainedBox(constraints: BoxConstraints.loose(const Size(24, 24)), child: const BccmCastButton()),
               ),
             ],
             flexibleSpace: ClipRect(
@@ -172,10 +171,12 @@ class HomeScreenState extends ConsumerState<HomeScreen> with PageMixin implement
               scrollController: pageScrollController,
             ),
           ),
-          floatingActionButton: !Env.enableShorts ? null : FloatingActionButton(
-            child: const Icon(Icons.token_outlined),
-            onPressed: () => context.router.navigate(const ShortsMainRoute()),
-          ),
+          floatingActionButton: !Env.enableShorts
+              ? null
+              : FloatingActionButton(
+                  child: const Icon(Icons.token_outlined),
+                  onPressed: () => context.router.navigate(const ShortsMainRoute()),
+                ),
         ),
       ],
     );

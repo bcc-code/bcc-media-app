@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:bccm_player/plugins/bcc_media.dart';
 import 'package:brunstadtv_app/graphql/queries/calendar_episode_entries.graphql.dart';
 import 'package:brunstadtv_app/graphql/queries/page.graphql.dart';
 import 'package:brunstadtv_app/graphql/queries/studies.graphql.dart';
@@ -24,7 +25,7 @@ class ApiErrorCodes {
   static const String notPublished = 'item/not-published';
 }
 
-class Api {
+class Api implements BccmApi {
   final String? accessToken;
   final GraphQLClient gqlClient;
 
@@ -120,7 +121,9 @@ class Api {
     return LivestreamUrl.fromJson(body);
   }
 
+  @override
   Future updateProgress({required String episodeId, required double? progress}) async {
+    if (episodeId == 'livestream') return;
     return gqlClient
         .mutate$setEpisodeProgress(Options$Mutation$setEpisodeProgress(
             variables: Variables$Mutation$setEpisodeProgress(id: episodeId, progress: progress?.finiteOrNull()?.round())))
@@ -140,6 +143,30 @@ class Api {
       }
       return result.parsedData!.calendar;
     });
+  }
+
+  Future<String?> legacyIdLookup({
+    int? legacyEpisodeId,
+    int? legacyProgramId,
+  }) async {
+    assert(legacyEpisodeId != null || legacyProgramId != null, 'Either legacyEpisodeId or legacyProgramId must be set.');
+    assert(legacyEpisodeId == null || legacyProgramId == null, "LegacyEpisodeId and legacyProgramId can't be set at the same time.");
+    final variables = Variables$Query$legacyIDLookup(
+      episodeId: legacyEpisodeId,
+      programId: legacyProgramId,
+    );
+    final value = await gqlClient.query$legacyIDLookup(Options$Query$legacyIDLookup(variables: variables));
+    if (value.hasException) {
+      FirebaseCrashlytics.instance.recordError(value.exception, StackTrace.current);
+      return null;
+    }
+    if (value.parsedData == null) {
+      final legacyType = legacyEpisodeId != null ? 'episode' : 'program';
+      final id = legacyEpisodeId ?? legacyProgramId;
+      FirebaseCrashlytics.instance.recordError(Exception('Could not find new episode id from legacy $legacyType id: "$id"'), StackTrace.current);
+      return null;
+    }
+    return value.parsedData!.legacyIDLookup.id;
   }
 }
 
