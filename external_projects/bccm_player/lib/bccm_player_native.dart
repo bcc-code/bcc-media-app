@@ -78,8 +78,8 @@ class BccmPlayerNative extends BccmPlayerInterface {
   }
 
   @override
-  void setNpawConfig(NpawConfig? config) {
-    _pigeon.setNpawConfig(config);
+  Future setNpawConfig(NpawConfig? config) {
+    return _pigeon.setNpawConfig(config);
   }
 
   @override

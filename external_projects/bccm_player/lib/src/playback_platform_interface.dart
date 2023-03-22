@@ -75,7 +75,7 @@ abstract class BccmPlayerInterface extends PlatformInterface {
     throw UnimplementedError('stop() has not been implemented.');
   }
 
-  void setNpawConfig(NpawConfig? config) {
+  Future? setNpawConfig(NpawConfig? config) {
     throw UnimplementedError('setNpawConfig() has not been implemented.');
   }
 
