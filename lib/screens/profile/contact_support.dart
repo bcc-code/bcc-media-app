@@ -8,12 +8,12 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import '../../components/text_field_input.dart';
 import '../../graphql/client.dart';
 import '../../graphql/queries/send_support_email.graphql.dart';
 import '../../helpers/ui/btv_buttons.dart';
 import '../../helpers/version.dart';
 import '../../theme/bccm_colors.dart';
+import '../../theme/bccm_input_decorations.dart';
 import '../../theme/bccm_typography.dart';
 import '../../helpers/constants.dart';
 import '../../l10n/app_localizations.dart';
@@ -256,9 +256,12 @@ class _InputPageState extends State<_InputPage> {
       ),
       Container(
         margin: const EdgeInsets.only(top: 8),
-        child: TextFieldInput(
+        child: TextField(
+          minLines: 9,
+          maxLines: 13,
           controller: textController,
-          hintText: S.of(context).concernTextPlaceholder,
+          decoration: BccmInputDecorations.textFormField.copyWith(hintText: S.of(context).concernTextPlaceholder),
+          style: BccmTextStyles.body1.copyWith(color: BccmColors.label1),
         ),
       ),
       Padding(

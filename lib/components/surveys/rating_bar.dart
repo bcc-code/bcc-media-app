@@ -28,18 +28,18 @@ class _RatingBarState extends State<RatingBar> {
       clipBehavior: Clip.antiAlias,
       decoration: BoxDecoration(borderRadius: BorderRadius.circular(12)),
       height: 60,
-      child: ListView.separated(
-        itemCount: 5,
-        itemBuilder: (context, index) {
-          return GestureDetector(
-            onTap: () => changeRating(index),
-            child: _RatingStar(curRating != null && index <= curRating!),
-          );
-        },
-        separatorBuilder: (context, index) => const SizedBox(width: 4),
-        scrollDirection: Axis.horizontal,
-        shrinkWrap: true,
-        physics: const NeverScrollableScrollPhysics(),
+      child: Row(
+        children: List.generate(5 * 2 - 1, (index) {
+          if (index.isEven) {
+            return Expanded(
+              child: GestureDetector(
+                onTap: () => changeRating(index),
+                child: _RatingStar(curRating != null && index <= curRating!),
+              ),
+            );
+          }
+          return const SizedBox(width: 4);
+        }),
       ),
     );
   }
@@ -47,12 +47,11 @@ class _RatingBarState extends State<RatingBar> {
 
 class _RatingStar extends StatelessWidget {
   final bool isFilled;
-  const _RatingStar(this.isFilled, {super.key});
+  const _RatingStar(this.isFilled);
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 65,
       height: 60,
       color: isFilled ? BccmColors.tint1 : BccmColors.separatorOnLight,
       child: Center(

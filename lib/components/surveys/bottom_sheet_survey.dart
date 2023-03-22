@@ -1,3 +1,4 @@
+import 'package:brunstadtv_app/helpers/utils.dart';
 import 'package:flutter/material.dart';
 
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
@@ -12,9 +13,7 @@ import '../../../theme/bccm_typography.dart';
 import '../../providers/surveys.dart';
 import '../loading_indicator.dart';
 import 'dialog_confirm_cancel.dart';
-import 'survey_questions.dart';
-
-enum SurveyState { form, sending, success, failure }
+import 'survey_form.dart';
 
 class BottomSheetSurvey extends StatelessWidget {
   final Fragment$Prompt$$SurveyPrompt prompt;
@@ -121,8 +120,7 @@ class _BottomSheetBody extends ConsumerStatefulWidget {
 
 class _BottomSheetBodyState extends ConsumerState<_BottomSheetBody> {
   List<SurveyAnswer>? surveyAnswers;
-
-  SurveyState surveyState = SurveyState.form;
+  Future? surveySubmissionFuture;
 
   void submitSurvey(List<SurveyAnswer> answers) {
     final api = ref.read(apiProvider);
@@ -135,13 +133,11 @@ class _BottomSheetBodyState extends ConsumerState<_BottomSheetBody> {
         futures.add(api.sendSurveyAnswerText(answer.id, answer.answer));
       }
     }
-    setState(() => surveyState = SurveyState.sending);
-    Future.wait(futures, eagerError: true).then((value) {
-      setState(() => surveyState = SurveyState.success);
-      completedSurveysNotifier.addSurvey(widget.survey.id);
-    }).onError((error, stackTrace) {
-      setState(() => surveyState = SurveyState.failure);
-      FirebaseCrashlytics.instance.recordError(error, stackTrace);
+    setState(() {
+      surveySubmissionFuture = Future.wait(futures, eagerError: true).then((value) {
+        completedSurveysNotifier.addSurvey(widget.survey.id);
+        return value;
+      });
     });
   }
 
@@ -159,25 +155,19 @@ class _BottomSheetBodyState extends ConsumerState<_BottomSheetBody> {
 
   @override
   Widget build(BuildContext context) {
-    switch (surveyState) {
-      case SurveyState.form:
-        return SurveyForm(
-          surveyQuestions: widget.survey.questions.items,
-          onSubmit: onSubmitSurvey,
-          onCancel: widget.onCancel,
-        );
-      case SurveyState.sending:
-        return _Sending();
-      case SurveyState.success:
-        return _Success(onClose: widget.onClose);
-      case SurveyState.failure:
-        return _Failure(
-          onCancel: widget.onCancel,
-          onTryAgain: onTryAgain,
-        );
-      default:
-        return const SizedBox.shrink();
+    if (surveySubmissionFuture == null) {
+      return SurveyForm(
+        surveyQuestions: widget.survey.questions.items,
+        onSubmit: onSubmitSurvey,
+        onCancel: widget.onCancel,
+      );
     }
+    return simpleFutureBuilder(
+      future: surveySubmissionFuture,
+      loading: () => _Sending(),
+      ready: (value) => _Success(onClose: widget.onClose),
+      error: (error) => _Failure(onCancel: widget.onCancel, onTryAgain: onTryAgain),
+    );
   }
 }
 
