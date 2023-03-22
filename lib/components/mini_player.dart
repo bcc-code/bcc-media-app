@@ -21,6 +21,7 @@ class MiniPlayer extends StatelessWidget {
   final VoidCallback? onPlayTap;
   final VoidCallback? onCloseTap;
   final bool? hideCloseButton;
+  final Border? border;
 
   const MiniPlayer({
     Key? key,
@@ -33,6 +34,7 @@ class MiniPlayer extends StatelessWidget {
     this.onCloseTap,
     this.loading,
     this.hideCloseButton,
+    this.border = const Border(top: BorderSide(color: BccmColors.separatorOnLight, width: 1)),
   }) : super(key: key);
 
   @override
@@ -40,9 +42,9 @@ class MiniPlayer extends StatelessWidget {
     return Container(
       height: kMiniPlayerHeight,
       width: MediaQuery.of(context).size.width,
-      decoration: const BoxDecoration(
+      decoration: BoxDecoration(
         color: BccmColors.background2,
-        border: Border(top: BorderSide(color: BccmColors.separatorOnLight, width: 1)),
+        border: border,
       ),
       padding: const EdgeInsets.symmetric(
         horizontal: 16,

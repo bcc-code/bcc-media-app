@@ -33,13 +33,13 @@ class PromptSurvey extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 13),
+      height: 62,
+      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
       decoration: const BoxDecoration(
         color: BccmColors.background2,
         border: Border(top: BorderSide(color: BccmColors.separatorOnLight, width: 1)),
       ),
       child: SizedBox(
-        height: 34,
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
