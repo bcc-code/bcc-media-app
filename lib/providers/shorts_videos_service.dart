@@ -11,10 +11,11 @@ class Episode {
 }
 
 class ShortsVideo {
-  String hlsUrl;
+  String id;
   String title;
+  String hlsUrl;
   Duration duration;
-  ShortsVideo({required this.hlsUrl, required this.title, required this.duration});
+  ShortsVideo({required this.id, required this.title, required this.hlsUrl, required this.duration});
 }
 
 final _episodesForShortsProvider = FutureProvider<List<Episode>?>((ref) async {
@@ -22,7 +23,7 @@ final _episodesForShortsProvider = FutureProvider<List<Episode>?>((ref) async {
   final client = ref.read(gqlClientProvider);
 
   return await client
-      .query$GetEpisodesForShorts(Options$Query$GetEpisodesForShorts(variables: Variables$Query$GetEpisodesForShorts(first: 10, offset: 0)))
+      .query$GetEpisodesForShorts(Options$Query$GetEpisodesForShorts(variables: Variables$Query$GetEpisodesForShorts(first: 19, offset: 0)))
       .then((result) {
     if (result.hasException) {
       throw result.exception!;
@@ -64,8 +65,9 @@ final _streamsForEpisodeProvider = FutureProvider<List<ShortsVideo>?>((ref) asyn
       //video start from 0.2 of the video length
       final duration = (((value.parsedData?.episode.duration ?? 0).toDouble()) * 0.2).toInt();
       shortsVideos.add(ShortsVideo(
-        hlsUrl: value.parsedData!.episode.streams.getBestStreamUrl(),
+        id: item.id,
         title: item.title,
+        hlsUrl: value.parsedData!.episode.streams.getBestStreamUrl(),
         duration: Duration(seconds: duration),
       ));
     });

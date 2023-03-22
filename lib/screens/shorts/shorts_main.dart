@@ -25,21 +25,15 @@ class _ShortsMainState extends ConsumerState<ShortsMain> {
 
   @override
   Widget build(BuildContext context) {
-    final episode = ref.watch(episodeForShortStateProvider);
-    // final hlsurls = ref.watch(streamsForEpisodeStateProvider);
-    if (episode != null) print('episode: ${episode[0].title}');
-    if (episode != null) print('episode-length: ${episode.length}');
-    // if (hlsurls != null) print('hlsurl: ${hlsurls[0].hlsUrl}');
-    // if (hlsurls != null) print('hlsurl-length: ${hlsurls.length}');
-    // final idList = episode.map((e) => e.episode.id,)
+    final List<ShortsVideo>? shortsVideos = ref.watch(streamsForEpisodeStateProvider);
 
     log('🚀🚀🚀 GetEpisodesForShorts');
 
     return Scaffold(
         backgroundColor: Colors.black,
-        body: (/* episode?.length == hlsurl?.length && hlsurls != null && */ episode != null)
+        body: (shortsVideos != null)
             ? ShortsVideosStreamPlayer(
-                episode: episode,
+                shortsVideos: shortsVideos,
               )
             : const LoadingGeneric());
   }
