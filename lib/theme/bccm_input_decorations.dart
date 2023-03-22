@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'bccm_colors.dart';
 import 'bccm_typography.dart';
 
-class BccmDecorations {
-  BccmDecorations._();
+class BccmInputDecorations {
+  BccmInputDecorations._();
   static final textFormField = InputDecoration(
     filled: true,
     isDense: true,
