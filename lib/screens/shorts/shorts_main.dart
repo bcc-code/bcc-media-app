@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:brunstadtv_app/components/loading_generic.dart';
 import 'package:brunstadtv_app/components/shorts/shorts_videos_stream_player.dart';
 import 'package:flutter/material.dart';
@@ -20,22 +18,22 @@ class _ShortsMainState extends ConsumerState<ShortsMain> {
     SystemChrome.setPreferredOrientations([
       DeviceOrientation.landscapeRight,
     ]);
+    ref.read(streamsForEpisodeProvider);
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-    final List<ShortsVideo>? shortsVideos = ref.watch(streamsForEpisodeStateProvider);
-
-    log('🚀🚀🚀 GetEpisodesForShorts');
+    final List<ShortsVideo>? shortsVideos = ref.watch(streamsForEpisodeProvider).valueOrNull;
 
     return Scaffold(
-        backgroundColor: Colors.black,
-        body: (shortsVideos != null)
-            ? ShortsVideosStreamPlayer(
-                shortsVideos: shortsVideos,
-              )
-            : const LoadingGeneric());
+      backgroundColor: Colors.black,
+      body: (shortsVideos != null)
+          ? ShortsVideosStreamPlayer(
+              shortsVideos: shortsVideos,
+            )
+          : const LoadingGeneric(),
+    );
   }
 
   @override

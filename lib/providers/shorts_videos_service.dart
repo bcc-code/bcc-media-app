@@ -18,11 +18,12 @@ class ShortsVideo {
   ShortsVideo({required this.id, required this.title, required this.hlsUrl, required this.duration});
 }
 
-final _episodesForShortsProvider = FutureProvider<List<Episode>?>((ref) async {
+final streamsForEpisodeProvider = FutureProvider<List<ShortsVideo>?>((ref) async {
   final List<Episode> episodesList = [];
+  final List<ShortsVideo> shortsVideos = [];
   final client = ref.read(gqlClientProvider);
 
-  return await client
+  final episodes = await client
       .query$GetEpisodesForShorts(Options$Query$GetEpisodesForShorts(variables: Variables$Query$GetEpisodesForShorts(first: 19, offset: 0)))
       .then((result) {
     if (result.hasException) {
@@ -37,15 +38,7 @@ final _episodesForShortsProvider = FutureProvider<List<Episode>?>((ref) async {
     }
     return episodesList;
   });
-});
 
-final _streamsForEpisodeProvider = FutureProvider<List<ShortsVideo>?>((ref) async {
-  final client = ref.read(gqlClientProvider);
-  final episodes = await ref.watch(_episodesForShortsProvider.future);
-  final List<ShortsVideo> shortsVideos = [];
-  if (episodes == null) {
-    throw ErrorDescription('_episodesForShortsProvider is null.');
-  }
   for (var item in episodes) {
     await client
         .query$GetStreamsForEpisode(
@@ -73,12 +66,4 @@ final _streamsForEpisodeProvider = FutureProvider<List<ShortsVideo>?>((ref) asyn
     });
   }
   return shortsVideos;
-});
-
-final episodeForShortStateProvider = StateProvider<List<Episode>?>((ref) {
-  return ref.watch(_episodesForShortsProvider).valueOrNull;
-});
-
-final streamsForEpisodeStateProvider = StateProvider<List<ShortsVideo>?>((ref) {
-  return ref.watch(_streamsForEpisodeProvider).valueOrNull;
 });
