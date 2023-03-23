@@ -23,6 +23,9 @@ class SIt extends S {
   String get calendarWeek => 'settimana';
 
   @override
+  String get close => 'Close';
+
+  @override
   String get loading => 'In fase di caricamento';
 
   @override
@@ -77,6 +80,9 @@ class SIt extends S {
   String get ok => 'OK';
 
   @override
+  String get open => 'Open';
+
+  @override
   String get loginFailedCheckNetwork => 'Accesso fallito. Controlla la tua connessione di rete e riprova.';
 
   @override
@@ -111,6 +117,18 @@ class SIt extends S {
 
   @override
   String get cancel => 'Annulla';
+
+  @override
+  String get cancelConfirmation => 'Are you sure you want to cancel?';
+
+  @override
+  String get cancelConfirmationDescription => 'Any unsaved changes will be lost.';
+
+  @override
+  String get goBack => 'Go back';
+
+  @override
+  String get yesCancel => 'Yes, Cancel';
 
   @override
   String get upNext => 'Al prossimo';
@@ -150,6 +168,9 @@ class SIt extends S {
 
   @override
   String get search => 'Cerca';
+
+  @override
+  String get sendFeedback => 'Send Feedback';
 
   @override
   String get noResults => 'Nessun risultato';
@@ -325,6 +346,9 @@ class SIt extends S {
 
   @override
   String get sendFailDescription => 'Qualcosa è andato storto. Controlla la tua connessione Internet e riprova.';
+
+  @override
+  String get sendSuccessDescription => 'We appreciate your feedback.';
 
   @override
   String get today => 'Oggi';

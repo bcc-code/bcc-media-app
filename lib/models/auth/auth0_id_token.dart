@@ -17,6 +17,7 @@ class Auth0IdToken {
     required this.exp,
     required this.countryIso2Code,
     this.churchId,
+    this.appMetadata,
     this.birthdate,
     this.gender,
     this.authTime,
@@ -34,10 +35,15 @@ class Auth0IdToken {
   final String? countryIso2Code;
   @JsonKey(name: 'https://login.bcc.no/claims/churchId')
   final int? churchId;
+  @JsonKey(name: 'https://members.bcc.no/app_metadata')
+  final Map<String, dynamic>? appMetadata;
   final String? birthdate;
   final String? gender;
   final int iat;
   final int exp;
+
+  bool? get hasMembership => appMetadata?['hasMembership'];
+  String? get bccPersonId => appMetadata?['personId'].toString();
 
   @JsonKey(name: 'auth_time')
   final int? authTime; // this might be null for the first time login

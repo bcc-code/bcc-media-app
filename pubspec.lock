@@ -613,7 +613,7 @@ packages:
       path: "."
       ref: "fix/deps"
       resolved-ref: "8539dfcb4871d6343e0cb2c7456c360d1115816f"
-      url: "git@github.com:andreasgan/flutter_svg_provider.git"
+      url: "https://github.com/andreasgan/flutter_svg_provider.git"
     source: git
     version: "1.0.3"
   flutter_test:

@@ -1,12 +1,10 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:bccm_player/playback_platform_pigeon.g.dart';
+import 'package:bccm_player/bccm_player.dart';
+import 'package:bccm_player/plugins/riverpod.dart';
 import 'package:brunstadtv_app/helpers/extensions.dart';
 import 'package:brunstadtv_app/helpers/widget_keys.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:brunstadtv_app/providers/chromecast.dart';
-import 'package:brunstadtv_app/providers/playback_service.dart';
-import 'package:brunstadtv_app/providers/video_state.dart';
 import 'package:brunstadtv_app/router/router.gr.dart';
 
 import '../theme/bccm_colors.dart';
@@ -27,7 +25,7 @@ class _BottomSheetMiniPlayerState extends ConsumerState<BottomSheetMiniPlayer> {
 
   @override
   Widget build(BuildContext context) {
-    Player? player;
+    PlayerState? player;
     if (ref.watch(isCasting)) {
       player = ref.watch(castPlayerProvider);
     } else {
@@ -48,7 +46,7 @@ class _BottomSheetMiniPlayerState extends ConsumerState<BottomSheetMiniPlayer> {
     );
   }
 
-  Widget _buildMiniPlayer(Player player) {
+  Widget _buildMiniPlayer(PlayerState player) {
     var artist = player.currentMediaItem?.metadata?.artist;
     var title = player.currentMediaItem?.metadata?.title;
     var artworkUri = player.currentMediaItem?.metadata?.artworkUri;
@@ -57,7 +55,7 @@ class _BottomSheetMiniPlayerState extends ConsumerState<BottomSheetMiniPlayer> {
     return GestureDetector(
       behavior: HitTestBehavior.opaque,
       onTap: () {
-        var id = player.currentMediaItem?.metadata?.extras?['id'].asOrNull<String>();
+        var id = player.currentMediaItem?.metadata?.extras?['id']?.asOrNull<String>();
         if (id == 'livestream') {
           context.router.navigate(const LiveScreenRoute());
         } else if (id != null) {
@@ -76,13 +74,13 @@ class _BottomSheetMiniPlayerState extends ConsumerState<BottomSheetMiniPlayer> {
         artworkUri: artworkUri ?? 'https://source.unsplash.com/random/1600x900/?fruit',
         isPlaying: playbackState == PlaybackState.playing,
         onPlayTap: () {
-          ref.read(playbackApiProvider).play(player.playerId);
+          BccmPlayerInterface.instance.play(player.playerId);
         },
         onPauseTap: () {
-          ref.read(playbackApiProvider).pause(player.playerId);
+          BccmPlayerInterface.instance.pause(player.playerId);
         },
         onCloseTap: () {
-          ref.read(playbackApiProvider).stop(player.playerId, true);
+          BccmPlayerInterface.instance.stop(player.playerId, true);
         },
       ),
     );
@@ -96,10 +94,12 @@ class _BottomSheetMiniPlayerState extends ConsumerState<BottomSheetMiniPlayer> {
       var title = previousMetadata!.title;
       var artworkUri = previousMetadata!.artworkUri;
       return MiniPlayer(
-          secondaryTitle: artist,
-          title: title ?? '',
-          artworkUri: artworkUri ?? 'https://source.unsplash.com/random/1600x900/?fruit',
-          isPlaying: false);
+        secondaryTitle: artist,
+        title: title ?? '',
+        artworkUri: artworkUri ?? 'https://source.unsplash.com/random/1600x900/?fruit',
+        isPlaying: false,
+        border: null,
+      );
     }
     return Container(
         height: kMiniPlayerHeight,

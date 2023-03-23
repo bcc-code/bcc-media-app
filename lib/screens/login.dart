@@ -15,8 +15,14 @@ import '../l10n/app_localizations.dart';
 class LoginScreen extends ConsumerStatefulWidget {
   final String? loginError;
   final void Function(bool)? onResult;
+  final bool auto;
 
-  const LoginScreen({super.key, this.loginError, this.onResult});
+  const LoginScreen({
+    super.key,
+    this.loginError,
+    this.onResult,
+    @QueryParam('auto') this.auto = false,
+  });
 
   @override
   ConsumerState<LoginScreen> createState() => _LoginScreenState();
@@ -34,6 +40,17 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
     Future.delayed(const Duration(milliseconds: 200)).then(
       (_) => setState(() => imagesLoaded = true),
     );
+    if (widget.auto) {
+      loginAction();
+    }
+  }
+
+  @override
+  void didUpdateWidget(LoginScreen old) {
+    super.didUpdateWidget(old);
+    if (widget.auto && !old.auto) {
+      loginAction();
+    }
   }
 
   handleSuccess() {

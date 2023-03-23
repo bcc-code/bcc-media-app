@@ -35,6 +35,7 @@ query FetchEpisode($id: ID!) {
         }
       }
       show {
+        id
         title
         type
         seasons {

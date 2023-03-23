@@ -22,7 +22,6 @@ import '../screens/achievement_group.dart';
 import '../screens/achievements.dart';
 import '../screens/episode.dart';
 import '../screens/page.dart';
-import 'special_routes_guard.dart';
 import '../screens/tabs_root.dart';
 
 const _episodeScreenRoute = CustomRoute<void>(
@@ -42,37 +41,10 @@ const _pageScreenRoute = CustomRoute<void>(
     reverseDurationInMilliseconds: 300,
     transitionsBuilder: CustomTransitionsBuilders.slideLeft);
 
-const _specialRoutes = AutoRoute(
-  page: EmptyRouterPage,
-  path: '/',
-  guards: [SpecialRoutesGuard],
-  children: [
-    AutoRoute<void>(
-      page: EmptyRouterPage,
-      name: 'RedirectRoute',
-      path: 'r/:code',
-    ),
-    AutoRoute<void>(
-      page: EmptyRouterPage,
-      name: 'TvLoginRoute',
-      path: 'tvlogin/*',
-    ),
-    AutoRoute<void>(
-      page: EmptyRouterPage,
-      name: 'LegacyEpisodeRoute',
-      path: 'series/:legacyEpisodeId',
-    ),
-    AutoRoute<void>(
-      page: EmptyRouterPage,
-      name: 'LegacyProgramRoute',
-      path: 'program/:legacyProgramId',
-    ),
-  ],
-);
-
 @MaterialAutoRouter(
   routes: [
-    MaterialRoute<void>(page: LoginScreen, path: 'login', meta: {RouteMetaConstants.analyticsName: 'login'}),
+    AutoRoute<void>(page: AutoLoginScreen, path: '/auto-login'),
+    MaterialRoute<void>(page: LoginScreen, path: '/login', meta: {RouteMetaConstants.analyticsName: 'login'}),
     CustomRoute<void>(
         opaque: false,
         durationInMilliseconds: 400,
@@ -154,7 +126,6 @@ const _specialRoutes = AutoRoute(
       transitionsBuilder: CustomTransitionsBuilders.slideLeft,
       meta: {RouteMetaConstants.analyticsName: 'episode'},
     ),
-    CustomRoute(page: AutoLoginScreeen, path: 'auto-login'),
     CustomRoute<void>(
         page: StudyScreen,
         path: 'study-lesson',
@@ -181,7 +152,6 @@ const _specialRoutes = AutoRoute(
     CustomRoute<void>(
       page: TabsRootScreen,
       path: '/',
-      guards: [],
       children: [
         MaterialRoute<void>(
             page: LiveScreen,
@@ -226,7 +196,6 @@ const _specialRoutes = AutoRoute(
         ]),
       ],
     ),
-    _specialRoutes,
   ],
 )
 class $AppRouter {}

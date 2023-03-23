@@ -1,0 +1,15 @@
+
+interface Prompt {
+    id: UUID!
+    title: String!
+    from: Date!
+    to: Date!
+}
+
+type SurveyPrompt implements Prompt {
+    id: UUID!
+    title: String!
+    from: Date!
+    to: Date!
+    survey: Survey! @goField(forceResolver: true)
+}

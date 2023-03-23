@@ -2,13 +2,14 @@ import 'dart:async';
 
 import 'package:app_links/app_links.dart';
 import 'package:auto_route/auto_route.dart';
-import 'package:brunstadtv_app/api/brunstadtv.dart';
+import 'package:brunstadtv_app/helpers/event_bus.dart';
 import 'package:brunstadtv_app/providers/app_config.dart';
 import 'package:brunstadtv_app/providers/auth_state/auth_state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../components/loading_indicator.dart';
+import '../models/events/app_ready.dart';
 import '../theme/bccm_colors.dart';
 import '../theme/bccm_typography.dart';
 import '../helpers/navigation/navigation_utils.dart';
@@ -16,14 +17,14 @@ import '../helpers/utils.dart';
 import '../l10n/app_localizations.dart';
 import '../router/router.gr.dart';
 
-class AutoLoginScreeen extends ConsumerStatefulWidget {
-  const AutoLoginScreeen({super.key});
+class AutoLoginScreen extends ConsumerStatefulWidget {
+  const AutoLoginScreen({super.key});
 
   @override
   ConsumerState<ConsumerStatefulWidget> createState() => _AutoLoginScreeenState();
 }
 
-class _AutoLoginScreeenState extends ConsumerState<AutoLoginScreeen> {
+class _AutoLoginScreeenState extends ConsumerState<AutoLoginScreen> {
   Future<void>? authFuture;
 
   @override
@@ -38,32 +39,33 @@ class _AutoLoginScreeenState extends ConsumerState<AutoLoginScreeen> {
   }
 
   void load() async {
-    final hasCredentials = ref.read(authStateProvider).auth0AccessToken != null;
     final deepLinkUri = await AppLinks().getInitialAppLink();
-    if (hasCredentials) {
-      WidgetsBinding.instance.scheduleFrameCallback((d) {
-        navigate(deepLinkUri: deepLinkUri);
-      });
-    } else {
-      setState(() {
-        authFuture = ref.read(authStateProvider.notifier).load().then((_) {
-          navigate(deepLinkUri: deepLinkUri);
-        });
-      });
-    }
+    authFuture = ref.read(authStateProvider.notifier).load();
+    authFuture!.then((_) {
+      debugPrint('navigate(deepLinkUri: $deepLinkUri)');
+      navigate(deepLinkUri: deepLinkUri);
+      globalEventBus.fire(AppReadyEvent());
+    });
   }
 
   void navigate({Uri? deepLinkUri}) {
     if (!mounted) return;
+    final router = context.router;
     if (deepLinkUri != null) {
-      context.router.navigateNamedFromRoot(uriStringWithoutHost(deepLinkUri));
+      router.replaceAll([const TabsRootScreenRoute()]);
+      router.navigateNamedFromRoot(
+        uriStringWithoutHost(deepLinkUri),
+        onFailure: (f) {
+          router.navigateNamedFromRoot('/');
+        },
+      );
       return;
     }
     final hasCredentials = ref.read(authStateProvider).auth0AccessToken != null;
     if (!hasCredentials) {
-      context.router.replaceAll([LoginScreenRoute()]);
+      router.replaceAll([LoginScreenRoute()]);
     } else {
-      context.router.replaceAll([const TabsRootScreenRoute()]);
+      router.replaceAll([const TabsRootScreenRoute()]);
     }
   }
 
@@ -81,7 +83,7 @@ class _AutoLoginScreeenState extends ConsumerState<AutoLoginScreeen> {
   Widget error(BuildContext context) => Scaffold(
         body: SafeArea(
           child: Padding(
-            padding: EdgeInsets.all(16),
+            padding: const EdgeInsets.all(16),
             child: Stack(
               children: [
                 Positioned(
@@ -135,8 +137,8 @@ class _AutoLoginScreeenState extends ConsumerState<AutoLoginScreeen> {
                           minimumSize: const Size.fromHeight(50),
                         ),
                         onPressed: (() {
+                          reloadAppConfig(ref);
                           load();
-                          ref.read(appConfigProvider.notifier).state = ref.read(apiProvider).queryAppConfig();
                         }),
                         child: Text(
                           S.of(context).tryAgainButton,
