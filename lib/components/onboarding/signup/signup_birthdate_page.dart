@@ -1,8 +1,11 @@
 import 'package:brunstadtv_app/components/onboarding/onboarding_page_wrapper.dart';
 import 'package:brunstadtv_app/helpers/extensions.dart';
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:flutter_html/flutter_html.dart';
+import 'package:html/dom.dart' as html_dom;
+import 'package:html/parser.dart' as html_parser;
+import 'package:intl/intl.dart';
 import 'package:universal_io/io.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 
@@ -51,8 +54,8 @@ class SignupBirthDatePage extends HookWidget implements SignupScreenPage {
     return Form(
       key: formKey.value,
       child: OnboardingPageWrapper(
-        title: 'Birth date',
-        description: 'We use your birth date to give you a more tailored experience.',
+        title: 'Year of birth',
+        description: 'We use your birth year to improve the user experience.',
         body: [
           Padding(
             padding: const EdgeInsets.only(top: 48, bottom: 10),
@@ -62,7 +65,7 @@ class SignupBirthDatePage extends HookWidget implements SignupScreenPage {
             ),
           ),
           SizedBox(
-            height: 150,
+            height: 250,
             child: BirthYearPicker(
               onSelectedYearChanged: (year) {
                 yearController.value = TextEditingValue(text: year.toString());
@@ -71,18 +74,22 @@ class SignupBirthDatePage extends HookWidget implements SignupScreenPage {
           ),
           const Spacer(),
           Row(
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Transform.scale(
-                scale: 1,
-                child: Switch.adaptive(
-                  key: WidgetKeys.privacyPolicyAgreeSwitch,
-                  activeColor: Platform.isIOS ? BccmColors.tint1 : null,
-                  value: privacyPolicyAgreed.value,
-                  onChanged: (value) => privacyPolicyAgreed.value = value,
-                ),
+              Switch.adaptive(
+                key: WidgetKeys.privacyPolicyAgreeSwitch,
+                activeColor: Platform.isIOS ? BccmColors.tint1 : null,
+                value: privacyPolicyAgreed.value,
+                onChanged: (value) => privacyPolicyAgreed.value = value,
               ),
-              const SizedBox(width: 12),
-              const Expanded(child: _PrivacyPolicyAgreeText())
+              SizedBox(width: Platform.isAndroid ? 0 : 6),
+              Expanded(
+                child: Container(
+                  height: 100,
+                  alignment: Alignment.center,
+                  child: const _PrivacyPolicyAgreeText(),
+                ),
+              )
             ],
           ),
           const SizedBox(height: 12),
@@ -127,32 +134,35 @@ class SignupBirthDatePage extends HookWidget implements SignupScreenPage {
 class _PrivacyPolicyAgreeText extends StatelessWidget {
   const _PrivacyPolicyAgreeText();
 
+  html_dom.DocumentFragment getValidatedAndParsedLocalization(BuildContext context) {
+    final localized = html_parser.parseFragment(S.of(context).signUpAgreePrivacyPolicy);
+    final anchors = localized.querySelectorAll('a');
+    if (anchors.length == 2) {
+      return localized;
+    }
+    return html_parser.parseFragment(SEn().signUpAgreePrivacyPolicy);
+  }
+
   @override
   Widget build(BuildContext context) {
-    final textParts = RegExp(r'(?<start>.+)<a>(?<link>.+)<\/a>(?<end>.+)');
-    var match = textParts.firstMatch(S.of(context).signUpAgreePrivacyPolicy);
-    match ??= textParts.firstMatch(SEn().signUpAgreePrivacyPolicy)!;
-    match.namedGroup('start');
-    return RichText(
-      softWrap: true,
-      text: TextSpan(style: BccmTextStyles.caption1.copyWith(color: BccmColors.label4), children: [
-        TextSpan(text: match.namedGroup('start')),
-        TextSpan(
-          text: match.namedGroup('link'),
-          style: BccmTextStyles.caption1.copyWith(
-            color: BccmColors.tint1,
-            decoration: TextDecoration.underline,
-          ),
-          recognizer: TapGestureRecognizer()
-            ..onTap = () {
-              launchUrlString(
-                'https://bcc.media/privacy',
-                mode: LaunchMode.externalApplication,
-              );
-            },
+    final document = getValidatedAndParsedLocalization(context);
+    final anchors = document.querySelectorAll('a');
+    anchors[0].attributes['href'] = 'https://bcc.media/${Intl.defaultLocale}/privacy';
+    anchors[1].attributes['href'] = 'https://bcc.media/${Intl.defaultLocale}/terms-of-use';
+    return Html(
+      data: '<p>${document.outerHtml}</p>',
+      onAnchorTap: (url, context, attributes, element) => launchUrlString(url!, mode: LaunchMode.externalApplication),
+      shrinkWrap: true,
+      style: {
+        'p': Style(
+          fontSize: FontSize(BccmTextStyles.caption1.fontSize!),
+          color: BccmColors.label4,
+          margin: Margins.only(bottom: 12),
         ),
-        TextSpan(text: match.namedGroup('end')),
-      ]),
+        'a': Style(
+          color: BccmColors.tint1,
+        ),
+      },
     );
   }
 }

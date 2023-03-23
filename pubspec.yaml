@@ -103,6 +103,8 @@ dependencies:
   email_validator: ^2.1.17
   open_mail_app: ^0.4.5
   unleash_proxy_client_flutter: ^1.0.2
+  html: ^0.15.2
+  flutter_html: ^3.0.0-alpha.6
   #smooth: any
 
 dev_dependencies:

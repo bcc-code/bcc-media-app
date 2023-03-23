@@ -240,7 +240,7 @@ abstract class S {
   /// REMEMBER: Keep the <a> and </a> tags, but translate the 'Privacy Policy' inside.
   ///
   /// In en, this message translates to:
-  /// **'By creating an account, you agree to our <a>Privacy Policy</a>.'**
+  /// **'I certify that I am 13 years of age or older, and I agree to the <a>Privacy Policy</a> and <a>Terms of use</a>.'**
   String get signUpAgreePrivacyPolicy;
 
   /// Title for the 'Set password' page of the signup process.
