@@ -112,8 +112,6 @@ class SignupScreen extends HookConsumerWidget {
           ),
       () => SignupBirthDatePage(
             pageController: pageController,
-            monthController: monthController,
-            monthFocusNode: monthFocusNode,
             yearController: yearController,
             yearFocusNode: yearFocusNode,
             onRegister: onRegister,
@@ -123,10 +121,6 @@ class SignupScreen extends HookConsumerWidget {
             emailTextController: emailTextController,
             registerFuture: registerFuture.value,
           ),
-      /*  () => SignupVerifyEmailPage(
-            pageController: pageController,
-            emailTextController: emailTextController,
-          ), */
     ];
 
     // ignore: exhaustive_keys

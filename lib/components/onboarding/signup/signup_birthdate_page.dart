@@ -2,21 +2,19 @@ import 'package:brunstadtv_app/components/onboarding/onboarding_page_wrapper.dar
 import 'package:brunstadtv_app/helpers/extensions.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:universal_io/io.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 
 import '../../../helpers/analytics_constants.dart';
-import '../../../helpers/forms/range_input_formatter.dart';
 import '../../../helpers/ui/btv_buttons.dart';
 import '../../../helpers/widget_keys.dart';
 import '../../../l10n/app_localizations.dart';
 import '../../../l10n/app_localizations_en.dart';
 import '../../../screens/onboarding/signup.dart';
 import '../../../theme/bccm_colors.dart';
-import '../../../theme/bccm_input_decorations.dart';
 import '../../../theme/bccm_typography.dart';
+import '../birth_year_picker.dart';
 
 class SignupBirthDatePage extends HookWidget implements SignupScreenPage {
   @override
@@ -25,16 +23,12 @@ class SignupBirthDatePage extends HookWidget implements SignupScreenPage {
   const SignupBirthDatePage({
     super.key,
     required this.pageController,
-    required this.monthController,
-    required this.monthFocusNode,
     required this.yearController,
     required this.yearFocusNode,
     required this.onRegister,
   });
 
   final PageController pageController;
-  final TextEditingController monthController;
-  final FocusNode monthFocusNode;
   final TextEditingController yearController;
   final FocusNode yearFocusNode;
   final void Function() onRegister;
@@ -42,7 +36,6 @@ class SignupBirthDatePage extends HookWidget implements SignupScreenPage {
   @override
   Widget build(BuildContext context) {
     useAutomaticKeepAlive();
-    useListenable(monthController);
     useListenable(yearController);
     final formKey = useState(GlobalKey<FormState>());
     final privacyPolicyAgreed = useState(false);
@@ -64,65 +57,17 @@ class SignupBirthDatePage extends HookWidget implements SignupScreenPage {
           Padding(
             padding: const EdgeInsets.only(top: 48, bottom: 10),
             child: Text(
-              'Birth Date (MM/YYYY)',
+              'Birth year',
               style: BccmTextStyles.caption1.copyWith(color: BccmColors.label2),
             ),
           ),
-          Row(
-            children: [
-              Expanded(
-                child: Focus(
-                  onFocusChange: (value) {
-                    if (!value && monthController.value.text.isNotEmpty) {
-                      monthController.value = monthController.value.copyWith(text: monthController.value.text.padLeft(2, '0'));
-                    }
-                  },
-                  child: TextFormField(
-                    controller: monthController,
-                    focusNode: monthFocusNode,
-                    autofillHints: const [AutofillHints.birthdayMonth],
-                    inputFormatters: [RangeInputFormatter(min: 0, max: 12)],
-                    autovalidateMode: AutovalidateMode.disabled,
-                    style: BccmTextStyles.body2.copyWith(color: BccmColors.label1),
-                    cursorColor: BccmColors.tint1,
-                    cursorWidth: 1,
-                    decoration: BccmInputDecorations.textFormField.copyWith(hintText: 'Enter month'),
-                    onEditingComplete: () {
-                      yearFocusNode.requestFocus();
-                    },
-                    onChanged: (v) {
-                      if (v.length == 2) yearFocusNode.requestFocus();
-                    },
-                    keyboardType: TextInputType.number,
-                    buildCounter: (context, {required currentLength, required isFocused, maxLength}) => null,
-                    maxLength: 2,
-                    maxLengthEnforcement: MaxLengthEnforcement.enforced,
-                  ),
-                ),
-              ),
-              const SizedBox(width: 8),
-              Expanded(
-                child: Focus(
-                  onFocusChange: (value) {
-                    if (!value && yearController.value.text.isNotEmpty) {
-                      yearController.value = yearController.value.copyWith(text: yearController.value.text.padLeft(4, '0'));
-                    }
-                  },
-                  child: TextFormField(
-                    controller: yearController,
-                    focusNode: yearFocusNode,
-                    inputFormatters: [RangeInputFormatter(min: 0, max: DateTime.now().year)],
-                    keyboardType: TextInputType.number,
-                    autovalidateMode: AutovalidateMode.disabled,
-                    style: BccmTextStyles.body2.copyWith(color: BccmColors.label1),
-                    cursorColor: BccmColors.tint1,
-                    cursorWidth: 1,
-                    decoration: BccmInputDecorations.textFormField.copyWith(hintText: 'Enter year'),
-                    onEditingComplete: nextPage,
-                  ),
-                ),
-              ),
-            ],
+          SizedBox(
+            height: 150,
+            child: BirthYearPicker(
+              onSelectedYearChanged: (year) {
+                yearController.value = TextEditingValue(text: year.toString());
+              },
+            ),
           ),
           const Spacer(),
           Row(
@@ -158,7 +103,7 @@ class SignupBirthDatePage extends HookWidget implements SignupScreenPage {
                 ),
                 const SizedBox(width: 12),
                 Expanded(
-                  child: monthController.value.text.isBlank || yearController.value.text.isBlank || !privacyPolicyAgreed.value
+                  child: yearController.value.text.isBlank || !privacyPolicyAgreed.value
                       ? BtvButton.largeDisabled(
                           key: WidgetKeys.registerButton,
                           onPressed: () {},
