@@ -24,7 +24,7 @@ Color? getColorFromHex(String hexString) {
 
 Widget? getFeaturedTag({required String? publishDate, required bool locked, bool isLive = false}) {
   bool isNewItem = false;
-  if (isLive) {
+  if (isLive && locked) {
     return const FeatureBadge(
       label: 'Live now',
       color: BccmColors.tint2,

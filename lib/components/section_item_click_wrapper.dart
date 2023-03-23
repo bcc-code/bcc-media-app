@@ -57,13 +57,7 @@ class SectionItemClickWrapper extends ConsumerWidget {
               ),
             );
           },
-          onTap: () {
-            var episode = item.asOrNull<Fragment$ItemSectionItem$item$$Episode>();
-            if (episode?.locked == true) {
-              return;
-            }
-            handleSectionItemClick(context, item);
-          },
+          onTap: () => handleSectionItemClick(context, item),
           child: child,
         ),
       ),
