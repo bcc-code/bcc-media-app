@@ -94,10 +94,12 @@ class _BottomSheetMiniPlayerState extends ConsumerState<BottomSheetMiniPlayer> {
       var title = previousMetadata!.title;
       var artworkUri = previousMetadata!.artworkUri;
       return MiniPlayer(
-          secondaryTitle: artist,
-          title: title ?? '',
-          artworkUri: artworkUri ?? 'https://source.unsplash.com/random/1600x900/?fruit',
-          isPlaying: false);
+        secondaryTitle: artist,
+        title: title ?? '',
+        artworkUri: artworkUri ?? 'https://source.unsplash.com/random/1600x900/?fruit',
+        isPlaying: false,
+        border: null,
+      );
     }
     return Container(
         height: kMiniPlayerHeight,

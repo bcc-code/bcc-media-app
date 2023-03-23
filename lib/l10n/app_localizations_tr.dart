@@ -23,6 +23,9 @@ class STr extends S {
   String get calendarWeek => 'hafta';
 
   @override
+  String get close => 'Close';
+
+  @override
   String get loading => 'Yükleniyor';
 
   @override
@@ -77,6 +80,9 @@ class STr extends S {
   String get ok => 'Tamam';
 
   @override
+  String get open => 'Open';
+
+  @override
   String get loginFailedCheckNetwork => 'Giriş başarısız. Ağ bağlantınızı kontrol edip tekrar deneyin.';
 
   @override
@@ -111,6 +117,18 @@ class STr extends S {
 
   @override
   String get cancel => 'İptal';
+
+  @override
+  String get cancelConfirmation => 'Are you sure you want to cancel?';
+
+  @override
+  String get cancelConfirmationDescription => 'Any unsaved changes will be lost.';
+
+  @override
+  String get goBack => 'Go back';
+
+  @override
+  String get yesCancel => 'Yes, Cancel';
 
   @override
   String get upNext => 'Bir sonraki';
@@ -150,6 +168,9 @@ class STr extends S {
 
   @override
   String get search => 'Ara';
+
+  @override
+  String get sendFeedback => 'Send Feedback';
 
   @override
   String get noResults => 'Sonuç bulunamadı';
@@ -325,6 +346,9 @@ class STr extends S {
 
   @override
   String get sendFailDescription => 'Bir şeyler yanlış gitti. İnternet bağlantınızı kontrol edip tekrar deneyin.';
+
+  @override
+  String get sendSuccessDescription => 'We appreciate your feedback.';
 
   @override
   String get today => 'Bugün';

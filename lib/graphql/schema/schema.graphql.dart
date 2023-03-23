@@ -244,38 +244,20 @@ class _CopyWithStubImpl$Input$EpisodeContext<TRes>
 
 const possibleTypesMap = <String, Set<String>>{
   'Pagination': {
-    'SurveyQuestionPagination',
-    'SeasonPagination',
-    'EpisodePagination',
-    'UserCollectionEntryPagination',
+    'AchievementPagination',
+    'AchievementGroupPagination',
     'CollectionItemPagination',
     'QuestionPagination',
     'FAQCategoryPagination',
-    'LessonPagination',
-    'TaskPagination',
+    'SeasonPagination',
+    'EpisodePagination',
     'SectionPagination',
     'LinkPagination',
     'SectionItemPagination',
-    'AchievementPagination',
-    'AchievementGroupPagination',
-  },
-  'SurveyQuestion': {
-    'SurveyTextQuestion',
-    'SurveyRatingQuestion',
-  },
-  'EpisodeContextUnion': {
-    'Season',
-    'ContextCollection',
-  },
-  'UserCollectionEntryItem': {
-    'Show',
-    'Episode',
-  },
-  'CollectionItem': {
-    'ShowItem',
-    'SeasonItem',
-    'EpisodeItem',
-    'PageItem',
+    'LessonPagination',
+    'TaskPagination',
+    'SurveyQuestionPagination',
+    'UserCollectionEntryPagination',
   },
   'CalendarEntry': {
     'SimpleCalendarEntry',
@@ -283,19 +265,15 @@ const possibleTypesMap = <String, Set<String>>{
     'SeasonCalendarEntry',
     'ShowCalendarEntry',
   },
-  'SearchResultItem': {
-    'EpisodeSearchItem',
-    'SeasonSearchItem',
-    'ShowSearchItem',
+  'CollectionItem': {
+    'ShowItem',
+    'SeasonItem',
+    'EpisodeItem',
+    'PageItem',
   },
-  'Prompt': {'SurveyPrompt'},
-  'Task': {
-    'AlternativesTask',
-    'TextTask',
-    'PosterTask',
-    'QuoteTask',
-    'VideoTask',
-    'LinkTask',
+  'EpisodeContextUnion': {
+    'Season',
+    'ContextCollection',
   },
   'Section': {
     'PosterSection',
@@ -339,5 +317,27 @@ const possibleTypesMap = <String, Set<String>>{
     'Page',
     'Link',
     'StudyTopic',
+  },
+  'Prompt': {'SurveyPrompt'},
+  'SearchResultItem': {
+    'EpisodeSearchItem',
+    'SeasonSearchItem',
+    'ShowSearchItem',
+  },
+  'Task': {
+    'AlternativesTask',
+    'TextTask',
+    'PosterTask',
+    'QuoteTask',
+    'VideoTask',
+    'LinkTask',
+  },
+  'SurveyQuestion': {
+    'SurveyTextQuestion',
+    'SurveyRatingQuestion',
+  },
+  'UserCollectionEntryItem': {
+    'Show',
+    'Episode',
   },
 };

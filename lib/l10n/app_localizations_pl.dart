@@ -23,6 +23,9 @@ class SPl extends S {
   String get calendarWeek => 'tydzień';
 
   @override
+  String get close => 'Close';
+
+  @override
   String get loading => 'Ładuję';
 
   @override
@@ -77,6 +80,9 @@ class SPl extends S {
   String get ok => 'OK';
 
   @override
+  String get open => 'Open';
+
+  @override
   String get loginFailedCheckNetwork => 'Logowanie nie powiodło się. Sprawdź połączenie z Internetem i spróbuj ponownie.';
 
   @override
@@ -111,6 +117,18 @@ class SPl extends S {
 
   @override
   String get cancel => 'Anuluj';
+
+  @override
+  String get cancelConfirmation => 'Are you sure you want to cancel?';
+
+  @override
+  String get cancelConfirmationDescription => 'Any unsaved changes will be lost.';
+
+  @override
+  String get goBack => 'Go back';
+
+  @override
+  String get yesCancel => 'Yes, Cancel';
 
   @override
   String get upNext => 'Następne';
@@ -150,6 +168,9 @@ class SPl extends S {
 
   @override
   String get search => 'Szukaj';
+
+  @override
+  String get sendFeedback => 'Send Feedback';
 
   @override
   String get noResults => 'Brak wyników';
@@ -325,6 +346,9 @@ class SPl extends S {
 
   @override
   String get sendFailDescription => 'Coś poszło nie tak. Sprawdź swoje połączenie internetowe i spróbuj jeszcze raz.';
+
+  @override
+  String get sendSuccessDescription => 'We appreciate your feedback.';
 
   @override
   String get today => 'Dzisiaj';

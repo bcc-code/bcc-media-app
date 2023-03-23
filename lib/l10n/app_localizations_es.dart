@@ -23,6 +23,9 @@ class SEs extends S {
   String get calendarWeek => 'semana';
 
   @override
+  String get close => 'Close';
+
+  @override
   String get loading => 'Cargando';
 
   @override
@@ -77,6 +80,9 @@ class SEs extends S {
   String get ok => 'Ok';
 
   @override
+  String get open => 'Open';
+
+  @override
   String get loginFailedCheckNetwork => 'La conexión ha fallado, revise su conexión a internet e inténtelo una vez más.';
 
   @override
@@ -111,6 +117,18 @@ class SEs extends S {
 
   @override
   String get cancel => 'Cancelar';
+
+  @override
+  String get cancelConfirmation => 'Are you sure you want to cancel?';
+
+  @override
+  String get cancelConfirmationDescription => 'Any unsaved changes will be lost.';
+
+  @override
+  String get goBack => 'Go back';
+
+  @override
+  String get yesCancel => 'Yes, Cancel';
 
   @override
   String get upNext => 'Siguiente';
@@ -150,6 +168,9 @@ class SEs extends S {
 
   @override
   String get search => 'Buscar';
+
+  @override
+  String get sendFeedback => 'Send Feedback';
 
   @override
   String get noResults => 'Sin resultados';
@@ -325,6 +346,9 @@ class SEs extends S {
 
   @override
   String get sendFailDescription => 'Algo salió mal. Verifique su conexión a Internet e intente nuevamente.';
+
+  @override
+  String get sendSuccessDescription => 'We appreciate your feedback.';
 
   @override
   String get today => 'Hoy';
