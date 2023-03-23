@@ -31,7 +31,7 @@ class _PromptsState extends ConsumerState<Prompts> {
   @override
   Widget build(BuildContext context) {
     final prompts = ref.watch(promptsProvider);
-    final completedSurveys = ref.watch(completedSurveysProvider).valueOrNull ?? [];
+    final completedSurveys = ref.watch(completedSurveysProvider).valueOrNull;
 
     return prompts.when(
       data: (prompts) {
@@ -41,7 +41,7 @@ class _PromptsState extends ConsumerState<Prompts> {
           children: openPrompts.map(
             (prompt) {
               final surveyPrompt = prompt.asOrNull<Fragment$Prompt$$SurveyPrompt>();
-              if (surveyPrompt != null && !isCompletedSurvey(completedSurveys, surveyPrompt)) {
+              if (surveyPrompt != null && completedSurveys != null && !isCompletedSurvey(completedSurveys!, surveyPrompt)) {
                 return PromptSurvey(prompt: surveyPrompt, onClose: () => closePrompt(surveyPrompt.id));
               }
               return const SizedBox.shrink();
