@@ -7,16 +7,21 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:universal_io/io.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 
+import '../../../helpers/analytics_constants.dart';
 import '../../../helpers/forms/range_input_formatter.dart';
 import '../../../helpers/ui/btv_buttons.dart';
 import '../../../helpers/widget_keys.dart';
 import '../../../l10n/app_localizations.dart';
 import '../../../l10n/app_localizations_en.dart';
+import '../../../screens/onboarding/signup.dart';
 import '../../../theme/bccm_colors.dart';
-import '../../../theme/bccm_decorations.dart';
+import '../../../theme/bccm_input_decorations.dart';
 import '../../../theme/bccm_typography.dart';
 
-class SignupBirthDatePage extends HookWidget {
+class SignupBirthDatePage extends HookWidget implements SignupScreenPage {
+  @override
+  final String analyticsPageCode = AnalyticsPageCodes.signupBirthdate;
+
   const SignupBirthDatePage({
     super.key,
     required this.pageController,
@@ -81,7 +86,7 @@ class SignupBirthDatePage extends HookWidget {
                     style: BccmTextStyles.body2.copyWith(color: BccmColors.label1),
                     cursorColor: BccmColors.tint1,
                     cursorWidth: 1,
-                    decoration: BccmDecorations.textFormField.copyWith(hintText: 'Enter month'),
+                    decoration: BccmInputDecorations.textFormField.copyWith(hintText: 'Enter month'),
                     onEditingComplete: () {
                       yearFocusNode.requestFocus();
                     },
@@ -112,7 +117,7 @@ class SignupBirthDatePage extends HookWidget {
                     style: BccmTextStyles.body2.copyWith(color: BccmColors.label1),
                     cursorColor: BccmColors.tint1,
                     cursorWidth: 1,
-                    decoration: BccmDecorations.textFormField.copyWith(hintText: 'Enter year'),
+                    decoration: BccmInputDecorations.textFormField.copyWith(hintText: 'Enter year'),
                     onEditingComplete: nextPage,
                   ),
                 ),

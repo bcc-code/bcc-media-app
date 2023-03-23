@@ -17,6 +17,11 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import '../../components/onboarding/signup/signup_initial_page.dart';
 import '../../components/onboarding/signup/signup_password_page.dart';
 import '../../l10n/app_localizations.dart';
+import '../../providers/analytics.dart';
+
+abstract class SignupScreenPage implements Widget {
+  abstract final String analyticsPageCode;
+}
 
 class SignupScreen extends HookConsumerWidget {
   const SignupScreen({super.key});
@@ -37,9 +42,10 @@ class SignupScreen extends HookConsumerWidget {
     final yearController = useTextEditingController();
     final yearFocusNode = useFocusNode();
     final isMounted = useIsMounted();
-    useListenable(emailFocusNode);
-    List<Widget Function()> pages = [];
     final registerFuture = useState<Future?>(null);
+    final user = ref.watch(authStateProvider.select((value) => value.user));
+    useListenable(emailFocusNode);
+    List<SignupScreenPage Function()> pages = [];
 
     Future onRegister() {
       return registerFuture.value = () async {
@@ -72,12 +78,15 @@ class SignupScreen extends HookConsumerWidget {
           context.router.pushNamed('/');
           return;
         }
-        pageController.nextPage(duration: const Duration(milliseconds: 500), curve: Curves.easeOutExpo);
+        pageController.animateToPage(
+          pages.indexWhere((build) => build() is SignupNamePage),
+          duration: const Duration(milliseconds: 300),
+          curve: Curves.easeOutExpo,
+        );
         firstNameFocusNode.requestFocus();
       }
     }
 
-    final user = ref.watch(authStateProvider.select((value) => value.user));
     pages = [
       () => SignupInitialPage(
             pageController: pageController,
@@ -120,6 +129,9 @@ class SignupScreen extends HookConsumerWidget {
           ), */
     ];
 
+    // ignore: exhaustive_keys
+    useMemoized(() => ref.read(analyticsProvider).screen(pages[0]().analyticsPageCode));
+
     return GestureDetector(
       onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
       child: Scaffold(
@@ -144,6 +156,10 @@ class SignupScreen extends HookConsumerWidget {
           ),
         ),
         body: PageView.builder(
+          onPageChanged: (index) {
+            final page = pages[index]();
+            ref.read(analyticsProvider).screen(page.analyticsPageCode);
+          },
           controller: pageController,
           itemCount: pages.length,
           itemBuilder: (context, index) {

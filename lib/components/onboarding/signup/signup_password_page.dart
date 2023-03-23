@@ -1,10 +1,12 @@
 import 'package:brunstadtv_app/components/onboarding/password_text_field.dart';
 import 'package:brunstadtv_app/components/onboarding/onboarding_page_wrapper.dart';
 import 'package:brunstadtv_app/helpers/ui/btv_buttons.dart';
+import 'package:brunstadtv_app/screens/onboarding/signup.dart';
 import 'package:brunstadtv_app/theme/bccm_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 
+import '../../../helpers/analytics_constants.dart';
 import '../../../l10n/app_localizations.dart';
 import '../../../theme/bccm_typography.dart';
 
@@ -28,7 +30,10 @@ List<Condition> getConditions(BuildContext context, String password) {
   ];
 }
 
-class SignupPasswordPage extends HookWidget {
+class SignupPasswordPage extends HookWidget implements SignupScreenPage {
+  @override
+  final String analyticsPageCode = AnalyticsPageCodes.signupPassword;
+
   const SignupPasswordPage({
     super.key,
     required this.pageController,

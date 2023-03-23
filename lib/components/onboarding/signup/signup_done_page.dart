@@ -1,20 +1,27 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:brunstadtv_app/components/loading_indicator.dart';
 import 'package:brunstadtv_app/helpers/ui/btv_buttons.dart';
+import 'package:brunstadtv_app/screens/onboarding/signup.dart';
 import 'package:brunstadtv_app/theme/bccm_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
-import 'package:open_mail_app/open_mail_app.dart';
 
-import '../../../l10n/app_localizations.dart';
+import '../../../helpers/analytics_constants.dart';
 import '../../../providers/auth_state/auth_state.dart';
 import '../../../theme/bccm_typography.dart';
 import '../onboarding_page_wrapper.dart';
 
-class SignupDonePage extends HookConsumerWidget {
-  const SignupDonePage({super.key, required this.pageController, required this.emailTextController, required this.registerFuture});
+class SignupDonePage extends HookConsumerWidget implements SignupScreenPage {
+  @override
+  final String analyticsPageCode = AnalyticsPageCodes.signupDone;
+
+  const SignupDonePage({
+    super.key,
+    required this.pageController,
+    required this.emailTextController,
+    required this.registerFuture,
+  });
 
   final PageController pageController;
   final TextEditingController emailTextController;

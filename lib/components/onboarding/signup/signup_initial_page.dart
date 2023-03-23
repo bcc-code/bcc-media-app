@@ -1,22 +1,28 @@
 import 'package:brunstadtv_app/components/onboarding/onboarding_page_wrapper.dart';
 import 'package:brunstadtv_app/helpers/ui/btv_buttons.dart';
+import 'package:brunstadtv_app/screens/onboarding/signup.dart';
 import 'package:brunstadtv_app/screens/onboarding/social_auth_buttons.dart';
 import 'package:brunstadtv_app/theme/bccm_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 
+import '../../../helpers/analytics_constants.dart';
 import '../../../l10n/app_localizations.dart';
 import '../../../theme/bccm_typography.dart';
 import '../email_text_field.dart';
 
-class SignupInitialPage extends HookWidget {
-  const SignupInitialPage(
-      {super.key,
-      required this.pageController,
-      required this.emailTextController,
-      required this.emailFocusNode,
-      required this.nextFocusNode,
-      required this.onSocialAuth});
+class SignupInitialPage extends HookWidget implements SignupScreenPage {
+  @override
+  final String analyticsPageCode = AnalyticsPageCodes.signupEmail;
+
+  const SignupInitialPage({
+    super.key,
+    required this.pageController,
+    required this.emailTextController,
+    required this.emailFocusNode,
+    required this.nextFocusNode,
+    required this.onSocialAuth,
+  });
 
   final PageController pageController;
   final TextEditingController emailTextController;

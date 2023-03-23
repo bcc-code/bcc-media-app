@@ -4,14 +4,19 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
+import '../../../helpers/analytics_constants.dart';
 import '../../../helpers/ui/btv_buttons.dart';
 import '../../../helpers/ui/svg_icons.dart';
 import '../../../l10n/app_localizations.dart';
+import '../../../screens/onboarding/signup.dart';
 import '../../../theme/bccm_colors.dart';
-import '../../../theme/bccm_decorations.dart';
+import '../../../theme/bccm_input_decorations.dart';
 import '../../../theme/bccm_typography.dart';
 
-class SignupNamePage extends HookWidget {
+class SignupNamePage extends HookWidget implements SignupScreenPage {
+  @override
+  final String analyticsPageCode = AnalyticsPageCodes.signupName;
+
   const SignupNamePage({
     super.key,
     required this.pageController,
@@ -65,7 +70,7 @@ class SignupNamePage extends HookWidget {
             style: BccmTextStyles.body2.copyWith(color: BccmColors.label1),
             cursorColor: BccmColors.tint1,
             cursorWidth: 1,
-            decoration: BccmDecorations.textFormField.copyWith(hintText: 'Type in first name'),
+            decoration: BccmInputDecorations.textFormField.copyWith(hintText: 'Type in first name'),
             onEditingComplete: () => lastNameFocusNode.requestFocus(),
           ),
           Padding(
@@ -83,7 +88,7 @@ class SignupNamePage extends HookWidget {
             style: BccmTextStyles.body2.copyWith(color: BccmColors.label1),
             cursorColor: BccmColors.tint1,
             cursorWidth: 1,
-            decoration: BccmDecorations.textFormField.copyWith(hintText: 'Type in last name'),
+            decoration: BccmInputDecorations.textFormField.copyWith(hintText: 'Type in last name'),
             onEditingComplete: nextPage,
           ),
         ],
