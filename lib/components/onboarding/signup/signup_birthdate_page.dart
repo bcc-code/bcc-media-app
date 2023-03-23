@@ -67,30 +67,34 @@ class SignupBirthDatePage extends HookWidget implements SignupScreenPage {
           SizedBox(
             height: 250,
             child: BirthYearPicker(
+              focusNode: yearFocusNode,
               onSelectedYearChanged: (year) {
                 yearController.value = TextEditingValue(text: year.toString());
               },
             ),
           ),
           const Spacer(),
-          Row(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Switch.adaptive(
-                key: WidgetKeys.privacyPolicyAgreeSwitch,
-                activeColor: Platform.isIOS ? BccmColors.tint1 : null,
-                value: privacyPolicyAgreed.value,
-                onChanged: (value) => privacyPolicyAgreed.value = value,
-              ),
-              SizedBox(width: Platform.isAndroid ? 0 : 6),
-              Expanded(
-                child: Container(
-                  height: 100,
-                  alignment: Alignment.center,
-                  child: const _PrivacyPolicyAgreeText(),
+          GestureDetector(
+            onTap: () => privacyPolicyAgreed.value = !privacyPolicyAgreed.value,
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Switch.adaptive(
+                  key: WidgetKeys.privacyPolicyAgreeSwitch,
+                  activeColor: Platform.isIOS ? BccmColors.tint1 : null,
+                  value: privacyPolicyAgreed.value,
+                  onChanged: (value) => privacyPolicyAgreed.value = value,
                 ),
-              )
-            ],
+                SizedBox(width: Platform.isAndroid ? 0 : 6),
+                Expanded(
+                  child: Container(
+                    height: 75,
+                    alignment: Alignment.center,
+                    child: const _PrivacyPolicyAgreeText(),
+                  ),
+                )
+              ],
+            ),
           ),
           const SizedBox(height: 12),
         ],
