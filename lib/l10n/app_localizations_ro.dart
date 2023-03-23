@@ -23,6 +23,9 @@ class SRo extends S {
   String get calendarWeek => 'săptămână';
 
   @override
+  String get close => 'Close';
+
+  @override
   String get loading => 'Se încarcă';
 
   @override
@@ -77,6 +80,9 @@ class SRo extends S {
   String get ok => 'Bine';
 
   @override
+  String get open => 'Open';
+
+  @override
   String get loginFailedCheckNetwork => 'Conectarea a eșuat. Verifică conexiunea la internet și încearcă din nou.';
 
   @override
@@ -111,6 +117,18 @@ class SRo extends S {
 
   @override
   String get cancel => 'Anulare';
+
+  @override
+  String get cancelConfirmation => 'Are you sure you want to cancel?';
+
+  @override
+  String get cancelConfirmationDescription => 'Any unsaved changes will be lost.';
+
+  @override
+  String get goBack => 'Go back';
+
+  @override
+  String get yesCancel => 'Yes, Cancel';
 
   @override
   String get upNext => 'Urmează';
@@ -150,6 +168,9 @@ class SRo extends S {
 
   @override
   String get search => 'Căutare';
+
+  @override
+  String get sendFeedback => 'Send Feedback';
 
   @override
   String get noResults => 'Nici un rezultat gasit';
@@ -325,6 +346,9 @@ class SRo extends S {
 
   @override
   String get sendFailDescription => 'Ceva n-a mers bine. Verifică conexiunea la internet și încearcă din nou.';
+
+  @override
+  String get sendSuccessDescription => 'We appreciate your feedback.';
 
   @override
   String get today => 'Astăzi';

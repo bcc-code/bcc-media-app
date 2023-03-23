@@ -17,6 +17,8 @@ import 'package:http/http.dart' as http;
 import '../graphql/client.dart';
 import '../graphql/queries/application.graphql.dart';
 import '../graphql/queries/progress.graphql.dart';
+// import '../graphql/queries/survey.graphql.dart';
+import '../graphql/queries/prompts.graphql.dart';
 import '../helpers/date_time.dart';
 
 class ApiErrorCodes {
@@ -143,6 +145,39 @@ class Api implements BccmApi {
       }
       return result.parsedData!.calendar;
     });
+  }
+
+  Future<List<Fragment$Prompt>> getPrompts() {
+    return gqlClient.query$getPrompts().then((result) {
+      if (result.hasException) {
+        throw result.exception!;
+      }
+      if (result.parsedData == null) {
+        throw ErrorDescription('Survey data is null.');
+      }
+      return result.parsedData!.prompts;
+    });
+  }
+
+  Future<String> sendSurveyAnswerText(String id, String answer) {
+    return gqlClient
+        .mutate$answerSurveyQuestion(
+            Options$Mutation$answerSurveyQuestion(variables: Variables$Mutation$answerSurveyQuestion(id: id, answer: answer)))
+        .then(
+      (result) {
+        if (result.hasException) {
+          throw result.exception!;
+        }
+        if (result.parsedData == null) {
+          throw ErrorDescription('Survey submition result is null.');
+        }
+        return result.parsedData!.answerSurveyQuestion.id;
+      },
+    );
+  }
+
+  Future<String> sendSurveyAnswerRating(String id, int rating) {
+    return sendSurveyAnswerText(id, rating.toString());
   }
 
   Future<String?> legacyIdLookup({

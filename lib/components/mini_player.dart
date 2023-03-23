@@ -2,7 +2,9 @@ import 'package:brunstadtv_app/components/loading_indicator.dart';
 import 'package:brunstadtv_app/theme/bccm_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:brunstadtv_app/helpers/ui/transparent_image.dart';
+import 'package:flutter_svg/svg.dart';
 
+import '../helpers/ui/svg_icons.dart';
 import '../theme/bccm_typography.dart';
 import '../helpers/widget_keys.dart';
 import '../l10n/app_localizations.dart';
@@ -19,6 +21,7 @@ class MiniPlayer extends StatelessWidget {
   final VoidCallback? onPlayTap;
   final VoidCallback? onCloseTap;
   final bool? hideCloseButton;
+  final Border? border;
 
   const MiniPlayer({
     Key? key,
@@ -31,6 +34,7 @@ class MiniPlayer extends StatelessWidget {
     this.onCloseTap,
     this.loading,
     this.hideCloseButton,
+    this.border = const Border(top: BorderSide(color: BccmColors.separatorOnLight, width: 1)),
   }) : super(key: key);
 
   @override
@@ -38,7 +42,10 @@ class MiniPlayer extends StatelessWidget {
     return Container(
       height: kMiniPlayerHeight,
       width: MediaQuery.of(context).size.width,
-      color: BccmColors.background2,
+      decoration: BoxDecoration(
+        color: BccmColors.background2,
+        border: border,
+      ),
       padding: const EdgeInsets.symmetric(
         horizontal: 16,
         vertical: 12,
@@ -118,7 +125,7 @@ class MiniPlayer extends StatelessWidget {
               child: Container(
                 margin: const EdgeInsets.only(left: 7),
                 height: 36,
-                child: Image.asset(width: 32, height: 16, 'assets/icons/Close.png', gaplessPlayback: true),
+                child: SvgPicture.string(SvgIcons.close),
               ),
             ),
         ],

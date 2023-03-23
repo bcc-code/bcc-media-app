@@ -13,6 +13,8 @@ import 'package:brunstadtv_app/router/router.gr.dart';
 
 import '../components/bottom_sheet_mini_player.dart';
 import '../components/custom_tab_bar.dart';
+import '../components/prompts/prompts.dart';
+import '../theme/bccm_colors.dart';
 
 class TabsRootScreen extends ConsumerStatefulWidget {
   static const route = '/';
@@ -101,7 +103,16 @@ class _TabsRootScreenState extends ConsumerState<TabsRootScreen> with AutoRouteA
           data: Theme.of(context).copyWith(bottomSheetTheme: const BottomSheetThemeData(backgroundColor: Colors.transparent)),
           child: Scaffold(
               body: Padding(padding: EdgeInsets.only(bottom: _shouldHideMiniPlayer(context) ? 0 : kMiniPlayerHeight), child: child),
-              bottomSheet: BottomSheetMiniPlayer(hidden: _shouldHideMiniPlayer(context)),
+              bottomSheet: Container(
+                color: BccmColors.background1, // Fix gap between prompts and miniPlayer due to antialiasing issue
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    const Prompts(),
+                    BottomSheetMiniPlayer(hidden: _shouldHideMiniPlayer(context)),
+                  ],
+                ),
+              ),
               bottomNavigationBar: CustomTabBar(tabsRouter: tabsRouter)),
         );
       },

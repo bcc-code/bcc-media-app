@@ -159,6 +159,12 @@ abstract class S {
   /// **'week'**
   String get calendarWeek;
 
+  /// Text displayed on 'Close' button
+  ///
+  /// In en, this message translates to:
+  /// **'Close'**
+  String get close;
+
   /// Text to indicate loading state.
   ///
   /// In en, this message translates to:
@@ -267,6 +273,12 @@ abstract class S {
   /// **'OK'**
   String get ok;
 
+  /// Open button
+  ///
+  /// In en, this message translates to:
+  /// **'Open'**
+  String get open;
+
   /// Login error message
   ///
   /// In en, this message translates to:
@@ -338,6 +350,30 @@ abstract class S {
   /// In en, this message translates to:
   /// **'Cancel'**
   String get cancel;
+
+  /// Title text for cancel confirmation dialog.
+  ///
+  /// In en, this message translates to:
+  /// **'Are you sure you want to cancel?'**
+  String get cancelConfirmation;
+
+  /// Description for cancel confirmation dialog.
+  ///
+  /// In en, this message translates to:
+  /// **'Any unsaved changes will be lost.'**
+  String get cancelConfirmationDescription;
+
+  /// Text for back button.
+  ///
+  /// In en, this message translates to:
+  /// **'Go back'**
+  String get goBack;
+
+  /// Confirm cancel.
+  ///
+  /// In en, this message translates to:
+  /// **'Yes, Cancel'**
+  String get yesCancel;
 
   /// Title indiciating what's next on the livestream.
   ///
@@ -416,6 +452,12 @@ abstract class S {
   /// In en, this message translates to:
   /// **'Search'**
   String get search;
+
+  /// Button to submit feedback(Survey)
+  ///
+  /// In en, this message translates to:
+  /// **'Send Feedback'**
+  String get sendFeedback;
 
   /// No search results.
   ///
@@ -758,6 +800,12 @@ abstract class S {
   /// In en, this message translates to:
   /// **'Something went wrong. Check your internet connection and try again.'**
   String get sendFailDescription;
+
+  /// General message when sending is successful
+  ///
+  /// In en, this message translates to:
+  /// **'We appreciate your feedback.'**
+  String get sendSuccessDescription;
 
   /// First category in tv guide
   ///

@@ -23,6 +23,9 @@ class SNl extends S {
   String get calendarWeek => 'week';
 
   @override
+  String get close => 'Close';
+
+  @override
   String get loading => 'Laden';
 
   @override
@@ -77,6 +80,9 @@ class SNl extends S {
   String get ok => 'Ok';
 
   @override
+  String get open => 'Open';
+
+  @override
   String get loginFailedCheckNetwork => 'Er ging iets mis bij het inloggen. Controleer je netwerkverbinding en probeer het opnieuw.';
 
   @override
@@ -111,6 +117,18 @@ class SNl extends S {
 
   @override
   String get cancel => 'Annuleren';
+
+  @override
+  String get cancelConfirmation => 'Are you sure you want to cancel?';
+
+  @override
+  String get cancelConfirmationDescription => 'Any unsaved changes will be lost.';
+
+  @override
+  String get goBack => 'Go back';
+
+  @override
+  String get yesCancel => 'Yes, Cancel';
 
   @override
   String get upNext => 'Volgende';
@@ -150,6 +168,9 @@ class SNl extends S {
 
   @override
   String get search => 'Zoeken';
+
+  @override
+  String get sendFeedback => 'Send Feedback';
 
   @override
   String get noResults => 'Geen resultaten';
@@ -325,6 +346,9 @@ class SNl extends S {
 
   @override
   String get sendFailDescription => 'Er is iets misgegaan. Controleer je internetverbinding en probeer het opnieuw.';
+
+  @override
+  String get sendSuccessDescription => 'We appreciate your feedback.';
 
   @override
   String get today => 'Vandaag';
