@@ -45,6 +45,7 @@ class SignupNamePage extends HookWidget implements SignupScreenPage {
       if (!formKey.value.currentState!.validate()) {
         return;
       }
+      FocusManager.instance.primaryFocus?.unfocus();
       pageController.nextPage(duration: const Duration(milliseconds: 500), curve: Curves.easeOutExpo);
       nextFocusNode.requestFocus();
     }
@@ -66,10 +67,12 @@ class SignupNamePage extends HookWidget implements SignupScreenPage {
             autofillHints: const [AutofillHints.givenName],
             controller: firstNameController,
             focusNode: firstNameFocusNode,
+            keyboardType: TextInputType.emailAddress,
             autovalidateMode: AutovalidateMode.disabled,
             style: BccmTextStyles.body2.copyWith(color: BccmColors.label1),
             cursorColor: BccmColors.tint1,
             cursorWidth: 1,
+            validator: (val) => val?.isNotEmpty == true ? null : 'Required',
             decoration: BccmInputDecorations.textFormField.copyWith(hintText: 'Type in first name'),
             onEditingComplete: () => lastNameFocusNode.requestFocus(),
           ),
@@ -84,10 +87,12 @@ class SignupNamePage extends HookWidget implements SignupScreenPage {
             autofillHints: const [AutofillHints.familyName],
             controller: lastNameController,
             focusNode: lastNameFocusNode,
+            keyboardType: TextInputType.emailAddress,
             autovalidateMode: AutovalidateMode.disabled,
             style: BccmTextStyles.body2.copyWith(color: BccmColors.label1),
             cursorColor: BccmColors.tint1,
             cursorWidth: 1,
+            validator: (val) => val?.isNotEmpty == true ? null : 'Required',
             decoration: BccmInputDecorations.textFormField.copyWith(hintText: 'Type in last name'),
             onEditingComplete: nextPage,
           ),

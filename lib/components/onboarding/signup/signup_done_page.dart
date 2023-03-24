@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:brunstadtv_app/components/error_generic.dart';
 import 'package:brunstadtv_app/components/loading_indicator.dart';
 import 'package:brunstadtv_app/helpers/ui/btv_buttons.dart';
 import 'package:brunstadtv_app/screens/onboarding/signup.dart';
@@ -33,7 +34,13 @@ class SignupDonePage extends HookConsumerWidget implements SignupScreenPage {
     final registerStatus = useFuture(registerFuture);
     Widget returnWidget;
 
-    if (registerStatus.connectionState == ConnectionState.waiting) {
+    if (registerStatus.hasError) {
+      returnWidget = ErrorGeneric(
+        onRetry: () {
+          pageController.previousPage(duration: const Duration(milliseconds: 500), curve: Curves.easeOutExpo);
+        },
+      );
+    } else if (registerStatus.connectionState == ConnectionState.waiting) {
       returnWidget = OnboardingPageWrapper(
         key: const Key('signup_creating'),
         body: [

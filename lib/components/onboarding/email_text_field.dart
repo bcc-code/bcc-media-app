@@ -26,6 +26,8 @@ class EmailTextField extends HookWidget {
       focusNode: emailFocusNode,
       controller: emailTextController,
       autofillHints: const [AutofillHints.email],
+      autocorrect: false,
+      keyboardType: TextInputType.emailAddress,
       validator: (email) {
         if (email != null && !EmailValidator.validate(email)) {
           return 'Invalid email';

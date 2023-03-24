@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 
 import '../../theme/bccm_colors.dart';
@@ -18,8 +19,16 @@ class BirthYearPicker extends HookWidget {
     final minYear = DateTime.now().subtract(const Duration(days: 365 * 150)).year;
     final maxYear = DateTime.now().subtract(const Duration(days: 365 * 13)).year;
     final totalItems = (maxYear - minYear + 1);
+
+    // Set initial value
     final startYear = (maxYear / 50).floor() * 50;
     final startIndex = totalItems - 1 - (maxYear - startYear);
+    useMemoized(
+      () => SchedulerBinding.instance.scheduleFrameCallback((_) => onSelectedYearChanged(startYear)),
+      // ignore: exhaustive_keys
+      [onSelectedYearChanged],
+    );
+
     return Focus(
       focusNode: focusNode,
       child: CupertinoPicker.builder(
