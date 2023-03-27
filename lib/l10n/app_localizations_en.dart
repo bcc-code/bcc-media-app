@@ -53,6 +53,9 @@ class SEn extends S {
   String get signInButton => 'Sign in';
 
   @override
+  String get signInOrSignUp => 'Sign up / Sign in';
+
+  @override
   String get signUpButton => 'Sign up now';
 
   @override

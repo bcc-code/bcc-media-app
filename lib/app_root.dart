@@ -2,17 +2,25 @@ import 'package:auto_route/auto_route.dart';
 import 'package:bccm_player/bccm_player.dart';
 import 'package:brunstadtv_app/graphql/client.dart';
 import 'package:brunstadtv_app/graphql/queries/me.graphql.dart';
+import 'package:brunstadtv_app/main.dart';
+import 'package:brunstadtv_app/providers/me_provider.dart';
 import 'package:brunstadtv_app/router/analytics_observer.dart';
+import 'package:brunstadtv_app/screens/onboarding/email_verification.dart';
+import 'package:brunstadtv_app/screens/onboarding/signup.dart';
+import 'package:brunstadtv_app/theme/bccm_colors.dart';
 import 'package:brunstadtv_app/theme/bccm_theme.dart';
 import 'package:brunstadtv_app/providers/analytics.dart';
 import 'package:brunstadtv_app/providers/settings.dart';
 import 'package:brunstadtv_app/router/router.gr.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
 import 'package:on_screen_ruler/on_screen_ruler.dart';
 import 'l10n/app_localizations.dart';
+import 'models/auth0/auth0_id_token.dart';
 import 'models/auth_state.dart';
 import 'providers/auth_state/auth_state.dart';
 
@@ -47,7 +55,6 @@ class _AppRootState extends ConsumerState<AppRoot> {
   }
 
   void onAuthChanged(AuthState? previous, AuthState next) {
-    final gqlClient = ref.read(gqlClientProvider);
     final analytics = ref.read(analyticsProvider);
     final settingsNotifier = ref.read(settingsProvider.notifier);
     debugPrint('authSubscription');
@@ -56,15 +63,53 @@ class _AppRootState extends ConsumerState<AppRoot> {
       settingsNotifier.refreshSessionId();
       widget.navigatorKey.currentContext?.router.root.navigate(OnboardingScreenRoute());
     } else if (next.auth0AccessToken != null && next.user != null) {
-      gqlClient.query$me().then((value) {
-        if (value.exception != null) {
-          throw value.exception!;
-        }
-        if (value.parsedData == null) {
+      ref.refresh(meProvider);
+      ref.read(meProvider.future).then((value) {
+        final me = value?.me;
+        if (me == null) {
           throw ErrorDescription('"Me" data is null.');
         }
-        analytics.identify(next.user!, value.parsedData!.me.analytics.anonymousId);
+        if (!me.emailVerified && context.mounted) {
+          showVerifyEmail();
+        }
+        if (!me.completedRegistration && context.mounted) {
+          ensureValidUser();
+        }
+        analytics.identify(next.user!, me.analytics.anonymousId);
       });
+    }
+  }
+
+  Future ensureValidUser() async {
+    await Future.delayed(const Duration(milliseconds: 1000), () async {
+      final context = navigatorKey.currentContext;
+      if (context == null) return;
+      return showCupertinoModalPopup(
+        context: context,
+        builder: (context) {
+          return const SignupScreen();
+        },
+      );
+    });
+    if (!mounted) return;
+    ref.refresh(meProvider);
+    final me = await ref.read(meProvider.future);
+    if (mounted && me?.me.completedRegistration == false) {
+      ref.read(authStateProvider.notifier).logout(manual: true);
+    }
+  }
+
+  Future showVerifyEmail() async {
+    final context = navigatorKey.currentContext;
+    if (context == null) return;
+    await showCupertinoModalPopup(
+      context: context,
+      builder: (context) {
+        return const EmailVerificationScreen();
+      },
+    );
+    if (mounted && ref.read(meProvider).valueOrNull?.me.emailVerified != true) {
+      ref.read(authStateProvider.notifier).logout(manual: true);
     }
   }
 
@@ -99,12 +144,7 @@ class _AppRootState extends ConsumerState<AppRoot> {
           builder: (BuildContext context, Widget? child) {
             return MediaQuery(
               data: MediaQuery.of(context).copyWith(textScaleFactor: 1.0),
-              child: !kDebugMode
-                  ? child!
-                  : OnScreenRulerWidget(
-                      gridColor: Colors.white60.withOpacity(0.1),
-                      child: child!,
-                    ),
+              child: !kDebugMode ? child! : child!,
             );
           }),
     );

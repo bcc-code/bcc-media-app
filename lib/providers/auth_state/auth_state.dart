@@ -8,6 +8,7 @@ import 'auth_state_notifier_stub.dart'
 abstract class AuthStateNotifier implements StateNotifier<AuthState> {
   Future<AuthState?> getExistingAndEnsureNotExpired();
   Future<bool> load();
+  Future<bool> forceRefresh();
   Future logout({bool manual = true});
   Future<bool> login({String? connection});
   factory AuthStateNotifier() => getPlatformSpecificAuthStateNotifier();

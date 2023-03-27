@@ -104,7 +104,7 @@ class _ProfileState extends ConsumerState<Profile> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: <Widget>[
-                if (ref.read(authStateProvider).user == null)
+                if (ref.read(authStateProvider).user != null)
                   const Avatar()
                 else
                   Padding(
@@ -126,8 +126,8 @@ class _ProfileState extends ConsumerState<Profile> {
                         )
                       else
                         BtvButton.small(
-                          onPressed: () => loginAction(context),
-                          labelText: S.of(context).signInButton,
+                          onPressed: () => context.router.navigate(OnboardingScreenRoute()),
+                          labelText: S.of(context).signInOrSignUp,
                         )
                     ],
                   ),

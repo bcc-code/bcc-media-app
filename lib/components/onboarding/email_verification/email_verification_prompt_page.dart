@@ -1,22 +1,59 @@
+import 'dart:async';
+import 'dart:math';
+
+import 'package:brunstadtv_app/components/loading_indicator.dart';
 import 'package:brunstadtv_app/components/onboarding/onboarding_page_wrapper.dart';
 import 'package:brunstadtv_app/helpers/ui/btv_buttons.dart';
+import 'package:brunstadtv_app/providers/auth_state/auth_state.dart';
+import 'package:brunstadtv_app/providers/me_provider.dart';
 import 'package:brunstadtv_app/theme/bccm_colors.dart';
+import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:open_mail_app/open_mail_app.dart';
 
+import '../../../graphql/queries/me.graphql.dart';
 import '../../../l10n/app_localizations.dart';
 import '../../../theme/bccm_typography.dart';
 
-class SignupVerifyEmailPage extends HookWidget {
-  const SignupVerifyEmailPage({super.key, required this.pageController, required this.emailTextController});
-
-  final PageController pageController;
-  final TextEditingController emailTextController;
+class EmailVerificationPromptPage extends HookConsumerWidget {
+  const EmailVerificationPromptPage({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final isMounted = useIsMounted();
+    final sendVerificationEmail = useMutation$sendVerificationEmail();
+    final meAsync = ref.watch(meProvider);
+    final email = meAsync.valueOrNull?.me.email;
+
+    final exception = sendVerificationEmail.result.exception;
+    useMemoized(() {
+      if (exception == null) return;
+      FlutterError.reportError(
+        FlutterErrorDetails(
+          exception: exception,
+          context: ErrorDescription("Couldn't send verification email"),
+        ),
+      );
+      WidgetsBinding.instance.scheduleFrameCallback((_) {
+        showDialog(
+            context: context,
+            builder: (context) {
+              return SimpleDialog(
+                title: const Text('Error sending verification email', style: BccmTextStyles.title1),
+                children: [
+                  const Padding(padding: EdgeInsets.symmetric(horizontal: 24), child: Text('Please contact support at support@bcc.media.')),
+                  Container(
+                    padding: const EdgeInsets.only(left: 24, right: 24, top: 24, bottom: 12),
+                    child: BtvButton.medium(onPressed: () => Navigator.pop(context), labelText: S.of(context).ok),
+                  )
+                ],
+              );
+            });
+      });
+    }, [exception]);
+
     return OnboardingPageWrapper(
       body: [
         Expanded(
@@ -31,11 +68,11 @@ class SignupVerifyEmailPage extends HookWidget {
                   padding: EdgeInsets.only(bottom: 8),
                   child: Text('Verify your account', style: BccmTextStyles.headline1),
                 ),
-                Text('We have sent an email to '),
-                Text(emailTextController.value.text.toLowerCase(),
-                    style: BccmTextStyles.body1.copyWith(color: BccmColors.label3, fontStyle: FontStyle.italic)),
+                if (email != null) const Text('We have sent an email to '),
+                if (email != null)
+                  Text(email.toLowerCase(), style: BccmTextStyles.body1.copyWith(color: BccmColors.label3, fontStyle: FontStyle.italic)),
                 const SizedBox(height: 8),
-                Text('Click the link in the email to verify your account.'),
+                const Text('Click the link in the email to verify your account.'),
               ],
             ),
           ),
@@ -71,12 +108,18 @@ class SignupVerifyEmailPage extends HookWidget {
             labelText: 'Open email app',
           ),
         ),
-        BtvButton.mediumSecondary(
-          labelText: 'Resend email',
-          onPressed: () {},
-        ).copyWith(
-          backgroundColor: Colors.transparent,
-          border: Border.all(color: Colors.transparent),
+        Padding(
+          padding: const EdgeInsets.only(bottom: 12),
+          child: BtvButton.mediumSecondary(
+            labelText: 'Resend email',
+            image: sendVerificationEmail.result.isLoading ? const Padding(padding: EdgeInsets.all(2), child: LoadingIndicator()) : null,
+            onPressed: () {
+              sendVerificationEmail.runMutation();
+            },
+          ).copyWith(
+            backgroundColor: Colors.transparent,
+            border: Border.all(color: Colors.transparent),
+          ),
         ),
       ],
     );

@@ -53,6 +53,9 @@ class SSl extends S {
   String get signInButton => 'Vpis';
 
   @override
+  String get signInOrSignUp => 'Sign up / Sign in';
+
+  @override
   String get signUpButton => 'Sign up now';
 
   @override

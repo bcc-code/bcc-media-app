@@ -53,6 +53,9 @@ class SNb extends S {
   String get signInButton => 'Logg inn';
 
   @override
+  String get signInOrSignUp => 'Sign up / Sign in';
+
+  @override
   String get signUpButton => 'Sign up now';
 
   @override

@@ -219,6 +219,12 @@ abstract class S {
   /// **'Sign in'**
   String get signInButton;
 
+  /// Button to go to the onboarding page (short)
+  ///
+  /// In en, this message translates to:
+  /// **'Sign up / Sign in'**
+  String get signInOrSignUp;
+
   /// Button to start the sign up process
   ///
   /// In en, this message translates to:

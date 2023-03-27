@@ -54,7 +54,7 @@ class AuthStateNotifierMobile extends StateNotifier<AuthState> implements AuthSt
       return null;
     }
     if (state.expiresAt!.difference(clock.now()) < kMinimumCredentialsTTL) {
-      await refresh();
+      await _refresh();
     }
     if (state.expiresAt!.difference(clock.now()) < kMinimumCredentialsTTL) {
       throw Exception('Auth state is still expired after attempting to renew.');
@@ -79,7 +79,7 @@ class AuthStateNotifierMobile extends StateNotifier<AuthState> implements AuthSt
       return false;
     }
     if (expiry.difference(clock.now()) < kMinimumCredentialsTTL) {
-      return await refresh();
+      return await _refresh();
     }
     state = state.copyWith(
       auth0AccessToken: accessToken,
@@ -91,7 +91,12 @@ class AuthStateNotifierMobile extends StateNotifier<AuthState> implements AuthSt
     return true;
   }
 
-  Future<bool> refresh() async {
+  @override
+  Future<bool> forceRefresh() {
+    return _refresh();
+  }
+
+  Future<bool> _refresh() async {
     final refreshToken = await _secureStorage.read(key: SecureStorageKeys.refreshToken);
 
     if (refreshToken == null) {

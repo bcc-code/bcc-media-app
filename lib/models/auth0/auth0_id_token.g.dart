@@ -21,9 +21,13 @@ Auth0IdToken _$Auth0IdTokenFromJson(Map<String, dynamic> json) => Auth0IdToken(
       churchId: json['https://login.bcc.no/claims/churchId'] as int?,
       appMetadata:
           json['https://members.bcc.no/app_metadata'] as Map<String, dynamic>?,
+      userMetadata: json['user_metadata'] as Map<String, dynamic>?,
       birthdate: json['birthdate'] as String?,
+      email: json['email'] as String?,
       gender: json['gender'] as String?,
       authTime: json['auth_time'] as int?,
+      givenName: json['given_name'] as String?,
+      familyName: json['family_name'] as String?,
     );
 
 Map<String, dynamic> _$Auth0IdTokenToJson(Auth0IdToken instance) =>
@@ -38,8 +42,12 @@ Map<String, dynamic> _$Auth0IdTokenToJson(Auth0IdToken instance) =>
       'https://login.bcc.no/claims/CountryIso2Code': instance.countryIso2Code,
       'https://login.bcc.no/claims/churchId': instance.churchId,
       'https://members.bcc.no/app_metadata': instance.appMetadata,
+      'user_metadata': instance.userMetadata,
+      'given_name': instance.givenName,
+      'family_name': instance.familyName,
       'birthdate': instance.birthdate,
       'gender': instance.gender,
+      'email': instance.email,
       'iat': instance.iat,
       'exp': instance.exp,
       'auth_time': instance.authTime,

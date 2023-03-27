@@ -53,6 +53,9 @@ class SFi extends S {
   String get signInButton => 'Kirjaudu sisään';
 
   @override
+  String get signInOrSignUp => 'Sign up / Sign in';
+
+  @override
   String get signUpButton => 'Sign up now';
 
   @override

@@ -74,4 +74,10 @@ class AuthStateNotifierWeb extends StateNotifier<AuthState> implements AuthState
     await setStateFromResult(auth0);
     return true;
   }
+
+  @override
+  Future<bool> forceRefresh() {
+    // TODO: implement forceRefresh
+    throw UnimplementedError();
+  }
 }

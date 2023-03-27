@@ -53,6 +53,9 @@ class SRo extends S {
   String get signInButton => 'Conectare';
 
   @override
+  String get signInOrSignUp => 'Sign up / Sign in';
+
+  @override
   String get signUpButton => 'Sign up now';
 
   @override

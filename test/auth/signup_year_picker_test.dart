@@ -9,7 +9,7 @@ import '../utils/basic_init.dart';
 void main() {
   testWidgets('Signup year picker', (t) async {
     basicInit();
-    final yearController = TextEditingController();
+    final yearController = ValueNotifier<int?>(null);
     final focusNode = FocusNode();
     final page = PageController();
     await t.pumpWidget(MaterialApp(
@@ -41,7 +41,7 @@ void main() {
       warnIfMissed: false,
     );
 
-    expect(yearController.text, DateTime.now().subtract(const Duration(days: 365 * minAge)).year.toString());
+    expect(yearController.value, DateTime.now().subtract(const Duration(days: 365 * minAge)).year.toString());
 
     await t.fling(
       find.byType(CupertinoPicker),
@@ -56,6 +56,6 @@ void main() {
       warnIfMissed: false,
     );
 
-    expect(yearController.text, DateTime.now().subtract(const Duration(days: 365 * maxAge)).year.toString());
+    expect(yearController.value, DateTime.now().subtract(const Duration(days: 365 * maxAge)).year.toString());
   });
 }

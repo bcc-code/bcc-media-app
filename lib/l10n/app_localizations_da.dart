@@ -53,6 +53,9 @@ class SDa extends S {
   String get signInButton => 'Log ind';
 
   @override
+  String get signInOrSignUp => 'Sign up / Sign in';
+
+  @override
   String get signUpButton => 'Sign up now';
 
   @override

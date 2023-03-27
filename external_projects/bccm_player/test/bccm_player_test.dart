@@ -95,6 +95,12 @@ class MockBccmPlayerPlatform with MockPlatformInterfaceMixin implements BccmPlay
     // TODO: implement removePlaybackListener
     throw UnimplementedError();
   }
+
+  @override
+  Future? setNpawConfig(NpawConfig? config) {
+    // TODO: implement setNpawConfig
+    throw UnimplementedError();
+  }
 }
 
 void main() {

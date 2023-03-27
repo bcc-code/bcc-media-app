@@ -32,7 +32,7 @@ class SignupBirthDatePage extends HookWidget implements SignupScreenPage {
   });
 
   final PageController pageController;
-  final TextEditingController yearController;
+  final ValueNotifier<int?> yearController;
   final FocusNode yearFocusNode;
   final void Function() onRegister;
 
@@ -69,7 +69,7 @@ class SignupBirthDatePage extends HookWidget implements SignupScreenPage {
             child: BirthYearPicker(
               focusNode: yearFocusNode,
               onSelectedYearChanged: (year) {
-                yearController.value = TextEditingValue(text: year.toString());
+                yearController.value = year;
               },
             ),
           ),
@@ -114,7 +114,7 @@ class SignupBirthDatePage extends HookWidget implements SignupScreenPage {
                 ),
                 const SizedBox(width: 12),
                 Expanded(
-                  child: yearController.value.text.isBlank || !privacyPolicyAgreed.value
+                  child: yearController.value == null || !privacyPolicyAgreed.value
                       ? BtvButton.largeDisabled(
                           key: WidgetKeys.registerButton,
                           onPressed: () {},

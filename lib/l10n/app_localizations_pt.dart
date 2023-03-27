@@ -53,6 +53,9 @@ class SPt extends S {
   String get signInButton => 'Entrar';
 
   @override
+  String get signInOrSignUp => 'Sign up / Sign in';
+
+  @override
   String get signUpButton => 'Sign up now';
 
   @override

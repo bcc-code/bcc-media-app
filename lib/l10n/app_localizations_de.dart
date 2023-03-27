@@ -53,6 +53,9 @@ class SDe extends S {
   String get signInButton => 'Einloggen';
 
   @override
+  String get signInOrSignUp => 'Sign up / Sign in';
+
+  @override
   String get signUpButton => 'Sign up now';
 
   @override

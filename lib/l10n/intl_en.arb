@@ -63,6 +63,10 @@
   "@signInButton": {
     "description": "Text displayed on Sign in button"
   },
+  "signInOrSignUp": "Sign up / Sign in",
+  "@signInOrSignUp": {
+    "description": "Button to go to the onboarding page (short)"
+  },
   "signUpButton": "Sign up now",
   "@signUpButton": {
     "description": "Button to start the sign up process"

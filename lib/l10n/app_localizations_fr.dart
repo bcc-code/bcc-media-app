@@ -53,6 +53,9 @@ class SFr extends S {
   String get signInButton => 'Se connecter';
 
   @override
+  String get signInOrSignUp => 'Sign up / Sign in';
+
+  @override
   String get signUpButton => 'Sign up now';
 
   @override

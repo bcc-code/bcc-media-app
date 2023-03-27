@@ -53,6 +53,9 @@ class SIt extends S {
   String get signInButton => '7 / 5000\nRegistrati';
 
   @override
+  String get signInOrSignUp => 'Sign up / Sign in';
+
+  @override
   String get signUpButton => 'Sign up now';
 
   @override

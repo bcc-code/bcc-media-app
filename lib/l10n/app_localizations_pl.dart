@@ -53,6 +53,9 @@ class SPl extends S {
   String get signInButton => 'Zaloguj się';
 
   @override
+  String get signInOrSignUp => 'Sign up / Sign in';
+
+  @override
   String get signUpButton => 'Sign up now';
 
   @override

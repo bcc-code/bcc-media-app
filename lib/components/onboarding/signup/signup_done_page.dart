@@ -9,6 +9,7 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../../helpers/analytics_constants.dart';
+import '../../../l10n/app_localizations.dart';
 import '../../../providers/auth_state/auth_state.dart';
 import '../../../theme/bccm_typography.dart';
 import '../onboarding_page_wrapper.dart';
@@ -32,6 +33,7 @@ class SignupDonePage extends HookConsumerWidget implements SignupScreenPage {
   Widget build(BuildContext context, WidgetRef ref) {
     final isMounted = useIsMounted();
     final registerStatus = useFuture(registerFuture);
+    final user = ref.watch(authStateProvider).user;
     Widget returnWidget;
 
     if (registerStatus.hasError) {
@@ -78,12 +80,15 @@ class SignupDonePage extends HookConsumerWidget implements SignupScreenPage {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
-                children: const [
+                children: [
                   Padding(
-                    padding: EdgeInsets.only(bottom: 8),
+                    padding: const EdgeInsets.only(bottom: 8),
                     child: Text('Account created', style: BccmTextStyles.headline1),
                   ),
-                  Text('You can now log in to your account and explore a variety of edifying content.'),
+                  if (user == null)
+                    Text('You can now log in to your account and explore a variety of edifying content.')
+                  else
+                    Text('You can now use your account and explore a variety of edifying content.'),
                 ],
               ),
             ),
@@ -95,16 +100,21 @@ class SignupDonePage extends HookConsumerWidget implements SignupScreenPage {
             width: double.infinity,
             child: BtvButton.large(
               onPressed: () async {
-                final success = await ref.read(authStateProvider.notifier).login();
-                if (success && isMounted()) {
-                  // because isMounted,
-                  // ignore: use_build_context_synchronously
-                  final router = context.router;
-                  router.popUntil((route) => false);
-                  router.pushNamed('/');
+                if (user == null) {
+                  final success = await ref.read(authStateProvider.notifier).login();
+                  if (!success) return;
                 }
+                if (!isMounted()) return;
+
+                // because isMounted,
+                // ignore: use_build_context_synchronously
+                Navigator.pop(context);
+                // ignore: use_build_context_synchronously
+                final router = context.router;
+                router.popUntil((route) => false);
+                router.pushNamed('/');
               },
-              labelText: 'Log in',
+              labelText: user == null ? 'Log in' : S.of(context).exploreContent,
             ),
           ),
         ],

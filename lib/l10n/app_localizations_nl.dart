@@ -53,6 +53,9 @@ class SNl extends S {
   String get signInButton => 'Log in';
 
   @override
+  String get signInOrSignUp => 'Sign up / Sign in';
+
+  @override
   String get signUpButton => 'Sign up now';
 
   @override

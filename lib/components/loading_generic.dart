@@ -6,7 +6,9 @@ import '../l10n/app_localizations.dart';
 import 'loading_indicator.dart';
 
 class LoadingGeneric extends ConsumerWidget {
-  const LoadingGeneric({super.key});
+  const LoadingGeneric({super.key, this.text});
+
+  final String? text;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -17,7 +19,7 @@ class LoadingGeneric extends ConsumerWidget {
           child: const LoadingIndicator(),
         ),
         Text(
-          S.of(context).loadingContent,
+          text ?? S.of(context).loadingContent,
           style: BccmTextStyles.body2,
         ),
       ]),
