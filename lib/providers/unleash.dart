@@ -24,7 +24,7 @@ final unleashRawProvider = Provider<UnleashClient?>((ref) {
     url: Uri.parse(Env.unleashProxyUrl),
     clientKey: Env.unleashClientKey,
     appName: Env.unleashAppName,
-    refreshInterval: 5,
+    refreshInterval: 60,
   );
   client.on(
     'error',
