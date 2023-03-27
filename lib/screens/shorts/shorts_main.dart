@@ -24,15 +24,19 @@ class _ShortsMainState extends ConsumerState<ShortsMain> {
 
   @override
   Widget build(BuildContext context) {
-    final List<ShortsVideo>? shortsVideos = ref.watch(streamsForEpisodeProvider).valueOrNull;
+    AsyncValue<List<ShortsVideo>?> shortsVideos = ref.watch(streamsForEpisodeProvider);
 
     return Scaffold(
       backgroundColor: Colors.black,
-      body: (shortsVideos != null)
-          ? ShortsVideosStreamPlayer(
-              shortsVideos: shortsVideos,
-            )
-          : const LoadingGeneric(),
+      body: shortsVideos.when(
+        loading: () => const LoadingGeneric(),
+        error: (err, stack) => Text('Error: $err'),
+        data: (result) {
+          return ShortsVideosStreamPlayer(
+            shortsVideos: result!,
+          );
+        },
+      ),
     );
   }
 

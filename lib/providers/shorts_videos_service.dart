@@ -14,8 +14,8 @@ class ShortsVideo {
   String id;
   String title;
   String hlsUrl;
-  Duration duration;
-  ShortsVideo({required this.id, required this.title, required this.hlsUrl, required this.duration});
+  Duration startPosition;
+  ShortsVideo({required this.id, required this.title, required this.hlsUrl, required this.startPosition});
 }
 
 final streamsForEpisodeProvider = FutureProvider<List<ShortsVideo>?>((ref) async {
@@ -61,7 +61,7 @@ final streamsForEpisodeProvider = FutureProvider<List<ShortsVideo>?>((ref) async
         id: item.id,
         title: item.title,
         hlsUrl: value.parsedData!.episode.streams.getBestStreamUrl(),
-        duration: Duration(seconds: duration),
+        startPosition: Duration(seconds: duration),
       ));
     });
   }

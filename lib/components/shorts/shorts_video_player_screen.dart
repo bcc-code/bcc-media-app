@@ -3,14 +3,10 @@ import 'package:auto_route/auto_route.dart';
 import 'package:brunstadtv_app/providers/shorts_videos_service.dart';
 import 'package:flutter/services.dart';
 import 'package:bccm_player/bccm_player.dart';
-import 'package:auto_route/auto_route.dart';
-import 'package:bccm_player/bccm_player.dart';
 import 'package:bccm_player/plugins/riverpod.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:video_player/video_player.dart';
 import 'package:brunstadtv_app/theme/bccm_colors.dart';
 import 'package:brunstadtv_app/theme/bccm_typography.dart';
@@ -41,15 +37,23 @@ class _VideoPlayerScreenState extends ConsumerState<ShortsVideoPlayerScreen> {
   bool isVideoMuted = false;
   String urlLink = '';
 
+  openEpisode() async {
+    //this will open the video inside the episode.dart and turn the device's orientation to portrait, and back to landscape when it's finished
+    final PlayerState? player = ref.watch(isCasting) ? ref.watch(castPlayerProvider) : ref.watch(primaryPlayerProvider);
+    final playerId = player?.playerId ?? '';
+    SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
+
+    await context.router.pushNamed('/embed/${widget.shortsVideo.id}?autoplay=true&t=${widget.shortsVideo.startPosition.inSeconds.toString()}',
+        includePrefixMatches: true);
+    BccmPlayerInterface.instance.stop(playerId, true);
+
+    if (!mounted) return null;
+    SystemChrome.setPreferredOrientations([DeviceOrientation.landscapeRight]);
+    return true;
+  }
+
   @override
   Widget build(BuildContext context) {
-    PlayerState? player;
-    if (ref.watch(isCasting)) {
-      player = ref.watch(castPlayerProvider);
-    } else {
-      player = ref.watch(primaryPlayerProvider);
-    }
-    final playerId = player?.playerId ?? '';
     return Stack(
       children: [
         GestureDetector(
@@ -73,7 +77,7 @@ class _VideoPlayerScreenState extends ConsumerState<ShortsVideoPlayerScreen> {
           ),
         ),
         FadingPlayButton(opacityLevel: isVideoPlaying ? 0.0 : 1.0, isVideoPlaying: isVideoPlaying),
-        ForwardButton(widget: widget, ref: ref, playerId: playerId, mounted: mounted),
+        ForwardButton(openEpisode: () => openEpisode()),
         Positioned(
           right: 30,
           bottom: 20,
@@ -92,10 +96,8 @@ class _VideoPlayerScreenState extends ConsumerState<ShortsVideoPlayerScreen> {
           ),
         ),
         VideoDescription(
-          episodeId: widget.shortsVideo.id,
           title: widget.shortsVideo.title,
-          urlLink: '/embed/${widget.shortsVideo.id}?autoplay=true&t=${widget.controller.value.duration.inSeconds.toString()}',
-          playerId: playerId,
+          openEpisode: () => openEpisode(),
         ),
         Positioned(
           left: 30,
@@ -140,16 +142,10 @@ class FadingPlayButton extends StatelessWidget {
 class ForwardButton extends StatelessWidget {
   const ForwardButton({
     super.key,
-    required this.widget,
-    required this.ref,
-    required this.playerId,
-    required this.mounted,
+    required this.openEpisode,
   });
 
-  final ShortsVideoPlayerScreen widget;
-  final WidgetRef ref;
-  final String playerId;
-  final bool mounted;
+  final Function openEpisode;
 
   @override
   Widget build(BuildContext context) {
@@ -159,17 +155,7 @@ class ForwardButton extends StatelessWidget {
       child: IconButton(
         icon: const Icon(Icons.forward_outlined),
         iconSize: 40,
-        onPressed: () async {
-          SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
-
-          await context.router.pushNamed('/embed/${widget.shortsVideo.id}?autoplay=true&t=${widget.controller.value.duration.inSeconds.toString()}',
-              includePrefixMatches: true);
-          BccmPlayerInterface.instance.stop(playerId, true);
-          // ref.read(playbackApiProvider).stop(playerId, true);
-
-          if (!mounted) return;
-          SystemChrome.setPreferredOrientations([DeviceOrientation.landscapeRight]);
-        },
+        onPressed: () => openEpisode(),
       ),
     );
   }
@@ -178,16 +164,12 @@ class ForwardButton extends StatelessWidget {
 class VideoDescription extends ConsumerWidget {
   const VideoDescription({
     Key? key,
-    required this.episodeId,
     required this.title,
-    this.urlLink,
-    required this.playerId,
+    required this.openEpisode,
   }) : super(key: key);
 
-  final String episodeId;
   final String title;
-  final String? urlLink;
-  final String playerId;
+  final Function openEpisode;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -196,14 +178,7 @@ class VideoDescription extends ConsumerWidget {
       left: 0.0,
       child: GestureDetector(
         behavior: HitTestBehavior.opaque,
-        onTap: () async {
-          SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
-
-          await context.router.pushNamed(urlLink ?? '/embed/$episodeId?autoplay=true', includePrefixMatches: true);
-          BccmPlayerInterface.instance.stop(playerId, true);
-          // ref.read(playbackApiProvider).stop(playerId, true);
-          SystemChrome.setPreferredOrientations([DeviceOrientation.landscapeRight]);
-        },
+        onTap: () => openEpisode(),
         child: Container(
           constraints: BoxConstraints(maxWidth: MediaQuery.of(context).size.width * 0.8),
           height: MediaQuery.of(context).size.height * 0.2,

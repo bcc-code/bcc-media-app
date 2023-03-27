@@ -69,7 +69,9 @@ class _ShortsVideosStreamPlayerState extends ConsumerState<ShortsVideosStreamPla
               } else {
                 await _playPrevious(pageIndex);
               }
-              setState(() => prevPageIndex = pageIndex);
+              if (mounted) {
+                setState(() => prevPageIndex = pageIndex);
+              }
             },
             itemBuilder: (context, index) {
               return FutureBuilder(
@@ -117,7 +119,7 @@ class _ShortsVideosStreamPlayerState extends ConsumerState<ShortsVideosStreamPla
         formatHint: VideoFormat.hls,
         videoPlayerOptions: VideoPlayerOptions(allowBackgroundPlayback: false),
       );
-      controller.seekTo(widget.shortsVideos[index].duration);
+      controller.seekTo(widget.shortsVideos[index].startPosition);
       // Add to [controllers] list
       await controller.initialize();
       setState(() {
@@ -128,27 +130,28 @@ class _ShortsVideosStreamPlayerState extends ConsumerState<ShortsVideosStreamPla
     return true;
   }
 
-  Future _playControllerAtIndex(int index) async {
+  bool checkControllersRange(int index) {
     final controller = _controllers[index];
-    if (widget.shortsVideos.length > index && index >= 0 && controller != null) {
-      await controller.play();
-      return controller.value.isPlaying;
+    return widget.shortsVideos.length > index && index >= 0 && controller != null;
+  }
+
+  _playControllerAtIndex(int index) {
+    if (checkControllersRange(index)) {
+      _controllers[index]?.play();
+      return _controllers[index]?.value.isPlaying;
     }
   }
 
-  Future _stopControllerAtIndex(int index) async {
-    final controller = _controllers[index];
-    if (widget.shortsVideos.length > index && index >= 0 && controller != null) {
-      await controller.pause();
-      return !controller.value.isPlaying;
+  void _stopControllerAtIndex(int index) {
+    if (checkControllersRange(index)) {
+      _controllers[index]?.pause();
     }
   }
 
   void _disposeControllerAtIndex(int index) async {
-    final controller = _controllers[index];
-    if (widget.shortsVideos.length > index && index >= 0 && controller != null) {
-      _controllers.removeWhere((key, value) => value == controller);
-      await controller.dispose();
+    if (checkControllersRange(index)) {
+      _controllers.removeWhere((key, value) => value == _controllers[index]);
+      await _controllers[index]?.dispose();
     }
   }
 }
