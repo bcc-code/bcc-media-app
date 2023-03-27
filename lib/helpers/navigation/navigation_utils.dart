@@ -122,12 +122,12 @@ Future<dynamic>? handleSectionItemClick(BuildContext context, Fragment$ItemSecti
   final router = context.router;
   var episodeItem = item.asOrNull<Fragment$ItemSectionItem$item$$Episode>();
   if (episodeItem != null) {
-    final curLiveEpisodeId = ref.read(currentLiveEpisodeProvider)?.episode?.id;
-    if (curLiveEpisodeId == episodeItem.id) {
-      router.navigate(const LiveScreenRoute());
-      return null;
+    final isLive = ref.read(currentLiveEpisodeProvider)?.episode?.id == episodeItem.id;
+    if (!episodeItem.locked) {
+      return overrideAwareNavigation(navigationOverride, router, EpisodeScreenRoute(episodeId: episodeItem.id));
+    } else if (isLive) {
+      return router.navigate(const LiveScreenRoute());
     }
-    return overrideAwareNavigation(navigationOverride, router, EpisodeScreenRoute(episodeId: episodeItem.id));
   }
 
   var showItem = item.asOrNull<Fragment$ItemSectionItem$item$$Show>();

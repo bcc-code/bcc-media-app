@@ -86,7 +86,7 @@ class EpisodeThumbnailStack extends StatelessWidget {
                 child: BorderedImageContainer(imageUrl: episode.image),
               )
             : BorderedImageContainer(imageUrl: episode.image),
-        if (episode.locked)
+        if (episode.locked && !isLive)
           Container(
             width: double.infinity,
             height: double.infinity,
