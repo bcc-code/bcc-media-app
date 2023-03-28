@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:auto_route/auto_route.dart';
 import 'package:brunstadtv_app/api/auth0_api.dart';
 import 'package:brunstadtv_app/components/onboarding/signup/signup_birthdate_page.dart';
@@ -8,7 +6,6 @@ import 'package:brunstadtv_app/components/onboarding/signup/signup_name_page.dar
 import 'package:brunstadtv_app/env/env.dart';
 import 'package:brunstadtv_app/graphql/queries/me.graphql.dart';
 import 'package:brunstadtv_app/graphql/schema/mutations.graphql.dart';
-import 'package:brunstadtv_app/helpers/ui/btv_buttons.dart';
 import 'package:brunstadtv_app/models/auth0/auth0_api.dart';
 import 'package:brunstadtv_app/providers/auth_state/auth_state.dart';
 import 'package:flutter/material.dart';
@@ -20,7 +17,6 @@ import '../../components/onboarding/signup/signup_initial_page.dart';
 import '../../components/onboarding/signup/signup_password_page.dart';
 import '../../l10n/app_localizations.dart';
 import '../../providers/analytics.dart';
-import '../../theme/bccm_typography.dart';
 
 abstract class SignupScreenPage implements Widget {
   abstract final String analyticsPageCode;
@@ -105,17 +101,10 @@ class SignupScreen extends HookConsumerWidget {
       if (await socialAuth) {
         if (!isMounted()) return;
         final user = ref.read(authStateProvider).user;
-        if (user?.name != null) {
+        if (user != null) {
           context.router.popUntil((route) => false);
           context.router.pushNamed('/');
-          return;
         }
-        pageController.animateToPage(
-          pages.indexWhere((build) => build() is SignupNamePage),
-          duration: const Duration(milliseconds: 300),
-          curve: Curves.easeOutExpo,
-        );
-        firstNameFocusNode.requestFocus();
       }
     }
 

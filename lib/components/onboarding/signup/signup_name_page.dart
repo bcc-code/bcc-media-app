@@ -64,6 +64,7 @@ class SignupNamePage extends HookWidget implements SignupScreenPage {
             ),
           ),
           TextFormField(
+            autofocus: true,
             autofillHints: const [AutofillHints.givenName],
             controller: firstNameController,
             focusNode: firstNameFocusNode,
