@@ -75,14 +75,11 @@ class MainJsChannel {
       case 'vibrate':
         return HapticFeedback.vibrate();
       case 'lightImpact':
-        //return HapticFeedback.lightImpact(); //not working for Android API under 30
         return Vibration.vibrate(duration: 30, amplitude: 10);
       case 'mediumImpact':
-        return Vibration.vibrate(duration: 30, amplitude: 80);
-      // return HapticFeedback.mediumImpact();
+        return Vibration.vibrate(duration: 30, amplitude: 30);
       case 'heavyImpact':
         return Vibration.vibrate(duration: 30, amplitude: 60);
-      // return HapticFeedback.heavyImpact();
       case 'selectionClick':
         return HapticFeedback.selectionClick();
     }
