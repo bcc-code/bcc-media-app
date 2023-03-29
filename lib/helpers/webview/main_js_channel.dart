@@ -8,6 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:vibration/vibration.dart';
 
 import '../../providers/auth_state/auth_state.dart';
 
@@ -74,11 +75,14 @@ class MainJsChannel {
       case 'vibrate':
         return HapticFeedback.vibrate();
       case 'lightImpact':
-        return HapticFeedback.lightImpact();
+        //return HapticFeedback.lightImpact(); //not working for Android API under 30
+        return Vibration.vibrate(duration: 30, amplitude: 10);
       case 'mediumImpact':
-        return HapticFeedback.mediumImpact();
+        return Vibration.vibrate(duration: 30, amplitude: 80);
+      // return HapticFeedback.mediumImpact();
       case 'heavyImpact':
-        return HapticFeedback.heavyImpact();
+        return Vibration.vibrate(duration: 30, amplitude: 60);
+      // return HapticFeedback.heavyImpact();
       case 'selectionClick':
         return HapticFeedback.selectionClick();
     }
