@@ -23,6 +23,10 @@
   "@calendarWeek": {
     "description": "Text week."
   },
+  "close": "Close",
+  "@close": {
+    "description": "Text displayed on 'Close' button"
+  },
   "loading": "Loading",
   "@loading": {
     "description": "Text to indicate loading state."
@@ -119,6 +123,10 @@
   "@ok": {
     "description": "Popup confirmation button"
   },
+  "open": "Open",
+  "@open": {
+    "description": "Open button"
+  },
   "loginFailedCheckNetwork": "Login failed. Check your network connection and try again.",
   "@loginFailedCheckNetwork": {
     "description": "Login error message"
@@ -166,6 +174,22 @@
   "cancel": "Cancel",
   "@cancel": {
     "description": "General cancel action button"
+  },
+  "cancelConfirmation": "Are you sure you want to cancel?",
+  "@cancelConfirmation": {
+    "description": "Title text for cancel confirmation dialog."
+  },
+  "cancelConfirmationDescription": "Any unsaved changes will be lost.",
+  "@cancelConfirmationDescription": {
+    "description": "Description for cancel confirmation dialog."
+  },
+  "goBack": "Go back",
+  "@goBack": {
+    "description": "Text for back button."
+  },
+  "yesCancel": "Yes, Cancel",
+  "@yesCancel": {
+    "description": "Confirm cancel."
   },
   "upNext": "Up next",
   "@upNext": {
@@ -218,6 +242,10 @@
   "search": "Search",
   "@search": {
     "description": "Button to clear cache"
+  },
+  "sendFeedback": "Send Feedback",
+  "@sendFeedback": {
+    "description": "Button to submit feedback(Survey)"
   },
   "noResults": "No results found",
   "@noResults": {
@@ -459,6 +487,10 @@
   "sendFailDescription": "Something went wrong. Check your internet connection and try again.",
   "@sendFailDescription": {
     "description": "General error message that sending failed"
+  },
+  "sendSuccessDescription": "We appreciate your feedback.",
+  "@sendSuccessDescription": {
+    "description": "General message when sending is successful"
   },
   "today": "Today",
   "@today": {

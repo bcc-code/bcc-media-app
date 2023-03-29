@@ -23,6 +23,9 @@ class SNb extends S {
   String get calendarWeek => 'uke';
 
   @override
+  String get close => 'Close';
+
+  @override
   String get loading => 'Laster';
 
   @override
@@ -95,6 +98,9 @@ class SNb extends S {
   String get ok => 'OK';
 
   @override
+  String get open => 'Open';
+
+  @override
   String get loginFailedCheckNetwork => 'Det har oppstått en feil. Sjekk nettverksforbindelsen og prøv en gang til.';
 
   @override
@@ -129,6 +135,18 @@ class SNb extends S {
 
   @override
   String get cancel => 'Avbryt';
+
+  @override
+  String get cancelConfirmation => 'Are you sure you want to cancel?';
+
+  @override
+  String get cancelConfirmationDescription => 'Any unsaved changes will be lost.';
+
+  @override
+  String get goBack => 'Go back';
+
+  @override
+  String get yesCancel => 'Yes, Cancel';
 
   @override
   String get upNext => 'Neste';
@@ -168,6 +186,9 @@ class SNb extends S {
 
   @override
   String get search => 'Søk';
+
+  @override
+  String get sendFeedback => 'Send Feedback';
 
   @override
   String get noResults => 'Ingen resultater funnet';
@@ -343,6 +364,9 @@ class SNb extends S {
 
   @override
   String get sendFailDescription => 'Noe gikk galt. Sjekk internettforbindelsen din og prøv på nytt.';
+
+  @override
+  String get sendSuccessDescription => 'We appreciate your feedback.';
 
   @override
   String get today => 'I dag';

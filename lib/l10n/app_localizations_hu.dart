@@ -23,6 +23,9 @@ class SHu extends S {
   String get calendarWeek => 'hét';
 
   @override
+  String get close => 'Close';
+
+  @override
   String get loading => 'Betöltés';
 
   @override
@@ -95,6 +98,9 @@ class SHu extends S {
   String get ok => 'OK';
 
   @override
+  String get open => 'Open';
+
+  @override
   String get loginFailedCheckNetwork => 'Hibás bejelentkezés. Ellenőrizd a hálózati csatlakozásodat és próbálj újra.';
 
   @override
@@ -129,6 +135,18 @@ class SHu extends S {
 
   @override
   String get cancel => 'Mégse';
+
+  @override
+  String get cancelConfirmation => 'Are you sure you want to cancel?';
+
+  @override
+  String get cancelConfirmationDescription => 'Any unsaved changes will be lost.';
+
+  @override
+  String get goBack => 'Go back';
+
+  @override
+  String get yesCancel => 'Yes, Cancel';
 
   @override
   String get upNext => 'Következő';
@@ -168,6 +186,9 @@ class SHu extends S {
 
   @override
   String get search => 'Keresés';
+
+  @override
+  String get sendFeedback => 'Send Feedback';
 
   @override
   String get noResults => 'Nincs eredmény';
@@ -343,6 +364,9 @@ class SHu extends S {
 
   @override
   String get sendFailDescription => 'Valami nem sikerült. Vizsgáld meg az internett kapcsolatodat és próbáld újra.';
+
+  @override
+  String get sendSuccessDescription => 'We appreciate your feedback.';
 
   @override
   String get today => 'Ma';

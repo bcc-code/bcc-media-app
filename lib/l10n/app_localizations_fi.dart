@@ -23,6 +23,9 @@ class SFi extends S {
   String get calendarWeek => 'viikko';
 
   @override
+  String get close => 'Close';
+
+  @override
   String get loading => 'Ladataan';
 
   @override
@@ -95,6 +98,9 @@ class SFi extends S {
   String get ok => 'OK';
 
   @override
+  String get open => 'Open';
+
+  @override
   String get loginFailedCheckNetwork => 'Kirjautuminen epäonnistui. Tarkista nettiyhteys ja koita uudelleen.';
 
   @override
@@ -129,6 +135,18 @@ class SFi extends S {
 
   @override
   String get cancel => 'Peru';
+
+  @override
+  String get cancelConfirmation => 'Are you sure you want to cancel?';
+
+  @override
+  String get cancelConfirmationDescription => 'Any unsaved changes will be lost.';
+
+  @override
+  String get goBack => 'Go back';
+
+  @override
+  String get yesCancel => 'Yes, Cancel';
 
   @override
   String get upNext => 'Tulossa';
@@ -168,6 +186,9 @@ class SFi extends S {
 
   @override
   String get search => 'Haku';
+
+  @override
+  String get sendFeedback => 'Send Feedback';
 
   @override
   String get noResults => 'Mitään ei löytynyt';
@@ -343,6 +364,9 @@ class SFi extends S {
 
   @override
   String get sendFailDescription => 'Jokin ei nyt toimi. Tarkista nettiyhteys ja kokeile uudelleen.';
+
+  @override
+  String get sendSuccessDescription => 'We appreciate your feedback.';
 
   @override
   String get today => 'Tänään';

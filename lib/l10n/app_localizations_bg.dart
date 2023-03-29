@@ -23,6 +23,9 @@ class SBg extends S {
   String get calendarWeek => 'week';
 
   @override
+  String get close => 'Close';
+
+  @override
   String get loading => 'Loading';
 
   @override
@@ -95,6 +98,9 @@ class SBg extends S {
   String get ok => 'OK';
 
   @override
+  String get open => 'Open';
+
+  @override
   String get loginFailedCheckNetwork => 'Login failed. Check your network connection and try again.';
 
   @override
@@ -129,6 +135,18 @@ class SBg extends S {
 
   @override
   String get cancel => 'Cancel';
+
+  @override
+  String get cancelConfirmation => 'Are you sure you want to cancel?';
+
+  @override
+  String get cancelConfirmationDescription => 'Any unsaved changes will be lost.';
+
+  @override
+  String get goBack => 'Go back';
+
+  @override
+  String get yesCancel => 'Yes, Cancel';
 
   @override
   String get upNext => 'Up next';
@@ -168,6 +186,9 @@ class SBg extends S {
 
   @override
   String get search => 'Search';
+
+  @override
+  String get sendFeedback => 'Send Feedback';
 
   @override
   String get noResults => 'No results found';
@@ -343,6 +364,9 @@ class SBg extends S {
 
   @override
   String get sendFailDescription => 'Something went wrong. Check your internet connection and try again.';
+
+  @override
+  String get sendSuccessDescription => 'We appreciate your feedback.';
 
   @override
   String get today => 'Today';

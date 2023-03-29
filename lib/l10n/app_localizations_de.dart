@@ -23,6 +23,9 @@ class SDe extends S {
   String get calendarWeek => 'Woche';
 
   @override
+  String get close => 'Close';
+
+  @override
   String get loading => 'Lädt';
 
   @override
@@ -95,6 +98,9 @@ class SDe extends S {
   String get ok => 'OK';
 
   @override
+  String get open => 'Open';
+
+  @override
   String get loginFailedCheckNetwork => 'Anmeldung fehlgeschlagen. Überprüfe deine Netzwerkverbindung und versuche es erneut.';
 
   @override
@@ -129,6 +135,18 @@ class SDe extends S {
 
   @override
   String get cancel => 'Abbrechen';
+
+  @override
+  String get cancelConfirmation => 'Are you sure you want to cancel?';
+
+  @override
+  String get cancelConfirmationDescription => 'Any unsaved changes will be lost.';
+
+  @override
+  String get goBack => 'Go back';
+
+  @override
+  String get yesCancel => 'Yes, Cancel';
 
   @override
   String get upNext => 'Nächste';
@@ -168,6 +186,9 @@ class SDe extends S {
 
   @override
   String get search => 'Suchen';
+
+  @override
+  String get sendFeedback => 'Send Feedback';
 
   @override
   String get noResults => 'Keine Ergebnisse';
@@ -343,6 +364,9 @@ class SDe extends S {
 
   @override
   String get sendFailDescription => 'Etwas lief schief. Bitte überprüfe deine Internetverbindung und versuche es noch einmal.';
+
+  @override
+  String get sendSuccessDescription => 'We appreciate your feedback.';
 
   @override
   String get today => 'Heute';

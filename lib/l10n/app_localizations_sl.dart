@@ -23,6 +23,9 @@ class SSl extends S {
   String get calendarWeek => 'teden';
 
   @override
+  String get close => 'Close';
+
+  @override
   String get loading => 'Nalaganje';
 
   @override
@@ -95,6 +98,9 @@ class SSl extends S {
   String get ok => 'OK';
 
   @override
+  String get open => 'Open';
+
+  @override
   String get loginFailedCheckNetwork => 'Napaka pri prijavi. Preverite internetno povezavo in poskusite znova.';
 
   @override
@@ -129,6 +135,18 @@ class SSl extends S {
 
   @override
   String get cancel => 'Prekliči';
+
+  @override
+  String get cancelConfirmation => 'Are you sure you want to cancel?';
+
+  @override
+  String get cancelConfirmationDescription => 'Any unsaved changes will be lost.';
+
+  @override
+  String get goBack => 'Go back';
+
+  @override
+  String get yesCancel => 'Yes, Cancel';
 
   @override
   String get upNext => 'Sledi';
@@ -168,6 +186,9 @@ class SSl extends S {
 
   @override
   String get search => 'Išči';
+
+  @override
+  String get sendFeedback => 'Send Feedback';
 
   @override
   String get noResults => 'Ni najdenih rezultatov';
@@ -343,6 +364,9 @@ class SSl extends S {
 
   @override
   String get sendFailDescription => 'Nekaj je šlo narobe. Preveri svojo internetno povezavo in poskusi znova.';
+
+  @override
+  String get sendSuccessDescription => 'We appreciate your feedback.';
 
   @override
   String get today => 'Danes';

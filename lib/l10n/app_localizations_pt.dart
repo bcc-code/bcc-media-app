@@ -23,6 +23,9 @@ class SPt extends S {
   String get calendarWeek => 'Semana ';
 
   @override
+  String get close => 'Close';
+
+  @override
   String get loading => 'Carregando';
 
   @override
@@ -95,6 +98,9 @@ class SPt extends S {
   String get ok => 'Ok';
 
   @override
+  String get open => 'Open';
+
+  @override
   String get loginFailedCheckNetwork => 'Falha na autenticação. Verifique sua conexão de rede e tente novamente.';
 
   @override
@@ -129,6 +135,18 @@ class SPt extends S {
 
   @override
   String get cancel => 'Cancelar';
+
+  @override
+  String get cancelConfirmation => 'Are you sure you want to cancel?';
+
+  @override
+  String get cancelConfirmationDescription => 'Any unsaved changes will be lost.';
+
+  @override
+  String get goBack => 'Go back';
+
+  @override
+  String get yesCancel => 'Yes, Cancel';
 
   @override
   String get upNext => 'A seguir';
@@ -168,6 +186,9 @@ class SPt extends S {
 
   @override
   String get search => 'Busca';
+
+  @override
+  String get sendFeedback => 'Send Feedback';
 
   @override
   String get noResults => 'Nenhum resultado encontrado';
@@ -343,6 +364,9 @@ class SPt extends S {
 
   @override
   String get sendFailDescription => 'Algo deu errado. Verifique sua conexão com a internet e tente novamente.';
+
+  @override
+  String get sendSuccessDescription => 'We appreciate your feedback.';
 
   @override
   String get today => 'Hoje';

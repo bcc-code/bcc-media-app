@@ -23,6 +23,9 @@ class SFr extends S {
   String get calendarWeek => 'semaine';
 
   @override
+  String get close => 'Close';
+
+  @override
   String get loading => 'Chargement';
 
   @override
@@ -95,6 +98,9 @@ class SFr extends S {
   String get ok => 'OK';
 
   @override
+  String get open => 'Open';
+
+  @override
   String get loginFailedCheckNetwork => 'Échec de la connexion. Vérifie ta connexion internet et retente à nouveau.';
 
   @override
@@ -129,6 +135,18 @@ class SFr extends S {
 
   @override
   String get cancel => 'Annuler';
+
+  @override
+  String get cancelConfirmation => 'Are you sure you want to cancel?';
+
+  @override
+  String get cancelConfirmationDescription => 'Any unsaved changes will be lost.';
+
+  @override
+  String get goBack => 'Go back';
+
+  @override
+  String get yesCancel => 'Yes, Cancel';
 
   @override
   String get upNext => 'Suivant';
@@ -168,6 +186,9 @@ class SFr extends S {
 
   @override
   String get search => 'Rechercher';
+
+  @override
+  String get sendFeedback => 'Send Feedback';
 
   @override
   String get noResults => 'Aucun résultat trouvé';
@@ -343,6 +364,9 @@ class SFr extends S {
 
   @override
   String get sendFailDescription => 'Une erreur est survenue. Vérifie ta connexion internet et réessaye.';
+
+  @override
+  String get sendSuccessDescription => 'We appreciate your feedback.';
 
   @override
   String get today => 'Aujourd\'hui';

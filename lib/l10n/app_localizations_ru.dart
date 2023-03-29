@@ -23,6 +23,9 @@ class SRu extends S {
   String get calendarWeek => 'неделя';
 
   @override
+  String get close => 'Close';
+
+  @override
   String get loading => 'Загрузка';
 
   @override
@@ -95,6 +98,9 @@ class SRu extends S {
   String get ok => 'ОК';
 
   @override
+  String get open => 'Open';
+
+  @override
   String get loginFailedCheckNetwork => 'Ошибка входа. Проверьте подключение к сети и попробуйте снова.';
 
   @override
@@ -129,6 +135,18 @@ class SRu extends S {
 
   @override
   String get cancel => 'Отмена';
+
+  @override
+  String get cancelConfirmation => 'Are you sure you want to cancel?';
+
+  @override
+  String get cancelConfirmationDescription => 'Any unsaved changes will be lost.';
+
+  @override
+  String get goBack => 'Go back';
+
+  @override
+  String get yesCancel => 'Yes, Cancel';
 
   @override
   String get upNext => 'К следующему';
@@ -168,6 +186,9 @@ class SRu extends S {
 
   @override
   String get search => 'Поиск';
+
+  @override
+  String get sendFeedback => 'Send Feedback';
 
   @override
   String get noResults => 'Результатов не найдено';
@@ -343,6 +364,9 @@ class SRu extends S {
 
   @override
   String get sendFailDescription => 'Что-то пошло не так. Проверьте подключение к интернету и попробуйте еще раз.';
+
+  @override
+  String get sendSuccessDescription => 'We appreciate your feedback.';
 
   @override
   String get today => 'Сегодня';

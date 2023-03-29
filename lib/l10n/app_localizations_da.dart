@@ -23,6 +23,9 @@ class SDa extends S {
   String get calendarWeek => 'uge';
 
   @override
+  String get close => 'Close';
+
+  @override
   String get loading => 'Indlæser';
 
   @override
@@ -95,6 +98,9 @@ class SDa extends S {
   String get ok => 'OK';
 
   @override
+  String get open => 'Open';
+
+  @override
   String get loginFailedCheckNetwork => 'Login mislykkedes. Tjek din netværksforbindelse, og prøv igen.';
 
   @override
@@ -129,6 +135,18 @@ class SDa extends S {
 
   @override
   String get cancel => 'Annuller';
+
+  @override
+  String get cancelConfirmation => 'Are you sure you want to cancel?';
+
+  @override
+  String get cancelConfirmationDescription => 'Any unsaved changes will be lost.';
+
+  @override
+  String get goBack => 'Go back';
+
+  @override
+  String get yesCancel => 'Yes, Cancel';
 
   @override
   String get upNext => 'Næste';
@@ -168,6 +186,9 @@ class SDa extends S {
 
   @override
   String get search => 'Søg';
+
+  @override
+  String get sendFeedback => 'Send Feedback';
 
   @override
   String get noResults => 'Ingen resultater fundet';
@@ -343,6 +364,9 @@ class SDa extends S {
 
   @override
   String get sendFailDescription => 'Kunne gik galt. Tjek din internetforbindelse og prøv igen.';
+
+  @override
+  String get sendSuccessDescription => 'We appreciate your feedback.';
 
   @override
   String get today => 'I dag';
