@@ -7,12 +7,19 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:url_launcher/url_launcher_string.dart';
+import 'package:universal_io/io.dart';
+import 'package:device_info_plus/device_info_plus.dart';
+import 'package:package_info_plus/package_info_plus.dart';
+import 'package:url_launcher/url_launcher.dart';
 import '../../components/custom_back_button.dart';
 import '../../helpers/languages.dart';
 import '../../l10n/app_localizations.dart';
 import '../../router/router.gr.dart';
 import './avatar.dart';
 import '../../components/setting_list.dart';
+
+import '../../helpers/version.dart';
+import '../../helpers/extensions.dart';
 
 class Profile extends ConsumerStatefulWidget {
   const Profile({super.key});
@@ -29,12 +36,17 @@ class _ProfileState extends ConsumerState<Profile> {
             optionName: S.of(context).contactSupport,
             onPressed: () {
               context.router.push(const ContactSupportRoute());
-            }),
+            })
+      else
+        OptionButton(
+          optionName: S.of(context).contactSupport,
+          onPressed: () => _sendAnonymousEmail(),
+        ),
       OptionButton(
           optionName: S.of(context).about,
           onPressed: () {
             context.router.push(const AboutScreenRoute());
-          })
+          }),
     ];
   }
 
@@ -84,6 +96,45 @@ class _ProfileState extends ConsumerState<Profile> {
     } else {
       //loginError = 'Login failed';
     }
+  }
+
+  Future<void> _sendAnonymousEmail() async {
+    String? deviceModel, manufacturer, os, screenSize, appVer, userId;
+    PackageInfo packageInfo = await PackageInfo.fromPlatform();
+    final screenWidth = WidgetsBinding.instance.window.physicalSize.width.toInt().toString();
+    final screenHeight = WidgetsBinding.instance.window.physicalSize.height.toInt().toString();
+    screenSize = '${screenHeight}x$screenWidth';
+    appVer = formatAppVersion(packageInfo);
+
+    if (Platform.isAndroid) {
+      AndroidDeviceInfo androidInfo = await DeviceInfoPlugin().androidInfo;
+      os = '${Platform.operatingSystem.capitalized} ${androidInfo.version.release}';
+      deviceModel = androidInfo.model;
+      manufacturer = androidInfo.manufacturer;
+    } else if (Platform.isIOS) {
+      IosDeviceInfo iosInfo = await DeviceInfoPlugin().iosInfo;
+      os = '${Platform.operatingSystem.capitalized} ${iosInfo.systemVersion}';
+      deviceModel = iosInfo.model;
+      manufacturer = 'Apple';
+    } else {
+      //Windows or Chrome or Linux
+    }
+
+    final Uri mailtoUri = Uri(
+      scheme: 'mailto',
+      path: 'support@bcc.media',
+      query: 'subject=Anonymous Users Contact Support&body='
+          '\n\n\n\n\n\n\n\n-- Do Not Delete Below This Line-- \n'
+          'Device Model: $deviceModel\n'
+          'Manufacturer: $manufacturer\n'
+          'Operating System: $os\n'
+          'Screen Size: $screenSize\n'
+          'App Version: $appVer',
+    );
+    if (!await launchUrl(mailtoUri)) {
+      debugPrint('Could not launchUrl $mailtoUri');
+      throw Exception('Could not launch $mailtoUri');
+    } else {}
   }
 
   @override
