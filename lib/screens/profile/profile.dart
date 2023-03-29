@@ -31,16 +31,17 @@ class Profile extends ConsumerStatefulWidget {
 class _ProfileState extends ConsumerState<Profile> {
   List<OptionButton> get _supportButtons {
     return [
-      (!ref.read(authStateProvider).guestMode)
-          ? OptionButton(
-              optionName: S.of(context).contactSupport,
-              onPressed: () {
-                context.router.push(const ContactSupportRoute());
-              })
-          : OptionButton(
-              optionName: S.of(context).contactSupport,
-              onPressed: () => _sendAnonymousEmail(),
-            ),
+      if (!ref.read(authStateProvider).guestMode)
+        OptionButton(
+            optionName: S.of(context).contactSupport,
+            onPressed: () {
+              context.router.push(const ContactSupportRoute());
+            })
+      else
+        OptionButton(
+          optionName: S.of(context).contactSupport,
+          onPressed: () => _sendAnonymousEmail(),
+        ),
       OptionButton(
           optionName: S.of(context).about,
           onPressed: () {
