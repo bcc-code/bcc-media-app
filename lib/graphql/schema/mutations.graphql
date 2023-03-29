@@ -26,6 +26,9 @@ type MutationRoot {
     addShowToMyList(showId: ID!): AddToCollectionResult!
 
     removeEntryFromMyList(entryId: UUID!): UserCollection!
+
+    updateUserMetadata(birthData: BirthOptions!, nameData: NameOptions!): Boolean!
+    sendVerificationEmail: Boolean!
 }
 
 type AnswerSurveyQuestionResult {
@@ -35,4 +38,13 @@ type AnswerSurveyQuestionResult {
 type AddToCollectionResult {
     entryId: UUID!
     collection: UserCollection! @goField(forceResolver: true)
+}
+
+input BirthOptions {
+    year: Int!
+}
+
+input NameOptions {
+    first: String!
+    last: String!
 }

@@ -154,7 +154,7 @@ class _ProfileState extends ConsumerState<Profile> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: <Widget>[
-                if (!ref.read(authStateProvider).guestMode)
+                if (ref.read(authStateProvider).user != null)
                   const Avatar()
                 else
                   Padding(
@@ -166,7 +166,7 @@ class _ProfileState extends ConsumerState<Profile> {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      if (!ref.read(authStateProvider).guestMode)
+                      if (ref.read(authStateProvider).auth0AccessToken != null)
                         GestureDetector(
                           onLongPress: () => ref.read(authStateProvider.notifier).logout(manual: false),
                           child: BtvButton.smallSecondary(

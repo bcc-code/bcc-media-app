@@ -162,6 +162,20 @@ const documentNodeQueryme = DocumentNode(definitions: [
             ]),
           ),
           FieldNode(
+            name: NameNode(value: 'completedRegistration'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
+            name: NameNode(value: 'emailVerified'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
             name: NameNode(value: '__typename'),
             alias: null,
             arguments: [],
@@ -290,20 +304,30 @@ class Query$me$Widget extends graphql_flutter.Query<Query$me> {
 class Query$me$me {
   Query$me$me({
     required this.analytics,
+    required this.completedRegistration,
+    required this.emailVerified,
     this.$__typename = 'User',
   });
 
   factory Query$me$me.fromJson(Map<String, dynamic> json) {
     final l$analytics = json['analytics'];
+    final l$completedRegistration = json['completedRegistration'];
+    final l$emailVerified = json['emailVerified'];
     final l$$__typename = json['__typename'];
     return Query$me$me(
       analytics:
           Query$me$me$analytics.fromJson((l$analytics as Map<String, dynamic>)),
+      completedRegistration: (l$completedRegistration as bool),
+      emailVerified: (l$emailVerified as bool),
       $__typename: (l$$__typename as String),
     );
   }
 
   final Query$me$me$analytics analytics;
+
+  final bool completedRegistration;
+
+  final bool emailVerified;
 
   final String $__typename;
 
@@ -311,6 +335,10 @@ class Query$me$me {
     final _resultData = <String, dynamic>{};
     final l$analytics = analytics;
     _resultData['analytics'] = l$analytics.toJson();
+    final l$completedRegistration = completedRegistration;
+    _resultData['completedRegistration'] = l$completedRegistration;
+    final l$emailVerified = emailVerified;
+    _resultData['emailVerified'] = l$emailVerified;
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -319,9 +347,13 @@ class Query$me$me {
   @override
   int get hashCode {
     final l$analytics = analytics;
+    final l$completedRegistration = completedRegistration;
+    final l$emailVerified = emailVerified;
     final l$$__typename = $__typename;
     return Object.hashAll([
       l$analytics,
+      l$completedRegistration,
+      l$emailVerified,
       l$$__typename,
     ]);
   }
@@ -337,6 +369,16 @@ class Query$me$me {
     final l$analytics = analytics;
     final lOther$analytics = other.analytics;
     if (l$analytics != lOther$analytics) {
+      return false;
+    }
+    final l$completedRegistration = completedRegistration;
+    final lOther$completedRegistration = other.completedRegistration;
+    if (l$completedRegistration != lOther$completedRegistration) {
+      return false;
+    }
+    final l$emailVerified = emailVerified;
+    final lOther$emailVerified = other.emailVerified;
+    if (l$emailVerified != lOther$emailVerified) {
       return false;
     }
     final l$$__typename = $__typename;
@@ -365,6 +407,8 @@ abstract class CopyWith$Query$me$me<TRes> {
 
   TRes call({
     Query$me$me$analytics? analytics,
+    bool? completedRegistration,
+    bool? emailVerified,
     String? $__typename,
   });
   CopyWith$Query$me$me$analytics<TRes> get analytics;
@@ -384,12 +428,21 @@ class _CopyWithImpl$Query$me$me<TRes> implements CopyWith$Query$me$me<TRes> {
 
   TRes call({
     Object? analytics = _undefined,
+    Object? completedRegistration = _undefined,
+    Object? emailVerified = _undefined,
     Object? $__typename = _undefined,
   }) =>
       _then(Query$me$me(
         analytics: analytics == _undefined || analytics == null
             ? _instance.analytics
             : (analytics as Query$me$me$analytics),
+        completedRegistration:
+            completedRegistration == _undefined || completedRegistration == null
+                ? _instance.completedRegistration
+                : (completedRegistration as bool),
+        emailVerified: emailVerified == _undefined || emailVerified == null
+            ? _instance.emailVerified
+            : (emailVerified as bool),
         $__typename: $__typename == _undefined || $__typename == null
             ? _instance.$__typename
             : ($__typename as String),
@@ -409,6 +462,8 @@ class _CopyWithStubImpl$Query$me$me<TRes>
 
   call({
     Query$me$me$analytics? analytics,
+    bool? completedRegistration,
+    bool? emailVerified,
     String? $__typename,
   }) =>
       _res;

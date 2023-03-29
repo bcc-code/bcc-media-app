@@ -24,15 +24,26 @@ type Settings {
   subtitleLanguages: [Language!]!
 }
 
+enum Gender {
+  male
+  female
+  unknown
+}
+
 type User {
   id: ID
   anonymous: Boolean!
   bccMember: Boolean!
   audience: String
   email: String
+  emailVerified: Boolean! @goField(forceResolver: true)
   settings: Settings!
   roles: [String!]!
   analytics: Analytics!
+  gender: Gender!
+  firstName: String!
+  displayName: String!
+  completedRegistration: Boolean!
 }
 
 input LegacyIDLookupOptions {
@@ -59,6 +70,8 @@ type RedirectParam {
 
 type QueryRoot{
   application: Application!
+  languages: [Language!]!
+
   export(
     # Only export for this groups. The groups will be filtered by the groups the users has access to.
     # NOT IMPLEMENTED YET!

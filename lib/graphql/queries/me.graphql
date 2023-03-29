@@ -3,5 +3,7 @@ query me {
     analytics {
       anonymousId
     }
+    completedRegistration
+    emailVerified
   }
 }

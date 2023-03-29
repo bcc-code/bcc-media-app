@@ -1,5 +1,8 @@
 import 'dart:async';
 import 'package:bccm_player/bccm_player.dart';
+import 'package:brunstadtv_app/graphql/client.dart';
+import 'package:brunstadtv_app/graphql/queries/me.graphql.dart';
+import 'package:brunstadtv_app/providers/auth_state/auth_state.dart';
 import 'package:universal_io/io.dart';
 import 'dart:ui';
 
@@ -90,6 +93,35 @@ class HomeScreenState extends ConsumerState<HomeScreen> with PageMixin implement
               ],
             );
           });
+    }
+
+    if (ref.read(authStateProvider).auth0AccessToken != null) {
+      final me = await ref.read(gqlClientProvider).query$me();
+      if (me.parsedData?.me.completedRegistration != true || me.parsedData?.me.emailVerified != true) {
+        // ignore: use_build_context_synchronously
+        await showDialog(
+          context: context,
+          builder: (context) {
+            return SimpleDialog(
+              title: Text(
+                S.of(context).appUpdateTitle,
+                style: BccmTextStyles.title3,
+              ),
+              contentPadding: const EdgeInsets.all(24).copyWith(top: 8),
+              children: [
+                const Padding(
+                    padding: EdgeInsets.only(bottom: 16),
+                    child: Text("Unfortunately, we don't support signing up yet. Are you sure you signed in with the correct email?")),
+                BtvButton.medium(
+                  onPressed: () => Navigator.pop(context),
+                  labelText: S.of(context).ok,
+                )
+              ],
+            );
+          },
+        );
+        ref.read(authStateProvider.notifier).logout();
+      }
     }
   }
 
