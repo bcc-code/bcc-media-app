@@ -20,7 +20,6 @@ import '../../components/setting_list.dart';
 
 import '../../helpers/version.dart';
 import '../../helpers/extensions.dart';
-import 'dart:developer';
 
 class Profile extends ConsumerStatefulWidget {
   const Profile({super.key});
@@ -32,18 +31,16 @@ class Profile extends ConsumerStatefulWidget {
 class _ProfileState extends ConsumerState<Profile> {
   List<OptionButton> get _supportButtons {
     return [
-      if (!ref.read(authStateProvider).guestMode)
-        OptionButton(
-            optionName: S.of(context).contactSupport,
-            onPressed: () {
-              context.router.push(const ContactSupportRoute());
-            }),
-      //GUEST MODE CONTACT SUPPORT
-      if (ref.read(authStateProvider).guestMode)
-        OptionButton(
-          optionName: S.of(context).contactSupport,
-          onPressed: () => _sendAnonymousEmail(),
-        ),
+      (!ref.read(authStateProvider).guestMode)
+          ? OptionButton(
+              optionName: S.of(context).contactSupport,
+              onPressed: () {
+                context.router.push(const ContactSupportRoute());
+              })
+          : OptionButton(
+              optionName: S.of(context).contactSupport,
+              onPressed: () => _sendAnonymousEmail(),
+            ),
       OptionButton(
           optionName: S.of(context).about,
           onPressed: () {
@@ -125,16 +122,18 @@ class _ProfileState extends ConsumerState<Profile> {
     final Uri mailtoUri = Uri(
       scheme: 'mailto',
       path: 'support@bcc.media',
-      query:
-          'subject=Anonymous Users Contact Support&body=\n\n\n\n\n\n\n\n-- Do Not Delete Below This Line-- \nDevice Model: $deviceModel\nManufacturer: $manufacturer\nOperating System: $os\nScreen Size: $screenSize\nApp Version: $appVer',
+      query: 'subject=Anonymous Users Contact Support&body='
+          '\n\n\n\n\n\n\n\n-- Do Not Delete Below This Line-- \n'
+          'Device Model: $deviceModel\n'
+          'Manufacturer: $manufacturer\n'
+          'Operating System: $os\n'
+          'Screen Size: $screenSize\n'
+          'App Version: $appVer',
     );
-    log('$mailtoUri');
     if (!await launchUrl(mailtoUri)) {
-      log('launch error');
+      debugPrint('Could not launchUrl $mailtoUri');
       throw Exception('Could not launch $mailtoUri');
-    } else {
-      log('launch success');
-    }
+    } else {}
   }
 
   @override
