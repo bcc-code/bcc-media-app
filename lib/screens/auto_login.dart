@@ -63,7 +63,7 @@ class _AutoLoginScreeenState extends ConsumerState<AutoLoginScreen> {
     }
     final hasCredentials = ref.read(authStateProvider).auth0AccessToken != null;
     if (!hasCredentials) {
-      router.replaceAll([LoginScreenRoute()]);
+      router.replaceAll([OnboardingScreenRoute()]);
     } else {
       router.replaceAll([const TabsRootScreenRoute()]);
     }

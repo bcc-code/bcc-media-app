@@ -1,6 +1,6 @@
 import 'package:brunstadtv_app/env/env.dart';
 import 'package:brunstadtv_app/models/analytics/achievement_clicked.dart';
-import 'package:brunstadtv_app/models/auth/auth0_id_token.dart';
+import 'package:brunstadtv_app/models/auth0/auth0_id_token.dart';
 import 'package:brunstadtv_app/providers/inherited_data.dart';
 import 'package:brunstadtv_app/providers/settings.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
@@ -22,29 +22,6 @@ import '../models/analytics/sections.dart';
 import '../models/analytics/content_shared.dart';
 
 const kMinimumSessionTimeout = Duration(minutes: 30);
-
-String getAgeGroup(int? age) {
-  if (age == null) {
-    return 'UNKNOWN';
-  }
-  if (age >= 65) {
-    return '65+';
-  } else if (age >= 51) {
-    return '51 - 64';
-  } else if (age >= 37) {
-    return '37 - 50';
-  } else if (age >= 26) {
-    return '26 - 36';
-  } else if (age >= 19) {
-    return '19 - 25';
-  } else if (age >= 13) {
-    return '13 - 18';
-  } else if (age >= 10) {
-    return '10 - 12';
-  } else {
-    return '< 10';
-  }
-}
 
 final analyticsProvider = Provider<Analytics>((ref) {
   return Analytics(ref: ref);
@@ -175,7 +152,7 @@ class Analytics {
     int? age;
     if (ageDuration != null) {
       age = (ageDuration.inDays / 365.25).floor();
-      traits.put('ageGroup', getAgeGroup(age));
+      traits.put('ageGroup', _getAgeGroup(age));
     }
     traits.put('country', profile.countryIso2Code);
     traits.put('churchId', profile.churchId.toString());
@@ -196,5 +173,28 @@ class Analytics {
 
   void calendarDayClicked(CalendarDayClickedEvent event) {
     RudderController.instance.track('calendarday_clicked', properties: getCommonData().putValue(map: event.toJson()));
+  }
+
+  String _getAgeGroup(int? age) {
+    if (age == null) {
+      return 'UNKNOWN';
+    }
+    if (age >= 65) {
+      return '65+';
+    } else if (age >= 51) {
+      return '51 - 64';
+    } else if (age >= 37) {
+      return '37 - 50';
+    } else if (age >= 26) {
+      return '26 - 36';
+    } else if (age >= 19) {
+      return '19 - 25';
+    } else if (age >= 13) {
+      return '13 - 18';
+    } else if (age >= 10) {
+      return '10 - 12';
+    } else {
+      return '< 10';
+    }
   }
 }

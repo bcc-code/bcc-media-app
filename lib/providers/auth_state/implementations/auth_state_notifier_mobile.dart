@@ -19,7 +19,7 @@ import 'package:url_launcher/url_launcher.dart';
 
 import '../../../env/env.dart';
 import '../../../helpers/constants.dart';
-import '../../../models/auth/auth0_id_token.dart';
+import '../../../models/auth0/auth0_id_token.dart';
 import '../../../models/auth_state.dart';
 import '../auth_state.dart';
 
@@ -54,7 +54,7 @@ class AuthStateNotifierMobile extends StateNotifier<AuthState> implements AuthSt
       return null;
     }
     if (state.expiresAt!.difference(clock.now()) < kMinimumCredentialsTTL) {
-      await refresh();
+      await _refresh();
     }
     if (state.expiresAt!.difference(clock.now()) < kMinimumCredentialsTTL) {
       throw Exception('Auth state is still expired after attempting to renew.');
@@ -79,7 +79,7 @@ class AuthStateNotifierMobile extends StateNotifier<AuthState> implements AuthSt
       return false;
     }
     if (expiry.difference(clock.now()) < kMinimumCredentialsTTL) {
-      return await refresh();
+      return await _refresh();
     }
     state = state.copyWith(
       auth0AccessToken: accessToken,
@@ -91,7 +91,12 @@ class AuthStateNotifierMobile extends StateNotifier<AuthState> implements AuthSt
     return true;
   }
 
-  Future<bool> refresh() async {
+  @override
+  Future<bool> forceRefresh() {
+    return _refresh();
+  }
+
+  Future<bool> _refresh() async {
     final refreshToken = await _secureStorage.read(key: SecureStorageKeys.refreshToken);
 
     if (refreshToken == null) {
@@ -155,16 +160,20 @@ class AuthStateNotifierMobile extends StateNotifier<AuthState> implements AuthSt
   }
 
   @override
-  Future<bool> login() async {
+  Future<bool> login({String? connection}) async {
     final PackageInfo info = await PackageInfo.fromPlatform();
     try {
+      var additionalParameters = {'audience': Env.auth0Audience};
+      if (connection != null) {
+        additionalParameters['connection'] = connection;
+      }
       final authorizationTokenRequest = AuthorizationTokenRequest(
         Env.auth0ClientId,
         '${info.packageName}://login-callback',
         issuer: 'https://${Env.auth0Domain}',
-        scopes: ['openid', 'profile', 'offline_access', 'church', 'country'],
+        scopes: ['openid', 'profile', 'offline_access', 'church', 'country', 'email'],
         promptValues: state.signedOutManually == true ? ['login'] : null,
-        additionalParameters: {'audience': Env.auth0Audience},
+        additionalParameters: additionalParameters,
       );
 
       final AuthorizationTokenResponse? result = await _syncAppAuth(

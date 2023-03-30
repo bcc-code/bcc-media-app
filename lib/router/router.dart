@@ -12,16 +12,19 @@ import 'package:brunstadtv_app/screens/profile/contact_support.dart';
 import 'package:brunstadtv_app/screens/profile/faq.dart';
 import 'package:brunstadtv_app/screens/home.dart';
 import 'package:brunstadtv_app/screens/live.dart';
-import 'package:brunstadtv_app/screens/login.dart';
+import 'package:brunstadtv_app/screens/onboarding/onboarding.dart';
 import 'package:brunstadtv_app/screens/profile/profile.dart';
 import 'package:brunstadtv_app/screens/search/search.dart';
 import 'package:brunstadtv_app/screens/study.dart';
+import 'package:flutter/material.dart';
+import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 
 import '../helpers/navigation/custom_transitions.dart';
 import '../screens/achievement_group.dart';
 import '../screens/achievements.dart';
 import '../screens/episode.dart';
 import '../screens/page.dart';
+import '../screens/onboarding/signup.dart';
 import '../screens/tabs_root.dart';
 
 const _episodeScreenRoute = CustomRoute<void>(
@@ -41,10 +44,24 @@ const _pageScreenRoute = CustomRoute<void>(
     reverseDurationInMilliseconds: 300,
     transitionsBuilder: CustomTransitionsBuilders.slideLeft);
 
+Route<T> modalSheetBuilder<T>(BuildContext context, Widget child, CustomPage<T> page) {
+  return ModalSheetRoute(
+    settings: page,
+    builder: (context) => child,
+    expanded: true,
+  );
+}
+
 @MaterialAutoRouter(
   routes: [
     AutoRoute<void>(page: AutoLoginScreen, path: '/auto-login'),
-    MaterialRoute<void>(page: LoginScreen, path: '/login', meta: {RouteMetaConstants.analyticsName: 'login'}),
+    MaterialRoute<void>(page: OnboardingScreen, path: '/login', meta: {RouteMetaConstants.analyticsName: 'login'}),
+    CustomRoute<void>(
+      customRouteBuilder: modalSheetBuilder,
+      page: SignupScreen,
+      path: 'signup',
+      meta: {RouteMetaConstants.analyticsName: 'signup'},
+    ),
     CustomRoute<void>(
         opaque: false,
         durationInMilliseconds: 400,

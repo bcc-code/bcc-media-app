@@ -18,9 +18,13 @@ class Auth0IdToken {
     required this.countryIso2Code,
     this.churchId,
     this.appMetadata,
+    this.userMetadata,
     this.birthdate,
+    this.email,
     this.gender,
     this.authTime,
+    this.givenName,
+    this.familyName,
   });
 
   final String nickname;
@@ -37,11 +41,19 @@ class Auth0IdToken {
   final int? churchId;
   @JsonKey(name: 'https://members.bcc.no/app_metadata')
   final Map<String, dynamic>? appMetadata;
+  @JsonKey(name: 'user_metadata')
+  final Map<String, dynamic>? userMetadata;
+  @JsonKey(name: 'given_name')
+  final String? givenName;
+  @JsonKey(name: 'family_name')
+  final String? familyName;
   final String? birthdate;
   final String? gender;
+  final String? email;
   final int iat;
   final int exp;
 
+  bool? get mediaSubscriber => userMetadata?['media_subscriber'];
   bool? get hasMembership => appMetadata?['hasMembership'];
   String? get bccPersonId => appMetadata?['personId'].toString();
 

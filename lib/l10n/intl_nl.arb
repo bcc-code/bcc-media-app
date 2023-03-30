@@ -103,15 +103,15 @@
   "@loginFailedTryAgain": {
     "description": "Login error message"
   },
-  "soundLanguage": "Geluidstaal",
+  "soundLanguage": "Taal geluid",
   "@soundLanguage": {
     "description": "Settings item on profile page"
   },
-  "subtitleLanguage": "Taal ondertitels",
+  "subtitleLanguage": "Taal ondertiteling",
   "@subtitleLanguage": {
     "description": "Settings item on profile page"
   },
-  "appLanguage": "Taal voor app",
+  "appLanguage": "Taal app",
   "@appLanguage": {
     "description": "Settings item on profile page"
   },
@@ -563,11 +563,11 @@
   "@eventsTab": {
     "description": "Events Tab title"
   },
-  "audioLanguage": "Geluidstaal",
+  "audioLanguage": "Taal geluid",
   "@audioLanguage": {
     "description": "Label indicating that the Audio Language can be changed here."
   },
-  "subtitlesLanguage": "Taal ondertitels",
+  "subtitlesLanguage": "Taal ondertiteling",
   "@subtitlesLanguage": {
     "description": "Label indicating that the Subtitles Language can be changed here."
   },

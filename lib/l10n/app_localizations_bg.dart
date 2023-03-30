@@ -56,6 +56,24 @@ class SBg extends S {
   String get signInButton => 'Sign in';
 
   @override
+  String get signInOrSignUp => 'Sign up / Sign in';
+
+  @override
+  String get signUpButton => 'Sign up now';
+
+  @override
+  String get signUpTitle => 'Sign up';
+
+  @override
+  String get signUpDescription => 'Get access to more content and better features by creating an account.';
+
+  @override
+  String get signUpAgreePrivacyPolicy => 'I certify that I am 13 years of age or older, and I agree to the <a>Privacy Policy</a> and <a>Terms of use</a>.';
+
+  @override
+  String get setPassword => 'Set password';
+
+  @override
   String get tryAgainButton => 'Try again';
 
   @override
@@ -477,6 +495,9 @@ class SBg extends S {
   String get exploreContent => 'Explore content';
 
   @override
+  String get explorePublicContent => 'Explore public content';
+
+  @override
   String get taskCompleted => 'task completed';
 
   @override
@@ -550,7 +571,18 @@ class SBg extends S {
   String get continueButton => 'Continue';
 
   @override
+  String get registerButton => 'Register';
+
+  @override
   String get achievements => 'Achievements';
+
+  @override
+  String passwordConditionLength(int n) {
+    return 'Minimum $n characters';
+  }
+
+  @override
+  String get passwordConditionComplexity => 'Must contain lower case, uppercase and numbers.';
 
   @override
   String get oops => 'Oops!';

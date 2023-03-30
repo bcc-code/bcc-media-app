@@ -139,6 +139,7 @@ class _ProfileState extends ConsumerState<Profile> {
 
   @override
   Widget build(BuildContext context) {
+    final user = ref.read(authStateProvider).user;
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
@@ -166,7 +167,7 @@ class _ProfileState extends ConsumerState<Profile> {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      if (ref.read(authStateProvider).auth0AccessToken != null)
+                      if (user != null)
                         GestureDetector(
                           onLongPress: () => ref.read(authStateProvider.notifier).logout(manual: false),
                           child: BtvButton.smallSecondary(
@@ -176,8 +177,8 @@ class _ProfileState extends ConsumerState<Profile> {
                         )
                       else
                         BtvButton.small(
-                          onPressed: () => loginAction(context),
-                          labelText: S.of(context).signInButton,
+                          onPressed: () => context.router.navigate(OnboardingScreenRoute()),
+                          labelText: S.of(context).signInOrSignUp,
                         )
                     ],
                   ),

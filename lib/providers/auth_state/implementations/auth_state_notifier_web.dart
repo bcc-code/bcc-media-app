@@ -1,5 +1,5 @@
 import 'package:auth0_flutter_web/auth0_flutter_web.dart';
-import 'package:brunstadtv_app/models/auth/auth0_id_token.dart';
+import 'package:brunstadtv_app/models/auth0/auth0_id_token.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../env/env.dart';
@@ -63,7 +63,7 @@ class AuthStateNotifierWeb extends StateNotifier<AuthState> implements AuthState
   }
 
   @override
-  Future<bool> login() async {
+  Future<bool> login({String? connection}) async {
     final auth0 = await _auth0;
     await auth0.loginWithPopup(
       options: PopupLoginOptions(
@@ -73,5 +73,11 @@ class AuthStateNotifierWeb extends StateNotifier<AuthState> implements AuthState
     );
     await setStateFromResult(auth0);
     return true;
+  }
+
+  @override
+  Future<bool> forceRefresh() {
+    // TODO: implement forceRefresh
+    throw UnimplementedError();
   }
 }

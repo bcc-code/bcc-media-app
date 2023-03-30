@@ -3,7 +3,19 @@ query me {
     analytics {
       anonymousId
     }
-    completedRegistration
+    email
     emailVerified
+    completedRegistration
   }
+}
+
+mutation sendVerificationEmail {
+  sendVerificationEmail
+}
+
+mutation updateUserMetadata(
+  $nameData: NameOptions!
+  $birthData: BirthOptions!
+) {
+  updateUserMetadata(nameData: $nameData, birthData: $birthData)
 }
