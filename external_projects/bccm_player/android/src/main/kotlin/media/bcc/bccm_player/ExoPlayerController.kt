@@ -164,6 +164,13 @@ class ExoPlayerController(private val context: Context) : PlayerController() {
         exoPlayer.release()
     }
 
+    override fun onIsPlayingChanged(isPlaying: Boolean) {
+        var lang = exoPlayer.audioFormat?.language
+        if (lang != null) {
+            youboraPlugin.options.contentLanguage = lang
+        }
+    }
+
     override fun onMediaItemTransition(mediaItem: MediaItem?, reason: Int) {
         mediaItem?.mediaMetadata?.let { onMediaMetadataChanged(it) }
     }
