@@ -114,17 +114,12 @@ class SignupBirthDatePage extends HookWidget implements SignupScreenPage {
                 ),
                 const SizedBox(width: 12),
                 Expanded(
-                  child: yearController.value == null || !privacyPolicyAgreed.value
-                      ? BtvButton.largeDisabled(
-                          key: WidgetKeys.registerButton,
-                          onPressed: () {},
-                          labelText: S.of(context).registerButton,
-                        )
-                      : BtvButton.large(
-                          key: WidgetKeys.registerButton,
-                          onPressed: nextPage,
-                          labelText: S.of(context).registerButton,
-                        ),
+                  child: BtvButton.large(
+                    disabled: yearController.value == null || !privacyPolicyAgreed.value,
+                    key: WidgetKeys.registerButton,
+                    onPressed: nextPage,
+                    labelText: S.of(context).registerButton,
+                  ),
                 )
               ],
             ),

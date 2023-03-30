@@ -117,15 +117,11 @@ class SignupNamePage extends HookWidget implements SignupScreenPage {
                     ),
                     const SizedBox(width: 12),
                     Expanded(
-                      child: firstNameController.value.text.isBlank || lastNameController.value.text.isBlank
-                          ? BtvButton.largeDisabled(
-                              onPressed: () {},
-                              labelText: S.of(context).continueButton,
-                            )
-                          : BtvButton.large(
-                              onPressed: nextPage,
-                              labelText: S.of(context).continueButton,
-                            ),
+                      child: BtvButton.large(
+                        disabled: firstNameController.value.text.isBlank || lastNameController.value.text.isBlank,
+                        onPressed: nextPage,
+                        labelText: S.of(context).continueButton,
+                      ),
                     )
                   ],
                 ),

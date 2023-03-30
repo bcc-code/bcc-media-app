@@ -31,7 +31,7 @@ mixin _$Auth0SignupRequestBody {
   String? get name => throw _privateConstructorUsedError;
   String? get nickname => throw _privateConstructorUsedError;
   String? get pictureUrl => throw _privateConstructorUsedError;
-  Map<String, dynamic>? get userMetadata => throw _privateConstructorUsedError;
+  Map<String, String>? get userMetadata => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -56,7 +56,7 @@ abstract class $Auth0SignupRequestBodyCopyWith<$Res> {
       String? name,
       String? nickname,
       String? pictureUrl,
-      Map<String, dynamic>? userMetadata});
+      Map<String, String>? userMetadata});
 }
 
 /// @nodoc
@@ -129,7 +129,7 @@ class _$Auth0SignupRequestBodyCopyWithImpl<$Res,
       userMetadata: freezed == userMetadata
           ? _value.userMetadata
           : userMetadata // ignore: cast_nullable_to_non_nullable
-              as Map<String, dynamic>?,
+              as Map<String, String>?,
     ) as $Val);
   }
 }
@@ -153,7 +153,7 @@ abstract class _$$_Auth0SignupRequestBodyCopyWith<$Res>
       String? name,
       String? nickname,
       String? pictureUrl,
-      Map<String, dynamic>? userMetadata});
+      Map<String, String>? userMetadata});
 }
 
 /// @nodoc
@@ -224,14 +224,14 @@ class __$$_Auth0SignupRequestBodyCopyWithImpl<$Res>
       userMetadata: freezed == userMetadata
           ? _value._userMetadata
           : userMetadata // ignore: cast_nullable_to_non_nullable
-              as Map<String, dynamic>?,
+              as Map<String, String>?,
     ));
   }
 }
 
 /// @nodoc
 
-@JsonSerializable(includeIfNull: false)
+@JsonSerializable(includeIfNull: false, fieldRename: FieldRename.snake)
 class _$_Auth0SignupRequestBody
     with DiagnosticableTreeMixin
     implements _Auth0SignupRequestBody {
@@ -246,7 +246,7 @@ class _$_Auth0SignupRequestBody
       this.name,
       this.nickname,
       this.pictureUrl,
-      final Map<String, dynamic>? userMetadata})
+      final Map<String, String>? userMetadata})
       : _userMetadata = userMetadata;
 
   factory _$_Auth0SignupRequestBody.fromJson(Map<String, dynamic> json) =>
@@ -272,9 +272,9 @@ class _$_Auth0SignupRequestBody
   final String? nickname;
   @override
   final String? pictureUrl;
-  final Map<String, dynamic>? _userMetadata;
+  final Map<String, String>? _userMetadata;
   @override
-  Map<String, dynamic>? get userMetadata {
+  Map<String, String>? get userMetadata {
     final value = _userMetadata;
     if (value == null) return null;
     if (_userMetadata is EqualUnmodifiableMapView) return _userMetadata;
@@ -375,7 +375,7 @@ abstract class _Auth0SignupRequestBody implements Auth0SignupRequestBody {
       final String? name,
       final String? nickname,
       final String? pictureUrl,
-      final Map<String, dynamic>? userMetadata}) = _$_Auth0SignupRequestBody;
+      final Map<String, String>? userMetadata}) = _$_Auth0SignupRequestBody;
 
   factory _Auth0SignupRequestBody.fromJson(Map<String, dynamic> json) =
       _$_Auth0SignupRequestBody.fromJson;
@@ -401,7 +401,7 @@ abstract class _Auth0SignupRequestBody implements Auth0SignupRequestBody {
   @override
   String? get pictureUrl;
   @override
-  Map<String, dynamic>? get userMetadata;
+  Map<String, String>? get userMetadata;
   @override
   @JsonKey(ignore: true)
   _$$_Auth0SignupRequestBodyCopyWith<_$_Auth0SignupRequestBody> get copyWith =>

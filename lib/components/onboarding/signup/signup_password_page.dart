@@ -127,15 +127,11 @@ class SignupPasswordPage extends HookWidget implements SignupScreenPage {
                   ),
                   const SizedBox(width: 12),
                   Expanded(
-                    child: conditions.any((c) => !c.fulfilled)
-                        ? BtvButton.largeDisabled(
-                            onPressed: () {},
-                            labelText: S.of(context).continueButton,
-                          )
-                        : BtvButton.large(
-                            onPressed: nextPage,
-                            labelText: S.of(context).continueButton,
-                          ),
+                    child: BtvButton.large(
+                      disabled: conditions.any((c) => !c.fulfilled),
+                      onPressed: nextPage,
+                      labelText: S.of(context).continueButton,
+                    ),
                   )
                 ],
               ),

@@ -65,12 +65,14 @@ class SignupScreen extends HookConsumerWidget {
                     clientId: Env.auth0ClientId,
                     email: emailTextController.value.text,
                     password: passwordTextController.value.text,
+                    name: '${firstNameController.value.text} ${lastNameController.value.text}',
+                    nickname: firstNameController.value.text,
                     givenName: firstNameController.value.text,
                     familyName: lastNameController.value.text,
                     connection: Env.auth0SignupConnection,
                     userMetadata: {
-                      'birth_year': yearController.value,
-                      'media_subscriber': true,
+                      'birth_year': yearController.value.toString(),
+                      'media_subscriber': true.toString(),
                     }),
               );
         } else {

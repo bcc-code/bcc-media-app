@@ -85,15 +85,11 @@ class LoginInitialPage extends HookWidget {
         Container(
           padding: const EdgeInsets.only(bottom: 16),
           width: double.infinity,
-          child: emailTextController.value.text.isBlank || passwordTextController.value.text.isBlank
-              ? BtvButton.largeDisabled(
-                  onPressed: () {},
-                  labelText: S.of(context).continueButton,
-                )
-              : BtvButton.large(
-                  onPressed: nextPage,
-                  labelText: S.of(context).continueButton,
-                ),
+          child: BtvButton.large(
+            disabled: emailTextController.value.text.isBlank || passwordTextController.value.text.isBlank,
+            onPressed: nextPage,
+            labelText: S.of(context).continueButton,
+          ),
         )
       ],
     );

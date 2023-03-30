@@ -65,8 +65,7 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
       widget.onResult!(true);
     }
 
-    context.router.popUntil((route) => false);
-    context.router.pushNamed('/');
+    context.router.replaceAll([const TabsRootScreenRoute()]);
   }
 
   handleError(String message) {

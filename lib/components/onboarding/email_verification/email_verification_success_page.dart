@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:auto_route/auto_route.dart';
 import 'package:brunstadtv_app/components/onboarding/onboarding_page_wrapper.dart';
 import 'package:brunstadtv_app/helpers/ui/btv_buttons.dart';
 import 'package:brunstadtv_app/providers/auth_state/auth_state.dart';
@@ -11,6 +12,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:open_mail_app/open_mail_app.dart';
 
 import '../../../l10n/app_localizations.dart';
+import '../../../router/router.gr.dart';
 import '../../../theme/bccm_typography.dart';
 
 class EmailVerificationSuccessPage extends HookConsumerWidget {
@@ -39,20 +41,24 @@ class EmailVerificationSuccessPage extends HookConsumerWidget {
                   padding: EdgeInsets.only(bottom: 8),
                   child: Text('Account created', style: BccmTextStyles.headline1),
                 ),
-                Text('We have sent an email to '),
-                Text(email!.toLowerCase(), style: BccmTextStyles.body1.copyWith(color: BccmColors.label3, fontStyle: FontStyle.italic)),
-                const SizedBox(height: 8),
-                Text('Click the link in the email to verify your account.'),
+                Text('You can now use your account and explore a variety of edifying content.'),
               ],
             ),
           ),
         ),
       ],
       bottomArea: [
-        BtvButton.large(
-          labelText: S.of(context).continueButton,
-          onPressed: () {},
-        ),
+        Container(
+          padding: const EdgeInsets.only(bottom: 32),
+          width: double.infinity,
+          child: BtvButton.large(
+            labelText: S.of(context).continueButton,
+            onPressed: () {
+              Navigator.pop(context);
+              context.router.replaceAll([const TabsRootScreenRoute()]);
+            },
+          ),
+        )
       ],
     );
   }

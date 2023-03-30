@@ -2,6 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:brunstadtv_app/components/error_generic.dart';
 import 'package:brunstadtv_app/components/loading_indicator.dart';
 import 'package:brunstadtv_app/helpers/ui/btv_buttons.dart';
+import 'package:brunstadtv_app/router/router.gr.dart';
 import 'package:brunstadtv_app/screens/onboarding/signup.dart';
 import 'package:brunstadtv_app/theme/bccm_colors.dart';
 import 'package:flutter/material.dart';
@@ -105,14 +106,11 @@ class SignupDonePage extends HookConsumerWidget implements SignupScreenPage {
                   if (!success) return;
                 }
                 if (!isMounted()) return;
-
                 // because isMounted,
                 // ignore: use_build_context_synchronously
                 Navigator.pop(context);
                 // ignore: use_build_context_synchronously
-                final router = context.router;
-                router.popUntil((route) => false);
-                router.pushNamed('/');
+                context.router.replaceAll([const TabsRootScreenRoute()]);
               },
               labelText: user == null ? 'Log in' : S.of(context).exploreContent,
             ),

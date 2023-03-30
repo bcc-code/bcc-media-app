@@ -7,7 +7,7 @@ part 'auth0_api.g.dart';
 
 @freezed
 class Auth0SignupRequestBody with _$Auth0SignupRequestBody {
-  @JsonSerializable(includeIfNull: false)
+  @JsonSerializable(includeIfNull: false, fieldRename: FieldRename.snake)
   factory Auth0SignupRequestBody({
     required String clientId,
     required String email,
@@ -19,7 +19,7 @@ class Auth0SignupRequestBody with _$Auth0SignupRequestBody {
     String? name,
     String? nickname,
     String? pictureUrl,
-    Map<String, dynamic>? userMetadata,
+    Map<String, String>? userMetadata,
   }) = _Auth0SignupRequestBody;
 
   factory Auth0SignupRequestBody.fromJson(Map<String, dynamic> json) => _$Auth0SignupRequestBodyFromJson(json);

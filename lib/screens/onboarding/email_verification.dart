@@ -75,7 +75,7 @@ class EmailVerificationScreen extends HookConsumerWidget {
           ),
           leading: GestureDetector(
             behavior: HitTestBehavior.opaque,
-            onTap: () => Navigator.maybePop(context),
+            onTap: () => Navigator.pop(context),
             child: Padding(
               padding: const EdgeInsets.only(left: 16, top: 12),
               child: Text(

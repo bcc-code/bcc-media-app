@@ -9,23 +9,25 @@ part of 'auth0_api.dart';
 _$_Auth0SignupRequestBody _$$_Auth0SignupRequestBodyFromJson(
         Map<String, dynamic> json) =>
     _$_Auth0SignupRequestBody(
-      clientId: json['clientId'] as String,
+      clientId: json['client_id'] as String,
       email: json['email'] as String,
       password: json['password'] as String,
       connection: json['connection'] as String,
       username: json['username'] as String?,
-      givenName: json['givenName'] as String?,
-      familyName: json['familyName'] as String?,
+      givenName: json['given_name'] as String?,
+      familyName: json['family_name'] as String?,
       name: json['name'] as String?,
       nickname: json['nickname'] as String?,
-      pictureUrl: json['pictureUrl'] as String?,
-      userMetadata: json['userMetadata'] as Map<String, dynamic>?,
+      pictureUrl: json['picture_url'] as String?,
+      userMetadata: (json['user_metadata'] as Map<String, dynamic>?)?.map(
+        (k, e) => MapEntry(k, e as String),
+      ),
     );
 
 Map<String, dynamic> _$$_Auth0SignupRequestBodyToJson(
     _$_Auth0SignupRequestBody instance) {
   final val = <String, dynamic>{
-    'clientId': instance.clientId,
+    'client_id': instance.clientId,
     'email': instance.email,
     'password': instance.password,
     'connection': instance.connection,
@@ -38,12 +40,12 @@ Map<String, dynamic> _$$_Auth0SignupRequestBodyToJson(
   }
 
   writeNotNull('username', instance.username);
-  writeNotNull('givenName', instance.givenName);
-  writeNotNull('familyName', instance.familyName);
+  writeNotNull('given_name', instance.givenName);
+  writeNotNull('family_name', instance.familyName);
   writeNotNull('name', instance.name);
   writeNotNull('nickname', instance.nickname);
-  writeNotNull('pictureUrl', instance.pictureUrl);
-  writeNotNull('userMetadata', instance.userMetadata);
+  writeNotNull('picture_url', instance.pictureUrl);
+  writeNotNull('user_metadata', instance.userMetadata);
   return val;
 }
 

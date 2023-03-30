@@ -1,13 +1,11 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:bccm_player/bccm_player.dart';
 import 'package:brunstadtv_app/graphql/client.dart';
-import 'package:brunstadtv_app/graphql/queries/me.graphql.dart';
 import 'package:brunstadtv_app/main.dart';
 import 'package:brunstadtv_app/providers/me_provider.dart';
 import 'package:brunstadtv_app/router/analytics_observer.dart';
 import 'package:brunstadtv_app/screens/onboarding/email_verification.dart';
 import 'package:brunstadtv_app/screens/onboarding/signup.dart';
-import 'package:brunstadtv_app/theme/bccm_colors.dart';
 import 'package:brunstadtv_app/theme/bccm_theme.dart';
 import 'package:brunstadtv_app/providers/analytics.dart';
 import 'package:brunstadtv_app/providers/settings.dart';
@@ -15,12 +13,9 @@ import 'package:brunstadtv_app/router/router.gr.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
-import 'package:on_screen_ruler/on_screen_ruler.dart';
 import 'l10n/app_localizations.dart';
-import 'models/auth0/auth0_id_token.dart';
 import 'models/auth_state.dart';
 import 'providers/auth_state/auth_state.dart';
 
@@ -71,8 +66,7 @@ class _AppRootState extends ConsumerState<AppRoot> {
         }
         if (!me.emailVerified && context.mounted) {
           showVerifyEmail();
-        }
-        if (!me.completedRegistration && context.mounted) {
+        } else if (!me.completedRegistration && context.mounted) {
           ensureValidUser();
         }
         analytics.identify(next.user!, me.analytics.anonymousId);

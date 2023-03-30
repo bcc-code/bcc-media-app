@@ -10,6 +10,7 @@ import 'package:brunstadtv_app/theme/bccm_colors.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:graphql/client.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:open_mail_app/open_mail_app.dart';
 
@@ -23,36 +24,43 @@ class EmailVerificationPromptPage extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final isMounted = useIsMounted();
-    final sendVerificationEmail = useMutation$sendVerificationEmail();
+    final sendVerificationEmail = useMutation$sendVerificationEmail(
+        WidgetOptions$Mutation$sendVerificationEmail(cacheRereadPolicy: CacheRereadPolicy.ignoreAll, fetchPolicy: FetchPolicy.networkOnly));
     final meAsync = ref.watch(meProvider);
     final email = meAsync.valueOrNull?.me.email;
 
-    final exception = sendVerificationEmail.result.exception;
-    useMemoized(() {
-      if (exception == null) return;
-      FlutterError.reportError(
-        FlutterErrorDetails(
-          exception: exception,
-          context: ErrorDescription("Couldn't send verification email"),
-        ),
+    Future resendEmail() async {
+      try {
+        await sendVerificationEmail.runMutation().networkResult;
+      } catch (e, st) {
+        FlutterError.reportError(
+          FlutterErrorDetails(
+            exception: e,
+            stack: st,
+            context: ErrorDescription('Resend failed'),
+          ),
+        );
+      }
+      if (!isMounted()) return;
+      // ignore: use_build_context_synchronously
+      showDialog(
+        context: context,
+        builder: (context) {
+          return SimpleDialog(
+            title: const Text('Verification email sent', style: BccmTextStyles.title1),
+            children: [
+              const Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 24),
+                  child: Text('If you still did not receive an email, please contact support at support@bcc.media.')),
+              Container(
+                padding: const EdgeInsets.only(left: 24, right: 24, top: 24, bottom: 12),
+                child: BtvButton.medium(onPressed: () => Navigator.pop(context), labelText: S.of(context).ok),
+              )
+            ],
+          );
+        },
       );
-      WidgetsBinding.instance.scheduleFrameCallback((_) {
-        showDialog(
-            context: context,
-            builder: (context) {
-              return SimpleDialog(
-                title: const Text('Error sending verification email', style: BccmTextStyles.title1),
-                children: [
-                  const Padding(padding: EdgeInsets.symmetric(horizontal: 24), child: Text('Please contact support at support@bcc.media.')),
-                  Container(
-                    padding: const EdgeInsets.only(left: 24, right: 24, top: 24, bottom: 12),
-                    child: BtvButton.medium(onPressed: () => Navigator.pop(context), labelText: S.of(context).ok),
-                  )
-                ],
-              );
-            });
-      });
-    }, [exception]);
+    }
 
     return OnboardingPageWrapper(
       body: [
@@ -113,9 +121,7 @@ class EmailVerificationPromptPage extends HookConsumerWidget {
           child: BtvButton.mediumSecondary(
             labelText: 'Resend email',
             image: sendVerificationEmail.result.isLoading ? const Padding(padding: EdgeInsets.all(2), child: LoadingIndicator()) : null,
-            onPressed: () {
-              sendVerificationEmail.runMutation();
-            },
+            onPressed: resendEmail,
           ).copyWith(
             backgroundColor: Colors.transparent,
             border: Border.all(color: Colors.transparent),
