@@ -179,6 +179,7 @@ class SignupScreen extends HookConsumerWidget {
               final page = pages[index]();
               ref.read(analyticsProvider).screen(page.analyticsPageCode);
             },
+            physics: const NeverScrollableScrollPhysics(),
             controller: pageController,
             itemCount: pages.length,
             itemBuilder: (context, index) {

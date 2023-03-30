@@ -32,16 +32,16 @@ void main() {
       find.byType(CupertinoPicker),
       const Offset(0, -10000),
       1000,
-      warnIfMissed: false,
+      warnIfMissed: true,
     );
 
     await t.drag(
       find.byType(CupertinoPicker),
       const Offset(0, -10000),
-      warnIfMissed: false,
+      warnIfMissed: true,
     );
 
-    expect(yearController.value, DateTime.now().subtract(const Duration(days: 365 * minAge)).year.toString());
+    expect(yearController.value, DateTime.now().subtract(const Duration(days: 365 * minAge)).year);
 
     await t.fling(
       find.byType(CupertinoPicker),
@@ -56,6 +56,6 @@ void main() {
       warnIfMissed: false,
     );
 
-    expect(yearController.value, DateTime.now().subtract(const Duration(days: 365 * maxAge)).year.toString());
+    expect(yearController.value, DateTime.now().subtract(const Duration(days: 365 * maxAge)).year);
   });
 }

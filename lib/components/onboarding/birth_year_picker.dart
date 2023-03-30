@@ -26,7 +26,7 @@ class BirthYearPicker extends HookWidget {
     useMemoized(
       () => SchedulerBinding.instance.scheduleFrameCallback((_) => onSelectedYearChanged(startYear)),
       // ignore: exhaustive_keys
-      [onSelectedYearChanged],
+      [],
     );
 
     return Focus(
