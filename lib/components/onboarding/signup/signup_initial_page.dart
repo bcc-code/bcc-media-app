@@ -82,7 +82,7 @@ class SignupInitialPage extends HookWidget implements SignupScreenPage {
             emailTextController: emailTextController,
             onEditingComplete: nextPage,
           ),
-        )
+        ),
       ],
       bottomArea: [
         Container(

@@ -173,16 +173,18 @@ class SignupScreen extends HookConsumerWidget {
             ),
           ),
         ),
-        body: PageView.builder(
-          onPageChanged: (index) {
-            final page = pages[index]();
-            ref.read(analyticsProvider).screen(page.analyticsPageCode);
-          },
-          controller: pageController,
-          itemCount: pages.length,
-          itemBuilder: (context, index) {
-            return pages[index]();
-          },
+        body: AutofillGroup(
+          child: PageView.builder(
+            onPageChanged: (index) {
+              final page = pages[index]();
+              ref.read(analyticsProvider).screen(page.analyticsPageCode);
+            },
+            controller: pageController,
+            itemCount: pages.length,
+            itemBuilder: (context, index) {
+              return pages[index]();
+            },
+          ),
         ),
       ),
     );
