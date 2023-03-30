@@ -164,10 +164,15 @@ class ExoPlayerController(private val context: Context) : PlayerController() {
         exoPlayer.release()
     }
 
-    override fun onIsPlayingChanged(isPlaying: Boolean) {
-        var lang = exoPlayer.audioFormat?.language
-        if (lang != null) {
-            youboraPlugin.options.contentLanguage = lang
+    override fun onTracksChanged(tracks: Tracks) {
+        for (t in tracks.groups) {
+            if (!t.isSelected) continue
+
+            if (t.type == C.TRACK_TYPE_TEXT) {
+                youboraPlugin.options.contentSubtitles = t.mediaTrackGroup.getFormat(0).language
+            } else if (t.type == C.TRACK_TYPE_AUDIO) {
+                youboraPlugin.options.contentLanguage = t.mediaTrackGroup.getFormat(0).language
+            }
         }
     }
 
