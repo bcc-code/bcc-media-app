@@ -2,6 +2,7 @@ fragment CalendarEntryEpisode on Episode {
   id
   title
   image
+  locked
   description
   season {
     id

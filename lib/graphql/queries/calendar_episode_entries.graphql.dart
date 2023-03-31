@@ -8,6 +8,7 @@ class Fragment$CalendarEntryEpisode {
     required this.id,
     required this.title,
     this.image,
+    required this.locked,
     required this.description,
     this.season,
     this.$__typename = 'Episode',
@@ -17,6 +18,7 @@ class Fragment$CalendarEntryEpisode {
     final l$id = json['id'];
     final l$title = json['title'];
     final l$image = json['image'];
+    final l$locked = json['locked'];
     final l$description = json['description'];
     final l$season = json['season'];
     final l$$__typename = json['__typename'];
@@ -24,6 +26,7 @@ class Fragment$CalendarEntryEpisode {
       id: (l$id as String),
       title: (l$title as String),
       image: (l$image as String?),
+      locked: (l$locked as bool),
       description: (l$description as String),
       season: l$season == null
           ? null
@@ -39,6 +42,8 @@ class Fragment$CalendarEntryEpisode {
 
   final String? image;
 
+  final bool locked;
+
   final String description;
 
   final Fragment$CalendarEntryEpisode$season? season;
@@ -53,6 +58,8 @@ class Fragment$CalendarEntryEpisode {
     _resultData['title'] = l$title;
     final l$image = image;
     _resultData['image'] = l$image;
+    final l$locked = locked;
+    _resultData['locked'] = l$locked;
     final l$description = description;
     _resultData['description'] = l$description;
     final l$season = season;
@@ -67,6 +74,7 @@ class Fragment$CalendarEntryEpisode {
     final l$id = id;
     final l$title = title;
     final l$image = image;
+    final l$locked = locked;
     final l$description = description;
     final l$season = season;
     final l$$__typename = $__typename;
@@ -74,6 +82,7 @@ class Fragment$CalendarEntryEpisode {
       l$id,
       l$title,
       l$image,
+      l$locked,
       l$description,
       l$season,
       l$$__typename,
@@ -102,6 +111,11 @@ class Fragment$CalendarEntryEpisode {
     final l$image = image;
     final lOther$image = other.image;
     if (l$image != lOther$image) {
+      return false;
+    }
+    final l$locked = locked;
+    final lOther$locked = other.locked;
+    if (l$locked != lOther$locked) {
       return false;
     }
     final l$description = description;
@@ -145,6 +159,7 @@ abstract class CopyWith$Fragment$CalendarEntryEpisode<TRes> {
     String? id,
     String? title,
     String? image,
+    bool? locked,
     String? description,
     Fragment$CalendarEntryEpisode$season? season,
     String? $__typename,
@@ -169,6 +184,7 @@ class _CopyWithImpl$Fragment$CalendarEntryEpisode<TRes>
     Object? id = _undefined,
     Object? title = _undefined,
     Object? image = _undefined,
+    Object? locked = _undefined,
     Object? description = _undefined,
     Object? season = _undefined,
     Object? $__typename = _undefined,
@@ -179,6 +195,9 @@ class _CopyWithImpl$Fragment$CalendarEntryEpisode<TRes>
             ? _instance.title
             : (title as String),
         image: image == _undefined ? _instance.image : (image as String?),
+        locked: locked == _undefined || locked == null
+            ? _instance.locked
+            : (locked as bool),
         description: description == _undefined || description == null
             ? _instance.description
             : (description as String),
@@ -208,6 +227,7 @@ class _CopyWithStubImpl$Fragment$CalendarEntryEpisode<TRes>
     String? id,
     String? title,
     String? image,
+    bool? locked,
     String? description,
     Fragment$CalendarEntryEpisode$season? season,
     String? $__typename,
@@ -242,6 +262,13 @@ const fragmentDefinitionCalendarEntryEpisode = FragmentDefinitionNode(
     ),
     FieldNode(
       name: NameNode(value: 'image'),
+      alias: null,
+      arguments: [],
+      directives: [],
+      selectionSet: null,
+    ),
+    FieldNode(
+      name: NameNode(value: 'locked'),
       alias: null,
       arguments: [],
       directives: [],

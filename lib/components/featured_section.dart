@@ -27,7 +27,7 @@ class FeaturedSection extends ConsumerWidget {
     List<Fragment$Section$$FeaturedSection$items$items> items,
     Fragment$CalendarEntryEpisode? curLiveEpisode,
   ) {
-    if (data.metadata == null || curLiveEpisode == null) {
+    if (data.metadata == null || curLiveEpisode == null || !curLiveEpisode.locked) {
       return items;
     }
     if (data.metadata!.prependLiveElement) {
