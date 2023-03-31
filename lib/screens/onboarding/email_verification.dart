@@ -4,6 +4,7 @@ import 'package:brunstadtv_app/components/loading_generic.dart';
 import 'package:brunstadtv_app/components/onboarding/email_verification/email_verification_success_page.dart';
 import 'package:brunstadtv_app/components/onboarding/email_verification/email_verification_prompt_page.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -49,7 +50,9 @@ class EmailVerificationScreen extends HookConsumerWidget {
     final mePollState = ref.watch(meProvider);
 
     // ignore: exhaustive_keys
-    useMemoized(() => ref.read(analyticsProvider).screen('verify-email'));
+    useMemoized(() {
+      SchedulerBinding.instance.scheduleFrameCallback((_) => ref.read(analyticsProvider).screen('verify-email'));
+    });
 
     Widget getPage() {
       if (mePollState.valueOrNull?.me.emailVerified == true) {
