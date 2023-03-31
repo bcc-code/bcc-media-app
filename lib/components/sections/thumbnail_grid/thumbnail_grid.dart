@@ -34,7 +34,7 @@ class ThumbnailGrid extends ConsumerWidget {
     }
   }
 
-  Widget getItemWidget(Fragment$GridSectionItem sectionItem, Fragment$Episode? curLiveEpisode) {
+  Widget getItemWidget(Fragment$GridSectionItem sectionItem, Fragment$CalendarEntryEpisode? curLiveEpisode) {
     var episode = sectionItem.item.asOrNull<Fragment$GridSectionItem$item$$Episode>();
     if (episode != null) {
       return ThumbnailGridEpisode(
@@ -59,7 +59,7 @@ class ThumbnailGrid extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final columnCount = getColumnCount();
-    Fragment$Episode? curLiveEpisode = ref.watch(currentLiveEpisodeProvider)?.episode;
+    Fragment$CalendarEntryEpisode? curLiveEpisode = ref.watch(currentLiveEpisodeProvider)?.episode;
 
     final items = sectionItems
         .where((element) => element.item is Fragment$GridSectionItem$item$$Episode || element.item is Fragment$GridSectionItem$item$$Show)

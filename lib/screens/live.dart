@@ -11,6 +11,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/svg.dart' show SvgPicture;
 import 'package:flutter_svg_provider/flutter_svg_provider.dart';
 import 'package:brunstadtv_app/helpers/ui/transparent_image.dart';
+import '../providers/todays_calendar_entries.dart';
 import '../theme/bccm_colors.dart';
 import '../theme/bccm_typography.dart';
 import '../helpers/ui/svg_icons.dart';
@@ -20,8 +21,21 @@ import '../providers/analytics.dart';
 import 'calendar/calendar.dart';
 
 final liveMetadataProvider = Provider<MediaMetadata>((ref) {
+  final currentEpisode = ref.watch(currentLiveEpisodeProvider)?.episode;
   return MediaMetadata(
-      artist: 'BrunstadTV', title: 'Live', extras: {'id': 'livestream'}, artworkUri: 'https://static.bcc.media/images/live-placeholder.jpg');
+    artist: 'BrunstadTV',
+    title: 'Live',
+    extras: {
+      'id': 'livestream',
+      if (currentEpisode != null) ...{
+        'npaw.content.id': currentEpisode.id,
+        'npaw.content.tvShow': currentEpisode.season?.$show.id,
+        'npaw.content.season': currentEpisode.season?.title,
+        'npaw.content.episodeTitle': currentEpisode.title
+      },
+    },
+    artworkUri: 'https://static.bcc.media/images/live-placeholder.jpg',
+  );
 });
 
 class LiveScreen extends ConsumerStatefulWidget {
