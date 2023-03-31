@@ -123,8 +123,8 @@ class _ProfileState extends ConsumerState<Profile> {
     final Uri mailtoUri = Uri(
       scheme: 'mailto',
       path: 'support@bcc.media',
-      query: 'subject=Anonymous Users Contact Support&body='
-          '\n\n\n\n\n\n\n\n-- Do Not Delete Below This Line-- \n'
+      query: 'subject=App Support&body='
+          '\n\n\n\n\n\n-- Technical details -- \n'
           'Device Model: $deviceModel\n'
           'Manufacturer: $manufacturer\n'
           'Operating System: $os\n'
