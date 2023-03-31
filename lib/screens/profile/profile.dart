@@ -139,7 +139,7 @@ class _ProfileState extends ConsumerState<Profile> {
 
   @override
   Widget build(BuildContext context) {
-    final user = ref.read(authStateProvider).user;
+    final user = ref.read(authStateProvider.select((value) => value.user));
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
@@ -155,7 +155,7 @@ class _ProfileState extends ConsumerState<Profile> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: <Widget>[
-                if (ref.read(authStateProvider).user != null)
+                if (user != null)
                   const Avatar()
                 else
                   Padding(
@@ -191,12 +191,15 @@ class _ProfileState extends ConsumerState<Profile> {
                     const SizedBox(height: 24),
                     SettingList(buttons: _termsAndPrivacyOptions),
                     const SizedBox(height: 48),
-                    SettingList(buttons: [
-                      OptionButton(
-                        optionName: S.of(context).deleteMyAccount,
-                        onPressed: () => context.router.navigate(const AccountDeletionScreenRoute()),
-                      ),
-                    ])
+                    if (user != null)
+                      SettingList(
+                        buttons: [
+                          OptionButton(
+                            optionName: S.of(context).deleteMyAccount,
+                            onPressed: () => context.router.navigate(const AccountDeletionScreenRoute()),
+                          ),
+                        ],
+                      )
                   ],
                 ),
               ],
