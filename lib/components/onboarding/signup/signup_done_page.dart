@@ -40,7 +40,7 @@ class SignupDonePage extends HookConsumerWidget implements SignupScreenPage {
     final user = ref.watch(authStateProvider).user;
     Widget returnWidget;
 
-    if (registerStatus.hasError) {
+    if (registerStatus.connectionState != ConnectionState.waiting && registerStatus.hasError) {
       final auth0ApiException = registerStatus.error.asOrNull<Auth0ApiException>();
       returnWidget = ErrorGeneric(
         title: S.of(context).anErrorOccurred,
