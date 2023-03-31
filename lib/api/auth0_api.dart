@@ -19,7 +19,6 @@ class Auth0Api {
   Future<Auth0SignupResponse?> signup(Auth0SignupRequestBody requestBody) async {
     final url = Uri.parse('https://$domain/dbconnections/signup');
     final body = json.encode(requestBody.toJson());
-    debugPrint(body);
     final headers = {'content-type': 'application/json'};
 
     final response = await http.post(url, body: body, headers: headers);
