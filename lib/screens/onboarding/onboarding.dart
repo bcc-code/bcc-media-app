@@ -92,7 +92,7 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final signupEnabled = ref.watch(featureFlagsProvider.select((value) => value.signup));
+    final signupEnabled = ref.watch(featureFlagsProvider.select((value) => value.publicSignup));
     return CupertinoScaffold(
       body: Scaffold(
         appBar: AppBar(

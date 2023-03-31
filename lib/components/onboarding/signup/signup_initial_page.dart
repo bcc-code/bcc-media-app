@@ -1,5 +1,6 @@
 import 'package:brunstadtv_app/components/onboarding/onboarding_page_wrapper.dart';
 import 'package:brunstadtv_app/helpers/ui/btv_buttons.dart';
+import 'package:brunstadtv_app/providers/feature_flags.dart';
 import 'package:brunstadtv_app/screens/onboarding/signup.dart';
 import 'package:brunstadtv_app/screens/onboarding/social_auth_buttons.dart';
 import 'package:brunstadtv_app/theme/bccm_colors.dart';
@@ -22,12 +23,14 @@ class SignupInitialPage extends HookWidget implements SignupScreenPage {
     required this.emailFocusNode,
     required this.nextFocusNode,
     required this.onSocialAuth,
+    required this.enableSocialSignup,
   });
 
   final PageController pageController;
   final TextEditingController emailTextController;
   final FocusNode emailFocusNode;
   final FocusNode nextFocusNode;
+  final bool enableSocialSignup;
   final void Function(Future<bool>) onSocialAuth;
 
   @override
@@ -59,15 +62,17 @@ class SignupInitialPage extends HookWidget implements SignupScreenPage {
           style: BccmTextStyles.body1.copyWith(color: BccmColors.label3),
         ),
         const SizedBox(height: 48),
-        Center(child: SocialAuthButtons(onLogin: onSocialAuth)),
-        const SizedBox(height: 24),
-        Center(
-          child: Text(
-            'or'.toUpperCase(),
-            style: BccmTextStyles.overline.copyWith(color: BccmColors.label1),
+        if (enableSocialSignup) ...[
+          Center(child: SocialAuthButtons(onLogin: onSocialAuth)),
+          const SizedBox(height: 24),
+          Center(
+            child: Text(
+              'or'.toUpperCase(),
+              style: BccmTextStyles.overline.copyWith(color: BccmColors.label1),
+            ),
           ),
-        ),
-        const SizedBox(height: 24),
+          const SizedBox(height: 24)
+        ],
         Padding(
           padding: const EdgeInsets.only(bottom: 10),
           child: Text(

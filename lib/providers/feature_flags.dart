@@ -20,7 +20,8 @@ class FeatureFlagsNotifier extends StateNotifier<FeatureFlags> {
   static FeatureFlags getFlagsFromUnleash(UnleashClient? client) {
     if (client == null) return const FeatureFlags();
     return FeatureFlags(
-      signup: client.isEnabled('public-signup'),
+      publicSignup: client.isEnabled('public-signup'),
+      socialSignup: client.isEnabled('social-signup'),
     );
   }
 

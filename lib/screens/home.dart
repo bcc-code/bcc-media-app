@@ -98,7 +98,8 @@ class HomeScreenState extends ConsumerState<HomeScreen> with PageMixin implement
 
     if (ref.read(authStateProvider).auth0AccessToken != null) {
       final me = await ref.read(gqlClientProvider).query$me();
-      if (!ref.read(featureFlagsProvider).signup && (me.parsedData?.me.completedRegistration != true || me.parsedData?.me.emailVerified != true)) {
+      if (!ref.read(featureFlagsProvider).publicSignup &&
+          (me.parsedData?.me.completedRegistration != true || me.parsedData?.me.emailVerified != true)) {
         // ignore: use_build_context_synchronously
         await showDialog(
           context: context,

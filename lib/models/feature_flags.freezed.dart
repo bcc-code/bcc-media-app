@@ -16,7 +16,8 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$FeatureFlags {
-  bool get signup => throw _privateConstructorUsedError;
+  bool get publicSignup => throw _privateConstructorUsedError;
+  bool get socialSignup => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $FeatureFlagsCopyWith<FeatureFlags> get copyWith =>
@@ -29,7 +30,7 @@ abstract class $FeatureFlagsCopyWith<$Res> {
           FeatureFlags value, $Res Function(FeatureFlags) then) =
       _$FeatureFlagsCopyWithImpl<$Res, FeatureFlags>;
   @useResult
-  $Res call({bool signup});
+  $Res call({bool publicSignup, bool socialSignup});
 }
 
 /// @nodoc
@@ -45,12 +46,17 @@ class _$FeatureFlagsCopyWithImpl<$Res, $Val extends FeatureFlags>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? signup = null,
+    Object? publicSignup = null,
+    Object? socialSignup = null,
   }) {
     return _then(_value.copyWith(
-      signup: null == signup
-          ? _value.signup
-          : signup // ignore: cast_nullable_to_non_nullable
+      publicSignup: null == publicSignup
+          ? _value.publicSignup
+          : publicSignup // ignore: cast_nullable_to_non_nullable
+              as bool,
+      socialSignup: null == socialSignup
+          ? _value.socialSignup
+          : socialSignup // ignore: cast_nullable_to_non_nullable
               as bool,
     ) as $Val);
   }
@@ -64,7 +70,7 @@ abstract class _$$_FeatureFlagsCopyWith<$Res>
       __$$_FeatureFlagsCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({bool signup});
+  $Res call({bool publicSignup, bool socialSignup});
 }
 
 /// @nodoc
@@ -78,12 +84,17 @@ class __$$_FeatureFlagsCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? signup = null,
+    Object? publicSignup = null,
+    Object? socialSignup = null,
   }) {
     return _then(_$_FeatureFlags(
-      signup: null == signup
-          ? _value.signup
-          : signup // ignore: cast_nullable_to_non_nullable
+      publicSignup: null == publicSignup
+          ? _value.publicSignup
+          : publicSignup // ignore: cast_nullable_to_non_nullable
+              as bool,
+      socialSignup: null == socialSignup
+          ? _value.socialSignup
+          : socialSignup // ignore: cast_nullable_to_non_nullable
               as bool,
     ));
   }
@@ -92,15 +103,19 @@ class __$$_FeatureFlagsCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_FeatureFlags extends _FeatureFlags {
-  const _$_FeatureFlags({this.signup = false}) : super._();
+  const _$_FeatureFlags({this.publicSignup = false, this.socialSignup = false})
+      : super._();
 
   @override
   @JsonKey()
-  final bool signup;
+  final bool publicSignup;
+  @override
+  @JsonKey()
+  final bool socialSignup;
 
   @override
   String toString() {
-    return 'FeatureFlags(signup: $signup)';
+    return 'FeatureFlags(publicSignup: $publicSignup, socialSignup: $socialSignup)';
   }
 
   @override
@@ -108,11 +123,14 @@ class _$_FeatureFlags extends _FeatureFlags {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_FeatureFlags &&
-            (identical(other.signup, signup) || other.signup == signup));
+            (identical(other.publicSignup, publicSignup) ||
+                other.publicSignup == publicSignup) &&
+            (identical(other.socialSignup, socialSignup) ||
+                other.socialSignup == socialSignup));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, signup);
+  int get hashCode => Object.hash(runtimeType, publicSignup, socialSignup);
 
   @JsonKey(ignore: true)
   @override
@@ -122,11 +140,14 @@ class _$_FeatureFlags extends _FeatureFlags {
 }
 
 abstract class _FeatureFlags extends FeatureFlags {
-  const factory _FeatureFlags({final bool signup}) = _$_FeatureFlags;
+  const factory _FeatureFlags(
+      {final bool publicSignup, final bool socialSignup}) = _$_FeatureFlags;
   const _FeatureFlags._() : super._();
 
   @override
-  bool get signup;
+  bool get publicSignup;
+  @override
+  bool get socialSignup;
   @override
   @JsonKey(ignore: true)
   _$$_FeatureFlagsCopyWith<_$_FeatureFlags> get copyWith =>

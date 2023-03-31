@@ -7,6 +7,7 @@ class FeatureFlags with _$FeatureFlags {
   const FeatureFlags._();
 
   const factory FeatureFlags({
-    @Default(false) bool signup,
+    @Default(false) bool publicSignup,
+    @Default(false) bool socialSignup,
   }) = _FeatureFlags;
 }

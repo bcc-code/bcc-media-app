@@ -8,7 +8,9 @@ import 'package:brunstadtv_app/graphql/queries/me.graphql.dart';
 import 'package:brunstadtv_app/graphql/schema/mutations.graphql.dart';
 import 'package:brunstadtv_app/models/auth0/auth0_api.dart';
 import 'package:brunstadtv_app/providers/auth_state/auth_state.dart';
+import 'package:brunstadtv_app/providers/feature_flags.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:graphql/client.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -118,6 +120,7 @@ class SignupScreen extends HookConsumerWidget {
               emailFocusNode: emailFocusNode,
               nextFocusNode: passwordFocusNode,
               onSocialAuth: onSocialAuth,
+              enableSocialSignup: ref.watch(featureFlagsProvider.select((value) => value.socialSignup)),
             ),
       if (user == null)
         () => SignupPasswordPage(
@@ -148,7 +151,9 @@ class SignupScreen extends HookConsumerWidget {
     ];
 
     // ignore: exhaustive_keys
-    useMemoized(() => ref.read(analyticsProvider).screen(pages[0]().analyticsPageCode));
+    useMemoized(() {
+      SchedulerBinding.instance.scheduleFrameCallback((_) => ref.read(analyticsProvider).screen(pages[0]().analyticsPageCode));
+    });
 
     return GestureDetector(
       onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
