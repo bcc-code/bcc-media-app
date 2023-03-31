@@ -35,3 +35,15 @@ class Auth0SignupResponse with _$Auth0SignupResponse {
 
   factory Auth0SignupResponse.fromJson(Map<String, dynamic> json) => _$Auth0SignupResponseFromJson(json);
 }
+
+@freezed
+class Auth0ApiException with _$Auth0ApiException implements Exception {
+  const factory Auth0ApiException({
+    String? name,
+    String? code,
+    String? description,
+    int? statusCode,
+  }) = _Auth0ApiException;
+
+  factory Auth0ApiException.fromJson(Map<String, dynamic> json) => _$Auth0ApiExceptionFromJson(json);
+}

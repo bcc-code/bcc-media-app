@@ -1,7 +1,10 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:brunstadtv_app/api/auth0_api.dart';
 import 'package:brunstadtv_app/components/error_generic.dart';
 import 'package:brunstadtv_app/components/loading_indicator.dart';
+import 'package:brunstadtv_app/helpers/extensions.dart';
 import 'package:brunstadtv_app/helpers/ui/btv_buttons.dart';
+import 'package:brunstadtv_app/models/auth0/auth0_api.dart';
 import 'package:brunstadtv_app/router/router.gr.dart';
 import 'package:brunstadtv_app/screens/onboarding/signup.dart';
 import 'package:brunstadtv_app/theme/bccm_colors.dart';
@@ -38,7 +41,12 @@ class SignupDonePage extends HookConsumerWidget implements SignupScreenPage {
     Widget returnWidget;
 
     if (registerStatus.hasError) {
+      final auth0ApiException = registerStatus.error.asOrNull<Auth0ApiException>();
       returnWidget = ErrorGeneric(
+        title: S.of(context).anErrorOccurred,
+        description: auth0ApiException?.description ?? S.of(context).errorTryAgain,
+        details: registerStatus.error.toString(),
+        retryButtonText: S.of(context).goBack,
         onRetry: () {
           pageController.previousPage(duration: const Duration(milliseconds: 500), curve: Curves.easeOutExpo);
         },

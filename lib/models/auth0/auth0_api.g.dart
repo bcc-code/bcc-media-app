@@ -64,3 +64,20 @@ Map<String, dynamic> _$$_Auth0SignupResponseToJson(
       'email_verified': instance.emailVerified,
       'email': instance.email,
     };
+
+_$_Auth0ApiException _$$_Auth0ApiExceptionFromJson(Map<String, dynamic> json) =>
+    _$_Auth0ApiException(
+      name: json['name'] as String?,
+      code: json['code'] as String?,
+      description: json['description'] as String?,
+      statusCode: json['statusCode'] as int?,
+    );
+
+Map<String, dynamic> _$$_Auth0ApiExceptionToJson(
+        _$_Auth0ApiException instance) =>
+    <String, dynamic>{
+      'name': instance.name,
+      'code': instance.code,
+      'description': instance.description,
+      'statusCode': instance.statusCode,
+    };

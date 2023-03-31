@@ -60,6 +60,11 @@ class SignupScreen extends HookConsumerWidget {
     ));
 
     Future onRegister() {
+      pageController.animateToPage(
+        pages.indexWhere((build) => build() is SignupDonePage),
+        duration: const Duration(milliseconds: 300),
+        curve: Curves.easeOutExpo,
+      );
       return registerFuture.value = () async {
         if (user == null) {
           await ref.read(auth0ApiProvider).signup(
@@ -91,13 +96,6 @@ class SignupScreen extends HookConsumerWidget {
           }
           if (!isMounted()) return;
         }
-
-        if (!isMounted()) return;
-        pageController.animateToPage(
-          pages.indexWhere((build) => build() is SignupDonePage),
-          duration: const Duration(milliseconds: 300),
-          curve: Curves.easeOutExpo,
-        );
       }();
     }
 
@@ -162,10 +160,13 @@ class SignupScreen extends HookConsumerWidget {
           elevation: 0,
           toolbarHeight: 44,
           leadingWidth: 92,
-          title: AnimatedSwitcher(
-            duration: const Duration(milliseconds: 150),
-            reverseDuration: Duration.zero,
-            child: !emailFocusNode.hasFocus ? null : Text(S.of(context).signUpTitle),
+          title: Padding(
+            padding: const EdgeInsets.only(top: 12),
+            child: AnimatedSwitcher(
+              duration: const Duration(milliseconds: 150),
+              reverseDuration: Duration.zero,
+              child: !emailFocusNode.hasFocus ? null : Text(S.of(context).signUpTitle),
+            ),
           ),
           leading: GestureDetector(
             behavior: HitTestBehavior.opaque,

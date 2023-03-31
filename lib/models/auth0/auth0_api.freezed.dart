@@ -607,3 +607,209 @@ abstract class _Auth0SignupResponse implements Auth0SignupResponse {
   _$$_Auth0SignupResponseCopyWith<_$_Auth0SignupResponse> get copyWith =>
       throw _privateConstructorUsedError;
 }
+
+Auth0ApiException _$Auth0ApiExceptionFromJson(Map<String, dynamic> json) {
+  return _Auth0ApiException.fromJson(json);
+}
+
+/// @nodoc
+mixin _$Auth0ApiException {
+  String? get name => throw _privateConstructorUsedError;
+  String? get code => throw _privateConstructorUsedError;
+  String? get description => throw _privateConstructorUsedError;
+  int? get statusCode => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $Auth0ApiExceptionCopyWith<Auth0ApiException> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $Auth0ApiExceptionCopyWith<$Res> {
+  factory $Auth0ApiExceptionCopyWith(
+          Auth0ApiException value, $Res Function(Auth0ApiException) then) =
+      _$Auth0ApiExceptionCopyWithImpl<$Res, Auth0ApiException>;
+  @useResult
+  $Res call({String? name, String? code, String? description, int? statusCode});
+}
+
+/// @nodoc
+class _$Auth0ApiExceptionCopyWithImpl<$Res, $Val extends Auth0ApiException>
+    implements $Auth0ApiExceptionCopyWith<$Res> {
+  _$Auth0ApiExceptionCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? name = freezed,
+    Object? code = freezed,
+    Object? description = freezed,
+    Object? statusCode = freezed,
+  }) {
+    return _then(_value.copyWith(
+      name: freezed == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String?,
+      code: freezed == code
+          ? _value.code
+          : code // ignore: cast_nullable_to_non_nullable
+              as String?,
+      description: freezed == description
+          ? _value.description
+          : description // ignore: cast_nullable_to_non_nullable
+              as String?,
+      statusCode: freezed == statusCode
+          ? _value.statusCode
+          : statusCode // ignore: cast_nullable_to_non_nullable
+              as int?,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$_Auth0ApiExceptionCopyWith<$Res>
+    implements $Auth0ApiExceptionCopyWith<$Res> {
+  factory _$$_Auth0ApiExceptionCopyWith(_$_Auth0ApiException value,
+          $Res Function(_$_Auth0ApiException) then) =
+      __$$_Auth0ApiExceptionCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({String? name, String? code, String? description, int? statusCode});
+}
+
+/// @nodoc
+class __$$_Auth0ApiExceptionCopyWithImpl<$Res>
+    extends _$Auth0ApiExceptionCopyWithImpl<$Res, _$_Auth0ApiException>
+    implements _$$_Auth0ApiExceptionCopyWith<$Res> {
+  __$$_Auth0ApiExceptionCopyWithImpl(
+      _$_Auth0ApiException _value, $Res Function(_$_Auth0ApiException) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? name = freezed,
+    Object? code = freezed,
+    Object? description = freezed,
+    Object? statusCode = freezed,
+  }) {
+    return _then(_$_Auth0ApiException(
+      name: freezed == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String?,
+      code: freezed == code
+          ? _value.code
+          : code // ignore: cast_nullable_to_non_nullable
+              as String?,
+      description: freezed == description
+          ? _value.description
+          : description // ignore: cast_nullable_to_non_nullable
+              as String?,
+      statusCode: freezed == statusCode
+          ? _value.statusCode
+          : statusCode // ignore: cast_nullable_to_non_nullable
+              as int?,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$_Auth0ApiException
+    with DiagnosticableTreeMixin
+    implements _Auth0ApiException {
+  const _$_Auth0ApiException(
+      {this.name, this.code, this.description, this.statusCode});
+
+  factory _$_Auth0ApiException.fromJson(Map<String, dynamic> json) =>
+      _$$_Auth0ApiExceptionFromJson(json);
+
+  @override
+  final String? name;
+  @override
+  final String? code;
+  @override
+  final String? description;
+  @override
+  final int? statusCode;
+
+  @override
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+    return 'Auth0ApiException(name: $name, code: $code, description: $description, statusCode: $statusCode)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'Auth0ApiException'))
+      ..add(DiagnosticsProperty('name', name))
+      ..add(DiagnosticsProperty('code', code))
+      ..add(DiagnosticsProperty('description', description))
+      ..add(DiagnosticsProperty('statusCode', statusCode));
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_Auth0ApiException &&
+            (identical(other.name, name) || other.name == name) &&
+            (identical(other.code, code) || other.code == code) &&
+            (identical(other.description, description) ||
+                other.description == description) &&
+            (identical(other.statusCode, statusCode) ||
+                other.statusCode == statusCode));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode =>
+      Object.hash(runtimeType, name, code, description, statusCode);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_Auth0ApiExceptionCopyWith<_$_Auth0ApiException> get copyWith =>
+      __$$_Auth0ApiExceptionCopyWithImpl<_$_Auth0ApiException>(
+          this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$_Auth0ApiExceptionToJson(
+      this,
+    );
+  }
+}
+
+abstract class _Auth0ApiException implements Auth0ApiException {
+  const factory _Auth0ApiException(
+      {final String? name,
+      final String? code,
+      final String? description,
+      final int? statusCode}) = _$_Auth0ApiException;
+
+  factory _Auth0ApiException.fromJson(Map<String, dynamic> json) =
+      _$_Auth0ApiException.fromJson;
+
+  @override
+  String? get name;
+  @override
+  String? get code;
+  @override
+  String? get description;
+  @override
+  int? get statusCode;
+  @override
+  @JsonKey(ignore: true)
+  _$$_Auth0ApiExceptionCopyWith<_$_Auth0ApiException> get copyWith =>
+      throw _privateConstructorUsedError;
+}

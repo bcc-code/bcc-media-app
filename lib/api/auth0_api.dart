@@ -24,11 +24,11 @@ class Auth0Api {
 
     final response = await http.post(url, body: body, headers: headers);
 
+    final jsonBody = json.decode(response.body);
     if (response.statusCode == 200) {
-      final jsonBody = json.decode(response.body);
       return Auth0SignupResponse.fromJson(jsonBody);
     } else {
-      throw Exception(['Error signing up', response.statusCode, response.body]);
+      throw Auth0ApiException.fromJson(jsonBody);
     }
   }
 }

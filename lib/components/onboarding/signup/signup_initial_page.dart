@@ -88,6 +88,7 @@ class SignupInitialPage extends HookWidget implements SignupScreenPage {
             onEditingComplete: nextPage,
           ),
         ),
+        const SizedBox(height: 60),
       ],
       bottomArea: [
         Container(
