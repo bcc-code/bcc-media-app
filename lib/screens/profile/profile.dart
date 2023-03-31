@@ -40,7 +40,7 @@ class _ProfileState extends ConsumerState<Profile> {
       else
         OptionButton(
           optionName: S.of(context).contactSupport,
-          onPressed: () => _sendAnonymousEmail(),
+          onPressed: () => _contactSupportEmail(),
         ),
       OptionButton(
           optionName: S.of(context).about,
@@ -56,7 +56,7 @@ class _ProfileState extends ConsumerState<Profile> {
         optionName: S.of(context).privacyPolicy,
         currentSelection: '(external page)',
         onPressed: () {
-          launchUrlString('https://bcc.media/privacy');
+          launchUrlString('https://bcc.media/privacy', mode: LaunchMode.externalApplication);
         },
       ),
 
@@ -98,7 +98,7 @@ class _ProfileState extends ConsumerState<Profile> {
     }
   }
 
-  Future<void> _sendAnonymousEmail() async {
+  Future<void> _contactSupportEmail() async {
     String? deviceModel, manufacturer, os, screenSize, appVer, userId;
     PackageInfo packageInfo = await PackageInfo.fromPlatform();
     final screenWidth = WidgetsBinding.instance.window.physicalSize.width.toInt().toString();
@@ -190,7 +190,13 @@ class _ProfileState extends ConsumerState<Profile> {
                     SettingList(buttons: _supportButtons),
                     const SizedBox(height: 24),
                     SettingList(buttons: _termsAndPrivacyOptions),
-                    const SizedBox(height: 24),
+                    const SizedBox(height: 48),
+                    SettingList(buttons: [
+                      OptionButton(
+                        optionName: S.of(context).deleteMyAccount,
+                        onPressed: () => context.router.navigate(const AccountDeletionScreenRoute()),
+                      ),
+                    ])
                   ],
                 ),
               ],

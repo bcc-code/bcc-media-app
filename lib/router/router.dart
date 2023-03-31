@@ -12,6 +12,7 @@ import 'package:brunstadtv_app/screens/profile/contact_support.dart';
 import 'package:brunstadtv_app/screens/profile/faq.dart';
 import 'package:brunstadtv_app/screens/home.dart';
 import 'package:brunstadtv_app/screens/live.dart';
+import 'package:brunstadtv_app/screens/account_deletion.dart';
 import 'package:brunstadtv_app/screens/onboarding/onboarding.dart';
 import 'package:brunstadtv_app/screens/profile/profile.dart';
 import 'package:brunstadtv_app/screens/search/search.dart';
@@ -125,6 +126,14 @@ Route<T> modalSheetBuilder<T>(BuildContext context, Widget child, CustomPage<T> 
       reverseDurationInMilliseconds: 600,
       transitionsBuilder: CustomTransitionsBuilders.slideLeft,
       meta: {RouteMetaConstants.analyticsName: 'faq'},
+    ),
+    CustomRoute<void>(
+      page: AccountDeletionScreen,
+      path: '/account-deletion',
+      durationInMilliseconds: 400,
+      reverseDurationInMilliseconds: 600,
+      transitionsBuilder: CustomTransitionsBuilders.slideUp,
+      meta: {RouteMetaConstants.analyticsName: 'account-deletion'},
     ),
     CustomRoute<void>(
       page: HomeScreen,

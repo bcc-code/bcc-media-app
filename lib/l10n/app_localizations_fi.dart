@@ -604,4 +604,13 @@ class SFi extends S {
 
   @override
   String get selectSeason => 'Select season';
+
+  @override
+  String get deleteMyAccount => 'Delete my account';
+
+  @override
+  String get iAmSureIWantToDelete => 'I am sure I want to delete my account and my data related to the BCC Media app.';
+
+  @override
+  String get areYouSure => 'Are you sure?';
 }
