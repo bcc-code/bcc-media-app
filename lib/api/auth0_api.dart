@@ -27,7 +27,8 @@ class Auth0Api {
     if (response.statusCode == 200) {
       return Auth0SignupResponse.fromJson(jsonBody);
     } else {
-      throw Auth0ApiException.fromJson(jsonBody);
+      final e = Auth0ApiException.fromJson(jsonBody);
+      throw e.copyWith(statusCode: response.statusCode);
     }
   }
 }
