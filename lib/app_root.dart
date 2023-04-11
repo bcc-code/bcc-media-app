@@ -51,18 +51,19 @@ class _AppRootState extends ConsumerState<AppRoot> {
 
   void onAuthChanged(AuthState? previous, AuthState next) {
     final analytics = ref.read(analyticsProvider);
-    final settingsNotifier = ref.read(settingsProvider.notifier);
     debugPrint('authSubscription');
     if (previous?.auth0AccessToken != null && next.auth0AccessToken == null) {
-      settingsNotifier.setAnalyticsId(null);
-      settingsNotifier.refreshSessionId();
       widget.navigatorKey.currentContext?.router.root.navigate(OnboardingScreenRoute());
     } else if (next.auth0AccessToken != null && next.user != null) {
       ref.refresh(meProvider);
       ref.read(meProvider.future).then((value) {
+        if (!mounted) return;
         final me = value?.me;
         if (me == null) {
           throw ErrorDescription('"Me" data is null.');
+        }
+        if (me.roles.contains('betatesters')) {
+          ref.read(settingsProvider.notifier).setBetaTester(true);
         }
         if (!me.emailVerified && context.mounted) {
           showVerifyEmail();

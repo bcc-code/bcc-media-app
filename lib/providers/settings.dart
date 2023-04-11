@@ -19,6 +19,7 @@ class Settings with _$Settings {
     String? analyticsId,
     int? sessionId,
     String? envOverride,
+    bool? isBetaTester,
   }) = _Settings;
 }
 
@@ -91,6 +92,16 @@ class SettingsService extends StateNotifier<Settings> {
       prefs.setString(PrefKeys.analyticsId, analyticsId);
     }
     state = state.copyWith(analyticsId: analyticsId);
+  }
+
+  Future<void> setBetaTester(bool value) async {
+    var prefs = await prefsF;
+    if (!value) {
+      prefs.remove(PrefKeys.isBetaTester);
+    } else {
+      prefs.setBool(PrefKeys.isBetaTester, true);
+    }
+    state = state.copyWith(isBetaTester: value);
   }
 }
 

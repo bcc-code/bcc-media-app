@@ -39,7 +39,8 @@ void main() {
         await $main(
           firebaseOptions: DefaultFirebaseOptions.currentPlatform,
           providerOverrides: [
-            authStateProvider.overrideWith((ref) => AuthStateNotifierMobile(appAuth: auth, secureStorage: const FlutterSecureStorage())),
+            authStateProvider.overrideWith(
+                (ref) => AuthStateNotifierMobile(appAuth: auth, secureStorage: const FlutterSecureStorage(), settingsService: MockSettingsService())),
           ],
         );
       });

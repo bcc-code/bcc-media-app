@@ -100,6 +100,7 @@ dependencies:
   flutter_hooks: ^0.18.5+1
   hooks_riverpod: ^2.2.0
   flutter_hooks_lint_plugin: ^0.6.1
+  vibration: ^1.7.6
   email_validator: ^2.1.17
   open_mail_app: ^0.4.5
   unleash_proxy_client_flutter: ^1.0.2

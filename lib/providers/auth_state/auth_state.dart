@@ -11,9 +11,9 @@ abstract class AuthStateNotifier implements StateNotifier<AuthState> {
   Future<bool> forceRefresh();
   Future logout({bool manual = true});
   Future<bool> login({String? connection});
-  factory AuthStateNotifier() => getPlatformSpecificAuthStateNotifier();
+  factory AuthStateNotifier(Ref ref) => getPlatformSpecificAuthStateNotifier(ref);
 }
 
 final authStateProvider = StateNotifierProvider<AuthStateNotifier, AuthState>((ref) {
-  return AuthStateNotifier();
+  return AuthStateNotifier(ref);
 });

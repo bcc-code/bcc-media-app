@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:convert';
 
 import 'package:brunstadtv_app/helpers/extensions.dart';
+import 'package:brunstadtv_app/providers/settings.dart';
 import 'package:clock/clock.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
@@ -26,20 +27,25 @@ import '../auth_state.dart';
 // Careful. This line is very important,
 // but because it's conditionally imported (see auth_state_notifier_interface.dart)
 // IDEs don't show any errors when you remove it..
-AuthStateNotifier getPlatformSpecificAuthStateNotifier() =>
-    AuthStateNotifierMobile(appAuth: const FlutterAppAuth(), secureStorage: const FlutterSecureStorage());
+AuthStateNotifier getPlatformSpecificAuthStateNotifier(Ref ref) => AuthStateNotifierMobile(
+      appAuth: const FlutterAppAuth(),
+      secureStorage: const FlutterSecureStorage(),
+      settingsService: ref.watch(settingsProvider.notifier),
+    );
 
 const kMinimumCredentialsTTL = Duration(hours: 1);
 
 class AuthStateNotifierMobile extends StateNotifier<AuthState> implements AuthStateNotifier {
-  AuthStateNotifierMobile({required FlutterAppAuth appAuth, required FlutterSecureStorage secureStorage})
+  AuthStateNotifierMobile({required FlutterAppAuth appAuth, required FlutterSecureStorage secureStorage, required SettingsService settingsService})
       : _appAuth = appAuth,
         _secureStorage = secureStorage,
+        _settingsService = settingsService,
         super(const AuthState());
 
   final appAuthLock = Lock();
   final FlutterAppAuth _appAuth;
   final FlutterSecureStorage _secureStorage;
+  final SettingsService _settingsService;
 
   Future<T> _syncAppAuth<T>(Future<T> Function() call) {
     return appAuthLock.synchronized(
@@ -155,6 +161,8 @@ class AuthStateNotifierMobile extends StateNotifier<AuthState> implements AuthSt
     state = AuthState(signedOutManually: manual);
     FirebaseMessaging.instance.deleteToken();
     RudderController.instance.reset();
+    _settingsService.setAnalyticsId(null);
+    _settingsService.refreshSessionId();
 
     return;
   }
