@@ -1,3 +1,5 @@
+import 'package:riverpod/riverpod.dart';
+
 import 'auth_state.dart';
 
-AuthStateNotifier getPlatformSpecificAuthStateNotifier() => throw UnsupportedError('Cannot create AuthStateNotifier');
+AuthStateNotifier getPlatformSpecificAuthStateNotifier(Ref ref) => throw UnsupportedError('Cannot create AuthStateNotifier');

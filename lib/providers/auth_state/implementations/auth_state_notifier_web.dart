@@ -9,7 +9,7 @@ import '../auth_state.dart';
 // Careful. This line is very important,
 // but because it's conditionally imported (see auth_state_notifier_interface.dart)
 // IDEs don't show any errors when you remove it..
-AuthStateNotifier getPlatformSpecificAuthStateNotifier() => AuthStateNotifierWeb();
+AuthStateNotifier getPlatformSpecificAuthStateNotifier(Ref ref) => AuthStateNotifierWeb();
 
 final _auth0 = createAuth0Client(Auth0ClientOptions(
     domain: Env.auth0Domain, client_id: Env.auth0ClientId, audience: Env.auth0Audience, scope: 'openid profile offline_access church country'

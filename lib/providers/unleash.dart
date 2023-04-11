@@ -1,3 +1,4 @@
+import 'package:brunstadtv_app/providers/settings.dart';
 import 'package:flutter/foundation.dart';
 import 'package:riverpod/riverpod.dart';
 import 'package:unleash_proxy_client_flutter/unleash_context.dart';
@@ -22,7 +23,7 @@ final unleashRawProvider = Provider<UnleashClient?>((ref) {
   if (Env.unleashClientKey.isEmpty) return null;
   final client = UnleashClient(
     url: Uri.parse(Env.unleashProxyUrl),
-    clientKey: Env.unleashClientKey,
+    clientKey: ref.watch(settingsProvider.select((s) => s.isBetaTester == true)) ? Env.unleashClientKeyBetaTester : Env.unleashClientKey,
     appName: Env.unleashAppName,
     refreshInterval: 60,
   );

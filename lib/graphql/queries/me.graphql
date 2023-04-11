@@ -3,6 +3,7 @@ query me {
     analytics {
       anonymousId
     }
+    roles
     email
     emailVerified
     completedRegistration

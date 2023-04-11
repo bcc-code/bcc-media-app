@@ -15,6 +15,7 @@ class PrefKeys {
   static const subtitleLanguage = 'subtitle_language';
   static const analyticsId = 'analytics_id';
   static const completedSurveys = 'completed_surveys';
+  static const isBetaTester = 'is_beta_tester';
 }
 
 class SecureStorageKeys {

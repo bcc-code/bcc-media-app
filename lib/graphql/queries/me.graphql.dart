@@ -164,6 +164,13 @@ const documentNodeQueryme = DocumentNode(definitions: [
             ]),
           ),
           FieldNode(
+            name: NameNode(value: 'roles'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
             name: NameNode(value: 'email'),
             alias: null,
             arguments: [],
@@ -313,6 +320,7 @@ class Query$me$Widget extends graphql_flutter.Query<Query$me> {
 class Query$me$me {
   Query$me$me({
     required this.analytics,
+    required this.roles,
     this.email,
     required this.emailVerified,
     required this.completedRegistration,
@@ -321,6 +329,7 @@ class Query$me$me {
 
   factory Query$me$me.fromJson(Map<String, dynamic> json) {
     final l$analytics = json['analytics'];
+    final l$roles = json['roles'];
     final l$email = json['email'];
     final l$emailVerified = json['emailVerified'];
     final l$completedRegistration = json['completedRegistration'];
@@ -328,6 +337,7 @@ class Query$me$me {
     return Query$me$me(
       analytics:
           Query$me$me$analytics.fromJson((l$analytics as Map<String, dynamic>)),
+      roles: (l$roles as List<dynamic>).map((e) => (e as String)).toList(),
       email: (l$email as String?),
       emailVerified: (l$emailVerified as bool),
       completedRegistration: (l$completedRegistration as bool),
@@ -336,6 +346,8 @@ class Query$me$me {
   }
 
   final Query$me$me$analytics analytics;
+
+  final List<String> roles;
 
   final String? email;
 
@@ -349,6 +361,8 @@ class Query$me$me {
     final _resultData = <String, dynamic>{};
     final l$analytics = analytics;
     _resultData['analytics'] = l$analytics.toJson();
+    final l$roles = roles;
+    _resultData['roles'] = l$roles.map((e) => e).toList();
     final l$email = email;
     _resultData['email'] = l$email;
     final l$emailVerified = emailVerified;
@@ -363,12 +377,14 @@ class Query$me$me {
   @override
   int get hashCode {
     final l$analytics = analytics;
+    final l$roles = roles;
     final l$email = email;
     final l$emailVerified = emailVerified;
     final l$completedRegistration = completedRegistration;
     final l$$__typename = $__typename;
     return Object.hashAll([
       l$analytics,
+      Object.hashAll(l$roles.map((v) => v)),
       l$email,
       l$emailVerified,
       l$completedRegistration,
@@ -388,6 +404,18 @@ class Query$me$me {
     final lOther$analytics = other.analytics;
     if (l$analytics != lOther$analytics) {
       return false;
+    }
+    final l$roles = roles;
+    final lOther$roles = other.roles;
+    if (l$roles.length != lOther$roles.length) {
+      return false;
+    }
+    for (int i = 0; i < l$roles.length; i++) {
+      final l$roles$entry = l$roles[i];
+      final lOther$roles$entry = lOther$roles[i];
+      if (l$roles$entry != lOther$roles$entry) {
+        return false;
+      }
     }
     final l$email = email;
     final lOther$email = other.email;
@@ -430,6 +458,7 @@ abstract class CopyWith$Query$me$me<TRes> {
 
   TRes call({
     Query$me$me$analytics? analytics,
+    List<String>? roles,
     String? email,
     bool? emailVerified,
     bool? completedRegistration,
@@ -452,6 +481,7 @@ class _CopyWithImpl$Query$me$me<TRes> implements CopyWith$Query$me$me<TRes> {
 
   TRes call({
     Object? analytics = _undefined,
+    Object? roles = _undefined,
     Object? email = _undefined,
     Object? emailVerified = _undefined,
     Object? completedRegistration = _undefined,
@@ -461,6 +491,9 @@ class _CopyWithImpl$Query$me$me<TRes> implements CopyWith$Query$me$me<TRes> {
         analytics: analytics == _undefined || analytics == null
             ? _instance.analytics
             : (analytics as Query$me$me$analytics),
+        roles: roles == _undefined || roles == null
+            ? _instance.roles
+            : (roles as List<String>),
         email: email == _undefined ? _instance.email : (email as String?),
         emailVerified: emailVerified == _undefined || emailVerified == null
             ? _instance.emailVerified
@@ -488,6 +521,7 @@ class _CopyWithStubImpl$Query$me$me<TRes>
 
   call({
     Query$me$me$analytics? analytics,
+    List<String>? roles,
     String? email,
     bool? emailVerified,
     bool? completedRegistration,
