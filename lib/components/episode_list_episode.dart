@@ -37,7 +37,7 @@ class EpisodeListEpisode extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    Fragment$Episode? curLiveEpisode = ref.watch(currentLiveEpisodeProvider)?.episode;
+    Fragment$CalendarEntryEpisode? curLiveEpisode = ref.watch(currentLiveEpisodeProvider)?.episode;
 
     return Container(
       height: 98,

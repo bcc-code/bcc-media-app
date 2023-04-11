@@ -8,7 +8,9 @@ appId: tv.brunstad.app
 # Stopped 1 - Redirect
 - stopApp: tv.brunstad.app
 - openLink: "https://app.bcc.media/r/donation"
-- assertVisible: "Donation App"
+- assertVisible:
+    id: "TabBarItemTitle"
+- assertVisible: "Email"
 - launchApp:
     appId: "tv.brunstad.app"
     stopApp: false
@@ -25,7 +27,9 @@ appId: tv.brunstad.app
 # Backgrounded 1 - Redirect
 - runFlow: subflows/home.yml
 - openLink: "https://app.bcc.media/r/donation"
-- assertVisible: "Donation App"
+- assertVisible:
+    id: "TabBarItemTitle"
+- assertVisible: "Email"
 - launchApp:
     appId: "tv.brunstad.app"
     stopApp: false
@@ -41,7 +45,9 @@ appId: tv.brunstad.app
 - assertVisible: Today,.*
 # Foreground 1 - Redirect
 - openLink: "https://app.bcc.media/r/donation"
-- assertVisible: "Donation App"
+- assertVisible:
+    id: "TabBarItemTitle"
+- assertVisible: "Email"
 - launchApp:
     appId: "tv.brunstad.app"
     stopApp: false

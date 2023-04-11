@@ -13,7 +13,9 @@ tags:
     file: subflows/notification.yml
     env:
       CONTAINING: deep_link_donation
-- assertVisible: "Donation App"
+- assertVisible:
+    id: "TabBarItemTitle"
+- assertVisible: "Email"
 # deep_link_live
 - stopApp: tv.brunstad.app
 - runFlow:

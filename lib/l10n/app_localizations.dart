@@ -225,6 +225,42 @@ abstract class S {
   /// **'Sign in'**
   String get signInButton;
 
+  /// Button to go to the onboarding page (short)
+  ///
+  /// In en, this message translates to:
+  /// **'Sign up / Sign in'**
+  String get signInOrSignUp;
+
+  /// Button to start the sign up process
+  ///
+  /// In en, this message translates to:
+  /// **'Sign up now'**
+  String get signUpButton;
+
+  /// Title on the sign up page
+  ///
+  /// In en, this message translates to:
+  /// **'Sign up'**
+  String get signUpTitle;
+
+  /// A description on the sign up page explaining why you would want to sign up
+  ///
+  /// In en, this message translates to:
+  /// **'Get access to more content and better features by creating an account.'**
+  String get signUpDescription;
+
+  /// REMEMBER: Keep the <a> and </a> tags, but translate the 'Privacy Policy' inside.
+  ///
+  /// In en, this message translates to:
+  /// **'I certify that I am 13 years of age or older, and I agree to the <a>Privacy Policy</a> and <a>Terms of use</a>.'**
+  String get signUpAgreePrivacyPolicy;
+
+  /// Title for the 'Set password' page of the signup process.
+  ///
+  /// In en, this message translates to:
+  /// **'Set password'**
+  String get setPassword;
+
   /// Button on error alert that lets user to retry failed action
   ///
   /// In en, this message translates to:
@@ -1041,11 +1077,17 @@ abstract class S {
   /// **'Watch now'**
   String get watchNow;
 
-  /// A button on the login page
+  /// A button
   ///
   /// In en, this message translates to:
   /// **'Explore content'**
   String get exploreContent;
+
+  /// A button on the welcome page
+  ///
+  /// In en, this message translates to:
+  /// **'Explore public content'**
+  String get explorePublicContent;
 
   /// SINGULAR. Note the lowercase T, because its inserted after a count: '0/1 task completed'.
   ///
@@ -1173,11 +1215,29 @@ abstract class S {
   /// **'Continue'**
   String get continueButton;
 
+  /// Generic button text.
+  ///
+  /// In en, this message translates to:
+  /// **'Register'**
+  String get registerButton;
+
   /// Generic. Used as page title, etc.
   ///
   /// In en, this message translates to:
   /// **'Achievements'**
   String get achievements;
+
+  /// REMINDER: Do NOT touch variables (like {n}). Password condition, shown when signing up.
+  ///
+  /// In en, this message translates to:
+  /// **'Minimum {n} characters'**
+  String passwordConditionLength(int n);
+
+  /// Password condition, shown when signing up.
+  ///
+  /// In en, this message translates to:
+  /// **'Must contain lower case, uppercase and numbers.'**
+  String get passwordConditionComplexity;
 
   /// An informal title on some error screens.
   ///
@@ -1220,6 +1280,24 @@ abstract class S {
   /// In en, this message translates to:
   /// **'Select season'**
   String get selectSeason;
+
+  /// Button to request to delete your account
+  ///
+  /// In en, this message translates to:
+  /// **'Delete my account'**
+  String get deleteMyAccount;
+
+  /// Text next to a switch/toggle button, confirming that you want to delete your account.
+  ///
+  /// In en, this message translates to:
+  /// **'I am sure I want to delete my account and my data related to the BCC Media app.'**
+  String get iAmSureIWantToDelete;
+
+  /// Generic text. Used at least as a title on the account deletion page.
+  ///
+  /// In en, this message translates to:
+  /// **'Are you sure?'**
+  String get areYouSure;
 }
 
 class _SDelegate extends LocalizationsDelegate<S> {

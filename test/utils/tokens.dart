@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:brunstadtv_app/models/auth/auth0_id_token.dart';
+import 'package:brunstadtv_app/models/auth0/auth0_id_token.dart';
 
 const fakeIdToken = Auth0IdToken(
   nickname: 'nickname',

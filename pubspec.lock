@@ -264,6 +264,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "3.0.2"
+  csslib:
+    dependency: transitive
+    description:
+      name: csslib
+      sha256: b36c7f7e24c0bdf1bf9a3da461c837d1de64b9f8beb190c9011d8c72a3dfd745
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.17.2"
   cupertino_icons:
     dependency: "direct main"
     description:
@@ -312,6 +320,22 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "4.0.6"
+  email_validator:
+    dependency: "direct main"
+    description:
+      name: email_validator
+      sha256: e9a90f27ab2b915a27d7f9c2a7ddda5dd752d6942616ee83529b686fc086221b
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.1.17"
+  events_emitter:
+    dependency: transitive
+    description:
+      name: events_emitter
+      sha256: a075477bdf9c8c0c31bb7c7b7bdd357b4486c34f30163119f96de4e7f54abeff
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.5.2"
   fake_async:
     dependency: transitive
     description:
@@ -482,6 +506,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.6.1"
+  flutter_html:
+    dependency: "direct main"
+    description:
+      name: flutter_html
+      sha256: "342c7908f0a67bcec62b6e0f7cf23e23bafe7f64693665dd35be98d5e783bdfd"
+      url: "https://pub.dev"
+    source: hosted
+    version: "3.0.0-alpha.6"
   flutter_inappwebview:
     dependency: "direct main"
     description:
@@ -791,6 +823,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.2.0"
+  html:
+    dependency: "direct main"
+    description:
+      name: html
+      sha256: "79d498e6d6761925a34ee5ea8fa6dfef38607781d2fa91e37523474282af55cb"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.15.2"
   http:
     dependency: "direct main"
     description:
@@ -952,10 +992,10 @@ packages:
     dependency: "direct main"
     description:
       name: modal_bottom_sheet
-      sha256: ef533916a2c3089571c32bd34e410faca77a6849a3f28f748e0794525c5658a0
+      sha256: "3bba63c62d35c931bce7f8ae23a47f9a05836d8cb3c11122ada64e0b2f3d718f"
       url: "https://pub.dev"
     source: hosted
-    version: "2.1.2"
+    version: "3.0.0-pre"
   nested:
     dependency: transitive
     description:
@@ -980,6 +1020,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.7.2"
+  numerus:
+    dependency: transitive
+    description:
+      name: numerus
+      sha256: "436759d84f233b40107d0cc31cfa92d24e0960afeb2e506be70926d4cddffd9e"
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.0.0"
   on_screen_ruler:
     dependency: "direct main"
     description:
@@ -996,6 +1044,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "4.3.2"
+  open_mail_app:
+    dependency: "direct main"
+    description:
+      name: open_mail_app
+      sha256: ffc93edc0590ef4586136f505187b25014a336fe0374ad3cc528e727b3f2e726
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.4.5"
   package_config:
     dependency: transitive
     description:
@@ -1553,6 +1609,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.2.0"
+  unleash_proxy_client_flutter:
+    dependency: "direct main"
+    description:
+      name: unleash_proxy_client_flutter
+      sha256: ec2d471973a6399d9fa0c8ab98f5aa3a10514bd6ed830769a74cb7994d25284e
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.0.2"
   url_launcher:
     dependency: "direct main"
     description:
@@ -1763,4 +1827,4 @@ packages:
     version: "3.1.1"
 sdks:
   dart: ">=2.19.0 <3.0.0"
-  flutter: ">=3.7.0-0"
+  flutter: ">=3.7.0"

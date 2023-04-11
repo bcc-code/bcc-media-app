@@ -25,9 +25,9 @@ class FeaturedSection extends ConsumerWidget {
 
   List<Fragment$Section$$FeaturedSection$items$items> getItemsWithLiveItem(
     List<Fragment$Section$$FeaturedSection$items$items> items,
-    Fragment$Episode? curLiveEpisode,
+    Fragment$CalendarEntryEpisode? curLiveEpisode,
   ) {
-    if (data.metadata == null || curLiveEpisode == null) {
+    if (data.metadata == null || curLiveEpisode == null || !curLiveEpisode.locked) {
       return items;
     }
     if (data.metadata!.prependLiveElement) {
@@ -55,7 +55,7 @@ class FeaturedSection extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    Fragment$Episode? curLiveEpisode = ref.watch(currentLiveEpisodeProvider)?.episode;
+    Fragment$CalendarEntryEpisode? curLiveEpisode = ref.watch(currentLiveEpisodeProvider)?.episode;
 
     return LayoutBuilder(builder: (context, constraints) {
       const marginX = 2.0;

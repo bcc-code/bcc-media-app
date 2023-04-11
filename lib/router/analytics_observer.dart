@@ -3,6 +3,7 @@ import 'package:brunstadtv_app/helpers/extensions.dart';
 import 'package:brunstadtv_app/providers/analytics.dart';
 import 'package:brunstadtv_app/router/router.gr.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../helpers/constants.dart';
@@ -44,7 +45,7 @@ class AnalyticsNavigatorObserver extends NavigatorObserver {
     }
 
     if (screenName != null) {
-      ref.read(analyticsProvider).screen(screenName, properties: extraProperties);
+      SchedulerBinding.instance.scheduleFrameCallback((_) => ref.read(analyticsProvider).screen(screenName, properties: extraProperties));
     }
   }
 

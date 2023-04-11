@@ -1,15 +1,18 @@
-fragment Episode on Episode {
+fragment CalendarEntryEpisode on Episode {
   id
   title
   image
+  locked
   description
   season {
+    id
+    title
     show {
+      id
       title
     }
   }
 }
-
 
 fragment CalendarDayEntries on CalendarDay {
   entries {
@@ -17,7 +20,7 @@ fragment CalendarDayEntries on CalendarDay {
     end
     ... on EpisodeCalendarEntry {
       episode {
-      ...Episode
+        ...CalendarEntryEpisode
       }
     }
   }

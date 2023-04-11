@@ -40,7 +40,7 @@ class _ProfileState extends ConsumerState<Profile> {
       else
         OptionButton(
           optionName: S.of(context).contactSupport,
-          onPressed: () => _sendAnonymousEmail(),
+          onPressed: () => _contactSupportEmail(),
         ),
       OptionButton(
           optionName: S.of(context).about,
@@ -56,7 +56,7 @@ class _ProfileState extends ConsumerState<Profile> {
         optionName: S.of(context).privacyPolicy,
         currentSelection: '(external page)',
         onPressed: () {
-          launchUrlString('https://bcc.media/privacy');
+          launchUrlString('https://bcc.media/privacy', mode: LaunchMode.externalApplication);
         },
       ),
 
@@ -98,7 +98,7 @@ class _ProfileState extends ConsumerState<Profile> {
     }
   }
 
-  Future<void> _sendAnonymousEmail() async {
+  Future<void> _contactSupportEmail() async {
     String? deviceModel, manufacturer, os, screenSize, appVer, userId;
     PackageInfo packageInfo = await PackageInfo.fromPlatform();
     final screenWidth = WidgetsBinding.instance.window.physicalSize.width.toInt().toString();
@@ -123,8 +123,8 @@ class _ProfileState extends ConsumerState<Profile> {
     final Uri mailtoUri = Uri(
       scheme: 'mailto',
       path: 'support@bcc.media',
-      query: 'subject=Anonymous Users Contact Support&body='
-          '\n\n\n\n\n\n\n\n-- Do Not Delete Below This Line-- \n'
+      query: 'subject=App Support&body='
+          '\n\n\n\n\n\n-- Technical details -- \n'
           'Device Model: $deviceModel\n'
           'Manufacturer: $manufacturer\n'
           'Operating System: $os\n'
@@ -139,6 +139,7 @@ class _ProfileState extends ConsumerState<Profile> {
 
   @override
   Widget build(BuildContext context) {
+    final user = ref.read(authStateProvider.select((value) => value.user));
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
@@ -154,7 +155,7 @@ class _ProfileState extends ConsumerState<Profile> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: <Widget>[
-                if (ref.read(authStateProvider).user != null)
+                if (user != null)
                   const Avatar()
                 else
                   Padding(
@@ -166,7 +167,7 @@ class _ProfileState extends ConsumerState<Profile> {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      if (ref.read(authStateProvider).auth0AccessToken != null)
+                      if (user != null)
                         GestureDetector(
                           onLongPress: () => ref.read(authStateProvider.notifier).logout(manual: false),
                           child: BtvButton.smallSecondary(
@@ -176,8 +177,8 @@ class _ProfileState extends ConsumerState<Profile> {
                         )
                       else
                         BtvButton.small(
-                          onPressed: () => loginAction(context),
-                          labelText: S.of(context).signInButton,
+                          onPressed: () => context.router.navigate(OnboardingScreenRoute()),
+                          labelText: S.of(context).signInOrSignUp,
                         )
                     ],
                   ),
@@ -189,7 +190,16 @@ class _ProfileState extends ConsumerState<Profile> {
                     SettingList(buttons: _supportButtons),
                     const SizedBox(height: 24),
                     SettingList(buttons: _termsAndPrivacyOptions),
-                    const SizedBox(height: 24),
+                    const SizedBox(height: 48),
+                    if (user != null)
+                      SettingList(
+                        buttons: [
+                          OptionButton(
+                            optionName: S.of(context).deleteMyAccount,
+                            onPressed: () => context.router.navigate(const AccountDeletionScreenRoute()),
+                          ),
+                        ],
+                      )
                   ],
                 ),
               ],

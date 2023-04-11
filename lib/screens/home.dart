@@ -3,6 +3,7 @@ import 'package:bccm_player/bccm_player.dart';
 import 'package:brunstadtv_app/graphql/client.dart';
 import 'package:brunstadtv_app/graphql/queries/me.graphql.dart';
 import 'package:brunstadtv_app/providers/auth_state/auth_state.dart';
+import 'package:brunstadtv_app/providers/feature_flags.dart';
 import 'package:universal_io/io.dart';
 import 'dart:ui';
 
@@ -97,7 +98,8 @@ class HomeScreenState extends ConsumerState<HomeScreen> with PageMixin implement
 
     if (ref.read(authStateProvider).auth0AccessToken != null) {
       final me = await ref.read(gqlClientProvider).query$me();
-      if (me.parsedData?.me.completedRegistration != true || me.parsedData?.me.emailVerified != true) {
+      if (!ref.read(featureFlagsProvider).publicSignup &&
+          (me.parsedData?.me.completedRegistration != true || me.parsedData?.me.emailVerified != true)) {
         // ignore: use_build_context_synchronously
         await showDialog(
           context: context,
