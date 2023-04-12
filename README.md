@@ -1,4 +1,4 @@
-# BrunstadTV app
+# BCC Media app
 
 # Development
 
