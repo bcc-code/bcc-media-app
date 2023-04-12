@@ -189,6 +189,10 @@ public class AVQueuePlayerController: NSObject, PlayerController, AVPlayerViewCo
                             _ = playerItem.setSubtitleLanguage(subtitleLanguage)
                         }
                         
+                        // This is the initial signal. If this is not set the language is generally empty in NPAW
+                        self.youboraPlugin.options.contentSubtitles = self.player.currentItem?.getSelectedSubtitleLanguage()
+                        self.youboraPlugin.options.contentLanguage = self.player.currentItem?.getSelectedAudioLanguage()
+                        
                         completion(nil);
                     } else if (playerItem.status == .failed || playerItem.status == .unknown) {
                         print("Mediaitem failed to play")
@@ -284,7 +288,7 @@ public class AVQueuePlayerController: NSObject, PlayerController, AVPlayerViewCo
         }
         return playerItem;
     }
-    
+
     func addObservers() {
         // listening for current item change
         observers.append(player.observe(\.currentItem, options: [.old, .new]) {
@@ -298,6 +302,13 @@ public class AVQueuePlayerController: NSObject, PlayerController, AVPlayerViewCo
             self.observers.append(player.observe(\.currentItem?.duration, options: [.old, .new]) {
                 (player, change) in
                 MPNowPlayingInfoCenter.default().nowPlayingInfo?[MPMediaItemPropertyPlaybackDuration] = player.currentItem?.duration.seconds
+            })
+            
+            self.observers.append(player.observe(\.currentItem?.currentMediaSelection, options: [.old, .new]) {
+                (player, _) in
+                // Update language in NPAW
+                self.youboraPlugin.options.contentLanguage = player.currentItem?.getSelectedAudioLanguage()
+                self.youboraPlugin.options.contentSubtitles = player.currentItem?.getSelectedSubtitleLanguage()
             })
         })
         self.observers.append(player.observe(\.rate, options: [.old, .new]) {
