@@ -26,7 +26,7 @@ test-android:
 	patrol test --target integration_test/main_test.dart --flavor prod --verbose --scheme prod --xcconfig Flutter/Debug.xcconfig
 
 git-tag-recreate:
-	read -p "delete tag ${BUILD_NUMBER} (local and origin), and recreate it with current commit?"
+	read -p "delete tag ${BUILD_NUMBER} (local and origin), and recreate it with current commit? (CTRL+C to abort)"
 	git push --delete origin ${BUILD_NUMBER}
 	git tag --delete ${BUILD_NUMBER}
 	git tag ${BUILD_NUMBER}
