@@ -34,3 +34,7 @@ git-tag-recreate:
 
 build-web:
 	flutter build web --release -t lib/main_prod.dart --web-renderer canvaskit
+
+web-beta-upload:
+	gsutil -m cp -R build/web gs://bccm-web-beta
+	gsutil setmeta -r -h "Cache-control:no-cache, max-age=0" gs://bccm-web-beta/

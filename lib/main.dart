@@ -19,6 +19,7 @@ import 'package:brunstadtv_app/providers/playback_service.dart';
 import 'package:brunstadtv_app/router/router.gr.dart';
 import 'package:intl/intl.dart';
 import 'package:intl/intl_standalone.dart' if (dart.library.html) 'package:intl/intl_browser.dart';
+import 'package:flutter_web_plugins/url_strategy.dart';
 
 import 'app_root.dart';
 
@@ -28,6 +29,7 @@ final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 /// This function is called from the flavor-specific entrypoints
 /// E.g. main_dev.dart, main_prod.dart
 Future<void> $main({required FirebaseOptions? firebaseOptions, List<Override>? providerOverrides}) async {
+  usePathUrlStrategy();
   WidgetsFlutterBinding.ensureInitialized();
 
   await setDefaults();
