@@ -6,6 +6,7 @@ import 'package:bccm_player/plugins/riverpod.dart';
 import 'package:brunstadtv_app/api/brunstadtv.dart';
 import 'package:brunstadtv_app/components/live_mini_player.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/svg.dart' show SvgPicture;
@@ -171,24 +172,25 @@ class _LiveScreenState extends ConsumerState<LiveScreen> with AutoRouteAware {
             padding: EdgeInsets.only(right: 2.0),
             child: SizedBox(width: 24, child: BccmCastButton()),
           ),
-          Padding(
-            padding: const EdgeInsets.only(right: 8),
-            child: Switch(
-              inactiveTrackColor: BccmColors.tint2,
-              inactiveThumbColor: BccmColors.label1,
-              inactiveThumbImage: const Svg('assets/icons/headphones.svg', size: Size(12, 12)),
-              activeColor: BccmColors.label1,
-              activeTrackColor: BccmColors.tint1,
-              activeThumbImage: const Svg('assets/icons/play_alt.svg', size: Size(9, 9)),
-              value: !audioOnly,
-              onChanged: (value) {
-                setState(() {
-                  audioOnly = !value;
-                });
-                ref.read(analyticsProvider).audioOnlyClicked(AudioOnlyClickedEvent(audioOnly: !value));
-              },
+          if (!kIsWeb)
+            Padding(
+              padding: const EdgeInsets.only(right: 8),
+              child: Switch(
+                inactiveTrackColor: BccmColors.tint2,
+                inactiveThumbColor: BccmColors.label1,
+                inactiveThumbImage: const Svg('assets/icons/headphones.svg', size: Size(12, 12)),
+                activeColor: BccmColors.label1,
+                activeTrackColor: BccmColors.tint1,
+                activeThumbImage: const Svg('assets/icons/play_alt.svg', size: Size(9, 9)),
+                value: !audioOnly,
+                onChanged: (value) {
+                  setState(() {
+                    audioOnly = !value;
+                  });
+                  ref.read(analyticsProvider).audioOnlyClicked(AudioOnlyClickedEvent(audioOnly: !value));
+                },
+              ),
             ),
-          ),
         ],
       ),
       body: SizedBox(

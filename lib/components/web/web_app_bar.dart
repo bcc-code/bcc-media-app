@@ -30,9 +30,14 @@ final icons = {
 };
 
 class WebAppBar extends ConsumerWidget implements PreferredSizeWidget {
-  const WebAppBar({super.key, required this.tabsRouter});
+  const WebAppBar({
+    super.key,
+    required this.tabsRouter,
+    required this.onTabTap,
+  });
 
   final TabsRouter tabsRouter;
+  final void Function(int) onTabTap;
   @override
   Size get preferredSize => const Size.fromHeight(72);
 
@@ -65,7 +70,7 @@ class WebAppBar extends ConsumerWidget implements PreferredSizeWidget {
         child: FocusableActionDetector(
           mouseCursor: MaterialStateMouseCursor.clickable,
           child: GestureDetector(
-            onTap: () => tabsRouter.setActiveIndex(0),
+            onTap: () => onTabTap(0),
             child: logo,
           ),
         ),
@@ -77,7 +82,7 @@ class WebAppBar extends ConsumerWidget implements PreferredSizeWidget {
           ...tabs.mapIndexed(
             (i, tab) => GestureDetector(
               onTap: () {
-                tabsRouter.setActiveIndex(i);
+                onTabTap(i);
               },
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 12),

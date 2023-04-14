@@ -1,5 +1,3 @@
-import 'dart:ui';
-
 import 'package:auto_route/auto_route.dart';
 import 'package:bccm_player/bccm_player.dart';
 import 'package:bccm_player/plugins/riverpod.dart';
@@ -18,6 +16,9 @@ import '../components/bottom_sheet_mini_player.dart';
 import '../components/custom_tab_bar.dart';
 import '../components/prompts/prompts.dart';
 import '../components/web/web_app_bar.dart';
+import '../models/scroll_screen.dart';
+import '../providers/analytics.dart';
+import '../providers/app_config.dart';
 import '../theme/bccm_colors.dart';
 
 class TabsRootScreen extends ConsumerStatefulWidget {
@@ -39,6 +40,49 @@ class _TabsRootScreenState extends ConsumerState<TabsRootScreen> with AutoRouteA
   @override
   void didChangeTabRoute(TabPageRoute previousRoute) {
     print('Changed to settings tab from ${previousRoute.name}');
+  }
+
+  onTabTap(BuildContext context, int index) {
+    final tabsRouter = AutoTabsRouter.of(context);
+    // here we switch between tabs
+    if (tabsRouter.activeIndex == index) {
+      final stackRouterOfIndex = tabsRouter.stackRouterOfIndex(index);
+      if (stackRouterOfIndex?.stack.length == 1) {
+        final searchState = tabsRouter.topPage?.child.asOrNull<SearchScreen>()?.key?.asOrNull<GlobalKey<SearchScreenState>>()?.currentState;
+        if (searchState != null) {
+          searchState.clear();
+        }
+        final screenState = tabsRouter.topPage?.child.key?.asOrNull<GlobalKey>()?.currentState.asOrNull<ScrollScreen>();
+        if (screenState != null) {
+          screenState.scrollToTop();
+        }
+      } else {
+        stackRouterOfIndex?.popUntilRoot();
+      }
+    } else {
+      sendAnalytics(index);
+    }
+    tabsRouter.setActiveIndex(index);
+  }
+
+  void sendAnalytics(int index) {
+    const indexToNameMap = ['home', 'search', 'livestream', 'calendar'];
+    if (index < 0 || index > indexToNameMap.length - 1) return;
+    final tabName = indexToNameMap[index];
+    final appConfig = ref.read(appConfigProvider);
+    appConfig.then((value) {
+      String? pageCode;
+      if (tabName == 'home') {
+        pageCode = value?.application.page?.code;
+      } else if (tabName == 'search') {
+        pageCode = value?.application.searchPage?.code;
+      }
+      Map<String, dynamic> extraProperties = {};
+      if (pageCode != null) {
+        extraProperties['pageCode'] = pageCode;
+      }
+      ref.read(analyticsProvider).screen(tabName, properties: extraProperties);
+    });
   }
 
   bool _shouldHideMiniPlayer(BuildContext context) {
@@ -107,7 +151,7 @@ class _TabsRootScreenState extends ConsumerState<TabsRootScreen> with AutoRouteA
         return Theme(
           data: Theme.of(context).copyWith(bottomSheetTheme: const BottomSheetThemeData(backgroundColor: Colors.transparent)),
           child: Scaffold(
-            appBar: kIsWeb ? WebAppBar(tabsRouter: tabsRouter) : null,
+            appBar: kIsWeb ? WebAppBar(tabsRouter: tabsRouter, onTabTap: (i) => onTabTap(context, i)) : null,
             body: Padding(padding: EdgeInsets.only(bottom: _shouldHideMiniPlayer(context) ? 0 : kMiniPlayerHeight), child: child),
             bottomSheet: Container(
               color: BccmColors.background1, // Fix gap between prompts and miniPlayer due to antialiasing issue
@@ -119,7 +163,10 @@ class _TabsRootScreenState extends ConsumerState<TabsRootScreen> with AutoRouteA
                 ],
               ),
             ),
-            bottomNavigationBar: CustomTabBar(tabsRouter: tabsRouter),
+            bottomNavigationBar: CustomTabBar(
+              tabsRouter: tabsRouter,
+              onTabTap: (i) => onTabTap(context, i),
+            ),
           ),
         );
       },
