@@ -108,6 +108,7 @@ dependencies:
   flutter_html: ^3.0.0-alpha.6
   cloud_firestore: ^4.5.0
   riverpod_annotation: ^2.0.4
+  image: ^4.0.15
   #smooth: any
 
 dev_dependencies:

@@ -32,6 +32,8 @@
 
   <title>BCC Media</title>
   <link rel="manifest" href="manifest.json">
+  <link rel="stylesheet" href="lib/generated/bccm-app-web-lib.css">
+  <script type="text/javascript" src="lib/generated/bccm-app-web-lib.js"></script>
 
   <script>
     // The value below is injected by flutter build, do not touch.
@@ -45,6 +47,7 @@
     https://www.rudderstack.com/docs/sources/event-streams/sdks/rudderstack-flutter-sdk/flutter-v2/#installing-the-sdk-for-the-web
   -->
   <script type="text/javascript" src="https://static.bcc.media/rs.min.js"></script>
+
 
 </head>
 
@@ -63,34 +66,9 @@
       });
     });
   </script>
-  <script src="/bccm-video-player/bccm-video-player.umd.js"></script>
   <script src="https://cdn.auth0.com/js/auth0-spa-js/1.13/auth0-spa-js.production.js"></script>
   <script src="/assets/packages/flutter_inappwebview/assets/web/web_support.js"></script>
-  <div id="primary-player-wrapper" style="display: none;"></div>
-  <script>
-    //window.createVideoJsPlayer = (...args) => console.log(args)
-
-    let createPlayerView = () => {
-      let div = document.createElement("div");
-      div.id = "primary_player";
-      div.style.width = "100%";
-      div.style.height = "100%";
-      /* div.style.position = "absolute";
-      div.style.left = "calc(50% - 500px)"
-      div.style.display = "none"; */
-
-      let button = document.createElement("button");
-      button.innerHTML = "Exit player";
-      button.onclick = () => {
-        console.log("remove player clicked")
-        div.remove();
-        createPlayerView();
-      }
-      div.appendChild(button);
-      document.getElementById('primary-player-wrapper').appendChild(div);
-    }
-    setTimeout(createPlayerView, 5000);
-  </script>
+  <div id="primary-player-wrapper" style="display: block;"></div>
 </body>
 
 </html>

@@ -7,6 +7,7 @@ import 'package:brunstadtv_app/providers/auth_state/auth_state.dart';
 import 'package:brunstadtv_app/providers/notification_service.dart';
 import 'package:brunstadtv_app/screens/search/search.dart';
 import 'package:collection/collection.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:brunstadtv_app/router/router.gr.dart';
@@ -38,6 +39,7 @@ class _TabsRootScreenState extends ConsumerState<TabsRootScreen> with AutoRouteA
   }
 
   bool _shouldHideMiniPlayer(BuildContext context) {
+    if (kIsWeb) return true;
     final router = context.watchRouter;
     final currentRouteMatch = router.currentSegments.lastOrNull;
     if (currentRouteMatch == null) {

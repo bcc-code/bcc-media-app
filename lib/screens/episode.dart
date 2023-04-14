@@ -92,7 +92,7 @@ class EpisodeScreen extends HookConsumerWidget {
         ],
       ),
       body: ConditionalParentWidget(
-        condition: kIsWeb,
+        condition: kIsWeb && MediaQuery.of(context).size.width > 900,
         conditionalBuilder: (child) => Padding(padding: const EdgeInsets.symmetric(horizontal: 300), child: child),
         child: Builder(
           builder: (context) {
@@ -239,7 +239,7 @@ class _EpisodeDisplay extends HookConsumerWidget {
                       imageUrl: episode.image,
                       onRetry: setupPlayer,
                     )
-                  else if (!episodeIsCurrentItem || showLoadingOverlay)
+                  else if (!episodeIsCurrentItem || showLoadingOverlay || kIsWeb)
                     PlayerPoster(
                       imageUrl: episode.image,
                       setupPlayer: setupPlayer,
@@ -295,7 +295,7 @@ class _EpisodeDisplay extends HookConsumerWidget {
                     season: episode.season!,
                     onEpisodeTap: (tappedEpisodeId) {
                       if (tappedEpisodeId != episode.id) {
-                        context.navigateTo(EpisodeScreenRoute(episodeId: tappedEpisodeId, autoplay: true));
+                        context.navigateTo(EpisodeScreenRoute(episodeId: tappedEpisodeId, autoplay: !kIsWeb));
                       }
                       scrollToTop();
                     },
