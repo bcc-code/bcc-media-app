@@ -40,15 +40,15 @@ import '../l10n/app_localizations.dart';
 
 class EpisodeScreen extends HookConsumerWidget {
   final String episodeId;
-  final bool autoplay;
+  final bool? autoplay;
   final int? queryParamStartPosition;
-  final bool hideBottomSection;
+  final bool? hideBottomSection;
   const EpisodeScreen({
     super.key,
     @PathParam() required this.episodeId,
-    @QueryParam() this.autoplay = false,
+    @QueryParam() this.autoplay,
     @QueryParam('t') this.queryParamStartPosition,
-    @QueryParam('hide_bottom_section') this.hideBottomSection = false,
+    @QueryParam('hide_bottom_section') this.hideBottomSection,
   });
 
   @override
@@ -183,7 +183,7 @@ class _EpisodeDisplay extends HookConsumerWidget {
     final episodeIsCurrentItem = player.currentMediaItem?.metadata?.extras?['id'] == episode.id;
 
     useEffect(() {
-      if (screenParams.autoplay && !episodeIsCurrentItem) {
+      if (screenParams.autoplay == true && !episodeIsCurrentItem) {
         setupPlayer();
       }
       return null;
@@ -302,7 +302,7 @@ class _EpisodeDisplay extends HookConsumerWidget {
                     season: episode.season!,
                     onEpisodeTap: (tappedEpisodeId) {
                       if (tappedEpisodeId != episode.id) {
-                        context.navigateTo(EpisodeScreenRoute(episodeId: tappedEpisodeId, autoplay: !kIsWeb));
+                        context.navigateTo(EpisodeScreenRoute(episodeId: tappedEpisodeId, autoplay: kIsWeb ? null : true));
                       }
                       scrollToTop();
                     },

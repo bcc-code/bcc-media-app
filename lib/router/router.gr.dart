@@ -197,15 +197,9 @@ class AppRouter extends _i24.RootStackRouter {
       final args = routeData.argsAs<EmbedScreenArgs>(
           orElse: () => EmbedScreenArgs(
                 episodeId: pathParams.getString('episodeId'),
-                autoplay: queryParams.getBool(
-                  'autoplay',
-                  false,
-                ),
+                autoplay: queryParams.optBool('autoplay'),
                 queryParamStartPosition: queryParams.optInt('t'),
-                hideBottomSection: queryParams.getBool(
-                  'hide_bottom_section',
-                  false,
-                ),
+                hideBottomSection: queryParams.optBool('hide_bottom_section'),
               ));
       return _i24.CustomPage<void>(
         routeData: routeData,
@@ -321,15 +315,9 @@ class AppRouter extends _i24.RootStackRouter {
       final args = routeData.argsAs<EpisodeScreenRouteArgs>(
           orElse: () => EpisodeScreenRouteArgs(
                 episodeId: pathParams.getString('episodeId'),
-                autoplay: queryParams.getBool(
-                  'autoplay',
-                  false,
-                ),
+                autoplay: queryParams.optBool('autoplay'),
                 queryParamStartPosition: queryParams.optInt('t'),
-                hideBottomSection: queryParams.getBool(
-                  'hide_bottom_section',
-                  false,
-                ),
+                hideBottomSection: queryParams.optBool('hide_bottom_section'),
               ));
       return _i24.CustomPage<void>(
         routeData: routeData,
@@ -759,9 +747,9 @@ class EmbedScreen extends _i24.PageRouteInfo<EmbedScreenArgs> {
   EmbedScreen({
     _i25.Key? key,
     required String episodeId,
-    bool autoplay = false,
+    bool? autoplay,
     int? queryParamStartPosition,
-    bool hideBottomSection = false,
+    bool? hideBottomSection,
   }) : super(
           EmbedScreen.name,
           path: '/embed/:episodeId',
@@ -787,20 +775,20 @@ class EmbedScreenArgs {
   const EmbedScreenArgs({
     this.key,
     required this.episodeId,
-    this.autoplay = false,
+    this.autoplay,
     this.queryParamStartPosition,
-    this.hideBottomSection = false,
+    this.hideBottomSection,
   });
 
   final _i25.Key? key;
 
   final String episodeId;
 
-  final bool autoplay;
+  final bool? autoplay;
 
   final int? queryParamStartPosition;
 
-  final bool hideBottomSection;
+  final bool? hideBottomSection;
 
   @override
   String toString() {
@@ -999,9 +987,9 @@ class EpisodeScreenRoute extends _i24.PageRouteInfo<EpisodeScreenRouteArgs> {
   EpisodeScreenRoute({
     _i25.Key? key,
     required String episodeId,
-    bool autoplay = false,
+    bool? autoplay,
     int? queryParamStartPosition,
-    bool hideBottomSection = false,
+    bool? hideBottomSection,
   }) : super(
           EpisodeScreenRoute.name,
           path: 'episode/:episodeId',
@@ -1027,20 +1015,20 @@ class EpisodeScreenRouteArgs {
   const EpisodeScreenRouteArgs({
     this.key,
     required this.episodeId,
-    this.autoplay = false,
+    this.autoplay,
     this.queryParamStartPosition,
-    this.hideBottomSection = false,
+    this.hideBottomSection,
   });
 
   final _i25.Key? key;
 
   final String episodeId;
 
-  final bool autoplay;
+  final bool? autoplay;
 
   final int? queryParamStartPosition;
 
-  final bool hideBottomSection;
+  final bool? hideBottomSection;
 
   @override
   String toString() {
