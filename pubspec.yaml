@@ -111,6 +111,7 @@ dependencies:
   cloud_firestore: ^4.5.0
   riverpod_annotation: ^2.0.4
   image: ^4.0.15
+  flutter_native_splash: ^2.2.19
   #smooth: any
 
 dev_dependencies:
