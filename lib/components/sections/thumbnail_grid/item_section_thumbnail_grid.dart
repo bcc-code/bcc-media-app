@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 import '../../../graphql/queries/page.graphql.dart';
@@ -34,7 +35,7 @@ class ItemSectionThumbnailGrid extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.symmetric(horizontal: 16),
+      margin: const EdgeInsets.symmetric(horizontal: kIsWeb ? 80 : 16),
       child: ThumbnailGrid(
         gridSize: data.gridSize,
         sectionItems: data.items.items,

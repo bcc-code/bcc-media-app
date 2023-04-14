@@ -1,5 +1,6 @@
 import 'package:brunstadtv_app/helpers/extensions.dart';
 import 'package:brunstadtv_app/providers/section_updates.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
@@ -50,7 +51,7 @@ class _MessageItem extends StatelessWidget {
     return Container(
       width: double.infinity,
       padding: const EdgeInsets.all(12),
-      margin: const EdgeInsets.symmetric(horizontal: 16),
+      margin: const EdgeInsets.symmetric(horizontal: kIsWeb ? 80 : 16),
       decoration: BoxDecoration(
         color: getColorFromHex(data.style.background),
         border: borderColor != null ? Border.all(color: borderColor) : null,

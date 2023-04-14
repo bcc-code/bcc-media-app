@@ -1,4 +1,5 @@
 import 'package:brunstadtv_app/helpers/ui/image.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 import '../graphql/queries/achievements.graphql.dart';
@@ -14,7 +15,7 @@ class AchievementListItem extends StatelessWidget {
     return Opacity(
       opacity: item.achieved ? 1 : 0.3,
       child: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 16),
+        padding: const EdgeInsets.symmetric(horizontal: kIsWeb ? 80 : 16),
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [

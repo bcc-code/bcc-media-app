@@ -1,5 +1,6 @@
 import 'package:brunstadtv_app/components/section_item_click_wrapper.dart';
 import 'package:brunstadtv_app/models/analytics/sections.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 import '../../graphql/queries/page.graphql.dart';
@@ -14,7 +15,7 @@ class ListSection extends StatelessWidget {
   Widget build(BuildContext context) {
     final sectionItems = data.items.items.map((i) => i.item).whereType<Fragment$Section$$ListSection$items$items$item$$Episode>().toList();
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 16),
+      padding: const EdgeInsets.symmetric(horizontal: kIsWeb ? 80 : 16),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: sectionItems

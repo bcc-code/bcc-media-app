@@ -70,9 +70,8 @@ class _SearchBarState extends State<SearchBar> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       height: 40,
-      margin: const EdgeInsets.only(top: 16, right: 16, bottom: 8, left: 16),
       child: Row(
         children: [
           Expanded(

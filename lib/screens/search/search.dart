@@ -3,6 +3,7 @@ import 'package:brunstadtv_app/api/brunstadtv.dart';
 import 'package:brunstadtv_app/components/page.dart';
 import 'package:brunstadtv_app/models/scroll_screen.dart';
 import 'package:brunstadtv_app/providers/app_config.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -120,21 +121,24 @@ class SearchScreenState extends ConsumerState<SearchScreen> implements ScrollScr
         body: SafeArea(
           child: Column(
             children: [
-              SearchBar(
-                onFocusChanged: (val) {
-                  if (!val) {
-                    setState(() {
-                      focusing = false;
-                    });
-                  } else {
-                    // This is just to avoid some visual glitches with the _noInputInfoWidget.
-                    Future.delayed(const Duration(milliseconds: 100)).whenComplete(() => setState(() {
-                          focusing = true;
-                        }));
-                  }
-                },
-                currentValue: _curSearchValue,
-                onInputChange: _onSearchInputChanged,
+              Padding(
+                padding: const EdgeInsets.only(top: 16, bottom: kIsWeb ? 12 : 8, right: kIsWeb ? 80 : 16, left: kIsWeb ? 80 : 16),
+                child: SearchBar(
+                  onFocusChanged: (val) {
+                    if (!val) {
+                      setState(() {
+                        focusing = false;
+                      });
+                    } else {
+                      // This is just to avoid some visual glitches with the _noInputInfoWidget.
+                      Future.delayed(const Duration(milliseconds: 100)).whenComplete(() => setState(() {
+                            focusing = true;
+                          }));
+                    }
+                  },
+                  currentValue: _curSearchValue,
+                  onInputChange: _onSearchInputChanged,
+                ),
               ),
               Container(
                 margin: const EdgeInsets.only(bottom: 8),

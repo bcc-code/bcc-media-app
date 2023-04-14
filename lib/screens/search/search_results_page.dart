@@ -2,6 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:brunstadtv_app/helpers/debouncer.dart';
 import 'package:brunstadtv_app/router/router.gr.dart';
 import 'package:collection/collection.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -119,7 +120,7 @@ class _SearchResultsPageState extends ConsumerState<SearchResultsPage> {
                   if (programs.isNotEmpty) ResultProgramsList(title: S.of(context).programsSection, items: programs),
                   if (episodes.isNotEmpty)
                     Container(
-                      padding: const EdgeInsets.only(top: 12, right: 16, left: 16),
+                      padding: const EdgeInsets.only(top: 12, right: kIsWeb ? 80 : 16, left: kIsWeb ? 80 : 16),
                       margin: const EdgeInsets.only(bottom: 8),
                       child: Text(
                         S.of(context).episodes,
@@ -128,7 +129,7 @@ class _SearchResultsPageState extends ConsumerState<SearchResultsPage> {
                     ),
                   if (episodes.isNotEmpty)
                     Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 16),
+                      padding: const EdgeInsets.symmetric(horizontal: kIsWeb ? 80 : 16),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: episodes
