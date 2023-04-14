@@ -163,10 +163,12 @@ class _TabsRootScreenState extends ConsumerState<TabsRootScreen> with AutoRouteA
                 ],
               ),
             ),
-            bottomNavigationBar: CustomTabBar(
-              tabsRouter: tabsRouter,
-              onTabTap: (i) => onTabTap(context, i),
-            ),
+            bottomNavigationBar: kIsWeb
+                ? null
+                : CustomTabBar(
+                    tabsRouter: tabsRouter,
+                    onTabTap: (i) => onTabTap(context, i),
+                  ),
           ),
         );
       },

@@ -31,3 +31,6 @@ git-tag-recreate:
 	git tag --delete ${BUILD_NUMBER}
 	git tag ${BUILD_NUMBER}
 	git push --tags
+
+build-web:
+	flutter build web --release -t lib/main_prod.dart --web-renderer canvaskit
