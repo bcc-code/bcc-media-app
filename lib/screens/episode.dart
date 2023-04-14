@@ -91,9 +91,16 @@ class EpisodeScreen extends HookConsumerWidget {
           ),
         ],
       ),
-      body: ConditionalParentWidget(
-        condition: kIsWeb && MediaQuery.of(context).size.width > 900,
-        conditionalBuilder: (child) => Padding(padding: const EdgeInsets.symmetric(horizontal: 300), child: child),
+      body: Padding(
+        padding: !kIsWeb
+            ? EdgeInsets.zero
+            : MediaQuery.of(context).size.width > 2200
+                ? const EdgeInsets.symmetric(horizontal: 800)
+                : MediaQuery.of(context).size.width > 1200
+                    ? const EdgeInsets.symmetric(horizontal: 500)
+                    : MediaQuery.of(context).size.width > 900
+                        ? const EdgeInsets.symmetric(horizontal: 300)
+                        : const EdgeInsets.symmetric(horizontal: 80),
         child: Builder(
           builder: (context) {
             if (episodeSnapshot.hasError && episodeSnapshot.connectionState == ConnectionState.done) {

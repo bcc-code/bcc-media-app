@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:brunstadtv_app/components/section_item_click_wrapper.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -66,9 +67,9 @@ class FeaturedSection extends ConsumerWidget {
       }).toList();
       final sectionItems = getItemsWithLiveItem(filteredItems, curLiveEpisode);
       return Padding(
-        padding: const EdgeInsets.only(top: 16),
+        padding: const EdgeInsets.only(left: kIsWeb ? 64 : 0, top: 16),
         child: SizedBox(
-          height: 323,
+          height: kIsWeb ? 800 : 323,
           child: PageView.builder(
             physics: const _CustomPageViewScrollPhysics(),
             controller: PageController(viewportFraction: viewportFraction),
@@ -174,7 +175,7 @@ class _FeaturedItem extends StatelessWidget {
 
 class _GradientImage extends StatelessWidget {
   final String? image;
-  final height = 290.0;
+  final height = kIsWeb ? 800.0 : 290.0;
 
   const _GradientImage({this.image});
 
@@ -214,6 +215,7 @@ class _GradientImage extends StatelessWidget {
                   ? null
                   : FadeInImage.memoryNetwork(
                       fit: BoxFit.cover,
+                      alignment: Alignment.topCenter,
                       placeholder: kTransparentImage,
                       image: imageUri.toString(),
                       fadeInDuration: const Duration(milliseconds: 200),

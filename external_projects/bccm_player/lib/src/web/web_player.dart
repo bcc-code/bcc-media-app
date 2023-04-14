@@ -1,8 +1,5 @@
 import 'dart:html' as html;
-import 'package:bccm_player/src/native/root_pigeon_playback_listener.dart';
 import 'package:bccm_player/src/pigeon/playback_platform_pigeon.g.dart';
-import 'package:bccm_player/src/utils/extensions.dart';
-import 'package:flutter/material.dart';
 import 'dart:ui' as ui;
 
 import 'js/bccm_video_player.dart';
@@ -13,6 +10,9 @@ class WebVideoPlayer {
   final PlaybackListenerPigeon listener;
 
   WebVideoPlayer(this.playerId, {required this.listener}) {
+    // use this.currentElement in registerViewFactory's callback below if we want to embed.
+    // not implemented because of a fullscreen bug: https://github.com/flutter/flutter/issues/124799
+
     // ignore: undefined_prefixed_name
     ui.platformViewRegistry.registerViewFactory('bccm-player-$playerId', (int viewId) => html.document.createElement('div'));
   }

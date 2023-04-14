@@ -4,6 +4,7 @@ import 'package:brunstadtv_app/graphql/client.dart';
 import 'package:brunstadtv_app/graphql/queries/me.graphql.dart';
 import 'package:brunstadtv_app/providers/auth_state/auth_state.dart';
 import 'package:brunstadtv_app/providers/feature_flags.dart';
+import 'package:flutter/foundation.dart';
 import 'package:universal_io/io.dart';
 import 'dart:ui';
 
@@ -156,7 +157,7 @@ class HomeScreenState extends ConsumerState<HomeScreen> with PageMixin implement
             elevation: 0,
             centerTitle: true,
             title: logo,
-            leadingWidth: 100,
+            leadingWidth: kIsWeb ? 300 : 100,
             leading: Align(
               alignment: Alignment.centerLeft,
               child: GestureDetector(
@@ -165,7 +166,7 @@ class HomeScreenState extends ConsumerState<HomeScreen> with PageMixin implement
                     context.router.pushNamed('/profile');
                   },
                   child: Padding(
-                      padding: const EdgeInsets.only(left: 18, top: 12, bottom: 12, right: 32),
+                      padding: const EdgeInsets.only(left: kIsWeb ? 80 : 18, top: 12, bottom: 12, right: 32),
                       child: SvgPicture.string(
                         SvgIcons.profile,
                         semanticsLabel: S.of(context).profileTab,
