@@ -134,6 +134,7 @@ dev_dependencies:
   custom_lint: ^0.3.3
   riverpod_generator: ^2.1.6
   riverpod_lint: ^1.2.0
+  flutter_oss_licenses: ^2.0.1
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
