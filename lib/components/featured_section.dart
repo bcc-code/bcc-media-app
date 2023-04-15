@@ -7,6 +7,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../graphql/queries/calendar_episode_entries.graphql.dart';
 import '../helpers/navigation/navigation_utils.dart';
+import '../helpers/scroll_behaviors.dart';
 import '../l10n/app_localizations.dart';
 import '../models/analytics/sections.dart';
 
@@ -70,22 +71,25 @@ class FeaturedSection extends ConsumerWidget {
         padding: const EdgeInsets.only(left: kIsWeb ? 64 : 0, top: 16),
         child: SizedBox(
           height: kIsWeb ? 800 : 323,
-          child: PageView.builder(
-            physics: const _CustomPageViewScrollPhysics(),
-            controller: PageController(viewportFraction: viewportFraction),
-            itemCount: sectionItems.length,
-            itemBuilder: (context, index) {
-              final item = sectionItems[index % sectionItems.length];
-              return SectionItemClickWrapper(
-                item: item.item,
-                analytics: SectionItemAnalytics(id: item.id, position: index, type: item.$__typename, name: item.title),
-                child: _FeaturedItem(
-                  sectionItem: item,
-                  margin: const EdgeInsets.symmetric(horizontal: marginX),
-                  isLive: item.id == curLiveEpisode?.id,
-                ),
-              );
-            },
+          child: ScrollConfiguration(
+            behavior: AnyPointerScrollBehavior(),
+            child: PageView.builder(
+              physics: const _CustomPageViewScrollPhysics(),
+              controller: PageController(viewportFraction: viewportFraction),
+              itemCount: sectionItems.length,
+              itemBuilder: (context, index) {
+                final item = sectionItems[index % sectionItems.length];
+                return SectionItemClickWrapper(
+                  item: item.item,
+                  analytics: SectionItemAnalytics(id: item.id, position: index, type: item.$__typename, name: item.title),
+                  child: _FeaturedItem(
+                    sectionItem: item,
+                    margin: const EdgeInsets.symmetric(horizontal: marginX),
+                    isLive: item.id == curLiveEpisode?.id,
+                  ),
+                );
+              },
+            ),
           ),
         ),
       );

@@ -94,6 +94,7 @@ class ItemSectionThumbnailSlider extends ConsumerWidget {
         .where((element) => element.item is Fragment$ItemSectionItem$item$$Episode || element.item is Fragment$ItemSectionItem$item$$Show)
         .toList();
     return HorizontalSlider(
+      itemWidth: sliderSize.imageSize.width,
       height: sliderSize.sectionHeight,
       clipBehaviour: Clip.none,
       padding: const EdgeInsets.symmetric(horizontal: kIsWeb ? 80 : 16, vertical: 12),
