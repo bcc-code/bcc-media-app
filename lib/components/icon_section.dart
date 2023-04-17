@@ -16,7 +16,7 @@ class IconSection extends StatelessWidget {
   Widget build(BuildContext context) {
     return HorizontalSlider(
       padding: const EdgeInsets.symmetric(horizontal: kIsWeb ? 80 : 16, vertical: 12),
-      height: 140,
+      height: 148,
       itemCount: data.items.items.length,
       itemBuilder: (BuildContext context, int index) {
         var item = data.items.items[index];
