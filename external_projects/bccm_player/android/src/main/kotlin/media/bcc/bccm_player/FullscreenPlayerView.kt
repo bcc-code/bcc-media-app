@@ -114,7 +114,7 @@ class FullscreenPlayerView(val activity: Activity, val playerController: ExoPlay
         }
     }
 
-    private fun exit() {
+    fun exit() {
         activity.requestedOrientation = orientationBeforeGoingFullscreen;
         WindowCompat.setDecorFitsSystemWindows(activity.window, true)
         WindowInsetsControllerCompat(activity.window, this).show(WindowInsetsCompat.Type.systemBars())
