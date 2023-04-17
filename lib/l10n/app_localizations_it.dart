@@ -403,6 +403,12 @@ class SIt extends S {
   String get liveNow => 'In onda adesso';
 
   @override
+  String get comingSoon => 'Coming soon';
+
+  @override
+  String get newEpisode => 'New';
+
+  @override
   String get tomorrow => 'Domani';
 
   @override

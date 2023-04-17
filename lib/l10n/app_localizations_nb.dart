@@ -403,6 +403,12 @@ class SNb extends S {
   String get liveNow => 'Direkte nå';
 
   @override
+  String get comingSoon => 'Coming soon';
+
+  @override
+  String get newEpisode => 'New';
+
+  @override
   String get tomorrow => 'I morgen';
 
   @override

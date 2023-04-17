@@ -903,6 +903,18 @@ abstract class S {
   /// **'Live now'**
   String get liveNow;
 
+  /// Generic, short. Used in buttons, badges, etc to indicate that an item is available soon.
+  ///
+  /// In en, this message translates to:
+  /// **'Coming soon'**
+  String get comingSoon;
+
+  /// Generic, short. Used in buttons, badges, etc to indicate that an item was recently published.
+  ///
+  /// In en, this message translates to:
+  /// **'New'**
+  String get newEpisode;
+
   /// Day of transmission in tv guide.
   ///
   /// In en, this message translates to:

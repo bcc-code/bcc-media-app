@@ -542,6 +542,14 @@
   "@liveNow": {
     "description": "Generic, short. Used in buttons, badges, etc to indicate that an item is playing on the livestream now."
   },
+  "comingSoon": "Coming soon",
+  "@comingSoon": {
+    "description": "Generic, short. Used in buttons, badges, etc to indicate that an item is available soon."
+  },
+  "newEpisode": "New",
+  "@newEpisode": {
+    "description": "Generic, short. Used in buttons, badges, etc to indicate that an item was recently published."
+  },
   "tomorrow": "Tomorrow",
   "@tomorrow": {
     "description": "Day of transmission in tv guide."

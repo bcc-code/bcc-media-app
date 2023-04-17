@@ -403,6 +403,12 @@ class SDa extends S {
   String get liveNow => 'Live nu';
 
   @override
+  String get comingSoon => 'Coming soon';
+
+  @override
+  String get newEpisode => 'New';
+
+  @override
   String get tomorrow => 'I morgen';
 
   @override

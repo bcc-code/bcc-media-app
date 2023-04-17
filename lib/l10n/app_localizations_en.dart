@@ -403,6 +403,12 @@ class SEn extends S {
   String get liveNow => 'Live now';
 
   @override
+  String get comingSoon => 'Coming soon';
+
+  @override
+  String get newEpisode => 'New';
+
+  @override
   String get tomorrow => 'Tomorrow';
 
   @override

@@ -403,6 +403,12 @@ class SPt extends S {
   String get liveNow => 'Ao vivo agora';
 
   @override
+  String get comingSoon => 'Coming soon';
+
+  @override
+  String get newEpisode => 'New';
+
+  @override
   String get tomorrow => 'Amanhã';
 
   @override

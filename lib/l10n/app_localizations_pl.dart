@@ -403,6 +403,12 @@ class SPl extends S {
   String get liveNow => 'Teraz na żywo';
 
   @override
+  String get comingSoon => 'Coming soon';
+
+  @override
+  String get newEpisode => 'New';
+
+  @override
   String get tomorrow => 'Jutro';
 
   @override
