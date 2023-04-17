@@ -1,5 +1,6 @@
 import 'dart:math';
 
+import 'package:brunstadtv_app/components/horizontal_slider.dart';
 import 'package:brunstadtv_app/components/section_item_click_wrapper.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -19,6 +20,8 @@ import '../theme/bccm_typography.dart';
 import '../helpers/ui/image.dart';
 import '../helpers/ui/transparent_image.dart';
 import '../providers/todays_calendar_entries.dart';
+
+const marginX = 2.0;
 
 class FeaturedSection extends ConsumerWidget {
   final Fragment$Section$$FeaturedSection data;
@@ -60,40 +63,76 @@ class FeaturedSection extends ConsumerWidget {
     Fragment$CalendarEntryEpisode? curLiveEpisode = ref.watch(currentLiveEpisodeProvider)?.episode;
 
     return LayoutBuilder(builder: (context, constraints) {
-      const marginX = 2.0;
-      final viewportFraction = (constraints.maxWidth - (32 - 2 * marginX)) / max(1, constraints.maxWidth);
       final filteredItems = data.items.items.where((e) {
         final episode = e.item.asOrNull<Fragment$ItemSectionItem$item$$Episode>();
         return episode == null || !episode.locked;
       }).toList();
       final sectionItems = getItemsWithLiveItem(filteredItems, curLiveEpisode);
+
       return Padding(
-        padding: const EdgeInsets.only(left: kIsWeb ? 64 : 0, top: 16),
-        child: SizedBox(
-          height: kIsWeb ? 800 : 323,
-          child: ScrollConfiguration(
-            behavior: AnyPointerScrollBehavior(),
-            child: PageView.builder(
-              physics: const _CustomPageViewScrollPhysics(),
-              controller: PageController(viewportFraction: viewportFraction),
-              itemCount: sectionItems.length,
-              itemBuilder: (context, index) {
-                final item = sectionItems[index % sectionItems.length];
-                return SectionItemClickWrapper(
-                  item: item.item,
-                  analytics: SectionItemAnalytics(id: item.id, position: index, type: item.$__typename, name: item.title),
-                  child: _FeaturedItem(
-                    sectionItem: item,
-                    margin: const EdgeInsets.symmetric(horizontal: marginX),
-                    isLive: item.id == curLiveEpisode?.id,
-                  ),
-                );
-              },
-            ),
-          ),
+        padding: const EdgeInsets.only(top: 16),
+        child: ScrollConfiguration(
+          behavior: AnyPointerScrollBehavior(),
+          child: kIsWeb ? buildSlider(sectionItems, constraints, curLiveEpisode) : buildPageView(sectionItems, constraints, curLiveEpisode),
         ),
       );
     });
+  }
+
+  Widget buildPageView(
+    List<Fragment$Section$$FeaturedSection$items$items> sectionItems,
+    BoxConstraints constraints,
+    Fragment$CalendarEntryEpisode? curLiveEpisode,
+  ) {
+    final viewportFraction = (constraints.maxWidth - (32 - 2 * marginX)) / max(1, constraints.maxWidth);
+    return SizedBox(
+      height: 313,
+      child: PageView.builder(
+        physics: const _CustomPageViewScrollPhysics(),
+        controller: PageController(viewportFraction: viewportFraction),
+        itemCount: sectionItems.length,
+        itemBuilder: (context, index) {
+          final item = sectionItems[index % sectionItems.length];
+          return SectionItemClickWrapper(
+            item: item.item,
+            analytics: SectionItemAnalytics(id: item.id, position: index, type: item.$__typename, name: item.title),
+            child: _FeaturedItem(
+              sectionItem: item,
+              margin: const EdgeInsets.symmetric(horizontal: marginX),
+              isLive: item.id == curLiveEpisode?.id,
+            ),
+          );
+        },
+      ),
+    );
+  }
+
+  Widget buildSlider(
+    List<Fragment$Section$$FeaturedSection$items$items> sectionItems,
+    BoxConstraints constraints,
+    Fragment$CalendarEntryEpisode? curLiveEpisode,
+  ) {
+    final numItems = constraints.maxWidth > 1000 ? 2 : 1;
+    return HorizontalSlider(
+      height: 500,
+      padding: const EdgeInsets.symmetric(horizontal: 80),
+      itemCount: sectionItems.length,
+      itemBuilder: (context, index) {
+        final item = sectionItems[index % sectionItems.length];
+        return SizedBox(
+          width: (constraints.maxWidth - (32 - 2 * marginX) - 160) / numItems,
+          child: SectionItemClickWrapper(
+            item: item.item,
+            analytics: SectionItemAnalytics(id: item.id, position: index, type: item.$__typename, name: item.title),
+            child: _FeaturedItem(
+              sectionItem: item,
+              margin: const EdgeInsets.symmetric(horizontal: marginX),
+              isLive: item.id == curLiveEpisode?.id,
+            ),
+          ),
+        );
+      },
+    );
   }
 }
 
@@ -119,7 +158,7 @@ class _FeaturedItem extends StatelessWidget {
           alignment: Alignment.bottomCenter,
           child: Container(
             width: double.infinity,
-            padding: const EdgeInsets.only(top: 12, right: 18, bottom: 18, left: 18),
+            padding: const EdgeInsets.symmetric(horizontal: kIsWeb ? 80 : 18).copyWith(bottom: 18, top: 12),
             decoration: BoxDecoration(
               gradient: LinearGradient(
                 begin: Alignment.topCenter,
