@@ -55,9 +55,7 @@ class BccmPlayerWeb extends BccmPlayerInterface {
   }
 
   @override
-  Future<void> queueMediaItem(String playerId, pigeon.MediaItem mediaItem) async {
-    throw UnimplementedError('addMediaItem() has not been implemented.');
-  }
+  Future<void> queueMediaItem(String playerId, pigeon.MediaItem mediaItem) async {}
 
   @override
   Future<pigeon.ChromecastState?> getChromecastState() async {
@@ -65,14 +63,10 @@ class BccmPlayerWeb extends BccmPlayerInterface {
   }
 
   @override
-  void openExpandedCastController() {
-    throw UnimplementedError('openExpandedCastController() has not been implemented.');
-  }
+  void openExpandedCastController() {}
 
   @override
-  void openCastDialog() {
-    throw UnimplementedError('openCastDialog() has not been implemented.');
-  }
+  void openCastDialog() {}
 
   @override
   Future<void> addPlaybackListener(pigeon.PlaybackListenerPigeon listener) async {
@@ -80,19 +74,13 @@ class BccmPlayerWeb extends BccmPlayerInterface {
   }
 
   @override
-  void play(String playerId) {
-    throw UnimplementedError('play() has not been implemented.');
-  }
+  void play(String playerId) {}
 
   @override
-  void pause(String playerId) {
-    throw UnimplementedError('pause() has not been implemented.');
-  }
+  void pause(String playerId) {}
 
   @override
-  void stop(String playerId, bool reset) {
-    throw UnimplementedError('stop() has not been implemented.');
-  }
+  void stop(String playerId, bool reset) {}
 
   @override
   Future setNpawConfig(pigeon.NpawConfig? config) async {
@@ -105,7 +93,5 @@ class BccmPlayerWeb extends BccmPlayerInterface {
   }
 
   @override
-  void setPlayerViewVisibility(int viewId, bool visible) {
-    throw UnimplementedError('setAppConfig() has not been implemented.');
-  }
+  void setPlayerViewVisibility(int viewId, bool visible) {}
 }

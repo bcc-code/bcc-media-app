@@ -4,6 +4,7 @@ import 'package:brunstadtv_app/components/option_list.dart';
 import 'package:brunstadtv_app/graphql/queries/episode.graphql.dart';
 import 'package:brunstadtv_app/graphql/schema/items.graphql.dart';
 import 'package:brunstadtv_app/theme/bccm_colors.dart';
+import 'package:brunstadtv_app/theme/bccm_input_decorations.dart';
 import 'package:brunstadtv_app/theme/bccm_typography.dart';
 import 'package:brunstadtv_app/helpers/ui/svg_icons.dart';
 import 'package:brunstadtv_app/l10n/app_localizations.dart';
@@ -11,9 +12,11 @@ import 'package:brunstadtv_app/models/analytics/content_shared.dart';
 import 'package:brunstadtv_app/providers/analytics.dart';
 import 'package:brunstadtv_app/helpers/utils.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:share_plus/share_plus.dart';
+import '../helpers/share_extension/share_extension.dart';
 
 import '../helpers/date_time.dart';
 
@@ -80,18 +83,35 @@ class _ShareEpisodeSheetState extends ConsumerState<ShareEpisodeSheet> {
           setState(() {
             loading = true;
           });
-          var episodeUrl = 'https://app.bcc.media/episode/${widget.episode.id}';
+          final episodeUrl = 'https://app.bcc.media/episode/${widget.episode.id}';
           final navigator = Navigator.of(context);
 
-          if (id == 'fromStart') {
-            await Share.share(
-              episodeUrl,
+          var urlToShare = episodeUrl;
+
+          if (id == 'fromTime') {
+            urlToShare = '$episodeUrl?t=${widget.currentPosSeconds}';
+          }
+
+          try {
+            await Share().shareUrl(
+              urlToShare,
               sharePositionOrigin: iPadSharePositionOrigin(context),
             );
-          } else {
-            await Share.share(
-              '$episodeUrl?t=${widget.currentPosSeconds}',
-              sharePositionOrigin: iPadSharePositionOrigin(context),
+          } catch (e) {
+            showDialog(
+              context: context,
+              builder: (context) => SimpleDialog(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 16),
+                    child: TextField(
+                      autofocus: true,
+                      decoration: BccmInputDecorations.textFormField,
+                      controller: TextEditingController(text: urlToShare),
+                    ),
+                  ),
+                ],
+              ),
             );
           }
 
@@ -105,6 +125,10 @@ class _ShareEpisodeSheetState extends ConsumerState<ShareEpisodeSheet> {
                   position: id == 'fromStart' ? null : widget.currentPosSeconds,
                 ),
               );
+
+          setState(() {
+            loading = false;
+          });
         },
       );
     }

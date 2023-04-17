@@ -4,6 +4,7 @@ import '../theme/bccm_colors.dart';
 import '../theme/bccm_typography.dart';
 import '../l10n/app_localizations.dart';
 import 'option_list.dart';
+import '../helpers/insets.dart';
 
 class BottomSheetSelectResult {
   final bool cancelled;
@@ -49,7 +50,7 @@ class _BottomSheetSelectState extends State<BottomSheetSelect> {
       color: BccmColors.background1,
       child: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.only(left: 16, right: 16, top: 8, bottom: 32),
+          padding: screenInsets(context) + const EdgeInsets.only(left: 16, right: 16, top: 8, bottom: 32),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             mainAxisSize: MainAxisSize.min,

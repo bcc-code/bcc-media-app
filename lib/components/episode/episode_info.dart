@@ -41,9 +41,12 @@ class EpisodeInfo extends StatelessWidget {
                       GestureDetector(
                         onTap: onShareVideoTapped,
                         behavior: HitTestBehavior.opaque,
-                        child: Padding(
-                          padding: const EdgeInsets.only(top: 4, left: 16),
-                          child: SvgPicture.string(SvgIcons.share, color: BccmColors.label3),
+                        child: FocusableActionDetector(
+                          mouseCursor: MaterialStateMouseCursor.clickable,
+                          child: Padding(
+                            padding: const EdgeInsets.only(top: 4, left: 16),
+                            child: SvgPicture.string(SvgIcons.share, color: BccmColors.label3),
+                          ),
                         ),
                       ),
                     ],

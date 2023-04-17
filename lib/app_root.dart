@@ -11,7 +11,6 @@ import 'package:brunstadtv_app/providers/analytics.dart';
 import 'package:brunstadtv_app/providers/settings.dart';
 import 'package:brunstadtv_app/router/router.gr.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
@@ -139,7 +138,7 @@ class _AppRootState extends ConsumerState<AppRoot> {
           builder: (BuildContext context, Widget? child) {
             return MediaQuery(
               data: MediaQuery.of(context).copyWith(textScaleFactor: 1.0),
-              child: !kDebugMode ? child! : child!,
+              child: child!,
             );
           }),
     );

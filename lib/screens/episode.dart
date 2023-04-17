@@ -88,9 +88,9 @@ class EpisodeScreen extends HookConsumerWidget {
       if (noAccess == true) {
         child = const ErrorNoAccess();
       }
-      child = ErrorGeneric(onRetry: fetchCurrentEpisode);
+      child = SliverFillRemaining(child: ErrorGeneric(onRetry: fetchCurrentEpisode));
     } else if (episodeSnapshot.data == null || routeAnimationStatus.value == AnimationStatus.forward) {
-      child = const _LoadingWidget();
+      child = const SliverFillRemaining(child: _LoadingWidget());
     } else {
       child = SliverToBoxAdapter(
         child: _EpisodeDisplay(
@@ -100,29 +100,31 @@ class EpisodeScreen extends HookConsumerWidget {
         ),
       );
     }
-    return Scaffold(
-      appBar: ScreenInsetAppBar(
-        appBar: AppBar(
-          leadingWidth: 92,
-          leading: const CustomBackButton(padding: kIsWeb ? EdgeInsets.zero : null),
-          title: Text(episodeSnapshot.data?.season?.$show.title ?? episodeSnapshot.data?.title ?? ''),
-          actions: const [
-            Padding(
-              padding: EdgeInsets.only(left: 16, right: 16.0),
-              child: SizedBox(width: 24, child: BccmCastButton()),
+    return SelectionArea(
+      child: Scaffold(
+        appBar: ScreenInsetAppBar(
+          appBar: AppBar(
+            leadingWidth: 92,
+            leading: const CustomBackButton(padding: kIsWeb ? EdgeInsets.zero : null),
+            title: Text(episodeSnapshot.data?.season?.$show.title ?? episodeSnapshot.data?.title ?? ''),
+            actions: const [
+              Padding(
+                padding: EdgeInsets.only(left: 16, right: 16.0),
+                child: SizedBox(width: 24, child: BccmCastButton()),
+              ),
+            ],
+          ),
+        ),
+        body: CustomScrollView(
+          physics: const AlwaysScrollableScrollPhysics(),
+          controller: scrollController,
+          slivers: [
+            SliverPadding(
+              padding: screenInsets(context),
+              sliver: child,
             ),
           ],
         ),
-      ),
-      body: CustomScrollView(
-        physics: const AlwaysScrollableScrollPhysics(),
-        controller: scrollController,
-        slivers: [
-          SliverPadding(
-            padding: screenInsets(context),
-            sliver: child,
-          ),
-        ],
       ),
     );
   }
@@ -133,22 +135,20 @@ class _LoadingWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SliverFillRemaining(
-      child: Column(
-        children: [
-          AspectRatio(aspectRatio: 16 / 9, child: Container(color: BccmColors.background2)),
-          Expanded(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                const LoadingIndicator(),
-                const SizedBox(height: 12),
-                Text(S.of(context).loading, style: BccmTextStyles.body2),
-              ],
-            ),
+    return Column(
+      children: [
+        AspectRatio(aspectRatio: 16 / 9, child: Container(color: BccmColors.background2)),
+        Expanded(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              const LoadingIndicator(),
+              const SizedBox(height: 12),
+              Text(S.of(context).loading, style: BccmTextStyles.body2),
+            ],
           ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 }
