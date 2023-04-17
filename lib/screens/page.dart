@@ -1,6 +1,7 @@
 import 'package:brunstadtv_app/api/brunstadtv.dart';
 import 'package:brunstadtv_app/helpers/page_mixin.dart';
 import 'package:brunstadtv_app/helpers/utils.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -45,8 +46,8 @@ class PageScreenState extends ConsumerState<PageScreen> with PageMixin {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leadingWidth: 92,
-        leading: const CustomBackButton(),
+        leadingWidth: kIsWeb ? 300 : 92,
+        leading: const Padding(padding: EdgeInsets.only(left: kIsWeb ? 64 : 0), child: CustomBackButton()),
         title: Text(pageTitle),
       ),
       body: BccmPage(
