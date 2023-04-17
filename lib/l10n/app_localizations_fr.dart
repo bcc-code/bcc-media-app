@@ -403,6 +403,12 @@ class SFr extends S {
   String get liveNow => 'En direct maintenant';
 
   @override
+  String get comingSoon => 'Coming soon';
+
+  @override
+  String get newEpisode => 'New';
+
+  @override
   String get tomorrow => 'Demain';
 
   @override

@@ -403,6 +403,12 @@ class SRo extends S {
   String get liveNow => 'Acum în direct';
 
   @override
+  String get comingSoon => 'Coming soon';
+
+  @override
+  String get newEpisode => 'New';
+
+  @override
   String get tomorrow => 'Mâine';
 
   @override

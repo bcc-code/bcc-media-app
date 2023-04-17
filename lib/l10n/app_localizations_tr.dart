@@ -403,6 +403,12 @@ class STr extends S {
   String get liveNow => 'Şimdi canlı';
 
   @override
+  String get comingSoon => 'Coming soon';
+
+  @override
+  String get newEpisode => 'New';
+
+  @override
   String get tomorrow => 'Yarın';
 
   @override

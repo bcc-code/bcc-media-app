@@ -403,6 +403,12 @@ class SNl extends S {
   String get liveNow => 'Nu live';
 
   @override
+  String get comingSoon => 'Coming soon';
+
+  @override
+  String get newEpisode => 'New';
+
+  @override
   String get tomorrow => 'Morgen';
 
   @override

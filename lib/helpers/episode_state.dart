@@ -24,7 +24,22 @@ bool isComingSoon({required String? publishDate, required bool locked}) {
 /// True if startTime < now < endTime
 bool isLiveNow(String startTime, String endTime) {
   final now = DateTime.now();
-  final end = DateTime.parse(endTime).toLocal();
-  final start = DateTime.parse(startTime).toLocal();
+  final end = DateTime.tryParse(endTime)?.toLocal();
+  final start = DateTime.tryParse(startTime)?.toLocal();
+  if (start == null || end == null) {
+    return false;
+  }
   return end.isAfter(now) && start.isBefore(now);
+}
+
+/// True if publishDate > (now - 7 days)
+bool isNewEpisode(String? publishDate) {
+  if (publishDate == null) {
+    return false;
+  }
+  final publishDateTime = DateTime.tryParse(publishDate);
+  if (publishDateTime == null) {
+    return false;
+  }
+  return publishDateTime.isAfter(DateTime.now().subtract(const Duration(days: 7)));
 }

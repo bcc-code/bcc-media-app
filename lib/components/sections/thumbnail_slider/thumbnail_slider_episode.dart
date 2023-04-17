@@ -23,8 +23,6 @@ class ThumbnailSliderEpisode extends StatelessWidget {
     this.isLive = false,
   });
 
-  final bool isNewItem = false;
-
   @override
   Widget build(BuildContext context) {
     final show = episode.season?.$show;

@@ -77,6 +77,13 @@ class EpisodeThumbnailStack extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final featuredTag = getFeaturedTag(
+      context: context,
+      publishDate: episode.publishDate,
+      locked: episode.locked,
+      isLive: isLive,
+      watched: watched,
+    );
     return Stack(
       clipBehavior: Clip.none,
       children: [
@@ -119,12 +126,7 @@ class EpisodeThumbnailStack extends StatelessWidget {
               ),
             ),
           ),
-        if (getFeaturedTag(publishDate: episode.publishDate, locked: episode.locked, isLive: isLive) != null)
-          Positioned(
-            top: -4,
-            right: -4,
-            child: getFeaturedTag(publishDate: episode.publishDate, locked: episode.locked, isLive: isLive)!,
-          ),
+        if (featuredTag != null) Positioned(top: -4, right: -4, child: featuredTag),
       ],
     );
   }

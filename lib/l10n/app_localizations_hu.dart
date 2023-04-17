@@ -403,6 +403,12 @@ class SHu extends S {
   String get liveNow => 'Most élőben';
 
   @override
+  String get comingSoon => 'Coming soon';
+
+  @override
+  String get newEpisode => 'New';
+
+  @override
   String get tomorrow => 'Holnap';
 
   @override

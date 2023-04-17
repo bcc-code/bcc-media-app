@@ -403,6 +403,12 @@ class SRu extends S {
   String get liveNow => 'В прямом эфире';
 
   @override
+  String get comingSoon => 'Coming soon';
+
+  @override
+  String get newEpisode => 'New';
+
+  @override
   String get tomorrow => 'Завтра';
 
   @override

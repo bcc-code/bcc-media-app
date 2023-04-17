@@ -403,6 +403,12 @@ class SFi extends S {
   String get liveNow => 'Suorana nyt';
 
   @override
+  String get comingSoon => 'Coming soon';
+
+  @override
+  String get newEpisode => 'New';
+
+  @override
   String get tomorrow => 'Huomenna';
 
   @override

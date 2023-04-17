@@ -403,6 +403,12 @@ class SDe extends S {
   String get liveNow => 'Jetzt live';
 
   @override
+  String get comingSoon => 'Coming soon';
+
+  @override
+  String get newEpisode => 'New';
+
+  @override
   String get tomorrow => 'Morgen';
 
   @override

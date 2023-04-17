@@ -403,6 +403,12 @@ class SEs extends S {
   String get liveNow => 'En vivo';
 
   @override
+  String get comingSoon => 'Coming soon';
+
+  @override
+  String get newEpisode => 'New';
+
+  @override
   String get tomorrow => 'Mañana';
 
   @override

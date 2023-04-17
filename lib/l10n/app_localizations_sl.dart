@@ -403,6 +403,12 @@ class SSl extends S {
   String get liveNow => 'V živo';
 
   @override
+  String get comingSoon => 'Coming soon';
+
+  @override
+  String get newEpisode => 'New';
+
+  @override
   String get tomorrow => 'Jutri';
 
   @override
