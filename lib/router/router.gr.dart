@@ -12,33 +12,33 @@
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:auto_route/auto_route.dart' as _i24;
-import 'package:auto_route/empty_router_widgets.dart' deferred as _i20;
+import 'package:auto_route/empty_router_widgets.dart' as _i20;
 import 'package:flutter/foundation.dart' as _i28;
 import 'package:flutter/material.dart' as _i25;
 
 import '../helpers/navigation/custom_transitions.dart' as _i27;
-import '../screens/achievement_group.dart' deferred as _i17;
-import '../screens/achievements.dart' deferred as _i16;
-import '../screens/auto_login.dart' deferred as _i1;
-import '../screens/calendar/calendar.dart' deferred as _i21;
-import '../screens/episode.dart' deferred as _i14;
-import '../screens/home.dart' deferred as _i13;
-import '../screens/live.dart' deferred as _i19;
-import '../screens/onboarding/onboarding.dart' deferred as _i2;
-import '../screens/onboarding/signup.dart' deferred as _i3;
-import '../screens/page.dart' deferred as _i23;
-import '../screens/profile/about.dart' deferred as _i10;
-import '../screens/profile/account_deletion.dart' deferred as _i12;
-import '../screens/profile/app_language.dart' deferred as _i5;
-import '../screens/profile/audio_language.dart' deferred as _i6;
-import '../screens/profile/contact_support.dart' deferred as _i9;
-import '../screens/profile/faq.dart' deferred as _i11;
-import '../screens/profile/profile.dart' deferred as _i4;
-import '../screens/profile/subtitle_language.dart' deferred as _i7;
-import '../screens/profile/video_quality.dart' deferred as _i8;
-import '../screens/search/search.dart' deferred as _i22;
-import '../screens/study.dart' deferred as _i15;
-import '../screens/tabs_root.dart' deferred as _i18;
+import '../screens/achievement_group.dart' as _i17;
+import '../screens/achievements.dart' as _i16;
+import '../screens/auto_login.dart' as _i1;
+import '../screens/calendar/calendar.dart' as _i21;
+import '../screens/episode.dart' as _i14;
+import '../screens/home.dart' as _i13;
+import '../screens/live.dart' as _i19;
+import '../screens/onboarding/onboarding.dart' as _i2;
+import '../screens/onboarding/signup.dart' as _i3;
+import '../screens/page.dart' as _i23;
+import '../screens/profile/about.dart' as _i10;
+import '../screens/profile/account_deletion.dart' as _i12;
+import '../screens/profile/app_language.dart' as _i5;
+import '../screens/profile/audio_language.dart' as _i6;
+import '../screens/profile/contact_support.dart' as _i9;
+import '../screens/profile/faq.dart' as _i11;
+import '../screens/profile/profile.dart' as _i4;
+import '../screens/profile/subtitle_language.dart' as _i7;
+import '../screens/profile/video_quality.dart' as _i8;
+import '../screens/search/search.dart' as _i22;
+import '../screens/study.dart' as _i15;
+import '../screens/tabs_root.dart' as _i18;
 import 'router.dart' as _i26;
 
 class AppRouter extends _i24.RootStackRouter {
@@ -50,10 +50,7 @@ class AppRouter extends _i24.RootStackRouter {
     AutoLoginScreenRoute.name: (routeData) {
       return _i24.MaterialPageX<void>(
         routeData: routeData,
-        child: _i24.DeferredWidget(
-          _i1.loadLibrary,
-          () => _i1.AutoLoginScreen(),
-        ),
+        child: const _i1.AutoLoginScreen(),
       );
     },
     OnboardingScreenRoute.name: (routeData) {
@@ -66,14 +63,11 @@ class AppRouter extends _i24.RootStackRouter {
               )));
       return _i24.CustomPage<void>(
         routeData: routeData,
-        child: _i24.DeferredWidget(
-          _i2.loadLibrary,
-          () => _i2.OnboardingScreen(
-            key: args.key,
-            loginError: args.loginError,
-            onResult: args.onResult,
-            auto: args.auto,
-          ),
+        child: _i2.OnboardingScreen(
+          key: args.key,
+          loginError: args.loginError,
+          onResult: args.onResult,
+          auto: args.auto,
         ),
         customRouteBuilder: _i26.profileRouteBuilder,
         opaque: true,
@@ -83,10 +77,7 @@ class AppRouter extends _i24.RootStackRouter {
     SignupScreenRoute.name: (routeData) {
       return _i24.CustomPage<void>(
         routeData: routeData,
-        child: _i24.DeferredWidget(
-          _i3.loadLibrary,
-          () => _i3.SignupScreen(),
-        ),
+        child: const _i3.SignupScreen(),
         customRouteBuilder: _i26.modalSheetBuilder,
         opaque: true,
         barrierDismissible: false,
@@ -95,10 +86,7 @@ class AppRouter extends _i24.RootStackRouter {
     ProfileRoute.name: (routeData) {
       return _i24.CustomPage<void>(
         routeData: routeData,
-        child: _i24.DeferredWidget(
-          _i4.loadLibrary,
-          () => _i4.Profile(),
-        ),
+        child: const _i4.Profile(),
         customRouteBuilder: _i26.profileRouteBuilder,
         durationInMilliseconds: 400,
         reverseDurationInMilliseconds: 600,
@@ -109,10 +97,7 @@ class AppRouter extends _i24.RootStackRouter {
     AppLanguageScreenRoute.name: (routeData) {
       return _i24.CustomPage<void>(
         routeData: routeData,
-        child: _i24.DeferredWidget(
-          _i5.loadLibrary,
-          () => _i5.AppLanguageScreen(),
-        ),
+        child: const _i5.AppLanguageScreen(),
         customRouteBuilder: _i26.profileRouteBuilder,
         durationInMilliseconds: 400,
         reverseDurationInMilliseconds: 600,
@@ -123,10 +108,7 @@ class AppRouter extends _i24.RootStackRouter {
     AppAudioLanguageRoute.name: (routeData) {
       return _i24.CustomPage<void>(
         routeData: routeData,
-        child: _i24.DeferredWidget(
-          _i6.loadLibrary,
-          () => _i6.AppAudioLanguage(),
-        ),
+        child: const _i6.AppAudioLanguage(),
         customRouteBuilder: _i26.profileRouteBuilder,
         durationInMilliseconds: 400,
         reverseDurationInMilliseconds: 600,
@@ -137,10 +119,7 @@ class AppRouter extends _i24.RootStackRouter {
     AppSubtitleLanguageRoute.name: (routeData) {
       return _i24.CustomPage<void>(
         routeData: routeData,
-        child: _i24.DeferredWidget(
-          _i7.loadLibrary,
-          () => _i7.AppSubtitleLanguage(),
-        ),
+        child: const _i7.AppSubtitleLanguage(),
         customRouteBuilder: _i26.profileRouteBuilder,
         durationInMilliseconds: 400,
         reverseDurationInMilliseconds: 600,
@@ -151,10 +130,7 @@ class AppRouter extends _i24.RootStackRouter {
     VideoQualityRoute.name: (routeData) {
       return _i24.CustomPage<void>(
         routeData: routeData,
-        child: _i24.DeferredWidget(
-          _i8.loadLibrary,
-          () => _i8.VideoQuality(),
-        ),
+        child: const _i8.VideoQuality(),
         customRouteBuilder: _i26.profileRouteBuilder,
         durationInMilliseconds: 400,
         reverseDurationInMilliseconds: 600,
@@ -165,10 +141,7 @@ class AppRouter extends _i24.RootStackRouter {
     ContactSupportRoute.name: (routeData) {
       return _i24.CustomPage<void>(
         routeData: routeData,
-        child: _i24.DeferredWidget(
-          _i9.loadLibrary,
-          () => _i9.ContactSupport(),
-        ),
+        child: const _i9.ContactSupport(),
         customRouteBuilder: _i26.profileRouteBuilder,
         durationInMilliseconds: 400,
         reverseDurationInMilliseconds: 600,
@@ -179,10 +152,7 @@ class AppRouter extends _i24.RootStackRouter {
     AboutScreenRoute.name: (routeData) {
       return _i24.CustomPage<void>(
         routeData: routeData,
-        child: _i24.DeferredWidget(
-          _i10.loadLibrary,
-          () => _i10.AboutScreen(),
-        ),
+        child: const _i10.AboutScreen(),
         customRouteBuilder: _i26.profileRouteBuilder,
         durationInMilliseconds: 400,
         reverseDurationInMilliseconds: 600,
@@ -193,10 +163,7 @@ class AppRouter extends _i24.RootStackRouter {
     FAQRoute.name: (routeData) {
       return _i24.CustomPage<void>(
         routeData: routeData,
-        child: _i24.DeferredWidget(
-          _i11.loadLibrary,
-          () => _i11.FAQ(),
-        ),
+        child: const _i11.FAQ(),
         customRouteBuilder: _i26.profileRouteBuilder,
         durationInMilliseconds: 400,
         reverseDurationInMilliseconds: 600,
@@ -207,10 +174,7 @@ class AppRouter extends _i24.RootStackRouter {
     AccountDeletionScreenRoute.name: (routeData) {
       return _i24.CustomPage<void>(
         routeData: routeData,
-        child: _i24.DeferredWidget(
-          _i12.loadLibrary,
-          () => _i12.AccountDeletionScreen(),
-        ),
+        child: const _i12.AccountDeletionScreen(),
         customRouteBuilder: _i26.profileRouteBuilder,
         durationInMilliseconds: 400,
         reverseDurationInMilliseconds: 600,
@@ -223,10 +187,7 @@ class AppRouter extends _i24.RootStackRouter {
           orElse: () => const PublicHomeRouteArgs());
       return _i24.CustomPage<void>(
         routeData: routeData,
-        child: _i24.DeferredWidget(
-          _i13.loadLibrary,
-          () => _i13.HomeScreen(key: args.key),
-        ),
+        child: _i13.HomeScreen(key: args.key),
         maintainState: false,
         durationInMilliseconds: 500,
         reverseDurationInMilliseconds: 500,
@@ -246,15 +207,12 @@ class AppRouter extends _i24.RootStackRouter {
               ));
       return _i24.CustomPage<void>(
         routeData: routeData,
-        child: _i24.DeferredWidget(
-          _i14.loadLibrary,
-          () => _i14.EpisodeScreen(
-            key: args.key,
-            episodeId: args.episodeId,
-            autoplay: args.autoplay,
-            queryParamStartPosition: args.queryParamStartPosition,
-            hideBottomSection: args.hideBottomSection,
-          ),
+        child: _i14.EpisodeScreen(
+          key: args.key,
+          episodeId: args.episodeId,
+          autoplay: args.autoplay,
+          queryParamStartPosition: args.queryParamStartPosition,
+          hideBottomSection: args.hideBottomSection,
         ),
         transitionsBuilder: _i27.CustomTransitionsBuilders.slideLeft,
         durationInMilliseconds: 300,
@@ -267,13 +225,10 @@ class AppRouter extends _i24.RootStackRouter {
       final args = routeData.argsAs<StudyScreenRouteArgs>();
       return _i24.CustomPage<void>(
         routeData: routeData,
-        child: _i24.DeferredWidget(
-          _i15.loadLibrary,
-          () => _i15.StudyScreen(
-            key: args.key,
-            episodeId: args.episodeId,
-            lessonId: args.lessonId,
-          ),
+        child: _i15.StudyScreen(
+          key: args.key,
+          episodeId: args.episodeId,
+          lessonId: args.lessonId,
         ),
         transitionsBuilder: _i27.CustomTransitionsBuilders.slideUp,
         durationInMilliseconds: 400,
@@ -285,10 +240,7 @@ class AppRouter extends _i24.RootStackRouter {
     AchievementsScreenRoute.name: (routeData) {
       return _i24.CustomPage<void>(
         routeData: routeData,
-        child: _i24.DeferredWidget(
-          _i16.loadLibrary,
-          () => _i16.AchievementsScreen(),
-        ),
+        child: const _i16.AchievementsScreen(),
         transitionsBuilder: _i27.CustomTransitionsBuilders.slideUp,
         durationInMilliseconds: 400,
         reverseDurationInMilliseconds: 600,
@@ -303,12 +255,9 @@ class AppRouter extends _i24.RootStackRouter {
               groupId: pathParams.getString('groupId')));
       return _i24.CustomPage<void>(
         routeData: routeData,
-        child: _i24.DeferredWidget(
-          _i17.loadLibrary,
-          () => _i17.AchievementGroupScreen(
-            key: args.key,
-            groupId: args.groupId,
-          ),
+        child: _i17.AchievementGroupScreen(
+          key: args.key,
+          groupId: args.groupId,
         ),
         transitionsBuilder: _i27.CustomTransitionsBuilders.slideUp,
         durationInMilliseconds: 400,
@@ -320,10 +269,7 @@ class AppRouter extends _i24.RootStackRouter {
     TabsRootScreenRoute.name: (routeData) {
       return _i24.CustomPage<void>(
         routeData: routeData,
-        child: _i24.DeferredWidget(
-          _i18.loadLibrary,
-          () => _i18.TabsRootScreen(),
-        ),
+        child: const _i18.TabsRootScreen(),
         opaque: true,
         barrierDismissible: false,
       );
@@ -331,37 +277,25 @@ class AppRouter extends _i24.RootStackRouter {
     LiveScreenRoute.name: (routeData) {
       return _i24.MaterialPageX<void>(
         routeData: routeData,
-        child: _i24.DeferredWidget(
-          _i19.loadLibrary,
-          () => _i19.LiveScreen(),
-        ),
+        child: const _i19.LiveScreen(),
       );
     },
     SearchScreenWrapperRoute.name: (routeData) {
       return _i24.MaterialPageX<void>(
         routeData: routeData,
-        child: _i24.DeferredWidget(
-          _i20.loadLibrary,
-          () => _i20.EmptyRouterPage(),
-        ),
+        child: const _i20.EmptyRouterPage(),
       );
     },
     CalendarPageRoute.name: (routeData) {
       return _i24.MaterialPageX<void>(
         routeData: routeData,
-        child: _i24.DeferredWidget(
-          _i21.loadLibrary,
-          () => _i21.CalendarPage(),
-        ),
+        child: const _i21.CalendarPage(),
       );
     },
     HomeScreenWrapperRoute.name: (routeData) {
       return _i24.CustomPage<void>(
         routeData: routeData,
-        child: _i24.DeferredWidget(
-          _i20.loadLibrary,
-          () => _i20.EmptyRouterPage(),
-        ),
+        child: const _i20.EmptyRouterPage(),
         opaque: true,
         barrierDismissible: false,
       );
@@ -373,12 +307,9 @@ class AppRouter extends _i24.RootStackRouter {
               SearchScreenRouteArgs(query: queryParams.optString('q')));
       return _i24.MaterialPageX<void>(
         routeData: routeData,
-        child: _i24.DeferredWidget(
-          _i22.loadLibrary,
-          () => _i22.SearchScreen(
-            key: args.key,
-            query: args.query,
-          ),
+        child: _i22.SearchScreen(
+          key: args.key,
+          query: args.query,
         ),
       );
     },
@@ -394,15 +325,12 @@ class AppRouter extends _i24.RootStackRouter {
               ));
       return _i24.CustomPage<void>(
         routeData: routeData,
-        child: _i24.DeferredWidget(
-          _i14.loadLibrary,
-          () => _i14.EpisodeScreen(
-            key: args.key,
-            episodeId: args.episodeId,
-            autoplay: args.autoplay,
-            queryParamStartPosition: args.queryParamStartPosition,
-            hideBottomSection: args.hideBottomSection,
-          ),
+        child: _i14.EpisodeScreen(
+          key: args.key,
+          episodeId: args.episodeId,
+          autoplay: args.autoplay,
+          queryParamStartPosition: args.queryParamStartPosition,
+          hideBottomSection: args.hideBottomSection,
         ),
         transitionsBuilder: _i27.CustomTransitionsBuilders.slideLeft,
         durationInMilliseconds: 300,
@@ -418,12 +346,9 @@ class AppRouter extends _i24.RootStackRouter {
               PageScreenRouteArgs(pageCode: pathParams.getString('pageCode')));
       return _i24.CustomPage<void>(
         routeData: routeData,
-        child: _i24.DeferredWidget(
-          _i23.loadLibrary,
-          () => _i23.PageScreen(
-            key: args.key,
-            pageCode: args.pageCode,
-          ),
+        child: _i23.PageScreen(
+          key: args.key,
+          pageCode: args.pageCode,
         ),
         transitionsBuilder: _i27.CustomTransitionsBuilders.slideLeft,
         durationInMilliseconds: 300,
@@ -436,10 +361,7 @@ class AppRouter extends _i24.RootStackRouter {
       final args = routeData.argsAs<HomeArgs>(orElse: () => const HomeArgs());
       return _i24.CustomPage<void>(
         routeData: routeData,
-        child: _i24.DeferredWidget(
-          _i13.loadLibrary,
-          () => _i13.HomeScreen(key: args.key),
-        ),
+        child: _i13.HomeScreen(key: args.key),
         opaque: true,
         barrierDismissible: false,
       );
@@ -451,25 +373,21 @@ class AppRouter extends _i24.RootStackRouter {
         _i24.RouteConfig(
           AutoLoginScreenRoute.name,
           path: '/auto-login',
-          deferredLoading: true,
         ),
         _i24.RouteConfig(
           OnboardingScreenRoute.name,
           path: '/login',
           meta: <String, dynamic>{'analytics_name': 'login'},
-          deferredLoading: true,
         ),
         _i24.RouteConfig(
           SignupScreenRoute.name,
           path: 'signup',
           meta: <String, dynamic>{'analytics_name': 'signup'},
-          deferredLoading: true,
         ),
         _i24.RouteConfig(
           ProfileRoute.name,
           path: '/profile',
           meta: <String, dynamic>{'analytics_name': 'profile'},
-          deferredLoading: true,
         ),
         _i24.RouteConfig(
           AppLanguageScreenRoute.name,
@@ -478,7 +396,6 @@ class AppRouter extends _i24.RootStackRouter {
             'analytics_name': 'settings',
             'settings_name': 'appLanguage',
           },
-          deferredLoading: true,
         ),
         _i24.RouteConfig(
           AppAudioLanguageRoute.name,
@@ -487,7 +404,6 @@ class AppRouter extends _i24.RootStackRouter {
             'analytics_name': 'settings',
             'settings_name': 'audioLanguage',
           },
-          deferredLoading: true,
         ),
         _i24.RouteConfig(
           AppSubtitleLanguageRoute.name,
@@ -496,7 +412,6 @@ class AppRouter extends _i24.RootStackRouter {
             'analytics_name': 'settings',
             'settings_name': 'subtitlesLanguage',
           },
-          deferredLoading: true,
         ),
         _i24.RouteConfig(
           VideoQualityRoute.name,
@@ -505,65 +420,54 @@ class AppRouter extends _i24.RootStackRouter {
             'analytics_name': 'settings',
             'settings_name': 'videoQuality',
           },
-          deferredLoading: true,
         ),
         _i24.RouteConfig(
           ContactSupportRoute.name,
           path: '/contact-support',
           meta: <String, dynamic>{'analytics_name': 'support'},
-          deferredLoading: true,
         ),
         _i24.RouteConfig(
           AboutScreenRoute.name,
           path: '/about',
           meta: <String, dynamic>{'analytics_name': 'about'},
-          deferredLoading: true,
         ),
         _i24.RouteConfig(
           FAQRoute.name,
           path: '/faq',
           meta: <String, dynamic>{'analytics_name': 'faq'},
-          deferredLoading: true,
         ),
         _i24.RouteConfig(
           AccountDeletionScreenRoute.name,
           path: '/account-deletion',
           meta: <String, dynamic>{'analytics_name': 'account-deletion'},
-          deferredLoading: true,
         ),
         _i24.RouteConfig(
           PublicHomeRoute.name,
           path: '/public-home',
-          deferredLoading: true,
         ),
         _i24.RouteConfig(
           EmbedScreen.name,
           path: '/embed/:episodeId',
           meta: <String, dynamic>{'analytics_name': 'episode'},
-          deferredLoading: true,
         ),
         _i24.RouteConfig(
           StudyScreenRoute.name,
           path: 'study-lesson',
           meta: <String, dynamic>{'analytics_name': 'study-lesson'},
-          deferredLoading: true,
         ),
         _i24.RouteConfig(
           AchievementsScreenRoute.name,
           path: '/achievements',
           meta: <String, dynamic>{'analytics_name': 'achievements'},
-          deferredLoading: true,
         ),
         _i24.RouteConfig(
           AchievementGroupScreenRoute.name,
           path: '/achievement-group/:groupId',
           meta: <String, dynamic>{'analytics_name': 'achievement-group'},
-          deferredLoading: true,
         ),
         _i24.RouteConfig(
           TabsRootScreenRoute.name,
           path: '/',
-          deferredLoading: true,
           children: [
             _i24.RouteConfig(
               LiveScreenRoute.name,
@@ -574,34 +478,29 @@ class AppRouter extends _i24.RootStackRouter {
                 'nav_tab_route': true,
                 'analytics_name': 'livestream',
               },
-              deferredLoading: true,
             ),
             _i24.RouteConfig(
               SearchScreenWrapperRoute.name,
               path: 'search',
               parent: TabsRootScreenRoute.name,
-              deferredLoading: true,
               children: [
                 _i24.RouteConfig(
                   SearchScreenRoute.name,
                   path: '',
                   parent: SearchScreenWrapperRoute.name,
                   meta: <String, dynamic>{'nav_tab_route': true},
-                  deferredLoading: true,
                 ),
                 _i24.RouteConfig(
                   EpisodeScreenRoute.name,
                   path: 'episode/:episodeId',
                   parent: SearchScreenWrapperRoute.name,
                   meta: <String, dynamic>{'analytics_name': 'episode'},
-                  deferredLoading: true,
                 ),
                 _i24.RouteConfig(
                   PageScreenRoute.name,
                   path: ':pageCode',
                   parent: SearchScreenWrapperRoute.name,
                   usesPathAsKey: true,
-                  deferredLoading: true,
                 ),
               ],
             ),
@@ -613,34 +512,29 @@ class AppRouter extends _i24.RootStackRouter {
                 'nav_tab_route': true,
                 'analytics_name': 'calendar',
               },
-              deferredLoading: true,
             ),
             _i24.RouteConfig(
               HomeScreenWrapperRoute.name,
               path: '',
               parent: TabsRootScreenRoute.name,
-              deferredLoading: true,
               children: [
                 _i24.RouteConfig(
                   Home.name,
                   path: '',
                   parent: HomeScreenWrapperRoute.name,
                   meta: <String, dynamic>{'nav_tab_route': true},
-                  deferredLoading: true,
                 ),
                 _i24.RouteConfig(
                   EpisodeScreenRoute.name,
                   path: 'episode/:episodeId',
                   parent: HomeScreenWrapperRoute.name,
                   meta: <String, dynamic>{'analytics_name': 'episode'},
-                  deferredLoading: true,
                 ),
                 _i24.RouteConfig(
                   PageScreenRoute.name,
                   path: ':pageCode',
                   parent: HomeScreenWrapperRoute.name,
                   usesPathAsKey: true,
-                  deferredLoading: true,
                 ),
               ],
             ),

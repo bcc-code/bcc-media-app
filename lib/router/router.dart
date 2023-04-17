@@ -65,7 +65,7 @@ Route<T> profileRouteBuilder<T>(BuildContext context, Widget child, CustomPage<T
 }
 
 @MaterialAutoRouter(
-  deferredLoading: true,
+  deferredLoading: false,
   routes: [
     AutoRoute<void>(page: AutoLoginScreen, path: '/auto-login'),
     CustomRoute<void>(
