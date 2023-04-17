@@ -19,7 +19,7 @@
 
   <meta charset="UTF-8">
   <meta content="IE=Edge" http-equiv="X-UA-Compatible">
-  <meta name="description" content="A new Flutter project.">
+  <meta name="description" content="BCC Media">
 
   <!-- iOS meta tags & icons -->
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -28,17 +28,19 @@
   <link rel="apple-touch-icon" href="icons/Icon-192.png">
 
   <!-- Favicon -->
-  <link rel="icon" type="image/png" href="favicon.png" />
+  <link rel="icon" type="image/png" href="favicon.png">
 
   <title>BCC Media</title>
   <link rel="manifest" href="manifest.json">
+  <link rel="stylesheet" href="lib/generated/bccm-app-web-lib.css">
+  <script type="text/javascript" src="lib/generated/bccm-app-web-lib.js"></script>
 
   <script>
     // The value below is injected by flutter build, do not touch.
     var serviceWorkerVersion = null;
   </script>
   <!-- This script adds the flutter initialization JS code -->
-  <script src="flutter.js" defer></script>
+  <script src="flutter.js" defer=""></script>
 
   <!--
     Rudderstack
@@ -46,9 +48,23 @@
   -->
   <script type="text/javascript" src="https://static.bcc.media/rs.min.js"></script>
 
+
+  <link rel="stylesheet" type="text/css" href="splash/style.css">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport">
+  <script src="splash/splash.js"></script>
 </head>
 
 <body>
+  <picture id="splash">
+    <source
+      srcset="splash/img/light-1x.png 1x, splash/img/light-2x.png 2x, splash/img/light-3x.png 3x, splash/img/light-4x.png 4x"
+      media="(prefers-color-scheme: light)">
+    <source
+      srcset="splash/img/dark-1x.png 1x, splash/img/dark-2x.png 2x, splash/img/dark-3x.png 3x, splash/img/dark-4x.png 4x"
+      media="(prefers-color-scheme: dark)">
+    <img class="center" aria-hidden="true" src="splash/img/light-1x.png" alt="">
+  </picture>
+
   <script>
     window.addEventListener('load', function (ev) {
       // Download main.dart.js
@@ -63,34 +79,13 @@
       });
     });
   </script>
-  <script src="/bccm-video-player/bccm-video-player.umd.js"></script>
   <script src="https://cdn.auth0.com/js/auth0-spa-js/1.13/auth0-spa-js.production.js"></script>
   <script src="/assets/packages/flutter_inappwebview/assets/web/web_support.js"></script>
-  <div id="primary-player-wrapper" style="display: none;"></div>
-  <script>
-    //window.createVideoJsPlayer = (...args) => console.log(args)
+  <div id="primary-player-wrapper" style="display: block;"></div>
 
-    let createPlayerView = () => {
-      let div = document.createElement("div");
-      div.id = "primary_player";
-      div.style.width = "100%";
-      div.style.height = "100%";
-      /* div.style.position = "absolute";
-      div.style.left = "calc(50% - 500px)"
-      div.style.display = "none"; */
 
-      let button = document.createElement("button");
-      button.innerHTML = "Exit player";
-      button.onclick = () => {
-        console.log("remove player clicked")
-        div.remove();
-        createPlayerView();
-      }
-      div.appendChild(button);
-      document.getElementById('primary-player-wrapper').appendChild(div);
-    }
-    setTimeout(createPlayerView, 5000);
-  </script>
+
+
 </body>
 
 </html>

@@ -32,8 +32,14 @@ class _BccmPlayerState extends State<BccmPlayer> {
       return const BccmCastPlayer();
     }
     if (kIsWeb) {
-      //return const AspectRatio(aspectRatio: 16 / 9, child: HtmlElementView(viewType: 'bccm-player'));
-      return const AspectRatio(aspectRatio: 16 / 9, child: SizedBox.shrink());
+      return Column(
+        children: [
+          AspectRatio(
+            aspectRatio: 16 / 9,
+            child: HtmlElementView(viewType: 'bccm-player-${widget.id}'),
+          ),
+        ],
+      );
     }
     return Column(
       children: [

@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -16,6 +17,11 @@ import '../../section_item_click_wrapper.dart';
 class ThumbnailSliderSize {
   final Size imageSize;
   final double sectionHeight;
+
+  ThumbnailSliderSize operator *(double factor) => ThumbnailSliderSize(
+        imageSize: imageSize * factor,
+        sectionHeight: sectionHeight * factor,
+      );
 
   const ThumbnailSliderSize({required this.imageSize, required this.sectionHeight});
 }
@@ -36,16 +42,16 @@ class ItemSectionThumbnailSlider extends ConsumerWidget {
     ThumbnailSliderSize sliderSize;
     switch (data.size) {
       case Enum$SectionSize.medium:
-        sliderSize = const ThumbnailSliderSize(
-          imageSize: Size(240, 146),
-          sectionHeight: 222,
+        sliderSize = ThumbnailSliderSize(
+          imageSize: const Size(240, 146) * (kIsWeb ? 2 : 1),
+          sectionHeight: 222 * (kIsWeb ? 2 : 1),
         );
         break;
       case Enum$SectionSize.small:
       default:
-        sliderSize = const ThumbnailSliderSize(
-          imageSize: Size(140, 80),
-          sectionHeight: 156,
+        sliderSize = ThumbnailSliderSize(
+          imageSize: const Size(140, 80) * (kIsWeb ? 2 : 1),
+          sectionHeight: 156 * (kIsWeb ? 2 : 1),
         );
         break;
     }
@@ -60,16 +66,16 @@ class ItemSectionThumbnailSlider extends ConsumerWidget {
     ThumbnailSliderSize sliderSize;
     switch (data.size) {
       case Enum$SectionSize.medium:
-        sliderSize = const ThumbnailSliderSize(
-          imageSize: Size(230, 340),
-          sectionHeight: 416,
+        sliderSize = ThumbnailSliderSize(
+          imageSize: const Size(230, 340) * (kIsWeb ? 2 : 1),
+          sectionHeight: 416 * (kIsWeb ? 2 : 1),
         );
         break;
       case Enum$SectionSize.small:
       default:
-        sliderSize = const ThumbnailSliderSize(
-          imageSize: Size(140, 208),
-          sectionHeight: 284,
+        sliderSize = ThumbnailSliderSize(
+          imageSize: const Size(140, 208) * (kIsWeb ? 2 : 1),
+          sectionHeight: 284 * (kIsWeb ? 2 : 1),
         );
         break;
     }
@@ -88,9 +94,10 @@ class ItemSectionThumbnailSlider extends ConsumerWidget {
         .where((element) => element.item is Fragment$ItemSectionItem$item$$Episode || element.item is Fragment$ItemSectionItem$item$$Show)
         .toList();
     return HorizontalSlider(
+      itemWidth: sliderSize.imageSize.width,
       height: sliderSize.sectionHeight,
       clipBehaviour: Clip.none,
-      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+      padding: const EdgeInsets.symmetric(horizontal: kIsWeb ? 80 : 16, vertical: 12),
       itemCount: items.length,
       itemBuilder: (BuildContext context, int index) {
         final item = items[index];

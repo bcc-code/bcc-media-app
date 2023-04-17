@@ -40,15 +40,15 @@ import '../l10n/app_localizations.dart';
 
 class EpisodeScreen extends HookConsumerWidget {
   final String episodeId;
-  final bool autoplay;
+  final bool? autoplay;
   final int? queryParamStartPosition;
-  final bool hideBottomSection;
+  final bool? hideBottomSection;
   const EpisodeScreen({
     super.key,
     @PathParam() required this.episodeId,
-    @QueryParam() this.autoplay = false,
+    @QueryParam() this.autoplay,
     @QueryParam('t') this.queryParamStartPosition,
-    @QueryParam('hide_bottom_section') this.hideBottomSection = false,
+    @QueryParam('hide_bottom_section') this.hideBottomSection,
   });
 
   @override
@@ -91,9 +91,16 @@ class EpisodeScreen extends HookConsumerWidget {
           ),
         ],
       ),
-      body: ConditionalParentWidget(
-        condition: kIsWeb,
-        conditionalBuilder: (child) => Padding(padding: const EdgeInsets.symmetric(horizontal: 300), child: child),
+      body: Padding(
+        padding: !kIsWeb
+            ? EdgeInsets.zero
+            : MediaQuery.of(context).size.width > 2200
+                ? const EdgeInsets.symmetric(horizontal: 800)
+                : MediaQuery.of(context).size.width > 1200
+                    ? const EdgeInsets.symmetric(horizontal: 500)
+                    : MediaQuery.of(context).size.width > 900
+                        ? const EdgeInsets.symmetric(horizontal: 300)
+                        : const EdgeInsets.symmetric(horizontal: 80),
         child: Builder(
           builder: (context) {
             if (episodeSnapshot.hasError && episodeSnapshot.connectionState == ConnectionState.done) {
@@ -176,7 +183,7 @@ class _EpisodeDisplay extends HookConsumerWidget {
     final episodeIsCurrentItem = player.currentMediaItem?.metadata?.extras?['id'] == episode.id;
 
     useEffect(() {
-      if (screenParams.autoplay && !episodeIsCurrentItem) {
+      if (screenParams.autoplay == true && !episodeIsCurrentItem) {
         setupPlayer();
       }
       return null;
@@ -239,7 +246,7 @@ class _EpisodeDisplay extends HookConsumerWidget {
                       imageUrl: episode.image,
                       onRetry: setupPlayer,
                     )
-                  else if (!episodeIsCurrentItem || showLoadingOverlay)
+                  else if (!episodeIsCurrentItem || showLoadingOverlay || kIsWeb)
                     PlayerPoster(
                       imageUrl: episode.image,
                       setupPlayer: setupPlayer,
@@ -295,7 +302,7 @@ class _EpisodeDisplay extends HookConsumerWidget {
                     season: episode.season!,
                     onEpisodeTap: (tappedEpisodeId) {
                       if (tappedEpisodeId != episode.id) {
-                        context.navigateTo(EpisodeScreenRoute(episodeId: tappedEpisodeId, autoplay: true));
+                        context.navigateTo(EpisodeScreenRoute(episodeId: tappedEpisodeId, autoplay: kIsWeb ? null : true));
                       }
                       scrollToTop();
                     },

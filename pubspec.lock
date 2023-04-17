@@ -344,6 +344,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.3.3"
+  dart_pubspec_licenses:
+    dependency: transitive
+    description:
+      name: dart_pubspec_licenses
+      sha256: "38680e2d2fc41df3a0d435d0955b91acc382aeefcb89ef4738f8167c8288a29d"
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.0.2"
   dart_style:
     dependency: transitive
     description:
@@ -639,6 +647,22 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.6.14"
+  flutter_native_splash:
+    dependency: "direct main"
+    description:
+      name: flutter_native_splash
+      sha256: af665ef80a213a9ed502845a3d7a61b9acca4100ee7e9f067a7440bc3acd6730
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.2.19"
+  flutter_oss_licenses:
+    dependency: "direct dev"
+    description:
+      name: flutter_oss_licenses
+      sha256: eb15e1146b101dca063a177f6d339dfb85b639a9e2d2b71c18188d5fb2144869
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.0.1"
   flutter_riverpod:
     dependency: "direct main"
     description:
@@ -718,7 +742,7 @@ packages:
     source: sdk
     version: "0.0.0"
   flutter_web_plugins:
-    dependency: transitive
+    dependency: "direct main"
     description: flutter
     source: sdk
     version: "0.0.0"
@@ -935,6 +959,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "4.0.2"
+  image:
+    dependency: "direct main"
+    description:
+      name: image
+      sha256: "483a389d6ccb292b570c31b3a193779b1b0178e7eb571986d9a49904b6861227"
+      url: "https://pub.dev"
+    source: hosted
+    version: "4.0.15"
   integration_test:
     dependency: "direct dev"
     description: flutter
@@ -1292,6 +1324,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.1.4"
+  pointer_interceptor:
+    dependency: transitive
+    description:
+      name: pointer_interceptor
+      sha256: "6aa680b30d96dccef496933d00208ad25f07e047f644dc98ce03ec6141633a9a"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.9.3+4"
   pool:
     dependency: transitive
     description:

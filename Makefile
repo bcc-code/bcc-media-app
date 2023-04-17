@@ -31,3 +31,10 @@ git-tag-recreate:
 	git tag --delete ${BUILD_NUMBER}
 	git tag ${BUILD_NUMBER}
 	git push --tags
+
+web-build:
+	flutter build web --release -t lib/main_prod.dart --web-renderer canvaskit
+
+web-beta-upload:
+	gsutil -m cp -R build/web/* gs://bccm-web-beta
+	gsutil setmeta -r -h "Cache-control:no-cache, max-age=0" gs://bccm-web-beta/

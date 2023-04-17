@@ -25,39 +25,40 @@ class SectionItemClickWrapper extends ConsumerWidget {
     return InheritedData<SectionItemAnalytics>(
       inheritedData: analytics,
       child: (context) => GestureDetector(
-        child: GestureDetector(
-          behavior: HitTestBehavior.opaque,
-          onLongPress: () {
-            var episode = item.asOrNull<Fragment$ItemSectionItem$item$$Episode>();
-            if (episode?.progress == null || episode!.progress == 0) {
-              return;
-            }
-            HapticFeedback.heavyImpact();
-            showModalBottomSheet(
-              useRootNavigator: true,
-              context: context,
-              builder: (ctx) => BottomSheetSelect(
-                title: 'Options',
-                selectedId: 'fromStart',
-                items: [
-                  Option(
-                    id: 'remove_progress',
-                    title: 'Remove watch progress',
-                    disabled: episode.progress == null || episode.progress == 0,
-                    icon: Image.asset(width: 24, height: 24, 'assets/icons/Close.png', gaplessPlayback: true),
-                  )
-                ],
-                showSelection: false,
-                onSelectionChanged: (id) {
-                  if (id == 'remove_progress') {
-                    ref.read(apiProvider).updateProgress(episodeId: episode.id, progress: null);
-                    globalEventBus.fire(WatchProgressUpdatedEvent(episodeId: episode.id, progress: null));
-                  } else {}
-                },
-              ),
-            );
-          },
-          onTap: () => handleSectionItemClick(context, item),
+        behavior: HitTestBehavior.opaque,
+        onLongPress: () {
+          var episode = item.asOrNull<Fragment$ItemSectionItem$item$$Episode>();
+          if (episode?.progress == null || episode!.progress == 0) {
+            return;
+          }
+          HapticFeedback.heavyImpact();
+          showModalBottomSheet(
+            useRootNavigator: true,
+            context: context,
+            builder: (ctx) => BottomSheetSelect(
+              title: 'Options',
+              selectedId: 'fromStart',
+              items: [
+                Option(
+                  id: 'remove_progress',
+                  title: 'Remove watch progress',
+                  disabled: episode.progress == null || episode.progress == 0,
+                  icon: Image.asset(width: 24, height: 24, 'assets/icons/Close.png', gaplessPlayback: true),
+                )
+              ],
+              showSelection: false,
+              onSelectionChanged: (id) {
+                if (id == 'remove_progress') {
+                  ref.read(apiProvider).updateProgress(episodeId: episode.id, progress: null);
+                  globalEventBus.fire(WatchProgressUpdatedEvent(episodeId: episode.id, progress: null));
+                } else {}
+              },
+            ),
+          );
+        },
+        onTap: () => handleSectionItemClick(context, item),
+        child: FocusableActionDetector(
+          mouseCursor: MaterialStateMouseCursor.clickable,
           child: child,
         ),
       ),

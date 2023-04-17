@@ -4,6 +4,7 @@ import 'package:brunstadtv_app/graphql/client.dart';
 import 'package:brunstadtv_app/graphql/queries/me.graphql.dart';
 import 'package:brunstadtv_app/providers/auth_state/auth_state.dart';
 import 'package:brunstadtv_app/providers/feature_flags.dart';
+import 'package:flutter/foundation.dart';
 import 'package:universal_io/io.dart';
 import 'dart:ui';
 
@@ -149,47 +150,49 @@ class HomeScreenState extends ConsumerState<HomeScreen> with PageMixin implement
       children: [
         Scaffold(
           extendBodyBehindAppBar: true,
-          appBar: AppBar(
-            toolbarHeight: 44,
-            shadowColor: Colors.black,
-            backgroundColor: Colors.transparent,
-            elevation: 0,
-            centerTitle: true,
-            title: logo,
-            leadingWidth: 100,
-            leading: Align(
-              alignment: Alignment.centerLeft,
-              child: GestureDetector(
-                  behavior: HitTestBehavior.opaque,
-                  onTap: () {
-                    context.router.pushNamed('/profile');
-                  },
-                  child: Padding(
-                      padding: const EdgeInsets.only(left: 18, top: 12, bottom: 12, right: 32),
-                      child: SvgPicture.string(
-                        SvgIcons.profile,
-                        semanticsLabel: S.of(context).profileTab,
-                      ))),
-            ),
-            actions: [
-              Padding(
-                padding: const EdgeInsets.only(right: 16.0),
-                child: ConstrainedBox(constraints: BoxConstraints.loose(const Size(24, 24)), child: const BccmCastButton()),
-              ),
-            ],
-            flexibleSpace: ClipRect(
-              clipBehavior: Clip.hardEdge,
-              child: BackdropFilter(
-                filter: ImageFilter.blur(sigmaX: 12, sigmaY: 6),
-                child: Container(
-                  decoration: const BoxDecoration(
-                      gradient: LinearGradient(
-                          begin: Alignment.topCenter, end: Alignment.bottomCenter, colors: [BccmColors.background1, Colors.transparent])),
-                  height: 1000,
+          appBar: kIsWeb
+              ? null
+              : AppBar(
+                  toolbarHeight: 44,
+                  shadowColor: Colors.black,
+                  backgroundColor: Colors.transparent,
+                  elevation: 0,
+                  centerTitle: true,
+                  title: logo,
+                  leadingWidth: kIsWeb ? 300 : 100,
+                  leading: Align(
+                    alignment: Alignment.centerLeft,
+                    child: GestureDetector(
+                        behavior: HitTestBehavior.opaque,
+                        onTap: () {
+                          context.router.pushNamed('/profile');
+                        },
+                        child: Padding(
+                            padding: const EdgeInsets.only(left: kIsWeb ? 80 : 18, top: 12, bottom: 12, right: 32),
+                            child: SvgPicture.string(
+                              SvgIcons.profile,
+                              semanticsLabel: S.of(context).profileTab,
+                            ))),
+                  ),
+                  actions: [
+                    Padding(
+                      padding: const EdgeInsets.only(right: 16.0),
+                      child: ConstrainedBox(constraints: BoxConstraints.loose(const Size(24, 24)), child: const BccmCastButton()),
+                    ),
+                  ],
+                  flexibleSpace: ClipRect(
+                    clipBehavior: Clip.hardEdge,
+                    child: BackdropFilter(
+                      filter: ImageFilter.blur(sigmaX: 12, sigmaY: 6),
+                      child: Container(
+                        decoration: const BoxDecoration(
+                            gradient: LinearGradient(
+                                begin: Alignment.topCenter, end: Alignment.bottomCenter, colors: [BccmColors.background1, Colors.transparent])),
+                        height: 1000,
+                      ),
+                    ),
+                  ),
                 ),
-              ),
-            ),
-          ),
           body: SafeArea(
             top: false,
             child: BccmPage(

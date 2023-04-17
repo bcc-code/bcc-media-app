@@ -17,6 +17,7 @@ dependencies:
   freezed_annotation: ^2.2.0
   js: ^0.6.5
   plugin_platform_interface: ^2.0.2
+  pointer_interceptor: ^0.9.3+4
   riverpod: ^2.2.0
   state_notifier: ^0.7.2+1
   universal_io: ^2.0.4

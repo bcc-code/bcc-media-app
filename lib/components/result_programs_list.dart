@@ -2,6 +2,7 @@ import 'package:brunstadtv_app/components/loading_indicator.dart';
 import 'package:brunstadtv_app/helpers/utils.dart';
 import 'package:brunstadtv_app/models/analytics/search_result_clicked.dart';
 import 'package:brunstadtv_app/providers/analytics.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:brunstadtv_app/graphql/queries/search.graphql.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -26,11 +27,12 @@ class ResultProgramsList extends ConsumerStatefulWidget {
 class _ResultProgramsListState extends ConsumerState<ResultProgramsList> {
   @override
   Widget build(BuildContext context) {
+    const double horizontalPadding = kIsWeb ? 80 : 16;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Container(
-          padding: const EdgeInsets.only(top: 12, right: 16, bottom: 8, left: 16),
+          padding: const EdgeInsets.only(top: 12, bottom: 8, right: horizontalPadding, left: horizontalPadding),
           margin: const EdgeInsets.only(bottom: 8),
           child: Text(
             widget.title,
@@ -39,7 +41,7 @@ class _ResultProgramsListState extends ConsumerState<ResultProgramsList> {
         ),
         HorizontalSlider(
           height: 140,
-          padding: const EdgeInsets.only(left: 16, right: 16, bottom: 8),
+          padding: const EdgeInsets.only(bottom: 8, left: horizontalPadding, right: horizontalPadding),
           itemCount: widget.items.length,
           itemBuilder: (BuildContext context, int index) {
             var item = widget.items[index];

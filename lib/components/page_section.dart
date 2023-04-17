@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 import '../graphql/queries/page.graphql.dart';
@@ -23,7 +24,7 @@ class PageSection extends StatelessWidget {
         if (title?.isNotEmpty == true)
           Padding(
             padding: const EdgeInsets.only(
-              left: 16,
+              left: kIsWeb ? 80 : 16,
               top: 20,
               right: 16,
               bottom: 6,
@@ -43,7 +44,7 @@ class PageSection extends StatelessWidget {
         if (description?.isNotEmpty == true)
           Padding(
             padding: const EdgeInsets.only(
-              left: 16,
+              left: kIsWeb ? 80 : 16,
               right: 16,
               bottom: 8,
             ),

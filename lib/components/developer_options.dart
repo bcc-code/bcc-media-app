@@ -2,6 +2,7 @@ import 'package:brunstadtv_app/components/bottom_sheet_select.dart';
 import 'package:brunstadtv_app/providers/auth_state/auth_state.dart';
 import 'package:brunstadtv_app/providers/feature_flags.dart';
 import 'package:brunstadtv_app/providers/settings.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:restart_app/restart_app.dart';
@@ -64,7 +65,7 @@ class DeveloperOptions extends ConsumerWidget {
             children: [
               SelectionArea(
                 child: Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 16),
+                  padding: const EdgeInsets.symmetric(horizontal: kIsWeb ? 80 : 16),
                   alignment: Alignment.topLeft,
                   child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
                     const Text('idToken: '),

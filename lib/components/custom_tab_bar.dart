@@ -1,11 +1,8 @@
 import 'package:universal_io/io.dart';
 
 import 'package:auto_route/auto_route.dart';
-import 'package:brunstadtv_app/helpers/extensions.dart';
-import 'package:brunstadtv_app/models/scroll_screen.dart';
 import 'package:brunstadtv_app/providers/auth_state/auth_state.dart';
 import 'package:brunstadtv_app/providers/device_info.dart';
-import 'package:brunstadtv_app/screens/search/search.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -14,19 +11,18 @@ import '../theme/bccm_colors.dart';
 import '../theme/bccm_typography.dart';
 import '../helpers/widget_keys.dart';
 import '../l10n/app_localizations.dart';
-import '../providers/analytics.dart';
-import '../providers/app_config.dart';
 
-final _indexToNameMap = ['home', 'search', 'livestream', 'calendar'];
 const double _iconSize = 28;
 
 class CustomTabBar extends ConsumerStatefulWidget {
   const CustomTabBar({
     Key? key,
     required this.tabsRouter,
+    required this.onTabTap,
   }) : super(key: key);
 
   final TabsRouter tabsRouter;
+  final void Function(int) onTabTap;
 
   @override
   ConsumerState<CustomTabBar> createState() => _CustomTabBarState();
@@ -67,25 +63,6 @@ class _CustomTabBarState extends ConsumerState<CustomTabBar> {
     return Padding(key: key, padding: EdgeInsets.only(top: 2, bottom: useMaterial ? 2 : 0), child: SizedBox(height: _iconSize, child: image));
   }
 
-  void sendAnalytics(int index) {
-    if (index < 0 || index > _indexToNameMap.length - 1) return;
-    final tabName = _indexToNameMap[index];
-    final appConfig = ref.read(appConfigProvider);
-    appConfig.then((value) {
-      String? pageCode;
-      if (tabName == 'home') {
-        pageCode = value?.application.page?.code;
-      } else if (tabName == 'search') {
-        pageCode = value?.application.searchPage?.code;
-      }
-      Map<String, dynamic> extraProperties = {};
-      if (pageCode != null) {
-        extraProperties['pageCode'] = pageCode;
-      }
-      ref.read(analyticsProvider).screen(tabName, properties: extraProperties);
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     var items = [
@@ -113,7 +90,7 @@ class _CustomTabBarState extends ConsumerState<CustomTabBar> {
           unselectedItemColor: BccmColors.label3,
           unselectedLabelStyle: BccmTextStyles.caption3,
           currentIndex: widget.tabsRouter.activeIndex,
-          onTap: onTabTap,
+          onTap: widget.onTabTap,
           items: items,
         ),
       );
@@ -122,33 +99,11 @@ class _CustomTabBarState extends ConsumerState<CustomTabBar> {
       iconSize: 24,
       height: 50,
       currentIndex: widget.tabsRouter.activeIndex,
-      onTap: onTabTap,
+      onTap: widget.onTabTap,
       inactiveColor: BccmColors.label3,
       activeColor: BccmColors.tint1,
       border: const Border(top: BorderSide(width: 1, color: BccmColors.separatorOnLight)),
       items: items,
     );
-  }
-
-  onTabTap(int index) {
-    // here we switch between tabs
-    if (widget.tabsRouter.activeIndex == index) {
-      final stackRouterOfIndex = widget.tabsRouter.stackRouterOfIndex(index);
-      if (stackRouterOfIndex?.stack.length == 1) {
-        final searchState = widget.tabsRouter.topPage?.child.asOrNull<SearchScreen>()?.key?.asOrNull<GlobalKey<SearchScreenState>>()?.currentState;
-        if (searchState != null) {
-          searchState.clear();
-        }
-        final screenState = widget.tabsRouter.topPage?.child.key?.asOrNull<GlobalKey>()?.currentState.asOrNull<ScrollScreen>();
-        if (screenState != null) {
-          screenState.scrollToTop();
-        }
-      } else {
-        stackRouterOfIndex?.popUntilRoot();
-      }
-    } else {
-      sendAnalytics(index);
-    }
-    widget.tabsRouter.setActiveIndex(index);
   }
 }

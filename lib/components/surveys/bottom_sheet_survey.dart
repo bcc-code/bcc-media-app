@@ -1,7 +1,6 @@
 import 'package:brunstadtv_app/helpers/utils.dart';
 import 'package:flutter/material.dart';
 
-import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../api/brunstadtv.dart';

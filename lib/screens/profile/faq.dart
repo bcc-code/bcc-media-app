@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:auto_route/auto_route.dart';
 
@@ -96,7 +97,7 @@ class _FAQState extends State<FAQ> {
       body: SafeArea(
         child: SingleChildScrollView(
           child: Container(
-            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 17),
+            padding: const EdgeInsets.symmetric(horizontal: kIsWeb ? 80 : 16, vertical: 17),
             child: Column(
               children: <Widget>[for (var i in listOfList) _ExpansionTileDropDown(i, listOfList.indexOf(i))],
             ),

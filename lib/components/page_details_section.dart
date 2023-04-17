@@ -1,4 +1,5 @@
 import 'package:brunstadtv_app/theme/bccm_typography.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 import '../graphql/queries/page.graphql.dart';
@@ -21,9 +22,9 @@ class PageDetailsSection extends StatelessWidget {
         if (data.title?.isNotEmpty == true)
           Padding(
             padding: const EdgeInsets.only(
-              left: 16,
+              left: kIsWeb ? 80 : 16,
               top: 20,
-              right: 16,
+              right: kIsWeb ? 80 : 16,
               bottom: 6,
             ),
             child: Text(
@@ -34,8 +35,8 @@ class PageDetailsSection extends StatelessWidget {
         if (data.description?.isNotEmpty == true)
           Padding(
             padding: const EdgeInsets.only(
-              left: 16,
-              right: 16,
+              left: kIsWeb ? 80 : 16,
+              right: kIsWeb ? 80 : 16,
               bottom: 8,
             ),
             child: Text(

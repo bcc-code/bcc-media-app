@@ -1,4 +1,5 @@
 import 'package:brunstadtv_app/components/section_item_click_wrapper.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 import '../graphql/queries/page.graphql.dart';
@@ -17,7 +18,7 @@ class LabelSection extends StatelessWidget {
     return Container(
       margin: const EdgeInsets.only(top: 12),
       child: HorizontalSlider(
-        padding: const EdgeInsets.symmetric(horizontal: 16),
+        padding: const EdgeInsets.symmetric(horizontal: kIsWeb ? 80 : 16),
         height: 28,
         gap: 8,
         itemCount: data.items.items.length,
