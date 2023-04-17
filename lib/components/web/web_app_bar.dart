@@ -98,16 +98,19 @@ class WebAppBar extends ConsumerWidget implements PreferredSizeWidget {
       actions: [
         Align(
           alignment: Alignment.centerRight,
-          child: GestureDetector(
-            behavior: HitTestBehavior.opaque,
-            onTap: () {
-              context.router.pushNamed('/profile');
-            },
-            child: Padding(
-              padding: const EdgeInsets.only(left: 32, top: 12, bottom: 12, right: kIsWeb ? 80 : 18),
-              child: SvgPicture.string(
-                SvgIcons.profile,
-                semanticsLabel: S.of(context).profileTab,
+          child: FocusableActionDetector(
+            mouseCursor: MaterialStateMouseCursor.clickable,
+            child: GestureDetector(
+              behavior: HitTestBehavior.opaque,
+              onTap: () {
+                context.router.pushNamed('/profile');
+              },
+              child: Padding(
+                padding: const EdgeInsets.only(left: 32, top: 12, bottom: 12, right: kIsWeb ? 80 : 18),
+                child: SvgPicture.string(
+                  SvgIcons.profile,
+                  semanticsLabel: S.of(context).profileTab,
+                ),
               ),
             ),
           ),

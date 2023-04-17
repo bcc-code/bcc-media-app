@@ -289,30 +289,33 @@ class BtvButton extends StatelessWidget {
       child: GestureDetector(
         behavior: HitTestBehavior.opaque,
         onTap: onPressed,
-        child: AnimatedContainer(
-          duration: Duration(milliseconds: 100),
-          padding: padding,
-          decoration: BoxDecoration(
-            border: disabled ? disabledBorder : border,
-            borderRadius: BorderRadius.circular(borderRadius),
-            color: disabled ? disabledBackgroundColor : backgroundColor,
-          ),
-          child: Row(
-            mainAxisSize: MainAxisSize.min,
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              if (image != null)
-                Container(
-                  margin: EdgeInsets.only(right: gap),
-                  child: SizedBox(width: imageDimension, height: imageDimension, child: image),
-                ),
-              Text(
-                labelText,
-                textAlign: TextAlign.center,
-                style: textStyle.copyWith(color: disabled ? disabledTextColor : textStyle.color),
-              )
-            ],
+        child: FocusableActionDetector(
+          mouseCursor: MaterialStateMouseCursor.clickable,
+          child: AnimatedContainer(
+            duration: const Duration(milliseconds: 100),
+            padding: padding,
+            decoration: BoxDecoration(
+              border: disabled ? disabledBorder : border,
+              borderRadius: BorderRadius.circular(borderRadius),
+              color: disabled ? disabledBackgroundColor : backgroundColor,
+            ),
+            child: Row(
+              mainAxisSize: MainAxisSize.min,
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                if (image != null)
+                  Container(
+                    margin: EdgeInsets.only(right: gap),
+                    child: SizedBox(width: imageDimension, height: imageDimension, child: image),
+                  ),
+                Text(
+                  labelText,
+                  textAlign: TextAlign.center,
+                  style: textStyle.copyWith(color: disabled ? disabledTextColor : textStyle.color),
+                )
+              ],
+            ),
           ),
         ),
       ),

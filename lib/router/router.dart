@@ -12,11 +12,12 @@ import 'package:brunstadtv_app/screens/profile/contact_support.dart';
 import 'package:brunstadtv_app/screens/profile/faq.dart';
 import 'package:brunstadtv_app/screens/home.dart';
 import 'package:brunstadtv_app/screens/live.dart';
-import 'package:brunstadtv_app/screens/account_deletion.dart';
+import 'package:brunstadtv_app/screens/profile/account_deletion.dart';
 import 'package:brunstadtv_app/screens/onboarding/onboarding.dart';
 import 'package:brunstadtv_app/screens/profile/profile.dart';
 import 'package:brunstadtv_app/screens/search/search.dart';
 import 'package:brunstadtv_app/screens/study.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 
@@ -49,14 +50,30 @@ Route<T> modalSheetBuilder<T>(BuildContext context, Widget child, CustomPage<T> 
   return ModalSheetRoute(
     settings: page,
     builder: (context) => child,
+    animationCurve: Curves.easeOutCirc,
     expanded: true,
   );
 }
 
+Route<T> profileRouteBuilder<T>(BuildContext context, Widget child, CustomPage<T> page) {
+  if (!kIsWeb) return PageRouteBuilder(settings: page, pageBuilder: (context, a, b) => CustomTransitionsBuilders.slideUp(context, a, b, child));
+  return DialogRoute(
+    context: context,
+    settings: page,
+    builder: (context) => child,
+  );
+}
+
 @MaterialAutoRouter(
+  deferredLoading: true,
   routes: [
     AutoRoute<void>(page: AutoLoginScreen, path: '/auto-login'),
-    MaterialRoute<void>(page: OnboardingScreen, path: '/login', meta: {RouteMetaConstants.analyticsName: 'login'}),
+    CustomRoute<void>(
+      page: OnboardingScreen,
+      path: '/login',
+      customRouteBuilder: profileRouteBuilder,
+      meta: {RouteMetaConstants.analyticsName: 'login'},
+    ),
     CustomRoute<void>(
       customRouteBuilder: modalSheetBuilder,
       page: SignupScreen,
@@ -67,7 +84,7 @@ Route<T> modalSheetBuilder<T>(BuildContext context, Widget child, CustomPage<T> 
         opaque: false,
         durationInMilliseconds: 400,
         reverseDurationInMilliseconds: 600,
-        transitionsBuilder: CustomTransitionsBuilders.slideUp,
+        customRouteBuilder: profileRouteBuilder,
         page: Profile,
         path: '/profile',
         meta: {RouteMetaConstants.analyticsName: 'profile'}),
@@ -76,7 +93,7 @@ Route<T> modalSheetBuilder<T>(BuildContext context, Widget child, CustomPage<T> 
       path: '/app-language',
       durationInMilliseconds: 400,
       reverseDurationInMilliseconds: 600,
-      transitionsBuilder: CustomTransitionsBuilders.slideUp,
+      customRouteBuilder: profileRouteBuilder,
       meta: {RouteMetaConstants.analyticsName: 'settings', RouteMetaConstants.settingsName: 'appLanguage'},
     ),
     CustomRoute<void>(
@@ -84,7 +101,7 @@ Route<T> modalSheetBuilder<T>(BuildContext context, Widget child, CustomPage<T> 
       path: '/audio-language',
       durationInMilliseconds: 400,
       reverseDurationInMilliseconds: 600,
-      transitionsBuilder: CustomTransitionsBuilders.slideUp,
+      customRouteBuilder: profileRouteBuilder,
       meta: {RouteMetaConstants.analyticsName: 'settings', RouteMetaConstants.settingsName: 'audioLanguage'},
     ),
     CustomRoute<void>(
@@ -92,7 +109,7 @@ Route<T> modalSheetBuilder<T>(BuildContext context, Widget child, CustomPage<T> 
       path: '/subtitle-language',
       durationInMilliseconds: 400,
       reverseDurationInMilliseconds: 600,
-      transitionsBuilder: CustomTransitionsBuilders.slideUp,
+      customRouteBuilder: profileRouteBuilder,
       meta: {RouteMetaConstants.analyticsName: 'settings', RouteMetaConstants.settingsName: 'subtitlesLanguage'},
     ),
     CustomRoute<void>(
@@ -100,7 +117,7 @@ Route<T> modalSheetBuilder<T>(BuildContext context, Widget child, CustomPage<T> 
       path: '/video-quality',
       durationInMilliseconds: 400,
       reverseDurationInMilliseconds: 600,
-      transitionsBuilder: CustomTransitionsBuilders.slideUp,
+      customRouteBuilder: profileRouteBuilder,
       meta: {RouteMetaConstants.analyticsName: 'settings', RouteMetaConstants.settingsName: 'videoQuality'},
     ),
     CustomRoute<void>(
@@ -108,7 +125,7 @@ Route<T> modalSheetBuilder<T>(BuildContext context, Widget child, CustomPage<T> 
       path: '/contact-support',
       durationInMilliseconds: 400,
       reverseDurationInMilliseconds: 600,
-      transitionsBuilder: CustomTransitionsBuilders.slideUp,
+      customRouteBuilder: profileRouteBuilder,
       meta: {RouteMetaConstants.analyticsName: 'support'},
     ),
     CustomRoute<void>(
@@ -116,7 +133,7 @@ Route<T> modalSheetBuilder<T>(BuildContext context, Widget child, CustomPage<T> 
       path: '/about',
       durationInMilliseconds: 400,
       reverseDurationInMilliseconds: 600,
-      transitionsBuilder: CustomTransitionsBuilders.slideUp,
+      customRouteBuilder: profileRouteBuilder,
       meta: {RouteMetaConstants.analyticsName: 'about'},
     ),
     CustomRoute<void>(
@@ -124,7 +141,7 @@ Route<T> modalSheetBuilder<T>(BuildContext context, Widget child, CustomPage<T> 
       path: '/faq',
       durationInMilliseconds: 400,
       reverseDurationInMilliseconds: 600,
-      transitionsBuilder: CustomTransitionsBuilders.slideLeft,
+      customRouteBuilder: profileRouteBuilder,
       meta: {RouteMetaConstants.analyticsName: 'faq'},
     ),
     CustomRoute<void>(
@@ -132,7 +149,7 @@ Route<T> modalSheetBuilder<T>(BuildContext context, Widget child, CustomPage<T> 
       path: '/account-deletion',
       durationInMilliseconds: 400,
       reverseDurationInMilliseconds: 600,
-      transitionsBuilder: CustomTransitionsBuilders.slideUp,
+      customRouteBuilder: profileRouteBuilder,
       meta: {RouteMetaConstants.analyticsName: 'account-deletion'},
     ),
     CustomRoute<void>(

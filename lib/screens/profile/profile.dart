@@ -12,10 +12,11 @@ import 'package:device_info_plus/device_info_plus.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:url_launcher/url_launcher.dart';
 import '../../components/custom_back_button.dart';
+import '../../components/web/dialog_on_web.dart';
 import '../../helpers/languages.dart';
 import '../../l10n/app_localizations.dart';
 import '../../router/router.gr.dart';
-import './avatar.dart';
+import '../../components/avatar.dart';
 import '../../components/setting_list.dart';
 
 import '../../helpers/version.dart';
@@ -140,69 +141,72 @@ class _ProfileState extends ConsumerState<Profile> {
   @override
   Widget build(BuildContext context) {
     final user = ref.read(authStateProvider.select((value) => value.user));
-    return Scaffold(
-      appBar: AppBar(
-        elevation: 0,
-        toolbarHeight: 44,
-        leadingWidth: 92,
-        leading: const CustomBackButton(),
-        title: Text(S.of(context).profileTab),
-      ),
-      body: SafeArea(
-        child: SingleChildScrollView(
-          child: SizedBox(
-            width: double.infinity,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: <Widget>[
-                if (user != null)
-                  const Avatar()
-                else
-                  Padding(
-                    padding: const EdgeInsets.only(top: 24, bottom: 16),
-                    child: Padding(padding: const EdgeInsets.all(6), child: SvgPicture.string(SvgIcons.avatar)),
+    return DialogOnWeb(
+      child: Scaffold(
+        appBar: AppBar(
+          elevation: 0,
+          toolbarHeight: 44,
+          leadingWidth: 92,
+          leading: const CustomBackButton(),
+          title: Text(S.of(context).profileTab),
+        ),
+        body: SafeArea(
+          child: SingleChildScrollView(
+            child: Container(
+              alignment: Alignment.center,
+              width: double.infinity,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: <Widget>[
+                  if (user != null)
+                    const Avatar()
+                  else
+                    Padding(
+                      padding: const EdgeInsets.only(top: 24, bottom: 16),
+                      child: Padding(padding: const EdgeInsets.all(6), child: SvgPicture.string(SvgIcons.avatar)),
+                    ),
+                  Container(
+                    margin: const EdgeInsets.only(bottom: 24),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        if (user != null)
+                          GestureDetector(
+                            onLongPress: () => ref.read(authStateProvider.notifier).logout(manual: false),
+                            child: BtvButton.smallSecondary(
+                              onPressed: () => {ref.read(authStateProvider.notifier).logout()},
+                              labelText: S.of(context).logOutButton,
+                            ),
+                          )
+                        else
+                          BtvButton.small(
+                            onPressed: () => context.router.navigate(OnboardingScreenRoute()),
+                            labelText: S.of(context).signInOrSignUp,
+                          )
+                      ],
+                    ),
                   ),
-                Container(
-                  margin: const EdgeInsets.only(bottom: 24),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
+                  Column(
                     children: [
+                      SettingList(buttons: _settingsOptions),
+                      const SizedBox(height: 24),
+                      SettingList(buttons: _supportButtons),
+                      const SizedBox(height: 24),
+                      SettingList(buttons: _termsAndPrivacyOptions),
+                      const SizedBox(height: 48),
                       if (user != null)
-                        GestureDetector(
-                          onLongPress: () => ref.read(authStateProvider.notifier).logout(manual: false),
-                          child: BtvButton.smallSecondary(
-                            onPressed: () => {ref.read(authStateProvider.notifier).logout()},
-                            labelText: S.of(context).logOutButton,
-                          ),
-                        )
-                      else
-                        BtvButton.small(
-                          onPressed: () => context.router.navigate(OnboardingScreenRoute()),
-                          labelText: S.of(context).signInOrSignUp,
+                        SettingList(
+                          buttons: [
+                            OptionButton(
+                              optionName: S.of(context).deleteMyAccount,
+                              onPressed: () => context.router.navigate(const AccountDeletionScreenRoute()),
+                            ),
+                          ],
                         )
                     ],
                   ),
-                ),
-                Column(
-                  children: [
-                    SettingList(buttons: _settingsOptions),
-                    const SizedBox(height: 24),
-                    SettingList(buttons: _supportButtons),
-                    const SizedBox(height: 24),
-                    SettingList(buttons: _termsAndPrivacyOptions),
-                    const SizedBox(height: 48),
-                    if (user != null)
-                      SettingList(
-                        buttons: [
-                          OptionButton(
-                            optionName: S.of(context).deleteMyAccount,
-                            onPressed: () => context.router.navigate(const AccountDeletionScreenRoute()),
-                          ),
-                        ],
-                      )
-                  ],
-                ),
-              ],
+                ],
+              ),
             ),
           ),
         ),

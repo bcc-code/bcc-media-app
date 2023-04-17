@@ -22,10 +22,10 @@ String? getLocalizedRouteName(S localizations, Type route) {
 }
 
 class CustomBackButton extends StatelessWidget {
-  const CustomBackButton({Key? key, this.color, this.onPressed}) : super(key: key ?? WidgetKeys.backButton);
+  const CustomBackButton({Key? key, this.color, this.onPressed, this.padding}) : super(key: key ?? WidgetKeys.backButton);
 
   final Color? color;
-
+  final EdgeInsetsGeometry? padding;
   final VoidCallback? onPressed;
 
   @override
@@ -41,37 +41,40 @@ class CustomBackButton extends StatelessWidget {
 
       pageTitle = previousPageTitle ?? localizedTitle ?? '';
     }
-    return Padding(
-      padding: const EdgeInsets.only(left: 17),
-      child: Align(
-        alignment: Alignment.topLeft,
-        child: GestureDetector(
-          behavior: HitTestBehavior.opaque,
-          onTap: () {
-            if (onPressed != null) {
-              onPressed!();
-            } else {
-              Navigator.maybePop(context);
-            }
-          },
-          child: Row(
-            mainAxisSize: MainAxisSize.min,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: <Widget>[
-              SvgPicture.string(SvgIcons.chevronLeft, height: 16),
-              const SizedBox(width: 8),
-              Expanded(
-                child: Align(
-                  alignment: Alignment.centerLeft,
-                  child: Text(
-                    pageTitle,
-                    semanticsLabel: S.of(context).back,
-                    overflow: TextOverflow.ellipsis,
-                    style: BccmTextStyles.button2.copyWith(height: 1),
+    return FocusableActionDetector(
+      mouseCursor: MaterialStateMouseCursor.clickable,
+      child: Padding(
+        padding: padding ?? const EdgeInsets.only(left: 17),
+        child: Align(
+          alignment: Alignment.topLeft,
+          child: GestureDetector(
+            behavior: HitTestBehavior.opaque,
+            onTap: () {
+              if (onPressed != null) {
+                onPressed!();
+              } else {
+                Navigator.maybePop(context);
+              }
+            },
+            child: Row(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: <Widget>[
+                SvgPicture.string(SvgIcons.chevronLeft, height: 16),
+                const SizedBox(width: 8),
+                Expanded(
+                  child: Align(
+                    alignment: Alignment.centerLeft,
+                    child: Text(
+                      pageTitle,
+                      semanticsLabel: S.of(context).back,
+                      overflow: TextOverflow.ellipsis,
+                      style: BccmTextStyles.button2.copyWith(height: 1),
+                    ),
                   ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),

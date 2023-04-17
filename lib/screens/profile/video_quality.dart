@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../../components/option_list.dart';
+import '../../components/web/dialog_on_web.dart';
 import '../../theme/bccm_colors.dart';
 import '../../l10n/app_localizations.dart';
 
@@ -45,28 +46,30 @@ class _VideoQualityState extends State<VideoQuality> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: BccmColors.background1,
-        title: Text(S.of(context).videoQuality),
-        centerTitle: true,
-        bottom: PreferredSize(
-          preferredSize: const Size.fromHeight(6),
-          child: Divider(
-            color: BccmColors.separatorOnLight.withOpacity(0.3),
-            height: 1,
+    return DialogOnWeb(
+      child: Scaffold(
+        appBar: AppBar(
+          backgroundColor: BccmColors.background1,
+          title: Text(S.of(context).videoQuality),
+          centerTitle: true,
+          bottom: PreferredSize(
+            preferredSize: const Size.fromHeight(6),
+            child: Divider(
+              color: BccmColors.separatorOnLight.withOpacity(0.3),
+              height: 1,
+            ),
           ),
         ),
-      ),
-      body: SafeArea(
-        child: Container(
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(15),
-          ),
-          child: OptionList(
-            optionData: qualityList,
-            currentSelection: selected,
-            onSelectionChange: _onSelectionChanged,
+        body: SafeArea(
+          child: Container(
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(15),
+            ),
+            child: OptionList(
+              optionData: qualityList,
+              currentSelection: selected,
+              onSelectionChange: _onSelectionChanged,
+            ),
           ),
         ),
       ),

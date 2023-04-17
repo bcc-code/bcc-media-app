@@ -8,6 +8,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import '../../components/web/dialog_on_web.dart';
 import '../../graphql/client.dart';
 import '../../graphql/queries/send_support_email.graphql.dart';
 import '../../helpers/ui/btv_buttons.dart';
@@ -65,43 +66,45 @@ class _ContactSupportState extends ConsumerState<ContactSupport> {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
-      child: Scaffold(
-        appBar: GeneralAppBar(
-          leftActions: [
-            BtvButton(
-              labelText: S.of(context).cancel,
-              onPressed: context.router.pop,
-            )
-          ],
-          rightActions: [
-            if (isOnInputPage && content.isNotEmpty)
-              BtvButton.small(
-                labelText: S.of(context).send,
-                onPressed: onSend,
+    return DialogOnWeb(
+      child: GestureDetector(
+        onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
+        child: Scaffold(
+          appBar: GeneralAppBar(
+            leftActions: [
+              BtvButton(
+                labelText: S.of(context).cancel,
+                onPressed: context.router.pop,
               )
-          ],
-        ),
-        body: SafeArea(
-          child: Container(
-            padding: const EdgeInsets.all(16),
-            child: IndexedStack(
-              index: isOnInputPage ? 0 : 1,
-              children: [
-                _InputPage(deviceInfo: deviceInfo, onContentChanged: onContentChanged),
-                FutureBuilder<bool>(
-                  future: sendSupportEmailFuture,
-                  builder: (BuildContext context, AsyncSnapshot<bool> snapshot) {
-                    if (snapshot.hasData) {
-                      return _SuccessPage();
-                    } else if (snapshot.hasError) {
-                      return _FailurePage(onTryAgain: onTryAgain);
-                    }
-                    return sendingIndicator;
-                  },
-                ),
-              ],
+            ],
+            rightActions: [
+              if (isOnInputPage && content.isNotEmpty)
+                BtvButton.small(
+                  labelText: S.of(context).send,
+                  onPressed: onSend,
+                )
+            ],
+          ),
+          body: SafeArea(
+            child: Container(
+              padding: const EdgeInsets.all(16),
+              child: IndexedStack(
+                index: isOnInputPage ? 0 : 1,
+                children: [
+                  _InputPage(deviceInfo: deviceInfo, onContentChanged: onContentChanged),
+                  FutureBuilder<bool>(
+                    future: sendSupportEmailFuture,
+                    builder: (BuildContext context, AsyncSnapshot<bool> snapshot) {
+                      if (snapshot.hasData) {
+                        return _SuccessPage();
+                      } else if (snapshot.hasError) {
+                        return _FailurePage(onTryAgain: onTryAgain);
+                      }
+                      return sendingIndicator;
+                    },
+                  ),
+                ],
+              ),
             ),
           ),
         ),
