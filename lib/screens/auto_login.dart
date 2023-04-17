@@ -51,6 +51,7 @@ class _AutoLoginScreeenState extends ConsumerState<AutoLoginScreen> {
   void navigate({Uri? deepLinkUri}) {
     if (!mounted) return;
     final router = context.router;
+    debugPrint('abc: ${deepLinkUri?.path}');
     if (deepLinkUri != null && !deepLinkUri.path.contains('auto-login')) {
       router.replaceAll([const TabsRootScreenRoute()]);
       router.navigateNamedFromRoot(

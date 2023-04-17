@@ -1,5 +1,6 @@
 import 'package:brunstadtv_app/theme/bccm_typography.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 
 import '../theme/bccm_colors.dart';
 //listFrame.dart
@@ -39,7 +40,7 @@ class SettingList extends StatelessWidget {
   }
 }
 
-class OptionButton extends StatelessWidget {
+class OptionButton extends HookWidget {
   final String optionName;
   final String? currentSelection;
   final VoidCallback onPressed;
@@ -53,34 +54,40 @@ class OptionButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final hovering = useState(false);
     return GestureDetector(
       behavior: HitTestBehavior.opaque,
       onTap: onPressed,
-      child: Container(
-        height: 56,
-        padding: const EdgeInsets.only(left: 16, right: 16),
-        child: Row(
-          children: [
-            Flexible(
-              fit: FlexFit.tight,
-              child: Text(
-                optionName,
-                style: BccmTextStyles.title3,
+      child: FocusableActionDetector(
+        mouseCursor: MaterialStateMouseCursor.clickable,
+        onShowHoverHighlight: (value) => hovering.value = value,
+        child: Container(
+          height: 56,
+          padding: const EdgeInsets.only(left: 16, right: 16),
+          foregroundDecoration: BoxDecoration(color: hovering.value ? BccmColors.onTint.withOpacity(0.05) : null),
+          child: Row(
+            children: [
+              Flexible(
+                fit: FlexFit.tight,
+                child: Text(
+                  optionName,
+                  style: BccmTextStyles.title3,
+                ),
               ),
-            ),
-            Container(
-              margin: const EdgeInsets.only(right: 5),
-              child: Text(
-                currentSelection ?? '',
-                style: BccmTextStyles.body2,
+              Container(
+                margin: const EdgeInsets.only(right: 5),
+                child: Text(
+                  currentSelection ?? '',
+                  style: BccmTextStyles.body2,
+                ),
               ),
-            ),
-            const Icon(
-              Icons.arrow_forward_ios,
-              size: 13,
-              color: BccmColors.label4,
-            ),
-          ],
+              const Icon(
+                Icons.arrow_forward_ios,
+                size: 13,
+                color: BccmColors.label4,
+              ),
+            ],
+          ),
         ),
       ),
     );

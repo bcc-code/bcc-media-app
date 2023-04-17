@@ -11,6 +11,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
+import '../../components/web/dialog_on_web.dart';
 import '../../helpers/ui/btv_buttons.dart';
 import '../../theme/bccm_colors.dart';
 import '../../helpers/widget_keys.dart';
@@ -95,111 +96,118 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
   Widget build(BuildContext context) {
     final signupEnabled = ref.watch(featureFlagsProvider.select((value) => value.publicSignup));
     return CupertinoScaffold(
-      body: Scaffold(
-        appBar: AppBar(
-          toolbarHeight: 44,
-          shadowColor: Colors.black,
-          elevation: 0,
-          centerTitle: true,
-          title: Image.asset('assets/images/logo.png'),
-          automaticallyImplyLeading: false,
-        ),
-        body: AnimatedOpacity(
-          opacity: imagesLoaded ? 1 : 0,
-          duration: const Duration(milliseconds: 500),
-          child: Column(
-            children: [
-              Expanded(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Container(
-                      height: 220 * (MediaQuery.of(context).size.height / 600),
-                      margin: const EdgeInsets.only(top: 40, bottom: 30),
-                      child: Transform.scale(
-                          scale: 1.3 * (MediaQuery.of(context).size.height / 800), child: Image.asset('assets/images/Onboarding.png')),
-                    ),
-                    Expanded(
-                      child: Container(
-                        alignment: Alignment.center,
-                        margin: const EdgeInsets.only(right: 38, bottom: 12, left: 38),
-                        child: Column(
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            Text(
-                              S.of(context).loginPageDisplay1,
-                              style: BccmTextStyles.title1,
-                              textAlign: TextAlign.center,
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.only(top: 12),
-                              child: Text(
-                                S.of(context).loginPageDisplay2,
+      body: DialogOnWeb(
+        child: Scaffold(
+          appBar: AppBar(
+            toolbarHeight: 44,
+            shadowColor: Colors.black,
+            elevation: 0,
+            centerTitle: true,
+            title: Image.asset('assets/images/logo.png'),
+            automaticallyImplyLeading: false,
+          ),
+          body: AnimatedOpacity(
+            opacity: imagesLoaded ? 1 : 0,
+            duration: const Duration(milliseconds: 500),
+            child: Column(
+              children: [
+                Expanded(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      if (kIsWeb)
+                        Padding(padding: const EdgeInsets.all(16), child: Image.asset('assets/images/Onboarding.png'))
+                      else
+                        Container(
+                          height: 220 * (MediaQuery.of(context).size.height / 600),
+                          margin: const EdgeInsets.only(top: 40, bottom: 30),
+                          child: Transform.scale(
+                            scale: 1.3 * (MediaQuery.of(context).size.height / 800),
+                            child: Image.asset('assets/images/Onboarding.png'),
+                          ),
+                        ),
+                      Expanded(
+                        child: Container(
+                          alignment: Alignment.center,
+                          margin: const EdgeInsets.only(right: 38, bottom: 12, left: 38),
+                          child: Column(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              Text(
+                                S.of(context).loginPageDisplay1,
+                                style: BccmTextStyles.title1,
                                 textAlign: TextAlign.center,
-                                style: BccmTextStyles.body1.copyWith(color: BccmColors.label3),
                               ),
-                            ),
-                          ],
+                              Padding(
+                                padding: const EdgeInsets.only(top: 12),
+                                child: Text(
+                                  S.of(context).loginPageDisplay2,
+                                  textAlign: TextAlign.center,
+                                  style: BccmTextStyles.body1.copyWith(color: BccmColors.label3),
+                                ),
+                              ),
+                            ],
+                          ),
                         ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
-              ),
-              Padding(
-                padding: EdgeInsets.symmetric(horizontal: kIsWeb ? 80 : 16, vertical: max(36, MediaQuery.of(context).padding.bottom)),
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
-                  children: [
-                    if (errorMessage != '')
-                      Padding(padding: const EdgeInsets.only(bottom: 16), child: Text(errorMessage, textAlign: TextAlign.center)),
-                    Container(
-                      margin: const EdgeInsets.only(bottom: 12),
-                      child: BtvButton.large(
-                        key: WidgetKeys.signInButton,
-                        labelText: S.of(context).signInButton,
-                        onPressed: loginAction,
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: kIsWeb ? 80 : 16, vertical: max(36, MediaQuery.of(context).padding.bottom)),
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: [
+                      if (errorMessage != '')
+                        Padding(padding: const EdgeInsets.only(bottom: 16), child: Text(errorMessage, textAlign: TextAlign.center)),
+                      Container(
+                        margin: const EdgeInsets.only(bottom: 12),
+                        child: BtvButton.large(
+                          key: WidgetKeys.signInButton,
+                          labelText: S.of(context).signInButton,
+                          onPressed: loginAction,
+                        ),
                       ),
-                    ),
-                    AnimatedSwitcher(
-                      duration: const Duration(milliseconds: 200),
-                      child: !signupEnabled
-                          ? null
-                          : Builder(builder: (context) {
-                              return Container(
-                                margin: const EdgeInsets.only(bottom: 12),
-                                width: double.infinity,
-                                child: BtvButton.largeSecondary(
-                                  key: WidgetKeys.signUpButton,
-                                  onPressed: () {
-                                    CupertinoScaffold.showCupertinoModalBottomSheet(
-                                      context: context,
-                                      builder: (context) => const SignupScreen(),
-                                      enableDrag: false,
-                                      duration: const Duration(milliseconds: 250),
-                                    );
-                                  },
-                                  labelText: S.of(context).signUpButton,
-                                ),
-                              );
-                            }),
-                    ),
-                    BtvButton.mediumSecondary(
-                      key: WidgetKeys.exploreButton,
-                      labelText: S.of(context).explorePublicContent,
-                      onPressed: () {
-                        context.router.popUntil((route) => false);
-                        context.router.push(const TabsRootScreenRoute());
-                      },
-                    ).copyWith(
-                      backgroundColor: Colors.transparent,
-                      border: Border.all(color: Colors.transparent),
-                    ),
-                  ],
+                      AnimatedSwitcher(
+                        duration: const Duration(milliseconds: 200),
+                        child: !signupEnabled
+                            ? null
+                            : Builder(builder: (context) {
+                                return Container(
+                                  margin: const EdgeInsets.only(bottom: 12),
+                                  width: double.infinity,
+                                  child: BtvButton.largeSecondary(
+                                    key: WidgetKeys.signUpButton,
+                                    onPressed: () {
+                                      CupertinoScaffold.showCupertinoModalBottomSheet(
+                                        context: context,
+                                        builder: (context) => const SignupScreen(),
+                                        enableDrag: false,
+                                        duration: const Duration(milliseconds: 250),
+                                      );
+                                    },
+                                    labelText: S.of(context).signUpButton,
+                                  ),
+                                );
+                              }),
+                      ),
+                      BtvButton.mediumSecondary(
+                        key: WidgetKeys.exploreButton,
+                        labelText: S.of(context).explorePublicContent,
+                        onPressed: () {
+                          context.router.popUntil((route) => false);
+                          context.router.push(const TabsRootScreenRoute());
+                        },
+                      ).copyWith(
+                        backgroundColor: Colors.transparent,
+                        border: Border.all(color: Colors.transparent),
+                      ),
+                    ],
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),

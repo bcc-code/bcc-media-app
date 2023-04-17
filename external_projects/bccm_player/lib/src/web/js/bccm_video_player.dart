@@ -1,7 +1,6 @@
 @JS('window.bccmVideoPlayer')
 library bccm_video_player;
 
-import 'dart:html';
 import 'package:js/js.dart';
 
 @JS()

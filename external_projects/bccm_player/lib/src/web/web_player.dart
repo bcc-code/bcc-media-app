@@ -1,8 +1,6 @@
-import 'dart:developer';
 import 'dart:html' as html;
 import 'dart:html';
 import 'package:bccm_player/src/pigeon/playback_platform_pigeon.g.dart';
-import 'package:flutter/foundation.dart';
 import 'dart:ui' as ui;
 
 import 'js/bccm_video_player.dart';

@@ -37,4 +37,4 @@ web-build:
 
 web-beta-upload:
 	gsutil -m cp -R build/web/* gs://bccm-web-beta
-	gsutil setmeta -r -h "Cache-control:no-cache, max-age=0" gs://bccm-web-beta/
+	gsutil -m setmeta -r -h "Cache-control:no-cache, max-age=0" gs://bccm-web-beta/

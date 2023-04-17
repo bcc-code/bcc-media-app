@@ -31,12 +31,21 @@ import '../components/option_list.dart';
 import '../components/study_button.dart';
 import '../env/env.dart';
 import '../graphql/queries/studies.graphql.dart';
-import '../helpers/ui/conditional_parent.dart';
 import '../theme/bccm_colors.dart';
 import '../theme/bccm_typography.dart';
 import '../helpers/utils.dart';
 import '../helpers/extensions.dart';
 import '../l10n/app_localizations.dart';
+
+EdgeInsets insets(BuildContext context) => !kIsWeb
+    ? EdgeInsets.zero
+    : MediaQuery.of(context).size.width > 2200
+        ? const EdgeInsets.symmetric(horizontal: 800)
+        : MediaQuery.of(context).size.width > 1200
+            ? const EdgeInsets.symmetric(horizontal: 500)
+            : MediaQuery.of(context).size.width > 900
+                ? const EdgeInsets.symmetric(horizontal: 300)
+                : const EdgeInsets.symmetric(horizontal: 80);
 
 class EpisodeScreen extends HookConsumerWidget {
   final String episodeId;
@@ -79,76 +88,80 @@ class EpisodeScreen extends HookConsumerWidget {
 
     final episodeSnapshot = useFuture(episodeFuture.value);
 
+    Widget? child;
+    if (episodeSnapshot.hasError && episodeSnapshot.connectionState == ConnectionState.done) {
+      var noAccess = episodeSnapshot.error
+          .asOrNull<OperationException>()
+          ?.graphqlErrors
+          .any((err) => err.extensions?['code'] == ApiErrorCodes.noAccess || err.extensions?['code'] == ApiErrorCodes.notPublished);
+      if (noAccess == true) {
+        child = const ErrorNoAccess();
+      }
+      child = ErrorGeneric(onRetry: fetchCurrentEpisode);
+    } else if (episodeSnapshot.data == null || routeAnimationStatus.value == AnimationStatus.forward) {
+      child = const _LoadingWidget();
+    } else {
+      child = SliverToBoxAdapter(
+        child: _EpisodeDisplay(
+          screenParams: this,
+          episodeFuture: episodeFuture.value,
+          scrollController: scrollController,
+        ),
+      );
+    }
     return Scaffold(
-      appBar: AppBar(
-        leadingWidth: 92,
-        leading: const CustomBackButton(),
-        title: Text(episodeSnapshot.data?.season?.$show.title ?? episodeSnapshot.data?.title ?? ''),
-        actions: const [
-          Padding(
-            padding: EdgeInsets.only(left: 16, right: 16.0),
-            child: SizedBox(width: 24, child: BccmCastButton()),
+      appBar: PreferredSize(
+        preferredSize: Size.fromHeight(Theme.of(context).appBarTheme.toolbarHeight ?? 44),
+        child: Padding(
+          padding: insets(context),
+          child: AppBar(
+            leadingWidth: 92,
+            leading: const CustomBackButton(padding: kIsWeb ? EdgeInsets.zero : null),
+            title: Text(episodeSnapshot.data?.season?.$show.title ?? episodeSnapshot.data?.title ?? ''),
+            actions: const [
+              Padding(
+                padding: EdgeInsets.only(left: 16, right: 16.0),
+                child: SizedBox(width: 24, child: BccmCastButton()),
+              ),
+            ],
+          ),
+        ),
+      ),
+      body: CustomScrollView(
+        physics: const AlwaysScrollableScrollPhysics(),
+        controller: scrollController,
+        slivers: [
+          SliverPadding(
+            padding: insets(context),
+            sliver: child,
           ),
         ],
-      ),
-      body: Padding(
-        padding: !kIsWeb
-            ? EdgeInsets.zero
-            : MediaQuery.of(context).size.width > 2200
-                ? const EdgeInsets.symmetric(horizontal: 800)
-                : MediaQuery.of(context).size.width > 1200
-                    ? const EdgeInsets.symmetric(horizontal: 500)
-                    : MediaQuery.of(context).size.width > 900
-                        ? const EdgeInsets.symmetric(horizontal: 300)
-                        : const EdgeInsets.symmetric(horizontal: 80),
-        child: Builder(
-          builder: (context) {
-            if (episodeSnapshot.hasError && episodeSnapshot.connectionState == ConnectionState.done) {
-              var noAccess = episodeSnapshot.error
-                  .asOrNull<OperationException>()
-                  ?.graphqlErrors
-                  .any((err) => err.extensions?['code'] == ApiErrorCodes.noAccess || err.extensions?['code'] == ApiErrorCodes.notPublished);
-              if (noAccess == true) {
-                return const ErrorNoAccess();
-              }
-              return ErrorGeneric(onRetry: fetchCurrentEpisode);
-            }
-            if (episodeSnapshot.data == null || routeAnimationStatus.value == AnimationStatus.forward) {
-              return _LoadingWidget(context: context);
-            }
-            return _EpisodeDisplay(
-              screenParams: this,
-              episodeFuture: episodeFuture.value,
-              scrollController: scrollController,
-            );
-          },
-        ),
       ),
     );
   }
 }
 
 class _LoadingWidget extends StatelessWidget {
-  const _LoadingWidget({required this.context});
-
-  final BuildContext context;
+  const _LoadingWidget();
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        AspectRatio(aspectRatio: 16 / 9, child: Container(color: BccmColors.background2)),
-        Expanded(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              const LoadingIndicator(),
-              const SizedBox(height: 12),
-              Text(S.of(context).loading, style: BccmTextStyles.body2),
-            ],
+    return SliverFillRemaining(
+      child: Column(
+        children: [
+          AspectRatio(aspectRatio: 16 / 9, child: Container(color: BccmColors.background2)),
+          Expanded(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                const LoadingIndicator(),
+                const SizedBox(height: 12),
+                Text(S.of(context).loading, style: BccmTextStyles.body2),
+              ],
+            ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }
@@ -231,89 +244,85 @@ class _EpisodeDisplay extends HookConsumerWidget {
 
     final showLoadingOverlay = (episodeSnapshot.connectionState == ConnectionState.waiting);
 
-    return SingleChildScrollView(
-      physics: const AlwaysScrollableScrollPhysics(),
-      controller: scrollController,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Stack(
-            children: [
-              Column(
-                children: [
-                  if (!episodeIsCurrentItem && playerSetupSnapshot.hasError && playerSetupSnapshot.connectionState != ConnectionState.waiting)
-                    PlayerError(
-                      imageUrl: episode.image,
-                      onRetry: setupPlayer,
-                    )
-                  else if (!episodeIsCurrentItem || showLoadingOverlay || kIsWeb)
-                    PlayerPoster(
-                      imageUrl: episode.image,
-                      setupPlayer: setupPlayer,
-                      loading: playerSetupSnapshot.connectionState == ConnectionState.waiting,
-                    )
-                  else
-                    BccmPlayer(id: player.playerId),
-                  EpisodeInfo(
-                    episode,
-                    onShareVideoTapped: () => shareVideo(context, ref, episode),
-                    extraChildren: [
-                      if (Env.enableStudy && hasStudy && lessonProgressFuture.value != null)
-                        Padding(
-                          padding: const EdgeInsets.only(top: 16),
-                          child: StudyMoreButton(
-                            lessonProgressFuture: lessonProgressFuture.value!,
-                            onNavigateBack: () {
-                              if (!isMounted()) return;
-                              lessonProgressFuture.value = ref.read(lessonProgressCacheProvider.notifier).loadLessonProgressForEpisode(episode.id);
-                            },
-                          ),
-                        ),
-                    ],
-                  ),
-                ],
-              ),
-              Positioned.fill(
-                child: Builder(builder: (context) {
-                  return IgnorePointer(
-                    child: AnimatedContainer(
-                      duration: showLoadingOverlay ? Duration.zero : const Duration(milliseconds: 600),
-                      curve: Curves.easeOutExpo,
-                      color: BccmColors.background1.withOpacity(showLoadingOverlay ? 1 : 0),
-                      child: Center(
-                        child: showLoadingOverlay ? const LoadingIndicator() : null,
-                      ),
-                    ),
-                  );
-                }),
-              ),
-            ],
-          ),
-          if (screenParams.hideBottomSection != true && (!_isUnlisted(episode) || _isStandalone(episode)))
-            EpisodeTabs(
-              tabs: [
-                Option(id: 'episodes', title: (S.of(context).episodes.toUpperCase())),
-                Option(id: 'details', title: (S.of(context).details.toUpperCase())),
-              ],
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Stack(
+          children: [
+            Column(
               children: [
-                if (episode.season != null)
-                  EpisodeSeason(
-                    episodeId: screenParams.episodeId,
-                    season: episode.season!,
-                    onEpisodeTap: (tappedEpisodeId) {
-                      if (tappedEpisodeId != episode.id) {
-                        context.navigateTo(EpisodeScreenRoute(episodeId: tappedEpisodeId, autoplay: kIsWeb ? null : true));
-                      }
-                      scrollToTop();
-                    },
+                if (!episodeIsCurrentItem && playerSetupSnapshot.hasError && playerSetupSnapshot.connectionState != ConnectionState.waiting)
+                  PlayerError(
+                    imageUrl: episode.image,
+                    onRetry: setupPlayer,
+                  )
+                else if (!episodeIsCurrentItem || showLoadingOverlay || kIsWeb)
+                  PlayerPoster(
+                    imageUrl: episode.image,
+                    setupPlayer: setupPlayer,
+                    loading: playerSetupSnapshot.connectionState == ConnectionState.waiting,
                   )
                 else
-                  EpisodeRelated(episode: episode),
-                EpisodeDetails(episode.id)
+                  BccmPlayer(id: player.playerId),
+                EpisodeInfo(
+                  episode,
+                  onShareVideoTapped: () => shareVideo(context, ref, episode),
+                  extraChildren: [
+                    if (Env.enableStudy && hasStudy && lessonProgressFuture.value != null)
+                      Padding(
+                        padding: const EdgeInsets.only(top: 16),
+                        child: StudyMoreButton(
+                          lessonProgressFuture: lessonProgressFuture.value!,
+                          onNavigateBack: () {
+                            if (!isMounted()) return;
+                            lessonProgressFuture.value = ref.read(lessonProgressCacheProvider.notifier).loadLessonProgressForEpisode(episode.id);
+                          },
+                        ),
+                      ),
+                  ],
+                ),
               ],
             ),
-        ],
-      ),
+            Positioned.fill(
+              child: Builder(builder: (context) {
+                return IgnorePointer(
+                  child: AnimatedContainer(
+                    duration: showLoadingOverlay ? Duration.zero : const Duration(milliseconds: 600),
+                    curve: Curves.easeOutExpo,
+                    color: BccmColors.background1.withOpacity(showLoadingOverlay ? 1 : 0),
+                    child: Center(
+                      child: showLoadingOverlay ? const LoadingIndicator() : null,
+                    ),
+                  ),
+                );
+              }),
+            ),
+          ],
+        ),
+        if (screenParams.hideBottomSection != true && (!_isUnlisted(episode) || _isStandalone(episode)))
+          EpisodeTabs(
+            tabs: [
+              Option(id: 'episodes', title: (S.of(context).episodes.toUpperCase())),
+              Option(id: 'details', title: (S.of(context).details.toUpperCase())),
+            ],
+            children: [
+              if (episode.season != null)
+                EpisodeSeason(
+                  episodeId: screenParams.episodeId,
+                  season: episode.season!,
+                  onEpisodeTap: (tappedEpisodeId) {
+                    if (tappedEpisodeId != episode.id) {
+                      context.navigateTo(EpisodeScreenRoute(episodeId: tappedEpisodeId, autoplay: kIsWeb ? null : true));
+                    }
+                    scrollToTop();
+                  },
+                )
+              else
+                EpisodeRelated(episode: episode),
+              EpisodeDetails(episode.id)
+            ],
+          ),
+      ],
     );
   }
 
