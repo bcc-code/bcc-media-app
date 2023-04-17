@@ -12,6 +12,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/svg.dart' show SvgPicture;
 import 'package:flutter_svg_provider/flutter_svg_provider.dart';
 import 'package:brunstadtv_app/helpers/ui/transparent_image.dart';
+import '../helpers/insets.dart';
 import '../providers/todays_calendar_entries.dart';
 import '../theme/bccm_colors.dart';
 import '../theme/bccm_typography.dart';
@@ -164,52 +165,57 @@ class _LiveScreenState extends ConsumerState<LiveScreen> with AutoRouteAware {
 
     if (player == null) return const SizedBox.shrink();
     return Scaffold(
-      appBar: AppBar(
-        leadingWidth: 92,
-        title: Text(S.of(context).liveHeader),
-        actions: [
-          const Padding(
-            padding: EdgeInsets.only(right: 2.0),
-            child: SizedBox(width: 24, child: BccmCastButton()),
-          ),
-          if (!kIsWeb)
-            Padding(
-              padding: const EdgeInsets.only(right: 8),
-              child: Switch(
-                inactiveTrackColor: BccmColors.tint2,
-                inactiveThumbColor: BccmColors.label1,
-                inactiveThumbImage: const Svg('assets/icons/headphones.svg', size: Size(12, 12)),
-                activeColor: BccmColors.label1,
-                activeTrackColor: BccmColors.tint1,
-                activeThumbImage: const Svg('assets/icons/play_alt.svg', size: Size(9, 9)),
-                value: !audioOnly,
-                onChanged: (value) {
-                  setState(() {
-                    audioOnly = !value;
-                  });
-                  ref.read(analyticsProvider).audioOnlyClicked(AudioOnlyClickedEvent(audioOnly: !value));
-                },
-              ),
+      appBar: ScreenInsetAppBar(
+        appBar: AppBar(
+          leadingWidth: 92,
+          title: Text(S.of(context).liveHeader),
+          actions: [
+            const Padding(
+              padding: EdgeInsets.only(right: 2.0),
+              child: SizedBox(width: 24, child: BccmCastButton()),
             ),
-        ],
+            if (!kIsWeb)
+              Padding(
+                padding: const EdgeInsets.only(right: 8),
+                child: Switch(
+                  inactiveTrackColor: BccmColors.tint2,
+                  inactiveThumbColor: BccmColors.label1,
+                  inactiveThumbImage: const Svg('assets/icons/headphones.svg', size: Size(12, 12)),
+                  activeColor: BccmColors.label1,
+                  activeTrackColor: BccmColors.tint1,
+                  activeThumbImage: const Svg('assets/icons/play_alt.svg', size: Size(9, 9)),
+                  value: !audioOnly,
+                  onChanged: (value) {
+                    setState(() {
+                      audioOnly = !value;
+                    });
+                    ref.read(analyticsProvider).audioOnlyClicked(AudioOnlyClickedEvent(audioOnly: !value));
+                  },
+                ),
+              ),
+          ],
+        ),
       ),
       body: SizedBox(
         height: double.infinity,
         child: SingleChildScrollView(
           primary: true,
           physics: const AlwaysScrollableScrollPhysics(),
-          child: Column(children: [
-            if (audioOnly)
-              LiveMiniPlayer(onStartRequest: () {
-                setup();
-              })
-            else if (player.currentMediaItem?.metadata?.extras?['id'] != 'livestream')
-              _playPoster(player)
-            else
-              _player(player),
-            _info()
-            //
-          ]),
+          child: Padding(
+            padding: screenInsets(context),
+            child: Column(children: [
+              if (audioOnly)
+                LiveMiniPlayer(onStartRequest: () {
+                  setup();
+                })
+              else if (player.currentMediaItem?.metadata?.extras?['id'] != 'livestream')
+                _playPoster(player)
+              else
+                _player(player),
+              _info()
+              //
+            ]),
+          ),
         ),
       ),
     );

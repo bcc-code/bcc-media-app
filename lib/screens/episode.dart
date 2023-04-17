@@ -31,21 +31,12 @@ import '../components/option_list.dart';
 import '../components/study_button.dart';
 import '../env/env.dart';
 import '../graphql/queries/studies.graphql.dart';
+import '../helpers/insets.dart';
 import '../theme/bccm_colors.dart';
 import '../theme/bccm_typography.dart';
 import '../helpers/utils.dart';
 import '../helpers/extensions.dart';
 import '../l10n/app_localizations.dart';
-
-EdgeInsets insets(BuildContext context) => !kIsWeb
-    ? EdgeInsets.zero
-    : MediaQuery.of(context).size.width > 2200
-        ? const EdgeInsets.symmetric(horizontal: 800)
-        : MediaQuery.of(context).size.width > 1200
-            ? const EdgeInsets.symmetric(horizontal: 500)
-            : MediaQuery.of(context).size.width > 900
-                ? const EdgeInsets.symmetric(horizontal: 300)
-                : const EdgeInsets.symmetric(horizontal: 80);
 
 class EpisodeScreen extends HookConsumerWidget {
   final String episodeId;
@@ -110,21 +101,17 @@ class EpisodeScreen extends HookConsumerWidget {
       );
     }
     return Scaffold(
-      appBar: PreferredSize(
-        preferredSize: Size.fromHeight(Theme.of(context).appBarTheme.toolbarHeight ?? 44),
-        child: Padding(
-          padding: insets(context),
-          child: AppBar(
-            leadingWidth: 92,
-            leading: const CustomBackButton(padding: kIsWeb ? EdgeInsets.zero : null),
-            title: Text(episodeSnapshot.data?.season?.$show.title ?? episodeSnapshot.data?.title ?? ''),
-            actions: const [
-              Padding(
-                padding: EdgeInsets.only(left: 16, right: 16.0),
-                child: SizedBox(width: 24, child: BccmCastButton()),
-              ),
-            ],
-          ),
+      appBar: ScreenInsetAppBar(
+        appBar: AppBar(
+          leadingWidth: 92,
+          leading: const CustomBackButton(padding: kIsWeb ? EdgeInsets.zero : null),
+          title: Text(episodeSnapshot.data?.season?.$show.title ?? episodeSnapshot.data?.title ?? ''),
+          actions: const [
+            Padding(
+              padding: EdgeInsets.only(left: 16, right: 16.0),
+              child: SizedBox(width: 24, child: BccmCastButton()),
+            ),
+          ],
         ),
       ),
       body: CustomScrollView(
@@ -132,7 +119,7 @@ class EpisodeScreen extends HookConsumerWidget {
         controller: scrollController,
         slivers: [
           SliverPadding(
-            padding: insets(context),
+            padding: screenInsets(context),
             sliver: child,
           ),
         ],

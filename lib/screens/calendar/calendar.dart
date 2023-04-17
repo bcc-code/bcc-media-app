@@ -15,6 +15,7 @@ import 'package:intl/intl.dart';
 
 import '../../helpers/date_time.dart';
 import '../../helpers/episode_state.dart';
+import '../../helpers/insets.dart';
 import '../../theme/bccm_colors.dart';
 import '../../theme/bccm_typography.dart';
 import '../../helpers/constants.dart';
@@ -35,8 +36,11 @@ class _CalendarPageState extends ConsumerState<CalendarPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(title: Text(S.of(context).calendar), actions: [
-          GestureDetector(
+      appBar: ScreenInsetAppBar(
+        appBar: AppBar(
+          title: Text(S.of(context).calendar),
+          actions: [
+            GestureDetector(
               behavior: HitTestBehavior.opaque,
               onTapUp: (details) {
                 setState(() {
@@ -46,9 +50,18 @@ class _CalendarPageState extends ConsumerState<CalendarPage> {
               child: Padding(
                 padding: const EdgeInsets.only(right: 16),
                 child: collapsed ? SvgPicture.string(SvgIcons.calendar1Line) : SvgPicture.string(SvgIcons.calendar2Lines),
-              )),
-        ]),
-        body: SingleChildScrollView(child: CalendarWidget(collapsed: collapsed)));
+              ),
+            ),
+          ],
+        ),
+      ),
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: screenInsets(context),
+          child: CalendarWidget(collapsed: collapsed),
+        ),
+      ),
+    );
   }
 }
 
@@ -364,7 +377,7 @@ class _CalendarWidgetState extends ConsumerState<CalendarWidget> {
           children: [
             if (_selectedDay != null)
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 24),
+                padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 24),
                 child: Builder(builder: (context) {
                   final isToday = isSameDay(_selectedDay, DateTime.now());
                   return Text(
@@ -513,10 +526,14 @@ class _EntriesSlot extends StatelessWidget {
                 padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 16),
                 decoration: BoxDecoration(
                   color: isLiveNow(entry.start, entry.end) ? BccmColors.tint2.withOpacity(0.1) : null,
-                  border: Border(
-                    left: isLiveNow(entry.start, entry.end) ? const BorderSide(color: BccmColors.tint2, width: 4) : const BorderSide(width: 4),
-                  ),
                 ),
+                foregroundDecoration: isLiveNow(entry.start, entry.end)
+                    ? const BoxDecoration(
+                        border: Border(
+                          left: BorderSide(color: BccmColors.tint2, width: 4),
+                        ),
+                      )
+                    : null,
                 child: Opacity(
                   opacity: episode?.episode?.locked == false ? 1 : 0.7,
                   child: Row(
@@ -590,9 +607,11 @@ class TvGuideTime extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Text(
-            S.of(context).timezoneInformation(DateTime.now().timeZoneName),
-            style: BccmTextStyles.caption1,
+          Expanded(
+            child: Text(
+              S.of(context).timezoneInformation(DateTime.now().timeZoneName),
+              style: BccmTextStyles.caption1,
+            ),
           ),
         ],
       ),

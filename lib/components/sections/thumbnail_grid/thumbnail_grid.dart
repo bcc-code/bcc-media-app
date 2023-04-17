@@ -26,10 +26,13 @@ class ThumbnailGrid extends ConsumerWidget {
   final bool showSecondaryTitle;
   final double aspectRatio;
 
-  int getColumnCount() {
+  int getColumnCount(BuildContext context) {
+    final screenSize = MediaQuery.of(context).size.width;
     switch (gridSize) {
       case Enum$GridSectionSize.half:
       default:
+        if (screenSize > 1920) return 6;
+        if (screenSize > 1000) return 4;
         return 2;
     }
   }
@@ -58,7 +61,7 @@ class ThumbnailGrid extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final columnCount = getColumnCount();
+    final columnCount = getColumnCount(context);
     Fragment$CalendarEntryEpisode? curLiveEpisode = ref.watch(currentLiveEpisodeProvider)?.episode;
 
     final items = sectionItems
