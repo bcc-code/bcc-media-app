@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../components/feature_badge.dart';
+import '../../l10n/app_localizations.dart';
 import '../../theme/bccm_colors.dart';
 import '../episode_state.dart';
 
@@ -22,21 +23,26 @@ Color? getColorFromHex(String hexString) {
   return Color(color);
 }
 
-Widget? getFeaturedTag({required String? publishDate, required bool locked, bool isLive = false}) {
-  bool isNewItem = false;
+Widget? getFeaturedTag({
+  required BuildContext context,
+  required String? publishDate,
+  required bool locked,
+  bool watched = false,
+  bool isLive = false,
+}) {
   if (isLive && locked) {
-    return const FeatureBadge(
-      label: 'Live now',
+    return FeatureBadge(
+      label: S.of(context).liveNow,
       color: BccmColors.tint2,
     );
   } else if (isComingSoon(publishDate: publishDate, locked: locked)) {
-    return const FeatureBadge(
-      label: 'Coming soon',
+    return FeatureBadge(
+      label: S.of(context).comingSoon,
       color: BccmColors.background2,
     );
-  } else if (isNewItem) {
-    return const FeatureBadge(
-      label: 'New',
+  } else if (isNewEpisode(publishDate) && !watched) {
+    return FeatureBadge(
+      label: S.of(context).newEpisode,
       color: BccmColors.tint2,
     );
   }

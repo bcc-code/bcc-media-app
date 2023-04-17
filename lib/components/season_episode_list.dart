@@ -125,11 +125,11 @@ class _Episode extends StatelessWidget {
                         ),
                       ),
                     )),
-                  if (getFeaturedTag(publishDate: data.episode.publishDate, locked: data.episode.locked) != null)
+                  if (getFeaturedTag(context: context, publishDate: data.episode.publishDate, locked: data.episode.locked) != null)
                     Positioned(
                       top: -4,
                       right: -4,
-                      child: getFeaturedTag(publishDate: data.episode.publishDate, locked: data.episode.locked)!,
+                      child: getFeaturedTag(context: context, publishDate: data.episode.publishDate, locked: data.episode.locked)!,
                     ),
                 ],
               ),
