@@ -3,14 +3,38 @@ import 'dart:html';
 import 'package:bccm_player/src/pigeon/playback_platform_pigeon.g.dart';
 import 'dart:ui' as ui;
 
+import '../../bccm_player_web.dart';
 import 'js/bccm_video_player.dart';
 
-class WebVideoPlayer {
-  final String playerId;
-  html.Element? currentElement;
-  final PlaybackListenerPigeon listener;
+const lanTo3letter = {
+  'no': "nor",
+  'en': "eng",
+  'nl': "nld",
+  'de': "deu",
+  'fr': "fra",
+  'es': "spa",
+  'fi': "fin",
+  'ru': "rus",
+  'pt': "por",
+  'ro': "ron",
+  'tr': "tur",
+  'pl': "pol",
+  'hu': "hun",
+  'it': "ita",
+  'da': "dan",
+};
 
-  WebVideoPlayer(this.playerId, {required this.listener}) {
+class VideoJsPlayer {
+  final String playerId;
+  final PlaybackListenerPigeon listener;
+  final BccmPlayerWeb plugin;
+  html.Element? currentElement;
+
+  VideoJsPlayer(
+    this.playerId, {
+    required this.listener,
+    required this.plugin,
+  }) {
     // use this.currentElement in registerViewFactory's callback below if we want to embed.
     // not implemented because of a fullscreen bug: https://github.com/flutter/flutter/issues/124799
 
@@ -18,7 +42,6 @@ class WebVideoPlayer {
     ui.platformViewRegistry.registerViewFactory('bccm-player-$playerId', (int viewId) => html.document.createElement('div'));
   }
 
-  var init = false;
   void replaceCurrentMediaItem(MediaItem mediaItem, {bool? autoplay}) {
     assert(mediaItem.url != null);
     var v = html.window.document.getElementById('bccm-player-$playerId');
@@ -63,10 +86,13 @@ class WebVideoPlayer {
       Options(
         src: SrcOptions(src: mediaItem.url!, type: 'application/x-mpegURL'),
         languagePreferenceDefaults: LanguagePreferenceDefaults(
-          audio: 'en',
-          subtitles: 'fr',
+          audio: lanTo3letter[plugin.appConfig?.audioLanguage],
+          subtitles: lanTo3letter[plugin.appConfig?.subtitleLanguage],
         ),
-        videojs: VideoJsOptions(autoplay: true, fluid: false),
+        videojs: VideoJsOptions(
+          autoplay: true,
+          fluid: false,
+        ),
       ),
     );
 

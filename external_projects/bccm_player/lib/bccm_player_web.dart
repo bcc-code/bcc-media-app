@@ -6,14 +6,17 @@ import 'package:bccm_player/src/native/root_pigeon_playback_listener.dart';
 import 'package:bccm_player/src/pigeon/playback_platform_pigeon.g.dart' as pigeon;
 import 'package:bccm_player/src/playback_platform_interface.dart';
 import 'package:flutter_web_plugins/flutter_web_plugins.dart';
-import 'src/web/web_player.dart';
+import 'bccm_player.dart';
+import 'src/web/video_js_player.dart';
 
 /// A web implementation of the BccmPlayerPlatform of the BccmPlayer plugin.
 class BccmPlayerWeb extends BccmPlayerInterface {
   /// Constructs a BccmPlayerWeb
   BccmPlayerWeb();
 
-  Map<String, WebVideoPlayer> webVideoPlayers = {};
+  AppConfig? appConfig;
+  NpawConfig? npawConfig;
+  Map<String, VideoJsPlayer> webVideoPlayers = {};
   final RootPigeonPlaybackListener _rootPlaybackListener = RootPigeonPlaybackListener();
 
   static void registerWith(Registrar registrar) {
@@ -26,7 +29,7 @@ class BccmPlayerWeb extends BccmPlayerInterface {
   @override
   Future<String> newPlayer({String? url}) async {
     final playerId = DateTime.now().microsecondsSinceEpoch.toString();
-    final player = WebVideoPlayer(playerId, listener: _rootPlaybackListener);
+    final player = VideoJsPlayer(playerId, listener: _rootPlaybackListener, plugin: this);
     webVideoPlayers[playerId] = player;
     stateNotifier.addPlayerNotifier(playerId);
     return playerId;
@@ -93,12 +96,12 @@ class BccmPlayerWeb extends BccmPlayerInterface {
 
   @override
   Future setNpawConfig(pigeon.NpawConfig? config) async {
-    return;
+    npawConfig = config;
   }
 
   @override
   void setAppConfig(pigeon.AppConfig? config) {
-    return;
+    appConfig = config;
   }
 
   @override
