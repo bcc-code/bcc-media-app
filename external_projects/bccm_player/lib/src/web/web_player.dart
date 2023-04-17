@@ -1,5 +1,8 @@
+import 'dart:developer';
 import 'dart:html' as html;
+import 'dart:html';
 import 'package:bccm_player/src/pigeon/playback_platform_pigeon.g.dart';
+import 'package:flutter/foundation.dart';
 import 'dart:ui' as ui;
 
 import 'js/bccm_video_player.dart';
@@ -29,6 +32,7 @@ class WebVideoPlayer {
       v.style.backgroundColor = "#000000";
       v.style.position = "fixed";
       v.style.zIndex = "50";
+      v.appendHtml('''<style>#${v.id} > .video-js { width: 100%; height: 100% }</style>''', treeSanitizer: NodeTreeSanitizer.trusted);
       html.window.document.getElementById('primary-player-wrapper')?.append(v);
       final topLeftWrapper = html.document.createElement("div");
       topLeftWrapper.style
@@ -67,10 +71,6 @@ class WebVideoPlayer {
         videojs: VideoJsOptions(autoplay: true, fluid: false),
       ),
     );
-
-    v.children.firstWhere((element) => element.classes.contains('video-js'))
-      ..style.width = '100%'
-      ..style.height = '100%';
 
     currentElement = v;
 
