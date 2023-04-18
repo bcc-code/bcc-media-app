@@ -11,14 +11,31 @@ enum ImageCropMode {
   center,
 }
 
+final imageWidths = [16, 240, 500, 680, 1024, 1600, 1920];
+final imageHeights = [16, 240, 500, 680, 1024, 1600, 1920];
+
 Uri? getImageUri(String image, {int? width, int? height, ImageCropMode cropMode = ImageCropMode.faces}) {
+  assert(
+    width == null || height == null,
+    '''Either width or height needs to be null. Use the dimension that changes least.
+    Having one dimension plays better with web and desktop, where the screen can be resized a lot.''',
+  );
   final originalUri = Uri.tryParse(image);
   if (originalUri == null) {
     return null;
   }
+  int? targetWidth;
+  if (width != null) {
+    targetWidth = imageWidths.firstWhere((w) => w >= width, orElse: () => imageWidths.last);
+  }
+  int? targetHeight;
+  if (height != null) {
+    targetHeight = imageHeights.firstWhere((h) => h >= height, orElse: () => imageHeights.last);
+  }
+
   var newQueryParams = Uri.splitQueryString(originalUri.query);
-  if (width != null) newQueryParams['w'] = width.toString();
-  if (height != null) newQueryParams['h'] = height.toString();
+  if (targetWidth != null) newQueryParams['w'] = targetWidth.toString();
+  if (targetHeight != null) newQueryParams['h'] = targetHeight.toString();
   newQueryParams['fit'] = 'crop';
 
   final cropModeString = _imageCropModeQueryParam[cropMode];

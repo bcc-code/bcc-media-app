@@ -43,8 +43,7 @@ class BorderedImageContainer extends StatelessWidget {
             return const SizedBox.shrink();
           }
           final imageHeight = (constraints.maxHeight * MediaQuery.of(context).devicePixelRatio).round();
-          final imageWidth = (constraints.maxWidth * MediaQuery.of(context).devicePixelRatio).round();
-          final imageUri = imageUrl == null ? null : getImageUri(imageUrl!, width: imageWidth, height: imageHeight);
+          final imageUri = imageUrl == null ? null : getImageUri(imageUrl!, height: imageHeight);
           return ClipRRect(
             borderRadius: borderRadius ?? BorderRadius.circular(6),
             child: SizedBox(

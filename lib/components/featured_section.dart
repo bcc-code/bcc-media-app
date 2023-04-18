@@ -248,8 +248,7 @@ class _GradientImage extends StatelessWidget {
             return const SizedBox.shrink();
           }
           final imageHeight = (constraints.maxHeight * MediaQuery.of(context).devicePixelRatio).round();
-          final imageWidth = (constraints.maxWidth * MediaQuery.of(context).devicePixelRatio).round();
-          final imageUri = image == null ? null : getImageUri(image!, width: imageWidth, height: imageHeight, cropMode: ImageCropMode.center);
+          final imageUri = image == null ? null : getImageUri(image!, height: imageHeight, cropMode: ImageCropMode.center);
           return ClipRRect(
             borderRadius: BorderRadius.circular(6),
             child: SizedBox(
