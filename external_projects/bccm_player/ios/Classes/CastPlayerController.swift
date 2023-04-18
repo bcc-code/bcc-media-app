@@ -1,15 +1,8 @@
-//
-//  CastController.swift
-//  bccm_player
-//
-//  Created by Andreas Gangsø on 19/09/2022.
-//
-
-import Foundation
 import AVFoundation
+import Foundation
 import GoogleCast
 
-class CastPlayerController: NSObject, PlayerController  {
+class CastPlayerController: NSObject, PlayerController {
     static let DEFAULT_ID = "chromecast"
     private var playbackApi: PlaybackApiImpl?
     var id: String
@@ -25,22 +18,16 @@ class CastPlayerController: NSObject, PlayerController  {
         self.id = CastPlayerController.DEFAULT_ID
         self.chromecastPigeon = chromecastPigeon
         self.playbackListener = playbackListener
-        let castContext = GCKCastContext.sharedInstance();
+        let castContext = GCKCastContext.sharedInstance()
         self.castState = castContext.castState
-        super.init();
+        super.init()
         
         NotificationCenter.default.addObserver(self, selector: #selector(castDeviceDidChange),
-                                                   name: NSNotification.Name.gckCastStateDidChange,
-                                                   object: GCKCastContext.sharedInstance())
-//
-//        observers.append(castContext.observe(\.sessionManager.currentSession, options: [.old, .new]) {
-//            (castContext, change) in
-//            castContext.sessionManager.currentSession?.remoteMediaClient?.add(self)
-//        })
+                                               name: NSNotification.Name.gckCastStateDidChange,
+                                               object: GCKCastContext.sharedInstance())
     }
     
-    public func hasBecomePrimary() {
-    }
+    public func hasBecomePrimary() {}
     
     func getCurrentItem() -> MediaItem? {
         if let currentItem = GCKCastContext.sharedInstance().sessionManager.currentCastSession?.remoteMediaClient?.mediaStatus?.currentQueueItem {
@@ -50,17 +37,14 @@ class CastPlayerController: NSObject, PlayerController  {
     }
     
     func setPlaybackApi(_ playbackApi: PlaybackApiImpl) {
-        self.playbackApi = playbackApi;
+        self.playbackApi = playbackApi
     }
     
-
     @objc func castDeviceDidChange(_: Notification) {
-      self.castState = GCKCastContext.sharedInstance().castState
+        castState = GCKCastContext.sharedInstance().castState
     }
     
-    func updateNpawConfig(npawConfig: NpawConfig?) {
-        
-    }
+    func updateNpawConfig(npawConfig: NpawConfig?) {}
     
     func updateAppConfig(appConfig: AppConfig?) {
         self.appConfig = appConfig
@@ -68,27 +52,27 @@ class CastPlayerController: NSObject, PlayerController  {
     
     func replaceCurrentMediaItem(_ mediaItem: MediaItem, autoplay: NSNumber?, completion: @escaping (FlutterError?) -> Void) {
         guard let mediaInfo = mapMediaItemToMediaInformation(mediaItem) else {
-            fatalError("invalid url passed to setMediaItem");
-        };
-        GCKCastContext.sharedInstance().sessionManager.currentCastSession?.remoteMediaClient?.loadMedia(mediaInfo);
+            fatalError("invalid url passed to setMediaItem")
+        }
+        GCKCastContext.sharedInstance().sessionManager.currentCastSession?.remoteMediaClient?.loadMedia(mediaInfo)
     }
     
     func queueItem(_ mediaItem: MediaItem) {
         guard let queueItem = mapMediaItemToQueueItem(mediaItem) else {
             return
-        };
+        }
         
-        GCKCastContext.sharedInstance().sessionManager.currentCastSession?.remoteMediaClient?.queueInsert(queueItem, beforeItemWithID: kGCKMediaQueueInvalidItemID);
+        GCKCastContext.sharedInstance().sessionManager.currentCastSession?.remoteMediaClient?.queueInsert(queueItem, beforeItemWithID: kGCKMediaQueueInvalidItemID)
     }
     
     func mapMediaItemToQueueItem(_ mediaItem: MediaItem) -> GCKMediaQueueItem? {
         guard let mediaInfo = mapMediaItemToMediaInformation(mediaItem) else {
             debugPrint("invalid or nil mediaItem passed to createQueueItem")
-            return nil;
-        };
-        let isLive = mediaItem.isLive?.boolValue == true;
+            return nil
+        }
+        let isLive = mediaItem.isLive?.boolValue == true
         let queueItemBuilder = GCKMediaQueueItemBuilder()
-        queueItemBuilder.mediaInformation = mediaInfo;
+        queueItemBuilder.mediaInformation = mediaInfo
         queueItemBuilder.startTime = mediaItem.playbackStartPositionMs == nil || isLive ? kGCKInvalidTimeInterval : (Double(truncating: mediaItem.playbackStartPositionMs!) / 1000)
         return queueItemBuilder.build()
     }
@@ -102,7 +86,7 @@ class CastPlayerController: NSObject, PlayerController  {
     }
     
     func stop(reset: Bool) {
-        if (reset) {
+        if reset {
             GCKCastContext.sharedInstance().sessionManager.currentCastSession?.remoteMediaClient?.mediaQueue.clear()
             GCKCastContext.sharedInstance().sessionManager.currentCastSession?.remoteMediaClient?.stop()
         } else {
@@ -114,7 +98,7 @@ class CastPlayerController: NSObject, PlayerController  {
         guard let urlString = mediaItem.url, let url = URL(string: urlString) else {
             return nil
         }
-        let mediaInfoBuilder = GCKMediaInformationBuilder(contentURL: url);
+        let mediaInfoBuilder = GCKMediaInformationBuilder(contentURL: url)
         var playerData: [String: String] = [:]
         if mediaItem.isLive?.boolValue == true {
             mediaInfoBuilder.streamType = .live
@@ -135,7 +119,7 @@ class CastPlayerController: NSObject, PlayerController  {
             }
             if let artworkUri = originalMeta.artworkUri {
                 if let uri = URL(string: artworkUri) {
-                    let image = GCKImage.init(url: uri, width: 0, height: 0)
+                    let image = GCKImage(url: uri, width: 0, height: 0)
                     metadata.addImage(image)
                 }
             }
@@ -144,8 +128,7 @@ class CastPlayerController: NSObject, PlayerController  {
                     if let value = kv.value as? String {
                         metadata.setString(value, forKey: MetadataNamespace.BccmExtras.rawValue + "." + kv.key)
                     } else {
-                        var val = kv.value
-                        debugPrint("error! Value is: ")
+                        debugPrint("error! Value is not string")
                     }
                 }
             }
@@ -173,18 +156,18 @@ class CastPlayerController: NSObject, PlayerController  {
         customData["subtitlesTracks"] = subtitlesTracks
         
         mediaInfoBuilder.customData = customData
-        mediaInfoBuilder.metadata = metadata;
-        return mediaInfoBuilder.build();
+        mediaInfoBuilder.metadata = metadata
+        return mediaInfoBuilder.build()
     }
     
     func transferStateFromPrimary() {
         guard let player = (playbackApi?.getPrimaryPlayer() as? AVQueuePlayerController)?.getPlayer() else {
-            debugPrint("No primary player");
-            return;
+            debugPrint("No primary player")
+            return
         }
         guard let currentItem = player.currentItem else {
-            debugPrint("No current item");
-            return;
+            debugPrint("No current item")
+            return
         }
         
         let currentItemIndex = player.items().firstIndex(of: currentItem) ?? 0
@@ -203,13 +186,12 @@ class CastPlayerController: NSObject, PlayerController  {
             queue.append(queueItem)
         }
         guard let remoteMediaClient = GCKCastContext.sharedInstance().sessionManager.currentCastSession?.remoteMediaClient else {
-            return;
+            return
         }
         
-        //remoteMediaClient.queueUpdate(queue, customData: nil)
-        let queueBuilder = GCKMediaQueueDataBuilder(queueType: GCKMediaQueueType.videoPlayList);
-        queueBuilder.items = queue;
-        let loadRequestBuilder = GCKMediaLoadRequestDataBuilder();
+        let queueBuilder = GCKMediaQueueDataBuilder(queueType: GCKMediaQueueType.videoPlayList)
+        queueBuilder.items = queue
+        let loadRequestBuilder = GCKMediaLoadRequestDataBuilder()
         loadRequestBuilder.startTime = currentItem.currentTime().seconds
         loadRequestBuilder.queueData = queueBuilder.build()
         remoteMediaClient.loadMedia(with: loadRequestBuilder.build())
@@ -219,7 +201,7 @@ class CastPlayerController: NSObject, PlayerController  {
     
     func mapMediaQueueItem(_ mediaQueueItem: GCKMediaQueueItem?) -> MediaItem? {
         guard let mediaQueueItem = mediaQueueItem else {
-            return nil;
+            return nil
         }
         guard let mediaItem = mapMediaMetadata(mediaQueueItem.mediaInformation.metadata) else {
             return nil
@@ -230,10 +212,10 @@ class CastPlayerController: NSObject, PlayerController  {
     
     func mapMediaMetadata(_ mediaMetadata: GCKMediaMetadata?) -> MediaItem? {
         guard let mediaMetadata = mediaMetadata else {
-            return nil;
+            return nil
         }
        
-        let mappedMetadata = MediaMetadata();
+        let mappedMetadata = MediaMetadata()
         mappedMetadata.title = mediaMetadata.string(forKey: kGCKMetadataKeyTitle)
         if let image = mediaMetadata.images().first as? GCKImage {
             mappedMetadata.artworkUri = image.url.absoluteString
@@ -244,7 +226,7 @@ class CastPlayerController: NSObject, PlayerController  {
             guard let namespaceStringRange = metadataKey.range(of: MetadataNamespace.BccmPlayer.rawValue + ".") else {
                 continue
             }
-            let playerDataKey = String(metadataKey[namespaceStringRange.upperBound...]);
+            let playerDataKey = String(metadataKey[namespaceStringRange.upperBound...])
             playerData[playerDataKey] = mediaMetadata.string(forKey: metadataKey)
         }
         
@@ -253,7 +235,7 @@ class CastPlayerController: NSObject, PlayerController  {
             guard let namespaceStringRange = metadataKey.range(of: MetadataNamespace.BccmExtras.rawValue + ".") else {
                 continue
             }
-            let extrasKey = String(metadataKey[namespaceStringRange.upperBound...]);
+            let extrasKey = String(metadataKey[namespaceStringRange.upperBound...])
             extras[extrasKey] = mediaMetadata.string(forKey: metadataKey)
         }
         mappedMetadata.extras = extras
@@ -269,28 +251,29 @@ class CastPlayerController: NSObject, PlayerController  {
             isLive: isLive as NSNumber,
             playbackStartPositionMs: nil,
             lastKnownAudioLanguage: nil,
-            lastKnownSubtitleLanguage: nil)
+            lastKnownSubtitleLanguage: nil
+        )
         
         return mediaItem
     }
    
     var metaTemp: GCKMediaMetadata? = nil
-    
 }
 
-extension CastPlayerController : GCKRemoteMediaClientListener {
+extension CastPlayerController: GCKRemoteMediaClientListener {
     func remoteMediaClient(_ client: GCKRemoteMediaClient, didUpdate mediaMetadata: GCKMediaMetadata?) {
         debugPrint("something didUpdate mediaMetadata:" + mediaMetadata.debugDescription)
         debugPrint("is metaTemp same?: " + (metaTemp == mediaMetadata).description)
         guard let mediaItem = mapMediaMetadata(mediaMetadata) else {
-            self.playbackListener.onMediaItemTransition(MediaItemTransitionEvent.make(withPlayerId: self.id, mediaItem: nil), completion: { e in })
-            return;
+            playbackListener.onMediaItemTransition(MediaItemTransitionEvent.make(withPlayerId: id, mediaItem: nil), completion: { _ in })
+            return
         }
-        let event = MediaItemTransitionEvent.make(withPlayerId: self.id, mediaItem: mediaItem)
-        playbackListener.onMediaItemTransition(event, completion: { e in })
+        let event = MediaItemTransitionEvent.make(withPlayerId: id, mediaItem: mediaItem)
+        playbackListener.onMediaItemTransition(event, completion: { _ in })
     }
+
     func remoteMediaClient(_ client: GCKRemoteMediaClient, didReceive queueItems: [GCKMediaQueueItem]) {
-        debugPrint("something didReceive queueItems: " + queueItems.map { a in a.mediaInformation.metadata?.value(forKey: "title")}.debugDescription)
+        debugPrint("something didReceive queueItems: " + queueItems.map { a in a.mediaInformation.metadata?.value(forKey: "title") }.debugDescription)
     }
     
     func remoteMediaClient(_ client: GCKRemoteMediaClient, didUpdate mediaStatus: GCKMediaStatus?) {
@@ -298,54 +281,46 @@ extension CastPlayerController : GCKRemoteMediaClientListener {
         debugPrint("something didReceive mediaStatus: " + mediaStatus.debugDescription)
         debugPrint("mediaStatus meta: " + metaTemp.debugDescription)
         let isPlaying = (mediaStatus?.playerState != .paused && mediaStatus?.playerState != .unknown)
-        let event = IsPlayingChangedEvent.make(withPlayerId: self.id, isPlaying: isPlaying as NSNumber)
-        self.playbackListener.onIsPlayingChanged(event, completion: { _ in })
+        let event = IsPlayingChangedEvent.make(withPlayerId: id, isPlaying: isPlaying as NSNumber)
+        playbackListener.onIsPlayingChanged(event, completion: { _ in })
     }
-    
 }
 
-extension CastPlayerController : GCKCastDeviceStatusListener {
+extension CastPlayerController: GCKCastDeviceStatusListener {
     func castSession(_ castSession: GCKCastSession, didUpdate device: GCKMultizoneDevice) {
         debugPrint("didReceive didUpdate device")
     }
+
     func castSession(_ castSession: GCKCastSession, didReceive standbyStatus: GCKStandbyStatus) {
         debugPrint("didReceive standbyStatus")
     }
+
     func castSession(_ castSession: GCKCastSession, didReceive multizoneStatus: GCKMultizoneStatus) {
         debugPrint("didReceive multizoneStatus")
     }
+
     func castSession(_ castSession: GCKCastSession, didReceive activeInputStatus: GCKActiveInputStatus) {
         debugPrint("didReceive activeInputStatus")
         castSession.add(self)
     }
 }
 
-
 // MARK: - GCKSessionManagerListener
-extension CastPlayerController: GCKSessionManagerListener {
-//  func sessionManager(_: GCKSessionManager, didEnd _: GCKSession, withError error: Error?) {
-//    if error == nil {
-//      if let view = window?.rootViewController?.view {
-//        Toast.displayMessage("Session ended", for: 3, in: view)
-//      }
-//    } else {
-//      let message = "Session ended unexpectedly:\n\(error?.localizedDescription ?? "")"
-//      showAlert(withTitle: "Session error", message: message)
-//    }
-//  }
 
+extension CastPlayerController: GCKSessionManagerListener {
     func sessionManager(_: GCKSessionManager, willEnd session: GCKSession) {
         positionUponEndingSession = session.remoteMediaClient?.approximateStreamPosition()
     }
     
     func sessionManager(_ sessionManager: GCKSessionManager, didSuspend session: GCKSession,
-                        with reason: GCKConnectionSuspendReason) {
-        chromecastPigeon.onSessionSuspended() { _ in }
+                        with reason: GCKConnectionSuspendReason)
+    {
+        chromecastPigeon.onSessionSuspended { _ in }
         session.remoteMediaClient?.remove(self)
     }
     
     func sessionManager(_ sessionManager: GCKSessionManager, didResumeSession session: GCKSession) {
-        chromecastPigeon.onSessionResumed() { _ in }
+        chromecastPigeon.onSessionResumed { _ in }
         transferStateFromPrimary()
         session.remoteMediaClient?.add(self)
     }
@@ -359,9 +334,10 @@ extension CastPlayerController: GCKSessionManagerListener {
         session.add(self)
         debugPrint("added session listener")
         self.sessionManager = sessionManager
-        print ("currentCastSession.remotemediaclient nil? = " + (sessionManager.currentCastSession?.remoteMediaClient != nil).description)
+        print("currentCastSession.remotemediaclient nil? = " + (sessionManager.currentCastSession?.remoteMediaClient != nil).description)
         session.remoteMediaClient?.add(self)
     }
+
     func sessionManager(
         _ sessionManager: GCKSessionManager,
         didEnd session: GCKSession,
@@ -370,11 +346,10 @@ extension CastPlayerController: GCKSessionManagerListener {
         chromecastPigeon.onSessionEnded { _ in }
         var positionMs: NSNumber? = nil
         if positionUponEndingSession != nil {
-            positionMs = Int(positionUponEndingSession!*1000) as NSNumber
+            positionMs = Int(positionUponEndingSession! * 1000) as NSNumber
         }
         chromecastPigeon.onCastSessionUnavailable(CastSessionUnavailableEvent.make(withPlaybackPositionMs: positionMs)) { _ in }
         
         session.remoteMediaClient?.remove(self)
     }
 }
-

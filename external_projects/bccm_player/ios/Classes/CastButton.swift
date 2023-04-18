@@ -1,15 +1,9 @@
-//
-//  CastButton.swift
-//  bccm_player
-//
-//  Created by Andreas Gangsø on 19/09/2022.
-//
 
-import Foundation
-import Flutter
-import UIKit
 import AVKit
+import Flutter
+import Foundation
 import GoogleCast
+import UIKit
 
 class CastButtonFactory: NSObject, FlutterPlatformViewFactory {
     private var messenger: FlutterBinaryMessenger
@@ -26,13 +20,13 @@ class CastButtonFactory: NSObject, FlutterPlatformViewFactory {
     }
 
     func create(
-            withFrame frame: CGRect,
-            viewIdentifier viewId: Int64,
-            arguments args: Any?
+        withFrame frame: CGRect,
+        viewIdentifier viewId: Int64,
+        arguments args: Any?
     ) -> FlutterPlatformView {
-        
         return CastButton(
-            frame: frame, viewId: viewId)
+            frame: frame, viewId: viewId
+        )
     }
 }
 
@@ -51,20 +45,19 @@ class CastButton: NSObject, FlutterPlatformView {
         return _buttonView
     }
 }
+
 /*
- 
- 
+
  private var isHiddenListeners: Dictionary<Int64, (Bool) -> Void> = [:]
- 
+
  isHiddenListeners[viewId] = listener
- 
+
  func listener(hidden: Bool) -> Void {
      _eventChannel.("is_hidden", arguments: hidden)
  }
- 
- 
+
  */
-//class CustomGCKUICastButton : GCKUICastButton {
+// class CustomGCKUICastButton : GCKUICastButton {
 //    var _eventSink: FlutterEventSink?
 //    init(frame: CGRect, eventSink: FlutterEventSink) {
 //        _eventSink = eventSink
@@ -91,4 +84,4 @@ class CastButton: NSObject, FlutterPlatformView {
 //            isHiddenListeners.forEach({ listenerKv in listenerKv.value(bounds.isEmpty)})
 //        }
 //    }
-//}
+// }

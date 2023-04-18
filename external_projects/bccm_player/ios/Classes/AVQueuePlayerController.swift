@@ -1,13 +1,12 @@
-
-import Foundation
 import AVFoundation
 import AVKit
-import YouboraLib
-import YouboraAVPlayerAdapter
+import Foundation
 import MediaPlayer
+import YouboraAVPlayerAdapter
+import YouboraLib
 
 public class AVQueuePlayerController: NSObject, PlayerController, AVPlayerViewControllerDelegate {
-    lazy var player: AVQueuePlayer = AVQueuePlayer()
+    lazy var player: AVQueuePlayer = .init()
     public final let id: String
     final let playbackListener: PlaybackListenerPigeon
     final var observers = [NSKeyValueObservation]()
@@ -18,26 +17,26 @@ public class AVQueuePlayerController: NSObject, PlayerController, AVPlayerViewCo
     var refreshStateTimer: Timer? = nil
 
     init(id: String? = nil, playbackListener: PlaybackListenerPigeon, npawConfig: NpawConfig?, appConfig: AppConfig?) {
-        self.id = id ?? UUID().uuidString;
+        self.id = id ?? UUID().uuidString
         self.playbackListener = playbackListener
         
-        let youboraOptions = YBOptions();
-        youboraOptions.enabled = npawConfig != nil;
-        youboraOptions.accountCode = npawConfig?.accountCode;
-        youboraOptions.appName = npawConfig?.appName;
-        youboraOptions.autoDetectBackground = false;
-        youboraOptions.appReleaseVersion = npawConfig?.appReleaseVersion;
+        let youboraOptions = YBOptions()
+        youboraOptions.enabled = npawConfig != nil
+        youboraOptions.accountCode = npawConfig?.accountCode
+        youboraOptions.appName = npawConfig?.appName
+        youboraOptions.autoDetectBackground = false
+        youboraOptions.appReleaseVersion = npawConfig?.appReleaseVersion
         youboraPlugin = YBPlugin(options: youboraOptions)
         super.init()
-        updateAppConfig(appConfig: appConfig);
+        updateAppConfig(appConfig: appConfig)
         youboraPlugin.adapter = YBAVPlayerAdapterSwiftTranformer.transform(from: YBAVPlayerAdapter(player: player))
-        addObservers();
+        addObservers()
         refreshStateTimer = Timer.scheduledTimer(withTimeInterval: 15, repeats: true) { _ in
             let playerState = PlayerState.make(
                 withPlayerId: self.id,
                 isPlaying: self.isPlaying() as NSNumber,
-                playbackPositionMs: NSNumber(value: self.player.currentTime().seconds * 1000 ));
-            playbackListener.onPlayerStateUpdate(playerState, completion: {_ in })
+                playbackPositionMs: NSNumber(value: self.player.currentTime().seconds * 1000))
+            playbackListener.onPlayerStateUpdate(playerState, completion: { _ in })
         }
         print("BTV DEBUG: end of init playerController")
     }
@@ -63,10 +62,10 @@ public class AVQueuePlayerController: NSObject, PlayerController, AVPlayerViewCo
     }
     
     public func stop(reset: Bool) {
-        if (reset) {
-            player.removeAllItems();
+        if reset {
+            player.removeAllItems()
         } else {
-            player.pause();
+            player.pause()
         }
     }
     
@@ -76,8 +75,8 @@ public class AVQueuePlayerController: NSObject, PlayerController, AVPlayerViewCo
     }
     
     public func playerViewControllerShouldAutomaticallyDismissAtPictureInPictureStart(_ playerViewController: AVPlayerViewController) -> Bool {
-        print("playerViewControllerShouldAutomaticallyDismissAtPictureInPictureStart");
-        return false;
+        print("playerViewControllerShouldAutomaticallyDismissAtPictureInPictureStart")
+        return false
     }
     
     public func playerViewControllerWillStopPictureInPicture(_ playerViewController: AVPlayerViewController) {
@@ -94,16 +93,15 @@ public class AVQueuePlayerController: NSObject, PlayerController, AVPlayerViewCo
     }
     
     func registerPipController(_ playerView: AVPlayerViewController?) {
-        pipController = playerView;
+        pipController = playerView
         let event = PictureInPictureModeChangedEvent.make(withPlayerId: id, isInPipMode: (playerView != nil) as NSNumber)
         playbackListener.onPicture(inPictureModeChanged: event, completion: { _ in })
     }
     
     func releasePlayerView(_ playerView: AVPlayerViewController) {
-        if (playerView != pipController) {
-            print ("releasing")
+        if playerView != pipController {
+            print("releasing")
             playerView.player = nil
-            
         }
     }
     
@@ -111,15 +109,14 @@ public class AVQueuePlayerController: NSObject, PlayerController, AVPlayerViewCo
         let commandCenter = MPRemoteCommandCenter.shared()
         commandCenter.playCommand.isEnabled = true
         commandCenter.pauseCommand.isEnabled = true
-        commandCenter.playCommand.addTarget { [weak self] (event) -> MPRemoteCommandHandlerStatus in
+        commandCenter.playCommand.addTarget { [weak self] _ -> MPRemoteCommandHandlerStatus in
             self?.player.play()
             return .success
         }
-        commandCenter.pauseCommand.addTarget { [weak self] (event) -> MPRemoteCommandHandlerStatus in
+        commandCenter.pauseCommand.addTarget { [weak self] _ -> MPRemoteCommandHandlerStatus in
             self?.player.pause()
             return .success
         }
-        
         
         let nowPlayingInfoCenter = MPNowPlayingInfoCenter.default()
         nowPlayingInfoCenter.nowPlayingInfo = [:]
@@ -128,6 +125,7 @@ public class AVQueuePlayerController: NSObject, PlayerController, AVPlayerViewCo
     @objc func playAudio() {
         player.play()
     }
+
     @objc func pauseAudio() {
         player.pause()
     }
@@ -140,46 +138,46 @@ public class AVQueuePlayerController: NSObject, PlayerController, AVPlayerViewCo
             youboraPlugin.options.contentTvShow = nil
             youboraPlugin.options.contentSeason = nil
             youboraPlugin.options.contentEpisodeTitle = nil
-            return;
+            return
         }
-        let extras = mediaItem.metadata?.extras;
-        let isLive = ((extras?["npaw.content.isLive"] as? String) == "true") || (mediaItem.isLive?.boolValue) == true;
-        youboraPlugin.options.contentIsLive = isLive as NSValue?;
-        youboraPlugin.options.contentId = extras?["npaw.content.id"] as? String ?? extras?["id"] as? String;
-        youboraPlugin.options.contentTitle = extras?["npaw.content.title"] as? String ?? mediaItem.metadata?.title;
-        youboraPlugin.options.contentTvShow = extras?["npaw.content.tvShow"] as? String;
-        youboraPlugin.options.contentSeason = extras?["npaw.content.season"] as? String;
-        youboraPlugin.options.contentEpisodeTitle = extras?["npaw.content.episodeTitle"] as? String;
+        let extras = mediaItem.metadata?.extras
+        let isLive = ((extras?["npaw.content.isLive"] as? String) == "true") || (mediaItem.isLive?.boolValue) == true
+        youboraPlugin.options.contentIsLive = isLive as NSValue?
+        youboraPlugin.options.contentId = extras?["npaw.content.id"] as? String ?? extras?["id"] as? String
+        youboraPlugin.options.contentTitle = extras?["npaw.content.title"] as? String ?? mediaItem.metadata?.title
+        youboraPlugin.options.contentTvShow = extras?["npaw.content.tvShow"] as? String
+        youboraPlugin.options.contentSeason = extras?["npaw.content.season"] as? String
+        youboraPlugin.options.contentEpisodeTitle = extras?["npaw.content.episodeTitle"] as? String
     }
 
     public func updateNpawConfig(npawConfig: NpawConfig?) {
-        youboraPlugin.options.enabled = npawConfig != nil;
-        youboraPlugin.options.accountCode = npawConfig?.accountCode;
-        youboraPlugin.options.appName = npawConfig?.appName;
-        youboraPlugin.options.appReleaseVersion = npawConfig?.appReleaseVersion;
+        youboraPlugin.options.enabled = npawConfig != nil
+        youboraPlugin.options.accountCode = npawConfig?.accountCode
+        youboraPlugin.options.appName = npawConfig?.appName
+        youboraPlugin.options.appReleaseVersion = npawConfig?.appReleaseVersion
     }
 
     public func updateAppConfig(appConfig: AppConfig?) {
-        self.appConfig = appConfig;
-        self.youboraPlugin.options.username = appConfig?.analyticsId;
-        self.youboraPlugin.options.contentCustomDimension1 = appConfig?.sessionId != nil ? appConfig?.sessionId?.stringValue : nil;
+        self.appConfig = appConfig
+        youboraPlugin.options.username = appConfig?.analyticsId
+        youboraPlugin.options.contentCustomDimension1 = appConfig?.sessionId != nil ? appConfig?.sessionId?.stringValue : nil
     }
     
-    public func replaceCurrentMediaItem(_ mediaItem: MediaItem, autoplay: NSNumber?, completion:  @escaping (FlutterError?) -> ()) {
-        self.createPlayerItem(mediaItem, { playerItem in
+    public func replaceCurrentMediaItem(_ mediaItem: MediaItem, autoplay: NSNumber?, completion: @escaping (FlutterError?) -> Void) {
+        createPlayerItem(mediaItem) { playerItem in
             guard let playerItem = playerItem else {
-                return;
+                return
             }
-            self.npawHandleMediaItemUpdate(mediaItem: mediaItem);
+            self.npawHandleMediaItemUpdate(mediaItem: mediaItem)
             DispatchQueue.main.async {
                 self.player.replaceCurrentItem(with: playerItem)
                 self.temporaryStatusObserver = playerItem.observe(\.status, options: [.new, .old]) {
-                    (playerItem, change) in
-                    if (playerItem.status == .readyToPlay) {
+                    playerItem, _ in
+                    if playerItem.status == .readyToPlay {
                         if let playbackStartPositionMs = mediaItem.playbackStartPositionMs {
                             playerItem.seek(to: CMTime(value: Int64(truncating: playbackStartPositionMs), timescale: 1000), completionHandler: nil)
                         }
-                        if (autoplay?.boolValue == true) {
+                        if autoplay?.boolValue == true {
                             self.player.play()
                         }
                         if let audioLanguage = self.appConfig?.audioLanguage {
@@ -193,31 +191,31 @@ public class AVQueuePlayerController: NSObject, PlayerController, AVPlayerViewCo
                         self.youboraPlugin.options.contentSubtitles = self.player.currentItem?.getSelectedSubtitleLanguage()
                         self.youboraPlugin.options.contentLanguage = self.player.currentItem?.getSelectedAudioLanguage()
                         
-                        completion(nil);
-                    } else if (playerItem.status == .failed || playerItem.status == .unknown) {
+                        completion(nil)
+                    } else if playerItem.status == .failed || playerItem.status == .unknown {
                         print("Mediaitem failed to play")
-                        completion(FlutterError(code: "", message: "MediaItem failed to load", details: ["playerItem.status", playerItem.status.rawValue]));
+                        completion(FlutterError(code: "", message: "MediaItem failed to load", details: ["playerItem.status", playerItem.status.rawValue]))
                     }
                     self.temporaryStatusObserver?.invalidate()
                     self.temporaryStatusObserver = nil
                 }
             }
-        })
+        }
     }
     
     public func getPlayer() -> AVQueuePlayer {
-        return player;
+        return player
     }
 
     public func queueItem(_ mediaItem: MediaItem) {
-        self.createPlayerItem(mediaItem, { playerItem in
+        createPlayerItem(mediaItem) { playerItem in
             guard let playerItem = playerItem else {
-                return;
+                return
             }
             DispatchQueue.main.async {
                 self.player.insert(playerItem, after: nil)
             }
-        })
+        }
     }
     
     func takeOwnership(_ playerViewController: AVPlayerViewController) {
@@ -227,22 +225,22 @@ public class AVQueuePlayerController: NSObject, PlayerController, AVPlayerViewCo
         playerViewController.player = player
     }
     
-    func createPlayerItem(_ mediaItem: MediaItem, _ completion: @escaping (AVPlayerItem?) -> Void ) {
+    func createPlayerItem(_ mediaItem: MediaItem, _ completion: @escaping (AVPlayerItem?) -> Void) {
         DispatchQueue.global(qos: .userInitiated).async {
             guard let urlString = mediaItem.url, let url = URL(string: urlString) else {
                 return completion(nil)
             }
-            let asset = AVURLAsset(url: url);
+            let asset = AVURLAsset(url: url)
             
             asset.loadValuesAsynchronously(forKeys: ["playable", "duration", "tracks"]) {
                 let playerItem = self._createPlayerItem(mediaItem, asset)
-                completion(playerItem);
+                completion(playerItem)
             }
         }
     }
     
     private func _createPlayerItem(_ mediaItem: MediaItem, _ asset: AVAsset) -> AVPlayerItem? {
-        let playerItem = AVPlayerItem(asset: asset);
+        let playerItem = AVPlayerItem(asset: asset)
         if #available(iOS 12.2, *) {
             var allItems: [AVMetadataItem] = []
             if let metadataItem = MetadataUtils.metadataItem(identifier: AVMetadataIdentifier.commonIdentifierTitle.rawValue, value: mediaItem.metadata?.title as (NSCopying & NSObjectProtocol)?) {
@@ -258,10 +256,9 @@ public class AVQueuePlayerController: NSObject, PlayerController, AVPlayerViewCo
                     if let data = try? Data(contentsOf: url) {
                         if let image = UIImage(data: data) {
                             if let artworkItem = MetadataUtils.metadataArtworkItem(image: image) {
-                            
-                                var externalMetadata = playerItem.externalMetadata;
+                                var externalMetadata = playerItem.externalMetadata
                                 externalMetadata.append(artworkItem)
-                                playerItem.externalMetadata = externalMetadata;
+                                playerItem.externalMetadata = externalMetadata
                             }
                         }
                     }
@@ -273,8 +270,9 @@ public class AVQueuePlayerController: NSObject, PlayerController, AVPlayerViewCo
             if let extras = mediaItem.metadata?.extras {
                 for item in extras {
                     if let value = item.value as? (NSCopying & NSObjectProtocol)?,
-                       let metadataItem = MetadataUtils.metadataItem(identifier: item.key, value: value, namespace: .BccmExtras) {
-                            allItems.append(metadataItem)
+                       let metadataItem = MetadataUtils.metadataItem(identifier: item.key, value: value, namespace: .BccmExtras)
+                    {
+                        allItems.append(metadataItem)
                     }
                 }
             }
@@ -286,34 +284,34 @@ public class AVQueuePlayerController: NSObject, PlayerController, AVPlayerViewCo
             
             playerItem.externalMetadata.append(contentsOf: allItems)
         }
-        return playerItem;
+        return playerItem
     }
 
     func addObservers() {
         // listening for current item change
         observers.append(player.observe(\.currentItem, options: [.old, .new]) {
-            (player, _) in
+            player, _ in
             let mediaItem = MediaItemUtils.mapPlayerItem(player.currentItem)
             let event = MediaItemTransitionEvent.make(withPlayerId: self.id, mediaItem: mediaItem)
             self.playbackListener.onMediaItemTransition(event, completion: { _ in })
             
-            self.npawHandleMediaItemUpdate(mediaItem: mediaItem);
+            self.npawHandleMediaItemUpdate(mediaItem: mediaItem)
             
             self.observers.append(player.observe(\.currentItem?.duration, options: [.old, .new]) {
-                (player, change) in
+                player, _ in
                 MPNowPlayingInfoCenter.default().nowPlayingInfo?[MPMediaItemPropertyPlaybackDuration] = player.currentItem?.duration.seconds
             })
             
             self.observers.append(player.observe(\.currentItem?.currentMediaSelection, options: [.old, .new]) {
-                (player, _) in
+                player, _ in
                 // Update language in NPAW
                 self.youboraPlugin.options.contentLanguage = player.currentItem?.getSelectedAudioLanguage()
                 self.youboraPlugin.options.contentSubtitles = player.currentItem?.getSelectedSubtitleLanguage()
             })
         })
-        self.observers.append(player.observe(\.rate, options: [.old, .new]) {
-            (player, change) in
-            debugPrint("change observed: rate");
+        observers.append(player.observe(\.rate, options: [.old, .new]) {
+            player, change in
+            debugPrint("change observed: rate")
             let nowPlayingInfoCenter = MPNowPlayingInfoCenter.default()
             nowPlayingInfoCenter.nowPlayingInfo?[MPNowPlayingInfoPropertyPlaybackRate] = change.newValue
             nowPlayingInfoCenter.nowPlayingInfo?[MPNowPlayingInfoPropertyElapsedPlaybackTime] = player.currentTime().seconds
@@ -321,8 +319,8 @@ public class AVQueuePlayerController: NSObject, PlayerController, AVPlayerViewCo
             self.playbackListener.onPositionDiscontinuity(positionDiscontinuityEvent, completion: { _ in })
         })
         observers.append(player.observe(\.timeControlStatus, options: [.old, .new]) {
-            (player, change) in
-            debugPrint("change observed: timeControlStatus");
+            player, _ in
+            debugPrint("change observed: timeControlStatus")
             let nowPlayingInfoCenter = MPNowPlayingInfoCenter.default()
             nowPlayingInfoCenter.nowPlayingInfo?[MPNowPlayingInfoPropertyPlaybackRate] = player.rate
             nowPlayingInfoCenter.nowPlayingInfo?[MPNowPlayingInfoPropertyElapsedPlaybackTime] = player.currentTime().seconds
@@ -336,43 +334,42 @@ public class AVQueuePlayerController: NSObject, PlayerController, AVPlayerViewCo
     func isPlaying() -> Bool {
         // We don't want "isPlaying" to be affected by buffering
         // So we only check if the player is paused or doesnt have an item to play.
-        let paused = player.timeControlStatus == AVPlayer.TimeControlStatus.paused;
+        let paused = player.timeControlStatus == AVPlayer.TimeControlStatus.paused
         let waitingBecauseNoItemToPlay = player.timeControlStatus == AVPlayer.TimeControlStatus.waitingToPlayAtSpecifiedRate
-                && player.reasonForWaitingToPlay == AVPlayer.WaitingReason.noItemToPlay
-        return !paused && !waitingBecauseNoItemToPlay;
+            && player.reasonForWaitingToPlay == AVPlayer.WaitingReason.noItemToPlay
+        return !paused && !waitingBecauseNoItemToPlay
     }
-    
 }
-
 
 extension AVPlayerItem {
     func setAudioLanguage(_ audioLanguage: String) -> Bool {
-        if let group = self.asset.mediaSelectionGroup(forMediaCharacteristic: AVMediaCharacteristic.audible) {
+        if let group = asset.mediaSelectionGroup(forMediaCharacteristic: AVMediaCharacteristic.audible) {
             let locale = Locale(identifier: audioLanguage)
             let options = AVMediaSelectionGroup.mediaSelectionOptions(from: group.options, with: locale)
             if let option = options.first {
-                self.select(option, in: group)
-                return true;
+                select(option, in: group)
+                return true
             }
         }
         return false
     }
+
     func setSubtitleLanguage(_ subtitleLanguage: String) -> Bool {
-        if let group = self.asset.mediaSelectionGroup(forMediaCharacteristic: AVMediaCharacteristic.legible) {
+        if let group = asset.mediaSelectionGroup(forMediaCharacteristic: AVMediaCharacteristic.legible) {
             let locale = Locale(identifier: subtitleLanguage)
             let options = AVMediaSelectionGroup.mediaSelectionOptions(from: group.options, with: locale)
             if let option = options.first {
-                self.select(option, in: group)
-                return true;
+                select(option, in: group)
+                return true
             }
         }
         return false
     }
     
     func getSelectedAudioLanguage() -> String? {
-        if let group = self.asset.mediaSelectionGroup(forMediaCharacteristic: .audible),
-        let selectedOption = self.currentMediaSelection.selectedMediaOption(in: group),
-        let languageCode = selectedOption.extendedLanguageTag
+        if let group = asset.mediaSelectionGroup(forMediaCharacteristic: .audible),
+           let selectedOption = currentMediaSelection.selectedMediaOption(in: group),
+           let languageCode = selectedOption.extendedLanguageTag
         {
             return languageCode
         }
@@ -381,9 +378,9 @@ extension AVPlayerItem {
     }
     
     func getSelectedSubtitleLanguage() -> String? {
-        if let group = self.asset.mediaSelectionGroup(forMediaCharacteristic: .legible),
-        let selectedOption = self.currentMediaSelection.selectedMediaOption(in: group),
-        let languageCode = selectedOption.extendedLanguageTag
+        if let group = asset.mediaSelectionGroup(forMediaCharacteristic: .legible),
+           let selectedOption = currentMediaSelection.selectedMediaOption(in: group),
+           let languageCode = selectedOption.extendedLanguageTag
         {
             return languageCode
         }
@@ -391,4 +388,3 @@ extension AVPlayerItem {
         return nil
     }
 }
-

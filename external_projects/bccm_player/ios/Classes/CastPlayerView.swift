@@ -1,13 +1,5 @@
-//
-//  CastPlayerView.swift
-//  bccm_player
-//
-//  Created by Andreas Gangsø on 19/09/2022.
-//
-
 import Foundation
 import GoogleCast
-
 
 class CastPlayerViewFactory: NSObject, FlutterPlatformViewFactory {
     private var messenger: FlutterBinaryMessenger
@@ -24,27 +16,26 @@ class CastPlayerViewFactory: NSObject, FlutterPlatformViewFactory {
     }
 
     func create(
-            withFrame frame: CGRect,
-            viewIdentifier viewId: Int64,
-            arguments args: Any?
+        withFrame frame: CGRect,
+        viewIdentifier viewId: Int64,
+        arguments args: Any?
     ) -> FlutterPlatformView {
         let argDictionary = args as! [String: Any]?
         let playerController = playbackApi.getPlayer(CastPlayerController.DEFAULT_ID)
         guard let pc = playerController as? CastPlayerController else {
-            fatalError("Playercontroller is of unknown type.");
+            fatalError("Playercontroller is of unknown type.")
         }
-        return CastPlayerView(frame: frame, playerController: pc);
-        
+        return CastPlayerView(frame: frame, playerController: pc)
     }
 }
 
 class CastPlayerView: NSObject, FlutterPlatformView {
-    private var _view: UIView = UIView()
+    private var _view: UIView = .init()
     private var _playerController: CastPlayerController
 
     init(
-            frame: CGRect,
-            playerController: CastPlayerController
+        frame: CGRect,
+        playerController: CastPlayerController
     ) {
         _view.frame = frame
         _playerController = playerController
@@ -60,14 +51,13 @@ class CastPlayerView: NSObject, FlutterPlatformView {
     }
 
     deinit {
-
-        //_playerController?.player?.pause()
+        // _playerController?.player?.pause()
     }
 
     func createNativeView(frame: CGRect, view _view: UIView) {
-        //GCKCastContext.sharedInstance().presentDefaultExpandedMediaControls()
-        
-        //_view.addSubview(castPlayerViewController.view)
-        //_view.addSubview(nativeLabel)
+        // GCKCastContext.sharedInstance().presentDefaultExpandedMediaControls()
+
+        // _view.addSubview(castPlayerViewController.view)
+        // _view.addSubview(nativeLabel)
     }
 }

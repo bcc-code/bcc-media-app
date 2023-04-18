@@ -5,8 +5,8 @@
 //  Created by Andreas Gangsø on 19/09/2022.
 //
 
-import Foundation
 import AVFoundation
+import Foundation
 
 public protocol PlayerController {
     var id: String { get }
@@ -20,5 +20,5 @@ public protocol PlayerController {
     func stop(reset: Bool)
     func hasBecomePrimary()
 }
-extension PlayerController {
-}
+
+extension PlayerController {}
