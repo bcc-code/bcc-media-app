@@ -18292,7 +18292,7 @@ var oy = function(e) {
         a.empty = !0;
         return;
       }
-      var o = t.timestampmap, u = o.MPEGTS / Io.ONE_SECOND_IN_TS - 0 + r.mapping;
+      var o = t.timestampmap, u = o.MPEGTS / Io.ONE_SECOND_IN_TS - o.LOCAL + r.mapping;
       if (t.cues.forEach(function(p) {
         p.startTime += u, p.endTime += u;
       }), !s.syncInfo) {
@@ -29403,7 +29403,8 @@ function Uy(e) {
     "app.releaseVersion": "",
     "parse.manifest": !0,
     "extraparam.1": e.tracking.sessionId,
-    "extraparam.2": e.tracking.ageGroup
+    "extraparam.2": e.tracking.ageGroup,
+    ...n.overrides
   };
 }
 function RI(e, i) {

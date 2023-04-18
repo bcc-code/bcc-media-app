@@ -64,15 +64,21 @@ class PlaybackService {
 
   MediaItem _mapEpisode(Query$FetchEpisode$episode episode) {
     return MediaItem(
-        url: episode.streams.getBestStreamUrl(),
-        mimeType: 'application/x-mpegURL',
-        metadata: MediaMetadata(title: episode.title, artist: episode.season?.$show.title, artworkUri: episode.image, extras: {
+      url: episode.streams.getBestStreamUrl(),
+      mimeType: 'application/x-mpegURL',
+      metadata: MediaMetadata(
+        title: episode.title,
+        artist: episode.season?.$show.title,
+        artworkUri: episode.image,
+        extras: {
           'id': episode.id.toString(),
           'npaw.content.id': episode.id,
           'npaw.content.tvShow': episode.season?.$show.id,
-          'npaw.content.season': episode.season?.title,
+          if (episode.season != null) 'npaw.content.season': '${episode.season!.id} - ${episode.season!.title}',
           'npaw.content.episodeTitle': episode.title,
-        }));
+        },
+      ),
+    );
   }
 
   Future playEpisode({required String playerId, required Query$FetchEpisode$episode episode, bool? autoplay, int? playbackPositionMs}) async {

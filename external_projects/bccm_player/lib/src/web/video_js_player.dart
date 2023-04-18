@@ -81,6 +81,15 @@ class VideoJsPlayer {
       v.append(topLeftWrapper);
     }
 
+    final npawExtraEntries = mediaItem.metadata?.extras?.entries
+        .where(
+          (e) => e.key != null && e.key?.startsWith('npaw.') == true,
+        )
+        .map(
+          (e) => MapEntry(e.key!.replaceFirst('npaw.', ''), e.value),
+        );
+    final npawOverrides = npawExtraEntries != null ? Map.fromEntries(npawExtraEntries) : null;
+
     createPlayer(
       'bccm-player-$playerId',
       Options(
@@ -92,6 +101,18 @@ class VideoJsPlayer {
         videojs: VideoJsOptions(
           autoplay: true,
           fluid: false,
+        ),
+        npaw: NpawOptions(
+          enabled: plugin.npawConfig?.accountCode != null,
+          accountCode: plugin.npawConfig?.accountCode,
+          tracking: NpawTrackingOptions(
+            isLive: mediaItem.isLive,
+            userId: plugin.appConfig?.analyticsId,
+            sessionId: plugin.appConfig?.sessionId?.toString(),
+            metadata: NpawMetadataOptions(
+              overrides: npawOverrides,
+            ),
+          ),
         ),
       ),
     );
