@@ -219,9 +219,6 @@ public class AVQueuePlayerController: NSObject, PlayerController, AVPlayerViewCo
     }
     
     func takeOwnership(_ playerViewController: AVPlayerViewController) {
-//        if (playerViewController == pipController) {
-//            pipController = nil
-//        }
         playerViewController.player = player
     }
     

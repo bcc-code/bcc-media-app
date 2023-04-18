@@ -5,10 +5,10 @@ enum MetadataNamespace: String {
     case BccmExtras = "media.bcc.extras"
 }
 
-final class PlayerMetadataConstants {
+enum PlayerMetadataConstants {
     // TODO: refactor to use a PlayerData class instead of serializing into string dicts [String: String]
-    static let EpisodeId = "episode_id";
-    static let MimeType = "mime_type";
-    static let IsLive = "is_live";
-    static let ArtworkUri = "artwork_uri";
+    static let EpisodeId = "episode_id"
+    static let MimeType = "mime_type"
+    static let IsLive = "is_live"
+    static let ArtworkUri = "artwork_uri"
 }

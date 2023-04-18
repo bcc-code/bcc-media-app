@@ -4,15 +4,13 @@
 
 import AVFoundation
 
-
 final class MetadataUtils {
     static func metadataItem(identifier: String, value: (NSCopying & NSObjectProtocol)?) -> AVMetadataItem? {
-        metadataItem(identifier: identifier, value: value, namespace: nil);
+        metadataItem(identifier: identifier, value: value, namespace: nil)
     }
 
     static func metadataItem(identifier: String, value: (NSCopying & NSObjectProtocol)?, namespace: MetadataNamespace? = nil) -> AVMetadataItem? {
         if let actualValue = value {
-
             let item = AVMutableMetadataItem()
             if let namespace = namespace {
                 // "For custom identifiers, the keySpace AVMetadataKeySpaceQuickTimeMetadata is recommended.
