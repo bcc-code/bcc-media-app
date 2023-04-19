@@ -1,4 +1,4 @@
-package media.bcc.bccm_player
+package media.bcc.bccm_player.chromecast
 
 import android.os.Bundle
 import android.util.Log
@@ -15,8 +15,15 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
-import media.bcc.bccm_player.CastMediaItemConverter.Companion.PLAYER_DATA_LAST_KNOWN_AUDIO_LANGUAGE
-import media.bcc.bccm_player.CastMediaItemConverter.Companion.PLAYER_DATA_LAST_KNOWN_SUBTITLE_LANGUAGE
+import media.bcc.bccm_player.BccmPlayerPlugin
+import media.bcc.bccm_player.BccmPlayerPluginSingleton
+import media.bcc.bccm_player.BccmPlayerViewController
+import media.bcc.bccm_player.ChromecastControllerPigeon
+import media.bcc.bccm_player.PlaybackPlatformApi
+import media.bcc.bccm_player.PlayerController
+import media.bcc.bccm_player.PlayerListener
+import media.bcc.bccm_player.chromecast.CastMediaItemConverter.Companion.PLAYER_DATA_LAST_KNOWN_AUDIO_LANGUAGE
+import media.bcc.bccm_player.chromecast.CastMediaItemConverter.Companion.PLAYER_DATA_LAST_KNOWN_SUBTITLE_LANGUAGE
 
 
 class CastPlayerController(

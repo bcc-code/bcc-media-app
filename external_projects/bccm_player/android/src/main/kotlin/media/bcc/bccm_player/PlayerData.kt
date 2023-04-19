@@ -1,5 +1,7 @@
 package media.bcc.bccm_player
 
+import media.bcc.bccm_player.chromecast.CastMediaItemConverter
+
 internal class PlayerData {
     var isLive: Boolean? = null
     var mimeType: String? = null

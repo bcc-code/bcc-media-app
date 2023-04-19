@@ -1,8 +1,9 @@
-package media.bcc.bccm_player
+package media.bcc.bccm_player.chromecast
 
 import android.view.Menu
 import com.google.android.gms.cast.framework.CastButtonFactory
 import com.google.android.gms.cast.framework.media.widget.ExpandedControllerActivity
+import media.bcc.bccm_player.R
 
 class CastExpandedControlsActivity : ExpandedControllerActivity() {
     override fun onCreateOptionsMenu(menu: Menu): Boolean {

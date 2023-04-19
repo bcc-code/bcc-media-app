@@ -1,4 +1,4 @@
-package media.bcc.bccm_player
+package media.bcc.bccm_player.chromecast
 
 import android.os.Bundle
 import android.util.Log
@@ -13,6 +13,8 @@ import com.google.android.gms.cast.MediaInfo
 import com.google.android.gms.cast.MediaQueueItem
 import com.google.android.gms.common.images.WebImage
 import com.npaw.youbora.lib6.extensions.toMap
+import media.bcc.bccm_player.BccmPlayerPluginSingleton
+import media.bcc.bccm_player.PlayerData
 import org.json.JSONArray
 import org.json.JSONException
 import org.json.JSONObject

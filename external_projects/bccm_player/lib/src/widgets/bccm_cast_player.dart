@@ -1,9 +1,5 @@
 import 'package:bccm_player/bccm_player.dart';
-import 'package:flutter/foundation.dart';
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_svg/svg.dart';
 
 class BccmCastPlayer extends StatefulWidget {
@@ -30,42 +26,6 @@ class _BccmPlayerState extends State<BccmCastPlayer> {
           ),
         ),
       ),
-    );
-  }
-}
-
-class AndroidCastPlayer extends StatelessWidget {
-  const AndroidCastPlayer({
-    Key? key,
-    required this.widget,
-  }) : super(key: key);
-
-  final BccmCastPlayer widget;
-
-  @override
-  Widget build(BuildContext context) {
-    return PlatformViewLink(
-      viewType: 'bccm-cast-player',
-      surfaceFactory: (context, controller) {
-        return AndroidViewSurface(
-          controller: controller as AndroidViewController,
-          gestureRecognizers: const <Factory<OneSequenceGestureRecognizer>>{},
-          hitTestBehavior: PlatformViewHitTestBehavior.opaque,
-        );
-      },
-      onCreatePlatformView: (params) {
-        return PlatformViewsService.initExpensiveAndroidView(
-          id: params.id,
-          viewType: 'bccm-cast-player',
-          layoutDirection: TextDirection.ltr,
-          creationParamsCodec: const StandardMessageCodec(),
-          onFocus: () {
-            params.onFocusChanged(true);
-          },
-        )
-          ..addOnPlatformViewCreatedListener(params.onPlatformViewCreated)
-          ..create();
-      },
     );
   }
 }

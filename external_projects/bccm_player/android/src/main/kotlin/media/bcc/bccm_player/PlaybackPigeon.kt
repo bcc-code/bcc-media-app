@@ -7,6 +7,8 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
+import media.bcc.bccm_player.chromecast.CastExpandedControlsActivity
+import media.bcc.bccm_player.chromecast.CastPlayerController
 
 
 class PlaybackApiImpl(private val plugin: BccmPlayerPlugin) :

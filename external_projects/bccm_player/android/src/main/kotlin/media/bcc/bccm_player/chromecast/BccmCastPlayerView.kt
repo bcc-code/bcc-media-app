@@ -1,4 +1,4 @@
-package media.bcc.bccm_player
+package media.bcc.bccm_player.chromecast
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -11,6 +11,7 @@ import androidx.media3.ui.PlayerView
 import io.flutter.plugin.common.StandardMessageCodec
 import io.flutter.plugin.platform.PlatformView
 import io.flutter.plugin.platform.PlatformViewFactory
+import media.bcc.bccm_player.R
 
 
 class BccmCastPlayerViewFactory(private val castController: CastPlayerController) :
