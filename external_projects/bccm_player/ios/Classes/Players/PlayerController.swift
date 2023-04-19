@@ -20,5 +20,3 @@ public protocol PlayerController {
     func stop(reset: Bool)
     func hasBecomePrimary()
 }
-
-extension PlayerController {}

@@ -2,6 +2,8 @@ import AVKit
 import Foundation
 import GoogleCast
 
+// Implementation of the PlaybackPlatformPigeon
+// See pigeons/playback_platform_pigeon.dart
 public class PlaybackApiImpl: NSObject, PlaybackPlatformPigeon {
     var players = [PlayerController]()
     private var primaryPlayerId: String? = nil

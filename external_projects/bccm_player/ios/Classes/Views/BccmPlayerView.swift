@@ -3,10 +3,6 @@ import Flutter
 import MediaPlayer
 import UIKit
 
-enum BccmPlayerError: Error {
-    case runtimeError(String)
-}
-
 class BccmPlayerFactory: NSObject, FlutterPlatformViewFactory {
     private var messenger: FlutterBinaryMessenger
     private var playbackApi: PlaybackApiImpl
