@@ -19,7 +19,8 @@ import io.flutter.util.ViewUtils.getActivity
 import kotlinx.coroutines.*
 
 
-class PlayerPlatformViewFactory(private val playbackService: PlaybackService?) : PlatformViewFactory(StandardMessageCodec.INSTANCE) {
+class PlayerPlatformViewFactory(private val playbackService: PlaybackService?) :
+        PlatformViewFactory(StandardMessageCodec.INSTANCE) {
     @NonNull
     override fun create(@NonNull context: Context?, id: Int, @Nullable args: Any?): PlatformView {
         if (playbackService == null) {
@@ -27,7 +28,12 @@ class PlayerPlatformViewFactory(private val playbackService: PlaybackService?) :
         }
 
         val creationParams = args as Map<String?, Any?>?
-        return BccmInlinePlayerView(playbackService, context!!, creationParams?.get("player_id") as String, id)
+        return BccmInlinePlayerView(
+                playbackService,
+                context!!,
+                creationParams?.get("player_id") as String,
+                id
+        )
     }
 }
 
@@ -35,7 +41,8 @@ class BccmInlinePlayerView(
         private val playbackService: PlaybackService,
         private val context: Context,
         private var playerId: String,
-        private val flutterViewId: Int) : PlatformView, BccmPlayerViewController {
+        private val flutterViewId: Int
+) : PlatformView, BccmPlayerViewController {
     private var playerController: ExoPlayerController? = null
     private val _v: LinearLayout = LinearLayout(context)
     private var _playerView: PlayerView? = null
@@ -135,7 +142,8 @@ class BccmInlinePlayerView(
 
     private fun goFullscreen(startInPip: Boolean = false) {
         val activity = getActivity(context) ?: return
-        val rootLayout: FrameLayout = activity.window.decorView.findViewById<View>(android.R.id.content) as FrameLayout
+        val rootLayout: FrameLayout =
+                activity.window.decorView.findViewById<View>(android.R.id.content) as FrameLayout
 
         playerController?.let { playerController ->
             val fullScreenPlayer = FullscreenPlayerView(activity, playerController, !startInPip)

@@ -45,12 +45,13 @@ abstract class PlayerController() : Player.Listener {
         player.addMediaItem(androidMi)
     }
 
-    fun extractExtrasFromAndroid(source: Bundle) : Map<String, String> {
+    fun extractExtrasFromAndroid(source: Bundle): Map<String, String> {
         val extraMeta = mutableMapOf<String, String>()
         for (sourceKey in source.keySet()) {
             val value = source[sourceKey]
             if (!sourceKey.contains("media.bcc.extras.") || value !is String) continue
-            val newKey = sourceKey.substring(sourceKey.indexOf("media.bcc.extras.") + "media.bcc.extras.".length)
+            val newKey =
+                    sourceKey.substring(sourceKey.indexOf("media.bcc.extras.") + "media.bcc.extras.".length)
             source[sourceKey]?.toString()?.let {
                 extraMeta[newKey] = it;
             }

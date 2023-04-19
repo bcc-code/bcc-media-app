@@ -3,8 +3,6 @@ package media.bcc.bccm_player
 import android.content.Context
 import android.view.ContextThemeWrapper
 import android.view.View
-import android.widget.*
-import androidx.media3.common.*
 import androidx.mediarouter.app.MediaRouteButton
 import com.google.android.gms.cast.framework.CastButtonFactory
 import io.flutter.plugin.common.StandardMessageCodec
@@ -18,7 +16,8 @@ class FLCastButtonFactory : PlatformViewFactory(StandardMessageCodec.INSTANCE) {
     }
 }
 
-internal class FLCastButton(context: Context, id: Int, creationParams: Map<String?, Any?>?) : PlatformView {
+internal class FLCastButton(context: Context, id: Int, creationParams: Map<String?, Any?>?) :
+        PlatformView {
     private val _view: View
 
     override fun getView(): View {

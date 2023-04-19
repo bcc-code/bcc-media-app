@@ -9,7 +9,8 @@ import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
 
-class PlaybackApiImpl(private val plugin: BccmPlayerPlugin) : PlaybackPlatformApi.PlaybackPlatformPigeon {
+class PlaybackApiImpl(private val plugin: BccmPlayerPlugin) :
+        PlaybackPlatformApi.PlaybackPlatformPigeon {
     private val mainScope = CoroutineScope(Dispatchers.Main + Job())
 
     override fun setUser(user: PlaybackPlatformApi.User?) {
@@ -32,7 +33,10 @@ class PlaybackApiImpl(private val plugin: BccmPlayerPlugin) : PlaybackPlatformAp
         }
     }
 
-    override fun getPlayerState(playerId: String, result: PlaybackPlatformApi.Result<PlaybackPlatformApi.PlayerState>?) {
+    override fun getPlayerState(
+            playerId: String,
+            result: PlaybackPlatformApi.Result<PlaybackPlatformApi.PlayerState>?
+    ) {
         val playbackService = plugin.getPlaybackService()
         if (playbackService == null) {
             result?.error(Error())
@@ -45,10 +49,12 @@ class PlaybackApiImpl(private val plugin: BccmPlayerPlugin) : PlaybackPlatformAp
         }
 
         val position = playerController.player.currentPosition.toDouble();
-        result?.success(PlaybackPlatformApi.PlayerState.Builder()
-                .setPlayerId(playerId)
-                .setIsPlaying(playerController.player.isPlaying)
-                .setPlaybackPositionMs(position).build());
+        result?.success(
+                PlaybackPlatformApi.PlayerState.Builder()
+                        .setPlayerId(playerId)
+                        .setIsPlaying(playerController.player.isPlaying)
+                        .setPlaybackPositionMs(position).build()
+        );
     }
 
     override fun newPlayer(url: String?, result: PlaybackPlatformApi.Result<String>?) {
@@ -61,19 +67,28 @@ class PlaybackApiImpl(private val plugin: BccmPlayerPlugin) : PlaybackPlatformAp
         val playerController = playbackService.newPlayer(plugin)
         playerController.player.addListener(PlayerListener(playerController, plugin))
         if (url != null) {
-            playerController.replaceCurrentMediaItem(PlaybackPlatformApi.MediaItem.Builder().setUrl(url).build(), false)
+            playerController.replaceCurrentMediaItem(
+                    PlaybackPlatformApi.MediaItem.Builder().setUrl(url).build(), false
+            )
         }
         result?.success(playerController.id)
     }
 
-    override fun replaceCurrentMediaItem(playerId: String, mediaItem: PlaybackPlatformApi.MediaItem, playbackPositionFromPrimary: Boolean?, autoplay: Boolean?, result: PlaybackPlatformApi.Result<Void>?) {
+    override fun replaceCurrentMediaItem(
+            playerId: String,
+            mediaItem: PlaybackPlatformApi.MediaItem,
+            playbackPositionFromPrimary: Boolean?,
+            autoplay: Boolean?,
+            result: PlaybackPlatformApi.Result<Void>?
+    ) {
         val playbackService = plugin.getPlaybackService()
         if (playbackService == null) {
             result?.error(Error())
             return
         }
         if (playbackPositionFromPrimary == true) {
-            mediaItem.playbackStartPositionMs = playbackService.getPrimaryController()?.player?.currentPosition?.toDouble()
+            mediaItem.playbackStartPositionMs =
+                    playbackService.getPrimaryController()?.player?.currentPosition?.toDouble()
         }
 
         val playerController = playbackService.getController(playerId);
@@ -92,7 +107,11 @@ class PlaybackApiImpl(private val plugin: BccmPlayerPlugin) : PlaybackPlatformAp
         }
     }
 
-    override fun queueMediaItem(playerId: String, mediaItem: PlaybackPlatformApi.MediaItem, result: PlaybackPlatformApi.Result<Void>?) {
+    override fun queueMediaItem(
+            playerId: String,
+            mediaItem: PlaybackPlatformApi.MediaItem,
+            result: PlaybackPlatformApi.Result<Void>?
+    ) {
         val playbackService = plugin.getPlaybackService()
         if (playbackService == null) {
             result?.error(Error())
@@ -153,7 +172,10 @@ class PlaybackApiImpl(private val plugin: BccmPlayerPlugin) : PlaybackPlatformAp
     }
 
     override fun openExpandedCastController() {
-        val intent = Intent(BccmPlayerPluginSingleton.activityState.value, CastExpandedControlsActivity::class.java)
+        val intent = Intent(
+                BccmPlayerPluginSingleton.activityState.value,
+                CastExpandedControlsActivity::class.java
+        )
         BccmPlayerPluginSingleton.activityState.value?.startActivity(intent)
     }
 

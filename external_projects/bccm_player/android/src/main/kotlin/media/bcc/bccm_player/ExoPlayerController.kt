@@ -86,7 +86,12 @@ class ExoPlayerController(private val context: Context) : PlayerController() {
             }
         }
         mainScope.launch {
-            BccmPlayerPluginSingleton.npawConfigState.collectLatest { setBasicYouboraOptions(youboraPlugin.options, it) }
+            BccmPlayerPluginSingleton.npawConfigState.collectLatest {
+                setBasicYouboraOptions(
+                        youboraPlugin.options,
+                        it
+                )
+            }
         }
         mainScope.launch {
             BccmPlayerPluginSingleton.appConfigState.collectLatest { handleUpdatedAppConfig(it) }
@@ -101,12 +106,16 @@ class ExoPlayerController(private val context: Context) : PlayerController() {
     }
 
     private fun handleUpdatedAppConfig(appConfigState: PlaybackPlatformApi.AppConfig?) {
-        Log.d("bccm", "setting preferred audio and sub lang to: ${appConfigState?.audioLanguage}, ${appConfigState?.subtitleLanguage}")
+        Log.d(
+                "bccm",
+                "setting preferred audio and sub lang to: ${appConfigState?.audioLanguage}, ${appConfigState?.subtitleLanguage}"
+        )
         player.trackSelectionParameters = trackSelector.parameters.buildUpon()
                 .setPreferredAudioLanguage(appConfigState?.audioLanguage)
                 .setPreferredTextLanguage(appConfigState?.subtitleLanguage).build()
         youboraPlugin.options.username = appConfigState?.analyticsId;
-        youboraPlugin.options.contentCustomDimension1 = if (appConfigState?.sessionId != null) appConfigState.sessionId.toString() else null;
+        youboraPlugin.options.contentCustomDimension1 =
+                if (appConfigState?.sessionId != null) appConfigState.sessionId.toString() else null;
     }
 
     private fun setBasicYouboraOptions(options: Options, config: PlaybackPlatformApi.NpawConfig?) {
@@ -194,7 +203,12 @@ class ExoPlayerController(private val context: Context) : PlayerController() {
     val emitter = object : Emitter {
         override fun onPictureInPictureModeChanged(isInPictureInPictureMode: Boolean) {
             mainScope.launch {
-                BccmPlayerPluginSingleton.eventBus.emit(PictureInPictureModeChangedEvent(id, isInPictureInPictureMode))
+                BccmPlayerPluginSingleton.eventBus.emit(
+                        PictureInPictureModeChangedEvent(
+                                id,
+                                isInPictureInPictureMode
+                        )
+                )
             }
         }
     }

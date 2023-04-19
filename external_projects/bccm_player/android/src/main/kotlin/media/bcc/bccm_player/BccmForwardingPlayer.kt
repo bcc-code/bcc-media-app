@@ -4,13 +4,23 @@ import androidx.media3.common.C
 import androidx.media3.common.ForwardingPlayer
 import androidx.media3.common.Player
 
-class BccmForwardingPlayer(private val playerController: ExoPlayerController) : ForwardingPlayer(playerController.getExoPlayer()) {
+class BccmForwardingPlayer(private val playerController: ExoPlayerController) :
+        ForwardingPlayer(playerController.getExoPlayer()) {
     private var seekBackIncrement: Long = 15000
 
     private var seekForwardIncrement: Long = 15000
 
-    private val seekCommands = arrayOf(ForwardingPlayer.COMMAND_SEEK_IN_CURRENT_MEDIA_ITEM, ForwardingPlayer.COMMAND_SEEK_BACK, ForwardingPlayer.COMMAND_SEEK_FORWARD)
-    private val navigateCommands = arrayOf(ForwardingPlayer.COMMAND_SEEK_TO_NEXT, ForwardingPlayer.COMMAND_SEEK_TO_PREVIOUS, ForwardingPlayer.COMMAND_SEEK_TO_NEXT_MEDIA_ITEM, ForwardingPlayer.COMMAND_SEEK_TO_PREVIOUS_MEDIA_ITEM)
+    private val seekCommands = arrayOf(
+            ForwardingPlayer.COMMAND_SEEK_IN_CURRENT_MEDIA_ITEM,
+            ForwardingPlayer.COMMAND_SEEK_BACK,
+            ForwardingPlayer.COMMAND_SEEK_FORWARD
+    )
+    private val navigateCommands = arrayOf(
+            ForwardingPlayer.COMMAND_SEEK_TO_NEXT,
+            ForwardingPlayer.COMMAND_SEEK_TO_PREVIOUS,
+            ForwardingPlayer.COMMAND_SEEK_TO_NEXT_MEDIA_ITEM,
+            ForwardingPlayer.COMMAND_SEEK_TO_PREVIOUS_MEDIA_ITEM
+    )
 
     override fun getAvailableCommands(): Player.Commands {
         if (!playerController.isLive) {
@@ -25,7 +35,10 @@ class BccmForwardingPlayer(private val playerController: ExoPlayerController) : 
     }
 
     override fun isCommandAvailable(@Player.Command command: Int): Boolean {
-        if (playerController.isLive && seekCommands.contains(command) && navigateCommands.contains(command)) {
+        if (playerController.isLive && seekCommands.contains(command) && navigateCommands.contains(
+                        command
+                )
+        ) {
             return false;
         }
         return super.isCommandAvailable(command)

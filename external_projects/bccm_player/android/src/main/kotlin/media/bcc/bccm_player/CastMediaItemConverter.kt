@@ -69,7 +69,8 @@ class CastMediaItemConverter : MediaItemConverter {
                 metadataBuilder.setTrackNumber(metadata.getInt(com.google.android.gms.cast.MediaMetadata.KEY_TRACK_NUMBER))
             }
 
-            for (key in metadata.keySet().filter { it.contains(BCCM_EXTRAS) || it.contains(BCCM_PLAYER_DATA) }) {
+            for (key in metadata.keySet()
+                    .filter { it.contains(BCCM_EXTRAS) || it.contains(BCCM_PLAYER_DATA) }) {
                 try {
                     extrasBundle.putString(key, metadata.getString(key))
                 } catch (e: Throwable) {
@@ -111,40 +112,65 @@ class CastMediaItemConverter : MediaItemConverter {
         Assertions.checkNotNull(mediaItem.localConfiguration)
         requireNotNull(mediaItem.localConfiguration!!.mimeType) { "The item must specify its mimeType" }
         val metadata = com.google.android.gms.cast.MediaMetadata(
-                if (MimeTypes.isAudio(mediaItem.localConfiguration!!.mimeType)) com.google.android.gms.cast.MediaMetadata.MEDIA_TYPE_MUSIC_TRACK else com.google.android.gms.cast.MediaMetadata.MEDIA_TYPE_MOVIE)
+                if (MimeTypes.isAudio(mediaItem.localConfiguration!!.mimeType)) com.google.android.gms.cast.MediaMetadata.MEDIA_TYPE_MUSIC_TRACK else com.google.android.gms.cast.MediaMetadata.MEDIA_TYPE_MOVIE
+        )
         if (mediaItem.mediaMetadata.title != null) {
-            metadata.putString(com.google.android.gms.cast.MediaMetadata.KEY_TITLE, mediaItem.mediaMetadata.title.toString())
+            metadata.putString(
+                    com.google.android.gms.cast.MediaMetadata.KEY_TITLE,
+                    mediaItem.mediaMetadata.title.toString()
+            )
         }
         if (mediaItem.mediaMetadata.subtitle != null) {
-            metadata.putString(com.google.android.gms.cast.MediaMetadata.KEY_SUBTITLE, mediaItem.mediaMetadata.subtitle.toString())
+            metadata.putString(
+                    com.google.android.gms.cast.MediaMetadata.KEY_SUBTITLE,
+                    mediaItem.mediaMetadata.subtitle.toString()
+            )
         }
         if (mediaItem.mediaMetadata.artist != null) {
-            metadata.putString(com.google.android.gms.cast.MediaMetadata.KEY_ARTIST, mediaItem.mediaMetadata.artist.toString())
+            metadata.putString(
+                    com.google.android.gms.cast.MediaMetadata.KEY_ARTIST,
+                    mediaItem.mediaMetadata.artist.toString()
+            )
         }
         if (mediaItem.mediaMetadata.albumArtist != null) {
             metadata.putString(
-                    com.google.android.gms.cast.MediaMetadata.KEY_ALBUM_ARTIST, mediaItem.mediaMetadata.albumArtist.toString())
+                    com.google.android.gms.cast.MediaMetadata.KEY_ALBUM_ARTIST,
+                    mediaItem.mediaMetadata.albumArtist.toString()
+            )
         }
         if (mediaItem.mediaMetadata.albumTitle != null) {
             metadata.putString(
-                    com.google.android.gms.cast.MediaMetadata.KEY_ALBUM_TITLE, mediaItem.mediaMetadata.albumTitle.toString())
+                    com.google.android.gms.cast.MediaMetadata.KEY_ALBUM_TITLE,
+                    mediaItem.mediaMetadata.albumTitle.toString()
+            )
         }
         if (mediaItem.mediaMetadata.artworkUri != null) {
             metadata.addImage(WebImage(mediaItem.mediaMetadata.artworkUri!!))
         }
         if (mediaItem.mediaMetadata.composer != null) {
-            metadata.putString(com.google.android.gms.cast.MediaMetadata.KEY_COMPOSER, mediaItem.mediaMetadata.composer.toString())
+            metadata.putString(
+                    com.google.android.gms.cast.MediaMetadata.KEY_COMPOSER,
+                    mediaItem.mediaMetadata.composer.toString()
+            )
         }
         if (mediaItem.mediaMetadata.discNumber != null) {
-            metadata.putInt(com.google.android.gms.cast.MediaMetadata.KEY_DISC_NUMBER, mediaItem.mediaMetadata.discNumber!!)
+            metadata.putInt(
+                    com.google.android.gms.cast.MediaMetadata.KEY_DISC_NUMBER,
+                    mediaItem.mediaMetadata.discNumber!!
+            )
         }
         if (mediaItem.mediaMetadata.trackNumber != null) {
-            metadata.putInt(com.google.android.gms.cast.MediaMetadata.KEY_TRACK_NUMBER, mediaItem.mediaMetadata.trackNumber!!)
+            metadata.putInt(
+                    com.google.android.gms.cast.MediaMetadata.KEY_TRACK_NUMBER,
+                    mediaItem.mediaMetadata.trackNumber!!
+            )
         }
 
-        mediaItem.mediaMetadata.extras?.toMap()?.filter { it.key.contains(BCCM_EXTRAS) || it.key.contains(BCCM_PLAYER_DATA) }?.forEach {
-            metadata.putString(it.key, it.value)
-        }
+        mediaItem.mediaMetadata.extras?.toMap()
+                ?.filter { it.key.contains(BCCM_EXTRAS) || it.key.contains(BCCM_PLAYER_DATA) }
+                ?.forEach {
+                    metadata.putString(it.key, it.value)
+                }
 
         val playerData = PlayerData.from(mediaItem.mediaMetadata.extras?.toMap())
         val customData = getCustomData(mediaItem)
@@ -162,11 +188,14 @@ class CastMediaItemConverter : MediaItemConverter {
 
 
         val contentUrl = mediaItem.localConfiguration?.uri.toString()
-        val contentId = if (mediaItem.mediaId == MediaItem.DEFAULT_MEDIA_ID) contentUrl else mediaItem.mediaId
+        val contentId =
+                if (mediaItem.mediaId == MediaItem.DEFAULT_MEDIA_ID) contentUrl else mediaItem.mediaId
         val mediaInfo = MediaInfo.Builder(contentId)
                 .setStreamType(if (playerData?.isLive == true) MediaInfo.STREAM_TYPE_LIVE else MediaInfo.STREAM_TYPE_BUFFERED)
-                .setContentType(playerData?.mimeType ?: mediaItem.localConfiguration?.mimeType
-                ?: "application/x-mpegURL")
+                .setContentType(
+                        playerData?.mimeType ?: mediaItem.localConfiguration?.mimeType
+                        ?: "application/x-mpegURL"
+                )
                 .setContentUrl(contentUrl)
                 .setMetadata(metadata)
                 .setCustomData(customData)
@@ -189,8 +218,10 @@ class CastMediaItemConverter : MediaItemConverter {
         const val BCCM_EXTRAS = "media.bcc.extras"
         const val PLAYER_DATA_IS_LIVE = "$BCCM_PLAYER_DATA.is_live"
         const val PLAYER_DATA_MIME_TYPE = "$BCCM_PLAYER_DATA.mime_type"
-        const val PLAYER_DATA_LAST_KNOWN_AUDIO_LANGUAGE = "$BCCM_PLAYER_DATA.last_known_audio_language"
-        const val PLAYER_DATA_LAST_KNOWN_SUBTITLE_LANGUAGE = "$BCCM_PLAYER_DATA.last_known_subtitle_language"
+        const val PLAYER_DATA_LAST_KNOWN_AUDIO_LANGUAGE =
+                "$BCCM_PLAYER_DATA.last_known_audio_language"
+        const val PLAYER_DATA_LAST_KNOWN_SUBTITLE_LANGUAGE =
+                "$BCCM_PLAYER_DATA.last_known_subtitle_language"
 
         // Serialization.
         private fun getCustomData(mediaItem: MediaItem): JSONObject {
@@ -218,7 +249,8 @@ class CastMediaItemConverter : MediaItemConverter {
             if (mediaItem.localConfiguration?.drmConfiguration != null) {
                 json.put(
                         KEY_DRM_CONFIGURATION,
-                        getDrmConfigurationJson(mediaItem.localConfiguration!!.drmConfiguration!!))
+                        getDrmConfigurationJson(mediaItem.localConfiguration!!.drmConfiguration!!)
+                )
             }
             return json
         }
@@ -240,14 +272,18 @@ class CastMediaItemConverter : MediaItemConverter {
             val json = JSONObject()
             json.put(KEY_UUID, drmConfiguration.scheme)
             json.put(KEY_LICENSE_URI, drmConfiguration.licenseUri)
-            json.put(KEY_REQUEST_HEADERS, JSONObject(drmConfiguration.licenseRequestHeaders.toMap()))
+            json.put(
+                    KEY_REQUEST_HEADERS,
+                    JSONObject(drmConfiguration.licenseRequestHeaders.toMap())
+            )
             return json
         }
 
         @Throws(JSONException::class)
         private fun getPlayerConfigJson(mediaItem: MediaItem): JSONObject? {
             if (mediaItem.localConfiguration == null
-                    || mediaItem.localConfiguration!!.drmConfiguration == null) {
+                    || mediaItem.localConfiguration!!.drmConfiguration == null
+            ) {
                 return null
             }
             val drmConfiguration = mediaItem.localConfiguration!!.drmConfiguration
@@ -265,7 +301,10 @@ class CastMediaItemConverter : MediaItemConverter {
                 playerConfigJson.put("licenseUrl", drmConfiguration.licenseUri)
             }
             if (!drmConfiguration.licenseRequestHeaders.isEmpty()) {
-                playerConfigJson.put("headers", JSONObject(drmConfiguration.licenseRequestHeaders.toMap()))
+                playerConfigJson.put(
+                        "headers",
+                        JSONObject(drmConfiguration.licenseRequestHeaders.toMap())
+                )
             }
             return playerConfigJson
         }

@@ -21,7 +21,11 @@ import androidx.media3.ui.PlayerView
 import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.filterIsInstance
 
-class FullscreenPlayerView(val activity: Activity, val playerController: ExoPlayerController, private val forceLandscape: Boolean = true) : LinearLayout(activity), BccmPlayerViewController {
+class FullscreenPlayerView(
+        val activity: Activity,
+        val playerController: ExoPlayerController,
+        private val forceLandscape: Boolean = true
+) : LinearLayout(activity), BccmPlayerViewController {
     var playerView: PlayerView?
     val mainScope = CoroutineScope(Dispatchers.Main + SupervisorJob())
     var isInPip: Boolean = false;
@@ -36,11 +40,15 @@ class FullscreenPlayerView(val activity: Activity, val playerController: ExoPlay
             playerController.takeOwnership(it, this)
         }
 
-        playerView?.videoSurfaceView?.setOnTouchListener(SwipeTouchListener(activity.window.decorView.height * 0.3, object : SwipeTouchListener.Listener {
-            override fun onTopToBottomSwipe() {
-                exit();
-            }
-        }))
+        playerView?.videoSurfaceView?.setOnTouchListener(
+                SwipeTouchListener(
+                        activity.window.decorView.height * 0.3,
+                        object : SwipeTouchListener.Listener {
+                            override fun onTopToBottomSwipe() {
+                                exit();
+                            }
+                        })
+        )
 
         playerView?.setFullscreenButtonClickListener {
             exit()
@@ -80,14 +88,15 @@ class FullscreenPlayerView(val activity: Activity, val playerController: ExoPlay
         })
 
         mainScope.launch {
-            BccmPlayerPluginSingleton.eventBus.filterIsInstance<PictureInPictureModeChangedEvent2>().collect { event ->
-                isInPip = event.isInPictureInPictureMode
-                Log.d("bccm", "PictureInPictureModeChangedEvent2, isInPiP: $isInPip")
-                if (!event.isInPictureInPictureMode) {
-                    delay(500)
-                    makeActivityFullscreen(true)
-                }
-            }
+            BccmPlayerPluginSingleton.eventBus.filterIsInstance<PictureInPictureModeChangedEvent2>()
+                    .collect { event ->
+                        isInPip = event.isInPictureInPictureMode
+                        Log.d("bccm", "PictureInPictureModeChangedEvent2, isInPiP: $isInPip")
+                        if (!event.isInPictureInPictureMode) {
+                            delay(500)
+                            makeActivityFullscreen(true)
+                        }
+                    }
         }
         mainScope.launch {
             BccmPlayerPluginSingleton.eventBus.filterIsInstance<OnActivityStop>().collect { event ->
@@ -108,14 +117,18 @@ class FullscreenPlayerView(val activity: Activity, val playerController: ExoPlay
         WindowCompat.setDecorFitsSystemWindows(activity.window, false)
         WindowInsetsControllerCompat(activity.window, this@FullscreenPlayerView).let { controller ->
             controller.hide(WindowInsetsCompat.Type.systemBars())
-            controller.systemBarsBehavior = WindowInsetsControllerCompat.BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE
+            controller.systemBarsBehavior =
+                    WindowInsetsControllerCompat.BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE
         }
     }
 
     fun exit() {
         activity.requestedOrientation = orientationBeforeGoingFullscreen;
         WindowCompat.setDecorFitsSystemWindows(activity.window, true)
-        WindowInsetsControllerCompat(activity.window, this).show(WindowInsetsCompat.Type.systemBars())
+        WindowInsetsControllerCompat(
+                activity.window,
+                this
+        ).show(WindowInsetsCompat.Type.systemBars())
         onExitListener?.let { listener -> listener() }
         release();
     }
@@ -148,9 +161,11 @@ class FullscreenPlayerView(val activity: Activity, val playerController: ExoPlay
             else Rational(it.videoSize.width, it.videoSize.height)
         } ?: Rational(16, 9)
 
-        activity.enterPictureInPictureMode(PictureInPictureParams.Builder()
-                .setAspectRatio(aspectRatio)
-                .build())
+        activity.enterPictureInPictureMode(
+                PictureInPictureParams.Builder()
+                        .setAspectRatio(aspectRatio)
+                        .build()
+        )
         playerView?.hideController()
     }
 
