@@ -20,40 +20,44 @@ import io.flutter.embedding.engine.plugins.activity.ActivityAware
 import io.flutter.embedding.engine.plugins.activity.ActivityPluginBinding
 import io.flutter.plugin.common.MethodChannel
 import io.flutter.plugin.common.PluginRegistry
-import kotlinx.coroutines.*
-import kotlinx.coroutines.flow.*
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.flow.MutableSharedFlow
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.filter
+import kotlinx.coroutines.flow.update
+import kotlinx.coroutines.launch
 import media.bcc.bccm_player.PlaybackPlatformApi.PlaybackPlatformPigeon
 
 
-interface BccmPlayerPluginEvent {
+interface BccmPlayerPluginEvent
 
-}
-
-class AttachedToActivityEvent(val activity: Activity) : BccmPlayerPluginEvent {}
-class DetachedFromActivityEvent() : BccmPlayerPluginEvent {}
-class OnActivityStop() : BccmPlayerPluginEvent {}
+class AttachedToActivityEvent(val activity: Activity) : BccmPlayerPluginEvent
+class DetachedFromActivityEvent : BccmPlayerPluginEvent
+class OnActivityStop : BccmPlayerPluginEvent
 class SetPlayerViewVisibilityEvent(val viewId: Long, val visible: Boolean) :
-        BccmPlayerPluginEvent {}
+        BccmPlayerPluginEvent
 
-class UserLeaveHintEvent() : BccmPlayerPluginEvent {}
+class UserLeaveHintEvent : BccmPlayerPluginEvent
 class PictureInPictureModeChangedEvent2(val isInPictureInPictureMode: Boolean) :
-        BccmPlayerPluginEvent {}
+        BccmPlayerPluginEvent
 
 class PictureInPictureModeChangedEvent(
         val playerId: String,
         val isInPictureInPictureMode: Boolean
-) : BccmPlayerPluginEvent {}
+) : BccmPlayerPluginEvent
 
-class FullscreenPlayerResult(val playerId: String) : BccmPlayerPluginEvent {}
-class User(val id: String?);
+class FullscreenPlayerResult(val playerId: String) : BccmPlayerPluginEvent
+class User(val id: String?)
 
 object BccmPlayerPluginSingleton {
 
-    val activityState = MutableStateFlow<Activity?>(null);
-    val npawConfigState = MutableStateFlow<PlaybackPlatformApi.NpawConfig?>(null);
-    val appConfigState = MutableStateFlow<PlaybackPlatformApi.AppConfig?>(null);
-    val userState = MutableStateFlow<User?>(null);
-    val eventBus = MutableSharedFlow<BccmPlayerPluginEvent>();
+    val activityState = MutableStateFlow<Activity?>(null)
+    val npawConfigState = MutableStateFlow<PlaybackPlatformApi.NpawConfig?>(null)
+    val appConfigState = MutableStateFlow<PlaybackPlatformApi.AppConfig?>(null)
+    val userState = MutableStateFlow<User?>(null)
+    val eventBus = MutableSharedFlow<BccmPlayerPluginEvent>()
     private val mainScope = CoroutineScope(Dispatchers.Main + Job())
 
     init {
@@ -121,7 +125,7 @@ class BccmPlayerPlugin : FlutterPlugin, ActivityAware, PluginRegistry.UserLeaveH
 
         var castContext: CastContext? = null
         try {
-            castContext = CastContext.getSharedInstance(flutterPluginBinding.applicationContext);
+            castContext = CastContext.getSharedInstance(flutterPluginBinding.applicationContext)
             val ccPigeon =
                     ChromecastControllerPigeon.ChromecastPigeon(flutterPluginBinding.binaryMessenger)
             castController = CastPlayerController(castContext, ccPigeon, this)
@@ -175,7 +179,7 @@ class BccmPlayerPlugin : FlutterPlugin, ActivityAware, PluginRegistry.UserLeaveH
         controllerFuture = MediaController.Builder(binding.activity, sessionToken).buildAsync()
         controllerFuture.addListener(
                 {
-                    1;
+                    1
                 }, MoreExecutors.directExecutor()
         )
         mainScope.launch {
@@ -233,12 +237,12 @@ class BccmPlayerPlugin : FlutterPlugin, ActivityAware, PluginRegistry.UserLeaveH
     }
 
     fun getPlaybackService(): PlaybackService? {
-        return playbackService;
+        return playbackService
     }
 
     override fun onUserLeaveHint() {
         val currentPlayerViewController =
-                playbackService?.getPrimaryController()?.currentPlayerViewController;
+                playbackService?.getPrimaryController()?.currentPlayerViewController
         if (currentPlayerViewController?.shouldPipAutomatically() == true && Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             currentPlayerViewController.enterPictureInPicture()
         }

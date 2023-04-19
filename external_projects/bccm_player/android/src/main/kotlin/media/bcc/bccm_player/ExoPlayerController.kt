@@ -3,18 +3,28 @@ package media.bcc.bccm_player
 import android.content.Context
 import android.util.Log
 import android.view.WindowManager
-import androidx.media3.common.*
+import androidx.media3.common.AudioAttributes
+import androidx.media3.common.C
 import androidx.media3.common.C.VIDEO_SCALING_MODE_SCALE_TO_FIT
+import androidx.media3.common.ForwardingPlayer
+import androidx.media3.common.MediaItem
+import androidx.media3.common.MediaMetadata
+import androidx.media3.common.Tracks
 import androidx.media3.exoplayer.ExoPlayer
 import androidx.media3.exoplayer.trackselection.DefaultTrackSelector
 import androidx.media3.ui.PlayerView
 import com.npaw.youbora.lib6.media3.Media3Adapter
 import com.npaw.youbora.lib6.plugin.Options
 import com.npaw.youbora.lib6.plugin.Plugin
-import kotlinx.coroutines.*
-import kotlinx.coroutines.flow.*
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.SupervisorJob
+import kotlinx.coroutines.cancel
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.launch
 import media.bcc.bccm_player.CastMediaItemConverter.Companion.PLAYER_DATA_IS_LIVE
-import java.util.*
+import java.util.UUID
 
 
 class ExoPlayerController(private val context: Context) : PlayerController() {
@@ -37,18 +47,18 @@ class ExoPlayerController(private val context: Context) : PlayerController() {
                 mainScope.launch {
                     delay(6000)
                     if (_currentPlayerView == null) {
-                        setRendererDisabled(true);
-                        val activity = BccmPlayerPluginSingleton.activityState.value;
+                        setRendererDisabled(true)
+                        val activity = BccmPlayerPluginSingleton.activityState.value
                         Log.d("bccm", "FLAG_KEEP_SCREEN_ON cleared")
-                        activity?.window?.clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+                        activity?.window?.clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
                     }
                 }
             } else {
                 Log.d("bccm", "Enabling video, playerView attached")
-                setRendererDisabled(false);
-                val activity = BccmPlayerPluginSingleton.activityState.value;
+                setRendererDisabled(false)
+                val activity = BccmPlayerPluginSingleton.activityState.value
                 Log.d("bccm", "FLAG_KEEP_SCREEN_ON added")
-                activity?.window?.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+                activity?.window?.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
             }
         }
 
@@ -73,14 +83,14 @@ class ExoPlayerController(private val context: Context) : PlayerController() {
         // app.https missing?
 
         youboraPlugin = Plugin(youboraOptions, context)
-        val adapter = Media3Adapter(exoPlayer);
-        youboraPlugin.adapter = adapter;
+        val adapter = Media3Adapter(exoPlayer)
+        youboraPlugin.adapter = adapter
         player.addListener(this)
 
-        val appConfigState = handleUpdatedAppConfig(BccmPlayerPluginSingleton.appConfigState.value);
+        val appConfigState = handleUpdatedAppConfig(BccmPlayerPluginSingleton.appConfigState.value)
 
         mainScope.launch {
-            BccmPlayerPluginSingleton.userState.collect() { user ->
+            BccmPlayerPluginSingleton.userState.collect { user ->
                 youboraOptions.username = user?.id
                 Log.d("bccm", "ExoPlayerController: Setting user in youbora")
             }
@@ -113,9 +123,9 @@ class ExoPlayerController(private val context: Context) : PlayerController() {
         player.trackSelectionParameters = trackSelector.parameters.buildUpon()
                 .setPreferredAudioLanguage(appConfigState?.audioLanguage)
                 .setPreferredTextLanguage(appConfigState?.subtitleLanguage).build()
-        youboraPlugin.options.username = appConfigState?.analyticsId;
+        youboraPlugin.options.username = appConfigState?.analyticsId
         youboraPlugin.options.contentCustomDimension1 =
-                if (appConfigState?.sessionId != null) appConfigState.sessionId.toString() else null;
+                if (appConfigState?.sessionId != null) appConfigState.sessionId.toString() else null
     }
 
     private fun setBasicYouboraOptions(options: Options, config: PlaybackPlatformApi.NpawConfig?) {
@@ -126,13 +136,13 @@ class ExoPlayerController(private val context: Context) : PlayerController() {
     }
 
     fun getExoPlayer(): ExoPlayer {
-        return exoPlayer;
+        return exoPlayer
     }
 
     private fun setRendererDisabled(isDisabled: Boolean) {
         var indexOfVideoRenderer = -1
 
-        exoPlayer?.let {
+        exoPlayer.let {
             for (i in 0 until it.rendererCount) {
                 it.getRenderer(i).state
                 if (it.getRendererType(i) == C.TRACK_TYPE_VIDEO) {
@@ -140,7 +150,7 @@ class ExoPlayerController(private val context: Context) : PlayerController() {
                     break
                 }
             }
-        } ?: return
+        }
 
         val parametersBuilder = trackSelector.buildUponParameters()
         parametersBuilder.setRendererDisabled(indexOfVideoRenderer, isDisabled)
@@ -154,15 +164,15 @@ class ExoPlayerController(private val context: Context) : PlayerController() {
         } else {
             playerView.player = player
         }
-        currentPlayerView = playerView;
-        currentPlayerViewController = viewController;
+        currentPlayerView = playerView
+        currentPlayerViewController = viewController
     }
 
     fun releasePlayerView(playerView: PlayerView) {
         if (currentPlayerView == playerView) {
             //setRendererDisabled(true)
-            currentPlayerView = null;
-            currentPlayerViewController = null;
+            currentPlayerView = null
+            currentPlayerViewController = null
         }
     }
 
@@ -196,7 +206,7 @@ class ExoPlayerController(private val context: Context) : PlayerController() {
         youboraPlugin.options.contentTitle = extras?.get("npaw.content.title")
                 ?: mediaMetadata.title?.toString() ?: mediaMetadata.displayTitle?.toString()
         youboraPlugin.options.contentTvShow = extras?.get("npaw.content.tvShow")
-        youboraPlugin.options.contentSeason = extras?.get("npaw.content.season");
+        youboraPlugin.options.contentSeason = extras?.get("npaw.content.season")
         youboraPlugin.options.contentEpisodeTitle = extras?.get("npaw.content.episodeTitle")
     }
 
@@ -214,6 +224,6 @@ class ExoPlayerController(private val context: Context) : PlayerController() {
     }
 
     interface Emitter {
-        fun onPictureInPictureModeChanged(isInPictureInPictureMode: Boolean);
+        fun onPictureInPictureModeChanged(isInPictureInPictureMode: Boolean)
     }
 }

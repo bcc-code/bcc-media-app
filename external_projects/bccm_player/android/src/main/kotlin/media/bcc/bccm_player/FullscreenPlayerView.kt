@@ -8,7 +8,6 @@ import android.util.Log
 import android.util.Rational
 import android.view.LayoutInflater
 import android.view.View
-import android.view.WindowManager
 import android.widget.ImageButton
 import android.widget.LinearLayout
 import androidx.annotation.RequiresApi
@@ -28,9 +27,9 @@ class FullscreenPlayerView(
 ) : LinearLayout(activity), BccmPlayerViewController {
     var playerView: PlayerView?
     val mainScope = CoroutineScope(Dispatchers.Main + SupervisorJob())
-    var isInPip: Boolean = false;
-    val orientationBeforeGoingFullscreen = activity.requestedOrientation;
-    var onExitListener: (() -> Unit)? = null;
+    var isInPip: Boolean = false
+    val orientationBeforeGoingFullscreen = activity.requestedOrientation
+    var onExitListener: (() -> Unit)? = null
 
     init {
         makeActivityFullscreen(forceLandscape)
@@ -45,7 +44,7 @@ class FullscreenPlayerView(
                         activity.window.decorView.height * 0.3,
                         object : SwipeTouchListener.Listener {
                             override fun onTopToBottomSwipe() {
-                                exit();
+                                exit()
                             }
                         })
         )
@@ -81,7 +80,7 @@ class FullscreenPlayerView(
 
             override fun onPlaybackStateChanged(playbackState: Int) {
                 setLiveUIEnabled(playerController.isLive)
-                val playerView = this@FullscreenPlayerView.playerView;
+                val playerView = this@FullscreenPlayerView.playerView
                 playerView?.setShowNextButton(false)
                 playerView?.setShowPreviousButton(false)
             }
@@ -107,7 +106,7 @@ class FullscreenPlayerView(
     }
 
     override fun shouldPipAutomatically(): Boolean {
-        return true;
+        return true
     }
 
     private fun makeActivityFullscreen(forceLandscape: Boolean) {
@@ -123,18 +122,18 @@ class FullscreenPlayerView(
     }
 
     fun exit() {
-        activity.requestedOrientation = orientationBeforeGoingFullscreen;
+        activity.requestedOrientation = orientationBeforeGoingFullscreen
         WindowCompat.setDecorFitsSystemWindows(activity.window, true)
         WindowInsetsControllerCompat(
                 activity.window,
                 this
         ).show(WindowInsetsCompat.Type.systemBars())
         onExitListener?.let { listener -> listener() }
-        release();
+        release()
     }
 
     fun setLiveUIEnabled(enabled: Boolean) {
-        val playerView = playerView ?: return;
+        val playerView = playerView ?: return
         if (enabled) {
             playerView.setShowFastForwardButton(false)
             playerView.setShowRewindButton(false)

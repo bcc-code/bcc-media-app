@@ -256,7 +256,7 @@ class CastMediaItemConverter : MediaItemConverter {
         }
 
         private fun mapToJson(map: Map<String, Any>): JSONObject {
-            val json = JSONObject();
+            val json = JSONObject()
             for (kv in map) {
                 try {
                     json.put(kv.key, JSONObject.wrap(kv.value))

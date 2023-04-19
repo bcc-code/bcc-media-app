@@ -1,8 +1,5 @@
 package media.bcc.bccm_player
 
-import android.app.Activity
-import android.content.Context
-import android.content.MutableContextWrapper
 import android.os.Bundle
 import org.json.JSONException
 import org.json.JSONObject
@@ -24,7 +21,7 @@ class Utils {
         }
 
         @Throws(JSONException::class)
-        fun jsonToBundle(jsonObject: JSONObject): Bundle? {
+        fun jsonToBundle(jsonObject: JSONObject): Bundle {
             val bundle = Bundle()
             val iter: Iterator<*> = jsonObject.keys()
             while (iter.hasNext()) {

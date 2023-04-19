@@ -5,8 +5,10 @@ import android.os.Build
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
-import android.view.WindowManager
-import android.widget.*
+import android.widget.FrameLayout
+import android.widget.LinearLayout
+import android.widget.ProgressBar
+import android.widget.TextView
 import androidx.annotation.NonNull
 import androidx.annotation.Nullable
 import androidx.media3.common.Player
@@ -16,7 +18,11 @@ import io.flutter.plugin.common.StandardMessageCodec
 import io.flutter.plugin.platform.PlatformView
 import io.flutter.plugin.platform.PlatformViewFactory
 import io.flutter.util.ViewUtils.getActivity
-import kotlinx.coroutines.*
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.SupervisorJob
+import kotlinx.coroutines.cancel
 
 
 class PlayerPlatformViewFactory(private val playbackService: PlaybackService?) :
@@ -48,7 +54,7 @@ class BccmInlinePlayerView(
     private var _playerView: PlayerView? = null
     private val ioScope = CoroutineScope(Dispatchers.IO + SupervisorJob())
     private var fullscreenListener: Job? = null
-    private var setupDone = false;
+    private var setupDone = false
 
     init {
         setup()
@@ -72,7 +78,7 @@ class BccmInlinePlayerView(
 
     private fun setup() {
         if (_playerView?.player != null) {
-            return;
+            return
         }
         _v.removeAllViews()
         LayoutInflater.from(context).inflate(R.layout.player_view, _v, true)
@@ -108,7 +114,7 @@ class BccmInlinePlayerView(
             }
         })
 
-        val enableDebugView = false;
+        val enableDebugView = false
         if (enableDebugView) {
             val debugTextView = _v.findViewById<TextView>(R.id.debug_text_view)
             val debugHelper = DebugTextViewHelper(playerController!!.getExoPlayer(), debugTextView)
@@ -118,7 +124,7 @@ class BccmInlinePlayerView(
 
         playerController!!.takeOwnership(playerView, this)
         setLiveUIEnabled(playerController?.isLive == true)
-        setupDone = true;
+        setupDone = true
     }
 
     fun setLiveUIEnabled(enabled: Boolean) {
@@ -157,7 +163,7 @@ class BccmInlinePlayerView(
                 fullScreenPlayer.enterPictureInPicture()
             }
         }
-        resetPlayerView();
+        resetPlayerView()
     }
 
 
@@ -169,7 +175,7 @@ class BccmInlinePlayerView(
     }
 
     override fun shouldPipAutomatically(): Boolean {
-        return playerController?.player?.isPlaying ?: false;
+        return playerController?.player?.isPlaying ?: false
     }
 
     override fun enterPictureInPicture() {

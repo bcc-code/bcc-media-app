@@ -10,13 +10,13 @@ import media.bcc.bccm_player.CastMediaItemConverter.Companion.PLAYER_DATA_IS_LIV
 import media.bcc.bccm_player.CastMediaItemConverter.Companion.PLAYER_DATA_MIME_TYPE
 
 
-abstract class PlayerController() : Player.Listener {
-    abstract val id: String;
-    abstract val player: Player;
-    abstract var currentPlayerViewController: BccmPlayerViewController?;
+abstract class PlayerController : Player.Listener {
+    abstract val id: String
+    abstract val player: Player
+    abstract var currentPlayerViewController: BccmPlayerViewController?
     var isLive: Boolean = false
 
-    abstract fun release();
+    abstract fun release()
 
     fun play() {
         player.play()
@@ -29,8 +29,8 @@ abstract class PlayerController() : Player.Listener {
     abstract fun stop(reset: Boolean)
 
     fun replaceCurrentMediaItem(mediaItem: PlaybackPlatformApi.MediaItem, autoplay: Boolean?) {
-        this.isLive = mediaItem.isLive ?: false;
-        val androidMi = mapMediaItem(mediaItem);
+        this.isLive = mediaItem.isLive ?: false
+        val androidMi = mapMediaItem(mediaItem)
         var playbackStartPositionMs: Double? = null
         if (!this.isLive && mediaItem.playbackStartPositionMs != null) {
             playbackStartPositionMs = mediaItem.playbackStartPositionMs
@@ -41,7 +41,7 @@ abstract class PlayerController() : Player.Listener {
     }
 
     fun queueMediaItem(mediaItem: PlaybackPlatformApi.MediaItem) {
-        val androidMi = mapMediaItem(mediaItem);
+        val androidMi = mapMediaItem(mediaItem)
         player.addMediaItem(androidMi)
     }
 
@@ -53,31 +53,31 @@ abstract class PlayerController() : Player.Listener {
             val newKey =
                     sourceKey.substring(sourceKey.indexOf("media.bcc.extras.") + "media.bcc.extras.".length)
             source[sourceKey]?.toString()?.let {
-                extraMeta[newKey] = it;
+                extraMeta[newKey] = it
             }
         }
-        return extraMeta;
+        return extraMeta
     }
 
     fun mapMediaItem(mediaItem: PlaybackPlatformApi.MediaItem): MediaItem {
-        val metaBuilder = MediaMetadata.Builder();
-        val extraMeta = Bundle();
+        val metaBuilder = MediaMetadata.Builder()
+        val extraMeta = Bundle()
 
         if (mediaItem.metadata?.artworkUri != null) {
             metaBuilder.setArtworkUri(Uri.parse(mediaItem.metadata?.artworkUri))
         }
-        val episodeId = mediaItem.metadata?.episodeId;
+        val episodeId = mediaItem.metadata?.episodeId
         if (episodeId != null) {
-            extraMeta.putString("episode_id", episodeId);
+            extraMeta.putString("episode_id", episodeId)
         }
         if (mediaItem.isLive == true) {
-            extraMeta.putString(PLAYER_DATA_IS_LIVE, "true");
+            extraMeta.putString(PLAYER_DATA_IS_LIVE, "true")
         }
-        val sourceExtra = mediaItem.metadata?.extras;
+        val sourceExtra = mediaItem.metadata?.extras
         if (sourceExtra != null) {
             for (extra in sourceExtra) {
                 (extra.value as? String?).let {
-                    extraMeta.putString(BCCM_EXTRAS + "." + extra.key, it);
+                    extraMeta.putString(BCCM_EXTRAS + "." + extra.key, it)
                 }
             }
         }
@@ -89,25 +89,25 @@ abstract class PlayerController() : Player.Listener {
 
         val miBuilder = MediaItem.Builder()
                 .setUri(mediaItem.url)
-                .setMediaMetadata(metaBuilder.build());
-        miBuilder.setMimeType(mediaItem.mimeType ?: "application/x-mpegURL");
+                .setMediaMetadata(metaBuilder.build())
+        miBuilder.setMimeType(mediaItem.mimeType ?: "application/x-mpegURL")
         return miBuilder.build()
     }
 
     fun mapMediaItem(mediaItem: MediaItem): PlaybackPlatformApi.MediaItem {
 
-        val metaBuilder = PlaybackPlatformApi.MediaMetadata.Builder();
+        val metaBuilder = PlaybackPlatformApi.MediaMetadata.Builder()
         if (mediaItem.mediaMetadata.artworkUri != null) {
             metaBuilder.setArtworkUri(mediaItem.mediaMetadata.artworkUri?.toString())
         }
-        val episodeId = mediaItem.mediaMetadata.extras?.getString("episode_id");
+        val episodeId = mediaItem.mediaMetadata.extras?.getString("episode_id")
         if (episodeId != null) {
-            metaBuilder.setEpisodeId(episodeId);
+            metaBuilder.setEpisodeId(episodeId)
         }
-        metaBuilder.setTitle(mediaItem.mediaMetadata.title?.toString());
-        metaBuilder.setArtist(mediaItem.mediaMetadata.artist?.toString());
+        metaBuilder.setTitle(mediaItem.mediaMetadata.title?.toString())
+        metaBuilder.setArtist(mediaItem.mediaMetadata.artist?.toString())
         var extraMeta: Map<String, String> = mutableMapOf()
-        val sourceExtras = mediaItem.mediaMetadata.extras;
+        val sourceExtras = mediaItem.mediaMetadata.extras
         if (sourceExtras != null) {
             extraMeta = extractExtrasFromAndroid(sourceExtras)
         }
@@ -117,16 +117,16 @@ abstract class PlayerController() : Player.Listener {
                 .setIsLive(extraMeta[PLAYER_DATA_IS_LIVE] == "true")
                 .setMetadata(metaBuilder.build())
         if (extraMeta[PLAYER_DATA_MIME_TYPE] != null) {
-            miBuilder.setMimeType(extraMeta[PLAYER_DATA_MIME_TYPE]);
+            miBuilder.setMimeType(extraMeta[PLAYER_DATA_MIME_TYPE])
         } else if (mediaItem.localConfiguration?.mimeType != null) {
-            miBuilder.setMimeType(mediaItem.localConfiguration?.mimeType);
+            miBuilder.setMimeType(mediaItem.localConfiguration?.mimeType)
         }
         return miBuilder.build()
     }
 
     override fun onMediaItemTransition(mediaItem: MediaItem?, reason: Int) {
         mediaItem?.let {
-            val bccmMediaItem = mapMediaItem(mediaItem);
+            val bccmMediaItem = mapMediaItem(mediaItem)
             isLive = bccmMediaItem.isLive ?: false
         }
     }

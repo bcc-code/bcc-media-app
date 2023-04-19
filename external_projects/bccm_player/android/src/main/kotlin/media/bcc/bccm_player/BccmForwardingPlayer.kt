@@ -11,15 +11,15 @@ class BccmForwardingPlayer(private val playerController: ExoPlayerController) :
     private var seekForwardIncrement: Long = 15000
 
     private val seekCommands = arrayOf(
-            ForwardingPlayer.COMMAND_SEEK_IN_CURRENT_MEDIA_ITEM,
-            ForwardingPlayer.COMMAND_SEEK_BACK,
-            ForwardingPlayer.COMMAND_SEEK_FORWARD
+            COMMAND_SEEK_IN_CURRENT_MEDIA_ITEM,
+            COMMAND_SEEK_BACK,
+            COMMAND_SEEK_FORWARD
     )
     private val navigateCommands = arrayOf(
-            ForwardingPlayer.COMMAND_SEEK_TO_NEXT,
-            ForwardingPlayer.COMMAND_SEEK_TO_PREVIOUS,
-            ForwardingPlayer.COMMAND_SEEK_TO_NEXT_MEDIA_ITEM,
-            ForwardingPlayer.COMMAND_SEEK_TO_PREVIOUS_MEDIA_ITEM
+            COMMAND_SEEK_TO_NEXT,
+            COMMAND_SEEK_TO_PREVIOUS,
+            COMMAND_SEEK_TO_NEXT_MEDIA_ITEM,
+            COMMAND_SEEK_TO_PREVIOUS_MEDIA_ITEM
     )
 
     override fun getAvailableCommands(): Player.Commands {
@@ -31,7 +31,7 @@ class BccmForwardingPlayer(private val playerController: ExoPlayerController) :
                 .addAll(availableCommands)
                 .removeAll(*seekCommands.toIntArray())
                 .removeAll(*navigateCommands.toIntArray())
-                .build();
+                .build()
     }
 
     override fun isCommandAvailable(@Player.Command command: Int): Boolean {
@@ -39,7 +39,7 @@ class BccmForwardingPlayer(private val playerController: ExoPlayerController) :
                         command
                 )
         ) {
-            return false;
+            return false
         }
         return super.isCommandAvailable(command)
     }

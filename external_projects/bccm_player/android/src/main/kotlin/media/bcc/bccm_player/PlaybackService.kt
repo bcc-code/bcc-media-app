@@ -13,7 +13,7 @@ class PlaybackService : MediaSessionService() {
     private lateinit var mediaSession: MediaSession
     private var dummyPlayer: ExoPlayer? = null
 
-    private var binder: LocalBinder = LocalBinder();
+    private var binder: LocalBinder = LocalBinder()
 
     fun newPlayer(plugin: BccmPlayerPlugin): PlayerController {
         val pc = ExoPlayerController(this)
@@ -41,7 +41,7 @@ class PlaybackService : MediaSessionService() {
     }
 
     fun addController(pc: PlayerController) {
-        playerControllers.add(pc);
+        playerControllers.add(pc)
     }
 
     // Create your Player and MediaSession in the onCreate lifecycle event

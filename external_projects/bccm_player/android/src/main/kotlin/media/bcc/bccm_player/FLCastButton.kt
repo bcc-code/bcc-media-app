@@ -27,9 +27,9 @@ internal class FLCastButton(context: Context, id: Int, creationParams: Map<Strin
     override fun dispose() {}
 
     init {
-        val wrappedContext = ContextThemeWrapper(context, R.style.Theme_AppCompat_NoActionBar);
+        val wrappedContext = ContextThemeWrapper(context, R.style.Theme_AppCompat_NoActionBar)
         val btn = MediaRouteButton(wrappedContext)
-        _view = btn;
+        _view = btn
         CastButtonFactory.setUpMediaRouteButton(context, btn)
     }
 }
