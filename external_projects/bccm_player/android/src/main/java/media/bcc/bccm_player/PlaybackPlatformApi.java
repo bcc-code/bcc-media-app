@@ -13,7 +13,10 @@ import io.flutter.plugin.common.StandardMessageCodec;
 import java.io.ByteArrayOutputStream;
 import java.nio.ByteBuffer;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /** Generated class from Pigeon. */
@@ -30,7 +33,7 @@ public class PlaybackPlatformApi {
   }
 
   public enum CastConnectionState {
-    _(0),
+    NONE(0),
     NO_DEVICES_AVAILABLE(1),
     NOT_CONNECTED(2),
     CONNECTING(3),

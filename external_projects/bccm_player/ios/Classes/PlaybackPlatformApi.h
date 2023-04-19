@@ -11,7 +11,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 typedef NS_ENUM(NSUInteger, CastConnectionState) {
-  CastConnectionState_ = 0,
+  CastConnectionStateNone = 0,
   CastConnectionStateNoDevicesAvailable = 1,
   CastConnectionStateNotConnected = 2,
   CastConnectionStateConnecting = 3,

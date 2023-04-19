@@ -115,7 +115,7 @@ class ChromecastState {
 
 enum CastConnectionState {
   // ignore: unused_field
-  _,
+  none,
   noDevicesAvailable,
   notConnected,
   connecting,

@@ -9,7 +9,7 @@ import 'package:flutter/foundation.dart' show ReadBuffer, WriteBuffer;
 import 'package:flutter/services.dart';
 
 enum CastConnectionState {
-  _,
+  none,
   noDevicesAvailable,
   notConnected,
   connecting,
