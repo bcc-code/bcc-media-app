@@ -1,13 +1,15 @@
 import 'bccm_colors.dart';
 import 'package:flutter/material.dart';
 
+/// WARNING: We can only ensure pixel-perfect designs when these constants match figma 1-to-1.
+/// These constants are manually set based on figma, so if you are going to do changes, remember to update both places.
+///
 /// Flutter docs about TextStyle.height:
 /// When [height] is non-null, the line height of the span of text will be a
 /// multiple of [fontSize] and be exactly `fontSize * height` logical pixels
 /// tall.
 ///
 /// So if figma says font size 34, spacing 40 we do: 40/34=1.17647059
-
 class BccmTextStyles {
   static const headline1 =
       TextStyle(color: BccmColors.label1, fontFamily: 'Barlow', fontWeight: FontWeight.w800, fontSize: 34, height: 1.1764705882352942);
