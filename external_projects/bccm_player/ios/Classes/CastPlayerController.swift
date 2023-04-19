@@ -176,7 +176,7 @@ class CastPlayerController: NSObject, PlayerController {
         let playerItems = Array(player.items().suffix(from: currentItemIndex))
         
         for playerItem in playerItems {
-            guard let mediaItem = MediaItemUtils.mapPlayerItem(playerItem) else {
+            guard let mediaItem = MediaItemMapper.mapPlayerItem(playerItem) else {
                 continue
             }
             guard let queueItem = mapMediaItemToQueueItem(mediaItem) else {

@@ -9,6 +9,28 @@ final class MetadataUtils {
         metadataItem(identifier: identifier, value: value, namespace: nil)
     }
 
+    static func getNamespacedMetadata(_ items: [AVMetadataItem], namespace: MetadataNamespace) -> [String: String] {
+        return items.filter {
+            value in
+            let containsExtraPrefix = value.identifier?.rawValue.contains(namespace.rawValue) ?? false
+            if !containsExtraPrefix {
+                return false
+            }
+            return true
+        }
+        .reduce(into: [String: String]()) {
+            dict, val in
+            if val.identifier?.rawValue == nil || (val.value as? String) == nil {
+                return
+            }
+            guard let range = val.identifier!.rawValue.range(of: namespace.rawValue + ".") else {
+                return
+            }
+            let key = val.identifier!.rawValue[range.upperBound...]
+            dict[String(key)] = (val.value as! String)
+        }
+    }
+
     static func metadataItem(identifier: String, value: (NSCopying & NSObjectProtocol)?, namespace: MetadataNamespace? = nil) -> AVMetadataItem? {
         if let actualValue = value {
             let item = AVMutableMetadataItem()

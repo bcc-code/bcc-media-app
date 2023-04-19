@@ -46,7 +46,7 @@ public class AVQueuePlayerController: NSObject, PlayerController, AVPlayerViewCo
     }
     
     public func getCurrentItem() -> MediaItem? {
-        return MediaItemUtils.mapPlayerItem(player.currentItem)
+        return MediaItemMapper.mapPlayerItem(player.currentItem)
     }
     
     public func hasBecomePrimary() {
@@ -288,7 +288,7 @@ public class AVQueuePlayerController: NSObject, PlayerController, AVPlayerViewCo
         // listening for current item change
         observers.append(player.observe(\.currentItem, options: [.old, .new]) {
             player, _ in
-            let mediaItem = MediaItemUtils.mapPlayerItem(player.currentItem)
+            let mediaItem = MediaItemMapper.mapPlayerItem(player.currentItem)
             let event = MediaItemTransitionEvent.make(withPlayerId: self.id, mediaItem: mediaItem)
             self.playbackListener.onMediaItemTransition(event, completion: { _ in })
             
