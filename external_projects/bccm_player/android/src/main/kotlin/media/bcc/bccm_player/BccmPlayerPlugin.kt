@@ -5,7 +5,6 @@ import android.content.ComponentName
 import android.content.Context
 import android.content.Intent
 import android.content.ServiceConnection
-import android.content.res.Configuration
 import android.os.Build
 import android.os.IBinder
 import android.util.Log
@@ -14,7 +13,6 @@ import androidx.media3.session.MediaController
 import androidx.media3.session.SessionToken
 import com.google.android.gms.cast.framework.CastContext
 import com.google.common.util.concurrent.ListenableFuture
-import com.google.common.util.concurrent.MoreExecutors
 import io.flutter.embedding.engine.plugins.FlutterPlugin
 import io.flutter.embedding.engine.plugins.activity.ActivityAware
 import io.flutter.embedding.engine.plugins.activity.ActivityPluginBinding
@@ -29,8 +27,8 @@ import media.bcc.bccm_player.PlaybackPlatformApi.PlaybackPlatformPigeon
 import media.bcc.bccm_player.players.chromecast.CastPlayerController
 import media.bcc.bccm_player.views.FlutterCastButton
 import media.bcc.bccm_player.views.FlutterCastPlayerView
-import media.bcc.bccm_player.views.FlutterExoPlayerView
 import media.bcc.bccm_player.views.FlutterEmptyView
+import media.bcc.bccm_player.views.FlutterExoPlayerView
 
 class BccmPlayerPlugin : FlutterPlugin, ActivityAware, PluginRegistry.UserLeaveHintListener {
     /// The MethodChannel that will the communication between Flutter and native Android

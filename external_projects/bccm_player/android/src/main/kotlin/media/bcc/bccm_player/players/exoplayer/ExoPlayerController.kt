@@ -26,8 +26,8 @@ import kotlinx.coroutines.launch
 import media.bcc.bccm_player.BccmPlayerPluginSingleton
 import media.bcc.bccm_player.PictureInPictureModeChangedEvent
 import media.bcc.bccm_player.PlaybackPlatformApi
-import media.bcc.bccm_player.players.chromecast.CastMediaItemConverter.Companion.PLAYER_DATA_IS_LIVE
 import media.bcc.bccm_player.players.PlayerController
+import media.bcc.bccm_player.players.chromecast.CastMediaItemConverter.Companion.PLAYER_DATA_IS_LIVE
 import java.util.UUID
 
 
