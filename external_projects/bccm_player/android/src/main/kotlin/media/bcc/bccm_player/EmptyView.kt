@@ -15,7 +15,7 @@ class EmptyViewFactory : PlatformViewFactory(StandardMessageCodec.INSTANCE) {
 }
 
 internal class EmptyView(context: Context, id: Int, creationParams: Map<String?, Any?>?) :
-        PlatformView {
+    PlatformView {
     private val _view: View = View(context)
 
     override fun getView(): View {

@@ -10,7 +10,7 @@ import kotlinx.coroutines.launch
 
 
 class PlaybackApiImpl(private val plugin: BccmPlayerPlugin) :
-        PlaybackPlatformApi.PlaybackPlatformPigeon {
+    PlaybackPlatformApi.PlaybackPlatformPigeon {
     private val mainScope = CoroutineScope(Dispatchers.Main + Job())
 
     override fun setUser(user: PlaybackPlatformApi.User?) {
@@ -34,8 +34,8 @@ class PlaybackApiImpl(private val plugin: BccmPlayerPlugin) :
     }
 
     override fun getPlayerState(
-            playerId: String,
-            result: PlaybackPlatformApi.Result<PlaybackPlatformApi.PlayerState>?
+        playerId: String,
+        result: PlaybackPlatformApi.Result<PlaybackPlatformApi.PlayerState>?
     ) {
         val playbackService = plugin.getPlaybackService()
         if (playbackService == null) {
@@ -50,10 +50,10 @@ class PlaybackApiImpl(private val plugin: BccmPlayerPlugin) :
 
         val position = playerController.player.currentPosition.toDouble()
         result?.success(
-                PlaybackPlatformApi.PlayerState.Builder()
-                        .setPlayerId(playerId)
-                        .setIsPlaying(playerController.player.isPlaying)
-                        .setPlaybackPositionMs(position).build()
+            PlaybackPlatformApi.PlayerState.Builder()
+                .setPlayerId(playerId)
+                .setIsPlaying(playerController.player.isPlaying)
+                .setPlaybackPositionMs(position).build()
         )
     }
 
@@ -68,18 +68,18 @@ class PlaybackApiImpl(private val plugin: BccmPlayerPlugin) :
         playerController.player.addListener(PlayerListener(playerController, plugin))
         if (url != null) {
             playerController.replaceCurrentMediaItem(
-                    PlaybackPlatformApi.MediaItem.Builder().setUrl(url).build(), false
+                PlaybackPlatformApi.MediaItem.Builder().setUrl(url).build(), false
             )
         }
         result?.success(playerController.id)
     }
 
     override fun replaceCurrentMediaItem(
-            playerId: String,
-            mediaItem: PlaybackPlatformApi.MediaItem,
-            playbackPositionFromPrimary: Boolean?,
-            autoplay: Boolean?,
-            result: PlaybackPlatformApi.Result<Void>?
+        playerId: String,
+        mediaItem: PlaybackPlatformApi.MediaItem,
+        playbackPositionFromPrimary: Boolean?,
+        autoplay: Boolean?,
+        result: PlaybackPlatformApi.Result<Void>?
     ) {
         val playbackService = plugin.getPlaybackService()
         if (playbackService == null) {
@@ -88,7 +88,7 @@ class PlaybackApiImpl(private val plugin: BccmPlayerPlugin) :
         }
         if (playbackPositionFromPrimary == true) {
             mediaItem.playbackStartPositionMs =
-                    playbackService.getPrimaryController()?.player?.currentPosition?.toDouble()
+                playbackService.getPrimaryController()?.player?.currentPosition?.toDouble()
         }
 
         val playerController = playbackService.getController(playerId)
@@ -108,9 +108,9 @@ class PlaybackApiImpl(private val plugin: BccmPlayerPlugin) :
     }
 
     override fun queueMediaItem(
-            playerId: String,
-            mediaItem: PlaybackPlatformApi.MediaItem,
-            result: PlaybackPlatformApi.Result<Void>?
+        playerId: String,
+        mediaItem: PlaybackPlatformApi.MediaItem,
+        result: PlaybackPlatformApi.Result<Void>?
     ) {
         val playbackService = plugin.getPlaybackService()
         if (playbackService == null) {
@@ -118,7 +118,7 @@ class PlaybackApiImpl(private val plugin: BccmPlayerPlugin) :
             return
         }
         val playerController = playbackService.getController(playerId)
-                ?: throw Error("Player with id $playerId does not exist.")
+            ?: throw Error("Player with id $playerId does not exist.")
         playerController.queueMediaItem(mediaItem)
         result?.success(null)
     }
@@ -137,7 +137,7 @@ class PlaybackApiImpl(private val plugin: BccmPlayerPlugin) :
     override fun play(playerId: String) {
         val playbackService = plugin.getPlaybackService() ?: return
         val playerController = playbackService.getController(playerId)
-                ?: throw Error("Player with id $playerId does not exist.")
+            ?: throw Error("Player with id $playerId does not exist.")
 
         playerController.play()
     }
@@ -145,7 +145,7 @@ class PlaybackApiImpl(private val plugin: BccmPlayerPlugin) :
     override fun pause(playerId: String) {
         val playbackService = plugin.getPlaybackService() ?: return
         val playerController = playbackService.getController(playerId)
-                ?: throw Error("Player with id $playerId does not exist.")
+            ?: throw Error("Player with id $playerId does not exist.")
 
         playerController.pause()
     }
@@ -153,7 +153,7 @@ class PlaybackApiImpl(private val plugin: BccmPlayerPlugin) :
     override fun stop(playerId: String, reset: Boolean) {
         val playbackService = plugin.getPlaybackService() ?: return
         val playerController = playbackService.getController(playerId)
-                ?: throw Error("Player with id $playerId does not exist.")
+            ?: throw Error("Player with id $playerId does not exist.")
 
         playerController.stop(reset)
     }
@@ -173,8 +173,8 @@ class PlaybackApiImpl(private val plugin: BccmPlayerPlugin) :
 
     override fun openExpandedCastController() {
         val intent = Intent(
-                BccmPlayerPluginSingleton.activityState.value,
-                CastExpandedControlsActivity::class.java
+            BccmPlayerPluginSingleton.activityState.value,
+            CastExpandedControlsActivity::class.java
         )
         BccmPlayerPluginSingleton.activityState.value?.startActivity(intent)
     }

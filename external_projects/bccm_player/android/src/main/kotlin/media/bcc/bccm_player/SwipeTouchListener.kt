@@ -6,7 +6,7 @@ import kotlin.math.abs
 
 
 class SwipeTouchListener(private val minimumDistance: Double, private val listener: Listener) :
-        View.OnTouchListener {
+    View.OnTouchListener {
     private var downX = 0f
     private var downY = 0f
     private var upX = 0f

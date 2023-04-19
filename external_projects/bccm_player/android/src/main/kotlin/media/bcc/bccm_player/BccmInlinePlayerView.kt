@@ -26,7 +26,7 @@ import kotlinx.coroutines.cancel
 
 
 class PlayerPlatformViewFactory(private val playbackService: PlaybackService?) :
-        PlatformViewFactory(StandardMessageCodec.INSTANCE) {
+    PlatformViewFactory(StandardMessageCodec.INSTANCE) {
     @NonNull
     override fun create(@NonNull context: Context?, id: Int, @Nullable args: Any?): PlatformView {
         if (playbackService == null) {
@@ -35,19 +35,19 @@ class PlayerPlatformViewFactory(private val playbackService: PlaybackService?) :
 
         val creationParams = args as Map<String?, Any?>?
         return BccmInlinePlayerView(
-                playbackService,
-                context!!,
-                creationParams?.get("player_id") as String,
-                id
+            playbackService,
+            context!!,
+            creationParams?.get("player_id") as String,
+            id
         )
     }
 }
 
 class BccmInlinePlayerView(
-        private val playbackService: PlaybackService,
-        private val context: Context,
-        private var playerId: String,
-        private val flutterViewId: Int
+    private val playbackService: PlaybackService,
+    private val context: Context,
+    private var playerId: String,
+    private val flutterViewId: Int
 ) : PlatformView, BccmPlayerViewController {
     private var playerController: ExoPlayerController? = null
     private val _v: LinearLayout = LinearLayout(context)
@@ -89,7 +89,7 @@ class BccmInlinePlayerView(
         }
 
         val playerView = _v.findViewById<PlayerView>(R.id.brunstad_player)
-                .also { _playerView = it }
+            .also { _playerView = it }
 
         playerView.setFullscreenButtonClickListener {
             goFullscreen()
@@ -149,7 +149,7 @@ class BccmInlinePlayerView(
     private fun goFullscreen(startInPip: Boolean = false) {
         val activity = getActivity(context) ?: return
         val rootLayout: FrameLayout =
-                activity.window.decorView.findViewById<View>(android.R.id.content) as FrameLayout
+            activity.window.decorView.findViewById<View>(android.R.id.content) as FrameLayout
 
         playerController?.let { playerController ->
             val fullScreenPlayer = FullscreenPlayerView(activity, playerController, !startInPip)

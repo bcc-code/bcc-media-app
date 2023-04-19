@@ -14,7 +14,7 @@ import io.flutter.plugin.platform.PlatformViewFactory
 
 
 class BccmCastPlayerViewFactory(private val castController: CastPlayerController) :
-        PlatformViewFactory(StandardMessageCodec.INSTANCE) {
+    PlatformViewFactory(StandardMessageCodec.INSTANCE) {
     @NonNull
     override fun create(@NonNull context: Context?, id: Int, @Nullable args: Any?): PlatformView {
         val creationParams = args as Map<String?, Any?>?
@@ -23,8 +23,8 @@ class BccmCastPlayerViewFactory(private val castController: CastPlayerController
 }
 
 class BccmCastPlayerView(
-        private val context: Context,
-        private val castPlayer: CastPlayer
+    private val context: Context,
+    private val castPlayer: CastPlayer
 ) : PlatformView {
     private val _v: LinearLayout = LinearLayout(context)
     private var _playerView: PlayerView? = null
@@ -45,7 +45,7 @@ class BccmCastPlayerView(
         LayoutInflater.from(context).inflate(R.layout.player_view, _v, true)
 
         val playerView = _v.findViewById<PlayerView>(R.id.brunstad_player)
-                .also { _playerView = it }
+            .also { _playerView = it }
 
         playerView.player = castPlayer
     }

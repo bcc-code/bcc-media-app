@@ -20,9 +20,9 @@ import media.bcc.bccm_player.CastMediaItemConverter.Companion.PLAYER_DATA_LAST_K
 
 
 class CastPlayerController(
-        private val castContext: CastContext,
-        private val chromecastListenerPigeon: ChromecastControllerPigeon.ChromecastPigeon,
-        private val plugin: BccmPlayerPlugin
+    private val castContext: CastContext,
+    private val chromecastListenerPigeon: ChromecastControllerPigeon.ChromecastPigeon,
+    private val plugin: BccmPlayerPlugin
 ) : PlayerController(), SessionManagerListener<Session>, SessionAvailabilityListener {
     override val player = CastPlayer(castContext, CastMediaItemConverter())
     override var currentPlayerViewController: BccmPlayerViewController? = null
@@ -64,8 +64,8 @@ class CastPlayerController(
 
     private fun handleUpdatedAppConfig(appConfigState: PlaybackPlatformApi.AppConfig?) {
         Log.d(
-                "bccm",
-                "setting preferred audio and sub lang to: ${appConfigState?.audioLanguage}, ${appConfigState?.subtitleLanguage}"
+            "bccm",
+            "setting preferred audio and sub lang to: ${appConfigState?.audioLanguage}, ${appConfigState?.subtitleLanguage}"
         )
 
         /* player.trackSelectionParameters = trackSelector.parameters.buildUpon()
@@ -121,7 +121,7 @@ class CastPlayerController(
         chromecastListenerPigeon.onCastSessionAvailable {}
         Log.d("Bccm", "Session available. Transferring state from primaryPlayer to castPlayer")
         val primaryPlayer =
-                plugin.getPlaybackService()?.getPrimaryController()?.player ?: return
+            plugin.getPlaybackService()?.getPrimaryController()?.player ?: return
 
         Log.d("bccm", "oncastsessionavailable + " + player.mediaMetadata.extras?.getString("id"))
         if (primaryPlayer.isPlaying) {
@@ -146,11 +146,11 @@ class CastPlayerController(
         val currentTracks = previous.currentTracks
         Log.d("bccm", currentTracks.toString())
         val audioTrack =
-                currentTracks.groups.firstOrNull { it.isSelected && it.type == C.TRACK_TYPE_AUDIO }
-                        ?.getTrackFormat(0)?.language
+            currentTracks.groups.firstOrNull { it.isSelected && it.type == C.TRACK_TYPE_AUDIO }
+                ?.getTrackFormat(0)?.language
         val subtitleTrack =
-                currentTracks.groups.firstOrNull { it.isSelected && it.type == C.TRACK_TYPE_TEXT }
-                        ?.getTrackFormat(0)?.language
+            currentTracks.groups.firstOrNull { it.isSelected && it.type == C.TRACK_TYPE_TEXT }
+                ?.getTrackFormat(0)?.language
         Log.d("bccm", "audioTrack when transferring to cast: $audioTrack")
         Log.d("bccm", "subtitleTrack when transferring to cast: $subtitleTrack")
 
@@ -168,9 +168,9 @@ class CastPlayerController(
             extras.putString(PLAYER_DATA_LAST_KNOWN_SUBTITLE_LANGUAGE, subtitleTrack)
             metaBuilder.setExtras(extras)
             val newMediaItem = mediaItem
-                    .buildUpon()
-                    .setMediaMetadata(metaBuilder.build())
-                    .build()
+                .buildUpon()
+                .setMediaMetadata(metaBuilder.build())
+                .build()
             queue.add(newMediaItem)
         }
 

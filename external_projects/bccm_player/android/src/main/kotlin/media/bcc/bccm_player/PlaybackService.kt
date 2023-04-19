@@ -55,7 +55,7 @@ class PlaybackService : MediaSessionService() {
     // Return a MediaSession to link with the MediaController that is making
     // this request.
     override fun onGetSession(controllerInfo: MediaSession.ControllerInfo): MediaSession =
-            mediaSession
+        mediaSession
 
     override fun onDestroy() {
         playerControllers.forEach {

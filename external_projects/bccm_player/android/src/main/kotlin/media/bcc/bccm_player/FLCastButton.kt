@@ -17,7 +17,7 @@ class FLCastButtonFactory : PlatformViewFactory(StandardMessageCodec.INSTANCE) {
 }
 
 internal class FLCastButton(context: Context, id: Int, creationParams: Map<String?, Any?>?) :
-        PlatformView {
+    PlatformView {
     private val _view: View
 
     override fun getView(): View {

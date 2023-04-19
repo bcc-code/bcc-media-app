@@ -21,9 +21,9 @@ import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.filterIsInstance
 
 class FullscreenPlayerView(
-        val activity: Activity,
-        val playerController: ExoPlayerController,
-        private val forceLandscape: Boolean = true
+    val activity: Activity,
+    val playerController: ExoPlayerController,
+    private val forceLandscape: Boolean = true
 ) : LinearLayout(activity), BccmPlayerViewController {
     var playerView: PlayerView?
     val mainScope = CoroutineScope(Dispatchers.Main + SupervisorJob())
@@ -40,13 +40,13 @@ class FullscreenPlayerView(
         }
 
         playerView?.videoSurfaceView?.setOnTouchListener(
-                SwipeTouchListener(
-                        activity.window.decorView.height * 0.3,
-                        object : SwipeTouchListener.Listener {
-                            override fun onTopToBottomSwipe() {
-                                exit()
-                            }
-                        })
+            SwipeTouchListener(
+                activity.window.decorView.height * 0.3,
+                object : SwipeTouchListener.Listener {
+                    override fun onTopToBottomSwipe() {
+                        exit()
+                    }
+                })
         )
 
         playerView?.setFullscreenButtonClickListener {
@@ -88,14 +88,14 @@ class FullscreenPlayerView(
 
         mainScope.launch {
             BccmPlayerPluginSingleton.eventBus.filterIsInstance<PictureInPictureModeChangedEvent2>()
-                    .collect { event ->
-                        isInPip = event.isInPictureInPictureMode
-                        Log.d("bccm", "PictureInPictureModeChangedEvent2, isInPiP: $isInPip")
-                        if (!event.isInPictureInPictureMode) {
-                            delay(500)
-                            makeActivityFullscreen(true)
-                        }
+                .collect { event ->
+                    isInPip = event.isInPictureInPictureMode
+                    Log.d("bccm", "PictureInPictureModeChangedEvent2, isInPiP: $isInPip")
+                    if (!event.isInPictureInPictureMode) {
+                        delay(500)
+                        makeActivityFullscreen(true)
                     }
+                }
         }
         mainScope.launch {
             BccmPlayerPluginSingleton.eventBus.filterIsInstance<OnActivityStop>().collect { event ->
@@ -117,7 +117,7 @@ class FullscreenPlayerView(
         WindowInsetsControllerCompat(activity.window, this@FullscreenPlayerView).let { controller ->
             controller.hide(WindowInsetsCompat.Type.systemBars())
             controller.systemBarsBehavior =
-                    WindowInsetsControllerCompat.BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE
+                WindowInsetsControllerCompat.BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE
         }
     }
 
@@ -125,8 +125,8 @@ class FullscreenPlayerView(
         activity.requestedOrientation = orientationBeforeGoingFullscreen
         WindowCompat.setDecorFitsSystemWindows(activity.window, true)
         WindowInsetsControllerCompat(
-                activity.window,
-                this
+            activity.window,
+            this
         ).show(WindowInsetsCompat.Type.systemBars())
         onExitListener?.let { listener -> listener() }
         release()
@@ -161,9 +161,9 @@ class FullscreenPlayerView(
         } ?: Rational(16, 9)
 
         activity.enterPictureInPictureMode(
-                PictureInPictureParams.Builder()
-                        .setAspectRatio(aspectRatio)
-                        .build()
+            PictureInPictureParams.Builder()
+                .setAspectRatio(aspectRatio)
+                .build()
         )
         playerView?.hideController()
     }
