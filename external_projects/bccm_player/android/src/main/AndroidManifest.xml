@@ -1,26 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="media.bcc.bccm_player" >
+    package="media.bcc.bccm_player">
 
     <application>
         <activity
-            android:name=".FullscreenPlayerActivity"
-            android:configChanges="screenSize|smallestScreenSize|screenLayout|orientation"
-            android:label="@string/title_activity_picture_in_picture"
-            android:theme="@style/TransparentActivity"
-            android:launchMode="singleTask"
-            android:excludeFromRecents="true"
-            android:supportsPictureInPicture="true"
-            />
-        <activity
             android:name=".CastExpandedControlsActivity"
+            android:exported="true"
             android:label="Cast"
             android:launchMode="singleTask"
-            android:theme="@style/Theme.AppCompat.NoActionBar"
-            android:exported="true"
-            android:screenOrientation="portrait">
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.NoActionBar">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
+                <action android:name="android.intent.action.MAIN" />
             </intent-filter>
         </activity>
     </application>
