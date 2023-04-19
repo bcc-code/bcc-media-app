@@ -35,8 +35,8 @@ interface BccmPlayerPluginEvent {
 class AttachedToActivityEvent(val activity: Activity) : BccmPlayerPluginEvent {}
 class DetachedFromActivityEvent() : BccmPlayerPluginEvent {}
 class OnActivityStop() : BccmPlayerPluginEvent {}
-class SetPlayerViewVisibilityEvent(val viewId: Long, val visible: Boolean): BccmPlayerPluginEvent {}
-class UserLeaveHintEvent(): BccmPlayerPluginEvent {}
+class SetPlayerViewVisibilityEvent(val viewId: Long, val visible: Boolean) : BccmPlayerPluginEvent {}
+class UserLeaveHintEvent() : BccmPlayerPluginEvent {}
 class PictureInPictureModeChangedEvent2(val isInPictureInPictureMode: Boolean) : BccmPlayerPluginEvent {}
 class PictureInPictureModeChangedEvent(val playerId: String, val isInPictureInPictureMode: Boolean) : BccmPlayerPluginEvent {}
 class FullscreenPlayerResult(val playerId: String) : BccmPlayerPluginEvent {}
@@ -52,13 +52,13 @@ object BccmPlayerPluginSingleton {
     private val mainScope = CoroutineScope(Dispatchers.Main + Job())
 
     init {
-        Log.d("bccm","bccmdebug: created BccmPlayerPluginSingleton")
+        Log.d("bccm", "bccmdebug: created BccmPlayerPluginSingleton")
         mainScope.launch { keepTrackOfActivity() }
     }
 
     private suspend fun keepTrackOfActivity() {
-        eventBus.filter { event -> event is AttachedToActivityEvent}.collect {
-            event -> activityState.update { (event as AttachedToActivityEvent).activity }
+        eventBus.filter { event -> event is AttachedToActivityEvent }.collect { event ->
+            activityState.update { (event as AttachedToActivityEvent).activity }
         }
     }
 }
@@ -105,7 +105,8 @@ class BccmPlayerPlugin : FlutterPlugin, ActivityAware, PluginRegistry.UserLeaveH
 
 
         Intent(pluginBinding?.applicationContext, PlaybackService::class.java).also { intent ->
-            mBound = pluginBinding?.applicationContext?.bindService(intent, playbackServiceConnection, Context.BIND_AUTO_CREATE) ?: false
+            mBound = pluginBinding?.applicationContext?.bindService(intent, playbackServiceConnection, Context.BIND_AUTO_CREATE)
+                    ?: false
         }
 
         var castContext: CastContext? = null
@@ -160,13 +161,12 @@ class BccmPlayerPlugin : FlutterPlugin, ActivityAware, PluginRegistry.UserLeaveH
         }, MoreExecutors.directExecutor()
         )
         mainScope.launch {
-            Log.d("bccm","OnAttachedToActivity")
+            Log.d("bccm", "OnAttachedToActivity")
             BccmPlayerPluginSingleton.activityState.update { binding.activity }
             BccmPlayerPluginSingleton.eventBus.emit(AttachedToActivityEvent(binding.activity))
         }
         mainScope.launch {
-            BccmPlayerPluginSingleton.eventBus.filter { event -> event is PictureInPictureModeChangedEvent}.collect {
-                event ->
+            BccmPlayerPluginSingleton.eventBus.filter { event -> event is PictureInPictureModeChangedEvent }.collect { event ->
                 val event = event as PictureInPictureModeChangedEvent
                 var builder = PlaybackPlatformApi.PictureInPictureModeChangedEvent.Builder()
                 builder.setPlayerId(event.playerId)
@@ -199,7 +199,7 @@ class BccmPlayerPlugin : FlutterPlugin, ActivityAware, PluginRegistry.UserLeaveH
     override fun onDetachedFromActivity() {
         activityBinding?.removeOnUserLeaveHintListener(this)
         mainScope.launch {
-            Log.d("bccm","OnDetachedFromActivity")
+            Log.d("bccm", "OnDetachedFromActivity")
             BccmPlayerPluginSingleton.eventBus.emit(DetachedFromActivityEvent())
         }
         channel.setMethodCallHandler(null)

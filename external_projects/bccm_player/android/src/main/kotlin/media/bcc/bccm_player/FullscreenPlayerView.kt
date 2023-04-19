@@ -36,7 +36,7 @@ class FullscreenPlayerView(val activity: Activity, val playerController: ExoPlay
             playerController.takeOwnership(it, this)
         }
 
-        playerView?.videoSurfaceView?.setOnTouchListener(SwipeTouchListener(activity.window.decorView.height*0.3, object : SwipeTouchListener.Listener {
+        playerView?.videoSurfaceView?.setOnTouchListener(SwipeTouchListener(activity.window.decorView.height * 0.3, object : SwipeTouchListener.Listener {
             override fun onTopToBottomSwipe() {
                 exit();
             }
@@ -80,8 +80,7 @@ class FullscreenPlayerView(val activity: Activity, val playerController: ExoPlay
         })
 
         mainScope.launch {
-            BccmPlayerPluginSingleton.eventBus.filterIsInstance<PictureInPictureModeChangedEvent2>().collect {
-                event ->
+            BccmPlayerPluginSingleton.eventBus.filterIsInstance<PictureInPictureModeChangedEvent2>().collect { event ->
                 isInPip = event.isInPictureInPictureMode
                 Log.d("bccm", "PictureInPictureModeChangedEvent2, isInPiP: $isInPip")
                 if (!event.isInPictureInPictureMode) {
@@ -91,8 +90,7 @@ class FullscreenPlayerView(val activity: Activity, val playerController: ExoPlay
             }
         }
         mainScope.launch {
-            BccmPlayerPluginSingleton.eventBus.filterIsInstance<OnActivityStop>().collect {
-                event ->
+            BccmPlayerPluginSingleton.eventBus.filterIsInstance<OnActivityStop>().collect { event ->
                 Log.d("bccm", "OnActivityStop and isInPiP: $isInPip")
                 playerController.player.stop()
             }

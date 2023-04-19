@@ -74,10 +74,10 @@ class CastPlayerController(
     private fun handleUpdatedAppConfig(appConfigState: PlaybackPlatformApi.AppConfig?) {
         Log.d("bccm", "setting preferred audio and sub lang to: ${appConfigState?.audioLanguage}, ${appConfigState?.subtitleLanguage}")
 
-       /* player.trackSelectionParameters = trackSelector.parameters.buildUpon()
-                .setPreferredAudioLanguage(appConfigState?.audioLanguage)
-                .setPreferredTextLanguage(appConfigState?.subtitleLanguage).build()
-*/
+        /* player.trackSelectionParameters = trackSelector.parameters.buildUpon()
+                 .setPreferredAudioLanguage(appConfigState?.audioLanguage)
+                 .setPreferredTextLanguage(appConfigState?.subtitleLanguage).build()
+ */
 
 /*
         castContext.sessionManager.currentCastSession.remoteMediaClient.s*/

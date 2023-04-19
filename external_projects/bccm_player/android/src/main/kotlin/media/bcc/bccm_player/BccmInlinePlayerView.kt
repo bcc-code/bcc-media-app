@@ -53,7 +53,7 @@ class BccmInlinePlayerView(
 
     override fun dispose() {
         Log.d("bccm", "Disposing a playerview for playerId: $playerId")
-        this._playerView?.let {playerController?.releasePlayerView(it)}
+        this._playerView?.let { playerController?.releasePlayerView(it) }
         playerController = null
         _playerView = null
         ioScope.cancel()

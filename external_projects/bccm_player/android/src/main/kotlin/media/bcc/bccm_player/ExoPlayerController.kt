@@ -81,8 +81,7 @@ class ExoPlayerController(private val context: Context) : PlayerController() {
         val appConfigState = handleUpdatedAppConfig(BccmPlayerPluginSingleton.appConfigState.value);
 
         mainScope.launch {
-            BccmPlayerPluginSingleton.userState.collect() {
-                user ->
+            BccmPlayerPluginSingleton.userState.collect() { user ->
                 youboraOptions.username = user?.id
                 Log.d("bccm", "ExoPlayerController: Setting user in youbora")
             }
@@ -108,7 +107,7 @@ class ExoPlayerController(private val context: Context) : PlayerController() {
                 .setPreferredAudioLanguage(appConfigState?.audioLanguage)
                 .setPreferredTextLanguage(appConfigState?.subtitleLanguage).build()
         youboraPlugin.options.username = appConfigState?.analyticsId;
-        youboraPlugin.options.contentCustomDimension1 = if(appConfigState?.sessionId != null) appConfigState.sessionId.toString() else null;
+        youboraPlugin.options.contentCustomDimension1 = if (appConfigState?.sessionId != null) appConfigState.sessionId.toString() else null;
     }
 
     private fun setBasicYouboraOptions(options: Options, config: PlaybackPlatformApi.NpawConfig?) {
@@ -182,9 +181,12 @@ class ExoPlayerController(private val context: Context) : PlayerController() {
 
     override fun onMediaMetadataChanged(mediaMetadata: MediaMetadata) {
         val extras = mediaMetadata.extras?.let { extractExtrasFromAndroid(it) }
-        youboraPlugin.options.contentIsLive = extras?.get("npaw.content.isLive")?.toBoolean() ?: extras?.get(PLAYER_DATA_IS_LIVE)?.toBoolean() ?: player.isCurrentMediaItemLive
-        youboraPlugin.options.contentId = extras?.get("npaw.content.id") ?: mediaMetadata.extras?.getString("id")
-        youboraPlugin.options.contentTitle = extras?.get("npaw.content.title") ?: mediaMetadata.title?.toString() ?: mediaMetadata.displayTitle?.toString()
+        youboraPlugin.options.contentIsLive = extras?.get("npaw.content.isLive")?.toBoolean()
+                ?: extras?.get(PLAYER_DATA_IS_LIVE)?.toBoolean() ?: player.isCurrentMediaItemLive
+        youboraPlugin.options.contentId = extras?.get("npaw.content.id")
+                ?: mediaMetadata.extras?.getString("id")
+        youboraPlugin.options.contentTitle = extras?.get("npaw.content.title")
+                ?: mediaMetadata.title?.toString() ?: mediaMetadata.displayTitle?.toString()
         youboraPlugin.options.contentTvShow = extras?.get("npaw.content.tvShow")
         youboraPlugin.options.contentSeason = extras?.get("npaw.content.season");
         youboraPlugin.options.contentEpisodeTitle = extras?.get("npaw.content.episodeTitle")

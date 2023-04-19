@@ -12,7 +12,7 @@ class SwipeTouchListener(private val minimumDistance: Double, private val listen
     private var upY = 0f
 
     interface Listener {
-        fun onTopToBottomSwipe() { }
+        fun onTopToBottomSwipe() {}
     }
 
     override fun onTouch(v: View?, event: MotionEvent): Boolean {

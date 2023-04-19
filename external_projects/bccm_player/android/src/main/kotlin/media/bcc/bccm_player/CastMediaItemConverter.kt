@@ -72,7 +72,8 @@ class CastMediaItemConverter : MediaItemConverter {
             for (key in metadata.keySet().filter { it.contains(BCCM_EXTRAS) || it.contains(BCCM_PLAYER_DATA) }) {
                 try {
                     extrasBundle.putString(key, metadata.getString(key))
-                } catch (e: Throwable) {}
+                } catch (e: Throwable) {
+                }
             }
         }
 
@@ -95,7 +96,8 @@ class CastMediaItemConverter : MediaItemConverter {
         for (key in metadata.keySet()) {
             try {
                 map[key] = metadata.getString(key)!!
-            } catch (e: Throwable) {}
+            } catch (e: Throwable) {
+            }
         }
         return PlayerData.from(map)
     }
@@ -140,7 +142,7 @@ class CastMediaItemConverter : MediaItemConverter {
             metadata.putInt(com.google.android.gms.cast.MediaMetadata.KEY_TRACK_NUMBER, mediaItem.mediaMetadata.trackNumber!!)
         }
 
-        mediaItem.mediaMetadata.extras?.toMap()?.filter{ it.key.contains(BCCM_EXTRAS) || it.key.contains(BCCM_PLAYER_DATA) }?.forEach {
+        mediaItem.mediaMetadata.extras?.toMap()?.filter { it.key.contains(BCCM_EXTRAS) || it.key.contains(BCCM_PLAYER_DATA) }?.forEach {
             metadata.putString(it.key, it.value)
         }
 
@@ -162,8 +164,9 @@ class CastMediaItemConverter : MediaItemConverter {
         val contentUrl = mediaItem.localConfiguration?.uri.toString()
         val contentId = if (mediaItem.mediaId == MediaItem.DEFAULT_MEDIA_ID) contentUrl else mediaItem.mediaId
         val mediaInfo = MediaInfo.Builder(contentId)
-                .setStreamType(if(playerData?.isLive == true) MediaInfo.STREAM_TYPE_LIVE else MediaInfo.STREAM_TYPE_BUFFERED)
-                .setContentType(playerData?.mimeType ?: mediaItem.localConfiguration?.mimeType ?: "application/x-mpegURL")
+                .setStreamType(if (playerData?.isLive == true) MediaInfo.STREAM_TYPE_LIVE else MediaInfo.STREAM_TYPE_BUFFERED)
+                .setContentType(playerData?.mimeType ?: mediaItem.localConfiguration?.mimeType
+                ?: "application/x-mpegURL")
                 .setContentUrl(contentUrl)
                 .setMetadata(metadata)
                 .setCustomData(customData)
