@@ -1,5 +1,6 @@
 package tv.brunstad.app
 
+import android.annotation.SuppressLint
 import android.content.res.Configuration
 import android.os.Bundle
 import android.os.PersistableBundle
@@ -7,15 +8,11 @@ import android.os.StrictMode
 import android.view.View
 import android.view.Window
 import android.widget.FrameLayout
-import androidx.annotation.NonNull
 import io.flutter.embedding.android.FlutterFragmentActivity
-import io.flutter.embedding.engine.FlutterEngine
-import io.flutter.plugin.common.MethodChannel
 import media.bcc.bccm_player.BccmPlayerPlugin
 import media.bcc.bccm_player.views.FullscreenPlayerView
 
 class MainActivity : FlutterFragmentActivity() {
-    private val _channel = "tv.brunstad.app"
 
     override fun onCreate(savedInstanceState: Bundle?, persistentState: PersistableBundle?) {
         if (BuildConfig.DEBUG)
@@ -25,6 +22,7 @@ class MainActivity : FlutterFragmentActivity() {
         requestWindowFeature(Window.FEATURE_ACTIVITY_TRANSITIONS);
     }
 
+    @SuppressLint("MissingSuperCall")
     override fun onPictureInPictureModeChanged(
         isInPictureInPictureMode: Boolean,
         newConfig: Configuration
