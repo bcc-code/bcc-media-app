@@ -15,12 +15,6 @@ class PlaybackApiImpl(private val plugin: BccmPlayerPlugin) :
     PlaybackPlatformApi.PlaybackPlatformPigeon {
     private val mainScope = CoroutineScope(Dispatchers.Main + Job())
 
-    override fun setUser(user: PlaybackPlatformApi.User?) {
-        mainScope.launch {
-            BccmPlayerPluginSingleton.userState.update { User(user?.id) }
-        }
-    }
-
     override fun setNpawConfig(config: PlaybackPlatformApi.NpawConfig?) {
         Log.d("bccm", "PlaybackPigeon: Setting npawConfig")
         mainScope.launch {
@@ -37,21 +31,21 @@ class PlaybackApiImpl(private val plugin: BccmPlayerPlugin) :
 
     override fun getPlayerState(
         playerId: String,
-        result: PlaybackPlatformApi.Result<PlaybackPlatformApi.PlayerState>?
+        result: PlaybackPlatformApi.Result<PlaybackPlatformApi.PlayerState>
     ) {
         val playbackService = plugin.getPlaybackService()
         if (playbackService == null) {
-            result?.error(Error())
+            result.error(Error())
             return
         }
         val playerController = playbackService.getController(playerId)
         if (playerController == null) {
-            result?.error(Error("Player with id $playerId does not exist."))
+            result.error(Error("Player with id $playerId does not exist."))
             return
         }
 
         val position = playerController.player.currentPosition.toDouble()
-        result?.success(
+        result.success(
             PlaybackPlatformApi.PlayerState.Builder()
                 .setPlayerId(playerId)
                 .setIsPlaying(playerController.player.isPlaying)
@@ -59,11 +53,11 @@ class PlaybackApiImpl(private val plugin: BccmPlayerPlugin) :
         )
     }
 
-    override fun newPlayer(url: String?, result: PlaybackPlatformApi.Result<String>?) {
+    override fun newPlayer(url: String?, result: PlaybackPlatformApi.Result<String>) {
         Log.d("bccm", "PlaybackPigeon: newPlayer()")
         val playbackService = plugin.getPlaybackService()
         if (playbackService == null) {
-            result?.error(Error())
+            result.error(Error())
             return
         }
         val playerController = playbackService.newPlayer(plugin)
@@ -73,7 +67,7 @@ class PlaybackApiImpl(private val plugin: BccmPlayerPlugin) :
                 PlaybackPlatformApi.MediaItem.Builder().setUrl(url).build(), false
             )
         }
-        result?.success(playerController.id)
+        result.success(playerController.id)
     }
 
     override fun replaceCurrentMediaItem(
@@ -81,11 +75,11 @@ class PlaybackApiImpl(private val plugin: BccmPlayerPlugin) :
         mediaItem: PlaybackPlatformApi.MediaItem,
         playbackPositionFromPrimary: Boolean?,
         autoplay: Boolean?,
-        result: PlaybackPlatformApi.Result<Void>?
+        result: PlaybackPlatformApi.Result<Void>
     ) {
         val playbackService = plugin.getPlaybackService()
         if (playbackService == null) {
-            result?.error(Error())
+            result.error(Error())
             return
         }
         if (playbackPositionFromPrimary == true) {
@@ -95,12 +89,12 @@ class PlaybackApiImpl(private val plugin: BccmPlayerPlugin) :
 
         val playerController = playbackService.getController(playerId)
         if (playerController == null) {
-            result?.error(Error("Player with id $playerId does not exist."))
+            result.error(Error("Player with id $playerId does not exist."))
             return
         }
 
         playerController.replaceCurrentMediaItem(mediaItem, autoplay)
-        result?.success(null)
+        result.success(null)
     }
 
     override fun setPlayerViewVisibility(viewId: Long, visible: Boolean) {
@@ -112,28 +106,28 @@ class PlaybackApiImpl(private val plugin: BccmPlayerPlugin) :
     override fun queueMediaItem(
         playerId: String,
         mediaItem: PlaybackPlatformApi.MediaItem,
-        result: PlaybackPlatformApi.Result<Void>?
+        result: PlaybackPlatformApi.Result<Void>
     ) {
         val playbackService = plugin.getPlaybackService()
         if (playbackService == null) {
-            result?.error(Error())
+            result.error(Error())
             return
         }
         val playerController = playbackService.getController(playerId)
             ?: throw Error("Player with id $playerId does not exist.")
         playerController.queueMediaItem(mediaItem)
-        result?.success(null)
+        result.success(null)
     }
 
-    override fun setPrimary(id: String, result: PlaybackPlatformApi.Result<Void>?) {
+    override fun setPrimary(id: String, result: PlaybackPlatformApi.Result<Void>) {
         val playbackService = plugin.getPlaybackService()
         if (playbackService == null) {
-            result?.error(Error())
+            result.error(Error())
             return
         }
 
         playbackService.setPrimary(id)
-        result?.success(null)
+        result.success(null)
     }
 
     override fun play(playerId: String) {
@@ -160,17 +154,17 @@ class PlaybackApiImpl(private val plugin: BccmPlayerPlugin) :
         playerController.stop(reset)
     }
 
-    override fun getChromecastState(result: PlaybackPlatformApi.Result<PlaybackPlatformApi.ChromecastState>?) {
+    override fun getChromecastState(result: PlaybackPlatformApi.Result<PlaybackPlatformApi.ChromecastState>) {
         val playbackService = plugin.getPlaybackService()
         if (playbackService == null) {
-            result?.error(Error())
+            result.error(Error())
             return
         }
         val cc = playbackService.getController("chromecast")
         if (cc == null || cc !is CastPlayerController) {
             return
         }
-        result?.success(cc.getState())
+        result.success(cc.getState())
     }
 
     override fun openExpandedCastController() {

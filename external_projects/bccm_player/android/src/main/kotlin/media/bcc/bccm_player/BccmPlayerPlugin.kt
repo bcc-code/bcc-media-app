@@ -33,49 +33,6 @@ import media.bcc.bccm_player.chromecast.BccmCastPlayerViewFactory
 import media.bcc.bccm_player.chromecast.CastPlayerController
 import media.bcc.bccm_player.chromecast.FLCastButtonFactory
 
-
-interface BccmPlayerPluginEvent
-
-class AttachedToActivityEvent(val activity: Activity) : BccmPlayerPluginEvent
-class DetachedFromActivityEvent : BccmPlayerPluginEvent
-class OnActivityStop : BccmPlayerPluginEvent
-class SetPlayerViewVisibilityEvent(val viewId: Long, val visible: Boolean) :
-    BccmPlayerPluginEvent
-
-class UserLeaveHintEvent : BccmPlayerPluginEvent
-class PictureInPictureModeChangedEvent2(val isInPictureInPictureMode: Boolean) :
-    BccmPlayerPluginEvent
-
-class PictureInPictureModeChangedEvent(
-    val playerId: String,
-    val isInPictureInPictureMode: Boolean
-) : BccmPlayerPluginEvent
-
-class FullscreenPlayerResult(val playerId: String) : BccmPlayerPluginEvent
-class User(val id: String?)
-
-object BccmPlayerPluginSingleton {
-
-    val activityState = MutableStateFlow<Activity?>(null)
-    val npawConfigState = MutableStateFlow<PlaybackPlatformApi.NpawConfig?>(null)
-    val appConfigState = MutableStateFlow<PlaybackPlatformApi.AppConfig?>(null)
-    val userState = MutableStateFlow<User?>(null)
-    val eventBus = MutableSharedFlow<BccmPlayerPluginEvent>()
-    private val mainScope = CoroutineScope(Dispatchers.Main + Job())
-
-    init {
-        Log.d("bccm", "bccmdebug: created BccmPlayerPluginSingleton")
-        mainScope.launch { keepTrackOfActivity() }
-    }
-
-    private suspend fun keepTrackOfActivity() {
-        eventBus.filter { event -> event is AttachedToActivityEvent }.collect { event ->
-            activityState.update { (event as AttachedToActivityEvent).activity }
-        }
-    }
-}
-
-/** BccmPlayerPlugin */
 class BccmPlayerPlugin : FlutterPlugin, ActivityAware, PluginRegistry.UserLeaveHintListener {
     /// The MethodChannel that will the communication between Flutter and native Android
     ///
@@ -103,7 +60,7 @@ class BccmPlayerPlugin : FlutterPlugin, ActivityAware, PluginRegistry.UserLeaveH
             }
             pluginBinding!!
                 .platformViewRegistry
-                .registerViewFactory("bccm-player", PlayerPlatformViewFactory(playbackService))
+                .registerViewFactory("bccm-player", BccmInlinePlayerView.Factory(playbackService))
         }
 
         override fun onServiceDisconnected(arg0: ComponentName) {
@@ -144,7 +101,7 @@ class BccmPlayerPlugin : FlutterPlugin, ActivityAware, PluginRegistry.UserLeaveH
 
             flutterPluginBinding
                 .platformViewRegistry
-                .registerViewFactory("bccm-cast-player", EmptyViewFactory())
+                .registerViewFactory("bccm-cast-player", EmptyView.Factory())
         }
         flutterPluginBinding
             .platformViewRegistry

@@ -5,19 +5,18 @@ import android.view.View
 import io.flutter.plugin.common.StandardMessageCodec
 import io.flutter.plugin.platform.PlatformView
 import io.flutter.plugin.platform.PlatformViewFactory
-import media.bcc.bccm_player.chromecast.FLCastButton
 
 
-class EmptyViewFactory : PlatformViewFactory(StandardMessageCodec.INSTANCE) {
-    override fun create(context: Context, viewId: Int, args: Any?): PlatformView {
-        val creationParams = args as Map<String?, Any?>?
-        return FLCastButton(context, viewId, creationParams)
-    }
-}
+class EmptyView(context: Context) : PlatformView {
 
-internal class EmptyView(context: Context, id: Int, creationParams: Map<String?, Any?>?) :
-    PlatformView {
     private val _view: View = View(context)
+
+    class Factory : PlatformViewFactory(StandardMessageCodec.INSTANCE) {
+        override fun create(context: Context, viewId: Int, args: Any?): PlatformView {
+            return EmptyView(context)
+        }
+
+    }
 
     override fun getView(): View {
         return _view
@@ -25,4 +24,3 @@ internal class EmptyView(context: Context, id: Int, creationParams: Map<String?,
 
     override fun dispose() {}
 }
-

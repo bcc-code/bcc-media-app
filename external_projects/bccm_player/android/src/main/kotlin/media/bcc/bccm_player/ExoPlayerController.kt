@@ -88,13 +88,6 @@ class ExoPlayerController(private val context: Context) : PlayerController() {
         player.addListener(this)
 
         val appConfigState = handleUpdatedAppConfig(BccmPlayerPluginSingleton.appConfigState.value)
-
-        mainScope.launch {
-            BccmPlayerPluginSingleton.userState.collect { user ->
-                youboraOptions.username = user?.id
-                Log.d("bccm", "ExoPlayerController: Setting user in youbora")
-            }
-        }
         mainScope.launch {
             BccmPlayerPluginSingleton.npawConfigState.collectLatest {
                 setBasicYouboraOptions(

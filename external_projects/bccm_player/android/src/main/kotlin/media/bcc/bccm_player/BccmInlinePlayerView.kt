@@ -25,24 +25,6 @@ import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.cancel
 
 
-class PlayerPlatformViewFactory(private val playbackService: PlaybackService?) :
-    PlatformViewFactory(StandardMessageCodec.INSTANCE) {
-    @NonNull
-    override fun create(@NonNull context: Context?, id: Int, @Nullable args: Any?): PlatformView {
-        if (playbackService == null) {
-            throw Error("PlaybackService is null, but you tried making a platformview.")
-        }
-
-        val creationParams = args as Map<String?, Any?>?
-        return BccmInlinePlayerView(
-            playbackService,
-            context!!,
-            creationParams?.get("player_id") as String,
-            id
-        )
-    }
-}
-
 class BccmInlinePlayerView(
     private val playbackService: PlaybackService,
     private val context: Context,
@@ -55,6 +37,29 @@ class BccmInlinePlayerView(
     private val ioScope = CoroutineScope(Dispatchers.IO + SupervisorJob())
     private var fullscreenListener: Job? = null
     private var setupDone = false
+
+
+    class Factory(private val playbackService: PlaybackService?) :
+        PlatformViewFactory(StandardMessageCodec.INSTANCE) {
+        @NonNull
+        override fun create(
+            context: Context,
+            id: Int,
+            @Nullable args: Any?
+        ): PlatformView {
+            if (playbackService == null) {
+                throw Error("PlaybackService is null, but you tried making a platformview.")
+            }
+
+            val creationParams = args as Map<String?, Any?>?
+            return BccmInlinePlayerView(
+                playbackService,
+                context,
+                creationParams?.get("player_id") as String,
+                id
+            )
+        }
+    }
 
     init {
         setup()
