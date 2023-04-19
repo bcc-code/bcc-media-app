@@ -17,8 +17,8 @@ import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import media.bcc.bccm_player.BccmPlayerPlugin
 import media.bcc.bccm_player.BccmPlayerPluginSingleton
-import media.bcc.bccm_player.ChromecastControllerPigeon
-import media.bcc.bccm_player.PlaybackPlatformApi
+import media.bcc.bccm_player.pigeon.ChromecastControllerPigeon
+import media.bcc.bccm_player.pigeon.PlaybackPlatformApi
 import media.bcc.bccm_player.players.PlayerController
 import media.bcc.bccm_player.players.PlayerListener
 import media.bcc.bccm_player.players.chromecast.CastMediaItemConverter.Companion.PLAYER_DATA_LAST_KNOWN_AUDIO_LANGUAGE

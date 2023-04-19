@@ -5,7 +5,7 @@ import android.os.Bundle
 import androidx.media3.common.MediaItem
 import androidx.media3.common.MediaMetadata
 import androidx.media3.common.Player
-import media.bcc.bccm_player.PlaybackPlatformApi
+import media.bcc.bccm_player.pigeon.PlaybackPlatformApi
 import media.bcc.bccm_player.players.chromecast.CastMediaItemConverter.Companion.BCCM_EXTRAS
 import media.bcc.bccm_player.players.chromecast.CastMediaItemConverter.Companion.PLAYER_DATA_IS_LIVE
 import media.bcc.bccm_player.players.chromecast.CastMediaItemConverter.Companion.PLAYER_DATA_MIME_TYPE
