@@ -32,8 +32,7 @@ import media.bcc.bccm_player.players.exoplayer.ExoPlayerView
 class FlutterExoPlayerView(
     private val playbackService: PlaybackService,
     private val context: Context,
-    private var playerId: String,
-    private val flutterViewId: Int
+    private var playerId: String
 ) : PlatformView, ExoPlayerView {
     private var playerController: ExoPlayerController? = null
     private val _v: LinearLayout = LinearLayout(context)
@@ -59,8 +58,7 @@ class FlutterExoPlayerView(
             return FlutterExoPlayerView(
                 playbackService,
                 context,
-                creationParams?.get("player_id") as String,
-                id
+                creationParams?.get("player_id") as String
             )
         }
     }

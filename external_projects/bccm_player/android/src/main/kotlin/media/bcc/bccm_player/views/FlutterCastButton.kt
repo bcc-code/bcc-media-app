@@ -10,14 +10,13 @@ import io.flutter.plugin.platform.PlatformView
 import io.flutter.plugin.platform.PlatformViewFactory
 import media.bcc.bccm_player.R
 
-internal class FlutterCastButton(context: Context, id: Int, creationParams: Map<String?, Any?>?) :
+internal class FlutterCastButton(context: Context) :
     PlatformView {
     private val _view: View
 
     class Factory : PlatformViewFactory(StandardMessageCodec.INSTANCE) {
         override fun create(context: Context, viewId: Int, args: Any?): PlatformView {
-            val creationParams = args as Map<String?, Any?>?
-            return FlutterCastButton(context, viewId, creationParams)
+            return FlutterCastButton(context)
         }
     }
 

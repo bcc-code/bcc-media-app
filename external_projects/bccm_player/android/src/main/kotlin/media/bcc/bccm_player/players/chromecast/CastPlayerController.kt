@@ -164,7 +164,6 @@ class CastPlayerController(
         // Copy state from primary player
         var playbackPositionMs = C.TIME_UNSET
         var currentItemIndex = C.INDEX_UNSET
-        var playWhenReady = false
 
         val queue = mutableListOf<MediaItem>()
         for (x in 0 until previous.mediaItemCount) {
@@ -184,7 +183,6 @@ class CastPlayerController(
         if (previous.playbackState != Player.STATE_ENDED) {
             if (!previous.isCurrentMediaItemDynamic)
                 playbackPositionMs = previous.currentPosition
-            playWhenReady = previous.playWhenReady
             currentItemIndex = previous.currentMediaItemIndex
             /*if (currentItemIndex != this.currentItemIndex) {
                 playbackPositionMs = C.TIME_UNSET

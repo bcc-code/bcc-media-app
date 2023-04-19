@@ -14,30 +14,26 @@ import io.flutter.plugin.common.MethodChannel
 import media.bcc.bccm_player.BccmPlayerPlugin
 import media.bcc.bccm_player.views.FullscreenPlayerView
 
-class MainActivity: FlutterFragmentActivity() {
+class MainActivity : FlutterFragmentActivity() {
     private val _channel = "tv.brunstad.app"
 
     override fun onCreate(savedInstanceState: Bundle?, persistentState: PersistableBundle?) {
-        if(BuildConfig.DEBUG)
+        if (BuildConfig.DEBUG)
             StrictMode.enableDefaults();
         super.onCreate(savedInstanceState, persistentState)
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         requestWindowFeature(Window.FEATURE_ACTIVITY_TRANSITIONS);
-}
-
-    override fun configureFlutterEngine(@NonNull flutterEngine: FlutterEngine) {
-        super.configureFlutterEngine(flutterEngine)
-
-        MethodChannel(flutterEngine.dartExecutor.binaryMessenger, _channel).setMethodCallHandler {
-            call, result ->
-                result.notImplemented()
-        }
     }
 
-    override fun onPictureInPictureModeChanged(isInPictureInPictureMode: Boolean, newConfig: Configuration) {
+    override fun onPictureInPictureModeChanged(
+        isInPictureInPictureMode: Boolean,
+        newConfig: Configuration
+    ) {
         super.onPictureInPictureModeChanged(isInPictureInPictureMode, newConfig)
         val bccmPlayerPlugin = flutterEngine?.plugins?.get(BccmPlayerPlugin::class.javaObjectType)
-        (bccmPlayerPlugin as? BccmPlayerPlugin)?.onPictureInPictureModeChanged(isInPictureInPictureMode, null);
+        (bccmPlayerPlugin as? BccmPlayerPlugin)?.onPictureInPictureModeChanged(
+            isInPictureInPictureMode
+        );
     }
 
     override fun onStop() {
@@ -47,8 +43,9 @@ class MainActivity: FlutterFragmentActivity() {
     }
 
     override fun onBackPressed() {
-        val rootLayout: FrameLayout = window.decorView.findViewById<View>(android.R.id.content) as FrameLayout;
-        val view: View? = rootLayout.getChildAt(rootLayout.childCount-1);
+        val rootLayout: FrameLayout =
+            window.decorView.findViewById<View>(android.R.id.content) as FrameLayout;
+        val view: View? = rootLayout.getChildAt(rootLayout.childCount - 1);
         if (view is FullscreenPlayerView) {
             view.exit();
         } else {

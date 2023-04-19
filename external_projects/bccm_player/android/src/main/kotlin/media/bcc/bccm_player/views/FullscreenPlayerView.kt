@@ -105,7 +105,7 @@ class FullscreenPlayerView(
                 }
         }
         mainScope.launch {
-            BccmPlayerPluginSingleton.eventBus.filterIsInstance<OnActivityStop>().collect { event ->
+            BccmPlayerPluginSingleton.eventBus.filterIsInstance<OnActivityStop>().collect { _ ->
                 Log.d("bccm", "OnActivityStop and isInPiP: $isInPip")
                 playerController.player.stop()
             }

@@ -17,7 +17,7 @@ class PlaybackService : MediaSessionService() {
 
     private var binder: LocalBinder = LocalBinder()
 
-    fun newPlayer(plugin: BccmPlayerPlugin): PlayerController {
+    fun newPlayer(): PlayerController {
         val pc = ExoPlayerController(this)
         playerControllers.add(pc)
         return pc

@@ -91,7 +91,7 @@ class ExoPlayerController(private val context: Context) : PlayerController() {
         youboraPlugin.adapter = adapter
         player.addListener(this)
 
-        val appConfigState = handleUpdatedAppConfig(BccmPlayerPluginSingleton.appConfigState.value)
+        handleUpdatedAppConfig(BccmPlayerPluginSingleton.appConfigState.value)
         mainScope.launch {
             BccmPlayerPluginSingleton.npawConfigState.collectLatest {
                 setBasicYouboraOptions(
