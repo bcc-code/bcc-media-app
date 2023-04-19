@@ -7,7 +7,6 @@ public class PlaybackApiImpl: NSObject, PlaybackPlatformPigeon {
     private var primaryPlayerId: String? = nil
     let playbackListener: PlaybackListenerPigeon
     let chromecastPigeon: ChromecastPigeon
-    var user: User? = nil
     var npawConfig: NpawConfig? = nil
     var appConfig: AppConfig? = nil
 
@@ -16,10 +15,6 @@ public class PlaybackApiImpl: NSObject, PlaybackPlatformPigeon {
         self.chromecastPigeon = chromecastPigeon
         super.init()
         players.append(castPlayerController)
-    }
-
-    public func setUser(_ user: User?, error: AutoreleasingUnsafeMutablePointer<FlutterError?>) {
-        self.user = user
     }
 
     public func setAppConfig(_ config: AppConfig?, error: AutoreleasingUnsafeMutablePointer<FlutterError?>) {
