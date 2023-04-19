@@ -1,4 +1,4 @@
-package media.bcc.bccm_player
+package media.bcc.bccm_player.players.exoplayer
 
 import androidx.media3.common.C
 import androidx.media3.common.ForwardingPlayer

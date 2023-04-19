@@ -1,4 +1,4 @@
-package media.bcc.bccm_player
+package media.bcc.bccm_player.views
 
 import android.app.Activity
 import android.app.PictureInPictureParams
@@ -19,12 +19,19 @@ import androidx.media3.common.Player
 import androidx.media3.ui.PlayerView
 import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.filterIsInstance
+import media.bcc.bccm_player.BccmPlayerPluginSingleton
+import media.bcc.bccm_player.players.exoplayer.ExoPlayerController
+import media.bcc.bccm_player.OnActivityStop
+import media.bcc.bccm_player.PictureInPictureModeChangedEvent2
+import media.bcc.bccm_player.R
+import media.bcc.bccm_player.players.exoplayer.ExoPlayerView
+import media.bcc.bccm_player.utils.SwipeTouchListener
 
 class FullscreenPlayerView(
     val activity: Activity,
     val playerController: ExoPlayerController,
     private val forceLandscape: Boolean = true
-) : LinearLayout(activity), BccmPlayerViewController {
+) : LinearLayout(activity), ExoPlayerView {
     var playerView: PlayerView?
     val mainScope = CoroutineScope(Dispatchers.Main + SupervisorJob())
     var isInPip: Boolean = false

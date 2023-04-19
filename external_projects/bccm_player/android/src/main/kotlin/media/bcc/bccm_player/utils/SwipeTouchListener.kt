@@ -1,4 +1,4 @@
-package media.bcc.bccm_player
+package media.bcc.bccm_player.utils
 
 import android.view.MotionEvent
 import android.view.View

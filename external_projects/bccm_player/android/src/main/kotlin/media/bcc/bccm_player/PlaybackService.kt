@@ -6,6 +6,8 @@ import android.os.IBinder
 import androidx.media3.exoplayer.ExoPlayer
 import androidx.media3.session.MediaSession
 import androidx.media3.session.MediaSessionService
+import media.bcc.bccm_player.players.exoplayer.ExoPlayerController
+import media.bcc.bccm_player.players.PlayerController
 
 class PlaybackService : MediaSessionService() {
     private val playerControllers = mutableListOf<PlayerController>()

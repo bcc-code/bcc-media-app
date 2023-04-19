@@ -22,16 +22,15 @@ import io.flutter.plugin.common.MethodChannel
 import io.flutter.plugin.common.PluginRegistry
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.Job
-import kotlinx.coroutines.flow.MutableSharedFlow
-import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.filter
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import media.bcc.bccm_player.PlaybackPlatformApi.PlaybackPlatformPigeon
-import media.bcc.bccm_player.chromecast.BccmCastPlayerViewFactory
-import media.bcc.bccm_player.chromecast.CastPlayerController
-import media.bcc.bccm_player.chromecast.FLCastButtonFactory
+import media.bcc.bccm_player.players.chromecast.CastPlayerController
+import media.bcc.bccm_player.views.FlutterCastButton
+import media.bcc.bccm_player.views.FlutterCastPlayerView
+import media.bcc.bccm_player.views.FlutterExoPlayerView
+import media.bcc.bccm_player.views.FlutterEmptyView
 
 class BccmPlayerPlugin : FlutterPlugin, ActivityAware, PluginRegistry.UserLeaveHintListener {
     /// The MethodChannel that will the communication between Flutter and native Android
@@ -60,7 +59,7 @@ class BccmPlayerPlugin : FlutterPlugin, ActivityAware, PluginRegistry.UserLeaveH
             }
             pluginBinding!!
                 .platformViewRegistry
-                .registerViewFactory("bccm-player", BccmInlinePlayerView.Factory(playbackService))
+                .registerViewFactory("bccm-player", FlutterExoPlayerView.Factory(playbackService))
         }
 
         override fun onServiceDisconnected(arg0: ComponentName) {
@@ -94,18 +93,18 @@ class BccmPlayerPlugin : FlutterPlugin, ActivityAware, PluginRegistry.UserLeaveH
                 .platformViewRegistry
                 .registerViewFactory(
                     "bccm-cast-player",
-                    BccmCastPlayerViewFactory(castController!!)
+                    FlutterCastPlayerView.Factory(castController!!)
                 )
         } catch (e: Exception) {
             //TODO: log exception
 
             flutterPluginBinding
                 .platformViewRegistry
-                .registerViewFactory("bccm-cast-player", EmptyView.Factory())
+                .registerViewFactory("bccm-cast-player", FlutterEmptyView.Factory())
         }
         flutterPluginBinding
             .platformViewRegistry
-            .registerViewFactory("bccm_player/cast_button", FLCastButtonFactory())
+            .registerViewFactory("bccm_player/cast_button", FlutterCastButton.Factory())
     }
 
 

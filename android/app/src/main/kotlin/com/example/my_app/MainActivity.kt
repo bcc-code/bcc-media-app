@@ -12,7 +12,7 @@ import io.flutter.embedding.android.FlutterFragmentActivity
 import io.flutter.embedding.engine.FlutterEngine
 import io.flutter.plugin.common.MethodChannel
 import media.bcc.bccm_player.BccmPlayerPlugin
-import media.bcc.bccm_player.FullscreenPlayerView
+import media.bcc.bccm_player.views.FullscreenPlayerView
 
 class MainActivity: FlutterFragmentActivity() {
     private val _channel = "tv.brunstad.app"

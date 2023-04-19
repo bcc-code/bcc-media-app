@@ -1,34 +1,32 @@
-package media.bcc.bccm_player.chromecast
+package media.bcc.bccm_player.views
 
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.LinearLayout
 import androidx.annotation.NonNull
-import androidx.annotation.Nullable
 import androidx.media3.cast.CastPlayer
 import androidx.media3.ui.PlayerView
 import io.flutter.plugin.common.StandardMessageCodec
 import io.flutter.plugin.platform.PlatformView
 import io.flutter.plugin.platform.PlatformViewFactory
 import media.bcc.bccm_player.R
+import media.bcc.bccm_player.players.chromecast.CastPlayerController
 
 
-class BccmCastPlayerViewFactory(private val castController: CastPlayerController) :
-    PlatformViewFactory(StandardMessageCodec.INSTANCE) {
-    @NonNull
-    override fun create(@NonNull context: Context?, id: Int, @Nullable args: Any?): PlatformView {
-        val creationParams = args as Map<String?, Any?>?
-        return BccmCastPlayerView(context!!, castController.player)
-    }
-}
-
-class BccmCastPlayerView(
+class FlutterCastPlayerView(
     private val context: Context,
     private val castPlayer: CastPlayer
 ) : PlatformView {
     private val _v: LinearLayout = LinearLayout(context)
     private var _playerView: PlayerView? = null
+
+    class Factory(private val castController: CastPlayerController) :
+        PlatformViewFactory(StandardMessageCodec.INSTANCE) {
+        override fun create(context: Context, id: Int, args: Any?): PlatformView {
+            return FlutterCastPlayerView(context, castController.player)
+        }
+    }
 
     init {
         setup()

@@ -1,4 +1,4 @@
-package media.bcc.bccm_player
+package media.bcc.bccm_player.views
 
 import android.content.Context
 import android.view.View
@@ -7,13 +7,13 @@ import io.flutter.plugin.platform.PlatformView
 import io.flutter.plugin.platform.PlatformViewFactory
 
 
-class EmptyView(context: Context) : PlatformView {
+class FlutterEmptyView(context: Context) : PlatformView {
 
     private val _view: View = View(context)
 
     class Factory : PlatformViewFactory(StandardMessageCodec.INSTANCE) {
         override fun create(context: Context, viewId: Int, args: Any?): PlatformView {
-            return EmptyView(context)
+            return FlutterEmptyView(context)
         }
 
     }

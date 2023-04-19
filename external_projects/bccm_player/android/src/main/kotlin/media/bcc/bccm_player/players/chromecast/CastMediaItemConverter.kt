@@ -1,4 +1,4 @@
-package media.bcc.bccm_player.chromecast
+package media.bcc.bccm_player.players.chromecast
 
 import android.os.Bundle
 import android.util.Log
@@ -14,27 +14,11 @@ import com.google.android.gms.cast.MediaQueueItem
 import com.google.android.gms.common.images.WebImage
 import com.npaw.youbora.lib6.extensions.toMap
 import media.bcc.bccm_player.BccmPlayerPluginSingleton
-import media.bcc.bccm_player.PlayerData
 import org.json.JSONArray
 import org.json.JSONException
 import org.json.JSONObject
 
-/*
- * Copyright (C) 2019 The Android Open Source Project
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */ /** Default [MediaItemConverter] implementation.  */
-
+/** Based on the default [MediaItemConverter] implementation.  */
 @UnstableApi
 class CastMediaItemConverter : MediaItemConverter {
     override fun toMediaItem(mediaQueueItem: MediaQueueItem): MediaItem {
@@ -93,7 +77,7 @@ class CastMediaItemConverter : MediaItemConverter {
             .build()
     }
 
-    private fun extractPlayerData(metadata: com.google.android.gms.cast.MediaMetadata?): PlayerData? {
+    private fun extractPlayerData(metadata: com.google.android.gms.cast.MediaMetadata?): CastPlayerData? {
         if (metadata == null) return null
         var map = mutableMapOf<String, Any>()
         for (key in metadata.keySet()) {
@@ -102,7 +86,7 @@ class CastMediaItemConverter : MediaItemConverter {
             } catch (e: Throwable) {
             }
         }
-        return PlayerData.from(map)
+        return CastPlayerData.from(map)
     }
 
     private fun extractBccmExtra(extras: Bundle?): Map<String, String>? {
@@ -174,7 +158,7 @@ class CastMediaItemConverter : MediaItemConverter {
                 metadata.putString(it.key, it.value)
             }
 
-        val playerData = PlayerData.from(mediaItem.mediaMetadata.extras?.toMap())
+        val playerData = CastPlayerData.from(mediaItem.mediaMetadata.extras?.toMap())
         val customData = getCustomData(mediaItem)
         val audioTracks = JSONArray()
         val subtitlesTracks = JSONArray()

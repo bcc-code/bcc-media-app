@@ -1,4 +1,4 @@
-package media.bcc.bccm_player
+package media.bcc.bccm_player.views
 
 import android.content.Context
 import android.os.Build
@@ -23,14 +23,18 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.cancel
+import media.bcc.bccm_player.PlaybackService
+import media.bcc.bccm_player.R
+import media.bcc.bccm_player.players.exoplayer.ExoPlayerController
+import media.bcc.bccm_player.players.exoplayer.ExoPlayerView
 
 
-class BccmInlinePlayerView(
+class FlutterExoPlayerView(
     private val playbackService: PlaybackService,
     private val context: Context,
     private var playerId: String,
     private val flutterViewId: Int
-) : PlatformView, BccmPlayerViewController {
+) : PlatformView, ExoPlayerView {
     private var playerController: ExoPlayerController? = null
     private val _v: LinearLayout = LinearLayout(context)
     private var _playerView: PlayerView? = null
@@ -52,7 +56,7 @@ class BccmInlinePlayerView(
             }
 
             val creationParams = args as Map<String?, Any?>?
-            return BccmInlinePlayerView(
+            return FlutterExoPlayerView(
                 playbackService,
                 context,
                 creationParams?.get("player_id") as String,

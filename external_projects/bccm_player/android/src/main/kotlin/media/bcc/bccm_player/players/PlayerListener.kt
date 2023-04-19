@@ -1,10 +1,12 @@
-package media.bcc.bccm_player
+package media.bcc.bccm_player.players
 
 import androidx.media3.common.MediaItem
 import androidx.media3.common.MediaMetadata
 import androidx.media3.common.Player
 import androidx.media3.common.Timeline
 import com.npaw.youbora.lib6.Timer
+import media.bcc.bccm_player.BccmPlayerPlugin
+import media.bcc.bccm_player.PlaybackPlatformApi
 
 class PlayerListener(private val playerController: PlayerController, val plugin: BccmPlayerPlugin) :
     Player.Listener {

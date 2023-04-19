@@ -4,7 +4,7 @@
 
     <application>
         <activity
-            android:name=".chromecast.CastExpandedControlsActivity"
+            android:name=".players.chromecast.CastExpandedControlsActivity"
             android:exported="true"
             android:label="Cast"
             android:launchMode="singleTask"

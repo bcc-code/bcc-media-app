@@ -1,4 +1,4 @@
-package media.bcc.bccm_player.chromecast
+package media.bcc.bccm_player.players.chromecast
 
 import android.os.Bundle
 import android.util.Log
@@ -17,13 +17,13 @@ import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import media.bcc.bccm_player.BccmPlayerPlugin
 import media.bcc.bccm_player.BccmPlayerPluginSingleton
-import media.bcc.bccm_player.BccmPlayerViewController
+import media.bcc.bccm_player.players.exoplayer.ExoPlayerView
 import media.bcc.bccm_player.ChromecastControllerPigeon
 import media.bcc.bccm_player.PlaybackPlatformApi
-import media.bcc.bccm_player.PlayerController
-import media.bcc.bccm_player.PlayerListener
-import media.bcc.bccm_player.chromecast.CastMediaItemConverter.Companion.PLAYER_DATA_LAST_KNOWN_AUDIO_LANGUAGE
-import media.bcc.bccm_player.chromecast.CastMediaItemConverter.Companion.PLAYER_DATA_LAST_KNOWN_SUBTITLE_LANGUAGE
+import media.bcc.bccm_player.players.PlayerListener
+import media.bcc.bccm_player.players.chromecast.CastMediaItemConverter.Companion.PLAYER_DATA_LAST_KNOWN_AUDIO_LANGUAGE
+import media.bcc.bccm_player.players.chromecast.CastMediaItemConverter.Companion.PLAYER_DATA_LAST_KNOWN_SUBTITLE_LANGUAGE
+import media.bcc.bccm_player.players.PlayerController
 
 
 class CastPlayerController(
@@ -32,7 +32,7 @@ class CastPlayerController(
     private val plugin: BccmPlayerPlugin
 ) : PlayerController(), SessionManagerListener<Session>, SessionAvailabilityListener {
     override val player = CastPlayer(castContext, CastMediaItemConverter())
-    override var currentPlayerViewController: BccmPlayerViewController? = null
+    override var currentPlayerViewController: ExoPlayerView? = null
     private val mainScope = CoroutineScope(Dispatchers.Main + SupervisorJob())
 
     override fun release() {

@@ -1,8 +1,8 @@
-package media.bcc.bccm_player
+package media.bcc.bccm_player.players.exoplayer
 
 import androidx.annotation.RequiresApi
 
-interface BccmPlayerViewController {
+interface ExoPlayerView {
     fun shouldPipAutomatically(): Boolean
 
     @RequiresApi(value = 26)

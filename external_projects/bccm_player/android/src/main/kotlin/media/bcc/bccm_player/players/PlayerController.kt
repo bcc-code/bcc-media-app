@@ -1,19 +1,21 @@
-package media.bcc.bccm_player
+package media.bcc.bccm_player.players
 
 import android.net.Uri
 import android.os.Bundle
 import androidx.media3.common.MediaItem
 import androidx.media3.common.MediaMetadata
 import androidx.media3.common.Player
-import media.bcc.bccm_player.chromecast.CastMediaItemConverter.Companion.BCCM_EXTRAS
-import media.bcc.bccm_player.chromecast.CastMediaItemConverter.Companion.PLAYER_DATA_IS_LIVE
-import media.bcc.bccm_player.chromecast.CastMediaItemConverter.Companion.PLAYER_DATA_MIME_TYPE
+import media.bcc.bccm_player.PlaybackPlatformApi
+import media.bcc.bccm_player.players.chromecast.CastMediaItemConverter.Companion.BCCM_EXTRAS
+import media.bcc.bccm_player.players.chromecast.CastMediaItemConverter.Companion.PLAYER_DATA_IS_LIVE
+import media.bcc.bccm_player.players.chromecast.CastMediaItemConverter.Companion.PLAYER_DATA_MIME_TYPE
+import media.bcc.bccm_player.players.exoplayer.ExoPlayerView
 
 
 abstract class PlayerController : Player.Listener {
     abstract val id: String
     abstract val player: Player
-    abstract var currentPlayerViewController: BccmPlayerViewController?
+    abstract var currentPlayerViewController: ExoPlayerView?
     var isLive: Boolean = false
 
     abstract fun release()

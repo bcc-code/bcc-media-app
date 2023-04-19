@@ -1,4 +1,4 @@
-package media.bcc.bccm_player.chromecast
+package media.bcc.bccm_player.players.chromecast
 
 import android.view.Menu
 import com.google.android.gms.cast.framework.CastButtonFactory

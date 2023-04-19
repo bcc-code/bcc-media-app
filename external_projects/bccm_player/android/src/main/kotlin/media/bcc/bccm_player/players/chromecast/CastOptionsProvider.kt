@@ -1,4 +1,4 @@
-package media.bcc.bccm_player.chromecast
+package media.bcc.bccm_player.players.chromecast
 
 import android.content.Context
 import com.google.android.gms.cast.framework.CastOptions
@@ -7,6 +7,7 @@ import com.google.android.gms.cast.framework.SessionProvider
 import com.google.android.gms.cast.framework.media.CastMediaOptions
 import media.bcc.bccm_player.R
 
+@Suppress("unused")
 class CastOptionsProvider : OptionsProvider {
     override fun getCastOptions(context: Context): CastOptions {
         val mediaOptions = CastMediaOptions.Builder()

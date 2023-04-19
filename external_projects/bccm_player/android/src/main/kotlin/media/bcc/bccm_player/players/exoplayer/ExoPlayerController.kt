@@ -1,4 +1,4 @@
-package media.bcc.bccm_player
+package media.bcc.bccm_player.players.exoplayer
 
 import android.content.Context
 import android.util.Log
@@ -23,7 +23,11 @@ import kotlinx.coroutines.cancel
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
-import media.bcc.bccm_player.chromecast.CastMediaItemConverter.Companion.PLAYER_DATA_IS_LIVE
+import media.bcc.bccm_player.BccmPlayerPluginSingleton
+import media.bcc.bccm_player.PictureInPictureModeChangedEvent
+import media.bcc.bccm_player.PlaybackPlatformApi
+import media.bcc.bccm_player.players.chromecast.CastMediaItemConverter.Companion.PLAYER_DATA_IS_LIVE
+import media.bcc.bccm_player.players.PlayerController
 import java.util.UUID
 
 
@@ -36,7 +40,7 @@ class ExoPlayerController(private val context: Context) : PlayerController() {
         .setVideoScalingMode(VIDEO_SCALING_MODE_SCALE_TO_FIT)
         .build()
     override val player: ForwardingPlayer
-    override var currentPlayerViewController: BccmPlayerViewController? = null
+    override var currentPlayerViewController: ExoPlayerView? = null
 
     private var _currentPlayerView: PlayerView? = null
     private var currentPlayerView: PlayerView?
@@ -151,7 +155,7 @@ class ExoPlayerController(private val context: Context) : PlayerController() {
         Log.d("bccm", if (isDisabled) "Disabled video" else "Enabled video")
     }
 
-    fun takeOwnership(playerView: PlayerView, viewController: BccmPlayerViewController) {
+    fun takeOwnership(playerView: PlayerView, viewController: ExoPlayerView) {
         if (currentPlayerView != null) {
             PlayerView.switchTargetView(player, currentPlayerView, playerView)
         } else {
