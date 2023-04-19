@@ -7,7 +7,7 @@ flutter pub run pigeon \
   --objc_header_out ios/Classes/PlaybackPlatformApi.h \
   --objc_source_out ios/Classes/PlaybackPlatformApi.m \
   --java_out ./android/src/main/java/media/bcc/player/PlaybackPlatformApi.java \
-  --java_package "media.bcc.player"
+  --java_package "media.bcc.bccm_player"
 
 ```
 ```
@@ -18,7 +18,7 @@ flutter pub run pigeon \
   --objc_header_out ios/Classes/ChromecastPigeon.h \
   --objc_source_out ios/Classes/ChromecastPigeon.m \
   --java_out ./android/src/main/java/media/bcc/player/ChromecastControllerPigeon.java \
-  --java_package "media.bcc.player"
+  --java_package "media.bcc.bccm_player"
 
 ```
 ```
@@ -29,6 +29,6 @@ flutter pub run pigeon \
   --objc_header_out ios/Classes/PlaybackListenerPigeon.h \
   --objc_source_out ios/Classes/PlaybackListenerPigeon.m \
   --java_out ./android/src/main/java/media/bcc/player/PlaybackListenerPigeonImpl.java \
-  --java_package "media.bcc.player"
+  --java_package "media.bcc.bccm_player"
 
 ```

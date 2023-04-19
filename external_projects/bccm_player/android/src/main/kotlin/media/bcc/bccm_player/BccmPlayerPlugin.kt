@@ -15,7 +15,6 @@ import androidx.media3.session.SessionToken
 import com.google.android.gms.cast.framework.CastContext
 import com.google.common.util.concurrent.ListenableFuture
 import com.google.common.util.concurrent.MoreExecutors
-import com.npaw.youbora.lib6.plugin.Plugin
 import io.flutter.embedding.engine.plugins.FlutterPlugin
 import io.flutter.embedding.engine.plugins.activity.ActivityAware
 import io.flutter.embedding.engine.plugins.activity.ActivityPluginBinding
@@ -23,9 +22,7 @@ import io.flutter.plugin.common.MethodChannel
 import io.flutter.plugin.common.PluginRegistry
 import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.*
-import media.bcc.player.ChromecastControllerPigeon
-import media.bcc.player.PlaybackPlatformApi
-import media.bcc.player.PlaybackPlatformApi.PlaybackPlatformPigeon
+import media.bcc.bccm_player.PlaybackPlatformApi.PlaybackPlatformPigeon
 
 
 interface BccmPlayerPluginEvent {

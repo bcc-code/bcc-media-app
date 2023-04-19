@@ -8,7 +8,6 @@ import androidx.media3.common.Player
 import media.bcc.bccm_player.CastMediaItemConverter.Companion.BCCM_EXTRAS
 import media.bcc.bccm_player.CastMediaItemConverter.Companion.PLAYER_DATA_IS_LIVE
 import media.bcc.bccm_player.CastMediaItemConverter.Companion.PLAYER_DATA_MIME_TYPE
-import media.bcc.player.PlaybackPlatformApi
 
 
 abstract class PlayerController() : Player.Listener {

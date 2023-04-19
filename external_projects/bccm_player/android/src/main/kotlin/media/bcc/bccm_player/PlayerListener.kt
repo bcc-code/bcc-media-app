@@ -5,7 +5,6 @@ import androidx.media3.common.MediaMetadata
 import androidx.media3.common.Player
 import androidx.media3.common.Timeline
 import com.npaw.youbora.lib6.Timer
-import media.bcc.player.PlaybackPlatformApi
 
 class PlayerListener(private val playerController: PlayerController, val plugin: BccmPlayerPlugin) : Player.Listener {
     private val refreshStateTimer: Timer = Timer(object : Timer.TimerEventListener {

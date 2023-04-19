@@ -1,20 +1,13 @@
 package media.bcc.bccm_player
 
-import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import androidx.media3.cast.CastPlayer
-import androidx.media3.cast.DefaultMediaItemConverter
-import androidx.media3.cast.MediaItemConverter
 import androidx.media3.cast.SessionAvailabilityListener
 import androidx.media3.common.*
-import androidx.media3.common.util.Assertions
-import com.google.android.gms.cast.MediaInfo
-import com.google.android.gms.cast.MediaQueueItem
 import com.google.android.gms.cast.framework.CastContext
 import com.google.android.gms.cast.framework.Session
 import com.google.android.gms.cast.framework.SessionManagerListener
-import com.google.android.gms.common.images.WebImage
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
@@ -22,10 +15,6 @@ import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import media.bcc.bccm_player.CastMediaItemConverter.Companion.PLAYER_DATA_LAST_KNOWN_AUDIO_LANGUAGE
 import media.bcc.bccm_player.CastMediaItemConverter.Companion.PLAYER_DATA_LAST_KNOWN_SUBTITLE_LANGUAGE
-import media.bcc.player.ChromecastControllerPigeon
-import media.bcc.player.PlaybackPlatformApi
-import org.json.JSONException
-import org.json.JSONObject
 
 
 class CastPlayerController(
