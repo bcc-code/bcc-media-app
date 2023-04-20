@@ -10,13 +10,7 @@ import androidx.media3.common.Player
 import com.google.android.gms.cast.framework.CastContext
 import com.google.android.gms.cast.framework.Session
 import com.google.android.gms.cast.framework.SessionManagerListener
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.SupervisorJob
-import kotlinx.coroutines.flow.collectLatest
-import kotlinx.coroutines.launch
 import media.bcc.bccm_player.BccmPlayerPlugin
-import media.bcc.bccm_player.BccmPlayerPluginSingleton
 import media.bcc.bccm_player.pigeon.ChromecastControllerPigeon
 import media.bcc.bccm_player.pigeon.PlaybackPlatformApi
 import media.bcc.bccm_player.players.PlayerController
@@ -33,7 +27,6 @@ class CastPlayerController(
 ) : PlayerController(), SessionManagerListener<Session>, SessionAvailabilityListener {
     override val player = CastPlayer(castContext, CastMediaItemConverter())
     override var currentPlayerViewController: ExoPlayerView? = null
-    private val mainScope = CoroutineScope(Dispatchers.Main + SupervisorJob())
 
     override fun release() {
         player.release()
@@ -43,12 +36,8 @@ class CastPlayerController(
 
     init {
         player.playWhenReady = true
-
         player.setSessionAvailabilityListener(this)
         player.addListener(PlayerListener(this, plugin))
-        mainScope.launch {
-            BccmPlayerPluginSingleton.appConfigState.collectLatest { handleUpdatedAppConfig(it) }
-        }
     }
 
     override fun stop(reset: Boolean) {
@@ -69,20 +58,6 @@ class CastPlayerController(
         return builder.build()
     }
 
-    private fun handleUpdatedAppConfig(appConfigState: PlaybackPlatformApi.AppConfig?) {
-        Log.d(
-            "bccm",
-            "setting preferred audio and sub lang to: ${appConfigState?.audioLanguage}, ${appConfigState?.subtitleLanguage}"
-        )
-
-        /* player.trackSelectionParameters = trackSelector.parameters.buildUpon()
-                 .setPreferredAudioLanguage(appConfigState?.audioLanguage)
-                 .setPreferredTextLanguage(appConfigState?.subtitleLanguage).build()
- */
-
-        /*
-                castContext.sessionManager.currentCastSession.remoteMediaClient.s*/
-    }
 
     // SessionManagerListener
 
@@ -184,10 +159,6 @@ class CastPlayerController(
             if (!previous.isCurrentMediaItemDynamic)
                 playbackPositionMs = previous.currentPosition
             currentItemIndex = previous.currentMediaItemIndex
-            /*if (currentItemIndex != this.currentItemIndex) {
-                playbackPositionMs = C.TIME_UNSET
-                currentItemIndex = this.currentItemIndex
-            }*/
         }
         previous.stop()
         previous.clearMediaItems()

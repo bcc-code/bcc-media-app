@@ -30,7 +30,7 @@ import media.bcc.bccm_player.utils.SwipeTouchListener
 class FullscreenPlayerView(
     val activity: Activity,
     val playerController: ExoPlayerController,
-    private val forceLandscape: Boolean = true
+    forceLandscape: Boolean = true
 ) : LinearLayout(activity), ExoPlayerView {
     var playerView: PlayerView?
     val mainScope = CoroutineScope(Dispatchers.Main + SupervisorJob())

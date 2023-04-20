@@ -84,14 +84,11 @@ abstract class PlayerController : Player.Listener {
             }
         }
 
-        metaBuilder.setTitle(mediaItem.metadata?.title)
-            .setArtist(mediaItem.metadata?.artist)
-            .setExtras(extraMeta)
-            .build()
+        metaBuilder.setTitle(mediaItem.metadata?.title).setArtist(mediaItem.metadata?.artist)
+            .setExtras(extraMeta).build()
 
-        val miBuilder = MediaItem.Builder()
-            .setUri(mediaItem.url)
-            .setMediaMetadata(metaBuilder.build())
+        val miBuilder =
+            MediaItem.Builder().setUri(mediaItem.url).setMediaMetadata(metaBuilder.build())
         miBuilder.setMimeType(mediaItem.mimeType ?: "application/x-mpegURL")
         return miBuilder.build()
     }
@@ -116,8 +113,7 @@ abstract class PlayerController : Player.Listener {
         metaBuilder.setExtras(extraMeta)
         val miBuilder = PlaybackPlatformApi.MediaItem.Builder()
             .setUrl(mediaItem.localConfiguration?.uri?.toString())
-            .setIsLive(extraMeta[PLAYER_DATA_IS_LIVE] == "true")
-            .setMetadata(metaBuilder.build())
+            .setIsLive(extraMeta[PLAYER_DATA_IS_LIVE] == "true").setMetadata(metaBuilder.build())
         if (extraMeta[PLAYER_DATA_MIME_TYPE] != null) {
             miBuilder.setMimeType(extraMeta[PLAYER_DATA_MIME_TYPE])
         } else if (mediaItem.localConfiguration?.mimeType != null) {

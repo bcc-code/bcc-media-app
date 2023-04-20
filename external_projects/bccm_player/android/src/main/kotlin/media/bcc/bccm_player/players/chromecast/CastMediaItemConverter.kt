@@ -89,11 +89,6 @@ class CastMediaItemConverter : MediaItemConverter {
         return CastPlayerData.from(map)
     }
 
-    private fun extractBccmExtra(extras: Bundle?): Map<String, String>? {
-        if (extras == null) return null
-        return extras.toMap()?.filter { it.key.contains(BCCM_EXTRAS) }
-    }
-
     override fun toMediaQueueItem(mediaItem: MediaItem): MediaQueueItem {
         Assertions.checkNotNull(mediaItem.localConfiguration)
         requireNotNull(mediaItem.localConfiguration!!.mimeType) { "The item must specify its mimeType" }
@@ -190,16 +185,16 @@ class CastMediaItemConverter : MediaItemConverter {
     }
 
     companion object {
-        const val KEY_MEDIA_ITEM = "mediaItem"
-        const val KEY_PLAYER_CONFIG = "exoPlayerConfig"
-        const val KEY_MEDIA_ID = "mediaId"
-        const val KEY_URI = "uri"
-        const val KEY_TITLE = "title"
-        const val KEY_MIME_TYPE = "mimeType"
-        const val KEY_DRM_CONFIGURATION = "drmConfiguration"
-        const val KEY_UUID = "uuid"
-        const val KEY_LICENSE_URI = "licenseUri"
-        const val KEY_REQUEST_HEADERS = "requestHeaders"
+        private const val KEY_MEDIA_ITEM = "mediaItem"
+        private const val KEY_PLAYER_CONFIG = "exoPlayerConfig"
+        private const val KEY_MEDIA_ID = "mediaId"
+        private const val KEY_URI = "uri"
+        private const val KEY_TITLE = "title"
+        private const val KEY_MIME_TYPE = "mimeType"
+        private const val KEY_DRM_CONFIGURATION = "drmConfiguration"
+        private const val KEY_UUID = "uuid"
+        private const val KEY_LICENSE_URI = "licenseUri"
+        private const val KEY_REQUEST_HEADERS = "requestHeaders"
         const val BCCM_PLAYER_DATA = "media.bcc.player"
         const val BCCM_EXTRAS = "media.bcc.extras"
         const val PLAYER_DATA_IS_LIVE = "$BCCM_PLAYER_DATA.is_live"

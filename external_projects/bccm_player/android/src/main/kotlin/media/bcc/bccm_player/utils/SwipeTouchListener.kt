@@ -26,9 +26,7 @@ class SwipeTouchListener(private val minimumDistance: Double, private val listen
                 val deltaY = downY - upY
                 v?.performClick()
 
-                // swipe vertical?
                 if (abs(deltaY) > minimumDistance) {
-                    // top or down
                     if (deltaY < 0) {
                         listener.onTopToBottomSwipe()
                         return true

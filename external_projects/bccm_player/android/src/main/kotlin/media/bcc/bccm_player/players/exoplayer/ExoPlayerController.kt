@@ -69,12 +69,7 @@ class ExoPlayerController(private val context: Context) : PlayerController() {
     private val mainScope = CoroutineScope(Dispatchers.Main + SupervisorJob())
     private val youboraPlugin: Plugin
 
-    init {/*
-        val df = DefaultRenderersFactory(context).also {
-            it.experimentalSetSynchronizeCodecInteractionsWithQueueingEnabled(true);
-            it.forceEnableMediaCodecAsynchronousQueueing();
-        };*/
-
+    init {
         player = BccmForwardingPlayer(this)
 
         val youboraOptions = Options()
@@ -83,8 +78,6 @@ class ExoPlayerController(private val context: Context) : PlayerController() {
         youboraOptions.isEnabled = false
         youboraOptions.isParseManifest = true
         setBasicYouboraOptions(youboraOptions, BccmPlayerPluginSingleton.npawConfigState.value)
-
-        // app.https missing?
 
         youboraPlugin = Plugin(youboraOptions, context)
         val adapter = Media3Adapter(exoPlayer)
@@ -167,7 +160,6 @@ class ExoPlayerController(private val context: Context) : PlayerController() {
 
     fun releasePlayerView(playerView: PlayerView) {
         if (currentPlayerView == playerView) {
-            //setRendererDisabled(true)
             currentPlayerView = null
             currentPlayerViewController = null
         }

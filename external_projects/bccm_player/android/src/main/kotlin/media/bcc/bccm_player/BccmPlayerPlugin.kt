@@ -8,7 +8,6 @@ import android.content.ServiceConnection
 import android.os.Build
 import android.os.IBinder
 import android.util.Log
-import androidx.annotation.NonNull
 import androidx.media3.session.MediaController
 import androidx.media3.session.SessionToken
 import com.google.android.gms.cast.framework.CastContext
@@ -16,7 +15,6 @@ import com.google.common.util.concurrent.ListenableFuture
 import io.flutter.embedding.engine.plugins.FlutterPlugin
 import io.flutter.embedding.engine.plugins.activity.ActivityAware
 import io.flutter.embedding.engine.plugins.activity.ActivityPluginBinding
-import io.flutter.plugin.common.MethodChannel
 import io.flutter.plugin.common.PluginRegistry
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -33,11 +31,6 @@ import media.bcc.bccm_player.views.FlutterEmptyView
 import media.bcc.bccm_player.views.FlutterExoPlayerView
 
 class BccmPlayerPlugin : FlutterPlugin, ActivityAware, PluginRegistry.UserLeaveHintListener {
-    /// The MethodChannel that will the communication between Flutter and native Android
-    ///
-    /// This local reference serves to register the plugin with the Flutter Engine and unregister it
-    /// when the Flutter Engine is detached from the Activity
-    private lateinit var channel: MethodChannel
     private var pluginBinding: FlutterPlugin.FlutterPluginBinding? = null
     private lateinit var controllerFuture: ListenableFuture<MediaController>
     private var playbackService: PlaybackService? = null
@@ -67,7 +60,7 @@ class BccmPlayerPlugin : FlutterPlugin, ActivityAware, PluginRegistry.UserLeaveH
         }
     }
 
-    override fun onAttachedToEngine(@NonNull flutterPluginBinding: FlutterPlugin.FlutterPluginBinding) {
+    override fun onAttachedToEngine(flutterPluginBinding: FlutterPlugin.FlutterPluginBinding) {
         pluginBinding = flutterPluginBinding
         playbackPigeon =
             PlaybackPlatformApi.PlaybackListenerPigeon(flutterPluginBinding.binaryMessenger)
@@ -79,9 +72,8 @@ class BccmPlayerPlugin : FlutterPlugin, ActivityAware, PluginRegistry.UserLeaveH
             ) ?: false
         }
 
-        var castContext: CastContext?
         try {
-            castContext = CastContext.getSharedInstance(flutterPluginBinding.applicationContext)
+            val castContext = CastContext.getSharedInstance(flutterPluginBinding.applicationContext)
             val ccPigeon =
                 ChromecastControllerPigeon.ChromecastPigeon(flutterPluginBinding.binaryMessenger)
             castController = CastPlayerController(castContext, ccPigeon, this).also {
@@ -125,9 +117,6 @@ class BccmPlayerPlugin : FlutterPlugin, ActivityAware, PluginRegistry.UserLeaveH
         activityBinding?.addOnUserLeaveHintListener(this)
 
         PlaybackPlatformPigeon.setup(pluginBinding!!.binaryMessenger, PlaybackApiImpl(this))
-        channel = MethodChannel(pluginBinding!!.binaryMessenger, "bccm_player")
-
-        // Bind to LocalService
 
         val sessionToken = SessionToken(
             binding.activity, ComponentName(binding.activity, PlaybackService::class.java)
@@ -180,7 +169,6 @@ class BccmPlayerPlugin : FlutterPlugin, ActivityAware, PluginRegistry.UserLeaveH
             Log.d("bccm", "OnDetachedFromActivity")
             BccmPlayerPluginSingleton.eventBus.emit(DetachedFromActivityEvent())
         }
-        channel.setMethodCallHandler(null)
         MediaController.releaseFuture(controllerFuture)
     }
 

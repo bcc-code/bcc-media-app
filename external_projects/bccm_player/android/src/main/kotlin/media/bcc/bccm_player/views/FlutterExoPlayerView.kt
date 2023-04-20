@@ -9,8 +9,6 @@ import android.widget.FrameLayout
 import android.widget.LinearLayout
 import android.widget.ProgressBar
 import android.widget.TextView
-import androidx.annotation.NonNull
-import androidx.annotation.Nullable
 import androidx.media3.common.Player
 import androidx.media3.exoplayer.util.DebugTextViewHelper
 import androidx.media3.ui.PlayerView
@@ -20,7 +18,6 @@ import io.flutter.plugin.platform.PlatformViewFactory
 import io.flutter.util.ViewUtils.getActivity
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.Job
 import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.cancel
 import media.bcc.bccm_player.PlaybackService
@@ -38,17 +35,16 @@ class FlutterExoPlayerView(
     private val _v: LinearLayout = LinearLayout(context)
     private var _playerView: PlayerView? = null
     private val ioScope = CoroutineScope(Dispatchers.IO + SupervisorJob())
-    private var fullscreenListener: Job? = null
     private var setupDone = false
 
 
     class Factory(private val playbackService: PlaybackService?) :
         PlatformViewFactory(StandardMessageCodec.INSTANCE) {
-        @NonNull
+
         override fun create(
             context: Context,
             id: Int,
-            @Nullable args: Any?
+            args: Any?
         ): PlatformView {
             if (playbackService == null) {
                 throw Error("PlaybackService is null, but you tried making a platformview.")
@@ -100,7 +96,6 @@ class FlutterExoPlayerView(
 
         playerView.setFullscreenButtonClickListener {
             goFullscreen()
-            //_v.removeAllViews()
         }
 
         val busyIndicator = _v.findViewById<ProgressBar>(R.id.busyIndicator)
