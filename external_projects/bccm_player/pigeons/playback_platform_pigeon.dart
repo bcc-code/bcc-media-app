@@ -35,9 +35,6 @@ abstract class PlaybackPlatformPigeon {
   @ObjCSelector("stop:reset:")
   void stop(String playerId, bool reset);
 
-  @ObjCSelector("setUser:")
-  void setUser(User? user);
-
   @ObjCSelector("setNpawConfig:")
   void setNpawConfig(NpawConfig? config);
 
@@ -115,7 +112,7 @@ class ChromecastState {
 
 enum CastConnectionState {
   // ignore: unused_field
-  _,
+  none,
   noDevicesAvailable,
   notConnected,
   connecting,

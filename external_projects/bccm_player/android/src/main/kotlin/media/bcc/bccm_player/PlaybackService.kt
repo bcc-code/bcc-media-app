@@ -6,6 +6,8 @@ import android.os.IBinder
 import androidx.media3.exoplayer.ExoPlayer
 import androidx.media3.session.MediaSession
 import androidx.media3.session.MediaSessionService
+import media.bcc.bccm_player.players.PlayerController
+import media.bcc.bccm_player.players.exoplayer.ExoPlayerController
 
 class PlaybackService : MediaSessionService() {
     private val playerControllers = mutableListOf<PlayerController>()
@@ -13,9 +15,9 @@ class PlaybackService : MediaSessionService() {
     private lateinit var mediaSession: MediaSession
     private var dummyPlayer: ExoPlayer? = null
 
-    private var binder: LocalBinder = LocalBinder();
+    private var binder: LocalBinder = LocalBinder()
 
-    fun newPlayer(plugin: BccmPlayerPlugin): PlayerController {
+    fun newPlayer(): PlayerController {
         val pc = ExoPlayerController(this)
         playerControllers.add(pc)
         return pc
@@ -41,7 +43,7 @@ class PlaybackService : MediaSessionService() {
     }
 
     fun addController(pc: PlayerController) {
-        playerControllers.add(pc);
+        playerControllers.add(pc)
     }
 
     // Create your Player and MediaSession in the onCreate lifecycle event
@@ -54,7 +56,8 @@ class PlaybackService : MediaSessionService() {
 
     // Return a MediaSession to link with the MediaController that is making
     // this request.
-    override fun onGetSession(controllerInfo: MediaSession.ControllerInfo): MediaSession = mediaSession
+    override fun onGetSession(controllerInfo: MediaSession.ControllerInfo): MediaSession =
+        mediaSession
 
     override fun onDestroy() {
         playerControllers.forEach {

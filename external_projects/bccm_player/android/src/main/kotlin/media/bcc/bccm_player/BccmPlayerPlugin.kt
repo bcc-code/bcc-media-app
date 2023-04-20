@@ -5,7 +5,6 @@ import android.content.ComponentName
 import android.content.Context
 import android.content.Intent
 import android.content.ServiceConnection
-import android.content.res.Configuration
 import android.os.Build
 import android.os.IBinder
 import android.util.Log
@@ -14,56 +13,25 @@ import androidx.media3.session.MediaController
 import androidx.media3.session.SessionToken
 import com.google.android.gms.cast.framework.CastContext
 import com.google.common.util.concurrent.ListenableFuture
-import com.google.common.util.concurrent.MoreExecutors
-import com.npaw.youbora.lib6.plugin.Plugin
 import io.flutter.embedding.engine.plugins.FlutterPlugin
 import io.flutter.embedding.engine.plugins.activity.ActivityAware
 import io.flutter.embedding.engine.plugins.activity.ActivityPluginBinding
 import io.flutter.plugin.common.MethodChannel
 import io.flutter.plugin.common.PluginRegistry
-import kotlinx.coroutines.*
-import kotlinx.coroutines.flow.*
-import media.bcc.player.ChromecastControllerPigeon
-import media.bcc.player.PlaybackPlatformApi
-import media.bcc.player.PlaybackPlatformApi.PlaybackPlatformPigeon
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.filter
+import kotlinx.coroutines.flow.update
+import kotlinx.coroutines.launch
+import media.bcc.bccm_player.pigeon.ChromecastControllerPigeon
+import media.bcc.bccm_player.pigeon.PlaybackPlatformApi
+import media.bcc.bccm_player.pigeon.PlaybackPlatformApi.PlaybackPlatformPigeon
+import media.bcc.bccm_player.players.chromecast.CastPlayerController
+import media.bcc.bccm_player.views.FlutterCastButton
+import media.bcc.bccm_player.views.FlutterCastPlayerView
+import media.bcc.bccm_player.views.FlutterEmptyView
+import media.bcc.bccm_player.views.FlutterExoPlayerView
 
-
-interface BccmPlayerPluginEvent {
-
-}
-
-class AttachedToActivityEvent(val activity: Activity) : BccmPlayerPluginEvent {}
-class DetachedFromActivityEvent() : BccmPlayerPluginEvent {}
-class OnActivityStop() : BccmPlayerPluginEvent {}
-class SetPlayerViewVisibilityEvent(val viewId: Long, val visible: Boolean): BccmPlayerPluginEvent {}
-class UserLeaveHintEvent(): BccmPlayerPluginEvent {}
-class PictureInPictureModeChangedEvent2(val isInPictureInPictureMode: Boolean) : BccmPlayerPluginEvent {}
-class PictureInPictureModeChangedEvent(val playerId: String, val isInPictureInPictureMode: Boolean) : BccmPlayerPluginEvent {}
-class FullscreenPlayerResult(val playerId: String) : BccmPlayerPluginEvent {}
-class User(val id: String?);
-
-object BccmPlayerPluginSingleton {
-
-    val activityState = MutableStateFlow<Activity?>(null);
-    val npawConfigState = MutableStateFlow<PlaybackPlatformApi.NpawConfig?>(null);
-    val appConfigState = MutableStateFlow<PlaybackPlatformApi.AppConfig?>(null);
-    val userState = MutableStateFlow<User?>(null);
-    val eventBus = MutableSharedFlow<BccmPlayerPluginEvent>();
-    private val mainScope = CoroutineScope(Dispatchers.Main + Job())
-
-    init {
-        Log.d("bccm","bccmdebug: created BccmPlayerPluginSingleton")
-        mainScope.launch { keepTrackOfActivity() }
-    }
-
-    private suspend fun keepTrackOfActivity() {
-        eventBus.filter { event -> event is AttachedToActivityEvent}.collect {
-            event -> activityState.update { (event as AttachedToActivityEvent).activity }
-        }
-    }
-}
-
-/** BccmPlayerPlugin */
 class BccmPlayerPlugin : FlutterPlugin, ActivityAware, PluginRegistry.UserLeaveHintListener {
     /// The MethodChannel that will the communication between Flutter and native Android
     ///
@@ -84,14 +52,14 @@ class BccmPlayerPlugin : FlutterPlugin, ActivityAware, PluginRegistry.UserLeaveH
 
     private val playbackServiceConnection = object : ServiceConnection {
         override fun onServiceConnected(className: ComponentName, binder: IBinder) {
-            // We've bound to LocalService, cast the IBinder and get LocalService instance
             playbackService = (binder as PlaybackService.LocalBinder).getService()
-            if (castController != null) {
-                playbackService?.addController(castController!!)
+            castController?.also {
+                playbackService?.addController(it)
             }
-            pluginBinding!!
-                    .platformViewRegistry
-                    .registerViewFactory("bccm-player", PlayerPlatformViewFactory(playbackService))
+            pluginBinding!!.platformViewRegistry.registerViewFactory(
+                "bccm-player",
+                FlutterExoPlayerView.Factory(playbackService)
+            )
         }
 
         override fun onServiceDisconnected(arg0: ComponentName) {
@@ -101,38 +69,46 @@ class BccmPlayerPlugin : FlutterPlugin, ActivityAware, PluginRegistry.UserLeaveH
 
     override fun onAttachedToEngine(@NonNull flutterPluginBinding: FlutterPlugin.FlutterPluginBinding) {
         pluginBinding = flutterPluginBinding
-        playbackPigeon = PlaybackPlatformApi.PlaybackListenerPigeon(flutterPluginBinding.binaryMessenger)
+        playbackPigeon =
+            PlaybackPlatformApi.PlaybackListenerPigeon(flutterPluginBinding.binaryMessenger)
 
 
         Intent(pluginBinding?.applicationContext, PlaybackService::class.java).also { intent ->
-            mBound = pluginBinding?.applicationContext?.bindService(intent, playbackServiceConnection, Context.BIND_AUTO_CREATE) ?: false
+            mBound = pluginBinding?.applicationContext?.bindService(
+                intent, playbackServiceConnection, Context.BIND_AUTO_CREATE
+            ) ?: false
         }
 
-        var castContext: CastContext? = null
+        var castContext: CastContext?
         try {
-            castContext = CastContext.getSharedInstance(flutterPluginBinding.applicationContext);
-            val ccPigeon = ChromecastControllerPigeon.ChromecastPigeon(flutterPluginBinding.binaryMessenger)
-            castController = CastPlayerController(castContext, ccPigeon, this)
-            castContext.sessionManager.addSessionManagerListener(castController!!)
-            flutterPluginBinding
-                    .platformViewRegistry
-                    .registerViewFactory("bccm-cast-player", BccmCastPlayerViewFactory(castController!!))
+            castContext = CastContext.getSharedInstance(flutterPluginBinding.applicationContext)
+            val ccPigeon =
+                ChromecastControllerPigeon.ChromecastPigeon(flutterPluginBinding.binaryMessenger)
+            castController = CastPlayerController(castContext, ccPigeon, this).also {
+                castContext.sessionManager.addSessionManagerListener(it)
+                flutterPluginBinding.platformViewRegistry.registerViewFactory(
+                    "bccm-cast-player",
+                    FlutterCastPlayerView.Factory(it)
+                )
+            }
         } catch (e: Exception) {
             //TODO: log exception
 
-            flutterPluginBinding
-                    .platformViewRegistry
-                    .registerViewFactory("bccm-cast-player", EmptyViewFactory())
+            flutterPluginBinding.platformViewRegistry.registerViewFactory(
+                "bccm-cast-player",
+                FlutterEmptyView.Factory()
+            )
         }
-        flutterPluginBinding
-                .platformViewRegistry
-                .registerViewFactory("bccm_player/cast_button", FLCastButtonFactory())
+        flutterPluginBinding.platformViewRegistry.registerViewFactory(
+            "bccm_player/cast_button",
+            FlutterCastButton.Factory()
+        )
     }
 
 
-    override fun onDetachedFromEngine(@NonNull binding: FlutterPlugin.FlutterPluginBinding) {
+    override fun onDetachedFromEngine(binding: FlutterPlugin.FlutterPluginBinding) {
+        Log.d("bccm", "detaching. mBound: $mBound")
         if (mBound) {
-            Log.d("bccm", "detaching. mBound: $mBound")
             pluginBinding!!.applicationContext.unbindService(playbackServiceConnection)
             mBound = false
         }
@@ -153,26 +129,24 @@ class BccmPlayerPlugin : FlutterPlugin, ActivityAware, PluginRegistry.UserLeaveH
 
         // Bind to LocalService
 
-        val sessionToken = SessionToken(binding.activity, ComponentName(binding.activity, PlaybackService::class.java))
-        controllerFuture = MediaController.Builder(binding.activity, sessionToken).buildAsync()
-        controllerFuture.addListener({
-            1;
-        }, MoreExecutors.directExecutor()
+        val sessionToken = SessionToken(
+            binding.activity, ComponentName(binding.activity, PlaybackService::class.java)
         )
+        controllerFuture = MediaController.Builder(binding.activity, sessionToken).buildAsync()
         mainScope.launch {
-            Log.d("bccm","OnAttachedToActivity")
+            Log.d("bccm", "OnAttachedToActivity")
             BccmPlayerPluginSingleton.activityState.update { binding.activity }
             BccmPlayerPluginSingleton.eventBus.emit(AttachedToActivityEvent(binding.activity))
         }
         mainScope.launch {
-            BccmPlayerPluginSingleton.eventBus.filter { event -> event is PictureInPictureModeChangedEvent}.collect {
-                event ->
-                val event = event as PictureInPictureModeChangedEvent
-                var builder = PlaybackPlatformApi.PictureInPictureModeChangedEvent.Builder()
-                builder.setPlayerId(event.playerId)
-                builder.setIsInPipMode(event.isInPictureInPictureMode)
-                playbackPigeon?.onPictureInPictureModeChanged(builder.build()) {}
-            }
+            BccmPlayerPluginSingleton.eventBus.filter { event -> event is PictureInPictureModeChangedEvent }
+                .collect { event ->
+                    val pipEvent = event as PictureInPictureModeChangedEvent
+                    val builder = PlaybackPlatformApi.PictureInPictureModeChangedEvent.Builder()
+                    builder.setPlayerId(pipEvent.playerId)
+                    builder.setIsInPipMode(pipEvent.isInPictureInPictureMode)
+                    playbackPigeon?.onPictureInPictureModeChanged(builder.build()) {}
+                }
         }
     }
 
@@ -182,9 +156,13 @@ class BccmPlayerPlugin : FlutterPlugin, ActivityAware, PluginRegistry.UserLeaveH
         }
     }
 
-    fun onPictureInPictureModeChanged(isInPictureInPictureMode: Boolean, newConfig: Configuration?) {
+    fun onPictureInPictureModeChanged(isInPictureInPictureMode: Boolean) {
         mainScope.launch {
-            BccmPlayerPluginSingleton.eventBus.emit(PictureInPictureModeChangedEvent2(isInPictureInPictureMode))
+            BccmPlayerPluginSingleton.eventBus.emit(
+                PictureInPictureModeChangedEvent2(
+                    isInPictureInPictureMode
+                )
+            )
         }
     }
 
@@ -199,7 +177,7 @@ class BccmPlayerPlugin : FlutterPlugin, ActivityAware, PluginRegistry.UserLeaveH
     override fun onDetachedFromActivity() {
         activityBinding?.removeOnUserLeaveHintListener(this)
         mainScope.launch {
-            Log.d("bccm","OnDetachedFromActivity")
+            Log.d("bccm", "OnDetachedFromActivity")
             BccmPlayerPluginSingleton.eventBus.emit(DetachedFromActivityEvent())
         }
         channel.setMethodCallHandler(null)
@@ -207,11 +185,12 @@ class BccmPlayerPlugin : FlutterPlugin, ActivityAware, PluginRegistry.UserLeaveH
     }
 
     fun getPlaybackService(): PlaybackService? {
-        return playbackService;
+        return playbackService
     }
 
     override fun onUserLeaveHint() {
-        val currentPlayerViewController = playbackService?.getPrimaryController()?.currentPlayerViewController;
+        val currentPlayerViewController =
+            playbackService?.getPrimaryController()?.currentPlayerViewController
         if (currentPlayerViewController?.shouldPipAutomatically() == true && Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             currentPlayerViewController.enterPictureInPicture()
         }

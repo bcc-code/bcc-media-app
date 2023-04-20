@@ -13,7 +13,6 @@
 		74858FAF1ED2DC5600515810 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74858FAE1ED2DC5600515810 /* AppDelegate.swift */; };
 		8121BF6C2993D68E00043C5C /* RunnerUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 8121BF6B2993D68E00043C5C /* RunnerUITests.m */; };
 		8157041A29262B030005D66B /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 8157041929262B030005D66B /* logo.png */; };
-		8186027F286AFB0300D7DDEE /* PlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8186027E286AFB0300D7DDEE /* PlayerViewController.swift */; };
 		81C99B802993F65B0043C04F /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D819BB842F29C747E28A35D9 /* GoogleService-Info.plist */; };
 		81C99B812993F65B0043C04F /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D819BB842F29C747E28A35D9 /* GoogleService-Info.plist */; };
 		97C146FC1CF9000F007C117D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 97C146FA1CF9000F007C117D /* Main.storyboard */; };
@@ -81,7 +80,6 @@
 		815704172924DC430005D66B /* Info-Profile-v4_dev.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Info-Profile-v4_dev.plist"; sourceTree = "<group>"; };
 		815704182924DC490005D66B /* Info-Release-v4_dev.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Info-Release-v4_dev.plist"; sourceTree = "<group>"; };
 		8157041929262B030005D66B /* logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo.png; sourceTree = "<group>"; };
-		8186027E286AFB0300D7DDEE /* PlayerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerViewController.swift; sourceTree = "<group>"; };
 		81A98BCC28DA06C900805290 /* Info-Debug-dev.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Info-Debug-dev.plist"; sourceTree = "<group>"; };
 		81A98BCD28DA06C900805290 /* Info-Release-dev.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Info-Release-dev.plist"; sourceTree = "<group>"; };
 		81CB6AD128E6EDD80095BDB1 /* Info-Profile-dev.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Info-Profile-dev.plist"; sourceTree = "<group>"; };
@@ -218,7 +216,6 @@
 				1498D2331E8E89220040F4C2 /* GeneratedPluginRegistrant.m */,
 				74858FAE1ED2DC5600515810 /* AppDelegate.swift */,
 				74858FAD1ED2DC5600515810 /* Runner-Bridging-Header.h */,
-				8186027E286AFB0300D7DDEE /* PlayerViewController.swift */,
 			);
 			path = Runner;
 			sourceTree = "<group>";
@@ -558,7 +555,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				74858FAF1ED2DC5600515810 /* AppDelegate.swift in Sources */,
-				8186027F286AFB0300D7DDEE /* PlayerViewController.swift in Sources */,
 				1498D2341E8E89220040F4C2 /* GeneratedPluginRegistrant.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
