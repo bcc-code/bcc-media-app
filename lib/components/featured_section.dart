@@ -49,7 +49,7 @@ class FeaturedSection extends ConsumerWidget {
             progress: 0,
             publishDate: '',
             $__typename: 'Episode',
-            locked: false,
+            locked: curLiveEpisode.locked,
           ),
         ),
         ...items.where((item) => item.id != curLiveEpisode.id)
