@@ -18,15 +18,6 @@ import UIKit
         return flutterResult
     }
 
-    override func application(_ application: UIApplication,
-                              supportedInterfaceOrientationsFor window: UIWindow?) -> UIInterfaceOrientationMask
-    {
-        if fetchCurrentVC(self.window?.rootViewController).debugDescription.contains("AVFullScreenViewController") {
-            return .landscape
-        }
-        return .portrait
-    }
-
     func fetchCurrentVC(_ viewController: UIViewController?) -> UIViewController? {
         if let tabBarController = viewController as? UITabBarController {
             return fetchCurrentVC(tabBarController.selectedViewController)
