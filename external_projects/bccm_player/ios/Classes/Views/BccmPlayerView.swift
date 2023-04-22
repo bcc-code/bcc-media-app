@@ -113,7 +113,7 @@ class AVPlayerBccmPlayerView: NSObject, FlutterPlatformView {
             viewController.addChild(playerViewController!)
         } else {
             print("starting with new avplayerviewcontroller")
-            playerViewController = AVPlayerViewController()
+            playerViewController = LandscapeAVPlayerViewController()
 
             let viewController = (UIApplication.shared.delegate?.window??.rootViewController)!
             viewController.addChild(playerViewController!)
