@@ -170,6 +170,7 @@ class BccmPlayerPlugin : FlutterPlugin, ActivityAware, PluginRegistry.UserLeaveH
             BccmPlayerPluginSingleton.eventBus.emit(DetachedFromActivityEvent())
         }
         MediaController.releaseFuture(controllerFuture)
+        playbackService?.getPrimaryController()?.stop(true)
     }
 
     fun getPlaybackService(): PlaybackService? {
