@@ -15,6 +15,7 @@ import com.google.common.util.concurrent.ListenableFuture
 import io.flutter.embedding.engine.plugins.FlutterPlugin
 import io.flutter.embedding.engine.plugins.activity.ActivityAware
 import io.flutter.embedding.engine.plugins.activity.ActivityPluginBinding
+import io.flutter.embedding.engine.plugins.lifecycle.FlutterLifecycleAdapter
 import io.flutter.plugin.common.PluginRegistry
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -146,11 +147,12 @@ class BccmPlayerPlugin : FlutterPlugin, ActivityAware, PluginRegistry.UserLeaveH
     }
 
     fun onPictureInPictureModeChanged(isInPictureInPictureMode: Boolean) {
+        val activityBinding = activityBinding ?: return
+        val lifecycleState = FlutterLifecycleAdapter.getActivityLifecycle(activityBinding).currentState
+
         mainScope.launch {
             BccmPlayerPluginSingleton.eventBus.emit(
-                PictureInPictureModeChangedEvent2(
-                    isInPictureInPictureMode
-                )
+                PictureInPictureModeChangedEvent2(isInPictureInPictureMode, lifecycleState)
             )
         }
     }

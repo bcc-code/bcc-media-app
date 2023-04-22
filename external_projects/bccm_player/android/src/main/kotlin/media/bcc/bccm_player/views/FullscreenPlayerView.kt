@@ -14,6 +14,7 @@ import androidx.annotation.RequiresApi
 import androidx.core.view.WindowCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.WindowInsetsControllerCompat
+import androidx.lifecycle.Lifecycle
 import androidx.media3.common.MediaItem
 import androidx.media3.common.Player
 import androidx.media3.ui.PlayerView
@@ -102,13 +103,11 @@ class FullscreenPlayerView(
                         delay(500)
                         makeActivityFullscreen(true)
                     }
-                }
-        }
-        mainScope.launch {
-            BccmPlayerPluginSingleton.eventBus.filterIsInstance<OnActivityStop>().collect { _ ->
-                Log.d("bccm", "OnActivityStop and isInPiP: $isInPip")
-                playerController.player.stop()
-            }
+
+                    if (event.lifecycleState == Lifecycle.State.CREATED) {
+                        playerController.player.stop()
+                    }
+                 }
         }
     }
 
