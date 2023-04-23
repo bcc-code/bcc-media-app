@@ -484,16 +484,6 @@ public class PlaybackPlatformApi {
       this.artist = setterArg;
     }
 
-    private @Nullable String episodeId;
-
-    public @Nullable String getEpisodeId() {
-      return episodeId;
-    }
-
-    public void setEpisodeId(@Nullable String setterArg) {
-      this.episodeId = setterArg;
-    }
-
     private @Nullable Map<String, Object> extras;
 
     public @Nullable Map<String, Object> getExtras() {
@@ -527,13 +517,6 @@ public class PlaybackPlatformApi {
         return this;
       }
 
-      private @Nullable String episodeId;
-
-      public @NonNull Builder setEpisodeId(@Nullable String setterArg) {
-        this.episodeId = setterArg;
-        return this;
-      }
-
       private @Nullable Map<String, Object> extras;
 
       public @NonNull Builder setExtras(@Nullable Map<String, Object> setterArg) {
@@ -546,7 +529,6 @@ public class PlaybackPlatformApi {
         pigeonReturn.setArtworkUri(artworkUri);
         pigeonReturn.setTitle(title);
         pigeonReturn.setArtist(artist);
-        pigeonReturn.setEpisodeId(episodeId);
         pigeonReturn.setExtras(extras);
         return pigeonReturn;
       }
@@ -554,11 +536,10 @@ public class PlaybackPlatformApi {
 
     @NonNull
     ArrayList<Object> toList() {
-      ArrayList<Object> toListResult = new ArrayList<Object>(5);
+      ArrayList<Object> toListResult = new ArrayList<Object>(4);
       toListResult.add(artworkUri);
       toListResult.add(title);
       toListResult.add(artist);
-      toListResult.add(episodeId);
       toListResult.add(extras);
       return toListResult;
     }
@@ -571,9 +552,7 @@ public class PlaybackPlatformApi {
       pigeonResult.setTitle((String) title);
       Object artist = list.get(2);
       pigeonResult.setArtist((String) artist);
-      Object episodeId = list.get(3);
-      pigeonResult.setEpisodeId((String) episodeId);
-      Object extras = list.get(4);
+      Object extras = list.get(3);
       pigeonResult.setExtras((Map<String, Object>) extras);
       return pigeonResult;
     }

@@ -68,10 +68,6 @@ abstract class PlayerController : Player.Listener {
         if (mediaItem.metadata?.artworkUri != null) {
             metaBuilder.setArtworkUri(Uri.parse(mediaItem.metadata?.artworkUri))
         }
-        val episodeId = mediaItem.metadata?.episodeId
-        if (episodeId != null) {
-            extraMeta.putString("episode_id", episodeId)
-        }
         if (mediaItem.isLive == true) {
             extraMeta.putString(PLAYER_DATA_IS_LIVE, "true")
         }
@@ -98,10 +94,6 @@ abstract class PlayerController : Player.Listener {
         val metaBuilder = PlaybackPlatformApi.MediaMetadata.Builder()
         if (mediaItem.mediaMetadata.artworkUri != null) {
             metaBuilder.setArtworkUri(mediaItem.mediaMetadata.artworkUri?.toString())
-        }
-        val episodeId = mediaItem.mediaMetadata.extras?.getString("episode_id")
-        if (episodeId != null) {
-            metaBuilder.setEpisodeId(episodeId)
         }
         metaBuilder.setTitle(mediaItem.mediaMetadata.title?.toString())
         metaBuilder.setArtist(mediaItem.mediaMetadata.artist?.toString())

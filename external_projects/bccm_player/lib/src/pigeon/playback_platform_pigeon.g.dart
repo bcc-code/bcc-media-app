@@ -146,7 +146,6 @@ class MediaMetadata {
     this.artworkUri,
     this.title,
     this.artist,
-    this.episodeId,
     this.extras,
   });
 
@@ -156,8 +155,6 @@ class MediaMetadata {
 
   String? artist;
 
-  String? episodeId;
-
   Map<String?, Object?>? extras;
 
   Object encode() {
@@ -165,7 +162,6 @@ class MediaMetadata {
       artworkUri,
       title,
       artist,
-      episodeId,
       extras,
     ];
   }
@@ -176,8 +172,7 @@ class MediaMetadata {
       artworkUri: result[0] as String?,
       title: result[1] as String?,
       artist: result[2] as String?,
-      episodeId: result[3] as String?,
-      extras: (result[4] as Map<Object?, Object?>?)?.cast<String?, Object?>(),
+      extras: (result[3] as Map<Object?, Object?>?)?.cast<String?, Object?>(),
     );
   }
 }

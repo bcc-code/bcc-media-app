@@ -72,12 +72,10 @@ typedef NS_ENUM(NSUInteger, CastConnectionState) {
 + (instancetype)makeWithArtworkUri:(nullable NSString *)artworkUri
     title:(nullable NSString *)title
     artist:(nullable NSString *)artist
-    episodeId:(nullable NSString *)episodeId
     extras:(nullable NSDictionary<NSString *, id> *)extras;
 @property(nonatomic, copy, nullable) NSString * artworkUri;
 @property(nonatomic, copy, nullable) NSString * title;
 @property(nonatomic, copy, nullable) NSString * artist;
-@property(nonatomic, copy, nullable) NSString * episodeId;
 @property(nonatomic, strong, nullable) NSDictionary<NSString *, id> * extras;
 @end
 

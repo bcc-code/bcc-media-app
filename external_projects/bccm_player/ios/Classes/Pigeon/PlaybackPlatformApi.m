@@ -196,13 +196,11 @@ static id GetNullableObjectAtIndex(NSArray *array, NSInteger key) {
 + (instancetype)makeWithArtworkUri:(nullable NSString *)artworkUri
     title:(nullable NSString *)title
     artist:(nullable NSString *)artist
-    episodeId:(nullable NSString *)episodeId
     extras:(nullable NSDictionary<NSString *, id> *)extras {
   MediaMetadata* pigeonResult = [[MediaMetadata alloc] init];
   pigeonResult.artworkUri = artworkUri;
   pigeonResult.title = title;
   pigeonResult.artist = artist;
-  pigeonResult.episodeId = episodeId;
   pigeonResult.extras = extras;
   return pigeonResult;
 }
@@ -211,8 +209,7 @@ static id GetNullableObjectAtIndex(NSArray *array, NSInteger key) {
   pigeonResult.artworkUri = GetNullableObjectAtIndex(list, 0);
   pigeonResult.title = GetNullableObjectAtIndex(list, 1);
   pigeonResult.artist = GetNullableObjectAtIndex(list, 2);
-  pigeonResult.episodeId = GetNullableObjectAtIndex(list, 3);
-  pigeonResult.extras = GetNullableObjectAtIndex(list, 4);
+  pigeonResult.extras = GetNullableObjectAtIndex(list, 3);
   return pigeonResult;
 }
 + (nullable MediaMetadata *)nullableFromList:(NSArray *)list {
@@ -223,7 +220,6 @@ static id GetNullableObjectAtIndex(NSArray *array, NSInteger key) {
     (self.artworkUri ?: [NSNull null]),
     (self.title ?: [NSNull null]),
     (self.artist ?: [NSNull null]),
-    (self.episodeId ?: [NSNull null]),
     (self.extras ?: [NSNull null]),
   ];
 }
