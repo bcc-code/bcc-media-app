@@ -134,6 +134,9 @@ class STr extends S {
   String get contactSupport => 'İletişim desteği';
 
   @override
+  String get userVoice => 'Uservoice';
+
+  @override
   String get cancel => 'İptal';
 
   @override

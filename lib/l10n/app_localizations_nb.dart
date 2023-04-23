@@ -134,6 +134,9 @@ class SNb extends S {
   String get contactSupport => 'Kontakt support';
 
   @override
+  String get userVoice => 'Uservoice';
+
+  @override
   String get cancel => 'Avbryt';
 
   @override

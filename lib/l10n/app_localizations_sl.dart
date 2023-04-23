@@ -134,6 +134,9 @@ class SSl extends S {
   String get contactSupport => 'Podpora';
 
   @override
+  String get userVoice => 'Uservoice';
+
+  @override
   String get cancel => 'Prekliči';
 
   @override

@@ -134,6 +134,9 @@ class SNl extends S {
   String get contactSupport => 'Contact support';
 
   @override
+  String get userVoice => 'Uservoice';
+
+  @override
   String get cancel => 'Annuleren';
 
   @override

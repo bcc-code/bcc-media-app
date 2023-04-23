@@ -134,6 +134,9 @@ class SFi extends S {
   String get contactSupport => 'Tukipyyntö';
 
   @override
+  String get userVoice => 'Uservoice';
+
+  @override
   String get cancel => 'Peru';
 
   @override
