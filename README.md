@@ -29,6 +29,14 @@ flutter pub run build_runner watch --delete-conflicting-outputs
 
 - **Android: "Unknown error" on login, issues with ssl, etc.**: Sometimes the android emulator's clock goes out of sync. You can run this adb command to update the clock: `adb shell "su 0 date `date +%m%d%H%M%Y.%S`"`
 
+# Tests
+
+## UI Tests
+
+We are using [Maestro](https://maestro.mobile.dev/) for end-to-end UI tests. See [.maestro/README.md](./.maestro/README.md).
+These use a normal build of the app to test the most critical user flows, e.g. logging in and then playing the livestream.
+Most of the tests run during the release pipeline for the app.
+
 # App architecture details
 
 ## Styling
