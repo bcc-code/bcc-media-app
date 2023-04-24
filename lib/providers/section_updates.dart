@@ -5,7 +5,7 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import '../graphql/queries/page.graphql.dart';
 
-final sectionUpdatesProvider = StreamProvider.family<Fragment$Section, String>((ref, String sectionId) {
+final sectionUpdatesProvider = StreamProvider.family<Fragment$Section?, String>((ref, String sectionId) {
   final gqlClient = ref.watch(gqlClientProvider);
   return FirebaseFirestore.instance.collection('updates:sections').doc(sectionId).snapshots().asyncMap((event) async {
     final response = await gqlClient.query$GetSection(
@@ -16,6 +16,6 @@ final sectionUpdatesProvider = StreamProvider.family<Fragment$Section, String>((
         ),
       ),
     );
-    return response.parsedData!.section;
+    return response.parsedData?.section;
   });
 });

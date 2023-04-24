@@ -50,6 +50,7 @@ class SettingsService extends StateNotifier<Settings> {
       subtitleLanguage: prefs.getString(PrefKeys.subtitleLanguage),
       analyticsId: prefs.getString(PrefKeys.analyticsId),
       envOverride: prefs.getString(PrefKeys.envOverride),
+      isBetaTester: prefs.getBool(PrefKeys.isBetaTester),
       sessionId: (DateTime.now().millisecondsSinceEpoch / 1000).round(),
     );
   }

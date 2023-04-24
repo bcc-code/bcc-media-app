@@ -21,9 +21,10 @@ final unleashProvider = FutureProvider<UnleashClient?>((ref) async {
 
 final unleashRawProvider = Provider<UnleashClient?>((ref) {
   if (Env.unleashClientKey.isEmpty) return null;
+  final isBetaTester = ref.watch(settingsProvider.select((s) => s.isBetaTester == true));
   final client = UnleashClient(
     url: Uri.parse(Env.unleashProxyUrl),
-    clientKey: ref.watch(settingsProvider.select((s) => s.isBetaTester == true)) ? Env.unleashClientKeyBetaTester : Env.unleashClientKey,
+    clientKey: isBetaTester ? Env.unleashClientKeyBetaTester : Env.unleashClientKey,
     appName: Env.unleashAppName,
     refreshInterval: 60,
   );
