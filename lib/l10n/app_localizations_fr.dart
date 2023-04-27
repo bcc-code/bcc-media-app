@@ -400,6 +400,12 @@ class SFr extends S {
   String get share => 'Partager';
 
   @override
+  String get showMore => 'Show more';
+
+  @override
+  String get showLess => 'Show less';
+
+  @override
   String get liveNow => 'En direct maintenant';
 
   @override

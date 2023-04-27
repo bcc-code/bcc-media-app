@@ -400,6 +400,12 @@ class SPt extends S {
   String get share => 'Compartilhar';
 
   @override
+  String get showMore => 'Show more';
+
+  @override
+  String get showLess => 'Show less';
+
+  @override
   String get liveNow => 'Ao vivo agora';
 
   @override
