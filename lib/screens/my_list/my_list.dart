@@ -1,9 +1,10 @@
-import 'package:brunstadtv_app/helpers/btv_colors.dart';
-import 'package:brunstadtv_app/helpers/btv_typography.dart';
-import 'package:brunstadtv_app/helpers/svg_icons.dart';
-import 'package:brunstadtv_app/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:brunstadtv_app/l10n/app_localizations.dart';
+
+import '../../helpers/ui/svg_icons.dart';
+import '../../theme/bccm_colors.dart';
+import '../../theme/bccm_typography.dart';
 
 class MyList extends StatelessWidget {
   const MyList({Key? key}) : super(key: key);
@@ -22,18 +23,18 @@ class MyList extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               SvgPicture.string(SvgIcons.heart),
-              Text(S.of(context).didYouKnowTitle, style: BtvTextStyles.headline1),
+              Text(S.of(context).didYouKnowTitle, style: BccmTextStyles.headline1),
               Padding(
                 padding: EdgeInsets.only(top: 12, bottom: 42),
                 child: Text(
                   S.of(context).didYouKnowContent,
                   textAlign: TextAlign.center,
-                  style: BtvTextStyles.body1,
+                  style: BccmTextStyles.body1,
                 ),
               ),
               ElevatedButton(
                 style: ElevatedButton.styleFrom(
-                  shadowColor: BtvColors.tint1,
+                  shadowColor: BccmColors.tint1,
                   shape: const RoundedRectangleBorder(
                     side: BorderSide.none,
                     borderRadius: BorderRadius.all(Radius.circular(24)),
@@ -43,7 +44,7 @@ class MyList extends StatelessWidget {
                 onPressed: () {},
                 child: Text(
                   S.of(context).exploreContent,
-                  style: BtvTextStyles.button1.copyWith(color: BtvColors.onTint),
+                  style: BccmTextStyles.button1.copyWith(color: BccmColors.onTint),
                 ),
               ),
             ],
