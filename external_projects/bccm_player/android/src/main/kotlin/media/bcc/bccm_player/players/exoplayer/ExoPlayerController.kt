@@ -31,7 +31,8 @@ import media.bcc.bccm_player.players.chromecast.CastMediaItemConverter.Companion
 import java.util.UUID
 
 
-class ExoPlayerController(private val context: Context) : PlayerController() {
+class ExoPlayerController(private val context: Context) :
+    PlayerController() {
     override val id: String = UUID.randomUUID().toString()
     private val trackSelector: DefaultTrackSelector = DefaultTrackSelector(context)
     private val exoPlayer: ExoPlayer = ExoPlayer.Builder(context)
@@ -166,7 +167,10 @@ class ExoPlayerController(private val context: Context) : PlayerController() {
     }
 
     override fun release() {
+        super.release()
         mainScope.cancel()
+        pluginPlayerListener?.stop()
+        exoPlayer.stop()
         exoPlayer.release()
     }
 

@@ -8,6 +8,9 @@ class Book {
 @HostApi()
 abstract class PlaybackPlatformPigeon {
   @async
+  void attach();
+
+  @async
   @ObjCSelector("newPlayer:")
   String newPlayer(String? url);
 
@@ -43,7 +46,7 @@ abstract class PlaybackPlatformPigeon {
 
   @async
   @ObjCSelector("getPlayerState:")
-  PlayerState? getPlayerState(String playerId);
+  PlayerStateSnapshot? getPlayerState(String? playerId);
 
   @async
   @ObjCSelector("getChromecastState")
@@ -97,12 +100,16 @@ class MediaMetadata {
   Map<String?, Object?>? extras;
 }
 
-class PlayerState {
+class PlayerStateSnapshot {
   late String playerId;
   late bool isPlaying;
+  late PlaybackState playbackState;
+  MediaItem? currentMediaItem;
   // This is double because pigeon uses NSNumber for int :(
   double? playbackPositionMs;
 }
+
+enum PlaybackState { stopped, paused, playing }
 
 class ChromecastState {
   late CastConnectionState connectionState;
@@ -122,10 +129,12 @@ enum CastConnectionState {
 
 @FlutterApi()
 abstract class PlaybackListenerPigeon {
+  @ObjCSelector("onPrimaryPlayerChanged:")
+  void onPrimaryPlayerChanged(String playerId);
   @ObjCSelector("onPositionDiscontinuity:")
   void onPositionDiscontinuity(PositionDiscontinuityEvent event);
   @ObjCSelector("onPlayerStateUpdate:")
-  void onPlayerStateUpdate(PlayerState event);
+  void onPlayerStateUpdate(PlayerStateSnapshot event);
   @ObjCSelector("onIsPlayingChanged:")
   void onIsPlayingChanged(IsPlayingChangedEvent event);
   @ObjCSelector("onMediaItemTransition:")

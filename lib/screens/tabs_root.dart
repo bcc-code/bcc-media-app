@@ -93,15 +93,9 @@ class _TabsRootScreenState extends ConsumerState<TabsRootScreen> with AutoRouteA
       debugPrint('router.currentSegments empty');
       return true;
     }
-    final StateNotifierProvider<PlayerStateNotifier, PlayerState?>? playerProvider;
-    if (ref.watch(isCasting)) {
-      playerProvider = castPlayerProvider;
-    } else {
-      playerProvider = primaryPlayerProvider;
-    }
 
     final String? currentMediaItemEpisodeId =
-        ref.watch(playerProvider.select((player) => player?.currentMediaItem?.metadata?.extras?['id']?.asOrNull<String>()));
+        ref.watch(primaryPlayerProvider.select((player) => player?.currentMediaItem?.metadata?.extras?['id']?.asOrNull<String>()));
 
     if (currentMediaItemEpisodeId == null) {
       return true;
@@ -109,7 +103,7 @@ class _TabsRootScreenState extends ConsumerState<TabsRootScreen> with AutoRouteA
     if (currentRouteMatch.meta.containsKey('hide_mini_player')) {
       return true;
     }
-    final bool isInPipMode = ref.watch(playerProvider.select((value) => value?.isInPipMode == true));
+    final bool isInPipMode = ref.watch(primaryPlayerProvider.select((value) => value?.isInPipMode == true));
     if (isInPipMode) {
       return true;
     }

@@ -169,9 +169,7 @@ class _EpisodeDisplay extends HookConsumerWidget {
     final isMounted = useIsMounted();
     final episodeSnapshot = useFuture(episodeFuture);
     final episode = episodeSnapshot.data;
-    final casting = ref.watch(isCasting);
-    var playerProvider = casting ? castPlayerProvider : primaryPlayerProvider;
-    var player = ref.watch(playerProvider);
+    var player = ref.watch(primaryPlayerProvider);
     if (player == null || episode == null) return const SizedBox.shrink();
 
     final playerSetupFuture = useState<Future?>(null);
@@ -314,10 +312,7 @@ class _EpisodeDisplay extends HookConsumerWidget {
   }
 
   Future setupPlayerForEpisode(Query$FetchEpisode$episode episode, {required WidgetRef ref}) async {
-    var castingNow = ref.read(isCasting);
-    var playerProvider = castingNow ? castPlayerProvider : primaryPlayerProvider;
-
-    var player = ref.read(playerProvider);
+    var player = ref.read(primaryPlayerProvider);
     if (player!.currentMediaItem?.metadata?.extras?['id'] == screenParams.episodeId.toString()) {
       return;
     }
@@ -337,12 +332,10 @@ class _EpisodeDisplay extends HookConsumerWidget {
   }
 
   void shareVideo(BuildContext context, WidgetRef ref, Query$FetchEpisode$episode episode) {
-    final casting = ref.read(isCasting);
-    final playerProvider = casting ? castPlayerProvider : primaryPlayerProvider;
-    final player = ref.read(playerProvider);
+    final player = ref.read(primaryPlayerProvider);
     final currentPosSeconds = ((player?.playbackPositionMs ?? 0) / 1000).round();
     if (player != null) {
-      BccmPlayerInterface.instance.pause(player.playerId);
+      ref.read(playbackServiceProvider).platformApi.pause(player.playerId);
     }
     showModalBottomSheet(
       useRootNavigator: true,

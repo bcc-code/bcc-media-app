@@ -15,31 +15,30 @@ import '../helpers/version.dart';
 final playbackServiceProvider = Provider<PlaybackService>((ref) {
   return PlaybackService(
     ref: ref,
-    playbackApi: BccmPlayerInterface.instance,
+    platformApi: BccmPlayerInterface.instance,
     analyticsService: ref.watch(analyticsProvider),
   );
 });
 
 class PlaybackService {
-  BccmPlayerInterface playbackApi;
+  BccmPlayerInterface platformApi;
   Analytics analyticsService;
   Ref ref;
 
   PlaybackService({
-    required this.playbackApi,
+    required this.platformApi,
     required this.analyticsService,
     required this.ref,
   });
 
   Future init() async {
-    await playbackApi.setNpawConfig(
+    await platformApi.setNpawConfig(
       NpawConfig(
         accountCode: Env.npawAccountCode,
         appName: 'mobile',
       ),
     );
-    playbackApi.addRiverpod(ref);
-    playbackApi.addPlaybackListener(BccmPlaybackListener(ref: ref, apiProvider: apiProvider));
+    platformApi.addPlaybackListener(BccmPlaybackListener(ref: ref, apiProvider: apiProvider));
 
     // Keep the analytics session alive while playing stuff.
     ref.listen<PlayerState?>(primaryPlayerProvider, (_, next) {
@@ -51,7 +50,7 @@ class PlaybackService {
     // Initialize npaw
     if (Env.npawAccountCode != '') {
       PackageInfo.fromPlatform().then(
-        (packageInfo) => playbackApi.setNpawConfig(
+        (packageInfo) => platformApi.setNpawConfig(
           NpawConfig(
             accountCode: Env.npawAccountCode,
             appName: 'mobile',
@@ -84,12 +83,12 @@ class PlaybackService {
   Future playEpisode({required String playerId, required Query$FetchEpisode$episode episode, bool? autoplay, int? playbackPositionMs}) async {
     var mediaItem = _mapEpisode(episode);
     mediaItem.playbackStartPositionMs = playbackPositionMs?.toDouble();
-    await playbackApi.replaceCurrentMediaItem(playerId, mediaItem, autoplay: autoplay);
+    await platformApi.replaceCurrentMediaItem(playerId, mediaItem, autoplay: autoplay);
   }
 
   Future queueEpisode({required String playerId, required Query$FetchEpisode$episode episode}) async {
     var mediaItem = _mapEpisode(episode);
-    playbackApi.queueMediaItem(playerId, mediaItem);
+    platformApi.queueMediaItem(playerId, mediaItem);
   }
 }
 

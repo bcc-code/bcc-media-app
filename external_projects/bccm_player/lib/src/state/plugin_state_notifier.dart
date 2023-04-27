@@ -25,6 +25,10 @@ class PlayerPluginStateNotifier extends StateNotifier<PlayerPluginState> {
     }
   }
 
+  PlayerStateNotifier? getPlayer(String playerId) {
+    return state.players[playerId];
+  }
+
   void setPrimaryPlayer(String playerId) {
     state = state.copyWith(primaryPlayerId: playerId);
   }
@@ -38,22 +42,24 @@ class PlayerPluginStateNotifier extends StateNotifier<PlayerPluginState> {
     }
   }
 
-  PlayerStateNotifier _createPlayerNotifier(String playerId) {
+  PlayerStateNotifier _createPlayerNotifier(PlayerState playerState) {
     return PlayerStateNotifier(
       keepAlive: true,
-      onDispose: () => removePlayer(playerId),
-      player: PlayerState(
-        playerId: playerId,
-      ),
+      onDispose: () => removePlayer(playerState.playerId),
+      player: playerState,
     );
   }
 
-  PlayerStateNotifier addPlayerNotifier(String playerId) {
-    final notifier = _createPlayerNotifier(playerId);
+  PlayerStateNotifier addPlayerNotifier(PlayerState playerState) {
+    final existing = state.players[playerState.playerId];
+    if (existing != null) {
+      return existing;
+    }
+    final notifier = _createPlayerNotifier(playerState);
     Future.delayed(Duration.zero, () {
       if (mounted) {
         state = state.copyWith(
-          players: {...state.players, playerId: notifier},
+          players: {...state.players, playerState.playerId: notifier},
         );
       }
     });

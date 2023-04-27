@@ -1,7 +1,9 @@
+import '../../bccm_player.dart';
 import '../pigeon/playback_platform_pigeon.g.dart';
 
 class RootPigeonPlaybackListener implements PlaybackListenerPigeon {
-  RootPigeonPlaybackListener();
+  RootPigeonPlaybackListener(this.parent);
+  BccmPlayerInterface parent;
   final List<PlaybackListenerPigeon> _listeners = [];
 
   void addListener(PlaybackListenerPigeon listener) {
@@ -41,9 +43,17 @@ class RootPigeonPlaybackListener implements PlaybackListenerPigeon {
   }
 
   @override
-  void onPlayerStateUpdate(PlayerState event) {
+  void onPlayerStateUpdate(PlayerStateSnapshot event) {
     for (var listener in _listeners) {
       listener.onPlayerStateUpdate(event);
+    }
+  }
+
+  @override
+  void onPrimaryPlayerChanged(String playerId) {
+    parent.stateNotifier.setPrimaryPlayer(playerId);
+    for (var listener in _listeners) {
+      listener.onPrimaryPlayerChanged(playerId);
     }
   }
 }

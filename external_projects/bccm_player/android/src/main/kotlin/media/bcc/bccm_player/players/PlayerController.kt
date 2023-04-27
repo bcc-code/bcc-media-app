@@ -2,9 +2,11 @@ package media.bcc.bccm_player.players
 
 import android.net.Uri
 import android.os.Bundle
+import androidx.annotation.CallSuper
 import androidx.media3.common.MediaItem
 import androidx.media3.common.MediaMetadata
 import androidx.media3.common.Player
+import media.bcc.bccm_player.BccmPlayerPlugin
 import media.bcc.bccm_player.pigeon.PlaybackPlatformApi
 import media.bcc.bccm_player.players.chromecast.CastMediaItemConverter.Companion.BCCM_EXTRAS
 import media.bcc.bccm_player.players.chromecast.CastMediaItemConverter.Companion.PLAYER_DATA_IS_LIVE
@@ -16,9 +18,33 @@ abstract class PlayerController : Player.Listener {
     abstract val id: String
     abstract val player: Player
     abstract var currentPlayerViewController: ExoPlayerView?
+    open var plugin: BccmPlayerPlugin? = null
+    var pluginPlayerListener: PlayerListener? = null
     var isLive: Boolean = false
 
-    abstract fun release()
+    fun attachPlugin(newPlugin: BccmPlayerPlugin) {
+        if (this.plugin != null) detachPlugin()
+        this.plugin = newPlugin;
+        PlayerListener(this, newPlugin).also {
+            pluginPlayerListener = it
+            player.addListener(it)
+        }
+    }
+
+    @Suppress("MemberVisibilityCanBePrivate")
+    fun detachPlugin() {
+        // We can end up here, e.g. when doing hot reload with flutter
+        pluginPlayerListener?.also {
+            it.stop()
+            player.removeListener(it)
+        }
+        this.plugin = null;
+    }
+
+    @CallSuper
+    open fun release() {
+        detachPlugin();
+    }
 
     fun play() {
         player.play()
@@ -112,6 +138,28 @@ abstract class PlayerController : Player.Listener {
             miBuilder.setMimeType(mediaItem.localConfiguration?.mimeType)
         }
         return miBuilder.build()
+    }
+
+    private fun getPlaybackState(): PlaybackPlatformApi.PlaybackState {
+        return if (player.isPlaying) PlaybackPlatformApi.PlaybackState.PLAYING else PlaybackPlatformApi.PlaybackState.PAUSED;
+    }
+
+    fun getPlayerStateSnapshot(): PlaybackPlatformApi.PlayerStateSnapshot {
+        return PlaybackPlatformApi.PlayerStateSnapshot.Builder()
+            .setPlayerId(id)
+            .setIsPlaying(player.isPlaying)
+            .setCurrentMediaItem(getCurrentMediaItem())
+            .setPlaybackPositionMs(player.currentPosition.toDouble())
+            .setPlaybackState(getPlaybackState())
+            .build()
+    }
+
+    private fun getCurrentMediaItem(): PlaybackPlatformApi.MediaItem? {
+        val current = player.currentMediaItem;
+        if (current != null) {
+            return mapMediaItem(current)
+        }
+        return null
     }
 
     override fun onMediaItemTransition(mediaItem: MediaItem?, reason: Int) {

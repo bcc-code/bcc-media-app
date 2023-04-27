@@ -42,4 +42,7 @@ class BccmPlaybackListener implements PlaybackListenerPigeon {
       progressDebouncer.run(() => ref.read(apiProvider).updateProgress(episodeId: episodeId, progress: positionMs / 1000));
     }
   }
+
+  @override
+  void onPrimaryPlayerChanged(String playerId) {}
 }

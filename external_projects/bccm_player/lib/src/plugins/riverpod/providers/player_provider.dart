@@ -4,12 +4,11 @@ import 'package:riverpod/riverpod.dart';
 
 final playerProviderFor = StateNotifierProvider.family<PlayerStateNotifier, PlayerState?, String>((ref, playerId) {
   final pluginStateNotifier = ref.read(pluginStateProvider.notifier);
-  return ref.watch(pluginStateProvider.select((value) => value.players[playerId] ?? pluginStateNotifier.addPlayerNotifier(playerId)));
-});
-
-final castPlayerProvider = StateNotifierProvider<PlayerStateNotifier, PlayerState?>((ref) {
-  final provider = playerProviderFor('chromecast');
-  return ref.watch(provider.notifier);
+  return ref.watch(
+    pluginStateProvider.select(
+      (value) => value.players[playerId] ?? pluginStateNotifier.addPlayerNotifier(PlayerState(playerId: playerId)),
+    ),
+  );
 });
 
 final primaryPlayerProvider = StateNotifierProvider<PlayerStateNotifier, PlayerState?>((ref) {

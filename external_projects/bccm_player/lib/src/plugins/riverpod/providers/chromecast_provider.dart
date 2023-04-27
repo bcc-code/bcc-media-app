@@ -8,4 +8,3 @@ import '../../../native/chromecast_events.dart';
 final chromecastEventStreamProvider = Provider<Stream<ChromecastEvent>>((ref) {
   return BccmPlayerInterface.instance.chromecastEventStream();
 });
-final isCasting = StateProvider<bool>((ref) => false);

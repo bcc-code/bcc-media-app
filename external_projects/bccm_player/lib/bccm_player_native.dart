@@ -1,34 +1,44 @@
+import 'package:bccm_player/plugins/riverpod.dart';
 import 'package:bccm_player/src/pigeon/chromecast_pigeon.g.dart';
 import 'package:bccm_player/src/native/root_pigeon_playback_listener.dart';
 import 'package:bccm_player/src/native/chromecast_pigeon_listener.dart';
 import 'package:bccm_player/src/pigeon/playback_platform_pigeon.g.dart';
-import 'package:bccm_player/src/playback_platform_interface.dart';
+
+import 'bccm_player.dart';
 
 /// An implementation of [BccmPlayerPlatform] that uses pigeon.
 class BccmPlayerNative extends BccmPlayerInterface {
   final PlaybackPlatformPigeon _pigeon = PlaybackPlatformPigeon();
-  final RootPigeonPlaybackListener _rootPlaybackListener = RootPigeonPlaybackListener();
+  late final RootPigeonPlaybackListener _rootPlaybackListener;
   final ChromecastPigeonListener _chromecastListener = ChromecastPigeonListener();
-
-  BccmPlayerNative() {
-    ChromecastPigeon.setup(_chromecastListener);
-    PlaybackListenerPigeon.setup(_rootPlaybackListener);
-  }
 
   @override
   chromecastEventStream() => _chromecastListener.stream();
 
   @override
+  Future<void> setup() async {
+    await _pigeon.attach();
+    _rootPlaybackListener = RootPigeonPlaybackListener(this);
+    ChromecastPigeon.setup(_chromecastListener);
+    PlaybackListenerPigeon.setup(_rootPlaybackListener);
+    // load primary player state
+    final initialState = await getPlayerState();
+    if (initialState != null) {
+      stateNotifier.addPlayerNotifier(PlayerState.fromPlayerStateSnapshot(initialState));
+      stateNotifier.setPrimaryPlayer(initialState.playerId);
+    }
+  }
+
+  @override
   Future<String> newPlayer({String? url}) async {
     final playerId = await _pigeon.newPlayer(url);
-    stateNotifier.addPlayerNotifier(playerId);
+    stateNotifier.addPlayerNotifier(PlayerState(playerId: playerId));
     return playerId;
   }
 
   @override
   Future<bool> setPrimary(String id) async {
     await _pigeon.setPrimary(id);
-    stateNotifier.setPrimaryPlayer(id);
     return true;
   }
 
@@ -45,6 +55,11 @@ class BccmPlayerNative extends BccmPlayerInterface {
   @override
   Future<ChromecastState?> getChromecastState() {
     return _pigeon.getChromecastState();
+  }
+
+  @override
+  Future<PlayerStateSnapshot?> getPlayerState({String? playerId}) {
+    return _pigeon.getPlayerState(playerId);
   }
 
   @override

@@ -4,6 +4,10 @@ import 'package:bccm_player/src/pigeon/playback_platform_pigeon.g.dart';
 import 'package:riverpod/riverpod.dart';
 import '../../utils/extensions.dart';
 
+final playbackListenerProvider = Provider<RiverpodPlaybackListener>((ref) {
+  return RiverpodPlaybackListener(ref: ref);
+});
+
 class RiverpodPlaybackListener implements PlaybackListenerPigeon {
   Ref ref;
 
@@ -34,7 +38,9 @@ class RiverpodPlaybackListener implements PlaybackListenerPigeon {
 
   @override
   void onPlayerStateUpdate(event) {
-    final positionMs = event.playbackPositionMs?.finiteOrNull()?.round();
-    notifierFor(event.playerId)?.setPlaybackPosition(positionMs);
+    notifierFor(event.playerId)?.setStateFromSnapshot(event);
   }
+
+  @override
+  void onPrimaryPlayerChanged(String playerId) {}
 }

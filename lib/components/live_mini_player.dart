@@ -48,12 +48,7 @@ class _LiveMiniPlayerState extends ConsumerState<LiveMiniPlayer> {
 
   @override
   Widget build(BuildContext context) {
-    PlayerState? player;
-    if (ref.watch(isCasting)) {
-      player = ref.watch(castPlayerProvider);
-    } else {
-      player = ref.watch(primaryPlayerProvider);
-    }
+    PlayerState? player = ref.watch(primaryPlayerProvider);
 
     if (player == null || player.isInPipMode) {
       return const SizedBox.shrink();

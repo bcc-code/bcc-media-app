@@ -1,5 +1,6 @@
 package media.bcc.bccm_player.players
 
+import android.util.Log
 import androidx.media3.common.MediaItem
 import androidx.media3.common.MediaMetadata
 import androidx.media3.common.Player
@@ -12,15 +13,28 @@ class PlayerListener(private val playerController: PlayerController, val plugin:
     Player.Listener {
     private val refreshStateTimer: Timer = Timer(object : Timer.TimerEventListener {
         override fun onTimerEvent(delta: Long) {
-            val event = PlaybackPlatformApi.PlayerState.Builder().setPlayerId(playerController.id)
-                .setPlaybackPositionMs(playerController.player.currentPosition.toDouble())
-                .setIsPlaying(playerController.player.isPlaying)
-            plugin.playbackPigeon?.onPlayerStateUpdate(event.build()) {}
+            Log.d(
+                "bccm",
+                "refreshStateTimer onTimerEvent(), hashCode:" + this@PlayerListener.hashCode()
+            )
+            plugin.playbackPigeon?.onPlayerStateUpdate(playerController.getPlayerStateSnapshot()) {}
         }
     }, 15000)
 
     init {
+        Log.d(
+            "bccm",
+            "refreshStateTimer start(), ${playerController}, hashCode:" + this@PlayerListener.hashCode()
+        )
         refreshStateTimer.start()
+    }
+
+    fun stop() {
+        Log.d(
+            "bccm",
+            "refreshStateTimer stop(), ${playerController}, hashCode:" + this@PlayerListener.hashCode()
+        )
+        refreshStateTimer.stop()
     }
 
     override fun onIsPlayingChanged(isPlaying: Boolean) {
@@ -39,6 +53,11 @@ class PlayerListener(private val playerController: PlayerController, val plugin:
         } else {
             event.setMediaItem(null)
         }
+        Log.d(
+            "bccm",
+            "onMediaItemTransition" + plugin.playbackPigeon.toString() + "event:" + event.build()
+                .toString()
+        );
         plugin.playbackPigeon?.onMediaItemTransition(event.build()) {}
     }
 

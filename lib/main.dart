@@ -1,6 +1,8 @@
 import 'dart:async';
 
 import 'package:alice/alice.dart';
+import 'package:bccm_player/bccm_player.dart';
+import 'package:bccm_player/plugins/riverpod.dart';
 import 'package:brunstadtv_app/providers/notification_service.dart';
 import 'package:brunstadtv_app/providers/unleash.dart';
 import 'package:brunstadtv_app/providers/router_provider.dart';
@@ -92,6 +94,7 @@ Future<ProviderContainer> initProviderContainer(List<Override> overrides) async 
   providerContainer.read(analyticsProvider);
   providerContainer.read(deepLinkServiceProvider);
   providerContainer.read(notificationServiceProvider);
+  await providerContainer.setupBccmPlayer(BccmPlayerInterface.instance);
   await providerContainer.read(playbackServiceProvider).init();
   try {
     await providerContainer.read(unleashProvider.future).timeout(const Duration(milliseconds: 300));

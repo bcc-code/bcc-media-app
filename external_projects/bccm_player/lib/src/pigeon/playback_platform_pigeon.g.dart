@@ -8,6 +8,12 @@ import 'dart:typed_data' show Float64List, Int32List, Int64List, Uint8List;
 import 'package:flutter/foundation.dart' show ReadBuffer, WriteBuffer;
 import 'package:flutter/services.dart';
 
+enum PlaybackState {
+  stopped,
+  paused,
+  playing,
+}
+
 enum CastConnectionState {
   none,
   noDevicesAvailable,
@@ -177,10 +183,12 @@ class MediaMetadata {
   }
 }
 
-class PlayerState {
-  PlayerState({
+class PlayerStateSnapshot {
+  PlayerStateSnapshot({
     required this.playerId,
     required this.isPlaying,
+    required this.playbackState,
+    this.currentMediaItem,
     this.playbackPositionMs,
   });
 
@@ -188,22 +196,32 @@ class PlayerState {
 
   bool isPlaying;
 
+  PlaybackState playbackState;
+
+  MediaItem? currentMediaItem;
+
   double? playbackPositionMs;
 
   Object encode() {
     return <Object?>[
       playerId,
       isPlaying,
+      playbackState.index,
+      currentMediaItem?.encode(),
       playbackPositionMs,
     ];
   }
 
-  static PlayerState decode(Object result) {
+  static PlayerStateSnapshot decode(Object result) {
     result as List<Object?>;
-    return PlayerState(
+    return PlayerStateSnapshot(
       playerId: result[0]! as String,
       isPlaying: result[1]! as bool,
-      playbackPositionMs: result[2] as double?,
+      playbackState: PlaybackState.values[result[2]! as int],
+      currentMediaItem: result[3] != null
+          ? MediaItem.decode(result[3]! as List<Object?>)
+          : null,
+      playbackPositionMs: result[4] as double?,
     );
   }
 }
@@ -361,7 +379,7 @@ class _PlaybackPlatformPigeonCodec extends StandardMessageCodec {
     } else if (value is NpawConfig) {
       buffer.putUint8(132);
       writeValue(buffer, value.encode());
-    } else if (value is PlayerState) {
+    } else if (value is PlayerStateSnapshot) {
       buffer.putUint8(133);
       writeValue(buffer, value.encode());
     } else {
@@ -383,7 +401,7 @@ class _PlaybackPlatformPigeonCodec extends StandardMessageCodec {
       case 132: 
         return NpawConfig.decode(readValue(buffer)!);
       case 133: 
-        return PlayerState.decode(readValue(buffer)!);
+        return PlayerStateSnapshot.decode(readValue(buffer)!);
       default:
         return super.readValueOfType(type, buffer);
     }
@@ -399,6 +417,28 @@ class PlaybackPlatformPigeon {
   final BinaryMessenger? _binaryMessenger;
 
   static const MessageCodec<Object?> codec = _PlaybackPlatformPigeonCodec();
+
+  Future<void> attach() async {
+    final BasicMessageChannel<Object?> channel = BasicMessageChannel<Object?>(
+        'dev.flutter.pigeon.PlaybackPlatformPigeon.attach', codec,
+        binaryMessenger: _binaryMessenger);
+    final List<Object?>? replyList =
+        await channel.send(null) as List<Object?>?;
+    if (replyList == null) {
+      throw PlatformException(
+        code: 'channel-error',
+        message: 'Unable to establish connection on channel.',
+      );
+    } else if (replyList.length > 1) {
+      throw PlatformException(
+        code: replyList[0]! as String,
+        message: replyList[1] as String?,
+        details: replyList[2],
+      );
+    } else {
+      return;
+    }
+  }
 
   Future<String> newPlayer(String? arg_url) async {
     final BasicMessageChannel<Object?> channel = BasicMessageChannel<Object?>(
@@ -625,7 +665,7 @@ class PlaybackPlatformPigeon {
     }
   }
 
-  Future<PlayerState?> getPlayerState(String arg_playerId) async {
+  Future<PlayerStateSnapshot?> getPlayerState(String? arg_playerId) async {
     final BasicMessageChannel<Object?> channel = BasicMessageChannel<Object?>(
         'dev.flutter.pigeon.PlaybackPlatformPigeon.getPlayerState', codec,
         binaryMessenger: _binaryMessenger);
@@ -643,7 +683,7 @@ class PlaybackPlatformPigeon {
         details: replyList[2],
       );
     } else {
-      return (replyList[0] as PlayerState?);
+      return (replyList[0] as PlayerStateSnapshot?);
     }
   }
 
@@ -733,7 +773,7 @@ class _PlaybackListenerPigeonCodec extends StandardMessageCodec {
     } else if (value is PictureInPictureModeChangedEvent) {
       buffer.putUint8(132);
       writeValue(buffer, value.encode());
-    } else if (value is PlayerState) {
+    } else if (value is PlayerStateSnapshot) {
       buffer.putUint8(133);
       writeValue(buffer, value.encode());
     } else if (value is PositionDiscontinuityEvent) {
@@ -758,7 +798,7 @@ class _PlaybackListenerPigeonCodec extends StandardMessageCodec {
       case 132: 
         return PictureInPictureModeChangedEvent.decode(readValue(buffer)!);
       case 133: 
-        return PlayerState.decode(readValue(buffer)!);
+        return PlayerStateSnapshot.decode(readValue(buffer)!);
       case 134: 
         return PositionDiscontinuityEvent.decode(readValue(buffer)!);
       default:
@@ -771,9 +811,11 @@ class _PlaybackListenerPigeonCodec extends StandardMessageCodec {
 abstract class PlaybackListenerPigeon {
   static const MessageCodec<Object?> codec = _PlaybackListenerPigeonCodec();
 
+  void onPrimaryPlayerChanged(String playerId);
+
   void onPositionDiscontinuity(PositionDiscontinuityEvent event);
 
-  void onPlayerStateUpdate(PlayerState event);
+  void onPlayerStateUpdate(PlayerStateSnapshot event);
 
   void onIsPlayingChanged(IsPlayingChangedEvent event);
 
@@ -782,6 +824,25 @@ abstract class PlaybackListenerPigeon {
   void onPictureInPictureModeChanged(PictureInPictureModeChangedEvent event);
 
   static void setup(PlaybackListenerPigeon? api, {BinaryMessenger? binaryMessenger}) {
+    {
+      final BasicMessageChannel<Object?> channel = BasicMessageChannel<Object?>(
+          'dev.flutter.pigeon.PlaybackListenerPigeon.onPrimaryPlayerChanged', codec,
+          binaryMessenger: binaryMessenger);
+      if (api == null) {
+        channel.setMessageHandler(null);
+      } else {
+        channel.setMessageHandler((Object? message) async {
+          assert(message != null,
+          'Argument for dev.flutter.pigeon.PlaybackListenerPigeon.onPrimaryPlayerChanged was null.');
+          final List<Object?> args = (message as List<Object?>?)!;
+          final String? arg_playerId = (args[0] as String?);
+          assert(arg_playerId != null,
+              'Argument for dev.flutter.pigeon.PlaybackListenerPigeon.onPrimaryPlayerChanged was null, expected non-null String.');
+          api.onPrimaryPlayerChanged(arg_playerId!);
+          return;
+        });
+      }
+    }
     {
       final BasicMessageChannel<Object?> channel = BasicMessageChannel<Object?>(
           'dev.flutter.pigeon.PlaybackListenerPigeon.onPositionDiscontinuity', codec,
@@ -812,9 +873,9 @@ abstract class PlaybackListenerPigeon {
           assert(message != null,
           'Argument for dev.flutter.pigeon.PlaybackListenerPigeon.onPlayerStateUpdate was null.');
           final List<Object?> args = (message as List<Object?>?)!;
-          final PlayerState? arg_event = (args[0] as PlayerState?);
+          final PlayerStateSnapshot? arg_event = (args[0] as PlayerStateSnapshot?);
           assert(arg_event != null,
-              'Argument for dev.flutter.pigeon.PlaybackListenerPigeon.onPlayerStateUpdate was null, expected non-null PlayerState.');
+              'Argument for dev.flutter.pigeon.PlaybackListenerPigeon.onPlayerStateUpdate was null, expected non-null PlayerStateSnapshot.');
           api.onPlayerStateUpdate(arg_event!);
           return;
         });
