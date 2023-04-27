@@ -54,20 +54,28 @@ class _TextCollapsibleState extends State<TextCollapsible> {
     );
   }
 
+  Size getTextSpanSize(TextSpan textSpan, double maxWidth) {
+    final textPainter = TextPainter(text: textSpan, textDirection: Directionality.of(context));
+    textPainter.layout(maxWidth: maxWidth);
+    final textSpanSize = textPainter.size;
+    textPainter.dispose();
+    return textSpanSize;
+  }
+
   @override
   Widget build(BuildContext context) {
     return LayoutBuilder(
       builder: (context, constraints) {
-        final showMoreLinkSpan = getLinkTextSpan(widget.expandLinkText ?? S.of(context).showMore);
-        final showMoreEllipsisSpan = TextSpan(children: [TextSpan(text: ellipsis, style: widget.style), showMoreLinkSpan]);
-        final textPainter = TextPainter(text: showMoreEllipsisSpan, maxLines: widget.maxLines, textDirection: Directionality.of(context));
-        textPainter.layout(maxWidth: constraints.maxWidth);
-        final showMoreEllipsisSize = textPainter.size;
+        final expandLinkSpan = getLinkTextSpan(widget.expandLinkText ?? S.of(context).showMore);
+        final collapseLinkSpan = getLinkTextSpan(widget.collapseLinkText ?? S.of(context).showLess);
 
-        final showLessLinkSpan = getLinkTextSpan(widget.collapseLinkText ?? S.of(context).showLess);
+        final expandEllipsisSize = getTextSpanSize(
+          TextSpan(children: [TextSpan(text: ellipsis, style: widget.style), expandLinkSpan]),
+          constraints.maxWidth,
+        );
 
         final textSpan = TextSpan(text: widget.text, style: widget.style);
-        textPainter.text = textSpan;
+        final textPainter = TextPainter(text: textSpan, maxLines: widget.maxLines, textDirection: Directionality.of(context));
         textPainter.layout(maxWidth: constraints.maxWidth);
         final textSize = textPainter.size;
 
@@ -75,20 +83,22 @@ class _TextCollapsibleState extends State<TextCollapsible> {
           return RichText(text: textSpan);
         }
 
-        final textTruncatePosition = textPainter.getPositionForOffset(Offset(textSize.width - showMoreEllipsisSize.width, textSize.height));
+        final textTruncatePosition = textPainter.getPositionForOffset(Offset(textSize.width - expandEllipsisSize.width, textSize.height));
         final textTruncateIndex = textPainter.getOffsetBefore(textTruncatePosition.offset);
+
+        textPainter.dispose();
 
         return collapsed
             ? RichText(
                 text: TextSpan(
                   children: [
                     TextSpan(text: '${widget.text.substring(0, textTruncateIndex)}$ellipsis', style: widget.style),
-                    showMoreLinkSpan,
+                    expandLinkSpan,
                   ],
                 ),
                 maxLines: widget.maxLines,
               )
-            : RichText(text: TextSpan(children: [textSpan, showLessLinkSpan]));
+            : RichText(text: TextSpan(children: [textSpan, collapseLinkSpan]));
       },
     );
   }
