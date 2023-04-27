@@ -23,6 +23,9 @@ class SDa extends S {
   String get calendarWeek => 'uge';
 
   @override
+  String get close => 'Close';
+
+  @override
   String get loading => 'Indlæser';
 
   @override
@@ -53,6 +56,25 @@ class SDa extends S {
   String get signInButton => 'Log ind';
 
   @override
+  String get signInOrSignUp => 'Sign up / Sign in';
+
+  @override
+  String get signUpButton => 'Sign up now';
+
+  @override
+  String get signUpTitle => 'Sign up';
+
+  @override
+  String get signUpDescription => 'Get access to more content and better features by creating an account.';
+
+  @override
+  String get signUpAgreePrivacyPolicy =>
+      'I certify that I am 13 years of age or older, and I agree to the <a>Privacy Policy</a> and <a>Terms of use</a>.';
+
+  @override
+  String get setPassword => 'Set password';
+
+  @override
   String get tryAgainButton => 'Prøv igen';
 
   @override
@@ -75,6 +97,9 @@ class SDa extends S {
 
   @override
   String get ok => 'OK';
+
+  @override
+  String get open => 'Open';
 
   @override
   String get loginFailedCheckNetwork => 'Login mislykkedes. Tjek din netværksforbindelse, og prøv igen.';
@@ -111,6 +136,18 @@ class SDa extends S {
 
   @override
   String get cancel => 'Annuller';
+
+  @override
+  String get cancelConfirmation => 'Are you sure you want to cancel?';
+
+  @override
+  String get cancelConfirmationDescription => 'Any unsaved changes will be lost.';
+
+  @override
+  String get goBack => 'Go back';
+
+  @override
+  String get yesCancel => 'Yes, Cancel';
 
   @override
   String get upNext => 'Næste';
@@ -152,6 +189,9 @@ class SDa extends S {
   String get search => 'Søg';
 
   @override
+  String get sendFeedback => 'Send Feedback';
+
+  @override
   String get noResults => 'Ingen resultater fundet';
 
   @override
@@ -159,6 +199,9 @@ class SDa extends S {
 
   @override
   String get play => 'Afspil';
+
+  @override
+  String get pause => 'Pause';
 
   @override
   String get castQueue => 'Cast listen';
@@ -324,6 +367,9 @@ class SDa extends S {
   String get sendFailDescription => 'Kunne gik galt. Tjek din internetforbindelse og prøv igen.';
 
   @override
+  String get sendSuccessDescription => 'We appreciate your feedback.';
+
+  @override
   String get today => 'I dag';
 
   @override
@@ -356,6 +402,12 @@ class SDa extends S {
 
   @override
   String get liveNow => 'Live nu';
+
+  @override
+  String get comingSoon => 'Coming soon';
+
+  @override
+  String get newEpisode => 'New';
 
   @override
   String get tomorrow => 'I morgen';
@@ -450,6 +502,9 @@ class SDa extends S {
   String get exploreContent => 'Udforsk indhold';
 
   @override
+  String get explorePublicContent => 'Explore public content';
+
+  @override
   String get taskCompleted => 'Opgave udført';
 
   @override
@@ -523,7 +578,18 @@ class SDa extends S {
   String get continueButton => 'Fortsæt';
 
   @override
+  String get registerButton => 'Register';
+
+  @override
   String get achievements => 'Streaks';
+
+  @override
+  String passwordConditionLength(int n) {
+    return 'Minimum $n characters';
+  }
+
+  @override
+  String get passwordConditionComplexity => 'Must contain lower case, uppercase and numbers.';
 
   @override
   String get oops => 'Ups!';
@@ -542,13 +608,4 @@ class SDa extends S {
 
   @override
   String get details => 'Detaljer';
-
-  @override
-  String get myList => 'My List';
-
-  @override
-  String get didYouKnowTitle => 'Did you know?';
-
-  @override
-  String get didYouKnowContent => 'You can add your favorite shows to \"My List\" by tapping the heart.';
 }

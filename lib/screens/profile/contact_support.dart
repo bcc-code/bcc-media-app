@@ -1,23 +1,25 @@
 import 'package:brunstadtv_app/components/general_app_bar.dart';
 import 'package:brunstadtv_app/components/loading_indicator.dart';
-import 'package:brunstadtv_app/helpers/string_utils.dart';
 import 'package:flutter/material.dart';
-import 'dart:io';
+import 'package:universal_io/io.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:device_info_plus/device_info_plus.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import '../../components/web/dialog_on_web.dart';
 import '../../graphql/client.dart';
 import '../../graphql/queries/send_support_email.graphql.dart';
-import '../../helpers/btv_buttons.dart';
-import '../../helpers/btv_colors.dart';
-import '../../helpers/btv_typography.dart';
+import '../../helpers/ui/btv_buttons.dart';
+import '../../helpers/version.dart';
+import '../../theme/bccm_colors.dart';
+import '../../theme/bccm_input_decorations.dart';
+import '../../theme/bccm_typography.dart';
 import '../../helpers/constants.dart';
-import '../../helpers/utils.dart';
 import '../../l10n/app_localizations.dart';
-import '../../providers/auth_state.dart';
+import '../../providers/auth_state/auth_state.dart';
+import '../../helpers/extensions.dart';
 
 class ContactSupport extends ConsumerStatefulWidget {
   const ContactSupport({super.key});
@@ -64,43 +66,45 @@ class _ContactSupportState extends ConsumerState<ContactSupport> {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
-      child: Scaffold(
-        appBar: GeneralAppBar(
-          leftActions: [
-            BtvButton(
-              labelText: S.of(context).cancel,
-              onPressed: context.router.pop,
-            )
-          ],
-          rightActions: [
-            if (isOnInputPage && content.isNotEmpty)
-              BtvButton.small(
-                labelText: S.of(context).send,
-                onPressed: onSend,
+    return DialogOnWeb(
+      child: GestureDetector(
+        onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
+        child: Scaffold(
+          appBar: GeneralAppBar(
+            leftActions: [
+              BtvButton(
+                labelText: S.of(context).cancel,
+                onPressed: context.router.pop,
               )
-          ],
-        ),
-        body: SafeArea(
-          child: Container(
-            padding: const EdgeInsets.all(16),
-            child: IndexedStack(
-              index: isOnInputPage ? 0 : 1,
-              children: [
-                _InputPage(deviceInfo: deviceInfo, onContentChanged: onContentChanged),
-                FutureBuilder<bool>(
-                  future: sendSupportEmailFuture,
-                  builder: (BuildContext context, AsyncSnapshot<bool> snapshot) {
-                    if (snapshot.hasData) {
-                      return _SuccessPage();
-                    } else if (snapshot.hasError) {
-                      return _FailurePage(onTryAgain: onTryAgain);
-                    }
-                    return sendingIndicator;
-                  },
-                ),
-              ],
+            ],
+            rightActions: [
+              if (isOnInputPage && content.isNotEmpty)
+                BtvButton.small(
+                  labelText: S.of(context).send,
+                  onPressed: onSend,
+                )
+            ],
+          ),
+          body: SafeArea(
+            child: Container(
+              padding: const EdgeInsets.all(16),
+              child: IndexedStack(
+                index: isOnInputPage ? 0 : 1,
+                children: [
+                  _InputPage(deviceInfo: deviceInfo, onContentChanged: onContentChanged),
+                  FutureBuilder<bool>(
+                    future: sendSupportEmailFuture,
+                    builder: (BuildContext context, AsyncSnapshot<bool> snapshot) {
+                      if (snapshot.hasData) {
+                        return _SuccessPage();
+                      } else if (snapshot.hasError) {
+                        return _FailurePage(onTryAgain: onTryAgain);
+                      }
+                      return sendingIndicator;
+                    },
+                  ),
+                ],
+              ),
             ),
           ),
         ),
@@ -185,7 +189,7 @@ class _ContactSupportState extends ConsumerState<ContactSupport> {
           ),
           Text(
             S.of(context).sending,
-            style: BtvTextStyles.body1,
+            style: BccmTextStyles.body1,
           ),
         ],
       ),
@@ -250,63 +254,28 @@ class _InputPageState extends State<_InputPage> {
         padding: const EdgeInsets.only(bottom: 32),
         child: Text(
           S.of(context).contactSupport,
-          style: BtvTextStyles.headline1,
+          style: BccmTextStyles.headline1,
         ),
       ),
-      _TextFieldInput(
-        textController: textController,
+      Container(
+        margin: const EdgeInsets.only(top: 8),
+        child: TextField(
+          minLines: 9,
+          maxLines: 13,
+          controller: textController,
+          decoration: BccmInputDecorations.textFormField.copyWith(hintText: S.of(context).concernTextPlaceholder),
+          style: BccmTextStyles.body1.copyWith(color: BccmColors.label1),
+        ),
       ),
       Padding(
         padding: const EdgeInsets.only(top: 20, bottom: 10),
         child: Text(
           S.of(context).debugInfoExplanation,
-          style: BtvTextStyles.body2.copyWith(color: BtvColors.label1),
+          style: BccmTextStyles.body2.copyWith(color: BccmColors.label1),
         ),
       ),
       widget.deviceInfo != null ? _DeviceInfoList(data: widget.deviceInfo!) : Text('${S.of(context).loading}...'),
     ]));
-  }
-}
-
-class _TextFieldInput extends StatelessWidget {
-  final TextEditingController textController;
-
-  const _TextFieldInput({required this.textController});
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      margin: const EdgeInsets.only(top: 8),
-      child: TextField(
-        minLines: 9,
-        maxLines: 13,
-        textAlign: TextAlign.start,
-        keyboardType: TextInputType.multiline,
-        textInputAction: TextInputAction.newline,
-        style: BtvTextStyles.body1.copyWith(color: BtvColors.label1),
-        decoration: InputDecoration(
-          hintText: S.of(context).concernTextPlaceholder,
-          hintStyle: BtvTextStyles.body1,
-          filled: true,
-          fillColor: BtvColors.background2,
-          enabledBorder: const OutlineInputBorder(
-            borderRadius: BorderRadius.all(Radius.circular(6.0)),
-            borderSide: BorderSide(
-              width: 1,
-              color: BtvColors.background1,
-            ),
-          ),
-          focusedBorder: const OutlineInputBorder(
-              borderRadius: BorderRadius.all(Radius.circular(6.0)),
-              borderSide: BorderSide(
-                width: 1,
-                color: BtvColors.tint1,
-              )),
-          contentPadding: const EdgeInsets.all(16),
-        ),
-        controller: textController,
-      ),
-    );
   }
 }
 
@@ -335,7 +304,7 @@ class _DeviceInfoList extends StatelessWidget {
                       fit: FlexFit.tight,
                       child: Text(
                         item.title,
-                        style: BtvTextStyles.body2,
+                        style: BccmTextStyles.body2,
                       ),
                     ),
                     Flexible(
@@ -343,7 +312,7 @@ class _DeviceInfoList extends StatelessWidget {
                       child: Text(
                         item.content ?? 'N/A',
                         textAlign: TextAlign.right,
-                        style: BtvTextStyles.body2.copyWith(color: BtvColors.label1),
+                        style: BccmTextStyles.body2.copyWith(color: BccmColors.label1),
                       ),
                     ),
                   ],
@@ -351,7 +320,7 @@ class _DeviceInfoList extends StatelessWidget {
               ),
               const Divider(
                 height: 1,
-                color: BtvColors.separatorOnLight,
+                color: BccmColors.separatorOnLight,
               ),
             ],
           ),
@@ -373,13 +342,13 @@ class _SuccessPage extends StatelessWidget {
               Text(
                 S.of(context).thankYouSupportTitle,
                 textAlign: TextAlign.center,
-                style: BtvTextStyles.headline1,
+                style: BccmTextStyles.headline1,
               ),
               const SizedBox(height: 12),
               Text(
                 S.of(context).thankYouSupportDescription,
                 textAlign: TextAlign.center,
-                style: BtvTextStyles.body1.copyWith(color: BtvColors.label3),
+                style: BccmTextStyles.body1.copyWith(color: BccmColors.label3),
               ),
             ],
           ),
@@ -410,13 +379,13 @@ class _FailurePage extends StatelessWidget {
               Text(
                 S.of(context).sendFail,
                 textAlign: TextAlign.center,
-                style: BtvTextStyles.headline1,
+                style: BccmTextStyles.headline1,
               ),
               const SizedBox(height: 12),
               Text(
                 S.of(context).sendFailDescription,
                 textAlign: TextAlign.center,
-                style: BtvTextStyles.body1.copyWith(color: BtvColors.label3),
+                style: BccmTextStyles.body1.copyWith(color: BccmColors.label3),
               ),
             ],
           ),

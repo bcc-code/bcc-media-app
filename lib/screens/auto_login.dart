@@ -2,28 +2,29 @@ import 'dart:async';
 
 import 'package:app_links/app_links.dart';
 import 'package:auto_route/auto_route.dart';
-import 'package:brunstadtv_app/api/brunstadtv.dart';
+import 'package:brunstadtv_app/helpers/event_bus.dart';
 import 'package:brunstadtv_app/providers/app_config.dart';
-import 'package:brunstadtv_app/providers/auth_state.dart';
+import 'package:brunstadtv_app/providers/auth_state/auth_state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../components/loading_indicator.dart';
-import '../helpers/btv_colors.dart';
-import '../helpers/btv_typography.dart';
-import '../helpers/navigation_utils.dart';
+import '../models/events/app_ready.dart';
+import '../theme/bccm_colors.dart';
+import '../theme/bccm_typography.dart';
+import '../helpers/navigation/navigation_utils.dart';
 import '../helpers/utils.dart';
 import '../l10n/app_localizations.dart';
 import '../router/router.gr.dart';
 
-class AutoLoginScreeen extends ConsumerStatefulWidget {
-  const AutoLoginScreeen({super.key});
+class AutoLoginScreen extends ConsumerStatefulWidget {
+  const AutoLoginScreen({super.key});
 
   @override
   ConsumerState<ConsumerStatefulWidget> createState() => _AutoLoginScreeenState();
 }
 
-class _AutoLoginScreeenState extends ConsumerState<AutoLoginScreeen> {
+class _AutoLoginScreeenState extends ConsumerState<AutoLoginScreen> {
   Future<void>? authFuture;
 
   @override
@@ -38,32 +39,33 @@ class _AutoLoginScreeenState extends ConsumerState<AutoLoginScreeen> {
   }
 
   void load() async {
-    final hasCredentials = ref.read(authStateProvider).auth0AccessToken != null;
     final deepLinkUri = await AppLinks().getInitialAppLink();
-    if (hasCredentials) {
-      WidgetsBinding.instance.scheduleFrameCallback((d) {
-        navigate(deepLinkUri: deepLinkUri);
-      });
-    } else {
-      setState(() {
-        authFuture = ref.read(authStateProvider.notifier).load().then((_) {
-          navigate(deepLinkUri: deepLinkUri);
-        });
-      });
-    }
+    authFuture = ref.read(authStateProvider.notifier).load();
+    authFuture!.then((_) {
+      debugPrint('navigate(deepLinkUri: $deepLinkUri)');
+      navigate(deepLinkUri: deepLinkUri);
+      globalEventBus.fire(AppReadyEvent());
+    });
   }
 
   void navigate({Uri? deepLinkUri}) {
     if (!mounted) return;
-    if (deepLinkUri != null) {
-      context.router.navigateNamedFromRoot(uriStringWithoutHost(deepLinkUri));
+    final router = context.router;
+    if (deepLinkUri != null && !deepLinkUri.path.contains('auto-login')) {
+      router.replaceAll([const TabsRootScreenRoute()]);
+      router.navigateNamedFromRoot(
+        uriStringWithoutHost(deepLinkUri),
+        onFailure: (f) {
+          router.navigateNamedFromRoot('/');
+        },
+      );
       return;
     }
     final hasCredentials = ref.read(authStateProvider).auth0AccessToken != null;
     if (!hasCredentials) {
-      context.router.replaceAll([LoginScreenRoute()]);
+      router.replaceAll([OnboardingScreenRoute()]);
     } else {
-      context.router.replaceAll([const TabsRootScreenRoute()]);
+      router.replaceAll([const TabsRootScreenRoute()]);
     }
   }
 
@@ -81,7 +83,7 @@ class _AutoLoginScreeenState extends ConsumerState<AutoLoginScreeen> {
   Widget error(BuildContext context) => Scaffold(
         body: SafeArea(
           child: Padding(
-            padding: EdgeInsets.all(16),
+            padding: const EdgeInsets.all(16),
             child: Stack(
               children: [
                 Positioned(
@@ -99,7 +101,7 @@ class _AutoLoginScreeenState extends ConsumerState<AutoLoginScreeen> {
                           width: 56,
                           child: Text(
                             S.of(context).logOutButton,
-                            style: BtvTextStyles.button2,
+                            style: BccmTextStyles.button2,
                           ),
                         ),
                       ),
@@ -111,13 +113,13 @@ class _AutoLoginScreeenState extends ConsumerState<AutoLoginScreeen> {
                       child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
                         Text(
                           S.of(context).anErrorOccurred,
-                          style: BtvTextStyles.headline1,
+                          style: BccmTextStyles.headline1,
                           textAlign: TextAlign.center,
                         ),
                         const SizedBox(height: 12),
                         Text(
                           S.of(context).loginFailedCheckNetwork,
-                          style: BtvTextStyles.body1.copyWith(color: BtvColors.label3),
+                          style: BccmTextStyles.body1.copyWith(color: BccmColors.label3),
                           textAlign: TextAlign.center,
                         ),
                       ]),
@@ -127,7 +129,7 @@ class _AutoLoginScreeenState extends ConsumerState<AutoLoginScreeen> {
                       padding: const EdgeInsets.only(bottom: 16),
                       child: ElevatedButton(
                         style: ElevatedButton.styleFrom(
-                          shadowColor: BtvColors.tint1,
+                          shadowColor: BccmColors.tint1,
                           shape: const RoundedRectangleBorder(
                             side: BorderSide.none,
                             borderRadius: BorderRadius.all(Radius.circular(24)),
@@ -135,12 +137,12 @@ class _AutoLoginScreeenState extends ConsumerState<AutoLoginScreeen> {
                           minimumSize: const Size.fromHeight(50),
                         ),
                         onPressed: (() {
+                          reloadAppConfig(ref);
                           load();
-                          ref.read(appConfigProvider.notifier).state = ref.read(apiProvider).queryAppConfig();
                         }),
                         child: Text(
                           S.of(context).tryAgainButton,
-                          style: BtvTextStyles.button1.copyWith(color: BtvColors.onTint),
+                          style: BccmTextStyles.button1.copyWith(color: BccmColors.onTint),
                         ),
                       ),
                     ),
@@ -159,7 +161,7 @@ class _AutoLoginScreeenState extends ConsumerState<AutoLoginScreeen> {
             children: [
               const LoadingIndicator(),
               const SizedBox(height: 12),
-              Text(S.of(context).loading, style: BtvTextStyles.body2),
+              Text(S.of(context).loading, style: BccmTextStyles.body2),
             ],
           ),
         ),

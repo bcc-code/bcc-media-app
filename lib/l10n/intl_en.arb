@@ -23,6 +23,10 @@
   "@calendarWeek": {
     "description": "Text week."
   },
+  "close": "Close",
+  "@close": {
+    "description": "Text displayed on 'Close' button"
+  },
   "loading": "Loading",
   "@loading": {
     "description": "Text to indicate loading state."
@@ -63,6 +67,30 @@
   "@signInButton": {
     "description": "Text displayed on Sign in button"
   },
+  "signInOrSignUp": "Sign up / Sign in",
+  "@signInOrSignUp": {
+    "description": "Button to go to the onboarding page (short)"
+  },
+  "signUpButton": "Sign up now",
+  "@signUpButton": {
+    "description": "Button to start the sign up process"
+  },
+  "signUpTitle": "Sign up",
+  "@signUpTitle": {
+    "description": "Title on the sign up page"
+  },
+  "signUpDescription": "Get access to more content and better features by creating an account.",
+  "@signUpDescription": {
+    "description": "A description on the sign up page explaining why you would want to sign up"
+  },
+  "signUpAgreePrivacyPolicy": "I certify that I am 13 years of age or older, and I agree to the <a>Privacy Policy</a> and <a>Terms of use</a>.",
+  "@signUpAgreePrivacyPolicy": {
+    "description": "REMEMBER: Keep the <a> and </a> tags, but translate the 'Privacy Policy' inside."
+  },
+  "setPassword": "Set password",
+  "@setPassword": {
+    "description": "Title for the 'Set password' page of the signup process."
+  },
   "tryAgainButton": "Try again",
   "@tryAgainButton": {
     "description": "Button on error alert that lets user to retry failed action"
@@ -94,6 +122,10 @@
   "ok": "OK",
   "@ok": {
     "description": "Popup confirmation button"
+  },
+  "open": "Open",
+  "@open": {
+    "description": "Open button"
   },
   "loginFailedCheckNetwork": "Login failed. Check your network connection and try again.",
   "@loginFailedCheckNetwork": {
@@ -142,6 +174,22 @@
   "cancel": "Cancel",
   "@cancel": {
     "description": "General cancel action button"
+  },
+  "cancelConfirmation": "Are you sure you want to cancel?",
+  "@cancelConfirmation": {
+    "description": "Title text for cancel confirmation dialog."
+  },
+  "cancelConfirmationDescription": "Any unsaved changes will be lost.",
+  "@cancelConfirmationDescription": {
+    "description": "Description for cancel confirmation dialog."
+  },
+  "goBack": "Go back",
+  "@goBack": {
+    "description": "Text for back button."
+  },
+  "yesCancel": "Yes, Cancel",
+  "@yesCancel": {
+    "description": "Confirm cancel."
   },
   "upNext": "Up next",
   "@upNext": {
@@ -195,6 +243,10 @@
   "@search": {
     "description": "Button to clear cache"
   },
+  "sendFeedback": "Send Feedback",
+  "@sendFeedback": {
+    "description": "Button to submit feedback(Survey)"
+  },
   "noResults": "No results found",
   "@noResults": {
     "description": "No search results."
@@ -206,6 +258,10 @@
   "play": "Play",
   "@play": {
     "description": "Option in prompt dialog."
+  },
+  "pause": "Pause",
+  "@pause": {
+    "description": "A button to pause the video."
   },
   "castQueue": "Cast queue",
   "@castQueue": {
@@ -432,6 +488,10 @@
   "@sendFailDescription": {
     "description": "General error message that sending failed"
   },
+  "sendSuccessDescription": "We appreciate your feedback.",
+  "@sendSuccessDescription": {
+    "description": "General message when sending is successful"
+  },
   "today": "Today",
   "@today": {
     "description": "First category in tv guide"
@@ -481,6 +541,14 @@
   "liveNow": "Live now",
   "@liveNow": {
     "description": "Generic, short. Used in buttons, badges, etc to indicate that an item is playing on the livestream now."
+  },
+  "comingSoon": "Coming soon",
+  "@comingSoon": {
+    "description": "Generic, short. Used in buttons, badges, etc to indicate that an item is available soon."
+  },
+  "newEpisode": "New",
+  "@newEpisode": {
+    "description": "Generic, short. Used in buttons, badges, etc to indicate that an item was recently published."
   },
   "tomorrow": "Tomorrow",
   "@tomorrow": {
@@ -605,7 +673,11 @@
   },
   "exploreContent": "Explore content",
   "@exploreContent": {
-    "description": "A button on the login page"
+    "description": "A button"
+  },
+  "explorePublicContent": "Explore public content",
+  "@explorePublicContent": {
+    "description": "A button on the welcome page"
   },
   "taskCompleted": "task completed",
   "@taskCompleted": {
@@ -716,9 +788,26 @@
   "@continueButton": {
     "description": "Generic button text."
   },
+  "registerButton": "Register",
+  "@registerButton": {
+    "description": "Generic button text."
+  },
   "achievements": "Achievements",
   "@achievements": {
     "description": "Generic. Used as page title, etc."
+  },
+  "passwordConditionLength": "Minimum {n} characters",
+  "@passwordConditionLength": {
+    "description": "REMINDER: Do NOT touch variables (like {n}). Password condition, shown when signing up.",
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "passwordConditionComplexity": "Must contain lower case, uppercase and numbers.",
+  "@passwordConditionComplexity": {
+    "description": "Password condition, shown when signing up."
   },
   "oops": "Oops!",
   "@oops": {
@@ -757,5 +846,5 @@
     "description": "Content for info displayed on 'My list' page."
   }
 
-  
+
 }

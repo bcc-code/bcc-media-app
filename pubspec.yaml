@@ -19,7 +19,7 @@ publish_to: "none" # Remove this line if you wish to publish to pub.dev
 # major.minor.patch+xxxxxxx
 # Note: On play store, any dots in the build
 # number (i.e. the number after +) gets removed
-version: 4.1.0+2300021
+version: 4.3.5+2300050
 
 environment:
   sdk: ">=2.17.0 <3.0.0"
@@ -35,6 +35,8 @@ dependencies:
     sdk: flutter
   flutter_localizations:
     sdk: flutter
+  flutter_web_plugins:
+    sdk: flutter
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
@@ -45,12 +47,12 @@ dependencies:
   json_annotation: ^4.5.0
   json_serializable: ^6.2.0
   mockito: ^5.2.0
-  flutter_svg: ^1.1.1+1
+  flutter_svg: ^2.0.2
   auto_route: ^5.0.2
   build_runner: ^2.2.0
   bccm_player:
     path: external_projects/bccm_player
-  riverpod: ^2.1.1
+  riverpod: ^2.3.4
   flutter_riverpod: ^2.1.1
   freezed_annotation: ^2.1.0
   collection: ^1.16.0
@@ -62,23 +64,25 @@ dependencies:
   intl: ^0.17.0
   graphql: ^5.1.1
   graphql_flutter: ^5.1.0
-  auth0_flutter: ^1.0.2
   shared_preferences: ^2.0.15
   hive: ^2.2.3
   firebase_messaging: ^14.0.3
   firebase_core: ^2.1.1
-  flutter_secure_storage: ^6.0.0
+  flutter_secure_storage: ^8.0.0
   visibility_detector: ^0.3.3
   pull_to_refresh: ^2.0.0
   device_info_plus: ^8.0.0
   alice: ^0.3.1
   dio: ^4.0.6
   firebase_crashlytics: ^3.0.4
-  flutter_svg_provider: ^1.0.3
+  flutter_svg_provider:
+    git:
+      url: https://github.com/andreasgan/flutter_svg_provider.git
+      ref: fix/deps
   on_screen_ruler: ^0.0.1
   url_launcher: ^6.1.6
-  modal_bottom_sheet: ^2.1.2
-  webview_flutter: ^3.0.4
+  modal_bottom_sheet: ^3.0.0-pre
+  webview_flutter: ^4.0.5
   shimmer: ^2.0.0
   flutter_markdown: ^0.6.13
   rudder_sdk_flutter: ^2.2.0
@@ -88,11 +92,31 @@ dependencies:
   restart_app: ^1.1.1
   flutter_inappwebview: ^6.0.0-beta.20
   app_links: ^3.3.0
-  jwt_decoder: ^2.0.1
+  auth0_flutter_web: 0.0.1-alpha.6
+  universal_io: ^2.0.4
   web_socket_channel: 2.0.0
+  jwt_decoder: ^2.0.1
+  flutter_appauth: ^4.2.1
+  synchronized: ^3.0.1
+  clock: ^1.1.1
+  flutter_hooks: ^0.18.5+1
+  hooks_riverpod: ^2.2.0
+  flutter_hooks_lint_plugin: ^0.6.1
+  vibration: ^1.7.6
+  email_validator: ^2.1.17
+  open_mail_app: ^0.4.5
+  unleash_proxy_client_flutter: ^1.0.2
+  html: ^0.15.2
+  flutter_html: ^3.0.0-alpha.6
+  cloud_firestore: ^4.5.0
+  riverpod_annotation: ^2.0.4
+  image: ^4.0.15
+  flutter_native_splash: ^2.2.19
   #smooth: any
 
 dev_dependencies:
+  integration_test:
+    sdk: flutter
   flutter_test:
     sdk: flutter
 
@@ -103,9 +127,14 @@ dev_dependencies:
   # rules and activating additional ones.
   flutter_lints: ^2.0.0
   auto_route_generator: ^5.0.2
-  pigeon: ^4.2.5
+  pigeon: ^9.0.1
   freezed: ^2.1.0+1
-  graphql_codegen: ^0.11.0
+  graphql_codegen: ^0.12.0-beta.13
+  patrol: ^1.0.4
+  custom_lint: ^0.3.3
+  riverpod_generator: ^2.1.6
+  riverpod_lint: ^1.2.0
+  flutter_oss_licenses: ^2.0.1
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
@@ -135,6 +164,14 @@ flutter:
   assets:
     - assets/images/
     - assets/icons/
+
+patrol:
+  app_name: BCC Media
+  flavor: prod
+  android:
+    package_name: tv.brunstad.app
+  ios:
+    bundle_id: tv.brunstad.app
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

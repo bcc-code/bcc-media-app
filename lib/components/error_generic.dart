@@ -1,15 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../helpers/btv_buttons.dart';
-import '../helpers/btv_colors.dart';
-import '../helpers/btv_typography.dart';
+import '../helpers/ui/btv_buttons.dart';
+import '../theme/bccm_colors.dart';
+import '../theme/bccm_typography.dart';
 import '../l10n/app_localizations.dart';
 
 class ErrorGeneric extends StatelessWidget {
-  const ErrorGeneric({Key? key, required this.onRetry, this.details}) : super(key: key);
+  const ErrorGeneric({Key? key, required this.onRetry, this.title, this.description, this.retryButtonText, this.details}) : super(key: key);
   final void Function() onRetry;
   final String? details;
+  final String? title;
+  final String? description;
+  final String? retryButtonText;
 
   @override
   Widget build(BuildContext context) => Center(
@@ -25,20 +27,20 @@ class ErrorGeneric extends StatelessWidget {
                     Container(
                       margin: const EdgeInsets.only(bottom: 8),
                       child: Text(
-                        S.of(context).loadContentError,
-                        style: BtvTextStyles.title1,
+                        title ?? S.of(context).loadContentError,
+                        style: BccmTextStyles.title1,
                       ),
                     ),
                     Container(
                       margin: const EdgeInsets.only(bottom: 16),
                       child: Text(
-                        S.of(context).checkNetwork,
+                        description ?? S.of(context).checkNetwork,
                         textAlign: TextAlign.center,
-                        style: BtvTextStyles.body1.copyWith(color: BtvColors.label3),
+                        style: BccmTextStyles.body1.copyWith(color: BccmColors.label3),
                       ),
                     ),
                     BtvButton.medium(
-                      labelText: S.of(context).tryAgainButton,
+                      labelText: retryButtonText ?? S.of(context).tryAgainButton,
                       onPressed: () => onRetry(),
                     ),
                   ],
@@ -51,7 +53,7 @@ class ErrorGeneric extends StatelessWidget {
                     tilePadding: EdgeInsets.zero,
                     title: const Text(
                       'Technical details',
-                      style: BtvTextStyles.title3,
+                      style: BccmTextStyles.title3,
                     ),
                     children: [
                       SelectableText(

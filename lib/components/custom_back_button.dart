@@ -1,17 +1,13 @@
-import 'dart:math';
-import 'dart:ui';
-
 import 'package:auto_route/auto_route.dart';
-import 'package:brunstadtv_app/helpers/svg_icons.dart';
-import 'package:brunstadtv_app/helpers/utils.dart';
-import 'package:brunstadtv_app/router/router.gr.dart';
+import 'package:brunstadtv_app/helpers/ui/svg_icons.dart';
+import 'package:brunstadtv_app/helpers/extensions.dart';
 import 'package:brunstadtv_app/screens/home.dart';
 import 'package:brunstadtv_app/screens/search/search.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
-import '../helpers/btv_colors.dart';
-import '../helpers/btv_typography.dart';
+import '../theme/bccm_typography.dart';
+import '../helpers/widget_keys.dart';
 import '../l10n/app_localizations.dart';
 import '../screens/page.dart';
 
@@ -22,13 +18,14 @@ String? getLocalizedRouteName(S localizations, Type route) {
     case HomeScreen:
       return localizations.homeTab;
   }
+  return null;
 }
 
 class CustomBackButton extends StatelessWidget {
-  const CustomBackButton({super.key, this.color, this.onPressed});
+  const CustomBackButton({Key? key, this.color, this.onPressed, this.padding}) : super(key: key ?? WidgetKeys.backButton);
 
   final Color? color;
-
+  final EdgeInsetsGeometry? padding;
   final VoidCallback? onPressed;
 
   @override
@@ -44,36 +41,40 @@ class CustomBackButton extends StatelessWidget {
 
       pageTitle = previousPageTitle ?? localizedTitle ?? '';
     }
-    return Padding(
-      padding: const EdgeInsets.only(left: 17),
-      child: Align(
-        alignment: Alignment.topLeft,
-        child: GestureDetector(
-          behavior: HitTestBehavior.opaque,
-          onTap: () {
-            if (onPressed != null) {
-              onPressed!();
-            } else {
-              Navigator.maybePop(context);
-            }
-          },
-          child: Row(
-            mainAxisSize: MainAxisSize.min,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: <Widget>[
-              SvgPicture.string(SvgIcons.chevronLeft, height: 16),
-              const SizedBox(width: 8),
-              Expanded(
-                child: Align(
-                  alignment: Alignment.centerLeft,
-                  child: Text(
-                    pageTitle,
-                    overflow: TextOverflow.ellipsis,
-                    style: BtvTextStyles.button2.copyWith(height: 1),
+    return FocusableActionDetector(
+      mouseCursor: MaterialStateMouseCursor.clickable,
+      child: Padding(
+        padding: padding ?? const EdgeInsets.only(left: 17),
+        child: Align(
+          alignment: Alignment.topLeft,
+          child: GestureDetector(
+            behavior: HitTestBehavior.opaque,
+            onTap: () {
+              if (onPressed != null) {
+                onPressed!();
+              } else {
+                Navigator.maybePop(context);
+              }
+            },
+            child: Row(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: <Widget>[
+                SvgPicture.string(SvgIcons.chevronLeft, height: 16),
+                const SizedBox(width: 8),
+                Expanded(
+                  child: Align(
+                    alignment: Alignment.centerLeft,
+                    child: Text(
+                      pageTitle,
+                      semanticsLabel: S.of(context).back,
+                      overflow: TextOverflow.ellipsis,
+                      style: BccmTextStyles.button2.copyWith(height: 1),
+                    ),
                   ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),

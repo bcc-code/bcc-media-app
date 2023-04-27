@@ -16,8 +16,7 @@ query FetchEpisode($id: ID!) {
       }
     }
     streams {
-      type
-      url
+      ...BasicStream
       audioLanguages
       subtitleLanguages
     }
@@ -36,6 +35,7 @@ query FetchEpisode($id: ID!) {
         }
       }
       show {
+        id
         title
         type
         seasons {
@@ -49,6 +49,12 @@ query FetchEpisode($id: ID!) {
   }
 }
 
+fragment BasicStream on Stream {
+  id
+  url
+  type
+}
+
 fragment SeasonListEpisode on Episode {
   id
   image
@@ -58,6 +64,10 @@ fragment SeasonListEpisode on Episode {
   ageRating
   duration
   locked
+  id
+  lessons {
+    total
+  }
 }
 
 query legacyIDLookup($episodeId: Int, $programId: Int) {

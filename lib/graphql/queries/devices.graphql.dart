@@ -111,7 +111,7 @@ class _CopyWithImpl$Variables$Mutation$SetDeviceToken<TRes>
 
   final TRes Function(Variables$Mutation$SetDeviceToken) _then;
 
-  static const _undefined = {};
+  static const _undefined = <dynamic, dynamic>{};
 
   TRes call({
     Object? token = _undefined,
@@ -141,7 +141,7 @@ class _CopyWithStubImpl$Variables$Mutation$SetDeviceToken<TRes>
 class Mutation$SetDeviceToken {
   Mutation$SetDeviceToken({
     this.setDevicePushToken,
-    required this.$__typename,
+    this.$__typename = 'MutationRoot',
   });
 
   factory Mutation$SetDeviceToken.fromJson(Map<String, dynamic> json) {
@@ -238,7 +238,7 @@ class _CopyWithImpl$Mutation$SetDeviceToken<TRes>
 
   final TRes Function(Mutation$SetDeviceToken) _then;
 
-  static const _undefined = {};
+  static const _undefined = <dynamic, dynamic>{};
 
   TRes call({
     Object? setDevicePushToken = _undefined,
@@ -565,7 +565,7 @@ class Mutation$SetDeviceToken$Widget
 
 class Mutation$SetDeviceToken$setDevicePushToken {
   Mutation$SetDeviceToken$setDevicePushToken({
-    required this.$__typename,
+    this.$__typename = 'Device',
     required this.token,
     required this.updatedAt,
   });
@@ -676,7 +676,7 @@ class _CopyWithImpl$Mutation$SetDeviceToken$setDevicePushToken<TRes>
 
   final TRes Function(Mutation$SetDeviceToken$setDevicePushToken) _then;
 
-  static const _undefined = {};
+  static const _undefined = <dynamic, dynamic>{};
 
   TRes call({
     Object? $__typename = _undefined,

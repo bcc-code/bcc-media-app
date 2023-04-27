@@ -611,11 +611,11 @@
   "@taskCompleted": {
     "description": "SINGULAR. Note the lowercase T, because its inserted after a count: '0/1 task completed'."
   },
-  "tasksCompleted": "feladat elvégezve",
+  "tasksCompleted": "feladatből elvégezve",
   "@tasksCompleted": {
     "description": "PLURAL. Note the lowercase T, because its inserted after the count: '2/5 tasks completed'."
   },
-  "studyCompleteTaskDescription": "Feladatok elvégzése és a kapcsolódó erőforrások felfedezése",
+  "studyCompleteTaskDescription": "Feladatok elvégzése és a kapcsolódó tartalom felfedezése",
   "@studyCompleteTaskDescription": {
     "description": "Description to open the study tasks for this episode. Currently shows below '0/1 tasks completed'."
   },
@@ -627,7 +627,7 @@
   "@completePreviousTasks": {
     "description": "Shown on a locked button, short explanation why the button is locked."
   },
-  "studyDiscoverMoreDescription": "További inspiráció és betekintés a kapcsolódó forrásokból",
+  "studyDiscoverMoreDescription": "További inspiráció és betekintés kapcsolódó tartalmakból",
   "@studyDiscoverMoreDescription": {
     "description": "Description to open the related resources for this episode."
   },

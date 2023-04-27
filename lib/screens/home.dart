@@ -1,26 +1,30 @@
 import 'dart:async';
-import 'dart:io';
+import 'package:bccm_player/bccm_player.dart';
+import 'package:brunstadtv_app/graphql/client.dart';
+import 'package:brunstadtv_app/graphql/queries/me.graphql.dart';
+import 'package:brunstadtv_app/providers/auth_state/auth_state.dart';
+import 'package:brunstadtv_app/providers/feature_flags.dart';
+import 'package:flutter/foundation.dart';
+import 'package:universal_io/io.dart';
 import 'dart:ui';
 
 import 'package:auto_route/auto_route.dart';
-import 'package:brunstadtv_app/helpers/svg_icons.dart';
+import 'package:brunstadtv_app/helpers/ui/svg_icons.dart';
 import 'package:brunstadtv_app/helpers/utils.dart';
-import 'package:brunstadtv_app/helpers/version_number_utils.dart';
+import 'package:brunstadtv_app/helpers/version.dart';
 import 'package:brunstadtv_app/models/scroll_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-
-import 'package:bccm_player/cast_button.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 import '../api/brunstadtv.dart';
 import '../graphql/queries/application.graphql.dart';
-import '../helpers/btv_buttons.dart';
-import '../helpers/btv_colors.dart';
+import '../helpers/ui/btv_buttons.dart';
+import '../theme/bccm_colors.dart';
 import '../components/page.dart';
 import '../graphql/queries/page.graphql.dart';
-import '../helpers/btv_typography.dart';
+import '../theme/bccm_typography.dart';
 import '../helpers/page_mixin.dart';
 import '../l10n/app_localizations.dart';
 import '../providers/app_config.dart';
@@ -67,17 +71,14 @@ class HomeScreenState extends ConsumerState<HomeScreen> with PageMixin implement
     final packageInfo = await PackageInfo.fromPlatform();
     final minVersionNumber = appConfig.application.clientVersion;
     final currentVersionNumber = packageInfo.version;
-    debugPrint(minVersionNumber);
-    debugPrint('minVersionNumber ${getExtendedVersionNumber(minVersionNumber)}');
-    debugPrint('currentVersionNumber ${getExtendedVersionNumber(currentVersionNumber)}');
-    if (getExtendedVersionNumber(minVersionNumber) > getExtendedVersionNumber(currentVersionNumber)) {
+    if (getExtendedVersionNumber(minVersionNumber) > getExtendedVersionNumber(currentVersionNumber) && context.mounted) {
       showDialog(
           context: context,
           builder: (context) {
             return SimpleDialog(
               title: Text(
                 S.of(context).appUpdateTitle,
-                style: BtvTextStyles.title3,
+                style: BccmTextStyles.title3,
               ),
               contentPadding: const EdgeInsets.all(24).copyWith(top: 8),
               children: [
@@ -95,6 +96,36 @@ class HomeScreenState extends ConsumerState<HomeScreen> with PageMixin implement
             );
           });
     }
+
+    if (ref.read(authStateProvider).auth0AccessToken != null) {
+      final me = await ref.read(gqlClientProvider).query$me();
+      if (!ref.read(featureFlagsProvider).publicSignup &&
+          (me.parsedData?.me.completedRegistration != true || me.parsedData?.me.emailVerified != true)) {
+        // ignore: use_build_context_synchronously
+        await showDialog(
+          context: context,
+          builder: (context) {
+            return SimpleDialog(
+              title: Text(
+                S.of(context).appUpdateTitle,
+                style: BccmTextStyles.title3,
+              ),
+              contentPadding: const EdgeInsets.all(24).copyWith(top: 8),
+              children: [
+                const Padding(
+                    padding: EdgeInsets.only(bottom: 16),
+                    child: Text("Unfortunately, we don't support signing up yet. Are you sure you signed in with the correct email?")),
+                BtvButton.medium(
+                  onPressed: () => Navigator.pop(context),
+                  labelText: S.of(context).ok,
+                )
+              ],
+            );
+          },
+        );
+        ref.read(authStateProvider.notifier).logout();
+      }
+    }
   }
 
   Future<Query$Page$page> getHomePage() async {
@@ -109,7 +140,7 @@ class HomeScreenState extends ConsumerState<HomeScreen> with PageMixin implement
   }
 
   Future<Query$Page$page> getHomeAndAppConfig() async {
-    ref.read(appConfigProvider.notifier).state = ref.read(apiProvider).queryAppConfig();
+    reloadAppConfig(ref);
     return getHomePage();
   }
 
@@ -119,46 +150,49 @@ class HomeScreenState extends ConsumerState<HomeScreen> with PageMixin implement
       children: [
         Scaffold(
           extendBodyBehindAppBar: true,
-          appBar: AppBar(
-            toolbarHeight: 44,
-            shadowColor: Colors.black,
-            backgroundColor: Colors.transparent,
-            elevation: 0,
-            centerTitle: true,
-            title: logo,
-            leadingWidth: 100,
-            leading: Align(
-              alignment: Alignment.centerLeft,
-              child: GestureDetector(
-                  behavior: HitTestBehavior.opaque,
-                  onTap: () {
-                    context.router.pushNamed('/profile');
-                  },
-                  child: Padding(
-                      padding: const EdgeInsets.only(left: 18, top: 12, bottom: 12, right: 32),
-                      child: SvgPicture.string(
-                        SvgIcons.profile,
-                      ))),
-            ),
-            actions: [
-              Padding(
-                padding: const EdgeInsets.only(right: 16.0),
-                child: ConstrainedBox(constraints: BoxConstraints.loose(const Size(24, 24)), child: const CastButton()),
-              ),
-            ],
-            flexibleSpace: ClipRect(
-              clipBehavior: Clip.hardEdge,
-              child: BackdropFilter(
-                filter: ImageFilter.blur(sigmaX: 12, sigmaY: 6),
-                child: Container(
-                  decoration: const BoxDecoration(
-                      gradient: LinearGradient(
-                          begin: Alignment.topCenter, end: Alignment.bottomCenter, colors: [BtvColors.background1, Colors.transparent])),
-                  height: 1000,
+          appBar: kIsWeb
+              ? null
+              : AppBar(
+                  toolbarHeight: 44,
+                  shadowColor: Colors.black,
+                  backgroundColor: Colors.transparent,
+                  elevation: 0,
+                  centerTitle: true,
+                  title: logo,
+                  leadingWidth: kIsWeb ? 300 : 100,
+                  leading: Align(
+                    alignment: Alignment.centerLeft,
+                    child: GestureDetector(
+                        behavior: HitTestBehavior.opaque,
+                        onTap: () {
+                          context.router.pushNamed('/profile');
+                        },
+                        child: Padding(
+                            padding: const EdgeInsets.only(left: kIsWeb ? 80 : 18, top: 12, bottom: 12, right: 32),
+                            child: SvgPicture.string(
+                              SvgIcons.profile,
+                              semanticsLabel: S.of(context).profileTab,
+                            ))),
+                  ),
+                  actions: [
+                    Padding(
+                      padding: const EdgeInsets.only(right: 16.0),
+                      child: ConstrainedBox(constraints: BoxConstraints.loose(const Size(24, 24)), child: const BccmCastButton()),
+                    ),
+                  ],
+                  flexibleSpace: ClipRect(
+                    clipBehavior: Clip.hardEdge,
+                    child: BackdropFilter(
+                      filter: ImageFilter.blur(sigmaX: 12, sigmaY: 6),
+                      child: Container(
+                        decoration: const BoxDecoration(
+                            gradient: LinearGradient(
+                                begin: Alignment.topCenter, end: Alignment.bottomCenter, colors: [BccmColors.background1, Colors.transparent])),
+                        height: 1000,
+                      ),
+                    ),
+                  ),
                 ),
-              ),
-            ),
-          ),
           body: SafeArea(
             top: false,
             child: BccmPage(

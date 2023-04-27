@@ -23,6 +23,9 @@ class SFr extends S {
   String get calendarWeek => 'semaine';
 
   @override
+  String get close => 'Close';
+
+  @override
   String get loading => 'Chargement';
 
   @override
@@ -47,10 +50,30 @@ class SFr extends S {
   String get faq => 'Foire aux Questions';
 
   @override
-  String get bccMediaCenter => 'BCC Media est une fondation médiatique de la fédération BCC qui produit et distribue des contenus aux valeurs positives et chrétiennes.';
+  String get bccMediaCenter =>
+      'BCC Media est une fondation médiatique de la fédération BCC qui produit et distribue des contenus aux valeurs positives et chrétiennes.';
 
   @override
   String get signInButton => 'Se connecter';
+
+  @override
+  String get signInOrSignUp => 'Sign up / Sign in';
+
+  @override
+  String get signUpButton => 'Sign up now';
+
+  @override
+  String get signUpTitle => 'Sign up';
+
+  @override
+  String get signUpDescription => 'Get access to more content and better features by creating an account.';
+
+  @override
+  String get signUpAgreePrivacyPolicy =>
+      'I certify that I am 13 years of age or older, and I agree to the <a>Privacy Policy</a> and <a>Terms of use</a>.';
+
+  @override
+  String get setPassword => 'Set password';
 
   @override
   String get tryAgainButton => 'Essayer à nouveau';
@@ -75,6 +98,9 @@ class SFr extends S {
 
   @override
   String get ok => 'OK';
+
+  @override
+  String get open => 'Open';
 
   @override
   String get loginFailedCheckNetwork => 'Échec de la connexion. Vérifie ta connexion internet et retente à nouveau.';
@@ -111,6 +137,18 @@ class SFr extends S {
 
   @override
   String get cancel => 'Annuler';
+
+  @override
+  String get cancelConfirmation => 'Are you sure you want to cancel?';
+
+  @override
+  String get cancelConfirmationDescription => 'Any unsaved changes will be lost.';
+
+  @override
+  String get goBack => 'Go back';
+
+  @override
+  String get yesCancel => 'Yes, Cancel';
 
   @override
   String get upNext => 'Suivant';
@@ -152,6 +190,9 @@ class SFr extends S {
   String get search => 'Rechercher';
 
   @override
+  String get sendFeedback => 'Send Feedback';
+
+  @override
   String get noResults => 'Aucun résultat trouvé';
 
   @override
@@ -159,6 +200,9 @@ class SFr extends S {
 
   @override
   String get play => 'Lire';
+
+  @override
+  String get pause => 'Pause';
 
   @override
   String get castQueue => 'File d\'attente du Chromecast';
@@ -324,6 +368,9 @@ class SFr extends S {
   String get sendFailDescription => 'Une erreur est survenue. Vérifie ta connexion internet et réessaye.';
 
   @override
+  String get sendSuccessDescription => 'We appreciate your feedback.';
+
+  @override
   String get today => 'Aujourd\'hui';
 
   @override
@@ -358,6 +405,12 @@ class SFr extends S {
   String get liveNow => 'En direct maintenant';
 
   @override
+  String get comingSoon => 'Coming soon';
+
+  @override
+  String get newEpisode => 'New';
+
+  @override
   String get tomorrow => 'Demain';
 
   @override
@@ -376,7 +429,8 @@ class SFr extends S {
   String get appUpdateTitle => 'Mise à jour requise';
 
   @override
-  String get appUpdateRequest => 'Merci de télécharger la dernière version de l\'application pour profiter des dernières fonctionnalités et éviter les bugs.';
+  String get appUpdateRequest =>
+      'Merci de télécharger la dernière version de l\'application pour profiter des dernières fonctionnalités et éviter les bugs.';
 
   @override
   String get appUpdateAccepted => 'Mettre à jour';
@@ -448,6 +502,9 @@ class SFr extends S {
 
   @override
   String get exploreContent => 'Explorer le contenu';
+
+  @override
+  String get explorePublicContent => 'Explore public content';
 
   @override
   String get taskCompleted => 'tâche terminée';
@@ -523,7 +580,18 @@ class SFr extends S {
   String get continueButton => 'Continuer';
 
   @override
+  String get registerButton => 'Register';
+
+  @override
   String get achievements => 'Réalisations';
+
+  @override
+  String passwordConditionLength(int n) {
+    return 'Minimum $n characters';
+  }
+
+  @override
+  String get passwordConditionComplexity => 'Must contain lower case, uppercase and numbers.';
 
   @override
   String get oops => 'Oups !';
@@ -542,13 +610,4 @@ class SFr extends S {
 
   @override
   String get details => 'Détails';
-
-  @override
-  String get myList => 'My List';
-
-  @override
-  String get didYouKnowTitle => 'Did you know?';
-
-  @override
-  String get didYouKnowContent => 'You can add your favorite shows to \"My List\" by tapping the heart.';
 }

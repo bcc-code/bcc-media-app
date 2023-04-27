@@ -1,0 +1,17 @@
+{
+  "name": "bccm-app-web-lib",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview"
+  },
+  "devDependencies": {
+    "@types/node": "^18.15.11",
+    "typescript": "^4.9.3",
+    "vite": "^4.2.0"
+  },
+  "dependencies": {
+    "bccm-video-player": "^1.5.0"
+  }
+}

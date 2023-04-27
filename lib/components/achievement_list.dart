@@ -36,7 +36,7 @@ class AchievementList extends ConsumerWidget {
       final subList =
           firstIndex + colSize <= achievements.length ? achievements.sublist(firstIndex, firstIndex + colSize) : achievements.sublist(firstIndex);
       return GridRow(
-        colSize: colSize,
+        columnCount: colSize,
         gap: 5,
         items: subList
             .map(

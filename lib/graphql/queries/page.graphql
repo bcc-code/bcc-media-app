@@ -32,14 +32,22 @@ fragment ItemSectionItem on SectionItem {
     ... on Episode {
       id
       duration
+      locked
       progress
       publishDate
+      season {
+        show {
+          title
+        }
+      }
     }
     ... on Show {
+      id
       defaultEpisode {
         id
       }
-      id
+      episodeCount
+      seasonCount
     }
     __typename
   }
@@ -62,6 +70,16 @@ fragment ItemSection on ItemSection {
   }
 }
 
+
+fragment GridSection on GridSection {
+  gridSize: size
+  items(first: $first, offset: $offset) {
+    items {
+      ...GridSectionItem
+    }
+  }
+}
+
 fragment Section on Section {
   id
   title
@@ -73,17 +91,8 @@ fragment Section on Section {
       items(first: $first, offset: $offset) {
         items {
           item {
-            ... on Show {
-              episodeCount
-              seasonCount
-            }
             ... on Episode {
               productionDate
-              season {
-                show {
-                  title
-                }
-              }
             }
             __typename
           }
@@ -103,17 +112,8 @@ fragment Section on Section {
       items(first: $first, offset: $offset) {
         items {
           item {
-            ... on Show {
-              episodeCount
-              seasonCount
-            }
             ... on Episode {
               productionDate
-              season {
-                show {
-                  title
-                }
-              }
             }
             __typename
           }
@@ -121,12 +121,7 @@ fragment Section on Section {
       }
     }
     ... on GridSection {
-      gridSize: size
-      items(first: $first, offset: $offset) {
-        items {
-          ...GridSectionItem
-        }
-      }
+      ...GridSection
     }
     ... on ListSection {
       items(first: $first, offset: $offset) {
@@ -136,11 +131,6 @@ fragment Section on Section {
               title
               ageRating
               image
-              season {
-                show {
-                  title
-                }
-              }
             }
           }
         }

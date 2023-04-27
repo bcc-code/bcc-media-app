@@ -1,5 +1,5 @@
 import 'package:brunstadtv_app/helpers/constants.dart';
-import 'package:brunstadtv_app/providers/auth_state.dart';
+import 'package:brunstadtv_app/providers/auth_state/auth_state.dart';
 import 'package:brunstadtv_app/providers/settings.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -9,6 +9,7 @@ import 'package:http/retry.dart';
 
 final gqlClientProvider = Provider<GraphQLClient>((ref) {
   final settings = ref.watch(settingsProvider);
+  final authStateNotifier = ref.read(authStateProvider.notifier);
   debugPrint('envOverride: ${settings.envOverride}');
   final httpLink = HttpLink(apiEnvUrls[settings.envOverride] ?? apiEnvUrls[EnvironmentOverride.none]!,
       defaultHeaders: {
@@ -17,7 +18,7 @@ final gqlClientProvider = Provider<GraphQLClient>((ref) {
       httpClient: RetryClient(Client(), retries: 1, when: (response) => response.statusCode == 500 || response.statusCode == 429));
 
   final authLink = AuthLink(getToken: () async {
-    final authState = await ref.read(authStateProvider.notifier).getExistingAndEnsureNotExpired();
+    final authState = await authStateNotifier.getExistingAndEnsureNotExpired();
     if (authState == null) {
       return null;
     }

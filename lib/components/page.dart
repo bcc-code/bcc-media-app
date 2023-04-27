@@ -5,7 +5,6 @@ import 'package:brunstadtv_app/components/loading_generic.dart';
 import 'package:brunstadtv_app/components/see_more.dart';
 import 'package:brunstadtv_app/graphql/client.dart';
 import 'package:brunstadtv_app/graphql/queries/sections.graphql.dart';
-import 'package:brunstadtv_app/helpers/sections.dart';
 import 'package:brunstadtv_app/models/analytics/sections.dart';
 import 'package:brunstadtv_app/router/router.gr.dart';
 import 'package:collection/collection.dart';
@@ -13,21 +12,20 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../graphql/queries/page.graphql.dart';
-import '../helpers/utils.dart';
+import '../helpers/extensions.dart';
+import '../helpers/ui/sections.dart';
 import '../models/pagination_status.dart';
 import '../providers/inherited_data.dart';
 import 'card_section.dart';
 import 'featured_section.dart';
-import 'default_grid_section.dart';
 import 'message_section.dart';
 import 'page_details_section.dart';
-import 'poster_grid_section.dart';
 import 'icon_section.dart';
 import 'label_section.dart';
-import 'poster_section.dart';
-import 'default_section.dart';
+import 'sections/thumbnail_grid/item_section_thumbnail_grid.dart';
+import 'sections/thumbnail_slider/item_section_thumbnail_slider.dart';
 import 'icon_grid_section.dart';
-import 'list_section.dart';
+import 'sections/list_section.dart';
 import 'page_section.dart';
 import 'web_section.dart';
 
@@ -50,16 +48,20 @@ class BccmPage extends ConsumerStatefulWidget {
   });
 
   @override
-  ConsumerState<BccmPage> createState() => _BccmPageState(scrollController ?? ScrollController());
+  ConsumerState<BccmPage> createState() => _BccmPageState();
 }
 
 class _BccmPageState extends ConsumerState<BccmPage> {
   GlobalKey<State<FutureBuilder<Query$Page$page>>> futureBuilderKey = GlobalKey();
   Map<String, PaginationStatus<Fragment$ItemSectionItem>> paginationMap = {};
   bool loadingBottomSectionItems = false;
-  final ScrollController scrollController;
+  late ScrollController scrollController;
 
-  _BccmPageState(this.scrollController);
+  @override
+  void initState() {
+    super.initState();
+    scrollController = widget.scrollController ?? ScrollController();
+  }
 
   Widget? _getSectionWidget(Fragment$Section s) {
     final extraItems = paginationMap[s.id]?.items;
@@ -73,11 +75,11 @@ class _BccmPageState extends ConsumerState<BccmPage> {
     }
     final defaultSection = s.asOrNull<Fragment$Section$$DefaultSection>();
     if (defaultSection != null) {
-      return PageSection.fromFragment(defaultSection, child: DefaultSection(defaultSection));
+      return PageSection.fromFragment(defaultSection, child: ItemSectionThumbnailSlider.fromDefaultSection(defaultSection));
     }
     final posterSection = s.asOrNull<Fragment$Section$$PosterSection>();
     if (posterSection != null) {
-      return PageSection.fromFragment(posterSection, child: PosterSection(posterSection));
+      return PageSection.fromFragment(posterSection, child: ItemSectionThumbnailSlider.fromPosterSection(posterSection));
     }
     var defaultGridSection = s.asOrNull<Fragment$Section$$DefaultGridSection>();
     if (defaultGridSection != null) {
@@ -87,7 +89,7 @@ class _BccmPageState extends ConsumerState<BccmPage> {
           ...(extraItems?.whereType<Fragment$Section$$DefaultGridSection$items$items>().toList() ?? [])
         ]),
       );
-      return PageSection.fromFragment(defaultGridSection, child: DefaultGridSection(defaultGridSection));
+      return PageSection.fromFragment(defaultGridSection, child: ItemSectionThumbnailGrid.fromDefaultGridSection(defaultGridSection));
     }
     var posterGridSection = s.asOrNull<Fragment$Section$$PosterGridSection>();
     if (posterGridSection != null) {
@@ -95,7 +97,7 @@ class _BccmPageState extends ConsumerState<BccmPage> {
         items: posterGridSection.items.copyWith(
             items: [...posterGridSection.items.items, ...(extraItems?.whereType<Fragment$Section$$PosterGridSection$items$items>().toList() ?? [])]),
       );
-      return PageSection.fromFragment(posterGridSection, child: PosterGridSection(posterGridSection));
+      return PageSection.fromFragment(posterGridSection, child: ItemSectionThumbnailGrid.fromPosterGridSection(posterGridSection));
     }
     final featuredSection = s.asOrNull<Fragment$Section$$FeaturedSection>();
     if (featuredSection != null) {

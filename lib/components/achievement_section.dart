@@ -1,7 +1,6 @@
-import 'package:brunstadtv_app/components/error_generic.dart';
 import 'package:brunstadtv_app/components/loading_indicator.dart';
 import 'package:brunstadtv_app/graphql/queries/achievements.graphql.dart';
-import 'package:brunstadtv_app/helpers/utils.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 import 'achievement_dialog.dart';
@@ -57,7 +56,7 @@ class AchievementSection extends StatelessWidget {
 
         final achievementsToDisplay = tempAchievements!;
         return HorizontalSlider(
-          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+          padding: const EdgeInsets.symmetric(horizontal: kIsWeb ? 80 : 16, vertical: 12),
           height: 140,
           itemCount: achievementsToDisplay.length,
           itemBuilder: (BuildContext context, int index) {

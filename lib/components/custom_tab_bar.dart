@@ -1,30 +1,28 @@
-import 'dart:io';
+import 'package:universal_io/io.dart';
 
 import 'package:auto_route/auto_route.dart';
-import 'package:brunstadtv_app/helpers/utils.dart';
-import 'package:brunstadtv_app/models/scroll_screen.dart';
-import 'package:brunstadtv_app/providers/auth_state.dart';
-import 'package:brunstadtv_app/screens/search/search.dart';
+import 'package:brunstadtv_app/providers/auth_state/auth_state.dart';
+import 'package:brunstadtv_app/providers/device_info.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../helpers/btv_colors.dart';
-import '../helpers/btv_typography.dart';
+import '../theme/bccm_colors.dart';
+import '../theme/bccm_typography.dart';
+import '../helpers/widget_keys.dart';
 import '../l10n/app_localizations.dart';
-import '../providers/analytics.dart';
-import '../providers/app_config.dart';
 
-final _indexToNameMap = ['home', 'search', 'livestream', 'calendar'];
 const double _iconSize = 28;
 
 class CustomTabBar extends ConsumerStatefulWidget {
   const CustomTabBar({
     Key? key,
     required this.tabsRouter,
+    required this.onTabTap,
   }) : super(key: key);
 
   final TabsRouter tabsRouter;
+  final void Function(int) onTabTap;
 
   @override
   ConsumerState<CustomTabBar> createState() => _CustomTabBarState();
@@ -32,7 +30,7 @@ class CustomTabBar extends ConsumerStatefulWidget {
 
 class _CustomTabBarState extends ConsumerState<CustomTabBar> {
   late final Map<String, Image> icons;
-  final useMaterial = Platform.isAndroid;
+  get useMaterial => Platform.isAndroid && ref.watch(isPhysicalDeviceProvider).asData?.valueOrNull != false;
 
   @override
   void initState() {
@@ -51,6 +49,7 @@ class _CustomTabBarState extends ConsumerState<CustomTabBar> {
       'calendar_default': Image.asset('assets/icons/Calendar_Default.png', gaplessPlayback: true),
       'calendar_selected': Image.asset('assets/icons/Calendar_Selected.png', gaplessPlayback: true),
     };
+
     super.initState();
   }
 
@@ -62,27 +61,8 @@ class _CustomTabBarState extends ConsumerState<CustomTabBar> {
     super.didChangeDependencies();
   }
 
-  Widget _icon(Image? image) {
-    return Padding(padding: EdgeInsets.only(top: 2, bottom: useMaterial ? 2 : 0), child: SizedBox(height: _iconSize, child: image));
-  }
-
-  void sendAnalytics(int index) {
-    if (index < 0 || index > _indexToNameMap.length - 1) return;
-    final tabName = _indexToNameMap[index];
-    final appConfig = ref.read(appConfigProvider);
-    appConfig.then((value) {
-      String? pageCode;
-      if (tabName == 'home') {
-        pageCode = value?.application.page?.code;
-      } else if (tabName == 'search') {
-        pageCode = value?.application.searchPage?.code;
-      }
-      Map<String, dynamic> extraProperties = {};
-      if (pageCode != null) {
-        extraProperties['pageCode'] = pageCode;
-      }
-      ref.read(analyticsProvider).screen(tabName, properties: extraProperties);
-    });
+  Widget _icon(Image? image, {Key? key}) {
+    return Padding(key: key, padding: EdgeInsets.only(top: 2, bottom: useMaterial ? 2 : 0), child: SizedBox(height: _iconSize, child: image));
   }
 
   @override
@@ -91,8 +71,9 @@ class _CustomTabBarState extends ConsumerState<CustomTabBar> {
       BottomNavigationBarItem(label: S.of(context).homeTab, icon: _icon(icons['home_default']), activeIcon: _icon(icons['home_selected'])),
       BottomNavigationBarItem(label: S.of(context).search, icon: _icon(icons['search_default']), activeIcon: _icon(icons['search_selected'])),
     ];
-    debugPrint('guestMode ${ref.watch(authStateProvider).guestMode}');
-    if (!ref.watch(authStateProvider).guestMode) {
+    final guestMode = ref.watch(authStateProvider.select((value) => value.guestMode));
+    debugPrint('custom_tab_bar rebuild. guestMode: $guestMode');
+    if (!guestMode) {
       items.addAll([
         BottomNavigationBarItem(label: S.of(context).liveTab, icon: _icon(icons['live_default']), activeIcon: _icon(icons['live_selected'])),
         BottomNavigationBarItem(label: S.of(context).myList, icon: _icon(icons['my_list_default']), activeIcon: _icon(icons['my_list_selected'])),
@@ -102,53 +83,26 @@ class _CustomTabBarState extends ConsumerState<CustomTabBar> {
 
     if (useMaterial) {
       return Container(
-        decoration: const BoxDecoration(border: Border(top: BorderSide(width: 1, color: BtvColors.separatorOnLight))),
+        decoration: const BoxDecoration(border: Border(top: BorderSide(width: 1, color: BccmColors.separatorOnLight))),
         child: BottomNavigationBar(
-            type: BottomNavigationBarType.fixed,
-            unselectedItemColor: BtvColors.label3,
-            unselectedLabelStyle: BtvTextStyles.caption3,
-            currentIndex: widget.tabsRouter.activeIndex,
-            onTap: (index) {
-              // here we switch between tabs
-              if (widget.tabsRouter.activeIndex == index) {
-                final stackRouterOfIndex = widget.tabsRouter.stackRouterOfIndex(index);
-                if (stackRouterOfIndex?.stack.length == 1) {
-                  final screenState = widget.tabsRouter.topPage?.child.key?.asOrNull<GlobalKey>()?.currentState.asOrNull<ScrollScreen>();
-                  if (screenState != null) {
-                    screenState.scrollToTop();
-                  }
-                } else {
-                  stackRouterOfIndex?.popUntilRoot();
-                }
-              } else {
-                sendAnalytics(index);
-              }
-              widget.tabsRouter.setActiveIndex(index);
-            },
-            items: items),
+          type: BottomNavigationBarType.fixed,
+          unselectedItemColor: BccmColors.label3,
+          unselectedLabelStyle: BccmTextStyles.caption3,
+          currentIndex: widget.tabsRouter.activeIndex,
+          onTap: widget.onTabTap,
+          items: items,
+        ),
       );
     }
     return CupertinoTabBar(
-        iconSize: 24,
-        height: 50,
-        currentIndex: widget.tabsRouter.activeIndex,
-        onTap: (index) {
-          // here we switch between tabs
-          if (widget.tabsRouter.activeIndex == index) {
-            final searchState =
-                widget.tabsRouter.topPage?.child.asOrNull<SearchScreen>()?.key?.asOrNull<GlobalKey<SearchScreenState>>()?.currentState;
-            if (searchState != null) {
-              searchState.clear();
-            }
-            widget.tabsRouter.stackRouterOfIndex(index)?.popUntilRoot();
-          } else {
-            sendAnalytics(index);
-          }
-          widget.tabsRouter.setActiveIndex(index);
-        },
-        inactiveColor: BtvColors.label3,
-        activeColor: BtvColors.tint1,
-        border: const Border(top: BorderSide(width: 1, color: BtvColors.separatorOnLight)),
-        items: items);
+      iconSize: 24,
+      height: 50,
+      currentIndex: widget.tabsRouter.activeIndex,
+      onTap: widget.onTabTap,
+      inactiveColor: BccmColors.label3,
+      activeColor: BccmColors.tint1,
+      border: const Border(top: BorderSide(width: 1, color: BccmColors.separatorOnLight)),
+      items: items,
+    );
   }
 }

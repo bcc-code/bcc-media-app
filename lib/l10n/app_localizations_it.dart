@@ -23,6 +23,9 @@ class SIt extends S {
   String get calendarWeek => 'settimana';
 
   @override
+  String get close => 'Close';
+
+  @override
   String get loading => 'In fase di caricamento';
 
   @override
@@ -47,10 +50,30 @@ class SIt extends S {
   String get faq => 'Domande frequenti';
 
   @override
-  String get bccMediaCenter => 'BCC Media è una fondazione mediatica della federazione BCC che produce e distribuisce contenuti con valori positivi e cristiani.';
+  String get bccMediaCenter =>
+      'BCC Media è una fondazione mediatica della federazione BCC che produce e distribuisce contenuti con valori positivi e cristiani.';
 
   @override
   String get signInButton => '7 / 5000\nRegistrati';
+
+  @override
+  String get signInOrSignUp => 'Sign up / Sign in';
+
+  @override
+  String get signUpButton => 'Sign up now';
+
+  @override
+  String get signUpTitle => 'Sign up';
+
+  @override
+  String get signUpDescription => 'Get access to more content and better features by creating an account.';
+
+  @override
+  String get signUpAgreePrivacyPolicy =>
+      'I certify that I am 13 years of age or older, and I agree to the <a>Privacy Policy</a> and <a>Terms of use</a>.';
+
+  @override
+  String get setPassword => 'Set password';
 
   @override
   String get tryAgainButton => 'Riprova';
@@ -75,6 +98,9 @@ class SIt extends S {
 
   @override
   String get ok => 'OK';
+
+  @override
+  String get open => 'Open';
 
   @override
   String get loginFailedCheckNetwork => 'Accesso fallito. Controlla la tua connessione di rete e riprova.';
@@ -111,6 +137,18 @@ class SIt extends S {
 
   @override
   String get cancel => 'Annulla';
+
+  @override
+  String get cancelConfirmation => 'Are you sure you want to cancel?';
+
+  @override
+  String get cancelConfirmationDescription => 'Any unsaved changes will be lost.';
+
+  @override
+  String get goBack => 'Go back';
+
+  @override
+  String get yesCancel => 'Yes, Cancel';
 
   @override
   String get upNext => 'Al prossimo';
@@ -152,6 +190,9 @@ class SIt extends S {
   String get search => 'Cerca';
 
   @override
+  String get sendFeedback => 'Send Feedback';
+
+  @override
   String get noResults => 'Nessun risultato';
 
   @override
@@ -159,6 +200,9 @@ class SIt extends S {
 
   @override
   String get play => 'Play';
+
+  @override
+  String get pause => 'Pause';
 
   @override
   String get castQueue => 'Coda di trasmissione';
@@ -324,6 +368,9 @@ class SIt extends S {
   String get sendFailDescription => 'Qualcosa è andato storto. Controlla la tua connessione Internet e riprova.';
 
   @override
+  String get sendSuccessDescription => 'We appreciate your feedback.';
+
+  @override
   String get today => 'Oggi';
 
   @override
@@ -356,6 +403,12 @@ class SIt extends S {
 
   @override
   String get liveNow => 'In onda adesso';
+
+  @override
+  String get comingSoon => 'Coming soon';
+
+  @override
+  String get newEpisode => 'New';
 
   @override
   String get tomorrow => 'Domani';
@@ -450,6 +503,9 @@ class SIt extends S {
   String get exploreContent => 'Esplora i contenuti';
 
   @override
+  String get explorePublicContent => 'Explore public content';
+
+  @override
   String get taskCompleted => 'compito completato';
 
   @override
@@ -523,7 +579,18 @@ class SIt extends S {
   String get continueButton => 'Continua';
 
   @override
+  String get registerButton => 'Register';
+
+  @override
   String get achievements => 'Risultati';
+
+  @override
+  String passwordConditionLength(int n) {
+    return 'Minimum $n characters';
+  }
+
+  @override
+  String get passwordConditionComplexity => 'Must contain lower case, uppercase and numbers.';
 
   @override
   String get oops => 'Oops!';
@@ -542,13 +609,4 @@ class SIt extends S {
 
   @override
   String get details => 'Dettagli';
-
-  @override
-  String get myList => 'My List';
-
-  @override
-  String get didYouKnowTitle => 'Did you know?';
-
-  @override
-  String get didYouKnowContent => 'You can add your favorite shows to \"My List\" by tapping the heart.';
 }

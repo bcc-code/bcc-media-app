@@ -1,8 +1,10 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:auto_route/auto_route.dart';
 
-import '../../helpers/btv_colors.dart';
-import '../../helpers/btv_typography.dart';
+import '../../components/web/dialog_on_web.dart';
+import '../../theme/bccm_colors.dart';
+import '../../theme/bccm_typography.dart';
 import '../../l10n/app_localizations.dart';
 
 class FAQItem {
@@ -62,43 +64,45 @@ class _FAQState extends State<FAQ> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: BtvColors.background1,
-        leadingWidth: 90,
-        leading: GestureDetector(
-          behavior: HitTestBehavior.opaque,
-          onTapDown: (details) {
-            context.router.pop();
-          },
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: [
-              const Icon(
-                Icons.arrow_back_ios_new,
-                color: BtvColors.tint1,
-              ),
-              Text(
-                S.of(context).faq,
-                overflow: TextOverflow.ellipsis,
-                style: BtvTextStyles.button2,
-              ),
-            ],
+    return DialogOnWeb(
+      child: Scaffold(
+        appBar: AppBar(
+          backgroundColor: BccmColors.background1,
+          leadingWidth: 90,
+          leading: GestureDetector(
+            behavior: HitTestBehavior.opaque,
+            onTapDown: (details) {
+              context.router.pop();
+            },
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                const Icon(
+                  Icons.arrow_back_ios_new,
+                  color: BccmColors.tint1,
+                ),
+                Text(
+                  S.of(context).faq,
+                  overflow: TextOverflow.ellipsis,
+                  style: BccmTextStyles.button2,
+                ),
+              ],
+            ),
+          ),
+          centerTitle: true,
+          title: Text(
+            S.of(context).faq,
+            overflow: TextOverflow.ellipsis,
+            textAlign: TextAlign.center,
           ),
         ),
-        centerTitle: true,
-        title: Text(
-          S.of(context).faq,
-          overflow: TextOverflow.ellipsis,
-          textAlign: TextAlign.center,
-        ),
-      ),
-      body: SafeArea(
-        child: SingleChildScrollView(
-          child: Container(
-            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 17),
-            child: Column(
-              children: <Widget>[for (var i in listOfList) _ExpansionTileDropDown(i, listOfList.indexOf(i))],
+        body: SafeArea(
+          child: SingleChildScrollView(
+            child: Container(
+              padding: const EdgeInsets.symmetric(horizontal: kIsWeb ? 80 : 16, vertical: 17),
+              child: Column(
+                children: <Widget>[for (var i in listOfList) _ExpansionTileDropDown(i, listOfList.indexOf(i))],
+              ),
             ),
           ),
         ),
@@ -134,7 +138,7 @@ class _ExpansionTileDropDownState extends State<_ExpansionTileDropDown> {
         vertical: 8,
       ),
       decoration: BoxDecoration(
-        color: BtvColors.background2,
+        color: BccmColors.background2,
         borderRadius: BorderRadius.circular(12),
       ),
       child: Theme(
@@ -146,17 +150,17 @@ class _ExpansionTileDropDownState extends State<_ExpansionTileDropDown> {
           child: ExpansionTile(
             title: Text(
               widget.questionList.question,
-              style: BtvTextStyles.title3,
+              style: BccmTextStyles.title3,
             ),
             textColor: Colors.teal,
             trailing: !_customTileExpanded
                 ? const Icon(
                     Icons.keyboard_arrow_down,
-                    color: BtvColors.tint1,
+                    color: BccmColors.tint1,
                   )
                 : const Icon(
                     Icons.keyboard_arrow_up,
-                    color: BtvColors.tint2,
+                    color: BccmColors.tint2,
                   ),
             childrenPadding: const EdgeInsets.only(
               top: 12,
@@ -165,7 +169,7 @@ class _ExpansionTileDropDownState extends State<_ExpansionTileDropDown> {
             children: <Widget>[
               Text(
                 widget.questionList.answer,
-                style: BtvTextStyles.body2.copyWith(color: BtvColors.label3),
+                style: BccmTextStyles.body2.copyWith(color: BccmColors.label3),
               )
             ],
             onExpansionChanged: (bool expanded) {

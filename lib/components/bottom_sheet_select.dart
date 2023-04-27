@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 
-import '../helpers/btv_colors.dart';
-import '../helpers/btv_typography.dart';
+import '../theme/bccm_colors.dart';
+import '../theme/bccm_typography.dart';
 import '../l10n/app_localizations.dart';
 import 'option_list.dart';
+import '../helpers/insets.dart';
 
 class BottomSheetSelectResult {
   final bool cancelled;
@@ -46,10 +47,10 @@ class _BottomSheetSelectState extends State<BottomSheetSelect> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: BtvColors.background1,
+      color: BccmColors.background1,
       child: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.only(left: 16, right: 16, top: 8, bottom: 32),
+          padding: screenInsets(context) + const EdgeInsets.only(left: 16, right: 16, top: 8, bottom: 32),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             mainAxisSize: MainAxisSize.min,
@@ -61,7 +62,7 @@ class _BottomSheetSelectState extends State<BottomSheetSelect> {
                   width: 40,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(100),
-                    color: BtvColors.label4,
+                    color: BccmColors.label4,
                   ),
                 ),
               ),
@@ -70,17 +71,17 @@ class _BottomSheetSelectState extends State<BottomSheetSelect> {
                 child: Text(
                   widget.title,
                   textAlign: TextAlign.center,
-                  style: BtvTextStyles.title3,
+                  style: BccmTextStyles.title3,
                 ),
               ),
               if (widget.description != null) widget.description!,
-              Container(
-                margin: const EdgeInsets.only(bottom: 16),
+              Flexible(
                 child: OptionList(
                   optionData: widget.items,
                   currentSelection: localSelectedId,
                   showSelection: widget.showSelection,
                   onSelectionChange: (val) {
+                    if (val == null) return;
                     setState(() {
                       localSelectedId = val;
                     });
@@ -90,24 +91,24 @@ class _BottomSheetSelectState extends State<BottomSheetSelect> {
                     }
                   },
                   margin: const EdgeInsets.all(0),
-                  enableDivider: false,
                 ),
               ),
-              SizedBox(
+              Container(
+                margin: const EdgeInsets.only(top: 16),
                 width: double.infinity,
                 height: 52.1,
                 child: TextButton(
                   style: TextButton.styleFrom(
-                    backgroundColor: BtvColors.separatorOnLight,
+                    backgroundColor: BccmColors.separatorOnLight,
                     shape: const RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(100))),
-                    side: const BorderSide(width: 1, color: BtvColors.separatorOnLight),
+                    side: const BorderSide(width: 1, color: BccmColors.separatorOnLight),
                   ),
                   onPressed: () {
                     Navigator.pop(context, BottomSheetSelectResult(cancelled: true));
                   },
                   child: Text(
                     S.of(context).cancel,
-                    style: BtvTextStyles.button1.copyWith(color: BtvColors.label1),
+                    style: BccmTextStyles.button1.copyWith(color: BccmColors.label1),
                   ),
                 ),
               ),

@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 class GeneralAppBar extends StatelessWidget implements PreferredSizeWidget {
@@ -18,7 +19,7 @@ class GeneralAppBar extends StatelessWidget implements PreferredSizeWidget {
       child: SizedBox(
         height: 44,
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16),
+          padding: const EdgeInsets.symmetric(horizontal: kIsWeb ? 80 : 16),
           child: Row(children: [
             Expanded(
               child: Row(children: leftActions),

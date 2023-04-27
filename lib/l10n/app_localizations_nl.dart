@@ -23,6 +23,9 @@ class SNl extends S {
   String get calendarWeek => 'week';
 
   @override
+  String get close => 'Close';
+
+  @override
   String get loading => 'Laden';
 
   @override
@@ -47,10 +50,30 @@ class SNl extends S {
   String get faq => 'Vaak gestelde vragen';
 
   @override
-  String get bccMediaCenter => 'BCC Media is een media-stichting binnen de BCC-federatie, welke content met positieve en christelijke waarden produceert en verspreidt.';
+  String get bccMediaCenter =>
+      'BCC Media is een media-stichting binnen de BCC-federatie, welke content met positieve en christelijke waarden produceert en verspreidt.';
 
   @override
   String get signInButton => 'Log in';
+
+  @override
+  String get signInOrSignUp => 'Sign up / Sign in';
+
+  @override
+  String get signUpButton => 'Sign up now';
+
+  @override
+  String get signUpTitle => 'Sign up';
+
+  @override
+  String get signUpDescription => 'Get access to more content and better features by creating an account.';
+
+  @override
+  String get signUpAgreePrivacyPolicy =>
+      'I certify that I am 13 years of age or older, and I agree to the <a>Privacy Policy</a> and <a>Terms of use</a>.';
+
+  @override
+  String get setPassword => 'Set password';
 
   @override
   String get tryAgainButton => 'Probeer opnieuw';
@@ -77,19 +100,22 @@ class SNl extends S {
   String get ok => 'Ok';
 
   @override
+  String get open => 'Open';
+
+  @override
   String get loginFailedCheckNetwork => 'Er ging iets mis bij het inloggen. Controleer je netwerkverbinding en probeer het opnieuw.';
 
   @override
   String get loginFailedTryAgain => 'Er ging iets mis bij het inloggen. Probeer het later opnieuw.';
 
   @override
-  String get soundLanguage => 'Geluidstaal';
+  String get soundLanguage => 'Taal geluid';
 
   @override
-  String get subtitleLanguage => 'Taal ondertitels';
+  String get subtitleLanguage => 'Taal ondertiteling';
 
   @override
-  String get appLanguage => 'Taal voor app';
+  String get appLanguage => 'Taal app';
 
   @override
   String get checkNetwork => 'Controleer je netwerkverbinding en probeer opnieuw';
@@ -111,6 +137,18 @@ class SNl extends S {
 
   @override
   String get cancel => 'Annuleren';
+
+  @override
+  String get cancelConfirmation => 'Are you sure you want to cancel?';
+
+  @override
+  String get cancelConfirmationDescription => 'Any unsaved changes will be lost.';
+
+  @override
+  String get goBack => 'Go back';
+
+  @override
+  String get yesCancel => 'Yes, Cancel';
 
   @override
   String get upNext => 'Volgende';
@@ -152,6 +190,9 @@ class SNl extends S {
   String get search => 'Zoeken';
 
   @override
+  String get sendFeedback => 'Send Feedback';
+
+  @override
   String get noResults => 'Geen resultaten';
 
   @override
@@ -159,6 +200,9 @@ class SNl extends S {
 
   @override
   String get play => 'Afspelen';
+
+  @override
+  String get pause => 'Pause';
 
   @override
   String get castQueue => 'Lijst verwijderen';
@@ -324,6 +368,9 @@ class SNl extends S {
   String get sendFailDescription => 'Er is iets misgegaan. Controleer je internetverbinding en probeer het opnieuw.';
 
   @override
+  String get sendSuccessDescription => 'We appreciate your feedback.';
+
+  @override
   String get today => 'Vandaag';
 
   @override
@@ -356,6 +403,12 @@ class SNl extends S {
 
   @override
   String get liveNow => 'Nu live';
+
+  @override
+  String get comingSoon => 'Coming soon';
+
+  @override
+  String get newEpisode => 'New';
 
   @override
   String get tomorrow => 'Morgen';
@@ -417,10 +470,10 @@ class SNl extends S {
   String get eventsTab => 'Evenementen';
 
   @override
-  String get audioLanguage => 'Geluidstaal';
+  String get audioLanguage => 'Taal geluid';
 
   @override
-  String get subtitlesLanguage => 'Taal ondertitels';
+  String get subtitlesLanguage => 'Taal ondertiteling';
 
   @override
   String get removeFromRecentSearches => 'Wilt u dit element verwijderen uit het overzicht met recente zoekopdrachten?';
@@ -448,6 +501,9 @@ class SNl extends S {
 
   @override
   String get exploreContent => 'Inhoud verkennen';
+
+  @override
+  String get explorePublicContent => 'Explore public content';
 
   @override
   String get taskCompleted => 'taak afgerond';
@@ -523,7 +579,18 @@ class SNl extends S {
   String get continueButton => 'Doorgaan';
 
   @override
+  String get registerButton => 'Register';
+
+  @override
   String get achievements => 'Prestaties';
+
+  @override
+  String passwordConditionLength(int n) {
+    return 'Minimum $n characters';
+  }
+
+  @override
+  String get passwordConditionComplexity => 'Must contain lower case, uppercase and numbers.';
 
   @override
   String get oops => 'Oeps!';
@@ -542,13 +609,4 @@ class SNl extends S {
 
   @override
   String get details => 'Details';
-
-  @override
-  String get myList => 'My List';
-
-  @override
-  String get didYouKnowTitle => 'Did you know?';
-
-  @override
-  String get didYouKnowContent => 'You can add your favorite shows to \"My List\" by tapping the heart.';
 }

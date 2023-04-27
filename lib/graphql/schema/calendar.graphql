@@ -41,6 +41,7 @@ type EpisodeCalendarEntry implements CalendarEntry {
     description: String! @goField(forceResolver: true)
     start: Date!
     end: Date!
+    isReplay: Boolean!
     episode: Episode @goField(forceResolver: true)
 }
 

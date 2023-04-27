@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:brunstadtv_app/helpers/transparent_image.dart';
+import 'package:brunstadtv_app/helpers/ui/transparent_image.dart';
 
-import '../helpers/btv_colors.dart';
-import '../helpers/image_utils.dart';
+import '../theme/bccm_colors.dart';
+import '../helpers/ui/image.dart';
 
 class BorderedImageContainer extends StatelessWidget {
   final String? imageUrl;
@@ -34,7 +34,7 @@ class BorderedImageContainer extends StatelessWidget {
         borderRadius: borderRadius ?? BorderRadius.circular(6),
         border: Border.all(
           width: 1,
-          color: BtvColors.onTint.withOpacity(0.1),
+          color: BccmColors.onTint.withOpacity(0.1),
         ),
       ),
       child: LayoutBuilder(
@@ -43,8 +43,7 @@ class BorderedImageContainer extends StatelessWidget {
             return const SizedBox.shrink();
           }
           final imageHeight = (constraints.maxHeight * MediaQuery.of(context).devicePixelRatio).round();
-          final imageWidth = (constraints.maxWidth * MediaQuery.of(context).devicePixelRatio).round();
-          final imageUri = imageUrl == null ? null : getImageUri(imageUrl!, width: imageWidth, height: imageHeight);
+          final imageUri = imageUrl == null ? null : getImageUri(imageUrl!, height: imageHeight);
           return ClipRRect(
             borderRadius: borderRadius ?? BorderRadius.circular(6),
             child: SizedBox(

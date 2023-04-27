@@ -23,6 +23,9 @@ class SDe extends S {
   String get calendarWeek => 'Woche';
 
   @override
+  String get close => 'Close';
+
+  @override
   String get loading => 'Lädt';
 
   @override
@@ -47,10 +50,30 @@ class SDe extends S {
   String get faq => 'Häufig gestellte Fragen';
 
   @override
-  String get bccMediaCenter => 'BCC Media ist eine Medienstiftung im BCC-Verbund, welche Inhalte mit positiven und christlichen Werten produziert und verbreitet.';
+  String get bccMediaCenter =>
+      'BCC Media ist eine Medienstiftung im BCC-Verbund, welche Inhalte mit positiven und christlichen Werten produziert und verbreitet.';
 
   @override
   String get signInButton => 'Einloggen';
+
+  @override
+  String get signInOrSignUp => 'Sign up / Sign in';
+
+  @override
+  String get signUpButton => 'Sign up now';
+
+  @override
+  String get signUpTitle => 'Sign up';
+
+  @override
+  String get signUpDescription => 'Get access to more content and better features by creating an account.';
+
+  @override
+  String get signUpAgreePrivacyPolicy =>
+      'I certify that I am 13 years of age or older, and I agree to the <a>Privacy Policy</a> and <a>Terms of use</a>.';
+
+  @override
+  String get setPassword => 'Set password';
 
   @override
   String get tryAgainButton => 'Erneut versuchen';
@@ -75,6 +98,9 @@ class SDe extends S {
 
   @override
   String get ok => 'OK';
+
+  @override
+  String get open => 'Open';
 
   @override
   String get loginFailedCheckNetwork => 'Anmeldung fehlgeschlagen. Überprüfe deine Netzwerkverbindung und versuche es erneut.';
@@ -111,6 +137,18 @@ class SDe extends S {
 
   @override
   String get cancel => 'Abbrechen';
+
+  @override
+  String get cancelConfirmation => 'Are you sure you want to cancel?';
+
+  @override
+  String get cancelConfirmationDescription => 'Any unsaved changes will be lost.';
+
+  @override
+  String get goBack => 'Go back';
+
+  @override
+  String get yesCancel => 'Yes, Cancel';
 
   @override
   String get upNext => 'Nächste';
@@ -152,6 +190,9 @@ class SDe extends S {
   String get search => 'Suchen';
 
   @override
+  String get sendFeedback => 'Send Feedback';
+
+  @override
   String get noResults => 'Keine Ergebnisse';
 
   @override
@@ -159,6 +200,9 @@ class SDe extends S {
 
   @override
   String get play => 'Abspielen';
+
+  @override
+  String get pause => 'Pause';
 
   @override
   String get castQueue => 'Wiedergabeliste streamen';
@@ -324,6 +368,9 @@ class SDe extends S {
   String get sendFailDescription => 'Etwas lief schief. Bitte überprüfe deine Internetverbindung und versuche es noch einmal.';
 
   @override
+  String get sendSuccessDescription => 'We appreciate your feedback.';
+
+  @override
   String get today => 'Heute';
 
   @override
@@ -356,6 +403,12 @@ class SDe extends S {
 
   @override
   String get liveNow => 'Jetzt live';
+
+  @override
+  String get comingSoon => 'Coming soon';
+
+  @override
+  String get newEpisode => 'New';
 
   @override
   String get tomorrow => 'Morgen';
@@ -450,6 +503,9 @@ class SDe extends S {
   String get exploreContent => 'Entdecke den Inhalt';
 
   @override
+  String get explorePublicContent => 'Explore public content';
+
+  @override
   String get taskCompleted => 'Aufgabe abgeschlossen';
 
   @override
@@ -523,7 +579,18 @@ class SDe extends S {
   String get continueButton => 'Weiter';
 
   @override
+  String get registerButton => 'Register';
+
+  @override
   String get achievements => 'Erfolge';
+
+  @override
+  String passwordConditionLength(int n) {
+    return 'Minimum $n characters';
+  }
+
+  @override
+  String get passwordConditionComplexity => 'Must contain lower case, uppercase and numbers.';
 
   @override
   String get oops => 'Ups!';
@@ -542,13 +609,4 @@ class SDe extends S {
 
   @override
   String get details => 'Details';
-
-  @override
-  String get myList => 'My List';
-
-  @override
-  String get didYouKnowTitle => 'Did you know?';
-
-  @override
-  String get didYouKnowContent => 'You can add your favorite shows to \"My List\" by tapping the heart.';
 }

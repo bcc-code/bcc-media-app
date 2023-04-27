@@ -13,17 +13,21 @@ import 'package:brunstadtv_app/screens/profile/contact_support.dart';
 import 'package:brunstadtv_app/screens/profile/faq.dart';
 import 'package:brunstadtv_app/screens/home.dart';
 import 'package:brunstadtv_app/screens/live.dart';
-import 'package:brunstadtv_app/screens/login.dart';
+import 'package:brunstadtv_app/screens/profile/account_deletion.dart';
+import 'package:brunstadtv_app/screens/onboarding/onboarding.dart';
 import 'package:brunstadtv_app/screens/profile/profile.dart';
 import 'package:brunstadtv_app/screens/search/search.dart';
 import 'package:brunstadtv_app/screens/study.dart';
+import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
+import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 
-import '../helpers/custom_transitions.dart';
+import '../helpers/navigation/custom_transitions.dart';
 import '../screens/achievement_group.dart';
 import '../screens/achievements.dart';
 import '../screens/episode.dart';
 import '../screens/page.dart';
-import 'special_routes_guard.dart';
+import '../screens/onboarding/signup.dart';
 import '../screens/tabs_root.dart';
 
 const _episodeScreenRoute = CustomRoute<void>(
@@ -43,42 +47,45 @@ const _pageScreenRoute = CustomRoute<void>(
     reverseDurationInMilliseconds: 300,
     transitionsBuilder: CustomTransitionsBuilders.slideLeft);
 
-const _specialRoutes = AutoRoute(
-  page: EmptyRouterPage,
-  path: '/',
-  guards: [SpecialRoutesGuard],
-  children: [
-    AutoRoute<void>(
-      page: EmptyRouterPage,
-      name: 'RedirectRoute',
-      path: 'r/:code',
-    ),
-    AutoRoute<void>(
-      page: EmptyRouterPage,
-      name: 'TvLoginRoute',
-      path: 'tvlogin/*',
-    ),
-    AutoRoute<void>(
-      page: EmptyRouterPage,
-      name: 'LegacyEpisodeRoute',
-      path: 'series/:legacyEpisodeId',
-    ),
-    AutoRoute<void>(
-      page: EmptyRouterPage,
-      name: 'LegacyProgramRoute',
-      path: 'program/:legacyProgramId',
-    ),
-  ],
-);
+Route<T> modalSheetBuilder<T>(BuildContext context, Widget child, CustomPage<T> page) {
+  return ModalSheetRoute(
+    settings: page,
+    builder: (context) => child,
+    animationCurve: Curves.easeOutCirc,
+    expanded: true,
+  );
+}
+
+Route<T> profileRouteBuilder<T>(BuildContext context, Widget child, CustomPage<T> page) {
+  if (!kIsWeb) return PageRouteBuilder(settings: page, pageBuilder: (context, a, b) => CustomTransitionsBuilders.slideUp(context, a, b, child));
+  return DialogRoute(
+    context: context,
+    settings: page,
+    builder: (context) => child,
+  );
+}
 
 @MaterialAutoRouter(
+  deferredLoading: false,
   routes: [
-    MaterialRoute<void>(page: LoginScreen, path: 'login', meta: {RouteMetaConstants.analyticsName: 'login'}),
+    AutoRoute<void>(page: AutoLoginScreen, path: '/auto-login'),
+    CustomRoute<void>(
+      page: OnboardingScreen,
+      path: '/login',
+      customRouteBuilder: profileRouteBuilder,
+      meta: {RouteMetaConstants.analyticsName: 'login'},
+    ),
+    CustomRoute<void>(
+      customRouteBuilder: modalSheetBuilder,
+      page: SignupScreen,
+      path: 'signup',
+      meta: {RouteMetaConstants.analyticsName: 'signup'},
+    ),
     CustomRoute<void>(
         opaque: false,
         durationInMilliseconds: 400,
         reverseDurationInMilliseconds: 600,
-        transitionsBuilder: CustomTransitionsBuilders.slideUp,
+        customRouteBuilder: profileRouteBuilder,
         page: Profile,
         path: '/profile',
         meta: {RouteMetaConstants.analyticsName: 'profile'}),
@@ -87,7 +94,7 @@ const _specialRoutes = AutoRoute(
       path: '/app-language',
       durationInMilliseconds: 400,
       reverseDurationInMilliseconds: 600,
-      transitionsBuilder: CustomTransitionsBuilders.slideUp,
+      customRouteBuilder: profileRouteBuilder,
       meta: {RouteMetaConstants.analyticsName: 'settings', RouteMetaConstants.settingsName: 'appLanguage'},
     ),
     CustomRoute<void>(
@@ -95,7 +102,7 @@ const _specialRoutes = AutoRoute(
       path: '/audio-language',
       durationInMilliseconds: 400,
       reverseDurationInMilliseconds: 600,
-      transitionsBuilder: CustomTransitionsBuilders.slideUp,
+      customRouteBuilder: profileRouteBuilder,
       meta: {RouteMetaConstants.analyticsName: 'settings', RouteMetaConstants.settingsName: 'audioLanguage'},
     ),
     CustomRoute<void>(
@@ -103,7 +110,7 @@ const _specialRoutes = AutoRoute(
       path: '/subtitle-language',
       durationInMilliseconds: 400,
       reverseDurationInMilliseconds: 600,
-      transitionsBuilder: CustomTransitionsBuilders.slideUp,
+      customRouteBuilder: profileRouteBuilder,
       meta: {RouteMetaConstants.analyticsName: 'settings', RouteMetaConstants.settingsName: 'subtitlesLanguage'},
     ),
     CustomRoute<void>(
@@ -111,7 +118,7 @@ const _specialRoutes = AutoRoute(
       path: '/video-quality',
       durationInMilliseconds: 400,
       reverseDurationInMilliseconds: 600,
-      transitionsBuilder: CustomTransitionsBuilders.slideUp,
+      customRouteBuilder: profileRouteBuilder,
       meta: {RouteMetaConstants.analyticsName: 'settings', RouteMetaConstants.settingsName: 'videoQuality'},
     ),
     CustomRoute<void>(
@@ -119,7 +126,7 @@ const _specialRoutes = AutoRoute(
       path: '/contact-support',
       durationInMilliseconds: 400,
       reverseDurationInMilliseconds: 600,
-      transitionsBuilder: CustomTransitionsBuilders.slideUp,
+      customRouteBuilder: profileRouteBuilder,
       meta: {RouteMetaConstants.analyticsName: 'support'},
     ),
     CustomRoute<void>(
@@ -127,7 +134,7 @@ const _specialRoutes = AutoRoute(
       path: '/about',
       durationInMilliseconds: 400,
       reverseDurationInMilliseconds: 600,
-      transitionsBuilder: CustomTransitionsBuilders.slideUp,
+      customRouteBuilder: profileRouteBuilder,
       meta: {RouteMetaConstants.analyticsName: 'about'},
     ),
     CustomRoute<void>(
@@ -135,8 +142,16 @@ const _specialRoutes = AutoRoute(
       path: '/faq',
       durationInMilliseconds: 400,
       reverseDurationInMilliseconds: 600,
-      transitionsBuilder: CustomTransitionsBuilders.slideLeft,
+      customRouteBuilder: profileRouteBuilder,
       meta: {RouteMetaConstants.analyticsName: 'faq'},
+    ),
+    CustomRoute<void>(
+      page: AccountDeletionScreen,
+      path: '/account-deletion',
+      durationInMilliseconds: 400,
+      reverseDurationInMilliseconds: 600,
+      customRouteBuilder: profileRouteBuilder,
+      meta: {RouteMetaConstants.analyticsName: 'account-deletion'},
     ),
     CustomRoute<void>(
       page: HomeScreen,
@@ -155,7 +170,6 @@ const _specialRoutes = AutoRoute(
       transitionsBuilder: CustomTransitionsBuilders.slideLeft,
       meta: {RouteMetaConstants.analyticsName: 'episode'},
     ),
-    CustomRoute(page: AutoLoginScreeen, path: 'auto-login'),
     CustomRoute<void>(
         page: StudyScreen,
         path: 'study-lesson',
@@ -182,7 +196,6 @@ const _specialRoutes = AutoRoute(
     CustomRoute<void>(
       page: TabsRootScreen,
       path: '/',
-      guards: [],
       children: [
         MaterialRoute<void>(
             page: LiveScreen,
@@ -233,7 +246,6 @@ const _specialRoutes = AutoRoute(
         ]),
       ],
     ),
-    _specialRoutes,
   ],
 )
 class $AppRouter {}

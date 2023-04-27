@@ -135,7 +135,7 @@ class _CopyWithImpl$Variables$Mutation$setEpisodeProgress<TRes>
 
   final TRes Function(Variables$Mutation$setEpisodeProgress) _then;
 
-  static const _undefined = {};
+  static const _undefined = <dynamic, dynamic>{};
 
   TRes call({
     Object? id = _undefined,
@@ -167,7 +167,7 @@ class _CopyWithStubImpl$Variables$Mutation$setEpisodeProgress<TRes>
 class Mutation$setEpisodeProgress {
   Mutation$setEpisodeProgress({
     required this.setEpisodeProgress,
-    required this.$__typename,
+    this.$__typename = 'MutationRoot',
   });
 
   factory Mutation$setEpisodeProgress.fromJson(Map<String, dynamic> json) {
@@ -264,7 +264,7 @@ class _CopyWithImpl$Mutation$setEpisodeProgress<TRes>
 
   final TRes Function(Mutation$setEpisodeProgress) _then;
 
-  static const _undefined = {};
+  static const _undefined = <dynamic, dynamic>{};
 
   TRes call({
     Object? setEpisodeProgress = _undefined,
@@ -602,7 +602,7 @@ class Mutation$setEpisodeProgress$Widget
 
 class Mutation$setEpisodeProgress$setEpisodeProgress {
   Mutation$setEpisodeProgress$setEpisodeProgress({
-    required this.$__typename,
+    this.$__typename = 'Episode',
     required this.duration,
     this.progress,
   });
@@ -714,7 +714,7 @@ class _CopyWithImpl$Mutation$setEpisodeProgress$setEpisodeProgress<TRes>
 
   final TRes Function(Mutation$setEpisodeProgress$setEpisodeProgress) _then;
 
-  static const _undefined = {};
+  static const _undefined = <dynamic, dynamic>{};
 
   TRes call({
     Object? $__typename = _undefined,

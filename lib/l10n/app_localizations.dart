@@ -159,6 +159,12 @@ abstract class S {
   /// **'week'**
   String get calendarWeek;
 
+  /// Text displayed on 'Close' button
+  ///
+  /// In en, this message translates to:
+  /// **'Close'**
+  String get close;
+
   /// Text to indicate loading state.
   ///
   /// In en, this message translates to:
@@ -219,6 +225,42 @@ abstract class S {
   /// **'Sign in'**
   String get signInButton;
 
+  /// Button to go to the onboarding page (short)
+  ///
+  /// In en, this message translates to:
+  /// **'Sign up / Sign in'**
+  String get signInOrSignUp;
+
+  /// Button to start the sign up process
+  ///
+  /// In en, this message translates to:
+  /// **'Sign up now'**
+  String get signUpButton;
+
+  /// Title on the sign up page
+  ///
+  /// In en, this message translates to:
+  /// **'Sign up'**
+  String get signUpTitle;
+
+  /// A description on the sign up page explaining why you would want to sign up
+  ///
+  /// In en, this message translates to:
+  /// **'Get access to more content and better features by creating an account.'**
+  String get signUpDescription;
+
+  /// REMEMBER: Keep the <a> and </a> tags, but translate the 'Privacy Policy' inside.
+  ///
+  /// In en, this message translates to:
+  /// **'I certify that I am 13 years of age or older, and I agree to the <a>Privacy Policy</a> and <a>Terms of use</a>.'**
+  String get signUpAgreePrivacyPolicy;
+
+  /// Title for the 'Set password' page of the signup process.
+  ///
+  /// In en, this message translates to:
+  /// **'Set password'**
+  String get setPassword;
+
   /// Button on error alert that lets user to retry failed action
   ///
   /// In en, this message translates to:
@@ -266,6 +308,12 @@ abstract class S {
   /// In en, this message translates to:
   /// **'OK'**
   String get ok;
+
+  /// Open button
+  ///
+  /// In en, this message translates to:
+  /// **'Open'**
+  String get open;
 
   /// Login error message
   ///
@@ -338,6 +386,30 @@ abstract class S {
   /// In en, this message translates to:
   /// **'Cancel'**
   String get cancel;
+
+  /// Title text for cancel confirmation dialog.
+  ///
+  /// In en, this message translates to:
+  /// **'Are you sure you want to cancel?'**
+  String get cancelConfirmation;
+
+  /// Description for cancel confirmation dialog.
+  ///
+  /// In en, this message translates to:
+  /// **'Any unsaved changes will be lost.'**
+  String get cancelConfirmationDescription;
+
+  /// Text for back button.
+  ///
+  /// In en, this message translates to:
+  /// **'Go back'**
+  String get goBack;
+
+  /// Confirm cancel.
+  ///
+  /// In en, this message translates to:
+  /// **'Yes, Cancel'**
+  String get yesCancel;
 
   /// Title indiciating what's next on the livestream.
   ///
@@ -417,6 +489,12 @@ abstract class S {
   /// **'Search'**
   String get search;
 
+  /// Button to submit feedback(Survey)
+  ///
+  /// In en, this message translates to:
+  /// **'Send Feedback'**
+  String get sendFeedback;
+
   /// No search results.
   ///
   /// In en, this message translates to:
@@ -434,6 +512,12 @@ abstract class S {
   /// In en, this message translates to:
   /// **'Play'**
   String get play;
+
+  /// A button to pause the video.
+  ///
+  /// In en, this message translates to:
+  /// **'Pause'**
+  String get pause;
 
   /// Queue page title
   ///
@@ -753,6 +837,12 @@ abstract class S {
   /// **'Something went wrong. Check your internet connection and try again.'**
   String get sendFailDescription;
 
+  /// General message when sending is successful
+  ///
+  /// In en, this message translates to:
+  /// **'We appreciate your feedback.'**
+  String get sendSuccessDescription;
+
   /// First category in tv guide
   ///
   /// In en, this message translates to:
@@ -812,6 +902,18 @@ abstract class S {
   /// In en, this message translates to:
   /// **'Live now'**
   String get liveNow;
+
+  /// Generic, short. Used in buttons, badges, etc to indicate that an item is available soon.
+  ///
+  /// In en, this message translates to:
+  /// **'Coming soon'**
+  String get comingSoon;
+
+  /// Generic, short. Used in buttons, badges, etc to indicate that an item was recently published.
+  ///
+  /// In en, this message translates to:
+  /// **'New'**
+  String get newEpisode;
 
   /// Day of transmission in tv guide.
   ///
@@ -987,11 +1089,17 @@ abstract class S {
   /// **'Watch now'**
   String get watchNow;
 
-  /// A button on the login page
+  /// A button
   ///
   /// In en, this message translates to:
   /// **'Explore content'**
   String get exploreContent;
+
+  /// A button on the welcome page
+  ///
+  /// In en, this message translates to:
+  /// **'Explore public content'**
+  String get explorePublicContent;
 
   /// SINGULAR. Note the lowercase T, because its inserted after a count: '0/1 task completed'.
   ///
@@ -1119,11 +1227,29 @@ abstract class S {
   /// **'Continue'**
   String get continueButton;
 
+  /// Generic button text.
+  ///
+  /// In en, this message translates to:
+  /// **'Register'**
+  String get registerButton;
+
   /// Generic. Used as page title, etc.
   ///
   /// In en, this message translates to:
   /// **'Achievements'**
   String get achievements;
+
+  /// REMINDER: Do NOT touch variables (like {n}). Password condition, shown when signing up.
+  ///
+  /// In en, this message translates to:
+  /// **'Minimum {n} characters'**
+  String passwordConditionLength(int n);
+
+  /// Password condition, shown when signing up.
+  ///
+  /// In en, this message translates to:
+  /// **'Must contain lower case, uppercase and numbers.'**
+  String get passwordConditionComplexity;
 
   /// An informal title on some error screens.
   ///
@@ -1160,24 +1286,6 @@ abstract class S {
   /// In en, this message translates to:
   /// **'Details'**
   String get details;
-
-  /// My list tab name
-  ///
-  /// In en, this message translates to:
-  /// **'My List'**
-  String get myList;
-
-  /// Title for info displayed on 'My list' page.
-  ///
-  /// In en, this message translates to:
-  /// **'Did you know?'**
-  String get didYouKnowTitle;
-
-  /// Content for info displayed on 'My list' page.
-  ///
-  /// In en, this message translates to:
-  /// **'You can add your favorite shows to \"My List\" by tapping the heart.'**
-  String get didYouKnowContent;
 }
 
 class _SDelegate extends LocalizationsDelegate<S> {
@@ -1189,40 +1297,54 @@ class _SDelegate extends LocalizationsDelegate<S> {
   }
 
   @override
-  bool isSupported(Locale locale) => <String>['bg', 'da', 'de', 'en', 'es', 'fi', 'fr', 'hu', 'it', 'nb', 'nl', 'pl', 'pt', 'ro', 'ru', 'sl', 'tr'].contains(locale.languageCode);
+  bool isSupported(Locale locale) =>
+      <String>['bg', 'da', 'de', 'en', 'es', 'fi', 'fr', 'hu', 'it', 'nb', 'nl', 'pl', 'pt', 'ro', 'ru', 'sl', 'tr'].contains(locale.languageCode);
 
   @override
   bool shouldReload(_SDelegate old) => false;
 }
 
 S lookupS(Locale locale) {
-
-
   // Lookup logic when only language code is specified.
   switch (locale.languageCode) {
-    case 'bg': return SBg();
-    case 'da': return SDa();
-    case 'de': return SDe();
-    case 'en': return SEn();
-    case 'es': return SEs();
-    case 'fi': return SFi();
-    case 'fr': return SFr();
-    case 'hu': return SHu();
-    case 'it': return SIt();
-    case 'nb': return SNb();
-    case 'nl': return SNl();
-    case 'pl': return SPl();
-    case 'pt': return SPt();
-    case 'ro': return SRo();
-    case 'ru': return SRu();
-    case 'sl': return SSl();
-    case 'tr': return STr();
+    case 'bg':
+      return SBg();
+    case 'da':
+      return SDa();
+    case 'de':
+      return SDe();
+    case 'en':
+      return SEn();
+    case 'es':
+      return SEs();
+    case 'fi':
+      return SFi();
+    case 'fr':
+      return SFr();
+    case 'hu':
+      return SHu();
+    case 'it':
+      return SIt();
+    case 'nb':
+      return SNb();
+    case 'nl':
+      return SNl();
+    case 'pl':
+      return SPl();
+    case 'pt':
+      return SPt();
+    case 'ro':
+      return SRo();
+    case 'ru':
+      return SRu();
+    case 'sl':
+      return SSl();
+    case 'tr':
+      return STr();
   }
 
-  throw FlutterError(
-    'S.delegate failed to load unsupported locale "$locale". This is likely '
-    'an issue with the localizations generation tool. Please file an issue '
-    'on GitHub with a reproducible sample app and the gen-l10n configuration '
-    'that was used.'
-  );
+  throw FlutterError('S.delegate failed to load unsupported locale "$locale". This is likely '
+      'an issue with the localizations generation tool. Please file an issue '
+      'on GitHub with a reproducible sample app and the gen-l10n configuration '
+      'that was used.');
 }

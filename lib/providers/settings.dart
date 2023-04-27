@@ -1,11 +1,12 @@
-import 'package:bccm_player/playback_platform_pigeon.g.dart';
+import 'package:bccm_player/bccm_player.dart';
 import 'package:brunstadtv_app/helpers/constants.dart';
-import 'package:brunstadtv_app/providers/playback_api.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:intl/intl.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+
+import '../helpers/languages.dart';
 
 part 'settings.freezed.dart';
 
@@ -18,6 +19,7 @@ class Settings with _$Settings {
     String? analyticsId,
     int? sessionId,
     String? envOverride,
+    bool? isBetaTester,
   }) = _Settings;
 }
 
@@ -48,6 +50,7 @@ class SettingsService extends StateNotifier<Settings> {
       subtitleLanguage: prefs.getString(PrefKeys.subtitleLanguage),
       analyticsId: prefs.getString(PrefKeys.analyticsId),
       envOverride: prefs.getString(PrefKeys.envOverride),
+      isBetaTester: prefs.getBool(PrefKeys.isBetaTester),
       sessionId: (DateTime.now().millisecondsSinceEpoch / 1000).round(),
     );
   }
@@ -56,8 +59,7 @@ class SettingsService extends StateNotifier<Settings> {
     var prefs = await prefsF;
 
     prefs.setString(PrefKeys.appLanguage, code);
-    state = state.copyWith(appLanguage: Locale(code));
-
+    state = state.copyWith(appLanguage: getLocale(code) ?? const Locale('en'));
     // update the rest of the app
   }
 
@@ -73,9 +75,13 @@ class SettingsService extends StateNotifier<Settings> {
     state = state.copyWith(sessionId: newSessionId);
   }
 
-  Future<void> setSubtitleLanguage(String code) async {
+  Future<void> setSubtitleLanguage(String? code) async {
     var prefs = await prefsF;
-    prefs.setString(PrefKeys.subtitleLanguage, code);
+    if (code == null) {
+      prefs.remove(PrefKeys.subtitleLanguage);
+    } else {
+      prefs.setString(PrefKeys.subtitleLanguage, code);
+    }
     state = state.copyWith(subtitleLanguage: code);
   }
 
@@ -88,13 +94,22 @@ class SettingsService extends StateNotifier<Settings> {
     }
     state = state.copyWith(analyticsId: analyticsId);
   }
+
+  Future<void> setBetaTester(bool value) async {
+    var prefs = await prefsF;
+    if (!value) {
+      prefs.remove(PrefKeys.isBetaTester);
+    } else {
+      prefs.setBool(PrefKeys.isBetaTester, true);
+    }
+    state = state.copyWith(isBetaTester: value);
+  }
 }
 
 final settingsProvider = StateNotifierProvider<SettingsService, Settings>((ref) {
   final settingsService = SettingsService(ref, const Settings(appLanguage: Locale('en')));
   settingsService.addListener(fireImmediately: false, (state) {
-    if (!ref.exists(playbackApiProvider)) return;
-    ref.read(playbackApiProvider).setAppConfig(state.toAppConfig());
+    BccmPlayerInterface.instance.setAppConfig(state.toAppConfig());
   });
   settingsService.addListener(fireImmediately: false, (state) {
     Intl.defaultLocale = state.appLanguage.toLanguageTag();

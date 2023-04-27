@@ -23,6 +23,9 @@ class SHu extends S {
   String get calendarWeek => 'hét';
 
   @override
+  String get close => 'Close';
+
+  @override
   String get loading => 'Betöltés';
 
   @override
@@ -47,10 +50,30 @@ class SHu extends S {
   String get faq => 'Gyakran ismételt kérdések';
 
   @override
-  String get bccMediaCenter => 'A BCC Media a BCC szövetség médiaalapítványa, amely pozitív és keresztény értékeket tartalmazó tartalmakat gyárt és terjeszt.';
+  String get bccMediaCenter =>
+      'A BCC Media a BCC szövetség médiaalapítványa, amely pozitív és keresztény értékeket tartalmazó tartalmakat gyárt és terjeszt.';
 
   @override
   String get signInButton => 'Bejelentkezés';
+
+  @override
+  String get signInOrSignUp => 'Sign up / Sign in';
+
+  @override
+  String get signUpButton => 'Sign up now';
+
+  @override
+  String get signUpTitle => 'Sign up';
+
+  @override
+  String get signUpDescription => 'Get access to more content and better features by creating an account.';
+
+  @override
+  String get signUpAgreePrivacyPolicy =>
+      'I certify that I am 13 years of age or older, and I agree to the <a>Privacy Policy</a> and <a>Terms of use</a>.';
+
+  @override
+  String get setPassword => 'Set password';
 
   @override
   String get tryAgainButton => 'Próbálj újra';
@@ -75,6 +98,9 @@ class SHu extends S {
 
   @override
   String get ok => 'OK';
+
+  @override
+  String get open => 'Open';
 
   @override
   String get loginFailedCheckNetwork => 'Hibás bejelentkezés. Ellenőrizd a hálózati csatlakozásodat és próbálj újra.';
@@ -111,6 +137,18 @@ class SHu extends S {
 
   @override
   String get cancel => 'Mégse';
+
+  @override
+  String get cancelConfirmation => 'Are you sure you want to cancel?';
+
+  @override
+  String get cancelConfirmationDescription => 'Any unsaved changes will be lost.';
+
+  @override
+  String get goBack => 'Go back';
+
+  @override
+  String get yesCancel => 'Yes, Cancel';
 
   @override
   String get upNext => 'Következő';
@@ -152,6 +190,9 @@ class SHu extends S {
   String get search => 'Keresés';
 
   @override
+  String get sendFeedback => 'Send Feedback';
+
+  @override
   String get noResults => 'Nincs eredmény';
 
   @override
@@ -159,6 +200,9 @@ class SHu extends S {
 
   @override
   String get play => 'Lejátszás';
+
+  @override
+  String get pause => 'Pause';
 
   @override
   String get castQueue => 'Lejátszási listát közvetíteni';
@@ -324,6 +368,9 @@ class SHu extends S {
   String get sendFailDescription => 'Valami nem sikerült. Vizsgáld meg az internett kapcsolatodat és próbáld újra.';
 
   @override
+  String get sendSuccessDescription => 'We appreciate your feedback.';
+
+  @override
   String get today => 'Ma';
 
   @override
@@ -356,6 +403,12 @@ class SHu extends S {
 
   @override
   String get liveNow => 'Most élőben';
+
+  @override
+  String get comingSoon => 'Coming soon';
+
+  @override
+  String get newEpisode => 'New';
 
   @override
   String get tomorrow => 'Holnap';
@@ -450,13 +503,16 @@ class SHu extends S {
   String get exploreContent => 'Tartalom felfedezése';
 
   @override
+  String get explorePublicContent => 'Explore public content';
+
+  @override
   String get taskCompleted => 'feladat elvégezve';
 
   @override
-  String get tasksCompleted => 'feladat elvégezve';
+  String get tasksCompleted => 'feladatből elvégezve';
 
   @override
-  String get studyCompleteTaskDescription => 'Feladatok elvégzése és a kapcsolódó erőforrások felfedezése';
+  String get studyCompleteTaskDescription => 'Feladatok elvégzése és a kapcsolódó tartalom felfedezése';
 
   @override
   String get discoverMore => 'Fedezz fel többet';
@@ -465,7 +521,7 @@ class SHu extends S {
   String get completePreviousTasks => 'Fejezd be a korábbi feladatokat a feloldáshoz';
 
   @override
-  String get studyDiscoverMoreDescription => 'További inspiráció és betekintés a kapcsolódó forrásokból';
+  String get studyDiscoverMoreDescription => 'További inspiráció és betekintés kapcsolódó tartalmakból';
 
   @override
   String get watchAgain => 'Nézd meg újra';
@@ -523,7 +579,18 @@ class SHu extends S {
   String get continueButton => 'Folytatás';
 
   @override
+  String get registerButton => 'Register';
+
+  @override
   String get achievements => 'Eredmények';
+
+  @override
+  String passwordConditionLength(int n) {
+    return 'Minimum $n characters';
+  }
+
+  @override
+  String get passwordConditionComplexity => 'Must contain lower case, uppercase and numbers.';
 
   @override
   String get oops => 'Uups!';
@@ -542,13 +609,4 @@ class SHu extends S {
 
   @override
   String get details => 'Részletek';
-
-  @override
-  String get myList => 'My List';
-
-  @override
-  String get didYouKnowTitle => 'Did you know?';
-
-  @override
-  String get didYouKnowContent => 'You can add your favorite shows to \"My List\" by tapping the heart.';
 }

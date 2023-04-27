@@ -1,0 +1,27 @@
+appId: tv.brunstad.app
+---
+- swipe:
+    start: 1%, 5%
+    end: 1%, 75%
+#- repeat:
+#    while:
+#      notVisible: Search
+#    commands:
+#      - swipe:
+#          start: 50%, 30%
+#          end: 50%, 60%
+#- swipe:
+#    start: 50%, 60%
+#    end: 50%, 30%
+#- swipe:
+#    start: 50%, 60%
+#    end: 50%, 30%
+- tapOn:
+    id: "NotificationShortLookView"
+- swipe:
+    from:
+      text: .*${CONTAINING}.*
+    direction: RIGHT # To (50% of width, 10% of height)
+- tapOn:
+    id: "swipe-action-button-identifier"
+    optional: true

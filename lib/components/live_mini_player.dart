@@ -1,15 +1,10 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:brunstadtv_app/helpers/utils.dart';
+import 'package:bccm_player/bccm_player.dart';
+import 'package:bccm_player/plugins/riverpod.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:brunstadtv_app/providers/chromecast.dart';
-import 'package:brunstadtv_app/providers/playback_api.dart';
-import 'package:brunstadtv_app/providers/video_state.dart';
 import 'package:brunstadtv_app/router/router.gr.dart';
-import 'package:brunstadtv_app/helpers/transparent_image.dart';
 
-import '../providers/fun.dart';
 import '../screens/live.dart';
 import 'mini_player.dart';
 
@@ -30,7 +25,7 @@ class _LiveMiniPlayerState extends ConsumerState<LiveMiniPlayer> {
 
   bool waitingForMediaItemToBeCorrect = false;
 
-  Widget _emptyPlayer(Player player) {
+  Widget _emptyPlayer(PlayerState player) {
     var metadata = ref.read(liveMetadataProvider);
     return MiniPlayer(
       secondaryTitle: metadata.artist,
@@ -46,14 +41,14 @@ class _LiveMiniPlayerState extends ConsumerState<LiveMiniPlayer> {
         widget.onStartRequest();
       },
       onPauseTap: () {
-        ref.read(playbackApiProvider).pause(player.playerId);
+        BccmPlayerInterface.instance.pause(player.playerId);
       },
     );
   }
 
   @override
   Widget build(BuildContext context) {
-    Player? player;
+    PlayerState? player;
     if (ref.watch(isCasting)) {
       player = ref.watch(castPlayerProvider);
     } else {
@@ -80,7 +75,6 @@ class _LiveMiniPlayerState extends ConsumerState<LiveMiniPlayer> {
     return GestureDetector(
       behavior: HitTestBehavior.opaque,
       onTap: () {
-        var id = player?.currentMediaItem?.metadata?.extras?['id'].asOrNull<String>();
         context.router.navigate(const LiveScreenRoute());
       },
       child: MiniPlayer(
@@ -90,10 +84,10 @@ class _LiveMiniPlayerState extends ConsumerState<LiveMiniPlayer> {
         isPlaying: playbackState == PlaybackState.playing,
         hideCloseButton: true,
         onPlayTap: () {
-          ref.read(playbackApiProvider).play(player!.playerId);
+          BccmPlayerInterface.instance.play(player!.playerId);
         },
         onPauseTap: () {
-          ref.read(playbackApiProvider).pause(player!.playerId);
+          BccmPlayerInterface.instance.pause(player!.playerId);
         },
       ),
     );

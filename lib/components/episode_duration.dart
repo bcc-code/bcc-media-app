@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../helpers/btv_colors.dart';
-import '../helpers/btv_typography.dart';
+import '../theme/bccm_colors.dart';
+import '../theme/bccm_typography.dart';
 
 class EpisodeDuration extends StatelessWidget {
   final String duration;
@@ -14,12 +14,12 @@ class EpisodeDuration extends StatelessWidget {
       height: 12,
       padding: const EdgeInsets.symmetric(horizontal: 4),
       decoration: BoxDecoration(
-        color: BtvColors.background1.withOpacity(0.7),
+        color: BccmColors.background1.withOpacity(0.7),
         borderRadius: BorderRadius.circular(2),
       ),
       child: Text(
         duration,
-        style: BtvTextStyles.caption3.copyWith(color: BtvColors.onTint),
+        style: BccmTextStyles.caption3.copyWith(color: BccmColors.onTint),
       ),
     );
   }

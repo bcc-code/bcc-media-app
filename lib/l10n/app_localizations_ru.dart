@@ -23,6 +23,9 @@ class SRu extends S {
   String get calendarWeek => 'неделя';
 
   @override
+  String get close => 'Close';
+
+  @override
   String get loading => 'Загрузка';
 
   @override
@@ -47,10 +50,30 @@ class SRu extends S {
   String get faq => 'Часто задаваемые вопросы';
 
   @override
-  String get bccMediaCenter => 'BCC Media — это медиа-фонд в организации BCC, который производит и распространяет контент с позитивными и христианскими ценностями.';
+  String get bccMediaCenter =>
+      'BCC Media — это медиа-фонд в организации BCC, который производит и распространяет контент с позитивными и христианскими ценностями.';
 
   @override
   String get signInButton => 'Войти';
+
+  @override
+  String get signInOrSignUp => 'Sign up / Sign in';
+
+  @override
+  String get signUpButton => 'Sign up now';
+
+  @override
+  String get signUpTitle => 'Sign up';
+
+  @override
+  String get signUpDescription => 'Get access to more content and better features by creating an account.';
+
+  @override
+  String get signUpAgreePrivacyPolicy =>
+      'I certify that I am 13 years of age or older, and I agree to the <a>Privacy Policy</a> and <a>Terms of use</a>.';
+
+  @override
+  String get setPassword => 'Set password';
 
   @override
   String get tryAgainButton => 'Попробовать еще раз';
@@ -75,6 +98,9 @@ class SRu extends S {
 
   @override
   String get ok => 'ОК';
+
+  @override
+  String get open => 'Open';
 
   @override
   String get loginFailedCheckNetwork => 'Ошибка входа. Проверьте подключение к сети и попробуйте снова.';
@@ -111,6 +137,18 @@ class SRu extends S {
 
   @override
   String get cancel => 'Отмена';
+
+  @override
+  String get cancelConfirmation => 'Are you sure you want to cancel?';
+
+  @override
+  String get cancelConfirmationDescription => 'Any unsaved changes will be lost.';
+
+  @override
+  String get goBack => 'Go back';
+
+  @override
+  String get yesCancel => 'Yes, Cancel';
 
   @override
   String get upNext => 'К следующему';
@@ -152,6 +190,9 @@ class SRu extends S {
   String get search => 'Поиск';
 
   @override
+  String get sendFeedback => 'Send Feedback';
+
+  @override
   String get noResults => 'Результатов не найдено';
 
   @override
@@ -159,6 +200,9 @@ class SRu extends S {
 
   @override
   String get play => 'Играть';
+
+  @override
+  String get pause => 'Pause';
 
   @override
   String get castQueue => 'Показывать очередь';
@@ -324,6 +368,9 @@ class SRu extends S {
   String get sendFailDescription => 'Что-то пошло не так. Проверьте подключение к интернету и попробуйте еще раз.';
 
   @override
+  String get sendSuccessDescription => 'We appreciate your feedback.';
+
+  @override
   String get today => 'Сегодня';
 
   @override
@@ -358,6 +405,12 @@ class SRu extends S {
   String get liveNow => 'В прямом эфире';
 
   @override
+  String get comingSoon => 'Coming soon';
+
+  @override
+  String get newEpisode => 'New';
+
+  @override
   String get tomorrow => 'Завтра';
 
   @override
@@ -376,7 +429,8 @@ class SRu extends S {
   String get appUpdateTitle => 'Требуется обновление';
 
   @override
-  String get appUpdateRequest => 'Пожалуйста, загрузите последнюю версию приложения, чтобы пользоваться всеми последними функциями и исправлениями ошибок.';
+  String get appUpdateRequest =>
+      'Пожалуйста, загрузите последнюю версию приложения, чтобы пользоваться всеми последними функциями и исправлениями ошибок.';
 
   @override
   String get appUpdateAccepted => 'Обновление';
@@ -438,7 +492,7 @@ class SRu extends S {
   String get liveHeader => 'Прямой эфир';
 
   @override
-  String get programsSection => 'Программы';
+  String get programsSection => 'Передачи';
 
   @override
   String get noPlannedEvents => 'В этот день мероприятий не запланировано';
@@ -448,6 +502,9 @@ class SRu extends S {
 
   @override
   String get exploreContent => 'Исследуйте контент';
+
+  @override
+  String get explorePublicContent => 'Explore public content';
 
   @override
   String get taskCompleted => 'задание выполнено';
@@ -523,7 +580,18 @@ class SRu extends S {
   String get continueButton => 'Продолжить';
 
   @override
+  String get registerButton => 'Register';
+
+  @override
   String get achievements => 'Достижения';
+
+  @override
+  String passwordConditionLength(int n) {
+    return 'Minimum $n characters';
+  }
+
+  @override
+  String get passwordConditionComplexity => 'Must contain lower case, uppercase and numbers.';
 
   @override
   String get oops => 'Ой!';
@@ -542,13 +610,4 @@ class SRu extends S {
 
   @override
   String get details => 'Подробности';
-
-  @override
-  String get myList => 'My List';
-
-  @override
-  String get didYouKnowTitle => 'Did you know?';
-
-  @override
-  String get didYouKnowContent => 'You can add your favorite shows to \"My List\" by tapping the heart.';
 }

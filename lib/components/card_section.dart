@@ -1,7 +1,8 @@
 import 'package:brunstadtv_app/components/study_topic_card_mini.dart';
 import 'package:brunstadtv_app/graphql/schema/pages.graphql.dart';
-import 'package:brunstadtv_app/helpers/utils.dart';
+import 'package:brunstadtv_app/helpers/extensions.dart';
 import 'package:brunstadtv_app/models/analytics/sections.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 import '../graphql/queries/page.graphql.dart';
@@ -32,7 +33,7 @@ class CardSection extends StatelessWidget {
   Widget build(BuildContext context) {
     final cardSectionItem = data.items.items.first;
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+      padding: const EdgeInsets.symmetric(horizontal: kIsWeb ? 80 : 16, vertical: 12),
       child: InheritedData<SectionItemAnalytics>(
         inheritedData: SectionItemAnalytics(position: 0, id: cardSectionItem.id, type: cardSectionItem.item.$__typename, name: cardSectionItem.title),
         child: (context) => getCardWidget(cardSectionItem),

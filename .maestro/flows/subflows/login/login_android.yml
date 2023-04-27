@@ -1,0 +1,43 @@
+# flow.yaml
+
+appId: tv.brunstad.app
+---
+- launchApp:
+    appId: com.android.chrome
+    clearState: true
+    stopApp: true # optional (true by default): stop the app before launching it
+# Chrome asks for privacy stuff on the first time you open it
+- tapOn:
+    text: Accept & continue
+    optional: true
+- tapOn:
+    text: No thanks
+    optional: true
+- tapOn:
+    text: Close app
+    optional: true
+- extendedWaitUntil:
+    visible: .*Search.* # Same input as in assertVisible or tapOn
+
+- launchApp: tv.brunstad.app
+- tapOn: "Sign in"
+
+# Login
+- tapOn:
+    text: Close app
+    optional: true
+- tapOn:
+    id: "1-email"
+    optional: true
+- inputText: ${output.env.LOGIN_EMAIL}
+- pressKey: Enter
+- inputText: ${output.env.LOGIN_PASSWORD}
+- pressKey: Enter
+
+# Accept notifications
+- tapOn:
+    id: "com.android.permissioncontroller:id/permission_allow_button"
+    optional: true
+
+- assertVisible: Home, Tab 1 of 4
+- assertVisible: Search, Tab 2 of 4

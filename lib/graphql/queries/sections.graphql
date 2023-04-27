@@ -11,3 +11,10 @@ query FetchMoreItemsForItemSection($id: ID!, $first: Int, $offset: Int) {
     }
   }
 }
+
+query GetSection($id: ID!, $timestamp: String!, $first: Int, $offset: Int) {
+  section(id: $id, timestamp: $timestamp) {
+    id
+    ...Section
+  }
+}

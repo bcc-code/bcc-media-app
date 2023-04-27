@@ -1,15 +1,15 @@
 import 'package:brunstadtv_app/components/section_item_click_wrapper.dart';
 import 'package:brunstadtv_app/models/analytics/sections.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 import '../graphql/queries/page.graphql.dart';
 import '../graphql/schema/pages.graphql.dart';
-import '../helpers/utils.dart';
 import 'grid_row.dart';
 import 'category_button.dart';
 
 const Map<Enum$GridSectionSize, int> _columnSize = {
-  Enum$GridSectionSize.half: 2,
+  Enum$GridSectionSize.half: kIsWeb ? 8 : 2,
 };
 
 class IconGridSection extends StatelessWidget {
@@ -20,7 +20,7 @@ class IconGridSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+      padding: const EdgeInsets.symmetric(horizontal: kIsWeb ? 80 : 16, vertical: 12),
       child: _IconGridSectionList(size: data.gridSize, sectionItems: data.items.items),
     );
   }
@@ -56,7 +56,7 @@ class _IconGridSectionList extends StatelessWidget {
               ),
             )
             .toList(),
-        colSize: colSize,
+        columnCount: colSize,
       );
     });
     return ListView.builder(

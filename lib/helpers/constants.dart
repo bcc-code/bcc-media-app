@@ -14,6 +14,15 @@ class PrefKeys {
   static const audioLanguage = 'audio_language';
   static const subtitleLanguage = 'subtitle_language';
   static const analyticsId = 'analytics_id';
+  static const completedSurveys = 'completed_surveys';
+  static const isBetaTester = 'is_beta_tester';
+}
+
+class SecureStorageKeys {
+  SecureStorageKeys._();
+  static const refreshToken = 'refresh_token';
+  static const idToken = 'id_token';
+  static const accessToken = 'access_token';
 }
 
 const apiEnvUrls = <String, String>{

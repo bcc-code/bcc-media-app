@@ -1,0 +1,35 @@
+fragment CalendarEntryEpisode on Episode {
+  id
+  title
+  image
+  locked
+  description
+  season {
+    id
+    title
+    show {
+      id
+      title
+    }
+  }
+}
+
+fragment CalendarDayEntries on CalendarDay {
+  entries {
+    start
+    end
+    ... on EpisodeCalendarEntry {
+      episode {
+        ...CalendarEntryEpisode
+      }
+    }
+  }
+}
+
+query CalendarDayEpisodeEntries($date: Date!) {
+  calendar {
+    day(day: $date) {
+      ...CalendarDayEntries
+    }
+  }
+}

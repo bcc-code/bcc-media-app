@@ -1,0 +1,12 @@
+{
+    "aps": {
+        "alert": "deep_link_donation",
+        "sound": "bingbong.aiff"
+    },
+    "action": "deep_link",
+    "deep_link": "/r/donation",
+    "Simulator Target Bundle": "tv.brunstad.app",
+    "type": "abc",
+    "id": 1,
+    "gcm.message_id": "20021"
+}

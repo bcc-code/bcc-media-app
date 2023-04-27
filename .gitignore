@@ -48,6 +48,7 @@ app.*.map.json
 # Custom
 lib/env/.env.dart
 .env
+.env.dart
 *.ignore
 SchemePreActions.h
 
@@ -55,3 +56,7 @@ SchemePreActions.h
 # they get copied here by a prebuild script, see copy-script.sh
 ios/Runner/firebase_app_id_file.json
 ios/Runner/GoogleService-Info.plist
+.maestro/reports
+.env.js
+
+**/dgph

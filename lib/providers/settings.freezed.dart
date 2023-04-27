@@ -1,7 +1,7 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'settings.dart';
 
@@ -22,6 +22,7 @@ mixin _$Settings {
   String? get analyticsId => throw _privateConstructorUsedError;
   int? get sessionId => throw _privateConstructorUsedError;
   String? get envOverride => throw _privateConstructorUsedError;
+  bool? get isBetaTester => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $SettingsCopyWith<Settings> get copyWith =>
@@ -39,7 +40,8 @@ abstract class $SettingsCopyWith<$Res> {
       String? subtitleLanguage,
       String? analyticsId,
       int? sessionId,
-      String? envOverride});
+      String? envOverride,
+      bool? isBetaTester});
 }
 
 /// @nodoc
@@ -61,6 +63,7 @@ class _$SettingsCopyWithImpl<$Res, $Val extends Settings>
     Object? analyticsId = freezed,
     Object? sessionId = freezed,
     Object? envOverride = freezed,
+    Object? isBetaTester = freezed,
   }) {
     return _then(_value.copyWith(
       appLanguage: null == appLanguage
@@ -87,6 +90,10 @@ class _$SettingsCopyWithImpl<$Res, $Val extends Settings>
           ? _value.envOverride
           : envOverride // ignore: cast_nullable_to_non_nullable
               as String?,
+      isBetaTester: freezed == isBetaTester
+          ? _value.isBetaTester
+          : isBetaTester // ignore: cast_nullable_to_non_nullable
+              as bool?,
     ) as $Val);
   }
 }
@@ -104,7 +111,8 @@ abstract class _$$_SettingsCopyWith<$Res> implements $SettingsCopyWith<$Res> {
       String? subtitleLanguage,
       String? analyticsId,
       int? sessionId,
-      String? envOverride});
+      String? envOverride,
+      bool? isBetaTester});
 }
 
 /// @nodoc
@@ -124,6 +132,7 @@ class __$$_SettingsCopyWithImpl<$Res>
     Object? analyticsId = freezed,
     Object? sessionId = freezed,
     Object? envOverride = freezed,
+    Object? isBetaTester = freezed,
   }) {
     return _then(_$_Settings(
       appLanguage: null == appLanguage
@@ -150,6 +159,10 @@ class __$$_SettingsCopyWithImpl<$Res>
           ? _value.envOverride
           : envOverride // ignore: cast_nullable_to_non_nullable
               as String?,
+      isBetaTester: freezed == isBetaTester
+          ? _value.isBetaTester
+          : isBetaTester // ignore: cast_nullable_to_non_nullable
+              as bool?,
     ));
   }
 }
@@ -163,7 +176,8 @@ class _$_Settings implements _Settings {
       this.subtitleLanguage,
       this.analyticsId,
       this.sessionId,
-      this.envOverride});
+      this.envOverride,
+      this.isBetaTester});
 
   @override
   final Locale appLanguage;
@@ -177,10 +191,12 @@ class _$_Settings implements _Settings {
   final int? sessionId;
   @override
   final String? envOverride;
+  @override
+  final bool? isBetaTester;
 
   @override
   String toString() {
-    return 'Settings(appLanguage: $appLanguage, audioLanguage: $audioLanguage, subtitleLanguage: $subtitleLanguage, analyticsId: $analyticsId, sessionId: $sessionId, envOverride: $envOverride)';
+    return 'Settings(appLanguage: $appLanguage, audioLanguage: $audioLanguage, subtitleLanguage: $subtitleLanguage, analyticsId: $analyticsId, sessionId: $sessionId, envOverride: $envOverride, isBetaTester: $isBetaTester)';
   }
 
   @override
@@ -199,12 +215,14 @@ class _$_Settings implements _Settings {
             (identical(other.sessionId, sessionId) ||
                 other.sessionId == sessionId) &&
             (identical(other.envOverride, envOverride) ||
-                other.envOverride == envOverride));
+                other.envOverride == envOverride) &&
+            (identical(other.isBetaTester, isBetaTester) ||
+                other.isBetaTester == isBetaTester));
   }
 
   @override
   int get hashCode => Object.hash(runtimeType, appLanguage, audioLanguage,
-      subtitleLanguage, analyticsId, sessionId, envOverride);
+      subtitleLanguage, analyticsId, sessionId, envOverride, isBetaTester);
 
   @JsonKey(ignore: true)
   @override
@@ -220,7 +238,8 @@ abstract class _Settings implements Settings {
       final String? subtitleLanguage,
       final String? analyticsId,
       final int? sessionId,
-      final String? envOverride}) = _$_Settings;
+      final String? envOverride,
+      final bool? isBetaTester}) = _$_Settings;
 
   @override
   Locale get appLanguage;
@@ -234,6 +253,8 @@ abstract class _Settings implements Settings {
   int? get sessionId;
   @override
   String? get envOverride;
+  @override
+  bool? get isBetaTester;
   @override
   @JsonKey(ignore: true)
   _$$_SettingsCopyWith<_$_Settings> get copyWith =>

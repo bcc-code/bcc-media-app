@@ -2,6 +2,7 @@ import 'package:brunstadtv_app/providers/settings.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../components/option_list.dart';
+import '../../components/web/dialog_on_web.dart';
 import '../../helpers/languages.dart';
 import '../../l10n/app_localizations.dart';
 import '../../models/analytics/language_changed.dart';
@@ -17,7 +18,8 @@ class AppLanguageScreen extends ConsumerStatefulWidget {
 class _AppLanguageScreenState extends ConsumerState<AppLanguageScreen> {
   late String selected;
 
-  Future<void> _onSelectionChanged(String id) async {
+  Future<void> _onSelectionChanged(String? id) async {
+    if (id == null) return;
     ref.read(analyticsProvider).languageChanged(LanguageChangedEvent(
           languageFrom: selected,
           languageTo: id,
@@ -38,28 +40,20 @@ class _AppLanguageScreenState extends ConsumerState<AppLanguageScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        elevation: 0,
-        title: Text(S.of(context).appLanguage),
-      ),
-      body: SafeArea(
-        child: Container(
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(15),
-          ),
-          child: SingleChildScrollView(
-            child: Column(
-              children: [
-                Padding(
-                  padding: const EdgeInsets.all(16).copyWith(bottom: 100),
-                  child: OptionList(
-                    optionData: languages.map((l) => Option(id: l.code, title: l.nativeName)).toList(),
-                    currentSelection: selected,
-                    onSelectionChange: _onSelectionChanged,
-                  ),
-                )
-              ],
+    return DialogOnWeb(
+      child: Scaffold(
+        appBar: AppBar(
+          elevation: 0,
+          title: Text(S.of(context).appLanguage),
+        ),
+        body: SafeArea(
+          child: Padding(
+            padding: const EdgeInsets.all(16),
+            child: OptionList(
+              optionData: appLanuageCodes.map((l) => Option(id: l, title: languages[l]!.nativeName, subTitle: languages[l]!.englishName)).toList(),
+              currentSelection: selected,
+              onSelectionChange: _onSelectionChanged,
+              backgroundColor: Colors.transparent,
             ),
           ),
         ),

@@ -1,8 +1,6 @@
-import 'package:auth0_flutter/auth0_flutter.dart';
 import 'package:brunstadtv_app/env/env.dart';
-import 'package:brunstadtv_app/graphql/queries/achievements.graphql.dart';
-import 'package:brunstadtv_app/helpers/utils.dart';
 import 'package:brunstadtv_app/models/analytics/achievement_clicked.dart';
+import 'package:brunstadtv_app/models/auth0/auth0_id_token.dart';
 import 'package:brunstadtv_app/providers/inherited_data.dart';
 import 'package:brunstadtv_app/providers/settings.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
@@ -12,6 +10,7 @@ import 'package:package_info_plus/package_info_plus.dart';
 import 'package:rudder_sdk_flutter/RudderController.dart';
 import 'package:rudder_sdk_flutter_platform_interface/platform.dart';
 
+import '../helpers/version.dart';
 import '../models/analytics/achievement_shared.dart';
 import '../models/analytics/audio_only_clicked.dart';
 import '../models/analytics/calendar_day_clicked.dart';
@@ -23,29 +22,6 @@ import '../models/analytics/sections.dart';
 import '../models/analytics/content_shared.dart';
 
 const kMinimumSessionTimeout = Duration(minutes: 30);
-
-String getAgeGroup(int? age) {
-  if (age == null) {
-    return 'UNKNOWN';
-  }
-  if (age >= 65) {
-    return '65+';
-  } else if (age >= 51) {
-    return '51 - 64';
-  } else if (age >= 37) {
-    return '37 - 50';
-  } else if (age >= 26) {
-    return '26 - 36';
-  } else if (age >= 19) {
-    return '19 - 25';
-  } else if (age >= 13) {
-    return '13 - 18';
-  } else if (age >= 10) {
-    return '10 - 12';
-  } else {
-    return '< 10';
-  }
-}
 
 final analyticsProvider = Provider<Analytics>((ref) {
   return Analytics(ref: ref);
@@ -80,7 +56,6 @@ class Analytics {
 
   void heyJustHereToTellYouIBelieveTheSessionIsStillAlive() {
     _lastAlive = DateTime.now();
-    debugPrint('bump _lastAlive: $_lastAlive');
   }
 
   RudderProperty getCommonData() {
@@ -168,7 +143,7 @@ class Analytics {
     RudderController.instance.track('achievement_shared', properties: getCommonData().putValue(map: event.toJson()));
   }
 
-  void identify(UserProfile profile, String analyticsId) {
+  void identify(Auth0IdToken profile, String analyticsId) {
     ref.read(settingsProvider.notifier).setAnalyticsId(analyticsId);
     final traits = RudderTraits();
 
@@ -177,10 +152,10 @@ class Analytics {
     int? age;
     if (ageDuration != null) {
       age = (ageDuration.inDays / 365.25).floor();
-      traits.put('ageGroup', getAgeGroup(age));
+      traits.put('ageGroup', _getAgeGroup(age));
     }
-    traits.put('country', profile.customClaims?['https://login.bcc.no/claims/CountryIso2Code']);
-    traits.put('churchId', profile.customClaims?['https://login.bcc.no/claims/churchId']?.toString());
+    traits.put('country', profile.countryIso2Code);
+    traits.put('churchId', profile.churchId.toString());
     if (profile.gender != null) {
       traits.putGender(profile.gender!);
     }
@@ -198,5 +173,28 @@ class Analytics {
 
   void calendarDayClicked(CalendarDayClickedEvent event) {
     RudderController.instance.track('calendarday_clicked', properties: getCommonData().putValue(map: event.toJson()));
+  }
+
+  String _getAgeGroup(int? age) {
+    if (age == null) {
+      return 'UNKNOWN';
+    }
+    if (age >= 65) {
+      return '65+';
+    } else if (age >= 51) {
+      return '51 - 64';
+    } else if (age >= 37) {
+      return '37 - 50';
+    } else if (age >= 26) {
+      return '26 - 36';
+    } else if (age >= 19) {
+      return '19 - 25';
+    } else if (age >= 13) {
+      return '13 - 18';
+    } else if (age >= 10) {
+      return '10 - 12';
+    } else {
+      return '< 10';
+    }
   }
 }

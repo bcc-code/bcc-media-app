@@ -11,8 +11,39 @@
             "cwd": "${workspaceFolder}",
             "args": [
                 "--flavor",
+                "prod",
+                "--web-port",
+                "3001",
+                "--web-renderer",
+                "canvaskit"
+            ], // Remember to change the "program" property too
+            "program": "lib/main_prod.dart"
+        },
+        {
+            "name": "prod (integration test)",
+            "request": "launch",
+            "type": "dart",
+            "cwd": "${workspaceFolder}",
+            "args": [
+                "--flavor",
                 "prod"
             ], // Remember to change the "program" property too
+            "program": "test_integration/main_test.dart"
+        },
+        {
+            "name": "prod (profile)",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "profile",
+            "args": [
+                "--flavor",
+                "prod",
+                "--web-port",
+                "3001",
+                "--web-renderer",
+                "canvaskit"
+            ], // Remember to change the "program" property too
+            "cwd": "${workspaceFolder}",
             "program": "lib/main_prod.dart"
         },
         {
@@ -22,7 +53,11 @@
             "flutterMode": "release",
             "args": [
                 "--flavor",
-                "prod"
+                "prod",
+                "--web-port",
+                "3001",
+                "--web-renderer",
+                "canvaskit"
             ], // Remember to change the "program" property too
             "cwd": "${workspaceFolder}",
             "program": "lib/main_prod.dart"
@@ -34,7 +69,11 @@
             "cwd": "${workspaceFolder}",
             "args": [
                 "--flavor",
-                "v4_prod"
+                "v4_prod",
+                "--web-port",
+                "3001",
+                "--web-renderer",
+                "canvaskit"
             ], // Remember to change the "program" property too
             "program": "lib/main_v4_prod.dart"
         },
@@ -45,7 +84,11 @@
             "flutterMode": "profile",
             "args": [
                 "--flavor",
-                "v4_prod"
+                "v4_prod",
+                "--web-port",
+                "3001",
+                "--web-renderer",
+                "canvaskit"
             ], // Remember to change the "program" property too
             "cwd": "${workspaceFolder}",
             "program": "lib/main_v4_prod.dart"
@@ -57,7 +100,11 @@
             "flutterMode": "release",
             "args": [
                 "--flavor",
-                "v4_prod"
+                "v4_prod",
+                "--web-port",
+                "3001",
+                "--web-renderer",
+                "canvaskit"
             ], // Remember to change the "program" property too
             "cwd": "${workspaceFolder}",
             "program": "lib/main_v4_prod.dart"
@@ -69,7 +116,11 @@
             "cwd": "${workspaceFolder}",
             "args": [
                 "--flavor",
-                "v4_dev"
+                "v4_dev",
+                "--web-port",
+                "3001",
+                "--web-renderer",
+                "canvaskit"
             ], // Remember to change the "program" property too
             "program": "lib/main_v4_dev.dart"
         },
@@ -80,7 +131,11 @@
             "flutterMode": "profile",
             "args": [
                 "--flavor",
-                "v4_dev"
+                "v4_dev",
+                "--web-port",
+                "3001",
+                "--web-renderer",
+                "canvaskit"
             ], // Remember to change the "program" property too
             "cwd": "${workspaceFolder}",
             "program": "lib/main_v4_dev.dart"
@@ -92,7 +147,11 @@
             "flutterMode": "release",
             "args": [
                 "--flavor",
-                "v4_dev"
+                "v4_dev",
+                "--web-port",
+                "3001",
+                "--web-renderer",
+                "canvaskit"
             ], // Remember to change the "program" property too
             "cwd": "${workspaceFolder}",
             "program": "lib/main_v4_dev.dart"

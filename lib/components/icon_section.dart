@@ -1,5 +1,5 @@
 import 'package:brunstadtv_app/components/section_item_click_wrapper.dart';
-import 'package:brunstadtv_app/helpers/utils.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 import '../models/analytics/sections.dart';
@@ -15,8 +15,8 @@ class IconSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return HorizontalSlider(
-      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-      height: 140,
+      padding: const EdgeInsets.symmetric(horizontal: kIsWeb ? 80 : 16, vertical: 12),
+      height: 148,
       itemCount: data.items.items.length,
       itemBuilder: (BuildContext context, int index) {
         var item = data.items.items[index];

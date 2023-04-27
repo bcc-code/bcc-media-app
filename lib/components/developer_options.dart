@@ -1,12 +1,15 @@
 import 'package:brunstadtv_app/components/bottom_sheet_select.dart';
-import 'package:brunstadtv_app/providers/auth_state.dart';
+import 'package:brunstadtv_app/providers/auth_state/auth_state.dart';
+import 'package:brunstadtv_app/providers/feature_flags.dart';
 import 'package:brunstadtv_app/providers/settings.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:restart_app/restart_app.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import '../helpers/btv_typography.dart';
+import '../providers/notification_service.dart';
+import '../theme/bccm_typography.dart';
 import '../helpers/constants.dart';
 import 'option_list.dart';
 
@@ -23,7 +26,7 @@ class DeveloperOptions extends ConsumerWidget {
         return SimpleDialog(
           title: const Text(
             'Choose environment override',
-            style: BtvTextStyles.title3,
+            style: BccmTextStyles.title3,
           ),
           children: [EnvironmentOverride.none, EnvironmentOverride.dev, EnvironmentOverride.sta, EnvironmentOverride.prod]
               .map((env) => SimpleDialogOption(
@@ -36,7 +39,7 @@ class DeveloperOptions extends ConsumerWidget {
                         ? Text(env)
                         : Text(
                             env,
-                            style: BtvTextStyles.body1.copyWith(fontWeight: FontWeight.bold),
+                            style: BccmTextStyles.body1.copyWith(fontWeight: FontWeight.bold),
                           ),
                   ))
               .toList(),
@@ -48,32 +51,40 @@ class DeveloperOptions extends ConsumerWidget {
   void showTechnicalDetails(BuildContext context, WidgetRef ref) async {
     var auth = ref.read(authStateProvider);
     var settings = ref.read(settingsProvider);
+    var notificationService = ref.read(notificationServiceProvider);
     showDialog(
       useRootNavigator: true,
       context: context,
       builder: (context) {
-        return SimpleDialog(
-          title: const Text(
-            'Technical details',
-            style: BtvTextStyles.title3,
-          ),
-          children: [
-            SelectionArea(
-              child: Container(
-                padding: const EdgeInsets.symmetric(horizontal: 16),
-                alignment: Alignment.topLeft,
-                child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-                  TextField(controller: TextEditingController()..text = 'auth.idToken: ${auth.idToken}'),
-                  TextField(controller: TextEditingController()..text = 'auth.accessToken: ${auth.idToken}'),
-                  const SizedBox(height: 8),
-                  Text('auth.expiresAt: ${auth.expiresAt}'),
-                  Text('session_id: ${settings.sessionId}'),
-                  Text('analytics_id (private): ${settings.analyticsId}'),
-                ]),
-              ),
-            )
-          ],
-        );
+        return Consumer(builder: (context, ref, child) {
+          return SimpleDialog(
+            title: const Text(
+              'Technical details',
+              style: BccmTextStyles.title3,
+            ),
+            children: [
+              SelectionArea(
+                child: Container(
+                  padding: const EdgeInsets.symmetric(horizontal: kIsWeb ? 80 : 16),
+                  alignment: Alignment.topLeft,
+                  child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+                    const Text('idToken: '),
+                    TextField(controller: TextEditingController()..text = auth.idToken.toString()),
+                    const Text('accessToken: '),
+                    TextField(controller: TextEditingController()..text = auth.auth0AccessToken.toString()),
+                    const Text('fcmToken: '),
+                    TextField(controller: TextEditingController()..text = notificationService.fcmToken.toString()),
+                    const SizedBox(height: 8),
+                    Text('auth.expiresAt: ${auth.expiresAt}'),
+                    Text('session_id: ${settings.sessionId}'),
+                    Text('analytics_id (private): ${settings.analyticsId}'),
+                    Text('featureFlags: ${ref.watch(featureFlagsProvider)}'),
+                  ]),
+                ),
+              )
+            ],
+          );
+        });
       },
     );
   }

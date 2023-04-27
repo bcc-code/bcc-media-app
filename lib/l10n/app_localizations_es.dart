@@ -23,6 +23,9 @@ class SEs extends S {
   String get calendarWeek => 'semana';
 
   @override
+  String get close => 'Close';
+
+  @override
   String get loading => 'Cargando';
 
   @override
@@ -47,10 +50,30 @@ class SEs extends S {
   String get faq => 'Preguntas frecuentes';
 
   @override
-  String get bccMediaCenter => 'BCC Media es una fundación de medios de la federación BCC que produce y distribuye contenido con valores positivos y cristianos.';
+  String get bccMediaCenter =>
+      'BCC Media es una fundación de medios de la federación BCC que produce y distribuye contenido con valores positivos y cristianos.';
 
   @override
   String get signInButton => 'Iniciar Sesión';
+
+  @override
+  String get signInOrSignUp => 'Sign up / Sign in';
+
+  @override
+  String get signUpButton => 'Sign up now';
+
+  @override
+  String get signUpTitle => 'Sign up';
+
+  @override
+  String get signUpDescription => 'Get access to more content and better features by creating an account.';
+
+  @override
+  String get signUpAgreePrivacyPolicy =>
+      'I certify that I am 13 years of age or older, and I agree to the <a>Privacy Policy</a> and <a>Terms of use</a>.';
+
+  @override
+  String get setPassword => 'Set password';
 
   @override
   String get tryAgainButton => 'Inténtalo nuevamente';
@@ -75,6 +98,9 @@ class SEs extends S {
 
   @override
   String get ok => 'Ok';
+
+  @override
+  String get open => 'Open';
 
   @override
   String get loginFailedCheckNetwork => 'La conexión ha fallado, revise su conexión a internet e inténtelo una vez más.';
@@ -111,6 +137,18 @@ class SEs extends S {
 
   @override
   String get cancel => 'Cancelar';
+
+  @override
+  String get cancelConfirmation => 'Are you sure you want to cancel?';
+
+  @override
+  String get cancelConfirmationDescription => 'Any unsaved changes will be lost.';
+
+  @override
+  String get goBack => 'Go back';
+
+  @override
+  String get yesCancel => 'Yes, Cancel';
 
   @override
   String get upNext => 'Siguiente';
@@ -152,6 +190,9 @@ class SEs extends S {
   String get search => 'Buscar';
 
   @override
+  String get sendFeedback => 'Send Feedback';
+
+  @override
   String get noResults => 'Sin resultados';
 
   @override
@@ -159,6 +200,9 @@ class SEs extends S {
 
   @override
   String get play => 'Reproducir';
+
+  @override
+  String get pause => 'Pause';
 
   @override
   String get castQueue => 'Emitir cola de reproducción';
@@ -324,6 +368,9 @@ class SEs extends S {
   String get sendFailDescription => 'Algo salió mal. Verifique su conexión a Internet e intente nuevamente.';
 
   @override
+  String get sendSuccessDescription => 'We appreciate your feedback.';
+
+  @override
   String get today => 'Hoy';
 
   @override
@@ -358,6 +405,12 @@ class SEs extends S {
   String get liveNow => 'En vivo';
 
   @override
+  String get comingSoon => 'Coming soon';
+
+  @override
+  String get newEpisode => 'New';
+
+  @override
   String get tomorrow => 'Mañana';
 
   @override
@@ -376,7 +429,8 @@ class SEs extends S {
   String get appUpdateTitle => 'Se requiere la actualización';
 
   @override
-  String get appUpdateRequest => 'Por favor, Descargue la última version de la aplicación para disfrutar de las últimas funciones y correcciones de errores.';
+  String get appUpdateRequest =>
+      'Por favor, Descargue la última version de la aplicación para disfrutar de las últimas funciones y correcciones de errores.';
 
   @override
   String get appUpdateAccepted => 'Actualización';
@@ -448,6 +502,9 @@ class SEs extends S {
 
   @override
   String get exploreContent => 'Explora el contenido';
+
+  @override
+  String get explorePublicContent => 'Explore public content';
 
   @override
   String get taskCompleted => 'tarea terminada';
@@ -523,7 +580,18 @@ class SEs extends S {
   String get continueButton => 'Continúe';
 
   @override
+  String get registerButton => 'Register';
+
+  @override
   String get achievements => 'Logros';
+
+  @override
+  String passwordConditionLength(int n) {
+    return 'Minimum $n characters';
+  }
+
+  @override
+  String get passwordConditionComplexity => 'Must contain lower case, uppercase and numbers.';
 
   @override
   String get oops => 'Oops!';
@@ -542,13 +610,4 @@ class SEs extends S {
 
   @override
   String get details => 'Detalles';
-
-  @override
-  String get myList => 'My List';
-
-  @override
-  String get didYouKnowTitle => 'Did you know?';
-
-  @override
-  String get didYouKnowContent => 'You can add your favorite shows to \"My List\" by tapping the heart.';
 }

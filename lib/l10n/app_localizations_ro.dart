@@ -23,6 +23,9 @@ class SRo extends S {
   String get calendarWeek => 'săptămână';
 
   @override
+  String get close => 'Close';
+
+  @override
   String get loading => 'Se încarcă';
 
   @override
@@ -47,10 +50,30 @@ class SRo extends S {
   String get faq => 'Întrebări frecvente';
 
   @override
-  String get bccMediaCenter => 'BCC Media is a media foundation in the BCC federation that produces and distributes content with positive and Christian values.';
+  String get bccMediaCenter =>
+      'BCC Media este o fundație media din cadrul federației BCC care produce și distribuie conținut cu valori pozitive și creștine.';
 
   @override
   String get signInButton => 'Conectare';
+
+  @override
+  String get signInOrSignUp => 'Sign up / Sign in';
+
+  @override
+  String get signUpButton => 'Sign up now';
+
+  @override
+  String get signUpTitle => 'Sign up';
+
+  @override
+  String get signUpDescription => 'Get access to more content and better features by creating an account.';
+
+  @override
+  String get signUpAgreePrivacyPolicy =>
+      'I certify that I am 13 years of age or older, and I agree to the <a>Privacy Policy</a> and <a>Terms of use</a>.';
+
+  @override
+  String get setPassword => 'Set password';
 
   @override
   String get tryAgainButton => 'Încearcă din nou';
@@ -75,6 +98,9 @@ class SRo extends S {
 
   @override
   String get ok => 'Bine';
+
+  @override
+  String get open => 'Open';
 
   @override
   String get loginFailedCheckNetwork => 'Conectarea a eșuat. Verifică conexiunea la internet și încearcă din nou.';
@@ -111,6 +137,18 @@ class SRo extends S {
 
   @override
   String get cancel => 'Anulare';
+
+  @override
+  String get cancelConfirmation => 'Are you sure you want to cancel?';
+
+  @override
+  String get cancelConfirmationDescription => 'Any unsaved changes will be lost.';
+
+  @override
+  String get goBack => 'Go back';
+
+  @override
+  String get yesCancel => 'Yes, Cancel';
 
   @override
   String get upNext => 'Urmează';
@@ -152,6 +190,9 @@ class SRo extends S {
   String get search => 'Căutare';
 
   @override
+  String get sendFeedback => 'Send Feedback';
+
+  @override
   String get noResults => 'Nici un rezultat gasit';
 
   @override
@@ -159,6 +200,9 @@ class SRo extends S {
 
   @override
   String get play => 'Redare';
+
+  @override
+  String get pause => 'Pause';
 
   @override
   String get castQueue => 'Lista de redare';
@@ -214,7 +258,7 @@ class SRo extends S {
   String get high => 'Înaltă';
 
   @override
-  String get emptySearch => 'You can search all content from BCC Media. Series, videos and episodes.';
+  String get emptySearch => 'Poți căuta tot conținutul de la BCC Media. Serii, videouri și episoade.';
 
   @override
   String get back => 'Înapoi';
@@ -324,6 +368,9 @@ class SRo extends S {
   String get sendFailDescription => 'Ceva n-a mers bine. Verifică conexiunea la internet și încearcă din nou.';
 
   @override
+  String get sendSuccessDescription => 'We appreciate your feedback.';
+
+  @override
   String get today => 'Astăzi';
 
   @override
@@ -356,6 +403,12 @@ class SRo extends S {
 
   @override
   String get liveNow => 'Acum în direct';
+
+  @override
+  String get comingSoon => 'Coming soon';
+
+  @override
+  String get newEpisode => 'New';
 
   @override
   String get tomorrow => 'Mâine';
@@ -450,105 +503,110 @@ class SRo extends S {
   String get exploreContent => 'Descoperă conținut';
 
   @override
-  String get taskCompleted => 'task completed';
+  String get explorePublicContent => 'Explore public content';
 
   @override
-  String get tasksCompleted => 'tasks completed';
+  String get taskCompleted => 'sarcină îndeplinită';
 
   @override
-  String get studyCompleteTaskDescription => 'Complete tasks and discover related resources';
+  String get tasksCompleted => 'sarcini îndeplinite';
 
   @override
-  String get discoverMore => 'Discover more';
+  String get studyCompleteTaskDescription => 'Îndeplinește sarcini și descoperă resurse aferente';
 
   @override
-  String get completePreviousTasks => 'Complete previous tasks to unlock';
+  String get discoverMore => 'Descoperă mai mult';
 
   @override
-  String get studyDiscoverMoreDescription => 'Find more inspiration and insight from related resources';
+  String get completePreviousTasks => 'Completează sarcini anterioare pentru a debloca';
+
+  @override
+  String get studyDiscoverMoreDescription => 'Găsește mai multă inspirație și perspectivă din resurse aferente';
 
   @override
   String get watchAgain => 'Vezi din nou';
 
   @override
-  String get continueToTaskIn => 'Continue to task in';
+  String get continueToTaskIn => 'Continuă să lucrezi la';
 
   @override
-  String get continueToTasksIn => 'Continue to tasks in';
+  String get continueToTasksIn => 'Continuă să lucrezi la';
 
   @override
-  String get studyLessonCompleted => 'lesson completed';
+  String get studyLessonCompleted => 'temă finalizată';
 
   @override
-  String get studyLessonsCompleted => 'lessons completed';
+  String get studyLessonsCompleted => 'teme finalizate';
 
   @override
-  String get continueStudy => 'Continue study';
+  String get continueStudy => 'Continuă studiul';
 
   @override
-  String get startStudy => 'Start study';
+  String get startStudy => 'Începe studiul';
 
   @override
-  String get videoCompletedText => 'Great job on completing the video.';
+  String get videoCompletedText => 'Foarte bine! Ai finalizat videoul.';
 
   @override
-  String get achievementFirstDescription => 'Great job on completing the video and earning your first progress achievement.';
+  String get achievementFirstDescription => 'Foarte bine! Ai finalizat videoul și ai obținut primul progres.';
 
   @override
   String achievementStudyTopic(String name) {
-    return 'Great job on completing the study topic $name';
+    return 'Foarte bine! Ai finalizat subiectului de studiu $name';
   }
 
   @override
   String videoCount(int count) {
-    return '$count videos';
+    return '$count videouri';
   }
 
   @override
   String taskCount(int count) {
-    return '$count tasks';
+    return '$count sarcini';
   }
 
   @override
   String posterCount(int count) {
-    return '$count posters';
+    return '$count postere';
   }
 
   @override
   String resourceCount(int count) {
-    return '$count resources';
+    return '$count resurse';
   }
 
   @override
-  String get continueButton => 'Continue';
+  String get continueButton => 'Continuă';
 
   @override
-  String get achievements => 'Achievements';
+  String get registerButton => 'Register';
+
+  @override
+  String get achievements => 'Realizări';
+
+  @override
+  String passwordConditionLength(int n) {
+    return 'Minimum $n characters';
+  }
+
+  @override
+  String get passwordConditionComplexity => 'Must contain lower case, uppercase and numbers.';
 
   @override
   String get oops => 'Oops!';
 
   @override
-  String get dontHaveAccess => 'You do not have access to this content.';
+  String get dontHaveAccess => 'Nu ai acces la acest conținut.';
 
   @override
   String get mustBeLoggedIn => 'Trebuie să fii conectat cu contul propriu pentru a urmări acest conținut';
 
   @override
-  String get plentyOfOtherContent => 'Don\'t worry, there\'s still plenty of content to enjoy!';
+  String get plentyOfOtherContent => 'Stai liniștit, este foarte mult conținut de care te poți bucura!';
 
   @override
-  String get notAchieved => 'Not achieved';
+  String get notAchieved => 'Nerealizat încă';
 
   @override
   String get details => 'Detalii';
-
-  @override
-  String get myList => 'My List';
-
-  @override
-  String get didYouKnowTitle => 'Did you know?';
-
-  @override
-  String get didYouKnowContent => 'You can add your favorite shows to \"My List\" by tapping the heart.';
 }

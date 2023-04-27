@@ -5,8 +5,9 @@ import 'package:url_launcher/url_launcher.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 
 import '../../components/custom_back_button.dart';
-import '../../helpers/btv_typography.dart';
-import '../../helpers/utils.dart';
+import '../../components/web/dialog_on_web.dart';
+import '../../helpers/version.dart';
+import '../../theme/bccm_typography.dart';
 import '../../l10n/app_localizations.dart';
 
 class AboutScreen extends StatefulWidget {
@@ -26,74 +27,76 @@ class _AboutScreenState extends State<AboutScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        elevation: 0,
-        toolbarHeight: 44,
-        leadingWidth: 92,
-        leading: const CustomBackButton(),
-        title: Text(S.of(context).about),
-      ),
-      body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.all(16),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              Expanded(
-                child: Column(
-                  children: [
-                    GestureDetector(
-                      onTap: () {
-                        timesPressedLogo++;
-                        if (timesPressedLogo == 7) {
-                          timesPressedLogo = 0;
-                          HapticFeedback.heavyImpact();
-                          showModalBottomSheet(
-                            context: context,
-                            builder: (context) {
-                              return const DeveloperOptions();
-                            },
-                          );
-                        }
-                      },
-                      child: SizedBox(
-                        width: 200,
-                        child: Image.asset('assets/images/logo.png', fit: BoxFit.fitWidth),
+    return DialogOnWeb(
+      child: Scaffold(
+        appBar: AppBar(
+          elevation: 0,
+          toolbarHeight: 44,
+          leadingWidth: 92,
+          leading: const CustomBackButton(),
+          title: Text(S.of(context).about),
+        ),
+        body: SafeArea(
+          child: Padding(
+            padding: const EdgeInsets.all(16),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                Expanded(
+                  child: Column(
+                    children: [
+                      GestureDetector(
+                        onTap: () {
+                          timesPressedLogo++;
+                          if (timesPressedLogo == 7) {
+                            timesPressedLogo = 0;
+                            HapticFeedback.heavyImpact();
+                            showModalBottomSheet(
+                              context: context,
+                              builder: (context) {
+                                return const DeveloperOptions();
+                              },
+                            );
+                          }
+                        },
+                        child: SizedBox(
+                          width: 200,
+                          child: Image.asset('assets/images/logo.png', fit: BoxFit.fitWidth),
+                        ),
                       ),
-                    ),
-                    Container(
-                      margin: const EdgeInsets.symmetric(vertical: 16),
-                      child: Text(
-                        S.of(context).bccMediaCenter,
-                        style: BtvTextStyles.body2,
-                        textAlign: TextAlign.center,
-                      ),
-                    ),
-                    const InkWell(
-                      onTap: _launchUrl,
-                      child: Text(
-                        'bcc.media',
-                        style: BtvTextStyles.body2,
-                        textAlign: TextAlign.center,
-                      ),
-                    )
-                  ],
-                ),
-              ),
-              FutureBuilder<String>(
-                future: appVersion,
-                builder: (context, snapshot) {
-                  return snapshot.hasData
-                      ? SelectableText(
-                          '${S.of(context).version}: ${snapshot.data!}',
-                          style: BtvTextStyles.caption1,
+                      Container(
+                        margin: const EdgeInsets.symmetric(vertical: 16),
+                        child: Text(
+                          S.of(context).bccMediaCenter,
+                          style: BccmTextStyles.body2,
                           textAlign: TextAlign.center,
-                        )
-                      : const Text('');
-                },
-              ),
-            ],
+                        ),
+                      ),
+                      const InkWell(
+                        onTap: _launchUrl,
+                        child: Text(
+                          'bcc.media',
+                          style: BccmTextStyles.body2,
+                          textAlign: TextAlign.center,
+                        ),
+                      )
+                    ],
+                  ),
+                ),
+                FutureBuilder<String>(
+                  future: appVersion,
+                  builder: (context, snapshot) {
+                    return snapshot.hasData
+                        ? SelectableText(
+                            '${S.of(context).version}: ${snapshot.data!}',
+                            style: BccmTextStyles.caption1,
+                            textAlign: TextAlign.center,
+                          )
+                        : const Text('');
+                  },
+                ),
+              ],
+            ),
           ),
         ),
       ),

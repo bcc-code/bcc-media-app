@@ -3,7 +3,6 @@ import 'package:brunstadtv_app/components/dialog_with_image.dart';
 import 'package:brunstadtv_app/components/loading_generic.dart';
 import 'package:brunstadtv_app/graphql/client.dart';
 import 'package:brunstadtv_app/graphql/queries/achievements.graphql.dart';
-import 'package:brunstadtv_app/helpers/btv_typography.dart';
 import 'package:brunstadtv_app/helpers/constants.dart';
 import 'package:brunstadtv_app/helpers/webview/should_override_url_loading.dart';
 import 'package:flutter/foundation.dart';
@@ -12,14 +11,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 import '../components/custom_back_button.dart';
-import '../env/env.dart';
 import '../graphql/queries/studies.graphql.dart';
-import '../helpers/btv_buttons.dart';
-import '../helpers/btv_colors.dart';
-import '../helpers/svg_icons.dart';
+import '../helpers/ui/svg_icons.dart';
 import '../helpers/utils.dart';
 import '../helpers/webview/main_js_channel.dart';
 import '../l10n/app_localizations.dart';
@@ -100,7 +95,6 @@ class StudyScreenState extends ConsumerState<StudyScreen> {
                   useShouldOverrideUrlLoading: true,
                 ),
                 onWebViewCreated: onWebViewCreated,
-                onConsoleMessage: (_, msg) => debugPrint(msg.message),
                 onLoadStop: (controller, url) {
                   setState(() => firstLoadDone = true);
                 },
@@ -125,7 +119,7 @@ class StudyScreenState extends ConsumerState<StudyScreen> {
     final gqlClient = ref.read(gqlClientProvider);
     final achievements = await gqlClient.query$getPendingAchievements();
 
-    if (achievements.parsedData?.pendingAchievements.isNotEmpty != true) {
+    if (achievements.parsedData?.pendingAchievements.isNotEmpty != true && navigatorContext.mounted) {
       await showDialog(
         barrierDismissible: false,
         context: navigatorContext,
@@ -139,6 +133,8 @@ class StudyScreenState extends ConsumerState<StudyScreen> {
     }
 
     for (final achievement in achievements.parsedData!.pendingAchievements) {
+      // ignore: use_build_context_synchronously
+      if (!navigatorContext.mounted) return;
       await showDialog(
         barrierDismissible: false,
         context: navigatorContext,

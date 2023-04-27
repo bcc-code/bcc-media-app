@@ -1,26 +1,25 @@
-import 'dart:async';
-
 import 'package:auto_route/auto_route.dart';
-import 'package:brunstadtv_app/components/loading_indicator.dart';
+import 'package:bccm_player/bccm_player.dart';
+import 'package:bccm_player/plugins/riverpod.dart';
 import 'package:brunstadtv_app/components/mini_player.dart';
-import 'package:brunstadtv_app/graphql/client.dart';
-import 'package:brunstadtv_app/graphql/queries/devices.graphql.dart';
-import 'package:brunstadtv_app/helpers/utils.dart';
-import 'package:brunstadtv_app/providers/auth_state.dart';
-import 'package:brunstadtv_app/providers/chromecast.dart';
-import 'package:brunstadtv_app/providers/settings.dart';
-import 'package:brunstadtv_app/screens/my_list/my_list.dart';
+import 'package:brunstadtv_app/helpers/extensions.dart';
+import 'package:brunstadtv_app/providers/auth_state/auth_state.dart';
+import 'package:brunstadtv_app/providers/notification_service.dart';
 import 'package:brunstadtv_app/screens/search/search.dart';
-import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:collection/collection.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:brunstadtv_app/providers/playback_api.dart';
-import 'package:brunstadtv_app/providers/video_state.dart';
 import 'package:brunstadtv_app/router/router.gr.dart';
-import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
 import '../components/bottom_sheet_mini_player.dart';
 import '../components/custom_tab_bar.dart';
+import '../components/prompts/prompts.dart';
+import '../components/web/web_app_bar.dart';
+import '../models/scroll_screen.dart';
+import '../providers/analytics.dart';
+import '../providers/app_config.dart';
+import '../theme/bccm_colors.dart';
 
 class TabsRootScreen extends ConsumerStatefulWidget {
   static const route = '/';
@@ -33,67 +32,9 @@ class TabsRootScreen extends ConsumerStatefulWidget {
 
 class _TabsRootScreenState extends ConsumerState<TabsRootScreen> with AutoRouteAware {
   @override
-  void initState() {
-    super.initState();
-    ref.read(playbackApiProvider).newPlayer().then((playerId) {
-      var player = Player(playerId: playerId);
-      ref.read(playbackApiProvider).setPrimary(playerId);
-      ref.read(primaryPlayerProvider.notifier).setState(player);
-    });
-    initFcm();
-  }
-
-  StreamSubscription? fcmSubscription;
-  ProviderSubscription? settingsSubscription;
-
-  Future initFcm() async {
-    var result = await FirebaseMessaging.instance.requestPermission();
-    print(result.toString());
-    var token = await FirebaseMessaging.instance.getToken();
-    FirebaseMessaging.instance.setForegroundNotificationPresentationOptions(alert: false, badge: false, sound: true);
-
-    settingsSubscription = ref.listenManual<Settings>(settingsProvider, (old, value) async {
-      var token = await FirebaseMessaging.instance.getToken();
-      if (token != null && old?.appLanguage != value.appLanguage) {
-        setDeviceToken(token);
-      }
-    });
-
-    if (token != null) {
-      if (!mounted) {
-        return;
-      }
-      await setDeviceToken(token);
-    }
-
-    fcmSubscription = FirebaseMessaging.instance.onTokenRefresh.listen((fcmToken) {
-      if (!mounted) {
-        return;
-      }
-      setDeviceToken(fcmToken);
-      print('fcm token refreshed: $fcmToken');
-
-      const storage = FlutterSecureStorage();
-      storage.write(key: 'fcm_token', value: fcmToken);
-      print('fcm token refreshed and stored: $fcmToken');
-    });
-    fcmSubscription?.onError((err) {
-      print('error onTokenRefresh');
-    });
-  }
-
-  Future setDeviceToken(String token) async {
-    var result = await ref.read(gqlClientProvider).mutate$SetDeviceToken(Options$Mutation$SetDeviceToken(
-        variables: Variables$Mutation$SetDeviceToken(token: token, languages: [ref.read(settingsProvider).appLanguage.languageCode])));
-    debugPrint(result.data?.toString());
-    return result;
-  }
-
-  @override
-  void dispose() {
-    fcmSubscription?.cancel();
-    settingsSubscription?.close();
-    super.dispose();
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    ref.watch(notificationServiceProvider).requestPermissionAndSetup();
   }
 
   @override
@@ -101,34 +42,91 @@ class _TabsRootScreenState extends ConsumerState<TabsRootScreen> with AutoRouteA
     print('Changed to settings tab from ${previousRoute.name}');
   }
 
-  bool _shouldHideMiniPlayer(BuildContext context) {
-    final router = context.watchRouter;
-    Player? player;
-    if (ref.watch(isCasting)) {
-      player = ref.watch(castPlayerProvider);
+  onTabTap(BuildContext context, int index) {
+    final tabsRouter = AutoTabsRouter.of(context);
+    // here we switch between tabs
+    if (tabsRouter.activeIndex == index) {
+      final stackRouterOfIndex = tabsRouter.stackRouterOfIndex(index);
+      if (stackRouterOfIndex?.stack.length == 1) {
+        final searchState = tabsRouter.topPage?.child.asOrNull<SearchScreen>()?.key?.asOrNull<GlobalKey<SearchScreenState>>()?.currentState;
+        if (searchState != null) {
+          searchState.clear();
+        }
+        final screenState = tabsRouter.topPage?.child.key?.asOrNull<GlobalKey>()?.currentState.asOrNull<ScrollScreen>();
+        if (screenState != null) {
+          screenState.scrollToTop();
+        }
+      } else {
+        stackRouterOfIndex?.popUntilRoot();
+      }
     } else {
-      player = ref.watch(primaryPlayerProvider);
+      sendAnalytics(index);
     }
-    if (player == null || player.currentMediaItem == null) {
+    tabsRouter.setActiveIndex(index);
+  }
+
+  void sendAnalytics(int index) {
+    const indexToNameMap = ['home', 'search', 'livestream', 'calendar'];
+    if (index < 0 || index > indexToNameMap.length - 1) return;
+    final tabName = indexToNameMap[index];
+    final appConfig = ref.read(appConfigProvider);
+    appConfig.then((value) {
+      String? pageCode;
+      if (tabName == 'home') {
+        pageCode = value?.application.page?.code;
+      } else if (tabName == 'search') {
+        pageCode = value?.application.searchPage?.code;
+      }
+      Map<String, dynamic> extraProperties = {};
+      if (pageCode != null) {
+        extraProperties['pageCode'] = pageCode;
+      }
+      ref.read(analyticsProvider).screen(tabName, properties: extraProperties);
+    });
+  }
+
+  bool _shouldHideMiniPlayer(BuildContext context) {
+    if (kIsWeb) return true;
+    final router = context.watchRouter;
+    final currentRouteMatch = router.currentSegments.lastOrNull;
+    if (currentRouteMatch == null) {
+      debugPrint('router.currentSegments empty');
       return true;
     }
-    if (router.currentSegments.last.meta.containsKey('hide_mini_player')) {
+    final StateNotifierProvider<PlayerStateNotifier, PlayerState?>? playerProvider;
+    if (ref.watch(isCasting)) {
+      playerProvider = castPlayerProvider;
+    } else {
+      playerProvider = primaryPlayerProvider;
+    }
+
+    final String? currentMediaItemEpisodeId =
+        ref.watch(playerProvider.select((player) => player?.currentMediaItem?.metadata?.extras?['id']?.asOrNull<String>()));
+
+    if (currentMediaItemEpisodeId == null) {
       return true;
     }
-    if (player.isInPipMode) {
+    if (currentRouteMatch.meta.containsKey('hide_mini_player')) {
+      return true;
+    }
+    final bool isInPipMode = ref.watch(playerProvider.select((value) => value?.isInPipMode == true));
+    if (isInPipMode) {
       return true;
     }
 
-    final currentEpisodePageArgs = (router.currentSegments.last.args as Object?).asOrNull<EpisodeScreenRouteArgs>();
+    if (currentRouteMatch.name == EpisodeScreenRoute.name) {
+      final currentEpisodePageArgsId = currentRouteMatch.pathParams.optString('episodeId');
+      final autoplayQueryParam = currentRouteMatch.queryParams.get('autoplay', false);
+      final currentEpisodePageArgsAutoplay =
+          (autoplayQueryParam == true) || (autoplayQueryParam is String && autoplayQueryParam.toLowerCase() == 'true');
 
-    if (currentEpisodePageArgs?.autoplay == true) {
-      return true;
-    }
+      if (currentEpisodePageArgsAutoplay == true) {
+        return true;
+      }
 
-    final episodeId = player.currentMediaItem?.metadata?.extras?['id']?.asOrNull<String>();
-
-    if (episodeId != null && currentEpisodePageArgs != null && currentEpisodePageArgs.episodeId == episodeId) {
-      return true;
+      if (currentEpisodePageArgsId != null && currentEpisodePageArgsId == currentMediaItemEpisodeId) {
+        return true;
+      }
     }
     return false;
   }
@@ -139,7 +137,6 @@ class _TabsRootScreenState extends ConsumerState<TabsRootScreen> with AutoRouteA
       const HomeScreenWrapperRoute(),
       SearchScreenWrapperRoute(children: [SearchScreenRoute(key: GlobalKey<SearchScreenState>())]),
     ];
-    debugPrint('guestMode ${ref.watch(authStateProvider).guestMode}');
     if (!ref.watch(authStateProvider).guestMode) {
       routes.addAll([
         const LiveScreenRoute(),
@@ -155,9 +152,25 @@ class _TabsRootScreenState extends ConsumerState<TabsRootScreen> with AutoRouteA
         return Theme(
           data: Theme.of(context).copyWith(bottomSheetTheme: const BottomSheetThemeData(backgroundColor: Colors.transparent)),
           child: Scaffold(
-              body: Padding(padding: EdgeInsets.only(bottom: _shouldHideMiniPlayer(context) ? 0 : kMiniPlayerHeight), child: child),
-              bottomSheet: BottomSheetMiniPlayer(hidden: _shouldHideMiniPlayer(context)),
-              bottomNavigationBar: CustomTabBar(tabsRouter: tabsRouter)),
+            appBar: kIsWeb ? WebAppBar(tabsRouter: tabsRouter, onTabTap: (i) => onTabTap(context, i)) : null,
+            body: Padding(padding: EdgeInsets.only(bottom: _shouldHideMiniPlayer(context) ? 0 : kMiniPlayerHeight), child: child),
+            bottomSheet: Container(
+              color: BccmColors.background1, // Fix gap between prompts and miniPlayer due to antialiasing issue
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  const Prompts(),
+                  BottomSheetMiniPlayer(hidden: _shouldHideMiniPlayer(context)),
+                ],
+              ),
+            ),
+            bottomNavigationBar: kIsWeb
+                ? null
+                : CustomTabBar(
+                    tabsRouter: tabsRouter,
+                    onTabTap: (i) => onTabTap(context, i),
+                  ),
+          ),
         );
       },
     );

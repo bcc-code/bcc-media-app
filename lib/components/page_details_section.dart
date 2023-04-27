@@ -1,10 +1,9 @@
-import 'package:brunstadtv_app/helpers/btv_typography.dart';
+import 'package:brunstadtv_app/theme/bccm_typography.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_markdown/flutter_markdown.dart';
 
 import '../graphql/queries/page.graphql.dart';
-import '../helpers/btv_colors.dart';
-import '../services/utils.dart';
+import '../theme/bccm_colors.dart';
 
 class PageDetailsSection extends StatelessWidget {
   final Fragment$Section$$PageDetailsSection data;
@@ -23,26 +22,26 @@ class PageDetailsSection extends StatelessWidget {
         if (data.title?.isNotEmpty == true)
           Padding(
             padding: const EdgeInsets.only(
-              left: 16,
+              left: kIsWeb ? 80 : 16,
               top: 20,
-              right: 16,
+              right: kIsWeb ? 80 : 16,
               bottom: 6,
             ),
             child: Text(
               data.title!,
-              style: BtvTextStyles.headline1,
+              style: BccmTextStyles.headline1,
             ),
           ),
         if (data.description?.isNotEmpty == true)
           Padding(
             padding: const EdgeInsets.only(
-              left: 16,
-              right: 16,
+              left: kIsWeb ? 80 : 16,
+              right: kIsWeb ? 80 : 16,
               bottom: 8,
             ),
             child: Text(
               data.description!,
-              style: BtvTextStyles.body2.copyWith(color: BtvColors.label3),
+              style: BccmTextStyles.body2.copyWith(color: BccmColors.label3),
             ),
           ),
       ],

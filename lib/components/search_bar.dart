@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../helpers/btv_colors.dart';
-import '../helpers/btv_typography.dart';
+import '../theme/bccm_colors.dart';
+import '../theme/bccm_typography.dart';
 import '../l10n/app_localizations.dart';
 
 class SearchBar extends StatefulWidget {
@@ -18,7 +18,6 @@ class SearchBar extends StatefulWidget {
 class _SearchBarState extends State<SearchBar> {
   late TextEditingController _fieldController;
   late FocusNode focusNode;
-  bool _focusing = false;
 
   @override
   void initState() {
@@ -71,9 +70,8 @@ class _SearchBarState extends State<SearchBar> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       height: 40,
-      margin: const EdgeInsets.only(top: 16, right: 16, bottom: 8, left: 16),
       child: Row(
         children: [
           Expanded(
@@ -81,7 +79,7 @@ class _SearchBarState extends State<SearchBar> {
               padding: const EdgeInsets.symmetric(vertical: 3),
               decoration: const BoxDecoration(
                 borderRadius: BorderRadius.all(Radius.circular(28)),
-                color: BtvColors.background2,
+                color: BccmColors.background2,
               ),
               child: FocusScope(
                 child: Focus(
@@ -93,7 +91,7 @@ class _SearchBarState extends State<SearchBar> {
                       isDense: true,
                       prefixIcon: const Padding(
                         padding: EdgeInsets.only(left: 8, top: 1, bottom: 1, right: 10),
-                        child: ImageIcon(color: BtvColors.tint1, AssetImage('assets/icons/Search_Default.png'), size: 24),
+                        child: ImageIcon(color: BccmColors.tint1, AssetImage('assets/icons/Search_Default.png'), size: 24),
                       ),
                       prefixIconConstraints: const BoxConstraints(minWidth: 0, maxHeight: 24),
                       suffixIcon: _fieldController.text != ''
@@ -110,7 +108,7 @@ class _SearchBarState extends State<SearchBar> {
                       suffixIconConstraints: const BoxConstraints(minWidth: 0, maxHeight: 24),
                       border: InputBorder.none,
                       hintText: S.of(context).search,
-                      hintStyle: BtvTextStyles.body2.copyWith(color: BtvColors.label4, height: 1.45),
+                      hintStyle: BccmTextStyles.body2.copyWith(color: BccmColors.label4, height: 1.45),
                     ),
                   ),
                 ),
@@ -129,7 +127,7 @@ class _SearchBarState extends State<SearchBar> {
                 onPressed: _onCancelled,
                 child: Text(
                   S.of(context).cancel,
-                  style: BtvTextStyles.button2,
+                  style: BccmTextStyles.button2,
                 ),
               ),
             )
