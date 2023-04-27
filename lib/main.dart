@@ -1,6 +1,4 @@
 import 'dart:async';
-
-import 'package:alice/alice.dart';
 import 'package:bccm_player/bccm_player.dart';
 import 'package:bccm_player/plugins/riverpod.dart';
 import 'package:brunstadtv_app/providers/notification_service.dart';
@@ -25,7 +23,6 @@ import 'package:flutter_web_plugins/url_strategy.dart';
 
 import 'app_root.dart';
 
-final Alice alice = Alice(showNotification: true);
 final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 
 /// This function is called from the flavor-specific entrypoints
