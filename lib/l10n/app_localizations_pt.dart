@@ -68,8 +68,7 @@ class SPt extends S {
   String get signUpDescription => 'Get access to more content and better features by creating an account.';
 
   @override
-  String get signUpAgreePrivacyPolicy =>
-      'I certify that I am 13 years of age or older, and I agree to the <a>Privacy Policy</a> and <a>Terms of use</a>.';
+  String get signUpAgreePrivacyPolicy => 'I certify that I am 13 years of age or older, and I agree to the <a>Privacy Policy</a> and <a>Terms of use</a>.';
 
   @override
   String get setPassword => 'Set password';
@@ -608,4 +607,13 @@ class SPt extends S {
 
   @override
   String get details => 'Detalhes ';
+
+  @override
+  String get myList => 'My list';
+
+  @override
+  String get didYouKnowTitle => 'Did you know?';
+
+  @override
+  String get didYouKnowContent => 'You can add your favorite shows to \"My List\" by tapping the heart.';
 }

@@ -50,8 +50,7 @@ class SFr extends S {
   String get faq => 'Foire aux Questions';
 
   @override
-  String get bccMediaCenter =>
-      'BCC Media est une fondation médiatique de la fédération BCC qui produit et distribue des contenus aux valeurs positives et chrétiennes.';
+  String get bccMediaCenter => 'BCC Media est une fondation médiatique de la fédération BCC qui produit et distribue des contenus aux valeurs positives et chrétiennes.';
 
   @override
   String get signInButton => 'Se connecter';
@@ -69,8 +68,7 @@ class SFr extends S {
   String get signUpDescription => 'Get access to more content and better features by creating an account.';
 
   @override
-  String get signUpAgreePrivacyPolicy =>
-      'I certify that I am 13 years of age or older, and I agree to the <a>Privacy Policy</a> and <a>Terms of use</a>.';
+  String get signUpAgreePrivacyPolicy => 'I certify that I am 13 years of age or older, and I agree to the <a>Privacy Policy</a> and <a>Terms of use</a>.';
 
   @override
   String get setPassword => 'Set password';
@@ -429,8 +427,7 @@ class SFr extends S {
   String get appUpdateTitle => 'Mise à jour requise';
 
   @override
-  String get appUpdateRequest =>
-      'Merci de télécharger la dernière version de l\'application pour profiter des dernières fonctionnalités et éviter les bugs.';
+  String get appUpdateRequest => 'Merci de télécharger la dernière version de l\'application pour profiter des dernières fonctionnalités et éviter les bugs.';
 
   @override
   String get appUpdateAccepted => 'Mettre à jour';
@@ -610,4 +607,13 @@ class SFr extends S {
 
   @override
   String get details => 'Détails';
+
+  @override
+  String get myList => 'My list';
+
+  @override
+  String get didYouKnowTitle => 'Did you know?';
+
+  @override
+  String get didYouKnowContent => 'You can add your favorite shows to \"My List\" by tapping the heart.';
 }

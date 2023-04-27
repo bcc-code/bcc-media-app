@@ -50,8 +50,7 @@ class SRu extends S {
   String get faq => 'Часто задаваемые вопросы';
 
   @override
-  String get bccMediaCenter =>
-      'BCC Media — это медиа-фонд в организации BCC, который производит и распространяет контент с позитивными и христианскими ценностями.';
+  String get bccMediaCenter => 'BCC Media — это медиа-фонд в организации BCC, который производит и распространяет контент с позитивными и христианскими ценностями.';
 
   @override
   String get signInButton => 'Войти';
@@ -69,8 +68,7 @@ class SRu extends S {
   String get signUpDescription => 'Get access to more content and better features by creating an account.';
 
   @override
-  String get signUpAgreePrivacyPolicy =>
-      'I certify that I am 13 years of age or older, and I agree to the <a>Privacy Policy</a> and <a>Terms of use</a>.';
+  String get signUpAgreePrivacyPolicy => 'I certify that I am 13 years of age or older, and I agree to the <a>Privacy Policy</a> and <a>Terms of use</a>.';
 
   @override
   String get setPassword => 'Set password';
@@ -429,8 +427,7 @@ class SRu extends S {
   String get appUpdateTitle => 'Требуется обновление';
 
   @override
-  String get appUpdateRequest =>
-      'Пожалуйста, загрузите последнюю версию приложения, чтобы пользоваться всеми последними функциями и исправлениями ошибок.';
+  String get appUpdateRequest => 'Пожалуйста, загрузите последнюю версию приложения, чтобы пользоваться всеми последними функциями и исправлениями ошибок.';
 
   @override
   String get appUpdateAccepted => 'Обновление';
@@ -610,4 +607,13 @@ class SRu extends S {
 
   @override
   String get details => 'Подробности';
+
+  @override
+  String get myList => 'My list';
+
+  @override
+  String get didYouKnowTitle => 'Did you know?';
+
+  @override
+  String get didYouKnowContent => 'You can add your favorite shows to \"My List\" by tapping the heart.';
 }

@@ -50,8 +50,7 @@ class SPl extends S {
   String get faq => 'Często zadawane pytania';
 
   @override
-  String get bccMediaCenter =>
-      'BCC Media to fundacja medialna w federacji BCC, która zajmuje się produkcją i dystrybucją treści o charakterze pozytywnym i chrześcijańskim.';
+  String get bccMediaCenter => 'BCC Media to fundacja medialna w federacji BCC, która zajmuje się produkcją i dystrybucją treści o charakterze pozytywnym i chrześcijańskim.';
 
   @override
   String get signInButton => 'Zaloguj się';
@@ -69,8 +68,7 @@ class SPl extends S {
   String get signUpDescription => 'Get access to more content and better features by creating an account.';
 
   @override
-  String get signUpAgreePrivacyPolicy =>
-      'I certify that I am 13 years of age or older, and I agree to the <a>Privacy Policy</a> and <a>Terms of use</a>.';
+  String get signUpAgreePrivacyPolicy => 'I certify that I am 13 years of age or older, and I agree to the <a>Privacy Policy</a> and <a>Terms of use</a>.';
 
   @override
   String get setPassword => 'Set password';
@@ -609,4 +607,13 @@ class SPl extends S {
 
   @override
   String get details => 'Szczegóły';
+
+  @override
+  String get myList => 'My list';
+
+  @override
+  String get didYouKnowTitle => 'Did you know?';
+
+  @override
+  String get didYouKnowContent => 'You can add your favorite shows to \"My List\" by tapping the heart.';
 }

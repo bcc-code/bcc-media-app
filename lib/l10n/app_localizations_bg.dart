@@ -50,8 +50,7 @@ class SBg extends S {
   String get faq => 'Frequently asked questions';
 
   @override
-  String get bccMediaCenter =>
-      'BCC Media is a media foundation in the BCC federation that produces and distributes content with positive and Christian values.';
+  String get bccMediaCenter => 'BCC Media is a media foundation in the BCC federation that produces and distributes content with positive and Christian values.';
 
   @override
   String get signInButton => 'Sign in';
@@ -69,8 +68,7 @@ class SBg extends S {
   String get signUpDescription => 'Get access to more content and better features by creating an account.';
 
   @override
-  String get signUpAgreePrivacyPolicy =>
-      'I certify that I am 13 years of age or older, and I agree to the <a>Privacy Policy</a> and <a>Terms of use</a>.';
+  String get signUpAgreePrivacyPolicy => 'I certify that I am 13 years of age or older, and I agree to the <a>Privacy Policy</a> and <a>Terms of use</a>.';
 
   @override
   String get setPassword => 'Set password';
@@ -611,23 +609,11 @@ class SBg extends S {
   String get details => 'Details';
 
   @override
-  String get myList => 'My List';
+  String get myList => 'My list';
 
   @override
   String get didYouKnowTitle => 'Did you know?';
 
   @override
   String get didYouKnowContent => 'You can add your favorite shows to \"My List\" by tapping the heart.';
-
-  @override
-  String get selectSeason => 'Select season';
-
-  @override
-  String get deleteMyAccount => 'Delete my account';
-
-  @override
-  String get iAmSureIWantToDelete => 'I am sure I want to delete my account and my data related to the BCC Media app.';
-
-  @override
-  String get areYouSure => 'Are you sure?';
 }

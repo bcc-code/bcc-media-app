@@ -1286,6 +1286,24 @@ abstract class S {
   /// In en, this message translates to:
   /// **'Details'**
   String get details;
+
+  /// My list tab name
+  ///
+  /// In en, this message translates to:
+  /// **'My list'**
+  String get myList;
+
+  /// Title for info displayed on 'My list' page.
+  ///
+  /// In en, this message translates to:
+  /// **'Did you know?'**
+  String get didYouKnowTitle;
+
+  /// Content for info displayed on 'My list' page.
+  ///
+  /// In en, this message translates to:
+  /// **'You can add your favorite shows to \"My List\" by tapping the heart.'**
+  String get didYouKnowContent;
 }
 
 class _SDelegate extends LocalizationsDelegate<S> {
@@ -1297,54 +1315,40 @@ class _SDelegate extends LocalizationsDelegate<S> {
   }
 
   @override
-  bool isSupported(Locale locale) =>
-      <String>['bg', 'da', 'de', 'en', 'es', 'fi', 'fr', 'hu', 'it', 'nb', 'nl', 'pl', 'pt', 'ro', 'ru', 'sl', 'tr'].contains(locale.languageCode);
+  bool isSupported(Locale locale) => <String>['bg', 'da', 'de', 'en', 'es', 'fi', 'fr', 'hu', 'it', 'nb', 'nl', 'pl', 'pt', 'ro', 'ru', 'sl', 'tr'].contains(locale.languageCode);
 
   @override
   bool shouldReload(_SDelegate old) => false;
 }
 
 S lookupS(Locale locale) {
+
+
   // Lookup logic when only language code is specified.
   switch (locale.languageCode) {
-    case 'bg':
-      return SBg();
-    case 'da':
-      return SDa();
-    case 'de':
-      return SDe();
-    case 'en':
-      return SEn();
-    case 'es':
-      return SEs();
-    case 'fi':
-      return SFi();
-    case 'fr':
-      return SFr();
-    case 'hu':
-      return SHu();
-    case 'it':
-      return SIt();
-    case 'nb':
-      return SNb();
-    case 'nl':
-      return SNl();
-    case 'pl':
-      return SPl();
-    case 'pt':
-      return SPt();
-    case 'ro':
-      return SRo();
-    case 'ru':
-      return SRu();
-    case 'sl':
-      return SSl();
-    case 'tr':
-      return STr();
+    case 'bg': return SBg();
+    case 'da': return SDa();
+    case 'de': return SDe();
+    case 'en': return SEn();
+    case 'es': return SEs();
+    case 'fi': return SFi();
+    case 'fr': return SFr();
+    case 'hu': return SHu();
+    case 'it': return SIt();
+    case 'nb': return SNb();
+    case 'nl': return SNl();
+    case 'pl': return SPl();
+    case 'pt': return SPt();
+    case 'ro': return SRo();
+    case 'ru': return SRu();
+    case 'sl': return SSl();
+    case 'tr': return STr();
   }
 
-  throw FlutterError('S.delegate failed to load unsupported locale "$locale". This is likely '
-      'an issue with the localizations generation tool. Please file an issue '
-      'on GitHub with a reproducible sample app and the gen-l10n configuration '
-      'that was used.');
+  throw FlutterError(
+    'S.delegate failed to load unsupported locale "$locale". This is likely '
+    'an issue with the localizations generation tool. Please file an issue '
+    'on GitHub with a reproducible sample app and the gen-l10n configuration '
+    'that was used.'
+  );
 }

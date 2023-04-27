@@ -50,8 +50,7 @@ class SRo extends S {
   String get faq => 'Întrebări frecvente';
 
   @override
-  String get bccMediaCenter =>
-      'BCC Media este o fundație media din cadrul federației BCC care produce și distribuie conținut cu valori pozitive și creștine.';
+  String get bccMediaCenter => 'BCC Media este o fundație media din cadrul federației BCC care produce și distribuie conținut cu valori pozitive și creștine.';
 
   @override
   String get signInButton => 'Conectare';
@@ -69,8 +68,7 @@ class SRo extends S {
   String get signUpDescription => 'Get access to more content and better features by creating an account.';
 
   @override
-  String get signUpAgreePrivacyPolicy =>
-      'I certify that I am 13 years of age or older, and I agree to the <a>Privacy Policy</a> and <a>Terms of use</a>.';
+  String get signUpAgreePrivacyPolicy => 'I certify that I am 13 years of age or older, and I agree to the <a>Privacy Policy</a> and <a>Terms of use</a>.';
 
   @override
   String get setPassword => 'Set password';
@@ -609,4 +607,13 @@ class SRo extends S {
 
   @override
   String get details => 'Detalii';
+
+  @override
+  String get myList => 'My list';
+
+  @override
+  String get didYouKnowTitle => 'Did you know?';
+
+  @override
+  String get didYouKnowContent => 'You can add your favorite shows to \"My List\" by tapping the heart.';
 }
