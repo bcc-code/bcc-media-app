@@ -37,6 +37,9 @@ Future<void> $main({required FirebaseOptions? firebaseOptions, List<Override>? p
     await initFirebase(firebaseOptions);
   }
 
+  // Initialize bccm_player
+  await BccmPlayerInterface.instance.setup();
+
   final appRouter = AppRouter(navigatorKey);
   final providerContainer = await initProviderContainer([
     rootRouterProvider.overrideWithValue(appRouter),

@@ -172,7 +172,7 @@ NSObject<FlutterMessageCodec> *PlaybackListenerPigeonGetCodec(void);
 ////////////////// Playback Listener
 @interface PlaybackListenerPigeon : NSObject
 - (instancetype)initWithBinaryMessenger:(id<FlutterBinaryMessenger>)binaryMessenger;
-- (void)onPrimaryPlayerChanged:(NSString *)playerId completion:(void (^)(FlutterError *_Nullable))completion;
+- (void)onPrimaryPlayerChanged:(nullable NSString *)playerId completion:(void (^)(FlutterError *_Nullable))completion;
 - (void)onPositionDiscontinuity:(PositionDiscontinuityEvent *)event completion:(void (^)(FlutterError *_Nullable))completion;
 - (void)onPlayerStateUpdate:(PlayerStateSnapshot *)event completion:(void (^)(FlutterError *_Nullable))completion;
 - (void)onPlaybackStateChanged:(PlaybackStateChangedEvent *)event completion:(void (^)(FlutterError *_Nullable))completion;

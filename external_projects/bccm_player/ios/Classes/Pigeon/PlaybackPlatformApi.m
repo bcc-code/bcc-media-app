@@ -836,7 +836,7 @@ NSObject<FlutterMessageCodec> *PlaybackListenerPigeonGetCodec(void) {
   }
   return self;
 }
-- (void)onPrimaryPlayerChanged:(NSString *)arg_playerId completion:(void (^)(FlutterError *_Nullable))completion {
+- (void)onPrimaryPlayerChanged:(nullable NSString *)arg_playerId completion:(void (^)(FlutterError *_Nullable))completion {
   FlutterBasicMessageChannel *channel =
     [FlutterBasicMessageChannel
       messageChannelWithName:@"dev.flutter.pigeon.PlaybackListenerPigeon.onPrimaryPlayerChanged"

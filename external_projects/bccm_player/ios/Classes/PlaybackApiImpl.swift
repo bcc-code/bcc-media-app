@@ -9,6 +9,7 @@ import GoogleCast
 public class PlaybackApiImpl: NSObject, PlaybackPlatformPigeon {
     var players = [PlayerController]()
     private var primaryPlayerId: String? = nil
+    private var previousPrimaryPlayerId: String? = nil
     let playbackListener: PlaybackListenerPigeon
     let chromecastPigeon: ChromecastPigeon
     var npawConfig: NpawConfig? = nil
@@ -52,9 +53,9 @@ public class PlaybackApiImpl: NSObject, PlaybackPlatformPigeon {
         players.first(where: { $0.id == primaryPlayerId })
     }
 
-    public func setPrimary(_ id: String,
-                           completion: @escaping (FlutterError?) -> Void)
-    {
+    public func setPrimary(_ id: String, completion: @escaping (FlutterError?) -> Void) {
+        if primaryPlayerId == id { return }
+        previousPrimaryPlayerId = primaryPlayerId
         primaryPlayerId = id
         getPrimaryPlayer()?.hasBecomePrimary()
         playbackListener.onPrimaryPlayerChanged(id, completion: { _ in })
@@ -127,5 +128,22 @@ public class PlaybackApiImpl: NSObject, PlaybackPlatformPigeon {
     public func stop(_ playerId: String, reset: NSNumber, error: AutoreleasingUnsafeMutablePointer<FlutterError?>) {
         let player = getPlayer(playerId)
         player?.stop(reset: reset.boolValue)
+    }
+}
+
+public extension PlaybackApiImpl {
+    func unclaimIfPrimary(_ playerId: String) {
+        if primaryPlayerId != playerId { return }
+        if let previousPrimaryPlayerId, let previous = getPlayer(previousPrimaryPlayerId) {
+            setPrimary(previous.id, completion: { _ in })
+            return
+        }
+        if let player = players.first(where: { $0 is AVQueuePlayerController }) {
+            setPrimary(player.id, completion: { _ in })
+            return
+        }
+        primaryPlayerId = nil
+        playbackListener.onPrimaryPlayerChanged(nil, completion: { _ in })
+        assertionFailure("unclaimIfPrimary was called, but no player was given primary.")
     }
 }

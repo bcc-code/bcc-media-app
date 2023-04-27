@@ -1611,7 +1611,7 @@ public class PlaybackPlatformApi {
     static @NonNull MessageCodec<Object> getCodec() {
       return PlaybackListenerPigeonCodec.INSTANCE;
     }
-    public void onPrimaryPlayerChanged(@NonNull String playerIdArg, @NonNull Reply<Void> callback) {
+    public void onPrimaryPlayerChanged(@Nullable String playerIdArg, @NonNull Reply<Void> callback) {
       BasicMessageChannel<Object> channel =
           new BasicMessageChannel<>(
               binaryMessenger, "dev.flutter.pigeon.PlaybackListenerPigeon.onPrimaryPlayerChanged", getCodec());

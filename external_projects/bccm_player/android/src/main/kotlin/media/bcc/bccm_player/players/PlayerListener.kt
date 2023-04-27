@@ -37,10 +37,14 @@ class PlayerListener(private val playerController: PlayerController, val plugin:
         refreshStateTimer.stop()
     }
 
-    override fun onPlaybackStateChanged(isPlaying: Boolean) {
+    override fun onIsPlayingChanged(isPlaying: Boolean) {
+        val state =
+            if (isPlaying) PlaybackPlatformApi.PlaybackState.PLAYING
+            else PlaybackPlatformApi.PlaybackState.PAUSED;
         val event =
-            PlaybackPlatformApi.PlaybackStateChangedEvent.Builder().setPlayerId(playerController.id)
-                .setIsPlaying(isPlaying)
+            PlaybackPlatformApi.PlaybackStateChangedEvent.Builder()
+                .setPlayerId(playerController.id)
+                .setPlaybackState(state)
         plugin.playbackPigeon?.onPlaybackStateChanged(event.build()) {}
     }
 

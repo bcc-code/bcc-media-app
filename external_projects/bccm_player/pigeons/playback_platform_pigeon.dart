@@ -129,7 +129,7 @@ enum CastConnectionState {
 @FlutterApi()
 abstract class PlaybackListenerPigeon {
   @ObjCSelector("onPrimaryPlayerChanged:")
-  void onPrimaryPlayerChanged(String playerId);
+  void onPrimaryPlayerChanged(String? playerId);
   @ObjCSelector("onPositionDiscontinuity:")
   void onPositionDiscontinuity(PositionDiscontinuityEvent event);
   @ObjCSelector("onPlayerStateUpdate:")

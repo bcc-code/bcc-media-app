@@ -806,7 +806,7 @@ class _PlaybackListenerPigeonCodec extends StandardMessageCodec {
 abstract class PlaybackListenerPigeon {
   static const MessageCodec<Object?> codec = _PlaybackListenerPigeonCodec();
 
-  void onPrimaryPlayerChanged(String playerId);
+  void onPrimaryPlayerChanged(String? playerId);
 
   void onPositionDiscontinuity(PositionDiscontinuityEvent event);
 
@@ -831,9 +831,7 @@ abstract class PlaybackListenerPigeon {
           'Argument for dev.flutter.pigeon.PlaybackListenerPigeon.onPrimaryPlayerChanged was null.');
           final List<Object?> args = (message as List<Object?>?)!;
           final String? arg_playerId = (args[0] as String?);
-          assert(arg_playerId != null,
-              'Argument for dev.flutter.pigeon.PlaybackListenerPigeon.onPrimaryPlayerChanged was null, expected non-null String.');
-          api.onPrimaryPlayerChanged(arg_playerId!);
+          api.onPrimaryPlayerChanged(arg_playerId);
           return;
         });
       }

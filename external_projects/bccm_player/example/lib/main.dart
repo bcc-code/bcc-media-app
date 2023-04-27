@@ -1,7 +1,6 @@
 import 'package:bccm_player/bccm_player.dart';
 import 'package:bccm_player/plugins/riverpod.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_hooks/flutter_hooks.dart';
 import 'dart:async';
 
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -12,6 +11,7 @@ final bccmPlayerInterface = Provider<BccmPlayerInterface>((ref) {
 
 Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await BccmPlayerInterface.instance.setup();
   final providerContainer = ProviderContainer();
   await providerContainer.setupBccmPlayer(providerContainer.read(bccmPlayerInterface)); // Force run
   runApp(

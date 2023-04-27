@@ -215,6 +215,7 @@ class CastPlayerController: NSObject, PlayerController {
         remoteMediaClient.loadMedia(with: loadRequestBuilder.build())
         player.removeAllItems()
         player.pause()
+        playbackApi.setPrimary(id, completion: { _ in })
     }
     
     func mapMediaQueueItem(_ mediaQueueItem: GCKMediaQueueItem?) -> MediaItem? {
@@ -326,33 +327,35 @@ extension CastPlayerController: GCKCastDeviceStatusListener {
 
 extension CastPlayerController: GCKSessionManagerListener {
     func sessionManager(_: GCKSessionManager, willEnd session: GCKSession) {
+        debugPrint("CastPlayerController::sessionManager(willEnd)")
         positionUponEndingSession = session.remoteMediaClient?.approximateStreamPosition()
     }
     
     func sessionManager(_ sessionManager: GCKSessionManager, didSuspend session: GCKSession,
                         with reason: GCKConnectionSuspendReason)
     {
-        playbackApi.chromecastPigeon.onSessionSuspended { _ in }
+        debugPrint("CastPlayerController::sessionManager(didSuspend)")
         session.remoteMediaClient?.remove(self)
+        playbackApi.chromecastPigeon.onSessionSuspended { _ in }
     }
     
     func sessionManager(_ sessionManager: GCKSessionManager, didResumeSession session: GCKSession) {
-        playbackApi.chromecastPigeon.onSessionResumed { _ in }
-        transferStateFromPrimary()
+        debugPrint("CastPlayerController::sessionManager(didResume)")
+        playbackApi.setPrimary(id, completion: { _ in })
         session.remoteMediaClient?.add(self)
+        playbackApi.chromecastPigeon.onSessionResumed { _ in }
     }
     
     func sessionManager(
         _ sessionManager: GCKSessionManager,
         didStart session: GCKCastSession
     ) {
-        playbackApi.chromecastPigeon.onSessionStarted { _ in }
+        debugPrint("CastPlayerController::sessionManager(didStart)")
         transferStateFromPrimary()
         session.add(self)
-        debugPrint("added session listener")
         self.sessionManager = sessionManager
-        print("currentCastSession.remotemediaclient nil? = " + (sessionManager.currentCastSession?.remoteMediaClient != nil).description)
         session.remoteMediaClient?.add(self)
+        playbackApi.chromecastPigeon.onSessionStarted { _ in }
     }
 
     func sessionManager(
@@ -360,13 +363,14 @@ extension CastPlayerController: GCKSessionManagerListener {
         didEnd session: GCKSession,
         withError error: Error?
     ) {
-        playbackApi.chromecastPigeon.onSessionEnded { _ in }
+        debugPrint("CastPlayerController::sessionManager(didEnd)")
         var positionMs: NSNumber? = nil
         if positionUponEndingSession != nil {
             positionMs = Int(positionUponEndingSession! * 1000) as NSNumber
         }
-        playbackApi.chromecastPigeon.onCastSessionUnavailable(CastSessionUnavailableEvent.make(withPlaybackPositionMs: positionMs)) { _ in }
-        
+        playbackApi.unclaimIfPrimary(id)
         session.remoteMediaClient?.remove(self)
+        playbackApi.chromecastPigeon.onSessionEnded { _ in }
+        playbackApi.chromecastPigeon.onCastSessionUnavailable(CastSessionUnavailableEvent.make(withPlaybackPositionMs: positionMs)) { _ in }
     }
 }

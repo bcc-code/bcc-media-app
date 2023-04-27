@@ -44,5 +44,5 @@ class BccmPlaybackListener implements PlaybackListenerPigeon {
   }
 
   @override
-  void onPrimaryPlayerChanged(String playerId) {}
+  void onPrimaryPlayerChanged(String? playerId) {}
 }

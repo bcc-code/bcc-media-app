@@ -6,7 +6,6 @@ export '../src/plugins/riverpod/providers/player_provider.dart';
 
 extension RiverpodX on ProviderContainer {
   Future setupBccmPlayer(BccmPlayerInterface api) async {
-    await api.setup();
     // Add listener to update player states
     api.addPlaybackListener(read(playbackListenerProvider));
   }
