@@ -22,11 +22,11 @@ class MyList extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               SvgPicture.string(SvgIcons.heart),
-              Text(S.of(context).doYouKnowTitle, style: BtvTextStyles.headline1),
+              Text(S.of(context).didYouKnowTitle, style: BtvTextStyles.headline1),
               Padding(
                 padding: EdgeInsets.only(top: 12, bottom: 42),
                 child: Text(
-                  S.of(context).doYouKnowContent,
+                  S.of(context).didYouKnowContent,
                   textAlign: TextAlign.center,
                   style: BtvTextStyles.body1,
                 ),

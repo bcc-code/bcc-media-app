@@ -542,4 +542,13 @@ class STr extends S {
 
   @override
   String get details => 'Detaylar';
+
+  @override
+  String get myList => 'My List';
+
+  @override
+  String get didYouKnowTitle => 'Did you know?';
+
+  @override
+  String get didYouKnowContent => 'You can add your favorite shows to \"My List\" by tapping the heart.';
 }

@@ -744,17 +744,17 @@
   "@details": {
     "description": "A tab name on the episode page which has some extra details about the episode: release date, age rating, etc."
   },
-  "myList": "My List",
+  "myList": "My list",
   "@myList": {
-    "description": "Recent liked list Tab"
+    "description": "My list tab name"
   },
-  "doYouKnowTitle": "Do you know?",
-  "@doYouKnow": {
-    "description": "Do you know question"
+  "didYouKnowTitle": "Did you know?",
+  "@didYouKnowTitle": {
+    "description": "Title for info displayed on 'My list' page."
   },
-  "doYouKnowContent": "You can add your facourite shows to \"My List\" by tapping the heart.",
-  "@doYouKnowContent": {
-    "description": "You can add your facourite shows to \"My List\" by tapping the heart."
+  "didYouKnowContent": "You can add your favorite shows to \"My List\" by tapping the heart.",
+  "@didYouKnowContent": {
+    "description": "Content for info displayed on 'My list' page."
   }
 
   

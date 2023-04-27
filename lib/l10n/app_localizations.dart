@@ -1160,6 +1160,24 @@ abstract class S {
   /// In en, this message translates to:
   /// **'Details'**
   String get details;
+
+  /// My list tab name
+  ///
+  /// In en, this message translates to:
+  /// **'My List'**
+  String get myList;
+
+  /// Title for info displayed on 'My list' page.
+  ///
+  /// In en, this message translates to:
+  /// **'Did you know?'**
+  String get didYouKnowTitle;
+
+  /// Content for info displayed on 'My list' page.
+  ///
+  /// In en, this message translates to:
+  /// **'You can add your favorite shows to \"My List\" by tapping the heart.'**
+  String get didYouKnowContent;
 }
 
 class _SDelegate extends LocalizationsDelegate<S> {
