@@ -400,6 +400,12 @@ class SDe extends S {
   String get share => 'Teilen';
 
   @override
+  String get showMore => 'Show more';
+
+  @override
+  String get showLess => 'Show less';
+
+  @override
   String get liveNow => 'Jetzt live';
 
   @override

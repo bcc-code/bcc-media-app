@@ -400,6 +400,12 @@ class SHu extends S {
   String get share => 'Megosztás';
 
   @override
+  String get showMore => 'Show more';
+
+  @override
+  String get showLess => 'Show less';
+
+  @override
   String get liveNow => 'Most élőben';
 
   @override

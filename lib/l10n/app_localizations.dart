@@ -897,6 +897,18 @@ abstract class S {
   /// **'Share'**
   String get share;
 
+  /// Text used on link to expand collapsed text.
+  ///
+  /// In en, this message translates to:
+  /// **'Show more'**
+  String get showMore;
+
+  /// Text used on link to collapse expanded text.
+  ///
+  /// In en, this message translates to:
+  /// **'Show less'**
+  String get showLess;
+
   /// Generic, short. Used in buttons, badges, etc to indicate that an item is playing on the livestream now.
   ///
   /// In en, this message translates to:

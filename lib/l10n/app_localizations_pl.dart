@@ -400,6 +400,12 @@ class SPl extends S {
   String get share => 'Udostępnij';
 
   @override
+  String get showMore => 'Show more';
+
+  @override
+  String get showLess => 'Show less';
+
+  @override
   String get liveNow => 'Teraz na żywo';
 
   @override

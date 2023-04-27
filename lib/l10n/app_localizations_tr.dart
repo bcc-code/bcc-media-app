@@ -400,6 +400,12 @@ class STr extends S {
   String get share => 'Paylaş';
 
   @override
+  String get showMore => 'Show more';
+
+  @override
+  String get showLess => 'Show less';
+
+  @override
   String get liveNow => 'Şimdi canlı';
 
   @override
