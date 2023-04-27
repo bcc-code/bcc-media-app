@@ -400,6 +400,12 @@ class SSl extends S {
   String get share => 'Deli';
 
   @override
+  String get showMore => 'Show more';
+
+  @override
+  String get showLess => 'Show less';
+
+  @override
   String get liveNow => 'V živo';
 
   @override

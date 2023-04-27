@@ -9,6 +9,8 @@ import 'package:brunstadtv_app/theme/bccm_typography.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
+import '../text_collapsible.dart';
+
 class EpisodeInfo extends StatelessWidget {
   const EpisodeInfo(this.episode, {super.key, required this.onShareVideoTapped, this.extraChildren});
 
@@ -25,6 +27,7 @@ class EpisodeInfo extends StatelessWidget {
       color: BccmColors.background2,
       child: AnimatedSize(
         duration: const Duration(milliseconds: 800),
+        alignment: Alignment.topCenter,
         curve: Curves.easeOutExpo,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -73,7 +76,12 @@ class EpisodeInfo extends StatelessWidget {
                     ],
                   ),
                   const SizedBox(height: 14.5),
-                  if (episode.description.isNotEmpty) Text(episode.description, style: BccmTextStyles.body2.copyWith(color: BccmColors.label3)),
+                  if (episode.description.isNotEmpty)
+                    TextCollapsible(
+                      text: episode.description,
+                      style: BccmTextStyles.body2.copyWith(color: BccmColors.label3),
+                      maxLines: 2,
+                    ),
                   ...?extraChildren
                 ],
               ),

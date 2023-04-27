@@ -538,6 +538,14 @@
   "@share": {
     "description": "Generic."
   },
+  "showMore": "Show more",
+  "@showMore": {
+    "description": "Text used on link to expand collapsed text."
+  },
+  "showLess": "Show less",
+  "@showLess": {
+    "description": "Text used on link to collapse expanded text."
+  },
   "liveNow": "Live now",
   "@liveNow": {
     "description": "Generic, short. Used in buttons, badges, etc to indicate that an item is playing on the livestream now."

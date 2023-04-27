@@ -400,6 +400,12 @@ class SDa extends S {
   String get share => 'Del';
 
   @override
+  String get showMore => 'Show more';
+
+  @override
+  String get showLess => 'Show less';
+
+  @override
   String get liveNow => 'Live nu';
 
   @override

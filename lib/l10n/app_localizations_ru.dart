@@ -400,6 +400,12 @@ class SRu extends S {
   String get share => 'Поделиться';
 
   @override
+  String get showMore => 'Show more';
+
+  @override
+  String get showLess => 'Show less';
+
+  @override
   String get liveNow => 'В прямом эфире';
 
   @override
