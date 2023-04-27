@@ -1304,6 +1304,30 @@ abstract class S {
   /// In en, this message translates to:
   /// **'You can add your favorite shows to \"My List\" by tapping the heart.'**
   String get didYouKnowContent;
+
+  /// A title prompting to select a season from the list.
+  ///
+  /// In en, this message translates to:
+  /// **'Select season'**
+  String get selectSeason;
+
+  /// Button to request to delete your account
+  ///
+  /// In en, this message translates to:
+  /// **'Delete my account'**
+  String get deleteMyAccount;
+
+  /// Text next to a switch/toggle button, confirming that you want to delete your account.
+  ///
+  /// In en, this message translates to:
+  /// **'I am sure I want to delete my account and my data related to the BCC Media app.'**
+  String get iAmSureIWantToDelete;
+
+  /// Generic text. Used at least as a title on the account deletion page.
+  ///
+  /// In en, this message translates to:
+  /// **'Are you sure?'**
+  String get areYouSure;
 }
 
 class _SDelegate extends LocalizationsDelegate<S> {
