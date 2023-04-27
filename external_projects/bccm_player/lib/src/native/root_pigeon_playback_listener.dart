@@ -15,9 +15,9 @@ class RootPigeonPlaybackListener implements PlaybackListenerPigeon {
   }
 
   @override
-  void onIsPlayingChanged(IsPlayingChangedEvent event) {
+  void onPlaybackStateChanged(PlaybackStateChangedEvent event) {
     for (var listener in _listeners) {
-      listener.onIsPlayingChanged(event);
+      listener.onPlaybackStateChanged(event);
     }
   }
 
@@ -50,7 +50,7 @@ class RootPigeonPlaybackListener implements PlaybackListenerPigeon {
   }
 
   @override
-  void onPrimaryPlayerChanged(String playerId) {
+  void onPrimaryPlayerChanged(String? playerId) {
     parent.stateNotifier.setPrimaryPlayer(playerId);
     for (var listener in _listeners) {
       listener.onPrimaryPlayerChanged(playerId);

@@ -186,15 +186,12 @@ class MediaMetadata {
 class PlayerStateSnapshot {
   PlayerStateSnapshot({
     required this.playerId,
-    required this.isPlaying,
     required this.playbackState,
     this.currentMediaItem,
     this.playbackPositionMs,
   });
 
   String playerId;
-
-  bool isPlaying;
 
   PlaybackState playbackState;
 
@@ -205,7 +202,6 @@ class PlayerStateSnapshot {
   Object encode() {
     return <Object?>[
       playerId,
-      isPlaying,
       playbackState.index,
       currentMediaItem?.encode(),
       playbackPositionMs,
@@ -216,12 +212,11 @@ class PlayerStateSnapshot {
     result as List<Object?>;
     return PlayerStateSnapshot(
       playerId: result[0]! as String,
-      isPlaying: result[1]! as bool,
-      playbackState: PlaybackState.values[result[2]! as int],
-      currentMediaItem: result[3] != null
-          ? MediaItem.decode(result[3]! as List<Object?>)
+      playbackState: PlaybackState.values[result[1]! as int],
+      currentMediaItem: result[2] != null
+          ? MediaItem.decode(result[2]! as List<Object?>)
           : null,
-      playbackPositionMs: result[4] as double?,
+      playbackPositionMs: result[3] as double?,
     );
   }
 }
@@ -280,28 +275,28 @@ class PositionDiscontinuityEvent {
   }
 }
 
-class IsPlayingChangedEvent {
-  IsPlayingChangedEvent({
+class PlaybackStateChangedEvent {
+  PlaybackStateChangedEvent({
     required this.playerId,
-    required this.isPlaying,
+    required this.playbackState,
   });
 
   String playerId;
 
-  bool isPlaying;
+  PlaybackState playbackState;
 
   Object encode() {
     return <Object?>[
       playerId,
-      isPlaying,
+      playbackState.index,
     ];
   }
 
-  static IsPlayingChangedEvent decode(Object result) {
+  static PlaybackStateChangedEvent decode(Object result) {
     result as List<Object?>;
-    return IsPlayingChangedEvent(
+    return PlaybackStateChangedEvent(
       playerId: result[0]! as String,
-      isPlaying: result[1]! as bool,
+      playbackState: PlaybackState.values[result[1]! as int],
     );
   }
 }
@@ -758,19 +753,19 @@ class _PlaybackListenerPigeonCodec extends StandardMessageCodec {
   const _PlaybackListenerPigeonCodec();
   @override
   void writeValue(WriteBuffer buffer, Object? value) {
-    if (value is IsPlayingChangedEvent) {
+    if (value is MediaItem) {
       buffer.putUint8(128);
       writeValue(buffer, value.encode());
-    } else if (value is MediaItem) {
+    } else if (value is MediaItemTransitionEvent) {
       buffer.putUint8(129);
       writeValue(buffer, value.encode());
-    } else if (value is MediaItemTransitionEvent) {
+    } else if (value is MediaMetadata) {
       buffer.putUint8(130);
       writeValue(buffer, value.encode());
-    } else if (value is MediaMetadata) {
+    } else if (value is PictureInPictureModeChangedEvent) {
       buffer.putUint8(131);
       writeValue(buffer, value.encode());
-    } else if (value is PictureInPictureModeChangedEvent) {
+    } else if (value is PlaybackStateChangedEvent) {
       buffer.putUint8(132);
       writeValue(buffer, value.encode());
     } else if (value is PlayerStateSnapshot) {
@@ -788,15 +783,15 @@ class _PlaybackListenerPigeonCodec extends StandardMessageCodec {
   Object? readValueOfType(int type, ReadBuffer buffer) {
     switch (type) {
       case 128: 
-        return IsPlayingChangedEvent.decode(readValue(buffer)!);
-      case 129: 
         return MediaItem.decode(readValue(buffer)!);
-      case 130: 
+      case 129: 
         return MediaItemTransitionEvent.decode(readValue(buffer)!);
-      case 131: 
+      case 130: 
         return MediaMetadata.decode(readValue(buffer)!);
-      case 132: 
+      case 131: 
         return PictureInPictureModeChangedEvent.decode(readValue(buffer)!);
+      case 132: 
+        return PlaybackStateChangedEvent.decode(readValue(buffer)!);
       case 133: 
         return PlayerStateSnapshot.decode(readValue(buffer)!);
       case 134: 
@@ -811,13 +806,13 @@ class _PlaybackListenerPigeonCodec extends StandardMessageCodec {
 abstract class PlaybackListenerPigeon {
   static const MessageCodec<Object?> codec = _PlaybackListenerPigeonCodec();
 
-  void onPrimaryPlayerChanged(String playerId);
+  void onPrimaryPlayerChanged(String? playerId);
 
   void onPositionDiscontinuity(PositionDiscontinuityEvent event);
 
   void onPlayerStateUpdate(PlayerStateSnapshot event);
 
-  void onIsPlayingChanged(IsPlayingChangedEvent event);
+  void onPlaybackStateChanged(PlaybackStateChangedEvent event);
 
   void onMediaItemTransition(MediaItemTransitionEvent event);
 
@@ -836,9 +831,7 @@ abstract class PlaybackListenerPigeon {
           'Argument for dev.flutter.pigeon.PlaybackListenerPigeon.onPrimaryPlayerChanged was null.');
           final List<Object?> args = (message as List<Object?>?)!;
           final String? arg_playerId = (args[0] as String?);
-          assert(arg_playerId != null,
-              'Argument for dev.flutter.pigeon.PlaybackListenerPigeon.onPrimaryPlayerChanged was null, expected non-null String.');
-          api.onPrimaryPlayerChanged(arg_playerId!);
+          api.onPrimaryPlayerChanged(arg_playerId);
           return;
         });
       }
@@ -883,19 +876,19 @@ abstract class PlaybackListenerPigeon {
     }
     {
       final BasicMessageChannel<Object?> channel = BasicMessageChannel<Object?>(
-          'dev.flutter.pigeon.PlaybackListenerPigeon.onIsPlayingChanged', codec,
+          'dev.flutter.pigeon.PlaybackListenerPigeon.onPlaybackStateChanged', codec,
           binaryMessenger: binaryMessenger);
       if (api == null) {
         channel.setMessageHandler(null);
       } else {
         channel.setMessageHandler((Object? message) async {
           assert(message != null,
-          'Argument for dev.flutter.pigeon.PlaybackListenerPigeon.onIsPlayingChanged was null.');
+          'Argument for dev.flutter.pigeon.PlaybackListenerPigeon.onPlaybackStateChanged was null.');
           final List<Object?> args = (message as List<Object?>?)!;
-          final IsPlayingChangedEvent? arg_event = (args[0] as IsPlayingChangedEvent?);
+          final PlaybackStateChangedEvent? arg_event = (args[0] as PlaybackStateChangedEvent?);
           assert(arg_event != null,
-              'Argument for dev.flutter.pigeon.PlaybackListenerPigeon.onIsPlayingChanged was null, expected non-null IsPlayingChangedEvent.');
-          api.onIsPlayingChanged(arg_event!);
+              'Argument for dev.flutter.pigeon.PlaybackListenerPigeon.onPlaybackStateChanged was null, expected non-null PlaybackStateChangedEvent.');
+          api.onPlaybackStateChanged(arg_event!);
           return;
         });
       }

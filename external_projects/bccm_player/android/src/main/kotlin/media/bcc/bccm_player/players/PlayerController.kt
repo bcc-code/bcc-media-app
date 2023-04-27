@@ -147,7 +147,6 @@ abstract class PlayerController : Player.Listener {
     fun getPlayerStateSnapshot(): PlaybackPlatformApi.PlayerStateSnapshot {
         return PlaybackPlatformApi.PlayerStateSnapshot.Builder()
             .setPlayerId(id)
-            .setIsPlaying(player.isPlaying)
             .setCurrentMediaItem(getCurrentMediaItem())
             .setPlaybackPositionMs(player.currentPosition.toDouble())
             .setPlaybackState(getPlaybackState())

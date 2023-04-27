@@ -585,19 +585,6 @@ public class PlaybackPlatformApi {
       this.playerId = setterArg;
     }
 
-    private @NonNull Boolean isPlaying;
-
-    public @NonNull Boolean getIsPlaying() {
-      return isPlaying;
-    }
-
-    public void setIsPlaying(@NonNull Boolean setterArg) {
-      if (setterArg == null) {
-        throw new IllegalStateException("Nonnull field \"isPlaying\" is null.");
-      }
-      this.isPlaying = setterArg;
-    }
-
     private @NonNull PlaybackState playbackState;
 
     public @NonNull PlaybackState getPlaybackState() {
@@ -643,13 +630,6 @@ public class PlaybackPlatformApi {
         return this;
       }
 
-      private @Nullable Boolean isPlaying;
-
-      public @NonNull Builder setIsPlaying(@NonNull Boolean setterArg) {
-        this.isPlaying = setterArg;
-        return this;
-      }
-
       private @Nullable PlaybackState playbackState;
 
       public @NonNull Builder setPlaybackState(@NonNull PlaybackState setterArg) {
@@ -674,7 +654,6 @@ public class PlaybackPlatformApi {
       public @NonNull PlayerStateSnapshot build() {
         PlayerStateSnapshot pigeonReturn = new PlayerStateSnapshot();
         pigeonReturn.setPlayerId(playerId);
-        pigeonReturn.setIsPlaying(isPlaying);
         pigeonReturn.setPlaybackState(playbackState);
         pigeonReturn.setCurrentMediaItem(currentMediaItem);
         pigeonReturn.setPlaybackPositionMs(playbackPositionMs);
@@ -684,9 +663,8 @@ public class PlaybackPlatformApi {
 
     @NonNull
     ArrayList<Object> toList() {
-      ArrayList<Object> toListResult = new ArrayList<Object>(5);
+      ArrayList<Object> toListResult = new ArrayList<Object>(4);
       toListResult.add(playerId);
-      toListResult.add(isPlaying);
       toListResult.add(playbackState == null ? null : playbackState.index);
       toListResult.add((currentMediaItem == null) ? null : currentMediaItem.toList());
       toListResult.add(playbackPositionMs);
@@ -697,13 +675,11 @@ public class PlaybackPlatformApi {
       PlayerStateSnapshot pigeonResult = new PlayerStateSnapshot();
       Object playerId = list.get(0);
       pigeonResult.setPlayerId((String) playerId);
-      Object isPlaying = list.get(1);
-      pigeonResult.setIsPlaying((Boolean) isPlaying);
-      Object playbackState = list.get(2);
+      Object playbackState = list.get(1);
       pigeonResult.setPlaybackState(playbackState == null ? null : PlaybackState.values()[(int) playbackState]);
-      Object currentMediaItem = list.get(3);
+      Object currentMediaItem = list.get(2);
       pigeonResult.setCurrentMediaItem((currentMediaItem == null) ? null : MediaItem.fromList((ArrayList<Object>) currentMediaItem));
-      Object playbackPositionMs = list.get(4);
+      Object playbackPositionMs = list.get(3);
       pigeonResult.setPlaybackPositionMs((Double) playbackPositionMs);
       return pigeonResult;
     }
@@ -850,7 +826,7 @@ public class PlaybackPlatformApi {
   }
 
   /** Generated class from Pigeon that represents data sent in messages. */
-  public static final class IsPlayingChangedEvent {
+  public static final class PlaybackStateChangedEvent {
     private @NonNull String playerId;
 
     public @NonNull String getPlayerId() {
@@ -864,21 +840,21 @@ public class PlaybackPlatformApi {
       this.playerId = setterArg;
     }
 
-    private @NonNull Boolean isPlaying;
+    private @NonNull PlaybackState playbackState;
 
-    public @NonNull Boolean getIsPlaying() {
-      return isPlaying;
+    public @NonNull PlaybackState getPlaybackState() {
+      return playbackState;
     }
 
-    public void setIsPlaying(@NonNull Boolean setterArg) {
+    public void setPlaybackState(@NonNull PlaybackState setterArg) {
       if (setterArg == null) {
-        throw new IllegalStateException("Nonnull field \"isPlaying\" is null.");
+        throw new IllegalStateException("Nonnull field \"playbackState\" is null.");
       }
-      this.isPlaying = setterArg;
+      this.playbackState = setterArg;
     }
 
     /** Constructor is non-public to enforce null safety; use Builder. */
-    IsPlayingChangedEvent() {}
+    PlaybackStateChangedEvent() {}
 
     public static final class Builder {
 
@@ -889,17 +865,17 @@ public class PlaybackPlatformApi {
         return this;
       }
 
-      private @Nullable Boolean isPlaying;
+      private @Nullable PlaybackState playbackState;
 
-      public @NonNull Builder setIsPlaying(@NonNull Boolean setterArg) {
-        this.isPlaying = setterArg;
+      public @NonNull Builder setPlaybackState(@NonNull PlaybackState setterArg) {
+        this.playbackState = setterArg;
         return this;
       }
 
-      public @NonNull IsPlayingChangedEvent build() {
-        IsPlayingChangedEvent pigeonReturn = new IsPlayingChangedEvent();
+      public @NonNull PlaybackStateChangedEvent build() {
+        PlaybackStateChangedEvent pigeonReturn = new PlaybackStateChangedEvent();
         pigeonReturn.setPlayerId(playerId);
-        pigeonReturn.setIsPlaying(isPlaying);
+        pigeonReturn.setPlaybackState(playbackState);
         return pigeonReturn;
       }
     }
@@ -908,16 +884,16 @@ public class PlaybackPlatformApi {
     ArrayList<Object> toList() {
       ArrayList<Object> toListResult = new ArrayList<Object>(2);
       toListResult.add(playerId);
-      toListResult.add(isPlaying);
+      toListResult.add(playbackState == null ? null : playbackState.index);
       return toListResult;
     }
 
-    static @NonNull IsPlayingChangedEvent fromList(@NonNull ArrayList<Object> list) {
-      IsPlayingChangedEvent pigeonResult = new IsPlayingChangedEvent();
+    static @NonNull PlaybackStateChangedEvent fromList(@NonNull ArrayList<Object> list) {
+      PlaybackStateChangedEvent pigeonResult = new PlaybackStateChangedEvent();
       Object playerId = list.get(0);
       pigeonResult.setPlayerId((String) playerId);
-      Object isPlaying = list.get(1);
-      pigeonResult.setIsPlaying((Boolean) isPlaying);
+      Object playbackState = list.get(1);
+      pigeonResult.setPlaybackState(playbackState == null ? null : PlaybackState.values()[(int) playbackState]);
       return pigeonResult;
     }
   }
@@ -1567,15 +1543,15 @@ public class PlaybackPlatformApi {
     protected Object readValueOfType(byte type, @NonNull ByteBuffer buffer) {
       switch (type) {
         case (byte) 128:
-          return IsPlayingChangedEvent.fromList((ArrayList<Object>) readValue(buffer));
-        case (byte) 129:
           return MediaItem.fromList((ArrayList<Object>) readValue(buffer));
-        case (byte) 130:
+        case (byte) 129:
           return MediaItemTransitionEvent.fromList((ArrayList<Object>) readValue(buffer));
-        case (byte) 131:
+        case (byte) 130:
           return MediaMetadata.fromList((ArrayList<Object>) readValue(buffer));
-        case (byte) 132:
+        case (byte) 131:
           return PictureInPictureModeChangedEvent.fromList((ArrayList<Object>) readValue(buffer));
+        case (byte) 132:
+          return PlaybackStateChangedEvent.fromList((ArrayList<Object>) readValue(buffer));
         case (byte) 133:
           return PlayerStateSnapshot.fromList((ArrayList<Object>) readValue(buffer));
         case (byte) 134:
@@ -1587,21 +1563,21 @@ public class PlaybackPlatformApi {
 
     @Override
     protected void writeValue(@NonNull ByteArrayOutputStream stream, Object value) {
-      if (value instanceof IsPlayingChangedEvent) {
+      if (value instanceof MediaItem) {
         stream.write(128);
-        writeValue(stream, ((IsPlayingChangedEvent) value).toList());
-      } else if (value instanceof MediaItem) {
-        stream.write(129);
         writeValue(stream, ((MediaItem) value).toList());
       } else if (value instanceof MediaItemTransitionEvent) {
-        stream.write(130);
+        stream.write(129);
         writeValue(stream, ((MediaItemTransitionEvent) value).toList());
       } else if (value instanceof MediaMetadata) {
-        stream.write(131);
+        stream.write(130);
         writeValue(stream, ((MediaMetadata) value).toList());
       } else if (value instanceof PictureInPictureModeChangedEvent) {
-        stream.write(132);
+        stream.write(131);
         writeValue(stream, ((PictureInPictureModeChangedEvent) value).toList());
+      } else if (value instanceof PlaybackStateChangedEvent) {
+        stream.write(132);
+        writeValue(stream, ((PlaybackStateChangedEvent) value).toList());
       } else if (value instanceof PlayerStateSnapshot) {
         stream.write(133);
         writeValue(stream, ((PlayerStateSnapshot) value).toList());
@@ -1635,7 +1611,7 @@ public class PlaybackPlatformApi {
     static @NonNull MessageCodec<Object> getCodec() {
       return PlaybackListenerPigeonCodec.INSTANCE;
     }
-    public void onPrimaryPlayerChanged(@NonNull String playerIdArg, @NonNull Reply<Void> callback) {
+    public void onPrimaryPlayerChanged(@Nullable String playerIdArg, @NonNull Reply<Void> callback) {
       BasicMessageChannel<Object> channel =
           new BasicMessageChannel<>(
               binaryMessenger, "dev.flutter.pigeon.PlaybackListenerPigeon.onPrimaryPlayerChanged", getCodec());
@@ -1659,10 +1635,10 @@ public class PlaybackPlatformApi {
           new ArrayList<Object>(Collections.singletonList(eventArg)),
           channelReply -> callback.reply(null));
     }
-    public void onIsPlayingChanged(@NonNull IsPlayingChangedEvent eventArg, @NonNull Reply<Void> callback) {
+    public void onPlaybackStateChanged(@NonNull PlaybackStateChangedEvent eventArg, @NonNull Reply<Void> callback) {
       BasicMessageChannel<Object> channel =
           new BasicMessageChannel<>(
-              binaryMessenger, "dev.flutter.pigeon.PlaybackListenerPigeon.onIsPlayingChanged", getCodec());
+              binaryMessenger, "dev.flutter.pigeon.PlaybackListenerPigeon.onPlaybackStateChanged", getCodec());
       channel.send(
           new ArrayList<Object>(Collections.singletonList(eventArg)),
           channelReply -> callback.reply(null));

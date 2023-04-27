@@ -1,4 +1,3 @@
-import 'package:bccm_player/plugins/riverpod.dart';
 import 'package:bccm_player/src/pigeon/chromecast_pigeon.g.dart';
 import 'package:bccm_player/src/native/root_pigeon_playback_listener.dart';
 import 'package:bccm_player/src/native/chromecast_pigeon_listener.dart';

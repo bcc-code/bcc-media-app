@@ -31,7 +31,7 @@ typedef NS_ENUM(NSUInteger, CastConnectionState) {
 @class PlayerStateSnapshot;
 @class ChromecastState;
 @class PositionDiscontinuityEvent;
-@class IsPlayingChangedEvent;
+@class PlaybackStateChangedEvent;
 @class PictureInPictureModeChangedEvent;
 @class MediaItemTransitionEvent;
 
@@ -89,12 +89,10 @@ typedef NS_ENUM(NSUInteger, CastConnectionState) {
 /// `init` unavailable to enforce nonnull fields, see the `make` class method.
 - (instancetype)init NS_UNAVAILABLE;
 + (instancetype)makeWithPlayerId:(NSString *)playerId
-    isPlaying:(NSNumber *)isPlaying
     playbackState:(PlaybackState)playbackState
     currentMediaItem:(nullable MediaItem *)currentMediaItem
     playbackPositionMs:(nullable NSNumber *)playbackPositionMs;
 @property(nonatomic, copy) NSString * playerId;
-@property(nonatomic, strong) NSNumber * isPlaying;
 @property(nonatomic, assign) PlaybackState playbackState;
 @property(nonatomic, strong, nullable) MediaItem * currentMediaItem;
 @property(nonatomic, strong, nullable) NSNumber * playbackPositionMs;
@@ -118,13 +116,13 @@ typedef NS_ENUM(NSUInteger, CastConnectionState) {
 @property(nonatomic, strong, nullable) NSNumber * playbackPositionMs;
 @end
 
-@interface IsPlayingChangedEvent : NSObject
+@interface PlaybackStateChangedEvent : NSObject
 /// `init` unavailable to enforce nonnull fields, see the `make` class method.
 - (instancetype)init NS_UNAVAILABLE;
 + (instancetype)makeWithPlayerId:(NSString *)playerId
-    isPlaying:(NSNumber *)isPlaying;
+    playbackState:(PlaybackState)playbackState;
 @property(nonatomic, copy) NSString * playerId;
-@property(nonatomic, strong) NSNumber * isPlaying;
+@property(nonatomic, assign) PlaybackState playbackState;
 @end
 
 @interface PictureInPictureModeChangedEvent : NSObject
@@ -174,10 +172,10 @@ NSObject<FlutterMessageCodec> *PlaybackListenerPigeonGetCodec(void);
 ////////////////// Playback Listener
 @interface PlaybackListenerPigeon : NSObject
 - (instancetype)initWithBinaryMessenger:(id<FlutterBinaryMessenger>)binaryMessenger;
-- (void)onPrimaryPlayerChanged:(NSString *)playerId completion:(void (^)(FlutterError *_Nullable))completion;
+- (void)onPrimaryPlayerChanged:(nullable NSString *)playerId completion:(void (^)(FlutterError *_Nullable))completion;
 - (void)onPositionDiscontinuity:(PositionDiscontinuityEvent *)event completion:(void (^)(FlutterError *_Nullable))completion;
 - (void)onPlayerStateUpdate:(PlayerStateSnapshot *)event completion:(void (^)(FlutterError *_Nullable))completion;
-- (void)onIsPlayingChanged:(IsPlayingChangedEvent *)event completion:(void (^)(FlutterError *_Nullable))completion;
+- (void)onPlaybackStateChanged:(PlaybackStateChangedEvent *)event completion:(void (^)(FlutterError *_Nullable))completion;
 - (void)onMediaItemTransition:(MediaItemTransitionEvent *)event completion:(void (^)(FlutterError *_Nullable))completion;
 - (void)onPictureInPictureModeChanged:(PictureInPictureModeChangedEvent *)event completion:(void (^)(FlutterError *_Nullable))completion;
 @end

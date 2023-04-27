@@ -38,10 +38,14 @@ class PlayerListener(private val playerController: PlayerController, val plugin:
     }
 
     override fun onIsPlayingChanged(isPlaying: Boolean) {
+        val state =
+            if (isPlaying) PlaybackPlatformApi.PlaybackState.PLAYING
+            else PlaybackPlatformApi.PlaybackState.PAUSED;
         val event =
-            PlaybackPlatformApi.IsPlayingChangedEvent.Builder().setPlayerId(playerController.id)
-                .setIsPlaying(isPlaying)
-        plugin.playbackPigeon?.onIsPlayingChanged(event.build()) {}
+            PlaybackPlatformApi.PlaybackStateChangedEvent.Builder()
+                .setPlayerId(playerController.id)
+                .setPlaybackState(state)
+        plugin.playbackPigeon?.onPlaybackStateChanged(event.build()) {}
     }
 
     override fun onMediaItemTransition(mediaItem: MediaItem?, reason: Int) {
