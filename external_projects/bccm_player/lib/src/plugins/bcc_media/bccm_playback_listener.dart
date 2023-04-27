@@ -14,7 +14,7 @@ class BccmPlaybackListener implements PlaybackListenerPigeon {
   BccmPlaybackListener({required this.ref, required this.apiProvider});
 
   @override
-  void onIsPlayingChanged(event) {}
+  void onPlaybackStateChanged(event) {}
 
   @override
   void onMediaItemTransition(event) {}
@@ -38,7 +38,7 @@ class BccmPlaybackListener implements PlaybackListenerPigeon {
     var player = ref.read(playerProviderFor(event.playerId));
     final positionMs = event.playbackPositionMs?.finiteOrNull()?.round();
     final episodeId = player?.currentMediaItem?.metadata?.extras?['id']?.asOrNull<String>();
-    if (event.isPlaying && positionMs != null && episodeId != null) {
+    if (event.playbackState == PlaybackState.playing && positionMs != null && episodeId != null) {
       progressDebouncer.run(() => ref.read(apiProvider).updateProgress(episodeId: episodeId, progress: positionMs / 1000));
     }
   }

@@ -4,6 +4,8 @@ import GoogleCast
 
 // Implementation of the PlaybackPlatformPigeon
 // See pigeons/playback_platform_pigeon.dart
+// TODO: this file should be a pure api towards flutter,
+// we should move the "players" array and state into a dedicated class
 public class PlaybackApiImpl: NSObject, PlaybackPlatformPigeon {
     var players = [PlayerController]()
     private var primaryPlayerId: String? = nil
@@ -12,11 +14,21 @@ public class PlaybackApiImpl: NSObject, PlaybackPlatformPigeon {
     var npawConfig: NpawConfig? = nil
     var appConfig: AppConfig? = nil
 
-    init(chromecastPigeon: ChromecastPigeon, castPlayerController: CastPlayerController, playbackListener: PlaybackListenerPigeon) {
+    init(chromecastPigeon: ChromecastPigeon, playbackListener: PlaybackListenerPigeon) {
         self.playbackListener = playbackListener
         self.chromecastPigeon = chromecastPigeon
         super.init()
+        let castPlayerController = CastPlayerController(playbackApi: self)
         players.append(castPlayerController)
+        newPlayer(nil, completion: { playerId, _ in
+            if playerId != nil {
+                self.setPrimary(playerId!, completion: { _ in })
+            }
+        })
+    }
+
+    public func attach(completion: @escaping (FlutterError?) -> Void) {
+        completion(nil)
     }
 
     public func setAppConfig(_ config: AppConfig?, error: AutoreleasingUnsafeMutablePointer<FlutterError?>) {
@@ -45,6 +57,7 @@ public class PlaybackApiImpl: NSObject, PlaybackPlatformPigeon {
     {
         primaryPlayerId = id
         getPrimaryPlayer()?.hasBecomePrimary()
+        playbackListener.onPrimaryPlayerChanged(id, completion: { _ in })
         completion(nil)
     }
 
@@ -95,8 +108,10 @@ public class PlaybackApiImpl: NSObject, PlaybackPlatformPigeon {
         player?.replaceCurrentMediaItem(mediaItem, autoplay: autoplay, completion: completion)
     }
 
-    public func getPlayerState(_ playerId: String, completion: @escaping (PlayerState?, FlutterError?) -> Void) {
-        completion(nil, FlutterError(code: "not_implemented", message: "not implemented", details: nil))
+    public func getPlayerState(_ playerId: String?, completion: @escaping (PlayerStateSnapshot?, FlutterError?) -> Void) {
+        let player = playerId == nil ? getPrimaryPlayer() : getPlayer(playerId!)
+        let snapshot = player?.getPlayerStateSnapshot()
+        completion(snapshot, nil)
     }
 
     public func play(_ playerId: String, error: AutoreleasingUnsafeMutablePointer<FlutterError?>) {

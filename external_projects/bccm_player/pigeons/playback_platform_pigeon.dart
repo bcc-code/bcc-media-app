@@ -102,7 +102,6 @@ class MediaMetadata {
 
 class PlayerStateSnapshot {
   late String playerId;
-  late bool isPlaying;
   late PlaybackState playbackState;
   MediaItem? currentMediaItem;
   // This is double because pigeon uses NSNumber for int :(
@@ -135,8 +134,8 @@ abstract class PlaybackListenerPigeon {
   void onPositionDiscontinuity(PositionDiscontinuityEvent event);
   @ObjCSelector("onPlayerStateUpdate:")
   void onPlayerStateUpdate(PlayerStateSnapshot event);
-  @ObjCSelector("onIsPlayingChanged:")
-  void onIsPlayingChanged(IsPlayingChangedEvent event);
+  @ObjCSelector("onPlaybackStateChanged:")
+  void onPlaybackStateChanged(PlaybackStateChangedEvent event);
   @ObjCSelector("onMediaItemTransition:")
   void onMediaItemTransition(MediaItemTransitionEvent event);
   @ObjCSelector("onPictureInPictureModeChanged:")
@@ -148,10 +147,10 @@ class PositionDiscontinuityEvent {
   double? playbackPositionMs;
 }
 
-class IsPlayingChangedEvent {
+class PlaybackStateChangedEvent {
   String playerId;
-  bool isPlaying;
-  IsPlayingChangedEvent({required this.playerId, required this.isPlaying});
+  PlaybackState playbackState;
+  PlaybackStateChangedEvent({required this.playerId, required this.playbackState});
 }
 
 class PictureInPictureModeChangedEvent {

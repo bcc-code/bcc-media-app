@@ -4,30 +4,38 @@ import GoogleCast
 
 class CastPlayerController: NSObject, PlayerController {
     static let DEFAULT_ID = "chromecast"
-    private var playbackApi: PlaybackApiImpl?
     var id: String
-    var chromecastPigeon: ChromecastPigeon
-    var playbackListener: PlaybackListenerPigeon
+    var playbackApi: PlaybackApiImpl
     var castState: GCKCastState?
     var positionUponEndingSession: TimeInterval?
     var sessionManager: GCKSessionManager?
     var appConfig: AppConfig? = nil
     final var observers = [NSKeyValueObservation]()
     
-    init(chromecastPigeon: ChromecastPigeon, playbackListener: PlaybackListenerPigeon) {
+    init(playbackApi: PlaybackApiImpl) {
         self.id = CastPlayerController.DEFAULT_ID
-        self.chromecastPigeon = chromecastPigeon
-        self.playbackListener = playbackListener
+        self.playbackApi = playbackApi
         let castContext = GCKCastContext.sharedInstance()
         self.castState = castContext.castState
         super.init()
-        
+        GCKCastContext.sharedInstance().sessionManager.add(self)
         NotificationCenter.default.addObserver(self, selector: #selector(castDeviceDidChange),
                                                name: NSNotification.Name.gckCastStateDidChange,
                                                object: GCKCastContext.sharedInstance())
     }
     
     public func hasBecomePrimary() {}
+    
+    public func getPlayerStateSnapshot() -> PlayerStateSnapshot {
+        let mediaStatus = GCKCastContext.sharedInstance().sessionManager.currentCastSession?.remoteMediaClient?.mediaStatus
+        let currentItem = getCurrentItem()
+        return PlayerStateSnapshot.make(
+            withPlayerId: id,
+            playbackState: playbackStateFromMediaStatus(mediaStatus: mediaStatus),
+            currentMediaItem: currentItem,
+            playbackPositionMs: mediaStatus == nil ? nil : NSNumber(value: mediaStatus!.streamPosition * 1000)
+        )
+    }
     
     func getCurrentItem() -> MediaItem? {
         if let currentItem = GCKCastContext.sharedInstance().sessionManager.currentCastSession?.remoteMediaClient?.mediaStatus?.currentQueueItem {
@@ -92,6 +100,16 @@ class CastPlayerController: NSObject, PlayerController {
         } else {
             GCKCastContext.sharedInstance().sessionManager.currentCastSession?.remoteMediaClient?.pause()
         }
+    }
+    
+    private func playbackStateFromMediaStatus(mediaStatus: GCKMediaStatus?) -> PlaybackState {
+        if mediaStatus == nil {
+            return PlaybackState.stopped
+        }
+        if mediaStatus!.playerState == .paused {
+            return PlaybackState.paused
+        }
+        return PlaybackState.playing
     }
     
     func mapMediaItemToMediaInformation(_ mediaItem: MediaItem) -> GCKMediaInformation? {
@@ -161,7 +179,7 @@ class CastPlayerController: NSObject, PlayerController {
     }
     
     func transferStateFromPrimary() {
-        guard let player = (playbackApi?.getPrimaryPlayer() as? AVQueuePlayerController)?.getPlayer() else {
+        guard let player = (playbackApi.getPrimaryPlayer() as? AVQueuePlayerController)?.getPlayer() else {
             debugPrint("No primary player")
             return
         }
@@ -265,11 +283,11 @@ extension CastPlayerController: GCKRemoteMediaClientListener {
         debugPrint("something didUpdate mediaMetadata:" + mediaMetadata.debugDescription)
         debugPrint("is metaTemp same?: " + (metaTemp == mediaMetadata).description)
         guard let mediaItem = mapMediaMetadata(mediaMetadata) else {
-            playbackListener.onMediaItemTransition(MediaItemTransitionEvent.make(withPlayerId: id, mediaItem: nil), completion: { _ in })
+            playbackApi.playbackListener.onMediaItemTransition(MediaItemTransitionEvent.make(withPlayerId: id, mediaItem: nil), completion: { _ in })
             return
         }
         let event = MediaItemTransitionEvent.make(withPlayerId: id, mediaItem: mediaItem)
-        playbackListener.onMediaItemTransition(event, completion: { _ in })
+        playbackApi.playbackListener.onMediaItemTransition(event, completion: { _ in })
     }
 
     func remoteMediaClient(_ client: GCKRemoteMediaClient, didReceive queueItems: [GCKMediaQueueItem]) {
@@ -280,9 +298,8 @@ extension CastPlayerController: GCKRemoteMediaClientListener {
         metaTemp = mediaStatus?.currentQueueItem?.mediaInformation.metadata
         debugPrint("something didReceive mediaStatus: " + mediaStatus.debugDescription)
         debugPrint("mediaStatus meta: " + metaTemp.debugDescription)
-        let isPlaying = (mediaStatus?.playerState != .paused && mediaStatus?.playerState != .unknown)
-        let event = IsPlayingChangedEvent.make(withPlayerId: id, isPlaying: isPlaying as NSNumber)
-        playbackListener.onIsPlayingChanged(event, completion: { _ in })
+        let event = PlaybackStateChangedEvent.make(withPlayerId: id, playbackState: playbackStateFromMediaStatus(mediaStatus: mediaStatus))
+        playbackApi.playbackListener.onPlaybackStateChanged(event, completion: { _ in })
     }
 }
 
@@ -315,12 +332,12 @@ extension CastPlayerController: GCKSessionManagerListener {
     func sessionManager(_ sessionManager: GCKSessionManager, didSuspend session: GCKSession,
                         with reason: GCKConnectionSuspendReason)
     {
-        chromecastPigeon.onSessionSuspended { _ in }
+        playbackApi.chromecastPigeon.onSessionSuspended { _ in }
         session.remoteMediaClient?.remove(self)
     }
     
     func sessionManager(_ sessionManager: GCKSessionManager, didResumeSession session: GCKSession) {
-        chromecastPigeon.onSessionResumed { _ in }
+        playbackApi.chromecastPigeon.onSessionResumed { _ in }
         transferStateFromPrimary()
         session.remoteMediaClient?.add(self)
     }
@@ -329,7 +346,7 @@ extension CastPlayerController: GCKSessionManagerListener {
         _ sessionManager: GCKSessionManager,
         didStart session: GCKCastSession
     ) {
-        chromecastPigeon.onSessionStarted { _ in }
+        playbackApi.chromecastPigeon.onSessionStarted { _ in }
         transferStateFromPrimary()
         session.add(self)
         debugPrint("added session listener")
@@ -343,12 +360,12 @@ extension CastPlayerController: GCKSessionManagerListener {
         didEnd session: GCKSession,
         withError error: Error?
     ) {
-        chromecastPigeon.onSessionEnded { _ in }
+        playbackApi.chromecastPigeon.onSessionEnded { _ in }
         var positionMs: NSNumber? = nil
         if positionUponEndingSession != nil {
             positionMs = Int(positionUponEndingSession! * 1000) as NSNumber
         }
-        chromecastPigeon.onCastSessionUnavailable(CastSessionUnavailableEvent.make(withPlaybackPositionMs: positionMs)) { _ in }
+        playbackApi.chromecastPigeon.onCastSessionUnavailable(CastSessionUnavailableEvent.make(withPlaybackPositionMs: positionMs)) { _ in }
         
         session.remoteMediaClient?.remove(self)
     }

@@ -32,10 +32,7 @@ public class AVQueuePlayerController: NSObject, PlayerController, AVPlayerViewCo
         youboraPlugin.adapter = YBAVPlayerAdapterSwiftTranformer.transform(from: YBAVPlayerAdapter(player: player))
         addObservers()
         refreshStateTimer = Timer.scheduledTimer(withTimeInterval: 15, repeats: true) { _ in
-            let playerState = PlayerState.make(
-                withPlayerId: self.id,
-                isPlaying: self.isPlaying() as NSNumber,
-                playbackPositionMs: NSNumber(value: self.player.currentTime().seconds * 1000))
+            let playerState = self.getPlayerStateSnapshot()
             playbackListener.onPlayerStateUpdate(playerState, completion: { _ in })
         }
         print("BTV DEBUG: end of init playerController")
@@ -43,6 +40,15 @@ public class AVQueuePlayerController: NSObject, PlayerController, AVPlayerViewCo
     
     deinit {
         refreshStateTimer?.invalidate()
+    }
+    
+    public func getPlayerStateSnapshot() -> PlayerStateSnapshot {
+        return PlayerStateSnapshot.make(
+            withPlayerId: id,
+            playbackState: isPlaying() ? PlaybackState.playing : PlaybackState.paused,
+            currentMediaItem: MediaItemMapper.mapPlayerItem(player.currentItem),
+            playbackPositionMs: NSNumber(value: player.currentTime().seconds * 1000)
+        )
     }
     
     public func getCurrentItem() -> MediaItem? {
@@ -330,8 +336,8 @@ public class AVQueuePlayerController: NSObject, PlayerController, AVPlayerViewCo
             let nowPlayingInfoCenter = MPNowPlayingInfoCenter.default()
             nowPlayingInfoCenter.nowPlayingInfo?[MPNowPlayingInfoPropertyPlaybackRate] = player.rate
             nowPlayingInfoCenter.nowPlayingInfo?[MPNowPlayingInfoPropertyElapsedPlaybackTime] = player.currentTime().seconds
-            let isPlayingEvent = IsPlayingChangedEvent.make(withPlayerId: self.id, isPlaying: self.isPlaying() as NSNumber)
-            self.playbackListener.onIsPlayingChanged(isPlayingEvent, completion: { _ in })
+            let isPlayingEvent = PlaybackStateChangedEvent.make(withPlayerId: self.id, playbackState: self.isPlaying() ? PlaybackState.playing : PlaybackState.stopped)
+            self.playbackListener.onPlaybackStateChanged(isPlayingEvent, completion: { _ in })
             let positionDiscontinuityEvent = PositionDiscontinuityEvent.make(withPlayerId: self.id, playbackPositionMs: (player.currentTime().seconds * 1000).rounded() as NSNumber)
             self.playbackListener.onPositionDiscontinuity(positionDiscontinuityEvent, completion: { _ in })
         })

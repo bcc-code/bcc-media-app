@@ -77,7 +77,7 @@ class FullscreenPlayerView(
                 this.player = player
             }
 
-            override fun onIsPlayingChanged(isPlaying: Boolean) {
+            override fun onPlaybackStateChanged(isPlaying: Boolean) {
                 Log.d("bccm", "fullscreenplayer playerView?.keepScreenOn = $isPlaying")
                 playerView?.keepScreenOn = isPlaying
             }

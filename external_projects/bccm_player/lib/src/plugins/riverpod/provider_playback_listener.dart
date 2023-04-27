@@ -16,8 +16,8 @@ class RiverpodPlaybackListener implements PlaybackListenerPigeon {
   PlayerStateNotifier? notifierFor(String playerId) => ref.read(playerProviderFor(playerId).notifier);
 
   @override
-  void onIsPlayingChanged(event) {
-    notifierFor(event.playerId)?.setPlaybackState(event.isPlaying ? PlaybackState.playing : PlaybackState.paused);
+  void onPlaybackStateChanged(event) {
+    notifierFor(event.playerId)?.setPlaybackState(event.playbackState);
   }
 
   @override
