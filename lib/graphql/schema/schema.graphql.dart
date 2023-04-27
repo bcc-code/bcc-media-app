@@ -242,6 +242,58 @@ class _CopyWithStubImpl$Input$EpisodeContext<TRes>
   call({String? collectionId}) => _res;
 }
 
+enum Enum$ImageStyle { poster, featured, $default, $unknown }
+
+String toJson$Enum$ImageStyle(Enum$ImageStyle e) {
+  switch (e) {
+    case Enum$ImageStyle.poster:
+      return r'poster';
+    case Enum$ImageStyle.featured:
+      return r'featured';
+    case Enum$ImageStyle.$default:
+      return r'default';
+    case Enum$ImageStyle.$unknown:
+      return r'$unknown';
+  }
+}
+
+Enum$ImageStyle fromJson$Enum$ImageStyle(String value) {
+  switch (value) {
+    case r'poster':
+      return Enum$ImageStyle.poster;
+    case r'featured':
+      return Enum$ImageStyle.featured;
+    case r'default':
+      return Enum$ImageStyle.$default;
+    default:
+      return Enum$ImageStyle.$unknown;
+  }
+}
+
+enum Enum$Status { published, unlisted, $unknown }
+
+String toJson$Enum$Status(Enum$Status e) {
+  switch (e) {
+    case Enum$Status.published:
+      return r'published';
+    case Enum$Status.unlisted:
+      return r'unlisted';
+    case Enum$Status.$unknown:
+      return r'$unknown';
+  }
+}
+
+Enum$Status fromJson$Enum$Status(String value) {
+  switch (value) {
+    case r'published':
+      return Enum$Status.published;
+    case r'unlisted':
+      return Enum$Status.unlisted;
+    default:
+      return Enum$Status.$unknown;
+  }
+}
+
 enum Enum$Gender { male, female, unknown, $unknown }
 
 String toJson$Enum$Gender(Enum$Gender e) {
@@ -273,10 +325,9 @@ Enum$Gender fromJson$Enum$Gender(String value) {
 const possibleTypesMap = <String, Set<String>>{
   'Pagination': {
     'SurveyQuestionPagination',
-    'SeasonPagination',
-    'EpisodePagination',
     'UserCollectionEntryPagination',
     'CollectionItemPagination',
+    'SeasonPagination',
     'QuestionPagination',
     'FAQCategoryPagination',
     'LessonPagination',
@@ -286,14 +337,11 @@ const possibleTypesMap = <String, Set<String>>{
     'SectionItemPagination',
     'AchievementPagination',
     'AchievementGroupPagination',
+    'EpisodePagination',
   },
   'SurveyQuestion': {
     'SurveyTextQuestion',
     'SurveyRatingQuestion',
-  },
-  'EpisodeContextUnion': {
-    'Season',
-    'ContextCollection',
   },
   'UserCollectionEntryItem': {
     'Show',
@@ -367,5 +415,9 @@ const possibleTypesMap = <String, Set<String>>{
     'Page',
     'Link',
     'StudyTopic',
+  },
+  'EpisodeContextUnion': {
+    'Season',
+    'ContextCollection',
   },
 };
