@@ -296,11 +296,7 @@ extension CastPlayerController: GCKRemoteMediaClientListener {
     }
     
     func remoteMediaClient(_ client: GCKRemoteMediaClient, didUpdate mediaStatus: GCKMediaStatus?) {
-        metaTemp = mediaStatus?.currentQueueItem?.mediaInformation.metadata
-        debugPrint("something didReceive mediaStatus: " + mediaStatus.debugDescription)
-        debugPrint("mediaStatus meta: " + metaTemp.debugDescription)
-        let event = PlaybackStateChangedEvent.make(withPlayerId: id, playbackState: playbackStateFromMediaStatus(mediaStatus: mediaStatus))
-        playbackApi.playbackListener.onPlaybackStateChanged(event, completion: { _ in })
+        playbackApi.playbackListener.onPlayerStateUpdate(getPlayerStateSnapshot(), completion: { _ in })
     }
 }
 

@@ -19,7 +19,6 @@ class PlaybackService : MediaSessionService() {
     private var castPlayerController: CastPlayerController? = null
     private var primaryPlayerController: PlayerController? = null
     private lateinit var mediaSession: MediaSession
-    private var dummyPlayer: ExoPlayer? = null
     private var binder: LocalBinder = LocalBinder()
     private var previousPrimaryPlayerId: String? = null
 
@@ -64,7 +63,6 @@ class PlaybackService : MediaSessionService() {
             previousPrimaryPlayerId = primaryPlayerController?.id
             primaryPlayerController = pc
             mediaSession.player = pc.player
-            dummyPlayer = null // we don't need it anymore
             if (plugin != null) {
                 plugin!!.playbackPigeon?.onPrimaryPlayerChanged(playerId) {}
                 plugin!!.playbackPigeon?.onPlayerStateUpdate(primaryPlayerController!!.getPlayerStateSnapshot()) {}

@@ -334,7 +334,7 @@ class _EpisodeDisplay extends HookConsumerWidget {
   void shareVideo(BuildContext context, WidgetRef ref, Query$FetchEpisode$episode episode) {
     final player = ref.read(primaryPlayerProvider);
     final currentPosSeconds = ((player?.playbackPositionMs ?? 0) / 1000).round();
-    if (player != null) {
+    if (player != null && player.playerId != 'chromecast') {
       ref.read(playbackServiceProvider).platformApi.pause(player.playerId);
     }
     showModalBottomSheet(

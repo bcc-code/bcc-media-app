@@ -32,8 +32,7 @@ public class AVQueuePlayerController: NSObject, PlayerController, AVPlayerViewCo
         youboraPlugin.adapter = YBAVPlayerAdapterSwiftTranformer.transform(from: YBAVPlayerAdapter(player: player))
         addObservers()
         refreshStateTimer = Timer.scheduledTimer(withTimeInterval: 15, repeats: true) { _ in
-            let playerState = self.getPlayerStateSnapshot()
-            playbackListener.onPlayerStateUpdate(playerState, completion: { _ in })
+            playbackListener.onPlayerStateUpdate(self.getPlayerStateSnapshot(), completion: { _ in })
         }
         print("BTV DEBUG: end of init playerController")
     }
