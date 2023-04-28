@@ -2,6 +2,7 @@ import 'package:bccm_player/src/pigeon/chromecast_pigeon.g.dart';
 import 'package:bccm_player/src/native/root_pigeon_playback_listener.dart';
 import 'package:bccm_player/src/native/chromecast_pigeon_listener.dart';
 import 'package:bccm_player/src/pigeon/playback_platform_pigeon.g.dart';
+import 'package:bccm_player/src/state/state_playback_listener.dart';
 
 import 'bccm_player.dart';
 
@@ -18,12 +19,13 @@ class BccmPlayerNative extends BccmPlayerInterface {
   Future<void> setup() async {
     await _pigeon.attach();
     _rootPlaybackListener = RootPigeonPlaybackListener(this);
+    _rootPlaybackListener.addListener(StatePlaybackListener(stateNotifier));
     ChromecastPigeon.setup(_chromecastListener);
     PlaybackListenerPigeon.setup(_rootPlaybackListener);
     // load primary player state
     final initialState = await getPlayerState();
     if (initialState != null) {
-      stateNotifier.addPlayerNotifier(PlayerState.fromPlayerStateSnapshot(initialState));
+      stateNotifier.getOrAddPlayerNotifier(initialState.playerId).setStateFromSnapshot(initialState);
       stateNotifier.setPrimaryPlayer(initialState.playerId);
     }
   }
@@ -31,7 +33,7 @@ class BccmPlayerNative extends BccmPlayerInterface {
   @override
   Future<String> newPlayer({String? url}) async {
     final playerId = await _pigeon.newPlayer(url);
-    stateNotifier.addPlayerNotifier(PlayerState(playerId: playerId));
+    stateNotifier.getOrAddPlayerNotifier(playerId);
     return playerId;
   }
 

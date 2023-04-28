@@ -30,7 +30,7 @@ class BccmPlayerWeb extends BccmPlayerInterface {
     final playerId = DateTime.now().microsecondsSinceEpoch.toString();
     final player = VideoJsPlayer(playerId, listener: _rootPlaybackListener, plugin: this);
     webVideoPlayers[playerId] = player;
-    stateNotifier.addPlayerNotifier(PlayerState(playerId: playerId));
+    stateNotifier.getOrAddPlayerNotifier(playerId);
     return playerId;
   }
 

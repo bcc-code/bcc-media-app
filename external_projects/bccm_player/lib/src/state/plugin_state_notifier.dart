@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../pigeon/playback_platform_pigeon.g.dart';
 import 'player_state_notifier.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:state_notifier/state_notifier.dart';
@@ -25,15 +26,22 @@ class PlayerPluginStateNotifier extends StateNotifier<PlayerPluginState> {
     }
   }
 
-  PlayerStateNotifier? getPlayer(String playerId) {
-    return state.players[playerId];
-  }
-
   void setPrimaryPlayer(String? playerId) {
+    if (playerId != null) getOrAddPlayerNotifier(playerId);
     state = state.copyWith(primaryPlayerId: playerId);
   }
 
-  void removePlayer(String playerId) {
+  PlayerStateNotifier? getPlayerNotifier(String playerId) {
+    return state.players[playerId];
+  }
+
+  PlayerStateNotifier getOrAddPlayerNotifier(String playerId) {
+    final existing = state.players[playerId];
+    if (existing?.mounted == true) return existing!;
+    return _createPlayerNotifier(playerId);
+  }
+
+  void _removePlayer(String playerId) {
     debugPrint('removing playerId: $playerId');
     final player = state.players[playerId];
     if (player != null) {
@@ -42,27 +50,15 @@ class PlayerPluginStateNotifier extends StateNotifier<PlayerPluginState> {
     }
   }
 
-  PlayerStateNotifier _createPlayerNotifier(PlayerState playerState) {
-    return PlayerStateNotifier(
+  PlayerStateNotifier _createPlayerNotifier(String playerId) {
+    final notifier = PlayerStateNotifier(
       keepAlive: true,
-      onDispose: () => removePlayer(playerState.playerId),
-      player: playerState,
+      onDispose: () => _removePlayer(playerId),
+      player: PlayerState(playerId: playerId),
     );
-  }
-
-  PlayerStateNotifier addPlayerNotifier(PlayerState playerState) {
-    final existing = state.players[playerState.playerId];
-    if (existing != null) {
-      return existing;
-    }
-    final notifier = _createPlayerNotifier(playerState);
-    Future.delayed(Duration.zero, () {
-      if (mounted) {
-        state = state.copyWith(
-          players: {...state.players, playerState.playerId: notifier},
-        );
-      }
-    });
+    state = state.copyWith(
+      players: {...state.players, playerId: notifier},
+    );
     return notifier;
   }
 }

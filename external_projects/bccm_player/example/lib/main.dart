@@ -13,7 +13,6 @@ Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await BccmPlayerInterface.instance.setup();
   final providerContainer = ProviderContainer();
-  await providerContainer.setupBccmPlayer(providerContainer.read(bccmPlayerInterface)); // Force run
   runApp(
     UncontrolledProviderScope(
       container: providerContainer,

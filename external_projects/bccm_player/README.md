@@ -146,3 +146,7 @@ This table outlines where metadata is stored during its journey up and down the 
 | MediaItem.Metadata.Extras["KEY"] | PlayerItem.externalMetadata["media.bcc.extras.**KEY**")   | MediaItem.MediaMetadata.Extras["media.bcc.extras.**KEY**"]   | mediaInfo.metadata["media.bcc.extras.**KEY**"]   |
 | MediaItem.isLive                 | PlayerItem.externalMetadata["media.bcc.player.is_live"]   | MediaItem.MediaMetadata.Extras["media.bcc.player.is_live"]   | mediaInfo.metadata["media.bcc.player.is_live"]   |
 | MediaItem.mimeType               | PlayerItem.externalMetadata["media.bcc.player.mime_type"] | MediaItem.MediaMetadata.Extras["media.bcc.player.mime_type"] | mediaInfo.metadata["media.bcc.player.mime_type"] |
+
+# Idea dump
+
+- Move chromecast logic to a standalone package? We could set it as primary via listeners on the flutter-side. Would it simplify? Probably not. It would maintain its own custom "MediaItem" types, so we would have to do some extra mapping. The native side would have to have to import it as a plugin which could be annoying. If we want to enable usage of the castplayer without hijacking primaryplayer etc, then it would make more sense to just add a configuration flag to disable that feature.

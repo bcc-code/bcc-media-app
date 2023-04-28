@@ -1,6 +1,7 @@
 import '../../bccm_player.dart';
 import '../pigeon/playback_platform_pigeon.g.dart';
 
+/// The primary listener that just forwards the events to the other listeners
 class RootPigeonPlaybackListener implements PlaybackListenerPigeon {
   RootPigeonPlaybackListener(this.parent);
   BccmPlayerInterface parent;
@@ -51,7 +52,6 @@ class RootPigeonPlaybackListener implements PlaybackListenerPigeon {
 
   @override
   void onPrimaryPlayerChanged(String? playerId) {
-    parent.stateNotifier.setPrimaryPlayer(playerId);
     for (var listener in _listeners) {
       listener.onPrimaryPlayerChanged(playerId);
     }
