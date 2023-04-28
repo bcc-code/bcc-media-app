@@ -522,7 +522,7 @@ class AppRouter extends _i25.RootStackRouter {
             ),
             _i25.RouteConfig(
               MyListRoute.name,
-              path: 'mylist',
+              path: 'my-list',
               parent: TabsRootScreenRoute.name,
               meta: <String, dynamic>{'nav_tab_route': true},
             ),
@@ -956,7 +956,7 @@ class MyListRoute extends _i25.PageRouteInfo<void> {
   const MyListRoute()
       : super(
           MyListRoute.name,
-          path: 'mylist',
+          path: 'my-list',
         );
 
   static const String name = 'MyListRoute';

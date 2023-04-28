@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:bccm_player/plugins/bcc_media.dart';
 import 'package:brunstadtv_app/graphql/queries/calendar_episode_entries.graphql.dart';
+import 'package:brunstadtv_app/graphql/queries/my_list.graphql.dart';
 import 'package:brunstadtv_app/graphql/queries/page.graphql.dart';
 import 'package:brunstadtv_app/graphql/queries/studies.graphql.dart';
 import 'package:brunstadtv_app/helpers/extensions.dart';
@@ -202,6 +203,38 @@ class Api implements BccmApi {
       return null;
     }
     return value.parsedData!.legacyIDLookup.id;
+  }
+
+  Future<String> addEpisodeToMyList(String episodeId) {
+    return gqlClient
+        .mutate$addEpisodeToMyList(Options$Mutation$addEpisodeToMyList(variables: Variables$Mutation$addEpisodeToMyList(episodeId: episodeId)))
+        .then(
+      (result) {
+        if (result.hasException) {
+          throw result.exception!;
+        }
+        if (result.parsedData == null) {
+          throw ErrorDescription('addEpisodeToMyList result is null.');
+        }
+        return result.parsedData!.addEpisodeToMyList.entryId;
+      },
+    );
+  }
+
+  Future<String> removeEntryFromMyList(String entryId) {
+    return gqlClient
+        .mutate$removeEntryFromMyList(Options$Mutation$removeEntryFromMyList(variables: Variables$Mutation$removeEntryFromMyList(entryId: entryId)))
+        .then(
+      (result) {
+        if (result.hasException) {
+          throw result.exception!;
+        }
+        if (result.parsedData == null) {
+          throw ErrorDescription('addEpisodeToMyList result is null.');
+        }
+        return result.parsedData!.removeEntryFromMyList.id;
+      },
+    );
   }
 }
 

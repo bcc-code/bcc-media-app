@@ -221,15 +221,13 @@ Route<T> profileRouteBuilder<T>(BuildContext context, Widget child, CustomPage<T
           ],
         ),
         MaterialRoute<void>(
-          name: 'CalendarPageRoute',
           page: CalendarPage,
           path: 'calendar',
           meta: {RouteMetaConstants.navTabRoute: true, RouteMetaConstants.analyticsName: 'calendar'},
         ),
         MaterialRoute<void>(
-          name: 'MyListRoute',
           page: MyList,
-          path: 'mylist',
+          path: 'my-list',
           meta: {RouteMetaConstants.navTabRoute: true},
         ),
         CustomRoute<void>(name: 'HomeScreenWrapperRoute', page: EmptyRouterPage, path: '', children: [

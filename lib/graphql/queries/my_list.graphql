@@ -1,0 +1,11 @@
+mutation addEpisodeToMyList($episodeId: ID!) {
+    addEpisodeToMyList(episodeId: $episodeId) {
+        entryId
+    }
+}
+
+mutation removeEntryFromMyList($entryId: UUID!) {
+    removeEntryFromMyList(entryId: $entryId) {
+        id
+    }
+}
