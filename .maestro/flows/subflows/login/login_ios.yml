@@ -17,7 +17,7 @@ appId: tv.brunstad.app
     optional: true
 - tapOn: "Email"
 - inputText: ${output.env.LOGIN_EMAIL}
-- tapOn: "Password"
+- pressKey: Enter
 - inputText: ${output.env.LOGIN_PASSWORD}
 - pressKey: Enter
 - assertVisible: "Home"

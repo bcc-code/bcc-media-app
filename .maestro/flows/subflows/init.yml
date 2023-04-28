@@ -1,0 +1,6 @@
+appId: tv.brunstad.app
+---
+- runScript: ../scripts/init.js
+- launchApp:
+    permissions:
+      all: allow

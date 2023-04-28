@@ -25,6 +25,7 @@ flow = $(if $(FLOW),$(FLOW),)
 platform = $(if $(PLATFORM),$(PLATFORM),ios)
 
 test:
+	mkdir -p reports
 	./notifications/push_ios.sh
 	maestro test --format junit --output reports/$(current_time).xml -e PLATFORM=${PLATFORM} flows/${flow}
 

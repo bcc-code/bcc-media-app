@@ -3,7 +3,7 @@
 appId: tv.brunstad.app
 ---
 - runScript: scripts/.env.js
-- runScript: scripts/init.js
+- runFlow: subflows/init.yml
 - runFlow: subflows/login.yml
 - tapOn: Live.*
 - tapOn:
