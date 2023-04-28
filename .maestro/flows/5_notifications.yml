@@ -3,7 +3,7 @@ tags:
   - no-cloud
 ---
 - runScript: scripts/.env.js
-- runScript: scripts/init.js
+- runFlow: subflows/init.yml
 # Login
 - stopApp: tv.brunstad.app
 - runFlow: subflows/login.yml
