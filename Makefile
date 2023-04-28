@@ -38,3 +38,7 @@ web-build:
 web-beta-upload:
 	gsutil -m cp -R build/web/* gs://bccm-web-beta
 	gsutil -m setmeta -r -h "Cache-control:no-cache, max-age=0" gs://bccm-web-beta/
+
+# See https://github.com/conventional-changelog/conventional-changelog/tree/master/packages/conventional-changelog-cli
+changelog:
+	standard-changelog -f -p conventionalcommits
