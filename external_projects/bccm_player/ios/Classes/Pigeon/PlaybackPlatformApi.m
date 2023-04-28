@@ -45,9 +45,9 @@ static id GetNullableObjectAtIndex(NSArray *array, NSInteger key) {
 - (NSArray *)toList;
 @end
 
-@interface PlayerState ()
-+ (PlayerState *)fromList:(NSArray *)list;
-+ (nullable PlayerState *)nullableFromList:(NSArray *)list;
+@interface PlayerStateSnapshot ()
++ (PlayerStateSnapshot *)fromList:(NSArray *)list;
++ (nullable PlayerStateSnapshot *)nullableFromList:(NSArray *)list;
 - (NSArray *)toList;
 @end
 
@@ -63,9 +63,9 @@ static id GetNullableObjectAtIndex(NSArray *array, NSInteger key) {
 - (NSArray *)toList;
 @end
 
-@interface IsPlayingChangedEvent ()
-+ (IsPlayingChangedEvent *)fromList:(NSArray *)list;
-+ (nullable IsPlayingChangedEvent *)nullableFromList:(NSArray *)list;
+@interface PlaybackStateChangedEvent ()
++ (PlaybackStateChangedEvent *)fromList:(NSArray *)list;
++ (nullable PlaybackStateChangedEvent *)nullableFromList:(NSArray *)list;
 - (NSArray *)toList;
 @end
 
@@ -225,32 +225,35 @@ static id GetNullableObjectAtIndex(NSArray *array, NSInteger key) {
 }
 @end
 
-@implementation PlayerState
+@implementation PlayerStateSnapshot
 + (instancetype)makeWithPlayerId:(NSString *)playerId
-    isPlaying:(NSNumber *)isPlaying
+    playbackState:(PlaybackState)playbackState
+    currentMediaItem:(nullable MediaItem *)currentMediaItem
     playbackPositionMs:(nullable NSNumber *)playbackPositionMs {
-  PlayerState* pigeonResult = [[PlayerState alloc] init];
+  PlayerStateSnapshot* pigeonResult = [[PlayerStateSnapshot alloc] init];
   pigeonResult.playerId = playerId;
-  pigeonResult.isPlaying = isPlaying;
+  pigeonResult.playbackState = playbackState;
+  pigeonResult.currentMediaItem = currentMediaItem;
   pigeonResult.playbackPositionMs = playbackPositionMs;
   return pigeonResult;
 }
-+ (PlayerState *)fromList:(NSArray *)list {
-  PlayerState *pigeonResult = [[PlayerState alloc] init];
++ (PlayerStateSnapshot *)fromList:(NSArray *)list {
+  PlayerStateSnapshot *pigeonResult = [[PlayerStateSnapshot alloc] init];
   pigeonResult.playerId = GetNullableObjectAtIndex(list, 0);
   NSAssert(pigeonResult.playerId != nil, @"");
-  pigeonResult.isPlaying = GetNullableObjectAtIndex(list, 1);
-  NSAssert(pigeonResult.isPlaying != nil, @"");
-  pigeonResult.playbackPositionMs = GetNullableObjectAtIndex(list, 2);
+  pigeonResult.playbackState = [GetNullableObjectAtIndex(list, 1) integerValue];
+  pigeonResult.currentMediaItem = [MediaItem nullableFromList:(GetNullableObjectAtIndex(list, 2))];
+  pigeonResult.playbackPositionMs = GetNullableObjectAtIndex(list, 3);
   return pigeonResult;
 }
-+ (nullable PlayerState *)nullableFromList:(NSArray *)list {
-  return (list) ? [PlayerState fromList:list] : nil;
++ (nullable PlayerStateSnapshot *)nullableFromList:(NSArray *)list {
+  return (list) ? [PlayerStateSnapshot fromList:list] : nil;
 }
 - (NSArray *)toList {
   return @[
     (self.playerId ?: [NSNull null]),
-    (self.isPlaying ?: [NSNull null]),
+    @(self.playbackState),
+    (self.currentMediaItem ? [self.currentMediaItem toList] : [NSNull null]),
     (self.playbackPositionMs ?: [NSNull null]),
   ];
 }
@@ -307,29 +310,28 @@ static id GetNullableObjectAtIndex(NSArray *array, NSInteger key) {
 }
 @end
 
-@implementation IsPlayingChangedEvent
+@implementation PlaybackStateChangedEvent
 + (instancetype)makeWithPlayerId:(NSString *)playerId
-    isPlaying:(NSNumber *)isPlaying {
-  IsPlayingChangedEvent* pigeonResult = [[IsPlayingChangedEvent alloc] init];
+    playbackState:(PlaybackState)playbackState {
+  PlaybackStateChangedEvent* pigeonResult = [[PlaybackStateChangedEvent alloc] init];
   pigeonResult.playerId = playerId;
-  pigeonResult.isPlaying = isPlaying;
+  pigeonResult.playbackState = playbackState;
   return pigeonResult;
 }
-+ (IsPlayingChangedEvent *)fromList:(NSArray *)list {
-  IsPlayingChangedEvent *pigeonResult = [[IsPlayingChangedEvent alloc] init];
++ (PlaybackStateChangedEvent *)fromList:(NSArray *)list {
+  PlaybackStateChangedEvent *pigeonResult = [[PlaybackStateChangedEvent alloc] init];
   pigeonResult.playerId = GetNullableObjectAtIndex(list, 0);
   NSAssert(pigeonResult.playerId != nil, @"");
-  pigeonResult.isPlaying = GetNullableObjectAtIndex(list, 1);
-  NSAssert(pigeonResult.isPlaying != nil, @"");
+  pigeonResult.playbackState = [GetNullableObjectAtIndex(list, 1) integerValue];
   return pigeonResult;
 }
-+ (nullable IsPlayingChangedEvent *)nullableFromList:(NSArray *)list {
-  return (list) ? [IsPlayingChangedEvent fromList:list] : nil;
++ (nullable PlaybackStateChangedEvent *)nullableFromList:(NSArray *)list {
+  return (list) ? [PlaybackStateChangedEvent fromList:list] : nil;
 }
 - (NSArray *)toList {
   return @[
     (self.playerId ?: [NSNull null]),
-    (self.isPlaying ?: [NSNull null]),
+    @(self.playbackState),
   ];
 }
 @end
@@ -403,7 +405,7 @@ static id GetNullableObjectAtIndex(NSArray *array, NSInteger key) {
     case 132: 
       return [NpawConfig fromList:[self readValue]];
     case 133: 
-      return [PlayerState fromList:[self readValue]];
+      return [PlayerStateSnapshot fromList:[self readValue]];
     default:
       return [super readValueOfType:type];
   }
@@ -429,7 +431,7 @@ static id GetNullableObjectAtIndex(NSArray *array, NSInteger key) {
   } else if ([value isKindOfClass:[NpawConfig class]]) {
     [self writeByte:132];
     [self writeValue:[value toList]];
-  } else if ([value isKindOfClass:[PlayerState class]]) {
+  } else if ([value isKindOfClass:[PlayerStateSnapshot class]]) {
     [self writeByte:133];
     [self writeValue:[value toList]];
   } else {
@@ -460,6 +462,23 @@ NSObject<FlutterMessageCodec> *PlaybackPlatformPigeonGetCodec(void) {
 }
 
 void PlaybackPlatformPigeonSetup(id<FlutterBinaryMessenger> binaryMessenger, NSObject<PlaybackPlatformPigeon> *api) {
+  {
+    FlutterBasicMessageChannel *channel =
+      [[FlutterBasicMessageChannel alloc]
+        initWithName:@"dev.flutter.pigeon.PlaybackPlatformPigeon.attach"
+        binaryMessenger:binaryMessenger
+        codec:PlaybackPlatformPigeonGetCodec()];
+    if (api) {
+      NSCAssert([api respondsToSelector:@selector(attachWithCompletion:)], @"PlaybackPlatformPigeon api (%@) doesn't respond to @selector(attachWithCompletion:)", api);
+      [channel setMessageHandler:^(id _Nullable message, FlutterReply callback) {
+        [api attachWithCompletion:^(FlutterError *_Nullable error) {
+          callback(wrapResult(nil, error));
+        }];
+      }];
+    } else {
+      [channel setMessageHandler:nil];
+    }
+  }
   {
     FlutterBasicMessageChannel *channel =
       [[FlutterBasicMessageChannel alloc]
@@ -667,7 +686,7 @@ void PlaybackPlatformPigeonSetup(id<FlutterBinaryMessenger> binaryMessenger, NSO
       [channel setMessageHandler:^(id _Nullable message, FlutterReply callback) {
         NSArray *args = message;
         NSString *arg_playerId = GetNullableObjectAtIndex(args, 0);
-        [api getPlayerState:arg_playerId completion:^(PlayerState *_Nullable output, FlutterError *_Nullable error) {
+        [api getPlayerState:arg_playerId completion:^(PlayerStateSnapshot *_Nullable output, FlutterError *_Nullable error) {
           callback(wrapResult(output, error));
         }];
       }];
@@ -733,17 +752,17 @@ void PlaybackPlatformPigeonSetup(id<FlutterBinaryMessenger> binaryMessenger, NSO
 - (nullable id)readValueOfType:(UInt8)type {
   switch (type) {
     case 128: 
-      return [IsPlayingChangedEvent fromList:[self readValue]];
-    case 129: 
       return [MediaItem fromList:[self readValue]];
-    case 130: 
+    case 129: 
       return [MediaItemTransitionEvent fromList:[self readValue]];
-    case 131: 
+    case 130: 
       return [MediaMetadata fromList:[self readValue]];
-    case 132: 
+    case 131: 
       return [PictureInPictureModeChangedEvent fromList:[self readValue]];
+    case 132: 
+      return [PlaybackStateChangedEvent fromList:[self readValue]];
     case 133: 
-      return [PlayerState fromList:[self readValue]];
+      return [PlayerStateSnapshot fromList:[self readValue]];
     case 134: 
       return [PositionDiscontinuityEvent fromList:[self readValue]];
     default:
@@ -756,22 +775,22 @@ void PlaybackPlatformPigeonSetup(id<FlutterBinaryMessenger> binaryMessenger, NSO
 @end
 @implementation PlaybackListenerPigeonCodecWriter
 - (void)writeValue:(id)value {
-  if ([value isKindOfClass:[IsPlayingChangedEvent class]]) {
+  if ([value isKindOfClass:[MediaItem class]]) {
     [self writeByte:128];
     [self writeValue:[value toList]];
-  } else if ([value isKindOfClass:[MediaItem class]]) {
+  } else if ([value isKindOfClass:[MediaItemTransitionEvent class]]) {
     [self writeByte:129];
     [self writeValue:[value toList]];
-  } else if ([value isKindOfClass:[MediaItemTransitionEvent class]]) {
+  } else if ([value isKindOfClass:[MediaMetadata class]]) {
     [self writeByte:130];
     [self writeValue:[value toList]];
-  } else if ([value isKindOfClass:[MediaMetadata class]]) {
+  } else if ([value isKindOfClass:[PictureInPictureModeChangedEvent class]]) {
     [self writeByte:131];
     [self writeValue:[value toList]];
-  } else if ([value isKindOfClass:[PictureInPictureModeChangedEvent class]]) {
+  } else if ([value isKindOfClass:[PlaybackStateChangedEvent class]]) {
     [self writeByte:132];
     [self writeValue:[value toList]];
-  } else if ([value isKindOfClass:[PlayerState class]]) {
+  } else if ([value isKindOfClass:[PlayerStateSnapshot class]]) {
     [self writeByte:133];
     [self writeValue:[value toList]];
   } else if ([value isKindOfClass:[PositionDiscontinuityEvent class]]) {
@@ -817,6 +836,16 @@ NSObject<FlutterMessageCodec> *PlaybackListenerPigeonGetCodec(void) {
   }
   return self;
 }
+- (void)onPrimaryPlayerChanged:(nullable NSString *)arg_playerId completion:(void (^)(FlutterError *_Nullable))completion {
+  FlutterBasicMessageChannel *channel =
+    [FlutterBasicMessageChannel
+      messageChannelWithName:@"dev.flutter.pigeon.PlaybackListenerPigeon.onPrimaryPlayerChanged"
+      binaryMessenger:self.binaryMessenger
+      codec:PlaybackListenerPigeonGetCodec()];
+  [channel sendMessage:@[arg_playerId ?: [NSNull null]] reply:^(id reply) {
+    completion(nil);
+  }];
+}
 - (void)onPositionDiscontinuity:(PositionDiscontinuityEvent *)arg_event completion:(void (^)(FlutterError *_Nullable))completion {
   FlutterBasicMessageChannel *channel =
     [FlutterBasicMessageChannel
@@ -827,7 +856,7 @@ NSObject<FlutterMessageCodec> *PlaybackListenerPigeonGetCodec(void) {
     completion(nil);
   }];
 }
-- (void)onPlayerStateUpdate:(PlayerState *)arg_event completion:(void (^)(FlutterError *_Nullable))completion {
+- (void)onPlayerStateUpdate:(PlayerStateSnapshot *)arg_event completion:(void (^)(FlutterError *_Nullable))completion {
   FlutterBasicMessageChannel *channel =
     [FlutterBasicMessageChannel
       messageChannelWithName:@"dev.flutter.pigeon.PlaybackListenerPigeon.onPlayerStateUpdate"
@@ -837,10 +866,10 @@ NSObject<FlutterMessageCodec> *PlaybackListenerPigeonGetCodec(void) {
     completion(nil);
   }];
 }
-- (void)onIsPlayingChanged:(IsPlayingChangedEvent *)arg_event completion:(void (^)(FlutterError *_Nullable))completion {
+- (void)onPlaybackStateChanged:(PlaybackStateChangedEvent *)arg_event completion:(void (^)(FlutterError *_Nullable))completion {
   FlutterBasicMessageChannel *channel =
     [FlutterBasicMessageChannel
-      messageChannelWithName:@"dev.flutter.pigeon.PlaybackListenerPigeon.onIsPlayingChanged"
+      messageChannelWithName:@"dev.flutter.pigeon.PlaybackListenerPigeon.onPlaybackStateChanged"
       binaryMessenger:self.binaryMessenger
       codec:PlaybackListenerPigeonGetCodec()];
   [channel sendMessage:@[arg_event ?: [NSNull null]] reply:^(id reply) {

@@ -17,81 +17,91 @@ import io.flutter.embedding.engine.plugins.activity.ActivityAware
 import io.flutter.embedding.engine.plugins.activity.ActivityPluginBinding
 import io.flutter.embedding.engine.plugins.lifecycle.FlutterLifecycleAdapter
 import io.flutter.plugin.common.PluginRegistry
+import kotlinx.coroutines.CompletableDeferred
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.cancel
 import kotlinx.coroutines.flow.filter
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import media.bcc.bccm_player.pigeon.ChromecastControllerPigeon
 import media.bcc.bccm_player.pigeon.PlaybackPlatformApi
 import media.bcc.bccm_player.pigeon.PlaybackPlatformApi.PlaybackPlatformPigeon
-import media.bcc.bccm_player.players.chromecast.CastPlayerController
 import media.bcc.bccm_player.views.FlutterCastButton
 import media.bcc.bccm_player.views.FlutterCastPlayerView
-import media.bcc.bccm_player.views.FlutterEmptyView
 import media.bcc.bccm_player.views.FlutterExoPlayerView
 
 class BccmPlayerPlugin : FlutterPlugin, ActivityAware, PluginRegistry.UserLeaveHintListener {
+    companion object {
+        private var mBound = false
+        private var playbackServiceCompleter = CompletableDeferred<PlaybackService>()
+        private val playbackServiceConnection = object : ServiceConnection {
+            override fun onServiceConnected(className: ComponentName, binder: IBinder) {
+                val boundPlaybackService = (binder as PlaybackService.LocalBinder).getService()
+                playbackService = boundPlaybackService;
+                playbackServiceCompleter.complete(boundPlaybackService)
+            }
+
+            override fun onServiceDisconnected(arg0: ComponentName) {
+                playbackService = null
+            }
+        }
+        private var playbackService: PlaybackService? = null
+    }
+
     private var pluginBinding: FlutterPlugin.FlutterPluginBinding? = null
     private lateinit var controllerFuture: ListenableFuture<MediaController>
-    private var playbackService: PlaybackService? = null
-    private var playbackServiceFuture: ListenableFuture<PlaybackService>? = null
-    private var mBound: Boolean = false
     private var activity: Activity? = null
     private var activityBinding: ActivityPluginBinding? = null
-    private var castController: CastPlayerController? = null
     private val mainScope = CoroutineScope(Dispatchers.Main)
     var playbackPigeon: PlaybackPlatformApi.PlaybackListenerPigeon? = null
         private set
+    var chromecastPigeon: ChromecastControllerPigeon.ChromecastPigeon? = null
+        private set
 
-    private val playbackServiceConnection = object : ServiceConnection {
-        override fun onServiceConnected(className: ComponentName, binder: IBinder) {
-            playbackService = (binder as PlaybackService.LocalBinder).getService()
-            castController?.also {
-                playbackService?.addController(it)
+    /***
+     * Should be called only by the main flutter isolate. Complete quickly, because this is awaited.
+     */
+    fun attach() {
+        if (playbackService != null) {
+            playbackService!!.attachPlugin(this@BccmPlayerPlugin);
+        } else {
+            Log.d("bccm", "playbackService was null when attach() was run. That's ok.")
+            mainScope.launch {
+                playbackServiceCompleter.await().attachPlugin(this@BccmPlayerPlugin);
             }
-            pluginBinding!!.platformViewRegistry.registerViewFactory(
-                "bccm-player",
-                FlutterExoPlayerView.Factory(playbackService)
-            )
-        }
-
-        override fun onServiceDisconnected(arg0: ComponentName) {
-
         }
     }
 
     override fun onAttachedToEngine(flutterPluginBinding: FlutterPlugin.FlutterPluginBinding) {
+        // Warning: There can be multiple engines, one per dart isolate, e.g. for background isolates.
+        // So we are also doing some steps via PlaybackApiImpl.attach -> attach()
+        // which we should only call via the primary flutter dart engine.
+
+        CastContext.getSharedInstance(flutterPluginBinding.applicationContext)
+
         pluginBinding = flutterPluginBinding
         playbackPigeon =
             PlaybackPlatformApi.PlaybackListenerPigeon(flutterPluginBinding.binaryMessenger)
+        chromecastPigeon =
+            ChromecastControllerPigeon.ChromecastPigeon(flutterPluginBinding.binaryMessenger)
 
-
-        Intent(pluginBinding?.applicationContext, PlaybackService::class.java).also { intent ->
-            mBound = pluginBinding?.applicationContext?.bindService(
-                intent, playbackServiceConnection, Context.BIND_AUTO_CREATE
-            ) ?: false
-        }
-
-        try {
-            val castContext = CastContext.getSharedInstance(flutterPluginBinding.applicationContext)
-            val ccPigeon =
-                ChromecastControllerPigeon.ChromecastPigeon(flutterPluginBinding.binaryMessenger)
-            castController = CastPlayerController(castContext, ccPigeon, this).also {
-                castContext.sessionManager.addSessionManagerListener(it)
-                flutterPluginBinding.platformViewRegistry.registerViewFactory(
-                    "bccm-cast-player",
-                    FlutterCastPlayerView.Factory(it)
-                )
+        if (!mBound) {
+            Intent(pluginBinding?.applicationContext, PlaybackService::class.java).also { intent ->
+                mBound = pluginBinding?.applicationContext?.bindService(
+                    intent, playbackServiceConnection, Context.BIND_AUTO_CREATE
+                ) ?: false
             }
-        } catch (e: Exception) {
-            //TODO: log exception
-
-            flutterPluginBinding.platformViewRegistry.registerViewFactory(
-                "bccm-cast-player",
-                FlutterEmptyView.Factory()
-            )
         }
+
+        flutterPluginBinding.platformViewRegistry.registerViewFactory(
+            "bccm-player",
+            FlutterExoPlayerView.Factory(this)
+        )
+        flutterPluginBinding.platformViewRegistry.registerViewFactory(
+            "bccm-cast-player",
+            FlutterCastPlayerView.Factory(this)
+        )
         flutterPluginBinding.platformViewRegistry.registerViewFactory(
             "bccm_player/cast_button",
             FlutterCastButton.Factory()
@@ -101,15 +111,14 @@ class BccmPlayerPlugin : FlutterPlugin, ActivityAware, PluginRegistry.UserLeaveH
 
     override fun onDetachedFromEngine(binding: FlutterPlugin.FlutterPluginBinding) {
         Log.d("bccm", "detaching. mBound: $mBound")
-        if (mBound) {
+        if (mBound && playbackService?.isAttached(this) == true) {
             pluginBinding!!.applicationContext.unbindService(playbackServiceConnection)
             mBound = false
         }
 
-        Intent(binding.applicationContext, PlaybackService::class.java).also { intent ->
-            binding.applicationContext.stopService(intent)
-        }
+        playbackService?.stopIfAttached(this)
         pluginBinding = null
+        mainScope.cancel()
     }
 
     override fun onAttachedToActivity(binding: ActivityPluginBinding) {
@@ -148,7 +157,8 @@ class BccmPlayerPlugin : FlutterPlugin, ActivityAware, PluginRegistry.UserLeaveH
 
     fun onPictureInPictureModeChanged(isInPictureInPictureMode: Boolean) {
         val activityBinding = activityBinding ?: return
-        val lifecycleState = FlutterLifecycleAdapter.getActivityLifecycle(activityBinding).currentState
+        val lifecycleState =
+            FlutterLifecycleAdapter.getActivityLifecycle(activityBinding).currentState
 
         mainScope.launch {
             BccmPlayerPluginSingleton.eventBus.emit(
@@ -172,7 +182,6 @@ class BccmPlayerPlugin : FlutterPlugin, ActivityAware, PluginRegistry.UserLeaveH
             BccmPlayerPluginSingleton.eventBus.emit(DetachedFromActivityEvent())
         }
         MediaController.releaseFuture(controllerFuture)
-        playbackService?.getPrimaryController()?.stop(true)
     }
 
     fun getPlaybackService(): PlaybackService? {

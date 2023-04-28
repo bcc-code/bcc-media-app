@@ -1,0 +1,40 @@
+import 'package:bccm_player/src/pigeon/playback_platform_pigeon.g.dart';
+import 'package:bccm_player/src/state/plugin_state_notifier.dart';
+import '../utils/extensions.dart';
+
+class StatePlaybackListener implements PlaybackListenerPigeon {
+  StatePlaybackListener(this.pluginStateNotifier);
+
+  PlayerPluginStateNotifier pluginStateNotifier;
+
+  @override
+  void onPlaybackStateChanged(event) {
+    pluginStateNotifier.getOrAddPlayerNotifier(event.playerId).setPlaybackState(event.playbackState);
+  }
+
+  @override
+  void onMediaItemTransition(event) {
+    pluginStateNotifier.getOrAddPlayerNotifier(event.playerId).setMediaItem(event.mediaItem);
+  }
+
+  @override
+  void onPictureInPictureModeChanged(event) {
+    pluginStateNotifier.getOrAddPlayerNotifier(event.playerId).setIsInPipMode(event.isInPipMode);
+  }
+
+  @override
+  void onPositionDiscontinuity(event) {
+    final positionMs = event.playbackPositionMs?.finiteOrNull()?.round();
+    pluginStateNotifier.getOrAddPlayerNotifier(event.playerId).setPlaybackPosition(positionMs);
+  }
+
+  @override
+  void onPlayerStateUpdate(event) {
+    pluginStateNotifier.getOrAddPlayerNotifier(event.playerId).setStateFromSnapshot(event);
+  }
+
+  @override
+  void onPrimaryPlayerChanged(String? playerId) {
+    pluginStateNotifier.setPrimaryPlayer(playerId);
+  }
+}

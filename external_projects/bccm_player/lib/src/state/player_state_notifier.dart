@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:bccm_player/src/pigeon/playback_platform_pigeon.g.dart';
+import 'package:bccm_player/src/utils/extensions.dart';
 import 'package:state_notifier/state_notifier.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
@@ -44,6 +45,10 @@ class PlayerStateNotifier extends StateNotifier<PlayerState> {
   void setIsInPipMode(bool isInPipMode) {
     state = state.copyWith(isInPipMode: isInPipMode);
   }
+
+  void setStateFromSnapshot(PlayerStateSnapshot snapshot) {
+    state = state.copyWithSnapshot(snapshot);
+  }
 }
 
 @freezed
@@ -55,6 +60,21 @@ class PlayerState with _$PlayerState {
     @Default(PlaybackState.stopped) PlaybackState playbackState,
     @Default(false) bool isInPipMode,
   }) = _PlayerState;
+
+  factory PlayerState.fromPlayerStateSnapshot(PlayerStateSnapshot state) {
+    return PlayerState(
+      playerId: state.playerId,
+      currentMediaItem: state.currentMediaItem,
+      playbackPositionMs: state.playbackPositionMs?.finiteOrNull()?.round(),
+      playbackState: state.playbackState,
+    );
+  }
 }
 
-enum PlaybackState { stopped, paused, playing }
+extension on PlayerState {
+  PlayerState copyWithSnapshot(PlayerStateSnapshot snapshot) {
+    return PlayerState.fromPlayerStateSnapshot(snapshot).copyWith(
+      isInPipMode: isInPipMode, // not part of snapshot
+    );
+  }
+}

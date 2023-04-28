@@ -101,6 +101,18 @@ class MockBccmPlayerPlatform with MockPlatformInterfaceMixin implements BccmPlay
     // TODO: implement setNpawConfig
     throw UnimplementedError();
   }
+
+  @override
+  Future<PlayerStateSnapshot?> getPlayerState({String? playerId}) {
+    // TODO: implement getPlayerState
+    throw UnimplementedError();
+  }
+
+  @override
+  Future setup() {
+    // TODO: implement setup
+    throw UnimplementedError();
+  }
 }
 
 void main() {

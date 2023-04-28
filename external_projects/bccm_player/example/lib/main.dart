@@ -1,46 +1,44 @@
 import 'package:bccm_player/bccm_player.dart';
+import 'package:bccm_player/plugins/riverpod.dart';
 import 'package:flutter/material.dart';
 import 'dart:async';
 
-void main() {
-  runApp(const MyApp());
+import 'package:hooks_riverpod/hooks_riverpod.dart';
+
+final bccmPlayerInterface = Provider<BccmPlayerInterface>((ref) {
+  return BccmPlayerInterface.instance;
+});
+
+Future main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await BccmPlayerInterface.instance.setup();
+  final providerContainer = ProviderContainer();
+  runApp(
+    UncontrolledProviderScope(
+      container: providerContainer,
+      child: const MyApp(),
+    ),
+  );
 }
 
-class MyApp extends StatefulWidget {
+class MyApp extends HookConsumerWidget {
   const MyApp({super.key});
 
   @override
-  State<MyApp> createState() => _MyAppState();
-}
-
-class _MyAppState extends State<MyApp> {
-  String? _playerId;
-  final _bccmPlayerPlugin = BccmPlayerInterface.instance;
-
-  @override
-  void initState() {
-    super.initState();
-    initPlatformState();
-  }
-
-  // Platform messages are asynchronous, so we initialize in an async method.
-  Future<void> initPlatformState() async {
-    String playerId = await _bccmPlayerPlugin.newPlayer();
-
-    setState(() {
-      _playerId = playerId;
-    });
-  }
-
-  @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final player = ref.watch(primaryPlayerProvider);
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
           title: const Text('Plugin example app'),
         ),
         body: Center(
-          child: Text(_playerId ?? 'Player id not set'),
+          child: Column(
+            children: [
+              Text(player?.playerId ?? 'Player id not set'),
+              if (player?.playerId != null) BccmPlayer(id: player!.playerId),
+            ],
+          ),
         ),
       ),
     );

@@ -3,6 +3,9 @@
     package="media.bcc.bccm_player">
 
     <application>
+        <meta-data
+            android:name="com.google.android.gms.cast.framework.OPTIONS_PROVIDER_CLASS_NAME"
+            android:value="media.bcc.bccm_player.players.chromecast.CastOptionsProvider" />
         <activity
             android:name=".players.chromecast.CastExpandedControlsActivity"
             android:exported="true"
@@ -14,6 +17,16 @@
                 <action android:name="android.intent.action.MAIN" />
             </intent-filter>
         </activity>
+
+        <service
+            android:name="media.bcc.bccm_player.PlaybackService"
+            android:exported="true"
+            android:foregroundServiceType="mediaPlayback">
+            <intent-filter>
+                <action android:name="androidx.media3.session.MediaSessionService" />
+                <action android:name="media.bcc.bccm_player.PlaybackService" />
+            </intent-filter>
+        </service>
     </application>
 
 </manifest>

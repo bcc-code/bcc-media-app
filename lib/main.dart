@@ -1,6 +1,6 @@
 import 'dart:async';
-
-import 'package:alice/alice.dart';
+import 'package:bccm_player/bccm_player.dart';
+import 'package:bccm_player/plugins/riverpod.dart';
 import 'package:brunstadtv_app/providers/notification_service.dart';
 import 'package:brunstadtv_app/providers/unleash.dart';
 import 'package:brunstadtv_app/providers/router_provider.dart';
@@ -23,7 +23,6 @@ import 'package:flutter_web_plugins/url_strategy.dart';
 
 import 'app_root.dart';
 
-final Alice alice = Alice(showNotification: true);
 final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 
 /// This function is called from the flavor-specific entrypoints
@@ -37,6 +36,9 @@ Future<void> $main({required FirebaseOptions? firebaseOptions, List<Override>? p
   if (firebaseOptions != null) {
     await initFirebase(firebaseOptions);
   }
+
+  // Initialize bccm_player
+  await BccmPlayerInterface.instance.setup();
 
   final appRouter = AppRouter(navigatorKey);
   final providerContainer = await initProviderContainer([
