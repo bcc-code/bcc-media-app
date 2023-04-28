@@ -400,6 +400,12 @@ class SIt extends S {
   String get share => 'Condividi';
 
   @override
+  String get showMore => 'Show more';
+
+  @override
+  String get showLess => 'Show less';
+
+  @override
   String get liveNow => 'In onda adesso';
 
   @override

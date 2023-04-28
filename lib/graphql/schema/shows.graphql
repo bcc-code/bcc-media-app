@@ -1,0 +1,24 @@
+enum ShowType {
+    event
+    series
+}
+
+type Show {
+    id: ID!
+    legacyID: ID
+    status: Status!
+    type: ShowType!
+    title: String!
+    description: String!
+    image(style: ImageStyle): String @goField(forceResolver: true)
+    imageUrl: String @deprecated(reason: "Replaced by the image field")
+    images: [Image!]!
+    episodeCount: Int! @goField(forceResolver: true)
+    seasonCount: Int! @goField(forceResolver: true)
+    seasons(
+        first: Int
+        offset: Int
+        dir: String
+    ): SeasonPagination! @goField(forceResolver: true)
+    defaultEpisode: Episode! @goField(forceResolver: true)
+}

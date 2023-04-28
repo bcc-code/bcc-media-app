@@ -119,22 +119,31 @@ class FullscreenPlayerView(
             activity.requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_USER_LANDSCAPE
         }
         WindowCompat.setDecorFitsSystemWindows(activity.window, false)
-        WindowInsetsControllerCompat(activity.window, this@FullscreenPlayerView).let { controller ->
-            controller.hide(WindowInsetsCompat.Type.systemBars())
-            controller.systemBarsBehavior =
-                WindowInsetsControllerCompat.BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE
-        }
+        /* Using deprecated API because the newer API causes a bug on certain devices in fullscreen mode.
+           i.e Navigation bar / Gesture pill & status bar shows up on first interaction with screen but does not go away after few seconds.
+           Using same code used by flutter when `SystemUiMode.immersiveSticky` is used: https://github.com/flutter/engine/blob/main/shell/platform/android/io/flutter/plugin/platform/PlatformPlugin.java#L287
+        */
+        activity.window.decorView.setSystemUiVisibility(
+            SYSTEM_UI_FLAG_IMMERSIVE_STICKY
+                    or SYSTEM_UI_FLAG_LAYOUT_STABLE
+                    or SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+                    or SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+                    or SYSTEM_UI_FLAG_HIDE_NAVIGATION
+                    or SYSTEM_UI_FLAG_FULLSCREEN
+        );
     }
 
     fun exit() {
-        activity.requestedOrientation = orientationBeforeGoingFullscreen
+        activity.requestedOrientation = orientationBeforeGoingFullscreen;
         WindowCompat.setDecorFitsSystemWindows(activity.window, true)
-        WindowInsetsControllerCompat(
-            activity.window,
-            this
-        ).show(WindowInsetsCompat.Type.systemBars())
+        /* Using same code used by flutter when `SystemUiMode.edgeToEdge` is used: https://github.com/flutter/engine/blob/main/shell/platform/android/io/flutter/plugin/platform/PlatformPlugin.java#L302 */
+        activity.window.decorView.setSystemUiVisibility(
+            SYSTEM_UI_FLAG_LAYOUT_STABLE
+                    or SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+                    or SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+        );
         onExitListener?.let { listener -> listener() }
-        release()
+        release();
     }
 
     fun setLiveUIEnabled(enabled: Boolean) {

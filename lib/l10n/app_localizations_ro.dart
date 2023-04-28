@@ -400,6 +400,12 @@ class SRo extends S {
   String get share => 'Distribuie';
 
   @override
+  String get showMore => 'Show more';
+
+  @override
+  String get showLess => 'Show less';
+
+  @override
   String get liveNow => 'Acum în direct';
 
   @override

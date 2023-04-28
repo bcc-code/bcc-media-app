@@ -24,6 +24,22 @@ type Settings {
   subtitleLanguages: [Language!]!
 }
 
+type Image {
+  style: String!
+  url: String!
+}
+
+enum ImageStyle {
+  poster
+  featured
+  default
+}
+
+enum Status {
+  published
+  unlisted
+}
+
 enum Gender {
   male
   female
@@ -43,7 +59,7 @@ type User {
   gender: Gender!
   firstName: String!
   displayName: String!
-  completedRegistration: Boolean!
+  completedRegistration: Boolean! @goField(forceResolver: true)
 }
 
 input LegacyIDLookupOptions {
@@ -144,5 +160,5 @@ type QueryRoot{
 
   legacyIDLookup(options: LegacyIDLookupOptions): LegacyIDLookup!
 
-  prompts: [Prompt!]!
+  prompts(timestamp: Date): [Prompt!]!
 }
