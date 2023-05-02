@@ -15,8 +15,8 @@ import '../../../helpers/widget_keys.dart';
 import '../../../l10n/app_localizations.dart';
 import '../../../l10n/app_localizations_en.dart';
 import '../../../screens/onboarding/signup.dart';
-import '../../../theme/bccm_colors.dart';
-import '../../../theme/bccm_typography.dart';
+import '../../../theme/design_system/design_system.dart';
+
 import '../birth_year_picker.dart';
 
 class SignupBirthDatePage extends HookWidget implements SignupScreenPage {
@@ -61,7 +61,7 @@ class SignupBirthDatePage extends HookWidget implements SignupScreenPage {
             padding: const EdgeInsets.only(top: 48, bottom: 10),
             child: Text(
               'Birth year',
-              style: BccmTextStyles.caption1.copyWith(color: BccmColors.label2),
+              style: DesignSystem.of(context).textStyles.caption1.copyWith(color: DesignSystem.of(context).colors.label2),
             ),
           ),
           SizedBox(
@@ -81,7 +81,7 @@ class SignupBirthDatePage extends HookWidget implements SignupScreenPage {
               children: [
                 Switch.adaptive(
                   key: WidgetKeys.privacyPolicyAgreeSwitch,
-                  activeColor: Platform.isIOS ? BccmColors.tint1 : null,
+                  activeColor: Platform.isIOS ? DesignSystem.of(context).colors.tint1 : null,
                   value: privacyPolicyAgreed.value,
                   onChanged: (value) => privacyPolicyAgreed.value = value,
                 ),
@@ -104,22 +104,22 @@ class SignupBirthDatePage extends HookWidget implements SignupScreenPage {
             child: Row(
               children: [
                 Expanded(
-                  child: BtvButton.largeSecondary(
-                    onPressed: () {
-                      pageController.previousPage(duration: const Duration(milliseconds: 500), curve: Curves.easeOutExpo);
-                      FocusManager.instance.primaryFocus?.unfocus();
-                    },
-                    labelText: S.of(context).back,
-                  ),
+                  child: DesignSystem.of(context).buttons.largeSecondary(
+                        onPressed: () {
+                          pageController.previousPage(duration: const Duration(milliseconds: 500), curve: Curves.easeOutExpo);
+                          FocusManager.instance.primaryFocus?.unfocus();
+                        },
+                        labelText: S.of(context).back,
+                      ),
                 ),
                 const SizedBox(width: 12),
                 Expanded(
-                  child: BtvButton.large(
-                    disabled: yearController.value == null || !privacyPolicyAgreed.value,
-                    key: WidgetKeys.registerButton,
-                    onPressed: nextPage,
-                    labelText: S.of(context).registerButton,
-                  ),
+                  child: DesignSystem.of(context).buttons.large(
+                        disabled: yearController.value == null || !privacyPolicyAgreed.value,
+                        key: WidgetKeys.registerButton,
+                        onPressed: nextPage,
+                        labelText: S.of(context).registerButton,
+                      ),
                 )
               ],
             ),
@@ -154,12 +154,12 @@ class _PrivacyPolicyAgreeText extends StatelessWidget {
       shrinkWrap: true,
       style: {
         'p': Style(
-          fontSize: FontSize(BccmTextStyles.caption1.fontSize!),
-          color: BccmColors.label4,
+          fontSize: FontSize(DesignSystem.of(context).textStyles.caption1.fontSize!),
+          color: DesignSystem.of(context).colors.label4,
           margin: Margins.only(bottom: 12),
         ),
         'a': Style(
-          color: BccmColors.tint1,
+          color: DesignSystem.of(context).colors.tint1,
         ),
       },
     );

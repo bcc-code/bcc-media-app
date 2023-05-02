@@ -5,7 +5,8 @@ import 'package:shimmer/shimmer.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../graphql/queries/page.graphql.dart';
-import '../theme/bccm_colors.dart';
+import '../theme/design_system/design_system.dart';
+import '../theme/design_system/design_system.dart';
 import '../helpers/webview/main_js_channel.dart';
 
 class WebSection extends StatefulWidget {
@@ -96,9 +97,10 @@ class _WebSectionState extends State<WebSection> {
                     curve: Curves.easeInOut,
                     child: Shimmer.fromColors(
                         enabled: loading,
-                        baseColor: BccmColors.background1,
-                        highlightColor: BccmColors.background2,
-                        child: Container(decoration: BoxDecoration(borderRadius: BorderRadius.circular(9), color: BccmColors.background2)))),
+                        baseColor: DesignSystem.of(context).colors.background1,
+                        highlightColor: DesignSystem.of(context).colors.background2,
+                        child: Container(
+                            decoration: BoxDecoration(borderRadius: BorderRadius.circular(9), color: DesignSystem.of(context).colors.background2)))),
               ),
             ),
           ],

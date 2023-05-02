@@ -1,11 +1,11 @@
 import 'package:brunstadtv_app/components/loading_indicator.dart';
-import 'package:brunstadtv_app/theme/bccm_colors.dart';
+import 'package:brunstadtv_app/theme/design_system/design_system.dart';
 import 'package:flutter/material.dart';
 import 'package:brunstadtv_app/helpers/ui/transparent_image.dart';
 import 'package:flutter_svg/svg.dart';
 
 import '../helpers/ui/svg_icons.dart';
-import '../theme/bccm_typography.dart';
+
 import '../helpers/widget_keys.dart';
 import '../l10n/app_localizations.dart';
 
@@ -34,7 +34,7 @@ class MiniPlayer extends StatelessWidget {
     this.onCloseTap,
     this.loading,
     this.hideCloseButton,
-    this.border = const Border(top: BorderSide(color: BccmColors.separatorOnLight, width: 1)),
+    this.border,
   }) : super(key: key);
 
   @override
@@ -43,8 +43,8 @@ class MiniPlayer extends StatelessWidget {
       height: kMiniPlayerHeight,
       width: MediaQuery.of(context).size.width,
       decoration: BoxDecoration(
-        color: BccmColors.background2,
-        border: border,
+        color: DesignSystem.of(context).colors.background2,
+        border: border ?? Border(top: BorderSide(color: DesignSystem.of(context).colors.separatorOnLight, width: 1)),
       ),
       padding: const EdgeInsets.symmetric(
         horizontal: 16,
@@ -62,7 +62,7 @@ class MiniPlayer extends StatelessWidget {
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(4),
               border: Border.all(
-                color: BccmColors.onTint.withOpacity(0.01),
+                color: DesignSystem.of(context).colors.onTint.withOpacity(0.01),
                 width: 1,
               ),
             ),
@@ -91,7 +91,7 @@ class MiniPlayer extends StatelessWidget {
                       secondaryTitle!,
                       semanticsLabel: secondaryTitle!,
                       overflow: TextOverflow.ellipsis,
-                      style: BccmTextStyles.caption2.copyWith(color: BccmColors.tint1),
+                      style: DesignSystem.of(context).textStyles.caption2.copyWith(color: DesignSystem.of(context).colors.tint1),
                     ),
                   ),
                 Text(
@@ -99,7 +99,7 @@ class MiniPlayer extends StatelessWidget {
                   semanticsLabel: title,
                   key: WidgetKeys.miniPlayerTitle,
                   overflow: TextOverflow.ellipsis,
-                  style: BccmTextStyles.caption1.copyWith(color: BccmColors.label1),
+                  style: DesignSystem.of(context).textStyles.caption1.copyWith(color: DesignSystem.of(context).colors.label1),
                 ),
               ],
             ),

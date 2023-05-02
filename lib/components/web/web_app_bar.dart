@@ -1,5 +1,5 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:brunstadtv_app/theme/bccm_typography.dart';
+
 import 'package:collection/collection.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -12,7 +12,7 @@ import '../../l10n/app_localizations.dart';
 import 'dart:ui';
 
 import '../../providers/auth_state/auth_state.dart';
-import '../../theme/bccm_colors.dart';
+import '../../theme/design_system/design_system.dart';
 
 final logo = Image.asset('assets/images/logo.png');
 final icons = {
@@ -148,8 +148,9 @@ class WebTabButton extends HookWidget {
             SizedBox(height: 40, child: highlighted ? tab.activeIcon : tab.icon),
             Text(
               tab.label ?? '',
-              style:
-                  highlighted ? BccmTextStyles.button2.copyWith(color: BccmColors.tint1) : BccmTextStyles.button2.copyWith(color: BccmColors.label3),
+              style: highlighted
+                  ? DesignSystem.of(context).textStyles.button2.copyWith(color: DesignSystem.of(context).colors.tint1)
+                  : DesignSystem.of(context).textStyles.button2.copyWith(color: DesignSystem.of(context).colors.label3),
             ),
           ],
         ),

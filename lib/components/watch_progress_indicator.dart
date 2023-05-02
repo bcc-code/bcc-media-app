@@ -1,10 +1,10 @@
 import 'dart:math';
 
-import 'package:brunstadtv_app/theme/bccm_typography.dart';
 import 'package:flutter/material.dart';
 
 import '../helpers/date_time.dart';
-import '../theme/bccm_colors.dart';
+import '../theme/design_system/design_system.dart';
+import '../theme/design_system/design_system.dart';
 
 class WatchProgressIndicator extends StatelessWidget {
   final int totalDuration;
@@ -21,7 +21,7 @@ class WatchProgressIndicator extends StatelessWidget {
     return Container(
       height: 12,
       decoration: BoxDecoration(
-        color: BccmColors.background1.withOpacity(0.7),
+        color: DesignSystem.of(context).colors.background1.withOpacity(0.7),
         borderRadius: BorderRadius.circular(2),
       ),
       child: Row(
@@ -34,7 +34,7 @@ class WatchProgressIndicator extends StatelessWidget {
                 children: [
                   Container(
                     decoration: BoxDecoration(
-                      color: BccmColors.separatorOnLight,
+                      color: DesignSystem.of(context).colors.separatorOnLight,
                       borderRadius: BorderRadius.circular(4),
                     ),
                   ),
@@ -55,7 +55,7 @@ class WatchProgressIndicator extends StatelessWidget {
             margin: const EdgeInsets.only(right: 4),
             child: Text(
               getFormattedDuration(totalDuration),
-              style: BccmTextStyles.caption3.copyWith(color: BccmColors.label1),
+              style: DesignSystem.of(context).textStyles.caption3.copyWith(color: DesignSystem.of(context).colors.label1),
             ),
           )
         ],

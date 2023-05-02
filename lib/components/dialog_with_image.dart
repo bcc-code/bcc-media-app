@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 
 import '../helpers/ui/btv_buttons.dart';
-import '../theme/bccm_colors.dart';
-import '../theme/bccm_typography.dart';
+import '../theme/design_system/design_system.dart';
+import '../theme/design_system/design_system.dart';
+
 import '../l10n/app_localizations.dart';
 
 class DialogWithImage extends StatelessWidget {
@@ -31,7 +32,7 @@ class DialogWithImage extends StatelessWidget {
             ),
             Text(
               title,
-              style: BccmTextStyles.headline2,
+              style: DesignSystem.of(context).textStyles.headline2,
               textAlign: TextAlign.center,
             ),
             if (description?.isNotEmpty == true)
@@ -39,7 +40,7 @@ class DialogWithImage extends StatelessWidget {
                 padding: const EdgeInsets.only(top: 4),
                 child: Text(
                   description!,
-                  style: BccmTextStyles.caption1.copyWith(color: BccmColors.label3),
+                  style: DesignSystem.of(context).textStyles.caption1.copyWith(color: DesignSystem.of(context).colors.label3),
                   textAlign: TextAlign.center,
                 ),
               ),
@@ -47,12 +48,12 @@ class DialogWithImage extends StatelessWidget {
             if (slotBeforeDismissButton != null) slotBeforeDismissButton!,
             SizedBox(
               width: double.infinity,
-              child: BtvButton.large(
-                onPressed: () {
-                  Navigator.pop(context);
-                },
-                labelText: dismissButtonText ?? S.of(context).done,
-              ),
+              child: DesignSystem.of(context).buttons.large(
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
+                    labelText: dismissButtonText ?? S.of(context).done,
+                  ),
             ),
           ],
         ),

@@ -3,9 +3,8 @@ import 'package:brunstadtv_app/components/loading_generic.dart';
 import 'package:brunstadtv_app/components/option_list.dart';
 import 'package:brunstadtv_app/graphql/queries/episode.graphql.dart';
 import 'package:brunstadtv_app/graphql/schema/episodes.graphql.dart';
-import 'package:brunstadtv_app/theme/bccm_colors.dart';
-import 'package:brunstadtv_app/theme/bccm_input_decorations.dart';
-import 'package:brunstadtv_app/theme/bccm_typography.dart';
+import 'package:brunstadtv_app/theme/design_system/design_system.dart';
+
 import 'package:brunstadtv_app/helpers/ui/svg_icons.dart';
 import 'package:brunstadtv_app/l10n/app_localizations.dart';
 import 'package:brunstadtv_app/models/analytics/content_shared.dart';
@@ -42,12 +41,12 @@ class _ShareEpisodeSheetState extends ConsumerState<ShareEpisodeSheet> {
       Option(
         id: 'fromStart',
         title: S.of(context).shareStart,
-        icon: SvgPicture.string(SvgIcons.share, color: BccmColors.onTint),
+        icon: SvgPicture.string(SvgIcons.share, color: DesignSystem.of(context).colors.onTint),
       ),
       Option(
         id: 'fromTime',
         title: S.of(context).shareTime(getFormattedDuration(widget.currentPosSeconds, padFirstSegment: true)),
-        icon: SvgPicture.string(SvgIcons.location, color: BccmColors.onTint),
+        icon: SvgPicture.string(SvgIcons.location, color: DesignSystem.of(context).colors.onTint),
       ),
     ];
     if (loading) {
@@ -67,7 +66,7 @@ class _ShareEpisodeSheetState extends ConsumerState<ShareEpisodeSheet> {
                         padding: const EdgeInsets.only(left: 8, right: 16),
                         child: Text(
                           'This video is only accessible to users that are logged in to the app.',
-                          style: BccmTextStyles.caption1.copyWith(color: BccmColors.label2),
+                          style: DesignSystem.of(context).textStyles.caption1.copyWith(color: DesignSystem.of(context).colors.label2),
                         ),
                       ),
                     )
@@ -105,7 +104,7 @@ class _ShareEpisodeSheetState extends ConsumerState<ShareEpisodeSheet> {
                     padding: const EdgeInsets.symmetric(horizontal: 16),
                     child: TextField(
                       autofocus: true,
-                      decoration: BccmInputDecorations.textFormField,
+                      decoration: DesignSystem.of(context).inputDecorations.textFormField,
                       controller: TextEditingController(text: urlToShare),
                     ),
                   ),

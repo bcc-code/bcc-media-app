@@ -7,8 +7,9 @@ import 'package:flutter/material.dart';
 import 'package:brunstadtv_app/graphql/queries/search.graphql.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../theme/bccm_colors.dart';
-import '../theme/bccm_typography.dart';
+import '../theme/design_system/design_system.dart';
+import '../theme/design_system/design_system.dart';
+
 import '../helpers/navigation/navigation_utils.dart';
 import '../providers/inherited_data.dart';
 import 'horizontal_slider.dart';
@@ -36,7 +37,7 @@ class _ResultProgramsListState extends ConsumerState<ResultProgramsList> {
           margin: const EdgeInsets.only(bottom: 8),
           child: Text(
             widget.title,
-            style: BccmTextStyles.title2,
+            style: DesignSystem.of(context).textStyles.title2,
           ),
         ),
         HorizontalSlider(
@@ -96,7 +97,9 @@ class _ProgramState extends ConsumerState<_Program> {
                       simpleFutureBuilder(
                           future: navigationFuture!,
                           loading: () => Positioned.fill(
-                              child: Container(color: BccmColors.background1.withOpacity(0.5), child: const Center(child: LoadingIndicator()))),
+                              child: Container(
+                                  color: DesignSystem.of(context).colors.background1.withOpacity(0.5),
+                                  child: const Center(child: LoadingIndicator()))),
                           error: (e) => const SizedBox.shrink(),
                           noData: () => const SizedBox.shrink(),
                           ready: (d) => const SizedBox.shrink()),
@@ -104,7 +107,8 @@ class _ProgramState extends ConsumerState<_Program> {
                 ),
                 Padding(
                   padding: const EdgeInsets.only(top: 7),
-                  child: Text(widget._item.title, style: BccmTextStyles.caption1.copyWith(color: BccmColors.label1)),
+                  child: Text(widget._item.title,
+                      style: DesignSystem.of(context).textStyles.caption1.copyWith(color: DesignSystem.of(context).colors.label1)),
                 ),
               ],
             ),

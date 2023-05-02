@@ -1,12 +1,13 @@
 import 'package:brunstadtv_app/components/study_progress_row.dart';
 import 'package:brunstadtv_app/helpers/ui/btv_buttons.dart';
-import 'package:brunstadtv_app/theme/bccm_typography.dart';
+
 import 'package:brunstadtv_app/helpers/ui/image.dart';
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 
 import '../graphql/queries/page.graphql.dart';
-import '../theme/bccm_colors.dart';
+import '../theme/design_system/design_system.dart';
+import '../theme/design_system/design_system.dart';
 import '../helpers/navigation/navigation_utils.dart';
 import '../helpers/utils.dart';
 import '../l10n/app_localizations.dart';
@@ -48,7 +49,7 @@ class _StudyTopicCardLargeState extends State<StudyTopicCardLarge> {
                   child: imageUrl == null ? const SizedBox.shrink() : simpleFadeInImage(url: imageUrl!),
                 ),
                 Container(
-                  color: BccmColors.separatorOnLight,
+                  color: DesignSystem.of(context).colors.separatorOnLight,
                   padding: const EdgeInsets.all(18).copyWith(top: 12),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.start,
@@ -57,7 +58,7 @@ class _StudyTopicCardLargeState extends State<StudyTopicCardLarge> {
                       Text(
                         widget.studyTopic.title,
                         textAlign: TextAlign.left,
-                        style: BccmTextStyles.title1,
+                        style: DesignSystem.of(context).textStyles.title1,
                       ),
                       if (widget.studyTopic.description.isNotEmpty)
                         Padding(
@@ -65,7 +66,7 @@ class _StudyTopicCardLargeState extends State<StudyTopicCardLarge> {
                           child: Text(
                             widget.studyTopic.description,
                             textAlign: TextAlign.left,
-                            style: BccmTextStyles.body2.copyWith(color: BccmColors.label2),
+                            style: DesignSystem.of(context).textStyles.body2.copyWith(color: DesignSystem.of(context).colors.label2),
                           ),
                         ),
                       Padding(
@@ -75,11 +76,11 @@ class _StudyTopicCardLargeState extends State<StudyTopicCardLarge> {
                       Container(
                         padding: const EdgeInsets.only(top: 10),
                         alignment: Alignment.centerRight,
-                        child: BtvButton.smallSecondary(
-                          onPressed: onCardTapped,
-                          labelText: widget.studyTopic.lessonsProgress.completed > 0 ? S.of(context).continueStudy : S.of(context).startStudy,
-                          image: Image.asset('assets/icons/Play.png'),
-                        ),
+                        child: DesignSystem.of(context).buttons.smallSecondary(
+                              onPressed: onCardTapped,
+                              labelText: widget.studyTopic.lessonsProgress.completed > 0 ? S.of(context).continueStudy : S.of(context).startStudy,
+                              image: Image.asset('assets/icons/Play.png'),
+                            ),
                       )
                     ],
                   ),
@@ -91,8 +92,9 @@ class _StudyTopicCardLargeState extends State<StudyTopicCardLarge> {
         if (navigationFuture != null)
           simpleFutureBuilder(
               future: navigationFuture!,
-              loading: () =>
-                  Positioned.fill(child: Container(color: BccmColors.background1.withOpacity(0.5), child: const Center(child: LoadingIndicator()))),
+              loading: () => Positioned.fill(
+                  child:
+                      Container(color: DesignSystem.of(context).colors.background1.withOpacity(0.5), child: const Center(child: LoadingIndicator()))),
               error: (e) => const SizedBox.shrink(),
               noData: () => const SizedBox.shrink(),
               ready: (d) => const SizedBox.shrink()),

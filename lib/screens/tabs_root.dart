@@ -19,7 +19,8 @@ import '../components/web/web_app_bar.dart';
 import '../models/scroll_screen.dart';
 import '../providers/analytics.dart';
 import '../providers/app_config.dart';
-import '../theme/bccm_colors.dart';
+import '../theme/design_system/design_system.dart';
+import '../theme/design_system/design_system.dart';
 
 class TabsRootScreen extends ConsumerStatefulWidget {
   static const route = '/';
@@ -148,7 +149,7 @@ class _TabsRootScreenState extends ConsumerState<TabsRootScreen> with AutoRouteA
             appBar: kIsWeb ? WebAppBar(tabsRouter: tabsRouter, onTabTap: (i) => onTabTap(context, i)) : null,
             body: Padding(padding: EdgeInsets.only(bottom: _shouldHideMiniPlayer(context) ? 0 : kMiniPlayerHeight), child: child),
             bottomSheet: Container(
-              color: BccmColors.background1, // Fix gap between prompts and miniPlayer due to antialiasing issue
+              color: DesignSystem.of(context).colors.background1, // Fix gap between prompts and miniPlayer due to antialiasing issue
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [

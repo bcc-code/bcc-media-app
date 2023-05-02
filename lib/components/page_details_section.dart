@@ -1,9 +1,9 @@
-import 'package:brunstadtv_app/theme/bccm_typography.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 import '../graphql/queries/page.graphql.dart';
-import '../theme/bccm_colors.dart';
+import '../theme/design_system/design_system.dart';
+import '../theme/design_system/design_system.dart';
 
 class PageDetailsSection extends StatelessWidget {
   final Fragment$Section$$PageDetailsSection data;
@@ -29,7 +29,7 @@ class PageDetailsSection extends StatelessWidget {
             ),
             child: Text(
               data.title!,
-              style: BccmTextStyles.headline1,
+              style: DesignSystem.of(context).textStyles.headline1,
             ),
           ),
         if (data.description?.isNotEmpty == true)
@@ -41,7 +41,7 @@ class PageDetailsSection extends StatelessWidget {
             ),
             child: Text(
               data.description!,
-              style: BccmTextStyles.body2.copyWith(color: BccmColors.label3),
+              style: DesignSystem.of(context).textStyles.body2.copyWith(color: DesignSystem.of(context).colors.label3),
             ),
           ),
       ],

@@ -2,9 +2,10 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 
-import '../theme/bccm_colors.dart';
+import '../theme/design_system/design_system.dart';
+import '../theme/design_system/design_system.dart';
 import '../theme/bccm_gradients.dart';
-import '../theme/bccm_typography.dart';
+
 import './study_progress.dart';
 
 class StudyProgressRow extends StatelessWidget {
@@ -31,7 +32,7 @@ class StudyProgressRow extends StatelessWidget {
           padding: const EdgeInsets.only(left: 6, right: 12),
           child: Text(
             '$completed/$total',
-            style: BccmTextStyles.caption1.copyWith(color: BccmColors.label1),
+            style: DesignSystem.of(context).textStyles.caption1.copyWith(color: DesignSystem.of(context).colors.label1),
           ),
         ),
         Expanded(
@@ -40,7 +41,7 @@ class StudyProgressRow extends StatelessWidget {
               Container(
                 height: 6,
                 decoration: BoxDecoration(
-                  color: BccmColors.separatorOnLight,
+                  color: DesignSystem.of(context).colors.separatorOnLight,
                   borderRadius: BorderRadius.circular(4),
                 ),
               ),

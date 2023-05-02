@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import '../../../graphql/queries/page.graphql.dart';
 
 import '../../../models/episode_thumbnail_data.dart';
-import '../../../theme/bccm_colors.dart';
-import '../../../theme/bccm_typography.dart';
+import '../../../theme/design_system/design_system.dart';
+
 import '../thumbnail/episode_thumbnail.dart';
 
 class ThumbnailSliderEpisode extends StatelessWidget {
@@ -56,7 +56,7 @@ class ThumbnailSliderEpisode extends StatelessWidget {
                           show.title.replaceAll(' ', '\u{000A0}'),
                           maxLines: 1,
                           overflow: TextOverflow.ellipsis,
-                          style: BccmTextStyles.caption2.copyWith(color: BccmColors.tint1),
+                          style: DesignSystem.of(context).textStyles.caption2.copyWith(color: DesignSystem.of(context).colors.tint1),
                         ),
                       ),
                     ),
@@ -72,7 +72,7 @@ class ThumbnailSliderEpisode extends StatelessWidget {
             sectionItem.title,
             maxLines: 2,
             overflow: TextOverflow.ellipsis,
-            style: BccmTextStyles.caption1.copyWith(color: BccmColors.label1),
+            style: DesignSystem.of(context).textStyles.caption1.copyWith(color: DesignSystem.of(context).colors.label1),
           )
         ],
       ),

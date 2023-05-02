@@ -7,9 +7,10 @@ import '../../../api/brunstadtv.dart';
 import '../../../graphql/queries/prompts.graphql.dart';
 import '../../../helpers/ui/btv_buttons.dart';
 import '../../../l10n/app_localizations.dart';
-import '../../../theme/bccm_colors.dart';
-import '../../../theme/bccm_typography.dart';
+import '../../../theme/design_system/design_system.dart';
+
 import '../../providers/surveys.dart';
+import '../../theme/design_system/design_system.dart';
 import '../loading_indicator.dart';
 import 'dialog_confirm_cancel.dart';
 import 'survey_form.dart';
@@ -52,9 +53,9 @@ class BottomSheetSurvey extends StatelessWidget {
         padding: MediaQuery.of(context).viewInsets,
         duration: const Duration(milliseconds: 200),
         child: Container(
-          decoration: const BoxDecoration(
-            color: BccmColors.background1,
-            borderRadius: BorderRadius.only(
+          decoration: BoxDecoration(
+            color: DesignSystem.of(context).colors.background1,
+            borderRadius: const BorderRadius.only(
               topLeft: Radius.circular(16),
               topRight: Radius.circular(16),
             ),
@@ -74,7 +75,7 @@ class BottomSheetSurvey extends StatelessWidget {
                       width: 40,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(100),
-                        color: BccmColors.label4,
+                        color: DesignSystem.of(context).colors.label4,
                       ),
                     ),
                   ),
@@ -84,7 +85,7 @@ class BottomSheetSurvey extends StatelessWidget {
                   child: Text(
                     prompt.survey.title,
                     textAlign: TextAlign.center,
-                    style: BccmTextStyles.title3,
+                    style: DesignSystem.of(context).textStyles.title3,
                   ),
                 ),
                 Flexible(
@@ -198,19 +199,19 @@ class _Success extends StatelessWidget {
             children: [
               Container(
                 margin: const EdgeInsets.only(bottom: 8),
-                child: Text(S.of(context).thankYou, style: BccmTextStyles.title2),
+                child: Text(S.of(context).thankYou, style: DesignSystem.of(context).textStyles.title2),
               ),
-              Text(S.of(context).sendSuccessDescription, style: BccmTextStyles.body1),
+              Text(S.of(context).sendSuccessDescription, style: DesignSystem.of(context).textStyles.body1),
             ],
           ),
         ),
         Container(
           margin: const EdgeInsets.only(top: 16),
           width: double.infinity,
-          child: BtvButton.largeSecondary(
-            labelText: S.of(context).close,
-            onPressed: onClose,
-          ),
+          child: DesignSystem.of(context).buttons.largeSecondary(
+                labelText: S.of(context).close,
+                onPressed: onClose,
+              ),
         )
       ],
     );
@@ -239,9 +240,9 @@ class _Failure extends StatelessWidget {
             children: [
               Container(
                 margin: const EdgeInsets.only(bottom: 8),
-                child: Text(S.of(context).sendFail, style: BccmTextStyles.title2),
+                child: Text(S.of(context).sendFail, style: DesignSystem.of(context).textStyles.title2),
               ),
-              Text(S.of(context).sendFailDescription, style: BccmTextStyles.body1, textAlign: TextAlign.center),
+              Text(S.of(context).sendFailDescription, style: DesignSystem.of(context).textStyles.body1, textAlign: TextAlign.center),
             ],
           ),
         ),
@@ -252,16 +253,16 @@ class _Failure extends StatelessWidget {
             children: [
               Container(
                 margin: const EdgeInsets.only(right: 16),
-                child: BtvButton.largeSecondary(
-                  labelText: S.of(context).cancel,
-                  onPressed: onCancel,
-                ),
+                child: DesignSystem.of(context).buttons.largeSecondary(
+                      labelText: S.of(context).cancel,
+                      onPressed: onCancel,
+                    ),
               ),
               Expanded(
-                child: BtvButton.large(
-                  labelText: S.of(context).tryAgainButton,
-                  onPressed: onTryAgain,
-                ),
+                child: DesignSystem.of(context).buttons.large(
+                      labelText: S.of(context).tryAgainButton,
+                      onPressed: onTryAgain,
+                    ),
               ),
             ],
           ),

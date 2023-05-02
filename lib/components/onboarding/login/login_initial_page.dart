@@ -2,12 +2,12 @@ import 'package:brunstadtv_app/components/onboarding/onboarding_page_wrapper.dar
 import 'package:brunstadtv_app/helpers/extensions.dart';
 import 'package:brunstadtv_app/helpers/ui/btv_buttons.dart';
 import 'package:brunstadtv_app/screens/onboarding/social_auth_buttons.dart';
-import 'package:brunstadtv_app/theme/bccm_colors.dart';
+import 'package:brunstadtv_app/theme/design_system/design_system.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 
 import '../../../l10n/app_localizations.dart';
-import '../../../theme/bccm_typography.dart';
+
 import '../email_text_field.dart';
 
 class LoginInitialPage extends HookWidget {
@@ -48,12 +48,12 @@ class LoginInitialPage extends HookWidget {
           child: AnimatedSwitcher(
             duration: const Duration(milliseconds: 300),
             reverseDuration: Duration.zero,
-            child: emailFocusNode.hasFocus ? null : Text(S.of(context).signUpTitle, style: BccmTextStyles.headline1),
+            child: emailFocusNode.hasFocus ? null : Text(S.of(context).signUpTitle, style: DesignSystem.of(context).textStyles.headline1),
           ),
         ),
         Text(
           S.of(context).signUpDescription,
-          style: BccmTextStyles.body1.copyWith(color: BccmColors.label3),
+          style: DesignSystem.of(context).textStyles.body1.copyWith(color: DesignSystem.of(context).colors.label3),
         ),
         const SizedBox(height: 48),
         Center(child: SocialAuthButtons()),
@@ -61,7 +61,7 @@ class LoginInitialPage extends HookWidget {
         Center(
           child: Text(
             'or'.toUpperCase(),
-            style: BccmTextStyles.overline.copyWith(color: BccmColors.label1),
+            style: DesignSystem.of(context).textStyles.overline.copyWith(color: DesignSystem.of(context).colors.label1),
           ),
         ),
         const SizedBox(height: 24),
@@ -69,7 +69,7 @@ class LoginInitialPage extends HookWidget {
           padding: const EdgeInsets.only(bottom: 10),
           child: Text(
             'Register with email address',
-            style: BccmTextStyles.caption1.copyWith(color: BccmColors.label2),
+            style: DesignSystem.of(context).textStyles.caption1.copyWith(color: DesignSystem.of(context).colors.label2),
           ),
         ),
         Form(
@@ -85,11 +85,11 @@ class LoginInitialPage extends HookWidget {
         Container(
           padding: const EdgeInsets.only(bottom: 16),
           width: double.infinity,
-          child: BtvButton.large(
-            disabled: emailTextController.value.text.isBlank || passwordTextController.value.text.isBlank,
-            onPressed: nextPage,
-            labelText: S.of(context).continueButton,
-          ),
+          child: DesignSystem.of(context).buttons.large(
+                disabled: emailTextController.value.text.isBlank || passwordTextController.value.text.isBlank,
+                onPressed: nextPage,
+                labelText: S.of(context).continueButton,
+              ),
         )
       ],
     );

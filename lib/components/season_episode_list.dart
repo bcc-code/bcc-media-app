@@ -1,7 +1,7 @@
 import 'package:brunstadtv_app/components/study_progress.dart';
 import 'package:brunstadtv_app/graphql/queries/episode.graphql.dart';
 import 'package:brunstadtv_app/graphql/queries/studies.graphql.dart';
-import 'package:brunstadtv_app/theme/bccm_typography.dart';
+
 import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:intl/intl.dart';
@@ -9,7 +9,8 @@ import 'package:intl/intl.dart';
 import '../env/env.dart';
 import '../helpers/date_time.dart';
 import '../helpers/ui/ui_utils.dart';
-import '../theme/bccm_colors.dart';
+import '../theme/design_system/design_system.dart';
+import '../theme/design_system/design_system.dart';
 import '../helpers/utils.dart';
 import '../l10n/app_localizations.dart';
 import 'bordered_image_container.dart';
@@ -36,7 +37,7 @@ class SeasonEpisodeList extends StatelessWidget {
             margin: const EdgeInsets.only(bottom: 8),
             child: Text(
               title!,
-              style: BccmTextStyles.title2,
+              style: DesignSystem.of(context).textStyles.title2,
             ),
           ),
         ...items.map(
@@ -81,8 +82,9 @@ class _Episode extends StatelessWidget {
         if (data.highlighted == true)
           Positioned.fill(
             child: Container(
-              decoration:
-                  BoxDecoration(border: const Border(left: BorderSide(color: BccmColors.tint2, width: 4)), color: BccmColors.tint2.withOpacity(0.1)),
+              decoration: BoxDecoration(
+                  border: Border(left: BorderSide(color: DesignSystem.of(context).colors.tint2, width: 4)),
+                  color: DesignSystem.of(context).colors.tint2.withOpacity(0.1)),
             ),
           ),
         Container(
@@ -145,7 +147,7 @@ class _Episode extends StatelessWidget {
                           margin: const EdgeInsets.only(bottom: 6),
                           child: Text(
                             data.episode.title,
-                            style: BccmTextStyles.caption1.copyWith(color: BccmColors.label1),
+                            style: DesignSystem.of(context).textStyles.caption1.copyWith(color: DesignSystem.of(context).colors.label1),
                           ),
                         ),
                       ),
@@ -158,16 +160,17 @@ class _Episode extends StatelessWidget {
                               height: 16,
                               padding: const EdgeInsets.only(right: 4, bottom: 2, left: 4),
                               decoration: BoxDecoration(
-                                color: BccmColors.background2,
+                                color: DesignSystem.of(context).colors.background2,
                                 border: Border.all(
                                   width: 1,
-                                  color: BccmColors.separatorOnLight,
+                                  color: DesignSystem.of(context).colors.separatorOnLight,
                                 ),
                                 borderRadius: const BorderRadius.all(Radius.circular(8)),
                               ),
                               child: Text(
                                 getFormattedAgeRating(data.episode.ageRating),
-                                style: BccmTextStyles.caption2.copyWith(color: BccmColors.onTint, height: 1.1),
+                                style:
+                                    DesignSystem.of(context).textStyles.caption2.copyWith(color: DesignSystem.of(context).colors.onTint, height: 1.1),
                               ),
                             ),
                           if (data.episode.locked && publishDateTime != null)
@@ -175,7 +178,7 @@ class _Episode extends StatelessWidget {
                               child: Text(
                                 S.of(context).availableFrom(DateFormat(DateFormat.YEAR_MONTH_DAY).format(publishDateTime)),
                                 overflow: TextOverflow.fade,
-                                style: BccmTextStyles.caption2.copyWith(color: BccmColors.label3),
+                                style: DesignSystem.of(context).textStyles.caption2.copyWith(color: DesignSystem.of(context).colors.label3),
                               ),
                             )
                         ],
@@ -193,9 +196,9 @@ class _Episode extends StatelessWidget {
                     child: Container(
                       width: 40,
                       height: 40,
-                      decoration: const BoxDecoration(
+                      decoration: BoxDecoration(
                         shape: BoxShape.circle,
-                        color: BccmColors.separatorOnLight,
+                        color: DesignSystem.of(context).colors.separatorOnLight,
                       ),
                       child: Padding(
                         padding: const EdgeInsets.all(4),

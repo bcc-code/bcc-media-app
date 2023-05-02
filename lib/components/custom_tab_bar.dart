@@ -7,8 +7,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../theme/bccm_colors.dart';
-import '../theme/bccm_typography.dart';
+import '../theme/design_system/design_system.dart';
+import '../theme/design_system/design_system.dart';
+
 import '../helpers/widget_keys.dart';
 import '../l10n/app_localizations.dart';
 
@@ -84,11 +85,11 @@ class _CustomTabBarState extends ConsumerState<CustomTabBar> {
 
     if (useMaterial) {
       return Container(
-        decoration: const BoxDecoration(border: Border(top: BorderSide(width: 1, color: BccmColors.separatorOnLight))),
+        decoration: BoxDecoration(border: Border(top: BorderSide(width: 1, color: DesignSystem.of(context).colors.separatorOnLight))),
         child: BottomNavigationBar(
           type: BottomNavigationBarType.fixed,
-          unselectedItemColor: BccmColors.label3,
-          unselectedLabelStyle: BccmTextStyles.caption3,
+          unselectedItemColor: DesignSystem.of(context).colors.label3,
+          unselectedLabelStyle: DesignSystem.of(context).textStyles.caption3,
           currentIndex: widget.tabsRouter.activeIndex,
           onTap: widget.onTabTap,
           items: items,
@@ -100,9 +101,9 @@ class _CustomTabBarState extends ConsumerState<CustomTabBar> {
       height: 50,
       currentIndex: widget.tabsRouter.activeIndex,
       onTap: widget.onTabTap,
-      inactiveColor: BccmColors.label3,
-      activeColor: BccmColors.tint1,
-      border: const Border(top: BorderSide(width: 1, color: BccmColors.separatorOnLight)),
+      inactiveColor: DesignSystem.of(context).colors.label3,
+      activeColor: DesignSystem.of(context).colors.tint1,
+      border: Border(top: BorderSide(width: 1, color: DesignSystem.of(context).colors.separatorOnLight)),
       items: items,
     );
   }

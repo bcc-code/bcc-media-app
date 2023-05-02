@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../components/feature_badge.dart';
 import '../../l10n/app_localizations.dart';
-import '../../theme/bccm_colors.dart';
+import '../../theme/design_system/design_system.dart';
 import '../episode_state.dart';
 
 // Parse color from hex string in the formats "aabbcc", "#aabbcc", "ffaabbcc", "#ffaabbcc"
@@ -33,17 +33,17 @@ Widget? getFeaturedTag({
   if (isLive && locked) {
     return FeatureBadge(
       label: S.of(context).liveNow,
-      color: BccmColors.tint2,
+      color: DesignSystem.of(context).colors.tint2,
     );
   } else if (isComingSoon(publishDate: publishDate, locked: locked)) {
     return FeatureBadge(
       label: S.of(context).comingSoon,
-      color: BccmColors.background2,
+      color: DesignSystem.of(context).colors.background2,
     );
   } else if (isNewEpisode(publishDate) && !watched) {
     return FeatureBadge(
       label: S.of(context).newEpisode,
-      color: BccmColors.tint2,
+      color: DesignSystem.of(context).colors.tint2,
     );
   }
   return null;

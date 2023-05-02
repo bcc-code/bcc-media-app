@@ -13,9 +13,8 @@ import '../../graphql/client.dart';
 import '../../graphql/queries/send_support_email.graphql.dart';
 import '../../helpers/ui/btv_buttons.dart';
 import '../../helpers/version.dart';
-import '../../theme/bccm_colors.dart';
-import '../../theme/bccm_input_decorations.dart';
-import '../../theme/bccm_typography.dart';
+import '../../theme/design_system/design_system.dart';
+
 import '../../helpers/constants.dart';
 import '../../l10n/app_localizations.dart';
 import '../../providers/auth_state/auth_state.dart';
@@ -79,10 +78,10 @@ class _ContactSupportState extends ConsumerState<ContactSupport> {
             ],
             rightActions: [
               if (isOnInputPage && content.isNotEmpty)
-                BtvButton.small(
-                  labelText: S.of(context).send,
-                  onPressed: onSend,
-                )
+                DesignSystem.of(context).buttons.small(
+                      labelText: S.of(context).send,
+                      onPressed: onSend,
+                    )
             ],
           ),
           body: SafeArea(
@@ -189,7 +188,7 @@ class _ContactSupportState extends ConsumerState<ContactSupport> {
           ),
           Text(
             S.of(context).sending,
-            style: BccmTextStyles.body1,
+            style: DesignSystem.of(context).textStyles.body1,
           ),
         ],
       ),
@@ -254,7 +253,7 @@ class _InputPageState extends State<_InputPage> {
         padding: const EdgeInsets.only(bottom: 32),
         child: Text(
           S.of(context).contactSupport,
-          style: BccmTextStyles.headline1,
+          style: DesignSystem.of(context).textStyles.headline1,
         ),
       ),
       Container(
@@ -263,15 +262,15 @@ class _InputPageState extends State<_InputPage> {
           minLines: 9,
           maxLines: 13,
           controller: textController,
-          decoration: BccmInputDecorations.textFormField.copyWith(hintText: S.of(context).concernTextPlaceholder),
-          style: BccmTextStyles.body1.copyWith(color: BccmColors.label1),
+          decoration: DesignSystem.of(context).inputDecorations.textFormField.copyWith(hintText: S.of(context).concernTextPlaceholder),
+          style: DesignSystem.of(context).textStyles.body1.copyWith(color: DesignSystem.of(context).colors.label1),
         ),
       ),
       Padding(
         padding: const EdgeInsets.only(top: 20, bottom: 10),
         child: Text(
           S.of(context).debugInfoExplanation,
-          style: BccmTextStyles.body2.copyWith(color: BccmColors.label1),
+          style: DesignSystem.of(context).textStyles.body2.copyWith(color: DesignSystem.of(context).colors.label1),
         ),
       ),
       widget.deviceInfo != null ? _DeviceInfoList(data: widget.deviceInfo!) : Text('${S.of(context).loading}...'),
@@ -304,7 +303,7 @@ class _DeviceInfoList extends StatelessWidget {
                       fit: FlexFit.tight,
                       child: Text(
                         item.title,
-                        style: BccmTextStyles.body2,
+                        style: DesignSystem.of(context).textStyles.body2,
                       ),
                     ),
                     Flexible(
@@ -312,15 +311,15 @@ class _DeviceInfoList extends StatelessWidget {
                       child: Text(
                         item.content ?? 'N/A',
                         textAlign: TextAlign.right,
-                        style: BccmTextStyles.body2.copyWith(color: BccmColors.label1),
+                        style: DesignSystem.of(context).textStyles.body2.copyWith(color: DesignSystem.of(context).colors.label1),
                       ),
                     ),
                   ],
                 ),
               ),
-              const Divider(
+              Divider(
                 height: 1,
-                color: BccmColors.separatorOnLight,
+                color: DesignSystem.of(context).colors.separatorOnLight,
               ),
             ],
           ),
@@ -342,21 +341,21 @@ class _SuccessPage extends StatelessWidget {
               Text(
                 S.of(context).thankYouSupportTitle,
                 textAlign: TextAlign.center,
-                style: BccmTextStyles.headline1,
+                style: DesignSystem.of(context).textStyles.headline1,
               ),
               const SizedBox(height: 12),
               Text(
                 S.of(context).thankYouSupportDescription,
                 textAlign: TextAlign.center,
-                style: BccmTextStyles.body1.copyWith(color: BccmColors.label3),
+                style: DesignSystem.of(context).textStyles.body1.copyWith(color: DesignSystem.of(context).colors.label3),
               ),
             ],
           ),
         ),
-        BtvButton.large(
-          labelText: S.of(context).done,
-          onPressed: context.router.pop,
-        ),
+        DesignSystem.of(context).buttons.large(
+              labelText: S.of(context).done,
+              onPressed: context.router.pop,
+            ),
       ],
     );
   }
@@ -379,21 +378,21 @@ class _FailurePage extends StatelessWidget {
               Text(
                 S.of(context).sendFail,
                 textAlign: TextAlign.center,
-                style: BccmTextStyles.headline1,
+                style: DesignSystem.of(context).textStyles.headline1,
               ),
               const SizedBox(height: 12),
               Text(
                 S.of(context).sendFailDescription,
                 textAlign: TextAlign.center,
-                style: BccmTextStyles.body1.copyWith(color: BccmColors.label3),
+                style: DesignSystem.of(context).textStyles.body1.copyWith(color: DesignSystem.of(context).colors.label3),
               ),
             ],
           ),
         ),
-        BtvButton.large(
-          onPressed: onTryAgain,
-          labelText: S.of(context).tryAgainButton,
-        ),
+        DesignSystem.of(context).buttons.large(
+              onPressed: onTryAgain,
+              labelText: S.of(context).tryAgainButton,
+            ),
       ],
     );
   }

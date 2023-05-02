@@ -13,10 +13,11 @@ import '../l10n/app_localizations.dart';
 import '../models/analytics/sections.dart';
 
 import '../graphql/queries/page.graphql.dart';
-import '../theme/bccm_colors.dart';
+import '../theme/design_system/design_system.dart';
+import '../theme/design_system/design_system.dart';
 import '../helpers/extensions.dart';
 import '../helpers/ui/btv_buttons.dart';
-import '../theme/bccm_typography.dart';
+
 import '../helpers/ui/image.dart';
 import '../helpers/ui/transparent_image.dart';
 import '../providers/todays_calendar_entries.dart';
@@ -164,8 +165,8 @@ class _FeaturedItem extends StatelessWidget {
                 begin: Alignment.topCenter,
                 end: Alignment.bottomCenter,
                 colors: [
-                  BccmColors.background1.withOpacity(0),
-                  BccmColors.background1,
+                  DesignSystem.of(context).colors.background1.withOpacity(0),
+                  DesignSystem.of(context).colors.background1,
                 ],
                 stops: const [0, 0.36],
               ),
@@ -179,7 +180,7 @@ class _FeaturedItem extends StatelessWidget {
                   child: Text(
                     sectionItem.title,
                     textAlign: TextAlign.center,
-                    style: BccmTextStyles.title1,
+                    style: DesignSystem.of(context).textStyles.title1,
                   ),
                 ),
                 Container(
@@ -189,24 +190,24 @@ class _FeaturedItem extends StatelessWidget {
                     maxLines: 2,
                     overflow: TextOverflow.ellipsis,
                     textAlign: TextAlign.center,
-                    style: BccmTextStyles.body2.copyWith(color: BccmColors.label2),
+                    style: DesignSystem.of(context).textStyles.body2.copyWith(color: DesignSystem.of(context).colors.label2),
                   ),
                 ),
                 isLive
-                    ? BtvButton.smallRed(
-                        image: Image.asset('assets/icons/Play.png'),
-                        labelText: S.of(context).liveNow,
-                        onPressed: () {
-                          handleSectionItemClick(context, sectionItem.item);
-                        },
-                      )
-                    : BtvButton.smallSecondary(
-                        image: Image.asset('assets/icons/Play.png'),
-                        labelText: S.of(context).watchNow,
-                        onPressed: () {
-                          handleSectionItemClick(context, sectionItem.item);
-                        },
-                      ),
+                    ? DesignSystem.of(context).buttons.smallRed(
+                          image: Image.asset('assets/icons/Play.png'),
+                          labelText: S.of(context).liveNow,
+                          onPressed: () {
+                            handleSectionItemClick(context, sectionItem.item);
+                          },
+                        )
+                    : DesignSystem.of(context).buttons.smallSecondary(
+                          image: Image.asset('assets/icons/Play.png'),
+                          labelText: S.of(context).watchNow,
+                          onPressed: () {
+                            handleSectionItemClick(context, sectionItem.item);
+                          },
+                        ),
               ],
             ),
           ),
@@ -229,16 +230,16 @@ class _GradientImage extends StatelessWidget {
         height: height,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(12),
-          color: BccmColors.background2,
+          color: DesignSystem.of(context).colors.background2,
         ),
         foregroundDecoration: BoxDecoration(
           gradient: LinearGradient(
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
             colors: [
-              BccmColors.background1.withOpacity(0.23),
+              DesignSystem.of(context).colors.background1.withOpacity(0.23),
               const Color.fromRGBO(26, 37, 53, 0),
-              BccmColors.background1,
+              DesignSystem.of(context).colors.background1,
             ],
             stops: const [0, 0.5, 1],
           ),

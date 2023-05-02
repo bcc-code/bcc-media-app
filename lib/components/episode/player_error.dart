@@ -1,8 +1,10 @@
 import 'package:brunstadtv_app/helpers/ui/btv_buttons.dart';
 import 'package:brunstadtv_app/helpers/ui/transparent_image.dart';
 import 'package:brunstadtv_app/l10n/app_localizations.dart';
-import 'package:brunstadtv_app/theme/bccm_typography.dart';
+
 import 'package:flutter/material.dart';
+
+import '../../theme/design_system/design_system.dart';
 
 class PlayerError extends StatelessWidget {
   const PlayerError({
@@ -51,19 +53,19 @@ class PlayerError extends StatelessWidget {
                     Text(
                       S.of(context).anErrorOccurred,
                       textAlign: TextAlign.center,
-                      style: BccmTextStyles.title3,
+                      style: DesignSystem.of(context).textStyles.title3,
                     ),
                     Text(
                       S.of(context).checkNetwork,
                       textAlign: TextAlign.center,
-                      style: BccmTextStyles.body2,
+                      style: DesignSystem.of(context).textStyles.body2,
                     ),
                     Padding(
                       padding: const EdgeInsets.only(top: 16),
-                      child: BtvButton.small(
-                        onPressed: onRetry,
-                        labelText: S.of(context).tryAgainButton,
-                      ),
+                      child: DesignSystem.of(context).buttons.small(
+                            onPressed: onRetry,
+                            labelText: S.of(context).tryAgainButton,
+                          ),
                     )
                   ],
                 ),

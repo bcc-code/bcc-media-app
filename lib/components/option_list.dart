@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 
-import '../theme/bccm_colors.dart';
-import '../theme/bccm_typography.dart';
+import '../theme/design_system/design_system.dart';
+import '../theme/design_system/design_system.dart';
+
 import '../l10n/app_localizations.dart';
 
 class OptionList extends StatelessWidget {
@@ -12,7 +13,7 @@ class OptionList extends StatelessWidget {
   final EdgeInsetsGeometry margin;
   final bool enableDivider;
   final bool showSelection;
-  final Color backgroundColor;
+  final Color? backgroundColor;
   final bool showNoneOption;
 
   const OptionList({
@@ -24,7 +25,7 @@ class OptionList extends StatelessWidget {
     this.showSelection = true,
     this.showNoneOption = false,
     this.margin = const EdgeInsets.only(top: 16, left: 16, right: 16),
-    this.backgroundColor = BccmColors.background2,
+    this.backgroundColor,
   });
 
   @override
@@ -38,7 +39,7 @@ class OptionList extends StatelessWidget {
 
     return DecoratedBox(
       decoration: BoxDecoration(
-        color: backgroundColor,
+        color: backgroundColor ?? DesignSystem.of(context).colors.background2,
         borderRadius: BorderRadius.circular(12),
       ),
       child: ScrollConfiguration(
@@ -90,9 +91,9 @@ class _OptionListOption extends HookWidget {
         child: Container(
           foregroundDecoration: BoxDecoration(
             color: option.disabled
-                ? BccmColors.background1.withAlpha(100)
+                ? DesignSystem.of(context).colors.background1.withAlpha(100)
                 : hovering.value
-                    ? null // BccmColors.onTint.withOpacity(0.05)
+                    ? null // DesignSystem.of(context).colors.onTint.withOpacity(0.05)
                     : null,
           ),
           child: GestureDetector(
@@ -118,14 +119,14 @@ class _OptionListOption extends HookWidget {
                       children: [
                         Text(
                           option.title,
-                          style: BccmTextStyles.title3,
+                          style: DesignSystem.of(context).textStyles.title3,
                         ),
                         (option.subTitle != null)
                             ? Container(
                                 margin: const EdgeInsets.only(top: 2),
                                 child: Text(
                                   option.subTitle as String,
-                                  style: BccmTextStyles.caption1.copyWith(color: const Color.fromRGBO(235, 235, 245, 0.6)),
+                                  style: DesignSystem.of(context).textStyles.caption1.copyWith(color: const Color.fromRGBO(235, 235, 245, 0.6)),
                                 ),
                               )
                             : const SizedBox.shrink(),

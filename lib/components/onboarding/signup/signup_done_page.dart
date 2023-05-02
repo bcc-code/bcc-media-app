@@ -7,7 +7,7 @@ import 'package:brunstadtv_app/helpers/ui/btv_buttons.dart';
 import 'package:brunstadtv_app/models/auth0/auth0_api.dart';
 import 'package:brunstadtv_app/router/router.gr.dart';
 import 'package:brunstadtv_app/screens/onboarding/signup.dart';
-import 'package:brunstadtv_app/theme/bccm_colors.dart';
+import 'package:brunstadtv_app/theme/design_system/design_system.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -15,7 +15,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import '../../../helpers/analytics_constants.dart';
 import '../../../l10n/app_localizations.dart';
 import '../../../providers/auth_state/auth_state.dart';
-import '../../../theme/bccm_typography.dart';
+
 import '../onboarding_page_wrapper.dart';
 
 class SignupDonePage extends HookConsumerWidget implements SignupScreenPage {
@@ -69,7 +69,7 @@ class SignupDonePage extends HookConsumerWidget implements SignupScreenPage {
                   Text(
                     'Creating your account',
                     textAlign: TextAlign.center,
-                    style: BccmTextStyles.body1.copyWith(color: BccmColors.label4),
+                    style: DesignSystem.of(context).textStyles.body1.copyWith(color: DesignSystem.of(context).colors.label4),
                   ),
                 ],
               ),
@@ -84,7 +84,7 @@ class SignupDonePage extends HookConsumerWidget implements SignupScreenPage {
         body: [
           Expanded(
             child: DefaultTextStyle(
-              style: BccmTextStyles.body1.copyWith(color: BccmColors.label3),
+              style: DesignSystem.of(context).textStyles.body1.copyWith(color: DesignSystem.of(context).colors.label3),
               textAlign: TextAlign.center,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -92,7 +92,7 @@ class SignupDonePage extends HookConsumerWidget implements SignupScreenPage {
                 children: [
                   Padding(
                     padding: const EdgeInsets.only(bottom: 8),
-                    child: Text('Account created', style: BccmTextStyles.headline1),
+                    child: Text('Account created', style: DesignSystem.of(context).textStyles.headline1),
                   ),
                   if (user == null)
                     Text('You can now log in to your account and explore a variety of edifying content.')
@@ -107,21 +107,21 @@ class SignupDonePage extends HookConsumerWidget implements SignupScreenPage {
           Container(
             padding: const EdgeInsets.only(bottom: 32),
             width: double.infinity,
-            child: BtvButton.large(
-              onPressed: () async {
-                if (user == null) {
-                  final success = await ref.read(authStateProvider.notifier).login();
-                  if (!success) return;
-                }
-                if (!isMounted()) return;
-                // because isMounted,
-                // ignore: use_build_context_synchronously
-                Navigator.pop(context);
-                // ignore: use_build_context_synchronously
-                context.router.replaceAll([const TabsRootScreenRoute()]);
-              },
-              labelText: user == null ? 'Log in' : S.of(context).exploreContent,
-            ),
+            child: DesignSystem.of(context).buttons.large(
+                  onPressed: () async {
+                    if (user == null) {
+                      final success = await ref.read(authStateProvider.notifier).login();
+                      if (!success) return;
+                    }
+                    if (!isMounted()) return;
+                    // because isMounted,
+                    // ignore: use_build_context_synchronously
+                    Navigator.pop(context);
+                    // ignore: use_build_context_synchronously
+                    context.router.replaceAll([const TabsRootScreenRoute()]);
+                  },
+                  labelText: user == null ? 'Log in' : S.of(context).exploreContent,
+                ),
           ),
         ],
       );

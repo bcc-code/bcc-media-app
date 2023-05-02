@@ -16,8 +16,8 @@ import 'package:intl/intl.dart';
 import '../../helpers/date_time.dart';
 import '../../helpers/episode_state.dart';
 import '../../helpers/insets.dart';
-import '../../theme/bccm_colors.dart';
-import '../../theme/bccm_typography.dart';
+import '../../theme/design_system/design_system.dart';
+
 import '../../helpers/constants.dart';
 import '../../l10n/app_localizations.dart';
 import '../../models/analytics/calendar_day_clicked.dart';
@@ -219,8 +219,8 @@ class _CalendarWidgetState extends ConsumerState<CalendarWidget> {
             startingDayOfWeek: StartingDayOfWeek.monday,
             daysOfWeekStyle: DaysOfWeekStyle(
               dowTextFormatter: (date, locale) => DateFormat.E(locale).format(date)[0], //only display one letter
-              weekdayStyle: BccmTextStyles.caption1,
-              weekendStyle: BccmTextStyles.caption1,
+              weekdayStyle: DesignSystem.of(context).textStyles.caption1,
+              weekendStyle: DesignSystem.of(context).textStyles.caption1,
             ),
             headerStyle: HeaderStyle(
               formatButtonVisible: false,
@@ -231,10 +231,10 @@ class _CalendarWidgetState extends ConsumerState<CalendarWidget> {
                       : '${S.of(context).calendarWeek} ${_getWeekNumber(date).toString()}'
                   : DateFormat.MMMM().format(date).toString(),
               headerMargin: EdgeInsets.zero,
-              titleTextStyle: BccmTextStyles.caption1,
-              leftChevronIcon: const Icon(Icons.arrow_back_ios_new_outlined, color: BccmColors.label4, size: 16),
+              titleTextStyle: DesignSystem.of(context).textStyles.caption1,
+              leftChevronIcon: Icon(Icons.arrow_back_ios_new_outlined, color: DesignSystem.of(context).colors.label4, size: 16),
               leftChevronMargin: const EdgeInsets.only(left: 0),
-              rightChevronIcon: const Icon(Icons.arrow_forward_ios_outlined, color: BccmColors.label4, size: 16),
+              rightChevronIcon: Icon(Icons.arrow_forward_ios_outlined, color: DesignSystem.of(context).colors.label4, size: 16),
               rightChevronMargin: const EdgeInsets.only(right: 0),
             ),
             availableGestures: AvailableGestures.horizontalSwipe,
@@ -242,16 +242,16 @@ class _CalendarWidgetState extends ConsumerState<CalendarWidget> {
             calendarStyle: CalendarStyle(
               tableBorder: TableBorder.symmetric(),
               canMarkersOverflow: true,
-              defaultTextStyle: BccmTextStyles.title3,
-              todayTextStyle: BccmTextStyles.title3.copyWith(color: BccmColors.tint2),
+              defaultTextStyle: DesignSystem.of(context).textStyles.title3,
+              todayTextStyle: DesignSystem.of(context).textStyles.title3.copyWith(color: DesignSystem.of(context).colors.tint2),
               todayDecoration: const BoxDecoration(
                 shape: BoxShape.circle,
               ),
-              weekendTextStyle: BccmTextStyles.title3,
+              weekendTextStyle: DesignSystem.of(context).textStyles.title3,
               outsideTextStyle: const TextStyle(fontFamily: 'Barlow', color: Colors.grey, fontSize: 17, fontWeight: FontWeight.w700),
               markerMargin: const EdgeInsets.only(top: 3),
-              markerDecoration: const BoxDecoration(
-                color: BccmColors.label4,
+              markerDecoration: BoxDecoration(
+                color: DesignSystem.of(context).colors.label4,
                 shape: BoxShape.circle,
               ),
               markerSize: 5.5,
@@ -294,14 +294,14 @@ class _CalendarWidgetState extends ConsumerState<CalendarWidget> {
                 return Stack(
                   children: [
                     getEventHighlightFor(day),
-                    CenterText(BccmColors.label1, day),
+                    CenterText(DesignSystem.of(context).colors.label1, day),
                   ],
                 );
               },
               todayBuilder: (context, day, focusedDay) => Stack(
                 children: [
                   getEventHighlightFor(day),
-                  CenterText(BccmColors.tint2, day),
+                  CenterText(DesignSystem.of(context).colors.tint2, day),
                 ],
               ),
               outsideBuilder: (context, day, focusedDay) {
@@ -311,7 +311,7 @@ class _CalendarWidgetState extends ConsumerState<CalendarWidget> {
                       child: SizedBox(
                         width: 30,
                         height: 30,
-                        child: CenterText(BccmColors.label1.withOpacity(0.5), day),
+                        child: CenterText(DesignSystem.of(context).colors.label1.withOpacity(0.5), day),
                       ),
                     ),
                     getEventHighlightFor(day),
@@ -327,7 +327,7 @@ class _CalendarWidgetState extends ConsumerState<CalendarWidget> {
                           width: 30,
                           height: 30,
                           decoration: BoxDecoration(
-                              color: BccmColors.label4.withOpacity(0.3),
+                              color: DesignSystem.of(context).colors.label4.withOpacity(0.3),
                               border: Border.all(
                                 color: Colors.white,
                                 width: 1.0,
@@ -348,7 +348,7 @@ class _CalendarWidgetState extends ConsumerState<CalendarWidget> {
                           width: 33,
                           height: 33,
                           decoration: BoxDecoration(
-                              color: BccmColors.label4.withOpacity(0.3),
+                              color: DesignSystem.of(context).colors.label4.withOpacity(0.3),
                               border: Border.all(
                                 color: Colors.white,
                                 width: 1.0,
@@ -357,7 +357,7 @@ class _CalendarWidgetState extends ConsumerState<CalendarWidget> {
                           child: Center(
                             child: Text(
                               '${day.day}',
-                              style: BccmTextStyles.title3.copyWith(color: BccmColors.tint2),
+                              style: DesignSystem.of(context).textStyles.title3.copyWith(color: DesignSystem.of(context).colors.tint2),
                             ),
                           ),
                         ),
@@ -369,8 +369,8 @@ class _CalendarWidgetState extends ConsumerState<CalendarWidget> {
             ),
           ),
         ),
-        const Divider(
-          color: BccmColors.separatorOnLight,
+        Divider(
+          color: DesignSystem.of(context).colors.separatorOnLight,
         ),
         Row(
           mainAxisAlignment: MainAxisAlignment.start,
@@ -382,7 +382,7 @@ class _CalendarWidgetState extends ConsumerState<CalendarWidget> {
                   final isToday = isSameDay(_selectedDay, DateTime.now());
                   return Text(
                     '${isToday ? S.of(context).today : DateFormat(DateFormat.WEEKDAY).format(_selectedDay!).capitalized}, ${DateFormat(DateFormat.MONTH_DAY).format(_selectedDay!)}',
-                    style: BccmTextStyles.title2,
+                    style: DesignSystem.of(context).textStyles.title2,
                   );
                 }),
               ),
@@ -416,7 +416,7 @@ class CenterText extends StatelessWidget {
     return Center(
       child: Text(
         '${day.day}',
-        style: BccmTextStyles.title3.copyWith(color: color),
+        style: DesignSystem.of(context).textStyles.title3.copyWith(color: color),
       ),
     );
   }
@@ -432,7 +432,7 @@ class HighLightOpen extends StatelessWidget {
     return Container(
       margin: const EdgeInsets.only(top: 10, bottom: 10, left: 6),
       decoration: BoxDecoration(
-          color: BccmColors.tint1.withOpacity(0.15),
+          color: DesignSystem.of(context).colors.tint1.withOpacity(0.15),
           borderRadius: const BorderRadius.only(
             bottomLeft: Radius.circular(40),
             topLeft: Radius.circular(40),
@@ -451,7 +451,7 @@ class HighLightClose extends StatelessWidget {
     return Container(
       margin: const EdgeInsets.only(top: 10, bottom: 10, right: 6),
       decoration: BoxDecoration(
-          color: BccmColors.tint1.withOpacity(0.15),
+          color: DesignSystem.of(context).colors.tint1.withOpacity(0.15),
           borderRadius: const BorderRadius.only(
             bottomRight: Radius.circular(40),
             topRight: Radius.circular(40),
@@ -470,7 +470,7 @@ class HighLightMiddle extends StatelessWidget {
     return Container(
       margin: const EdgeInsets.only(top: 10, bottom: 10),
       decoration: BoxDecoration(
-        color: BccmColors.tint1.withOpacity(0.15),
+        color: DesignSystem.of(context).colors.tint1.withOpacity(0.15),
       ),
     );
   }
@@ -485,7 +485,7 @@ class HighLightSingle extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       margin: const EdgeInsets.symmetric(horizontal: 6, vertical: 10),
-      decoration: BoxDecoration(color: BccmColors.tint1.withOpacity(0.15), borderRadius: BorderRadius.circular(40)),
+      decoration: BoxDecoration(color: DesignSystem.of(context).colors.tint1.withOpacity(0.15), borderRadius: BorderRadius.circular(40)),
     );
   }
 }
@@ -525,12 +525,12 @@ class _EntriesSlot extends StatelessWidget {
               child: Container(
                 padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 16),
                 decoration: BoxDecoration(
-                  color: isLiveNow(entry.start, entry.end) ? BccmColors.tint2.withOpacity(0.1) : null,
+                  color: isLiveNow(entry.start, entry.end) ? DesignSystem.of(context).colors.tint2.withOpacity(0.1) : null,
                 ),
                 foregroundDecoration: isLiveNow(entry.start, entry.end)
-                    ? const BoxDecoration(
+                    ? BoxDecoration(
                         border: Border(
-                          left: BorderSide(color: BccmColors.tint2, width: 4),
+                          left: BorderSide(color: DesignSystem.of(context).colors.tint2, width: 4),
                         ),
                       )
                     : null,
@@ -547,10 +547,10 @@ class _EntriesSlot extends StatelessWidget {
                               isLiveNow(entry.start, entry.end)
                                   ? S.of(context).now
                                   : DateFormat('HH:mm').format(DateTime.parse(entry.start).toLocal()),
-                              style: BccmTextStyles.title3,
+                              style: DesignSystem.of(context).textStyles.title3,
                             ),
                             const SizedBox(height: 4),
-                            Text(calculateDuration(entry.start, entry.end), style: BccmTextStyles.caption1),
+                            Text(calculateDuration(entry.start, entry.end), style: DesignSystem.of(context).textStyles.caption1),
                           ],
                         ),
                       ),
@@ -560,13 +560,16 @@ class _EntriesSlot extends StatelessWidget {
                           children: [
                             Text(
                               entry.title,
-                              style: BccmTextStyles.title3.copyWith(color: BccmColors.label1),
+                              style: DesignSystem.of(context).textStyles.title3.copyWith(color: DesignSystem.of(context).colors.label1),
                             ),
                             const SizedBox(height: 4),
                             Text(
                               entry.description,
                               overflow: TextOverflow.ellipsis,
-                              style: BccmTextStyles.caption1.copyWith(color: isLiveNow(entry.start, entry.end) ? BccmColors.tint2 : BccmColors.tint1),
+                              style: DesignSystem.of(context).textStyles.caption1.copyWith(
+                                  color: isLiveNow(entry.start, entry.end)
+                                      ? DesignSystem.of(context).colors.tint2
+                                      : DesignSystem.of(context).colors.tint1),
                             ),
                           ],
                         ),
@@ -586,7 +589,7 @@ class _EntriesSlot extends StatelessWidget {
               children: [
                 Text(
                   S.of(context).noPlannedEvents,
-                  style: BccmTextStyles.title3,
+                  style: DesignSystem.of(context).textStyles.title3,
                 )
               ],
             ),
@@ -610,7 +613,7 @@ class TvGuideTime extends StatelessWidget {
           Expanded(
             child: Text(
               S.of(context).timezoneInformation(DateTime.now().timeZoneName),
-              style: BccmTextStyles.caption1,
+              style: DesignSystem.of(context).textStyles.caption1,
             ),
           ),
         ],

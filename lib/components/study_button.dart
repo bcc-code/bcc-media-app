@@ -6,8 +6,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_svg/svg.dart';
 
-import '../theme/bccm_colors.dart';
-import '../theme/bccm_typography.dart';
+import '../theme/design_system/design_system.dart';
+import '../theme/design_system/design_system.dart';
+
 import '../../helpers/ui/svg_icons.dart';
 import '../l10n/app_localizations.dart';
 import './pulse_animation.dart';
@@ -70,11 +71,11 @@ class StudyMoreButton extends HookWidget {
               padding: const EdgeInsets.all(12),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(12),
-                color: BccmColors.tint1.withAlpha((255 * 0.1).round()),
+                color: DesignSystem.of(context).colors.tint1.withAlpha((255 * 0.1).round()),
               ),
               foregroundDecoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(12),
-                border: Border.all(color: BccmColors.separatorOnLight, width: 1),
+                border: Border.all(color: DesignSystem.of(context).colors.separatorOnLight, width: 1),
               ),
               child: Row(
                 mainAxisSize: MainAxisSize.min,
@@ -99,14 +100,14 @@ class StudyMoreButton extends HookWidget {
                       children: [
                         Text(
                           title(lesson, context),
-                          style: BccmTextStyles.title3,
+                          style: DesignSystem.of(context).textStyles.title3,
                         ),
                         Padding(
                           padding: const EdgeInsets.only(top: 2),
                           child: Text(
                             secondaryTitle(lesson, context),
                             overflow: TextOverflow.fade,
-                            style: BccmTextStyles.caption1.copyWith(color: BccmColors.label3),
+                            style: DesignSystem.of(context).textStyles.caption1.copyWith(color: DesignSystem.of(context).colors.label3),
                           ),
                         ),
                       ],
@@ -123,7 +124,7 @@ class StudyMoreButton extends HookWidget {
                             borderRadius: BorderRadius.circular(45),
                           ),
                           foregroundDecoration: BoxDecoration(
-                            border: Border.all(color: BccmColors.separatorOnLight, width: 1),
+                            border: Border.all(color: DesignSystem.of(context).colors.separatorOnLight, width: 1),
                             borderRadius: BorderRadius.circular(45),
                           ),
                           width: 38,
@@ -180,11 +181,11 @@ class _LoadingWidget extends StatelessWidget {
       padding: const EdgeInsets.all(24),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(12),
-        color: BccmColors.tint1.withAlpha((255 * 0.1).round()),
+        color: DesignSystem.of(context).colors.tint1.withAlpha((255 * 0.1).round()),
       ),
       foregroundDecoration: BoxDecoration(
         borderRadius: BorderRadius.circular(12),
-        border: Border.all(color: BccmColors.separatorOnLight, width: 1),
+        border: Border.all(color: DesignSystem.of(context).colors.separatorOnLight, width: 1),
       ),
       child: const Center(child: LoadingIndicator()),
     );

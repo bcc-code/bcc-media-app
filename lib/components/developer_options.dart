@@ -9,8 +9,9 @@ import 'package:restart_app/restart_app.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../providers/notification_service.dart';
-import '../theme/bccm_typography.dart';
+
 import '../helpers/constants.dart';
+import '../theme/design_system/design_system.dart';
 import 'option_list.dart';
 
 class DeveloperOptions extends ConsumerWidget {
@@ -24,9 +25,9 @@ class DeveloperOptions extends ConsumerWidget {
       context: context,
       builder: (context) {
         return SimpleDialog(
-          title: const Text(
+          title: Text(
             'Choose environment override',
-            style: BccmTextStyles.title3,
+            style: DesignSystem.of(context).textStyles.title3,
           ),
           children: [EnvironmentOverride.none, EnvironmentOverride.dev, EnvironmentOverride.sta, EnvironmentOverride.prod]
               .map((env) => SimpleDialogOption(
@@ -39,7 +40,7 @@ class DeveloperOptions extends ConsumerWidget {
                         ? Text(env)
                         : Text(
                             env,
-                            style: BccmTextStyles.body1.copyWith(fontWeight: FontWeight.bold),
+                            style: DesignSystem.of(context).textStyles.body1.copyWith(fontWeight: FontWeight.bold),
                           ),
                   ))
               .toList(),
@@ -58,9 +59,9 @@ class DeveloperOptions extends ConsumerWidget {
       builder: (context) {
         return Consumer(builder: (context, ref, child) {
           return SimpleDialog(
-            title: const Text(
+            title: Text(
               'Technical details',
-              style: BccmTextStyles.title3,
+              style: DesignSystem.of(context).textStyles.title3,
             ),
             children: [
               SelectionArea(

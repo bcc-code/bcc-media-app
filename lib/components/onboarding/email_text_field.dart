@@ -1,11 +1,9 @@
 import 'package:brunstadtv_app/helpers/ui/svg_icons.dart';
-import 'package:brunstadtv_app/theme/bccm_colors.dart';
+import 'package:brunstadtv_app/theme/design_system/design_system.dart';
 import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_svg/svg.dart';
-
-import '../../theme/bccm_typography.dart';
 
 class EmailTextField extends HookWidget {
   const EmailTextField({
@@ -35,15 +33,15 @@ class EmailTextField extends HookWidget {
         return null;
       },
       autovalidateMode: AutovalidateMode.disabled,
-      style: BccmTextStyles.body2.copyWith(color: BccmColors.label1),
-      cursorColor: BccmColors.tint1,
+      style: DesignSystem.of(context).textStyles.body2.copyWith(color: DesignSystem.of(context).colors.label1),
+      cursorColor: DesignSystem.of(context).colors.tint1,
       cursorWidth: 1,
       onEditingComplete: onEditingComplete,
       decoration: InputDecoration(
         filled: true,
         isDense: true,
         hintText: 'Email address',
-        fillColor: BccmColors.background2,
+        fillColor: DesignSystem.of(context).colors.background2,
         border: OutlineInputBorder(borderRadius: BorderRadius.circular(6), borderSide: BorderSide.none),
         contentPadding: const EdgeInsets.all(12),
         suffixIconConstraints: const BoxConstraints(minHeight: 24, minWidth: 24),
@@ -55,18 +53,18 @@ class EmailTextField extends HookWidget {
                   padding: const EdgeInsets.only(right: 12),
                   child: SvgPicture.string(
                     SvgIcons.clearXIcon,
-                    theme: const SvgTheme(currentColor: BccmColors.label3),
+                    theme: SvgTheme(currentColor: DesignSystem.of(context).colors.label3),
                   ),
                 ),
               ),
         focusedBorder: OutlineInputBorder(
-          borderSide: const BorderSide(color: BccmColors.tint1, width: 1),
+          borderSide: BorderSide(color: DesignSystem.of(context).colors.tint1, width: 1),
           borderRadius: BorderRadius.circular(6),
         ),
-        hintStyle: BccmTextStyles.body2.copyWith(
-          color: BccmColors.label4,
-          height: 1.45,
-        ),
+        hintStyle: DesignSystem.of(context).textStyles.body2.copyWith(
+              color: DesignSystem.of(context).colors.label4,
+              height: 1.45,
+            ),
       ),
     );
   }

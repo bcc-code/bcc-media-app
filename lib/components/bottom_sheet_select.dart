@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 
-import '../theme/bccm_colors.dart';
-import '../theme/bccm_typography.dart';
+import '../theme/design_system/design_system.dart';
+import '../theme/design_system/design_system.dart';
+
 import '../l10n/app_localizations.dart';
 import 'option_list.dart';
 import '../helpers/insets.dart';
@@ -47,7 +48,7 @@ class _BottomSheetSelectState extends State<BottomSheetSelect> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: BccmColors.background1,
+      color: DesignSystem.of(context).colors.background1,
       child: SafeArea(
         child: Padding(
           padding: screenInsets(context) + const EdgeInsets.only(left: 16, right: 16, top: 8, bottom: 32),
@@ -62,7 +63,7 @@ class _BottomSheetSelectState extends State<BottomSheetSelect> {
                   width: 40,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(100),
-                    color: BccmColors.label4,
+                    color: DesignSystem.of(context).colors.label4,
                   ),
                 ),
               ),
@@ -71,7 +72,7 @@ class _BottomSheetSelectState extends State<BottomSheetSelect> {
                 child: Text(
                   widget.title,
                   textAlign: TextAlign.center,
-                  style: BccmTextStyles.title3,
+                  style: DesignSystem.of(context).textStyles.title3,
                 ),
               ),
               if (widget.description != null) widget.description!,
@@ -99,16 +100,16 @@ class _BottomSheetSelectState extends State<BottomSheetSelect> {
                 height: 52.1,
                 child: TextButton(
                   style: TextButton.styleFrom(
-                    backgroundColor: BccmColors.separatorOnLight,
+                    backgroundColor: DesignSystem.of(context).colors.separatorOnLight,
                     shape: const RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(100))),
-                    side: const BorderSide(width: 1, color: BccmColors.separatorOnLight),
+                    side: BorderSide(width: 1, color: DesignSystem.of(context).colors.separatorOnLight),
                   ),
                   onPressed: () {
                     Navigator.pop(context, BottomSheetSelectResult(cancelled: true));
                   },
                   child: Text(
                     S.of(context).cancel,
-                    style: BccmTextStyles.button1.copyWith(color: BccmColors.label1),
+                    style: DesignSystem.of(context).textStyles.button1.copyWith(color: DesignSystem.of(context).colors.label1),
                   ),
                 ),
               ),

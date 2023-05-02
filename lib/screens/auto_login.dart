@@ -10,8 +10,9 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../components/loading_indicator.dart';
 import '../models/events/app_ready.dart';
-import '../theme/bccm_colors.dart';
-import '../theme/bccm_typography.dart';
+import '../theme/design_system/design_system.dart';
+import '../theme/design_system/design_system.dart';
+
 import '../helpers/navigation/navigation_utils.dart';
 import '../helpers/utils.dart';
 import '../l10n/app_localizations.dart';
@@ -101,7 +102,7 @@ class _AutoLoginScreeenState extends ConsumerState<AutoLoginScreen> {
                           width: 56,
                           child: Text(
                             S.of(context).logOutButton,
-                            style: BccmTextStyles.button2,
+                            style: DesignSystem.of(context).textStyles.button2,
                           ),
                         ),
                       ),
@@ -113,13 +114,13 @@ class _AutoLoginScreeenState extends ConsumerState<AutoLoginScreen> {
                       child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
                         Text(
                           S.of(context).anErrorOccurred,
-                          style: BccmTextStyles.headline1,
+                          style: DesignSystem.of(context).textStyles.headline1,
                           textAlign: TextAlign.center,
                         ),
                         const SizedBox(height: 12),
                         Text(
                           S.of(context).loginFailedCheckNetwork,
-                          style: BccmTextStyles.body1.copyWith(color: BccmColors.label3),
+                          style: DesignSystem.of(context).textStyles.body1.copyWith(color: DesignSystem.of(context).colors.label3),
                           textAlign: TextAlign.center,
                         ),
                       ]),
@@ -129,7 +130,7 @@ class _AutoLoginScreeenState extends ConsumerState<AutoLoginScreen> {
                       padding: const EdgeInsets.only(bottom: 16),
                       child: ElevatedButton(
                         style: ElevatedButton.styleFrom(
-                          shadowColor: BccmColors.tint1,
+                          shadowColor: DesignSystem.of(context).colors.tint1,
                           shape: const RoundedRectangleBorder(
                             side: BorderSide.none,
                             borderRadius: BorderRadius.all(Radius.circular(24)),
@@ -142,7 +143,7 @@ class _AutoLoginScreeenState extends ConsumerState<AutoLoginScreen> {
                         }),
                         child: Text(
                           S.of(context).tryAgainButton,
-                          style: BccmTextStyles.button1.copyWith(color: BccmColors.onTint),
+                          style: DesignSystem.of(context).textStyles.button1.copyWith(color: DesignSystem.of(context).colors.onTint),
                         ),
                       ),
                     ),
@@ -161,7 +162,7 @@ class _AutoLoginScreeenState extends ConsumerState<AutoLoginScreen> {
             children: [
               const LoadingIndicator(),
               const SizedBox(height: 12),
-              Text(S.of(context).loading, style: BccmTextStyles.body2),
+              Text(S.of(context).loading, style: DesignSystem.of(context).textStyles.body2),
             ],
           ),
         ),

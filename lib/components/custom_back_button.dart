@@ -6,10 +6,10 @@ import 'package:brunstadtv_app/screens/search/search.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
-import '../theme/bccm_typography.dart';
 import '../helpers/widget_keys.dart';
 import '../l10n/app_localizations.dart';
 import '../screens/page.dart';
+import '../theme/design_system/design_system.dart';
 
 String? getLocalizedRouteName(S localizations, Type route) {
   switch (route) {
@@ -69,7 +69,7 @@ class CustomBackButton extends StatelessWidget {
                       pageTitle,
                       semanticsLabel: S.of(context).back,
                       overflow: TextOverflow.ellipsis,
-                      style: BccmTextStyles.button2.copyWith(height: 1),
+                      style: DesignSystem.of(context).textStyles.button2.copyWith(height: 1),
                     ),
                   ),
                 ),
