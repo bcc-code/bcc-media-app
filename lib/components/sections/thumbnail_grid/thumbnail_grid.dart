@@ -6,6 +6,7 @@ import '../../../graphql/queries/page.graphql.dart';
 import '../../../graphql/schema/pages.graphql.dart';
 import '../../../helpers/extensions.dart';
 import '../../../models/analytics/sections.dart';
+import '../../../models/episode_thumbnail_data.dart';
 import '../../../providers/todays_calendar_entries.dart';
 import '../../grid_row.dart';
 import '../../section_item_click_wrapper.dart';
@@ -37,12 +38,29 @@ class ThumbnailGrid extends ConsumerWidget {
     }
   }
 
+  EpisodeThumbnailData? getEpisodeThumbnailData(Fragment$GridSectionItem item) {
+    final episode = item.item.asOrNull<Fragment$GridSectionItem$item$$Episode>();
+    if (episode == null) {
+      return null;
+    }
+    return EpisodeThumbnailData(
+      title: item.title,
+      duration: episode.duration,
+      image: item.image,
+      locked: episode.locked,
+      progress: episode.progress,
+      publishDate: episode.publishDate,
+      number: episode.number,
+      showTitle: episode.season?.$show.title,
+      seasonNumber: episode.season?.number,
+    );
+  }
+
   Widget getItemWidget(Fragment$GridSectionItem sectionItem, Fragment$CalendarEntryEpisode? curLiveEpisode) {
-    var episode = sectionItem.item.asOrNull<Fragment$GridSectionItem$item$$Episode>();
-    if (episode != null) {
+    final episodeThumbnailData = getEpisodeThumbnailData(sectionItem);
+    if (episodeThumbnailData != null) {
       return ThumbnailGridEpisode(
-        sectionItem: sectionItem,
-        episode: episode,
+        episode: getEpisodeThumbnailData(sectionItem)!,
         showSecondaryTitle: showSecondaryTitle,
         aspectRatio: aspectRatio,
         isLive: sectionItem.id == curLiveEpisode?.id,

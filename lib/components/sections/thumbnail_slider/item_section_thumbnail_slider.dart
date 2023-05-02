@@ -6,6 +6,7 @@ import '../../../graphql/schema/pages.graphql.dart';
 import '../../../graphql/queries/calendar_episode_entries.graphql.dart';
 import '../../../graphql/queries/page.graphql.dart';
 
+import '../../../models/episode_thumbnail_data.dart';
 import '../../../providers/todays_calendar_entries.dart';
 import '../../../helpers/extensions.dart';
 import '../../../models/analytics/sections.dart';
@@ -86,6 +87,21 @@ class ItemSectionThumbnailSlider extends ConsumerWidget {
     );
   }
 
+  EpisodeThumbnailData? getEpisodeThumbnailData(Fragment$ItemSectionItem item) {
+    final episode = item.item.asOrNull<Fragment$ItemSectionItem$item$$Episode>();
+    if (episode == null) {
+      return null;
+    }
+    return EpisodeThumbnailData(
+      title: item.title,
+      duration: episode.duration,
+      image: item.image,
+      locked: episode.locked,
+      progress: episode.progress,
+      publishDate: episode.publishDate,
+    );
+  }
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     Fragment$CalendarEntryEpisode? curLiveEpisode = ref.watch(currentLiveEpisodeProvider)?.episode;
@@ -101,16 +117,15 @@ class ItemSectionThumbnailSlider extends ConsumerWidget {
       itemCount: items.length,
       itemBuilder: (BuildContext context, int index) {
         final item = items[index];
-        final episodeItem = item.item.asOrNull<Fragment$ItemSectionItem$item$$Episode>();
+        final episodeThumbnailData = getEpisodeThumbnailData(item);
         final showItem = item.item.asOrNull<Fragment$ItemSectionItem$item$$Show>();
         Widget? sectionItemWidget;
-        if (episodeItem != null) {
+        if (episodeThumbnailData != null) {
           sectionItemWidget = ThumbnailSliderEpisode(
-            sectionItem: item,
-            episode: episodeItem,
+            episode: episodeThumbnailData,
             imageSize: sliderSize.imageSize,
             showSecondaryTitle: data.metadata?.secondaryTitles ?? true,
-            isLive: episodeItem.id == curLiveEpisode?.id,
+            isLive: item.id == curLiveEpisode?.id,
           );
         } else if (showItem != null) {
           sectionItemWidget = ThumbnailSliderShow(

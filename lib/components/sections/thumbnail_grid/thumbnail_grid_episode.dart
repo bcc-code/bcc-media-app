@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../../../graphql/queries/page.graphql.dart';
 import '../../../l10n/app_localizations.dart';
 import '../../../models/episode_thumbnail_data.dart';
 import '../../../theme/bccm_colors.dart';
@@ -8,15 +7,13 @@ import '../../../theme/bccm_typography.dart';
 import '../thumbnail/episode_thumbnail.dart';
 
 class ThumbnailGridEpisode extends StatelessWidget {
-  final Fragment$GridSectionItem sectionItem;
-  final Fragment$GridSectionItem$item$$Episode episode;
+  final EpisodeThumbnailData episode;
   final double aspectRatio;
   final bool showSecondaryTitle;
   final bool isLive;
 
   const ThumbnailGridEpisode({
     super.key,
-    required this.sectionItem,
     required this.episode,
     required this.showSecondaryTitle,
     this.isLive = false,
@@ -31,13 +28,7 @@ class ThumbnailGridEpisode extends StatelessWidget {
         Container(
           margin: const EdgeInsets.only(bottom: 4),
           child: EpisodeThumbnail.withWidth(
-            episode: EpisodeThumbnailData(
-              image: sectionItem.image,
-              duration: episode.duration,
-              locked: episode.locked,
-              progress: episode.progress,
-              publishDate: episode.publishDate,
-            ),
+            episode: episode,
             imageWidth: double.infinity,
             aspectRatio: aspectRatio,
           ),
@@ -45,21 +36,21 @@ class ThumbnailGridEpisode extends StatelessWidget {
         if (showSecondaryTitle)
           Row(
             children: [
-              if (episode.season != null)
+              if (episode.showTitle != null)
                 Flexible(
                   child: Container(
                     margin: const EdgeInsets.only(right: 4),
                     child: Text(
-                      episode.season!.$show.title.replaceAll(' ', '\u{000A0}'),
+                      episode.showTitle!.replaceAll(' ', '\u{000A0}'),
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
                       style: BccmTextStyles.caption2.copyWith(color: BccmColors.tint1),
                     ),
                   ),
                 ),
-              if (episode.season != null)
+              if (episode.seasonNumber != null && episode.number != null)
                 Text(
-                  '${S.of(context).seasonLetter}${episode.season!.number}:${S.of(context).episodeLetter}${episode.number}',
+                  '${S.of(context).seasonLetter}${episode.seasonNumber}:${S.of(context).episodeLetter}${episode.number}',
                   style: BccmTextStyles.caption2,
                 ),
             ],
@@ -67,7 +58,7 @@ class ThumbnailGridEpisode extends StatelessWidget {
         Container(
           margin: const EdgeInsets.only(bottom: 2),
           child: Text(
-            sectionItem.title,
+            episode.title,
             maxLines: 2,
             overflow: TextOverflow.ellipsis,
             style: BccmTextStyles.caption1.copyWith(color: BccmColors.label1),

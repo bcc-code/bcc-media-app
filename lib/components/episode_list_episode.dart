@@ -50,6 +50,7 @@ class EpisodeListEpisode extends ConsumerWidget {
             margin: const EdgeInsets.only(right: 16),
             child: EpisodeThumbnail.withWidth(
               episode: EpisodeThumbnailData(
+                title: title,
                 progress: progress,
                 duration: duration,
                 locked: locked,
