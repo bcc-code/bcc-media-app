@@ -1,5 +1,4 @@
 import 'package:brunstadtv_app/components/feature_badge.dart';
-import 'package:brunstadtv_app/graphql/client.dart';
 import 'package:brunstadtv_app/graphql/queries/episode.graphql.dart';
 import 'package:brunstadtv_app/helpers/ui/svg_icons.dart';
 import 'package:brunstadtv_app/helpers/utils.dart';
@@ -27,7 +26,12 @@ class EpisodeInfo extends HookConsumerWidget {
     const showEpisodeNumber = false;
     final episodeNumberFormatted = '${S.of(context).seasonLetter}${episode.season?.number}:${S.of(context).episodeLetter}${episode.number}';
 
-    final inMyList = useState(false);
+    final inMyList = useState(episode.inMyList);
+
+    useEffect(() {
+      inMyList.value = episode.inMyList;
+      return null;
+    }, [episode.id]);
 
     return Container(
       color: BccmColors.background2,
@@ -48,7 +52,7 @@ class EpisodeInfo extends HookConsumerWidget {
                     children: [
                       Expanded(child: Text(key: WidgetKeys.episodePageEpisodeTitle, episode.title, style: BccmTextStyles.title1)),
                       GestureDetector(
-                        onTap: () => inMyList.value = !inMyList.value, //toggleAddToMyList(inMyList),
+                        onTap: () => toggleInMyList(ref, inMyList),
                         behavior: HitTestBehavior.opaque,
                         child: FocusableActionDetector(
                           mouseCursor: MaterialStateMouseCursor.clickable,
@@ -110,5 +114,15 @@ class EpisodeInfo extends HookConsumerWidget {
         ),
       ),
     );
+  }
+
+  toggleInMyList(WidgetRef ref, ValueNotifier inMyList) {
+    final api = ref.read(apiProvider);
+    if (inMyList.value) {
+      api.removeEntryFromMyList(episode.uuid);
+    } else {
+      api.addEpisodeToMyList(episode.id);
+    }
+    inMyList.value = !inMyList.value;
   }
 }
