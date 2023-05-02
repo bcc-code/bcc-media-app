@@ -1,6 +1,7 @@
 query FetchEpisode($id: ID!) {
   episode(id: $id) {
     id
+    uuid
     title
     number
     description
@@ -46,6 +47,7 @@ query FetchEpisode($id: ID!) {
         }
       }
     }
+    inMyList
   }
 }
 
