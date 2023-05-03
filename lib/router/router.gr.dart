@@ -371,6 +371,7 @@ class AppRouter extends _i25.RootStackRouter {
       return _i25.MaterialPageX<void>(
         routeData: routeData,
         child: const _i24.MyListScreen(),
+        maintainState: false,
       );
     },
     Home.name: (routeData) {

@@ -13,7 +13,6 @@ import '../../components/sections/thumbnail_grid/thumbnail_grid_episode.dart';
 import '../../graphql/queries/my_list.graphql.dart';
 import '../../helpers/ui/btv_buttons.dart';
 import '../../helpers/ui/svg_icons.dart';
-import '../../helpers/utils.dart';
 import '../../models/episode_thumbnail_data.dart';
 import '../../router/router.gr.dart';
 import '../../theme/bccm_colors.dart';
@@ -24,30 +23,38 @@ class MyListScreen extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final showAppBar = useState(false);
+
     final myListFuture = useState(ref.read(apiProvider).getMyList());
+
+    useEffect(() {
+      showAppBar.value = false;
+      myListFuture.value.then((myList) => showAppBar.value = myList.entries.items.isNotEmpty);
+      return null;
+    }, [myListFuture.value]);
 
     onRefresh() => myListFuture.value = ref.read(apiProvider).getMyList();
 
     return Scaffold(
-      appBar: AppBar(title: const Text('My list')),
-      body: simpleFutureBuilder(
+      appBar: showAppBar.value ? AppBar(title: Text(S.of(context).myList)) : null,
+      body: FutureBuilder(
         future: myListFuture.value,
-        loading: () {
-          return const Center(child: LoadingGeneric());
-        },
-        ready: (Query$MyList$myList myList) {
-          if (myList.entries.items.isEmpty) {
-            return const _MyListEmptyInfo();
+        builder: (context, AsyncSnapshot<Query$MyList$myList> snapshot) {
+          Widget child = const SizedBox.shrink();
+          if (snapshot.connectionState != ConnectionState.done) {
+            child = const Center(child: LoadingGeneric());
+          } else if (snapshot.hasError || snapshot.data == null) {
+            print(snapshot.error);
+            child = ErrorGeneric(onRetry: onRefresh);
+          } else if (snapshot.data!.entries.items.isEmpty) {
+            child = const _MyListEmptyInfo();
           } else {
-            return RefreshIndicator(
+            child = RefreshIndicator(
               onRefresh: onRefresh,
-              child: MyListGrid(items: myList.entries.items),
+              child: MyListGrid(items: snapshot.data!.entries.items),
             );
           }
-        },
-        error: (error) {
-          print(error);
-          return ErrorGeneric(onRetry: onRefresh);
+          return AnimatedSwitcher(duration: const Duration(milliseconds: 250), child: child);
         },
       ),
     );

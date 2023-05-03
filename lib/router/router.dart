@@ -234,6 +234,7 @@ Route<T> profileRouteBuilder<T>(BuildContext context, Widget child, CustomPage<T
             MaterialRoute<void>(
               page: MyListScreen,
               path: '',
+              maintainState: false,
               meta: {RouteMetaConstants.navTabRoute: true},
             ),
             _episodeScreenRoute,
