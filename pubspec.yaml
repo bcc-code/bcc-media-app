@@ -128,7 +128,6 @@ dev_dependencies:
   pigeon: ^9.0.1
   freezed: ^2.1.0+1
   graphql_codegen: ^0.12.0-beta.13
-  patrol: ^1.0.4
   custom_lint: ^0.3.3
   riverpod_generator: ^2.1.6
   riverpod_lint: ^1.2.0
@@ -162,14 +161,6 @@ flutter:
   assets:
     - assets/images/
     - assets/icons/
-
-patrol:
-  app_name: BCC Media
-  flavor: prod
-  android:
-    package_name: tv.brunstad.app
-  ios:
-    bundle_id: tv.brunstad.app
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
