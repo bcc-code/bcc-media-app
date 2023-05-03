@@ -6,6 +6,8 @@ class CustomGridView extends StatelessWidget {
   final double verticalSpacing;
   final double horizontalSpacing;
   final EdgeInsets? padding;
+  final ScrollPhysics? physics;
+  final bool shrinkWrap;
 
   const CustomGridView({
     super.key,
@@ -14,6 +16,8 @@ class CustomGridView extends StatelessWidget {
     this.horizontalSpacing = 16,
     this.verticalSpacing = 24,
     this.padding = const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+    this.physics = const NeverScrollableScrollPhysics(),
+    this.shrinkWrap = true,
   });
 
   @override
@@ -21,8 +25,8 @@ class CustomGridView extends StatelessWidget {
     final rowCount = (children.length / columnCount).ceil();
     return ListView.builder(
       primary: true,
-      shrinkWrap: true,
-      physics: const NeverScrollableScrollPhysics(),
+      shrinkWrap: shrinkWrap,
+      physics: physics,
       padding: padding,
       itemCount: rowCount,
       itemBuilder: (context, rowIndex) {

@@ -205,6 +205,20 @@ class Api implements BccmApi {
     return value.parsedData!.legacyIDLookup.id;
   }
 
+  Future<Query$MyList$myList> getMyList() {
+    return gqlClient.query$MyList().then(
+      (result) {
+        if (result.hasException) {
+          throw result.exception!;
+        }
+        if (result.parsedData == null) {
+          throw ErrorDescription('MyList result is null.');
+        }
+        return result.parsedData!.myList;
+      },
+    );
+  }
+
   Future<String> addEpisodeToMyList(String episodeId) {
     return gqlClient
         .mutate$addEpisodeToMyList(Options$Mutation$addEpisodeToMyList(variables: Variables$Mutation$addEpisodeToMyList(episodeId: episodeId)))

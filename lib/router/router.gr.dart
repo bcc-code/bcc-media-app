@@ -24,10 +24,10 @@ import '../screens/calendar/calendar.dart' as _i21;
 import '../screens/episode.dart' as _i14;
 import '../screens/home.dart' as _i13;
 import '../screens/live.dart' as _i19;
-import '../screens/my_list/my_list.dart' as _i22;
+import '../screens/my_list/my_list.dart' as _i24;
 import '../screens/onboarding/onboarding.dart' as _i2;
 import '../screens/onboarding/signup.dart' as _i3;
-import '../screens/page.dart' as _i24;
+import '../screens/page.dart' as _i23;
 import '../screens/profile/about.dart' as _i10;
 import '../screens/profile/account_deletion.dart' as _i12;
 import '../screens/profile/app_language.dart' as _i5;
@@ -37,7 +37,7 @@ import '../screens/profile/faq.dart' as _i11;
 import '../screens/profile/profile.dart' as _i4;
 import '../screens/profile/subtitle_language.dart' as _i7;
 import '../screens/profile/video_quality.dart' as _i8;
-import '../screens/search/search.dart' as _i23;
+import '../screens/search/search.dart' as _i22;
 import '../screens/study.dart' as _i15;
 import '../screens/tabs_root.dart' as _i18;
 import 'router.dart' as _i27;
@@ -293,10 +293,13 @@ class AppRouter extends _i25.RootStackRouter {
         child: const _i21.CalendarPage(),
       );
     },
-    MyListRoute.name: (routeData) {
-      return _i25.MaterialPageX<void>(
+    MyListScreenWrapperRoute.name: (routeData) {
+      return _i25.CustomPage<void>(
         routeData: routeData,
-        child: const _i22.MyList(),
+        child: const _i20.EmptyRouterPage(),
+        maintainState: false,
+        opaque: true,
+        barrierDismissible: false,
       );
     },
     HomeScreenWrapperRoute.name: (routeData) {
@@ -314,7 +317,7 @@ class AppRouter extends _i25.RootStackRouter {
               SearchScreenRouteArgs(query: queryParams.optString('q')));
       return _i25.MaterialPageX<void>(
         routeData: routeData,
-        child: _i23.SearchScreen(
+        child: _i22.SearchScreen(
           key: args.key,
           query: args.query,
         ),
@@ -353,7 +356,7 @@ class AppRouter extends _i25.RootStackRouter {
               PageScreenRouteArgs(pageCode: pathParams.getString('pageCode')));
       return _i25.CustomPage<void>(
         routeData: routeData,
-        child: _i24.PageScreen(
+        child: _i23.PageScreen(
           key: args.key,
           pageCode: args.pageCode,
         ),
@@ -362,6 +365,12 @@ class AppRouter extends _i25.RootStackRouter {
         reverseDurationInMilliseconds: 300,
         opaque: true,
         barrierDismissible: false,
+      );
+    },
+    MyListScreenRoute.name: (routeData) {
+      return _i25.MaterialPageX<void>(
+        routeData: routeData,
+        child: const _i24.MyListScreen(),
       );
     },
     Home.name: (routeData) {
@@ -521,10 +530,23 @@ class AppRouter extends _i25.RootStackRouter {
               },
             ),
             _i25.RouteConfig(
-              MyListRoute.name,
+              MyListScreenWrapperRoute.name,
               path: 'my-list',
               parent: TabsRootScreenRoute.name,
-              meta: <String, dynamic>{'nav_tab_route': true},
+              children: [
+                _i25.RouteConfig(
+                  MyListScreenRoute.name,
+                  path: '',
+                  parent: MyListScreenWrapperRoute.name,
+                  meta: <String, dynamic>{'nav_tab_route': true},
+                ),
+                _i25.RouteConfig(
+                  EpisodeScreenRoute.name,
+                  path: 'episode/:episodeId',
+                  parent: MyListScreenWrapperRoute.name,
+                  meta: <String, dynamic>{'analytics_name': 'episode'},
+                ),
+              ],
             ),
             _i25.RouteConfig(
               HomeScreenWrapperRoute.name,
@@ -951,15 +973,16 @@ class CalendarPageRoute extends _i25.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i22.MyList]
-class MyListRoute extends _i25.PageRouteInfo<void> {
-  const MyListRoute()
+/// [_i20.EmptyRouterPage]
+class MyListScreenWrapperRoute extends _i25.PageRouteInfo<void> {
+  const MyListScreenWrapperRoute({List<_i25.PageRouteInfo>? children})
       : super(
-          MyListRoute.name,
+          MyListScreenWrapperRoute.name,
           path: 'my-list',
+          initialChildren: children,
         );
 
-  static const String name = 'MyListRoute';
+  static const String name = 'MyListScreenWrapperRoute';
 }
 
 /// generated route for
@@ -976,7 +999,7 @@ class HomeScreenWrapperRoute extends _i25.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i23.SearchScreen]
+/// [_i22.SearchScreen]
 class SearchScreenRoute extends _i25.PageRouteInfo<SearchScreenRouteArgs> {
   SearchScreenRoute({
     _i29.Key? key,
@@ -1066,7 +1089,7 @@ class EpisodeScreenRouteArgs {
 }
 
 /// generated route for
-/// [_i24.PageScreen]
+/// [_i23.PageScreen]
 class PageScreenRoute extends _i25.PageRouteInfo<PageScreenRouteArgs> {
   PageScreenRoute({
     _i29.Key? key,
@@ -1098,6 +1121,18 @@ class PageScreenRouteArgs {
   String toString() {
     return 'PageScreenRouteArgs{key: $key, pageCode: $pageCode}';
   }
+}
+
+/// generated route for
+/// [_i24.MyListScreen]
+class MyListScreenRoute extends _i25.PageRouteInfo<void> {
+  const MyListScreenRoute()
+      : super(
+          MyListScreenRoute.name,
+          path: '',
+        );
+
+  static const String name = 'MyListScreenRoute';
 }
 
 /// generated route for
