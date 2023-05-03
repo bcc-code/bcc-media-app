@@ -8,7 +8,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../theme/design_system/design_system.dart';
-import '../theme/design_system/design_system.dart';
 
 import '../helpers/widget_keys.dart';
 import '../l10n/app_localizations.dart';
@@ -66,6 +65,7 @@ class _CustomTabBarState extends ConsumerState<CustomTabBar> {
 
   @override
   Widget build(BuildContext context) {
+    final design = DesignSystem.of(context);
     var items = [
       BottomNavigationBarItem(label: S.of(context).homeTab, icon: _icon(icons['home_default']), activeIcon: _icon(icons['home_selected'])),
       BottomNavigationBarItem(label: S.of(context).search, icon: _icon(icons['search_default']), activeIcon: _icon(icons['search_selected'])),
@@ -85,11 +85,11 @@ class _CustomTabBarState extends ConsumerState<CustomTabBar> {
 
     if (useMaterial) {
       return Container(
-        decoration: BoxDecoration(border: Border(top: BorderSide(width: 1, color: DesignSystem.of(context).colors.separatorOnLight))),
+        decoration: BoxDecoration(border: Border(top: BorderSide(width: 1, color: design.colors.separatorOnLight))),
         child: BottomNavigationBar(
           type: BottomNavigationBarType.fixed,
-          unselectedItemColor: DesignSystem.of(context).colors.label3,
-          unselectedLabelStyle: DesignSystem.of(context).textStyles.caption3,
+          unselectedItemColor: design.colors.label3,
+          unselectedLabelStyle: design.textStyles.caption3,
           currentIndex: widget.tabsRouter.activeIndex,
           onTap: widget.onTabTap,
           items: items,
@@ -101,9 +101,9 @@ class _CustomTabBarState extends ConsumerState<CustomTabBar> {
       height: 50,
       currentIndex: widget.tabsRouter.activeIndex,
       onTap: widget.onTabTap,
-      inactiveColor: DesignSystem.of(context).colors.label3,
-      activeColor: DesignSystem.of(context).colors.tint1,
-      border: Border(top: BorderSide(width: 1, color: DesignSystem.of(context).colors.separatorOnLight)),
+      inactiveColor: design.colors.label3,
+      activeColor: design.colors.tint1,
+      border: Border(top: BorderSide(width: 1, color: design.colors.separatorOnLight)),
       items: items,
     );
   }

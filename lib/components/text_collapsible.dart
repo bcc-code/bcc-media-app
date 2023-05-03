@@ -3,7 +3,6 @@ import 'package:flutter/gestures.dart';
 
 import '../l10n/app_localizations.dart';
 import '../theme/design_system/design_system.dart';
-import '../theme/design_system/design_system.dart';
 
 const ellipsis = '…';
 

@@ -20,7 +20,6 @@ import '../models/scroll_screen.dart';
 import '../providers/analytics.dart';
 import '../providers/app_config.dart';
 import '../theme/design_system/design_system.dart';
-import '../theme/design_system/design_system.dart';
 
 class TabsRootScreen extends ConsumerStatefulWidget {
   static const route = '/';

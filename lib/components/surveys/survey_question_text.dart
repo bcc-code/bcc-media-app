@@ -33,6 +33,7 @@ class _SurveyQuestionTextState extends State<SurveyQuestionText> {
 
   @override
   Widget build(BuildContext context) {
+    final design = DesignSystem.of(context);
     return Container(
       margin: const EdgeInsets.only(bottom: 24),
       child: Column(
@@ -40,14 +41,14 @@ class _SurveyQuestionTextState extends State<SurveyQuestionText> {
         children: [
           Container(
             margin: const EdgeInsets.only(bottom: 4),
-            child: Text(widget.question.title, style: DesignSystem.of(context).textStyles.title2),
+            child: Text(widget.question.title, style: design.textStyles.title2),
           ),
           if (widget.question.description != null)
             Container(
               margin: const EdgeInsets.only(bottom: 8),
               child: Text(
                 widget.question.description!,
-                style: DesignSystem.of(context).textStyles.body2.copyWith(color: DesignSystem.of(context).colors.label3),
+                style: design.textStyles.body2.copyWith(color: design.colors.label3),
               ),
             ),
           TextField(
@@ -55,8 +56,8 @@ class _SurveyQuestionTextState extends State<SurveyQuestionText> {
             maxLines: 10,
             controller: textController,
             autofocus: widget.autoFocus,
-            style: DesignSystem.of(context).textStyles.body1.copyWith(color: DesignSystem.of(context).colors.label1),
-            decoration: DesignSystem.of(context).inputDecorations.textFormField,
+            style: design.textStyles.body1.copyWith(color: design.colors.label1),
+            decoration: design.inputDecorations.textFormField,
           ),
         ],
       ),

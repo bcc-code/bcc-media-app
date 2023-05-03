@@ -40,6 +40,7 @@ class SignupDonePage extends HookConsumerWidget implements SignupScreenPage {
     final user = ref.watch(authStateProvider).user;
     Widget returnWidget;
 
+    final design = DesignSystem.of(context);
     if (registerStatus.connectionState != ConnectionState.waiting && registerStatus.hasError) {
       final auth0ApiException = registerStatus.error.asOrNull<Auth0ApiException>();
       returnWidget = ErrorGeneric(
@@ -69,7 +70,7 @@ class SignupDonePage extends HookConsumerWidget implements SignupScreenPage {
                   Text(
                     'Creating your account',
                     textAlign: TextAlign.center,
-                    style: DesignSystem.of(context).textStyles.body1.copyWith(color: DesignSystem.of(context).colors.label4),
+                    style: design.textStyles.body1.copyWith(color: design.colors.label4),
                   ),
                 ],
               ),
@@ -84,7 +85,7 @@ class SignupDonePage extends HookConsumerWidget implements SignupScreenPage {
         body: [
           Expanded(
             child: DefaultTextStyle(
-              style: DesignSystem.of(context).textStyles.body1.copyWith(color: DesignSystem.of(context).colors.label3),
+              style: design.textStyles.body1.copyWith(color: design.colors.label3),
               textAlign: TextAlign.center,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -92,7 +93,7 @@ class SignupDonePage extends HookConsumerWidget implements SignupScreenPage {
                 children: [
                   Padding(
                     padding: const EdgeInsets.only(bottom: 8),
-                    child: Text('Account created', style: DesignSystem.of(context).textStyles.headline1),
+                    child: Text('Account created', style: design.textStyles.headline1),
                   ),
                   if (user == null)
                     Text('You can now log in to your account and explore a variety of edifying content.')
@@ -107,21 +108,21 @@ class SignupDonePage extends HookConsumerWidget implements SignupScreenPage {
           Container(
             padding: const EdgeInsets.only(bottom: 32),
             width: double.infinity,
-            child: DesignSystem.of(context).buttons.large(
-                  onPressed: () async {
-                    if (user == null) {
-                      final success = await ref.read(authStateProvider.notifier).login();
-                      if (!success) return;
-                    }
-                    if (!isMounted()) return;
-                    // because isMounted,
-                    // ignore: use_build_context_synchronously
-                    Navigator.pop(context);
-                    // ignore: use_build_context_synchronously
-                    context.router.replaceAll([const TabsRootScreenRoute()]);
-                  },
-                  labelText: user == null ? 'Log in' : S.of(context).exploreContent,
-                ),
+            child: design.buttons.large(
+              onPressed: () async {
+                if (user == null) {
+                  final success = await ref.read(authStateProvider.notifier).login();
+                  if (!success) return;
+                }
+                if (!isMounted()) return;
+                // because isMounted,
+                // ignore: use_build_context_synchronously
+                Navigator.pop(context);
+                // ignore: use_build_context_synchronously
+                context.router.replaceAll([const TabsRootScreenRoute()]);
+              },
+              labelText: user == null ? 'Log in' : S.of(context).exploreContent,
+            ),
           ),
         ],
       );

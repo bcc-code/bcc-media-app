@@ -14,9 +14,9 @@ void main() {
             return w is RichText && w.text.toPlainText().contains(text) && w.text.style?.color == color;
           };
 
-      final ds = BccMediaDesignSystem();
-      void expectNeutral(String condition) => expect(find.byWidgetPredicate(richTextWithColor(condition, ds.colors.label3)), findsOneWidget);
-      void expectSuccess(String condition) => expect(find.byWidgetPredicate(richTextWithColor(condition, ds.colors.tint3)), findsOneWidget);
+      final design = BccMediaDesignSystem();
+      void expectNeutral(String condition) => expect(find.byWidgetPredicate(richTextWithColor(condition, design.colors.label3)), findsOneWidget);
+      void expectSuccess(String condition) => expect(find.byWidgetPredicate(richTextWithColor(condition, design.colors.tint3)), findsOneWidget);
 
       basicInit();
       final passwordController = TextEditingController();

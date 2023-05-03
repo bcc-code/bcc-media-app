@@ -26,6 +26,7 @@ class ThumbnailSliderShow extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final design = DesignSystem.of(context);
     return SizedBox(
       width: imageSize.width,
       child: Column(
@@ -40,13 +41,13 @@ class ThumbnailSliderShow extends StatelessWidget {
             margin: const EdgeInsets.only(bottom: 2),
             child: Text(
               sectionItem.title,
-              style: DesignSystem.of(context).textStyles.caption1.copyWith(color: DesignSystem.of(context).colors.label1),
+              style: design.textStyles.caption1.copyWith(color: design.colors.label1),
             ),
           ),
           if (showSeasonEpisodeCounts)
             Text(
               '${show.seasonCount} ${S.of(context).seasons} - ${show.episodeCount} ${S.of(context).episodes}',
-              style: DesignSystem.of(context).textStyles.caption2,
+              style: design.textStyles.caption2,
             )
         ],
       ),

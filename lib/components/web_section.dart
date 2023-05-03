@@ -6,7 +6,6 @@ import 'package:url_launcher/url_launcher.dart';
 
 import '../graphql/queries/page.graphql.dart';
 import '../theme/design_system/design_system.dart';
-import '../theme/design_system/design_system.dart';
 import '../helpers/webview/main_js_channel.dart';
 
 class WebSection extends StatefulWidget {
@@ -54,6 +53,7 @@ class _WebSectionState extends State<WebSection> {
 
   @override
   Widget build(BuildContext context) {
+    final design = DesignSystem.of(context);
     return Padding(
       padding: const EdgeInsets.all(16),
       child: _heightOrAspectRatio(
@@ -92,15 +92,18 @@ class _WebSectionState extends State<WebSection> {
               child: IgnorePointer(
                 ignoring: !loading,
                 child: AnimatedOpacity(
-                    duration: const Duration(milliseconds: 200),
-                    opacity: loading ? 1 : 0,
-                    curve: Curves.easeInOut,
-                    child: Shimmer.fromColors(
-                        enabled: loading,
-                        baseColor: DesignSystem.of(context).colors.background1,
-                        highlightColor: DesignSystem.of(context).colors.background2,
-                        child: Container(
-                            decoration: BoxDecoration(borderRadius: BorderRadius.circular(9), color: DesignSystem.of(context).colors.background2)))),
+                  duration: const Duration(milliseconds: 200),
+                  opacity: loading ? 1 : 0,
+                  curve: Curves.easeInOut,
+                  child: Shimmer.fromColors(
+                    enabled: loading,
+                    baseColor: design.colors.background1,
+                    highlightColor: design.colors.background2,
+                    child: Container(
+                      decoration: BoxDecoration(borderRadius: BorderRadius.circular(9), color: design.colors.background2),
+                    ),
+                  ),
+                ),
               ),
             ),
           ],

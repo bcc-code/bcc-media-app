@@ -6,7 +6,6 @@ import 'package:flutter_svg/svg.dart';
 import '../helpers/scroll_behaviors.dart';
 import '../helpers/ui/svg_icons.dart';
 import '../theme/design_system/design_system.dart';
-import '../theme/design_system/design_system.dart';
 import 'dart:math' as math;
 
 class HorizontalSlider extends HookWidget {

@@ -3,7 +3,6 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 
 import '../theme/design_system/design_system.dart';
-import '../theme/design_system/design_system.dart';
 import '../theme/bccm_gradients.dart';
 
 import './study_progress.dart';

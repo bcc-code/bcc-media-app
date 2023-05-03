@@ -41,6 +41,7 @@ class LoginInitialPage extends HookWidget {
       onLogin();
     }
 
+    final design = DesignSystem.of(context);
     return OnboardingPageWrapper(
       body: [
         Padding(
@@ -48,12 +49,12 @@ class LoginInitialPage extends HookWidget {
           child: AnimatedSwitcher(
             duration: const Duration(milliseconds: 300),
             reverseDuration: Duration.zero,
-            child: emailFocusNode.hasFocus ? null : Text(S.of(context).signUpTitle, style: DesignSystem.of(context).textStyles.headline1),
+            child: emailFocusNode.hasFocus ? null : Text(S.of(context).signUpTitle, style: design.textStyles.headline1),
           ),
         ),
         Text(
           S.of(context).signUpDescription,
-          style: DesignSystem.of(context).textStyles.body1.copyWith(color: DesignSystem.of(context).colors.label3),
+          style: design.textStyles.body1.copyWith(color: design.colors.label3),
         ),
         const SizedBox(height: 48),
         Center(child: SocialAuthButtons()),
@@ -61,7 +62,7 @@ class LoginInitialPage extends HookWidget {
         Center(
           child: Text(
             'or'.toUpperCase(),
-            style: DesignSystem.of(context).textStyles.overline.copyWith(color: DesignSystem.of(context).colors.label1),
+            style: design.textStyles.overline.copyWith(color: design.colors.label1),
           ),
         ),
         const SizedBox(height: 24),
@@ -69,7 +70,7 @@ class LoginInitialPage extends HookWidget {
           padding: const EdgeInsets.only(bottom: 10),
           child: Text(
             'Register with email address',
-            style: DesignSystem.of(context).textStyles.caption1.copyWith(color: DesignSystem.of(context).colors.label2),
+            style: design.textStyles.caption1.copyWith(color: design.colors.label2),
           ),
         ),
         Form(
@@ -85,11 +86,11 @@ class LoginInitialPage extends HookWidget {
         Container(
           padding: const EdgeInsets.only(bottom: 16),
           width: double.infinity,
-          child: DesignSystem.of(context).buttons.large(
-                disabled: emailTextController.value.text.isBlank || passwordTextController.value.text.isBlank,
-                onPressed: nextPage,
-                labelText: S.of(context).continueButton,
-              ),
+          child: design.buttons.large(
+            disabled: emailTextController.value.text.isBlank || passwordTextController.value.text.isBlank,
+            onPressed: nextPage,
+            labelText: S.of(context).continueButton,
+          ),
         )
       ],
     );

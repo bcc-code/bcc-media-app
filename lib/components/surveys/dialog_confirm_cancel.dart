@@ -18,11 +18,12 @@ class DialogConfirmCancel extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final design = DesignSystem.of(context);
     return Center(
       child: Container(
         width: 343,
         decoration: BoxDecoration(
-          color: DesignSystem.of(context).colors.background2,
+          color: design.colors.background2,
           borderRadius: BorderRadius.circular(12),
         ),
         padding: const EdgeInsets.all(32).copyWith(top: 40),
@@ -33,7 +34,7 @@ class DialogConfirmCancel extends StatelessWidget {
               margin: const EdgeInsets.only(bottom: 4),
               child: Text(
                 S.of(context).cancelConfirmation,
-                style: DesignSystem.of(context).textStyles.headline2,
+                style: design.textStyles.headline2,
                 textAlign: TextAlign.center,
               ),
             ),
@@ -41,21 +42,21 @@ class DialogConfirmCancel extends StatelessWidget {
               margin: const EdgeInsets.only(bottom: 32),
               child: Text(
                 S.of(context).cancelConfirmationDescription,
-                style: DesignSystem.of(context).textStyles.body2.copyWith(color: DesignSystem.of(context).colors.label4),
+                style: design.textStyles.body2.copyWith(color: design.colors.label4),
               ),
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                DesignSystem.of(context).buttons.largeSecondary(
-                      onPressed: () => onGoBack(context),
-                      labelText: S.of(context).goBack,
-                    ),
+                design.buttons.largeSecondary(
+                  onPressed: () => onGoBack(context),
+                  labelText: S.of(context).goBack,
+                ),
                 const SizedBox(width: 16),
-                DesignSystem.of(context).buttons.largeRed(
-                      onPressed: () => onCancelConfirmed(context),
-                      labelText: S.of(context).yesCancel,
-                    ),
+                design.buttons.largeRed(
+                  onPressed: () => onCancelConfirmed(context),
+                  labelText: S.of(context).yesCancel,
+                ),
               ],
             ),
           ],

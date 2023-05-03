@@ -62,10 +62,11 @@ class BtvButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final disabledBorder = Border.all(color: DesignSystem.of(context).colors.separatorOnLight, width: 1);
-    final disabledBackgroundColor = DesignSystem.of(context).colors.background1;
-    final disabledTextColor = DesignSystem.of(context).colors.label4;
-    final safeTextStyle = textStyle ?? DesignSystem.of(context).textStyles.button2;
+    final design = DesignSystem.of(context);
+    final disabledBorder = Border.all(color: design.colors.separatorOnLight, width: 1);
+    final disabledBackgroundColor = design.colors.background1;
+    final disabledTextColor = design.colors.label4;
+    final safeTextStyle = textStyle ?? design.textStyles.button2;
 
     return IgnorePointer(
       ignoring: disabled,

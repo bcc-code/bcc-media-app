@@ -60,6 +60,7 @@ class _SurveyFormState extends State<SurveyForm> {
 
   @override
   Widget build(BuildContext context) {
+    final design = DesignSystem.of(context);
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
@@ -105,17 +106,17 @@ class _SurveyFormState extends State<SurveyForm> {
             children: [
               Container(
                 margin: const EdgeInsets.only(right: 16),
-                child: DesignSystem.of(context).buttons.largeSecondary(
-                      labelText: S.of(context).cancel,
-                      onPressed: widget.onCancel,
-                    ),
+                child: design.buttons.largeSecondary(
+                  labelText: S.of(context).cancel,
+                  onPressed: widget.onCancel,
+                ),
               ),
               Expanded(
-                child: DesignSystem.of(context).buttons.large(
-                      labelText: S.of(context).sendFeedback,
-                      onPressed: onSendFeedback,
-                      disabled: surveyAnswers.isEmpty,
-                    ),
+                child: design.buttons.large(
+                  labelText: S.of(context).sendFeedback,
+                  onPressed: onSendFeedback,
+                  disabled: surveyAnswers.isEmpty,
+                ),
               ),
             ],
           ),

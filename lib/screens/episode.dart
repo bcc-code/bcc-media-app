@@ -33,7 +33,6 @@ import '../env/env.dart';
 import '../graphql/queries/studies.graphql.dart';
 import '../helpers/insets.dart';
 import '../theme/design_system/design_system.dart';
-import '../theme/design_system/design_system.dart';
 
 import '../helpers/utils.dart';
 import '../helpers/extensions.dart';

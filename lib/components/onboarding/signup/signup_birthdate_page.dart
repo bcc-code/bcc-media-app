@@ -51,6 +51,7 @@ class SignupBirthDatePage extends HookWidget implements SignupScreenPage {
       onRegister();
     }
 
+    final design = DesignSystem.of(context);
     return Form(
       key: formKey.value,
       child: OnboardingPageWrapper(
@@ -61,7 +62,7 @@ class SignupBirthDatePage extends HookWidget implements SignupScreenPage {
             padding: const EdgeInsets.only(top: 48, bottom: 10),
             child: Text(
               'Birth year',
-              style: DesignSystem.of(context).textStyles.caption1.copyWith(color: DesignSystem.of(context).colors.label2),
+              style: design.textStyles.caption1.copyWith(color: design.colors.label2),
             ),
           ),
           SizedBox(
@@ -81,7 +82,7 @@ class SignupBirthDatePage extends HookWidget implements SignupScreenPage {
               children: [
                 Switch.adaptive(
                   key: WidgetKeys.privacyPolicyAgreeSwitch,
-                  activeColor: Platform.isIOS ? DesignSystem.of(context).colors.tint1 : null,
+                  activeColor: Platform.isIOS ? design.colors.tint1 : null,
                   value: privacyPolicyAgreed.value,
                   onChanged: (value) => privacyPolicyAgreed.value = value,
                 ),
@@ -104,22 +105,22 @@ class SignupBirthDatePage extends HookWidget implements SignupScreenPage {
             child: Row(
               children: [
                 Expanded(
-                  child: DesignSystem.of(context).buttons.largeSecondary(
-                        onPressed: () {
-                          pageController.previousPage(duration: const Duration(milliseconds: 500), curve: Curves.easeOutExpo);
-                          FocusManager.instance.primaryFocus?.unfocus();
-                        },
-                        labelText: S.of(context).back,
-                      ),
+                  child: design.buttons.largeSecondary(
+                    onPressed: () {
+                      pageController.previousPage(duration: const Duration(milliseconds: 500), curve: Curves.easeOutExpo);
+                      FocusManager.instance.primaryFocus?.unfocus();
+                    },
+                    labelText: S.of(context).back,
+                  ),
                 ),
                 const SizedBox(width: 12),
                 Expanded(
-                  child: DesignSystem.of(context).buttons.large(
-                        disabled: yearController.value == null || !privacyPolicyAgreed.value,
-                        key: WidgetKeys.registerButton,
-                        onPressed: nextPage,
-                        labelText: S.of(context).registerButton,
-                      ),
+                  child: design.buttons.large(
+                    disabled: yearController.value == null || !privacyPolicyAgreed.value,
+                    key: WidgetKeys.registerButton,
+                    onPressed: nextPage,
+                    labelText: S.of(context).registerButton,
+                  ),
                 )
               ],
             ),
@@ -148,18 +149,19 @@ class _PrivacyPolicyAgreeText extends StatelessWidget {
     final anchors = document.querySelectorAll('a');
     anchors[0].attributes['href'] = 'https://bcc.media/${Intl.defaultLocale}/privacy';
     anchors[1].attributes['href'] = 'https://bcc.media/${Intl.defaultLocale}/terms-of-use';
+    final design = DesignSystem.of(context);
     return Html(
       data: '<p>${document.outerHtml}</p>',
       onAnchorTap: (url, context, attributes, element) => launchUrlString(url!, mode: LaunchMode.externalApplication),
       shrinkWrap: true,
       style: {
         'p': Style(
-          fontSize: FontSize(DesignSystem.of(context).textStyles.caption1.fontSize!),
-          color: DesignSystem.of(context).colors.label4,
+          fontSize: FontSize(design.textStyles.caption1.fontSize!),
+          color: design.colors.label4,
           margin: Margins.only(bottom: 12),
         ),
         'a': Style(
-          color: DesignSystem.of(context).colors.tint1,
+          color: design.colors.tint1,
         ),
       },
     );

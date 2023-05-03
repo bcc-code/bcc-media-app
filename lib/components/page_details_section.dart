@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 
 import '../graphql/queries/page.graphql.dart';
 import '../theme/design_system/design_system.dart';
-import '../theme/design_system/design_system.dart';
 
 class PageDetailsSection extends StatelessWidget {
   final Fragment$Section$$PageDetailsSection data;

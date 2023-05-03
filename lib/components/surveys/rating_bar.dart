@@ -51,16 +51,17 @@ class _RatingStar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final design = DesignSystem.of(context);
     return Container(
       height: 60,
-      color: isFilled ? DesignSystem.of(context).colors.tint1 : DesignSystem.of(context).colors.separatorOnLight,
+      color: isFilled ? design.colors.tint1 : design.colors.separatorOnLight,
       child: Center(
         child: SvgPicture.string(
           SvgIcons.feedbackStar,
           width: 32,
           height: 32,
           colorFilter: ColorFilter.mode(
-            isFilled ? DesignSystem.of(context).colors.onTint : DesignSystem.of(context).colors.label2,
+            isFilled ? design.colors.onTint : design.colors.label2,
             BlendMode.srcIn,
           ),
         ),

@@ -48,6 +48,7 @@ class SignupNamePage extends HookWidget implements SignupScreenPage {
       nextFocusNode.requestFocus();
     }
 
+    final design = DesignSystem.of(context);
     return Form(
       key: formKey.value,
       child: OnboardingPageWrapper(
@@ -58,7 +59,7 @@ class SignupNamePage extends HookWidget implements SignupScreenPage {
             padding: const EdgeInsets.only(top: 48, bottom: 10),
             child: Text(
               'First name',
-              style: DesignSystem.of(context).textStyles.caption1.copyWith(color: DesignSystem.of(context).colors.label2),
+              style: design.textStyles.caption1.copyWith(color: design.colors.label2),
             ),
           ),
           TextFormField(
@@ -68,18 +69,18 @@ class SignupNamePage extends HookWidget implements SignupScreenPage {
             focusNode: firstNameFocusNode,
             keyboardType: TextInputType.emailAddress,
             autovalidateMode: AutovalidateMode.disabled,
-            style: DesignSystem.of(context).textStyles.body2.copyWith(color: DesignSystem.of(context).colors.label1),
-            cursorColor: DesignSystem.of(context).colors.tint1,
+            style: design.textStyles.body2.copyWith(color: design.colors.label1),
+            cursorColor: design.colors.tint1,
             cursorWidth: 1,
             validator: (val) => val?.isNotEmpty == true ? null : 'Required',
-            decoration: DesignSystem.of(context).inputDecorations.textFormField.copyWith(hintText: 'Type in first name'),
+            decoration: design.inputDecorations.textFormField.copyWith(hintText: 'Type in first name'),
             onEditingComplete: () => lastNameFocusNode.requestFocus(),
           ),
           Padding(
             padding: const EdgeInsets.only(top: 12, bottom: 10),
             child: Text(
               'Last name',
-              style: DesignSystem.of(context).textStyles.caption1.copyWith(color: DesignSystem.of(context).colors.label2),
+              style: design.textStyles.caption1.copyWith(color: design.colors.label2),
             ),
           ),
           TextFormField(
@@ -88,11 +89,11 @@ class SignupNamePage extends HookWidget implements SignupScreenPage {
             focusNode: lastNameFocusNode,
             keyboardType: TextInputType.emailAddress,
             autovalidateMode: AutovalidateMode.disabled,
-            style: DesignSystem.of(context).textStyles.body2.copyWith(color: DesignSystem.of(context).colors.label1),
-            cursorColor: DesignSystem.of(context).colors.tint1,
+            style: design.textStyles.body2.copyWith(color: design.colors.label1),
+            cursorColor: design.colors.tint1,
             cursorWidth: 1,
             validator: (val) => val?.isNotEmpty == true ? null : 'Required',
-            decoration: DesignSystem.of(context).inputDecorations.textFormField.copyWith(hintText: 'Type in last name'),
+            decoration: design.inputDecorations.textFormField.copyWith(hintText: 'Type in last name'),
             onEditingComplete: nextPage,
           ),
         ],
@@ -105,21 +106,21 @@ class SignupNamePage extends HookWidget implements SignupScreenPage {
                 Row(
                   children: [
                     Expanded(
-                      child: DesignSystem.of(context).buttons.largeSecondary(
-                            onPressed: () {
-                              pageController.previousPage(duration: const Duration(milliseconds: 500), curve: Curves.easeOutExpo);
-                              FocusManager.instance.primaryFocus?.unfocus();
-                            },
-                            labelText: S.of(context).back,
-                          ),
+                      child: design.buttons.largeSecondary(
+                        onPressed: () {
+                          pageController.previousPage(duration: const Duration(milliseconds: 500), curve: Curves.easeOutExpo);
+                          FocusManager.instance.primaryFocus?.unfocus();
+                        },
+                        labelText: S.of(context).back,
+                      ),
                     ),
                     const SizedBox(width: 12),
                     Expanded(
-                      child: DesignSystem.of(context).buttons.large(
-                            disabled: firstNameController.value.text.isBlank || lastNameController.value.text.isBlank,
-                            onPressed: nextPage,
-                            labelText: S.of(context).continueButton,
-                          ),
+                      child: design.buttons.large(
+                        disabled: firstNameController.value.text.isBlank || lastNameController.value.text.isBlank,
+                        onPressed: nextPage,
+                        labelText: S.of(context).continueButton,
+                      ),
                     )
                   ],
                 ),

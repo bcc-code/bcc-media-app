@@ -44,6 +44,7 @@ class BottomSheetSurvey extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final design = DesignSystem.of(context);
     return WillPopScope(
       onWillPop: () async {
         onCancel(context);
@@ -54,7 +55,7 @@ class BottomSheetSurvey extends StatelessWidget {
         duration: const Duration(milliseconds: 200),
         child: Container(
           decoration: BoxDecoration(
-            color: DesignSystem.of(context).colors.background1,
+            color: design.colors.background1,
             borderRadius: const BorderRadius.only(
               topLeft: Radius.circular(16),
               topRight: Radius.circular(16),
@@ -75,7 +76,7 @@ class BottomSheetSurvey extends StatelessWidget {
                       width: 40,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(100),
-                        color: DesignSystem.of(context).colors.label4,
+                        color: design.colors.label4,
                       ),
                     ),
                   ),
@@ -85,7 +86,7 @@ class BottomSheetSurvey extends StatelessWidget {
                   child: Text(
                     prompt.survey.title,
                     textAlign: TextAlign.center,
-                    style: DesignSystem.of(context).textStyles.title3,
+                    style: design.textStyles.title3,
                   ),
                 ),
                 Flexible(
@@ -188,6 +189,7 @@ class _Success extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final design = DesignSystem.of(context);
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
@@ -199,19 +201,19 @@ class _Success extends StatelessWidget {
             children: [
               Container(
                 margin: const EdgeInsets.only(bottom: 8),
-                child: Text(S.of(context).thankYou, style: DesignSystem.of(context).textStyles.title2),
+                child: Text(S.of(context).thankYou, style: design.textStyles.title2),
               ),
-              Text(S.of(context).sendSuccessDescription, style: DesignSystem.of(context).textStyles.body1),
+              Text(S.of(context).sendSuccessDescription, style: design.textStyles.body1),
             ],
           ),
         ),
         Container(
           margin: const EdgeInsets.only(top: 16),
           width: double.infinity,
-          child: DesignSystem.of(context).buttons.largeSecondary(
-                labelText: S.of(context).close,
-                onPressed: onClose,
-              ),
+          child: design.buttons.largeSecondary(
+            labelText: S.of(context).close,
+            onPressed: onClose,
+          ),
         )
       ],
     );
@@ -229,6 +231,7 @@ class _Failure extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final design = DesignSystem.of(context);
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
@@ -240,9 +243,9 @@ class _Failure extends StatelessWidget {
             children: [
               Container(
                 margin: const EdgeInsets.only(bottom: 8),
-                child: Text(S.of(context).sendFail, style: DesignSystem.of(context).textStyles.title2),
+                child: Text(S.of(context).sendFail, style: design.textStyles.title2),
               ),
-              Text(S.of(context).sendFailDescription, style: DesignSystem.of(context).textStyles.body1, textAlign: TextAlign.center),
+              Text(S.of(context).sendFailDescription, style: design.textStyles.body1, textAlign: TextAlign.center),
             ],
           ),
         ),
@@ -253,16 +256,16 @@ class _Failure extends StatelessWidget {
             children: [
               Container(
                 margin: const EdgeInsets.only(right: 16),
-                child: DesignSystem.of(context).buttons.largeSecondary(
-                      labelText: S.of(context).cancel,
-                      onPressed: onCancel,
-                    ),
+                child: design.buttons.largeSecondary(
+                  labelText: S.of(context).cancel,
+                  onPressed: onCancel,
+                ),
               ),
               Expanded(
-                child: DesignSystem.of(context).buttons.large(
-                      labelText: S.of(context).tryAgainButton,
-                      onPressed: onTryAgain,
-                    ),
+                child: design.buttons.large(
+                  labelText: S.of(context).tryAgainButton,
+                  onPressed: onTryAgain,
+                ),
               ),
             ],
           ),

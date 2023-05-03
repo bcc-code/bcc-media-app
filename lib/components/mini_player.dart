@@ -39,12 +39,13 @@ class MiniPlayer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final design = DesignSystem.of(context);
     return Container(
       height: kMiniPlayerHeight,
       width: MediaQuery.of(context).size.width,
       decoration: BoxDecoration(
-        color: DesignSystem.of(context).colors.background2,
-        border: border ?? Border(top: BorderSide(color: DesignSystem.of(context).colors.separatorOnLight, width: 1)),
+        color: design.colors.background2,
+        border: border ?? Border(top: BorderSide(color: design.colors.separatorOnLight, width: 1)),
       ),
       padding: const EdgeInsets.symmetric(
         horizontal: 16,
@@ -62,7 +63,7 @@ class MiniPlayer extends StatelessWidget {
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(4),
               border: Border.all(
-                color: DesignSystem.of(context).colors.onTint.withOpacity(0.01),
+                color: design.colors.onTint.withOpacity(0.01),
                 width: 1,
               ),
             ),
@@ -91,7 +92,7 @@ class MiniPlayer extends StatelessWidget {
                       secondaryTitle!,
                       semanticsLabel: secondaryTitle!,
                       overflow: TextOverflow.ellipsis,
-                      style: DesignSystem.of(context).textStyles.caption2.copyWith(color: DesignSystem.of(context).colors.tint1),
+                      style: design.textStyles.caption2.copyWith(color: design.colors.tint1),
                     ),
                   ),
                 Text(
@@ -99,7 +100,7 @@ class MiniPlayer extends StatelessWidget {
                   semanticsLabel: title,
                   key: WidgetKeys.miniPlayerTitle,
                   overflow: TextOverflow.ellipsis,
-                  style: DesignSystem.of(context).textStyles.caption1.copyWith(color: DesignSystem.of(context).colors.label1),
+                  style: design.textStyles.caption1.copyWith(color: design.colors.label1),
                 ),
               ],
             ),

@@ -60,6 +60,7 @@ class SignupPasswordPage extends HookWidget implements SignupScreenPage {
       nextFocusNode.requestFocus();
     }
 
+    final design = DesignSystem.of(context);
     return OnboardingPageWrapper(
       title: S.of(context).setPassword,
       description: 'Choose a password for your account.',
@@ -69,7 +70,7 @@ class SignupPasswordPage extends HookWidget implements SignupScreenPage {
           padding: const EdgeInsets.only(bottom: 10),
           child: Text(
             'Choose a password',
-            style: DesignSystem.of(context).textStyles.caption1.copyWith(color: DesignSystem.of(context).colors.label2),
+            style: design.textStyles.caption1.copyWith(color: design.colors.label2),
           ),
         ),
         Form(
@@ -90,10 +91,7 @@ class SignupPasswordPage extends HookWidget implements SignupScreenPage {
                   padding: const EdgeInsets.only(bottom: 2),
                   child: RichText(
                     text: TextSpan(
-                      style: DesignSystem.of(context)
-                          .textStyles
-                          .caption1
-                          .copyWith(color: c.fulfilled ? DesignSystem.of(context).colors.tint3 : DesignSystem.of(context).colors.label3),
+                      style: design.textStyles.caption1.copyWith(color: c.fulfilled ? design.colors.tint3 : design.colors.label3),
                       children: [
                         const WidgetSpan(child: SizedBox(width: 5)),
                         const TextSpan(text: '\u2022'),
@@ -119,21 +117,21 @@ class SignupPasswordPage extends HookWidget implements SignupScreenPage {
               Row(
                 children: [
                   Expanded(
-                    child: DesignSystem.of(context).buttons.largeSecondary(
-                          onPressed: () {
-                            pageController.previousPage(duration: const Duration(milliseconds: 500), curve: Curves.easeOutExpo);
-                            passwordFocusNode.unfocus();
-                          },
-                          labelText: S.of(context).back,
-                        ),
+                    child: design.buttons.largeSecondary(
+                      onPressed: () {
+                        pageController.previousPage(duration: const Duration(milliseconds: 500), curve: Curves.easeOutExpo);
+                        passwordFocusNode.unfocus();
+                      },
+                      labelText: S.of(context).back,
+                    ),
                   ),
                   const SizedBox(width: 12),
                   Expanded(
-                    child: DesignSystem.of(context).buttons.large(
-                          disabled: conditions.any((c) => !c.fulfilled),
-                          onPressed: nextPage,
-                          labelText: S.of(context).continueButton,
-                        ),
+                    child: design.buttons.large(
+                      disabled: conditions.any((c) => !c.fulfilled),
+                      onPressed: nextPage,
+                      labelText: S.of(context).continueButton,
+                    ),
                   )
                 ],
               ),

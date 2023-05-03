@@ -247,13 +247,14 @@ class _InputPageState extends State<_InputPage> {
 
   @override
   Widget build(BuildContext context) {
+    final design = DesignSystem.of(context);
     return SingleChildScrollView(
         child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: <Widget>[
       Padding(
         padding: const EdgeInsets.only(bottom: 32),
         child: Text(
           S.of(context).contactSupport,
-          style: DesignSystem.of(context).textStyles.headline1,
+          style: design.textStyles.headline1,
         ),
       ),
       Container(
@@ -262,15 +263,15 @@ class _InputPageState extends State<_InputPage> {
           minLines: 9,
           maxLines: 13,
           controller: textController,
-          decoration: DesignSystem.of(context).inputDecorations.textFormField.copyWith(hintText: S.of(context).concernTextPlaceholder),
-          style: DesignSystem.of(context).textStyles.body1.copyWith(color: DesignSystem.of(context).colors.label1),
+          decoration: design.inputDecorations.textFormField.copyWith(hintText: S.of(context).concernTextPlaceholder),
+          style: design.textStyles.body1.copyWith(color: design.colors.label1),
         ),
       ),
       Padding(
         padding: const EdgeInsets.only(top: 20, bottom: 10),
         child: Text(
           S.of(context).debugInfoExplanation,
-          style: DesignSystem.of(context).textStyles.body2.copyWith(color: DesignSystem.of(context).colors.label1),
+          style: design.textStyles.body2.copyWith(color: design.colors.label1),
         ),
       ),
       widget.deviceInfo != null ? _DeviceInfoList(data: widget.deviceInfo!) : Text('${S.of(context).loading}...'),
@@ -288,6 +289,7 @@ class _DeviceInfoList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final design = DesignSystem.of(context);
     return Column(
       children: [
         for (var item in data)
@@ -303,7 +305,7 @@ class _DeviceInfoList extends StatelessWidget {
                       fit: FlexFit.tight,
                       child: Text(
                         item.title,
-                        style: DesignSystem.of(context).textStyles.body2,
+                        style: design.textStyles.body2,
                       ),
                     ),
                     Flexible(
@@ -311,7 +313,7 @@ class _DeviceInfoList extends StatelessWidget {
                       child: Text(
                         item.content ?? 'N/A',
                         textAlign: TextAlign.right,
-                        style: DesignSystem.of(context).textStyles.body2.copyWith(color: DesignSystem.of(context).colors.label1),
+                        style: design.textStyles.body2.copyWith(color: design.colors.label1),
                       ),
                     ),
                   ],
@@ -319,7 +321,7 @@ class _DeviceInfoList extends StatelessWidget {
               ),
               Divider(
                 height: 1,
-                color: DesignSystem.of(context).colors.separatorOnLight,
+                color: design.colors.separatorOnLight,
               ),
             ],
           ),
@@ -331,6 +333,7 @@ class _DeviceInfoList extends StatelessWidget {
 class _SuccessPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final design = DesignSystem.of(context);
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
@@ -341,21 +344,21 @@ class _SuccessPage extends StatelessWidget {
               Text(
                 S.of(context).thankYouSupportTitle,
                 textAlign: TextAlign.center,
-                style: DesignSystem.of(context).textStyles.headline1,
+                style: design.textStyles.headline1,
               ),
               const SizedBox(height: 12),
               Text(
                 S.of(context).thankYouSupportDescription,
                 textAlign: TextAlign.center,
-                style: DesignSystem.of(context).textStyles.body1.copyWith(color: DesignSystem.of(context).colors.label3),
+                style: design.textStyles.body1.copyWith(color: design.colors.label3),
               ),
             ],
           ),
         ),
-        DesignSystem.of(context).buttons.large(
-              labelText: S.of(context).done,
-              onPressed: context.router.pop,
-            ),
+        design.buttons.large(
+          labelText: S.of(context).done,
+          onPressed: context.router.pop,
+        ),
       ],
     );
   }
@@ -368,6 +371,7 @@ class _FailurePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final design = DesignSystem.of(context);
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
@@ -378,21 +382,21 @@ class _FailurePage extends StatelessWidget {
               Text(
                 S.of(context).sendFail,
                 textAlign: TextAlign.center,
-                style: DesignSystem.of(context).textStyles.headline1,
+                style: design.textStyles.headline1,
               ),
               const SizedBox(height: 12),
               Text(
                 S.of(context).sendFailDescription,
                 textAlign: TextAlign.center,
-                style: DesignSystem.of(context).textStyles.body1.copyWith(color: DesignSystem.of(context).colors.label3),
+                style: design.textStyles.body1.copyWith(color: design.colors.label3),
               ),
             ],
           ),
         ),
-        DesignSystem.of(context).buttons.large(
-              onPressed: onTryAgain,
-              labelText: S.of(context).tryAgainButton,
-            ),
+        design.buttons.large(
+          onPressed: onTryAgain,
+          labelText: S.of(context).tryAgainButton,
+        ),
       ],
     );
   }

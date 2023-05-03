@@ -8,7 +8,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:brunstadtv_app/router/router.gr.dart';
 
 import '../theme/design_system/design_system.dart';
-import '../theme/design_system/design_system.dart';
 import '../providers/fun.dart';
 import 'mini_player.dart';
 

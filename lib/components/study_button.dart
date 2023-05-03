@@ -7,7 +7,6 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_svg/svg.dart';
 
 import '../theme/design_system/design_system.dart';
-import '../theme/design_system/design_system.dart';
 
 import '../../helpers/ui/svg_icons.dart';
 import '../l10n/app_localizations.dart';
@@ -56,6 +55,7 @@ class StudyMoreButton extends HookWidget {
 
     final episode = future.data!.episode;
     final lesson = episode.lessons.items[0];
+    final design = DesignSystem.of(context);
     return GestureDetector(
       behavior: HitTestBehavior.opaque,
       onTap: () async {
@@ -71,11 +71,11 @@ class StudyMoreButton extends HookWidget {
               padding: const EdgeInsets.all(12),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(12),
-                color: DesignSystem.of(context).colors.tint1.withAlpha((255 * 0.1).round()),
+                color: design.colors.tint1.withAlpha((255 * 0.1).round()),
               ),
               foregroundDecoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(12),
-                border: Border.all(color: DesignSystem.of(context).colors.separatorOnLight, width: 1),
+                border: Border.all(color: design.colors.separatorOnLight, width: 1),
               ),
               child: Row(
                 mainAxisSize: MainAxisSize.min,
@@ -100,14 +100,14 @@ class StudyMoreButton extends HookWidget {
                       children: [
                         Text(
                           title(lesson, context),
-                          style: DesignSystem.of(context).textStyles.title3,
+                          style: design.textStyles.title3,
                         ),
                         Padding(
                           padding: const EdgeInsets.only(top: 2),
                           child: Text(
                             secondaryTitle(lesson, context),
                             overflow: TextOverflow.fade,
-                            style: DesignSystem.of(context).textStyles.caption1.copyWith(color: DesignSystem.of(context).colors.label3),
+                            style: design.textStyles.caption1.copyWith(color: design.colors.label3),
                           ),
                         ),
                       ],
@@ -124,7 +124,7 @@ class StudyMoreButton extends HookWidget {
                             borderRadius: BorderRadius.circular(45),
                           ),
                           foregroundDecoration: BoxDecoration(
-                            border: Border.all(color: DesignSystem.of(context).colors.separatorOnLight, width: 1),
+                            border: Border.all(color: design.colors.separatorOnLight, width: 1),
                             borderRadius: BorderRadius.circular(45),
                           ),
                           width: 38,
@@ -176,16 +176,17 @@ class _LoadingWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final design = DesignSystem.of(context);
     return Container(
       clipBehavior: Clip.antiAlias,
       padding: const EdgeInsets.all(24),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(12),
-        color: DesignSystem.of(context).colors.tint1.withAlpha((255 * 0.1).round()),
+        color: design.colors.tint1.withAlpha((255 * 0.1).round()),
       ),
       foregroundDecoration: BoxDecoration(
         borderRadius: BorderRadius.circular(12),
-        border: Border.all(color: DesignSystem.of(context).colors.separatorOnLight, width: 1),
+        border: Border.all(color: design.colors.separatorOnLight, width: 1),
       ),
       child: const Center(child: LoadingIndicator()),
     );

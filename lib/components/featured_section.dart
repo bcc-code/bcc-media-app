@@ -14,7 +14,6 @@ import '../models/analytics/sections.dart';
 
 import '../graphql/queries/page.graphql.dart';
 import '../theme/design_system/design_system.dart';
-import '../theme/design_system/design_system.dart';
 import '../helpers/extensions.dart';
 import '../helpers/ui/btv_buttons.dart';
 
@@ -150,6 +149,7 @@ class _FeaturedItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final design = DesignSystem.of(context);
     return Container(
       margin: margin,
       height: double.infinity,
@@ -165,8 +165,8 @@ class _FeaturedItem extends StatelessWidget {
                 begin: Alignment.topCenter,
                 end: Alignment.bottomCenter,
                 colors: [
-                  DesignSystem.of(context).colors.background1.withOpacity(0),
-                  DesignSystem.of(context).colors.background1,
+                  design.colors.background1.withOpacity(0),
+                  design.colors.background1,
                 ],
                 stops: const [0, 0.36],
               ),
@@ -180,7 +180,7 @@ class _FeaturedItem extends StatelessWidget {
                   child: Text(
                     sectionItem.title,
                     textAlign: TextAlign.center,
-                    style: DesignSystem.of(context).textStyles.title1,
+                    style: design.textStyles.title1,
                   ),
                 ),
                 Container(
@@ -190,24 +190,24 @@ class _FeaturedItem extends StatelessWidget {
                     maxLines: 2,
                     overflow: TextOverflow.ellipsis,
                     textAlign: TextAlign.center,
-                    style: DesignSystem.of(context).textStyles.body2.copyWith(color: DesignSystem.of(context).colors.label2),
+                    style: design.textStyles.body2.copyWith(color: design.colors.label2),
                   ),
                 ),
                 isLive
-                    ? DesignSystem.of(context).buttons.smallRed(
-                          image: Image.asset('assets/icons/Play.png'),
-                          labelText: S.of(context).liveNow,
-                          onPressed: () {
-                            handleSectionItemClick(context, sectionItem.item);
-                          },
-                        )
-                    : DesignSystem.of(context).buttons.smallSecondary(
-                          image: Image.asset('assets/icons/Play.png'),
-                          labelText: S.of(context).watchNow,
-                          onPressed: () {
-                            handleSectionItemClick(context, sectionItem.item);
-                          },
-                        ),
+                    ? design.buttons.smallRed(
+                        image: Image.asset('assets/icons/Play.png'),
+                        labelText: S.of(context).liveNow,
+                        onPressed: () {
+                          handleSectionItemClick(context, sectionItem.item);
+                        },
+                      )
+                    : design.buttons.smallSecondary(
+                        image: Image.asset('assets/icons/Play.png'),
+                        labelText: S.of(context).watchNow,
+                        onPressed: () {
+                          handleSectionItemClick(context, sectionItem.item);
+                        },
+                      ),
               ],
             ),
           ),
@@ -225,21 +225,22 @@ class _GradientImage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final design = DesignSystem.of(context);
     return Container(
         width: double.infinity,
         height: height,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(12),
-          color: DesignSystem.of(context).colors.background2,
+          color: design.colors.background2,
         ),
         foregroundDecoration: BoxDecoration(
           gradient: LinearGradient(
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
             colors: [
-              DesignSystem.of(context).colors.background1.withOpacity(0.23),
+              design.colors.background1.withOpacity(0.23),
               const Color.fromRGBO(26, 37, 53, 0),
-              DesignSystem.of(context).colors.background1,
+              design.colors.background1,
             ],
             stops: const [0, 0.5, 1],
           ),

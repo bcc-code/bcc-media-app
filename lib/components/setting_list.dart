@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 
 import '../theme/design_system/design_system.dart';
-import '../theme/design_system/design_system.dart';
 //listFrame.dart
 
 class SettingList extends StatelessWidget {
@@ -55,6 +54,7 @@ class OptionButton extends HookWidget {
   @override
   Widget build(BuildContext context) {
     final hovering = useState(false);
+    final design = DesignSystem.of(context);
     return GestureDetector(
       behavior: HitTestBehavior.opaque,
       onTap: onPressed,
@@ -64,27 +64,27 @@ class OptionButton extends HookWidget {
         child: Container(
           height: 56,
           padding: const EdgeInsets.only(left: 16, right: 16),
-          foregroundDecoration: BoxDecoration(color: hovering.value ? DesignSystem.of(context).colors.onTint.withOpacity(0.05) : null),
+          foregroundDecoration: BoxDecoration(color: hovering.value ? design.colors.onTint.withOpacity(0.05) : null),
           child: Row(
             children: [
               Flexible(
                 fit: FlexFit.tight,
                 child: Text(
                   optionName,
-                  style: DesignSystem.of(context).textStyles.title3,
+                  style: design.textStyles.title3,
                 ),
               ),
               Container(
                 margin: const EdgeInsets.only(right: 5),
                 child: Text(
                   currentSelection ?? '',
-                  style: DesignSystem.of(context).textStyles.body2,
+                  style: design.textStyles.body2,
                 ),
               ),
               Icon(
                 Icons.arrow_forward_ios,
                 size: 13,
-                color: DesignSystem.of(context).colors.label4,
+                color: design.colors.label4,
               ),
             ],
           ),

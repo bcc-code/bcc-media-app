@@ -20,6 +20,7 @@ class EmailTextField extends HookWidget {
   @override
   Widget build(BuildContext context) {
     useListenable(emailTextController);
+    final design = DesignSystem.of(context);
     return TextFormField(
       focusNode: emailFocusNode,
       controller: emailTextController,
@@ -33,15 +34,15 @@ class EmailTextField extends HookWidget {
         return null;
       },
       autovalidateMode: AutovalidateMode.disabled,
-      style: DesignSystem.of(context).textStyles.body2.copyWith(color: DesignSystem.of(context).colors.label1),
-      cursorColor: DesignSystem.of(context).colors.tint1,
+      style: design.textStyles.body2.copyWith(color: design.colors.label1),
+      cursorColor: design.colors.tint1,
       cursorWidth: 1,
       onEditingComplete: onEditingComplete,
       decoration: InputDecoration(
         filled: true,
         isDense: true,
         hintText: 'Email address',
-        fillColor: DesignSystem.of(context).colors.background2,
+        fillColor: design.colors.background2,
         border: OutlineInputBorder(borderRadius: BorderRadius.circular(6), borderSide: BorderSide.none),
         contentPadding: const EdgeInsets.all(12),
         suffixIconConstraints: const BoxConstraints(minHeight: 24, minWidth: 24),
@@ -53,18 +54,18 @@ class EmailTextField extends HookWidget {
                   padding: const EdgeInsets.only(right: 12),
                   child: SvgPicture.string(
                     SvgIcons.clearXIcon,
-                    theme: SvgTheme(currentColor: DesignSystem.of(context).colors.label3),
+                    theme: SvgTheme(currentColor: design.colors.label3),
                   ),
                 ),
               ),
         focusedBorder: OutlineInputBorder(
-          borderSide: BorderSide(color: DesignSystem.of(context).colors.tint1, width: 1),
+          borderSide: BorderSide(color: design.colors.tint1, width: 1),
           borderRadius: BorderRadius.circular(6),
         ),
-        hintStyle: DesignSystem.of(context).textStyles.body2.copyWith(
-              color: DesignSystem.of(context).colors.label4,
-              height: 1.45,
-            ),
+        hintStyle: design.textStyles.body2.copyWith(
+          color: design.colors.label4,
+          height: 1.45,
+        ),
       ),
     );
   }

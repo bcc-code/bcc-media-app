@@ -64,10 +64,11 @@ class _FAQState extends State<FAQ> {
 
   @override
   Widget build(BuildContext context) {
+    final design = DesignSystem.of(context);
     return DialogOnWeb(
       child: Scaffold(
         appBar: AppBar(
-          backgroundColor: DesignSystem.of(context).colors.background1,
+          backgroundColor: design.colors.background1,
           leadingWidth: 90,
           leading: GestureDetector(
             behavior: HitTestBehavior.opaque,
@@ -79,12 +80,12 @@ class _FAQState extends State<FAQ> {
               children: [
                 Icon(
                   Icons.arrow_back_ios_new,
-                  color: DesignSystem.of(context).colors.tint1,
+                  color: design.colors.tint1,
                 ),
                 Text(
                   S.of(context).faq,
                   overflow: TextOverflow.ellipsis,
-                  style: DesignSystem.of(context).textStyles.button2,
+                  style: design.textStyles.button2,
                 ),
               ],
             ),
@@ -126,6 +127,7 @@ class _ExpansionTileDropDownState extends State<_ExpansionTileDropDown> {
 
   @override
   Widget build(BuildContext context) {
+    final design = DesignSystem.of(context);
     return Container(
       padding: const EdgeInsets.only(
         left: 16,
@@ -138,7 +140,7 @@ class _ExpansionTileDropDownState extends State<_ExpansionTileDropDown> {
         vertical: 8,
       ),
       decoration: BoxDecoration(
-        color: DesignSystem.of(context).colors.background2,
+        color: design.colors.background2,
         borderRadius: BorderRadius.circular(12),
       ),
       child: Theme(
@@ -150,17 +152,17 @@ class _ExpansionTileDropDownState extends State<_ExpansionTileDropDown> {
           child: ExpansionTile(
             title: Text(
               widget.questionList.question,
-              style: DesignSystem.of(context).textStyles.title3,
+              style: design.textStyles.title3,
             ),
             textColor: Colors.teal,
             trailing: !_customTileExpanded
                 ? Icon(
                     Icons.keyboard_arrow_down,
-                    color: DesignSystem.of(context).colors.tint1,
+                    color: design.colors.tint1,
                   )
                 : Icon(
                     Icons.keyboard_arrow_up,
-                    color: DesignSystem.of(context).colors.tint2,
+                    color: design.colors.tint2,
                   ),
             childrenPadding: const EdgeInsets.only(
               top: 12,
@@ -169,7 +171,7 @@ class _ExpansionTileDropDownState extends State<_ExpansionTileDropDown> {
             children: <Widget>[
               Text(
                 widget.questionList.answer,
-                style: DesignSystem.of(context).textStyles.body2.copyWith(color: DesignSystem.of(context).colors.label3),
+                style: design.textStyles.body2.copyWith(color: design.colors.label3),
               )
             ],
             onExpansionChanged: (bool expanded) {

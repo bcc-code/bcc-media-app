@@ -11,7 +11,6 @@ import 'package:share_plus/share_plus.dart';
 import '../graphql/queries/achievements.graphql.dart';
 import '../helpers/ui/btv_buttons.dart';
 import '../theme/design_system/design_system.dart';
-import '../theme/design_system/design_system.dart';
 import '../helpers/ui/image.dart';
 import '../helpers/ui/svg_icons.dart';
 import '../l10n/app_localizations.dart';

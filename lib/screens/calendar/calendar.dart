@@ -208,6 +208,7 @@ class _CalendarWidgetState extends ConsumerState<CalendarWidget> {
 
   @override
   Widget build(BuildContext context) {
+    final design = DesignSystem.of(context);
     return Column(
       children: [
         Padding(
@@ -219,8 +220,8 @@ class _CalendarWidgetState extends ConsumerState<CalendarWidget> {
             startingDayOfWeek: StartingDayOfWeek.monday,
             daysOfWeekStyle: DaysOfWeekStyle(
               dowTextFormatter: (date, locale) => DateFormat.E(locale).format(date)[0], //only display one letter
-              weekdayStyle: DesignSystem.of(context).textStyles.caption1,
-              weekendStyle: DesignSystem.of(context).textStyles.caption1,
+              weekdayStyle: design.textStyles.caption1,
+              weekendStyle: design.textStyles.caption1,
             ),
             headerStyle: HeaderStyle(
               formatButtonVisible: false,
@@ -231,10 +232,10 @@ class _CalendarWidgetState extends ConsumerState<CalendarWidget> {
                       : '${S.of(context).calendarWeek} ${_getWeekNumber(date).toString()}'
                   : DateFormat.MMMM().format(date).toString(),
               headerMargin: EdgeInsets.zero,
-              titleTextStyle: DesignSystem.of(context).textStyles.caption1,
-              leftChevronIcon: Icon(Icons.arrow_back_ios_new_outlined, color: DesignSystem.of(context).colors.label4, size: 16),
+              titleTextStyle: design.textStyles.caption1,
+              leftChevronIcon: Icon(Icons.arrow_back_ios_new_outlined, color: design.colors.label4, size: 16),
               leftChevronMargin: const EdgeInsets.only(left: 0),
-              rightChevronIcon: Icon(Icons.arrow_forward_ios_outlined, color: DesignSystem.of(context).colors.label4, size: 16),
+              rightChevronIcon: Icon(Icons.arrow_forward_ios_outlined, color: design.colors.label4, size: 16),
               rightChevronMargin: const EdgeInsets.only(right: 0),
             ),
             availableGestures: AvailableGestures.horizontalSwipe,
@@ -242,16 +243,16 @@ class _CalendarWidgetState extends ConsumerState<CalendarWidget> {
             calendarStyle: CalendarStyle(
               tableBorder: TableBorder.symmetric(),
               canMarkersOverflow: true,
-              defaultTextStyle: DesignSystem.of(context).textStyles.title3,
-              todayTextStyle: DesignSystem.of(context).textStyles.title3.copyWith(color: DesignSystem.of(context).colors.tint2),
+              defaultTextStyle: design.textStyles.title3,
+              todayTextStyle: design.textStyles.title3.copyWith(color: design.colors.tint2),
               todayDecoration: const BoxDecoration(
                 shape: BoxShape.circle,
               ),
-              weekendTextStyle: DesignSystem.of(context).textStyles.title3,
+              weekendTextStyle: design.textStyles.title3,
               outsideTextStyle: const TextStyle(fontFamily: 'Barlow', color: Colors.grey, fontSize: 17, fontWeight: FontWeight.w700),
               markerMargin: const EdgeInsets.only(top: 3),
               markerDecoration: BoxDecoration(
-                color: DesignSystem.of(context).colors.label4,
+                color: design.colors.label4,
                 shape: BoxShape.circle,
               ),
               markerSize: 5.5,
@@ -294,14 +295,14 @@ class _CalendarWidgetState extends ConsumerState<CalendarWidget> {
                 return Stack(
                   children: [
                     getEventHighlightFor(day),
-                    CenterText(DesignSystem.of(context).colors.label1, day),
+                    CenterText(design.colors.label1, day),
                   ],
                 );
               },
               todayBuilder: (context, day, focusedDay) => Stack(
                 children: [
                   getEventHighlightFor(day),
-                  CenterText(DesignSystem.of(context).colors.tint2, day),
+                  CenterText(design.colors.tint2, day),
                 ],
               ),
               outsideBuilder: (context, day, focusedDay) {
@@ -311,7 +312,7 @@ class _CalendarWidgetState extends ConsumerState<CalendarWidget> {
                       child: SizedBox(
                         width: 30,
                         height: 30,
-                        child: CenterText(DesignSystem.of(context).colors.label1.withOpacity(0.5), day),
+                        child: CenterText(design.colors.label1.withOpacity(0.5), day),
                       ),
                     ),
                     getEventHighlightFor(day),
@@ -327,7 +328,7 @@ class _CalendarWidgetState extends ConsumerState<CalendarWidget> {
                           width: 30,
                           height: 30,
                           decoration: BoxDecoration(
-                              color: DesignSystem.of(context).colors.label4.withOpacity(0.3),
+                              color: design.colors.label4.withOpacity(0.3),
                               border: Border.all(
                                 color: Colors.white,
                                 width: 1.0,
@@ -348,7 +349,7 @@ class _CalendarWidgetState extends ConsumerState<CalendarWidget> {
                           width: 33,
                           height: 33,
                           decoration: BoxDecoration(
-                              color: DesignSystem.of(context).colors.label4.withOpacity(0.3),
+                              color: design.colors.label4.withOpacity(0.3),
                               border: Border.all(
                                 color: Colors.white,
                                 width: 1.0,
@@ -357,7 +358,7 @@ class _CalendarWidgetState extends ConsumerState<CalendarWidget> {
                           child: Center(
                             child: Text(
                               '${day.day}',
-                              style: DesignSystem.of(context).textStyles.title3.copyWith(color: DesignSystem.of(context).colors.tint2),
+                              style: design.textStyles.title3.copyWith(color: design.colors.tint2),
                             ),
                           ),
                         ),
@@ -370,7 +371,7 @@ class _CalendarWidgetState extends ConsumerState<CalendarWidget> {
           ),
         ),
         Divider(
-          color: DesignSystem.of(context).colors.separatorOnLight,
+          color: design.colors.separatorOnLight,
         ),
         Row(
           mainAxisAlignment: MainAxisAlignment.start,
@@ -382,7 +383,7 @@ class _CalendarWidgetState extends ConsumerState<CalendarWidget> {
                   final isToday = isSameDay(_selectedDay, DateTime.now());
                   return Text(
                     '${isToday ? S.of(context).today : DateFormat(DateFormat.WEEKDAY).format(_selectedDay!).capitalized}, ${DateFormat(DateFormat.MONTH_DAY).format(_selectedDay!)}',
-                    style: DesignSystem.of(context).textStyles.title2,
+                    style: design.textStyles.title2,
                   );
                 }),
               ),
@@ -505,6 +506,7 @@ class _EntriesSlot extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final design = DesignSystem.of(context);
     var entriesList = _calendarDay?.day.entries;
     return Column(
       children: <Widget>[
@@ -525,12 +527,12 @@ class _EntriesSlot extends StatelessWidget {
               child: Container(
                 padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 16),
                 decoration: BoxDecoration(
-                  color: isLiveNow(entry.start, entry.end) ? DesignSystem.of(context).colors.tint2.withOpacity(0.1) : null,
+                  color: isLiveNow(entry.start, entry.end) ? design.colors.tint2.withOpacity(0.1) : null,
                 ),
                 foregroundDecoration: isLiveNow(entry.start, entry.end)
                     ? BoxDecoration(
                         border: Border(
-                          left: BorderSide(color: DesignSystem.of(context).colors.tint2, width: 4),
+                          left: BorderSide(color: design.colors.tint2, width: 4),
                         ),
                       )
                     : null,
@@ -547,10 +549,10 @@ class _EntriesSlot extends StatelessWidget {
                               isLiveNow(entry.start, entry.end)
                                   ? S.of(context).now
                                   : DateFormat('HH:mm').format(DateTime.parse(entry.start).toLocal()),
-                              style: DesignSystem.of(context).textStyles.title3,
+                              style: design.textStyles.title3,
                             ),
                             const SizedBox(height: 4),
-                            Text(calculateDuration(entry.start, entry.end), style: DesignSystem.of(context).textStyles.caption1),
+                            Text(calculateDuration(entry.start, entry.end), style: design.textStyles.caption1),
                           ],
                         ),
                       ),
@@ -560,16 +562,14 @@ class _EntriesSlot extends StatelessWidget {
                           children: [
                             Text(
                               entry.title,
-                              style: DesignSystem.of(context).textStyles.title3.copyWith(color: DesignSystem.of(context).colors.label1),
+                              style: design.textStyles.title3.copyWith(color: design.colors.label1),
                             ),
                             const SizedBox(height: 4),
                             Text(
                               entry.description,
                               overflow: TextOverflow.ellipsis,
-                              style: DesignSystem.of(context).textStyles.caption1.copyWith(
-                                  color: isLiveNow(entry.start, entry.end)
-                                      ? DesignSystem.of(context).colors.tint2
-                                      : DesignSystem.of(context).colors.tint1),
+                              style: design.textStyles.caption1
+                                  .copyWith(color: isLiveNow(entry.start, entry.end) ? design.colors.tint2 : design.colors.tint1),
                             ),
                           ],
                         ),
@@ -589,7 +589,7 @@ class _EntriesSlot extends StatelessWidget {
               children: [
                 Text(
                   S.of(context).noPlannedEvents,
-                  style: DesignSystem.of(context).textStyles.title3,
+                  style: design.textStyles.title3,
                 )
               ],
             ),

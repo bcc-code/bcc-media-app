@@ -2,7 +2,6 @@ import 'package:brunstadtv_app/helpers/ui/transparent_image.dart';
 import 'package:flutter/material.dart';
 
 import '../theme/design_system/design_system.dart';
-import '../theme/design_system/design_system.dart';
 
 class CategoryButton extends StatelessWidget {
   final String label;

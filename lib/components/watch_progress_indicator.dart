@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 
 import '../helpers/date_time.dart';
 import '../theme/design_system/design_system.dart';
-import '../theme/design_system/design_system.dart';
 
 class WatchProgressIndicator extends StatelessWidget {
   final int totalDuration;

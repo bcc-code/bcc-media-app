@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 import '../theme/design_system/design_system.dart';
-import '../theme/design_system/design_system.dart';
 
 class FeatureBadge extends StatelessWidget {
   final String label;

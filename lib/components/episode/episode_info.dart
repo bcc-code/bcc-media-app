@@ -23,8 +23,9 @@ class EpisodeInfo extends StatelessWidget {
     const showEpisodeNumber = false;
     final episodeNumberFormatted = '${S.of(context).seasonLetter}${episode.season?.number}:${S.of(context).episodeLetter}${episode.number}';
 
+    final design = DesignSystem.of(context);
     return Container(
-      color: DesignSystem.of(context).colors.background2,
+      color: design.colors.background2,
       child: AnimatedSize(
         duration: const Duration(milliseconds: 800),
         alignment: Alignment.topCenter,
@@ -40,8 +41,7 @@ class EpisodeInfo extends StatelessWidget {
                   Row(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Expanded(
-                          child: Text(key: WidgetKeys.episodePageEpisodeTitle, episode.title, style: DesignSystem.of(context).textStyles.title1)),
+                      Expanded(child: Text(key: WidgetKeys.episodePageEpisodeTitle, episode.title, style: design.textStyles.title1)),
                       GestureDetector(
                         onTap: onShareVideoTapped,
                         behavior: HitTestBehavior.opaque,
@@ -49,7 +49,7 @@ class EpisodeInfo extends StatelessWidget {
                           mouseCursor: MaterialStateMouseCursor.clickable,
                           child: Padding(
                             padding: const EdgeInsets.only(top: 4, left: 16),
-                            child: SvgPicture.string(SvgIcons.share, color: DesignSystem.of(context).colors.label3),
+                            child: SvgPicture.string(SvgIcons.share, color: design.colors.label3),
                           ),
                         ),
                       ),
@@ -63,26 +63,24 @@ class EpisodeInfo extends StatelessWidget {
                         padding: const EdgeInsets.only(top: 3, right: 4),
                         child: FeatureBadge(
                           label: getFormattedAgeRating(episode.ageRating),
-                          color: DesignSystem.of(context).colors.background2,
+                          color: design.colors.background2,
                         ),
                       ),
                       if (episode.season?.$show.title != null)
                         Center(
-                          child: Text(episode.season!.$show.title,
-                              style: DesignSystem.of(context).textStyles.caption1.copyWith(color: DesignSystem.of(context).colors.tint1)),
+                          child: Text(episode.season!.$show.title, style: design.textStyles.caption1.copyWith(color: design.colors.tint1)),
                         ),
                       if (showEpisodeNumber)
                         Padding(
                             padding: const EdgeInsets.only(left: 4),
-                            child: Text(episodeNumberFormatted,
-                                style: DesignSystem.of(context).textStyles.caption1.copyWith(color: DesignSystem.of(context).colors.label4)))
+                            child: Text(episodeNumberFormatted, style: design.textStyles.caption1.copyWith(color: design.colors.label4)))
                     ],
                   ),
                   const SizedBox(height: 14.5),
                   if (episode.description.isNotEmpty)
                     TextCollapsible(
                       text: episode.description,
-                      style: DesignSystem.of(context).textStyles.body2.copyWith(color: DesignSystem.of(context).colors.label3),
+                      style: design.textStyles.body2.copyWith(color: design.colors.label3),
                       maxLines: 2,
                     ),
                   ...?extraChildren

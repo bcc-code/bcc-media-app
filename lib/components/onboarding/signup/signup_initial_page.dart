@@ -47,6 +47,7 @@ class SignupInitialPage extends HookWidget implements SignupScreenPage {
       nextFocusNode.requestFocus();
     }
 
+    final design = DesignSystem.of(context);
     return OnboardingPageWrapper(
       body: [
         Padding(
@@ -54,12 +55,12 @@ class SignupInitialPage extends HookWidget implements SignupScreenPage {
           child: AnimatedSwitcher(
             duration: const Duration(milliseconds: 300),
             reverseDuration: Duration.zero,
-            child: emailFocusNode.hasFocus ? null : Text(S.of(context).signUpTitle, style: DesignSystem.of(context).textStyles.headline1),
+            child: emailFocusNode.hasFocus ? null : Text(S.of(context).signUpTitle, style: design.textStyles.headline1),
           ),
         ),
         Text(
           S.of(context).signUpDescription,
-          style: DesignSystem.of(context).textStyles.body1.copyWith(color: DesignSystem.of(context).colors.label3),
+          style: design.textStyles.body1.copyWith(color: design.colors.label3),
         ),
         const SizedBox(height: 48),
         if (enableSocialSignup) ...[
@@ -68,7 +69,7 @@ class SignupInitialPage extends HookWidget implements SignupScreenPage {
           Center(
             child: Text(
               'or'.toUpperCase(),
-              style: DesignSystem.of(context).textStyles.overline.copyWith(color: DesignSystem.of(context).colors.label1),
+              style: design.textStyles.overline.copyWith(color: design.colors.label1),
             ),
           ),
           const SizedBox(height: 24)
@@ -77,7 +78,7 @@ class SignupInitialPage extends HookWidget implements SignupScreenPage {
           padding: const EdgeInsets.only(bottom: 10),
           child: Text(
             'Register with email address',
-            style: DesignSystem.of(context).textStyles.caption1.copyWith(color: DesignSystem.of(context).colors.label2),
+            style: design.textStyles.caption1.copyWith(color: design.colors.label2),
           ),
         ),
         Form(
@@ -94,11 +95,11 @@ class SignupInitialPage extends HookWidget implements SignupScreenPage {
         Container(
           padding: const EdgeInsets.only(bottom: 16),
           width: double.infinity,
-          child: DesignSystem.of(context).buttons.large(
-                disabled: emailTextController.value.text == '',
-                onPressed: nextPage,
-                labelText: S.of(context).continueButton,
-              ),
+          child: design.buttons.large(
+            disabled: emailTextController.value.text == '',
+            onPressed: nextPage,
+            labelText: S.of(context).continueButton,
+          ),
         )
       ],
     );
