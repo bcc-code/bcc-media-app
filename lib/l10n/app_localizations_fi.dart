@@ -23,7 +23,7 @@ class SFi extends S {
   String get calendarWeek => 'viikko';
 
   @override
-  String get close => 'Close';
+  String get close => 'Sulje';
 
   @override
   String get loading => 'Ladataan';
@@ -59,19 +59,19 @@ class SFi extends S {
   String get signInOrSignUp => 'Sign up / Sign in';
 
   @override
-  String get signUpButton => 'Sign up now';
+  String get signUpButton => 'Luo tunnus nyt';
 
   @override
-  String get signUpTitle => 'Sign up';
+  String get signUpTitle => 'Luo tunnus';
 
   @override
-  String get signUpDescription => 'Get access to more content and better features by creating an account.';
+  String get signUpDescription => 'Luomalla tunnuksen saat enemmän sisältöä ja paremmat ominaisuudet.';
 
   @override
   String get signUpAgreePrivacyPolicy => 'I certify that I am 13 years of age or older, and I agree to the <a>Privacy Policy</a> and <a>Terms of use</a>.';
 
   @override
-  String get setPassword => 'Set password';
+  String get setPassword => 'Aseta salasana';
 
   @override
   String get tryAgainButton => 'Koita uudelleen';
@@ -200,7 +200,7 @@ class SFi extends S {
   String get play => 'Toista';
 
   @override
-  String get pause => 'Pause';
+  String get pause => 'Tauko';
 
   @override
   String get castQueue => 'Toista kaikki isolle ruudulle';
@@ -366,7 +366,7 @@ class SFi extends S {
   String get sendFailDescription => 'Jokin ei nyt toimi. Tarkista nettiyhteys ja kokeile uudelleen.';
 
   @override
-  String get sendSuccessDescription => 'We appreciate your feedback.';
+  String get sendSuccessDescription => 'Kiitos palautteesta.';
 
   @override
   String get today => 'Tänään';
@@ -409,10 +409,10 @@ class SFi extends S {
   String get liveNow => 'Suorana nyt';
 
   @override
-  String get comingSoon => 'Coming soon';
+  String get comingSoon => 'Tulossa pian';
 
   @override
-  String get newEpisode => 'New';
+  String get newEpisode => 'Uutta';
 
   @override
   String get tomorrow => 'Huomenna';
@@ -507,7 +507,7 @@ class SFi extends S {
   String get exploreContent => 'Tutustu sisältöön';
 
   @override
-  String get explorePublicContent => 'Explore public content';
+  String get explorePublicContent => 'Tutustu avoimeen sisältöön';
 
   @override
   String get taskCompleted => 'tehtävä suoritettu';
@@ -615,7 +615,7 @@ class SFi extends S {
   String get details => 'Lisätietoa';
 
   @override
-  String get selectSeason => 'Select season';
+  String get selectSeason => 'Valitse tuotantokausi';
 
   @override
   String get deleteMyAccount => 'Delete my account';
@@ -624,5 +624,5 @@ class SFi extends S {
   String get iAmSureIWantToDelete => 'I am sure I want to delete my account and my data related to the BCC Media app.';
 
   @override
-  String get areYouSure => 'Are you sure?';
+  String get areYouSure => 'Oletko varma?';
 }

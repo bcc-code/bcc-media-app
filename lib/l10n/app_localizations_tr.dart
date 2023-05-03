@@ -23,7 +23,7 @@ class STr extends S {
   String get calendarWeek => 'hafta';
 
   @override
-  String get close => 'Close';
+  String get close => 'Kapat';
 
   @override
   String get loading => 'Yükleniyor';
@@ -366,7 +366,7 @@ class STr extends S {
   String get sendFailDescription => 'Bir şeyler yanlış gitti. İnternet bağlantınızı kontrol edip tekrar deneyin.';
 
   @override
-  String get sendSuccessDescription => 'We appreciate your feedback.';
+  String get sendSuccessDescription => 'Geribildirim için teşekkürler.';
 
   @override
   String get today => 'Bugün';
@@ -409,10 +409,10 @@ class STr extends S {
   String get liveNow => 'Şimdi canlı';
 
   @override
-  String get comingSoon => 'Coming soon';
+  String get comingSoon => 'Yakında geliyor';
 
   @override
-  String get newEpisode => 'New';
+  String get newEpisode => 'Yeni';
 
   @override
   String get tomorrow => 'Yarın';

@@ -23,7 +23,7 @@ class SNl extends S {
   String get calendarWeek => 'week';
 
   @override
-  String get close => 'Close';
+  String get close => 'Sluiten';
 
   @override
   String get loading => 'Laden';
@@ -59,19 +59,19 @@ class SNl extends S {
   String get signInOrSignUp => 'Sign up / Sign in';
 
   @override
-  String get signUpButton => 'Sign up now';
+  String get signUpButton => 'Meld je nu aan';
 
   @override
-  String get signUpTitle => 'Sign up';
+  String get signUpTitle => 'Aanmelden';
 
   @override
-  String get signUpDescription => 'Get access to more content and better features by creating an account.';
+  String get signUpDescription => 'Krijg toegang tot meer content en betere functionaliteit door een account aan te maken.';
 
   @override
   String get signUpAgreePrivacyPolicy => 'I certify that I am 13 years of age or older, and I agree to the <a>Privacy Policy</a> and <a>Terms of use</a>.';
 
   @override
-  String get setPassword => 'Set password';
+  String get setPassword => 'Stel een wachtwoord in';
 
   @override
   String get tryAgainButton => 'Probeer opnieuw';
@@ -200,7 +200,7 @@ class SNl extends S {
   String get play => 'Afspelen';
 
   @override
-  String get pause => 'Pause';
+  String get pause => 'Pauzeer';
 
   @override
   String get castQueue => 'Lijst verwijderen';
@@ -366,7 +366,7 @@ class SNl extends S {
   String get sendFailDescription => 'Er is iets misgegaan. Controleer je internetverbinding en probeer het opnieuw.';
 
   @override
-  String get sendSuccessDescription => 'We appreciate your feedback.';
+  String get sendSuccessDescription => 'We stellen je feedback op prijs.';
 
   @override
   String get today => 'Vandaag';
@@ -409,10 +409,10 @@ class SNl extends S {
   String get liveNow => 'Nu live';
 
   @override
-  String get comingSoon => 'Coming soon';
+  String get comingSoon => 'Komt binnenkort';
 
   @override
-  String get newEpisode => 'New';
+  String get newEpisode => 'Nieuw';
 
   @override
   String get tomorrow => 'Morgen';
@@ -507,7 +507,7 @@ class SNl extends S {
   String get exploreContent => 'Inhoud verkennen';
 
   @override
-  String get explorePublicContent => 'Explore public content';
+  String get explorePublicContent => 'Verken publieke content';
 
   @override
   String get taskCompleted => 'taak afgerond';
@@ -615,7 +615,7 @@ class SNl extends S {
   String get details => 'Details';
 
   @override
-  String get selectSeason => 'Select season';
+  String get selectSeason => 'Selecteer een seizoen';
 
   @override
   String get deleteMyAccount => 'Delete my account';
@@ -624,5 +624,5 @@ class SNl extends S {
   String get iAmSureIWantToDelete => 'I am sure I want to delete my account and my data related to the BCC Media app.';
 
   @override
-  String get areYouSure => 'Are you sure?';
+  String get areYouSure => 'Weet je het zeker?';
 }

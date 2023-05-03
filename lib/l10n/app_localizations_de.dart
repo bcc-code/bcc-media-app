@@ -23,7 +23,7 @@ class SDe extends S {
   String get calendarWeek => 'Woche';
 
   @override
-  String get close => 'Close';
+  String get close => 'Schließen';
 
   @override
   String get loading => 'Lädt';
@@ -366,7 +366,7 @@ class SDe extends S {
   String get sendFailDescription => 'Etwas lief schief. Bitte überprüfe deine Internetverbindung und versuche es noch einmal.';
 
   @override
-  String get sendSuccessDescription => 'We appreciate your feedback.';
+  String get sendSuccessDescription => 'Wir schätzen dein Feedback.';
 
   @override
   String get today => 'Heute';
@@ -409,10 +409,10 @@ class SDe extends S {
   String get liveNow => 'Jetzt live';
 
   @override
-  String get comingSoon => 'Coming soon';
+  String get comingSoon => 'Kommt in Kürze';
 
   @override
-  String get newEpisode => 'New';
+  String get newEpisode => 'Neu';
 
   @override
   String get tomorrow => 'Morgen';
@@ -624,5 +624,5 @@ class SDe extends S {
   String get iAmSureIWantToDelete => 'I am sure I want to delete my account and my data related to the BCC Media app.';
 
   @override
-  String get areYouSure => 'Are you sure?';
+  String get areYouSure => 'Bist du sicher?';
 }

@@ -23,7 +23,7 @@ class SPl extends S {
   String get calendarWeek => 'tydzień';
 
   @override
-  String get close => 'Close';
+  String get close => 'Zamknij';
 
   @override
   String get loading => 'Ładuję';
@@ -366,7 +366,7 @@ class SPl extends S {
   String get sendFailDescription => 'Coś poszło nie tak. Sprawdź swoje połączenie internetowe i spróbuj jeszcze raz.';
 
   @override
-  String get sendSuccessDescription => 'We appreciate your feedback.';
+  String get sendSuccessDescription => 'Doceniamy twój feedback.';
 
   @override
   String get today => 'Dzisiaj';
@@ -409,10 +409,10 @@ class SPl extends S {
   String get liveNow => 'Teraz na żywo';
 
   @override
-  String get comingSoon => 'Coming soon';
+  String get comingSoon => 'Dostępne wkrótce';
 
   @override
-  String get newEpisode => 'New';
+  String get newEpisode => 'Nowy';
 
   @override
   String get tomorrow => 'Jutro';
@@ -624,5 +624,5 @@ class SPl extends S {
   String get iAmSureIWantToDelete => 'I am sure I want to delete my account and my data related to the BCC Media app.';
 
   @override
-  String get areYouSure => 'Are you sure?';
+  String get areYouSure => 'Czy jesteś pewien?';
 }

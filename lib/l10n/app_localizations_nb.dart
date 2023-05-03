@@ -23,7 +23,7 @@ class SNb extends S {
   String get calendarWeek => 'uke';
 
   @override
-  String get close => 'Close';
+  String get close => 'Lukk';
 
   @override
   String get loading => 'Laster';
@@ -366,7 +366,7 @@ class SNb extends S {
   String get sendFailDescription => 'Noe gikk galt. Sjekk internettforbindelsen din og prøv på nytt.';
 
   @override
-  String get sendSuccessDescription => 'We appreciate your feedback.';
+  String get sendSuccessDescription => 'Vi setter pris på din tilbakemelding.';
 
   @override
   String get today => 'I dag';
@@ -409,10 +409,10 @@ class SNb extends S {
   String get liveNow => 'Direkte nå';
 
   @override
-  String get comingSoon => 'Coming soon';
+  String get comingSoon => 'Kommer snart';
 
   @override
-  String get newEpisode => 'New';
+  String get newEpisode => 'Ny';
 
   @override
   String get tomorrow => 'I morgen';
@@ -624,5 +624,5 @@ class SNb extends S {
   String get iAmSureIWantToDelete => 'I am sure I want to delete my account and my data related to the BCC Media app.';
 
   @override
-  String get areYouSure => 'Are you sure?';
+  String get areYouSure => 'Er du sikker?';
 }

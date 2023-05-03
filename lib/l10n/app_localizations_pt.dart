@@ -23,7 +23,7 @@ class SPt extends S {
   String get calendarWeek => 'Semana ';
 
   @override
-  String get close => 'Close';
+  String get close => 'Fechar';
 
   @override
   String get loading => 'Carregando';
@@ -59,19 +59,19 @@ class SPt extends S {
   String get signInOrSignUp => 'Sign up / Sign in';
 
   @override
-  String get signUpButton => 'Sign up now';
+  String get signUpButton => 'Inscreva-se agora';
 
   @override
-  String get signUpTitle => 'Sign up';
+  String get signUpTitle => 'Inscrever-se';
 
   @override
-  String get signUpDescription => 'Get access to more content and better features by creating an account.';
+  String get signUpDescription => 'Obtenha acesso a mais conteúdo e melhores recursos criando uma conta.';
 
   @override
   String get signUpAgreePrivacyPolicy => 'I certify that I am 13 years of age or older, and I agree to the <a>Privacy Policy</a> and <a>Terms of use</a>.';
 
   @override
-  String get setPassword => 'Set password';
+  String get setPassword => 'Configurar senha';
 
   @override
   String get tryAgainButton => 'Tente novamente';
@@ -200,7 +200,7 @@ class SPt extends S {
   String get play => 'Play';
 
   @override
-  String get pause => 'Pause';
+  String get pause => 'Pausa';
 
   @override
   String get castQueue => 'Fila de transmissão';
@@ -366,7 +366,7 @@ class SPt extends S {
   String get sendFailDescription => 'Algo deu errado. Verifique sua conexão com a internet e tente novamente.';
 
   @override
-  String get sendSuccessDescription => 'We appreciate your feedback.';
+  String get sendSuccessDescription => 'Agradecemos seus comentários.';
 
   @override
   String get today => 'Hoje';
@@ -409,10 +409,10 @@ class SPt extends S {
   String get liveNow => 'Ao vivo agora';
 
   @override
-  String get comingSoon => 'Coming soon';
+  String get comingSoon => 'Em breve ';
 
   @override
-  String get newEpisode => 'New';
+  String get newEpisode => 'Novo ';
 
   @override
   String get tomorrow => 'Amanhã';
@@ -507,7 +507,7 @@ class SPt extends S {
   String get exploreContent => 'Explorar conteúdo';
 
   @override
-  String get explorePublicContent => 'Explore public content';
+  String get explorePublicContent => 'Explorar conteúdo público';
 
   @override
   String get taskCompleted => 'tarefa completa';
@@ -615,7 +615,7 @@ class SPt extends S {
   String get details => 'Detalhes ';
 
   @override
-  String get selectSeason => 'Select season';
+  String get selectSeason => 'Selecione a temporada';
 
   @override
   String get deleteMyAccount => 'Delete my account';
@@ -624,5 +624,5 @@ class SPt extends S {
   String get iAmSureIWantToDelete => 'I am sure I want to delete my account and my data related to the BCC Media app.';
 
   @override
-  String get areYouSure => 'Are you sure?';
+  String get areYouSure => 'Tem certeza?';
 }
