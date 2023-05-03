@@ -24,14 +24,21 @@ import '../../../models/auth0/auth0_id_token.dart';
 import '../../../models/auth_state.dart';
 import '../auth_state.dart';
 
-// Careful. This line is very important,
+// Careful. The function naming here is very important,
 // but because it's conditionally imported (see auth_state_notifier_interface.dart)
-// IDEs don't show any errors when you remove it..
-AuthStateNotifier getPlatformSpecificAuthStateNotifier(Ref ref) => AuthStateNotifierMobile(
-      appAuth: const FlutterAppAuth(),
-      secureStorage: const FlutterSecureStorage(),
-      settingsService: ref.watch(settingsProvider.notifier),
-    );
+// IDEs don't show any errors when you remove/change it..
+AuthStateNotifier getPlatformSpecificAuthStateNotifier(Ref ref) {
+  return AuthStateNotifierMobile(
+    appAuth: const FlutterAppAuth(),
+    secureStorage: const FlutterSecureStorage(
+      aOptions: AndroidOptions(
+        encryptedSharedPreferences: true, // https://github.com/mogol/flutter_secure_storage/issues/354
+        sharedPreferencesName: 'auth',
+      ),
+    ),
+    settingsService: ref.watch(settingsProvider.notifier),
+  );
+}
 
 const kMinimumCredentialsTTL = Duration(hours: 1);
 

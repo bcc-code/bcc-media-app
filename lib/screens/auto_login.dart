@@ -40,7 +40,9 @@ class _AutoLoginScreeenState extends ConsumerState<AutoLoginScreen> {
 
   void load() async {
     final deepLinkUri = await AppLinks().getInitialAppLink();
-    authFuture = ref.read(authStateProvider.notifier).load();
+    setState(() {
+      authFuture = ref.read(authStateProvider.notifier).load();
+    });
     authFuture!.then((_) {
       debugPrint('navigate(deepLinkUri: $deepLinkUri)');
       navigate(deepLinkUri: deepLinkUri);
