@@ -204,52 +204,6 @@ class Api implements BccmApi {
     }
     return value.parsedData!.legacyIDLookup.id;
   }
-
-  Future<Query$MyList$myList> getMyList() {
-    return gqlClient.query$MyList().then(
-      (result) {
-        if (result.hasException) {
-          throw result.exception!;
-        }
-        if (result.parsedData == null) {
-          throw ErrorDescription('MyList result is null.');
-        }
-        return result.parsedData!.myList;
-      },
-    );
-  }
-
-  Future<String> addEpisodeToMyList(String episodeId) {
-    return gqlClient
-        .mutate$addEpisodeToMyList(Options$Mutation$addEpisodeToMyList(variables: Variables$Mutation$addEpisodeToMyList(episodeId: episodeId)))
-        .then(
-      (result) {
-        if (result.hasException) {
-          throw result.exception!;
-        }
-        if (result.parsedData == null) {
-          throw ErrorDescription('addEpisodeToMyList result is null.');
-        }
-        return result.parsedData!.addEpisodeToMyList.entryId;
-      },
-    );
-  }
-
-  Future<String> removeEntryFromMyList(String entryId) {
-    return gqlClient
-        .mutate$removeEntryFromMyList(Options$Mutation$removeEntryFromMyList(variables: Variables$Mutation$removeEntryFromMyList(entryId: entryId)))
-        .then(
-      (result) {
-        if (result.hasException) {
-          throw result.exception!;
-        }
-        if (result.parsedData == null) {
-          throw ErrorDescription('addEpisodeToMyList result is null.');
-        }
-        return result.parsedData!.removeEntryFromMyList.id;
-      },
-    );
-  }
 }
 
 final apiProvider = Provider<Api>((ref) {

@@ -108,7 +108,7 @@ class Analytics {
       sectionName: 'My-List',
       sectionPosition: 0,
       sectionType: '',
-      pageCode: '',
+      pageCode: 'my-list',
       elementName: sectionItemAnalytics.name,
       elementPosition: sectionItemAnalytics.position,
       elementType: sectionItemAnalytics.type,

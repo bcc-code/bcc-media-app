@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:auto_route/auto_route.dart';
+import 'package:brunstadtv_app/graphql/client.dart';
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
@@ -8,7 +9,6 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:brunstadtv_app/l10n/app_localizations.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-import '../api/brunstadtv.dart';
 import '../components/custom_grid_view.dart';
 import '../helpers/event_bus.dart';
 import '../helpers/watch_progress_bottom_sheet.dart';
@@ -32,7 +32,7 @@ class MyListScreen extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final showAppBar = useState(false);
-    final myListFuture = useState(ref.read(apiProvider).getMyList());
+    final myListFuture = useState(getMyList(ref));
 
     useEffect(() {
       showAppBar.value = false;
@@ -40,7 +40,7 @@ class MyListScreen extends HookConsumerWidget {
       return null;
     }, [myListFuture.value]);
 
-    onRefresh() => myListFuture.value = ref.read(apiProvider).getMyList();
+    onRefresh() => myListFuture.value = getMyList(ref);
 
     return Scaffold(
       appBar: showAppBar.value ? AppBar(title: Text(S.of(context).myList)) : null,
@@ -64,6 +64,20 @@ class MyListScreen extends HookConsumerWidget {
           return AnimatedSwitcher(duration: const Duration(milliseconds: 250), child: child);
         },
       ),
+    );
+  }
+
+  Future<Query$MyList$myList> getMyList(WidgetRef ref) {
+    return ref.read(gqlClientProvider).query$MyList().then(
+      (result) {
+        if (result.hasException) {
+          throw result.exception!;
+        }
+        if (result.parsedData == null) {
+          throw ErrorDescription('MyList result is null.');
+        }
+        return result.parsedData!.myList;
+      },
     );
   }
 }

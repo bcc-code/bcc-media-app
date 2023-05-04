@@ -1,4 +1,5 @@
 import 'package:brunstadtv_app/components/feature_badge.dart';
+import 'package:brunstadtv_app/graphql/client.dart';
 import 'package:brunstadtv_app/graphql/queries/episode.graphql.dart';
 import 'package:brunstadtv_app/helpers/ui/svg_icons.dart';
 import 'package:brunstadtv_app/helpers/utils.dart';
@@ -10,6 +11,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../api/brunstadtv.dart';
+import '../../graphql/queries/my_list.graphql.dart';
 import '../../theme/design_system/design_system.dart';
 import '../text_collapsible.dart';
 
@@ -31,7 +33,12 @@ class EpisodeInfo extends HookConsumerWidget {
     useEffect(() {
       inMyList.value = episode.inMyList;
       return null;
-    }, [episode.id]);
+    }, [episode.id, episode.inMyList]);
+
+    void toggleInMyList() {
+      inMyList.value ? removeEntryFromMyList(ref, episode.uuid) : addEpisodeToMyList(ref, episode.id);
+      inMyList.value = !inMyList.value;
+    }
 
     return Container(
       color: design.colors.background2,
@@ -52,7 +59,7 @@ class EpisodeInfo extends HookConsumerWidget {
                     children: [
                       Expanded(child: Text(key: WidgetKeys.episodePageEpisodeTitle, episode.title, style: design.textStyles.title1)),
                       GestureDetector(
-                        onTap: () => toggleInMyList(ref, inMyList),
+                        onTap: toggleInMyList,
                         behavior: HitTestBehavior.opaque,
                         child: FocusableActionDetector(
                           mouseCursor: MaterialStateMouseCursor.clickable,
@@ -116,13 +123,37 @@ class EpisodeInfo extends HookConsumerWidget {
     );
   }
 
-  toggleInMyList(WidgetRef ref, ValueNotifier inMyList) {
-    final api = ref.read(apiProvider);
-    if (inMyList.value) {
-      api.removeEntryFromMyList(episode.uuid);
-    } else {
-      api.addEpisodeToMyList(episode.id);
-    }
-    inMyList.value = !inMyList.value;
+  Future<String> addEpisodeToMyList(WidgetRef ref, String episodeId) {
+    return ref
+        .read(gqlClientProvider)
+        .mutate$addEpisodeToMyList(Options$Mutation$addEpisodeToMyList(variables: Variables$Mutation$addEpisodeToMyList(episodeId: episodeId)))
+        .then(
+      (result) {
+        if (result.hasException) {
+          throw result.exception!;
+        }
+        if (result.parsedData == null) {
+          throw ErrorDescription('addEpisodeToMyList result is null.');
+        }
+        return result.parsedData!.addEpisodeToMyList.entryId;
+      },
+    );
+  }
+
+  Future<String> removeEntryFromMyList(WidgetRef ref, String entryId) {
+    return ref
+        .read(gqlClientProvider)
+        .mutate$removeEntryFromMyList(Options$Mutation$removeEntryFromMyList(variables: Variables$Mutation$removeEntryFromMyList(entryId: entryId)))
+        .then(
+      (result) {
+        if (result.hasException) {
+          throw result.exception!;
+        }
+        if (result.parsedData == null) {
+          throw ErrorDescription('addEpisodeToMyList result is null.');
+        }
+        return result.parsedData!.removeEntryFromMyList.id;
+      },
+    );
   }
 }
