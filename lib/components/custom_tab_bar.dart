@@ -76,7 +76,6 @@ class _CustomTabBarState extends ConsumerState<CustomTabBar> {
     if (!guestMode) {
       items.addAll([
         BottomNavigationBarItem(label: S.of(context).liveTab, icon: _icon(icons['live_default']), activeIcon: _icon(icons['live_selected'])),
-        BottomNavigationBarItem(label: S.of(context).myList, icon: _icon(icons['my_list_default']), activeIcon: _icon(icons['my_list_selected'])),
         BottomNavigationBarItem(label: S.of(context).calendar, icon: _icon(icons['calendar_default']), activeIcon: _icon(icons['calendar_selected'])),
       ]);
     }

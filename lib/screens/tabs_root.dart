@@ -134,7 +134,6 @@ class _TabsRootScreenState extends ConsumerState<TabsRootScreen> with AutoRouteA
     if (!ref.watch(authStateProvider).guestMode) {
       routes.addAll([
         const LiveScreenRoute(),
-        const MyListScreenWrapperRoute(),
         const CalendarPageRoute(),
       ]);
     }
