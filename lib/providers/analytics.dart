@@ -96,6 +96,27 @@ class Analytics {
     RudderController.instance.track('section_clicked', properties: getCommonData().putValue(map: event.toJson()));
   }
 
+  void myListTabEntryClicked(BuildContext context) {
+    var sectionItemAnalytics = InheritedData.read<SectionItemAnalytics>(context);
+    if (sectionItemAnalytics == null) {
+      FirebaseCrashlytics.instance.recordError(Exception('Missing sectionItemAnalytics.'), StackTrace.current);
+      return;
+    }
+
+    var event = SectionClickedEvent(
+      sectionId: 'my-list',
+      sectionName: 'My-List',
+      sectionPosition: 0,
+      sectionType: '',
+      pageCode: '',
+      elementName: sectionItemAnalytics.name,
+      elementPosition: sectionItemAnalytics.position,
+      elementType: sectionItemAnalytics.type,
+      elementId: sectionItemAnalytics.id,
+    );
+    RudderController.instance.track('section_clicked', properties: getCommonData().putValue(map: event.toJson()));
+  }
+
   void searchPerformed(SearchPerformedEvent event) {
     RudderController.instance.track('search_performed', properties: getCommonData().putValue(map: event.toJson()));
   }

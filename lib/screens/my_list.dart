@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:auto_route/auto_route.dart';
+import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -17,8 +18,11 @@ import '../components/sections/thumbnail_grid/thumbnail_grid_episode.dart';
 import '../graphql/queries/my_list.graphql.dart';
 import '../helpers/ui/btv_buttons.dart';
 import '../helpers/ui/svg_icons.dart';
+import '../models/analytics/sections.dart';
 import '../models/episode_thumbnail_data.dart';
 import '../models/events/watch_progress.dart';
+import '../providers/analytics.dart';
+import '../providers/inherited_data.dart';
 import '../router/router.gr.dart';
 import '../theme/bccm_colors.dart';
 import '../theme/bccm_typography.dart';
@@ -67,11 +71,9 @@ class MyListScreen extends HookConsumerWidget {
 }
 
 class _MyListContent extends HookConsumerWidget {
-  final List<Fragment$MyListEntry> items;
+  const _MyListContent(this.items);
 
-  const _MyListContent(
-    this.items,
-  );
+  final List<Fragment$MyListEntry> items;
 
   EpisodeThumbnailData getEpisodeThumbnailData(Fragment$MyListEntry$item$$Episode episode) {
     return EpisodeThumbnailData(
@@ -113,11 +115,10 @@ class _MyListContent extends HookConsumerWidget {
     return CustomGridView(
       shrinkWrap: false,
       physics: const BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
-      children: episodeItems.map<Widget>((item) {
-        return GestureDetector(
-          behavior: HitTestBehavior.opaque,
-          onTap: () => context.navigateTo(EpisodeScreenRoute(episodeId: item.id)),
-          onLongPress: () => showWatchProgressBottomSheet(context, ref, item.id, item.progress),
+      children: episodeItems.mapIndexed((index, item) {
+        return _MyListItemClickWrapper(
+          item: item,
+          analytics: SectionItemAnalytics(id: item.id, name: item.title, type: item.$__typename, position: index),
           child: ThumbnailGridEpisode(
             episode: getEpisodeThumbnailData(item),
             showSecondaryTitle: false,
@@ -166,6 +167,40 @@ class _MyListEmptyInfo extends StatelessWidget {
             ),
           ),
         ],
+      ),
+    );
+  }
+}
+
+class _MyListItemClickWrapper extends ConsumerWidget {
+  const _MyListItemClickWrapper({required this.item, required this.child, required this.analytics});
+
+  final Fragment$MyListEntry$item item;
+  final SectionItemAnalytics analytics;
+  final Widget child;
+
+  onTap(BuildContext context, WidgetRef ref) {
+    final episodeItem = item.asOrNull<Fragment$MyListEntry$item$$Episode>();
+    if (episodeItem != null) {
+      context.navigateTo(EpisodeScreenRoute(episodeId: episodeItem.id));
+    }
+    ref.read(analyticsProvider).myListTabEntryClicked(context);
+  }
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    return InheritedData<SectionItemAnalytics>(
+      inheritedData: analytics,
+      child: (context) => GestureDetector(
+        behavior: HitTestBehavior.opaque,
+        onTap: () => onTap(context, ref),
+        onLongPress: () {
+          final episodeItem = item.asOrNull<Fragment$MyListEntry$item$$Episode>();
+          if (episodeItem != null) {
+            showWatchProgressBottomSheet(context, ref, episodeItem.id, episodeItem.progress);
+          }
+        },
+        child: child,
       ),
     );
   }
