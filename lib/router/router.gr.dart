@@ -24,7 +24,7 @@ import '../screens/calendar/calendar.dart' as _i21;
 import '../screens/episode.dart' as _i14;
 import '../screens/home.dart' as _i13;
 import '../screens/live.dart' as _i19;
-import '../screens/my_list/my_list.dart' as _i24;
+import '../screens/my_list.dart' as _i24;
 import '../screens/onboarding/onboarding.dart' as _i2;
 import '../screens/onboarding/signup.dart' as _i3;
 import '../screens/page.dart' as _i23;

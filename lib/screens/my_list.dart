@@ -2,28 +2,27 @@ import 'dart:async';
 
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:brunstadtv_app/l10n/app_localizations.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-import '../../api/brunstadtv.dart';
-import '../../components/custom_grid_view.dart';
-import '../../helpers/event_bus.dart';
-import '../../helpers/watch_progress_bottom_sheet.dart';
-import '../../components/error_generic.dart';
-import '../../components/loading_generic.dart';
-import '../../components/sections/thumbnail_grid/thumbnail_grid_episode.dart';
-import '../../graphql/queries/my_list.graphql.dart';
-import '../../helpers/ui/btv_buttons.dart';
-import '../../helpers/ui/svg_icons.dart';
-import '../../models/episode_thumbnail_data.dart';
-import '../../models/events/watch_progress.dart';
-import '../../router/router.gr.dart';
-import '../../theme/bccm_colors.dart';
-import '../../theme/bccm_typography.dart';
-import '../../helpers/extensions.dart';
+import '../api/brunstadtv.dart';
+import '../components/custom_grid_view.dart';
+import '../helpers/event_bus.dart';
+import '../helpers/watch_progress_bottom_sheet.dart';
+import '../components/error_generic.dart';
+import '../components/loading_generic.dart';
+import '../components/sections/thumbnail_grid/thumbnail_grid_episode.dart';
+import '../graphql/queries/my_list.graphql.dart';
+import '../helpers/ui/btv_buttons.dart';
+import '../helpers/ui/svg_icons.dart';
+import '../models/episode_thumbnail_data.dart';
+import '../models/events/watch_progress.dart';
+import '../router/router.gr.dart';
+import '../theme/bccm_colors.dart';
+import '../theme/bccm_typography.dart';
+import '../helpers/extensions.dart';
 
 class MyListScreen extends HookConsumerWidget {
   const MyListScreen({Key? key}) : super(key: key);
@@ -118,10 +117,7 @@ class _MyListContent extends HookConsumerWidget {
         return GestureDetector(
           behavior: HitTestBehavior.opaque,
           onTap: () => context.navigateTo(EpisodeScreenRoute(episodeId: item.id)),
-          onLongPress: () {
-            HapticFeedback.heavyImpact();
-            showWatchProgressBottomSheet(context, ref, item.id, item.progress);
-          },
+          onLongPress: () => showWatchProgressBottomSheet(context, ref, item.id, item.progress),
           child: ThumbnailGridEpisode(
             episode: getEpisodeThumbnailData(item),
             showSecondaryTitle: false,

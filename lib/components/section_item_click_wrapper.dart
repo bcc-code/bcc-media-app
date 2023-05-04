@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../graphql/queries/page.graphql.dart';
@@ -27,7 +26,6 @@ class SectionItemClickWrapper extends ConsumerWidget {
           if (episode == null) {
             return;
           }
-          HapticFeedback.heavyImpact();
           showWatchProgressBottomSheet(context, ref, episode.id, episode.progress);
         },
         onTap: () => handleSectionItemClick(context, item),

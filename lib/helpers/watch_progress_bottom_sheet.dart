@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../api/brunstadtv.dart';
@@ -11,6 +12,7 @@ void showWatchProgressBottomSheet(BuildContext context, WidgetRef ref, String ep
   if (episodeProgress == null || episodeProgress == 0) {
     return;
   }
+  HapticFeedback.heavyImpact();
   showModalBottomSheet(
     useRootNavigator: true,
     context: context,

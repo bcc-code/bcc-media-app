@@ -3,7 +3,7 @@ import 'package:auto_route/empty_router_widgets.dart';
 import 'package:brunstadtv_app/helpers/constants.dart';
 import 'package:brunstadtv_app/screens/auto_login.dart';
 import 'package:brunstadtv_app/screens/calendar/calendar.dart';
-import 'package:brunstadtv_app/screens/my_list/my_list.dart';
+import 'package:brunstadtv_app/screens/my_list.dart';
 import 'package:brunstadtv_app/screens/profile/about.dart';
 import 'package:brunstadtv_app/screens/profile/app_language.dart';
 import 'package:brunstadtv_app/screens/profile/audio_language.dart';
