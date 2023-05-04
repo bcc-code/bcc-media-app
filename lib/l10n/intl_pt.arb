@@ -67,7 +67,7 @@
   "@signInButton": {
     "description": "Text displayed on Sign in button"
   },
-  "signInOrSignUp": "Sign up / Sign in",
+  "signInOrSignUp": "Inscreva-se / Entrar",
   "@signInOrSignUp": {
     "description": "Button to go to the onboarding page (short)"
   },
@@ -83,7 +83,7 @@
   "@signUpDescription": {
     "description": "A description on the sign up page explaining why you would want to sign up"
   },
-  "signUpAgreePrivacyPolicy": "I certify that I am 13 years of age or older, and I agree to the <a>Privacy Policy</a> and <a>Terms of use</a>.",
+  "signUpAgreePrivacyPolicy": "Certifico que tenho 13 anos ou mais e concordo com a <a>Política de Privacidade</a> e os <a>Termos de uso</a>.",
   "@signUpAgreePrivacyPolicy": {
     "description": "REMEMBER: Keep the <a> and </a> tags, but translate the 'Privacy Policy' inside."
   },
@@ -123,7 +123,7 @@
   "@ok": {
     "description": "Popup confirmation button"
   },
-  "open": "Open",
+  "open": "Abrir",
   "@open": {
     "description": "Open button"
   },
@@ -175,19 +175,19 @@
   "@cancel": {
     "description": "General cancel action button"
   },
-  "cancelConfirmation": "Are you sure you want to cancel?",
+  "cancelConfirmation": "Tem certeza que deseja cancelar?",
   "@cancelConfirmation": {
     "description": "Title text for cancel confirmation dialog."
   },
-  "cancelConfirmationDescription": "Any unsaved changes will be lost.",
+  "cancelConfirmationDescription": "Quaisquer alterações não salvas serão perdidas.",
   "@cancelConfirmationDescription": {
     "description": "Description for cancel confirmation dialog."
   },
-  "goBack": "Go back",
+  "goBack": "Voltar",
   "@goBack": {
     "description": "Text for back button."
   },
-  "yesCancel": "Yes, Cancel",
+  "yesCancel": "Sim, Cancelar",
   "@yesCancel": {
     "description": "Confirm cancel."
   },
@@ -243,7 +243,7 @@
   "@search": {
     "description": "Button to clear cache"
   },
-  "sendFeedback": "Send Feedback",
+  "sendFeedback": "Enviar comentário",
   "@sendFeedback": {
     "description": "Button to submit feedback(Survey)"
   },
@@ -538,11 +538,11 @@
   "@share": {
     "description": "Generic."
   },
-  "showMore": "Show more",
+  "showMore": "Mostrar mais",
   "@showMore": {
     "description": "Text used on link to expand collapsed text."
   },
-  "showLess": "Show less",
+  "showLess": "Mostrar menos",
   "@showLess": {
     "description": "Text used on link to collapse expanded text."
   },
@@ -550,11 +550,11 @@
   "@liveNow": {
     "description": "Generic, short. Used in buttons, badges, etc to indicate that an item is playing on the livestream now."
   },
-  "comingSoon": "Em breve ",
+  "comingSoon": "Em breve",
   "@comingSoon": {
     "description": "Generic, short. Used in buttons, badges, etc to indicate that an item is available soon."
   },
-  "newEpisode": "Novo ",
+  "newEpisode": "Novo",
   "@newEpisode": {
     "description": "Generic, short. Used in buttons, badges, etc to indicate that an item was recently published."
   },
@@ -796,7 +796,7 @@
   "@continueButton": {
     "description": "Generic button text."
   },
-  "registerButton": "Register",
+  "registerButton": "Registar",
   "@registerButton": {
     "description": "Generic button text."
   },
@@ -804,7 +804,7 @@
   "@achievements": {
     "description": "Generic. Used as page title, etc."
   },
-  "passwordConditionLength": "Minimum {n} characters",
+  "passwordConditionLength": "Mínimo de {n} caracteres",
   "@passwordConditionLength": {
     "description": "REMINDER: Do NOT touch variables (like {n}). Password condition, shown when signing up.",
     "placeholders": {
