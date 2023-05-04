@@ -368,10 +368,12 @@ class AppRouter extends _i25.RootStackRouter {
       );
     },
     MyListScreenRoute.name: (routeData) {
-      return _i25.MaterialPageX<void>(
+      return _i25.CustomPage<void>(
         routeData: routeData,
         child: const _i24.MyListScreen(),
         maintainState: false,
+        opaque: true,
+        barrierDismissible: false,
       );
     },
     Home.name: (routeData) {

@@ -231,7 +231,7 @@ Route<T> profileRouteBuilder<T>(BuildContext context, Widget child, CustomPage<T
           path: 'my-list',
           maintainState: false,
           children: [
-            MaterialRoute<void>(
+            CustomRoute<void>(
               page: MyListScreen,
               path: '',
               maintainState: false,

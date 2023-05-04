@@ -1,5 +1,8 @@
+import 'dart:async';
+
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:brunstadtv_app/l10n/app_localizations.dart';
@@ -7,6 +10,8 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../api/brunstadtv.dart';
 import '../../components/custom_grid_view.dart';
+import '../../helpers/event_bus.dart';
+import '../../helpers/watch_progress_bottom_sheet.dart';
 import '../../components/error_generic.dart';
 import '../../components/loading_generic.dart';
 import '../../components/sections/thumbnail_grid/thumbnail_grid_episode.dart';
@@ -14,9 +19,11 @@ import '../../graphql/queries/my_list.graphql.dart';
 import '../../helpers/ui/btv_buttons.dart';
 import '../../helpers/ui/svg_icons.dart';
 import '../../models/episode_thumbnail_data.dart';
+import '../../models/events/watch_progress.dart';
 import '../../router/router.gr.dart';
 import '../../theme/bccm_colors.dart';
 import '../../theme/bccm_typography.dart';
+import '../../helpers/extensions.dart';
 
 class MyListScreen extends HookConsumerWidget {
   const MyListScreen({Key? key}) : super(key: key);
@@ -24,7 +31,6 @@ class MyListScreen extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final showAppBar = useState(false);
-
     final myListFuture = useState(ref.read(apiProvider).getMyList());
 
     useEffect(() {
@@ -51,7 +57,7 @@ class MyListScreen extends HookConsumerWidget {
           } else {
             child = RefreshIndicator(
               onRefresh: onRefresh,
-              child: MyListGrid(items: snapshot.data!.entries.items),
+              child: _MyListContent(snapshot.data!.entries.items),
             );
           }
           return AnimatedSwitcher(duration: const Duration(milliseconds: 250), child: child);
@@ -61,13 +67,12 @@ class MyListScreen extends HookConsumerWidget {
   }
 }
 
-class MyListGrid extends StatelessWidget {
+class _MyListContent extends HookConsumerWidget {
   final List<Fragment$MyListEntry> items;
 
-  const MyListGrid({
-    super.key,
-    required this.items,
-  });
+  const _MyListContent(
+    this.items,
+  );
 
   EpisodeThumbnailData getEpisodeThumbnailData(Fragment$MyListEntry$item$$Episode episode) {
     return EpisodeThumbnailData(
@@ -80,15 +85,43 @@ class MyListGrid extends StatelessWidget {
     );
   }
 
+  StreamSubscription setEpisodeProgressUpdateSubscription(ValueNotifier<List<Fragment$MyListEntry>> myListEntries) {
+    return globalEventBus.on<WatchProgressUpdatedEvent>().listen((event) async {
+      myListEntries.value = myListEntries.value.map(
+        (entry) {
+          final episodeItem = entry.item.asOrNull<Fragment$MyListEntry$item$$Episode>();
+          if (episodeItem != null && episodeItem.id == event.episodeId) {
+            return entry.copyWith(
+              item: episodeItem.copyWith(progress: event.progress),
+            );
+          }
+          return entry;
+        },
+      ).toList();
+    });
+  }
+
   @override
-  Widget build(BuildContext context) {
-    final episodeItems = items.map((item) => item.item).whereType<Fragment$MyListEntry$item$$Episode>();
+  Widget build(BuildContext context, WidgetRef ref) {
+    final myListEntries = useState(items);
+
+    useEffect(() {
+      final subscription = setEpisodeProgressUpdateSubscription(myListEntries);
+      return subscription.cancel;
+    }, []);
+
+    final episodeItems = myListEntries.value.map((item) => item.item).whereType<Fragment$MyListEntry$item$$Episode>();
     return CustomGridView(
       shrinkWrap: false,
       physics: const BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
       children: episodeItems.map<Widget>((item) {
         return GestureDetector(
+          behavior: HitTestBehavior.opaque,
           onTap: () => context.navigateTo(EpisodeScreenRoute(episodeId: item.id)),
+          onLongPress: () {
+            HapticFeedback.heavyImpact();
+            showWatchProgressBottomSheet(context, ref, item.id, item.progress);
+          },
           child: ThumbnailGridEpisode(
             episode: getEpisodeThumbnailData(item),
             showSecondaryTitle: false,
@@ -133,7 +166,7 @@ class _MyListEmptyInfo extends StatelessWidget {
             margin: const EdgeInsets.only(top: 2, left: 8, right: 8),
             child: BtvButton.large(
               labelText: S.of(context).exploreContent,
-              onPressed: () {},
+              onPressed: () => context.navigateTo(const HomeScreenWrapperRoute()),
             ),
           ),
         ],
