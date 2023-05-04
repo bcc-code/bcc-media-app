@@ -10,13 +10,10 @@ abstract class BccmPlayerInterface extends PlatformInterface {
   BccmPlayerInterface() : super(token: _token);
 
   static final Object _token = Object();
-
   static BccmPlayerInterface _instance = BccmPlayerNative();
   static BccmPlayerInterface get instance => _instance;
   static Object? playerHtmlElement;
-
   final PlayerPluginStateNotifier stateNotifier = PlayerPluginStateNotifier(keepAlive: true);
-
   Stream<ChromecastEvent> chromecastEventStream();
 
   /// Platform-specific implementations should set this with their own
@@ -26,6 +23,9 @@ abstract class BccmPlayerInterface extends PlatformInterface {
     PlatformInterface.verifyToken(instance, _token);
     _instance = instance;
   }
+
+  /// MUST be run first
+  Future<void> setup();
 
   Future<String> newPlayer({String? url}) {
     throw UnimplementedError('newPlayer() has not been implemented.');
@@ -45,6 +45,11 @@ abstract class BccmPlayerInterface extends PlatformInterface {
 
   Future<ChromecastState?> getChromecastState() async {
     throw UnimplementedError('getChromecastState() has not been implemented.');
+  }
+
+  /// If `playerId` is null, this returns the primary player's state.
+  Future<PlayerStateSnapshot?> getPlayerState({String? playerId}) async {
+    throw UnimplementedError('getPlayerState() has not been implemented.');
   }
 
   void openExpandedCastController() {

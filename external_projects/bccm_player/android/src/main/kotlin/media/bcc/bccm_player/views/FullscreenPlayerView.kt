@@ -21,7 +21,6 @@ import androidx.media3.ui.PlayerView
 import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.filterIsInstance
 import media.bcc.bccm_player.BccmPlayerPluginSingleton
-import media.bcc.bccm_player.OnActivityStop
 import media.bcc.bccm_player.PictureInPictureModeChangedEvent2
 import media.bcc.bccm_player.R
 import media.bcc.bccm_player.players.exoplayer.ExoPlayerController
@@ -107,7 +106,7 @@ class FullscreenPlayerView(
                     if (event.lifecycleState == Lifecycle.State.CREATED) {
                         playerController.player.stop()
                     }
-                 }
+                }
         }
     }
 

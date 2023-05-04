@@ -20,6 +20,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.cancel
+import media.bcc.bccm_player.BccmPlayerPlugin
 import media.bcc.bccm_player.PlaybackService
 import media.bcc.bccm_player.R
 import media.bcc.bccm_player.players.exoplayer.ExoPlayerController
@@ -38,7 +39,7 @@ class FlutterExoPlayerView(
     private var setupDone = false
 
 
-    class Factory(private val playbackService: PlaybackService?) :
+    class Factory(private val plugin: BccmPlayerPlugin?) :
         PlatformViewFactory(StandardMessageCodec.INSTANCE) {
 
         override fun create(
@@ -46,9 +47,8 @@ class FlutterExoPlayerView(
             id: Int,
             args: Any?
         ): PlatformView {
-            if (playbackService == null) {
-                throw Error("PlaybackService is null, but you tried making a platformview.")
-            }
+            val playbackService = plugin?.getPlaybackService()
+                ?: throw Error("PlaybackService is null, but you tried making a platformview.")
 
             val creationParams = args as Map<String?, Any?>?
             return FlutterExoPlayerView(

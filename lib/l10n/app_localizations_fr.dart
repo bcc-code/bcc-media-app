@@ -23,7 +23,7 @@ class SFr extends S {
   String get calendarWeek => 'semaine';
 
   @override
-  String get close => 'Close';
+  String get close => 'Fermer';
 
   @override
   String get loading => 'Chargement';
@@ -59,19 +59,19 @@ class SFr extends S {
   String get signInOrSignUp => 'Sign up / Sign in';
 
   @override
-  String get signUpButton => 'Sign up now';
+  String get signUpButton => 'S\'inscrire maintenant';
 
   @override
-  String get signUpTitle => 'Sign up';
+  String get signUpTitle => 'S\'inscrire';
 
   @override
-  String get signUpDescription => 'Get access to more content and better features by creating an account.';
+  String get signUpDescription => 'Accédez à plus de contenu et à de meilleures fonctionnalités en créant un compte.';
 
   @override
   String get signUpAgreePrivacyPolicy => 'I certify that I am 13 years of age or older, and I agree to the <a>Privacy Policy</a> and <a>Terms of use</a>.';
 
   @override
-  String get setPassword => 'Set password';
+  String get setPassword => 'Définir le mot de passe';
 
   @override
   String get tryAgainButton => 'Essayer à nouveau';
@@ -366,7 +366,7 @@ class SFr extends S {
   String get sendFailDescription => 'Une erreur est survenue. Vérifie ta connexion internet et réessaye.';
 
   @override
-  String get sendSuccessDescription => 'We appreciate your feedback.';
+  String get sendSuccessDescription => 'Nous apprécions tes commentaires.';
 
   @override
   String get today => 'Aujourd\'hui';
@@ -409,10 +409,10 @@ class SFr extends S {
   String get liveNow => 'En direct maintenant';
 
   @override
-  String get comingSoon => 'Coming soon';
+  String get comingSoon => 'Bientôt disponible';
 
   @override
-  String get newEpisode => 'New';
+  String get newEpisode => 'Nouveau';
 
   @override
   String get tomorrow => 'Demain';
@@ -507,7 +507,7 @@ class SFr extends S {
   String get exploreContent => 'Explorer le contenu';
 
   @override
-  String get explorePublicContent => 'Explore public content';
+  String get explorePublicContent => 'Explorer le contenu public';
 
   @override
   String get taskCompleted => 'tâche terminée';
@@ -624,7 +624,7 @@ class SFr extends S {
   String get didYouKnowContent => 'You can add your favorite shows to \"My List\" by tapping the heart.';
 
   @override
-  String get selectSeason => 'Select season';
+  String get selectSeason => 'Sélectionner une saison';
 
   @override
   String get deleteMyAccount => 'Delete my account';
@@ -633,5 +633,5 @@ class SFr extends S {
   String get iAmSureIWantToDelete => 'I am sure I want to delete my account and my data related to the BCC Media app.';
 
   @override
-  String get areYouSure => 'Are you sure?';
+  String get areYouSure => 'Es-tu sûr ?';
 }

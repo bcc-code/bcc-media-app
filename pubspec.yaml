@@ -19,7 +19,7 @@ publish_to: "none" # Remove this line if you wish to publish to pub.dev
 # major.minor.patch+xxxxxxx
 # Note: On play store, any dots in the build
 # number (i.e. the number after +) gets removed
-version: 4.3.5+2300050
+version: 4.3.6+2300051
 
 environment:
   sdk: ">=2.17.0 <3.0.0"
@@ -72,8 +72,6 @@ dependencies:
   visibility_detector: ^0.3.3
   pull_to_refresh: ^2.0.0
   device_info_plus: ^8.0.0
-  alice: ^0.3.1
-  dio: ^4.0.6
   firebase_crashlytics: ^3.0.4
   flutter_svg_provider:
     git:
@@ -128,9 +126,8 @@ dev_dependencies:
   flutter_lints: ^2.0.0
   auto_route_generator: ^5.0.2
   pigeon: ^9.0.1
-  freezed: ^2.1.0+1
+  freezed: 2.3.2
   graphql_codegen: ^0.12.0-beta.13
-  patrol: ^1.0.4
   custom_lint: ^0.3.3
   riverpod_generator: ^2.1.6
   riverpod_lint: ^1.2.0
@@ -164,14 +161,6 @@ flutter:
   assets:
     - assets/images/
     - assets/icons/
-
-patrol:
-  app_name: BCC Media
-  flavor: prod
-  android:
-    package_name: tv.brunstad.app
-  ios:
-    bundle_id: tv.brunstad.app
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

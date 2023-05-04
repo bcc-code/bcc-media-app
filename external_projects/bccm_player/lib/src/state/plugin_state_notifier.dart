@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../pigeon/playback_platform_pigeon.g.dart';
 import 'player_state_notifier.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:state_notifier/state_notifier.dart';
@@ -25,11 +26,22 @@ class PlayerPluginStateNotifier extends StateNotifier<PlayerPluginState> {
     }
   }
 
-  void setPrimaryPlayer(String playerId) {
+  void setPrimaryPlayer(String? playerId) {
+    if (playerId != null) getOrAddPlayerNotifier(playerId);
     state = state.copyWith(primaryPlayerId: playerId);
   }
 
-  void removePlayer(String playerId) {
+  PlayerStateNotifier? getPlayerNotifier(String playerId) {
+    return state.players[playerId];
+  }
+
+  PlayerStateNotifier getOrAddPlayerNotifier(String playerId) {
+    final existing = state.players[playerId];
+    if (existing?.mounted == true) return existing!;
+    return _createPlayerNotifier(playerId);
+  }
+
+  void _removePlayer(String playerId) {
     debugPrint('removing playerId: $playerId');
     final player = state.players[playerId];
     if (player != null) {
@@ -39,24 +51,14 @@ class PlayerPluginStateNotifier extends StateNotifier<PlayerPluginState> {
   }
 
   PlayerStateNotifier _createPlayerNotifier(String playerId) {
-    return PlayerStateNotifier(
+    final notifier = PlayerStateNotifier(
       keepAlive: true,
-      onDispose: () => removePlayer(playerId),
-      player: PlayerState(
-        playerId: playerId,
-      ),
+      onDispose: () => _removePlayer(playerId),
+      player: PlayerState(playerId: playerId),
     );
-  }
-
-  PlayerStateNotifier addPlayerNotifier(String playerId) {
-    final notifier = _createPlayerNotifier(playerId);
-    Future.delayed(Duration.zero, () {
-      if (mounted) {
-        state = state.copyWith(
-          players: {...state.players, playerId: notifier},
-        );
-      }
-    });
+    state = state.copyWith(
+      players: {...state.players, playerId: notifier},
+    );
     return notifier;
   }
 }

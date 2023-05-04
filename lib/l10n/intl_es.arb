@@ -23,6 +23,10 @@
   "@calendarWeek": {
     "description": "Text week."
   },
+  "close": "Cerrar",
+  "@close": {
+    "description": "Text displayed on 'Close' button"
+  },
   "loading": "Cargando",
   "@loading": {
     "description": "Text to indicate loading state."
@@ -63,6 +67,30 @@
   "@signInButton": {
     "description": "Text displayed on Sign in button"
   },
+  "signInOrSignUp": "Sign up / Sign in",
+  "@signInOrSignUp": {
+    "description": "Button to go to the onboarding page (short)"
+  },
+  "signUpButton": "Regístrate ahora",
+  "@signUpButton": {
+    "description": "Button to start the sign up process"
+  },
+  "signUpTitle": "Regístrarse",
+  "@signUpTitle": {
+    "description": "Title on the sign up page"
+  },
+  "signUpDescription": "Obtenga acceso a más contenido y mejores funciones creando una cuenta.",
+  "@signUpDescription": {
+    "description": "A description on the sign up page explaining why you would want to sign up"
+  },
+  "signUpAgreePrivacyPolicy": "I certify that I am 13 years of age or older, and I agree to the <a>Privacy Policy</a> and <a>Terms of use</a>.",
+  "@signUpAgreePrivacyPolicy": {
+    "description": "REMEMBER: Keep the <a> and </a> tags, but translate the 'Privacy Policy' inside."
+  },
+  "setPassword": "Configurar la clave",
+  "@setPassword": {
+    "description": "Title for the 'Set password' page of the signup process."
+  },
   "tryAgainButton": "Inténtalo nuevamente",
   "@tryAgainButton": {
     "description": "Button on error alert that lets user to retry failed action"
@@ -94,6 +122,10 @@
   "ok": "Ok",
   "@ok": {
     "description": "Popup confirmation button"
+  },
+  "open": "Open",
+  "@open": {
+    "description": "Open button"
   },
   "loginFailedCheckNetwork": "La conexión ha fallado, revise su conexión a internet e inténtelo una vez más.",
   "@loginFailedCheckNetwork": {
@@ -142,6 +174,22 @@
   "cancel": "Cancelar",
   "@cancel": {
     "description": "General cancel action button"
+  },
+  "cancelConfirmation": "Are you sure you want to cancel?",
+  "@cancelConfirmation": {
+    "description": "Title text for cancel confirmation dialog."
+  },
+  "cancelConfirmationDescription": "Any unsaved changes will be lost.",
+  "@cancelConfirmationDescription": {
+    "description": "Description for cancel confirmation dialog."
+  },
+  "goBack": "Go back",
+  "@goBack": {
+    "description": "Text for back button."
+  },
+  "yesCancel": "Yes, Cancel",
+  "@yesCancel": {
+    "description": "Confirm cancel."
   },
   "upNext": "Siguiente",
   "@upNext": {
@@ -195,6 +243,10 @@
   "@search": {
     "description": "Button to clear cache"
   },
+  "sendFeedback": "Send Feedback",
+  "@sendFeedback": {
+    "description": "Button to submit feedback(Survey)"
+  },
   "noResults": "Sin resultados",
   "@noResults": {
     "description": "No search results."
@@ -206,6 +258,10 @@
   "play": "Reproducir",
   "@play": {
     "description": "Option in prompt dialog."
+  },
+  "pause": "Pausar",
+  "@pause": {
+    "description": "A button to pause the video."
   },
   "castQueue": "Emitir cola de reproducción",
   "@castQueue": {
@@ -432,6 +488,10 @@
   "@sendFailDescription": {
     "description": "General error message that sending failed"
   },
+  "sendSuccessDescription": "Agradecemos sus comentarios.",
+  "@sendSuccessDescription": {
+    "description": "General message when sending is successful"
+  },
   "today": "Hoy",
   "@today": {
     "description": "First category in tv guide"
@@ -478,9 +538,25 @@
   "@share": {
     "description": "Generic."
   },
+  "showMore": "Show more",
+  "@showMore": {
+    "description": "Text used on link to expand collapsed text."
+  },
+  "showLess": "Show less",
+  "@showLess": {
+    "description": "Text used on link to collapse expanded text."
+  },
   "liveNow": "En vivo",
   "@liveNow": {
     "description": "Generic, short. Used in buttons, badges, etc to indicate that an item is playing on the livestream now."
+  },
+  "comingSoon": "Próximamente",
+  "@comingSoon": {
+    "description": "Generic, short. Used in buttons, badges, etc to indicate that an item is available soon."
+  },
+  "newEpisode": "Nuevo",
+  "@newEpisode": {
+    "description": "Generic, short. Used in buttons, badges, etc to indicate that an item was recently published."
   },
   "tomorrow": "Mañana",
   "@tomorrow": {
@@ -605,7 +681,11 @@
   },
   "exploreContent": "Explora el contenido",
   "@exploreContent": {
-    "description": "A button on the login page"
+    "description": "A button"
+  },
+  "explorePublicContent": "Explora el contenido público",
+  "@explorePublicContent": {
+    "description": "A button on the welcome page"
   },
   "taskCompleted": "tarea terminada",
   "@taskCompleted": {
@@ -716,9 +796,26 @@
   "@continueButton": {
     "description": "Generic button text."
   },
+  "registerButton": "Register",
+  "@registerButton": {
+    "description": "Generic button text."
+  },
   "achievements": "Logros",
   "@achievements": {
     "description": "Generic. Used as page title, etc."
+  },
+  "passwordConditionLength": "Minimum {n} characters",
+  "@passwordConditionLength": {
+    "description": "REMINDER: Do NOT touch variables (like {n}). Password condition, shown when signing up.",
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "passwordConditionComplexity": "Must contain lower case, uppercase and numbers.",
+  "@passwordConditionComplexity": {
+    "description": "Password condition, shown when signing up."
   },
   "oops": "Oops!",
   "@oops": {
@@ -743,5 +840,21 @@
   "details": "Detalles",
   "@details": {
     "description": "A tab name on the episode page which has some extra details about the episode: release date, age rating, etc."
+  },
+  "selectSeason": "Seleccionar temporada",
+  "@selectSeason": {
+    "description": "A title prompting to select a season from the list."
+  },
+  "deleteMyAccount": "Delete my account",
+  "@deleteMyAccount": {
+    "description": "Button to request to delete your account"
+  },
+  "iAmSureIWantToDelete": "I am sure I want to delete my account and my data related to the BCC Media app.",
+  "@iAmSureIWantToDelete": {
+    "description": "Text next to a switch/toggle button, confirming that you want to delete your account."
+  },
+  "areYouSure": "¿Estás seguro?",
+  "@areYouSure": {
+    "description": "Generic text. Used at least as a title on the account deletion page."
   }
 }

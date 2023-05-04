@@ -25,12 +25,8 @@ class _BottomSheetMiniPlayerState extends ConsumerState<BottomSheetMiniPlayer> {
 
   @override
   Widget build(BuildContext context) {
-    PlayerState? player;
-    if (ref.watch(isCasting)) {
-      player = ref.watch(castPlayerProvider);
-    } else {
-      player = ref.watch(primaryPlayerProvider);
-    }
+    PlayerState? player = ref.watch(primaryPlayerProvider);
+
     if (previousMetadata != player?.currentMediaItem?.metadata) {
       WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {
             previousMetadata = player?.currentMediaItem?.metadata;

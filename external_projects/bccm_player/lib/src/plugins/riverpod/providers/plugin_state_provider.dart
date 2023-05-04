@@ -1,6 +1,5 @@
-import '../../../playback_platform_interface.dart';
-import '../../../state/plugin_state_notifier.dart';
 import 'package:riverpod/riverpod.dart';
+import '../../../../bccm_player.dart';
 
 final pluginStateProvider = StateNotifierProvider<PlayerPluginStateNotifier, PlayerPluginState>((ref) {
   return BccmPlayerInterface.instance.stateNotifier;

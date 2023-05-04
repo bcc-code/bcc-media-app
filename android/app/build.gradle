@@ -54,7 +54,7 @@ android {
 
     defaultConfig {
         applicationId "tv.brunstad.app"
-        minSdkVersion 21
+        minSdkVersion 23
         targetSdkVersion flutter.targetSdkVersion
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
@@ -79,6 +79,7 @@ android {
     flavorDimensions "env"
     productFlavors {
         prod {
+            getIsDefault().set(true)
             dimension "env"
             applicationIdSuffix ""
             manifestPlaceholders += [
@@ -130,13 +131,6 @@ dependencies {
     implementation "com.nicepeopleatwork:youboralib:$youboraVersion"
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     /*implementation 'com.google.android.exoplayer:exoplayer:2.18.1'*/
-    def media3_version = "1.0.0-beta02"
-    implementation "androidx.media3:media3-exoplayer:$media3_version"
-    implementation "androidx.media3:media3-exoplayer-hls:$media3_version"
-    implementation "androidx.media3:media3-cast:$media3_version"
-    implementation "androidx.media3:media3-test-utils:$media3_version"
-    implementation "androidx.media3:media3-session:$media3_version"
-    implementation "androidx.media3:media3-ui:$media3_version"
     testImplementation "junit:junit:4.13.2"
 }
 

@@ -79,8 +79,7 @@ class _LiveScreenState extends ConsumerState<LiveScreen> with AutoRouteAware {
       settingUp = true;
     });
     await () async {
-      var castingNow = ref.read(isCasting);
-      var player = castingNow ? ref.read(castPlayerProvider) : ref.read(primaryPlayerProvider);
+      var player = ref.read(primaryPlayerProvider);
 
       if (player == null) {
         throw ErrorDescription('player cant be null');
@@ -101,7 +100,7 @@ class _LiveScreenState extends ConsumerState<LiveScreen> with AutoRouteAware {
 
       if (!mounted) return;
 
-      ensurePlayingWithinReasonableTime(castingNow ? castPlayerProvider : primaryPlayerProvider);
+      ensurePlayingWithinReasonableTime();
 
       scheduleRefreshBasedOn(liveUrl.expiryTime);
     }();
@@ -121,7 +120,7 @@ class _LiveScreenState extends ConsumerState<LiveScreen> with AutoRouteAware {
     setState(fn);
   }
 
-  Future ensurePlayingWithinReasonableTime(StateNotifierProvider<PlayerStateNotifier, PlayerState?> playerProvider) async {
+  Future ensurePlayingWithinReasonableTime() async {
     setStateIfMounted(() {
       setupCompleter = Completer();
     });
@@ -131,7 +130,7 @@ class _LiveScreenState extends ConsumerState<LiveScreen> with AutoRouteAware {
         await Future.delayed(const Duration(milliseconds: 100));
         if (!mounted) return;
         debugPrint('bccm: setupCompleter watch loop ${DateTime.now()}');
-        if (isCorrectItem(ref.read(playerProvider)?.currentMediaItem)) {
+        if (isCorrectItem(ref.read(primaryPlayerProvider)?.currentMediaItem)) {
           debugPrint('bccm: isCorrectItem ${DateTime.now()}');
           setupCompleter?.complete();
           setStateIfMounted(() {
@@ -159,9 +158,7 @@ class _LiveScreenState extends ConsumerState<LiveScreen> with AutoRouteAware {
 
   @override
   Widget build(BuildContext context) {
-    final casting = ref.watch(isCasting);
-    var playerProvider = casting ? castPlayerProvider : primaryPlayerProvider;
-    var player = ref.watch(playerProvider);
+    var player = ref.watch(primaryPlayerProvider);
 
     if (player == null) return const SizedBox.shrink();
     return Scaffold(

@@ -34,10 +34,6 @@ class _AppRootState extends ConsumerState<AppRoot> {
   @override
   void initState() {
     super.initState();
-    BccmPlayerInterface.instance.newPlayer().then((value) {
-      if (!mounted) return;
-      BccmPlayerInterface.instance.setPrimary(value);
-    });
   }
 
   @override

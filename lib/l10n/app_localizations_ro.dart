@@ -23,7 +23,7 @@ class SRo extends S {
   String get calendarWeek => 'săptămână';
 
   @override
-  String get close => 'Close';
+  String get close => 'Închide';
 
   @override
   String get loading => 'Se încarcă';
@@ -59,19 +59,19 @@ class SRo extends S {
   String get signInOrSignUp => 'Sign up / Sign in';
 
   @override
-  String get signUpButton => 'Sign up now';
+  String get signUpButton => 'Înregistrează-te acum';
 
   @override
-  String get signUpTitle => 'Sign up';
+  String get signUpTitle => 'Înregistrează-te';
 
   @override
-  String get signUpDescription => 'Get access to more content and better features by creating an account.';
+  String get signUpDescription => 'Obține acces la mai mult conținut și funcții mai bune prin crearea unui cont.';
 
   @override
   String get signUpAgreePrivacyPolicy => 'I certify that I am 13 years of age or older, and I agree to the <a>Privacy Policy</a> and <a>Terms of use</a>.';
 
   @override
-  String get setPassword => 'Set password';
+  String get setPassword => 'Setează-ți parola';
 
   @override
   String get tryAgainButton => 'Încearcă din nou';
@@ -200,7 +200,7 @@ class SRo extends S {
   String get play => 'Redare';
 
   @override
-  String get pause => 'Pause';
+  String get pause => 'Pauză';
 
   @override
   String get castQueue => 'Lista de redare';
@@ -366,7 +366,7 @@ class SRo extends S {
   String get sendFailDescription => 'Ceva n-a mers bine. Verifică conexiunea la internet și încearcă din nou.';
 
   @override
-  String get sendSuccessDescription => 'We appreciate your feedback.';
+  String get sendSuccessDescription => 'Apreciem feedbackul tău.';
 
   @override
   String get today => 'Astăzi';
@@ -409,10 +409,10 @@ class SRo extends S {
   String get liveNow => 'Acum în direct';
 
   @override
-  String get comingSoon => 'Coming soon';
+  String get comingSoon => 'Apare în curând';
 
   @override
-  String get newEpisode => 'New';
+  String get newEpisode => 'Nou';
 
   @override
   String get tomorrow => 'Mâine';
@@ -507,7 +507,7 @@ class SRo extends S {
   String get exploreContent => 'Descoperă conținut';
 
   @override
-  String get explorePublicContent => 'Explore public content';
+  String get explorePublicContent => 'Explorează conținut public';
 
   @override
   String get taskCompleted => 'sarcină îndeplinită';
@@ -624,7 +624,7 @@ class SRo extends S {
   String get didYouKnowContent => 'You can add your favorite shows to \"My List\" by tapping the heart.';
 
   @override
-  String get selectSeason => 'Select season';
+  String get selectSeason => 'Selectează sezonul';
 
   @override
   String get deleteMyAccount => 'Delete my account';
@@ -633,5 +633,5 @@ class SRo extends S {
   String get iAmSureIWantToDelete => 'I am sure I want to delete my account and my data related to the BCC Media app.';
 
   @override
-  String get areYouSure => 'Are you sure?';
+  String get areYouSure => 'Ești sigur?';
 }

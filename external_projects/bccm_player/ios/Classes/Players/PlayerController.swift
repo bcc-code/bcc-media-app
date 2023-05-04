@@ -13,6 +13,7 @@ public protocol PlayerController {
     func updateNpawConfig(npawConfig: NpawConfig?)
     func updateAppConfig(appConfig: AppConfig?)
     func getCurrentItem() -> MediaItem?
+    func getPlayerStateSnapshot() -> PlayerStateSnapshot
     func replaceCurrentMediaItem(_ mediaItem: MediaItem, autoplay: NSNumber?, completion: @escaping (FlutterError?) -> ())
     func queueItem(_ mediaItem: MediaItem)
     func play()

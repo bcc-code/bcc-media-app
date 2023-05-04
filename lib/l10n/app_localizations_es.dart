@@ -23,7 +23,7 @@ class SEs extends S {
   String get calendarWeek => 'semana';
 
   @override
-  String get close => 'Close';
+  String get close => 'Cerrar';
 
   @override
   String get loading => 'Cargando';
@@ -59,19 +59,19 @@ class SEs extends S {
   String get signInOrSignUp => 'Sign up / Sign in';
 
   @override
-  String get signUpButton => 'Sign up now';
+  String get signUpButton => 'Regístrate ahora';
 
   @override
-  String get signUpTitle => 'Sign up';
+  String get signUpTitle => 'Regístrarse';
 
   @override
-  String get signUpDescription => 'Get access to more content and better features by creating an account.';
+  String get signUpDescription => 'Obtenga acceso a más contenido y mejores funciones creando una cuenta.';
 
   @override
   String get signUpAgreePrivacyPolicy => 'I certify that I am 13 years of age or older, and I agree to the <a>Privacy Policy</a> and <a>Terms of use</a>.';
 
   @override
-  String get setPassword => 'Set password';
+  String get setPassword => 'Configurar la clave';
 
   @override
   String get tryAgainButton => 'Inténtalo nuevamente';
@@ -200,7 +200,7 @@ class SEs extends S {
   String get play => 'Reproducir';
 
   @override
-  String get pause => 'Pause';
+  String get pause => 'Pausar';
 
   @override
   String get castQueue => 'Emitir cola de reproducción';
@@ -366,7 +366,7 @@ class SEs extends S {
   String get sendFailDescription => 'Algo salió mal. Verifique su conexión a Internet e intente nuevamente.';
 
   @override
-  String get sendSuccessDescription => 'We appreciate your feedback.';
+  String get sendSuccessDescription => 'Agradecemos sus comentarios.';
 
   @override
   String get today => 'Hoy';
@@ -409,10 +409,10 @@ class SEs extends S {
   String get liveNow => 'En vivo';
 
   @override
-  String get comingSoon => 'Coming soon';
+  String get comingSoon => 'Próximamente';
 
   @override
-  String get newEpisode => 'New';
+  String get newEpisode => 'Nuevo';
 
   @override
   String get tomorrow => 'Mañana';
@@ -507,7 +507,7 @@ class SEs extends S {
   String get exploreContent => 'Explora el contenido';
 
   @override
-  String get explorePublicContent => 'Explore public content';
+  String get explorePublicContent => 'Explora el contenido público';
 
   @override
   String get taskCompleted => 'tarea terminada';
@@ -624,7 +624,7 @@ class SEs extends S {
   String get didYouKnowContent => 'You can add your favorite shows to \"My List\" by tapping the heart.';
 
   @override
-  String get selectSeason => 'Select season';
+  String get selectSeason => 'Seleccionar temporada';
 
   @override
   String get deleteMyAccount => 'Delete my account';
@@ -633,5 +633,5 @@ class SEs extends S {
   String get iAmSureIWantToDelete => 'I am sure I want to delete my account and my data related to the BCC Media app.';
 
   @override
-  String get areYouSure => 'Are you sure?';
+  String get areYouSure => '¿Estás seguro?';
 }

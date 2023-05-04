@@ -23,7 +23,7 @@ class SRu extends S {
   String get calendarWeek => 'неделя';
 
   @override
-  String get close => 'Close';
+  String get close => 'Закрыть';
 
   @override
   String get loading => 'Загрузка';
@@ -366,7 +366,7 @@ class SRu extends S {
   String get sendFailDescription => 'Что-то пошло не так. Проверьте подключение к интернету и попробуйте еще раз.';
 
   @override
-  String get sendSuccessDescription => 'We appreciate your feedback.';
+  String get sendSuccessDescription => 'Мы ценим Ваш отзыв.';
 
   @override
   String get today => 'Сегодня';
@@ -409,10 +409,10 @@ class SRu extends S {
   String get liveNow => 'В прямом эфире';
 
   @override
-  String get comingSoon => 'Coming soon';
+  String get comingSoon => 'Скоро выйдут';
 
   @override
-  String get newEpisode => 'New';
+  String get newEpisode => 'Новика';
 
   @override
   String get tomorrow => 'Завтра';
@@ -633,5 +633,5 @@ class SRu extends S {
   String get iAmSureIWantToDelete => 'I am sure I want to delete my account and my data related to the BCC Media app.';
 
   @override
-  String get areYouSure => 'Are you sure?';
+  String get areYouSure => 'Ты уверен(а)?';
 }

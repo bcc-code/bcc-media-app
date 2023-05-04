@@ -6,7 +6,7 @@ buildscript {
     repositories {
         google()
         mavenCentral()
-        maven { url  "https://npaw.jfrog.io/artifactory/youbora/" }
+        maven { url "https://npaw.jfrog.io/artifactory/youbora/" }
     }
 
     dependencies {
@@ -17,12 +17,11 @@ buildscript {
 }
 
 
-
 rootProject.allprojects {
     repositories {
         google()
         mavenCentral()
-        maven { url  "https://npaw.jfrog.io/artifactory/youbora/" }
+        maven { url "https://npaw.jfrog.io/artifactory/youbora/" }
     }
 }
 
@@ -59,7 +58,7 @@ dependencies {
     def youboraVersion = "6.8.0"
     implementation "com.nicepeopleatwork:youboralib:$youboraVersion"
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
-    def media3_version = "1.0.0"
+    def media3_version = "1.0.1"
     implementation "androidx.media3:media3-exoplayer:$media3_version"
     implementation "androidx.media3:media3-exoplayer-hls:$media3_version"
     implementation "androidx.media3:media3-cast:$media3_version"

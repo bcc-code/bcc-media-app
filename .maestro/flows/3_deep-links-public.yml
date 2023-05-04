@@ -4,7 +4,7 @@ appId: tv.brunstad.app
     appId: tv.brunstad.app
     clearState: true
 - runScript: scripts/.env.js
-- runScript: scripts/init.js
+- runFlow: subflows/init.yml
 # Stopped 1
 - stopApp: tv.brunstad.app
 - openLink: "https://app.bcc.media/episode/769"
