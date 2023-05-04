@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import '../../components/option_list.dart';
 import '../../components/web/dialog_on_web.dart';
-import '../../theme/bccm_colors.dart';
+import '../../theme/design_system/design_system.dart';
 import '../../l10n/app_localizations.dart';
 
 class VideoQuality extends StatefulWidget {
@@ -49,13 +49,13 @@ class _VideoQualityState extends State<VideoQuality> {
     return DialogOnWeb(
       child: Scaffold(
         appBar: AppBar(
-          backgroundColor: BccmColors.background1,
+          backgroundColor: DesignSystem.of(context).colors.background1,
           title: Text(S.of(context).videoQuality),
           centerTitle: true,
           bottom: PreferredSize(
             preferredSize: const Size.fromHeight(6),
             child: Divider(
-              color: BccmColors.separatorOnLight.withOpacity(0.3),
+              color: DesignSystem.of(context).colors.separatorOnLight.withOpacity(0.3),
               height: 1,
             ),
           ),

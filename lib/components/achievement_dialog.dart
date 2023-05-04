@@ -10,8 +10,7 @@ import 'package:share_plus/share_plus.dart';
 
 import '../graphql/queries/achievements.graphql.dart';
 import '../helpers/ui/btv_buttons.dart';
-import '../theme/bccm_colors.dart';
-import '../theme/bccm_typography.dart';
+import '../theme/design_system/design_system.dart';
 import '../helpers/ui/image.dart';
 import '../helpers/ui/svg_icons.dart';
 import '../l10n/app_localizations.dart';
@@ -52,41 +51,41 @@ class _AchievementDialogState extends ConsumerState<AchievementDialog> {
             )
           : Padding(
               padding: const EdgeInsets.only(bottom: 24),
-              child: BtvButton.smallSecondary(
-                onPressed: () async {
-                  try {
-                    ref.read(analyticsProvider).achievementShared(AchievementSharedEvent(elementTitle: widget.achievement.title));
-                  } catch (e) {
-                    FirebaseCrashlytics.instance.recordError(e, StackTrace.current);
-                  }
-                  final sharePositionOrigin = iPadSharePositionOrigin(context);
-                  setState(() {
-                    processingShare = true;
-                  });
-                  final achievementImageData = await downloadImage(widget.achievement.image!);
+              child: DesignSystem.of(context).buttons.smallSecondary(
+                    onPressed: () async {
+                      try {
+                        ref.read(analyticsProvider).achievementShared(AchievementSharedEvent(elementTitle: widget.achievement.title));
+                      } catch (e) {
+                        FirebaseCrashlytics.instance.recordError(e, StackTrace.current);
+                      }
+                      final sharePositionOrigin = iPadSharePositionOrigin(context);
+                      setState(() {
+                        processingShare = true;
+                      });
+                      final achievementImageData = await downloadImage(widget.achievement.image!);
 
-                  var image = await createImageFromWidget(
-                    AchievementShareRender(achievement: widget.achievement, imageBytes: achievementImageData.bodyBytes),
-                    wait: const Duration(milliseconds: 500),
-                    imageSize: const Size(800, 700),
-                    logicalSize: const Size(400, 350),
-                  );
+                      var image = await createImageFromWidget(
+                        AchievementShareRender(achievement: widget.achievement, imageBytes: achievementImageData.bodyBytes),
+                        wait: const Duration(milliseconds: 500),
+                        imageSize: const Size(800, 700),
+                        logicalSize: const Size(400, 350),
+                      );
 
-                  if (image != null) {
-                    final file = XFile.fromData(image, mimeType: 'image/png');
-                    Share.shareXFiles(
-                      [file],
-                      text: '''I've unlocked this achievement badge in the BCC Media app.\nhttps://app.bcc.media/studies''',
-                      sharePositionOrigin: sharePositionOrigin,
-                    );
-                  }
-                  setState(() {
-                    processingShare = false;
-                  });
-                },
-                labelText: S.of(context).share,
-                image: processingShare ? const LoadingIndicator() : SvgPicture.string(SvgIcons.share),
-              ),
+                      if (image != null) {
+                        final file = XFile.fromData(image, mimeType: 'image/png');
+                        Share.shareXFiles(
+                          [file],
+                          text: '''I've unlocked this achievement badge in the BCC Media app.\nhttps://app.bcc.media/studies''',
+                          sharePositionOrigin: sharePositionOrigin,
+                        );
+                      }
+                      setState(() {
+                        processingShare = false;
+                      });
+                    },
+                    labelText: S.of(context).share,
+                    image: processingShare ? const LoadingIndicator() : SvgPicture.string(SvgIcons.share),
+                  ),
             ),
     );
   }
@@ -112,7 +111,7 @@ class AchievementShareRender extends StatelessWidget {
         body: Container(
           width: 400,
           height: 350,
-          color: BccmColors.background2,
+          color: DesignSystem.of(context).colors.background2,
           child: Stack(
             children: [
               Positioned.fill(
@@ -137,12 +136,12 @@ class AchievementShareRender extends StatelessWidget {
                         padding: const EdgeInsets.only(bottom: 4),
                         child: Text(
                           formattedAchievedAt!,
-                          style: BccmTextStyles.body2.copyWith(color: BccmColors.label3),
+                          style: DesignSystem.of(context).textStyles.body2.copyWith(color: DesignSystem.of(context).colors.label3),
                         ),
                       ),
                     Text(
                       achievement.title,
-                      style: BccmTextStyles.headline2,
+                      style: DesignSystem.of(context).textStyles.headline2,
                       textAlign: TextAlign.center,
                     ),
                   ],

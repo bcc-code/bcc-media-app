@@ -4,7 +4,7 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import '../../components/episode_tab_selector.dart';
 import '../../components/fade_indexed_stack.dart';
 import '../../components/option_list.dart';
-import '../../theme/bccm_colors.dart';
+import '../../theme/design_system/design_system.dart';
 
 class EpisodeTabs extends HookWidget {
   const EpisodeTabs({super.key, required this.tabs, required this.children});
@@ -19,8 +19,8 @@ class EpisodeTabs extends HookWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Container(
-          decoration: const BoxDecoration(
-            border: Border(bottom: BorderSide(width: 1, color: BccmColors.separatorOnLight)),
+          decoration: BoxDecoration(
+            border: Border(bottom: BorderSide(width: 1, color: DesignSystem.of(context).colors.separatorOnLight)),
           ),
           child: Padding(
             padding: const EdgeInsets.all(16),

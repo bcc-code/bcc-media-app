@@ -1,10 +1,9 @@
-import 'package:brunstadtv_app/theme/bccm_typography.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../graphql/queries/calendar_episode_entries.graphql.dart';
 import '../models/episode_thumbnail_data.dart';
-import '../theme/bccm_colors.dart';
+import '../theme/design_system/design_system.dart';
 import '../helpers/utils.dart';
 import '../l10n/app_localizations.dart';
 import '../providers/todays_calendar_entries.dart';
@@ -39,6 +38,7 @@ class EpisodeListEpisode extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     Fragment$CalendarEntryEpisode? curLiveEpisode = ref.watch(currentLiveEpisodeProvider)?.episode;
 
+    final design = DesignSystem.of(context);
     return Container(
       height: 98,
       margin: const EdgeInsets.only(bottom: 4),
@@ -71,7 +71,7 @@ class EpisodeListEpisode extends ConsumerWidget {
                     margin: const EdgeInsets.only(bottom: 4),
                     child: Text(
                       showTitle!,
-                      style: BccmTextStyles.caption2.copyWith(color: BccmColors.tint1),
+                      style: design.textStyles.caption2.copyWith(color: design.colors.tint1),
                     ),
                   ),
                 Flexible(
@@ -79,7 +79,7 @@ class EpisodeListEpisode extends ConsumerWidget {
                     margin: const EdgeInsets.only(bottom: 6),
                     child: Text(
                       title,
-                      style: BccmTextStyles.caption1.copyWith(color: BccmColors.label1),
+                      style: design.textStyles.caption1.copyWith(color: design.colors.label1),
                       maxLines: 2,
                       overflow: TextOverflow.ellipsis,
                     ),
@@ -94,21 +94,21 @@ class EpisodeListEpisode extends ConsumerWidget {
                         height: 16,
                         padding: const EdgeInsets.only(right: 4, bottom: 2, left: 4),
                         decoration: BoxDecoration(
-                          color: BccmColors.background2,
+                          color: design.colors.background2,
                           border: Border.all(
                             width: 1,
-                            color: BccmColors.separatorOnLight,
+                            color: design.colors.separatorOnLight,
                           ),
                           borderRadius: const BorderRadius.all(Radius.circular(8)),
                         ),
                         child: Text(
                           getFormattedAgeRating(ageRating),
-                          style: BccmTextStyles.caption2.copyWith(color: BccmColors.onTint, height: 1.1),
+                          style: design.textStyles.caption2.copyWith(color: design.colors.onTint, height: 1.1),
                         ),
                       ),
                     Text(
                       '${Duration(seconds: duration).inMinutes} ${S.of(context).minutesShort}',
-                      style: BccmTextStyles.caption2.copyWith(color: BccmColors.label3),
+                      style: design.textStyles.caption2.copyWith(color: design.colors.label3),
                     )
                   ],
                 )

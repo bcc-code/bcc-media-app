@@ -1,8 +1,7 @@
 import 'package:brunstadtv_app/components/onboarding/signup/signup_password_page.dart';
-import 'package:brunstadtv_app/helpers/ui/btv_buttons.dart';
-import 'package:brunstadtv_app/helpers/widget_keys.dart';
 import 'package:brunstadtv_app/l10n/app_localizations.dart';
-import 'package:brunstadtv_app/theme/bccm_colors.dart';
+import 'package:brunstadtv_app/theme/design_system/bcc_media/design_system.dart';
+import 'package:brunstadtv_app/theme/design_system/design_system.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
@@ -15,22 +14,26 @@ void main() {
             return w is RichText && w.text.toPlainText().contains(text) && w.text.style?.color == color;
           };
 
-      void expectNeutral(String condition) => expect(find.byWidgetPredicate(richTextWithColor(condition, BccmColors.label3)), findsOneWidget);
-      void expectSuccess(String condition) => expect(find.byWidgetPredicate(richTextWithColor(condition, BccmColors.tint3)), findsOneWidget);
+      final design = BccMediaDesignSystem();
+      void expectNeutral(String condition) => expect(find.byWidgetPredicate(richTextWithColor(condition, design.colors.label3)), findsOneWidget);
+      void expectSuccess(String condition) => expect(find.byWidgetPredicate(richTextWithColor(condition, design.colors.tint3)), findsOneWidget);
 
       basicInit();
       final passwordController = TextEditingController();
       final focusNode = FocusNode();
       final page = PageController();
-      await t.pumpWidget(MaterialApp(
-        locale: const Locale('en'),
-        localizationsDelegates: S.localizationsDelegates,
-        home: Scaffold(
-          body: SignupPasswordPage(
-            pageController: page,
-            passwordTextController: passwordController,
-            passwordFocusNode: focusNode,
-            nextFocusNode: FocusNode(),
+      await t.pumpWidget(DesignSystem(
+        designSystem: ds,
+        child: (context) => MaterialApp(
+          locale: const Locale('en'),
+          localizationsDelegates: S.localizationsDelegates,
+          home: Scaffold(
+            body: SignupPasswordPage(
+              pageController: page,
+              passwordTextController: passwordController,
+              passwordFocusNode: focusNode,
+              nextFocusNode: FocusNode(),
+            ),
           ),
         ),
       ));

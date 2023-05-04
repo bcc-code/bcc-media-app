@@ -8,8 +8,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../graphql/queries/page.graphql.dart';
-import '../../theme/bccm_colors.dart';
-import '../../theme/bccm_typography.dart';
+import '../../theme/design_system/design_system.dart';
+
 import '../../l10n/app_localizations.dart';
 import './search_results_page.dart';
 import '../../components/search_bar.dart';
@@ -90,7 +90,7 @@ class SearchScreenState extends ConsumerState<SearchScreen> implements ScrollScr
           child: Text(
             S.of(context).emptySearch,
             textAlign: TextAlign.center,
-            style: BccmTextStyles.body1.copyWith(color: BccmColors.label3),
+            style: DesignSystem.of(context).textStyles.body1.copyWith(color: DesignSystem.of(context).colors.label3),
           ),
         ),
       );
@@ -142,7 +142,7 @@ class SearchScreenState extends ConsumerState<SearchScreen> implements ScrollScr
               ),
               Container(
                 margin: const EdgeInsets.only(bottom: 8),
-                child: const Divider(height: 1, color: BccmColors.separatorOnLight),
+                child: Divider(height: 1, color: DesignSystem.of(context).colors.separatorOnLight),
               ),
               Expanded(
                 child: AnimatedSwitcher(duration: const Duration(milliseconds: 100), child: mainContent),

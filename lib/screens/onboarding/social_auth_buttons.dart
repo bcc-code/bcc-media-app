@@ -1,5 +1,5 @@
 import 'package:brunstadtv_app/providers/auth_state/auth_state.dart';
-import 'package:brunstadtv_app/theme/bccm_colors.dart';
+import 'package:brunstadtv_app/theme/design_system/design_system.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/svg.dart';
@@ -24,7 +24,7 @@ class SocialAuthButtons extends ConsumerWidget {
           child: Container(
             width: 48,
             height: 48,
-            decoration: const BoxDecoration(shape: BoxShape.circle, color: BccmColors.label2),
+            decoration: BoxDecoration(shape: BoxShape.circle, color: DesignSystem.of(context).colors.label2),
             child: const Center(
               child: Padding(
                 padding: EdgeInsets.only(right: 1, bottom: 2),
@@ -44,7 +44,7 @@ class SocialAuthButtons extends ConsumerWidget {
           child: Container(
             width: 48,
             height: 48,
-            decoration: const BoxDecoration(shape: BoxShape.circle, color: BccmColors.label2),
+            decoration: BoxDecoration(shape: BoxShape.circle, color: DesignSystem.of(context).colors.label2),
             child: Center(child: SvgPicture.string(SvgIcons.googleLogo, height: 32)),
           ),
         ),
@@ -54,7 +54,7 @@ class SocialAuthButtons extends ConsumerWidget {
           child: Container(
             width: 48,
             height: 48,
-            decoration: const BoxDecoration(shape: BoxShape.circle, color: BccmColors.label2),
+            decoration: BoxDecoration(shape: BoxShape.circle, color: DesignSystem.of(context).colors.label2),
             child: Center(child: SvgPicture.string(SvgIcons.bccLogo, height: 32)),
           ),
         )

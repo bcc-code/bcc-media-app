@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/gestures.dart';
 
 import '../l10n/app_localizations.dart';
-import '../theme/bccm_colors.dart';
+import '../theme/design_system/design_system.dart';
 
 const ellipsis = '…';
 
@@ -47,7 +47,7 @@ class _TextCollapsibleState extends State<TextCollapsible> {
         const TextSpan(text: '  '),
         TextSpan(
           text: linkText,
-          style: widget.style?.copyWith(color: BccmColors.tint1, decoration: TextDecoration.underline),
+          style: widget.style?.copyWith(color: DesignSystem.of(context).colors.tint1, decoration: TextDecoration.underline),
           recognizer: TapGestureRecognizer()..onTap = toggleCollapsed,
         ),
       ],

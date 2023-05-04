@@ -7,8 +7,9 @@ import 'package:package_info_plus/package_info_plus.dart';
 import '../../components/custom_back_button.dart';
 import '../../components/web/dialog_on_web.dart';
 import '../../helpers/version.dart';
-import '../../theme/bccm_typography.dart';
+
 import '../../l10n/app_localizations.dart';
+import '../../theme/design_system/design_system.dart';
 
 class AboutScreen extends StatefulWidget {
   const AboutScreen({super.key});
@@ -68,15 +69,15 @@ class _AboutScreenState extends State<AboutScreen> {
                         margin: const EdgeInsets.symmetric(vertical: 16),
                         child: Text(
                           S.of(context).bccMediaCenter,
-                          style: BccmTextStyles.body2,
+                          style: DesignSystem.of(context).textStyles.body2,
                           textAlign: TextAlign.center,
                         ),
                       ),
-                      const InkWell(
+                      InkWell(
                         onTap: _launchUrl,
                         child: Text(
                           'bcc.media',
-                          style: BccmTextStyles.body2,
+                          style: DesignSystem.of(context).textStyles.body2,
                           textAlign: TextAlign.center,
                         ),
                       )
@@ -89,7 +90,7 @@ class _AboutScreenState extends State<AboutScreen> {
                     return snapshot.hasData
                         ? SelectableText(
                             '${S.of(context).version}: ${snapshot.data!}',
-                            style: BccmTextStyles.caption1,
+                            style: DesignSystem.of(context).textStyles.caption1,
                             textAlign: TextAlign.center,
                           )
                         : const Text('');

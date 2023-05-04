@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 
-import '../../theme/bccm_colors.dart';
+import '../../theme/design_system/design_system.dart';
 
 class BirthYearPicker extends HookWidget {
   const BirthYearPicker({
@@ -36,7 +36,7 @@ class BirthYearPicker extends HookWidget {
         itemExtent: 32,
         scrollController: FixedExtentScrollController(initialItem: startIndex),
         onSelectedItemChanged: (index) => onSelectedYearChanged(minYear + index),
-        selectionOverlay: const CupertinoPickerDefaultSelectionOverlay(background: BccmColors.separatorOnLight),
+        selectionOverlay: CupertinoPickerDefaultSelectionOverlay(background: DesignSystem.of(context).colors.separatorOnLight),
         itemBuilder: (context, index) {
           return Align(
             alignment: Alignment.center,

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
 import '../../../helpers/ui/svg_icons.dart';
-import '../../../theme/bccm_colors.dart';
+import '../../theme/design_system/design_system.dart';
 
 class RatingBar extends StatefulWidget {
   final void Function(int)? onRatingChanged;
@@ -51,16 +51,17 @@ class _RatingStar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final design = DesignSystem.of(context);
     return Container(
       height: 60,
-      color: isFilled ? BccmColors.tint1 : BccmColors.separatorOnLight,
+      color: isFilled ? design.colors.tint1 : design.colors.separatorOnLight,
       child: Center(
         child: SvgPicture.string(
           SvgIcons.feedbackStar,
           width: 32,
           height: 32,
           colorFilter: ColorFilter.mode(
-            isFilled ? BccmColors.onTint : BccmColors.label2,
+            isFilled ? design.colors.onTint : design.colors.label2,
             BlendMode.srcIn,
           ),
         ),

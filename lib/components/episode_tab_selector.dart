@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../theme/bccm_colors.dart';
-import '../theme/bccm_typography.dart';
+import '../theme/design_system/design_system.dart';
+
 import 'option_list.dart';
 
 class EpisodeTabSelector extends StatelessWidget {
@@ -56,10 +56,10 @@ class TabButton extends StatelessWidget {
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(16),
           border: Border.all(
-            color: !selected ? Colors.transparent : BccmColors.separatorOnLight,
+            color: !selected ? Colors.transparent : DesignSystem.of(context).colors.separatorOnLight,
             width: 1,
           ),
-          color: !selected ? Colors.transparent : BccmColors.background2,
+          color: !selected ? Colors.transparent : DesignSystem.of(context).colors.background2,
         ),
         padding: const EdgeInsets.symmetric(
           horizontal: 12,
@@ -67,7 +67,10 @@ class TabButton extends StatelessWidget {
         ),
         child: Text(
           text.toUpperCase(),
-          style: BccmTextStyles.button2.copyWith(color: !selected ? BccmColors.label4 : BccmColors.label1),
+          style: DesignSystem.of(context)
+              .textStyles
+              .button2
+              .copyWith(color: !selected ? DesignSystem.of(context).colors.label4 : DesignSystem.of(context).colors.label1),
         ),
       ),
     );

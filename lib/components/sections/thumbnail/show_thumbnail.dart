@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../../graphql/queries/page.graphql.dart';
 
-import '../../../theme/bccm_colors.dart';
+import '../../../theme/design_system/design_system.dart';
 import '../../bordered_image_container.dart';
 import '../../feature_badge.dart';
 
@@ -82,12 +82,12 @@ class ShowThumbnailStack extends StatelessWidget {
       children: [
         BorderedImageContainer(imageUrl: sectionItem.image),
         if (hasNewEpisodes)
-          const Positioned(
+          Positioned(
             top: -4,
             right: -4,
             child: FeatureBadge(
               label: 'New Episodes',
-              color: BccmColors.tint2,
+              color: DesignSystem.of(context).colors.tint2,
             ),
           ),
       ],

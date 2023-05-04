@@ -4,8 +4,8 @@ import 'package:brunstadtv_app/helpers/ui/svg_icons.dart';
 import 'package:brunstadtv_app/helpers/utils.dart';
 import 'package:brunstadtv_app/helpers/widget_keys.dart';
 import 'package:brunstadtv_app/l10n/app_localizations.dart';
-import 'package:brunstadtv_app/theme/bccm_colors.dart';
-import 'package:brunstadtv_app/theme/bccm_typography.dart';
+import 'package:brunstadtv_app/theme/design_system/design_system.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_svg/svg.dart';
@@ -26,15 +26,9 @@ class EpisodeInfo extends HookConsumerWidget {
     const showEpisodeNumber = false;
     final episodeNumberFormatted = '${S.of(context).seasonLetter}${episode.season?.number}:${S.of(context).episodeLetter}${episode.number}';
 
-    final inMyList = useState(episode.inMyList);
-
-    useEffect(() {
-      inMyList.value = episode.inMyList;
-      return null;
-    }, [episode.id]);
-
+    final design = DesignSystem.of(context);
     return Container(
-      color: BccmColors.background2,
+      color: design.colors.background2,
       child: AnimatedSize(
         duration: const Duration(milliseconds: 800),
         alignment: Alignment.topCenter,
@@ -50,29 +44,15 @@ class EpisodeInfo extends HookConsumerWidget {
                   Row(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Expanded(child: Text(key: WidgetKeys.episodePageEpisodeTitle, episode.title, style: BccmTextStyles.title1)),
-                      GestureDetector(
-                        onTap: () => toggleInMyList(ref, inMyList),
-                        behavior: HitTestBehavior.opaque,
-                        child: FocusableActionDetector(
-                          mouseCursor: MaterialStateMouseCursor.clickable,
-                          child: Padding(
-                            padding: const EdgeInsets.only(top: 4, left: 6, right: 6),
-                            child: AnimatedSwitcher(
-                              duration: const Duration(milliseconds: 150),
-                              child: SvgPicture.string(key: ValueKey(inMyList.value), inMyList.value ? SvgIcons.heartFilled : SvgIcons.heart),
-                            ),
-                          ),
-                        ),
-                      ),
+                      Expanded(child: Text(key: WidgetKeys.episodePageEpisodeTitle, episode.title, style: design.textStyles.title1)),
                       GestureDetector(
                         onTap: onShareVideoTapped,
                         behavior: HitTestBehavior.opaque,
                         child: FocusableActionDetector(
                           mouseCursor: MaterialStateMouseCursor.clickable,
                           child: Padding(
-                            padding: const EdgeInsets.only(top: 4, left: 6, right: 6),
-                            child: SvgPicture.string(SvgIcons.share),
+                            padding: const EdgeInsets.only(top: 4, left: 16),
+                            child: SvgPicture.string(SvgIcons.share, color: BccmColors.label3),
                           ),
                         ),
                       ),
@@ -86,24 +66,24 @@ class EpisodeInfo extends HookConsumerWidget {
                         padding: const EdgeInsets.only(top: 3, right: 4),
                         child: FeatureBadge(
                           label: getFormattedAgeRating(episode.ageRating),
-                          color: BccmColors.background2,
+                          color: design.colors.background2,
                         ),
                       ),
                       if (episode.season?.$show.title != null)
                         Center(
-                          child: Text(episode.season!.$show.title, style: BccmTextStyles.caption1.copyWith(color: BccmColors.tint1)),
+                          child: Text(episode.season!.$show.title, style: design.textStyles.caption1.copyWith(color: design.colors.tint1)),
                         ),
                       if (showEpisodeNumber)
                         Padding(
                             padding: const EdgeInsets.only(left: 4),
-                            child: Text(episodeNumberFormatted, style: BccmTextStyles.caption1.copyWith(color: BccmColors.label4)))
+                            child: Text(episodeNumberFormatted, style: design.textStyles.caption1.copyWith(color: design.colors.label4)))
                     ],
                   ),
                   const SizedBox(height: 14.5),
                   if (episode.description.isNotEmpty)
                     TextCollapsible(
                       text: episode.description,
-                      style: BccmTextStyles.body2.copyWith(color: BccmColors.label3),
+                      style: design.textStyles.body2.copyWith(color: design.colors.label3),
                       maxLines: 2,
                     ),
                   ...?extraChildren

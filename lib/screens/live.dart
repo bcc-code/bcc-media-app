@@ -14,8 +14,8 @@ import 'package:flutter_svg_provider/flutter_svg_provider.dart';
 import 'package:brunstadtv_app/helpers/ui/transparent_image.dart';
 import '../helpers/insets.dart';
 import '../providers/todays_calendar_entries.dart';
-import '../theme/bccm_colors.dart';
-import '../theme/bccm_typography.dart';
+import '../theme/design_system/design_system.dart';
+
 import '../helpers/ui/svg_icons.dart';
 import '../l10n/app_localizations.dart';
 import '../models/analytics/audio_only_clicked.dart';
@@ -175,11 +175,11 @@ class _LiveScreenState extends ConsumerState<LiveScreen> with AutoRouteAware {
               Padding(
                 padding: const EdgeInsets.only(right: 8),
                 child: Switch(
-                  inactiveTrackColor: BccmColors.tint2,
-                  inactiveThumbColor: BccmColors.label1,
+                  inactiveTrackColor: DesignSystem.of(context).colors.tint2,
+                  inactiveThumbColor: DesignSystem.of(context).colors.label1,
                   inactiveThumbImage: const Svg('assets/icons/headphones.svg', size: Size(12, 12)),
-                  activeColor: BccmColors.label1,
-                  activeTrackColor: BccmColors.tint1,
+                  activeColor: DesignSystem.of(context).colors.label1,
+                  activeTrackColor: DesignSystem.of(context).colors.tint1,
                   activeThumbImage: const Svg('assets/icons/play_alt.svg', size: Size(9, 9)),
                   value: !audioOnly,
                   onChanged: (value) {
@@ -225,7 +225,7 @@ class _LiveScreenState extends ConsumerState<LiveScreen> with AutoRouteAware {
       children: [
         if (episodeInfo != null)
           Container(
-            color: BccmColors.background2,
+            color: DesignSystem.of(context).colors.background2,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -233,8 +233,8 @@ class _LiveScreenState extends ConsumerState<LiveScreen> with AutoRouteAware {
                   padding: const EdgeInsets.all(16.0),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
-                    children: const [
-                      Text('Episode title', style: BccmTextStyles.title2),
+                    children: [
+                      Text('Episode title', style: DesignSystem.of(context).textStyles.title2),
                     ],
                   ),
                 )

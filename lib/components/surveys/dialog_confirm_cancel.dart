@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 
 import '../../../helpers/ui/btv_buttons.dart';
 import '../../../l10n/app_localizations.dart';
-import '../../../theme/bccm_colors.dart';
-import '../../../theme/bccm_typography.dart';
+
+import '../../theme/design_system/design_system.dart';
 
 class DialogConfirmCancel extends StatelessWidget {
   const DialogConfirmCancel({super.key});
@@ -18,11 +18,12 @@ class DialogConfirmCancel extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final design = DesignSystem.of(context);
     return Center(
       child: Container(
         width: 343,
         decoration: BoxDecoration(
-          color: BccmColors.background2,
+          color: design.colors.background2,
           borderRadius: BorderRadius.circular(12),
         ),
         padding: const EdgeInsets.all(32).copyWith(top: 40),
@@ -33,7 +34,7 @@ class DialogConfirmCancel extends StatelessWidget {
               margin: const EdgeInsets.only(bottom: 4),
               child: Text(
                 S.of(context).cancelConfirmation,
-                style: BccmTextStyles.headline2,
+                style: design.textStyles.headline2,
                 textAlign: TextAlign.center,
               ),
             ),
@@ -41,18 +42,18 @@ class DialogConfirmCancel extends StatelessWidget {
               margin: const EdgeInsets.only(bottom: 32),
               child: Text(
                 S.of(context).cancelConfirmationDescription,
-                style: BccmTextStyles.body2.copyWith(color: BccmColors.label4),
+                style: design.textStyles.body2.copyWith(color: design.colors.label4),
               ),
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                BtvButton.largeSecondary(
+                design.buttons.largeSecondary(
                   onPressed: () => onGoBack(context),
                   labelText: S.of(context).goBack,
                 ),
                 const SizedBox(width: 16),
-                BtvButton.largeRed(
+                design.buttons.largeRed(
                   onPressed: () => onCancelConfirmed(context),
                   labelText: S.of(context).yesCancel,
                 ),

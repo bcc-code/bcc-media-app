@@ -2,13 +2,12 @@ import 'package:brunstadtv_app/components/onboarding/password_text_field.dart';
 import 'package:brunstadtv_app/components/onboarding/onboarding_page_wrapper.dart';
 import 'package:brunstadtv_app/helpers/ui/btv_buttons.dart';
 import 'package:brunstadtv_app/screens/onboarding/signup.dart';
-import 'package:brunstadtv_app/theme/bccm_colors.dart';
+import 'package:brunstadtv_app/theme/design_system/design_system.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 
 import '../../../helpers/analytics_constants.dart';
 import '../../../l10n/app_localizations.dart';
-import '../../../theme/bccm_typography.dart';
 
 class Condition {
   Condition({required this.title, required this.fulfilled});
@@ -61,6 +60,7 @@ class SignupPasswordPage extends HookWidget implements SignupScreenPage {
       nextFocusNode.requestFocus();
     }
 
+    final design = DesignSystem.of(context);
     return OnboardingPageWrapper(
       title: S.of(context).setPassword,
       description: 'Choose a password for your account.',
@@ -70,7 +70,7 @@ class SignupPasswordPage extends HookWidget implements SignupScreenPage {
           padding: const EdgeInsets.only(bottom: 10),
           child: Text(
             'Choose a password',
-            style: BccmTextStyles.caption1.copyWith(color: BccmColors.label2),
+            style: design.textStyles.caption1.copyWith(color: design.colors.label2),
           ),
         ),
         Form(
@@ -91,7 +91,7 @@ class SignupPasswordPage extends HookWidget implements SignupScreenPage {
                   padding: const EdgeInsets.only(bottom: 2),
                   child: RichText(
                     text: TextSpan(
-                      style: BccmTextStyles.caption1.copyWith(color: c.fulfilled ? BccmColors.tint3 : BccmColors.label3),
+                      style: design.textStyles.caption1.copyWith(color: c.fulfilled ? design.colors.tint3 : design.colors.label3),
                       children: [
                         const WidgetSpan(child: SizedBox(width: 5)),
                         const TextSpan(text: '\u2022'),
@@ -117,7 +117,7 @@ class SignupPasswordPage extends HookWidget implements SignupScreenPage {
               Row(
                 children: [
                   Expanded(
-                    child: BtvButton.largeSecondary(
+                    child: design.buttons.largeSecondary(
                       onPressed: () {
                         pageController.previousPage(duration: const Duration(milliseconds: 500), curve: Curves.easeOutExpo);
                         passwordFocusNode.unfocus();
@@ -127,7 +127,7 @@ class SignupPasswordPage extends HookWidget implements SignupScreenPage {
                   ),
                   const SizedBox(width: 12),
                   Expanded(
-                    child: BtvButton.large(
+                    child: design.buttons.large(
                       disabled: conditions.any((c) => !c.fulfilled),
                       onPressed: nextPage,
                       labelText: S.of(context).continueButton,

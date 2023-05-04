@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../theme/bccm_colors.dart';
-import '../theme/bccm_typography.dart';
+import '../theme/design_system/design_system.dart';
+
 import '../l10n/app_localizations.dart';
 
 class SearchBar extends StatefulWidget {
@@ -77,9 +77,9 @@ class _SearchBarState extends State<SearchBar> {
           Expanded(
             child: Container(
               padding: const EdgeInsets.symmetric(vertical: 3),
-              decoration: const BoxDecoration(
-                borderRadius: BorderRadius.all(Radius.circular(28)),
-                color: BccmColors.background2,
+              decoration: BoxDecoration(
+                borderRadius: const BorderRadius.all(Radius.circular(28)),
+                color: DesignSystem.of(context).colors.background2,
               ),
               child: FocusScope(
                 child: Focus(
@@ -89,9 +89,9 @@ class _SearchBarState extends State<SearchBar> {
                     focusNode: focusNode,
                     decoration: InputDecoration(
                       isDense: true,
-                      prefixIcon: const Padding(
-                        padding: EdgeInsets.only(left: 8, top: 1, bottom: 1, right: 10),
-                        child: ImageIcon(color: BccmColors.tint1, AssetImage('assets/icons/Search_Default.png'), size: 24),
+                      prefixIcon: Padding(
+                        padding: const EdgeInsets.only(left: 8, top: 1, bottom: 1, right: 10),
+                        child: ImageIcon(color: DesignSystem.of(context).colors.tint1, AssetImage('assets/icons/Search_Default.png'), size: 24),
                       ),
                       prefixIconConstraints: const BoxConstraints(minWidth: 0, maxHeight: 24),
                       suffixIcon: _fieldController.text != ''
@@ -108,7 +108,7 @@ class _SearchBarState extends State<SearchBar> {
                       suffixIconConstraints: const BoxConstraints(minWidth: 0, maxHeight: 24),
                       border: InputBorder.none,
                       hintText: S.of(context).search,
-                      hintStyle: BccmTextStyles.body2.copyWith(color: BccmColors.label4, height: 1.45),
+                      hintStyle: DesignSystem.of(context).textStyles.body2.copyWith(color: DesignSystem.of(context).colors.label4, height: 1.45),
                     ),
                   ),
                 ),
@@ -127,7 +127,7 @@ class _SearchBarState extends State<SearchBar> {
                 onPressed: _onCancelled,
                 child: Text(
                   S.of(context).cancel,
-                  style: BccmTextStyles.button2,
+                  style: DesignSystem.of(context).textStyles.button2,
                 ),
               ),
             )
