@@ -16,7 +16,6 @@ import '../components/error_generic.dart';
 import '../components/loading_generic.dart';
 import '../components/sections/thumbnail_grid/thumbnail_grid_episode.dart';
 import '../graphql/queries/my_list.graphql.dart';
-import '../helpers/ui/btv_buttons.dart';
 import '../helpers/ui/svg_icons.dart';
 import '../models/analytics/sections.dart';
 import '../models/episode_thumbnail_data.dart';
@@ -24,9 +23,8 @@ import '../models/events/watch_progress.dart';
 import '../providers/analytics.dart';
 import '../providers/inherited_data.dart';
 import '../router/router.gr.dart';
-import '../theme/bccm_colors.dart';
-import '../theme/bccm_typography.dart';
 import '../helpers/extensions.dart';
+import '../theme/design_system/design_system.dart';
 
 class MyListScreen extends HookConsumerWidget {
   const MyListScreen({Key? key}) : super(key: key);
@@ -135,6 +133,7 @@ class _MyListEmptyInfo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final design = DesignSystem.of(context);
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16),
       child: Column(
@@ -148,7 +147,7 @@ class _MyListEmptyInfo extends StatelessWidget {
           ),
           Text(
             S.of(context).didYouKnowTitle,
-            style: BccmTextStyles.headline1,
+            style: design.textStyles.headline1,
             textAlign: TextAlign.center,
           ),
           Padding(
@@ -156,12 +155,12 @@ class _MyListEmptyInfo extends StatelessWidget {
             child: Text(
               S.of(context).didYouKnowContent,
               textAlign: TextAlign.center,
-              style: BccmTextStyles.body1.copyWith(color: BccmColors.label3),
+              style: design.textStyles.body1.copyWith(color: design.colors.label3),
             ),
           ),
           Container(
             margin: const EdgeInsets.only(top: 2, left: 8, right: 8),
-            child: BtvButton.large(
+            child: design.buttons.large(
               labelText: S.of(context).exploreContent,
               onPressed: () => context.navigateTo(const HomeScreenWrapperRoute()),
             ),

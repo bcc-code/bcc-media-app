@@ -21,7 +21,6 @@ class ThumbnailSliderEpisode extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final show = episode.season?.$show;
     final design = DesignSystem.of(context);
 
     return SizedBox(

@@ -4,14 +4,13 @@ import 'package:brunstadtv_app/helpers/ui/svg_icons.dart';
 import 'package:brunstadtv_app/helpers/utils.dart';
 import 'package:brunstadtv_app/helpers/widget_keys.dart';
 import 'package:brunstadtv_app/l10n/app_localizations.dart';
-import 'package:brunstadtv_app/theme/design_system/design_system.dart';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../api/brunstadtv.dart';
+import '../../theme/design_system/design_system.dart';
 import '../text_collapsible.dart';
 
 class EpisodeInfo extends HookConsumerWidget {
@@ -25,8 +24,15 @@ class EpisodeInfo extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     const showEpisodeNumber = false;
     final episodeNumberFormatted = '${S.of(context).seasonLetter}${episode.season?.number}:${S.of(context).episodeLetter}${episode.number}';
-
     final design = DesignSystem.of(context);
+
+    final inMyList = useState(episode.inMyList);
+
+    useEffect(() {
+      inMyList.value = episode.inMyList;
+      return null;
+    }, [episode.id]);
+
     return Container(
       color: design.colors.background2,
       child: AnimatedSize(
@@ -46,13 +52,27 @@ class EpisodeInfo extends HookConsumerWidget {
                     children: [
                       Expanded(child: Text(key: WidgetKeys.episodePageEpisodeTitle, episode.title, style: design.textStyles.title1)),
                       GestureDetector(
+                        onTap: () => toggleInMyList(ref, inMyList),
+                        behavior: HitTestBehavior.opaque,
+                        child: FocusableActionDetector(
+                          mouseCursor: MaterialStateMouseCursor.clickable,
+                          child: Padding(
+                            padding: const EdgeInsets.only(top: 4, left: 6, right: 6),
+                            child: AnimatedSwitcher(
+                              duration: const Duration(milliseconds: 150),
+                              child: SvgPicture.string(key: ValueKey(inMyList.value), inMyList.value ? SvgIcons.heartFilled : SvgIcons.heart),
+                            ),
+                          ),
+                        ),
+                      ),
+                      GestureDetector(
                         onTap: onShareVideoTapped,
                         behavior: HitTestBehavior.opaque,
                         child: FocusableActionDetector(
                           mouseCursor: MaterialStateMouseCursor.clickable,
                           child: Padding(
-                            padding: const EdgeInsets.only(top: 4, left: 16),
-                            child: SvgPicture.string(SvgIcons.share, color: BccmColors.label3),
+                            padding: const EdgeInsets.only(top: 4, left: 6, right: 6),
+                            child: SvgPicture.string(SvgIcons.share),
                           ),
                         ),
                       ),
