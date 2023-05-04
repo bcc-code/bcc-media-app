@@ -32,8 +32,8 @@ import '../components/study_button.dart';
 import '../env/env.dart';
 import '../graphql/queries/studies.graphql.dart';
 import '../helpers/insets.dart';
-import '../theme/bccm_colors.dart';
-import '../theme/bccm_typography.dart';
+import '../theme/design_system/design_system.dart';
+
 import '../helpers/utils.dart';
 import '../helpers/extensions.dart';
 import '../l10n/app_localizations.dart';
@@ -137,14 +137,14 @@ class _LoadingWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        AspectRatio(aspectRatio: 16 / 9, child: Container(color: BccmColors.background2)),
+        AspectRatio(aspectRatio: 16 / 9, child: Container(color: DesignSystem.of(context).colors.background2)),
         Expanded(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               const LoadingIndicator(),
               const SizedBox(height: 12),
-              Text(S.of(context).loading, style: BccmTextStyles.body2),
+              Text(S.of(context).loading, style: DesignSystem.of(context).textStyles.body2),
             ],
           ),
         ),
@@ -274,7 +274,7 @@ class _EpisodeDisplay extends HookConsumerWidget {
                   child: AnimatedContainer(
                     duration: showLoadingOverlay ? Duration.zero : const Duration(milliseconds: 600),
                     curve: Curves.easeOutExpo,
-                    color: BccmColors.background1.withOpacity(showLoadingOverlay ? 1 : 0),
+                    color: DesignSystem.of(context).colors.background1.withOpacity(showLoadingOverlay ? 1 : 0),
                     child: Center(
                       child: showLoadingOverlay ? const LoadingIndicator() : null,
                     ),

@@ -7,7 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:brunstadtv_app/router/router.gr.dart';
 
-import '../theme/bccm_colors.dart';
+import '../theme/design_system/design_system.dart';
 import '../providers/fun.dart';
 import 'mini_player.dart';
 
@@ -100,7 +100,7 @@ class _BottomSheetMiniPlayerState extends ConsumerState<BottomSheetMiniPlayer> {
     return Container(
         height: kMiniPlayerHeight,
         width: MediaQuery.of(context).size.width,
-        color: BccmColors.background2,
+        color: DesignSystem.of(context).colors.background2,
         padding: const EdgeInsets.symmetric(
           horizontal: 16,
           vertical: 12,

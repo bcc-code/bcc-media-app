@@ -1,12 +1,12 @@
 import 'package:brunstadtv_app/helpers/ui/svg_icons.dart';
-import 'package:brunstadtv_app/theme/bccm_typography.dart';
+
 import 'package:brunstadtv_app/providers/auth_state/auth_state.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-import '../theme/bccm_colors.dart';
+import '../theme/design_system/design_system.dart';
 
 class Avatar extends HookConsumerWidget {
   const Avatar({Key? key}) : super(key: key);
@@ -36,7 +36,7 @@ class Avatar extends HookConsumerWidget {
                     decoration: BoxDecoration(
                       shape: BoxShape.circle,
                       border: Border.all(
-                        color: BccmColors.background2,
+                        color: DesignSystem.of(context).colors.background2,
                         width: 2,
                       ),
                     ),
@@ -55,7 +55,7 @@ class Avatar extends HookConsumerWidget {
           ),
           Text(
             name ?? '',
-            style: BccmTextStyles.title1,
+            style: DesignSystem.of(context).textStyles.title1,
           ),
         ],
       ),

@@ -15,8 +15,8 @@ import '../../../helpers/widget_keys.dart';
 import '../../../l10n/app_localizations.dart';
 import '../../../l10n/app_localizations_en.dart';
 import '../../../screens/onboarding/signup.dart';
-import '../../../theme/bccm_colors.dart';
-import '../../../theme/bccm_typography.dart';
+import '../../../theme/design_system/design_system.dart';
+
 import '../birth_year_picker.dart';
 
 class SignupBirthDatePage extends HookWidget implements SignupScreenPage {
@@ -51,6 +51,7 @@ class SignupBirthDatePage extends HookWidget implements SignupScreenPage {
       onRegister();
     }
 
+    final design = DesignSystem.of(context);
     return Form(
       key: formKey.value,
       child: OnboardingPageWrapper(
@@ -61,7 +62,7 @@ class SignupBirthDatePage extends HookWidget implements SignupScreenPage {
             padding: const EdgeInsets.only(top: 48, bottom: 10),
             child: Text(
               'Birth year',
-              style: BccmTextStyles.caption1.copyWith(color: BccmColors.label2),
+              style: design.textStyles.caption1.copyWith(color: design.colors.label2),
             ),
           ),
           SizedBox(
@@ -81,7 +82,7 @@ class SignupBirthDatePage extends HookWidget implements SignupScreenPage {
               children: [
                 Switch.adaptive(
                   key: WidgetKeys.privacyPolicyAgreeSwitch,
-                  activeColor: Platform.isIOS ? BccmColors.tint1 : null,
+                  activeColor: Platform.isIOS ? design.colors.tint1 : null,
                   value: privacyPolicyAgreed.value,
                   onChanged: (value) => privacyPolicyAgreed.value = value,
                 ),
@@ -104,7 +105,7 @@ class SignupBirthDatePage extends HookWidget implements SignupScreenPage {
             child: Row(
               children: [
                 Expanded(
-                  child: BtvButton.largeSecondary(
+                  child: design.buttons.largeSecondary(
                     onPressed: () {
                       pageController.previousPage(duration: const Duration(milliseconds: 500), curve: Curves.easeOutExpo);
                       FocusManager.instance.primaryFocus?.unfocus();
@@ -114,7 +115,7 @@ class SignupBirthDatePage extends HookWidget implements SignupScreenPage {
                 ),
                 const SizedBox(width: 12),
                 Expanded(
-                  child: BtvButton.large(
+                  child: design.buttons.large(
                     disabled: yearController.value == null || !privacyPolicyAgreed.value,
                     key: WidgetKeys.registerButton,
                     onPressed: nextPage,
@@ -148,18 +149,19 @@ class _PrivacyPolicyAgreeText extends StatelessWidget {
     final anchors = document.querySelectorAll('a');
     anchors[0].attributes['href'] = 'https://bcc.media/${Intl.defaultLocale}/privacy';
     anchors[1].attributes['href'] = 'https://bcc.media/${Intl.defaultLocale}/terms-of-use';
+    final design = DesignSystem.of(context);
     return Html(
       data: '<p>${document.outerHtml}</p>',
       onAnchorTap: (url, context, attributes, element) => launchUrlString(url!, mode: LaunchMode.externalApplication),
       shrinkWrap: true,
       style: {
         'p': Style(
-          fontSize: FontSize(BccmTextStyles.caption1.fontSize!),
-          color: BccmColors.label4,
+          fontSize: FontSize(design.textStyles.caption1.fontSize!),
+          color: design.colors.label4,
           margin: Margins.only(bottom: 12),
         ),
         'a': Style(
-          color: BccmColors.tint1,
+          color: design.colors.tint1,
         ),
       },
     );

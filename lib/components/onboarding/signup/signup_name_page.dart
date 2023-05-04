@@ -9,9 +9,7 @@ import '../../../helpers/ui/btv_buttons.dart';
 import '../../../helpers/ui/svg_icons.dart';
 import '../../../l10n/app_localizations.dart';
 import '../../../screens/onboarding/signup.dart';
-import '../../../theme/bccm_colors.dart';
-import '../../../theme/bccm_input_decorations.dart';
-import '../../../theme/bccm_typography.dart';
+import '../../../theme/design_system/design_system.dart';
 
 class SignupNamePage extends HookWidget implements SignupScreenPage {
   @override
@@ -50,6 +48,7 @@ class SignupNamePage extends HookWidget implements SignupScreenPage {
       nextFocusNode.requestFocus();
     }
 
+    final design = DesignSystem.of(context);
     return Form(
       key: formKey.value,
       child: OnboardingPageWrapper(
@@ -60,7 +59,7 @@ class SignupNamePage extends HookWidget implements SignupScreenPage {
             padding: const EdgeInsets.only(top: 48, bottom: 10),
             child: Text(
               'First name',
-              style: BccmTextStyles.caption1.copyWith(color: BccmColors.label2),
+              style: design.textStyles.caption1.copyWith(color: design.colors.label2),
             ),
           ),
           TextFormField(
@@ -70,18 +69,18 @@ class SignupNamePage extends HookWidget implements SignupScreenPage {
             focusNode: firstNameFocusNode,
             keyboardType: TextInputType.emailAddress,
             autovalidateMode: AutovalidateMode.disabled,
-            style: BccmTextStyles.body2.copyWith(color: BccmColors.label1),
-            cursorColor: BccmColors.tint1,
+            style: design.textStyles.body2.copyWith(color: design.colors.label1),
+            cursorColor: design.colors.tint1,
             cursorWidth: 1,
             validator: (val) => val?.isNotEmpty == true ? null : 'Required',
-            decoration: BccmInputDecorations.textFormField.copyWith(hintText: 'Type in first name'),
+            decoration: design.inputDecorations.textFormField.copyWith(hintText: 'Type in first name'),
             onEditingComplete: () => lastNameFocusNode.requestFocus(),
           ),
           Padding(
             padding: const EdgeInsets.only(top: 12, bottom: 10),
             child: Text(
               'Last name',
-              style: BccmTextStyles.caption1.copyWith(color: BccmColors.label2),
+              style: design.textStyles.caption1.copyWith(color: design.colors.label2),
             ),
           ),
           TextFormField(
@@ -90,11 +89,11 @@ class SignupNamePage extends HookWidget implements SignupScreenPage {
             focusNode: lastNameFocusNode,
             keyboardType: TextInputType.emailAddress,
             autovalidateMode: AutovalidateMode.disabled,
-            style: BccmTextStyles.body2.copyWith(color: BccmColors.label1),
-            cursorColor: BccmColors.tint1,
+            style: design.textStyles.body2.copyWith(color: design.colors.label1),
+            cursorColor: design.colors.tint1,
             cursorWidth: 1,
             validator: (val) => val?.isNotEmpty == true ? null : 'Required',
-            decoration: BccmInputDecorations.textFormField.copyWith(hintText: 'Type in last name'),
+            decoration: design.inputDecorations.textFormField.copyWith(hintText: 'Type in last name'),
             onEditingComplete: nextPage,
           ),
         ],
@@ -107,7 +106,7 @@ class SignupNamePage extends HookWidget implements SignupScreenPage {
                 Row(
                   children: [
                     Expanded(
-                      child: BtvButton.largeSecondary(
+                      child: design.buttons.largeSecondary(
                         onPressed: () {
                           pageController.previousPage(duration: const Duration(milliseconds: 500), curve: Curves.easeOutExpo);
                           FocusManager.instance.primaryFocus?.unfocus();
@@ -117,7 +116,7 @@ class SignupNamePage extends HookWidget implements SignupScreenPage {
                     ),
                     const SizedBox(width: 12),
                     Expanded(
-                      child: BtvButton.large(
+                      child: design.buttons.large(
                         disabled: firstNameController.value.text.isBlank || lastNameController.value.text.isBlank,
                         onPressed: nextPage,
                         labelText: S.of(context).continueButton,

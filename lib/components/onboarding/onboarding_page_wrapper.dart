@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import '../../theme/bccm_colors.dart';
-import '../../theme/bccm_typography.dart';
+import '../../theme/design_system/design_system.dart';
 
 class OnboardingPageWrapper extends StatelessWidget {
   const OnboardingPageWrapper({super.key, required this.body, this.bottomArea, this.title, this.description});
@@ -30,12 +29,12 @@ class OnboardingPageWrapper extends StatelessWidget {
                           if (title != null)
                             Padding(
                               padding: const EdgeInsets.only(bottom: 8),
-                              child: Text(title!, style: BccmTextStyles.headline1),
+                              child: Text(title!, style: DesignSystem.of(context).textStyles.headline1),
                             ),
                           if (description != null)
                             Text(
                               description!,
-                              style: BccmTextStyles.body1.copyWith(color: BccmColors.label3),
+                              style: DesignSystem.of(context).textStyles.body1.copyWith(color: DesignSystem.of(context).colors.label3),
                             ),
                           ...body
                         ],

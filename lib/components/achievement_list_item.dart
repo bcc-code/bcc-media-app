@@ -3,8 +3,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 import '../graphql/queries/achievements.graphql.dart';
-import '../theme/bccm_colors.dart';
-import '../theme/bccm_typography.dart';
+import '../theme/design_system/design_system.dart';
 
 class AchievementListItem extends StatelessWidget {
   final Fragment$Achievement item;
@@ -25,7 +24,7 @@ class AchievementListItem extends StatelessWidget {
             ),
             Text(
               item.title,
-              style: BccmTextStyles.caption2.copyWith(color: BccmColors.label3),
+              style: DesignSystem.of(context).textStyles.caption2.copyWith(color: DesignSystem.of(context).colors.label3),
               textAlign: TextAlign.center,
             ),
           ],

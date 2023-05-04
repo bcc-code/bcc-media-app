@@ -6,7 +6,7 @@ import 'package:brunstadtv_app/components/onboarding/onboarding_page_wrapper.dar
 import 'package:brunstadtv_app/helpers/ui/btv_buttons.dart';
 import 'package:brunstadtv_app/providers/auth_state/auth_state.dart';
 import 'package:brunstadtv_app/providers/me_provider.dart';
-import 'package:brunstadtv_app/theme/bccm_colors.dart';
+import 'package:brunstadtv_app/theme/design_system/design_system.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
@@ -16,7 +16,6 @@ import 'package:open_mail_app/open_mail_app.dart';
 
 import '../../../graphql/queries/me.graphql.dart';
 import '../../../l10n/app_localizations.dart';
-import '../../../theme/bccm_typography.dart';
 
 class EmailVerificationPromptPage extends HookConsumerWidget {
   const EmailVerificationPromptPage({super.key});
@@ -47,14 +46,14 @@ class EmailVerificationPromptPage extends HookConsumerWidget {
         context: context,
         builder: (context) {
           return SimpleDialog(
-            title: const Text('Verification email sent', style: BccmTextStyles.title1),
+            title: Text('Verification email sent', style: DesignSystem.of(context).textStyles.title1),
             children: [
               const Padding(
                   padding: EdgeInsets.symmetric(horizontal: 24),
                   child: Text('If you still did not receive an email, please contact support at support@bcc.media.')),
               Container(
                 padding: const EdgeInsets.only(left: 24, right: 24, top: 24, bottom: 12),
-                child: BtvButton.medium(onPressed: () => Navigator.pop(context), labelText: S.of(context).ok),
+                child: DesignSystem.of(context).buttons.medium(onPressed: () => Navigator.pop(context), labelText: S.of(context).ok),
               )
             ],
           );
@@ -66,19 +65,23 @@ class EmailVerificationPromptPage extends HookConsumerWidget {
       body: [
         Expanded(
           child: DefaultTextStyle(
-            style: BccmTextStyles.body1.copyWith(color: BccmColors.label3),
+            style: DesignSystem.of(context).textStyles.body1.copyWith(color: DesignSystem.of(context).colors.label3),
             textAlign: TextAlign.center,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                const Padding(
-                  padding: EdgeInsets.only(bottom: 8),
-                  child: Text('Verify your account', style: BccmTextStyles.headline1),
+                Padding(
+                  padding: const EdgeInsets.only(bottom: 8),
+                  child: Text('Verify your account', style: DesignSystem.of(context).textStyles.headline1),
                 ),
                 if (email != null) const Text('We have sent an email to '),
                 if (email != null)
-                  Text(email.toLowerCase(), style: BccmTextStyles.body1.copyWith(color: BccmColors.label3, fontStyle: FontStyle.italic)),
+                  Text(email.toLowerCase(),
+                      style: DesignSystem.of(context)
+                          .textStyles
+                          .body1
+                          .copyWith(color: DesignSystem.of(context).colors.label3, fontStyle: FontStyle.italic)),
                 const SizedBox(height: 8),
                 const Text('Click the link in the email to verify your account.'),
               ],
@@ -90,42 +93,45 @@ class EmailVerificationPromptPage extends HookConsumerWidget {
         Container(
           padding: const EdgeInsets.only(bottom: 12),
           width: double.infinity,
-          child: BtvButton.large(
-            onPressed: () async {
-              // Android: Will open mail app or show native picker.
-              // iOS: Will open mail app if single mail app found.
-              var result = await OpenMailApp.openMailApp();
+          child: DesignSystem.of(context).buttons.large(
+                onPressed: () async {
+                  // Android: Will open mail app or show native picker.
+                  // iOS: Will open mail app if single mail app found.
+                  var result = await OpenMailApp.openMailApp();
 
-              if (!isMounted()) return;
+                  if (!isMounted()) return;
 
-              if (!result.didOpen && !result.canOpen) {
-                // ignore: use_build_context_synchronously
-                _showNoMailAppsDialog(context);
-              } else if (!result.didOpen && result.canOpen) {
-                // ignore: use_build_context_synchronously
-                showDialog(
-                  context: context,
-                  builder: (_) {
-                    return MailAppPickerDialog(
-                      mailApps: result.options,
+                  if (!result.didOpen && !result.canOpen) {
+                    // ignore: use_build_context_synchronously
+                    _showNoMailAppsDialog(context);
+                  } else if (!result.didOpen && result.canOpen) {
+                    // ignore: use_build_context_synchronously
+                    showDialog(
+                      context: context,
+                      builder: (_) {
+                        return MailAppPickerDialog(
+                          mailApps: result.options,
+                        );
+                      },
                     );
-                  },
-                );
-              }
-            },
-            labelText: 'Open email app',
-          ),
+                  }
+                },
+                labelText: 'Open email app',
+              ),
         ),
         Padding(
           padding: const EdgeInsets.only(bottom: 12),
-          child: BtvButton.mediumSecondary(
-            labelText: 'Resend email',
-            image: sendVerificationEmail.result.isLoading ? const Padding(padding: EdgeInsets.all(2), child: LoadingIndicator()) : null,
-            onPressed: resendEmail,
-          ).copyWith(
-            backgroundColor: Colors.transparent,
-            border: Border.all(color: Colors.transparent),
-          ),
+          child: DesignSystem.of(context)
+              .buttons
+              .mediumSecondary(
+                labelText: 'Resend email',
+                image: sendVerificationEmail.result.isLoading ? const Padding(padding: EdgeInsets.all(2), child: LoadingIndicator()) : null,
+                onPressed: resendEmail,
+              )
+              .copyWith(
+                backgroundColor: Colors.transparent,
+                border: Border.all(color: Colors.transparent),
+              ),
         ),
       ],
     );
@@ -140,12 +146,12 @@ void _showNoMailAppsDialog(BuildContext context) {
         title: const Text("Open Mail App"),
         content: const Text("No mail apps installed"),
         actions: <Widget>[
-          BtvButton.large(
-            labelText: S.of(context).ok,
-            onPressed: () {
-              Navigator.pop(context);
-            },
-          )
+          DesignSystem.of(context).buttons.large(
+                labelText: S.of(context).ok,
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+              )
         ],
       );
     },

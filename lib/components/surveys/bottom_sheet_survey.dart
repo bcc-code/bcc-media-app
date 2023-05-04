@@ -7,9 +7,10 @@ import '../../../api/brunstadtv.dart';
 import '../../../graphql/queries/prompts.graphql.dart';
 import '../../../helpers/ui/btv_buttons.dart';
 import '../../../l10n/app_localizations.dart';
-import '../../../theme/bccm_colors.dart';
-import '../../../theme/bccm_typography.dart';
+import '../../../theme/design_system/design_system.dart';
+
 import '../../providers/surveys.dart';
+import '../../theme/design_system/design_system.dart';
 import '../loading_indicator.dart';
 import 'dialog_confirm_cancel.dart';
 import 'survey_form.dart';
@@ -43,6 +44,7 @@ class BottomSheetSurvey extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final design = DesignSystem.of(context);
     return WillPopScope(
       onWillPop: () async {
         onCancel(context);
@@ -52,9 +54,9 @@ class BottomSheetSurvey extends StatelessWidget {
         padding: MediaQuery.of(context).viewInsets,
         duration: const Duration(milliseconds: 200),
         child: Container(
-          decoration: const BoxDecoration(
-            color: BccmColors.background1,
-            borderRadius: BorderRadius.only(
+          decoration: BoxDecoration(
+            color: design.colors.background1,
+            borderRadius: const BorderRadius.only(
               topLeft: Radius.circular(16),
               topRight: Radius.circular(16),
             ),
@@ -74,7 +76,7 @@ class BottomSheetSurvey extends StatelessWidget {
                       width: 40,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(100),
-                        color: BccmColors.label4,
+                        color: design.colors.label4,
                       ),
                     ),
                   ),
@@ -84,7 +86,7 @@ class BottomSheetSurvey extends StatelessWidget {
                   child: Text(
                     prompt.survey.title,
                     textAlign: TextAlign.center,
-                    style: BccmTextStyles.title3,
+                    style: design.textStyles.title3,
                   ),
                 ),
                 Flexible(
@@ -187,6 +189,7 @@ class _Success extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final design = DesignSystem.of(context);
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
@@ -198,16 +201,16 @@ class _Success extends StatelessWidget {
             children: [
               Container(
                 margin: const EdgeInsets.only(bottom: 8),
-                child: Text(S.of(context).thankYou, style: BccmTextStyles.title2),
+                child: Text(S.of(context).thankYou, style: design.textStyles.title2),
               ),
-              Text(S.of(context).sendSuccessDescription, style: BccmTextStyles.body1),
+              Text(S.of(context).sendSuccessDescription, style: design.textStyles.body1),
             ],
           ),
         ),
         Container(
           margin: const EdgeInsets.only(top: 16),
           width: double.infinity,
-          child: BtvButton.largeSecondary(
+          child: design.buttons.largeSecondary(
             labelText: S.of(context).close,
             onPressed: onClose,
           ),
@@ -228,6 +231,7 @@ class _Failure extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final design = DesignSystem.of(context);
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
@@ -239,9 +243,9 @@ class _Failure extends StatelessWidget {
             children: [
               Container(
                 margin: const EdgeInsets.only(bottom: 8),
-                child: Text(S.of(context).sendFail, style: BccmTextStyles.title2),
+                child: Text(S.of(context).sendFail, style: design.textStyles.title2),
               ),
-              Text(S.of(context).sendFailDescription, style: BccmTextStyles.body1, textAlign: TextAlign.center),
+              Text(S.of(context).sendFailDescription, style: design.textStyles.body1, textAlign: TextAlign.center),
             ],
           ),
         ),
@@ -252,13 +256,13 @@ class _Failure extends StatelessWidget {
             children: [
               Container(
                 margin: const EdgeInsets.only(right: 16),
-                child: BtvButton.largeSecondary(
+                child: design.buttons.largeSecondary(
                   labelText: S.of(context).cancel,
                   onPressed: onCancel,
                 ),
               ),
               Expanded(
-                child: BtvButton.large(
+                child: design.buttons.large(
                   labelText: S.of(context).tryAgainButton,
                   onPressed: onTryAgain,
                 ),

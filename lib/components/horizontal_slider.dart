@@ -5,7 +5,7 @@ import 'package:flutter_svg/svg.dart';
 
 import '../helpers/scroll_behaviors.dart';
 import '../helpers/ui/svg_icons.dart';
-import '../theme/bccm_colors.dart';
+import '../theme/design_system/design_system.dart';
 import 'dart:math' as math;
 
 class HorizontalSlider extends HookWidget {
@@ -162,14 +162,14 @@ class SliderNavButton extends HookWidget {
         child: Container(
           padding: const EdgeInsets.all(16),
           decoration: BoxDecoration(
-            border: Border.all(color: BccmColors.separatorOnLight, width: 1),
-            color: BccmColors.background2,
+            border: Border.all(color: DesignSystem.of(context).colors.separatorOnLight, width: 1),
+            color: DesignSystem.of(context).colors.background2,
             shape: BoxShape.circle,
           ),
           child: SvgPicture.string(
             _directionIcons[direction]!,
             height: 24,
-            colorFilter: const ColorFilter.mode(BccmColors.label1, BlendMode.srcIn),
+            colorFilter: ColorFilter.mode(DesignSystem.of(context).colors.label1, BlendMode.srcIn),
           ),
         ),
       ),

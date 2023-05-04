@@ -21,10 +21,10 @@ import 'package:url_launcher/url_launcher_string.dart';
 import '../api/brunstadtv.dart';
 import '../graphql/queries/application.graphql.dart';
 import '../helpers/ui/btv_buttons.dart';
-import '../theme/bccm_colors.dart';
+import '../theme/design_system/design_system.dart';
 import '../components/page.dart';
 import '../graphql/queries/page.graphql.dart';
-import '../theme/bccm_typography.dart';
+
 import '../helpers/page_mixin.dart';
 import '../l10n/app_localizations.dart';
 import '../providers/app_config.dart';
@@ -78,12 +78,12 @@ class HomeScreenState extends ConsumerState<HomeScreen> with PageMixin implement
             return SimpleDialog(
               title: Text(
                 S.of(context).appUpdateTitle,
-                style: BccmTextStyles.title3,
+                style: DesignSystem.of(context).textStyles.title3,
               ),
               contentPadding: const EdgeInsets.all(24).copyWith(top: 8),
               children: [
                 Padding(padding: const EdgeInsets.only(bottom: 16), child: Text(S.of(context).appUpdateRequest)),
-                BtvButton.medium(
+                DesignSystem.of(context).buttons.medium(
                     onPressed: () {
                       if (Platform.isIOS) {
                         launchUrlString('itms-apps://itunes.apple.com', mode: LaunchMode.externalApplication);
@@ -108,17 +108,17 @@ class HomeScreenState extends ConsumerState<HomeScreen> with PageMixin implement
             return SimpleDialog(
               title: Text(
                 S.of(context).appUpdateTitle,
-                style: BccmTextStyles.title3,
+                style: DesignSystem.of(context).textStyles.title3,
               ),
               contentPadding: const EdgeInsets.all(24).copyWith(top: 8),
               children: [
                 const Padding(
                     padding: EdgeInsets.only(bottom: 16),
                     child: Text("Unfortunately, we don't support signing up yet. Are you sure you signed in with the correct email?")),
-                BtvButton.medium(
-                  onPressed: () => Navigator.pop(context),
-                  labelText: S.of(context).ok,
-                )
+                DesignSystem.of(context).buttons.medium(
+                      onPressed: () => Navigator.pop(context),
+                      labelText: S.of(context).ok,
+                    )
               ],
             );
           },
@@ -185,9 +185,13 @@ class HomeScreenState extends ConsumerState<HomeScreen> with PageMixin implement
                     child: BackdropFilter(
                       filter: ImageFilter.blur(sigmaX: 12, sigmaY: 6),
                       child: Container(
-                        decoration: const BoxDecoration(
-                            gradient: LinearGradient(
-                                begin: Alignment.topCenter, end: Alignment.bottomCenter, colors: [BccmColors.background1, Colors.transparent])),
+                        decoration: BoxDecoration(
+                          gradient: LinearGradient(
+                            begin: Alignment.topCenter,
+                            end: Alignment.bottomCenter,
+                            colors: [DesignSystem.of(context).colors.background1, Colors.transparent],
+                          ),
+                        ),
                         height: 1000,
                       ),
                     ),

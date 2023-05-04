@@ -4,8 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../helpers/ui/btv_buttons.dart';
-import '../theme/bccm_colors.dart';
-import '../theme/bccm_typography.dart';
+import '../theme/design_system/design_system.dart';
+
 import '../l10n/app_localizations.dart';
 
 class ErrorNoAccess extends ConsumerWidget {
@@ -25,7 +25,7 @@ class ErrorNoAccess extends ConsumerWidget {
                       margin: const EdgeInsets.only(bottom: 8),
                       child: Text(
                         S.of(context).oops,
-                        style: BccmTextStyles.headline2,
+                        style: DesignSystem.of(context).textStyles.headline2,
                       ),
                     ),
                     Container(
@@ -33,7 +33,7 @@ class ErrorNoAccess extends ConsumerWidget {
                       child: Text(
                         ref.read(authStateProvider).guestMode ? S.of(context).mustBeLoggedIn : S.of(context).dontHaveAccess,
                         textAlign: TextAlign.center,
-                        style: BccmTextStyles.body1.copyWith(color: BccmColors.onTint),
+                        style: DesignSystem.of(context).textStyles.body1.copyWith(color: DesignSystem.of(context).colors.onTint),
                       ),
                     ),
                   ],
@@ -42,16 +42,17 @@ class ErrorNoAccess extends ConsumerWidget {
               Column(
                 children: [
                   Text(S.of(context).plentyOfOtherContent,
-                      textAlign: TextAlign.center, style: BccmTextStyles.body1.copyWith(color: BccmColors.onTint)),
+                      textAlign: TextAlign.center,
+                      style: DesignSystem.of(context).textStyles.body1.copyWith(color: DesignSystem.of(context).colors.onTint)),
                   Container(
                     padding: const EdgeInsets.only(top: 24, bottom: 28),
                     width: double.infinity,
-                    child: BtvButton.large(
-                      labelText: S.of(context).exploreContent,
-                      onPressed: () {
-                        context.router.pop();
-                      },
-                    ),
+                    child: DesignSystem.of(context).buttons.large(
+                          labelText: S.of(context).exploreContent,
+                          onPressed: () {
+                            context.router.pop();
+                          },
+                        ),
                   ),
                 ],
               )

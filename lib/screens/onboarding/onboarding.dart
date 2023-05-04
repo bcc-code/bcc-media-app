@@ -4,7 +4,7 @@ import 'dart:math';
 import 'package:auto_route/auto_route.dart';
 import 'package:brunstadtv_app/providers/feature_flags.dart';
 import 'package:brunstadtv_app/screens/onboarding/signup.dart';
-import 'package:brunstadtv_app/theme/bccm_typography.dart';
+
 import 'package:brunstadtv_app/providers/auth_state/auth_state.dart';
 import 'package:brunstadtv_app/router/router.gr.dart';
 import 'package:flutter/foundation.dart';
@@ -13,7 +13,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import '../../components/web/dialog_on_web.dart';
 import '../../helpers/ui/btv_buttons.dart';
-import '../../theme/bccm_colors.dart';
+import '../../theme/design_system/design_system.dart';
 import '../../helpers/widget_keys.dart';
 import '../../l10n/app_localizations.dart';
 
@@ -135,7 +135,7 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
                             children: [
                               Text(
                                 S.of(context).loginPageDisplay1,
-                                style: BccmTextStyles.title1,
+                                style: DesignSystem.of(context).textStyles.title1,
                                 textAlign: TextAlign.center,
                               ),
                               Padding(
@@ -143,7 +143,7 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
                                 child: Text(
                                   S.of(context).loginPageDisplay2,
                                   textAlign: TextAlign.center,
-                                  style: BccmTextStyles.body1.copyWith(color: BccmColors.label3),
+                                  style: DesignSystem.of(context).textStyles.body1.copyWith(color: DesignSystem.of(context).colors.label3),
                                 ),
                               ),
                             ],
@@ -163,11 +163,11 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
                         Padding(padding: const EdgeInsets.only(bottom: 16), child: Text(errorMessage, textAlign: TextAlign.center)),
                       Container(
                         margin: const EdgeInsets.only(bottom: 12),
-                        child: BtvButton.large(
-                          key: WidgetKeys.signInButton,
-                          labelText: S.of(context).signInButton,
-                          onPressed: loginAction,
-                        ),
+                        child: DesignSystem.of(context).buttons.large(
+                              key: WidgetKeys.signInButton,
+                              labelText: S.of(context).signInButton,
+                              onPressed: loginAction,
+                            ),
                       ),
                       AnimatedSwitcher(
                         duration: const Duration(milliseconds: 200),
@@ -177,32 +177,35 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
                                 return Container(
                                   margin: const EdgeInsets.only(bottom: 12),
                                   width: double.infinity,
-                                  child: BtvButton.largeSecondary(
-                                    key: WidgetKeys.signUpButton,
-                                    onPressed: () {
-                                      CupertinoScaffold.showCupertinoModalBottomSheet(
-                                        context: context,
-                                        builder: (context) => const SignupScreen(),
-                                        enableDrag: false,
-                                        duration: const Duration(milliseconds: 250),
-                                      );
-                                    },
-                                    labelText: S.of(context).signUpButton,
-                                  ),
+                                  child: DesignSystem.of(context).buttons.largeSecondary(
+                                        key: WidgetKeys.signUpButton,
+                                        onPressed: () {
+                                          CupertinoScaffold.showCupertinoModalBottomSheet(
+                                            context: context,
+                                            builder: (context) => const SignupScreen(),
+                                            enableDrag: false,
+                                            duration: const Duration(milliseconds: 250),
+                                          );
+                                        },
+                                        labelText: S.of(context).signUpButton,
+                                      ),
                                 );
                               }),
                       ),
-                      BtvButton.mediumSecondary(
-                        key: WidgetKeys.exploreButton,
-                        labelText: S.of(context).explorePublicContent,
-                        onPressed: () {
-                          context.router.popUntil((route) => false);
-                          context.router.push(const TabsRootScreenRoute());
-                        },
-                      ).copyWith(
-                        backgroundColor: Colors.transparent,
-                        border: Border.all(color: Colors.transparent),
-                      ),
+                      DesignSystem.of(context)
+                          .buttons
+                          .mediumSecondary(
+                            key: WidgetKeys.exploreButton,
+                            labelText: S.of(context).explorePublicContent,
+                            onPressed: () {
+                              context.router.popUntil((route) => false);
+                              context.router.push(const TabsRootScreenRoute());
+                            },
+                          )
+                          .copyWith(
+                            backgroundColor: Colors.transparent,
+                            border: Border.all(color: Colors.transparent),
+                          ),
                     ],
                   ),
                 ),

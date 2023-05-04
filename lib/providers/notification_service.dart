@@ -11,7 +11,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../graphql/client.dart';
 import '../helpers/event_bus.dart';
 import '../models/events/app_ready.dart';
-import '../theme/bccm_typography.dart';
+import '../theme/design_system/design_system.dart';
 
 final notificationServiceProvider = Provider<NotificationService>((ref) {
   return NotificationService(ref: ref);
@@ -109,7 +109,7 @@ class NotificationService {
             return SimpleDialog(
                 title: Text(
               notification.title ?? '',
-              style: BccmTextStyles.title3,
+              style: DesignSystem.of(context).textStyles.title3,
             ));
           });
     } else if (openedFromBackground && message.data['action'] == 'deep_link') {

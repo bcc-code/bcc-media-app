@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:auto_route/auto_route.dart';
 
 import '../../components/web/dialog_on_web.dart';
-import '../../theme/bccm_colors.dart';
-import '../../theme/bccm_typography.dart';
+import '../../theme/design_system/design_system.dart';
+
 import '../../l10n/app_localizations.dart';
 
 class FAQItem {
@@ -64,10 +64,11 @@ class _FAQState extends State<FAQ> {
 
   @override
   Widget build(BuildContext context) {
+    final design = DesignSystem.of(context);
     return DialogOnWeb(
       child: Scaffold(
         appBar: AppBar(
-          backgroundColor: BccmColors.background1,
+          backgroundColor: design.colors.background1,
           leadingWidth: 90,
           leading: GestureDetector(
             behavior: HitTestBehavior.opaque,
@@ -77,14 +78,14 @@ class _FAQState extends State<FAQ> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                const Icon(
+                Icon(
                   Icons.arrow_back_ios_new,
-                  color: BccmColors.tint1,
+                  color: design.colors.tint1,
                 ),
                 Text(
                   S.of(context).faq,
                   overflow: TextOverflow.ellipsis,
-                  style: BccmTextStyles.button2,
+                  style: design.textStyles.button2,
                 ),
               ],
             ),
@@ -126,6 +127,7 @@ class _ExpansionTileDropDownState extends State<_ExpansionTileDropDown> {
 
   @override
   Widget build(BuildContext context) {
+    final design = DesignSystem.of(context);
     return Container(
       padding: const EdgeInsets.only(
         left: 16,
@@ -138,7 +140,7 @@ class _ExpansionTileDropDownState extends State<_ExpansionTileDropDown> {
         vertical: 8,
       ),
       decoration: BoxDecoration(
-        color: BccmColors.background2,
+        color: design.colors.background2,
         borderRadius: BorderRadius.circular(12),
       ),
       child: Theme(
@@ -150,17 +152,17 @@ class _ExpansionTileDropDownState extends State<_ExpansionTileDropDown> {
           child: ExpansionTile(
             title: Text(
               widget.questionList.question,
-              style: BccmTextStyles.title3,
+              style: design.textStyles.title3,
             ),
             textColor: Colors.teal,
             trailing: !_customTileExpanded
-                ? const Icon(
+                ? Icon(
                     Icons.keyboard_arrow_down,
-                    color: BccmColors.tint1,
+                    color: design.colors.tint1,
                   )
-                : const Icon(
+                : Icon(
                     Icons.keyboard_arrow_up,
-                    color: BccmColors.tint2,
+                    color: design.colors.tint2,
                   ),
             childrenPadding: const EdgeInsets.only(
               top: 12,
@@ -169,7 +171,7 @@ class _ExpansionTileDropDownState extends State<_ExpansionTileDropDown> {
             children: <Widget>[
               Text(
                 widget.questionList.answer,
-                style: BccmTextStyles.body2.copyWith(color: BccmColors.label3),
+                style: design.textStyles.body2.copyWith(color: design.colors.label3),
               )
             ],
             onExpansionChanged: (bool expanded) {

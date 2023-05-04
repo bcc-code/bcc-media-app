@@ -2,8 +2,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 import '../graphql/queries/page.graphql.dart';
-import '../theme/bccm_colors.dart';
-import '../theme/bccm_typography.dart';
+import '../theme/design_system/design_system.dart';
 
 class PageSection extends StatelessWidget {
   final String? title;
@@ -34,7 +33,7 @@ class PageSection extends StatelessWidget {
                 Expanded(
                   child: Text(
                     title!,
-                    style: BccmTextStyles.title2,
+                    style: DesignSystem.of(context).textStyles.title2,
                   ),
                 ),
                 if (rightSlot != null) rightSlot!
@@ -50,7 +49,7 @@ class PageSection extends StatelessWidget {
             ),
             child: Text(
               description!,
-              style: BccmTextStyles.body2.copyWith(color: BccmColors.label3),
+              style: DesignSystem.of(context).textStyles.body2.copyWith(color: DesignSystem.of(context).colors.label3),
             ),
           ),
         child,

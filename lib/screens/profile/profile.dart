@@ -21,6 +21,7 @@ import '../../components/setting_list.dart';
 
 import '../../helpers/version.dart';
 import '../../helpers/extensions.dart';
+import '../../theme/design_system/design_system.dart';
 
 class Profile extends ConsumerStatefulWidget {
   const Profile({super.key});
@@ -173,16 +174,16 @@ class _ProfileState extends ConsumerState<Profile> {
                         if (user != null)
                           GestureDetector(
                             onLongPress: () => ref.read(authStateProvider.notifier).logout(manual: false),
-                            child: BtvButton.smallSecondary(
-                              onPressed: () => {ref.read(authStateProvider.notifier).logout()},
-                              labelText: S.of(context).logOutButton,
-                            ),
+                            child: DesignSystem.of(context).buttons.smallSecondary(
+                                  onPressed: () => {ref.read(authStateProvider.notifier).logout()},
+                                  labelText: S.of(context).logOutButton,
+                                ),
                           )
                         else
-                          BtvButton.small(
-                            onPressed: () => context.router.navigate(OnboardingScreenRoute()),
-                            labelText: S.of(context).signInOrSignUp,
-                          )
+                          DesignSystem.of(context).buttons.small(
+                                onPressed: () => context.router.navigate(OnboardingScreenRoute()),
+                                labelText: S.of(context).signInOrSignUp,
+                              )
                       ],
                     ),
                   ),

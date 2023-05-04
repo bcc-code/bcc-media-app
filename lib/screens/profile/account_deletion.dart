@@ -1,7 +1,7 @@
 import 'package:brunstadtv_app/components/loading_generic.dart';
 import 'package:brunstadtv_app/helpers/ui/btv_buttons.dart';
 import 'package:brunstadtv_app/providers/auth_state/auth_state.dart';
-import 'package:brunstadtv_app/theme/bccm_typography.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -11,6 +11,8 @@ import '../../graphql/client.dart';
 import '../../graphql/queries/send_support_email.graphql.dart';
 import '../../l10n/app_localizations.dart';
 import 'package:brunstadtv_app/helpers/utils.dart';
+
+import '../../theme/design_system/design_system.dart';
 
 class AccountDeletionScreen extends HookConsumerWidget {
   const AccountDeletionScreen({super.key});
@@ -68,7 +70,7 @@ class AccountDeletionScreen extends HookConsumerWidget {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text(S.of(context).areYouSure, style: BccmTextStyles.headline1),
+                          Text(S.of(context).areYouSure, style: DesignSystem.of(context).textStyles.headline1),
                           const SizedBox(height: 12),
                           const Text('You are about to request to delete your account with BCC Media and all your data related to this app.'),
                           const Text('This is an action that cannot be undone.'),
@@ -82,26 +84,26 @@ class AccountDeletionScreen extends HookConsumerWidget {
                               Expanded(
                                 child: Text(
                                   S.of(context).iAmSureIWantToDelete,
-                                  style: BccmTextStyles.caption1,
+                                  style: DesignSystem.of(context).textStyles.caption1,
                                 ),
                               )
                             ],
                           ),
                           const SizedBox(height: 24),
-                          BtvButton.largeRed(
-                            disabled: !iAmSure.value,
-                            onPressed: () {
-                              deleteEmailFuture.value = sendDeleteEmail();
-                            },
-                            labelText: S.of(context).deleteMyAccount,
-                          ),
+                          DesignSystem.of(context).buttons.largeRed(
+                                disabled: !iAmSure.value,
+                                onPressed: () {
+                                  deleteEmailFuture.value = sendDeleteEmail();
+                                },
+                                labelText: S.of(context).deleteMyAccount,
+                              ),
                           const SizedBox(height: 24),
-                          BtvButton.large(
-                            onPressed: () {
-                              Navigator.pop(context);
-                            },
-                            labelText: S.of(context).goBack,
-                          ),
+                          DesignSystem.of(context).buttons.large(
+                                onPressed: () {
+                                  Navigator.pop(context);
+                                },
+                                labelText: S.of(context).goBack,
+                              ),
                         ],
                       ),
                     )),

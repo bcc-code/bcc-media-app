@@ -4,8 +4,7 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_svg/svg.dart';
 
 import '../../helpers/ui/svg_icons.dart';
-import '../../theme/bccm_colors.dart';
-import '../../theme/bccm_typography.dart';
+import '../../theme/design_system/design_system.dart';
 
 class PasswordTextField extends HookWidget {
   const PasswordTextField({super.key, required this.focusNode, required this.controller, this.onEditingComplete});
@@ -17,12 +16,13 @@ class PasswordTextField extends HookWidget {
   @override
   Widget build(BuildContext context) {
     final obscureText = useState(true);
+    final design = DesignSystem.of(context);
     return TextField(
       focusNode: focusNode,
       controller: controller,
       autofillHints: const [AutofillHints.password],
-      style: BccmTextStyles.body2.copyWith(color: BccmColors.label1),
-      cursorColor: BccmColors.tint1,
+      style: design.textStyles.body2.copyWith(color: design.colors.label1),
+      cursorColor: design.colors.tint1,
       cursorWidth: 1,
       maxLength: 100,
       maxLengthEnforcement: MaxLengthEnforcement.enforced,
@@ -33,7 +33,7 @@ class PasswordTextField extends HookWidget {
         filled: true,
         isDense: true,
         hintText: 'Enter password',
-        fillColor: BccmColors.background2,
+        fillColor: design.colors.background2,
         border: OutlineInputBorder(borderRadius: BorderRadius.circular(6), borderSide: BorderSide.none),
         contentPadding: const EdgeInsets.all(12),
         suffixIconConstraints: const BoxConstraints(minHeight: 24, minWidth: 24),
@@ -44,16 +44,16 @@ class PasswordTextField extends HookWidget {
             padding: const EdgeInsets.only(right: 12),
             child: SvgPicture.string(
               obscureText.value ? SvgIcons.eyeClosed : SvgIcons.eyeOpen,
-              theme: const SvgTheme(currentColor: BccmColors.label3),
+              theme: SvgTheme(currentColor: design.colors.label3),
             ),
           ),
         ),
         focusedBorder: OutlineInputBorder(
-          borderSide: const BorderSide(color: BccmColors.tint1, width: 1),
+          borderSide: BorderSide(color: design.colors.tint1, width: 1),
           borderRadius: BorderRadius.circular(6),
         ),
-        hintStyle: BccmTextStyles.body2.copyWith(
-          color: BccmColors.label4,
+        hintStyle: design.textStyles.body2.copyWith(
+          color: design.colors.label4,
           height: 1.45,
         ),
       ),

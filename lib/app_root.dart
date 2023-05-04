@@ -1,15 +1,15 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:bccm_player/bccm_player.dart';
 import 'package:brunstadtv_app/graphql/client.dart';
 import 'package:brunstadtv_app/main.dart';
 import 'package:brunstadtv_app/providers/me_provider.dart';
 import 'package:brunstadtv_app/router/analytics_observer.dart';
 import 'package:brunstadtv_app/screens/onboarding/email_verification.dart';
 import 'package:brunstadtv_app/screens/onboarding/signup.dart';
-import 'package:brunstadtv_app/theme/bccm_theme.dart';
 import 'package:brunstadtv_app/providers/analytics.dart';
 import 'package:brunstadtv_app/providers/settings.dart';
 import 'package:brunstadtv_app/router/router.gr.dart';
+import 'package:brunstadtv_app/theme/design_system/bcc_media/design_system.dart';
+import 'package:brunstadtv_app/theme/design_system/design_system.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -112,9 +112,11 @@ class _AppRootState extends ConsumerState<AppRoot> {
 
   @override
   Widget build(BuildContext context) {
-    return GraphQLProvider(
-      client: ValueNotifier(ref.watch(gqlClientProvider)),
-      child: MaterialApp.router(
+    return DesignSystem(
+      designSystem: BccMediaDesignSystem(),
+      child: (context) => GraphQLProvider(
+        client: ValueNotifier(ref.watch(gqlClientProvider)),
+        child: MaterialApp.router(
           localizationsDelegates: S.localizationsDelegates,
           localeResolutionCallback: (locale, supportedLocales) {
             return locale?.languageCode == 'no' ? const Locale('nb') : locale;
@@ -122,7 +124,7 @@ class _AppRootState extends ConsumerState<AppRoot> {
           supportedLocales: S.supportedLocales,
           locale: ref.watch(settingsProvider).appLanguage,
           theme: ThemeData(),
-          darkTheme: BccmTheme.getThemeData(),
+          darkTheme: DesignSystem.of(context).materialThemeData,
           themeMode: ThemeMode.dark,
           debugShowCheckedModeBanner: false,
           title: 'BCC Media',
@@ -136,7 +138,9 @@ class _AppRootState extends ConsumerState<AppRoot> {
               data: MediaQuery.of(context).copyWith(textScaleFactor: 1.0),
               child: child!,
             );
-          }),
+          },
+        ),
+      ),
     );
   }
 }

@@ -1,6 +1,5 @@
 import 'dart:async';
 import 'package:bccm_player/bccm_player.dart';
-import 'package:bccm_player/plugins/riverpod.dart';
 import 'package:brunstadtv_app/providers/notification_service.dart';
 import 'package:brunstadtv_app/providers/unleash.dart';
 import 'package:brunstadtv_app/providers/router_provider.dart';
@@ -9,11 +8,11 @@ import 'package:brunstadtv_app/providers/app_config.dart';
 import 'package:brunstadtv_app/providers/analytics.dart';
 import 'package:brunstadtv_app/providers/settings.dart';
 import 'package:brunstadtv_app/helpers/firebase.dart';
-import 'package:brunstadtv_app/theme/bccm_theme.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:brunstadtv_app/providers/playback_service.dart';
 import 'package:brunstadtv_app/router/router.gr.dart';
@@ -58,7 +57,20 @@ Future<void> $main({required FirebaseOptions? firebaseOptions, List<Override>? p
 }
 
 Future setDefaults() async {
-  BccmTheme.configureSystemUI();
+  SystemChrome.setSystemUIOverlayStyle(
+    const SystemUiOverlayStyle(
+      statusBarColor: Colors.transparent,
+      systemNavigationBarColor: Colors.transparent,
+      systemNavigationBarContrastEnforced: false,
+    ),
+  );
+
+  SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
+
+  SystemChrome.setPreferredOrientations([
+    DeviceOrientation.portraitUp,
+  ]);
+
   // How much space all bitmaps collectively can take up in memory.
   // The default is 100MiB, as of flutter 3.7. This lowers it to 50MiB.
   // I don't think this was very important, so there is room for increasing it if necessary.

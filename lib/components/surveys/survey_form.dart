@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import '../../../graphql/queries/prompts.graphql.dart';
 import '../../../helpers/ui/btv_buttons.dart';
 import '../../../l10n/app_localizations.dart';
+import '../../theme/design_system/design_system.dart';
 import 'survey_question_rating.dart';
 import 'survey_question_text.dart';
 
@@ -59,6 +60,7 @@ class _SurveyFormState extends State<SurveyForm> {
 
   @override
   Widget build(BuildContext context) {
+    final design = DesignSystem.of(context);
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
@@ -104,13 +106,13 @@ class _SurveyFormState extends State<SurveyForm> {
             children: [
               Container(
                 margin: const EdgeInsets.only(right: 16),
-                child: BtvButton.largeSecondary(
+                child: design.buttons.largeSecondary(
                   labelText: S.of(context).cancel,
                   onPressed: widget.onCancel,
                 ),
               ),
               Expanded(
-                child: BtvButton.large(
+                child: design.buttons.large(
                   labelText: S.of(context).sendFeedback,
                   onPressed: onSendFeedback,
                   disabled: surveyAnswers.isEmpty,

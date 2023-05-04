@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
 import '../helpers/ui/btv_buttons.dart';
-import '../theme/bccm_colors.dart';
-import '../theme/bccm_typography.dart';
+import '../theme/design_system/design_system.dart';
+
 import '../l10n/app_localizations.dart';
 
 class ErrorGeneric extends StatelessWidget {
@@ -28,7 +28,7 @@ class ErrorGeneric extends StatelessWidget {
                       margin: const EdgeInsets.only(bottom: 8),
                       child: Text(
                         title ?? S.of(context).loadContentError,
-                        style: BccmTextStyles.title1,
+                        style: DesignSystem.of(context).textStyles.title1,
                       ),
                     ),
                     Container(
@@ -36,13 +36,13 @@ class ErrorGeneric extends StatelessWidget {
                       child: Text(
                         description ?? S.of(context).checkNetwork,
                         textAlign: TextAlign.center,
-                        style: BccmTextStyles.body1.copyWith(color: BccmColors.label3),
+                        style: DesignSystem.of(context).textStyles.body1.copyWith(color: DesignSystem.of(context).colors.label3),
                       ),
                     ),
-                    BtvButton.medium(
-                      labelText: retryButtonText ?? S.of(context).tryAgainButton,
-                      onPressed: () => onRetry(),
-                    ),
+                    DesignSystem.of(context).buttons.medium(
+                          labelText: retryButtonText ?? S.of(context).tryAgainButton,
+                          onPressed: () => onRetry(),
+                        ),
                   ],
                 ),
               ),
@@ -51,9 +51,9 @@ class ErrorGeneric extends StatelessWidget {
                   padding: const EdgeInsets.only(bottom: 32),
                   child: ExpansionTile(
                     tilePadding: EdgeInsets.zero,
-                    title: const Text(
+                    title: Text(
                       'Technical details',
-                      style: BccmTextStyles.title3,
+                      style: DesignSystem.of(context).textStyles.title3,
                     ),
                     children: [
                       SelectableText(

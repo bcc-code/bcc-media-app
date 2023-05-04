@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../theme/bccm_typography.dart';
 import '../l10n/app_localizations.dart';
+import '../theme/design_system/design_system.dart';
 import 'loading_indicator.dart';
 
 class LoadingGeneric extends ConsumerWidget {
@@ -20,7 +20,7 @@ class LoadingGeneric extends ConsumerWidget {
         ),
         Text(
           text ?? S.of(context).loadingContent,
-          style: BccmTextStyles.body2,
+          style: DesignSystem.of(context).textStyles.body2,
         ),
       ]),
     );

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
 import '../../graphql/queries/prompts.graphql.dart';
-import '../../theme/bccm_colors.dart';
-import '../../theme/bccm_typography.dart';
+import '../../theme/design_system/design_system.dart';
+
 import 'rating_bar.dart';
 
 class SurveyQuestionRating extends StatelessWidget {
@@ -24,14 +24,14 @@ class SurveyQuestionRating extends StatelessWidget {
         children: [
           Container(
             margin: const EdgeInsets.only(bottom: 4),
-            child: Text(question.title, style: BccmTextStyles.title2),
+            child: Text(question.title, style: DesignSystem.of(context).textStyles.title2),
           ),
           if (question.description != null)
             Container(
               margin: const EdgeInsets.only(bottom: 10),
               child: Text(
                 question.description!,
-                style: BccmTextStyles.body2.copyWith(color: BccmColors.label3),
+                style: DesignSystem.of(context).textStyles.body2.copyWith(color: DesignSystem.of(context).colors.label3),
               ),
             ),
           RatingBar(onRatingChanged: onRatingChanged),

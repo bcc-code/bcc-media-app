@@ -3,8 +3,8 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 import '../graphql/queries/page.graphql.dart';
-import '../theme/bccm_colors.dart';
-import '../theme/bccm_typography.dart';
+import '../theme/design_system/design_system.dart';
+
 import '../models/analytics/sections.dart';
 import 'horizontal_slider.dart';
 
@@ -47,14 +47,14 @@ class _LabelItem extends StatelessWidget {
       decoration: BoxDecoration(
         border: Border.all(
           width: 1,
-          color: BccmColors.separatorOnLight,
+          color: DesignSystem.of(context).colors.separatorOnLight,
         ),
         borderRadius: BorderRadius.circular(24),
-        color: BccmColors.background2,
+        color: DesignSystem.of(context).colors.background2,
       ),
       child: Text(
         sectionItem.title,
-        style: BccmTextStyles.body2.copyWith(color: BccmColors.label1),
+        style: DesignSystem.of(context).textStyles.body2.copyWith(color: DesignSystem.of(context).colors.label1),
       ),
     );
   }
