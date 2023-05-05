@@ -615,6 +615,15 @@ class SNb extends S {
   String get details => 'Detaljer';
 
   @override
+  String get myList => 'My list';
+
+  @override
+  String get didYouKnowTitle => 'Did you know?';
+
+  @override
+  String get didYouKnowContent => 'You can add your favorite shows to \"My List\" by tapping the heart.';
+
+  @override
   String get selectSeason => 'Select season';
 
   @override

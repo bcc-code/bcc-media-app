@@ -44,6 +44,8 @@ class _CustomTabBarState extends ConsumerState<CustomTabBar> {
       'search_selected': Image.asset('assets/icons/Search_Selected.png', gaplessPlayback: true),
       'live_default': Image.asset('assets/icons/Live_Default.png', gaplessPlayback: true),
       'live_selected': Image.asset('assets/icons/Live_Selected.png', gaplessPlayback: true),
+      'my_list_default': Image.asset('assets/icons/My_List_Default.png', gaplessPlayback: true),
+      'my_list_selected': Image.asset('assets/icons/My_List_Selected.png', gaplessPlayback: true),
       'calendar_default': Image.asset('assets/icons/Calendar_Default.png', gaplessPlayback: true),
       'calendar_selected': Image.asset('assets/icons/Calendar_Selected.png', gaplessPlayback: true),
     };
@@ -74,11 +76,7 @@ class _CustomTabBarState extends ConsumerState<CustomTabBar> {
     debugPrint('custom_tab_bar rebuild. guestMode: $guestMode');
     if (!guestMode) {
       items.addAll([
-        BottomNavigationBarItem(
-          label: S.of(context).liveTab,
-          icon: _icon(key: WidgetKeys.liveTabButton, icons['live_default']),
-          activeIcon: _icon(key: WidgetKeys.liveTabButton, icons['live_selected']),
-        ),
+        BottomNavigationBarItem(label: S.of(context).liveTab, icon: _icon(icons['live_default']), activeIcon: _icon(icons['live_selected'])),
         BottomNavigationBarItem(label: S.of(context).calendar, icon: _icon(icons['calendar_default']), activeIcon: _icon(icons['calendar_selected'])),
       ]);
     }

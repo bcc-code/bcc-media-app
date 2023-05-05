@@ -6,7 +6,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../graphql/queries/achievements.graphql.dart';
 import 'achievement_dialog.dart';
 import 'achievement_list_item.dart';
-import 'grid_row.dart';
+import 'custom_grid_view.dart';
 
 class AchievementList extends ConsumerWidget {
   const AchievementList({super.key, required this.achievements});
@@ -29,41 +29,19 @@ class AchievementList extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final rowSize = (achievements.length / colSize).ceil();
-
-    final rows = List<GridRow>.generate(rowSize, (rowIndex) {
-      final firstIndex = rowIndex * colSize;
-      final subList =
-          firstIndex + colSize <= achievements.length ? achievements.sublist(firstIndex, firstIndex + colSize) : achievements.sublist(firstIndex);
-      return GridRow(
-        columnCount: colSize,
-        gap: 5,
-        items: subList
-            .map(
-              (item) => GestureDetector(
-                child: AchievementListItem(item: item),
-                onTap: () => onAchievementTapped(context, ref, item),
-              ),
-            )
-            .toList(),
-      );
-    });
-
-    return Padding(
+    return CustomGridView(
+      columnCount: colSize,
+      horizontalSpacing: 5,
+      verticalSpacing: 24,
       padding: const EdgeInsets.all(16).copyWith(bottom: 0),
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: rows
-            .map(
-              (row) => rows.last == row
-                  ? row
-                  : Container(
-                      margin: const EdgeInsets.only(bottom: 24),
-                      child: row,
-                    ),
-            )
-            .toList(),
-      ),
+      children: achievements
+          .map(
+            (item) => GestureDetector(
+              child: AchievementListItem(item: item),
+              onTap: () => onAchievementTapped(context, ref, item),
+            ),
+          )
+          .toList(),
     );
   }
 }

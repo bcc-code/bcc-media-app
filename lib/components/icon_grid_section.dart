@@ -1,11 +1,12 @@
 import 'package:brunstadtv_app/components/section_item_click_wrapper.dart';
 import 'package:brunstadtv_app/models/analytics/sections.dart';
+import 'package:collection/collection.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 import '../graphql/queries/page.graphql.dart';
 import '../graphql/schema/pages.graphql.dart';
-import 'grid_row.dart';
+import 'custom_grid_view.dart';
 import 'category_button.dart';
 
 const Map<Enum$GridSectionSize, int> _columnSize = {
@@ -35,35 +36,26 @@ class _IconGridSectionList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final colSize = _columnSize[size] ?? _columnSize[Enum$GridSectionSize.half]!;
-    final rowSize = (sectionItems.length / colSize).ceil();
 
-    // TODO: use itembuilder instead
-    final rows = List<GridRow>.generate(rowSize, (rowIndex) {
-      final firstIndex = rowIndex * colSize;
-      final subList =
-          firstIndex + colSize <= sectionItems.length ? sectionItems.sublist(firstIndex, firstIndex + colSize) : sectionItems.sublist(firstIndex);
-      return GridRow(
-        margin: const EdgeInsets.only(bottom: 12),
-        items: subList
-            .asMap()
-            .entries
-            .map<Widget>(
-              (kv) => SectionItemClickWrapper(
-                item: kv.value.item,
-                analytics: SectionItemAnalytics(id: kv.value.id, position: kv.key, type: kv.value.$__typename, name: kv.value.title),
-                child: CategoryButton(
-                    label: kv.value.title, networkImage: kv.value.image, width: 80, aspectRatio: 16 / 9, padding: const EdgeInsets.all(8)),
+    return CustomGridView(
+      verticalSpacing: 12,
+      padding: null,
+      columnCount: colSize,
+      children: sectionItems
+          .mapIndexed(
+            (index, item) => SectionItemClickWrapper(
+              item: item.item,
+              analytics: SectionItemAnalytics(id: item.id, position: index, type: item.$__typename, name: item.title),
+              child: CategoryButton(
+                label: item.title,
+                networkImage: item.image,
+                width: 80,
+                aspectRatio: 16 / 9,
+                padding: const EdgeInsets.all(8),
               ),
-            )
-            .toList(),
-        columnCount: colSize,
-      );
-    });
-    return ListView.builder(
-        primary: true,
-        shrinkWrap: true,
-        physics: const NeverScrollableScrollPhysics(),
-        itemCount: rows.length,
-        itemBuilder: (context, index) => rows[index]);
+            ),
+          )
+          .toList(),
+    );
   }
 }

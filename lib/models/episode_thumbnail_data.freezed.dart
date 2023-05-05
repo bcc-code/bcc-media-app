@@ -16,11 +16,15 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$EpisodeThumbnailData {
+  String get title => throw _privateConstructorUsedError;
   int get duration => throw _privateConstructorUsedError;
   String? get image => throw _privateConstructorUsedError;
   bool get locked => throw _privateConstructorUsedError;
   int? get progress => throw _privateConstructorUsedError;
   String? get publishDate => throw _privateConstructorUsedError;
+  int? get number => throw _privateConstructorUsedError;
+  String? get showTitle => throw _privateConstructorUsedError;
+  int? get seasonNumber => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $EpisodeThumbnailDataCopyWith<EpisodeThumbnailData> get copyWith =>
@@ -34,11 +38,15 @@ abstract class $EpisodeThumbnailDataCopyWith<$Res> {
       _$EpisodeThumbnailDataCopyWithImpl<$Res, EpisodeThumbnailData>;
   @useResult
   $Res call(
-      {int duration,
+      {String title,
+      int duration,
       String? image,
       bool locked,
       int? progress,
-      String? publishDate});
+      String? publishDate,
+      int? number,
+      String? showTitle,
+      int? seasonNumber});
 }
 
 /// @nodoc
@@ -55,13 +63,21 @@ class _$EpisodeThumbnailDataCopyWithImpl<$Res,
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? title = null,
     Object? duration = null,
     Object? image = freezed,
     Object? locked = null,
     Object? progress = freezed,
     Object? publishDate = freezed,
+    Object? number = freezed,
+    Object? showTitle = freezed,
+    Object? seasonNumber = freezed,
   }) {
     return _then(_value.copyWith(
+      title: null == title
+          ? _value.title
+          : title // ignore: cast_nullable_to_non_nullable
+              as String,
       duration: null == duration
           ? _value.duration
           : duration // ignore: cast_nullable_to_non_nullable
@@ -82,6 +98,18 @@ class _$EpisodeThumbnailDataCopyWithImpl<$Res,
           ? _value.publishDate
           : publishDate // ignore: cast_nullable_to_non_nullable
               as String?,
+      number: freezed == number
+          ? _value.number
+          : number // ignore: cast_nullable_to_non_nullable
+              as int?,
+      showTitle: freezed == showTitle
+          ? _value.showTitle
+          : showTitle // ignore: cast_nullable_to_non_nullable
+              as String?,
+      seasonNumber: freezed == seasonNumber
+          ? _value.seasonNumber
+          : seasonNumber // ignore: cast_nullable_to_non_nullable
+              as int?,
     ) as $Val);
   }
 }
@@ -95,11 +123,15 @@ abstract class _$$_EpisodeThumbnailDataCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {int duration,
+      {String title,
+      int duration,
       String? image,
       bool locked,
       int? progress,
-      String? publishDate});
+      String? publishDate,
+      int? number,
+      String? showTitle,
+      int? seasonNumber});
 }
 
 /// @nodoc
@@ -113,13 +145,21 @@ class __$$_EpisodeThumbnailDataCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? title = null,
     Object? duration = null,
     Object? image = freezed,
     Object? locked = null,
     Object? progress = freezed,
     Object? publishDate = freezed,
+    Object? number = freezed,
+    Object? showTitle = freezed,
+    Object? seasonNumber = freezed,
   }) {
     return _then(_$_EpisodeThumbnailData(
+      title: null == title
+          ? _value.title
+          : title // ignore: cast_nullable_to_non_nullable
+              as String,
       duration: null == duration
           ? _value.duration
           : duration // ignore: cast_nullable_to_non_nullable
@@ -140,6 +180,18 @@ class __$$_EpisodeThumbnailDataCopyWithImpl<$Res>
           ? _value.publishDate
           : publishDate // ignore: cast_nullable_to_non_nullable
               as String?,
+      number: freezed == number
+          ? _value.number
+          : number // ignore: cast_nullable_to_non_nullable
+              as int?,
+      showTitle: freezed == showTitle
+          ? _value.showTitle
+          : showTitle // ignore: cast_nullable_to_non_nullable
+              as String?,
+      seasonNumber: freezed == seasonNumber
+          ? _value.seasonNumber
+          : seasonNumber // ignore: cast_nullable_to_non_nullable
+              as int?,
     ));
   }
 }
@@ -148,12 +200,18 @@ class __$$_EpisodeThumbnailDataCopyWithImpl<$Res>
 
 class _$_EpisodeThumbnailData implements _EpisodeThumbnailData {
   const _$_EpisodeThumbnailData(
-      {required this.duration,
+      {required this.title,
+      required this.duration,
       this.image,
       required this.locked,
       this.progress,
-      this.publishDate});
+      this.publishDate,
+      this.number,
+      this.showTitle,
+      this.seasonNumber});
 
+  @override
+  final String title;
   @override
   final int duration;
   @override
@@ -164,10 +222,16 @@ class _$_EpisodeThumbnailData implements _EpisodeThumbnailData {
   final int? progress;
   @override
   final String? publishDate;
+  @override
+  final int? number;
+  @override
+  final String? showTitle;
+  @override
+  final int? seasonNumber;
 
   @override
   String toString() {
-    return 'EpisodeThumbnailData(duration: $duration, image: $image, locked: $locked, progress: $progress, publishDate: $publishDate)';
+    return 'EpisodeThumbnailData(title: $title, duration: $duration, image: $image, locked: $locked, progress: $progress, publishDate: $publishDate, number: $number, showTitle: $showTitle, seasonNumber: $seasonNumber)';
   }
 
   @override
@@ -175,6 +239,7 @@ class _$_EpisodeThumbnailData implements _EpisodeThumbnailData {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_EpisodeThumbnailData &&
+            (identical(other.title, title) || other.title == title) &&
             (identical(other.duration, duration) ||
                 other.duration == duration) &&
             (identical(other.image, image) || other.image == image) &&
@@ -182,12 +247,17 @@ class _$_EpisodeThumbnailData implements _EpisodeThumbnailData {
             (identical(other.progress, progress) ||
                 other.progress == progress) &&
             (identical(other.publishDate, publishDate) ||
-                other.publishDate == publishDate));
+                other.publishDate == publishDate) &&
+            (identical(other.number, number) || other.number == number) &&
+            (identical(other.showTitle, showTitle) ||
+                other.showTitle == showTitle) &&
+            (identical(other.seasonNumber, seasonNumber) ||
+                other.seasonNumber == seasonNumber));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, duration, image, locked, progress, publishDate);
+  int get hashCode => Object.hash(runtimeType, title, duration, image, locked,
+      progress, publishDate, number, showTitle, seasonNumber);
 
   @JsonKey(ignore: true)
   @override
@@ -199,12 +269,18 @@ class _$_EpisodeThumbnailData implements _EpisodeThumbnailData {
 
 abstract class _EpisodeThumbnailData implements EpisodeThumbnailData {
   const factory _EpisodeThumbnailData(
-      {required final int duration,
+      {required final String title,
+      required final int duration,
       final String? image,
       required final bool locked,
       final int? progress,
-      final String? publishDate}) = _$_EpisodeThumbnailData;
+      final String? publishDate,
+      final int? number,
+      final String? showTitle,
+      final int? seasonNumber}) = _$_EpisodeThumbnailData;
 
+  @override
+  String get title;
   @override
   int get duration;
   @override
@@ -215,6 +291,12 @@ abstract class _EpisodeThumbnailData implements EpisodeThumbnailData {
   int? get progress;
   @override
   String? get publishDate;
+  @override
+  int? get number;
+  @override
+  String? get showTitle;
+  @override
+  int? get seasonNumber;
   @override
   @JsonKey(ignore: true)
   _$$_EpisodeThumbnailDataCopyWith<_$_EpisodeThumbnailData> get copyWith =>

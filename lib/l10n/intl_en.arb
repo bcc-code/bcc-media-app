@@ -841,6 +841,18 @@
   "@details": {
     "description": "A tab name on the episode page which has some extra details about the episode: release date, age rating, etc."
   },
+  "myList": "My list",
+  "@myList": {
+    "description": "My list tab name"
+  },
+  "didYouKnowTitle": "Did you know?",
+  "@didYouKnowTitle": {
+    "description": "Title for info displayed on 'My list' page."
+  },
+  "didYouKnowContent": "You can add your favorite shows to \"My List\" by tapping the heart.",
+  "@didYouKnowContent": {
+    "description": "Content for info displayed on 'My list' page."
+  },
   "selectSeason": "Select season",
   "@selectSeason": {
     "description": "A title prompting to select a season from the list."

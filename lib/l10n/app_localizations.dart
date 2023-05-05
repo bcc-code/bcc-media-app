@@ -1299,6 +1299,24 @@ abstract class S {
   /// **'Details'**
   String get details;
 
+  /// My list tab name
+  ///
+  /// In en, this message translates to:
+  /// **'My list'**
+  String get myList;
+
+  /// Title for info displayed on 'My list' page.
+  ///
+  /// In en, this message translates to:
+  /// **'Did you know?'**
+  String get didYouKnowTitle;
+
+  /// Content for info displayed on 'My list' page.
+  ///
+  /// In en, this message translates to:
+  /// **'You can add your favorite shows to \"My List\" by tapping the heart.'**
+  String get didYouKnowContent;
+
   /// A title prompting to select a season from the list.
   ///
   /// In en, this message translates to:

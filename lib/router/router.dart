@@ -3,6 +3,7 @@ import 'package:auto_route/empty_router_widgets.dart';
 import 'package:brunstadtv_app/helpers/constants.dart';
 import 'package:brunstadtv_app/screens/auto_login.dart';
 import 'package:brunstadtv_app/screens/calendar/calendar.dart';
+import 'package:brunstadtv_app/screens/my_list.dart';
 import 'package:brunstadtv_app/screens/profile/about.dart';
 import 'package:brunstadtv_app/screens/profile/app_language.dart';
 import 'package:brunstadtv_app/screens/profile/audio_language.dart';
@@ -220,10 +221,24 @@ Route<T> profileRouteBuilder<T>(BuildContext context, Widget child, CustomPage<T
           ],
         ),
         MaterialRoute<void>(
-          name: 'CalendarPageRoute',
           page: CalendarPage,
           path: 'calendar',
           meta: {RouteMetaConstants.navTabRoute: true, RouteMetaConstants.analyticsName: 'calendar'},
+        ),
+        CustomRoute<void>(
+          name: 'MyListScreenWrapperRoute',
+          page: EmptyRouterPage,
+          path: 'my-list',
+          maintainState: false,
+          children: [
+            CustomRoute<void>(
+              page: MyListScreen,
+              path: '',
+              maintainState: false,
+              meta: {RouteMetaConstants.navTabRoute: true},
+            ),
+            _episodeScreenRoute,
+          ],
         ),
         CustomRoute<void>(name: 'HomeScreenWrapperRoute', page: EmptyRouterPage, path: '', children: [
           CustomRoute<void>(

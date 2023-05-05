@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:bccm_player/plugins/bcc_media.dart';
 import 'package:brunstadtv_app/graphql/queries/calendar_episode_entries.graphql.dart';
+import 'package:brunstadtv_app/graphql/queries/my_list.graphql.dart';
 import 'package:brunstadtv_app/graphql/queries/page.graphql.dart';
 import 'package:brunstadtv_app/graphql/queries/studies.graphql.dart';
 import 'package:brunstadtv_app/helpers/extensions.dart';
