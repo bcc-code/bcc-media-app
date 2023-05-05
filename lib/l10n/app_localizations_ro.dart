@@ -134,7 +134,7 @@ class SRo extends S {
   String get contactSupport => 'Contactare suport';
 
   @override
-  String get userVoice => 'Uservoice';
+  String get userVoice => 'Suggest a feature';
 
   @override
   String get cancel => 'Anulare';

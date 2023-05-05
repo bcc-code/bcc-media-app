@@ -134,7 +134,7 @@ class SRu extends S {
   String get contactSupport => 'Связаться с поддержкой';
 
   @override
-  String get userVoice => 'Uservoice';
+  String get userVoice => 'Suggest a feature';
 
   @override
   String get cancel => 'Отмена';

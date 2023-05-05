@@ -134,7 +134,7 @@ class SEs extends S {
   String get contactSupport => 'Contactar al soporte';
 
   @override
-  String get userVoice => 'Uservoice';
+  String get userVoice => 'Suggest a feature';
 
   @override
   String get cancel => 'Cancelar';

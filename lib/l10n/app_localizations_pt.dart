@@ -134,7 +134,7 @@ class SPt extends S {
   String get contactSupport => 'Entre em contato com o suporte';
 
   @override
-  String get userVoice => 'Uservoice';
+  String get userVoice => 'Suggest a feature';
 
   @override
   String get cancel => 'Cancelar';
