@@ -41,19 +41,41 @@ import '../helpers/utils.dart';
 import '../helpers/extensions.dart';
 import '../l10n/app_localizations.dart';
 
-class EpisodeScreen extends HookConsumerWidget {
+class EpisodeScreen extends _EpisodeScreenImplementation {
+  const EpisodeScreen({
+    super.key,
+    @PathParam() required super.episodeId,
+    @QueryParam() super.autoplay,
+    @QueryParam('t') super.queryParamStartPosition,
+    @QueryParam('hide_bottom_section') super.hideBottomSection,
+    @QueryParam('collectionId') super.collectionId,
+  });
+}
+
+class CollectionEpisodeScreen extends _EpisodeScreenImplementation {
+  const CollectionEpisodeScreen({
+    super.key,
+    @PathParam() required super.episodeId,
+    @QueryParam() super.autoplay,
+    @QueryParam('t') super.queryParamStartPosition,
+    @QueryParam('hide_bottom_section') super.hideBottomSection,
+    @PathParam('collectionId') super.collectionId,
+  });
+}
+
+class _EpisodeScreenImplementation extends HookConsumerWidget {
   final String episodeId;
   final bool? autoplay;
   final int? queryParamStartPosition;
   final bool? hideBottomSection;
   final String? collectionId;
-  const EpisodeScreen({
+  const _EpisodeScreenImplementation({
     super.key,
-    @PathParam() required this.episodeId,
-    @QueryParam() this.autoplay,
-    @QueryParam('t') this.queryParamStartPosition,
-    @QueryParam('hide_bottom_section') this.hideBottomSection,
-    @QueryParam('collectionId') this.collectionId,
+    required this.episodeId,
+    this.autoplay,
+    this.queryParamStartPosition,
+    this.hideBottomSection,
+    this.collectionId,
   });
 
   @override
@@ -168,7 +190,7 @@ class _EpisodeDisplay extends HookConsumerWidget {
     required this.scrollController,
   });
 
-  final EpisodeScreen screenParams;
+  final _EpisodeScreenImplementation screenParams;
   final Future<Query$FetchEpisode$episode?>? episodeFuture;
   final ScrollController scrollController;
 
@@ -297,17 +319,15 @@ class _EpisodeDisplay extends HookConsumerWidget {
             tabs: [
               Option(
                 id: 'episodes',
-                title: episode.context is Query$FetchEpisode$episode$context$$Season
-                    ? S.of(context).episodes.toUpperCase()
-                    : S.of(context).videos.toUpperCase(),
+                title: episode.context is Fragment$EpisodeContext$$Season ? S.of(context).episodes.toUpperCase() : S.of(context).videos.toUpperCase(),
               ),
               Option(id: 'details', title: (S.of(context).details.toUpperCase())),
             ],
             children: [
-              if (episode.context is Query$FetchEpisode$episode$context$$Season)
+              if (episode.context is Fragment$EpisodeContext$$Season)
                 EpisodeSeason(
                   episodeId: screenParams.episodeId,
-                  season: episode.context as Query$FetchEpisode$episode$context$$Season,
+                  season: episode.context as Fragment$EpisodeContext$$Season,
                   onEpisodeTap: (tappedEpisodeId) {
                     if (tappedEpisodeId != episode.id) {
                       context.navigateTo(EpisodeScreenRoute(episodeId: tappedEpisodeId, autoplay: kIsWeb ? null : true));
@@ -315,10 +335,10 @@ class _EpisodeDisplay extends HookConsumerWidget {
                     scrollToTop();
                   },
                 )
-              else if (episode.context is Query$FetchEpisode$episode$context$$ContextCollection)
+              else if (episode.context is Fragment$EpisodeContext$$ContextCollection)
                 EpisodeCollection(
                   episodeId: screenParams.episodeId,
-                  collection: episode.context as Query$FetchEpisode$episode$context$$ContextCollection,
+                  collection: episode.context as Fragment$EpisodeContext$$ContextCollection,
                   onEpisodeTap: (tappedEpisodeId) {
                     if (tappedEpisodeId != episode.id) {
                       context.navigateTo(EpisodeScreenRoute(

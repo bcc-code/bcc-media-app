@@ -7,6 +7,2748 @@ import 'package:graphql/client.dart' as graphql;
 import 'package:graphql_flutter/graphql_flutter.dart' as graphql_flutter;
 import 'page.graphql.dart';
 
+class Fragment$EpisodeContext {
+  Fragment$EpisodeContext({required this.$__typename});
+
+  factory Fragment$EpisodeContext.fromJson(Map<String, dynamic> json) {
+    switch (json["__typename"] as String) {
+      case "ContextCollection":
+        return Fragment$EpisodeContext$$ContextCollection.fromJson(json);
+
+      case "Season":
+        return Fragment$EpisodeContext$$Season.fromJson(json);
+
+      default:
+        final l$$__typename = json['__typename'];
+        return Fragment$EpisodeContext($__typename: (l$$__typename as String));
+    }
+  }
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$$__typename = $__typename;
+    return Object.hashAll([l$$__typename]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (!(other is Fragment$EpisodeContext) ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Fragment$EpisodeContext on Fragment$EpisodeContext {
+  CopyWith$Fragment$EpisodeContext<Fragment$EpisodeContext> get copyWith =>
+      CopyWith$Fragment$EpisodeContext(
+        this,
+        (i) => i,
+      );
+}
+
+abstract class CopyWith$Fragment$EpisodeContext<TRes> {
+  factory CopyWith$Fragment$EpisodeContext(
+    Fragment$EpisodeContext instance,
+    TRes Function(Fragment$EpisodeContext) then,
+  ) = _CopyWithImpl$Fragment$EpisodeContext;
+
+  factory CopyWith$Fragment$EpisodeContext.stub(TRes res) =
+      _CopyWithStubImpl$Fragment$EpisodeContext;
+
+  TRes call({String? $__typename});
+}
+
+class _CopyWithImpl$Fragment$EpisodeContext<TRes>
+    implements CopyWith$Fragment$EpisodeContext<TRes> {
+  _CopyWithImpl$Fragment$EpisodeContext(
+    this._instance,
+    this._then,
+  );
+
+  final Fragment$EpisodeContext _instance;
+
+  final TRes Function(Fragment$EpisodeContext) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({Object? $__typename = _undefined}) =>
+      _then(Fragment$EpisodeContext(
+          $__typename: $__typename == _undefined || $__typename == null
+              ? _instance.$__typename
+              : ($__typename as String)));
+}
+
+class _CopyWithStubImpl$Fragment$EpisodeContext<TRes>
+    implements CopyWith$Fragment$EpisodeContext<TRes> {
+  _CopyWithStubImpl$Fragment$EpisodeContext(this._res);
+
+  TRes _res;
+
+  call({String? $__typename}) => _res;
+}
+
+const fragmentDefinitionEpisodeContext = FragmentDefinitionNode(
+  name: NameNode(value: 'EpisodeContext'),
+  typeCondition: TypeConditionNode(
+      on: NamedTypeNode(
+    name: NameNode(value: 'EpisodeContextUnion'),
+    isNonNull: false,
+  )),
+  directives: [],
+  selectionSet: SelectionSetNode(selections: [
+    InlineFragmentNode(
+      typeCondition: TypeConditionNode(
+          on: NamedTypeNode(
+        name: NameNode(value: 'ContextCollection'),
+        isNonNull: false,
+      )),
+      directives: [],
+      selectionSet: SelectionSetNode(selections: [
+        FieldNode(
+          name: NameNode(value: 'id'),
+          alias: null,
+          arguments: [],
+          directives: [],
+          selectionSet: null,
+        ),
+        FieldNode(
+          name: NameNode(value: 'items'),
+          alias: null,
+          arguments: [],
+          directives: [],
+          selectionSet: SelectionSetNode(selections: [
+            FieldNode(
+              name: NameNode(value: 'items'),
+              alias: null,
+              arguments: [],
+              directives: [],
+              selectionSet: SelectionSetNode(selections: [
+                FieldNode(
+                  name: NameNode(value: 'item'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: SelectionSetNode(selections: [
+                    FragmentSpreadNode(
+                      name: NameNode(value: 'SeasonListEpisode'),
+                      directives: [],
+                    ),
+                    FieldNode(
+                      name: NameNode(value: '__typename'),
+                      alias: null,
+                      arguments: [],
+                      directives: [],
+                      selectionSet: null,
+                    ),
+                  ]),
+                ),
+                FieldNode(
+                  name: NameNode(value: '__typename'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null,
+                ),
+              ]),
+            ),
+            FieldNode(
+              name: NameNode(value: '__typename'),
+              alias: null,
+              arguments: [],
+              directives: [],
+              selectionSet: null,
+            ),
+          ]),
+        ),
+        FieldNode(
+          name: NameNode(value: '__typename'),
+          alias: null,
+          arguments: [],
+          directives: [],
+          selectionSet: null,
+        ),
+      ]),
+    ),
+    InlineFragmentNode(
+      typeCondition: TypeConditionNode(
+          on: NamedTypeNode(
+        name: NameNode(value: 'Season'),
+        isNonNull: false,
+      )),
+      directives: [],
+      selectionSet: SelectionSetNode(selections: [
+        FieldNode(
+          name: NameNode(value: 'id'),
+          alias: null,
+          arguments: [],
+          directives: [],
+          selectionSet: null,
+        ),
+        FieldNode(
+          name: NameNode(value: 'title'),
+          alias: null,
+          arguments: [],
+          directives: [],
+          selectionSet: null,
+        ),
+        FieldNode(
+          name: NameNode(value: 'number'),
+          alias: null,
+          arguments: [],
+          directives: [],
+          selectionSet: null,
+        ),
+        FieldNode(
+          name: NameNode(value: 'episodes'),
+          alias: null,
+          arguments: [
+            ArgumentNode(
+              name: NameNode(value: 'first'),
+              value: IntValueNode(value: '70'),
+            )
+          ],
+          directives: [],
+          selectionSet: SelectionSetNode(selections: [
+            FieldNode(
+              name: NameNode(value: 'items'),
+              alias: null,
+              arguments: [],
+              directives: [],
+              selectionSet: SelectionSetNode(selections: [
+                FragmentSpreadNode(
+                  name: NameNode(value: 'SeasonListEpisode'),
+                  directives: [],
+                ),
+                FieldNode(
+                  name: NameNode(value: '__typename'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null,
+                ),
+              ]),
+            ),
+            FieldNode(
+              name: NameNode(value: '__typename'),
+              alias: null,
+              arguments: [],
+              directives: [],
+              selectionSet: null,
+            ),
+          ]),
+        ),
+        FieldNode(
+          name: NameNode(value: 'show'),
+          alias: null,
+          arguments: [],
+          directives: [],
+          selectionSet: SelectionSetNode(selections: [
+            FieldNode(
+              name: NameNode(value: 'id'),
+              alias: null,
+              arguments: [],
+              directives: [],
+              selectionSet: null,
+            ),
+            FieldNode(
+              name: NameNode(value: 'title'),
+              alias: null,
+              arguments: [],
+              directives: [],
+              selectionSet: null,
+            ),
+            FieldNode(
+              name: NameNode(value: 'type'),
+              alias: null,
+              arguments: [],
+              directives: [],
+              selectionSet: null,
+            ),
+            FieldNode(
+              name: NameNode(value: 'seasons'),
+              alias: null,
+              arguments: [],
+              directives: [],
+              selectionSet: SelectionSetNode(selections: [
+                FieldNode(
+                  name: NameNode(value: 'items'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: SelectionSetNode(selections: [
+                    FieldNode(
+                      name: NameNode(value: 'id'),
+                      alias: null,
+                      arguments: [],
+                      directives: [],
+                      selectionSet: null,
+                    ),
+                    FieldNode(
+                      name: NameNode(value: 'title'),
+                      alias: null,
+                      arguments: [],
+                      directives: [],
+                      selectionSet: null,
+                    ),
+                    FieldNode(
+                      name: NameNode(value: '__typename'),
+                      alias: null,
+                      arguments: [],
+                      directives: [],
+                      selectionSet: null,
+                    ),
+                  ]),
+                ),
+                FieldNode(
+                  name: NameNode(value: '__typename'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null,
+                ),
+              ]),
+            ),
+            FieldNode(
+              name: NameNode(value: '__typename'),
+              alias: null,
+              arguments: [],
+              directives: [],
+              selectionSet: null,
+            ),
+          ]),
+        ),
+        FieldNode(
+          name: NameNode(value: '__typename'),
+          alias: null,
+          arguments: [],
+          directives: [],
+          selectionSet: null,
+        ),
+      ]),
+    ),
+    FieldNode(
+      name: NameNode(value: '__typename'),
+      alias: null,
+      arguments: [],
+      directives: [],
+      selectionSet: null,
+    ),
+  ]),
+);
+const documentNodeFragmentEpisodeContext = DocumentNode(definitions: [
+  fragmentDefinitionEpisodeContext,
+  fragmentDefinitionSeasonListEpisode,
+]);
+
+extension ClientExtension$Fragment$EpisodeContext on graphql.GraphQLClient {
+  void writeFragment$EpisodeContext({
+    required Fragment$EpisodeContext data,
+    required Map<String, dynamic> idFields,
+    bool broadcast = true,
+  }) =>
+      this.writeFragment(
+        graphql.FragmentRequest(
+          idFields: idFields,
+          fragment: const graphql.Fragment(
+            fragmentName: 'EpisodeContext',
+            document: documentNodeFragmentEpisodeContext,
+          ),
+        ),
+        data: data.toJson(),
+        broadcast: broadcast,
+      );
+  Fragment$EpisodeContext? readFragment$EpisodeContext({
+    required Map<String, dynamic> idFields,
+    bool optimistic = true,
+  }) {
+    final result = this.readFragment(
+      graphql.FragmentRequest(
+        idFields: idFields,
+        fragment: const graphql.Fragment(
+          fragmentName: 'EpisodeContext',
+          document: documentNodeFragmentEpisodeContext,
+        ),
+      ),
+      optimistic: optimistic,
+    );
+    return result == null ? null : Fragment$EpisodeContext.fromJson(result);
+  }
+}
+
+class Fragment$EpisodeContext$$ContextCollection
+    implements Fragment$EpisodeContext {
+  Fragment$EpisodeContext$$ContextCollection({
+    required this.id,
+    this.items,
+    this.$__typename = 'ContextCollection',
+  });
+
+  factory Fragment$EpisodeContext$$ContextCollection.fromJson(
+      Map<String, dynamic> json) {
+    final l$id = json['id'];
+    final l$items = json['items'];
+    final l$$__typename = json['__typename'];
+    return Fragment$EpisodeContext$$ContextCollection(
+      id: (l$id as String),
+      items: l$items == null
+          ? null
+          : Fragment$EpisodeContext$$ContextCollection$items.fromJson(
+              (l$items as Map<String, dynamic>)),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final String id;
+
+  final Fragment$EpisodeContext$$ContextCollection$items? items;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$id = id;
+    _resultData['id'] = l$id;
+    final l$items = items;
+    _resultData['items'] = l$items?.toJson();
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$id = id;
+    final l$items = items;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$id,
+      l$items,
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (!(other is Fragment$EpisodeContext$$ContextCollection) ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$id = id;
+    final lOther$id = other.id;
+    if (l$id != lOther$id) {
+      return false;
+    }
+    final l$items = items;
+    final lOther$items = other.items;
+    if (l$items != lOther$items) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Fragment$EpisodeContext$$ContextCollection
+    on Fragment$EpisodeContext$$ContextCollection {
+  CopyWith$Fragment$EpisodeContext$$ContextCollection<
+          Fragment$EpisodeContext$$ContextCollection>
+      get copyWith => CopyWith$Fragment$EpisodeContext$$ContextCollection(
+            this,
+            (i) => i,
+          );
+}
+
+abstract class CopyWith$Fragment$EpisodeContext$$ContextCollection<TRes> {
+  factory CopyWith$Fragment$EpisodeContext$$ContextCollection(
+    Fragment$EpisodeContext$$ContextCollection instance,
+    TRes Function(Fragment$EpisodeContext$$ContextCollection) then,
+  ) = _CopyWithImpl$Fragment$EpisodeContext$$ContextCollection;
+
+  factory CopyWith$Fragment$EpisodeContext$$ContextCollection.stub(TRes res) =
+      _CopyWithStubImpl$Fragment$EpisodeContext$$ContextCollection;
+
+  TRes call({
+    String? id,
+    Fragment$EpisodeContext$$ContextCollection$items? items,
+    String? $__typename,
+  });
+  CopyWith$Fragment$EpisodeContext$$ContextCollection$items<TRes> get items;
+}
+
+class _CopyWithImpl$Fragment$EpisodeContext$$ContextCollection<TRes>
+    implements CopyWith$Fragment$EpisodeContext$$ContextCollection<TRes> {
+  _CopyWithImpl$Fragment$EpisodeContext$$ContextCollection(
+    this._instance,
+    this._then,
+  );
+
+  final Fragment$EpisodeContext$$ContextCollection _instance;
+
+  final TRes Function(Fragment$EpisodeContext$$ContextCollection) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? id = _undefined,
+    Object? items = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(Fragment$EpisodeContext$$ContextCollection(
+        id: id == _undefined || id == null ? _instance.id : (id as String),
+        items: items == _undefined
+            ? _instance.items
+            : (items as Fragment$EpisodeContext$$ContextCollection$items?),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+  CopyWith$Fragment$EpisodeContext$$ContextCollection$items<TRes> get items {
+    final local$items = _instance.items;
+    return local$items == null
+        ? CopyWith$Fragment$EpisodeContext$$ContextCollection$items.stub(
+            _then(_instance))
+        : CopyWith$Fragment$EpisodeContext$$ContextCollection$items(
+            local$items, (e) => call(items: e));
+  }
+}
+
+class _CopyWithStubImpl$Fragment$EpisodeContext$$ContextCollection<TRes>
+    implements CopyWith$Fragment$EpisodeContext$$ContextCollection<TRes> {
+  _CopyWithStubImpl$Fragment$EpisodeContext$$ContextCollection(this._res);
+
+  TRes _res;
+
+  call({
+    String? id,
+    Fragment$EpisodeContext$$ContextCollection$items? items,
+    String? $__typename,
+  }) =>
+      _res;
+  CopyWith$Fragment$EpisodeContext$$ContextCollection$items<TRes> get items =>
+      CopyWith$Fragment$EpisodeContext$$ContextCollection$items.stub(_res);
+}
+
+class Fragment$EpisodeContext$$ContextCollection$items {
+  Fragment$EpisodeContext$$ContextCollection$items({
+    required this.items,
+    this.$__typename = 'SectionItemPagination',
+  });
+
+  factory Fragment$EpisodeContext$$ContextCollection$items.fromJson(
+      Map<String, dynamic> json) {
+    final l$items = json['items'];
+    final l$$__typename = json['__typename'];
+    return Fragment$EpisodeContext$$ContextCollection$items(
+      items: (l$items as List<dynamic>)
+          .map((e) =>
+              Fragment$EpisodeContext$$ContextCollection$items$items.fromJson(
+                  (e as Map<String, dynamic>)))
+          .toList(),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final List<Fragment$EpisodeContext$$ContextCollection$items$items> items;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$items = items;
+    _resultData['items'] = l$items.map((e) => e.toJson()).toList();
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$items = items;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      Object.hashAll(l$items.map((v) => v)),
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (!(other is Fragment$EpisodeContext$$ContextCollection$items) ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$items = items;
+    final lOther$items = other.items;
+    if (l$items.length != lOther$items.length) {
+      return false;
+    }
+    for (int i = 0; i < l$items.length; i++) {
+      final l$items$entry = l$items[i];
+      final lOther$items$entry = lOther$items[i];
+      if (l$items$entry != lOther$items$entry) {
+        return false;
+      }
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Fragment$EpisodeContext$$ContextCollection$items
+    on Fragment$EpisodeContext$$ContextCollection$items {
+  CopyWith$Fragment$EpisodeContext$$ContextCollection$items<
+          Fragment$EpisodeContext$$ContextCollection$items>
+      get copyWith => CopyWith$Fragment$EpisodeContext$$ContextCollection$items(
+            this,
+            (i) => i,
+          );
+}
+
+abstract class CopyWith$Fragment$EpisodeContext$$ContextCollection$items<TRes> {
+  factory CopyWith$Fragment$EpisodeContext$$ContextCollection$items(
+    Fragment$EpisodeContext$$ContextCollection$items instance,
+    TRes Function(Fragment$EpisodeContext$$ContextCollection$items) then,
+  ) = _CopyWithImpl$Fragment$EpisodeContext$$ContextCollection$items;
+
+  factory CopyWith$Fragment$EpisodeContext$$ContextCollection$items.stub(
+          TRes res) =
+      _CopyWithStubImpl$Fragment$EpisodeContext$$ContextCollection$items;
+
+  TRes call({
+    List<Fragment$EpisodeContext$$ContextCollection$items$items>? items,
+    String? $__typename,
+  });
+  TRes items(
+      Iterable<Fragment$EpisodeContext$$ContextCollection$items$items> Function(
+              Iterable<
+                  CopyWith$Fragment$EpisodeContext$$ContextCollection$items$items<
+                      Fragment$EpisodeContext$$ContextCollection$items$items>>)
+          _fn);
+}
+
+class _CopyWithImpl$Fragment$EpisodeContext$$ContextCollection$items<TRes>
+    implements CopyWith$Fragment$EpisodeContext$$ContextCollection$items<TRes> {
+  _CopyWithImpl$Fragment$EpisodeContext$$ContextCollection$items(
+    this._instance,
+    this._then,
+  );
+
+  final Fragment$EpisodeContext$$ContextCollection$items _instance;
+
+  final TRes Function(Fragment$EpisodeContext$$ContextCollection$items) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? items = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(Fragment$EpisodeContext$$ContextCollection$items(
+        items: items == _undefined || items == null
+            ? _instance.items
+            : (items as List<
+                Fragment$EpisodeContext$$ContextCollection$items$items>),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+  TRes items(
+          Iterable<Fragment$EpisodeContext$$ContextCollection$items$items> Function(
+                  Iterable<
+                      CopyWith$Fragment$EpisodeContext$$ContextCollection$items$items<
+                          Fragment$EpisodeContext$$ContextCollection$items$items>>)
+              _fn) =>
+      call(
+          items: _fn(_instance.items.map((e) =>
+              CopyWith$Fragment$EpisodeContext$$ContextCollection$items$items(
+                e,
+                (i) => i,
+              ))).toList());
+}
+
+class _CopyWithStubImpl$Fragment$EpisodeContext$$ContextCollection$items<TRes>
+    implements CopyWith$Fragment$EpisodeContext$$ContextCollection$items<TRes> {
+  _CopyWithStubImpl$Fragment$EpisodeContext$$ContextCollection$items(this._res);
+
+  TRes _res;
+
+  call({
+    List<Fragment$EpisodeContext$$ContextCollection$items$items>? items,
+    String? $__typename,
+  }) =>
+      _res;
+  items(_fn) => _res;
+}
+
+class Fragment$EpisodeContext$$ContextCollection$items$items {
+  Fragment$EpisodeContext$$ContextCollection$items$items({
+    required this.item,
+    this.$__typename = 'SectionItem',
+  });
+
+  factory Fragment$EpisodeContext$$ContextCollection$items$items.fromJson(
+      Map<String, dynamic> json) {
+    final l$item = json['item'];
+    final l$$__typename = json['__typename'];
+    return Fragment$EpisodeContext$$ContextCollection$items$items(
+      item:
+          Fragment$EpisodeContext$$ContextCollection$items$items$item.fromJson(
+              (l$item as Map<String, dynamic>)),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final Fragment$EpisodeContext$$ContextCollection$items$items$item item;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$item = item;
+    _resultData['item'] = l$item.toJson();
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$item = item;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$item,
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (!(other is Fragment$EpisodeContext$$ContextCollection$items$items) ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$item = item;
+    final lOther$item = other.item;
+    if (l$item != lOther$item) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Fragment$EpisodeContext$$ContextCollection$items$items
+    on Fragment$EpisodeContext$$ContextCollection$items$items {
+  CopyWith$Fragment$EpisodeContext$$ContextCollection$items$items<
+          Fragment$EpisodeContext$$ContextCollection$items$items>
+      get copyWith =>
+          CopyWith$Fragment$EpisodeContext$$ContextCollection$items$items(
+            this,
+            (i) => i,
+          );
+}
+
+abstract class CopyWith$Fragment$EpisodeContext$$ContextCollection$items$items<
+    TRes> {
+  factory CopyWith$Fragment$EpisodeContext$$ContextCollection$items$items(
+    Fragment$EpisodeContext$$ContextCollection$items$items instance,
+    TRes Function(Fragment$EpisodeContext$$ContextCollection$items$items) then,
+  ) = _CopyWithImpl$Fragment$EpisodeContext$$ContextCollection$items$items;
+
+  factory CopyWith$Fragment$EpisodeContext$$ContextCollection$items$items.stub(
+          TRes res) =
+      _CopyWithStubImpl$Fragment$EpisodeContext$$ContextCollection$items$items;
+
+  TRes call({
+    Fragment$EpisodeContext$$ContextCollection$items$items$item? item,
+    String? $__typename,
+  });
+  CopyWith$Fragment$EpisodeContext$$ContextCollection$items$items$item<TRes>
+      get item;
+}
+
+class _CopyWithImpl$Fragment$EpisodeContext$$ContextCollection$items$items<TRes>
+    implements
+        CopyWith$Fragment$EpisodeContext$$ContextCollection$items$items<TRes> {
+  _CopyWithImpl$Fragment$EpisodeContext$$ContextCollection$items$items(
+    this._instance,
+    this._then,
+  );
+
+  final Fragment$EpisodeContext$$ContextCollection$items$items _instance;
+
+  final TRes Function(Fragment$EpisodeContext$$ContextCollection$items$items)
+      _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? item = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(Fragment$EpisodeContext$$ContextCollection$items$items(
+        item: item == _undefined || item == null
+            ? _instance.item
+            : (item
+                as Fragment$EpisodeContext$$ContextCollection$items$items$item),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+  CopyWith$Fragment$EpisodeContext$$ContextCollection$items$items$item<TRes>
+      get item {
+    final local$item = _instance.item;
+    return CopyWith$Fragment$EpisodeContext$$ContextCollection$items$items$item(
+        local$item, (e) => call(item: e));
+  }
+}
+
+class _CopyWithStubImpl$Fragment$EpisodeContext$$ContextCollection$items$items<
+        TRes>
+    implements
+        CopyWith$Fragment$EpisodeContext$$ContextCollection$items$items<TRes> {
+  _CopyWithStubImpl$Fragment$EpisodeContext$$ContextCollection$items$items(
+      this._res);
+
+  TRes _res;
+
+  call({
+    Fragment$EpisodeContext$$ContextCollection$items$items$item? item,
+    String? $__typename,
+  }) =>
+      _res;
+  CopyWith$Fragment$EpisodeContext$$ContextCollection$items$items$item<TRes>
+      get item =>
+          CopyWith$Fragment$EpisodeContext$$ContextCollection$items$items$item
+              .stub(_res);
+}
+
+class Fragment$EpisodeContext$$ContextCollection$items$items$item {
+  Fragment$EpisodeContext$$ContextCollection$items$items$item(
+      {required this.$__typename});
+
+  factory Fragment$EpisodeContext$$ContextCollection$items$items$item.fromJson(
+      Map<String, dynamic> json) {
+    switch (json["__typename"] as String) {
+      case "Show":
+        return Fragment$EpisodeContext$$ContextCollection$items$items$item$$Show
+            .fromJson(json);
+
+      case "Season":
+        return Fragment$EpisodeContext$$ContextCollection$items$items$item$$Season
+            .fromJson(json);
+
+      case "Episode":
+        return Fragment$EpisodeContext$$ContextCollection$items$items$item$$Episode
+            .fromJson(json);
+
+      case "Page":
+        return Fragment$EpisodeContext$$ContextCollection$items$items$item$$Page
+            .fromJson(json);
+
+      case "Link":
+        return Fragment$EpisodeContext$$ContextCollection$items$items$item$$Link
+            .fromJson(json);
+
+      case "StudyTopic":
+        return Fragment$EpisodeContext$$ContextCollection$items$items$item$$StudyTopic
+            .fromJson(json);
+
+      default:
+        final l$$__typename = json['__typename'];
+        return Fragment$EpisodeContext$$ContextCollection$items$items$item(
+            $__typename: (l$$__typename as String));
+    }
+  }
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$$__typename = $__typename;
+    return Object.hashAll([l$$__typename]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (!(other
+            is Fragment$EpisodeContext$$ContextCollection$items$items$item) ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Fragment$EpisodeContext$$ContextCollection$items$items$item
+    on Fragment$EpisodeContext$$ContextCollection$items$items$item {
+  CopyWith$Fragment$EpisodeContext$$ContextCollection$items$items$item<
+          Fragment$EpisodeContext$$ContextCollection$items$items$item>
+      get copyWith =>
+          CopyWith$Fragment$EpisodeContext$$ContextCollection$items$items$item(
+            this,
+            (i) => i,
+          );
+}
+
+abstract class CopyWith$Fragment$EpisodeContext$$ContextCollection$items$items$item<
+    TRes> {
+  factory CopyWith$Fragment$EpisodeContext$$ContextCollection$items$items$item(
+    Fragment$EpisodeContext$$ContextCollection$items$items$item instance,
+    TRes Function(Fragment$EpisodeContext$$ContextCollection$items$items$item)
+        then,
+  ) = _CopyWithImpl$Fragment$EpisodeContext$$ContextCollection$items$items$item;
+
+  factory CopyWith$Fragment$EpisodeContext$$ContextCollection$items$items$item.stub(
+          TRes res) =
+      _CopyWithStubImpl$Fragment$EpisodeContext$$ContextCollection$items$items$item;
+
+  TRes call({String? $__typename});
+}
+
+class _CopyWithImpl$Fragment$EpisodeContext$$ContextCollection$items$items$item<
+        TRes>
+    implements
+        CopyWith$Fragment$EpisodeContext$$ContextCollection$items$items$item<
+            TRes> {
+  _CopyWithImpl$Fragment$EpisodeContext$$ContextCollection$items$items$item(
+    this._instance,
+    this._then,
+  );
+
+  final Fragment$EpisodeContext$$ContextCollection$items$items$item _instance;
+
+  final TRes Function(
+      Fragment$EpisodeContext$$ContextCollection$items$items$item) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({Object? $__typename = _undefined}) =>
+      _then(Fragment$EpisodeContext$$ContextCollection$items$items$item(
+          $__typename: $__typename == _undefined || $__typename == null
+              ? _instance.$__typename
+              : ($__typename as String)));
+}
+
+class _CopyWithStubImpl$Fragment$EpisodeContext$$ContextCollection$items$items$item<
+        TRes>
+    implements
+        CopyWith$Fragment$EpisodeContext$$ContextCollection$items$items$item<
+            TRes> {
+  _CopyWithStubImpl$Fragment$EpisodeContext$$ContextCollection$items$items$item(
+      this._res);
+
+  TRes _res;
+
+  call({String? $__typename}) => _res;
+}
+
+class Fragment$EpisodeContext$$ContextCollection$items$items$item$$Show
+    implements Fragment$EpisodeContext$$ContextCollection$items$items$item {
+  Fragment$EpisodeContext$$ContextCollection$items$items$item$$Show(
+      {this.$__typename = 'Show'});
+
+  factory Fragment$EpisodeContext$$ContextCollection$items$items$item$$Show.fromJson(
+      Map<String, dynamic> json) {
+    final l$$__typename = json['__typename'];
+    return Fragment$EpisodeContext$$ContextCollection$items$items$item$$Show(
+        $__typename: (l$$__typename as String));
+  }
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$$__typename = $__typename;
+    return Object.hashAll([l$$__typename]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (!(other
+            is Fragment$EpisodeContext$$ContextCollection$items$items$item$$Show) ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Fragment$EpisodeContext$$ContextCollection$items$items$item$$Show
+    on Fragment$EpisodeContext$$ContextCollection$items$items$item$$Show {
+  CopyWith$Fragment$EpisodeContext$$ContextCollection$items$items$item$$Show<
+          Fragment$EpisodeContext$$ContextCollection$items$items$item$$Show>
+      get copyWith =>
+          CopyWith$Fragment$EpisodeContext$$ContextCollection$items$items$item$$Show(
+            this,
+            (i) => i,
+          );
+}
+
+abstract class CopyWith$Fragment$EpisodeContext$$ContextCollection$items$items$item$$Show<
+    TRes> {
+  factory CopyWith$Fragment$EpisodeContext$$ContextCollection$items$items$item$$Show(
+    Fragment$EpisodeContext$$ContextCollection$items$items$item$$Show instance,
+    TRes Function(
+            Fragment$EpisodeContext$$ContextCollection$items$items$item$$Show)
+        then,
+  ) = _CopyWithImpl$Fragment$EpisodeContext$$ContextCollection$items$items$item$$Show;
+
+  factory CopyWith$Fragment$EpisodeContext$$ContextCollection$items$items$item$$Show.stub(
+          TRes res) =
+      _CopyWithStubImpl$Fragment$EpisodeContext$$ContextCollection$items$items$item$$Show;
+
+  TRes call({String? $__typename});
+}
+
+class _CopyWithImpl$Fragment$EpisodeContext$$ContextCollection$items$items$item$$Show<
+        TRes>
+    implements
+        CopyWith$Fragment$EpisodeContext$$ContextCollection$items$items$item$$Show<
+            TRes> {
+  _CopyWithImpl$Fragment$EpisodeContext$$ContextCollection$items$items$item$$Show(
+    this._instance,
+    this._then,
+  );
+
+  final Fragment$EpisodeContext$$ContextCollection$items$items$item$$Show
+      _instance;
+
+  final TRes Function(
+      Fragment$EpisodeContext$$ContextCollection$items$items$item$$Show) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({Object? $__typename = _undefined}) =>
+      _then(Fragment$EpisodeContext$$ContextCollection$items$items$item$$Show(
+          $__typename: $__typename == _undefined || $__typename == null
+              ? _instance.$__typename
+              : ($__typename as String)));
+}
+
+class _CopyWithStubImpl$Fragment$EpisodeContext$$ContextCollection$items$items$item$$Show<
+        TRes>
+    implements
+        CopyWith$Fragment$EpisodeContext$$ContextCollection$items$items$item$$Show<
+            TRes> {
+  _CopyWithStubImpl$Fragment$EpisodeContext$$ContextCollection$items$items$item$$Show(
+      this._res);
+
+  TRes _res;
+
+  call({String? $__typename}) => _res;
+}
+
+class Fragment$EpisodeContext$$ContextCollection$items$items$item$$Season
+    implements Fragment$EpisodeContext$$ContextCollection$items$items$item {
+  Fragment$EpisodeContext$$ContextCollection$items$items$item$$Season(
+      {this.$__typename = 'Season'});
+
+  factory Fragment$EpisodeContext$$ContextCollection$items$items$item$$Season.fromJson(
+      Map<String, dynamic> json) {
+    final l$$__typename = json['__typename'];
+    return Fragment$EpisodeContext$$ContextCollection$items$items$item$$Season(
+        $__typename: (l$$__typename as String));
+  }
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$$__typename = $__typename;
+    return Object.hashAll([l$$__typename]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (!(other
+            is Fragment$EpisodeContext$$ContextCollection$items$items$item$$Season) ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Fragment$EpisodeContext$$ContextCollection$items$items$item$$Season
+    on Fragment$EpisodeContext$$ContextCollection$items$items$item$$Season {
+  CopyWith$Fragment$EpisodeContext$$ContextCollection$items$items$item$$Season<
+          Fragment$EpisodeContext$$ContextCollection$items$items$item$$Season>
+      get copyWith =>
+          CopyWith$Fragment$EpisodeContext$$ContextCollection$items$items$item$$Season(
+            this,
+            (i) => i,
+          );
+}
+
+abstract class CopyWith$Fragment$EpisodeContext$$ContextCollection$items$items$item$$Season<
+    TRes> {
+  factory CopyWith$Fragment$EpisodeContext$$ContextCollection$items$items$item$$Season(
+    Fragment$EpisodeContext$$ContextCollection$items$items$item$$Season
+        instance,
+    TRes Function(
+            Fragment$EpisodeContext$$ContextCollection$items$items$item$$Season)
+        then,
+  ) = _CopyWithImpl$Fragment$EpisodeContext$$ContextCollection$items$items$item$$Season;
+
+  factory CopyWith$Fragment$EpisodeContext$$ContextCollection$items$items$item$$Season.stub(
+          TRes res) =
+      _CopyWithStubImpl$Fragment$EpisodeContext$$ContextCollection$items$items$item$$Season;
+
+  TRes call({String? $__typename});
+}
+
+class _CopyWithImpl$Fragment$EpisodeContext$$ContextCollection$items$items$item$$Season<
+        TRes>
+    implements
+        CopyWith$Fragment$EpisodeContext$$ContextCollection$items$items$item$$Season<
+            TRes> {
+  _CopyWithImpl$Fragment$EpisodeContext$$ContextCollection$items$items$item$$Season(
+    this._instance,
+    this._then,
+  );
+
+  final Fragment$EpisodeContext$$ContextCollection$items$items$item$$Season
+      _instance;
+
+  final TRes Function(
+          Fragment$EpisodeContext$$ContextCollection$items$items$item$$Season)
+      _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({Object? $__typename = _undefined}) =>
+      _then(Fragment$EpisodeContext$$ContextCollection$items$items$item$$Season(
+          $__typename: $__typename == _undefined || $__typename == null
+              ? _instance.$__typename
+              : ($__typename as String)));
+}
+
+class _CopyWithStubImpl$Fragment$EpisodeContext$$ContextCollection$items$items$item$$Season<
+        TRes>
+    implements
+        CopyWith$Fragment$EpisodeContext$$ContextCollection$items$items$item$$Season<
+            TRes> {
+  _CopyWithStubImpl$Fragment$EpisodeContext$$ContextCollection$items$items$item$$Season(
+      this._res);
+
+  TRes _res;
+
+  call({String? $__typename}) => _res;
+}
+
+class Fragment$EpisodeContext$$ContextCollection$items$items$item$$Episode
+    implements
+        Fragment$SeasonListEpisode,
+        Fragment$EpisodeContext$$ContextCollection$items$items$item {
+  Fragment$EpisodeContext$$ContextCollection$items$items$item$$Episode({
+    required this.id,
+    this.image,
+    this.number,
+    required this.title,
+    required this.publishDate,
+    required this.ageRating,
+    required this.duration,
+    required this.locked,
+    required this.lessons,
+    this.$__typename = 'Episode',
+  });
+
+  factory Fragment$EpisodeContext$$ContextCollection$items$items$item$$Episode.fromJson(
+      Map<String, dynamic> json) {
+    final l$id = json['id'];
+    final l$image = json['image'];
+    final l$number = json['number'];
+    final l$title = json['title'];
+    final l$publishDate = json['publishDate'];
+    final l$ageRating = json['ageRating'];
+    final l$duration = json['duration'];
+    final l$locked = json['locked'];
+    final l$lessons = json['lessons'];
+    final l$$__typename = json['__typename'];
+    return Fragment$EpisodeContext$$ContextCollection$items$items$item$$Episode(
+      id: (l$id as String),
+      image: (l$image as String?),
+      number: (l$number as int?),
+      title: (l$title as String),
+      publishDate: (l$publishDate as String),
+      ageRating: (l$ageRating as String),
+      duration: (l$duration as int),
+      locked: (l$locked as bool),
+      lessons: Fragment$SeasonListEpisode$lessons.fromJson(
+          (l$lessons as Map<String, dynamic>)),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final String id;
+
+  final String? image;
+
+  final int? number;
+
+  final String title;
+
+  final String publishDate;
+
+  final String ageRating;
+
+  final int duration;
+
+  final bool locked;
+
+  final Fragment$SeasonListEpisode$lessons lessons;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$id = id;
+    _resultData['id'] = l$id;
+    final l$image = image;
+    _resultData['image'] = l$image;
+    final l$number = number;
+    _resultData['number'] = l$number;
+    final l$title = title;
+    _resultData['title'] = l$title;
+    final l$publishDate = publishDate;
+    _resultData['publishDate'] = l$publishDate;
+    final l$ageRating = ageRating;
+    _resultData['ageRating'] = l$ageRating;
+    final l$duration = duration;
+    _resultData['duration'] = l$duration;
+    final l$locked = locked;
+    _resultData['locked'] = l$locked;
+    final l$lessons = lessons;
+    _resultData['lessons'] = l$lessons.toJson();
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$id = id;
+    final l$image = image;
+    final l$number = number;
+    final l$title = title;
+    final l$publishDate = publishDate;
+    final l$ageRating = ageRating;
+    final l$duration = duration;
+    final l$locked = locked;
+    final l$lessons = lessons;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$id,
+      l$image,
+      l$number,
+      l$title,
+      l$publishDate,
+      l$ageRating,
+      l$duration,
+      l$locked,
+      l$lessons,
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (!(other
+            is Fragment$EpisodeContext$$ContextCollection$items$items$item$$Episode) ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$id = id;
+    final lOther$id = other.id;
+    if (l$id != lOther$id) {
+      return false;
+    }
+    final l$image = image;
+    final lOther$image = other.image;
+    if (l$image != lOther$image) {
+      return false;
+    }
+    final l$number = number;
+    final lOther$number = other.number;
+    if (l$number != lOther$number) {
+      return false;
+    }
+    final l$title = title;
+    final lOther$title = other.title;
+    if (l$title != lOther$title) {
+      return false;
+    }
+    final l$publishDate = publishDate;
+    final lOther$publishDate = other.publishDate;
+    if (l$publishDate != lOther$publishDate) {
+      return false;
+    }
+    final l$ageRating = ageRating;
+    final lOther$ageRating = other.ageRating;
+    if (l$ageRating != lOther$ageRating) {
+      return false;
+    }
+    final l$duration = duration;
+    final lOther$duration = other.duration;
+    if (l$duration != lOther$duration) {
+      return false;
+    }
+    final l$locked = locked;
+    final lOther$locked = other.locked;
+    if (l$locked != lOther$locked) {
+      return false;
+    }
+    final l$lessons = lessons;
+    final lOther$lessons = other.lessons;
+    if (l$lessons != lOther$lessons) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Fragment$EpisodeContext$$ContextCollection$items$items$item$$Episode
+    on Fragment$EpisodeContext$$ContextCollection$items$items$item$$Episode {
+  CopyWith$Fragment$EpisodeContext$$ContextCollection$items$items$item$$Episode<
+          Fragment$EpisodeContext$$ContextCollection$items$items$item$$Episode>
+      get copyWith =>
+          CopyWith$Fragment$EpisodeContext$$ContextCollection$items$items$item$$Episode(
+            this,
+            (i) => i,
+          );
+}
+
+abstract class CopyWith$Fragment$EpisodeContext$$ContextCollection$items$items$item$$Episode<
+    TRes> {
+  factory CopyWith$Fragment$EpisodeContext$$ContextCollection$items$items$item$$Episode(
+    Fragment$EpisodeContext$$ContextCollection$items$items$item$$Episode
+        instance,
+    TRes Function(
+            Fragment$EpisodeContext$$ContextCollection$items$items$item$$Episode)
+        then,
+  ) = _CopyWithImpl$Fragment$EpisodeContext$$ContextCollection$items$items$item$$Episode;
+
+  factory CopyWith$Fragment$EpisodeContext$$ContextCollection$items$items$item$$Episode.stub(
+          TRes res) =
+      _CopyWithStubImpl$Fragment$EpisodeContext$$ContextCollection$items$items$item$$Episode;
+
+  TRes call({
+    String? id,
+    String? image,
+    int? number,
+    String? title,
+    String? publishDate,
+    String? ageRating,
+    int? duration,
+    bool? locked,
+    Fragment$SeasonListEpisode$lessons? lessons,
+    String? $__typename,
+  });
+  CopyWith$Fragment$SeasonListEpisode$lessons<TRes> get lessons;
+}
+
+class _CopyWithImpl$Fragment$EpisodeContext$$ContextCollection$items$items$item$$Episode<
+        TRes>
+    implements
+        CopyWith$Fragment$EpisodeContext$$ContextCollection$items$items$item$$Episode<
+            TRes> {
+  _CopyWithImpl$Fragment$EpisodeContext$$ContextCollection$items$items$item$$Episode(
+    this._instance,
+    this._then,
+  );
+
+  final Fragment$EpisodeContext$$ContextCollection$items$items$item$$Episode
+      _instance;
+
+  final TRes Function(
+          Fragment$EpisodeContext$$ContextCollection$items$items$item$$Episode)
+      _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? id = _undefined,
+    Object? image = _undefined,
+    Object? number = _undefined,
+    Object? title = _undefined,
+    Object? publishDate = _undefined,
+    Object? ageRating = _undefined,
+    Object? duration = _undefined,
+    Object? locked = _undefined,
+    Object? lessons = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(
+          Fragment$EpisodeContext$$ContextCollection$items$items$item$$Episode(
+        id: id == _undefined || id == null ? _instance.id : (id as String),
+        image: image == _undefined ? _instance.image : (image as String?),
+        number: number == _undefined ? _instance.number : (number as int?),
+        title: title == _undefined || title == null
+            ? _instance.title
+            : (title as String),
+        publishDate: publishDate == _undefined || publishDate == null
+            ? _instance.publishDate
+            : (publishDate as String),
+        ageRating: ageRating == _undefined || ageRating == null
+            ? _instance.ageRating
+            : (ageRating as String),
+        duration: duration == _undefined || duration == null
+            ? _instance.duration
+            : (duration as int),
+        locked: locked == _undefined || locked == null
+            ? _instance.locked
+            : (locked as bool),
+        lessons: lessons == _undefined || lessons == null
+            ? _instance.lessons
+            : (lessons as Fragment$SeasonListEpisode$lessons),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+  CopyWith$Fragment$SeasonListEpisode$lessons<TRes> get lessons {
+    final local$lessons = _instance.lessons;
+    return CopyWith$Fragment$SeasonListEpisode$lessons(
+        local$lessons, (e) => call(lessons: e));
+  }
+}
+
+class _CopyWithStubImpl$Fragment$EpisodeContext$$ContextCollection$items$items$item$$Episode<
+        TRes>
+    implements
+        CopyWith$Fragment$EpisodeContext$$ContextCollection$items$items$item$$Episode<
+            TRes> {
+  _CopyWithStubImpl$Fragment$EpisodeContext$$ContextCollection$items$items$item$$Episode(
+      this._res);
+
+  TRes _res;
+
+  call({
+    String? id,
+    String? image,
+    int? number,
+    String? title,
+    String? publishDate,
+    String? ageRating,
+    int? duration,
+    bool? locked,
+    Fragment$SeasonListEpisode$lessons? lessons,
+    String? $__typename,
+  }) =>
+      _res;
+  CopyWith$Fragment$SeasonListEpisode$lessons<TRes> get lessons =>
+      CopyWith$Fragment$SeasonListEpisode$lessons.stub(_res);
+}
+
+class Fragment$EpisodeContext$$ContextCollection$items$items$item$$Page
+    implements Fragment$EpisodeContext$$ContextCollection$items$items$item {
+  Fragment$EpisodeContext$$ContextCollection$items$items$item$$Page(
+      {this.$__typename = 'Page'});
+
+  factory Fragment$EpisodeContext$$ContextCollection$items$items$item$$Page.fromJson(
+      Map<String, dynamic> json) {
+    final l$$__typename = json['__typename'];
+    return Fragment$EpisodeContext$$ContextCollection$items$items$item$$Page(
+        $__typename: (l$$__typename as String));
+  }
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$$__typename = $__typename;
+    return Object.hashAll([l$$__typename]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (!(other
+            is Fragment$EpisodeContext$$ContextCollection$items$items$item$$Page) ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Fragment$EpisodeContext$$ContextCollection$items$items$item$$Page
+    on Fragment$EpisodeContext$$ContextCollection$items$items$item$$Page {
+  CopyWith$Fragment$EpisodeContext$$ContextCollection$items$items$item$$Page<
+          Fragment$EpisodeContext$$ContextCollection$items$items$item$$Page>
+      get copyWith =>
+          CopyWith$Fragment$EpisodeContext$$ContextCollection$items$items$item$$Page(
+            this,
+            (i) => i,
+          );
+}
+
+abstract class CopyWith$Fragment$EpisodeContext$$ContextCollection$items$items$item$$Page<
+    TRes> {
+  factory CopyWith$Fragment$EpisodeContext$$ContextCollection$items$items$item$$Page(
+    Fragment$EpisodeContext$$ContextCollection$items$items$item$$Page instance,
+    TRes Function(
+            Fragment$EpisodeContext$$ContextCollection$items$items$item$$Page)
+        then,
+  ) = _CopyWithImpl$Fragment$EpisodeContext$$ContextCollection$items$items$item$$Page;
+
+  factory CopyWith$Fragment$EpisodeContext$$ContextCollection$items$items$item$$Page.stub(
+          TRes res) =
+      _CopyWithStubImpl$Fragment$EpisodeContext$$ContextCollection$items$items$item$$Page;
+
+  TRes call({String? $__typename});
+}
+
+class _CopyWithImpl$Fragment$EpisodeContext$$ContextCollection$items$items$item$$Page<
+        TRes>
+    implements
+        CopyWith$Fragment$EpisodeContext$$ContextCollection$items$items$item$$Page<
+            TRes> {
+  _CopyWithImpl$Fragment$EpisodeContext$$ContextCollection$items$items$item$$Page(
+    this._instance,
+    this._then,
+  );
+
+  final Fragment$EpisodeContext$$ContextCollection$items$items$item$$Page
+      _instance;
+
+  final TRes Function(
+      Fragment$EpisodeContext$$ContextCollection$items$items$item$$Page) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({Object? $__typename = _undefined}) =>
+      _then(Fragment$EpisodeContext$$ContextCollection$items$items$item$$Page(
+          $__typename: $__typename == _undefined || $__typename == null
+              ? _instance.$__typename
+              : ($__typename as String)));
+}
+
+class _CopyWithStubImpl$Fragment$EpisodeContext$$ContextCollection$items$items$item$$Page<
+        TRes>
+    implements
+        CopyWith$Fragment$EpisodeContext$$ContextCollection$items$items$item$$Page<
+            TRes> {
+  _CopyWithStubImpl$Fragment$EpisodeContext$$ContextCollection$items$items$item$$Page(
+      this._res);
+
+  TRes _res;
+
+  call({String? $__typename}) => _res;
+}
+
+class Fragment$EpisodeContext$$ContextCollection$items$items$item$$Link
+    implements Fragment$EpisodeContext$$ContextCollection$items$items$item {
+  Fragment$EpisodeContext$$ContextCollection$items$items$item$$Link(
+      {this.$__typename = 'Link'});
+
+  factory Fragment$EpisodeContext$$ContextCollection$items$items$item$$Link.fromJson(
+      Map<String, dynamic> json) {
+    final l$$__typename = json['__typename'];
+    return Fragment$EpisodeContext$$ContextCollection$items$items$item$$Link(
+        $__typename: (l$$__typename as String));
+  }
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$$__typename = $__typename;
+    return Object.hashAll([l$$__typename]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (!(other
+            is Fragment$EpisodeContext$$ContextCollection$items$items$item$$Link) ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Fragment$EpisodeContext$$ContextCollection$items$items$item$$Link
+    on Fragment$EpisodeContext$$ContextCollection$items$items$item$$Link {
+  CopyWith$Fragment$EpisodeContext$$ContextCollection$items$items$item$$Link<
+          Fragment$EpisodeContext$$ContextCollection$items$items$item$$Link>
+      get copyWith =>
+          CopyWith$Fragment$EpisodeContext$$ContextCollection$items$items$item$$Link(
+            this,
+            (i) => i,
+          );
+}
+
+abstract class CopyWith$Fragment$EpisodeContext$$ContextCollection$items$items$item$$Link<
+    TRes> {
+  factory CopyWith$Fragment$EpisodeContext$$ContextCollection$items$items$item$$Link(
+    Fragment$EpisodeContext$$ContextCollection$items$items$item$$Link instance,
+    TRes Function(
+            Fragment$EpisodeContext$$ContextCollection$items$items$item$$Link)
+        then,
+  ) = _CopyWithImpl$Fragment$EpisodeContext$$ContextCollection$items$items$item$$Link;
+
+  factory CopyWith$Fragment$EpisodeContext$$ContextCollection$items$items$item$$Link.stub(
+          TRes res) =
+      _CopyWithStubImpl$Fragment$EpisodeContext$$ContextCollection$items$items$item$$Link;
+
+  TRes call({String? $__typename});
+}
+
+class _CopyWithImpl$Fragment$EpisodeContext$$ContextCollection$items$items$item$$Link<
+        TRes>
+    implements
+        CopyWith$Fragment$EpisodeContext$$ContextCollection$items$items$item$$Link<
+            TRes> {
+  _CopyWithImpl$Fragment$EpisodeContext$$ContextCollection$items$items$item$$Link(
+    this._instance,
+    this._then,
+  );
+
+  final Fragment$EpisodeContext$$ContextCollection$items$items$item$$Link
+      _instance;
+
+  final TRes Function(
+      Fragment$EpisodeContext$$ContextCollection$items$items$item$$Link) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({Object? $__typename = _undefined}) =>
+      _then(Fragment$EpisodeContext$$ContextCollection$items$items$item$$Link(
+          $__typename: $__typename == _undefined || $__typename == null
+              ? _instance.$__typename
+              : ($__typename as String)));
+}
+
+class _CopyWithStubImpl$Fragment$EpisodeContext$$ContextCollection$items$items$item$$Link<
+        TRes>
+    implements
+        CopyWith$Fragment$EpisodeContext$$ContextCollection$items$items$item$$Link<
+            TRes> {
+  _CopyWithStubImpl$Fragment$EpisodeContext$$ContextCollection$items$items$item$$Link(
+      this._res);
+
+  TRes _res;
+
+  call({String? $__typename}) => _res;
+}
+
+class Fragment$EpisodeContext$$ContextCollection$items$items$item$$StudyTopic
+    implements Fragment$EpisodeContext$$ContextCollection$items$items$item {
+  Fragment$EpisodeContext$$ContextCollection$items$items$item$$StudyTopic(
+      {this.$__typename = 'StudyTopic'});
+
+  factory Fragment$EpisodeContext$$ContextCollection$items$items$item$$StudyTopic.fromJson(
+      Map<String, dynamic> json) {
+    final l$$__typename = json['__typename'];
+    return Fragment$EpisodeContext$$ContextCollection$items$items$item$$StudyTopic(
+        $__typename: (l$$__typename as String));
+  }
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$$__typename = $__typename;
+    return Object.hashAll([l$$__typename]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (!(other
+            is Fragment$EpisodeContext$$ContextCollection$items$items$item$$StudyTopic) ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Fragment$EpisodeContext$$ContextCollection$items$items$item$$StudyTopic
+    on Fragment$EpisodeContext$$ContextCollection$items$items$item$$StudyTopic {
+  CopyWith$Fragment$EpisodeContext$$ContextCollection$items$items$item$$StudyTopic<
+          Fragment$EpisodeContext$$ContextCollection$items$items$item$$StudyTopic>
+      get copyWith =>
+          CopyWith$Fragment$EpisodeContext$$ContextCollection$items$items$item$$StudyTopic(
+            this,
+            (i) => i,
+          );
+}
+
+abstract class CopyWith$Fragment$EpisodeContext$$ContextCollection$items$items$item$$StudyTopic<
+    TRes> {
+  factory CopyWith$Fragment$EpisodeContext$$ContextCollection$items$items$item$$StudyTopic(
+    Fragment$EpisodeContext$$ContextCollection$items$items$item$$StudyTopic
+        instance,
+    TRes Function(
+            Fragment$EpisodeContext$$ContextCollection$items$items$item$$StudyTopic)
+        then,
+  ) = _CopyWithImpl$Fragment$EpisodeContext$$ContextCollection$items$items$item$$StudyTopic;
+
+  factory CopyWith$Fragment$EpisodeContext$$ContextCollection$items$items$item$$StudyTopic.stub(
+          TRes res) =
+      _CopyWithStubImpl$Fragment$EpisodeContext$$ContextCollection$items$items$item$$StudyTopic;
+
+  TRes call({String? $__typename});
+}
+
+class _CopyWithImpl$Fragment$EpisodeContext$$ContextCollection$items$items$item$$StudyTopic<
+        TRes>
+    implements
+        CopyWith$Fragment$EpisodeContext$$ContextCollection$items$items$item$$StudyTopic<
+            TRes> {
+  _CopyWithImpl$Fragment$EpisodeContext$$ContextCollection$items$items$item$$StudyTopic(
+    this._instance,
+    this._then,
+  );
+
+  final Fragment$EpisodeContext$$ContextCollection$items$items$item$$StudyTopic
+      _instance;
+
+  final TRes Function(
+          Fragment$EpisodeContext$$ContextCollection$items$items$item$$StudyTopic)
+      _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({Object? $__typename = _undefined}) => _then(
+      Fragment$EpisodeContext$$ContextCollection$items$items$item$$StudyTopic(
+          $__typename: $__typename == _undefined || $__typename == null
+              ? _instance.$__typename
+              : ($__typename as String)));
+}
+
+class _CopyWithStubImpl$Fragment$EpisodeContext$$ContextCollection$items$items$item$$StudyTopic<
+        TRes>
+    implements
+        CopyWith$Fragment$EpisodeContext$$ContextCollection$items$items$item$$StudyTopic<
+            TRes> {
+  _CopyWithStubImpl$Fragment$EpisodeContext$$ContextCollection$items$items$item$$StudyTopic(
+      this._res);
+
+  TRes _res;
+
+  call({String? $__typename}) => _res;
+}
+
+class Fragment$EpisodeContext$$Season implements Fragment$EpisodeContext {
+  Fragment$EpisodeContext$$Season({
+    required this.id,
+    required this.title,
+    required this.number,
+    required this.episodes,
+    required this.$show,
+    this.$__typename = 'Season',
+  });
+
+  factory Fragment$EpisodeContext$$Season.fromJson(Map<String, dynamic> json) {
+    final l$id = json['id'];
+    final l$title = json['title'];
+    final l$number = json['number'];
+    final l$episodes = json['episodes'];
+    final l$$show = json['show'];
+    final l$$__typename = json['__typename'];
+    return Fragment$EpisodeContext$$Season(
+      id: (l$id as String),
+      title: (l$title as String),
+      number: (l$number as int),
+      episodes: Fragment$EpisodeContext$$Season$episodes.fromJson(
+          (l$episodes as Map<String, dynamic>)),
+      $show: Fragment$EpisodeContext$$Season$show.fromJson(
+          (l$$show as Map<String, dynamic>)),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final String id;
+
+  final String title;
+
+  final int number;
+
+  final Fragment$EpisodeContext$$Season$episodes episodes;
+
+  final Fragment$EpisodeContext$$Season$show $show;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$id = id;
+    _resultData['id'] = l$id;
+    final l$title = title;
+    _resultData['title'] = l$title;
+    final l$number = number;
+    _resultData['number'] = l$number;
+    final l$episodes = episodes;
+    _resultData['episodes'] = l$episodes.toJson();
+    final l$$show = $show;
+    _resultData['show'] = l$$show.toJson();
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$id = id;
+    final l$title = title;
+    final l$number = number;
+    final l$episodes = episodes;
+    final l$$show = $show;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$id,
+      l$title,
+      l$number,
+      l$episodes,
+      l$$show,
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (!(other is Fragment$EpisodeContext$$Season) ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$id = id;
+    final lOther$id = other.id;
+    if (l$id != lOther$id) {
+      return false;
+    }
+    final l$title = title;
+    final lOther$title = other.title;
+    if (l$title != lOther$title) {
+      return false;
+    }
+    final l$number = number;
+    final lOther$number = other.number;
+    if (l$number != lOther$number) {
+      return false;
+    }
+    final l$episodes = episodes;
+    final lOther$episodes = other.episodes;
+    if (l$episodes != lOther$episodes) {
+      return false;
+    }
+    final l$$show = $show;
+    final lOther$$show = other.$show;
+    if (l$$show != lOther$$show) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Fragment$EpisodeContext$$Season
+    on Fragment$EpisodeContext$$Season {
+  CopyWith$Fragment$EpisodeContext$$Season<Fragment$EpisodeContext$$Season>
+      get copyWith => CopyWith$Fragment$EpisodeContext$$Season(
+            this,
+            (i) => i,
+          );
+}
+
+abstract class CopyWith$Fragment$EpisodeContext$$Season<TRes> {
+  factory CopyWith$Fragment$EpisodeContext$$Season(
+    Fragment$EpisodeContext$$Season instance,
+    TRes Function(Fragment$EpisodeContext$$Season) then,
+  ) = _CopyWithImpl$Fragment$EpisodeContext$$Season;
+
+  factory CopyWith$Fragment$EpisodeContext$$Season.stub(TRes res) =
+      _CopyWithStubImpl$Fragment$EpisodeContext$$Season;
+
+  TRes call({
+    String? id,
+    String? title,
+    int? number,
+    Fragment$EpisodeContext$$Season$episodes? episodes,
+    Fragment$EpisodeContext$$Season$show? $show,
+    String? $__typename,
+  });
+  CopyWith$Fragment$EpisodeContext$$Season$episodes<TRes> get episodes;
+  CopyWith$Fragment$EpisodeContext$$Season$show<TRes> get $show;
+}
+
+class _CopyWithImpl$Fragment$EpisodeContext$$Season<TRes>
+    implements CopyWith$Fragment$EpisodeContext$$Season<TRes> {
+  _CopyWithImpl$Fragment$EpisodeContext$$Season(
+    this._instance,
+    this._then,
+  );
+
+  final Fragment$EpisodeContext$$Season _instance;
+
+  final TRes Function(Fragment$EpisodeContext$$Season) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? id = _undefined,
+    Object? title = _undefined,
+    Object? number = _undefined,
+    Object? episodes = _undefined,
+    Object? $show = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(Fragment$EpisodeContext$$Season(
+        id: id == _undefined || id == null ? _instance.id : (id as String),
+        title: title == _undefined || title == null
+            ? _instance.title
+            : (title as String),
+        number: number == _undefined || number == null
+            ? _instance.number
+            : (number as int),
+        episodes: episodes == _undefined || episodes == null
+            ? _instance.episodes
+            : (episodes as Fragment$EpisodeContext$$Season$episodes),
+        $show: $show == _undefined || $show == null
+            ? _instance.$show
+            : ($show as Fragment$EpisodeContext$$Season$show),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+  CopyWith$Fragment$EpisodeContext$$Season$episodes<TRes> get episodes {
+    final local$episodes = _instance.episodes;
+    return CopyWith$Fragment$EpisodeContext$$Season$episodes(
+        local$episodes, (e) => call(episodes: e));
+  }
+
+  CopyWith$Fragment$EpisodeContext$$Season$show<TRes> get $show {
+    final local$$show = _instance.$show;
+    return CopyWith$Fragment$EpisodeContext$$Season$show(
+        local$$show, (e) => call($show: e));
+  }
+}
+
+class _CopyWithStubImpl$Fragment$EpisodeContext$$Season<TRes>
+    implements CopyWith$Fragment$EpisodeContext$$Season<TRes> {
+  _CopyWithStubImpl$Fragment$EpisodeContext$$Season(this._res);
+
+  TRes _res;
+
+  call({
+    String? id,
+    String? title,
+    int? number,
+    Fragment$EpisodeContext$$Season$episodes? episodes,
+    Fragment$EpisodeContext$$Season$show? $show,
+    String? $__typename,
+  }) =>
+      _res;
+  CopyWith$Fragment$EpisodeContext$$Season$episodes<TRes> get episodes =>
+      CopyWith$Fragment$EpisodeContext$$Season$episodes.stub(_res);
+  CopyWith$Fragment$EpisodeContext$$Season$show<TRes> get $show =>
+      CopyWith$Fragment$EpisodeContext$$Season$show.stub(_res);
+}
+
+class Fragment$EpisodeContext$$Season$episodes {
+  Fragment$EpisodeContext$$Season$episodes({
+    required this.items,
+    this.$__typename = 'EpisodePagination',
+  });
+
+  factory Fragment$EpisodeContext$$Season$episodes.fromJson(
+      Map<String, dynamic> json) {
+    final l$items = json['items'];
+    final l$$__typename = json['__typename'];
+    return Fragment$EpisodeContext$$Season$episodes(
+      items: (l$items as List<dynamic>)
+          .map((e) =>
+              Fragment$SeasonListEpisode.fromJson((e as Map<String, dynamic>)))
+          .toList(),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final List<Fragment$SeasonListEpisode> items;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$items = items;
+    _resultData['items'] = l$items.map((e) => e.toJson()).toList();
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$items = items;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      Object.hashAll(l$items.map((v) => v)),
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (!(other is Fragment$EpisodeContext$$Season$episodes) ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$items = items;
+    final lOther$items = other.items;
+    if (l$items.length != lOther$items.length) {
+      return false;
+    }
+    for (int i = 0; i < l$items.length; i++) {
+      final l$items$entry = l$items[i];
+      final lOther$items$entry = lOther$items[i];
+      if (l$items$entry != lOther$items$entry) {
+        return false;
+      }
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Fragment$EpisodeContext$$Season$episodes
+    on Fragment$EpisodeContext$$Season$episodes {
+  CopyWith$Fragment$EpisodeContext$$Season$episodes<
+          Fragment$EpisodeContext$$Season$episodes>
+      get copyWith => CopyWith$Fragment$EpisodeContext$$Season$episodes(
+            this,
+            (i) => i,
+          );
+}
+
+abstract class CopyWith$Fragment$EpisodeContext$$Season$episodes<TRes> {
+  factory CopyWith$Fragment$EpisodeContext$$Season$episodes(
+    Fragment$EpisodeContext$$Season$episodes instance,
+    TRes Function(Fragment$EpisodeContext$$Season$episodes) then,
+  ) = _CopyWithImpl$Fragment$EpisodeContext$$Season$episodes;
+
+  factory CopyWith$Fragment$EpisodeContext$$Season$episodes.stub(TRes res) =
+      _CopyWithStubImpl$Fragment$EpisodeContext$$Season$episodes;
+
+  TRes call({
+    List<Fragment$SeasonListEpisode>? items,
+    String? $__typename,
+  });
+  TRes items(
+      Iterable<Fragment$SeasonListEpisode> Function(
+              Iterable<
+                  CopyWith$Fragment$SeasonListEpisode<
+                      Fragment$SeasonListEpisode>>)
+          _fn);
+}
+
+class _CopyWithImpl$Fragment$EpisodeContext$$Season$episodes<TRes>
+    implements CopyWith$Fragment$EpisodeContext$$Season$episodes<TRes> {
+  _CopyWithImpl$Fragment$EpisodeContext$$Season$episodes(
+    this._instance,
+    this._then,
+  );
+
+  final Fragment$EpisodeContext$$Season$episodes _instance;
+
+  final TRes Function(Fragment$EpisodeContext$$Season$episodes) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? items = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(Fragment$EpisodeContext$$Season$episodes(
+        items: items == _undefined || items == null
+            ? _instance.items
+            : (items as List<Fragment$SeasonListEpisode>),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+  TRes items(
+          Iterable<Fragment$SeasonListEpisode> Function(
+                  Iterable<
+                      CopyWith$Fragment$SeasonListEpisode<
+                          Fragment$SeasonListEpisode>>)
+              _fn) =>
+      call(
+          items: _fn(
+              _instance.items.map((e) => CopyWith$Fragment$SeasonListEpisode(
+                    e,
+                    (i) => i,
+                  ))).toList());
+}
+
+class _CopyWithStubImpl$Fragment$EpisodeContext$$Season$episodes<TRes>
+    implements CopyWith$Fragment$EpisodeContext$$Season$episodes<TRes> {
+  _CopyWithStubImpl$Fragment$EpisodeContext$$Season$episodes(this._res);
+
+  TRes _res;
+
+  call({
+    List<Fragment$SeasonListEpisode>? items,
+    String? $__typename,
+  }) =>
+      _res;
+  items(_fn) => _res;
+}
+
+class Fragment$EpisodeContext$$Season$show {
+  Fragment$EpisodeContext$$Season$show({
+    required this.id,
+    required this.title,
+    required this.type,
+    required this.seasons,
+    this.$__typename = 'Show',
+  });
+
+  factory Fragment$EpisodeContext$$Season$show.fromJson(
+      Map<String, dynamic> json) {
+    final l$id = json['id'];
+    final l$title = json['title'];
+    final l$type = json['type'];
+    final l$seasons = json['seasons'];
+    final l$$__typename = json['__typename'];
+    return Fragment$EpisodeContext$$Season$show(
+      id: (l$id as String),
+      title: (l$title as String),
+      type: fromJson$Enum$ShowType((l$type as String)),
+      seasons: Fragment$EpisodeContext$$Season$show$seasons.fromJson(
+          (l$seasons as Map<String, dynamic>)),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final String id;
+
+  final String title;
+
+  final Enum$ShowType type;
+
+  final Fragment$EpisodeContext$$Season$show$seasons seasons;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$id = id;
+    _resultData['id'] = l$id;
+    final l$title = title;
+    _resultData['title'] = l$title;
+    final l$type = type;
+    _resultData['type'] = toJson$Enum$ShowType(l$type);
+    final l$seasons = seasons;
+    _resultData['seasons'] = l$seasons.toJson();
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$id = id;
+    final l$title = title;
+    final l$type = type;
+    final l$seasons = seasons;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$id,
+      l$title,
+      l$type,
+      l$seasons,
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (!(other is Fragment$EpisodeContext$$Season$show) ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$id = id;
+    final lOther$id = other.id;
+    if (l$id != lOther$id) {
+      return false;
+    }
+    final l$title = title;
+    final lOther$title = other.title;
+    if (l$title != lOther$title) {
+      return false;
+    }
+    final l$type = type;
+    final lOther$type = other.type;
+    if (l$type != lOther$type) {
+      return false;
+    }
+    final l$seasons = seasons;
+    final lOther$seasons = other.seasons;
+    if (l$seasons != lOther$seasons) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Fragment$EpisodeContext$$Season$show
+    on Fragment$EpisodeContext$$Season$show {
+  CopyWith$Fragment$EpisodeContext$$Season$show<
+          Fragment$EpisodeContext$$Season$show>
+      get copyWith => CopyWith$Fragment$EpisodeContext$$Season$show(
+            this,
+            (i) => i,
+          );
+}
+
+abstract class CopyWith$Fragment$EpisodeContext$$Season$show<TRes> {
+  factory CopyWith$Fragment$EpisodeContext$$Season$show(
+    Fragment$EpisodeContext$$Season$show instance,
+    TRes Function(Fragment$EpisodeContext$$Season$show) then,
+  ) = _CopyWithImpl$Fragment$EpisodeContext$$Season$show;
+
+  factory CopyWith$Fragment$EpisodeContext$$Season$show.stub(TRes res) =
+      _CopyWithStubImpl$Fragment$EpisodeContext$$Season$show;
+
+  TRes call({
+    String? id,
+    String? title,
+    Enum$ShowType? type,
+    Fragment$EpisodeContext$$Season$show$seasons? seasons,
+    String? $__typename,
+  });
+  CopyWith$Fragment$EpisodeContext$$Season$show$seasons<TRes> get seasons;
+}
+
+class _CopyWithImpl$Fragment$EpisodeContext$$Season$show<TRes>
+    implements CopyWith$Fragment$EpisodeContext$$Season$show<TRes> {
+  _CopyWithImpl$Fragment$EpisodeContext$$Season$show(
+    this._instance,
+    this._then,
+  );
+
+  final Fragment$EpisodeContext$$Season$show _instance;
+
+  final TRes Function(Fragment$EpisodeContext$$Season$show) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? id = _undefined,
+    Object? title = _undefined,
+    Object? type = _undefined,
+    Object? seasons = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(Fragment$EpisodeContext$$Season$show(
+        id: id == _undefined || id == null ? _instance.id : (id as String),
+        title: title == _undefined || title == null
+            ? _instance.title
+            : (title as String),
+        type: type == _undefined || type == null
+            ? _instance.type
+            : (type as Enum$ShowType),
+        seasons: seasons == _undefined || seasons == null
+            ? _instance.seasons
+            : (seasons as Fragment$EpisodeContext$$Season$show$seasons),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+  CopyWith$Fragment$EpisodeContext$$Season$show$seasons<TRes> get seasons {
+    final local$seasons = _instance.seasons;
+    return CopyWith$Fragment$EpisodeContext$$Season$show$seasons(
+        local$seasons, (e) => call(seasons: e));
+  }
+}
+
+class _CopyWithStubImpl$Fragment$EpisodeContext$$Season$show<TRes>
+    implements CopyWith$Fragment$EpisodeContext$$Season$show<TRes> {
+  _CopyWithStubImpl$Fragment$EpisodeContext$$Season$show(this._res);
+
+  TRes _res;
+
+  call({
+    String? id,
+    String? title,
+    Enum$ShowType? type,
+    Fragment$EpisodeContext$$Season$show$seasons? seasons,
+    String? $__typename,
+  }) =>
+      _res;
+  CopyWith$Fragment$EpisodeContext$$Season$show$seasons<TRes> get seasons =>
+      CopyWith$Fragment$EpisodeContext$$Season$show$seasons.stub(_res);
+}
+
+class Fragment$EpisodeContext$$Season$show$seasons {
+  Fragment$EpisodeContext$$Season$show$seasons({
+    required this.items,
+    this.$__typename = 'SeasonPagination',
+  });
+
+  factory Fragment$EpisodeContext$$Season$show$seasons.fromJson(
+      Map<String, dynamic> json) {
+    final l$items = json['items'];
+    final l$$__typename = json['__typename'];
+    return Fragment$EpisodeContext$$Season$show$seasons(
+      items: (l$items as List<dynamic>)
+          .map((e) =>
+              Fragment$EpisodeContext$$Season$show$seasons$items.fromJson(
+                  (e as Map<String, dynamic>)))
+          .toList(),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final List<Fragment$EpisodeContext$$Season$show$seasons$items> items;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$items = items;
+    _resultData['items'] = l$items.map((e) => e.toJson()).toList();
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$items = items;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      Object.hashAll(l$items.map((v) => v)),
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (!(other is Fragment$EpisodeContext$$Season$show$seasons) ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$items = items;
+    final lOther$items = other.items;
+    if (l$items.length != lOther$items.length) {
+      return false;
+    }
+    for (int i = 0; i < l$items.length; i++) {
+      final l$items$entry = l$items[i];
+      final lOther$items$entry = lOther$items[i];
+      if (l$items$entry != lOther$items$entry) {
+        return false;
+      }
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Fragment$EpisodeContext$$Season$show$seasons
+    on Fragment$EpisodeContext$$Season$show$seasons {
+  CopyWith$Fragment$EpisodeContext$$Season$show$seasons<
+          Fragment$EpisodeContext$$Season$show$seasons>
+      get copyWith => CopyWith$Fragment$EpisodeContext$$Season$show$seasons(
+            this,
+            (i) => i,
+          );
+}
+
+abstract class CopyWith$Fragment$EpisodeContext$$Season$show$seasons<TRes> {
+  factory CopyWith$Fragment$EpisodeContext$$Season$show$seasons(
+    Fragment$EpisodeContext$$Season$show$seasons instance,
+    TRes Function(Fragment$EpisodeContext$$Season$show$seasons) then,
+  ) = _CopyWithImpl$Fragment$EpisodeContext$$Season$show$seasons;
+
+  factory CopyWith$Fragment$EpisodeContext$$Season$show$seasons.stub(TRes res) =
+      _CopyWithStubImpl$Fragment$EpisodeContext$$Season$show$seasons;
+
+  TRes call({
+    List<Fragment$EpisodeContext$$Season$show$seasons$items>? items,
+    String? $__typename,
+  });
+  TRes items(
+      Iterable<Fragment$EpisodeContext$$Season$show$seasons$items> Function(
+              Iterable<
+                  CopyWith$Fragment$EpisodeContext$$Season$show$seasons$items<
+                      Fragment$EpisodeContext$$Season$show$seasons$items>>)
+          _fn);
+}
+
+class _CopyWithImpl$Fragment$EpisodeContext$$Season$show$seasons<TRes>
+    implements CopyWith$Fragment$EpisodeContext$$Season$show$seasons<TRes> {
+  _CopyWithImpl$Fragment$EpisodeContext$$Season$show$seasons(
+    this._instance,
+    this._then,
+  );
+
+  final Fragment$EpisodeContext$$Season$show$seasons _instance;
+
+  final TRes Function(Fragment$EpisodeContext$$Season$show$seasons) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? items = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(Fragment$EpisodeContext$$Season$show$seasons(
+        items: items == _undefined || items == null
+            ? _instance.items
+            : (items
+                as List<Fragment$EpisodeContext$$Season$show$seasons$items>),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+  TRes items(
+          Iterable<Fragment$EpisodeContext$$Season$show$seasons$items> Function(
+                  Iterable<
+                      CopyWith$Fragment$EpisodeContext$$Season$show$seasons$items<
+                          Fragment$EpisodeContext$$Season$show$seasons$items>>)
+              _fn) =>
+      call(
+          items: _fn(_instance.items.map((e) =>
+              CopyWith$Fragment$EpisodeContext$$Season$show$seasons$items(
+                e,
+                (i) => i,
+              ))).toList());
+}
+
+class _CopyWithStubImpl$Fragment$EpisodeContext$$Season$show$seasons<TRes>
+    implements CopyWith$Fragment$EpisodeContext$$Season$show$seasons<TRes> {
+  _CopyWithStubImpl$Fragment$EpisodeContext$$Season$show$seasons(this._res);
+
+  TRes _res;
+
+  call({
+    List<Fragment$EpisodeContext$$Season$show$seasons$items>? items,
+    String? $__typename,
+  }) =>
+      _res;
+  items(_fn) => _res;
+}
+
+class Fragment$EpisodeContext$$Season$show$seasons$items {
+  Fragment$EpisodeContext$$Season$show$seasons$items({
+    required this.id,
+    required this.title,
+    this.$__typename = 'Season',
+  });
+
+  factory Fragment$EpisodeContext$$Season$show$seasons$items.fromJson(
+      Map<String, dynamic> json) {
+    final l$id = json['id'];
+    final l$title = json['title'];
+    final l$$__typename = json['__typename'];
+    return Fragment$EpisodeContext$$Season$show$seasons$items(
+      id: (l$id as String),
+      title: (l$title as String),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final String id;
+
+  final String title;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$id = id;
+    _resultData['id'] = l$id;
+    final l$title = title;
+    _resultData['title'] = l$title;
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$id = id;
+    final l$title = title;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$id,
+      l$title,
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (!(other is Fragment$EpisodeContext$$Season$show$seasons$items) ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$id = id;
+    final lOther$id = other.id;
+    if (l$id != lOther$id) {
+      return false;
+    }
+    final l$title = title;
+    final lOther$title = other.title;
+    if (l$title != lOther$title) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Fragment$EpisodeContext$$Season$show$seasons$items
+    on Fragment$EpisodeContext$$Season$show$seasons$items {
+  CopyWith$Fragment$EpisodeContext$$Season$show$seasons$items<
+          Fragment$EpisodeContext$$Season$show$seasons$items>
+      get copyWith =>
+          CopyWith$Fragment$EpisodeContext$$Season$show$seasons$items(
+            this,
+            (i) => i,
+          );
+}
+
+abstract class CopyWith$Fragment$EpisodeContext$$Season$show$seasons$items<
+    TRes> {
+  factory CopyWith$Fragment$EpisodeContext$$Season$show$seasons$items(
+    Fragment$EpisodeContext$$Season$show$seasons$items instance,
+    TRes Function(Fragment$EpisodeContext$$Season$show$seasons$items) then,
+  ) = _CopyWithImpl$Fragment$EpisodeContext$$Season$show$seasons$items;
+
+  factory CopyWith$Fragment$EpisodeContext$$Season$show$seasons$items.stub(
+          TRes res) =
+      _CopyWithStubImpl$Fragment$EpisodeContext$$Season$show$seasons$items;
+
+  TRes call({
+    String? id,
+    String? title,
+    String? $__typename,
+  });
+}
+
+class _CopyWithImpl$Fragment$EpisodeContext$$Season$show$seasons$items<TRes>
+    implements
+        CopyWith$Fragment$EpisodeContext$$Season$show$seasons$items<TRes> {
+  _CopyWithImpl$Fragment$EpisodeContext$$Season$show$seasons$items(
+    this._instance,
+    this._then,
+  );
+
+  final Fragment$EpisodeContext$$Season$show$seasons$items _instance;
+
+  final TRes Function(Fragment$EpisodeContext$$Season$show$seasons$items) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? id = _undefined,
+    Object? title = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(Fragment$EpisodeContext$$Season$show$seasons$items(
+        id: id == _undefined || id == null ? _instance.id : (id as String),
+        title: title == _undefined || title == null
+            ? _instance.title
+            : (title as String),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+}
+
+class _CopyWithStubImpl$Fragment$EpisodeContext$$Season$show$seasons$items<TRes>
+    implements
+        CopyWith$Fragment$EpisodeContext$$Season$show$seasons$items<TRes> {
+  _CopyWithStubImpl$Fragment$EpisodeContext$$Season$show$seasons$items(
+      this._res);
+
+  TRes _res;
+
+  call({
+    String? id,
+    String? title,
+    String? $__typename,
+  }) =>
+      _res;
+}
+
 class Fragment$BasicStream {
   Fragment$BasicStream({
     required this.id,
@@ -1932,228 +4674,9 @@ const documentNodeQueryFetchEpisode = DocumentNode(definitions: [
             arguments: [],
             directives: [],
             selectionSet: SelectionSetNode(selections: [
-              InlineFragmentNode(
-                typeCondition: TypeConditionNode(
-                    on: NamedTypeNode(
-                  name: NameNode(value: 'ContextCollection'),
-                  isNonNull: false,
-                )),
+              FragmentSpreadNode(
+                name: NameNode(value: 'EpisodeContext'),
                 directives: [],
-                selectionSet: SelectionSetNode(selections: [
-                  FieldNode(
-                    name: NameNode(value: 'items'),
-                    alias: null,
-                    arguments: [],
-                    directives: [],
-                    selectionSet: SelectionSetNode(selections: [
-                      FieldNode(
-                        name: NameNode(value: 'items'),
-                        alias: null,
-                        arguments: [],
-                        directives: [],
-                        selectionSet: SelectionSetNode(selections: [
-                          FieldNode(
-                            name: NameNode(value: 'item'),
-                            alias: null,
-                            arguments: [],
-                            directives: [],
-                            selectionSet: SelectionSetNode(selections: [
-                              FragmentSpreadNode(
-                                name: NameNode(value: 'SeasonListEpisode'),
-                                directives: [],
-                              ),
-                              FieldNode(
-                                name: NameNode(value: '__typename'),
-                                alias: null,
-                                arguments: [],
-                                directives: [],
-                                selectionSet: null,
-                              ),
-                            ]),
-                          ),
-                          FieldNode(
-                            name: NameNode(value: '__typename'),
-                            alias: null,
-                            arguments: [],
-                            directives: [],
-                            selectionSet: null,
-                          ),
-                        ]),
-                      ),
-                      FieldNode(
-                        name: NameNode(value: '__typename'),
-                        alias: null,
-                        arguments: [],
-                        directives: [],
-                        selectionSet: null,
-                      ),
-                    ]),
-                  ),
-                  FieldNode(
-                    name: NameNode(value: '__typename'),
-                    alias: null,
-                    arguments: [],
-                    directives: [],
-                    selectionSet: null,
-                  ),
-                ]),
-              ),
-              InlineFragmentNode(
-                typeCondition: TypeConditionNode(
-                    on: NamedTypeNode(
-                  name: NameNode(value: 'Season'),
-                  isNonNull: false,
-                )),
-                directives: [],
-                selectionSet: SelectionSetNode(selections: [
-                  FieldNode(
-                    name: NameNode(value: 'id'),
-                    alias: null,
-                    arguments: [],
-                    directives: [],
-                    selectionSet: null,
-                  ),
-                  FieldNode(
-                    name: NameNode(value: 'title'),
-                    alias: null,
-                    arguments: [],
-                    directives: [],
-                    selectionSet: null,
-                  ),
-                  FieldNode(
-                    name: NameNode(value: 'number'),
-                    alias: null,
-                    arguments: [],
-                    directives: [],
-                    selectionSet: null,
-                  ),
-                  FieldNode(
-                    name: NameNode(value: 'episodes'),
-                    alias: null,
-                    arguments: [
-                      ArgumentNode(
-                        name: NameNode(value: 'first'),
-                        value: IntValueNode(value: '70'),
-                      )
-                    ],
-                    directives: [],
-                    selectionSet: SelectionSetNode(selections: [
-                      FieldNode(
-                        name: NameNode(value: 'items'),
-                        alias: null,
-                        arguments: [],
-                        directives: [],
-                        selectionSet: SelectionSetNode(selections: [
-                          FragmentSpreadNode(
-                            name: NameNode(value: 'SeasonListEpisode'),
-                            directives: [],
-                          ),
-                          FieldNode(
-                            name: NameNode(value: '__typename'),
-                            alias: null,
-                            arguments: [],
-                            directives: [],
-                            selectionSet: null,
-                          ),
-                        ]),
-                      ),
-                      FieldNode(
-                        name: NameNode(value: '__typename'),
-                        alias: null,
-                        arguments: [],
-                        directives: [],
-                        selectionSet: null,
-                      ),
-                    ]),
-                  ),
-                  FieldNode(
-                    name: NameNode(value: 'show'),
-                    alias: null,
-                    arguments: [],
-                    directives: [],
-                    selectionSet: SelectionSetNode(selections: [
-                      FieldNode(
-                        name: NameNode(value: 'id'),
-                        alias: null,
-                        arguments: [],
-                        directives: [],
-                        selectionSet: null,
-                      ),
-                      FieldNode(
-                        name: NameNode(value: 'title'),
-                        alias: null,
-                        arguments: [],
-                        directives: [],
-                        selectionSet: null,
-                      ),
-                      FieldNode(
-                        name: NameNode(value: 'type'),
-                        alias: null,
-                        arguments: [],
-                        directives: [],
-                        selectionSet: null,
-                      ),
-                      FieldNode(
-                        name: NameNode(value: 'seasons'),
-                        alias: null,
-                        arguments: [],
-                        directives: [],
-                        selectionSet: SelectionSetNode(selections: [
-                          FieldNode(
-                            name: NameNode(value: 'items'),
-                            alias: null,
-                            arguments: [],
-                            directives: [],
-                            selectionSet: SelectionSetNode(selections: [
-                              FieldNode(
-                                name: NameNode(value: 'id'),
-                                alias: null,
-                                arguments: [],
-                                directives: [],
-                                selectionSet: null,
-                              ),
-                              FieldNode(
-                                name: NameNode(value: 'title'),
-                                alias: null,
-                                arguments: [],
-                                directives: [],
-                                selectionSet: null,
-                              ),
-                              FieldNode(
-                                name: NameNode(value: '__typename'),
-                                alias: null,
-                                arguments: [],
-                                directives: [],
-                                selectionSet: null,
-                              ),
-                            ]),
-                          ),
-                          FieldNode(
-                            name: NameNode(value: '__typename'),
-                            alias: null,
-                            arguments: [],
-                            directives: [],
-                            selectionSet: null,
-                          ),
-                        ]),
-                      ),
-                      FieldNode(
-                        name: NameNode(value: '__typename'),
-                        alias: null,
-                        arguments: [],
-                        directives: [],
-                        selectionSet: null,
-                      ),
-                    ]),
-                  ),
-                  FieldNode(
-                    name: NameNode(value: '__typename'),
-                    alias: null,
-                    arguments: [],
-                    directives: [],
-                    selectionSet: null,
-                  ),
-                ]),
               ),
               FieldNode(
                 name: NameNode(value: '__typename'),
@@ -2293,6 +4816,7 @@ const documentNodeQueryFetchEpisode = DocumentNode(definitions: [
       ),
     ]),
   ),
+  fragmentDefinitionEpisodeContext,
   fragmentDefinitionSeasonListEpisode,
   fragmentDefinitionGridSectionItem,
   fragmentDefinitionItemSectionItem,
@@ -2489,7 +5013,7 @@ class Query$FetchEpisode$episode {
               (l$season as Map<String, dynamic>)),
       context: l$context == null
           ? null
-          : Query$FetchEpisode$episode$context.fromJson(
+          : Fragment$EpisodeContext.fromJson(
               (l$context as Map<String, dynamic>)),
       relatedItems: l$relatedItems == null
           ? null
@@ -2534,7 +5058,7 @@ class Query$FetchEpisode$episode {
 
   final Query$FetchEpisode$episode$season? season;
 
-  final Query$FetchEpisode$episode$context? context;
+  final Fragment$EpisodeContext? context;
 
   final Query$FetchEpisode$episode$relatedItems? relatedItems;
 
@@ -2791,7 +5315,7 @@ abstract class CopyWith$Query$FetchEpisode$episode<TRes> {
     Enum$ShareRestriction? shareRestriction,
     String? ageRating,
     Query$FetchEpisode$episode$season? season,
-    Query$FetchEpisode$episode$context? context,
+    Fragment$EpisodeContext? context,
     Query$FetchEpisode$episode$relatedItems? relatedItems,
     List<Query$FetchEpisode$episode$streams>? streams,
     Query$FetchEpisode$episode$lessons? lessons,
@@ -2799,7 +5323,7 @@ abstract class CopyWith$Query$FetchEpisode$episode<TRes> {
     String? $__typename,
   });
   CopyWith$Query$FetchEpisode$episode$season<TRes> get season;
-  CopyWith$Query$FetchEpisode$episode$context<TRes> get context;
+  CopyWith$Fragment$EpisodeContext<TRes> get context;
   CopyWith$Query$FetchEpisode$episode$relatedItems<TRes> get relatedItems;
   TRes streams(
       Iterable<Query$FetchEpisode$episode$streams> Function(
@@ -2885,7 +5409,7 @@ class _CopyWithImpl$Query$FetchEpisode$episode<TRes>
             : (season as Query$FetchEpisode$episode$season?),
         context: context == _undefined
             ? _instance.context
-            : (context as Query$FetchEpisode$episode$context?),
+            : (context as Fragment$EpisodeContext?),
         relatedItems: relatedItems == _undefined
             ? _instance.relatedItems
             : (relatedItems as Query$FetchEpisode$episode$relatedItems?),
@@ -2910,11 +5434,11 @@ class _CopyWithImpl$Query$FetchEpisode$episode<TRes>
             local$season, (e) => call(season: e));
   }
 
-  CopyWith$Query$FetchEpisode$episode$context<TRes> get context {
+  CopyWith$Fragment$EpisodeContext<TRes> get context {
     final local$context = _instance.context;
     return local$context == null
-        ? CopyWith$Query$FetchEpisode$episode$context.stub(_then(_instance))
-        : CopyWith$Query$FetchEpisode$episode$context(
+        ? CopyWith$Fragment$EpisodeContext.stub(_then(_instance))
+        : CopyWith$Fragment$EpisodeContext(
             local$context, (e) => call(context: e));
   }
 
@@ -2967,7 +5491,7 @@ class _CopyWithStubImpl$Query$FetchEpisode$episode<TRes>
     Enum$ShareRestriction? shareRestriction,
     String? ageRating,
     Query$FetchEpisode$episode$season? season,
-    Query$FetchEpisode$episode$context? context,
+    Fragment$EpisodeContext? context,
     Query$FetchEpisode$episode$relatedItems? relatedItems,
     List<Query$FetchEpisode$episode$streams>? streams,
     Query$FetchEpisode$episode$lessons? lessons,
@@ -2977,8 +5501,8 @@ class _CopyWithStubImpl$Query$FetchEpisode$episode<TRes>
       _res;
   CopyWith$Query$FetchEpisode$episode$season<TRes> get season =>
       CopyWith$Query$FetchEpisode$episode$season.stub(_res);
-  CopyWith$Query$FetchEpisode$episode$context<TRes> get context =>
-      CopyWith$Query$FetchEpisode$episode$context.stub(_res);
+  CopyWith$Fragment$EpisodeContext<TRes> get context =>
+      CopyWith$Fragment$EpisodeContext.stub(_res);
   CopyWith$Query$FetchEpisode$episode$relatedItems<TRes> get relatedItems =>
       CopyWith$Query$FetchEpisode$episode$relatedItems.stub(_res);
   streams(_fn) => _res;
@@ -3313,2539 +5837,6 @@ class _CopyWithImpl$Query$FetchEpisode$episode$season$show<TRes>
 class _CopyWithStubImpl$Query$FetchEpisode$episode$season$show<TRes>
     implements CopyWith$Query$FetchEpisode$episode$season$show<TRes> {
   _CopyWithStubImpl$Query$FetchEpisode$episode$season$show(this._res);
-
-  TRes _res;
-
-  call({
-    String? id,
-    String? title,
-    String? $__typename,
-  }) =>
-      _res;
-}
-
-class Query$FetchEpisode$episode$context {
-  Query$FetchEpisode$episode$context({required this.$__typename});
-
-  factory Query$FetchEpisode$episode$context.fromJson(
-      Map<String, dynamic> json) {
-    switch (json["__typename"] as String) {
-      case "ContextCollection":
-        return Query$FetchEpisode$episode$context$$ContextCollection.fromJson(
-            json);
-
-      case "Season":
-        return Query$FetchEpisode$episode$context$$Season.fromJson(json);
-
-      default:
-        final l$$__typename = json['__typename'];
-        return Query$FetchEpisode$episode$context(
-            $__typename: (l$$__typename as String));
-    }
-  }
-
-  final String $__typename;
-
-  Map<String, dynamic> toJson() {
-    final _resultData = <String, dynamic>{};
-    final l$$__typename = $__typename;
-    _resultData['__typename'] = l$$__typename;
-    return _resultData;
-  }
-
-  @override
-  int get hashCode {
-    final l$$__typename = $__typename;
-    return Object.hashAll([l$$__typename]);
-  }
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) {
-      return true;
-    }
-    if (!(other is Query$FetchEpisode$episode$context) ||
-        runtimeType != other.runtimeType) {
-      return false;
-    }
-    final l$$__typename = $__typename;
-    final lOther$$__typename = other.$__typename;
-    if (l$$__typename != lOther$$__typename) {
-      return false;
-    }
-    return true;
-  }
-}
-
-extension UtilityExtension$Query$FetchEpisode$episode$context
-    on Query$FetchEpisode$episode$context {
-  CopyWith$Query$FetchEpisode$episode$context<
-          Query$FetchEpisode$episode$context>
-      get copyWith => CopyWith$Query$FetchEpisode$episode$context(
-            this,
-            (i) => i,
-          );
-}
-
-abstract class CopyWith$Query$FetchEpisode$episode$context<TRes> {
-  factory CopyWith$Query$FetchEpisode$episode$context(
-    Query$FetchEpisode$episode$context instance,
-    TRes Function(Query$FetchEpisode$episode$context) then,
-  ) = _CopyWithImpl$Query$FetchEpisode$episode$context;
-
-  factory CopyWith$Query$FetchEpisode$episode$context.stub(TRes res) =
-      _CopyWithStubImpl$Query$FetchEpisode$episode$context;
-
-  TRes call({String? $__typename});
-}
-
-class _CopyWithImpl$Query$FetchEpisode$episode$context<TRes>
-    implements CopyWith$Query$FetchEpisode$episode$context<TRes> {
-  _CopyWithImpl$Query$FetchEpisode$episode$context(
-    this._instance,
-    this._then,
-  );
-
-  final Query$FetchEpisode$episode$context _instance;
-
-  final TRes Function(Query$FetchEpisode$episode$context) _then;
-
-  static const _undefined = <dynamic, dynamic>{};
-
-  TRes call({Object? $__typename = _undefined}) =>
-      _then(Query$FetchEpisode$episode$context(
-          $__typename: $__typename == _undefined || $__typename == null
-              ? _instance.$__typename
-              : ($__typename as String)));
-}
-
-class _CopyWithStubImpl$Query$FetchEpisode$episode$context<TRes>
-    implements CopyWith$Query$FetchEpisode$episode$context<TRes> {
-  _CopyWithStubImpl$Query$FetchEpisode$episode$context(this._res);
-
-  TRes _res;
-
-  call({String? $__typename}) => _res;
-}
-
-class Query$FetchEpisode$episode$context$$ContextCollection
-    implements Query$FetchEpisode$episode$context {
-  Query$FetchEpisode$episode$context$$ContextCollection({
-    this.items,
-    this.$__typename = 'ContextCollection',
-  });
-
-  factory Query$FetchEpisode$episode$context$$ContextCollection.fromJson(
-      Map<String, dynamic> json) {
-    final l$items = json['items'];
-    final l$$__typename = json['__typename'];
-    return Query$FetchEpisode$episode$context$$ContextCollection(
-      items: l$items == null
-          ? null
-          : Query$FetchEpisode$episode$context$$ContextCollection$items
-              .fromJson((l$items as Map<String, dynamic>)),
-      $__typename: (l$$__typename as String),
-    );
-  }
-
-  final Query$FetchEpisode$episode$context$$ContextCollection$items? items;
-
-  final String $__typename;
-
-  Map<String, dynamic> toJson() {
-    final _resultData = <String, dynamic>{};
-    final l$items = items;
-    _resultData['items'] = l$items?.toJson();
-    final l$$__typename = $__typename;
-    _resultData['__typename'] = l$$__typename;
-    return _resultData;
-  }
-
-  @override
-  int get hashCode {
-    final l$items = items;
-    final l$$__typename = $__typename;
-    return Object.hashAll([
-      l$items,
-      l$$__typename,
-    ]);
-  }
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) {
-      return true;
-    }
-    if (!(other is Query$FetchEpisode$episode$context$$ContextCollection) ||
-        runtimeType != other.runtimeType) {
-      return false;
-    }
-    final l$items = items;
-    final lOther$items = other.items;
-    if (l$items != lOther$items) {
-      return false;
-    }
-    final l$$__typename = $__typename;
-    final lOther$$__typename = other.$__typename;
-    if (l$$__typename != lOther$$__typename) {
-      return false;
-    }
-    return true;
-  }
-}
-
-extension UtilityExtension$Query$FetchEpisode$episode$context$$ContextCollection
-    on Query$FetchEpisode$episode$context$$ContextCollection {
-  CopyWith$Query$FetchEpisode$episode$context$$ContextCollection<
-          Query$FetchEpisode$episode$context$$ContextCollection>
-      get copyWith =>
-          CopyWith$Query$FetchEpisode$episode$context$$ContextCollection(
-            this,
-            (i) => i,
-          );
-}
-
-abstract class CopyWith$Query$FetchEpisode$episode$context$$ContextCollection<
-    TRes> {
-  factory CopyWith$Query$FetchEpisode$episode$context$$ContextCollection(
-    Query$FetchEpisode$episode$context$$ContextCollection instance,
-    TRes Function(Query$FetchEpisode$episode$context$$ContextCollection) then,
-  ) = _CopyWithImpl$Query$FetchEpisode$episode$context$$ContextCollection;
-
-  factory CopyWith$Query$FetchEpisode$episode$context$$ContextCollection.stub(
-          TRes res) =
-      _CopyWithStubImpl$Query$FetchEpisode$episode$context$$ContextCollection;
-
-  TRes call({
-    Query$FetchEpisode$episode$context$$ContextCollection$items? items,
-    String? $__typename,
-  });
-  CopyWith$Query$FetchEpisode$episode$context$$ContextCollection$items<TRes>
-      get items;
-}
-
-class _CopyWithImpl$Query$FetchEpisode$episode$context$$ContextCollection<TRes>
-    implements
-        CopyWith$Query$FetchEpisode$episode$context$$ContextCollection<TRes> {
-  _CopyWithImpl$Query$FetchEpisode$episode$context$$ContextCollection(
-    this._instance,
-    this._then,
-  );
-
-  final Query$FetchEpisode$episode$context$$ContextCollection _instance;
-
-  final TRes Function(Query$FetchEpisode$episode$context$$ContextCollection)
-      _then;
-
-  static const _undefined = <dynamic, dynamic>{};
-
-  TRes call({
-    Object? items = _undefined,
-    Object? $__typename = _undefined,
-  }) =>
-      _then(Query$FetchEpisode$episode$context$$ContextCollection(
-        items: items == _undefined
-            ? _instance.items
-            : (items
-                as Query$FetchEpisode$episode$context$$ContextCollection$items?),
-        $__typename: $__typename == _undefined || $__typename == null
-            ? _instance.$__typename
-            : ($__typename as String),
-      ));
-  CopyWith$Query$FetchEpisode$episode$context$$ContextCollection$items<TRes>
-      get items {
-    final local$items = _instance.items;
-    return local$items == null
-        ? CopyWith$Query$FetchEpisode$episode$context$$ContextCollection$items
-            .stub(_then(_instance))
-        : CopyWith$Query$FetchEpisode$episode$context$$ContextCollection$items(
-            local$items, (e) => call(items: e));
-  }
-}
-
-class _CopyWithStubImpl$Query$FetchEpisode$episode$context$$ContextCollection<
-        TRes>
-    implements
-        CopyWith$Query$FetchEpisode$episode$context$$ContextCollection<TRes> {
-  _CopyWithStubImpl$Query$FetchEpisode$episode$context$$ContextCollection(
-      this._res);
-
-  TRes _res;
-
-  call({
-    Query$FetchEpisode$episode$context$$ContextCollection$items? items,
-    String? $__typename,
-  }) =>
-      _res;
-  CopyWith$Query$FetchEpisode$episode$context$$ContextCollection$items<TRes>
-      get items =>
-          CopyWith$Query$FetchEpisode$episode$context$$ContextCollection$items
-              .stub(_res);
-}
-
-class Query$FetchEpisode$episode$context$$ContextCollection$items {
-  Query$FetchEpisode$episode$context$$ContextCollection$items({
-    required this.items,
-    this.$__typename = 'SectionItemPagination',
-  });
-
-  factory Query$FetchEpisode$episode$context$$ContextCollection$items.fromJson(
-      Map<String, dynamic> json) {
-    final l$items = json['items'];
-    final l$$__typename = json['__typename'];
-    return Query$FetchEpisode$episode$context$$ContextCollection$items(
-      items: (l$items as List<dynamic>)
-          .map((e) =>
-              Query$FetchEpisode$episode$context$$ContextCollection$items$items
-                  .fromJson((e as Map<String, dynamic>)))
-          .toList(),
-      $__typename: (l$$__typename as String),
-    );
-  }
-
-  final List<Query$FetchEpisode$episode$context$$ContextCollection$items$items>
-      items;
-
-  final String $__typename;
-
-  Map<String, dynamic> toJson() {
-    final _resultData = <String, dynamic>{};
-    final l$items = items;
-    _resultData['items'] = l$items.map((e) => e.toJson()).toList();
-    final l$$__typename = $__typename;
-    _resultData['__typename'] = l$$__typename;
-    return _resultData;
-  }
-
-  @override
-  int get hashCode {
-    final l$items = items;
-    final l$$__typename = $__typename;
-    return Object.hashAll([
-      Object.hashAll(l$items.map((v) => v)),
-      l$$__typename,
-    ]);
-  }
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) {
-      return true;
-    }
-    if (!(other
-            is Query$FetchEpisode$episode$context$$ContextCollection$items) ||
-        runtimeType != other.runtimeType) {
-      return false;
-    }
-    final l$items = items;
-    final lOther$items = other.items;
-    if (l$items.length != lOther$items.length) {
-      return false;
-    }
-    for (int i = 0; i < l$items.length; i++) {
-      final l$items$entry = l$items[i];
-      final lOther$items$entry = lOther$items[i];
-      if (l$items$entry != lOther$items$entry) {
-        return false;
-      }
-    }
-    final l$$__typename = $__typename;
-    final lOther$$__typename = other.$__typename;
-    if (l$$__typename != lOther$$__typename) {
-      return false;
-    }
-    return true;
-  }
-}
-
-extension UtilityExtension$Query$FetchEpisode$episode$context$$ContextCollection$items
-    on Query$FetchEpisode$episode$context$$ContextCollection$items {
-  CopyWith$Query$FetchEpisode$episode$context$$ContextCollection$items<
-          Query$FetchEpisode$episode$context$$ContextCollection$items>
-      get copyWith =>
-          CopyWith$Query$FetchEpisode$episode$context$$ContextCollection$items(
-            this,
-            (i) => i,
-          );
-}
-
-abstract class CopyWith$Query$FetchEpisode$episode$context$$ContextCollection$items<
-    TRes> {
-  factory CopyWith$Query$FetchEpisode$episode$context$$ContextCollection$items(
-    Query$FetchEpisode$episode$context$$ContextCollection$items instance,
-    TRes Function(Query$FetchEpisode$episode$context$$ContextCollection$items)
-        then,
-  ) = _CopyWithImpl$Query$FetchEpisode$episode$context$$ContextCollection$items;
-
-  factory CopyWith$Query$FetchEpisode$episode$context$$ContextCollection$items.stub(
-          TRes res) =
-      _CopyWithStubImpl$Query$FetchEpisode$episode$context$$ContextCollection$items;
-
-  TRes call({
-    List<Query$FetchEpisode$episode$context$$ContextCollection$items$items>?
-        items,
-    String? $__typename,
-  });
-  TRes items(
-      Iterable<Query$FetchEpisode$episode$context$$ContextCollection$items$items> Function(
-              Iterable<
-                  CopyWith$Query$FetchEpisode$episode$context$$ContextCollection$items$items<
-                      Query$FetchEpisode$episode$context$$ContextCollection$items$items>>)
-          _fn);
-}
-
-class _CopyWithImpl$Query$FetchEpisode$episode$context$$ContextCollection$items<
-        TRes>
-    implements
-        CopyWith$Query$FetchEpisode$episode$context$$ContextCollection$items<
-            TRes> {
-  _CopyWithImpl$Query$FetchEpisode$episode$context$$ContextCollection$items(
-    this._instance,
-    this._then,
-  );
-
-  final Query$FetchEpisode$episode$context$$ContextCollection$items _instance;
-
-  final TRes Function(
-      Query$FetchEpisode$episode$context$$ContextCollection$items) _then;
-
-  static const _undefined = <dynamic, dynamic>{};
-
-  TRes call({
-    Object? items = _undefined,
-    Object? $__typename = _undefined,
-  }) =>
-      _then(Query$FetchEpisode$episode$context$$ContextCollection$items(
-        items: items == _undefined || items == null
-            ? _instance.items
-            : (items as List<
-                Query$FetchEpisode$episode$context$$ContextCollection$items$items>),
-        $__typename: $__typename == _undefined || $__typename == null
-            ? _instance.$__typename
-            : ($__typename as String),
-      ));
-  TRes items(
-          Iterable<Query$FetchEpisode$episode$context$$ContextCollection$items$items> Function(
-                  Iterable<
-                      CopyWith$Query$FetchEpisode$episode$context$$ContextCollection$items$items<
-                          Query$FetchEpisode$episode$context$$ContextCollection$items$items>>)
-              _fn) =>
-      call(
-          items: _fn(_instance.items.map((e) =>
-              CopyWith$Query$FetchEpisode$episode$context$$ContextCollection$items$items(
-                e,
-                (i) => i,
-              ))).toList());
-}
-
-class _CopyWithStubImpl$Query$FetchEpisode$episode$context$$ContextCollection$items<
-        TRes>
-    implements
-        CopyWith$Query$FetchEpisode$episode$context$$ContextCollection$items<
-            TRes> {
-  _CopyWithStubImpl$Query$FetchEpisode$episode$context$$ContextCollection$items(
-      this._res);
-
-  TRes _res;
-
-  call({
-    List<Query$FetchEpisode$episode$context$$ContextCollection$items$items>?
-        items,
-    String? $__typename,
-  }) =>
-      _res;
-  items(_fn) => _res;
-}
-
-class Query$FetchEpisode$episode$context$$ContextCollection$items$items {
-  Query$FetchEpisode$episode$context$$ContextCollection$items$items({
-    required this.item,
-    this.$__typename = 'SectionItem',
-  });
-
-  factory Query$FetchEpisode$episode$context$$ContextCollection$items$items.fromJson(
-      Map<String, dynamic> json) {
-    final l$item = json['item'];
-    final l$$__typename = json['__typename'];
-    return Query$FetchEpisode$episode$context$$ContextCollection$items$items(
-      item:
-          Query$FetchEpisode$episode$context$$ContextCollection$items$items$item
-              .fromJson((l$item as Map<String, dynamic>)),
-      $__typename: (l$$__typename as String),
-    );
-  }
-
-  final Query$FetchEpisode$episode$context$$ContextCollection$items$items$item
-      item;
-
-  final String $__typename;
-
-  Map<String, dynamic> toJson() {
-    final _resultData = <String, dynamic>{};
-    final l$item = item;
-    _resultData['item'] = l$item.toJson();
-    final l$$__typename = $__typename;
-    _resultData['__typename'] = l$$__typename;
-    return _resultData;
-  }
-
-  @override
-  int get hashCode {
-    final l$item = item;
-    final l$$__typename = $__typename;
-    return Object.hashAll([
-      l$item,
-      l$$__typename,
-    ]);
-  }
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) {
-      return true;
-    }
-    if (!(other
-            is Query$FetchEpisode$episode$context$$ContextCollection$items$items) ||
-        runtimeType != other.runtimeType) {
-      return false;
-    }
-    final l$item = item;
-    final lOther$item = other.item;
-    if (l$item != lOther$item) {
-      return false;
-    }
-    final l$$__typename = $__typename;
-    final lOther$$__typename = other.$__typename;
-    if (l$$__typename != lOther$$__typename) {
-      return false;
-    }
-    return true;
-  }
-}
-
-extension UtilityExtension$Query$FetchEpisode$episode$context$$ContextCollection$items$items
-    on Query$FetchEpisode$episode$context$$ContextCollection$items$items {
-  CopyWith$Query$FetchEpisode$episode$context$$ContextCollection$items$items<
-          Query$FetchEpisode$episode$context$$ContextCollection$items$items>
-      get copyWith =>
-          CopyWith$Query$FetchEpisode$episode$context$$ContextCollection$items$items(
-            this,
-            (i) => i,
-          );
-}
-
-abstract class CopyWith$Query$FetchEpisode$episode$context$$ContextCollection$items$items<
-    TRes> {
-  factory CopyWith$Query$FetchEpisode$episode$context$$ContextCollection$items$items(
-    Query$FetchEpisode$episode$context$$ContextCollection$items$items instance,
-    TRes Function(
-            Query$FetchEpisode$episode$context$$ContextCollection$items$items)
-        then,
-  ) = _CopyWithImpl$Query$FetchEpisode$episode$context$$ContextCollection$items$items;
-
-  factory CopyWith$Query$FetchEpisode$episode$context$$ContextCollection$items$items.stub(
-          TRes res) =
-      _CopyWithStubImpl$Query$FetchEpisode$episode$context$$ContextCollection$items$items;
-
-  TRes call({
-    Query$FetchEpisode$episode$context$$ContextCollection$items$items$item?
-        item,
-    String? $__typename,
-  });
-  CopyWith$Query$FetchEpisode$episode$context$$ContextCollection$items$items$item<
-      TRes> get item;
-}
-
-class _CopyWithImpl$Query$FetchEpisode$episode$context$$ContextCollection$items$items<
-        TRes>
-    implements
-        CopyWith$Query$FetchEpisode$episode$context$$ContextCollection$items$items<
-            TRes> {
-  _CopyWithImpl$Query$FetchEpisode$episode$context$$ContextCollection$items$items(
-    this._instance,
-    this._then,
-  );
-
-  final Query$FetchEpisode$episode$context$$ContextCollection$items$items
-      _instance;
-
-  final TRes Function(
-      Query$FetchEpisode$episode$context$$ContextCollection$items$items) _then;
-
-  static const _undefined = <dynamic, dynamic>{};
-
-  TRes call({
-    Object? item = _undefined,
-    Object? $__typename = _undefined,
-  }) =>
-      _then(Query$FetchEpisode$episode$context$$ContextCollection$items$items(
-        item: item == _undefined || item == null
-            ? _instance.item
-            : (item
-                as Query$FetchEpisode$episode$context$$ContextCollection$items$items$item),
-        $__typename: $__typename == _undefined || $__typename == null
-            ? _instance.$__typename
-            : ($__typename as String),
-      ));
-  CopyWith$Query$FetchEpisode$episode$context$$ContextCollection$items$items$item<
-      TRes> get item {
-    final local$item = _instance.item;
-    return CopyWith$Query$FetchEpisode$episode$context$$ContextCollection$items$items$item(
-        local$item, (e) => call(item: e));
-  }
-}
-
-class _CopyWithStubImpl$Query$FetchEpisode$episode$context$$ContextCollection$items$items<
-        TRes>
-    implements
-        CopyWith$Query$FetchEpisode$episode$context$$ContextCollection$items$items<
-            TRes> {
-  _CopyWithStubImpl$Query$FetchEpisode$episode$context$$ContextCollection$items$items(
-      this._res);
-
-  TRes _res;
-
-  call({
-    Query$FetchEpisode$episode$context$$ContextCollection$items$items$item?
-        item,
-    String? $__typename,
-  }) =>
-      _res;
-  CopyWith$Query$FetchEpisode$episode$context$$ContextCollection$items$items$item<
-          TRes>
-      get item =>
-          CopyWith$Query$FetchEpisode$episode$context$$ContextCollection$items$items$item
-              .stub(_res);
-}
-
-class Query$FetchEpisode$episode$context$$ContextCollection$items$items$item {
-  Query$FetchEpisode$episode$context$$ContextCollection$items$items$item(
-      {required this.$__typename});
-
-  factory Query$FetchEpisode$episode$context$$ContextCollection$items$items$item.fromJson(
-      Map<String, dynamic> json) {
-    switch (json["__typename"] as String) {
-      case "Show":
-        return Query$FetchEpisode$episode$context$$ContextCollection$items$items$item$$Show
-            .fromJson(json);
-
-      case "Season":
-        return Query$FetchEpisode$episode$context$$ContextCollection$items$items$item$$Season
-            .fromJson(json);
-
-      case "Episode":
-        return Query$FetchEpisode$episode$context$$ContextCollection$items$items$item$$Episode
-            .fromJson(json);
-
-      case "Page":
-        return Query$FetchEpisode$episode$context$$ContextCollection$items$items$item$$Page
-            .fromJson(json);
-
-      case "Link":
-        return Query$FetchEpisode$episode$context$$ContextCollection$items$items$item$$Link
-            .fromJson(json);
-
-      case "StudyTopic":
-        return Query$FetchEpisode$episode$context$$ContextCollection$items$items$item$$StudyTopic
-            .fromJson(json);
-
-      default:
-        final l$$__typename = json['__typename'];
-        return Query$FetchEpisode$episode$context$$ContextCollection$items$items$item(
-            $__typename: (l$$__typename as String));
-    }
-  }
-
-  final String $__typename;
-
-  Map<String, dynamic> toJson() {
-    final _resultData = <String, dynamic>{};
-    final l$$__typename = $__typename;
-    _resultData['__typename'] = l$$__typename;
-    return _resultData;
-  }
-
-  @override
-  int get hashCode {
-    final l$$__typename = $__typename;
-    return Object.hashAll([l$$__typename]);
-  }
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) {
-      return true;
-    }
-    if (!(other
-            is Query$FetchEpisode$episode$context$$ContextCollection$items$items$item) ||
-        runtimeType != other.runtimeType) {
-      return false;
-    }
-    final l$$__typename = $__typename;
-    final lOther$$__typename = other.$__typename;
-    if (l$$__typename != lOther$$__typename) {
-      return false;
-    }
-    return true;
-  }
-}
-
-extension UtilityExtension$Query$FetchEpisode$episode$context$$ContextCollection$items$items$item
-    on Query$FetchEpisode$episode$context$$ContextCollection$items$items$item {
-  CopyWith$Query$FetchEpisode$episode$context$$ContextCollection$items$items$item<
-          Query$FetchEpisode$episode$context$$ContextCollection$items$items$item>
-      get copyWith =>
-          CopyWith$Query$FetchEpisode$episode$context$$ContextCollection$items$items$item(
-            this,
-            (i) => i,
-          );
-}
-
-abstract class CopyWith$Query$FetchEpisode$episode$context$$ContextCollection$items$items$item<
-    TRes> {
-  factory CopyWith$Query$FetchEpisode$episode$context$$ContextCollection$items$items$item(
-    Query$FetchEpisode$episode$context$$ContextCollection$items$items$item
-        instance,
-    TRes Function(
-            Query$FetchEpisode$episode$context$$ContextCollection$items$items$item)
-        then,
-  ) = _CopyWithImpl$Query$FetchEpisode$episode$context$$ContextCollection$items$items$item;
-
-  factory CopyWith$Query$FetchEpisode$episode$context$$ContextCollection$items$items$item.stub(
-          TRes res) =
-      _CopyWithStubImpl$Query$FetchEpisode$episode$context$$ContextCollection$items$items$item;
-
-  TRes call({String? $__typename});
-}
-
-class _CopyWithImpl$Query$FetchEpisode$episode$context$$ContextCollection$items$items$item<
-        TRes>
-    implements
-        CopyWith$Query$FetchEpisode$episode$context$$ContextCollection$items$items$item<
-            TRes> {
-  _CopyWithImpl$Query$FetchEpisode$episode$context$$ContextCollection$items$items$item(
-    this._instance,
-    this._then,
-  );
-
-  final Query$FetchEpisode$episode$context$$ContextCollection$items$items$item
-      _instance;
-
-  final TRes Function(
-          Query$FetchEpisode$episode$context$$ContextCollection$items$items$item)
-      _then;
-
-  static const _undefined = <dynamic, dynamic>{};
-
-  TRes call({Object? $__typename = _undefined}) => _then(
-      Query$FetchEpisode$episode$context$$ContextCollection$items$items$item(
-          $__typename: $__typename == _undefined || $__typename == null
-              ? _instance.$__typename
-              : ($__typename as String)));
-}
-
-class _CopyWithStubImpl$Query$FetchEpisode$episode$context$$ContextCollection$items$items$item<
-        TRes>
-    implements
-        CopyWith$Query$FetchEpisode$episode$context$$ContextCollection$items$items$item<
-            TRes> {
-  _CopyWithStubImpl$Query$FetchEpisode$episode$context$$ContextCollection$items$items$item(
-      this._res);
-
-  TRes _res;
-
-  call({String? $__typename}) => _res;
-}
-
-class Query$FetchEpisode$episode$context$$ContextCollection$items$items$item$$Show
-    implements
-        Query$FetchEpisode$episode$context$$ContextCollection$items$items$item {
-  Query$FetchEpisode$episode$context$$ContextCollection$items$items$item$$Show(
-      {this.$__typename = 'Show'});
-
-  factory Query$FetchEpisode$episode$context$$ContextCollection$items$items$item$$Show.fromJson(
-      Map<String, dynamic> json) {
-    final l$$__typename = json['__typename'];
-    return Query$FetchEpisode$episode$context$$ContextCollection$items$items$item$$Show(
-        $__typename: (l$$__typename as String));
-  }
-
-  final String $__typename;
-
-  Map<String, dynamic> toJson() {
-    final _resultData = <String, dynamic>{};
-    final l$$__typename = $__typename;
-    _resultData['__typename'] = l$$__typename;
-    return _resultData;
-  }
-
-  @override
-  int get hashCode {
-    final l$$__typename = $__typename;
-    return Object.hashAll([l$$__typename]);
-  }
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) {
-      return true;
-    }
-    if (!(other
-            is Query$FetchEpisode$episode$context$$ContextCollection$items$items$item$$Show) ||
-        runtimeType != other.runtimeType) {
-      return false;
-    }
-    final l$$__typename = $__typename;
-    final lOther$$__typename = other.$__typename;
-    if (l$$__typename != lOther$$__typename) {
-      return false;
-    }
-    return true;
-  }
-}
-
-extension UtilityExtension$Query$FetchEpisode$episode$context$$ContextCollection$items$items$item$$Show
-    on Query$FetchEpisode$episode$context$$ContextCollection$items$items$item$$Show {
-  CopyWith$Query$FetchEpisode$episode$context$$ContextCollection$items$items$item$$Show<
-          Query$FetchEpisode$episode$context$$ContextCollection$items$items$item$$Show>
-      get copyWith =>
-          CopyWith$Query$FetchEpisode$episode$context$$ContextCollection$items$items$item$$Show(
-            this,
-            (i) => i,
-          );
-}
-
-abstract class CopyWith$Query$FetchEpisode$episode$context$$ContextCollection$items$items$item$$Show<
-    TRes> {
-  factory CopyWith$Query$FetchEpisode$episode$context$$ContextCollection$items$items$item$$Show(
-    Query$FetchEpisode$episode$context$$ContextCollection$items$items$item$$Show
-        instance,
-    TRes Function(
-            Query$FetchEpisode$episode$context$$ContextCollection$items$items$item$$Show)
-        then,
-  ) = _CopyWithImpl$Query$FetchEpisode$episode$context$$ContextCollection$items$items$item$$Show;
-
-  factory CopyWith$Query$FetchEpisode$episode$context$$ContextCollection$items$items$item$$Show.stub(
-          TRes res) =
-      _CopyWithStubImpl$Query$FetchEpisode$episode$context$$ContextCollection$items$items$item$$Show;
-
-  TRes call({String? $__typename});
-}
-
-class _CopyWithImpl$Query$FetchEpisode$episode$context$$ContextCollection$items$items$item$$Show<
-        TRes>
-    implements
-        CopyWith$Query$FetchEpisode$episode$context$$ContextCollection$items$items$item$$Show<
-            TRes> {
-  _CopyWithImpl$Query$FetchEpisode$episode$context$$ContextCollection$items$items$item$$Show(
-    this._instance,
-    this._then,
-  );
-
-  final Query$FetchEpisode$episode$context$$ContextCollection$items$items$item$$Show
-      _instance;
-
-  final TRes Function(
-          Query$FetchEpisode$episode$context$$ContextCollection$items$items$item$$Show)
-      _then;
-
-  static const _undefined = <dynamic, dynamic>{};
-
-  TRes call({Object? $__typename = _undefined}) => _then(
-      Query$FetchEpisode$episode$context$$ContextCollection$items$items$item$$Show(
-          $__typename: $__typename == _undefined || $__typename == null
-              ? _instance.$__typename
-              : ($__typename as String)));
-}
-
-class _CopyWithStubImpl$Query$FetchEpisode$episode$context$$ContextCollection$items$items$item$$Show<
-        TRes>
-    implements
-        CopyWith$Query$FetchEpisode$episode$context$$ContextCollection$items$items$item$$Show<
-            TRes> {
-  _CopyWithStubImpl$Query$FetchEpisode$episode$context$$ContextCollection$items$items$item$$Show(
-      this._res);
-
-  TRes _res;
-
-  call({String? $__typename}) => _res;
-}
-
-class Query$FetchEpisode$episode$context$$ContextCollection$items$items$item$$Season
-    implements
-        Query$FetchEpisode$episode$context$$ContextCollection$items$items$item {
-  Query$FetchEpisode$episode$context$$ContextCollection$items$items$item$$Season(
-      {this.$__typename = 'Season'});
-
-  factory Query$FetchEpisode$episode$context$$ContextCollection$items$items$item$$Season.fromJson(
-      Map<String, dynamic> json) {
-    final l$$__typename = json['__typename'];
-    return Query$FetchEpisode$episode$context$$ContextCollection$items$items$item$$Season(
-        $__typename: (l$$__typename as String));
-  }
-
-  final String $__typename;
-
-  Map<String, dynamic> toJson() {
-    final _resultData = <String, dynamic>{};
-    final l$$__typename = $__typename;
-    _resultData['__typename'] = l$$__typename;
-    return _resultData;
-  }
-
-  @override
-  int get hashCode {
-    final l$$__typename = $__typename;
-    return Object.hashAll([l$$__typename]);
-  }
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) {
-      return true;
-    }
-    if (!(other
-            is Query$FetchEpisode$episode$context$$ContextCollection$items$items$item$$Season) ||
-        runtimeType != other.runtimeType) {
-      return false;
-    }
-    final l$$__typename = $__typename;
-    final lOther$$__typename = other.$__typename;
-    if (l$$__typename != lOther$$__typename) {
-      return false;
-    }
-    return true;
-  }
-}
-
-extension UtilityExtension$Query$FetchEpisode$episode$context$$ContextCollection$items$items$item$$Season
-    on Query$FetchEpisode$episode$context$$ContextCollection$items$items$item$$Season {
-  CopyWith$Query$FetchEpisode$episode$context$$ContextCollection$items$items$item$$Season<
-          Query$FetchEpisode$episode$context$$ContextCollection$items$items$item$$Season>
-      get copyWith =>
-          CopyWith$Query$FetchEpisode$episode$context$$ContextCollection$items$items$item$$Season(
-            this,
-            (i) => i,
-          );
-}
-
-abstract class CopyWith$Query$FetchEpisode$episode$context$$ContextCollection$items$items$item$$Season<
-    TRes> {
-  factory CopyWith$Query$FetchEpisode$episode$context$$ContextCollection$items$items$item$$Season(
-    Query$FetchEpisode$episode$context$$ContextCollection$items$items$item$$Season
-        instance,
-    TRes Function(
-            Query$FetchEpisode$episode$context$$ContextCollection$items$items$item$$Season)
-        then,
-  ) = _CopyWithImpl$Query$FetchEpisode$episode$context$$ContextCollection$items$items$item$$Season;
-
-  factory CopyWith$Query$FetchEpisode$episode$context$$ContextCollection$items$items$item$$Season.stub(
-          TRes res) =
-      _CopyWithStubImpl$Query$FetchEpisode$episode$context$$ContextCollection$items$items$item$$Season;
-
-  TRes call({String? $__typename});
-}
-
-class _CopyWithImpl$Query$FetchEpisode$episode$context$$ContextCollection$items$items$item$$Season<
-        TRes>
-    implements
-        CopyWith$Query$FetchEpisode$episode$context$$ContextCollection$items$items$item$$Season<
-            TRes> {
-  _CopyWithImpl$Query$FetchEpisode$episode$context$$ContextCollection$items$items$item$$Season(
-    this._instance,
-    this._then,
-  );
-
-  final Query$FetchEpisode$episode$context$$ContextCollection$items$items$item$$Season
-      _instance;
-
-  final TRes Function(
-          Query$FetchEpisode$episode$context$$ContextCollection$items$items$item$$Season)
-      _then;
-
-  static const _undefined = <dynamic, dynamic>{};
-
-  TRes call({Object? $__typename = _undefined}) => _then(
-      Query$FetchEpisode$episode$context$$ContextCollection$items$items$item$$Season(
-          $__typename: $__typename == _undefined || $__typename == null
-              ? _instance.$__typename
-              : ($__typename as String)));
-}
-
-class _CopyWithStubImpl$Query$FetchEpisode$episode$context$$ContextCollection$items$items$item$$Season<
-        TRes>
-    implements
-        CopyWith$Query$FetchEpisode$episode$context$$ContextCollection$items$items$item$$Season<
-            TRes> {
-  _CopyWithStubImpl$Query$FetchEpisode$episode$context$$ContextCollection$items$items$item$$Season(
-      this._res);
-
-  TRes _res;
-
-  call({String? $__typename}) => _res;
-}
-
-class Query$FetchEpisode$episode$context$$ContextCollection$items$items$item$$Episode
-    implements
-        Fragment$SeasonListEpisode,
-        Query$FetchEpisode$episode$context$$ContextCollection$items$items$item {
-  Query$FetchEpisode$episode$context$$ContextCollection$items$items$item$$Episode({
-    required this.id,
-    this.image,
-    this.number,
-    required this.title,
-    required this.publishDate,
-    required this.ageRating,
-    required this.duration,
-    required this.locked,
-    required this.lessons,
-    this.$__typename = 'Episode',
-  });
-
-  factory Query$FetchEpisode$episode$context$$ContextCollection$items$items$item$$Episode.fromJson(
-      Map<String, dynamic> json) {
-    final l$id = json['id'];
-    final l$image = json['image'];
-    final l$number = json['number'];
-    final l$title = json['title'];
-    final l$publishDate = json['publishDate'];
-    final l$ageRating = json['ageRating'];
-    final l$duration = json['duration'];
-    final l$locked = json['locked'];
-    final l$lessons = json['lessons'];
-    final l$$__typename = json['__typename'];
-    return Query$FetchEpisode$episode$context$$ContextCollection$items$items$item$$Episode(
-      id: (l$id as String),
-      image: (l$image as String?),
-      number: (l$number as int?),
-      title: (l$title as String),
-      publishDate: (l$publishDate as String),
-      ageRating: (l$ageRating as String),
-      duration: (l$duration as int),
-      locked: (l$locked as bool),
-      lessons: Fragment$SeasonListEpisode$lessons.fromJson(
-          (l$lessons as Map<String, dynamic>)),
-      $__typename: (l$$__typename as String),
-    );
-  }
-
-  final String id;
-
-  final String? image;
-
-  final int? number;
-
-  final String title;
-
-  final String publishDate;
-
-  final String ageRating;
-
-  final int duration;
-
-  final bool locked;
-
-  final Fragment$SeasonListEpisode$lessons lessons;
-
-  final String $__typename;
-
-  Map<String, dynamic> toJson() {
-    final _resultData = <String, dynamic>{};
-    final l$id = id;
-    _resultData['id'] = l$id;
-    final l$image = image;
-    _resultData['image'] = l$image;
-    final l$number = number;
-    _resultData['number'] = l$number;
-    final l$title = title;
-    _resultData['title'] = l$title;
-    final l$publishDate = publishDate;
-    _resultData['publishDate'] = l$publishDate;
-    final l$ageRating = ageRating;
-    _resultData['ageRating'] = l$ageRating;
-    final l$duration = duration;
-    _resultData['duration'] = l$duration;
-    final l$locked = locked;
-    _resultData['locked'] = l$locked;
-    final l$lessons = lessons;
-    _resultData['lessons'] = l$lessons.toJson();
-    final l$$__typename = $__typename;
-    _resultData['__typename'] = l$$__typename;
-    return _resultData;
-  }
-
-  @override
-  int get hashCode {
-    final l$id = id;
-    final l$image = image;
-    final l$number = number;
-    final l$title = title;
-    final l$publishDate = publishDate;
-    final l$ageRating = ageRating;
-    final l$duration = duration;
-    final l$locked = locked;
-    final l$lessons = lessons;
-    final l$$__typename = $__typename;
-    return Object.hashAll([
-      l$id,
-      l$image,
-      l$number,
-      l$title,
-      l$publishDate,
-      l$ageRating,
-      l$duration,
-      l$locked,
-      l$lessons,
-      l$$__typename,
-    ]);
-  }
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) {
-      return true;
-    }
-    if (!(other
-            is Query$FetchEpisode$episode$context$$ContextCollection$items$items$item$$Episode) ||
-        runtimeType != other.runtimeType) {
-      return false;
-    }
-    final l$id = id;
-    final lOther$id = other.id;
-    if (l$id != lOther$id) {
-      return false;
-    }
-    final l$image = image;
-    final lOther$image = other.image;
-    if (l$image != lOther$image) {
-      return false;
-    }
-    final l$number = number;
-    final lOther$number = other.number;
-    if (l$number != lOther$number) {
-      return false;
-    }
-    final l$title = title;
-    final lOther$title = other.title;
-    if (l$title != lOther$title) {
-      return false;
-    }
-    final l$publishDate = publishDate;
-    final lOther$publishDate = other.publishDate;
-    if (l$publishDate != lOther$publishDate) {
-      return false;
-    }
-    final l$ageRating = ageRating;
-    final lOther$ageRating = other.ageRating;
-    if (l$ageRating != lOther$ageRating) {
-      return false;
-    }
-    final l$duration = duration;
-    final lOther$duration = other.duration;
-    if (l$duration != lOther$duration) {
-      return false;
-    }
-    final l$locked = locked;
-    final lOther$locked = other.locked;
-    if (l$locked != lOther$locked) {
-      return false;
-    }
-    final l$lessons = lessons;
-    final lOther$lessons = other.lessons;
-    if (l$lessons != lOther$lessons) {
-      return false;
-    }
-    final l$$__typename = $__typename;
-    final lOther$$__typename = other.$__typename;
-    if (l$$__typename != lOther$$__typename) {
-      return false;
-    }
-    return true;
-  }
-}
-
-extension UtilityExtension$Query$FetchEpisode$episode$context$$ContextCollection$items$items$item$$Episode
-    on Query$FetchEpisode$episode$context$$ContextCollection$items$items$item$$Episode {
-  CopyWith$Query$FetchEpisode$episode$context$$ContextCollection$items$items$item$$Episode<
-          Query$FetchEpisode$episode$context$$ContextCollection$items$items$item$$Episode>
-      get copyWith =>
-          CopyWith$Query$FetchEpisode$episode$context$$ContextCollection$items$items$item$$Episode(
-            this,
-            (i) => i,
-          );
-}
-
-abstract class CopyWith$Query$FetchEpisode$episode$context$$ContextCollection$items$items$item$$Episode<
-    TRes> {
-  factory CopyWith$Query$FetchEpisode$episode$context$$ContextCollection$items$items$item$$Episode(
-    Query$FetchEpisode$episode$context$$ContextCollection$items$items$item$$Episode
-        instance,
-    TRes Function(
-            Query$FetchEpisode$episode$context$$ContextCollection$items$items$item$$Episode)
-        then,
-  ) = _CopyWithImpl$Query$FetchEpisode$episode$context$$ContextCollection$items$items$item$$Episode;
-
-  factory CopyWith$Query$FetchEpisode$episode$context$$ContextCollection$items$items$item$$Episode.stub(
-          TRes res) =
-      _CopyWithStubImpl$Query$FetchEpisode$episode$context$$ContextCollection$items$items$item$$Episode;
-
-  TRes call({
-    String? id,
-    String? image,
-    int? number,
-    String? title,
-    String? publishDate,
-    String? ageRating,
-    int? duration,
-    bool? locked,
-    Fragment$SeasonListEpisode$lessons? lessons,
-    String? $__typename,
-  });
-  CopyWith$Fragment$SeasonListEpisode$lessons<TRes> get lessons;
-}
-
-class _CopyWithImpl$Query$FetchEpisode$episode$context$$ContextCollection$items$items$item$$Episode<
-        TRes>
-    implements
-        CopyWith$Query$FetchEpisode$episode$context$$ContextCollection$items$items$item$$Episode<
-            TRes> {
-  _CopyWithImpl$Query$FetchEpisode$episode$context$$ContextCollection$items$items$item$$Episode(
-    this._instance,
-    this._then,
-  );
-
-  final Query$FetchEpisode$episode$context$$ContextCollection$items$items$item$$Episode
-      _instance;
-
-  final TRes Function(
-          Query$FetchEpisode$episode$context$$ContextCollection$items$items$item$$Episode)
-      _then;
-
-  static const _undefined = <dynamic, dynamic>{};
-
-  TRes call({
-    Object? id = _undefined,
-    Object? image = _undefined,
-    Object? number = _undefined,
-    Object? title = _undefined,
-    Object? publishDate = _undefined,
-    Object? ageRating = _undefined,
-    Object? duration = _undefined,
-    Object? locked = _undefined,
-    Object? lessons = _undefined,
-    Object? $__typename = _undefined,
-  }) =>
-      _then(
-          Query$FetchEpisode$episode$context$$ContextCollection$items$items$item$$Episode(
-        id: id == _undefined || id == null ? _instance.id : (id as String),
-        image: image == _undefined ? _instance.image : (image as String?),
-        number: number == _undefined ? _instance.number : (number as int?),
-        title: title == _undefined || title == null
-            ? _instance.title
-            : (title as String),
-        publishDate: publishDate == _undefined || publishDate == null
-            ? _instance.publishDate
-            : (publishDate as String),
-        ageRating: ageRating == _undefined || ageRating == null
-            ? _instance.ageRating
-            : (ageRating as String),
-        duration: duration == _undefined || duration == null
-            ? _instance.duration
-            : (duration as int),
-        locked: locked == _undefined || locked == null
-            ? _instance.locked
-            : (locked as bool),
-        lessons: lessons == _undefined || lessons == null
-            ? _instance.lessons
-            : (lessons as Fragment$SeasonListEpisode$lessons),
-        $__typename: $__typename == _undefined || $__typename == null
-            ? _instance.$__typename
-            : ($__typename as String),
-      ));
-  CopyWith$Fragment$SeasonListEpisode$lessons<TRes> get lessons {
-    final local$lessons = _instance.lessons;
-    return CopyWith$Fragment$SeasonListEpisode$lessons(
-        local$lessons, (e) => call(lessons: e));
-  }
-}
-
-class _CopyWithStubImpl$Query$FetchEpisode$episode$context$$ContextCollection$items$items$item$$Episode<
-        TRes>
-    implements
-        CopyWith$Query$FetchEpisode$episode$context$$ContextCollection$items$items$item$$Episode<
-            TRes> {
-  _CopyWithStubImpl$Query$FetchEpisode$episode$context$$ContextCollection$items$items$item$$Episode(
-      this._res);
-
-  TRes _res;
-
-  call({
-    String? id,
-    String? image,
-    int? number,
-    String? title,
-    String? publishDate,
-    String? ageRating,
-    int? duration,
-    bool? locked,
-    Fragment$SeasonListEpisode$lessons? lessons,
-    String? $__typename,
-  }) =>
-      _res;
-  CopyWith$Fragment$SeasonListEpisode$lessons<TRes> get lessons =>
-      CopyWith$Fragment$SeasonListEpisode$lessons.stub(_res);
-}
-
-class Query$FetchEpisode$episode$context$$ContextCollection$items$items$item$$Page
-    implements
-        Query$FetchEpisode$episode$context$$ContextCollection$items$items$item {
-  Query$FetchEpisode$episode$context$$ContextCollection$items$items$item$$Page(
-      {this.$__typename = 'Page'});
-
-  factory Query$FetchEpisode$episode$context$$ContextCollection$items$items$item$$Page.fromJson(
-      Map<String, dynamic> json) {
-    final l$$__typename = json['__typename'];
-    return Query$FetchEpisode$episode$context$$ContextCollection$items$items$item$$Page(
-        $__typename: (l$$__typename as String));
-  }
-
-  final String $__typename;
-
-  Map<String, dynamic> toJson() {
-    final _resultData = <String, dynamic>{};
-    final l$$__typename = $__typename;
-    _resultData['__typename'] = l$$__typename;
-    return _resultData;
-  }
-
-  @override
-  int get hashCode {
-    final l$$__typename = $__typename;
-    return Object.hashAll([l$$__typename]);
-  }
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) {
-      return true;
-    }
-    if (!(other
-            is Query$FetchEpisode$episode$context$$ContextCollection$items$items$item$$Page) ||
-        runtimeType != other.runtimeType) {
-      return false;
-    }
-    final l$$__typename = $__typename;
-    final lOther$$__typename = other.$__typename;
-    if (l$$__typename != lOther$$__typename) {
-      return false;
-    }
-    return true;
-  }
-}
-
-extension UtilityExtension$Query$FetchEpisode$episode$context$$ContextCollection$items$items$item$$Page
-    on Query$FetchEpisode$episode$context$$ContextCollection$items$items$item$$Page {
-  CopyWith$Query$FetchEpisode$episode$context$$ContextCollection$items$items$item$$Page<
-          Query$FetchEpisode$episode$context$$ContextCollection$items$items$item$$Page>
-      get copyWith =>
-          CopyWith$Query$FetchEpisode$episode$context$$ContextCollection$items$items$item$$Page(
-            this,
-            (i) => i,
-          );
-}
-
-abstract class CopyWith$Query$FetchEpisode$episode$context$$ContextCollection$items$items$item$$Page<
-    TRes> {
-  factory CopyWith$Query$FetchEpisode$episode$context$$ContextCollection$items$items$item$$Page(
-    Query$FetchEpisode$episode$context$$ContextCollection$items$items$item$$Page
-        instance,
-    TRes Function(
-            Query$FetchEpisode$episode$context$$ContextCollection$items$items$item$$Page)
-        then,
-  ) = _CopyWithImpl$Query$FetchEpisode$episode$context$$ContextCollection$items$items$item$$Page;
-
-  factory CopyWith$Query$FetchEpisode$episode$context$$ContextCollection$items$items$item$$Page.stub(
-          TRes res) =
-      _CopyWithStubImpl$Query$FetchEpisode$episode$context$$ContextCollection$items$items$item$$Page;
-
-  TRes call({String? $__typename});
-}
-
-class _CopyWithImpl$Query$FetchEpisode$episode$context$$ContextCollection$items$items$item$$Page<
-        TRes>
-    implements
-        CopyWith$Query$FetchEpisode$episode$context$$ContextCollection$items$items$item$$Page<
-            TRes> {
-  _CopyWithImpl$Query$FetchEpisode$episode$context$$ContextCollection$items$items$item$$Page(
-    this._instance,
-    this._then,
-  );
-
-  final Query$FetchEpisode$episode$context$$ContextCollection$items$items$item$$Page
-      _instance;
-
-  final TRes Function(
-          Query$FetchEpisode$episode$context$$ContextCollection$items$items$item$$Page)
-      _then;
-
-  static const _undefined = <dynamic, dynamic>{};
-
-  TRes call({Object? $__typename = _undefined}) => _then(
-      Query$FetchEpisode$episode$context$$ContextCollection$items$items$item$$Page(
-          $__typename: $__typename == _undefined || $__typename == null
-              ? _instance.$__typename
-              : ($__typename as String)));
-}
-
-class _CopyWithStubImpl$Query$FetchEpisode$episode$context$$ContextCollection$items$items$item$$Page<
-        TRes>
-    implements
-        CopyWith$Query$FetchEpisode$episode$context$$ContextCollection$items$items$item$$Page<
-            TRes> {
-  _CopyWithStubImpl$Query$FetchEpisode$episode$context$$ContextCollection$items$items$item$$Page(
-      this._res);
-
-  TRes _res;
-
-  call({String? $__typename}) => _res;
-}
-
-class Query$FetchEpisode$episode$context$$ContextCollection$items$items$item$$Link
-    implements
-        Query$FetchEpisode$episode$context$$ContextCollection$items$items$item {
-  Query$FetchEpisode$episode$context$$ContextCollection$items$items$item$$Link(
-      {this.$__typename = 'Link'});
-
-  factory Query$FetchEpisode$episode$context$$ContextCollection$items$items$item$$Link.fromJson(
-      Map<String, dynamic> json) {
-    final l$$__typename = json['__typename'];
-    return Query$FetchEpisode$episode$context$$ContextCollection$items$items$item$$Link(
-        $__typename: (l$$__typename as String));
-  }
-
-  final String $__typename;
-
-  Map<String, dynamic> toJson() {
-    final _resultData = <String, dynamic>{};
-    final l$$__typename = $__typename;
-    _resultData['__typename'] = l$$__typename;
-    return _resultData;
-  }
-
-  @override
-  int get hashCode {
-    final l$$__typename = $__typename;
-    return Object.hashAll([l$$__typename]);
-  }
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) {
-      return true;
-    }
-    if (!(other
-            is Query$FetchEpisode$episode$context$$ContextCollection$items$items$item$$Link) ||
-        runtimeType != other.runtimeType) {
-      return false;
-    }
-    final l$$__typename = $__typename;
-    final lOther$$__typename = other.$__typename;
-    if (l$$__typename != lOther$$__typename) {
-      return false;
-    }
-    return true;
-  }
-}
-
-extension UtilityExtension$Query$FetchEpisode$episode$context$$ContextCollection$items$items$item$$Link
-    on Query$FetchEpisode$episode$context$$ContextCollection$items$items$item$$Link {
-  CopyWith$Query$FetchEpisode$episode$context$$ContextCollection$items$items$item$$Link<
-          Query$FetchEpisode$episode$context$$ContextCollection$items$items$item$$Link>
-      get copyWith =>
-          CopyWith$Query$FetchEpisode$episode$context$$ContextCollection$items$items$item$$Link(
-            this,
-            (i) => i,
-          );
-}
-
-abstract class CopyWith$Query$FetchEpisode$episode$context$$ContextCollection$items$items$item$$Link<
-    TRes> {
-  factory CopyWith$Query$FetchEpisode$episode$context$$ContextCollection$items$items$item$$Link(
-    Query$FetchEpisode$episode$context$$ContextCollection$items$items$item$$Link
-        instance,
-    TRes Function(
-            Query$FetchEpisode$episode$context$$ContextCollection$items$items$item$$Link)
-        then,
-  ) = _CopyWithImpl$Query$FetchEpisode$episode$context$$ContextCollection$items$items$item$$Link;
-
-  factory CopyWith$Query$FetchEpisode$episode$context$$ContextCollection$items$items$item$$Link.stub(
-          TRes res) =
-      _CopyWithStubImpl$Query$FetchEpisode$episode$context$$ContextCollection$items$items$item$$Link;
-
-  TRes call({String? $__typename});
-}
-
-class _CopyWithImpl$Query$FetchEpisode$episode$context$$ContextCollection$items$items$item$$Link<
-        TRes>
-    implements
-        CopyWith$Query$FetchEpisode$episode$context$$ContextCollection$items$items$item$$Link<
-            TRes> {
-  _CopyWithImpl$Query$FetchEpisode$episode$context$$ContextCollection$items$items$item$$Link(
-    this._instance,
-    this._then,
-  );
-
-  final Query$FetchEpisode$episode$context$$ContextCollection$items$items$item$$Link
-      _instance;
-
-  final TRes Function(
-          Query$FetchEpisode$episode$context$$ContextCollection$items$items$item$$Link)
-      _then;
-
-  static const _undefined = <dynamic, dynamic>{};
-
-  TRes call({Object? $__typename = _undefined}) => _then(
-      Query$FetchEpisode$episode$context$$ContextCollection$items$items$item$$Link(
-          $__typename: $__typename == _undefined || $__typename == null
-              ? _instance.$__typename
-              : ($__typename as String)));
-}
-
-class _CopyWithStubImpl$Query$FetchEpisode$episode$context$$ContextCollection$items$items$item$$Link<
-        TRes>
-    implements
-        CopyWith$Query$FetchEpisode$episode$context$$ContextCollection$items$items$item$$Link<
-            TRes> {
-  _CopyWithStubImpl$Query$FetchEpisode$episode$context$$ContextCollection$items$items$item$$Link(
-      this._res);
-
-  TRes _res;
-
-  call({String? $__typename}) => _res;
-}
-
-class Query$FetchEpisode$episode$context$$ContextCollection$items$items$item$$StudyTopic
-    implements
-        Query$FetchEpisode$episode$context$$ContextCollection$items$items$item {
-  Query$FetchEpisode$episode$context$$ContextCollection$items$items$item$$StudyTopic(
-      {this.$__typename = 'StudyTopic'});
-
-  factory Query$FetchEpisode$episode$context$$ContextCollection$items$items$item$$StudyTopic.fromJson(
-      Map<String, dynamic> json) {
-    final l$$__typename = json['__typename'];
-    return Query$FetchEpisode$episode$context$$ContextCollection$items$items$item$$StudyTopic(
-        $__typename: (l$$__typename as String));
-  }
-
-  final String $__typename;
-
-  Map<String, dynamic> toJson() {
-    final _resultData = <String, dynamic>{};
-    final l$$__typename = $__typename;
-    _resultData['__typename'] = l$$__typename;
-    return _resultData;
-  }
-
-  @override
-  int get hashCode {
-    final l$$__typename = $__typename;
-    return Object.hashAll([l$$__typename]);
-  }
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) {
-      return true;
-    }
-    if (!(other
-            is Query$FetchEpisode$episode$context$$ContextCollection$items$items$item$$StudyTopic) ||
-        runtimeType != other.runtimeType) {
-      return false;
-    }
-    final l$$__typename = $__typename;
-    final lOther$$__typename = other.$__typename;
-    if (l$$__typename != lOther$$__typename) {
-      return false;
-    }
-    return true;
-  }
-}
-
-extension UtilityExtension$Query$FetchEpisode$episode$context$$ContextCollection$items$items$item$$StudyTopic
-    on Query$FetchEpisode$episode$context$$ContextCollection$items$items$item$$StudyTopic {
-  CopyWith$Query$FetchEpisode$episode$context$$ContextCollection$items$items$item$$StudyTopic<
-          Query$FetchEpisode$episode$context$$ContextCollection$items$items$item$$StudyTopic>
-      get copyWith =>
-          CopyWith$Query$FetchEpisode$episode$context$$ContextCollection$items$items$item$$StudyTopic(
-            this,
-            (i) => i,
-          );
-}
-
-abstract class CopyWith$Query$FetchEpisode$episode$context$$ContextCollection$items$items$item$$StudyTopic<
-    TRes> {
-  factory CopyWith$Query$FetchEpisode$episode$context$$ContextCollection$items$items$item$$StudyTopic(
-    Query$FetchEpisode$episode$context$$ContextCollection$items$items$item$$StudyTopic
-        instance,
-    TRes Function(
-            Query$FetchEpisode$episode$context$$ContextCollection$items$items$item$$StudyTopic)
-        then,
-  ) = _CopyWithImpl$Query$FetchEpisode$episode$context$$ContextCollection$items$items$item$$StudyTopic;
-
-  factory CopyWith$Query$FetchEpisode$episode$context$$ContextCollection$items$items$item$$StudyTopic.stub(
-          TRes res) =
-      _CopyWithStubImpl$Query$FetchEpisode$episode$context$$ContextCollection$items$items$item$$StudyTopic;
-
-  TRes call({String? $__typename});
-}
-
-class _CopyWithImpl$Query$FetchEpisode$episode$context$$ContextCollection$items$items$item$$StudyTopic<
-        TRes>
-    implements
-        CopyWith$Query$FetchEpisode$episode$context$$ContextCollection$items$items$item$$StudyTopic<
-            TRes> {
-  _CopyWithImpl$Query$FetchEpisode$episode$context$$ContextCollection$items$items$item$$StudyTopic(
-    this._instance,
-    this._then,
-  );
-
-  final Query$FetchEpisode$episode$context$$ContextCollection$items$items$item$$StudyTopic
-      _instance;
-
-  final TRes Function(
-          Query$FetchEpisode$episode$context$$ContextCollection$items$items$item$$StudyTopic)
-      _then;
-
-  static const _undefined = <dynamic, dynamic>{};
-
-  TRes call({Object? $__typename = _undefined}) => _then(
-      Query$FetchEpisode$episode$context$$ContextCollection$items$items$item$$StudyTopic(
-          $__typename: $__typename == _undefined || $__typename == null
-              ? _instance.$__typename
-              : ($__typename as String)));
-}
-
-class _CopyWithStubImpl$Query$FetchEpisode$episode$context$$ContextCollection$items$items$item$$StudyTopic<
-        TRes>
-    implements
-        CopyWith$Query$FetchEpisode$episode$context$$ContextCollection$items$items$item$$StudyTopic<
-            TRes> {
-  _CopyWithStubImpl$Query$FetchEpisode$episode$context$$ContextCollection$items$items$item$$StudyTopic(
-      this._res);
-
-  TRes _res;
-
-  call({String? $__typename}) => _res;
-}
-
-class Query$FetchEpisode$episode$context$$Season
-    implements Query$FetchEpisode$episode$context {
-  Query$FetchEpisode$episode$context$$Season({
-    required this.id,
-    required this.title,
-    required this.number,
-    required this.episodes,
-    required this.$show,
-    this.$__typename = 'Season',
-  });
-
-  factory Query$FetchEpisode$episode$context$$Season.fromJson(
-      Map<String, dynamic> json) {
-    final l$id = json['id'];
-    final l$title = json['title'];
-    final l$number = json['number'];
-    final l$episodes = json['episodes'];
-    final l$$show = json['show'];
-    final l$$__typename = json['__typename'];
-    return Query$FetchEpisode$episode$context$$Season(
-      id: (l$id as String),
-      title: (l$title as String),
-      number: (l$number as int),
-      episodes: Query$FetchEpisode$episode$context$$Season$episodes.fromJson(
-          (l$episodes as Map<String, dynamic>)),
-      $show: Query$FetchEpisode$episode$context$$Season$show.fromJson(
-          (l$$show as Map<String, dynamic>)),
-      $__typename: (l$$__typename as String),
-    );
-  }
-
-  final String id;
-
-  final String title;
-
-  final int number;
-
-  final Query$FetchEpisode$episode$context$$Season$episodes episodes;
-
-  final Query$FetchEpisode$episode$context$$Season$show $show;
-
-  final String $__typename;
-
-  Map<String, dynamic> toJson() {
-    final _resultData = <String, dynamic>{};
-    final l$id = id;
-    _resultData['id'] = l$id;
-    final l$title = title;
-    _resultData['title'] = l$title;
-    final l$number = number;
-    _resultData['number'] = l$number;
-    final l$episodes = episodes;
-    _resultData['episodes'] = l$episodes.toJson();
-    final l$$show = $show;
-    _resultData['show'] = l$$show.toJson();
-    final l$$__typename = $__typename;
-    _resultData['__typename'] = l$$__typename;
-    return _resultData;
-  }
-
-  @override
-  int get hashCode {
-    final l$id = id;
-    final l$title = title;
-    final l$number = number;
-    final l$episodes = episodes;
-    final l$$show = $show;
-    final l$$__typename = $__typename;
-    return Object.hashAll([
-      l$id,
-      l$title,
-      l$number,
-      l$episodes,
-      l$$show,
-      l$$__typename,
-    ]);
-  }
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) {
-      return true;
-    }
-    if (!(other is Query$FetchEpisode$episode$context$$Season) ||
-        runtimeType != other.runtimeType) {
-      return false;
-    }
-    final l$id = id;
-    final lOther$id = other.id;
-    if (l$id != lOther$id) {
-      return false;
-    }
-    final l$title = title;
-    final lOther$title = other.title;
-    if (l$title != lOther$title) {
-      return false;
-    }
-    final l$number = number;
-    final lOther$number = other.number;
-    if (l$number != lOther$number) {
-      return false;
-    }
-    final l$episodes = episodes;
-    final lOther$episodes = other.episodes;
-    if (l$episodes != lOther$episodes) {
-      return false;
-    }
-    final l$$show = $show;
-    final lOther$$show = other.$show;
-    if (l$$show != lOther$$show) {
-      return false;
-    }
-    final l$$__typename = $__typename;
-    final lOther$$__typename = other.$__typename;
-    if (l$$__typename != lOther$$__typename) {
-      return false;
-    }
-    return true;
-  }
-}
-
-extension UtilityExtension$Query$FetchEpisode$episode$context$$Season
-    on Query$FetchEpisode$episode$context$$Season {
-  CopyWith$Query$FetchEpisode$episode$context$$Season<
-          Query$FetchEpisode$episode$context$$Season>
-      get copyWith => CopyWith$Query$FetchEpisode$episode$context$$Season(
-            this,
-            (i) => i,
-          );
-}
-
-abstract class CopyWith$Query$FetchEpisode$episode$context$$Season<TRes> {
-  factory CopyWith$Query$FetchEpisode$episode$context$$Season(
-    Query$FetchEpisode$episode$context$$Season instance,
-    TRes Function(Query$FetchEpisode$episode$context$$Season) then,
-  ) = _CopyWithImpl$Query$FetchEpisode$episode$context$$Season;
-
-  factory CopyWith$Query$FetchEpisode$episode$context$$Season.stub(TRes res) =
-      _CopyWithStubImpl$Query$FetchEpisode$episode$context$$Season;
-
-  TRes call({
-    String? id,
-    String? title,
-    int? number,
-    Query$FetchEpisode$episode$context$$Season$episodes? episodes,
-    Query$FetchEpisode$episode$context$$Season$show? $show,
-    String? $__typename,
-  });
-  CopyWith$Query$FetchEpisode$episode$context$$Season$episodes<TRes>
-      get episodes;
-  CopyWith$Query$FetchEpisode$episode$context$$Season$show<TRes> get $show;
-}
-
-class _CopyWithImpl$Query$FetchEpisode$episode$context$$Season<TRes>
-    implements CopyWith$Query$FetchEpisode$episode$context$$Season<TRes> {
-  _CopyWithImpl$Query$FetchEpisode$episode$context$$Season(
-    this._instance,
-    this._then,
-  );
-
-  final Query$FetchEpisode$episode$context$$Season _instance;
-
-  final TRes Function(Query$FetchEpisode$episode$context$$Season) _then;
-
-  static const _undefined = <dynamic, dynamic>{};
-
-  TRes call({
-    Object? id = _undefined,
-    Object? title = _undefined,
-    Object? number = _undefined,
-    Object? episodes = _undefined,
-    Object? $show = _undefined,
-    Object? $__typename = _undefined,
-  }) =>
-      _then(Query$FetchEpisode$episode$context$$Season(
-        id: id == _undefined || id == null ? _instance.id : (id as String),
-        title: title == _undefined || title == null
-            ? _instance.title
-            : (title as String),
-        number: number == _undefined || number == null
-            ? _instance.number
-            : (number as int),
-        episodes: episodes == _undefined || episodes == null
-            ? _instance.episodes
-            : (episodes as Query$FetchEpisode$episode$context$$Season$episodes),
-        $show: $show == _undefined || $show == null
-            ? _instance.$show
-            : ($show as Query$FetchEpisode$episode$context$$Season$show),
-        $__typename: $__typename == _undefined || $__typename == null
-            ? _instance.$__typename
-            : ($__typename as String),
-      ));
-  CopyWith$Query$FetchEpisode$episode$context$$Season$episodes<TRes>
-      get episodes {
-    final local$episodes = _instance.episodes;
-    return CopyWith$Query$FetchEpisode$episode$context$$Season$episodes(
-        local$episodes, (e) => call(episodes: e));
-  }
-
-  CopyWith$Query$FetchEpisode$episode$context$$Season$show<TRes> get $show {
-    final local$$show = _instance.$show;
-    return CopyWith$Query$FetchEpisode$episode$context$$Season$show(
-        local$$show, (e) => call($show: e));
-  }
-}
-
-class _CopyWithStubImpl$Query$FetchEpisode$episode$context$$Season<TRes>
-    implements CopyWith$Query$FetchEpisode$episode$context$$Season<TRes> {
-  _CopyWithStubImpl$Query$FetchEpisode$episode$context$$Season(this._res);
-
-  TRes _res;
-
-  call({
-    String? id,
-    String? title,
-    int? number,
-    Query$FetchEpisode$episode$context$$Season$episodes? episodes,
-    Query$FetchEpisode$episode$context$$Season$show? $show,
-    String? $__typename,
-  }) =>
-      _res;
-  CopyWith$Query$FetchEpisode$episode$context$$Season$episodes<TRes>
-      get episodes =>
-          CopyWith$Query$FetchEpisode$episode$context$$Season$episodes.stub(
-              _res);
-  CopyWith$Query$FetchEpisode$episode$context$$Season$show<TRes> get $show =>
-      CopyWith$Query$FetchEpisode$episode$context$$Season$show.stub(_res);
-}
-
-class Query$FetchEpisode$episode$context$$Season$episodes {
-  Query$FetchEpisode$episode$context$$Season$episodes({
-    required this.items,
-    this.$__typename = 'EpisodePagination',
-  });
-
-  factory Query$FetchEpisode$episode$context$$Season$episodes.fromJson(
-      Map<String, dynamic> json) {
-    final l$items = json['items'];
-    final l$$__typename = json['__typename'];
-    return Query$FetchEpisode$episode$context$$Season$episodes(
-      items: (l$items as List<dynamic>)
-          .map((e) =>
-              Fragment$SeasonListEpisode.fromJson((e as Map<String, dynamic>)))
-          .toList(),
-      $__typename: (l$$__typename as String),
-    );
-  }
-
-  final List<Fragment$SeasonListEpisode> items;
-
-  final String $__typename;
-
-  Map<String, dynamic> toJson() {
-    final _resultData = <String, dynamic>{};
-    final l$items = items;
-    _resultData['items'] = l$items.map((e) => e.toJson()).toList();
-    final l$$__typename = $__typename;
-    _resultData['__typename'] = l$$__typename;
-    return _resultData;
-  }
-
-  @override
-  int get hashCode {
-    final l$items = items;
-    final l$$__typename = $__typename;
-    return Object.hashAll([
-      Object.hashAll(l$items.map((v) => v)),
-      l$$__typename,
-    ]);
-  }
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) {
-      return true;
-    }
-    if (!(other is Query$FetchEpisode$episode$context$$Season$episodes) ||
-        runtimeType != other.runtimeType) {
-      return false;
-    }
-    final l$items = items;
-    final lOther$items = other.items;
-    if (l$items.length != lOther$items.length) {
-      return false;
-    }
-    for (int i = 0; i < l$items.length; i++) {
-      final l$items$entry = l$items[i];
-      final lOther$items$entry = lOther$items[i];
-      if (l$items$entry != lOther$items$entry) {
-        return false;
-      }
-    }
-    final l$$__typename = $__typename;
-    final lOther$$__typename = other.$__typename;
-    if (l$$__typename != lOther$$__typename) {
-      return false;
-    }
-    return true;
-  }
-}
-
-extension UtilityExtension$Query$FetchEpisode$episode$context$$Season$episodes
-    on Query$FetchEpisode$episode$context$$Season$episodes {
-  CopyWith$Query$FetchEpisode$episode$context$$Season$episodes<
-          Query$FetchEpisode$episode$context$$Season$episodes>
-      get copyWith =>
-          CopyWith$Query$FetchEpisode$episode$context$$Season$episodes(
-            this,
-            (i) => i,
-          );
-}
-
-abstract class CopyWith$Query$FetchEpisode$episode$context$$Season$episodes<
-    TRes> {
-  factory CopyWith$Query$FetchEpisode$episode$context$$Season$episodes(
-    Query$FetchEpisode$episode$context$$Season$episodes instance,
-    TRes Function(Query$FetchEpisode$episode$context$$Season$episodes) then,
-  ) = _CopyWithImpl$Query$FetchEpisode$episode$context$$Season$episodes;
-
-  factory CopyWith$Query$FetchEpisode$episode$context$$Season$episodes.stub(
-          TRes res) =
-      _CopyWithStubImpl$Query$FetchEpisode$episode$context$$Season$episodes;
-
-  TRes call({
-    List<Fragment$SeasonListEpisode>? items,
-    String? $__typename,
-  });
-  TRes items(
-      Iterable<Fragment$SeasonListEpisode> Function(
-              Iterable<
-                  CopyWith$Fragment$SeasonListEpisode<
-                      Fragment$SeasonListEpisode>>)
-          _fn);
-}
-
-class _CopyWithImpl$Query$FetchEpisode$episode$context$$Season$episodes<TRes>
-    implements
-        CopyWith$Query$FetchEpisode$episode$context$$Season$episodes<TRes> {
-  _CopyWithImpl$Query$FetchEpisode$episode$context$$Season$episodes(
-    this._instance,
-    this._then,
-  );
-
-  final Query$FetchEpisode$episode$context$$Season$episodes _instance;
-
-  final TRes Function(Query$FetchEpisode$episode$context$$Season$episodes)
-      _then;
-
-  static const _undefined = <dynamic, dynamic>{};
-
-  TRes call({
-    Object? items = _undefined,
-    Object? $__typename = _undefined,
-  }) =>
-      _then(Query$FetchEpisode$episode$context$$Season$episodes(
-        items: items == _undefined || items == null
-            ? _instance.items
-            : (items as List<Fragment$SeasonListEpisode>),
-        $__typename: $__typename == _undefined || $__typename == null
-            ? _instance.$__typename
-            : ($__typename as String),
-      ));
-  TRes items(
-          Iterable<Fragment$SeasonListEpisode> Function(
-                  Iterable<
-                      CopyWith$Fragment$SeasonListEpisode<
-                          Fragment$SeasonListEpisode>>)
-              _fn) =>
-      call(
-          items: _fn(
-              _instance.items.map((e) => CopyWith$Fragment$SeasonListEpisode(
-                    e,
-                    (i) => i,
-                  ))).toList());
-}
-
-class _CopyWithStubImpl$Query$FetchEpisode$episode$context$$Season$episodes<
-        TRes>
-    implements
-        CopyWith$Query$FetchEpisode$episode$context$$Season$episodes<TRes> {
-  _CopyWithStubImpl$Query$FetchEpisode$episode$context$$Season$episodes(
-      this._res);
-
-  TRes _res;
-
-  call({
-    List<Fragment$SeasonListEpisode>? items,
-    String? $__typename,
-  }) =>
-      _res;
-  items(_fn) => _res;
-}
-
-class Query$FetchEpisode$episode$context$$Season$show {
-  Query$FetchEpisode$episode$context$$Season$show({
-    required this.id,
-    required this.title,
-    required this.type,
-    required this.seasons,
-    this.$__typename = 'Show',
-  });
-
-  factory Query$FetchEpisode$episode$context$$Season$show.fromJson(
-      Map<String, dynamic> json) {
-    final l$id = json['id'];
-    final l$title = json['title'];
-    final l$type = json['type'];
-    final l$seasons = json['seasons'];
-    final l$$__typename = json['__typename'];
-    return Query$FetchEpisode$episode$context$$Season$show(
-      id: (l$id as String),
-      title: (l$title as String),
-      type: fromJson$Enum$ShowType((l$type as String)),
-      seasons: Query$FetchEpisode$episode$context$$Season$show$seasons.fromJson(
-          (l$seasons as Map<String, dynamic>)),
-      $__typename: (l$$__typename as String),
-    );
-  }
-
-  final String id;
-
-  final String title;
-
-  final Enum$ShowType type;
-
-  final Query$FetchEpisode$episode$context$$Season$show$seasons seasons;
-
-  final String $__typename;
-
-  Map<String, dynamic> toJson() {
-    final _resultData = <String, dynamic>{};
-    final l$id = id;
-    _resultData['id'] = l$id;
-    final l$title = title;
-    _resultData['title'] = l$title;
-    final l$type = type;
-    _resultData['type'] = toJson$Enum$ShowType(l$type);
-    final l$seasons = seasons;
-    _resultData['seasons'] = l$seasons.toJson();
-    final l$$__typename = $__typename;
-    _resultData['__typename'] = l$$__typename;
-    return _resultData;
-  }
-
-  @override
-  int get hashCode {
-    final l$id = id;
-    final l$title = title;
-    final l$type = type;
-    final l$seasons = seasons;
-    final l$$__typename = $__typename;
-    return Object.hashAll([
-      l$id,
-      l$title,
-      l$type,
-      l$seasons,
-      l$$__typename,
-    ]);
-  }
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) {
-      return true;
-    }
-    if (!(other is Query$FetchEpisode$episode$context$$Season$show) ||
-        runtimeType != other.runtimeType) {
-      return false;
-    }
-    final l$id = id;
-    final lOther$id = other.id;
-    if (l$id != lOther$id) {
-      return false;
-    }
-    final l$title = title;
-    final lOther$title = other.title;
-    if (l$title != lOther$title) {
-      return false;
-    }
-    final l$type = type;
-    final lOther$type = other.type;
-    if (l$type != lOther$type) {
-      return false;
-    }
-    final l$seasons = seasons;
-    final lOther$seasons = other.seasons;
-    if (l$seasons != lOther$seasons) {
-      return false;
-    }
-    final l$$__typename = $__typename;
-    final lOther$$__typename = other.$__typename;
-    if (l$$__typename != lOther$$__typename) {
-      return false;
-    }
-    return true;
-  }
-}
-
-extension UtilityExtension$Query$FetchEpisode$episode$context$$Season$show
-    on Query$FetchEpisode$episode$context$$Season$show {
-  CopyWith$Query$FetchEpisode$episode$context$$Season$show<
-          Query$FetchEpisode$episode$context$$Season$show>
-      get copyWith => CopyWith$Query$FetchEpisode$episode$context$$Season$show(
-            this,
-            (i) => i,
-          );
-}
-
-abstract class CopyWith$Query$FetchEpisode$episode$context$$Season$show<TRes> {
-  factory CopyWith$Query$FetchEpisode$episode$context$$Season$show(
-    Query$FetchEpisode$episode$context$$Season$show instance,
-    TRes Function(Query$FetchEpisode$episode$context$$Season$show) then,
-  ) = _CopyWithImpl$Query$FetchEpisode$episode$context$$Season$show;
-
-  factory CopyWith$Query$FetchEpisode$episode$context$$Season$show.stub(
-          TRes res) =
-      _CopyWithStubImpl$Query$FetchEpisode$episode$context$$Season$show;
-
-  TRes call({
-    String? id,
-    String? title,
-    Enum$ShowType? type,
-    Query$FetchEpisode$episode$context$$Season$show$seasons? seasons,
-    String? $__typename,
-  });
-  CopyWith$Query$FetchEpisode$episode$context$$Season$show$seasons<TRes>
-      get seasons;
-}
-
-class _CopyWithImpl$Query$FetchEpisode$episode$context$$Season$show<TRes>
-    implements CopyWith$Query$FetchEpisode$episode$context$$Season$show<TRes> {
-  _CopyWithImpl$Query$FetchEpisode$episode$context$$Season$show(
-    this._instance,
-    this._then,
-  );
-
-  final Query$FetchEpisode$episode$context$$Season$show _instance;
-
-  final TRes Function(Query$FetchEpisode$episode$context$$Season$show) _then;
-
-  static const _undefined = <dynamic, dynamic>{};
-
-  TRes call({
-    Object? id = _undefined,
-    Object? title = _undefined,
-    Object? type = _undefined,
-    Object? seasons = _undefined,
-    Object? $__typename = _undefined,
-  }) =>
-      _then(Query$FetchEpisode$episode$context$$Season$show(
-        id: id == _undefined || id == null ? _instance.id : (id as String),
-        title: title == _undefined || title == null
-            ? _instance.title
-            : (title as String),
-        type: type == _undefined || type == null
-            ? _instance.type
-            : (type as Enum$ShowType),
-        seasons: seasons == _undefined || seasons == null
-            ? _instance.seasons
-            : (seasons
-                as Query$FetchEpisode$episode$context$$Season$show$seasons),
-        $__typename: $__typename == _undefined || $__typename == null
-            ? _instance.$__typename
-            : ($__typename as String),
-      ));
-  CopyWith$Query$FetchEpisode$episode$context$$Season$show$seasons<TRes>
-      get seasons {
-    final local$seasons = _instance.seasons;
-    return CopyWith$Query$FetchEpisode$episode$context$$Season$show$seasons(
-        local$seasons, (e) => call(seasons: e));
-  }
-}
-
-class _CopyWithStubImpl$Query$FetchEpisode$episode$context$$Season$show<TRes>
-    implements CopyWith$Query$FetchEpisode$episode$context$$Season$show<TRes> {
-  _CopyWithStubImpl$Query$FetchEpisode$episode$context$$Season$show(this._res);
-
-  TRes _res;
-
-  call({
-    String? id,
-    String? title,
-    Enum$ShowType? type,
-    Query$FetchEpisode$episode$context$$Season$show$seasons? seasons,
-    String? $__typename,
-  }) =>
-      _res;
-  CopyWith$Query$FetchEpisode$episode$context$$Season$show$seasons<TRes>
-      get seasons =>
-          CopyWith$Query$FetchEpisode$episode$context$$Season$show$seasons.stub(
-              _res);
-}
-
-class Query$FetchEpisode$episode$context$$Season$show$seasons {
-  Query$FetchEpisode$episode$context$$Season$show$seasons({
-    required this.items,
-    this.$__typename = 'SeasonPagination',
-  });
-
-  factory Query$FetchEpisode$episode$context$$Season$show$seasons.fromJson(
-      Map<String, dynamic> json) {
-    final l$items = json['items'];
-    final l$$__typename = json['__typename'];
-    return Query$FetchEpisode$episode$context$$Season$show$seasons(
-      items: (l$items as List<dynamic>)
-          .map((e) =>
-              Query$FetchEpisode$episode$context$$Season$show$seasons$items
-                  .fromJson((e as Map<String, dynamic>)))
-          .toList(),
-      $__typename: (l$$__typename as String),
-    );
-  }
-
-  final List<Query$FetchEpisode$episode$context$$Season$show$seasons$items>
-      items;
-
-  final String $__typename;
-
-  Map<String, dynamic> toJson() {
-    final _resultData = <String, dynamic>{};
-    final l$items = items;
-    _resultData['items'] = l$items.map((e) => e.toJson()).toList();
-    final l$$__typename = $__typename;
-    _resultData['__typename'] = l$$__typename;
-    return _resultData;
-  }
-
-  @override
-  int get hashCode {
-    final l$items = items;
-    final l$$__typename = $__typename;
-    return Object.hashAll([
-      Object.hashAll(l$items.map((v) => v)),
-      l$$__typename,
-    ]);
-  }
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) {
-      return true;
-    }
-    if (!(other is Query$FetchEpisode$episode$context$$Season$show$seasons) ||
-        runtimeType != other.runtimeType) {
-      return false;
-    }
-    final l$items = items;
-    final lOther$items = other.items;
-    if (l$items.length != lOther$items.length) {
-      return false;
-    }
-    for (int i = 0; i < l$items.length; i++) {
-      final l$items$entry = l$items[i];
-      final lOther$items$entry = lOther$items[i];
-      if (l$items$entry != lOther$items$entry) {
-        return false;
-      }
-    }
-    final l$$__typename = $__typename;
-    final lOther$$__typename = other.$__typename;
-    if (l$$__typename != lOther$$__typename) {
-      return false;
-    }
-    return true;
-  }
-}
-
-extension UtilityExtension$Query$FetchEpisode$episode$context$$Season$show$seasons
-    on Query$FetchEpisode$episode$context$$Season$show$seasons {
-  CopyWith$Query$FetchEpisode$episode$context$$Season$show$seasons<
-          Query$FetchEpisode$episode$context$$Season$show$seasons>
-      get copyWith =>
-          CopyWith$Query$FetchEpisode$episode$context$$Season$show$seasons(
-            this,
-            (i) => i,
-          );
-}
-
-abstract class CopyWith$Query$FetchEpisode$episode$context$$Season$show$seasons<
-    TRes> {
-  factory CopyWith$Query$FetchEpisode$episode$context$$Season$show$seasons(
-    Query$FetchEpisode$episode$context$$Season$show$seasons instance,
-    TRes Function(Query$FetchEpisode$episode$context$$Season$show$seasons) then,
-  ) = _CopyWithImpl$Query$FetchEpisode$episode$context$$Season$show$seasons;
-
-  factory CopyWith$Query$FetchEpisode$episode$context$$Season$show$seasons.stub(
-          TRes res) =
-      _CopyWithStubImpl$Query$FetchEpisode$episode$context$$Season$show$seasons;
-
-  TRes call({
-    List<Query$FetchEpisode$episode$context$$Season$show$seasons$items>? items,
-    String? $__typename,
-  });
-  TRes items(
-      Iterable<Query$FetchEpisode$episode$context$$Season$show$seasons$items> Function(
-              Iterable<
-                  CopyWith$Query$FetchEpisode$episode$context$$Season$show$seasons$items<
-                      Query$FetchEpisode$episode$context$$Season$show$seasons$items>>)
-          _fn);
-}
-
-class _CopyWithImpl$Query$FetchEpisode$episode$context$$Season$show$seasons<
-        TRes>
-    implements
-        CopyWith$Query$FetchEpisode$episode$context$$Season$show$seasons<TRes> {
-  _CopyWithImpl$Query$FetchEpisode$episode$context$$Season$show$seasons(
-    this._instance,
-    this._then,
-  );
-
-  final Query$FetchEpisode$episode$context$$Season$show$seasons _instance;
-
-  final TRes Function(Query$FetchEpisode$episode$context$$Season$show$seasons)
-      _then;
-
-  static const _undefined = <dynamic, dynamic>{};
-
-  TRes call({
-    Object? items = _undefined,
-    Object? $__typename = _undefined,
-  }) =>
-      _then(Query$FetchEpisode$episode$context$$Season$show$seasons(
-        items: items == _undefined || items == null
-            ? _instance.items
-            : (items as List<
-                Query$FetchEpisode$episode$context$$Season$show$seasons$items>),
-        $__typename: $__typename == _undefined || $__typename == null
-            ? _instance.$__typename
-            : ($__typename as String),
-      ));
-  TRes items(
-          Iterable<Query$FetchEpisode$episode$context$$Season$show$seasons$items> Function(
-                  Iterable<
-                      CopyWith$Query$FetchEpisode$episode$context$$Season$show$seasons$items<
-                          Query$FetchEpisode$episode$context$$Season$show$seasons$items>>)
-              _fn) =>
-      call(
-          items: _fn(_instance.items.map((e) =>
-              CopyWith$Query$FetchEpisode$episode$context$$Season$show$seasons$items(
-                e,
-                (i) => i,
-              ))).toList());
-}
-
-class _CopyWithStubImpl$Query$FetchEpisode$episode$context$$Season$show$seasons<
-        TRes>
-    implements
-        CopyWith$Query$FetchEpisode$episode$context$$Season$show$seasons<TRes> {
-  _CopyWithStubImpl$Query$FetchEpisode$episode$context$$Season$show$seasons(
-      this._res);
-
-  TRes _res;
-
-  call({
-    List<Query$FetchEpisode$episode$context$$Season$show$seasons$items>? items,
-    String? $__typename,
-  }) =>
-      _res;
-  items(_fn) => _res;
-}
-
-class Query$FetchEpisode$episode$context$$Season$show$seasons$items {
-  Query$FetchEpisode$episode$context$$Season$show$seasons$items({
-    required this.id,
-    required this.title,
-    this.$__typename = 'Season',
-  });
-
-  factory Query$FetchEpisode$episode$context$$Season$show$seasons$items.fromJson(
-      Map<String, dynamic> json) {
-    final l$id = json['id'];
-    final l$title = json['title'];
-    final l$$__typename = json['__typename'];
-    return Query$FetchEpisode$episode$context$$Season$show$seasons$items(
-      id: (l$id as String),
-      title: (l$title as String),
-      $__typename: (l$$__typename as String),
-    );
-  }
-
-  final String id;
-
-  final String title;
-
-  final String $__typename;
-
-  Map<String, dynamic> toJson() {
-    final _resultData = <String, dynamic>{};
-    final l$id = id;
-    _resultData['id'] = l$id;
-    final l$title = title;
-    _resultData['title'] = l$title;
-    final l$$__typename = $__typename;
-    _resultData['__typename'] = l$$__typename;
-    return _resultData;
-  }
-
-  @override
-  int get hashCode {
-    final l$id = id;
-    final l$title = title;
-    final l$$__typename = $__typename;
-    return Object.hashAll([
-      l$id,
-      l$title,
-      l$$__typename,
-    ]);
-  }
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) {
-      return true;
-    }
-    if (!(other
-            is Query$FetchEpisode$episode$context$$Season$show$seasons$items) ||
-        runtimeType != other.runtimeType) {
-      return false;
-    }
-    final l$id = id;
-    final lOther$id = other.id;
-    if (l$id != lOther$id) {
-      return false;
-    }
-    final l$title = title;
-    final lOther$title = other.title;
-    if (l$title != lOther$title) {
-      return false;
-    }
-    final l$$__typename = $__typename;
-    final lOther$$__typename = other.$__typename;
-    if (l$$__typename != lOther$$__typename) {
-      return false;
-    }
-    return true;
-  }
-}
-
-extension UtilityExtension$Query$FetchEpisode$episode$context$$Season$show$seasons$items
-    on Query$FetchEpisode$episode$context$$Season$show$seasons$items {
-  CopyWith$Query$FetchEpisode$episode$context$$Season$show$seasons$items<
-          Query$FetchEpisode$episode$context$$Season$show$seasons$items>
-      get copyWith =>
-          CopyWith$Query$FetchEpisode$episode$context$$Season$show$seasons$items(
-            this,
-            (i) => i,
-          );
-}
-
-abstract class CopyWith$Query$FetchEpisode$episode$context$$Season$show$seasons$items<
-    TRes> {
-  factory CopyWith$Query$FetchEpisode$episode$context$$Season$show$seasons$items(
-    Query$FetchEpisode$episode$context$$Season$show$seasons$items instance,
-    TRes Function(Query$FetchEpisode$episode$context$$Season$show$seasons$items)
-        then,
-  ) = _CopyWithImpl$Query$FetchEpisode$episode$context$$Season$show$seasons$items;
-
-  factory CopyWith$Query$FetchEpisode$episode$context$$Season$show$seasons$items.stub(
-          TRes res) =
-      _CopyWithStubImpl$Query$FetchEpisode$episode$context$$Season$show$seasons$items;
-
-  TRes call({
-    String? id,
-    String? title,
-    String? $__typename,
-  });
-}
-
-class _CopyWithImpl$Query$FetchEpisode$episode$context$$Season$show$seasons$items<
-        TRes>
-    implements
-        CopyWith$Query$FetchEpisode$episode$context$$Season$show$seasons$items<
-            TRes> {
-  _CopyWithImpl$Query$FetchEpisode$episode$context$$Season$show$seasons$items(
-    this._instance,
-    this._then,
-  );
-
-  final Query$FetchEpisode$episode$context$$Season$show$seasons$items _instance;
-
-  final TRes Function(
-      Query$FetchEpisode$episode$context$$Season$show$seasons$items) _then;
-
-  static const _undefined = <dynamic, dynamic>{};
-
-  TRes call({
-    Object? id = _undefined,
-    Object? title = _undefined,
-    Object? $__typename = _undefined,
-  }) =>
-      _then(Query$FetchEpisode$episode$context$$Season$show$seasons$items(
-        id: id == _undefined || id == null ? _instance.id : (id as String),
-        title: title == _undefined || title == null
-            ? _instance.title
-            : (title as String),
-        $__typename: $__typename == _undefined || $__typename == null
-            ? _instance.$__typename
-            : ($__typename as String),
-      ));
-}
-
-class _CopyWithStubImpl$Query$FetchEpisode$episode$context$$Season$show$seasons$items<
-        TRes>
-    implements
-        CopyWith$Query$FetchEpisode$episode$context$$Season$show$seasons$items<
-            TRes> {
-  _CopyWithStubImpl$Query$FetchEpisode$episode$context$$Season$show$seasons$items(
-      this._res);
 
   TRes _res;
 

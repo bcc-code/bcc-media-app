@@ -23,36 +23,7 @@ query FetchEpisode($id: ID!, $context: EpisodeContext) {
       }
     }
     context {
-      ... on ContextCollection {
-        items {
-          items {
-            item {
-              ...SeasonListEpisode
-            }
-          }
-        }
-      }
-      ... on Season {
-        id
-        title
-        number
-        episodes(first: 70) {
-          items {
-            ...SeasonListEpisode
-          }
-        }
-        show {
-          id
-          title
-          type
-          seasons {
-            items {
-              id
-              title
-            }
-          }
-        }
-      }
+      ...EpisodeContext
     }
     relatedItems {
       items {
@@ -70,6 +41,40 @@ query FetchEpisode($id: ID!, $context: EpisodeContext) {
       }
     }
     inMyList
+  }
+}
+
+fragment EpisodeContext on EpisodeContextUnion {
+  ... on ContextCollection {
+    id
+    items {
+      items {
+        item {
+          ...SeasonListEpisode
+        }
+      }
+    }
+  }
+  ... on Season {
+    id
+    title
+    number
+    episodes(first: 70) {
+      items {
+        ...SeasonListEpisode
+      }
+    }
+    show {
+      id
+      title
+      type
+      seasons {
+        items {
+          id
+          title
+        }
+      }
+    }
   }
 }
 
