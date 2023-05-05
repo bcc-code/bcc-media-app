@@ -36,7 +36,15 @@ class EpisodeInfo extends HookConsumerWidget {
     }, [episode.id, episode.inMyList]);
 
     void toggleInMyList() {
-      inMyList.value ? removeEntryFromMyList(ref, episode.uuid) : addEpisodeToMyList(ref, episode.id);
+      if (inMyList.value) {
+        ref.read(gqlClientProvider).mutate$removeEntryFromMyList(Options$Mutation$removeEntryFromMyList(
+              variables: Variables$Mutation$removeEntryFromMyList(entryId: episode.uuid),
+            ));
+      } else {
+        ref.read(gqlClientProvider).mutate$addEpisodeToMyList(Options$Mutation$addEpisodeToMyList(
+              variables: Variables$Mutation$addEpisodeToMyList(episodeId: episode.id),
+            ));
+      }
       inMyList.value = !inMyList.value;
     }
 
@@ -120,40 +128,6 @@ class EpisodeInfo extends HookConsumerWidget {
           ],
         ),
       ),
-    );
-  }
-
-  Future<String> addEpisodeToMyList(WidgetRef ref, String episodeId) {
-    return ref
-        .read(gqlClientProvider)
-        .mutate$addEpisodeToMyList(Options$Mutation$addEpisodeToMyList(variables: Variables$Mutation$addEpisodeToMyList(episodeId: episodeId)))
-        .then(
-      (result) {
-        if (result.hasException) {
-          throw result.exception!;
-        }
-        if (result.parsedData == null) {
-          throw ErrorDescription('addEpisodeToMyList result is null.');
-        }
-        return result.parsedData!.addEpisodeToMyList.entryId;
-      },
-    );
-  }
-
-  Future<String> removeEntryFromMyList(WidgetRef ref, String entryId) {
-    return ref
-        .read(gqlClientProvider)
-        .mutate$removeEntryFromMyList(Options$Mutation$removeEntryFromMyList(variables: Variables$Mutation$removeEntryFromMyList(entryId: entryId)))
-        .then(
-      (result) {
-        if (result.hasException) {
-          throw result.exception!;
-        }
-        if (result.parsedData == null) {
-          throw ErrorDescription('addEpisodeToMyList result is null.');
-        }
-        return result.parsedData!.removeEntryFromMyList.id;
-      },
     );
   }
 }
