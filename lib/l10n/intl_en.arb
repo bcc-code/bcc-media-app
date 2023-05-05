@@ -171,6 +171,10 @@
   "@contactSupport": {
     "description": "Settings item on profile page"
   },
+  "userVoice": "Suggest a feature",
+  "@userVoice": {
+    "description": "Settings item on profile page to navigate to uservoice"
+  },
   "cancel": "Cancel",
   "@cancel": {
     "description": "General cancel action button"

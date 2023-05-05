@@ -381,6 +381,12 @@ abstract class S {
   /// **'Contact support'**
   String get contactSupport;
 
+  /// Settings item on profile page to navigate to uservoice
+  ///
+  /// In en, this message translates to:
+  /// **'Suggest a feature'**
+  String get userVoice;
+
   /// General cancel action button
   ///
   /// In en, this message translates to:

@@ -134,6 +134,9 @@ class SDe extends S {
   String get contactSupport => 'Support kontaktieren';
 
   @override
+  String get userVoice => 'Suggest a feature';
+
+  @override
   String get cancel => 'Abbrechen';
 
   @override

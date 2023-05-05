@@ -134,6 +134,9 @@ class SDa extends S {
   String get contactSupport => 'Kontakt support';
 
   @override
+  String get userVoice => 'Suggest a feature';
+
+  @override
   String get cancel => 'Annuller';
 
   @override

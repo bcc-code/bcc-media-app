@@ -134,6 +134,9 @@ class SFr extends S {
   String get contactSupport => 'Contacter le support';
 
   @override
+  String get userVoice => 'Suggest a feature';
+
+  @override
   String get cancel => 'Annuler';
 
   @override

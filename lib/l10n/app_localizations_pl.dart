@@ -134,6 +134,9 @@ class SPl extends S {
   String get contactSupport => 'Zgłoś problem';
 
   @override
+  String get userVoice => 'Suggest a feature';
+
+  @override
   String get cancel => 'Anuluj';
 
   @override

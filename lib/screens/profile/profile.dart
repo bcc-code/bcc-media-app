@@ -33,13 +33,20 @@ class Profile extends ConsumerStatefulWidget {
 class _ProfileState extends ConsumerState<Profile> {
   List<OptionButton> get _supportButtons {
     return [
-      if (!ref.read(authStateProvider).guestMode)
+      if (!ref.read(authStateProvider).guestMode) ...[
         OptionButton(
-            optionName: S.of(context).contactSupport,
-            onPressed: () {
-              context.router.push(const ContactSupportRoute());
-            })
-      else
+          optionName: S.of(context).contactSupport,
+          onPressed: () {
+            context.router.push(const ContactSupportRoute());
+          },
+        ),
+        OptionButton(
+          optionName: S.of(context).userVoice,
+          onPressed: () {
+            launchUrlString('https://uservoice.bcc.no/?tags=bcc-media', mode: LaunchMode.externalApplication);
+          },
+        )
+      ] else
         OptionButton(
           optionName: S.of(context).contactSupport,
           onPressed: () => _contactSupportEmail(),

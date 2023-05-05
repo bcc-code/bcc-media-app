@@ -134,6 +134,9 @@ class SHu extends S {
   String get contactSupport => 'Vedd fel a kapcsolatot a supporttal';
 
   @override
+  String get userVoice => 'Suggest a feature';
+
+  @override
   String get cancel => 'Mégse';
 
   @override
