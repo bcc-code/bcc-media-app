@@ -1,16 +1,59 @@
-query FetchEpisode($id: ID!) {
-  episode(id: $id) {
+query FetchEpisode($id: ID!, $context: EpisodeContext) {
+  episode(id: $id, context: $context) {
     id
     uuid
+    status
     title
     number
     description
     extraDescription
+    type
     image
     duration
     progress
     shareRestriction
     ageRating
+    season {
+      id
+      number
+      title
+      show {
+        id
+        title
+      }
+    }
+    context {
+      ... on ContextCollection {
+        items {
+          items {
+            item {
+              ...SeasonListEpisode
+            }
+          }
+        }
+      }
+      ... on Season {
+        id
+        title
+        number
+        episodes(first: 70) {
+          items {
+            ...SeasonListEpisode
+          }
+        }
+        show {
+          id
+          title
+          type
+          seasons {
+            items {
+              id
+              title
+            }
+          }
+        }
+      }
+    }
     relatedItems {
       items {
         ...GridSectionItem
@@ -24,27 +67,6 @@ query FetchEpisode($id: ID!) {
     lessons {
       items {
         id
-      }
-    }
-    season {
-      id
-      title
-      number
-      episodes(first: 70) {
-        items {
-          ...SeasonListEpisode
-        }
-      }
-      show {
-        id
-        title
-        type
-        seasons {
-          items {
-            id
-            title
-          }
-        }
       }
     }
     inMyList

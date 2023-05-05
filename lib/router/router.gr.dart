@@ -205,6 +205,7 @@ class AppRouter extends _i25.RootStackRouter {
                 autoplay: queryParams.optBool('autoplay'),
                 queryParamStartPosition: queryParams.optInt('t'),
                 hideBottomSection: queryParams.optBool('hide_bottom_section'),
+                collectionId: queryParams.optString('collectionId'),
               ));
       return _i25.CustomPage<void>(
         routeData: routeData,
@@ -214,6 +215,7 @@ class AppRouter extends _i25.RootStackRouter {
           autoplay: args.autoplay,
           queryParamStartPosition: args.queryParamStartPosition,
           hideBottomSection: args.hideBottomSection,
+          collectionId: args.collectionId,
         ),
         transitionsBuilder: _i28.CustomTransitionsBuilders.slideLeft,
         durationInMilliseconds: 300,
@@ -332,6 +334,7 @@ class AppRouter extends _i25.RootStackRouter {
                 autoplay: queryParams.optBool('autoplay'),
                 queryParamStartPosition: queryParams.optInt('t'),
                 hideBottomSection: queryParams.optBool('hide_bottom_section'),
+                collectionId: queryParams.optString('collectionId'),
               ));
       return _i25.CustomPage<void>(
         routeData: routeData,
@@ -341,6 +344,7 @@ class AppRouter extends _i25.RootStackRouter {
           autoplay: args.autoplay,
           queryParamStartPosition: args.queryParamStartPosition,
           hideBottomSection: args.hideBottomSection,
+          collectionId: args.collectionId,
         ),
         transitionsBuilder: _i28.CustomTransitionsBuilders.slideLeft,
         durationInMilliseconds: 300,
@@ -792,6 +796,7 @@ class EmbedScreen extends _i25.PageRouteInfo<EmbedScreenArgs> {
     bool? autoplay,
     int? queryParamStartPosition,
     bool? hideBottomSection,
+    String? collectionId,
   }) : super(
           EmbedScreen.name,
           path: '/embed/:episodeId',
@@ -801,12 +806,14 @@ class EmbedScreen extends _i25.PageRouteInfo<EmbedScreenArgs> {
             autoplay: autoplay,
             queryParamStartPosition: queryParamStartPosition,
             hideBottomSection: hideBottomSection,
+            collectionId: collectionId,
           ),
           rawPathParams: {'episodeId': episodeId},
           rawQueryParams: {
             'autoplay': autoplay,
             't': queryParamStartPosition,
             'hide_bottom_section': hideBottomSection,
+            'collectionId': collectionId,
           },
         );
 
@@ -820,6 +827,7 @@ class EmbedScreenArgs {
     this.autoplay,
     this.queryParamStartPosition,
     this.hideBottomSection,
+    this.collectionId,
   });
 
   final _i29.Key? key;
@@ -832,9 +840,11 @@ class EmbedScreenArgs {
 
   final bool? hideBottomSection;
 
+  final String? collectionId;
+
   @override
   String toString() {
-    return 'EmbedScreenArgs{key: $key, episodeId: $episodeId, autoplay: $autoplay, queryParamStartPosition: $queryParamStartPosition, hideBottomSection: $hideBottomSection}';
+    return 'EmbedScreenArgs{key: $key, episodeId: $episodeId, autoplay: $autoplay, queryParamStartPosition: $queryParamStartPosition, hideBottomSection: $hideBottomSection, collectionId: $collectionId}';
   }
 }
 
@@ -1045,6 +1055,7 @@ class EpisodeScreenRoute extends _i25.PageRouteInfo<EpisodeScreenRouteArgs> {
     bool? autoplay,
     int? queryParamStartPosition,
     bool? hideBottomSection,
+    String? collectionId,
   }) : super(
           EpisodeScreenRoute.name,
           path: 'episode/:episodeId',
@@ -1054,12 +1065,14 @@ class EpisodeScreenRoute extends _i25.PageRouteInfo<EpisodeScreenRouteArgs> {
             autoplay: autoplay,
             queryParamStartPosition: queryParamStartPosition,
             hideBottomSection: hideBottomSection,
+            collectionId: collectionId,
           ),
           rawPathParams: {'episodeId': episodeId},
           rawQueryParams: {
             'autoplay': autoplay,
             't': queryParamStartPosition,
             'hide_bottom_section': hideBottomSection,
+            'collectionId': collectionId,
           },
         );
 
@@ -1073,6 +1086,7 @@ class EpisodeScreenRouteArgs {
     this.autoplay,
     this.queryParamStartPosition,
     this.hideBottomSection,
+    this.collectionId,
   });
 
   final _i29.Key? key;
@@ -1085,9 +1099,11 @@ class EpisodeScreenRouteArgs {
 
   final bool? hideBottomSection;
 
+  final String? collectionId;
+
   @override
   String toString() {
-    return 'EpisodeScreenRouteArgs{key: $key, episodeId: $episodeId, autoplay: $autoplay, queryParamStartPosition: $queryParamStartPosition, hideBottomSection: $hideBottomSection}';
+    return 'EpisodeScreenRouteArgs{key: $key, episodeId: $episodeId, autoplay: $autoplay, queryParamStartPosition: $queryParamStartPosition, hideBottomSection: $hideBottomSection, collectionId: $collectionId}';
   }
 }
 

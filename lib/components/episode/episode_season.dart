@@ -21,7 +21,7 @@ class EpisodeSeason extends HookConsumerWidget {
   });
 
   final String episodeId;
-  final Query$FetchEpisode$episode$season season;
+  final Query$FetchEpisode$episode$context$$Season season;
   final void Function(String id) onEpisodeTap; // TODO: implement
 
   @override

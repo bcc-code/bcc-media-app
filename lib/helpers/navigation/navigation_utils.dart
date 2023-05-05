@@ -113,7 +113,7 @@ Future overrideAwareNavigation(NavigationOverride? override, StackRouter router,
   }
 }
 
-Future<dynamic>? handleSectionItemClick(BuildContext context, Fragment$ItemSectionItem$item item) {
+Future<dynamic>? handleSectionItemClick(BuildContext context, Fragment$ItemSectionItem$item item, {String? collectionId}) {
   final ref = ProviderScope.containerOf(context, listen: false);
   final analytics = ref.read(analyticsProvider);
   analytics.sectionItemClicked(context);
@@ -124,7 +124,7 @@ Future<dynamic>? handleSectionItemClick(BuildContext context, Fragment$ItemSecti
   if (episodeItem != null) {
     final isLive = ref.read(currentLiveEpisodeProvider)?.episode?.id == episodeItem.id;
     if (!episodeItem.locked) {
-      return overrideAwareNavigation(navigationOverride, router, EpisodeScreenRoute(episodeId: episodeItem.id));
+      return overrideAwareNavigation(navigationOverride, router, EpisodeScreenRoute(episodeId: episodeItem.id, collectionId: collectionId));
     } else if (isLive) {
       return router.navigate(const LiveScreenRoute());
     }
@@ -132,7 +132,7 @@ Future<dynamic>? handleSectionItemClick(BuildContext context, Fragment$ItemSecti
 
   var showItem = item.asOrNull<Fragment$ItemSectionItem$item$$Show>();
   if (showItem != null) {
-    return overrideAwareNavigation(navigationOverride, router, EpisodeScreenRoute(episodeId: showItem.defaultEpisode.id));
+    return overrideAwareNavigation(navigationOverride, router, EpisodeScreenRoute(episodeId: showItem.defaultEpisode.id, collectionId: collectionId));
   }
 
   var pageItem = item.asOrNull<Fragment$ItemSectionItem$item$$Page>();

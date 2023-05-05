@@ -56,7 +56,7 @@ class SSl extends S {
   String get signInButton => 'Vpis';
 
   @override
-  String get signInOrSignUp => 'Sign up / Sign in';
+  String get signInOrSignUp => 'Registracija / Prijava';
 
   @override
   String get signUpButton => 'Prijavi se zdaj';
@@ -68,7 +68,7 @@ class SSl extends S {
   String get signUpDescription => 'Z ustvarjenim računom dobiš dostop do več vsebin in boljših funkcij.';
 
   @override
-  String get signUpAgreePrivacyPolicy => 'I certify that I am 13 years of age or older, and I agree to the <a>Privacy Policy</a> and <a>Terms of use</a>.';
+  String get signUpAgreePrivacyPolicy => 'Potrjujem, da sem star 13 let ali več, in se strinjam s <a>Pravili zasebnosti</a> in <a>Pogoji uporabe</a>.';
 
   @override
   String get setPassword => 'Nastavi geslo';
@@ -98,7 +98,7 @@ class SSl extends S {
   String get ok => 'OK';
 
   @override
-  String get open => 'Open';
+  String get open => 'Odpri';
 
   @override
   String get loginFailedCheckNetwork => 'Napaka pri prijavi. Preverite internetno povezavo in poskusite znova.';
@@ -140,16 +140,16 @@ class SSl extends S {
   String get cancel => 'Prekliči';
 
   @override
-  String get cancelConfirmation => 'Are you sure you want to cancel?';
+  String get cancelConfirmation => 'Ali si prepričan, da želiš preklicati?';
 
   @override
-  String get cancelConfirmationDescription => 'Any unsaved changes will be lost.';
+  String get cancelConfirmationDescription => 'Neshranjene spremembe bodo izgubljene.';
 
   @override
-  String get goBack => 'Go back';
+  String get goBack => 'Nazaj';
 
   @override
-  String get yesCancel => 'Yes, Cancel';
+  String get yesCancel => 'Ja, prekliči';
 
   @override
   String get upNext => 'Sledi';
@@ -191,7 +191,7 @@ class SSl extends S {
   String get search => 'Išči';
 
   @override
-  String get sendFeedback => 'Send Feedback';
+  String get sendFeedback => 'Povratne informacije';
 
   @override
   String get noResults => 'Ni najdenih rezultatov';
@@ -403,10 +403,10 @@ class SSl extends S {
   String get share => 'Deli';
 
   @override
-  String get showMore => 'Show more';
+  String get showMore => 'Pokaži več';
 
   @override
-  String get showLess => 'Show less';
+  String get showLess => 'Pokaži manj';
 
   @override
   String get liveNow => 'V živo';
@@ -586,18 +586,18 @@ class SSl extends S {
   String get continueButton => 'Nadaljuj';
 
   @override
-  String get registerButton => 'Register';
+  String get registerButton => 'Registracija';
 
   @override
   String get achievements => 'Dosežki';
 
   @override
   String passwordConditionLength(int n) {
-    return 'Minimum $n characters';
+    return 'Najmanj $n znakov';
   }
 
   @override
-  String get passwordConditionComplexity => 'Must contain lower case, uppercase and numbers.';
+  String get passwordConditionComplexity => 'Vsebovati mora male in velike črke ter številke.';
 
   @override
   String get oops => 'Oops!';
@@ -630,10 +630,10 @@ class SSl extends S {
   String get selectSeason => 'Izberi sezono';
 
   @override
-  String get deleteMyAccount => 'Delete my account';
+  String get deleteMyAccount => 'Izbriši moj račun';
 
   @override
-  String get iAmSureIWantToDelete => 'I am sure I want to delete my account and my data related to the BCC Media app.';
+  String get iAmSureIWantToDelete => 'Prepričan sem, da želim izbrisati svoj račun in podatke, povezane z aplikacijo BCC Media.';
 
   @override
   String get areYouSure => 'Si prepričan?';
