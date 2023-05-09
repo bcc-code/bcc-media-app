@@ -813,7 +813,7 @@
       }
     }
   },
-  "passwordConditionComplexity": "Must contain lower case, uppercase and numbers.",
+  "passwordConditionComplexity": "Deve conter minúsculas, maiúsculas e números.",
   "@passwordConditionComplexity": {
     "description": "Password condition, shown when signing up."
   },
@@ -845,11 +845,11 @@
   "@selectSeason": {
     "description": "A title prompting to select a season from the list."
   },
-  "deleteMyAccount": "Delete my account",
+  "deleteMyAccount": "Excluir minha conta",
   "@deleteMyAccount": {
     "description": "Button to request to delete your account"
   },
-  "iAmSureIWantToDelete": "I am sure I want to delete my account and my data related to the BCC Media app.",
+  "iAmSureIWantToDelete": "Tenho certeza de que quero excluir minha conta e meus dados relacionados ao aplicativo BCC Media.",
   "@iAmSureIWantToDelete": {
     "description": "Text next to a switch/toggle button, confirming that you want to delete your account."
   },
