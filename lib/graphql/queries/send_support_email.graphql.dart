@@ -344,7 +344,7 @@ Mutation$sendSupportEmail _parserFn$Mutation$sendSupportEmail(
         Map<String, dynamic> data) =>
     Mutation$sendSupportEmail.fromJson(data);
 typedef OnMutationCompleted$Mutation$sendSupportEmail = FutureOr<void> Function(
-  dynamic,
+  Map<String, dynamic>?,
   Mutation$sendSupportEmail?,
 );
 
@@ -357,6 +357,7 @@ class Options$Mutation$sendSupportEmail
     graphql.ErrorPolicy? errorPolicy,
     graphql.CacheRereadPolicy? cacheRereadPolicy,
     Object? optimisticResult,
+    Mutation$sendSupportEmail? typedOptimisticResult,
     graphql.Context? context,
     OnMutationCompleted$Mutation$sendSupportEmail? onCompleted,
     graphql.OnMutationUpdate<Mutation$sendSupportEmail>? update,
@@ -368,7 +369,7 @@ class Options$Mutation$sendSupportEmail
           fetchPolicy: fetchPolicy,
           errorPolicy: errorPolicy,
           cacheRereadPolicy: cacheRereadPolicy,
-          optimisticResult: optimisticResult,
+          optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
           context: context,
           onCompleted: onCompleted == null
               ? null
@@ -404,6 +405,7 @@ class WatchOptions$Mutation$sendSupportEmail
     graphql.ErrorPolicy? errorPolicy,
     graphql.CacheRereadPolicy? cacheRereadPolicy,
     Object? optimisticResult,
+    Mutation$sendSupportEmail? typedOptimisticResult,
     graphql.Context? context,
     Duration? pollInterval,
     bool? eagerlyFetchResults,
@@ -415,7 +417,7 @@ class WatchOptions$Mutation$sendSupportEmail
           fetchPolicy: fetchPolicy,
           errorPolicy: errorPolicy,
           cacheRereadPolicy: cacheRereadPolicy,
-          optimisticResult: optimisticResult,
+          optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
           context: context,
           document: documentNodeMutationsendSupportEmail,
           pollInterval: pollInterval,
@@ -453,9 +455,10 @@ Mutation$sendSupportEmail$HookResult useMutation$sendSupportEmail(
   final result = graphql_flutter
       .useMutation(options ?? WidgetOptions$Mutation$sendSupportEmail());
   return Mutation$sendSupportEmail$HookResult(
-    (variables, {optimisticResult}) => result.runMutation(
+    (variables, {optimisticResult, typedOptimisticResult}) =>
+        result.runMutation(
       variables.toJson(),
-      optimisticResult: optimisticResult,
+      optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
     ),
     result.result,
   );
@@ -474,6 +477,7 @@ class WidgetOptions$Mutation$sendSupportEmail
     graphql.ErrorPolicy? errorPolicy,
     graphql.CacheRereadPolicy? cacheRereadPolicy,
     Object? optimisticResult,
+    Mutation$sendSupportEmail? typedOptimisticResult,
     graphql.Context? context,
     OnMutationCompleted$Mutation$sendSupportEmail? onCompleted,
     graphql.OnMutationUpdate<Mutation$sendSupportEmail>? update,
@@ -484,7 +488,7 @@ class WidgetOptions$Mutation$sendSupportEmail
           fetchPolicy: fetchPolicy,
           errorPolicy: errorPolicy,
           cacheRereadPolicy: cacheRereadPolicy,
-          optimisticResult: optimisticResult,
+          optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
           context: context,
           onCompleted: onCompleted == null
               ? null
@@ -515,6 +519,7 @@ typedef RunMutation$Mutation$sendSupportEmail
     = graphql.MultiSourceResult<Mutation$sendSupportEmail> Function(
   Variables$Mutation$sendSupportEmail, {
   Object? optimisticResult,
+  Mutation$sendSupportEmail? typedOptimisticResult,
 });
 typedef Builder$Mutation$sendSupportEmail = widgets.Widget Function(
   RunMutation$Mutation$sendSupportEmail,
@@ -538,10 +543,12 @@ class Mutation$sendSupportEmail$Widget
             (
               variables, {
               optimisticResult,
+              typedOptimisticResult,
             }) =>
                 run(
               variables.toJson(),
-              optimisticResult: optimisticResult,
+              optimisticResult:
+                  optimisticResult ?? typedOptimisticResult?.toJson(),
             ),
             result,
           ),

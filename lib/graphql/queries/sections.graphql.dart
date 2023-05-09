@@ -1,4 +1,5 @@
 import '../schema/pages.graphql.dart';
+import 'dart:async';
 import 'package:flutter/widgets.dart' as widgets;
 import 'package:gql/ast.dart';
 import 'package:graphql/client.dart' as graphql;
@@ -444,6 +445,11 @@ const documentNodeQueryFetchMoreItemsForItemSection =
 Query$FetchMoreItemsForItemSection _parserFn$Query$FetchMoreItemsForItemSection(
         Map<String, dynamic> data) =>
     Query$FetchMoreItemsForItemSection.fromJson(data);
+typedef OnQueryComplete$Query$FetchMoreItemsForItemSection = FutureOr<void>
+    Function(
+  Map<String, dynamic>?,
+  Query$FetchMoreItemsForItemSection?,
+);
 
 class Options$Query$FetchMoreItemsForItemSection
     extends graphql.QueryOptions<Query$FetchMoreItemsForItemSection> {
@@ -454,20 +460,44 @@ class Options$Query$FetchMoreItemsForItemSection
     graphql.ErrorPolicy? errorPolicy,
     graphql.CacheRereadPolicy? cacheRereadPolicy,
     Object? optimisticResult,
+    Query$FetchMoreItemsForItemSection? typedOptimisticResult,
     Duration? pollInterval,
     graphql.Context? context,
-  }) : super(
+    OnQueryComplete$Query$FetchMoreItemsForItemSection? onComplete,
+    graphql.OnQueryError? onError,
+  })  : onCompleteWithParsed = onComplete,
+        super(
           variables: variables.toJson(),
           operationName: operationName,
           fetchPolicy: fetchPolicy,
           errorPolicy: errorPolicy,
           cacheRereadPolicy: cacheRereadPolicy,
-          optimisticResult: optimisticResult,
+          optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
           pollInterval: pollInterval,
           context: context,
+          onComplete: onComplete == null
+              ? null
+              : (data) => onComplete(
+                    data,
+                    data == null
+                        ? null
+                        : _parserFn$Query$FetchMoreItemsForItemSection(data),
+                  ),
+          onError: onError,
           document: documentNodeQueryFetchMoreItemsForItemSection,
           parserFn: _parserFn$Query$FetchMoreItemsForItemSection,
         );
+
+  final OnQueryComplete$Query$FetchMoreItemsForItemSection?
+      onCompleteWithParsed;
+
+  @override
+  List<Object?> get properties => [
+        ...super.onComplete == null
+            ? super.properties
+            : super.properties.where((property) => property != onComplete),
+        onCompleteWithParsed,
+      ];
 }
 
 class WatchOptions$Query$FetchMoreItemsForItemSection
@@ -479,6 +509,7 @@ class WatchOptions$Query$FetchMoreItemsForItemSection
     graphql.ErrorPolicy? errorPolicy,
     graphql.CacheRereadPolicy? cacheRereadPolicy,
     Object? optimisticResult,
+    Query$FetchMoreItemsForItemSection? typedOptimisticResult,
     graphql.Context? context,
     Duration? pollInterval,
     bool? eagerlyFetchResults,
@@ -490,7 +521,7 @@ class WatchOptions$Query$FetchMoreItemsForItemSection
           fetchPolicy: fetchPolicy,
           errorPolicy: errorPolicy,
           cacheRereadPolicy: cacheRereadPolicy,
-          optimisticResult: optimisticResult,
+          optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
           context: context,
           document: documentNodeQueryFetchMoreItemsForItemSection,
           pollInterval: pollInterval,
@@ -739,6 +770,277 @@ extension UtilityExtension$Query$FetchMoreItemsForItemSection$section
             this,
             (i) => i,
           );
+  _T when<_T>({
+    required _T Function(
+            Query$FetchMoreItemsForItemSection$section$$PosterSection)
+        posterSection,
+    required _T Function(
+            Query$FetchMoreItemsForItemSection$section$$FeaturedSection)
+        featuredSection,
+    required _T Function(
+            Query$FetchMoreItemsForItemSection$section$$DefaultSection)
+        defaultSection,
+    required _T Function(
+            Query$FetchMoreItemsForItemSection$section$$CardSection)
+        cardSection,
+    required _T Function(
+            Query$FetchMoreItemsForItemSection$section$$ListSection)
+        listSection,
+    required _T Function(
+            Query$FetchMoreItemsForItemSection$section$$CardListSection)
+        cardListSection,
+    required _T Function(
+            Query$FetchMoreItemsForItemSection$section$$DefaultGridSection)
+        defaultGridSection,
+    required _T Function(
+            Query$FetchMoreItemsForItemSection$section$$PosterGridSection)
+        posterGridSection,
+    required _T Function(
+            Query$FetchMoreItemsForItemSection$section$$IconGridSection)
+        iconGridSection,
+    required _T Function(
+            Query$FetchMoreItemsForItemSection$section$$IconSection)
+        iconSection,
+    required _T Function(
+            Query$FetchMoreItemsForItemSection$section$$LabelSection)
+        labelSection,
+    required _T Function(Query$FetchMoreItemsForItemSection$section$$WebSection)
+        webSection,
+    required _T Function(
+            Query$FetchMoreItemsForItemSection$section$$MessageSection)
+        messageSection,
+    required _T Function(
+            Query$FetchMoreItemsForItemSection$section$$PageDetailsSection)
+        pageDetailsSection,
+    required _T Function(
+            Query$FetchMoreItemsForItemSection$section$$AchievementSection)
+        achievementSection,
+    required _T Function() orElse,
+  }) {
+    switch ($__typename) {
+      case "PosterSection":
+        return posterSection(
+            this as Query$FetchMoreItemsForItemSection$section$$PosterSection);
+
+      case "FeaturedSection":
+        return featuredSection(this
+            as Query$FetchMoreItemsForItemSection$section$$FeaturedSection);
+
+      case "DefaultSection":
+        return defaultSection(
+            this as Query$FetchMoreItemsForItemSection$section$$DefaultSection);
+
+      case "CardSection":
+        return cardSection(
+            this as Query$FetchMoreItemsForItemSection$section$$CardSection);
+
+      case "ListSection":
+        return listSection(
+            this as Query$FetchMoreItemsForItemSection$section$$ListSection);
+
+      case "CardListSection":
+        return cardListSection(this
+            as Query$FetchMoreItemsForItemSection$section$$CardListSection);
+
+      case "DefaultGridSection":
+        return defaultGridSection(this
+            as Query$FetchMoreItemsForItemSection$section$$DefaultGridSection);
+
+      case "PosterGridSection":
+        return posterGridSection(this
+            as Query$FetchMoreItemsForItemSection$section$$PosterGridSection);
+
+      case "IconGridSection":
+        return iconGridSection(this
+            as Query$FetchMoreItemsForItemSection$section$$IconGridSection);
+
+      case "IconSection":
+        return iconSection(
+            this as Query$FetchMoreItemsForItemSection$section$$IconSection);
+
+      case "LabelSection":
+        return labelSection(
+            this as Query$FetchMoreItemsForItemSection$section$$LabelSection);
+
+      case "WebSection":
+        return webSection(
+            this as Query$FetchMoreItemsForItemSection$section$$WebSection);
+
+      case "MessageSection":
+        return messageSection(
+            this as Query$FetchMoreItemsForItemSection$section$$MessageSection);
+
+      case "PageDetailsSection":
+        return pageDetailsSection(this
+            as Query$FetchMoreItemsForItemSection$section$$PageDetailsSection);
+
+      case "AchievementSection":
+        return achievementSection(this
+            as Query$FetchMoreItemsForItemSection$section$$AchievementSection);
+
+      default:
+        return orElse();
+    }
+  }
+
+  _T maybeWhen<_T>({
+    _T Function(Query$FetchMoreItemsForItemSection$section$$PosterSection)?
+        posterSection,
+    _T Function(Query$FetchMoreItemsForItemSection$section$$FeaturedSection)?
+        featuredSection,
+    _T Function(Query$FetchMoreItemsForItemSection$section$$DefaultSection)?
+        defaultSection,
+    _T Function(Query$FetchMoreItemsForItemSection$section$$CardSection)?
+        cardSection,
+    _T Function(Query$FetchMoreItemsForItemSection$section$$ListSection)?
+        listSection,
+    _T Function(Query$FetchMoreItemsForItemSection$section$$CardListSection)?
+        cardListSection,
+    _T Function(Query$FetchMoreItemsForItemSection$section$$DefaultGridSection)?
+        defaultGridSection,
+    _T Function(Query$FetchMoreItemsForItemSection$section$$PosterGridSection)?
+        posterGridSection,
+    _T Function(Query$FetchMoreItemsForItemSection$section$$IconGridSection)?
+        iconGridSection,
+    _T Function(Query$FetchMoreItemsForItemSection$section$$IconSection)?
+        iconSection,
+    _T Function(Query$FetchMoreItemsForItemSection$section$$LabelSection)?
+        labelSection,
+    _T Function(Query$FetchMoreItemsForItemSection$section$$WebSection)?
+        webSection,
+    _T Function(Query$FetchMoreItemsForItemSection$section$$MessageSection)?
+        messageSection,
+    _T Function(Query$FetchMoreItemsForItemSection$section$$PageDetailsSection)?
+        pageDetailsSection,
+    _T Function(Query$FetchMoreItemsForItemSection$section$$AchievementSection)?
+        achievementSection,
+    required _T Function() orElse,
+  }) {
+    switch ($__typename) {
+      case "PosterSection":
+        if (posterSection != null) {
+          return posterSection(this
+              as Query$FetchMoreItemsForItemSection$section$$PosterSection);
+        } else {
+          return orElse();
+        }
+
+      case "FeaturedSection":
+        if (featuredSection != null) {
+          return featuredSection(this
+              as Query$FetchMoreItemsForItemSection$section$$FeaturedSection);
+        } else {
+          return orElse();
+        }
+
+      case "DefaultSection":
+        if (defaultSection != null) {
+          return defaultSection(this
+              as Query$FetchMoreItemsForItemSection$section$$DefaultSection);
+        } else {
+          return orElse();
+        }
+
+      case "CardSection":
+        if (cardSection != null) {
+          return cardSection(
+              this as Query$FetchMoreItemsForItemSection$section$$CardSection);
+        } else {
+          return orElse();
+        }
+
+      case "ListSection":
+        if (listSection != null) {
+          return listSection(
+              this as Query$FetchMoreItemsForItemSection$section$$ListSection);
+        } else {
+          return orElse();
+        }
+
+      case "CardListSection":
+        if (cardListSection != null) {
+          return cardListSection(this
+              as Query$FetchMoreItemsForItemSection$section$$CardListSection);
+        } else {
+          return orElse();
+        }
+
+      case "DefaultGridSection":
+        if (defaultGridSection != null) {
+          return defaultGridSection(this
+              as Query$FetchMoreItemsForItemSection$section$$DefaultGridSection);
+        } else {
+          return orElse();
+        }
+
+      case "PosterGridSection":
+        if (posterGridSection != null) {
+          return posterGridSection(this
+              as Query$FetchMoreItemsForItemSection$section$$PosterGridSection);
+        } else {
+          return orElse();
+        }
+
+      case "IconGridSection":
+        if (iconGridSection != null) {
+          return iconGridSection(this
+              as Query$FetchMoreItemsForItemSection$section$$IconGridSection);
+        } else {
+          return orElse();
+        }
+
+      case "IconSection":
+        if (iconSection != null) {
+          return iconSection(
+              this as Query$FetchMoreItemsForItemSection$section$$IconSection);
+        } else {
+          return orElse();
+        }
+
+      case "LabelSection":
+        if (labelSection != null) {
+          return labelSection(
+              this as Query$FetchMoreItemsForItemSection$section$$LabelSection);
+        } else {
+          return orElse();
+        }
+
+      case "WebSection":
+        if (webSection != null) {
+          return webSection(
+              this as Query$FetchMoreItemsForItemSection$section$$WebSection);
+        } else {
+          return orElse();
+        }
+
+      case "MessageSection":
+        if (messageSection != null) {
+          return messageSection(this
+              as Query$FetchMoreItemsForItemSection$section$$MessageSection);
+        } else {
+          return orElse();
+        }
+
+      case "PageDetailsSection":
+        if (pageDetailsSection != null) {
+          return pageDetailsSection(this
+              as Query$FetchMoreItemsForItemSection$section$$PageDetailsSection);
+        } else {
+          return orElse();
+        }
+
+      case "AchievementSection":
+        if (achievementSection != null) {
+          return achievementSection(this
+              as Query$FetchMoreItemsForItemSection$section$$AchievementSection);
+        } else {
+          return orElse();
+        }
+
+      default:
+        return orElse();
+    }
+  }
 }
 
 abstract class CopyWith$Query$FetchMoreItemsForItemSection$section<TRes> {
@@ -1836,6 +2138,131 @@ extension UtilityExtension$Query$FetchMoreItemsForItemSection$section$$PosterSec
             this,
             (i) => i,
           );
+  _T when<_T>({
+    required _T Function(
+            Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Link)
+        link,
+    required _T Function(
+            Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Page)
+        page,
+    required _T Function(
+            Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Episode)
+        episode,
+    required _T Function(
+            Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Show)
+        show,
+    required _T Function(
+            Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Season)
+        season,
+    required _T Function(
+            Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$StudyTopic)
+        studyTopic,
+    required _T Function() orElse,
+  }) {
+    switch ($__typename) {
+      case "Link":
+        return link(this
+            as Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Link);
+
+      case "Page":
+        return page(this
+            as Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Page);
+
+      case "Episode":
+        return episode(this
+            as Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Episode);
+
+      case "Show":
+        return show(this
+            as Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Show);
+
+      case "Season":
+        return season(this
+            as Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Season);
+
+      case "StudyTopic":
+        return studyTopic(this
+            as Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$StudyTopic);
+
+      default:
+        return orElse();
+    }
+  }
+
+  _T maybeWhen<_T>({
+    _T Function(
+            Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Link)?
+        link,
+    _T Function(
+            Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Page)?
+        page,
+    _T Function(
+            Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Episode)?
+        episode,
+    _T Function(
+            Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Show)?
+        show,
+    _T Function(
+            Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Season)?
+        season,
+    _T Function(
+            Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$StudyTopic)?
+        studyTopic,
+    required _T Function() orElse,
+  }) {
+    switch ($__typename) {
+      case "Link":
+        if (link != null) {
+          return link(this
+              as Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Link);
+        } else {
+          return orElse();
+        }
+
+      case "Page":
+        if (page != null) {
+          return page(this
+              as Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Page);
+        } else {
+          return orElse();
+        }
+
+      case "Episode":
+        if (episode != null) {
+          return episode(this
+              as Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Episode);
+        } else {
+          return orElse();
+        }
+
+      case "Show":
+        if (show != null) {
+          return show(this
+              as Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Show);
+        } else {
+          return orElse();
+        }
+
+      case "Season":
+        if (season != null) {
+          return season(this
+              as Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$Season);
+        } else {
+          return orElse();
+        }
+
+      case "StudyTopic":
+        if (studyTopic != null) {
+          return studyTopic(this
+              as Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item$$StudyTopic);
+        } else {
+          return orElse();
+        }
+
+      default:
+        return orElse();
+    }
+  }
 }
 
 abstract class CopyWith$Query$FetchMoreItemsForItemSection$section$$PosterSection$items$items$item<
@@ -4455,6 +4882,131 @@ extension UtilityExtension$Query$FetchMoreItemsForItemSection$section$$FeaturedS
             this,
             (i) => i,
           );
+  _T when<_T>({
+    required _T Function(
+            Query$FetchMoreItemsForItemSection$section$$FeaturedSection$items$items$item$$Link)
+        link,
+    required _T Function(
+            Query$FetchMoreItemsForItemSection$section$$FeaturedSection$items$items$item$$Page)
+        page,
+    required _T Function(
+            Query$FetchMoreItemsForItemSection$section$$FeaturedSection$items$items$item$$Episode)
+        episode,
+    required _T Function(
+            Query$FetchMoreItemsForItemSection$section$$FeaturedSection$items$items$item$$Show)
+        show,
+    required _T Function(
+            Query$FetchMoreItemsForItemSection$section$$FeaturedSection$items$items$item$$Season)
+        season,
+    required _T Function(
+            Query$FetchMoreItemsForItemSection$section$$FeaturedSection$items$items$item$$StudyTopic)
+        studyTopic,
+    required _T Function() orElse,
+  }) {
+    switch ($__typename) {
+      case "Link":
+        return link(this
+            as Query$FetchMoreItemsForItemSection$section$$FeaturedSection$items$items$item$$Link);
+
+      case "Page":
+        return page(this
+            as Query$FetchMoreItemsForItemSection$section$$FeaturedSection$items$items$item$$Page);
+
+      case "Episode":
+        return episode(this
+            as Query$FetchMoreItemsForItemSection$section$$FeaturedSection$items$items$item$$Episode);
+
+      case "Show":
+        return show(this
+            as Query$FetchMoreItemsForItemSection$section$$FeaturedSection$items$items$item$$Show);
+
+      case "Season":
+        return season(this
+            as Query$FetchMoreItemsForItemSection$section$$FeaturedSection$items$items$item$$Season);
+
+      case "StudyTopic":
+        return studyTopic(this
+            as Query$FetchMoreItemsForItemSection$section$$FeaturedSection$items$items$item$$StudyTopic);
+
+      default:
+        return orElse();
+    }
+  }
+
+  _T maybeWhen<_T>({
+    _T Function(
+            Query$FetchMoreItemsForItemSection$section$$FeaturedSection$items$items$item$$Link)?
+        link,
+    _T Function(
+            Query$FetchMoreItemsForItemSection$section$$FeaturedSection$items$items$item$$Page)?
+        page,
+    _T Function(
+            Query$FetchMoreItemsForItemSection$section$$FeaturedSection$items$items$item$$Episode)?
+        episode,
+    _T Function(
+            Query$FetchMoreItemsForItemSection$section$$FeaturedSection$items$items$item$$Show)?
+        show,
+    _T Function(
+            Query$FetchMoreItemsForItemSection$section$$FeaturedSection$items$items$item$$Season)?
+        season,
+    _T Function(
+            Query$FetchMoreItemsForItemSection$section$$FeaturedSection$items$items$item$$StudyTopic)?
+        studyTopic,
+    required _T Function() orElse,
+  }) {
+    switch ($__typename) {
+      case "Link":
+        if (link != null) {
+          return link(this
+              as Query$FetchMoreItemsForItemSection$section$$FeaturedSection$items$items$item$$Link);
+        } else {
+          return orElse();
+        }
+
+      case "Page":
+        if (page != null) {
+          return page(this
+              as Query$FetchMoreItemsForItemSection$section$$FeaturedSection$items$items$item$$Page);
+        } else {
+          return orElse();
+        }
+
+      case "Episode":
+        if (episode != null) {
+          return episode(this
+              as Query$FetchMoreItemsForItemSection$section$$FeaturedSection$items$items$item$$Episode);
+        } else {
+          return orElse();
+        }
+
+      case "Show":
+        if (show != null) {
+          return show(this
+              as Query$FetchMoreItemsForItemSection$section$$FeaturedSection$items$items$item$$Show);
+        } else {
+          return orElse();
+        }
+
+      case "Season":
+        if (season != null) {
+          return season(this
+              as Query$FetchMoreItemsForItemSection$section$$FeaturedSection$items$items$item$$Season);
+        } else {
+          return orElse();
+        }
+
+      case "StudyTopic":
+        if (studyTopic != null) {
+          return studyTopic(this
+              as Query$FetchMoreItemsForItemSection$section$$FeaturedSection$items$items$item$$StudyTopic);
+        } else {
+          return orElse();
+        }
+
+      default:
+        return orElse();
+    }
+  }
 }
 
 abstract class CopyWith$Query$FetchMoreItemsForItemSection$section$$FeaturedSection$items$items$item<
@@ -7033,6 +7585,131 @@ extension UtilityExtension$Query$FetchMoreItemsForItemSection$section$$DefaultSe
             this,
             (i) => i,
           );
+  _T when<_T>({
+    required _T Function(
+            Query$FetchMoreItemsForItemSection$section$$DefaultSection$items$items$item$$Link)
+        link,
+    required _T Function(
+            Query$FetchMoreItemsForItemSection$section$$DefaultSection$items$items$item$$Page)
+        page,
+    required _T Function(
+            Query$FetchMoreItemsForItemSection$section$$DefaultSection$items$items$item$$Episode)
+        episode,
+    required _T Function(
+            Query$FetchMoreItemsForItemSection$section$$DefaultSection$items$items$item$$Show)
+        show,
+    required _T Function(
+            Query$FetchMoreItemsForItemSection$section$$DefaultSection$items$items$item$$Season)
+        season,
+    required _T Function(
+            Query$FetchMoreItemsForItemSection$section$$DefaultSection$items$items$item$$StudyTopic)
+        studyTopic,
+    required _T Function() orElse,
+  }) {
+    switch ($__typename) {
+      case "Link":
+        return link(this
+            as Query$FetchMoreItemsForItemSection$section$$DefaultSection$items$items$item$$Link);
+
+      case "Page":
+        return page(this
+            as Query$FetchMoreItemsForItemSection$section$$DefaultSection$items$items$item$$Page);
+
+      case "Episode":
+        return episode(this
+            as Query$FetchMoreItemsForItemSection$section$$DefaultSection$items$items$item$$Episode);
+
+      case "Show":
+        return show(this
+            as Query$FetchMoreItemsForItemSection$section$$DefaultSection$items$items$item$$Show);
+
+      case "Season":
+        return season(this
+            as Query$FetchMoreItemsForItemSection$section$$DefaultSection$items$items$item$$Season);
+
+      case "StudyTopic":
+        return studyTopic(this
+            as Query$FetchMoreItemsForItemSection$section$$DefaultSection$items$items$item$$StudyTopic);
+
+      default:
+        return orElse();
+    }
+  }
+
+  _T maybeWhen<_T>({
+    _T Function(
+            Query$FetchMoreItemsForItemSection$section$$DefaultSection$items$items$item$$Link)?
+        link,
+    _T Function(
+            Query$FetchMoreItemsForItemSection$section$$DefaultSection$items$items$item$$Page)?
+        page,
+    _T Function(
+            Query$FetchMoreItemsForItemSection$section$$DefaultSection$items$items$item$$Episode)?
+        episode,
+    _T Function(
+            Query$FetchMoreItemsForItemSection$section$$DefaultSection$items$items$item$$Show)?
+        show,
+    _T Function(
+            Query$FetchMoreItemsForItemSection$section$$DefaultSection$items$items$item$$Season)?
+        season,
+    _T Function(
+            Query$FetchMoreItemsForItemSection$section$$DefaultSection$items$items$item$$StudyTopic)?
+        studyTopic,
+    required _T Function() orElse,
+  }) {
+    switch ($__typename) {
+      case "Link":
+        if (link != null) {
+          return link(this
+              as Query$FetchMoreItemsForItemSection$section$$DefaultSection$items$items$item$$Link);
+        } else {
+          return orElse();
+        }
+
+      case "Page":
+        if (page != null) {
+          return page(this
+              as Query$FetchMoreItemsForItemSection$section$$DefaultSection$items$items$item$$Page);
+        } else {
+          return orElse();
+        }
+
+      case "Episode":
+        if (episode != null) {
+          return episode(this
+              as Query$FetchMoreItemsForItemSection$section$$DefaultSection$items$items$item$$Episode);
+        } else {
+          return orElse();
+        }
+
+      case "Show":
+        if (show != null) {
+          return show(this
+              as Query$FetchMoreItemsForItemSection$section$$DefaultSection$items$items$item$$Show);
+        } else {
+          return orElse();
+        }
+
+      case "Season":
+        if (season != null) {
+          return season(this
+              as Query$FetchMoreItemsForItemSection$section$$DefaultSection$items$items$item$$Season);
+        } else {
+          return orElse();
+        }
+
+      case "StudyTopic":
+        if (studyTopic != null) {
+          return studyTopic(this
+              as Query$FetchMoreItemsForItemSection$section$$DefaultSection$items$items$item$$StudyTopic);
+        } else {
+          return orElse();
+        }
+
+      default:
+        return orElse();
+    }
+  }
 }
 
 abstract class CopyWith$Query$FetchMoreItemsForItemSection$section$$DefaultSection$items$items$item<
@@ -9619,6 +10296,131 @@ extension UtilityExtension$Query$FetchMoreItemsForItemSection$section$$CardSecti
             this,
             (i) => i,
           );
+  _T when<_T>({
+    required _T Function(
+            Query$FetchMoreItemsForItemSection$section$$CardSection$items$items$item$$Link)
+        link,
+    required _T Function(
+            Query$FetchMoreItemsForItemSection$section$$CardSection$items$items$item$$Page)
+        page,
+    required _T Function(
+            Query$FetchMoreItemsForItemSection$section$$CardSection$items$items$item$$Episode)
+        episode,
+    required _T Function(
+            Query$FetchMoreItemsForItemSection$section$$CardSection$items$items$item$$Show)
+        show,
+    required _T Function(
+            Query$FetchMoreItemsForItemSection$section$$CardSection$items$items$item$$Season)
+        season,
+    required _T Function(
+            Query$FetchMoreItemsForItemSection$section$$CardSection$items$items$item$$StudyTopic)
+        studyTopic,
+    required _T Function() orElse,
+  }) {
+    switch ($__typename) {
+      case "Link":
+        return link(this
+            as Query$FetchMoreItemsForItemSection$section$$CardSection$items$items$item$$Link);
+
+      case "Page":
+        return page(this
+            as Query$FetchMoreItemsForItemSection$section$$CardSection$items$items$item$$Page);
+
+      case "Episode":
+        return episode(this
+            as Query$FetchMoreItemsForItemSection$section$$CardSection$items$items$item$$Episode);
+
+      case "Show":
+        return show(this
+            as Query$FetchMoreItemsForItemSection$section$$CardSection$items$items$item$$Show);
+
+      case "Season":
+        return season(this
+            as Query$FetchMoreItemsForItemSection$section$$CardSection$items$items$item$$Season);
+
+      case "StudyTopic":
+        return studyTopic(this
+            as Query$FetchMoreItemsForItemSection$section$$CardSection$items$items$item$$StudyTopic);
+
+      default:
+        return orElse();
+    }
+  }
+
+  _T maybeWhen<_T>({
+    _T Function(
+            Query$FetchMoreItemsForItemSection$section$$CardSection$items$items$item$$Link)?
+        link,
+    _T Function(
+            Query$FetchMoreItemsForItemSection$section$$CardSection$items$items$item$$Page)?
+        page,
+    _T Function(
+            Query$FetchMoreItemsForItemSection$section$$CardSection$items$items$item$$Episode)?
+        episode,
+    _T Function(
+            Query$FetchMoreItemsForItemSection$section$$CardSection$items$items$item$$Show)?
+        show,
+    _T Function(
+            Query$FetchMoreItemsForItemSection$section$$CardSection$items$items$item$$Season)?
+        season,
+    _T Function(
+            Query$FetchMoreItemsForItemSection$section$$CardSection$items$items$item$$StudyTopic)?
+        studyTopic,
+    required _T Function() orElse,
+  }) {
+    switch ($__typename) {
+      case "Link":
+        if (link != null) {
+          return link(this
+              as Query$FetchMoreItemsForItemSection$section$$CardSection$items$items$item$$Link);
+        } else {
+          return orElse();
+        }
+
+      case "Page":
+        if (page != null) {
+          return page(this
+              as Query$FetchMoreItemsForItemSection$section$$CardSection$items$items$item$$Page);
+        } else {
+          return orElse();
+        }
+
+      case "Episode":
+        if (episode != null) {
+          return episode(this
+              as Query$FetchMoreItemsForItemSection$section$$CardSection$items$items$item$$Episode);
+        } else {
+          return orElse();
+        }
+
+      case "Show":
+        if (show != null) {
+          return show(this
+              as Query$FetchMoreItemsForItemSection$section$$CardSection$items$items$item$$Show);
+        } else {
+          return orElse();
+        }
+
+      case "Season":
+        if (season != null) {
+          return season(this
+              as Query$FetchMoreItemsForItemSection$section$$CardSection$items$items$item$$Season);
+        } else {
+          return orElse();
+        }
+
+      case "StudyTopic":
+        if (studyTopic != null) {
+          return studyTopic(this
+              as Query$FetchMoreItemsForItemSection$section$$CardSection$items$items$item$$StudyTopic);
+        } else {
+          return orElse();
+        }
+
+      default:
+        return orElse();
+    }
+  }
 }
 
 abstract class CopyWith$Query$FetchMoreItemsForItemSection$section$$CardSection$items$items$item<
@@ -12331,6 +13133,131 @@ extension UtilityExtension$Query$FetchMoreItemsForItemSection$section$$ListSecti
             this,
             (i) => i,
           );
+  _T when<_T>({
+    required _T Function(
+            Query$FetchMoreItemsForItemSection$section$$ListSection$items$items$item$$Link)
+        link,
+    required _T Function(
+            Query$FetchMoreItemsForItemSection$section$$ListSection$items$items$item$$Page)
+        page,
+    required _T Function(
+            Query$FetchMoreItemsForItemSection$section$$ListSection$items$items$item$$Episode)
+        episode,
+    required _T Function(
+            Query$FetchMoreItemsForItemSection$section$$ListSection$items$items$item$$Show)
+        show,
+    required _T Function(
+            Query$FetchMoreItemsForItemSection$section$$ListSection$items$items$item$$Season)
+        season,
+    required _T Function(
+            Query$FetchMoreItemsForItemSection$section$$ListSection$items$items$item$$StudyTopic)
+        studyTopic,
+    required _T Function() orElse,
+  }) {
+    switch ($__typename) {
+      case "Link":
+        return link(this
+            as Query$FetchMoreItemsForItemSection$section$$ListSection$items$items$item$$Link);
+
+      case "Page":
+        return page(this
+            as Query$FetchMoreItemsForItemSection$section$$ListSection$items$items$item$$Page);
+
+      case "Episode":
+        return episode(this
+            as Query$FetchMoreItemsForItemSection$section$$ListSection$items$items$item$$Episode);
+
+      case "Show":
+        return show(this
+            as Query$FetchMoreItemsForItemSection$section$$ListSection$items$items$item$$Show);
+
+      case "Season":
+        return season(this
+            as Query$FetchMoreItemsForItemSection$section$$ListSection$items$items$item$$Season);
+
+      case "StudyTopic":
+        return studyTopic(this
+            as Query$FetchMoreItemsForItemSection$section$$ListSection$items$items$item$$StudyTopic);
+
+      default:
+        return orElse();
+    }
+  }
+
+  _T maybeWhen<_T>({
+    _T Function(
+            Query$FetchMoreItemsForItemSection$section$$ListSection$items$items$item$$Link)?
+        link,
+    _T Function(
+            Query$FetchMoreItemsForItemSection$section$$ListSection$items$items$item$$Page)?
+        page,
+    _T Function(
+            Query$FetchMoreItemsForItemSection$section$$ListSection$items$items$item$$Episode)?
+        episode,
+    _T Function(
+            Query$FetchMoreItemsForItemSection$section$$ListSection$items$items$item$$Show)?
+        show,
+    _T Function(
+            Query$FetchMoreItemsForItemSection$section$$ListSection$items$items$item$$Season)?
+        season,
+    _T Function(
+            Query$FetchMoreItemsForItemSection$section$$ListSection$items$items$item$$StudyTopic)?
+        studyTopic,
+    required _T Function() orElse,
+  }) {
+    switch ($__typename) {
+      case "Link":
+        if (link != null) {
+          return link(this
+              as Query$FetchMoreItemsForItemSection$section$$ListSection$items$items$item$$Link);
+        } else {
+          return orElse();
+        }
+
+      case "Page":
+        if (page != null) {
+          return page(this
+              as Query$FetchMoreItemsForItemSection$section$$ListSection$items$items$item$$Page);
+        } else {
+          return orElse();
+        }
+
+      case "Episode":
+        if (episode != null) {
+          return episode(this
+              as Query$FetchMoreItemsForItemSection$section$$ListSection$items$items$item$$Episode);
+        } else {
+          return orElse();
+        }
+
+      case "Show":
+        if (show != null) {
+          return show(this
+              as Query$FetchMoreItemsForItemSection$section$$ListSection$items$items$item$$Show);
+        } else {
+          return orElse();
+        }
+
+      case "Season":
+        if (season != null) {
+          return season(this
+              as Query$FetchMoreItemsForItemSection$section$$ListSection$items$items$item$$Season);
+        } else {
+          return orElse();
+        }
+
+      case "StudyTopic":
+        if (studyTopic != null) {
+          return studyTopic(this
+              as Query$FetchMoreItemsForItemSection$section$$ListSection$items$items$item$$StudyTopic);
+        } else {
+          return orElse();
+        }
+
+      default:
+        return orElse();
+    }
+  }
 }
 
 abstract class CopyWith$Query$FetchMoreItemsForItemSection$section$$ListSection$items$items$item<
@@ -15682,6 +16609,131 @@ extension UtilityExtension$Query$FetchMoreItemsForItemSection$section$$DefaultGr
             this,
             (i) => i,
           );
+  _T when<_T>({
+    required _T Function(
+            Query$FetchMoreItemsForItemSection$section$$DefaultGridSection$items$items$item$$Link)
+        link,
+    required _T Function(
+            Query$FetchMoreItemsForItemSection$section$$DefaultGridSection$items$items$item$$Page)
+        page,
+    required _T Function(
+            Query$FetchMoreItemsForItemSection$section$$DefaultGridSection$items$items$item$$Episode)
+        episode,
+    required _T Function(
+            Query$FetchMoreItemsForItemSection$section$$DefaultGridSection$items$items$item$$Show)
+        show,
+    required _T Function(
+            Query$FetchMoreItemsForItemSection$section$$DefaultGridSection$items$items$item$$Season)
+        season,
+    required _T Function(
+            Query$FetchMoreItemsForItemSection$section$$DefaultGridSection$items$items$item$$StudyTopic)
+        studyTopic,
+    required _T Function() orElse,
+  }) {
+    switch ($__typename) {
+      case "Link":
+        return link(this
+            as Query$FetchMoreItemsForItemSection$section$$DefaultGridSection$items$items$item$$Link);
+
+      case "Page":
+        return page(this
+            as Query$FetchMoreItemsForItemSection$section$$DefaultGridSection$items$items$item$$Page);
+
+      case "Episode":
+        return episode(this
+            as Query$FetchMoreItemsForItemSection$section$$DefaultGridSection$items$items$item$$Episode);
+
+      case "Show":
+        return show(this
+            as Query$FetchMoreItemsForItemSection$section$$DefaultGridSection$items$items$item$$Show);
+
+      case "Season":
+        return season(this
+            as Query$FetchMoreItemsForItemSection$section$$DefaultGridSection$items$items$item$$Season);
+
+      case "StudyTopic":
+        return studyTopic(this
+            as Query$FetchMoreItemsForItemSection$section$$DefaultGridSection$items$items$item$$StudyTopic);
+
+      default:
+        return orElse();
+    }
+  }
+
+  _T maybeWhen<_T>({
+    _T Function(
+            Query$FetchMoreItemsForItemSection$section$$DefaultGridSection$items$items$item$$Link)?
+        link,
+    _T Function(
+            Query$FetchMoreItemsForItemSection$section$$DefaultGridSection$items$items$item$$Page)?
+        page,
+    _T Function(
+            Query$FetchMoreItemsForItemSection$section$$DefaultGridSection$items$items$item$$Episode)?
+        episode,
+    _T Function(
+            Query$FetchMoreItemsForItemSection$section$$DefaultGridSection$items$items$item$$Show)?
+        show,
+    _T Function(
+            Query$FetchMoreItemsForItemSection$section$$DefaultGridSection$items$items$item$$Season)?
+        season,
+    _T Function(
+            Query$FetchMoreItemsForItemSection$section$$DefaultGridSection$items$items$item$$StudyTopic)?
+        studyTopic,
+    required _T Function() orElse,
+  }) {
+    switch ($__typename) {
+      case "Link":
+        if (link != null) {
+          return link(this
+              as Query$FetchMoreItemsForItemSection$section$$DefaultGridSection$items$items$item$$Link);
+        } else {
+          return orElse();
+        }
+
+      case "Page":
+        if (page != null) {
+          return page(this
+              as Query$FetchMoreItemsForItemSection$section$$DefaultGridSection$items$items$item$$Page);
+        } else {
+          return orElse();
+        }
+
+      case "Episode":
+        if (episode != null) {
+          return episode(this
+              as Query$FetchMoreItemsForItemSection$section$$DefaultGridSection$items$items$item$$Episode);
+        } else {
+          return orElse();
+        }
+
+      case "Show":
+        if (show != null) {
+          return show(this
+              as Query$FetchMoreItemsForItemSection$section$$DefaultGridSection$items$items$item$$Show);
+        } else {
+          return orElse();
+        }
+
+      case "Season":
+        if (season != null) {
+          return season(this
+              as Query$FetchMoreItemsForItemSection$section$$DefaultGridSection$items$items$item$$Season);
+        } else {
+          return orElse();
+        }
+
+      case "StudyTopic":
+        if (studyTopic != null) {
+          return studyTopic(this
+              as Query$FetchMoreItemsForItemSection$section$$DefaultGridSection$items$items$item$$StudyTopic);
+        } else {
+          return orElse();
+        }
+
+      default:
+        return orElse();
+    }
+  }
 }
 
 abstract class CopyWith$Query$FetchMoreItemsForItemSection$section$$DefaultGridSection$items$items$item<
@@ -18315,6 +19367,131 @@ extension UtilityExtension$Query$FetchMoreItemsForItemSection$section$$PosterGri
             this,
             (i) => i,
           );
+  _T when<_T>({
+    required _T Function(
+            Query$FetchMoreItemsForItemSection$section$$PosterGridSection$items$items$item$$Link)
+        link,
+    required _T Function(
+            Query$FetchMoreItemsForItemSection$section$$PosterGridSection$items$items$item$$Page)
+        page,
+    required _T Function(
+            Query$FetchMoreItemsForItemSection$section$$PosterGridSection$items$items$item$$Episode)
+        episode,
+    required _T Function(
+            Query$FetchMoreItemsForItemSection$section$$PosterGridSection$items$items$item$$Show)
+        show,
+    required _T Function(
+            Query$FetchMoreItemsForItemSection$section$$PosterGridSection$items$items$item$$Season)
+        season,
+    required _T Function(
+            Query$FetchMoreItemsForItemSection$section$$PosterGridSection$items$items$item$$StudyTopic)
+        studyTopic,
+    required _T Function() orElse,
+  }) {
+    switch ($__typename) {
+      case "Link":
+        return link(this
+            as Query$FetchMoreItemsForItemSection$section$$PosterGridSection$items$items$item$$Link);
+
+      case "Page":
+        return page(this
+            as Query$FetchMoreItemsForItemSection$section$$PosterGridSection$items$items$item$$Page);
+
+      case "Episode":
+        return episode(this
+            as Query$FetchMoreItemsForItemSection$section$$PosterGridSection$items$items$item$$Episode);
+
+      case "Show":
+        return show(this
+            as Query$FetchMoreItemsForItemSection$section$$PosterGridSection$items$items$item$$Show);
+
+      case "Season":
+        return season(this
+            as Query$FetchMoreItemsForItemSection$section$$PosterGridSection$items$items$item$$Season);
+
+      case "StudyTopic":
+        return studyTopic(this
+            as Query$FetchMoreItemsForItemSection$section$$PosterGridSection$items$items$item$$StudyTopic);
+
+      default:
+        return orElse();
+    }
+  }
+
+  _T maybeWhen<_T>({
+    _T Function(
+            Query$FetchMoreItemsForItemSection$section$$PosterGridSection$items$items$item$$Link)?
+        link,
+    _T Function(
+            Query$FetchMoreItemsForItemSection$section$$PosterGridSection$items$items$item$$Page)?
+        page,
+    _T Function(
+            Query$FetchMoreItemsForItemSection$section$$PosterGridSection$items$items$item$$Episode)?
+        episode,
+    _T Function(
+            Query$FetchMoreItemsForItemSection$section$$PosterGridSection$items$items$item$$Show)?
+        show,
+    _T Function(
+            Query$FetchMoreItemsForItemSection$section$$PosterGridSection$items$items$item$$Season)?
+        season,
+    _T Function(
+            Query$FetchMoreItemsForItemSection$section$$PosterGridSection$items$items$item$$StudyTopic)?
+        studyTopic,
+    required _T Function() orElse,
+  }) {
+    switch ($__typename) {
+      case "Link":
+        if (link != null) {
+          return link(this
+              as Query$FetchMoreItemsForItemSection$section$$PosterGridSection$items$items$item$$Link);
+        } else {
+          return orElse();
+        }
+
+      case "Page":
+        if (page != null) {
+          return page(this
+              as Query$FetchMoreItemsForItemSection$section$$PosterGridSection$items$items$item$$Page);
+        } else {
+          return orElse();
+        }
+
+      case "Episode":
+        if (episode != null) {
+          return episode(this
+              as Query$FetchMoreItemsForItemSection$section$$PosterGridSection$items$items$item$$Episode);
+        } else {
+          return orElse();
+        }
+
+      case "Show":
+        if (show != null) {
+          return show(this
+              as Query$FetchMoreItemsForItemSection$section$$PosterGridSection$items$items$item$$Show);
+        } else {
+          return orElse();
+        }
+
+      case "Season":
+        if (season != null) {
+          return season(this
+              as Query$FetchMoreItemsForItemSection$section$$PosterGridSection$items$items$item$$Season);
+        } else {
+          return orElse();
+        }
+
+      case "StudyTopic":
+        if (studyTopic != null) {
+          return studyTopic(this
+              as Query$FetchMoreItemsForItemSection$section$$PosterGridSection$items$items$item$$StudyTopic);
+        } else {
+          return orElse();
+        }
+
+      default:
+        return orElse();
+    }
+  }
 }
 
 abstract class CopyWith$Query$FetchMoreItemsForItemSection$section$$PosterGridSection$items$items$item<
@@ -20945,6 +22122,131 @@ extension UtilityExtension$Query$FetchMoreItemsForItemSection$section$$IconGridS
             this,
             (i) => i,
           );
+  _T when<_T>({
+    required _T Function(
+            Query$FetchMoreItemsForItemSection$section$$IconGridSection$items$items$item$$Link)
+        link,
+    required _T Function(
+            Query$FetchMoreItemsForItemSection$section$$IconGridSection$items$items$item$$Page)
+        page,
+    required _T Function(
+            Query$FetchMoreItemsForItemSection$section$$IconGridSection$items$items$item$$Episode)
+        episode,
+    required _T Function(
+            Query$FetchMoreItemsForItemSection$section$$IconGridSection$items$items$item$$Show)
+        show,
+    required _T Function(
+            Query$FetchMoreItemsForItemSection$section$$IconGridSection$items$items$item$$Season)
+        season,
+    required _T Function(
+            Query$FetchMoreItemsForItemSection$section$$IconGridSection$items$items$item$$StudyTopic)
+        studyTopic,
+    required _T Function() orElse,
+  }) {
+    switch ($__typename) {
+      case "Link":
+        return link(this
+            as Query$FetchMoreItemsForItemSection$section$$IconGridSection$items$items$item$$Link);
+
+      case "Page":
+        return page(this
+            as Query$FetchMoreItemsForItemSection$section$$IconGridSection$items$items$item$$Page);
+
+      case "Episode":
+        return episode(this
+            as Query$FetchMoreItemsForItemSection$section$$IconGridSection$items$items$item$$Episode);
+
+      case "Show":
+        return show(this
+            as Query$FetchMoreItemsForItemSection$section$$IconGridSection$items$items$item$$Show);
+
+      case "Season":
+        return season(this
+            as Query$FetchMoreItemsForItemSection$section$$IconGridSection$items$items$item$$Season);
+
+      case "StudyTopic":
+        return studyTopic(this
+            as Query$FetchMoreItemsForItemSection$section$$IconGridSection$items$items$item$$StudyTopic);
+
+      default:
+        return orElse();
+    }
+  }
+
+  _T maybeWhen<_T>({
+    _T Function(
+            Query$FetchMoreItemsForItemSection$section$$IconGridSection$items$items$item$$Link)?
+        link,
+    _T Function(
+            Query$FetchMoreItemsForItemSection$section$$IconGridSection$items$items$item$$Page)?
+        page,
+    _T Function(
+            Query$FetchMoreItemsForItemSection$section$$IconGridSection$items$items$item$$Episode)?
+        episode,
+    _T Function(
+            Query$FetchMoreItemsForItemSection$section$$IconGridSection$items$items$item$$Show)?
+        show,
+    _T Function(
+            Query$FetchMoreItemsForItemSection$section$$IconGridSection$items$items$item$$Season)?
+        season,
+    _T Function(
+            Query$FetchMoreItemsForItemSection$section$$IconGridSection$items$items$item$$StudyTopic)?
+        studyTopic,
+    required _T Function() orElse,
+  }) {
+    switch ($__typename) {
+      case "Link":
+        if (link != null) {
+          return link(this
+              as Query$FetchMoreItemsForItemSection$section$$IconGridSection$items$items$item$$Link);
+        } else {
+          return orElse();
+        }
+
+      case "Page":
+        if (page != null) {
+          return page(this
+              as Query$FetchMoreItemsForItemSection$section$$IconGridSection$items$items$item$$Page);
+        } else {
+          return orElse();
+        }
+
+      case "Episode":
+        if (episode != null) {
+          return episode(this
+              as Query$FetchMoreItemsForItemSection$section$$IconGridSection$items$items$item$$Episode);
+        } else {
+          return orElse();
+        }
+
+      case "Show":
+        if (show != null) {
+          return show(this
+              as Query$FetchMoreItemsForItemSection$section$$IconGridSection$items$items$item$$Show);
+        } else {
+          return orElse();
+        }
+
+      case "Season":
+        if (season != null) {
+          return season(this
+              as Query$FetchMoreItemsForItemSection$section$$IconGridSection$items$items$item$$Season);
+        } else {
+          return orElse();
+        }
+
+      case "StudyTopic":
+        if (studyTopic != null) {
+          return studyTopic(this
+              as Query$FetchMoreItemsForItemSection$section$$IconGridSection$items$items$item$$StudyTopic);
+        } else {
+          return orElse();
+        }
+
+      default:
+        return orElse();
+    }
+  }
 }
 
 abstract class CopyWith$Query$FetchMoreItemsForItemSection$section$$IconGridSection$items$items$item<
@@ -25876,6 +27178,10 @@ const documentNodeQueryGetSection = DocumentNode(definitions: [
 ]);
 Query$GetSection _parserFn$Query$GetSection(Map<String, dynamic> data) =>
     Query$GetSection.fromJson(data);
+typedef OnQueryComplete$Query$GetSection = FutureOr<void> Function(
+  Map<String, dynamic>?,
+  Query$GetSection?,
+);
 
 class Options$Query$GetSection extends graphql.QueryOptions<Query$GetSection> {
   Options$Query$GetSection({
@@ -25885,20 +27191,41 @@ class Options$Query$GetSection extends graphql.QueryOptions<Query$GetSection> {
     graphql.ErrorPolicy? errorPolicy,
     graphql.CacheRereadPolicy? cacheRereadPolicy,
     Object? optimisticResult,
+    Query$GetSection? typedOptimisticResult,
     Duration? pollInterval,
     graphql.Context? context,
-  }) : super(
+    OnQueryComplete$Query$GetSection? onComplete,
+    graphql.OnQueryError? onError,
+  })  : onCompleteWithParsed = onComplete,
+        super(
           variables: variables.toJson(),
           operationName: operationName,
           fetchPolicy: fetchPolicy,
           errorPolicy: errorPolicy,
           cacheRereadPolicy: cacheRereadPolicy,
-          optimisticResult: optimisticResult,
+          optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
           pollInterval: pollInterval,
           context: context,
+          onComplete: onComplete == null
+              ? null
+              : (data) => onComplete(
+                    data,
+                    data == null ? null : _parserFn$Query$GetSection(data),
+                  ),
+          onError: onError,
           document: documentNodeQueryGetSection,
           parserFn: _parserFn$Query$GetSection,
         );
+
+  final OnQueryComplete$Query$GetSection? onCompleteWithParsed;
+
+  @override
+  List<Object?> get properties => [
+        ...super.onComplete == null
+            ? super.properties
+            : super.properties.where((property) => property != onComplete),
+        onCompleteWithParsed,
+      ];
 }
 
 class WatchOptions$Query$GetSection
@@ -25910,6 +27237,7 @@ class WatchOptions$Query$GetSection
     graphql.ErrorPolicy? errorPolicy,
     graphql.CacheRereadPolicy? cacheRereadPolicy,
     Object? optimisticResult,
+    Query$GetSection? typedOptimisticResult,
     graphql.Context? context,
     Duration? pollInterval,
     bool? eagerlyFetchResults,
@@ -25921,7 +27249,7 @@ class WatchOptions$Query$GetSection
           fetchPolicy: fetchPolicy,
           errorPolicy: errorPolicy,
           cacheRereadPolicy: cacheRereadPolicy,
-          optimisticResult: optimisticResult,
+          optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
           context: context,
           document: documentNodeQueryGetSection,
           pollInterval: pollInterval,
@@ -26141,6 +27469,231 @@ extension UtilityExtension$Query$GetSection$section
         this,
         (i) => i,
       );
+  _T when<_T>({
+    required _T Function(Query$GetSection$section$$PosterSection) posterSection,
+    required _T Function(Query$GetSection$section$$FeaturedSection)
+        featuredSection,
+    required _T Function(Query$GetSection$section$$DefaultSection)
+        defaultSection,
+    required _T Function(Query$GetSection$section$$CardSection) cardSection,
+    required _T Function(Query$GetSection$section$$ListSection) listSection,
+    required _T Function(Query$GetSection$section$$CardListSection)
+        cardListSection,
+    required _T Function(Query$GetSection$section$$DefaultGridSection)
+        defaultGridSection,
+    required _T Function(Query$GetSection$section$$PosterGridSection)
+        posterGridSection,
+    required _T Function(Query$GetSection$section$$IconGridSection)
+        iconGridSection,
+    required _T Function(Query$GetSection$section$$IconSection) iconSection,
+    required _T Function(Query$GetSection$section$$LabelSection) labelSection,
+    required _T Function(Query$GetSection$section$$WebSection) webSection,
+    required _T Function(Query$GetSection$section$$MessageSection)
+        messageSection,
+    required _T Function(Query$GetSection$section$$PageDetailsSection)
+        pageDetailsSection,
+    required _T Function(Query$GetSection$section$$AchievementSection)
+        achievementSection,
+    required _T Function() orElse,
+  }) {
+    switch ($__typename) {
+      case "PosterSection":
+        return posterSection(this as Query$GetSection$section$$PosterSection);
+
+      case "FeaturedSection":
+        return featuredSection(
+            this as Query$GetSection$section$$FeaturedSection);
+
+      case "DefaultSection":
+        return defaultSection(this as Query$GetSection$section$$DefaultSection);
+
+      case "CardSection":
+        return cardSection(this as Query$GetSection$section$$CardSection);
+
+      case "ListSection":
+        return listSection(this as Query$GetSection$section$$ListSection);
+
+      case "CardListSection":
+        return cardListSection(
+            this as Query$GetSection$section$$CardListSection);
+
+      case "DefaultGridSection":
+        return defaultGridSection(
+            this as Query$GetSection$section$$DefaultGridSection);
+
+      case "PosterGridSection":
+        return posterGridSection(
+            this as Query$GetSection$section$$PosterGridSection);
+
+      case "IconGridSection":
+        return iconGridSection(
+            this as Query$GetSection$section$$IconGridSection);
+
+      case "IconSection":
+        return iconSection(this as Query$GetSection$section$$IconSection);
+
+      case "LabelSection":
+        return labelSection(this as Query$GetSection$section$$LabelSection);
+
+      case "WebSection":
+        return webSection(this as Query$GetSection$section$$WebSection);
+
+      case "MessageSection":
+        return messageSection(this as Query$GetSection$section$$MessageSection);
+
+      case "PageDetailsSection":
+        return pageDetailsSection(
+            this as Query$GetSection$section$$PageDetailsSection);
+
+      case "AchievementSection":
+        return achievementSection(
+            this as Query$GetSection$section$$AchievementSection);
+
+      default:
+        return orElse();
+    }
+  }
+
+  _T maybeWhen<_T>({
+    _T Function(Query$GetSection$section$$PosterSection)? posterSection,
+    _T Function(Query$GetSection$section$$FeaturedSection)? featuredSection,
+    _T Function(Query$GetSection$section$$DefaultSection)? defaultSection,
+    _T Function(Query$GetSection$section$$CardSection)? cardSection,
+    _T Function(Query$GetSection$section$$ListSection)? listSection,
+    _T Function(Query$GetSection$section$$CardListSection)? cardListSection,
+    _T Function(Query$GetSection$section$$DefaultGridSection)?
+        defaultGridSection,
+    _T Function(Query$GetSection$section$$PosterGridSection)? posterGridSection,
+    _T Function(Query$GetSection$section$$IconGridSection)? iconGridSection,
+    _T Function(Query$GetSection$section$$IconSection)? iconSection,
+    _T Function(Query$GetSection$section$$LabelSection)? labelSection,
+    _T Function(Query$GetSection$section$$WebSection)? webSection,
+    _T Function(Query$GetSection$section$$MessageSection)? messageSection,
+    _T Function(Query$GetSection$section$$PageDetailsSection)?
+        pageDetailsSection,
+    _T Function(Query$GetSection$section$$AchievementSection)?
+        achievementSection,
+    required _T Function() orElse,
+  }) {
+    switch ($__typename) {
+      case "PosterSection":
+        if (posterSection != null) {
+          return posterSection(this as Query$GetSection$section$$PosterSection);
+        } else {
+          return orElse();
+        }
+
+      case "FeaturedSection":
+        if (featuredSection != null) {
+          return featuredSection(
+              this as Query$GetSection$section$$FeaturedSection);
+        } else {
+          return orElse();
+        }
+
+      case "DefaultSection":
+        if (defaultSection != null) {
+          return defaultSection(
+              this as Query$GetSection$section$$DefaultSection);
+        } else {
+          return orElse();
+        }
+
+      case "CardSection":
+        if (cardSection != null) {
+          return cardSection(this as Query$GetSection$section$$CardSection);
+        } else {
+          return orElse();
+        }
+
+      case "ListSection":
+        if (listSection != null) {
+          return listSection(this as Query$GetSection$section$$ListSection);
+        } else {
+          return orElse();
+        }
+
+      case "CardListSection":
+        if (cardListSection != null) {
+          return cardListSection(
+              this as Query$GetSection$section$$CardListSection);
+        } else {
+          return orElse();
+        }
+
+      case "DefaultGridSection":
+        if (defaultGridSection != null) {
+          return defaultGridSection(
+              this as Query$GetSection$section$$DefaultGridSection);
+        } else {
+          return orElse();
+        }
+
+      case "PosterGridSection":
+        if (posterGridSection != null) {
+          return posterGridSection(
+              this as Query$GetSection$section$$PosterGridSection);
+        } else {
+          return orElse();
+        }
+
+      case "IconGridSection":
+        if (iconGridSection != null) {
+          return iconGridSection(
+              this as Query$GetSection$section$$IconGridSection);
+        } else {
+          return orElse();
+        }
+
+      case "IconSection":
+        if (iconSection != null) {
+          return iconSection(this as Query$GetSection$section$$IconSection);
+        } else {
+          return orElse();
+        }
+
+      case "LabelSection":
+        if (labelSection != null) {
+          return labelSection(this as Query$GetSection$section$$LabelSection);
+        } else {
+          return orElse();
+        }
+
+      case "WebSection":
+        if (webSection != null) {
+          return webSection(this as Query$GetSection$section$$WebSection);
+        } else {
+          return orElse();
+        }
+
+      case "MessageSection":
+        if (messageSection != null) {
+          return messageSection(
+              this as Query$GetSection$section$$MessageSection);
+        } else {
+          return orElse();
+        }
+
+      case "PageDetailsSection":
+        if (pageDetailsSection != null) {
+          return pageDetailsSection(
+              this as Query$GetSection$section$$PageDetailsSection);
+        } else {
+          return orElse();
+        }
+
+      case "AchievementSection":
+        if (achievementSection != null) {
+          return achievementSection(
+              this as Query$GetSection$section$$AchievementSection);
+        } else {
+          return orElse();
+        }
+
+      default:
+        return orElse();
+    }
+  }
 }
 
 abstract class CopyWith$Query$GetSection$section<TRes> {
@@ -27165,6 +28718,128 @@ extension UtilityExtension$Query$GetSection$section$$PosterSection$items$items$i
             this,
             (i) => i,
           );
+  _T when<_T>({
+    required _T Function(
+            Query$GetSection$section$$PosterSection$items$items$item$$Link)
+        link,
+    required _T Function(
+            Query$GetSection$section$$PosterSection$items$items$item$$Page)
+        page,
+    required _T Function(
+            Query$GetSection$section$$PosterSection$items$items$item$$Episode)
+        episode,
+    required _T Function(
+            Query$GetSection$section$$PosterSection$items$items$item$$Show)
+        show,
+    required _T Function(
+            Query$GetSection$section$$PosterSection$items$items$item$$Season)
+        season,
+    required _T Function(
+            Query$GetSection$section$$PosterSection$items$items$item$$StudyTopic)
+        studyTopic,
+    required _T Function() orElse,
+  }) {
+    switch ($__typename) {
+      case "Link":
+        return link(this
+            as Query$GetSection$section$$PosterSection$items$items$item$$Link);
+
+      case "Page":
+        return page(this
+            as Query$GetSection$section$$PosterSection$items$items$item$$Page);
+
+      case "Episode":
+        return episode(this
+            as Query$GetSection$section$$PosterSection$items$items$item$$Episode);
+
+      case "Show":
+        return show(this
+            as Query$GetSection$section$$PosterSection$items$items$item$$Show);
+
+      case "Season":
+        return season(this
+            as Query$GetSection$section$$PosterSection$items$items$item$$Season);
+
+      case "StudyTopic":
+        return studyTopic(this
+            as Query$GetSection$section$$PosterSection$items$items$item$$StudyTopic);
+
+      default:
+        return orElse();
+    }
+  }
+
+  _T maybeWhen<_T>({
+    _T Function(Query$GetSection$section$$PosterSection$items$items$item$$Link)?
+        link,
+    _T Function(Query$GetSection$section$$PosterSection$items$items$item$$Page)?
+        page,
+    _T Function(
+            Query$GetSection$section$$PosterSection$items$items$item$$Episode)?
+        episode,
+    _T Function(Query$GetSection$section$$PosterSection$items$items$item$$Show)?
+        show,
+    _T Function(
+            Query$GetSection$section$$PosterSection$items$items$item$$Season)?
+        season,
+    _T Function(
+            Query$GetSection$section$$PosterSection$items$items$item$$StudyTopic)?
+        studyTopic,
+    required _T Function() orElse,
+  }) {
+    switch ($__typename) {
+      case "Link":
+        if (link != null) {
+          return link(this
+              as Query$GetSection$section$$PosterSection$items$items$item$$Link);
+        } else {
+          return orElse();
+        }
+
+      case "Page":
+        if (page != null) {
+          return page(this
+              as Query$GetSection$section$$PosterSection$items$items$item$$Page);
+        } else {
+          return orElse();
+        }
+
+      case "Episode":
+        if (episode != null) {
+          return episode(this
+              as Query$GetSection$section$$PosterSection$items$items$item$$Episode);
+        } else {
+          return orElse();
+        }
+
+      case "Show":
+        if (show != null) {
+          return show(this
+              as Query$GetSection$section$$PosterSection$items$items$item$$Show);
+        } else {
+          return orElse();
+        }
+
+      case "Season":
+        if (season != null) {
+          return season(this
+              as Query$GetSection$section$$PosterSection$items$items$item$$Season);
+        } else {
+          return orElse();
+        }
+
+      case "StudyTopic":
+        if (studyTopic != null) {
+          return studyTopic(this
+              as Query$GetSection$section$$PosterSection$items$items$item$$StudyTopic);
+        } else {
+          return orElse();
+        }
+
+      default:
+        return orElse();
+    }
+  }
 }
 
 abstract class CopyWith$Query$GetSection$section$$PosterSection$items$items$item<
@@ -29697,6 +31372,131 @@ extension UtilityExtension$Query$GetSection$section$$FeaturedSection$items$items
             this,
             (i) => i,
           );
+  _T when<_T>({
+    required _T Function(
+            Query$GetSection$section$$FeaturedSection$items$items$item$$Link)
+        link,
+    required _T Function(
+            Query$GetSection$section$$FeaturedSection$items$items$item$$Page)
+        page,
+    required _T Function(
+            Query$GetSection$section$$FeaturedSection$items$items$item$$Episode)
+        episode,
+    required _T Function(
+            Query$GetSection$section$$FeaturedSection$items$items$item$$Show)
+        show,
+    required _T Function(
+            Query$GetSection$section$$FeaturedSection$items$items$item$$Season)
+        season,
+    required _T Function(
+            Query$GetSection$section$$FeaturedSection$items$items$item$$StudyTopic)
+        studyTopic,
+    required _T Function() orElse,
+  }) {
+    switch ($__typename) {
+      case "Link":
+        return link(this
+            as Query$GetSection$section$$FeaturedSection$items$items$item$$Link);
+
+      case "Page":
+        return page(this
+            as Query$GetSection$section$$FeaturedSection$items$items$item$$Page);
+
+      case "Episode":
+        return episode(this
+            as Query$GetSection$section$$FeaturedSection$items$items$item$$Episode);
+
+      case "Show":
+        return show(this
+            as Query$GetSection$section$$FeaturedSection$items$items$item$$Show);
+
+      case "Season":
+        return season(this
+            as Query$GetSection$section$$FeaturedSection$items$items$item$$Season);
+
+      case "StudyTopic":
+        return studyTopic(this
+            as Query$GetSection$section$$FeaturedSection$items$items$item$$StudyTopic);
+
+      default:
+        return orElse();
+    }
+  }
+
+  _T maybeWhen<_T>({
+    _T Function(
+            Query$GetSection$section$$FeaturedSection$items$items$item$$Link)?
+        link,
+    _T Function(
+            Query$GetSection$section$$FeaturedSection$items$items$item$$Page)?
+        page,
+    _T Function(
+            Query$GetSection$section$$FeaturedSection$items$items$item$$Episode)?
+        episode,
+    _T Function(
+            Query$GetSection$section$$FeaturedSection$items$items$item$$Show)?
+        show,
+    _T Function(
+            Query$GetSection$section$$FeaturedSection$items$items$item$$Season)?
+        season,
+    _T Function(
+            Query$GetSection$section$$FeaturedSection$items$items$item$$StudyTopic)?
+        studyTopic,
+    required _T Function() orElse,
+  }) {
+    switch ($__typename) {
+      case "Link":
+        if (link != null) {
+          return link(this
+              as Query$GetSection$section$$FeaturedSection$items$items$item$$Link);
+        } else {
+          return orElse();
+        }
+
+      case "Page":
+        if (page != null) {
+          return page(this
+              as Query$GetSection$section$$FeaturedSection$items$items$item$$Page);
+        } else {
+          return orElse();
+        }
+
+      case "Episode":
+        if (episode != null) {
+          return episode(this
+              as Query$GetSection$section$$FeaturedSection$items$items$item$$Episode);
+        } else {
+          return orElse();
+        }
+
+      case "Show":
+        if (show != null) {
+          return show(this
+              as Query$GetSection$section$$FeaturedSection$items$items$item$$Show);
+        } else {
+          return orElse();
+        }
+
+      case "Season":
+        if (season != null) {
+          return season(this
+              as Query$GetSection$section$$FeaturedSection$items$items$item$$Season);
+        } else {
+          return orElse();
+        }
+
+      case "StudyTopic":
+        if (studyTopic != null) {
+          return studyTopic(this
+              as Query$GetSection$section$$FeaturedSection$items$items$item$$StudyTopic);
+        } else {
+          return orElse();
+        }
+
+      default:
+        return orElse();
+    }
+  }
 }
 
 abstract class CopyWith$Query$GetSection$section$$FeaturedSection$items$items$item<
@@ -32188,6 +33988,131 @@ extension UtilityExtension$Query$GetSection$section$$DefaultSection$items$items$
             this,
             (i) => i,
           );
+  _T when<_T>({
+    required _T Function(
+            Query$GetSection$section$$DefaultSection$items$items$item$$Link)
+        link,
+    required _T Function(
+            Query$GetSection$section$$DefaultSection$items$items$item$$Page)
+        page,
+    required _T Function(
+            Query$GetSection$section$$DefaultSection$items$items$item$$Episode)
+        episode,
+    required _T Function(
+            Query$GetSection$section$$DefaultSection$items$items$item$$Show)
+        show,
+    required _T Function(
+            Query$GetSection$section$$DefaultSection$items$items$item$$Season)
+        season,
+    required _T Function(
+            Query$GetSection$section$$DefaultSection$items$items$item$$StudyTopic)
+        studyTopic,
+    required _T Function() orElse,
+  }) {
+    switch ($__typename) {
+      case "Link":
+        return link(this
+            as Query$GetSection$section$$DefaultSection$items$items$item$$Link);
+
+      case "Page":
+        return page(this
+            as Query$GetSection$section$$DefaultSection$items$items$item$$Page);
+
+      case "Episode":
+        return episode(this
+            as Query$GetSection$section$$DefaultSection$items$items$item$$Episode);
+
+      case "Show":
+        return show(this
+            as Query$GetSection$section$$DefaultSection$items$items$item$$Show);
+
+      case "Season":
+        return season(this
+            as Query$GetSection$section$$DefaultSection$items$items$item$$Season);
+
+      case "StudyTopic":
+        return studyTopic(this
+            as Query$GetSection$section$$DefaultSection$items$items$item$$StudyTopic);
+
+      default:
+        return orElse();
+    }
+  }
+
+  _T maybeWhen<_T>({
+    _T Function(
+            Query$GetSection$section$$DefaultSection$items$items$item$$Link)?
+        link,
+    _T Function(
+            Query$GetSection$section$$DefaultSection$items$items$item$$Page)?
+        page,
+    _T Function(
+            Query$GetSection$section$$DefaultSection$items$items$item$$Episode)?
+        episode,
+    _T Function(
+            Query$GetSection$section$$DefaultSection$items$items$item$$Show)?
+        show,
+    _T Function(
+            Query$GetSection$section$$DefaultSection$items$items$item$$Season)?
+        season,
+    _T Function(
+            Query$GetSection$section$$DefaultSection$items$items$item$$StudyTopic)?
+        studyTopic,
+    required _T Function() orElse,
+  }) {
+    switch ($__typename) {
+      case "Link":
+        if (link != null) {
+          return link(this
+              as Query$GetSection$section$$DefaultSection$items$items$item$$Link);
+        } else {
+          return orElse();
+        }
+
+      case "Page":
+        if (page != null) {
+          return page(this
+              as Query$GetSection$section$$DefaultSection$items$items$item$$Page);
+        } else {
+          return orElse();
+        }
+
+      case "Episode":
+        if (episode != null) {
+          return episode(this
+              as Query$GetSection$section$$DefaultSection$items$items$item$$Episode);
+        } else {
+          return orElse();
+        }
+
+      case "Show":
+        if (show != null) {
+          return show(this
+              as Query$GetSection$section$$DefaultSection$items$items$item$$Show);
+        } else {
+          return orElse();
+        }
+
+      case "Season":
+        if (season != null) {
+          return season(this
+              as Query$GetSection$section$$DefaultSection$items$items$item$$Season);
+        } else {
+          return orElse();
+        }
+
+      case "StudyTopic":
+        if (studyTopic != null) {
+          return studyTopic(this
+              as Query$GetSection$section$$DefaultSection$items$items$item$$StudyTopic);
+        } else {
+          return orElse();
+        }
+
+      default:
+        return orElse();
+    }
+  }
 }
 
 abstract class CopyWith$Query$GetSection$section$$DefaultSection$items$items$item<
@@ -34686,6 +36611,127 @@ extension UtilityExtension$Query$GetSection$section$$CardSection$items$items$ite
             this,
             (i) => i,
           );
+  _T when<_T>({
+    required _T Function(
+            Query$GetSection$section$$CardSection$items$items$item$$Link)
+        link,
+    required _T Function(
+            Query$GetSection$section$$CardSection$items$items$item$$Page)
+        page,
+    required _T Function(
+            Query$GetSection$section$$CardSection$items$items$item$$Episode)
+        episode,
+    required _T Function(
+            Query$GetSection$section$$CardSection$items$items$item$$Show)
+        show,
+    required _T Function(
+            Query$GetSection$section$$CardSection$items$items$item$$Season)
+        season,
+    required _T Function(
+            Query$GetSection$section$$CardSection$items$items$item$$StudyTopic)
+        studyTopic,
+    required _T Function() orElse,
+  }) {
+    switch ($__typename) {
+      case "Link":
+        return link(this
+            as Query$GetSection$section$$CardSection$items$items$item$$Link);
+
+      case "Page":
+        return page(this
+            as Query$GetSection$section$$CardSection$items$items$item$$Page);
+
+      case "Episode":
+        return episode(this
+            as Query$GetSection$section$$CardSection$items$items$item$$Episode);
+
+      case "Show":
+        return show(this
+            as Query$GetSection$section$$CardSection$items$items$item$$Show);
+
+      case "Season":
+        return season(this
+            as Query$GetSection$section$$CardSection$items$items$item$$Season);
+
+      case "StudyTopic":
+        return studyTopic(this
+            as Query$GetSection$section$$CardSection$items$items$item$$StudyTopic);
+
+      default:
+        return orElse();
+    }
+  }
+
+  _T maybeWhen<_T>({
+    _T Function(Query$GetSection$section$$CardSection$items$items$item$$Link)?
+        link,
+    _T Function(Query$GetSection$section$$CardSection$items$items$item$$Page)?
+        page,
+    _T Function(
+            Query$GetSection$section$$CardSection$items$items$item$$Episode)?
+        episode,
+    _T Function(Query$GetSection$section$$CardSection$items$items$item$$Show)?
+        show,
+    _T Function(Query$GetSection$section$$CardSection$items$items$item$$Season)?
+        season,
+    _T Function(
+            Query$GetSection$section$$CardSection$items$items$item$$StudyTopic)?
+        studyTopic,
+    required _T Function() orElse,
+  }) {
+    switch ($__typename) {
+      case "Link":
+        if (link != null) {
+          return link(this
+              as Query$GetSection$section$$CardSection$items$items$item$$Link);
+        } else {
+          return orElse();
+        }
+
+      case "Page":
+        if (page != null) {
+          return page(this
+              as Query$GetSection$section$$CardSection$items$items$item$$Page);
+        } else {
+          return orElse();
+        }
+
+      case "Episode":
+        if (episode != null) {
+          return episode(this
+              as Query$GetSection$section$$CardSection$items$items$item$$Episode);
+        } else {
+          return orElse();
+        }
+
+      case "Show":
+        if (show != null) {
+          return show(this
+              as Query$GetSection$section$$CardSection$items$items$item$$Show);
+        } else {
+          return orElse();
+        }
+
+      case "Season":
+        if (season != null) {
+          return season(this
+              as Query$GetSection$section$$CardSection$items$items$item$$Season);
+        } else {
+          return orElse();
+        }
+
+      case "StudyTopic":
+        if (studyTopic != null) {
+          return studyTopic(this
+              as Query$GetSection$section$$CardSection$items$items$item$$StudyTopic);
+        } else {
+          return orElse();
+        }
+
+      default:
+        return orElse();
+    }
+  }
 }
 
 abstract class CopyWith$Query$GetSection$section$$CardSection$items$items$item<
@@ -37297,6 +39343,127 @@ extension UtilityExtension$Query$GetSection$section$$ListSection$items$items$ite
             this,
             (i) => i,
           );
+  _T when<_T>({
+    required _T Function(
+            Query$GetSection$section$$ListSection$items$items$item$$Link)
+        link,
+    required _T Function(
+            Query$GetSection$section$$ListSection$items$items$item$$Page)
+        page,
+    required _T Function(
+            Query$GetSection$section$$ListSection$items$items$item$$Episode)
+        episode,
+    required _T Function(
+            Query$GetSection$section$$ListSection$items$items$item$$Show)
+        show,
+    required _T Function(
+            Query$GetSection$section$$ListSection$items$items$item$$Season)
+        season,
+    required _T Function(
+            Query$GetSection$section$$ListSection$items$items$item$$StudyTopic)
+        studyTopic,
+    required _T Function() orElse,
+  }) {
+    switch ($__typename) {
+      case "Link":
+        return link(this
+            as Query$GetSection$section$$ListSection$items$items$item$$Link);
+
+      case "Page":
+        return page(this
+            as Query$GetSection$section$$ListSection$items$items$item$$Page);
+
+      case "Episode":
+        return episode(this
+            as Query$GetSection$section$$ListSection$items$items$item$$Episode);
+
+      case "Show":
+        return show(this
+            as Query$GetSection$section$$ListSection$items$items$item$$Show);
+
+      case "Season":
+        return season(this
+            as Query$GetSection$section$$ListSection$items$items$item$$Season);
+
+      case "StudyTopic":
+        return studyTopic(this
+            as Query$GetSection$section$$ListSection$items$items$item$$StudyTopic);
+
+      default:
+        return orElse();
+    }
+  }
+
+  _T maybeWhen<_T>({
+    _T Function(Query$GetSection$section$$ListSection$items$items$item$$Link)?
+        link,
+    _T Function(Query$GetSection$section$$ListSection$items$items$item$$Page)?
+        page,
+    _T Function(
+            Query$GetSection$section$$ListSection$items$items$item$$Episode)?
+        episode,
+    _T Function(Query$GetSection$section$$ListSection$items$items$item$$Show)?
+        show,
+    _T Function(Query$GetSection$section$$ListSection$items$items$item$$Season)?
+        season,
+    _T Function(
+            Query$GetSection$section$$ListSection$items$items$item$$StudyTopic)?
+        studyTopic,
+    required _T Function() orElse,
+  }) {
+    switch ($__typename) {
+      case "Link":
+        if (link != null) {
+          return link(this
+              as Query$GetSection$section$$ListSection$items$items$item$$Link);
+        } else {
+          return orElse();
+        }
+
+      case "Page":
+        if (page != null) {
+          return page(this
+              as Query$GetSection$section$$ListSection$items$items$item$$Page);
+        } else {
+          return orElse();
+        }
+
+      case "Episode":
+        if (episode != null) {
+          return episode(this
+              as Query$GetSection$section$$ListSection$items$items$item$$Episode);
+        } else {
+          return orElse();
+        }
+
+      case "Show":
+        if (show != null) {
+          return show(this
+              as Query$GetSection$section$$ListSection$items$items$item$$Show);
+        } else {
+          return orElse();
+        }
+
+      case "Season":
+        if (season != null) {
+          return season(this
+              as Query$GetSection$section$$ListSection$items$items$item$$Season);
+        } else {
+          return orElse();
+        }
+
+      case "StudyTopic":
+        if (studyTopic != null) {
+          return studyTopic(this
+              as Query$GetSection$section$$ListSection$items$items$item$$StudyTopic);
+        } else {
+          return orElse();
+        }
+
+      default:
+        return orElse();
+    }
+  }
 }
 
 abstract class CopyWith$Query$GetSection$section$$ListSection$items$items$item<
@@ -40504,6 +42671,131 @@ extension UtilityExtension$Query$GetSection$section$$DefaultGridSection$items$it
             this,
             (i) => i,
           );
+  _T when<_T>({
+    required _T Function(
+            Query$GetSection$section$$DefaultGridSection$items$items$item$$Link)
+        link,
+    required _T Function(
+            Query$GetSection$section$$DefaultGridSection$items$items$item$$Page)
+        page,
+    required _T Function(
+            Query$GetSection$section$$DefaultGridSection$items$items$item$$Episode)
+        episode,
+    required _T Function(
+            Query$GetSection$section$$DefaultGridSection$items$items$item$$Show)
+        show,
+    required _T Function(
+            Query$GetSection$section$$DefaultGridSection$items$items$item$$Season)
+        season,
+    required _T Function(
+            Query$GetSection$section$$DefaultGridSection$items$items$item$$StudyTopic)
+        studyTopic,
+    required _T Function() orElse,
+  }) {
+    switch ($__typename) {
+      case "Link":
+        return link(this
+            as Query$GetSection$section$$DefaultGridSection$items$items$item$$Link);
+
+      case "Page":
+        return page(this
+            as Query$GetSection$section$$DefaultGridSection$items$items$item$$Page);
+
+      case "Episode":
+        return episode(this
+            as Query$GetSection$section$$DefaultGridSection$items$items$item$$Episode);
+
+      case "Show":
+        return show(this
+            as Query$GetSection$section$$DefaultGridSection$items$items$item$$Show);
+
+      case "Season":
+        return season(this
+            as Query$GetSection$section$$DefaultGridSection$items$items$item$$Season);
+
+      case "StudyTopic":
+        return studyTopic(this
+            as Query$GetSection$section$$DefaultGridSection$items$items$item$$StudyTopic);
+
+      default:
+        return orElse();
+    }
+  }
+
+  _T maybeWhen<_T>({
+    _T Function(
+            Query$GetSection$section$$DefaultGridSection$items$items$item$$Link)?
+        link,
+    _T Function(
+            Query$GetSection$section$$DefaultGridSection$items$items$item$$Page)?
+        page,
+    _T Function(
+            Query$GetSection$section$$DefaultGridSection$items$items$item$$Episode)?
+        episode,
+    _T Function(
+            Query$GetSection$section$$DefaultGridSection$items$items$item$$Show)?
+        show,
+    _T Function(
+            Query$GetSection$section$$DefaultGridSection$items$items$item$$Season)?
+        season,
+    _T Function(
+            Query$GetSection$section$$DefaultGridSection$items$items$item$$StudyTopic)?
+        studyTopic,
+    required _T Function() orElse,
+  }) {
+    switch ($__typename) {
+      case "Link":
+        if (link != null) {
+          return link(this
+              as Query$GetSection$section$$DefaultGridSection$items$items$item$$Link);
+        } else {
+          return orElse();
+        }
+
+      case "Page":
+        if (page != null) {
+          return page(this
+              as Query$GetSection$section$$DefaultGridSection$items$items$item$$Page);
+        } else {
+          return orElse();
+        }
+
+      case "Episode":
+        if (episode != null) {
+          return episode(this
+              as Query$GetSection$section$$DefaultGridSection$items$items$item$$Episode);
+        } else {
+          return orElse();
+        }
+
+      case "Show":
+        if (show != null) {
+          return show(this
+              as Query$GetSection$section$$DefaultGridSection$items$items$item$$Show);
+        } else {
+          return orElse();
+        }
+
+      case "Season":
+        if (season != null) {
+          return season(this
+              as Query$GetSection$section$$DefaultGridSection$items$items$item$$Season);
+        } else {
+          return orElse();
+        }
+
+      case "StudyTopic":
+        if (studyTopic != null) {
+          return studyTopic(this
+              as Query$GetSection$section$$DefaultGridSection$items$items$item$$StudyTopic);
+        } else {
+          return orElse();
+        }
+
+      default:
+        return orElse();
+    }
+  }
 }
 
 abstract class CopyWith$Query$GetSection$section$$DefaultGridSection$items$items$item<
@@ -43068,6 +45360,131 @@ extension UtilityExtension$Query$GetSection$section$$PosterGridSection$items$ite
             this,
             (i) => i,
           );
+  _T when<_T>({
+    required _T Function(
+            Query$GetSection$section$$PosterGridSection$items$items$item$$Link)
+        link,
+    required _T Function(
+            Query$GetSection$section$$PosterGridSection$items$items$item$$Page)
+        page,
+    required _T Function(
+            Query$GetSection$section$$PosterGridSection$items$items$item$$Episode)
+        episode,
+    required _T Function(
+            Query$GetSection$section$$PosterGridSection$items$items$item$$Show)
+        show,
+    required _T Function(
+            Query$GetSection$section$$PosterGridSection$items$items$item$$Season)
+        season,
+    required _T Function(
+            Query$GetSection$section$$PosterGridSection$items$items$item$$StudyTopic)
+        studyTopic,
+    required _T Function() orElse,
+  }) {
+    switch ($__typename) {
+      case "Link":
+        return link(this
+            as Query$GetSection$section$$PosterGridSection$items$items$item$$Link);
+
+      case "Page":
+        return page(this
+            as Query$GetSection$section$$PosterGridSection$items$items$item$$Page);
+
+      case "Episode":
+        return episode(this
+            as Query$GetSection$section$$PosterGridSection$items$items$item$$Episode);
+
+      case "Show":
+        return show(this
+            as Query$GetSection$section$$PosterGridSection$items$items$item$$Show);
+
+      case "Season":
+        return season(this
+            as Query$GetSection$section$$PosterGridSection$items$items$item$$Season);
+
+      case "StudyTopic":
+        return studyTopic(this
+            as Query$GetSection$section$$PosterGridSection$items$items$item$$StudyTopic);
+
+      default:
+        return orElse();
+    }
+  }
+
+  _T maybeWhen<_T>({
+    _T Function(
+            Query$GetSection$section$$PosterGridSection$items$items$item$$Link)?
+        link,
+    _T Function(
+            Query$GetSection$section$$PosterGridSection$items$items$item$$Page)?
+        page,
+    _T Function(
+            Query$GetSection$section$$PosterGridSection$items$items$item$$Episode)?
+        episode,
+    _T Function(
+            Query$GetSection$section$$PosterGridSection$items$items$item$$Show)?
+        show,
+    _T Function(
+            Query$GetSection$section$$PosterGridSection$items$items$item$$Season)?
+        season,
+    _T Function(
+            Query$GetSection$section$$PosterGridSection$items$items$item$$StudyTopic)?
+        studyTopic,
+    required _T Function() orElse,
+  }) {
+    switch ($__typename) {
+      case "Link":
+        if (link != null) {
+          return link(this
+              as Query$GetSection$section$$PosterGridSection$items$items$item$$Link);
+        } else {
+          return orElse();
+        }
+
+      case "Page":
+        if (page != null) {
+          return page(this
+              as Query$GetSection$section$$PosterGridSection$items$items$item$$Page);
+        } else {
+          return orElse();
+        }
+
+      case "Episode":
+        if (episode != null) {
+          return episode(this
+              as Query$GetSection$section$$PosterGridSection$items$items$item$$Episode);
+        } else {
+          return orElse();
+        }
+
+      case "Show":
+        if (show != null) {
+          return show(this
+              as Query$GetSection$section$$PosterGridSection$items$items$item$$Show);
+        } else {
+          return orElse();
+        }
+
+      case "Season":
+        if (season != null) {
+          return season(this
+              as Query$GetSection$section$$PosterGridSection$items$items$item$$Season);
+        } else {
+          return orElse();
+        }
+
+      case "StudyTopic":
+        if (studyTopic != null) {
+          return studyTopic(this
+              as Query$GetSection$section$$PosterGridSection$items$items$item$$StudyTopic);
+        } else {
+          return orElse();
+        }
+
+      default:
+        return orElse();
+    }
+  }
 }
 
 abstract class CopyWith$Query$GetSection$section$$PosterGridSection$items$items$item<
@@ -45616,6 +48033,131 @@ extension UtilityExtension$Query$GetSection$section$$IconGridSection$items$items
             this,
             (i) => i,
           );
+  _T when<_T>({
+    required _T Function(
+            Query$GetSection$section$$IconGridSection$items$items$item$$Link)
+        link,
+    required _T Function(
+            Query$GetSection$section$$IconGridSection$items$items$item$$Page)
+        page,
+    required _T Function(
+            Query$GetSection$section$$IconGridSection$items$items$item$$Episode)
+        episode,
+    required _T Function(
+            Query$GetSection$section$$IconGridSection$items$items$item$$Show)
+        show,
+    required _T Function(
+            Query$GetSection$section$$IconGridSection$items$items$item$$Season)
+        season,
+    required _T Function(
+            Query$GetSection$section$$IconGridSection$items$items$item$$StudyTopic)
+        studyTopic,
+    required _T Function() orElse,
+  }) {
+    switch ($__typename) {
+      case "Link":
+        return link(this
+            as Query$GetSection$section$$IconGridSection$items$items$item$$Link);
+
+      case "Page":
+        return page(this
+            as Query$GetSection$section$$IconGridSection$items$items$item$$Page);
+
+      case "Episode":
+        return episode(this
+            as Query$GetSection$section$$IconGridSection$items$items$item$$Episode);
+
+      case "Show":
+        return show(this
+            as Query$GetSection$section$$IconGridSection$items$items$item$$Show);
+
+      case "Season":
+        return season(this
+            as Query$GetSection$section$$IconGridSection$items$items$item$$Season);
+
+      case "StudyTopic":
+        return studyTopic(this
+            as Query$GetSection$section$$IconGridSection$items$items$item$$StudyTopic);
+
+      default:
+        return orElse();
+    }
+  }
+
+  _T maybeWhen<_T>({
+    _T Function(
+            Query$GetSection$section$$IconGridSection$items$items$item$$Link)?
+        link,
+    _T Function(
+            Query$GetSection$section$$IconGridSection$items$items$item$$Page)?
+        page,
+    _T Function(
+            Query$GetSection$section$$IconGridSection$items$items$item$$Episode)?
+        episode,
+    _T Function(
+            Query$GetSection$section$$IconGridSection$items$items$item$$Show)?
+        show,
+    _T Function(
+            Query$GetSection$section$$IconGridSection$items$items$item$$Season)?
+        season,
+    _T Function(
+            Query$GetSection$section$$IconGridSection$items$items$item$$StudyTopic)?
+        studyTopic,
+    required _T Function() orElse,
+  }) {
+    switch ($__typename) {
+      case "Link":
+        if (link != null) {
+          return link(this
+              as Query$GetSection$section$$IconGridSection$items$items$item$$Link);
+        } else {
+          return orElse();
+        }
+
+      case "Page":
+        if (page != null) {
+          return page(this
+              as Query$GetSection$section$$IconGridSection$items$items$item$$Page);
+        } else {
+          return orElse();
+        }
+
+      case "Episode":
+        if (episode != null) {
+          return episode(this
+              as Query$GetSection$section$$IconGridSection$items$items$item$$Episode);
+        } else {
+          return orElse();
+        }
+
+      case "Show":
+        if (show != null) {
+          return show(this
+              as Query$GetSection$section$$IconGridSection$items$items$item$$Show);
+        } else {
+          return orElse();
+        }
+
+      case "Season":
+        if (season != null) {
+          return season(this
+              as Query$GetSection$section$$IconGridSection$items$items$item$$Season);
+        } else {
+          return orElse();
+        }
+
+      case "StudyTopic":
+        if (studyTopic != null) {
+          return studyTopic(this
+              as Query$GetSection$section$$IconGridSection$items$items$item$$StudyTopic);
+        } else {
+          return orElse();
+        }
+
+      default:
+        return orElse();
+    }
+  }
 }
 
 abstract class CopyWith$Query$GetSection$section$$IconGridSection$items$items$item<

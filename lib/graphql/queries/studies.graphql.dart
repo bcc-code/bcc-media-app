@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'package:flutter/widgets.dart' as widgets;
 import 'package:gql/ast.dart';
 import 'package:graphql/client.dart' as graphql;
@@ -1258,6 +1259,11 @@ const documentNodeQueryGetStudyTopicLessonStatuses = DocumentNode(definitions: [
 Query$GetStudyTopicLessonStatuses _parserFn$Query$GetStudyTopicLessonStatuses(
         Map<String, dynamic> data) =>
     Query$GetStudyTopicLessonStatuses.fromJson(data);
+typedef OnQueryComplete$Query$GetStudyTopicLessonStatuses = FutureOr<void>
+    Function(
+  Map<String, dynamic>?,
+  Query$GetStudyTopicLessonStatuses?,
+);
 
 class Options$Query$GetStudyTopicLessonStatuses
     extends graphql.QueryOptions<Query$GetStudyTopicLessonStatuses> {
@@ -1268,20 +1274,43 @@ class Options$Query$GetStudyTopicLessonStatuses
     graphql.ErrorPolicy? errorPolicy,
     graphql.CacheRereadPolicy? cacheRereadPolicy,
     Object? optimisticResult,
+    Query$GetStudyTopicLessonStatuses? typedOptimisticResult,
     Duration? pollInterval,
     graphql.Context? context,
-  }) : super(
+    OnQueryComplete$Query$GetStudyTopicLessonStatuses? onComplete,
+    graphql.OnQueryError? onError,
+  })  : onCompleteWithParsed = onComplete,
+        super(
           variables: variables.toJson(),
           operationName: operationName,
           fetchPolicy: fetchPolicy,
           errorPolicy: errorPolicy,
           cacheRereadPolicy: cacheRereadPolicy,
-          optimisticResult: optimisticResult,
+          optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
           pollInterval: pollInterval,
           context: context,
+          onComplete: onComplete == null
+              ? null
+              : (data) => onComplete(
+                    data,
+                    data == null
+                        ? null
+                        : _parserFn$Query$GetStudyTopicLessonStatuses(data),
+                  ),
+          onError: onError,
           document: documentNodeQueryGetStudyTopicLessonStatuses,
           parserFn: _parserFn$Query$GetStudyTopicLessonStatuses,
         );
+
+  final OnQueryComplete$Query$GetStudyTopicLessonStatuses? onCompleteWithParsed;
+
+  @override
+  List<Object?> get properties => [
+        ...super.onComplete == null
+            ? super.properties
+            : super.properties.where((property) => property != onComplete),
+        onCompleteWithParsed,
+      ];
 }
 
 class WatchOptions$Query$GetStudyTopicLessonStatuses
@@ -1293,6 +1322,7 @@ class WatchOptions$Query$GetStudyTopicLessonStatuses
     graphql.ErrorPolicy? errorPolicy,
     graphql.CacheRereadPolicy? cacheRereadPolicy,
     Object? optimisticResult,
+    Query$GetStudyTopicLessonStatuses? typedOptimisticResult,
     graphql.Context? context,
     Duration? pollInterval,
     bool? eagerlyFetchResults,
@@ -1304,7 +1334,7 @@ class WatchOptions$Query$GetStudyTopicLessonStatuses
           fetchPolicy: fetchPolicy,
           errorPolicy: errorPolicy,
           cacheRereadPolicy: cacheRereadPolicy,
-          optimisticResult: optimisticResult,
+          optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
           context: context,
           document: documentNodeQueryGetStudyTopicLessonStatuses,
           pollInterval: pollInterval,
@@ -2579,6 +2609,11 @@ const documentNodeQueryGetEpisodeLessonProgress = DocumentNode(definitions: [
 Query$GetEpisodeLessonProgress _parserFn$Query$GetEpisodeLessonProgress(
         Map<String, dynamic> data) =>
     Query$GetEpisodeLessonProgress.fromJson(data);
+typedef OnQueryComplete$Query$GetEpisodeLessonProgress = FutureOr<void>
+    Function(
+  Map<String, dynamic>?,
+  Query$GetEpisodeLessonProgress?,
+);
 
 class Options$Query$GetEpisodeLessonProgress
     extends graphql.QueryOptions<Query$GetEpisodeLessonProgress> {
@@ -2589,20 +2624,43 @@ class Options$Query$GetEpisodeLessonProgress
     graphql.ErrorPolicy? errorPolicy,
     graphql.CacheRereadPolicy? cacheRereadPolicy,
     Object? optimisticResult,
+    Query$GetEpisodeLessonProgress? typedOptimisticResult,
     Duration? pollInterval,
     graphql.Context? context,
-  }) : super(
+    OnQueryComplete$Query$GetEpisodeLessonProgress? onComplete,
+    graphql.OnQueryError? onError,
+  })  : onCompleteWithParsed = onComplete,
+        super(
           variables: variables.toJson(),
           operationName: operationName,
           fetchPolicy: fetchPolicy,
           errorPolicy: errorPolicy,
           cacheRereadPolicy: cacheRereadPolicy,
-          optimisticResult: optimisticResult,
+          optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
           pollInterval: pollInterval,
           context: context,
+          onComplete: onComplete == null
+              ? null
+              : (data) => onComplete(
+                    data,
+                    data == null
+                        ? null
+                        : _parserFn$Query$GetEpisodeLessonProgress(data),
+                  ),
+          onError: onError,
           document: documentNodeQueryGetEpisodeLessonProgress,
           parserFn: _parserFn$Query$GetEpisodeLessonProgress,
         );
+
+  final OnQueryComplete$Query$GetEpisodeLessonProgress? onCompleteWithParsed;
+
+  @override
+  List<Object?> get properties => [
+        ...super.onComplete == null
+            ? super.properties
+            : super.properties.where((property) => property != onComplete),
+        onCompleteWithParsed,
+      ];
 }
 
 class WatchOptions$Query$GetEpisodeLessonProgress
@@ -2614,6 +2672,7 @@ class WatchOptions$Query$GetEpisodeLessonProgress
     graphql.ErrorPolicy? errorPolicy,
     graphql.CacheRereadPolicy? cacheRereadPolicy,
     Object? optimisticResult,
+    Query$GetEpisodeLessonProgress? typedOptimisticResult,
     graphql.Context? context,
     Duration? pollInterval,
     bool? eagerlyFetchResults,
@@ -2625,7 +2684,7 @@ class WatchOptions$Query$GetEpisodeLessonProgress
           fetchPolicy: fetchPolicy,
           errorPolicy: errorPolicy,
           cacheRereadPolicy: cacheRereadPolicy,
-          optimisticResult: optimisticResult,
+          optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
           context: context,
           document: documentNodeQueryGetEpisodeLessonProgress,
           pollInterval: pollInterval,
@@ -3702,6 +3761,10 @@ const documentNodeQueryGetSeasonLessonProgress = DocumentNode(definitions: [
 Query$GetSeasonLessonProgress _parserFn$Query$GetSeasonLessonProgress(
         Map<String, dynamic> data) =>
     Query$GetSeasonLessonProgress.fromJson(data);
+typedef OnQueryComplete$Query$GetSeasonLessonProgress = FutureOr<void> Function(
+  Map<String, dynamic>?,
+  Query$GetSeasonLessonProgress?,
+);
 
 class Options$Query$GetSeasonLessonProgress
     extends graphql.QueryOptions<Query$GetSeasonLessonProgress> {
@@ -3712,20 +3775,43 @@ class Options$Query$GetSeasonLessonProgress
     graphql.ErrorPolicy? errorPolicy,
     graphql.CacheRereadPolicy? cacheRereadPolicy,
     Object? optimisticResult,
+    Query$GetSeasonLessonProgress? typedOptimisticResult,
     Duration? pollInterval,
     graphql.Context? context,
-  }) : super(
+    OnQueryComplete$Query$GetSeasonLessonProgress? onComplete,
+    graphql.OnQueryError? onError,
+  })  : onCompleteWithParsed = onComplete,
+        super(
           variables: variables.toJson(),
           operationName: operationName,
           fetchPolicy: fetchPolicy,
           errorPolicy: errorPolicy,
           cacheRereadPolicy: cacheRereadPolicy,
-          optimisticResult: optimisticResult,
+          optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
           pollInterval: pollInterval,
           context: context,
+          onComplete: onComplete == null
+              ? null
+              : (data) => onComplete(
+                    data,
+                    data == null
+                        ? null
+                        : _parserFn$Query$GetSeasonLessonProgress(data),
+                  ),
+          onError: onError,
           document: documentNodeQueryGetSeasonLessonProgress,
           parserFn: _parserFn$Query$GetSeasonLessonProgress,
         );
+
+  final OnQueryComplete$Query$GetSeasonLessonProgress? onCompleteWithParsed;
+
+  @override
+  List<Object?> get properties => [
+        ...super.onComplete == null
+            ? super.properties
+            : super.properties.where((property) => property != onComplete),
+        onCompleteWithParsed,
+      ];
 }
 
 class WatchOptions$Query$GetSeasonLessonProgress
@@ -3737,6 +3823,7 @@ class WatchOptions$Query$GetSeasonLessonProgress
     graphql.ErrorPolicy? errorPolicy,
     graphql.CacheRereadPolicy? cacheRereadPolicy,
     Object? optimisticResult,
+    Query$GetSeasonLessonProgress? typedOptimisticResult,
     graphql.Context? context,
     Duration? pollInterval,
     bool? eagerlyFetchResults,
@@ -3748,7 +3835,7 @@ class WatchOptions$Query$GetSeasonLessonProgress
           fetchPolicy: fetchPolicy,
           errorPolicy: errorPolicy,
           cacheRereadPolicy: cacheRereadPolicy,
-          optimisticResult: optimisticResult,
+          optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
           context: context,
           document: documentNodeQueryGetSeasonLessonProgress,
           pollInterval: pollInterval,
@@ -4420,6 +4507,10 @@ const documentNodeQueryGetLessonTitle = DocumentNode(definitions: [
 Query$GetLessonTitle _parserFn$Query$GetLessonTitle(
         Map<String, dynamic> data) =>
     Query$GetLessonTitle.fromJson(data);
+typedef OnQueryComplete$Query$GetLessonTitle = FutureOr<void> Function(
+  Map<String, dynamic>?,
+  Query$GetLessonTitle?,
+);
 
 class Options$Query$GetLessonTitle
     extends graphql.QueryOptions<Query$GetLessonTitle> {
@@ -4430,20 +4521,41 @@ class Options$Query$GetLessonTitle
     graphql.ErrorPolicy? errorPolicy,
     graphql.CacheRereadPolicy? cacheRereadPolicy,
     Object? optimisticResult,
+    Query$GetLessonTitle? typedOptimisticResult,
     Duration? pollInterval,
     graphql.Context? context,
-  }) : super(
+    OnQueryComplete$Query$GetLessonTitle? onComplete,
+    graphql.OnQueryError? onError,
+  })  : onCompleteWithParsed = onComplete,
+        super(
           variables: variables.toJson(),
           operationName: operationName,
           fetchPolicy: fetchPolicy,
           errorPolicy: errorPolicy,
           cacheRereadPolicy: cacheRereadPolicy,
-          optimisticResult: optimisticResult,
+          optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
           pollInterval: pollInterval,
           context: context,
+          onComplete: onComplete == null
+              ? null
+              : (data) => onComplete(
+                    data,
+                    data == null ? null : _parserFn$Query$GetLessonTitle(data),
+                  ),
+          onError: onError,
           document: documentNodeQueryGetLessonTitle,
           parserFn: _parserFn$Query$GetLessonTitle,
         );
+
+  final OnQueryComplete$Query$GetLessonTitle? onCompleteWithParsed;
+
+  @override
+  List<Object?> get properties => [
+        ...super.onComplete == null
+            ? super.properties
+            : super.properties.where((property) => property != onComplete),
+        onCompleteWithParsed,
+      ];
 }
 
 class WatchOptions$Query$GetLessonTitle
@@ -4455,6 +4567,7 @@ class WatchOptions$Query$GetLessonTitle
     graphql.ErrorPolicy? errorPolicy,
     graphql.CacheRereadPolicy? cacheRereadPolicy,
     Object? optimisticResult,
+    Query$GetLessonTitle? typedOptimisticResult,
     graphql.Context? context,
     Duration? pollInterval,
     bool? eagerlyFetchResults,
@@ -4466,7 +4579,7 @@ class WatchOptions$Query$GetLessonTitle
           fetchPolicy: fetchPolicy,
           errorPolicy: errorPolicy,
           cacheRereadPolicy: cacheRereadPolicy,
-          optimisticResult: optimisticResult,
+          optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
           context: context,
           document: documentNodeQueryGetLessonTitle,
           pollInterval: pollInterval,

@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'package:flutter/widgets.dart' as widgets;
 import 'package:gql/ast.dart';
 import 'package:graphql/client.dart' as graphql;
@@ -287,6 +288,10 @@ const documentNodeQueryGetRedirectUrl = DocumentNode(definitions: [
 Query$GetRedirectUrl _parserFn$Query$GetRedirectUrl(
         Map<String, dynamic> data) =>
     Query$GetRedirectUrl.fromJson(data);
+typedef OnQueryComplete$Query$GetRedirectUrl = FutureOr<void> Function(
+  Map<String, dynamic>?,
+  Query$GetRedirectUrl?,
+);
 
 class Options$Query$GetRedirectUrl
     extends graphql.QueryOptions<Query$GetRedirectUrl> {
@@ -297,20 +302,41 @@ class Options$Query$GetRedirectUrl
     graphql.ErrorPolicy? errorPolicy,
     graphql.CacheRereadPolicy? cacheRereadPolicy,
     Object? optimisticResult,
+    Query$GetRedirectUrl? typedOptimisticResult,
     Duration? pollInterval,
     graphql.Context? context,
-  }) : super(
+    OnQueryComplete$Query$GetRedirectUrl? onComplete,
+    graphql.OnQueryError? onError,
+  })  : onCompleteWithParsed = onComplete,
+        super(
           variables: variables.toJson(),
           operationName: operationName,
           fetchPolicy: fetchPolicy,
           errorPolicy: errorPolicy,
           cacheRereadPolicy: cacheRereadPolicy,
-          optimisticResult: optimisticResult,
+          optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
           pollInterval: pollInterval,
           context: context,
+          onComplete: onComplete == null
+              ? null
+              : (data) => onComplete(
+                    data,
+                    data == null ? null : _parserFn$Query$GetRedirectUrl(data),
+                  ),
+          onError: onError,
           document: documentNodeQueryGetRedirectUrl,
           parserFn: _parserFn$Query$GetRedirectUrl,
         );
+
+  final OnQueryComplete$Query$GetRedirectUrl? onCompleteWithParsed;
+
+  @override
+  List<Object?> get properties => [
+        ...super.onComplete == null
+            ? super.properties
+            : super.properties.where((property) => property != onComplete),
+        onCompleteWithParsed,
+      ];
 }
 
 class WatchOptions$Query$GetRedirectUrl
@@ -322,6 +348,7 @@ class WatchOptions$Query$GetRedirectUrl
     graphql.ErrorPolicy? errorPolicy,
     graphql.CacheRereadPolicy? cacheRereadPolicy,
     Object? optimisticResult,
+    Query$GetRedirectUrl? typedOptimisticResult,
     graphql.Context? context,
     Duration? pollInterval,
     bool? eagerlyFetchResults,
@@ -333,7 +360,7 @@ class WatchOptions$Query$GetRedirectUrl
           fetchPolicy: fetchPolicy,
           errorPolicy: errorPolicy,
           cacheRereadPolicy: cacheRereadPolicy,
-          optimisticResult: optimisticResult,
+          optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
           context: context,
           document: documentNodeQueryGetRedirectUrl,
           pollInterval: pollInterval,

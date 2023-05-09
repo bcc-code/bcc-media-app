@@ -1,6 +1,7 @@
 import '../schema/episodes.graphql.dart';
 import '../schema/schema.graphql.dart';
 import '../schema/shows.graphql.dart';
+import 'dart:async';
 import 'package:flutter/widgets.dart' as widgets;
 import 'package:gql/ast.dart';
 import 'package:graphql/client.dart' as graphql;
@@ -63,6 +64,50 @@ extension UtilityExtension$Fragment$EpisodeContext on Fragment$EpisodeContext {
         this,
         (i) => i,
       );
+  _T when<_T>({
+    required _T Function(Fragment$EpisodeContext$$ContextCollection)
+        contextCollection,
+    required _T Function(Fragment$EpisodeContext$$Season) season,
+    required _T Function() orElse,
+  }) {
+    switch ($__typename) {
+      case "ContextCollection":
+        return contextCollection(
+            this as Fragment$EpisodeContext$$ContextCollection);
+
+      case "Season":
+        return season(this as Fragment$EpisodeContext$$Season);
+
+      default:
+        return orElse();
+    }
+  }
+
+  _T maybeWhen<_T>({
+    _T Function(Fragment$EpisodeContext$$ContextCollection)? contextCollection,
+    _T Function(Fragment$EpisodeContext$$Season)? season,
+    required _T Function() orElse,
+  }) {
+    switch ($__typename) {
+      case "ContextCollection":
+        if (contextCollection != null) {
+          return contextCollection(
+              this as Fragment$EpisodeContext$$ContextCollection);
+        } else {
+          return orElse();
+        }
+
+      case "Season":
+        if (season != null) {
+          return season(this as Fragment$EpisodeContext$$Season);
+        } else {
+          return orElse();
+        }
+
+      default:
+        return orElse();
+    }
+  }
 }
 
 abstract class CopyWith$Fragment$EpisodeContext<TRes> {
@@ -944,6 +989,131 @@ extension UtilityExtension$Fragment$EpisodeContext$$ContextCollection$items$item
             this,
             (i) => i,
           );
+  _T when<_T>({
+    required _T Function(
+            Fragment$EpisodeContext$$ContextCollection$items$items$item$$Show)
+        show,
+    required _T Function(
+            Fragment$EpisodeContext$$ContextCollection$items$items$item$$Season)
+        season,
+    required _T Function(
+            Fragment$EpisodeContext$$ContextCollection$items$items$item$$Episode)
+        episode,
+    required _T Function(
+            Fragment$EpisodeContext$$ContextCollection$items$items$item$$Page)
+        page,
+    required _T Function(
+            Fragment$EpisodeContext$$ContextCollection$items$items$item$$Link)
+        link,
+    required _T Function(
+            Fragment$EpisodeContext$$ContextCollection$items$items$item$$StudyTopic)
+        studyTopic,
+    required _T Function() orElse,
+  }) {
+    switch ($__typename) {
+      case "Show":
+        return show(this
+            as Fragment$EpisodeContext$$ContextCollection$items$items$item$$Show);
+
+      case "Season":
+        return season(this
+            as Fragment$EpisodeContext$$ContextCollection$items$items$item$$Season);
+
+      case "Episode":
+        return episode(this
+            as Fragment$EpisodeContext$$ContextCollection$items$items$item$$Episode);
+
+      case "Page":
+        return page(this
+            as Fragment$EpisodeContext$$ContextCollection$items$items$item$$Page);
+
+      case "Link":
+        return link(this
+            as Fragment$EpisodeContext$$ContextCollection$items$items$item$$Link);
+
+      case "StudyTopic":
+        return studyTopic(this
+            as Fragment$EpisodeContext$$ContextCollection$items$items$item$$StudyTopic);
+
+      default:
+        return orElse();
+    }
+  }
+
+  _T maybeWhen<_T>({
+    _T Function(
+            Fragment$EpisodeContext$$ContextCollection$items$items$item$$Show)?
+        show,
+    _T Function(
+            Fragment$EpisodeContext$$ContextCollection$items$items$item$$Season)?
+        season,
+    _T Function(
+            Fragment$EpisodeContext$$ContextCollection$items$items$item$$Episode)?
+        episode,
+    _T Function(
+            Fragment$EpisodeContext$$ContextCollection$items$items$item$$Page)?
+        page,
+    _T Function(
+            Fragment$EpisodeContext$$ContextCollection$items$items$item$$Link)?
+        link,
+    _T Function(
+            Fragment$EpisodeContext$$ContextCollection$items$items$item$$StudyTopic)?
+        studyTopic,
+    required _T Function() orElse,
+  }) {
+    switch ($__typename) {
+      case "Show":
+        if (show != null) {
+          return show(this
+              as Fragment$EpisodeContext$$ContextCollection$items$items$item$$Show);
+        } else {
+          return orElse();
+        }
+
+      case "Season":
+        if (season != null) {
+          return season(this
+              as Fragment$EpisodeContext$$ContextCollection$items$items$item$$Season);
+        } else {
+          return orElse();
+        }
+
+      case "Episode":
+        if (episode != null) {
+          return episode(this
+              as Fragment$EpisodeContext$$ContextCollection$items$items$item$$Episode);
+        } else {
+          return orElse();
+        }
+
+      case "Page":
+        if (page != null) {
+          return page(this
+              as Fragment$EpisodeContext$$ContextCollection$items$items$item$$Page);
+        } else {
+          return orElse();
+        }
+
+      case "Link":
+        if (link != null) {
+          return link(this
+              as Fragment$EpisodeContext$$ContextCollection$items$items$item$$Link);
+        } else {
+          return orElse();
+        }
+
+      case "StudyTopic":
+        if (studyTopic != null) {
+          return studyTopic(this
+              as Fragment$EpisodeContext$$ContextCollection$items$items$item$$StudyTopic);
+        } else {
+          return orElse();
+        }
+
+      default:
+        return orElse();
+    }
+  }
 }
 
 abstract class CopyWith$Fragment$EpisodeContext$$ContextCollection$items$items$item<
@@ -4208,10 +4378,12 @@ class Variables$Query$FetchEpisode {
   factory Variables$Query$FetchEpisode({
     required String id,
     Input$EpisodeContext? context,
+    required bool authenticated,
   }) =>
       Variables$Query$FetchEpisode._({
         r'id': id,
         if (context != null) r'context': context,
+        r'authenticated': authenticated,
       });
 
   Variables$Query$FetchEpisode._(this._$data);
@@ -4226,6 +4398,8 @@ class Variables$Query$FetchEpisode {
           ? null
           : Input$EpisodeContext.fromJson((l$context as Map<String, dynamic>));
     }
+    final l$authenticated = data['authenticated'];
+    result$data['authenticated'] = (l$authenticated as bool);
     return Variables$Query$FetchEpisode._(result$data);
   }
 
@@ -4234,6 +4408,7 @@ class Variables$Query$FetchEpisode {
   String get id => (_$data['id'] as String);
   Input$EpisodeContext? get context =>
       (_$data['context'] as Input$EpisodeContext?);
+  bool get authenticated => (_$data['authenticated'] as bool);
   Map<String, dynamic> toJson() {
     final result$data = <String, dynamic>{};
     final l$id = id;
@@ -4242,6 +4417,8 @@ class Variables$Query$FetchEpisode {
       final l$context = context;
       result$data['context'] = l$context?.toJson();
     }
+    final l$authenticated = authenticated;
+    result$data['authenticated'] = l$authenticated;
     return result$data;
   }
 
@@ -4272,6 +4449,11 @@ class Variables$Query$FetchEpisode {
     if (l$context != lOther$context) {
       return false;
     }
+    final l$authenticated = authenticated;
+    final lOther$authenticated = other.authenticated;
+    if (l$authenticated != lOther$authenticated) {
+      return false;
+    }
     return true;
   }
 
@@ -4279,9 +4461,11 @@ class Variables$Query$FetchEpisode {
   int get hashCode {
     final l$id = id;
     final l$context = context;
+    final l$authenticated = authenticated;
     return Object.hashAll([
       l$id,
       _$data.containsKey('context') ? l$context : const {},
+      l$authenticated,
     ]);
   }
 }
@@ -4298,6 +4482,7 @@ abstract class CopyWith$Variables$Query$FetchEpisode<TRes> {
   TRes call({
     String? id,
     Input$EpisodeContext? context,
+    bool? authenticated,
   });
 }
 
@@ -4317,12 +4502,15 @@ class _CopyWithImpl$Variables$Query$FetchEpisode<TRes>
   TRes call({
     Object? id = _undefined,
     Object? context = _undefined,
+    Object? authenticated = _undefined,
   }) =>
       _then(Variables$Query$FetchEpisode._({
         ..._instance._$data,
         if (id != _undefined && id != null) 'id': (id as String),
         if (context != _undefined)
           'context': (context as Input$EpisodeContext?),
+        if (authenticated != _undefined && authenticated != null)
+          'authenticated': (authenticated as bool),
       }));
 }
 
@@ -4335,6 +4523,7 @@ class _CopyWithStubImpl$Variables$Query$FetchEpisode<TRes>
   call({
     String? id,
     Input$EpisodeContext? context,
+    bool? authenticated,
   }) =>
       _res;
 }
@@ -4490,6 +4679,15 @@ const documentNodeQueryFetchEpisode = DocumentNode(definitions: [
         type: NamedTypeNode(
           name: NameNode(value: 'EpisodeContext'),
           isNonNull: false,
+        ),
+        defaultValue: DefaultValueNode(value: null),
+        directives: [],
+      ),
+      VariableDefinitionNode(
+        variable: VariableNode(name: NameNode(value: 'authenticated')),
+        type: NamedTypeNode(
+          name: NameNode(value: 'Boolean'),
+          isNonNull: true,
         ),
         defaultValue: DefaultValueNode(value: null),
         directives: [],
@@ -4795,7 +4993,17 @@ const documentNodeQueryFetchEpisode = DocumentNode(definitions: [
             name: NameNode(value: 'inMyList'),
             alias: null,
             arguments: [],
-            directives: [],
+            directives: [
+              DirectiveNode(
+                name: NameNode(value: 'include'),
+                arguments: [
+                  ArgumentNode(
+                    name: NameNode(value: 'if'),
+                    value: VariableNode(name: NameNode(value: 'authenticated')),
+                  )
+                ],
+              )
+            ],
             selectionSet: null,
           ),
           FieldNode(
@@ -4824,6 +5032,10 @@ const documentNodeQueryFetchEpisode = DocumentNode(definitions: [
 ]);
 Query$FetchEpisode _parserFn$Query$FetchEpisode(Map<String, dynamic> data) =>
     Query$FetchEpisode.fromJson(data);
+typedef OnQueryComplete$Query$FetchEpisode = FutureOr<void> Function(
+  Map<String, dynamic>?,
+  Query$FetchEpisode?,
+);
 
 class Options$Query$FetchEpisode
     extends graphql.QueryOptions<Query$FetchEpisode> {
@@ -4834,20 +5046,41 @@ class Options$Query$FetchEpisode
     graphql.ErrorPolicy? errorPolicy,
     graphql.CacheRereadPolicy? cacheRereadPolicy,
     Object? optimisticResult,
+    Query$FetchEpisode? typedOptimisticResult,
     Duration? pollInterval,
     graphql.Context? context,
-  }) : super(
+    OnQueryComplete$Query$FetchEpisode? onComplete,
+    graphql.OnQueryError? onError,
+  })  : onCompleteWithParsed = onComplete,
+        super(
           variables: variables.toJson(),
           operationName: operationName,
           fetchPolicy: fetchPolicy,
           errorPolicy: errorPolicy,
           cacheRereadPolicy: cacheRereadPolicy,
-          optimisticResult: optimisticResult,
+          optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
           pollInterval: pollInterval,
           context: context,
+          onComplete: onComplete == null
+              ? null
+              : (data) => onComplete(
+                    data,
+                    data == null ? null : _parserFn$Query$FetchEpisode(data),
+                  ),
+          onError: onError,
           document: documentNodeQueryFetchEpisode,
           parserFn: _parserFn$Query$FetchEpisode,
         );
+
+  final OnQueryComplete$Query$FetchEpisode? onCompleteWithParsed;
+
+  @override
+  List<Object?> get properties => [
+        ...super.onComplete == null
+            ? super.properties
+            : super.properties.where((property) => property != onComplete),
+        onCompleteWithParsed,
+      ];
 }
 
 class WatchOptions$Query$FetchEpisode
@@ -4859,6 +5092,7 @@ class WatchOptions$Query$FetchEpisode
     graphql.ErrorPolicy? errorPolicy,
     graphql.CacheRereadPolicy? cacheRereadPolicy,
     Object? optimisticResult,
+    Query$FetchEpisode? typedOptimisticResult,
     graphql.Context? context,
     Duration? pollInterval,
     bool? eagerlyFetchResults,
@@ -4870,7 +5104,7 @@ class WatchOptions$Query$FetchEpisode
           fetchPolicy: fetchPolicy,
           errorPolicy: errorPolicy,
           cacheRereadPolicy: cacheRereadPolicy,
-          optimisticResult: optimisticResult,
+          optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
           context: context,
           document: documentNodeQueryFetchEpisode,
           pollInterval: pollInterval,
@@ -4967,7 +5201,7 @@ class Query$FetchEpisode$episode {
     this.relatedItems,
     required this.streams,
     required this.lessons,
-    required this.inMyList,
+    this.inMyList,
     this.$__typename = 'Episode',
   });
 
@@ -5025,7 +5259,7 @@ class Query$FetchEpisode$episode {
           .toList(),
       lessons: Query$FetchEpisode$episode$lessons.fromJson(
           (l$lessons as Map<String, dynamic>)),
-      inMyList: (l$inMyList as bool),
+      inMyList: (l$inMyList as bool?),
       $__typename: (l$$__typename as String),
     );
   }
@@ -5066,7 +5300,7 @@ class Query$FetchEpisode$episode {
 
   final Query$FetchEpisode$episode$lessons lessons;
 
-  final bool inMyList;
+  final bool? inMyList;
 
   final String $__typename;
 
@@ -5419,9 +5653,8 @@ class _CopyWithImpl$Query$FetchEpisode$episode<TRes>
         lessons: lessons == _undefined || lessons == null
             ? _instance.lessons
             : (lessons as Query$FetchEpisode$episode$lessons),
-        inMyList: inMyList == _undefined || inMyList == null
-            ? _instance.inMyList
-            : (inMyList as bool),
+        inMyList:
+            inMyList == _undefined ? _instance.inMyList : (inMyList as bool?),
         $__typename: $__typename == _undefined || $__typename == null
             ? _instance.$__typename
             : ($__typename as String),
@@ -6854,6 +7087,10 @@ const documentNodeQuerylegacyIDLookup = DocumentNode(definitions: [
 Query$legacyIDLookup _parserFn$Query$legacyIDLookup(
         Map<String, dynamic> data) =>
     Query$legacyIDLookup.fromJson(data);
+typedef OnQueryComplete$Query$legacyIDLookup = FutureOr<void> Function(
+  Map<String, dynamic>?,
+  Query$legacyIDLookup?,
+);
 
 class Options$Query$legacyIDLookup
     extends graphql.QueryOptions<Query$legacyIDLookup> {
@@ -6864,20 +7101,41 @@ class Options$Query$legacyIDLookup
     graphql.ErrorPolicy? errorPolicy,
     graphql.CacheRereadPolicy? cacheRereadPolicy,
     Object? optimisticResult,
+    Query$legacyIDLookup? typedOptimisticResult,
     Duration? pollInterval,
     graphql.Context? context,
-  }) : super(
+    OnQueryComplete$Query$legacyIDLookup? onComplete,
+    graphql.OnQueryError? onError,
+  })  : onCompleteWithParsed = onComplete,
+        super(
           variables: variables?.toJson() ?? {},
           operationName: operationName,
           fetchPolicy: fetchPolicy,
           errorPolicy: errorPolicy,
           cacheRereadPolicy: cacheRereadPolicy,
-          optimisticResult: optimisticResult,
+          optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
           pollInterval: pollInterval,
           context: context,
+          onComplete: onComplete == null
+              ? null
+              : (data) => onComplete(
+                    data,
+                    data == null ? null : _parserFn$Query$legacyIDLookup(data),
+                  ),
+          onError: onError,
           document: documentNodeQuerylegacyIDLookup,
           parserFn: _parserFn$Query$legacyIDLookup,
         );
+
+  final OnQueryComplete$Query$legacyIDLookup? onCompleteWithParsed;
+
+  @override
+  List<Object?> get properties => [
+        ...super.onComplete == null
+            ? super.properties
+            : super.properties.where((property) => property != onComplete),
+        onCompleteWithParsed,
+      ];
 }
 
 class WatchOptions$Query$legacyIDLookup
@@ -6889,6 +7147,7 @@ class WatchOptions$Query$legacyIDLookup
     graphql.ErrorPolicy? errorPolicy,
     graphql.CacheRereadPolicy? cacheRereadPolicy,
     Object? optimisticResult,
+    Query$legacyIDLookup? typedOptimisticResult,
     graphql.Context? context,
     Duration? pollInterval,
     bool? eagerlyFetchResults,
@@ -6900,7 +7159,7 @@ class WatchOptions$Query$legacyIDLookup
           fetchPolicy: fetchPolicy,
           errorPolicy: errorPolicy,
           cacheRereadPolicy: cacheRereadPolicy,
-          optimisticResult: optimisticResult,
+          optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
           context: context,
           document: documentNodeQuerylegacyIDLookup,
           pollInterval: pollInterval,
@@ -7386,6 +7645,10 @@ const documentNodeQueryEpisodeDetails = DocumentNode(definitions: [
 Query$EpisodeDetails _parserFn$Query$EpisodeDetails(
         Map<String, dynamic> data) =>
     Query$EpisodeDetails.fromJson(data);
+typedef OnQueryComplete$Query$EpisodeDetails = FutureOr<void> Function(
+  Map<String, dynamic>?,
+  Query$EpisodeDetails?,
+);
 
 class Options$Query$EpisodeDetails
     extends graphql.QueryOptions<Query$EpisodeDetails> {
@@ -7396,20 +7659,41 @@ class Options$Query$EpisodeDetails
     graphql.ErrorPolicy? errorPolicy,
     graphql.CacheRereadPolicy? cacheRereadPolicy,
     Object? optimisticResult,
+    Query$EpisodeDetails? typedOptimisticResult,
     Duration? pollInterval,
     graphql.Context? context,
-  }) : super(
+    OnQueryComplete$Query$EpisodeDetails? onComplete,
+    graphql.OnQueryError? onError,
+  })  : onCompleteWithParsed = onComplete,
+        super(
           variables: variables.toJson(),
           operationName: operationName,
           fetchPolicy: fetchPolicy,
           errorPolicy: errorPolicy,
           cacheRereadPolicy: cacheRereadPolicy,
-          optimisticResult: optimisticResult,
+          optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
           pollInterval: pollInterval,
           context: context,
+          onComplete: onComplete == null
+              ? null
+              : (data) => onComplete(
+                    data,
+                    data == null ? null : _parserFn$Query$EpisodeDetails(data),
+                  ),
+          onError: onError,
           document: documentNodeQueryEpisodeDetails,
           parserFn: _parserFn$Query$EpisodeDetails,
         );
+
+  final OnQueryComplete$Query$EpisodeDetails? onCompleteWithParsed;
+
+  @override
+  List<Object?> get properties => [
+        ...super.onComplete == null
+            ? super.properties
+            : super.properties.where((property) => property != onComplete),
+        onCompleteWithParsed,
+      ];
 }
 
 class WatchOptions$Query$EpisodeDetails
@@ -7421,6 +7705,7 @@ class WatchOptions$Query$EpisodeDetails
     graphql.ErrorPolicy? errorPolicy,
     graphql.CacheRereadPolicy? cacheRereadPolicy,
     Object? optimisticResult,
+    Query$EpisodeDetails? typedOptimisticResult,
     graphql.Context? context,
     Duration? pollInterval,
     bool? eagerlyFetchResults,
@@ -7432,7 +7717,7 @@ class WatchOptions$Query$EpisodeDetails
           fetchPolicy: fetchPolicy,
           errorPolicy: errorPolicy,
           cacheRereadPolicy: cacheRereadPolicy,
-          optimisticResult: optimisticResult,
+          optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
           context: context,
           document: documentNodeQueryEpisodeDetails,
           pollInterval: pollInterval,
@@ -7814,6 +8099,11 @@ const documentNodeQuerygetDefaultEpisodeForShow = DocumentNode(definitions: [
 Query$getDefaultEpisodeForShow _parserFn$Query$getDefaultEpisodeForShow(
         Map<String, dynamic> data) =>
     Query$getDefaultEpisodeForShow.fromJson(data);
+typedef OnQueryComplete$Query$getDefaultEpisodeForShow = FutureOr<void>
+    Function(
+  Map<String, dynamic>?,
+  Query$getDefaultEpisodeForShow?,
+);
 
 class Options$Query$getDefaultEpisodeForShow
     extends graphql.QueryOptions<Query$getDefaultEpisodeForShow> {
@@ -7824,20 +8114,43 @@ class Options$Query$getDefaultEpisodeForShow
     graphql.ErrorPolicy? errorPolicy,
     graphql.CacheRereadPolicy? cacheRereadPolicy,
     Object? optimisticResult,
+    Query$getDefaultEpisodeForShow? typedOptimisticResult,
     Duration? pollInterval,
     graphql.Context? context,
-  }) : super(
+    OnQueryComplete$Query$getDefaultEpisodeForShow? onComplete,
+    graphql.OnQueryError? onError,
+  })  : onCompleteWithParsed = onComplete,
+        super(
           variables: variables.toJson(),
           operationName: operationName,
           fetchPolicy: fetchPolicy,
           errorPolicy: errorPolicy,
           cacheRereadPolicy: cacheRereadPolicy,
-          optimisticResult: optimisticResult,
+          optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
           pollInterval: pollInterval,
           context: context,
+          onComplete: onComplete == null
+              ? null
+              : (data) => onComplete(
+                    data,
+                    data == null
+                        ? null
+                        : _parserFn$Query$getDefaultEpisodeForShow(data),
+                  ),
+          onError: onError,
           document: documentNodeQuerygetDefaultEpisodeForShow,
           parserFn: _parserFn$Query$getDefaultEpisodeForShow,
         );
+
+  final OnQueryComplete$Query$getDefaultEpisodeForShow? onCompleteWithParsed;
+
+  @override
+  List<Object?> get properties => [
+        ...super.onComplete == null
+            ? super.properties
+            : super.properties.where((property) => property != onComplete),
+        onCompleteWithParsed,
+      ];
 }
 
 class WatchOptions$Query$getDefaultEpisodeForShow
@@ -7849,6 +8162,7 @@ class WatchOptions$Query$getDefaultEpisodeForShow
     graphql.ErrorPolicy? errorPolicy,
     graphql.CacheRereadPolicy? cacheRereadPolicy,
     Object? optimisticResult,
+    Query$getDefaultEpisodeForShow? typedOptimisticResult,
     graphql.Context? context,
     Duration? pollInterval,
     bool? eagerlyFetchResults,
@@ -7860,7 +8174,7 @@ class WatchOptions$Query$getDefaultEpisodeForShow
           fetchPolicy: fetchPolicy,
           errorPolicy: errorPolicy,
           cacheRereadPolicy: cacheRereadPolicy,
-          optimisticResult: optimisticResult,
+          optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
           context: context,
           document: documentNodeQuerygetDefaultEpisodeForShow,
           pollInterval: pollInterval,

@@ -1214,6 +1214,10 @@ const documentNodeQuerygetAchievementGroups = DocumentNode(definitions: [
 Query$getAchievementGroups _parserFn$Query$getAchievementGroups(
         Map<String, dynamic> data) =>
     Query$getAchievementGroups.fromJson(data);
+typedef OnQueryComplete$Query$getAchievementGroups = FutureOr<void> Function(
+  Map<String, dynamic>?,
+  Query$getAchievementGroups?,
+);
 
 class Options$Query$getAchievementGroups
     extends graphql.QueryOptions<Query$getAchievementGroups> {
@@ -1224,20 +1228,43 @@ class Options$Query$getAchievementGroups
     graphql.ErrorPolicy? errorPolicy,
     graphql.CacheRereadPolicy? cacheRereadPolicy,
     Object? optimisticResult,
+    Query$getAchievementGroups? typedOptimisticResult,
     Duration? pollInterval,
     graphql.Context? context,
-  }) : super(
+    OnQueryComplete$Query$getAchievementGroups? onComplete,
+    graphql.OnQueryError? onError,
+  })  : onCompleteWithParsed = onComplete,
+        super(
           variables: variables.toJson(),
           operationName: operationName,
           fetchPolicy: fetchPolicy,
           errorPolicy: errorPolicy,
           cacheRereadPolicy: cacheRereadPolicy,
-          optimisticResult: optimisticResult,
+          optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
           pollInterval: pollInterval,
           context: context,
+          onComplete: onComplete == null
+              ? null
+              : (data) => onComplete(
+                    data,
+                    data == null
+                        ? null
+                        : _parserFn$Query$getAchievementGroups(data),
+                  ),
+          onError: onError,
           document: documentNodeQuerygetAchievementGroups,
           parserFn: _parserFn$Query$getAchievementGroups,
         );
+
+  final OnQueryComplete$Query$getAchievementGroups? onCompleteWithParsed;
+
+  @override
+  List<Object?> get properties => [
+        ...super.onComplete == null
+            ? super.properties
+            : super.properties.where((property) => property != onComplete),
+        onCompleteWithParsed,
+      ];
 }
 
 class WatchOptions$Query$getAchievementGroups
@@ -1249,6 +1276,7 @@ class WatchOptions$Query$getAchievementGroups
     graphql.ErrorPolicy? errorPolicy,
     graphql.CacheRereadPolicy? cacheRereadPolicy,
     Object? optimisticResult,
+    Query$getAchievementGroups? typedOptimisticResult,
     graphql.Context? context,
     Duration? pollInterval,
     bool? eagerlyFetchResults,
@@ -1260,7 +1288,7 @@ class WatchOptions$Query$getAchievementGroups
           fetchPolicy: fetchPolicy,
           errorPolicy: errorPolicy,
           cacheRereadPolicy: cacheRereadPolicy,
-          optimisticResult: optimisticResult,
+          optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
           context: context,
           document: documentNodeQuerygetAchievementGroups,
           pollInterval: pollInterval,
@@ -1826,6 +1854,10 @@ const documentNodeQuerygetAchievementGroup = DocumentNode(definitions: [
 Query$getAchievementGroup _parserFn$Query$getAchievementGroup(
         Map<String, dynamic> data) =>
     Query$getAchievementGroup.fromJson(data);
+typedef OnQueryComplete$Query$getAchievementGroup = FutureOr<void> Function(
+  Map<String, dynamic>?,
+  Query$getAchievementGroup?,
+);
 
 class Options$Query$getAchievementGroup
     extends graphql.QueryOptions<Query$getAchievementGroup> {
@@ -1836,20 +1868,43 @@ class Options$Query$getAchievementGroup
     graphql.ErrorPolicy? errorPolicy,
     graphql.CacheRereadPolicy? cacheRereadPolicy,
     Object? optimisticResult,
+    Query$getAchievementGroup? typedOptimisticResult,
     Duration? pollInterval,
     graphql.Context? context,
-  }) : super(
+    OnQueryComplete$Query$getAchievementGroup? onComplete,
+    graphql.OnQueryError? onError,
+  })  : onCompleteWithParsed = onComplete,
+        super(
           variables: variables.toJson(),
           operationName: operationName,
           fetchPolicy: fetchPolicy,
           errorPolicy: errorPolicy,
           cacheRereadPolicy: cacheRereadPolicy,
-          optimisticResult: optimisticResult,
+          optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
           pollInterval: pollInterval,
           context: context,
+          onComplete: onComplete == null
+              ? null
+              : (data) => onComplete(
+                    data,
+                    data == null
+                        ? null
+                        : _parserFn$Query$getAchievementGroup(data),
+                  ),
+          onError: onError,
           document: documentNodeQuerygetAchievementGroup,
           parserFn: _parserFn$Query$getAchievementGroup,
         );
+
+  final OnQueryComplete$Query$getAchievementGroup? onCompleteWithParsed;
+
+  @override
+  List<Object?> get properties => [
+        ...super.onComplete == null
+            ? super.properties
+            : super.properties.where((property) => property != onComplete),
+        onCompleteWithParsed,
+      ];
 }
 
 class WatchOptions$Query$getAchievementGroup
@@ -1861,6 +1916,7 @@ class WatchOptions$Query$getAchievementGroup
     graphql.ErrorPolicy? errorPolicy,
     graphql.CacheRereadPolicy? cacheRereadPolicy,
     Object? optimisticResult,
+    Query$getAchievementGroup? typedOptimisticResult,
     graphql.Context? context,
     Duration? pollInterval,
     bool? eagerlyFetchResults,
@@ -1872,7 +1928,7 @@ class WatchOptions$Query$getAchievementGroup
           fetchPolicy: fetchPolicy,
           errorPolicy: errorPolicy,
           cacheRereadPolicy: cacheRereadPolicy,
-          optimisticResult: optimisticResult,
+          optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
           context: context,
           document: documentNodeQuerygetAchievementGroup,
           pollInterval: pollInterval,
@@ -2147,6 +2203,10 @@ const documentNodeQuerygetPendingAchievements = DocumentNode(definitions: [
 Query$getPendingAchievements _parserFn$Query$getPendingAchievements(
         Map<String, dynamic> data) =>
     Query$getPendingAchievements.fromJson(data);
+typedef OnQueryComplete$Query$getPendingAchievements = FutureOr<void> Function(
+  Map<String, dynamic>?,
+  Query$getPendingAchievements?,
+);
 
 class Options$Query$getPendingAchievements
     extends graphql.QueryOptions<Query$getPendingAchievements> {
@@ -2156,19 +2216,42 @@ class Options$Query$getPendingAchievements
     graphql.ErrorPolicy? errorPolicy,
     graphql.CacheRereadPolicy? cacheRereadPolicy,
     Object? optimisticResult,
+    Query$getPendingAchievements? typedOptimisticResult,
     Duration? pollInterval,
     graphql.Context? context,
-  }) : super(
+    OnQueryComplete$Query$getPendingAchievements? onComplete,
+    graphql.OnQueryError? onError,
+  })  : onCompleteWithParsed = onComplete,
+        super(
           operationName: operationName,
           fetchPolicy: fetchPolicy,
           errorPolicy: errorPolicy,
           cacheRereadPolicy: cacheRereadPolicy,
-          optimisticResult: optimisticResult,
+          optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
           pollInterval: pollInterval,
           context: context,
+          onComplete: onComplete == null
+              ? null
+              : (data) => onComplete(
+                    data,
+                    data == null
+                        ? null
+                        : _parserFn$Query$getPendingAchievements(data),
+                  ),
+          onError: onError,
           document: documentNodeQuerygetPendingAchievements,
           parserFn: _parserFn$Query$getPendingAchievements,
         );
+
+  final OnQueryComplete$Query$getPendingAchievements? onCompleteWithParsed;
+
+  @override
+  List<Object?> get properties => [
+        ...super.onComplete == null
+            ? super.properties
+            : super.properties.where((property) => property != onComplete),
+        onCompleteWithParsed,
+      ];
 }
 
 class WatchOptions$Query$getPendingAchievements
@@ -2179,6 +2262,7 @@ class WatchOptions$Query$getPendingAchievements
     graphql.ErrorPolicy? errorPolicy,
     graphql.CacheRereadPolicy? cacheRereadPolicy,
     Object? optimisticResult,
+    Query$getPendingAchievements? typedOptimisticResult,
     graphql.Context? context,
     Duration? pollInterval,
     bool? eagerlyFetchResults,
@@ -2189,7 +2273,7 @@ class WatchOptions$Query$getPendingAchievements
           fetchPolicy: fetchPolicy,
           errorPolicy: errorPolicy,
           cacheRereadPolicy: cacheRereadPolicy,
-          optimisticResult: optimisticResult,
+          optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
           context: context,
           document: documentNodeQuerygetPendingAchievements,
           pollInterval: pollInterval,
@@ -2565,7 +2649,7 @@ Mutation$confirmAchievement _parserFn$Mutation$confirmAchievement(
     Mutation$confirmAchievement.fromJson(data);
 typedef OnMutationCompleted$Mutation$confirmAchievement = FutureOr<void>
     Function(
-  dynamic,
+  Map<String, dynamic>?,
   Mutation$confirmAchievement?,
 );
 
@@ -2578,6 +2662,7 @@ class Options$Mutation$confirmAchievement
     graphql.ErrorPolicy? errorPolicy,
     graphql.CacheRereadPolicy? cacheRereadPolicy,
     Object? optimisticResult,
+    Mutation$confirmAchievement? typedOptimisticResult,
     graphql.Context? context,
     OnMutationCompleted$Mutation$confirmAchievement? onCompleted,
     graphql.OnMutationUpdate<Mutation$confirmAchievement>? update,
@@ -2589,7 +2674,7 @@ class Options$Mutation$confirmAchievement
           fetchPolicy: fetchPolicy,
           errorPolicy: errorPolicy,
           cacheRereadPolicy: cacheRereadPolicy,
-          optimisticResult: optimisticResult,
+          optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
           context: context,
           onCompleted: onCompleted == null
               ? null
@@ -2625,6 +2710,7 @@ class WatchOptions$Mutation$confirmAchievement
     graphql.ErrorPolicy? errorPolicy,
     graphql.CacheRereadPolicy? cacheRereadPolicy,
     Object? optimisticResult,
+    Mutation$confirmAchievement? typedOptimisticResult,
     graphql.Context? context,
     Duration? pollInterval,
     bool? eagerlyFetchResults,
@@ -2636,7 +2722,7 @@ class WatchOptions$Mutation$confirmAchievement
           fetchPolicy: fetchPolicy,
           errorPolicy: errorPolicy,
           cacheRereadPolicy: cacheRereadPolicy,
-          optimisticResult: optimisticResult,
+          optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
           context: context,
           document: documentNodeMutationconfirmAchievement,
           pollInterval: pollInterval,
@@ -2674,9 +2760,10 @@ Mutation$confirmAchievement$HookResult useMutation$confirmAchievement(
   final result = graphql_flutter
       .useMutation(options ?? WidgetOptions$Mutation$confirmAchievement());
   return Mutation$confirmAchievement$HookResult(
-    (variables, {optimisticResult}) => result.runMutation(
+    (variables, {optimisticResult, typedOptimisticResult}) =>
+        result.runMutation(
       variables.toJson(),
-      optimisticResult: optimisticResult,
+      optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
     ),
     result.result,
   );
@@ -2695,6 +2782,7 @@ class WidgetOptions$Mutation$confirmAchievement
     graphql.ErrorPolicy? errorPolicy,
     graphql.CacheRereadPolicy? cacheRereadPolicy,
     Object? optimisticResult,
+    Mutation$confirmAchievement? typedOptimisticResult,
     graphql.Context? context,
     OnMutationCompleted$Mutation$confirmAchievement? onCompleted,
     graphql.OnMutationUpdate<Mutation$confirmAchievement>? update,
@@ -2705,7 +2793,7 @@ class WidgetOptions$Mutation$confirmAchievement
           fetchPolicy: fetchPolicy,
           errorPolicy: errorPolicy,
           cacheRereadPolicy: cacheRereadPolicy,
-          optimisticResult: optimisticResult,
+          optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
           context: context,
           onCompleted: onCompleted == null
               ? null
@@ -2736,6 +2824,7 @@ typedef RunMutation$Mutation$confirmAchievement
     = graphql.MultiSourceResult<Mutation$confirmAchievement> Function(
   Variables$Mutation$confirmAchievement, {
   Object? optimisticResult,
+  Mutation$confirmAchievement? typedOptimisticResult,
 });
 typedef Builder$Mutation$confirmAchievement = widgets.Widget Function(
   RunMutation$Mutation$confirmAchievement,
@@ -2759,10 +2848,12 @@ class Mutation$confirmAchievement$Widget
             (
               variables, {
               optimisticResult,
+              typedOptimisticResult,
             }) =>
                 run(
               variables.toJson(),
-              optimisticResult: optimisticResult,
+              optimisticResult:
+                  optimisticResult ?? typedOptimisticResult?.toJson(),
             ),
             result,
           ),

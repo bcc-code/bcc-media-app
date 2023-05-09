@@ -1,4 +1,8 @@
-query FetchEpisode($id: ID!, $context: EpisodeContext) {
+query FetchEpisode(
+  $id: ID!
+  $context: EpisodeContext
+  $authenticated: Boolean!
+) {
   episode(id: $id, context: $context) {
     id
     uuid
@@ -40,7 +44,7 @@ query FetchEpisode($id: ID!, $context: EpisodeContext) {
         id
       }
     }
-    inMyList
+    inMyList @include(if: $authenticated)
   }
 }
 

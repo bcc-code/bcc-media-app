@@ -396,7 +396,7 @@ Mutation$setEpisodeProgress _parserFn$Mutation$setEpisodeProgress(
     Mutation$setEpisodeProgress.fromJson(data);
 typedef OnMutationCompleted$Mutation$setEpisodeProgress = FutureOr<void>
     Function(
-  dynamic,
+  Map<String, dynamic>?,
   Mutation$setEpisodeProgress?,
 );
 
@@ -409,6 +409,7 @@ class Options$Mutation$setEpisodeProgress
     graphql.ErrorPolicy? errorPolicy,
     graphql.CacheRereadPolicy? cacheRereadPolicy,
     Object? optimisticResult,
+    Mutation$setEpisodeProgress? typedOptimisticResult,
     graphql.Context? context,
     OnMutationCompleted$Mutation$setEpisodeProgress? onCompleted,
     graphql.OnMutationUpdate<Mutation$setEpisodeProgress>? update,
@@ -420,7 +421,7 @@ class Options$Mutation$setEpisodeProgress
           fetchPolicy: fetchPolicy,
           errorPolicy: errorPolicy,
           cacheRereadPolicy: cacheRereadPolicy,
-          optimisticResult: optimisticResult,
+          optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
           context: context,
           onCompleted: onCompleted == null
               ? null
@@ -456,6 +457,7 @@ class WatchOptions$Mutation$setEpisodeProgress
     graphql.ErrorPolicy? errorPolicy,
     graphql.CacheRereadPolicy? cacheRereadPolicy,
     Object? optimisticResult,
+    Mutation$setEpisodeProgress? typedOptimisticResult,
     graphql.Context? context,
     Duration? pollInterval,
     bool? eagerlyFetchResults,
@@ -467,7 +469,7 @@ class WatchOptions$Mutation$setEpisodeProgress
           fetchPolicy: fetchPolicy,
           errorPolicy: errorPolicy,
           cacheRereadPolicy: cacheRereadPolicy,
-          optimisticResult: optimisticResult,
+          optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
           context: context,
           document: documentNodeMutationsetEpisodeProgress,
           pollInterval: pollInterval,
@@ -505,9 +507,10 @@ Mutation$setEpisodeProgress$HookResult useMutation$setEpisodeProgress(
   final result = graphql_flutter
       .useMutation(options ?? WidgetOptions$Mutation$setEpisodeProgress());
   return Mutation$setEpisodeProgress$HookResult(
-    (variables, {optimisticResult}) => result.runMutation(
+    (variables, {optimisticResult, typedOptimisticResult}) =>
+        result.runMutation(
       variables.toJson(),
-      optimisticResult: optimisticResult,
+      optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
     ),
     result.result,
   );
@@ -526,6 +529,7 @@ class WidgetOptions$Mutation$setEpisodeProgress
     graphql.ErrorPolicy? errorPolicy,
     graphql.CacheRereadPolicy? cacheRereadPolicy,
     Object? optimisticResult,
+    Mutation$setEpisodeProgress? typedOptimisticResult,
     graphql.Context? context,
     OnMutationCompleted$Mutation$setEpisodeProgress? onCompleted,
     graphql.OnMutationUpdate<Mutation$setEpisodeProgress>? update,
@@ -536,7 +540,7 @@ class WidgetOptions$Mutation$setEpisodeProgress
           fetchPolicy: fetchPolicy,
           errorPolicy: errorPolicy,
           cacheRereadPolicy: cacheRereadPolicy,
-          optimisticResult: optimisticResult,
+          optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
           context: context,
           onCompleted: onCompleted == null
               ? null
@@ -567,6 +571,7 @@ typedef RunMutation$Mutation$setEpisodeProgress
     = graphql.MultiSourceResult<Mutation$setEpisodeProgress> Function(
   Variables$Mutation$setEpisodeProgress, {
   Object? optimisticResult,
+  Mutation$setEpisodeProgress? typedOptimisticResult,
 });
 typedef Builder$Mutation$setEpisodeProgress = widgets.Widget Function(
   RunMutation$Mutation$setEpisodeProgress,
@@ -590,10 +595,12 @@ class Mutation$setEpisodeProgress$Widget
             (
               variables, {
               optimisticResult,
+              typedOptimisticResult,
             }) =>
                 run(
               variables.toJson(),
-              optimisticResult: optimisticResult,
+              optimisticResult:
+                  optimisticResult ?? typedOptimisticResult?.toJson(),
             ),
             result,
           ),

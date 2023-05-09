@@ -5,6 +5,7 @@ import 'package:brunstadtv_app/helpers/ui/svg_icons.dart';
 import 'package:brunstadtv_app/helpers/utils.dart';
 import 'package:brunstadtv_app/helpers/widget_keys.dart';
 import 'package:brunstadtv_app/l10n/app_localizations.dart';
+import 'package:brunstadtv_app/providers/auth_state/auth_state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_svg/svg.dart';
@@ -33,10 +34,12 @@ class EpisodeInfo extends HookConsumerWidget {
     useEffect(() {
       inMyList.value = episode.inMyList;
       return null;
+      // ignore: exhaustive_keys
     }, [episode.id, episode.inMyList]);
 
     void toggleInMyList() {
-      if (inMyList.value) {
+      final previousValue = inMyList.value ?? false;
+      if (previousValue) {
         ref.read(gqlClientProvider).mutate$removeEntryFromMyList(Options$Mutation$removeEntryFromMyList(
               variables: Variables$Mutation$removeEntryFromMyList(entryId: episode.uuid),
             ));
@@ -45,9 +48,10 @@ class EpisodeInfo extends HookConsumerWidget {
               variables: Variables$Mutation$addEpisodeToMyList(episodeId: episode.id),
             ));
       }
-      inMyList.value = !inMyList.value;
+      inMyList.value = !previousValue;
     }
 
+    final inMyListValue = inMyList.value;
     return Container(
       color: design.colors.background2,
       child: AnimatedSize(
@@ -66,20 +70,21 @@ class EpisodeInfo extends HookConsumerWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Expanded(child: Text(key: WidgetKeys.episodePageEpisodeTitle, episode.title, style: design.textStyles.title1)),
-                      GestureDetector(
-                        onTap: toggleInMyList,
-                        behavior: HitTestBehavior.opaque,
-                        child: FocusableActionDetector(
-                          mouseCursor: MaterialStateMouseCursor.clickable,
-                          child: Padding(
-                            padding: const EdgeInsets.only(top: 4, left: 6, right: 6),
-                            child: AnimatedSwitcher(
-                              duration: const Duration(milliseconds: 150),
-                              child: SvgPicture.string(key: ValueKey(inMyList.value), inMyList.value ? SvgIcons.heartFilled : SvgIcons.heart),
+                      if (ref.read(authStateProvider.select((value) => value.auth0AccessToken != null)) && inMyListValue != null)
+                        GestureDetector(
+                          onTap: toggleInMyList,
+                          behavior: HitTestBehavior.opaque,
+                          child: FocusableActionDetector(
+                            mouseCursor: MaterialStateMouseCursor.clickable,
+                            child: Padding(
+                              padding: const EdgeInsets.only(top: 4, left: 6, right: 6),
+                              child: AnimatedSwitcher(
+                                duration: const Duration(milliseconds: 150),
+                                child: SvgPicture.string(key: ValueKey(inMyListValue), inMyListValue ? SvgIcons.heartFilled : SvgIcons.heart),
+                              ),
                             ),
                           ),
                         ),
-                      ),
                       GestureDetector(
                         onTap: onShareVideoTapped,
                         behavior: HitTestBehavior.opaque,
