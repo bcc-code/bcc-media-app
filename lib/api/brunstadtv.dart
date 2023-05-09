@@ -41,6 +41,7 @@ class Api implements BccmApi {
         variables: Variables$Query$FetchEpisode(
           id: id,
           context: context,
+          authenticated: accessToken != null,
         ),
       ),
     );
