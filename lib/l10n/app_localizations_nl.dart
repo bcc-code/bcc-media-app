@@ -56,7 +56,7 @@ class SNl extends S {
   String get signInButton => 'Log in';
 
   @override
-  String get signInOrSignUp => 'Sign up / Sign in';
+  String get signInOrSignUp => 'Registreren / Aanmelden';
 
   @override
   String get signUpButton => 'Meld je nu aan';
@@ -68,7 +68,7 @@ class SNl extends S {
   String get signUpDescription => 'Krijg toegang tot meer content en betere functionaliteit door een account aan te maken.';
 
   @override
-  String get signUpAgreePrivacyPolicy => 'I certify that I am 13 years of age or older, and I agree to the <a>Privacy Policy</a> and <a>Terms of use</a>.';
+  String get signUpAgreePrivacyPolicy => 'Ik bevestig dat ik 13 jaar of ouder ben, en ik ga akkoord met het  <a>Privacybeleid</a> en de <a>Algemene voorwaarden</a>.';
 
   @override
   String get setPassword => 'Stel een wachtwoord in';
@@ -140,16 +140,16 @@ class SNl extends S {
   String get cancel => 'Annuleren';
 
   @override
-  String get cancelConfirmation => 'Are you sure you want to cancel?';
+  String get cancelConfirmation => 'Weet u het zeker dat u wilt annuleren?';
 
   @override
-  String get cancelConfirmationDescription => 'Any unsaved changes will be lost.';
+  String get cancelConfirmationDescription => 'Niet opgeslagen wijzigingen gaan verloren.';
 
   @override
-  String get goBack => 'Go back';
+  String get goBack => 'Ga terug';
 
   @override
-  String get yesCancel => 'Yes, Cancel';
+  String get yesCancel => 'Ja, Annuleer';
 
   @override
   String get upNext => 'Volgende';
@@ -191,7 +191,7 @@ class SNl extends S {
   String get search => 'Zoeken';
 
   @override
-  String get sendFeedback => 'Send Feedback';
+  String get sendFeedback => 'Geef feedback';
 
   @override
   String get noResults => 'Geen resultaten';
@@ -403,10 +403,10 @@ class SNl extends S {
   String get share => 'Deel';
 
   @override
-  String get showMore => 'Show more';
+  String get showMore => 'Toon meer';
 
   @override
-  String get showLess => 'Show less';
+  String get showLess => 'Toon minder';
 
   @override
   String get liveNow => 'Nu live';
@@ -586,18 +586,18 @@ class SNl extends S {
   String get continueButton => 'Doorgaan';
 
   @override
-  String get registerButton => 'Register';
+  String get registerButton => 'Registreer';
 
   @override
   String get achievements => 'Prestaties';
 
   @override
   String passwordConditionLength(int n) {
-    return 'Minimum $n characters';
+    return 'Minimaal $n tekens';
   }
 
   @override
-  String get passwordConditionComplexity => 'Must contain lower case, uppercase and numbers.';
+  String get passwordConditionComplexity => 'Moet kleine letters, hoofdletters en cijfers bevatten.';
 
   @override
   String get oops => 'Oeps!';
@@ -630,10 +630,10 @@ class SNl extends S {
   String get selectSeason => 'Selecteer een seizoen';
 
   @override
-  String get deleteMyAccount => 'Delete my account';
+  String get deleteMyAccount => 'mijn account verwijderen';
 
   @override
-  String get iAmSureIWantToDelete => 'I am sure I want to delete my account and my data related to the BCC Media app.';
+  String get iAmSureIWantToDelete => 'Ik weet zeker dat ik mijn account en mijn gegevens met betrekking tot de BCC Media app wil verwijderen.';
 
   @override
   String get areYouSure => 'Weet je het zeker?';
