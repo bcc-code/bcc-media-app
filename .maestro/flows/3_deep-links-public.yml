@@ -11,6 +11,10 @@ appId: tv.brunstad.app
 - assertVisible: .*Joseph.*
 # Stopped 2
 - stopApp: tv.brunstad.app
+- openLink: "https://app.bcc.media/episode/51/769"
+- assertVisible: .*Joseph.*
+# Stopped 3
+- stopApp: tv.brunstad.app
 - openLink: "https://app.bcc.media/search"
 - tapOn:
     text: Search
@@ -22,6 +26,10 @@ appId: tv.brunstad.app
 - assertVisible: .*Joseph.*
 # Backgrounded 2
 - runFlow: subflows/home.yml
+- openLink: "https://app.bcc.media/episode/51/769"
+- assertVisible: .*Joseph.*
+# Backgrounded 3
+- runFlow: subflows/home.yml
 - openLink: "https://app.bcc.media/search"
 - tapOn:
     text: Search
@@ -31,6 +39,9 @@ appId: tv.brunstad.app
 - openLink: "https://app.bcc.media/episode/769"
 - assertVisible: .*Joseph.*
 # Foreground 2
+- openLink: "https://app.bcc.media/episode/51/769"
+- assertVisible: .*Joseph.*
+# Foreground 3
 - openLink: "https://app.bcc.media/search"
 - tapOn:
     text: Search

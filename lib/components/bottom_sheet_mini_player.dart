@@ -52,12 +52,13 @@ class _BottomSheetMiniPlayerState extends ConsumerState<BottomSheetMiniPlayer> {
       behavior: HitTestBehavior.opaque,
       onTap: () {
         var id = player.currentMediaItem?.metadata?.extras?['id']?.asOrNull<String>();
+        var collectionId = player.currentMediaItem?.metadata?.extras?['context.collectionId']?.asOrNull<String>();
         if (id == 'livestream') {
           context.router.navigate(const LiveScreenRoute());
         } else if (id != null) {
           ref.read(tempTitleProvider.notifier).state = title;
           try {
-            context.navigateTo(EpisodeScreenRoute(episodeId: id));
+            context.navigateTo(EpisodeScreenRoute(episodeId: id, collectionId: collectionId));
           } catch (_) {
             context.navigateTo(HomeScreenWrapperRoute(children: [EpisodeScreenRoute(episodeId: id)]));
           }

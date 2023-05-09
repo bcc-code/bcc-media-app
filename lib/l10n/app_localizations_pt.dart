@@ -56,7 +56,7 @@ class SPt extends S {
   String get signInButton => 'Entrar';
 
   @override
-  String get signInOrSignUp => 'Sign up / Sign in';
+  String get signInOrSignUp => 'Inscreva-se / Entrar';
 
   @override
   String get signUpButton => 'Inscreva-se agora';
@@ -68,7 +68,7 @@ class SPt extends S {
   String get signUpDescription => 'Obtenha acesso a mais conteúdo e melhores recursos criando uma conta.';
 
   @override
-  String get signUpAgreePrivacyPolicy => 'I certify that I am 13 years of age or older, and I agree to the <a>Privacy Policy</a> and <a>Terms of use</a>.';
+  String get signUpAgreePrivacyPolicy => 'Certifico que tenho 13 anos ou mais e concordo com a <a>Política de Privacidade</a> e os <a>Termos de uso</a>.';
 
   @override
   String get setPassword => 'Configurar senha';
@@ -98,7 +98,7 @@ class SPt extends S {
   String get ok => 'Ok';
 
   @override
-  String get open => 'Open';
+  String get open => 'Abrir';
 
   @override
   String get loginFailedCheckNetwork => 'Falha na autenticação. Verifique sua conexão de rede e tente novamente.';
@@ -140,16 +140,16 @@ class SPt extends S {
   String get cancel => 'Cancelar';
 
   @override
-  String get cancelConfirmation => 'Are you sure you want to cancel?';
+  String get cancelConfirmation => 'Tem certeza que deseja cancelar?';
 
   @override
-  String get cancelConfirmationDescription => 'Any unsaved changes will be lost.';
+  String get cancelConfirmationDescription => 'Quaisquer alterações não salvas serão perdidas.';
 
   @override
-  String get goBack => 'Go back';
+  String get goBack => 'Voltar';
 
   @override
-  String get yesCancel => 'Yes, Cancel';
+  String get yesCancel => 'Sim, Cancelar';
 
   @override
   String get upNext => 'A seguir';
@@ -191,7 +191,7 @@ class SPt extends S {
   String get search => 'Busca';
 
   @override
-  String get sendFeedback => 'Send Feedback';
+  String get sendFeedback => 'Enviar comentário';
 
   @override
   String get noResults => 'Nenhum resultado encontrado';
@@ -403,19 +403,19 @@ class SPt extends S {
   String get share => 'Compartilhar';
 
   @override
-  String get showMore => 'Show more';
+  String get showMore => 'Mostrar mais';
 
   @override
-  String get showLess => 'Show less';
+  String get showLess => 'Mostrar menos';
 
   @override
   String get liveNow => 'Ao vivo agora';
 
   @override
-  String get comingSoon => 'Em breve ';
+  String get comingSoon => 'Em breve';
 
   @override
-  String get newEpisode => 'Novo ';
+  String get newEpisode => 'Novo';
 
   @override
   String get tomorrow => 'Amanhã';
@@ -586,14 +586,14 @@ class SPt extends S {
   String get continueButton => 'Continuar';
 
   @override
-  String get registerButton => 'Register';
+  String get registerButton => 'Registar';
 
   @override
   String get achievements => 'Conquistas';
 
   @override
   String passwordConditionLength(int n) {
-    return 'Minimum $n characters';
+    return 'Mínimo de $n caracteres';
   }
 
   @override

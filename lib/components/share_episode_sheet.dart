@@ -3,6 +3,7 @@ import 'package:brunstadtv_app/components/loading_generic.dart';
 import 'package:brunstadtv_app/components/option_list.dart';
 import 'package:brunstadtv_app/graphql/queries/episode.graphql.dart';
 import 'package:brunstadtv_app/graphql/schema/episodes.graphql.dart';
+import 'package:brunstadtv_app/helpers/extensions.dart';
 import 'package:brunstadtv_app/theme/design_system/design_system.dart';
 
 import 'package:brunstadtv_app/helpers/ui/svg_icons.dart';
@@ -81,18 +82,20 @@ class _ShareEpisodeSheetState extends ConsumerState<ShareEpisodeSheet> {
           setState(() {
             loading = true;
           });
-          final episodeUrl = 'https://app.bcc.media/episode/${widget.episode.id}';
-          final navigator = Navigator.of(context);
-
-          var urlToShare = episodeUrl;
-
-          if (id == 'fromTime') {
-            urlToShare = '$episodeUrl?t=${widget.currentPosSeconds}';
+          final collectionId = widget.episode.context.asOrNull<Fragment$EpisodeContext$$ContextCollection>()?.id;
+          var episodeUrl = 'https://app.bcc.media/episode/${widget.episode.id}';
+          if (collectionId != null) {
+            episodeUrl = 'https://app.bcc.media/episode/$collectionId/${widget.episode.id}';
           }
 
+          if (id == 'fromTime') {
+            episodeUrl = '$episodeUrl?t=${widget.currentPosSeconds}';
+          }
+
+          final navigator = Navigator.of(context);
           try {
             await Share().shareUrl(
-              urlToShare,
+              episodeUrl,
               sharePositionOrigin: iPadSharePositionOrigin(context),
             );
           } catch (e) {
@@ -105,7 +108,7 @@ class _ShareEpisodeSheetState extends ConsumerState<ShareEpisodeSheet> {
                     child: TextField(
                       autofocus: true,
                       decoration: DesignSystem.of(context).inputDecorations.textFormField,
-                      controller: TextEditingController(text: urlToShare),
+                      controller: TextEditingController(text: episodeUrl),
                     ),
                   ),
                 ],

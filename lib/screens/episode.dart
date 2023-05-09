@@ -4,6 +4,7 @@ import 'dart:async';
 import 'package:auto_route/auto_route.dart';
 import 'package:bccm_player/bccm_player.dart';
 import 'package:bccm_player/plugins/riverpod.dart';
+import 'package:brunstadtv_app/components/episode/episode_collection.dart';
 import 'package:brunstadtv_app/components/episode/episode_info.dart';
 import 'package:brunstadtv_app/components/episode/episode_related.dart';
 import 'package:brunstadtv_app/components/episode/episode_season.dart';
@@ -31,6 +32,8 @@ import '../components/option_list.dart';
 import '../components/study_button.dart';
 import '../env/env.dart';
 import '../graphql/queries/studies.graphql.dart';
+import '../graphql/schema/episodes.graphql.dart';
+import '../graphql/schema/schema.graphql.dart';
 import '../helpers/insets.dart';
 import '../theme/design_system/design_system.dart';
 
@@ -38,17 +41,41 @@ import '../helpers/utils.dart';
 import '../helpers/extensions.dart';
 import '../l10n/app_localizations.dart';
 
-class EpisodeScreen extends HookConsumerWidget {
+class EpisodeScreen extends _EpisodeScreenImplementation {
+  const EpisodeScreen({
+    super.key,
+    @PathParam() required super.episodeId,
+    @QueryParam() super.autoplay,
+    @QueryParam('t') super.queryParamStartPosition,
+    @QueryParam('hide_bottom_section') super.hideBottomSection,
+    @QueryParam('collectionId') super.collectionId,
+  });
+}
+
+class CollectionEpisodeScreen extends _EpisodeScreenImplementation {
+  const CollectionEpisodeScreen({
+    super.key,
+    @PathParam() required super.episodeId,
+    @QueryParam() super.autoplay,
+    @QueryParam('t') super.queryParamStartPosition,
+    @QueryParam('hide_bottom_section') super.hideBottomSection,
+    @PathParam('collectionId') super.collectionId,
+  });
+}
+
+class _EpisodeScreenImplementation extends HookConsumerWidget {
   final String episodeId;
   final bool? autoplay;
   final int? queryParamStartPosition;
   final bool? hideBottomSection;
-  const EpisodeScreen({
+  final String? collectionId;
+  const _EpisodeScreenImplementation({
     super.key,
-    @PathParam() required this.episodeId,
-    @QueryParam() this.autoplay,
-    @QueryParam('t') this.queryParamStartPosition,
-    @QueryParam('hide_bottom_section') this.hideBottomSection,
+    required this.episodeId,
+    this.autoplay,
+    this.queryParamStartPosition,
+    this.hideBottomSection,
+    this.collectionId,
   });
 
   @override
@@ -69,7 +96,10 @@ class EpisodeScreen extends HookConsumerWidget {
     // Fetch the episode when needed
     final episodeFuture = useState<Future<Query$FetchEpisode$episode?>?>(null);
     fetchCurrentEpisode() {
-      episodeFuture.value = ref.read(apiProvider).fetchEpisode(episodeId.toString());
+      episodeFuture.value = ref.read(apiProvider).fetchEpisode(
+            episodeId.toString(),
+            context: Input$EpisodeContext(collectionId: collectionId),
+          );
     }
 
     useEffect(() {
@@ -160,7 +190,7 @@ class _EpisodeDisplay extends HookConsumerWidget {
     required this.scrollController,
   });
 
-  final EpisodeScreen screenParams;
+  final _EpisodeScreenImplementation screenParams;
   final Future<Query$FetchEpisode$episode?>? episodeFuture;
   final ScrollController scrollController;
 
@@ -284,20 +314,38 @@ class _EpisodeDisplay extends HookConsumerWidget {
             ),
           ],
         ),
-        if (screenParams.hideBottomSection != true && (!_isUnlisted(episode) || _isStandalone(episode)))
+        if (screenParams.hideBottomSection != true && (episode.status != Enum$Status.unlisted || episode.type == Enum$EpisodeType.standalone))
           EpisodeTabs(
             tabs: [
-              Option(id: 'episodes', title: (S.of(context).episodes.toUpperCase())),
+              Option(
+                id: 'episodes',
+                title: episode.context is Fragment$EpisodeContext$$Season ? S.of(context).episodes.toUpperCase() : S.of(context).videos.toUpperCase(),
+              ),
               Option(id: 'details', title: (S.of(context).details.toUpperCase())),
             ],
             children: [
-              if (episode.season != null)
+              if (episode.context is Fragment$EpisodeContext$$Season)
                 EpisodeSeason(
                   episodeId: screenParams.episodeId,
-                  season: episode.season!,
+                  season: episode.context as Fragment$EpisodeContext$$Season,
                   onEpisodeTap: (tappedEpisodeId) {
                     if (tappedEpisodeId != episode.id) {
                       context.navigateTo(EpisodeScreenRoute(episodeId: tappedEpisodeId, autoplay: kIsWeb ? null : true));
+                    }
+                    scrollToTop();
+                  },
+                )
+              else if (episode.context is Fragment$EpisodeContext$$ContextCollection)
+                EpisodeCollection(
+                  episodeId: screenParams.episodeId,
+                  collection: episode.context as Fragment$EpisodeContext$$ContextCollection,
+                  onEpisodeTap: (tappedEpisodeId) {
+                    if (tappedEpisodeId != episode.id) {
+                      context.navigateTo(EpisodeScreenRoute(
+                        episodeId: tappedEpisodeId,
+                        collectionId: screenParams.collectionId,
+                        autoplay: kIsWeb ? null : true,
+                      ));
                     }
                     scrollToTop();
                   },
@@ -345,13 +393,5 @@ class _EpisodeDisplay extends HookConsumerWidget {
         currentPosSeconds: currentPosSeconds,
       ),
     );
-  }
-
-  bool _isStandalone(Query$FetchEpisode$episode episode) {
-    return episode.season == null;
-  }
-
-  bool _isUnlisted(Query$FetchEpisode$episode episode) {
-    return episode.season?.$show.seasons.items.any((s) => s.id == episode.season?.id) == false;
   }
 }
