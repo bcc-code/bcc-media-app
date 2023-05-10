@@ -12,7 +12,7 @@ import '../helpers/extensions.dart';
 import '../helpers/ui/sections.dart';
 import '../models/pagination_status.dart';
 import '../providers/inherited_data.dart';
-import 'section_handle_update.dart';
+import 'section_update_handler.dart';
 
 /// How close to the bottom of the page do you have to be before we load more items
 const kLoadMoreBottomScrollOffset = 300;
@@ -84,7 +84,7 @@ class _BccmPageState extends ConsumerState<BccmPage> {
               var s = sectionItems[index];
               return InheritedData<SectionAnalytics>(
                 inheritedData: SectionAnalytics(id: s.id, position: index, type: s.$__typename, name: s.title),
-                child: (context) => SectionHandleUpdates(section: s, extraItems: paginationMap[s.id]?.items),
+                child: (context) => SectionUpdateHandler(section: s, extraItems: paginationMap[s.id]?.items),
               );
             }),
           ),

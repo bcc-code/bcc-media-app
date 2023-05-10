@@ -10,8 +10,8 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-import '../../api/brunstadtv.dart';
 import '../../graphql/queries/my_list.graphql.dart';
+import '../../providers/my_list_section_updates.dart';
 import '../../theme/design_system/design_system.dart';
 import '../text_collapsible.dart';
 
@@ -46,6 +46,7 @@ class EpisodeInfo extends HookConsumerWidget {
             ));
       }
       inMyList.value = !inMyList.value;
+      ref.read(myListUpdateNotifierProvider.notifier).notify();
     }
 
     return Container(
