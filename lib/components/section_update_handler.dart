@@ -1,10 +1,13 @@
+import 'package:brunstadtv_app/graphql/queries/sections.graphql.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
+import '../graphql/client.dart';
 import '../graphql/queries/page.graphql.dart';
+import '../helpers/event_bus.dart';
+import '../models/events/my_list_changed.dart';
 import '../providers/section_updates.dart';
-import '../providers/my_list_section_updates.dart';
 import '../helpers/extensions.dart';
 import 'section.dart';
 
@@ -28,16 +31,31 @@ class SectionUpdateHandler extends HookConsumerWidget {
       return null;
     }, [section]);
 
-    ref.listen<AsyncValue<Fragment$Section?>>(sectionUpdatesProvider(section.id), (prev, next) {
-      final val = next.valueOrNull;
-      if (val != null) updatedSection.value = val;
-    });
+    void refreshSection() {
+      ref
+          .watch(gqlClientProvider)
+          .query$GetSection(
+            Options$Query$GetSection(
+              variables: Variables$Query$GetSection(
+                id: section.id,
+                timestamp: DateTime.now().toIso8601String(),
+              ),
+            ),
+          )
+          .then(
+        (response) {
+          final section = response.parsedData?.section;
+          if (section != null) {
+            updatedSection.value = section;
+          }
+        },
+      );
+    }
+
+    ref.listen(sectionUpdatesProvider(section.id), (prev, next) => refreshSection());
 
     if (isMyList) {
-      ref.listen<AsyncValue<Fragment$Section?>>(myListSectionUpdatesProvider(section.id), (pref, next) {
-        final val = next.valueOrNull;
-        if (val != null) updatedSection.value = val;
-      });
+      globalEventBus.on<MyListChangedEvent>().listen((event) => refreshSection());
     }
 
     return Section(section: updatedSection.value, extraItems: extraItems);

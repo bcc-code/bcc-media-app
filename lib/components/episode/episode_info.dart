@@ -12,7 +12,8 @@ import 'package:flutter_svg/svg.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../graphql/queries/my_list.graphql.dart';
-import '../../providers/my_list_section_updates.dart';
+import '../../helpers/event_bus.dart';
+import '../../models/events/my_list_changed.dart';
 import '../../theme/design_system/design_system.dart';
 import '../text_collapsible.dart';
 
@@ -49,7 +50,7 @@ class EpisodeInfo extends HookConsumerWidget {
             ));
       }
       inMyList.value = !previousValue;
-      ref.read(myListUpdateNotifierProvider.notifier).notify();
+      globalEventBus.fire(MyListChangedEvent());
     }
 
     final inMyListValue = inMyList.value;
