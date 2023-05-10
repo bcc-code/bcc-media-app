@@ -97,22 +97,14 @@ android {
                 appAuthRedirectScheme: 'tv.brunstad.app.dev'
             ]
         }
-        v4_prod {
+        kids_prod {
             dimension "env"
-            applicationIdSuffix ".v4"
-            flutter.target "lib/main_v4_prod.dart"
+            applicationIdSuffix ""
+            applicationId "media.bcc.kids"
+            flutter.target "lib/main_kids_prod.dart"
             manifestPlaceholders += [
-                appName: "BCC Media v4",
-                appAuthRedirectScheme: 'tv.brunstad.app.v4'
-            ]
-        }
-        v4_dev {
-            dimension "env"
-            applicationIdSuffix ".v4.dev"
-            flutter.target "lib/main_v4_dev.dart"
-            manifestPlaceholders += [
-                appName: "DEV BCC Media v4",
-                appAuthRedirectScheme: 'tv.brunstad.app.v4.dev'
+                appName: "Bible Kids",
+                appAuthRedirectScheme: 'media.bcc.kids'
             ]
         }
     }

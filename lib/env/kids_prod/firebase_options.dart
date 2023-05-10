@@ -16,9 +16,7 @@ import 'package:flutter/foundation.dart' show defaultTargetPlatform, kIsWeb, Tar
 class DefaultFirebaseOptions {
   static FirebaseOptions get currentPlatform {
     if (kIsWeb) {
-      throw UnsupportedError(
-          'Use prod instead of v4_prod',
-        );
+      return web;
     }
     switch (defaultTargetPlatform) {
       case TargetPlatform.android:
@@ -47,9 +45,18 @@ class DefaultFirebaseOptions {
     }
   }
 
+  static const FirebaseOptions web = FirebaseOptions(
+    apiKey: 'AIzaSyChwMm2G7CtTr7QNNDrR6fOISuSx0JwZpM',
+    appId: '1:617519323732:web:4ddc13f0402b3a2d89ebc1',
+    messagingSenderId: '617519323732',
+    projectId: 'btv-platform-prod-2',
+    storageBucket: 'btv-platform-prod-2.appspot.com',
+    measurementId: 'G-385FC6FYFN',
+  );
+
   static const FirebaseOptions android = FirebaseOptions(
     apiKey: 'AIzaSyCIie1N55IWsXPLupVCMuSGhdY-YPJ2V5o',
-    appId: '1:617519323732:android:616f5b1f0070b70e89ebc1',
+    appId: '1:617519323732:android:c044a67e0b46ece089ebc1',
     messagingSenderId: '617519323732',
     projectId: 'btv-platform-prod-2',
     storageBucket: 'btv-platform-prod-2.appspot.com',
@@ -57,11 +64,11 @@ class DefaultFirebaseOptions {
 
   static const FirebaseOptions ios = FirebaseOptions(
     apiKey: 'AIzaSyCV5dcov2D9S2b9wjTzkKDQRTWnqMUhcAU',
-    appId: '1:617519323732:ios:198104f61299020989ebc1',
+    appId: '1:617519323732:ios:66c2b6796bb6e59689ebc1',
     messagingSenderId: '617519323732',
     projectId: 'btv-platform-prod-2',
     storageBucket: 'btv-platform-prod-2.appspot.com',
-    iosClientId: '617519323732-mbtsbp371mrgl5psa0uobgsob3e1q0es.apps.googleusercontent.com',
-    iosBundleId: 'tv.brunstad.app.v4',
+    iosClientId: '617519323732-lkdhqa2vj63tmgq8h87g3o2tcdm3nosn.apps.googleusercontent.com',
+    iosBundleId: 'tv.brunstad.app',
   );
 }

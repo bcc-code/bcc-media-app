@@ -59,7 +59,7 @@
       "cwd": "${workspaceFolder}",
       "args": [
         "--flavor",
-        "prod",
+        "kids_prod",
         "--web-port",
         "3001",
         "--web-renderer",

@@ -46,8 +46,8 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions web = FirebaseOptions(
-    apiKey: 'AIzaSyCIie1N55IWsXPLupVCMuSGhdY-YPJ2V5o',
-    appId: '1:617519323732:android:1133305cc9654fcc89ebc1',
+    apiKey: 'AIzaSyChwMm2G7CtTr7QNNDrR6fOISuSx0JwZpM',
+    appId: '1:617519323732:web:07a99f42e6a047f989ebc1',
     messagingSenderId: '617519323732',
     projectId: 'btv-platform-prod-2',
     storageBucket: 'btv-platform-prod-2.appspot.com',
