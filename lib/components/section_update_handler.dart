@@ -24,7 +24,7 @@ class SectionUpdateHandler extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final updatedSection = useState(section);
-    final isMyList = section.asOrNull<Fragment$ItemSection>()?.metadata?.myList == true;
+    final isMyList = updatedSection.value.asOrNull<Fragment$ItemSection>()?.metadata?.myList == true;
 
     useEffect(() {
       updatedSection.value = section;
@@ -52,11 +52,13 @@ class SectionUpdateHandler extends HookConsumerWidget {
       );
     }
 
-    ref.listen(sectionUpdatesProvider(section.id), (prev, next) => refreshSection());
+    useEffect(() {
+      if (!isMyList) return null;
+      final subscription = globalEventBus.on<MyListChangedEvent>().listen((event) => refreshSection());
+      return subscription.cancel;
+    }, [isMyList]);
 
-    if (isMyList) {
-      globalEventBus.on<MyListChangedEvent>().listen((event) => refreshSection());
-    }
+    ref.listen(sectionUpdatesProvider(section.id), (prev, next) => refreshSection());
 
     return Section(section: updatedSection.value, extraItems: extraItems);
   }
