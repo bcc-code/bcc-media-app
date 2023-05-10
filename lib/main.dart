@@ -8,7 +8,6 @@ import 'package:brunstadtv_app/providers/app_config.dart';
 import 'package:brunstadtv_app/providers/analytics.dart';
 import 'package:brunstadtv_app/providers/settings.dart';
 import 'package:brunstadtv_app/helpers/firebase.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -21,19 +20,22 @@ import 'package:intl/intl_standalone.dart' if (dart.library.html) 'package:intl/
 import 'package:flutter_web_plugins/url_strategy.dart';
 
 import 'app_root.dart';
+import 'flavors.dart';
 
 final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 
 /// This function is called from the flavor-specific entrypoints
 /// E.g. main_dev.dart, main_prod.dart
-Future<void> $main({required FirebaseOptions? firebaseOptions, List<Override>? providerOverrides}) async {
+Future<void> $main({
+  List<Override>? providerOverrides,
+}) async {
   usePathUrlStrategy();
   WidgetsFlutterBinding.ensureInitialized();
 
   await setDefaults();
 
-  if (firebaseOptions != null) {
-    await initFirebase(firebaseOptions);
+  if (FlavorConfig.current.firebaseOptions != null) {
+    await initFirebase(FlavorConfig.current.firebaseOptions!);
   }
 
   // Initialize bccm_player

@@ -132,7 +132,11 @@ class _OptionListOption extends HookWidget {
                       ],
                     ),
                   ),
-                  if (isSelected) Image.asset('assets/icons/Check_circle.png', gaplessPlayback: true),
+                  if (isSelected)
+                    Image.asset(
+                      'assets/icons/Check_circle.png',
+                      gaplessPlayback: true,
+                    ),
                 ],
               ),
             ),

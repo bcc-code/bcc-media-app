@@ -19,8 +19,8 @@ import 'package:flutter_svg/svg.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 import '../api/brunstadtv.dart';
+import '../flavors.dart';
 import '../graphql/queries/application.graphql.dart';
-import '../helpers/ui/btv_buttons.dart';
 import '../theme/design_system/design_system.dart';
 import '../components/page.dart';
 import '../graphql/queries/page.graphql.dart';
@@ -28,8 +28,6 @@ import '../graphql/queries/page.graphql.dart';
 import '../helpers/page_mixin.dart';
 import '../l10n/app_localizations.dart';
 import '../providers/app_config.dart';
-
-final logo = Image.asset('assets/images/logo.png');
 
 class HomeScreen extends ConsumerStatefulWidget {
   HomeScreen({Key? key}) : super(key: key ?? GlobalKey<HomeScreenState>());
@@ -158,7 +156,7 @@ class HomeScreenState extends ConsumerState<HomeScreen> with PageMixin implement
                   backgroundColor: Colors.transparent,
                   elevation: 0,
                   centerTitle: true,
-                  title: logo,
+                  title: FlavorConfig.current.logo(context),
                   leadingWidth: kIsWeb ? 300 : 100,
                   leading: Align(
                     alignment: Alignment.centerLeft,
@@ -171,6 +169,7 @@ class HomeScreenState extends ConsumerState<HomeScreen> with PageMixin implement
                             padding: const EdgeInsets.only(left: kIsWeb ? 80 : 18, top: 12, bottom: 12, right: 32),
                             child: SvgPicture.string(
                               SvgIcons.profile,
+                              colorFilter: ColorFilter.mode(DesignSystem.of(context).colors.tint1, BlendMode.srcIn),
                               semanticsLabel: S.of(context).profileTab,
                             ))),
                   ),
