@@ -8,7 +8,7 @@ void main() async {
     FlavorConfig(
       flavor: Flavor.bccmedia_dev,
       firebaseOptions: dev_firebase.DefaultFirebaseOptions.currentPlatform,
-      logo: (_) => Image.asset('assets/images/logo.png'),
+      logo: (_) => Image.asset('assets/flavors/prod/logo.png'),
     ),
   );
   return $main();

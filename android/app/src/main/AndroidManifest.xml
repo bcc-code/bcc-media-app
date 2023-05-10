@@ -6,8 +6,8 @@
 
     <application
         android:name="${applicationName}"
-        android:icon="@mipmap/ic_launcher_round"
-        android:label="BCC Media">
+        android:icon="@mipmap/ic_launcher"
+        android:label="${applicationLabel}">
 
         <activity
             android:name=".MainActivity"

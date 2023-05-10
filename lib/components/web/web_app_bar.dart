@@ -14,7 +14,7 @@ import 'dart:ui';
 import '../../providers/auth_state/auth_state.dart';
 import '../../theme/design_system/design_system.dart';
 
-final logo = Image.asset('assets/images/logo.png');
+final logo = Image.asset('assets/flavors/prod/logo.png');
 final icons = {
   'home_default': Image.asset(
     'assets/icons/Home_Default.png',

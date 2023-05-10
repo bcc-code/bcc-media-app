@@ -13,8 +13,8 @@ class BibleKidsColors extends DesignSystemColors {
           label2: const Color(0xffD9E0EB),
           label3: const Color(0xffB4C0D2),
           label4: const Color(0xff707C8E),
-          background1: Color.fromARGB(255, 13, 5, 17),
-          background2: Color.fromARGB(255, 31, 13, 41),
+          background1: const Color(0xFF0D0511),
+          background2: const Color(0xFF1F0D29),
           separatorOnLight: const Color.fromRGBO(204, 221, 255, 0.1),
         );
 }

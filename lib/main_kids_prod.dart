@@ -10,7 +10,7 @@ Future<void> main() async {
       flavor: Flavor.bccmedia_prod,
       firebaseOptions: kids_prod_firebase.DefaultFirebaseOptions.currentPlatform,
       applicationCode: 'kids',
-      logo: (_) => Image.asset('assets/images/biblekids_logo.png', height: 25),
+      logo: (_) => Image.asset('assets/flavors/kids_prod/logo.png', height: 25),
       designSystem: () => BibleKidsDesignSystem(),
     ),
   );

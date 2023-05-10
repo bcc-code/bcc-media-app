@@ -83,7 +83,7 @@ android {
             dimension "env"
             applicationIdSuffix ""
             manifestPlaceholders += [
-                appName: "BCC Media",
+                applicationLabel: "BCC Media",
                 appAuthRedirectScheme: 'tv.brunstad.app'
             ]
             flutter.target "lib/main_prod.dart"
@@ -93,7 +93,7 @@ android {
             applicationIdSuffix ".dev"
             flutter.target "lib/main_dev.dart"
             manifestPlaceholders += [
-                appName: "DEV BCC Media",
+                applicationLabel: "DEV BCC Media",
                 appAuthRedirectScheme: 'tv.brunstad.app.dev'
             ]
         }
@@ -103,7 +103,7 @@ android {
             applicationId "media.bcc.kids"
             flutter.target "lib/main_kids_prod.dart"
             manifestPlaceholders += [
-                appName: "Bible Kids",
+                applicationLabel: "Bible Kids",
                 appAuthRedirectScheme: 'media.bcc.kids'
             ]
         }

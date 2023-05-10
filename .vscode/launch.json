@@ -53,7 +53,7 @@
     },
     /// Biblekids
     {
-      "name": "biblekids prod",
+      "name": "kids_prod",
       "request": "launch",
       "type": "dart",
       "cwd": "${workspaceFolder}",
