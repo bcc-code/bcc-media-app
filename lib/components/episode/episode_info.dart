@@ -38,18 +38,20 @@ class EpisodeInfo extends HookConsumerWidget {
       // ignore: exhaustive_keys
     }, [episode.id, episode.inMyList]);
 
-    void toggleInMyList() {
+    void toggleInMyList() async {
       final previousValue = inMyList.value ?? false;
+      Future? myListUpdateFuture;
       if (previousValue) {
-        ref.read(gqlClientProvider).mutate$removeEntryFromMyList(Options$Mutation$removeEntryFromMyList(
+        myListUpdateFuture = ref.read(gqlClientProvider).mutate$removeEntryFromMyList(Options$Mutation$removeEntryFromMyList(
               variables: Variables$Mutation$removeEntryFromMyList(entryId: episode.uuid),
             ));
       } else {
-        ref.read(gqlClientProvider).mutate$addEpisodeToMyList(Options$Mutation$addEpisodeToMyList(
+        myListUpdateFuture = ref.read(gqlClientProvider).mutate$addEpisodeToMyList(Options$Mutation$addEpisodeToMyList(
               variables: Variables$Mutation$addEpisodeToMyList(episodeId: episode.id),
             ));
       }
       inMyList.value = !previousValue;
+      await myListUpdateFuture;
       globalEventBus.fire(MyListChangedEvent());
     }
 

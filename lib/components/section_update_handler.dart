@@ -24,6 +24,7 @@ class SectionUpdateHandler extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final updatedSection = useState(section);
+    final isMounted = useIsMounted();
     final isMyList = updatedSection.value.asOrNull<Fragment$ItemSection>()?.metadata?.myList == true;
 
     useEffect(() {
@@ -31,25 +32,19 @@ class SectionUpdateHandler extends HookConsumerWidget {
       return null;
     }, [section]);
 
-    void refreshSection() {
-      ref
-          .watch(gqlClientProvider)
-          .query$GetSection(
+    void refreshSection() async {
+      final response = await ref.watch(gqlClientProvider).query$GetSection(
             Options$Query$GetSection(
               variables: Variables$Query$GetSection(
                 id: section.id,
                 timestamp: DateTime.now().toIso8601String(),
               ),
             ),
-          )
-          .then(
-        (response) {
-          final section = response.parsedData?.section;
-          if (section != null) {
-            updatedSection.value = section;
-          }
-        },
-      );
+          );
+      final newSection = response.parsedData?.section;
+      if (isMounted() && newSection != null) {
+        updatedSection.value = newSection;
+      }
     }
 
     useEffect(() {
