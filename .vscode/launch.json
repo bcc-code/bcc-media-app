@@ -65,7 +65,7 @@
         "--web-renderer",
         "canvaskit"
       ], // Remember to change the "program" property too
-      "program": "lib/main_biblekids_prod.dart"
+      "program": "lib/main_kids_prod.dart"
     }
   ]
 }

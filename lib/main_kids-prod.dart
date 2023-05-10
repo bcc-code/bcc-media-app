@@ -9,7 +9,7 @@ Future<void> main() async {
     FlavorConfig(
       flavor: Flavor.bccmedia_prod,
       firebaseOptions: prod_firebase.DefaultFirebaseOptions.currentPlatform,
-      applicationCode: 'biblekids-app',
+      applicationCode: 'kids',
       logo: (_) => Image.asset('assets/images/biblekids_logo.png', height: 25),
       designSystem: () => BibleKidsDesignSystem(),
     ),

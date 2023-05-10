@@ -7,7 +7,7 @@ import 'package:flutter/material.dart';
 enum Flavor {
   bccmedia_prod,
   bccmedia_dev,
-  biblekids_prod;
+  kids_prod;
 }
 
 class FlavorConfig {
