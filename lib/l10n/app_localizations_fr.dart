@@ -56,7 +56,7 @@ class SFr extends S {
   String get signInButton => 'Se connecter';
 
   @override
-  String get signInOrSignUp => 'Sign up / Sign in';
+  String get signInOrSignUp => 'S\'inscrire / Se connecter';
 
   @override
   String get signUpButton => 'S\'inscrire maintenant';
@@ -68,7 +68,7 @@ class SFr extends S {
   String get signUpDescription => 'Accédez à plus de contenu et à de meilleures fonctionnalités en créant un compte.';
 
   @override
-  String get signUpAgreePrivacyPolicy => 'I certify that I am 13 years of age or older, and I agree to the <a>Privacy Policy</a> and <a>Terms of use</a>.';
+  String get signUpAgreePrivacyPolicy => 'Je certifie que j\'ai 13 ans ou plus, et j\'accepte la <a>Politique de confidentialité</a> et <a>les conditions d\'utilisation</a>.';
 
   @override
   String get setPassword => 'Définir le mot de passe';
@@ -98,7 +98,7 @@ class SFr extends S {
   String get ok => 'OK';
 
   @override
-  String get open => 'Open';
+  String get open => 'Ouvrir';
 
   @override
   String get loginFailedCheckNetwork => 'Échec de la connexion. Vérifie ta connexion internet et retente à nouveau.';
@@ -140,16 +140,16 @@ class SFr extends S {
   String get cancel => 'Annuler';
 
   @override
-  String get cancelConfirmation => 'Are you sure you want to cancel?';
+  String get cancelConfirmation => 'Es-tu sûr de vouloir annuler ?';
 
   @override
-  String get cancelConfirmationDescription => 'Any unsaved changes will be lost.';
+  String get cancelConfirmationDescription => 'Toute modification non enregistrée sera perdue.';
 
   @override
-  String get goBack => 'Go back';
+  String get goBack => 'Retour';
 
   @override
-  String get yesCancel => 'Yes, Cancel';
+  String get yesCancel => 'Oui, Annuler';
 
   @override
   String get upNext => 'Suivant';
@@ -191,7 +191,7 @@ class SFr extends S {
   String get search => 'Rechercher';
 
   @override
-  String get sendFeedback => 'Send Feedback';
+  String get sendFeedback => 'Envoyer un commentaire';
 
   @override
   String get noResults => 'Aucun résultat trouvé';
@@ -403,10 +403,10 @@ class SFr extends S {
   String get share => 'Partager';
 
   @override
-  String get showMore => 'Show more';
+  String get showMore => 'Afficher plus';
 
   @override
-  String get showLess => 'Show less';
+  String get showLess => 'Afficher moins';
 
   @override
   String get liveNow => 'En direct maintenant';
@@ -586,18 +586,18 @@ class SFr extends S {
   String get continueButton => 'Continuer';
 
   @override
-  String get registerButton => 'Register';
+  String get registerButton => 'Enregistrer';
 
   @override
   String get achievements => 'Réalisations';
 
   @override
   String passwordConditionLength(int n) {
-    return 'Minimum $n characters';
+    return 'Au moins $n caractères';
   }
 
   @override
-  String get passwordConditionComplexity => 'Must contain lower case, uppercase and numbers.';
+  String get passwordConditionComplexity => 'Doit contenir des minuscules, des majuscules et des chiffres.';
 
   @override
   String get oops => 'Oups !';
@@ -630,10 +630,10 @@ class SFr extends S {
   String get selectSeason => 'Sélectionner une saison';
 
   @override
-  String get deleteMyAccount => 'Delete my account';
+  String get deleteMyAccount => 'Supprimer mon compte';
 
   @override
-  String get iAmSureIWantToDelete => 'I am sure I want to delete my account and my data related to the BCC Media app.';
+  String get iAmSureIWantToDelete => 'Je suis sûr de vouloir supprimer mon compte et mes données liées à l\'application BCC Media.';
 
   @override
   String get areYouSure => 'Es-tu sûr ?';

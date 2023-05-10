@@ -20,6 +20,7 @@ import '../graphql/queries/application.graphql.dart';
 import '../graphql/queries/progress.graphql.dart';
 // import '../graphql/queries/survey.graphql.dart';
 import '../graphql/queries/prompts.graphql.dart';
+import '../graphql/schema/schema.graphql.dart';
 import '../helpers/date_time.dart';
 
 class ApiErrorCodes {
@@ -34,10 +35,14 @@ class Api implements BccmApi {
 
   Api({this.accessToken, required this.gqlClient});
 
-  Future<Query$FetchEpisode$episode?> fetchEpisode(String id) async {
+  Future<Query$FetchEpisode$episode?> fetchEpisode(String id, {Input$EpisodeContext? context}) async {
     final result = await gqlClient.query$FetchEpisode(
       Options$Query$FetchEpisode(
-        variables: Variables$Query$FetchEpisode(id: id),
+        variables: Variables$Query$FetchEpisode(
+          id: id,
+          context: context,
+          authenticated: accessToken != null,
+        ),
       ),
     );
     if (result.exception != null) {

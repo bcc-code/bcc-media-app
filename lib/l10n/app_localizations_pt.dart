@@ -597,7 +597,7 @@ class SPt extends S {
   }
 
   @override
-  String get passwordConditionComplexity => 'Must contain lower case, uppercase and numbers.';
+  String get passwordConditionComplexity => 'Deve conter minúsculas, maiúsculas e números.';
 
   @override
   String get oops => 'Oops! ';
@@ -630,10 +630,10 @@ class SPt extends S {
   String get selectSeason => 'Selecione a temporada';
 
   @override
-  String get deleteMyAccount => 'Delete my account';
+  String get deleteMyAccount => 'Excluir minha conta';
 
   @override
-  String get iAmSureIWantToDelete => 'I am sure I want to delete my account and my data related to the BCC Media app.';
+  String get iAmSureIWantToDelete => 'Tenho certeza de que quero excluir minha conta e meus dados relacionados ao aplicativo BCC Media.';
 
   @override
   String get areYouSure => 'Tem certeza?';

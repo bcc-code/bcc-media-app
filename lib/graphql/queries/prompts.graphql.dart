@@ -118,6 +118,35 @@ extension UtilityExtension$Fragment$Prompt on Fragment$Prompt {
         this,
         (i) => i,
       );
+  _T when<_T>({
+    required _T Function(Fragment$Prompt$$SurveyPrompt) surveyPrompt,
+    required _T Function() orElse,
+  }) {
+    switch ($__typename) {
+      case "SurveyPrompt":
+        return surveyPrompt(this as Fragment$Prompt$$SurveyPrompt);
+
+      default:
+        return orElse();
+    }
+  }
+
+  _T maybeWhen<_T>({
+    _T Function(Fragment$Prompt$$SurveyPrompt)? surveyPrompt,
+    required _T Function() orElse,
+  }) {
+    switch ($__typename) {
+      case "SurveyPrompt":
+        if (surveyPrompt != null) {
+          return surveyPrompt(this as Fragment$Prompt$$SurveyPrompt);
+        } else {
+          return orElse();
+        }
+
+      default:
+        return orElse();
+    }
+  }
 }
 
 abstract class CopyWith$Fragment$Prompt<TRes> {
@@ -1080,6 +1109,55 @@ extension UtilityExtension$Fragment$SurveyQuestion on Fragment$SurveyQuestion {
         this,
         (i) => i,
       );
+  _T when<_T>({
+    required _T Function(Fragment$SurveyQuestion$$SurveyRatingQuestion)
+        surveyRatingQuestion,
+    required _T Function(Fragment$SurveyQuestion$$SurveyTextQuestion)
+        surveyTextQuestion,
+    required _T Function() orElse,
+  }) {
+    switch ($__typename) {
+      case "SurveyRatingQuestion":
+        return surveyRatingQuestion(
+            this as Fragment$SurveyQuestion$$SurveyRatingQuestion);
+
+      case "SurveyTextQuestion":
+        return surveyTextQuestion(
+            this as Fragment$SurveyQuestion$$SurveyTextQuestion);
+
+      default:
+        return orElse();
+    }
+  }
+
+  _T maybeWhen<_T>({
+    _T Function(Fragment$SurveyQuestion$$SurveyRatingQuestion)?
+        surveyRatingQuestion,
+    _T Function(Fragment$SurveyQuestion$$SurveyTextQuestion)?
+        surveyTextQuestion,
+    required _T Function() orElse,
+  }) {
+    switch ($__typename) {
+      case "SurveyRatingQuestion":
+        if (surveyRatingQuestion != null) {
+          return surveyRatingQuestion(
+              this as Fragment$SurveyQuestion$$SurveyRatingQuestion);
+        } else {
+          return orElse();
+        }
+
+      case "SurveyTextQuestion":
+        if (surveyTextQuestion != null) {
+          return surveyTextQuestion(
+              this as Fragment$SurveyQuestion$$SurveyTextQuestion);
+        } else {
+          return orElse();
+        }
+
+      default:
+        return orElse();
+    }
+  }
 }
 
 abstract class CopyWith$Fragment$SurveyQuestion<TRes> {
@@ -1779,6 +1857,10 @@ const documentNodeQuerygetPrompts = DocumentNode(definitions: [
 ]);
 Query$getPrompts _parserFn$Query$getPrompts(Map<String, dynamic> data) =>
     Query$getPrompts.fromJson(data);
+typedef OnQueryComplete$Query$getPrompts = FutureOr<void> Function(
+  Map<String, dynamic>?,
+  Query$getPrompts?,
+);
 
 class Options$Query$getPrompts extends graphql.QueryOptions<Query$getPrompts> {
   Options$Query$getPrompts({
@@ -1787,19 +1869,40 @@ class Options$Query$getPrompts extends graphql.QueryOptions<Query$getPrompts> {
     graphql.ErrorPolicy? errorPolicy,
     graphql.CacheRereadPolicy? cacheRereadPolicy,
     Object? optimisticResult,
+    Query$getPrompts? typedOptimisticResult,
     Duration? pollInterval,
     graphql.Context? context,
-  }) : super(
+    OnQueryComplete$Query$getPrompts? onComplete,
+    graphql.OnQueryError? onError,
+  })  : onCompleteWithParsed = onComplete,
+        super(
           operationName: operationName,
           fetchPolicy: fetchPolicy,
           errorPolicy: errorPolicy,
           cacheRereadPolicy: cacheRereadPolicy,
-          optimisticResult: optimisticResult,
+          optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
           pollInterval: pollInterval,
           context: context,
+          onComplete: onComplete == null
+              ? null
+              : (data) => onComplete(
+                    data,
+                    data == null ? null : _parserFn$Query$getPrompts(data),
+                  ),
+          onError: onError,
           document: documentNodeQuerygetPrompts,
           parserFn: _parserFn$Query$getPrompts,
         );
+
+  final OnQueryComplete$Query$getPrompts? onCompleteWithParsed;
+
+  @override
+  List<Object?> get properties => [
+        ...super.onComplete == null
+            ? super.properties
+            : super.properties.where((property) => property != onComplete),
+        onCompleteWithParsed,
+      ];
 }
 
 class WatchOptions$Query$getPrompts
@@ -1810,6 +1913,7 @@ class WatchOptions$Query$getPrompts
     graphql.ErrorPolicy? errorPolicy,
     graphql.CacheRereadPolicy? cacheRereadPolicy,
     Object? optimisticResult,
+    Query$getPrompts? typedOptimisticResult,
     graphql.Context? context,
     Duration? pollInterval,
     bool? eagerlyFetchResults,
@@ -1820,7 +1924,7 @@ class WatchOptions$Query$getPrompts
           fetchPolicy: fetchPolicy,
           errorPolicy: errorPolicy,
           cacheRereadPolicy: cacheRereadPolicy,
-          optimisticResult: optimisticResult,
+          optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
           context: context,
           document: documentNodeQuerygetPrompts,
           pollInterval: pollInterval,
@@ -2226,7 +2330,7 @@ Mutation$answerSurveyQuestion _parserFn$Mutation$answerSurveyQuestion(
     Mutation$answerSurveyQuestion.fromJson(data);
 typedef OnMutationCompleted$Mutation$answerSurveyQuestion = FutureOr<void>
     Function(
-  dynamic,
+  Map<String, dynamic>?,
   Mutation$answerSurveyQuestion?,
 );
 
@@ -2239,6 +2343,7 @@ class Options$Mutation$answerSurveyQuestion
     graphql.ErrorPolicy? errorPolicy,
     graphql.CacheRereadPolicy? cacheRereadPolicy,
     Object? optimisticResult,
+    Mutation$answerSurveyQuestion? typedOptimisticResult,
     graphql.Context? context,
     OnMutationCompleted$Mutation$answerSurveyQuestion? onCompleted,
     graphql.OnMutationUpdate<Mutation$answerSurveyQuestion>? update,
@@ -2250,7 +2355,7 @@ class Options$Mutation$answerSurveyQuestion
           fetchPolicy: fetchPolicy,
           errorPolicy: errorPolicy,
           cacheRereadPolicy: cacheRereadPolicy,
-          optimisticResult: optimisticResult,
+          optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
           context: context,
           onCompleted: onCompleted == null
               ? null
@@ -2287,6 +2392,7 @@ class WatchOptions$Mutation$answerSurveyQuestion
     graphql.ErrorPolicy? errorPolicy,
     graphql.CacheRereadPolicy? cacheRereadPolicy,
     Object? optimisticResult,
+    Mutation$answerSurveyQuestion? typedOptimisticResult,
     graphql.Context? context,
     Duration? pollInterval,
     bool? eagerlyFetchResults,
@@ -2298,7 +2404,7 @@ class WatchOptions$Mutation$answerSurveyQuestion
           fetchPolicy: fetchPolicy,
           errorPolicy: errorPolicy,
           cacheRereadPolicy: cacheRereadPolicy,
-          optimisticResult: optimisticResult,
+          optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
           context: context,
           document: documentNodeMutationanswerSurveyQuestion,
           pollInterval: pollInterval,
@@ -2337,9 +2443,10 @@ Mutation$answerSurveyQuestion$HookResult useMutation$answerSurveyQuestion(
   final result = graphql_flutter
       .useMutation(options ?? WidgetOptions$Mutation$answerSurveyQuestion());
   return Mutation$answerSurveyQuestion$HookResult(
-    (variables, {optimisticResult}) => result.runMutation(
+    (variables, {optimisticResult, typedOptimisticResult}) =>
+        result.runMutation(
       variables.toJson(),
-      optimisticResult: optimisticResult,
+      optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
     ),
     result.result,
   );
@@ -2358,6 +2465,7 @@ class WidgetOptions$Mutation$answerSurveyQuestion
     graphql.ErrorPolicy? errorPolicy,
     graphql.CacheRereadPolicy? cacheRereadPolicy,
     Object? optimisticResult,
+    Mutation$answerSurveyQuestion? typedOptimisticResult,
     graphql.Context? context,
     OnMutationCompleted$Mutation$answerSurveyQuestion? onCompleted,
     graphql.OnMutationUpdate<Mutation$answerSurveyQuestion>? update,
@@ -2368,7 +2476,7 @@ class WidgetOptions$Mutation$answerSurveyQuestion
           fetchPolicy: fetchPolicy,
           errorPolicy: errorPolicy,
           cacheRereadPolicy: cacheRereadPolicy,
-          optimisticResult: optimisticResult,
+          optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
           context: context,
           onCompleted: onCompleted == null
               ? null
@@ -2400,6 +2508,7 @@ typedef RunMutation$Mutation$answerSurveyQuestion
     = graphql.MultiSourceResult<Mutation$answerSurveyQuestion> Function(
   Variables$Mutation$answerSurveyQuestion, {
   Object? optimisticResult,
+  Mutation$answerSurveyQuestion? typedOptimisticResult,
 });
 typedef Builder$Mutation$answerSurveyQuestion = widgets.Widget Function(
   RunMutation$Mutation$answerSurveyQuestion,
@@ -2423,10 +2532,12 @@ class Mutation$answerSurveyQuestion$Widget
             (
               variables, {
               optimisticResult,
+              typedOptimisticResult,
             }) =>
                 run(
               variables.toJson(),
-              optimisticResult: optimisticResult,
+              optimisticResult:
+                  optimisticResult ?? typedOptimisticResult?.toJson(),
             ),
             result,
           ),

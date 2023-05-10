@@ -53,6 +53,6 @@ class LessonProgressCacheNotifier extends StateNotifier<LessonProgressCache> {
   }
 }
 
-final lessonProgressProvider = Provider.family<Fragment$EpisodeLessonProgressOverview?, String>((ref, id) {
+final lessonProgressProvider = Provider.family.autoDispose<Fragment$EpisodeLessonProgressOverview?, String>((ref, id) {
   return ref.watch(lessonProgressCacheProvider)[id];
 });

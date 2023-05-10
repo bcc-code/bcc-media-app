@@ -205,6 +205,7 @@ class AppRouter extends _i25.RootStackRouter {
                 autoplay: queryParams.optBool('autoplay'),
                 queryParamStartPosition: queryParams.optInt('t'),
                 hideBottomSection: queryParams.optBool('hide_bottom_section'),
+                collectionId: queryParams.optString('collectionId'),
               ));
       return _i25.CustomPage<void>(
         routeData: routeData,
@@ -214,6 +215,7 @@ class AppRouter extends _i25.RootStackRouter {
           autoplay: args.autoplay,
           queryParamStartPosition: args.queryParamStartPosition,
           hideBottomSection: args.hideBottomSection,
+          collectionId: args.collectionId,
         ),
         transitionsBuilder: _i28.CustomTransitionsBuilders.slideLeft,
         durationInMilliseconds: 300,
@@ -332,6 +334,7 @@ class AppRouter extends _i25.RootStackRouter {
                 autoplay: queryParams.optBool('autoplay'),
                 queryParamStartPosition: queryParams.optInt('t'),
                 hideBottomSection: queryParams.optBool('hide_bottom_section'),
+                collectionId: queryParams.optString('collectionId'),
               ));
       return _i25.CustomPage<void>(
         routeData: routeData,
@@ -341,6 +344,35 @@ class AppRouter extends _i25.RootStackRouter {
           autoplay: args.autoplay,
           queryParamStartPosition: args.queryParamStartPosition,
           hideBottomSection: args.hideBottomSection,
+          collectionId: args.collectionId,
+        ),
+        transitionsBuilder: _i28.CustomTransitionsBuilders.slideLeft,
+        durationInMilliseconds: 300,
+        reverseDurationInMilliseconds: 300,
+        opaque: true,
+        barrierDismissible: false,
+      );
+    },
+    CollectionEpisodeScreenRoute.name: (routeData) {
+      final pathParams = routeData.inheritedPathParams;
+      final queryParams = routeData.queryParams;
+      final args = routeData.argsAs<CollectionEpisodeScreenRouteArgs>(
+          orElse: () => CollectionEpisodeScreenRouteArgs(
+                episodeId: pathParams.getString('episodeId'),
+                autoplay: queryParams.optBool('autoplay'),
+                queryParamStartPosition: queryParams.optInt('t'),
+                hideBottomSection: queryParams.optBool('hide_bottom_section'),
+                collectionId: pathParams.optString('collectionId'),
+              ));
+      return _i25.CustomPage<void>(
+        routeData: routeData,
+        child: _i14.CollectionEpisodeScreen(
+          key: args.key,
+          episodeId: args.episodeId,
+          autoplay: args.autoplay,
+          queryParamStartPosition: args.queryParamStartPosition,
+          hideBottomSection: args.hideBottomSection,
+          collectionId: args.collectionId,
         ),
         transitionsBuilder: _i28.CustomTransitionsBuilders.slideLeft,
         durationInMilliseconds: 300,
@@ -516,6 +548,12 @@ class AppRouter extends _i25.RootStackRouter {
                   meta: <String, dynamic>{'analytics_name': 'episode'},
                 ),
                 _i25.RouteConfig(
+                  CollectionEpisodeScreenRoute.name,
+                  path: 'episode/:collectionId/:episodeId',
+                  parent: SearchScreenWrapperRoute.name,
+                  meta: <String, dynamic>{'analytics_name': 'episode'},
+                ),
+                _i25.RouteConfig(
                   PageScreenRoute.name,
                   path: ':pageCode',
                   parent: SearchScreenWrapperRoute.name,
@@ -549,6 +587,12 @@ class AppRouter extends _i25.RootStackRouter {
                   parent: MyListScreenWrapperRoute.name,
                   meta: <String, dynamic>{'analytics_name': 'episode'},
                 ),
+                _i25.RouteConfig(
+                  CollectionEpisodeScreenRoute.name,
+                  path: 'episode/:collectionId/:episodeId',
+                  parent: MyListScreenWrapperRoute.name,
+                  meta: <String, dynamic>{'analytics_name': 'episode'},
+                ),
               ],
             ),
             _i25.RouteConfig(
@@ -565,6 +609,12 @@ class AppRouter extends _i25.RootStackRouter {
                 _i25.RouteConfig(
                   EpisodeScreenRoute.name,
                   path: 'episode/:episodeId',
+                  parent: HomeScreenWrapperRoute.name,
+                  meta: <String, dynamic>{'analytics_name': 'episode'},
+                ),
+                _i25.RouteConfig(
+                  CollectionEpisodeScreenRoute.name,
+                  path: 'episode/:collectionId/:episodeId',
                   parent: HomeScreenWrapperRoute.name,
                   meta: <String, dynamic>{'analytics_name': 'episode'},
                 ),
@@ -792,6 +842,7 @@ class EmbedScreen extends _i25.PageRouteInfo<EmbedScreenArgs> {
     bool? autoplay,
     int? queryParamStartPosition,
     bool? hideBottomSection,
+    String? collectionId,
   }) : super(
           EmbedScreen.name,
           path: '/embed/:episodeId',
@@ -801,12 +852,14 @@ class EmbedScreen extends _i25.PageRouteInfo<EmbedScreenArgs> {
             autoplay: autoplay,
             queryParamStartPosition: queryParamStartPosition,
             hideBottomSection: hideBottomSection,
+            collectionId: collectionId,
           ),
           rawPathParams: {'episodeId': episodeId},
           rawQueryParams: {
             'autoplay': autoplay,
             't': queryParamStartPosition,
             'hide_bottom_section': hideBottomSection,
+            'collectionId': collectionId,
           },
         );
 
@@ -820,6 +873,7 @@ class EmbedScreenArgs {
     this.autoplay,
     this.queryParamStartPosition,
     this.hideBottomSection,
+    this.collectionId,
   });
 
   final _i29.Key? key;
@@ -832,9 +886,11 @@ class EmbedScreenArgs {
 
   final bool? hideBottomSection;
 
+  final String? collectionId;
+
   @override
   String toString() {
-    return 'EmbedScreenArgs{key: $key, episodeId: $episodeId, autoplay: $autoplay, queryParamStartPosition: $queryParamStartPosition, hideBottomSection: $hideBottomSection}';
+    return 'EmbedScreenArgs{key: $key, episodeId: $episodeId, autoplay: $autoplay, queryParamStartPosition: $queryParamStartPosition, hideBottomSection: $hideBottomSection, collectionId: $collectionId}';
   }
 }
 
@@ -1045,6 +1101,7 @@ class EpisodeScreenRoute extends _i25.PageRouteInfo<EpisodeScreenRouteArgs> {
     bool? autoplay,
     int? queryParamStartPosition,
     bool? hideBottomSection,
+    String? collectionId,
   }) : super(
           EpisodeScreenRoute.name,
           path: 'episode/:episodeId',
@@ -1054,12 +1111,14 @@ class EpisodeScreenRoute extends _i25.PageRouteInfo<EpisodeScreenRouteArgs> {
             autoplay: autoplay,
             queryParamStartPosition: queryParamStartPosition,
             hideBottomSection: hideBottomSection,
+            collectionId: collectionId,
           ),
           rawPathParams: {'episodeId': episodeId},
           rawQueryParams: {
             'autoplay': autoplay,
             't': queryParamStartPosition,
             'hide_bottom_section': hideBottomSection,
+            'collectionId': collectionId,
           },
         );
 
@@ -1073,6 +1132,7 @@ class EpisodeScreenRouteArgs {
     this.autoplay,
     this.queryParamStartPosition,
     this.hideBottomSection,
+    this.collectionId,
   });
 
   final _i29.Key? key;
@@ -1085,9 +1145,75 @@ class EpisodeScreenRouteArgs {
 
   final bool? hideBottomSection;
 
+  final String? collectionId;
+
   @override
   String toString() {
-    return 'EpisodeScreenRouteArgs{key: $key, episodeId: $episodeId, autoplay: $autoplay, queryParamStartPosition: $queryParamStartPosition, hideBottomSection: $hideBottomSection}';
+    return 'EpisodeScreenRouteArgs{key: $key, episodeId: $episodeId, autoplay: $autoplay, queryParamStartPosition: $queryParamStartPosition, hideBottomSection: $hideBottomSection, collectionId: $collectionId}';
+  }
+}
+
+/// generated route for
+/// [_i14.CollectionEpisodeScreen]
+class CollectionEpisodeScreenRoute
+    extends _i25.PageRouteInfo<CollectionEpisodeScreenRouteArgs> {
+  CollectionEpisodeScreenRoute({
+    _i29.Key? key,
+    required String episodeId,
+    bool? autoplay,
+    int? queryParamStartPosition,
+    bool? hideBottomSection,
+    String? collectionId,
+  }) : super(
+          CollectionEpisodeScreenRoute.name,
+          path: 'episode/:collectionId/:episodeId',
+          args: CollectionEpisodeScreenRouteArgs(
+            key: key,
+            episodeId: episodeId,
+            autoplay: autoplay,
+            queryParamStartPosition: queryParamStartPosition,
+            hideBottomSection: hideBottomSection,
+            collectionId: collectionId,
+          ),
+          rawPathParams: {
+            'episodeId': episodeId,
+            'collectionId': collectionId,
+          },
+          rawQueryParams: {
+            'autoplay': autoplay,
+            't': queryParamStartPosition,
+            'hide_bottom_section': hideBottomSection,
+          },
+        );
+
+  static const String name = 'CollectionEpisodeScreenRoute';
+}
+
+class CollectionEpisodeScreenRouteArgs {
+  const CollectionEpisodeScreenRouteArgs({
+    this.key,
+    required this.episodeId,
+    this.autoplay,
+    this.queryParamStartPosition,
+    this.hideBottomSection,
+    this.collectionId,
+  });
+
+  final _i29.Key? key;
+
+  final String episodeId;
+
+  final bool? autoplay;
+
+  final int? queryParamStartPosition;
+
+  final bool? hideBottomSection;
+
+  final String? collectionId;
+
+  @override
+  String toString() {
+    return 'CollectionEpisodeScreenRouteArgs{key: $key, episodeId: $episodeId, autoplay: $autoplay, queryParamStartPosition: $queryParamStartPosition, hideBottomSection: $hideBottomSection, collectionId: $collectionId}';
   }
 }
 

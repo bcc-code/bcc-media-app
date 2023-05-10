@@ -30,6 +30,15 @@ import '../screens/page.dart';
 import '../screens/onboarding/signup.dart';
 import '../screens/tabs_root.dart';
 
+const _collectionEpisodeScreenRoute = CustomRoute<void>(
+  page: CollectionEpisodeScreen,
+  path: 'episode/:collectionId/:episodeId',
+  durationInMilliseconds: 300,
+  reverseDurationInMilliseconds: 300,
+  transitionsBuilder: CustomTransitionsBuilders.slideLeft,
+  meta: {RouteMetaConstants.analyticsName: 'episode'},
+);
+
 const _episodeScreenRoute = CustomRoute<void>(
   page: EpisodeScreen,
   path: 'episode/:episodeId',
@@ -217,6 +226,7 @@ Route<T> profileRouteBuilder<T>(BuildContext context, Widget child, CustomPage<T
               meta: {RouteMetaConstants.navTabRoute: true},
             ),
             _episodeScreenRoute,
+            _collectionEpisodeScreenRoute,
             _pageScreenRoute,
           ],
         ),
@@ -238,6 +248,7 @@ Route<T> profileRouteBuilder<T>(BuildContext context, Widget child, CustomPage<T
               meta: {RouteMetaConstants.navTabRoute: true},
             ),
             _episodeScreenRoute,
+            _collectionEpisodeScreenRoute
           ],
         ),
         CustomRoute<void>(name: 'HomeScreenWrapperRoute', page: EmptyRouterPage, path: '', children: [
@@ -250,6 +261,7 @@ Route<T> profileRouteBuilder<T>(BuildContext context, Widget child, CustomPage<T
             meta: {RouteMetaConstants.navTabRoute: true},
           ),
           _episodeScreenRoute,
+          _collectionEpisodeScreenRoute,
           _pageScreenRoute,
         ]),
       ],

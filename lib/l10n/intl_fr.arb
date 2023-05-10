@@ -67,7 +67,7 @@
   "@signInButton": {
     "description": "Text displayed on Sign in button"
   },
-  "signInOrSignUp": "Sign up / Sign in",
+  "signInOrSignUp": "S'inscrire / Se connecter",
   "@signInOrSignUp": {
     "description": "Button to go to the onboarding page (short)"
   },
@@ -83,7 +83,7 @@
   "@signUpDescription": {
     "description": "A description on the sign up page explaining why you would want to sign up"
   },
-  "signUpAgreePrivacyPolicy": "I certify that I am 13 years of age or older, and I agree to the <a>Privacy Policy</a> and <a>Terms of use</a>.",
+  "signUpAgreePrivacyPolicy": "Je certifie que j'ai 13 ans ou plus, et j'accepte la <a>Politique de confidentialité</a> et <a>les conditions d'utilisation</a>.",
   "@signUpAgreePrivacyPolicy": {
     "description": "REMEMBER: Keep the <a> and </a> tags, but translate the 'Privacy Policy' inside."
   },
@@ -123,7 +123,7 @@
   "@ok": {
     "description": "Popup confirmation button"
   },
-  "open": "Open",
+  "open": "Ouvrir",
   "@open": {
     "description": "Open button"
   },
@@ -175,19 +175,19 @@
   "@cancel": {
     "description": "General cancel action button"
   },
-  "cancelConfirmation": "Are you sure you want to cancel?",
+  "cancelConfirmation": "Es-tu sûr de vouloir annuler ?",
   "@cancelConfirmation": {
     "description": "Title text for cancel confirmation dialog."
   },
-  "cancelConfirmationDescription": "Any unsaved changes will be lost.",
+  "cancelConfirmationDescription": "Toute modification non enregistrée sera perdue.",
   "@cancelConfirmationDescription": {
     "description": "Description for cancel confirmation dialog."
   },
-  "goBack": "Go back",
+  "goBack": "Retour",
   "@goBack": {
     "description": "Text for back button."
   },
-  "yesCancel": "Yes, Cancel",
+  "yesCancel": "Oui, Annuler",
   "@yesCancel": {
     "description": "Confirm cancel."
   },
@@ -243,7 +243,7 @@
   "@search": {
     "description": "Button to clear cache"
   },
-  "sendFeedback": "Send Feedback",
+  "sendFeedback": "Envoyer un commentaire",
   "@sendFeedback": {
     "description": "Button to submit feedback(Survey)"
   },
@@ -538,11 +538,11 @@
   "@share": {
     "description": "Generic."
   },
-  "showMore": "Show more",
+  "showMore": "Afficher plus",
   "@showMore": {
     "description": "Text used on link to expand collapsed text."
   },
-  "showLess": "Show less",
+  "showLess": "Afficher moins",
   "@showLess": {
     "description": "Text used on link to collapse expanded text."
   },
@@ -796,7 +796,7 @@
   "@continueButton": {
     "description": "Generic button text."
   },
-  "registerButton": "Register",
+  "registerButton": "Enregistrer",
   "@registerButton": {
     "description": "Generic button text."
   },
@@ -804,7 +804,7 @@
   "@achievements": {
     "description": "Generic. Used as page title, etc."
   },
-  "passwordConditionLength": "Minimum {n} characters",
+  "passwordConditionLength": "Au moins {n} caractères",
   "@passwordConditionLength": {
     "description": "REMINDER: Do NOT touch variables (like {n}). Password condition, shown when signing up.",
     "placeholders": {
@@ -813,7 +813,7 @@
       }
     }
   },
-  "passwordConditionComplexity": "Must contain lower case, uppercase and numbers.",
+  "passwordConditionComplexity": "Doit contenir des minuscules, des majuscules et des chiffres.",
   "@passwordConditionComplexity": {
     "description": "Password condition, shown when signing up."
   },
@@ -845,11 +845,11 @@
   "@selectSeason": {
     "description": "A title prompting to select a season from the list."
   },
-  "deleteMyAccount": "Delete my account",
+  "deleteMyAccount": "Supprimer mon compte",
   "@deleteMyAccount": {
     "description": "Button to request to delete your account"
   },
-  "iAmSureIWantToDelete": "I am sure I want to delete my account and my data related to the BCC Media app.",
+  "iAmSureIWantToDelete": "Je suis sûr de vouloir supprimer mon compte et mes données liées à l'application BCC Media.",
   "@iAmSureIWantToDelete": {
     "description": "Text next to a switch/toggle button, confirming that you want to delete your account."
   },

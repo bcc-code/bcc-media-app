@@ -24,6 +24,10 @@ appId: tv.brunstad.app
 - stopApp: tv.brunstad.app
 - openLink: "https://app.bcc.media/live"
 - assertVisible: Today,.*
+# Stopped 4
+- stopApp: tv.brunstad.app
+- openLink: "https://app.bcc.media/episode/51/769"
+- assertVisible: .*Joseph.*
 # Backgrounded 1 - Redirect
 - runFlow: subflows/home.yml
 - openLink: "https://app.bcc.media/r/donation"
@@ -43,6 +47,10 @@ appId: tv.brunstad.app
 - runFlow: subflows/home.yml
 - openLink: "https://app.bcc.media/live"
 - assertVisible: Today,.*
+# Backgrounded 4
+- runFlow: subflows/home.yml
+- openLink: "https://app.bcc.media/episode/51/769"
+- assertVisible: .*Joseph.*
 # Foreground 1 - Redirect
 - openLink: "https://app.bcc.media/r/donation"
 - assertVisible:
@@ -59,3 +67,6 @@ appId: tv.brunstad.app
 # Foreground 3
 - openLink: "https://app.bcc.media/live"
 - assertVisible: Today,.*
+# Foreground 4
+- openLink: "https://app.bcc.media/episode/51/769"
+- assertVisible: .*Joseph.*

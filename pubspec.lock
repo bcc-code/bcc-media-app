@@ -811,18 +811,18 @@ packages:
     dependency: "direct main"
     description:
       name: graphql
-      sha256: "68bb34f7d239b7c9530c37de754ccb4b9e19927d838fd103da297444c11dad62"
+      sha256: bda5b794345087ccbd16942045be8091e2ac4619285bb22e73555d5fd88c4043
       url: "https://pub.dev"
     source: hosted
-    version: "5.1.2"
+    version: "5.2.0-beta.1"
   graphql_codegen:
     dependency: "direct dev"
     description:
       name: graphql_codegen
-      sha256: b379b8a629ef0aaff0300312dd82f87f33734335b3e4bace8cfbc8c075e40f94
+      sha256: "572cfa1ca69050bf8763e8b9e151df6240f08b41e961916a2f88882b4ff897f5"
       url: "https://pub.dev"
     source: hosted
-    version: "0.12.0-beta.13"
+    version: "0.12.2"
   graphql_flutter:
     dependency: "direct main"
     description:
@@ -1056,10 +1056,10 @@ packages:
     dependency: transitive
     description:
       name: normalize
-      sha256: baf8caf2d8b745af5737cca6c24f7fe3cf3158897fdbcde9a909b9c8d3e2e5af
+      sha256: "8a60e37de5b608eeaf9b839273370c71ebba445e9f73b08eee7725e0d92dbc43"
       url: "https://pub.dev"
     source: hosted
-    version: "0.7.2"
+    version: "0.8.2+1"
   numerus:
     dependency: transitive
     description:
@@ -1749,10 +1749,10 @@ packages:
     dependency: "direct main"
     description:
       name: web_socket_channel
-      sha256: "500e6014efebd305a30ebf1c6006d13faa82dcd85c7a2a7793679a64ed69ec48"
+      sha256: d88238e5eac9a42bb43ca4e721edba3c08c6354d4a53063afaa568516217621b
       url: "https://pub.dev"
     source: hosted
-    version: "2.0.0"
+    version: "2.4.0"
   webdriver:
     dependency: transitive
     description:

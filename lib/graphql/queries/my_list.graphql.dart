@@ -331,6 +331,47 @@ extension UtilityExtension$Fragment$MyListEntry$item
         this,
         (i) => i,
       );
+  _T when<_T>({
+    required _T Function(Fragment$MyListEntry$item$$Episode) episode,
+    required _T Function(Fragment$MyListEntry$item$$Show) show,
+    required _T Function() orElse,
+  }) {
+    switch ($__typename) {
+      case "Episode":
+        return episode(this as Fragment$MyListEntry$item$$Episode);
+
+      case "Show":
+        return show(this as Fragment$MyListEntry$item$$Show);
+
+      default:
+        return orElse();
+    }
+  }
+
+  _T maybeWhen<_T>({
+    _T Function(Fragment$MyListEntry$item$$Episode)? episode,
+    _T Function(Fragment$MyListEntry$item$$Show)? show,
+    required _T Function() orElse,
+  }) {
+    switch ($__typename) {
+      case "Episode":
+        if (episode != null) {
+          return episode(this as Fragment$MyListEntry$item$$Episode);
+        } else {
+          return orElse();
+        }
+
+      case "Show":
+        if (show != null) {
+          return show(this as Fragment$MyListEntry$item$$Show);
+        } else {
+          return orElse();
+        }
+
+      default:
+        return orElse();
+    }
+  }
 }
 
 abstract class CopyWith$Fragment$MyListEntry$item<TRes> {
@@ -904,6 +945,10 @@ const documentNodeQueryMyList = DocumentNode(definitions: [
 ]);
 Query$MyList _parserFn$Query$MyList(Map<String, dynamic> data) =>
     Query$MyList.fromJson(data);
+typedef OnQueryComplete$Query$MyList = FutureOr<void> Function(
+  Map<String, dynamic>?,
+  Query$MyList?,
+);
 
 class Options$Query$MyList extends graphql.QueryOptions<Query$MyList> {
   Options$Query$MyList({
@@ -912,19 +957,40 @@ class Options$Query$MyList extends graphql.QueryOptions<Query$MyList> {
     graphql.ErrorPolicy? errorPolicy,
     graphql.CacheRereadPolicy? cacheRereadPolicy,
     Object? optimisticResult,
+    Query$MyList? typedOptimisticResult,
     Duration? pollInterval,
     graphql.Context? context,
-  }) : super(
+    OnQueryComplete$Query$MyList? onComplete,
+    graphql.OnQueryError? onError,
+  })  : onCompleteWithParsed = onComplete,
+        super(
           operationName: operationName,
           fetchPolicy: fetchPolicy,
           errorPolicy: errorPolicy,
           cacheRereadPolicy: cacheRereadPolicy,
-          optimisticResult: optimisticResult,
+          optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
           pollInterval: pollInterval,
           context: context,
+          onComplete: onComplete == null
+              ? null
+              : (data) => onComplete(
+                    data,
+                    data == null ? null : _parserFn$Query$MyList(data),
+                  ),
+          onError: onError,
           document: documentNodeQueryMyList,
           parserFn: _parserFn$Query$MyList,
         );
+
+  final OnQueryComplete$Query$MyList? onCompleteWithParsed;
+
+  @override
+  List<Object?> get properties => [
+        ...super.onComplete == null
+            ? super.properties
+            : super.properties.where((property) => property != onComplete),
+        onCompleteWithParsed,
+      ];
 }
 
 class WatchOptions$Query$MyList
@@ -935,6 +1001,7 @@ class WatchOptions$Query$MyList
     graphql.ErrorPolicy? errorPolicy,
     graphql.CacheRereadPolicy? cacheRereadPolicy,
     Object? optimisticResult,
+    Query$MyList? typedOptimisticResult,
     graphql.Context? context,
     Duration? pollInterval,
     bool? eagerlyFetchResults,
@@ -945,7 +1012,7 @@ class WatchOptions$Query$MyList
           fetchPolicy: fetchPolicy,
           errorPolicy: errorPolicy,
           cacheRereadPolicy: cacheRereadPolicy,
-          optimisticResult: optimisticResult,
+          optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
           context: context,
           document: documentNodeQueryMyList,
           pollInterval: pollInterval,
@@ -1588,7 +1655,7 @@ Mutation$addEpisodeToMyList _parserFn$Mutation$addEpisodeToMyList(
     Mutation$addEpisodeToMyList.fromJson(data);
 typedef OnMutationCompleted$Mutation$addEpisodeToMyList = FutureOr<void>
     Function(
-  dynamic,
+  Map<String, dynamic>?,
   Mutation$addEpisodeToMyList?,
 );
 
@@ -1601,6 +1668,7 @@ class Options$Mutation$addEpisodeToMyList
     graphql.ErrorPolicy? errorPolicy,
     graphql.CacheRereadPolicy? cacheRereadPolicy,
     Object? optimisticResult,
+    Mutation$addEpisodeToMyList? typedOptimisticResult,
     graphql.Context? context,
     OnMutationCompleted$Mutation$addEpisodeToMyList? onCompleted,
     graphql.OnMutationUpdate<Mutation$addEpisodeToMyList>? update,
@@ -1612,7 +1680,7 @@ class Options$Mutation$addEpisodeToMyList
           fetchPolicy: fetchPolicy,
           errorPolicy: errorPolicy,
           cacheRereadPolicy: cacheRereadPolicy,
-          optimisticResult: optimisticResult,
+          optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
           context: context,
           onCompleted: onCompleted == null
               ? null
@@ -1648,6 +1716,7 @@ class WatchOptions$Mutation$addEpisodeToMyList
     graphql.ErrorPolicy? errorPolicy,
     graphql.CacheRereadPolicy? cacheRereadPolicy,
     Object? optimisticResult,
+    Mutation$addEpisodeToMyList? typedOptimisticResult,
     graphql.Context? context,
     Duration? pollInterval,
     bool? eagerlyFetchResults,
@@ -1659,7 +1728,7 @@ class WatchOptions$Mutation$addEpisodeToMyList
           fetchPolicy: fetchPolicy,
           errorPolicy: errorPolicy,
           cacheRereadPolicy: cacheRereadPolicy,
-          optimisticResult: optimisticResult,
+          optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
           context: context,
           document: documentNodeMutationaddEpisodeToMyList,
           pollInterval: pollInterval,
@@ -1697,9 +1766,10 @@ Mutation$addEpisodeToMyList$HookResult useMutation$addEpisodeToMyList(
   final result = graphql_flutter
       .useMutation(options ?? WidgetOptions$Mutation$addEpisodeToMyList());
   return Mutation$addEpisodeToMyList$HookResult(
-    (variables, {optimisticResult}) => result.runMutation(
+    (variables, {optimisticResult, typedOptimisticResult}) =>
+        result.runMutation(
       variables.toJson(),
-      optimisticResult: optimisticResult,
+      optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
     ),
     result.result,
   );
@@ -1718,6 +1788,7 @@ class WidgetOptions$Mutation$addEpisodeToMyList
     graphql.ErrorPolicy? errorPolicy,
     graphql.CacheRereadPolicy? cacheRereadPolicy,
     Object? optimisticResult,
+    Mutation$addEpisodeToMyList? typedOptimisticResult,
     graphql.Context? context,
     OnMutationCompleted$Mutation$addEpisodeToMyList? onCompleted,
     graphql.OnMutationUpdate<Mutation$addEpisodeToMyList>? update,
@@ -1728,7 +1799,7 @@ class WidgetOptions$Mutation$addEpisodeToMyList
           fetchPolicy: fetchPolicy,
           errorPolicy: errorPolicy,
           cacheRereadPolicy: cacheRereadPolicy,
-          optimisticResult: optimisticResult,
+          optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
           context: context,
           onCompleted: onCompleted == null
               ? null
@@ -1759,6 +1830,7 @@ typedef RunMutation$Mutation$addEpisodeToMyList
     = graphql.MultiSourceResult<Mutation$addEpisodeToMyList> Function(
   Variables$Mutation$addEpisodeToMyList, {
   Object? optimisticResult,
+  Mutation$addEpisodeToMyList? typedOptimisticResult,
 });
 typedef Builder$Mutation$addEpisodeToMyList = widgets.Widget Function(
   RunMutation$Mutation$addEpisodeToMyList,
@@ -1782,10 +1854,12 @@ class Mutation$addEpisodeToMyList$Widget
             (
               variables, {
               optimisticResult,
+              typedOptimisticResult,
             }) =>
                 run(
               variables.toJson(),
-              optimisticResult: optimisticResult,
+              optimisticResult:
+                  optimisticResult ?? typedOptimisticResult?.toJson(),
             ),
             result,
           ),
@@ -2219,7 +2293,7 @@ Mutation$removeEntryFromMyList _parserFn$Mutation$removeEntryFromMyList(
     Mutation$removeEntryFromMyList.fromJson(data);
 typedef OnMutationCompleted$Mutation$removeEntryFromMyList = FutureOr<void>
     Function(
-  dynamic,
+  Map<String, dynamic>?,
   Mutation$removeEntryFromMyList?,
 );
 
@@ -2232,6 +2306,7 @@ class Options$Mutation$removeEntryFromMyList
     graphql.ErrorPolicy? errorPolicy,
     graphql.CacheRereadPolicy? cacheRereadPolicy,
     Object? optimisticResult,
+    Mutation$removeEntryFromMyList? typedOptimisticResult,
     graphql.Context? context,
     OnMutationCompleted$Mutation$removeEntryFromMyList? onCompleted,
     graphql.OnMutationUpdate<Mutation$removeEntryFromMyList>? update,
@@ -2243,7 +2318,7 @@ class Options$Mutation$removeEntryFromMyList
           fetchPolicy: fetchPolicy,
           errorPolicy: errorPolicy,
           cacheRereadPolicy: cacheRereadPolicy,
-          optimisticResult: optimisticResult,
+          optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
           context: context,
           onCompleted: onCompleted == null
               ? null
@@ -2280,6 +2355,7 @@ class WatchOptions$Mutation$removeEntryFromMyList
     graphql.ErrorPolicy? errorPolicy,
     graphql.CacheRereadPolicy? cacheRereadPolicy,
     Object? optimisticResult,
+    Mutation$removeEntryFromMyList? typedOptimisticResult,
     graphql.Context? context,
     Duration? pollInterval,
     bool? eagerlyFetchResults,
@@ -2291,7 +2367,7 @@ class WatchOptions$Mutation$removeEntryFromMyList
           fetchPolicy: fetchPolicy,
           errorPolicy: errorPolicy,
           cacheRereadPolicy: cacheRereadPolicy,
-          optimisticResult: optimisticResult,
+          optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
           context: context,
           document: documentNodeMutationremoveEntryFromMyList,
           pollInterval: pollInterval,
@@ -2330,9 +2406,10 @@ Mutation$removeEntryFromMyList$HookResult useMutation$removeEntryFromMyList(
   final result = graphql_flutter
       .useMutation(options ?? WidgetOptions$Mutation$removeEntryFromMyList());
   return Mutation$removeEntryFromMyList$HookResult(
-    (variables, {optimisticResult}) => result.runMutation(
+    (variables, {optimisticResult, typedOptimisticResult}) =>
+        result.runMutation(
       variables.toJson(),
-      optimisticResult: optimisticResult,
+      optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
     ),
     result.result,
   );
@@ -2351,6 +2428,7 @@ class WidgetOptions$Mutation$removeEntryFromMyList
     graphql.ErrorPolicy? errorPolicy,
     graphql.CacheRereadPolicy? cacheRereadPolicy,
     Object? optimisticResult,
+    Mutation$removeEntryFromMyList? typedOptimisticResult,
     graphql.Context? context,
     OnMutationCompleted$Mutation$removeEntryFromMyList? onCompleted,
     graphql.OnMutationUpdate<Mutation$removeEntryFromMyList>? update,
@@ -2361,7 +2439,7 @@ class WidgetOptions$Mutation$removeEntryFromMyList
           fetchPolicy: fetchPolicy,
           errorPolicy: errorPolicy,
           cacheRereadPolicy: cacheRereadPolicy,
-          optimisticResult: optimisticResult,
+          optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
           context: context,
           onCompleted: onCompleted == null
               ? null
@@ -2393,6 +2471,7 @@ typedef RunMutation$Mutation$removeEntryFromMyList
     = graphql.MultiSourceResult<Mutation$removeEntryFromMyList> Function(
   Variables$Mutation$removeEntryFromMyList, {
   Object? optimisticResult,
+  Mutation$removeEntryFromMyList? typedOptimisticResult,
 });
 typedef Builder$Mutation$removeEntryFromMyList = widgets.Widget Function(
   RunMutation$Mutation$removeEntryFromMyList,
@@ -2416,10 +2495,12 @@ class Mutation$removeEntryFromMyList$Widget
             (
               variables, {
               optimisticResult,
+              typedOptimisticResult,
             }) =>
                 run(
               variables.toJson(),
-              optimisticResult: optimisticResult,
+              optimisticResult:
+                  optimisticResult ?? typedOptimisticResult?.toJson(),
             ),
             result,
           ),

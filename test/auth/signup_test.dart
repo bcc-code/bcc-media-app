@@ -23,7 +23,7 @@ void main() {
       final focusNode = FocusNode();
       final page = PageController();
       await t.pumpWidget(DesignSystem(
-        designSystem: ds,
+        designSystem: design,
         child: (context) => MaterialApp(
           locale: const Locale('en'),
           localizationsDelegates: S.localizationsDelegates,

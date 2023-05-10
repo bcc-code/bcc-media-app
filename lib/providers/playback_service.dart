@@ -3,6 +3,7 @@ import 'package:bccm_player/plugins/bcc_media.dart';
 import 'package:bccm_player/plugins/riverpod.dart';
 import 'package:brunstadtv_app/env/env.dart';
 import 'package:brunstadtv_app/graphql/queries/episode.graphql.dart';
+import 'package:brunstadtv_app/helpers/extensions.dart';
 import 'package:brunstadtv_app/providers/analytics.dart';
 import 'package:collection/collection.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -64,6 +65,7 @@ class PlaybackService {
   }
 
   MediaItem _mapEpisode(Query$FetchEpisode$episode episode) {
+    final collectionId = episode.context.asOrNull<Fragment$EpisodeContext$$ContextCollection>()?.id;
     return MediaItem(
       url: episode.streams.getBestStreamUrl(),
       mimeType: 'application/x-mpegURL',
@@ -73,6 +75,7 @@ class PlaybackService {
         artworkUri: episode.image,
         extras: {
           'id': episode.id.toString(),
+          if (collectionId != null) 'context.collectionId': collectionId,
           'npaw.content.id': episode.id,
           'npaw.content.tvShow': episode.season?.$show.id,
           if (episode.season != null) 'npaw.content.season': '${episode.season!.id} - ${episode.season!.title}',

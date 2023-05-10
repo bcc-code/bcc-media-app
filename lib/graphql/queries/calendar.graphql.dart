@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'package:flutter/widgets.dart' as widgets;
 import 'package:gql/ast.dart';
 import 'package:graphql/client.dart' as graphql;
@@ -786,6 +787,87 @@ extension UtilityExtension$Fragment$CalendarDay$entries
             this,
             (i) => i,
           );
+  _T when<_T>({
+    required _T Function(Fragment$CalendarDay$entries$$EpisodeCalendarEntry)
+        episodeCalendarEntry,
+    required _T Function(Fragment$CalendarDay$entries$$SimpleCalendarEntry)
+        simpleCalendarEntry,
+    required _T Function(Fragment$CalendarDay$entries$$SeasonCalendarEntry)
+        seasonCalendarEntry,
+    required _T Function(Fragment$CalendarDay$entries$$ShowCalendarEntry)
+        showCalendarEntry,
+    required _T Function() orElse,
+  }) {
+    switch ($__typename) {
+      case "EpisodeCalendarEntry":
+        return episodeCalendarEntry(
+            this as Fragment$CalendarDay$entries$$EpisodeCalendarEntry);
+
+      case "SimpleCalendarEntry":
+        return simpleCalendarEntry(
+            this as Fragment$CalendarDay$entries$$SimpleCalendarEntry);
+
+      case "SeasonCalendarEntry":
+        return seasonCalendarEntry(
+            this as Fragment$CalendarDay$entries$$SeasonCalendarEntry);
+
+      case "ShowCalendarEntry":
+        return showCalendarEntry(
+            this as Fragment$CalendarDay$entries$$ShowCalendarEntry);
+
+      default:
+        return orElse();
+    }
+  }
+
+  _T maybeWhen<_T>({
+    _T Function(Fragment$CalendarDay$entries$$EpisodeCalendarEntry)?
+        episodeCalendarEntry,
+    _T Function(Fragment$CalendarDay$entries$$SimpleCalendarEntry)?
+        simpleCalendarEntry,
+    _T Function(Fragment$CalendarDay$entries$$SeasonCalendarEntry)?
+        seasonCalendarEntry,
+    _T Function(Fragment$CalendarDay$entries$$ShowCalendarEntry)?
+        showCalendarEntry,
+    required _T Function() orElse,
+  }) {
+    switch ($__typename) {
+      case "EpisodeCalendarEntry":
+        if (episodeCalendarEntry != null) {
+          return episodeCalendarEntry(
+              this as Fragment$CalendarDay$entries$$EpisodeCalendarEntry);
+        } else {
+          return orElse();
+        }
+
+      case "SimpleCalendarEntry":
+        if (simpleCalendarEntry != null) {
+          return simpleCalendarEntry(
+              this as Fragment$CalendarDay$entries$$SimpleCalendarEntry);
+        } else {
+          return orElse();
+        }
+
+      case "SeasonCalendarEntry":
+        if (seasonCalendarEntry != null) {
+          return seasonCalendarEntry(
+              this as Fragment$CalendarDay$entries$$SeasonCalendarEntry);
+        } else {
+          return orElse();
+        }
+
+      case "ShowCalendarEntry":
+        if (showCalendarEntry != null) {
+          return showCalendarEntry(
+              this as Fragment$CalendarDay$entries$$ShowCalendarEntry);
+        } else {
+          return orElse();
+        }
+
+      default:
+        return orElse();
+    }
+  }
 }
 
 abstract class CopyWith$Fragment$CalendarDay$entries<TRes> {
@@ -2289,6 +2371,10 @@ const documentNodeQueryCalendarPeriod = DocumentNode(definitions: [
 Query$CalendarPeriod _parserFn$Query$CalendarPeriod(
         Map<String, dynamic> data) =>
     Query$CalendarPeriod.fromJson(data);
+typedef OnQueryComplete$Query$CalendarPeriod = FutureOr<void> Function(
+  Map<String, dynamic>?,
+  Query$CalendarPeriod?,
+);
 
 class Options$Query$CalendarPeriod
     extends graphql.QueryOptions<Query$CalendarPeriod> {
@@ -2299,20 +2385,41 @@ class Options$Query$CalendarPeriod
     graphql.ErrorPolicy? errorPolicy,
     graphql.CacheRereadPolicy? cacheRereadPolicy,
     Object? optimisticResult,
+    Query$CalendarPeriod? typedOptimisticResult,
     Duration? pollInterval,
     graphql.Context? context,
-  }) : super(
+    OnQueryComplete$Query$CalendarPeriod? onComplete,
+    graphql.OnQueryError? onError,
+  })  : onCompleteWithParsed = onComplete,
+        super(
           variables: variables.toJson(),
           operationName: operationName,
           fetchPolicy: fetchPolicy,
           errorPolicy: errorPolicy,
           cacheRereadPolicy: cacheRereadPolicy,
-          optimisticResult: optimisticResult,
+          optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
           pollInterval: pollInterval,
           context: context,
+          onComplete: onComplete == null
+              ? null
+              : (data) => onComplete(
+                    data,
+                    data == null ? null : _parserFn$Query$CalendarPeriod(data),
+                  ),
+          onError: onError,
           document: documentNodeQueryCalendarPeriod,
           parserFn: _parserFn$Query$CalendarPeriod,
         );
+
+  final OnQueryComplete$Query$CalendarPeriod? onCompleteWithParsed;
+
+  @override
+  List<Object?> get properties => [
+        ...super.onComplete == null
+            ? super.properties
+            : super.properties.where((property) => property != onComplete),
+        onCompleteWithParsed,
+      ];
 }
 
 class WatchOptions$Query$CalendarPeriod
@@ -2324,6 +2431,7 @@ class WatchOptions$Query$CalendarPeriod
     graphql.ErrorPolicy? errorPolicy,
     graphql.CacheRereadPolicy? cacheRereadPolicy,
     Object? optimisticResult,
+    Query$CalendarPeriod? typedOptimisticResult,
     graphql.Context? context,
     Duration? pollInterval,
     bool? eagerlyFetchResults,
@@ -2335,7 +2443,7 @@ class WatchOptions$Query$CalendarPeriod
           fetchPolicy: fetchPolicy,
           errorPolicy: errorPolicy,
           cacheRereadPolicy: cacheRereadPolicy,
-          optimisticResult: optimisticResult,
+          optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
           context: context,
           document: documentNodeQueryCalendarPeriod,
           pollInterval: pollInterval,
@@ -3176,6 +3284,10 @@ const documentNodeQueryCalendarDay = DocumentNode(definitions: [
 ]);
 Query$CalendarDay _parserFn$Query$CalendarDay(Map<String, dynamic> data) =>
     Query$CalendarDay.fromJson(data);
+typedef OnQueryComplete$Query$CalendarDay = FutureOr<void> Function(
+  Map<String, dynamic>?,
+  Query$CalendarDay?,
+);
 
 class Options$Query$CalendarDay
     extends graphql.QueryOptions<Query$CalendarDay> {
@@ -3186,20 +3298,41 @@ class Options$Query$CalendarDay
     graphql.ErrorPolicy? errorPolicy,
     graphql.CacheRereadPolicy? cacheRereadPolicy,
     Object? optimisticResult,
+    Query$CalendarDay? typedOptimisticResult,
     Duration? pollInterval,
     graphql.Context? context,
-  }) : super(
+    OnQueryComplete$Query$CalendarDay? onComplete,
+    graphql.OnQueryError? onError,
+  })  : onCompleteWithParsed = onComplete,
+        super(
           variables: variables.toJson(),
           operationName: operationName,
           fetchPolicy: fetchPolicy,
           errorPolicy: errorPolicy,
           cacheRereadPolicy: cacheRereadPolicy,
-          optimisticResult: optimisticResult,
+          optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
           pollInterval: pollInterval,
           context: context,
+          onComplete: onComplete == null
+              ? null
+              : (data) => onComplete(
+                    data,
+                    data == null ? null : _parserFn$Query$CalendarDay(data),
+                  ),
+          onError: onError,
           document: documentNodeQueryCalendarDay,
           parserFn: _parserFn$Query$CalendarDay,
         );
+
+  final OnQueryComplete$Query$CalendarDay? onCompleteWithParsed;
+
+  @override
+  List<Object?> get properties => [
+        ...super.onComplete == null
+            ? super.properties
+            : super.properties.where((property) => property != onComplete),
+        onCompleteWithParsed,
+      ];
 }
 
 class WatchOptions$Query$CalendarDay
@@ -3211,6 +3344,7 @@ class WatchOptions$Query$CalendarDay
     graphql.ErrorPolicy? errorPolicy,
     graphql.CacheRereadPolicy? cacheRereadPolicy,
     Object? optimisticResult,
+    Query$CalendarDay? typedOptimisticResult,
     graphql.Context? context,
     Duration? pollInterval,
     bool? eagerlyFetchResults,
@@ -3222,7 +3356,7 @@ class WatchOptions$Query$CalendarDay
           fetchPolicy: fetchPolicy,
           errorPolicy: errorPolicy,
           cacheRereadPolicy: cacheRereadPolicy,
-          optimisticResult: optimisticResult,
+          optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
           context: context,
           document: documentNodeQueryCalendarDay,
           pollInterval: pollInterval,

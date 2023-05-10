@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'episode.graphql.dart';
 import 'package:flutter/widgets.dart' as widgets;
 import 'package:gql/ast.dart';
@@ -332,6 +333,10 @@ const documentNodeQueryGetSeasonEpisodes = DocumentNode(definitions: [
 Query$GetSeasonEpisodes _parserFn$Query$GetSeasonEpisodes(
         Map<String, dynamic> data) =>
     Query$GetSeasonEpisodes.fromJson(data);
+typedef OnQueryComplete$Query$GetSeasonEpisodes = FutureOr<void> Function(
+  Map<String, dynamic>?,
+  Query$GetSeasonEpisodes?,
+);
 
 class Options$Query$GetSeasonEpisodes
     extends graphql.QueryOptions<Query$GetSeasonEpisodes> {
@@ -342,20 +347,43 @@ class Options$Query$GetSeasonEpisodes
     graphql.ErrorPolicy? errorPolicy,
     graphql.CacheRereadPolicy? cacheRereadPolicy,
     Object? optimisticResult,
+    Query$GetSeasonEpisodes? typedOptimisticResult,
     Duration? pollInterval,
     graphql.Context? context,
-  }) : super(
+    OnQueryComplete$Query$GetSeasonEpisodes? onComplete,
+    graphql.OnQueryError? onError,
+  })  : onCompleteWithParsed = onComplete,
+        super(
           variables: variables.toJson(),
           operationName: operationName,
           fetchPolicy: fetchPolicy,
           errorPolicy: errorPolicy,
           cacheRereadPolicy: cacheRereadPolicy,
-          optimisticResult: optimisticResult,
+          optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
           pollInterval: pollInterval,
           context: context,
+          onComplete: onComplete == null
+              ? null
+              : (data) => onComplete(
+                    data,
+                    data == null
+                        ? null
+                        : _parserFn$Query$GetSeasonEpisodes(data),
+                  ),
+          onError: onError,
           document: documentNodeQueryGetSeasonEpisodes,
           parserFn: _parserFn$Query$GetSeasonEpisodes,
         );
+
+  final OnQueryComplete$Query$GetSeasonEpisodes? onCompleteWithParsed;
+
+  @override
+  List<Object?> get properties => [
+        ...super.onComplete == null
+            ? super.properties
+            : super.properties.where((property) => property != onComplete),
+        onCompleteWithParsed,
+      ];
 }
 
 class WatchOptions$Query$GetSeasonEpisodes
@@ -367,6 +395,7 @@ class WatchOptions$Query$GetSeasonEpisodes
     graphql.ErrorPolicy? errorPolicy,
     graphql.CacheRereadPolicy? cacheRereadPolicy,
     Object? optimisticResult,
+    Query$GetSeasonEpisodes? typedOptimisticResult,
     graphql.Context? context,
     Duration? pollInterval,
     bool? eagerlyFetchResults,
@@ -378,7 +407,7 @@ class WatchOptions$Query$GetSeasonEpisodes
           fetchPolicy: fetchPolicy,
           errorPolicy: errorPolicy,
           cacheRereadPolicy: cacheRereadPolicy,
-          optimisticResult: optimisticResult,
+          optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
           context: context,
           document: documentNodeQueryGetSeasonEpisodes,
           pollInterval: pollInterval,

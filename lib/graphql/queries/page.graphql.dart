@@ -1,4 +1,5 @@
 import '../schema/pages.graphql.dart';
+import 'dart:async';
 import 'package:flutter/widgets.dart' as widgets;
 import 'package:gql/ast.dart';
 import 'package:graphql/client.dart' as graphql;
@@ -440,6 +441,95 @@ extension UtilityExtension$Fragment$GridSectionItem$item
             this,
             (i) => i,
           );
+  _T when<_T>({
+    required _T Function(Fragment$GridSectionItem$item$$Link) link,
+    required _T Function(Fragment$GridSectionItem$item$$Page) page,
+    required _T Function(Fragment$GridSectionItem$item$$Episode) episode,
+    required _T Function(Fragment$GridSectionItem$item$$Show) show,
+    required _T Function(Fragment$GridSectionItem$item$$Season) season,
+    required _T Function(Fragment$GridSectionItem$item$$StudyTopic) studyTopic,
+    required _T Function() orElse,
+  }) {
+    switch ($__typename) {
+      case "Link":
+        return link(this as Fragment$GridSectionItem$item$$Link);
+
+      case "Page":
+        return page(this as Fragment$GridSectionItem$item$$Page);
+
+      case "Episode":
+        return episode(this as Fragment$GridSectionItem$item$$Episode);
+
+      case "Show":
+        return show(this as Fragment$GridSectionItem$item$$Show);
+
+      case "Season":
+        return season(this as Fragment$GridSectionItem$item$$Season);
+
+      case "StudyTopic":
+        return studyTopic(this as Fragment$GridSectionItem$item$$StudyTopic);
+
+      default:
+        return orElse();
+    }
+  }
+
+  _T maybeWhen<_T>({
+    _T Function(Fragment$GridSectionItem$item$$Link)? link,
+    _T Function(Fragment$GridSectionItem$item$$Page)? page,
+    _T Function(Fragment$GridSectionItem$item$$Episode)? episode,
+    _T Function(Fragment$GridSectionItem$item$$Show)? show,
+    _T Function(Fragment$GridSectionItem$item$$Season)? season,
+    _T Function(Fragment$GridSectionItem$item$$StudyTopic)? studyTopic,
+    required _T Function() orElse,
+  }) {
+    switch ($__typename) {
+      case "Link":
+        if (link != null) {
+          return link(this as Fragment$GridSectionItem$item$$Link);
+        } else {
+          return orElse();
+        }
+
+      case "Page":
+        if (page != null) {
+          return page(this as Fragment$GridSectionItem$item$$Page);
+        } else {
+          return orElse();
+        }
+
+      case "Episode":
+        if (episode != null) {
+          return episode(this as Fragment$GridSectionItem$item$$Episode);
+        } else {
+          return orElse();
+        }
+
+      case "Show":
+        if (show != null) {
+          return show(this as Fragment$GridSectionItem$item$$Show);
+        } else {
+          return orElse();
+        }
+
+      case "Season":
+        if (season != null) {
+          return season(this as Fragment$GridSectionItem$item$$Season);
+        } else {
+          return orElse();
+        }
+
+      case "StudyTopic":
+        if (studyTopic != null) {
+          return studyTopic(this as Fragment$GridSectionItem$item$$StudyTopic);
+        } else {
+          return orElse();
+        }
+
+      default:
+        return orElse();
+    }
+  }
 }
 
 abstract class CopyWith$Fragment$GridSectionItem$item<TRes> {
@@ -2371,6 +2461,95 @@ extension UtilityExtension$Fragment$ItemSectionItem$item
             this,
             (i) => i,
           );
+  _T when<_T>({
+    required _T Function(Fragment$ItemSectionItem$item$$Link) link,
+    required _T Function(Fragment$ItemSectionItem$item$$Page) page,
+    required _T Function(Fragment$ItemSectionItem$item$$Episode) episode,
+    required _T Function(Fragment$ItemSectionItem$item$$Show) show,
+    required _T Function(Fragment$ItemSectionItem$item$$Season) season,
+    required _T Function(Fragment$ItemSectionItem$item$$StudyTopic) studyTopic,
+    required _T Function() orElse,
+  }) {
+    switch ($__typename) {
+      case "Link":
+        return link(this as Fragment$ItemSectionItem$item$$Link);
+
+      case "Page":
+        return page(this as Fragment$ItemSectionItem$item$$Page);
+
+      case "Episode":
+        return episode(this as Fragment$ItemSectionItem$item$$Episode);
+
+      case "Show":
+        return show(this as Fragment$ItemSectionItem$item$$Show);
+
+      case "Season":
+        return season(this as Fragment$ItemSectionItem$item$$Season);
+
+      case "StudyTopic":
+        return studyTopic(this as Fragment$ItemSectionItem$item$$StudyTopic);
+
+      default:
+        return orElse();
+    }
+  }
+
+  _T maybeWhen<_T>({
+    _T Function(Fragment$ItemSectionItem$item$$Link)? link,
+    _T Function(Fragment$ItemSectionItem$item$$Page)? page,
+    _T Function(Fragment$ItemSectionItem$item$$Episode)? episode,
+    _T Function(Fragment$ItemSectionItem$item$$Show)? show,
+    _T Function(Fragment$ItemSectionItem$item$$Season)? season,
+    _T Function(Fragment$ItemSectionItem$item$$StudyTopic)? studyTopic,
+    required _T Function() orElse,
+  }) {
+    switch ($__typename) {
+      case "Link":
+        if (link != null) {
+          return link(this as Fragment$ItemSectionItem$item$$Link);
+        } else {
+          return orElse();
+        }
+
+      case "Page":
+        if (page != null) {
+          return page(this as Fragment$ItemSectionItem$item$$Page);
+        } else {
+          return orElse();
+        }
+
+      case "Episode":
+        if (episode != null) {
+          return episode(this as Fragment$ItemSectionItem$item$$Episode);
+        } else {
+          return orElse();
+        }
+
+      case "Show":
+        if (show != null) {
+          return show(this as Fragment$ItemSectionItem$item$$Show);
+        } else {
+          return orElse();
+        }
+
+      case "Season":
+        if (season != null) {
+          return season(this as Fragment$ItemSectionItem$item$$Season);
+        } else {
+          return orElse();
+        }
+
+      case "StudyTopic":
+        if (studyTopic != null) {
+          return studyTopic(this as Fragment$ItemSectionItem$item$$StudyTopic);
+        } else {
+          return orElse();
+        }
+
+      default:
+        return orElse();
+    }
+  }
 }
 
 abstract class CopyWith$Fragment$ItemSectionItem$item<TRes> {
@@ -3957,6 +4136,161 @@ extension UtilityExtension$Fragment$ItemSection on Fragment$ItemSection {
         this,
         (i) => i,
       );
+  _T when<_T>({
+    required _T Function(Fragment$ItemSection$$PosterSection) posterSection,
+    required _T Function(Fragment$ItemSection$$FeaturedSection) featuredSection,
+    required _T Function(Fragment$ItemSection$$DefaultSection) defaultSection,
+    required _T Function(Fragment$ItemSection$$CardSection) cardSection,
+    required _T Function(Fragment$ItemSection$$ListSection) listSection,
+    required _T Function(Fragment$ItemSection$$CardListSection) cardListSection,
+    required _T Function(Fragment$ItemSection$$DefaultGridSection)
+        defaultGridSection,
+    required _T Function(Fragment$ItemSection$$PosterGridSection)
+        posterGridSection,
+    required _T Function(Fragment$ItemSection$$IconGridSection) iconGridSection,
+    required _T Function(Fragment$ItemSection$$IconSection) iconSection,
+    required _T Function(Fragment$ItemSection$$LabelSection) labelSection,
+    required _T Function() orElse,
+  }) {
+    switch ($__typename) {
+      case "PosterSection":
+        return posterSection(this as Fragment$ItemSection$$PosterSection);
+
+      case "FeaturedSection":
+        return featuredSection(this as Fragment$ItemSection$$FeaturedSection);
+
+      case "DefaultSection":
+        return defaultSection(this as Fragment$ItemSection$$DefaultSection);
+
+      case "CardSection":
+        return cardSection(this as Fragment$ItemSection$$CardSection);
+
+      case "ListSection":
+        return listSection(this as Fragment$ItemSection$$ListSection);
+
+      case "CardListSection":
+        return cardListSection(this as Fragment$ItemSection$$CardListSection);
+
+      case "DefaultGridSection":
+        return defaultGridSection(
+            this as Fragment$ItemSection$$DefaultGridSection);
+
+      case "PosterGridSection":
+        return posterGridSection(
+            this as Fragment$ItemSection$$PosterGridSection);
+
+      case "IconGridSection":
+        return iconGridSection(this as Fragment$ItemSection$$IconGridSection);
+
+      case "IconSection":
+        return iconSection(this as Fragment$ItemSection$$IconSection);
+
+      case "LabelSection":
+        return labelSection(this as Fragment$ItemSection$$LabelSection);
+
+      default:
+        return orElse();
+    }
+  }
+
+  _T maybeWhen<_T>({
+    _T Function(Fragment$ItemSection$$PosterSection)? posterSection,
+    _T Function(Fragment$ItemSection$$FeaturedSection)? featuredSection,
+    _T Function(Fragment$ItemSection$$DefaultSection)? defaultSection,
+    _T Function(Fragment$ItemSection$$CardSection)? cardSection,
+    _T Function(Fragment$ItemSection$$ListSection)? listSection,
+    _T Function(Fragment$ItemSection$$CardListSection)? cardListSection,
+    _T Function(Fragment$ItemSection$$DefaultGridSection)? defaultGridSection,
+    _T Function(Fragment$ItemSection$$PosterGridSection)? posterGridSection,
+    _T Function(Fragment$ItemSection$$IconGridSection)? iconGridSection,
+    _T Function(Fragment$ItemSection$$IconSection)? iconSection,
+    _T Function(Fragment$ItemSection$$LabelSection)? labelSection,
+    required _T Function() orElse,
+  }) {
+    switch ($__typename) {
+      case "PosterSection":
+        if (posterSection != null) {
+          return posterSection(this as Fragment$ItemSection$$PosterSection);
+        } else {
+          return orElse();
+        }
+
+      case "FeaturedSection":
+        if (featuredSection != null) {
+          return featuredSection(this as Fragment$ItemSection$$FeaturedSection);
+        } else {
+          return orElse();
+        }
+
+      case "DefaultSection":
+        if (defaultSection != null) {
+          return defaultSection(this as Fragment$ItemSection$$DefaultSection);
+        } else {
+          return orElse();
+        }
+
+      case "CardSection":
+        if (cardSection != null) {
+          return cardSection(this as Fragment$ItemSection$$CardSection);
+        } else {
+          return orElse();
+        }
+
+      case "ListSection":
+        if (listSection != null) {
+          return listSection(this as Fragment$ItemSection$$ListSection);
+        } else {
+          return orElse();
+        }
+
+      case "CardListSection":
+        if (cardListSection != null) {
+          return cardListSection(this as Fragment$ItemSection$$CardListSection);
+        } else {
+          return orElse();
+        }
+
+      case "DefaultGridSection":
+        if (defaultGridSection != null) {
+          return defaultGridSection(
+              this as Fragment$ItemSection$$DefaultGridSection);
+        } else {
+          return orElse();
+        }
+
+      case "PosterGridSection":
+        if (posterGridSection != null) {
+          return posterGridSection(
+              this as Fragment$ItemSection$$PosterGridSection);
+        } else {
+          return orElse();
+        }
+
+      case "IconGridSection":
+        if (iconGridSection != null) {
+          return iconGridSection(this as Fragment$ItemSection$$IconGridSection);
+        } else {
+          return orElse();
+        }
+
+      case "IconSection":
+        if (iconSection != null) {
+          return iconSection(this as Fragment$ItemSection$$IconSection);
+        } else {
+          return orElse();
+        }
+
+      case "LabelSection":
+        if (labelSection != null) {
+          return labelSection(this as Fragment$ItemSection$$LabelSection);
+        } else {
+          return orElse();
+        }
+
+      default:
+        return orElse();
+    }
+  }
 }
 
 abstract class CopyWith$Fragment$ItemSection<TRes> {
@@ -11458,6 +11792,65 @@ extension UtilityExtension$Fragment$GridSection on Fragment$GridSection {
         this,
         (i) => i,
       );
+  _T when<_T>({
+    required _T Function(Fragment$GridSection$$DefaultGridSection)
+        defaultGridSection,
+    required _T Function(Fragment$GridSection$$PosterGridSection)
+        posterGridSection,
+    required _T Function(Fragment$GridSection$$IconGridSection) iconGridSection,
+    required _T Function() orElse,
+  }) {
+    switch ($__typename) {
+      case "DefaultGridSection":
+        return defaultGridSection(
+            this as Fragment$GridSection$$DefaultGridSection);
+
+      case "PosterGridSection":
+        return posterGridSection(
+            this as Fragment$GridSection$$PosterGridSection);
+
+      case "IconGridSection":
+        return iconGridSection(this as Fragment$GridSection$$IconGridSection);
+
+      default:
+        return orElse();
+    }
+  }
+
+  _T maybeWhen<_T>({
+    _T Function(Fragment$GridSection$$DefaultGridSection)? defaultGridSection,
+    _T Function(Fragment$GridSection$$PosterGridSection)? posterGridSection,
+    _T Function(Fragment$GridSection$$IconGridSection)? iconGridSection,
+    required _T Function() orElse,
+  }) {
+    switch ($__typename) {
+      case "DefaultGridSection":
+        if (defaultGridSection != null) {
+          return defaultGridSection(
+              this as Fragment$GridSection$$DefaultGridSection);
+        } else {
+          return orElse();
+        }
+
+      case "PosterGridSection":
+        if (posterGridSection != null) {
+          return posterGridSection(
+              this as Fragment$GridSection$$PosterGridSection);
+        } else {
+          return orElse();
+        }
+
+      case "IconGridSection":
+        if (iconGridSection != null) {
+          return iconGridSection(this as Fragment$GridSection$$IconGridSection);
+        } else {
+          return orElse();
+        }
+
+      default:
+        return orElse();
+    }
+  }
 }
 
 abstract class CopyWith$Fragment$GridSection<TRes> {
@@ -13013,6 +13406,209 @@ extension UtilityExtension$Fragment$Section on Fragment$Section {
         this,
         (i) => i,
       );
+  _T when<_T>({
+    required _T Function(Fragment$Section$$PosterSection) posterSection,
+    required _T Function(Fragment$Section$$FeaturedSection) featuredSection,
+    required _T Function(Fragment$Section$$DefaultSection) defaultSection,
+    required _T Function(Fragment$Section$$CardSection) cardSection,
+    required _T Function(Fragment$Section$$ListSection) listSection,
+    required _T Function(Fragment$Section$$CardListSection) cardListSection,
+    required _T Function(Fragment$Section$$DefaultGridSection)
+        defaultGridSection,
+    required _T Function(Fragment$Section$$PosterGridSection) posterGridSection,
+    required _T Function(Fragment$Section$$IconGridSection) iconGridSection,
+    required _T Function(Fragment$Section$$IconSection) iconSection,
+    required _T Function(Fragment$Section$$LabelSection) labelSection,
+    required _T Function(Fragment$Section$$WebSection) webSection,
+    required _T Function(Fragment$Section$$MessageSection) messageSection,
+    required _T Function(Fragment$Section$$PageDetailsSection)
+        pageDetailsSection,
+    required _T Function(Fragment$Section$$AchievementSection)
+        achievementSection,
+    required _T Function() orElse,
+  }) {
+    switch ($__typename) {
+      case "PosterSection":
+        return posterSection(this as Fragment$Section$$PosterSection);
+
+      case "FeaturedSection":
+        return featuredSection(this as Fragment$Section$$FeaturedSection);
+
+      case "DefaultSection":
+        return defaultSection(this as Fragment$Section$$DefaultSection);
+
+      case "CardSection":
+        return cardSection(this as Fragment$Section$$CardSection);
+
+      case "ListSection":
+        return listSection(this as Fragment$Section$$ListSection);
+
+      case "CardListSection":
+        return cardListSection(this as Fragment$Section$$CardListSection);
+
+      case "DefaultGridSection":
+        return defaultGridSection(this as Fragment$Section$$DefaultGridSection);
+
+      case "PosterGridSection":
+        return posterGridSection(this as Fragment$Section$$PosterGridSection);
+
+      case "IconGridSection":
+        return iconGridSection(this as Fragment$Section$$IconGridSection);
+
+      case "IconSection":
+        return iconSection(this as Fragment$Section$$IconSection);
+
+      case "LabelSection":
+        return labelSection(this as Fragment$Section$$LabelSection);
+
+      case "WebSection":
+        return webSection(this as Fragment$Section$$WebSection);
+
+      case "MessageSection":
+        return messageSection(this as Fragment$Section$$MessageSection);
+
+      case "PageDetailsSection":
+        return pageDetailsSection(this as Fragment$Section$$PageDetailsSection);
+
+      case "AchievementSection":
+        return achievementSection(this as Fragment$Section$$AchievementSection);
+
+      default:
+        return orElse();
+    }
+  }
+
+  _T maybeWhen<_T>({
+    _T Function(Fragment$Section$$PosterSection)? posterSection,
+    _T Function(Fragment$Section$$FeaturedSection)? featuredSection,
+    _T Function(Fragment$Section$$DefaultSection)? defaultSection,
+    _T Function(Fragment$Section$$CardSection)? cardSection,
+    _T Function(Fragment$Section$$ListSection)? listSection,
+    _T Function(Fragment$Section$$CardListSection)? cardListSection,
+    _T Function(Fragment$Section$$DefaultGridSection)? defaultGridSection,
+    _T Function(Fragment$Section$$PosterGridSection)? posterGridSection,
+    _T Function(Fragment$Section$$IconGridSection)? iconGridSection,
+    _T Function(Fragment$Section$$IconSection)? iconSection,
+    _T Function(Fragment$Section$$LabelSection)? labelSection,
+    _T Function(Fragment$Section$$WebSection)? webSection,
+    _T Function(Fragment$Section$$MessageSection)? messageSection,
+    _T Function(Fragment$Section$$PageDetailsSection)? pageDetailsSection,
+    _T Function(Fragment$Section$$AchievementSection)? achievementSection,
+    required _T Function() orElse,
+  }) {
+    switch ($__typename) {
+      case "PosterSection":
+        if (posterSection != null) {
+          return posterSection(this as Fragment$Section$$PosterSection);
+        } else {
+          return orElse();
+        }
+
+      case "FeaturedSection":
+        if (featuredSection != null) {
+          return featuredSection(this as Fragment$Section$$FeaturedSection);
+        } else {
+          return orElse();
+        }
+
+      case "DefaultSection":
+        if (defaultSection != null) {
+          return defaultSection(this as Fragment$Section$$DefaultSection);
+        } else {
+          return orElse();
+        }
+
+      case "CardSection":
+        if (cardSection != null) {
+          return cardSection(this as Fragment$Section$$CardSection);
+        } else {
+          return orElse();
+        }
+
+      case "ListSection":
+        if (listSection != null) {
+          return listSection(this as Fragment$Section$$ListSection);
+        } else {
+          return orElse();
+        }
+
+      case "CardListSection":
+        if (cardListSection != null) {
+          return cardListSection(this as Fragment$Section$$CardListSection);
+        } else {
+          return orElse();
+        }
+
+      case "DefaultGridSection":
+        if (defaultGridSection != null) {
+          return defaultGridSection(
+              this as Fragment$Section$$DefaultGridSection);
+        } else {
+          return orElse();
+        }
+
+      case "PosterGridSection":
+        if (posterGridSection != null) {
+          return posterGridSection(this as Fragment$Section$$PosterGridSection);
+        } else {
+          return orElse();
+        }
+
+      case "IconGridSection":
+        if (iconGridSection != null) {
+          return iconGridSection(this as Fragment$Section$$IconGridSection);
+        } else {
+          return orElse();
+        }
+
+      case "IconSection":
+        if (iconSection != null) {
+          return iconSection(this as Fragment$Section$$IconSection);
+        } else {
+          return orElse();
+        }
+
+      case "LabelSection":
+        if (labelSection != null) {
+          return labelSection(this as Fragment$Section$$LabelSection);
+        } else {
+          return orElse();
+        }
+
+      case "WebSection":
+        if (webSection != null) {
+          return webSection(this as Fragment$Section$$WebSection);
+        } else {
+          return orElse();
+        }
+
+      case "MessageSection":
+        if (messageSection != null) {
+          return messageSection(this as Fragment$Section$$MessageSection);
+        } else {
+          return orElse();
+        }
+
+      case "PageDetailsSection":
+        if (pageDetailsSection != null) {
+          return pageDetailsSection(
+              this as Fragment$Section$$PageDetailsSection);
+        } else {
+          return orElse();
+        }
+
+      case "AchievementSection":
+        if (achievementSection != null) {
+          return achievementSection(
+              this as Fragment$Section$$AchievementSection);
+        } else {
+          return orElse();
+        }
+
+      default:
+        return orElse();
+    }
+  }
 }
 
 abstract class CopyWith$Fragment$Section<TRes> {
@@ -14884,6 +15480,119 @@ extension UtilityExtension$Fragment$Section$$PosterSection$items$items$item
             this,
             (i) => i,
           );
+  _T when<_T>({
+    required _T Function(Fragment$Section$$PosterSection$items$items$item$$Link)
+        link,
+    required _T Function(Fragment$Section$$PosterSection$items$items$item$$Page)
+        page,
+    required _T Function(
+            Fragment$Section$$PosterSection$items$items$item$$Episode)
+        episode,
+    required _T Function(Fragment$Section$$PosterSection$items$items$item$$Show)
+        show,
+    required _T Function(
+            Fragment$Section$$PosterSection$items$items$item$$Season)
+        season,
+    required _T Function(
+            Fragment$Section$$PosterSection$items$items$item$$StudyTopic)
+        studyTopic,
+    required _T Function() orElse,
+  }) {
+    switch ($__typename) {
+      case "Link":
+        return link(
+            this as Fragment$Section$$PosterSection$items$items$item$$Link);
+
+      case "Page":
+        return page(
+            this as Fragment$Section$$PosterSection$items$items$item$$Page);
+
+      case "Episode":
+        return episode(
+            this as Fragment$Section$$PosterSection$items$items$item$$Episode);
+
+      case "Show":
+        return show(
+            this as Fragment$Section$$PosterSection$items$items$item$$Show);
+
+      case "Season":
+        return season(
+            this as Fragment$Section$$PosterSection$items$items$item$$Season);
+
+      case "StudyTopic":
+        return studyTopic(this
+            as Fragment$Section$$PosterSection$items$items$item$$StudyTopic);
+
+      default:
+        return orElse();
+    }
+  }
+
+  _T maybeWhen<_T>({
+    _T Function(Fragment$Section$$PosterSection$items$items$item$$Link)? link,
+    _T Function(Fragment$Section$$PosterSection$items$items$item$$Page)? page,
+    _T Function(Fragment$Section$$PosterSection$items$items$item$$Episode)?
+        episode,
+    _T Function(Fragment$Section$$PosterSection$items$items$item$$Show)? show,
+    _T Function(Fragment$Section$$PosterSection$items$items$item$$Season)?
+        season,
+    _T Function(Fragment$Section$$PosterSection$items$items$item$$StudyTopic)?
+        studyTopic,
+    required _T Function() orElse,
+  }) {
+    switch ($__typename) {
+      case "Link":
+        if (link != null) {
+          return link(
+              this as Fragment$Section$$PosterSection$items$items$item$$Link);
+        } else {
+          return orElse();
+        }
+
+      case "Page":
+        if (page != null) {
+          return page(
+              this as Fragment$Section$$PosterSection$items$items$item$$Page);
+        } else {
+          return orElse();
+        }
+
+      case "Episode":
+        if (episode != null) {
+          return episode(this
+              as Fragment$Section$$PosterSection$items$items$item$$Episode);
+        } else {
+          return orElse();
+        }
+
+      case "Show":
+        if (show != null) {
+          return show(
+              this as Fragment$Section$$PosterSection$items$items$item$$Show);
+        } else {
+          return orElse();
+        }
+
+      case "Season":
+        if (season != null) {
+          return season(
+              this as Fragment$Section$$PosterSection$items$items$item$$Season);
+        } else {
+          return orElse();
+        }
+
+      case "StudyTopic":
+        if (studyTopic != null) {
+          return studyTopic(this
+              as Fragment$Section$$PosterSection$items$items$item$$StudyTopic);
+        } else {
+          return orElse();
+        }
+
+      default:
+        return orElse();
+    }
+  }
 }
 
 abstract class CopyWith$Fragment$Section$$PosterSection$items$items$item<TRes> {
@@ -17340,6 +18049,122 @@ extension UtilityExtension$Fragment$Section$$FeaturedSection$items$items$item
             this,
             (i) => i,
           );
+  _T when<_T>({
+    required _T Function(
+            Fragment$Section$$FeaturedSection$items$items$item$$Link)
+        link,
+    required _T Function(
+            Fragment$Section$$FeaturedSection$items$items$item$$Page)
+        page,
+    required _T Function(
+            Fragment$Section$$FeaturedSection$items$items$item$$Episode)
+        episode,
+    required _T Function(
+            Fragment$Section$$FeaturedSection$items$items$item$$Show)
+        show,
+    required _T Function(
+            Fragment$Section$$FeaturedSection$items$items$item$$Season)
+        season,
+    required _T Function(
+            Fragment$Section$$FeaturedSection$items$items$item$$StudyTopic)
+        studyTopic,
+    required _T Function() orElse,
+  }) {
+    switch ($__typename) {
+      case "Link":
+        return link(
+            this as Fragment$Section$$FeaturedSection$items$items$item$$Link);
+
+      case "Page":
+        return page(
+            this as Fragment$Section$$FeaturedSection$items$items$item$$Page);
+
+      case "Episode":
+        return episode(this
+            as Fragment$Section$$FeaturedSection$items$items$item$$Episode);
+
+      case "Show":
+        return show(
+            this as Fragment$Section$$FeaturedSection$items$items$item$$Show);
+
+      case "Season":
+        return season(
+            this as Fragment$Section$$FeaturedSection$items$items$item$$Season);
+
+      case "StudyTopic":
+        return studyTopic(this
+            as Fragment$Section$$FeaturedSection$items$items$item$$StudyTopic);
+
+      default:
+        return orElse();
+    }
+  }
+
+  _T maybeWhen<_T>({
+    _T Function(Fragment$Section$$FeaturedSection$items$items$item$$Link)? link,
+    _T Function(Fragment$Section$$FeaturedSection$items$items$item$$Page)? page,
+    _T Function(Fragment$Section$$FeaturedSection$items$items$item$$Episode)?
+        episode,
+    _T Function(Fragment$Section$$FeaturedSection$items$items$item$$Show)? show,
+    _T Function(Fragment$Section$$FeaturedSection$items$items$item$$Season)?
+        season,
+    _T Function(Fragment$Section$$FeaturedSection$items$items$item$$StudyTopic)?
+        studyTopic,
+    required _T Function() orElse,
+  }) {
+    switch ($__typename) {
+      case "Link":
+        if (link != null) {
+          return link(
+              this as Fragment$Section$$FeaturedSection$items$items$item$$Link);
+        } else {
+          return orElse();
+        }
+
+      case "Page":
+        if (page != null) {
+          return page(
+              this as Fragment$Section$$FeaturedSection$items$items$item$$Page);
+        } else {
+          return orElse();
+        }
+
+      case "Episode":
+        if (episode != null) {
+          return episode(this
+              as Fragment$Section$$FeaturedSection$items$items$item$$Episode);
+        } else {
+          return orElse();
+        }
+
+      case "Show":
+        if (show != null) {
+          return show(
+              this as Fragment$Section$$FeaturedSection$items$items$item$$Show);
+        } else {
+          return orElse();
+        }
+
+      case "Season":
+        if (season != null) {
+          return season(this
+              as Fragment$Section$$FeaturedSection$items$items$item$$Season);
+        } else {
+          return orElse();
+        }
+
+      case "StudyTopic":
+        if (studyTopic != null) {
+          return studyTopic(this
+              as Fragment$Section$$FeaturedSection$items$items$item$$StudyTopic);
+        } else {
+          return orElse();
+        }
+
+      default:
+        return orElse();
+    }
+  }
 }
 
 abstract class CopyWith$Fragment$Section$$FeaturedSection$items$items$item<
@@ -19774,6 +20599,122 @@ extension UtilityExtension$Fragment$Section$$DefaultSection$items$items$item
             this,
             (i) => i,
           );
+  _T when<_T>({
+    required _T Function(
+            Fragment$Section$$DefaultSection$items$items$item$$Link)
+        link,
+    required _T Function(
+            Fragment$Section$$DefaultSection$items$items$item$$Page)
+        page,
+    required _T Function(
+            Fragment$Section$$DefaultSection$items$items$item$$Episode)
+        episode,
+    required _T Function(
+            Fragment$Section$$DefaultSection$items$items$item$$Show)
+        show,
+    required _T Function(
+            Fragment$Section$$DefaultSection$items$items$item$$Season)
+        season,
+    required _T Function(
+            Fragment$Section$$DefaultSection$items$items$item$$StudyTopic)
+        studyTopic,
+    required _T Function() orElse,
+  }) {
+    switch ($__typename) {
+      case "Link":
+        return link(
+            this as Fragment$Section$$DefaultSection$items$items$item$$Link);
+
+      case "Page":
+        return page(
+            this as Fragment$Section$$DefaultSection$items$items$item$$Page);
+
+      case "Episode":
+        return episode(
+            this as Fragment$Section$$DefaultSection$items$items$item$$Episode);
+
+      case "Show":
+        return show(
+            this as Fragment$Section$$DefaultSection$items$items$item$$Show);
+
+      case "Season":
+        return season(
+            this as Fragment$Section$$DefaultSection$items$items$item$$Season);
+
+      case "StudyTopic":
+        return studyTopic(this
+            as Fragment$Section$$DefaultSection$items$items$item$$StudyTopic);
+
+      default:
+        return orElse();
+    }
+  }
+
+  _T maybeWhen<_T>({
+    _T Function(Fragment$Section$$DefaultSection$items$items$item$$Link)? link,
+    _T Function(Fragment$Section$$DefaultSection$items$items$item$$Page)? page,
+    _T Function(Fragment$Section$$DefaultSection$items$items$item$$Episode)?
+        episode,
+    _T Function(Fragment$Section$$DefaultSection$items$items$item$$Show)? show,
+    _T Function(Fragment$Section$$DefaultSection$items$items$item$$Season)?
+        season,
+    _T Function(Fragment$Section$$DefaultSection$items$items$item$$StudyTopic)?
+        studyTopic,
+    required _T Function() orElse,
+  }) {
+    switch ($__typename) {
+      case "Link":
+        if (link != null) {
+          return link(
+              this as Fragment$Section$$DefaultSection$items$items$item$$Link);
+        } else {
+          return orElse();
+        }
+
+      case "Page":
+        if (page != null) {
+          return page(
+              this as Fragment$Section$$DefaultSection$items$items$item$$Page);
+        } else {
+          return orElse();
+        }
+
+      case "Episode":
+        if (episode != null) {
+          return episode(this
+              as Fragment$Section$$DefaultSection$items$items$item$$Episode);
+        } else {
+          return orElse();
+        }
+
+      case "Show":
+        if (show != null) {
+          return show(
+              this as Fragment$Section$$DefaultSection$items$items$item$$Show);
+        } else {
+          return orElse();
+        }
+
+      case "Season":
+        if (season != null) {
+          return season(this
+              as Fragment$Section$$DefaultSection$items$items$item$$Season);
+        } else {
+          return orElse();
+        }
+
+      case "StudyTopic":
+        if (studyTopic != null) {
+          return studyTopic(this
+              as Fragment$Section$$DefaultSection$items$items$item$$StudyTopic);
+        } else {
+          return orElse();
+        }
+
+      default:
+        return orElse();
+    }
+  }
 }
 
 abstract class CopyWith$Fragment$Section$$DefaultSection$items$items$item<
@@ -22213,6 +23154,117 @@ extension UtilityExtension$Fragment$Section$$CardSection$items$items$item
             this,
             (i) => i,
           );
+  _T when<_T>({
+    required _T Function(Fragment$Section$$CardSection$items$items$item$$Link)
+        link,
+    required _T Function(Fragment$Section$$CardSection$items$items$item$$Page)
+        page,
+    required _T Function(
+            Fragment$Section$$CardSection$items$items$item$$Episode)
+        episode,
+    required _T Function(Fragment$Section$$CardSection$items$items$item$$Show)
+        show,
+    required _T Function(Fragment$Section$$CardSection$items$items$item$$Season)
+        season,
+    required _T Function(
+            Fragment$Section$$CardSection$items$items$item$$StudyTopic)
+        studyTopic,
+    required _T Function() orElse,
+  }) {
+    switch ($__typename) {
+      case "Link":
+        return link(
+            this as Fragment$Section$$CardSection$items$items$item$$Link);
+
+      case "Page":
+        return page(
+            this as Fragment$Section$$CardSection$items$items$item$$Page);
+
+      case "Episode":
+        return episode(
+            this as Fragment$Section$$CardSection$items$items$item$$Episode);
+
+      case "Show":
+        return show(
+            this as Fragment$Section$$CardSection$items$items$item$$Show);
+
+      case "Season":
+        return season(
+            this as Fragment$Section$$CardSection$items$items$item$$Season);
+
+      case "StudyTopic":
+        return studyTopic(
+            this as Fragment$Section$$CardSection$items$items$item$$StudyTopic);
+
+      default:
+        return orElse();
+    }
+  }
+
+  _T maybeWhen<_T>({
+    _T Function(Fragment$Section$$CardSection$items$items$item$$Link)? link,
+    _T Function(Fragment$Section$$CardSection$items$items$item$$Page)? page,
+    _T Function(Fragment$Section$$CardSection$items$items$item$$Episode)?
+        episode,
+    _T Function(Fragment$Section$$CardSection$items$items$item$$Show)? show,
+    _T Function(Fragment$Section$$CardSection$items$items$item$$Season)? season,
+    _T Function(Fragment$Section$$CardSection$items$items$item$$StudyTopic)?
+        studyTopic,
+    required _T Function() orElse,
+  }) {
+    switch ($__typename) {
+      case "Link":
+        if (link != null) {
+          return link(
+              this as Fragment$Section$$CardSection$items$items$item$$Link);
+        } else {
+          return orElse();
+        }
+
+      case "Page":
+        if (page != null) {
+          return page(
+              this as Fragment$Section$$CardSection$items$items$item$$Page);
+        } else {
+          return orElse();
+        }
+
+      case "Episode":
+        if (episode != null) {
+          return episode(
+              this as Fragment$Section$$CardSection$items$items$item$$Episode);
+        } else {
+          return orElse();
+        }
+
+      case "Show":
+        if (show != null) {
+          return show(
+              this as Fragment$Section$$CardSection$items$items$item$$Show);
+        } else {
+          return orElse();
+        }
+
+      case "Season":
+        if (season != null) {
+          return season(
+              this as Fragment$Section$$CardSection$items$items$item$$Season);
+        } else {
+          return orElse();
+        }
+
+      case "StudyTopic":
+        if (studyTopic != null) {
+          return studyTopic(this
+              as Fragment$Section$$CardSection$items$items$item$$StudyTopic);
+        } else {
+          return orElse();
+        }
+
+      default:
+        return orElse();
+    }
+  }
 }
 
 abstract class CopyWith$Fragment$Section$$CardSection$items$items$item<TRes> {
@@ -24754,6 +25806,117 @@ extension UtilityExtension$Fragment$Section$$ListSection$items$items$item
             this,
             (i) => i,
           );
+  _T when<_T>({
+    required _T Function(Fragment$Section$$ListSection$items$items$item$$Link)
+        link,
+    required _T Function(Fragment$Section$$ListSection$items$items$item$$Page)
+        page,
+    required _T Function(
+            Fragment$Section$$ListSection$items$items$item$$Episode)
+        episode,
+    required _T Function(Fragment$Section$$ListSection$items$items$item$$Show)
+        show,
+    required _T Function(Fragment$Section$$ListSection$items$items$item$$Season)
+        season,
+    required _T Function(
+            Fragment$Section$$ListSection$items$items$item$$StudyTopic)
+        studyTopic,
+    required _T Function() orElse,
+  }) {
+    switch ($__typename) {
+      case "Link":
+        return link(
+            this as Fragment$Section$$ListSection$items$items$item$$Link);
+
+      case "Page":
+        return page(
+            this as Fragment$Section$$ListSection$items$items$item$$Page);
+
+      case "Episode":
+        return episode(
+            this as Fragment$Section$$ListSection$items$items$item$$Episode);
+
+      case "Show":
+        return show(
+            this as Fragment$Section$$ListSection$items$items$item$$Show);
+
+      case "Season":
+        return season(
+            this as Fragment$Section$$ListSection$items$items$item$$Season);
+
+      case "StudyTopic":
+        return studyTopic(
+            this as Fragment$Section$$ListSection$items$items$item$$StudyTopic);
+
+      default:
+        return orElse();
+    }
+  }
+
+  _T maybeWhen<_T>({
+    _T Function(Fragment$Section$$ListSection$items$items$item$$Link)? link,
+    _T Function(Fragment$Section$$ListSection$items$items$item$$Page)? page,
+    _T Function(Fragment$Section$$ListSection$items$items$item$$Episode)?
+        episode,
+    _T Function(Fragment$Section$$ListSection$items$items$item$$Show)? show,
+    _T Function(Fragment$Section$$ListSection$items$items$item$$Season)? season,
+    _T Function(Fragment$Section$$ListSection$items$items$item$$StudyTopic)?
+        studyTopic,
+    required _T Function() orElse,
+  }) {
+    switch ($__typename) {
+      case "Link":
+        if (link != null) {
+          return link(
+              this as Fragment$Section$$ListSection$items$items$item$$Link);
+        } else {
+          return orElse();
+        }
+
+      case "Page":
+        if (page != null) {
+          return page(
+              this as Fragment$Section$$ListSection$items$items$item$$Page);
+        } else {
+          return orElse();
+        }
+
+      case "Episode":
+        if (episode != null) {
+          return episode(
+              this as Fragment$Section$$ListSection$items$items$item$$Episode);
+        } else {
+          return orElse();
+        }
+
+      case "Show":
+        if (show != null) {
+          return show(
+              this as Fragment$Section$$ListSection$items$items$item$$Show);
+        } else {
+          return orElse();
+        }
+
+      case "Season":
+        if (season != null) {
+          return season(
+              this as Fragment$Section$$ListSection$items$items$item$$Season);
+        } else {
+          return orElse();
+        }
+
+      case "StudyTopic":
+        if (studyTopic != null) {
+          return studyTopic(this
+              as Fragment$Section$$ListSection$items$items$item$$StudyTopic);
+        } else {
+          return orElse();
+        }
+
+      default:
+        return orElse();
+    }
+  }
 }
 
 abstract class CopyWith$Fragment$Section$$ListSection$items$items$item<TRes> {
@@ -27878,6 +29041,126 @@ extension UtilityExtension$Fragment$Section$$DefaultGridSection$items$items$item
             this,
             (i) => i,
           );
+  _T when<_T>({
+    required _T Function(
+            Fragment$Section$$DefaultGridSection$items$items$item$$Link)
+        link,
+    required _T Function(
+            Fragment$Section$$DefaultGridSection$items$items$item$$Page)
+        page,
+    required _T Function(
+            Fragment$Section$$DefaultGridSection$items$items$item$$Episode)
+        episode,
+    required _T Function(
+            Fragment$Section$$DefaultGridSection$items$items$item$$Show)
+        show,
+    required _T Function(
+            Fragment$Section$$DefaultGridSection$items$items$item$$Season)
+        season,
+    required _T Function(
+            Fragment$Section$$DefaultGridSection$items$items$item$$StudyTopic)
+        studyTopic,
+    required _T Function() orElse,
+  }) {
+    switch ($__typename) {
+      case "Link":
+        return link(this
+            as Fragment$Section$$DefaultGridSection$items$items$item$$Link);
+
+      case "Page":
+        return page(this
+            as Fragment$Section$$DefaultGridSection$items$items$item$$Page);
+
+      case "Episode":
+        return episode(this
+            as Fragment$Section$$DefaultGridSection$items$items$item$$Episode);
+
+      case "Show":
+        return show(this
+            as Fragment$Section$$DefaultGridSection$items$items$item$$Show);
+
+      case "Season":
+        return season(this
+            as Fragment$Section$$DefaultGridSection$items$items$item$$Season);
+
+      case "StudyTopic":
+        return studyTopic(this
+            as Fragment$Section$$DefaultGridSection$items$items$item$$StudyTopic);
+
+      default:
+        return orElse();
+    }
+  }
+
+  _T maybeWhen<_T>({
+    _T Function(Fragment$Section$$DefaultGridSection$items$items$item$$Link)?
+        link,
+    _T Function(Fragment$Section$$DefaultGridSection$items$items$item$$Page)?
+        page,
+    _T Function(Fragment$Section$$DefaultGridSection$items$items$item$$Episode)?
+        episode,
+    _T Function(Fragment$Section$$DefaultGridSection$items$items$item$$Show)?
+        show,
+    _T Function(Fragment$Section$$DefaultGridSection$items$items$item$$Season)?
+        season,
+    _T Function(
+            Fragment$Section$$DefaultGridSection$items$items$item$$StudyTopic)?
+        studyTopic,
+    required _T Function() orElse,
+  }) {
+    switch ($__typename) {
+      case "Link":
+        if (link != null) {
+          return link(this
+              as Fragment$Section$$DefaultGridSection$items$items$item$$Link);
+        } else {
+          return orElse();
+        }
+
+      case "Page":
+        if (page != null) {
+          return page(this
+              as Fragment$Section$$DefaultGridSection$items$items$item$$Page);
+        } else {
+          return orElse();
+        }
+
+      case "Episode":
+        if (episode != null) {
+          return episode(this
+              as Fragment$Section$$DefaultGridSection$items$items$item$$Episode);
+        } else {
+          return orElse();
+        }
+
+      case "Show":
+        if (show != null) {
+          return show(this
+              as Fragment$Section$$DefaultGridSection$items$items$item$$Show);
+        } else {
+          return orElse();
+        }
+
+      case "Season":
+        if (season != null) {
+          return season(this
+              as Fragment$Section$$DefaultGridSection$items$items$item$$Season);
+        } else {
+          return orElse();
+        }
+
+      case "StudyTopic":
+        if (studyTopic != null) {
+          return studyTopic(this
+              as Fragment$Section$$DefaultGridSection$items$items$item$$StudyTopic);
+        } else {
+          return orElse();
+        }
+
+      default:
+        return orElse();
+    }
+  }
 }
 
 abstract class CopyWith$Fragment$Section$$DefaultGridSection$items$items$item<
@@ -30384,6 +31667,126 @@ extension UtilityExtension$Fragment$Section$$PosterGridSection$items$items$item
             this,
             (i) => i,
           );
+  _T when<_T>({
+    required _T Function(
+            Fragment$Section$$PosterGridSection$items$items$item$$Link)
+        link,
+    required _T Function(
+            Fragment$Section$$PosterGridSection$items$items$item$$Page)
+        page,
+    required _T Function(
+            Fragment$Section$$PosterGridSection$items$items$item$$Episode)
+        episode,
+    required _T Function(
+            Fragment$Section$$PosterGridSection$items$items$item$$Show)
+        show,
+    required _T Function(
+            Fragment$Section$$PosterGridSection$items$items$item$$Season)
+        season,
+    required _T Function(
+            Fragment$Section$$PosterGridSection$items$items$item$$StudyTopic)
+        studyTopic,
+    required _T Function() orElse,
+  }) {
+    switch ($__typename) {
+      case "Link":
+        return link(
+            this as Fragment$Section$$PosterGridSection$items$items$item$$Link);
+
+      case "Page":
+        return page(
+            this as Fragment$Section$$PosterGridSection$items$items$item$$Page);
+
+      case "Episode":
+        return episode(this
+            as Fragment$Section$$PosterGridSection$items$items$item$$Episode);
+
+      case "Show":
+        return show(
+            this as Fragment$Section$$PosterGridSection$items$items$item$$Show);
+
+      case "Season":
+        return season(this
+            as Fragment$Section$$PosterGridSection$items$items$item$$Season);
+
+      case "StudyTopic":
+        return studyTopic(this
+            as Fragment$Section$$PosterGridSection$items$items$item$$StudyTopic);
+
+      default:
+        return orElse();
+    }
+  }
+
+  _T maybeWhen<_T>({
+    _T Function(Fragment$Section$$PosterGridSection$items$items$item$$Link)?
+        link,
+    _T Function(Fragment$Section$$PosterGridSection$items$items$item$$Page)?
+        page,
+    _T Function(Fragment$Section$$PosterGridSection$items$items$item$$Episode)?
+        episode,
+    _T Function(Fragment$Section$$PosterGridSection$items$items$item$$Show)?
+        show,
+    _T Function(Fragment$Section$$PosterGridSection$items$items$item$$Season)?
+        season,
+    _T Function(
+            Fragment$Section$$PosterGridSection$items$items$item$$StudyTopic)?
+        studyTopic,
+    required _T Function() orElse,
+  }) {
+    switch ($__typename) {
+      case "Link":
+        if (link != null) {
+          return link(this
+              as Fragment$Section$$PosterGridSection$items$items$item$$Link);
+        } else {
+          return orElse();
+        }
+
+      case "Page":
+        if (page != null) {
+          return page(this
+              as Fragment$Section$$PosterGridSection$items$items$item$$Page);
+        } else {
+          return orElse();
+        }
+
+      case "Episode":
+        if (episode != null) {
+          return episode(this
+              as Fragment$Section$$PosterGridSection$items$items$item$$Episode);
+        } else {
+          return orElse();
+        }
+
+      case "Show":
+        if (show != null) {
+          return show(this
+              as Fragment$Section$$PosterGridSection$items$items$item$$Show);
+        } else {
+          return orElse();
+        }
+
+      case "Season":
+        if (season != null) {
+          return season(this
+              as Fragment$Section$$PosterGridSection$items$items$item$$Season);
+        } else {
+          return orElse();
+        }
+
+      case "StudyTopic":
+        if (studyTopic != null) {
+          return studyTopic(this
+              as Fragment$Section$$PosterGridSection$items$items$item$$StudyTopic);
+        } else {
+          return orElse();
+        }
+
+      default:
+        return orElse();
+    }
+  }
 }
 
 abstract class CopyWith$Fragment$Section$$PosterGridSection$items$items$item<
@@ -32885,6 +34288,122 @@ extension UtilityExtension$Fragment$Section$$IconGridSection$items$items$item
             this,
             (i) => i,
           );
+  _T when<_T>({
+    required _T Function(
+            Fragment$Section$$IconGridSection$items$items$item$$Link)
+        link,
+    required _T Function(
+            Fragment$Section$$IconGridSection$items$items$item$$Page)
+        page,
+    required _T Function(
+            Fragment$Section$$IconGridSection$items$items$item$$Episode)
+        episode,
+    required _T Function(
+            Fragment$Section$$IconGridSection$items$items$item$$Show)
+        show,
+    required _T Function(
+            Fragment$Section$$IconGridSection$items$items$item$$Season)
+        season,
+    required _T Function(
+            Fragment$Section$$IconGridSection$items$items$item$$StudyTopic)
+        studyTopic,
+    required _T Function() orElse,
+  }) {
+    switch ($__typename) {
+      case "Link":
+        return link(
+            this as Fragment$Section$$IconGridSection$items$items$item$$Link);
+
+      case "Page":
+        return page(
+            this as Fragment$Section$$IconGridSection$items$items$item$$Page);
+
+      case "Episode":
+        return episode(this
+            as Fragment$Section$$IconGridSection$items$items$item$$Episode);
+
+      case "Show":
+        return show(
+            this as Fragment$Section$$IconGridSection$items$items$item$$Show);
+
+      case "Season":
+        return season(
+            this as Fragment$Section$$IconGridSection$items$items$item$$Season);
+
+      case "StudyTopic":
+        return studyTopic(this
+            as Fragment$Section$$IconGridSection$items$items$item$$StudyTopic);
+
+      default:
+        return orElse();
+    }
+  }
+
+  _T maybeWhen<_T>({
+    _T Function(Fragment$Section$$IconGridSection$items$items$item$$Link)? link,
+    _T Function(Fragment$Section$$IconGridSection$items$items$item$$Page)? page,
+    _T Function(Fragment$Section$$IconGridSection$items$items$item$$Episode)?
+        episode,
+    _T Function(Fragment$Section$$IconGridSection$items$items$item$$Show)? show,
+    _T Function(Fragment$Section$$IconGridSection$items$items$item$$Season)?
+        season,
+    _T Function(Fragment$Section$$IconGridSection$items$items$item$$StudyTopic)?
+        studyTopic,
+    required _T Function() orElse,
+  }) {
+    switch ($__typename) {
+      case "Link":
+        if (link != null) {
+          return link(
+              this as Fragment$Section$$IconGridSection$items$items$item$$Link);
+        } else {
+          return orElse();
+        }
+
+      case "Page":
+        if (page != null) {
+          return page(
+              this as Fragment$Section$$IconGridSection$items$items$item$$Page);
+        } else {
+          return orElse();
+        }
+
+      case "Episode":
+        if (episode != null) {
+          return episode(this
+              as Fragment$Section$$IconGridSection$items$items$item$$Episode);
+        } else {
+          return orElse();
+        }
+
+      case "Show":
+        if (show != null) {
+          return show(
+              this as Fragment$Section$$IconGridSection$items$items$item$$Show);
+        } else {
+          return orElse();
+        }
+
+      case "Season":
+        if (season != null) {
+          return season(this
+              as Fragment$Section$$IconGridSection$items$items$item$$Season);
+        } else {
+          return orElse();
+        }
+
+      case "StudyTopic":
+        if (studyTopic != null) {
+          return studyTopic(this
+              as Fragment$Section$$IconGridSection$items$items$item$$StudyTopic);
+        } else {
+          return orElse();
+        }
+
+      default:
+        return orElse();
+    }
+  }
 }
 
 abstract class CopyWith$Fragment$Section$$IconGridSection$items$items$item<
@@ -37551,6 +39070,10 @@ const documentNodeQueryPage = DocumentNode(definitions: [
 ]);
 Query$Page _parserFn$Query$Page(Map<String, dynamic> data) =>
     Query$Page.fromJson(data);
+typedef OnQueryComplete$Query$Page = FutureOr<void> Function(
+  Map<String, dynamic>?,
+  Query$Page?,
+);
 
 class Options$Query$Page extends graphql.QueryOptions<Query$Page> {
   Options$Query$Page({
@@ -37560,20 +39083,41 @@ class Options$Query$Page extends graphql.QueryOptions<Query$Page> {
     graphql.ErrorPolicy? errorPolicy,
     graphql.CacheRereadPolicy? cacheRereadPolicy,
     Object? optimisticResult,
+    Query$Page? typedOptimisticResult,
     Duration? pollInterval,
     graphql.Context? context,
-  }) : super(
+    OnQueryComplete$Query$Page? onComplete,
+    graphql.OnQueryError? onError,
+  })  : onCompleteWithParsed = onComplete,
+        super(
           variables: variables.toJson(),
           operationName: operationName,
           fetchPolicy: fetchPolicy,
           errorPolicy: errorPolicy,
           cacheRereadPolicy: cacheRereadPolicy,
-          optimisticResult: optimisticResult,
+          optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
           pollInterval: pollInterval,
           context: context,
+          onComplete: onComplete == null
+              ? null
+              : (data) => onComplete(
+                    data,
+                    data == null ? null : _parserFn$Query$Page(data),
+                  ),
+          onError: onError,
           document: documentNodeQueryPage,
           parserFn: _parserFn$Query$Page,
         );
+
+  final OnQueryComplete$Query$Page? onCompleteWithParsed;
+
+  @override
+  List<Object?> get properties => [
+        ...super.onComplete == null
+            ? super.properties
+            : super.properties.where((property) => property != onComplete),
+        onCompleteWithParsed,
+      ];
 }
 
 class WatchOptions$Query$Page extends graphql.WatchQueryOptions<Query$Page> {
@@ -37584,6 +39128,7 @@ class WatchOptions$Query$Page extends graphql.WatchQueryOptions<Query$Page> {
     graphql.ErrorPolicy? errorPolicy,
     graphql.CacheRereadPolicy? cacheRereadPolicy,
     Object? optimisticResult,
+    Query$Page? typedOptimisticResult,
     graphql.Context? context,
     Duration? pollInterval,
     bool? eagerlyFetchResults,
@@ -37595,7 +39140,7 @@ class WatchOptions$Query$Page extends graphql.WatchQueryOptions<Query$Page> {
           fetchPolicy: fetchPolicy,
           errorPolicy: errorPolicy,
           cacheRereadPolicy: cacheRereadPolicy,
-          optimisticResult: optimisticResult,
+          optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
           context: context,
           document: documentNodeQueryPage,
           pollInterval: pollInterval,

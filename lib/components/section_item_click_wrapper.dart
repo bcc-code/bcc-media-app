@@ -9,11 +9,12 @@ import '../providers/inherited_data.dart';
 import '../helpers/watch_progress_bottom_sheet.dart';
 
 class SectionItemClickWrapper extends ConsumerWidget {
-  const SectionItemClickWrapper({super.key, required this.item, required this.child, required this.analytics});
+  const SectionItemClickWrapper({super.key, required this.item, required this.child, required this.analytics, this.collectionId});
 
   final Fragment$ItemSectionItem$item item;
   final SectionItemAnalytics analytics;
   final Widget child;
+  final String? collectionId;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -28,7 +29,7 @@ class SectionItemClickWrapper extends ConsumerWidget {
           }
           showWatchProgressBottomSheet(context, ref, episode.id, episode.progress);
         },
-        onTap: () => handleSectionItemClick(context, item),
+        onTap: () => handleSectionItemClick(context, item, collectionId: collectionId),
         child: FocusableActionDetector(
           mouseCursor: MaterialStateMouseCursor.clickable,
           child: child,

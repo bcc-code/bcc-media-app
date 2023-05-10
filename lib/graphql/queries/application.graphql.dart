@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'package:flutter/widgets.dart' as widgets;
 import 'package:gql/ast.dart';
 import 'package:graphql/client.dart' as graphql;
@@ -220,6 +221,10 @@ const documentNodeQueryApplication = DocumentNode(definitions: [
 ]);
 Query$Application _parserFn$Query$Application(Map<String, dynamic> data) =>
     Query$Application.fromJson(data);
+typedef OnQueryComplete$Query$Application = FutureOr<void> Function(
+  Map<String, dynamic>?,
+  Query$Application?,
+);
 
 class Options$Query$Application
     extends graphql.QueryOptions<Query$Application> {
@@ -229,19 +234,40 @@ class Options$Query$Application
     graphql.ErrorPolicy? errorPolicy,
     graphql.CacheRereadPolicy? cacheRereadPolicy,
     Object? optimisticResult,
+    Query$Application? typedOptimisticResult,
     Duration? pollInterval,
     graphql.Context? context,
-  }) : super(
+    OnQueryComplete$Query$Application? onComplete,
+    graphql.OnQueryError? onError,
+  })  : onCompleteWithParsed = onComplete,
+        super(
           operationName: operationName,
           fetchPolicy: fetchPolicy,
           errorPolicy: errorPolicy,
           cacheRereadPolicy: cacheRereadPolicy,
-          optimisticResult: optimisticResult,
+          optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
           pollInterval: pollInterval,
           context: context,
+          onComplete: onComplete == null
+              ? null
+              : (data) => onComplete(
+                    data,
+                    data == null ? null : _parserFn$Query$Application(data),
+                  ),
+          onError: onError,
           document: documentNodeQueryApplication,
           parserFn: _parserFn$Query$Application,
         );
+
+  final OnQueryComplete$Query$Application? onCompleteWithParsed;
+
+  @override
+  List<Object?> get properties => [
+        ...super.onComplete == null
+            ? super.properties
+            : super.properties.where((property) => property != onComplete),
+        onCompleteWithParsed,
+      ];
 }
 
 class WatchOptions$Query$Application
@@ -252,6 +278,7 @@ class WatchOptions$Query$Application
     graphql.ErrorPolicy? errorPolicy,
     graphql.CacheRereadPolicy? cacheRereadPolicy,
     Object? optimisticResult,
+    Query$Application? typedOptimisticResult,
     graphql.Context? context,
     Duration? pollInterval,
     bool? eagerlyFetchResults,
@@ -262,7 +289,7 @@ class WatchOptions$Query$Application
           fetchPolicy: fetchPolicy,
           errorPolicy: errorPolicy,
           cacheRereadPolicy: cacheRereadPolicy,
-          optimisticResult: optimisticResult,
+          optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
           context: context,
           document: documentNodeQueryApplication,
           pollInterval: pollInterval,

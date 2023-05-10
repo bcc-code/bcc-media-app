@@ -1,5 +1,7 @@
 import 'package:brunstadtv_app/components/onboarding/signup/signup_birthdate_page.dart';
 import 'package:brunstadtv_app/l10n/app_localizations.dart';
+import 'package:brunstadtv_app/theme/design_system/bcc_media/design_system.dart';
+import 'package:brunstadtv_app/theme/design_system/design_system.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -12,21 +14,25 @@ void main() {
     final yearController = ValueNotifier<int?>(null);
     final focusNode = FocusNode();
     final page = PageController();
-    await t.pumpWidget(MaterialApp(
-      locale: const Locale('en'),
-      localizationsDelegates: S.localizationsDelegates,
-      home: Scaffold(
-        body: SignupBirthDatePage(
-          pageController: page,
-          yearController: yearController,
-          yearFocusNode: focusNode,
-          onRegister: () => {},
+    await t.pumpWidget(DesignSystem(
+      designSystem: BccMediaDesignSystem(),
+      child: (context) => MaterialApp(
+        locale: const Locale('en'),
+        localizationsDelegates: S.localizationsDelegates,
+        home: Scaffold(
+          body: SignupBirthDatePage(
+            pageController: page,
+            yearController: yearController,
+            yearFocusNode: focusNode,
+            onRegister: () => {},
+          ),
         ),
       ),
     ));
 
     const minAge = 13;
     const maxAge = 150;
+    await t.pumpAndSettle();
 
     await t.fling(
       find.byType(CupertinoPicker),

@@ -1,4 +1,24 @@
-#  (2023-04-28)
+#  (2023-05-09)
+
+
+
+## [4.3.8+2300053](https://github.com/bcc-code/bcc-media-app/compare/4.3.7+2300052...4.3.8+2300053) (2023-05-09)
+
+
+### Bug Fixes
+
+* conditionally include inMyList in query ([36f8762](https://github.com/bcc-code/bcc-media-app/commit/36f8762b9cfc8a23e3aa4d5ca168938c8c97ce87))
+
+
+### Features
+
+* Add link to uservoice on profile page ([6f860c1](https://github.com/bcc-code/bcc-media-app/commit/6f860c1c1c76ca38bad3444f0b9702e868e7b63b))
+* episode context ([67cec2d](https://github.com/bcc-code/bcc-media-app/commit/67cec2dfbf3535d4018da8807a253cbc750bc8df))
+* episode context in miniplayer and share ([5816c64](https://github.com/bcc-code/bcc-media-app/commit/5816c646e952b58efa625dc80ade5286e0257197))
+
+
+
+## [4.3.7+2300052](https://github.com/bcc-code/bcc-media-app/compare/4.3.6+2300051...4.3.7+2300052) (2023-05-04)
 
 
 
@@ -860,28 +880,4 @@
 * working primary notification ([bbfd543](https://github.com/bcc-code/bcc-media-app/commit/bbfd543f8a6606f0534647214d6bed52d8ccf899))
 
 
-## [4.0.0] - 2022-01
 
-### Features
-
-The first release has at least the following features:
-
-- login page
-- public (with only home and search tabs)
-- profile/settings(app
-- audio and subtitle languages
-- contact support
-- privacy policy)
-- dynamic pages
-- continue watching
-- episodes (episodes & standalones)
-- search
-- live
-- calendar
-- chromecast support
-- airplay support
-- picture-in-picture
-- mini player
-- deep links
-- notification center (without seeking on iOS)
-- push notifications (with deep links)
