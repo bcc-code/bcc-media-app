@@ -11,8 +11,9 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-import '../../api/brunstadtv.dart';
 import '../../graphql/queries/my_list.graphql.dart';
+import '../../helpers/event_bus.dart';
+import '../../models/events/my_list_changed.dart';
 import '../../theme/design_system/design_system.dart';
 import '../text_collapsible.dart';
 
@@ -37,18 +38,21 @@ class EpisodeInfo extends HookConsumerWidget {
       // ignore: exhaustive_keys
     }, [episode.id, episode.inMyList]);
 
-    void toggleInMyList() {
+    void toggleInMyList() async {
       final previousValue = inMyList.value ?? false;
+      Future? myListUpdateFuture;
       if (previousValue) {
-        ref.read(gqlClientProvider).mutate$removeEntryFromMyList(Options$Mutation$removeEntryFromMyList(
+        myListUpdateFuture = ref.read(gqlClientProvider).mutate$removeEntryFromMyList(Options$Mutation$removeEntryFromMyList(
               variables: Variables$Mutation$removeEntryFromMyList(entryId: episode.uuid),
             ));
       } else {
-        ref.read(gqlClientProvider).mutate$addEpisodeToMyList(Options$Mutation$addEpisodeToMyList(
+        myListUpdateFuture = ref.read(gqlClientProvider).mutate$addEpisodeToMyList(Options$Mutation$addEpisodeToMyList(
               variables: Variables$Mutation$addEpisodeToMyList(episodeId: episode.id),
             ));
       }
       inMyList.value = !previousValue;
+      await myListUpdateFuture;
+      globalEventBus.fire(MyListChangedEvent());
     }
 
     final inMyListValue = inMyList.value;

@@ -1,35 +1,24 @@
-import 'package:brunstadtv_app/helpers/extensions.dart';
-import 'package:brunstadtv_app/providers/section_updates.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../graphql/queries/page.graphql.dart';
 import '../helpers/ui/ui_utils.dart';
 
-class MessageSection extends HookConsumerWidget {
+class MessageSection extends StatelessWidget {
   final Fragment$Section$$MessageSection section;
 
   const MessageSection(this.section, {super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final updatedSection = useState(section);
-
-    ref.listen<AsyncValue<Fragment$Section?>>(sectionUpdatesProvider(section.id), (prev, next) {
-      final val = next.valueOrNull.asOrNull<Fragment$Section$$MessageSection>();
-      if (val != null) updatedSection.value = val;
-    });
-
-    if (updatedSection.value.messages == null) {
+  Widget build(BuildContext context) {
+    if (section.messages == null) {
       return const SizedBox.shrink();
     }
     return Column(
-      children: updatedSection.value.messages!.map((messageData) {
+      children: section.messages!.map((messageData) {
         return Container(
-          margin: messageData != updatedSection.value.messages!.last ? const EdgeInsets.only(bottom: 16) : null,
+          margin: messageData != section.messages!.last ? const EdgeInsets.only(bottom: 16) : null,
           child: _MessageItem(messageData),
         );
       }).toList(),

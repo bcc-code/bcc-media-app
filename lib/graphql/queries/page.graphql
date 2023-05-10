@@ -56,6 +56,7 @@ fragment ItemSectionItem on SectionItem {
 fragment ItemSection on ItemSection {
   metadata {
     continueWatching
+    myList
     secondaryTitles
     collectionId
     useContext

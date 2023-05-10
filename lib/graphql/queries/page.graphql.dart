@@ -4396,6 +4396,13 @@ const fragmentDefinitionItemSection = FragmentDefinitionNode(
           selectionSet: null,
         ),
         FieldNode(
+          name: NameNode(value: 'myList'),
+          alias: null,
+          arguments: [],
+          directives: [],
+          selectionSet: null,
+        ),
+        FieldNode(
           name: NameNode(value: 'secondaryTitles'),
           alias: null,
           arguments: [],
@@ -4545,6 +4552,7 @@ extension ClientExtension$Fragment$ItemSection on graphql.GraphQLClient {
 class Fragment$ItemSection$metadata {
   Fragment$ItemSection$metadata({
     required this.continueWatching,
+    required this.myList,
     required this.secondaryTitles,
     required this.collectionId,
     required this.useContext,
@@ -4554,6 +4562,7 @@ class Fragment$ItemSection$metadata {
 
   factory Fragment$ItemSection$metadata.fromJson(Map<String, dynamic> json) {
     final l$continueWatching = json['continueWatching'];
+    final l$myList = json['myList'];
     final l$secondaryTitles = json['secondaryTitles'];
     final l$collectionId = json['collectionId'];
     final l$useContext = json['useContext'];
@@ -4561,6 +4570,7 @@ class Fragment$ItemSection$metadata {
     final l$$__typename = json['__typename'];
     return Fragment$ItemSection$metadata(
       continueWatching: (l$continueWatching as bool),
+      myList: (l$myList as bool),
       secondaryTitles: (l$secondaryTitles as bool),
       collectionId: (l$collectionId as String),
       useContext: (l$useContext as bool),
@@ -4570,6 +4580,8 @@ class Fragment$ItemSection$metadata {
   }
 
   final bool continueWatching;
+
+  final bool myList;
 
   final bool secondaryTitles;
 
@@ -4585,6 +4597,8 @@ class Fragment$ItemSection$metadata {
     final _resultData = <String, dynamic>{};
     final l$continueWatching = continueWatching;
     _resultData['continueWatching'] = l$continueWatching;
+    final l$myList = myList;
+    _resultData['myList'] = l$myList;
     final l$secondaryTitles = secondaryTitles;
     _resultData['secondaryTitles'] = l$secondaryTitles;
     final l$collectionId = collectionId;
@@ -4601,6 +4615,7 @@ class Fragment$ItemSection$metadata {
   @override
   int get hashCode {
     final l$continueWatching = continueWatching;
+    final l$myList = myList;
     final l$secondaryTitles = secondaryTitles;
     final l$collectionId = collectionId;
     final l$useContext = useContext;
@@ -4608,6 +4623,7 @@ class Fragment$ItemSection$metadata {
     final l$$__typename = $__typename;
     return Object.hashAll([
       l$continueWatching,
+      l$myList,
       l$secondaryTitles,
       l$collectionId,
       l$useContext,
@@ -4628,6 +4644,11 @@ class Fragment$ItemSection$metadata {
     final l$continueWatching = continueWatching;
     final lOther$continueWatching = other.continueWatching;
     if (l$continueWatching != lOther$continueWatching) {
+      return false;
+    }
+    final l$myList = myList;
+    final lOther$myList = other.myList;
+    if (l$myList != lOther$myList) {
       return false;
     }
     final l$secondaryTitles = secondaryTitles;
@@ -4679,6 +4700,7 @@ abstract class CopyWith$Fragment$ItemSection$metadata<TRes> {
 
   TRes call({
     bool? continueWatching,
+    bool? myList,
     bool? secondaryTitles,
     String? collectionId,
     bool? useContext,
@@ -4702,6 +4724,7 @@ class _CopyWithImpl$Fragment$ItemSection$metadata<TRes>
 
   TRes call({
     Object? continueWatching = _undefined,
+    Object? myList = _undefined,
     Object? secondaryTitles = _undefined,
     Object? collectionId = _undefined,
     Object? useContext = _undefined,
@@ -4713,6 +4736,9 @@ class _CopyWithImpl$Fragment$ItemSection$metadata<TRes>
             continueWatching == _undefined || continueWatching == null
                 ? _instance.continueWatching
                 : (continueWatching as bool),
+        myList: myList == _undefined || myList == null
+            ? _instance.myList
+            : (myList as bool),
         secondaryTitles:
             secondaryTitles == _undefined || secondaryTitles == null
                 ? _instance.secondaryTitles
@@ -4741,6 +4767,7 @@ class _CopyWithStubImpl$Fragment$ItemSection$metadata<TRes>
 
   call({
     bool? continueWatching,
+    bool? myList,
     bool? secondaryTitles,
     String? collectionId,
     bool? useContext,
@@ -5118,6 +5145,7 @@ class Fragment$ItemSection$$PosterSection$metadata
     implements Fragment$ItemSection$metadata {
   Fragment$ItemSection$$PosterSection$metadata({
     required this.continueWatching,
+    required this.myList,
     required this.secondaryTitles,
     required this.collectionId,
     required this.useContext,
@@ -5128,6 +5156,7 @@ class Fragment$ItemSection$$PosterSection$metadata
   factory Fragment$ItemSection$$PosterSection$metadata.fromJson(
       Map<String, dynamic> json) {
     final l$continueWatching = json['continueWatching'];
+    final l$myList = json['myList'];
     final l$secondaryTitles = json['secondaryTitles'];
     final l$collectionId = json['collectionId'];
     final l$useContext = json['useContext'];
@@ -5135,6 +5164,7 @@ class Fragment$ItemSection$$PosterSection$metadata
     final l$$__typename = json['__typename'];
     return Fragment$ItemSection$$PosterSection$metadata(
       continueWatching: (l$continueWatching as bool),
+      myList: (l$myList as bool),
       secondaryTitles: (l$secondaryTitles as bool),
       collectionId: (l$collectionId as String),
       useContext: (l$useContext as bool),
@@ -5144,6 +5174,8 @@ class Fragment$ItemSection$$PosterSection$metadata
   }
 
   final bool continueWatching;
+
+  final bool myList;
 
   final bool secondaryTitles;
 
@@ -5159,6 +5191,8 @@ class Fragment$ItemSection$$PosterSection$metadata
     final _resultData = <String, dynamic>{};
     final l$continueWatching = continueWatching;
     _resultData['continueWatching'] = l$continueWatching;
+    final l$myList = myList;
+    _resultData['myList'] = l$myList;
     final l$secondaryTitles = secondaryTitles;
     _resultData['secondaryTitles'] = l$secondaryTitles;
     final l$collectionId = collectionId;
@@ -5175,6 +5209,7 @@ class Fragment$ItemSection$$PosterSection$metadata
   @override
   int get hashCode {
     final l$continueWatching = continueWatching;
+    final l$myList = myList;
     final l$secondaryTitles = secondaryTitles;
     final l$collectionId = collectionId;
     final l$useContext = useContext;
@@ -5182,6 +5217,7 @@ class Fragment$ItemSection$$PosterSection$metadata
     final l$$__typename = $__typename;
     return Object.hashAll([
       l$continueWatching,
+      l$myList,
       l$secondaryTitles,
       l$collectionId,
       l$useContext,
@@ -5202,6 +5238,11 @@ class Fragment$ItemSection$$PosterSection$metadata
     final l$continueWatching = continueWatching;
     final lOther$continueWatching = other.continueWatching;
     if (l$continueWatching != lOther$continueWatching) {
+      return false;
+    }
+    final l$myList = myList;
+    final lOther$myList = other.myList;
+    if (l$myList != lOther$myList) {
       return false;
     }
     final l$secondaryTitles = secondaryTitles;
@@ -5254,6 +5295,7 @@ abstract class CopyWith$Fragment$ItemSection$$PosterSection$metadata<TRes> {
 
   TRes call({
     bool? continueWatching,
+    bool? myList,
     bool? secondaryTitles,
     String? collectionId,
     bool? useContext,
@@ -5277,6 +5319,7 @@ class _CopyWithImpl$Fragment$ItemSection$$PosterSection$metadata<TRes>
 
   TRes call({
     Object? continueWatching = _undefined,
+    Object? myList = _undefined,
     Object? secondaryTitles = _undefined,
     Object? collectionId = _undefined,
     Object? useContext = _undefined,
@@ -5288,6 +5331,9 @@ class _CopyWithImpl$Fragment$ItemSection$$PosterSection$metadata<TRes>
             continueWatching == _undefined || continueWatching == null
                 ? _instance.continueWatching
                 : (continueWatching as bool),
+        myList: myList == _undefined || myList == null
+            ? _instance.myList
+            : (myList as bool),
         secondaryTitles:
             secondaryTitles == _undefined || secondaryTitles == null
                 ? _instance.secondaryTitles
@@ -5316,6 +5362,7 @@ class _CopyWithStubImpl$Fragment$ItemSection$$PosterSection$metadata<TRes>
 
   call({
     bool? continueWatching,
+    bool? myList,
     bool? secondaryTitles,
     String? collectionId,
     bool? useContext,
@@ -5696,6 +5743,7 @@ class Fragment$ItemSection$$FeaturedSection$metadata
     implements Fragment$ItemSection$metadata {
   Fragment$ItemSection$$FeaturedSection$metadata({
     required this.continueWatching,
+    required this.myList,
     required this.secondaryTitles,
     required this.collectionId,
     required this.useContext,
@@ -5706,6 +5754,7 @@ class Fragment$ItemSection$$FeaturedSection$metadata
   factory Fragment$ItemSection$$FeaturedSection$metadata.fromJson(
       Map<String, dynamic> json) {
     final l$continueWatching = json['continueWatching'];
+    final l$myList = json['myList'];
     final l$secondaryTitles = json['secondaryTitles'];
     final l$collectionId = json['collectionId'];
     final l$useContext = json['useContext'];
@@ -5713,6 +5762,7 @@ class Fragment$ItemSection$$FeaturedSection$metadata
     final l$$__typename = json['__typename'];
     return Fragment$ItemSection$$FeaturedSection$metadata(
       continueWatching: (l$continueWatching as bool),
+      myList: (l$myList as bool),
       secondaryTitles: (l$secondaryTitles as bool),
       collectionId: (l$collectionId as String),
       useContext: (l$useContext as bool),
@@ -5722,6 +5772,8 @@ class Fragment$ItemSection$$FeaturedSection$metadata
   }
 
   final bool continueWatching;
+
+  final bool myList;
 
   final bool secondaryTitles;
 
@@ -5737,6 +5789,8 @@ class Fragment$ItemSection$$FeaturedSection$metadata
     final _resultData = <String, dynamic>{};
     final l$continueWatching = continueWatching;
     _resultData['continueWatching'] = l$continueWatching;
+    final l$myList = myList;
+    _resultData['myList'] = l$myList;
     final l$secondaryTitles = secondaryTitles;
     _resultData['secondaryTitles'] = l$secondaryTitles;
     final l$collectionId = collectionId;
@@ -5753,6 +5807,7 @@ class Fragment$ItemSection$$FeaturedSection$metadata
   @override
   int get hashCode {
     final l$continueWatching = continueWatching;
+    final l$myList = myList;
     final l$secondaryTitles = secondaryTitles;
     final l$collectionId = collectionId;
     final l$useContext = useContext;
@@ -5760,6 +5815,7 @@ class Fragment$ItemSection$$FeaturedSection$metadata
     final l$$__typename = $__typename;
     return Object.hashAll([
       l$continueWatching,
+      l$myList,
       l$secondaryTitles,
       l$collectionId,
       l$useContext,
@@ -5780,6 +5836,11 @@ class Fragment$ItemSection$$FeaturedSection$metadata
     final l$continueWatching = continueWatching;
     final lOther$continueWatching = other.continueWatching;
     if (l$continueWatching != lOther$continueWatching) {
+      return false;
+    }
+    final l$myList = myList;
+    final lOther$myList = other.myList;
+    if (l$myList != lOther$myList) {
       return false;
     }
     final l$secondaryTitles = secondaryTitles;
@@ -5833,6 +5894,7 @@ abstract class CopyWith$Fragment$ItemSection$$FeaturedSection$metadata<TRes> {
 
   TRes call({
     bool? continueWatching,
+    bool? myList,
     bool? secondaryTitles,
     String? collectionId,
     bool? useContext,
@@ -5856,6 +5918,7 @@ class _CopyWithImpl$Fragment$ItemSection$$FeaturedSection$metadata<TRes>
 
   TRes call({
     Object? continueWatching = _undefined,
+    Object? myList = _undefined,
     Object? secondaryTitles = _undefined,
     Object? collectionId = _undefined,
     Object? useContext = _undefined,
@@ -5867,6 +5930,9 @@ class _CopyWithImpl$Fragment$ItemSection$$FeaturedSection$metadata<TRes>
             continueWatching == _undefined || continueWatching == null
                 ? _instance.continueWatching
                 : (continueWatching as bool),
+        myList: myList == _undefined || myList == null
+            ? _instance.myList
+            : (myList as bool),
         secondaryTitles:
             secondaryTitles == _undefined || secondaryTitles == null
                 ? _instance.secondaryTitles
@@ -5895,6 +5961,7 @@ class _CopyWithStubImpl$Fragment$ItemSection$$FeaturedSection$metadata<TRes>
 
   call({
     bool? continueWatching,
+    bool? myList,
     bool? secondaryTitles,
     String? collectionId,
     bool? useContext,
@@ -6275,6 +6342,7 @@ class Fragment$ItemSection$$DefaultSection$metadata
     implements Fragment$ItemSection$metadata {
   Fragment$ItemSection$$DefaultSection$metadata({
     required this.continueWatching,
+    required this.myList,
     required this.secondaryTitles,
     required this.collectionId,
     required this.useContext,
@@ -6285,6 +6353,7 @@ class Fragment$ItemSection$$DefaultSection$metadata
   factory Fragment$ItemSection$$DefaultSection$metadata.fromJson(
       Map<String, dynamic> json) {
     final l$continueWatching = json['continueWatching'];
+    final l$myList = json['myList'];
     final l$secondaryTitles = json['secondaryTitles'];
     final l$collectionId = json['collectionId'];
     final l$useContext = json['useContext'];
@@ -6292,6 +6361,7 @@ class Fragment$ItemSection$$DefaultSection$metadata
     final l$$__typename = json['__typename'];
     return Fragment$ItemSection$$DefaultSection$metadata(
       continueWatching: (l$continueWatching as bool),
+      myList: (l$myList as bool),
       secondaryTitles: (l$secondaryTitles as bool),
       collectionId: (l$collectionId as String),
       useContext: (l$useContext as bool),
@@ -6301,6 +6371,8 @@ class Fragment$ItemSection$$DefaultSection$metadata
   }
 
   final bool continueWatching;
+
+  final bool myList;
 
   final bool secondaryTitles;
 
@@ -6316,6 +6388,8 @@ class Fragment$ItemSection$$DefaultSection$metadata
     final _resultData = <String, dynamic>{};
     final l$continueWatching = continueWatching;
     _resultData['continueWatching'] = l$continueWatching;
+    final l$myList = myList;
+    _resultData['myList'] = l$myList;
     final l$secondaryTitles = secondaryTitles;
     _resultData['secondaryTitles'] = l$secondaryTitles;
     final l$collectionId = collectionId;
@@ -6332,6 +6406,7 @@ class Fragment$ItemSection$$DefaultSection$metadata
   @override
   int get hashCode {
     final l$continueWatching = continueWatching;
+    final l$myList = myList;
     final l$secondaryTitles = secondaryTitles;
     final l$collectionId = collectionId;
     final l$useContext = useContext;
@@ -6339,6 +6414,7 @@ class Fragment$ItemSection$$DefaultSection$metadata
     final l$$__typename = $__typename;
     return Object.hashAll([
       l$continueWatching,
+      l$myList,
       l$secondaryTitles,
       l$collectionId,
       l$useContext,
@@ -6359,6 +6435,11 @@ class Fragment$ItemSection$$DefaultSection$metadata
     final l$continueWatching = continueWatching;
     final lOther$continueWatching = other.continueWatching;
     if (l$continueWatching != lOther$continueWatching) {
+      return false;
+    }
+    final l$myList = myList;
+    final lOther$myList = other.myList;
+    if (l$myList != lOther$myList) {
       return false;
     }
     final l$secondaryTitles = secondaryTitles;
@@ -6412,6 +6493,7 @@ abstract class CopyWith$Fragment$ItemSection$$DefaultSection$metadata<TRes> {
 
   TRes call({
     bool? continueWatching,
+    bool? myList,
     bool? secondaryTitles,
     String? collectionId,
     bool? useContext,
@@ -6435,6 +6517,7 @@ class _CopyWithImpl$Fragment$ItemSection$$DefaultSection$metadata<TRes>
 
   TRes call({
     Object? continueWatching = _undefined,
+    Object? myList = _undefined,
     Object? secondaryTitles = _undefined,
     Object? collectionId = _undefined,
     Object? useContext = _undefined,
@@ -6446,6 +6529,9 @@ class _CopyWithImpl$Fragment$ItemSection$$DefaultSection$metadata<TRes>
             continueWatching == _undefined || continueWatching == null
                 ? _instance.continueWatching
                 : (continueWatching as bool),
+        myList: myList == _undefined || myList == null
+            ? _instance.myList
+            : (myList as bool),
         secondaryTitles:
             secondaryTitles == _undefined || secondaryTitles == null
                 ? _instance.secondaryTitles
@@ -6474,6 +6560,7 @@ class _CopyWithStubImpl$Fragment$ItemSection$$DefaultSection$metadata<TRes>
 
   call({
     bool? continueWatching,
+    bool? myList,
     bool? secondaryTitles,
     String? collectionId,
     bool? useContext,
@@ -6853,6 +6940,7 @@ class Fragment$ItemSection$$CardSection$metadata
     implements Fragment$ItemSection$metadata {
   Fragment$ItemSection$$CardSection$metadata({
     required this.continueWatching,
+    required this.myList,
     required this.secondaryTitles,
     required this.collectionId,
     required this.useContext,
@@ -6863,6 +6951,7 @@ class Fragment$ItemSection$$CardSection$metadata
   factory Fragment$ItemSection$$CardSection$metadata.fromJson(
       Map<String, dynamic> json) {
     final l$continueWatching = json['continueWatching'];
+    final l$myList = json['myList'];
     final l$secondaryTitles = json['secondaryTitles'];
     final l$collectionId = json['collectionId'];
     final l$useContext = json['useContext'];
@@ -6870,6 +6959,7 @@ class Fragment$ItemSection$$CardSection$metadata
     final l$$__typename = json['__typename'];
     return Fragment$ItemSection$$CardSection$metadata(
       continueWatching: (l$continueWatching as bool),
+      myList: (l$myList as bool),
       secondaryTitles: (l$secondaryTitles as bool),
       collectionId: (l$collectionId as String),
       useContext: (l$useContext as bool),
@@ -6879,6 +6969,8 @@ class Fragment$ItemSection$$CardSection$metadata
   }
 
   final bool continueWatching;
+
+  final bool myList;
 
   final bool secondaryTitles;
 
@@ -6894,6 +6986,8 @@ class Fragment$ItemSection$$CardSection$metadata
     final _resultData = <String, dynamic>{};
     final l$continueWatching = continueWatching;
     _resultData['continueWatching'] = l$continueWatching;
+    final l$myList = myList;
+    _resultData['myList'] = l$myList;
     final l$secondaryTitles = secondaryTitles;
     _resultData['secondaryTitles'] = l$secondaryTitles;
     final l$collectionId = collectionId;
@@ -6910,6 +7004,7 @@ class Fragment$ItemSection$$CardSection$metadata
   @override
   int get hashCode {
     final l$continueWatching = continueWatching;
+    final l$myList = myList;
     final l$secondaryTitles = secondaryTitles;
     final l$collectionId = collectionId;
     final l$useContext = useContext;
@@ -6917,6 +7012,7 @@ class Fragment$ItemSection$$CardSection$metadata
     final l$$__typename = $__typename;
     return Object.hashAll([
       l$continueWatching,
+      l$myList,
       l$secondaryTitles,
       l$collectionId,
       l$useContext,
@@ -6937,6 +7033,11 @@ class Fragment$ItemSection$$CardSection$metadata
     final l$continueWatching = continueWatching;
     final lOther$continueWatching = other.continueWatching;
     if (l$continueWatching != lOther$continueWatching) {
+      return false;
+    }
+    final l$myList = myList;
+    final lOther$myList = other.myList;
+    if (l$myList != lOther$myList) {
       return false;
     }
     final l$secondaryTitles = secondaryTitles;
@@ -6989,6 +7090,7 @@ abstract class CopyWith$Fragment$ItemSection$$CardSection$metadata<TRes> {
 
   TRes call({
     bool? continueWatching,
+    bool? myList,
     bool? secondaryTitles,
     String? collectionId,
     bool? useContext,
@@ -7012,6 +7114,7 @@ class _CopyWithImpl$Fragment$ItemSection$$CardSection$metadata<TRes>
 
   TRes call({
     Object? continueWatching = _undefined,
+    Object? myList = _undefined,
     Object? secondaryTitles = _undefined,
     Object? collectionId = _undefined,
     Object? useContext = _undefined,
@@ -7023,6 +7126,9 @@ class _CopyWithImpl$Fragment$ItemSection$$CardSection$metadata<TRes>
             continueWatching == _undefined || continueWatching == null
                 ? _instance.continueWatching
                 : (continueWatching as bool),
+        myList: myList == _undefined || myList == null
+            ? _instance.myList
+            : (myList as bool),
         secondaryTitles:
             secondaryTitles == _undefined || secondaryTitles == null
                 ? _instance.secondaryTitles
@@ -7051,6 +7157,7 @@ class _CopyWithStubImpl$Fragment$ItemSection$$CardSection$metadata<TRes>
 
   call({
     bool? continueWatching,
+    bool? myList,
     bool? secondaryTitles,
     String? collectionId,
     bool? useContext,
@@ -7430,6 +7537,7 @@ class Fragment$ItemSection$$ListSection$metadata
     implements Fragment$ItemSection$metadata {
   Fragment$ItemSection$$ListSection$metadata({
     required this.continueWatching,
+    required this.myList,
     required this.secondaryTitles,
     required this.collectionId,
     required this.useContext,
@@ -7440,6 +7548,7 @@ class Fragment$ItemSection$$ListSection$metadata
   factory Fragment$ItemSection$$ListSection$metadata.fromJson(
       Map<String, dynamic> json) {
     final l$continueWatching = json['continueWatching'];
+    final l$myList = json['myList'];
     final l$secondaryTitles = json['secondaryTitles'];
     final l$collectionId = json['collectionId'];
     final l$useContext = json['useContext'];
@@ -7447,6 +7556,7 @@ class Fragment$ItemSection$$ListSection$metadata
     final l$$__typename = json['__typename'];
     return Fragment$ItemSection$$ListSection$metadata(
       continueWatching: (l$continueWatching as bool),
+      myList: (l$myList as bool),
       secondaryTitles: (l$secondaryTitles as bool),
       collectionId: (l$collectionId as String),
       useContext: (l$useContext as bool),
@@ -7456,6 +7566,8 @@ class Fragment$ItemSection$$ListSection$metadata
   }
 
   final bool continueWatching;
+
+  final bool myList;
 
   final bool secondaryTitles;
 
@@ -7471,6 +7583,8 @@ class Fragment$ItemSection$$ListSection$metadata
     final _resultData = <String, dynamic>{};
     final l$continueWatching = continueWatching;
     _resultData['continueWatching'] = l$continueWatching;
+    final l$myList = myList;
+    _resultData['myList'] = l$myList;
     final l$secondaryTitles = secondaryTitles;
     _resultData['secondaryTitles'] = l$secondaryTitles;
     final l$collectionId = collectionId;
@@ -7487,6 +7601,7 @@ class Fragment$ItemSection$$ListSection$metadata
   @override
   int get hashCode {
     final l$continueWatching = continueWatching;
+    final l$myList = myList;
     final l$secondaryTitles = secondaryTitles;
     final l$collectionId = collectionId;
     final l$useContext = useContext;
@@ -7494,6 +7609,7 @@ class Fragment$ItemSection$$ListSection$metadata
     final l$$__typename = $__typename;
     return Object.hashAll([
       l$continueWatching,
+      l$myList,
       l$secondaryTitles,
       l$collectionId,
       l$useContext,
@@ -7514,6 +7630,11 @@ class Fragment$ItemSection$$ListSection$metadata
     final l$continueWatching = continueWatching;
     final lOther$continueWatching = other.continueWatching;
     if (l$continueWatching != lOther$continueWatching) {
+      return false;
+    }
+    final l$myList = myList;
+    final lOther$myList = other.myList;
+    if (l$myList != lOther$myList) {
       return false;
     }
     final l$secondaryTitles = secondaryTitles;
@@ -7566,6 +7687,7 @@ abstract class CopyWith$Fragment$ItemSection$$ListSection$metadata<TRes> {
 
   TRes call({
     bool? continueWatching,
+    bool? myList,
     bool? secondaryTitles,
     String? collectionId,
     bool? useContext,
@@ -7589,6 +7711,7 @@ class _CopyWithImpl$Fragment$ItemSection$$ListSection$metadata<TRes>
 
   TRes call({
     Object? continueWatching = _undefined,
+    Object? myList = _undefined,
     Object? secondaryTitles = _undefined,
     Object? collectionId = _undefined,
     Object? useContext = _undefined,
@@ -7600,6 +7723,9 @@ class _CopyWithImpl$Fragment$ItemSection$$ListSection$metadata<TRes>
             continueWatching == _undefined || continueWatching == null
                 ? _instance.continueWatching
                 : (continueWatching as bool),
+        myList: myList == _undefined || myList == null
+            ? _instance.myList
+            : (myList as bool),
         secondaryTitles:
             secondaryTitles == _undefined || secondaryTitles == null
                 ? _instance.secondaryTitles
@@ -7628,6 +7754,7 @@ class _CopyWithStubImpl$Fragment$ItemSection$$ListSection$metadata<TRes>
 
   call({
     bool? continueWatching,
+    bool? myList,
     bool? secondaryTitles,
     String? collectionId,
     bool? useContext,
@@ -8008,6 +8135,7 @@ class Fragment$ItemSection$$CardListSection$metadata
     implements Fragment$ItemSection$metadata {
   Fragment$ItemSection$$CardListSection$metadata({
     required this.continueWatching,
+    required this.myList,
     required this.secondaryTitles,
     required this.collectionId,
     required this.useContext,
@@ -8018,6 +8146,7 @@ class Fragment$ItemSection$$CardListSection$metadata
   factory Fragment$ItemSection$$CardListSection$metadata.fromJson(
       Map<String, dynamic> json) {
     final l$continueWatching = json['continueWatching'];
+    final l$myList = json['myList'];
     final l$secondaryTitles = json['secondaryTitles'];
     final l$collectionId = json['collectionId'];
     final l$useContext = json['useContext'];
@@ -8025,6 +8154,7 @@ class Fragment$ItemSection$$CardListSection$metadata
     final l$$__typename = json['__typename'];
     return Fragment$ItemSection$$CardListSection$metadata(
       continueWatching: (l$continueWatching as bool),
+      myList: (l$myList as bool),
       secondaryTitles: (l$secondaryTitles as bool),
       collectionId: (l$collectionId as String),
       useContext: (l$useContext as bool),
@@ -8034,6 +8164,8 @@ class Fragment$ItemSection$$CardListSection$metadata
   }
 
   final bool continueWatching;
+
+  final bool myList;
 
   final bool secondaryTitles;
 
@@ -8049,6 +8181,8 @@ class Fragment$ItemSection$$CardListSection$metadata
     final _resultData = <String, dynamic>{};
     final l$continueWatching = continueWatching;
     _resultData['continueWatching'] = l$continueWatching;
+    final l$myList = myList;
+    _resultData['myList'] = l$myList;
     final l$secondaryTitles = secondaryTitles;
     _resultData['secondaryTitles'] = l$secondaryTitles;
     final l$collectionId = collectionId;
@@ -8065,6 +8199,7 @@ class Fragment$ItemSection$$CardListSection$metadata
   @override
   int get hashCode {
     final l$continueWatching = continueWatching;
+    final l$myList = myList;
     final l$secondaryTitles = secondaryTitles;
     final l$collectionId = collectionId;
     final l$useContext = useContext;
@@ -8072,6 +8207,7 @@ class Fragment$ItemSection$$CardListSection$metadata
     final l$$__typename = $__typename;
     return Object.hashAll([
       l$continueWatching,
+      l$myList,
       l$secondaryTitles,
       l$collectionId,
       l$useContext,
@@ -8092,6 +8228,11 @@ class Fragment$ItemSection$$CardListSection$metadata
     final l$continueWatching = continueWatching;
     final lOther$continueWatching = other.continueWatching;
     if (l$continueWatching != lOther$continueWatching) {
+      return false;
+    }
+    final l$myList = myList;
+    final lOther$myList = other.myList;
+    if (l$myList != lOther$myList) {
       return false;
     }
     final l$secondaryTitles = secondaryTitles;
@@ -8145,6 +8286,7 @@ abstract class CopyWith$Fragment$ItemSection$$CardListSection$metadata<TRes> {
 
   TRes call({
     bool? continueWatching,
+    bool? myList,
     bool? secondaryTitles,
     String? collectionId,
     bool? useContext,
@@ -8168,6 +8310,7 @@ class _CopyWithImpl$Fragment$ItemSection$$CardListSection$metadata<TRes>
 
   TRes call({
     Object? continueWatching = _undefined,
+    Object? myList = _undefined,
     Object? secondaryTitles = _undefined,
     Object? collectionId = _undefined,
     Object? useContext = _undefined,
@@ -8179,6 +8322,9 @@ class _CopyWithImpl$Fragment$ItemSection$$CardListSection$metadata<TRes>
             continueWatching == _undefined || continueWatching == null
                 ? _instance.continueWatching
                 : (continueWatching as bool),
+        myList: myList == _undefined || myList == null
+            ? _instance.myList
+            : (myList as bool),
         secondaryTitles:
             secondaryTitles == _undefined || secondaryTitles == null
                 ? _instance.secondaryTitles
@@ -8207,6 +8353,7 @@ class _CopyWithStubImpl$Fragment$ItemSection$$CardListSection$metadata<TRes>
 
   call({
     bool? continueWatching,
+    bool? myList,
     bool? secondaryTitles,
     String? collectionId,
     bool? useContext,
@@ -8589,6 +8736,7 @@ class Fragment$ItemSection$$DefaultGridSection$metadata
     implements Fragment$ItemSection$metadata {
   Fragment$ItemSection$$DefaultGridSection$metadata({
     required this.continueWatching,
+    required this.myList,
     required this.secondaryTitles,
     required this.collectionId,
     required this.useContext,
@@ -8599,6 +8747,7 @@ class Fragment$ItemSection$$DefaultGridSection$metadata
   factory Fragment$ItemSection$$DefaultGridSection$metadata.fromJson(
       Map<String, dynamic> json) {
     final l$continueWatching = json['continueWatching'];
+    final l$myList = json['myList'];
     final l$secondaryTitles = json['secondaryTitles'];
     final l$collectionId = json['collectionId'];
     final l$useContext = json['useContext'];
@@ -8606,6 +8755,7 @@ class Fragment$ItemSection$$DefaultGridSection$metadata
     final l$$__typename = json['__typename'];
     return Fragment$ItemSection$$DefaultGridSection$metadata(
       continueWatching: (l$continueWatching as bool),
+      myList: (l$myList as bool),
       secondaryTitles: (l$secondaryTitles as bool),
       collectionId: (l$collectionId as String),
       useContext: (l$useContext as bool),
@@ -8615,6 +8765,8 @@ class Fragment$ItemSection$$DefaultGridSection$metadata
   }
 
   final bool continueWatching;
+
+  final bool myList;
 
   final bool secondaryTitles;
 
@@ -8630,6 +8782,8 @@ class Fragment$ItemSection$$DefaultGridSection$metadata
     final _resultData = <String, dynamic>{};
     final l$continueWatching = continueWatching;
     _resultData['continueWatching'] = l$continueWatching;
+    final l$myList = myList;
+    _resultData['myList'] = l$myList;
     final l$secondaryTitles = secondaryTitles;
     _resultData['secondaryTitles'] = l$secondaryTitles;
     final l$collectionId = collectionId;
@@ -8646,6 +8800,7 @@ class Fragment$ItemSection$$DefaultGridSection$metadata
   @override
   int get hashCode {
     final l$continueWatching = continueWatching;
+    final l$myList = myList;
     final l$secondaryTitles = secondaryTitles;
     final l$collectionId = collectionId;
     final l$useContext = useContext;
@@ -8653,6 +8808,7 @@ class Fragment$ItemSection$$DefaultGridSection$metadata
     final l$$__typename = $__typename;
     return Object.hashAll([
       l$continueWatching,
+      l$myList,
       l$secondaryTitles,
       l$collectionId,
       l$useContext,
@@ -8673,6 +8829,11 @@ class Fragment$ItemSection$$DefaultGridSection$metadata
     final l$continueWatching = continueWatching;
     final lOther$continueWatching = other.continueWatching;
     if (l$continueWatching != lOther$continueWatching) {
+      return false;
+    }
+    final l$myList = myList;
+    final lOther$myList = other.myList;
+    if (l$myList != lOther$myList) {
       return false;
     }
     final l$secondaryTitles = secondaryTitles;
@@ -8728,6 +8889,7 @@ abstract class CopyWith$Fragment$ItemSection$$DefaultGridSection$metadata<
 
   TRes call({
     bool? continueWatching,
+    bool? myList,
     bool? secondaryTitles,
     String? collectionId,
     bool? useContext,
@@ -8752,6 +8914,7 @@ class _CopyWithImpl$Fragment$ItemSection$$DefaultGridSection$metadata<TRes>
 
   TRes call({
     Object? continueWatching = _undefined,
+    Object? myList = _undefined,
     Object? secondaryTitles = _undefined,
     Object? collectionId = _undefined,
     Object? useContext = _undefined,
@@ -8763,6 +8926,9 @@ class _CopyWithImpl$Fragment$ItemSection$$DefaultGridSection$metadata<TRes>
             continueWatching == _undefined || continueWatching == null
                 ? _instance.continueWatching
                 : (continueWatching as bool),
+        myList: myList == _undefined || myList == null
+            ? _instance.myList
+            : (myList as bool),
         secondaryTitles:
             secondaryTitles == _undefined || secondaryTitles == null
                 ? _instance.secondaryTitles
@@ -8793,6 +8959,7 @@ class _CopyWithStubImpl$Fragment$ItemSection$$DefaultGridSection$metadata<TRes>
 
   call({
     bool? continueWatching,
+    bool? myList,
     bool? secondaryTitles,
     String? collectionId,
     bool? useContext,
@@ -9175,6 +9342,7 @@ class Fragment$ItemSection$$PosterGridSection$metadata
     implements Fragment$ItemSection$metadata {
   Fragment$ItemSection$$PosterGridSection$metadata({
     required this.continueWatching,
+    required this.myList,
     required this.secondaryTitles,
     required this.collectionId,
     required this.useContext,
@@ -9185,6 +9353,7 @@ class Fragment$ItemSection$$PosterGridSection$metadata
   factory Fragment$ItemSection$$PosterGridSection$metadata.fromJson(
       Map<String, dynamic> json) {
     final l$continueWatching = json['continueWatching'];
+    final l$myList = json['myList'];
     final l$secondaryTitles = json['secondaryTitles'];
     final l$collectionId = json['collectionId'];
     final l$useContext = json['useContext'];
@@ -9192,6 +9361,7 @@ class Fragment$ItemSection$$PosterGridSection$metadata
     final l$$__typename = json['__typename'];
     return Fragment$ItemSection$$PosterGridSection$metadata(
       continueWatching: (l$continueWatching as bool),
+      myList: (l$myList as bool),
       secondaryTitles: (l$secondaryTitles as bool),
       collectionId: (l$collectionId as String),
       useContext: (l$useContext as bool),
@@ -9201,6 +9371,8 @@ class Fragment$ItemSection$$PosterGridSection$metadata
   }
 
   final bool continueWatching;
+
+  final bool myList;
 
   final bool secondaryTitles;
 
@@ -9216,6 +9388,8 @@ class Fragment$ItemSection$$PosterGridSection$metadata
     final _resultData = <String, dynamic>{};
     final l$continueWatching = continueWatching;
     _resultData['continueWatching'] = l$continueWatching;
+    final l$myList = myList;
+    _resultData['myList'] = l$myList;
     final l$secondaryTitles = secondaryTitles;
     _resultData['secondaryTitles'] = l$secondaryTitles;
     final l$collectionId = collectionId;
@@ -9232,6 +9406,7 @@ class Fragment$ItemSection$$PosterGridSection$metadata
   @override
   int get hashCode {
     final l$continueWatching = continueWatching;
+    final l$myList = myList;
     final l$secondaryTitles = secondaryTitles;
     final l$collectionId = collectionId;
     final l$useContext = useContext;
@@ -9239,6 +9414,7 @@ class Fragment$ItemSection$$PosterGridSection$metadata
     final l$$__typename = $__typename;
     return Object.hashAll([
       l$continueWatching,
+      l$myList,
       l$secondaryTitles,
       l$collectionId,
       l$useContext,
@@ -9259,6 +9435,11 @@ class Fragment$ItemSection$$PosterGridSection$metadata
     final l$continueWatching = continueWatching;
     final lOther$continueWatching = other.continueWatching;
     if (l$continueWatching != lOther$continueWatching) {
+      return false;
+    }
+    final l$myList = myList;
+    final lOther$myList = other.myList;
+    if (l$myList != lOther$myList) {
       return false;
     }
     final l$secondaryTitles = secondaryTitles;
@@ -9312,6 +9493,7 @@ abstract class CopyWith$Fragment$ItemSection$$PosterGridSection$metadata<TRes> {
 
   TRes call({
     bool? continueWatching,
+    bool? myList,
     bool? secondaryTitles,
     String? collectionId,
     bool? useContext,
@@ -9335,6 +9517,7 @@ class _CopyWithImpl$Fragment$ItemSection$$PosterGridSection$metadata<TRes>
 
   TRes call({
     Object? continueWatching = _undefined,
+    Object? myList = _undefined,
     Object? secondaryTitles = _undefined,
     Object? collectionId = _undefined,
     Object? useContext = _undefined,
@@ -9346,6 +9529,9 @@ class _CopyWithImpl$Fragment$ItemSection$$PosterGridSection$metadata<TRes>
             continueWatching == _undefined || continueWatching == null
                 ? _instance.continueWatching
                 : (continueWatching as bool),
+        myList: myList == _undefined || myList == null
+            ? _instance.myList
+            : (myList as bool),
         secondaryTitles:
             secondaryTitles == _undefined || secondaryTitles == null
                 ? _instance.secondaryTitles
@@ -9374,6 +9560,7 @@ class _CopyWithStubImpl$Fragment$ItemSection$$PosterGridSection$metadata<TRes>
 
   call({
     bool? continueWatching,
+    bool? myList,
     bool? secondaryTitles,
     String? collectionId,
     bool? useContext,
@@ -9755,6 +9942,7 @@ class Fragment$ItemSection$$IconGridSection$metadata
     implements Fragment$ItemSection$metadata {
   Fragment$ItemSection$$IconGridSection$metadata({
     required this.continueWatching,
+    required this.myList,
     required this.secondaryTitles,
     required this.collectionId,
     required this.useContext,
@@ -9765,6 +9953,7 @@ class Fragment$ItemSection$$IconGridSection$metadata
   factory Fragment$ItemSection$$IconGridSection$metadata.fromJson(
       Map<String, dynamic> json) {
     final l$continueWatching = json['continueWatching'];
+    final l$myList = json['myList'];
     final l$secondaryTitles = json['secondaryTitles'];
     final l$collectionId = json['collectionId'];
     final l$useContext = json['useContext'];
@@ -9772,6 +9961,7 @@ class Fragment$ItemSection$$IconGridSection$metadata
     final l$$__typename = json['__typename'];
     return Fragment$ItemSection$$IconGridSection$metadata(
       continueWatching: (l$continueWatching as bool),
+      myList: (l$myList as bool),
       secondaryTitles: (l$secondaryTitles as bool),
       collectionId: (l$collectionId as String),
       useContext: (l$useContext as bool),
@@ -9781,6 +9971,8 @@ class Fragment$ItemSection$$IconGridSection$metadata
   }
 
   final bool continueWatching;
+
+  final bool myList;
 
   final bool secondaryTitles;
 
@@ -9796,6 +9988,8 @@ class Fragment$ItemSection$$IconGridSection$metadata
     final _resultData = <String, dynamic>{};
     final l$continueWatching = continueWatching;
     _resultData['continueWatching'] = l$continueWatching;
+    final l$myList = myList;
+    _resultData['myList'] = l$myList;
     final l$secondaryTitles = secondaryTitles;
     _resultData['secondaryTitles'] = l$secondaryTitles;
     final l$collectionId = collectionId;
@@ -9812,6 +10006,7 @@ class Fragment$ItemSection$$IconGridSection$metadata
   @override
   int get hashCode {
     final l$continueWatching = continueWatching;
+    final l$myList = myList;
     final l$secondaryTitles = secondaryTitles;
     final l$collectionId = collectionId;
     final l$useContext = useContext;
@@ -9819,6 +10014,7 @@ class Fragment$ItemSection$$IconGridSection$metadata
     final l$$__typename = $__typename;
     return Object.hashAll([
       l$continueWatching,
+      l$myList,
       l$secondaryTitles,
       l$collectionId,
       l$useContext,
@@ -9839,6 +10035,11 @@ class Fragment$ItemSection$$IconGridSection$metadata
     final l$continueWatching = continueWatching;
     final lOther$continueWatching = other.continueWatching;
     if (l$continueWatching != lOther$continueWatching) {
+      return false;
+    }
+    final l$myList = myList;
+    final lOther$myList = other.myList;
+    if (l$myList != lOther$myList) {
       return false;
     }
     final l$secondaryTitles = secondaryTitles;
@@ -9892,6 +10093,7 @@ abstract class CopyWith$Fragment$ItemSection$$IconGridSection$metadata<TRes> {
 
   TRes call({
     bool? continueWatching,
+    bool? myList,
     bool? secondaryTitles,
     String? collectionId,
     bool? useContext,
@@ -9915,6 +10117,7 @@ class _CopyWithImpl$Fragment$ItemSection$$IconGridSection$metadata<TRes>
 
   TRes call({
     Object? continueWatching = _undefined,
+    Object? myList = _undefined,
     Object? secondaryTitles = _undefined,
     Object? collectionId = _undefined,
     Object? useContext = _undefined,
@@ -9926,6 +10129,9 @@ class _CopyWithImpl$Fragment$ItemSection$$IconGridSection$metadata<TRes>
             continueWatching == _undefined || continueWatching == null
                 ? _instance.continueWatching
                 : (continueWatching as bool),
+        myList: myList == _undefined || myList == null
+            ? _instance.myList
+            : (myList as bool),
         secondaryTitles:
             secondaryTitles == _undefined || secondaryTitles == null
                 ? _instance.secondaryTitles
@@ -9954,6 +10160,7 @@ class _CopyWithStubImpl$Fragment$ItemSection$$IconGridSection$metadata<TRes>
 
   call({
     bool? continueWatching,
+    bool? myList,
     bool? secondaryTitles,
     String? collectionId,
     bool? useContext,
@@ -10333,6 +10540,7 @@ class Fragment$ItemSection$$IconSection$metadata
     implements Fragment$ItemSection$metadata {
   Fragment$ItemSection$$IconSection$metadata({
     required this.continueWatching,
+    required this.myList,
     required this.secondaryTitles,
     required this.collectionId,
     required this.useContext,
@@ -10343,6 +10551,7 @@ class Fragment$ItemSection$$IconSection$metadata
   factory Fragment$ItemSection$$IconSection$metadata.fromJson(
       Map<String, dynamic> json) {
     final l$continueWatching = json['continueWatching'];
+    final l$myList = json['myList'];
     final l$secondaryTitles = json['secondaryTitles'];
     final l$collectionId = json['collectionId'];
     final l$useContext = json['useContext'];
@@ -10350,6 +10559,7 @@ class Fragment$ItemSection$$IconSection$metadata
     final l$$__typename = json['__typename'];
     return Fragment$ItemSection$$IconSection$metadata(
       continueWatching: (l$continueWatching as bool),
+      myList: (l$myList as bool),
       secondaryTitles: (l$secondaryTitles as bool),
       collectionId: (l$collectionId as String),
       useContext: (l$useContext as bool),
@@ -10359,6 +10569,8 @@ class Fragment$ItemSection$$IconSection$metadata
   }
 
   final bool continueWatching;
+
+  final bool myList;
 
   final bool secondaryTitles;
 
@@ -10374,6 +10586,8 @@ class Fragment$ItemSection$$IconSection$metadata
     final _resultData = <String, dynamic>{};
     final l$continueWatching = continueWatching;
     _resultData['continueWatching'] = l$continueWatching;
+    final l$myList = myList;
+    _resultData['myList'] = l$myList;
     final l$secondaryTitles = secondaryTitles;
     _resultData['secondaryTitles'] = l$secondaryTitles;
     final l$collectionId = collectionId;
@@ -10390,6 +10604,7 @@ class Fragment$ItemSection$$IconSection$metadata
   @override
   int get hashCode {
     final l$continueWatching = continueWatching;
+    final l$myList = myList;
     final l$secondaryTitles = secondaryTitles;
     final l$collectionId = collectionId;
     final l$useContext = useContext;
@@ -10397,6 +10612,7 @@ class Fragment$ItemSection$$IconSection$metadata
     final l$$__typename = $__typename;
     return Object.hashAll([
       l$continueWatching,
+      l$myList,
       l$secondaryTitles,
       l$collectionId,
       l$useContext,
@@ -10417,6 +10633,11 @@ class Fragment$ItemSection$$IconSection$metadata
     final l$continueWatching = continueWatching;
     final lOther$continueWatching = other.continueWatching;
     if (l$continueWatching != lOther$continueWatching) {
+      return false;
+    }
+    final l$myList = myList;
+    final lOther$myList = other.myList;
+    if (l$myList != lOther$myList) {
       return false;
     }
     final l$secondaryTitles = secondaryTitles;
@@ -10469,6 +10690,7 @@ abstract class CopyWith$Fragment$ItemSection$$IconSection$metadata<TRes> {
 
   TRes call({
     bool? continueWatching,
+    bool? myList,
     bool? secondaryTitles,
     String? collectionId,
     bool? useContext,
@@ -10492,6 +10714,7 @@ class _CopyWithImpl$Fragment$ItemSection$$IconSection$metadata<TRes>
 
   TRes call({
     Object? continueWatching = _undefined,
+    Object? myList = _undefined,
     Object? secondaryTitles = _undefined,
     Object? collectionId = _undefined,
     Object? useContext = _undefined,
@@ -10503,6 +10726,9 @@ class _CopyWithImpl$Fragment$ItemSection$$IconSection$metadata<TRes>
             continueWatching == _undefined || continueWatching == null
                 ? _instance.continueWatching
                 : (continueWatching as bool),
+        myList: myList == _undefined || myList == null
+            ? _instance.myList
+            : (myList as bool),
         secondaryTitles:
             secondaryTitles == _undefined || secondaryTitles == null
                 ? _instance.secondaryTitles
@@ -10531,6 +10757,7 @@ class _CopyWithStubImpl$Fragment$ItemSection$$IconSection$metadata<TRes>
 
   call({
     bool? continueWatching,
+    bool? myList,
     bool? secondaryTitles,
     String? collectionId,
     bool? useContext,
@@ -10911,6 +11138,7 @@ class Fragment$ItemSection$$LabelSection$metadata
     implements Fragment$ItemSection$metadata {
   Fragment$ItemSection$$LabelSection$metadata({
     required this.continueWatching,
+    required this.myList,
     required this.secondaryTitles,
     required this.collectionId,
     required this.useContext,
@@ -10921,6 +11149,7 @@ class Fragment$ItemSection$$LabelSection$metadata
   factory Fragment$ItemSection$$LabelSection$metadata.fromJson(
       Map<String, dynamic> json) {
     final l$continueWatching = json['continueWatching'];
+    final l$myList = json['myList'];
     final l$secondaryTitles = json['secondaryTitles'];
     final l$collectionId = json['collectionId'];
     final l$useContext = json['useContext'];
@@ -10928,6 +11157,7 @@ class Fragment$ItemSection$$LabelSection$metadata
     final l$$__typename = json['__typename'];
     return Fragment$ItemSection$$LabelSection$metadata(
       continueWatching: (l$continueWatching as bool),
+      myList: (l$myList as bool),
       secondaryTitles: (l$secondaryTitles as bool),
       collectionId: (l$collectionId as String),
       useContext: (l$useContext as bool),
@@ -10937,6 +11167,8 @@ class Fragment$ItemSection$$LabelSection$metadata
   }
 
   final bool continueWatching;
+
+  final bool myList;
 
   final bool secondaryTitles;
 
@@ -10952,6 +11184,8 @@ class Fragment$ItemSection$$LabelSection$metadata
     final _resultData = <String, dynamic>{};
     final l$continueWatching = continueWatching;
     _resultData['continueWatching'] = l$continueWatching;
+    final l$myList = myList;
+    _resultData['myList'] = l$myList;
     final l$secondaryTitles = secondaryTitles;
     _resultData['secondaryTitles'] = l$secondaryTitles;
     final l$collectionId = collectionId;
@@ -10968,6 +11202,7 @@ class Fragment$ItemSection$$LabelSection$metadata
   @override
   int get hashCode {
     final l$continueWatching = continueWatching;
+    final l$myList = myList;
     final l$secondaryTitles = secondaryTitles;
     final l$collectionId = collectionId;
     final l$useContext = useContext;
@@ -10975,6 +11210,7 @@ class Fragment$ItemSection$$LabelSection$metadata
     final l$$__typename = $__typename;
     return Object.hashAll([
       l$continueWatching,
+      l$myList,
       l$secondaryTitles,
       l$collectionId,
       l$useContext,
@@ -10995,6 +11231,11 @@ class Fragment$ItemSection$$LabelSection$metadata
     final l$continueWatching = continueWatching;
     final lOther$continueWatching = other.continueWatching;
     if (l$continueWatching != lOther$continueWatching) {
+      return false;
+    }
+    final l$myList = myList;
+    final lOther$myList = other.myList;
+    if (l$myList != lOther$myList) {
       return false;
     }
     final l$secondaryTitles = secondaryTitles;
@@ -11047,6 +11288,7 @@ abstract class CopyWith$Fragment$ItemSection$$LabelSection$metadata<TRes> {
 
   TRes call({
     bool? continueWatching,
+    bool? myList,
     bool? secondaryTitles,
     String? collectionId,
     bool? useContext,
@@ -11070,6 +11312,7 @@ class _CopyWithImpl$Fragment$ItemSection$$LabelSection$metadata<TRes>
 
   TRes call({
     Object? continueWatching = _undefined,
+    Object? myList = _undefined,
     Object? secondaryTitles = _undefined,
     Object? collectionId = _undefined,
     Object? useContext = _undefined,
@@ -11081,6 +11324,9 @@ class _CopyWithImpl$Fragment$ItemSection$$LabelSection$metadata<TRes>
             continueWatching == _undefined || continueWatching == null
                 ? _instance.continueWatching
                 : (continueWatching as bool),
+        myList: myList == _undefined || myList == null
+            ? _instance.myList
+            : (myList as bool),
         secondaryTitles:
             secondaryTitles == _undefined || secondaryTitles == null
                 ? _instance.secondaryTitles
@@ -11109,6 +11355,7 @@ class _CopyWithStubImpl$Fragment$ItemSection$$LabelSection$metadata<TRes>
 
   call({
     bool? continueWatching,
+    bool? myList,
     bool? secondaryTitles,
     String? collectionId,
     bool? useContext,
@@ -14537,6 +14784,7 @@ class Fragment$Section$$PosterSection$metadata
     implements Fragment$ItemSection$$PosterSection$metadata {
   Fragment$Section$$PosterSection$metadata({
     required this.continueWatching,
+    required this.myList,
     required this.secondaryTitles,
     required this.collectionId,
     required this.useContext,
@@ -14547,6 +14795,7 @@ class Fragment$Section$$PosterSection$metadata
   factory Fragment$Section$$PosterSection$metadata.fromJson(
       Map<String, dynamic> json) {
     final l$continueWatching = json['continueWatching'];
+    final l$myList = json['myList'];
     final l$secondaryTitles = json['secondaryTitles'];
     final l$collectionId = json['collectionId'];
     final l$useContext = json['useContext'];
@@ -14554,6 +14803,7 @@ class Fragment$Section$$PosterSection$metadata
     final l$$__typename = json['__typename'];
     return Fragment$Section$$PosterSection$metadata(
       continueWatching: (l$continueWatching as bool),
+      myList: (l$myList as bool),
       secondaryTitles: (l$secondaryTitles as bool),
       collectionId: (l$collectionId as String),
       useContext: (l$useContext as bool),
@@ -14563,6 +14813,8 @@ class Fragment$Section$$PosterSection$metadata
   }
 
   final bool continueWatching;
+
+  final bool myList;
 
   final bool secondaryTitles;
 
@@ -14578,6 +14830,8 @@ class Fragment$Section$$PosterSection$metadata
     final _resultData = <String, dynamic>{};
     final l$continueWatching = continueWatching;
     _resultData['continueWatching'] = l$continueWatching;
+    final l$myList = myList;
+    _resultData['myList'] = l$myList;
     final l$secondaryTitles = secondaryTitles;
     _resultData['secondaryTitles'] = l$secondaryTitles;
     final l$collectionId = collectionId;
@@ -14594,6 +14848,7 @@ class Fragment$Section$$PosterSection$metadata
   @override
   int get hashCode {
     final l$continueWatching = continueWatching;
+    final l$myList = myList;
     final l$secondaryTitles = secondaryTitles;
     final l$collectionId = collectionId;
     final l$useContext = useContext;
@@ -14601,6 +14856,7 @@ class Fragment$Section$$PosterSection$metadata
     final l$$__typename = $__typename;
     return Object.hashAll([
       l$continueWatching,
+      l$myList,
       l$secondaryTitles,
       l$collectionId,
       l$useContext,
@@ -14621,6 +14877,11 @@ class Fragment$Section$$PosterSection$metadata
     final l$continueWatching = continueWatching;
     final lOther$continueWatching = other.continueWatching;
     if (l$continueWatching != lOther$continueWatching) {
+      return false;
+    }
+    final l$myList = myList;
+    final lOther$myList = other.myList;
+    if (l$myList != lOther$myList) {
       return false;
     }
     final l$secondaryTitles = secondaryTitles;
@@ -14673,6 +14934,7 @@ abstract class CopyWith$Fragment$Section$$PosterSection$metadata<TRes> {
 
   TRes call({
     bool? continueWatching,
+    bool? myList,
     bool? secondaryTitles,
     String? collectionId,
     bool? useContext,
@@ -14696,6 +14958,7 @@ class _CopyWithImpl$Fragment$Section$$PosterSection$metadata<TRes>
 
   TRes call({
     Object? continueWatching = _undefined,
+    Object? myList = _undefined,
     Object? secondaryTitles = _undefined,
     Object? collectionId = _undefined,
     Object? useContext = _undefined,
@@ -14707,6 +14970,9 @@ class _CopyWithImpl$Fragment$Section$$PosterSection$metadata<TRes>
             continueWatching == _undefined || continueWatching == null
                 ? _instance.continueWatching
                 : (continueWatching as bool),
+        myList: myList == _undefined || myList == null
+            ? _instance.myList
+            : (myList as bool),
         secondaryTitles:
             secondaryTitles == _undefined || secondaryTitles == null
                 ? _instance.secondaryTitles
@@ -14735,6 +15001,7 @@ class _CopyWithStubImpl$Fragment$Section$$PosterSection$metadata<TRes>
 
   call({
     bool? continueWatching,
+    bool? myList,
     bool? secondaryTitles,
     String? collectionId,
     bool? useContext,
@@ -17063,6 +17330,7 @@ class Fragment$Section$$FeaturedSection$metadata
     implements Fragment$ItemSection$$FeaturedSection$metadata {
   Fragment$Section$$FeaturedSection$metadata({
     required this.continueWatching,
+    required this.myList,
     required this.secondaryTitles,
     required this.collectionId,
     required this.useContext,
@@ -17073,6 +17341,7 @@ class Fragment$Section$$FeaturedSection$metadata
   factory Fragment$Section$$FeaturedSection$metadata.fromJson(
       Map<String, dynamic> json) {
     final l$continueWatching = json['continueWatching'];
+    final l$myList = json['myList'];
     final l$secondaryTitles = json['secondaryTitles'];
     final l$collectionId = json['collectionId'];
     final l$useContext = json['useContext'];
@@ -17080,6 +17349,7 @@ class Fragment$Section$$FeaturedSection$metadata
     final l$$__typename = json['__typename'];
     return Fragment$Section$$FeaturedSection$metadata(
       continueWatching: (l$continueWatching as bool),
+      myList: (l$myList as bool),
       secondaryTitles: (l$secondaryTitles as bool),
       collectionId: (l$collectionId as String),
       useContext: (l$useContext as bool),
@@ -17089,6 +17359,8 @@ class Fragment$Section$$FeaturedSection$metadata
   }
 
   final bool continueWatching;
+
+  final bool myList;
 
   final bool secondaryTitles;
 
@@ -17104,6 +17376,8 @@ class Fragment$Section$$FeaturedSection$metadata
     final _resultData = <String, dynamic>{};
     final l$continueWatching = continueWatching;
     _resultData['continueWatching'] = l$continueWatching;
+    final l$myList = myList;
+    _resultData['myList'] = l$myList;
     final l$secondaryTitles = secondaryTitles;
     _resultData['secondaryTitles'] = l$secondaryTitles;
     final l$collectionId = collectionId;
@@ -17120,6 +17394,7 @@ class Fragment$Section$$FeaturedSection$metadata
   @override
   int get hashCode {
     final l$continueWatching = continueWatching;
+    final l$myList = myList;
     final l$secondaryTitles = secondaryTitles;
     final l$collectionId = collectionId;
     final l$useContext = useContext;
@@ -17127,6 +17402,7 @@ class Fragment$Section$$FeaturedSection$metadata
     final l$$__typename = $__typename;
     return Object.hashAll([
       l$continueWatching,
+      l$myList,
       l$secondaryTitles,
       l$collectionId,
       l$useContext,
@@ -17147,6 +17423,11 @@ class Fragment$Section$$FeaturedSection$metadata
     final l$continueWatching = continueWatching;
     final lOther$continueWatching = other.continueWatching;
     if (l$continueWatching != lOther$continueWatching) {
+      return false;
+    }
+    final l$myList = myList;
+    final lOther$myList = other.myList;
+    if (l$myList != lOther$myList) {
       return false;
     }
     final l$secondaryTitles = secondaryTitles;
@@ -17199,6 +17480,7 @@ abstract class CopyWith$Fragment$Section$$FeaturedSection$metadata<TRes> {
 
   TRes call({
     bool? continueWatching,
+    bool? myList,
     bool? secondaryTitles,
     String? collectionId,
     bool? useContext,
@@ -17222,6 +17504,7 @@ class _CopyWithImpl$Fragment$Section$$FeaturedSection$metadata<TRes>
 
   TRes call({
     Object? continueWatching = _undefined,
+    Object? myList = _undefined,
     Object? secondaryTitles = _undefined,
     Object? collectionId = _undefined,
     Object? useContext = _undefined,
@@ -17233,6 +17516,9 @@ class _CopyWithImpl$Fragment$Section$$FeaturedSection$metadata<TRes>
             continueWatching == _undefined || continueWatching == null
                 ? _instance.continueWatching
                 : (continueWatching as bool),
+        myList: myList == _undefined || myList == null
+            ? _instance.myList
+            : (myList as bool),
         secondaryTitles:
             secondaryTitles == _undefined || secondaryTitles == null
                 ? _instance.secondaryTitles
@@ -17261,6 +17547,7 @@ class _CopyWithStubImpl$Fragment$Section$$FeaturedSection$metadata<TRes>
 
   call({
     bool? continueWatching,
+    bool? myList,
     bool? secondaryTitles,
     String? collectionId,
     bool? useContext,
@@ -19614,6 +19901,7 @@ class Fragment$Section$$DefaultSection$metadata
     implements Fragment$ItemSection$$DefaultSection$metadata {
   Fragment$Section$$DefaultSection$metadata({
     required this.continueWatching,
+    required this.myList,
     required this.secondaryTitles,
     required this.collectionId,
     required this.useContext,
@@ -19624,6 +19912,7 @@ class Fragment$Section$$DefaultSection$metadata
   factory Fragment$Section$$DefaultSection$metadata.fromJson(
       Map<String, dynamic> json) {
     final l$continueWatching = json['continueWatching'];
+    final l$myList = json['myList'];
     final l$secondaryTitles = json['secondaryTitles'];
     final l$collectionId = json['collectionId'];
     final l$useContext = json['useContext'];
@@ -19631,6 +19920,7 @@ class Fragment$Section$$DefaultSection$metadata
     final l$$__typename = json['__typename'];
     return Fragment$Section$$DefaultSection$metadata(
       continueWatching: (l$continueWatching as bool),
+      myList: (l$myList as bool),
       secondaryTitles: (l$secondaryTitles as bool),
       collectionId: (l$collectionId as String),
       useContext: (l$useContext as bool),
@@ -19640,6 +19930,8 @@ class Fragment$Section$$DefaultSection$metadata
   }
 
   final bool continueWatching;
+
+  final bool myList;
 
   final bool secondaryTitles;
 
@@ -19655,6 +19947,8 @@ class Fragment$Section$$DefaultSection$metadata
     final _resultData = <String, dynamic>{};
     final l$continueWatching = continueWatching;
     _resultData['continueWatching'] = l$continueWatching;
+    final l$myList = myList;
+    _resultData['myList'] = l$myList;
     final l$secondaryTitles = secondaryTitles;
     _resultData['secondaryTitles'] = l$secondaryTitles;
     final l$collectionId = collectionId;
@@ -19671,6 +19965,7 @@ class Fragment$Section$$DefaultSection$metadata
   @override
   int get hashCode {
     final l$continueWatching = continueWatching;
+    final l$myList = myList;
     final l$secondaryTitles = secondaryTitles;
     final l$collectionId = collectionId;
     final l$useContext = useContext;
@@ -19678,6 +19973,7 @@ class Fragment$Section$$DefaultSection$metadata
     final l$$__typename = $__typename;
     return Object.hashAll([
       l$continueWatching,
+      l$myList,
       l$secondaryTitles,
       l$collectionId,
       l$useContext,
@@ -19698,6 +19994,11 @@ class Fragment$Section$$DefaultSection$metadata
     final l$continueWatching = continueWatching;
     final lOther$continueWatching = other.continueWatching;
     if (l$continueWatching != lOther$continueWatching) {
+      return false;
+    }
+    final l$myList = myList;
+    final lOther$myList = other.myList;
+    if (l$myList != lOther$myList) {
       return false;
     }
     final l$secondaryTitles = secondaryTitles;
@@ -19750,6 +20051,7 @@ abstract class CopyWith$Fragment$Section$$DefaultSection$metadata<TRes> {
 
   TRes call({
     bool? continueWatching,
+    bool? myList,
     bool? secondaryTitles,
     String? collectionId,
     bool? useContext,
@@ -19773,6 +20075,7 @@ class _CopyWithImpl$Fragment$Section$$DefaultSection$metadata<TRes>
 
   TRes call({
     Object? continueWatching = _undefined,
+    Object? myList = _undefined,
     Object? secondaryTitles = _undefined,
     Object? collectionId = _undefined,
     Object? useContext = _undefined,
@@ -19784,6 +20087,9 @@ class _CopyWithImpl$Fragment$Section$$DefaultSection$metadata<TRes>
             continueWatching == _undefined || continueWatching == null
                 ? _instance.continueWatching
                 : (continueWatching as bool),
+        myList: myList == _undefined || myList == null
+            ? _instance.myList
+            : (myList as bool),
         secondaryTitles:
             secondaryTitles == _undefined || secondaryTitles == null
                 ? _instance.secondaryTitles
@@ -19812,6 +20118,7 @@ class _CopyWithStubImpl$Fragment$Section$$DefaultSection$metadata<TRes>
 
   call({
     bool? continueWatching,
+    bool? myList,
     bool? secondaryTitles,
     String? collectionId,
     bool? useContext,
@@ -22151,6 +22458,7 @@ class Fragment$Section$$CardSection$metadata
     implements Fragment$ItemSection$$CardSection$metadata {
   Fragment$Section$$CardSection$metadata({
     required this.continueWatching,
+    required this.myList,
     required this.secondaryTitles,
     required this.collectionId,
     required this.useContext,
@@ -22161,6 +22469,7 @@ class Fragment$Section$$CardSection$metadata
   factory Fragment$Section$$CardSection$metadata.fromJson(
       Map<String, dynamic> json) {
     final l$continueWatching = json['continueWatching'];
+    final l$myList = json['myList'];
     final l$secondaryTitles = json['secondaryTitles'];
     final l$collectionId = json['collectionId'];
     final l$useContext = json['useContext'];
@@ -22168,6 +22477,7 @@ class Fragment$Section$$CardSection$metadata
     final l$$__typename = json['__typename'];
     return Fragment$Section$$CardSection$metadata(
       continueWatching: (l$continueWatching as bool),
+      myList: (l$myList as bool),
       secondaryTitles: (l$secondaryTitles as bool),
       collectionId: (l$collectionId as String),
       useContext: (l$useContext as bool),
@@ -22177,6 +22487,8 @@ class Fragment$Section$$CardSection$metadata
   }
 
   final bool continueWatching;
+
+  final bool myList;
 
   final bool secondaryTitles;
 
@@ -22192,6 +22504,8 @@ class Fragment$Section$$CardSection$metadata
     final _resultData = <String, dynamic>{};
     final l$continueWatching = continueWatching;
     _resultData['continueWatching'] = l$continueWatching;
+    final l$myList = myList;
+    _resultData['myList'] = l$myList;
     final l$secondaryTitles = secondaryTitles;
     _resultData['secondaryTitles'] = l$secondaryTitles;
     final l$collectionId = collectionId;
@@ -22208,6 +22522,7 @@ class Fragment$Section$$CardSection$metadata
   @override
   int get hashCode {
     final l$continueWatching = continueWatching;
+    final l$myList = myList;
     final l$secondaryTitles = secondaryTitles;
     final l$collectionId = collectionId;
     final l$useContext = useContext;
@@ -22215,6 +22530,7 @@ class Fragment$Section$$CardSection$metadata
     final l$$__typename = $__typename;
     return Object.hashAll([
       l$continueWatching,
+      l$myList,
       l$secondaryTitles,
       l$collectionId,
       l$useContext,
@@ -22235,6 +22551,11 @@ class Fragment$Section$$CardSection$metadata
     final l$continueWatching = continueWatching;
     final lOther$continueWatching = other.continueWatching;
     if (l$continueWatching != lOther$continueWatching) {
+      return false;
+    }
+    final l$myList = myList;
+    final lOther$myList = other.myList;
+    if (l$myList != lOther$myList) {
       return false;
     }
     final l$secondaryTitles = secondaryTitles;
@@ -22287,6 +22608,7 @@ abstract class CopyWith$Fragment$Section$$CardSection$metadata<TRes> {
 
   TRes call({
     bool? continueWatching,
+    bool? myList,
     bool? secondaryTitles,
     String? collectionId,
     bool? useContext,
@@ -22310,6 +22632,7 @@ class _CopyWithImpl$Fragment$Section$$CardSection$metadata<TRes>
 
   TRes call({
     Object? continueWatching = _undefined,
+    Object? myList = _undefined,
     Object? secondaryTitles = _undefined,
     Object? collectionId = _undefined,
     Object? useContext = _undefined,
@@ -22321,6 +22644,9 @@ class _CopyWithImpl$Fragment$Section$$CardSection$metadata<TRes>
             continueWatching == _undefined || continueWatching == null
                 ? _instance.continueWatching
                 : (continueWatching as bool),
+        myList: myList == _undefined || myList == null
+            ? _instance.myList
+            : (myList as bool),
         secondaryTitles:
             secondaryTitles == _undefined || secondaryTitles == null
                 ? _instance.secondaryTitles
@@ -22349,6 +22675,7 @@ class _CopyWithStubImpl$Fragment$Section$$CardSection$metadata<TRes>
 
   call({
     bool? continueWatching,
+    bool? myList,
     bool? secondaryTitles,
     String? collectionId,
     bool? useContext,
@@ -24783,6 +25110,7 @@ class Fragment$Section$$ListSection$metadata
     implements Fragment$ItemSection$$ListSection$metadata {
   Fragment$Section$$ListSection$metadata({
     required this.continueWatching,
+    required this.myList,
     required this.secondaryTitles,
     required this.collectionId,
     required this.useContext,
@@ -24793,6 +25121,7 @@ class Fragment$Section$$ListSection$metadata
   factory Fragment$Section$$ListSection$metadata.fromJson(
       Map<String, dynamic> json) {
     final l$continueWatching = json['continueWatching'];
+    final l$myList = json['myList'];
     final l$secondaryTitles = json['secondaryTitles'];
     final l$collectionId = json['collectionId'];
     final l$useContext = json['useContext'];
@@ -24800,6 +25129,7 @@ class Fragment$Section$$ListSection$metadata
     final l$$__typename = json['__typename'];
     return Fragment$Section$$ListSection$metadata(
       continueWatching: (l$continueWatching as bool),
+      myList: (l$myList as bool),
       secondaryTitles: (l$secondaryTitles as bool),
       collectionId: (l$collectionId as String),
       useContext: (l$useContext as bool),
@@ -24809,6 +25139,8 @@ class Fragment$Section$$ListSection$metadata
   }
 
   final bool continueWatching;
+
+  final bool myList;
 
   final bool secondaryTitles;
 
@@ -24824,6 +25156,8 @@ class Fragment$Section$$ListSection$metadata
     final _resultData = <String, dynamic>{};
     final l$continueWatching = continueWatching;
     _resultData['continueWatching'] = l$continueWatching;
+    final l$myList = myList;
+    _resultData['myList'] = l$myList;
     final l$secondaryTitles = secondaryTitles;
     _resultData['secondaryTitles'] = l$secondaryTitles;
     final l$collectionId = collectionId;
@@ -24840,6 +25174,7 @@ class Fragment$Section$$ListSection$metadata
   @override
   int get hashCode {
     final l$continueWatching = continueWatching;
+    final l$myList = myList;
     final l$secondaryTitles = secondaryTitles;
     final l$collectionId = collectionId;
     final l$useContext = useContext;
@@ -24847,6 +25182,7 @@ class Fragment$Section$$ListSection$metadata
     final l$$__typename = $__typename;
     return Object.hashAll([
       l$continueWatching,
+      l$myList,
       l$secondaryTitles,
       l$collectionId,
       l$useContext,
@@ -24867,6 +25203,11 @@ class Fragment$Section$$ListSection$metadata
     final l$continueWatching = continueWatching;
     final lOther$continueWatching = other.continueWatching;
     if (l$continueWatching != lOther$continueWatching) {
+      return false;
+    }
+    final l$myList = myList;
+    final lOther$myList = other.myList;
+    if (l$myList != lOther$myList) {
       return false;
     }
     final l$secondaryTitles = secondaryTitles;
@@ -24919,6 +25260,7 @@ abstract class CopyWith$Fragment$Section$$ListSection$metadata<TRes> {
 
   TRes call({
     bool? continueWatching,
+    bool? myList,
     bool? secondaryTitles,
     String? collectionId,
     bool? useContext,
@@ -24942,6 +25284,7 @@ class _CopyWithImpl$Fragment$Section$$ListSection$metadata<TRes>
 
   TRes call({
     Object? continueWatching = _undefined,
+    Object? myList = _undefined,
     Object? secondaryTitles = _undefined,
     Object? collectionId = _undefined,
     Object? useContext = _undefined,
@@ -24953,6 +25296,9 @@ class _CopyWithImpl$Fragment$Section$$ListSection$metadata<TRes>
             continueWatching == _undefined || continueWatching == null
                 ? _instance.continueWatching
                 : (continueWatching as bool),
+        myList: myList == _undefined || myList == null
+            ? _instance.myList
+            : (myList as bool),
         secondaryTitles:
             secondaryTitles == _undefined || secondaryTitles == null
                 ? _instance.secondaryTitles
@@ -24981,6 +25327,7 @@ class _CopyWithStubImpl$Fragment$Section$$ListSection$metadata<TRes>
 
   call({
     bool? continueWatching,
+    bool? myList,
     bool? secondaryTitles,
     String? collectionId,
     bool? useContext,
@@ -27311,6 +27658,7 @@ class Fragment$Section$$CardListSection$metadata
     implements Fragment$ItemSection$$CardListSection$metadata {
   Fragment$Section$$CardListSection$metadata({
     required this.continueWatching,
+    required this.myList,
     required this.secondaryTitles,
     required this.collectionId,
     required this.useContext,
@@ -27321,6 +27669,7 @@ class Fragment$Section$$CardListSection$metadata
   factory Fragment$Section$$CardListSection$metadata.fromJson(
       Map<String, dynamic> json) {
     final l$continueWatching = json['continueWatching'];
+    final l$myList = json['myList'];
     final l$secondaryTitles = json['secondaryTitles'];
     final l$collectionId = json['collectionId'];
     final l$useContext = json['useContext'];
@@ -27328,6 +27677,7 @@ class Fragment$Section$$CardListSection$metadata
     final l$$__typename = json['__typename'];
     return Fragment$Section$$CardListSection$metadata(
       continueWatching: (l$continueWatching as bool),
+      myList: (l$myList as bool),
       secondaryTitles: (l$secondaryTitles as bool),
       collectionId: (l$collectionId as String),
       useContext: (l$useContext as bool),
@@ -27337,6 +27687,8 @@ class Fragment$Section$$CardListSection$metadata
   }
 
   final bool continueWatching;
+
+  final bool myList;
 
   final bool secondaryTitles;
 
@@ -27352,6 +27704,8 @@ class Fragment$Section$$CardListSection$metadata
     final _resultData = <String, dynamic>{};
     final l$continueWatching = continueWatching;
     _resultData['continueWatching'] = l$continueWatching;
+    final l$myList = myList;
+    _resultData['myList'] = l$myList;
     final l$secondaryTitles = secondaryTitles;
     _resultData['secondaryTitles'] = l$secondaryTitles;
     final l$collectionId = collectionId;
@@ -27368,6 +27722,7 @@ class Fragment$Section$$CardListSection$metadata
   @override
   int get hashCode {
     final l$continueWatching = continueWatching;
+    final l$myList = myList;
     final l$secondaryTitles = secondaryTitles;
     final l$collectionId = collectionId;
     final l$useContext = useContext;
@@ -27375,6 +27730,7 @@ class Fragment$Section$$CardListSection$metadata
     final l$$__typename = $__typename;
     return Object.hashAll([
       l$continueWatching,
+      l$myList,
       l$secondaryTitles,
       l$collectionId,
       l$useContext,
@@ -27395,6 +27751,11 @@ class Fragment$Section$$CardListSection$metadata
     final l$continueWatching = continueWatching;
     final lOther$continueWatching = other.continueWatching;
     if (l$continueWatching != lOther$continueWatching) {
+      return false;
+    }
+    final l$myList = myList;
+    final lOther$myList = other.myList;
+    if (l$myList != lOther$myList) {
       return false;
     }
     final l$secondaryTitles = secondaryTitles;
@@ -27447,6 +27808,7 @@ abstract class CopyWith$Fragment$Section$$CardListSection$metadata<TRes> {
 
   TRes call({
     bool? continueWatching,
+    bool? myList,
     bool? secondaryTitles,
     String? collectionId,
     bool? useContext,
@@ -27470,6 +27832,7 @@ class _CopyWithImpl$Fragment$Section$$CardListSection$metadata<TRes>
 
   TRes call({
     Object? continueWatching = _undefined,
+    Object? myList = _undefined,
     Object? secondaryTitles = _undefined,
     Object? collectionId = _undefined,
     Object? useContext = _undefined,
@@ -27481,6 +27844,9 @@ class _CopyWithImpl$Fragment$Section$$CardListSection$metadata<TRes>
             continueWatching == _undefined || continueWatching == null
                 ? _instance.continueWatching
                 : (continueWatching as bool),
+        myList: myList == _undefined || myList == null
+            ? _instance.myList
+            : (myList as bool),
         secondaryTitles:
             secondaryTitles == _undefined || secondaryTitles == null
                 ? _instance.secondaryTitles
@@ -27509,6 +27875,7 @@ class _CopyWithStubImpl$Fragment$Section$$CardListSection$metadata<TRes>
 
   call({
     bool? continueWatching,
+    bool? myList,
     bool? secondaryTitles,
     String? collectionId,
     bool? useContext,
@@ -27969,6 +28336,7 @@ class Fragment$Section$$DefaultGridSection$metadata
     implements Fragment$ItemSection$$DefaultGridSection$metadata {
   Fragment$Section$$DefaultGridSection$metadata({
     required this.continueWatching,
+    required this.myList,
     required this.secondaryTitles,
     required this.collectionId,
     required this.useContext,
@@ -27979,6 +28347,7 @@ class Fragment$Section$$DefaultGridSection$metadata
   factory Fragment$Section$$DefaultGridSection$metadata.fromJson(
       Map<String, dynamic> json) {
     final l$continueWatching = json['continueWatching'];
+    final l$myList = json['myList'];
     final l$secondaryTitles = json['secondaryTitles'];
     final l$collectionId = json['collectionId'];
     final l$useContext = json['useContext'];
@@ -27986,6 +28355,7 @@ class Fragment$Section$$DefaultGridSection$metadata
     final l$$__typename = json['__typename'];
     return Fragment$Section$$DefaultGridSection$metadata(
       continueWatching: (l$continueWatching as bool),
+      myList: (l$myList as bool),
       secondaryTitles: (l$secondaryTitles as bool),
       collectionId: (l$collectionId as String),
       useContext: (l$useContext as bool),
@@ -27995,6 +28365,8 @@ class Fragment$Section$$DefaultGridSection$metadata
   }
 
   final bool continueWatching;
+
+  final bool myList;
 
   final bool secondaryTitles;
 
@@ -28010,6 +28382,8 @@ class Fragment$Section$$DefaultGridSection$metadata
     final _resultData = <String, dynamic>{};
     final l$continueWatching = continueWatching;
     _resultData['continueWatching'] = l$continueWatching;
+    final l$myList = myList;
+    _resultData['myList'] = l$myList;
     final l$secondaryTitles = secondaryTitles;
     _resultData['secondaryTitles'] = l$secondaryTitles;
     final l$collectionId = collectionId;
@@ -28026,6 +28400,7 @@ class Fragment$Section$$DefaultGridSection$metadata
   @override
   int get hashCode {
     final l$continueWatching = continueWatching;
+    final l$myList = myList;
     final l$secondaryTitles = secondaryTitles;
     final l$collectionId = collectionId;
     final l$useContext = useContext;
@@ -28033,6 +28408,7 @@ class Fragment$Section$$DefaultGridSection$metadata
     final l$$__typename = $__typename;
     return Object.hashAll([
       l$continueWatching,
+      l$myList,
       l$secondaryTitles,
       l$collectionId,
       l$useContext,
@@ -28053,6 +28429,11 @@ class Fragment$Section$$DefaultGridSection$metadata
     final l$continueWatching = continueWatching;
     final lOther$continueWatching = other.continueWatching;
     if (l$continueWatching != lOther$continueWatching) {
+      return false;
+    }
+    final l$myList = myList;
+    final lOther$myList = other.myList;
+    if (l$myList != lOther$myList) {
       return false;
     }
     final l$secondaryTitles = secondaryTitles;
@@ -28106,6 +28487,7 @@ abstract class CopyWith$Fragment$Section$$DefaultGridSection$metadata<TRes> {
 
   TRes call({
     bool? continueWatching,
+    bool? myList,
     bool? secondaryTitles,
     String? collectionId,
     bool? useContext,
@@ -28129,6 +28511,7 @@ class _CopyWithImpl$Fragment$Section$$DefaultGridSection$metadata<TRes>
 
   TRes call({
     Object? continueWatching = _undefined,
+    Object? myList = _undefined,
     Object? secondaryTitles = _undefined,
     Object? collectionId = _undefined,
     Object? useContext = _undefined,
@@ -28140,6 +28523,9 @@ class _CopyWithImpl$Fragment$Section$$DefaultGridSection$metadata<TRes>
             continueWatching == _undefined || continueWatching == null
                 ? _instance.continueWatching
                 : (continueWatching as bool),
+        myList: myList == _undefined || myList == null
+            ? _instance.myList
+            : (myList as bool),
         secondaryTitles:
             secondaryTitles == _undefined || secondaryTitles == null
                 ? _instance.secondaryTitles
@@ -28168,6 +28554,7 @@ class _CopyWithStubImpl$Fragment$Section$$DefaultGridSection$metadata<TRes>
 
   call({
     bool? continueWatching,
+    bool? myList,
     bool? secondaryTitles,
     String? collectionId,
     bool? useContext,
@@ -30577,6 +30964,7 @@ class Fragment$Section$$PosterGridSection$metadata
     implements Fragment$ItemSection$$PosterGridSection$metadata {
   Fragment$Section$$PosterGridSection$metadata({
     required this.continueWatching,
+    required this.myList,
     required this.secondaryTitles,
     required this.collectionId,
     required this.useContext,
@@ -30587,6 +30975,7 @@ class Fragment$Section$$PosterGridSection$metadata
   factory Fragment$Section$$PosterGridSection$metadata.fromJson(
       Map<String, dynamic> json) {
     final l$continueWatching = json['continueWatching'];
+    final l$myList = json['myList'];
     final l$secondaryTitles = json['secondaryTitles'];
     final l$collectionId = json['collectionId'];
     final l$useContext = json['useContext'];
@@ -30594,6 +30983,7 @@ class Fragment$Section$$PosterGridSection$metadata
     final l$$__typename = json['__typename'];
     return Fragment$Section$$PosterGridSection$metadata(
       continueWatching: (l$continueWatching as bool),
+      myList: (l$myList as bool),
       secondaryTitles: (l$secondaryTitles as bool),
       collectionId: (l$collectionId as String),
       useContext: (l$useContext as bool),
@@ -30603,6 +30993,8 @@ class Fragment$Section$$PosterGridSection$metadata
   }
 
   final bool continueWatching;
+
+  final bool myList;
 
   final bool secondaryTitles;
 
@@ -30618,6 +31010,8 @@ class Fragment$Section$$PosterGridSection$metadata
     final _resultData = <String, dynamic>{};
     final l$continueWatching = continueWatching;
     _resultData['continueWatching'] = l$continueWatching;
+    final l$myList = myList;
+    _resultData['myList'] = l$myList;
     final l$secondaryTitles = secondaryTitles;
     _resultData['secondaryTitles'] = l$secondaryTitles;
     final l$collectionId = collectionId;
@@ -30634,6 +31028,7 @@ class Fragment$Section$$PosterGridSection$metadata
   @override
   int get hashCode {
     final l$continueWatching = continueWatching;
+    final l$myList = myList;
     final l$secondaryTitles = secondaryTitles;
     final l$collectionId = collectionId;
     final l$useContext = useContext;
@@ -30641,6 +31036,7 @@ class Fragment$Section$$PosterGridSection$metadata
     final l$$__typename = $__typename;
     return Object.hashAll([
       l$continueWatching,
+      l$myList,
       l$secondaryTitles,
       l$collectionId,
       l$useContext,
@@ -30661,6 +31057,11 @@ class Fragment$Section$$PosterGridSection$metadata
     final l$continueWatching = continueWatching;
     final lOther$continueWatching = other.continueWatching;
     if (l$continueWatching != lOther$continueWatching) {
+      return false;
+    }
+    final l$myList = myList;
+    final lOther$myList = other.myList;
+    if (l$myList != lOther$myList) {
       return false;
     }
     final l$secondaryTitles = secondaryTitles;
@@ -30713,6 +31114,7 @@ abstract class CopyWith$Fragment$Section$$PosterGridSection$metadata<TRes> {
 
   TRes call({
     bool? continueWatching,
+    bool? myList,
     bool? secondaryTitles,
     String? collectionId,
     bool? useContext,
@@ -30736,6 +31138,7 @@ class _CopyWithImpl$Fragment$Section$$PosterGridSection$metadata<TRes>
 
   TRes call({
     Object? continueWatching = _undefined,
+    Object? myList = _undefined,
     Object? secondaryTitles = _undefined,
     Object? collectionId = _undefined,
     Object? useContext = _undefined,
@@ -30747,6 +31150,9 @@ class _CopyWithImpl$Fragment$Section$$PosterGridSection$metadata<TRes>
             continueWatching == _undefined || continueWatching == null
                 ? _instance.continueWatching
                 : (continueWatching as bool),
+        myList: myList == _undefined || myList == null
+            ? _instance.myList
+            : (myList as bool),
         secondaryTitles:
             secondaryTitles == _undefined || secondaryTitles == null
                 ? _instance.secondaryTitles
@@ -30775,6 +31181,7 @@ class _CopyWithStubImpl$Fragment$Section$$PosterGridSection$metadata<TRes>
 
   call({
     bool? continueWatching,
+    bool? myList,
     bool? secondaryTitles,
     String? collectionId,
     bool? useContext,
@@ -33180,6 +33587,7 @@ class Fragment$Section$$IconGridSection$metadata
     implements Fragment$ItemSection$$IconGridSection$metadata {
   Fragment$Section$$IconGridSection$metadata({
     required this.continueWatching,
+    required this.myList,
     required this.secondaryTitles,
     required this.collectionId,
     required this.useContext,
@@ -33190,6 +33598,7 @@ class Fragment$Section$$IconGridSection$metadata
   factory Fragment$Section$$IconGridSection$metadata.fromJson(
       Map<String, dynamic> json) {
     final l$continueWatching = json['continueWatching'];
+    final l$myList = json['myList'];
     final l$secondaryTitles = json['secondaryTitles'];
     final l$collectionId = json['collectionId'];
     final l$useContext = json['useContext'];
@@ -33197,6 +33606,7 @@ class Fragment$Section$$IconGridSection$metadata
     final l$$__typename = json['__typename'];
     return Fragment$Section$$IconGridSection$metadata(
       continueWatching: (l$continueWatching as bool),
+      myList: (l$myList as bool),
       secondaryTitles: (l$secondaryTitles as bool),
       collectionId: (l$collectionId as String),
       useContext: (l$useContext as bool),
@@ -33206,6 +33616,8 @@ class Fragment$Section$$IconGridSection$metadata
   }
 
   final bool continueWatching;
+
+  final bool myList;
 
   final bool secondaryTitles;
 
@@ -33221,6 +33633,8 @@ class Fragment$Section$$IconGridSection$metadata
     final _resultData = <String, dynamic>{};
     final l$continueWatching = continueWatching;
     _resultData['continueWatching'] = l$continueWatching;
+    final l$myList = myList;
+    _resultData['myList'] = l$myList;
     final l$secondaryTitles = secondaryTitles;
     _resultData['secondaryTitles'] = l$secondaryTitles;
     final l$collectionId = collectionId;
@@ -33237,6 +33651,7 @@ class Fragment$Section$$IconGridSection$metadata
   @override
   int get hashCode {
     final l$continueWatching = continueWatching;
+    final l$myList = myList;
     final l$secondaryTitles = secondaryTitles;
     final l$collectionId = collectionId;
     final l$useContext = useContext;
@@ -33244,6 +33659,7 @@ class Fragment$Section$$IconGridSection$metadata
     final l$$__typename = $__typename;
     return Object.hashAll([
       l$continueWatching,
+      l$myList,
       l$secondaryTitles,
       l$collectionId,
       l$useContext,
@@ -33264,6 +33680,11 @@ class Fragment$Section$$IconGridSection$metadata
     final l$continueWatching = continueWatching;
     final lOther$continueWatching = other.continueWatching;
     if (l$continueWatching != lOther$continueWatching) {
+      return false;
+    }
+    final l$myList = myList;
+    final lOther$myList = other.myList;
+    if (l$myList != lOther$myList) {
       return false;
     }
     final l$secondaryTitles = secondaryTitles;
@@ -33316,6 +33737,7 @@ abstract class CopyWith$Fragment$Section$$IconGridSection$metadata<TRes> {
 
   TRes call({
     bool? continueWatching,
+    bool? myList,
     bool? secondaryTitles,
     String? collectionId,
     bool? useContext,
@@ -33339,6 +33761,7 @@ class _CopyWithImpl$Fragment$Section$$IconGridSection$metadata<TRes>
 
   TRes call({
     Object? continueWatching = _undefined,
+    Object? myList = _undefined,
     Object? secondaryTitles = _undefined,
     Object? collectionId = _undefined,
     Object? useContext = _undefined,
@@ -33350,6 +33773,9 @@ class _CopyWithImpl$Fragment$Section$$IconGridSection$metadata<TRes>
             continueWatching == _undefined || continueWatching == null
                 ? _instance.continueWatching
                 : (continueWatching as bool),
+        myList: myList == _undefined || myList == null
+            ? _instance.myList
+            : (myList as bool),
         secondaryTitles:
             secondaryTitles == _undefined || secondaryTitles == null
                 ? _instance.secondaryTitles
@@ -33378,6 +33804,7 @@ class _CopyWithStubImpl$Fragment$Section$$IconGridSection$metadata<TRes>
 
   call({
     bool? continueWatching,
+    bool? myList,
     bool? secondaryTitles,
     String? collectionId,
     bool? useContext,
@@ -35742,6 +36169,7 @@ class Fragment$Section$$IconSection$metadata
     implements Fragment$ItemSection$$IconSection$metadata {
   Fragment$Section$$IconSection$metadata({
     required this.continueWatching,
+    required this.myList,
     required this.secondaryTitles,
     required this.collectionId,
     required this.useContext,
@@ -35752,6 +36180,7 @@ class Fragment$Section$$IconSection$metadata
   factory Fragment$Section$$IconSection$metadata.fromJson(
       Map<String, dynamic> json) {
     final l$continueWatching = json['continueWatching'];
+    final l$myList = json['myList'];
     final l$secondaryTitles = json['secondaryTitles'];
     final l$collectionId = json['collectionId'];
     final l$useContext = json['useContext'];
@@ -35759,6 +36188,7 @@ class Fragment$Section$$IconSection$metadata
     final l$$__typename = json['__typename'];
     return Fragment$Section$$IconSection$metadata(
       continueWatching: (l$continueWatching as bool),
+      myList: (l$myList as bool),
       secondaryTitles: (l$secondaryTitles as bool),
       collectionId: (l$collectionId as String),
       useContext: (l$useContext as bool),
@@ -35768,6 +36198,8 @@ class Fragment$Section$$IconSection$metadata
   }
 
   final bool continueWatching;
+
+  final bool myList;
 
   final bool secondaryTitles;
 
@@ -35783,6 +36215,8 @@ class Fragment$Section$$IconSection$metadata
     final _resultData = <String, dynamic>{};
     final l$continueWatching = continueWatching;
     _resultData['continueWatching'] = l$continueWatching;
+    final l$myList = myList;
+    _resultData['myList'] = l$myList;
     final l$secondaryTitles = secondaryTitles;
     _resultData['secondaryTitles'] = l$secondaryTitles;
     final l$collectionId = collectionId;
@@ -35799,6 +36233,7 @@ class Fragment$Section$$IconSection$metadata
   @override
   int get hashCode {
     final l$continueWatching = continueWatching;
+    final l$myList = myList;
     final l$secondaryTitles = secondaryTitles;
     final l$collectionId = collectionId;
     final l$useContext = useContext;
@@ -35806,6 +36241,7 @@ class Fragment$Section$$IconSection$metadata
     final l$$__typename = $__typename;
     return Object.hashAll([
       l$continueWatching,
+      l$myList,
       l$secondaryTitles,
       l$collectionId,
       l$useContext,
@@ -35826,6 +36262,11 @@ class Fragment$Section$$IconSection$metadata
     final l$continueWatching = continueWatching;
     final lOther$continueWatching = other.continueWatching;
     if (l$continueWatching != lOther$continueWatching) {
+      return false;
+    }
+    final l$myList = myList;
+    final lOther$myList = other.myList;
+    if (l$myList != lOther$myList) {
       return false;
     }
     final l$secondaryTitles = secondaryTitles;
@@ -35878,6 +36319,7 @@ abstract class CopyWith$Fragment$Section$$IconSection$metadata<TRes> {
 
   TRes call({
     bool? continueWatching,
+    bool? myList,
     bool? secondaryTitles,
     String? collectionId,
     bool? useContext,
@@ -35901,6 +36343,7 @@ class _CopyWithImpl$Fragment$Section$$IconSection$metadata<TRes>
 
   TRes call({
     Object? continueWatching = _undefined,
+    Object? myList = _undefined,
     Object? secondaryTitles = _undefined,
     Object? collectionId = _undefined,
     Object? useContext = _undefined,
@@ -35912,6 +36355,9 @@ class _CopyWithImpl$Fragment$Section$$IconSection$metadata<TRes>
             continueWatching == _undefined || continueWatching == null
                 ? _instance.continueWatching
                 : (continueWatching as bool),
+        myList: myList == _undefined || myList == null
+            ? _instance.myList
+            : (myList as bool),
         secondaryTitles:
             secondaryTitles == _undefined || secondaryTitles == null
                 ? _instance.secondaryTitles
@@ -35940,6 +36386,7 @@ class _CopyWithStubImpl$Fragment$Section$$IconSection$metadata<TRes>
 
   call({
     bool? continueWatching,
+    bool? myList,
     bool? secondaryTitles,
     String? collectionId,
     bool? useContext,
@@ -36375,6 +36822,7 @@ class Fragment$Section$$LabelSection$metadata
     implements Fragment$ItemSection$$LabelSection$metadata {
   Fragment$Section$$LabelSection$metadata({
     required this.continueWatching,
+    required this.myList,
     required this.secondaryTitles,
     required this.collectionId,
     required this.useContext,
@@ -36385,6 +36833,7 @@ class Fragment$Section$$LabelSection$metadata
   factory Fragment$Section$$LabelSection$metadata.fromJson(
       Map<String, dynamic> json) {
     final l$continueWatching = json['continueWatching'];
+    final l$myList = json['myList'];
     final l$secondaryTitles = json['secondaryTitles'];
     final l$collectionId = json['collectionId'];
     final l$useContext = json['useContext'];
@@ -36392,6 +36841,7 @@ class Fragment$Section$$LabelSection$metadata
     final l$$__typename = json['__typename'];
     return Fragment$Section$$LabelSection$metadata(
       continueWatching: (l$continueWatching as bool),
+      myList: (l$myList as bool),
       secondaryTitles: (l$secondaryTitles as bool),
       collectionId: (l$collectionId as String),
       useContext: (l$useContext as bool),
@@ -36401,6 +36851,8 @@ class Fragment$Section$$LabelSection$metadata
   }
 
   final bool continueWatching;
+
+  final bool myList;
 
   final bool secondaryTitles;
 
@@ -36416,6 +36868,8 @@ class Fragment$Section$$LabelSection$metadata
     final _resultData = <String, dynamic>{};
     final l$continueWatching = continueWatching;
     _resultData['continueWatching'] = l$continueWatching;
+    final l$myList = myList;
+    _resultData['myList'] = l$myList;
     final l$secondaryTitles = secondaryTitles;
     _resultData['secondaryTitles'] = l$secondaryTitles;
     final l$collectionId = collectionId;
@@ -36432,6 +36886,7 @@ class Fragment$Section$$LabelSection$metadata
   @override
   int get hashCode {
     final l$continueWatching = continueWatching;
+    final l$myList = myList;
     final l$secondaryTitles = secondaryTitles;
     final l$collectionId = collectionId;
     final l$useContext = useContext;
@@ -36439,6 +36894,7 @@ class Fragment$Section$$LabelSection$metadata
     final l$$__typename = $__typename;
     return Object.hashAll([
       l$continueWatching,
+      l$myList,
       l$secondaryTitles,
       l$collectionId,
       l$useContext,
@@ -36459,6 +36915,11 @@ class Fragment$Section$$LabelSection$metadata
     final l$continueWatching = continueWatching;
     final lOther$continueWatching = other.continueWatching;
     if (l$continueWatching != lOther$continueWatching) {
+      return false;
+    }
+    final l$myList = myList;
+    final lOther$myList = other.myList;
+    if (l$myList != lOther$myList) {
       return false;
     }
     final l$secondaryTitles = secondaryTitles;
@@ -36511,6 +36972,7 @@ abstract class CopyWith$Fragment$Section$$LabelSection$metadata<TRes> {
 
   TRes call({
     bool? continueWatching,
+    bool? myList,
     bool? secondaryTitles,
     String? collectionId,
     bool? useContext,
@@ -36534,6 +36996,7 @@ class _CopyWithImpl$Fragment$Section$$LabelSection$metadata<TRes>
 
   TRes call({
     Object? continueWatching = _undefined,
+    Object? myList = _undefined,
     Object? secondaryTitles = _undefined,
     Object? collectionId = _undefined,
     Object? useContext = _undefined,
@@ -36545,6 +37008,9 @@ class _CopyWithImpl$Fragment$Section$$LabelSection$metadata<TRes>
             continueWatching == _undefined || continueWatching == null
                 ? _instance.continueWatching
                 : (continueWatching as bool),
+        myList: myList == _undefined || myList == null
+            ? _instance.myList
+            : (myList as bool),
         secondaryTitles:
             secondaryTitles == _undefined || secondaryTitles == null
                 ? _instance.secondaryTitles
@@ -36573,6 +37039,7 @@ class _CopyWithStubImpl$Fragment$Section$$LabelSection$metadata<TRes>
 
   call({
     bool? continueWatching,
+    bool? myList,
     bool? secondaryTitles,
     String? collectionId,
     bool? useContext,

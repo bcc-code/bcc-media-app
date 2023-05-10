@@ -1389,6 +1389,7 @@ class Query$FetchMoreItemsForItemSection$section$$PosterSection$metadata
         Fragment$ItemSection$$PosterSection$metadata {
   Query$FetchMoreItemsForItemSection$section$$PosterSection$metadata({
     required this.continueWatching,
+    required this.myList,
     required this.secondaryTitles,
     required this.collectionId,
     required this.useContext,
@@ -1399,6 +1400,7 @@ class Query$FetchMoreItemsForItemSection$section$$PosterSection$metadata
   factory Query$FetchMoreItemsForItemSection$section$$PosterSection$metadata.fromJson(
       Map<String, dynamic> json) {
     final l$continueWatching = json['continueWatching'];
+    final l$myList = json['myList'];
     final l$secondaryTitles = json['secondaryTitles'];
     final l$collectionId = json['collectionId'];
     final l$useContext = json['useContext'];
@@ -1406,6 +1408,7 @@ class Query$FetchMoreItemsForItemSection$section$$PosterSection$metadata
     final l$$__typename = json['__typename'];
     return Query$FetchMoreItemsForItemSection$section$$PosterSection$metadata(
       continueWatching: (l$continueWatching as bool),
+      myList: (l$myList as bool),
       secondaryTitles: (l$secondaryTitles as bool),
       collectionId: (l$collectionId as String),
       useContext: (l$useContext as bool),
@@ -1415,6 +1418,8 @@ class Query$FetchMoreItemsForItemSection$section$$PosterSection$metadata
   }
 
   final bool continueWatching;
+
+  final bool myList;
 
   final bool secondaryTitles;
 
@@ -1430,6 +1435,8 @@ class Query$FetchMoreItemsForItemSection$section$$PosterSection$metadata
     final _resultData = <String, dynamic>{};
     final l$continueWatching = continueWatching;
     _resultData['continueWatching'] = l$continueWatching;
+    final l$myList = myList;
+    _resultData['myList'] = l$myList;
     final l$secondaryTitles = secondaryTitles;
     _resultData['secondaryTitles'] = l$secondaryTitles;
     final l$collectionId = collectionId;
@@ -1446,6 +1453,7 @@ class Query$FetchMoreItemsForItemSection$section$$PosterSection$metadata
   @override
   int get hashCode {
     final l$continueWatching = continueWatching;
+    final l$myList = myList;
     final l$secondaryTitles = secondaryTitles;
     final l$collectionId = collectionId;
     final l$useContext = useContext;
@@ -1453,6 +1461,7 @@ class Query$FetchMoreItemsForItemSection$section$$PosterSection$metadata
     final l$$__typename = $__typename;
     return Object.hashAll([
       l$continueWatching,
+      l$myList,
       l$secondaryTitles,
       l$collectionId,
       l$useContext,
@@ -1474,6 +1483,11 @@ class Query$FetchMoreItemsForItemSection$section$$PosterSection$metadata
     final l$continueWatching = continueWatching;
     final lOther$continueWatching = other.continueWatching;
     if (l$continueWatching != lOther$continueWatching) {
+      return false;
+    }
+    final l$myList = myList;
+    final lOther$myList = other.myList;
+    if (l$myList != lOther$myList) {
       return false;
     }
     final l$secondaryTitles = secondaryTitles;
@@ -1531,6 +1545,7 @@ abstract class CopyWith$Query$FetchMoreItemsForItemSection$section$$PosterSectio
 
   TRes call({
     bool? continueWatching,
+    bool? myList,
     bool? secondaryTitles,
     String? collectionId,
     bool? useContext,
@@ -1559,6 +1574,7 @@ class _CopyWithImpl$Query$FetchMoreItemsForItemSection$section$$PosterSection$me
 
   TRes call({
     Object? continueWatching = _undefined,
+    Object? myList = _undefined,
     Object? secondaryTitles = _undefined,
     Object? collectionId = _undefined,
     Object? useContext = _undefined,
@@ -1570,6 +1586,9 @@ class _CopyWithImpl$Query$FetchMoreItemsForItemSection$section$$PosterSection$me
             continueWatching == _undefined || continueWatching == null
                 ? _instance.continueWatching
                 : (continueWatching as bool),
+        myList: myList == _undefined || myList == null
+            ? _instance.myList
+            : (myList as bool),
         secondaryTitles:
             secondaryTitles == _undefined || secondaryTitles == null
                 ? _instance.secondaryTitles
@@ -1602,6 +1621,7 @@ class _CopyWithStubImpl$Query$FetchMoreItemsForItemSection$section$$PosterSectio
 
   call({
     bool? continueWatching,
+    bool? myList,
     bool? secondaryTitles,
     String? collectionId,
     bool? useContext,
@@ -4110,6 +4130,7 @@ class Query$FetchMoreItemsForItemSection$section$$FeaturedSection$metadata
         Fragment$ItemSection$$FeaturedSection$metadata {
   Query$FetchMoreItemsForItemSection$section$$FeaturedSection$metadata({
     required this.continueWatching,
+    required this.myList,
     required this.secondaryTitles,
     required this.collectionId,
     required this.useContext,
@@ -4120,6 +4141,7 @@ class Query$FetchMoreItemsForItemSection$section$$FeaturedSection$metadata
   factory Query$FetchMoreItemsForItemSection$section$$FeaturedSection$metadata.fromJson(
       Map<String, dynamic> json) {
     final l$continueWatching = json['continueWatching'];
+    final l$myList = json['myList'];
     final l$secondaryTitles = json['secondaryTitles'];
     final l$collectionId = json['collectionId'];
     final l$useContext = json['useContext'];
@@ -4127,6 +4149,7 @@ class Query$FetchMoreItemsForItemSection$section$$FeaturedSection$metadata
     final l$$__typename = json['__typename'];
     return Query$FetchMoreItemsForItemSection$section$$FeaturedSection$metadata(
       continueWatching: (l$continueWatching as bool),
+      myList: (l$myList as bool),
       secondaryTitles: (l$secondaryTitles as bool),
       collectionId: (l$collectionId as String),
       useContext: (l$useContext as bool),
@@ -4136,6 +4159,8 @@ class Query$FetchMoreItemsForItemSection$section$$FeaturedSection$metadata
   }
 
   final bool continueWatching;
+
+  final bool myList;
 
   final bool secondaryTitles;
 
@@ -4151,6 +4176,8 @@ class Query$FetchMoreItemsForItemSection$section$$FeaturedSection$metadata
     final _resultData = <String, dynamic>{};
     final l$continueWatching = continueWatching;
     _resultData['continueWatching'] = l$continueWatching;
+    final l$myList = myList;
+    _resultData['myList'] = l$myList;
     final l$secondaryTitles = secondaryTitles;
     _resultData['secondaryTitles'] = l$secondaryTitles;
     final l$collectionId = collectionId;
@@ -4167,6 +4194,7 @@ class Query$FetchMoreItemsForItemSection$section$$FeaturedSection$metadata
   @override
   int get hashCode {
     final l$continueWatching = continueWatching;
+    final l$myList = myList;
     final l$secondaryTitles = secondaryTitles;
     final l$collectionId = collectionId;
     final l$useContext = useContext;
@@ -4174,6 +4202,7 @@ class Query$FetchMoreItemsForItemSection$section$$FeaturedSection$metadata
     final l$$__typename = $__typename;
     return Object.hashAll([
       l$continueWatching,
+      l$myList,
       l$secondaryTitles,
       l$collectionId,
       l$useContext,
@@ -4195,6 +4224,11 @@ class Query$FetchMoreItemsForItemSection$section$$FeaturedSection$metadata
     final l$continueWatching = continueWatching;
     final lOther$continueWatching = other.continueWatching;
     if (l$continueWatching != lOther$continueWatching) {
+      return false;
+    }
+    final l$myList = myList;
+    final lOther$myList = other.myList;
+    if (l$myList != lOther$myList) {
       return false;
     }
     final l$secondaryTitles = secondaryTitles;
@@ -4253,6 +4287,7 @@ abstract class CopyWith$Query$FetchMoreItemsForItemSection$section$$FeaturedSect
 
   TRes call({
     bool? continueWatching,
+    bool? myList,
     bool? secondaryTitles,
     String? collectionId,
     bool? useContext,
@@ -4282,6 +4317,7 @@ class _CopyWithImpl$Query$FetchMoreItemsForItemSection$section$$FeaturedSection$
 
   TRes call({
     Object? continueWatching = _undefined,
+    Object? myList = _undefined,
     Object? secondaryTitles = _undefined,
     Object? collectionId = _undefined,
     Object? useContext = _undefined,
@@ -4294,6 +4330,9 @@ class _CopyWithImpl$Query$FetchMoreItemsForItemSection$section$$FeaturedSection$
             continueWatching == _undefined || continueWatching == null
                 ? _instance.continueWatching
                 : (continueWatching as bool),
+        myList: myList == _undefined || myList == null
+            ? _instance.myList
+            : (myList as bool),
         secondaryTitles:
             secondaryTitles == _undefined || secondaryTitles == null
                 ? _instance.secondaryTitles
@@ -4326,6 +4365,7 @@ class _CopyWithStubImpl$Query$FetchMoreItemsForItemSection$section$$FeaturedSect
 
   call({
     bool? continueWatching,
+    bool? myList,
     bool? secondaryTitles,
     String? collectionId,
     bool? useContext,
@@ -6834,6 +6874,7 @@ class Query$FetchMoreItemsForItemSection$section$$DefaultSection$metadata
         Fragment$ItemSection$$DefaultSection$metadata {
   Query$FetchMoreItemsForItemSection$section$$DefaultSection$metadata({
     required this.continueWatching,
+    required this.myList,
     required this.secondaryTitles,
     required this.collectionId,
     required this.useContext,
@@ -6844,6 +6885,7 @@ class Query$FetchMoreItemsForItemSection$section$$DefaultSection$metadata
   factory Query$FetchMoreItemsForItemSection$section$$DefaultSection$metadata.fromJson(
       Map<String, dynamic> json) {
     final l$continueWatching = json['continueWatching'];
+    final l$myList = json['myList'];
     final l$secondaryTitles = json['secondaryTitles'];
     final l$collectionId = json['collectionId'];
     final l$useContext = json['useContext'];
@@ -6851,6 +6893,7 @@ class Query$FetchMoreItemsForItemSection$section$$DefaultSection$metadata
     final l$$__typename = json['__typename'];
     return Query$FetchMoreItemsForItemSection$section$$DefaultSection$metadata(
       continueWatching: (l$continueWatching as bool),
+      myList: (l$myList as bool),
       secondaryTitles: (l$secondaryTitles as bool),
       collectionId: (l$collectionId as String),
       useContext: (l$useContext as bool),
@@ -6860,6 +6903,8 @@ class Query$FetchMoreItemsForItemSection$section$$DefaultSection$metadata
   }
 
   final bool continueWatching;
+
+  final bool myList;
 
   final bool secondaryTitles;
 
@@ -6875,6 +6920,8 @@ class Query$FetchMoreItemsForItemSection$section$$DefaultSection$metadata
     final _resultData = <String, dynamic>{};
     final l$continueWatching = continueWatching;
     _resultData['continueWatching'] = l$continueWatching;
+    final l$myList = myList;
+    _resultData['myList'] = l$myList;
     final l$secondaryTitles = secondaryTitles;
     _resultData['secondaryTitles'] = l$secondaryTitles;
     final l$collectionId = collectionId;
@@ -6891,6 +6938,7 @@ class Query$FetchMoreItemsForItemSection$section$$DefaultSection$metadata
   @override
   int get hashCode {
     final l$continueWatching = continueWatching;
+    final l$myList = myList;
     final l$secondaryTitles = secondaryTitles;
     final l$collectionId = collectionId;
     final l$useContext = useContext;
@@ -6898,6 +6946,7 @@ class Query$FetchMoreItemsForItemSection$section$$DefaultSection$metadata
     final l$$__typename = $__typename;
     return Object.hashAll([
       l$continueWatching,
+      l$myList,
       l$secondaryTitles,
       l$collectionId,
       l$useContext,
@@ -6919,6 +6968,11 @@ class Query$FetchMoreItemsForItemSection$section$$DefaultSection$metadata
     final l$continueWatching = continueWatching;
     final lOther$continueWatching = other.continueWatching;
     if (l$continueWatching != lOther$continueWatching) {
+      return false;
+    }
+    final l$myList = myList;
+    final lOther$myList = other.myList;
+    if (l$myList != lOther$myList) {
       return false;
     }
     final l$secondaryTitles = secondaryTitles;
@@ -6977,6 +7031,7 @@ abstract class CopyWith$Query$FetchMoreItemsForItemSection$section$$DefaultSecti
 
   TRes call({
     bool? continueWatching,
+    bool? myList,
     bool? secondaryTitles,
     String? collectionId,
     bool? useContext,
@@ -7006,6 +7061,7 @@ class _CopyWithImpl$Query$FetchMoreItemsForItemSection$section$$DefaultSection$m
 
   TRes call({
     Object? continueWatching = _undefined,
+    Object? myList = _undefined,
     Object? secondaryTitles = _undefined,
     Object? collectionId = _undefined,
     Object? useContext = _undefined,
@@ -7017,6 +7073,9 @@ class _CopyWithImpl$Query$FetchMoreItemsForItemSection$section$$DefaultSection$m
             continueWatching == _undefined || continueWatching == null
                 ? _instance.continueWatching
                 : (continueWatching as bool),
+        myList: myList == _undefined || myList == null
+            ? _instance.myList
+            : (myList as bool),
         secondaryTitles:
             secondaryTitles == _undefined || secondaryTitles == null
                 ? _instance.secondaryTitles
@@ -7049,6 +7108,7 @@ class _CopyWithStubImpl$Query$FetchMoreItemsForItemSection$section$$DefaultSecti
 
   call({
     bool? continueWatching,
+    bool? myList,
     bool? secondaryTitles,
     String? collectionId,
     bool? useContext,
@@ -9550,6 +9610,7 @@ class Query$FetchMoreItemsForItemSection$section$$CardSection$metadata
         Fragment$ItemSection$$CardSection$metadata {
   Query$FetchMoreItemsForItemSection$section$$CardSection$metadata({
     required this.continueWatching,
+    required this.myList,
     required this.secondaryTitles,
     required this.collectionId,
     required this.useContext,
@@ -9560,6 +9621,7 @@ class Query$FetchMoreItemsForItemSection$section$$CardSection$metadata
   factory Query$FetchMoreItemsForItemSection$section$$CardSection$metadata.fromJson(
       Map<String, dynamic> json) {
     final l$continueWatching = json['continueWatching'];
+    final l$myList = json['myList'];
     final l$secondaryTitles = json['secondaryTitles'];
     final l$collectionId = json['collectionId'];
     final l$useContext = json['useContext'];
@@ -9567,6 +9629,7 @@ class Query$FetchMoreItemsForItemSection$section$$CardSection$metadata
     final l$$__typename = json['__typename'];
     return Query$FetchMoreItemsForItemSection$section$$CardSection$metadata(
       continueWatching: (l$continueWatching as bool),
+      myList: (l$myList as bool),
       secondaryTitles: (l$secondaryTitles as bool),
       collectionId: (l$collectionId as String),
       useContext: (l$useContext as bool),
@@ -9576,6 +9639,8 @@ class Query$FetchMoreItemsForItemSection$section$$CardSection$metadata
   }
 
   final bool continueWatching;
+
+  final bool myList;
 
   final bool secondaryTitles;
 
@@ -9591,6 +9656,8 @@ class Query$FetchMoreItemsForItemSection$section$$CardSection$metadata
     final _resultData = <String, dynamic>{};
     final l$continueWatching = continueWatching;
     _resultData['continueWatching'] = l$continueWatching;
+    final l$myList = myList;
+    _resultData['myList'] = l$myList;
     final l$secondaryTitles = secondaryTitles;
     _resultData['secondaryTitles'] = l$secondaryTitles;
     final l$collectionId = collectionId;
@@ -9607,6 +9674,7 @@ class Query$FetchMoreItemsForItemSection$section$$CardSection$metadata
   @override
   int get hashCode {
     final l$continueWatching = continueWatching;
+    final l$myList = myList;
     final l$secondaryTitles = secondaryTitles;
     final l$collectionId = collectionId;
     final l$useContext = useContext;
@@ -9614,6 +9682,7 @@ class Query$FetchMoreItemsForItemSection$section$$CardSection$metadata
     final l$$__typename = $__typename;
     return Object.hashAll([
       l$continueWatching,
+      l$myList,
       l$secondaryTitles,
       l$collectionId,
       l$useContext,
@@ -9635,6 +9704,11 @@ class Query$FetchMoreItemsForItemSection$section$$CardSection$metadata
     final l$continueWatching = continueWatching;
     final lOther$continueWatching = other.continueWatching;
     if (l$continueWatching != lOther$continueWatching) {
+      return false;
+    }
+    final l$myList = myList;
+    final lOther$myList = other.myList;
+    if (l$myList != lOther$myList) {
       return false;
     }
     final l$secondaryTitles = secondaryTitles;
@@ -9692,6 +9766,7 @@ abstract class CopyWith$Query$FetchMoreItemsForItemSection$section$$CardSection$
 
   TRes call({
     bool? continueWatching,
+    bool? myList,
     bool? secondaryTitles,
     String? collectionId,
     bool? useContext,
@@ -9720,6 +9795,7 @@ class _CopyWithImpl$Query$FetchMoreItemsForItemSection$section$$CardSection$meta
 
   TRes call({
     Object? continueWatching = _undefined,
+    Object? myList = _undefined,
     Object? secondaryTitles = _undefined,
     Object? collectionId = _undefined,
     Object? useContext = _undefined,
@@ -9731,6 +9807,9 @@ class _CopyWithImpl$Query$FetchMoreItemsForItemSection$section$$CardSection$meta
             continueWatching == _undefined || continueWatching == null
                 ? _instance.continueWatching
                 : (continueWatching as bool),
+        myList: myList == _undefined || myList == null
+            ? _instance.myList
+            : (myList as bool),
         secondaryTitles:
             secondaryTitles == _undefined || secondaryTitles == null
                 ? _instance.secondaryTitles
@@ -9763,6 +9842,7 @@ class _CopyWithStubImpl$Query$FetchMoreItemsForItemSection$section$$CardSection$
 
   call({
     bool? continueWatching,
+    bool? myList,
     bool? secondaryTitles,
     String? collectionId,
     bool? useContext,
@@ -12387,6 +12467,7 @@ class Query$FetchMoreItemsForItemSection$section$$ListSection$metadata
         Fragment$ItemSection$$ListSection$metadata {
   Query$FetchMoreItemsForItemSection$section$$ListSection$metadata({
     required this.continueWatching,
+    required this.myList,
     required this.secondaryTitles,
     required this.collectionId,
     required this.useContext,
@@ -12397,6 +12478,7 @@ class Query$FetchMoreItemsForItemSection$section$$ListSection$metadata
   factory Query$FetchMoreItemsForItemSection$section$$ListSection$metadata.fromJson(
       Map<String, dynamic> json) {
     final l$continueWatching = json['continueWatching'];
+    final l$myList = json['myList'];
     final l$secondaryTitles = json['secondaryTitles'];
     final l$collectionId = json['collectionId'];
     final l$useContext = json['useContext'];
@@ -12404,6 +12486,7 @@ class Query$FetchMoreItemsForItemSection$section$$ListSection$metadata
     final l$$__typename = json['__typename'];
     return Query$FetchMoreItemsForItemSection$section$$ListSection$metadata(
       continueWatching: (l$continueWatching as bool),
+      myList: (l$myList as bool),
       secondaryTitles: (l$secondaryTitles as bool),
       collectionId: (l$collectionId as String),
       useContext: (l$useContext as bool),
@@ -12413,6 +12496,8 @@ class Query$FetchMoreItemsForItemSection$section$$ListSection$metadata
   }
 
   final bool continueWatching;
+
+  final bool myList;
 
   final bool secondaryTitles;
 
@@ -12428,6 +12513,8 @@ class Query$FetchMoreItemsForItemSection$section$$ListSection$metadata
     final _resultData = <String, dynamic>{};
     final l$continueWatching = continueWatching;
     _resultData['continueWatching'] = l$continueWatching;
+    final l$myList = myList;
+    _resultData['myList'] = l$myList;
     final l$secondaryTitles = secondaryTitles;
     _resultData['secondaryTitles'] = l$secondaryTitles;
     final l$collectionId = collectionId;
@@ -12444,6 +12531,7 @@ class Query$FetchMoreItemsForItemSection$section$$ListSection$metadata
   @override
   int get hashCode {
     final l$continueWatching = continueWatching;
+    final l$myList = myList;
     final l$secondaryTitles = secondaryTitles;
     final l$collectionId = collectionId;
     final l$useContext = useContext;
@@ -12451,6 +12539,7 @@ class Query$FetchMoreItemsForItemSection$section$$ListSection$metadata
     final l$$__typename = $__typename;
     return Object.hashAll([
       l$continueWatching,
+      l$myList,
       l$secondaryTitles,
       l$collectionId,
       l$useContext,
@@ -12472,6 +12561,11 @@ class Query$FetchMoreItemsForItemSection$section$$ListSection$metadata
     final l$continueWatching = continueWatching;
     final lOther$continueWatching = other.continueWatching;
     if (l$continueWatching != lOther$continueWatching) {
+      return false;
+    }
+    final l$myList = myList;
+    final lOther$myList = other.myList;
+    if (l$myList != lOther$myList) {
       return false;
     }
     final l$secondaryTitles = secondaryTitles;
@@ -12529,6 +12623,7 @@ abstract class CopyWith$Query$FetchMoreItemsForItemSection$section$$ListSection$
 
   TRes call({
     bool? continueWatching,
+    bool? myList,
     bool? secondaryTitles,
     String? collectionId,
     bool? useContext,
@@ -12557,6 +12652,7 @@ class _CopyWithImpl$Query$FetchMoreItemsForItemSection$section$$ListSection$meta
 
   TRes call({
     Object? continueWatching = _undefined,
+    Object? myList = _undefined,
     Object? secondaryTitles = _undefined,
     Object? collectionId = _undefined,
     Object? useContext = _undefined,
@@ -12568,6 +12664,9 @@ class _CopyWithImpl$Query$FetchMoreItemsForItemSection$section$$ListSection$meta
             continueWatching == _undefined || continueWatching == null
                 ? _instance.continueWatching
                 : (continueWatching as bool),
+        myList: myList == _undefined || myList == null
+            ? _instance.myList
+            : (myList as bool),
         secondaryTitles:
             secondaryTitles == _undefined || secondaryTitles == null
                 ? _instance.secondaryTitles
@@ -12600,6 +12699,7 @@ class _CopyWithStubImpl$Query$FetchMoreItemsForItemSection$section$$ListSection$
 
   call({
     bool? continueWatching,
+    bool? myList,
     bool? secondaryTitles,
     String? collectionId,
     bool? useContext,
@@ -15123,6 +15223,7 @@ class Query$FetchMoreItemsForItemSection$section$$CardListSection$metadata
         Fragment$ItemSection$$CardListSection$metadata {
   Query$FetchMoreItemsForItemSection$section$$CardListSection$metadata({
     required this.continueWatching,
+    required this.myList,
     required this.secondaryTitles,
     required this.collectionId,
     required this.useContext,
@@ -15133,6 +15234,7 @@ class Query$FetchMoreItemsForItemSection$section$$CardListSection$metadata
   factory Query$FetchMoreItemsForItemSection$section$$CardListSection$metadata.fromJson(
       Map<String, dynamic> json) {
     final l$continueWatching = json['continueWatching'];
+    final l$myList = json['myList'];
     final l$secondaryTitles = json['secondaryTitles'];
     final l$collectionId = json['collectionId'];
     final l$useContext = json['useContext'];
@@ -15140,6 +15242,7 @@ class Query$FetchMoreItemsForItemSection$section$$CardListSection$metadata
     final l$$__typename = json['__typename'];
     return Query$FetchMoreItemsForItemSection$section$$CardListSection$metadata(
       continueWatching: (l$continueWatching as bool),
+      myList: (l$myList as bool),
       secondaryTitles: (l$secondaryTitles as bool),
       collectionId: (l$collectionId as String),
       useContext: (l$useContext as bool),
@@ -15149,6 +15252,8 @@ class Query$FetchMoreItemsForItemSection$section$$CardListSection$metadata
   }
 
   final bool continueWatching;
+
+  final bool myList;
 
   final bool secondaryTitles;
 
@@ -15164,6 +15269,8 @@ class Query$FetchMoreItemsForItemSection$section$$CardListSection$metadata
     final _resultData = <String, dynamic>{};
     final l$continueWatching = continueWatching;
     _resultData['continueWatching'] = l$continueWatching;
+    final l$myList = myList;
+    _resultData['myList'] = l$myList;
     final l$secondaryTitles = secondaryTitles;
     _resultData['secondaryTitles'] = l$secondaryTitles;
     final l$collectionId = collectionId;
@@ -15180,6 +15287,7 @@ class Query$FetchMoreItemsForItemSection$section$$CardListSection$metadata
   @override
   int get hashCode {
     final l$continueWatching = continueWatching;
+    final l$myList = myList;
     final l$secondaryTitles = secondaryTitles;
     final l$collectionId = collectionId;
     final l$useContext = useContext;
@@ -15187,6 +15295,7 @@ class Query$FetchMoreItemsForItemSection$section$$CardListSection$metadata
     final l$$__typename = $__typename;
     return Object.hashAll([
       l$continueWatching,
+      l$myList,
       l$secondaryTitles,
       l$collectionId,
       l$useContext,
@@ -15208,6 +15317,11 @@ class Query$FetchMoreItemsForItemSection$section$$CardListSection$metadata
     final l$continueWatching = continueWatching;
     final lOther$continueWatching = other.continueWatching;
     if (l$continueWatching != lOther$continueWatching) {
+      return false;
+    }
+    final l$myList = myList;
+    final lOther$myList = other.myList;
+    if (l$myList != lOther$myList) {
       return false;
     }
     final l$secondaryTitles = secondaryTitles;
@@ -15266,6 +15380,7 @@ abstract class CopyWith$Query$FetchMoreItemsForItemSection$section$$CardListSect
 
   TRes call({
     bool? continueWatching,
+    bool? myList,
     bool? secondaryTitles,
     String? collectionId,
     bool? useContext,
@@ -15295,6 +15410,7 @@ class _CopyWithImpl$Query$FetchMoreItemsForItemSection$section$$CardListSection$
 
   TRes call({
     Object? continueWatching = _undefined,
+    Object? myList = _undefined,
     Object? secondaryTitles = _undefined,
     Object? collectionId = _undefined,
     Object? useContext = _undefined,
@@ -15307,6 +15423,9 @@ class _CopyWithImpl$Query$FetchMoreItemsForItemSection$section$$CardListSection$
             continueWatching == _undefined || continueWatching == null
                 ? _instance.continueWatching
                 : (continueWatching as bool),
+        myList: myList == _undefined || myList == null
+            ? _instance.myList
+            : (myList as bool),
         secondaryTitles:
             secondaryTitles == _undefined || secondaryTitles == null
                 ? _instance.secondaryTitles
@@ -15339,6 +15458,7 @@ class _CopyWithStubImpl$Query$FetchMoreItemsForItemSection$section$$CardListSect
 
   call({
     bool? continueWatching,
+    bool? myList,
     bool? secondaryTitles,
     String? collectionId,
     bool? useContext,
@@ -15851,6 +15971,7 @@ class Query$FetchMoreItemsForItemSection$section$$DefaultGridSection$metadata
         Fragment$ItemSection$$DefaultGridSection$metadata {
   Query$FetchMoreItemsForItemSection$section$$DefaultGridSection$metadata({
     required this.continueWatching,
+    required this.myList,
     required this.secondaryTitles,
     required this.collectionId,
     required this.useContext,
@@ -15861,6 +15982,7 @@ class Query$FetchMoreItemsForItemSection$section$$DefaultGridSection$metadata
   factory Query$FetchMoreItemsForItemSection$section$$DefaultGridSection$metadata.fromJson(
       Map<String, dynamic> json) {
     final l$continueWatching = json['continueWatching'];
+    final l$myList = json['myList'];
     final l$secondaryTitles = json['secondaryTitles'];
     final l$collectionId = json['collectionId'];
     final l$useContext = json['useContext'];
@@ -15868,6 +15990,7 @@ class Query$FetchMoreItemsForItemSection$section$$DefaultGridSection$metadata
     final l$$__typename = json['__typename'];
     return Query$FetchMoreItemsForItemSection$section$$DefaultGridSection$metadata(
       continueWatching: (l$continueWatching as bool),
+      myList: (l$myList as bool),
       secondaryTitles: (l$secondaryTitles as bool),
       collectionId: (l$collectionId as String),
       useContext: (l$useContext as bool),
@@ -15877,6 +16000,8 @@ class Query$FetchMoreItemsForItemSection$section$$DefaultGridSection$metadata
   }
 
   final bool continueWatching;
+
+  final bool myList;
 
   final bool secondaryTitles;
 
@@ -15892,6 +16017,8 @@ class Query$FetchMoreItemsForItemSection$section$$DefaultGridSection$metadata
     final _resultData = <String, dynamic>{};
     final l$continueWatching = continueWatching;
     _resultData['continueWatching'] = l$continueWatching;
+    final l$myList = myList;
+    _resultData['myList'] = l$myList;
     final l$secondaryTitles = secondaryTitles;
     _resultData['secondaryTitles'] = l$secondaryTitles;
     final l$collectionId = collectionId;
@@ -15908,6 +16035,7 @@ class Query$FetchMoreItemsForItemSection$section$$DefaultGridSection$metadata
   @override
   int get hashCode {
     final l$continueWatching = continueWatching;
+    final l$myList = myList;
     final l$secondaryTitles = secondaryTitles;
     final l$collectionId = collectionId;
     final l$useContext = useContext;
@@ -15915,6 +16043,7 @@ class Query$FetchMoreItemsForItemSection$section$$DefaultGridSection$metadata
     final l$$__typename = $__typename;
     return Object.hashAll([
       l$continueWatching,
+      l$myList,
       l$secondaryTitles,
       l$collectionId,
       l$useContext,
@@ -15936,6 +16065,11 @@ class Query$FetchMoreItemsForItemSection$section$$DefaultGridSection$metadata
     final l$continueWatching = continueWatching;
     final lOther$continueWatching = other.continueWatching;
     if (l$continueWatching != lOther$continueWatching) {
+      return false;
+    }
+    final l$myList = myList;
+    final lOther$myList = other.myList;
+    if (l$myList != lOther$myList) {
       return false;
     }
     final l$secondaryTitles = secondaryTitles;
@@ -15994,6 +16128,7 @@ abstract class CopyWith$Query$FetchMoreItemsForItemSection$section$$DefaultGridS
 
   TRes call({
     bool? continueWatching,
+    bool? myList,
     bool? secondaryTitles,
     String? collectionId,
     bool? useContext,
@@ -16023,6 +16158,7 @@ class _CopyWithImpl$Query$FetchMoreItemsForItemSection$section$$DefaultGridSecti
 
   TRes call({
     Object? continueWatching = _undefined,
+    Object? myList = _undefined,
     Object? secondaryTitles = _undefined,
     Object? collectionId = _undefined,
     Object? useContext = _undefined,
@@ -16035,6 +16171,9 @@ class _CopyWithImpl$Query$FetchMoreItemsForItemSection$section$$DefaultGridSecti
             continueWatching == _undefined || continueWatching == null
                 ? _instance.continueWatching
                 : (continueWatching as bool),
+        myList: myList == _undefined || myList == null
+            ? _instance.myList
+            : (myList as bool),
         secondaryTitles:
             secondaryTitles == _undefined || secondaryTitles == null
                 ? _instance.secondaryTitles
@@ -16067,6 +16206,7 @@ class _CopyWithStubImpl$Query$FetchMoreItemsForItemSection$section$$DefaultGridS
 
   call({
     bool? continueWatching,
+    bool? myList,
     bool? secondaryTitles,
     String? collectionId,
     bool? useContext,
@@ -18610,6 +18750,7 @@ class Query$FetchMoreItemsForItemSection$section$$PosterGridSection$metadata
         Fragment$ItemSection$$PosterGridSection$metadata {
   Query$FetchMoreItemsForItemSection$section$$PosterGridSection$metadata({
     required this.continueWatching,
+    required this.myList,
     required this.secondaryTitles,
     required this.collectionId,
     required this.useContext,
@@ -18620,6 +18761,7 @@ class Query$FetchMoreItemsForItemSection$section$$PosterGridSection$metadata
   factory Query$FetchMoreItemsForItemSection$section$$PosterGridSection$metadata.fromJson(
       Map<String, dynamic> json) {
     final l$continueWatching = json['continueWatching'];
+    final l$myList = json['myList'];
     final l$secondaryTitles = json['secondaryTitles'];
     final l$collectionId = json['collectionId'];
     final l$useContext = json['useContext'];
@@ -18627,6 +18769,7 @@ class Query$FetchMoreItemsForItemSection$section$$PosterGridSection$metadata
     final l$$__typename = json['__typename'];
     return Query$FetchMoreItemsForItemSection$section$$PosterGridSection$metadata(
       continueWatching: (l$continueWatching as bool),
+      myList: (l$myList as bool),
       secondaryTitles: (l$secondaryTitles as bool),
       collectionId: (l$collectionId as String),
       useContext: (l$useContext as bool),
@@ -18636,6 +18779,8 @@ class Query$FetchMoreItemsForItemSection$section$$PosterGridSection$metadata
   }
 
   final bool continueWatching;
+
+  final bool myList;
 
   final bool secondaryTitles;
 
@@ -18651,6 +18796,8 @@ class Query$FetchMoreItemsForItemSection$section$$PosterGridSection$metadata
     final _resultData = <String, dynamic>{};
     final l$continueWatching = continueWatching;
     _resultData['continueWatching'] = l$continueWatching;
+    final l$myList = myList;
+    _resultData['myList'] = l$myList;
     final l$secondaryTitles = secondaryTitles;
     _resultData['secondaryTitles'] = l$secondaryTitles;
     final l$collectionId = collectionId;
@@ -18667,6 +18814,7 @@ class Query$FetchMoreItemsForItemSection$section$$PosterGridSection$metadata
   @override
   int get hashCode {
     final l$continueWatching = continueWatching;
+    final l$myList = myList;
     final l$secondaryTitles = secondaryTitles;
     final l$collectionId = collectionId;
     final l$useContext = useContext;
@@ -18674,6 +18822,7 @@ class Query$FetchMoreItemsForItemSection$section$$PosterGridSection$metadata
     final l$$__typename = $__typename;
     return Object.hashAll([
       l$continueWatching,
+      l$myList,
       l$secondaryTitles,
       l$collectionId,
       l$useContext,
@@ -18695,6 +18844,11 @@ class Query$FetchMoreItemsForItemSection$section$$PosterGridSection$metadata
     final l$continueWatching = continueWatching;
     final lOther$continueWatching = other.continueWatching;
     if (l$continueWatching != lOther$continueWatching) {
+      return false;
+    }
+    final l$myList = myList;
+    final lOther$myList = other.myList;
+    if (l$myList != lOther$myList) {
       return false;
     }
     final l$secondaryTitles = secondaryTitles;
@@ -18753,6 +18907,7 @@ abstract class CopyWith$Query$FetchMoreItemsForItemSection$section$$PosterGridSe
 
   TRes call({
     bool? continueWatching,
+    bool? myList,
     bool? secondaryTitles,
     String? collectionId,
     bool? useContext,
@@ -18782,6 +18937,7 @@ class _CopyWithImpl$Query$FetchMoreItemsForItemSection$section$$PosterGridSectio
 
   TRes call({
     Object? continueWatching = _undefined,
+    Object? myList = _undefined,
     Object? secondaryTitles = _undefined,
     Object? collectionId = _undefined,
     Object? useContext = _undefined,
@@ -18794,6 +18950,9 @@ class _CopyWithImpl$Query$FetchMoreItemsForItemSection$section$$PosterGridSectio
             continueWatching == _undefined || continueWatching == null
                 ? _instance.continueWatching
                 : (continueWatching as bool),
+        myList: myList == _undefined || myList == null
+            ? _instance.myList
+            : (myList as bool),
         secondaryTitles:
             secondaryTitles == _undefined || secondaryTitles == null
                 ? _instance.secondaryTitles
@@ -18826,6 +18985,7 @@ class _CopyWithStubImpl$Query$FetchMoreItemsForItemSection$section$$PosterGridSe
 
   call({
     bool? continueWatching,
+    bool? myList,
     bool? secondaryTitles,
     String? collectionId,
     bool? useContext,
@@ -21367,6 +21527,7 @@ class Query$FetchMoreItemsForItemSection$section$$IconGridSection$metadata
         Fragment$ItemSection$$IconGridSection$metadata {
   Query$FetchMoreItemsForItemSection$section$$IconGridSection$metadata({
     required this.continueWatching,
+    required this.myList,
     required this.secondaryTitles,
     required this.collectionId,
     required this.useContext,
@@ -21377,6 +21538,7 @@ class Query$FetchMoreItemsForItemSection$section$$IconGridSection$metadata
   factory Query$FetchMoreItemsForItemSection$section$$IconGridSection$metadata.fromJson(
       Map<String, dynamic> json) {
     final l$continueWatching = json['continueWatching'];
+    final l$myList = json['myList'];
     final l$secondaryTitles = json['secondaryTitles'];
     final l$collectionId = json['collectionId'];
     final l$useContext = json['useContext'];
@@ -21384,6 +21546,7 @@ class Query$FetchMoreItemsForItemSection$section$$IconGridSection$metadata
     final l$$__typename = json['__typename'];
     return Query$FetchMoreItemsForItemSection$section$$IconGridSection$metadata(
       continueWatching: (l$continueWatching as bool),
+      myList: (l$myList as bool),
       secondaryTitles: (l$secondaryTitles as bool),
       collectionId: (l$collectionId as String),
       useContext: (l$useContext as bool),
@@ -21393,6 +21556,8 @@ class Query$FetchMoreItemsForItemSection$section$$IconGridSection$metadata
   }
 
   final bool continueWatching;
+
+  final bool myList;
 
   final bool secondaryTitles;
 
@@ -21408,6 +21573,8 @@ class Query$FetchMoreItemsForItemSection$section$$IconGridSection$metadata
     final _resultData = <String, dynamic>{};
     final l$continueWatching = continueWatching;
     _resultData['continueWatching'] = l$continueWatching;
+    final l$myList = myList;
+    _resultData['myList'] = l$myList;
     final l$secondaryTitles = secondaryTitles;
     _resultData['secondaryTitles'] = l$secondaryTitles;
     final l$collectionId = collectionId;
@@ -21424,6 +21591,7 @@ class Query$FetchMoreItemsForItemSection$section$$IconGridSection$metadata
   @override
   int get hashCode {
     final l$continueWatching = continueWatching;
+    final l$myList = myList;
     final l$secondaryTitles = secondaryTitles;
     final l$collectionId = collectionId;
     final l$useContext = useContext;
@@ -21431,6 +21599,7 @@ class Query$FetchMoreItemsForItemSection$section$$IconGridSection$metadata
     final l$$__typename = $__typename;
     return Object.hashAll([
       l$continueWatching,
+      l$myList,
       l$secondaryTitles,
       l$collectionId,
       l$useContext,
@@ -21452,6 +21621,11 @@ class Query$FetchMoreItemsForItemSection$section$$IconGridSection$metadata
     final l$continueWatching = continueWatching;
     final lOther$continueWatching = other.continueWatching;
     if (l$continueWatching != lOther$continueWatching) {
+      return false;
+    }
+    final l$myList = myList;
+    final lOther$myList = other.myList;
+    if (l$myList != lOther$myList) {
       return false;
     }
     final l$secondaryTitles = secondaryTitles;
@@ -21510,6 +21684,7 @@ abstract class CopyWith$Query$FetchMoreItemsForItemSection$section$$IconGridSect
 
   TRes call({
     bool? continueWatching,
+    bool? myList,
     bool? secondaryTitles,
     String? collectionId,
     bool? useContext,
@@ -21539,6 +21714,7 @@ class _CopyWithImpl$Query$FetchMoreItemsForItemSection$section$$IconGridSection$
 
   TRes call({
     Object? continueWatching = _undefined,
+    Object? myList = _undefined,
     Object? secondaryTitles = _undefined,
     Object? collectionId = _undefined,
     Object? useContext = _undefined,
@@ -21551,6 +21727,9 @@ class _CopyWithImpl$Query$FetchMoreItemsForItemSection$section$$IconGridSection$
             continueWatching == _undefined || continueWatching == null
                 ? _instance.continueWatching
                 : (continueWatching as bool),
+        myList: myList == _undefined || myList == null
+            ? _instance.myList
+            : (myList as bool),
         secondaryTitles:
             secondaryTitles == _undefined || secondaryTitles == null
                 ? _instance.secondaryTitles
@@ -21583,6 +21762,7 @@ class _CopyWithStubImpl$Query$FetchMoreItemsForItemSection$section$$IconGridSect
 
   call({
     bool? continueWatching,
+    bool? myList,
     bool? secondaryTitles,
     String? collectionId,
     bool? useContext,
@@ -24094,6 +24274,7 @@ class Query$FetchMoreItemsForItemSection$section$$IconSection$metadata
         Fragment$ItemSection$$IconSection$metadata {
   Query$FetchMoreItemsForItemSection$section$$IconSection$metadata({
     required this.continueWatching,
+    required this.myList,
     required this.secondaryTitles,
     required this.collectionId,
     required this.useContext,
@@ -24104,6 +24285,7 @@ class Query$FetchMoreItemsForItemSection$section$$IconSection$metadata
   factory Query$FetchMoreItemsForItemSection$section$$IconSection$metadata.fromJson(
       Map<String, dynamic> json) {
     final l$continueWatching = json['continueWatching'];
+    final l$myList = json['myList'];
     final l$secondaryTitles = json['secondaryTitles'];
     final l$collectionId = json['collectionId'];
     final l$useContext = json['useContext'];
@@ -24111,6 +24293,7 @@ class Query$FetchMoreItemsForItemSection$section$$IconSection$metadata
     final l$$__typename = json['__typename'];
     return Query$FetchMoreItemsForItemSection$section$$IconSection$metadata(
       continueWatching: (l$continueWatching as bool),
+      myList: (l$myList as bool),
       secondaryTitles: (l$secondaryTitles as bool),
       collectionId: (l$collectionId as String),
       useContext: (l$useContext as bool),
@@ -24120,6 +24303,8 @@ class Query$FetchMoreItemsForItemSection$section$$IconSection$metadata
   }
 
   final bool continueWatching;
+
+  final bool myList;
 
   final bool secondaryTitles;
 
@@ -24135,6 +24320,8 @@ class Query$FetchMoreItemsForItemSection$section$$IconSection$metadata
     final _resultData = <String, dynamic>{};
     final l$continueWatching = continueWatching;
     _resultData['continueWatching'] = l$continueWatching;
+    final l$myList = myList;
+    _resultData['myList'] = l$myList;
     final l$secondaryTitles = secondaryTitles;
     _resultData['secondaryTitles'] = l$secondaryTitles;
     final l$collectionId = collectionId;
@@ -24151,6 +24338,7 @@ class Query$FetchMoreItemsForItemSection$section$$IconSection$metadata
   @override
   int get hashCode {
     final l$continueWatching = continueWatching;
+    final l$myList = myList;
     final l$secondaryTitles = secondaryTitles;
     final l$collectionId = collectionId;
     final l$useContext = useContext;
@@ -24158,6 +24346,7 @@ class Query$FetchMoreItemsForItemSection$section$$IconSection$metadata
     final l$$__typename = $__typename;
     return Object.hashAll([
       l$continueWatching,
+      l$myList,
       l$secondaryTitles,
       l$collectionId,
       l$useContext,
@@ -24179,6 +24368,11 @@ class Query$FetchMoreItemsForItemSection$section$$IconSection$metadata
     final l$continueWatching = continueWatching;
     final lOther$continueWatching = other.continueWatching;
     if (l$continueWatching != lOther$continueWatching) {
+      return false;
+    }
+    final l$myList = myList;
+    final lOther$myList = other.myList;
+    if (l$myList != lOther$myList) {
       return false;
     }
     final l$secondaryTitles = secondaryTitles;
@@ -24236,6 +24430,7 @@ abstract class CopyWith$Query$FetchMoreItemsForItemSection$section$$IconSection$
 
   TRes call({
     bool? continueWatching,
+    bool? myList,
     bool? secondaryTitles,
     String? collectionId,
     bool? useContext,
@@ -24264,6 +24459,7 @@ class _CopyWithImpl$Query$FetchMoreItemsForItemSection$section$$IconSection$meta
 
   TRes call({
     Object? continueWatching = _undefined,
+    Object? myList = _undefined,
     Object? secondaryTitles = _undefined,
     Object? collectionId = _undefined,
     Object? useContext = _undefined,
@@ -24275,6 +24471,9 @@ class _CopyWithImpl$Query$FetchMoreItemsForItemSection$section$$IconSection$meta
             continueWatching == _undefined || continueWatching == null
                 ? _instance.continueWatching
                 : (continueWatching as bool),
+        myList: myList == _undefined || myList == null
+            ? _instance.myList
+            : (myList as bool),
         secondaryTitles:
             secondaryTitles == _undefined || secondaryTitles == null
                 ? _instance.secondaryTitles
@@ -24307,6 +24506,7 @@ class _CopyWithStubImpl$Query$FetchMoreItemsForItemSection$section$$IconSection$
 
   call({
     bool? continueWatching,
+    bool? myList,
     bool? secondaryTitles,
     String? collectionId,
     bool? useContext,
@@ -24788,6 +24988,7 @@ class Query$FetchMoreItemsForItemSection$section$$LabelSection$metadata
         Fragment$ItemSection$$LabelSection$metadata {
   Query$FetchMoreItemsForItemSection$section$$LabelSection$metadata({
     required this.continueWatching,
+    required this.myList,
     required this.secondaryTitles,
     required this.collectionId,
     required this.useContext,
@@ -24798,6 +24999,7 @@ class Query$FetchMoreItemsForItemSection$section$$LabelSection$metadata
   factory Query$FetchMoreItemsForItemSection$section$$LabelSection$metadata.fromJson(
       Map<String, dynamic> json) {
     final l$continueWatching = json['continueWatching'];
+    final l$myList = json['myList'];
     final l$secondaryTitles = json['secondaryTitles'];
     final l$collectionId = json['collectionId'];
     final l$useContext = json['useContext'];
@@ -24805,6 +25007,7 @@ class Query$FetchMoreItemsForItemSection$section$$LabelSection$metadata
     final l$$__typename = json['__typename'];
     return Query$FetchMoreItemsForItemSection$section$$LabelSection$metadata(
       continueWatching: (l$continueWatching as bool),
+      myList: (l$myList as bool),
       secondaryTitles: (l$secondaryTitles as bool),
       collectionId: (l$collectionId as String),
       useContext: (l$useContext as bool),
@@ -24814,6 +25017,8 @@ class Query$FetchMoreItemsForItemSection$section$$LabelSection$metadata
   }
 
   final bool continueWatching;
+
+  final bool myList;
 
   final bool secondaryTitles;
 
@@ -24829,6 +25034,8 @@ class Query$FetchMoreItemsForItemSection$section$$LabelSection$metadata
     final _resultData = <String, dynamic>{};
     final l$continueWatching = continueWatching;
     _resultData['continueWatching'] = l$continueWatching;
+    final l$myList = myList;
+    _resultData['myList'] = l$myList;
     final l$secondaryTitles = secondaryTitles;
     _resultData['secondaryTitles'] = l$secondaryTitles;
     final l$collectionId = collectionId;
@@ -24845,6 +25052,7 @@ class Query$FetchMoreItemsForItemSection$section$$LabelSection$metadata
   @override
   int get hashCode {
     final l$continueWatching = continueWatching;
+    final l$myList = myList;
     final l$secondaryTitles = secondaryTitles;
     final l$collectionId = collectionId;
     final l$useContext = useContext;
@@ -24852,6 +25060,7 @@ class Query$FetchMoreItemsForItemSection$section$$LabelSection$metadata
     final l$$__typename = $__typename;
     return Object.hashAll([
       l$continueWatching,
+      l$myList,
       l$secondaryTitles,
       l$collectionId,
       l$useContext,
@@ -24873,6 +25082,11 @@ class Query$FetchMoreItemsForItemSection$section$$LabelSection$metadata
     final l$continueWatching = continueWatching;
     final lOther$continueWatching = other.continueWatching;
     if (l$continueWatching != lOther$continueWatching) {
+      return false;
+    }
+    final l$myList = myList;
+    final lOther$myList = other.myList;
+    if (l$myList != lOther$myList) {
       return false;
     }
     final l$secondaryTitles = secondaryTitles;
@@ -24930,6 +25144,7 @@ abstract class CopyWith$Query$FetchMoreItemsForItemSection$section$$LabelSection
 
   TRes call({
     bool? continueWatching,
+    bool? myList,
     bool? secondaryTitles,
     String? collectionId,
     bool? useContext,
@@ -24958,6 +25173,7 @@ class _CopyWithImpl$Query$FetchMoreItemsForItemSection$section$$LabelSection$met
 
   TRes call({
     Object? continueWatching = _undefined,
+    Object? myList = _undefined,
     Object? secondaryTitles = _undefined,
     Object? collectionId = _undefined,
     Object? useContext = _undefined,
@@ -24969,6 +25185,9 @@ class _CopyWithImpl$Query$FetchMoreItemsForItemSection$section$$LabelSection$met
             continueWatching == _undefined || continueWatching == null
                 ? _instance.continueWatching
                 : (continueWatching as bool),
+        myList: myList == _undefined || myList == null
+            ? _instance.myList
+            : (myList as bool),
         secondaryTitles:
             secondaryTitles == _undefined || secondaryTitles == null
                 ? _instance.secondaryTitles
@@ -25001,6 +25220,7 @@ class _CopyWithStubImpl$Query$FetchMoreItemsForItemSection$section$$LabelSection
 
   call({
     bool? continueWatching,
+    bool? myList,
     bool? secondaryTitles,
     String? collectionId,
     bool? useContext,
@@ -28017,6 +28237,7 @@ class Query$GetSection$section$$PosterSection$metadata
         Fragment$ItemSection$$PosterSection$metadata {
   Query$GetSection$section$$PosterSection$metadata({
     required this.continueWatching,
+    required this.myList,
     required this.secondaryTitles,
     required this.collectionId,
     required this.useContext,
@@ -28027,6 +28248,7 @@ class Query$GetSection$section$$PosterSection$metadata
   factory Query$GetSection$section$$PosterSection$metadata.fromJson(
       Map<String, dynamic> json) {
     final l$continueWatching = json['continueWatching'];
+    final l$myList = json['myList'];
     final l$secondaryTitles = json['secondaryTitles'];
     final l$collectionId = json['collectionId'];
     final l$useContext = json['useContext'];
@@ -28034,6 +28256,7 @@ class Query$GetSection$section$$PosterSection$metadata
     final l$$__typename = json['__typename'];
     return Query$GetSection$section$$PosterSection$metadata(
       continueWatching: (l$continueWatching as bool),
+      myList: (l$myList as bool),
       secondaryTitles: (l$secondaryTitles as bool),
       collectionId: (l$collectionId as String),
       useContext: (l$useContext as bool),
@@ -28043,6 +28266,8 @@ class Query$GetSection$section$$PosterSection$metadata
   }
 
   final bool continueWatching;
+
+  final bool myList;
 
   final bool secondaryTitles;
 
@@ -28058,6 +28283,8 @@ class Query$GetSection$section$$PosterSection$metadata
     final _resultData = <String, dynamic>{};
     final l$continueWatching = continueWatching;
     _resultData['continueWatching'] = l$continueWatching;
+    final l$myList = myList;
+    _resultData['myList'] = l$myList;
     final l$secondaryTitles = secondaryTitles;
     _resultData['secondaryTitles'] = l$secondaryTitles;
     final l$collectionId = collectionId;
@@ -28074,6 +28301,7 @@ class Query$GetSection$section$$PosterSection$metadata
   @override
   int get hashCode {
     final l$continueWatching = continueWatching;
+    final l$myList = myList;
     final l$secondaryTitles = secondaryTitles;
     final l$collectionId = collectionId;
     final l$useContext = useContext;
@@ -28081,6 +28309,7 @@ class Query$GetSection$section$$PosterSection$metadata
     final l$$__typename = $__typename;
     return Object.hashAll([
       l$continueWatching,
+      l$myList,
       l$secondaryTitles,
       l$collectionId,
       l$useContext,
@@ -28101,6 +28330,11 @@ class Query$GetSection$section$$PosterSection$metadata
     final l$continueWatching = continueWatching;
     final lOther$continueWatching = other.continueWatching;
     if (l$continueWatching != lOther$continueWatching) {
+      return false;
+    }
+    final l$myList = myList;
+    final lOther$myList = other.myList;
+    if (l$myList != lOther$myList) {
       return false;
     }
     final l$secondaryTitles = secondaryTitles;
@@ -28154,6 +28388,7 @@ abstract class CopyWith$Query$GetSection$section$$PosterSection$metadata<TRes> {
 
   TRes call({
     bool? continueWatching,
+    bool? myList,
     bool? secondaryTitles,
     String? collectionId,
     bool? useContext,
@@ -28177,6 +28412,7 @@ class _CopyWithImpl$Query$GetSection$section$$PosterSection$metadata<TRes>
 
   TRes call({
     Object? continueWatching = _undefined,
+    Object? myList = _undefined,
     Object? secondaryTitles = _undefined,
     Object? collectionId = _undefined,
     Object? useContext = _undefined,
@@ -28188,6 +28424,9 @@ class _CopyWithImpl$Query$GetSection$section$$PosterSection$metadata<TRes>
             continueWatching == _undefined || continueWatching == null
                 ? _instance.continueWatching
                 : (continueWatching as bool),
+        myList: myList == _undefined || myList == null
+            ? _instance.myList
+            : (myList as bool),
         secondaryTitles:
             secondaryTitles == _undefined || secondaryTitles == null
                 ? _instance.secondaryTitles
@@ -28216,6 +28455,7 @@ class _CopyWithStubImpl$Query$GetSection$section$$PosterSection$metadata<TRes>
 
   call({
     bool? continueWatching,
+    bool? myList,
     bool? secondaryTitles,
     String? collectionId,
     bool? useContext,
@@ -30645,6 +30885,7 @@ class Query$GetSection$section$$FeaturedSection$metadata
         Fragment$ItemSection$$FeaturedSection$metadata {
   Query$GetSection$section$$FeaturedSection$metadata({
     required this.continueWatching,
+    required this.myList,
     required this.secondaryTitles,
     required this.collectionId,
     required this.useContext,
@@ -30655,6 +30896,7 @@ class Query$GetSection$section$$FeaturedSection$metadata
   factory Query$GetSection$section$$FeaturedSection$metadata.fromJson(
       Map<String, dynamic> json) {
     final l$continueWatching = json['continueWatching'];
+    final l$myList = json['myList'];
     final l$secondaryTitles = json['secondaryTitles'];
     final l$collectionId = json['collectionId'];
     final l$useContext = json['useContext'];
@@ -30662,6 +30904,7 @@ class Query$GetSection$section$$FeaturedSection$metadata
     final l$$__typename = json['__typename'];
     return Query$GetSection$section$$FeaturedSection$metadata(
       continueWatching: (l$continueWatching as bool),
+      myList: (l$myList as bool),
       secondaryTitles: (l$secondaryTitles as bool),
       collectionId: (l$collectionId as String),
       useContext: (l$useContext as bool),
@@ -30671,6 +30914,8 @@ class Query$GetSection$section$$FeaturedSection$metadata
   }
 
   final bool continueWatching;
+
+  final bool myList;
 
   final bool secondaryTitles;
 
@@ -30686,6 +30931,8 @@ class Query$GetSection$section$$FeaturedSection$metadata
     final _resultData = <String, dynamic>{};
     final l$continueWatching = continueWatching;
     _resultData['continueWatching'] = l$continueWatching;
+    final l$myList = myList;
+    _resultData['myList'] = l$myList;
     final l$secondaryTitles = secondaryTitles;
     _resultData['secondaryTitles'] = l$secondaryTitles;
     final l$collectionId = collectionId;
@@ -30702,6 +30949,7 @@ class Query$GetSection$section$$FeaturedSection$metadata
   @override
   int get hashCode {
     final l$continueWatching = continueWatching;
+    final l$myList = myList;
     final l$secondaryTitles = secondaryTitles;
     final l$collectionId = collectionId;
     final l$useContext = useContext;
@@ -30709,6 +30957,7 @@ class Query$GetSection$section$$FeaturedSection$metadata
     final l$$__typename = $__typename;
     return Object.hashAll([
       l$continueWatching,
+      l$myList,
       l$secondaryTitles,
       l$collectionId,
       l$useContext,
@@ -30729,6 +30978,11 @@ class Query$GetSection$section$$FeaturedSection$metadata
     final l$continueWatching = continueWatching;
     final lOther$continueWatching = other.continueWatching;
     if (l$continueWatching != lOther$continueWatching) {
+      return false;
+    }
+    final l$myList = myList;
+    final lOther$myList = other.myList;
+    if (l$myList != lOther$myList) {
       return false;
     }
     final l$secondaryTitles = secondaryTitles;
@@ -30784,6 +31038,7 @@ abstract class CopyWith$Query$GetSection$section$$FeaturedSection$metadata<
 
   TRes call({
     bool? continueWatching,
+    bool? myList,
     bool? secondaryTitles,
     String? collectionId,
     bool? useContext,
@@ -30808,6 +31063,7 @@ class _CopyWithImpl$Query$GetSection$section$$FeaturedSection$metadata<TRes>
 
   TRes call({
     Object? continueWatching = _undefined,
+    Object? myList = _undefined,
     Object? secondaryTitles = _undefined,
     Object? collectionId = _undefined,
     Object? useContext = _undefined,
@@ -30819,6 +31075,9 @@ class _CopyWithImpl$Query$GetSection$section$$FeaturedSection$metadata<TRes>
             continueWatching == _undefined || continueWatching == null
                 ? _instance.continueWatching
                 : (continueWatching as bool),
+        myList: myList == _undefined || myList == null
+            ? _instance.myList
+            : (myList as bool),
         secondaryTitles:
             secondaryTitles == _undefined || secondaryTitles == null
                 ? _instance.secondaryTitles
@@ -30849,6 +31108,7 @@ class _CopyWithStubImpl$Query$GetSection$section$$FeaturedSection$metadata<TRes>
 
   call({
     bool? continueWatching,
+    bool? myList,
     bool? secondaryTitles,
     String? collectionId,
     bool? useContext,
@@ -33282,6 +33542,7 @@ class Query$GetSection$section$$DefaultSection$metadata
         Fragment$ItemSection$$DefaultSection$metadata {
   Query$GetSection$section$$DefaultSection$metadata({
     required this.continueWatching,
+    required this.myList,
     required this.secondaryTitles,
     required this.collectionId,
     required this.useContext,
@@ -33292,6 +33553,7 @@ class Query$GetSection$section$$DefaultSection$metadata
   factory Query$GetSection$section$$DefaultSection$metadata.fromJson(
       Map<String, dynamic> json) {
     final l$continueWatching = json['continueWatching'];
+    final l$myList = json['myList'];
     final l$secondaryTitles = json['secondaryTitles'];
     final l$collectionId = json['collectionId'];
     final l$useContext = json['useContext'];
@@ -33299,6 +33561,7 @@ class Query$GetSection$section$$DefaultSection$metadata
     final l$$__typename = json['__typename'];
     return Query$GetSection$section$$DefaultSection$metadata(
       continueWatching: (l$continueWatching as bool),
+      myList: (l$myList as bool),
       secondaryTitles: (l$secondaryTitles as bool),
       collectionId: (l$collectionId as String),
       useContext: (l$useContext as bool),
@@ -33308,6 +33571,8 @@ class Query$GetSection$section$$DefaultSection$metadata
   }
 
   final bool continueWatching;
+
+  final bool myList;
 
   final bool secondaryTitles;
 
@@ -33323,6 +33588,8 @@ class Query$GetSection$section$$DefaultSection$metadata
     final _resultData = <String, dynamic>{};
     final l$continueWatching = continueWatching;
     _resultData['continueWatching'] = l$continueWatching;
+    final l$myList = myList;
+    _resultData['myList'] = l$myList;
     final l$secondaryTitles = secondaryTitles;
     _resultData['secondaryTitles'] = l$secondaryTitles;
     final l$collectionId = collectionId;
@@ -33339,6 +33606,7 @@ class Query$GetSection$section$$DefaultSection$metadata
   @override
   int get hashCode {
     final l$continueWatching = continueWatching;
+    final l$myList = myList;
     final l$secondaryTitles = secondaryTitles;
     final l$collectionId = collectionId;
     final l$useContext = useContext;
@@ -33346,6 +33614,7 @@ class Query$GetSection$section$$DefaultSection$metadata
     final l$$__typename = $__typename;
     return Object.hashAll([
       l$continueWatching,
+      l$myList,
       l$secondaryTitles,
       l$collectionId,
       l$useContext,
@@ -33366,6 +33635,11 @@ class Query$GetSection$section$$DefaultSection$metadata
     final l$continueWatching = continueWatching;
     final lOther$continueWatching = other.continueWatching;
     if (l$continueWatching != lOther$continueWatching) {
+      return false;
+    }
+    final l$myList = myList;
+    final lOther$myList = other.myList;
+    if (l$myList != lOther$myList) {
       return false;
     }
     final l$secondaryTitles = secondaryTitles;
@@ -33421,6 +33695,7 @@ abstract class CopyWith$Query$GetSection$section$$DefaultSection$metadata<
 
   TRes call({
     bool? continueWatching,
+    bool? myList,
     bool? secondaryTitles,
     String? collectionId,
     bool? useContext,
@@ -33445,6 +33720,7 @@ class _CopyWithImpl$Query$GetSection$section$$DefaultSection$metadata<TRes>
 
   TRes call({
     Object? continueWatching = _undefined,
+    Object? myList = _undefined,
     Object? secondaryTitles = _undefined,
     Object? collectionId = _undefined,
     Object? useContext = _undefined,
@@ -33456,6 +33732,9 @@ class _CopyWithImpl$Query$GetSection$section$$DefaultSection$metadata<TRes>
             continueWatching == _undefined || continueWatching == null
                 ? _instance.continueWatching
                 : (continueWatching as bool),
+        myList: myList == _undefined || myList == null
+            ? _instance.myList
+            : (myList as bool),
         secondaryTitles:
             secondaryTitles == _undefined || secondaryTitles == null
                 ? _instance.secondaryTitles
@@ -33486,6 +33765,7 @@ class _CopyWithStubImpl$Query$GetSection$section$$DefaultSection$metadata<TRes>
 
   call({
     bool? continueWatching,
+    bool? myList,
     bool? secondaryTitles,
     String? collectionId,
     bool? useContext,
@@ -35914,6 +36194,7 @@ class Query$GetSection$section$$CardSection$metadata
         Fragment$ItemSection$$CardSection$metadata {
   Query$GetSection$section$$CardSection$metadata({
     required this.continueWatching,
+    required this.myList,
     required this.secondaryTitles,
     required this.collectionId,
     required this.useContext,
@@ -35924,6 +36205,7 @@ class Query$GetSection$section$$CardSection$metadata
   factory Query$GetSection$section$$CardSection$metadata.fromJson(
       Map<String, dynamic> json) {
     final l$continueWatching = json['continueWatching'];
+    final l$myList = json['myList'];
     final l$secondaryTitles = json['secondaryTitles'];
     final l$collectionId = json['collectionId'];
     final l$useContext = json['useContext'];
@@ -35931,6 +36213,7 @@ class Query$GetSection$section$$CardSection$metadata
     final l$$__typename = json['__typename'];
     return Query$GetSection$section$$CardSection$metadata(
       continueWatching: (l$continueWatching as bool),
+      myList: (l$myList as bool),
       secondaryTitles: (l$secondaryTitles as bool),
       collectionId: (l$collectionId as String),
       useContext: (l$useContext as bool),
@@ -35940,6 +36223,8 @@ class Query$GetSection$section$$CardSection$metadata
   }
 
   final bool continueWatching;
+
+  final bool myList;
 
   final bool secondaryTitles;
 
@@ -35955,6 +36240,8 @@ class Query$GetSection$section$$CardSection$metadata
     final _resultData = <String, dynamic>{};
     final l$continueWatching = continueWatching;
     _resultData['continueWatching'] = l$continueWatching;
+    final l$myList = myList;
+    _resultData['myList'] = l$myList;
     final l$secondaryTitles = secondaryTitles;
     _resultData['secondaryTitles'] = l$secondaryTitles;
     final l$collectionId = collectionId;
@@ -35971,6 +36258,7 @@ class Query$GetSection$section$$CardSection$metadata
   @override
   int get hashCode {
     final l$continueWatching = continueWatching;
+    final l$myList = myList;
     final l$secondaryTitles = secondaryTitles;
     final l$collectionId = collectionId;
     final l$useContext = useContext;
@@ -35978,6 +36266,7 @@ class Query$GetSection$section$$CardSection$metadata
     final l$$__typename = $__typename;
     return Object.hashAll([
       l$continueWatching,
+      l$myList,
       l$secondaryTitles,
       l$collectionId,
       l$useContext,
@@ -35998,6 +36287,11 @@ class Query$GetSection$section$$CardSection$metadata
     final l$continueWatching = continueWatching;
     final lOther$continueWatching = other.continueWatching;
     if (l$continueWatching != lOther$continueWatching) {
+      return false;
+    }
+    final l$myList = myList;
+    final lOther$myList = other.myList;
+    if (l$myList != lOther$myList) {
       return false;
     }
     final l$secondaryTitles = secondaryTitles;
@@ -36051,6 +36345,7 @@ abstract class CopyWith$Query$GetSection$section$$CardSection$metadata<TRes> {
 
   TRes call({
     bool? continueWatching,
+    bool? myList,
     bool? secondaryTitles,
     String? collectionId,
     bool? useContext,
@@ -36074,6 +36369,7 @@ class _CopyWithImpl$Query$GetSection$section$$CardSection$metadata<TRes>
 
   TRes call({
     Object? continueWatching = _undefined,
+    Object? myList = _undefined,
     Object? secondaryTitles = _undefined,
     Object? collectionId = _undefined,
     Object? useContext = _undefined,
@@ -36085,6 +36381,9 @@ class _CopyWithImpl$Query$GetSection$section$$CardSection$metadata<TRes>
             continueWatching == _undefined || continueWatching == null
                 ? _instance.continueWatching
                 : (continueWatching as bool),
+        myList: myList == _undefined || myList == null
+            ? _instance.myList
+            : (myList as bool),
         secondaryTitles:
             secondaryTitles == _undefined || secondaryTitles == null
                 ? _instance.secondaryTitles
@@ -36113,6 +36412,7 @@ class _CopyWithStubImpl$Query$GetSection$section$$CardSection$metadata<TRes>
 
   call({
     bool? continueWatching,
+    bool? myList,
     bool? secondaryTitles,
     String? collectionId,
     bool? useContext,
@@ -38646,6 +38946,7 @@ class Query$GetSection$section$$ListSection$metadata
         Fragment$ItemSection$$ListSection$metadata {
   Query$GetSection$section$$ListSection$metadata({
     required this.continueWatching,
+    required this.myList,
     required this.secondaryTitles,
     required this.collectionId,
     required this.useContext,
@@ -38656,6 +38957,7 @@ class Query$GetSection$section$$ListSection$metadata
   factory Query$GetSection$section$$ListSection$metadata.fromJson(
       Map<String, dynamic> json) {
     final l$continueWatching = json['continueWatching'];
+    final l$myList = json['myList'];
     final l$secondaryTitles = json['secondaryTitles'];
     final l$collectionId = json['collectionId'];
     final l$useContext = json['useContext'];
@@ -38663,6 +38965,7 @@ class Query$GetSection$section$$ListSection$metadata
     final l$$__typename = json['__typename'];
     return Query$GetSection$section$$ListSection$metadata(
       continueWatching: (l$continueWatching as bool),
+      myList: (l$myList as bool),
       secondaryTitles: (l$secondaryTitles as bool),
       collectionId: (l$collectionId as String),
       useContext: (l$useContext as bool),
@@ -38672,6 +38975,8 @@ class Query$GetSection$section$$ListSection$metadata
   }
 
   final bool continueWatching;
+
+  final bool myList;
 
   final bool secondaryTitles;
 
@@ -38687,6 +38992,8 @@ class Query$GetSection$section$$ListSection$metadata
     final _resultData = <String, dynamic>{};
     final l$continueWatching = continueWatching;
     _resultData['continueWatching'] = l$continueWatching;
+    final l$myList = myList;
+    _resultData['myList'] = l$myList;
     final l$secondaryTitles = secondaryTitles;
     _resultData['secondaryTitles'] = l$secondaryTitles;
     final l$collectionId = collectionId;
@@ -38703,6 +39010,7 @@ class Query$GetSection$section$$ListSection$metadata
   @override
   int get hashCode {
     final l$continueWatching = continueWatching;
+    final l$myList = myList;
     final l$secondaryTitles = secondaryTitles;
     final l$collectionId = collectionId;
     final l$useContext = useContext;
@@ -38710,6 +39018,7 @@ class Query$GetSection$section$$ListSection$metadata
     final l$$__typename = $__typename;
     return Object.hashAll([
       l$continueWatching,
+      l$myList,
       l$secondaryTitles,
       l$collectionId,
       l$useContext,
@@ -38730,6 +39039,11 @@ class Query$GetSection$section$$ListSection$metadata
     final l$continueWatching = continueWatching;
     final lOther$continueWatching = other.continueWatching;
     if (l$continueWatching != lOther$continueWatching) {
+      return false;
+    }
+    final l$myList = myList;
+    final lOther$myList = other.myList;
+    if (l$myList != lOther$myList) {
       return false;
     }
     final l$secondaryTitles = secondaryTitles;
@@ -38783,6 +39097,7 @@ abstract class CopyWith$Query$GetSection$section$$ListSection$metadata<TRes> {
 
   TRes call({
     bool? continueWatching,
+    bool? myList,
     bool? secondaryTitles,
     String? collectionId,
     bool? useContext,
@@ -38806,6 +39121,7 @@ class _CopyWithImpl$Query$GetSection$section$$ListSection$metadata<TRes>
 
   TRes call({
     Object? continueWatching = _undefined,
+    Object? myList = _undefined,
     Object? secondaryTitles = _undefined,
     Object? collectionId = _undefined,
     Object? useContext = _undefined,
@@ -38817,6 +39133,9 @@ class _CopyWithImpl$Query$GetSection$section$$ListSection$metadata<TRes>
             continueWatching == _undefined || continueWatching == null
                 ? _instance.continueWatching
                 : (continueWatching as bool),
+        myList: myList == _undefined || myList == null
+            ? _instance.myList
+            : (myList as bool),
         secondaryTitles:
             secondaryTitles == _undefined || secondaryTitles == null
                 ? _instance.secondaryTitles
@@ -38845,6 +39164,7 @@ class _CopyWithStubImpl$Query$GetSection$section$$ListSection$metadata<TRes>
 
   call({
     bool? continueWatching,
+    bool? myList,
     bool? secondaryTitles,
     String? collectionId,
     bool? useContext,
@@ -41275,6 +41595,7 @@ class Query$GetSection$section$$CardListSection$metadata
         Fragment$ItemSection$$CardListSection$metadata {
   Query$GetSection$section$$CardListSection$metadata({
     required this.continueWatching,
+    required this.myList,
     required this.secondaryTitles,
     required this.collectionId,
     required this.useContext,
@@ -41285,6 +41606,7 @@ class Query$GetSection$section$$CardListSection$metadata
   factory Query$GetSection$section$$CardListSection$metadata.fromJson(
       Map<String, dynamic> json) {
     final l$continueWatching = json['continueWatching'];
+    final l$myList = json['myList'];
     final l$secondaryTitles = json['secondaryTitles'];
     final l$collectionId = json['collectionId'];
     final l$useContext = json['useContext'];
@@ -41292,6 +41614,7 @@ class Query$GetSection$section$$CardListSection$metadata
     final l$$__typename = json['__typename'];
     return Query$GetSection$section$$CardListSection$metadata(
       continueWatching: (l$continueWatching as bool),
+      myList: (l$myList as bool),
       secondaryTitles: (l$secondaryTitles as bool),
       collectionId: (l$collectionId as String),
       useContext: (l$useContext as bool),
@@ -41301,6 +41624,8 @@ class Query$GetSection$section$$CardListSection$metadata
   }
 
   final bool continueWatching;
+
+  final bool myList;
 
   final bool secondaryTitles;
 
@@ -41316,6 +41641,8 @@ class Query$GetSection$section$$CardListSection$metadata
     final _resultData = <String, dynamic>{};
     final l$continueWatching = continueWatching;
     _resultData['continueWatching'] = l$continueWatching;
+    final l$myList = myList;
+    _resultData['myList'] = l$myList;
     final l$secondaryTitles = secondaryTitles;
     _resultData['secondaryTitles'] = l$secondaryTitles;
     final l$collectionId = collectionId;
@@ -41332,6 +41659,7 @@ class Query$GetSection$section$$CardListSection$metadata
   @override
   int get hashCode {
     final l$continueWatching = continueWatching;
+    final l$myList = myList;
     final l$secondaryTitles = secondaryTitles;
     final l$collectionId = collectionId;
     final l$useContext = useContext;
@@ -41339,6 +41667,7 @@ class Query$GetSection$section$$CardListSection$metadata
     final l$$__typename = $__typename;
     return Object.hashAll([
       l$continueWatching,
+      l$myList,
       l$secondaryTitles,
       l$collectionId,
       l$useContext,
@@ -41359,6 +41688,11 @@ class Query$GetSection$section$$CardListSection$metadata
     final l$continueWatching = continueWatching;
     final lOther$continueWatching = other.continueWatching;
     if (l$continueWatching != lOther$continueWatching) {
+      return false;
+    }
+    final l$myList = myList;
+    final lOther$myList = other.myList;
+    if (l$myList != lOther$myList) {
       return false;
     }
     final l$secondaryTitles = secondaryTitles;
@@ -41414,6 +41748,7 @@ abstract class CopyWith$Query$GetSection$section$$CardListSection$metadata<
 
   TRes call({
     bool? continueWatching,
+    bool? myList,
     bool? secondaryTitles,
     String? collectionId,
     bool? useContext,
@@ -41438,6 +41773,7 @@ class _CopyWithImpl$Query$GetSection$section$$CardListSection$metadata<TRes>
 
   TRes call({
     Object? continueWatching = _undefined,
+    Object? myList = _undefined,
     Object? secondaryTitles = _undefined,
     Object? collectionId = _undefined,
     Object? useContext = _undefined,
@@ -41449,6 +41785,9 @@ class _CopyWithImpl$Query$GetSection$section$$CardListSection$metadata<TRes>
             continueWatching == _undefined || continueWatching == null
                 ? _instance.continueWatching
                 : (continueWatching as bool),
+        myList: myList == _undefined || myList == null
+            ? _instance.myList
+            : (myList as bool),
         secondaryTitles:
             secondaryTitles == _undefined || secondaryTitles == null
                 ? _instance.secondaryTitles
@@ -41479,6 +41818,7 @@ class _CopyWithStubImpl$Query$GetSection$section$$CardListSection$metadata<TRes>
 
   call({
     bool? continueWatching,
+    bool? myList,
     bool? secondaryTitles,
     String? collectionId,
     bool? useContext,
@@ -41950,6 +42290,7 @@ class Query$GetSection$section$$DefaultGridSection$metadata
         Fragment$ItemSection$$DefaultGridSection$metadata {
   Query$GetSection$section$$DefaultGridSection$metadata({
     required this.continueWatching,
+    required this.myList,
     required this.secondaryTitles,
     required this.collectionId,
     required this.useContext,
@@ -41960,6 +42301,7 @@ class Query$GetSection$section$$DefaultGridSection$metadata
   factory Query$GetSection$section$$DefaultGridSection$metadata.fromJson(
       Map<String, dynamic> json) {
     final l$continueWatching = json['continueWatching'];
+    final l$myList = json['myList'];
     final l$secondaryTitles = json['secondaryTitles'];
     final l$collectionId = json['collectionId'];
     final l$useContext = json['useContext'];
@@ -41967,6 +42309,7 @@ class Query$GetSection$section$$DefaultGridSection$metadata
     final l$$__typename = json['__typename'];
     return Query$GetSection$section$$DefaultGridSection$metadata(
       continueWatching: (l$continueWatching as bool),
+      myList: (l$myList as bool),
       secondaryTitles: (l$secondaryTitles as bool),
       collectionId: (l$collectionId as String),
       useContext: (l$useContext as bool),
@@ -41976,6 +42319,8 @@ class Query$GetSection$section$$DefaultGridSection$metadata
   }
 
   final bool continueWatching;
+
+  final bool myList;
 
   final bool secondaryTitles;
 
@@ -41991,6 +42336,8 @@ class Query$GetSection$section$$DefaultGridSection$metadata
     final _resultData = <String, dynamic>{};
     final l$continueWatching = continueWatching;
     _resultData['continueWatching'] = l$continueWatching;
+    final l$myList = myList;
+    _resultData['myList'] = l$myList;
     final l$secondaryTitles = secondaryTitles;
     _resultData['secondaryTitles'] = l$secondaryTitles;
     final l$collectionId = collectionId;
@@ -42007,6 +42354,7 @@ class Query$GetSection$section$$DefaultGridSection$metadata
   @override
   int get hashCode {
     final l$continueWatching = continueWatching;
+    final l$myList = myList;
     final l$secondaryTitles = secondaryTitles;
     final l$collectionId = collectionId;
     final l$useContext = useContext;
@@ -42014,6 +42362,7 @@ class Query$GetSection$section$$DefaultGridSection$metadata
     final l$$__typename = $__typename;
     return Object.hashAll([
       l$continueWatching,
+      l$myList,
       l$secondaryTitles,
       l$collectionId,
       l$useContext,
@@ -42034,6 +42383,11 @@ class Query$GetSection$section$$DefaultGridSection$metadata
     final l$continueWatching = continueWatching;
     final lOther$continueWatching = other.continueWatching;
     if (l$continueWatching != lOther$continueWatching) {
+      return false;
+    }
+    final l$myList = myList;
+    final lOther$myList = other.myList;
+    if (l$myList != lOther$myList) {
       return false;
     }
     final l$secondaryTitles = secondaryTitles;
@@ -42089,6 +42443,7 @@ abstract class CopyWith$Query$GetSection$section$$DefaultGridSection$metadata<
 
   TRes call({
     bool? continueWatching,
+    bool? myList,
     bool? secondaryTitles,
     String? collectionId,
     bool? useContext,
@@ -42114,6 +42469,7 @@ class _CopyWithImpl$Query$GetSection$section$$DefaultGridSection$metadata<TRes>
 
   TRes call({
     Object? continueWatching = _undefined,
+    Object? myList = _undefined,
     Object? secondaryTitles = _undefined,
     Object? collectionId = _undefined,
     Object? useContext = _undefined,
@@ -42125,6 +42481,9 @@ class _CopyWithImpl$Query$GetSection$section$$DefaultGridSection$metadata<TRes>
             continueWatching == _undefined || continueWatching == null
                 ? _instance.continueWatching
                 : (continueWatching as bool),
+        myList: myList == _undefined || myList == null
+            ? _instance.myList
+            : (myList as bool),
         secondaryTitles:
             secondaryTitles == _undefined || secondaryTitles == null
                 ? _instance.secondaryTitles
@@ -42156,6 +42515,7 @@ class _CopyWithStubImpl$Query$GetSection$section$$DefaultGridSection$metadata<
 
   call({
     bool? continueWatching,
+    bool? myList,
     bool? secondaryTitles,
     String? collectionId,
     bool? useContext,
@@ -44641,6 +45001,7 @@ class Query$GetSection$section$$PosterGridSection$metadata
         Fragment$ItemSection$$PosterGridSection$metadata {
   Query$GetSection$section$$PosterGridSection$metadata({
     required this.continueWatching,
+    required this.myList,
     required this.secondaryTitles,
     required this.collectionId,
     required this.useContext,
@@ -44651,6 +45012,7 @@ class Query$GetSection$section$$PosterGridSection$metadata
   factory Query$GetSection$section$$PosterGridSection$metadata.fromJson(
       Map<String, dynamic> json) {
     final l$continueWatching = json['continueWatching'];
+    final l$myList = json['myList'];
     final l$secondaryTitles = json['secondaryTitles'];
     final l$collectionId = json['collectionId'];
     final l$useContext = json['useContext'];
@@ -44658,6 +45020,7 @@ class Query$GetSection$section$$PosterGridSection$metadata
     final l$$__typename = json['__typename'];
     return Query$GetSection$section$$PosterGridSection$metadata(
       continueWatching: (l$continueWatching as bool),
+      myList: (l$myList as bool),
       secondaryTitles: (l$secondaryTitles as bool),
       collectionId: (l$collectionId as String),
       useContext: (l$useContext as bool),
@@ -44667,6 +45030,8 @@ class Query$GetSection$section$$PosterGridSection$metadata
   }
 
   final bool continueWatching;
+
+  final bool myList;
 
   final bool secondaryTitles;
 
@@ -44682,6 +45047,8 @@ class Query$GetSection$section$$PosterGridSection$metadata
     final _resultData = <String, dynamic>{};
     final l$continueWatching = continueWatching;
     _resultData['continueWatching'] = l$continueWatching;
+    final l$myList = myList;
+    _resultData['myList'] = l$myList;
     final l$secondaryTitles = secondaryTitles;
     _resultData['secondaryTitles'] = l$secondaryTitles;
     final l$collectionId = collectionId;
@@ -44698,6 +45065,7 @@ class Query$GetSection$section$$PosterGridSection$metadata
   @override
   int get hashCode {
     final l$continueWatching = continueWatching;
+    final l$myList = myList;
     final l$secondaryTitles = secondaryTitles;
     final l$collectionId = collectionId;
     final l$useContext = useContext;
@@ -44705,6 +45073,7 @@ class Query$GetSection$section$$PosterGridSection$metadata
     final l$$__typename = $__typename;
     return Object.hashAll([
       l$continueWatching,
+      l$myList,
       l$secondaryTitles,
       l$collectionId,
       l$useContext,
@@ -44725,6 +45094,11 @@ class Query$GetSection$section$$PosterGridSection$metadata
     final l$continueWatching = continueWatching;
     final lOther$continueWatching = other.continueWatching;
     if (l$continueWatching != lOther$continueWatching) {
+      return false;
+    }
+    final l$myList = myList;
+    final lOther$myList = other.myList;
+    if (l$myList != lOther$myList) {
       return false;
     }
     final l$secondaryTitles = secondaryTitles;
@@ -44780,6 +45154,7 @@ abstract class CopyWith$Query$GetSection$section$$PosterGridSection$metadata<
 
   TRes call({
     bool? continueWatching,
+    bool? myList,
     bool? secondaryTitles,
     String? collectionId,
     bool? useContext,
@@ -44805,6 +45180,7 @@ class _CopyWithImpl$Query$GetSection$section$$PosterGridSection$metadata<TRes>
 
   TRes call({
     Object? continueWatching = _undefined,
+    Object? myList = _undefined,
     Object? secondaryTitles = _undefined,
     Object? collectionId = _undefined,
     Object? useContext = _undefined,
@@ -44816,6 +45192,9 @@ class _CopyWithImpl$Query$GetSection$section$$PosterGridSection$metadata<TRes>
             continueWatching == _undefined || continueWatching == null
                 ? _instance.continueWatching
                 : (continueWatching as bool),
+        myList: myList == _undefined || myList == null
+            ? _instance.myList
+            : (myList as bool),
         secondaryTitles:
             secondaryTitles == _undefined || secondaryTitles == null
                 ? _instance.secondaryTitles
@@ -44847,6 +45226,7 @@ class _CopyWithStubImpl$Query$GetSection$section$$PosterGridSection$metadata<
 
   call({
     bool? continueWatching,
+    bool? myList,
     bool? secondaryTitles,
     String? collectionId,
     bool? useContext,
@@ -47323,6 +47703,7 @@ class Query$GetSection$section$$IconGridSection$metadata
         Fragment$ItemSection$$IconGridSection$metadata {
   Query$GetSection$section$$IconGridSection$metadata({
     required this.continueWatching,
+    required this.myList,
     required this.secondaryTitles,
     required this.collectionId,
     required this.useContext,
@@ -47333,6 +47714,7 @@ class Query$GetSection$section$$IconGridSection$metadata
   factory Query$GetSection$section$$IconGridSection$metadata.fromJson(
       Map<String, dynamic> json) {
     final l$continueWatching = json['continueWatching'];
+    final l$myList = json['myList'];
     final l$secondaryTitles = json['secondaryTitles'];
     final l$collectionId = json['collectionId'];
     final l$useContext = json['useContext'];
@@ -47340,6 +47722,7 @@ class Query$GetSection$section$$IconGridSection$metadata
     final l$$__typename = json['__typename'];
     return Query$GetSection$section$$IconGridSection$metadata(
       continueWatching: (l$continueWatching as bool),
+      myList: (l$myList as bool),
       secondaryTitles: (l$secondaryTitles as bool),
       collectionId: (l$collectionId as String),
       useContext: (l$useContext as bool),
@@ -47349,6 +47732,8 @@ class Query$GetSection$section$$IconGridSection$metadata
   }
 
   final bool continueWatching;
+
+  final bool myList;
 
   final bool secondaryTitles;
 
@@ -47364,6 +47749,8 @@ class Query$GetSection$section$$IconGridSection$metadata
     final _resultData = <String, dynamic>{};
     final l$continueWatching = continueWatching;
     _resultData['continueWatching'] = l$continueWatching;
+    final l$myList = myList;
+    _resultData['myList'] = l$myList;
     final l$secondaryTitles = secondaryTitles;
     _resultData['secondaryTitles'] = l$secondaryTitles;
     final l$collectionId = collectionId;
@@ -47380,6 +47767,7 @@ class Query$GetSection$section$$IconGridSection$metadata
   @override
   int get hashCode {
     final l$continueWatching = continueWatching;
+    final l$myList = myList;
     final l$secondaryTitles = secondaryTitles;
     final l$collectionId = collectionId;
     final l$useContext = useContext;
@@ -47387,6 +47775,7 @@ class Query$GetSection$section$$IconGridSection$metadata
     final l$$__typename = $__typename;
     return Object.hashAll([
       l$continueWatching,
+      l$myList,
       l$secondaryTitles,
       l$collectionId,
       l$useContext,
@@ -47407,6 +47796,11 @@ class Query$GetSection$section$$IconGridSection$metadata
     final l$continueWatching = continueWatching;
     final lOther$continueWatching = other.continueWatching;
     if (l$continueWatching != lOther$continueWatching) {
+      return false;
+    }
+    final l$myList = myList;
+    final lOther$myList = other.myList;
+    if (l$myList != lOther$myList) {
       return false;
     }
     final l$secondaryTitles = secondaryTitles;
@@ -47462,6 +47856,7 @@ abstract class CopyWith$Query$GetSection$section$$IconGridSection$metadata<
 
   TRes call({
     bool? continueWatching,
+    bool? myList,
     bool? secondaryTitles,
     String? collectionId,
     bool? useContext,
@@ -47486,6 +47881,7 @@ class _CopyWithImpl$Query$GetSection$section$$IconGridSection$metadata<TRes>
 
   TRes call({
     Object? continueWatching = _undefined,
+    Object? myList = _undefined,
     Object? secondaryTitles = _undefined,
     Object? collectionId = _undefined,
     Object? useContext = _undefined,
@@ -47497,6 +47893,9 @@ class _CopyWithImpl$Query$GetSection$section$$IconGridSection$metadata<TRes>
             continueWatching == _undefined || continueWatching == null
                 ? _instance.continueWatching
                 : (continueWatching as bool),
+        myList: myList == _undefined || myList == null
+            ? _instance.myList
+            : (myList as bool),
         secondaryTitles:
             secondaryTitles == _undefined || secondaryTitles == null
                 ? _instance.secondaryTitles
@@ -47527,6 +47926,7 @@ class _CopyWithStubImpl$Query$GetSection$section$$IconGridSection$metadata<TRes>
 
   call({
     bool? continueWatching,
+    bool? myList,
     bool? secondaryTitles,
     String? collectionId,
     bool? useContext,
@@ -49968,6 +50368,7 @@ class Query$GetSection$section$$IconSection$metadata
         Fragment$ItemSection$$IconSection$metadata {
   Query$GetSection$section$$IconSection$metadata({
     required this.continueWatching,
+    required this.myList,
     required this.secondaryTitles,
     required this.collectionId,
     required this.useContext,
@@ -49978,6 +50379,7 @@ class Query$GetSection$section$$IconSection$metadata
   factory Query$GetSection$section$$IconSection$metadata.fromJson(
       Map<String, dynamic> json) {
     final l$continueWatching = json['continueWatching'];
+    final l$myList = json['myList'];
     final l$secondaryTitles = json['secondaryTitles'];
     final l$collectionId = json['collectionId'];
     final l$useContext = json['useContext'];
@@ -49985,6 +50387,7 @@ class Query$GetSection$section$$IconSection$metadata
     final l$$__typename = json['__typename'];
     return Query$GetSection$section$$IconSection$metadata(
       continueWatching: (l$continueWatching as bool),
+      myList: (l$myList as bool),
       secondaryTitles: (l$secondaryTitles as bool),
       collectionId: (l$collectionId as String),
       useContext: (l$useContext as bool),
@@ -49994,6 +50397,8 @@ class Query$GetSection$section$$IconSection$metadata
   }
 
   final bool continueWatching;
+
+  final bool myList;
 
   final bool secondaryTitles;
 
@@ -50009,6 +50414,8 @@ class Query$GetSection$section$$IconSection$metadata
     final _resultData = <String, dynamic>{};
     final l$continueWatching = continueWatching;
     _resultData['continueWatching'] = l$continueWatching;
+    final l$myList = myList;
+    _resultData['myList'] = l$myList;
     final l$secondaryTitles = secondaryTitles;
     _resultData['secondaryTitles'] = l$secondaryTitles;
     final l$collectionId = collectionId;
@@ -50025,6 +50432,7 @@ class Query$GetSection$section$$IconSection$metadata
   @override
   int get hashCode {
     final l$continueWatching = continueWatching;
+    final l$myList = myList;
     final l$secondaryTitles = secondaryTitles;
     final l$collectionId = collectionId;
     final l$useContext = useContext;
@@ -50032,6 +50440,7 @@ class Query$GetSection$section$$IconSection$metadata
     final l$$__typename = $__typename;
     return Object.hashAll([
       l$continueWatching,
+      l$myList,
       l$secondaryTitles,
       l$collectionId,
       l$useContext,
@@ -50052,6 +50461,11 @@ class Query$GetSection$section$$IconSection$metadata
     final l$continueWatching = continueWatching;
     final lOther$continueWatching = other.continueWatching;
     if (l$continueWatching != lOther$continueWatching) {
+      return false;
+    }
+    final l$myList = myList;
+    final lOther$myList = other.myList;
+    if (l$myList != lOther$myList) {
       return false;
     }
     final l$secondaryTitles = secondaryTitles;
@@ -50105,6 +50519,7 @@ abstract class CopyWith$Query$GetSection$section$$IconSection$metadata<TRes> {
 
   TRes call({
     bool? continueWatching,
+    bool? myList,
     bool? secondaryTitles,
     String? collectionId,
     bool? useContext,
@@ -50128,6 +50543,7 @@ class _CopyWithImpl$Query$GetSection$section$$IconSection$metadata<TRes>
 
   TRes call({
     Object? continueWatching = _undefined,
+    Object? myList = _undefined,
     Object? secondaryTitles = _undefined,
     Object? collectionId = _undefined,
     Object? useContext = _undefined,
@@ -50139,6 +50555,9 @@ class _CopyWithImpl$Query$GetSection$section$$IconSection$metadata<TRes>
             continueWatching == _undefined || continueWatching == null
                 ? _instance.continueWatching
                 : (continueWatching as bool),
+        myList: myList == _undefined || myList == null
+            ? _instance.myList
+            : (myList as bool),
         secondaryTitles:
             secondaryTitles == _undefined || secondaryTitles == null
                 ? _instance.secondaryTitles
@@ -50167,6 +50586,7 @@ class _CopyWithStubImpl$Query$GetSection$section$$IconSection$metadata<TRes>
 
   call({
     bool? continueWatching,
+    bool? myList,
     bool? secondaryTitles,
     String? collectionId,
     bool? useContext,
@@ -50611,6 +51031,7 @@ class Query$GetSection$section$$LabelSection$metadata
         Fragment$ItemSection$$LabelSection$metadata {
   Query$GetSection$section$$LabelSection$metadata({
     required this.continueWatching,
+    required this.myList,
     required this.secondaryTitles,
     required this.collectionId,
     required this.useContext,
@@ -50621,6 +51042,7 @@ class Query$GetSection$section$$LabelSection$metadata
   factory Query$GetSection$section$$LabelSection$metadata.fromJson(
       Map<String, dynamic> json) {
     final l$continueWatching = json['continueWatching'];
+    final l$myList = json['myList'];
     final l$secondaryTitles = json['secondaryTitles'];
     final l$collectionId = json['collectionId'];
     final l$useContext = json['useContext'];
@@ -50628,6 +51050,7 @@ class Query$GetSection$section$$LabelSection$metadata
     final l$$__typename = json['__typename'];
     return Query$GetSection$section$$LabelSection$metadata(
       continueWatching: (l$continueWatching as bool),
+      myList: (l$myList as bool),
       secondaryTitles: (l$secondaryTitles as bool),
       collectionId: (l$collectionId as String),
       useContext: (l$useContext as bool),
@@ -50637,6 +51060,8 @@ class Query$GetSection$section$$LabelSection$metadata
   }
 
   final bool continueWatching;
+
+  final bool myList;
 
   final bool secondaryTitles;
 
@@ -50652,6 +51077,8 @@ class Query$GetSection$section$$LabelSection$metadata
     final _resultData = <String, dynamic>{};
     final l$continueWatching = continueWatching;
     _resultData['continueWatching'] = l$continueWatching;
+    final l$myList = myList;
+    _resultData['myList'] = l$myList;
     final l$secondaryTitles = secondaryTitles;
     _resultData['secondaryTitles'] = l$secondaryTitles;
     final l$collectionId = collectionId;
@@ -50668,6 +51095,7 @@ class Query$GetSection$section$$LabelSection$metadata
   @override
   int get hashCode {
     final l$continueWatching = continueWatching;
+    final l$myList = myList;
     final l$secondaryTitles = secondaryTitles;
     final l$collectionId = collectionId;
     final l$useContext = useContext;
@@ -50675,6 +51103,7 @@ class Query$GetSection$section$$LabelSection$metadata
     final l$$__typename = $__typename;
     return Object.hashAll([
       l$continueWatching,
+      l$myList,
       l$secondaryTitles,
       l$collectionId,
       l$useContext,
@@ -50695,6 +51124,11 @@ class Query$GetSection$section$$LabelSection$metadata
     final l$continueWatching = continueWatching;
     final lOther$continueWatching = other.continueWatching;
     if (l$continueWatching != lOther$continueWatching) {
+      return false;
+    }
+    final l$myList = myList;
+    final lOther$myList = other.myList;
+    if (l$myList != lOther$myList) {
       return false;
     }
     final l$secondaryTitles = secondaryTitles;
@@ -50748,6 +51182,7 @@ abstract class CopyWith$Query$GetSection$section$$LabelSection$metadata<TRes> {
 
   TRes call({
     bool? continueWatching,
+    bool? myList,
     bool? secondaryTitles,
     String? collectionId,
     bool? useContext,
@@ -50771,6 +51206,7 @@ class _CopyWithImpl$Query$GetSection$section$$LabelSection$metadata<TRes>
 
   TRes call({
     Object? continueWatching = _undefined,
+    Object? myList = _undefined,
     Object? secondaryTitles = _undefined,
     Object? collectionId = _undefined,
     Object? useContext = _undefined,
@@ -50782,6 +51218,9 @@ class _CopyWithImpl$Query$GetSection$section$$LabelSection$metadata<TRes>
             continueWatching == _undefined || continueWatching == null
                 ? _instance.continueWatching
                 : (continueWatching as bool),
+        myList: myList == _undefined || myList == null
+            ? _instance.myList
+            : (myList as bool),
         secondaryTitles:
             secondaryTitles == _undefined || secondaryTitles == null
                 ? _instance.secondaryTitles
@@ -50810,6 +51249,7 @@ class _CopyWithStubImpl$Query$GetSection$section$$LabelSection$metadata<TRes>
 
   call({
     bool? continueWatching,
+    bool? myList,
     bool? secondaryTitles,
     String? collectionId,
     bool? useContext,

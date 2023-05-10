@@ -20,5 +20,10 @@ type Show {
         offset: Int
         dir: String
     ): SeasonPagination! @goField(forceResolver: true)
+
+    """
+    The default episode.
+    Should not be used actively in lists, as it could affect query speeds.
+    """
     defaultEpisode: Episode! @goField(forceResolver: true)
 }
