@@ -1,3 +1,4 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:brunstadtv_app/components/feature_badge.dart';
 import 'package:brunstadtv_app/graphql/client.dart';
 import 'package:brunstadtv_app/graphql/queries/episode.graphql.dart';
@@ -14,6 +15,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import '../../graphql/queries/my_list.graphql.dart';
 import '../../helpers/event_bus.dart';
 import '../../models/events/my_list_changed.dart';
+import '../../router/router.gr.dart';
 import '../../theme/design_system/design_system.dart';
 import '../text_collapsible.dart';
 
@@ -114,8 +116,14 @@ class EpisodeInfo extends HookConsumerWidget {
                         ),
                       ),
                       if (episode.season?.$show.title != null)
-                        Center(
-                          child: Text(episode.season!.$show.title, style: design.textStyles.caption1.copyWith(color: design.colors.tint1)),
+                        GestureDetector(
+                          onTap: () => context.pushRoute(EpisodeScreenRoute(episodeId: episode.id)),
+                          child: FocusableActionDetector(
+                            mouseCursor: MaterialStateMouseCursor.clickable,
+                            child: Center(
+                              child: Text(episode.season!.$show.title, style: design.textStyles.caption1.copyWith(color: design.colors.tint1)),
+                            ),
+                          ),
                         ),
                       if (showEpisodeNumber)
                         Padding(

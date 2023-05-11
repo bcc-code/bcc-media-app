@@ -105,7 +105,7 @@ class _EpisodeScreenImplementation extends HookConsumerWidget {
     useEffect(() {
       fetchCurrentEpisode();
       return null;
-    }, [episodeId, queryParamStartPosition]);
+    }, [episodeId, collectionId, queryParamStartPosition]);
 
     final episodeSnapshot = useFuture(episodeFuture.value);
 
