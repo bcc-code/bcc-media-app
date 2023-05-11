@@ -5,7 +5,7 @@ import '../design_system.dart';
 class BibleKidsColors extends DesignSystemColors {
   BibleKidsColors()
       : super(
-          tint1: const Color(0xFF673976),
+          tint1: const Color.fromARGB(255, 134, 84, 150),
           tint2: const Color(0xffdbe1c0),
           tint3: const Color(0xffffcc52),
           onTint: const Color(0xffFFFFFF),

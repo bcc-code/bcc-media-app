@@ -1,6 +1,5 @@
-import 'package:brunstadtv_app/theme/bccm_gradients.dart';
 import 'package:brunstadtv_app/models/analytics/achievement_shared.dart';
-import 'package:brunstadtv_app/theme/design_system/bcc_media/design_system.dart';
+import 'package:brunstadtv_app/theme/design_system/bccmedia/design_system.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -9,6 +8,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:intl/intl.dart';
 import 'package:share_plus/share_plus.dart';
 
+import '../flavors.dart';
 import '../graphql/queries/achievements.graphql.dart';
 import '../theme/design_system/design_system.dart';
 import '../helpers/ui/image.dart';
@@ -118,7 +118,7 @@ class AchievementShareRender extends StatelessWidget {
               children: [
                 Positioned.fill(
                   child: Container(
-                    decoration: const BoxDecoration(gradient: BccmGradients.purpleTransparent),
+                    decoration: BoxDecoration(gradient: FlavorConfig.current.flavorGradients.achievementBackground),
                   ),
                 ),
                 SizedBox(

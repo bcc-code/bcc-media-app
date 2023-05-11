@@ -1,6 +1,7 @@
 import 'package:brunstadtv_app/env/dev/firebase_options.dart' as dev_firebase;
 import 'package:brunstadtv_app/flavors.dart';
 import 'package:brunstadtv_app/main.dart';
+import 'package:brunstadtv_app/theme/bccm_gradients.dart';
 import 'package:flutter/material.dart';
 
 void main() async {
@@ -8,6 +9,11 @@ void main() async {
     FlavorConfig(
       flavor: Flavor.bccmedia_dev,
       firebaseOptions: dev_firebase.DefaultFirebaseOptions.currentPlatform,
+      flavorGradients: FlavorGradients(
+        study: BccmGradients.greenYellow,
+        achievementBackground: BccmGradients.purpleTransparent,
+        tabIconActive: BccmGradients.softPurpleBlue,
+      ),
       flavorImages: FlavorImages(
         logo: const AssetImage('assets/flavors/prod/logo.png'),
         home: StateImageProvider(

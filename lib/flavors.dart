@@ -25,6 +25,18 @@ class StateImageProvider with IterableMixin<ImageProvider> {
   Iterator<ImageProvider<Object>> get iterator => [image, activeImage].iterator;
 }
 
+class FlavorGradients {
+  final Gradient? tabIconActive;
+  final Gradient study;
+  final Gradient achievementBackground;
+
+  FlavorGradients({
+    required this.tabIconActive,
+    required this.study,
+    required this.achievementBackground,
+  });
+}
+
 class FlavorImages with IterableMixin<ImageProvider> {
   final ImageProvider logo;
   final StateImageProvider home;
@@ -58,6 +70,7 @@ class FlavorConfig {
     required this.flavor,
     required this.firebaseOptions,
     required this.flavorImages,
+    required this.flavorGradients,
     this.designSystem,
     this.applicationCode,
   });
@@ -65,6 +78,7 @@ class FlavorConfig {
   // Config
   final Flavor flavor;
   final FirebaseOptions? firebaseOptions;
+  final FlavorGradients flavorGradients;
   final FlavorImages flavorImages;
   final DesignSystemData Function()? designSystem;
   final String? applicationCode;

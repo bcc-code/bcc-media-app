@@ -2,6 +2,7 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 
+import '../flavors.dart';
 import '../theme/design_system/design_system.dart';
 import '../theme/bccm_gradients.dart';
 
@@ -49,7 +50,7 @@ class StudyProgressRow extends StatelessWidget {
                 child: Container(
                   height: 6,
                   decoration: BoxDecoration(
-                    gradient: BccmGradients.greenYellow,
+                    gradient: FlavorConfig.current.flavorGradients.study,
                     borderRadius: BorderRadius.circular(4),
                   ),
                 ),

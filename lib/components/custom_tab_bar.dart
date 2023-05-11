@@ -1,3 +1,4 @@
+import 'package:brunstadtv_app/theme/bccm_gradients.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:universal_io/io.dart';
 
@@ -27,33 +28,58 @@ class CustomTabBar extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final useMaterial = Platform.isAndroid && ref.watch(isPhysicalDeviceProvider).asData?.valueOrNull != false;
+    final design = DesignSystem.of(context);
+    final icons = FlavorConfig.current.flavorImages;
 
-    Widget icon(ImageProvider image, {Key? key}) {
+    Widget icon(ImageProvider image, bool active) {
+      final imageWidget = Image(
+        image: image,
+        gaplessPlayback: true,
+      );
+      final gradient = FlavorConfig.current.flavorGradients.tabIconActive;
       return Padding(
-        key: key,
         padding: EdgeInsets.only(top: 2, bottom: useMaterial ? 2 : 0),
         child: SizedBox(
           height: _iconSize,
-          child: Image(
-            image: image,
-            gaplessPlayback: true,
-          ),
+          child: !active || gradient == null
+              ? imageWidget
+              : ShaderMask(
+                  shaderCallback: (bounds) {
+                    return gradient.createShader(bounds);
+                  },
+                  blendMode: BlendMode.srcATop,
+                  child: imageWidget,
+                ),
         ),
       );
     }
 
-    final design = DesignSystem.of(context);
-    final icons = FlavorConfig.current.flavorImages;
     var items = [
-      BottomNavigationBarItem(label: S.of(context).homeTab, icon: icon(icons.home.image), activeIcon: icon(icons.home.activeImage)),
-      BottomNavigationBarItem(label: S.of(context).search, icon: icon(icons.search.image), activeIcon: icon(icons.home.activeImage)),
+      BottomNavigationBarItem(
+        label: S.of(context).homeTab,
+        icon: icon(icons.home.image, false),
+        activeIcon: icon(icons.home.activeImage, true),
+      ),
+      BottomNavigationBarItem(
+        label: S.of(context).search,
+        icon: icon(icons.search.image, false),
+        activeIcon: icon(icons.search.activeImage, true),
+      ),
     ];
     final guestMode = ref.watch(authStateProvider.select((value) => value.guestMode));
     debugPrint('custom_tab_bar rebuild. guestMode: $guestMode');
     if (!guestMode) {
       items.addAll([
-        BottomNavigationBarItem(label: S.of(context).liveTab, icon: icon(icons.live.image), activeIcon: icon(icons.live.activeImage)),
-        BottomNavigationBarItem(label: S.of(context).calendar, icon: icon(icons.calendar.image), activeIcon: icon(icons.calendar.activeImage)),
+        BottomNavigationBarItem(
+          label: S.of(context).liveTab,
+          icon: icon(icons.live.image, false),
+          activeIcon: icon(icons.live.activeImage, true),
+        ),
+        BottomNavigationBarItem(
+          label: S.of(context).calendar,
+          icon: icon(icons.calendar.image, false),
+          activeIcon: icon(icons.calendar.activeImage, true),
+        ),
       ]);
     }
 
