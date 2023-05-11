@@ -6,8 +6,7 @@
 	<string>development</string>
 	<key>com.apple.developer.associated-domains</key>
 	<array>
-		<string>applinks:brunstad.tv</string>
-		<string>applinks:app.bcc.media</string>
+		<string>applinks:app.biblekids.io</string>
 	</array>
 </dict>
 </plist>

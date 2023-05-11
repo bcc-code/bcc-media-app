@@ -13,7 +13,7 @@ PODS:
     - Protobuf (~> 3.13)
     - YouboraAVPlayerAdapter (= 6.6.8)
     - YouboraLib (= 6.6.22)
-  - cloud_firestore (4.5.0):
+  - cloud_firestore (4.6.0):
     - Firebase/Firestore (= 10.7.0)
     - firebase_core
     - Flutter
@@ -37,18 +37,18 @@ PODS:
   - Firebase/Performance (10.7.0):
     - Firebase/CoreOnly
     - FirebasePerformance (~> 10.7.0)
-  - firebase_core (2.9.0):
+  - firebase_core (2.11.0):
     - Firebase/CoreOnly (= 10.7.0)
     - Flutter
-  - firebase_crashlytics (3.0.15):
+  - firebase_crashlytics (3.2.0):
     - Firebase/Crashlytics (= 10.7.0)
     - firebase_core
     - Flutter
-  - firebase_messaging (14.2.5):
+  - firebase_messaging (14.5.0):
     - Firebase/Messaging (= 10.7.0)
     - firebase_core
     - Flutter
-  - firebase_performance (0.9.0-14):
+  - firebase_performance (0.9.1-2):
     - Firebase/Performance (= 10.7.0)
     - firebase_core
     - Flutter
@@ -314,14 +314,14 @@ SPEC CHECKSUMS:
   app_links: ab4ba54d10a13d45825336bc9707b5eadee81191
   AppAuth: 8fca6b5563a5baef2c04bee27538025e4ceb2add
   bccm_player: cdd4162150f1f33a039232b9f6ce89dc42fbe2f5
-  cloud_firestore: 84f58b426bd8d21a22c4b19d9d18028fc4ff3eb1
+  cloud_firestore: 3809dfc121ab99b81bba51eb84ac6ca3f9033325
   connectivity_plus: 413a8857dd5d9f1c399a39130850d02fe0feaf7e
   device_info_plus: e5c5da33f982a436e103237c0c85f9031142abed
   Firebase: 0219acf760880eeec8ce479895bd7767466d9f81
-  firebase_core: d85432877e814811e040e7659f9c82faeab66e04
-  firebase_crashlytics: 46286934ecaae89435b555f382c423fd059e5377
-  firebase_messaging: 1e7324d435d57a2f6c3fea4ea4d3d4ae555cf8f1
-  firebase_performance: 7d52e91b103f52bf0d98ff7c6b38a6d6db517b7c
+  firebase_core: dee76ded6c693fdb38b8ea39aef7129e32e587a3
+  firebase_crashlytics: 450dc80dcb167d04714c147336dd04a7230d20e4
+  firebase_messaging: 67fbcdaf6a7c81849590e542eff2409dc49d9fa5
+  firebase_performance: 6a92bbefc5286e6488629b1cc3c32a7a8a7032f2
   FirebaseABTesting: 0c7038e4dce273821e417bdc2b0373ee0e0e8df3
   FirebaseCore: e317665b9d744727a97e623edbbed009320afdd7
   FirebaseCoreExtension: d815fd6fec8bb3a0940bc02dd5e3e641ea7229d8
@@ -346,7 +346,7 @@ SPEC CHECKSUMS:
   open_mail_app: 794172f6a22cd16319d3ddaf45e945b2f74952b0
   OrderedSet: aaeb196f7fef5a9edf55d89760da9176ad40b93c
   package_info_plus: 6c92f08e1f853dc01228d6f553146438dafcd14e
-  path_provider_foundation: c68054786f1b4f3343858c1e1d0caaded73f0be9
+  path_provider_foundation: eaf5b3e458fc0e5fbb9940fb09980e853fe058b8
   PromisesObjC: 09985d6d70fbe7878040aa746d78236e6946d2ef
   PromisesSwift: cf9eb58666a43bbe007302226e510b16c1e10959
   Protobuf: 120350fc38646e2dedc26f49ecba778184ea1de2
@@ -354,10 +354,10 @@ SPEC CHECKSUMS:
   Rudder: 0a5272646aa3b89295526cea2bf54d092044848a
   rudder_plugin_ios: 7f1dbab9c58ef9db8547c29e1335b9144656019b
   share_plus: 056a1e8ac890df3e33cb503afffaf1e9b4fbae68
-  shared_preferences_foundation: 986fc17f3d3251412d18b0265f9c64113a8c2472
+  shared_preferences_foundation: e2dae3258e06f44cc55f49d42024fd8dd03c590c
   url_launcher_ios: 08a3dfac5fb39e8759aeb0abbd5d9480f30fc8b4
   vibration: 7d883d141656a1c1a6d8d238616b2042a51a1241
-  webview_flutter_wkwebview: d08f59cde5e8402c345c0bdda35ac0031352dcae
+  webview_flutter_wkwebview: 2e2d318f21a5e036e2c3f26171342e95908bd60a
   YouboraAVPlayerAdapter: bc898a61e09c667202a77491b677a42dfa0adc04
   YouboraLib: fc65b030ac93499f8beb3f5daa10deb3879fb2d2
 

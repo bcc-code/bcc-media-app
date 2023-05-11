@@ -3,21 +3,21 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>16643555326-a5t3tecdce6fbkqea4nrm6r0i134e1or.apps.googleusercontent.com</string>
+	<string>617519323732-lkdhqa2vj63tmgq8h87g3o2tcdm3nosn.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.16643555326-a5t3tecdce6fbkqea4nrm6r0i134e1or</string>
+	<string>com.googleusercontent.apps.617519323732-lkdhqa2vj63tmgq8h87g3o2tcdm3nosn</string>
 	<key>API_KEY</key>
-	<string>AIzaSyCQT1kE2HaFcHFsEc4lI76PufpGsHXFSLY</string>
+	<string>AIzaSyCV5dcov2D9S2b9wjTzkKDQRTWnqMUhcAU</string>
 	<key>GCM_SENDER_ID</key>
-	<string>16643555326</string>
+	<string>617519323732</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>tv.brunstad.app.v4.dev2</string>
+	<string>media.bcc.kids</string>
 	<key>PROJECT_ID</key>
-	<string>btv-platform-dev-2</string>
+	<string>btv-platform-prod-2</string>
 	<key>STORAGE_BUCKET</key>
-	<string>btv-platform-dev-2.appspot.com</string>
+	<string>btv-platform-prod-2.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
 	<false></false>
 	<key>IS_ANALYTICS_ENABLED</key>
@@ -29,6 +29,6 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:16643555326:ios:def73dc078e8eab74f8aaf</string>
+	<string>1:617519323732:ios:66c2b6796bb6e59689ebc1</string>
 </dict>
 </plist>
