@@ -1,7 +1,4 @@
 // ignore_for_file: constant_identifier_names
-
-import 'dart:collection';
-
 import 'package:brunstadtv_app/theme/design_system/design_system.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -12,7 +9,7 @@ enum Flavor {
   kids_prod;
 }
 
-class StateImageProvider with IterableMixin<ImageProvider> {
+class StateImageProvider extends Iterable<ImageProvider> {
   final ImageProvider image;
   final ImageProvider activeImage;
 
@@ -37,7 +34,7 @@ class FlavorGradients {
   });
 }
 
-class FlavorImages with IterableMixin<ImageProvider> {
+class FlavorImages extends Iterable<ImageProvider> {
   final ImageProvider logo;
   final StateImageProvider home;
   final StateImageProvider search;
