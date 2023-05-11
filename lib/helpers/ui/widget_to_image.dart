@@ -1,4 +1,5 @@
 import 'dart:ui' as ui;
+import 'dart:ui';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -8,16 +9,22 @@ import 'package:flutter/rendering.dart';
 /// then waiting for the given [wait] amount of time and then creating an image via a [RepaintBoundary].
 ///
 /// The final image will be of size [imageSize] and the the widget will be layout, ... with the given [logicalSize].
-Future<Uint8List?> createImageFromWidget(Widget widget, {Duration? wait, Size? logicalSize, Size? imageSize}) async {
+Future<Uint8List?> createImageFromWidget({
+  required FlutterView view,
+  required Widget widget,
+  Duration? wait,
+  Size? logicalSize,
+  Size? imageSize,
+}) async {
   final RenderRepaintBoundary repaintBoundary = RenderRepaintBoundary();
 
-  logicalSize ??= ui.window.physicalSize / ui.window.devicePixelRatio;
-  imageSize ??= ui.window.physicalSize;
+  logicalSize ??= view.physicalSize / view.devicePixelRatio;
+  imageSize ??= view.physicalSize;
 
   assert(logicalSize.aspectRatio == imageSize.aspectRatio);
 
   final RenderView renderView = RenderView(
-    window: WidgetsBinding.instance.window,
+    view: view,
     child: RenderPositionedBox(alignment: Alignment.center, child: repaintBoundary),
     configuration: ViewConfiguration(
       size: logicalSize,

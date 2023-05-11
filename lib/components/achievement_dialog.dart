@@ -37,6 +37,7 @@ class _AchievementDialogState extends ConsumerState<AchievementDialog> {
   @override
   Widget build(BuildContext context) {
     final image = widget.achievement.image;
+    final view = View.of(context);
     return DialogWithImage(
       image: image == null
           ? const SizedBox.shrink()
@@ -65,7 +66,8 @@ class _AchievementDialogState extends ConsumerState<AchievementDialog> {
                       final achievementImageData = await downloadImage(widget.achievement.image!);
 
                       var image = await createImageFromWidget(
-                        AchievementShareRender(achievement: widget.achievement, imageBytes: achievementImageData.bodyBytes),
+                        view: view,
+                        widget: AchievementShareRender(achievement: widget.achievement, imageBytes: achievementImageData.bodyBytes),
                         wait: const Duration(milliseconds: 500),
                         imageSize: const Size(800, 700),
                         logicalSize: const Size(400, 350),
