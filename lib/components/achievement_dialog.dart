@@ -109,7 +109,7 @@ class AchievementShareRender extends StatelessWidget {
   Widget build(BuildContext context) {
     return DesignSystem(
       designSystem: BccMediaDesignSystem(),
-      child: (_) => MaterialApp(
+      child: (context) => MaterialApp(
         debugShowCheckedModeBanner: false,
         home: Scaffold(
           body: Container(

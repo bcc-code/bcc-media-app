@@ -42,7 +42,10 @@ Future<Uint8List?> createImageFromWidget({
     container: repaintBoundary,
     child: Directionality(
       textDirection: TextDirection.ltr,
-      child: widget,
+      child: MediaQuery(
+        data: const MediaQueryData(),
+        child: widget,
+      ),
     ),
   ).attachToRenderTree(buildOwner);
 
