@@ -156,7 +156,11 @@ class HomeScreenState extends ConsumerState<HomeScreen> with PageMixin implement
                   backgroundColor: Colors.transparent,
                   elevation: 0,
                   centerTitle: true,
-                  title: FlavorConfig.current.logo(context),
+                  title: Image(
+                    image: FlavorConfig.current.flavorImages.logo,
+                    height: 25,
+                    gaplessPlayback: true,
+                  ),
                   leadingWidth: kIsWeb ? 300 : 100,
                   leading: Align(
                     alignment: Alignment.centerLeft,

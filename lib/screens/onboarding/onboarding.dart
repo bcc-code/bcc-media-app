@@ -104,7 +104,11 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
             shadowColor: Colors.black,
             elevation: 0,
             centerTitle: true,
-            title: FlavorConfig.current.logo(context),
+            title: Image(
+              image: FlavorConfig.current.flavorImages.logo,
+              height: 25,
+              gaplessPlayback: true,
+            ),
             automaticallyImplyLeading: false,
           ),
           body: AnimatedOpacity(

@@ -62,8 +62,10 @@ class _AboutScreenState extends State<AboutScreen> {
                           }
                         },
                         child: SizedBox(
-                          width: 200,
-                          child: FlavorConfig.current.logo(context),
+                          child: Image(
+                            image: FlavorConfig.current.flavorImages.logo,
+                            gaplessPlayback: true,
+                          ),
                         ),
                       ),
                       Container(
