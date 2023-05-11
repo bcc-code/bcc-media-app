@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:brunstadtv_app/flavors.dart';
 import 'package:brunstadtv_app/graphql/client.dart';
 import 'package:brunstadtv_app/main.dart';
 import 'package:brunstadtv_app/providers/me_provider.dart';
@@ -8,7 +9,7 @@ import 'package:brunstadtv_app/screens/onboarding/signup.dart';
 import 'package:brunstadtv_app/providers/analytics.dart';
 import 'package:brunstadtv_app/providers/settings.dart';
 import 'package:brunstadtv_app/router/router.gr.dart';
-import 'package:brunstadtv_app/theme/design_system/bcc_media/design_system.dart';
+import 'package:brunstadtv_app/theme/design_system/bccmedia/design_system.dart';
 import 'package:brunstadtv_app/theme/design_system/design_system.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -42,6 +43,11 @@ class _AppRootState extends ConsumerState<AppRoot> {
     debugPrint('app_root didChangeDependencies');
     authSubscription?.close();
     authSubscription = ref.listenManual<AuthState>(authStateProvider, onAuthChanged);
+    for (var image in FlavorConfig.current.flavorImages) {
+      precacheImage(image, context)
+          .then((value) => print('precache succeeded for $image.'))
+          .catchError((e) => print('precache failed for $image. Error: $e'));
+    }
   }
 
   void onAuthChanged(AuthState? previous, AuthState next) {
@@ -113,7 +119,7 @@ class _AppRootState extends ConsumerState<AppRoot> {
   @override
   Widget build(BuildContext context) {
     return DesignSystem(
-      designSystem: BccMediaDesignSystem(),
+      designSystem: FlavorConfig.current.designSystem?.call() ?? BccMediaDesignSystem(),
       child: (context) => GraphQLProvider(
         client: ValueNotifier(ref.watch(gqlClientProvider)),
         child: MaterialApp.router(

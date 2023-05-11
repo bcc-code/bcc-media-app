@@ -60,7 +60,11 @@ class CustomBackButton extends StatelessWidget {
               mainAxisSize: MainAxisSize.min,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: <Widget>[
-                SvgPicture.string(SvgIcons.chevronLeft, height: 16),
+                SvgPicture.string(
+                  SvgIcons.chevronLeft,
+                  height: 16,
+                  colorFilter: ColorFilter.mode(DesignSystem.of(context).colors.tint1, BlendMode.srcIn),
+                ),
                 const SizedBox(width: 8),
                 Expanded(
                   child: Align(

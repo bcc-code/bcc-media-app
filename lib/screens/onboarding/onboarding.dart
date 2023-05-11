@@ -12,6 +12,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import '../../components/web/dialog_on_web.dart';
+import '../../flavors.dart';
 import '../../helpers/ui/btv_buttons.dart';
 import '../../theme/design_system/design_system.dart';
 import '../../helpers/widget_keys.dart';
@@ -103,7 +104,11 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
             shadowColor: Colors.black,
             elevation: 0,
             centerTitle: true,
-            title: Image.asset('assets/images/logo.png'),
+            title: Image(
+              image: FlavorConfig.current.flavorImages.logo,
+              height: 25,
+              gaplessPlayback: true,
+            ),
             automaticallyImplyLeading: false,
           ),
           body: AnimatedOpacity(

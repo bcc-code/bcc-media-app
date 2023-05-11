@@ -7,6 +7,8 @@ import 'package:graphql/client.dart';
 import 'package:http/http.dart';
 import 'package:http/retry.dart';
 
+import '../flavors.dart';
+
 final gqlClientProvider = Provider<GraphQLClient>((ref) {
   final settings = ref.watch(settingsProvider);
   final authStateNotifier = ref.read(authStateProvider.notifier);
@@ -14,6 +16,7 @@ final gqlClientProvider = Provider<GraphQLClient>((ref) {
   final httpLink = HttpLink(apiEnvUrls[settings.envOverride] ?? apiEnvUrls[EnvironmentOverride.none]!,
       defaultHeaders: {
         'Accept-Language': settings.appLanguage.languageCode,
+        if (FlavorConfig.current.applicationCode != null) 'X-Application': FlavorConfig.current.applicationCode!
       },
       httpClient: RetryClient(Client(), retries: 1, when: (response) => response.statusCode == 500 || response.statusCode == 429));
 

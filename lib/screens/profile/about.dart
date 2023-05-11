@@ -6,6 +6,7 @@ import 'package:package_info_plus/package_info_plus.dart';
 
 import '../../components/custom_back_button.dart';
 import '../../components/web/dialog_on_web.dart';
+import '../../flavors.dart';
 import '../../helpers/version.dart';
 
 import '../../l10n/app_localizations.dart';
@@ -61,8 +62,10 @@ class _AboutScreenState extends State<AboutScreen> {
                           }
                         },
                         child: SizedBox(
-                          width: 200,
-                          child: Image.asset('assets/images/logo.png', fit: BoxFit.fitWidth),
+                          child: Image(
+                            image: FlavorConfig.current.flavorImages.logo,
+                            gaplessPlayback: true,
+                          ),
                         ),
                       ),
                       Container(

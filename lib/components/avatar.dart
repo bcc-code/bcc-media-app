@@ -46,7 +46,10 @@ class Avatar extends HookConsumerWidget {
                         image: NetworkImage(imageUrl ?? ''),
                         errorBuilder: (BuildContext context, Object exception, StackTrace? stackTrace) {
                           return Center(
-                            child: SvgPicture.string(SvgIcons.avatar),
+                            child: SvgPicture.string(
+                              SvgIcons.avatar,
+                              color: DesignSystem.of(context).colors.tint1,
+                            ),
                           );
                         },
                       ),

@@ -1,160 +1,71 @@
 {
-    // Use IntelliSense to learn about possible attributes.
-    // Hover to view descriptions of existing attributes.
-    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
-    "version": "0.2.0",
-    "configurations": [
-        {
-            "name": "prod",
-            "request": "launch",
-            "type": "dart",
-            "cwd": "${workspaceFolder}",
-            "args": [
-                "--flavor",
-                "prod",
-                "--web-port",
-                "3001",
-                "--web-renderer",
-                "canvaskit"
-            ], // Remember to change the "program" property too
-            "program": "lib/main_prod.dart"
-        },
-        {
-            "name": "prod (integration test)",
-            "request": "launch",
-            "type": "dart",
-            "cwd": "${workspaceFolder}",
-            "args": [
-                "--flavor",
-                "prod"
-            ], // Remember to change the "program" property too
-            "program": "test_integration/main_test.dart"
-        },
-        {
-            "name": "prod (profile)",
-            "request": "launch",
-            "type": "dart",
-            "flutterMode": "profile",
-            "args": [
-                "--flavor",
-                "prod",
-                "--web-port",
-                "3001",
-                "--web-renderer",
-                "canvaskit"
-            ], // Remember to change the "program" property too
-            "cwd": "${workspaceFolder}",
-            "program": "lib/main_prod.dart"
-        },
-        {
-            "name": "prod (release)",
-            "request": "launch",
-            "type": "dart",
-            "flutterMode": "release",
-            "args": [
-                "--flavor",
-                "prod",
-                "--web-port",
-                "3001",
-                "--web-renderer",
-                "canvaskit"
-            ], // Remember to change the "program" property too
-            "cwd": "${workspaceFolder}",
-            "program": "lib/main_prod.dart"
-        },
-        {
-            "name": "v4_prod",
-            "request": "launch",
-            "type": "dart",
-            "cwd": "${workspaceFolder}",
-            "args": [
-                "--flavor",
-                "v4_prod",
-                "--web-port",
-                "3001",
-                "--web-renderer",
-                "canvaskit"
-            ], // Remember to change the "program" property too
-            "program": "lib/main_v4_prod.dart"
-        },
-        {
-            "name": "v4_prod (profile)",
-            "request": "launch",
-            "type": "dart",
-            "flutterMode": "profile",
-            "args": [
-                "--flavor",
-                "v4_prod",
-                "--web-port",
-                "3001",
-                "--web-renderer",
-                "canvaskit"
-            ], // Remember to change the "program" property too
-            "cwd": "${workspaceFolder}",
-            "program": "lib/main_v4_prod.dart"
-        },
-        {
-            "name": "v4_prod (release)",
-            "request": "launch",
-            "type": "dart",
-            "flutterMode": "release",
-            "args": [
-                "--flavor",
-                "v4_prod",
-                "--web-port",
-                "3001",
-                "--web-renderer",
-                "canvaskit"
-            ], // Remember to change the "program" property too
-            "cwd": "${workspaceFolder}",
-            "program": "lib/main_v4_prod.dart"
-        },
-        {
-            "name": "v4_dev",
-            "request": "launch",
-            "type": "dart",
-            "cwd": "${workspaceFolder}",
-            "args": [
-                "--flavor",
-                "v4_dev",
-                "--web-port",
-                "3001",
-                "--web-renderer",
-                "canvaskit"
-            ], // Remember to change the "program" property too
-            "program": "lib/main_v4_dev.dart"
-        },
-        {
-            "name": "v4_dev (profile)",
-            "request": "launch",
-            "type": "dart",
-            "flutterMode": "profile",
-            "args": [
-                "--flavor",
-                "v4_dev",
-                "--web-port",
-                "3001",
-                "--web-renderer",
-                "canvaskit"
-            ], // Remember to change the "program" property too
-            "cwd": "${workspaceFolder}",
-            "program": "lib/main_v4_dev.dart"
-        },
-        {
-            "name": "v4_dev (release)",
-            "request": "launch",
-            "type": "dart",
-            "flutterMode": "release",
-            "args": [
-                "--flavor",
-                "v4_dev",
-                "--web-port",
-                "3001",
-                "--web-renderer",
-                "canvaskit"
-            ], // Remember to change the "program" property too
-            "cwd": "${workspaceFolder}",
-            "program": "lib/main_v4_dev.dart"
-        },
-    ]
+  // Use IntelliSense to learn about possible attributes.
+  // Hover to view descriptions of existing attributes.
+  // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "prod",
+      "request": "launch",
+      "type": "dart",
+      "cwd": "${workspaceFolder}",
+      "args": [
+        "--flavor",
+        "prod",
+        "--web-port",
+        "3001",
+        "--web-renderer",
+        "canvaskit"
+      ], // Remember to change the "program" property too
+      "program": "lib/main_prod.dart"
+    },
+    {
+      "name": "prod (profile)",
+      "request": "launch",
+      "type": "dart",
+      "flutterMode": "profile",
+      "args": [
+        "--flavor",
+        "prod",
+        "--web-port",
+        "3001",
+        "--web-renderer",
+        "canvaskit"
+      ], // Remember to change the "program" property too
+      "cwd": "${workspaceFolder}",
+      "program": "lib/main_prod.dart"
+    },
+    {
+      "name": "prod (release)",
+      "request": "launch",
+      "type": "dart",
+      "flutterMode": "release",
+      "args": [
+        "--flavor",
+        "prod",
+        "--web-port",
+        "3001",
+        "--web-renderer",
+        "canvaskit"
+      ], // Remember to change the "program" property too
+      "cwd": "${workspaceFolder}",
+      "program": "lib/main_prod.dart"
+    },
+    /// Biblekids
+    {
+      "name": "kids_prod",
+      "request": "launch",
+      "type": "dart",
+      "cwd": "${workspaceFolder}",
+      "args": [
+        "--flavor",
+        "kids_prod",
+        "--web-port",
+        "3001",
+        "--web-renderer",
+        "canvaskit"
+      ], // Remember to change the "program" property too
+      "program": "lib/main_kids_prod.dart"
+    }
+  ]
 }
