@@ -87,5 +87,7 @@
 	<false/>
 	<key>ITSAppUsesNonExemptEncryption</key>
 	<false/>
+	<key>FLTDisableImpeller</key>
+	<true/>
 </dict>
 </plist>
