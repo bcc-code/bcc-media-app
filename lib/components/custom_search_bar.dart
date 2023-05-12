@@ -4,18 +4,18 @@ import '../theme/design_system/design_system.dart';
 
 import '../l10n/app_localizations.dart';
 
-class SearchBar extends StatefulWidget {
+class CustomSearchBar extends StatefulWidget {
   final Function onInputChange;
   final String? currentValue;
   final Function(bool) onFocusChanged;
 
-  const SearchBar({super.key, required this.onInputChange, required this.currentValue, required this.onFocusChanged});
+  const CustomSearchBar({super.key, required this.onInputChange, required this.currentValue, required this.onFocusChanged});
 
   @override
-  State<SearchBar> createState() => _SearchBarState();
+  State<CustomSearchBar> createState() => _CustomSearchBarState();
 }
 
-class _SearchBarState extends State<SearchBar> {
+class _CustomSearchBarState extends State<CustomSearchBar> {
   late TextEditingController _fieldController;
   late FocusNode focusNode;
 
@@ -28,7 +28,7 @@ class _SearchBarState extends State<SearchBar> {
   }
 
   @override
-  void didUpdateWidget(SearchBar oldWidget) {
+  void didUpdateWidget(CustomSearchBar oldWidget) {
     super.didUpdateWidget(oldWidget);
     // If query param has changed
     if (widget.currentValue != _fieldController.value.text) {

@@ -12,7 +12,7 @@ import '../../theme/design_system/design_system.dart';
 
 import '../../l10n/app_localizations.dart';
 import './search_results_page.dart';
-import '../../components/search_bar.dart';
+import '../../components/custom_search_bar.dart';
 
 class SearchScreen extends ConsumerStatefulWidget {
   final String? query;
@@ -123,7 +123,7 @@ class SearchScreenState extends ConsumerState<SearchScreen> implements ScrollScr
             children: [
               Padding(
                 padding: const EdgeInsets.only(top: 16, bottom: kIsWeb ? 12 : 8, right: kIsWeb ? 80 : 16, left: kIsWeb ? 80 : 16),
-                child: SearchBar(
+                child: CustomSearchBar(
                   onFocusChanged: (val) {
                     if (!val) {
                       setState(() {
