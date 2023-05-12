@@ -20,7 +20,7 @@ import '../helpers/navigation/custom_transitions.dart' as _i29;
 import '../screens/achievement_group.dart' as _i18;
 import '../screens/achievements.dart' as _i17;
 import '../screens/auto_login.dart' as _i1;
-import '../screens/calendar/calendar.dart' as _i22;
+import '../screens/calendar.dart' as _i22;
 import '../screens/episode.dart' as _i15;
 import '../screens/home.dart' as _i14;
 import '../screens/live.dart' as _i20;
@@ -38,14 +38,13 @@ import '../screens/profile/privacy_policy.dart' as _i12;
 import '../screens/profile/profile.dart' as _i4;
 import '../screens/profile/subtitle_language.dart' as _i7;
 import '../screens/profile/video_quality.dart' as _i8;
-import '../screens/search/search.dart' as _i23;
+import '../screens/search.dart' as _i23;
 import '../screens/study.dart' as _i16;
 import '../screens/tabs_root.dart' as _i19;
 import 'router.dart' as _i28;
 
 class AppRouter extends _i26.RootStackRouter {
-  AppRouter([_i27.GlobalKey<_i27.NavigatorState>? navigatorKey])
-      : super(navigatorKey);
+  AppRouter([_i27.GlobalKey<_i27.NavigatorState>? navigatorKey]) : super(navigatorKey);
 
   @override
   final Map<String, _i26.PageFactory> pagesMap = {
@@ -85,10 +84,10 @@ class AppRouter extends _i26.RootStackRouter {
         barrierDismissible: false,
       );
     },
-    ProfileRoute.name: (routeData) {
+    ProfileScreenRoute.name: (routeData) {
       return _i26.CustomPage<void>(
         routeData: routeData,
-        child: const _i4.Profile(),
+        child: const _i4.ProfileScreen(),
         customRouteBuilder: _i28.profileRouteBuilder,
         durationInMilliseconds: 400,
         reverseDurationInMilliseconds: 600,
@@ -107,10 +106,10 @@ class AppRouter extends _i26.RootStackRouter {
         barrierDismissible: false,
       );
     },
-    AppAudioLanguageRoute.name: (routeData) {
+    AudioLanguageScreenRoute.name: (routeData) {
       return _i26.CustomPage<void>(
         routeData: routeData,
-        child: const _i6.AppAudioLanguage(),
+        child: const _i6.AudioLanguageScreen(),
         customRouteBuilder: _i28.profileRouteBuilder,
         durationInMilliseconds: 400,
         reverseDurationInMilliseconds: 600,
@@ -118,10 +117,10 @@ class AppRouter extends _i26.RootStackRouter {
         barrierDismissible: false,
       );
     },
-    AppSubtitleLanguageRoute.name: (routeData) {
+    SubtitleLanguageScreenRoute.name: (routeData) {
       return _i26.CustomPage<void>(
         routeData: routeData,
-        child: const _i7.AppSubtitleLanguage(),
+        child: const _i7.SubtitleLanguageScreen(),
         customRouteBuilder: _i28.profileRouteBuilder,
         durationInMilliseconds: 400,
         reverseDurationInMilliseconds: 600,
@@ -129,10 +128,10 @@ class AppRouter extends _i26.RootStackRouter {
         barrierDismissible: false,
       );
     },
-    VideoQualityRoute.name: (routeData) {
+    VideoQualityScreenRoute.name: (routeData) {
       return _i26.CustomPage<void>(
         routeData: routeData,
-        child: const _i8.VideoQuality(),
+        child: const _i8.VideoQualityScreen(),
         customRouteBuilder: _i28.profileRouteBuilder,
         durationInMilliseconds: 400,
         reverseDurationInMilliseconds: 600,
@@ -140,10 +139,10 @@ class AppRouter extends _i26.RootStackRouter {
         barrierDismissible: false,
       );
     },
-    ContactSupportRoute.name: (routeData) {
+    ContactSupportScreenRoute.name: (routeData) {
       return _i26.CustomPage<void>(
         routeData: routeData,
-        child: const _i9.ContactSupport(),
+        child: const _i9.ContactSupportScreen(),
         customRouteBuilder: _i28.profileRouteBuilder,
         durationInMilliseconds: 400,
         reverseDurationInMilliseconds: 600,
@@ -162,10 +161,10 @@ class AppRouter extends _i26.RootStackRouter {
         barrierDismissible: false,
       );
     },
-    FAQRoute.name: (routeData) {
+    FAQScreenRoute.name: (routeData) {
       return _i26.CustomPage<void>(
         routeData: routeData,
-        child: const _i11.FAQ(),
+        child: const _i11.FAQScreen(),
         customRouteBuilder: _i28.profileRouteBuilder,
         durationInMilliseconds: 400,
         reverseDurationInMilliseconds: 600,
@@ -196,8 +195,7 @@ class AppRouter extends _i26.RootStackRouter {
       );
     },
     PublicHomeRoute.name: (routeData) {
-      final args = routeData.argsAs<PublicHomeRouteArgs>(
-          orElse: () => const PublicHomeRouteArgs());
+      final args = routeData.argsAs<PublicHomeRouteArgs>(orElse: () => const PublicHomeRouteArgs());
       return _i26.CustomPage<void>(
         routeData: routeData,
         child: _i14.HomeScreen(key: args.key),
@@ -265,9 +263,8 @@ class AppRouter extends _i26.RootStackRouter {
     },
     AchievementGroupScreenRoute.name: (routeData) {
       final pathParams = routeData.inheritedPathParams;
-      final args = routeData.argsAs<AchievementGroupScreenRouteArgs>(
-          orElse: () => AchievementGroupScreenRouteArgs(
-              groupId: pathParams.getString('groupId')));
+      final args =
+          routeData.argsAs<AchievementGroupScreenRouteArgs>(orElse: () => AchievementGroupScreenRouteArgs(groupId: pathParams.getString('groupId')));
       return _i26.CustomPage<void>(
         routeData: routeData,
         child: _i18.AchievementGroupScreen(
@@ -326,9 +323,7 @@ class AppRouter extends _i26.RootStackRouter {
     },
     SearchScreenRoute.name: (routeData) {
       final queryParams = routeData.queryParams;
-      final args = routeData.argsAs<SearchScreenRouteArgs>(
-          orElse: () =>
-              SearchScreenRouteArgs(query: queryParams.optString('q')));
+      final args = routeData.argsAs<SearchScreenRouteArgs>(orElse: () => SearchScreenRouteArgs(query: queryParams.optString('q')));
       return _i26.MaterialPageX<void>(
         routeData: routeData,
         child: _i23.SearchScreen(
@@ -395,9 +390,7 @@ class AppRouter extends _i26.RootStackRouter {
     },
     PageScreenRoute.name: (routeData) {
       final pathParams = routeData.inheritedPathParams;
-      final args = routeData.argsAs<PageScreenRouteArgs>(
-          orElse: () =>
-              PageScreenRouteArgs(pageCode: pathParams.getString('pageCode')));
+      final args = routeData.argsAs<PageScreenRouteArgs>(orElse: () => PageScreenRouteArgs(pageCode: pathParams.getString('pageCode')));
       return _i26.CustomPage<void>(
         routeData: routeData,
         child: _i24.PageScreen(
@@ -448,7 +441,7 @@ class AppRouter extends _i26.RootStackRouter {
           meta: <String, dynamic>{'analytics_name': 'signup'},
         ),
         _i26.RouteConfig(
-          ProfileRoute.name,
+          ProfileScreenRoute.name,
           path: '/profile',
           meta: <String, dynamic>{'analytics_name': 'profile'},
         ),
@@ -461,7 +454,7 @@ class AppRouter extends _i26.RootStackRouter {
           },
         ),
         _i26.RouteConfig(
-          AppAudioLanguageRoute.name,
+          AudioLanguageScreenRoute.name,
           path: '/audio-language',
           meta: <String, dynamic>{
             'analytics_name': 'settings',
@@ -469,7 +462,7 @@ class AppRouter extends _i26.RootStackRouter {
           },
         ),
         _i26.RouteConfig(
-          AppSubtitleLanguageRoute.name,
+          SubtitleLanguageScreenRoute.name,
           path: '/subtitle-language',
           meta: <String, dynamic>{
             'analytics_name': 'settings',
@@ -477,7 +470,7 @@ class AppRouter extends _i26.RootStackRouter {
           },
         ),
         _i26.RouteConfig(
-          VideoQualityRoute.name,
+          VideoQualityScreenRoute.name,
           path: '/video-quality',
           meta: <String, dynamic>{
             'analytics_name': 'settings',
@@ -485,7 +478,7 @@ class AppRouter extends _i26.RootStackRouter {
           },
         ),
         _i26.RouteConfig(
-          ContactSupportRoute.name,
+          ContactSupportScreenRoute.name,
           path: '/contact-support',
           meta: <String, dynamic>{'analytics_name': 'support'},
         ),
@@ -495,7 +488,7 @@ class AppRouter extends _i26.RootStackRouter {
           meta: <String, dynamic>{'analytics_name': 'about'},
         ),
         _i26.RouteConfig(
-          FAQRoute.name,
+          FAQScreenRoute.name,
           path: '/faq',
           meta: <String, dynamic>{'analytics_name': 'faq'},
         ),
@@ -662,8 +655,7 @@ class AutoLoginScreenRoute extends _i26.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i2.OnboardingScreen]
-class OnboardingScreenRoute
-    extends _i26.PageRouteInfo<OnboardingScreenRouteArgs> {
+class OnboardingScreenRoute extends _i26.PageRouteInfo<OnboardingScreenRouteArgs> {
   OnboardingScreenRoute({
     _i30.Key? key,
     String? loginError,
@@ -719,15 +711,15 @@ class SignupScreenRoute extends _i26.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i4.Profile]
-class ProfileRoute extends _i26.PageRouteInfo<void> {
-  const ProfileRoute()
+/// [_i4.ProfileScreen]
+class ProfileScreenRoute extends _i26.PageRouteInfo<void> {
+  const ProfileScreenRoute()
       : super(
-          ProfileRoute.name,
+          ProfileScreenRoute.name,
           path: '/profile',
         );
 
-  static const String name = 'ProfileRoute';
+  static const String name = 'ProfileScreenRoute';
 }
 
 /// generated route for
@@ -743,51 +735,51 @@ class AppLanguageScreenRoute extends _i26.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i6.AppAudioLanguage]
-class AppAudioLanguageRoute extends _i26.PageRouteInfo<void> {
-  const AppAudioLanguageRoute()
+/// [_i6.AudioLanguageScreen]
+class AudioLanguageScreenRoute extends _i26.PageRouteInfo<void> {
+  const AudioLanguageScreenRoute()
       : super(
-          AppAudioLanguageRoute.name,
+          AudioLanguageScreenRoute.name,
           path: '/audio-language',
         );
 
-  static const String name = 'AppAudioLanguageRoute';
+  static const String name = 'AudioLanguageScreenRoute';
 }
 
 /// generated route for
-/// [_i7.AppSubtitleLanguage]
-class AppSubtitleLanguageRoute extends _i26.PageRouteInfo<void> {
-  const AppSubtitleLanguageRoute()
+/// [_i7.SubtitleLanguageScreen]
+class SubtitleLanguageScreenRoute extends _i26.PageRouteInfo<void> {
+  const SubtitleLanguageScreenRoute()
       : super(
-          AppSubtitleLanguageRoute.name,
+          SubtitleLanguageScreenRoute.name,
           path: '/subtitle-language',
         );
 
-  static const String name = 'AppSubtitleLanguageRoute';
+  static const String name = 'SubtitleLanguageScreenRoute';
 }
 
 /// generated route for
-/// [_i8.VideoQuality]
-class VideoQualityRoute extends _i26.PageRouteInfo<void> {
-  const VideoQualityRoute()
+/// [_i8.VideoQualityScreen]
+class VideoQualityScreenRoute extends _i26.PageRouteInfo<void> {
+  const VideoQualityScreenRoute()
       : super(
-          VideoQualityRoute.name,
+          VideoQualityScreenRoute.name,
           path: '/video-quality',
         );
 
-  static const String name = 'VideoQualityRoute';
+  static const String name = 'VideoQualityScreenRoute';
 }
 
 /// generated route for
-/// [_i9.ContactSupport]
-class ContactSupportRoute extends _i26.PageRouteInfo<void> {
-  const ContactSupportRoute()
+/// [_i9.ContactSupportScreen]
+class ContactSupportScreenRoute extends _i26.PageRouteInfo<void> {
+  const ContactSupportScreenRoute()
       : super(
-          ContactSupportRoute.name,
+          ContactSupportScreenRoute.name,
           path: '/contact-support',
         );
 
-  static const String name = 'ContactSupportRoute';
+  static const String name = 'ContactSupportScreenRoute';
 }
 
 /// generated route for
@@ -803,15 +795,15 @@ class AboutScreenRoute extends _i26.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i11.FAQ]
-class FAQRoute extends _i26.PageRouteInfo<void> {
-  const FAQRoute()
+/// [_i11.FAQScreen]
+class FAQScreenRoute extends _i26.PageRouteInfo<void> {
+  const FAQScreenRoute()
       : super(
-          FAQRoute.name,
+          FAQScreenRoute.name,
           path: '/faq',
         );
 
-  static const String name = 'FAQRoute';
+  static const String name = 'FAQScreenRoute';
 }
 
 /// generated route for
@@ -976,8 +968,7 @@ class AchievementsScreenRoute extends _i26.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i18.AchievementGroupScreen]
-class AchievementGroupScreenRoute
-    extends _i26.PageRouteInfo<AchievementGroupScreenRouteArgs> {
+class AchievementGroupScreenRoute extends _i26.PageRouteInfo<AchievementGroupScreenRouteArgs> {
   AchievementGroupScreenRoute({
     _i30.Key? key,
     required String groupId,
@@ -1184,8 +1175,7 @@ class EpisodeScreenRouteArgs {
 
 /// generated route for
 /// [_i15.CollectionEpisodeScreen]
-class CollectionEpisodeScreenRoute
-    extends _i26.PageRouteInfo<CollectionEpisodeScreenRouteArgs> {
+class CollectionEpisodeScreenRoute extends _i26.PageRouteInfo<CollectionEpisodeScreenRouteArgs> {
   CollectionEpisodeScreenRoute({
     _i30.Key? key,
     required String episodeId,

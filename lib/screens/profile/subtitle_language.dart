@@ -8,14 +8,14 @@ import '../../models/analytics/language_changed.dart';
 import '../../providers/analytics.dart';
 import '../../providers/settings.dart';
 
-class AppSubtitleLanguage extends ConsumerStatefulWidget {
-  const AppSubtitleLanguage({super.key});
+class SubtitleLanguageScreen extends ConsumerStatefulWidget {
+  const SubtitleLanguageScreen({super.key});
 
   @override
-  ConsumerState<AppSubtitleLanguage> createState() => _AppSubtitleLanguageState();
+  ConsumerState<SubtitleLanguageScreen> createState() => _AppSubtitleLanguageState();
 }
 
-class _AppSubtitleLanguageState extends ConsumerState<AppSubtitleLanguage> {
+class _AppSubtitleLanguageState extends ConsumerState<SubtitleLanguageScreen> {
   late String? selected;
   @override
   void initState() {

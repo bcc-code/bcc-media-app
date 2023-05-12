@@ -20,11 +20,11 @@ import '../../l10n/app_localizations.dart';
 import '../../providers/auth_state/auth_state.dart';
 import '../../helpers/extensions.dart';
 
-class ContactSupport extends ConsumerStatefulWidget {
-  const ContactSupport({super.key});
+class ContactSupportScreen extends ConsumerStatefulWidget {
+  const ContactSupportScreen({super.key});
 
   @override
-  ConsumerState<ContactSupport> createState() => _ContactSupportState();
+  ConsumerState<ContactSupportScreen> createState() => _ContactSupportState();
 }
 
 class ListItem {
@@ -34,7 +34,7 @@ class ListItem {
   ListItem({required this.title, this.content});
 }
 
-class _ContactSupportState extends ConsumerState<ContactSupport> {
+class _ContactSupportState extends ConsumerState<ContactSupportScreen> {
   bool isOnInputPage = true;
   List<ListItem>? deviceInfo;
   String title = '';

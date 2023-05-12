@@ -19,14 +19,14 @@ class FAQItem {
   });
 }
 
-class FAQ extends StatefulWidget {
-  const FAQ({super.key});
+class FAQScreen extends StatefulWidget {
+  const FAQScreen({super.key});
 
   @override
-  State<FAQ> createState() => _FAQState();
+  State<FAQScreen> createState() => _FAQScreenState();
 }
 
-class _FAQState extends State<FAQ> {
+class _FAQScreenState extends State<FAQScreen> {
   var listOfList = [
     FAQItem(
       id: 1,
