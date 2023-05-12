@@ -1,3 +1,4 @@
+import 'package:brunstadtv_app/flavors.dart';
 import 'package:brunstadtv_app/providers/unleash.dart';
 import 'package:flutter/material.dart';
 import 'package:riverpod/riverpod.dart';
@@ -11,22 +12,23 @@ final featureFlagsProvider = StateNotifierProvider<FeatureFlagsNotifier, Feature
 
 class FeatureFlagsNotifier extends StateNotifier<FeatureFlags> {
   final UnleashClient? client;
-  FeatureFlagsNotifier(this.client) : super(getFlagsFromUnleash(client)) {
+  FeatureFlagsNotifier(this.client) : super(getFlags(client)) {
     _update();
     client?.on('update', (_) => _update());
     client?.on('ready', (_) => _update(readyOverride: true));
   }
 
-  static FeatureFlags getFlagsFromUnleash(UnleashClient? client) {
+  static FeatureFlags getFlags(UnleashClient? client) {
     if (client == null) return const FeatureFlags();
     return FeatureFlags(
+      auth: FlavorConfig.current.flavor != Flavor.kids_prod || client.isEnabled('kids-auth'),
       publicSignup: client.isEnabled('public-signup'),
       socialSignup: client.isEnabled('social-signup'),
     );
   }
 
   _update({bool? readyOverride}) {
-    state = getFlagsFromUnleash(client);
+    state = getFlags(client);
     debugPrint('Feature flags refreshed: $state');
   }
 }

@@ -771,23 +771,17 @@ extension UtilityExtension$Query$FetchMoreItemsForItemSection$section
             (i) => i,
           );
   _T when<_T>({
-    required _T Function(
-            Query$FetchMoreItemsForItemSection$section$$PosterSection)
+    required _T Function(Query$FetchMoreItemsForItemSection$section$$PosterSection)
         posterSection,
-    required _T Function(
-            Query$FetchMoreItemsForItemSection$section$$FeaturedSection)
+    required _T Function(Query$FetchMoreItemsForItemSection$section$$FeaturedSection)
         featuredSection,
-    required _T Function(
-            Query$FetchMoreItemsForItemSection$section$$DefaultSection)
+    required _T Function(Query$FetchMoreItemsForItemSection$section$$DefaultSection)
         defaultSection,
-    required _T Function(
-            Query$FetchMoreItemsForItemSection$section$$CardSection)
+    required _T Function(Query$FetchMoreItemsForItemSection$section$$CardSection)
         cardSection,
-    required _T Function(
-            Query$FetchMoreItemsForItemSection$section$$ListSection)
+    required _T Function(Query$FetchMoreItemsForItemSection$section$$ListSection)
         listSection,
-    required _T Function(
-            Query$FetchMoreItemsForItemSection$section$$CardListSection)
+    required _T Function(Query$FetchMoreItemsForItemSection$section$$CardListSection)
         cardListSection,
     required _T Function(
             Query$FetchMoreItemsForItemSection$section$$DefaultGridSection)
@@ -795,26 +789,20 @@ extension UtilityExtension$Query$FetchMoreItemsForItemSection$section
     required _T Function(
             Query$FetchMoreItemsForItemSection$section$$PosterGridSection)
         posterGridSection,
-    required _T Function(
-            Query$FetchMoreItemsForItemSection$section$$IconGridSection)
+    required _T Function(Query$FetchMoreItemsForItemSection$section$$IconGridSection)
         iconGridSection,
-    required _T Function(
-            Query$FetchMoreItemsForItemSection$section$$IconSection)
+    required _T Function(Query$FetchMoreItemsForItemSection$section$$IconSection)
         iconSection,
-    required _T Function(
-            Query$FetchMoreItemsForItemSection$section$$LabelSection)
+    required _T Function(Query$FetchMoreItemsForItemSection$section$$LabelSection)
         labelSection,
     required _T Function(Query$FetchMoreItemsForItemSection$section$$WebSection)
         webSection,
-    required _T Function(
-            Query$FetchMoreItemsForItemSection$section$$MessageSection)
+    required _T Function(Query$FetchMoreItemsForItemSection$section$$MessageSection)
         messageSection,
     required _T Function(
             Query$FetchMoreItemsForItemSection$section$$PageDetailsSection)
         pageDetailsSection,
-    required _T Function(
-            Query$FetchMoreItemsForItemSection$section$$AchievementSection)
-        achievementSection,
+    required _T Function(Query$FetchMoreItemsForItemSection$section$$AchievementSection) achievementSection,
     required _T Function() orElse,
   }) {
     switch ($__typename) {

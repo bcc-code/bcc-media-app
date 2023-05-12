@@ -8,7 +8,7 @@ import 'flavors.dart';
 Future<void> main() async {
   FlavorConfig.register(
     FlavorConfig(
-      flavor: Flavor.bccmedia_prod,
+      flavor: Flavor.kids_prod,
       firebaseOptions: kids_prod_firebase.DefaultFirebaseOptions.currentPlatform,
       applicationCode: 'kids',
       designSystem: () => BibleKidsDesignSystem(),
