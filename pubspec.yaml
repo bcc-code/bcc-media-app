@@ -80,7 +80,7 @@ dependencies:
   on_screen_ruler: ^0.0.1
   url_launcher: ^6.1.6
   modal_bottom_sheet: ^3.0.0-pre
-  webview_flutter: ^4.0.5
+  #webview_flutter: ^4.0.5
   shimmer: ^2.0.0
   flutter_markdown: ^0.6.13
   rudder_sdk_flutter: ^2.2.0

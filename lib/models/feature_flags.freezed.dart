@@ -16,6 +16,7 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$FeatureFlags {
+  bool get auth => throw _privateConstructorUsedError;
   bool get publicSignup => throw _privateConstructorUsedError;
   bool get socialSignup => throw _privateConstructorUsedError;
 
@@ -30,7 +31,7 @@ abstract class $FeatureFlagsCopyWith<$Res> {
           FeatureFlags value, $Res Function(FeatureFlags) then) =
       _$FeatureFlagsCopyWithImpl<$Res, FeatureFlags>;
   @useResult
-  $Res call({bool publicSignup, bool socialSignup});
+  $Res call({bool auth, bool publicSignup, bool socialSignup});
 }
 
 /// @nodoc
@@ -46,10 +47,15 @@ class _$FeatureFlagsCopyWithImpl<$Res, $Val extends FeatureFlags>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? auth = null,
     Object? publicSignup = null,
     Object? socialSignup = null,
   }) {
     return _then(_value.copyWith(
+      auth: null == auth
+          ? _value.auth
+          : auth // ignore: cast_nullable_to_non_nullable
+              as bool,
       publicSignup: null == publicSignup
           ? _value.publicSignup
           : publicSignup // ignore: cast_nullable_to_non_nullable
@@ -70,7 +76,7 @@ abstract class _$$_FeatureFlagsCopyWith<$Res>
       __$$_FeatureFlagsCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({bool publicSignup, bool socialSignup});
+  $Res call({bool auth, bool publicSignup, bool socialSignup});
 }
 
 /// @nodoc
@@ -84,10 +90,15 @@ class __$$_FeatureFlagsCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? auth = null,
     Object? publicSignup = null,
     Object? socialSignup = null,
   }) {
     return _then(_$_FeatureFlags(
+      auth: null == auth
+          ? _value.auth
+          : auth // ignore: cast_nullable_to_non_nullable
+              as bool,
       publicSignup: null == publicSignup
           ? _value.publicSignup
           : publicSignup // ignore: cast_nullable_to_non_nullable
@@ -103,9 +114,13 @@ class __$$_FeatureFlagsCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_FeatureFlags extends _FeatureFlags {
-  const _$_FeatureFlags({this.publicSignup = false, this.socialSignup = false})
+  const _$_FeatureFlags(
+      {this.auth = true, this.publicSignup = false, this.socialSignup = false})
       : super._();
 
+  @override
+  @JsonKey()
+  final bool auth;
   @override
   @JsonKey()
   final bool publicSignup;
@@ -115,7 +130,7 @@ class _$_FeatureFlags extends _FeatureFlags {
 
   @override
   String toString() {
-    return 'FeatureFlags(publicSignup: $publicSignup, socialSignup: $socialSignup)';
+    return 'FeatureFlags(auth: $auth, publicSignup: $publicSignup, socialSignup: $socialSignup)';
   }
 
   @override
@@ -123,6 +138,7 @@ class _$_FeatureFlags extends _FeatureFlags {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_FeatureFlags &&
+            (identical(other.auth, auth) || other.auth == auth) &&
             (identical(other.publicSignup, publicSignup) ||
                 other.publicSignup == publicSignup) &&
             (identical(other.socialSignup, socialSignup) ||
@@ -130,7 +146,8 @@ class _$_FeatureFlags extends _FeatureFlags {
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, publicSignup, socialSignup);
+  int get hashCode =>
+      Object.hash(runtimeType, auth, publicSignup, socialSignup);
 
   @JsonKey(ignore: true)
   @override
@@ -141,9 +158,13 @@ class _$_FeatureFlags extends _FeatureFlags {
 
 abstract class _FeatureFlags extends FeatureFlags {
   const factory _FeatureFlags(
-      {final bool publicSignup, final bool socialSignup}) = _$_FeatureFlags;
+      {final bool auth,
+      final bool publicSignup,
+      final bool socialSignup}) = _$_FeatureFlags;
   const _FeatureFlags._() : super._();
 
+  @override
+  bool get auth;
   @override
   bool get publicSignup;
   @override

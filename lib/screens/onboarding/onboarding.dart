@@ -11,9 +11,9 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
+import '../../components/onboarding/onboarding_buttons_auth_enabled.dart';
 import '../../components/web/dialog_on_web.dart';
 import '../../flavors.dart';
-import '../../helpers/ui/btv_buttons.dart';
 import '../../theme/design_system/design_system.dart';
 import '../../helpers/widget_keys.dart';
 import '../../l10n/app_localizations.dart';
@@ -95,6 +95,7 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final authEnabled = ref.watch(featureFlagsProvider.select((value) => value.auth));
     final signupEnabled = ref.watch(featureFlagsProvider.select((value) => value.publicSignup));
     return CupertinoScaffold(
       body: DialogOnWeb(
@@ -166,51 +167,21 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
                     children: [
                       if (errorMessage != '')
                         Padding(padding: const EdgeInsets.only(bottom: 16), child: Text(errorMessage, textAlign: TextAlign.center)),
-                      Container(
-                        margin: const EdgeInsets.only(bottom: 12),
-                        child: DesignSystem.of(context).buttons.large(
-                              key: WidgetKeys.signInButton,
-                              labelText: S.of(context).signInButton,
-                              onPressed: loginAction,
-                            ),
+                      OnboardingButtons(
+                        loginAction: loginAction,
+                        exploreAction: () {
+                          context.router.popUntil((route) => false);
+                          context.router.push(const TabsRootScreenRoute());
+                        },
+                        signupAction: () {
+                          CupertinoScaffold.showCupertinoModalBottomSheet(
+                            context: context,
+                            builder: (context) => const SignupScreen(),
+                            enableDrag: false,
+                            duration: const Duration(milliseconds: 250),
+                          );
+                        },
                       ),
-                      AnimatedSwitcher(
-                        duration: const Duration(milliseconds: 200),
-                        child: !signupEnabled
-                            ? null
-                            : Builder(builder: (context) {
-                                return Container(
-                                  margin: const EdgeInsets.only(bottom: 12),
-                                  width: double.infinity,
-                                  child: DesignSystem.of(context).buttons.largeSecondary(
-                                        key: WidgetKeys.signUpButton,
-                                        onPressed: () {
-                                          CupertinoScaffold.showCupertinoModalBottomSheet(
-                                            context: context,
-                                            builder: (context) => const SignupScreen(),
-                                            enableDrag: false,
-                                            duration: const Duration(milliseconds: 250),
-                                          );
-                                        },
-                                        labelText: S.of(context).signUpButton,
-                                      ),
-                                );
-                              }),
-                      ),
-                      DesignSystem.of(context)
-                          .buttons
-                          .mediumSecondary(
-                            key: WidgetKeys.exploreButton,
-                            labelText: S.of(context).explorePublicContent,
-                            onPressed: () {
-                              context.router.popUntil((route) => false);
-                              context.router.push(const TabsRootScreenRoute());
-                            },
-                          )
-                          .copyWith(
-                            backgroundColor: Colors.transparent,
-                            border: Border.all(color: Colors.transparent),
-                          ),
                     ],
                   ),
                 ),
