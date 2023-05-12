@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-import '../theme/design_system/design_system.dart';
+import '../../theme/design_system/design_system.dart';
 
-import 'option_list.dart';
+import '../option_list.dart';
 
 class EpisodeTabSelector extends StatelessWidget {
   const EpisodeTabSelector({super.key, required this.tabs, required this.selectedIndex, required this.onSelectionChange});

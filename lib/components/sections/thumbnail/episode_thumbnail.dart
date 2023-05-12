@@ -4,7 +4,7 @@ import '../../../helpers/date_time.dart';
 import '../../../helpers/ui/ui_utils.dart';
 import '../../../models/episode_thumbnail_data.dart';
 import '../../bordered_image_container.dart';
-import '../../episode_duration.dart';
+import '../../episode/episode_duration.dart';
 import '../../watch_progress_indicator.dart';
 import '../../watched_badge.dart';
 

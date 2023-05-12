@@ -26,7 +26,7 @@ import '../api/brunstadtv.dart';
 import '../components/custom_back_button.dart';
 import '../components/episode/episode_tabs.dart';
 import '../components/episode/player_error.dart';
-import '../components/episode_details.dart';
+import '../components/episode/episode_details.dart';
 import '../components/error_no_access.dart';
 import '../components/option_list.dart';
 import '../components/study_button.dart';

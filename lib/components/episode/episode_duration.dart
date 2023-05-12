@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../theme/design_system/design_system.dart';
+import '../../theme/design_system/design_system.dart';
 
 class EpisodeDuration extends StatelessWidget {
   final String duration;

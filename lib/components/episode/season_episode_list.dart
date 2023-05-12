@@ -6,13 +6,13 @@ import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:intl/intl.dart';
 
-import '../env/env.dart';
-import '../helpers/date_time.dart';
-import '../helpers/ui/ui_utils.dart';
-import '../theme/design_system/design_system.dart';
-import '../helpers/utils.dart';
-import '../l10n/app_localizations.dart';
-import 'bordered_image_container.dart';
+import '../../env/env.dart';
+import '../../helpers/date_time.dart';
+import '../../helpers/ui/ui_utils.dart';
+import '../../theme/design_system/design_system.dart';
+import '../../helpers/utils.dart';
+import '../../l10n/app_localizations.dart';
+import '../bordered_image_container.dart';
 import 'episode_duration.dart';
 
 part 'season_episode_list.freezed.dart';

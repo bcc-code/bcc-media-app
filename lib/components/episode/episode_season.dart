@@ -1,6 +1,6 @@
 import 'package:brunstadtv_app/components/loading_indicator.dart';
 import 'package:brunstadtv_app/components/option_list.dart';
-import 'package:brunstadtv_app/components/season_episode_list.dart';
+import 'package:brunstadtv_app/components/episode/season_episode_list.dart';
 import 'package:brunstadtv_app/graphql/queries/episode.graphql.dart';
 import 'package:brunstadtv_app/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
