@@ -11,7 +11,7 @@ import 'package:brunstadtv_app/components/episode/episode_season.dart';
 import 'package:brunstadtv_app/components/episode/player_poster.dart';
 import 'package:brunstadtv_app/components/error_generic.dart';
 import 'package:brunstadtv_app/components/loading_indicator.dart';
-import 'package:brunstadtv_app/components/share_episode_sheet.dart';
+import 'package:brunstadtv_app/components/episode/share_episode_sheet.dart';
 import 'package:brunstadtv_app/providers/lesson_progress_provider.dart';
 import 'package:brunstadtv_app/router/router.gr.dart';
 import 'package:flutter/foundation.dart';

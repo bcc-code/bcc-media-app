@@ -2,8 +2,8 @@ import 'package:brunstadtv_app/helpers/ui/image.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
-import '../graphql/queries/achievements.graphql.dart';
-import '../theme/design_system/design_system.dart';
+import '../../graphql/queries/achievements.graphql.dart';
+import '../../theme/design_system/design_system.dart';
 
 class AchievementListItem extends StatelessWidget {
   final Fragment$Achievement item;

@@ -15,9 +15,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:share_plus/share_plus.dart';
-import '../helpers/share_extension/share_extension.dart';
+import '../../helpers/share_extension/share_extension.dart';
 
-import '../helpers/date_time.dart';
+import '../../helpers/date_time.dart';
 
 class ShareEpisodeSheet extends ConsumerStatefulWidget {
   const ShareEpisodeSheet({

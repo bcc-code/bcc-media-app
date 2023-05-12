@@ -3,8 +3,8 @@ import 'package:brunstadtv_app/graphql/queries/achievements.graphql.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
-import '../achievement_dialog.dart';
-import '../achievement_list_item.dart';
+import '../achievements/achievement_dialog.dart';
+import '../achievements/achievement_list_item.dart';
 import '../horizontal_slider.dart';
 import '../../graphql/queries/page.graphql.dart';
 

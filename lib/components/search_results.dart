@@ -18,16 +18,16 @@ import '../models/analytics/search_result_clicked.dart';
 import '../providers/analytics.dart';
 import '../providers/inherited_data.dart';
 
-class SearchResultsPage extends ConsumerStatefulWidget {
+class SearchResults extends ConsumerStatefulWidget {
   final String searchInput;
 
-  const SearchResultsPage(this.searchInput, {super.key}) : assert(searchInput != '');
+  const SearchResults(this.searchInput, {super.key}) : assert(searchInput != '');
 
   @override
-  ConsumerState<SearchResultsPage> createState() => _SearchResultsPageState();
+  ConsumerState<SearchResults> createState() => _SearchResultsPageState();
 }
 
-class _SearchResultsPageState extends ConsumerState<SearchResultsPage> {
+class _SearchResultsPageState extends ConsumerState<SearchResults> {
   late Future<Query$Search$search?> _resultFuture;
   final AsyncDebouncer<Query$Search$search?> debouncer = AsyncDebouncer(milliseconds: 150);
 
@@ -85,7 +85,7 @@ class _SearchResultsPageState extends ConsumerState<SearchResultsPage> {
   }
 
   @override
-  void didUpdateWidget(SearchResultsPage oldWidget) {
+  void didUpdateWidget(SearchResults oldWidget) {
     super.didUpdateWidget(oldWidget);
     if (oldWidget.searchInput != widget.searchInput) {
       setResultFuture();

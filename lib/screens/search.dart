@@ -11,7 +11,7 @@ import '../graphql/queries/page.graphql.dart';
 import '../theme/design_system/design_system.dart';
 
 import '../l10n/app_localizations.dart';
-import '../components/search_results_page.dart';
+import '../components/search_results.dart';
 import '../components/custom_search_bar.dart';
 
 class SearchScreen extends ConsumerStatefulWidget {
@@ -99,7 +99,7 @@ class SearchScreenState extends ConsumerState<SearchScreen> implements ScrollScr
     if (_curSearchValue?.isEmpty == true && focusing) {
       return getNoInputInfoWidget(context);
     } else if (_curSearchValue?.isNotEmpty == true) {
-      return SearchResultsPage(_curSearchValue!);
+      return SearchResults(_curSearchValue!);
     } else {
       return BccmPage(
         pageFuture: pageFuture,
