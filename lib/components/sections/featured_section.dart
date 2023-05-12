@@ -1,25 +1,25 @@
 import 'dart:math';
 
 import 'package:brunstadtv_app/components/horizontal_slider.dart';
-import 'package:brunstadtv_app/components/section_item_click_wrapper.dart';
+import 'package:brunstadtv_app/components/sections/section_item_click_wrapper.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../graphql/queries/calendar_episode_entries.graphql.dart';
-import '../helpers/navigation/navigation_utils.dart';
-import '../helpers/scroll_behaviors.dart';
-import '../l10n/app_localizations.dart';
-import '../models/analytics/sections.dart';
+import '../../graphql/queries/calendar_episode_entries.graphql.dart';
+import '../../helpers/navigation/navigation_utils.dart';
+import '../../helpers/scroll_behaviors.dart';
+import '../../l10n/app_localizations.dart';
+import '../../models/analytics/sections.dart';
 
-import '../graphql/queries/page.graphql.dart';
-import '../theme/design_system/design_system.dart';
-import '../helpers/extensions.dart';
-import '../helpers/ui/btv_buttons.dart';
+import '../../graphql/queries/page.graphql.dart';
+import '../../theme/design_system/design_system.dart';
+import '../../helpers/extensions.dart';
+import '../../helpers/ui/btv_buttons.dart';
 
-import '../helpers/ui/image.dart';
-import '../helpers/ui/transparent_image.dart';
-import '../providers/todays_calendar_entries.dart';
+import '../../helpers/ui/image.dart';
+import '../../helpers/ui/transparent_image.dart';
+import '../../providers/todays_calendar_entries.dart';
 
 const marginX = 2.0;
 

@@ -1,12 +1,12 @@
-import 'package:brunstadtv_app/components/section_item_click_wrapper.dart';
+import 'package:brunstadtv_app/components/sections/section_item_click_wrapper.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
-import '../graphql/queries/page.graphql.dart';
-import '../theme/design_system/design_system.dart';
+import '../../graphql/queries/page.graphql.dart';
+import '../../theme/design_system/design_system.dart';
 
-import '../models/analytics/sections.dart';
-import 'horizontal_slider.dart';
+import '../../models/analytics/sections.dart';
+import '../horizontal_slider.dart';
 
 class LabelSection extends StatelessWidget {
   final Fragment$Section$$LabelSection data;

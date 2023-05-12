@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../graphql/queries/page.graphql.dart';
-import '../helpers/extensions.dart';
-import '../helpers/navigation/navigation_utils.dart';
-import '../models/analytics/sections.dart';
-import '../providers/inherited_data.dart';
-import '../helpers/watch_progress_bottom_sheet.dart';
+import '../../graphql/queries/page.graphql.dart';
+import '../../helpers/extensions.dart';
+import '../../helpers/navigation/navigation_utils.dart';
+import '../../models/analytics/sections.dart';
+import '../../providers/inherited_data.dart';
+import '../../helpers/watch_progress_bottom_sheet.dart';
 
 class SectionItemClickWrapper extends ConsumerWidget {
   const SectionItemClickWrapper({super.key, required this.item, required this.child, required this.analytics, this.collectionId});

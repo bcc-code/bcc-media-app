@@ -8,7 +8,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../components/custom_back_button.dart';
 import '../components/error_generic.dart';
-import '../components/page_section.dart';
+import '../components/sections/page_section.dart';
 import '../components/see_more.dart';
 import '../l10n/app_localizations.dart';
 import '../router/router.gr.dart';

@@ -3,8 +3,8 @@ import 'package:brunstadtv_app/components/see_more.dart';
 import 'package:brunstadtv_app/helpers/extensions.dart';
 import 'package:flutter/material.dart';
 
-import '../graphql/queries/page.graphql.dart';
-import '../router/router.gr.dart';
+import '../../graphql/queries/page.graphql.dart';
+import '../../router/router.gr.dart';
 import 'achievement_section.dart';
 import 'icon_section.dart';
 import 'page_section.dart';
@@ -14,10 +14,10 @@ import 'message_section.dart';
 import 'page_details_section.dart';
 import 'label_section.dart';
 import 'icon_grid_section.dart';
-import 'sections/list_section.dart';
+import 'list_section.dart';
 import 'web_section.dart';
-import 'sections/thumbnail_grid/item_section_thumbnail_grid.dart';
-import 'sections/thumbnail_slider/item_section_thumbnail_slider.dart';
+import 'thumbnail_grid/item_section_thumbnail_grid.dart';
+import 'thumbnail_slider/item_section_thumbnail_slider.dart';
 
 class Section extends StatelessWidget {
   const Section({

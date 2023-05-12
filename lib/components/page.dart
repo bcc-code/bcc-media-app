@@ -12,7 +12,7 @@ import '../helpers/extensions.dart';
 import '../helpers/ui/sections.dart';
 import '../models/pagination_status.dart';
 import '../providers/inherited_data.dart';
-import 'section_update_handler.dart';
+import 'sections/section_update_handler.dart';
 
 /// How close to the bottom of the page do you have to be before we load more items
 const kLoadMoreBottomScrollOffset = 300;

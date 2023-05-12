@@ -10,7 +10,7 @@ import '../../../models/analytics/sections.dart';
 import '../../../models/episode_thumbnail_data.dart';
 import '../../../providers/todays_calendar_entries.dart';
 import '../../custom_grid_view.dart';
-import '../../section_item_click_wrapper.dart';
+import '../section_item_click_wrapper.dart';
 import 'thumbnail_grid_episode.dart';
 import 'thumbnail_grid_show.dart';
 

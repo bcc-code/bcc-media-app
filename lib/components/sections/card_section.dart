@@ -5,9 +5,9 @@ import 'package:brunstadtv_app/models/analytics/sections.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
-import '../graphql/queries/page.graphql.dart';
-import '../providers/inherited_data.dart';
-import 'study_topic_card_large.dart';
+import '../../graphql/queries/page.graphql.dart';
+import '../../providers/inherited_data.dart';
+import '../study_topic_card_large.dart';
 
 class CardSection extends StatelessWidget {
   final Fragment$Section$$CardSection data;
