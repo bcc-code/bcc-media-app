@@ -114,6 +114,10 @@ class ExoPlayerController(private val context: Context) :
             "setting preferred audio and sub lang to: ${appConfigState?.audioLanguage}, ${appConfigState?.subtitleLanguage}"
         )
 
+        player.trackSelectionParameters = trackSelector.parameters.buildUpon()
+            .setPreferredAudioLanguage(appConfigState?.audioLanguage)
+            .build()
+
         textLanguageThatShouldBeSelected = appConfigState?.subtitleLanguage
 
         youboraPlugin.options.username = appConfigState?.analyticsId
@@ -177,7 +181,15 @@ class ExoPlayerController(private val context: Context) :
     }
 
     override fun onTracksChanged(tracks: Tracks) {
-        setDefaultTextTrack(tracks)
+        // We use this callback to set the default language for the subtitles.
+        // we only set the default text language once when there is no track selected already and
+        // the language is available for the current track.
+        val textLanguage = textLanguageThatShouldBeSelected
+        if (textLanguage != null && !tracks.groups.any { it.type == C.TRACK_TYPE_TEXT && it.isSelected }) {
+            if (setTextLanguage(tracks, textLanguage)) {
+                textLanguageThatShouldBeSelected = null
+            }
+        }
 
         for (t in tracks.groups) {
             if (!t.isSelected) continue
@@ -191,31 +203,25 @@ class ExoPlayerController(private val context: Context) :
     }
 
     /**
-     * ExoPlayers `setPreferredTextLanguage` makes it impossible to
-     * disable the subtitle.
-     *
-     * Instead of `setPreferredLanguage` we force the text track to default languag (from settings)
-     * once. This method handles this behavior.
+     * Sets the language of the subtitles. Returns false if there is the language
+     * is not available for the current media item.
      */
-    private fun setDefaultTextTrack(tracks: Tracks) {
-        if (textLanguageThatShouldBeSelected == null) {
-            return
-        }
-
-        val track = tracks.groups.firstOrNull {
+    private fun setTextLanguage(tracks: Tracks, language: String): Boolean {
+        val trackGroup = tracks.groups.firstOrNull {
             it.type == C.TRACK_TYPE_TEXT
                     && it.mediaTrackGroup.length > 0
-                    && it.mediaTrackGroup.getFormat(0).language == textLanguageThatShouldBeSelected
+                    && it.mediaTrackGroup.getFormat(0).language == language
         }
 
-        if (track != null && !tracks.groups.any { it.type == C.TRACK_TYPE_TEXT && it.isSelected }) {
+        return if (trackGroup != null) {
             player.trackSelectionParameters = player.trackSelectionParameters
                 .buildUpon()
                 .clearOverridesOfType(C.TRACK_TYPE_TEXT)
-                .setOverrideForType(TrackSelectionOverride(track.mediaTrackGroup, 0))
+                .setOverrideForType(TrackSelectionOverride(trackGroup.mediaTrackGroup, 0))
                 .build()
-
-            textLanguageThatShouldBeSelected = null
+            true
+        } else {
+            false
         }
     }
 
