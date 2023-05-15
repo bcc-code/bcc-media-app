@@ -58,7 +58,7 @@ public class PlaybackApiImpl: NSObject, PlaybackPlatformPigeon {
         previousPrimaryPlayerId = primaryPlayerId
         primaryPlayerId = id
         getPrimaryPlayer()?.hasBecomePrimary()
-        playbackListener.onPrimaryPlayerChanged(id, completion: { _ in })
+        playbackListener.onPrimaryPlayerChanged(PrimaryPlayerChangedEvent.make(withPlayerId: id), completion: { _ in })
         completion(nil)
     }
 
@@ -143,7 +143,7 @@ public extension PlaybackApiImpl {
             return
         }
         primaryPlayerId = nil
-        playbackListener.onPrimaryPlayerChanged(nil, completion: { _ in })
+        playbackListener.onPrimaryPlayerChanged(PrimaryPlayerChangedEvent.make(withPlayerId: nil), completion: { _ in })
         assertionFailure("unclaimIfPrimary was called, but no player was given primary.")
     }
 }

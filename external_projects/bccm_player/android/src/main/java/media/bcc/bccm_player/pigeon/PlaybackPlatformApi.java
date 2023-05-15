@@ -756,6 +756,122 @@ public class PlaybackPlatformApi {
   }
 
   /** Generated class from Pigeon that represents data sent in messages. */
+  public static final class PrimaryPlayerChangedEvent {
+    private @Nullable String playerId;
+
+    public @Nullable String getPlayerId() {
+      return playerId;
+    }
+
+    public void setPlayerId(@Nullable String setterArg) {
+      this.playerId = setterArg;
+    }
+
+    public static final class Builder {
+
+      private @Nullable String playerId;
+
+      public @NonNull Builder setPlayerId(@Nullable String setterArg) {
+        this.playerId = setterArg;
+        return this;
+      }
+
+      public @NonNull PrimaryPlayerChangedEvent build() {
+        PrimaryPlayerChangedEvent pigeonReturn = new PrimaryPlayerChangedEvent();
+        pigeonReturn.setPlayerId(playerId);
+        return pigeonReturn;
+      }
+    }
+
+    @NonNull
+    ArrayList<Object> toList() {
+      ArrayList<Object> toListResult = new ArrayList<Object>(1);
+      toListResult.add(playerId);
+      return toListResult;
+    }
+
+    static @NonNull PrimaryPlayerChangedEvent fromList(@NonNull ArrayList<Object> list) {
+      PrimaryPlayerChangedEvent pigeonResult = new PrimaryPlayerChangedEvent();
+      Object playerId = list.get(0);
+      pigeonResult.setPlayerId((String) playerId);
+      return pigeonResult;
+    }
+  }
+
+  /** Generated class from Pigeon that represents data sent in messages. */
+  public static final class PlayerStateUpdateEvent {
+    private @NonNull String playerId;
+
+    public @NonNull String getPlayerId() {
+      return playerId;
+    }
+
+    public void setPlayerId(@NonNull String setterArg) {
+      if (setterArg == null) {
+        throw new IllegalStateException("Nonnull field \"playerId\" is null.");
+      }
+      this.playerId = setterArg;
+    }
+
+    private @NonNull PlayerStateSnapshot snapshot;
+
+    public @NonNull PlayerStateSnapshot getSnapshot() {
+      return snapshot;
+    }
+
+    public void setSnapshot(@NonNull PlayerStateSnapshot setterArg) {
+      if (setterArg == null) {
+        throw new IllegalStateException("Nonnull field \"snapshot\" is null.");
+      }
+      this.snapshot = setterArg;
+    }
+
+    /** Constructor is non-public to enforce null safety; use Builder. */
+    PlayerStateUpdateEvent() {}
+
+    public static final class Builder {
+
+      private @Nullable String playerId;
+
+      public @NonNull Builder setPlayerId(@NonNull String setterArg) {
+        this.playerId = setterArg;
+        return this;
+      }
+
+      private @Nullable PlayerStateSnapshot snapshot;
+
+      public @NonNull Builder setSnapshot(@NonNull PlayerStateSnapshot setterArg) {
+        this.snapshot = setterArg;
+        return this;
+      }
+
+      public @NonNull PlayerStateUpdateEvent build() {
+        PlayerStateUpdateEvent pigeonReturn = new PlayerStateUpdateEvent();
+        pigeonReturn.setPlayerId(playerId);
+        pigeonReturn.setSnapshot(snapshot);
+        return pigeonReturn;
+      }
+    }
+
+    @NonNull
+    ArrayList<Object> toList() {
+      ArrayList<Object> toListResult = new ArrayList<Object>(2);
+      toListResult.add(playerId);
+      toListResult.add((snapshot == null) ? null : snapshot.toList());
+      return toListResult;
+    }
+
+    static @NonNull PlayerStateUpdateEvent fromList(@NonNull ArrayList<Object> list) {
+      PlayerStateUpdateEvent pigeonResult = new PlayerStateUpdateEvent();
+      Object playerId = list.get(0);
+      pigeonResult.setPlayerId((String) playerId);
+      Object snapshot = list.get(1);
+      pigeonResult.setSnapshot((snapshot == null) ? null : PlayerStateSnapshot.fromList((ArrayList<Object>) snapshot));
+      return pigeonResult;
+    }
+  }
+
+  /** Generated class from Pigeon that represents data sent in messages. */
   public static final class PositionDiscontinuityEvent {
     private @NonNull String playerId;
 
@@ -894,6 +1010,76 @@ public class PlaybackPlatformApi {
       pigeonResult.setPlayerId((String) playerId);
       Object playbackState = list.get(1);
       pigeonResult.setPlaybackState(playbackState == null ? null : PlaybackState.values()[(int) playbackState]);
+      return pigeonResult;
+    }
+  }
+
+  /** Generated class from Pigeon that represents data sent in messages. */
+  public static final class PlaybackEndedEvent {
+    private @NonNull String playerId;
+
+    public @NonNull String getPlayerId() {
+      return playerId;
+    }
+
+    public void setPlayerId(@NonNull String setterArg) {
+      if (setterArg == null) {
+        throw new IllegalStateException("Nonnull field \"playerId\" is null.");
+      }
+      this.playerId = setterArg;
+    }
+
+    private @Nullable MediaItem mediaItem;
+
+    public @Nullable MediaItem getMediaItem() {
+      return mediaItem;
+    }
+
+    public void setMediaItem(@Nullable MediaItem setterArg) {
+      this.mediaItem = setterArg;
+    }
+
+    /** Constructor is non-public to enforce null safety; use Builder. */
+    PlaybackEndedEvent() {}
+
+    public static final class Builder {
+
+      private @Nullable String playerId;
+
+      public @NonNull Builder setPlayerId(@NonNull String setterArg) {
+        this.playerId = setterArg;
+        return this;
+      }
+
+      private @Nullable MediaItem mediaItem;
+
+      public @NonNull Builder setMediaItem(@Nullable MediaItem setterArg) {
+        this.mediaItem = setterArg;
+        return this;
+      }
+
+      public @NonNull PlaybackEndedEvent build() {
+        PlaybackEndedEvent pigeonReturn = new PlaybackEndedEvent();
+        pigeonReturn.setPlayerId(playerId);
+        pigeonReturn.setMediaItem(mediaItem);
+        return pigeonReturn;
+      }
+    }
+
+    @NonNull
+    ArrayList<Object> toList() {
+      ArrayList<Object> toListResult = new ArrayList<Object>(2);
+      toListResult.add(playerId);
+      toListResult.add((mediaItem == null) ? null : mediaItem.toList());
+      return toListResult;
+    }
+
+    static @NonNull PlaybackEndedEvent fromList(@NonNull ArrayList<Object> list) {
+      PlaybackEndedEvent pigeonResult = new PlaybackEndedEvent();
+      Object playerId = list.get(0);
+      pigeonResult.setPlayerId((String) playerId);
+      Object mediaItem = list.get(1);
+      pigeonResult.setMediaItem((mediaItem == null) ? null : MediaItem.fromList((ArrayList<Object>) mediaItem));
       return pigeonResult;
     }
   }
@@ -1551,11 +1737,17 @@ public class PlaybackPlatformApi {
         case (byte) 131:
           return PictureInPictureModeChangedEvent.fromList((ArrayList<Object>) readValue(buffer));
         case (byte) 132:
-          return PlaybackStateChangedEvent.fromList((ArrayList<Object>) readValue(buffer));
+          return PlaybackEndedEvent.fromList((ArrayList<Object>) readValue(buffer));
         case (byte) 133:
-          return PlayerStateSnapshot.fromList((ArrayList<Object>) readValue(buffer));
+          return PlaybackStateChangedEvent.fromList((ArrayList<Object>) readValue(buffer));
         case (byte) 134:
+          return PlayerStateSnapshot.fromList((ArrayList<Object>) readValue(buffer));
+        case (byte) 135:
+          return PlayerStateUpdateEvent.fromList((ArrayList<Object>) readValue(buffer));
+        case (byte) 136:
           return PositionDiscontinuityEvent.fromList((ArrayList<Object>) readValue(buffer));
+        case (byte) 137:
+          return PrimaryPlayerChangedEvent.fromList((ArrayList<Object>) readValue(buffer));
         default:
           return super.readValueOfType(type, buffer);
       }
@@ -1575,15 +1767,24 @@ public class PlaybackPlatformApi {
       } else if (value instanceof PictureInPictureModeChangedEvent) {
         stream.write(131);
         writeValue(stream, ((PictureInPictureModeChangedEvent) value).toList());
-      } else if (value instanceof PlaybackStateChangedEvent) {
+      } else if (value instanceof PlaybackEndedEvent) {
         stream.write(132);
+        writeValue(stream, ((PlaybackEndedEvent) value).toList());
+      } else if (value instanceof PlaybackStateChangedEvent) {
+        stream.write(133);
         writeValue(stream, ((PlaybackStateChangedEvent) value).toList());
       } else if (value instanceof PlayerStateSnapshot) {
-        stream.write(133);
-        writeValue(stream, ((PlayerStateSnapshot) value).toList());
-      } else if (value instanceof PositionDiscontinuityEvent) {
         stream.write(134);
+        writeValue(stream, ((PlayerStateSnapshot) value).toList());
+      } else if (value instanceof PlayerStateUpdateEvent) {
+        stream.write(135);
+        writeValue(stream, ((PlayerStateUpdateEvent) value).toList());
+      } else if (value instanceof PositionDiscontinuityEvent) {
+        stream.write(136);
         writeValue(stream, ((PositionDiscontinuityEvent) value).toList());
+      } else if (value instanceof PrimaryPlayerChangedEvent) {
+        stream.write(137);
+        writeValue(stream, ((PrimaryPlayerChangedEvent) value).toList());
       } else {
         super.writeValue(stream, value);
       }
@@ -1611,12 +1812,12 @@ public class PlaybackPlatformApi {
     static @NonNull MessageCodec<Object> getCodec() {
       return PlaybackListenerPigeonCodec.INSTANCE;
     }
-    public void onPrimaryPlayerChanged(@Nullable String playerIdArg, @NonNull Reply<Void> callback) {
+    public void onPrimaryPlayerChanged(@NonNull PrimaryPlayerChangedEvent eventArg, @NonNull Reply<Void> callback) {
       BasicMessageChannel<Object> channel =
           new BasicMessageChannel<>(
               binaryMessenger, "dev.flutter.pigeon.PlaybackListenerPigeon.onPrimaryPlayerChanged", getCodec());
       channel.send(
-          new ArrayList<Object>(Collections.singletonList(playerIdArg)),
+          new ArrayList<Object>(Collections.singletonList(eventArg)),
           channelReply -> callback.reply(null));
     }
     public void onPositionDiscontinuity(@NonNull PositionDiscontinuityEvent eventArg, @NonNull Reply<Void> callback) {
@@ -1627,7 +1828,7 @@ public class PlaybackPlatformApi {
           new ArrayList<Object>(Collections.singletonList(eventArg)),
           channelReply -> callback.reply(null));
     }
-    public void onPlayerStateUpdate(@NonNull PlayerStateSnapshot eventArg, @NonNull Reply<Void> callback) {
+    public void onPlayerStateUpdate(@NonNull PlayerStateUpdateEvent eventArg, @NonNull Reply<Void> callback) {
       BasicMessageChannel<Object> channel =
           new BasicMessageChannel<>(
               binaryMessenger, "dev.flutter.pigeon.PlaybackListenerPigeon.onPlayerStateUpdate", getCodec());
@@ -1639,6 +1840,14 @@ public class PlaybackPlatformApi {
       BasicMessageChannel<Object> channel =
           new BasicMessageChannel<>(
               binaryMessenger, "dev.flutter.pigeon.PlaybackListenerPigeon.onPlaybackStateChanged", getCodec());
+      channel.send(
+          new ArrayList<Object>(Collections.singletonList(eventArg)),
+          channelReply -> callback.reply(null));
+    }
+    public void onPlaybackEnded(@NonNull PlaybackEndedEvent eventArg, @NonNull Reply<Void> callback) {
+      BasicMessageChannel<Object> channel =
+          new BasicMessageChannel<>(
+              binaryMessenger, "dev.flutter.pigeon.PlaybackListenerPigeon.onPlaybackEnded", getCodec());
       channel.send(
           new ArrayList<Object>(Collections.singletonList(eventArg)),
           channelReply -> callback.reply(null));

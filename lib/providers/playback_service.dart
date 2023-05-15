@@ -39,9 +39,8 @@ class PlaybackService {
         appName: 'mobile',
       ),
     );
-    platformApi.addPlaybackListener(
-      BccmPlaybackListener(ref: ref, apiProvider: apiProvider),
-    );
+
+    BccmPlaybackListener(ref: ref, apiProvider: apiProvider);
 
     // Keep the analytics session alive while playing stuff.
     ref.listen<PlayerState?>(primaryPlayerProvider, (_, next) {

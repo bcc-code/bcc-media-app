@@ -129,37 +129,64 @@ enum CastConnectionState {
 @FlutterApi()
 abstract class PlaybackListenerPigeon {
   @ObjCSelector("onPrimaryPlayerChanged:")
-  void onPrimaryPlayerChanged(String? playerId);
+  void onPrimaryPlayerChanged(PrimaryPlayerChangedEvent event);
   @ObjCSelector("onPositionDiscontinuity:")
   void onPositionDiscontinuity(PositionDiscontinuityEvent event);
   @ObjCSelector("onPlayerStateUpdate:")
-  void onPlayerStateUpdate(PlayerStateSnapshot event);
+  void onPlayerStateUpdate(PlayerStateUpdateEvent event);
   @ObjCSelector("onPlaybackStateChanged:")
   void onPlaybackStateChanged(PlaybackStateChangedEvent event);
+  @ObjCSelector("onPlaybackEnded:")
+  void onPlaybackEnded(PlaybackEndedEvent event);
   @ObjCSelector("onMediaItemTransition:")
   void onMediaItemTransition(MediaItemTransitionEvent event);
   @ObjCSelector("onPictureInPictureModeChanged:")
   void onPictureInPictureModeChanged(PictureInPictureModeChangedEvent event);
 }
 
-class PositionDiscontinuityEvent {
+class PrimaryPlayerChangedEvent {
+  late String? playerId;
+}
+
+abstract class PlayerEvent {
+  late String playerId;
+}
+
+class PlayerStateUpdateEvent implements PlayerEvent {
+  @override
+  late String playerId;
+  late PlayerStateSnapshot snapshot;
+}
+
+class PositionDiscontinuityEvent implements PlayerEvent {
+  @override
   late String playerId;
   double? playbackPositionMs;
 }
 
-class PlaybackStateChangedEvent {
+class PlaybackStateChangedEvent implements PlayerEvent {
+  @override
   String playerId;
   PlaybackState playbackState;
   PlaybackStateChangedEvent({required this.playerId, required this.playbackState});
 }
 
-class PictureInPictureModeChangedEvent {
+class PlaybackEndedEvent implements PlayerEvent {
+  @override
+  String playerId;
+  MediaItem? mediaItem;
+  PlaybackEndedEvent({required this.playerId, required this.mediaItem});
+}
+
+class PictureInPictureModeChangedEvent implements PlayerEvent {
+  @override
   String playerId;
   bool isInPipMode;
   PictureInPictureModeChangedEvent({required this.playerId, required this.isInPipMode});
 }
 
-class MediaItemTransitionEvent {
+class MediaItemTransitionEvent implements PlayerEvent {
+  @override
   String playerId;
   MediaItem? mediaItem;
   MediaItemTransitionEvent({required this.playerId, this.mediaItem});

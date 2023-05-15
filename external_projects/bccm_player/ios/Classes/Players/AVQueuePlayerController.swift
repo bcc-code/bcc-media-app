@@ -32,7 +32,8 @@ public class AVQueuePlayerController: NSObject, PlayerController, AVPlayerViewCo
         youboraPlugin.adapter = YBAVPlayerAdapterSwiftTranformer.transform(from: YBAVPlayerAdapter(player: player))
         addObservers()
         refreshStateTimer = Timer.scheduledTimer(withTimeInterval: 15, repeats: true) { _ in
-            playbackListener.onPlayerStateUpdate(self.getPlayerStateSnapshot(), completion: { _ in })
+            let event = PlayerStateUpdateEvent.make(withPlayerId: self.id, snapshot: self.getPlayerStateSnapshot())
+            playbackListener.onPlayerStateUpdate(event, completion: { _ in })
         }
         print("BTV DEBUG: end of init playerController")
     }
@@ -319,6 +320,11 @@ public class AVQueuePlayerController: NSObject, PlayerController, AVPlayerViewCo
                 self.youboraPlugin.options.contentLanguage = player.currentItem?.getSelectedAudioLanguage()
                 self.youboraPlugin.options.contentSubtitles = player.currentItem?.getSelectedSubtitleLanguage()
             })
+            NotificationCenter.default
+                .addObserver(self,
+                             selector: #selector(self.playerDidFinishPlaying),
+                             name: .AVPlayerItemDidPlayToEndTime,
+                             object: player.currentItem)
         })
         observers.append(player.observe(\.rate, options: [.old, .new]) {
             player, change in
@@ -349,6 +355,11 @@ public class AVQueuePlayerController: NSObject, PlayerController, AVPlayerViewCo
         let waitingBecauseNoItemToPlay = player.timeControlStatus == AVPlayer.TimeControlStatus.waitingToPlayAtSpecifiedRate
             && player.reasonForWaitingToPlay == AVPlayer.WaitingReason.noItemToPlay
         return !paused && !waitingBecauseNoItemToPlay
+    }
+    
+    @objc private func playerDidFinishPlaying(note: NSNotification) {
+        let endedEvent = PlaybackEndedEvent.make(withPlayerId: id, mediaItem: getCurrentItem())
+        playbackListener.onPlaybackEnded(endedEvent, completion: { _ in })
     }
 }
 

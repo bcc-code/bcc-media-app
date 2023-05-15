@@ -296,7 +296,8 @@ extension CastPlayerController: GCKRemoteMediaClientListener {
     }
     
     func remoteMediaClient(_ client: GCKRemoteMediaClient, didUpdate mediaStatus: GCKMediaStatus?) {
-        playbackApi.playbackListener.onPlayerStateUpdate(getPlayerStateSnapshot(), completion: { _ in })
+        let event = PlayerStateUpdateEvent.make(withPlayerId: id, snapshot: getPlayerStateSnapshot())
+        playbackApi.playbackListener.onPlayerStateUpdate(event, completion: { _ in })
     }
 }
 

@@ -12,6 +12,7 @@ import 'package:brunstadtv_app/components/episode/player_poster.dart';
 import 'package:brunstadtv_app/components/status_indicators/error_generic.dart';
 import 'package:brunstadtv_app/components/status_indicators/loading_indicator.dart';
 import 'package:brunstadtv_app/components/episode/share_episode_sheet.dart';
+import 'package:brunstadtv_app/providers/feature_flags.dart';
 import 'package:brunstadtv_app/providers/lesson_progress_provider.dart';
 import 'package:brunstadtv_app/router/router.gr.dart';
 import 'package:flutter/foundation.dart';
@@ -256,6 +257,34 @@ class _EpisodeDisplay extends HookConsumerWidget {
       });
       return () => subscription.cancel();
     }, [castSessionUnavailableStream]);
+
+    void playNext() {
+      final epContext = episode.context;
+      final collection = epContext.asOrNull<Fragment$EpisodeContext$$ContextCollection>();
+      final season = epContext.asOrNull<Fragment$EpisodeContext$$Season>();
+      List<Fragment$SeasonListEpisode>? episodes =
+          collection?.items?.items.whereType<Fragment$SeasonListEpisode>().toList() ?? season?.episodes.items;
+      if (episodes == null) return;
+      final currentEpisodeIndex = episodes.indexWhere((element) => element.id == episode.id);
+      if (currentEpisodeIndex == -1 || currentEpisodeIndex == episodes.length) return;
+      final nextEpisode = episodes[currentEpisodeIndex + 1];
+      context.navigateTo(EpisodeScreenRoute(
+        episodeId: nextEpisode.id,
+        autoplay: true,
+        collectionId: collection?.id,
+      ));
+    }
+
+    final playerEventStream =
+        ref.watch(playerEventStreamProvider(player.playerId)).where((event) => event is PlaybackEndedEvent).cast<PlaybackEndedEvent>();
+    useEffect(() {
+      final subscription = playerEventStream.listen((event) {
+        if (ref.read(featureFlagsProvider.select((value) => value.autoplayNext))) {
+          playNext();
+        }
+      });
+      return () => subscription.cancel();
+    }, [playerEventStream]);
 
     final showLoadingOverlay = (episodeSnapshot.connectionState == ConnectionState.waiting);
 

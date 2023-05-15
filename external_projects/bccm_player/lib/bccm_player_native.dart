@@ -13,7 +13,10 @@ class BccmPlayerNative extends BccmPlayerInterface {
   final ChromecastPigeonListener _chromecastListener = ChromecastPigeonListener();
 
   @override
-  chromecastEventStream() => _chromecastListener.stream();
+  get chromecastEventStream => _chromecastListener.stream;
+
+  @override
+  get playerEventStream => _rootPlaybackListener.stream;
 
   @override
   Future<void> setup() async {

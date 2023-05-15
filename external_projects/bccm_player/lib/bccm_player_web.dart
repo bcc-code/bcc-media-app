@@ -23,7 +23,10 @@ class BccmPlayerWeb extends BccmPlayerInterface {
   }
 
   @override
-  chromecastEventStream() => const Stream.empty();
+  get chromecastEventStream => const Stream.empty();
+
+  @override
+  get playerEventStream => _rootPlaybackListener.stream;
 
   @override
   Future<String> newPlayer({String? url}) async {

@@ -13,6 +13,9 @@ class StatePlaybackListener implements PlaybackListenerPigeon {
   }
 
   @override
+  void onPlaybackEnded(event) {}
+
+  @override
   void onMediaItemTransition(event) {
     pluginStateNotifier.getOrAddPlayerNotifier(event.playerId).setMediaItem(event.mediaItem);
   }
@@ -30,11 +33,11 @@ class StatePlaybackListener implements PlaybackListenerPigeon {
 
   @override
   void onPlayerStateUpdate(event) {
-    pluginStateNotifier.getOrAddPlayerNotifier(event.playerId).setStateFromSnapshot(event);
+    pluginStateNotifier.getOrAddPlayerNotifier(event.playerId).setStateFromSnapshot(event.snapshot);
   }
 
   @override
-  void onPrimaryPlayerChanged(String? playerId) {
-    pluginStateNotifier.setPrimaryPlayer(playerId);
+  void onPrimaryPlayerChanged(event) {
+    pluginStateNotifier.setPrimaryPlayer(event.playerId);
   }
 }
