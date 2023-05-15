@@ -195,6 +195,67 @@ class _EpisodeDisplay extends HookConsumerWidget {
   final Future<Query$FetchEpisode$episode?>? episodeFuture;
   final ScrollController scrollController;
 
+  Future<bool> autoplayNext(PlaybackService playbackService, String playerId, StackRouter router) async {
+    final nextEpisode = await playbackService.getNextEpisodeForPlayer(playerId: playerId);
+    if (nextEpisode == null) {
+      playbackService.platformApi.exitFullscreen(playerId);
+      return false;
+    }
+    // When we are fullscreen on iOS, flutter's lifecyclestate becomes 'paused', and the widget tree won't build e.g. on navigation.
+    // Therefore we can't rely on the routing to autoplay the next episode.
+    // But we still call navigate(), so that it's performed when the user exits fullscreen.
+    // TODO: Navigate upon fullscreen exit instead. Basically: if leaving fullscreen and we're on the wrong page, navigate.
+    playbackService.playEpisode(
+      playerId: playerId,
+      episode: nextEpisode,
+      autoplay: true,
+    );
+    router.navigate(
+      EpisodeScreenRoute(
+        episodeId: nextEpisode.id,
+        collectionId: nextEpisode.context?.asOrNull<Fragment$EpisodeContext$$ContextCollection>()?.id,
+        autoplay: true,
+      ),
+    );
+    return true;
+  }
+
+  Future setupPlayerForEpisode(Query$FetchEpisode$episode episode, {required WidgetRef ref}) async {
+    var player = ref.read(primaryPlayerProvider);
+    if (player!.currentMediaItem?.metadata?.extras?['id'] == screenParams.episodeId.toString()) {
+      return;
+    }
+
+    var startPositionSeconds = (episode.progress ?? 0);
+    if (screenParams.queryParamStartPosition != null && screenParams.queryParamStartPosition! >= 0) {
+      startPositionSeconds = screenParams.queryParamStartPosition!;
+    }
+    if (startPositionSeconds > episode.duration * 0.9) {
+      startPositionSeconds = 0;
+    }
+
+    return ref
+        .read(playbackServiceProvider)
+        .playEpisode(playerId: player.playerId, episode: episode, autoplay: true, playbackPositionMs: startPositionSeconds * 1000)
+        .timeout(const Duration(milliseconds: 12000));
+  }
+
+  void shareVideo(BuildContext context, WidgetRef ref, Query$FetchEpisode$episode episode) {
+    final player = ref.read(primaryPlayerProvider);
+    final currentPosSeconds = ((player?.playbackPositionMs ?? 0) / 1000).round();
+    if (player != null && player.playerId != 'chromecast') {
+      ref.read(playbackServiceProvider).platformApi.pause(player.playerId);
+    }
+    showModalBottomSheet(
+      useRootNavigator: true,
+      context: context,
+      builder: (ctx) => ShareEpisodeSheet(
+        episode: episode,
+        currentPosSeconds: currentPosSeconds,
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final isMounted = useIsMounted();
@@ -209,6 +270,10 @@ class _EpisodeDisplay extends HookConsumerWidget {
     }
 
     final playerSetupSnapshot = useFuture(playerSetupFuture.value);
+    final playbackService = ref.watch(playbackServiceProvider);
+    final chromecastEvents = ref.watch(chromecastEventStreamProvider);
+    final playerEvents = ref.watch(playerEventStreamProvider(player.playerId));
+    final enableAutoplayNext = ref.watch(featureFlagsProvider.select((value) => value.autoplayNext));
     final episodeIsCurrentItem = player.currentMediaItem?.metadata?.extras?['id'] == episode.id;
 
     useEffect(() {
@@ -244,56 +309,29 @@ class _EpisodeDisplay extends HookConsumerWidget {
     }, [screenParams.hideBottomSection, screenParams.queryParamStartPosition]);
 
     // Start playing when chromecast disconnects
-    final castSessionUnavailableStream = ref.watch(chromecastEventStreamProvider).on<CastSessionUnavailable>();
     useEffect(() {
-      final subscription = castSessionUnavailableStream.listen((event) {
-        var player = ref.read(primaryPlayerProvider);
-        ref.read(playbackServiceProvider).playEpisode(
-              playerId: player!.playerId,
-              autoplay: false,
-              episode: episode,
-              playbackPositionMs: event.playbackPositionMs,
-            );
+      final subscription = chromecastEvents.on<CastSessionUnavailable>().listen((event) {
+        playbackService.playEpisode(
+          playerId: player.playerId,
+          autoplay: false,
+          episode: episode,
+          playbackPositionMs: event.playbackPositionMs,
+        );
       });
       return () => subscription.cancel();
-    }, [castSessionUnavailableStream]);
+    }, [player.playerId, episode, chromecastEvents, playbackService]);
 
-    bool playNext() {
-      final epContext = episode.context;
-      final collection = epContext.asOrNull<Fragment$EpisodeContext$$ContextCollection>();
-      final season = epContext.asOrNull<Fragment$EpisodeContext$$Season>();
-      List<Fragment$SeasonListEpisode>? episodes =
-          collection?.items?.items.whereType<Fragment$SeasonListEpisode>().toList() ?? season?.episodes.items;
-      if (episodes == null) return false;
-      final currentEpisodeIndex = episodes.indexWhere((element) => element.id == episode.id);
-      if (currentEpisodeIndex == -1 || currentEpisodeIndex == episodes.length - 1) return false;
-      final nextEpisode = episodes[currentEpisodeIndex + 1];
-      // Playing here is needed because when avplayer is the root viewcontroller, flutter stops building the widget tree.
-      ref.read(playbackServiceProvider).playEpisodeById(
-            playerId: player.playerId,
-            episodeId: nextEpisode.id,
-            autoplay: true,
-          );
-      context.navigateTo(EpisodeScreenRoute(
-        episodeId: nextEpisode.id,
-        autoplay: true,
-        collectionId: collection?.id,
-      ));
-      return true;
-    }
-
-    final playerEventStream =
-        ref.watch(playerEventStreamProvider(player.playerId)).where((event) => event is PlaybackEndedEvent).cast<PlaybackEndedEvent>();
+    // Handle playback ended events, including autoplaying next
     useEffect(() {
-      final subscription = playerEventStream.listen((event) {
-        if (ref.read(featureFlagsProvider.select((value) => value.autoplayNext))) {
-          if (!playNext()) {
-            ref.read(playbackServiceProvider).platformApi.exitFullscreen(player.playerId);
-          }
+      final subscription = playerEvents.where((event) => event is PlaybackEndedEvent).cast<PlaybackEndedEvent>().listen((event) async {
+        if (enableAutoplayNext) {
+          autoplayNext(playbackService, player.playerId, context.router);
+          return;
         }
+        playbackService.platformApi.exitFullscreen(player.playerId);
       });
       return () => subscription.cancel();
-    }, [playerEventStream]);
+    }, [ref, playerEvents, playbackService, enableAutoplayNext, player.playerId]);
 
     final showLoadingOverlay = (episodeSnapshot.connectionState == ConnectionState.waiting);
 
@@ -394,42 +432,6 @@ class _EpisodeDisplay extends HookConsumerWidget {
             ],
           ),
       ],
-    );
-  }
-
-  Future setupPlayerForEpisode(Query$FetchEpisode$episode episode, {required WidgetRef ref}) async {
-    var player = ref.read(primaryPlayerProvider);
-    if (player!.currentMediaItem?.metadata?.extras?['id'] == screenParams.episodeId.toString()) {
-      return;
-    }
-
-    var startPositionSeconds = (episode.progress ?? 0);
-    if (screenParams.queryParamStartPosition != null && screenParams.queryParamStartPosition! >= 0) {
-      startPositionSeconds = screenParams.queryParamStartPosition!;
-    }
-    if (startPositionSeconds > episode.duration * 0.9) {
-      startPositionSeconds = 0;
-    }
-
-    return ref
-        .read(playbackServiceProvider)
-        .playEpisode(playerId: player.playerId, episode: episode, autoplay: true, playbackPositionMs: startPositionSeconds * 1000)
-        .timeout(const Duration(milliseconds: 12000));
-  }
-
-  void shareVideo(BuildContext context, WidgetRef ref, Query$FetchEpisode$episode episode) {
-    final player = ref.read(primaryPlayerProvider);
-    final currentPosSeconds = ((player?.playbackPositionMs ?? 0) / 1000).round();
-    if (player != null && player.playerId != 'chromecast') {
-      ref.read(playbackServiceProvider).platformApi.pause(player.playerId);
-    }
-    showModalBottomSheet(
-      useRootNavigator: true,
-      context: context,
-      builder: (ctx) => ShareEpisodeSheet(
-        episode: episode,
-        currentPosSeconds: currentPosSeconds,
-      ),
     );
   }
 }
