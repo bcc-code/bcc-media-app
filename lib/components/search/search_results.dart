@@ -6,17 +6,17 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../graphql/client.dart';
-import '../graphql/queries/search.graphql.dart';
-import 'episode_list_episode.dart';
+import '../../graphql/client.dart';
+import '../../graphql/queries/search.graphql.dart';
+import '../episode_list_episode.dart';
 import 'result_programs_list.dart';
-import '../theme/design_system/design_system.dart';
+import '../../theme/design_system/design_system.dart';
 
-import '../l10n/app_localizations.dart';
-import '../models/analytics/search_performed.dart';
-import '../models/analytics/search_result_clicked.dart';
-import '../providers/analytics.dart';
-import '../providers/inherited_data.dart';
+import '../../l10n/app_localizations.dart';
+import '../../models/analytics/search_performed.dart';
+import '../../models/analytics/search_result_clicked.dart';
+import '../../providers/analytics.dart';
+import '../../providers/inherited_data.dart';
 
 class SearchResults extends ConsumerStatefulWidget {
   final String searchInput;

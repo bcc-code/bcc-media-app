@@ -29,7 +29,7 @@ import '../components/episode/player_error.dart';
 import '../components/episode/episode_details.dart';
 import '../components/error_no_access.dart';
 import '../components/option_list.dart';
-import '../components/study_button.dart';
+import '../components/study/study_button.dart';
 import '../env/env.dart';
 import '../graphql/queries/studies.graphql.dart';
 import '../graphql/schema/episodes.graphql.dart';

@@ -6,12 +6,12 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_svg/svg.dart';
 
-import '../theme/design_system/design_system.dart';
-import '../../helpers/ui/svg_icons.dart';
-import '../graphql/queries/page.graphql.dart';
-import '../helpers/navigation/navigation_utils.dart';
-import '../helpers/utils.dart';
-import 'loading_indicator.dart';
+import '../../theme/design_system/design_system.dart';
+import '../../../helpers/ui/svg_icons.dart';
+import '../../graphql/queries/page.graphql.dart';
+import '../../helpers/navigation/navigation_utils.dart';
+import '../../helpers/utils.dart';
+import '../loading_indicator.dart';
 import 'study_progress_row.dart';
 
 class StudyTopicCardMini extends StatefulWidget {

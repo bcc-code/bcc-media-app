@@ -18,8 +18,8 @@ import '../../flavors.dart';
 import '../../helpers/languages.dart';
 import '../../l10n/app_localizations.dart';
 import '../../router/router.gr.dart';
-import '../../components/avatar.dart';
-import '../../components/setting_list.dart';
+import '../../components/profile/avatar.dart';
+import '../../components/profile/setting_list.dart';
 
 import '../../helpers/version.dart';
 import '../../helpers/extensions.dart';

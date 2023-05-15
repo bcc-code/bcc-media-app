@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 
-import '../theme/design_system/design_system.dart';
+import '../../theme/design_system/design_system.dart';
 //listFrame.dart
 
 class SettingList extends StatelessWidget {

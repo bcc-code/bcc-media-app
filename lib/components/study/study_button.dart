@@ -6,13 +6,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_svg/svg.dart';
 
-import '../theme/design_system/design_system.dart';
+import '../../theme/design_system/design_system.dart';
 
-import '../../helpers/ui/svg_icons.dart';
-import '../l10n/app_localizations.dart';
-import './pulse_animation.dart';
-import './shiny_clipper.dart';
-import './study_progress.dart';
+import '../../../helpers/ui/svg_icons.dart';
+import '../../l10n/app_localizations.dart';
+import '../pulse_animation.dart';
+import '../shiny_clipper.dart';
+import 'study_progress.dart';
 
 class StudyMoreButton extends HookWidget {
   const StudyMoreButton({super.key, required this.lessonProgressFuture, required this.onNavigateBack});

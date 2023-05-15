@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-import '../theme/design_system/design_system.dart';
+import '../../theme/design_system/design_system.dart';
 
 class Avatar extends HookConsumerWidget {
   const Avatar({Key? key}) : super(key: key);

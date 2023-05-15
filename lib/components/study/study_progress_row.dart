@@ -2,11 +2,11 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 
-import '../flavors.dart';
-import '../theme/design_system/design_system.dart';
-import '../theme/bccm_gradients.dart';
+import '../../flavors.dart';
+import '../../theme/design_system/design_system.dart';
+import '../../theme/bccm_gradients.dart';
 
-import './study_progress.dart';
+import 'study_progress.dart';
 
 class StudyProgressRow extends StatelessWidget {
   final int completed;

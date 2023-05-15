@@ -11,8 +11,8 @@ import '../graphql/queries/page.graphql.dart';
 import '../theme/design_system/design_system.dart';
 
 import '../l10n/app_localizations.dart';
-import '../components/search_results.dart';
-import '../components/custom_search_bar.dart';
+import '../components/search/search_results.dart';
+import '../components/search/custom_search_bar.dart';
 
 class SearchScreen extends ConsumerStatefulWidget {
   final String? query;

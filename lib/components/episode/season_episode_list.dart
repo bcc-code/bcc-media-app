@@ -1,4 +1,4 @@
-import 'package:brunstadtv_app/components/study_progress.dart';
+import 'package:brunstadtv_app/components/study/study_progress.dart';
 import 'package:brunstadtv_app/graphql/queries/episode.graphql.dart';
 import 'package:brunstadtv_app/graphql/queries/studies.graphql.dart';
 

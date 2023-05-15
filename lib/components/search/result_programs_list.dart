@@ -7,12 +7,12 @@ import 'package:flutter/material.dart';
 import 'package:brunstadtv_app/graphql/queries/search.graphql.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../theme/design_system/design_system.dart';
+import '../../theme/design_system/design_system.dart';
 
-import '../helpers/navigation/navigation_utils.dart';
-import '../providers/inherited_data.dart';
-import 'horizontal_slider.dart';
-import 'bordered_image_container.dart';
+import '../../helpers/navigation/navigation_utils.dart';
+import '../../providers/inherited_data.dart';
+import '../horizontal_slider.dart';
+import '../bordered_image_container.dart';
 
 class ResultProgramsList extends ConsumerStatefulWidget {
   final String title;

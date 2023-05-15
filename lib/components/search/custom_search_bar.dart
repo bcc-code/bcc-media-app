@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-import '../theme/design_system/design_system.dart';
+import '../../theme/design_system/design_system.dart';
 
-import '../l10n/app_localizations.dart';
+import '../../l10n/app_localizations.dart';
 
 class CustomSearchBar extends StatefulWidget {
   final Function onInputChange;
