@@ -19,6 +19,7 @@ mixin _$PlayerState {
   String get playerId => throw _privateConstructorUsedError;
   MediaItem? get currentMediaItem => throw _privateConstructorUsedError;
   int? get playbackPositionMs => throw _privateConstructorUsedError;
+  bool get isFullscreen => throw _privateConstructorUsedError;
   PlaybackState get playbackState => throw _privateConstructorUsedError;
   bool get isInPipMode => throw _privateConstructorUsedError;
 
@@ -37,6 +38,7 @@ abstract class $PlayerStateCopyWith<$Res> {
       {String playerId,
       MediaItem? currentMediaItem,
       int? playbackPositionMs,
+      bool isFullscreen,
       PlaybackState playbackState,
       bool isInPipMode});
 }
@@ -57,6 +59,7 @@ class _$PlayerStateCopyWithImpl<$Res, $Val extends PlayerState>
     Object? playerId = null,
     Object? currentMediaItem = freezed,
     Object? playbackPositionMs = freezed,
+    Object? isFullscreen = null,
     Object? playbackState = null,
     Object? isInPipMode = null,
   }) {
@@ -73,6 +76,10 @@ class _$PlayerStateCopyWithImpl<$Res, $Val extends PlayerState>
           ? _value.playbackPositionMs
           : playbackPositionMs // ignore: cast_nullable_to_non_nullable
               as int?,
+      isFullscreen: null == isFullscreen
+          ? _value.isFullscreen
+          : isFullscreen // ignore: cast_nullable_to_non_nullable
+              as bool,
       playbackState: null == playbackState
           ? _value.playbackState
           : playbackState // ignore: cast_nullable_to_non_nullable
@@ -97,6 +104,7 @@ abstract class _$$_PlayerStateCopyWith<$Res>
       {String playerId,
       MediaItem? currentMediaItem,
       int? playbackPositionMs,
+      bool isFullscreen,
       PlaybackState playbackState,
       bool isInPipMode});
 }
@@ -115,6 +123,7 @@ class __$$_PlayerStateCopyWithImpl<$Res>
     Object? playerId = null,
     Object? currentMediaItem = freezed,
     Object? playbackPositionMs = freezed,
+    Object? isFullscreen = null,
     Object? playbackState = null,
     Object? isInPipMode = null,
   }) {
@@ -131,6 +140,10 @@ class __$$_PlayerStateCopyWithImpl<$Res>
           ? _value.playbackPositionMs
           : playbackPositionMs // ignore: cast_nullable_to_non_nullable
               as int?,
+      isFullscreen: null == isFullscreen
+          ? _value.isFullscreen
+          : isFullscreen // ignore: cast_nullable_to_non_nullable
+              as bool,
       playbackState: null == playbackState
           ? _value.playbackState
           : playbackState // ignore: cast_nullable_to_non_nullable
@@ -150,6 +163,7 @@ class _$_PlayerState implements _PlayerState {
       {required this.playerId,
       this.currentMediaItem,
       this.playbackPositionMs,
+      this.isFullscreen = false,
       this.playbackState = PlaybackState.stopped,
       this.isInPipMode = false});
 
@@ -161,6 +175,9 @@ class _$_PlayerState implements _PlayerState {
   final int? playbackPositionMs;
   @override
   @JsonKey()
+  final bool isFullscreen;
+  @override
+  @JsonKey()
   final PlaybackState playbackState;
   @override
   @JsonKey()
@@ -168,7 +185,7 @@ class _$_PlayerState implements _PlayerState {
 
   @override
   String toString() {
-    return 'PlayerState(playerId: $playerId, currentMediaItem: $currentMediaItem, playbackPositionMs: $playbackPositionMs, playbackState: $playbackState, isInPipMode: $isInPipMode)';
+    return 'PlayerState(playerId: $playerId, currentMediaItem: $currentMediaItem, playbackPositionMs: $playbackPositionMs, isFullscreen: $isFullscreen, playbackState: $playbackState, isInPipMode: $isInPipMode)';
   }
 
   @override
@@ -182,6 +199,8 @@ class _$_PlayerState implements _PlayerState {
                 other.currentMediaItem == currentMediaItem) &&
             (identical(other.playbackPositionMs, playbackPositionMs) ||
                 other.playbackPositionMs == playbackPositionMs) &&
+            (identical(other.isFullscreen, isFullscreen) ||
+                other.isFullscreen == isFullscreen) &&
             (identical(other.playbackState, playbackState) ||
                 other.playbackState == playbackState) &&
             (identical(other.isInPipMode, isInPipMode) ||
@@ -190,7 +209,7 @@ class _$_PlayerState implements _PlayerState {
 
   @override
   int get hashCode => Object.hash(runtimeType, playerId, currentMediaItem,
-      playbackPositionMs, playbackState, isInPipMode);
+      playbackPositionMs, isFullscreen, playbackState, isInPipMode);
 
   @JsonKey(ignore: true)
   @override
@@ -204,6 +223,7 @@ abstract class _PlayerState implements PlayerState {
       {required final String playerId,
       final MediaItem? currentMediaItem,
       final int? playbackPositionMs,
+      final bool isFullscreen,
       final PlaybackState playbackState,
       final bool isInPipMode}) = _$_PlayerState;
 
@@ -213,6 +233,8 @@ abstract class _PlayerState implements PlayerState {
   MediaItem? get currentMediaItem;
   @override
   int? get playbackPositionMs;
+  @override
+  bool get isFullscreen;
   @override
   PlaybackState get playbackState;
   @override

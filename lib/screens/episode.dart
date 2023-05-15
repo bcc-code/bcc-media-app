@@ -258,21 +258,28 @@ class _EpisodeDisplay extends HookConsumerWidget {
       return () => subscription.cancel();
     }, [castSessionUnavailableStream]);
 
-    void playNext() {
+    bool playNext() {
       final epContext = episode.context;
       final collection = epContext.asOrNull<Fragment$EpisodeContext$$ContextCollection>();
       final season = epContext.asOrNull<Fragment$EpisodeContext$$Season>();
       List<Fragment$SeasonListEpisode>? episodes =
           collection?.items?.items.whereType<Fragment$SeasonListEpisode>().toList() ?? season?.episodes.items;
-      if (episodes == null) return;
+      if (episodes == null) return false;
       final currentEpisodeIndex = episodes.indexWhere((element) => element.id == episode.id);
-      if (currentEpisodeIndex == -1 || currentEpisodeIndex == episodes.length) return;
+      if (currentEpisodeIndex == -1 || currentEpisodeIndex == episodes.length - 1) return false;
       final nextEpisode = episodes[currentEpisodeIndex + 1];
+      // Playing here is needed because when avplayer is the root viewcontroller, flutter stops building the widget tree.
+      ref.read(playbackServiceProvider).playEpisodeById(
+            playerId: player.playerId,
+            episodeId: nextEpisode.id,
+            autoplay: true,
+          );
       context.navigateTo(EpisodeScreenRoute(
         episodeId: nextEpisode.id,
         autoplay: true,
         collectionId: collection?.id,
       ));
+      return true;
     }
 
     final playerEventStream =
@@ -280,7 +287,9 @@ class _EpisodeDisplay extends HookConsumerWidget {
     useEffect(() {
       final subscription = playerEventStream.listen((event) {
         if (ref.read(featureFlagsProvider.select((value) => value.autoplayNext))) {
-          playNext();
+          if (!playNext()) {
+            ref.read(playbackServiceProvider).platformApi.exitFullscreen(player.playerId);
+          }
         }
       });
       return () => subscription.cancel();
@@ -300,11 +309,11 @@ class _EpisodeDisplay extends HookConsumerWidget {
                     imageUrl: episode.image,
                     onRetry: setupPlayer,
                   )
-                else if (!episodeIsCurrentItem || showLoadingOverlay || kIsWeb)
+                else if (!episodeIsCurrentItem || showLoadingOverlay || kIsWeb || player.isFullscreen)
                   PlayerPoster(
                     imageUrl: episode.image,
                     setupPlayer: setupPlayer,
-                    loading: playerSetupSnapshot.connectionState == ConnectionState.waiting,
+                    loading: playerSetupSnapshot.connectionState == ConnectionState.waiting || player.isFullscreen,
                   )
                 else
                   BccmPlayer(id: player.playerId),

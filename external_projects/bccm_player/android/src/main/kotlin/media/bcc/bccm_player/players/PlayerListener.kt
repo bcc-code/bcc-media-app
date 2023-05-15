@@ -18,10 +18,7 @@ class PlayerListener(private val playerController: PlayerController, val plugin:
                 "bccm",
                 "refreshStateTimer onTimerEvent(), hashCode:" + this@PlayerListener.hashCode()
             )
-            val event = PlayerStateUpdateEvent.Builder()
-                .setPlayerId(playerController.id)
-                .setSnapshot(playerController.getPlayerStateSnapshot())
-            plugin.playbackPigeon?.onPlayerStateUpdate(event.build()) {}
+            onManualPlayerStateUpdate()
         }
     }, 15000)
 
@@ -39,6 +36,13 @@ class PlayerListener(private val playerController: PlayerController, val plugin:
             "refreshStateTimer stop(), ${playerController}, hashCode:" + this@PlayerListener.hashCode()
         )
         refreshStateTimer.stop()
+    }
+
+    fun onManualPlayerStateUpdate() {
+        val event = PlayerStateUpdateEvent.Builder()
+            .setPlayerId(playerController.id)
+            .setSnapshot(playerController.getPlayerStateSnapshot())
+        plugin.playbackPigeon?.onPlayerStateUpdate(event.build()) {}
     }
 
     override fun onPlaybackStateChanged(playbackState: Int) {

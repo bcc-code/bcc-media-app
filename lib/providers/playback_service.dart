@@ -3,6 +3,7 @@ import 'package:bccm_player/plugins/bcc_media.dart';
 import 'package:bccm_player/plugins/riverpod.dart';
 import 'package:brunstadtv_app/env/env.dart';
 import 'package:brunstadtv_app/graphql/queries/episode.graphql.dart';
+import 'package:brunstadtv_app/graphql/schema/schema.graphql.dart';
 import 'package:brunstadtv_app/helpers/extensions.dart';
 import 'package:brunstadtv_app/providers/analytics.dart';
 import 'package:collection/collection.dart';
@@ -81,6 +82,23 @@ class PlaybackService {
           'npaw.content.episodeTitle': episode.title,
         },
       ),
+    );
+  }
+
+  Future playEpisodeById({
+    required String playerId,
+    required String episodeId,
+    Input$EpisodeContext? context,
+    bool? autoplay,
+    int? playbackPositionMs,
+  }) async {
+    final episode = await ref.read(apiProvider).fetchEpisode(episodeId, context: context);
+    if (episode == null) return;
+    playEpisode(
+      playerId: playerId,
+      episode: episode,
+      autoplay: autoplay,
+      playbackPositionMs: playbackPositionMs,
     );
   }
 

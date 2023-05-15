@@ -598,6 +598,19 @@ public class PlaybackPlatformApi {
       this.playbackState = setterArg;
     }
 
+    private @NonNull Boolean isFullscreen;
+
+    public @NonNull Boolean getIsFullscreen() {
+      return isFullscreen;
+    }
+
+    public void setIsFullscreen(@NonNull Boolean setterArg) {
+      if (setterArg == null) {
+        throw new IllegalStateException("Nonnull field \"isFullscreen\" is null.");
+      }
+      this.isFullscreen = setterArg;
+    }
+
     private @Nullable MediaItem currentMediaItem;
 
     public @Nullable MediaItem getCurrentMediaItem() {
@@ -637,6 +650,13 @@ public class PlaybackPlatformApi {
         return this;
       }
 
+      private @Nullable Boolean isFullscreen;
+
+      public @NonNull Builder setIsFullscreen(@NonNull Boolean setterArg) {
+        this.isFullscreen = setterArg;
+        return this;
+      }
+
       private @Nullable MediaItem currentMediaItem;
 
       public @NonNull Builder setCurrentMediaItem(@Nullable MediaItem setterArg) {
@@ -655,6 +675,7 @@ public class PlaybackPlatformApi {
         PlayerStateSnapshot pigeonReturn = new PlayerStateSnapshot();
         pigeonReturn.setPlayerId(playerId);
         pigeonReturn.setPlaybackState(playbackState);
+        pigeonReturn.setIsFullscreen(isFullscreen);
         pigeonReturn.setCurrentMediaItem(currentMediaItem);
         pigeonReturn.setPlaybackPositionMs(playbackPositionMs);
         return pigeonReturn;
@@ -663,9 +684,10 @@ public class PlaybackPlatformApi {
 
     @NonNull
     ArrayList<Object> toList() {
-      ArrayList<Object> toListResult = new ArrayList<Object>(4);
+      ArrayList<Object> toListResult = new ArrayList<Object>(5);
       toListResult.add(playerId);
       toListResult.add(playbackState == null ? null : playbackState.index);
+      toListResult.add(isFullscreen);
       toListResult.add((currentMediaItem == null) ? null : currentMediaItem.toList());
       toListResult.add(playbackPositionMs);
       return toListResult;
@@ -677,9 +699,11 @@ public class PlaybackPlatformApi {
       pigeonResult.setPlayerId((String) playerId);
       Object playbackState = list.get(1);
       pigeonResult.setPlaybackState(playbackState == null ? null : PlaybackState.values()[(int) playbackState]);
-      Object currentMediaItem = list.get(2);
+      Object isFullscreen = list.get(2);
+      pigeonResult.setIsFullscreen((Boolean) isFullscreen);
+      Object currentMediaItem = list.get(3);
       pigeonResult.setCurrentMediaItem((currentMediaItem == null) ? null : MediaItem.fromList((ArrayList<Object>) currentMediaItem));
-      Object playbackPositionMs = list.get(3);
+      Object playbackPositionMs = list.get(4);
       pigeonResult.setPlaybackPositionMs((Double) playbackPositionMs);
       return pigeonResult;
     }
@@ -1306,6 +1330,8 @@ public class PlaybackPlatformApi {
 
     void stop(@NonNull String playerId, @NonNull Boolean reset);
 
+    void exitFullscreen(@NonNull String playerId);
+
     void setNpawConfig(@Nullable NpawConfig config);
 
     void setAppConfig(@Nullable AppConfig config);
@@ -1557,6 +1583,30 @@ public class PlaybackPlatformApi {
                 Boolean resetArg = (Boolean) args.get(1);
                 try {
                   api.stop(playerIdArg, resetArg);
+                  wrapped.add(0, null);
+                }
+ catch (Throwable exception) {
+                  ArrayList<Object> wrappedError = wrapError(exception);
+                  wrapped = wrappedError;
+                }
+                reply.reply(wrapped);
+              });
+        } else {
+          channel.setMessageHandler(null);
+        }
+      }
+      {
+        BasicMessageChannel<Object> channel =
+            new BasicMessageChannel<>(
+                binaryMessenger, "dev.flutter.pigeon.PlaybackPlatformPigeon.exitFullscreen", getCodec());
+        if (api != null) {
+          channel.setMessageHandler(
+              (message, reply) -> {
+                ArrayList<Object> wrapped = new ArrayList<Object>();
+                ArrayList<Object> args = (ArrayList<Object>) message;
+                String playerIdArg = (String) args.get(0);
+                try {
+                  api.exitFullscreen(playerIdArg);
                   wrapped.add(0, null);
                 }
  catch (Throwable exception) {

@@ -81,6 +81,10 @@ abstract class BccmPlayerInterface extends PlatformInterface {
     throw UnimplementedError('stop() has not been implemented.');
   }
 
+  void exitFullscreen(String playerId) {
+    throw UnimplementedError('stop() has not been implemented.');
+  }
+
   Future? setNpawConfig(NpawConfig? config) {
     throw UnimplementedError('setNpawConfig() has not been implemented.');
   }

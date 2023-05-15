@@ -38,6 +38,9 @@ abstract class PlaybackPlatformPigeon {
   @ObjCSelector("stop:reset:")
   void stop(String playerId, bool reset);
 
+  @ObjCSelector("exitFullscreen:")
+  void exitFullscreen(String playerId);
+
   @ObjCSelector("setNpawConfig:")
   void setNpawConfig(NpawConfig? config);
 
@@ -103,6 +106,7 @@ class MediaMetadata {
 class PlayerStateSnapshot {
   late String playerId;
   late PlaybackState playbackState;
+  late bool isFullscreen;
   MediaItem? currentMediaItem;
   // This is double because pigeon uses NSNumber for int :(
   double? playbackPositionMs;

@@ -11,13 +11,13 @@ import media.bcc.bccm_player.pigeon.PlaybackPlatformApi
 import media.bcc.bccm_player.players.chromecast.CastMediaItemConverter.Companion.BCCM_EXTRAS
 import media.bcc.bccm_player.players.chromecast.CastMediaItemConverter.Companion.PLAYER_DATA_IS_LIVE
 import media.bcc.bccm_player.players.chromecast.CastMediaItemConverter.Companion.PLAYER_DATA_MIME_TYPE
-import media.bcc.bccm_player.players.exoplayer.ExoPlayerView
+import media.bcc.bccm_player.players.exoplayer.BccmPlayerViewController
 
 
 abstract class PlayerController : Player.Listener {
     abstract val id: String
     abstract val player: Player
-    abstract var currentPlayerViewController: ExoPlayerView?
+    abstract var currentPlayerViewController: BccmPlayerViewController?
     open var plugin: BccmPlayerPlugin? = null
     var pluginPlayerListener: PlayerListener? = null
     var isLive: Boolean = false
@@ -150,6 +150,7 @@ abstract class PlayerController : Player.Listener {
             .setCurrentMediaItem(getCurrentMediaItem())
             .setPlaybackPositionMs(player.currentPosition.toDouble())
             .setPlaybackState(getPlaybackState())
+            .setIsFullscreen(currentPlayerViewController?.isFullscreen == true)
             .build()
     }
 

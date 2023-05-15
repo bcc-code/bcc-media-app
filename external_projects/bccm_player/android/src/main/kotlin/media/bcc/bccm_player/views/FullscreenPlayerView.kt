@@ -12,8 +12,6 @@ import android.widget.ImageButton
 import android.widget.LinearLayout
 import androidx.annotation.RequiresApi
 import androidx.core.view.WindowCompat
-import androidx.core.view.WindowInsetsCompat
-import androidx.core.view.WindowInsetsControllerCompat
 import androidx.lifecycle.Lifecycle
 import androidx.media3.common.MediaItem
 import androidx.media3.common.Player
@@ -23,20 +21,22 @@ import kotlinx.coroutines.flow.filterIsInstance
 import media.bcc.bccm_player.BccmPlayerPluginSingleton
 import media.bcc.bccm_player.PictureInPictureModeChangedEvent2
 import media.bcc.bccm_player.R
+import media.bcc.bccm_player.players.exoplayer.BccmPlayerViewController
 import media.bcc.bccm_player.players.exoplayer.ExoPlayerController
-import media.bcc.bccm_player.players.exoplayer.ExoPlayerView
 import media.bcc.bccm_player.utils.SwipeTouchListener
 
 class FullscreenPlayerView(
     val activity: Activity,
     val playerController: ExoPlayerController,
     forceLandscape: Boolean = true
-) : LinearLayout(activity), ExoPlayerView {
+) : LinearLayout(activity), BccmPlayerViewController {
     var playerView: PlayerView?
     val mainScope = CoroutineScope(Dispatchers.Main + SupervisorJob())
     var isInPip: Boolean = false
     val orientationBeforeGoingFullscreen = activity.requestedOrientation
     var onExitListener: (() -> Unit)? = null
+    override val isFullscreen = true
+    override val shouldPipAutomatically = true
 
     init {
         makeActivityFullscreen(forceLandscape)
@@ -110,8 +110,12 @@ class FullscreenPlayerView(
         }
     }
 
-    override fun shouldPipAutomatically(): Boolean {
-        return true
+    override fun onOwnershipLost() {
+        exit()
+    }
+
+    override fun exitFullscreen() {
+        exit()
     }
 
     private fun makeActivityFullscreen(forceLandscape: Boolean) {

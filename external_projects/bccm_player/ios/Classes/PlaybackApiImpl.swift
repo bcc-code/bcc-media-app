@@ -129,6 +129,11 @@ public class PlaybackApiImpl: NSObject, PlaybackPlatformPigeon {
         let player = getPlayer(playerId)
         player?.stop(reset: reset.boolValue)
     }
+
+    public func exitFullscreen(_ playerId: String, error: AutoreleasingUnsafeMutablePointer<FlutterError?>) {
+        let player = getPlayer(playerId)
+        player?.exitFullscreen()
+    }
 }
 
 public extension PlaybackApiImpl {

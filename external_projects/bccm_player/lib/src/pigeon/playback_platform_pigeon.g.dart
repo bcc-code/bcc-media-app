@@ -187,6 +187,7 @@ class PlayerStateSnapshot {
   PlayerStateSnapshot({
     required this.playerId,
     required this.playbackState,
+    required this.isFullscreen,
     this.currentMediaItem,
     this.playbackPositionMs,
   });
@@ -194,6 +195,8 @@ class PlayerStateSnapshot {
   String playerId;
 
   PlaybackState playbackState;
+
+  bool isFullscreen;
 
   MediaItem? currentMediaItem;
 
@@ -203,6 +206,7 @@ class PlayerStateSnapshot {
     return <Object?>[
       playerId,
       playbackState.index,
+      isFullscreen,
       currentMediaItem?.encode(),
       playbackPositionMs,
     ];
@@ -213,10 +217,11 @@ class PlayerStateSnapshot {
     return PlayerStateSnapshot(
       playerId: result[0]! as String,
       playbackState: PlaybackState.values[result[1]! as int],
-      currentMediaItem: result[2] != null
-          ? MediaItem.decode(result[2]! as List<Object?>)
+      isFullscreen: result[2]! as bool,
+      currentMediaItem: result[3] != null
+          ? MediaItem.decode(result[3]! as List<Object?>)
           : null,
-      playbackPositionMs: result[3] as double?,
+      playbackPositionMs: result[4] as double?,
     );
   }
 }
@@ -675,6 +680,28 @@ class PlaybackPlatformPigeon {
         binaryMessenger: _binaryMessenger);
     final List<Object?>? replyList =
         await channel.send(<Object?>[arg_playerId, arg_reset]) as List<Object?>?;
+    if (replyList == null) {
+      throw PlatformException(
+        code: 'channel-error',
+        message: 'Unable to establish connection on channel.',
+      );
+    } else if (replyList.length > 1) {
+      throw PlatformException(
+        code: replyList[0]! as String,
+        message: replyList[1] as String?,
+        details: replyList[2],
+      );
+    } else {
+      return;
+    }
+  }
+
+  Future<void> exitFullscreen(String arg_playerId) async {
+    final BasicMessageChannel<Object?> channel = BasicMessageChannel<Object?>(
+        'dev.flutter.pigeon.PlaybackPlatformPigeon.exitFullscreen', codec,
+        binaryMessenger: _binaryMessenger);
+    final List<Object?>? replyList =
+        await channel.send(<Object?>[arg_playerId]) as List<Object?>?;
     if (replyList == null) {
       throw PlatformException(
         code: 'channel-error',

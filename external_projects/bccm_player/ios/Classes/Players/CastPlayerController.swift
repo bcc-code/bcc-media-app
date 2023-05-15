@@ -32,6 +32,7 @@ class CastPlayerController: NSObject, PlayerController {
         return PlayerStateSnapshot.make(
             withPlayerId: id,
             playbackState: playbackStateFromMediaStatus(mediaStatus: mediaStatus),
+            isFullscreen: false,
             currentMediaItem: currentItem,
             playbackPositionMs: mediaStatus == nil ? nil : NSNumber(value: mediaStatus!.streamPosition * 1000)
         )
@@ -100,6 +101,10 @@ class CastPlayerController: NSObject, PlayerController {
         } else {
             GCKCastContext.sharedInstance().sessionManager.currentCastSession?.remoteMediaClient?.pause()
         }
+    }
+    
+    func exitFullscreen() {
+        // no-op
     }
     
     private func playbackStateFromMediaStatus(mediaStatus: GCKMediaStatus?) -> PlaybackState {

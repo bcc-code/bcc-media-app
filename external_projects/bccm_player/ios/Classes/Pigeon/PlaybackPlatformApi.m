@@ -246,11 +246,13 @@ static id GetNullableObjectAtIndex(NSArray *array, NSInteger key) {
 @implementation PlayerStateSnapshot
 + (instancetype)makeWithPlayerId:(NSString *)playerId
     playbackState:(PlaybackState)playbackState
+    isFullscreen:(NSNumber *)isFullscreen
     currentMediaItem:(nullable MediaItem *)currentMediaItem
     playbackPositionMs:(nullable NSNumber *)playbackPositionMs {
   PlayerStateSnapshot* pigeonResult = [[PlayerStateSnapshot alloc] init];
   pigeonResult.playerId = playerId;
   pigeonResult.playbackState = playbackState;
+  pigeonResult.isFullscreen = isFullscreen;
   pigeonResult.currentMediaItem = currentMediaItem;
   pigeonResult.playbackPositionMs = playbackPositionMs;
   return pigeonResult;
@@ -260,8 +262,10 @@ static id GetNullableObjectAtIndex(NSArray *array, NSInteger key) {
   pigeonResult.playerId = GetNullableObjectAtIndex(list, 0);
   NSAssert(pigeonResult.playerId != nil, @"");
   pigeonResult.playbackState = [GetNullableObjectAtIndex(list, 1) integerValue];
-  pigeonResult.currentMediaItem = [MediaItem nullableFromList:(GetNullableObjectAtIndex(list, 2))];
-  pigeonResult.playbackPositionMs = GetNullableObjectAtIndex(list, 3);
+  pigeonResult.isFullscreen = GetNullableObjectAtIndex(list, 2);
+  NSAssert(pigeonResult.isFullscreen != nil, @"");
+  pigeonResult.currentMediaItem = [MediaItem nullableFromList:(GetNullableObjectAtIndex(list, 3))];
+  pigeonResult.playbackPositionMs = GetNullableObjectAtIndex(list, 4);
   return pigeonResult;
 }
 + (nullable PlayerStateSnapshot *)nullableFromList:(NSArray *)list {
@@ -271,6 +275,7 @@ static id GetNullableObjectAtIndex(NSArray *array, NSInteger key) {
   return @[
     (self.playerId ?: [NSNull null]),
     @(self.playbackState),
+    (self.isFullscreen ?: [NSNull null]),
     (self.currentMediaItem ? [self.currentMediaItem toList] : [NSNull null]),
     (self.playbackPositionMs ?: [NSNull null]),
   ];
@@ -723,6 +728,25 @@ void PlaybackPlatformPigeonSetup(id<FlutterBinaryMessenger> binaryMessenger, NSO
         NSNumber *arg_reset = GetNullableObjectAtIndex(args, 1);
         FlutterError *error;
         [api stop:arg_playerId reset:arg_reset error:&error];
+        callback(wrapResult(nil, error));
+      }];
+    } else {
+      [channel setMessageHandler:nil];
+    }
+  }
+  {
+    FlutterBasicMessageChannel *channel =
+      [[FlutterBasicMessageChannel alloc]
+        initWithName:@"dev.flutter.pigeon.PlaybackPlatformPigeon.exitFullscreen"
+        binaryMessenger:binaryMessenger
+        codec:PlaybackPlatformPigeonGetCodec()];
+    if (api) {
+      NSCAssert([api respondsToSelector:@selector(exitFullscreen:error:)], @"PlaybackPlatformPigeon api (%@) doesn't respond to @selector(exitFullscreen:error:)", api);
+      [channel setMessageHandler:^(id _Nullable message, FlutterReply callback) {
+        NSArray *args = message;
+        NSString *arg_playerId = GetNullableObjectAtIndex(args, 0);
+        FlutterError *error;
+        [api exitFullscreen:arg_playerId error:&error];
         callback(wrapResult(nil, error));
       }];
     } else {

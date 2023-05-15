@@ -11,7 +11,7 @@ import '../flavors.dart';
 
 final gqlClientProvider = Provider<GraphQLClient>((ref) {
   final settings = ref.watch(settingsProvider);
-  final authStateNotifier = ref.read(authStateProvider.notifier);
+  final authStateNotifier = ref.watch(authStateProvider.notifier);
   debugPrint('envOverride: ${settings.envOverride}');
   final httpLink = HttpLink(apiEnvUrls[settings.envOverride] ?? apiEnvUrls[EnvironmentOverride.none]!,
       defaultHeaders: {

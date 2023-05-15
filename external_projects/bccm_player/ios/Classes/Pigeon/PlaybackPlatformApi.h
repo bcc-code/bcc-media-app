@@ -93,10 +93,12 @@ typedef NS_ENUM(NSUInteger, CastConnectionState) {
 - (instancetype)init NS_UNAVAILABLE;
 + (instancetype)makeWithPlayerId:(NSString *)playerId
     playbackState:(PlaybackState)playbackState
+    isFullscreen:(NSNumber *)isFullscreen
     currentMediaItem:(nullable MediaItem *)currentMediaItem
     playbackPositionMs:(nullable NSNumber *)playbackPositionMs;
 @property(nonatomic, copy) NSString * playerId;
 @property(nonatomic, assign) PlaybackState playbackState;
+@property(nonatomic, strong) NSNumber * isFullscreen;
 @property(nonatomic, strong, nullable) MediaItem * currentMediaItem;
 @property(nonatomic, strong, nullable) NSNumber * playbackPositionMs;
 @end
@@ -182,6 +184,7 @@ NSObject<FlutterMessageCodec> *PlaybackPlatformPigeonGetCodec(void);
 - (void)play:(NSString *)playerId error:(FlutterError *_Nullable *_Nonnull)error;
 - (void)pause:(NSString *)playerId error:(FlutterError *_Nullable *_Nonnull)error;
 - (void)stop:(NSString *)playerId reset:(NSNumber *)reset error:(FlutterError *_Nullable *_Nonnull)error;
+- (void)exitFullscreen:(NSString *)playerId error:(FlutterError *_Nullable *_Nonnull)error;
 - (void)setNpawConfig:(nullable NpawConfig *)config error:(FlutterError *_Nullable *_Nonnull)error;
 - (void)setAppConfig:(nullable AppConfig *)config error:(FlutterError *_Nullable *_Nonnull)error;
 - (void)getPlayerState:(nullable NSString *)playerId completion:(void (^)(PlayerStateSnapshot *_Nullable, FlutterError *_Nullable))completion;
