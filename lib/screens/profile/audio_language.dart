@@ -9,14 +9,14 @@ import '../../models/analytics/language_changed.dart';
 import '../../providers/analytics.dart';
 import '../../providers/settings.dart';
 
-class AppAudioLanguage extends ConsumerStatefulWidget {
-  const AppAudioLanguage({super.key});
+class AudioLanguageScreen extends ConsumerStatefulWidget {
+  const AudioLanguageScreen({super.key});
 
   @override
-  ConsumerState<AppAudioLanguage> createState() => _AppAudioLanguageState();
+  ConsumerState<AudioLanguageScreen> createState() => _AppAudioLanguageState();
 }
 
-class _AppAudioLanguageState extends ConsumerState<AppAudioLanguage> {
+class _AppAudioLanguageState extends ConsumerState<AudioLanguageScreen> {
   late String? selected;
 
   void _onSelectionChanged(String? id) {

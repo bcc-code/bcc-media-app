@@ -20,7 +20,7 @@ import '../helpers/ui/svg_icons.dart';
 import '../l10n/app_localizations.dart';
 import '../models/analytics/audio_only_clicked.dart';
 import '../providers/analytics.dart';
-import 'calendar/calendar.dart';
+import 'calendar.dart';
 
 final liveMetadataProvider = Provider<MediaMetadata>((ref) {
   final currentEpisode = ref.watch(currentLiveEpisodeProvider)?.episode;

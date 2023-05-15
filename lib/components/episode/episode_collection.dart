@@ -1,4 +1,4 @@
-import 'package:brunstadtv_app/components/season_episode_list.dart';
+import 'package:brunstadtv_app/components/episode/season_episode_list.dart';
 import 'package:brunstadtv_app/graphql/queries/episode.graphql.dart';
 import 'package:brunstadtv_app/helpers/extensions.dart';
 import 'package:flutter/material.dart';

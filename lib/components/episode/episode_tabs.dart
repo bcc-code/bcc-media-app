@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 
-import '../../components/episode_tab_selector.dart';
+import 'episode_tab_selector.dart';
 import '../../components/fade_indexed_stack.dart';
 import '../../components/option_list.dart';
 import '../../theme/design_system/design_system.dart';

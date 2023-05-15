@@ -18,21 +18,21 @@ import '../../flavors.dart';
 import '../../helpers/languages.dart';
 import '../../l10n/app_localizations.dart';
 import '../../router/router.gr.dart';
-import '../../components/avatar.dart';
-import '../../components/setting_list.dart';
+import '../../components/profile/avatar.dart';
+import '../../components/profile/setting_list.dart';
 
 import '../../helpers/version.dart';
 import '../../helpers/extensions.dart';
 import '../../theme/design_system/design_system.dart';
 
-class Profile extends ConsumerStatefulWidget {
-  const Profile({super.key});
+class ProfileScreen extends ConsumerStatefulWidget {
+  const ProfileScreen({super.key});
 
   @override
-  ConsumerState<Profile> createState() => _ProfileState();
+  ConsumerState<ProfileScreen> createState() => _ProfileState();
 }
 
-class _ProfileState extends ConsumerState<Profile> {
+class _ProfileState extends ConsumerState<ProfileScreen> {
   Future<void> loginAction(BuildContext context) async {
     final success = await ref.read(authStateProvider.notifier).login();
     if (success && context.mounted) {
@@ -164,14 +164,14 @@ class _ProfileState extends ConsumerState<Profile> {
                             optionName: S.of(context).audioLanguage,
                             currentSelection: getLanguageName(settings.audioLanguage),
                             onPressed: () {
-                              context.router.push(const AppAudioLanguageRoute());
+                              context.router.push(const AudioLanguageScreenRoute());
                             },
                           ),
                           OptionButton(
                             optionName: S.of(context).subtitleLanguage,
                             currentSelection: settings.subtitleLanguage == null ? S.of(context).none : getLanguageName(settings.subtitleLanguage),
                             onPressed: () {
-                              context.router.push(const AppSubtitleLanguageRoute());
+                              context.router.push(const SubtitleLanguageScreenRoute());
                             },
                           ),
                         ],
@@ -183,7 +183,7 @@ class _ProfileState extends ConsumerState<Profile> {
                             OptionButton(
                               optionName: S.of(context).contactSupport,
                               onPressed: () {
-                                context.router.push(const ContactSupportRoute());
+                                context.router.push(const ContactSupportScreenRoute());
                               },
                             ),
                             OptionButton(

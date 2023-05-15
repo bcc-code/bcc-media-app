@@ -4,14 +4,14 @@ import '../../components/web/dialog_on_web.dart';
 import '../../theme/design_system/design_system.dart';
 import '../../l10n/app_localizations.dart';
 
-class VideoQuality extends StatefulWidget {
-  const VideoQuality({super.key});
+class VideoQualityScreen extends StatefulWidget {
+  const VideoQualityScreen({super.key});
 
   @override
-  State<VideoQuality> createState() => _VideoQualityState();
+  State<VideoQualityScreen> createState() => _VideoQualityScreenState();
 }
 
-class _VideoQualityState extends State<VideoQuality> {
+class _VideoQualityScreenState extends State<VideoQualityScreen> {
   var qualityList = [
     Option(
       id: 'Automatisk',

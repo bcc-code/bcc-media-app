@@ -2,7 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:brunstadtv_app/helpers/ui/svg_icons.dart';
 import 'package:brunstadtv_app/helpers/extensions.dart';
 import 'package:brunstadtv_app/screens/home.dart';
-import 'package:brunstadtv_app/screens/search/search.dart';
+import 'package:brunstadtv_app/screens/search.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 

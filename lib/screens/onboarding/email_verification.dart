@@ -1,6 +1,6 @@
 import 'dart:async';
 
-import 'package:brunstadtv_app/components/loading_generic.dart';
+import 'package:brunstadtv_app/components/status_indicators/loading_generic.dart';
 import 'package:brunstadtv_app/components/onboarding/email_verification/email_verification_success_page.dart';
 import 'package:brunstadtv_app/components/onboarding/email_verification/email_verification_prompt_page.dart';
 import 'package:flutter/material.dart';

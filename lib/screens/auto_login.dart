@@ -8,7 +8,7 @@ import 'package:brunstadtv_app/providers/auth_state/auth_state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../components/loading_indicator.dart';
+import '../components/status_indicators/loading_indicator.dart';
 import '../models/events/app_ready.dart';
 import '../theme/design_system/design_system.dart';
 

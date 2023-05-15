@@ -1,6 +1,6 @@
-import 'package:brunstadtv_app/components/achievement_dialog.dart';
+import 'package:brunstadtv_app/components/achievements/achievement_dialog.dart';
 import 'package:brunstadtv_app/components/dialog_with_image.dart';
-import 'package:brunstadtv_app/components/loading_generic.dart';
+import 'package:brunstadtv_app/components/status_indicators/loading_generic.dart';
 import 'package:brunstadtv_app/graphql/client.dart';
 import 'package:brunstadtv_app/graphql/queries/achievements.graphql.dart';
 import 'package:brunstadtv_app/helpers/constants.dart';

@@ -13,7 +13,7 @@ import '../../../models/analytics/sections.dart';
 import 'thumbnail_slider_episode.dart';
 import 'thumbnail_slider_show.dart';
 import '../../horizontal_slider.dart';
-import '../../section_item_click_wrapper.dart';
+import '../section_item_click_wrapper.dart';
 
 class ThumbnailSliderSize {
   final Size imageSize;
