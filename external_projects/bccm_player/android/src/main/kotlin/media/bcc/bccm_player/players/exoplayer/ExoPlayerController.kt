@@ -9,6 +9,7 @@ import androidx.media3.common.C.VIDEO_SCALING_MODE_SCALE_TO_FIT
 import androidx.media3.common.ForwardingPlayer
 import androidx.media3.common.MediaItem
 import androidx.media3.common.MediaMetadata
+import androidx.media3.common.TrackSelectionOverride
 import androidx.media3.common.Tracks
 import androidx.media3.exoplayer.ExoPlayer
 import androidx.media3.exoplayer.trackselection.DefaultTrackSelector
@@ -42,6 +43,7 @@ class ExoPlayerController(private val context: Context) :
         .build()
     override val player: ForwardingPlayer
     override var currentPlayerViewController: ExoPlayerView? = null
+    private var textLanguageThatShouldBeSelected: String? = null
 
     private var _currentPlayerView: PlayerView? = null
     private var currentPlayerView: PlayerView?
@@ -111,9 +113,13 @@ class ExoPlayerController(private val context: Context) :
             "bccm",
             "setting preferred audio and sub lang to: ${appConfigState?.audioLanguage}, ${appConfigState?.subtitleLanguage}"
         )
+
         player.trackSelectionParameters = trackSelector.parameters.buildUpon()
             .setPreferredAudioLanguage(appConfigState?.audioLanguage)
-            .setPreferredTextLanguage(appConfigState?.subtitleLanguage).build()
+            .build()
+
+        textLanguageThatShouldBeSelected = appConfigState?.subtitleLanguage
+
         youboraPlugin.options.username = appConfigState?.analyticsId
         youboraPlugin.options.contentCustomDimension1 =
             if (appConfigState?.sessionId != null) appConfigState.sessionId.toString() else null
@@ -175,6 +181,16 @@ class ExoPlayerController(private val context: Context) :
     }
 
     override fun onTracksChanged(tracks: Tracks) {
+        // We use this callback to set the default language for the subtitles.
+        // we only set the default text language once when there is no track selected already and
+        // the language is available for the current track.
+        val textLanguage = textLanguageThatShouldBeSelected
+        if (textLanguage != null && !tracks.groups.any { it.type == C.TRACK_TYPE_TEXT && it.isSelected }) {
+            if (setTextLanguage(tracks, textLanguage)) {
+                textLanguageThatShouldBeSelected = null
+            }
+        }
+
         for (t in tracks.groups) {
             if (!t.isSelected) continue
 
@@ -183,6 +199,29 @@ class ExoPlayerController(private val context: Context) :
             } else if (t.type == C.TRACK_TYPE_AUDIO) {
                 youboraPlugin.options.contentLanguage = t.mediaTrackGroup.getFormat(0).language
             }
+        }
+    }
+
+    /**
+     * Sets the language of the subtitles. Returns false if there is the language
+     * is not available for the current media item.
+     */
+    private fun setTextLanguage(tracks: Tracks, language: String): Boolean {
+        val trackGroup = tracks.groups.firstOrNull {
+            it.type == C.TRACK_TYPE_TEXT
+                    && it.mediaTrackGroup.length > 0
+                    && it.mediaTrackGroup.getFormat(0).language == language
+        }
+
+        return if (trackGroup != null) {
+            player.trackSelectionParameters = player.trackSelectionParameters
+                .buildUpon()
+                .clearOverridesOfType(C.TRACK_TYPE_TEXT)
+                .setOverrideForType(TrackSelectionOverride(trackGroup.mediaTrackGroup, 0))
+                .build()
+            true
+        } else {
+            false
         }
     }
 
