@@ -1,4 +1,4 @@
-import 'package:brunstadtv_app/components/loading_indicator.dart';
+import 'package:brunstadtv_app/components/status_indicators/loading_indicator.dart';
 import 'package:brunstadtv_app/helpers/utils.dart';
 import 'package:brunstadtv_app/models/analytics/search_result_clicked.dart';
 import 'package:brunstadtv_app/providers/analytics.dart';

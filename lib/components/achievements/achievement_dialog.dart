@@ -19,7 +19,7 @@ import '../../helpers/share_image.dart';
 import '../../helpers/utils.dart';
 import '../../helpers/ui/widget_to_image.dart';
 import '../dialog_with_image.dart';
-import '../loading_indicator.dart';
+import '../status_indicators/loading_indicator.dart';
 
 class AchievementDialog extends ConsumerStatefulWidget {
   const AchievementDialog({super.key, required this.achievement, this.dismissButtonText});

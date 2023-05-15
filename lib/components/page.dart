@@ -1,5 +1,5 @@
-import 'package:brunstadtv_app/components/error_generic.dart';
-import 'package:brunstadtv_app/components/loading_generic.dart';
+import 'package:brunstadtv_app/components/status_indicators/error_generic.dart';
+import 'package:brunstadtv_app/components/status_indicators/loading_generic.dart';
 import 'package:brunstadtv_app/graphql/client.dart';
 import 'package:brunstadtv_app/graphql/queries/sections.graphql.dart';
 import 'package:brunstadtv_app/models/analytics/sections.dart';

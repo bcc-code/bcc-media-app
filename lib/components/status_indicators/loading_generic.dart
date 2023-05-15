@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../l10n/app_localizations.dart';
-import '../theme/design_system/design_system.dart';
+import '../../l10n/app_localizations.dart';
+import '../../theme/design_system/design_system.dart';
 import 'loading_indicator.dart';
 
 class LoadingGeneric extends ConsumerWidget {

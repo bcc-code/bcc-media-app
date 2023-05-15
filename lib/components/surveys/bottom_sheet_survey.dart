@@ -11,7 +11,7 @@ import '../../../theme/design_system/design_system.dart';
 
 import '../../providers/surveys.dart';
 import '../../theme/design_system/design_system.dart';
-import '../loading_indicator.dart';
+import '../status_indicators/loading_indicator.dart';
 import 'dialog_confirm_cancel.dart';
 import 'survey_form.dart';
 

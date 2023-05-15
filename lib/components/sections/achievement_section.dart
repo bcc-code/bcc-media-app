@@ -1,4 +1,4 @@
-import 'package:brunstadtv_app/components/loading_indicator.dart';
+import 'package:brunstadtv_app/components/status_indicators/loading_indicator.dart';
 import 'package:brunstadtv_app/graphql/queries/achievements.graphql.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';

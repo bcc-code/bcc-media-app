@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
-import '../helpers/ui/btv_buttons.dart';
-import '../theme/design_system/design_system.dart';
+import '../../helpers/ui/btv_buttons.dart';
+import '../../theme/design_system/design_system.dart';
 
-import '../l10n/app_localizations.dart';
+import '../../l10n/app_localizations.dart';
 
 class ErrorGeneric extends StatelessWidget {
   const ErrorGeneric({Key? key, required this.onRetry, this.title, this.description, this.retryButtonText, this.details}) : super(key: key);

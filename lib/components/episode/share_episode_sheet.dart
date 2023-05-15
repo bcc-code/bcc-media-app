@@ -1,5 +1,5 @@
 import 'package:brunstadtv_app/components/bottom_sheet_select.dart';
-import 'package:brunstadtv_app/components/loading_generic.dart';
+import 'package:brunstadtv_app/components/status_indicators/loading_generic.dart';
 import 'package:brunstadtv_app/components/option_list.dart';
 import 'package:brunstadtv_app/graphql/queries/episode.graphql.dart';
 import 'package:brunstadtv_app/graphql/schema/episodes.graphql.dart';

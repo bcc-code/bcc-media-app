@@ -10,7 +10,7 @@ import '../../theme/design_system/design_system.dart';
 import '../../helpers/navigation/navigation_utils.dart';
 import '../../helpers/utils.dart';
 import '../../l10n/app_localizations.dart';
-import '../loading_indicator.dart';
+import '../status_indicators/loading_indicator.dart';
 
 class StudyTopicCardLarge extends StatefulWidget {
   final Fragment$Section$$CardSection$items$items$item$$StudyTopic studyTopic;

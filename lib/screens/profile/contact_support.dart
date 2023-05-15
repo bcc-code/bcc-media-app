@@ -1,5 +1,5 @@
 import 'package:brunstadtv_app/components/general_app_bar.dart';
-import 'package:brunstadtv_app/components/loading_indicator.dart';
+import 'package:brunstadtv_app/components/status_indicators/loading_indicator.dart';
 import 'package:flutter/material.dart';
 import 'package:universal_io/io.dart';
 import 'package:auto_route/auto_route.dart';
