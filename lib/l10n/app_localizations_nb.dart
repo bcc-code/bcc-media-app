@@ -35,7 +35,7 @@ class SNb extends S {
   String get loginPageDisplay2 => 'Se serier, programmer og filmer basert på kristne verdier';
 
   @override
-  String get kidsOnboardingTitle => 'Captivating and faith-filled videos your kids will love!';
+  String get kidsOnboardingTitle => 'We bring the message of the Bible to life!';
 
   @override
   String get kidsOnboardingSecondaryTitle => 'Our vision is for the children to experience Jesus as their very best friend - for the rest of their lives.';

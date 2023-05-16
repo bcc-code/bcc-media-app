@@ -186,7 +186,7 @@ abstract class S {
   /// Text displayed on onboarding screen for the Bible Kids app.
   ///
   /// In en, this message translates to:
-  /// **'Captivating and faith-filled videos your kids will love!'**
+  /// **'We bring the message of the Bible to life!'**
   String get kidsOnboardingTitle;
 
   /// Text displayed on onboarding screen for the Bible Kids app.
