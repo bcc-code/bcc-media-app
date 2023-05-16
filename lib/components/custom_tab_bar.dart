@@ -29,7 +29,7 @@ class CustomTabBar extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final useMaterial = Platform.isAndroid && ref.watch(isPhysicalDeviceProvider).asData?.valueOrNull != false;
     final design = DesignSystem.of(context);
-    final icons = FlavorConfig.current.flavorImages;
+    final icons = FlavorConfig.current.images;
 
     Widget icon(ImageProvider image, bool active) {
       final imageWidget = Image(

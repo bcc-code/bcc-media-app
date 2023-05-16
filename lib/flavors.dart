@@ -4,9 +4,8 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
 enum Flavor {
-  bccmedia_prod,
-  bccmedia_dev,
-  kids_prod;
+  bccmedia,
+  kids;
 }
 
 class StateImageProvider extends Iterable<ImageProvider> {
@@ -22,9 +21,19 @@ class StateImageProvider extends Iterable<ImageProvider> {
   Iterator<ImageProvider<Object>> get iterator => [image, activeImage].iterator;
 }
 
+class FlavorStrings {
+  final String onboardingTitle;
+  final String onboardingSecondaryTitle;
+  FlavorStrings({
+    required this.onboardingTitle,
+    required this.onboardingSecondaryTitle,
+  });
+}
+
 class FlavorImages extends Iterable<ImageProvider> {
   final double logoHeight;
   final ImageProvider logo;
+  final ImageProvider onboarding;
   final StateImageProvider home;
   final StateImageProvider search;
   final StateImageProvider live;
@@ -34,6 +43,7 @@ class FlavorImages extends Iterable<ImageProvider> {
   FlavorImages({
     required this.logoHeight,
     required this.logo,
+    required this.onboarding,
     required this.home,
     required this.search,
     required this.live,
@@ -44,6 +54,7 @@ class FlavorImages extends Iterable<ImageProvider> {
   @override
   Iterator<ImageProvider<Object>> get iterator => [
         logo,
+        onboarding,
         ...home,
         ...search,
         ...live,
@@ -56,7 +67,8 @@ class FlavorConfig {
   const FlavorConfig({
     required this.flavor,
     required this.firebaseOptions,
-    required this.flavorImages,
+    required this.images,
+    required this.strings,
     this.designSystem,
     this.applicationCode,
   });
@@ -64,9 +76,10 @@ class FlavorConfig {
   // Config
   final Flavor flavor;
   final FirebaseOptions? firebaseOptions;
-  final FlavorImages flavorImages;
+  final FlavorImages images;
   final DesignSystemData Function()? designSystem;
   final String? applicationCode;
+  final FlavorStrings Function(BuildContext context) strings;
 
   // Static stuff for setting the flavor on startup
   static FlavorConfig? _current;

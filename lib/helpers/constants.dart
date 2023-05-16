@@ -16,6 +16,7 @@ class PrefKeys {
   static const analyticsId = 'analytics_id';
   static const completedSurveys = 'completed_surveys';
   static const isBetaTester = 'is_beta_tester';
+  static const onboardingCompleted = 'onboarding_completed';
 }
 
 class SecureStorageKeys {

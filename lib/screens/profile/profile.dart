@@ -143,7 +143,7 @@ class _ProfileState extends ConsumerState<ProfileScreen> {
                     Padding(
                       padding: const EdgeInsets.symmetric(vertical: 48),
                       child: Image(
-                        image: FlavorConfig.current.flavorImages.logo,
+                        image: FlavorConfig.current.images.logo,
                         height: 25,
                         gaplessPlayback: true,
                       ),

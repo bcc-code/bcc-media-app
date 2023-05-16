@@ -2,6 +2,7 @@ import 'dart:async';
 import 'package:bccm_player/bccm_player.dart';
 import 'package:brunstadtv_app/providers/auth_state/auth_state.dart';
 import 'package:brunstadtv_app/providers/notification_service.dart';
+import 'package:brunstadtv_app/providers/shared_preferences.dart';
 import 'package:brunstadtv_app/providers/unleash.dart';
 import 'package:brunstadtv_app/providers/router_provider.dart';
 import 'package:brunstadtv_app/providers/deeplink_service.dart';
@@ -19,6 +20,7 @@ import 'package:brunstadtv_app/router/router.gr.dart';
 import 'package:intl/intl.dart';
 import 'package:intl/intl_standalone.dart' if (dart.library.html) 'package:intl/intl_browser.dart';
 import 'package:flutter_web_plugins/url_strategy.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import 'app_root.dart';
 import 'flavors.dart';
@@ -43,8 +45,10 @@ Future<void> $main({
   await BccmPlayerInterface.instance.setup();
 
   final appRouter = AppRouter(navigatorKey);
+  final sharedPrefs = await SharedPreferences.getInstance();
   final providerContainer = await initProviderContainer([
     rootRouterProvider.overrideWithValue(appRouter),
+    sharedPreferencesProvider.overrideWith((ref) => sharedPrefs),
     if (providerOverrides != null) ...providerOverrides,
   ]);
 

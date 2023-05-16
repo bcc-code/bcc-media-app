@@ -13,6 +13,7 @@ import '../../graphql/client.dart';
 import '../../graphql/queries/send_support_email.graphql.dart';
 import '../../helpers/ui/btv_buttons.dart';
 import '../../helpers/version.dart';
+import '../../providers/shared_preferences.dart';
 import '../../theme/design_system/design_system.dart';
 
 import '../../helpers/constants.dart';
@@ -113,16 +114,14 @@ class _ContactSupportState extends ConsumerState<ContactSupportScreen> {
 
   Future setDeviceInfo() async {
     String? device, manufacturer, os, screenSize, appVer, userId;
+    List<ListItem>? deviceInfoTmp;
 
-    final sharedPrefs = await SharedPreferences.getInstance();
+    final screenWidth = View.of(context).physicalSize.width.toInt().toString();
+    final screenHeight = View.of(context).physicalSize.height.toInt().toString();
     PackageInfo packageInfo = await PackageInfo.fromPlatform();
-    final screenWidth = WidgetsBinding.instance.window.physicalSize.width.toInt().toString();
-    final screenHeight = WidgetsBinding.instance.window.physicalSize.height.toInt().toString();
     screenSize = '${screenHeight}x$screenWidth';
     appVer = formatAppVersion(packageInfo);
     userId = ref.read(authStateProvider).user?.name;
-
-    List<ListItem>? deviceInfoTmp;
 
     if (Platform.isAndroid) {
       AndroidDeviceInfo androidInfo = await DeviceInfoPlugin().androidInfo;
@@ -146,7 +145,7 @@ class _ContactSupportState extends ConsumerState<ContactSupportScreen> {
       ),
       ListItem(
         title: 'Environment override',
-        content: sharedPrefs.getString(PrefKeys.envOverride),
+        content: ref.read(sharedPreferencesProvider).getString(PrefKeys.envOverride),
       ),
       ListItem(
         title: 'Manufacturer',

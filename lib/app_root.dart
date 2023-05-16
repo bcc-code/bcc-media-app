@@ -43,7 +43,7 @@ class _AppRootState extends ConsumerState<AppRoot> {
     debugPrint('app_root didChangeDependencies');
     authSubscription?.close();
     authSubscription = ref.listenManual<AuthState>(authStateProvider, onAuthChanged);
-    for (var image in FlavorConfig.current.flavorImages) {
+    for (var image in FlavorConfig.current.images) {
       precacheImage(image, context)
           .then((value) => print('precache succeeded for $image.'))
           .catchError((e) => print('precache failed for $image. Error: $e'));

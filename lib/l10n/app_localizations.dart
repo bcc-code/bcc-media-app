@@ -183,6 +183,18 @@ abstract class S {
   /// **'Watch series, shows and films based on Christian values'**
   String get loginPageDisplay2;
 
+  /// Text displayed on onboarding screen for the Bible Kids app.
+  ///
+  /// In en, this message translates to:
+  /// **'We bring the message of the Bible to life!'**
+  String get kidsOnboardingTitle;
+
+  /// Text displayed on onboarding screen for the Bible Kids app.
+  ///
+  /// In en, this message translates to:
+  /// **'Our vision is for the children to experience Jesus as their very best friend - for the rest of their lives.'**
+  String get kidsOnboardingSecondaryTitle;
+
   /// Text displayed on login screen.
   ///
   /// In en, this message translates to:
@@ -1118,6 +1130,12 @@ abstract class S {
   /// In en, this message translates to:
   /// **'Explore public content'**
   String get explorePublicContent;
+
+  /// A button on the welcome page
+  ///
+  /// In en, this message translates to:
+  /// **'Start exploring'**
+  String get startExploring;
 
   /// SINGULAR. Note the lowercase T, because its inserted after a count: '0/1 task completed'.
   ///
