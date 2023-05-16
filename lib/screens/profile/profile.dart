@@ -192,7 +192,7 @@ class _ProfileState extends ConsumerState<ProfileScreen> {
                                 launchUrlString('https://uservoice.bcc.no/?tags=bcc-media', mode: LaunchMode.externalApplication);
                               },
                             )
-                          ] else ...[
+                          ] else if (FlavorConfig.current.flavor != Flavor.kids) ...[
                             OptionButton(
                               optionName: S.of(context).contactSupport,
                               onPressed: () => _contactSupportEmail(),
