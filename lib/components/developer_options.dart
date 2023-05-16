@@ -1,4 +1,5 @@
 import 'package:brunstadtv_app/components/bottom_sheet_select.dart';
+import 'package:brunstadtv_app/helpers/extensions.dart';
 import 'package:brunstadtv_app/providers/auth_state/auth_state.dart';
 import 'package:brunstadtv_app/providers/feature_flags.dart';
 import 'package:brunstadtv_app/providers/settings.dart';
@@ -74,7 +75,9 @@ class DeveloperOptions extends ConsumerWidget {
                     const Text('accessToken: '),
                     TextField(controller: TextEditingController()..text = auth.auth0AccessToken.toString()),
                     const Text('fcmToken: '),
-                    TextField(controller: TextEditingController()..text = notificationService.fcmToken.toString()),
+                    TextField(
+                        controller: TextEditingController()
+                          ..text = notificationService.asOrNull<FcmNotificationService>()?.fcmToken.toString() ?? 'disabled'),
                     const SizedBox(height: 8),
                     Text('auth.expiresAt: ${auth.expiresAt}'),
                     Text('session_id: ${settings.sessionId}'),

@@ -1,6 +1,5 @@
 import 'package:brunstadtv_app/env/kids_prod/firebase_options.dart' as kids_prod_firebase;
 import 'package:brunstadtv_app/main.dart';
-import 'package:brunstadtv_app/theme/bccm_gradients.dart';
 import 'package:brunstadtv_app/theme/design_system/biblekids/design_system.dart';
 import 'package:flutter/material.dart';
 import 'flavors.dart';
@@ -11,6 +10,7 @@ Future<void> main() async {
     FlavorConfig(
       flavor: Flavor.kids,
       firebaseOptions: kids_prod_firebase.DefaultFirebaseOptions.currentPlatform,
+      enableNotifications: false,
       applicationCode: 'kids',
       designSystem: () => BibleKidsDesignSystem(),
       strings: (context) => FlavorStrings(

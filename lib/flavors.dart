@@ -69,6 +69,7 @@ class FlavorConfig {
     required this.firebaseOptions,
     required this.images,
     required this.strings,
+    required this.enableNotifications,
     this.designSystem,
     this.applicationCode,
   });
@@ -80,6 +81,7 @@ class FlavorConfig {
   final DesignSystemData Function()? designSystem;
   final String? applicationCode;
   final FlavorStrings Function(BuildContext context) strings;
+  final bool enableNotifications;
 
   // Static stuff for setting the flavor on startup
   static FlavorConfig? _current;

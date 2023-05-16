@@ -1,6 +1,5 @@
 import 'package:brunstadtv_app/main.dart';
 import 'package:brunstadtv_app/env/prod/firebase_options.dart' as prod_firebase;
-import 'package:brunstadtv_app/theme/bccm_gradients.dart';
 import 'package:flutter/material.dart';
 import 'flavors.dart';
 import 'l10n/app_localizations.dart';
@@ -10,6 +9,7 @@ Future<void> main() async {
     FlavorConfig(
       flavor: Flavor.bccmedia,
       firebaseOptions: prod_firebase.DefaultFirebaseOptions.currentPlatform,
+      enableNotifications: false,
       strings: (context) => FlavorStrings(
         onboardingTitle: S.of(context).loginPageDisplay1,
         onboardingSecondaryTitle: S.of(context).loginPageDisplay2,
