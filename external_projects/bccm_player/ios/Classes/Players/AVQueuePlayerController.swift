@@ -15,6 +15,8 @@ public class AVQueuePlayerController: NSObject, PlayerController, AVPlayerViewCo
     var pipController: AVPlayerViewController? = nil
     var appConfig: AppConfig? = nil
     var refreshStateTimer: Timer? = nil
+    var currentViewController: AVPlayerViewController? = nil
+    private var fullscreenViewController: AVPlayerViewController? = nil
 
     init(id: String? = nil, playbackListener: PlaybackListenerPigeon, npawConfig: NpawConfig?, appConfig: AppConfig?) {
         self.id = id ?? UUID().uuidString
@@ -32,7 +34,7 @@ public class AVQueuePlayerController: NSObject, PlayerController, AVPlayerViewCo
         youboraPlugin.adapter = YBAVPlayerAdapterSwiftTranformer.transform(from: YBAVPlayerAdapter(player: player))
         addObservers()
         refreshStateTimer = Timer.scheduledTimer(withTimeInterval: 15, repeats: true) { _ in
-            playbackListener.onPlayerStateUpdate(self.getPlayerStateSnapshot(), completion: { _ in })
+            self.onManualPlayerStateUpdate()
         }
         print("BTV DEBUG: end of init playerController")
     }
@@ -41,10 +43,16 @@ public class AVQueuePlayerController: NSObject, PlayerController, AVPlayerViewCo
         refreshStateTimer?.invalidate()
     }
     
+    public func onManualPlayerStateUpdate() {
+        let event = PlayerStateUpdateEvent.make(withPlayerId: id, snapshot: getPlayerStateSnapshot())
+        playbackListener.onPlayerStateUpdate(event, completion: { _ in })
+    }
+    
     public func getPlayerStateSnapshot() -> PlayerStateSnapshot {
         return PlayerStateSnapshot.make(
             withPlayerId: id,
             playbackState: isPlaying() ? PlaybackState.playing : PlaybackState.paused,
+            isFullscreen: (currentViewController != nil && currentViewController == fullscreenViewController) as NSNumber,
             currentMediaItem: MediaItemMapper.mapPlayerItem(player.currentItem),
             playbackPositionMs: NSNumber(value: player.currentTime().seconds * 1000)
         )
@@ -74,6 +82,13 @@ public class AVQueuePlayerController: NSObject, PlayerController, AVPlayerViewCo
         }
     }
     
+    public func exitFullscreen() {
+        if fullscreenViewController == nil { return }
+        fullscreenViewController?.dismiss(animated: true)
+        fullscreenViewController = nil
+        onManualPlayerStateUpdate()
+    }
+    
     public func playerViewController(_ playerViewController: AVPlayerViewController, willBeginFullScreenPresentationWithAnimationCoordinator coordinator: UIViewControllerTransitionCoordinator) {
         // Disable animations while transitioning to fullscreen, because it sometimes does a 360deg spin.
         UIView.setAnimationsEnabled(false)
@@ -81,8 +96,15 @@ public class AVQueuePlayerController: NSObject, PlayerController, AVPlayerViewCo
             _ in
             UIView.setAnimationsEnabled(true)
         })
+        fullscreenViewController = playerViewController
+        onManualPlayerStateUpdate()
     }
     
+    public func playerViewController(_ playerViewController: AVPlayerViewController, willEndFullScreenPresentationWithAnimationCoordinator coordinator: UIViewControllerTransitionCoordinator) {
+        fullscreenViewController = nil
+        onManualPlayerStateUpdate()
+    }
+
     public func playerViewControllerWillStartPictureInPicture(_ playerViewController: AVPlayerViewController) {
         print("bccm: audiosession category willstart: " + AVAudioSession.sharedInstance().category.rawValue)
         registerPipController(playerViewController)
@@ -116,6 +138,7 @@ public class AVQueuePlayerController: NSObject, PlayerController, AVPlayerViewCo
         if playerView != pipController {
             print("releasing")
             playerView.player = nil
+            currentViewController = nil
         }
     }
     
@@ -234,6 +257,7 @@ public class AVQueuePlayerController: NSObject, PlayerController, AVPlayerViewCo
     
     func takeOwnership(_ playerViewController: AVPlayerViewController) {
         playerViewController.player = player
+        currentViewController = playerViewController
     }
     
     func createPlayerItem(_ mediaItem: MediaItem, _ completion: @escaping (AVPlayerItem?) -> Void) {
@@ -319,6 +343,11 @@ public class AVQueuePlayerController: NSObject, PlayerController, AVPlayerViewCo
                 self.youboraPlugin.options.contentLanguage = player.currentItem?.getSelectedAudioLanguage()
                 self.youboraPlugin.options.contentSubtitles = player.currentItem?.getSelectedSubtitleLanguage()
             })
+            NotificationCenter.default
+                .addObserver(self,
+                             selector: #selector(self.playerDidFinishPlaying),
+                             name: .AVPlayerItemDidPlayToEndTime,
+                             object: player.currentItem)
         })
         observers.append(player.observe(\.rate, options: [.old, .new]) {
             player, change in
@@ -349,6 +378,11 @@ public class AVQueuePlayerController: NSObject, PlayerController, AVPlayerViewCo
         let waitingBecauseNoItemToPlay = player.timeControlStatus == AVPlayer.TimeControlStatus.waitingToPlayAtSpecifiedRate
             && player.reasonForWaitingToPlay == AVPlayer.WaitingReason.noItemToPlay
         return !paused && !waitingBecauseNoItemToPlay
+    }
+    
+    @objc private func playerDidFinishPlaying(note: NSNotification) {
+        let endedEvent = PlaybackEndedEvent.make(withPlayerId: id, mediaItem: getCurrentItem())
+        playbackListener.onPlaybackEnded(endedEvent, completion: { _ in })
     }
 }
 

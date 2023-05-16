@@ -6,43 +6,43 @@ import '../../utils/debouncer.dart';
 import '../../utils/extensions.dart';
 import 'bccm_api.dart';
 
-class BccmPlaybackListener implements PlaybackListenerPigeon {
+class BccmPlaybackListener {
   Ref ref;
   final progressDebouncer = Debouncer(milliseconds: 1000);
   final Provider<BccmApi> apiProvider;
 
-  BccmPlaybackListener({required this.ref, required this.apiProvider});
-
-  @override
-  void onPlaybackStateChanged(event) {}
-
-  @override
-  void onMediaItemTransition(event) {}
-
-  @override
-  void onPictureInPictureModeChanged(event) {}
-
-  @override
-  void onPositionDiscontinuity(event) {
-    debugPrint('onPositionDiscontinuity');
-    var player = ref.read(playerProviderFor(event.playerId));
-    final positionMs = event.playbackPositionMs?.finiteOrNull()?.round();
-    final episodeId = player?.currentMediaItem?.metadata?.extras?['id']?.asOrNull<String>();
-    if (episodeId != null && positionMs != null) {
-      progressDebouncer.run(() => ref.read(apiProvider).updateProgress(episodeId: episodeId, progress: positionMs / 1000));
-    }
+  BccmPlaybackListener({required this.ref, required this.apiProvider}) {
+    ref.listen(playerEventRawStreamProvider, (event, d) {
+      switch (event.runtimeType) {
+        case PositionDiscontinuityEvent:
+          onPositionDiscontinuity(event as PositionDiscontinuityEvent);
+          break;
+        case PlayerStateUpdateEvent:
+          onPlayerStateUpdate(event as PlayerStateUpdateEvent);
+          break;
+      }
+    });
   }
 
-  @override
-  void onPlayerStateUpdate(event) {
+  void onPositionDiscontinuity(PositionDiscontinuityEvent event) {
     var player = ref.read(playerProviderFor(event.playerId));
-    final positionMs = event.playbackPositionMs?.finiteOrNull()?.round();
-    final episodeId = player?.currentMediaItem?.metadata?.extras?['id']?.asOrNull<String>();
-    if (event.playbackState == PlaybackState.playing && positionMs != null && episodeId != null) {
-      progressDebouncer.run(() => ref.read(apiProvider).updateProgress(episodeId: episodeId, progress: positionMs / 1000));
-    }
+    _updateProgress(
+      episodeId: player?.currentMediaItem?.metadata?.extras?['id']?.asOrNull<String>(),
+      positionMs: event.playbackPositionMs?.finiteOrNull()?.round(),
+    );
   }
 
-  @override
-  void onPrimaryPlayerChanged(String? playerId) {}
+  void onPlayerStateUpdate(PlayerStateUpdateEvent event) {
+    if (event.snapshot.playbackState != PlaybackState.playing) return;
+    _updateProgress(
+      episodeId: event.snapshot.currentMediaItem?.metadata?.extras?['id']?.asOrNull<String>(),
+      positionMs: event.snapshot.playbackPositionMs?.finiteOrNull()?.round(),
+    );
+  }
+
+  void _updateProgress({required String? episodeId, required int? positionMs}) {
+    if (episodeId == null || positionMs == null) return;
+    final positionSeconds = positionMs / 1000;
+    progressDebouncer.run(() => ref.read(apiProvider).updateProgress(episodeId: episodeId, progress: positionSeconds));
+  }
 }

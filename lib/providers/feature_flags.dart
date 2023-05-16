@@ -24,6 +24,7 @@ class FeatureFlagsNotifier extends StateNotifier<FeatureFlags> {
       auth: FlavorConfig.current.flavor != Flavor.kids_prod || client.isEnabled('kids-auth'),
       publicSignup: client.isEnabled('public-signup'),
       socialSignup: client.isEnabled('social-signup'),
+      autoplayNext: client.isEnabled('autoplay-next'),
     );
   }
 

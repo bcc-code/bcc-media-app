@@ -1,4 +1,5 @@
 import 'package:brunstadtv_app/providers/feature_flags.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../models/auth_state.dart';
@@ -17,20 +18,22 @@ abstract class AuthStateNotifier implements StateNotifier<AuthState> {
   factory AuthStateNotifier(Ref ref) => getPlatformSpecificAuthStateNotifier(ref);
 }
 
-final disableAuth = StateProvider<bool>((ref) {
-  return false;
+final _enableAuth = StateProvider<bool>((ref) {
+  return true;
 });
 
-final authFeatureFlagListener = Provider<bool>((ref) {
+final authFeatureFlagListener = Provider<void>((ref) {
   ref.listen<FeatureFlags>(featureFlagsProvider, (previous, next) {
-    ref.read(disableAuth.notifier).state = next.auth;
+    ref.read(_enableAuth.notifier).state = next.auth;
   });
-  return false;
 });
 
 final authStateProvider = StateNotifierProvider<AuthStateNotifier, AuthState>((ref) {
-  if (ref.watch(disableAuth)) {
+  if (!ref.watch(_enableAuth)) {
+    debugPrint('authStateProvider: $AuthStateNotifierDisabled');
     return AuthStateNotifierDisabled();
   }
-  return AuthStateNotifier(ref);
+  final notifier = AuthStateNotifier(ref);
+  debugPrint('authStateProvider: ${notifier.runtimeType}');
+  return notifier;
 });

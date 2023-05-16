@@ -46,6 +46,8 @@ type Episode {
     lessons(first: Int, offset: Int): LessonPagination! @goField(forceResolver: true)
     shareRestriction: ShareRestriction! @goField(forceResolver: true)
     inMyList: Boolean! @goField(forceResolver: true)
+
+    next: [Episode!]! @goField(forceResolver: true)
 }
 
 type EpisodePagination implements Pagination {

@@ -12,6 +12,7 @@ import 'package:brunstadtv_app/components/episode/player_poster.dart';
 import 'package:brunstadtv_app/components/status_indicators/error_generic.dart';
 import 'package:brunstadtv_app/components/status_indicators/loading_indicator.dart';
 import 'package:brunstadtv_app/components/episode/share_episode_sheet.dart';
+import 'package:brunstadtv_app/providers/feature_flags.dart';
 import 'package:brunstadtv_app/providers/lesson_progress_provider.dart';
 import 'package:brunstadtv_app/router/router.gr.dart';
 import 'package:flutter/foundation.dart';
@@ -194,6 +195,67 @@ class _EpisodeDisplay extends HookConsumerWidget {
   final Future<Query$FetchEpisode$episode?>? episodeFuture;
   final ScrollController scrollController;
 
+  Future<bool> autoplayNext(PlaybackService playbackService, String playerId, StackRouter router) async {
+    final nextEpisode = await playbackService.getNextEpisodeForPlayer(playerId: playerId);
+    if (nextEpisode == null) {
+      playbackService.platformApi.exitFullscreen(playerId);
+      return false;
+    }
+    // When we are fullscreen on iOS, flutter's lifecyclestate becomes 'paused', and the widget tree won't build e.g. on navigation.
+    // Therefore we can't rely on the routing to autoplay the next episode.
+    // But we still call navigate(), so that it's performed when the user exits fullscreen.
+    // TODO: Navigate upon fullscreen exit instead. Basically: if leaving fullscreen and we're on the wrong page, navigate.
+    playbackService.playEpisode(
+      playerId: playerId,
+      episode: nextEpisode,
+      autoplay: true,
+    );
+    router.navigate(
+      EpisodeScreenRoute(
+        episodeId: nextEpisode.id,
+        collectionId: nextEpisode.context?.asOrNull<Fragment$EpisodeContext$$ContextCollection>()?.id,
+        autoplay: true,
+      ),
+    );
+    return true;
+  }
+
+  Future setupPlayerForEpisode(Query$FetchEpisode$episode episode, {required WidgetRef ref}) async {
+    var player = ref.read(primaryPlayerProvider);
+    if (player!.currentMediaItem?.metadata?.extras?['id'] == screenParams.episodeId.toString()) {
+      return;
+    }
+
+    var startPositionSeconds = (episode.progress ?? 0);
+    if (screenParams.queryParamStartPosition != null && screenParams.queryParamStartPosition! >= 0) {
+      startPositionSeconds = screenParams.queryParamStartPosition!;
+    }
+    if (startPositionSeconds > episode.duration * 0.9) {
+      startPositionSeconds = 0;
+    }
+
+    return ref
+        .read(playbackServiceProvider)
+        .playEpisode(playerId: player.playerId, episode: episode, autoplay: true, playbackPositionMs: startPositionSeconds * 1000)
+        .timeout(const Duration(milliseconds: 12000));
+  }
+
+  void shareVideo(BuildContext context, WidgetRef ref, Query$FetchEpisode$episode episode) {
+    final player = ref.read(primaryPlayerProvider);
+    final currentPosSeconds = ((player?.playbackPositionMs ?? 0) / 1000).round();
+    if (player != null && player.playerId != 'chromecast') {
+      ref.read(playbackServiceProvider).platformApi.pause(player.playerId);
+    }
+    showModalBottomSheet(
+      useRootNavigator: true,
+      context: context,
+      builder: (ctx) => ShareEpisodeSheet(
+        episode: episode,
+        currentPosSeconds: currentPosSeconds,
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final isMounted = useIsMounted();
@@ -208,6 +270,10 @@ class _EpisodeDisplay extends HookConsumerWidget {
     }
 
     final playerSetupSnapshot = useFuture(playerSetupFuture.value);
+    final playbackService = ref.watch(playbackServiceProvider);
+    final chromecastEvents = ref.watch(chromecastEventStreamProvider);
+    final playerEvents = ref.watch(playerEventStreamProvider(player.playerId));
+    final enableAutoplayNext = ref.watch(featureFlagsProvider.select((value) => value.autoplayNext));
     final episodeIsCurrentItem = player.currentMediaItem?.metadata?.extras?['id'] == episode.id;
 
     useEffect(() {
@@ -243,19 +309,29 @@ class _EpisodeDisplay extends HookConsumerWidget {
     }, [screenParams.hideBottomSection, screenParams.queryParamStartPosition]);
 
     // Start playing when chromecast disconnects
-    final castSessionUnavailableStream = ref.watch(chromecastEventStreamProvider).on<CastSessionUnavailable>();
     useEffect(() {
-      final subscription = castSessionUnavailableStream.listen((event) {
-        var player = ref.read(primaryPlayerProvider);
-        ref.read(playbackServiceProvider).playEpisode(
-              playerId: player!.playerId,
-              autoplay: false,
-              episode: episode,
-              playbackPositionMs: event.playbackPositionMs,
-            );
+      final subscription = chromecastEvents.on<CastSessionUnavailable>().listen((event) {
+        playbackService.playEpisode(
+          playerId: player.playerId,
+          autoplay: false,
+          episode: episode,
+          playbackPositionMs: event.playbackPositionMs,
+        );
       });
       return () => subscription.cancel();
-    }, [castSessionUnavailableStream]);
+    }, [player.playerId, episode, chromecastEvents, playbackService]);
+
+    // Handle playback ended events, including autoplaying next
+    useEffect(() {
+      final subscription = playerEvents.where((event) => event is PlaybackEndedEvent).cast<PlaybackEndedEvent>().listen((event) async {
+        if (enableAutoplayNext) {
+          autoplayNext(playbackService, player.playerId, context.router);
+          return;
+        }
+        playbackService.platformApi.exitFullscreen(player.playerId);
+      });
+      return () => subscription.cancel();
+    }, [ref, playerEvents, playbackService, enableAutoplayNext, player.playerId]);
 
     final showLoadingOverlay = (episodeSnapshot.connectionState == ConnectionState.waiting);
 
@@ -271,11 +347,11 @@ class _EpisodeDisplay extends HookConsumerWidget {
                     imageUrl: episode.image,
                     onRetry: setupPlayer,
                   )
-                else if (!episodeIsCurrentItem || showLoadingOverlay || kIsWeb)
+                else if (!episodeIsCurrentItem || showLoadingOverlay || kIsWeb || player.isFullscreen)
                   PlayerPoster(
                     imageUrl: episode.image,
                     setupPlayer: setupPlayer,
-                    loading: playerSetupSnapshot.connectionState == ConnectionState.waiting,
+                    loading: playerSetupSnapshot.connectionState == ConnectionState.waiting || player.isFullscreen,
                   )
                 else
                   BccmPlayer(id: player.playerId),
@@ -356,42 +432,6 @@ class _EpisodeDisplay extends HookConsumerWidget {
             ],
           ),
       ],
-    );
-  }
-
-  Future setupPlayerForEpisode(Query$FetchEpisode$episode episode, {required WidgetRef ref}) async {
-    var player = ref.read(primaryPlayerProvider);
-    if (player!.currentMediaItem?.metadata?.extras?['id'] == screenParams.episodeId.toString()) {
-      return;
-    }
-
-    var startPositionSeconds = (episode.progress ?? 0);
-    if (screenParams.queryParamStartPosition != null && screenParams.queryParamStartPosition! >= 0) {
-      startPositionSeconds = screenParams.queryParamStartPosition!;
-    }
-    if (startPositionSeconds > episode.duration * 0.9) {
-      startPositionSeconds = 0;
-    }
-
-    return ref
-        .read(playbackServiceProvider)
-        .playEpisode(playerId: player.playerId, episode: episode, autoplay: true, playbackPositionMs: startPositionSeconds * 1000)
-        .timeout(const Duration(milliseconds: 12000));
-  }
-
-  void shareVideo(BuildContext context, WidgetRef ref, Query$FetchEpisode$episode episode) {
-    final player = ref.read(primaryPlayerProvider);
-    final currentPosSeconds = ((player?.playbackPositionMs ?? 0) / 1000).round();
-    if (player != null && player.playerId != 'chromecast') {
-      ref.read(playbackServiceProvider).platformApi.pause(player.playerId);
-    }
-    showModalBottomSheet(
-      useRootNavigator: true,
-      context: context,
-      builder: (ctx) => ShareEpisodeSheet(
-        episode: episode,
-        currentPosSeconds: currentPosSeconds,
-      ),
     );
   }
 }

@@ -19,7 +19,7 @@ publish_to: "none" # Remove this line if you wish to publish to pub.dev
 # major.minor.patch+xxxxxxx
 # Note: On play store, any dots in the build
 # number (i.e. the number after +) gets removed
-version: 4.3.8+2300053
+version: 4.3.9+2300054
 
 environment:
   sdk: ">=2.17.0 <3.0.0"
@@ -125,9 +125,9 @@ dev_dependencies:
   flutter_lints: ^2.0.0
   auto_route_generator: ^5.0.2
   pigeon: ^9.0.1
-  freezed: 2.3.2
+  freezed: ^2.3.4
   graphql_codegen: ^0.12.2
-  custom_lint: ^0.3.3
+  custom_lint: ^0.4.0
   riverpod_generator: ^2.1.6
   riverpod_lint: ^1.2.0
   flutter_oss_licenses: ^2.0.1

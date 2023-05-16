@@ -13,7 +13,10 @@ class BccmPlayerNative extends BccmPlayerInterface {
   final ChromecastPigeonListener _chromecastListener = ChromecastPigeonListener();
 
   @override
-  chromecastEventStream() => _chromecastListener.stream();
+  get chromecastEventStream => _chromecastListener.stream;
+
+  @override
+  get playerEventStream => _rootPlaybackListener.stream;
 
   @override
   Future<void> setup() async {
@@ -91,6 +94,11 @@ class BccmPlayerNative extends BccmPlayerInterface {
   @override
   void stop(String playerId, bool reset) {
     _pigeon.stop(playerId, reset);
+  }
+
+  @override
+  void exitFullscreen(String playerId) {
+    _pigeon.exitFullscreen(playerId);
   }
 
   @override
