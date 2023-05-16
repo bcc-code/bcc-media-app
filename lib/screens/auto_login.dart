@@ -11,6 +11,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../components/status_indicators/loading_indicator.dart';
+import '../helpers/constants.dart';
 import '../models/events/app_ready.dart';
 import '../providers/shared_preferences.dart';
 import '../theme/design_system/design_system.dart';
@@ -67,7 +68,7 @@ class _AutoLoginScreeenState extends ConsumerState<AutoLoginScreen> {
       return;
     }
     final hasCredentials = ref.read(authStateProvider).auth0AccessToken != null;
-    final hasCompletedOnboarding = ref.read(sharedPreferencesProvider).getBool('onboardingCompleted') == true;
+    final hasCompletedOnboarding = ref.read(sharedPreferencesProvider).getBool(PrefKeys.onboardingCompleted) == true;
     final alwaysShowOnboarding = !ref.read(authEnabledProvider);
     if (!hasCredentials && (!hasCompletedOnboarding || alwaysShowOnboarding)) {
       router.replaceAll([OnboardingScreenRoute()]);

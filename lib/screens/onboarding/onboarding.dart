@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:math';
 
 import 'package:auto_route/auto_route.dart';
+import 'package:brunstadtv_app/helpers/constants.dart';
 import 'package:brunstadtv_app/providers/shared_preferences.dart';
 import 'package:brunstadtv_app/screens/onboarding/signup.dart';
 
@@ -170,7 +171,7 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
                         exploreAction: () {
                           context.router.popUntil((route) => false);
                           context.router.push(const TabsRootScreenRoute());
-                          ref.read(sharedPreferencesProvider).setBool('onboardingCompleted', true);
+                          ref.read(sharedPreferencesProvider).setBool(PrefKeys.onboardingCompleted, true);
                         },
                         signupAction: () {
                           CupertinoScaffold.showCupertinoModalBottomSheet(
