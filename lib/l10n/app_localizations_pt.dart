@@ -206,7 +206,7 @@ class SPt extends S {
   String get doYouWantCast => 'Deseja transmitir este vídeo?';
 
   @override
-  String get play => 'Play';
+  String get play => 'Jogar';
 
   @override
   String get pause => 'Pausa';

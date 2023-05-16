@@ -62,7 +62,7 @@ class SHu extends S {
   String get signInButton => 'Bejelentkezés';
 
   @override
-  String get signInOrSignUp => 'Sign up / Sign in';
+  String get signInOrSignUp => 'Feliratkozás / Bejelentkezés';
 
   @override
   String get signUpButton => 'Regisztrálj most';
@@ -74,7 +74,7 @@ class SHu extends S {
   String get signUpDescription => 'Hozzáférés több tartalomhoz és jobb funkciókhoz fiók létrehozásával.';
 
   @override
-  String get signUpAgreePrivacyPolicy => 'I certify that I am 13 years of age or older, and I agree to the <a>Privacy Policy</a> and <a>Terms of use</a>.';
+  String get signUpAgreePrivacyPolicy => 'Kijelentem, hogy betöltöttem a 13. életévemet, és elfogadom az <a>adatvédelmi szabályzatot</a> és <a>a felhasználási feltételeket</a>.';
 
   @override
   String get setPassword => 'Jelszó létrehozása';
@@ -104,7 +104,7 @@ class SHu extends S {
   String get ok => 'OK';
 
   @override
-  String get open => 'Open';
+  String get open => 'Megnyitás';
 
   @override
   String get loginFailedCheckNetwork => 'Hibás bejelentkezés. Ellenőrizd a hálózati csatlakozásodat és próbálj újra.';
@@ -146,16 +146,16 @@ class SHu extends S {
   String get cancel => 'Mégse';
 
   @override
-  String get cancelConfirmation => 'Are you sure you want to cancel?';
+  String get cancelConfirmation => 'Biztosan le akarod mondani?';
 
   @override
-  String get cancelConfirmationDescription => 'Any unsaved changes will be lost.';
+  String get cancelConfirmationDescription => 'Minden el nem mentett változtatás elveszik.';
 
   @override
-  String get goBack => 'Go back';
+  String get goBack => 'Vissza';
 
   @override
-  String get yesCancel => 'Yes, Cancel';
+  String get yesCancel => 'Igen, törlés';
 
   @override
   String get upNext => 'Következő';
@@ -197,7 +197,7 @@ class SHu extends S {
   String get search => 'Keresés';
 
   @override
-  String get sendFeedback => 'Send Feedback';
+  String get sendFeedback => 'Visszajelzés küldése';
 
   @override
   String get noResults => 'Nincs eredmény';
@@ -409,10 +409,10 @@ class SHu extends S {
   String get share => 'Megosztás';
 
   @override
-  String get showMore => 'Show more';
+  String get showMore => 'Mutass többet';
 
   @override
-  String get showLess => 'Show less';
+  String get showLess => 'Mutass kevesebbet';
 
   @override
   String get liveNow => 'Most élőben';
@@ -595,18 +595,18 @@ class SHu extends S {
   String get continueButton => 'Folytatás';
 
   @override
-  String get registerButton => 'Register';
+  String get registerButton => 'Jelentkezés';
 
   @override
   String get achievements => 'Eredmények';
 
   @override
   String passwordConditionLength(int n) {
-    return 'Minimum $n characters';
+    return 'Legalább $n karakter';
   }
 
   @override
-  String get passwordConditionComplexity => 'Must contain lower case, uppercase and numbers.';
+  String get passwordConditionComplexity => 'Kisbetűket, nagybetűket és számokat kell tartalmaznia.';
 
   @override
   String get oops => 'Uups!';
@@ -639,10 +639,10 @@ class SHu extends S {
   String get selectSeason => 'Évad kiválasztása';
 
   @override
-  String get deleteMyAccount => 'Delete my account';
+  String get deleteMyAccount => 'Fiókom törlése';
 
   @override
-  String get iAmSureIWantToDelete => 'I am sure I want to delete my account and my data related to the BCC Media app.';
+  String get iAmSureIWantToDelete => 'Biztos vagyok benne, hogy törölni szeretném a fiókomat és a BCC Media alkalmazással kapcsolatos adataimat.';
 
   @override
   String get areYouSure => 'Biztos vagy abban?';
